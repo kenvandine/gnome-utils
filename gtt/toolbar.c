@@ -213,10 +213,12 @@ add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
 					    &style->bg[GTK_STATE_NORMAL],
 					    pmap1);
 	w->pmap1 = (GtkPixmap *)gtk_pixmap_new(pmap, bmap);
+	gtk_widget_ref(GTK_WIDGET(w->pmap1));
 	pmap = gdk_pixmap_create_from_xpm_d(window->window, &bmap,
 					    &style->bg[GTK_STATE_NORMAL],
 					    pmap2);
 	w->pmap2 = (GtkPixmap *)gtk_pixmap_new(pmap, bmap);
+	gtk_widget_ref(GTK_WIDGET(w->pmap2));
 
         gtk_widget_show(GTK_WIDGET(w->pmap1));
         gtk_widget_show(GTK_WIDGET(w->pmap2));

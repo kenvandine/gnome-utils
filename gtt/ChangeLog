@@ -1,5 +1,10 @@
 1998-02-16  Eckehard Berns <eb@berns.prima.de>
 
+	* toolbar.c (add_toggle_button): added gtk_widget_ref because the
+	GtkPixmap can be gtk_container_removed.
+
+1998-02-16  Eckehard Berns <eb@berns.prima.de>
+
 	* log.c (log_proj_intern): added instant log if min_secs is zero.
 	Projects will now get logged, as soon as the log file timeout
 	expires.
