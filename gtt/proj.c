@@ -752,18 +752,31 @@ gtt_project_get_secs_ever (GttProject *proj)
 
 /* =========================================================== */
 /* Recomputed cached data.  Scrub it while we're at it. */
+/* Scrub algorithm as follows (as documented in header files):
+ *     Discard all intervals shorter than proj->min_interval
+ *     Merge all intervals whose gaps between them are shorter
+ *     than proj->auto_merge_gap
+ *     Merge all intervals that are shorter than 
+ *     proj->auto_merge_interval into the nearest interval.
+ */
 
 static int
-scrub_intervals (GttTask *tsk, GttProject *prj)
+scrub_intervals (GttTask *tsk)
 {
+	GttProject *prj;
 	GList *node;
 	int changed = FALSE;
-	int mini = prj->min_interval;
-	int merge = prj->auto_merge_interval;
-	int gap = prj->auto_merge_gap;
+	int mini, merge, mgap;
 	int not_done = TRUE;
+	int save_freeze;
+
+	/* prevent recursion */
+	prj = tsk->parent;
+	save_freeze = prj->frozen;
+	prj->frozen = TRUE;
 
 	/* first, eliminate very short intervals */
+	mini = prj->min_interval;
 	while (not_done)
 	{
 		not_done = FALSE;
@@ -771,7 +784,7 @@ scrub_intervals (GttTask *tsk, GttProject *prj)
 		{
 			GttInterval *ivl = node->data;
 			if ((FALSE == ivl->running) &&
-			    ((ivl->stop - ivl->start) <= prj->min_interval))
+			    ((ivl->stop - ivl->start) <= mini))
 			{
 				tsk->interval_list = g_list_remove (tsk->interval_list, ivl);
 				not_done = TRUE;
@@ -781,6 +794,76 @@ scrub_intervals (GttTask *tsk, GttProject *prj)
 		}
 	}
 
+	/* merge intervals with small gaps between them */
+	mgap = prj->auto_merge_gap;
+	not_done = TRUE;
+	while (not_done)
+	{
+		not_done = FALSE;
+		for (node = tsk->interval_list; node; node=node->next)
+		{
+			GttInterval *ivl = node->data;
+			GttInterval *nivl;
+			int gap;
+
+			if (ivl->running) continue;
+			if (!node->next) break;
+			nivl = node->next->data;
+			gap = ivl->start - nivl->stop;
+			if ((mgap > gap) ||
+			    (ivl->fuzz > gap) ||
+			    (nivl->fuzz > gap))
+			{
+				gtt_interval_merge_down (ivl);
+				not_done = TRUE;
+				changed = TRUE;
+				break;
+			}
+		}
+	}
+
+	/* merge short intervals into neighbors */
+	merge = prj->auto_merge_interval;
+	not_done = TRUE;
+	while (not_done)
+	{
+		not_done = FALSE;
+		for (node = tsk->interval_list; node; node=node->next)
+		{
+			GttInterval *ivl = node->data;
+			int gap_up=1000000000;
+			int gap_down=1000000000;
+			int len;
+
+			if (ivl->running) continue;
+			len = ivl->stop - ivl->start;
+			if (len > merge) continue;
+			if (node->next)
+			{
+				GttInterval *nivl = node->next->data;
+				gap_down = ivl->start - nivl->stop;
+			} 
+			if (node->prev)
+			{
+				GttInterval *nivl = node->prev->data;
+				gap_up = nivl->start - ivl->stop;
+			}
+			if (!node->next && !node->prev) continue;
+			if (gap_up < gap_down)
+			{
+				gtt_interval_merge_up (ivl);
+			}
+			else 
+			{
+				gtt_interval_merge_down (ivl);
+			}
+			not_done = TRUE;
+			changed = TRUE;
+			break;
+		}
+	}
+
+	prj->frozen = save_freeze;
 	return changed;
 }
 
@@ -806,7 +889,7 @@ gtt_project_compute_secs (GttProject *proj)
 	for (tsk_node= proj->task_list; tsk_node; tsk_node=tsk_node->next)
 	{
 		GttTask * task = tsk_node->data;
-		scrub_intervals (task, proj);
+		scrub_intervals (task);
 		for (ivl_node= task->interval_list; ivl_node; ivl_node=ivl_node->next)
 		{
 			GttInterval *ivl = ivl_node->data;
@@ -1379,6 +1462,7 @@ GttInterval *
 gtt_interval_merge_up (GttInterval *ivl)
 {
 	int more_fuzz;
+	int ivl_len;
 	GList *node;
 	GttInterval *merge;
 	GttTask *prnt;
@@ -1400,8 +1484,10 @@ gtt_interval_merge_up (GttInterval *ivl)
 
 	/* the fuzz is the gap between stop and start times */
 	more_fuzz = merge->start - ivl->stop;
+	ivl_len = ivl->stop - ivl->start;
+	if (more_fuzz > ivl_len) more_fuzz = ivl_len;
 
-	merge->start -= (ivl->stop - ivl->start);
+	merge->start -= ivl_len;
 	if (ivl->fuzz > merge->fuzz) merge->fuzz = ivl->fuzz;
 	if (more_fuzz > merge->fuzz) merge->fuzz = more_fuzz;
 
@@ -1416,6 +1502,7 @@ GttInterval *
 gtt_interval_merge_down (GttInterval *ivl)
 {
 	int more_fuzz;
+	int ivl_len;
 	GList *node;
 	GttInterval *merge;
 	GttTask *prnt;
@@ -1437,8 +1524,10 @@ gtt_interval_merge_down (GttInterval *ivl)
 
 	/* the fuzz is the gap between stop and start times */
 	more_fuzz = ivl->start - merge->stop;
+	ivl_len = ivl->stop - ivl->start;
+	if (more_fuzz > ivl_len) more_fuzz = ivl_len;
 
-	merge->stop -= (ivl->stop - ivl->start);
+	merge->stop += ivl_len;
 	if (ivl->fuzz > merge->fuzz) merge->fuzz = ivl->fuzz;
 	if (more_fuzz > merge->fuzz) merge->fuzz = more_fuzz;
 	gtt_interval_destroy (ivl);
