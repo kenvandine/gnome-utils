@@ -1,4 +1,4 @@
-SUBDIRS = help
+SUBDIRS = help doc
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
