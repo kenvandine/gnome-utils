@@ -7,7 +7,7 @@
     <title>stripchart</title>
 
     <copyright>
-      <year>2000</year>
+      <year>2000, 2001</year>
       <holder>John Kodis</holder>
     </copyright>
 
@@ -154,7 +154,7 @@
     <interface>main window</interface> with mouse button one will pop
     up a <interface>numeric value</interface> window.  The
     <interface>numeric value</interface> window corresponding to the
-    main window shown in <xref linkend="main"> is shown below in <xref
+    main window shown in the previous figures is shown below in <xref
     linkend="text">.
       <figure id="text">
 	<title>Parameter Numeric Value Window</title>
@@ -329,7 +329,8 @@
 
     <screenshot>
       <screeninfo>Parameter Window</screeninfo>
-      <graphic fileref="figures/param" format="png" srccredit="John Kodis"></graphic>
+      <graphic fileref="figures/param" format="png"
+	       srccredit="John Kodis"></graphic>
     </screenshot>
 
     <sect2 id="param-quickstart">
@@ -370,120 +371,182 @@
 
     </sect2>
 
-<!--
-    <variablelist>
-      <varlistentry>
-	<term>color: <replaceable>COLOR-NAME</replaceable></term>
-	<listitem>
-
-	  <para>Determines the color to be used in displaying a
-	  parameter.  The color names and their RGB values are taken
-	  from X11/rgb.txt.</para>
-
-	</listitem>
-      </varlistentry>
-
-      <varlistentry>
-	<term>scale: <replaceable>LOG-OR-LINEAR</replaceable></term>
-	<listitem>
-
-	  <para>Specifies whether a logarithmic or linear scale factor
-	  is to be used when plotting a parameter value.</para>
-
-	</listitem>
-      </varlistentry>
-
-      <varlistentry>
-	<term>maximum: <replaceable>NUMBER</replaceable></term>
-	<listitem>
-
-	  <para>The largest value that can be displayed.  Any value in
-	  excess of the maximum will be plotted at the top of the
-	  display.  If omitted, a default value of 1.0 is used.</para>
-
-	</listitem>
-      </varlistentry>
-
-      <varlistentry>
-	<term>minimum: <replaceable>NUMBER</replaceable></term>
-	<listitem>
-
-	  <para>The smallest value that can be displayed.  Any value
-	  less than the minimum will be plotted at the bottom of the
-	  display.  If omitted, a default value of 0.0 is used.</para>
-
-	</listitem>
-      </varlistentry>
-
-    </variablelist>
--->
-
     <sect2 id="custom">
       <title>Creating Custom Parameters</title>
 
-      <para>FIX THIS</para>
+      <para>The creation of a custom parameter can be done by editing
+      an existing parameter, by adding a new parameter and editing it,
+      or by adding a new parameter and filling in the parameter fields
+      from scratch.  Many of the parameter fields can be left blank.
+      While good style dictates that a parameter name and description
+      be provided for documentation purposes, the only mandatory
+      fields are those required to obtain a value to be plotted.
+      Generally, the Equation field will fill this role.  The details
+      of each of these fields are described below.</para>
 
       <variablelist>
 
         <varlistentry>
-	  <term>equation: <replaceable>STRING</replaceable></term>
+	  <term>Parameter</term>
 	  <listitem>
 
-	    <para>An equation used to obtain the value to be plotted
-            for this parameter.</para>
+	    <para>A short descriptive name for the parameter.</para>
 
-	    <para>A value is obtained by evaluating the "equation"
-	    line using these field values.  The first (or only) value
-	    is denoted by $1, the next by $2, and so forth.  The
-	    difference between the field values between the last and
-	    the current iteration is denoted by ~1, ~2, and so forth.
-	    The elapsed time in seconds between the last and current
-	    iteration is ~t.  The requested update interval is $i, and
-	    the delta (which will always be zero) is ~i.</para>
+	  </listitem>
+        </varlistentry>
 
-	    <para>The usual infix arithmetic operators &mdash;
-	    addition (+), subtraction (-), multiplication (*),
-	    division (/), and remaindering (%) &mdash; are available,
-	    along with parenthesis for grouping
-	    subexpressions. </para>
+        <varlistentry>
+	  <term>Description</term>
+	  <listitem>
+
+	    <para>A longer description of the parameter.</para>
 
 	  </listitem>
         </varlistentry>
 
 	<varlistentry>
-	  <term>filename: <replaceable>FILENAME</replaceable></term>
+	  <term>Filename</term>
 	  <listitem>
 
-	    <para>The file from which a parameter value is read.  When
-	    a filename beginning with a "|" is supplied, input lines
-	    will be read from a pipe.</para>
-
-	    <para>On each iteration, a value to be displayed is
-	    obtained for each parameter in the configuration file.
-	    The file named in the "filename" line is opened -- either
-	    as a pipe if the filename begins with a pipe character ( |
-	    ), or as a regular file otherwise -- and a line is
-	    read.</para>
-
-	    <para>If a pattern was specified, lines are read until one
+	    <para>The name of a file from which equation parameters
+	    are obtained.  On each iteration, a line is read from this
+	    file.  If a pattern was supplied, lines are read until one
 	    is found that contains the pattern string anywhere in the
 	    line.  This line is split into a series of whitespace
 	    separated fields, each of which is interpreted as a
-	    floating point number.</para>
+	    floating point number.  The first (or only) value is
+	    denoted by $1, the next by $2, and so forth.  The
+	    difference between the field values from the previous to
+	    the current iteration is denoted by ~1, ~2, and so
+	    forth.</para>
+
+	    <para>If a filename beginning with a "|" is supplied,
+	    input lines will be read from a pipe instead of a file.
+	    Lines read from this pipe will be processed identically to
+	    lines read from a file as described previously.</para>
+
+	    <para>If a filename beginning with a "?" is supplied, the
+	    file status determines the value to be plotted: -1 for a
+	    non-existant file, 0 for a file of zero length, 1 for a
+	    file with atime newer than mtime, and 2 for a file with
+	    mtime newer than atime.  These values are useful in
+	    displaying the status of a mailbox file.</para>
 
 	  </listitem>
 	</varlistentry>
 
-	<varlistentry>
-	  <term>pattern: <replaceable>STRING</replaceable></term>
+        <varlistentry>
+	  <term>Equation</term>
 	  <listitem>
 
-	    <para>The pattern which identifies the line from which a
-	    parameter value is to be extracted.  If no pattern is
+	    <para>An equation used to obtain the value to be plotted
+            for this parameter.  The equation is made up of parameters
+            which are combined using the usual infix arithmetic
+            operators.</para>
+
+	    <para>There are several sources for equation
+	    parameters.</para>
+
+            <itemizedlist>
+
+	      <listitem><para>The parameters can be obtained by
+	      reading a line from a file.  This method of obtaining
+	      equation parameters is described under the previous
+	      Filename section.</para></listitem>
+
+	      <listitem><para>There are a number of built-in
+	      parameters.  The elapsed time in seconds between the
+	      last and current iteration is ~t.  The requested update
+	      interval is $i, and the delta (which will always be
+	      zero) is ~i.</para></listitem>
+
+	      <listitem><para>There are a number of parameters
+	      provided by the libgtop library.  These are described in
+	      <xref linkend="libgtop">.</para></listitem>
+
+            </itemizedlist>
+
+	    <para>The usual infix arithmetic operators &mdash;
+	    addition (+), subtraction (-), multiplication (*),
+	    division (/), and remaindering (%) &mdash; are available,
+	    along with parenthesis for grouping subexpressions, and
+	    unary minus (-) to negate a value.  Grouping and negation
+	    have the highest precedence; multiplication, division, and
+	    remaindering have the next highest precedence; and
+	    addition and subtraction have the lowest
+	    precedence.</para>
+
+	  </listitem>
+        </varlistentry>
+
+	<varlistentry>
+	  <term>Pattern</term>
+	  <listitem>
+
+	    <para>If the filename field specifies a file containing
+	    more than a single line of text, the pattern field can be
+	    used to select the line from which equation parameter
+	    values will be obtained.  Lines will be read from the file
+	    until a line containing the specified pattern is found, or
+	    until the end of file is reached.  If no pattern is
 	    provided, the first line of the file is used.</para>
 
 	  </listitem>
 	</varlistentry>
+
+        <varlistentry>
+	  <term>Top Min</term>
+	  <term>Top Max</term>
+	  <term>Bottom Min</term>
+	  <term>Bottom Max</term>
+	  <listitem>
+
+	    <para>The minimum and maximum to be used for the value at
+	    the top and bottom of the chart.</para>
+
+	  </listitem>
+        </varlistentry>
+
+        <varlistentry>
+	  <term>Scale</term>
+	  <listitem>
+
+	    <para>The type of scaling to be performed on the parameter
+	    values before they are plotted: either linear or
+	    logarithmic.</para>
+
+	  </listitem>
+        </varlistentry>
+
+        <varlistentry>
+	  <term>Type</term>
+	  <listitem>
+
+	    <para>The type of plot to be generated for this parameter
+	    value.  The value can be plotted as an indicator, a small
+	    square in the upper left corner of the window; as a line
+	    drawn between successive parameter values; as a point for
+	    each parameter value; or as a solid, with the area below
+	    each parameter value solidly filled in.</para>
+
+	  </listitem>
+        </varlistentry>
+
+        <varlistentry>
+	  <term>Color</term>
+	  <listitem>
+
+	    <para>The color or colors to be used when plotting this
+	    parameter value.  For an indicator plot, a series of
+	    colors are used, the first for parameter values of one,
+	    plus or minus one-half, two, plus or minus one-half,
+	    three, plus or minus one-half, and so on.  For line,
+	    point, and solid plot types, only a single color is
+	    used.</para>
+
+	  </listitem>
+        </varlistentry>
+
       </variablelist>
 
     </sect2>
