@@ -18,10 +18,7 @@ gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
 		  $(GNOMEUI_LIBS) $(INTLLIBS) \
 		  $(LIBGTOP_LIBS) $(LIBGTOP_EXTRA_LIBS)
 
-EXTRA_DIST = gnome-diskfree.png gdiskfree.desktop
-
-pixmapdir = $(datadir)/pixmaps
-pixmap_DATA = gnome-diskfree.png
+EXTRA_DIST = gdiskfree.desktop
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_DATA = gdiskfree.desktop
