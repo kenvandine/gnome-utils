@@ -157,11 +157,11 @@ get_month (const char *str)
 						      &tm) <= 0) {
 						strcpy (buf, "");
 					}
+				}
 
-					if (old_locale != NULL) {
-						setlocale (LC_TIME, old_locale);
-						g_free (old_locale);
-					}
+				if (old_locale != NULL) {
+					setlocale (LC_TIME, old_locale);
+					g_free (old_locale);
 				}
 
 				name = g_strdup (buf);

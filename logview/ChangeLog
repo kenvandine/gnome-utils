@@ -1,3 +1,12 @@
+Thu May 16 18:39:42 2002  George Lebl <jirka@5z.com>
+
+	* info.c, log_repaint.c, logview.h, misc.c, zoom.c:
+	  handle cases where we can't convert the line to utf8.  We can
+	  really guess the language anyway though so maybe we could do more.
+
+	* logrtns.c: make sure not to leave other time locales around and
+	  fix a leak thus created.
+
 Thu May 16 18:19:59 2002  George Lebl <jirka@5z.com>
 
 	* info.c, log_repaint.c, logrtns.c, logview.h, misc.c, zoom.c:

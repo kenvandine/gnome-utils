@@ -285,7 +285,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
 				   (int) line->min,
 				   (int) line->sec);
    } else {
-	   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
+	   utf8 = LocaleToUTF8 (buffer);
    }
    pango_layout_set_font_description (zoom_layout, cfg->fixed);
    pango_layout_set_text (zoom_layout, utf8, -1);
@@ -293,12 +293,12 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    gdk_draw_layout (canvas, gc, x, y, zoom_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ", line->process);
-   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
+   utf8 = LocaleToUTF8 (buffer);
    pango_layout_set_text (zoom_layout, utf8, -1);
    g_free (utf8);
    gdk_draw_layout (canvas, gc, x, y+2, zoom_layout);
    y += h;
-   utf8 = g_locale_to_utf8 (line->message, -1, NULL, NULL, NULL);
+   utf8 = LocaleToUTF8 (line->message);
    draw_parbox (canvas, cfg->fixed, gc, x, y+4, 380, utf8, 4);
    g_free (utf8);
    y += 4*h;

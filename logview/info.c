@@ -240,20 +240,20 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
    gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.mtime));
-   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
+   utf8 = LocaleToUTF8 (buffer);
    pango_layout_set_text (stat_layout, utf8, -1);
    g_free (utf8);
    gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ",
 	      ctime (&curlog->lstats.startdate));
-   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
+   utf8 = LocaleToUTF8 (buffer);
    pango_layout_set_text (stat_layout, utf8, -1);
    g_free (utf8);
    gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.enddate));
-   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
+   utf8 = LocaleToUTF8 (buffer);
    pango_layout_set_text (stat_layout, utf8, -1);
    g_free (utf8);
    gdk_draw_layout (canvas, gc, x, y, stat_layout);

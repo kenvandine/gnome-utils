@@ -242,6 +242,7 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs);
 int exec_action_in_db (Log *log, LogLine *line, GList *db);
 
 PangoFont * LoadFont (PangoContext *context, PangoFontDescription *fontd);
+char *LocaleToUTF8 (const char *in);
 
 #define sure_string ((x)?(x):"")
 

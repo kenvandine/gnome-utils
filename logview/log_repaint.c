@@ -533,7 +533,7 @@ UpdateStatusArea ()
 				  tdm->tm_mday, tdm->tm_mon,
 				  tdm->tm_year % 100);
   } else {
-	  utf8 = g_locale_to_utf8 (status_text, -1, NULL, NULL, NULL);
+	  utf8 = LocaleToUTF8 (status_text);
   }
   gtk_label_get ( date_label, (char **)&buffer);
 /* FIXME: is this if statement needed?  would it make sense 
@@ -639,7 +639,7 @@ DrawLogLine (LogLine *line, int y)
 		  /* as a backup print in 24 hours style */
 		  utf8 = g_strdup_printf ("%02d:%02d:%02d", line->hour, line->min, line->sec);
 	  } else {
-		  utf8 = g_locale_to_utf8 (tmp, -1, NULL, NULL, NULL);
+		  utf8 = LocaleToUTF8 (tmp);
 	  }
 
   } else {
@@ -661,7 +661,7 @@ DrawLogLine (LogLine *line, int y)
   strcpy (tmp, " ");
   if(user_prefs->hostname_column_width > 0)
   {
-	  utf8 = g_locale_to_utf8 (line->hostname, -1, NULL, NULL, NULL);
+	  utf8 = LocaleToUTF8 (line->hostname);
 	  /* FIXME: check we really do have enough room in tmp, we should */
 	  g_utf8_strncpy (tmp, utf8, user_prefs->hostname_column_width);
 	  g_free (utf8);
@@ -681,7 +681,7 @@ DrawLogLine (LogLine *line, int y)
   strcpy (tmp, " ");
   if(user_prefs->process_column_width > 0)
   {
-	  utf8 = g_locale_to_utf8 (line->process, -1, NULL, NULL, NULL);
+	  utf8 = LocaleToUTF8 (line->process);
 	  /* FIXME: check we really do have enough room in tmp, we should */
 	  g_utf8_strncpy (tmp, utf8, user_prefs->process_column_width);
 	  g_free (utf8);
@@ -703,7 +703,7 @@ DrawLogLine (LogLine *line, int y)
   max_num_chars = (canvas_width - 10 - col_pos) / char_width;
   if (max_num_chars < num_chars)
     max_num_chars = num_chars;
-  utf8 = g_locale_to_utf8 (line->message, -1, NULL, NULL, NULL);
+  utf8 = LocaleToUTF8 (line->message);
   /* FIXME: check we really do have enough room in tmp, we should */
   g_utf8_strncpy (tmp, utf8, max_num_chars);
   g_free (utf8);
@@ -761,7 +761,7 @@ DrawMonthHeader (LogLine * line, int y)
 		   /* If we fail just use the US format */
 		   utf8 = g_strdup_printf ("%s %d", _(month[(int) line->month]), line->date);
 	   } else {
-		   utf8 = g_locale_to_utf8 (buf, -1, NULL, NULL, NULL);
+		   utf8 = LocaleToUTF8 (buf);
 	   }
    } else {
 	   utf8 = g_strdup_printf ("?%d? %d", (int) line->month, line->date);
