@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nautilus\n"
-"POT-Creation-Date: 2002-10-31 05:07+0100\n"
-"PO-Revision-Date: 2002-11-01 09:27+EDT\n"
+"POT-Creation-Date: 2003-01-06 06:01+0100\n"
+"PO-Revision-Date: 2003-01-07 10:33+EDT\n"
 "Last-Translator: Ge'ez Frontier Foundation <locales@geez.org>\n"
 "Language-Team: Amharic <locales@geez.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,25 +73,28 @@ msgstr ""
 
 #. Translator credits
 #: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:46 gdictsrc/gdict-about.c:43
-#: gsearchtool/gsearchtool.c:2002 logview/about.c:52
-#: meat-grinder/meat-grinder.c:475
+#: logview/about.c:52
 msgid "translator_credits"
 msgstr "ዘግዕዝ Frontier Foundation"
 
-#: gcalc/gcalc.c:60 gcalc/gcalc.c:191
+#: gcalc/gcalc.c:60
 msgid "GNOME Calculator"
 msgstr ""
 
 #: gcalc/gcalc.c:61
-msgid "(C) 1998 the Free Software Foundation"
-msgstr "(ም) የቅጂው መብት 1998 የነፃው ሶፍትዌር foundation"
+msgid "(C) 1998 Free Software Foundation, Inc."
+msgstr "(ም) የቅጂው መብት 1998 የነፃው ሶፍትዌር Foundation, Inc."
 
 #: gcalc/gcalc.c:62
-msgid "Simple double precision calculator similiar to xcalc"
+msgid "Simple double precision calculator similar to xcalc"
 msgstr ""
 
 #: gcalc/gcalc.c:140
 msgid "_Calculator"
+msgstr ""
+
+#: gcalc/gcalc.c:191 gcalc/gnome-calculator.desktop.in.h:1
+msgid "Calculator"
 msgstr ""
 
 #: gcalc/gnome-calc.c:252
@@ -124,7 +127,7 @@ msgstr "x<sup>2</sup>"
 
 #: gcalc/gnome-calc.c:1253
 msgid "Square"
-msgstr ""
+msgstr "አደባባይ"
 
 #: gcalc/gnome-calc.c:1254
 msgid "SQRT"
@@ -148,7 +151,7 @@ msgstr "AC"
 
 #: gcalc/gnome-calc.c:1256
 msgid "Reset"
-msgstr ""
+msgstr "እንደነበረ አድረግ"
 
 #: gcalc/gnome-calc.c:1258
 msgid "INV"
@@ -202,7 +205,7 @@ msgstr ""
 
 #: gcalc/gnome-calc.c:1266
 msgid "EE"
-msgstr ""
+msgstr "EE"
 
 #: gcalc/gnome-calc.c:1266
 msgid "Add digit"
@@ -290,7 +293,7 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
-#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:1
+#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:2
 msgid "*"
 msgstr "*"
 
@@ -372,6 +375,7 @@ msgstr ""
 msgid "0"
 msgstr "0"
 
+
 #: gcalc/gnome-calc.c:1297
 msgid "."
 msgstr "."
@@ -396,15 +400,11 @@ msgstr "="
 msgid "Calculate"
 msgstr ""
 
-#: gcalc/gnome-calculator.desktop.in.h:1
-msgid "Calculator"
-msgstr ""
-
 #: gcalc/gnome-calculator.desktop.in.h:2
 msgid "Perform simple calculations"
 msgstr ""
 
-#: gcharmap/gnome-character-map.desktop.in.h:1
+#: gcharmap/gnome-character-map.desktop.in.h:1 gcharmap/src/interface.c:160
 msgid "Character Map"
 msgstr "የፊድል ካርታ"
 
@@ -412,35 +412,35 @@ msgstr "የፊድል ካርታ"
 msgid "Insert special characters into documents"
 msgstr ""
 
-#: gcharmap/src/asciiselect.c:117
+#: gcharmap/src/asciiselect.c:149
 msgid "Select Character"
-msgstr "ፊደል ምረጥ"
+msgstr "ፊደል ምረጡ"
 
-#: gcharmap/src/asciiselect.c:120
+#: gcharmap/src/asciiselect.c:152
 msgid "_Insert"
 msgstr "አስገባ (_I)"
 
-#: gcharmap/src/asciiselect.c:123
+#: gcharmap/src/asciiselect.c:155
 msgid "Character c_ode:"
 msgstr "ፊደል ኮድ፦ (_o)"
 
-#: gcharmap/src/asciiselect.c:137
+#: gcharmap/src/asciiselect.c:178
 msgid "Ch_aracter:"
 msgstr "ፊደል፦ (_a)"
 
-#: gcharmap/src/asciiselect.c:148
+#: gcharmap/src/asciiselect.c:189
 msgid "Character Code"
 msgstr "ፊደል ኮድ"
 
-#: gcharmap/src/asciiselect.c:148
+#: gcharmap/src/asciiselect.c:189
 msgid "Select character code"
 msgstr ""
 
-#: gcharmap/src/asciiselect.c:149
+#: gcharmap/src/asciiselect.c:190
 msgid "Character"
 msgstr "ፊደል"
 
-#: gcharmap/src/asciiselect.c:149
+#: gcharmap/src/asciiselect.c:190
 msgid "Character to insert"
 msgstr ""
 
@@ -453,58 +453,64 @@ msgid ""
 "Select, copy and paste characters from your font into other applications"
 msgstr ""
 
-#: gcharmap/src/callbacks.c:113
-msgid "del"
-msgstr "del"
+#: gcharmap/src/callbacks.c:130 gcharmap/src/callbacks.c:138
+msgid "Character code: (Unicode) U%04lX"
+msgstr "ፊደል ኮድ፦ (ዩኒኮድ)፦ U%04lX"
 
-#: gcharmap/src/callbacks.c:119
+#: gcharmap/src/callbacks.c:134
 #, c-format
-msgid " %s: Character code %d"
-msgstr " %s፦ የፊደል ኮድ %d"
+msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
+msgstr ""
 
-#: gcharmap/src/callbacks.c:155
+#: gcharmap/src/callbacks.c:192
 msgid "Text copied to clipboard..."
 msgstr ""
 
-#: gcharmap/src/callbacks.c:172
+#: gcharmap/src/callbacks.c:209
 msgid "Text cut to clipboard..."
 msgstr ""
 
-#: gcharmap/src/callbacks.c:208
+#: gcharmap/src/callbacks.c:259
 msgid "Text pasted from clipboard..."
 msgstr ""
 
-#: gcharmap/src/interface.c:206
-msgid "Gnome Character Map"
-msgstr ""
-
-#: gcharmap/src/interface.c:236
+#: gcharmap/src/interface.c:190
 msgid "Action Toolbar"
 msgstr "የትግባር ቱልባር"
 
-#: gcharmap/src/interface.c:240
+#: gcharmap/src/interface.c:194
+msgid "_Font:"
+msgstr "የፊደል ቅርጽ፦ (_F)"
+
+#. The page selector
+#: gcharmap/src/interface.c:210
+msgid "_Page:"
+msgstr "ገጽ፦ (_P)"
+
+#. end of page selector
+#: gcharmap/src/interface.c:225
 msgid "_Text to copy:"
-msgstr ""
+msgstr "ጽሑፉን ቅጁ፦ (_T)"
 
-#: gcharmap/src/interface.c:255
+#: gcharmap/src/interface.c:240
 msgid "_Copy"
-msgstr "_ቅጂ"
+msgstr "_ቅጂ (_C)"
 
-#: gcharmap/src/interface.c:277 gcharmap/src/interface.c:278
+#: gcharmap/src/interface.c:262 gcharmap/src/interface.c:263
 msgid "Text to copy"
 msgstr "ጽሑፉን ቅጁ"
 
-#: gcharmap/src/interface.c:278
+#: gcharmap/src/interface.c:263
 msgid "Entry"
 msgstr ""
 
-#: gcharmap/src/interface.c:279 gcharmap/src/menus.c:77
+#: gcharmap/src/interface.c:264 gcharmap/src/menus.c:77
 msgid "Copy"
 msgstr "ቅጂ"
 
-#: gcharmap/src/interface.c:279
+#: gcharmap/src/interface.c:264
 msgid "Copy the text"
-msgstr ""
+msgstr "ጽሑፉን ቅጂ"
 
 #: gcharmap/src/menus.c:34
 msgid "_Browse..."
@@ -549,11 +555,11 @@ msgstr ""
 msgid "Indicates the percentage specified at the standard input"
 msgstr ""
 
-#: gdialog/inputbox.c:90
+#: gdialog/inputbox.c:84
 msgid "GDialog Entry"
 msgstr ""
 
-#: gdialog/inputbox.c:90
+#: gdialog/inputbox.c:84
 msgid "Enter the text"
 msgstr ""
 
@@ -613,9 +619,7 @@ msgid "Copyright 1999 by Mike Hughes"
 msgstr "የቅጂ መብት 1999 by Mike Hughes"
 
 #: gdictsrc/gdict-about.c:58
-msgid ""
-"Client for MIT dictionary server.\n"
-"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+msgid "Client for MIT dictionary server.\n"
 msgstr ""
 
 #: gdictsrc/gdict-app.c:128
@@ -646,8 +650,7 @@ msgstr ""
 msgid "Find"
 msgstr "ፈልግ"
 
-#: gdictsrc/gdict-app.c:490 gsearchtool/gsearchtool.c:1507
-#: gsearchtool/gsearchtool.c:1840
+#: gdictsrc/gdict-app.c:490
 msgid "_Find"
 msgstr "ፈልግ (_F)"
 
@@ -669,7 +672,7 @@ msgstr ""
 
 #: gdictsrc/gdict-app.c:704 gdictsrc/gdict-speller.c:165
 msgid "Check _Spelling"
-msgstr ""
+msgstr "የቃላት አጻጻፉን አጣራ (_S)"
 
 #: gdictsrc/gdict-app.c:705
 msgid "Check word spelling"
@@ -755,10 +758,10 @@ msgstr ""
 
 #: gdictsrc/gdict-pref-dialog.c:211
 msgid "_Server:"
-msgstr ""
+msgstr "ሰርቨር፦ (_S)"
 
 #: gdictsrc/gdict-pref-dialog.c:218
-msgid "De_fault"
+msgid "De_fault Server"
 msgstr ""
 
 #: gdictsrc/gdict-pref-dialog.c:224
@@ -767,10 +770,10 @@ msgstr ""
 
 #: gdictsrc/gdict-pref-dialog.c:226
 msgid "_Port:"
-msgstr ""
+msgstr "ፖርት፦ (_P)"
 
 #: gdictsrc/gdict-pref-dialog.c:240
-msgid "Def_ault"
+msgid "Def_ault Port"
 msgstr ""
 
 #: gdictsrc/gdict-pref-dialog.c:247
@@ -779,7 +782,7 @@ msgstr ""
 
 #: gdictsrc/gdict-pref-dialog.c:248
 msgid "Server"
-msgstr ""
+msgstr "ሰርቨር"
 
 #: gdictsrc/gdict-pref-dialog.c:249
 msgid "Server Entry"
@@ -791,7 +794,7 @@ msgstr ""
 
 #: gdictsrc/gdict-pref-dialog.c:252
 msgid "Port"
-msgstr ""
+msgstr "ፖርት"
 
 #: gdictsrc/gdict-pref-dialog.c:253
 msgid "Port Entry"
@@ -803,7 +806,7 @@ msgstr ""
 
 #: gdictsrc/gdict-pref-dialog.c:258
 msgid "_Database:"
-msgstr ""
+msgstr "ዳታቤዝ፦ (_D)"
 
 #: gdictsrc/gdict-pref-dialog.c:265
 msgid "D_efault strategy:"
@@ -815,7 +818,7 @@ msgstr ""
 
 #: gdictsrc/gdict-pref-dialog.c:623
 msgid "Database"
-msgstr ""
+msgstr "ዳታቤዝ"
 
 #: gdictsrc/gdict-pref-dialog.c:623
 msgid "Database Name"
@@ -847,7 +850,7 @@ msgstr "የአሰሳ ውጤቶች (_R)"
 
 #: gdictsrc/gdict-speller.c:236
 msgid "Check Spelling"
-msgstr ""
+msgstr "የቃላት አጻጻፉን አጣራ"
 
 #: gdictsrc/gdict-speller.c:654
 msgid "Search Strategy"
@@ -919,23 +922,18 @@ msgstr ""
 msgid "MInternal Error: Weird value (%ld) in do_test\n"
 msgstr ""
 
-#: gfloppy/src/badblocks.c:166
-#, c-format
-msgid "EBad block at block %lu"
-msgstr ""
-
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:260
+#: gfloppy/src/badblocks.c:269
 msgid "MChecking for bad blocks..."
 msgstr ""
 
-#: gfloppy/src/badblocks.c:272
+#: gfloppy/src/badblocks.c:281
 #, c-format
 msgid "MFailed to open device %s for badblock checking\n"
 msgstr ""
 
-#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:213
+#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:536
 msgid "MChecking for bad blocks... Done"
 msgstr ""
 
@@ -1034,90 +1032,177 @@ msgid ""
 msgstr ""
 
 #: gfloppy/src/fdformat.c:194
-msgid "ECould not determine current format type"
+msgid "ECould not determine current floppy geometry."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
+#: gfloppy/src/gfloppy.c:229
+msgid "EError while creating a unique filename for the bad blocks list file."
+msgstr ""
+
+#: gfloppy/src/gfloppy.c:249
+msgid "EError while filling the bad blocks list file."
+msgstr ""
+
+#: gfloppy/src/gfloppy.c:308
+#, c-format
+msgid "EError while spawning the (%s) command: %s."
+msgstr ""
+
+#: gfloppy/src/gfloppy.c:332
+msgid "EUnknown mke2fs starting signature, cancelling."
+msgstr ""
+
+#: gfloppy/src/gfloppy.c:346
+#, c-format
+msgid ""
+"EThe filesystem creation utility (%s) reported the following errors:\n"
+"\n"
+"%s (%d)"
+msgstr ""
+
+#: gfloppy/src/gfloppy.c:363
+msgid "EAbnormal child process termination."
+msgstr ""
+
+#: gfloppy/src/gfloppy.c:388
+#, c-format
+msgid "EError while spawning the mbadblocks command: %s."
+msgstr ""
+
+#: gfloppy/src/gfloppy.c:400
+#, c-format
+msgid ""
+"EThe bad blocks checking utility (mbadblocks) reported the following "
+"errors:\n"
+"%s."
+msgstr ""
+
+#: gfloppy/src/gfloppy.c:443
+msgid "EAbnormal mbadblocks child process termination."
+msgstr ""
+
+#. make the filesystem
+#: gfloppy/src/gfloppy.c:470 gfloppy/src/gfloppy.c:510
 msgid "MMaking filesystem on disk..."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:167
+#: gfloppy/src/gfloppy.c:478
 msgid "EUnable to create filesystem correctly."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:171 gfloppy/src/gfloppy.c:203
+#: gfloppy/src/gfloppy.c:482 gfloppy/src/gfloppy.c:522
 msgid "MMaking filesystem on disk... Done"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:200 gfloppy/src/gfloppy.c:215
-msgid "EUnable to create filesystem."
-msgstr ""
-
-#: gfloppy/src/gfloppy.c:209
+#: gfloppy/src/gfloppy.c:527
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:2
-msgid "DOS (fat)"
-msgstr "DOS (fat)"
+#: gfloppy/src/gfloppy.c:532
+msgid "EError while checking the bad blocks."
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:1
+msgid "    "
+msgstr "    "
 
 #: gfloppy/src/gfloppy2.glade.h:3
-msgid "Double Density 3.5\" (720KB)"
+msgid ""
+"<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
+"be installed in order to make a thorough DOS (fat) formatting."
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "Double Density 5.25\" (360KB)"
+msgid "<span weight=\"bold\">Filesystem settings</span>"
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:5
-msgid "File system _type:"
+msgid "<span weight=\"bold\">Formatting mode</span>"
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:6
-msgid "Floppy _density:"
+msgid "<span weight=\"bold\">Physical settings</span>"
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:7
-msgid "Floppy de_vice:"
-msgstr ""
+msgid "DOS (FAT)"
+msgstr "DOS (FAT)"
 
 #: gfloppy/src/gfloppy2.glade.h:8
-msgid "Format a Floppy"
+msgid "Double Density 3.5\" (720KB)"
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:9
-msgid "High Density 3.5\" (1.44MB)"
+msgid "Double Density 5.25\" (360KB)"
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:10
-msgid "High Density 5.25\" (1.2MB)"
+msgid "File system _type:"
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:11
-msgid "Linux Native (ext2)"
+msgid "Floppy _density:"
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:12
+msgid "Floppy de_vice:"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:13
+msgid "Floppy formatter"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:14
+msgid "High Density 3.5\" (1.44MB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:15
+msgid "High Density 5.25\" (1.2MB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Linux Native (ext2)"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:17
+msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:18
+msgid "Volume _name:"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:19
 msgid "_Format"
 msgstr "ፎርማት (_F)"
 
-#: gfloppy/src/gfloppy2.glade.h:13
-msgid "_Quick format"
+#: gfloppy/src/gfloppy2.glade.h:20
+msgid "_Quick (only creates the filesystem)"
 msgstr ""
 
-#: gfloppy/src/main.c:131 gfloppy/src/main.c:174
+#: gfloppy/src/gfloppy2.glade.h:21
+msgid "_Standard (adds a low-level format to the quick mode)"
+msgstr ""
+
+#: gfloppy/src/main.c:132
+msgid ""
+"Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
+"can't format a floppy without one of them."
+msgstr ""
+
+#: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr ""
 
-#: gfloppy/src/main.c:134 gfloppy/src/main.c:177
+#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
 msgstr ""
 
-#: gfloppy/src/main.c:137 gfloppy/src/main.c:180
+#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -1125,371 +1210,414 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 
-#: gfloppy/src/main.c:291
+#: gfloppy/src/main.c:391
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
 "%s"
 msgstr ""
 
-#: gfloppy/src/main.c:359
+#: gfloppy/src/main.c:425
+msgid "The volume name can't contain any blank space."
+msgstr ""
+
+#: gfloppy/src/main.c:471
 msgid "The device to format"
 msgstr ""
 
-#: gfloppy/src/main.c:360
+#: gfloppy/src/main.c:472
 msgid "DEVICE"
 msgstr ""
 
-#: gfloppy/src/progress.c:115
+#: gfloppy/src/progress.c:123
+#, c-format
+msgid ""
+"The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
+"been found and marked."
+msgstr ""
+
+#: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
 msgstr ""
 
-#: gfloppy/src/progress.c:120
+#: gfloppy/src/progress.c:132
 msgid "Floppy formatting cancelled."
 msgstr ""
 
-#: gfloppy/src/progress.c:161
-msgid "Format progress."
+#: gfloppy/src/progress.c:172
+msgid "Format progress"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1
-msgid "Search for Files"
+#: gfloppy/gfloppy.schemas.in.h:1
+msgid ""
+"0 for the quick format, 1 for a standard one (adds a low-level format) and "
+"finally 2 for a thorough format (adds a bad blocks scan)."
 msgstr ""
+
+#: gfloppy/gfloppy.schemas.in.h:2
+msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
+msgstr ""
+
+#: gfloppy/gfloppy.schemas.in.h:3
+msgid "Default filesystem type"
+msgstr ""
+
+#: gfloppy/gfloppy.schemas.in.h:4
+msgid "Default formatting mode"
+msgstr ""
+
+#: gfloppy/gfloppy.schemas.in.h:5
+msgid ""
+"TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
+"mtools as the preferred FAT formatting backend."
+msgstr ""
+
+#: gfloppy/gfloppy.schemas.in.h:6
+msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1569
+msgid "Search for Files"
+msgstr "ፋይሎችን አስስ"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search your disk for files"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:66
-msgid "File name is"
+#: gsearchtool/gsearchtool.c:63
+msgid "Contains the text"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:67
-msgid "File name is not"
+#: gsearchtool/gsearchtool.c:65
+msgid "Date modified less than (days)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:66
+msgid "Date modified more than (days)"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:68
-msgid "Don't search mounted filesystems"
+msgid "Size at least (kilobytes)"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:69
-msgid "Follow symbolic links"
+msgid "Size at most (kilobytes)"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:70
-msgid "Process folder contents depth first"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:71
-msgid "Owned by user"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:72
-msgid "Owned by group"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:73
-msgid "Invalid user or group"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:74
-msgid "Last time modified"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:75
 msgid "File is empty"
 msgstr "ፋይሉ ባዶ ነው"
 
+#: gsearchtool/gsearchtool.c:72
+msgid "Owned by user"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:73
+msgid "Owned by group"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:74
+msgid "Owner is unrecognized"
+msgstr ""
+
 #: gsearchtool/gsearchtool.c:76
-msgid "Matches regular expression"
+msgid "File is not named"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:274 gsearchtool/gsearchtool.c:943
-msgid "Start folder does not exist."
+#: gsearchtool/gsearchtool.c:77
+msgid "File matches regular expression"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:499
-msgid "today at %-I:%M %p"
-msgstr "ዛሬ በ %-I:%M %p"
-
-#: gsearchtool/gsearchtool.c:501
-msgid "yesterday at %-I:%M %p"
-msgstr "ትናንት በ %-I:%M %p"
-
-#: gsearchtool/gsearchtool.c:503 gsearchtool/gsearchtool.c:505
-msgid "%m/%-d/%y, %-I:%M %p"
-msgstr "%m/%-d/%y, %-I:%M %p"
-
-#: gsearchtool/gsearchtool.c:518
-msgid "%Y%m%d%H%M%S"
-msgstr "%Y%m%d%H%M%S"
-
-#: gsearchtool/gsearchtool.c:533
-msgid "folder"
-msgstr "ዶሴ"
-
-#: gsearchtool/gsearchtool.c:535
-msgid "program"
-msgstr "ፕሮግራም"
-
-#: gsearchtool/gsearchtool.c:537
-msgid "symbolic link"
+#: gsearchtool/gsearchtool.c:79
+msgid "Follow symbolic links"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:663
-msgid "No Files Found."
+#: gsearchtool/gsearchtool.c:80
+msgid "Include other filesystems"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:736
+#: gsearchtool/gsearchtool.c:397 gsearchtool/gsearchtool.c:823
+msgid "No files found"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:482
+msgid "Entry changed called for a non entry option!"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:592
+msgid "Set the text of 'file is named'"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:593
+msgid "Set the text of 'look in folder'"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:594
+msgid "Sort files by one of the following: name, folder, size, type, or date"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:595
+msgid "Set sort order to descending, the default is ascending"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:596
+msgid "Automatically start a search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:600
+#, c-format
+msgid "Select the '%s' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:685
+msgid "Invalid option passed to sortby command line argument."
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:814
+msgid "(aborted)"
+msgstr "(ውድቅ ሆኗል)"
+
+#: gsearchtool/gsearchtool.c:827
+msgid "One file found"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:830
+#, c-format
+msgid "%d files found"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:926
 msgid ""
-"Cannot perform the search.\n"
-"The Bourne shell was not found\n"
-"It is typically installed as /bin/sh or /usr/bin/sh."
+"While searching the following errors were reported.\n"
+"\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:752
-msgid "Searching..."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:866
+#: gsearchtool/gsearchtool.c:930
 msgid ""
 "\n"
 "... Too many errors to display ..."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:877
-msgid "No files found"
+#: gsearchtool/gsearchtool.c:943
+msgid "Search Errors"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:880
-msgid "One file found"
+#: gsearchtool/gsearchtool.c:981 gsearchtool/gsearchtool.c:1005
+msgid "Search for Files Error"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:882
-#, c-format
-msgid "%d files found"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:954 gsearchtool/gsearchtool.c:1671
-msgid "Cannot perform the search. Please specify a search criteria."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:971 gsearchtool/gsearchtool.c:1692
-msgid ""
-"A search is already running.  Please wait for the search to complete or "
-"cancel it."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1005
-msgid "Start folder does not exist"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1020
-msgid "Cannot show the search command line. Please specify a search criteria."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1024
-msgid "Search Command Line"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1042
-msgid ""
-"This is the command line that can be used to execute this search\n"
-"from the console.\n"
-"\n"
-"C_ommand:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1063
-msgid "Command"
-msgstr "ትእዛዝ"
-
-#: gsearchtool/gsearchtool.c:1064
-msgid "Command Line Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1064
-msgid "Use this command line to execute the search from console"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1172
-msgid "No viewer available for this mime type."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1269
-msgid "Entry changed called for a non entry option!"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1339
+#: gsearchtool/gsearchtool.c:1089
 msgid "Search Rule Value Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1339
+#: gsearchtool/gsearchtool.c:1090
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1354
-msgid "Enabled"
+#: gsearchtool/gsearchtool.c:1124
+#, c-format
+msgid "Click to Remove the '%s' Rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1362
-msgid "Toggle On/Off to enable/disable the rule"
+#: gsearchtool/gsearchtool.c:1179
+msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1370
-msgid "Click to Remove the Rule"
+#: gsearchtool/gsearchtool.c:1192
+msgid "Search Rules Menu"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1416 gsearchtool/gsearchtool.c:1794
-msgid "S_tarting in folder:"
+#: gsearchtool/gsearchtool.c:1193
+msgid "Select a search rule from the menu"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1420 gsearchtool/gsearchtool.c:1800
+#: gsearchtool/gsearchtool.c:1225
+msgid "S_earch Results"
+msgstr "የአሰሳ ውጤቶች (_e)"
+
+#: gsearchtool/gsearchtool.c:1297
+msgid "Name"
+msgstr "ስም"
+
+#: gsearchtool/gsearchtool.c:1317
+msgid "Folder"
+msgstr "ዶሴ"
+
+#: gsearchtool/gsearchtool.c:1328
+msgid "Size"
+msgstr "መጠን"
+
+#: gsearchtool/gsearchtool.c:1338
+msgid "Type"
+msgstr "ዓይነት"
+
+#: gsearchtool/gsearchtool.c:1348
+msgid "Date Modified"
+msgstr "የተቀየረ ቀን"
+
+#: gsearchtool/gsearchtool.c:1385
+msgid "File is _named:"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1400 gsearchtool/gsearchtool.c:1401
+msgid "File Name Entry"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1400 gsearchtool/gsearchtool.c:1401
+msgid "Enter the file name you want to search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1413
+msgid "_Look in folder:"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1419
 msgid "Browse"
 msgstr "ቃኝ"
 
 #: gsearchtool/gsearchtool.c:1428 gsearchtool/gsearchtool.c:1429
-#: gsearchtool/gsearchtool.c:1809 gsearchtool/gsearchtool.c:1810
 msgid "Starting folder entry"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:1428 gsearchtool/gsearchtool.c:1429
-#: gsearchtool/gsearchtool.c:1809 gsearchtool/gsearchtool.c:1810
 msgid "Enter the folder name where you want to start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1450
-msgid "Rules:"
+#: gsearchtool/gsearchtool.c:1445 gsearchtool/gsearchtool.c:1446
+msgid "Additional Options"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1470
-msgid "A_dd Rule:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1479
-msgid "Search Rules Menu"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1479
-msgid "Select a search rule from the menu"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1522
-msgid "Click to Add a Rule"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1523
-msgid "Click to Start the Search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1524
-msgid "Click to Stop the Search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1529 gsearchtool/gsearchtool.c:1861
-msgid "S_earch Results"
-msgstr "የአሰሳ ውጤቶች (_e)"
-
-#: gsearchtool/gsearchtool.c:1569 gsearchtool/gsearchtool.c:1901
-msgid "Name"
-msgstr "ስም"
-
-#: gsearchtool/gsearchtool.c:1591 gsearchtool/gsearchtool.c:1923
-msgid "Folder"
-msgstr "ዶሴ"
-
-#: gsearchtool/gsearchtool.c:1603 gsearchtool/gsearchtool.c:1935
-msgid "Size"
-msgstr "መጠን"
-
-#: gsearchtool/gsearchtool.c:1615 gsearchtool/gsearchtool.c:1947
-msgid "Type"
-msgstr "ዓይነት"
-
-#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1958
-msgid "Date Modified"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1770
-msgid "Find files _named:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1785 gsearchtool/gsearchtool.c:1786
-msgid "File Name Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1785 gsearchtool/gsearchtool.c:1786
-msgid "Enter the file name you want to search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1855
+#: gsearchtool/gsearchtool.c:1491
 msgid "Click to Start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1492
 msgid "Click to Stop the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1978
-msgid "Simple"
-msgstr "ቀላል"
-
-#: gsearchtool/gsearchtool.c:1980
-msgid "Advanced"
-msgstr "ጠለቅ"
-
-#: gsearchtool/gsearchtool.c:2018
-#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
-msgid "GNOME Search Tool"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:2019
-msgid "(C) 1998,2002 the Free Software Foundation"
-msgstr "የቅጂው መብት (ም) 1998, 2002 the free software foundation"
-
-#: gsearchtool/gsearchtool.c:2020
-msgid "Frontend to the unix find/locate commands"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:2060
-#, c-format
-msgid "File %s already exists. Overwrite?"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:2095
-msgid "Cannot save the results file."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:2102 meat-grinder/meat-grinder.c:654
-msgid "Save Results"
-msgstr "ውጤቶ አስቀመጥ"
-
-#: gsearchtool/gsearchtool.c:2159
-msgid "S_how Command..."
-msgstr "ትእዛዝ አሳይ... (_h)"
-
-#: gsearchtool/gsearchtool.c:2160
-msgid "Show the command used to perform the search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:2163
-msgid "Save Results _As..."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:2164
-msgid "Save the search results"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:2179
-msgid "Sear_ch"
-msgstr "ፈልግ (_c)"
-
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:1565
 msgid "Cannot initialize bonobo."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2205
-msgid "Search Tool"
+#: gsearchtool/gsearchtool-callbacks.c:45
+msgid "_Open"
+msgstr "ክፈት (_O)"
+
+#: gsearchtool/gsearchtool-callbacks.c:49
+msgid "O_pen Folder"
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:54
+msgid "_Save Results As..."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:107
+msgid "Can't Display Help"
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:128
+msgid "Searching..."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:299
+#, c-format
+msgid "This will open %d separate files. Are you sure you want to do this?"
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:302
+#, c-format
+msgid "Open %d Files?"
+msgstr "%d ፋይሎች ክፈት?"
+
+#: gsearchtool/gsearchtool-callbacks.c:359
+#: gsearchtool/gsearchtool-callbacks.c:620
+#, c-format
+msgid "There is no installed viewer capable of displaying \"%s\"."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:366
+#: gsearchtool/gsearchtool-callbacks.c:627
+msgid "Can't Display Location"
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:404
+#, c-format
+msgid "This will open %d separate folders. Are you sure you want to do this?"
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:407
+#, c-format
+msgid "Open %d Folders?"
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:446
+msgid "The nautilus file manager is not running."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:729
+msgid "Save Search Results As..."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:772
+#, c-format
+msgid ""
+"Cannot save search results.\n"
+"\"%s\" is a folder."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:800
+#, c-format
+msgid "File \"%s\" already exists. Overwrite?"
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:837
+#, c-format
+msgid "Cannot save search results to the file \"%s\"."
+msgstr ""
+
+#: gsearchtool/gsearchtool-support.c:284
+msgid "Expander Size"
+msgstr ""
+
+#: gsearchtool/gsearchtool-support.c:285
+msgid "Size of the expander arrow"
+msgstr ""
+
+#: gsearchtool/gsearchtool-support.c:346
+#, c-format
+msgid ""
+"GConf error:\n"
+"  %s"
+msgstr "የGConf ብልሽት፦\n"
+"  %s"
+
+#: gsearchtool/gsearchtool-support.c:501
+msgid "%Y%m%d%H%M%S"
+msgstr "%Y%m%d%H%M%S"
+
+#: gsearchtool/gsearchtool-support.c:532
+msgid "today at %-I:%M %p"
+msgstr "ዛሬ በ %-I:%M %p"
+
+#: gsearchtool/gsearchtool-support.c:534
+msgid "yesterday at %-I:%M %p"
+msgstr "ትናንት በ %-I:%M %p"
+
+#: gsearchtool/gsearchtool-support.c:536 gsearchtool/gsearchtool-support.c:538
+msgid "%m/%-d/%y, %-I:%M %p"
+msgstr "%m/%-d/%y, %-I:%M %p"
+
+#: gsearchtool/gsearchtool-support.c:663
+msgid "link (broken)"
+msgstr "የተሰበረ አያያዝ"
+
+#: gsearchtool/gsearchtool-support.c:668
+#, c-format
+msgid "link to %s"
+msgstr ""
+
+#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
+msgid "GNOME Search Tool"
 msgstr ""
 
 #: logview/about.c:42
@@ -1498,10 +1626,10 @@ msgstr ""
 
 #: logview/about.c:43
 msgid ""
-"This  program  is  part of  the  GNOME  project for Linux. Logview comes "
-"with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
-"redistribute it under the conditions of the GNU General Public Licence. The "
-"log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+"This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
+"WARRANTY. This is free software, and you are welcome to redistribute it "
+"under the conditions of the GNU General Public Licence. The log icon is a "
+"courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 msgstr ""
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
@@ -1523,15 +1651,15 @@ msgstr "ትግባሮች"
 
 #: logview/actions.c:152
 msgid "_Add"
-msgstr "ተጨማሪ (_A)"
+msgstr "ጨምር (_A)"
 
 #: logview/actions.c:159
 msgid "_Edit"
 msgstr "አስተካክል (_E)"
 
-#: logview/actions.c:166 meat-grinder/meat-grinder.c:941
+#: logview/actions.c:166
 msgid "_Remove"
-msgstr "ሰርዝ (_R)"
+msgstr "አስወግድ (_R)"
 
 #: logview/actions.c:259
 #, c-format
@@ -1598,56 +1726,6 @@ msgstr ""
 msgid "Calendar"
 msgstr "ቀን መቁጠሪያ"
 
-#.
-#. * 	-------------------
-#. * 	     Defines
-#. * 	-------------------
-#.
-#: logview/config.c:34
-msgid "fixed 12"
-msgstr ""
-
-#. Translators: It seems for asian languages the Bold seems not to work
-#: logview/config.c:36
-msgid "fixed Bold 12"
-msgstr ""
-
-#: logview/config.c:37
-msgid "fixed 10"
-msgstr ""
-
-#. Translators: It seems for asian languages the Bold seems not to work
-#: logview/config.c:39
-msgid "fixed Bold 8"
-msgstr ""
-
-#. Translators: translate to fonts that appear well in the log viewer,
-#. * for example for asian languages, helvetica seems not to work
-#. * well for those
-#: logview/config.c:44
-msgid "Helvetica 14"
-msgstr ""
-
-#: logview/config.c:45
-msgid "Helvetica Bold 14"
-msgstr ""
-
-#: logview/config.c:46
-msgid "Helvetica 12"
-msgstr ""
-
-#: logview/config.c:47
-msgid "Helvetica Bold 12"
-msgstr ""
-
-#: logview/config.c:48
-msgid "Helvetica 10"
-msgstr ""
-
-#: logview/config.c:49
-msgid "Helvetica Bold 10"
-msgstr ""
-
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -1670,461 +1748,359 @@ msgstr ""
 msgid "View the system log file"
 msgstr ""
 
-#: logview/info.c:80
+#: logview/info.c:65
 msgid "Log stats"
 msgstr ""
 
-#. Note: we use a real translated string that will appear below to gather
-#. * the length, that way we'll get semi correct results with a lot more
-#. * fonts
-#: logview/info.c:193 logview/info.c:195 logview/zoom.c:220 logview/zoom.c:223
-#: logview/zoom.c:271
-msgid "Date:"
-msgstr "ቀን"
-
-#: logview/info.c:204
-msgid "Log information"
-msgstr ""
-
-#: logview/info.c:232
-msgid "Log:"
-msgstr ""
-
-#: logview/info.c:235
+#: logview/info.c:110
 msgid "Size:"
 msgstr "መጠን"
 
-#: logview/info.c:238
+#: logview/info.c:110
 msgid "Modified:"
 msgstr "የተሻሻለ"
 
-#: logview/info.c:241
-msgid "Start date:"
+#: logview/info.c:111
+msgid "Start Date:"
 msgstr ""
 
-#: logview/info.c:244
-msgid "Last date:"
+#: logview/info.c:111
+msgid "Last Date:"
 msgstr ""
 
-#: logview/info.c:247
-msgid "Num. lines:"
+#: logview/info.c:111
+msgid "Number of Lines:"
 msgstr ""
 
-#: logview/info.c:265
+#: logview/info.c:137
+msgid "Log Information"
+msgstr ""
+
+#: logview/info.c:163 logview/zoom.c:157
+msgid "<No log loaded>"
+msgstr ""
+
+#: logview/info.c:186
 #, c-format
 msgid "%ld bytes"
-msgstr ""
+msgstr "%ld ባይቶች"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:59
 msgid "January"
 msgstr "ጃንዩወሪ"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:59
 msgid "February"
 msgstr "ፌብሩወሪ"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:59
 msgid "March"
 msgstr "ማርች"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:59
 msgid "April"
 msgstr "ኤፕረል"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:59
 msgid "May"
 msgstr "ሜይ"
 
-#: logview/log_repaint.c:85
+#: logview/log_repaint.c:60
 msgid "June"
 msgstr "ጁን"
 
-#: logview/log_repaint.c:85
+#: logview/log_repaint.c:60
 msgid "July"
 msgstr "ጁላይ"
 
-#: logview/log_repaint.c:85
+#: logview/log_repaint.c:60
 msgid "August"
 msgstr "ኦገስት"
 
-#: logview/log_repaint.c:85
+#: logview/log_repaint.c:60
 msgid "September"
 msgstr "ሴፕቴምበር"
 
-#: logview/log_repaint.c:85
+#: logview/log_repaint.c:60
 msgid "October"
 msgstr "ኦክተውበር"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:61
 msgid "November"
 msgstr "ኖቬምበር"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:61
 msgid "December"
 msgstr "ዲሴምበር"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:511
+#: logview/log_repaint.c:403
 #, c-format
 msgid "%x"
 msgstr "%x"
 
+#. Translators: Make sure this is only Month and Day format, year
+#. * will be bogus here
+#: logview/log_repaint.c:458
+msgid "%B %e"
+msgstr "%B %e"
+
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:638
+#: logview/log_repaint.c:524
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#. Translators: Make sure this is only Month and Day format, year
-#. * will be bogus here
-#: logview/log_repaint.c:760
-msgid "%B %e"
-msgstr "%B %e"
-
-#: logview/logrtns.c:206
+#: logview/logrtns.c:191
 msgid "Not enough memory!\n"
 msgstr ""
 
-#: logview/logrtns.c:214
-msgid "Out of memory!\n"
-msgstr ""
-
-#: logview/logrtns.c:240
+#: logview/logrtns.c:202
 msgid "Unable to open logfile!\n"
 msgstr ""
 
-#: logview/logrtns.c:295
+#: logview/logrtns.c:260
 #, c-format
 msgid "%s is not a regular file."
 msgstr ""
 
-#: logview/logrtns.c:303
+#: logview/logrtns.c:268
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
 
-#: logview/logrtns.c:320
+#: logview/logrtns.c:285
 #, c-format
 msgid "%s could not be opened."
 msgstr ""
 
-#: logview/logrtns.c:350 logview/logrtns.c:359
+#: logview/logrtns.c:315 logview/logrtns.c:324
 #, c-format
 msgid "%s not a log file."
 msgstr ""
 
-#: logview/logrtns.c:792 logview/logrtns.c:823 logview/logrtns.c:954
+#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
 msgid "ReadLogStats: out of memory"
 msgstr ""
 
-#: logview/logview.c:95
+#: logview/logview.c:99
 msgid "S_witch Log"
 msgstr ""
 
-#: logview/logview.c:96
-msgid "Switch log"
+#: logview/logview.c:100
+msgid "Switch between already opened logs"
 msgstr ""
 
-#: logview/logview.c:98
+#: logview/logview.c:106
 msgid "_Monitor..."
 msgstr ""
 
-#: logview/logview.c:99
-msgid "Monitor Log"
+#: logview/logview.c:107
+msgid "Monitor Logs"
 msgstr ""
 
-#: logview/logview.c:102
+#: logview/logview.c:115
 msgid "_Properties"
-msgstr "ሁኔታዎች (_P)"
+msgstr "ምርጫዎች (_P)"
 
-#: logview/logview.c:103
+#: logview/logview.c:116
 msgid "Show Log Properties"
 msgstr ""
 
-#: logview/logview.c:112
+#: logview/logview.c:124
+msgid "Clos_e All"
+msgstr "ሁሉንም ዝጋ (_E)"
+
+#: logview/logview.c:125
+msgid "Close all Log files"
+msgstr ""
+
+#: logview/logview.c:137
 msgid "_Calendar"
 msgstr "ቀን መቁጠሪያ (_C)"
 
-#: logview/logview.c:112
+#: logview/logview.c:138
 msgid "Show Calendar Log"
 msgstr ""
 
-#: logview/logview.c:114
+#: logview/logview.c:144
 msgid "_Entry Detail"
 msgstr ""
 
-#: logview/logview.c:114
+#: logview/logview.c:145
 msgid "Show Entry Detail"
 msgstr ""
 
-#: logview/logview.c:122
-msgid "About..."
-msgstr "ስለ..."
-
-#: logview/logview.c:123
-msgid "Info about logview"
+#: logview/logview.c:151
+msgid "_Collapse All"
 msgstr ""
 
-#: logview/logview.c:130
-msgid "_Log"
+#: logview/logview.c:152
+msgid "Collapse all the rows"
 msgstr ""
 
-#: logview/logview.c:334
+#: logview/logview.c:365
 msgid "No log files to open"
 msgstr ""
 
-#. Create App
-#: logview/logview.c:354
-msgid "System Log Viewer"
+#: logview/logview.c:389
+msgid "Date"
+msgstr "ቀን"
+
+#: logview/logview.c:389
+msgid "Host Name"
+msgstr "የእንግዳ ተቀባይ ስም"
+
+#: logview/logview.c:390
+msgid "Process"
 msgstr ""
 
-#: logview/logview.c:452
-msgid "Filename: "
-msgstr "የፋይል ስም፦"
+#: logview/logview.c:390
+msgid "Message"
+msgstr "መልእክት"
 
-#: logview/logview.c:473
+#: logview/logview.c:474
 msgid "Last Modified: "
-msgstr ""
+msgstr "መጨረሻ የተለወጠ፦ "
 
-#: logview/logview.c:722 logview/logview.c:788
+#: logview/logview.c:568 logview/logview.c:643
 msgid "Too many open logs. Close one and try again"
 msgstr ""
 
-#: logview/logview.c:734
+#: logview/logview.c:580
 msgid "File already opened"
 msgstr ""
 
-#: logview/logview.c:801
+#: logview/logview.c:656
 msgid "Open new logfile"
 msgstr ""
 
 #: logview/misc.c:56
-msgid "Cannot load required fonts, cannot continue"
-msgstr ""
-
-#: logview/misc.c:91
 #, c-format
 msgid "Error: [%s]\n"
 msgstr "ስህተት፦ [%s]\n"
 
-#: logview/monitor.c:115
-msgid "Monitor options"
+#: logview/monitor.c:109
+msgid "Monitor Options"
 msgstr ""
 
-#: logview/monitor.c:125
-msgid "Choose logs to monitor"
+#: logview/monitor.c:135
+msgid "Choose logs to monitor:"
 msgstr ""
 
-#. Arrowed buttons
-#: logview/monitor.c:169
-msgid "Add >>"
-msgstr "ተጨማሪ >>"
+#: logview/monitor.c:140
+msgid "Currently monitored logs:"
+msgstr ""
 
-#. Remove button
-#: logview/monitor.c:177
-msgid "Remove <<"
-msgstr "ሰርዝ <<"
+#: logview/monitor.c:188
+msgid "Add logs to monitor"
+msgstr ""
+
+#: logview/monitor.c:197
+msgid "Remove logs from monitor"
+msgstr ""
 
 #. Check boxes
-#: logview/monitor.c:215
-msgid "Hide app"
+#: logview/monitor.c:244
+msgid "_Hide Application"
 msgstr ""
 
-#: logview/monitor.c:223
-msgid "Exec actions"
+#: logview/monitor.c:252
+msgid "_Execute Actions"
 msgstr ""
 
-#. Actions button
-#: logview/monitor.c:235
-msgid "Actions..."
-msgstr ""
-
-#: logview/monitor.c:286
+#: logview/monitor.c:289
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr ""
 
-#: logview/monitor.c:294 logview/monitor.c:332
+#: logview/monitor.c:297 logview/monitor.c:335
 msgid "tmp_list is NULL\n"
 msgstr ""
 
-#: logview/monitor.c:452
+#: logview/monitor.c:457
 msgid "Monitoring logs..."
 msgstr ""
 
-#: logview/monitor.c:673
+#: logview/monitor.c:644
 msgid "TOUCHED!!\n"
 msgstr ""
 
-#: logview/userprefsdialog.c:65
-msgid "hostname column width ( 0 to hide this column ): "
-msgstr ""
-
-#: logview/userprefsdialog.c:66
-msgid "Columns"
-msgstr "ዐምዶች"
-
-#: logview/zoom.c:79
+#: logview/zoom.c:63
 msgid "Zoom view"
 msgstr ""
 
-#: logview/zoom.c:233
-#, c-format
-msgid "Log line detail for %s"
-msgstr ""
+#: logview/zoom.c:102
+msgid "Date:"
+msgstr "ቀን"
 
-#: logview/zoom.c:236
-msgid "Log line detail for <No log loaded>"
-msgstr ""
-
-#: logview/zoom.c:275
+#: logview/zoom.c:102
 msgid "Process:"
 msgstr ""
 
-#: logview/zoom.c:278
+#: logview/zoom.c:103
 msgid "Message:"
 msgstr "መልእክት፦"
 
-#: logview/zoom.c:281
+#: logview/zoom.c:103
 msgid "Description:"
 msgstr "መግለጫ፦"
 
+#: logview/zoom.c:131
+msgid "Log line detail for"
+msgstr ""
+
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:306
+#: logview/zoom.c:185
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#: meat-grinder/archive-generator.desktop.in.h:1
-msgid "Archive Generator"
+#: logview/logview.schemas.in.h:1
+msgid "Log file to open up on startup"
 msgstr ""
 
-#: meat-grinder/archive-generator.desktop.in.h:2
-msgid "Create compressed archives containing many files"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:137
-#, c-format
+#: logview/logview.schemas.in.h:2
 msgid ""
-"Number of files: %d\n"
-"Number of folders: %d"
+"Specifies the log file to open up at startup. The default is either /var/adm/"
+"messages or /var/log/messages, depending on your distribution."
 msgstr ""
 
-#: meat-grinder/meat-grinder.c:143
-msgid ""
-"No files or folders, drop files or folders\n"
-"above to add them to the archive"
-msgstr ""
+#~ msgid "del"
+#~ msgstr "del"
 
-#: meat-grinder/meat-grinder.c:166
-#, c-format
-msgid "%s removed"
-msgstr ""
+#~ msgid " %s: Character code %d"
+#~ msgstr " %s፦ የፊደል ኮድ %d"
 
-#: meat-grinder/meat-grinder.c:328 meat-grinder/meat-grinder.c:333
-#, c-format
-msgid "Failed to create %s"
-msgstr ""
+#~ msgid "folder"
+#~ msgstr "ዶሴ"
 
-#: meat-grinder/meat-grinder.c:373
-msgid "Archive.tar.gz"
-msgstr ""
+#~ msgid "program"
+#~ msgstr "ፕሮግራም"
 
-#: meat-grinder/meat-grinder.c:493 meat-grinder/meat-grinder.c:977
-msgid "GNOME Archive Generator"
-msgstr ""
+#~ msgid "Command"
+#~ msgstr "ትእዛዝ"
 
-#: meat-grinder/meat-grinder.c:495
-msgid "Drag files in to make archives"
-msgstr ""
+#~ msgid "Simple"
+#~ msgstr "ቀላል"
 
-#: meat-grinder/meat-grinder.c:528
-msgid "All files selected"
-msgstr ""
+#~ msgid "Advanced"
+#~ msgstr "ጠለቅ"
 
-#: meat-grinder/meat-grinder.c:547
-msgid "All files removed"
-msgstr ""
+#~ msgid "(C) 1998,2002 the Free Software Foundation"
+#~ msgstr "የቅጂው መብት (ም) 1998, 2002 the free software foundation"
 
-#: meat-grinder/meat-grinder.c:609 meat-grinder/meat-grinder.c:793
-msgid "No filename selected"
-msgstr ""
+#~ msgid "S_how Command..."
+#~ msgstr "ትእዛዝ አሳይ... (_h)"
 
-#: meat-grinder/meat-grinder.c:613
-msgid "File exists, overwrite?"
-msgstr ""
+#~ msgid "About..."
+#~ msgstr "ስለ..."
 
-#: meat-grinder/meat-grinder.c:636
-#, c-format
-msgid "%s created"
-msgstr ""
+#~ msgid "Add >>"
+#~ msgstr "ተጨማሪ >>"
 
-#: meat-grinder/meat-grinder.c:650
-msgid "No items to archive"
-msgstr ""
+#~ msgid "Remove <<"
+#~ msgstr "ሰርዝ <<"
 
-#: meat-grinder/meat-grinder.c:777
-#, c-format
-msgid "%s added"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:796
-msgid "File does not exists"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:810
-msgid "Add file or folder"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:927
-msgid "_Add file or folder..."
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:928
-msgid "Add a file or folder to archive"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:931
-msgid "_Create archive..."
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:931
-msgid "Create a new archive from the items"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:942
-msgid "Remove the selected item"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:944
-msgid "R_emove All"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:945
-msgid "Remove all items"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:1016
-msgid "Drop files here to add them to the archive."
-msgstr ""
-
-#. tarball icon
-#: meat-grinder/meat-grinder.c:1028
-msgid "_Create Archive"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:1036
-msgid ""
-"Drag this button to the destination where you want the archive to be created "
-"or press it to pop up a file selection dialog."
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:1174
-msgid "Cannot find proper icons anywhere!"
-msgstr ""
-
-#: meat-grinder/meat-grinder.c:1182
-msgid ""
-"Cannot find the archive (tar) program!\n"
-"This is the program used for creating archives."
-msgstr ""
+#~ msgid "Columns"
+#~ msgstr "ዐምዶች"
