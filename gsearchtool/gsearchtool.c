@@ -1255,7 +1255,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 								add_file_to_search_results (string->str, interface.model, &interface.iter);
 							}
 						}
-						else if (is_path_hidden (string->str) == FALSE) {
+						else if ((is_path_hidden (string->str) == FALSE) && (!file_extension_is (string->str, "~"))) {
 							if (search_data->regex_matching_enabled == FALSE) {
 								add_file_to_search_results (string->str, interface.model, &interface.iter);
 							} 
