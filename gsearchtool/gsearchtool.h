@@ -97,7 +97,7 @@ struct _InterfaceStruct {
 	GtkWidget 		*file_selector;
 	GtkWidget 		*status_bar;
 	GtkWidget   		*progress_bar;
-	GtkWidget	 	*disclosure;
+	GtkWidget		*checkbutton;
 	GtkWidget		*add_button;
 	GtkWidget 		*additional_constraints;
 	GtkWidget		*constraint_menu;

@@ -112,6 +112,18 @@ help_cb (GtkWidget 	*widget,
 }
 
 void
+toggle_check_button_cb (GtkWidget	*widget, 
+	       	        gpointer	data)
+{
+	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)) == TRUE) {
+		gtk_widget_show (interface.additional_constraints);
+	} 
+	else {
+		gtk_widget_hide (interface.additional_constraints);
+	}
+}
+
+void
 click_find_cb (GtkWidget	*widget, 
 	       gpointer 	data)
 {

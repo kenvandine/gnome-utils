@@ -33,37 +33,8 @@ extern "C" {
 #pragma }
 #endif
 
-#include <gnome.h>
-
-#define CDDB_DISCLOSURE_TYPE (cddb_disclosure_get_type ())
-#define CDDB_DISCLOSURE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), CDDB_DISCLOSURE_TYPE, CDDBDisclosure))
-#define CDDB_DISCLOSURE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), CDDB_DISCLOSURE_TYPE, CDDBDisclosureClass))
-#define IS_CDDB_DISCLOSURE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CDDB_DISCLOSURE_TYPE))
-#define IS_CDDB_DISCLOSURE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CDDB_DISCLOSURE_TYPE))
 #define ICON_SIZE 24.0
 
-typedef struct _CDDBDisclosure CDDBDisclosure;
-typedef struct _CDDBDisclosureClass CDDBDisclosureClass;
-typedef struct _CDDBDisclosurePrivate CDDBDisclosurePrivate;
-
-struct _CDDBDisclosure {
-	GtkCheckButton parent;
-	CDDBDisclosurePrivate *priv;
-};
-
-struct _CDDBDisclosureClass {
-	GtkCheckButtonClass parent_class;
-};
-
-GType 		
-cddb_disclosure_get_type 	(void);
-
-GtkWidget *
-cddb_disclosure_new 		(const char *shown,
-				 const char *hidden);
-void
-cddb_disclosure_set_container 	(CDDBDisclosure *disclosure,
-				 GtkWidget *container);
 gboolean  	
 is_path_hidden 			(const gchar *path);
 

@@ -65,12 +65,12 @@ struct _FindOptionTemplate {
 };
 	
 static FindOptionTemplate templates[] = {
-	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("C_ontains the text"), FALSE },
+	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("Contains the _text"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TIME, "-mtime -%d", N_("_Date modified less than (days)"), FALSE },
-	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Da_te modified more than (days)"), FALSE },
+	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Dat_e modified more than (days)"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_NUMBER, "-size +%uc", N_("_Size at least (kilobytes)"), FALSE }, 
+	{ SEARCH_CONSTRAINT_NUMBER, "-size +%uc", N_("S_ize at least (kilobytes)"), FALSE }, 
 	{ SEARCH_CONSTRAINT_NUMBER, "-size -%uc", N_("Si_ze at most (kilobytes)"), FALSE },
 	{ SEARCH_CONSTRAINT_BOOL, "-size 0c \\( -type f -o -type d \\)", N_("File is empty"), FALSE },	
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
@@ -1065,7 +1065,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 
 		gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.find_button);
 		gtk_widget_set_sensitive (interface.additional_constraints, TRUE);
-		gtk_widget_set_sensitive (interface.disclosure, TRUE);
+		gtk_widget_set_sensitive (interface.checkbutton, TRUE);
 		gtk_widget_set_sensitive (interface.table, TRUE);
 		gtk_widget_set_sensitive (interface.find_button, TRUE);
 		gtk_widget_hide (interface.stop_button);
@@ -1247,7 +1247,7 @@ spawn_search_command (gchar *command)
 	gtk_widget_set_sensitive (interface.find_button, FALSE);
 	gtk_widget_set_sensitive (interface.results, TRUE);
 	gtk_widget_set_sensitive (interface.additional_constraints, FALSE);
-	gtk_widget_set_sensitive (interface.disclosure, FALSE);
+	gtk_widget_set_sensitive (interface.checkbutton, FALSE);
 	gtk_widget_set_sensitive (interface.table, FALSE);
 
 	gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), 0, 0);
@@ -1375,7 +1375,7 @@ add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 	
 	if (show_constraint == TRUE) {
 		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
-			g_signal_emit_by_name (G_OBJECT(interface.disclosure), "clicked", 0);
+			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "toggled", 0);
 			gtk_widget_show (interface.additional_constraints);
 		}
 	} 
@@ -1453,7 +1453,7 @@ create_search_results_section (void)
 	
 	vbox = gtk_vbox_new (FALSE, 6);	
 	
-	label = gtk_label_new_with_mnemonic (_("S_earch results:"));
+	label = gtk_label_new_with_mnemonic (_("_Search results:"));
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
 	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 	
@@ -1681,14 +1681,13 @@ create_main_window (void)
 	gtk_entry_set_text (GTK_ENTRY(entry), utf8_string);
 	g_free (locale_string);
 	g_free (utf8_string);
-
-	interface.disclosure = cddb_disclosure_new (_("Additional Options"),
-						    _("Additional Options"));
-	gtk_box_pack_start (GTK_BOX(window), interface.disclosure, FALSE, FALSE, 0);
 	
+	interface.checkbutton = gtk_check_button_new_with_mnemonic (_("Show more _options"));
+	gtk_box_pack_start (GTK_BOX(window), interface.checkbutton, FALSE, FALSE, 0);
+	g_signal_connect (G_OBJECT (interface.checkbutton),"toggled",
+			  G_CALLBACK (toggle_check_button_cb), NULL);
+			  
 	interface.additional_constraints = create_additional_constraint_section ();
-  	cddb_disclosure_set_container (CDDB_DISCLOSURE(interface.disclosure), interface.additional_constraints);
-
 	gtk_box_pack_start (GTK_BOX(window), GTK_WIDGET(interface.additional_constraints), FALSE, FALSE, 0);
 	
 	vbox = gtk_vbox_new (FALSE, 12);
@@ -1872,7 +1871,7 @@ handle_gconf_settings (void)
 {
 	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_additional_options") == TRUE) {
 		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
-			g_signal_emit_by_name (G_OBJECT(interface.disclosure), "clicked", 0);
+			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "toggled", 0);
 			gtk_widget_show (interface.additional_constraints);
 		}
 	}
