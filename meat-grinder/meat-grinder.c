@@ -804,7 +804,7 @@ static GnomeUIInfo file_menu[] = {
 		 N_("Create a new archive from the items"),
 		 archive_cb),
 	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_EXIT_ITEM (quit_cb, NULL),
+	GNOMEUIINFO_MENU_QUIT_ITEM (quit_cb, NULL),
 	GNOMEUIINFO_END
 };
 
