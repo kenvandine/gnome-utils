@@ -258,6 +258,7 @@ void load_rgb(GtkWidget *clist)
 
     for(;;)
     {
+	int or=257, og=257, ob=257;
 	gfloat p;
 	RGBColor *color;
 		
@@ -271,9 +272,13 @@ void load_rgb(GtkWidget *clist)
 		   &color->g,
 		   &color->b,
 		   color->name);
-	if(t==4)
+	if(t==4 && (color->r != or || color->g != og || color->b != ob))
+	{
 	    set_swatch(color, clist);
-
+	    or = color->r;
+	    og = color->g;
+	    ob = color->b;
+	}
 	p = (gfloat)ftell(file)/(gfloat)flen;
 	gtk_progress_bar_update(GTK_PROGRESS_BAR(bar), p);
 	GTK_FLUSH;
@@ -340,7 +345,7 @@ static GtkWidget *create_menu(void)
         
     menu = gtk_menu_new();
         
-    while(menu_options[i])
+    while(_(menu_options[i]))
     {
 	menuitem = gtk_menu_item_new_with_label(_(menu_options[i]));  
 	gtk_menu_append(GTK_MENU(menu), menuitem);                 
