@@ -5,32 +5,32 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.2.1\n"
-"POT-Creation-Date: 2000-12-25 19:15+0100\n"
-"PO-Revision-Date: 2000-11-20 14:53CET\n"
+"POT-Creation-Date: 2001-01-24 13:20+0100\n"
+"PO-Revision-Date: 2001-01-24 13:34CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@rak.isternet.sk>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.7\n"
+"X-Generator: KBabel 0.8pre\n"
 
 #: gcalc/gcalc.c:37
 msgid "The Gnome Calculator"
-msgstr "Kalkulátor GNOME"
+msgstr "Kalkulaèka pre GNOME"
 
 #: gcalc/gcalc.c:40
 msgid "Simple double precision calculator similiar to xcalc"
-msgstr "Jednoduchý kalkulátor s dvojitou presnos»ou podobný xcalc"
+msgstr "Jednoduchý kalkulaèka s dvojitou presnos»ou podobný xcalc"
 
 #: gcalc/gcalc.c:133
 msgid "Gnome Calculator"
-msgstr "Kalkulátor GNOME"
+msgstr "Kalkulaèka GNOME"
 
 #: gcharmap/src/asciiselect.c:117
 msgid "Select ASCII Character"
 msgstr "Vyberte znak ASCII"
 
-#: gcharmap/src/asciiselect.c:118
+#: gcharmap/src/asciiselect.c:118 gcharmap/src/menus.c:95
 msgid "Insert"
 msgstr "Vlo¾i»"
 
@@ -42,37 +42,356 @@ msgstr "ASCII kód:"
 msgid "Character:"
 msgstr "Znak:"
 
-#: gcharmap/src/interface.c:130
+#: gcharmap/src/callbacks.c:42 gcharmap/src/interface.c:130
 msgid "Gnome Character Map"
 msgstr "Mapa znakov GNOME"
+
+#: gcharmap/src/callbacks.c:46
+msgid ""
+"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"contain bad English."
+msgstr "GNOME ekvivalent pre Mapu znakov z Microsoft Windows."
+
+#: gcharmap/src/callbacks.c:76
+#, c-format
+msgid "%s: ASCII code %d"
+msgstr "%s: ASCII kód %d"
+
+#: gcharmap/src/callbacks.c:103
+msgid "Text copied to clipboard..."
+msgstr "Text skopírovaný do schránky..."
+
+#: gcharmap/src/callbacks.c:115
+msgid "Text cut to clipboard..."
+msgstr "Text vystrihnutý do schránky..."
+
+#: gcharmap/src/callbacks.c:168
+msgid "Text pasted from clipboard..."
+msgstr "Text vlo¾ený zo schránky..."
 
 #: gcharmap/src/interface.c:159
 msgid "Action Toolbar"
 msgstr "Nástrojový pruh akcií"
 
-#: gcharmap/src/interface.c:176
+#: gcharmap/src/interface.c:178
 msgid "Text to copy:"
 msgstr "Kopírovaný text:"
 
-#: gcharmap/src/interface.c:220 gstripchart/gstripchart.c:1798
-#: mini-utils/gcolorsel/menus.c:921
+#: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
+#: gstripchart/gstripchart.c:1798 mini-utils/gcolorsel/menus.c:921
 msgid "Exit"
 msgstr "Koniec"
 
-#: gcharmap/src/interface.c:221 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:100
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopírova»"
 
-#: gcharmap/src/interface.c:225 gstripchart/gstripchart.c:1786
-#: gstripchart/gstripchart.c:2070 mini-utils/gcolorsel/menus.c:919
-#: mini-utils/gshutdown/gshutdown.c:319
+#: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
+#: gstripchart/gstripchart.c:1786 gstripchart/gstripchart.c:2070
+#: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "O programe"
 
-#: gcharmap/src/interface.c:227 gstripchart/gstripchart.c:1780
+#: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
+#: gdictsrc/gdict-applet.c:286 gstripchart/gstripchart.c:1780
 #: gstripchart/gstripchart.c:2067
 msgid "Help"
 msgstr "Pomocník"
+
+#: gcharmap/src/menus.c:47
+msgid "Insert Character..."
+msgstr "Vlo¾i» znak..."
+
+#: gcharmap/src/menus.c:48
+msgid "Insert character(s) by choosing ASCII codes."
+msgstr "Vlo¾í znak(y) pomocou ich ASCII kódov."
+
+#: gcharmap/src/menus.c:55
+msgid "_Action Toolbar"
+msgstr "Panel _akcií"
+
+#: gcharmap/src/menus.c:55
+msgid "View or hide the action toolbar"
+msgstr "Uká¾e alebo skryje panel nástrojov s akciami"
+
+#: gcharmap/src/menus.c:57
+msgid "_Text Toolbar"
+msgstr "Panel _textu"
+
+#: gcharmap/src/menus.c:57
+msgid "View or hide the text toolbar"
+msgstr "Uká¾e alebo skryje panel nástrojov pre text"
+
+#: gcharmap/src/menus.c:59
+msgid "_Statusbar"
+msgstr "_Stavový riadok"
+
+#: gcharmap/src/menus.c:59
+msgid "View or hide the statusbar"
+msgstr "Uká¾e alebo skryje stavový riadok"
+
+#: gcharmap/src/menus.c:66
+msgid "Character Table's Font..."
+msgstr "Písmo mapy znakov..."
+
+#: gcharmap/src/menus.c:66
+msgid "Set the character table's font."
+msgstr "Nastaví písmo pre mapu znakov."
+
+#: gcharmap/src/menus.c:69
+msgid "_Insert at end"
+msgstr "Vlo¾i» na konie_c"
+
+#: gcharmap/src/menus.c:69
+msgid "Insert every selected character at the end of the text etry"
+msgstr "Vlo¾í ka¾dý vybraný znak na koniec textového poµa"
+
+#: gcharmap/src/menus.c:71
+msgid "_Focusable Buttons"
+msgstr "Tlaèidlá s _fokusom"
+
+#: gcharmap/src/menus.c:71
+msgid "Set whenether the buttons are focusable or not"
+msgstr "Nastaví, èi mô¾u ma» tlaèidlá fokus"
+
+#: gcharmap/src/menus.c:95
+msgid "Insert character(s) by choosing ASCII codes"
+msgstr "Vlo¾í znak(y) pomocou ASCII kódov"
+
+#: gcharmap/src/menus.c:98 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Vystrihnú»"
+
+#: gcharmap/src/menus.c:98
+msgid "Cut the selection"
+msgstr "Vystrihne výber"
+
+#: gcharmap/src/menus.c:100
+msgid "Copy the selection"
+msgstr "Skopíruje výber"
+
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Vlo¾i»"
+
+#: gcharmap/src/menus.c:102
+msgid "Paste the clipboard"
+msgstr "Vlo¾í zo schránky"
+
+#: gcharmap/src/menus.c:105
+msgid "Show Gnome Character Map's manual"
+msgstr "Zobrazí Pou¾ívateµský manuál pre Mapu znakov GNOME"
+
+#: gcharmap/src/menus.c:107 mini-utils/gcolorsel/menus.c:919
+msgid "About this application"
+msgstr "O tejto aplikácii"
+
+#: gcharmap/src/menus.c:110 mini-utils/gcolorsel/menus.c:921
+msgid "Exit the program"
+msgstr "Ukonèí program"
+
+#. Could not look up search strategies, so just display a
+#. * label; FIXME: Memory leak
+#.
+#: gdictsrc/dict.c:623 gdictsrc/gdict-pref-dialog.c:498
+#: gdictsrc/gdict-pref-dialog.c:542 gdictsrc/gdict-speller.c:393
+msgid "Cannot connect to server"
+msgstr "Nepodarilo sa spoji» so serverom"
+
+#: gdictsrc/gdict-about.c:40
+msgid ""
+"Client for MIT dictionary server.\n"
+"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+msgstr ""
+"Klient pre slovníkový server MIT.\n"
+"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+
+#: gdictsrc/gdict-app.c:117
+msgid "Spell-checking..."
+msgstr "Kontrola pravopisu..."
+
+#: gdictsrc/gdict-app.c:125
+msgid "Spell check done"
+msgstr "Kontrola pravopisu hotová"
+
+#: gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
+msgid "No matches found"
+msgstr "Niè nenájdené"
+
+#: gdictsrc/gdict-app.c:250
+msgid "Looking up word..."
+msgstr "Hµadám slovo..."
+
+#: gdictsrc/gdict-app.c:258
+msgid "Lookup done"
+msgstr "Hµadanie hotové"
+
+#: gdictsrc/gdict-app.c:278
+msgid "String not found"
+msgstr "Re»azec nenájdený"
+
+#: gdictsrc/gdict-app.c:381
+msgid "Find:"
+msgstr "Nájs»:"
+
+#: gdictsrc/gdict-app.c:414
+msgid ""
+"Unable to perform requested operation, either because the server\n"
+"you are using is down or because you are not connected to the\n"
+"Internet. If you are not already connected to the Internet, please\n"
+"do so and try again."
+msgstr ""
+"Nepodarilo sa vykona» po¾adovanú operáciu, buï server,\n"
+"ktorý pou¾ívate, nefunguje alebo nie ste pripojený na Internet.\n"
+"Ak nie ste u¾ pripojený, prosím, pripojte sa skúste to znovu."
+
+#: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
+#: gdictsrc/gdict-applet.c:315
+msgid "Lookup"
+msgstr "Hµada»"
+
+#: gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
+msgid "Lookup word in dictionary"
+msgstr "Hµadá slovo v slovníku"
+
+#: gdictsrc/gdict-app.c:456 gdictsrc/gdict-app.c:513
+msgid "Spell"
+msgstr "Kontrola"
+
+#: gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
+msgid "Check word spelling"
+msgstr "Skontroluje slovo"
+
+#: gdictsrc/gdict-app.c:518
+msgid "Cut to Clipboard"
+msgstr "Vystrihnú» do schránky"
+
+#: gdictsrc/gdict-app.c:521
+msgid "Copy to Clipboard"
+msgstr "Skopírova» do schránky"
+
+#: gdictsrc/gdict-app.c:524
+msgid "Paste Clipboard Contents"
+msgstr "Vlo¾i» obsah schránky"
+
+#: gdictsrc/gdict-app.c:527
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: gdictsrc/gdict-app.c:528
+msgid "Server to use, default search strategy, fonts"
+msgstr "Pou¾ívaný server, stratégia hµadania, písma"
+
+#: gdictsrc/gdict-app.c:589
+msgid "Word definition"
+msgstr "Definícia slova"
+
+#: gdictsrc/gdict-applet.c:282
+msgid "About..."
+msgstr "O programe..."
+
+#: gdictsrc/gdict-applet.c:291
+msgid "Preferences..."
+msgstr "Nastavenia..."
+
+#: gdictsrc/gdict-applet.c:295
+msgid "Show/Hide Definition Window..."
+msgstr "Zobrazi»/skry» okno definície..."
+
+#: gdictsrc/gdict-applet.c:299
+msgid "Spell Check..."
+msgstr "Kontrola pravopisu..."
+
+#: gdictsrc/gdict-applet.c:311
+msgid "Cannot create applet!\n"
+msgstr "Nemô¾em vytvori» aplet!\n"
+
+#: gdictsrc/gdict-pref-dialog.c:38
+msgid "Headword:"
+msgstr "Hlavné slovo:"
+
+#: gdictsrc/gdict-pref-dialog.c:39
+msgid "Pronunciation:"
+msgstr "Výslovnos»:"
+
+#: gdictsrc/gdict-pref-dialog.c:40
+msgid "Etymology:"
+msgstr "Etymológia:"
+
+#: gdictsrc/gdict-pref-dialog.c:41
+msgid "Example:"
+msgstr "Príklad:"
+
+#: gdictsrc/gdict-pref-dialog.c:42
+msgid "Main body:"
+msgstr "Hlavné telo:"
+
+#: gdictsrc/gdict-pref-dialog.c:43
+msgid "Sub-number:"
+msgstr "Podèíslo:"
+
+#: gdictsrc/gdict-pref-dialog.c:44
+msgid "Part of speech:"
+msgstr "Èas» reèi:"
+
+#: gdictsrc/gdict-pref-dialog.c:45
+msgid "Cross-reference:"
+msgstr "Krí¾ová referencia:"
+
+#. Fixme these should be stock buttons
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
+#: mini-utils/gshutdown/gshutdown.c:314
+msgid "Preferences"
+msgstr "Nastavenie"
+
+#: gdictsrc/gdict-pref-dialog.c:147
+msgid "Smart lookup"
+msgstr "©ikovné hµadanie"
+
+#: gdictsrc/gdict-pref-dialog.c:156
+msgid "Server:"
+msgstr "Server:"
+
+#: gdictsrc/gdict-pref-dialog.c:161
+msgid "Port:"
+msgstr "Port:"
+
+#: gdictsrc/gdict-pref-dialog.c:171
+msgid "Database:"
+msgstr "Databáza:"
+
+#: gdictsrc/gdict-pref-dialog.c:178
+msgid "Default strategy:"
+msgstr "©tandardná stratégia:"
+
+#: gdictsrc/gdict-pref-dialog.c:185
+msgid "Server"
+msgstr "Server"
+
+#: gdictsrc/gdict-pref-dialog.c:235
+msgid "Fonts"
+msgstr "Písma"
+
+#: gdictsrc/gdict-pref-dialog.c:251
+msgid "Display handle bar"
+msgstr "Zobrazi» pruh handle"
+
+#: gdictsrc/gdict-pref-dialog.c:255
+msgid ""
+"You have to restart GDict for these\n"
+"settings to become active."
+msgstr ""
+"Musíte re¹tartova» GDict aby sa\n"
+"tieto nastavenia aktivovali."
+
+#: gdictsrc/gdict-pref-dialog.c:262
+msgid "Applet"
+msgstr "Aplet"
+
+#: gdictsrc/gdict-pref-dialog.c:581
+msgid "The server you specified could not be found."
+msgstr "Uvedený server nebol nájdený."
 
 #: gdiskfree/gdiskfree_app.c:53 gdiskfree/gdiskfree_menus.c:108
 msgid "GDiskFree"
@@ -316,8 +635,8 @@ msgid ""
 "(Note: to print one file per line rather then null separated,\n"
 "append \"| tr '\\000' '\\n'\" to the line below)"
 msgstr ""
-"Teto príkazový riadok ktorý mô¾e by» pou¾itý pre hµadanie z konzole.\n"
-"(Poznámka: pre zobrazenie jednoho súboru na riadok namiesto oddelených\n"
+"Tento príkazový riadok ktorý mô¾e by» pou¾itý pre hµadanie z konzole.\n"
+"(Poznámka: pre zobrazenie jedného súboru na riadok namiesto oddelených\n"
 "nulami, pridajte do riadku \"| tr '\\000' '\\n'\")"
 
 #: gsearchtool/gsearchtool.c:471
@@ -441,8 +760,7 @@ msgstr "nemô¾em otvori» konfiguraèný súbor \"%s\""
 
 #: gstripchart/gstripchart.c:760
 #, c-format
-msgid ""
-"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+msgid "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 msgstr ""
 "nemô¾em otvori» konfiguraèný súbor \"./gstripchart.conf\", \"%s\", \"%s\", "
 "alebo \"%s\""
@@ -497,7 +815,7 @@ msgid ""
 msgstr ""
 "Program GNOME stripchart vykresµuje rôzne pou¾ívateµom definované parametre "
 "ako funkcie èasu. Jeho hlavné pou¾itie je vykresµovanie parametrov "
-"výkonnosti systému, ako je napr. za»a¾enie procesora, vyu¾itie procesora, "
+"výkonnosti systému, ako je napr. za»a¾enie procesoru, vyu¾itie procesoru, "
 "mno¾stvo sie»ovej komunikácie, a podobne. Iné, menej geniálne pou¾itia, sú "
 "nechané ako cvièenie pre pou¾ívateµa."
 
@@ -600,7 +918,7 @@ msgstr "Meno konfiguraèného súboru"
 
 #: gstripchart/gstripchart.c:2145
 msgid "FILE"
-msgstr "FILE"
+msgstr "SÚBOR"
 
 #: gstripchart/gstripchart.c:2147
 msgid "Chart update interval"
@@ -609,11 +927,11 @@ msgstr "Obnovovací interval"
 #: gstripchart/gstripchart.c:2147 gstripchart/gstripchart.c:2149
 #: gstripchart/gstripchart.c:2151 gstripchart/gstripchart.c:2153
 msgid "SECS"
-msgstr "SECS"
+msgstr "SEK"
 
 #: gstripchart/gstripchart.c:2149
 msgid "Chart low-pass filter time constant"
-msgstr "Èasová kon¹tanta fitra grafu pre najni¾¹í priechod"
+msgstr "Èasová kon¹tanta filtra grafu pre najni¾¹í priechod"
 
 #: gstripchart/gstripchart.c:2151
 msgid "Slider update interval"
@@ -621,7 +939,7 @@ msgstr "Obnovovací interval posuvníka"
 
 #: gstripchart/gstripchart.c:2153
 msgid "Slider low-pass filter time constant"
-msgstr "Èasová kon¹tanta fitra posuvníka pre najni¾¹í priechod"
+msgstr "Èasová kon¹tanta filtra posuvníka pre najni¾¹í priechod"
 
 #: gstripchart/gstripchart.c:2155
 msgid "Adds a menubar to the main window"
@@ -716,12 +1034,12 @@ msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
 msgstr ""
-"Nerozmiem umiestneniu (pozícii a veµkosti)\n"
+"Nerozumiem umiestneniu (pozícii a veµkosti)\n"
 " uvedenému na príkazovom riadku"
 
 #: gtt/clist.c:169
 msgid "Total"
-msgstr "Celkovo"
+msgstr "Celkom"
 
 #: gtt/clist.c:170
 msgid "Today"
@@ -766,7 +1084,7 @@ msgid ""
 "Shall I setup a new configuration?"
 msgstr ""
 "Nastala chyba pri èítaní konfiguraèného súboru.\n"
-"Mám vytvorit novú konfiguráciu?"
+"Mám vytvori» novú konfiguráciu?"
 
 #: gtt/main.c:207
 msgid "Specify geometry"
@@ -778,7 +1096,7 @@ msgstr "Výber projektu pri ¹tarte"
 
 #: gtt/main.c:209
 msgid "PROJECT"
-msgstr "PROJECT"
+msgstr "PROJEKT"
 
 #: gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
 msgid "Warning"
@@ -798,11 +1116,11 @@ msgstr "Nový projekt..."
 
 #: gtt/menucmd.c:163
 msgid "I could not read the configuration file"
-msgstr "Nemô¾em èíta» konfiguraèý súbor!"
+msgstr "Nemô¾em èíta» konfiguraèný súbor!"
 
 #: gtt/menucmd.c:177 gtt/toolbar.c:149
 msgid "Reload Configuration File"
-msgstr "Znovunaèíta» konfiguraèný súbor"
+msgstr "Znovu naèíta» konfiguraèný súbor"
 
 #: gtt/menucmd.c:178
 msgid ""
@@ -810,7 +1128,7 @@ msgid ""
 "Do you really want to reload the configuration file?"
 msgstr ""
 "Toto prepí¹e Va¹e aktuálne projekty.\n"
-"Naozaj chcete znovunaèíta» konfiguraèný súbor?"
+"Naozaj chcete znovu naèíta» konfiguraèný súbor?"
 
 #: gtt/menus.c:27
 msgid "_New Project..."
@@ -818,7 +1136,7 @@ msgstr "_Nový projekt..."
 
 #: gtt/menus.c:30
 msgid "_Reload Configuration File"
-msgstr "_Znovunaèíta» konfiguraèný súbor"
+msgstr "_Znovu naèíta» konfiguraèný súbor"
 
 #: gtt/menus.c:34
 msgid "_Save Configuration File"
@@ -886,7 +1204,7 @@ msgstr "Zobrazi» 'Nový'"
 
 #: gtt/options.c:263
 msgid "Show `Save', `Reload'"
-msgstr "Zobrazi» 'Ulo¾i»', 'Znovunaèíta»'"
+msgstr "Zobrazi» 'Ulo¾i»', 'Obnovi»'"
 
 #: gtt/options.c:269
 msgid "Show `Cut', `Copy', `Paste'"
@@ -948,11 +1266,6 @@ msgstr "Koniec polo¾ky:"
 msgid "Timeout in secs:"
 msgstr "Timeout v sek:"
 
-#. Fixme these should be stock buttons
-#: gtt/options.c:518 mini-utils/gshutdown/gshutdown.c:314
-msgid "Preferences"
-msgstr "Nastavenie"
-
 #: gtt/options.c:524
 msgid "Misc"
 msgstr "Rôzne"
@@ -1012,7 +1325,7 @@ msgstr "[GTT]Nový"
 
 #: gtt/toolbar.c:148
 msgid "Reload"
-msgstr "Znovunaè."
+msgstr "Obnovi»."
 
 #: gtt/toolbar.c:152
 msgid "Save"
@@ -1022,10 +1335,6 @@ msgstr "Ulo¾i»"
 msgid "Save Configuration File"
 msgstr "Ulo¾í konfiguraèný súbor"
 
-#: gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Vystrihnú»"
-
 #: gtt/toolbar.c:160
 msgid "Cut Selected Project"
 msgstr "Vystrihne vybraný projekt"
@@ -1033,10 +1342,6 @@ msgstr "Vystrihne vybraný projekt"
 #: gtt/toolbar.c:164
 msgid "Copy Selected Project"
 msgstr "Kopíruje vybraný projekt"
-
-#: gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Vlo¾i»"
 
 #: gtt/toolbar.c:168
 msgid "Paste Project"
@@ -1134,7 +1439,7 @@ msgstr "OK"
 #: logview/actions.c:282 logview/actions.c:295 logview/actions.c:306
 #: logview/actions.c:317 logview/actions.c:328 logview/actions.c:339
 msgid "Error parsing actions data base"
-msgstr "Chyba pre rozkladaní databáze akcií"
+msgstr "Chyba pre spracovaní databáze akcií"
 
 #: logview/actions.c:371
 msgid "Can't write to actions database!"
@@ -1284,11 +1589,11 @@ msgstr "December"
 
 #: logview/logrtns.c:96
 msgid "Not enough memory!\n"
-msgstr "Nedostatok pamäte!\n"
+msgstr "Nedostatok pamäti!\n"
 
 #: logview/logrtns.c:104
 msgid "Out of memory!\n"
-msgstr "Nedostatok pamäte!\n"
+msgstr "Nedostatok pamäti!\n"
 
 #: logview/logrtns.c:129
 msgid "Unable to open logfile!\n"
@@ -1306,7 +1611,7 @@ msgid ""
 "program as root or ask the sysadmin to change the permissions on the file."
 msgstr ""
 "%s nie je èitateµný pou¾ívateµmi. Mo¾no má práva len na èítanie. Buï "
-"spustite program ako root alebo po¾iadajte administrátora o zmenu práv k "
+"spus»te program ako root alebo po¾iadajte administrátora o zmenu práv k "
 "tomuto súboru."
 
 #: logview/logrtns.c:202
@@ -1321,7 +1626,7 @@ msgstr "%s nie je súbor so záznamom."
 
 #: logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
 msgid "ReadLogStats: out of memory"
-msgstr "ReadLogStats: nedostatok pamäte"
+msgstr "ReadLogStats: nedostatok pamäti"
 
 #: logview/logview.c:87
 msgid "Open log...            "
@@ -1639,7 +1944,7 @@ msgid ""
 "This document read document from one or more other document. Please, choose "
 "these documents."
 msgstr ""
-"Tento dokument naèítava dokument z jednoho alebo viacerých dokumentov. "
+"Tento dokument naèítava dokument z jedného alebo viacerých dokumentov. "
 "Prosím, vyberte tieto dokumenty."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:15
@@ -1835,7 +2140,7 @@ msgstr "Hlavièka:"
 #: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:9
 #: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:9
 msgid "Common properties"
-msgstr "V¹eobecné vlastnoti"
+msgstr "V¹eobecné vlastnosti"
 
 #: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:10
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:12
@@ -2110,14 +2415,6 @@ msgstr "Zachyti»"
 msgid "Grab a color on the screen"
 msgstr "Zachytí farbu na obrazovke"
 
-#: mini-utils/gcolorsel/menus.c:919
-msgid "About this application"
-msgstr "O tejto aplikácii"
-
-#: mini-utils/gcolorsel/menus.c:921
-msgid "Exit the program"
-msgstr "Ukonèí program"
-
 #: mini-utils/gcolorsel/session.c:304
 msgid ""
 "Your config file is corrupted.\n"
@@ -2135,7 +2432,7 @@ msgid ""
 "One or more files can not be restored :\n"
 "\n"
 msgstr ""
-"Jedel alebo viacero súborov nebolo mo¾né obnovi»:\n"
+"Jeden alebo viacero súborov nebolo mo¾né obnovi»:\n"
 "\n"
 
 #: mini-utils/gcolorsel/session.c:408
@@ -2190,7 +2487,7 @@ msgstr "Naèíta» písmo"
 
 #: mini-utils/gfontsel/gfontsel.c:273
 msgid "FONTSPEC"
-msgstr "FONTSPEC"
+msgstr "SPECPÍSMA"
 
 #: mini-utils/gfontsel/gfontsel.c:274
 msgid "Print selected font name on exit"
@@ -2223,7 +2520,7 @@ msgstr "_Nové okno"
 
 #: mini-utils/gless/gless.c:294
 msgid "New text viewer window"
-msgstr "Nové okno zobrazovaèa textu"
+msgstr "Nové okno prezerania textu"
 
 #: mini-utils/gless/gless.c:312
 msgid "_Fixed Font"
@@ -2366,7 +2663,7 @@ msgstr "Naozaj chcete vypnú» poèítaè?"
 
 #: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to switch to single user mode?"
-msgstr "Naozaj chcete prepnú» do jednopou¾ívateµskémo módu?"
+msgstr "Naozaj chcete prepnú» do jednopou¾ívateµského módu?"
 
 #: mini-utils/gshutdown/gshutdown.c:101
 msgid "Are you sure you want to switch to runlevel 2?"
@@ -2390,7 +2687,7 @@ msgstr "Naozaj chcete re¹tartova» poèítaè?"
 
 #: mini-utils/gshutdown/gshutdown.c:151 mini-utils/gshutdown/gshutdown.c:591
 msgid "You must be the super-user (root) to shut down or restart the computer."
-msgstr "Pre vypnutie alebo re¹tartovanie poèítaèa musíte by» superuser (root)."
+msgstr "Pre vypnutie alebo re¹tart poèítaèa musíte by» superuser (root)."
 
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:187
@@ -2580,7 +2877,7 @@ msgid ""
 "The following mail will be sent to %s.\n"
 " Are you sure you want to mail this information?"
 msgstr ""
-"Následujúca správa bude poslaná %s.\n"
+"Nasledujúca správa bude poslaná %s.\n"
 " Ste si istý, ¾e chcete posla» tieto informácie?"
 
 #: mini-utils/guname/guname.c:845
@@ -2605,7 +2902,7 @@ msgstr "Verzia distribúcie:"
 
 #: mini-utils/guname/info.c:43
 msgid "Operating System Version:"
-msgstr "Varianta operaèného systému:"
+msgstr "Variant operaèného systému:"
 
 #: mini-utils/guname/info.c:44
 msgid "Operating System Release:"
@@ -2613,11 +2910,11 @@ msgstr "Verzia operaèného systému:"
 
 #: mini-utils/guname/info.c:45
 msgid "Processor Type:"
-msgstr "Typ procesoru:"
+msgstr "Typ procesora:"
 
 #: mini-utils/guname/info.c:46
 msgid "Processor Speed:"
-msgstr "Rýchlos» procesoru"
+msgstr "Rýchlos» procesora"
 
 #: mini-utils/guname/info.c:47
 msgid "Host Name:"
@@ -2703,7 +3000,7 @@ msgstr "Kilobajtov"
 
 #: mini-utils/guname/moreinfo.c:186
 msgid "%ld%% memory used."
-msgstr "%ld%% pou¾itej pamäte."
+msgstr "%ld%% pou¾itej pamäti."
 
 #: mini-utils/guname/moreinfo.c:197
 msgid "%ld%% swap used."
@@ -2773,7 +3070,7 @@ msgstr "Zoznam aktívnych pou¾ívateµov"
 
 #: mini-utils/gw/gw.c:221
 msgid "Update Information"
-msgstr "Ubnovi» informácie"
+msgstr "Obnovi» informácie"
 
 #: mini-utils/gw/gw.c:473
 msgid "Save not implemented yet\n"
@@ -2814,7 +3111,7 @@ msgid ""
 "Click this button to add\n"
 "some sample commands."
 msgstr ""
-"Kliknutém pridáte\n"
+"Kliknutím pridáte\n"
 "nejaké príklady príkazov."
 
 #: mini-utils/gw/gw.c:549
@@ -2924,7 +3221,7 @@ msgstr "Model"
 
 #: mini-utils/idetool/idetool.c:306
 msgid "Firmware"
-msgstr "Firmvér"
+msgstr "Firmware"
 
 #: mini-utils/idetool/idetool.c:307
 msgid "Serial No."
@@ -2986,149 +3283,3 @@ msgstr "Tento nástroj mô¾e pou¾íva» iba superuser"
 msgid "You appear to have no IDE drives"
 msgstr "Vyzerá to, ¾e nemáte IDE disky"
 
-msgid "Cannot connect to server"
-msgstr "Nepodarilo sa spoji» so servrom"
-
-msgid ""
-"Client for MIT dictionary server.\n"
-"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
-msgstr ""
-"Klient pre slovníkový server MIT.\n"
-"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
-
-msgid "Spell-checking..."
-msgstr "Kontrola pravopisu..."
-
-msgid "Spell check done"
-msgstr "Kontrola pravopisu hotová"
-
-msgid "No matches found"
-msgstr "Niè nenájdené"
-
-msgid "Looking up word..."
-msgstr "Hµadám slovo..."
-
-msgid "Lookup done"
-msgstr "Hµadanie hotové"
-
-msgid "String not found"
-msgstr "Re»azec nenájdený"
-
-msgid "Find:"
-msgstr "Nájs»:"
-
-msgid ""
-"Unable to perform requested operation, either because the server\n"
-"you are using is down or because you are not connected to the\n"
-"Internet. If you are not already connected to the Internet, please\n"
-"do so and try again."
-msgstr ""
-"Nepodarilo sa vykona» po¾adovanú operáciu, buï server,\n"
-"ktorý pou¾ívate, nefunguje alebo nie ste pripojený na Internet.\n"
-"Ak nie ste u¾ pripojený, prosím, pripojte sa skúste to znovu."
-
-msgid "Lookup"
-msgstr "Hµada»"
-
-msgid "Lookup word in dictionary"
-msgstr "Hµadá slovo v slovníku"
-
-msgid "Spell"
-msgstr "Kontrola"
-
-msgid "Check word spelling"
-msgstr "Skontroluje slovo"
-
-msgid "Cut to Clipboard"
-msgstr "Vystrihnú» do schránky"
-
-msgid "Copy to Clipboard"
-msgstr "Skopírova» do schránky"
-
-msgid "Paste Clipboard Contents"
-msgstr "Vlo¾i» obsah schránky"
-
-msgid "Settings"
-msgstr "Nastavenia"
-
-msgid "Server to use, default search strategy, fonts"
-msgstr "Pou¾ívaný server, stratégia hµadania, písma"
-
-msgid "Word definition"
-msgstr "Definícia slova"
-
-msgid "Cannot create applet!\n"
-msgstr "Nemô¾em vytvori» aplet!\n"
-
-msgid "About..."
-msgstr "O programe..."
-
-msgid "Preferences..."
-msgstr "Nastavenia..."
-
-msgid "Show/Hide Definition Window..."
-msgstr "Zobrazi»/skry» okno definície..."
-
-msgid "Spell Check..."
-msgstr "Kontrola pravopisu..."
-
-msgid "Headword:"
-msgstr "Hlavné slovo:"
-
-msgid "Pronunciation:"
-msgstr "Výslovnos»:"
-
-msgid "Etymology:"
-msgstr "Etymológia:"
-
-msgid "Example:"
-msgstr "Príklad:"
-
-msgid "Main body:"
-msgstr "Hlavné telo:"
-
-msgid "Sub-number:"
-msgstr "Podèíslo:"
-
-msgid "Part of speech:"
-msgstr "Èas» reèi:"
-
-msgid "Cross-reference:"
-msgstr "Krí¾ová referencia:"
-
-msgid "Smart lookup"
-msgstr "©ikovné hµadanie"
-
-msgid "Server:"
-msgstr "Server:"
-
-msgid "Port:"
-msgstr "Port:"
-
-msgid "Database:"
-msgstr "Databáza:"
-
-msgid "Default strategy:"
-msgstr "©tandardná stratégia:"
-
-msgid "Server"
-msgstr "Server"
-
-msgid "Fonts"
-msgstr "Písma"
-
-msgid "Display handle bar"
-msgstr "Zobrazi» pruh handle"
-
-msgid ""
-"You have to restart GDict for these\n"
-"settings to become active."
-msgstr ""
-"Musíte re¹tartova» GDict aby sa\n"
-"tieto nastavenia aktivovali."
-
-msgid "Applet"
-msgstr "Aplet"
-
-msgid "The server you specified could not be found."
-msgstr "Uvedený server nebol nájdený."
