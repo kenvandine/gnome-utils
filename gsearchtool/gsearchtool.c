@@ -1834,7 +1834,18 @@ create_main_window (void)
 	gtk_table_attach(GTK_TABLE(interface.table), label, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
 	
 	interface.look_in_folder_entry = gnome_file_entry_new ("gsearchtool-folder-entry", _("Browse"));
-	gnome_file_entry_set_directory_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry), TRUE);
+
+	/* TODO: Turn on the new filechooser when and if it stabilized in libgnomeui 
+	{
+		GValue value = { 0 };
+		g_value_init (&value, G_TYPE_INT);
+		g_value_set_int (&value, 1);
+		g_object_set_property (G_OBJECT (interface.look_in_folder_entry), "use_filechooser", &value);
+	}
+	*/
+	
+	gnome_file_entry_set_directory_entry (GNOME_FILE_ENTRY (interface.look_in_folder_entry), TRUE);
+	
 	entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), entry);
 	folder_entry = gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
