@@ -26,7 +26,6 @@ gnome_system_log_SOURCES = 	\
 	logrtns.h	\
 	logview.c	\
 	logview.h	\
-	menus.c		\
 	misc.c		\
 	monitor.c       \
 	userprefsdialog.c       \

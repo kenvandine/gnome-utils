@@ -210,7 +210,6 @@ Log;
 void ShowErrMessage (const char *msg);
 void QueueErrMessages (gboolean do_queue);
 void ShowQueuedErrMessages (void);
-GtkWidget *AddMenu (MenuItem * items);
 ConfigData *CreateConfig(void);
 int repaint_zoom (void);
 void MoveToMark (Log *log);
