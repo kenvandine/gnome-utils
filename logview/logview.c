@@ -1,6 +1,3 @@
-#ifndef GNOMELOCALEDIR
-#define GNOMELOCALEDIR "/usr/share/locale"
-#endif
 /*  ----------------------------------------------------------------------
 
     Copyright (C) 1998  Cesar Miquel  (miquel@df.uba.ar)
@@ -865,7 +862,6 @@ logview_set_window_title (LogviewWindow *window)
 static void
 logview_window_finalize (GObject *object)
 {
-	int i;
         LogviewWindow *window = (LogviewWindow *) object;
 
 	g_object_unref (window->ui_manager);

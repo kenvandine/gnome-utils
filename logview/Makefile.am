@@ -8,7 +8,7 @@ additionaldir  = $(datadir)/gnome-system-log
 INCLUDES = \
 	$(GNOME_UTILS_CFLAGS)					\
 	-DG_LOG_DOMAIN=\"gnome-system-log\"			\
-	-DGNOMELOCALEDIR=\""$(gnomeutilslocaledir)"\"		\
+	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DLOGVIEWINSTALLPREFIX=\""$(prefix)/\""
 
