@@ -38,4 +38,5 @@ install-data-local:
 	$(INSTALL_DATA)					\
 		$(srcdir)/gstripchart.html		\
 		$(help_base)/C/gstripchart.html
-	ln -sf $(help_base)/C/gstripchart.html $(help_base)/C/index.html     
+	rm -f $(help_base)/C/index.html ; \
+		$(LN_S) $(help_base)/C/gstripchart.html $(help_base)/C/index.html     
