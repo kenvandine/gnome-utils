@@ -1,3 +1,14 @@
+2004-11-02  Vincent Noel  <vnoel@cox.net>
+
+	* monitor.c (mon_update_display): When new lines are added to the
+	logfile, select them in the monitor.
+
+	* logrtns.c (reverse) : kill. We have g_strreverse anyway.
+	(WasModified, CloseLog, ReadLogStats, ReadNewLines)
+	(ReadLastPage, isLogFile, OpenLogFile): Use gnome-vfs.
+	
+	Aggregate the FIXME functions at the end of the file.
+
 2004-10-31  James Bowes  <bowes@cs.dal.ca>
 
 	* Makefile.am: Minor fixes to pass make distcheck.
