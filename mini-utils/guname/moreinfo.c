@@ -162,8 +162,10 @@ static void fill_mem_page(GtkWidget * box)
   gchar * s;
   gint width, height;
 
+#ifdef ENABLE_NLS
   titles [0] = _(titles[0]);
   titles [1] = _(titles[1]);
+#endif
 
   vbox = gtk_vbox_new(FALSE, GNOME_PAD);
   gtk_container_add(GTK_CONTAINER(box), vbox);
@@ -181,7 +183,8 @@ static void fill_mem_page(GtkWidget * box)
 
   gtk_widget_set_usize(GTK_WIDGET(sw), width, height);
 
-  s = g_strdup_printf("%ld%% memory used.", (guint)(memory_percent_full * 100));
+  s = g_strdup_printf( _("%ld%% memory used."), 
+		(guint)(memory_percent_full * 100));
   hbox = gtk_hbox_new(FALSE, GNOME_PAD);
   label = gtk_label_new(s);
   g_free(s);
@@ -191,7 +194,8 @@ static void fill_mem_page(GtkWidget * box)
   gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
   gtk_box_pack_start (GTK_BOX(vbox), hbox,  FALSE, FALSE, GNOME_PAD);
 
-  s = g_strdup_printf("%ld%% swap used.", (guint)(swap_percent_full * 100));
+  s = g_strdup_printf( _("%ld%% swap used."), 
+		(guint)(swap_percent_full * 100));
   hbox = gtk_hbox_new(FALSE, GNOME_PAD);
   label = gtk_label_new(s);
   g_free(s);
@@ -217,8 +221,9 @@ static void fill_cpuinfo_page(GtkWidget * box)
     if (sysinfo->ncpu > 1) {
       sprintf (buffer, _("CPU %d"), i);
       titles [0] = buffer;
-    } else
+    } else {
       titles [0] = _("Name");
+    }
     titles [1] = _("Value");
 
     clist = create_clist((const gchar **)titles);
@@ -345,7 +350,7 @@ void load_fsinfo()
           1.0 - ((gdouble)fsusage.bavail)/((gdouble)fsusage.blocks);
         
         percent = (gint)((*percent_full) * 100);
-        fs_info[fs_percent_full] = g_strdup_printf("%2d%% full ", percent);
+        fs_info[fs_percent_full] = g_strdup_printf( _("%2d%% full "), percent);
       }
     }
     else {
@@ -377,9 +382,11 @@ add_memory_info(unsigned long glibtop_value,
                 memory_info mi)
 {
   memory[mi] = memsize_string(glibtop_value);
+  textdomain("libgtop");
   memory_descriptions[mi] = 
-    g_strdup(glibtop_labels_mem[glibtop_define]);
+    g_strdup( _(glibtop_labels_mem[glibtop_define]));
   /*        glibtop_descriptions_mem[glibtop_define] */
+  textdomain(PACKAGE);
 }
 
 static void
@@ -388,9 +395,11 @@ add_swap_info(unsigned long glibtop_value,
               memory_info mi)
 {
   memory[mi] = memsize_string(glibtop_value);
+  textdomain("libgtop");
   memory_descriptions[mi] = 
-    g_strdup(glibtop_labels_swap[glibtop_define]);
+    g_strdup( _(glibtop_labels_swap[glibtop_define]));
   /*                     glibtop_descriptions_swap[glibtop_define]) */
+  textdomain(PACKAGE);
 }
 
 void load_meminfo()

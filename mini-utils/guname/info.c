@@ -20,6 +20,7 @@
  */
 
 #include <config.h>
+#include <gnome.h>
 #include "info.h"
 #include <unistd.h>
 #include <string.h> /* memset */

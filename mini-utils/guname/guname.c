@@ -92,7 +92,10 @@ main ( int argc, char ** argv )
   gboolean capplet_mode = FALSE;
   int i;
 
-  /* Initialize the i18n stuff */
+  /* Initialize the i18n stuff (the call to 'libgtop' catalog is to translate
+   * the strings that are imported from libtop libs
+   */
+  bindtextdomain ("libgtop", GNOMELOCALEDIR);
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 

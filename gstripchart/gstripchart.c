@@ -2168,3 +2168,28 @@ main(int argc, char **argv)
 
   return EXIT_SUCCESS;
 }
+
+/* This is a placeholder so that stringsinherited from the default config file
+   can be seen by xgettext and marked as translatable; and they can be
+   translated for the gstripchart configuration dialog box.
+
+   Of course it is not possible to translate all possible words; but if the 
+   user changes the default config file it is probable that he will choose
+   words in his own language (or at least that please him); keeping this ones
+   here allow for the people that don't change the default config file to still
+   have an interface in their language; something people appreciate a lot; more
+   if you think that the newbies are the most likely to a) never touch to the
+   default files, b) appreciate an interface in their language (most of them
+   don't even know English).
+
+   So, please don't remove this.
+*/
+
+#if 0
+char *placeholder_for_strings_in_config[] = {
+	N_("white"), N_("black"), N_("red"), N_("yellow"), N_("blue"),
+	N_("green"), N_("cyan"), N_("magenta"), N_("Busy"), N_("Load"),
+	N_("Swap"), N_("Net In"), N_("Net Out"), N_("ppp")
+};
+#endif
+
