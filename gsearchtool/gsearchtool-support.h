@@ -68,6 +68,9 @@ limit_string_to_x_lines		(GString *string,
 gchar *	
 escape_single_quotes 		(const gchar *string);
 
+gchar *	
+backslash_backslashes		(const gchar *string);
+
 gchar *
 remove_mnemonic_character	(const gchar *string);
 

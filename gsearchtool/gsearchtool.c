@@ -271,6 +271,7 @@ build_search_command (void)
 	gchar *file_is_named_utf8;
 	gchar *file_is_named_locale;
 	gchar *file_is_named_escaped;
+	gchar *file_is_named_backslashed;
 	gchar *look_in_folder_utf8;
 	gchar *look_in_folder_locale;
 
@@ -320,7 +321,9 @@ build_search_command (void)
 		gboolean disable_quick_search;
 		
 		locate = g_find_program_in_path ("locate");
-		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
+		file_is_named_backslashed = backslash_backslashes (file_is_named_locale);
+		file_is_named_escaped = escape_single_quotes (file_is_named_backslashed);
+
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		disable_quick_search = gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search");
 		
@@ -350,7 +353,8 @@ build_search_command (void)
 		gboolean disable_mount_argument = FALSE;
 		
 		search_command.regex_matching_enabled = FALSE;
-		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
+		file_is_named_backslashed = backslash_backslashes (file_is_named_locale);
+		file_is_named_escaped = escape_single_quotes (file_is_named_backslashed);
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
 		g_string_append_printf (command, "find \"%s\" '!' -type p  %s", 
@@ -377,23 +381,29 @@ build_search_command (void)
 			case SEARCH_CONSTRAINT_TEXT:
 				if (strcmp (templates[constraint->constraint_id].option, "-regex '%s'") == 0) {
 					
+					gchar *escaped;
 					gchar *regex;
 					
-					regex = escape_single_quotes (constraint->data.text);
+					escaped = escape_single_quotes (constraint->data.text);
+					regex = backslash_backslashes (escaped);
 					
 					if (regex != NULL) {	
 						search_command.regex_matching_enabled = TRUE;
 						search_command.regex_string = g_locale_from_utf8 (regex, -1, NULL, NULL, NULL);
 					}
 					
+					g_free (escaped);
 					g_free (regex);
 				} 
 				else {
-					gchar *string;
+					gchar *escaped;
+					gchar *backslashed;
 					gchar *locale;
 					
-					string = escape_single_quotes (constraint->data.text);
-					locale = g_locale_from_utf8 (string, -1, NULL, NULL, NULL);
+					escaped = escape_single_quotes (constraint->data.text);
+					backslashed = backslash_backslashes (escaped);
+					
+					locale = g_locale_from_utf8 (backslashed, -1, NULL, NULL, NULL);
 					
 					if (strlen (locale) != 0) { 
 						g_string_append_printf (command,
@@ -403,8 +413,9 @@ build_search_command (void)
 						g_string_append_c (command, ' ');
 					}
 					
-					g_free(string);
-					g_free(locale);					
+					g_free (escaped);
+					g_free (backslashed);
+					g_free (locale);					
 				}
 				break;
 			case SEARCH_CONSTRAINT_NUMBER:
@@ -439,6 +450,7 @@ build_search_command (void)
 		g_string_append (command, "-print ");
 	}
 	g_free (file_is_named_locale);
+	g_free (file_is_named_backslashed);
 	g_free (look_in_folder_locale);
 	
 	return g_string_free (command, FALSE);

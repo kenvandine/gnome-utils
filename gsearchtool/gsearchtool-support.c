@@ -407,6 +407,30 @@ escape_single_quotes (const gchar *string)
 }
 
 gchar *
+backslash_backslashes (const gchar *string)
+{
+	GString *gs;
+
+	if (string == NULL) {
+		return NULL;
+	}
+
+	if (count_of_char_in_string (string, '\\') == 0) {
+		return g_strdup(string);
+	}
+	gs = g_string_new ("");
+	for(; *string; string++) {
+		if (*string == '\\') {
+			g_string_append(gs, "\\\\");
+		}
+		else {
+			g_string_append_c(gs, *string);
+		}
+	}
+	return g_string_free (gs, FALSE);
+}
+
+gchar *
 remove_mnemonic_character (const gchar *string)
 {
 	GString *gs;
