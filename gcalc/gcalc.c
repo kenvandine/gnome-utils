@@ -7,6 +7,14 @@
 #include <config.h>
 #include <gnome.h>
 
+/* values for selection info */
+enum {
+  TARGET_STRING,
+  TARGET_TEXT,
+  TARGET_COMPOUND_TEXT,
+};
+
+static GtkWidget *app;
 static GtkWidget *calc;
 static char copied_string[13]="";
 
@@ -39,7 +47,7 @@ static void
 copy_contents (GtkWidget *widget, gpointer data)
 {
 	strcpy(copied_string,GNOME_CALCULATOR(calc)->result_string);
-	gtk_selection_owner_set (calc,
+	gtk_selection_owner_set (app,
 				 GDK_SELECTION_PRIMARY,
 				 GDK_CURRENT_TIME);
 }
@@ -51,8 +59,24 @@ selection_handle (GtkWidget *widget,
 		  int info, int time,
 		  gpointer data)
 {
-	gtk_selection_data_set (selection_data, GDK_SELECTION_TYPE_STRING,
-				8, copied_string, strlen(copied_string));
+	if (info == TARGET_STRING) {
+		gtk_selection_data_set (selection_data,
+					GDK_SELECTION_TYPE_STRING,
+					8*sizeof(gchar),
+					(guchar *)copied_string,
+					strlen(copied_string));
+	} else if ((info == TARGET_TEXT) || (info == TARGET_COMPOUND_TEXT)) {
+		guchar *text;
+		GdkAtom encoding;
+		gint format;
+		gint new_length;
+
+		gdk_string_to_compound_text (copied_string, &encoding, &format,
+					     &text, &new_length);
+		gtk_selection_data_set (selection_data, encoding, format,
+					text, new_length);
+		gdk_free_compound_text (text);
+	}
 }
 
 /* Menus */
@@ -89,7 +113,12 @@ GnomeUIInfo gcalc_menu[] = {
 int
 main(int argc, char *argv[])
 {
-	GtkWidget *app;
+	static GtkTargetEntry targets[] = {
+		{ "STRING", TARGET_STRING },
+		{ "TEXT",   TARGET_TEXT }, 
+		{ "COMPOUND_TEXT", TARGET_COMPOUND_TEXT }
+	};
+	static gint n_targets = sizeof(targets) / sizeof(targets[0]);
 	
 	/* Initialize the i18n stuff */
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
@@ -111,11 +140,10 @@ main(int argc, char *argv[])
 	calc = gnome_calculator_new();
 	gtk_widget_show(calc);
 
-	gtk_selection_add_target (GTK_WIDGET (calc),
-				  GDK_SELECTION_PRIMARY,
-				  GDK_SELECTION_TYPE_STRING,0);
+	gtk_selection_add_targets (GTK_WIDGET (app), GDK_SELECTION_PRIMARY,
+				   targets, n_targets);
 
-        gtk_signal_connect(GTK_OBJECT(calc), "selection_get",
+        gtk_signal_connect(GTK_OBJECT(app), "selection_get",
 			   GTK_SIGNAL_FUNC(selection_handle), NULL);
 
 	gnome_app_set_contents(GNOME_APP(app), calc);
