@@ -443,6 +443,7 @@ exec_action_in_db (Log *log, LogLine *line, GList *db)
   regex_t preg;
   regmatch_t matches[MAX_NUM_MATCHES];
   int doesnt_match;
+  pid_t pid;
 
   /* Search for daemon in our list */
   for (item = db; item != NULL; item = item->next)
@@ -473,7 +474,20 @@ exec_action_in_db (Log *log, LogLine *line, GList *db)
 
   /* If there is a non-null action execute it */
   if (cur_action != NULL)
-    system (cur_action->action);
+   {
+     if ((pid = fork()) < 0)
+      {
+        return FALSE;
+      }
+     else if (pid == 0)
+      {
+        if (execlp(cur_action->action, NULL) == -1)
+         {
+	   ShowErrMessage (_("Error while executing specified action"));
+	   exit(1);
+         }
+      }
+   }
 
   return TRUE;
 }

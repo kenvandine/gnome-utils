@@ -1,3 +1,12 @@
+2002-07-08  Laavanya K R <laavanya.gopalan@wipro.com>
+
+	* actions.c: Modified exec_action_in_db() to execute "action"
+	by a combination of fork() and execlp() calls instead of
+	executing through system().  There is a potential of Time of
+	Check and Time of Use (TOCTOU) issues with system() since
+	shell is spawned first and command's executed after a small
+	time gap. Fixes #87110.
+
 2002-07-08  Deepa Natarajan  <deepa.natarajan@wipro.com> 
  
 	* logview.[ch], log_repaint.c: Append filename to the window 
