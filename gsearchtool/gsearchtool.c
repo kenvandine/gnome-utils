@@ -1715,7 +1715,7 @@ create_search_results_section (void)
 				     GTK_SELECTION_MULTIPLE);
 				     
 	gtk_drag_source_set (interface.tree, 
-			     GDK_BUTTON1_MASK,
+			     GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
 			     dnd_table, n_dnds, 
 			     GDK_ACTION_COPY | GDK_ACTION_MOVE);	
 
