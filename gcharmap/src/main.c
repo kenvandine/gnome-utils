@@ -39,4 +39,4 @@ main (int argc, char *argv[])
     return 0;
 }
 
-#endif _MAIN_C_
+#endif /* _MAIN_C_ */

@@ -44,4 +44,4 @@ void cb_toggle_actionbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data);
 void cb_toggle_textbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data);
 void cb_toggle_statusbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data);
 
-#endif _CALLBACKS_H_
+#endif /* _CALLBACKS_H_ */

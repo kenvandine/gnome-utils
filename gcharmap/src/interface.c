@@ -323,4 +323,4 @@ main_app_destroy (MainApp *obj)
 }
 
 
-#endif _INTERFACE_C_
+#endif /* _INTERFACE_C_ */

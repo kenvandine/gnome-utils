@@ -32,4 +32,4 @@ extern GnomeUIInfo help_menu[];
 extern GnomeUIInfo menubar[];
 extern GnomeUIInfo toolbar[];
 
-#endif _MENUS_H_
+#endif /* _MENUS_H_ */

@@ -239,4 +239,4 @@ cb_toggle_statusbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
 }
 
 
-#endif _CALLBACKS_C_
+#endif /* _CALLBACKS_C_ */

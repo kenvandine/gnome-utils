@@ -113,4 +113,4 @@ GnomeUIInfo toolbar[] = {
 };
 
 
-#endif _MENUS_C_
+#endif /* _MENUS_C_ */

@@ -201,5 +201,5 @@ ascii_select_destroy (AsciiSelect *obj)
 }
 
 
-#endif _ASCII_SELECT_C_
+#endif /* _ASCII_SELECT_C_ */
 
