@@ -10,6 +10,7 @@
 #include <libgnomeui/gnome-window-icon.h>
 
 #include "gnome-calc.h"
+#include "sr.h"
 
 /* values for selection info */
 enum {
@@ -21,6 +22,16 @@ enum {
 static GtkWidget *app;
 static GtkWidget *calc;
 static char copied_string[13]="";
+
+static gboolean
+may_run_slide_rule (GtkWidget *w, GdkEvent *event, gpointer data)
+{
+	if (event->type == GDK_3BUTTON_PRESS) {
+		run_slide_rule ();
+		return TRUE;
+	}
+	return FALSE;
+}
 
 static void
 about_cb (GtkWidget *widget, gpointer data)
@@ -70,6 +81,9 @@ about_cb (GtkWidget *widget, gpointer data)
 	}			
 
 	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (data));
+	gtk_widget_add_events (about, GDK_BUTTON_PRESS_MASK);
+	gtk_signal_connect (GTK_OBJECT(about), "button_press_event", 
+			   GTK_SIGNAL_FUNC(may_run_slide_rule), NULL);
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",
 			   GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
 	gtk_widget_show (about);

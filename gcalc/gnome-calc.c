@@ -51,7 +51,6 @@
 #include <libgnome/gnome-macros.h>
 
 #include "gnome-calc.h"
-#include "sr.h"
 
 #undef GNOME_CALC_DEBUG
 
@@ -1128,16 +1127,6 @@ set_pi(GtkWidget *w, gpointer data)
 	unselect_invert(gc);
 }
 
-static gboolean
-maybe_run_slide_rule (GtkWidget *w, GdkEvent *event, gpointer data)
-{
-	if (event->type == GDK_3BUTTON_PRESS) {
-		run_slide_rule ();
-		return TRUE;
-	}
-	return FALSE;
-}
-
 static void
 set_e (GtkWidget *w, gpointer data)
 {
@@ -1331,11 +1320,6 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 				  (gpointer) but);
 	}
 
-	if (strcmp (but->name, "e") == 0)
-		g_signal_connect (G_OBJECT (w), "button_press_event",
-				  G_CALLBACK (maybe_run_slide_rule),
-				  (gpointer) but);
-	
 	for(i=0;but->keys[i]!=0;i++) {
 		gtk_widget_add_accelerator(w, "clicked",
 					   gc->_priv->accel,
