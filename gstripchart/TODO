@@ -22,14 +22,6 @@ style mechanism?
 
 THINGS TO CONSIDER
 
-Allow values to be plotted using a logarithmic basis rather than a
-linear one.  This would be especially handy for values such as load
-which is normally very low, but which can jump way up at times.
-
-Allow fields to be split on delimtiers other than whitespace and
-colon, then eliminate the colon from the seperator list and add it to
-the net I/O items.
-
 Use regular expressions instead of strstr for field matching and
 strtok for splitting?  This would be more versatile, but would also
 make the code dependent on some regex package.  I'll probably wait
