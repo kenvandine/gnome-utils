@@ -114,7 +114,7 @@ void unlock_gtt(void)
 int main(int argc, char *argv[])
 {
 #if HAS_GNOME
-	gnome_init(&argc, &argv);
+	gnome_init("gtt", &argc, &argv);
 #else 
 	gtk_init(&argc, &argv);
 #endif 
