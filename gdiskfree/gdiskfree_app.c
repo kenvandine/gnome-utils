@@ -87,9 +87,10 @@ gdiskfree_app_new (const gchar *geometry)
     }
   orientation = gnome_config_get_int ("/GDiskFree/properties/orientation");
   if (orientation == GTK_ORIENTATION_VERTICAL)
-    app->dial_box = gtk_vbox_new (FALSE, 2);
+    app->dial_box = gtk_vbox_new (FALSE, 8);
   else
-    app->dial_box = gtk_hbox_new (FALSE, 2);
+    app->dial_box = gtk_hbox_new (FALSE, 8);
+  gtk_container_set_border_width (GTK_CONTAINER (app->dial_box), 6);
   gnome_app_set_contents (GNOME_APP (app->app), app->dial_box);
   return app;
 }
@@ -146,6 +147,7 @@ gdiskfree_app_add_disk (GDiskFreeApp *app, const gchar *disk,
   gtk_box_pack_start (GTK_BOX (app->dial_box), frame, TRUE, TRUE, 0);
   app->drive_frame = g_list_append (app->drive_frame, frame);
   box = gtk_vbox_new (FALSE, 1);
+  gtk_container_set_border_width (GTK_CONTAINER (box), 6);
   gtk_container_add (GTK_CONTAINER (frame), box);
   adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0, 0.0, 100.0, 0.01, 
 						   0.1, 0.0));
@@ -184,12 +186,13 @@ gdiskfree_app_change_orient (GDiskFreeApp *app, GtkOrientation orientation)
   gtk_widget_destroy (app->dial_box);
   if (orientation == GTK_ORIENTATION_VERTICAL)
     {
-      app->dial_box = gtk_vbox_new (FALSE, 2);
+      app->dial_box = gtk_vbox_new (FALSE, 8);
     }
   else
     {
-      app->dial_box = gtk_hbox_new (FALSE, 2);
+      app->dial_box = gtk_hbox_new (FALSE, 8);
     }
+  gtk_container_set_border_width (GTK_CONTAINER (app->dial_box), 6);
   gl = app->drive_frame;
   while (gl)
     {

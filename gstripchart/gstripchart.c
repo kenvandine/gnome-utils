@@ -1636,9 +1636,10 @@ prefs_callback(GtkWidget *chart, void *unused)
 	GTK_TOGGLE_BUTTON(active), chart_glob.parray[p]->active);
       gtk_widget_show(active);
 
-      vbox = gtk_vbox_new(FALSE, 0);
+      vbox = gtk_vbox_new(FALSE, 4);
       gtk_box_pack_start(GTK_BOX(vbox), clist, TRUE, TRUE, 0);
       gtk_box_pack_start(GTK_BOX(vbox), active, TRUE, TRUE, 0);
+      gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
       gtk_widget_show(vbox);
 
       label = gtk_label_new(_(chart_glob.parray[p]->ident));

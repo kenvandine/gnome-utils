@@ -130,7 +130,7 @@ static void fill_disk_page(GtkWidget * box)
                               (GTK_SCROLLED_WINDOW(scrolled_win)),
                               gtk_scrolled_window_get_vadjustment
                               (GTK_SCROLLED_WINDOW(scrolled_win)));
-  gtk_viewport_set_shadow_type(GTK_VIEWPORT(viewport), GTK_SHADOW_ETCHED_IN);
+  gtk_viewport_set_shadow_type(GTK_VIEWPORT(viewport), GTK_SHADOW_IN);
   gtk_container_add (GTK_CONTAINER (scrolled_win), viewport);
   gtk_widget_show (viewport);
 

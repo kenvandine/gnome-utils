@@ -230,7 +230,7 @@ static void prepare_app()
 
   gtk_widget_set_events(clist, GDK_BUTTON_PRESS_MASK);
 
-  gtk_clist_set_shadow_type(GTK_CLIST(clist), GTK_SHADOW_OUT);
+  gtk_clist_set_shadow_type(GTK_CLIST(clist), GTK_SHADOW_IN);
   gtk_clist_set_selection_mode(GTK_CLIST(clist), GTK_SELECTION_BROWSE);
   gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
                                  GTK_POLICY_AUTOMATIC,
@@ -514,7 +514,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   list = gtk_clist_new_with_titles(2, (gchar **)titles);
   sw = gtk_scrolled_window_new (NULL, NULL);
   gtk_container_add (GTK_CONTAINER (sw), list);
-  gtk_clist_set_shadow_type(GTK_CLIST(list), GTK_SHADOW_OUT);
+  gtk_clist_set_shadow_type(GTK_CLIST(list), GTK_SHADOW_IN);
   gtk_clist_set_selection_mode(GTK_CLIST(list), GTK_SELECTION_BROWSE);
   gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (sw),
                                  GTK_POLICY_AUTOMATIC,

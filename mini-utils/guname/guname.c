@@ -623,7 +623,7 @@ static void do_list_box(GtkWidget * box)
   
   gtk_clist_freeze(list); /* does this matter if we haven't shown yet? */
 
-  gtk_clist_set_shadow_type(list, GTK_SHADOW_OUT);
+  gtk_clist_set_shadow_type(list, GTK_SHADOW_IN);
   /* Fixme, eventually you might could select an item 
      for cut and paste, or some other effect. */
   gtk_clist_set_selection_mode(list, GTK_SELECTION_BROWSE);
