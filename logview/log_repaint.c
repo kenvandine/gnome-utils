@@ -480,7 +480,7 @@ UpdateStatusArea ()
 
   tdm = &curlog->curmark->fulldate;
   sprintf (status_text, "%02d/%02d/%02d", 
-	   tdm->tm_mday, tdm->tm_mon, tdm->tm_year);
+	   tdm->tm_mday, tdm->tm_mon, tdm->tm_year % 100);
   gtk_label_get ( date_label, (char **)&buffer);
   if (strcmp (status_text, buffer) != 0)
     gtk_label_set_text (date_label, status_text);
