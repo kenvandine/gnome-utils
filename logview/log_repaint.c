@@ -99,13 +99,12 @@ static void iterate_thru_children(GtkTreeView  *tree_view,
 /**
  * Recursively called until the row specified by orig is found.
  *
- * *count will be set to the visible row number of the child
+ * *count will be set to the  row number of the child
  * relative to the row that was initially passed in as tree_path.
  *
- * *count will be -1 if orig is not found as a child (a row that is
- * not visible will not be found, e.g. if the row is inside a
- * collapsed row).  If NULL is passed in as orig, *count will
- * be a count of the visible children.
+ * *count will be -1 if orig is not found as a child.
+ * If NULL is passed in as orig, *count will
+ * be a count of the all the children (visible + collapsed (invisible)).
  *
  * NOTE: the value for depth must be 0 when this recursive function
  * is initially called, or it may not function as expected.
@@ -132,10 +131,8 @@ iterate_thru_children(GtkTreeView  *tree_view,
       *count = -1;
       return;
     }
-  else if (gtk_tree_view_row_expanded (tree_view, tree_path) && 
-    gtk_tree_model_iter_has_child (tree_model, &iter)) 
+  else if (gtk_tree_model_iter_has_child (tree_model, &iter))
     {
-      (*count)++;
       gtk_tree_path_append_index (tree_path, 0);
       iterate_thru_children (tree_view, tree_model, tree_path,
                              orig, count, (depth + 1));

@@ -171,7 +171,7 @@ repaint_zoom (void)
    if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
 
        if (curlog->current_line_no <= 0 || 
-           ((line = (curlog->lines)[curlog->current_line_no - 1]) == NULL)) {
+           ((line = (curlog->lines)[curlog->current_line_no]) == NULL)) {
        	   return FALSE;
        }
 
