@@ -44,6 +44,9 @@
 ;; The text widget.
 (define text-widget #f)
 
+;; Session id.
+(define session-id #f)
+
 
 ;;;
 ;;; Generic code.
@@ -327,28 +330,63 @@
 
 (define (notepad-save-for-session save-style shutdown? interact-style fast?)
   ;; FIXME: things to save:
-  ;; * the file
-  ;; * window geometry
-  ;; * cursor position, font, scrollbar position
+  ;; * window geometry - no way to get this with current guile/gtk.
+  ;; * cursor position
+  ;; * font
+  ;; * scrollbar position
   ;; * dirty flag
+  ;; * undo history, when we have it.
+  (let ((program (car (program-arguments)))
+	(command '()))
+    (if file-name
+	(set! command (cons (string-append "--file=" file-name) command)))
+
+    ;; This command restarts the program but doesn't supply the
+    ;; session id.
+    (apply gnome-session-set-clone-command program command)
+
+    (if session-id
+	(set! command (cons (string-append "--session-id=" session-id)
+			    command)))
+    ;; Restart the command with the session id.
+    (apply gnome-session-set-restart-command program command))
   #t)
 
 
-;; FIXME: parse command-line arguments.
+;; Parse command line options.
+(define (notepad-parse-options argv)
+  (get-option argv '() '(#:file #:session-id)
+	      (lambda (type argument new-argv)
+		(cond
+		 ((eq? type #:file)
+		  (set! file-name argument))
 
-(gnome-session-init notepad-save-for-session
-		    ;; We don't care about exiting.
-		    (lambda (shutdown?) #f)
-		    )
+		 ((eq? type #:session-id)
+		  (set! session-id argument))
+
+		 ;; FIXME: error handling.
+		 )
+
+		(and type
+		     (notepad-parse-options new-argv)))))
+
+(notepad-parse-options (cdr (program-arguments)))
+
+(set! session-id (gnome-session-init notepad-save-for-session
+				     ;; We don't care about exiting.
+				     (lambda (shutdown?) #f)
+				     session-id))
 
 (gnome-session-set-current-directory (getcwd))
-(apply gnome-session-set-restart-command (program-arguments))
-(gnome-session-set-clone-command (program-arguments))
 (gnome-session-set-program (car (program-arguments)))
 
-
 (set! main-window (notepad))
-(set-file-name #f)
+
+(set-file-name file-name)
 (clear-dirty)
+;; If file was specified on command line, load it now.
+(if file-name
+    (fill-text-widget text-widget file-name))
+
 (gtk-widget-show main-window)
 (gtk-main)
