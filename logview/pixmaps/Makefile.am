@@ -2,11 +2,11 @@
 
 pixmapsdir = $(datadir)/pixmaps/gnome-system-log
 
-pixmaps_DATA = logview.xpm
+pixmaps_DATA = 
 
 EXTRA_DIST = \
 	actions.xpm	add.xpm		bomb.xpm	cancel.xpm	\
 	close.xpm	left.xpm	log.xpm		logo.xpm	\
-	logview.xpm	ok.xpm		remove.xpm	right.xpm
+	ok.xpm		remove.xpm	right.xpm
 
 
