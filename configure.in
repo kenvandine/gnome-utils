@@ -95,7 +95,7 @@ dnl *********************************************
 dnl gnome-vfs/mime-data is need for gsearchtool
 dnl *********************************************
 
-PKG_CHECK_MODULES(GNOMEVFS, gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED)
+PKG_CHECK_MODULES(GNOMEVFS, gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED gnome-vfs-module-2.0 >= $GNOMEVFS_REQUIRED)
 AC_SUBST(GNOMEVFS_CFLAGS)
 AC_SUBST(GNOMEVFS_LIBS)
 
