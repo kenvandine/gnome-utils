@@ -18,16 +18,14 @@
 
     ---------------------------------------------------------------------- */
 
-#define DISABLE_GNOME_DEPRECATED
-
 #include <config.h>
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomeui/gnome-client.h>
 #include <gtk/gtk.h>
-#include <popt.h>
 #include <glib/gi18n.h>
+#include <glib/goption.h>
 #include "logview.h"
 #include "log_repaint.h"
 #include "logrtns.h"
@@ -166,19 +164,9 @@ GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
 ConfigData *cfg = NULL;
 gchar *file_to_open;
 
-poptContext poptCon;
-
-struct poptOption options[] = {
-	{
-		"file",
-		'f',
-		POPT_ARG_STRING,
-		&(file_to_open),
-		1,
-		N_("Open the specified log."),
-		NULL
-	},
-	POPT_TABLEEND
+GOptionContext *context;
+GOptionEntry options[] = {
+	{ NULL }
 };
 
 /* ----------------------------------------------------------------------
@@ -221,7 +209,7 @@ save_session (GnomeClient *gnome_client, gint phase,
    for (list = logview_windows; list != NULL; list = g_slist_next (list)) {
 	   LogviewWindow *w = list->data;
 	   if (w->curlog) {
-		   argv[i++] = g_strdup_printf ("--file=%s ", w->curlog->name);
+		   argv[i++] = g_strdup_printf ("%s", w->curlog->name);
 	   }
    }
    
@@ -260,6 +248,18 @@ logview_create_window_open_file (gchar *file)
 	}
 }
 
+GOptionContext *
+logview_init_options ()
+{
+	GOptionContext *context;
+	
+	context = g_option_context_new (" - Browse and monitor logs");
+	g_option_context_add_main_entries (context, options, NULL);
+	g_option_context_set_help_enabled (context, TRUE);
+	g_option_context_set_ignore_unknown_options (context, TRUE);
+	return context;
+}
+	
 /* ----------------------------------------------------------------------
    NAME:          main
    DESCRIPTION:   Program entry point.
@@ -269,8 +269,9 @@ int
 main (int argc, char *argv[])
 {
    GnomeClient *gnome_client;
+   GError *error;
    GnomeProgram *program;
-   gint next_opt;
+   int i;
 
    bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
@@ -288,31 +289,27 @@ main (int argc, char *argv[])
    gnome_vfs_init ();
 
    gtk_window_set_default_icon_name ("logviewer");
-   /*  Load graphics config and prefs */
    cfg = CreateConfig();
    open_databases ();
    user_prefs = prefs_load (client);
    
-   poptCon = poptGetContext ("gnome-system-log", argc, (const gchar **) argv, 
-   							 options, 0);  
-   /* Open a new window for each log passed as a parameter */
-   while ((next_opt = poptGetNextOpt (poptCon)) > 0) {
-	   if ( next_opt == 1 ) {
-		   if (file_to_open) {
-			   logview_create_window_open_file (file_to_open);
-			   g_free (file_to_open);
-		   }
-	   }
-   }
+   context = logview_init_options ();
+   g_option_context_parse (context, &argc, &argv, &error);
 
+   /* Open a new window for each log passed as a parameter */
    /* If no log was passed as parameter, open regular logs */
-   if (logview_count_logs() == 0) {
-	   logview_create_window_open_file (user_prefs->logfile);
-	   if (logview_count_logs() == 0) {
-		   GtkWidget *window;
-		   window = logview_create_window ();
-		   gtk_widget_show (window);
+   if (argc > 1) {
+	   for (i=1; i<argc; i++) {
+		   file_to_open = argv[i];
+		   logview_create_window_open_file (file_to_open);
 	   }
+   } else
+	   logview_create_window_open_file (user_prefs->logfile);
+
+   if (logview_count_logs() == 0) {
+	   GtkWidget *window;
+	   window = logview_create_window ();
+	   gtk_widget_show (window);
    }
 
    gnome_client = gnome_master_client ();

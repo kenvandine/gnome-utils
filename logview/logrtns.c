@@ -37,10 +37,11 @@
 
 static int isSameDay (time_t day1, time_t day2);
 static void ReadLogStats (Log * log, gchar **buffer_lines);
+static gboolean file_exist (char *filename, gboolean show_error);
 
 extern GList *regexp_db;
 extern GList *actions_db;
-const char *error_main = N_("This file cannot be opened");
+const char *error_main = N_("The file could not be opened");
 
 /*
  * -------------------
@@ -192,12 +193,15 @@ OpenLogFile (char *filename)
    GnomeVFSResult result;
    int size;
    
+   if (file_exist (filename, TRUE) == FALSE)
+	   return NULL;
+
    if (file_is_zipped (filename)) {
 	   display_name = filename;
 	   filename = g_strdup_printf ("%s#gzip:", display_name);
-   }
-   
-   /* Check that the file exists and is readable and is a logfile */
+   }   
+
+   /* Check that the file is readable and is a logfile */
    if (!isLogFile (filename, TRUE))
 	   return NULL;
 
@@ -248,26 +252,14 @@ OpenLogFile (char *filename)
 
 }
 
-/* ----------------------------------------------------------------------
-   NAME:          isLogFile
-   DESCRIPTION:   Check that the given file is indeed a logfile and 
-   that it is readable.
-   ---------------------------------------------------------------------- */
-int
-isLogFile (char *filename, gboolean show_error)
+static gboolean
+file_exist (char *filename, gboolean show_error)
 {
-   char buff[1024];
-   char **token;
-   char *found_space;
-   int i;
    GnomeVFSHandle *handle;
    GnomeVFSResult result;
-   GnomeVFSFileSize size;
+   char buff[1024];
 
-   /* Read first line and check that it has the format
-    * of a log file: Date ...    */
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
-
    if (result != GNOME_VFS_OK) {
 	   if (show_error) {
 		   switch (result) {
@@ -289,6 +281,32 @@ isLogFile (char *filename, gboolean show_error)
 	   }
 	   return FALSE;
    }
+
+   gnome_vfs_close (handle);
+   return TRUE;
+}
+
+/* ----------------------------------------------------------------------
+   NAME:          isLogFile
+   DESCRIPTION:   Check that the given file is indeed a logfile and 
+   that it is readable.
+   ---------------------------------------------------------------------- */
+int
+isLogFile (char *filename, gboolean show_error)
+{
+   char buff[1024];
+   char **token;
+   char *found_space;
+   int i;
+   GnomeVFSHandle *handle;
+   GnomeVFSResult result;
+   GnomeVFSFileSize size;
+
+   /* Read first line and check that it has the format
+    * of a log file: Date ...    */
+   result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
+   if (result != GNOME_VFS_OK)
+	   return FALSE;
 
    result = gnome_vfs_read (handle, buff, sizeof(buff), &size);
    gnome_vfs_close (handle);

@@ -1,3 +1,16 @@
+2004-12-09  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (main): Instead of requesting the option --file to
+	open a log, simply consider that all arguments passed to
+	gnome-system-log are log files, and try to open them. Remove the
+	--file option. Moved the option code to goption. No option for now.
+	(main): Don't open the standard log if a logfile was passed as a
+	parameter but could not be opened.
+
+	* logrtns.c: Better error message.
+	(file_exist): New. Extract the file existence logic from the "file
+	is a log" function - the file could be zipped.
+
 2004-11-29  Vincent Noel  <vnoel@cox.net>
 
 	* Makefile.am (gnome_system_log_SOURCES): Fixes for make distcheck.
