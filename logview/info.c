@@ -24,6 +24,8 @@
 #include "info.h"
 #include "misc.h"
 
+void RepaintLogInfo (LogviewWindow *window);
+
 /* ----------------------------------------------------------------------
    NAME:          LogInfo
    DESCRIPTION:   Display the statistics of the log.

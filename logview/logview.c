@@ -344,8 +344,8 @@ logview_create_window ()
 				    gconf_client_get_bool 
 				    (client, "/desktop/gnome/interface/menus_have_tearoff", NULL));
 
-   gtk_signal_connect (GTK_OBJECT (window), "destroy",
-		       GTK_SIGNAL_FUNC (destroy), logviewwindow);
+   g_signal_connect (GTK_OBJECT (window), "destroy",
+		     G_CALLBACK (destroy), logviewwindow);
 
    logview_windows = g_slist_prepend (logview_windows, window);
 

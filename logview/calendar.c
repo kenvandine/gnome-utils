@@ -95,15 +95,15 @@ CalendarMenu (LogviewWindow *window)
 
       calendar = (GtkCalendar *)gtk_calendar_new();
 
-      gtk_signal_connect (GTK_OBJECT (calendar), "month_changed",
-			  GTK_SIGNAL_FUNC (calendar_month_changed),
-			  window);
-      gtk_signal_connect (GTK_OBJECT (calendar), "day_selected",
-			  GTK_SIGNAL_FUNC (calendar_day_selected),
-			  window);
-      gtk_signal_connect (GTK_OBJECT (calendar), "day_selected_double_click",
-			  GTK_SIGNAL_FUNC (calendar_day_selected_double_click),
-			  window);
+      g_signal_connect (G_OBJECT (calendar), "month_changed",
+			G_CALLBACK (calendar_month_changed),
+			window);
+      g_signal_connect (G_OBJECT (calendar), "day_selected",
+			G_CALLBACK (calendar_day_selected),
+			window);
+      g_signal_connect (G_OBJECT (calendar), "day_selected_double_click",
+			G_CALLBACK (calendar_day_selected_double_click),
+			window);
       gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (calendar), TRUE, TRUE, 0);
       gtk_widget_show (GTK_WIDGET (calendar));
 
@@ -187,7 +187,7 @@ init_calendar_data (LogviewWindow *window)
 #endif
        
        /* signal a redraw event */
-       gtk_signal_emit_by_name (GTK_OBJECT (window->calendar), "month_changed");
+       g_signal_emit_by_name (GTK_OBJECT (window->calendar), "month_changed");
        
      }
 
