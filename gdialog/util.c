@@ -296,95 +296,16 @@ static char *unquote_nl(const char *input)
 
 void label_autowrap(GtkWidget *vbox, const char *input, int w)
 {
-	char buf[512];
-	char word[512];
-	char *bp, *wp;
-	int wlen;
-	int blen;
-	int pspace;
-	const char *orig_input;
+	GtkWidget *t;
+	char *prompt;
 
-	if(w>511)
-		w=511;
+	prompt = unquote_nl (input);
+	t = gtk_label_new (prompt);
+	gtk_box_pack_start (GTK_BOX (vbox), t, TRUE, TRUE, 0);
+	gtk_misc_set_alignment (GTK_MISC (t), -1, 0);
+	free (prompt);
 
-	input=unquote_nl(input);
-	/* Save this so we can free it later */
-	orig_input = input;
-
-	bp=buf;
-	wp=word;
-	wlen=0;
-	blen=0;
-	pspace=0;
-	
-	while(*input)
-	{
-		while(*input && isspace(*input))
-			input++;
-		
-		while(!isspace(*input) && *input &&  wlen < w)
-		{
-			*wp++=*(input++);
-			wlen++;
-		}
-		*wp=0;
-		/* We have a word */
-		if(wlen+blen >=w)
-		{
-			GtkWidget *t;
-			*bp=0;
-			bp=buf;
-			while(*bp && isspace(*bp))
-				bp++;
-			
-			t=gtk_label_new(buf);
-			gtk_box_pack_start(GTK_BOX(vbox), t, TRUE, TRUE, 0);
-			gtk_misc_set_alignment(GTK_MISC(t), -1, 0);
-			blen=0;
-			bp=buf;
-		}
-		*wp=0;
-		if(pspace)
-		{
-			*bp++=' ';
-			blen++;
-			pspace=0;
-		}
-		strcpy(bp, word);
-		bp+=wlen;
-		blen+=wlen;
-		wlen=0;
-		wp=word;
-		if(*bp=='\n')
-		{
-			GtkWidget *t;
-			*bp=0;
-			bp=buf;
-			while(*bp && isspace(*bp))
-				bp++;
-			t=gtk_label_new(buf);
-			gtk_box_pack_start(GTK_BOX(vbox), t, TRUE, TRUE, 0);
-			gtk_misc_set_alignment(GTK_MISC(t), -1, 0);
-			blen=0;
-			bp=buf;
-		}
-		else
-			pspace=1;
-	}
-
-	g_free((gpointer)orig_input); /* allocated by unquote_nl() */
-
-	if(blen)
-	{
-		GtkWidget *t;
-		*bp=0;
-		bp=buf;
-		while(*bp && isspace(*bp))
-			bp++;
-		t=gtk_label_new(buf);
-		gtk_box_pack_start(GTK_BOX(vbox), t, TRUE, TRUE, 0);
-		gtk_misc_set_alignment(GTK_MISC(t), -1, 0);
-	}
+	return;
 }
 
 /*

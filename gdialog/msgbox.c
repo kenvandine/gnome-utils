@@ -20,6 +20,14 @@
 
 #include "dialog.h"
 
+#define DIALOG_INFOBOX_TIMEOUT 5000 /* Quit after 5 sec. in --infobox mode */
+
+static gboolean dialog_infobox_quit (gpointer data)
+{
+	gtk_main_quit ();
+	return FALSE; /* Automatically calls g_source_remove */
+}
+
 static void cancelled(GtkWidget *w, gpointer *d)
 {
 	exit(-1);
@@ -59,6 +67,19 @@ int dialog_msgbox(const char *title, const char *prompt, int height, int width,
 		gtk_signal_connect_object (GTK_OBJECT (w), "response",
                               GTK_SIGNAL_FUNC (okayed),NULL);
 		gtk_widget_show_all(w);
+
+		/*
+		 * For --infobox mode.
+		 */
+		if (!pause) {
+			if (fork ()) {
+				return 0;
+			} else {
+				g_timeout_add (DIALOG_INFOBOX_TIMEOUT,
+					       dialog_infobox_quit, NULL);
+			}
+		}
+
 		gtk_main();
 		return 0;
 	}

@@ -1,3 +1,15 @@
+2002-08-24  Archit Baweja  <bighead@users.sourceforge.net>
+
+	* msgbox.c (dialog_msgbox): in --infobox mode, exit immediately but
+	clear dialog after a specified interval of time. Fixes #71572 in
+	bugzilla.
+	(dialog_infobox_quit): new function.
+	
+2002-08-22  Archit Baweja  <bighead@users.sourceforge.net>
+ 
+ 	* util.c (label_autowrap): don't do automatic wrapping. Fixes #74466
+ 	in bugzilla.
+
 2002-07-29  Glynn Foster  <glynn.foster@sun.com>
 
 	* dialog.c, dialog.h, guage.c: s/guage/gauge/g to correct
