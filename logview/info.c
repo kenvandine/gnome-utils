@@ -26,7 +26,7 @@
 #include <sys/stat.h>
 #include "logview.h"
 
-void LogInfo (GtkWidget * widget, gpointer user_data);
+void LogInfo (GtkAction *action, GtkWidget *callback_data);
 void CloseLogInfo (GtkWidget * widget, GtkWindow ** window);
 void QuitLogInfo (GtkWidget *widget, gpointer data);
 int RepaintLogInfo (void);
@@ -52,7 +52,7 @@ extern Log *curlog;
    ---------------------------------------------------------------------- */
 
 void
-LogInfo (GtkWidget * widget, gpointer user_data)
+LogInfo (GtkAction *action, GtkWidget *callback_data)
 {
 
    if (curlog == NULL || loginfovisible)

@@ -41,6 +41,7 @@ extern Log *curlog;
 extern char *month[12];
 extern GList *regexp_db, *descript_db;
 extern GnomeUIInfo view_menu[];
+extern GtkUIManager *ui_manager;
 
 void close_zoom_view (GtkWidget *widget, gpointer data);
 void quit_zoom_view (GtkWidget *widget, gpointer data);
@@ -233,7 +234,9 @@ close_zoom_view (GtkWidget *widget, gpointer data)
 {
    if (zoom_visible) {
       gtk_widget_hide (GTK_WIDGET (zoom_dialog));
-      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (view_menu[1].widget), FALSE);
+      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
+				      (gtk_ui_manager_get_widget (ui_manager, "/LogviewMenu/ViewMenu/ShowDetails")),
+				      FALSE);
 /*
       if (G_IS_OBJECT (zoom_layout))
          g_object_unref (G_OBJECT (zoom_layout)); */ 

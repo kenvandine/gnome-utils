@@ -41,7 +41,7 @@ extern int zoom_visible;
 extern ConfigData *cfg;
 extern UserPrefsStruct *user_prefs;
 extern GtkWidget *view;
-extern GtkWidget *app;
+extern GtkWidget *window;
 extern GtkWidget *statusbar;
 
 
@@ -396,13 +396,13 @@ UpdateStatusArea ()
  
    if (curlog == NULL) { 
        gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 0);
-       gtk_window_set_title (GTK_WINDOW (app), APP_NAME);
+       gtk_window_set_title (GTK_WINDOW (window), APP_NAME);
        return;
    }
 
    if (curlog->name != NULL) {
        window_title = g_strdup_printf ("%s - %s", curlog->name, APP_NAME);
-       gtk_window_set_title (GTK_WINDOW (app), window_title);
+       gtk_window_set_title (GTK_WINDOW (window), window_title);
        g_free (window_title);
    }
 

@@ -54,7 +54,7 @@
  *    -------------------
  */
 
-void CalendarMenu (GtkWidget * widget, gpointer user_data);
+void CalendarMenu (GtkWidget *app);
 void close_calendar (GtkWidget * widget, gpointer client_data);
 void set_scrollbar_size (int num_lines);
 void calendar_month_changed (GtkWidget *widget, gpointer data);
@@ -69,8 +69,6 @@ DateMark* get_mark_from_month (CalendarData *data, gint month, gint year);
 DateMark *get_mark_from_date (CalendarData *, gint, gint, gint);
 void log_repaint (GtkWidget * canvas, GdkRectangle * area);
 
-
-
 /*
  *       ----------------
  *       Global variables
@@ -83,10 +81,11 @@ extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 extern char *month[12];
 extern GtkWidget *view;
-extern GnomeUIInfo view_menu[];
+extern GtkUIManager *ui_manager;
 GtkWidget *CalendarDialog = NULL;
 GtkWidget *CalendarWidget;
 int calendarvisible;
+
 
 
 /* ----------------------------------------------------------------------
@@ -95,7 +94,7 @@ int calendarvisible;
    ---------------------------------------------------------------------- */
 
 void
-CalendarMenu (GtkWidget * widget, gpointer user_data)
+CalendarMenu (GtkWidget *window)
 {
    GtkCalendar *calendar;
    GtkWidget *vbox;
@@ -303,7 +302,9 @@ close_calendar (GtkWidget *widget, gpointer client_data)
 {
    if (calendarvisible) {
       gtk_widget_hide (CalendarDialog);
-      gtk_check_menu_item_set_active  (GTK_CHECK_MENU_ITEM (view_menu[0].widget), FALSE);
+      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
+				      (gtk_ui_manager_get_widget(ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar")),
+				      FALSE);
    }
    calendarvisible = FALSE;
 }

@@ -26,7 +26,7 @@
 #include "logview.h"
 
 extern ConfigData *cfg;
-extern GtkWidget *app;
+extern GtkWidget *window;
 
 static GtkWidget *about_window = NULL;
 
@@ -62,9 +62,9 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 				  (const char **)documenters,
 				  strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 				  logo);
-  if (app != NULL)
+  if (window != NULL)
 	  gtk_window_set_transient_for (GTK_WINDOW (about_window),
-				   GTK_WINDOW (app));
+				   GTK_WINDOW (window));
   if (logo != NULL)
     gdk_pixbuf_unref (logo);
 

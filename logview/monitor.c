@@ -39,7 +39,7 @@
  *    -------------------
  */
 
-void MonitorMenu (GtkWidget * widget, gpointer user_data);
+void MonitorMenu (GtkAction *action, GtkWidget *callback_data);
 void close_monitor_options (GtkWidget * widget, gpointer client_data);
 void monitor_window_destroyed_cb (GtkWidget * widget, gpointer data);
 void go_monitor_log (GtkWidget * widget, gpointer client_data);
@@ -61,7 +61,7 @@ void InitMonitorData (void);
  *       ----------------
  */
 
-extern GtkWidget *app;
+extern GtkWidget *window;
 extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 
@@ -84,7 +84,7 @@ static gint timer_tag;
    ---------------------------------------------------------------------- */
 
 void
-MonitorMenu (GtkWidget * widget, gpointer user_data)
+MonitorMenu (GtkAction *action, GtkWidget *callback_data)
 {
    GtkWidget *hbox, *hbox2, *hbox3;
    GtkWidget *source_label, *dest_label;
@@ -403,7 +403,7 @@ close_monitor_options (GtkWidget * widget, gpointer client_data)
    monoptions = NULL;
    mon_opts_visible = FALSE;
    if (mon_hide_while_monitor && main_app_hidden) {
-	   gtk_widget_show (app);
+	   gtk_widget_show (window);
 	   main_app_hidden = FALSE;
    }
 }
@@ -539,7 +539,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    gtk_widget_show (monwindow);
 
    if (mon_hide_while_monitor) {
-	   gtk_widget_hide (app);
+	   gtk_widget_hide (window);
 	   main_app_hidden = TRUE;
    }
 }

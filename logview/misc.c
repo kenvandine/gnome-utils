@@ -26,7 +26,7 @@
 #include "logview.h"
 
 extern ConfigData *cfg;
-extern GtkWidget *app;
+extern GtkWidget *window;
 
 static gboolean queue_err_messages = FALSE;
 static GList *msg_queue = NULL;
@@ -38,8 +38,8 @@ MakeErrorDialog (const char *msg)
 	GtkWidget *msgbox;
 	msgbox = gnome_message_box_new (msg, GNOME_MESSAGE_BOX_ERROR,
 					GNOME_STOCK_BUTTON_OK, NULL);
-	if (app != NULL)
-		gnome_dialog_set_parent (GNOME_DIALOG (msgbox), GTK_WINDOW (app));
+	if (window != NULL)
+		gnome_dialog_set_parent (GNOME_DIALOG (msgbox), GTK_WINDOW (window));
 	gtk_window_set_modal (GTK_WINDOW(msgbox), TRUE); 
 	gtk_widget_show (msgbox);
 }
