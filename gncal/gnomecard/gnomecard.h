@@ -23,12 +23,21 @@ extern gboolean gnomecard_find_sens;
 extern gboolean gnomecard_find_back;
 extern gint gnomecard_def_data;
 
-extern char *gnomecard_join_name (char *pre, char *given, char *add, 
+gchar *gnomecard_join_name (char *pre, char *given, char *add, 
 				  char *fam, char *suf);
-extern void gnomecard_set_add(gboolean state);
-extern void gnomecard_set_changed(gboolean val);
-extern void gnomecard_set_edit_del(gboolean state);
-extern void gnomecard_set_curr(GList *node);
-extern int  gnomecard_destroy_cards(void);
+void gnomecard_set_add(gboolean state);
+void gnomecard_set_changed(gboolean val);
+void gnomecard_set_edit_del(gboolean state);
+void gnomecard_set_curr(GList *node);
+gint  gnomecard_destroy_cards(void);
 
+void gnomecard_first_card( GtkWidget *widget, gpointer data);
+void gnomecard_prev_card( GtkWidget *widget, gpointer data);
+void gnomecard_next_card( GtkWidget *widget, gpointer data);
+void gnomecard_last_card( GtkWidget *widget, gpointer data);
+void gnomecard_quit( GtkWidget *widget, gpointer data);
+gint gnomecard_delete( GtkWidget *widget, GdkEvent *e, gpointer data);
+void gnomecard_spawn_new( GtkWidget *widget, gpointer data);
+void gnomecard_sort_by_fname( GtkWidget *widget, gpointer data);
+void gnomecard_init(void);
 #endif

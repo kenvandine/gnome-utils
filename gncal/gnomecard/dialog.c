@@ -8,8 +8,18 @@
 #include "gnomecard.h"
 #include "my.h"
 #include "sort.h"
-#include "tree.h"
+#include "list.h"
 #include "world.xpm"
+
+
+static void gnomecard_prop_close(GtkWidget *widget, gpointer node);
+static void gnomecard_take_from_name(GtkWidget *widget, gpointer data);
+static void gnomecard_cancel(GtkWidget *widget, gpointer data);
+static void gnomecard_setup_apply(GtkWidget *widget, int page);
+static void gnomecard_find_card(GtkWidget *w, gpointer data);
+static void gnomecard_save_call(GtkWidget *widget, gpointer data);
+static int gnomecard_match_pattern(char *pattern, char *str, int sens);
+
 
 char *email_type_name[] = 
                  { N_("America On-Line"), N_("Apple Link"), N_("AT&T"),
@@ -191,7 +201,7 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 	gnomecard_set_changed(TRUE);
 }
 
-void gnomecard_prop_close(GtkWidget *widget, gpointer node)
+static void gnomecard_prop_close(GtkWidget *widget, gpointer node)
 {
 	((Card *) ((GList *) node)->data)->flag = FALSE;
 	
@@ -199,7 +209,7 @@ void gnomecard_prop_close(GtkWidget *widget, gpointer node)
 	  gnomecard_set_edit_del(TRUE);
 }
 
-void gnomecard_take_from_name(GtkWidget *widget, gpointer data)
+static void gnomecard_take_from_name(GtkWidget *widget, gpointer data)
 {
         GnomeCardEditor *ce;
 	char *name;
@@ -221,7 +231,7 @@ extern void gnomecard_edit(GList *node)
 {
 	GnomePropertyBox *box;
 	GnomeCardEditor *ce;
-	GtkWidget *hbox, *hbox2, *vbox, *vbox2, *frame, *table;
+	GtkWidget *hbox, *hbox2, *vbox, *frame, *table;
 	GtkWidget *label, *entry, *align, *align2, *pix;
 	GtkWidget *addrhbox, *addrvbox, *addrtypebox;
 	GtkWidget *addrtypeframe;
@@ -684,7 +694,8 @@ extern void gnomecard_edit(GList *node)
 	gtk_widget_show_all(GTK_WIDGET(box));
 }
 
-void gnomecard_cancel(GtkWidget *widget, gpointer data)
+static void
+gnomecard_cancel(GtkWidget *widget, gpointer data)
 {
 	void *p;
 
@@ -694,10 +705,10 @@ void gnomecard_cancel(GtkWidget *widget, gpointer data)
 	gtk_widget_destroy(widget);
 }
 
-void gnomecard_setup_apply(GtkWidget *widget, int page)
+static void
+gnomecard_setup_apply(GtkWidget *widget, int page)
 {
 	GnomeCardSetup *setup;
-	GList *i;
 	int old_def_data;
 
 	if (page != -1)
@@ -717,7 +728,8 @@ void gnomecard_setup_apply(GtkWidget *widget, int page)
 	gnome_config_set_int("/GnomeCard/layout/def_data",  gnomecard_def_data);
 }
 			
-extern void gnomecard_setup(GtkWidget *widget, gpointer data)
+void
+gnomecard_setup(GtkWidget *widget, gpointer data)
 {
 	GnomePropertyBox *box;
 	GnomeCardSetup *setup;
@@ -758,6 +770,8 @@ extern void gnomecard_setup(GtkWidget *widget, gpointer data)
 	gtk_widget_show_all(GTK_WIDGET(box));
 }
 
+#if 0
+/* NOT USED */
 void gnomecard_add_email(GtkWidget *widget, gpointer data)
 {
 	GnomeCardEMail *e;
@@ -840,6 +854,7 @@ extern void gnomecard_add_email_call(GtkWidget *widget, gpointer data)
 	gtk_widget_show(w);
 #endif
 }
+
 
 void gnomecard_add_phone(GtkWidget *widget, gpointer data)
 {
@@ -924,6 +939,8 @@ extern void gnomecard_add_phone_call(GtkWidget *widget, gpointer data)
 	gtk_widget_show_all(GNOME_DIALOG(w)->vbox);
 	gtk_widget_show(w);
 }
+/* END OF NOT USED */
+#endif
 
 #if 0
 /* NO LONGER IN USE */
@@ -1197,7 +1214,7 @@ extern void gnomecard_open(GtkWidget *widget, gpointer data)
 	gtk_widget_show(fsel);
 }
 
-void gnomecard_save_call(GtkWidget *widget, gpointer data)
+static void gnomecard_save_call(GtkWidget *widget, gpointer data)
 {
 	g_free(gnomecard_fname);
 	gnomecard_fname = g_strdup(gtk_file_selection_get_filename(GTK_FILE_SELECTION(widget)));
@@ -1224,7 +1241,9 @@ extern void gnomecard_save_as(GtkWidget *widget, gpointer data)
 extern void gnomecard_about(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *about;
-	const gchar *authors[] = { "arturo@nuclecu.unam.mx", NULL };
+	const gchar *authors[] = { "arturo@nuclecu.unam.mx", 
+				   "drmike@redhat.com",
+				   NULL };
 	
 	about = gnome_about_new (_("GnomeCard"), NULL,
 				 "(C) 1997-1998 the Free Software Fundation",
@@ -1234,7 +1253,7 @@ extern void gnomecard_about(GtkWidget *widget, gpointer data)
 	gtk_widget_show (about);
 }
 
-int gnomecard_match_pattern(char *pattern, char *str, int sens)
+static int gnomecard_match_pattern(char *pattern, char *str, int sens)
 {
 	char *txt;
 	int found = 0;
@@ -1257,7 +1276,7 @@ int gnomecard_match_pattern(char *pattern, char *str, int sens)
 	return found;
 }
 
-void gnomecard_find_card(GtkWidget *w, gpointer data)
+static void gnomecard_find_card(GtkWidget *w, gpointer data)
 {
 	GnomeCardFind *p;
 	GList *l, *k;

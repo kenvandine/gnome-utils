@@ -16,7 +16,7 @@
 #include "my.h"
 #include "popup-menu.h"
 #include "sort.h"
-#include "tree.h"
+#include "list.h"
 
 #define NAME_COL_WIDTH 100
 #define ORG_COL_WIDTH 100
@@ -59,67 +59,73 @@ gint gnomecard_def_data;
 gboolean gnomecard_changed;
 gboolean gnomecard_found;                 /* yeah... pretty messy. (fixme) */
 
-extern char *gnomecard_join_name (char *pre, char *given, char *add, 
-				  char *fam, char *suf)
-{
-	char *name;
-	
-	name = g_malloc(MY_STRLEN(given) + MY_STRLEN(add) + MY_STRLEN(fam) +
-			MY_STRLEN(pre) + MY_STRLEN(suf) + 5);
 
-	*name = 0;
-	if (pre && *pre) { strcpy(name, pre);   strcat(name, " "); }
-	if (given && *given) { strcat(name, given); strcat(name, " "); }
-	if (add && *add) { strcat(name, add);   strcat(name, " "); }
-	if (fam && *fam) { strcat(name, fam);   strcat(name, " "); }
-	if (suf && *suf)     
-	  strcat(name, suf);
-	else
-	  if (*name)
+static void gnomecard_toggle_card_view(GtkWidget *w, gpointer data);
+static void gnomecard_set_next(gboolean state);
+static void gnomecard_set_prev(gboolean state);
+static void gnomecard_list_button_press(GtkCList *list, GdkEventButton *event, 
+					gpointer data);
+static gboolean gnomecard_cards_blocked(void);
+static void gnomecard_new_card(GtkWidget *widget, gpointer data);
+static void gnomecard_list_selected(GtkCList *list, gint row, gint column,
+				    GdkEventButton *event, gpointer data);
+
+
+gchar
+*gnomecard_join_name (char *pre, char *given, char *add, char *fam, char *suf)
+{
+    char *name;
+    
+    name = g_malloc(MY_STRLEN(given) + MY_STRLEN(add) + MY_STRLEN(fam) +
+		    MY_STRLEN(pre) + MY_STRLEN(suf) + 5);
+    
+    *name = 0;
+    if (pre && *pre) { strcpy(name, pre);   strcat(name, " "); }
+    if (given && *given) { strcat(name, given); strcat(name, " "); }
+    if (add && *add) { strcat(name, add);   strcat(name, " "); }
+    if (fam && *fam) { strcat(name, fam);   strcat(name, " "); }
+    if (suf && *suf)     
+	strcat(name, suf);
+    else
+	if (*name)
 	    name[strlen(name) - 1] = 0;
-	
-	return name;
+    
+    return name;
 }
 
-extern void gnomecard_set_changed(gboolean val)
+void
+gnomecard_set_changed(gboolean val)
 {
-	gnomecard_changed = val;
-	gtk_widget_set_sensitive(tb_save, val);
-	gtk_widget_set_sensitive(menu_save, val);
+    gnomecard_changed = val;
+    gtk_widget_set_sensitive(tb_save, val);
+    gtk_widget_set_sensitive(menu_save, val);
 }
 
-void gnomecard_toggle_card_view(GtkWidget *w, gpointer data)
+static void
+gnomecard_toggle_card_view(GtkWidget *w, gpointer data)
 {
-	if (GTK_CHECK_MENU_ITEM(w)->active)
-		gtk_widget_hide(gnomecard_canvas);
-	else
-		gtk_widget_show(gnomecard_canvas);
+    if (GTK_CHECK_MENU_ITEM(w)->active)
+	gtk_widget_hide(gnomecard_canvas);
+    else
+	gtk_widget_show(gnomecard_canvas);
 }
 
-#ifdef B4MSF
-void gnomecard_toggle_tree_view(GtkWidget *w, gpointer data)
+static void
+gnomecard_set_next(gboolean state)
 {
-	if (GTK_CHECK_MENU_ITEM(w)->active)
-		gtk_widget_hide(GTK_WIDGET(gnomecard_tree));
-	else
-		gtk_widget_show(GTK_WIDGET(gnomecard_tree));
-}
-#endif
-
-void gnomecard_set_next(gboolean state)
-{
-	gtk_widget_set_sensitive(tb_next, state);
-	gtk_widget_set_sensitive(menu_next, state);
-	gtk_widget_set_sensitive(tb_last, state);
-	gtk_widget_set_sensitive(menu_last, state);
+    gtk_widget_set_sensitive(tb_next, state);
+    gtk_widget_set_sensitive(menu_next, state);
+    gtk_widget_set_sensitive(tb_last, state);
+    gtk_widget_set_sensitive(menu_last, state);
 }
 
-void gnomecard_set_prev(gboolean state)
+static void
+gnomecard_set_prev(gboolean state)
 {
-	gtk_widget_set_sensitive(tb_prev, state);
-	gtk_widget_set_sensitive(menu_prev, state);
-	gtk_widget_set_sensitive(tb_first, state);
-	gtk_widget_set_sensitive(menu_first, state);
+    gtk_widget_set_sensitive(tb_prev, state);
+    gtk_widget_set_sensitive(menu_prev, state);
+    gtk_widget_set_sensitive(tb_first, state);
+    gtk_widget_set_sensitive(menu_first, state);
 }
 
 /* NOT USED
@@ -133,75 +139,77 @@ extern void gnomecard_set_add(gboolean state)
 }
 */
 
-extern void gnomecard_set_edit_del(gboolean state)
+void
+gnomecard_set_edit_del(gboolean state)
 {
-	gtk_widget_set_sensitive(tb_edit, state);
-	gtk_widget_set_sensitive(menu_edit, state);
-	gtk_widget_set_sensitive(tb_del, state);
-	gtk_widget_set_sensitive(menu_del, state);
-	gtk_widget_set_sensitive(tb_find, state);
-	gtk_widget_set_sensitive(menu_find, state);
+    gtk_widget_set_sensitive(tb_edit, state);
+    gtk_widget_set_sensitive(menu_edit, state);
+    gtk_widget_set_sensitive(tb_del, state);
+    gtk_widget_set_sensitive(menu_del, state);
+    gtk_widget_set_sensitive(tb_find, state);
+    gtk_widget_set_sensitive(menu_find, state);
 }
 
-extern void gnomecard_set_curr(GList *node)
+void
+gnomecard_set_curr(GList *node)
 {
-	gnomecard_curr_crd = node;
+    gnomecard_curr_crd = node;
+    
+    if (gnomecard_curr_crd) {
+	gnomecard_update_canvas(gnomecard_curr_crd->data);
 	
-	if (gnomecard_curr_crd) {
-		gnomecard_update_canvas(gnomecard_curr_crd->data);
-		
-		if (!((Card *) gnomecard_curr_crd->data)->flag) {
-		    gnomecard_set_edit_del(TRUE);
-		    /*gnomecard_set_add(TRUE);*/
-		} else { 
-		  gnomecard_set_edit_del(FALSE);
-		}
-
-		if (gnomecard_curr_crd->next)
-		  gnomecard_set_next(TRUE);
-		else
-		  gnomecard_set_next(FALSE);
-		
-		if (gnomecard_curr_crd->prev)
-		  gnomecard_set_prev(TRUE);
-		else
-		  gnomecard_set_prev(FALSE);
-		
-	} else {
-		gnomecard_canvas_text_item_set(_("No cards, yet."));
-		
-		gnomecard_set_edit_del(FALSE);
-		/*gnomecard_set_add(FALSE);*/
-		
-		gnomecard_set_next(FALSE);
-		gnomecard_set_prev(FALSE);
+	if (!((Card *) gnomecard_curr_crd->data)->flag) {
+	    gnomecard_set_edit_del(TRUE);
+	    /*gnomecard_set_add(TRUE);*/
+	} else { 
+	    gnomecard_set_edit_del(FALSE);
 	}
+	
+	if (gnomecard_curr_crd->next)
+	    gnomecard_set_next(TRUE);
+	else
+	    gnomecard_set_next(FALSE);
+	
+	if (gnomecard_curr_crd->prev)
+	    gnomecard_set_prev(TRUE);
+	else
+	    gnomecard_set_prev(FALSE);
+	
+    } else {
+	gnomecard_canvas_text_item_set(_("No cards, yet."));
+	
+	gnomecard_set_edit_del(FALSE);
+	/*gnomecard_set_add(FALSE);*/
+	
+	gnomecard_set_next(FALSE);
+	gnomecard_set_prev(FALSE);
+    }
 }
 
-void gnomecard_list_button_press(GtkCList *list, GdkEventButton *event,
-				 gpointer data)
+static void
+gnomecard_list_button_press(GtkCList *list, GdkEventButton *event, 
+			    gpointer data)
 {
     static struct menu_item items[] = {
 	{ N_("Edit this item..."), (GtkSignalFunc) gnomecard_edit_card, NULL,
 	  TRUE },
 /* not implemented yet	{ N_("Delete this item"), (GtkSignalFunc) ???gnomecard_del_card???, NULL,
-	TRUE } */
+   TRUE } */
     };
     GList *tmp;
-    gint  i;
     gint  row, col;
-
+    
     if (!event)
 	return;
-
+    
     if (event->button == 3) 
 	if (gtk_clist_get_selection_info(list,event->x,event->y,&row,&col )) {
 	    gnomecard_selected_row = row;
 	    gtk_clist_select_row(list, row, 0);
 	    tmp = g_list_nth(gnomecard_crds, row);
-    
+	    
 	    if (!tmp) {
-		g_message("Somehow selected non-existant card");
+		g_message("Somehow selected non-existant card on row %d",row);
 		return;
 	    }
 	    gnomecard_set_curr(tmp);
@@ -209,17 +217,17 @@ void gnomecard_list_button_press(GtkCList *list, GdkEventButton *event,
 	}
 }
 
-void gnomecard_list_selected(GtkCList *list, gint row, gint column,
-			     GdkEventButton *event, gpointer data)
+static void
+gnomecard_list_selected(GtkCList *list, gint row, gint column,
+			GdkEventButton *event, gpointer data)
 {
     GList *tmp;
-    gint  i;
 
     gnomecard_selected_row = row;
     tmp = g_list_nth(gnomecard_crds, row);
     
     if (!tmp) {
-	g_message("Somehow selected non-existant card");
+	g_message("Somehow selected non-existant card on row %d",row);
 	return;
     }
     
@@ -239,14 +247,12 @@ void gnomecard_list_selected(GtkCList *list, gint row, gint column,
     }
 }
 
+/* NOT USED 
 void gnomecard_list_unselected(GtkCTree *tree, GtkCTreeNode *row, gint column)
 {
     g_message("gnomecard_list_unselected not implemented");
-/*	gtk_ctree_post_recursive(tree, row,
-				 GTK_CTREE_FUNC(gnomecard_set_bg),
-				 crd_tree_usel_col);
-*/
 }
+*/
 
 extern void gnomecard_save(void)
 {
@@ -261,7 +267,8 @@ extern void gnomecard_save(void)
 	gnomecard_set_changed(FALSE);
 }
 
-gboolean gnomecard_cards_blocked(void)
+static gboolean
+gnomecard_cards_blocked(void)
 {
 	GList *l;
 
@@ -333,7 +340,8 @@ extern int gnomecard_destroy_cards(void)
 	return TRUE;
 }
 
-void gnomecard_new_card(GtkWidget *widget, gpointer data)
+static void
+gnomecard_new_card(GtkWidget *widget, gpointer data)
 {
 	Card *crd;
 	GList *last;

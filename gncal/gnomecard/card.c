@@ -11,6 +11,9 @@
 #define str_val(obj) the_str = fakeCString (vObjectUStringZValue (obj))
 #define has(obj,prop) (vo = isAPropertyOf (obj, prop))
 
+static VObject *card_convert_to_vobject(Card *crd);
+
+
 typedef struct
 {
 	char c;
@@ -513,6 +516,7 @@ get_CardDelLabel(VObject *o)
 	dellabel->data = g_strdup(str_val(o));
 	dellabel->prop = get_CardProperty(o);
 	
+	free(the_str);
 	return dellabel;
 }
 
@@ -533,16 +537,17 @@ get_CardPhone(VObject *o)
 	return ret;
 }
 
-static CardEMail *
+static CardEMail
 get_CardEMail(VObject *o)
 {
-	CardEMail *ret;
-	char *the_str;
+	CardEMail ret;
+	char *the_str; 
 	
-	ret = malloc(sizeof(CardEMail));
-	ret->type = get_email_type(o);
-	ret->address = g_strdup(str_val(o));
-	ret->prop = get_CardProperty(o);
+/*	ret = malloc(sizeof(CardEMail)); */
+	ret.address = NULL;
+	ret.type = get_email_type(o);
+	ret.address = g_strdup(str_val(o));
+	ret.prop = get_CardProperty(o);
 	
 	free(the_str);
 	
@@ -887,11 +892,11 @@ card_create_from_vobject (VObject *vcrd)
 			break;
 		 case PROP_EMAIL:
 			{
-				CardEMail *c;
-				c = get_CardEMail(o);
-				prop = &c->prop;
-				crd->email.type = c->type;
-				crd->email.address = c->address;
+				/*CardEMail *c;*/
+				/*c = get_CardEMail(o);*/
+				/*prop = &c->prop;*/
+			        prop = &crd->email.prop;
+				crd->email = get_CardEMail(o);
 			}
 			break;
 		 case PROP_MAILER:
@@ -902,6 +907,7 @@ card_create_from_vobject (VObject *vcrd)
 		 case PROP_TIMEZN:
 			prop = &crd->timezn.prop;
 			crd->timezn = strtoCardTimeZone(str_val(o));
+			free(the_str);
 			break;
 		 case PROP_GEOPOS:
 			prop = &crd->geopos.prop;
@@ -1192,7 +1198,7 @@ char *card_geopos_str(CardGeoPos geopos)
 }
 
 
-VObject *
+static VObject *
 card_convert_to_vobject(Card *crd)
 {
 	VObject *vobj, *vprop;

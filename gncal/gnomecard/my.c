@@ -4,30 +4,10 @@
 #include "gnomecard.h"
 #include "my.h"
 
-#ifndef B4MSF
-extern GtkCTreeNode *
-my_gtk_ctree_insert(GtkCTreeNode *parent, GtkCTreeNode *sibling, 
-		    char **text, pix *p, gpointer data)
-{
-    g_message("in my_gtk_ctree_insert - shouldnt be!");
-}
-#else
-extern GtkCTreeNode *
-my_gtk_ctree_insert(GtkCTreeNode *parent, GtkCTreeNode *sibling, 
-		    char **text, pix *p, gpointer data)
-{
-	GtkCTreeNode *node;
-	
-	node =  gtk_ctree_insert_node(gnomecard_tree, parent, sibling, text, TREE_SPACING,
-				      p->pixmap, p->mask, p->pixmap, p->mask, 
-				      FALSE, FALSE);
-	gtk_ctree_node_set_row_data(gnomecard_tree, node, data);
-	
-	return node;
-}
-#endif
+static void gnomecard_property_used(GtkWidget *w, gpointer data);
 
-extern GtkWidget *my_gtk_entry_new(gint len, char *init)
+GtkWidget *
+my_gtk_entry_new(gint len, char *init)
 {
 	GtkWidget *entry;
 	
@@ -89,13 +69,14 @@ extern GtkWidget *my_gtk_table_new(int x, int y)
 	return table;
 }
 
-void gnomecard_property_used(GtkWidget *w, gpointer data)
+static void
+gnomecard_property_used(GtkWidget *w, gpointer data)
 {
-	CardProperty *prop;
-	
-	prop = (CardProperty *) data;
-	prop->type = (int) gtk_object_get_user_data(GTK_OBJECT(w));
-	prop->used = TRUE;
+    CardProperty *prop;
+    
+    prop = (CardProperty *) data;
+    prop->type = (int) gtk_object_get_user_data(GTK_OBJECT(w));
+    prop->used = TRUE;
 }
 
 extern void my_connect(gpointer widget, char *sig, gpointer box, 

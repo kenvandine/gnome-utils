@@ -4,7 +4,7 @@
 
 #include "gnomecard.h"
 #include "sort.h"
-#include "tree.h"
+#include "list.h"
 
 sort_func gnomecard_sort_criteria;
 
@@ -109,7 +109,8 @@ gnomecard_cmp_fnames(const void *crd1, const void *crd2)
 	return strcmp(fname1, fname2);
 }
 
-extern int gnomecard_cmp_names(const void *crd1, const void *crd2)
+int
+gnomecard_cmp_names(const void *crd1, const void *crd2)
 {
 	char *name1, *name2;
 	Card *card1, *card2;
@@ -132,15 +133,14 @@ extern int gnomecard_cmp_names(const void *crd1, const void *crd2)
 	return ret;
 }
 
-extern int gnomecard_cmp_emails(const void *crd1, const void *crd2)
+int
+gnomecard_cmp_emails(const void *crd1, const void *crd2)
 {
 	char *email1, *email2;
 	char *host1, *host2;
 	Card *card1, *card2;
 	int ret;
 
-/*	g_message("gnomecard_cmp_emails not used/implemented"); */
-	
 	card1 = (* (Card **) crd1);
 	card2 = (* (Card **) crd2);
 

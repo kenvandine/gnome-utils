@@ -1,6 +1,7 @@
 #include <config.h>
 #include <gnome.h>
 
+#include "canvas.h"
 #include "card.h"
 
 #define CANVAS_FONT "-adobe-helvetica-medium-r-*-*-20-240-*-*-p-*-iso8859-1"
@@ -10,7 +11,8 @@
 GtkWidget *gnomecard_canvas;
 GnomeCanvasItem *test;
 
-extern GtkWidget *gnomecard_canvas_new(void)
+GtkWidget *
+gnomecard_canvas_new(void)
 {
 	GnomeCanvasGroup *root;
 	GtkWidget *canvas;

@@ -14,13 +14,11 @@
 #include "list.h"
 #include "type_name.h"
 
-static void gnomecard_create_list_row(Card *crd, gchar **text)
+static void 
+gnomecard_create_list_row(Card *crd, gchar **text)
 {
 	gchar  *cardname=NULL;
 	gchar  *name=NULL;
-	gchar  *email=NULL;
-	gchar  *phone=NULL;
-	gchar  *business=NULL;
 
 	/* for now we just display either cardname or real name and email */
 	cardname = crd->fname.str;
@@ -50,7 +48,8 @@ static void gnomecard_create_list_row(Card *crd, gchar **text)
 
 }
 
-static void gnomecard_destroy_list_row(gchar **text)
+static void
+gnomecard_destroy_list_row(gchar **text)
 {
     MY_FREE(text[0]);
     MY_FREE(text[1]);
@@ -59,7 +58,8 @@ static void gnomecard_destroy_list_row(gchar **text)
 }
 
 
-extern void gnomecard_update_list(Card *crd)
+void
+gnomecard_update_list(Card *crd)
 {
     gchar  *text[4];
     gint   row;
@@ -72,7 +72,8 @@ extern void gnomecard_update_list(Card *crd)
     gnomecard_destroy_list_row(text);
 }
 
-extern void gnomecard_scroll_list(GList *node)
+void
+gnomecard_scroll_list(GList *node)
 {
     gint row;
     GList *tmp;
@@ -93,9 +94,11 @@ extern void gnomecard_scroll_list(GList *node)
     gnomecard_set_curr(tmp);
 }
 
-static char *gnomecard_first_phone_str(GList *phone)
+/* NOT USED 
+static gchar *
+gnomecard_first_phone_str(GList *phone)
 {
-	char *ret;
+	gchar *ret;
 	
 	if (! phone)
 	  return NULL;
@@ -108,29 +111,38 @@ static char *gnomecard_first_phone_str(GList *phone)
 	
 	return ret;
 }
+*/
 
-extern void gnomecard_list_set_node_info(Card *crd)
+/* NOT USED
+void
+gnomecard_list_set_node_info(Card *crd)
 {
     g_message("in gnomecard_list_set_node_info - not implemented");
 }
+*/
 
-static int gnomecard_next_addr_type(int type, int start)
+static gint
+gnomecard_next_addr_type(gint type, gint start)
 {
-	int j;
-	
-	for (j = start; j < 6; j++)
-		if (type & (1 << j))
-			return j;
-	
-	return j;
+    gint j;
+    
+    for (j = start; j < 6; j++)
+	if (type & (1 << j))
+	    return j;
+    
+    return j;
 }
 
-extern void gnomecard_add_card_sections_to_list(Card *crd)
+/* NOT USED
+void
+gnomecard_add_card_sections_to_list(Card *crd)
 {
     g_message("gnomecard_add_card_sections_to_list not implemented");
 }
+*/
 
-extern void gnomecard_add_card_to_list(Card *crd)
+void
+gnomecard_add_card_to_list(Card *crd)
 {
 	gchar  *text[4];
 	gint   row;
@@ -143,7 +155,8 @@ extern void gnomecard_add_card_to_list(Card *crd)
 	gnomecard_destroy_list_row(text);
 }
 
-extern void gnomecard_list_set_sorted_pos(Card *crd)
+void
+gnomecard_list_set_sorted_pos(Card *crd)
 {
     g_message("gnomecard_tree_set_sorted_pos not implemented");
 }

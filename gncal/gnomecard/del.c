@@ -5,7 +5,7 @@
 #include "del.h"
 #include "gnomecard.h"
 #include "my.h"
-#include "tree.h"
+#include "list.h"
 
 static void del_prop(GtkCTreeNode *node, gpointer data)
 {
