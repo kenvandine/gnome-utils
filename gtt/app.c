@@ -140,6 +140,7 @@ void cur_proj_set(project *proj)
 
 	if (cur_proj == proj) return;
 
+	log_proj(NULL);
 	cur_proj = proj;
 	if (proj)
 		start_timer();
