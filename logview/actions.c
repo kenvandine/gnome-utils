@@ -589,10 +589,8 @@ apply_edit (GtkWidget *w, gpointer data)
 	edited_action->action =
 		gtk_editable_get_chars (GTK_EDITABLE (action), 0, -1);
 	g_free (edited_action->description);
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (description));
-	gtk_text_buffer_get_bounds (buffer, &start, &end);
 	edited_action->description =
-		gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
+		gtk_editable_get_chars (GTK_EDITABLE (description), 0, -1);
 
 	if ( ! g_list_find (local_actions_db, edited_action))
 		local_actions_db = g_list_prepend (local_actions_db,
@@ -747,6 +745,7 @@ edit_action_entry (Action *action)
   gtk_widget_set_usize (text, 200, -1);
   gtk_entry_set_editable (GTK_ENTRY (text), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), text, TRUE, TRUE, 0);
+  gtk_entry_set_text (GTK_ENTRY (text), action->description);
   gtk_tooltips_set_tip (tips, text, _("Description of this entry."), NULL);
   gtk_widget_show (text); 
   gtk_object_set_data (GTK_OBJECT (action_record), "description", text);
@@ -776,12 +775,6 @@ edit_action_entry (Action *action)
 
 
   gtk_widget_show (action_record);
-
-  /* Insert text into text widget */
-  if (action->description)
-     gtk_text_buffer_set_text (gtk_text_view_get_buffer(GTK_TEXT_VIEW (text)),
-  			       action->description, 
-	  		       strlen (action->description));
 }
 
 /* ----------------------------------------------------------------------
