@@ -248,10 +248,8 @@ close_calendar (GtkWidget *widget, int arg, gpointer data)
 {
    LogviewWindow *window = LOGVIEW_WINDOW (data);
    if (window->calendar_visible) {
-      gtk_widget_hide (window->calendar_dialog);
-      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
-				      (gtk_ui_manager_get_widget(window->ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar")),
-				      FALSE);
+	   GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar");
+	   gtk_action_activate (action);
    }
    window->calendar_visible = FALSE;
 }

@@ -1,3 +1,15 @@
+2004-11-23  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_menu_item_set_state): Use
+	gtk_action_set_sensitive instead of
+	gtk_widget_set_sensitive. Remove now-useless prevention against
+	keyboard activation.
+
+	* log_repaint.c (handle_row_activation_cb): Use gtk_action_activate.
+	* calendar.c (close_calendar): Same thing.
+	* zoom.c (close_zoom_view): Same thing.
+	* logview.c (CloseLogMenu): Same thing.
+
 2004-11-18  Vincent Noel  <vnoel@cox.net>
 
 	* monitor.c (mon_update_display): Use bold markup to show changes

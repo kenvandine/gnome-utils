@@ -192,10 +192,10 @@ handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
 
     if (window->zoom_visible)
 	    repaint_zoom (window);
-    else
-	    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
-					    (gtk_ui_manager_get_widget (window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails")),
-					    TRUE);
+    else {
+	    GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails");
+	    gtk_action_activate (action);
+    }
 }
 
 /* ----------------------------------------------------------------------

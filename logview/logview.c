@@ -18,6 +18,8 @@
 
     ---------------------------------------------------------------------- */
 
+#define DISABLE_GNOME_DEPRECATED
+
 #include <config.h>
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
@@ -488,24 +490,27 @@ CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 
    g_return_if_fail (window->curlog);
 
-   if (window->monitored)
-	   gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
-					   (gtk_ui_manager_get_widget(window->ui_manager, "/LogviewMenu/FileMenu/MonitorLogs")),
-					   FALSE);
-   if (window->calendar_visible)
-	   gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
-					   (gtk_ui_manager_get_widget(window->ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar")),
-					   FALSE);
-   if (window->zoom_visible)
-	   gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
-					   (gtk_ui_manager_get_widget(window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails")),
-					   FALSE);	   
+   if (window->monitored) {
+	   GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/FileMenu/MonitorLogs");
+	   gtk_action_activate (action);
+   }
+
+   if (window->calendar_visible) {
+	   GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar");
+	   gtk_action_activate (action);
+   }
+
+   if (window->zoom_visible) {
+	   GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails");
+	   gtk_action_activate (action);
+   }
 
    gtk_widget_hide (window->find_bar);
 
    CloseLog (window->curlog);
    window->curlog = NULL;
    logview_menus_set_state (window);
+   logview_set_window_title (window);
    log_repaint (window);
 }
 
@@ -732,11 +737,10 @@ toggle_zoom (GtkAction *action, GtkWidget *callback_data)
 {
     LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
     if (window->zoom_visible) {
-	    close_zoom_view (window);
-    } else  {
-	create_zoom_view (window);
-    }
-
+	    window->zoom_visible = FALSE;
+	    gtk_widget_hide (window->zoom_dialog);
+    } else
+	    create_zoom_view (window);
 }
 
 static void 
@@ -750,8 +754,7 @@ static void
 toggle_monitor (GtkAction *action, GtkWidget *callback_data)
 {
     LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
-    if (!window->curlog)
-	    return;
+    g_return_if_fail (window->curlog);
     if (!window->curlog->display_name) {
 	    if (window->monitored) {
 		    gtk_container_remove (GTK_CONTAINER (window->main_view), window->mon_scrolled_window);
@@ -773,9 +776,6 @@ static void
 logview_search (GtkAction *action,GtkWidget *callback_data)
 {
 	LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
-
-	if (window->monitored)
-		return;
 
 	gtk_widget_show (window->find_bar);
 	gtk_widget_grab_focus (window->find_entry);
@@ -819,8 +819,10 @@ logview_select_all (GtkAction *action, GtkWidget *callback_data)
 static void
 logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state)
 {
+	GtkAction *action;
 	g_return_if_fail (path);
-	gtk_widget_set_sensitive (GTK_WIDGET (gtk_ui_manager_get_widget(logviewwindow->ui_manager, path)), state);
+	action = gtk_ui_manager_get_action (logviewwindow->ui_manager, path);
+	gtk_action_set_sensitive (action, state);
 }
 
 static void
@@ -832,6 +834,7 @@ logview_menus_set_state (LogviewWindow *window)
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", FALSE); 
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", FALSE);
+		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/SelectAll", FALSE);
 	} else {
 		if (window->curlog) {
 			if (window->curlog->display_name)

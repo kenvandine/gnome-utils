@@ -38,12 +38,8 @@ void
 close_zoom_view (LogviewWindow *window)
 {
    if (window->zoom_visible) {
-      gtk_widget_hide (GTK_WIDGET (window->zoom_dialog));
-      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
-				      (gtk_ui_manager_get_widget 
-				       (window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails")),
-				      FALSE);
-      window->zoom_visible = FALSE;
+	   GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails");
+	   gtk_action_activate (action);
    }
 }
 
