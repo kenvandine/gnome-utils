@@ -7,23 +7,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-1.3.1\n"
-"POT-Creation-Date: 2001-06-24 13:29+0200\n"
-"PO-Revision-Date: 2001-06-24 13:31+02:00\n"
-"Last-Translator: Matthias Warkus <mawarkus@gnome.org>\n"
+"POT-Creation-Date: 2001-07-29 09:48+0200\n"
+"PO-Revision-Date: 2001-07-29 09:47+020\n"
+"Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gcalc/gcalc.c:40
+#: gcalc/gcalc.c:41
 msgid "The Gnome Calculator"
 msgstr "Der GNOME-Taschenrechner"
 
-#: gcalc/gcalc.c:43
+#: gcalc/gcalc.c:44
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Einfacher Taschenrechner mit doppelter Genauigkeit, ähnlich wie xcalc"
 
-#: gcalc/gcalc.c:136
+#: gcalc/gcalc.c:124
+msgid "Run in analog (slide rule) mode"
+msgstr ""
+
+#: gcalc/gcalc.c:152
 msgid "Gnome Calculator"
 msgstr "GNOME-Taschenrechner"
 
@@ -58,6 +62,10 @@ msgstr "CE/C"
 #: gcalc/gnome-calc.c:1178
 msgid "AC"
 msgstr "AC"
+
+#: gcalc/gnome-calc.c:1180 gcalc/gnome-calc.c:1369
+msgid "INV"
+msgstr "INV"
 
 #. inverse button
 #: gcalc/gnome-calc.c:1181
@@ -192,27 +200,35 @@ msgstr "+/-"
 msgid "="
 msgstr "="
 
-#: gcalc/gnome-calc.c:1441
-msgid "INV"
-msgstr "INV"
+#. Translators:  This allows you to create translated font pngs,
+#. * though probably won't be necessary
+#: gcalc/gnome-calc.c:1245
+msgid "calculator-font.png"
+msgstr ""
 
-#: gcharmap/src/asciiselect.c:123
+#: gcharmap/src/asciiselect.c:96
 msgid "Select Character"
 msgstr "Zeichen auswählen"
 
-#: gcharmap/src/asciiselect.c:124 gcharmap/src/menus.c:99
+#: gcharmap/src/asciiselect.c:97 gcharmap/src/menus.c:99
 msgid "Insert"
 msgstr "Einfügen"
 
-#: gcharmap/src/asciiselect.c:130
+#: gcharmap/src/asciiselect.c:105
 msgid "Character code:"
 msgstr "Zeichencode:"
 
-#: gcharmap/src/asciiselect.c:140
+#: gcharmap/src/asciiselect.c:115
 msgid "Character:"
 msgstr "Zeichen:"
 
-#: gcharmap/src/callbacks.c:43 gcharmap/src/interface.c:132
+# FIXME: why this?
+# Reason: Other languages might prefere other fonts... -ke-
+#: gcharmap/src/asciiselect.c:123
+msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-180-*-*-*-*-*-iso8859-1"
+
+#: gcharmap/src/callbacks.c:43 gcharmap/src/interface.c:141
 msgid "Gnome Character Map"
 msgstr "GNOME-Zeichentabelle"
 
@@ -222,54 +238,71 @@ msgid ""
 "contain bad English."
 msgstr "Der GNOME-Ersatz für die Zeichentabelle von Microsoft Windows."
 
-#: gcharmap/src/callbacks.c:77
-#, c-format
-msgid "%s: Character code %d"
-msgstr "%s: Zeichencode %d"
+#: gcharmap/src/callbacks.c:63 gcharmap/src/callbacks.c:101
+#: gcharmap/src/interface.c:65
+msgid "del"
+msgstr "entf"
 
-#: gcharmap/src/callbacks.c:104
+#: gcharmap/src/callbacks.c:107
+#, c-format
+msgid " %s: Character code %d"
+msgstr " %s: Zeichencode %d"
+
+#: gcharmap/src/callbacks.c:134
 msgid "Text copied to clipboard..."
 msgstr "Text in die Zwischenablage kopiert..."
 
-#: gcharmap/src/callbacks.c:116
+#: gcharmap/src/callbacks.c:146
 msgid "Text cut to clipboard..."
 msgstr "Text in die Zwischenablage ausgeschnitten..."
 
-#: gcharmap/src/callbacks.c:169
+#: gcharmap/src/callbacks.c:199
 msgid "Text pasted from clipboard..."
 msgstr "Text aus der Zwischenablage eingefügt..."
 
-#: gcharmap/src/interface.c:161
+#: gcharmap/src/interface.c:170
 msgid "Action Toolbar"
 msgstr "Aktionswerkzeugleiste"
 
-#: gcharmap/src/interface.c:180
+#: gcharmap/src/interface.c:189
 msgid "Text to copy:"
 msgstr "Zu kopierender Text:"
 
-#: gcharmap/src/interface.c:226 gcharmap/src/menus.c:114 logview/logview.c:100
-#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:253
+# FIXME: why this?
+# Reason: Other languages might prefere other fonts... -ke-
+#: gcharmap/src/interface.c:215
+msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
+msgstr "-Adobe-Helvetica-Medium-R-Normal--*-12-*-*-*-*-iso8859-1"
+
+#: gcharmap/src/interface.c:238 gcharmap/src/menus.c:114 logview/logview.c:100
+#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:258
 msgid "Exit"
 msgstr "Beenden"
 
-#: gcharmap/src/interface.c:227 gcharmap/src/menus.c:104
+#: gcharmap/src/interface.c:239 gcharmap/src/menus.c:104
 #: gdictsrc/gdict-app.c:519 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopieren"
 
-#: gcharmap/src/interface.c:231 gcharmap/src/menus.c:111
+#: gcharmap/src/interface.c:243 gcharmap/src/menus.c:111
 #: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
-#: stripchart/chart-app.c:227 stripchart/params.c:1013
+#: stripchart/chart-app.c:232 stripchart/params.c:1013
 #: stripchart/stripchart-applet.c:89
 msgid "About"
 msgstr "Info"
 
-#: gcharmap/src/interface.c:233 gcharmap/src/menus.c:109
-#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:222
+#: gcharmap/src/interface.c:245 gcharmap/src/menus.c:109
+#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:227
 #: stripchart/params.c:1048 stripchart/params.c:1051
 #: stripchart/stripchart-applet.c:86
 msgid "Help"
 msgstr "Hilfe"
+
+# FIXME: why this?
+# Reason: Other languages might prefere other fonts... -ke-
+#: gcharmap/src/interface.c:264
+msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-180-*-*-*-*-*-iso8859-1"
 
 #: gcharmap/src/menus.c:51
 msgid "Insert Character..."
@@ -528,7 +561,7 @@ msgstr "Querverweis:"
 
 #. Fixme these should be stock buttons
 #: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
-#: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:194
+#: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:195
 msgid "Preferences"
 msgstr "Vorlieben"
 
@@ -770,7 +803,7 @@ msgid "Enable"
 msgstr "Aktivieren"
 
 #: gsearchtool/gsearchtool.c:576 logview/actions.c:162
-#: meat-grinder/meat-grinder.c:610
+#: meat-grinder/meat-grinder.c:702
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -846,7 +879,7 @@ msgstr "GNOME-Suchwerkzeug"
 msgid "Cannot save file"
 msgstr "Datei kann nicht gespeichert werden"
 
-#: gsearchtool/outdlg.c:69 meat-grinder/meat-grinder.c:457
+#: gsearchtool/outdlg.c:69 meat-grinder/meat-grinder.c:476
 msgid "Save Results"
 msgstr "Ergebnisse speichern"
 
@@ -886,7 +919,7 @@ msgstr "Heute"
 msgid "Project Title"
 msgstr "Projekttitel"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:653
+#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:654
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -895,15 +928,15 @@ msgstr "Beschreibung"
 msgid "Cannot open logfile %s for append"
 msgstr "Protokolldatei %s kann nicht zum Anhängen geöffnet werden"
 
-#: gtt/log.c:69 gtt/log.c:227
+#: gtt/log.c:70 gtt/log.c:228
 msgid "program started"
 msgstr "Programm gestartet"
 
-#: gtt/log.c:87
+#: gtt/log.c:88
 msgid "no description"
 msgstr "Keine Beschreibung"
 
-#: gtt/log.c:219
+#: gtt/log.c:220
 msgid "program exited"
 msgstr "Programm beendet"
 
@@ -978,6 +1011,19 @@ msgstr ""
 "Diese Aktion macht Ihre derzeitige Konfiguration ungültig.\n"
 "Soll die Konfigurationsdatei wirklich neu eingelesen werden?"
 
+#: gtt/menucmd.c:217
+#, c-format
+msgid "File %s exists, overwrite?"
+msgstr "Datei %s existiert, überschreiben?"
+
+#: gtt/menucmd.c:228
+msgid "File cannot be written"
+msgstr "Datei kann nicht geschrieben werden"
+
+#: gtt/menucmd.c:248
+msgid "Export Current State"
+msgstr "Derzeitigen Zustand exportieren"
+
 #: gtt/menus.c:27
 msgid "_New Project..."
 msgstr "_Neues Projekt..."
@@ -990,23 +1036,27 @@ msgstr "Konfigu_rationsdatei neu einlesen"
 msgid "_Save Configuration File"
 msgstr "Konfigurationsdatei _speichern"
 
-#: gtt/menus.c:59 gtt/menus.c:115
+#: gtt/menus.c:38
+msgid "_Export Current State"
+msgstr "Derzeitigen Zustand _exportieren"
+
+#: gtt/menus.c:63 gtt/menus.c:119
 msgid "Clear _Daily Counter"
 msgstr "Ta_geszähler löschen"
 
-#: gtt/menus.c:71
+#: gtt/menus.c:75
 msgid "St_art"
 msgstr "St_arten"
 
-#: gtt/menus.c:75
+#: gtt/menus.c:79
 msgid "Sto_p"
 msgstr "Sto_ppen"
 
-#: gtt/menus.c:80
+#: gtt/menus.c:84
 msgid "_Timer Running"
 msgstr "S_toppuhr läuft"
 
-#: gtt/menus.c:99
+#: gtt/menus.c:103
 msgid "_Timer"
 msgstr "S_toppuhr"
 
@@ -1118,13 +1168,21 @@ msgstr "Verzögerung in Sekunden:"
 msgid "Misc"
 msgstr "Verschiedenes"
 
-#: gtt/proj.c:462
+#: gtt/proj.c:466
 msgid "project %t started"
 msgstr "Projekt %t gestartet"
 
-#: gtt/proj.c:465
+#: gtt/proj.c:469
 msgid "stopped project %t"
 msgstr "Projekt %t angehalten"
+
+#. Translators: This is a "time format", that is
+#. * format on how to print the elapsed time with
+#. * hours:minutes:seconds.
+#: gtt/proj.c:605
+#, c-format
+msgid "%d:%02d:%02d"
+msgstr ""
 
 #: gtt/prop.c:59
 msgid "empty"
@@ -1296,8 +1354,8 @@ msgid "<empty>"
 msgstr "<leer>"
 
 #: logview/actions.c:511
-msgid "log. name regexp"
-msgstr "Protokollnamen-Regex"
+msgid "log name regexp"
+msgstr "Protokollnamen-Regexp"
 
 #: logview/actions.c:512
 msgid "process regexp"
@@ -1429,52 +1487,63 @@ msgstr "November"
 msgid "December"
 msgstr "Dezember"
 
+#. Translators: Date only format, %x should well do really
+#: logview/log_repaint.c:471
+#, c-format
+msgid "%x"
+msgstr "%x"
+
+#. Translators: should be only the time, date could be bogus
+#: logview/log_repaint.c:581
+#, c-format
+msgid "%X"
+msgstr "%X"
+
 #. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:649
+#: logview/log_repaint.c:665
 msgid "%B %e"
 msgstr "%e. %B"
 
-#: logview/logrtns.c:146
+#: logview/logrtns.c:199
 msgid "Not enough memory!\n"
 msgstr "Nicht genügend Speicher!\n"
 
-#: logview/logrtns.c:154
+#: logview/logrtns.c:207
 msgid "Out of memory!\n"
 msgstr "Kein Speicher mehr!\n"
 
-#: logview/logrtns.c:180
+#: logview/logrtns.c:233
 msgid "Unable to open logfile!\n"
 msgstr "Protokolldatei kann nicht geöffnet werden!\n"
 
-#: logview/logrtns.c:235
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s ist keine normale Datei."
 
-#: logview/logrtns.c:243
+#: logview/logrtns.c:296
 #, c-format
 msgid ""
-"%s is not user readable. Probably has read-only permission. Either run the "
-"program as root or ask the sysadmin to change the permissions on the file."
+"%s is not user readable. Either run the program as root or ask the sysadmin "
+"to change the permissions on the file."
 msgstr ""
-"%s ist nicht benutzerlesbar. Wahrscheinlich sind die Berechtigungen\n"
-"auf `nur lesen' gesetzt. Starten Sie das Programm entweder als root\n"
-"oder hoffen Sie, daß Sie Ihren Systemadministrator überzeugen können,\n"
+"%s ist nicht lesbar. Starten Sie das Programm entweder als root oder\n"
+"hoffen Sie, daß Sie Ihren Systemadministrator überzeugen können,\n"
 "die Berechtigungen der Datei zu ändern."
 
-#: logview/logrtns.c:256
+#: logview/logrtns.c:309
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s konnte nicht geöffnet werden."
 
-#: logview/logrtns.c:279
+#: logview/logrtns.c:332
 #, c-format
 msgid "%s not a log file."
 msgstr "%s ist keine Protokolldatei."
 
-#: logview/logrtns.c:703 logview/logrtns.c:734 logview/logrtns.c:865
+#: logview/logrtns.c:756 logview/logrtns.c:787 logview/logrtns.c:918
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: kein Speicher mehr"
 
@@ -1636,30 +1705,35 @@ msgstr "Spalte"
 msgid "Zoom view"
 msgstr "Ansicht heranzoomen"
 
-#: logview/zoom.c:153
+#: logview/zoom.c:154
 #, c-format
 msgid "Log line detail for %s"
 msgstr "Protokollzeilen-Detail für %s"
 
-#: logview/zoom.c:156
+#: logview/zoom.c:157
 msgid "Log line detail for <No log loaded>"
 msgstr "Protokollzeilen-Detail für <kein Protokoll geladen>"
 
-#: logview/zoom.c:179
+#: logview/zoom.c:180
 msgid "Date:"
 msgstr "Datum:"
 
-#: logview/zoom.c:181
+#: logview/zoom.c:182
 msgid "Process:"
 msgstr "Prozess:"
 
-#: logview/zoom.c:183
+#: logview/zoom.c:184
 msgid "Message:"
 msgstr "Nachricht:"
 
-#: logview/zoom.c:185
+#: logview/zoom.c:186
 msgid "Description:"
 msgstr "Beschreibung:"
+
+#. Translators: do not include year, it would be bogus
+#: logview/zoom.c:212
+msgid "%B %e %X"
+msgstr "%e %X %B"
 
 # FIXME: why this?
 # Reason: Other languages might prefere other fonts... -ke-
@@ -1910,12 +1984,12 @@ msgstr "Bitte wählen Sie zuvor die Art der Ansicht, die Sie erzeugen wollen."
 msgid "Actions"
 msgstr "Aktionen"
 
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:2 stripchart/params.c:731
+#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:2 stripchart/params.c:732
 msgid "Bottom"
 msgstr "Unten"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:3
-#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:333
 msgid "Default"
 msgstr "Vorgabe"
 
@@ -1989,7 +2063,7 @@ msgid "Session"
 msgstr "Sitzung"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:21
-#: stripchart/chart-app.c:159 stripchart/params.c:703
+#: stripchart/chart-app.c:162 stripchart/params.c:704
 msgid "Top"
 msgstr "Oben"
 
@@ -2131,7 +2205,7 @@ msgid "Save the current palette with a different name"
 msgstr "Die momentane Palette unter einem anderen Namen speichern"
 
 #: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
-#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:598
+#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:631
 #: stripchart/params.c:953
 msgid "Close"
 msgstr "Schließen"
@@ -2359,7 +2433,7 @@ msgstr "Hex 16 Bit"
 msgid "Float"
 msgstr "Fließkomma"
 
-#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:826
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:827
 msgid "Color"
 msgstr "Farbe"
 
@@ -2588,7 +2662,7 @@ msgstr "Wollen Sie wirklich auf Runlevel 5 umschalten?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Sind Sie sicher, dass Sie das System neu booten wollen?"
 
-#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:595
+#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:628
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Sie müssen der Superuser (root) sein, um den Computer herunterzufahren oder "
@@ -2642,7 +2716,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "Nächstes Mal nicht fragen."
 
-#: mini-utils/gshutdown/gshutdown.c:688
+#: mini-utils/gshutdown/gshutdown.c:722
 msgid "Command execution failed: fork failed"
 msgstr "Befehlsausführung fehlgeschlagen: fork() fehlgeschlagen"
 
@@ -2850,7 +2924,9 @@ msgstr "Einhängepunkt"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:202 mini-utils/idetool/idetool.c:25
+#: mini-utils/guname/info.c:202 mini-utils/idetool/idetool.c:21
+#: mini-utils/idetool/idetool.c:26 mini-utils/idetool/idetool.c:319
+#: mini-utils/idetool/idetool.c:330
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -2985,7 +3061,7 @@ msgstr "Menüeinträge"
 msgid "Command"
 msgstr "Befehl"
 
-#: mini-utils/gw/gw.c:966
+#: mini-utils/gw/gw.c:978
 #, c-format
 msgid "Running: %s\n"
 msgstr "Ausführen von: %s\n"
@@ -2998,148 +3074,149 @@ msgstr "Vorgabe 16 Bit"
 msgid "32-bit"
 msgstr "32-bit"
 
-#: mini-utils/idetool/idetool.c:21
+#. there is no 2 apparently
+#: mini-utils/idetool/idetool.c:22
 msgid "32-bit w/sync"
 msgstr "32-bit synch."
 
-#: mini-utils/idetool/idetool.c:26
+#: mini-utils/idetool/idetool.c:27
 msgid "Sleeping"
 msgstr "Schläft"
 
-#: mini-utils/idetool/idetool.c:27
+#: mini-utils/idetool/idetool.c:28
 msgid "Active/Idle"
 msgstr "Aktiv/Ruht"
 
-#: mini-utils/idetool/idetool.c:28
+#: mini-utils/idetool/idetool.c:29
 msgid "Standby"
 msgstr "Bereit"
 
-#: mini-utils/idetool/idetool.c:41
+#: mini-utils/idetool/idetool.c:42
 msgid "Unable to access the drive."
 msgstr "Auf das Laufwerk kann nicht zugegriffen werden."
 
-#: mini-utils/idetool/idetool.c:58 mini-utils/idetool/idetool.c:70
+#: mini-utils/idetool/idetool.c:59 mini-utils/idetool/idetool.c:71
 msgid "The DMA setting for this drive cannot be changed."
 msgstr "Die DMA-Einstellung für dieses Laufwerk kann nicht geändert werden."
 
-#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
+#: mini-utils/idetool/idetool.c:326 mini-utils/idetool/idetool.c:331
 msgid "Enabled"
 msgstr "Aktiv"
 
-#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
-#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
+#: mini-utils/idetool/idetool.c:326 mini-utils/idetool/idetool.c:331
 msgid "Disabled"
 msgstr "Inaktiv"
 
-#: mini-utils/idetool/idetool.c:90 mini-utils/idetool/idetool.c:102
+#: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
 msgstr ""
 "Die IRQ-Unmask-Einstellung für dieses Laufwerk kann nicht geändert werden."
 
-#: mini-utils/idetool/idetool.c:121 mini-utils/idetool/idetool.c:133
+#: mini-utils/idetool/idetool.c:122 mini-utils/idetool/idetool.c:134
 msgid "The drive refused to keep its settings."
 msgstr "Das Laufwerk weigerte sich, seine Einstellungen zu behalten."
 
-#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:333
 msgid "Keep settings"
 msgstr "Einstellungen beibehalten"
 
-#: mini-utils/idetool/idetool.c:202
+#: mini-utils/idetool/idetool.c:203
 msgid "None"
 msgstr "Nichts"
 
-#: mini-utils/idetool/idetool.c:206
+#: mini-utils/idetool/idetool.c:207
 msgid "(1 Sector)"
 msgstr "(1 Sektor)"
 
-#: mini-utils/idetool/idetool.c:208
+#: mini-utils/idetool/idetool.c:209
 msgid "(Dual Port)"
 msgstr "(Dual Port)"
 
-#: mini-utils/idetool/idetool.c:210
+#: mini-utils/idetool/idetool.c:211
 msgid "(Dual Port Cache)"
 msgstr "(Dual Port Cache)"
 
-#: mini-utils/idetool/idetool.c:238
+#: mini-utils/idetool/idetool.c:241
 msgid "No"
 msgstr "Nein"
 
-#: mini-utils/idetool/idetool.c:240
+#: mini-utils/idetool/idetool.c:243
 #, c-format
 msgid "Yes (%d sector)"
 msgstr "Ja (%d Sektor)"
 
-#: mini-utils/idetool/idetool.c:242
+#: mini-utils/idetool/idetool.c:245
 #, c-format
 msgid "Yes (%d sectors)"
 msgstr "Ja (%d Sektoren)"
 
-#: mini-utils/idetool/idetool.c:305 mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:323
 msgid "Model"
 msgstr "Modell"
 
-#: mini-utils/idetool/idetool.c:306
+#: mini-utils/idetool/idetool.c:311
 msgid "Firmware"
 msgstr "Firmware"
 
-#: mini-utils/idetool/idetool.c:307
+#: mini-utils/idetool/idetool.c:312
 msgid "Serial No."
 msgstr "Seriennr."
 
 #. do config here
-#: mini-utils/idetool/idetool.c:309
+#: mini-utils/idetool/idetool.c:314
 msgid "Geometry"
 msgstr "Geometrie"
 
-#: mini-utils/idetool/idetool.c:310
+#: mini-utils/idetool/idetool.c:315
 msgid "Cache"
 msgstr "Cache"
 
-#: mini-utils/idetool/idetool.c:311
+#: mini-utils/idetool/idetool.c:317 mini-utils/idetool/idetool.c:319
 msgid "Status"
 msgstr "Status"
 
-#: mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:323
 msgid "Legacy MFM/RLL drive"
 msgstr "MFM/RLL-Erbstück"
 
-#: mini-utils/idetool/idetool.c:318
+#: mini-utils/idetool/idetool.c:326
 msgid "DMA Mode"
 msgstr "DMA-Modus"
 
-#: mini-utils/idetool/idetool.c:319
+#: mini-utils/idetool/idetool.c:328 mini-utils/idetool/idetool.c:330
 msgid "IO Mode"
 msgstr "IO-Modus"
 
-#: mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:331
 msgid "IRQ Unmask"
 msgstr "IRQ-Unmask"
 
-#: mini-utils/idetool/idetool.c:321
+#: mini-utils/idetool/idetool.c:332
 msgid "Multisector"
 msgstr "Multisektor"
 
-#: mini-utils/idetool/idetool.c:322
+#: mini-utils/idetool/idetool.c:333
 msgid "On Reset"
 msgstr "Bei Reset"
 
 #.
 #. *	Set up the outer display first
 #.
-#: mini-utils/idetool/idetool.c:362
+#: mini-utils/idetool/idetool.c:373
 msgid "IDE Status"
 msgstr "IDE-Status"
 
-#: mini-utils/idetool/idetool.c:384
+#: mini-utils/idetool/idetool.c:395
 msgid "Disk Logo Not Found"
 msgstr "Plattenlogo nicht gefunden"
 
-#: mini-utils/idetool/idetool.c:435
+#: mini-utils/idetool/idetool.c:446
 msgid "Only the superuser can use this tool"
 msgstr "Nur der Superuser (root) kann dieses Werkzeug verwenden"
 
-#: mini-utils/idetool/idetool.c:446
+#: mini-utils/idetool/idetool.c:457
 msgid "You appear to have no IDE drives"
 msgstr "Sie scheinen keine IDE-Laufwerke zu besitzen"
 
@@ -3289,40 +3366,40 @@ msgstr "EDas momentane Format konnte nicht ermittelt werden"
 msgid "Dos (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy-i18n.h:16 gfloppy/src/gfloppy.glade.h:2
+#: gfloppy/src/gfloppy-i18n.h:15 gfloppy/src/gfloppy.glade.h:2
 msgid "Double Density 3.5\" (720 KB)"
 msgstr "Doppelte Dichte 5.25\" (720 KB)"
 
-#: gfloppy/src/gfloppy-i18n.h:17 gfloppy/src/gfloppy.glade.h:3
+#: gfloppy/src/gfloppy-i18n.h:16 gfloppy/src/gfloppy.glade.h:3
 msgid "Double Density 5.25\" (360 KB)"
 msgstr "Doppelte Dichte 5.25\" (360 KB)"
 
-#: gfloppy/src/gfloppy-i18n.h:13 gfloppy/src/gfloppy.glade.h:4
+#: gfloppy/src/gfloppy-i18n.h:12 gfloppy/src/gfloppy.glade.h:4
 msgid "File system type:"
 msgstr "Dateisystemtyp:"
 
-#: gfloppy/src/gfloppy-i18n.h:12 gfloppy/src/gfloppy.glade.h:5
+#: gfloppy/src/gfloppy-i18n.h:11 gfloppy/src/gfloppy.glade.h:5
 msgid "Floppy Density:"
 msgstr "Disketten-Dichte:"
+
+#: gfloppy/src/gfloppy-i18n.h:18 gfloppy/src/gfloppy.glade.h:6
+msgid "Floppy Device:"
+msgstr "Diskettenlaufwerke:"
 
 #.
 #. * Translatable strings file generated by Glade.
 #. * Add this file to your project's POTFILES.in.
 #. * DO NOT compile it as part of your application.
 #.
-#: gfloppy/src/gfloppy-i18n.h:7 gfloppy/src/gfloppy.glade.h:6
+#: gfloppy/src/gfloppy-i18n.h:7 gfloppy/src/gfloppy.glade.h:7
 msgid "Format a floppy"
 msgstr "Eine Diskette formatieren"
 
-#: gfloppy/src/gfloppy-i18n.h:11 gfloppy/src/gfloppy.glade.h:7
-msgid "Formatting /dev/floppy"
-msgstr "/dev/floppy formatieren"
-
-#: gfloppy/src/gfloppy-i18n.h:14 gfloppy/src/gfloppy.glade.h:8
+#: gfloppy/src/gfloppy-i18n.h:13 gfloppy/src/gfloppy.glade.h:8
 msgid "High Density 3.5\" (1.44 MB)"
 msgstr "Hohe Dichte 3.5\" (1.44 MB)"
 
-#: gfloppy/src/gfloppy-i18n.h:15 gfloppy/src/gfloppy.glade.h:9
+#: gfloppy/src/gfloppy-i18n.h:14 gfloppy/src/gfloppy.glade.h:9
 msgid "High Density 5.25\" (1.2 MB)"
 msgstr "Hohe Dichte 5.25\" (1.2 MB)"
 
@@ -3331,9 +3408,9 @@ msgstr "Hohe Dichte 5.25\" (1.2 MB)"
 msgid "Linux Native (ext2)"
 msgstr "Linux Native (ext2)"
 
-#: gfloppy/src/gfloppy-i18n.h:18 gfloppy/src/gfloppy.glade.h:11
-msgid "Quick format"
-msgstr "Schnelles Formatieren"
+#: gfloppy/src/gfloppy-i18n.h:17 gfloppy/src/gfloppy.glade.h:11
+msgid "_Quick format"
+msgstr "_Schnelles Formatieren"
 
 #: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
 msgid "MMaking filesystem on disk..."
@@ -3355,42 +3432,47 @@ msgstr "EDateisystem konnte nicht erstellt werden."
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "MPrüfen auf fehlerhafte Blöcke... (Dies kann eine Weile dauern)"
 
-#: gfloppy/src/main.c:110
+#: gfloppy/src/main.c:135 gfloppy/src/main.c:171
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "Gerät %s kann nicht geöffnet werden, Formatieren kann nicht fortgesetzt werden."
+msgstr ""
+"Gerät %s kann nicht geöffnet werden, Formatieren kann nicht fortgesetzt "
+"werden."
 
-#: gfloppy/src/main.c:118
+#: gfloppy/src/main.c:138 gfloppy/src/main.c:174
+#, c-format
+msgid ""
+"The device %s is disconnected.\n"
+"Please attach device to continue."
+msgstr ""
+
+#: gfloppy/src/main.c:141 gfloppy/src/main.c:177
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
 "be possible.\n"
 "Contact your system administrator about getting write permissions."
 msgstr ""
-"Sie haben nicht die notwendigen Berechtigungen, um auf %s zu schreiben; Formatieren wird nicht möglich sein.\n"
-"Setzen Sie sich mit Ihrem Systemadministrator in Verbindung, um Schreibrechte zu erhalten."
+"Sie haben nicht die notwendigen Berechtigungen, um auf %s zu schreiben; "
+"Formatieren wird nicht möglich sein.\n"
+"Setzen Sie sich mit Ihrem Systemadministrator in Verbindung, um "
+"Schreibrechte zu erhalten."
 
-#: gfloppy/src/main.c:188
+#: gfloppy/src/main.c:285
 msgid "The device to format"
 msgstr "Das zu formatierende Gerät"
 
-#: gfloppy/src/main.c:189
+#: gfloppy/src/main.c:286
 msgid "DEVICE"
 msgstr "GERÄT"
 
 #. We do this to get around a bug in libglade.  Ideally we won't need
 #. * to do this in the future.
-#: gfloppy/src/main.c:220
+#: gfloppy/src/main.c:317
 msgid "Format"
 msgstr "Formatieren"
 
-#. initialize our widgets
-#: gfloppy/src/main.c:225
-#, c-format
-msgid "Formatting %s"
-msgstr "Formatieren von %s"
-
-#: gfloppy/src/main.c:267
+#: gfloppy/src/main.c:360
 msgid "Format another floppy?"
 msgstr "Eine andere Diskette formatieren?"
 
@@ -3406,29 +3488,29 @@ msgstr "Formatieren der Diskette abgebrochen."
 msgid "Format progress."
 msgstr "Fortschritt der Formatierung."
 
-#: stripchart/chart-app.c:157
+#: stripchart/chart-app.c:160
 msgid "Param"
 msgstr "Param"
 
-#: stripchart/chart-app.c:158
+#: stripchart/chart-app.c:161
 msgid "Current"
 msgstr "Momentan"
 
-#: stripchart/chart-app.c:160 stripchart/params.c:759
+#: stripchart/chart-app.c:163 stripchart/params.c:760
 msgid "Scale"
 msgstr "Skalierung"
 
 # strip
-#: stripchart/chart-app.c:192 stripchart/stripchart-applet.c:69
+#: stripchart/chart-app.c:197 stripchart/stripchart-applet.c:69
 #: stripchart/stripchart.c:92 stripchart/stripchart.c:97
 msgid "Stripchart"
 msgstr "Kurvenzeichner"
 
-#: stripchart/chart-app.c:193
+#: stripchart/chart-app.c:198
 msgid "Copyright 2000 John Kodis"
 msgstr "Copyright 2000 John Kodis"
 
-#: stripchart/chart-app.c:195
+#: stripchart/chart-app.c:200
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -3441,15 +3523,15 @@ msgstr ""
 "Andere ingeniös-geniale Verwendungen sind dem interessierten Benutzer als "
 "Übung überlassen worden."
 
-#: stripchart/chart-app.c:234
+#: stripchart/chart-app.c:239
 msgid "Show values"
 msgstr "Werte anzeigen"
 
-#: stripchart/chart-app.c:241
+#: stripchart/chart-app.c:246
 msgid "Edit Prefs..."
 msgstr "Vorlieben bearbeiten..."
 
-#: stripchart/chart-app.c:246
+#: stripchart/chart-app.c:251
 msgid "Edit Params..."
 msgstr "Parameter bearbeiten..."
 
@@ -3480,55 +3562,55 @@ msgstr "Zahl erwartet"
 msgid "extra junk at end: \"%s\""
 msgstr "überschüssiger Schrott am Ende: \"%s\""
 
-#: stripchart/params.c:632
+#: stripchart/params.c:633
 msgid "Parameter"
 msgstr "Parameter"
 
-#: stripchart/params.c:670
+#: stripchart/params.c:671
 msgid "Equation"
 msgstr "Gleichung"
 
-#: stripchart/params.c:681
+#: stripchart/params.c:682
 msgid "Filename"
 msgstr "Dateiname"
 
-#: stripchart/params.c:692
+#: stripchart/params.c:693
 msgid "Pattern"
 msgstr "Muster"
 
-#: stripchart/params.c:713 stripchart/params.c:741
+#: stripchart/params.c:714 stripchart/params.c:742
 msgid "Min"
 msgstr "Min"
 
-#: stripchart/params.c:722 stripchart/params.c:750
+#: stripchart/params.c:723 stripchart/params.c:751
 msgid "Max"
 msgstr "Max"
 
-#: stripchart/params.c:770
+#: stripchart/params.c:771
 msgid "Linear"
 msgstr "Linear"
 
-#: stripchart/params.c:778
+#: stripchart/params.c:779
 msgid "Logarithmic"
 msgstr "Logarithmisch"
 
-#: stripchart/params.c:783
+#: stripchart/params.c:784
 msgid "Type"
 msgstr "Typ"
 
-#: stripchart/params.c:794
+#: stripchart/params.c:795
 msgid "Indicator"
 msgstr "Indikator"
 
-#: stripchart/params.c:801
+#: stripchart/params.c:802
 msgid "Line"
 msgstr "Linie"
 
-#: stripchart/params.c:808
+#: stripchart/params.c:809
 msgid "Point"
 msgstr "Punkt"
 
-#: stripchart/params.c:815
+#: stripchart/params.c:816
 msgid "Solid"
 msgstr "Fest"
 
@@ -3568,35 +3650,35 @@ msgstr "Parameter-Editor"
 msgid "Parameters"
 msgstr "Parameter"
 
-#: stripchart/prefs.c:207
+#: stripchart/prefs.c:208
 msgid "Chart"
 msgstr "Diagramm"
 
-#: stripchart/prefs.c:217 stripchart/prefs.c:276
+#: stripchart/prefs.c:218 stripchart/prefs.c:277
 msgid "enabled"
 msgstr "aktiviert"
 
-#: stripchart/prefs.c:224
+#: stripchart/prefs.c:225
 msgid "minor"
 msgstr "geringer"
 
-#: stripchart/prefs.c:230
+#: stripchart/prefs.c:231
 msgid "major"
 msgstr "größer"
 
-#: stripchart/prefs.c:243 stripchart/prefs.c:261
+#: stripchart/prefs.c:244 stripchart/prefs.c:262
 msgid "Update"
 msgstr "Aktualisierung"
 
-#: stripchart/prefs.c:246 stripchart/prefs.c:269
+#: stripchart/prefs.c:247 stripchart/prefs.c:270
 msgid "Smooth"
 msgstr "Glatt"
 
-#: stripchart/prefs.c:249
+#: stripchart/prefs.c:250
 msgid "Ticks"
 msgstr "Takte"
 
-#: stripchart/prefs.c:254
+#: stripchart/prefs.c:255
 msgid "Pen"
 msgstr "Stift"
 
@@ -3692,39 +3774,7 @@ msgstr ""
 "Diese ausführbare Datei ist für eine andere Plattform gedacht und kann auf "
 "diesem System nicht ausgeführt werden"
 
-#: meat-grinder/meat-grinder.c:199 meat-grinder/meat-grinder.c:202
-msgid "Cannot start the archive (tar) program"
-msgstr "Das Archivprogramm (tar) kann nicht gestartet werden"
-
-#: meat-grinder/meat-grinder.c:210
-msgid "Cannot run tar/gtar"
-msgstr "tar/gtar kann nicht ausgeführt werden"
-
-#: meat-grinder/meat-grinder.c:261
-msgid "Archive.tar.gz"
-msgstr "Archiv.tar.gz"
-
-#: meat-grinder/meat-grinder.c:361
-msgid "The GNOME Archive Generator"
-msgstr "Der GNOME-Archivierer"
-
-#: meat-grinder/meat-grinder.c:364
-msgid "Drag files in to make archives"
-msgstr "Dateien hereinziehen, um Archive zu erstellen"
-
-#: meat-grinder/meat-grinder.c:425
-msgid "No filename selected"
-msgstr "Kein Dateiname ausgewählt"
-
-#: meat-grinder/meat-grinder.c:429
-msgid "File exists, overwrite?"
-msgstr "Datei existiert, überschreiben?"
-
-#: meat-grinder/meat-grinder.c:453
-msgid "No items to archive"
-msgstr "Keine Objekte zum Archivieren"
-
-#: meat-grinder/meat-grinder.c:545
+#: meat-grinder/meat-grinder.c:106
 #, c-format
 msgid ""
 "Number of files: %d\n"
@@ -3733,39 +3783,97 @@ msgstr ""
 "Anzahl Dateien: %d\n"
 "Anzahl Ordner: %d"
 
-#: meat-grinder/meat-grinder.c:601
+#: meat-grinder/meat-grinder.c:112
+msgid ""
+"No files or folders, drop files or folders\n"
+"above to add them to the archive"
+msgstr ""
+"Keine Dateien oder Ordner. Ziehen Sie\n"
+"Dateien oder Ordner herein, um sie zu dem Archiv hinzuzufügen"
+
+#: meat-grinder/meat-grinder.c:217 meat-grinder/meat-grinder.c:220
+msgid "Cannot start the archive (tar) program"
+msgstr "Das Archivprogramm (tar) kann nicht gestartet werden"
+
+#: meat-grinder/meat-grinder.c:228
+msgid "Cannot run tar/gtar"
+msgstr "tar/gtar kann nicht ausgeführt werden"
+
+#: meat-grinder/meat-grinder.c:279
+msgid "Archive.tar.gz"
+msgstr "Archiv.tar.gz"
+
+#: meat-grinder/meat-grinder.c:379
+msgid "The GNOME Archive Generator"
+msgstr "Der GNOME-Archivierer"
+
+#: meat-grinder/meat-grinder.c:382
+msgid "Drag files in to make archives"
+msgstr "Dateien hereinziehen, um Archive zu erstellen"
+
+#: meat-grinder/meat-grinder.c:444 meat-grinder/meat-grinder.c:602
+msgid "No filename selected"
+msgstr "Kein Dateiname ausgewählt"
+
+#: meat-grinder/meat-grinder.c:448
+msgid "File exists, overwrite?"
+msgstr "Datei existiert, überschreiben?"
+
+#: meat-grinder/meat-grinder.c:472
+msgid "No items to archive"
+msgstr "Keine Objekte zum Archivieren"
+
+#: meat-grinder/meat-grinder.c:605
+msgid "File does not exists"
+msgstr "Datei existiert nicht"
+
+#: meat-grinder/meat-grinder.c:619
+msgid "Add file or folder"
+msgstr "Datei oder Ordner hinzufügen"
+
+#: meat-grinder/meat-grinder.c:689
+msgid "Add file or folder..."
+msgstr "Datei oder Ordner hinzufügen..."
+
+#: meat-grinder/meat-grinder.c:690
+msgid "Add a file or folder to the archive"
+msgstr "Dateien oder Ordner zum Archiv hinzufügen"
+
+#: meat-grinder/meat-grinder.c:693
 msgid "Create archive..."
 msgstr "Archiv erzeugen..."
 
-#: meat-grinder/meat-grinder.c:602
-msgid "Create a new archive from the selected items"
-msgstr "Ein neues Archiv aus den gewählten Objekten erzeugen"
+#: meat-grinder/meat-grinder.c:694
+msgid "Create a new archive from the items"
+msgstr "Ein neues Archiv aus den Objekten erzeugen"
 
-#: meat-grinder/meat-grinder.c:611
+#: meat-grinder/meat-grinder.c:703
 msgid "Remove the selected item(s)"
 msgstr "Das/die gewählte(n) Objekt(e) entfernen"
 
-#: meat-grinder/meat-grinder.c:640
+#: meat-grinder/meat-grinder.c:735
 msgid "GNOME Archive Generator"
 msgstr "GNOME-Archivierer"
 
-#: meat-grinder/meat-grinder.c:684
+#: meat-grinder/meat-grinder.c:765
+msgid "Drop files here to add them to the archive."
+msgstr "Dateien hier hereinziehen, um sie zu dem Archive hinzuzufügen"
+
+#: meat-grinder/meat-grinder.c:783
 msgid "Archive"
 msgstr "Archiv"
 
-#: meat-grinder/meat-grinder.c:705
+#: meat-grinder/meat-grinder.c:790
 msgid ""
-"Number of files: 0\n"
-"Number of folders: 0"
+"Drag this button to the destination where you want the archive to be created "
+"or press it to pop up a file selection dialog."
 msgstr ""
-"Anzahl Dateien: 0\n"
-"Anzahl Ordner: 0"
 
-#: meat-grinder/meat-grinder.c:779
+#: meat-grinder/meat-grinder.c:883
 msgid "Cannot find proper icons anywhere!"
 msgstr "Es können nirgendwo die passenden Icons gefunden werden!"
 
-#: meat-grinder/meat-grinder.c:787
+#: meat-grinder/meat-grinder.c:891
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
