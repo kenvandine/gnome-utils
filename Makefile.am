@@ -2,6 +2,10 @@ if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
+if BUILD_GDIALOG
+gdialog = gdialog
+endif
+
 SUBDIRS = po 		\
 	idl		\
 	$(gfloppy)	\
@@ -10,7 +14,7 @@ SUBDIRS = po 		\
 	gcalc 		\
 	gsearchtool	\
 	gdictsrc	\
-	gdialog		\
+	$(gdialog)	\
 	meat-grinder
 
 EXTRA_DIST = \
