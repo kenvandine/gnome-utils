@@ -1,3 +1,8 @@
+2002-05-08  Jacob Berkman  <jacob@ximian.com>
+
+	* omf.make (install-data-hook-omf): builddir is always . and is
+	never defined, so this would look for the file in /
+
 2002-05-08  Glynn Foster  <glynn.foster@sun.com>
 
 	* omf.make: Update from what drake suggested on #docs.
