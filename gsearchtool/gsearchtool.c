@@ -1484,8 +1484,11 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 		
 		if (interface.is_gail_loaded)
 		{
-			add_atk_namedesc (GTK_WIDGET(entry), _("Search Rule Value Entry"), 
-					  _("Enter a value for search rule"));
+			gchar *text = remove_mnemonic_character (templates[opt->constraint_id].desc);
+			gchar *desc = g_strdup_printf (_("'%s' entry"), _(text));
+			add_atk_namedesc (GTK_WIDGET(entry), desc, _("Enter a value for search rule"));
+			g_free (desc);
+			g_free (text);
 		}
 		
 		gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (entry));
