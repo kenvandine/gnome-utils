@@ -236,7 +236,7 @@ void gnomecard_scroll_tree(GList *node)
 	tree_node = ((GnomeCardSib *) 
 		     ((Card *) node->data)->user_data)->card;
 
-	gtk_ctree_scroll_to(crd_tree, tree_node, 0, 0, 0);
+	gtk_ctree_moveto(crd_tree, tree_node, 0, 0, 0);
 	gtk_ctree_select(crd_tree, tree_node);
 }
 
@@ -836,7 +836,7 @@ int gnomecard_destroy_cards(void)
 	for (l = crds; l; l = l->next)
 	  card_free (l->data);
 	
-	gtk_ctree_clear(crd_tree);
+	gtk_ctree_remove(crd_tree,NULL);
 	g_list_free(crds);
 	crd_tree_sib = NULL;
 	crds = NULL;
