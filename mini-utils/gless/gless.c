@@ -178,10 +178,6 @@ session_save_state (GnomeClient *client, gint phase,
   printf("\n"); fflush(stdout);
 #endif
 
-  if (shutdown) {
-    gless_exit();
-  }
-
   tmp = free_me;
   while (tmp) {
     g_free(tmp->data);
