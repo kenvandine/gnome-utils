@@ -27,7 +27,6 @@ gnomecard_SOURCES =	\
 	dialog.h        \
 	gnomecard.c	\
 	gnomecard.h	\
-	gnome-pim-impl.c \
 	images.h        \
 	init.c          \
 	init.h          \
@@ -42,6 +41,7 @@ gnomecard_SOURCES =	\
 	popup-menu.c	\
 	popup-menu.h	\
 	sort.c          \
+	gnome-pim-impl.c\
 	sort.h          \
 	pairs.h		\
 	gnome-pim-impl.c
