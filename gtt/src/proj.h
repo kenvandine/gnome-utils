@@ -439,6 +439,7 @@ GttTask *	gtt_task_new_insert (GttTask *);
 void		gtt_task_insert (GttTask *where, GttTask *insertee);
 void		gtt_task_merge_up (GttTask *);
 gboolean	gtt_task_is_first_task (GttTask *);
+GttProject *	gtt_task_get_parent (GttTask *);
 
 
 GList *		gtt_task_get_intervals (GttTask *);
@@ -451,7 +452,17 @@ int 		gtt_task_get_secs_ever (GttTask *tsk);
 
 
 /* intervals */
-/* The start and stop times define the interval.   
+/* The gtt_interval_set_start() and gtt_interval_set_stop() set the
+ *    start and stop times that define the interval.  These routines
+ *    will not let you set a start time that is later than the stop 
+ *    time: negative timer intervals are not allowed.  Note also that
+ *    the system automatically removes ("scrubs away") short time 
+ *    intervals when certain key operations are performed (e.g. 'thaw'). 
+ *    This *    means that if you are holding a pointer to a very 
+ *    short interval, it might disappear on you.  In other words, 
+ *    don't use these routines to set a short time interval, and 
+ *    still expect the interval to be around when you are done.
+ *
  * The fuzz (measured in seconds) indicates how 'fuzzy' the 
  *    true start time was.  Typically, its 0, 300, 3600 or 12*3600
  *    Just because the start time is fuzy doesn't mean that the total 

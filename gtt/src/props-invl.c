@@ -46,11 +46,25 @@ interval_edit_apply_cb(GtkWidget * w, gpointer data)
 {
 	EditIntervalDialog *dlg = (EditIntervalDialog *) data;
 	GtkWidget *menu, *menu_item;
+	GttTask * task;
+	GttProject * prj;
 	time_t start, stop;
-	int fuzz;
+	int fuzz, min_invl;
 
 	start = gnome_date_edit_get_date(GNOME_DATE_EDIT(dlg->start_widget));
 	stop = gnome_date_edit_get_date(GNOME_DATE_EDIT(dlg->stop_widget));
+
+	/* Caution: we must avoid setting very short time intervals
+	 * through this interface; otherwise the interval will get
+	 * scrubbed away on us, and we'll be holding an invalid pointer.
+	 * In fact, we should probably assume the pointer is invalid
+	 * if prj is null ...
+	 */
+
+	task = gtt_interval_get_parent (dlg->interval);
+	prj = gtt_task_get_parent (task);
+	min_invl = gtt_project_get_min_interval (prj);
+	if (min_invl >= stop-start) stop = start + min_invl+1;
 
 	gtt_interval_freeze (dlg->interval);
 	gtt_interval_set_start (dlg->interval, start);

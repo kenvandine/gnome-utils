@@ -397,7 +397,7 @@ gtt_project_set_min_interval (GttProject *proj, int r)
 int
 gtt_project_get_min_interval (GttProject *proj)
 {
-	if (!proj) return 0;
+	if (!proj) return 3;
 	return proj->min_interval;
 }
 
@@ -1140,11 +1140,16 @@ scrub_intervals (GttTask *tsk)
 		for (node = tsk->interval_list; node; node=node->next)
 		{
 			GttInterval *ivl = node->data;
+			int len = ivl->stop - ivl->start;
+
+			/* should never see negative intervals */
+			g_return_val_if_fail ((0 <= len), changed);
 			if ((FALSE == ivl->running) &&
-			    (0 != ivl->start) &&  /* don't whack new ivls */
-			    ((ivl->stop - ivl->start) <= mini))
+			    (len <= mini) && 
+			    (0 != ivl->start))  /* don't whack new ivls */
 			{
 				tsk->interval_list = g_list_remove (tsk->interval_list, ivl);
+				ivl->parent = NULL;
 				g_free (ivl);
 				not_done = TRUE;
 				changed = TRUE;
@@ -1960,6 +1965,13 @@ gtt_task_is_first_task (GttTask *tsk)
 	return FALSE;
 }
 
+GttProject * 
+gtt_task_get_parent (GttTask *tsk)
+{
+	if (!tsk) return NULL;
+	return tsk->parent;
+}
+
 /* =========================================================== */
 
 void 
@@ -2041,6 +2053,7 @@ gtt_interval_set_start (GttInterval *ivl, time_t st)
 {
 	if (!ivl) return;
 	ivl->start = st;
+	if (st > ivl->stop) ivl->stop = st;
 	if (ivl->parent) proj_refresh_time (ivl->parent->parent);
 }
 
@@ -2049,6 +2062,7 @@ gtt_interval_set_stop (GttInterval *ivl, time_t st)
 {
 	if (!ivl) return;
 	ivl->stop = st;
+	if (st < ivl->start) ivl->start = st;
 	if (ivl->parent) proj_refresh_time (ivl->parent->parent);
 }
 
