@@ -431,16 +431,24 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
 
 static void popup_about()
 {
-  GtkWidget * ga;
+  static GtkWidget * ga = NULL;
   static const char * authors[] = { "Havoc Pennington <hp@pobox.com>",
                         NULL };
 
+  if (ga != NULL)
+  {
+  	gdk_window_show(ga->window);
+	gdk_window_raise(ga->window);
+	return;
+  }
   ga = gnome_about_new (APPNAME,
                         VERSION, 
                         _("Copyright 1998, under the GNU General Public License."),
                         authors,
                         0,
                         0 );
+  gtk_signal_connect( GTK_OBJECT(ga), "destroy",
+		      GTK_SIGNAL_FUNC(gtk_widget_destroyed), &ga );
   
   gtk_widget_show(ga);
 }
