@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2001-06-30 22:25+0200\n"
-"PO-Revision-Date: 2001-06-30 22:40+0200\n"
+"POT-Creation-Date: 2001-08-12 00:21+0200\n"
+"PO-Revision-Date: 2001-08-12 00:24+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -273,7 +273,7 @@ msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 
 #: gcharmap/src/interface.c:238 gcharmap/src/menus.c:114 logview/logview.c:100
-#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:255
+#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:258
 msgid "Exit"
 msgstr "Avsluta"
 
@@ -284,14 +284,14 @@ msgstr "Kopiera"
 
 #: gcharmap/src/interface.c:243 gcharmap/src/menus.c:111
 #: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
-#: stripchart/chart-app.c:229 stripchart/params.c:1011
+#: stripchart/chart-app.c:232 stripchart/params.c:1013
 #: stripchart/stripchart-applet.c:89
 msgid "About"
 msgstr "Om"
 
 #: gcharmap/src/interface.c:245 gcharmap/src/menus.c:109
-#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:224
-#: stripchart/params.c:1046 stripchart/params.c:1049
+#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:227
+#: stripchart/params.c:1048 stripchart/params.c:1051
 #: stripchart/stripchart-applet.c:86
 msgid "Help"
 msgstr "Hjälp"
@@ -883,15 +883,15 @@ msgstr "Felaktigt kommando"
 msgid "No command for this mime type"
 msgstr "Inget kommando för denna MIME-typ"
 
-#: gtt/app.c:117 gtt/app.c:221
+#: gtt/app.c:117 gtt/app.c:222
 msgid "no project selected"
 msgstr "inget projekt valt"
 
-#: gtt/app.c:210
+#: gtt/app.c:211
 msgid "00:00"
 msgstr "00.00"
 
-#: gtt/app.c:249 mini-utils/gless/gless.c:423
+#: gtt/app.c:250 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -911,24 +911,30 @@ msgstr "Idag"
 msgid "Project Title"
 msgstr "Projekttitel"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:652
+#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:654
 msgid "Description"
 msgstr "Beskrivning"
 
-#: gtt/log.c:46
+#: gtt/log.c:52
 #, c-format
 msgid "Cannot open logfile %s for append"
 msgstr "Kan inte öppna loggfilen %s för tillägg"
 
-#: gtt/log.c:70 gtt/log.c:228
+#. Translators: Format to use in the gtt logfile
+#: gtt/log.c:61
+msgid "%b %d %H:%M:%S"
+msgstr "%d %b %H.%M.%S"
+
+#: gtt/log.c:81 gtt/log.c:235
 msgid "program started"
 msgstr "programmet startades"
 
-#: gtt/log.c:88
+#: gtt/log.c:99
 msgid "no description"
 msgstr "ingen beskrivning"
 
-#: gtt/log.c:220
+#. log_if_equal
+#: gtt/log.c:227
 msgid "program exited"
 msgstr "programmet avslutades"
 
@@ -1223,7 +1229,7 @@ msgstr "Ny"
 msgid "Reload"
 msgstr "Läs om"
 
-#: gtt/toolbar.c:152 stripchart/params.c:937
+#: gtt/toolbar.c:152 stripchart/params.c:939
 msgid "Save"
 msgstr "Spara"
 
@@ -1477,13 +1483,13 @@ msgid "December"
 msgstr "december"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:471
+#: logview/log_repaint.c:477
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:581
+#: logview/log_repaint.c:587
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1491,7 +1497,7 @@ msgstr "%X"
 #. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:665
+#: logview/log_repaint.c:671
 msgid "%B %e"
 msgstr "%e %B"
 
@@ -1628,11 +1634,11 @@ msgstr "Filnamn: "
 msgid "Date: "
 msgstr "Datum: "
 
-#: logview/logview.c:606
+#: logview/logview.c:607
 msgid "Too many open logs. Close one and try again"
 msgstr "För många loggar öppnade. Stäng en och försök igen"
 
-#: logview/logview.c:662
+#: logview/logview.c:663
 msgid "Open new logfile"
 msgstr "Öppna ny loggfil"
 
@@ -1760,13 +1766,13 @@ msgid "Grid"
 msgstr "Rutnät"
 
 #: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1039
-#: stripchart/params.c:1042
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1041
+#: stripchart/params.c:1044
 msgid "Edit"
 msgstr "Redigera"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1032
-#: stripchart/params.c:1035
+#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1034
+#: stripchart/params.c:1037
 msgid "File"
 msgstr "Arkiv"
 
@@ -1906,7 +1912,7 @@ msgstr "Välj typen av vy du vill skapa."
 msgid "Actions"
 msgstr "Åtgärder"
 
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:2 stripchart/params.c:730
+#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:2 stripchart/params.c:732
 msgid "Bottom"
 msgstr "Botten"
 
@@ -1985,7 +1991,7 @@ msgid "Session"
 msgstr "Session"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:21
-#: stripchart/chart-app.c:159 stripchart/params.c:702
+#: stripchart/chart-app.c:162 stripchart/params.c:704
 msgid "Top"
 msgstr "Topp"
 
@@ -2128,7 +2134,7 @@ msgstr "Spara den aktuella paletten med ett annat namn"
 
 #: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
 #: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:631
-#: stripchart/params.c:951
+#: stripchart/params.c:953
 msgid "Close"
 msgstr "Stäng"
 
@@ -2352,7 +2358,7 @@ msgstr "Hex 16-bitars"
 msgid "Float"
 msgstr "Flyttal"
 
-#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:825
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:827
 msgid "Color"
 msgstr "Färg"
 
@@ -2684,7 +2690,7 @@ msgstr "Kategori"
 msgid "Your System"
 msgstr "Ditt system"
 
-#: mini-utils/guname/guname.c:664 stripchart/params.c:944
+#: mini-utils/guname/guname.c:664 stripchart/params.c:946
 msgid "Save As..."
 msgstr "Spara som..."
 
@@ -3269,40 +3275,40 @@ msgstr "EKunde inte bestämma aktuell formateringstyp"
 msgid "Dos (FAT)"
 msgstr "Dos (FAT)"
 
-#: gfloppy/src/gfloppy-i18n.h:16 gfloppy/src/gfloppy.glade.h:2
+#: gfloppy/src/gfloppy-i18n.h:15 gfloppy/src/gfloppy.glade.h:2
 msgid "Double Density 3.5\" (720 KB)"
 msgstr "Dubbel densitet 3,5\" (720 kB)"
 
-#: gfloppy/src/gfloppy-i18n.h:17 gfloppy/src/gfloppy.glade.h:3
+#: gfloppy/src/gfloppy-i18n.h:16 gfloppy/src/gfloppy.glade.h:3
 msgid "Double Density 5.25\" (360 KB)"
 msgstr "Dubbel densitet 5,25\" (360 kB)"
 
-#: gfloppy/src/gfloppy-i18n.h:13 gfloppy/src/gfloppy.glade.h:4
+#: gfloppy/src/gfloppy-i18n.h:12 gfloppy/src/gfloppy.glade.h:4
 msgid "File system type:"
 msgstr "Filsystemstyp:"
 
-#: gfloppy/src/gfloppy-i18n.h:12 gfloppy/src/gfloppy.glade.h:5
+#: gfloppy/src/gfloppy-i18n.h:11 gfloppy/src/gfloppy.glade.h:5
 msgid "Floppy Density:"
 msgstr "Diskettdensitet:"
+
+#: gfloppy/src/gfloppy-i18n.h:18 gfloppy/src/gfloppy.glade.h:6
+msgid "Floppy Device:"
+msgstr "Diskettenhet:"
 
 #.
 #. * Translatable strings file generated by Glade.
 #. * Add this file to your project's POTFILES.in.
 #. * DO NOT compile it as part of your application.
 #.
-#: gfloppy/src/gfloppy-i18n.h:7 gfloppy/src/gfloppy.glade.h:6
+#: gfloppy/src/gfloppy-i18n.h:7 gfloppy/src/gfloppy.glade.h:7
 msgid "Format a floppy"
 msgstr "Formatera en diskett"
 
-#: gfloppy/src/gfloppy-i18n.h:11 gfloppy/src/gfloppy.glade.h:7
-msgid "Formatting /dev/floppy"
-msgstr "Formaterar /dev/floppy"
-
-#: gfloppy/src/gfloppy-i18n.h:14 gfloppy/src/gfloppy.glade.h:8
+#: gfloppy/src/gfloppy-i18n.h:13 gfloppy/src/gfloppy.glade.h:8
 msgid "High Density 3.5\" (1.44 MB)"
 msgstr "Hög densitet 3,5\" (1,44 MB)"
 
-#: gfloppy/src/gfloppy-i18n.h:15 gfloppy/src/gfloppy.glade.h:9
+#: gfloppy/src/gfloppy-i18n.h:14 gfloppy/src/gfloppy.glade.h:9
 msgid "High Density 5.25\" (1.2 MB)"
 msgstr "Hög densitet 5,25\" (1,2 MB)"
 
@@ -3311,9 +3317,9 @@ msgstr "Hög densitet 5,25\" (1,2 MB)"
 msgid "Linux Native (ext2)"
 msgstr "Linuxformat (ext2)"
 
-#: gfloppy/src/gfloppy-i18n.h:18 gfloppy/src/gfloppy.glade.h:11
-msgid "Quick format"
-msgstr "Snabbformatera"
+#: gfloppy/src/gfloppy-i18n.h:17 gfloppy/src/gfloppy.glade.h:11
+msgid "_Quick format"
+msgstr "_Snabbformatera"
 
 #: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
 msgid "MMaking filesystem on disk..."
@@ -3335,12 +3341,21 @@ msgstr "EKunde inte skapa filsystem."
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "MSöker efter trasiga block... (det kan ta ett tag)"
 
-#: gfloppy/src/main.c:110
+#: gfloppy/src/main.c:135 gfloppy/src/main.c:171
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Kunde inte öppna enhet %s, formateringen kan inte fortsätta."
 
-#: gfloppy/src/main.c:118
+#: gfloppy/src/main.c:138 gfloppy/src/main.c:174
+#, c-format
+msgid ""
+"The device %s is disconnected.\n"
+"Please attach device to continue."
+msgstr ""
+"Enhet %s är frånkopplad.\n"
+"Anslut enheten för att fortsätta."
+
+#: gfloppy/src/main.c:141 gfloppy/src/main.c:177
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -3351,27 +3366,21 @@ msgstr ""
 "möjlig.\n"
 "Kontakta din systemadministratör angående skrivrättigheter."
 
-#: gfloppy/src/main.c:188
+#: gfloppy/src/main.c:285
 msgid "The device to format"
 msgstr "Enheten som skall formateras"
 
-#: gfloppy/src/main.c:189
+#: gfloppy/src/main.c:286
 msgid "DEVICE"
 msgstr "ENHET"
 
 #. We do this to get around a bug in libglade.  Ideally we won't need
 #. * to do this in the future.
-#: gfloppy/src/main.c:220
+#: gfloppy/src/main.c:317
 msgid "Format"
 msgstr "Formatera"
 
-#. initialize our widgets
-#: gfloppy/src/main.c:225
-#, c-format
-msgid "Formatting %s"
-msgstr "Formaterar %s"
-
-#: gfloppy/src/main.c:267
+#: gfloppy/src/main.c:360
 msgid "Format another floppy?"
 msgstr "Formatera en diskett till?"
 
@@ -3387,28 +3396,28 @@ msgstr "Formateringen avbröts."
 msgid "Format progress."
 msgstr "Formateringsframsteg."
 
-#: stripchart/chart-app.c:157
+#: stripchart/chart-app.c:160
 msgid "Param"
 msgstr "Param"
 
-#: stripchart/chart-app.c:158
+#: stripchart/chart-app.c:161
 msgid "Current"
 msgstr "Nuvarande"
 
-#: stripchart/chart-app.c:160 stripchart/params.c:758
+#: stripchart/chart-app.c:163 stripchart/params.c:760
 msgid "Scale"
 msgstr "Skala"
 
-#: stripchart/chart-app.c:194 stripchart/stripchart-applet.c:69
+#: stripchart/chart-app.c:197 stripchart/stripchart-applet.c:69
 #: stripchart/stripchart.c:92 stripchart/stripchart.c:97
 msgid "Stripchart"
 msgstr "Stripchart"
 
-#: stripchart/chart-app.c:195
+#: stripchart/chart-app.c:198
 msgid "Copyright 2000 John Kodis"
 msgstr "Copyright 2000 John Kodis"
 
-#: stripchart/chart-app.c:197
+#: stripchart/chart-app.c:200
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -3421,15 +3430,15 @@ msgstr ""
 "nätverksbelastning och liknande. Andra användningsområden lämnas som en "
 "övning för den intresserade."
 
-#: stripchart/chart-app.c:236
+#: stripchart/chart-app.c:239
 msgid "Show values"
 msgstr "Visa värden"
 
-#: stripchart/chart-app.c:243
+#: stripchart/chart-app.c:246
 msgid "Edit Prefs..."
 msgstr "Redigera inställningar..."
 
-#: stripchart/chart-app.c:248
+#: stripchart/chart-app.c:251
 msgid "Edit Params..."
 msgstr "Redigera parametrar..."
 
@@ -3460,91 +3469,91 @@ msgstr "siffra förväntades"
 msgid "extra junk at end: \"%s\""
 msgstr "extra skräp på slutet: \"%s\""
 
-#: stripchart/params.c:631
+#: stripchart/params.c:633
 msgid "Parameter"
 msgstr "Parameter"
 
-#: stripchart/params.c:669
+#: stripchart/params.c:671
 msgid "Equation"
 msgstr "Formel"
 
-#: stripchart/params.c:680
+#: stripchart/params.c:682
 msgid "Filename"
 msgstr "Filnamn"
 
-#: stripchart/params.c:691
+#: stripchart/params.c:693
 msgid "Pattern"
 msgstr "Mönster"
 
-#: stripchart/params.c:712 stripchart/params.c:740
+#: stripchart/params.c:714 stripchart/params.c:742
 msgid "Min"
 msgstr "Min"
 
-#: stripchart/params.c:721 stripchart/params.c:749
+#: stripchart/params.c:723 stripchart/params.c:751
 msgid "Max"
 msgstr "Max"
 
-#: stripchart/params.c:769
+#: stripchart/params.c:771
 msgid "Linear"
 msgstr "Linjär"
 
-#: stripchart/params.c:777
+#: stripchart/params.c:779
 msgid "Logarithmic"
 msgstr "Logaritmisk"
 
-#: stripchart/params.c:782
+#: stripchart/params.c:784
 msgid "Type"
 msgstr "Typ"
 
-#: stripchart/params.c:793
+#: stripchart/params.c:795
 msgid "Indicator"
 msgstr "Indikator"
 
-#: stripchart/params.c:800
+#: stripchart/params.c:802
 msgid "Line"
 msgstr "Linje"
 
-#: stripchart/params.c:807
+#: stripchart/params.c:809
 msgid "Point"
 msgstr "Punkt"
 
-#: stripchart/params.c:814
+#: stripchart/params.c:816
 msgid "Solid"
 msgstr "Heldragen"
 
-#: stripchart/params.c:963
+#: stripchart/params.c:965
 msgid "Add Parameter Before"
 msgstr "Lägg till parameter före"
 
-#: stripchart/params.c:970
+#: stripchart/params.c:972
 msgid "Add Parameter After"
 msgstr "Lägg till parameter efter"
 
-#: stripchart/params.c:977
+#: stripchart/params.c:979
 msgid "Apply Parameter Changes"
 msgstr "Verkställ parameterförändringar"
 
-#: stripchart/params.c:984
+#: stripchart/params.c:986
 msgid "Delete Parameter"
 msgstr "Ta bort parameter"
 
-#: stripchart/params.c:992
+#: stripchart/params.c:994
 msgid "Add Color"
 msgstr "Lägg till färg"
 
-#: stripchart/params.c:999
+#: stripchart/params.c:1001
 msgid "Delete Color"
 msgstr "Ta bort färg"
 
-#: stripchart/params.c:1018
+#: stripchart/params.c:1020
 msgid "Info"
 msgstr "Info"
 
-#: stripchart/params.c:1089
+#: stripchart/params.c:1091
 msgid "Parameter Editor"
 msgstr "Parameterredigerare"
 
-#: stripchart/params.c:1098
+#: stripchart/params.c:1100
 msgid "Parameters"
 msgstr "Parametrar"
 
@@ -3777,6 +3786,12 @@ msgid ""
 msgstr ""
 "Kan inte hitta arkiveringsprogrammet (tar)!\n"
 "Detta program används för att skapa arkiv."
+
+#~ msgid "Formatting /dev/floppy"
+#~ msgstr "Formaterar /dev/floppy"
+
+#~ msgid "Formatting %s"
+#~ msgstr "Formaterar %s"
 
 #~ msgid ""
 #~ "Number of files: 0\n"
