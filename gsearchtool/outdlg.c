@@ -2,9 +2,11 @@
  * (C) 1998 the Free Software Foundation
  *
  * Author:   George Lebl
+ *
  */
 
 #include <gtk/gtk.h>
+#include <string.h>
 
 #include "gsearchtool.h"
 #include "outdlg.h"
@@ -21,6 +23,53 @@ outdlg_clicked(GtkWidget * widget, int button, gpointer data)
 	else
 		gtk_widget_destroy(outdlg);
 	list_width=0;
+}
+
+gint 
+outdlg_double_click(GtkWidget *widget, GdkEventButton *event, gpointer func_data) {
+	GtkCList *clist=(GtkCList *)widget;
+	gint row, col, argsize;
+	gchar *fileName;
+	const gchar *program;
+	const gchar *mimeType;
+	gchar *shellcommand;
+	gchar *tempstring;
+	gchar **args;
+
+	if (event->type==GDK_2BUTTON_PRESS) {
+		if (!gtk_clist_get_selection_info(clist, event->x, event->y, &row, &col))
+			return FALSE;
+		
+		gtk_clist_get_text(clist, row, col, &fileName);
+		mimeType=gnome_mime_type_of_file(fileName);
+		program=gnome_mime_program(mimeType);
+		
+		if (program) {
+			args=g_strsplit(program, " ", 255);
+			for (argsize=0; args[argsize] !=NULL; argsize++) {
+				if (!strcmp(args[argsize], "%f")) {
+						g_free(args[argsize]);
+						args[argsize]=g_strdup(fileName);
+				}
+			}
+
+			if (gnome_mime_needsterminal(mimeType, NULL)) {
+				tempstring=g_strjoinv(" ", args);
+				shellcommand=g_strconcat("gnome-terminal#--command=", tempstring, "", NULL);
+				g_print("Test: %s\n",shellcommand);
+				g_strfreev(args);
+				args=g_strsplit(shellcommand, "#", 2);
+				argsize=2;
+				g_free(tempstring);
+				g_free(shellcommand);
+			} 
+
+			gnome_execute_async(NULL, argsize, args);
+			g_strfreev(args);
+		}
+		return TRUE;
+	}
+	 return FALSE;
 }
 
 static int
@@ -60,6 +109,8 @@ outdlg_makedlg(char name[], int clear)
 	gtk_widget_set_usize(w,200,350);
 	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(outdlg)->vbox),w,TRUE,TRUE,0);
 	outlist = gtk_clist_new(1);
+	gtk_signal_connect(GTK_OBJECT(outlist), "button_press_event",
+				GTK_SIGNAL_FUNC(outdlg_double_click),NULL);
 	gtk_container_add(GTK_CONTAINER(w),outlist);
 
 	return TRUE;
