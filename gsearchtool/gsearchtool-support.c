@@ -29,8 +29,8 @@
 #  include <config.h>
 #endif
 
-#include <regex.h>
 #include <glib/gi18n.h>
+#include <regex.h>
 #include <gdk/gdkx.h>
 #include <bonobo-activation/bonobo-activation.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
