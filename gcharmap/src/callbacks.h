@@ -41,5 +41,6 @@ void cb_insert_char_click (GtkWidget *widget, gpointer user_data);
 void cb_paste_click (GtkWidget *widget, gpointer user_data);
 void cb_select_all_click (GtkWidget *widget, gpointer user_data);
 gboolean cb_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data);
+void cb_entry_changed (GtkEditable *editable, gpointer data);
 
 #endif /* _CALLBACKS_H_ */

@@ -246,6 +246,8 @@ main_app_create_ui (MainApp *app)
         app->entry = gtk_entry_new ();
         gtk_label_set_mnemonic_widget (GTK_LABEL (alabel), app->entry);
         gtk_box_pack_start (GTK_BOX (hbox), app->entry, TRUE, TRUE, 0);
+	g_signal_connect (G_OBJECT (GTK_EDITABLE (app->entry)), "changed",
+			  G_CALLBACK (cb_entry_changed), NULL);
         
 	button = gtk_button_new ();
 	if (GTK_BIN (button)->child)
