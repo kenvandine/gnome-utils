@@ -53,9 +53,9 @@ static void revert_defaults_cb(GtkWidget * button, GtkEntry ** entries);
 static void popup_preferences(void);
 static void popup_about(void);
 static void popup_not_in_path(const gchar * command);
-static void popup_confirm();
+static void popup_confirm(void);
 
-static void do_shutdown();
+static void do_shutdown(void);
 static gint check_whether_suid_and_executable (gchar *command_name);
 static void run_command(gchar * command);
 
