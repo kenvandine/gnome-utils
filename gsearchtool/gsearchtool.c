@@ -184,9 +184,9 @@ make_find_cmd (const char *start_dir)
 
 	if(start_dir) {
 		escape_dir = g_strescape(start_dir, NULL);
-		g_string_append_printf(cmdbuf, "find \"%s\" %s ", escape_dir, defoptions);
+		g_string_append_printf(cmdbuf, "exec find \"%s\" %s ", escape_dir, defoptions);
 	} else
-		g_string_append_printf(cmdbuf, "find . %s ", defoptions);
+		g_string_append_printf(cmdbuf, "exec find . %s ", defoptions);
 
 	for(list=criteria_find;list!=NULL;list=g_list_next(list)) {
 		FindOption *opt = list->data;
@@ -285,10 +285,10 @@ make_locate_cmd(void)
 
 	if (locate_command != NULL)
 	{
-		g_string_append_printf (cmdbuf, "%s '%s*%s'", locate_command, locale_locate_path,
+		g_string_append_printf (cmdbuf, "exec %s '%s*%s'", locate_command, locale_locate_path,
 					locale_locate_string);
 	} else {
-		g_string_append_printf (cmdbuf, "find \"%s\" -name '%s' -mount", locale_locate_path, 
+		g_string_append_printf (cmdbuf, "exec find \"%s\" -name '%s' -mount", locale_locate_path, 
 					locale_locate_string);
 	}	
 	g_free (locate_path);
