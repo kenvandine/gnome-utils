@@ -456,6 +456,12 @@ project_list_load(char *fname)
         config_command_null = gnome_config_get_string(GTT"Actions/NullCommand");
         config_logfile_use = gnome_config_get_bool(GTT"LogFile/Use=false");
         config_logfile_name = gnome_config_get_string(GTT"LogFile/Filename");
+	config_logfile_str = gnome_config_get_string(GTT"LogFile/Entry");
+	if (!config_logfile_str)
+		config_logfile_str = g_strdup(_("project %t started"));
+	config_logfile_stop = gnome_config_get_string(GTT"LogFile/EntryStop");
+	if (!config_logfile_stop)
+		config_logfile_stop = g_strdup(_("stopped project %t"));
         config_logfile_min_secs = gnome_config_get_int(GTT"LogFile/MinSecs");
 	for (i = 0; i < GTK_CLIST(glist)->columns; i++) {
 		sprintf(s, GTT"CList/ColumnWidth%d=0", i);
@@ -542,6 +548,15 @@ project_list_save(char *fname)
                 gnome_config_set_string(GTT"LogFile/Filename", config_logfile_name);
         else
                 gnome_config_clean_key(GTT"LogFile/Filename");
+	if (config_logfile_str)
+		gnome_config_set_string(GTT"LogFile/Entry", config_logfile_str);
+	else
+		gnome_config_set_string(GTT"LogFile/Entry", "");
+	if (config_logfile_stop)
+		gnome_config_set_string(GTT"LogFile/EntryStop",
+					config_logfile_stop);
+	else
+		gnome_config_set_string(GTT"LogFile/EntryStop", "");
         gnome_config_set_int(GTT"LogFile/MinSecs", config_logfile_min_secs);
 	for (i = 0; i < GTK_CLIST(glist)->columns; i++) {
 		sprintf(s, GTT"CList/ColumnWidth%d", i);
@@ -676,6 +691,12 @@ cmp_desc(const void *aa, const void *bb)
 {
 	project_list *a = *(project_list **)aa;
 	project_list *b = *(project_list **)bb;
+	if (!a->proj->desc) {
+		return (b->proj->desc == NULL)? 0 : 1;
+	}
+	if (!b->proj->desc) {
+		return -1;
+	}
 	return strcmp(a->proj->desc, b->proj->desc);
 }
 

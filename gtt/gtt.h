@@ -150,7 +150,8 @@ extern int config_show_tb_timer;
 extern int config_show_tb_pref;
 extern int config_show_tb_help;
 extern int config_show_tb_exit;
-extern char *config_command, *config_command_null, *config_logfile_name;
+extern char *config_command, *config_command_null, *config_logfile_name,
+	*config_logfile_str, *config_logfile_stop;
 extern int config_logfile_use, config_logfile_min_secs;
 
 void update_status_bar(void);

@@ -74,6 +74,8 @@ int config_show_tb_exit = 1;
 char *config_command = NULL;
 char *config_command_null = NULL;
 char *config_logfile_name = NULL;
+char *config_logfile_str = NULL;
+char *config_logfile_stop = NULL;
 int config_logfile_use = 0;
 int config_logfile_min_secs = 0;
 

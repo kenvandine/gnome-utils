@@ -1,4 +1,33 @@
 
+Mon Aug 31 00:38:34 CEST 1998
+=============================
+
+* Log file entries can be customized. The start of a project uses the string
+  defined in `Entry Start' in the preferences dialog. The end of a project
+  uses the string in `Entry Stop'. Both strings can include the following
+  macros:
+
+  %t - the project's title
+  %d - the project's description
+  %T - the time ever in H:MM:SS (H = hours, MM = mins, SS = secs)
+  %h - the hours spent on the project today
+  %H - the hours spent on the project today (two digits)
+  %m - the minutes spent on the project today
+  %M - the minutes spent on the project today (00-59)
+  %s - the seconds spent on the project today
+  %S - the seconds spent on the project today (00-59)
+
+  Thus the string `project %t started (%d)' in `Entry Start' would cause the
+  following line to be logged:
+
+  Aug 31 00:39:17 project Project's Title started (Project's Description)
+
+  And the string `stopped project %t (%H:%M:%S)' would append the total time
+  spent on the project today as in `(8:03:51)' (meaning 8 hours, 3 minutes and
+  51 seconds). Alternatively you could specify %m to get 483 minutes (8*60 +
+  3).
+
+
 New since 0.12.0
 ================
 

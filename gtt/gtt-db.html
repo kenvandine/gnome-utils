@@ -1,456 +1,651 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<!--Generated from Docbook 3.0 DTD, dbtohtml.dsl version $Revision$-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
 <HTML
 ><HEAD
+><TITLE
+></TITLE
 ><META
-name="generator"
-content="Generated from Docbook 3.0 DTD, dbtohtml.dsl version $Revision$"><META
-name="ObjectType"
-content="book"><TITLE
->GTimeTracker Documentation</TITLE
-></HEAD
+NAME="CREATOR"
+CONTENT="Modular DocBook HTML Stylesheet version 1.07"><META
+NAME="form"
+CONTENT="html"></HEAD
 ><BODY
-><CENTER
+><DIV
+CLASS="BOOKINFO"
 ><H1
 >GTimeTracker Documentation</H1
 ><H2
->Eckehard Berns <I
-><ADDRESS
-><FONT
-size="-1"
-><BR><P><TT
->eb@berns.prima.de</TT
-></FONT
-></ADDRESS
-></I
 ></H2
-><H4
->&copy; Eckehard Berns 1997 1998</H4
-><H4
-align="left"
->Legal Notice: </H4
+><P
+>by Eckehard Berns</P
+><P
+CLASS="COPYRIGHT"
+>Copyright © 1997, 1998 by Eckehard Berns</P
 ><DIV
-align="left"
-><P>This documentation is free software; you can redistribute
+CLASS="LEGALNOTICE"
+><DIV
+CLASS="LEGALNOTICE"
+><P
+></P
+><P
+>This documentation is free software; you can redistribute
 	it and/or modify it under the terms of the GNU General Public
 	License as published by the Free Software Foundation; either
 	version 2 of the License, or (at your option) any later
-	version.<P>This program is distributed in the hope that it will be
+	version.</P
+><P
+>This program is distributed in the hope that it will be
 	useful, but WITHOUT ANY WARRANTY; without even the implied
 	warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 	PURPOSE.  See the GNU General Public License for more
-	details.<P>You should have received a copy of the GNU General Public
+	details.</P
+><P
+>You should have received a copy of the GNU General Public
 	License along with this program; if not, write to the Free
 	Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-	MA 02111-1307 USA<P>For more details see the file COPYING in the source
-	distribution of GTimeTracker.</DIV
-></CENTER
-><HR
-size="5"><H2
->Contents</H2
-><ul
-><LI><A
-href="#INTRO"
->Chapter 1 - Introduction</A
-><UL
-><LI><A
-href="#FEEDBACK"
+	MA 02111-1307 USA</P
+><P
+>For more details see the file COPYING in the source
+	distribution of GTimeTracker.</P
+></DIV
+></DIV
+></DIV
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>1. <A
+HREF="#INTRO"
+>Introduction</A
+></DT
+><DL
+><DT
+><A
+HREF="#FEEDBACK"
 >Feedback</A
-><LI><A
-href="#WHATIS"
+></DT
+><DT
+><A
+HREF="#WHATIS"
 >What is GTimeTracker</A
-></UL
-><LI><A
-href="#MAIN"
->Chapter 2 - The Main Window</A
-><UL
-><LI><A
-href="#MENUBAR"
+></DT
+></DL
+><DT
+>2. <A
+HREF="#MAIN"
+>The Main Window</A
+></DT
+><DL
+><DT
+><A
+HREF="#MENUBAR"
 >The Menu Bar</A
-><LI><A
-href="#TOOLBAR"
+></DT
+><DL
+><DT
+><A
+HREF="#FILEMENU"
+>The File Menu</A
+></DT
+><DT
+><A
+HREF="#EDITMENU"
+>The Edit Menu</A
+></DT
+><DT
+><A
+HREF="#TIMERMENU"
+>The Timer Menu</A
+></DT
+><DT
+><A
+HREF="#HELPMENU"
+>The Help Menu</A
+></DT
+></DL
+><DT
+><A
+HREF="#TOOLBAR"
 >The Toolbar</A
-><LI><A
-href="#PROJLIST"
+></DT
+><DT
+><A
+HREF="#PROJLIST"
 >The Project List</A
-><LI><A
-href="#STATUSBAR"
+></DT
+><DL
+><DT
+><A
+HREF="#PROJWHAT"
+>What is a Project</A
+></DT
+><DT
+><A
+HREF="#PROJSTATES"
+>The State of a Project</A
+></DT
+><DT
+><A
+HREF="#PROJWORK"
+>Working with the Project List</A
+></DT
+></DL
+><DT
+><A
+HREF="#STATUSBAR"
 >The Status Bar</A
-></UL
-><LI><A
-href="#DIALOGS"
->Chapter 3 - The Dialogs</A
-><UL
-><LI><A
-href="#PREF"
+></DT
+></DL
+><DT
+>3. <A
+HREF="#DIALOGS"
+>The Dialogs</A
+></DT
+><DL
+><DT
+><A
+HREF="#PREF"
 >The Preferences Dialog</A
-><LI><A
-href="#PROP"
+></DT
+><DL
+><DT
+><A
+HREF="#DISPLAY"
+>Display</A
+></DT
+><DT
+><A
+HREF="#SHELLCMD"
+>Shell Commands</A
+></DT
+><DT
+><A
+HREF="#LOGFILE"
+>Logfile</A
+></DT
+><DT
+><A
+HREF="#OK-APPLY-CANCEL"
+>OK, apply and
+	  Cancel</A
+></DT
+></DL
+><DT
+><A
+HREF="#PROP"
 >The Properties Dialog</A
-><LI><A
-href="#NEWPROJ"
+></DT
+><DT
+><A
+HREF="#NEWPROJ"
 >The New Project Dialog</A
-></UL
-><LI><A
-href="#WORKING"
->Chapter 4 - Working with GTimeTracker</A
-><UL
-><LI><A
-href="#TIMER"
+></DT
+></DL
+><DT
+>4. <A
+HREF="#WORKING"
+>Working with GTimeTracker</A
+></DT
+><DL
+><DT
+><A
+HREF="#TIMER"
 >The Internal Timer</A
-></UL
-></ul
+></DT
+></DL
+></DL
+><HR><H1
 ><A
-name="INTRO"
-></A
-><HR
-size="5"><H1
->Chapter 1. Introduction</H1
+NAME="INTRO"
+>Chapter 1. Introduction</A
+></H1
+><HR><H1
 ><A
-name="FEEDBACK"
-></A
-><H2
->Feedback</H2
-><P>Well, I'm german and I find it hard to express myself in
+NAME="FEEDBACK"
+>Feedback</A
+></H1
+><P
+>Well, I'm german and I find it hard to express myself in
 	english. So if you find some phrases and/or words that I used
 	in a wrong way (and you will find them :-) ), please send me a
 	mail, to let me correct this. Please send me notes about
-	typos, too.<P>And I would like to hear about your opionion on
+	typos, too.</P
+><P
+>And I would like to hear about your opionion on
 	GTimeTracker. Maybe you want some features to be integrated in
 	GTimeTracker. Or you have discovered a bug. Or you think, that
 	the user interface needs a change in some way. Just send me a
 	mail, and I will see, what I can do for you. I want to make
-	this tool usable and usefull for everyone.<A
-name="WHATIS"
-></A
-><H2
->What is GTimeTracker</H2
-><P>Basically GTimeTracker is just a tool to measure the time,
+	this tool usable and usefull for everyone.</P
+><HR><H1
+><A
+NAME="WHATIS"
+>What is GTimeTracker</A
+></H1
+><P
+>Basically GTimeTracker is just a tool to measure the time,
 	you let a given <I
+CLASS="EMPHASIS"
 >project</I
 > (see <A
-href="#PROJWHAT"
->What is a Project</A
+HREF="#PROJWHAT"
+>the section called <I
+>What is a Project</I
+> in Chapter 2</A
 >)
 	in a <I
+CLASS="EMPHASIS"
 >selected</I
 > state (see <A
-href="#PROJSTATES"
->The State of a Project</A
+HREF="#PROJSTATES"
+>the section called <I
+>The State of a Project</I
+> in Chapter 2</A
 >).
 	GTimeTracker isn't espacially smart at this. You, the user,
 	will have to give GTimeTracker hints about what you're
 	currently wanting to measure or it will not display reasonable
-	values.<P>But when one has learned to use GTimeTracker effectively,
+	values.</P
+><P
+>But when one has learned to use GTimeTracker effectively,
 	it can be of great help. For example you can use it to
 	optimize your work. It can show you, that you are spending to
 	much time on unimportent tasks. Or it can exactly count the
-	hours you spend on a project, that is payed for by time. You
+	hours you spend on a project, that is paid for by time. You
 	may discover many other ways, GTimeTracker can work for
-	you.<A
-name="MAIN"
-></A
-><HR
-size="5"><H1
->Chapter 2. The Main Window</H1
-><P>The main window consists of four areas. There is a menu bar
+	you.</P
+><HR><H1
+><A
+NAME="MAIN"
+>Chapter 2. The Main Window</A
+></H1
+><P
+>The main window consists of four areas. There is a menu bar
       (see <A
-href="#MENUBAR"
->The Menu Bar</A
+HREF="#MENUBAR"
+>the section called <I
+>The Menu Bar</I
+></A
 >), a toolbar (see <A
-href="#TOOLBAR"
->The Toolbar</A
+HREF="#TOOLBAR"
+>the section called <I
+>The Toolbar</I
+></A
 >), a status bar at the bottom of the window
       (see <A
-href="#STATUSBAR"
->The Status Bar</A
+HREF="#STATUSBAR"
+>the section called <I
+>The Status Bar</I
+></A
 >), and a scrollable area where
       all your projects will be displayed (see <A
-href="#PROJLIST"
->The Project List</A
+HREF="#PROJLIST"
+>the section called <I
+>The Project List</I
+></A
 >). When you start GTimeTracker for the
       first time, this area will show just one project, which is
-      titled "empty".<P>Note that you can customize the look of the main window in
+      titled "empty".</P
+><P
+>Note that you can customize the look of the main window in
       the preferences dialog (see <A
-href="#PREF"
->The Preferences Dialog</A
+HREF="#PREF"
+>the section called <I
+>The Preferences Dialog</I
+> in Chapter 3</A
 >), so not all these
       areas might show up after you have played around with
       GTimeTracker a bit. You can allways enable missing areas in the
-      preferences dialog.<A
-name="MENUBAR"
-></A
-><H2
->The Menu Bar</H2
-><P>The menu bar is located at the top of the window by default. You
-      can change the location of the menu bar in numerouse ways. This
+      preferences dialog.</P
+><HR><H1
+><A
+NAME="MENUBAR"
+>The Menu Bar</A
+></H1
+><P
+>The menu bar is located at the top of the window by default. You
+      can change the location of the menu bar in numerous ways. This
       customization of the menu bar is subject of the GNOME global
-      documentation and not covered here.<P>Nearly all menu items in GTimeTracker have a shortcut (or
+      documentation and not covered here.</P
+><P
+>Nearly all menu items in GTimeTracker have a shortcut (or
       accelerator key). Those key sequences are shown behind the name of the
       function. If for example you want to activate the function
       <TT
+CLASS="LITERAL"
 >New Project...</TT
 > from the <TT
+CLASS="LITERAL"
 >File</TT
 > menu, you can just
       hold down the <TT
+CLASS="LITERAL"
 >Control</TT
 > key and press the <TT
+CLASS="LITERAL"
 >N</TT
 > key. In
       the menu this is shown as <TT
+CLASS="LITERAL"
 >Ctl+N</TT
->.<P>The menu bar consists of four menus: <TT
+>.</P
+><P
+>The menu bar consists of four menus: <TT
+CLASS="LITERAL"
 >File</TT
 >,
       <TT
+CLASS="LITERAL"
 >Edit</TT
 >, <TT
+CLASS="LITERAL"
 >Timer</TT
 > and <TT
+CLASS="LITERAL"
 >Help</TT
 >. I will describe
-      these menus in the following sections.<A
-name="FILEMENU"
-></A
-><H3
->The <TT
->File</TT
-> Menu</H3
-><P>In the <TT
+      these menus in the following sections.</P
+><HR><H2
+><A
+NAME="FILEMENU"
+>The File Menu</A
+></H2
+><P
+>In the <TT
+CLASS="LITERAL"
 >File</TT
 > menu you will find the functions dealing
 	with the configuration file -- <TT
+CLASS="LITERAL"
 >$HOME/.gnome/gtt</TT
 >.
 	In addition there is a function to quit GTimeTracker. I have also
 	put the <TT
+CLASS="LITERAL"
 >New Project...</TT
 > funtion there. This is mainly
 	because nearly all software has a <I
+CLASS="EMPHASIS"
 >new</I
 > function in the
 	<TT
+CLASS="LITERAL"
 >File</TT
 > menu and that's the place I would search for
-	it.<A
-name="FILEMENU-NEWPROJ"
-></A
-><H4
-><TT
->New Project...</TT
-></H4
-><P>This function shows the <I
+	it.</P
+><HR><H3
+><A
+NAME="FILEMENU-NEWPROJ"
+>New Project...</A
+></H3
+><P
+>This function shows the <I
+CLASS="EMPHASIS"
 >New Project Dialog</I
 >. Have
 	  a look at <A
-href="#NEWPROJ"
->The New Project Dialog</A
-> for more info.<A
-name="FILEMENU-RC"
-></A
-><H4
-><TT
->Reload</TT
-> and <TT
->Save Configuration
-	      File</TT
-></H4
-><P>Okay, let's have a look at the functions dealing with the
-	  configuration file. The configuration file holds infos about your
+HREF="#NEWPROJ"
+>the section called <I
+>The New Project Dialog</I
+> in Chapter 3</A
+> for more info.</P
+><HR><H3
+><A
+NAME="FILEMENU-RC"
+>Reload and Save Configuration
+	      File</A
+></H3
+><P
+>Okay, let's have a look at the functions dealing with the
+	  configuration file. The configuration file holds info about your
 	  preferences (see <A
-href="#PREF"
->The Preferences Dialog</A
+HREF="#PREF"
+>the section called <I
+>The Preferences Dialog</I
+> in Chapter 3</A
 >) and about your list of
 	  projects (see <A
-href="#PROJLIST"
->The Project List</A
+HREF="#PROJLIST"
+>the section called <I
+>The Project List</I
+></A
 >). The functions are
 	  <TT
+CLASS="LITERAL"
 >Reload Configuration File</TT
 > and <TT
+CLASS="LITERAL"
 >Save
 	  Configuration File</TT
->.<P>The configuration file will be saved every time,
-	  GTimeTracker exits. I have made some effort, to verify that this
+>.</P
+><P
+>The configuration file will be saved every time,
+	  GTimeTracker exits. I have made some effort to verify that this
 	  file will be updated even in case of program aborts. So there
 	  should be no need to save the configuration file for safety
-	  purpose. But you might want to rearrange your projects a bit. You
+	  purposes. But you might want to rearrange your projects a bit. You
 	  may want to save the current state of the projects just to make
-	  sure you cannot delete a project by accident.<P>In case you made some mistakes you can then use the
+	  sure you cannot delete a project by accident.</P
+><P
+>In case you made some mistakes you can then use the
 	  <TT
+CLASS="LITERAL"
 >Reload Configuration File</TT
 > function. You will be
 	  asked, if you really want to discard your current set of projects.
 	  Just press <TT
+CLASS="LITERAL"
 >OK</TT
->, if you really ment to reload the old
+>, if you really meant to reload the old
 	  configuration file. If you activated this function by accident,
 	  you can press <TT
+CLASS="LITERAL"
 >Cancel</TT
->.<A
-name="FILEMENU-QUIT"
-></A
-><H4
-><TT
->Quit</TT
-></H4
-><P>This function just quits GTimeTracker. The configuration
+>.</P
+><HR><H3
+><A
+NAME="FILEMENU-QUIT"
+>Quit</A
+></H3
+><P
+>This function just quits GTimeTracker. The configuration
 	  file with your current list of projects will automatically be
-	  saved.<A
-name="EDITMENU"
-></A
-><H3
+	  saved.</P
+><HR><H2
+><A
+NAME="EDITMENU"
+>The Edit Menu</A
+></H2
+><P
 >The <TT
->Edit</TT
-> Menu</H3
-><P>The <TT
+CLASS="LITERAL"
 >Edit</TT
 > menu holds all the functions to edit the
 	project list. In addition there is a menu item to activate the
 	<I
+CLASS="EMPHASIS"
 >preferences dialog</I
->.<A
-name="EDITMENU-CUT"
-></A
-><H4
-><TT
->Cut</TT
->, <TT
->Copy</TT
-> and
-	    <TT
->Paste</TT
-></H4
-><P>These functions are usefull to rearrange your project list.
+>.</P
+><HR><H3
+><A
+NAME="EDITMENU-CUT"
+>Cut, Copy and
+	    Paste</A
+></H3
+><P
+>These functions are usefull to rearrange your project list.
 	  You can use <TT
+CLASS="LITERAL"
 >Cut</TT
 > to remove projects from the list. But
-	  these cutted projects aren't discarted right away. You can use
+	  these cut projects aren't discarded right away. You can use
 	  <TT
+CLASS="LITERAL"
 >Paste</TT
 > to insert a <I
->cutted</I
+CLASS="EMPHASIS"
+>cut</I
 > or <I
+CLASS="EMPHASIS"
 >copied</I
 >
 	  project either before the current selected project, or, if no
 	  project is selected, at the bottom of your project list. The
 	  <TT
+CLASS="LITERAL"
 >Copy</TT
 > function does the same as the <TT
+CLASS="LITERAL"
 >Cut</TT
 >
-	  function, but will not remove the project from the list.<P>Note that there is only room for <I
+	  function, but will not remove the project from the list.</P
+><P
+>Note that there is only room for <I
+CLASS="EMPHASIS"
 >one</I
 > project to
 	  be <I
->cutted</I
+CLASS="EMPHASIS"
+>cut</I
 > or <I
+CLASS="EMPHASIS"
 >copied</I
 >. If you cut or copy
 	  another project, before <I
+CLASS="EMPHASIS"
 >pasting</I
 > the previous one, that
-	  project will be lost forever.<P>On the other hand it is possible to paste a cutted or copied
-	  project multiple times.<A
-name="EDITMENU-CDC"
-></A
-><H4
-><TT
->Clear daily counters...</TT
-></H4
-><P>This function is a quick way to clear the daily counter of
+	  project will be lost forever.</P
+><P
+>On the other hand it is possible to paste a cut or copied
+	  project multiple times.</P
+><HR><H3
+><A
+NAME="EDITMENU-CDC"
+>Clear daily counters...</A
+></H3
+><P
+>This function is a quick way to clear the daily counter of
 	  the currenly selected project. You can use it if you don't care
 	  about the real daily counter, but want to count the time of a
 	  process more than once (maybe to see how long your current PPP
 	  connection to the internet lasts). The global timer is not
-	  affected.<A
-name="EDITMENU-PROP"
-></A
-><H4
-><TT
->Properties...</TT
-></H4
-><P>This function shows the <I
+	  affected.</P
+><HR><H3
+><A
+NAME="EDITMENU-PROP"
+>Properties...</A
+></H3
+><P
+>This function shows the <I
+CLASS="EMPHASIS"
 >properties dialog</I
 >, or, if
-	  it is allready shown, updates its contents. See <A
-href="#PROP"
->The Properties Dialog</A
-> for more details.<A
-name="EDITMENU-PREF"
-></A
-><H4
-><TT
->Preferences...</TT
-></H4
-><P>This function shows the <I
+	  it is already shown, updates its contents. See <A
+HREF="#PROP"
+>the section called <I
+>The Properties Dialog</I
+> in Chapter 3</A
+> for more details.</P
+><HR><H3
+><A
+NAME="EDITMENU-PREF"
+>Preferences...</A
+></H3
+><P
+>This function shows the <I
+CLASS="EMPHASIS"
 >preferences dialog</I
 >. See
 	  <A
-href="#PREF"
->The Preferences Dialog</A
-> for more details.<A
-name="TIMERMENU"
-></A
-><H3
+HREF="#PREF"
+>the section called <I
+>The Preferences Dialog</I
+> in Chapter 3</A
+> for more details.</P
+><HR><H2
+><A
+NAME="TIMERMENU"
+>The Timer Menu</A
+></H2
+><P
 >The <TT
->Timer</TT
-> Menu</H3
-><P>The <TT
+CLASS="LITERAL"
 >Timer</TT
 > menu lets you start and stop the internal
 	timer (see <A
-href="#TIMER"
->The Internal Timer</A
+HREF="#TIMER"
+>the section called <I
+>The Internal Timer</I
+> in Chapter 4</A
 > and <A
-href="#PROJSTATES"
->The State of a Project</A
->).<P>You can start the timer by activating <TT
+HREF="#PROJSTATES"
+>the section called <I
+>The State of a Project</I
+></A
+>).</P
+><P
+>You can start the timer by activating <TT
+CLASS="LITERAL"
 >Start</TT
 >.
 	<TT
+CLASS="LITERAL"
 >Stop</TT
 > will stop the timer. And you can toggle the state of
 	the timer with <TT
+CLASS="LITERAL"
 >Timer running</TT
 >. Having all these functions
 	in the menu may seem bogus, but it is usefull when using the
-	accelerator keys.<A
-name="HELPMENU"
-></A
-><H3
+	accelerator keys.</P
+><HR><H2
+><A
+NAME="HELPMENU"
+>The Help Menu</A
+></H2
+><P
 >The <TT
->Help</TT
-> Menu</H3
-><P>The <TT
+CLASS="LITERAL"
 >Help</TT
 > menu has some starting points to this help
 	system. If unsure, just select the menu item <TT
+CLASS="LITERAL"
 >Manual</TT
 > to get
-	to the table of contents.<P>Besides these there is a menu item called <TT
+	to the table of contents.</P
+><P
+>Besides these there is a menu item called <TT
+CLASS="LITERAL"
 >About...</TT
 >.
 	This function will popup the <I
+CLASS="EMPHASIS"
 >about dialog</I
 >. Just press
 	<TT
+CLASS="LITERAL"
 >Close</TT
-> to get rid of it...<A
-name="TOOLBAR"
-></A
-><H2
->The Toolbar</H2
-><P>Each item in the toolbar activates a menu item. So besides the
+> to get rid of it...</P
+><HR><H1
+><A
+NAME="TOOLBAR"
+>The Toolbar</A
+></H1
+><P
+>Each item in the toolbar activates a menu item. So besides the
       menu itself and the shotcut (or accelerator key), I described above,
       you can use the toolbar items as a third way of executing a given
-      function.<P>Since the toolbar is highly configurable, I won't describe all
+      function.</P
+><P
+>Since the toolbar is highly configurable, I won't describe all
       icons. You can enable the <I
+CLASS="EMPHASIS"
 >tool tips</I
 > in the
       <I
+CLASS="EMPHASIS"
 >preferences dialog</I
 > (they are enabled by default) and hold
       the mouse pointer over an icon. After a short time a tool tip will be
@@ -458,331 +653,538 @@ name="TOOLBAR"
       toolbar texts, a (very) short describing text will be displayed in
       each toolbar button.
 
-    <A
-name="PROJLIST"
-></A
-><H2
->The Project List</H2
+    </P
+><HR><H1
 ><A
-name="PROJWHAT"
-></A
-><H3
->What is a Project</H3
-><P>A project consists of the following:<P><UL
-><LI><P>Each project has a title, that is displayed
-	      in the project list<P><LI><P>There is a <I
+NAME="PROJLIST"
+>The Project List</A
+></H1
+><HR><H2
+><A
+NAME="PROJWHAT"
+>What is a Project</A
+></H2
+><P
+>A project consists of the following:</P
+><P
+></P
+><UL
+><LI
+><P
+>Each project has a title, that is displayed
+	      in the project list</P
+></LI
+><LI
+><P
+>There is a <I
+CLASS="EMPHASIS"
 >daily</I
 > timer, which
 	      will be automatically reset on a new day, and which you
-	      can zero as you please. This is the timer, that will be
-	      displayed in the project list.<P><LI><P>Another timer holds the total time this
-	      project has been worked on.<P><LI><P>I have included a description of the
-	      project. You can use it to specify the project some
-	      more.<P></UL
+	      can zero as you please. This is the timer that will be
+	      displayed in the project list.</P
+></LI
+><LI
+><P
+>Another timer holds the total time this
+	      project has been worked on.</P
+></LI
+><LI
+><P
+>I have included a description of the
+	      project.</P
+></LI
+></UL
+><HR><H2
 ><A
-name="PROJSTATES"
-></A
-><H3
->The State of a Project</H3
-><P>Basically a project has just two states. Selected or
+NAME="PROJSTATES"
+>The State of a Project</A
+></H2
+><P
+>Basically a project has just two states. Selected or
 	  unselected. You can only select one project at a time. An
-	  unselected project is just that &#8212; unselected. But there are
+	  unselected project is just that, unselected. But there are
 	  other values that affect the handling of a selected
-	  project.<P>E.g. there is the timer (see <A
-href="#TIMER"
->The Internal Timer</A
+	  project.</P
+><P
+>E.g. there is the timer (see <A
+HREF="#TIMER"
+>the section called <I
+>The Internal Timer</I
+> in Chapter 4</A
 >).
-	  The time of a selected project will only be counted, when
+	  The time of a selected project will only be counted when
 	  the timer is running. This gives us a third state of a
 	  project. Here is a list of states and what happens to a
-	  project in each state:<P><DL
-><DT>The project is <I
+	  project in each state:</P
+><P
+></P
+><DL
+><DT
+>The project is <I
+CLASS="EMPHASIS"
 >not</I
-> selected<DD><P>There is no time measuring or other
-		effect.<P><DT>The project is selected and the timer is running.<DD><P>In that state, the time is measured for
+> selected<DD
+><P
+>There is no time measuring or other
+		effect.</P
+></DD
+></DT
+><DT
+>The project is selected and the timer is running.<DD
+><P
+>In that state, the time is measured for
 		the given project. In addition there will be a log
 		file entry for that project (if log files are enabled
 		- see <A
-href="#LOGFILE"
->Logfile</A
+HREF="#LOGFILE"
+>the section called <I
+>Logfile</I
+> in Chapter 3</A
 >), and the shell command
 		is executed (see <A
-href="#SHELLCMD"
->Shell Commands</A
->).<P><DT>The project is selected but the timer is
-	      stopped.<DD><P>The time will not be measured, and there
+HREF="#SHELLCMD"
+>the section called <I
+>Shell Commands</I
+> in Chapter 3</A
+>).</P
+></DD
+></DT
+><DT
+>The project is selected but the timer is
+	      stopped.<DD
+><P
+>The time will not be measured, and there
 		is no entry in the log file. But the shell command has
-		been run and is not beeing canceled.<P></DL
-><P>This might be confusing the first time, but you can
+		been run and is not beeing canceled.</P
+></DD
+></DT
+></DL
+><P
+>This might be confusing the first time, but you can
 	  benefit from this. E.g. I use the shell command (see <A
-href="#SHELLCMD"
->Shell Commands</A
+HREF="#SHELLCMD"
+>the section called <I
+>Shell Commands</I
+> in Chapter 3</A
 >) to update my <TT
+CLASS="LITERAL"
 >.project</TT
 > file.
 	  When I'm not really working on a project (e.g. because I'm
 	  just away to get me a new coffee or something), I can leave
 	  the <TT
+CLASS="LITERAL"
 >.project</TT
 > file alone, but don't have to count
-	  the time.<A
-name="PROJWORK"
-></A
-><H3
->Working with the Project List</H3
-><P>The project list is displayed in the main area of the
+	  the time.</P
+><HR><H2
+><A
+NAME="PROJWORK"
+>Working with the Project List</A
+></H2
+><P
+>The project list is displayed in the main area of the
 	  main window. It shows what projects are in the list, and
 	  which project currently is selected. One line reflects one
 	  project. The <I
+CLASS="EMPHASIS"
 >daily</I
 > time and the title of the
-	  project are displayed.<P>You can select a project by clicking on it with the left
+	  project are displayed.</P
+><P
+>You can select a project by clicking on it with the left
 	  mouse button. Pressing the left mouse button again on a
 	  selected project deselects it. This is the way to mark all
-	  projects as unselected.<P>To get a popup menu for a project, you have to press and
+	  projects as unselected.</P
+><P
+>To get a popup menu for a project, you have to press and
 	  hold the right mouse button on it. If the project wasn't
 	  selected, it will now receive the selection, and the popup
 	  menu will be displayed. The popup menu consists of the menu
 	  items of the <TT
+CLASS="LITERAL"
 >Edit</TT
 > menu, which deal with projects.
 	  Thus it is just a replacement for selecting a project and
 	  then using the <TT
+CLASS="LITERAL"
 >Edit</TT
-> menu.<A
-name="STATUSBAR"
-></A
-><H2
->The Status Bar</H2
-><P>The status bar displays the sum of all preject's daily time. If
-      you didn't zero a daily counter, that reflects the total time, you
-      have worked on your projects today.<P>The second field holds the title of the currently selected
-      project.<P>The status bar helps to have a better info about the state
+> menu.</P
+><HR><H1
+><A
+NAME="STATUSBAR"
+>The Status Bar</A
+></H1
+><P
+>The status bar displays the sum of all preject's daily time. If
+      you didn't zero a daily counter, that reflects the total time you
+      have worked on your projects today.</P
+><P
+>The second field holds the title of the currently selected
+      project.</P
+><P
+>The status bar helps to have a better info about the state
 	of a project I was blabbering about in <A
-href="#PROJSTATES"
->The State of a Project</A
+HREF="#PROJSTATES"
+>the section called <I
+>The State of a Project</I
+></A
 >. You know exactly if there is
 	currently no selected project, even if the internal timer is
 	running (which is reflected by the icon in the
 	<I
+CLASS="EMPHASIS"
 >Start/Stop Timer</I
-> toolbar item).<A
-name="DIALOGS"
-></A
-><HR
-size="5"><H1
->Chapter 3. The Dialogs</H1
+> toolbar item).</P
+><HR><H1
 ><A
-name="PREF"
-></A
-><H2
->The Preferences Dialog</H2
-><P>The <I
+NAME="DIALOGS"
+>Chapter 3. The Dialogs</A
+></H1
+><HR><H1
+><A
+NAME="PREF"
+>The Preferences Dialog</A
+></H1
+><P
+>The <I
+CLASS="EMPHASIS"
 >preferences dialog</I
 > has two <I
+CLASS="EMPHASIS"
 >notebooks</I
 >.
       
-      <A
-name="DISPLAY"
-></A
-><H3
->Display</H3
-><P>You can select, what GTimeTracker should display in the
-	  main window, here.<P><DL
-><DT><TT
+      </P
+><HR><H2
+><A
+NAME="DISPLAY"
+>Display</A
+></H2
+><P
+>You can select, what GTimeTracker should display in the
+	  main window, here.</P
+><P
+></P
+><DL
+><DT
+><TT
+CLASS="LITERAL"
 >Show Seconds</TT
-><DD><P>You can tell GTimeTracker, if you want the
+><DD
+><P
+>You can tell GTimeTracker, if you want the
 		seconds to be displayed in the project list. If
 		seconds are shown, the time displayed in the project
 		list looks like <TT
+CLASS="LITERAL"
 >00:12:47</TT
 >
 		(hours:minutes:seconds). If not, you just see
 		<TT
+CLASS="LITERAL"
 >00:12</TT
-> (hours:minutes).<P><DT><TT
->Show Toolbar Icons</TT
+> (hours:minutes).</P
+></DD
+></DT
+><DT
 ><TT
+CLASS="LITERAL"
+>Show Toolbar Icons</TT
+>, <TT
+CLASS="LITERAL"
 >Show Toolbar Texts</TT
-><DD><P>If you're using a GNOME version of
+><DD
+><P
+>If you're using a GNOME version of
 		GTimeTracker, you can select how the toolbar should
-		look. You can chosse to display icons and/or a
-		text.<P><DT><TT
+		look. You can chosse to display icons and/or
+		text.</P
+></DD
+></DT
+><DT
+><TT
+CLASS="LITERAL"
 >Show Status Bar</TT
-><DD><P>Just choose, if you want the status bar to
-		be displayed.<P></DL
+><DD
+><P
+>Switch the status bar on or off.</P
+></DD
+></DT
+></DL
+><HR><H2
 ><A
-name="SHELLCMD"
-></A
-><H3
->Shell Commands</H3
-><P><DL
-><DT><TT
+NAME="SHELLCMD"
+>Shell Commands</A
+></H2
+><P
+></P
+><DL
+><DT
+><TT
+CLASS="LITERAL"
 >Switch Project Command</TT
-><DD><P>This shell command will be executed every
+><DD
+><P
+>This shell command will be executed every
 		time you select a project, which was previously
 		unselected. If you use <TT
+CLASS="LITERAL"
 >%s</TT
 > in this command,
 		GTimeTracker will replace that by the title of the
 		selected project. I use the following entry to update
 		my <TT
+CLASS="LITERAL"
 >.project</TT
-> file:<PRE
+> file:</P
+><P
+CLASS="LITERALLAYOUT"
 ><TT
->echo '%s' &#62;~/.project</TT
-></PRE
-><P><DT><TT
+CLASS="USERINPUT"
+><B
+>echo '%s' &#62;~/.project</B
+></TT
+></P
+></DD
+></DT
+><DT
+><TT
+CLASS="LITERAL"
 >No Project Command</TT
-><DD><P>This shell command will be executed every
+><DD
+><P
+>This shell command will be executed every
 		time you deselect a project or if you exit
 		GTimeTracker. To complete the example above, I use
-		this command:<PRE
+		this command:</P
+><P
+CLASS="LITERALLAYOUT"
 ><TT
->rm -f ~/.project</TT
-></PRE
-><P></DL
+CLASS="USERINPUT"
+><B
+>rm -f ~/.project</B
+></TT
+></P
+></DD
+></DT
+></DL
+><HR><H2
 ><A
-name="LOGFILE"
-></A
-><H3
->Logfile</H3
-><P><DL
-><DT><TT
+NAME="LOGFILE"
+>Logfile</A
+></H2
+><P
+></P
+><DL
+><DT
+><TT
+CLASS="LITERAL"
 >Use Logfile</TT
-><DD><P>You have to enable this, if you want a
-		logfile.<P><DT><TT
+><DD
+><P
+>You have to enable this, if you want a
+		logfile.</P
+></DD
+></DT
+><DT
+><TT
+CLASS="LITERAL"
 >Filename</TT
-><DD><P>Give a filename for the logfile.
+><DD
+><P
+>Give a filename for the logfile.
 		GTimeTracker currently does not replace
 		<TT
+CLASS="LITERAL"
 >$HOME</TT
 > or <TT
+CLASS="LITERAL"
 >~</TT
 >. You should give the
-		complete path to the logfile.<P><DT><TT
+		complete path to the logfile.</P
+></DD
+></DT
+><DT
+><TT
+CLASS="LITERAL"
 >Timeout in secs</TT
-><DD><P>This value represents the minimum time a
+><DD
+><P
+>This value represents the minimum time a
 		project has to be selected, before it will be logged.
 		This is usefull, when you don't want any small task to
 		be logged, or when you clicked on the wrong project
 		first. Let's say, you just wanted to start working on
 		a letter to your friend Joe (so you selected the
 		project <I
+CLASS="EMPHASIS"
 >Letter to Joe</I
 >), but that reminds
 		you, that you have to prepare a list of Christmas
 		presents first (Joe has asked you to give him some
 		good ideas). So you switch to the project
 		<I
->X-Mas presents</I
+CLASS="EMPHASIS"
+>Xmas presents</I
 >. You wouldn't want the
 		project <I
+CLASS="EMPHASIS"
 >Letter to Joe</I
 > to be in your
 		logfile, because you didn't really start it yet. I
 		would suggest you set this value at least to 10
-		seconds.<P></DL
-><P>Note that a project will not get logged, before you
+		seconds.</P
+></DD
+></DT
+></DL
+><P
+>Note that a project will not get logged, before you
 	  either quit GTimeTracker, switch to another project, or
 	  deselct that project. So don't be confused when you look at
 	  your logfile and your current project still isn't listed,
-	  even if it is running since two hours.<A
-name="OK-APPLY-CANCEL"
-></A
-><H3
-><TT
->OK</TT
->, <TT
->apply</TT
-> and
+	  even if it is running since two hours.</P
+><HR><H2
+><A
+NAME="OK-APPLY-CANCEL"
+>OK, apply and
+	  Cancel</A
+></H2
+><P
+>If you are pleased with the values of the dialog, press
 	  <TT
->Cancel</TT
-></H3
-><P>If you are pleased with the values of the dialog, press
-	  <TT
+CLASS="LITERAL"
 >OK</TT
 > to make them active and have the dialog go
-	  away.<P>If you want to apply these values just for a given task
+	  away.</P
+><P
+>If you want to apply these values just for a given task
 	  and plan to reopen the dialog again, you can press on
 	  <TT
+CLASS="LITERAL"
 >Apply</TT
 > to activate the values. But the dialog will
-	  remain open.<P>If you don't want to change to working values, you just
+	  remain open.</P
+><P
+>If you don't want to change to working values, you just
 	  press <TT
+CLASS="LITERAL"
 >Cancel</TT
 >. That will close the dialog, but will
-	  not change the behavier of GTimeTracker in any way. I
+	  not change the behaviour of GTimeTracker in any way. I
 	  recommend using <TT
+CLASS="LITERAL"
 >Cancel</TT
 > even if you didn't change
-	  anything.<A
-name="PROP"
-></A
-><H2
->The Properties Dialog</H2
-><P>This dialog shows you all values that are internally
-	stored with a project.<P>Note that this is the only way to examine the overall time
-	yet.<P><DL
-><DT><TT
+	  anything.</P
+><HR><H1
+><A
+NAME="PROP"
+>The Properties Dialog</A
+></H1
+><P
+>This dialog shows you all values that are internally
+	stored with a project.</P
+><P
+>Note that this is the only way to examine the overall time
+	at the moment.</P
+><P
+></P
+><DL
+><DT
+><TT
+CLASS="LITERAL"
 >Project Title</TT
-><DD><P>You can change the title of a project
-	      here.<P><DT><TT
+><DD
+><P
+>You can change the title of a project
+	      here.</P
+></DD
+></DT
+><DT
+><TT
+CLASS="LITERAL"
 >Project Description</TT
-><DD><P>You can give the project a more detailed
+><DD
+><P
+>You can give the project a more detailed
 	      description if you like. Up to now this value will never
-	      be used by GTimeTracker<P><DT><TT
+	      be used by GTimeTracker</P
+></DD
+></DT
+><DT
+><TT
+CLASS="LITERAL"
 >Project Time today</TT
-><DD><P>This is the <I
+><DD
+><P
+>This is the <I
+CLASS="EMPHASIS"
 >daily</I
 > time, you
 	      worked on the project today. You can edit this time
-	      here.<P><DT><TT
->Project Time ever</TT
-><DD><P>This is the <I
->total</I
-> time, you
-	      worked on a project. You can edit this time here.<P></DL
-><P>See <A
-href="#OK-APPLY-CANCEL"
+	      here.</P
+></DD
+></DT
+><DT
 ><TT
->OK</TT
->, <TT
->apply</TT
-> and
-	  <TT
->Cancel</TT
+CLASS="LITERAL"
+>Project Time ever</TT
+><DD
+><P
+>This is the <I
+CLASS="EMPHASIS"
+>total</I
+> time you
+	      worked on a project. You can edit this time here.</P
+></DD
+></DT
+></DL
+><P
+>See <A
+HREF="#OK-APPLY-CANCEL"
+>the section called <I
+>OK, apply and
+	  Cancel</I
 ></A
 > for the meaning of
 	the buttons at the bottom of the dialog.
-    <A
-name="NEWPROJ"
-></A
-><H2
->The New Project Dialog</H2
-><P>This dialog is fairly small. It just wants to know, how
-	you want to entitle the new project. Just enter a title of the
+    </P
+><HR><H1
+><A
+NAME="NEWPROJ"
+>The New Project Dialog</A
+></H1
+><P
+>This dialog is fairly small. It just wants to know, what
+	you want to call the new project. Just enter a title of the
 	new project and press <TT
+CLASS="LITERAL"
 >OK</TT
 >, if you are satisfied. Or
 	press <TT
+CLASS="LITERAL"
 >Cancel</TT
 > if you changed your mind and don't want
-	GTimeTracker to add a new project.<A
-name="WORKING"
-></A
-><HR
-size="5"><H1
->Chapter 4. Working with GTimeTracker</H1
-><P>I haven't
+	GTimeTracker to add a new project.</P
+><HR><H1
+><A
+NAME="WORKING"
+>Chapter 4. Working with GTimeTracker</A
+></H1
+><P
+>I haven't
       finished this chapter yet. I just include it here to
 	      make my SGML parser happy about the links to the
-	      sections here.<A
-name="TIMER"
-></A
-><H2
->The Internal Timer</H2
-><P>This section isn't finished yet.</BODY
+	      sections here.</P
+><HR><H1
+><A
+NAME="TIMER"
+>The Internal Timer</A
+></H1
+><P
+>This section isn't finished yet.</P
+></BODY
 ></HTML
 >

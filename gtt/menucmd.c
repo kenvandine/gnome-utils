@@ -50,7 +50,7 @@ about_box(GtkWidget *w, gpointer data)
         about = gnome_about_new(APP_NAME,
                                 VERSION,
                                 "Copyright (C) 1997,98 Eckehard Berns",
-                                authors,
+                                (const gchar **)authors,
 #ifdef DEBUG
                                 __DATE__ ", " __TIME__,
 #else
