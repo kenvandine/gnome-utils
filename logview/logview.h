@@ -19,20 +19,13 @@
 
     ---------------------------------------------------------------------- */
 
-#include <time.h>
-#include "gtk/gtk.h"
-#include <stdio.h>
-
 #ifndef __LOGVIEW_H__
 #define __LOGVIEW_H__
 
-/* #define DEBUG 1 */
-
-#ifdef DEBUG
-#define DB(x) x
-#else
-#define DB(x) while (0) { ; }
-#endif
+#include <time.h>
+#include "gtk/gtk.h"
+#include <stdio.h>
+#include <gconf/gconf-client.h>
 
 #define LOG_LINESEP              15
 
@@ -67,9 +60,6 @@
  *    `----------'
  */
 
-typedef void (*MenuCallback) (GtkWidget * widget, gpointer user_data);
-typedef struct __menu_item MenuItem;
-
 /* for the search results */
 enum {
 	LOGVIEW_WINDOW_OUTPUT_WINDOW_NONE,
@@ -82,14 +72,6 @@ typedef struct
   char *regexp_db_path, *descript_db_path, *action_db_path;
 
 } ConfigData;
-
-struct __menu_item
-{
-   char *name;
-   char accel;
-   MenuCallback callback;
-   MenuItem *submenu;
-};
 
 struct __datemark
 {
@@ -203,20 +185,55 @@ Log;
  *    `---------------------'
  */
 
-void ShowErrMessage (const char *msg);
-void QueueErrMessages (gboolean do_queue);
-void ShowQueuedErrMessages (void);
 ConfigData *CreateConfig(void);
-int repaint_zoom (void);
-void MoveToMark (Log *log);
-CalendarData* init_calendar_data (void);
-int RepaintCalendar (GtkWidget * widget, GdkEventExpose * event);
-int read_descript_db (char *filename, GList **db);
-int find_tag_in_db (LogLine *line, GList *db);
 int IsLeapYear (int year);
-void SetDefaultUserPrefs(UserPrefsStruct *prefs);
+void SetDefaultUserPrefs(UserPrefsStruct *prefs, GConfClient *client);
 int exec_action_in_db (Log *log, LogLine *line, GList *db);
 
-char *LocaleToUTF8 (const char *in);
+#define LOGVIEW_TYPE_WINDOW		  (logview_window_get_type ())
+#define LOGVIEW_WINDOW(obj)		  (GTK_CHECK_CAST ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindow))
+#define LOGVIEW_WINDOW_CLASS(klass)	  (GTK_CHECK_CLASS_CAST ((klass), LOGVIEW_TYPE_WINDOW, LogviewWindowClass))
+#define LOGVIEW_IS_WINDOW(obj)	  (GTK_CHECK_TYPE ((obj), LOGVIEW_TYPE_WINDOW))
+#define LOGVIEW_IS_WINDOW_CLASS(klass)  (GTK_CHECK_CLASS_TYPE ((obj), LOGVIEW_TYPE_WINDOW))
+#define LOGVIEW_WINDOW_GET_CLASS(obj)   (GTK_CHECK_GET_CLASS ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindowClass))
+
+typedef struct _LogviewWindow LogviewWindow;
+typedef struct _LogviewWindowClass LogviewWindowClass;
+
+struct _LogviewWindow {
+	GtkWindow parent_instance;
+
+	GConfClient *client;
+
+	gchar *program_name;
+
+	GtkWidget *view;
+		
+	GtkWidget *output_window;
+	int output_window_type;
+
+	GtkWidget *statusbar;
+	GtkUIManager *ui_manager;
+
+	GtkWidget *zoom_dialog;
+	gboolean zoom_visible;
+	
+	GtkWidget *info_dialog;
+	gboolean loginfovisible;
+
+	GtkWidget *calendar_dialog;
+	gboolean calendar_visible;
+
+	int numlogs, curlognum;
+	Log *curlog;	
+};
+
+struct _LogviewWindowClass {
+	GtkWindowClass parent_class;
+};
+
+GType logview_window_get_type (void);
+GtkWidget *logview_window_new (void);
+void logview_set_window_title (LogviewWindow *window);
 
 #endif /* __LOGVIEW_H__ */

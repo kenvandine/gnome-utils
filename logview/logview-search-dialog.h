@@ -45,6 +45,6 @@ struct _LogviewSearchDialogClass {
 };
 
 GType logview_search_dialog_get_type (void);
-GtkWidget *logview_search_dialog_new (GtkWindow *parent);
+GtkWidget *logview_search_dialog_new (LogviewWindow *parent);
 
 #endif /* __LOGVIEW_SEARCH_DIALOG_H__ */
