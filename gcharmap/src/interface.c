@@ -82,9 +82,9 @@ create_chartable (void)
               G_CALLBACK (cb_charbtn_leave), NULL);
 
 
-            gtk_signal_connect (GTK_OBJECT (button), "focus_in_event",
+            g_signal_connect (G_OBJECT (button), "focus_in_event",
               GTK_SIGNAL_FUNC (cb_charbtn_enter), NULL);
-            gtk_signal_connect (GTK_OBJECT (button), "focus_out_event",
+            g_signal_connect (G_OBJECT (button), "focus_out_event",
               GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
 
 
@@ -122,9 +122,9 @@ create_chartable (void)
               G_CALLBACK (cb_charbtn_leave), NULL);
 
 
-            gtk_signal_connect (GTK_OBJECT (button), "focus_in_event",
+            g_signal_connect (G_OBJECT (button), "focus_in_event",
               GTK_SIGNAL_FUNC (cb_charbtn_enter), NULL);
-            gtk_signal_connect (GTK_OBJECT (button), "focus_out_event",
+            g_signal_connect (G_OBJECT (button), "focus_out_event",
               GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
 
 
@@ -184,9 +184,6 @@ main_app_create_ui (MainApp *app)
     GtkWidget *chartable;
     GtkWidget *buttonbox, *button;
     GtkWidget *viewport;
-
-
-    GtkTooltips *button_tips;
 
 
     /* Main window */
@@ -251,26 +248,19 @@ main_app_create_ui (MainApp *app)
         gtk_label_set_mnemonic_widget (GTK_LABEL (alabel), app->entry);
         gtk_box_pack_start (GTK_BOX (hbox), app->entry, TRUE, TRUE, 0);
 
-        if (check_gail(app->entry))
-        {
-          add_atk_namedesc(GTK_WIDGET(alabel), _("Text to copy"), _("Text to copy"));
-          add_atk_namedesc(app->entry, _("Entry"), _("Text to copy"));
-
-          add_atk_relation(app->entry, GTK_WIDGET(alabel), ATK_RELATION_LABELLED_BY);
-        }
-        
         button = gtk_button_new_with_mnemonic (_("_Copy"));
         gtk_container_set_border_width (GTK_CONTAINER (button), 2);
         g_signal_connect (G_OBJECT (button), "clicked",
         		  G_CALLBACK (cb_copy_click), NULL);
-        gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);		  
-        button_tips = gtk_tooltips_new();
-        gtk_tooltips_set_tip(button_tips, button, _("Copy the text"), "");
-
-        g_object_ref(button_tips);
-        gtk_object_sink (GTK_OBJECT (button_tips));
-        g_object_set_data (G_OBJECT (app->window), "tooltips", button_tips);
-
+        gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);		 
+        if (check_gail(app->entry))
+        {
+          add_atk_namedesc(GTK_WIDGET(alabel), _("Text to copy"), _("Text to copy"));
+          add_atk_namedesc(app->entry, _("Entry"), _("Text to copy"));
+          add_atk_namedesc(button, _("Copy"), _("Copy the text"));
+          add_atk_relation(app->entry, GTK_WIDGET(alabel), ATK_RELATION_LABELLED_BY);
+        }
+ 
         gtk_widget_show_all (hbox);
         item = g_list_nth_data (GNOME_APP (app->window)->layout->items, 0);
         app->textbar = GTK_WIDGET (item->item);
@@ -420,17 +410,8 @@ main_app_new (void)
 void
 main_app_destroy (MainApp *obj)
 {
-    GtkTooltips *tooltips;
-
     g_return_if_fail (obj != NULL);
     g_return_if_fail (MAIN_IS_APP (obj) == TRUE);
-
-    tooltips = g_object_get_data(G_OBJECT(obj->window), "tooltips");
-    if (tooltips)
-    {
-       g_object_unref(tooltips);
-       g_object_set_data(G_OBJECT(obj->window), "tooltips", NULL);
-    }
 
     gtk_main_quit ();
 }

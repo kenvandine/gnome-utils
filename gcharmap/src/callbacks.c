@@ -117,8 +117,8 @@ cb_charbtn_click (GtkButton *button, gpointer user_data)
 }
 
 
-void
-cb_charbtn_enter (GtkButton *button, gpointer user_data)
+gboolean
+cb_charbtn_enter (GtkButton *button, GdkEventFocus *event, gpointer user_data)
 {
     GtkLabel *label = GTK_LABEL (GTK_BIN (button)->child);
     gchar *s;
@@ -138,16 +138,18 @@ cb_charbtn_enter (GtkButton *button, gpointer user_data)
     gtk_label_set_text (GTK_LABEL (mainapp->preview_label), text);
 #endif
     g_free (s);
+    return FALSE;
 }
 
 
-void
-cb_charbtn_leave (GtkButton *button, gpointer user_data)
+gboolean
+cb_charbtn_leave (GtkButton *button, GdkEventFocus *event, gpointer user_data)
 {
     gnome_appbar_pop (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar));
 #if 0    
     gtk_label_set_text (GTK_LABEL (mainapp->preview_label), NULL);
 #endif
+    return FALSE;
 }
 
 
