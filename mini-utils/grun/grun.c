@@ -24,9 +24,7 @@ void dorun(GtkWidget *widget, GtkWidget *theent)
 	char *t=gtk_entry_get_text(GTK_ENTRY(theent));
 	gtk_widget_hide(thewin);
 	if(t != NULL && *t != '\0') {
-	        runme = g_string_new(t);
-		g_string_append(runme," &");
-		system(runme->str);
+		gnome_execute_shell (NULL, t);
 	}
 	gtk_main_quit();
 }
