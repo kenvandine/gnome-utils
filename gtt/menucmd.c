@@ -82,7 +82,11 @@ about_box(GtkWidget *w, gpointer data)
 #ifdef DEBUG
 				    __DATE__ ", " __TIME__,
 #else
-				_("Time tracking tool for GNOME"),
+ _("GTimeTracker is a combination stop-watch, diary, consultant billing "
+   "system and project manager.  You can measure the amount of time you "
+   "spend on a task, associate a memo with it, set a billing rate, print "
+   "an invoice, as well as track that status of other projects."),
+
 #endif
 				    NULL);
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",
