@@ -74,6 +74,7 @@ const FindOptionTemplate templates[] = {
 	{ FIND_OPTION_TIME, "-mtime '%s'", N_("Last time modified") },
 	{ FIND_OPTION_BOOL, "-size 0c \\( -type f -o -type d \\)", N_("File is empty") },
 	{ FIND_OPTION_TEXT, "-regex '%s'", N_("Matches regular expression") },
+	{ FIND_OPTION_TEXT, "-exec grep -q '%s' {} \\;", N_("File contains text") },
 	{ FIND_OPTION_END, NULL,NULL}
 };
 
