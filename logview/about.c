@@ -55,7 +55,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   }
 
   logo = gdk_pixbuf_new_from_file (DATADIR G_DIR_SEPARATOR_S "pixmaps" G_DIR_SEPARATOR_S "gnome-log.png", NULL);
-  about_window = gnome_about_new (_("GNOME System Log Viewer"), VERSION,
+  about_window = gnome_about_new (_("System Log Viewer"), VERSION,
            			  "Copyright \xc2\xa9 1998-2003 Free Software Foundation, Inc.",
 				  _(comments),
 				  author,
