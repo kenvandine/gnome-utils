@@ -6,6 +6,8 @@ bin_PROGRAMS = gdiskfree
 
 gdiskfree_SOURCES =				\
 	df.c					\
+	util.c					\
+	util.h					\
 	pathmax.h				\
 	xgetcwd.c				\
 	save-cwd.c				\

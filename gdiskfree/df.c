@@ -38,6 +38,8 @@
 #include <error.h>
 
 #include "save-cwd.h" 
+#include "util.h"
+
 #define STREQ(s1, s2) ((strcmp (s1, s2) == 0))
 
 void strip_trailing_slashes ();
@@ -111,12 +113,6 @@ static struct fs_type_list *fs_exclude_list;
 static glibtop_mountentry *mount_list;
 static unsigned mount_list_entries;
 
-/* If nonzero, display usage information and exit.  */
-static int show_help;
-
-/* If nonzero, print the version on standard output and exit.  */
-static int show_version;
-
 /* If nonzero, print filesystem type as well.  */
 static int print_type;
 
@@ -126,7 +122,7 @@ static void      exit_menu_cb          (GtkWidget  *widget,
 					gpointer   data);
 static void      about_cb              (GtkWidget  *widget,
 					gpointer   data);
-GtkWidget   **t_dial;
+/* GtkWidget   **t_dial; */
 
 static GnomeUIInfo file_menu[] = {
   { GNOME_APP_UI_ITEM, N_("Exit"), NULL, exit_menu_cb,
@@ -152,39 +148,56 @@ static GnomeUIInfo app_menu[] = {
   { GNOME_APP_UI_ENDOFINFO },
 };
 
+
 static void
 exit_menu_cb (GtkWidget *widget, gpointer data)
 {
   gtk_main_quit ();
 }
-
+GtkWidget *window;
 static void 
 build_app_window ()
 {
-  GtkWidget    *window;
-  GtkWidget    *w_box;
-  GtkWidget    *frame;
-  GtkAdjustment *adjustment;
+  GtkWidget           *w_box;
+  GtkWidget           *frame;
+  GtkWidget           *dial;
+  GtkAdjustment       *adjustment;
   int                 i;
+  gchar               *buf;
 
   window = gnome_app_new ("GDiskFree", "Disk Free");
   gtk_signal_connect(GTK_OBJECT(window),"destroy",
 		     GTK_SIGNAL_FUNC(gtk_main_quit),NULL);
   
   w_box = gtk_vbox_new (FALSE, 0);
-  for (i = 0; i < mount_list_entries; i++) {
-    if (!excluded_fstype (mount_list [i].type)) {
-      frame = gtk_frame_new (mount_list [i].devname);
-      adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0, 0.0, 100.0, 0.01,
-						       0.1, 0.0));
-      t_dial[i] = gtk_dial_new (adjustment);
-      gtk_dial_set_view_only(GTK_DIAL(t_dial[i]), TRUE);
-      gtk_widget_set_usize (t_dial[i], 75, 60);
-      gtk_container_add (GTK_CONTAINER (frame), t_dial[i]);
-      gtk_box_pack_start (GTK_BOX (w_box), frame, FALSE, FALSE, 0);
+  for (i = 0; i < mount_list_entries; i++) 
+    {
+      if (!excluded_fstype (mount_list[i].type)) 
+	{
+	  buf = g_malloc (strlen (mount_list[i].devname) + 20);
+	  snprintf (buf, (strlen (mount_list[i].devname) + 20), 
+		    "%s_%s", mount_list[i].devname,
+		    "dial_frame");
+	  frame = gtk_frame_new (mount_list[i].devname);
+	  gtk_widget_set_name (GTK_WIDGET (window), buf);
+	  gtk_object_set_data (GTK_OBJECT (frame), buf, frame);
+	  adjustment = GTK_ADJUSTMENT (gtk_adjustment_new 
+				       (0.0, 0.0, 100.0, 0.01,
+					0.1, 0.0));
+	  dial = gtk_dial_new (adjustment);
+	  snprintf (buf, (strlen (mount_list[i].devname) + 20), 
+		    "%s_%s", mount_list[i].devname,
+		    "dial_widget");
+	  gtk_widget_set_name (GTK_WIDGET (dial), buf);
+	  gtk_object_set_data (GTK_OBJECT (window), buf, dial);
+	  g_free (buf);
+	  gtk_dial_set_view_only(GTK_DIAL(dial), TRUE);
+	  gtk_widget_set_usize (dial, 75, 60);
+	  gtk_container_add (GTK_CONTAINER (frame), dial);
+	  gtk_box_pack_start (GTK_BOX (w_box), frame, FALSE, FALSE, 0);
+	}
     }
-    
-  }
+  
   gnome_app_set_contents (GNOME_APP (window), w_box);
   gnome_app_create_menus (GNOME_APP (window), app_menu);
   gtk_menu_item_right_justify (GTK_MENU_ITEM (app_menu[1].widget));
@@ -295,18 +308,21 @@ static void
 update_dev (const char *disk, const char *mount_point, const char *fstype,
 	    int i)
 {
+  GtkWidget       *tmp;
   glibtop_fsusage fsu;
-  long blocks_used;
-  long blocks_percent_used;
-  long inodes_used;
-  long inodes_percent_used;
-  const char *stat_file;
+  long            blocks_used;
+  long            blocks_percent_used;
+  long            inodes_used;
+  long            inodes_percent_used;
+  const char      *stat_file;
+  gchar           *buf;
 
   if (!selected_fstype (fstype) || excluded_fstype (fstype)) 
     return;
 
   if (require_sync)
     sync ();
+  buf = (gchar *)g_malloc (strlen (disk) + 20);
   stat_file = mount_point ? mount_point : disk;
   glibtop_get_fsusage (&fsu, stat_file);
 
@@ -317,8 +333,13 @@ update_dev (const char *disk, const char *mount_point, const char *fstype,
   blocks_used = fsu.blocks - fsu.bfree;
   blocks_percent_used = (long) 
     (blocks_used * 100.0 / (blocks_used + fsu.bavail) + 0.5);
-  gtk_dial_set_percentage ( (GtkDial *)t_dial[i], 
-			    (blocks_percent_used / 100.0)); 
+  snprintf (buf, (strlen (disk) + 20), "%s_%s",
+	    disk, "dial_widget");
+  tmp = (GtkWidget *)get_widget ((GtkWidget *)window, buf);
+  g_free (buf);
+  if (tmp)
+    gtk_dial_set_percentage ( (GtkDial *)tmp, 
+			      (blocks_percent_used / 100.0)); 
 }
 
 
@@ -612,12 +633,14 @@ update_stats (gpointer data)
 {
   int i;
 
-  for (i = 0; i < mount_list_entries; i++) {
-    if (!excluded_fstype (mount_list [i].type)) {
-      update_dev (mount_list [i].devname, mount_list [i].mountdir,
-		  mount_list [i].type, i);
+  for (i = 0; i < mount_list_entries; i++) 
+    {
+      if (!excluded_fstype (mount_list [i].type)) 
+	{
+	  update_dev (mount_list[i].devname, mount_list[i].mountdir,
+		      mount_list[i].type, i);
+	}
     }
-  }
   return TRUE;
 }
 /* Add FSTYPE to the list of filesystem types to display. */
@@ -653,6 +676,7 @@ main (int argc, char **argv)
   struct stat *stats;
   glibtop_mountlist mountlist;
 
+
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
@@ -676,7 +700,7 @@ main (int argc, char **argv)
 
   mount_list_entries = mountlist.number;
   
-  t_dial = (GtkWidget **) g_new (GtkWidget, mount_list_entries);
+  /*  t_dial = (GtkWidget **) g_new (GtkWidget, mount_list_entries); */
   if (require_sync)
     sync ();
   
