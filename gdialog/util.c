@@ -206,7 +206,8 @@ void end_dialog(void)
 #ifdef WITH_GPM
 	mouse_close();
 #endif
-	endwin();
+	if(!gnome_mode)
+	  endwin();
 }
 
 
@@ -305,7 +306,7 @@ void label_autowrap(GtkWidget *vbox, const char *input, int w)
 
 	if(w>511)
 		w=511;
-		
+
 	input=unquote_nl(input);
 	/* Save this so we can free it later */
 	orig_input = input;

@@ -88,7 +88,7 @@ void penguin_mover(void)
 		penguin_y+=4;
 	gtk_widget_set_uposition(penguindow, penguin_x, penguin_y);
 	gdk_window_raise(penguindow->window);
-//	gtk_timeout_add(200, (void *)penguin_mover, NULL);
+	/*	gtk_timeout_add(200, (void *)penguin_mover, NULL); */
 }
 
 void set_ticking(void)

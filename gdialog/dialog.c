@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
 				exit(-1);
 			} else if (argc == 2) {		/* we only want to clear the screen */
 				init_dialog();
-				refresh();	/* init_dialog() will clear the screen for us */
+				if(!gnome_mode) refresh();	/* init_dialog() will clear the screen for us */
 				end_dialog();
 				return 0;
 			} else {
@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
 
 	if (clear_screen) {	/* clear screen before exit */
 		attr_clear(stdscr, LINES, COLS, screen_attr);
-		refresh();
+		if(!gnome_mode) refresh();
 	}
 	end_dialog();
 

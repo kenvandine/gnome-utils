@@ -1,5 +1,5 @@
 
-CFLAGS += -Wall
+#CFLAGS += -Wall
 
 INCLUDES =						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\

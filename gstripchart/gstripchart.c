@@ -1447,7 +1447,7 @@ prefs_callback(GtkWidget *chart, gpointer unused)
   for (p = 0; p < chart_glob.params; p++)
     {
       char lo[20], hi[20], range[100];
-      char *row[2], *ttls[2] = { _("Param"), _("Value") };
+      char *row[2], *ttls[2] = { N_("Param"), N_("Value") };
 
       clist = gtk_clist_new_with_titles(NELS(ttls), ttls);
 

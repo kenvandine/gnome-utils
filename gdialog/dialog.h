@@ -42,7 +42,7 @@
 #  if defined(USE_NCURSES) && !defined(RENAMED_NCURSES)
 #    include <ncurses.h>
 #  else
-#    ifndef _XOPEN_SOURCE_EXTENDED
+#    if !defined(_XOPEN_SOURCE_EXTENDED) && !defined(__sgi)
 #        define hacked 1
 #        define _XOPEN_SOURCE_EXTENDED
 #        define _ACS_COMPAT_CODE
@@ -202,29 +202,29 @@ int dialog_guage (const char *title, const char *prompt, int height, int width,
 
 #ifndef WITH_GPM
 
-extern __inline__ void
+extern inline void
 mouse_open (void)
 {
 };
-extern __inline__ void
+extern inline void
 mouse_close (void)
 {
 };
-extern __inline__ void
+extern inline void
 mouse_mkregion (int y, int x, int height, int width,
 		int code)
 {
 };
-extern __inline__ void
+extern inline void
 mouse_mkbigregion (int y, int x, int height, int width,
 		   int nitems, int th, int mode)
 {
 };
-extern __inline__ void
+extern inline void
 mouse_setbase (int x, int y)
 {
 };
-extern __inline__ int
+extern inline int
 mouse_wgetch (WINDOW * win)
 {
 };

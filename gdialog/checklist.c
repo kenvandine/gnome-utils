@@ -201,7 +201,7 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 
 	/* Allocate space for storing item on/off status */
 	if ((status = malloc(sizeof(int) * item_no)) == NULL) {
-		endwin();
+		if(!gnome_mode) endwin();
 		fprintf(stderr,
 		     "\nCan't allocate memory in dialog_checklist().\n");
 		exit(-1);

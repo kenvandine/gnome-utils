@@ -476,7 +476,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   GtkWidget * command_entry;
   GtkWidget * list;
   GtkWidget * explanation_label, * defaults_label;
-  const gchar * titles[] = { _("Name"), _("Command Line") }; 
+  const gchar * titles[] = { N_("Name"), N_("Command Line") }; 
   GList * tmp; 
   Action * a;
   gchar * text[2];
