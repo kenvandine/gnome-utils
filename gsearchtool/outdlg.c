@@ -238,7 +238,6 @@ outdlg_additem(char item[])
 		list_width = width;
 		gtk_clist_set_column_width(GTK_CLIST(outlist), 0, list_width);
 	}
-	gdk_font_unref(font);
 }
 
 void

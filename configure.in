@@ -17,6 +17,7 @@ LIBGNOME_REQUIRED=1.96.0
 LIBGNOMEUI_REQUIRED=1.96.0
 LIBGLADE_REQUIRED=1.99.2
 LIBGTOP_REQUIRED=1.1.6
+LIBBONOBOUI_REQUIRED=1.103.0
 
 AM_CONFIG_HEADER(config.h)
 AC_CANONICAL_SYSTEM
@@ -198,6 +199,11 @@ PKG_CHECK_MODULES(GLADE, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $L
 AC_SUBST(GLADE_CFLAGS)
 AC_SUBST(GLADE_LIBS)
 
+dnl ***********
+dnl libBonoboUI
+dnl ***********
+PKG_CHECK_MODULES(BONOBOUI, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libbonoboui-2.0 >= $LIBBONOBOUI_REQUIRED)
+
 dnl *******************************
 dnl gtkhtml
 dnl gtkhtml is needed to build gtt
@@ -348,7 +354,7 @@ dnl AM_CONDITIONAL(FALSE, test x = y)
 dnl *****************
 dnl Check for libgtop
 dnl *****************
-PKG_CHECK_MODULES(GLADE, libgtop-2.0 >= $LIBGTOP_REQUIRED)
+PKG_CHECK_MODULES(GTOP, libgtop-2.0 >= $LIBGTOP_REQUIRED)
 AC_SUBST(GTOP_CFLAGS)
 AC_SUBST(GTOP_LIBS)
 

@@ -118,8 +118,6 @@ create_chartable (void)
     }
 
     gtk_widget_show_all (chartable);
-    gtk_widget_push_style (mainapp->btnstyle);
-    gtk_widget_pop_style ();
     return chartable;
 }
 
@@ -136,7 +134,7 @@ main_app_create_ui (MainApp *app)
 
     /* Main window */
     {
-        GnomeDockLayoutItem *item;
+        BonoboDockLayoutItem *item;
 
         app->window = gnome_app_new (_(PACKAGE), _("Gnome Character Map"));
         gtk_widget_set_name (app->window, "mainapp");
@@ -163,13 +161,13 @@ main_app_create_ui (MainApp *app)
       app->window)->contents), 8);
 
     {
-        GnomeDockLayoutItem *item;
+        BonoboDockLayoutItem *item;
 
         hbox = gtk_hbox_new (FALSE, 6);
         gtk_container_set_border_width (GTK_CONTAINER (hbox), 1);
         gnome_app_add_docked (GNOME_APP (app->window), hbox, _("Action Toolbar"),
-          GNOME_DOCK_ITEM_BEH_EXCLUSIVE | GNOME_DOCK_ITEM_BEH_NEVER_VERTICAL,
-          GNOME_DOCK_TOP, 2, 0, 1);
+          BONOBO_DOCK_ITEM_BEH_EXCLUSIVE | BONOBO_DOCK_ITEM_BEH_NEVER_VERTICAL,
+          BONOBO_DOCK_TOP, 2, 0, 1);
 
         app->fontpicker = gnome_font_picker_new ();
         gnome_font_picker_set_mode (GNOME_FONT_PICKER (app->fontpicker),
@@ -215,7 +213,7 @@ main_app_create_ui (MainApp *app)
           _("-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*")
         );
 	if (font != NULL)
-		app->btnstyle->font = font;
+		gtk_style_set_font(app->btnstyle, font);
         gtk_widget_destroy (tmp);
 
         chartable = create_chartable ();
@@ -264,7 +262,7 @@ main_app_create_ui (MainApp *app)
           _("-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*")
         );
 	if (font != NULL)
-		style->font = font;
+		gtk_style_set_font(style, font);
 
         gtk_widget_set_style (viewport, style);
         gtk_box_pack_start (GTK_BOX (vbox2), viewport, FALSE, TRUE, 0);
@@ -272,9 +270,6 @@ main_app_create_ui (MainApp *app)
         app->preview_label = gtk_label_new (NULL);
         gtk_container_add (GTK_CONTAINER (viewport), app->preview_label);
         gtk_widget_set_style (app->preview_label, style);
-
-        gtk_widget_push_style (style);
-        gtk_widget_pop_style ();
     }
 
     gtk_widget_show_all (vbox);
@@ -310,8 +305,8 @@ main_app_get_type (void)
           sizeof (MainAppClass),
           (GtkClassInitFunc) NULL,
           (GtkObjectInitFunc) main_app_init,
-          (GtkArgSetFunc) NULL,
-          (GtkArgGetFunc) NULL,
+          NULL,
+          NULL,
           (GtkClassInitFunc) NULL
         };
         ga_type = gtk_type_unique (gtk_object_get_type (), &ga_info);

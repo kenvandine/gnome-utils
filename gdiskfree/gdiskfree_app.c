@@ -23,6 +23,8 @@
 #include <config.h>
 #endif
 #include <gnome.h>
+#undef MIN
+#undef MAX
 #include <glibtop.h>
 #include <glibtop/fsusage.h>
 #include <glibtop/mountlist.h>

@@ -23,6 +23,8 @@
 #define _INTERFACE_H_
 
 #include <gtk/gtk.h>
+#include <gnome.h>
+#include <bonobo/bonobo-dock-layout.h>
 
 
 #define MAIN_APP_TYPE             (main_app_get_type ())

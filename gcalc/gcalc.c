@@ -149,7 +149,8 @@ main(int argc, char *argv[])
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 
-	gnome_init_with_popt_table ("gcalc", VERSION, argc, argv, options, 0, NULL);
+	gnome_program_init ("gcalc", VERSION, LIBGNOMEUI_MODULE,
+			argc, argv, GNOME_PARAM_POPT_TABLE, options, NULL);
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-calc2.png");
 
 	if (analog) {

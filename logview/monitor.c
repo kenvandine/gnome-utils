@@ -120,7 +120,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
 
       style = gtk_style_new ();
       memcpy (style, cfg->main_style, sizeof(GtkStyle));
-      style->font = cfg->heading;
+      gtk_style_set_font(style, cfg->heading);
       label = gtk_label_new (_("Choose logs to monitor"));
       gtk_misc_set_alignment(GTK_MISC (label), 0.0, 0.0);
       gtk_widget_set_style (label, style);

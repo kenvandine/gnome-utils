@@ -146,8 +146,18 @@ CreateConfig(void)
   /*     cs->base[i] = cs->white; */
   /*   } */
 
-  gdk_font_unref (cs->font);
-  newcfg->main_style->font = fontset_load (HELVETICA_10_FONT);
+  {
+	  GdkFont *font;
+	  
+	  font = gtk_style_get_font(cs);
+	  gdk_font_unref (font);
+  }
+  {
+	  GdkFont *font;
+  
+	  font = fontset_load (HELVETICA_10_FONT);
+	  gtk_style_set_font(newcfg->main_style, font);
+  }
 
   /* Set default style */
 #if 0
@@ -159,21 +169,42 @@ CreateConfig(void)
   cs->bg[GTK_STATE_NORMAL].red   = (gushort) 65535;
   cs->bg[GTK_STATE_NORMAL].green = (gushort) 65535;
   cs->bg[GTK_STATE_NORMAL].blue  = (gushort) 65535;
-  gdk_font_unref (cs->font);
-  cs->font = fontset_load (HELVETICA_10_FONT);
+  {
+	  GdkFont *font;
+
+	  font = gtk_style_get_font(cs);
+	  gdk_font_unref (font);
+  }
+  {
+	  GdkFont *font;
+ 
+	  font = fontset_load (HELVETICA_10_FONT);
+	  gtk_style_set_font(cs, font);
+  }
 
   cs = newcfg->black_bg_style = gtk_style_new ();
   cs->bg[GTK_STATE_NORMAL].red   = (gushort) 0;
   cs->bg[GTK_STATE_NORMAL].green = (gushort) 0;
   cs->bg[GTK_STATE_NORMAL].blue  = (gushort) 0;
   cs->bg[GTK_STATE_NORMAL].pixel = black.pixel;
-  gdk_font_unref (cs->font);
-  cs->font = fontset_load (HELVETICA_10_FONT);
+  {
+	  GdkFont *font;
+
+	  font = gtk_style_get_font(cs);
+	  gdk_font_unref (font);
+  }
+  {
+	  GdkFont *font;
+
+	  font = fontset_load (HELVETICA_10_FONT);
+	  gtk_style_set_font(cs, font);
+  }
 
   /* Set paths */
   newcfg->regexp_db_path = NULL;
   newcfg->descript_db_path = NULL;
   newcfg->action_db_path = NULL;
 
-  return (ConfigData *) newcfg;
+  return newcfg;
 }
+

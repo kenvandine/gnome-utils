@@ -7,7 +7,7 @@ additionaldir  = $(datadir)/logview
 
 INCLUDES = -DG_LOG_DOMAIN=\"logview\"					\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"			\
-	-I$(includedir) $(GNOME_INCLUDEDIR) -I$(top_srcdir)/logview/pixmaps\
+	-I$(includedir) $(GNOME_UTILS_CFLAGS) -I$(top_srcdir)/logview/pixmaps\
 	-DLOGVIEWINSTALLPREFIX=\""$(prefix)/\""
 
 bin_PROGRAMS = logview
@@ -31,8 +31,7 @@ logview_SOURCES = 	\
 	zoom.c
 
 logview_LDADD = \
-	$(GNOME_LIBDIR) \
-	$(GNOMEUI_LIBS) \
+	$(GNOME_UTILS_LIBS) \
 	$(INTLLIBS)
 
 man_MANS = logview.1

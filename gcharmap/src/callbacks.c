@@ -37,16 +37,32 @@ cb_about_click (GtkWidget *widget, gpointer user_data)
         "Hongli Lai (hongli@telekabel.nl)",
         NULL
     };
+    gchar *documenters[] = {
+	    NULL
+    };
+    /* Translator credits */
+    gchar *translator_credits = _("");
     GtkWidget *dialog;
+    GdkPixbuf *logo = NULL;
+    gchar *logo_fn;
+
+    logo_fn = gnome_pixmap_file("gcharmap-logo.png");
+    if (logo_fn != NULL)
+    {
+	    logo = gdk_pixbuf_new_from_file(logo_fn, NULL /* error */);
+	    g_free(logo_fn);
+    }
 
     dialog = gnome_about_new (
       _("Gnome Character Map"),
       VERSION,
       "Copyright (c) 2000 Hongli Lai",
-      authors,
       _("The Gnome equalivant of Microsoft Windows' Character Map. "
       "Warning: might contain bad English."),
-      "gcharmap-logo.png"
+      authors,
+      (const char **)documenters,
+      (const char *)translator_credits,
+      logo
     );
     gtk_widget_show (dialog);
 }
@@ -65,25 +81,27 @@ cb_charbtn_click (GtkButton *button, gpointer user_data)
 		    GtkEditable *editable = GTK_EDITABLE (mainapp->entry);
 		    /* snarfed from GTK+
 		     * -George */
-			  
-		    if (editable->selection_start_pos != editable->selection_end_pos) {
+		    gint sel_start, sel_end;
+
+		    gtk_editable_get_selection_bounds(editable, &sel_start,
+				    &sel_end);
+		    if (sel_start != sel_end) {
 			    gtk_editable_delete_selection (editable);
 		    } else {
-			    gint old_pos = editable->current_pos;
+			    gint old_pos = gtk_editable_get_position(editable);
 
-			    if ((gint)editable->current_pos < -1)
-				    editable->current_pos = 0;
-			    else if (editable->current_pos + 1 > GTK_ENTRY (editable)->text_length)
-				    editable->current_pos = GTK_ENTRY (editable)->text_length;
+			    if (gtk_editable_get_position(editable) < -1)
+				    gtk_editable_set_position(editable, 0);
 			    else
-				    editable->current_pos += 1;
+				    gtk_editable_set_position(editable, gtk_editable_get_position(editable) + 1);
 
-			    gtk_editable_delete_text (editable, old_pos, editable->current_pos);
+			    gtk_editable_delete_text (editable, old_pos, gtk_editable_get_position(editable));
 		    }
 	    }
     } else if ( ! mainapp->insert_at_end) {
+	    gint current_pos = gtk_editable_get_position(GTK_EDITABLE(mainapp->entry));
 	    gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
-				      strlen (text), &GTK_EDITABLE(mainapp->entry)->current_pos);
+				      strlen (text), &current_pos);
     } else {
 	    gtk_entry_append_text (GTK_ENTRY (mainapp->entry), text);
     }
@@ -157,10 +175,13 @@ cb_exit_click (GtkWidget *widget, gpointer user_data)
 void
 cb_fontpicker_font_set (GnomeFontPicker *gfp, gchar *font_name)
 {
-    g_free (mainapp->btnstyle->font);
-    mainapp->btnstyle->font = gdk_font_load (font_name);
-    gtk_widget_push_style (mainapp->btnstyle);
-    gtk_widget_pop_style ();
+    GdkFont *font;
+    
+    font = gtk_style_get_font(mainapp->btnstyle);
+    gdk_font_unref (font);
+    
+    font = gdk_font_load (font_name);
+    gtk_style_set_font(mainapp->btnstyle, font);
 
     gtk_widget_hide (mainapp->chartable);
     gtk_widget_show (mainapp->chartable);
@@ -170,13 +191,10 @@ cb_fontpicker_font_set (GnomeFontPicker *gfp, gchar *font_name)
 void
 cb_help_click (GtkWidget *widget, gpointer user_data)
 {
-    GnomeHelpMenuEntry *ref;
-
-    ref = (GnomeHelpMenuEntry *) g_new0 (GnomeHelpMenuEntry, 1);
-    ref->name = "gcharmap";
-    ref->path = "index.html";
-    gnome_help_display (NULL, ref);
-    g_free (ref);
+    gnome_help_display(gnome_program_get (),
+		    "index.html",
+		    NULL,
+		    NULL /* error */);
 }
 
 

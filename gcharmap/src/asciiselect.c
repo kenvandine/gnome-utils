@@ -40,15 +40,21 @@ cb_ascii_select_clicked (GnomeDialog *dialog, gint arg1, gpointer user_data)
 {
     gchar *text;
 
-    text = gtk_entry_get_text (GTK_ENTRY (user_data));
+    text = (gchar *)gtk_entry_get_text (GTK_ENTRY (user_data));
     switch (arg1)
     {
     case 0:
         if (mainapp->insert_at_end == FALSE)
+	{
+	    int current_pos;
+
+	    current_pos = gtk_editable_get_position
+		    (GTK_EDITABLE(mainapp->entry));
             gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
-              strlen (text), &GTK_EDITABLE(mainapp->entry)->current_pos);
-        else
+              strlen (text), &current_pos);
+	} else {
             gtk_entry_append_text (GTK_ENTRY (mainapp->entry), text);
+	}
         break;
     case 1:
         gtk_widget_destroy (GTK_WIDGET (dialog));
@@ -65,7 +71,7 @@ cb_ascii_select_entry_changed (GtkEditable *edit, gpointer user_data)
 
     if (updating == TRUE) return;
     updating = TRUE;
-    s = gtk_entry_get_text (GTK_ENTRY (edit));
+    s = (gchar *)gtk_entry_get_text (GTK_ENTRY (edit));
     i = (gint) s[0];
     f = (gfloat) i;
     gtk_spin_button_set_value (GTK_SPIN_BUTTON (user_data), f);
@@ -123,7 +129,7 @@ ascii_select_init (AsciiSelect *obj)
       _("-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*")
     );
     if (font != NULL)
-	    style->font = font;
+	    gtk_style_set_font(style, font);
     gtk_widget_set_style (entry, style);
     gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (obj->window)->vbox),
       entry, TRUE, TRUE, 0);
@@ -142,8 +148,6 @@ ascii_select_init (AsciiSelect *obj)
     gnome_dialog_editable_enters (GNOME_DIALOG (obj->window),
 				  GTK_EDITABLE (spin));
 
-    gtk_widget_push_style (style);
-    gtk_widget_pop_style ();
     gtk_widget_show_all (GNOME_DIALOG (obj->window)->vbox);
     gtk_widget_grab_focus (spin);
 }
@@ -161,8 +165,8 @@ ascii_select_get_type (void)
           sizeof (AsciiSelectClass),
           (GtkClassInitFunc) NULL,
           (GtkObjectInitFunc) ascii_select_init,
-          (GtkArgSetFunc) NULL,
-          (GtkArgGetFunc) NULL,
+          NULL,
+          NULL,
           (GtkClassInitFunc) NULL
         };
         ga_type = gtk_type_unique (gtk_object_get_type (), &ga_info);

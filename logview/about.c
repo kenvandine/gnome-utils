@@ -38,12 +38,18 @@ void AboutShowWindow (GtkWidget *widget, gpointer user_data);
 void
 AboutShowWindow (GtkWidget *widget, gpointer user_data)
 {
+  GdkPixbuf *logo = NULL;
   const char *author[] = {N_("Cesar Miquel (miquel@df.uba.ar)"), NULL};
   char *comments = N_("This  program  is  part of  the  GNOME  project " 
 "for Linux. Logview comes with ABSOLUTELY NO WARRANTY. This is free " 
 "software, and you are welcome to redistribute it under the conditions "
 "of the GNU General Public Licence. The log icon is a courtesy of "
 "Tuomas Kuosmanen (a.k.a tigert).");
+  gchar *documenters[] = {
+	  NULL
+  };
+  /* Translator credits */
+  gchar *translator_credits = _("");
 
   if (about_window != NULL) {
 	  gtk_widget_show_now (about_window);
@@ -51,11 +57,25 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 	  return;
   }
 
+  {
+	  gchar *logo_fn = NULL;
+
+	  logo_fn = gnome_pixmap_file("logview/logview.xpm");
+	  if (logo_fn != NULL)
+	  {
+		  logo = gdk_pixbuf_new_from_file(logo_fn, NULL);
+		  g_free(logo_fn);
+	  }
+  }
+
   /* go get logview.xpm in $(prefix)/share/pixmaps/logview */
   about_window = gnome_about_new (_("Logview"), VERSION,
            			  N_("Copyright (C) 1998"),
-				  author, _(comments),
-				  "logview/logview.xpm");
+				  _(comments),
+				  author,
+				  (const char **)documenters,
+				  (const char *)translator_credits,
+				  logo);
   if (app != NULL)
 	  gnome_dialog_set_parent (GNOME_DIALOG (about_window),
 				   GTK_WINDOW (app));
