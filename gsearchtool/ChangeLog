@@ -1,18 +1,17 @@
+2002-07-30  Dennis M. Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c:  Rewrite of custom fork/exec commands
+	to use glib's g_spawn_* functions.  Fixes #81199.
+	 
 2002-07-29  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* Makefile.am: don't add -I$(includedir), it causes
 	gcc 3.1.x warning when prefix=/usr
 
-2002-07-16  Glynn Foster  <glynn.foster@sun.com>
-
-	* gsearchtool.c: (create_find_page): s/Starting in folder/Start
-	in folder. Fixes bug #88221. We should do a UI/String review on
-	this stuff though :/
-
 2002-07-05  Glynn Foster  <glynn.foster@sun.com>
 
-	* gnome-search-tool.desktop.in: s/DocPath/X-GNOME-DocPath. Now
-	conforms to spec.
+        * gnome-search-tool.desktop.in: s/DocPath/X-GNOME-DocPath. Now
+        conforms to spec.
 
 2002-06-19  Aruna Pourohit <aruna.pou@wipro.com>
 
