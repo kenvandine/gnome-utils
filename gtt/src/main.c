@@ -362,7 +362,7 @@ save_state(GnomeClient *client, gint phase, GnomeRestartStyle save_style,
 	   gpointer data)
 {
 	const char *errmsg;
-	char *sess_id;
+	const char *sess_id;
 	char *argv[5];
 	int argc;
 	int x, y, w, h;
