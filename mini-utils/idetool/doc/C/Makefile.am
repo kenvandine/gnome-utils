@@ -30,12 +30,11 @@ ${HTML_FILES} : $(SGML_FILES)
 dist-hook:
 	$(mkinstalldirs) $(distdir)/idetool 
 	$(mkinstalldirs) $(distdir)/idetool/stylesheet-images
-	$(mkinstalldirs) $(distdir)/images
 	-cp $(srcdir)/idetool/*.html idetool/*.css $(distdir)/idetool
 	-cp $(srcdir)/idetool/stylesheet-images/*.gif \
 	 $(distdir)/idetool/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir)/images/*.png $(distdir)/images
+	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:
 	-rm -f Makefile
@@ -45,13 +44,12 @@ distclean-generic:
 
 install-data-local: index.html
 	$(mkinstalldirs) $(DESTDIR)$(idetool_helpdir)/stylesheet-images
-	$(mkinstalldirs) $(DESTDIR)$(idetool_helpdir)/images
 	-for file in $(srcdir)/idetool/*.html $(srcdir)/idetool/*.css; do \
 	  basefile=`basename $$file`; \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(idetool_helpdir)/$$basefile; \
 	done
-	-for file in $(srcdir)/images/*.png ; do \
-	  $(INSTALL_DATA) $$file $(DESTDIR)$(idetool_helpdir)/images; \
+	-for file in $(srcdir)/*.png ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(idetool_helpdir); \
 	done
 	-for file in $(srcdir)/idetool/stylesheet-images/*.gif; do \
 	  basefile=`basename $$file`; \
