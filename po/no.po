@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.1\n"
-"POT-Creation-Date: 2002-02-17 23:42-0500\n"
-"PO-Revision-Date: 2002-02-10 14:10+0100\n"
+"POT-Creation-Date: 2002-02-22 17:28+0100\n"
+"PO-Revision-Date: 2002-02-22 17:28+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,8 +15,8 @@ msgstr ""
 
 #. Translator credits
 #: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
-#: gsearchtool/gsearchtool.c:1643 logview/about.c:52
-#: meat-grinder/meat-grinder.c:380
+#: gsearchtool/gsearchtool.c:1667 logview/about.c:52
+#: meat-grinder/meat-grinder.c:382
 msgid "translator_credits"
 msgstr "oversetter_kreditt"
 
@@ -479,8 +479,8 @@ msgstr "Lim inn utklippstavlen"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:418
-#: gdictsrc/gdict-pref-dialog.c:462 gdictsrc/gdict-speller.c:434
+#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:421
+#: gdictsrc/gdict-pref-dialog.c:465 gdictsrc/gdict-speller.c:434
 msgid "Cannot connect to server"
 msgstr "Kan ikke koble til tjener"
 
@@ -530,27 +530,27 @@ msgstr ""
 "Enten er tjeneren du bruker er utilgjengelig \n"
 "eller så er du ikke koblet til internett."
 
-#: gdictsrc/gdict-app.c:489
+#: gdictsrc/gdict-app.c:486
 msgid "Lookup"
 msgstr "Slå opp"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:487
 msgid "Lookup word in dictionary"
 msgstr "Slå opp ord i ordbok"
 
-#: gdictsrc/gdict-app.c:492
+#: gdictsrc/gdict-app.c:489
 msgid "Spell"
 msgstr "Stav"
 
-#: gdictsrc/gdict-app.c:493
+#: gdictsrc/gdict-app.c:490
 msgid "Check word spelling"
 msgstr "Sjekk ordets staving"
 
-#: gdictsrc/gdict-app.c:594 gdictsrc/gdict-speller.c:128
+#: gdictsrc/gdict-app.c:591 gdictsrc/gdict-speller.c:128
 msgid "Word : "
 msgstr "Ord : "
 
-#: gdictsrc/gdict-app.c:598
+#: gdictsrc/gdict-app.c:595
 msgid "_Look Up"
 msgstr "S_lå opp"
 
@@ -627,15 +627,15 @@ msgstr "Database:"
 msgid "Default strategy:"
 msgstr "Standard strategi:"
 
-#: gdictsrc/gdict-pref-dialog.c:410
+#: gdictsrc/gdict-pref-dialog.c:413
 msgid "Search all databases"
 msgstr "Søk i alle databaser"
 
-#: gdictsrc/gdict-pref-dialog.c:598
+#: gdictsrc/gdict-pref-dialog.c:603
 msgid "The server you specified could not be found."
 msgstr "Tjeneren du spesifiserte ble ikke funnet."
 
-#: gdictsrc/gdict-pref-dialog.c:649
+#: gdictsrc/gdict-pref-dialog.c:660
 msgid "The server could not be found on that port."
 msgstr "Tjeneren kunne ikke finnes på den porten."
 
@@ -658,6 +658,19 @@ msgstr "S_lå opp ord..."
 #: gdictsrc/gdict-speller.c:207
 msgid "Spell checker"
 msgstr "Stavekontroll"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:1
+msgid "Dictionary Lookup"
+msgstr "Oppslag i ordbok"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:2
+#: gdictsrc/gnome-dictionary.desktop.in.h:2
+msgid "Lookup words in an online dictionary"
+msgstr "Slå opp ord i en ordbok på nett"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:3
+msgid "Utility"
+msgstr "Verktøy"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:137
 msgid "About..."
@@ -719,35 +732,45 @@ msgstr "Filen er tomt"
 msgid "Matches regular expression"
 msgstr "Treff på vanlig uttrykk"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:549
 msgid "today at %-I:%M %p"
 msgstr "i dag %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:547
+#: gsearchtool/gsearchtool.c:551
 msgid "yesterday at %-I:%M %p"
 msgstr "i går %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:549 gsearchtool/gsearchtool.c:551
+#: gsearchtool/gsearchtool.c:553 gsearchtool/gsearchtool.c:555
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%-d/%m/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:561
+#: gsearchtool/gsearchtool.c:565
 msgid "%Y%m%d%H%M%S"
 msgstr "%d%m%Y%H%M%S"
 
-#: gsearchtool/gsearchtool.c:576
+#: gsearchtool/gsearchtool.c:580
 msgid "folder"
 msgstr "mappe"
 
-#: gsearchtool/gsearchtool.c:578
+#: gsearchtool/gsearchtool.c:582
 msgid "program"
 msgstr "program"
 
-#: gsearchtool/gsearchtool.c:580
+#: gsearchtool/gsearchtool.c:584
 msgid "symbolic link"
 msgstr "symbolsk lenke"
 
-#: gsearchtool/gsearchtool.c:758
+#: gsearchtool/gsearchtool.c:685
+msgid ""
+"Cannot perform the search.\n"
+"The Bourne shell was not found\n"
+"It is typically installed as /bin/sh or /usr/bin/sh."
+msgstr ""
+"Kan ikke utføre søket.\n"
+"Bourne shell ble ikke funnet\n"
+"Dette er typisk installert som /bin/sh eller /usr/bin/sh."
+
+#: gsearchtool/gsearchtool.c:782
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -755,15 +778,15 @@ msgstr ""
 "\n"
 "For mange feil å vise..."
 
-#: gsearchtool/gsearchtool.c:795
+#: gsearchtool/gsearchtool.c:819
 msgid "Start directory does not exist."
 msgstr "Startkatalogen eksisterer ikke."
 
-#: gsearchtool/gsearchtool.c:806 gsearchtool/gsearchtool.c:1420
+#: gsearchtool/gsearchtool.c:830 gsearchtool/gsearchtool.c:1444
 msgid "Cannot perform the search. Please specify a search criteria."
 msgstr "Kan ikke utføre søket. Vennligst spesifiser et søkekriterie."
 
-#: gsearchtool/gsearchtool.c:823 gsearchtool/gsearchtool.c:1440
+#: gsearchtool/gsearchtool.c:847 gsearchtool/gsearchtool.c:1464
 msgid ""
 "A search is already running.  Please wait for the search to complete or "
 "cancel it."
@@ -771,21 +794,20 @@ msgstr ""
 "Et søk kjører allerede. Vennligst vent til dette er fullført eller avbryt "
 "det."
 
-#: gsearchtool/gsearchtool.c:841
+#: gsearchtool/gsearchtool.c:865
 msgid "Start directory does not exist"
 msgstr "Startkatalogen eksisterer ikke"
 
-#: gsearchtool/gsearchtool.c:856
+#: gsearchtool/gsearchtool.c:880
 msgid "Cannot show the search command line. Please specify a search criteria."
 msgstr ""
-"Kan ikke vise kommandolinjen for søket. Vennligst spesifiser et "
-"søkekriterie."
+"Kan ikke vise kommandolinjen for søket. Vennligst spesifiser et søkekriterie."
 
-#: gsearchtool/gsearchtool.c:860
+#: gsearchtool/gsearchtool.c:884
 msgid "Search Command Line"
 msgstr "Kommandolinje for søk"
 
-#: gsearchtool/gsearchtool.c:875
+#: gsearchtool/gsearchtool.c:899
 msgid ""
 "This is the command line that can be used to execute this search from the "
 "console.\n"
@@ -797,108 +819,113 @@ msgstr ""
 "\n"
 "Kommando:"
 
-#: gsearchtool/gsearchtool.c:1005
+#: gsearchtool/gsearchtool.c:1029
 msgid "No viewer available for this mime type."
 msgstr "Ingen visningsprogram tilgjengelig for denne MIME-typen."
 
-#: gsearchtool/gsearchtool.c:1091
+#: gsearchtool/gsearchtool.c:1115
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 "Oppføring endret ble kalt for et alternativ som ikke gjaldt oppføringen!"
 
-#: gsearchtool/gsearchtool.c:1155
+#: gsearchtool/gsearchtool.c:1179
 msgid "Enabled"
 msgstr "Slått på"
 
-#: gsearchtool/gsearchtool.c:1213
+#: gsearchtool/gsearchtool.c:1237
 msgid "S_tarting in folder:"
 msgstr "S_tart i mappe:"
 
-#: gsearchtool/gsearchtool.c:1215
+#: gsearchtool/gsearchtool.c:1239
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: gsearchtool/gsearchtool.c:1232
+#: gsearchtool/gsearchtool.c:1256
 msgid "Rules:"
 msgstr "Regler:"
 
-#: gsearchtool/gsearchtool.c:1252
+#: gsearchtool/gsearchtool.c:1276
 msgid "A_dd Rule:"
 msgstr "Le_gg til regel:"
 
-#: gsearchtool/gsearchtool.c:1283 gsearchtool/gsearchtool.c:1496
+#: gsearchtool/gsearchtool.c:1307 gsearchtool/gsearchtool.c:1520
 msgid "F_ind"
 msgstr "F_inn"
 
-#: gsearchtool/gsearchtool.c:1300 gsearchtool/gsearchtool.c:1512
+#: gsearchtool/gsearchtool.c:1324 gsearchtool/gsearchtool.c:1536
 msgid "Results"
 msgstr "Resultater"
 
-#: gsearchtool/gsearchtool.c:1332 gsearchtool/gsearchtool.c:1545
+#: gsearchtool/gsearchtool.c:1356 gsearchtool/gsearchtool.c:1569
 msgid "Name"
 msgstr "Navn"
 
-#: gsearchtool/gsearchtool.c:1354 gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1378 gsearchtool/gsearchtool.c:1591
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1366 gsearchtool/gsearchtool.c:1579
+#: gsearchtool/gsearchtool.c:1390 gsearchtool/gsearchtool.c:1603
 msgid "Size"
 msgstr "Størrelse"
 
-#: gsearchtool/gsearchtool.c:1378 gsearchtool/gsearchtool.c:1591
+#: gsearchtool/gsearchtool.c:1402 gsearchtool/gsearchtool.c:1615
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1389 gsearchtool/gsearchtool.c:1602
+#: gsearchtool/gsearchtool.c:1413 gsearchtool/gsearchtool.c:1626
 msgid "Date Modified"
 msgstr "Dato endret"
 
-#: gsearchtool/gsearchtool.c:1467
+#: gsearchtool/gsearchtool.c:1491
 msgid "Find files _named:"
 msgstr "Finn filer med _navn:"
 
-#: gsearchtool/gsearchtool.c:1622
+#: gsearchtool/gsearchtool.c:1646
 msgid "Si_mple"
 msgstr "E_nkelt"
 
-#: gsearchtool/gsearchtool.c:1625
+#: gsearchtool/gsearchtool.c:1649
 msgid "Ad_vanced"
 msgstr "A_vansert"
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1674
 msgid "The Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
-#: gsearchtool/gsearchtool.c:1651
+#: gsearchtool/gsearchtool.c:1675
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "© 1998-2000 Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:1652
+#: gsearchtool/gsearchtool.c:1676
 msgid "Frontend to the unix find/locate commands"
 msgstr "Grensesnitt mot UNIXs find/locate kommandoer"
 
-#: gsearchtool/gsearchtool.c:1703
+#: gsearchtool/gsearchtool.c:1711
+#, c-format
+msgid "File %s already exists. Overwrite?"
+msgstr "Filen %s eksisterer allerede. Overskriv?"
+
+#: gsearchtool/gsearchtool.c:1746
 msgid "Cannot save the results file."
 msgstr "Kan ikke lagre resultatfil."
 
-#: gsearchtool/gsearchtool.c:1710 meat-grinder/meat-grinder.c:492
+#: gsearchtool/gsearchtool.c:1753 meat-grinder/meat-grinder.c:494
 msgid "Save Results"
 msgstr "Lagre resultater"
 
-#: gsearchtool/gsearchtool.c:1745
+#: gsearchtool/gsearchtool.c:1788
 msgid "S_how Command"
 msgstr "_Vis kommando"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1789
 msgid "Save Results _As..."
 msgstr "Lagre resultater _som..."
 
-#: gsearchtool/gsearchtool.c:1780
+#: gsearchtool/gsearchtool.c:1823
 msgid "Cannot initialize bonobo."
 msgstr "Kan ikke initiere bonobo."
 
-#: gsearchtool/gsearchtool.c:1784
+#: gsearchtool/gsearchtool.c:1827
 msgid "Search Tool"
 msgstr "Søkeverktøy"
 
@@ -943,7 +970,7 @@ msgstr "Legg til..."
 msgid "Edit..."
 msgstr "Rediger..."
 
-#: logview/actions.c:163 meat-grinder/meat-grinder.c:718
+#: logview/actions.c:163 meat-grinder/meat-grinder.c:720
 msgid "Remove"
 msgstr "Fjern"
 
@@ -993,7 +1020,7 @@ msgstr "beskrivelse:"
 msgid "Description of this entry."
 msgstr "Beskrivelse av denne oppføringen."
 
-#: logview/actions.c:810
+#: logview/actions.c:812
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1142,20 +1169,20 @@ msgid ""
 "to change the permissions on the file."
 msgstr ""
 "%s er ikke lesbar for bruker. Er sannsynlig skrivebeskyttet. Kjør enten "
-"programmet som root eller spør systemadministratoren om å endre "
-"rettighetene til filen."
+"programmet som root eller spør systemadministratoren om å endre rettighetene "
+"til filen."
 
 #: logview/logrtns.c:309
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s kunne ikke åpnes."
 
-#: logview/logrtns.c:332
+#: logview/logrtns.c:330 logview/logrtns.c:339
 #, c-format
 msgid "%s not a log file."
 msgstr "%s er ikke en loggfil."
 
-#: logview/logrtns.c:756 logview/logrtns.c:787 logview/logrtns.c:918
+#: logview/logrtns.c:765 logview/logrtns.c:796 logview/logrtns.c:927
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: tom for minne"
 
@@ -1347,6 +1374,51 @@ msgstr "Beskrivelse:"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
+#.
+#. * 	-------------------
+#. * 	     Defines
+#. * 	-------------------
+#.
+#: logview/config.c:34
+msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:35
+msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:36
+msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#: logview/config.c:37
+msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#: logview/config.c:39
+msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+
+#: logview/config.c:40
+msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+
+#: logview/config.c:41
+msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:42
+msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:43
+msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+
+#: logview/config.c:44
+msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -1356,6 +1428,60 @@ msgstr "Kan ikke åpne database over vanlige uttrykk <%s>! Feil under åpning."
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "Kan ikke åpne beskrivelsesdatabase <%s>! Feil under åpning."
+
+#. ----------------------------------------------------------------------
+#. NAME:
+#. DESCRIPTION:
+#. ----------------------------------------------------------------------
+#: gfloppy/src/gfloppy2.glade.h:1
+msgid "DOS (fat)"
+msgstr "DOS (fat)"
+
+#: gfloppy/src/gfloppy-i18n.h:15 gfloppy/src/gfloppy2.glade.h:2
+msgid "Double Density 3.5\" (720 KB)"
+msgstr "Dobbel tetthet 3.5\" (720 KB)"
+
+#: gfloppy/src/gfloppy-i18n.h:16 gfloppy/src/gfloppy2.glade.h:3
+msgid "Double Density 5.25\" (360 KB)"
+msgstr "Dobbel tetthet 5.25\" (360 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:4
+msgid "File system _type:"
+msgstr "_Type filsystem:"
+
+#: gfloppy/src/gfloppy2.glade.h:5
+msgid "Floppy _Density:"
+msgstr "_Diskettens tetthet:"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gfloppy/src/gfloppy-i18n.h:7 gfloppy/src/gfloppy2.glade.h:6
+msgid "Format a floppy"
+msgstr "Formatere en diskett"
+
+#: gfloppy/src/gfloppy-i18n.h:13 gfloppy/src/gfloppy2.glade.h:7
+msgid "High Density 3.5\" (1.44 MB)"
+msgstr "Høy tetthet 3.5\" (1.44 MB)"
+
+#: gfloppy/src/gfloppy-i18n.h:14 gfloppy/src/gfloppy2.glade.h:8
+msgid "High Density 5.25\" (1.2 MB)"
+msgstr "Høy tetthet 5.25\" (1.2 MB)"
+
+#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
+#: gfloppy/src/gfloppy2.glade.h:9
+msgid "Linux Native (ext2)"
+msgstr "Linux Native (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:10
+msgid "_Floppy Device:"
+msgstr "D_iskettenhet:"
+
+#: gfloppy/src/gfloppy-i18n.h:17 gfloppy/src/gfloppy2.glade.h:11
+msgid "_Quick format"
+msgstr "H_urtigformatering"
 
 #: gfloppy/src/badblocks.c:102
 msgid "MInternal Error: Unable to seek to the correct location."
@@ -1568,19 +1694,6 @@ msgstr "Formatering av diskett avbrutt."
 msgid "Format progress."
 msgstr "Fremgang i formateringen."
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gfloppy/src/gfloppy-i18n.h:7
-msgid "Format a floppy"
-msgstr "Formatere en diskett"
-
-#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
-msgid "Linux Native (ext2)"
-msgstr "Linux Native (ext2)"
-
 #: gfloppy/src/gfloppy-i18n.h:9
 msgid "Dos (FAT)"
 msgstr "DOS (FAT)"
@@ -1592,26 +1705,6 @@ msgstr "Diskettens tetthet:"
 #: gfloppy/src/gfloppy-i18n.h:12
 msgid "File system type:"
 msgstr "Type filsystem:"
-
-#: gfloppy/src/gfloppy-i18n.h:13
-msgid "High Density 3.5\" (1.44 MB)"
-msgstr "Høy tetthet 3.5\" (1.44 MB)"
-
-#: gfloppy/src/gfloppy-i18n.h:14
-msgid "High Density 5.25\" (1.2 MB)"
-msgstr "Høy tetthet 5.25\" (1.2 MB)"
-
-#: gfloppy/src/gfloppy-i18n.h:15
-msgid "Double Density 3.5\" (720 KB)"
-msgstr "Dobbel tetthet 3.5\" (720 KB)"
-
-#: gfloppy/src/gfloppy-i18n.h:16
-msgid "Double Density 5.25\" (360 KB)"
-msgstr "Dobbel tetthet 5.25\" (360 KB)"
-
-#: gfloppy/src/gfloppy-i18n.h:17
-msgid "_Quick format"
-msgstr "H_urtigformatering"
 
 #: gfloppy/src/gfloppy-i18n.h:18
 msgid "Floppy Device:"
@@ -1679,16 +1772,16 @@ msgstr ""
 "Den kjørbare filen er for en annen plattform og kan ikke kjøres på dette "
 "systemet"
 
-#: meat-grinder/meat-grinder.c:109
+#: meat-grinder/meat-grinder.c:111
 #, c-format
 msgid ""
 "Number of files: %d\n"
-"Nuber of folders: %d"
+"Number of folders: %d"
 msgstr ""
 "Antall filer: %d\n"
 "Antall mapper: %d"
 
-#: meat-grinder/meat-grinder.c:115
+#: meat-grinder/meat-grinder.c:117
 msgid ""
 "No files or folders, drop files or folders\n"
 "above to add them to the archive"
@@ -1696,79 +1789,79 @@ msgstr ""
 "Ingen filer eller mapper, slipp filer eller mapper\n"
 "over for å legge dem til i arkivet"
 
-#: meat-grinder/meat-grinder.c:220 meat-grinder/meat-grinder.c:223
+#: meat-grinder/meat-grinder.c:222 meat-grinder/meat-grinder.c:225
 msgid "Cannot start the archive (tar) program"
 msgstr "Kan ikke starte arkivprogrammet (tar)"
 
-#: meat-grinder/meat-grinder.c:231
+#: meat-grinder/meat-grinder.c:233
 msgid "Cannot run tar/gtar"
 msgstr "Kan ikke kjøre tar/gtar"
 
-#: meat-grinder/meat-grinder.c:282
+#: meat-grinder/meat-grinder.c:284
 msgid "Archive.tar.gz"
 msgstr "Arkiv.tar.gz"
 
-#: meat-grinder/meat-grinder.c:387
+#: meat-grinder/meat-grinder.c:389
 msgid "The GNOME Archive Generator"
 msgstr "GNOME arkivgenerator"
 
-#: meat-grinder/meat-grinder.c:389
+#: meat-grinder/meat-grinder.c:391
 msgid "Drag files in to make archives"
 msgstr "Dra filer hit for å lage arkiv"
 
-#: meat-grinder/meat-grinder.c:460 meat-grinder/meat-grinder.c:618
+#: meat-grinder/meat-grinder.c:462 meat-grinder/meat-grinder.c:620
 msgid "No filename selected"
 msgstr "Ingen filnavn valgt"
 
-#: meat-grinder/meat-grinder.c:464
+#: meat-grinder/meat-grinder.c:466
 msgid "File exists, overwrite?"
 msgstr "Filen eksisterer, overskriv?"
 
-#: meat-grinder/meat-grinder.c:488
+#: meat-grinder/meat-grinder.c:490
 msgid "No items to archive"
 msgstr "Ingen oppføringer å arkivere"
 
-#: meat-grinder/meat-grinder.c:621
+#: meat-grinder/meat-grinder.c:623
 msgid "File does not exists"
 msgstr "Filen eksisterer ikke"
 
-#: meat-grinder/meat-grinder.c:635
+#: meat-grinder/meat-grinder.c:637
 msgid "Add file or folder"
 msgstr "Legg til fil eller mappe"
 
-#: meat-grinder/meat-grinder.c:705
+#: meat-grinder/meat-grinder.c:707
 msgid "Add file or folder..."
 msgstr "Legg til fil eller mappe..."
 
-#: meat-grinder/meat-grinder.c:706
+#: meat-grinder/meat-grinder.c:708
 msgid "Add a file or folder to the archive"
 msgstr "Legg til en fil eller en mappe i arkivet"
 
-#: meat-grinder/meat-grinder.c:709
+#: meat-grinder/meat-grinder.c:711
 msgid "Create archive..."
 msgstr "Opprett arkiv..."
 
-#: meat-grinder/meat-grinder.c:710
+#: meat-grinder/meat-grinder.c:712
 msgid "Create a new archive from the items"
 msgstr "Opprett et nytt arkiv fra oppføringene"
 
-#: meat-grinder/meat-grinder.c:719
+#: meat-grinder/meat-grinder.c:721
 msgid "Remove the selected item(s)"
 msgstr "Fjern valgt(e) oppføring(er)"
 
-#: meat-grinder/meat-grinder.c:751
+#: meat-grinder/meat-grinder.c:753
 msgid "GNOME Archive Generator"
 msgstr "GNOME arkivgenerator"
 
-#: meat-grinder/meat-grinder.c:781
+#: meat-grinder/meat-grinder.c:783
 msgid "Drop files here to add them to the archive."
 msgstr "Slipp filer her for å legge dem til i arkivet."
 
-#: meat-grinder/meat-grinder.c:799
+#: meat-grinder/meat-grinder.c:801
 msgid "Archive"
 msgstr "Arkiv"
 
-#: meat-grinder/meat-grinder.c:806
+#: meat-grinder/meat-grinder.c:808
 msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
@@ -1776,11 +1869,11 @@ msgstr ""
 "Dra denne knappen til målet hvor du ønsker at arkivet skal opprettes eller "
 "trykk på den for å få opp en filvalg-dialog."
 
-#: meat-grinder/meat-grinder.c:899
+#: meat-grinder/meat-grinder.c:901
 msgid "Cannot find proper icons anywhere!"
 msgstr "Kan ikke finne riktige ikoner noe sted!"
 
-#: meat-grinder/meat-grinder.c:907
+#: meat-grinder/meat-grinder.c:909
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
@@ -1799,10 +1892,6 @@ msgstr "Formater disketter"
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Ordbok"
-
-#: gdictsrc/gnome-dictionary.desktop.in.h:2
-msgid "Lookup words in an online dictionary"
-msgstr "Slå opp ord i en ordbok på nett"
 
 #: meat-grinder/archive-generator.desktop.in.h:1
 msgid "Archive Generator"
@@ -1847,36 +1936,6 @@ msgstr "Systemlogg"
 #: logview/gnome-system-log.desktop.in.h:2
 msgid "View the system log file"
 msgstr "Vis systemets loggfiler"
-
-#~ msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#~ msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
 
 #~ msgid "_Action Toolbar"
 #~ msgstr "Verktøylinje for h_andling"
@@ -2086,8 +2145,7 @@ msgstr "Vis systemets loggfiler"
 
 #~ msgid ""
 #~ "Percent Complete: How much of this project has been finished till now."
-#~ msgstr ""
-#~ "Prosent fullført: Hvor mye av dette prosjektet er fullført hittil."
+#~ msgstr "Prosent fullført: Hvor mye av dette prosjektet er fullført hittil."
 
 #~ msgid "U"
 #~ msgstr "H"
@@ -2334,16 +2392,16 @@ msgstr "Vis systemets loggfiler"
 #~ msgstr "Advarsel"
 
 #~ msgid ""
-#~ "GTimeTracker is a combination stop-watch, diary, consultant billing system "
-#~ "and project manager.  You can measure the amount of time you spend on a "
-#~ "task, associate a memo with it, set a billing rate, print an invoice, as "
-#~ "well as track that status of other projects."
+#~ "GTimeTracker is a combination stop-watch, diary, consultant billing "
+#~ "system and project manager.  You can measure the amount of time you spend "
+#~ "on a task, associate a memo with it, set a billing rate, print an "
+#~ "invoice, as well as track that status of other projects."
 #~ msgstr ""
 #~ "GTimeTracker er en kombinasjon av en stoppeklokke, dagbok, "
 #~ "faktureringssystem for konsulenter og prosjekthåndterer. Du kan måle "
 #~ "mengden tid du bruker på en oppgave, koble et notat til det, sette "
-#~ "faktureringsrate, skrive ut faktura, i tillegg til å spore status for andre "
-#~ "prosjekter."
+#~ "faktureringsrate, skrive ut faktura, i tillegg til å spore status for "
+#~ "andre prosjekter."
 
 #~ msgid "New Project..."
 #~ msgstr "Nytt prosjekt..."
@@ -2353,9 +2411,6 @@ msgstr "Vis systemets loggfiler"
 
 #~ msgid "Do you really want to reload the configuration file?"
 #~ msgstr "Vil du virkelig lese konfigurasjonsfilen på nytt?"
-
-#~ msgid "File %s exists, overwrite?"
-#~ msgstr "Filen %s eksisterer, overskriv?"
 
 #~ msgid "File cannot be written"
 #~ msgstr "Filen kan ikke skrives"
@@ -2768,8 +2823,7 @@ msgstr "Vis systemets loggfiler"
 #~ "Skriv inn en skallkommando som skal kjøres når ingen prosjekter er aktiv."
 
 #~ msgid "Enter a shell command to be executed whenever projects are switched."
-#~ msgstr ""
-#~ "Skriv inn en skallkommando som skal kjøres når det byttes prosjekt."
+#~ msgstr "Skriv inn en skallkommando som skal kjøres når det byttes prosjekt."
 
 #~ msgid "Entry Start:"
 #~ msgstr "Innleggets start:"
@@ -2781,12 +2835,14 @@ msgstr "Vis systemets loggfiler"
 #~ "Entry that will be logged when a project starts. Use %t for the project "
 #~ "title, %d for the description, etc. See the manual for more options."
 #~ msgstr ""
-#~ "Oppføring som blir logget når et prosjekt starter. Bruk %t for prosjektets "
-#~ "tittel, %d for beskrivelse, etc. Se håndboken for flere alternativer."
+#~ "Oppføring som blir logget når et prosjekt starter. Bruk %t for "
+#~ "prosjektets tittel, %d for beskrivelse, etc. Se håndboken for flere "
+#~ "alternativer."
 
 #~ msgid ""
 #~ "Entry that will be logged when the project stops.  Use %t for the porject "
-#~ "title, %d for the project description, etc. See the manual for more options."
+#~ "title, %d for the project description, etc. See the manual for more "
+#~ "options."
 #~ msgstr ""
 #~ "Oppføring som logges når prosjektet stopper. Bruk %t for prosjektets "
 #~ "tittel, %d for beskrivelse, etc. Se håndboken for flere alternativer."
@@ -2918,8 +2974,8 @@ msgstr "Vis systemets loggfiler"
 #~ msgstr "Vis `Klokke'"
 
 #~ msgid ""
-#~ "Show the 'szing', that is, the estimated amount of work that it will take to "
-#~ "perform this project."
+#~ "Show the 'szing', that is, the estimated amount of work that it will take "
+#~ "to perform this project."
 #~ msgstr ""
 #~ "Vis 'szing', som er estimert arbeidsmengde som kreves for å ferdigstille "
 #~ "dette prosjektet."
@@ -2931,16 +2987,16 @@ msgstr "Vis systemets loggfiler"
 #~ "Switches between projects that happen faster than this will not be logged "
 #~ "(enter the number of seconds)"
 #~ msgstr ""
-#~ "Bytting mellom prosjekter som skjer raskere enn dette vil ikke logges (skriv "
-#~ "inn antall sekunder)"
+#~ "Bytting mellom prosjekter som skjer raskere enn dette vil ikke logges "
+#~ "(skriv inn antall sekunder)"
 
 #~ msgid ""
 #~ "The current active project will be made inactive after there has been no "
-#~ "keyboard/mouse activity after this number of seconds.  Set to -1 to disable."
+#~ "keyboard/mouse activity after this number of seconds.  Set to -1 to "
+#~ "disable."
 #~ msgstr ""
-#~ "Aktivt prosjekt vil gjøres inaktivt hvis det ikke registreres "
-#~ "tastatur-/musaktivitet etter spesifisert antall sekunder. Sett til -1 for å "
-#~ "slå av."
+#~ "Aktivt prosjekt vil gjøres inaktivt hvis det ikke registreres tastatur-/"
+#~ "musaktivitet etter spesifisert antall sekunder. Sett til -1 for å slå av."
 
 #~ msgid "Toolbar"
 #~ msgstr "Verktøylinje"
@@ -2976,9 +3032,9 @@ msgstr "Vis systemets loggfiler"
 #~ msgstr "Intervall for automatisk fletting:"
 
 #~ msgid ""
-#~ "Does this item need immediate attention? Note that some urgent tasks might "
-#~ "not be important.  For example, Bill may want you to answer his email today, "
-#~ "but you may have better things to do today."
+#~ "Does this item need immediate attention? Note that some urgent tasks "
+#~ "might not be important.  For example, Bill may want you to answer his "
+#~ "email today, but you may have better things to do today."
 #~ msgstr ""
 #~ "Trenger denne oppføringen øyeblikkelig tilsyn? Merk at noen hastesaker "
 #~ "kanskje ikke er viktige. For eksempel, Bill vil kanskje at du svarer på "
@@ -2998,8 +3054,8 @@ msgstr "Vis systemets loggfiler"
 
 #~ msgid ""
 #~ "How important is it to perform this task?  Not everything important is "
-#~ "urgent.  For example, it is important to file a tax return every year, but "
-#~ "you have a lot of time to get ready to do this."
+#~ "urgent.  For example, it is important to file a tax return every year, "
+#~ "but you have a lot of time to get ready to do this."
 #~ msgstr ""
 #~ "Hvor viktig er det å utføre denne oppgaven? Ikke alle viktige oppgaver "
 #~ "haster. Eksempel: Det er viktig å sende inn selvangivelsen hvert år, men "
@@ -3013,8 +3069,8 @@ msgstr "Vis systemets loggfiler"
 #~ "sammen."
 
 #~ msgid ""
-#~ "If this project is billed for one price no matter how long it takes, enter "
-#~ "the fee here."
+#~ "If this project is billed for one price no matter how long it takes, "
+#~ "enter the fee here."
 #~ msgstr ""
 #~ "Hvis dette prosjektet avregnes for en pris uansett hvor lang tid det tar, "
 #~ "skriv inn beløpet her."
@@ -3073,8 +3129,7 @@ msgstr "Vis systemets loggfiler"
 #~ msgstr "Status:"
 
 #~ msgid "The dollars per hour charged for overtime work on this project."
-#~ msgstr ""
-#~ "Kroner i time som påregnes for overtidsarbeid på dette prosjektet."
+#~ msgstr "Kroner i time som påregnes for overtidsarbeid på dette prosjektet."
 
 #~ msgid "The dollars per hour normally charged for this project."
 #~ msgstr "Timepris i kroner som normalt tas for dette prosjektet."
@@ -3158,30 +3213,32 @@ msgstr "Vis systemets loggfiler"
 #~ msgstr "Fakturarate som tas for denne oppgaven."
 
 #~ msgid ""
-#~ "How should this task be billed?  \"Billable\" means bill to the customer in "
-#~ "the normal fashion.   \"Not Billable\" means we can't ask for money for "
-#~ "this, don't print on the invoice.   \"No Charge\" means print on the invoice "
-#~ "as 'free/no-charge'."
+#~ "How should this task be billed?  \"Billable\" means bill to the customer "
+#~ "in the normal fashion.   \"Not Billable\" means we can't ask for money "
+#~ "for this, don't print on the invoice.   \"No Charge\" means print on the "
+#~ "invoice as 'free/no-charge'."
 #~ msgstr ""
 #~ "Hvordan skal denne oppgaven faktureres? \"Fakturerbar\" betyr at kunden "
-#~ "faktureres på vanlig måte. \"Ikke fakturerbar\" betyr at vi ikke kan be om "
-#~ "betaling for dette. Kommer ikke på fakturaen. \"Ingen betaling\" betyr at "
-#~ "det skal skrives på fakturaen som 'gratis/ingen betaling'."
+#~ "faktureres på vanlig måte. \"Ikke fakturerbar\" betyr at vi ikke kan be "
+#~ "om betaling for dette. Kommer ikke på fakturaen. \"Ingen betaling\" betyr "
+#~ "at det skal skrives på fakturaen som 'gratis/ingen betaling'."
 
 #~ msgid ""
-#~ "Is this task ready to be billed to the customer? \"Hold\" means maybe, but "
-#~ "not yet, needs review.   \"Bill\" means print this on the next invoice.   "
-#~ "\"Paid\" means that it should no longer be included on invoices."
+#~ "Is this task ready to be billed to the customer? \"Hold\" means maybe, "
+#~ "but not yet, needs review.   \"Bill\" means print this on the next "
+#~ "invoice.   \"Paid\" means that it should no longer be included on "
+#~ "invoices."
 #~ msgstr ""
-#~ "Er denne oppgaven klar for fakturering for kunden? \"Vent\" betyr kanskje, "
-#~ "men ikke ennå. Krever oversyn. \"Fakturer\" betyr skriv dette på neste "
-#~ "faktura. \"Betalt\" betyr at denne ikke skal være med på fakturaer."
+#~ "Er denne oppgaven klar for fakturering for kunden? \"Vent\" betyr "
+#~ "kanskje, men ikke ennå. Krever oversyn. \"Fakturer\" betyr skriv dette på "
+#~ "neste faktura. \"Betalt\" betyr at denne ikke skal være med på fakturaer."
 
 #~ msgid "OverOver"
 #~ msgstr "100%"
 
 #~ msgid ""
-#~ "The billed unit of time will be rounded to an integer multiple of this time."
+#~ "The billed unit of time will be rounded to an integer multiple of this "
+#~ "time."
 #~ msgstr ""
 #~ "Fakturert tidsenhet vil rundes av til et heltallsmultiplum av denne tiden."
 
@@ -3294,11 +3351,11 @@ msgstr "Vis systemets loggfiler"
 #~ msgstr "Kortnavn : "
 
 #~ msgid ""
-#~ "This document read document from one or more other document. Please, choose "
-#~ "these documents."
+#~ "This document read document from one or more other document. Please, "
+#~ "choose these documents."
 #~ msgstr ""
-#~ "Dette dokumentet leser dokumenter fra ett eller flere andre dokumenter. Vær "
-#~ "vennlig og velg disse dokumentene."
+#~ "Dette dokumentet leser dokumenter fra ett eller flere andre dokumenter. "
+#~ "Vær vennlig og velg disse dokumentene."
 
 #~ msgid ""
 #~ "You can create one or more views for this document. Note that you have to "
@@ -3807,8 +3864,7 @@ msgstr "Vis systemets loggfiler"
 #~ msgid ""
 #~ "You must be the super-user (root) to shut down or restart the computer."
 #~ msgstr ""
-#~ "Du må være superbruker (root) for å slå av eller starte maskinen på "
-#~ "nytt."
+#~ "Du må være superbruker (root) for å slå av eller starte maskinen på nytt."
 
 #~ msgid "Shutdown or Reboot"
 #~ msgstr "Slå av maskinen eller start på nytt"
@@ -4212,11 +4268,11 @@ msgstr "Vis systemets loggfiler"
 #~ "such as CPU load, CPU utilization, network traffic levels, and the like.  "
 #~ "Other more ingenious uses are left as an exercise for the interested user."
 #~ msgstr ""
-#~ "GNOME Stripchart programmet plotter forskjellige brukerbestemte parametere "
-#~ "som en funksjon av tiden. Dens hovedvirkeområde er å plotte systemytelses- "
-#~ "parametere slik som CPU-belastning, nivå for nettverkstrafikk og lignende. "
-#~ "Å finne andre og mer oppfinnsomme bruksområder overlates som en øvelse "
-#~ "for den som bruker programmet."
+#~ "GNOME Stripchart programmet plotter forskjellige brukerbestemte "
+#~ "parametere som en funksjon av tiden. Dens hovedvirkeområde er å plotte "
+#~ "systemytelses- parametere slik som CPU-belastning, nivå for "
+#~ "nettverkstrafikk og lignende. Å finne andre og mer oppfinnsomme "
+#~ "bruksområder overlates som en øvelse for den som bruker programmet."
 
 #~ msgid "Show values"
 #~ msgstr "Vis verdier"
