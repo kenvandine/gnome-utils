@@ -86,7 +86,7 @@ logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 	}
 
 	if (st->res == 1)
-		gtk_widget_show (GTK_WIDGET (st->output_window));
+		gtk_widget_show_all (GTK_WIDGET (st->output_window));
 
 	while (gtk_events_pending ())
 		gtk_main_iteration ();

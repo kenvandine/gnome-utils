@@ -402,7 +402,6 @@ CreateMainWin ()
    g_free (window_title);
 
    gtk_window_set_default_size (GTK_WINDOW (window), LOG_CANVAS_W, LOG_CANVAS_H);
-   //   gtk_widget_show (window);
 
    gtk_signal_connect (GTK_OBJECT (window), "destroy",
 		       GTK_SIGNAL_FUNC (destroy), NULL);
@@ -493,9 +492,11 @@ CreateMainWin ()
    /* Create status area at bottom */
    statusbar = gtk_statusbar_new ();
    gtk_box_pack_start (GTK_BOX (vbox), statusbar, FALSE, FALSE, 0);
+   gtk_widget_show (statusbar);
 
-   gtk_widget_show_all (vbox);
-   gtk_widget_hide (output_window);
+   gtk_widget_show (vbox);
+   gtk_widget_show (window);
+
 
 }
 
