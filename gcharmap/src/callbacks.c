@@ -108,9 +108,8 @@ cb_charbtn_click (GtkButton *button, gpointer user_data)
     gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), current_pos);
 }
 
-
 void
-cb_charbtn_enter (GtkButton *button, gpointer user_data)
+set_status_bar (GtkButton *button, gpointer user_data)
 {
     GtkLabel *label = GTK_LABEL (GTK_BIN (button)->child);
     const char *charset;
@@ -139,6 +138,18 @@ cb_charbtn_enter (GtkButton *button, gpointer user_data)
     g_free (s);
 }
 
+void
+cb_charbtn_enter (GtkButton *button, gpointer user_data)
+{
+    set_status_bar (button, user_data);
+}
+
+gboolean
+cb_charbtn_focus_in (GtkButton *button, GdkEventFocus *event, gpointer user_data)
+{
+    set_status_bar (button, user_data);
+    return FALSE;
+}
 
 void
 cb_charbtn_leave (GtkButton *button, gpointer user_data)
@@ -146,6 +157,12 @@ cb_charbtn_leave (GtkButton *button, gpointer user_data)
     gnome_appbar_pop (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar));
 }
 
+gboolean
+cb_charbtn_focus_out (GtkButton *button, GdkEventFocus *event, gpointer user_data)
+{
+   gnome_appbar_pop (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar));
+   return FALSE;
+}
 
 void
 cb_clear_click (GtkWidget *widget, gpointer user_data)

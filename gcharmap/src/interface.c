@@ -86,6 +86,11 @@ create_chartable (MainApp *app)
             g_signal_connect (G_OBJECT (button), "leave",
               G_CALLBACK (cb_charbtn_leave), GINT_TO_POINTER (h + v * 16));
 
+            g_signal_connect (G_OBJECT (button), "focus_in_event",
+              G_CALLBACK (cb_charbtn_focus_in), GINT_TO_POINTER (h + v * 16));
+            g_signal_connect (G_OBJECT (button), "focus_out_event",
+              G_CALLBACK (cb_charbtn_focus_out), GINT_TO_POINTER (h + v * 16));
+
         }
     }
 
