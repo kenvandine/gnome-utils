@@ -6,12 +6,12 @@
 #. Translator credits
 #: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
 #: gsearchtool/gsearchtool.c:800 logview/about.c:52
-#: meat-grinder/meat-grinder.c:377
+#: meat-grinder/meat-grinder.c:380
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.1\n"
-"POT-Creation-Date: 2001-12-16 07:27-0500\n"
-"PO-Revision-Date: 2001-12-16 16:18+0000\n"
+"POT-Creation-Date: 2002-01-10 01:34+0000\n"
+"PO-Revision-Date: 2002-01-10 01:35+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <none@none.org>\n"
 "MIME-Version: 1.0\n"
@@ -274,7 +274,7 @@ msgstr "Texto a copiar:"
 msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 
-#: gcharmap/src/interface.c:235 gcharmap/src/menus.c:111 logview/logview.c:100
+#: gcharmap/src/interface.c:235 gcharmap/src/menus.c:111 logview/logview.c:102
 msgid "Exit"
 msgstr "Sair"
 
@@ -389,17 +389,17 @@ msgstr "Sair da aplicação"
 
 #: gdictsrc/main.c:89
 msgid ""
-"Couldn't start the dictionary; most likely, http://www.dict.org could not be "
-"contacted."
+"The server could not be contacted. \n"
+"If you are not connected to the internet please do so."
 msgstr ""
-"Incapaz de iniciar o dicionário; muito provavelmente, não foi possível "
-"contactar http://www.dict.org."
+"Não foi possível contactar o servidor. \n"
+"Se não estiver ligado à internet, ligue-se."
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:419
-#: gdictsrc/gdict-pref-dialog.c:463 gdictsrc/gdict-speller.c:411
+#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:418
+#: gdictsrc/gdict-pref-dialog.c:462 gdictsrc/gdict-speller.c:411
 msgid "Cannot connect to server"
 msgstr "Incapaz de se ligar ao servidor"
 
@@ -441,17 +441,15 @@ msgstr "Procurar:"
 
 #: gdictsrc/gdict-app.c:452
 msgid ""
-"Unable to perform requested operation, either because the server\n"
-"you are using is down or because you are not connected to the\n"
-"Internet. If you are not already connected to the Internet, please\n"
-"do so and try again."
+"Unable to perform requested operation. \n"
+"Either the server you are using is not available \n"
+"or you are not connected to the Internet."
 msgstr ""
-"Incapaz de realizar operação pedida, ou porque o servidor que está\n"
-"a utilizar está em baixo ou porque você não está ligado à Internet.\n"
-"Caso não esteja ainda ligado à Internet, ligue-se e tente novamente."
+"Incapaz de realizar operação pedida. \n"
+"Ou o servidor que está a utilizar está em baixo \n"
+"ou porque você não está ligado à Internet."
 
 #: gdictsrc/gdict-app.c:489 gdictsrc/gdict-app.c:546
-#: gdictsrc/gdict-applet.c:185
 msgid "Lookup"
 msgstr "Procurar"
 
@@ -491,13 +489,9 @@ msgstr "Servidor a utilizar, estratégia de procura de defeito, fontes"
 msgid "_Lookup"
 msgstr "_Procurar"
 
-#: gdictsrc/gdict-applet.c:181
-msgid "Cannot create applet!\n"
-msgstr "Incapaz de criar applet!\n"
-
-#: gdictsrc/gdict-applet.c:434
-msgid "Look up highlighted text in a dictionary"
-msgstr "Procurar texto realçado no dicionário"
+#: gdictsrc/gdict-applet.c:268
+msgid "Press button to look up any highlighted text in a dictionary"
+msgstr "Primir botão para procurar texto realçado no dicionário"
 
 #: gdictsrc/gdict-defbox.c:633 gdictsrc/gdict-speller.c:436
 #, c-format
@@ -536,45 +530,49 @@ msgstr "Corpo principal:"
 msgid "Cross-reference:"
 msgstr "Referências cruzadas:"
 
-#: gdictsrc/gdict-pref-dialog.c:176
+#: gdictsrc/gdict-pref-dialog.c:177
 msgid "Preferences"
 msgstr "Preferências"
 
-#: gdictsrc/gdict-pref-dialog.c:188
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "Smart lookup"
 msgstr "Pesquisa inteligente"
 
-#: gdictsrc/gdict-pref-dialog.c:199
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "Server:"
 msgstr "Servidor:"
 
-#: gdictsrc/gdict-pref-dialog.c:204
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Set _Server"
 msgstr "Definir _Servidor"
 
-#: gdictsrc/gdict-pref-dialog.c:209
+#: gdictsrc/gdict-pref-dialog.c:210
 msgid "Port:"
 msgstr "Porto:"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:220
 msgid "Set _Port"
 msgstr "Definir _Porto"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:225
 msgid "Database:"
 msgstr "Base de dados:"
 
-#: gdictsrc/gdict-pref-dialog.c:231
+#: gdictsrc/gdict-pref-dialog.c:232
 msgid "Default strategy:"
 msgstr "Estratégia de defeito:"
 
-#: gdictsrc/gdict-pref-dialog.c:411
+#: gdictsrc/gdict-pref-dialog.c:410
 msgid "Search all databases"
 msgstr "Procurar todas as bases de dados"
 
-#: gdictsrc/gdict-pref-dialog.c:600 gdictsrc/gdict-pref-dialog.c:652
+#: gdictsrc/gdict-pref-dialog.c:598
 msgid "The server you specified could not be found."
 msgstr "O servidor que especificou não pode ser encontrado."
+
+#: gdictsrc/gdict-pref-dialog.c:649
+msgid "The server could not be found on that port."
+msgstr "O servidor não foi encontrado nesse porto."
 
 #: gdictsrc/gdict-speller.c:127
 msgid "_Spell"
@@ -700,7 +698,7 @@ msgid "Enable"
 msgstr "Activar"
 
 #: gsearchtool/gsearchtool.c:576 logview/actions.c:163
-#: meat-grinder/meat-grinder.c:715
+#: meat-grinder/meat-grinder.c:718
 msgid "Remove"
 msgstr "Remover"
 
@@ -774,7 +772,7 @@ msgstr "Ferramenta de Procura Gnome"
 msgid "Cannot save file"
 msgstr "Incapaz de gravar o ficheiro"
 
-#: gsearchtool/outdlg.c:71 meat-grinder/meat-grinder.c:489
+#: gsearchtool/outdlg.c:71 meat-grinder/meat-grinder.c:492
 msgid "Save Results"
 msgstr "Gravar Resultados"
 
@@ -890,11 +888,11 @@ msgstr ""
 "descrição: [%s]\n"
 "acção: [%s]\n"
 
-#: logview/calendar.c:112 logview/logview.c:107
+#: logview/calendar.c:112 logview/logview.c:109
 msgid "Calendar"
 msgstr "Calendário"
 
-#: logview/info.c:79 logview/logview.c:110
+#: logview/info.c:79 logview/logview.c:112
 msgid "Log stats"
 msgstr "Estatisticas log"
 
@@ -931,62 +929,62 @@ msgstr "Num. linhas:"
 msgid "%ld bytes"
 msgstr "%ld bytes"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "January"
 msgstr "Janeiro"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "February"
 msgstr "Fevereiro"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "March"
 msgstr "Março"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "April"
 msgstr "Abril"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "May"
 msgstr "Maio"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "June"
 msgstr "Junho"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "July"
 msgstr "Julho"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "August"
 msgstr "Agosto"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "September"
 msgstr "Setembro"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "October"
 msgstr "Outubro"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:85
 msgid "November"
 msgstr "Novembro"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:85
 msgid "December"
 msgstr "Dezembro"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:477
+#: logview/log_repaint.c:475
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:587
+#: logview/log_repaint.c:585
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -994,7 +992,7 @@ msgstr "%X"
 #. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:671
+#: logview/log_repaint.c:669
 msgid "%B %e"
 msgstr "%B %e"
 
@@ -1038,112 +1036,112 @@ msgstr "%s não é um ficheiro de registo."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: sem memória"
 
-#: logview/logview.c:85
+#: logview/logview.c:87
 msgid "Open log..."
 msgstr "Abrir log..."
 
-#: logview/logview.c:86
+#: logview/logview.c:88
 msgid "Open log"
 msgstr "Abrir log"
 
-#: logview/logview.c:88
+#: logview/logview.c:90
 msgid "Export log..."
 msgstr "Exportar log..."
 
-#: logview/logview.c:89
+#: logview/logview.c:91
 msgid "Export log"
 msgstr "Exportar log"
 
-#: logview/logview.c:91 logview/logview.c:92
+#: logview/logview.c:93 logview/logview.c:94
 msgid "Close log"
 msgstr "Fechar log"
 
-#: logview/logview.c:94 logview/logview.c:95
+#: logview/logview.c:96 logview/logview.c:97
 msgid "Switch log"
 msgstr "Alternar log"
 
-#: logview/logview.c:97
+#: logview/logview.c:99
 msgid "Monitor..."
 msgstr "Monitorizar..."
 
-#: logview/logview.c:98
+#: logview/logview.c:100
 msgid "Monitor log"
 msgstr "Monitorizar log"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "Exit program"
 msgstr "Sair da aplicação"
 
-#: logview/logview.c:108
+#: logview/logview.c:110
 msgid "Show calendar log"
 msgstr "Mostrar calendário de log"
 
-#: logview/logview.c:111
+#: logview/logview.c:113
 msgid "Show log stats"
 msgstr "Mostrar estatísticas de log"
 
-#: logview/logview.c:113
+#: logview/logview.c:115
 msgid "Zoom"
 msgstr "Zoom"
 
-#: logview/logview.c:114
+#: logview/logview.c:116
 msgid "Show line info"
 msgstr "Mostrar informação de linha"
 
-#: logview/logview.c:116
+#: logview/logview.c:118
 msgid "Preferences..."
 msgstr "Preferências..."
 
-#: logview/logview.c:117
+#: logview/logview.c:119
 msgid "Show user preferences"
 msgstr "Mostrar preferências do utilizador"
 
-#: logview/logview.c:124
+#: logview/logview.c:126
 msgid "Select...               "
 msgstr "Seleccionar...          "
 
-#: logview/logview.c:125
+#: logview/logview.c:127
 msgid "Select log events"
 msgstr "Seleccionar eventos do log"
 
-#: logview/logview.c:127
+#: logview/logview.c:129
 msgid "Filter..                "
 msgstr "Filtrar..               "
 
-#: logview/logview.c:128
+#: logview/logview.c:130
 msgid "Filter log events"
 msgstr "Filtrar eventos do log"
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 msgid "About..."
 msgstr "Sobre..."
 
-#: logview/logview.c:136
+#: logview/logview.c:138
 msgid "Info about logview"
 msgstr "Informação sobre a visualização do log"
 
-#: logview/logview.c:241
+#: logview/logview.c:250
 msgid "No log files to open"
 msgstr "Nenhum ficheiro log para abrir"
 
 #. Create App
-#: logview/logview.c:264
+#: logview/logview.c:273
 msgid "System Log Viewer"
 msgstr "Visualizador de Logs do Sistema"
 
-#: logview/logview.c:368
+#: logview/logview.c:377
 msgid "Filename: "
 msgstr "Nome do Ficheiro: "
 
-#: logview/logview.c:384
+#: logview/logview.c:393
 msgid "Date: "
 msgstr "Data: "
 
-#: logview/logview.c:619
+#: logview/logview.c:628
 msgid "Too many open logs. Close one and try again"
 msgstr "Demasiados logs abertos. Feche um e tente novamente"
 
-#: logview/logview.c:676
+#: logview/logview.c:685
 msgid "Open new logfile"
 msgstr "Abrir novo ficheiro log"
 
@@ -1613,7 +1611,7 @@ msgstr ""
 "O executável é de uma plataforma diferente e não pode ser executado neste "
 "sistema"
 
-#: meat-grinder/meat-grinder.c:106
+#: meat-grinder/meat-grinder.c:109
 #, c-format
 msgid ""
 "Number of files: %d\n"
@@ -1622,7 +1620,7 @@ msgstr ""
 "Número de ficheiros: %d\n"
 "Número de pastas: %d"
 
-#: meat-grinder/meat-grinder.c:112
+#: meat-grinder/meat-grinder.c:115
 msgid ""
 "No files or folders, drop files or folders\n"
 "above to add them to the archive"
@@ -1630,79 +1628,79 @@ msgstr ""
 "Nenhuns ficheiros ou pastas, large ficheiros ou pastas\n"
 "acima para adiciona-los ao arquivo"
 
-#: meat-grinder/meat-grinder.c:217 meat-grinder/meat-grinder.c:220
+#: meat-grinder/meat-grinder.c:220 meat-grinder/meat-grinder.c:223
 msgid "Cannot start the archive (tar) program"
 msgstr "Incapaz de iniciar a aplicação de arquivo (tar)"
 
-#: meat-grinder/meat-grinder.c:228
+#: meat-grinder/meat-grinder.c:231
 msgid "Cannot run tar/gtar"
 msgstr "Incapaz de executar tar/gtar"
 
-#: meat-grinder/meat-grinder.c:279
+#: meat-grinder/meat-grinder.c:282
 msgid "Archive.tar.gz"
 msgstr "Arquivo.tar.gz"
 
-#: meat-grinder/meat-grinder.c:384
+#: meat-grinder/meat-grinder.c:387
 msgid "The GNOME Archive Generator"
 msgstr "O Gerador de Arquivos GNOME"
 
-#: meat-grinder/meat-grinder.c:386
+#: meat-grinder/meat-grinder.c:389
 msgid "Drag files in to make archives"
 msgstr "Arraste ficheiros para gerar arquivos"
 
-#: meat-grinder/meat-grinder.c:457 meat-grinder/meat-grinder.c:615
+#: meat-grinder/meat-grinder.c:460 meat-grinder/meat-grinder.c:618
 msgid "No filename selected"
 msgstr "Nenhum nome de ficheiro seleccionado"
 
-#: meat-grinder/meat-grinder.c:461
+#: meat-grinder/meat-grinder.c:464
 msgid "File exists, overwrite?"
 msgstr "Ficheiro existe, sobrepor?"
 
-#: meat-grinder/meat-grinder.c:485
+#: meat-grinder/meat-grinder.c:488
 msgid "No items to archive"
 msgstr "Nenhum item para arquivar"
 
-#: meat-grinder/meat-grinder.c:618
+#: meat-grinder/meat-grinder.c:621
 msgid "File does not exists"
 msgstr "Ficheiro não existe"
 
-#: meat-grinder/meat-grinder.c:632
+#: meat-grinder/meat-grinder.c:635
 msgid "Add file or folder"
 msgstr "Adicionar ficheiro ou pasta"
 
-#: meat-grinder/meat-grinder.c:702
+#: meat-grinder/meat-grinder.c:705
 msgid "Add file or folder..."
 msgstr "Adicionar ficheiro ou pasta..."
 
-#: meat-grinder/meat-grinder.c:703
+#: meat-grinder/meat-grinder.c:706
 msgid "Add a file or folder to the archive"
 msgstr "Adicionar um ficheiro ou pasta a este arquivo"
 
-#: meat-grinder/meat-grinder.c:706
+#: meat-grinder/meat-grinder.c:709
 msgid "Create archive..."
 msgstr "Criar arquivo..."
 
-#: meat-grinder/meat-grinder.c:707
+#: meat-grinder/meat-grinder.c:710
 msgid "Create a new archive from the items"
 msgstr "Criar um novo arquivo a partir dos itens"
 
-#: meat-grinder/meat-grinder.c:716
+#: meat-grinder/meat-grinder.c:719
 msgid "Remove the selected item(s)"
 msgstr "Remover os itens seleccionados"
 
-#: meat-grinder/meat-grinder.c:748
+#: meat-grinder/meat-grinder.c:751
 msgid "GNOME Archive Generator"
 msgstr "Gerador de Arquivos GNOME"
 
-#: meat-grinder/meat-grinder.c:778
+#: meat-grinder/meat-grinder.c:781
 msgid "Drop files here to add them to the archive."
 msgstr "Largue os ficheiros aqui para os adicionar ao arquivo."
 
-#: meat-grinder/meat-grinder.c:796
+#: meat-grinder/meat-grinder.c:799
 msgid "Archive"
 msgstr "Arquivo"
 
-#: meat-grinder/meat-grinder.c:803
+#: meat-grinder/meat-grinder.c:806
 msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
@@ -1710,11 +1708,11 @@ msgstr ""
 "Arraste este botão para o destino onde deseja que o arquivo seja criado ou "
 "prima-o para fazer aparecer uma janela de selecção de ficheiro."
 
-#: meat-grinder/meat-grinder.c:897
+#: meat-grinder/meat-grinder.c:900
 msgid "Cannot find proper icons anywhere!"
 msgstr "Incapaz de encontrar icons apropriados!"
 
-#: meat-grinder/meat-grinder.c:905
+#: meat-grinder/meat-grinder.c:908
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
@@ -1769,6 +1767,16 @@ msgstr "Calculadora"
 #: gcalc/gcalc.desktop.in.h:2
 msgid "Perform simple calculations"
 msgstr "Executa cálculos simples"
+
+#~ msgid ""
+#~ "Couldn't start the dictionary; most likely, http://www.dict.org could not "
+#~ "be contacted."
+#~ msgstr ""
+#~ "Incapaz de iniciar o dicionário; muito provavelmente, não foi possível "
+#~ "contactar http://www.dict.org."
+
+#~ msgid "Cannot create applet!\n"
+#~ msgstr "Incapaz de criar applet!\n"
 
 #~ msgid "Word definition"
 #~ msgstr "Definição de palavra"
