@@ -252,7 +252,11 @@ gtt_help_init_menu(GttHelp *help)
 	gtk_widget_show(menubar);
 
 	menu = gtk_menu_new();
+#if 1
+        w = gnome_stock_menu_item(GNOME_STOCK_MENU_EXIT, "Close Help Window");
+#else
 	w = gtk_menu_item_new_with_label("Close Help Window");
+#endif
 	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
 				  GTK_SIGNAL_FUNC(gtt_help_close),
 				  GTK_OBJECT(help));
