@@ -59,14 +59,14 @@ create_chartable (void)
     {
         for (h = 0; h <= 23; h++)
         {
-	    char *s;
-	    int ch = v * 24 + h + 32;
-	    if (ch == 127)
-		    s = g_strdup (_("del"));
-	    else
-		    s = g_strdup_printf ("%c", (char)ch);
-
-            button = gtk_button_new_with_label (s);
+	    char buf[7];
+            int n;
+            int ch = v * 24 + h + 32;
+	   
+	    n = g_unichar_to_utf8 (ch, buf);
+            buf[n] = 0;
+            
+            button = gtk_button_new_with_label (buf);
             mainapp->buttons = g_list_append (mainapp->buttons, button);
             gtk_widget_set_style (GTK_BIN (button)->child, mainapp->btnstyle);
             gtk_table_attach (GTK_TABLE (chartable), button, h, h + 1, v, v + 1,
@@ -81,7 +81,6 @@ create_chartable (void)
             gtk_signal_connect (GTK_OBJECT (button), "leave",
               GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
 
-            g_free (s);
         }
     }
 
@@ -89,15 +88,17 @@ create_chartable (void)
     {
         for (h = 0; h <= 23; h++)
         {
-	    char *s;
+            char buf[7];
+            int n;
 	    int ch = v * 24 + h + 161;
-
+	    
 	    if (ch > 0xff)
 		    continue;
 
-            s = g_strdup_printf ("%c", (char)ch);
-
-            button = gtk_button_new_with_label (s);
+            n = g_unichar_to_utf8 (ch, buf);
+            buf[n] = 0;
+	    
+            button = gtk_button_new_with_label (buf);
             mainapp->buttons = g_list_append (mainapp->buttons, button);
             gtk_widget_set_style (GTK_BIN (button)->child, mainapp->btnstyle);
             gtk_table_attach (GTK_TABLE (chartable), button,
@@ -113,7 +114,6 @@ create_chartable (void)
             gtk_signal_connect (GTK_OBJECT (button), "leave",
               GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
 
-            g_free (s);
         }
     }
 

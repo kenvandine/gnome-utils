@@ -113,7 +113,7 @@ cb_charbtn_enter (GtkButton *button, gpointer user_data)
 {
     GtkLabel *label = GTK_LABEL (GTK_BIN (button)->child);
     gchar *text, *s;
-    int code;
+   int code;
 
     gtk_label_get (label, &text);
     if (strcmp (text, _("del")) == 0) {
