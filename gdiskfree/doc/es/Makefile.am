@@ -1,6 +1,6 @@
 figs = \
-	gdiskfree-prefs.png  \
-	gdiskfree.png
+	figures/gdiskfree-prefs.png  \
+	figures/gdiskfree.png
 
 app = gdiskfree
 lang = es
