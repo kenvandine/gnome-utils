@@ -27,7 +27,7 @@
 
 #define GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE 48
 #define GNOME_SEARCH_TOOL_STOCK "panel-searchtool"
-#define GNOME_SEARCH_TOOL_ITEM_REFRESH_LIMIT  35
+#define GNOME_SEARCH_TOOL_REFRESH_DURATION  50000
 #define LEFT_LABEL_SPACING "     "
 
 #ifdef HAVE_CONFIG_H
@@ -1064,14 +1064,18 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
 	
 		GError       *error = NULL;
+		GTimer       *timer;
 		GString      *string;
 		GdkRectangle prior_rect;
 		GdkRectangle after_rect;
+		gulong       duration;
 		gint	     look_in_folder_string_length;
-		gint         item_count = 0;
 		
 		string = g_string_new (NULL);
 		look_in_folder_string_length = strlen (search_data->look_in_folder);
+
+		timer = g_timer_new();
+		g_timer_start (timer);
 
 		while (ioc->is_readable != TRUE);
 
@@ -1155,29 +1159,32 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			}
 			g_free (utf8);
 			g_free (filename);
-			
+
 			gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &prior_rect);
 			
-			if (item_count == 0 || item_count++ > GNOME_SEARCH_TOOL_ITEM_REFRESH_LIMIT) {
-				item_count = 1;
+			if (prior_rect.y == 0) {
+				gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &after_rect);
+				if (after_rect.y <= 40) {  /* limit this hack to the first few pixels */
+					gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), -1, 0);
+				}	
+			}
+
+			g_timer_elapsed (timer, &duration);
+
+			if (duration > GNOME_SEARCH_TOOL_REFRESH_DURATION) {
 				while (gtk_events_pending ()) {
 					if (search_data->running == MAKE_IT_QUIT) {
 						return FALSE;
 					}
 					gtk_main_iteration ();		
 				}
+				g_timer_reset (timer);
 			}
-			
-			if (prior_rect.y == 0) {
-				gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &after_rect);
-				if (after_rect.y <= 40) {  /* limit this hack to the first few pixels */
-					gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), -1, 0);
-				}
-			}	
 			
 		} while (g_io_channel_get_buffer_condition (ioc) == G_IO_IN);
 		
 		g_string_free (string, TRUE);
+		g_timer_destroy (timer);
 	}
 
 	if (condition != G_IO_IN || broken_pipe == TRUE) { 
