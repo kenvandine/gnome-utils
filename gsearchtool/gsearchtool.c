@@ -28,8 +28,26 @@
 #include "unixcmd.h"
 #include "outdlg.h"
 
+FindOptionTemplate templates[] = {
+	{ FIND_OPTION_TEXT, "-name '%s'", "File name" },
+	{ FIND_OPTION_CHECKBOX_TRUE, "-maxdepth 0",
+				"Don't search subdirectories" },
+	{ FIND_OPTION_TEXT, "-user '%s'", "File owner" },
+	{ FIND_OPTION_TEXT, "-group '%s'", "File owner group" },
+	{ FIND_OPTION_TIME, "-mtime '%s'", "Last modification time" },
+	{ FIND_OPTION_CHECKBOX_TRUE, "-mount",
+				"Don't search mounted filesystems" },
+	{ FIND_OPTION_GREP, "fgrep -l '%s'", "Simple substring search" },
+	{ FIND_OPTION_GREP, "grep -l '%s'", "Regular expression search" },
+	{ FIND_OPTION_GREP, "egrep -l '%s'",
+				"Extended regular expression search" },
+	{ FIND_OPTION_END, NULL,NULL}
+};
+
+GList *criteria=NULL;
+
 /* search for a filename */
-void
+static void
 search(GtkWidget * widget, gpointer data)
 {
 	char cmd[1024]="";
@@ -142,7 +160,7 @@ search(GtkWidget * widget, gpointer data)
 	outdlg_showdlg();
 }
 
-void
+static void
 browse(GtkWidget * widget, gpointer data)
 {
 	g_print("Browse\n");
@@ -152,7 +170,7 @@ browse(GtkWidget * widget, gpointer data)
  * change data boolean to the value of the checkbox to keep the structure
  * allways up to date
  */
-void
+static void
 changetb(GtkWidget * widget, gpointer data)
 {
 	if(GTK_TOGGLE_BUTTON(widget)->active)
@@ -165,14 +183,14 @@ changetb(GtkWidget * widget, gpointer data)
  * change the text to what it is in the entry, so that the structure is
  * allways up to date
  */
-void
+static void
 changeentry(GtkWidget * widget, gpointer data)
 {
 	strcpy((gchar *)data,gtk_entry_get_text(GTK_ENTRY(widget)));
 }
 
 /* quit */
-gint
+static gint
 destroy(GtkWidget * widget, gpointer data)
 {
 	gtk_main_quit();

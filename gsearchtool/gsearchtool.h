@@ -19,16 +19,10 @@
 #ifndef _GSEARCHTOOL_H_
 #define _GSEARCHTOOL_H_
 
-
-#include <gtk/gtk.h>
-
-#include <string.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <signal.h>
-#include <fcntl.h>
+#include <gnome.h>
 
 #define PIPE_READ_BUFFER 4096
+
 struct finfo {
 	gchar file[256],dir[256];
 	gboolean subdirs;
@@ -46,28 +40,35 @@ struct finfo {
 	gboolean mount;
 };
 
-/*is there an event present*/
-gboolean isevent(void);
+typedef enum {
+	FIND_OPTION_END, /*end the option templates list*/
+	FIND_OPTION_CHECKBOX_TRUE, /*if the user checks this use the option*/
+	FIND_OPTION_CHECKBOX_FALSE, /* if the user checks it don't use the
+				       option*/
+	FIND_OPTION_TEXT,
+	FIND_OPTION_NUMBER,
+	FIND_OPTION_TIME,
+	FIND_OPTION_GREP
+} FindOptionType;
 
-/* search for a filename */
-void search(GtkWidget * widget, gpointer data);
+typedef struct _FindOptionTemplate FindOptionTemplate;
+struct _FindOptionTemplate {
+	FindOptionType type;
+	gchar *option;
+	gchar *description;
+};
 
-void browse(GtkWidget * widget, gpointer data);
+typedef struct _FindOption FindOption;
+struct _FindOption {
+	FindOptionType type;
+	gint templ;
 
-/*
- * change data boolean to the value of the checkbox to keep the structure
- * allways up to date
- */
-void changetb(GtkWidget * widget, gpointer data);
-
-/*
- * change the text to what it is in the entry, so that the structure is
- * allways up to date
- */
-void changeentry(GtkWidget * widget, gpointer data);
-
-/* quit */
-gint destroy(GtkWidget * widget, gpointer data);
+	union {
+		gchar text[256];
+		glong number;
+	} data;
+};
+	
 
 
 #endif
