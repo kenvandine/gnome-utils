@@ -202,31 +202,32 @@ int dialog_guage (const char *title, const char *prompt, int height, int width,
 
 #ifndef WITH_GPM
 
-inline void
+static inline void
 mouse_open (void)
 {
 };
-inline void
+static inline void
 mouse_close (void)
 {
 };
-inline void
+static inline void
 mouse_mkregion (int y, int x, int height, int width,
 		int code)
 {
 };
-inline void
+static inline void
 mouse_mkbigregion (int y, int x, int height, int width,
 		   int nitems, int th, int mode)
 {
 };
-inline void
+static inline void
 mouse_setbase (int x, int y)
 {
 };
-inline int
+static inline int
 mouse_wgetch (WINDOW * win)
 {
+	return 0;
 };
 
 #define mouse_wgetch(w) wgetch(w)
