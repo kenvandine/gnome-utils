@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.2.0.3\n"
-"POT-Creation-Date: 2003-11-10 15:46+1300\n"
+"POT-Creation-Date: 2003-12-31 12:02+1300\n"
 "PO-Revision-Date: 2003-02-12 03:20--500\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -348,6 +348,40 @@ msgstr "Форматування дискет"
 #: gfloppy/gfloppy.desktop.in.h:2
 msgid "Format Floppy Disks"
 msgstr "Форматування дискет"
+
+#: gfloppy/gfloppy.schemas.in.h:1
+msgid ""
+"0 for the quick format, 1 for a standard one (adds a low-level format) and "
+"finally 2 for a thorough format (adds a bad blocks scan)."
+msgstr ""
+"0 - швидке форматування, 1 - стандартне (додається низького рівня "
+"форматування) та нарешті 2 - повне форматування (додається перевірка "
+"дефектних блоків)."
+
+#: gfloppy/gfloppy.schemas.in.h:2
+msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
+msgstr "ЛИШЕ ДЛЯ ДОСВІДЧЕНИХ КОРИСТУВАЧІВ - Типова програма форматування FAT"
+
+#: gfloppy/gfloppy.schemas.in.h:3
+msgid "Default filesystem type"
+msgstr "Типова файлова система"
+
+#: gfloppy/gfloppy.schemas.in.h:4
+msgid "Default formatting mode"
+msgstr "Типовий режим форматування"
+
+#: gfloppy/gfloppy.schemas.in.h:5
+msgid ""
+"TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
+"mtools as the preferred FAT formatting backend."
+msgstr ""
+"TRUE якщо для форматування FAT використовуватиметься програма mkdosfs або "
+"FALSE якщо mtools."
+
+#: gfloppy/gfloppy.schemas.in.h:6
+msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
+msgstr ""
+"\"ext2\" - рідна файлова система linux або \"fat\" - файлова система DOS."
 
 #: gfloppy/src/badblocks.c:94
 #, fuzzy
@@ -702,7 +736,7 @@ msgstr ""
 "Ви не маєте належних прав для запису в %s, форматування неможливе.\n"
 "Щоб отримати права зв'яжіться з системним адміністратором."
 
-#: gfloppy/src/main.c:400
+#: gfloppy/src/main.c:402
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -711,24 +745,30 @@ msgstr ""
 "Не вдається відобразити довідку.\n"
 "%s"
 
-#: gfloppy/src/main.c:433
+#: gfloppy/src/main.c:435
 msgid "The volume name can't contain any blank space."
 msgstr "Назва тому не може містити пропуски."
 
-#: gfloppy/src/main.c:482
+#: gfloppy/src/main.c:484
 msgid "The device to format"
 msgstr "Пристрій для форматування"
 
-#: gfloppy/src/main.c:483
+#: gfloppy/src/main.c:485
 msgid "DEVICE"
 msgstr "ПРИСТРІЙ"
 
 #: gfloppy/src/progress.c:123
-#, c-format
+#, fuzzy, c-format
 msgid ""
+"The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
+"found and marked."
+msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr ""
+msgstr[0] ""
+"Дискету було відформатовано, але було знайдено та відмічено <b>%d дефектних "
+"блоків</b> ( з %d)."
+msgstr[1] ""
 "Дискету було відформатовано, але було знайдено та відмічено <b>%d дефектних "
 "блоків</b> ( з %d)."
 
@@ -745,43 +785,9 @@ msgstr "Форматування дискети відмінено."
 msgid "Format Progress"
 msgstr "Поступ форматування"
 
-#: gfloppy/gfloppy.schemas.in.h:1
-msgid ""
-"0 for the quick format, 1 for a standard one (adds a low-level format) and "
-"finally 2 for a thorough format (adds a bad blocks scan)."
-msgstr ""
-"0 - швидке форматування, 1 - стандартне (додається низького рівня "
-"форматування) та нарешті 2 - повне форматування (додається перевірка "
-"дефектних блоків)."
-
-#: gfloppy/gfloppy.schemas.in.h:2
-msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
-msgstr "ЛИШЕ ДЛЯ ДОСВІДЧЕНИХ КОРИСТУВАЧІВ - Типова програма форматування FAT"
-
-#: gfloppy/gfloppy.schemas.in.h:3
-msgid "Default filesystem type"
-msgstr "Типова файлова система"
-
-#: gfloppy/gfloppy.schemas.in.h:4
-msgid "Default formatting mode"
-msgstr "Типовий режим форматування"
-
-#: gfloppy/gfloppy.schemas.in.h:5
-msgid ""
-"TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
-"mtools as the preferred FAT formatting backend."
-msgstr ""
-"TRUE якщо для форматування FAT використовуватиметься програма mkdosfs або "
-"FALSE якщо mtools."
-
-#: gfloppy/gfloppy.schemas.in.h:6
-msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr ""
-"\"ext2\" - рідна файлова система linux або \"fat\" - файлова система DOS."
-
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:587
-#: gsearchtool/gsearchtool.c:841 gsearchtool/gsearchtool.c:988
-#: gsearchtool/gsearchtool.c:2270 gsearchtool/gsearchtool.c:2290
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:589
+#: gsearchtool/gsearchtool.c:843 gsearchtool/gsearchtool.c:990
+#: gsearchtool/gsearchtool.c:2285 gsearchtool/gsearchtool.c:2305
 msgid "Search for Files"
 msgstr "Пошук файлів"
 
@@ -789,396 +795,173 @@ msgstr "Пошук файлів"
 msgid "Search your disk for files"
 msgstr "Шукати файли на дисках"
 
-#: gsearchtool/gsearchtool.c:73
-#, fuzzy
-msgid "Contains the _text"
-msgstr "Містить _текст"
-
-#: gsearchtool/gsearchtool.c:75
-msgid "_Date modified less than (days)"
-msgstr "_Дата останньої зміни менша за (діб)"
-
-#: gsearchtool/gsearchtool.c:76
-#, fuzzy
-msgid "Date modified more than (da_ys)"
-msgstr "Да_та останньої зміни більша за (діб)"
-
-#: gsearchtool/gsearchtool.c:78
-#, fuzzy
-msgid "S_ize at least (kilobytes)"
-msgstr "_Розмір принаймні (кілобайт)"
-
-#: gsearchtool/gsearchtool.c:79
-msgid "Si_ze at most (kilobytes)"
-msgstr "Р_озмір не більше (кілобайт)"
-
-#: gsearchtool/gsearchtool.c:80
-msgid "File is empty"
-msgstr "Файл порожній"
-
-#: gsearchtool/gsearchtool.c:82
-msgid "Owned by _user"
-msgstr "Належить _користувачу"
-
-#: gsearchtool/gsearchtool.c:83
-msgid "Owned by _group"
-msgstr "Належить _групі"
-
-#: gsearchtool/gsearchtool.c:84
-msgid "Owner is unrecognized"
-msgstr "Власник невідомий"
-
-#: gsearchtool/gsearchtool.c:86
-msgid "Na_me does not contain"
-msgstr "На_ва не містить"
-
-#: gsearchtool/gsearchtool.c:87
-msgid "Name matches regular e_xpression"
-msgstr "Назва відповідає регулярному виразу"
-
-#: gsearchtool/gsearchtool.c:89
-msgid "Show hidden files and folders"
+#: gsearchtool/gsearchtool-alert-dialog.c:99
+msgid "Image/label border"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:90
-msgid "Follow symbolic links"
-msgstr "Дотримуватись символьних посилань"
-
-#: gsearchtool/gsearchtool.c:91
-msgid "Include other filesystems"
-msgstr "Охоплювати інші файлові системи"
-
-#: gsearchtool/gsearchtool.c:536 gsearchtool/gsearchtool.c:564
-msgid "No files found"
-msgstr "Файлів не знайдено"
-
-#: gsearchtool/gsearchtool.c:557
-msgid "(stopped)"
+#: gsearchtool/gsearchtool-alert-dialog.c:100
+msgid "Width of border around the label and image in the alert dialog"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:563
-#, fuzzy
-msgid "No Files Found"
-msgstr "Файлів не знайдено"
-
-#: gsearchtool/gsearchtool.c:568
-#, fuzzy
-msgid "One File Found"
-msgstr "Знайдено один файл"
-
-#: gsearchtool/gsearchtool.c:569
-msgid "One file found"
-msgstr "Знайдено один файл"
-
-#: gsearchtool/gsearchtool.c:572
-#, fuzzy, c-format
-msgid "%d Files Found"
-msgstr "Знайдено %d файлів"
-
-#: gsearchtool/gsearchtool.c:573
-#, c-format
-msgid "%d files found"
-msgstr "Знайдено %d файлів"
-
-#: gsearchtool/gsearchtool.c:676
-msgid "Entry changed called for a non entry option!"
-msgstr "Викликано зміну запису для параметру, що не є записом!"
-
-#: gsearchtool/gsearchtool.c:933
-#, c-format
-msgid "The animation file is missing or invalid: %s"
+#: gsearchtool/gsearchtool-alert-dialog.c:109
+msgid "Alert Type"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:988
-msgid "Searching..."
-msgstr "Пошук..."
-
-#: gsearchtool/gsearchtool.c:1034
-msgid "Set the text of 'Name contains'"
-msgstr "Визначає текст поля \"Назва містить\""
-
-#: gsearchtool/gsearchtool.c:1035
-msgid "Set the text of 'Look in folder'"
-msgstr "Визначає текст поля \"Перевіряти теки\""
-
-#: gsearchtool/gsearchtool.c:1036
-msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr "Сортувати файли по: name, folder, size, type, чи date"
-
-#: gsearchtool/gsearchtool.c:1037
-msgid "Set sort order to descending, the default is ascending"
+#: gsearchtool/gsearchtool-alert-dialog.c:110
+msgid "The type of alert"
 msgstr ""
-"Встановлює порядок сортування на низхідний, типовий порядок - висхідний"
 
-#: gsearchtool/gsearchtool.c:1038
-msgid "Automatically start a search"
-msgstr "Автоматично починати пошук"
-
-#: gsearchtool/gsearchtool.c:1043
-#, c-format
-msgid "Select the '%s' constraint"
-msgstr "Вибирає '%s' обмеження"
-
-#: gsearchtool/gsearchtool.c:1149
-msgid "Invalid option passed to sortby command line argument."
-msgstr "У аргументі sortby передано неправильний параметр."
-
-#: gsearchtool/gsearchtool.c:1400
-msgid ""
-"While searching the following errors were reported.\n"
-"\n"
+#: gsearchtool/gsearchtool-alert-dialog.c:118
+msgid "Alert Buttons"
 msgstr ""
-"При виконанні пошуку виникли наступні помилки.\n"
-"\n"
 
-#: gsearchtool/gsearchtool.c:1404
-msgid ""
-"\n"
-"... Too many errors to display ..."
+#: gsearchtool/gsearchtool-alert-dialog.c:119
+msgid "The buttons shown in the alert dialog"
 msgstr ""
-"\n"
-"... Надто багато помилок ..."
 
-#: gsearchtool/gsearchtool.c:1410
-#, fuzzy
-msgid "Error while searching for files"
-msgstr "EПомилка при перевірці на дефектні блоки."
-
-#: gsearchtool/gsearchtool.c:1449
-#, fuzzy
-msgid "Error parsing the search command"
-msgstr "EПомилка при виконанні (%s) команди: %s "
-
-#: gsearchtool/gsearchtool.c:1470
-#, fuzzy
-msgid "Error running the search command"
-msgstr "EПомилка при виконанні (%s) команди: %s "
-
-#: gsearchtool/gsearchtool.c:1564
-msgid "Search Rule Value Entry"
-msgstr "Поле значення правила пошуку"
-
-#: gsearchtool/gsearchtool.c:1565
-msgid "Enter a value for search rule"
-msgstr "Введіть значення для правила пошуку"
-
-#: gsearchtool/gsearchtool.c:1603
-#, c-format
-msgid "Click to Remove the '%s' Rule"
-msgstr "Клацніть, щоб видалити \"%s\" правило"
-
-#: gsearchtool/gsearchtool.c:1659
-msgid "A_vailable options:"
-msgstr "_Можливі параметри:"
-
-#: gsearchtool/gsearchtool.c:1672
-msgid "Search Rules Menu"
-msgstr "Меню правил пошуку"
-
-#: gsearchtool/gsearchtool.c:1673
-msgid "Select a search rule from the menu"
-msgstr "Створити новий вигляд документу"
-
-#: gsearchtool/gsearchtool.c:1705
-#, fuzzy
-msgid "S_earch results:"
-msgstr "_Результати пошуку"
-
-#: gsearchtool/gsearchtool.c:1785
-msgid "Name"
-msgstr "Назва"
-
-#: gsearchtool/gsearchtool.c:1805
-msgid "Folder"
-msgstr "Тека"
-
-#: gsearchtool/gsearchtool.c:1816
-msgid "Size"
-msgstr "Розмір"
-
-#: gsearchtool/gsearchtool.c:1826
-msgid "Type"
-msgstr "Тип"
-
-#: gsearchtool/gsearchtool.c:1836
-msgid "Date Modified"
-msgstr "Дата зміни"
-
-#: gsearchtool/gsearchtool.c:1899
-msgid "_Name contains:"
-msgstr "_Назва містить:"
-
-#: gsearchtool/gsearchtool.c:1914 gsearchtool/gsearchtool.c:1915
-#, fuzzy
-msgid "Name Contains Entry"
-msgstr "_Назва містить:"
-
-#: gsearchtool/gsearchtool.c:1914 gsearchtool/gsearchtool.c:1915
-msgid "Enter the file name you want to search"
-msgstr "Введіть назву файла, що ви хочете знайти"
-
-#: gsearchtool/gsearchtool.c:1927
-msgid "_Look in folder:"
-msgstr "_Шукати у теках:"
-
-#: gsearchtool/gsearchtool.c:1933
-msgid "Browse"
-msgstr "Переглянути"
-
-#: gsearchtool/gsearchtool.c:1942 gsearchtool/gsearchtool.c:1943
-#, fuzzy
-msgid "Look in Folder Entry"
-msgstr "_Шукати у теках:"
-
-#: gsearchtool/gsearchtool.c:1942 gsearchtool/gsearchtool.c:1943
-msgid "Enter the folder name where you want to start the search"
-msgstr "Введіть назву теки, з якої ви хочете розпочати пошук"
-
-#: gsearchtool/gsearchtool.c:1962
-#, fuzzy
-msgid "Show more _options"
-msgstr "Показати інформацію про журнал"
-
-#: gsearchtool/gsearchtool.c:2012
-msgid "Click to Start the search"
-msgstr "Клацніть щоб почати пошук"
-
-#: gsearchtool/gsearchtool.c:2013
-msgid "Click to Stop the search"
-msgstr "Клацніть щоб зупинити пошук"
-
-#: gsearchtool/gsearchtool.c:2286
-msgid "Cannot initialize bonobo."
-msgstr "Неможливо ініціалізувати Bonobo."
-
-#: gsearchtool/gsearchtool-callbacks.c:49
+#: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: gsearchtool/gsearchtool-callbacks.c:53
+#: gsearchtool/gsearchtool-callbacks.c:54
 msgid "O_pen Folder"
 msgstr "Від_крити теку"
 
-#: gsearchtool/gsearchtool-callbacks.c:58
+#: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:63
+#: gsearchtool/gsearchtool-callbacks.c:64
 msgid "_Save Results As..."
 msgstr "З_берегти результати як..."
 
-#: gsearchtool/gsearchtool-callbacks.c:109
-msgid "Could not open help document"
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:315
-#, fuzzy, c-format
-msgid "Open %d documents?"
-msgstr "Відкрити %d тек?"
-
-#: gsearchtool/gsearchtool-callbacks.c:316
-#, fuzzy, c-format
-msgid "This will open %d separate documents. Are you sure you want to do this?"
-msgstr "Буде відкрити %d окремих тек. Чи ви впевнені що хочете це зробити?"
-
-#: gsearchtool/gsearchtool-callbacks.c:371
-#, c-format
-msgid "Could not open document \"%s\""
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:373
-#: gsearchtool/gsearchtool-callbacks.c:853
+#: gsearchtool/gsearchtool-callbacks.c:111
 #, fuzzy
-msgid "There is no installed viewer capable of displaying the document."
-msgstr "Немає програми відображення здатної відкрити \"%s\"."
+msgid "Could not open help document."
+msgstr "%s не може бути відкритим."
 
-#: gsearchtool/gsearchtool-callbacks.c:419
+#: gsearchtool/gsearchtool-callbacks.c:318
+#, c-format
+msgid "Are you sure you want to open %d document?"
+msgid_plural "Are you sure you want to open %d documents?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gsearchtool/gsearchtool-callbacks.c:323
+#: gsearchtool/gsearchtool-callbacks.c:449
 #, fuzzy, c-format
-msgid "Open %d folders?"
-msgstr "Відкрити %d тек?"
+msgid "This will open %d separate window."
+msgid_plural "This will open %d separate windows."
+msgstr[0] ""
+"Буде відкрито %d окремих файлів. Чи ви впевнені що хочете це зробити?"
+msgstr[1] ""
+"Буде відкрито %d окремих файлів. Чи ви впевнені що хочете це зробити?"
 
-#: gsearchtool/gsearchtool-callbacks.c:420
-#, c-format
-msgid "This will open %d separate folders. Are you sure you want to do this?"
-msgstr "Буде відкрити %d окремих тек. Чи ви впевнені що хочете це зробити?"
-
-#: gsearchtool/gsearchtool-callbacks.c:461
-#, c-format
-msgid "Could not open folder \"%s\""
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:467
-msgid "The nautilus file manager is not running."
-msgstr "Менеджер файлів Наутілус не запущений."
-
-#: gsearchtool/gsearchtool-callbacks.c:581
-#, c-format
-msgid "Could not move \"%s\" to the trash."
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:582
-#, c-format
-msgid "Moving \"%s\" failed: %s."
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:609
-#, c-format
-msgid "Do you want to delete \"%s\" permanently?"
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:612
-#, c-format
-msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:644
-#, c-format
-msgid "Could not delete \"%s\"."
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:645
-#, c-format
-msgid "Deleting \"%s\" failed: %s."
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:852
+#: gsearchtool/gsearchtool-callbacks.c:390
+#: gsearchtool/gsearchtool-callbacks.c:944
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1035
+#: gsearchtool/gsearchtool-callbacks.c:393
+#: gsearchtool/gsearchtool-callbacks.c:947
+#, fuzzy
+msgid "There is no installed viewer capable of displaying the document."
+msgstr "Немає програми відображення здатної відкрити \"%s\"."
+
+#: gsearchtool/gsearchtool-callbacks.c:444
+#, c-format
+msgid "Are you sure you want to open %d folder?"
+msgid_plural "Are you sure you want to open %d folders?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gsearchtool/gsearchtool-callbacks.c:502
+#, fuzzy, c-format
+msgid "Could not open folder \"%s\"."
+msgstr "%s не може бути відкритим."
+
+#: gsearchtool/gsearchtool-callbacks.c:509
+msgid "The nautilus file manager is not running."
+msgstr "Менеджер файлів Наутілус не запущений."
+
+#: gsearchtool/gsearchtool-callbacks.c:612
+#, c-format
+msgid "Could not move \"%s\" to trash."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:615
+msgid "The document does not exist."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:652
+#, c-format
+msgid "Could not move \"%s\" to the trash."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:655
+#, c-format
+msgid "Moving \"%s\" failed: %s."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:685
+#, c-format
+msgid "Do you want to delete \"%s\" permanently?"
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:688
+#, c-format
+msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:730
+#, c-format
+msgid "Could not delete \"%s\"."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:733
+#, c-format
+msgid "Deleting \"%s\" failed: %s."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:1132
 msgid "Save Search Results As..."
 msgstr "Зберегти результати пошуку як..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1083
+#: gsearchtool/gsearchtool-callbacks.c:1185
+#, fuzzy
+msgid "Could not save document."
+msgstr "%s не може бути відкритим."
+
+#: gsearchtool/gsearchtool-callbacks.c:1187
+msgid "You did not select a document name."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:1213
+#: gsearchtool/gsearchtool-callbacks.c:1308
 #, c-format
-msgid "Could not save document \"\" to %s"
+msgid "Could not save \"%s\" document to \"%s\"."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1086
-msgid ""
-"You did not select a document name or the name selected was a folder.  The "
-"document is not saved."
+#: gsearchtool/gsearchtool-callbacks.c:1217
+msgid "The document name you selected is a folder."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1109
+#: gsearchtool/gsearchtool-callbacks.c:1246
 #, c-format
-msgid "The contents of the file \"%s\" will be lost."
+msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1114
-msgid "Overwrite an existing file?"
+#: gsearchtool/gsearchtool-callbacks.c:1250
+msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1157
-#, c-format
-msgid "Could not save document \"%s\" to %s"
+#: gsearchtool/gsearchtool-callbacks.c:1261
+msgid "_Replace"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1161
-msgid ""
-"You may not have write permissions to the document.  The document is not "
-"saved."
+#: gsearchtool/gsearchtool-callbacks.c:1311
+msgid "You may not have write permissions to the document."
 msgstr ""
 
 #: gsearchtool/gsearchtool-support.c:58
@@ -1215,6 +998,272 @@ msgstr "посилання (неправильне)"
 #, c-format
 msgid "link to %s"
 msgstr "посилання на %s"
+
+#: gsearchtool/gsearchtool.c:74
+#, fuzzy
+msgid "Contains the _text"
+msgstr "Містить _текст"
+
+#: gsearchtool/gsearchtool.c:76
+msgid "_Date modified less than (days)"
+msgstr "_Дата останньої зміни менша за (діб)"
+
+#: gsearchtool/gsearchtool.c:77
+#, fuzzy
+msgid "Date modified more than (da_ys)"
+msgstr "Да_та останньої зміни більша за (діб)"
+
+#: gsearchtool/gsearchtool.c:79
+#, fuzzy
+msgid "S_ize at least (kilobytes)"
+msgstr "_Розмір принаймні (кілобайт)"
+
+#: gsearchtool/gsearchtool.c:80
+msgid "Si_ze at most (kilobytes)"
+msgstr "Р_озмір не більше (кілобайт)"
+
+#: gsearchtool/gsearchtool.c:81
+msgid "File is empty"
+msgstr "Файл порожній"
+
+#: gsearchtool/gsearchtool.c:83
+msgid "Owned by _user"
+msgstr "Належить _користувачу"
+
+#: gsearchtool/gsearchtool.c:84
+msgid "Owned by _group"
+msgstr "Належить _групі"
+
+#: gsearchtool/gsearchtool.c:85
+msgid "Owner is unrecognized"
+msgstr "Власник невідомий"
+
+#: gsearchtool/gsearchtool.c:87
+msgid "Na_me does not contain"
+msgstr "На_ва не містить"
+
+#: gsearchtool/gsearchtool.c:88
+msgid "Name matches regular e_xpression"
+msgstr "Назва відповідає регулярному виразу"
+
+#: gsearchtool/gsearchtool.c:90
+msgid "Show hidden and backup files"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:91
+msgid "Follow symbolic links"
+msgstr "Дотримуватись символьних посилань"
+
+#: gsearchtool/gsearchtool.c:92
+msgid "Include other filesystems"
+msgstr "Охоплювати інші файлові системи"
+
+#: gsearchtool/gsearchtool.c:538 gsearchtool/gsearchtool.c:566
+msgid "No files found"
+msgstr "Файлів не знайдено"
+
+#: gsearchtool/gsearchtool.c:559
+msgid "(stopped)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:565
+#, fuzzy
+msgid "No Files Found"
+msgstr "Файлів не знайдено"
+
+#: gsearchtool/gsearchtool.c:570
+#, fuzzy, c-format
+msgid "%d File Found"
+msgid_plural "%d Files Found"
+msgstr[0] "Знайдено %d файлів"
+msgstr[1] "Знайдено %d файлів"
+
+#: gsearchtool/gsearchtool.c:573
+#, fuzzy, c-format
+msgid "%d file found"
+msgid_plural "%d files found"
+msgstr[0] "Знайдено %d файлів"
+msgstr[1] "Знайдено %d файлів"
+
+#: gsearchtool/gsearchtool.c:678
+msgid "Entry changed called for a non entry option!"
+msgstr "Викликано зміну запису для параметру, що не є записом!"
+
+#: gsearchtool/gsearchtool.c:935
+#, c-format
+msgid "The animation file is missing or invalid: %s"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:990
+msgid "Searching..."
+msgstr "Пошук..."
+
+#: gsearchtool/gsearchtool.c:1036
+msgid "Set the text of 'Name contains'"
+msgstr "Визначає текст поля \"Назва містить\""
+
+#: gsearchtool/gsearchtool.c:1037
+msgid "Set the text of 'Look in folder'"
+msgstr "Визначає текст поля \"Перевіряти теки\""
+
+#: gsearchtool/gsearchtool.c:1038
+msgid "Sort files by one of the following: name, folder, size, type, or date"
+msgstr "Сортувати файли по: name, folder, size, type, чи date"
+
+#: gsearchtool/gsearchtool.c:1039
+msgid "Set sort order to descending, the default is ascending"
+msgstr ""
+"Встановлює порядок сортування на низхідний, типовий порядок - висхідний"
+
+#: gsearchtool/gsearchtool.c:1040
+msgid "Automatically start a search"
+msgstr "Автоматично починати пошук"
+
+#: gsearchtool/gsearchtool.c:1045
+#, c-format
+msgid "Select the '%s' constraint"
+msgstr "Вибирає '%s' обмеження"
+
+#: gsearchtool/gsearchtool.c:1151
+msgid "Invalid option passed to sortby command line argument."
+msgstr "У аргументі sortby передано неправильний параметр."
+
+#: gsearchtool/gsearchtool.c:1402
+msgid ""
+"While searching the following errors were reported.\n"
+"\n"
+msgstr ""
+"При виконанні пошуку виникли наступні помилки.\n"
+"\n"
+
+#: gsearchtool/gsearchtool.c:1406
+msgid ""
+"\n"
+"... Too many errors to display ..."
+msgstr ""
+"\n"
+"... Надто багато помилок ..."
+
+#: gsearchtool/gsearchtool.c:1413
+#, fuzzy
+msgid "Error while searching for files."
+msgstr "EПомилка при перевірці на дефектні блоки."
+
+#: gsearchtool/gsearchtool.c:1454
+#, fuzzy
+msgid "Error parsing the search command."
+msgstr "EПомилка при виконанні (%s) команди: %s "
+
+#: gsearchtool/gsearchtool.c:1477
+#, fuzzy
+msgid "Error running the search command."
+msgstr "EПомилка при виконанні (%s) команди: %s "
+
+#: gsearchtool/gsearchtool.c:1572
+msgid "Search Rule Value Entry"
+msgstr "Поле значення правила пошуку"
+
+#: gsearchtool/gsearchtool.c:1573
+msgid "Enter a value for search rule"
+msgstr "Введіть значення для правила пошуку"
+
+#: gsearchtool/gsearchtool.c:1611
+#, c-format
+msgid "Click to Remove the '%s' Rule"
+msgstr "Клацніть, щоб видалити \"%s\" правило"
+
+#: gsearchtool/gsearchtool.c:1667
+msgid "A_vailable options:"
+msgstr "_Можливі параметри:"
+
+#: gsearchtool/gsearchtool.c:1680
+msgid "Search Rules Menu"
+msgstr "Меню правил пошуку"
+
+#: gsearchtool/gsearchtool.c:1681
+msgid "Select a search rule from the menu"
+msgstr "Створити новий вигляд документу"
+
+#: gsearchtool/gsearchtool.c:1713
+#, fuzzy
+msgid "S_earch results:"
+msgstr "_Результати пошуку"
+
+#: gsearchtool/gsearchtool.c:1793
+msgid "Name"
+msgstr "Назва"
+
+#: gsearchtool/gsearchtool.c:1813
+msgid "Folder"
+msgstr "Тека"
+
+#: gsearchtool/gsearchtool.c:1824
+msgid "Size"
+msgstr "Розмір"
+
+#: gsearchtool/gsearchtool.c:1834
+msgid "Type"
+msgstr "Тип"
+
+#: gsearchtool/gsearchtool.c:1844
+msgid "Date Modified"
+msgstr "Дата зміни"
+
+#: gsearchtool/gsearchtool.c:1907
+msgid "_Name contains:"
+msgstr "_Назва містить:"
+
+#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+#, fuzzy
+msgid "Name Contains Entry"
+msgstr "_Назва містить:"
+
+#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+msgid "Enter the file name you want to search"
+msgstr "Введіть назву файла, що ви хочете знайти"
+
+#: gsearchtool/gsearchtool.c:1935
+msgid "_Look in folder:"
+msgstr "_Шукати у теках:"
+
+#: gsearchtool/gsearchtool.c:1941
+msgid "Browse"
+msgstr "Переглянути"
+
+#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+#, fuzzy
+msgid "Look in Folder Entry"
+msgstr "_Шукати у теках:"
+
+#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+msgid "Enter the folder name where you want to start the search"
+msgstr "Введіть назву теки, з якої ви хочете розпочати пошук"
+
+#: gsearchtool/gsearchtool.c:1970
+#, fuzzy
+msgid "Show more _options"
+msgstr "Показати інформацію про журнал"
+
+#: gsearchtool/gsearchtool.c:1980
+#, fuzzy
+msgid "Show more options"
+msgstr "Показати інформацію про журнал"
+
+#: gsearchtool/gsearchtool.c:1980
+msgid "Expands or collapses a list of search options."
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:2027
+msgid "Click to Start the search"
+msgstr "Клацніть щоб почати пошук"
+
+#: gsearchtool/gsearchtool.c:2028
+msgid "Click to Stop the search"
+msgstr "Клацніть щоб зупинити пошук"
+
+#: gsearchtool/gsearchtool.c:2301
+msgid "Cannot initialize bonobo."
+msgstr "Неможливо ініціалізувати Bonobo."
 
 #. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
 #: logview/about.c:43
@@ -1379,9 +1428,11 @@ msgid "<No log loaded>"
 msgstr "<Журналу не завантажено>"
 
 #: logview/info.c:183
-#, c-format
-msgid "%ld bytes"
-msgstr "байтів: %ld"
+#, fuzzy, c-format
+msgid "%ld byte"
+msgid_plural "%ld bytes"
+msgstr[0] "байтів: %ld"
+msgstr[1] "байтів: %ld"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1485,97 +1536,110 @@ msgstr "%s не є журналом."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: вихід за межі пам'яті"
 
-#: logview/logview.c:98
+#: logview/logview.c:97
 msgid "S_witch Log"
 msgstr "Пере_микнути журнал"
 
-#: logview/logview.c:99
+#: logview/logview.c:98
 msgid "Switch between already opened logs"
 msgstr "Перемикнутись між вже відкритими журналами"
 
-#: logview/logview.c:105
+#: logview/logview.c:104
 msgid "_Monitor..."
 msgstr "Кон_тролювати..."
 
-#: logview/logview.c:106
+#: logview/logview.c:105
 msgid "Monitor Logs"
 msgstr "Контролювати журнали"
 
-#: logview/logview.c:114
+#: logview/logview.c:113
 msgid "_Properties"
 msgstr "В_ластивості"
 
-#: logview/logview.c:115
+#: logview/logview.c:114
 msgid "Show Log Properties"
 msgstr "Показати інформацію про журнал"
 
-#: logview/logview.c:123
+#: logview/logview.c:122
 msgid "Clos_e All"
 msgstr "За_крити все"
 
-#: logview/logview.c:124
+#: logview/logview.c:123
 msgid "Close all Log files"
 msgstr "Закрити всі журнали"
 
-#: logview/logview.c:136
+#: logview/logview.c:135
 msgid "_Calendar"
 msgstr "_Календар"
 
-#: logview/logview.c:137
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "Показати календар журналу"
 
-#: logview/logview.c:143
+#: logview/logview.c:142
 msgid "_Entry Detail"
 msgstr "Подробиці про е_лемент"
 
-#: logview/logview.c:144
+#: logview/logview.c:143
 msgid "Show Entry Detail"
 msgstr "Показати подробиці про елемент"
 
-#: logview/logview.c:150
+#: logview/logview.c:149
 msgid "_Collapse All"
 msgstr "З_горути всі"
 
-#: logview/logview.c:151
+#: logview/logview.c:150
 msgid "Collapse all the rows"
 msgstr "Згорнути всі рядки"
 
-#: logview/logview.c:363
+#: logview/logview.c:362
 msgid "No log files to open"
 msgstr "Немає журналів для відкривання"
 
-#: logview/logview.c:385
+#: logview/logview.c:384
 msgid "Date"
 msgstr "Дата"
 
-#: logview/logview.c:385
+#: logview/logview.c:384
 msgid "Host Name"
 msgstr "Назва комп'ютера"
 
-#: logview/logview.c:386
+#: logview/logview.c:385
 msgid "Process"
 msgstr "Процес"
 
-#: logview/logview.c:386
+#: logview/logview.c:385
 msgid "Message"
 msgstr "Повідомлення"
 
-#: logview/logview.c:467
+#: logview/logview.c:466
 msgid "Last Modified: "
 msgstr "Востаннє змінено:"
 
-#: logview/logview.c:561 logview/logview.c:636
+#: logview/logview.c:565 logview/logview.c:640
 msgid "Too many open logs. Close one and try again"
 msgstr "Надто багато відкритих журналів. Закрийте один та спробуйте знову."
 
-#: logview/logview.c:573
+#: logview/logview.c:577
 msgid "File already opened"
 msgstr "Файл вже відкрито"
 
-#: logview/logview.c:649
+#: logview/logview.c:653
 msgid "Open new logfile"
 msgstr "Відкрити новий журнал"
+
+#: logview/logview.schemas.in.h:1
+msgid "Log file to open up on startup"
+msgstr "Файл журналу, що відкриватиметься на початку"
+
+#: logview/logview.schemas.in.h:2
+#, fuzzy
+msgid ""
+"Specifies the log file to open up at startup. The default is either /var/adm/"
+"messages or /var/log/messages, depending on your operating system."
+msgstr ""
+"Визначає файл журналу що відкриватиметься на початку. Типово або /var/adm/"
+"messages, або /var/log/messages залежно від дистрибутива."
 
 #: logview/misc.c:56
 #, c-format
@@ -1669,18 +1733,29 @@ msgstr "Подробиці про рядок"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#: logview/logview.schemas.in.h:1
-msgid "Log file to open up on startup"
-msgstr "Файл журналу, що відкриватиметься на початку"
-
-#: logview/logview.schemas.in.h:2
 #, fuzzy
-msgid ""
-"Specifies the log file to open up at startup. The default is either /var/adm/"
-"messages or /var/log/messages, depending on your operating system."
-msgstr ""
-"Визначає файл журналу що відкриватиметься на початку. Типово або /var/adm/"
-"messages, або /var/log/messages залежно від дистрибутива."
+#~ msgid "One File Found"
+#~ msgstr "Знайдено один файл"
+
+#~ msgid "One file found"
+#~ msgstr "Знайдено один файл"
+
+#, fuzzy
+#~ msgid "Open %d documents?"
+#~ msgstr "Відкрити %d тек?"
+
+#, fuzzy
+#~ msgid ""
+#~ "This will open %d separate documents. Are you sure you want to do this?"
+#~ msgstr "Буде відкрити %d окремих тек. Чи ви впевнені що хочете це зробити?"
+
+#, fuzzy
+#~ msgid "Open %d folders?"
+#~ msgstr "Відкрити %d тек?"
+
+#~ msgid ""
+#~ "This will open %d separate folders. Are you sure you want to do this?"
+#~ msgstr "Буде відкрити %d окремих тек. Чи ви впевнені що хочете це зробити?"
 
 #~ msgid "GNOME Dictionary"
 #~ msgstr "Словник GNOME"
@@ -1753,10 +1828,6 @@ msgstr ""
 
 #~ msgid "Can't Display Help"
 #~ msgstr "Неможливо відобразити довідку"
-
-#~ msgid "This will open %d separate files. Are you sure you want to do this?"
-#~ msgstr ""
-#~ "Буде відкрито %d окремих файлів. Чи ви впевнені що хочете це зробити?"
 
 #~ msgid "Open %d Files?"
 #~ msgstr "Відкрити %d файлів?"

@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-14 13:24+0100\n"
+"POT-Creation-Date: 2003-12-31 12:02+1300\n"
 "PO-Revision-Date: 2003-12-14 13:25+0100\n"
 "Last-Translator: Sasha Maric <sasha_maric@yahoo.com>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nognu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -730,11 +730,17 @@ msgstr "DEVICE"
 
 # bug: plural-forms
 #: gfloppy/src/progress.c:123
-#, c-format
+#, fuzzy, c-format
 msgid ""
+"The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
+"found and marked."
+msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr ""
+msgstr[0] ""
+"Дискета је форматизована, <b>%d лоших блокова</b> (од %d) је нађено и "
+"обележено."
+msgstr[1] ""
 "Дискета је форматизована, <b>%d лоших блокова</b> (од %d) је нађено и "
 "обележено."
 
@@ -805,119 +811,125 @@ msgid "Could not open help document."
 msgstr "Не могу да отворим документ помоћи."
 
 # bug: plural-forms
-#: gsearchtool/gsearchtool-callbacks.c:319
-#, c-format
-msgid "Are you sure you want to open %d documents?"
-msgstr "Да ли сте сигурни да желите да отворите %d докумената?"
+#: gsearchtool/gsearchtool-callbacks.c:318
+#, fuzzy, c-format
+msgid "Are you sure you want to open %d document?"
+msgid_plural "Are you sure you want to open %d documents?"
+msgstr[0] "Да ли сте сигурни да желите да отворите %d докумената?"
+msgstr[1] "Да ли сте сигурни да желите да отворите %d докумената?"
 
 # bug: plural-forms
-#: gsearchtool/gsearchtool-callbacks.c:322
-#: gsearchtool/gsearchtool-callbacks.c:444
-#, c-format
-msgid "This will open %d separate windows."
-msgstr "Ово ће отворити %d одвојених прозора."
+#: gsearchtool/gsearchtool-callbacks.c:323
+#: gsearchtool/gsearchtool-callbacks.c:449
+#, fuzzy, c-format
+msgid "This will open %d separate window."
+msgid_plural "This will open %d separate windows."
+msgstr[0] "Ово ће отворити %d одвојених прозора."
+msgstr[1] "Ово ће отворити %d одвојених прозора."
 
-#: gsearchtool/gsearchtool-callbacks.c:387
-#: gsearchtool/gsearchtool-callbacks.c:937
+#: gsearchtool/gsearchtool-callbacks.c:390
+#: gsearchtool/gsearchtool-callbacks.c:944
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Не могу да отворим документ „%s“."
 
-#: gsearchtool/gsearchtool-callbacks.c:390
-#: gsearchtool/gsearchtool-callbacks.c:940
+#: gsearchtool/gsearchtool-callbacks.c:393
+#: gsearchtool/gsearchtool-callbacks.c:947
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Нема постављеног приказивача који може да прикаже документ."
 
 # bug: plural-forms
-#: gsearchtool/gsearchtool-callbacks.c:441
-#, c-format
-msgid "Are you sure you want to open %d folders?"
-msgstr "Сигурно желите да отворите %d директоријума?"
+#: gsearchtool/gsearchtool-callbacks.c:444
+#, fuzzy, c-format
+msgid "Are you sure you want to open %d folder?"
+msgid_plural "Are you sure you want to open %d folders?"
+msgstr[0] "Сигурно желите да отворите %d директоријума?"
+msgstr[1] "Сигурно желите да отворите %d директоријума?"
 
-#: gsearchtool/gsearchtool-callbacks.c:495
+#: gsearchtool/gsearchtool-callbacks.c:502
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Не могу да отворим директоријум „%s“"
 
-#: gsearchtool/gsearchtool-callbacks.c:502
+#: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
 msgstr "Nautilus управљач датотека није активан."
 
-#: gsearchtool/gsearchtool-callbacks.c:605
+#: gsearchtool/gsearchtool-callbacks.c:612
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Не могу да бацим „%s“ у смеће."
 
-#: gsearchtool/gsearchtool-callbacks.c:608
+#: gsearchtool/gsearchtool-callbacks.c:615
 msgid "The document does not exist."
 msgstr "Документ не постоји."
 
-#: gsearchtool/gsearchtool-callbacks.c:645
+#: gsearchtool/gsearchtool-callbacks.c:652
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "Не могу да бацим „%s“ у смеће."
 
-#: gsearchtool/gsearchtool-callbacks.c:648
+#: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Неуспешно премештање „%s“: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:678
+#: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Да ли желите да трајно уклоните „%s“?"
 
-#: gsearchtool/gsearchtool-callbacks.c:681
+#: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Смеће је недоступно. Не могу да бацим „%s“ у смеће."
 
-#: gsearchtool/gsearchtool-callbacks.c:723
+#: gsearchtool/gsearchtool-callbacks.c:730
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Не могу да обришем „%s“."
 
-#: gsearchtool/gsearchtool-callbacks.c:726
+#: gsearchtool/gsearchtool-callbacks.c:733
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Неуспешно брисање „%s“: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1125
+#: gsearchtool/gsearchtool-callbacks.c:1132
 msgid "Save Search Results As..."
 msgstr "Сачувај резултате претраге као..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1178
+#: gsearchtool/gsearchtool-callbacks.c:1185
 msgid "Could not save document."
 msgstr "Не могу да сачувам документ."
 
-#: gsearchtool/gsearchtool-callbacks.c:1180
+#: gsearchtool/gsearchtool-callbacks.c:1187
 msgid "You did not select a document name."
 msgstr "Не могу да изаберем име документа."
 
-#: gsearchtool/gsearchtool-callbacks.c:1206
-#: gsearchtool/gsearchtool-callbacks.c:1301
+#: gsearchtool/gsearchtool-callbacks.c:1213
+#: gsearchtool/gsearchtool-callbacks.c:1308
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Не могу да сачувам документ „%s“ у „%s“."
 
-#: gsearchtool/gsearchtool-callbacks.c:1210
+#: gsearchtool/gsearchtool-callbacks.c:1217
 msgid "The document name you selected is a folder."
 msgstr "Име документа који сте изабрали представља директоријум."
 
-#: gsearchtool/gsearchtool-callbacks.c:1239
+#: gsearchtool/gsearchtool-callbacks.c:1246
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Документ „%s“ већ постоји.  Желите ли да га замените?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1243
+#: gsearchtool/gsearchtool-callbacks.c:1250
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Уколико замените постојећу датотеку, њен садржај ће бити преснимљен."
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1261
 msgid "_Replace"
 msgstr "_Замени"
 
-#: gsearchtool/gsearchtool-callbacks.c:1304
+#: gsearchtool/gsearchtool-callbacks.c:1311
 msgid "You may not have write permissions to the document."
 msgstr "Можда немате овлашћења за писање документа."
 
@@ -1026,25 +1038,19 @@ msgstr "Ниједна датотека није нађена"
 
 # bug: plural-forms
 #: gsearchtool/gsearchtool.c:570
-msgid "One File Found"
-msgstr "Нађена је једна датотека"
+#, fuzzy, c-format
+msgid "%d File Found"
+msgid_plural "%d Files Found"
+msgstr[0] "Нађено је %d датотека"
+msgstr[1] "Нађено је %d датотека"
 
 # bug: plural-forms
-#: gsearchtool/gsearchtool.c:571
-msgid "One file found"
-msgstr "Нађена је једна датотека"
-
-# bug: plural-forms
-#: gsearchtool/gsearchtool.c:574
-#, c-format
-msgid "%d Files Found"
-msgstr "Нађено је %d датотека"
-
-# bug: plural-forms
-#: gsearchtool/gsearchtool.c:575
-#, c-format
-msgid "%d files found"
-msgstr "Нађено је %d датотека"
+#: gsearchtool/gsearchtool.c:573
+#, fuzzy, c-format
+msgid "%d file found"
+msgid_plural "%d files found"
+msgstr[0] "Нађено је %d датотека"
+msgstr[1] "Нађено је %d датотека"
 
 #: gsearchtool/gsearchtool.c:678
 msgid "Entry changed called for a non entry option!"
@@ -1381,9 +1387,11 @@ msgstr "<ниједан дневник није учитан>"
 
 # bug: plural-forms
 #: logview/info.c:183
-#, c-format
-msgid "%ld bytes"
-msgstr "%ld бајтова"
+#, fuzzy, c-format
+msgid "%ld byte"
+msgid_plural "%ld bytes"
+msgstr[0] "%ld бајтова"
+msgstr[1] "%ld бајтова"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1674,6 +1682,14 @@ msgstr "Детаљи линије дневника"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%e. %B, %X"
+
+# bug: plural-forms
+#~ msgid "One File Found"
+#~ msgstr "Нађена је једна датотека"
+
+# bug: plural-forms
+#~ msgid "One file found"
+#~ msgstr "Нађена је једна датотека"
 
 #~ msgid "You cannot select a document name of an existing folder."
 #~ msgstr "Не можете изабрати име документа као постојећи директоријум."

@@ -11,14 +11,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-20 13:59+0900\n"
+"POT-Creation-Date: 2003-12-31 12:02+1300\n"
 "PO-Revision-Date: 2003-12-20 13:41+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -734,11 +734,17 @@ msgid "DEVICE"
 msgstr "DEVICE"
 
 #: gfloppy/src/progress.c:123
-#, c-format
+#, fuzzy, c-format
 msgid ""
+"The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
+"found and marked."
+msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr ""
+msgstr[0] ""
+"フロッピーがフォーマットされましたが、<b>%d 個の不正なブロック</b> (%d 個以"
+"上) が見つかりました。"
+msgstr[1] ""
 "フロッピーがフォーマットされましたが、<b>%d 個の不正なブロック</b> (%d 個以"
 "上) が見つかりました。"
 
@@ -808,117 +814,123 @@ msgstr "検索結果に名前を付けて保存(_S)"
 msgid "Could not open help document."
 msgstr "ヘルプ・ドキュメントが開けませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:319
-#, c-format
-msgid "Are you sure you want to open %d documents?"
-msgstr "本当に %d 個のドキュメントを開きますか？"
+#: gsearchtool/gsearchtool-callbacks.c:318
+#, fuzzy, c-format
+msgid "Are you sure you want to open %d document?"
+msgid_plural "Are you sure you want to open %d documents?"
+msgstr[0] "本当に %d 個のドキュメントを開きますか？"
+msgstr[1] "本当に %d 個のドキュメントを開きますか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:322
-#: gsearchtool/gsearchtool-callbacks.c:444
-#, c-format
-msgid "This will open %d separate windows."
-msgstr "これは %d 個の別々のウィンドウを開くことになります。"
+#: gsearchtool/gsearchtool-callbacks.c:323
+#: gsearchtool/gsearchtool-callbacks.c:449
+#, fuzzy, c-format
+msgid "This will open %d separate window."
+msgid_plural "This will open %d separate windows."
+msgstr[0] "これは %d 個の別々のウィンドウを開くことになります。"
+msgstr[1] "これは %d 個の別々のウィンドウを開くことになります。"
 
-#: gsearchtool/gsearchtool-callbacks.c:387
-#: gsearchtool/gsearchtool-callbacks.c:937
+#: gsearchtool/gsearchtool-callbacks.c:390
+#: gsearchtool/gsearchtool-callbacks.c:944
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "ドキュメント \"%s\" を開けませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:390
-#: gsearchtool/gsearchtool-callbacks.c:940
+#: gsearchtool/gsearchtool-callbacks.c:393
+#: gsearchtool/gsearchtool-callbacks.c:947
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "ドキュメントを表示するビュワーがインストールされていません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:441
-#, c-format
-msgid "Are you sure you want to open %d folders?"
-msgstr "本当に %d 個のフォルダを開きますか？"
+#: gsearchtool/gsearchtool-callbacks.c:444
+#, fuzzy, c-format
+msgid "Are you sure you want to open %d folder?"
+msgid_plural "Are you sure you want to open %d folders?"
+msgstr[0] "本当に %d 個のフォルダを開きますか？"
+msgstr[1] "本当に %d 個のフォルダを開きますか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:495
+#: gsearchtool/gsearchtool-callbacks.c:502
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "フォルダ \"%s\" を開けませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:502
+#: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
 msgstr "Nautilus ファイル・マネージャが実行されていません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:605
+#: gsearchtool/gsearchtool-callbacks.c:612
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "\"%s\" をゴミ箱に移動できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:608
+#: gsearchtool/gsearchtool-callbacks.c:615
 msgid "The document does not exist."
 msgstr "ドキュメントは存在しません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:645
+#: gsearchtool/gsearchtool-callbacks.c:652
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "\"%s\" をゴミ箱に移動できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:648
+#: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "\"%s\" の移動に失敗しました: %s 。"
 
-#: gsearchtool/gsearchtool-callbacks.c:678
+#: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "\"%s\" を完全に削除しますか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:681
+#: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "ゴミ箱は利用できません。\"%s\" をゴミ箱へ移動できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:723
+#: gsearchtool/gsearchtool-callbacks.c:730
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "\"%s\" を削除できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:726
+#: gsearchtool/gsearchtool-callbacks.c:733
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "\"%s\" の削除に失敗しました: %s 。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1125
+#: gsearchtool/gsearchtool-callbacks.c:1132
 msgid "Save Search Results As..."
 msgstr "検索結果に名前を付けて保存..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1178
+#: gsearchtool/gsearchtool-callbacks.c:1185
 msgid "Could not save document."
 msgstr "ドキュメントを保存できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1180
+#: gsearchtool/gsearchtool-callbacks.c:1187
 msgid "You did not select a document name."
 msgstr "ドキュメントの名前を選択していません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1206
-#: gsearchtool/gsearchtool-callbacks.c:1301
+#: gsearchtool/gsearchtool-callbacks.c:1213
+#: gsearchtool/gsearchtool-callbacks.c:1308
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "ドキュメント \"%s\" を %s へ保存できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1210
+#: gsearchtool/gsearchtool-callbacks.c:1217
 msgid "The document name you selected is a folder."
 msgstr "指定したドキュメントはフォルダです。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1239
+#: gsearchtool/gsearchtool-callbacks.c:1246
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "ドキュメント \"%s\" は既に存在します。置き換えてもよろしいですか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:1243
+#: gsearchtool/gsearchtool-callbacks.c:1250
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "既存のファイルを置き換えると、その内容は上書きされます。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1261
 msgid "_Replace"
 msgstr "置き換える(_R)"
 
-#: gsearchtool/gsearchtool-callbacks.c:1304
+#: gsearchtool/gsearchtool-callbacks.c:1311
 msgid "You may not have write permissions to the document."
 msgstr "そのドキュメントに対する書き込み権限がないようです。"
 
@@ -1026,22 +1038,18 @@ msgid "No Files Found"
 msgstr "ファイルが見つかりません"
 
 #: gsearchtool/gsearchtool.c:570
-msgid "One File Found"
-msgstr "1 個のファイルが見つかりました"
+#, fuzzy, c-format
+msgid "%d File Found"
+msgid_plural "%d Files Found"
+msgstr[0] "%d 個のファイルが見つかりました"
+msgstr[1] "%d 個のファイルが見つかりました"
 
-#: gsearchtool/gsearchtool.c:571
-msgid "One file found"
-msgstr "1 個のファイルが見つかりました"
-
-#: gsearchtool/gsearchtool.c:574
-#, c-format
-msgid "%d Files Found"
-msgstr "%d 個のファイルが見つかりました"
-
-#: gsearchtool/gsearchtool.c:575
-#, c-format
-msgid "%d files found"
-msgstr "%d 個のファイルが見つかりました"
+#: gsearchtool/gsearchtool.c:573
+#, fuzzy, c-format
+msgid "%d file found"
+msgid_plural "%d files found"
+msgstr[0] "%d 個のファイルが見つかりました"
+msgstr[1] "%d 個のファイルが見つかりました"
 
 #: gsearchtool/gsearchtool.c:678
 msgid "Entry changed called for a non entry option!"
@@ -1375,9 +1383,11 @@ msgid "<No log loaded>"
 msgstr "<ログが読み込まれていません>"
 
 #: logview/info.c:183
-#, c-format
-msgid "%ld bytes"
-msgstr "%ld バイト"
+#, fuzzy, c-format
+msgid "%ld byte"
+msgid_plural "%ld bytes"
+msgstr[0] "%ld バイト"
+msgstr[1] "%ld バイト"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1629,7 +1639,6 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "監視するログが多すぎます。一つ削除してから、やり直してください。"
 
 #: logview/monitor.c:298 logview/monitor.c:335
-#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list は NULLです\n"
 
@@ -1638,7 +1647,6 @@ msgid "Monitoring Logs..."
 msgstr "ログの監視中..."
 
 #: logview/monitor.c:643
-#, c-format
 msgid "TOUCHED!!\n"
 msgstr "TOUCHED!!\n"
 
@@ -1670,3 +1678,9 @@ msgstr "ログの詳細"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "One File Found"
+#~ msgstr "1 個のファイルが見つかりました"
+
+#~ msgid "One file found"
+#~ msgstr "1 個のファイルが見つかりました"

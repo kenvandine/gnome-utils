@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2003-11-15 14:05+0100\n"
+"POT-Creation-Date: 2003-12-31 12:02+1300\n"
 "PO-Revision-Date: 2003-09-15 23:16+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -344,6 +344,43 @@ msgstr "Formater dyskietek"
 msgid "Format Floppy Disks"
 msgstr "Narzędzie do formatowania dyskietek"
 
+#: gfloppy/gfloppy.schemas.in.h:1
+msgid ""
+"0 for the quick format, 1 for a standard one (adds a low-level format) and "
+"finally 2 for a thorough format (adds a bad blocks scan)."
+msgstr ""
+"Wartość 0 oznacza szybkie formatowanie, 1 - standardowe (wraz z "
+"formatowaniem niskopoziomowym), a 2 - formatowanie pełne (z wyszukiwaniem "
+"błędnych bloków)."
+
+#: gfloppy/gfloppy.schemas.in.h:2
+msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
+msgstr ""
+"TYLKO DLA ZAAWANSOWANYCH UŻYTKOWNIKÓW - domyślny program formatujący dla FAT-"
+"u"
+
+#: gfloppy/gfloppy.schemas.in.h:3
+msgid "Default filesystem type"
+msgstr "Domyślny system plików"
+
+#: gfloppy/gfloppy.schemas.in.h:4
+msgid "Default formatting mode"
+msgstr "Domyślny tryb formatowania"
+
+#: gfloppy/gfloppy.schemas.in.h:5
+msgid ""
+"TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
+"mtools as the preferred FAT formatting backend."
+msgstr ""
+"Włączona opcja określa, że jako preferowany program formatujący FAT powinien "
+"być użyty mkdosfs. Wyłączenie opcji powoduje przełączenie na program mtools."
+
+#: gfloppy/gfloppy.schemas.in.h:6
+msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
+msgstr ""
+"ext2 dla rodzimego systemu plików w Linuksie lub fat dla DOS-owego systemu "
+"plików."
+
 #: gfloppy/src/badblocks.c:94
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr ""
@@ -675,7 +712,7 @@ msgstr ""
 "Formatowanie nie jest możliwe z powodu braku uprawnień do zapisu do %s.\n"
 "Poproś administratora o zmianę uprawnień do urządzenia."
 
-#: gfloppy/src/main.c:400
+#: gfloppy/src/main.c:402
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -684,24 +721,30 @@ msgstr ""
 "Nie można wyświetlić pomocy na temat formatera dyskietek.\n"
 "%s"
 
-#: gfloppy/src/main.c:433
+#: gfloppy/src/main.c:435
 msgid "The volume name can't contain any blank space."
 msgstr "Nazwa nośnika nie może zawierać odstępów."
 
-#: gfloppy/src/main.c:482
+#: gfloppy/src/main.c:484
 msgid "The device to format"
 msgstr "Urządzenie opisujące formatowaną dyskietkę"
 
-#: gfloppy/src/main.c:483
+#: gfloppy/src/main.c:485
 msgid "DEVICE"
 msgstr "URZĄDZENIE"
 
 #: gfloppy/src/progress.c:123
-#, c-format
+#, fuzzy, c-format
 msgid ""
+"The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
+"found and marked."
+msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr ""
+msgstr[0] ""
+"Dyskietka została sformatowana, lecz odnaleziono i oznaczono <b>%d błędnych "
+"bloków</b> (spośród %d)."
+msgstr[1] ""
 "Dyskietka została sformatowana, lecz odnaleziono i oznaczono <b>%d błędnych "
 "bloków</b> (spośród %d)."
 
@@ -717,46 +760,9 @@ msgstr "Anulowano formatowanie dyskietki."
 msgid "Format Progress"
 msgstr "Postęp formatowania"
 
-#: gfloppy/gfloppy.schemas.in.h:1
-msgid ""
-"0 for the quick format, 1 for a standard one (adds a low-level format) and "
-"finally 2 for a thorough format (adds a bad blocks scan)."
-msgstr ""
-"Wartość 0 oznacza szybkie formatowanie, 1 - standardowe (wraz z "
-"formatowaniem niskopoziomowym), a 2 - formatowanie pełne (z wyszukiwaniem "
-"błędnych bloków)."
-
-#: gfloppy/gfloppy.schemas.in.h:2
-msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
-msgstr ""
-"TYLKO DLA ZAAWANSOWANYCH UŻYTKOWNIKÓW - domyślny program formatujący dla FAT-"
-"u"
-
-#: gfloppy/gfloppy.schemas.in.h:3
-msgid "Default filesystem type"
-msgstr "Domyślny system plików"
-
-#: gfloppy/gfloppy.schemas.in.h:4
-msgid "Default formatting mode"
-msgstr "Domyślny tryb formatowania"
-
-#: gfloppy/gfloppy.schemas.in.h:5
-msgid ""
-"TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
-"mtools as the preferred FAT formatting backend."
-msgstr ""
-"Włączona opcja określa, że jako preferowany program formatujący FAT powinien "
-"być użyty mkdosfs. Wyłączenie opcji powoduje przełączenie na program mtools."
-
-#: gfloppy/gfloppy.schemas.in.h:6
-msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr ""
-"ext2 dla rodzimego systemu plików w Linuksie lub fat dla DOS-owego systemu "
-"plików."
-
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:587
-#: gsearchtool/gsearchtool.c:841 gsearchtool/gsearchtool.c:988
-#: gsearchtool/gsearchtool.c:2270 gsearchtool/gsearchtool.c:2290
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:589
+#: gsearchtool/gsearchtool.c:843 gsearchtool/gsearchtool.c:990
+#: gsearchtool/gsearchtool.c:2285 gsearchtool/gsearchtool.c:2305
 msgid "Search for Files"
 msgstr "Wyszukiwanie plików"
 
@@ -764,392 +770,178 @@ msgstr "Wyszukiwanie plików"
 msgid "Search your disk for files"
 msgstr "Wyszukuje pliki na dysku"
 
-#: gsearchtool/gsearchtool.c:73
-msgid "Contains the _text"
-msgstr "Zawiera _napis"
-
-#: gsearchtool/gsearchtool.c:75
-msgid "_Date modified less than (days)"
-msgstr "_Czas od modyfikacji nie przekracza (dni)"
-
-#: gsearchtool/gsearchtool.c:76
-msgid "Date modified more than (da_ys)"
-msgstr "Czas od m_odyfikacji przekracza (dni)"
-
-#: gsearchtool/gsearchtool.c:78
-msgid "S_ize at least (kilobytes)"
-msgstr "_Rozmiar przynajmniej (kilobajty)"
-
-#: gsearchtool/gsearchtool.c:79
-msgid "Si_ze at most (kilobytes)"
-msgstr "Ro_zmiar nie przekracza (kilobajty)"
-
-#: gsearchtool/gsearchtool.c:80
-msgid "File is empty"
-msgstr "Plik jest pusty"
-
-#: gsearchtool/gsearchtool.c:82
-msgid "Owned by _user"
-msgstr "Wł_aściciel pliku"
-
-#: gsearchtool/gsearchtool.c:83
-msgid "Owned by _group"
-msgstr "Gr_upa przypisana plikowi"
-
-#: gsearchtool/gsearchtool.c:84
-msgid "Owner is unrecognized"
-msgstr "Nierozpoznany użytkownik"
-
-#: gsearchtool/gsearchtool.c:86
-msgid "Na_me does not contain"
-msgstr "Naz_wa nie zawiera"
-
-#: gsearchtool/gsearchtool.c:87
-msgid "Name matches regular e_xpression"
-msgstr "Plik pasuje do wyrażen_ia regularnego"
-
-#: gsearchtool/gsearchtool.c:89
-msgid "Show hidden files and folders"
-msgstr "Wyświetlanie ukrytych plików i folderów"
-
-#: gsearchtool/gsearchtool.c:90
-msgid "Follow symbolic links"
-msgstr "Podążanie za dowiązaniami symbolicznymi"
-
-#: gsearchtool/gsearchtool.c:91
-msgid "Include other filesystems"
-msgstr "Z innymi systemami plików"
-
-#: gsearchtool/gsearchtool.c:536 gsearchtool/gsearchtool.c:564
-msgid "No files found"
-msgstr "Nie odnaleziono plików"
-
-#: gsearchtool/gsearchtool.c:557
-msgid "(stopped)"
-msgstr "(zatrzymany)"
-
-#: gsearchtool/gsearchtool.c:563
-msgid "No Files Found"
-msgstr "Nie odnaleziono plików."
-
-#: gsearchtool/gsearchtool.c:568
-msgid "One File Found"
-msgstr "Odnaleziono jeden plik"
-
-#: gsearchtool/gsearchtool.c:569
-msgid "One file found"
-msgstr "Odnaleziono jeden plik"
-
-#: gsearchtool/gsearchtool.c:572
-#, c-format
-msgid "%d Files Found"
-msgstr "Odnaleziono %d plików"
-
-#: gsearchtool/gsearchtool.c:573
-#, c-format
-msgid "%d files found"
-msgstr "Odnaleziono %d plików"
-
-#: gsearchtool/gsearchtool.c:676
-msgid "Entry changed called for a non entry option!"
-msgstr "Wywołano entry_changed dla elementu nie będącego elementem wejściowym!"
-
-#: gsearchtool/gsearchtool.c:933
-#, c-format
-msgid "The animation file is missing or invalid: %s"
-msgstr "Brak pliku animacji lub jest on niewłaściwy: %s"
-
-#: gsearchtool/gsearchtool.c:988
-msgid "Searching..."
-msgstr "Wyszukiwanie..."
-
-#: gsearchtool/gsearchtool.c:1034
-msgid "Set the text of 'Name contains'"
-msgstr "Ustawia napis w polu \"Plik nosi nazwę\""
-
-#: gsearchtool/gsearchtool.c:1035
-msgid "Set the text of 'Look in folder'"
-msgstr "Ustawia napis w polu \"Wyszukiwanie w folderze\""
-
-#: gsearchtool/gsearchtool.c:1036
-msgid "Sort files by one of the following: name, folder, size, type, or date"
+#: gsearchtool/gsearchtool-alert-dialog.c:99
+msgid "Image/label border"
 msgstr ""
-"Porządkuje pliki wg jednego z kryteriów: name (nazwa), folder, size "
-"(rozmiar), type (typ) lub date (data)"
 
-#: gsearchtool/gsearchtool.c:1037
-msgid "Set sort order to descending, the default is ascending"
-msgstr "Zmienia porządek na malejący (domyślny jest rosnący)."
-
-#: gsearchtool/gsearchtool.c:1038
-msgid "Automatically start a search"
-msgstr "Automatycznie rozpoczyna wyszukiwanie"
-
-#: gsearchtool/gsearchtool.c:1043
-#, c-format
-msgid "Select the '%s' constraint"
-msgstr "Wybiera warunek \"%s\""
-
-#: gsearchtool/gsearchtool.c:1149
-msgid "Invalid option passed to sortby command line argument."
-msgstr "W wierszu polecenia podano niepoprawny argument opcji sortby."
-
-#: gsearchtool/gsearchtool.c:1400
-msgid ""
-"While searching the following errors were reported.\n"
-"\n"
+#: gsearchtool/gsearchtool-alert-dialog.c:100
+msgid "Width of border around the label and image in the alert dialog"
 msgstr ""
-"Podczas wyszukiwania zostały zgłoszone następujące błędy.\n"
-"\n"
 
-#: gsearchtool/gsearchtool.c:1404
-msgid ""
-"\n"
-"... Too many errors to display ..."
+#: gsearchtool/gsearchtool-alert-dialog.c:109
+msgid "Alert Type"
 msgstr ""
-"\n"
-"... Zbyt wiele błędów, aby je wyświetlić ..."
 
-#: gsearchtool/gsearchtool.c:1410
-msgid "Error while searching for files"
-msgstr "Błąd przy wyszukiwaniu plików"
+#: gsearchtool/gsearchtool-alert-dialog.c:110
+msgid "The type of alert"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1449
-msgid "Error parsing the search command"
-msgstr "Błąd przy analizowaniu polecenia wyszukiwania"
+#: gsearchtool/gsearchtool-alert-dialog.c:118
+msgid "Alert Buttons"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1470
-msgid "Error running the search command"
-msgstr "Błąd przy uruchamianiu polecenia wyszukiwania"
+#: gsearchtool/gsearchtool-alert-dialog.c:119
+msgid "The buttons shown in the alert dialog"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1564
-msgid "Search Rule Value Entry"
-msgstr "Wejście na wartość reguły wyszukiwania"
-
-#: gsearchtool/gsearchtool.c:1565
-msgid "Enter a value for search rule"
-msgstr "Wprowadź wartość reguły wyszukiwania"
-
-#: gsearchtool/gsearchtool.c:1603
-#, c-format
-msgid "Click to Remove the '%s' Rule"
-msgstr "Kliknij, aby usunąć regułę \"%s\""
-
-#: gsearchtool/gsearchtool.c:1659
-msgid "A_vailable options:"
-msgstr "_Dostępne opcje:"
-
-#: gsearchtool/gsearchtool.c:1672
-msgid "Search Rules Menu"
-msgstr "Menu reguł wyszukiwania"
-
-#: gsearchtool/gsearchtool.c:1673
-msgid "Select a search rule from the menu"
-msgstr "Wybierz z menu regułę wyszukiwania"
-
-#: gsearchtool/gsearchtool.c:1705
-msgid "S_earch results:"
-msgstr "_Wyniki wyszukiwania:"
-
-#: gsearchtool/gsearchtool.c:1785
-msgid "Name"
-msgstr "Nazwa"
-
-#: gsearchtool/gsearchtool.c:1805
-msgid "Folder"
-msgstr "Folder"
-
-#: gsearchtool/gsearchtool.c:1816
-msgid "Size"
-msgstr "Rozmiar"
-
-#: gsearchtool/gsearchtool.c:1826
-msgid "Type"
-msgstr "Typ"
-
-#: gsearchtool/gsearchtool.c:1836
-msgid "Date Modified"
-msgstr "Data modyfikacji"
-
-#: gsearchtool/gsearchtool.c:1899
-msgid "_Name contains:"
-msgstr "_Nazwa zawiera:"
-
-#: gsearchtool/gsearchtool.c:1914 gsearchtool/gsearchtool.c:1915
-msgid "Name Contains Entry"
-msgstr "Wpis zawartości nazwy"
-
-#: gsearchtool/gsearchtool.c:1914 gsearchtool/gsearchtool.c:1915
-msgid "Enter the file name you want to search"
-msgstr "Podaj nazwę pliku, który chcesz odnaleźć"
-
-#: gsearchtool/gsearchtool.c:1927
-msgid "_Look in folder:"
-msgstr "_Wyszukiwanie w folderze:"
-
-#: gsearchtool/gsearchtool.c:1933
-msgid "Browse"
-msgstr "Wybór katalogu"
-
-#: gsearchtool/gsearchtool.c:1942 gsearchtool/gsearchtool.c:1943
-msgid "Look in Folder Entry"
-msgstr "_Wyszukiwanie w pozycji folderów"
-
-#: gsearchtool/gsearchtool.c:1942 gsearchtool/gsearchtool.c:1943
-msgid "Enter the folder name where you want to start the search"
-msgstr "Wprowadź nazwę folderu, w którym chcesz rozpocząć wyszukiwanie"
-
-#: gsearchtool/gsearchtool.c:1962
-msgid "Show more _options"
-msgstr "Wyświetl więcej _opcji"
-
-#: gsearchtool/gsearchtool.c:2012
-msgid "Click to Start the search"
-msgstr "Kliknij, aby rozpocząć wyszukiwanie"
-
-#: gsearchtool/gsearchtool.c:2013
-msgid "Click to Stop the search"
-msgstr "Kliknij, aby zatrzymać wyszukiwanie"
-
-#: gsearchtool/gsearchtool.c:2286
-msgid "Cannot initialize bonobo."
-msgstr "Nie można zainicjować bonobo."
-
-#: gsearchtool/gsearchtool-callbacks.c:49
+#: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
 msgstr "_Otwórz"
 
-#: gsearchtool/gsearchtool-callbacks.c:53
+#: gsearchtool/gsearchtool-callbacks.c:54
 msgid "O_pen Folder"
 msgstr "O_twórz folder"
 
-#: gsearchtool/gsearchtool-callbacks.c:58
+#: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
 msgstr "Przenieś do ś_mietnika"
 
-#: gsearchtool/gsearchtool-callbacks.c:63
+#: gsearchtool/gsearchtool-callbacks.c:64
 msgid "_Save Results As..."
 msgstr "Z_apisz wyniki jako..."
 
-#: gsearchtool/gsearchtool-callbacks.c:109
-msgid "Could not open help document"
+#: gsearchtool/gsearchtool-callbacks.c:111
+#, fuzzy
+msgid "Could not open help document."
 msgstr "Nie można otworzyć dokumentu pomocy"
 
-#: gsearchtool/gsearchtool-callbacks.c:315
+#: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
-msgid "Open %d documents?"
-msgstr "Czy otworzyć %d dokumentów?"
+msgid "Are you sure you want to open %d document?"
+msgid_plural "Are you sure you want to open %d documents?"
+msgstr[0] ""
+msgstr[1] ""
 
-#: gsearchtool/gsearchtool-callbacks.c:316
-#, c-format
-msgid "This will open %d separate documents. Are you sure you want to do this?"
-msgstr ""
-"Operacja spowoduje otwarcie %d oddzielnych dokumentów. Czy na pewno tego "
+#: gsearchtool/gsearchtool-callbacks.c:323
+#: gsearchtool/gsearchtool-callbacks.c:449
+#, fuzzy, c-format
+msgid "This will open %d separate window."
+msgid_plural "This will open %d separate windows."
+msgstr[0] ""
+"Operacja spowoduje otwarcie %d oddzielnych folderów. Czy na pewno tego "
+"chcesz?"
+msgstr[1] ""
+"Operacja spowoduje otwarcie %d oddzielnych folderów. Czy na pewno tego "
 "chcesz?"
 
-#: gsearchtool/gsearchtool-callbacks.c:371
+#: gsearchtool/gsearchtool-callbacks.c:390
+#: gsearchtool/gsearchtool-callbacks.c:944
 #, c-format
-msgid "Could not open document \"%s\""
-msgstr "Nie można otworzyć dokumentu \"%s\""
+msgid "Could not open document \"%s\"."
+msgstr "Nie można otworzyć dokumentu \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:373
-#: gsearchtool/gsearchtool-callbacks.c:853
+#: gsearchtool/gsearchtool-callbacks.c:393
+#: gsearchtool/gsearchtool-callbacks.c:947
 msgid "There is no installed viewer capable of displaying the document."
 msgstr ""
 "Nie zainstalowano w systemie przeglądarki obsługującej wyświetlanie "
 "dokumentu."
 
-#: gsearchtool/gsearchtool-callbacks.c:419
+#: gsearchtool/gsearchtool-callbacks.c:444
 #, c-format
-msgid "Open %d folders?"
-msgstr "Czy otworzyć %d folderów?"
+msgid "Are you sure you want to open %d folder?"
+msgid_plural "Are you sure you want to open %d folders?"
+msgstr[0] ""
+msgstr[1] ""
 
-#: gsearchtool/gsearchtool-callbacks.c:420
-#, c-format
-msgid "This will open %d separate folders. Are you sure you want to do this?"
-msgstr ""
-"Operacja spowoduje otwarcie %d oddzielnych folderów. Czy na pewno tego "
-"chcesz?"
-
-#: gsearchtool/gsearchtool-callbacks.c:461
-#, c-format
-msgid "Could not open folder \"%s\""
+#: gsearchtool/gsearchtool-callbacks.c:502
+#, fuzzy, c-format
+msgid "Could not open folder \"%s\"."
 msgstr "Nie można otworzyć folderu \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:467
+#: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
 msgstr "Nie jest uruchomiony menedżer plików Nautilus."
 
-#: gsearchtool/gsearchtool-callbacks.c:581
+#: gsearchtool/gsearchtool-callbacks.c:612
+#, fuzzy, c-format
+msgid "Could not move \"%s\" to trash."
+msgstr "Nie można przenieść \"%s\" do śmietnika."
+
+#: gsearchtool/gsearchtool-callbacks.c:615
+msgid "The document does not exist."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:652
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "Nie można przenieść \"%s\" do śmietnika."
 
-#: gsearchtool/gsearchtool-callbacks.c:582
+#: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Przenoszenie \"%s\" nie powiodło się: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:609
+#: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Czy chcesz usunąć trwale \"%s\"?"
 
-#: gsearchtool/gsearchtool-callbacks.c:612
+#: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Śmietnik jest niedostępny.  Nie można przenieść \"%s\" do śmietnika."
 
-#: gsearchtool/gsearchtool-callbacks.c:644
+#: gsearchtool/gsearchtool-callbacks.c:730
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Nie można usunąć \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:645
+#: gsearchtool/gsearchtool-callbacks.c:733
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Usuwanie \"%s\" nie powiodło się: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:852
-#, c-format
-msgid "Could not open document \"%s\"."
-msgstr "Nie można otworzyć dokumentu \"%s\"."
-
-#: gsearchtool/gsearchtool-callbacks.c:1035
+#: gsearchtool/gsearchtool-callbacks.c:1132
 msgid "Save Search Results As..."
 msgstr "Zapis wyników wyszukiwania..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1083
-#, c-format
-msgid "Could not save document \"\" to %s"
+#: gsearchtool/gsearchtool-callbacks.c:1185
+#, fuzzy
+msgid "Could not save document."
 msgstr "Nie można zapisać dokumentu \"\" pod nazwą %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:1086
-msgid ""
-"You did not select a document name or the name selected was a folder.  The "
-"document is not saved."
+#: gsearchtool/gsearchtool-callbacks.c:1187
+#, fuzzy
+msgid "You did not select a document name."
+msgstr "Nie można otworzyć dokumentu \"%s\"."
+
+#: gsearchtool/gsearchtool-callbacks.c:1213
+#: gsearchtool/gsearchtool-callbacks.c:1308
+#, fuzzy, c-format
+msgid "Could not save \"%s\" document to \"%s\"."
+msgstr "Nie można zapisać dokumentu \"\" pod nazwą %s"
+
+#: gsearchtool/gsearchtool-callbacks.c:1217
+msgid "The document name you selected is a folder."
 msgstr ""
-"Nie wybrano nazwy dokumentu lub wybrana nazwa określała folder. Dokument nie "
-"został zapisany."
 
-#: gsearchtool/gsearchtool-callbacks.c:1109
+#: gsearchtool/gsearchtool-callbacks.c:1246
 #, c-format
-msgid "The contents of the file \"%s\" will be lost."
-msgstr "Zawartość pliku \"%s\" zostanie utracona."
+msgid "The document \"%s\" already exists.  Would you like to replace it?"
+msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1114
-msgid "Overwrite an existing file?"
-msgstr "Czy nadpisać istniejący plik?"
+#: gsearchtool/gsearchtool-callbacks.c:1250
+msgid "If you replace an existing file, its contents will be overwritten."
+msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1157
-#, c-format
-msgid "Could not save document \"%s\" to %s"
-msgstr "Nie można zapisać dokumentu \"%s\" pod nazwą %s"
+#: gsearchtool/gsearchtool-callbacks.c:1261
+msgid "_Replace"
+msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1161
-msgid ""
-"You may not have write permissions to the document.  The document is not "
-"saved."
+#: gsearchtool/gsearchtool-callbacks.c:1311
+#, fuzzy
+msgid "You may not have write permissions to the document."
 msgstr ""
 "Nie posiadasz uprawnień do zapisu do tego dokumentu. Dokument nie został "
 "zapisany."
@@ -1188,6 +980,266 @@ msgstr "odnośnik (uszkodzony)"
 #, c-format
 msgid "link to %s"
 msgstr "odnośnik do %s"
+
+#: gsearchtool/gsearchtool.c:74
+msgid "Contains the _text"
+msgstr "Zawiera _napis"
+
+#: gsearchtool/gsearchtool.c:76
+msgid "_Date modified less than (days)"
+msgstr "_Czas od modyfikacji nie przekracza (dni)"
+
+#: gsearchtool/gsearchtool.c:77
+msgid "Date modified more than (da_ys)"
+msgstr "Czas od m_odyfikacji przekracza (dni)"
+
+#: gsearchtool/gsearchtool.c:79
+msgid "S_ize at least (kilobytes)"
+msgstr "_Rozmiar przynajmniej (kilobajty)"
+
+#: gsearchtool/gsearchtool.c:80
+msgid "Si_ze at most (kilobytes)"
+msgstr "Ro_zmiar nie przekracza (kilobajty)"
+
+#: gsearchtool/gsearchtool.c:81
+msgid "File is empty"
+msgstr "Plik jest pusty"
+
+#: gsearchtool/gsearchtool.c:83
+msgid "Owned by _user"
+msgstr "Wł_aściciel pliku"
+
+#: gsearchtool/gsearchtool.c:84
+msgid "Owned by _group"
+msgstr "Gr_upa przypisana plikowi"
+
+#: gsearchtool/gsearchtool.c:85
+msgid "Owner is unrecognized"
+msgstr "Nierozpoznany użytkownik"
+
+#: gsearchtool/gsearchtool.c:87
+msgid "Na_me does not contain"
+msgstr "Naz_wa nie zawiera"
+
+#: gsearchtool/gsearchtool.c:88
+msgid "Name matches regular e_xpression"
+msgstr "Plik pasuje do wyrażen_ia regularnego"
+
+#: gsearchtool/gsearchtool.c:90
+#, fuzzy
+msgid "Show hidden and backup files"
+msgstr "Wyświetlanie ukrytych plików i folderów"
+
+#: gsearchtool/gsearchtool.c:91
+msgid "Follow symbolic links"
+msgstr "Podążanie za dowiązaniami symbolicznymi"
+
+#: gsearchtool/gsearchtool.c:92
+msgid "Include other filesystems"
+msgstr "Z innymi systemami plików"
+
+#: gsearchtool/gsearchtool.c:538 gsearchtool/gsearchtool.c:566
+msgid "No files found"
+msgstr "Nie odnaleziono plików"
+
+#: gsearchtool/gsearchtool.c:559
+msgid "(stopped)"
+msgstr "(zatrzymany)"
+
+#: gsearchtool/gsearchtool.c:565
+msgid "No Files Found"
+msgstr "Nie odnaleziono plików."
+
+#: gsearchtool/gsearchtool.c:570
+#, fuzzy, c-format
+msgid "%d File Found"
+msgid_plural "%d Files Found"
+msgstr[0] "Odnaleziono %d plików"
+msgstr[1] "Odnaleziono %d plików"
+
+#: gsearchtool/gsearchtool.c:573
+#, fuzzy, c-format
+msgid "%d file found"
+msgid_plural "%d files found"
+msgstr[0] "Odnaleziono %d plików"
+msgstr[1] "Odnaleziono %d plików"
+
+#: gsearchtool/gsearchtool.c:678
+msgid "Entry changed called for a non entry option!"
+msgstr "Wywołano entry_changed dla elementu nie będącego elementem wejściowym!"
+
+#: gsearchtool/gsearchtool.c:935
+#, c-format
+msgid "The animation file is missing or invalid: %s"
+msgstr "Brak pliku animacji lub jest on niewłaściwy: %s"
+
+#: gsearchtool/gsearchtool.c:990
+msgid "Searching..."
+msgstr "Wyszukiwanie..."
+
+#: gsearchtool/gsearchtool.c:1036
+msgid "Set the text of 'Name contains'"
+msgstr "Ustawia napis w polu \"Plik nosi nazwę\""
+
+#: gsearchtool/gsearchtool.c:1037
+msgid "Set the text of 'Look in folder'"
+msgstr "Ustawia napis w polu \"Wyszukiwanie w folderze\""
+
+#: gsearchtool/gsearchtool.c:1038
+msgid "Sort files by one of the following: name, folder, size, type, or date"
+msgstr ""
+"Porządkuje pliki wg jednego z kryteriów: name (nazwa), folder, size "
+"(rozmiar), type (typ) lub date (data)"
+
+#: gsearchtool/gsearchtool.c:1039
+msgid "Set sort order to descending, the default is ascending"
+msgstr "Zmienia porządek na malejący (domyślny jest rosnący)."
+
+#: gsearchtool/gsearchtool.c:1040
+msgid "Automatically start a search"
+msgstr "Automatycznie rozpoczyna wyszukiwanie"
+
+#: gsearchtool/gsearchtool.c:1045
+#, c-format
+msgid "Select the '%s' constraint"
+msgstr "Wybiera warunek \"%s\""
+
+#: gsearchtool/gsearchtool.c:1151
+msgid "Invalid option passed to sortby command line argument."
+msgstr "W wierszu polecenia podano niepoprawny argument opcji sortby."
+
+#: gsearchtool/gsearchtool.c:1402
+msgid ""
+"While searching the following errors were reported.\n"
+"\n"
+msgstr ""
+"Podczas wyszukiwania zostały zgłoszone następujące błędy.\n"
+"\n"
+
+#: gsearchtool/gsearchtool.c:1406
+msgid ""
+"\n"
+"... Too many errors to display ..."
+msgstr ""
+"\n"
+"... Zbyt wiele błędów, aby je wyświetlić ..."
+
+#: gsearchtool/gsearchtool.c:1413
+#, fuzzy
+msgid "Error while searching for files."
+msgstr "Błąd przy wyszukiwaniu plików"
+
+#: gsearchtool/gsearchtool.c:1454
+#, fuzzy
+msgid "Error parsing the search command."
+msgstr "Błąd przy analizowaniu polecenia wyszukiwania"
+
+#: gsearchtool/gsearchtool.c:1477
+#, fuzzy
+msgid "Error running the search command."
+msgstr "Błąd przy uruchamianiu polecenia wyszukiwania"
+
+#: gsearchtool/gsearchtool.c:1572
+msgid "Search Rule Value Entry"
+msgstr "Wejście na wartość reguły wyszukiwania"
+
+#: gsearchtool/gsearchtool.c:1573
+msgid "Enter a value for search rule"
+msgstr "Wprowadź wartość reguły wyszukiwania"
+
+#: gsearchtool/gsearchtool.c:1611
+#, c-format
+msgid "Click to Remove the '%s' Rule"
+msgstr "Kliknij, aby usunąć regułę \"%s\""
+
+#: gsearchtool/gsearchtool.c:1667
+msgid "A_vailable options:"
+msgstr "_Dostępne opcje:"
+
+#: gsearchtool/gsearchtool.c:1680
+msgid "Search Rules Menu"
+msgstr "Menu reguł wyszukiwania"
+
+#: gsearchtool/gsearchtool.c:1681
+msgid "Select a search rule from the menu"
+msgstr "Wybierz z menu regułę wyszukiwania"
+
+#: gsearchtool/gsearchtool.c:1713
+msgid "S_earch results:"
+msgstr "_Wyniki wyszukiwania:"
+
+#: gsearchtool/gsearchtool.c:1793
+msgid "Name"
+msgstr "Nazwa"
+
+#: gsearchtool/gsearchtool.c:1813
+msgid "Folder"
+msgstr "Folder"
+
+#: gsearchtool/gsearchtool.c:1824
+msgid "Size"
+msgstr "Rozmiar"
+
+#: gsearchtool/gsearchtool.c:1834
+msgid "Type"
+msgstr "Typ"
+
+#: gsearchtool/gsearchtool.c:1844
+msgid "Date Modified"
+msgstr "Data modyfikacji"
+
+#: gsearchtool/gsearchtool.c:1907
+msgid "_Name contains:"
+msgstr "_Nazwa zawiera:"
+
+#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+msgid "Name Contains Entry"
+msgstr "Wpis zawartości nazwy"
+
+#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+msgid "Enter the file name you want to search"
+msgstr "Podaj nazwę pliku, który chcesz odnaleźć"
+
+#: gsearchtool/gsearchtool.c:1935
+msgid "_Look in folder:"
+msgstr "_Wyszukiwanie w folderze:"
+
+#: gsearchtool/gsearchtool.c:1941
+msgid "Browse"
+msgstr "Wybór katalogu"
+
+#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+msgid "Look in Folder Entry"
+msgstr "_Wyszukiwanie w pozycji folderów"
+
+#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+msgid "Enter the folder name where you want to start the search"
+msgstr "Wprowadź nazwę folderu, w którym chcesz rozpocząć wyszukiwanie"
+
+#: gsearchtool/gsearchtool.c:1970
+msgid "Show more _options"
+msgstr "Wyświetl więcej _opcji"
+
+#: gsearchtool/gsearchtool.c:1980
+#, fuzzy
+msgid "Show more options"
+msgstr "Wyświetl więcej _opcji"
+
+#: gsearchtool/gsearchtool.c:1980
+msgid "Expands or collapses a list of search options."
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:2027
+msgid "Click to Start the search"
+msgstr "Kliknij, aby rozpocząć wyszukiwanie"
+
+#: gsearchtool/gsearchtool.c:2028
+msgid "Click to Stop the search"
+msgstr "Kliknij, aby zatrzymać wyszukiwanie"
+
+#: gsearchtool/gsearchtool.c:2301
+msgid "Cannot initialize bonobo."
+msgstr "Nie można zainicjować bonobo."
 
 #. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
 #: logview/about.c:43
@@ -1352,9 +1404,11 @@ msgid "<No log loaded>"
 msgstr "<Brak dziennika>"
 
 #: logview/info.c:183
-#, c-format
-msgid "%ld bytes"
-msgstr "%ld bajtów"
+#, fuzzy, c-format
+msgid "%ld byte"
+msgid_plural "%ld bytes"
+msgstr[0] "%ld bajtów"
+msgstr[1] "%ld bajtów"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1458,99 +1512,111 @@ msgstr "%s nie jest plikiem dziennika."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: brak pamięci"
 
-#: logview/logview.c:98
+#: logview/logview.c:97
 msgid "S_witch Log"
 msgstr "P_rzełącz dziennik"
 
-#: logview/logview.c:99
+#: logview/logview.c:98
 msgid "Switch between already opened logs"
 msgstr "przełącza pomiędzy otwartymi dziennikami"
 
-#: logview/logview.c:105
+#: logview/logview.c:104
 msgid "_Monitor..."
 msgstr "_Monitoruj..."
 
-#: logview/logview.c:106
+#: logview/logview.c:105
 msgid "Monitor Logs"
 msgstr "Monitoruje dzienniki"
 
-#: logview/logview.c:114
+#: logview/logview.c:113
 msgid "_Properties"
 msgstr "_Właściwości"
 
-#: logview/logview.c:115
+#: logview/logview.c:114
 msgid "Show Log Properties"
 msgstr "Wyświetla właściwości dziennika"
 
-#: logview/logview.c:123
+#: logview/logview.c:122
 msgid "Clos_e All"
 msgstr "Zamknij _wszystkie"
 
-#: logview/logview.c:124
+#: logview/logview.c:123
 msgid "Close all Log files"
 msgstr "Zamyka wszystkie pliki dzienników"
 
-#: logview/logview.c:136
+#: logview/logview.c:135
 msgid "_Calendar"
 msgstr "_Kalendarz"
 
-#: logview/logview.c:137
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "Wyświetla dziennik kalendarza"
 
-#: logview/logview.c:143
+#: logview/logview.c:142
 msgid "_Entry Detail"
 msgstr "_Szczegóły na temat pozycji"
 
-#: logview/logview.c:144
+#: logview/logview.c:143
 msgid "Show Entry Detail"
 msgstr "Wyświetla szczegóły na temat pozycji"
 
-#: logview/logview.c:150
+#: logview/logview.c:149
 msgid "_Collapse All"
 msgstr "_Zwiń wszystkie"
 
-#: logview/logview.c:151
+#: logview/logview.c:150
 msgid "Collapse all the rows"
 msgstr "Zwija wszystkie wiersze"
 
-#: logview/logview.c:363
+#: logview/logview.c:362
 msgid "No log files to open"
 msgstr "Brak dzienników do otwarcia"
 
-#: logview/logview.c:385
+#: logview/logview.c:384
 msgid "Date"
 msgstr "Data"
 
-#: logview/logview.c:385
+#: logview/logview.c:384
 msgid "Host Name"
 msgstr "Nazwa komputera"
 
-#: logview/logview.c:386
+#: logview/logview.c:385
 msgid "Process"
 msgstr "Proces"
 
-#: logview/logview.c:386
+#: logview/logview.c:385
 msgid "Message"
 msgstr "Komunikat"
 
-#: logview/logview.c:467
+#: logview/logview.c:466
 msgid "Last Modified: "
 msgstr "Ostatnia modyfikacja: "
 
-#: logview/logview.c:561 logview/logview.c:636
+#: logview/logview.c:565 logview/logview.c:640
 msgid "Too many open logs. Close one and try again"
 msgstr ""
 "Zbyt wiele otwartych dzienników. Spróbuj ponownie po zamknięciu jednego z "
 "nich."
 
-#: logview/logview.c:573
+#: logview/logview.c:577
 msgid "File already opened"
 msgstr "Plik jest już otwarty"
 
-#: logview/logview.c:649
+#: logview/logview.c:653
 msgid "Open new logfile"
 msgstr "Wybór nowego pliku z dziennikiem"
+
+#: logview/logview.schemas.in.h:1
+msgid "Log file to open up on startup"
+msgstr "Brak dziennika otwieranego po uruchomieniu"
+
+#: logview/logview.schemas.in.h:2
+msgid ""
+"Specifies the log file to open up at startup. The default is either /var/adm/"
+"messages or /var/log/messages, depending on your operating system."
+msgstr ""
+"Określa plik dziennika, otwierany przy uruchamianiu. Domyślnym plikiem jest /"
+"var/adm/messages lub /var/log/messages, zależnie od używanej dystrybucji."
 
 #: logview/misc.c:56
 #, c-format
@@ -1637,14 +1703,39 @@ msgstr "Szczegóły wiersza z dziennika"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#: logview/logview.schemas.in.h:1
-msgid "Log file to open up on startup"
-msgstr "Brak dziennika otwieranego po uruchomieniu"
+#~ msgid "One File Found"
+#~ msgstr "Odnaleziono jeden plik"
 
-#: logview/logview.schemas.in.h:2
-msgid ""
-"Specifies the log file to open up at startup. The default is either /var/adm/"
-"messages or /var/log/messages, depending on your operating system."
-msgstr ""
-"Określa plik dziennika, otwierany przy uruchamianiu. Domyślnym plikiem jest /"
-"var/adm/messages lub /var/log/messages, zależnie od używanej dystrybucji."
+#~ msgid "One file found"
+#~ msgstr "Odnaleziono jeden plik"
+
+#~ msgid "Open %d documents?"
+#~ msgstr "Czy otworzyć %d dokumentów?"
+
+#~ msgid ""
+#~ "This will open %d separate documents. Are you sure you want to do this?"
+#~ msgstr ""
+#~ "Operacja spowoduje otwarcie %d oddzielnych dokumentów. Czy na pewno tego "
+#~ "chcesz?"
+
+#~ msgid "Could not open document \"%s\""
+#~ msgstr "Nie można otworzyć dokumentu \"%s\""
+
+#~ msgid "Open %d folders?"
+#~ msgstr "Czy otworzyć %d folderów?"
+
+#~ msgid ""
+#~ "You did not select a document name or the name selected was a folder.  "
+#~ "The document is not saved."
+#~ msgstr ""
+#~ "Nie wybrano nazwy dokumentu lub wybrana nazwa określała folder. Dokument "
+#~ "nie został zapisany."
+
+#~ msgid "The contents of the file \"%s\" will be lost."
+#~ msgstr "Zawartość pliku \"%s\" zostanie utracona."
+
+#~ msgid "Overwrite an existing file?"
+#~ msgstr "Czy nadpisać istniejący plik?"
+
+#~ msgid "Could not save document \"%s\" to %s"
+#~ msgstr "Nie można zapisać dokumentu \"%s\" pod nazwą %s"
