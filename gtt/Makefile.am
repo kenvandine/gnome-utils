@@ -25,7 +25,9 @@ gtt_SOURCES = \
 	menucmd.h	\
 	app.c		\
 	log.c		\
-	clist.c
+	clist.c		\
+	shorts.c	\
+	shorts.h
 
 gtt_LDADD = \
 	$(GNOME_LIBDIR)         \

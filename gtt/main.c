@@ -24,6 +24,8 @@
 
 #include "gtt.h"
 
+#include "shorts.h"		/* SMH 2000-03-22: connect_short_cuts() */
+
 
 #define USE_SM
 
@@ -226,6 +228,12 @@ main(int argc, char *argv[])
 	app_new(argc, argv, geometry_string);
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
 			   GTK_SIGNAL_FUNC(quit_app), NULL);
+
+	/*
+	 * Added by SMH 2000-03-22:
+	 * Connect short-cut keys. 
+	 */
+	connect_short_cuts();
 
 	/* start timer before the state of the menu items is set */
 	start_timer();

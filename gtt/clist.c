@@ -136,7 +136,7 @@ click_column(GtkCList *clist, gint col)
 }
 
 #ifdef CLIST_HEADER_HACK
-void
+static void
 clist_header_hack(GtkWidget *window, GtkWidget *w)
 {
 	GtkStyle *style;
