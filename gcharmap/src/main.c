@@ -26,8 +26,6 @@
 #include <gnome.h>
 #include "interface.h"
 
-extern void install_notifiers();
-
 static int save_session(GnomeClient        *client,
 			gint                phase,
 			GnomeRestartStyle   save_style,
@@ -76,10 +74,8 @@ main (int argc, char *argv[])
 		      G_CALLBACK (client_die), NULL);
 
     main_app_new ();
-    install_notifiers();
     
     gtk_widget_show (GTK_WIDGET (mainapp->window));
-    init_prefs();
     gtk_main ();
     return 0;
 }

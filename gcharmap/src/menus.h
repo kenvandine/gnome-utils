@@ -24,10 +24,8 @@
 
 #include <gnome.h>
 
-extern GnomeUIInfo file_menu[];
+extern GnomeUIInfo characters_menu[];
 extern GnomeUIInfo edit_menu[];
-extern GnomeUIInfo view_menu[];
-extern GnomeUIInfo settings_menu[];
 extern GnomeUIInfo help_menu[];
 extern GnomeUIInfo menubar[];
 extern GnomeUIInfo toolbar[];

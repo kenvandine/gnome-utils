@@ -179,11 +179,13 @@ static void
 main_app_create_ui (MainApp *app)
 {
     GtkWidget *appbar;
-    GtkWidget *vbox, *hbox, *hbox2, *vbox2;
-    GtkWidget *vsep, *alabel;
+    GtkWidget *vbox, *hbox, *hbox2, *hbox3, *vbox2;
+    GtkWidget *vsep, *alabel, *label;
     GtkWidget *chartable;
     GtkWidget *buttonbox, *button;
+    GtkWidget *align;
     GtkWidget *viewport;
+    GtkWidget *image;
 
 
     /* Main window */
@@ -203,11 +205,8 @@ main_app_create_ui (MainApp *app)
 
         gnome_app_create_menus (GNOME_APP (app->window), menubar);
         gnome_app_install_menu_hints (GNOME_APP (app->window), menubar);
-#ifdef GO_AWAY
-        gnome_app_create_toolbar (GNOME_APP (app->window), toolbar);
-#endif
+
         item = g_list_nth_data (GNOME_APP (app->window)->layout->items, 0);
-        app->actionbar = GTK_WIDGET (item->item);
     }
 
     /* The toplevel vbox */
@@ -224,22 +223,7 @@ main_app_create_ui (MainApp *app)
         gnome_app_add_docked (GNOME_APP (app->window), hbox, _("Action Toolbar"),
           BONOBO_DOCK_ITEM_BEH_EXCLUSIVE | BONOBO_DOCK_ITEM_BEH_NEVER_VERTICAL,
           BONOBO_DOCK_TOP, 2, 0, 1);
-#ifdef GO_AWAY
-        app->fontpicker = gnome_font_picker_new ();
-        gnome_font_picker_set_mode (GNOME_FONT_PICKER (app->fontpicker),
-          GNOME_FONT_PICKER_MODE_FONT_INFO);
-        gnome_font_picker_fi_set_use_font_in_label (GNOME_FONT_PICKER (app->fontpicker),
-          FALSE, 12);
-        gnome_font_picker_set_font_name (GNOME_FONT_PICKER (app->fontpicker),
-          "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*");
-        gtk_button_set_relief (GTK_BUTTON (app->fontpicker), GTK_RELIEF_NONE);
-        gtk_box_pack_start (GTK_BOX (hbox), app->fontpicker, FALSE, TRUE, 0);
-        g_signal_connect (G_OBJECT (app->fontpicker), "font_set",
-          G_CALLBACK (cb_fontpicker_font_set), NULL);
 
-        vsep = gtk_vseparator_new ();
-        gtk_box_pack_start (GTK_BOX (hbox), vsep, FALSE, FALSE, 0);
-#endif	
         alabel = gtk_label_new_with_mnemonic (_("_Text to copy:"));
         gtk_misc_set_padding (GTK_MISC (alabel), GNOME_PAD_SMALL, -1);
         gtk_box_pack_start (GTK_BOX (hbox), alabel, FALSE, TRUE, 0);
@@ -247,8 +231,28 @@ main_app_create_ui (MainApp *app)
         app->entry = gtk_entry_new ();
         gtk_label_set_mnemonic_widget (GTK_LABEL (alabel), app->entry);
         gtk_box_pack_start (GTK_BOX (hbox), app->entry, TRUE, TRUE, 0);
+        
+	button = gtk_button_new ();
+	if (GTK_BIN (button)->child)
+                gtk_container_remove (GTK_CONTAINER (button),
+                                      GTK_BIN (button)->child);
 
-        button = gtk_button_new_with_mnemonic (_("_Copy"));
+	label = gtk_label_new_with_mnemonic (_("_Copy"));
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
+
+        image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_BUTTON);
+        hbox3 = gtk_hbox_new (FALSE, 2);
+
+        align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+
+        gtk_box_pack_start (GTK_BOX (hbox3), image, FALSE, FALSE, 0);
+        gtk_box_pack_end (GTK_BOX (hbox3), label, FALSE, FALSE, 0);
+
+        gtk_container_add (GTK_CONTAINER (button), align);
+        gtk_container_add (GTK_CONTAINER (align), hbox3);
+	
+        gtk_widget_show_all (align);
+
         gtk_container_set_border_width (GTK_CONTAINER (button), 2);
         g_signal_connect (G_OBJECT (button), "clicked",
         		  G_CALLBACK (cb_copy_click), NULL);
@@ -278,13 +282,7 @@ main_app_create_ui (MainApp *app)
         tmp = gtk_button_new ();
         gtk_widget_ensure_style(tmp);
         app->btnstyle = gtk_style_copy (gtk_widget_get_style (tmp));
-#ifdef THIS_SOULHD_GO_AWAY       
-        font = gdk_fontset_load (
-          _("-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*")
-        );
-        if (font != NULL)
-               gtk_style_set_font(app->btnstyle, font);
-#endif
+
         gtk_widget_destroy (tmp);
 
         chartable = create_chartable ();
@@ -295,54 +293,6 @@ main_app_create_ui (MainApp *app)
     vbox2 = gtk_vbox_new (FALSE, 0);
     gtk_box_pack_start (GTK_BOX (hbox2), vbox2, FALSE, TRUE, 0);
 
-#ifdef GO_AWAY
-    /* The buttonbox */
-    {
-        buttonbox = gtk_vbutton_box_new ();
-        gtk_button_box_set_layout (GTK_BUTTON_BOX (buttonbox), GTK_BUTTONBOX_START);
-        gtk_button_box_set_spacing (GTK_BUTTON_BOX (buttonbox), 0);
-        gtk_box_pack_start (GTK_BOX (vbox2), buttonbox, TRUE, TRUE, 0);
-
-        gtk_container_add (GTK_CONTAINER (buttonbox),
-          create_button (_("Exit"), GTK_SIGNAL_FUNC (cb_exit_click)));
-        button = create_button (_("Copy"), GTK_SIGNAL_FUNC (cb_copy_click));
-        gtk_container_add (GTK_CONTAINER (buttonbox), button);
-        gtk_widget_grab_default (button);
-        gtk_container_add (GTK_CONTAINER (buttonbox),
-          create_button (_("About"), GTK_SIGNAL_FUNC (cb_about_click)));
-        gtk_container_add (GTK_CONTAINER (buttonbox),
-          create_button (_("Help"), GTK_SIGNAL_FUNC (cb_help_click)));
-    }
-
-    /* The zoom viewport */
-    {
-        GtkStyle *style;
-        GdkColor black = {0, 0, 0, 0};
-        GdkColor white = {0, 0xFFFF, 0xFFFF, 0xFFFF};
-	GdkFont *font;
-        guint8 i;
-
-        viewport = gtk_viewport_new (NULL, NULL);
-        gdk_color_alloc (gtk_widget_get_colormap (viewport), &black);
-        gdk_color_alloc (gtk_widget_get_colormap (viewport), &white);
-
-        style = gtk_style_copy (gtk_widget_get_style (viewport));
-        for (i = 0; i < 5; i++) style->fg[i] = white;
-        for (i = 0; i < 5; i++) style->bg[i] = black;
-        font = gdk_fontset_load (
-          _("-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*")
-        );
-        if (font != NULL)
-               gtk_style_set_font(style, font);
-
-        gtk_widget_set_style (viewport, style);
-        gtk_box_pack_start (GTK_BOX (vbox2), viewport, FALSE, TRUE, 0);
-
-        app->preview_label = gtk_label_new (NULL);
-        gtk_container_add (GTK_CONTAINER (viewport), app->preview_label);
-        gtk_widget_set_style (app->preview_label, style);
-    }
-#endif
     gtk_widget_show_all (vbox);
     gtk_widget_grab_focus (app->entry);
     

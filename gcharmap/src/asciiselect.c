@@ -40,6 +40,7 @@ static void
 cb_ascii_select_clicked (GtkDialog *dialog, gint id, gpointer user_data)
 {
     gchar *text;
+    gint current_pos;
     
     if (id != 100) {
         gtk_widget_destroy (GTK_WIDGET (dialog));
@@ -47,20 +48,9 @@ cb_ascii_select_clicked (GtkDialog *dialog, gint id, gpointer user_data)
     }
 
     text = gtk_editable_get_chars (GTK_EDITABLE (user_data), 0, -1);
-    if (mainapp->insert_at_end == FALSE)
-    {
-	int current_pos;
-	
-	current_pos = gtk_editable_get_position
-		    (GTK_EDITABLE(mainapp->entry));
-	gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
-              strlen (text), &current_pos);
-    } else {
-        gint current_pos;
-        gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), -1);
-        current_pos = gtk_editable_get_position (GTK_EDITABLE (mainapp->entry));
-        gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text, strlen(text), &current_pos);
-    }
+    gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), -1);
+    current_pos = gtk_editable_get_position (GTK_EDITABLE (mainapp->entry));
+    gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text, strlen(text), &current_pos);
        
 }
 

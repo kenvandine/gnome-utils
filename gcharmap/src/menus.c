@@ -29,8 +29,12 @@
 #include "menus.h"
 #include "callbacks.h"
 
-GnomeUIInfo file_menu[] =
+GnomeUIInfo characters_menu[] =
 {
+    GNOMEUIINFO_ITEM_STOCK (N_("_Browse..."),
+      			    N_("Insert character(s) by choosing character codes."), 
+			    cb_insert_char_click,
+			    GNOME_STOCK_MENU_SEARCH),
     GNOMEUIINFO_MENU_EXIT_ITEM (cb_exit_click, NULL),
     GNOMEUIINFO_END
 };
@@ -44,31 +48,6 @@ GnomeUIInfo edit_menu[] =
     GNOMEUIINFO_MENU_CLEAR_ITEM (cb_clear_click, NULL),
     GNOMEUIINFO_SEPARATOR,
     GNOMEUIINFO_MENU_SELECT_ALL_ITEM (cb_select_all_click, NULL),
-    GNOMEUIINFO_SEPARATOR,
-    GNOMEUIINFO_ITEM_DATA(N_("_Browse Characters..."),
-      N_("Insert character(s) by choosing character codes."), cb_insert_char_click,
-			  NULL, NULL),
-    GNOMEUIINFO_END
-};
-
-GnomeUIInfo view_menu[] =
-{
-    GNOMEUIINFO_TOGGLEITEM(N_("_Text Toolbar"), N_("View or hide the text toolbar"),
-      cb_toggle_textbar, NULL),
-    GNOMEUIINFO_TOGGLEITEM(N_("_Statusbar"), N_("View or hide the statusbar"),
-      cb_toggle_statusbar, NULL),
-    GNOMEUIINFO_END
-};
-
-GnomeUIInfo settings_menu[] =
-{
-    /*GNOMEUIINFO_ITEM_STOCK(N_("Character Table's Font..."), N_("Set the character "
-      "table's font."), cb_set_chartable_font, GNOME_STOCK_MENU_FONT),
-    GNOMEUIINFO_SEPARATOR,*/
-    GNOMEUIINFO_TOGGLEITEM(N_("_Insert at end"), N_("Insert every selected character "
-      "at the end of the text entry"), cb_set_insert_at_end, NULL),
-    GNOMEUIINFO_TOGGLEITEM(N_("_Focusable Buttons"), N_("Set the buttons to be "
-      "focusable or not"), cb_set_button_focusable, NULL),
     GNOMEUIINFO_END
 };
 
@@ -81,11 +60,11 @@ GnomeUIInfo help_menu[] =
 };
 
 GnomeUIInfo menubar[] =
-{
-    GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+{	
+    { GNOME_APP_UI_SUBTREE_STOCK, N_("_Characters"), NULL,
+      characters_menu, NULL, NULL, (GnomeUIPixmapType) 0,
+      NULL, 0, (GdkModifierType) 0, NULL },
     GNOMEUIINFO_MENU_EDIT_TREE(edit_menu),
-    GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
-    GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
     GNOMEUIINFO_MENU_HELP_TREE(help_menu),
     GNOMEUIINFO_END
 };

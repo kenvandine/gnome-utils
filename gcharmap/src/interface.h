@@ -39,11 +39,10 @@ typedef struct _MainApp
     GObject parent_struct;
     GtkWidget *window;
     GtkWidget *entry;
-    GtkWidget *actionbar, *textbar;
+    GtkWidget *textbar;
     GtkWidget *preview_label;
     GtkWidget *fontpicker;
     GtkWidget *chartable;
-    gboolean insert_at_end;
     GList *buttons;
     GtkStyle *btnstyle;
     GConfClient *conf;

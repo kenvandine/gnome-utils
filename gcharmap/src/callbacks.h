@@ -39,10 +39,6 @@ void cb_set_chartable_font (GtkWidget *widget, gpointer user_data);
 void cb_insert_char_click (GtkWidget *widget, gpointer user_data);
 void cb_paste_click (GtkWidget *widget, gpointer user_data);
 void cb_select_all_click (GtkWidget *widget, gpointer user_data);
-void cb_set_button_focusable (GtkCheckMenuItem *checkmenuitem, gpointer user_data);
-void cb_set_insert_at_end (GtkCheckMenuItem *checkmenuitem, gpointer user_data);
-void cb_toggle_actionbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data);
-void cb_toggle_textbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data);
-void cb_toggle_statusbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data);
+gboolean cb_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data);
 
 #endif /* _CALLBACKS_H_ */

@@ -32,7 +32,6 @@
 #include <gconf/gconf-client.h>
 #include <gnome.h>
 
-
 void
 cb_about_click (GtkWidget *widget, gpointer user_data)
 {
@@ -65,8 +64,8 @@ cb_about_click (GtkWidget *widget, gpointer user_data)
       _("GNOME Character Map"),
       VERSION,
       "Copyright (c) 2000 Hongli Lai",
-      _("The GNOME equalivant of Microsoft Windows' Character Map. "
-      "Warning: might contain bad English."),
+      _("Select, copy and paste characters from your font "
+	"into other applications"),
       authors,
       (const char **)documenters,
       strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
@@ -91,43 +90,22 @@ cb_charbtn_click (GtkButton *button, gpointer user_data)
 {
     GtkLabel *label = GTK_LABEL (GTK_BIN (button)->child);
     const gchar *text;
-
+    gint current_pos;
+    
     text = gtk_label_get_text (label);
 
-    if (strcmp (text, _("del")) == 0) {
-	    if ( ! mainapp->insert_at_end) {
-		    GtkEditable *editable = GTK_EDITABLE (mainapp->entry);
-		    /* snarfed from GTK+
-		     * -George */
-		    gint sel_start, sel_end;
-
-		    gtk_editable_get_selection_bounds(editable, &sel_start,
-				    &sel_end);
-		    if (sel_start != sel_end) {
-			    gtk_editable_delete_selection (editable);
-		    } else {
-			    gint old_pos = gtk_editable_get_position(editable);
-
-			    if (gtk_editable_get_position(editable) < -1)
-				    gtk_editable_set_position(editable, 0);
-			    else
-				    gtk_editable_set_position(editable, gtk_editable_get_position(editable) + 1);
-
-			    gtk_editable_delete_text (editable, old_pos, gtk_editable_get_position(editable));
-		    }
-	    }
-    } else if ( ! mainapp->insert_at_end) {
-	    gint current_pos = gtk_editable_get_position(GTK_EDITABLE(mainapp->entry));
-	    gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
-				      strlen (text), &current_pos);
-	    gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), current_pos + 1);
+    gtk_editable_get_position(GTK_EDITABLE(mainapp->entry));
+    gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
+			      strlen (text), &current_pos);
+    gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), current_pos + 1);
+/*
     } else {
            gint current_pos;
            gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), -1);
            current_pos = gtk_editable_get_position (GTK_EDITABLE (mainapp->entry));
            gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text, strlen(text), &current_pos);
            gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), current_pos + 1);
-    }
+    } */
 }
 
 
@@ -148,9 +126,6 @@ cb_charbtn_enter (GtkButton *button, GdkEventFocus *event, gpointer user_data)
 
     s = g_strdup_printf (_(" %s: Character code %d"), text, code);
     gnome_appbar_set_status (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar), s);
-#if 0
-    gtk_label_set_text (GTK_LABEL (mainapp->preview_label), text);
-#endif
     g_free (s);
     return FALSE;
 }
@@ -204,11 +179,6 @@ cb_cut_click (GtkWidget *widget, gpointer user_data)
         gtk_editable_select_region (GTK_EDITABLE (mainapp->entry), start, end);
     else
         cb_select_all_click (widget, user_data);
-#if 0 /* Why the heck is this here? It makes cutting noticable slow */
-    while (gtk_events_pending ()) gtk_main_iteration ();
-    usleep (500000);
-    while (gtk_events_pending ()) gtk_main_iteration ();
-#endif
     gtk_editable_cut_clipboard (GTK_EDITABLE (mainapp->entry));
     gnome_app_flash (GNOME_APP (mainapp->window), _("Text cut to clipboard..."));
 }
@@ -271,59 +241,9 @@ cb_select_all_click (GtkWidget *widget, gpointer user_data)
 
 
 void
-cb_set_button_focusable (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
-{
-    gconf_client_set_bool(mainapp->conf, 
-			  "/apps/gcharmap/can_focus_buttons", 
-			  checkmenuitem->active, 
-			  NULL);
-}
-
-
-void
 cb_set_chartable_font (GtkWidget *widget, gpointer user_data)
 {
     gtk_button_clicked (GTK_BUTTON (mainapp->fontpicker));
-}
-
-
-void
-cb_set_insert_at_end (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
-{
-    gconf_client_set_bool (mainapp->conf, 
-			   "/apps/gcharmap/insert_at_end", 
-			   checkmenuitem->active, 
-			   NULL);
-}
-
-
-void
-cb_toggle_actionbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
-{
-    gconf_client_set_bool (mainapp->conf, 
-			   "/apps/gcharmap/show_actionbar", 
-			   checkmenuitem->active, 
-			   NULL);
-}
-
-
-void
-cb_toggle_textbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
-{
-    gconf_client_set_bool (mainapp->conf, 
-			   "/apps/gcharmap/show_textbar", 
-			   checkmenuitem->active, 
-			   NULL);
-}
-
-
-void
-cb_toggle_statusbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
-{
-    gconf_client_set_bool (mainapp->conf, 
-			   "/apps/gcharmap/show_statusbar", 
-			   checkmenuitem->active, 
-			   NULL);
 }
 
 

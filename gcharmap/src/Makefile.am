@@ -13,8 +13,7 @@ gnome_character_map_SOURCES = \
         interface.c interface.h\
         menus.c menus.h\
         callbacks.c callbacks.h\
-        asciiselect.c asciiselect.h\
-	notifiers.c
+        asciiselect.c asciiselect.h
 
 gnome_character_map_LDADD = $(GNOME_UTILS_LIBS) $(LIBBONOBOUI_LIBS) $(INTLLIBS)
 
