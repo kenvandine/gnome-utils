@@ -151,6 +151,23 @@ whack_links_fe (gpointer key, gpointer value, gpointer user_data)
 	g_free (file);
 }
 
+static void
+setup_busy (GtkWidget *w, gboolean busy)
+{
+	GdkCursor *cursor;
+
+	if (busy) {
+		/* Change cursor to busy */
+		cursor = gdk_cursor_new (GDK_WATCH);
+		gdk_window_set_cursor (w->window, cursor);
+		gdk_cursor_destroy (cursor);
+	} else {
+		gdk_window_set_cursor (w->window, NULL);
+	}
+
+	gdk_flush ();
+}
+
 static gboolean
 create_archive (const char *fname,
 		const char *dir,
@@ -255,12 +272,15 @@ start_temporary (void)
 
 	/* can't fork? don't dispair, do synchroniously */
 	if (temporary_pid < 0) {
+		setup_busy (app, TRUE);
 		if ( ! create_archive (file, dir, TRUE /* gui_errors */)) {
+			setup_busy (app, FALSE);
 			g_free (file);
 			g_free (dir);
 			temporary_pid = 0;
 			return;
 		}
+		setup_busy (app, FALSE);
 		temporary_pid = 0;
 	}
 	g_free (dir);
@@ -398,19 +418,26 @@ save_ok (GtkWidget *widget, GtkFileSelection *fsel)
 
 	g_return_if_fail (GTK_IS_FILE_SELECTION(fsel));
 
+	setup_busy (GTK_WIDGET (fsel), TRUE);
+
 	fname = gtk_file_selection_get_filename (fsel);
 	if (fname == NULL) {
 		ERRDLGP (_("No filename selected"), fsel);
+		setup_busy (GTK_WIDGET (fsel), FALSE);
 		return;
 	} else if (access (fname, F_OK) == 0 &&
 		   ! query_dialog (_("File exists, overwrite?"))) {
+		setup_busy (GTK_WIDGET (fsel), FALSE);
 		return;
 	} else if ( ! create_archive (fname,
 				      NULL /*dir*/,
 				      TRUE /* gui_errors */)) {
 		/* the above should do error dialog itself */
+		setup_busy (GTK_WIDGET (fsel), FALSE);
 		return;
 	}
+
+	setup_busy (GTK_WIDGET (fsel), FALSE);
 
 	g_free (filename);
 	filename = g_strdup (fname);
