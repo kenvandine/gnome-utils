@@ -513,7 +513,8 @@ static void do_logo_box(GtkWidget * box)
   contrib_label = gtk_label_new(_("GNOME contributors:"));
 
   style = gtk_style_new ();
-  font = gdk_font_load (_("-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"));
+  /* fontset used by guname; adapt it if your language requires it */
+  font = gdk_fontset_load (_("-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"));
 
   if (font) {
     gdk_font_unref (style->font);
