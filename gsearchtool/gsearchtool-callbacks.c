@@ -156,6 +156,15 @@ click_stop_cb (GtkWidget 	*widget,
 }
 
 void
+size_allocate_cb (GtkWidget	*widget,
+		  GtkAllocation *allocation,
+	      	  gpointer 	data)
+{
+	gtk_widget_set_size_request (interface.add_button,
+				     allocation->width,
+				     allocation->height);
+}
+void
 add_constraint_cb (GtkWidget 	*widget, 
 		   gpointer 	data)
 {

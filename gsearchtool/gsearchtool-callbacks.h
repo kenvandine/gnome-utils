@@ -49,6 +49,10 @@ click_find_cb	 		(GtkWidget 	*widget,
 void
 click_stop_cb 			(GtkWidget 	*widget, 
 	       			 gpointer 	data);
+void   
+size_allocate_cb 		(GtkWidget 	*widget,
+				 GtkAllocation  *allocation, 
+				 gpointer 	data);
 void    
 add_constraint_cb		(GtkWidget 	*widget, 
 				 gpointer 	data);

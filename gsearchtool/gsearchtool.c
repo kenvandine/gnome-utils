@@ -1187,7 +1187,6 @@ create_additional_constraint_section (void)
 	interface.add_button = gtk_button_new_from_stock (GTK_STOCK_ADD);
 	interface.constraint_size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
 	gtk_size_group_add_widget (interface.constraint_size_group, interface.add_button);
-	gtk_size_group_add_widget (interface.constraint_size_group, gtk_button_new_from_stock (GTK_STOCK_REMOVE));
 	
 	g_signal_connect (G_OBJECT(interface.add_button),"clicked",
 			  G_CALLBACK(add_constraint_cb),NULL);
@@ -1469,6 +1468,8 @@ create_main_window (void)
 
 	g_signal_connect (G_OBJECT(interface.find_button),"clicked",
 			  G_CALLBACK(click_find_cb), NULL);
+    	g_signal_connect (G_OBJECT(interface.find_button),"size_allocate",
+			  G_CALLBACK(size_allocate_cb), NULL);
 	g_signal_connect (G_OBJECT(interface.stop_button),"clicked",
 			  G_CALLBACK(click_stop_cb), NULL);
 	gtk_box_pack_end (GTK_BOX(hbox), interface.stop_button, FALSE, FALSE, GNOME_PAD_SMALL);
