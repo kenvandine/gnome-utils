@@ -16,7 +16,9 @@ meat_grinder_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
+man_MANS = meat-grinder.1
+
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_DATA = meat-grinder.desktop
 
-EXTRA_DIST = meat-grinder.desktop
+EXTRA_DIST = meat-grinder.desktop meat-grinder.1

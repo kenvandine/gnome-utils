@@ -17,10 +17,12 @@ gw_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
+man_MANS = gw.1
+
 Systemdir = $(datadir)/gnome/apps/System
 System_DATA = gw.desktop
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-who.png
 
-EXTRA_DIST = gw.desktop gnome-who.png $(top_srcdir)/sgmldocs.make
+EXTRA_DIST = gw.desktop gnome-who.png gw.1 $(top_srcdir)/sgmldocs.make

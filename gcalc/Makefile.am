@@ -24,7 +24,10 @@ gcalc_LDADD = \
 	$(INTLLIBS) \
 	@PIXBUF_LIBS@
 
+man_MANS = gcalc.1
+
 EXTRA_DIST = \
-	gcalc.desktop
+	gcalc.desktop	\
+	gcalc.1
 
 Utilities_DATA = gcalc.desktop 

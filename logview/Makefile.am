@@ -35,6 +35,8 @@ logview_LDADD = \
 	$(GNOMEUI_LIBS) \
 	$(INTLLIBS)
 
+man_MANS = logview.1
+
 Utilities_DATA = logview.desktop
 
 additional_DATA  = logview-descript.db \
@@ -47,7 +49,8 @@ EXTRA_DIST = \
 	logview-regexp.db	\
 	logview-actions.db	\
 	logview-pam		\
-	logview-security.in
+	logview-security.in	\
+	logview.1
 
 install-data-local: logview-security
 if CONSOLE_HELPER

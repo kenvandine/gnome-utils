@@ -15,3 +15,7 @@ splac_SOURCES = \
 	splac.c
 
 splash_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
+
+man_MANS = splash.1 splac.1
+
+EXTRA_DIST = splash.1 splac.1

@@ -15,4 +15,6 @@ gcharmap_SOURCES = \
 
 gcharmap_LDADD = $(GNOME_LIBDIR) $(GNOME_LIBS) $(GNOMEUI_LIBS) $(INTLLIBS)
 
-EXTRA_DIST = $(gcharmap_SOURCES)
+man_MANS = gcharmap.1
+
+EXTRA_DIST = $(gcharmap_SOURCES) gcharmap.1

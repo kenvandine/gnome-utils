@@ -26,10 +26,12 @@ stripchart_applet_LDADD = \
  $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) $(GNOME_APPLETS_LIBS) \
  $(LIBGTOP_LIBS) $(LIBGTOP_EXTRA_LIBS) $(GNOME_XML_LIB) 
 
+man_MANS = stripchart.1 stripchart-applet.1
+
 EXTRA_DIST = \
  gnome-stripchart.png stripchart.conf stripchart.params \
  stripchart.desktop stripchart-applet.desktop $(top_srcdir)/sgmldocs.make \
- stripchart-applet.gnorba
+ stripchart-applet.gnorba stripchart.1 stripchart-applet.1
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-stripchart.png

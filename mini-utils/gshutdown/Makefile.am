@@ -16,9 +16,12 @@ gshutdown_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
+man_MANS = gshutdown.8
+
 EXTRA_DIST = \
 	gshutdown.desktop \
 	gnome-shutdown.png  \
+	gshutdown.8 \
 	$(top_srcdir)/sgmldocs.make \
 	gshutdown-security.in \
 	gshutdown-pam

@@ -16,13 +16,15 @@ idetool_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
+man_MANS = idetool.8
+
 pixmapdir = $(datadir)/pixmaps
 
 BITMAPS = ide-disk-drive.png
 
 pixmap_DATA = $(BITMAPS)
 
-EXTRA_DIST  = $(BITMAPS) idetool.desktop $(top_srcdir)/sgmldocs.make
+EXTRA_DIST  = $(BITMAPS) idetool.desktop idetool.8 $(top_srcdir)/sgmldocs.make
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_DATA = idetool.desktop

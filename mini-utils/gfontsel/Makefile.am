@@ -17,9 +17,12 @@ gfontsel_LDADD = \
 	$(GNOMEUI_LIBS) \
 	$(INTLLIBS)
 
+man_MANS = gfontsel.1
+
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-fontsel.png
 
-EXTRA_DIST = gfontsel.desktop gnome-fontsel.png $(top_srcdir)/sgmldocs.make
+EXTRA_DIST = gfontsel.desktop gnome-fontsel.png gfontsel.1 \
+	$(top_srcdir)/sgmldocs.make
 
 Utilities_DATA = gfontsel.desktop

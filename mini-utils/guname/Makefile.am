@@ -39,6 +39,8 @@ guname_LDADD = \
 	$(LIBGTOP_EXTRA_LIBS)	\
 	$(GUNAME_CAPPLET_LIBS)
 
+man_MANS = guname.1
+
 Systemdir = $(datadir)/gnome/apps/System
 System_DATA = guname.desktop
 
@@ -49,6 +51,7 @@ endif
 
 EXTRA_DIST = 		\
 	guname.desktop	\
+	guname.1	\
 	moreinfo.c	\
 	moreinfo.h	\
 	guname-capplet.desktop \
