@@ -4,16 +4,16 @@
 # Jesús Bravo Álvarez <jba@pobox.com>, 2000.
 # Ruben Lopez Gomez <ryu@mundivia.es>, 1999. (logview from gnome-admin)
 #
-# Se desexas colaborar connosco na traducción de programas libres ó galego,
-# vai mira-la páxina do noso grupo:  http://www.ctv.es/USERS/jtarrio/trans
+# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
+# colaborar connosco, podes atopar máis información en http://trasno.gpul.org
 #
 # First Version: 2000-04-09 18:45+0200
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 1.2.0\n"
-"POT-Creation-Date: 2000-05-22 19:09+0200\n"
-"PO-Revision-Date: 2000-05-22 19:10+0200\n"
+"Project-Id-Version: gnome-utils 1.2.1\n"
+"POT-Creation-Date: 2000-07-16 19:12+0200\n"
+"PO-Revision-Date: 2000-07-16 19:18+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgid "Paste the text from clipboard."
 msgstr "Pega-lo texto do cartafol."
 
 #: gcharmap/src/interface.c:73 gnome-find/gnome-find.c:49
-#: gstripchart/gstripchart.c:1802 mini-utils/gcolorsel/menus.c:902
+#: gstripchart/gstripchart.c:1802 mini-utils/gcolorsel/menus.c:950
 msgid "Exit"
 msgstr "Saír"
 
@@ -98,14 +98,14 @@ msgstr "Mapa de Caracteres de Gnome"
 msgid "Text to Copy:"
 msgstr "Testo a Copiar:"
 
-#: gcharmap/src/interface.c:185 mini-utils/gcolorsel/menus.c:83
-#: mini-utils/gcolorsel/menus.c:906 mini-utils/gshutdown/gshutdown.c:153
+#: gcharmap/src/interface.c:185 mini-utils/gcolorsel/menus.c:93
+#: mini-utils/gcolorsel/menus.c:954 mini-utils/gshutdown/gshutdown.c:153
 #: mini-utils/gshutdown/gshutdown.c:594
 msgid "Close"
 msgstr "Pechar"
 
 #: gcharmap/src/interface.c:197 gstripchart/gstripchart.c:1790
-#: gstripchart/gstripchart.c:2074 mini-utils/gcolorsel/menus.c:912
+#: gstripchart/gstripchart.c:2074 mini-utils/gcolorsel/menus.c:960
 #: mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "Acerca de"
@@ -233,7 +233,7 @@ msgstr "Definición da palabra"
 msgid "Cannot create applet!\n"
 msgstr "¡Non se pode crea-la applet!\n"
 
-#: gdictsrc/gdict-applet.c:130
+#: gdictsrc/gdict-applet.c:130 mini-utils/gcolorsel/menus.c:1098
 msgid "About..."
 msgstr "Acerca de..."
 
@@ -282,8 +282,8 @@ msgid "Cross-reference:"
 msgstr "Referencia:"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:495
-#: mini-utils/gshutdown/gshutdown.c:314
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
+#: mini-utils/gcolorsel/menus.c:1109 mini-utils/gshutdown/gshutdown.c:314
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -335,7 +335,7 @@ msgstr "Applet"
 #. * label; FIXME: Memory leak
 #.
 #: gdictsrc/gdict-pref-dialog.c:498 gdictsrc/gdict-pref-dialog.c:542
-#: gdictsrc/gdict-speller.c:386
+#: gdictsrc/gdict-speller.c:393
 msgid "Cannot connect to server"
 msgstr "Non é posible conectarse ó servidor"
 
@@ -360,7 +360,7 @@ msgstr "Especifica-la xeometría da fiestra."
 msgid "GEOMETRY"
 msgstr "XEOMETRÍA"
 
-#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:160
+#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:167
 msgid "Properties"
 msgstr "Propiedades"
 
@@ -372,35 +372,39 @@ msgstr "Isto establece as propiedades globais da aplicación."
 msgid "GDiskFree is a GNOME implementation of the shell utility 'df'."
 msgstr "GDiskFree é unha implementación de GNOME da utilidade de shell 'df'."
 
-#: gdiskfree/gdiskfree_options.c:191
+#: gdiskfree/gdiskfree_options.c:206
 msgid "GDiskFree Properties"
 msgstr "Propiedades do GDiskFree"
 
-#: gdiskfree/gdiskfree_options.c:196
+#: gdiskfree/gdiskfree_options.c:211
 msgid "Invoke sync before getting usage info"
 msgstr "Invocar sync antes de obte-la información de uso"
 
-#: gdiskfree/gdiskfree_options.c:207
+#: gdiskfree/gdiskfree_options.c:223
 msgid "Show drive mount points"
 msgstr "Amosa-los puntos de montaxe das unidades"
 
-#: gdiskfree/gdiskfree_options.c:216
+#: gdiskfree/gdiskfree_options.c:234
+msgid "Show drive size"
+msgstr "Amosa-lo tamaño da unidade"
+
+#: gdiskfree/gdiskfree_options.c:244
 msgid "Dial Orientation"
 msgstr "Orientación"
 
-#: gdiskfree/gdiskfree_options.c:221
+#: gdiskfree/gdiskfree_options.c:249
 msgid "Vertical"
 msgstr "Vertical"
 
-#: gdiskfree/gdiskfree_options.c:234
+#: gdiskfree/gdiskfree_options.c:262
 msgid "Horizontal"
 msgstr "Horizontal"
 
-#: gdiskfree/gdiskfree_options.c:253
+#: gdiskfree/gdiskfree_options.c:281
 msgid "Update interval (ms)"
 msgstr "Intervalo de actualización (ms)"
 
-#: gdiskfree/gdiskfree_options.c:264
+#: gdiskfree/gdiskfree_options.c:292
 msgid "General Settings"
 msgstr "Propiedades Xeráis"
 
@@ -449,17 +453,17 @@ msgstr "Comezar a busca"
 msgid "About Gnome Find..."
 msgstr "Acerca de Gnome Find..."
 
-#: gnome-find/gnome-find.c:86 mini-utils/gcolorsel/gcolorsel.c:40
+#: gnome-find/gnome-find.c:86 mini-utils/gcolorsel/gcolorsel.c:44
 msgid "File"
 msgstr "Ficheiro"
 
-#: gnome-find/gnome-find.c:87 mini-utils/gcolorsel/gcolorsel.c:32
-#: mini-utils/gcolorsel/menus.c:566 mini-utils/gcolorsel/menus.c:652
+#: gnome-find/gnome-find.c:87 mini-utils/gcolorsel/gcolorsel.c:36
+#: mini-utils/gcolorsel/menus.c:588 mini-utils/gcolorsel/menus.c:691
 msgid "Edit"
 msgstr "Editar"
 
 #: gnome-find/gnome-find.c:88 gnome-find/gnome-find.c:109
-#: mini-utils/gcolorsel/session.c:424
+#: mini-utils/gcolorsel/session.c:437
 msgid "Search"
 msgstr "Buscar"
 
@@ -471,12 +475,12 @@ msgstr "Nova"
 msgid "Clear the search window"
 msgstr "Baleirar a fiestra de busca"
 
-#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:565
+#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:610
 #: mini-utils/gw/gw.c:508
 msgid "Add"
 msgstr "Engadir"
 
-#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:491
+#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:536
 #: logview/actions.c:127
 msgid "Remove"
 msgstr "Borrar"
@@ -587,35 +591,58 @@ msgstr "Busca xa a se efectuar noutra páxina"
 msgid "Search Results"
 msgstr "Resultados da Busca"
 
-#: gsearchtool/gsearchtool.c:329
+#: gsearchtool/gsearchtool.c:329 gsearchtool/gsearchtool.c:360
 msgid "Start directory does not exist"
 msgstr "O directorio de comezo non existe"
 
-#: gsearchtool/gsearchtool.c:483
+#: gsearchtool/gsearchtool.c:369
+msgid "Search command line"
+msgstr "Comando de busca"
+
+#: gsearchtool/gsearchtool.c:375
+msgid ""
+"This is the command line that can be used to execute this search from the "
+"console:\n"
+"(Note: to print one file per line rather then null separated,\n"
+"append \"| tr '\\000' '\\n'\" to the line below)"
+msgstr ""
+"Este é o comando que se pode usar para facer esta busca dende a consola:\n"
+"(Nota: para imprimir un ficheiro por liña, en vez de separados por un\n"
+"carácter nulo, engada \"| tr '\\000' '\\n'\" á liña de abaixo)"
+
+#: gsearchtool/gsearchtool.c:462
+msgid "Entry changed called for a non entry option!"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:528
 msgid "Enable"
 msgstr "Activar"
 
-#: gsearchtool/gsearchtool.c:543
+#: gsearchtool/gsearchtool.c:588
 msgid "Start in directory:"
 msgstr "Comezar no directorio:"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:590
 msgid "Browse"
 msgstr "Procurar"
 
-#: gsearchtool/gsearchtool.c:576 gsearchtool/gsearchtool.c:659
+#: gsearchtool/gsearchtool.c:621
+msgid "Show Command"
+msgstr "Amosar Comando"
+
+#: gsearchtool/gsearchtool.c:626 gsearchtool/gsearchtool.c:709
 msgid "Start"
 msgstr "Comezar"
 
-#: gsearchtool/gsearchtool.c:577 gsearchtool/gsearchtool.c:660
+#: gsearchtool/gsearchtool.c:627 gsearchtool/gsearchtool.c:710
 msgid "Stop"
 msgstr "Parar"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:660
 msgid "Nothing to locate"
 msgstr "Nada para localizar"
 
-#: gsearchtool/gsearchtool.c:638
+#: gsearchtool/gsearchtool.c:688
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -625,31 +652,31 @@ msgstr ""
 "coincidir cun subconxunto da rota completa, e se escribe unha cadea\n"
 "con comodíns, farase coincidir coa rota completa."
 
-#: gsearchtool/gsearchtool.c:647
+#: gsearchtool/gsearchtool.c:697
 msgid "Locate file: "
 msgstr "Localizar ficheiro: "
 
-#: gsearchtool/gsearchtool.c:681
+#: gsearchtool/gsearchtool.c:731
 msgid "Full find (find)"
 msgstr "Busca completa (find)"
 
-#: gsearchtool/gsearchtool.c:683
+#: gsearchtool/gsearchtool.c:733
 msgid "Quick find (locate)"
 msgstr "Busca rápida (locate)"
 
-#: gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:754
 msgid "The Gnome Search Tool"
 msgstr "A Utilidade de Busca de Gnome"
 
-#: gsearchtool/gsearchtool.c:705
+#: gsearchtool/gsearchtool.c:755
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998,2000 a Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:707
+#: gsearchtool/gsearchtool.c:757
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Interface dos comandos de unix find/grep/locate"
 
-#: gsearchtool/gsearchtool.c:765
+#: gsearchtool/gsearchtool.c:815
 msgid "Gnome Search Tool"
 msgstr "Utilidade de Busca de Gnome"
 
@@ -1007,11 +1034,11 @@ msgstr "Total"
 msgid "Today"
 msgstr "Hoxe"
 
-#: gtt/clist.c:171
+#: gtt/clist.c:171 gtt/menucmd.c:117
 msgid "Project Title"
 msgstr "Título do Proxecto"
 
-#: gtt/clist.c:172
+#: gtt/clist.c:172 gtt/menucmd.c:118
 msgid "Description"
 msgstr "Descrición"
 
@@ -1059,35 +1086,31 @@ msgstr "Escoller un proxecto ó comezo"
 msgid "PROJECT"
 msgstr "PROXECTO"
 
-#: gtt/menucmd.c:31 gtt/menucmd.c:129 gtt/menucmd.c:161
+#: gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
 msgid "Warning"
 msgstr "Aviso"
 
-#: gtt/menucmd.c:32 gtt/menucmd.c:163
+#: gtt/menucmd.c:34 gtt/menucmd.c:195
 msgid "I could not write the configuration file!"
 msgstr "¡Non se puido escribi-lo ficheiro de configuración!"
 
-#: gtt/menucmd.c:63
+#: gtt/menucmd.c:65
 msgid "Time tracking tool for GNOME"
 msgstr "Ferramenta de xestión de proxectos de GNOME"
 
-#: gtt/menucmd.c:93 gtt/toolbar.c:142
+#: gtt/menucmd.c:111 gtt/toolbar.c:142
 msgid "New Project..."
 msgstr "Novo Proxecto..."
 
-#: gtt/menucmd.c:97
-msgid "Please enter the name of the new project:"
-msgstr "Introduza o nome do novo proxecto:"
-
-#: gtt/menucmd.c:131
+#: gtt/menucmd.c:163
 msgid "I could not read the configuration file"
 msgstr "Non se puido le-lo ficheiro de configuración"
 
-#: gtt/menucmd.c:145 gtt/toolbar.c:149
+#: gtt/menucmd.c:177 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Recargar Ficheiro de Configuración"
 
-#: gtt/menucmd.c:146
+#: gtt/menucmd.c:178
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1127,155 +1150,155 @@ msgstr "_Temporizador Activado"
 msgid "_Timer"
 msgstr "_Temporizador"
 
-#: gtt/options.c:186
+#: gtt/options.c:189
 msgid "Display"
 msgstr "Visualización"
 
-#: gtt/options.c:194
+#: gtt/options.c:197
 msgid "Show Seconds"
 msgstr "Amosar Segundos"
 
-#: gtt/options.c:200
+#: gtt/options.c:203
 msgid "Show Status Bar"
 msgstr "Amosar Barra de Estado"
 
-#: gtt/options.c:206
+#: gtt/options.c:209
 msgid "Show Table Header"
 msgstr "Amosar Cabeceira da Táboa"
 
-#: gtt/options.c:220 gtt/options.c:514
+#: gtt/options.c:223 gtt/options.c:537
 msgid "Toolbar"
 msgstr "Barra de Ferramentas"
 
-#: gtt/options.c:228
+#: gtt/options.c:231
 msgid "Show Toolbar Icons"
 msgstr "Amosar Iconas da Barra de Ferramentas"
 
-#: gtt/options.c:234
+#: gtt/options.c:237
 msgid "Show Toolbar Texts"
 msgstr "Amosar Textos da Barra de Ferramentas"
 
-#: gtt/options.c:240
+#: gtt/options.c:243
 msgid "Show Tooltips"
 msgstr "Amosar Axudiñas"
 
-#: gtt/options.c:246
+#: gtt/options.c:249
 msgid "Toolbar Segments"
 msgstr "Segmentos da Barra de Ferramentas"
 
-#: gtt/options.c:254
+#: gtt/options.c:257
 msgid "Show `New'"
 msgstr "Amosar `Novo'"
 
-#: gtt/options.c:260
+#: gtt/options.c:263
 msgid "Show `Save', `Reload'"
 msgstr "Amosar `Gardar', `Recargar'"
 
-#: gtt/options.c:266
+#: gtt/options.c:269
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Amosar `Cortar', `Copiar', `Pegar'"
 
-#: gtt/options.c:272
+#: gtt/options.c:275
 msgid "Show `Properties'"
 msgstr "Amosar `Propiedades'"
 
-#: gtt/options.c:278
+#: gtt/options.c:281
 msgid "Show `Timer'"
 msgstr "Amosar `Temporizador'"
 
-#: gtt/options.c:284
+#: gtt/options.c:287
 msgid "Show `Preferences'"
 msgstr "Amosar `Preferencias'"
 
-#: gtt/options.c:290
+#: gtt/options.c:293
 msgid "Show `Help'"
 msgstr "Amosar `Axuda'"
 
-#: gtt/options.c:296
+#: gtt/options.c:299
 msgid "Show `Quit'"
 msgstr "Amosar `Saír'"
 
-#: gtt/options.c:310
+#: gtt/options.c:313
 msgid "Shell Commands"
 msgstr "Comandos de Shell"
 
-#: gtt/options.c:318
+#: gtt/options.c:321
 msgid "Switch Project Command:"
 msgstr "Troca-lo Comando do Proxecto:"
 
-#: gtt/options.c:329
+#: gtt/options.c:333
 msgid "No Project Command:"
 msgstr "Sen Comando de Proxecto:"
 
-#: gtt/options.c:363
+#: gtt/options.c:368
 msgid "Logfile"
 msgstr "Ficheiro de rexistro"
 
-#: gtt/options.c:371
+#: gtt/options.c:376
 msgid "Use Logfile"
 msgstr "Usar Ficheiro de Rexistro"
 
-#: gtt/options.c:380
+#: gtt/options.c:385
 msgid "Filename:"
 msgstr "Nome de ficheiro:"
 
-#: gtt/options.c:394
+#: gtt/options.c:399
 msgid "Entry Start:"
 msgstr "Comezo da Entrada:"
 
-#: gtt/options.c:408
+#: gtt/options.c:413
 msgid "Entry Stop:"
 msgstr "Fin da Entrada:"
 
-#: gtt/options.c:422
+#: gtt/options.c:427
 msgid "Timeout in secs:"
 msgstr "Tempo de expiración en segs:"
 
-#: gtt/options.c:501
+#: gtt/options.c:524
 msgid "Misc"
 msgstr "Varios"
 
-#: gtt/proj.c:461
+#: gtt/proj.c:463
 msgid "project %t started"
 msgstr "proxecto %t comezado"
 
-#: gtt/proj.c:464
+#: gtt/proj.c:466
 msgid "stopped project %t"
 msgstr "proxecto %t parado"
 
-#: gtt/prop.c:55
+#: gtt/prop.c:59
 msgid "empty"
 msgstr "baleiro"
 
-#: gtt/prop.c:167
+#: gtt/prop.c:174
 msgid "Project"
 msgstr "Proxecto"
 
-#: gtt/prop.c:186
+#: gtt/prop.c:193
 msgid "Project Title:"
 msgstr "Título do Proxecto:"
 
-#: gtt/prop.c:198
+#: gtt/prop.c:206
 msgid "Project Description:"
 msgstr "Descrición do Proxecto:"
 
-#: gtt/prop.c:210
+#: gtt/prop.c:219
 msgid "Project Time today:"
 msgstr "Tempo do Proxecto hoxe:"
 
-#: gtt/prop.c:226 gtt/prop.c:264
+#: gtt/prop.c:235 gtt/prop.c:273
 msgid "hours"
 msgstr "horas"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:246 gtt/prop.c:284
 msgid "mins"
 msgstr "minutos"
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:257 gtt/prop.c:295
 msgid "secs"
 msgstr "segundos"
 
-#: gtt/prop.c:252
+#: gtt/prop.c:261
 msgid "Project Time ever:"
 msgstr "Tempo Total do Proxecto:"
 
@@ -1500,51 +1523,51 @@ msgstr "Num. de líneas:"
 msgid "%ld bytes"
 msgstr "%ld bytes"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "January"
 msgstr "Xaneiro"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "February"
 msgstr "Febreiro"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "March"
 msgstr "Marzo"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "April"
 msgstr "Abril"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "May"
 msgstr "Maio"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "June"
 msgstr "Xuño"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "July"
 msgstr "Xullo"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "August"
 msgstr "Agosto"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "September"
 msgstr "Septembro"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "October"
 msgstr "Octubro"
 
-#: logview/log_repaint.c:89
+#: logview/log_repaint.c:90
 msgid "November"
 msgstr "Novembre"
 
-#: logview/log_repaint.c:89
+#: logview/log_repaint.c:90
 msgid "December"
 msgstr "Decembro"
 
@@ -1585,132 +1608,140 @@ msgstr "%s non se pode abrir."
 msgid "%s not a log file."
 msgstr "%s non e un ficheiro de log."
 
-#: logview/logrtns.c:614 logview/logrtns.c:645 logview/logrtns.c:776
+#: logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: sen memoria"
 
-#: logview/logview.c:84
+#: logview/logview.c:85
 msgid "Open log...            "
 msgstr "Abrir log...           "
 
-#: logview/logview.c:85
+#: logview/logview.c:86
 msgid "Open log"
 msgstr "Abrir log"
 
-#: logview/logview.c:87
+#: logview/logview.c:88
 msgid "Export log...          "
 msgstr "Exportar log...        "
 
-#: logview/logview.c:88
+#: logview/logview.c:89
 msgid "Export log"
 msgstr "Exportar log"
 
-#: logview/logview.c:90
+#: logview/logview.c:91
 msgid "Close log              "
 msgstr "Pechar log             "
 
-#: logview/logview.c:91
+#: logview/logview.c:92
 msgid "Close log"
 msgstr "Pechar log"
 
-#: logview/logview.c:93
+#: logview/logview.c:94
 msgid "Switch log             "
 msgstr "Cambiar a log          "
 
-#: logview/logview.c:94
+#: logview/logview.c:95
 msgid "Switch log"
 msgstr "Cambiar a log"
 
-#: logview/logview.c:96
+#: logview/logview.c:97
 msgid "Monitor..              "
 msgstr "Monitorizar log..      "
 
-#: logview/logview.c:97
+#: logview/logview.c:98
 msgid "Monitor log"
 msgstr "Monitorizar log"
 
-#: logview/logview.c:99
+#: logview/logview.c:100
 msgid "Exit                   "
 msgstr "Sair                   "
 
-#: logview/logview.c:100
+#: logview/logview.c:101
 msgid "Exit program"
 msgstr "Sair do programa"
 
-#: logview/logview.c:106
+#: logview/logview.c:107
 msgid "Calendar                "
 msgstr "Calendario              "
 
-#: logview/logview.c:107
+#: logview/logview.c:108
 msgid "Show calendar log"
 msgstr "Ver log do calendario"
 
-#: logview/logview.c:109
+#: logview/logview.c:110
 msgid "Log stats               "
 msgstr "Estadisticas de rexistro"
 
-#: logview/logview.c:110
+#: logview/logview.c:111
 msgid "Show log stats"
 msgstr "Ver estadisticas de rexistro"
 
-#: logview/logview.c:112
+#: logview/logview.c:113
 msgid "Zoom                    "
 msgstr "Ampliar                 "
 
-#: logview/logview.c:113
+#: logview/logview.c:114
 msgid "Show line info"
 msgstr "Ver información de liña"
 
-#: logview/logview.c:119
+#: logview/logview.c:116
+msgid "Preferences...          "
+msgstr "Preferencias...         "
+
+#: logview/logview.c:117
+msgid "Show user preferences"
+msgstr "Amosar preferencias de usuario"
+
+#: logview/logview.c:123
 msgid "Select...               "
-msgstr "Elexir...               "
+msgstr "Elixir...               "
 
-#: logview/logview.c:120
+#: logview/logview.c:124
 msgid "Select log events"
-msgstr "Elexir eventos do log"
+msgstr "Elixir eventos do log"
 
-#: logview/logview.c:122
+#: logview/logview.c:126
 msgid "Filter..                "
 msgstr "Filtrar..               "
 
-#: logview/logview.c:123
+#: logview/logview.c:127
 msgid "Filter log events"
 msgstr "Filtrar eventos do log"
 
-#: logview/logview.c:129
+#: logview/logview.c:133
 msgid "About..                "
 msgstr "Acerca de..            "
 
-#: logview/logview.c:130
+#: logview/logview.c:134
 msgid "Info about logview"
 msgstr "Información de logview"
 
-#: logview/logview.c:139
+#: logview/logview.c:143
 msgid "F_ilter"
 msgstr "F_iltrar"
 
-#: logview/logview.c:230
+#: logview/logview.c:238
 msgid "No log files to open"
 msgstr "Non hai ficheiros de log para abrir"
 
 #. Create App
-#: logview/logview.c:259
+#: logview/logview.c:267
 msgid "System Log Viewer"
 msgstr "Visor do rexistro do sistema"
 
-#: logview/logview.c:360
+#: logview/logview.c:368
 msgid "Filename: "
 msgstr "Ficheiro:"
 
-#: logview/logview.c:376
+#: logview/logview.c:384
 msgid "Date: "
 msgstr "Data: "
 
-#: logview/logview.c:611
+#: logview/logview.c:619
 msgid "Too many open logs. Close one and try again"
 msgstr "Demasiados logs abertos. Pecha un e volve a intentalo"
 
-#: logview/logview.c:664
+#: logview/logview.c:672
 msgid "Open new logfile"
 msgstr "Abir novo ficheiro de log"
 
@@ -1790,40 +1821,40 @@ msgid "Edit it"
 msgstr "Editalo"
 
 #. First view is considered as the default view ...
-#: mini-utils/gcolorsel/gcolorsel.c:24
+#: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "List"
 msgstr "Lista"
 
-#: mini-utils/gcolorsel/gcolorsel.c:28
+#: mini-utils/gcolorsel/gcolorsel.c:32
 msgid "Grid"
 msgstr "Enreixado"
 
-#: mini-utils/gcolorsel/gcolorsel.c:42
+#: mini-utils/gcolorsel/gcolorsel.c:46
 msgid "Search RGB"
 msgstr "Busca RGB"
 
-#: mini-utils/gcolorsel/gcolorsel.c:44
+#: mini-utils/gcolorsel/gcolorsel.c:48
 msgid "Monitor"
 msgstr "Monitorizar"
 
-#: mini-utils/gcolorsel/gcolorsel.c:46
+#: mini-utils/gcolorsel/gcolorsel.c:50
 msgid "Concat"
 msgstr "Concatenar"
 
-#: mini-utils/gcolorsel/gcolorsel.c:94
+#: mini-utils/gcolorsel/gcolorsel.c:100
 #, c-format
 msgid "'%s' document has been modified; do you wish to save it ?"
 msgstr "O documento '%s' modificouse; ¿ quere gardalo ?"
 
-#: mini-utils/gcolorsel/gcolorsel.c:204
+#: mini-utils/gcolorsel/gcolorsel.c:210
 msgid "GColorsel was unable to paste colors from the clipboard."
 msgstr "GColorsel non puido pegar as cores do cartafol."
 
-#: mini-utils/gcolorsel/gcolorsel.c:218
+#: mini-utils/gcolorsel/gcolorsel.c:224
 msgid "Please select a file document before."
 msgstr "Seleccione antes un documento."
 
-#: mini-utils/gcolorsel/gcolorsel.c:390
+#: mini-utils/gcolorsel/gcolorsel.c:396
 msgid ""
 "I can't execute this action. Check that :\n"
 "\n"
@@ -1841,8 +1872,12 @@ msgstr ""
 "\n"
 "Vaia ás preferencias, no menú Editar."
 
+#: mini-utils/gcolorsel/gcolorsel.c:586 mini-utils/gcolorsel/session.c:429
+msgid "User Colors"
+msgstr "Cores de Usuario"
+
 #. Init GnomeMDI
-#: mini-utils/gcolorsel/gcolorsel.c:508
+#: mini-utils/gcolorsel/gcolorsel.c:717
 msgid "GColorsel"
 msgstr "GColorsel"
 
@@ -1976,93 +2011,6 @@ msgstr "etiqueta4"
 #. * de votre projet. NE PAS compiler ce fichier
 #. * avec le reste de votre application.
 #.
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:8
-msgid "Session"
-msgstr "Sesión"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:9
-msgid "Save session on exit."
-msgstr "Garda-la sesión ó saír."
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:10
-#: mini-utils/gshutdown/gshutdown.c:396
-msgid "General"
-msgstr "Xeral"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:11
-msgid "MDI (Multiple Document Interface)"
-msgstr "MDI (Interface de Múltiples Documentos)"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:12
-msgid "Notebook Tab position:"
-msgstr "Posición das Pestanas no Caderno de Notas:"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:13
-msgid "Mode:"
-msgstr "Modo:"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:14
-msgid ""
-"Notebook\n"
-"Toplevel\n"
-"Modal\n"
-"Default\n"
-msgstr ""
-"Caderno de Notas\n"
-"Primeiro Plano\n"
-"Modal\n"
-"Por Defecto\n"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:19
-msgid ""
-"Left\n"
-"Right\n"
-"Top\n"
-"Bottom\n"
-msgstr ""
-"Esquerda\n"
-"Dereita\n"
-"Arriba\n"
-"Abaixo\n"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:24
-msgid "Display documents menu (restart required)."
-msgstr "Amosa-lo menú de documentos (terá que reiniciar)."
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:25
-msgid "Documents"
-msgstr "Documentos"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:26
-msgid "On ... execute ..."
-msgstr "Ó ... executar ..."
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:27
-msgid "DoubleClick in previews:"
-msgstr "Clic Dobre nas previsualizacións:"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:28
-msgid "DoubleClick in views:"
-msgstr "Clic Dobre nas vistas:"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:29
-msgid "Grab:"
-msgstr "Capturar:"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:30
-msgid "Drop:"
-msgstr "Soltar:"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:31
-msgid "Actions"
-msgstr "Accións"
-
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
 #: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:8
 #: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:8
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:8
@@ -2149,51 +2097,79 @@ msgstr "Altura da cor :"
 msgid "Draw numbers"
 msgstr "Debuxar números"
 
-#: mini-utils/gcolorsel/menus.c:52
+#: mini-utils/gcolorsel/menus.c:56
 msgid "New Document"
 msgstr "Novo Documento"
 
-#: mini-utils/gcolorsel/menus.c:53
+#: mini-utils/gcolorsel/menus.c:57
 msgid "Create a new document"
 msgstr "Crear un documento novo"
 
-#: mini-utils/gcolorsel/menus.c:55
+#: mini-utils/gcolorsel/menus.c:59
 msgid "New View"
 msgstr "Nova Vista"
 
-#: mini-utils/gcolorsel/menus.c:56
+#: mini-utils/gcolorsel/menus.c:60
 msgid "Create a new view for a document"
 msgstr "Crear unha nova vista para un documento"
 
-#: mini-utils/gcolorsel/menus.c:62
+#: mini-utils/gcolorsel/menus.c:66
 msgid "Close document"
 msgstr "Pechar documento"
 
-#: mini-utils/gcolorsel/menus.c:63
+#: mini-utils/gcolorsel/menus.c:67
 msgid "Close the current document"
 msgstr "Pecha-lo documento actual"
 
-#: mini-utils/gcolorsel/menus.c:65
+#: mini-utils/gcolorsel/menus.c:69
 msgid "Close view"
 msgstr "Pechar vista"
 
-#: mini-utils/gcolorsel/menus.c:66 mini-utils/gcolorsel/menus.c:906
+#: mini-utils/gcolorsel/menus.c:70 mini-utils/gcolorsel/menus.c:954
 msgid "Close the current view"
 msgstr "Pecha-la vista actual"
 
-#: mini-utils/gcolorsel/menus.c:99
+#: mini-utils/gcolorsel/menus.c:80
+msgid "_Open palette..."
+msgstr "_Abrir paleta..."
+
+#: mini-utils/gcolorsel/menus.c:81
+msgid "Load a palette"
+msgstr "Cargar unha paleta"
+
+#: mini-utils/gcolorsel/menus.c:83
+msgid "_Save palette"
+msgstr "_Gardar Paleta"
+
+#: mini-utils/gcolorsel/menus.c:84
+msgid "Save the current palette in a file"
+msgstr "Garda-la paleta actual nun ficheiro"
+
+#: mini-utils/gcolorsel/menus.c:86
+msgid "Save palette _As..."
+msgstr "Gardar paleta _como..."
+
+#: mini-utils/gcolorsel/menus.c:87
+msgid "Save the current palette with a different name"
+msgstr "Garda-la paleta actual cun nome diferente"
+
+#: mini-utils/gcolorsel/menus.c:109
 msgid "Insert color"
 msgstr "Inserir cor"
 
-#: mini-utils/gcolorsel/menus.c:101
+#: mini-utils/gcolorsel/menus.c:111
 msgid "Remove selected colors"
 msgstr "Quitar cores seleccionadas"
 
-#: mini-utils/gcolorsel/menus.c:103
+#: mini-utils/gcolorsel/menus.c:113
 msgid "Edit selected colors ..."
 msgstr "Editar cores seleccionadas ..."
 
-#: mini-utils/gcolorsel/menus.c:172
+#: mini-utils/gcolorsel/menus.c:117 mini-utils/gcolorsel/menus.c:1103
+msgid "Document/View properties"
+msgstr "Documento/Ver propiedades"
+
+#: mini-utils/gcolorsel/menus.c:183
 #, c-format
 msgid ""
 "GColorsel was unable to save the file :\n"
@@ -2213,7 +2189,7 @@ msgstr ""
 "e que ten os permisos para abri-lo ficheiro.\n"
 "¿Quere volver a tentalo?"
 
-#: mini-utils/gcolorsel/menus.c:191
+#: mini-utils/gcolorsel/menus.c:202
 #, c-format
 msgid ""
 "GColorsel was unable to load the file:\n"
@@ -2230,27 +2206,27 @@ msgstr ""
 "Asegúrese de que o camiño que indicou existe,\n"
 "e que ten os permisos para abri-lo ficheiro."
 
-#: mini-utils/gcolorsel/menus.c:210
+#: mini-utils/gcolorsel/menus.c:221
 msgid "Open Palette"
 msgstr "Abrir Paleta"
 
-#: mini-utils/gcolorsel/menus.c:235
+#: mini-utils/gcolorsel/menus.c:246
 msgid "Loading file, please wait ..."
 msgstr "Cargando ficheiro, por favor agarde ..."
 
-#: mini-utils/gcolorsel/menus.c:266
+#: mini-utils/gcolorsel/menus.c:277
 msgid "Save Palette as"
 msgstr "Gardar Paleta como"
 
-#: mini-utils/gcolorsel/menus.c:313
+#: mini-utils/gcolorsel/menus.c:324
 msgid "File not saved ..."
 msgstr "Ficheiro non gardado ..."
 
-#: mini-utils/gcolorsel/menus.c:323
+#: mini-utils/gcolorsel/menus.c:334
 msgid "File saved ..."
 msgstr "Ficheiro gardado ..."
 
-#: mini-utils/gcolorsel/menus.c:401
+#: mini-utils/gcolorsel/menus.c:412
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -2265,7 +2241,7 @@ msgstr ""
 "\n"
 "Teña en conta que %d documento(s) virtual(is) usan datos deste documento."
 
-#: mini-utils/gcolorsel/menus.c:403
+#: mini-utils/gcolorsel/menus.c:414
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -2276,7 +2252,7 @@ msgstr ""
 "\n"
 "Este documento tamén será pechado, ¿continuar?"
 
-#: mini-utils/gcolorsel/menus.c:437
+#: mini-utils/gcolorsel/menus.c:450
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -2293,7 +2269,7 @@ msgstr ""
 "\n"
 "¿Quere continuar?"
 
-#: mini-utils/gcolorsel/menus.c:439
+#: mini-utils/gcolorsel/menus.c:452
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -2308,47 +2284,47 @@ msgstr ""
 "\n"
 "¿Quere continuar?"
 
-#: mini-utils/gcolorsel/menus.c:487
+#: mini-utils/gcolorsel/menus.c:500
 msgid "Gnome Color Browser"
 msgstr "Ollador de Cores de Gnome"
 
-#: mini-utils/gcolorsel/menus.c:490
+#: mini-utils/gcolorsel/menus.c:506
 msgid "Small utility to browse available X11 colors."
 msgstr "Pequena utilidade para olla-las cores de X11 dispoñibles."
 
-#: mini-utils/gcolorsel/menus.c:599
+#: mini-utils/gcolorsel/menus.c:626
 msgid "New Color"
 msgstr "Nova Cor"
 
-#: mini-utils/gcolorsel/menus.c:854
+#: mini-utils/gcolorsel/menus.c:902
 msgid "View properties"
 msgstr "Propiedades da vista"
 
-#: mini-utils/gcolorsel/menus.c:869
+#: mini-utils/gcolorsel/menus.c:917
 msgid "Document properties"
 msgstr "Propiedades do documento"
 
-#: mini-utils/gcolorsel/menus.c:902
+#: mini-utils/gcolorsel/menus.c:950
 msgid "Exit the program"
 msgstr "Saír do programa"
 
-#: mini-utils/gcolorsel/menus.c:904
+#: mini-utils/gcolorsel/menus.c:952
 msgid "Open"
 msgstr "Abrir"
 
-#: mini-utils/gcolorsel/menus.c:904
+#: mini-utils/gcolorsel/menus.c:952
 msgid "Open a palette"
 msgstr "Abrir unha paleta"
 
-#: mini-utils/gcolorsel/menus.c:909
+#: mini-utils/gcolorsel/menus.c:957
 msgid "Grab"
 msgstr "Capturar"
 
-#: mini-utils/gcolorsel/menus.c:909
+#: mini-utils/gcolorsel/menus.c:957
 msgid "Grab a color on the screen"
 msgstr "Capturar unha cor da pantalla"
 
-#: mini-utils/gcolorsel/menus.c:912
+#: mini-utils/gcolorsel/menus.c:960
 msgid "About this application"
 msgstr "Acerca desta aplicación"
 
@@ -2372,9 +2348,9 @@ msgstr ""
 "Un ou máis ficheiros non se poden restaurar :\n"
 "\n"
 
-#: mini-utils/gcolorsel/session.c:407
-msgid "System"
-msgstr "Sistema"
+#: mini-utils/gcolorsel/session.c:408
+msgid "System Colors"
+msgstr "Cores do Sistema"
 
 #: mini-utils/gcolorsel/view-color-generic.c:16
 msgid "Decimal 8 bits"
@@ -2406,31 +2382,31 @@ msgstr "Nome"
 msgid "Tolerance :"
 msgstr "Tolerancia :"
 
-#: mini-utils/gfontsel/gfontsel.c:157
+#: mini-utils/gfontsel/gfontsel.c:162
 msgid "Font Selector"
 msgstr "Selector de Fonte"
 
-#: mini-utils/gfontsel/gfontsel.c:185
+#: mini-utils/gfontsel/gfontsel.c:190
 msgid "Selection:"
 msgstr "Selección:"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:273
 msgid "Font to load"
 msgstr "Fonte a cargar"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:273
 msgid "FONTSPEC"
 msgstr "ESPEC_FONTE"
 
-#: mini-utils/gfontsel/gfontsel.c:269
+#: mini-utils/gfontsel/gfontsel.c:274
 msgid "Print selected font name on exit"
 msgstr "Escribi-lo nome de fonte escollido ó saír"
 
-#: mini-utils/gfontsel/gfontsel.c:270
+#: mini-utils/gfontsel/gfontsel.c:275
 msgid "Inhibit remembering selected font for next run"
 msgstr "Non lembrar a fonte seleccionada para a próxima vez"
 
-#: mini-utils/gfontsel/gfontsel.c:271
+#: mini-utils/gfontsel/gfontsel.c:276
 msgid "Inhibit loading of last font"
 msgstr "Non cargar a última fonte"
 
@@ -2646,6 +2622,10 @@ msgstr "Comandos"
 #: mini-utils/gshutdown/gshutdown.c:384
 msgid "Confirm before shutdown?"
 msgstr "¿Confirmar antes de apagar?"
+
+#: mini-utils/gshutdown/gshutdown.c:396
+msgid "General"
+msgstr "Xeral"
 
 #: mini-utils/gshutdown/gshutdown.c:449
 #, c-format
@@ -3166,3 +3146,70 @@ msgstr "Só o superusuario pode usar esta utilidade"
 #: mini-utils/idetool/idetool.c:451
 msgid "You appear to have no IDE drives"
 msgstr "Non semella ter unidades IDE"
+
+#~ msgid "Please enter the name of the new project:"
+#~ msgstr "Introduza o nome do novo proxecto:"
+
+#~ msgid "Session"
+#~ msgstr "Sesión"
+
+#~ msgid "Save session on exit."
+#~ msgstr "Garda-la sesión ó saír."
+
+#~ msgid "MDI (Multiple Document Interface)"
+#~ msgstr "MDI (Interface de Múltiples Documentos)"
+
+#~ msgid "Notebook Tab position:"
+#~ msgstr "Posición das Pestanas no Caderno de Notas:"
+
+#~ msgid "Mode:"
+#~ msgstr "Modo:"
+
+#~ msgid ""
+#~ "Notebook\n"
+#~ "Toplevel\n"
+#~ "Modal\n"
+#~ "Default\n"
+#~ msgstr ""
+#~ "Caderno de Notas\n"
+#~ "Primeiro Plano\n"
+#~ "Modal\n"
+#~ "Por Defecto\n"
+
+#~ msgid ""
+#~ "Left\n"
+#~ "Right\n"
+#~ "Top\n"
+#~ "Bottom\n"
+#~ msgstr ""
+#~ "Esquerda\n"
+#~ "Dereita\n"
+#~ "Arriba\n"
+#~ "Abaixo\n"
+
+#~ msgid "Display documents menu (restart required)."
+#~ msgstr "Amosa-lo menú de documentos (terá que reiniciar)."
+
+#~ msgid "Documents"
+#~ msgstr "Documentos"
+
+#~ msgid "On ... execute ..."
+#~ msgstr "Ó ... executar ..."
+
+#~ msgid "DoubleClick in previews:"
+#~ msgstr "Clic Dobre nas previsualizacións:"
+
+#~ msgid "DoubleClick in views:"
+#~ msgstr "Clic Dobre nas vistas:"
+
+#~ msgid "Grab:"
+#~ msgstr "Capturar:"
+
+#~ msgid "Drop:"
+#~ msgstr "Soltar:"
+
+#~ msgid "Actions"
+#~ msgstr "Accións"
+
+#~ msgid "System"
+#~ msgstr "Sistema"
