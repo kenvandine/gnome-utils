@@ -195,6 +195,10 @@ int dialog_inputbox (const char *title, const char *prompt, int height,
 		int width, const char *init);
 int dialog_guage (const char *title, const char *prompt, int height, int width,
 		int percent);
+#ifdef WITH_GNOME
+gboolean callback_progress_bar (GIOChannel *giochannel, GIOCondition condition,
+		gpointer p);
+#endif
 
 /*
  * The following stuff is needed for mouse support

@@ -41,6 +41,7 @@ dialog_guage (const char *title, const char *prompt, int height,
     char buf[1024];
     char prompt_buf[1024];
     WINDOW *dialog;
+    gint input;
 
     /* center dialog box on screen */
     x = (COLS - width) / 2;
@@ -57,6 +58,8 @@ dialog_guage (const char *title, const char *prompt, int height,
 	GtkWidget *w = gnome_dialog_new(title, NULL, NULL);
 	GtkWidget *p = gtk_progress_bar_new();
 	GtkWidget *vbox = gtk_vbox_new(FALSE, 0);
+	guint input;
+	GIOChannel *giochannel;
 	
 	label_autowrap(vbox, prompt, width);
 	gtk_progress_set_percentage( GTK_PROGRESS( p ), ( (gfloat) percent ) / 100);
@@ -64,6 +67,10 @@ dialog_guage (const char *title, const char *prompt, int height,
 	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), vbox,
 			   TRUE, TRUE, GNOME_PAD);
 	gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
+
+	giochannel = g_io_channel_unix_new (0);
+	input = g_io_add_watch(giochannel, G_IO_IN, callback_progress_bar, (gpointer) p);
+
 	gtk_widget_show_all(w);
 	gtk_main();
 	exit( 0 );
@@ -129,3 +136,36 @@ dialog_guage (const char *title, const char *prompt, int height,
     delwin (dialog);
     return (0);
 }
+
+#ifdef WITH_GNOME
+
+/*
+ *	Gnome Callbacks
+ */
+
+gboolean callback_progress_bar (GIOChannel *giochannel, GIOCondition condition,
+				gpointer p)
+{
+	gint percent;
+	gchar buf[1024];
+
+	if (feof (stdin)) {
+	    /*gdk_input_remove(input);*/
+	    gtk_main_quit();
+	}
+
+	fgets (buf, sizeof(buf)-1, stdin);
+	percent = atoi (buf);
+	if(percent < 0) {
+            percent = 0;
+	}      
+	else if (percent > 100) {
+	    percent = 100;
+	}
+
+	gtk_progress_bar_set_fraction ( p, ( (gfloat) percent ) / 100);
+
+
+}
+
+#endif
