@@ -10,6 +10,8 @@
 #include <gdk/gdkprivate.h>
 #include <stdio.h>
 #include <string.h>
+#include <libgnomevfs/gnome-vfs-mime-handlers.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
 
 #include "gsearchtool.h"
 #include "outdlg.h"
@@ -41,10 +43,10 @@ save_file(char *fname)
 static void
 save_ok(GtkWidget *widget, GtkFileSelection *fsel)
 {
-	char *fname;
+	gchar *fname;
 	g_return_if_fail(GTK_IS_FILE_SELECTION(fsel));
 
-	fname = gtk_file_selection_get_filename(fsel);
+	fname = (gchar *)gtk_file_selection_get_filename(fsel);
 	if(!fname ||
 	   !save_file(fname)) {
 		GtkWidget *dlg;
@@ -109,16 +111,21 @@ outdlg_double_click(GtkWidget *widget, GdkEventButton *event,
 	GtkCList *clist=(GtkCList *)widget;
 	gint row, col;
 	gchar *fileName;
+	GnomeVFSMimeApplication *app;
 	const gchar *program;
 	const gchar *mimeType;
+	gboolean needsterminal;
 
 	if (event->type==GDK_2BUTTON_PRESS) {
 		if (!gtk_clist_get_selection_info(clist, event->x, event->y, &row, &col))
 			return FALSE;
 		
 		gtk_clist_get_text(clist, row, col, &fileName);
-		mimeType=gnome_mime_type_of_file(fileName);
-		program=gnome_mime_program(mimeType);
+		mimeType=gnome_vfs_mime_type_from_name(fileName);
+		app=gnome_vfs_mime_get_default_application(mimeType);
+		program=g_strdup(app->command);
+		needsterminal=app->requires_terminal;
+		gnome_vfs_mime_application_free(app);
 		
 		if (program) {
 			char **argv;
@@ -140,7 +147,7 @@ outdlg_double_click(GtkWidget *widget, GdkEventButton *event,
 				}
 			}
 
-			if (gnome_mime_needsterminal(mimeType, NULL)) {
+			if (needsterminal) {
 				char **bigargv;
 				bigargv = g_new0(char *, argc+3);
 				bigargv[0] = "gnome-terminal";
