@@ -81,8 +81,9 @@ static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TEXT, "'!' -name '*%s*'", N_("Na_me does not contain"), FALSE },
 	{ SEARCH_CONSTRAINT_TEXT, "-regex '%s'", N_("Name matches regular e_xpression"), FALSE }, 
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
+	{ SEARCH_CONSTRAINT_BOOL, "SHOW_HIDDEN_FILES", N_("Show hidden files and folders"), FALSE },
 	{ SEARCH_CONSTRAINT_BOOL, "-follow", N_("Follow symbolic links"), FALSE },
-	{ SEARCH_CONSTRAINT_BOOL, "-xdev", N_("Include other filesystems"), FALSE },
+	{ SEARCH_CONSTRAINT_BOOL, "INCLUDE_OTHER_FILESYSTEMS", N_("Include other filesystems"), FALSE },
 	{ SEARCH_CONSTRAINT_END, NULL, NULL, FALSE}
 }; 
 
@@ -110,7 +111,8 @@ enum {
 	SEARCH_CONSTRAINT_SEPARATOR_03,	
 	SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED,
 	SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION,
-	SEARCH_CONSTRAINT_SEPARATOR_04,	
+	SEARCH_CONSTRAINT_SEPARATOR_04,
+	SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS,
 	SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS,
 	SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS,
 	SEARCH_CONSTRAINT_MAXIMUM_POSSIBLE
@@ -130,6 +132,7 @@ struct _PoptArgument {
 	gboolean 	empty;
 	gchar		*notnamed;
 	gchar		*regex;
+	gboolean	hidden;
 	gboolean	follow;
 	gboolean	allmounts;
 	gchar 		*sortby;
@@ -154,6 +157,7 @@ struct poptOption options[] = {
   	{ "nouser", '\0', POPT_ARG_NONE, &PoptArgument.nouser, 0, NULL, NULL},
   	{ "notnamed", '\0', POPT_ARG_STRING, &PoptArgument.notnamed, 0, NULL, NULL},
   	{ "regex", '\0', POPT_ARG_STRING, &PoptArgument.regex, 0, NULL, NULL},
+	{ "hidden", '\0', POPT_ARG_NONE, &PoptArgument.hidden, 0, NULL, NULL},
   	{ "follow", '\0', POPT_ARG_NONE, &PoptArgument.follow, 0, NULL, NULL},
   	{ "allmounts", '\0', POPT_ARG_NONE, &PoptArgument.allmounts, 0, NULL, NULL},
   	{ NULL,'\0', 0, NULL, 0, NULL, NULL}
@@ -205,6 +209,55 @@ setup_case_insensitive_arguments (void)
 	}
 	g_free (cmd_stderr);
 }
+  
+gchar *
+setup_find_name_options (gchar *filename)
+{
+	/* This function builds the name options for the find command.  This in
+	   done to insure that the find command returns hidden files and folders. */
+
+	GString *command;
+	command = g_string_new ("");
+
+	if (strstr(filename, "*") == NULL) {
+
+		if ((strlen(filename) == 0) || (filename[0] != '.')) {
+	 		g_string_append_printf (command, "\\( %s '*%s*' -o %s '.*%s*' \\) ", 
+					find_command_default_name_option, filename,
+					find_command_default_name_option, filename);
+		}
+		else {
+			g_string_append_printf (command, "\\( %s '*%s*' -o %s '.*%s*' -o %s '%s*' \\) ", 
+					find_command_default_name_option, filename,
+					find_command_default_name_option, filename,
+					find_command_default_name_option, filename);
+		}
+	}
+	else {
+		if (filename[0] == '.') {
+			g_string_append_printf (command, "\\( %s '%s' -o %s '.*%s' \\) ", 
+					find_command_default_name_option, filename,
+					find_command_default_name_option, filename);	
+		}
+		else if (filename[0] != '*') {
+			g_string_append_printf (command, "%s '%s' ", 
+					find_command_default_name_option, filename);
+		}
+		else {
+			if ((strlen(filename) >= 1) && (filename[1] == '.')) {
+				g_string_append_printf (command, "\\( %s '%s' -o %s '%s' \\) ", 
+					find_command_default_name_option, filename,
+					find_command_default_name_option, &filename[1]);
+			}
+			else {
+				g_string_append_printf (command, "\\( %s '%s' -o %s '.%s' \\) ", 
+					find_command_default_name_option, filename,
+					find_command_default_name_option, filename);
+			}
+		}
+	}
+	return g_string_free (command, FALSE);
+}
 
 gchar *
 build_search_command (void)
@@ -248,6 +301,7 @@ build_search_command (void)
 	search_command.look_in_folder = g_strdup(look_in_folder_locale);
 	
 	command = g_string_new ("");
+	search_command.show_hidden_files = FALSE;
 	
 	if (GTK_WIDGET_VISIBLE(interface.additional_constraints) == FALSE) {
 	
@@ -281,10 +335,9 @@ build_search_command (void)
 		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
-		g_string_append_printf (command, "find \"%s\" '!' -type p %s '%s' ", 
-					 	look_in_folder_locale,
-						find_command_default_name_option,
-						file_is_named_escaped);
+		g_string_append_printf (command, "find \"%s\" '!' -type p  %s", 
+					look_in_folder_locale,
+					setup_find_name_options (file_is_named_escaped));
 	
 		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
 			
@@ -292,13 +345,16 @@ build_search_command (void)
 						
 			switch (templates[constraint->constraint_id].type) {
 			case SEARCH_CONSTRAINT_BOOL:
-				if (strcmp (templates[constraint->constraint_id].option, "-xdev") != 0) {
-					g_string_append_printf(command, "%s ",
-						       templates[constraint->constraint_id].option);
+				if (strcmp (templates[constraint->constraint_id].option, "INCLUDE_OTHER_FILESYSTEMS") == 0) {
+					disable_mount_argument = TRUE;
+				}
+				else if (strcmp (templates[constraint->constraint_id].option, "SHOW_HIDDEN_FILES") == 0) {
+					search_command.show_hidden_files = TRUE;
 				}
 				else {
-					disable_mount_argument = TRUE;
-				} 
+					g_string_append_printf(command, "%s ",
+						templates[constraint->constraint_id].option);
+				}
 				break;
 			case SEARCH_CONSTRAINT_TEXT:
 				if (strcmp (templates[constraint->constraint_id].option, "-regex '%s'") == 0) {
@@ -621,6 +677,10 @@ set_constraint_gconf_boolean (gint constraint_id, gboolean flag)
 			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/name_matches_regular_expression",
 	   		       	       	               flag);
 			break;
+		case SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/show_hidden_files_and_folders",
+	   		       	       	               flag);
+			break;
 		case SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS:
 			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/follow_symbolic_links",
 	   		       	       	               flag);
@@ -800,6 +860,10 @@ handle_popt_args (void)
 		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION, 
 				PoptArgument.regex, TRUE);
+	}
+	if (PoptArgument.hidden == TRUE) {
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS, NULL, TRUE);
 	}
 	if (PoptArgument.follow == TRUE) {
 		popt_args_found = TRUE;
@@ -1773,6 +1837,9 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data)
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
 				argv[i++] = g_strdup_printf ("--regex=%s", locale);
 				break;
+			case SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS:
+				argv[i++] = g_strdup ("--hidden");
+				break;
 			case SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS:
 				argv[i++] = g_strdup ("--follow");
 				break;
@@ -1841,6 +1908,10 @@ handle_gconf_settings (void)
 	
 	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/name_matches_regular_expression") == TRUE) {
 		add_constraint (SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION, "", FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_hidden_files_and_folders") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS, NULL, FALSE); 
 	}
 	
 	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/follow_symbolic_links") == TRUE) {

@@ -128,8 +128,6 @@ click_find_cb (GtkWidget	*widget,
 				   _("Searching..."));
 		search_command.timeout = g_timeout_add (100, update_progress_bar, 
 						  	NULL); 
-		search_command.show_hidden_files = FALSE;
-		
 		spawn_search_command (command);
 	}
 	
