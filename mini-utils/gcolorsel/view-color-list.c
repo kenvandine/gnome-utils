@@ -474,9 +474,9 @@ view_color_list_render_value (ViewColorList *vcl, MDIColor *col)
     return g_strdup_printf ("#%04x%04x%04x", 
 			    col->r * 256, col->g * 256, col->b * 256);
   case FORMAT_FLOAT:
-    return g_strdup_printf ("%1.4g %1.4g %1.4g", (float) col->r / 256,
-                    			         (float) col->g / 256,
-                        			 (float) col->b / 256);
+    return g_strdup_printf ("%1.4g %1.4g %1.4g", (float) col->r / 255.0,
+                    			         (float) col->g / 255.0,
+                        			 (float) col->b / 255.0);
   default:
     g_assert_not_reached ();
   }
