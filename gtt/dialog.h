@@ -19,15 +19,15 @@
 #define __DIALOG_H__
 
 
-void new_dialog_ok(char *title, GtkWidget **dlg, GtkBox **vbox,
-		   char *s, GtkSignalFunc sigfunc, gpointer data);
-void new_dialog_ok_cancel(char *title, GtkWidget **dlg, GtkBox **vbox,
-			  char *s_ok, GtkSignalFunc sigfunc, gpointer data,
-			  char *s_cancel, GtkSignalFunc c_sigfunc, gpointer c_data);
-void msgbox_ok(char *title, char *text, char *ok_text,
+void new_dialog_ok(const char *title, GtkWidget **dlg, GtkBox **vbox,
+		   const char *s, GtkSignalFunc sigfunc, gpointer data);
+void new_dialog_ok_cancel(const char *title, GtkWidget **dlg, GtkBox **vbox,
+			  const char *s_ok, GtkSignalFunc sigfunc, gpointer data,
+			  const char *s_cancel, GtkSignalFunc c_sigfunc, gpointer c_data);
+void msgbox_ok(const char *title, const char *text, const char *ok_text,
 	       GtkSignalFunc func);
-void msgbox_ok_cancel(char *title, char *text,
-		      char *ok_text, char *cancel_text,
+void msgbox_ok_cancel(const char *title, const char *text,
+		      const char *ok_text, const char *cancel_text,
 		      GtkSignalFunc func);
 
 #endif

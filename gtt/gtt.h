@@ -91,19 +91,19 @@ extern char *first_proj_title;
 
 
 project *project_new(void);
-project *project_new_title_desc(char *, char *);
+project *project_new_title_desc(const char *, const char *);
 project *project_dup(project *);
 void project_destroy(project *);
-void project_set_title(project *proj, char *t);
-void project_set_desc(project *proj, char *d);
+void project_set_title(project *proj, const char *t);
+void project_set_desc(project *proj, const char *d);
 
 void project_list_add(project *p);
 void project_list_insert(project *p, int pos);
 void project_list_remove(project *p);
 void project_list_destroy(void);
 void project_list_time_reset(void);
-int project_list_load(char *fname);
-int project_list_save(char *fname);
+int project_list_load(const char *fname);
+int project_list_save(const char *fname);
 void project_list_sort_time(void);
 void project_list_sort_total_time(void);
 void project_list_sort_title(void);
@@ -157,7 +157,7 @@ extern int config_logfile_use, config_logfile_min_secs;
 void update_status_bar(void);
 void cur_proj_set(project *p);
 
-void app_new(int argc, char *argv[], char *geometry_string);
+void app_new(int argc, char *argv[], const char *geometry_string);
 
 
 /* clist.c */

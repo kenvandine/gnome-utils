@@ -178,7 +178,7 @@ void cur_proj_set(project *proj)
 
 
 
-void app_new(int argc, char *argv[], char *geometry_string)
+void app_new(int argc, char *argv[], const char *geometry_string)
 {
 	GtkWidget *vbox;
 	GtkWidget *widget;

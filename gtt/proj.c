@@ -50,7 +50,7 @@ project *project_new(void)
 }
 
 
-project *project_new_title_desc(char *t, char *d)
+project *project_new_title_desc(const char *t, const char *d)
 {
 	project *proj;
 
@@ -97,7 +97,7 @@ void project_destroy(project *proj)
 
 
 
-void project_set_title(project *proj, char *t)
+void project_set_title(project *proj, const char *t)
 {
 	if (!proj) return;
 	if (proj->title) g_free(proj->title);
@@ -112,7 +112,7 @@ void project_set_title(project *proj, char *t)
 
 
 
-void project_set_desc(project *proj, char *d)
+void project_set_desc(project *proj, const char *d)
 {
 	if (!proj) return;
 	if (proj->desc) g_free(proj->desc);
@@ -223,7 +223,7 @@ void project_list_time_reset(void)
 
 
 
-static char *build_rc_name(void)
+static const char *build_rc_name(void)
 {
 	static char *buf = NULL;
 
@@ -263,9 +263,10 @@ read_tb_sects(char *s)
 
 
 static int
-project_list_load_old(char *fname)
+project_list_load_old(const char *fname)
 {
 	FILE *f;
+	const char *realname;
 	project_list *pl, *t;
 	project *proj = NULL;
 	char s[1024];
@@ -273,12 +274,15 @@ project_list_load_old(char *fname)
 	time_t tmp_time = -1;
         int _n, _f, _c, _p, _t, _o, _h, _e;
 
-	if (!fname) fname = build_rc_name();
-	if (NULL == (f = fopen(fname, "rt"))) {
+	if (fname != NULL)
+		realname = fname;
+	else
+		realname = build_rc_name();
+	if (NULL == (f = fopen(realname, "rt"))) {
 #ifdef ENOENT
                 if (errno == ENOENT) return 0;
 #endif
-		g_warning("could not open %s\n", fname);
+		g_warning("could not open %s\n", realname);
 		return 0;
 	}
 	pl = plist;
@@ -400,7 +404,7 @@ project_list_load_old(char *fname)
 
 	err:
 	fclose(f);
-	g_warning("error reading %s\n", fname);
+	g_warning("error reading %s\n", realname);
 	project_list_destroy();
 	plist = pl;
 	return 0;
@@ -409,7 +413,7 @@ project_list_load_old(char *fname)
 
 
 int
-project_list_load(char *fname)
+project_list_load(const char *fname)
 {
         char s[256];
         int i, num;
@@ -514,7 +518,7 @@ project_list_load(char *fname)
 
 
 int
-project_list_save(char *fname)
+project_list_save(const char *fname)
 {
         char s[64];
         project_list *pl;

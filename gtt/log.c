@@ -25,7 +25,7 @@
 #include <stdio.h>
 
 
-static int log_write(time_t t, char *s)
+static int log_write(time_t t, const char *s)
 {
 	FILE *f;
 	char date[256];
@@ -57,11 +57,12 @@ static int log_write(time_t t, char *s)
 
 
 static char *
-build_log_entry(char *format, project *proj)
+build_log_entry(const char *format, project *proj)
 {
 	GString *str;
 	char tmp[256];
-	char *p;
+	const char *p;
+	char *ret;
 
 	if (!format)
 		format = config_logfile_str;
@@ -69,7 +70,7 @@ build_log_entry(char *format, project *proj)
 		return g_strdup(_("program started"));
 	if ((!format) || (!format[0]))
 		return g_strdup(proj->title);
-	str = g_string_new(NULL);
+	str = g_string_new (NULL);
 	for (p = format; *p; p++) {
 		if (*p != '%') {
 			g_string_append_c(str, *p);
@@ -129,9 +130,9 @@ build_log_entry(char *format, project *proj)
 			}
 		}
 	}
-	p = str->str;
-	g_string_free(str, 0);
-	return p;
+	ret = str->str;
+	g_string_free (str, FALSE);
+	return ret;
 }
 
 
