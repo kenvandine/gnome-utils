@@ -453,7 +453,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    /* monwindow = gtk_window_new (GTK_WINDOW_POPUP);  */ /*  Window without borders! */
    monwindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
    gtk_container_set_border_width (GTK_CONTAINER (monwindow), 0);
-   gtk_window_set_title (GTK_WINDOW (monwindow), _("Monitoring logs.."));
+   gtk_window_set_title (GTK_WINDOW (monwindow), _("Monitoring logs..."));
    gtk_widget_set_style (monwindow, cfg->main_style);
 
    gtk_widget_set_usize(monwindow, w, h);
