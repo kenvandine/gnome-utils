@@ -53,9 +53,8 @@ extern void gnomecard_canvas_text_item_set(char *text)
 
 extern void gnomecard_update_canvas(Card *crd) 
 {
-    if (crd && crd->fname)
-	if (crd->fname.str)
-	    gnomecard_canvas_text_item_set(crd->fname.str);
-	else
-	    gnomecard_canvas_text_item_set(_("No fname for this card."));
+    if (crd && crd->fname.str)
+	gnomecard_canvas_text_item_set(crd->fname.str);
+    else
+	gnomecard_canvas_text_item_set(_("No fname for this card."));
 }
