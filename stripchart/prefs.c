@@ -195,7 +195,9 @@ on_prefs_edit(GtkWidget *w, Chart_app *app)
     GNOME_STOCK_BUTTON_OK, GNOME_STOCK_BUTTON_APPLY,
     GNOME_STOCK_BUTTON_CANCEL, NULL);
   gnome_dialog_close_hides(GNOME_DIALOG(prefs->dialog), TRUE);
-  //gtk_window_set_position(GTK_WINDOW(prefs->dialog), GTK_WIN_POS_MOUSE);
+/*
+  gtk_window_set_position(GTK_WINDOW(prefs->dialog), GTK_WIN_POS_MOUSE);
+*/
   gtk_signal_connect(GTK_OBJECT(prefs->dialog),
     "clicked", GTK_SIGNAL_FUNC(on_prefs_click), app);
   gtk_signal_connect(GTK_OBJECT(prefs->dialog),

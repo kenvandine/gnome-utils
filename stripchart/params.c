@@ -234,8 +234,10 @@ param_desc_ingest(const char *fn)
 		    "%s: file %s: unrecognized tag \"%s\" containing \"%s\"\n",
 		    prog_name, fn, key, val);
 	      }
-//  	    if (streq(desc->scale, "log")) desc->s_log = 1;
-//  	    if (streq(desc->type, "indicator")) desc->t_led = 1;
+/*
+  	    if (streq(desc->scale, "log")) desc->s_log = 1;
+  	    if (streq(desc->type, "indicator")) desc->t_led = 1;
+*/
 	    desc_ptr = g_realloc(desc_ptr,
 	      (item_count + 2) * sizeof(*desc_ptr));
 	    desc_ptr[item_count++] = desc;
