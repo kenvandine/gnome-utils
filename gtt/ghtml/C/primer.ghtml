@@ -5,6 +5,15 @@
 <body>
 <h1>Guile HTML Scheme Primer</h1>
 
+You can design custom reports rather easily if you know a bit
+of basic html.   And if you know scheme, then the world is at 
+your feet, since the report generator uses guile to interpret the
+embedded scheme in a report.  You can view the html source for
+this example primer by viewing 'primer.ghtml' (probably installed
+at <tt>/usr/share/gtt/ghtml/C/primer.ghtml</tt>)
+<p>
+Some sample scheme expressions, and thier output:
+
 (gtt-hello)  prints the following:
 <?scm  (gtt-hello) ?>
 <br>
@@ -19,6 +28,9 @@
 
 (gtt-show-basic-journal)  prints a basic layout of the journal, see journal.ghtml for an example.
 <br>
+(gtt-show-table)  prints a configurable table showing the journal entries. See bigtable.ghtml for an example.
+<br>
+(gtt-show-invoice)  prints a configurable invoice, see invoice.ghtml for an example.
 
 <p>
 Thats all for now folks!
