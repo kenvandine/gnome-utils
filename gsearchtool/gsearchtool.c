@@ -384,8 +384,8 @@ build_search_command (void)
 					gchar *escaped;
 					gchar *regex;
 					
-					escaped = escape_single_quotes (constraint->data.text);
-					regex = backslash_backslashes (escaped);
+					escaped = backslash_backslashes (constraint->data.text);
+					regex = escape_single_quotes (escaped);
 					
 					if (regex != NULL) {	
 						search_command.regex_matching_enabled = TRUE;
@@ -400,10 +400,10 @@ build_search_command (void)
 					gchar *backslashed;
 					gchar *locale;
 					
-					escaped = escape_single_quotes (constraint->data.text);
-					backslashed = backslash_backslashes (escaped);
+					backslashed = backslash_backslashes (constraint->data.text);
+					escaped = escape_single_quotes (backslashed);
 					
-					locale = g_locale_from_utf8 (backslashed, -1, NULL, NULL, NULL);
+					locale = g_locale_from_utf8 (escaped, -1, NULL, NULL, NULL);
 					
 					if (strlen (locale) != 0) { 
 						g_string_append_printf (command,
