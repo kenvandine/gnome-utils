@@ -85,6 +85,7 @@ struct _SearchStruct {
 	gboolean		not_running_timeout;
 	gboolean		aborted;
 	RunStatus        	running;
+	GHashTable              *pixbuf_hash;
 } search_command;
 
 struct _InterfaceStruct {

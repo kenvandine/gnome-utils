@@ -458,7 +458,7 @@ strdup_strftime (const gchar *format,
 }
 
 gchar *
-get_file_type_with_mime_type (const gchar *filename, 
+get_file_type_for_mime_type (const gchar *filename, 
 			      const gchar *mimetype)
 {
 	if (filename == NULL || mimetype == NULL) {
@@ -486,14 +486,13 @@ get_file_type_with_mime_type (const gchar *filename,
 	return (gchar *)gnome_vfs_mime_get_description (mimetype);
 } 
 
-gchar *
-get_file_icon_with_mime_type (const gchar *filename, 
-			      const gchar *mimetype) 
+GdkPixbuf *
+get_file_pixbuf_for_mime_type (const gchar *filename, 
+			       const gchar *mimetype) 
 {
-	GtkIconInfo *icon_info;
-	gchar *icon_name = NULL;	
-	gchar *icon_path = NULL;
-
+	GdkPixbuf *pixbuf;
+	gchar *icon_name = NULL;
+	
 	if (filename == NULL || mimetype == NULL) {
 		icon_name = g_strdup (ICON_THEME_REGULAR_ICON);
 	}
@@ -515,11 +514,15 @@ get_file_icon_with_mime_type (const gchar *filename,
 					       NULL, mimetype, 0, NULL);
 	}
 	
-	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (), icon_name, 48, 0);
-	icon_path = (gchar *) gtk_icon_info_get_filename (icon_info);
-					  
+	pixbuf = (GdkPixbuf *) g_hash_table_lookup (search_command.pixbuf_hash, icon_name);
+	
+	if (pixbuf == NULL) {
+		pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), icon_name, 24, 0, NULL);
+		g_hash_table_insert (search_command.pixbuf_hash, g_strdup (icon_name), pixbuf);
+	}
+						  
 	g_free (icon_name);
-	return icon_path;	
+	return pixbuf;
 }
 
 gboolean

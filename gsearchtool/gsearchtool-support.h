@@ -81,10 +81,10 @@ gchar *
 strdup_strftime 		(const gchar *format, 
 				 struct tm *time_pieces); 
 gchar *
-get_file_type_with_mime_type	(const gchar *filename,
+get_file_type_for_mime_type	(const gchar *filename,
 				 const gchar *mimetype);
-gchar *
-get_file_icon_with_mime_type 	(const gchar *filename,
+GdkPixbuf *
+get_file_pixbuf_for_mime_type 	(const gchar *filename,
 				 const gchar *mimetype);
 gboolean  	
 is_nautilus_running 		(void);

@@ -451,10 +451,9 @@ add_file_to_search_results (const gchar 	*file,
 			    GtkTreeIter 	*iter)
 {					
 	gchar *mime_type = gnome_vfs_get_mime_type (file);
-	gchar *description = get_file_type_with_mime_type (file, mime_type);
-	gchar *icon_path = get_file_icon_with_mime_type (file, mime_type);
+	gchar *description = get_file_type_for_mime_type (file, mime_type);
+	GdkPixbuf *pixbuf = get_file_pixbuf_for_mime_type (file, mime_type);
 	GnomeVFSFileInfo *vfs_file_info = gnome_vfs_file_info_new ();
-	GdkPixbuf *pixbuf = NULL;
 	gchar *readable_size, *readable_date;
 	gchar *utf8_base_name, *utf8_dir_name;
 	gchar *base_name, *dir_name;
@@ -463,33 +462,6 @@ add_file_to_search_results (const gchar 	*file,
 		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), TRUE);
 	}
 	
-	if (icon_path != NULL) {
-		pixbuf = gdk_pixbuf_new_from_file (icon_path, NULL);
-	}
-	
-	if (pixbuf != NULL) {
-		GdkPixbuf *scaled;
-		int        new_w, new_h;
-		int        w, h;
-		double     factor;
-
-		/* scale keeping aspect ratio. */
-
-		w = gdk_pixbuf_get_width (pixbuf);
-		h = gdk_pixbuf_get_height (pixbuf);
-			
-		factor = MIN (ICON_SIZE / w, ICON_SIZE / h);
-		new_w  = MAX ((int) (factor * w), 1);
-		new_h  = MAX ((int) (factor * h), 1);
-			
-		scaled = gdk_pixbuf_scale_simple (pixbuf,
-						  new_w,
-						  new_h,
-						  GDK_INTERP_BILINEAR);
-						  				  
-		g_object_unref (G_OBJECT (pixbuf));
-		pixbuf = scaled;       	
-	}
 	gnome_vfs_get_file_info (file, vfs_file_info, GNOME_VFS_FILE_INFO_DEFAULT);
 	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
 	readable_date = get_readable_date (vfs_file_info->mtime);
@@ -513,17 +485,12 @@ add_file_to_search_results (const gchar 	*file,
 			    COLUMN_NO_FILES_FOUND, FALSE,
 			    -1);
 
-	if (pixbuf != NULL) {
-		g_object_unref (G_OBJECT(pixbuf));
-	}
-
 	gnome_vfs_file_info_unref (vfs_file_info);
 	g_free (base_name);
 	g_free (dir_name);
 	g_free (mime_type);
 	g_free (utf8_base_name);
 	g_free (utf8_dir_name);
-	g_free (icon_path); 
 	g_free (readable_size);
 	g_free (readable_date);
 }
@@ -1304,6 +1271,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		search_data->lock = FALSE;
 		search_data->running = NOT_RUNNING;
 		search_data->not_running_timeout = TRUE;
+		g_hash_table_destroy (search_data->pixbuf_hash);
 		g_timeout_add (500, not_running_timeout_cb, NULL);
 
 		update_search_counts ();
@@ -1492,6 +1460,7 @@ spawn_search_command (gchar *command)
 	search_command.lock = TRUE;
 	search_command.aborted = FALSE;
 	search_command.running = RUNNING; 
+	search_command.pixbuf_hash = g_hash_table_new (g_str_hash, g_str_equal);
 
 	gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.stop_button);
 	gtk_widget_show (interface.stop_button);
