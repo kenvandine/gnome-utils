@@ -26,30 +26,6 @@
 #include "logview.h"
 #include "calendar.h"
 
-#define CALENDAR_WIDTH           180
-#define CALENDAR_HEIGHT          150
-
-#define SUNDAY                   0
-#define MONDAY                   1
-#define FRIDAY                   5
-#define SATURDAY                 6
-#define FEBRUARY                 1
-#define XSEP                     3
-#define CALLEFTMARGIN            5
-#define BASELINESKIP             4
-
-#define THISMONTH                1
-#define OTHERMONTH               2
-#define MARKEDDATE               3
-
-/*
- *       ----------------
- *       Global variables
- *       ----------------
- */
-
-extern char *month[12];
-
 /* ----------------------------------------------------------------------
    NAME:          CalendarMenu
    DESCRIPTION:   Display the calendar.
@@ -181,12 +157,7 @@ init_calendar_data (LogviewWindow *window)
        data->curmonthmark = window->curlog->lstats.firstmark;
        window->curlog->caldata = data;
 
-#if 0
-       /* Move mark to first marked date in this month */
-       data->curmonthmark = 
-	 get_mark_from_month (data, window->curlog->curmark->fulldate.tm_mon,
-			      window->curlog->curmark->fulldate.tm_year);
-#endif
+       read_marked_dates (data, window);
        
        /* signal a redraw event */
        g_signal_emit_by_name (GTK_OBJECT (window->calendar), "month_changed");
