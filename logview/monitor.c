@@ -91,7 +91,6 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
    GtkWidget *list_item;
    GtkWidget *button;       
    GtkWidget *vbox2;       
-   GtkStyle *style;
    GtkBox *vbox;
    char buffer[10];
    int i;
@@ -112,7 +111,6 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       monoptions = gtk_window_new (GTK_WINDOW_TOPLEVEL);
       gtk_container_set_border_width (GTK_CONTAINER (monoptions), 5);
       gtk_window_set_title (GTK_WINDOW (monoptions), _("Monitor options"));
-      gtk_widget_set_style (monoptions, cfg->main_style);
       gtk_signal_connect (GTK_OBJECT (monoptions), "destroy",
 			  GTK_SIGNAL_FUNC (close_monitor_options),
 			  NULL);
@@ -122,12 +120,8 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_container_add (GTK_CONTAINER (monoptions), GTK_WIDGET (vbox));
       gtk_widget_show (GTK_WIDGET (vbox)); 
 
-      style = gtk_style_new ();
-      memcpy (style, cfg->main_style, sizeof(GtkStyle));
-      style->font_desc = pango_font_description_copy (cfg->heading);
       label = gtk_label_new (_("Choose logs to monitor"));
       gtk_misc_set_alignment(GTK_MISC (label), 0.0, 0.0);
-      gtk_widget_set_style (label, style);
       gtk_box_pack_start (vbox, label, TRUE, TRUE, 0);
       gtk_widget_show (label);
 
@@ -142,7 +136,6 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_widget_set_usize (scrolled_win, 160, 100);
       gtk_container_set_border_width (GTK_CONTAINER (scrolled_win), 3);
       gtk_box_pack_start (GTK_BOX (hbox), scrolled_win, TRUE, TRUE, 0);
-      gtk_widget_set_style (scrolled_win, cfg->main_style);
       gtk_widget_show (scrolled_win);
 
       srclist = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_INT);
@@ -156,7 +149,6 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
                                ( (GtkTreeSelection *)gtk_tree_view_get_selection
                                 (GTK_TREE_VIEW (srclist_view)),
                                  GTK_SELECTION_SINGLE);
-      gtk_widget_set_style (srclist_view, cfg->main_style);
       gtk_container_add (GTK_CONTAINER (scrolled_win), srclist_view);
       gtk_widget_show (srclist_view);
 
@@ -194,7 +186,6 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
                                       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
       gtk_widget_set_usize( scrolled_win, 160, 100);
-      gtk_widget_set_style( scrolled_win, cfg->main_style );
       gtk_box_pack_start (GTK_BOX (hbox), scrolled_win, TRUE, TRUE, 0);
       gtk_widget_show (scrolled_win);
 
@@ -457,7 +448,6 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    monwindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
    gtk_container_set_border_width (GTK_CONTAINER (monwindow), 0);
    gtk_window_set_title (GTK_WINDOW (monwindow), _("Monitoring logs..."));
-   gtk_widget_set_style (monwindow, cfg->main_style);
 
    gtk_widget_set_usize(monwindow, w, h);
    gtk_widget_set_uposition(monwindow, x, y);
@@ -511,7 +501,6 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
 
        gtk_tree_view_column_set_alignment (GTK_TREE_VIEW_COLUMN (clist_column),
                                           0.0);
-       gtk_widget_set_style (GTK_WIDGET (clist_view), cfg->main_style);
        loglist[i]->mon_lines = (GtkWidget *) clist_view;
        gtk_container_add (GTK_CONTAINER (frame), GTK_WIDGET (swin));
        gtk_widget_show_all (swin);
