@@ -17,8 +17,6 @@ gshutdown_LDADD = \
 	$(INTLLIBS)
 
 EXTRA_DIST = \
-	topic.dat		\
-	topic.dat.es		\
 	gshutdown.desktop
 
 Systemdir = $(datadir)/apps/System
