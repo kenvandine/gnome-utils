@@ -57,18 +57,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 	  return;
   }
 
-  {
-	  gchar *logo_fn = NULL;
-
-	  logo_fn = gnome_pixmap_file("gnome-system-log/logview.xpm");
-	  if (logo_fn != NULL)
-	  {
-		  logo = gdk_pixbuf_new_from_file(logo_fn, NULL);
-		  g_free(logo_fn);
-	  }
-  }
-
-  /* go get logview.xpm in $(prefix)/share/pixmaps/logview */
+  logo = gdk_pixbuf_new_from_file (DATADIR G_DIR_SEPARATOR_S "pixmaps" G_DIR_SEPARATOR_S "gnome-log.png", NULL);
   about_window = gnome_about_new (_("GNOME System Log Viewer"), VERSION,
            			  N_("Copyright (C) 1998"),
 				  _(comments),
