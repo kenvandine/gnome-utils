@@ -462,27 +462,25 @@ CreateMainWin ()
    gtk_box_pack_start (GTK_BOX (hbox), GTK_WIDGET (filename_label), 
 		       FALSE, FALSE, 0);
    
-   /* Add padding to right justify */
-   padding = gtk_label_new (" ");
-   gtk_widget_show (padding);
-   gtk_box_pack_start (GTK_BOX (hbox), padding, TRUE, TRUE, 0);
-
    hbox_date = gtk_hbox_new (FALSE, 2);
    gtk_container_set_border_width ( GTK_CONTAINER (hbox_date), 3);
 
+   date_label = (GtkLabel *)gtk_label_new ("");
+   gtk_widget_show (GTK_WIDGET (date_label));
+   /* gtk_widget_set_size_request (GTK_WIDGET (label), 60, -1); */
+   gtk_box_pack_end (GTK_BOX (hbox_date), GTK_WIDGET (date_label), 
+		     TRUE, TRUE, 0);
+
+
    label = (GtkLabel *)gtk_label_new (_("Last Modified: "));
    gtk_label_set_justify (label, GTK_JUSTIFY_RIGHT);
-   /* gtk_widget_set_size_request (GTK_WIDGET(label), 240, -1); */
-   gtk_box_pack_start (GTK_BOX (hbox_date), GTK_WIDGET (label), FALSE, FALSE, 0);
+   gtk_box_pack_end (GTK_BOX (hbox_date), GTK_WIDGET (label), 
+		     FALSE, FALSE, 0);
    gtk_widget_show (GTK_WIDGET (label));  
 
-   date_label = (GtkLabel *)gtk_label_new ("");
-   gtk_widget_show (GTK_WIDGET (date_label));  
-   /* gtk_widget_set_size_request (GTK_WIDGET (label), 60, -1); */
-   gtk_box_pack_start (GTK_BOX (hbox_date), GTK_WIDGET (date_label), TRUE, TRUE, 0);
 
    gtk_widget_show (hbox_date);
-   gtk_box_pack_start (GTK_BOX (hbox), hbox_date, FALSE, FALSE, 0);
+   gtk_box_pack_end (GTK_BOX (hbox), hbox_date, FALSE, FALSE, 0);
    gtk_widget_show (hbox);
    gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
