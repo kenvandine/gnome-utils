@@ -251,9 +251,8 @@ reset_timers (IdleTimeout *si)
   if (si->timer_id)
     {
 #ifdef DEBUG_TIMERS
-      if (p->verbose_p)
-        fprintf (stderr, "%s: killing idle_timer  (%ld, %ld)\n",
-                 blurb(), p->timeout, si->timer_id);
+      fprintf (stderr, "killing idle_timer  (%ld, %ld)\n",
+                 p->timeout, si->timer_id);
 #endif /* DEBUG_TIMERS */
       gtk_timeout_remove (si->timer_id);
     }
@@ -277,7 +276,7 @@ check_pointer_timer (gpointer closure)
   IdleTimeout *si = (IdleTimeout *) closure;
   Bool active_p = False;
 
-printf ("duuude check_pointer_timer now\n");
+  // printf ("duuude check_pointer_timer now\n");
   if (!si->using_proc_interrupts &&
       (si->using_xidle_extension ||
        si->using_mit_saver_extension ||
@@ -532,7 +531,7 @@ poll_idle_time (IdleTimeout *si, Bool until_idle_p)
 if (False == XCheckIfEvent (si->dpy, &event, if_event_predicate, (XPointer) si))
 {
 printf ("duuuude no events match\n");
-return 66;
+return si->last_activity_time;
 }
 else
 {
@@ -761,7 +760,7 @@ printf ("duuude match \n");
 
   if (until_idle_p) abort ();
 
-  return 888;
+  return si->last_activity_time;
 }
 
 
@@ -972,6 +971,30 @@ proc_interrupts_activity_p (IdleTimeout *si)
 #endif /* HAVE_PROC_INTERRUPTS */
 
 /* ===================================================================== */
+/* we need to take over the main loop, in order to be able to capture
+ * X Events before gdk eats them.   So we select on the X socket, and
+ * timeout once a minute.
+ */
+
+static int
+idle_timeout_main_loop (gpointer data)
+{
+	IdleTimeout *si = data;
+	int quit_now = 0;
+	int fd;
+
+	fd = ConnectionNumber (si->dpy);
+
+	while (!quit_now)
+	{
+		quit_now = gtk_main_iteration_do (TRUE);
+printf ("did = %d fd=%d\n", quit_now, fd);
+	}
+	return 0;
+}
+
+
+/* ===================================================================== */
 
 IdleTimeout *
 idle_timeout_new (void)
@@ -996,6 +1019,8 @@ idle_timeout_new (void)
 
 /* hack alert don't run this unless other extensions ... yadda */
   notice_events (si, DefaultRootWindow(si->dpy), True);
+
+  gtk_timeout_add (900, idle_timeout_main_loop, (gpointer)si);
   return si;
 }
 
