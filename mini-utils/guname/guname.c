@@ -709,7 +709,14 @@ static void file_selection_cb(GtkWidget * button, gpointer fs)
 
 static void save_callback(GtkWidget * menuitem, gpointer data)
 {
-  GtkWidget * fs;
+  static GtkWidget * fs = NULL;
+
+  if (fs != NULL)
+  {
+  	gdk_window_show(fs->window);
+	gdk_window_raise(fs->window);
+	return;
+  }
 
   fs = gtk_file_selection_new(_("Save System Information As..."));
   
@@ -718,6 +725,9 @@ static void save_callback(GtkWidget * menuitem, gpointer data)
 
   gtk_signal_connect_object(GTK_OBJECT(GTK_FILE_SELECTION(fs)->cancel_button), "clicked",
                             GTK_SIGNAL_FUNC(gtk_widget_destroy), GTK_OBJECT(fs));
+  /* Mark the dialog as destroyed when it is destroyed so we don't try to show it again */
+  gtk_signal_connect(GTK_OBJECT(fs), "destroy",
+		     GTK_SIGNAL_FUNC(gtk_widget_destroyed), &fs);
   
   gtk_widget_show(fs);
 }
@@ -833,13 +843,23 @@ static void mailx_callback(gchar * string, gpointer data)
 
 static void mail_callback(GtkWidget * menuitem, gpointer data)
 {
-  gnome_request_dialog(FALSE,
+  static GtkWidget *mx = NULL;
+
+  if (mx != NULL)
+  {
+  	gdk_window_show(mx->window);
+	gdk_window_raise(mx->window);
+	return;
+  }
+  mx = gnome_request_dialog(FALSE,
                        _("Address to mail to:"),
                        NULL,
                        256,
                        mailx_callback,
                        NULL,
                        NULL);
+  gtk_signal_connect(GTK_OBJECT(mx), "destroy",
+		     GTK_SIGNAL_FUNC(gtk_widget_destroyed), &mx);
 }
 
 static void detailed_callback(GtkWidget * menuitem, gpointer data)
