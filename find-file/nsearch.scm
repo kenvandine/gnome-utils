@@ -503,6 +503,8 @@
    (else (error 'wrong-type-arg expander-button))))
 
 
+(gnome-init-hack "find-file" (lambda (option arg) #f) '())
+
 (define top-search-window (make-top-search-window))
 (gtk-widget-show top-search-window)
 
