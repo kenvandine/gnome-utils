@@ -50,11 +50,20 @@ AM_GNU_GETTEXT
 
 dnl genius
 PROGRAMS_GENIUS=""
+GMP_LIB=""
 AC_CHECK_LIB(gmp, mpz_init_set,[
    AC_PROG_LEX
    AC_PROG_YACC
-   PROGRAMS_GENIUS=genius])
+   PROGRAMS_GENIUS=genius
+   GMP_LIB=-lgmp],
+   [AC_CHECK_LIB(gmp2, mpz_init_set_d,[
+      AC_PROG_LEX
+      AC_PROG_YACC
+      PROGRAMS_GENIUS=genius
+      GMP_LIB=-lgmp2
+      AC_DEFINE(HAVE_GMP2_INCLUDE_DIR)])])
 AC_SUBST(PROGRAMS_GENIUS)
+AC_SUBST(GMP_LIB)
 
 dnl gtop
 PROGRAMS_GTOP=""
