@@ -25,13 +25,6 @@
 
 
 /* ------------------------------------------------------------------ */
-/* GNU portability utilities */
-
-#ifndef HAVE_STPCPY
-char *stpcpy(char *dest, const char *src);
-#endif
-
-/* ------------------------------------------------------------------ */
 /* date and time utilities */
 typedef enum
 {

@@ -104,14 +104,14 @@ do_show_journal (GttGhtml *ghtml, GttProject*prj)
 		GttTask *tsk = node->data;
 		
 		p = prn;
-		p = stpcpy (p, "<tr><td colspan=4>"
+		p = g_stpcpy (p, "<tr><td colspan=4>"
 			"<a href=\"gtt:task:");
 		p += sprintf (p, "%p\">", tsk);
 
 		pp = gtt_task_get_memo(tsk);
 		if (!pp || !pp[0]) pp = _("(empty)");
-		p = stpcpy (p, pp);
-		p = stpcpy (p, "</a>");
+		p = g_stpcpy (p, pp);
+		p = g_stpcpy (p, "</a>");
 
 		(ghtml->write_stream) (ghtml, prn, p-prn, ghtml->user_data);
 
@@ -126,7 +126,7 @@ do_show_journal (GttGhtml *ghtml, GttProject*prj)
 			elapsed = stop - start;
 			
 			p = prn;
-			p = stpcpy (p, 
+			p = g_stpcpy (p, 
 				"<tr><td>&nbsp;&nbsp;&nbsp;"
 				"<td align=right>&nbsp;&nbsp;"
 				"<a href=\"gtt:interval:");
@@ -144,7 +144,7 @@ do_show_journal (GttGhtml *ghtml, GttProject*prj)
 
 			/* print hour only or date too? */
 			prt_date = is_same_day(start, stop);
-			p = stpcpy (p, 
+			p = g_stpcpy (p, 
 				"</a>&nbsp;&nbsp;"
 				"<td>&nbsp;&nbsp;"
 				"<a href=\"gtt:interval:");
@@ -157,9 +157,9 @@ do_show_journal (GttGhtml *ghtml, GttProject*prj)
 
 			prev_stop = stop;
 
-			p = stpcpy (p, "</a>&nbsp;&nbsp;<td>&nbsp;&nbsp;");
+			p = g_stpcpy (p, "</a>&nbsp;&nbsp;<td>&nbsp;&nbsp;");
 			p = print_hours_elapsed (p, 40, elapsed, TRUE);
-			p = stpcpy (p, "&nbsp;&nbsp;");
+			p = g_stpcpy (p, "&nbsp;&nbsp;");
 			len = p - prn;
 			(ghtml->write_stream) (ghtml, prn, len, ghtml->user_data);
 		}
@@ -175,18 +175,18 @@ do_show_journal (GttGhtml *ghtml, GttProject*prj)
 #define TASK_COL_TITLE(DEFAULT_STR)			\
 {							\
 	if (ghtml->task_titles[i]) {			\
-		p = stpcpy (p, ghtml->task_titles[i]);	\
+		p = g_stpcpy (p, ghtml->task_titles[i]);	\
 	} else {					\
-		p = stpcpy (p, DEFAULT_STR);		\
+		p = g_stpcpy (p, DEFAULT_STR);		\
 	}						\
 }
 
 #define INVL_COL_TITLE(DEFAULT_STR)			\
 {							\
 	if (ghtml->invl_titles[i]) {			\
-		p = stpcpy (p, ghtml->invl_titles[i]);	\
+		p = g_stpcpy (p, ghtml->invl_titles[i]);	\
 	} else {					\
-		p = stpcpy (p, DEFAULT_STR);		\
+		p = g_stpcpy (p, DEFAULT_STR);		\
 	}						\
 }
 
@@ -199,12 +199,12 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 	char buff[2000];
 
 	p = buff;
-	p = stpcpy (p, "<table border=1>");
+	p = g_stpcpy (p, "<table border=1>");
 
 	/* write out the table header */
 	if (0 < ghtml->ntask_cols)
 	{
-		p = stpcpy (p, "<tr>");
+		p = g_stpcpy (p, "<tr>");
 	}
 	for (i=0; i<ghtml->ntask_cols; i++)
 	{
@@ -220,42 +220,42 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 				break;
 			}
 			case TASK_TIME:
-				p = stpcpy (p, "<th>");
+				p = g_stpcpy (p, "<th>");
 				TASK_COL_TITLE (_("Task Time"));
 				break;
 			case BILLSTATUS:
-				p = stpcpy (p, "<th>");
+				p = g_stpcpy (p, "<th>");
 				TASK_COL_TITLE (_("Bill Status"));
 				break;
 			case BILLABLE:
-				p = stpcpy (p, "<th>");
+				p = g_stpcpy (p, "<th>");
 				TASK_COL_TITLE (_("Billable"));
 				break;
 			case BILLRATE:
-				p = stpcpy (p, "<th>");
+				p = g_stpcpy (p, "<th>");
 				TASK_COL_TITLE (_("Bill Rate"));
 				break;
 			case VALUE:
-				p = stpcpy (p, "<th>");
+				p = g_stpcpy (p, "<th>");
 				TASK_COL_TITLE (_("Value"));
 				break;
 			case BILLABLE_VALUE:
-				p = stpcpy (p, "<th>");
+				p = g_stpcpy (p, "<th>");
 				TASK_COL_TITLE (_("Billable Value"));
 				break;
 			default:
-				p = stpcpy (p, "<th>");
+				p = g_stpcpy (p, "<th>");
 				TASK_COL_TITLE (_("No Default Value"));
 		}
 	}
 
 	if (0 < ghtml->ninvl_cols)
 	{
-		p = stpcpy (p, "</th></tr><tr>");
+		p = g_stpcpy (p, "</th></tr><tr>");
 	}
 	for (i=0; i<ghtml->ninvl_cols; i++)
 	{
-		p = stpcpy (p, "<th>");
+		p = g_stpcpy (p, "<th>");
 		switch (ghtml->invl_cols[i]) 
 		{
 			case START_DATIME:
@@ -276,7 +276,7 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 	}
 	if (0 < ghtml->ninvl_cols)
 	{
-		p = stpcpy (p, "</th></tr>");
+		p = g_stpcpy (p, "</th></tr>");
 	}
 
 
@@ -343,7 +343,7 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 		/* write the task data */
 		if (0 < ghtml->ntask_cols)
 		{
-			p = stpcpy (p, "<tr>");
+			p = g_stpcpy (p, "<tr>");
 		}
 		for (i=0; i<ghtml->ntask_cols; i++)
 		{
@@ -357,94 +357,94 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 					p += sprintf (p, "<td colspan=%d>", mcols);
 					if (show_links) 
 					{
-						p = stpcpy (p, "<a href=\"gtt:task:");
+						p = g_stpcpy (p, "<a href=\"gtt:task:");
 						p += sprintf (p, "%p\">", tsk);
 					}
 					pp = gtt_task_get_memo(tsk);
 					if (!pp || !pp[0]) pp = _("(empty)");
-					p = stpcpy (p, pp);
-					if (show_links) p = stpcpy (p, "</a>");
+					p = g_stpcpy (p, pp);
+					if (show_links) p = g_stpcpy (p, "</a>");
 					break;
 				}
 
 				case TASK_TIME:
-					p = stpcpy (p, "<td align=right>");
+					p = g_stpcpy (p, "<td align=right>");
 					p = print_hours_elapsed (p, 40, task_secs, TRUE);
 					break;
 
 				case BILLSTATUS:
-					p = stpcpy (p, "<td>");
+					p = g_stpcpy (p, "<td>");
 					switch (billstatus)
 					{
 						case GTT_HOLD:
-							p = stpcpy (p, _("Hold"));
+							p = g_stpcpy (p, _("Hold"));
 							break;
 						case GTT_BILL:
-							p = stpcpy (p, _("Bill"));
+							p = g_stpcpy (p, _("Bill"));
 							break;
 						case GTT_PAID:
-							p = stpcpy (p, _("Paid"));
+							p = g_stpcpy (p, _("Paid"));
 							break;
 					}
 					break;
 
 				case BILLABLE:
-					p = stpcpy (p, "<td>");
+					p = g_stpcpy (p, "<td>");
 					switch (billable)
 					{
 						case GTT_BILLABLE:
-							p = stpcpy (p, _("Billable"));
+							p = g_stpcpy (p, _("Billable"));
 							break;
 						case GTT_NOT_BILLABLE:
-							p = stpcpy (p, _("Not Billable"));
+							p = g_stpcpy (p, _("Not Billable"));
 							break;
 						case GTT_NO_CHARGE:
-							p = stpcpy (p, _("No Charge"));
+							p = g_stpcpy (p, _("No Charge"));
 							break;
 					}
 					break;
 
 				case BILLRATE:
-					p = stpcpy (p, "<td>");
+					p = g_stpcpy (p, "<td>");
 					switch (billrate)
 					{
 						case GTT_REGULAR:
-							p = stpcpy (p, _("Regular"));
+							p = g_stpcpy (p, _("Regular"));
 							break;
 						case GTT_OVERTIME:
-							p = stpcpy (p, _("Overtime"));
+							p = g_stpcpy (p, _("Overtime"));
 							break;
 						case GTT_OVEROVER:
-							p = stpcpy (p, _("Double Overtime"));
+							p = g_stpcpy (p, _("Double Overtime"));
 							break;
 						case GTT_FLAT_FEE:
-							p = stpcpy (p, _("Flat Fee"));
+							p = g_stpcpy (p, _("Flat Fee"));
 							break;
 					}
 					break;
 
 				case VALUE:
-					p = stpcpy (p, "<td align=right>");
+					p = g_stpcpy (p, "<td align=right>");
 					
 					/* hack alert should use i18n currency/monetary printing */
 					p += sprintf (p, "$%.2f", value+0.0049);
 					break;
 
 				case BILLABLE_VALUE:
-					p = stpcpy (p, "<td align=right>");
+					p = g_stpcpy (p, "<td align=right>");
 					/* hack alert should use i18n currency/monetary printing */
 					p += sprintf (p, "$%.2f", billable_value+0.0049);
 					break;
 
 				default:
-					p = stpcpy (p, "<td>");
-					p = stpcpy (p, _("Error - Unknown"));
+					p = g_stpcpy (p, "<td>");
+					p = g_stpcpy (p, _("Error - Unknown"));
 			}
 		}
 
 		if (0 < ghtml->ntask_cols)
 		{
-			p = stpcpy (p, "</td></tr>");
+			p = g_stpcpy (p, "</td></tr>");
 			(ghtml->write_stream) (ghtml, buff, p-buff, ghtml->user_data);
 		}
 		
@@ -472,7 +472,7 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 
 			/* -------------------------- */
 			p = buff;
-			p = stpcpy (p, "<tr>");
+			p = g_stpcpy (p, "<tr>");
 			for (i=0; i<ghtml->ninvl_cols; i++)
 			{
 
@@ -480,7 +480,7 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 				{
 	case START_DATIME:
 	{
-		p = stpcpy (p, "<td align=right>&nbsp;&nbsp;");
+		p = g_stpcpy (p, "<td align=right>&nbsp;&nbsp;");
 		if (show_links)
 		{
 			p += sprintf (p, "<a href=\"gtt:interval:%p\">", ivl);
@@ -490,13 +490,13 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 		} else {
 			p = print_time (p, 100, start);
 		}
-		if (show_links) p = stpcpy (p, "</a>");
-		p = stpcpy (p, "&nbsp;&nbsp;");
+		if (show_links) p = g_stpcpy (p, "</a>");
+		p = g_stpcpy (p, "&nbsp;&nbsp;");
 		break;
 	}
 	case STOP_DATIME:
 	{
-		p = stpcpy (p, "<td align=right>&nbsp;&nbsp;");
+		p = g_stpcpy (p, "<td align=right>&nbsp;&nbsp;");
 		if (show_links)
 		{
 			p += sprintf (p, "<a href=\"gtt:interval:%p\">", ivl);
@@ -506,30 +506,30 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 		} else {
 			p = print_time (p, 100, stop);
 		}
-		if (show_links) p = stpcpy (p, "</a>");
-		p = stpcpy (p, "&nbsp;&nbsp;");
+		if (show_links) p = g_stpcpy (p, "</a>");
+		p = g_stpcpy (p, "&nbsp;&nbsp;");
 		break;
 	}
 	case ELAPSED:
 	{
-		p = stpcpy (p, "<td>&nbsp;&nbsp;");
+		p = g_stpcpy (p, "<td>&nbsp;&nbsp;");
 		p = print_hours_elapsed (p, 40, elapsed, TRUE);
-		p = stpcpy (p, "&nbsp;&nbsp;");
+		p = g_stpcpy (p, "&nbsp;&nbsp;");
 		break;
 	}
 	case FUZZ:
 	{
-		p = stpcpy (p, "<td>&nbsp;&nbsp;");
+		p = g_stpcpy (p, "<td>&nbsp;&nbsp;");
 		p = print_hours_elapsed (p, 40, gtt_interval_get_fuzz(ivl), TRUE);
-		p = stpcpy (p, "&nbsp;&nbsp;");
+		p = g_stpcpy (p, "&nbsp;&nbsp;");
 		break;
 	}
 	default:
-		p = stpcpy (p, "<td>");
+		p = g_stpcpy (p, "<td>");
 				}
 			}
 
-			p = stpcpy (p, "</td></tr>");
+			p = g_stpcpy (p, "</td></tr>");
 			len = p - buff;
 			(ghtml->write_stream) (ghtml, buff, len, ghtml->user_data);
 		}

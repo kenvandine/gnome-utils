@@ -103,21 +103,21 @@ wiggy_error (GttGhtml *pl, int err, const char * msg, gpointer ud)
 	if (404 == err)
 	{
 		p = buff;
-		p = stpcpy (p, "<html><body><h1>");
-		p = stpcpy (p, _("Error 404 Not Found"));
-		p = stpcpy (p, "</h1>");
+		p = g_stpcpy (p, "<html><body><h1>");
+		p = g_stpcpy (p, _("Error 404 Not Found"));
+		p = g_stpcpy (p, "</h1>");
 		p += sprintf (p, _("The file %s was not found."),
 		             (msg? (char*) msg : _("(null)")));
 		
-		p = stpcpy (p, "</body></html>");
+		p = g_stpcpy (p, "</body></html>");
 		gtk_html_write (htmlw, han, buff, p-buff);
 	}
 	else
 	{
 		p = buff;
-		p = stpcpy (p, "<html><body><h1>");
-		p = stpcpy (p, _("Unkown Error"));
-		p = stpcpy (p, "</h1></body></html>");
+		p = g_stpcpy (p, "<html><body><h1>");
+		p = g_stpcpy (p, _("Unkown Error"));
+		p = g_stpcpy (p, "</h1></body></html>");
 		gtk_html_write (htmlw, han, buff, p-buff);
 	}
 	
@@ -633,18 +633,18 @@ resolve_path (char *path_frag)
 		/* look in the local build dir first (for testing) */
 		
 		p = buff;
-		p = stpcpy (p, "ghtml/");
-		p = stpcpy (p, lang);
-		p = stpcpy (p, "/");
-		p = stpcpy (p, path_frag);
+		p = g_stpcpy (p, "ghtml/");
+		p = g_stpcpy (p, lang);
+		p = g_stpcpy (p, "/");
+		p = g_stpcpy (p, path_frag);
 		path = gnome_datadir_file (buff);
 		if (path) return path;
 
 		p = buff;
-		p = stpcpy (p, "gtt/ghtml/");
-		p = stpcpy (p, lang);
-		p = stpcpy (p, "/");
-		p = stpcpy (p, path_frag);
+		p = g_stpcpy (p, "gtt/ghtml/");
+		p = g_stpcpy (p, lang);
+		p = g_stpcpy (p, "/");
+		p = g_stpcpy (p, path_frag);
 		path = gnome_datadir_file (buff);
 		if (path) return path;
 	}
