@@ -251,30 +251,35 @@ parse_geometry(void)
 
 
 
-int main(int argc, char *argv[])
+int 
+main(int argc, char *argv[])
 {
 #ifdef USE_SM
 	GnomeClient *client;
-#endif
-	static const struct poptOption geo_options[] = {
-	  {"geometry", 'g', POPT_ARG_STRING, &geometry_string, 0, N_("Specify geometry"), N_("GEOMETRY")},
-	  {"select-project", 's', POPT_ARG_STRING, &first_proj_title, 0, N_("Select a project on startup"), N_("PROJECT")},
-	  {NULL, '\0', 0, NULL, 0}
+#endif /* USE_SM */
+	static const struct poptOption geo_options[] =
+	{
+		{"geometry", 'g', POPT_ARG_STRING, &geometry_string, 0,
+			N_("Specify geometry"), N_("GEOMETRY")},
+		{"select-project", 's', POPT_ARG_STRING, &first_proj_title, 0,
+			N_("Select a project on startup"), N_("PROJECT")},
+		{NULL, '\0', 0, NULL, 0}
 	};
 
-	gnome_init_with_popt_table("gtt", VERSION, argc, argv, geo_options, 0, NULL);
+	gnome_init_with_popt_table("gtt", VERSION, argc, argv,
+				   geo_options, 0, NULL);
 	parse_geometry();
 
 #ifdef USE_SM
 	client = gnome_master_client();
 	gtk_signal_connect(GTK_OBJECT(client), "save_yourself",
-			   GTK_SIGNAL_FUNC(save_state), (gpointer)argv[0]);
+			   GTK_SIGNAL_FUNC(save_state), (gpointer) argv[0]);
 	gtk_signal_connect(GTK_OBJECT(client), "die",
 			   GTK_SIGNAL_FUNC(session_die), NULL);
 #endif /* USE_SM */
 
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-	textdomain (PACKAGE);
+	bindtextdomain(PACKAGE, GNOMELOCALEDIR);
+	textdomain(PACKAGE);
 
 	signal(SIGCHLD, SIG_IGN);
 	lock_gtt();
@@ -284,8 +289,10 @@ int main(int argc, char *argv[])
 	}
 	gtk_widget_size_request(window, &window->requisition);
 	if (w_w != 0) {
-		if (window->requisition.width > w_w) w_w = window->requisition.width;
-		if (window->requisition.height > w_h) w_h = window->requisition.height;
+		if (window->requisition.width > w_w)
+			w_w = window->requisition.width;
+		if (window->requisition.height > w_h)
+			w_h = window->requisition.height;
 		gtk_widget_set_usize(window, w_w, w_h);
 	} else {
 		w_w = window->requisition.width;
@@ -294,13 +301,19 @@ int main(int argc, char *argv[])
 	if (w_xyset) {
 		int t;
 		t = gdk_screen_width();
-		if (!w_sx) w_x += t - w_w;
-		while (w_x < 0) w_x += t;
-		while (w_x > t) w_x -= t;
+		if (!w_sx)
+			w_x += t - w_w;
+		while (w_x < 0)
+			w_x += t;
+		while (w_x > t)
+			w_x -= t;
 		t = gdk_screen_height();
-		if (!w_sy) w_y += t - w_h;
-		while (w_y < 0) w_y += t;
-		while (w_y > t) w_y -= t;
+		if (!w_sy)
+			w_y += t - w_h;
+		while (w_y < 0)
+			w_y += t;
+		while (w_y > t)
+			w_y -= t;
 		gtk_widget_set_uposition(window, w_x, w_y);
 	}
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",

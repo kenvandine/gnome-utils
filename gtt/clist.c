@@ -64,7 +64,15 @@ unselect_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 	GtkWidget *menu;
 
 	if (gtk_clist_get_row_data(clist, row) != cur_proj) return;
-	if ((!event) || (event->button != 3)) {
+	if (event) {
+		if (event->button == 3) {
+			/* make sure the project keeps selection */
+			gtk_clist_select_row(GTK_CLIST(glist), row, column);
+			menu = menus_get_popup();
+			gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
+				       3, event->time);
+			return;
+		}
 		if (event->type == GDK_2BUTTON_PRESS) {
 			cur_proj_set(gtk_clist_get_row_data(clist, row));
 			gtk_clist_select_row(GTK_CLIST(glist), cur_proj->row,
@@ -72,13 +80,8 @@ unselect_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 			prop_dialog(cur_proj);
 			return;
 		}
-		cur_proj_set(NULL);
-		return;
 	}
-	/* make sure the project keeps selection */
-	gtk_clist_select_row(GTK_CLIST(glist), row, column);
-	menu = menus_get_popup();
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, event->time);
+	cur_proj_set(NULL);
 }
 
 
