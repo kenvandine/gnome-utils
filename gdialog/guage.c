@@ -80,6 +80,7 @@ dialog_gauge (const char *title, const char *prompt, int height,
 		add_atk_relation(p, GTK_WIDGET(labellist->data), ATK_RELATION_LABELLED_BY);
 	}
 
+	g_signal_connect (G_OBJECT (w), "delete_event", gtk_main_quit, NULL);
 	gtk_widget_show_all(w);
 	gtk_main();
 	exit( 0 );
