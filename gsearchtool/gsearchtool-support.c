@@ -787,18 +787,21 @@ open_file_with_nautilus (GtkWidget * window,
                          const gchar * file)
 {
 	gchar * command;
-	
+	gchar * escaped;
+
+	escaped = escape_single_quotes (file);
+
 	command = g_strconcat ("nautilus ", 
 	                       "--sm-disable ",
 	                       "--no-desktop ", 
-	                       "--no-default-window ", 
-	                       (gchar *) file, 
+	                       "--no-default-window ",
+			       "'", escaped, "'", 
 	                       NULL);
-	
 	gdk_x11_window_set_user_time (window->window, 0);
 	g_spawn_command_line_async (command, NULL);
 	g_free (command);
-	
+	g_free (escaped);
+
 	return TRUE;
 }
 
