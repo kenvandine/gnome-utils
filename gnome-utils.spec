@@ -31,7 +31,7 @@ using your computer easy, powerful, and easy to configure.
 
 %prep
 %setup
-%patch -p1 << EOF
+patch -p1 << EOF
 --- gnome-utils/Makefile.am.msf	Mon May  4 20:35:51 1998
 +++ gnome-utils/Makefile.am	Mon May  4 20:36:18 1998
 @@ -1,10 +1,10 @@
