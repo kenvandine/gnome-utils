@@ -134,7 +134,12 @@ new_doc_cb (GtkWidget *widget)
 static void
 new_view_cb (GtkWidget *widget)
 {
-  dialog_new_view ();
+  MDIColorGeneric *mcg;
+
+  mcg = MDI_COLOR_GENERIC (gnome_mdi_get_active_child (mdi));
+  
+  if (mcg)
+    dialog_new_view (mcg);
 }
 
 static gint

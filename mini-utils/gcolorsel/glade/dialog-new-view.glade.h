@@ -6,6 +6,5 @@
  */
 
 gchar *s = N_("Create a new view");
-gchar *s = N_("Please, select the type of the view to create, and the document that the view will have to show.");
-gchar *s = N_("Select view type");
-gchar *s = N_("Select document");
+gchar *s = N_("Please, select the type of view you want to create.");
+gchar *s = N_("label4");

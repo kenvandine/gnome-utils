@@ -5,40 +5,10 @@
 #include "gnome.h"
 #include "glade/glade.h"
 
-GtkCList *clist_doc;
 GtkCList *clist_view;
 GtkWidget *dia;
-
-static void
-dialog_fill_clist_doc (GtkCList *clist)
-{
-  GList *list = mdi->children;
-  MDIColorGeneric *mcg;
-  char *str[1];
-  int pos;
-
-  gtk_clist_freeze (clist);
-
-  while (list) {
-    mcg = list->data;
-
-    if (! mcg->temp) {
-      
-      str[0] = g_strdup_printf ("%s (%s)", mcg->name,
-			      gtk_type_name (GTK_OBJECT_TYPE (mcg)));
-      
-      pos = gtk_clist_append (clist, str);
-      gtk_clist_set_row_data (clist, pos, mcg);
-      
-      g_free (str[0]);
-    }
-     
-    list = g_list_next (list);
-  }
-
-  gtk_clist_sort (clist);
-  gtk_clist_thaw (clist);
-}
+GtkWidget *text_description;
+MDIColorGeneric *mcg;
 
 static void 
 dialog_fill_clist_view (GtkCList *clist)
@@ -68,36 +38,47 @@ dialog_fill_clist_view (GtkCList *clist)
 static void
 clist_select (GtkWidget *widget, gint row, gint column, gpointer data)
 {
+  views_t *views;
+  int pos = 0;
+
   gnome_dialog_set_sensitive (GNOME_DIALOG (dia), 0, 
-		     ((clist_doc->selection) && (clist_view->selection)));
+			      clist_view->selection != NULL);
+
+  gtk_editable_delete_text (GTK_EDITABLE (text_description), 0, -1);
+
+  if (clist_view->selection) {
+    views = gtk_clist_get_row_data (clist_view, 
+		       GPOINTER_TO_INT (clist_view->selection->data));
+
+    gtk_editable_insert_text (GTK_EDITABLE (text_description), 
+			      views->description,
+			      strlen (views->description), &pos);    
+  }
 }
 
 static void
 create_view (void)
 {
   views_t *views;
-  MDIColorGeneric *mcg;
 
   g_assert (clist_view->selection != NULL);
-  g_assert (clist_doc->selection != NULL);
 
   views = gtk_clist_get_row_data (clist_view,
 				GPOINTER_TO_INT (clist_view->selection->data));
   g_assert (views != NULL);
 
-  mcg = gtk_clist_get_row_data (clist_doc,
-				GPOINTER_TO_INT (clist_doc->selection->data));
-  g_assert (mcg != NULL);
 
   mdi_color_generic_append_view_type (mcg, views->type ());
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (mcg));
 }
 
 void
-dialog_new_view (void)
+dialog_new_view (MDIColorGeneric *mcg_connect)
 {
   GladeXML *gui;
   int result;
+
+  mcg = mcg_connect;
 
   gui = glade_xml_new (GCOLORSEL_GLADEDIR "dialog-new-view.glade", NULL);
   g_assert (gui != NULL);
@@ -105,18 +86,13 @@ dialog_new_view (void)
   dia = glade_xml_get_widget (gui, "dialog-new-view");
   g_assert (dia != NULL);
 
-  clist_doc = GTK_CLIST (glade_xml_get_widget (gui, "clist-document"));
   clist_view = GTK_CLIST (glade_xml_get_widget (gui, "clist-view"));
+  text_description = glade_xml_get_widget (gui, "text-description");
 
   gtk_object_unref (GTK_OBJECT (gui));
 
-  dialog_fill_clist_doc (clist_doc);
   dialog_fill_clist_view (clist_view);
 
-  gtk_signal_connect (GTK_OBJECT (clist_doc), "select_row",
-		      GTK_SIGNAL_FUNC (clist_select), NULL);
-  gtk_signal_connect (GTK_OBJECT (clist_doc), "unselect_row",
-		      GTK_SIGNAL_FUNC (clist_select), NULL);
   gtk_signal_connect (GTK_OBJECT (clist_view), "select_row",
 		      GTK_SIGNAL_FUNC (clist_select), NULL);
   gtk_signal_connect (GTK_OBJECT (clist_view), "unselect_row",

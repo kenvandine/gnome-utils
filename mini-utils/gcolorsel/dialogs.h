@@ -1,7 +1,9 @@
 #ifndef DIALOGS_H
 #define DIALOGS_H
 
-void dialog_new_view (void);
+#include "mdi-color-generic.h"
+
+void dialog_new_view (MDIColorGeneric *mcg_connect);
 void dialog_new_doc (void);
 
 #endif

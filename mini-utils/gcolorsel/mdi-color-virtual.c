@@ -157,7 +157,7 @@ clear_col_mcg (MDIColorVirtual *mcv, MDIColorGeneric *from, gboolean unref)
       col = list->data;
       col_parent = gtk_object_get_data (GTK_OBJECT (col), "parent");
       
-      if ((! from) || (col->owner == from)) {
+      if ((! from) || (col_parent->owner == from)) {
 	mdi_color_generic_remove (MDI_COLOR_GENERIC (mcv), col);
 	
 	if (unref)
