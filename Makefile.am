@@ -2,7 +2,7 @@ if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
-SUBDIRS = idl $(gfloppy) logview gcharmap \
+SUBDIRS = po idl $(gfloppy) logview gcharmap \
 	gcalc gsearchtool  gdictsrc \
 	gdialog \
 	meat-grinder exe-handler omf-install 
