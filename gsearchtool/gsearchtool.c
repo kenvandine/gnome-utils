@@ -68,7 +68,7 @@ static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TEXT, "'!' -name '%s'", N_("File is not named"), FALSE },
 	{ SEARCH_CONSTRAINT_TEXT, "-regex '%s'", N_("File matches regular expression"), FALSE }, 
 	{ SEARCH_CONSTRAINT_BOOL, "-follow", N_("Follow symbolic links"), FALSE },
-	{ SEARCH_CONSTRAINT_BOOL, "-mount", N_("Search other filesystems"), FALSE },
+	{ SEARCH_CONSTRAINT_BOOL, "-xdev", N_("Search other filesystems"), FALSE },
 	{ SEARCH_CONSTRAINT_END, NULL, NULL, FALSE}
 }; 
 
@@ -198,7 +198,7 @@ build_search_command (void)
 						search_command.file_is_named_pattern);
 		} 
 		else {
-			g_string_append_printf (command, "find \"%s\" '!' -type d -name '%s' -mount -print", 
+			g_string_append_printf (command, "find \"%s\" '!' -type d -name '%s' -xdev -print", 
 						look_in_folder_locale, 
 						search_command.file_is_named_pattern);
 		}
@@ -228,7 +228,7 @@ build_search_command (void)
 						
 			switch (templates[constraint->constraint_id].type) {
 			case SEARCH_CONSTRAINT_BOOL:
-				if (strcmp (templates[constraint->constraint_id].option, "-mount") != 0) {
+				if (strcmp (templates[constraint->constraint_id].option, "-xdev") != 0) {
 					g_string_append_printf(command, "%s ",
 						       templates[constraint->constraint_id].option);
 				}
@@ -285,7 +285,7 @@ build_search_command (void)
 		search_command.file_is_named_pattern = g_strdup ("*");
 		
 		if (disable_mount_argument != TRUE) {
-			g_string_append (command, "-mount ");
+			g_string_append (command, "-xdev ");
 		}
 		
 		g_string_append (command, "-print ");
