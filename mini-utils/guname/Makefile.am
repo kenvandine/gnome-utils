@@ -37,8 +37,3 @@ EXTRA_DIST = 		\
 	moreinfo.c	\
 	moreinfo.h
 
-build_AUTHORS: $(wildcard $(top_srcdir)/../gnome-*/AUTHORS)
-	cat $(top_srcdir)/../gnome-*/AUTHORS \
-	| sed -e 's,<[^>]*>,,g' -e 's,([^)]*),,g' -e 's, *$$,,g' \
-	| grep -v '^$$' | sed -e 's, *$$,,g' | sort -u \
-	| awk '{print "\""$$0"\","}' > AUTHORS.h

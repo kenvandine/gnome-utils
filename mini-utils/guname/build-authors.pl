@@ -12,6 +12,37 @@ sub checkout {
   system (@args) == 0 or croak "cvs co $file";
 }
 
+##
+## Automatically generating the AUTHORS.h will cause a lot of trouble
+## if used incorrectly. If will remove people that did good work and
+## add other duplicate ones that are listed with similar names or typos
+## in their names in different AUTHORS files.
+##
+## Please do *always* manually edit the AUTHORS.h if you want to make
+## change - it is not a generated file, but a file that we must maintain
+## manually - noone wants to get removed from that file due to a broken
+## script.
+##
+## Manually editing this file is a lot of work, but you destroy the good
+## work of people who did this before if you blindly commit an autogen'ed
+## one and they have even more work to revert your changes.
+##
+## You can, however use this script to create a good starting point for
+## your manual edition. Make the output go to a different file and run
+## a diff between them. This way you see which people will get removed
+## and which will get added.
+##
+## To ensure that you really read this comment, you must comment out the
+## following 'die' line before you can use this script. Please do not
+## commit this modified (without the `die' line) script as other people
+## should also read this comment.
+##
+## February 24, 1999
+## Martin Baulig <martin@home-of-linux.org>
+##
+
+die "You must read the comment in this script first";
+
 croak "Usage: $0 gnome-directory" unless $#ARGV == 0;
 
 my $gnomedir = $ARGV [0];
