@@ -2,6 +2,9 @@
 
 EXTRA_DIST = gsearch.sgml \
 	     gsearch.png \
+	     gsearchmain.png \
+	     locate.png \
+	     results.png \
              index.html  \
              authors.html \
              criteria.html \
@@ -16,4 +19,7 @@ gsearchtool_help_DATA = index.html \
                         ln7.html \
                         usage.html \
 			gsearch.png \
+			gsearchmain.png \
+			locate.png \
+			results.png \
 	                topic.dat
