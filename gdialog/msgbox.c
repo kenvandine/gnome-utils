@@ -75,7 +75,7 @@ int dialog_msgbox(const char *title, const char *prompt, int height, int width,
 	x = (COLS - width) / 2;
 	y = (LINES - height) / 2;
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 	if (use_shadow)
 		draw_shadow(stdscr, y, x, height, width);
 #endif

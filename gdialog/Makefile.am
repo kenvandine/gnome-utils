@@ -13,11 +13,11 @@ gdialog_SOURCES =	\
 	util.c \
 	yesno.c
 
-INCLUDES=-I. $(GNOME_INCLUDEDIR)
+INCLUDES=-I. $(GNOME_INCLUDEDIR) $(CURSES_INCLUDEDIR) 
 
 gdialog_LDADD = \
 	$(GNOME_LIBDIR) \
 	$(GNOMEUI_LIBS) \
 	$(GTKXMHTML_LIBS) \
 	$(INTLLIBS) \
-	-lncurses
+	$(CURSES_LIBS)

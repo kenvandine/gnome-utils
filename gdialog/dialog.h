@@ -20,7 +20,6 @@
 
 
 #define WITH_GNOME		/* Gnome support */
-#define WITH_NCURSES		/* NCurses */
 #undef WITH_GPM			/* Gpm mouse support */
 
 #define VERSION	"0.6gnome1"
@@ -38,9 +37,13 @@
 #endif
 
 #ifdef ultrix
-#include <cursesX.h>
+#  include <cursesX.h>
 #else
-#include <curses.h>
+#  if defined(USE_NCURSES) && !defined(RENAMED_NCURSES)
+#    include <ncurses.h>
+#  else
+#    include <curses.h>
+#endif
 #endif
 
 /*
@@ -48,10 +51,6 @@
  */
 #define USE_SHADOW FALSE
 #define USE_COLORS TRUE
-
-#ifdef WITH_NCURSES
-#define HAVE_NCURSES
-#endif
 
 #define ESC 27
 #define TAB 9
@@ -67,7 +66,7 @@
 #endif
 
 
-#ifndef WITH_NCURSES
+#ifndef NO_COLOR_CURSES
 #ifndef ACS_ULCORNER
 #define ACS_ULCORNER '+'
 #endif
@@ -139,7 +138,7 @@
 /*
  * Global variables
  */
-#ifdef WITH_NCURSES
+#ifndef NO_COLOR_CURSES
 extern bool use_colors;
 extern bool use_shadow;
 #endif
@@ -151,7 +150,7 @@ extern const char *backtitle;
 /*
  * Function prototypes
  */
-#ifdef WITH_NCURSES
+#ifndef NO_COLOR_CURSES
 extern void create_rc (const char *filename);
 extern int parse_rc (void);
 #endif
@@ -162,14 +161,14 @@ void init_dialog (void);
 void end_dialog (void);
 void attr_clear (WINDOW * win, int height, int width, chtype attr);
 void dialog_clear (void);
-#ifdef WITH_NCURSES
+#ifndef NO_COLOR_CURSES
 void color_setup (void);
 #endif
 void print_autowrap (WINDOW * win, const char *prompt, int width, int y, int x);
 void print_button (WINDOW * win, const char *label, int y, int x, int selected);
 void draw_box (WINDOW * win, int y, int x, int height, int width, chtype box,
 		chtype border);
-#ifdef WITH_NCURSES
+#ifndef NO_COLOR_CURSES
 void draw_shadow (WINDOW * win, int y, int x, int height, int width);
 #endif
 

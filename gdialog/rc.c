@@ -20,7 +20,7 @@
 
 #include "dialog.h"
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 #include "colors.h"
 /*
  * For matching color names with color values
@@ -36,7 +36,6 @@ color_names_st color_names[] =
     {"CYAN", COLOR_CYAN},
     {"WHITE", COLOR_WHITE},
 };				/* color names */
-#endif
 
 #define DIALOGRC ".dialogrc"
 #define VAR_LEN 30
@@ -600,3 +599,4 @@ parse_line (char *line, char **var, char **value)
 
     return LINE_OK;		/* no syntax error in line */
 }
+#endif

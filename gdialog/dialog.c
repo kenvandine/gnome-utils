@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 #ifdef HAVE_RC_FILE
 
 	else if (!strcmp(argv[1], "--create-rc")) {
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 		if (argc != 3) {
 			Usage(argv[0]);
 			exit(-1);

@@ -48,7 +48,7 @@ static void okayed(GtkWidget *w, int button, gpointer *d)
 int dialog_textbox(const char *title, const char *file, int height, int width)
 {
 	int i, x, y, cur_x, cur_y, fpos, key = 0, dir, temp, temp1;
-#ifdef HAVE_NCURSES
+#ifdef USE_NCURSES
 	int passed_end;
 #endif
 	char search_term[MAX_LEN + 1], *tempptr, *found;
@@ -164,7 +164,7 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 	x = (COLS - width) / 2;
 	y = (LINES - height) / 2;
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 	if (use_shadow)
 		draw_shadow(stdscr, y, x, height, width);
 #endif
@@ -254,7 +254,7 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 			}
 			break;
 		case 'G':	/* Last page */
-#ifdef HAVE_NCURSES
+#ifdef USE_NCURSES
 		case KEY_END:
 #endif
 			end_reached = 1;
@@ -292,7 +292,7 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 		case KEY_UP:
 			if (!begin_reached) {
 				back_lines(page_length + 1);
-#ifdef HAVE_NCURSES
+#ifdef USE_NCURSES
 				/* We don't call print_page() here but use scrolling to ensure
 				   faster screen update. However, 'end_reached' and
 				   'page_length' should still be updated, and 'page' should
@@ -344,7 +344,7 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 				scroll(text);	/* Scroll text region up one line */
 				scrollok(text, FALSE);
 				print_line(text, height - 5, width - 2);
-#ifndef HAVE_NCURSES
+#ifdef USE_NCURSES
 				wmove(text, height - 5, 0);
 				waddch(text, ' ');
 				wmove(text, height - 5, width - 3);
@@ -638,7 +638,7 @@ static void print_line(WINDOW * win, int row, int width)
 	line += MIN(strlen(line), hscroll);	/* Scroll horizontally */
 	wmove(win, row, 0);	/* move cursor to correct line */
 	waddch(win, ' ');
-#ifdef HAVE_NCURSES
+#ifdef USE_NCURSES
 	waddnstr(win, line, MIN(strlen(line), width - 2));
 #else
 	line[MIN(strlen(line), width - 2)] = '\0';
@@ -714,7 +714,7 @@ static int get_search_term(WINDOW * win, char *search_term, int height, int widt
 
 	x = (width - box_width) / 2;
 	y = (height - box_height) / 2;
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 	if (use_shadow)
 		draw_shadow(win, y, x, box_height, box_width);
 #endif

@@ -107,6 +107,12 @@ GNOME_INIT_LIBGTOP
 dnl Check for fileutils, used in guname for diskusage stuff
 GNOME_FILEUTILS_CHECKS
 
+dnl gdialog
+
+AC_CHECK_CURSES
+
+dnl gdialog end
+
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)

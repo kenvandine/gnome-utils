@@ -212,7 +212,7 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 	x = (COLS - width) / 2;
 	y = (LINES - height) / 2;
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 	if (use_shadow)
 		draw_shadow(stdscr, y, x, height, width);
 #endif
@@ -368,7 +368,7 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 							   status[scroll + max_choice - 1],
 						  max_choice - 1, FALSE);
 						scrollok(list, TRUE);
-						scroll(list);
+						wscrl(list,1);
 						scrollok(list, FALSE);
 					}
 					scroll++;

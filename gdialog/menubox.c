@@ -113,7 +113,7 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 	x = (COLS - width) / 2;
 	y = (LINES - height) / 2;
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 	if (use_shadow)
 		draw_shadow(stdscr, y, x, height, width);
 #endif
@@ -260,7 +260,7 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 									       * 2], items[(scroll + max_choice - 1)
 											   * 2 + 1], max_choice - 1, FALSE);
 							scrollok(menu, TRUE);
-							scroll(menu);
+							wscrl(menu,1);
 							scrollok(menu, FALSE);
 						}
 						scroll++;

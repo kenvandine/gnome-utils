@@ -20,7 +20,7 @@
 
 #include "dialog.h"
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 /* use colors by default? */
 bool use_colors = USE_COLORS;
 /* shadow dialog boxes by default?
@@ -68,7 +68,7 @@ chtype attributes[] =
 	A_REVERSE		/* darrow_attr */
 };
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 #include "colors.h"
 
 /*
@@ -154,7 +154,7 @@ void init_dialog(void)
 	if (gnome_mode == 0) {
 		mouse_open();
 #ifdef HAVE_RC_FILE
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 		if (parse_rc() == -1)	/* Read the configuration file */
 			exit(-1);
 #endif
@@ -165,7 +165,7 @@ void init_dialog(void)
 		cbreak();
 		noecho();
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 		if (use_colors || use_shadow)	/* Set up colors */
 			color_setup();
 #endif
@@ -174,7 +174,7 @@ void init_dialog(void)
 	}
 }
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 /*
  * Setup for color display
  */
@@ -438,7 +438,7 @@ void draw_box(WINDOW * win, int y, int x, int height, int width,
 	}
 }
 
-#ifdef HAVE_NCURSES
+#ifndef NO_COLOR_CURSES
 /*
  * Draw shadows along the right and bottom edge to give a more 3D look
  * to the boxes
