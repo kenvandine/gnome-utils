@@ -18,29 +18,77 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. 
+ */
+
+#include "config.h"
 
 #include <ctype.h>
 #include <math.h>
 #include <setjmp.h>
 #include <stdarg.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/time.h>
 
-#include <config.h>
+#include <X11/Xlib.h>	// for ex-pee-arse-geometry routine
+#include <X11/Xutil.h>	// for flags returned above
+
 #include <gnome.h>
 
+#ifdef HAVE_LIBGTOP
+
+#include <glibtop.h>
+#include <glibtop/union.h>
+#include <glibtop/parameter.h>
+
+typedef struct
+{
+  glibtop_cpu		cpu;
+  glibtop_mem		mem;
+  glibtop_swap		swap;
+  glibtop_uptime	uptime;
+  glibtop_loadavg	loadavg;
+}
+gtop_struct;
+
+#endif
+
 static char *prog_name = "gstripchart";
-static char *prog_version = "1.4";
+static char *prog_version = "1.5";
 static char *config_file = NULL;
 static float chart_interval = 5.0;
+static float chart_filter = 0.0;
 static float slider_interval = 0.2;
-static int include_menu = 1;
+static float slider_filter = 0.0;
+static int include_menubar = 0;
 static int include_slider = 1;
 static int post_init = 0;
+static int minor_tick=0, major_tick=0;
+static int geometry_flags;
+static int geometry_w=160, geometry_h=100;
+static int geometry_x, geometry_y;
+
+/*
+ * streq -- case-blind string comparison returning true on equality.
+ */
+static int
+streq(const char *s1, const char *s2)
+{
+  return strcasecmp(s1, s2) == 0;
+}
+
+/*
+ * isident -- ctype-style test for identifier chars.
+ */
+static int
+isident(int c)
+{
+  return isalnum(c) || c=='-' || c=='_';
+}
 
 /* 
  * Expr -- the info required to evaluate an expression.
@@ -56,14 +104,25 @@ typedef struct
   char *eqn_base, *eqn_src;
   double t_diff;
   int vars;
-  double *last, *now;
 
   char *s;
   jmp_buf err_jmp;
   float val;
+
+  double *last, *now;
+#ifdef HAVE_LIBGTOP
+  gtop_struct *gtp;
+#endif
 }
 Expr;
 
+/*
+ * eval_error -- called to report an error in expression evaluation.
+ *
+ * Only pre-initialization errors are reported.  After initialization,
+ * the expression evaluator just returns a result of zero, and keeps
+ * on truckin'.
+ */
 static void
 eval_error(Expr *e, char *msg, ...)
 {
@@ -80,6 +139,9 @@ eval_error(Expr *e, char *msg, ...)
   exit(EXIT_FAILURE);
 }
 
+/*
+ * trimtb -- trims trailing whitespace from a string.
+ */
 static char *
 trimtb(char *s)
 {
@@ -89,6 +151,9 @@ trimtb(char *s)
   return s;
 }
 
+/*
+ * skipbl -- skips over leading whitespace in a string.
+ */
 static char *
 skipbl(char *s)
 {
@@ -97,15 +162,119 @@ skipbl(char *s)
   return s;
 }
 
+/*
+ * stripbl -- skips some chars, then strips any leading whitespace.
+ */
 static void
 stripbl(Expr *e, int skip)
 {
   e->s = skipbl(e->s + skip);
 }
 
-static double
-add_op(Expr *e);
+#ifdef HAVE_LIBGTOP
+typedef struct
+{
+  char *name;
+  char type;	/* L=long, D=double */
+  int *used;
+  size_t off;
+}
+Gtop_data;
 
+static int gtop_cpu;
+static int gtop_mem;
+static int gtop_swap;
+static int gtop_uptime;
+static int gtop_loadavg;
+
+#define GTOP_OFF(el) offsetof(gtop_struct, el)
+
+Gtop_data gtop_vars[] = 
+{
+  /* glibtop cpu stats */
+  { "cpu_total",        'L', &gtop_cpu,     GTOP_OFF(cpu.total)          },
+  { "cpu_user",         'L', &gtop_cpu,     GTOP_OFF(cpu.user)           },
+  { "cpu_nice",         'L', &gtop_cpu,     GTOP_OFF(cpu.nice)           },
+  { "cpu_sys",          'L', &gtop_cpu,     GTOP_OFF(cpu.sys)            },
+  { "cpu_idle",         'L', &gtop_cpu,     GTOP_OFF(cpu.idle)           },
+  { "cpu_freq",         'L', &gtop_cpu,     GTOP_OFF(cpu.frequency)      },
+
+  /* glibtop memory stats */
+  { "mem_total",        'L', &gtop_mem,     GTOP_OFF(mem.total)          },
+  { "mem_used",	        'L', &gtop_mem,     GTOP_OFF(mem.used)           },
+  { "mem_free",	        'L', &gtop_mem,     GTOP_OFF(mem.free)           },
+  { "mem_shared",       'L', &gtop_mem,     GTOP_OFF(mem.shared)         },
+  { "mem_buffer",       'L', &gtop_mem,     GTOP_OFF(mem.buffer)         },
+  { "mem_cached",       'L', &gtop_mem,     GTOP_OFF(mem.cached)         },
+  { "mem_user",	        'L', &gtop_mem,     GTOP_OFF(mem.user)           },
+  { "mem_locked",       'L', &gtop_mem,     GTOP_OFF(mem.locked)         },
+
+  /* glibtop swap stats */
+  { "swap_total",       'L', &gtop_swap,    GTOP_OFF(swap.total)         },
+  { "swap_used",        'L', &gtop_swap,    GTOP_OFF(swap.used)          },
+  { "swap_free",        'L', &gtop_swap,    GTOP_OFF(swap.free)          },
+  { "swap_pagein",      'L', &gtop_swap,    GTOP_OFF(swap.pageout)       },
+  { "swap_pageout",     'L', &gtop_swap,    GTOP_OFF(swap.pagein)        },
+
+  /* glibtop uptime stats */
+  { "uptime",           'D', &gtop_uptime,  GTOP_OFF(uptime.uptime)      },
+  { "idletime",         'D', &gtop_uptime,  GTOP_OFF(uptime.idletime)    },
+
+  /* glibtop loadavg stats */
+  { "loadavg_running",  'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_running) },
+  { "loadavg_tasks",    'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_tasks)   },
+  { "loadavg_1m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[0]) },
+  { "loadavg_5m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[1]) },
+  { "loadavg_15m",      'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[2]) },
+
+  /* end of array marker */
+  { NULL,	         0,  NULL,          0 }
+};
+
+/*
+ * gtop_value -- looks up a glibtop datum name, and returns its value.
+ */
+static int
+gtop_value(char *str, gtop_struct *gtp, double *val)
+{
+  int i, init = !post_init;
+  
+  for (i=0; gtop_vars[i].name; i++)
+    {
+      if (streq(str, gtop_vars[i].name))
+	{
+	  char *cp = ((char *)gtp) + gtop_vars[i].off;
+	  if (init)
+	    {
+	      (*gtop_vars[i].used)++;
+	      *val = 0;
+	    }
+	  else if (gtop_vars[i].type == 'D')
+	    {
+	      *val = *((double *)cp);
+	    }
+	  else // if (gtop_vars[i].type == 'L')
+	    {
+	      unsigned long ul = *((unsigned long *)cp);
+	      *val = ul;
+	    }
+	  return 1;
+	}
+    }
+  return 0;
+}
+#endif
+
+/*
+ * add_op requires a forward prototype since it gets called from
+ * num_op when recursing to evaluate a parenthesized expression.
+ */
+static double add_op(Expr *e);
+
+/*
+ * num_op -- evaluates numeric constants, parenthesized expressions,
+ * and named variables. 
+ */
 static double
 num_op(Expr *e)
 {
@@ -127,45 +296,52 @@ num_op(Expr *e)
     }
   else if (*e->s == '$' || *e->s == '~')
     {
-      if (isdigit(e->s[1]))
+      int c, id_intro;
+      char *idp, id[1000]; /* FIX THIS */
+
+      id_intro = *e->s++;
+      for (idp = id; isalnum(c = (*idp++ = *e->s++)) || c == '_'; )
+	;
+      idp[-1] = '\0';
+      e->s--;
+
+      if (isdigit(*id))
 	{
-	  int i = 0, c = *e->s;
-	  for (e->s++; isdigit(*e->s); e->s++)
-	    i = i * 10 + *e->s-'0';
-	  if (i > e->vars)
-	    eval_error(e, "no such field: %d", i);
+	  int id_num = atoi(id);
+	  if (id_num > e->vars)
+	    eval_error(e, "no such field: %d", id_num);
 	  stripbl(e, 0);
-	  val = e->now[i-1];
-	  if (c == '~')
-	    val -= e->last[i-1];
+	  val = e->now[id_num-1];
+	  if (id_intro == '~')
+	    val -= e->last[id_num-1];
 	}
-      else
+      else if (streq(id, "i"))	/* nominal update interval */
 	{
-	  switch (*++e->s)
-	    {
-	    case 'i':	/* interval, in seconds */
-	      val = chart_interval;
-	      /* if (e->s[-1] == '~') val = 0; */
-	      e->s++;
-	      break;
-	    case 't':	/* time of day, in seconds */
-	      val = e->t_diff;
-	      /* if (e->s[-1] == '~') val = 0; */
-	      e->s++;
-	      break;
-	    case '\0':
-	      eval_error(e, "missing variable identifer");
-	      break;
-	    default:
-	      eval_error(e, "invalid variable identifer");
-	    }
+	  val = chart_interval;
+	  /* if (e->s[-1] == '~') val = 0; */
 	}
+      else if (streq(id, "t"))	/* time of day, in seconds */
+	{
+	  val = e->t_diff;
+	  /* if (e->s[-1] == '~') val = 0; */
+	}
+#ifdef HAVE_LIBGTOP
+      else if (gtop_value(id, e->gtp, &val))
+	  ; /* gtop_value handles the assignment to val */
+#endif
+      else if (!*id)
+	eval_error(e, "missing variable identifer");
+      else
+	eval_error(e, "invalid variable identifer: %s", id);
     }
   else
     eval_error(e, "number expected");
   return val;
 }
 
+/*
+ * mul_op -- evaluates multiplication, division, and remaindering.
+ */
 static double
 mul_op(Expr *e)
 {
@@ -184,6 +360,9 @@ mul_op(Expr *e)
   return val;
 }
 
+/*
+ * add_op -- evaluates addition and subtraction,
+ */
 static double
 add_op(Expr *e)
 {
@@ -200,8 +379,13 @@ add_op(Expr *e)
   return val;
 }
 
-static double
-eval(char *eqn, char *src, double t_diff, int vars, double *last, double *now)
+/*
+ * eval -- sets up an Expr, then calls add_op to evaluate an expression.
+ */
+static double eval(
+  char *eqn, char *src, 
+  double t_diff, gtop_struct *gtp,
+  int vars, double *last, double *now )
 {
   Expr e;
   e.eqn_base = e.s = eqn;
@@ -210,6 +394,7 @@ eval(char *eqn, char *src, double t_diff, int vars, double *last, double *now)
   e.last = last;
   e.now  = now;
   e.t_diff = t_diff;
+  e.gtp = gtp;
 
   if (setjmp(e.err_jmp))
     return e.val;
@@ -245,12 +430,19 @@ typedef struct
 }
 Param;
 
+/*
+ * Param_glob -- an array of Pamams, and a few common variables.
+ */
 typedef struct
 {
   int params;
   Param **parray;
+  double lpf_const;
   double t_diff;
   struct timeval t_last, t_now;
+#ifdef HAVE_LIBGTOP
+  gtop_struct gtop;
+#endif
 }
 Param_glob;
 
@@ -258,7 +450,18 @@ static int params;
 static Param **chart_param, **slider_param;
 static Param_glob chart_glob, slider_glob;
 
-static void (*display)(void); /* routine called to redisplay new parameters */
+/*
+ * display routines: the display variable will be set to one of these.
+ */
+static void no_display(void);
+static void numeric_with_ident(void);
+static void numeric_with_graph(void);
+static void gtk_graph(void);
+
+/*
+ * The display variable points to the display proccessing routine.
+ */
+static void (*display)(void) = gtk_graph;
 
 /*
  * defns_error -- reports error and exits during config file parsing.
@@ -276,24 +479,6 @@ defns_error(char *fn, int ln, char *fmt, ...)
   fprintf(stderr, "\n");
   va_end(args);
   exit(EXIT_FAILURE);
-}
-
-/*
- * streq -- case-blind string comparison returning true on equality.
- */
-static int
-streq(const char *s1, const char *s2)
-{
-  return strcasecmp(s1, s2) == 0;
-}
-
-/*
- * isident -- ctype-style test for identifier chars.
- */
-static int
-isident(int c)
-{
-  return isalnum(c) || c=='-' || c=='_';
 }
 
 /* 
@@ -329,6 +514,23 @@ split(char *str, char **key, char **val)
   return p;
 }
 
+/*
+ * yes_no -- evaluates yes/no response strings.
+ */
+static int
+yes_no(char *str)
+{
+  if (str)
+    {
+      str = skipbl(str);
+      if (*str == '1' || *str == 'y' || *str == 'Y')
+	return 1;
+      if (streq("on", str) || streq("true", str))
+	return 1;
+    }
+  return 0;
+}
+
 /* 
  * read_param_defns -- reads parameter definitions from the
  * configuration file.  Allocates space and performs other param
@@ -337,7 +539,7 @@ split(char *str, char **key, char **val)
 static int
 read_param_defns(Param ***ppp)
 {
-  int i, lineno = 0, params = 0;
+  int i, j, lineno = 0, params = 0;
   Param **p = NULL;
   char fn[FILENAME_MAX], home_fn[FILENAME_MAX];
   FILE *fd;
@@ -382,12 +584,48 @@ read_param_defns(Param ***ppp)
 	      char *key, *val;
 	      trimtb(bp);
 	      split(bp, &key, &val);
-	      /* An "identifier" keyword introduces a new parameter.
-                 We bump the params count, and allocate and initialize
-                 a new Param struct with default values. */
-	      if (streq(key, "identifier"))
+
+	      /* Handle config file equivalents for some of the
+                 command line options.  FIX THIS: These should be
+                 restricted to the beginning of the file, before the
+                 first paramater. */
+	      if (streq(key, "chart-interval"))
+		chart_interval = atof(val);
+	      else if (streq(key, "chart-filter"))
+		chart_filter = atof(val);
+	      else if (streq(key, "slider-interval"))
+		slider_interval = atof(val);
+	      else if (streq(key, "slider-filter"))
+		slider_filter = atof(val);
+	      else if (streq(key, "menu"))
+		include_menubar = yes_no(val);
+	      else if (streq(key, "slider"))
+		include_slider = yes_no(val);
+	      else if (streq(key, "minor_ticks"))
+		minor_tick = atoi(val);
+	      else if (streq(key, "major_ticks"))
+		major_tick = atoi(val);
+	      else if (streq(key, "type"))
 		{
-		  params ++;
+		  if (streq("none", val))
+		    display = no_display;
+		  else if (streq("text", val))
+		    display = numeric_with_ident;
+		  else if (streq("graph", val))
+		    display = numeric_with_graph;
+		  else if (streq("gtk", val))
+		    display = gtk_graph;
+		  else
+		    defns_error(
+		      fn, lineno, "invalid display type: %s", val);
+		}
+	      /* An "identifier" or "begin" keyword introduces a new
+                 parameter.  We bump the params count, and allocate
+                 and initialize a new Param struct with default
+                 values. */
+	      else if (streq(key, "identifier") || streq(key, "begin"))
+		{
+		  params++;
 		  p = realloc(p, params * sizeof(*p));
 		  p[params-1] = malloc(sizeof(*p[params-1]));
 		  p[params-1]->ident = strdup(val);
@@ -404,8 +642,14 @@ read_param_defns(Param ***ppp)
 		  p[params-1]->top = 1.0;
 		  p[params-1]->bot = 0.0;
 		}
+	      else if (streq(key, "end"))
+		{
+		  if (!streq(p[params-1]->ident, val))
+		    defns_error(fn, lineno, "found %s when expecting %s",
+		      val, p[params-1]->ident);
+		}
 	      else if (params == 0)
-		defns_error(fn, lineno, "ident must be first");
+		defns_error(fn, lineno, "identifier or begin must be first");
 	      else if (streq(key, "id_char"))
 		p[params-1]->id_char = val[0];
 	      else if (streq(key, "color"))
@@ -442,8 +686,13 @@ read_param_defns(Param ***ppp)
   for (i=0; i<params; i++)
     {
       p[i]->val  = malloc(p[i]->max_val * sizeof(p[i]->val[0]));
-      p[i]->now  = malloc(p[i]->vars * sizeof(p[i]->now[0]));
       p[i]->last = malloc(p[i]->vars * sizeof(p[i]->last[0]));
+      p[i]->now  = malloc(p[i]->vars * sizeof(p[i]->now[0]));
+      /* The initial `now' values get used as the first set of `last'
+         values.  Set them to zero rather than using whatever random
+         cruft gets returned by malloc. */
+      for (j = 0; j < p[i]->vars; j ++)
+	p[i]->now[j] = 0;
     }
 
   *ppp = p;
@@ -457,64 +706,73 @@ static int
 split_and_extract(char *str, Param *p)
 {
   int i = 0;
-  char *t = strtok(str, " \t");
+  char *t = strtok(str, " \t:");
   while (t && i < p->vars)
     {
       p->now[i] = atof(t);
-      t = strtok(NULL, " \t");
+      t = strtok(NULL, " \t:");
       i++;
     }
   return i;
 }
 
-static float
-get_value(double dt, Param *p)
-{
-  double val = 0;
-  FILE *pu = NULL;
-  char buf[1000];
-
-  if (p->filename)
-    if (*p->filename == '|')
-      pu = popen(p->filename+1, "r");
-    else
-      pu = fopen(p->filename, "r");
-  if (pu)
-    {
-      fgets(buf, sizeof(buf), pu);
-      if (p->pattern)
-	while (!ferror(pu) && !feof(pu) && !strstr(buf, p->pattern))
-	  fgets(buf, sizeof(buf), pu);
-      if (*p->filename == '|') pclose(pu); else fclose(pu);
-    }
-
-  /* Copy now vals to last vals, update now vals, and compute a new
-     param value based on the new now vals.  */
-  memcpy(p->last, p->now, p->vars * sizeof(*(p->last)));
-  split_and_extract(buf, p);
-  val = eval(p->eqn, p->eqn_src, dt, p->vars, p->last, p->now);
-
-  /* Put the new val into the val history. */
-  p->new_val = (p->new_val+1) % p->max_val;
-  p->val[p->new_val] = val;
-  if (p->num_val < p->max_val)
-    p->num_val++;
-
-  return val;
-}
-
 static void
 update_values(Param_glob *pgp)
 {
-  int p;
+  int param_num;
 
   pgp->t_last = pgp->t_now;
   gettimeofday(&pgp->t_now, NULL);
   pgp->t_diff = (pgp->t_now.tv_sec - pgp->t_last.tv_sec) +
     (pgp->t_now.tv_usec - pgp->t_last.tv_usec) / 1e6;
+#ifdef HAVE_LIBGTOP
+  if (gtop_cpu)
+    glibtop_get_cpu(&pgp->gtop.cpu);
+  if (gtop_mem)
+    glibtop_get_mem(&pgp->gtop.mem);
+  if (gtop_swap)
+    glibtop_get_swap(&pgp->gtop.swap);
+  if (gtop_uptime)
+    glibtop_get_uptime(&pgp->gtop.uptime);
+  if (gtop_loadavg)
+    glibtop_get_loadavg(&pgp->gtop.loadavg);
+#endif
+  for (param_num = 0; param_num < pgp->params; param_num++)
+    {
+      Param *p = pgp->parray[param_num];
+      double prev, val = 0;
+      FILE *pu = NULL;
+      char buf[1000];
 
-  for (p=0; p<pgp->params; p++)
-    get_value(pgp->t_diff, pgp->parray[p]);
+      if (p->filename)
+	if (*p->filename == '|')
+	  pu = popen(p->filename+1, "r");
+	else
+	  pu = fopen(p->filename, "r");
+      if (pu)
+	{
+	  fgets(buf, sizeof(buf), pu);
+	  if (p->pattern)
+	    while (!ferror(pu) && !feof(pu) && !strstr(buf, p->pattern))
+	      fgets(buf, sizeof(buf), pu);
+	  if (*p->filename == '|') pclose(pu); else fclose(pu);
+	}
+
+      /* Copy now vals to last vals, update now vals, and compute a new
+	 param value based on the new now vals.  */
+      memcpy(p->last, p->now, p->vars * sizeof(*(p->last)));
+      split_and_extract(buf, p);
+      val = eval(
+	p->eqn, p->eqn_src, pgp->t_diff, &pgp->gtop,
+	p->vars, p->last, p->now );
+
+      /* Put the new val into the val history. */
+      prev = p->val[p->new_val];
+      p->new_val = (p->new_val+1) % p->max_val;
+      p->val[p->new_val] = prev + pgp->lpf_const * (val - prev);
+      if (p->num_val < p->max_val)
+	p->num_val++;
+    }
 }
 
 /*
@@ -638,6 +896,29 @@ cfg_handler(GtkWidget *widget, GdkEventConfigure *e, gpointer whence)
   return 0;
 }
 
+/*
+ * overlay_tick_marks -- draws tick marks along the horizontal center
+ * of the chart window at the major and minor intervals.
+ */
+static void
+overlay_tick_marks(GtkWidget *widget, int minor, int major)
+{
+  int p, q, w = widget->allocation.width, c = widget->allocation.height / 2;
+
+  if (minor)
+    for (q = 1, p = w-1; p >= 0; p -= minor)
+      {
+	int d = 1;
+	if (major && --q == 0)
+	  d += 2, q = major;
+	gdk_draw_line(
+	  widget->window, widget->style->black_gc, p, c-d, p, c+d);
+      }
+}
+
+/*
+ * val2y -- scales a parameter value into a y coordinate value.
+ */
 static int
 val2y(float val, float top, int height)
 {
@@ -677,6 +958,8 @@ chart_expose_handler(GtkWidget *widget, GdkEventExpose *event)
     event->area.x, event->area.y,
     event->area.width, event->area.height);
 
+  overlay_tick_marks(widget, minor_tick, major_tick);
+
   return 0;
 }
 
@@ -709,6 +992,8 @@ chart_timer_handler(GtkWidget *widget)
   gdk_draw_pixmap(
     widget->window, widget->style->fg_gc[GTK_WIDGET_STATE(widget)], 
     pixmap, 0,0, 0,0, w,h);
+
+  overlay_tick_marks(widget, minor_tick, major_tick);
 
   return 1;
 }
@@ -771,7 +1056,7 @@ GnomeUIInfo file_menu[] =
 static gint
 about_callback(void)
 {
-  gchar *authors[] = { "John Kodis, kodis@jagunet.com", NULL };
+  const gchar *authors[] = { "John Kodis, kodis@jagunet.com", NULL };
   GtkWidget *about = gnome_about_new(
     _(prog_name), prog_version,
     _("Copyright 1998 John Kodis"),
@@ -806,12 +1091,63 @@ GnomeUIInfo mainmenu[] =
   GNOMEUIINFO_END
 };
 
+/*
+ * help_menu_action -- pops up an instance of the Gnome help browser,
+ * and points it toward the gstripchart help file.
+ */
+static void
+help_menu_action(GtkWidget *menu)
+{
+  static GnomeHelpMenuEntry help_entry = { "gstripchart", "index.html" };
+  gnome_help_display(NULL, &help_entry);
+}
+
+/*
+ * click_handler -- activated on any mouse click in the chart window.
+ * Creates and pops up a menu in response to the mouse click. 
+ */
+static void
+click_handler(GtkWidget *widget, GdkEvent *event, gpointer data)
+{
+  static GtkWidget *menu=NULL, *menu_item;
+
+  if (menu == NULL)
+    {
+      menu = gtk_menu_new();
+
+      menu_item = gtk_menu_item_new_with_label("Help");
+      gtk_menu_append(GTK_MENU(menu), menu_item);
+      gtk_signal_connect_object(GTK_OBJECT(menu_item), "activate",
+	GTK_SIGNAL_FUNC(help_menu_action), GTK_OBJECT(widget));
+      gtk_widget_show(menu_item);
+
+      menu_item = gtk_menu_item_new_with_label("About");
+      gtk_menu_append(GTK_MENU(menu), menu_item);
+      gtk_signal_connect_object(GTK_OBJECT(menu_item), "activate",
+        GTK_SIGNAL_FUNC(about_callback), NULL);
+      gtk_widget_show(menu_item);
+
+      menu_item = gtk_menu_item_new_with_label("Exit");
+      gtk_menu_append(GTK_MENU(menu), menu_item);
+      gtk_signal_connect_object(GTK_OBJECT(menu_item), "activate",
+        GTK_SIGNAL_FUNC(exit_callback), NULL);
+      gtk_widget_show(menu_item);
+    }
+  // FIX THIS: Should use gnome-popup-menu() instead.
+  gtk_menu_popup(
+    GTK_MENU(menu), NULL, NULL, NULL, NULL, 
+    ((GdkEventButton*)event)->button, ((GdkEventButton*)event)->time);
+}
+
+/*
+ * gtk_graph -- the display processor for the main, Gtk-based
+ * graphical display. 
+ */
 static void
 gtk_graph(void)
 {
   GtkWidget *frame, *h_box, *drawing;
-  /* Set the nominal drawing window and slider sizes. */
-  const int nom_w=160, nom_h=100, slide_w=10;
+  const int slide_w=10;  /* Set the slider width. */
 
   /* Create a top-level window. Set the title and establish delete and
      destroy event handlers. */
@@ -822,13 +1158,19 @@ gtk_graph(void)
   gtk_signal_connect(
     GTK_OBJECT(frame), "delete_event",
     GTK_SIGNAL_FUNC(destroy_handler), NULL);
-  if (include_menu)
+
+  /* Set up the pop-up menu handler.  If a mennubar was requested, set
+     that up as well. */
+  gtk_signal_connect(
+    GTK_OBJECT(frame), "button_press_event", 
+    GTK_SIGNAL_FUNC(click_handler), NULL);
+  if (include_menubar)
     gnome_app_create_menus(GNOME_APP(frame), mainmenu);
 
   /* Create a drawing area.  Add it to the window, show it, and
      set its expose event handler. */
   drawing = gtk_drawing_area_new();
-  gtk_drawing_area_size(GTK_DRAWING_AREA(drawing), nom_w, nom_h);
+  gtk_drawing_area_size(GTK_DRAWING_AREA(drawing), geometry_w, geometry_h);
 
   h_box = gtk_hbox_new(FALSE, 0);
   gnome_app_set_contents(GNOME_APP(frame), h_box);
@@ -847,7 +1189,7 @@ gtk_graph(void)
       gtk_box_pack_start(GTK_BOX(h_box), sep, FALSE, TRUE, 0);
       gtk_widget_show(sep);
 
-      gtk_drawing_area_size(GTK_DRAWING_AREA(slider), slide_w, nom_h);
+      gtk_drawing_area_size(GTK_DRAWING_AREA(slider), slide_w, geometry_h);
       gtk_box_pack_start(GTK_BOX(h_box), slider, FALSE, FALSE, 0);
       gtk_widget_show(slider);
 
@@ -859,36 +1201,50 @@ gtk_graph(void)
         (GtkFunction)slider_timer_handler, slider);
     }
   gtk_widget_show(h_box);
-  gtk_widget_set_events(drawing, GDK_EXPOSURE_MASK);
+  gtk_widget_set_events(drawing, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK);
 
   /* Create timer events for the drawing and slider widgets. */
   gtk_timeout_add((int)(1000 * chart_interval),
     (GtkFunction)chart_timer_handler, drawing);
 
-  /* Show the top-level window, set its minimum size, and enter the
-     main event loop. */
-  //gtk_window_set_policy(GTK_WINDOW(frame), TRUE, TRUE, TRUE);
-  //gtk_widget_set_usize(frame, 300,200);
+  /* This mess is a failed attempt to handle negative position specs.
+     It fails to accomodate the size of the window decorations. And
+     its ugly.  And there's got to be a better way.  Other than that,
+     it's perfect.  FIX THIS */
+  if (geometry_flags & (XNegative | YNegative))
+  {
+    int x, y, w, h, d;
+    gdk_window_get_geometry(NULL, &x, &y, &w, &h, &d);
+    if (XNegative)
+      geometry_x = w + geometry_x - geometry_w - (include_slider? slide_w: 0);
+    if (YNegative)
+      geometry_y = h + geometry_y - geometry_h;
+  }
+  if (geometry_flags & (XValue | YValue))
+    gtk_widget_set_uposition(frame, geometry_x, geometry_y);
+
+  /* Show the top-level window and enter the main event loop. */
   gtk_widget_show(frame);
-  //gdk_window_set_hints(
-  //  frame->window, 0,0,  nom_w/2,nom_h/2, 0,0, GDK_HINT_MIN_SIZE);
   gtk_main();
 }
 
-static error_t
-arg_proc(int key, char *arg, struct argp_state *state)
+static int
+proc_arg(int opt, const char *arg)
 {
-  switch (key)
+  printf("proc_arg: opt=%c, arg=%s\n", opt, arg);
+  switch (opt)
     {
-    case 'f':
-      config_file = arg;      
-      return 0;
-    case 'i':
-      chart_interval = atof(arg);
-      return 0;
-    case 'j':
-      slider_interval = atof(arg);
-      return 0;
+    case 'f': config_file = strdup(arg); break;
+    case 'i': chart_interval = atof(arg); break;
+    case 'I': chart_filter = atof(arg); break;
+    case 'j': slider_interval = atof(arg); break;
+    case 'J': slider_filter = atof(arg); break;
+    case 'M': include_menubar = 1; break;
+    case 'S': include_slider = 0; break;
+    case 'g':
+      geometry_flags = XParseGeometry(
+	arg, &geometry_x, &geometry_y, &geometry_w, &geometry_h);
+      break;
     case 't':
       if (streq("none", arg))
 	display = no_display;
@@ -901,34 +1257,49 @@ arg_proc(int key, char *arg, struct argp_state *state)
       else
 	{
 	  fprintf(stderr, "invalid display type: %s\n", arg);
-	  return ARGP_ERR_UNKNOWN; /* FIX THIS */
+	  return -1;
 	}
-      return 0;
-    case 'M':
-      include_menu = 0;
-      return 0;
-    case 'S':
-      include_slider = 0;
-      return 0;
-    default:
-      return ARGP_ERR_UNKNOWN;
+    }
+  return 0;
+}
+
+static void
+popt_arg_extractor(
+  poptContext state, enum poptCallbackReason reason,
+  const struct poptOption *opt, const char *arg, void *data )
+{
+  if (proc_arg(opt->val, arg))
+    {
+      // FIX THIS: the prog name includes trailing junk, and long
+      // options aren't shown but all the Gnome internal options are.
+      poptPrintUsage(state, stderr, 0);
+      exit(EXIT_FAILURE);
     }
 }
 
-static struct argp_option arglist[] =
+static struct
+poptOption arglist[] =
 {
-  { "config-file",     'f', N_("FILE"), 0, N_("configuration file"),     1 },
-  { "chart-interval",  'i', N_("SECS"), 0, N_("chart update interval"),  1 },
-  { "slider-interval", 'j', N_("SECS"), 0, N_("slider update interval"), 1 },
-  { "display-type",    't', N_("TYPE"), 0, N_("type of display"),        1 },
-  { "omit-menu",       'M', NULL,       0, N_("omit menu"),              0 },
-  { "omit-slider",     'S', NULL,       0, N_("omit slider"),            0 },
-  { NULL,               0,  NULL,       0, NULL,                         0 }
-};
-
-static struct argp argp_opts =
-{
-  arglist, arg_proc, NULL, NULL, NULL, NULL, NULL
+  { NULL,              '\0', POPT_ARG_CALLBACK, popt_arg_extractor, '\0' },
+  { "geometry",         'g', POPT_ARG_STRING, NULL, 'g',
+    N_("GEO"), N_("geometry") },
+  { "config-file",	'f', POPT_ARG_STRING, NULL, 'f',
+    N_("FILE"), N_("configuration file")	   },
+  { "chart-interval",	'i', POPT_ARG_STRING, NULL, 'i',
+    N_("SECS"), N_("chart update interval")   },
+  { "chart-filter",	'I', POPT_ARG_STRING, NULL, 'I',
+    N_("SECS"), N_("chart LP filter TC")      },
+  { "slider-interval",	'j', POPT_ARG_STRING, NULL, 'j',
+    N_("SECS"), N_("slider update interval")  },
+  { "slider-filter",	'J', POPT_ARG_STRING, NULL, 'J',
+    N_("SECS"), N_("slider LP filter TC")     },
+  { "menubar",		'M', POPT_ARG_NONE, NULL, 'M',
+    NULL,       N_("add menubar")		   },
+  { "omit-slider",	'S', POPT_ARG_NONE, NULL, 'S',
+    NULL,       N_("omit slider")		   },
+  { "display-type",	't', POPT_ARG_STRING, NULL, 't',
+    N_("TYPE"), N_("gtk|text|graph|none")	   },
+  { NULL,		'\0', 0, NULL, 0 }
 };
 
 /*
@@ -937,18 +1308,35 @@ static struct argp argp_opts =
 int 
 main(int argc, char **argv)
 {
-  /* Initialize the Gtk stuff first, whether Gtk is used or not, since
-     failure to do so will cause the color name to rgb translation
-     done in read_param_defns to dump core. */
+  int c;
+  poptContext popt_context;
 
-  /* Get program options and read in the parameter definition file. */
-  display = gtk_graph;
-  argp_program_version = prog_version;
-  gnome_init(prog_name, &argp_opts, argc, argv, 0, NULL);
+  /* Initialize the i18n stuff.  If the gtop library is linked in,
+     initialize that as well.  Let gnome_init initialize the Gnome and
+     Gtk stuff. */
+  bindtextdomain(PACKAGE, GNOMELOCALEDIR);
+  textdomain(PACKAGE);
+#ifdef HAVE_LIBGTOP
+  glibtop_init_r(&glibtop_global_server, 0, 0);
+#endif
 
+  /* Arrange for gnome_init to parse the command line options.  The
+     only option that matters here is the configuration filename.  We
+     then process whatever configuration file is set, either by
+     default or as specified on the command line. */
+  gnome_init_with_popt_table(
+    prog_name, prog_version, argc, argv, arglist, 0, &popt_context);
   params = read_param_defns(&chart_param);
+
+  /* Next, we re-parse the command line options so that they'll
+     override any values set in the configuration file. */
+  popt_context = poptGetContext(prog_name, argc, argv, arglist, 0);
+  while ((c = poptGetNextOpt(popt_context)) > 0)
+    proc_arg(c, poptGetOptArg(popt_context));
+
   chart_glob.params = params;
   chart_glob.parray = chart_param;
+  chart_glob.lpf_const = exp(-chart_filter / chart_interval);
   update_values(&chart_glob);
 
   /* Clone chart_param into a new slider_param array, then override
@@ -973,6 +1361,7 @@ main(int argc, char **argv)
 	}
       slider_glob.params = params;
       slider_glob.parray = slider_param;
+      slider_glob.lpf_const = exp(-slider_filter / slider_interval);
       update_values(&slider_glob);
     }
 
