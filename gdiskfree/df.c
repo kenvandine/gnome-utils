@@ -20,6 +20,11 @@
 /* gnomification by Gregory McLean <gregm@comstar.net>. */
 
 #include <config.h>
+
+#include <glibtop.h>
+#include <glibtop/fsusage.h>
+#include <glibtop/mountlist.h>
+
 #include <gnome.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -32,8 +37,6 @@
 
 #include <error.h>
 
-#include "mountlist.h"
-#include "fsusage.h"
 #include "save-cwd.h" 
 #define STREQ(s1, s2) ((strcmp (s1, s2) == 0))
 
@@ -108,7 +111,8 @@ static struct fs_type_list *fs_select_list;
 static struct fs_type_list *fs_exclude_list;
 
 /* Linked list of mounted filesystems. */
-static struct mount_entry *mount_list;
+static glibtop_mountentry *mount_list;
+static unsigned mount_list_entries;
 
 /* If nonzero, display usage information and exit.  */
 static int show_help;
@@ -164,7 +168,6 @@ build_app_window ()
   GtkWidget    *w_box;
   GtkWidget    *frame;
   GtkAdjustment *adjustment;
-  struct mount_entry  *me;
   int                 i;
 
   window = gnome_app_new ("GDiskFree", "Disk Free");
@@ -172,10 +175,9 @@ build_app_window ()
 		     GTK_SIGNAL_FUNC(gtk_main_quit),NULL);
   
   w_box = gtk_vbox_new (FALSE, 0);
-  i = 0;
-  for (me = mount_list; me ; me = me->me_next) {
-    if (!excluded_fstype (me->me_type)) {
-      frame = gtk_frame_new (me->me_devname);
+  for (i = 0; i < mount_list_entries; i++) {
+    if (!excluded_fstype (mount_list [i].type)) {
+      frame = gtk_frame_new (mount_list [i].devname);
       adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0, 0.0, 100.0, 0.01,
 						       0.1, 0.0));
       t_dial[i] = gtk_dial_new (adjustment);
@@ -183,7 +185,6 @@ build_app_window ()
       gtk_widget_set_usize (t_dial[i], 75, 60);
       gtk_container_add (GTK_CONTAINER (frame), t_dial[i]);
       gtk_box_pack_start (GTK_BOX (w_box), frame, FALSE, FALSE, 0);
-      i++;
     }
     
   }
@@ -209,29 +210,6 @@ about_cb (GtkWidget *widget, gpointer data)
 			     "on mounted file systems uitilizing a dial."),
 			   NULL );
   gtk_widget_show (about);
-}
-
-static void
-print_header (void)
-{
-  printf ("Filesystem ");
-
-  if (print_type)
-    printf ("   Type");
-  else
-    printf ("       ");
-
-  if (inode_format)
-    printf ("   Inodes   IUsed   IFree  %%IUsed");
-  else
-    if (megabyte_blocks)
-      printf (" MB-blocks    Used Available Capacity");
-    else if (human_blocks)
-      printf ("    Size  Used  Avail  Capacity");
-    else
-      printf (" %s  Used Available Capacity",
-	    kilobyte_blocks ? "1024-blocks" : " 512-blocks");
-  printf (" Mounted on\n");
 }
 
 /* Convert N_1K_BYTE_BLOCKS to a more readable string than %d would.
@@ -320,7 +298,7 @@ static void
 update_dev (const char *disk, const char *mount_point, const char *fstype,
 	    int i)
 {
-  struct fs_usage fsu;
+  glibtop_fsusage fsu;
   long blocks_used;
   long blocks_percent_used;
   long inodes_used;
@@ -333,15 +311,15 @@ update_dev (const char *disk, const char *mount_point, const char *fstype,
   if (require_sync)
     sync ();
   stat_file = mount_point ? mount_point : disk;
-  get_fs_usage (stat_file, disk, &fsu);
+  glibtop_get_fsusage (&fsu, stat_file);
 
-  fsu.fsu_blocks /= 2*1024;
-  fsu.fsu_bfree  /= 2*1024;
-  fsu.fsu_bavail /= 2*1024;
+  fsu.blocks /= 2*1024;
+  fsu.bfree  /= 2*1024;
+  fsu.bavail /= 2*1024;
 
-  blocks_used = fsu.fsu_blocks - fsu.fsu_bfree;
+  blocks_used = fsu.blocks - fsu.bfree;
   blocks_percent_used = (long) 
-    (blocks_used * 100.0 / (blocks_used + fsu.fsu_bavail) + 0.5);
+    (blocks_used * 100.0 / (blocks_used + fsu.bavail) + 0.5);
   gtk_dial_set_percentage ( (GtkDial *)t_dial[i], 
 			    (blocks_percent_used / 100.0)); 
 }
@@ -357,7 +335,7 @@ update_dev (const char *disk, const char *mount_point, const char *fstype,
 static void
 show_dev (const char *disk, const char *mount_point, const char *fstype)
 {
-  struct fs_usage fsu;
+  glibtop_fsusage fsu;
   long blocks_used;
   long blocks_percent_used;
   long inodes_used;
@@ -373,7 +351,9 @@ show_dev (const char *disk, const char *mount_point, const char *fstype)
      but statfs doesn't do that on most systems.  */
   stat_file = mount_point ? mount_point : disk;
 
-  if (get_fs_usage (stat_file, disk, &fsu))
+  glibtop_get_fsusage (&fsu, stat_file);
+
+  if (fsu.flags == 0)
     {
       error (0, errno, "%s", stat_file);
       exit_status = 1;
@@ -382,39 +362,39 @@ show_dev (const char *disk, const char *mount_point, const char *fstype)
 
   if (megabyte_blocks)
     {
-      fsu.fsu_blocks /= 2*1024;
-      fsu.fsu_bfree /= 2*1024;
-      fsu.fsu_bavail /= 2*1024;
+      fsu.blocks /= 2*1024;
+      fsu.bfree /= 2*1024;
+      fsu.bavail /= 2*1024;
     }
   else if (kilobyte_blocks)
     {
-      fsu.fsu_blocks /= 2;
-      fsu.fsu_bfree /= 2;
-      fsu.fsu_bavail /= 2;
+      fsu.blocks /= 2;
+      fsu.bfree /= 2;
+      fsu.bavail /= 2;
     }
 
-  if (fsu.fsu_blocks == 0)
+  if (fsu.blocks == 0)
     {
       if (!show_all_fs && !show_listed_fs)
 	return;
-      blocks_used = fsu.fsu_bavail = blocks_percent_used = 0;
+      blocks_used = fsu.bavail = blocks_percent_used = 0;
     }
   else
     {
-      blocks_used = fsu.fsu_blocks - fsu.fsu_bfree;
+      blocks_used = fsu.blocks - fsu.bfree;
       blocks_percent_used = (long)
-	(blocks_used * 100.0 / (blocks_used + fsu.fsu_bavail) + 0.5);
+	(blocks_used * 100.0 / (blocks_used + fsu.bavail) + 0.5);
     }
 
-  if (fsu.fsu_files == 0)
+  if (fsu.files == 0)
     {
-      inodes_used = fsu.fsu_ffree = inodes_percent_used = 0;
+      inodes_used = fsu.ffree = inodes_percent_used = 0;
     }
   else
     {
-      inodes_used = fsu.fsu_files - fsu.fsu_ffree;
+      inodes_used = fsu.files - fsu.ffree;
       inodes_percent_used = (long)
-	(inodes_used * 100.0 / fsu.fsu_files + 0.5);
+	(inodes_used * 100.0 / fsu.files + 0.5);
     }
 
   if (! disk)
@@ -431,22 +411,22 @@ show_dev (const char *disk, const char *mount_point, const char *fstype)
 
   if (inode_format)
     printf (" %7ld %7ld %7ld %5ld%%",
-	    fsu.fsu_files, inodes_used, fsu.fsu_ffree, inodes_percent_used);
+	    fsu.files, inodes_used, fsu.ffree, inodes_percent_used);
   else if (human_blocks)
     {
       char buf[3][LONGEST_HUMAN_READABLE_1K_BYTE_BLOCKS + 1];
       printf (" %4s %4s  %5s  %5ld%% ",
-	      human_readable_1k_blocks (fsu.fsu_blocks, buf[0],
+	      human_readable_1k_blocks (fsu.blocks, buf[0],
 				    LONGEST_HUMAN_READABLE_1K_BYTE_BLOCKS + 1),
 	      human_readable_1k_blocks (blocks_used, buf[1],
 				    LONGEST_HUMAN_READABLE_1K_BYTE_BLOCKS + 1),
-	      human_readable_1k_blocks (fsu.fsu_bavail, buf[2],
+	      human_readable_1k_blocks (fsu.bavail, buf[2],
 				    LONGEST_HUMAN_READABLE_1K_BYTE_BLOCKS + 1),
 	      blocks_percent_used);
     }
   else
     printf (" %7ld %7ld  %7ld  %5ld%% ",
-	    fsu.fsu_blocks, blocks_used, fsu.fsu_bavail, blocks_percent_used);
+	    fsu.blocks, blocks_used, fsu.bavail, blocks_percent_used);
 
   if (mount_point)
     {
@@ -470,49 +450,17 @@ show_dev (const char *disk, const char *mount_point, const char *fstype)
 static void
 show_disk (const char *disk)
 {
-  struct mount_entry *me;
+  int i;
 
-  for (me = mount_list; me; me = me->me_next)
-    if (STREQ (disk, me->me_devname))
+  for (i = 0; i < mount_list_entries; i++)
+    if (STREQ (disk, mount_list [i].devname))
       {
-	show_dev (me->me_devname, me->me_mountdir, me->me_type);
+	show_dev (mount_list [i].devname, mount_list [i].mountdir,
+		  mount_list [i].type);
 	return;
       }
   /* No filesystem is mounted on DISK. */
   show_dev (disk, (char *) NULL, (char *) NULL);
-}
-
-/* Return the directory component of PATH.  If PATH doesn't have one,
-   return ".".  The return value is allocated with `g_malloc', and
-   should be released with `g_free'.  */
-static char *
-g_dirname (const char *path)
-{
-  char *newpath;
-  char *slash;
-  int length;			/* Length of result, not including NUL.  */
-
-  slash = strrchr (path, '/');
-  if (slash == 0)
-    {
-      /* File is in the current directory.  */
-      path = ".";
-      length = 1;
-    }
-  else
-    {
-      /* Remove any trailing slashes from the result.  */
-      while (slash > path && *slash == '/')
-	--slash;
-
-      length = slash - path + 1;
-    }
-  newpath = (char *) g_malloc (length + 1);
-  if (newpath == 0)
-    return 0;
-  strncpy (newpath, path, length);
-  newpath[length] = 0;
-  return newpath;
 }
 
 /* Return the root mountpoint of the filesystem on which FILE exists, in
@@ -592,30 +540,31 @@ static void
 show_point (const char *point, const struct stat *statp)
 {
   struct stat disk_stats;
-  struct mount_entry *me;
+  int i;
 
-  for (me = mount_list; me; me = me->me_next)
+  for (i = 0; i < mount_list_entries; i++)
     {
-      if (me->me_dev == (dev_t) -1)
+      if (mount_list [i].dev == (dev_t) -1)
 	{
-	  if (stat (me->me_mountdir, &disk_stats) == 0)
-	    me->me_dev = disk_stats.st_dev;
+	  if (stat (mount_list [i].mountdir, &disk_stats) == 0)
+	    mount_list [i].dev = disk_stats.st_dev;
 	  else
 	    {
-	      error (0, errno, "%s", me->me_mountdir);
+	      error (0, errno, "%s", mount_list [i].mountdir);
 	      exit_status = 1;
 	      /* So we won't try and fail repeatedly. */
-	      me->me_dev = (dev_t) -2;
+	      mount_list [i].dev = (dev_t) -2;
 	    }
 	}
 
-      if (statp->st_dev == me->me_dev)
+      if (statp->st_dev == mount_list [i].dev)
 	{
 	  /* Skip bogus mtab entries.  */
-	  if (stat (me->me_mountdir, &disk_stats) != 0 ||
-	      disk_stats.st_dev != me->me_dev)
+	  if (stat (mount_list [i].mountdir, &disk_stats) != 0 ||
+	      disk_stats.st_dev != mount_list [i].dev)
 	    continue;
-	  show_dev (me->me_devname, me->me_mountdir, me->me_type);
+	  show_dev (mount_list [i].devname, mount_list [i].mountdir,
+		    mount_list [i].type);
 	  return;
 	}
     }
@@ -654,23 +603,22 @@ show_entry (const char *path, const struct stat *statp)
 static void
 show_all_entries (void)
 {
-  struct mount_entry *me;
+  int i;
 
-  for (me = mount_list; me; me = me->me_next)
-    show_dev (me->me_devname, me->me_mountdir, me->me_type);
+  for (i = 0; i < mount_list_entries; i++);
+    show_dev (mount_list [i].devname, mount_list [i].mountdir,
+	      mount_list [i].type);
 }
 
 static gboolean
 update_stats (gpointer data)
 {
-  struct mount_entry *me;
-  int                i;
+  int i;
 
-  i = 0;
-  for (me = mount_list; me; me = me->me_next) {
-    if (!excluded_fstype (me->me_type)) {
-      update_dev (me->me_devname, me->me_mountdir, me->me_type, i);
-      i++;
+  for (i = 0; i < mount_list_entries; i++) {
+    if (!excluded_fstype (mount_list [i].type)) {
+      update_dev (mount_list [i].devname, mount_list [i].mountdir,
+		  mount_list [i].type, i);
     }
   }
   return TRUE;
@@ -704,9 +652,9 @@ add_excluded_fs_type (const char *fstype)
 int
 main (int argc, char **argv)
 {
-  int i, udp_timer;
+  int index, udp_timer;
   struct stat *stats;
-  struct mount_entry *me;
+  glibtop_mountlist mountlist;
 
   program_name = argv[0];
 #if 0
@@ -728,17 +676,14 @@ main (int argc, char **argv)
   exit_status = 0;
 
   add_excluded_fs_type ("proc");
-  mount_list =
-    read_filesystem_list ((fs_select_list != NULL
-			   || fs_exclude_list != NULL
-			   || print_type),
-			  show_all_fs);
-  i = 0;
-  for (me = mount_list; me; me = me->me_next) {
-    i++;
-  }
 
-  t_dial = g_new (GtkWidget, i);
+  mount_list = glibtop_get_mountlist (&mountlist, show_all_fs);
+
+  assert (mount_list != NULL);
+
+  mount_list_entries = mountlist.number;
+  
+  t_dial = (GtkWidget **) g_new (GtkWidget, mount_list_entries);
   if (require_sync)
     sync ();
   

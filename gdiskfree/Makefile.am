@@ -1,6 +1,6 @@
 INCLUDES =						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-I$(includedir) $(GNOME_INCLUDEDIR)
+	-I$(includedir) $(GNOME_INCLUDEDIR) $(LIBGTOP_INCS)
 
 bin_PROGRAMS = gdiskfree
 
@@ -8,13 +8,10 @@ gdiskfree_SOURCES =				\
 	df.c					\
 	pathmax.h				\
 	xgetcwd.c				\
-	fsusage.c                               \
-	mountlist.c				\
 	save-cwd.c				\
-	save-cwd.h                              \
-	mountlist.h				\
-	fsusage.h
+	save-cwd.h
 
 
 gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
-		   $(GNOMEUI_LIBS) $(INTLLIBS) -lgtktty
+		  $(GNOMEUI_LIBS) $(INTLLIBS) -lgtktty \
+		  $(LIBGTOP_LIBS) $(LIBGTOP_EXTRA_LIBS)
