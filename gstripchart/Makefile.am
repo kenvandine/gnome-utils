@@ -7,11 +7,8 @@ INCLUDES =						\
 	-I$(includedir)					\
 	$(GNOME_INCLUDEDIR) $(LIBGTOP_INCS)
 
-bin_PROGRAMS =						\
-	gstripchart
-
-gstripchart_SOURCES =					\
-	gstripchart.c
+bin_PROGRAMS = gstripchart
+gstripchart_SOURCES = gstripchart.c
 
 gstripchart_LDADD =					\
 	$(GNOME_LIBDIR)					\
@@ -23,22 +20,33 @@ gstripchart_LDADD =					\
 
 EXTRA_DIST = 						\
 	gnome-stripchart.png				\
-	gstripchart.conf
+	gstripchart.conf				\
+	gstripchart_applet.desktop			\
+	gstripchart_applet.gnorba
 
-pixmapdir =						\
-	$(datadir)/pixmaps
+pixmapdir = $(datadir)/pixmaps
+pixmap_DATA = gnome-stripchart.png
 
-pixmap_DATA =						\
-	gnome-stripchart.png
+confdir = $(datadir)/gstripchart
+conf_DATA = gstripchart.conf
 
-confdir =						\
-	$(datadir)/gstripchart
+Utilitiesdir = $(datadir)/gnome/apps/Utilities
+Utilities_DATA = gstripchart.desktop
 
-conf_DATA =						\
-	gstripchart.conf
+if HAVE_GNOME_APPLET
 
-Utilitiesdir =						\
-	$(datadir)/gnome/apps/Utilities
+CFLAGS += -DHAVE_GNOME_APPLET
 
-Utilities_DATA =					\
-	gstripchart.desktop
+sysdir = $(datadir)/applets/Monitors
+sys_DATA = gstripchart_applet.desktop
+
+gnorbadir  = $(sysconfdir)/CORBA/servers
+gnorba_DATA = gstripchart_applet.gnorba
+
+install-exec-local:
+	mkdir -p $(bindir)
+	cd $(bindir) &&					\
+	rm -f gstripchart_applet &&			\
+	$(LN_S) gstripchart gstripchart_applet
+
+endif
