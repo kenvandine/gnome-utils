@@ -21,6 +21,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <errno.h>
 
 #include <sys/utsname.h>
 #include <unistd.h>
