@@ -5,7 +5,7 @@ figs = \
 docname = gshutdown_util
 lang = es
 omffile = gshutdown-es.omf
-sgml_ents = gshutdown \
+sgml_ents = gshutdown.sgml \
 	authors.sgml \
 	licencia-es.sgml \
 	licencia-nota-es.sgml \
