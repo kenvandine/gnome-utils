@@ -1,5 +1,10 @@
 2004-11-03  Vincent Noel  <vnoel@cox.net>
 
+	* logview.c (toggle_monitor): Prevent enabling monitoring with the
+	key shortcut for zipped files.
+	(logview_search): Disable search for monitored files.
+	(logview_menus_set_state): Add some checks for NULL pointers.
+
 	* logrtns.c (file_is_zipped): New.
 	(OpenLogFile): Check if the file is zipped, and unzip it in a temp
 	directory if it is.

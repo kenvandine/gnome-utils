@@ -488,7 +488,9 @@ CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 					   FALSE);
    gtk_widget_hide (window->find_bar);
 
+   g_print("Calling CloseLog\n");
    CloseLog (window->curlog);
+   g_print("After CloseLog\n");
 
    window->curlog = NULL;
    logview_menus_set_state (window);
@@ -841,20 +843,24 @@ static void
 toggle_monitor (GtkAction *action, GtkWidget *callback_data)
 {
     LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
-    if (window->monitored) {
-	    gtk_container_remove (GTK_CONTAINER (window->main_view), window->mon_scrolled_window);
-	    monitor_stop (window);
-	    gtk_container_add (GTK_CONTAINER (window->main_view), window->log_scrolled_window);
-	    window->monitored = FALSE;
-    } else {
-	    gtk_container_remove (GTK_CONTAINER(window->main_view), window->log_scrolled_window);
-	    mon_update_display (window);
-	    gtk_container_add (GTK_CONTAINER(window->main_view), window->mon_scrolled_window);
-	    go_monitor_log (window);
-	    window->monitored = TRUE;
+    if (!window->curlog)
+	    return;
+    if (!window->curlog->display_name) {
+	    if (window->monitored) {
+		    gtk_container_remove (GTK_CONTAINER (window->main_view), window->mon_scrolled_window);
+		    monitor_stop (window);
+		    gtk_container_add (GTK_CONTAINER (window->main_view), window->log_scrolled_window);
+		    window->monitored = FALSE;
+	    } else {
+		    gtk_container_remove (GTK_CONTAINER(window->main_view), window->log_scrolled_window);
+		    mon_update_display (window);
+		    gtk_container_add (GTK_CONTAINER(window->main_view), window->mon_scrolled_window);
+		    go_monitor_log (window);
+		    window->monitored = TRUE;
+	    }
+	    logview_set_window_title (window);
+	    logview_menus_set_state (window);
     }
-    logview_set_window_title (window);
-    logview_menus_set_state (window);
 }
 
 static void
@@ -863,8 +869,10 @@ logview_search (GtkAction *action,GtkWidget *callback_data)
 	static GtkWidget *dialog = NULL;
 	LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
 
-	gtk_widget_show (window->find_bar);
-	gtk_widget_grab_focus (window->find_entry);
+	if (!window->monitored) {
+		gtk_widget_show (window->find_bar);
+		gtk_widget_grab_focus (window->find_entry);
+	}
 }
 
 static void
@@ -884,10 +892,13 @@ logview_menus_set_state (LogviewWindow *window)
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", FALSE); 
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", FALSE);
 	} else {
-		if (window->curlog->display_name)
-			logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
-		else
-			logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", (window->curlog != NULL));
+		if (window->curlog) {
+			if (window->curlog->display_name)
+				logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
+			else
+				logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", TRUE);
+		} else
+				logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
 		
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/Properties", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/CloseLog", (window->curlog != NULL));
