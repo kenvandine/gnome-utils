@@ -30,10 +30,10 @@ gless/usage.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gless.sgml
 
 dist-hook:
-	mkdir $(distdir)/gless
+	$(mkinstalldirs) $(distdir)/gless
 	-cp $(srcdir)/gless/*.html gless/*.css $(distdir)/gless
 	-cp $(srcdir)/*.html $(distdir)
-	mkdir $(distdir)/images
+	$(mkinstalldirs) $(distdir)/images
 	-cp $(srcdir)/images/*.png $(distdir)/images
 
 install-data-local: index.html
