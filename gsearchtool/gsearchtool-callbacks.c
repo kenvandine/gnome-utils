@@ -618,7 +618,8 @@ move_to_trash_cb (GtkWidget 	*widget,
 		locale_filename = g_locale_from_utf8 (utf8_filename, -1, NULL, NULL, NULL);
 		trash_path = get_trash_path (locale_filename);
 		
-		if (!g_file_test (locale_filename, G_FILE_TEST_EXISTS)) {
+		if ((!g_file_test (locale_filename, G_FILE_TEST_EXISTS)) && 
+		    (!g_file_test (locale_filename, G_FILE_TEST_IS_SYMLINK))) {
 		
 			GtkWidget      *dialog;
 			gchar          *primary;
