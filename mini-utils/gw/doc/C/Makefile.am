@@ -4,5 +4,6 @@ figs = \
 
 app = gw
 lang = C
+omffiles=gw-C.omf
 include $(top_srcdir)/app-docs.make
 dist-hook: app-dist-hook

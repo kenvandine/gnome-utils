@@ -6,5 +6,6 @@ figs = \
 
 app = gsearchtool
 lang = it
+omffiles=gsearchtool-it.omf
 include $(top_srcdir)/app-docs.make
 dist-hook: app-dist-hook

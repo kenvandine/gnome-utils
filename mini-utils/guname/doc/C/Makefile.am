@@ -6,5 +6,6 @@ figs = \
 
 app = guname
 lang = C
+omffiles=guname-C.omf
 include $(top_srcdir)/app-docs.make
 dist-hook: app-dist-hook

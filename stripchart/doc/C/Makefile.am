@@ -8,5 +8,6 @@ figs = \
 
 app = stripchart
 lang = C
+omffiles=stripchart-C.omf
 include $(top_srcdir)/app-docs.make
 dist-hook: app-dist-hook
