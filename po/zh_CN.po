@@ -3,26 +3,26 @@
 # Sun G11n <gnome_int_l10n@ireland.sun.com> 2002
 # Wang Li <charlesw1234@163.com>, 2001
 # Xiong Jiang <jxiong@offtopic.org>, 2003
-# Funda Wang <fundawang@linux.net.cn>, 2003
+# Funda Wang <fundawang@linux.net.cn>, 2003, 2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
-"PO-Revision-Date: 2003-08-05 22:25+0800\n"
-"Last-Translator: Wang Li <charles@linux.net.cn>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-06 03:56+0100\n"
+"PO-Revision-Date: 2004-03-06 12:15+0800\n"
+"Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
-"X-Generator: KBabel 1.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
 msgstr "附件"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "查字典"
 
@@ -57,8 +57,8 @@ msgstr "显示字典(_D)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "无法连接服务器"
 
@@ -116,6 +116,11 @@ msgstr "找不到字符串"
 #: gdictsrc/gdict-app.c:469
 msgid "Find"
 msgstr "查找"
+
+# gsearchtool/gsearchtool.c:610
+#: gdictsrc/gdict-app.c:477
+msgid "_Search for:"
+msgstr "搜索(_S)："
 
 # mini-utils/gless/gless.c:461
 #: gdictsrc/gdict-app.c:490
@@ -176,7 +181,7 @@ msgstr "输入一个单词或从下面的列表中选择一个单词"
 msgid "Look Up for a Word"
 msgstr "搜索一个单词"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "搜索(_L)"
 
@@ -186,94 +191,102 @@ msgid "Error invoking query: %s"
 msgstr "调用查询时出错：%s"
 
 # gtt/toolbar.c:194
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "字典首选项"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "智能搜索(_L)"
 
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "服务器(_S)："
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "默认服务器(_F)"
 
 # mini-utils/gshutdown/gshutdown.c:368
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "将服务器复位为默认设置"
 
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "端口(_P)："
 
 # ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
 # mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "默认端口(_A)"
 
 # mini-utils/gshutdown/gshutdown.c:368
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "将端口复位为默认设置"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "服务器"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "服务器条目"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "输入服务器名"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "端口"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "端口条目"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "输入端口编号"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "数据库(_D)："
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "默认策略(_E)："
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "搜索所有数据库"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "数据库"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "数据库名称"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "默认策略"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"显示帮助时出错：\n%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -725,13 +738,12 @@ msgstr ""
 "与您的系统管理员交涉以获得写权限。"
 
 #: gfloppy/src/main.c:216
-#, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "无法打开设备 %s，无法继续格式化。"
+msgstr "无法打开任何设备，无法继续格式化。"
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 或 /dev/fd0"
 
 #: gfloppy/src/main.c:394
 #, c-format
@@ -755,7 +767,7 @@ msgid "DEVICE"
 msgstr "设备"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
@@ -763,8 +775,6 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
-"该软盘已被格式化，但是发现和标记了 <b>%d 个坏块</b>(总区块数为 %d)。"
-msgstr[1] ""
 "该软盘已被格式化，但是发现和标记了 <b>%d 个坏块</b>(总区块数为 %d)。"
 
 #: gfloppy/src/progress.c:126
@@ -782,7 +792,7 @@ msgstr "格式化进度"
 # gsearchtool/gsearchtool.c:610
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "搜索文件"
 
@@ -793,27 +803,27 @@ msgstr "在您的磁盘上搜索文件"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:99
 msgid "Image/label border"
-msgstr ""
+msgstr "图像/标签边框"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Width of border around the label and image in the alert dialog"
-msgstr ""
+msgstr "警告对话框中标签和图像的边框宽度"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
 msgid "Alert Type"
-msgstr ""
+msgstr "警告类型"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "The type of alert"
-msgstr ""
+msgstr "警告类型"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:118
 msgid "Alert Buttons"
-msgstr ""
+msgstr "警告按钮"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "The buttons shown in the alert dialog"
-msgstr ""
+msgstr "警告对话框中显示的按钮"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -826,7 +836,7 @@ msgstr "打开文件夹(_P)"
 
 #: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
-msgstr ""
+msgstr "移动到回收站(_V)"
 
 # gsearchtool/gsearchtool.c:203
 #: gsearchtool/gsearchtool-callbacks.c:64
@@ -834,32 +844,29 @@ msgid "_Save Results As..."
 msgstr "结果另存为(_S)..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
-#, fuzzy
 msgid "Could not open help document."
-msgstr "无法打开帮助文档"
+msgstr "无法打开帮助文档。"
 
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "您确定想要打开 %d 个文档吗？"
 
 # mini-utils/guname/guname.c:785
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] "这样将打开 %d 个单独的文件夹。您确定要这样做？"
-msgstr[1] "这样将打开 %d 个单独的文件夹。您确定要这样做？"
+msgstr[0] "这样将打开 %d 个单独的文件夹。"
 
 # mini-utils/guname/guname.c:692
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open document \"%s\"."
-msgstr "无法打开文档“%s”"
+msgstr "无法打开文档“%s”。"
 
 #: gsearchtool/gsearchtool-callbacks.c:393
 #: gsearchtool/gsearchtool-callbacks.c:947
@@ -870,58 +877,57 @@ msgstr "没有安装能显示文档的查看器。"
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "您确定想要打开 %d 个文件夹吗？"
 
 # mini-utils/guname/guname.c:692
 #: gsearchtool/gsearchtool-callbacks.c:502
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
-msgstr "无法打开文件夹“%s”"
+msgstr "无法打开文件夹“%s”。"
 
 #: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
 msgstr "nautilus 文件管理器没有运行。"
 
 #: gsearchtool/gsearchtool-callbacks.c:612
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to trash."
-msgstr "无法将文档“%s”保存到 %s"
+msgstr "无法将“%s”移动到回收站。"
 
 #: gsearchtool/gsearchtool-callbacks.c:615
 msgid "The document does not exist."
-msgstr ""
+msgstr "文档不存在。"
 
 #: gsearchtool/gsearchtool-callbacks.c:652
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to the trash."
-msgstr "无法将文档“%s”保存到 %s"
+msgstr "无法将“%s”移动到回收站。"
 
 #: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr ""
+msgstr "移动“%s”失败：%s。"
 
 #: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
-msgstr ""
+msgstr "您想要永久删除“%s”吗？"
 
 #: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr ""
+msgstr "回收站不可用。无法将“%s”移动到回收站。"
 
 # mini-utils/guname/guname.c:692
 #: gsearchtool/gsearchtool-callbacks.c:730
-#, fuzzy, c-format
+#, c-format
 msgid "Could not delete \"%s\"."
-msgstr "无法打开文件夹“%s”"
+msgstr "无法删除“%s”。"
 
 #: gsearchtool/gsearchtool-callbacks.c:733
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr ""
+msgstr "删除“%s”失败：%s。"
 
 # gsearchtool/gsearchtool.c:203
 #: gsearchtool/gsearchtool-callbacks.c:1132
@@ -929,43 +935,40 @@ msgid "Save Search Results As..."
 msgstr "搜索结果另存为..."
 
 #: gsearchtool/gsearchtool-callbacks.c:1184
-#, fuzzy
 msgid "Could not save document."
-msgstr "无法将文档“”保存到 %s"
+msgstr "无法保存文档。"
 
 # mini-utils/guname/guname.c:692
 #: gsearchtool/gsearchtool-callbacks.c:1186
-#, fuzzy
 msgid "You did not select a document name."
-msgstr "无法打开文档“%s”"
+msgstr "您没有选择文档名称。"
 
 #: gsearchtool/gsearchtool-callbacks.c:1212
 #: gsearchtool/gsearchtool-callbacks.c:1307
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
-msgstr "无法将文档“”保存到 %s"
+msgstr "无法将文档“%s”保存到 %s。"
 
 #: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
-msgstr ""
+msgstr "您选择的文档名是文件夹。"
 
 #: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "文档“%s”已经存在。您想要替换吗？"
 
 #: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr ""
+msgstr "如果您替换已有文件，该文件中的全部内容都将被覆盖。"
 
 #: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
-msgstr ""
+msgstr "替换(_R)"
 
 #: gsearchtool/gsearchtool-callbacks.c:1310
-#, fuzzy
 msgid "You may not have write permissions to the document."
-msgstr "您可能没有对文档的写权限。文档未保存。"
+msgstr "您可能没有对文档的写权限。"
 
 #: gsearchtool/gsearchtool-support.c:63
 #, c-format
@@ -983,15 +986,15 @@ msgstr ""
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
 #: gsearchtool/gsearchtool-support.c:348
 msgid "today at %-I:%M %p"
-msgstr "今天 %-H:%M"
+msgstr "今天 %H:%M"
 
 #: gsearchtool/gsearchtool-support.c:350
 msgid "yesterday at %-I:%M %p"
-msgstr "昨天 %-H:%M"
+msgstr "昨天 %H:%M"
 
 #: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
 msgid "%m/%-d/%y, %-I:%M %p"
-msgstr "%Y-%m-%d，%-H:%M"
+msgstr "%Y-%m-%d，%H:%M"
 
 #: gsearchtool/gsearchtool-support.c:487
 msgid "link (broken)"
@@ -1049,9 +1052,8 @@ msgid "Name matches regular e_xpression"
 msgstr "名城匹配正则表达式(_X)"
 
 #: gsearchtool/gsearchtool.c:86
-#, fuzzy
 msgid "Show hidden and backup files"
-msgstr "显示隐藏文件和文件夹"
+msgstr "显示隐藏文件和备份文件"
 
 #: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
@@ -1075,18 +1077,16 @@ msgid "No Files Found"
 msgstr "未找到文件"
 
 #: gsearchtool/gsearchtool.c:541
-#, fuzzy, c-format
+#, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "找到了 %d 个文件"
-msgstr[1] "找到了 %d 个文件"
 
 #: gsearchtool/gsearchtool.c:545
-#, fuzzy, c-format
+#, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "找到了 %d 个文件"
-msgstr[1] "找到了 %d 个文件"
 
 #: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
@@ -1144,19 +1144,16 @@ msgstr ""
 
 # ghex/ui.c:193 ghex/ui.c:344
 #: gsearchtool/gsearchtool.c:1312
-#, fuzzy
 msgid "Error while searching for files."
-msgstr "搜索文件时出错"
+msgstr "搜索文件时出错。"
 
 #: gsearchtool/gsearchtool.c:1353
-#, fuzzy
 msgid "Error parsing the search command."
-msgstr "处理搜索命令时出错"
+msgstr "处理搜索命令时出错。"
 
 #: gsearchtool/gsearchtool.c:1376
-#, fuzzy
 msgid "Error running the search command."
-msgstr "运行搜索命令时出错"
+msgstr "运行搜索命令时出错。"
 
 # SUN NEW TRANSLATION
 #: gsearchtool/gsearchtool.c:1472
@@ -1169,114 +1166,113 @@ msgid "Enter a value for search rule"
 msgstr "输入搜索规则的值"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "单击以删除“%s”规则"
 
 # mini-utils/guname/info.c:64
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "可用选项(_V)："
 
 # gsearchtool/gsearchtool.c:203
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "搜索规则菜单"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "从菜单中选择搜索规则"
 
 # gsearchtool/gsearchtool.c:203
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "搜索结果(_E)："
 
 # mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:217
 # mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "名称"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "文件夹"
 
 # mini-utils/guname/info.c:60
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "大小"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "类型"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "修改时间"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "名称包含(_N)："
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr "名称包含项"
-
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "输入要搜索的文件名"
 
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr "名称包含项"
+
 # mini-utils/guname/guname.c:506
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "搜索文件夹(_L)："
 
 # ghex/preferences.c:159
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "浏览"
 
-# mini-utils/guname/guname.c:506
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "在文件夹项中查找"
-
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
 msgid "Enter the folder name where you want to start the search"
 msgstr "输入开始进行搜索的文件夹名称"
 
+# mini-utils/guname/guname.c:506
+#: gsearchtool/gsearchtool.c:1844
+msgid "Look in Folder Entry"
+msgstr "在文件夹项中查找"
+
 # gtt/options.c:272
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
 msgstr "显示更多选项(_O)"
 
 # gtt/options.c:272
-#: gsearchtool/gsearchtool.c:1875
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1872
 msgid "Show more options"
-msgstr "显示更多选项(_O)"
+msgstr "显示更多选项"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
-msgstr ""
+msgstr "展开或折叠搜索选项列表。"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "单击开始搜索"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "单击停止搜索"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr "无法初始化 bonobo。"
 
@@ -1307,14 +1303,28 @@ msgstr "动作"
 msgid "_Add"
 msgstr "添加(_A)"
 
+# gstripchart/gstripchart.c:1545
+#: logview/actions.c:162
+msgid "Add an action"
+msgstr "添加动作"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "编辑(_E)"
+
+# gstripchart/gstripchart.c:1528
+#: logview/actions.c:169
+msgid "Edit an action"
+msgstr "编辑动作"
 
 # gsearchtool/gsearchtool.c:433
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "删除(_R)"
+
+#: logview/actions.c:176
+msgid "Remove an action"
+msgstr "删除动作"
 
 #: logview/actions.c:263
 #, c-format
@@ -1361,6 +1371,58 @@ msgstr "当正则表达式为真时执行"
 #: logview/actions.c:515
 msgid "description"
 msgstr "描述"
+
+# gstripchart/gstripchart.c:1545
+#: logview/actions.c:651
+msgid "Edit Action"
+msgstr "编辑动作"
+
+#: logview/actions.c:687
+msgid "_Tag:"
+msgstr "标记(_T)："
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr "标识日志文件的标记。"
+
+# gtt/options.c:380
+#: logview/actions.c:705
+msgid "_Log name:"
+msgstr "日志名(_L)："
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr "匹配日志名称的正规表达式。"
+
+# mini-utils/guname/info.c:44
+#: logview/actions.c:724
+msgid "_Process:"
+msgstr "进程(_P)："
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr "匹配消息进度部分的正规表达式。"
+
+#: logview/actions.c:743
+msgid "_Message:"
+msgstr "消息(_M)："
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr "匹配消息的正规表达式。"
+
+# gstripchart/gstripchart.c:1545
+#: logview/actions.c:762
+msgid "_Action:"
+msgstr "动作(_A)："
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
+"如果同时匹配以上几项正规表达式，则执行此动作。这将由 system 命令执行："
+"system (动作)。"
 
 # gtt/clist.c:172
 #: logview/actions.c:781
@@ -1426,7 +1488,7 @@ msgstr "大小："
 
 #: logview/info.c:108
 msgid "Modified:"
-msgstr "已修改："
+msgstr "修改日期："
 
 # gsearchtool/gsearchtool.c:514
 #: logview/info.c:109
@@ -1453,11 +1515,10 @@ msgstr "<未载入日志>"
 
 # mini-utils/guname/moreinfo.c:161
 #: logview/info.c:183
-#, fuzzy, c-format
+#, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
-msgstr[0] "%ld 字节："
-msgstr[1] "%ld 字节："
+msgstr[0] "%ld 字节"
 
 # ghex/converter.c:50
 #: logview/log_repaint.c:59
@@ -1654,7 +1715,7 @@ msgstr "消息"
 
 #: logview/logview.c:471
 msgid "Last Modified: "
-msgstr "最后修改时间："
+msgstr "上次修改时间："
 
 #: logview/logview.c:570 logview/logview.c:645
 msgid "Too many open logs. Close one and try again"
@@ -1728,6 +1789,7 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "要监视的日志过多。请删除一个，然后重试"
 
 #: logview/monitor.c:298 logview/monitor.c:335
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list 为 NULL\n"
 
@@ -1737,6 +1799,7 @@ msgid "Monitoring Logs..."
 msgstr "正在监视日志..."
 
 #: logview/monitor.c:643
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr "已更新！！\n"
 
@@ -1773,42 +1836,3 @@ msgstr "日志行细节"
 msgid "%B %e %X"
 msgstr "%m-%d %X"
 
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "动画文件丢失或者无效：%s"
-
-#~ msgid "One File Found"
-#~ msgstr "找到了 1 个文件"
-
-#~ msgid "One file found"
-#~ msgstr "找到了 1 个文件"
-
-# mini-utils/gless/gless.c:700
-#~ msgid "Open %d documents?"
-#~ msgstr "打开 %d 个文档吗？"
-
-# mini-utils/guname/guname.c:785
-#~ msgid ""
-#~ "This will open %d separate documents. Are you sure you want to do this?"
-#~ msgstr "这样将打开 %d 个单独的文档。您确定要这样做？"
-
-# mini-utils/guname/guname.c:692
-#~ msgid "Could not open document \"%s\""
-#~ msgstr "无法打开文档“%s”"
-
-# mini-utils/gless/gless.c:700
-#~ msgid "Open %d folders?"
-#~ msgstr "打开 %d 个文件夹吗？"
-
-#~ msgid ""
-#~ "You did not select a document name or the name selected was a folder.  "
-#~ "The document is not saved."
-#~ msgstr "您没有选择文档名称，或者所选的名称是文件夹。文档未保存。"
-
-#~ msgid "The contents of the file \"%s\" will be lost."
-#~ msgstr "文件“%s”的内容将丢失。"
-
-#~ msgid "Overwrite an existing file?"
-#~ msgstr "覆盖已有文件吗？"
-
-#~ msgid "Could not save document \"%s\" to %s"
-#~ msgstr "无法将文档“%s”保存到 %s"
