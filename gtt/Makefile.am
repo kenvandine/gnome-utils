@@ -60,7 +60,7 @@ noinst_HEADERS = 	\
 	
 
 # remove GTK_ENABLE_BROKEN when gnome-2.0 works for real
-CFLAGS = -DGTK_ENABLE_BROKEN	\ 
+CFLAGS = -DGTK_ENABLE_BROKEN	\
 	@CFLAGS@ 		\
 	${GNOME_UTILS_CFLAGS}	\
 	${GCONF_CFLAGS} 	\
