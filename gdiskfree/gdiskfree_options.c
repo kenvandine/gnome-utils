@@ -152,7 +152,7 @@ void
 gdiskfree_option_init (void)
 {
   if (!current_options)
-    current_options = g_malloc (sizeof (GDiskFreeOptions));
+    current_options = g_new0 (GDiskFreeOptions, 1);
   current_options->sync_required = gnome_config_get_bool
     ("/GDiskFree/properties/sync_required=FALSE");
   current_options->update_interval = gnome_config_get_int
@@ -171,6 +171,7 @@ gdiskfree_option_init (void)
   /*
    * How to store a list of things with the gnome_config_XXXX stuff?
    */
+  current_options->excluded = NULL;
   current_options->excluded = g_list_append (current_options->excluded, "proc");
   current_options->excluded = g_list_append (current_options->excluded, "devpts");
   current_options->excluded = g_list_append (current_options->excluded, "shm");
