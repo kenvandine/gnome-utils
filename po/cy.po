@@ -1,25 +1,27 @@
-# Translation of gnome-utils.po to Cymraeg
-# Gnome yn Gymraeg.
+# gnome-utils yn Gymraeg.
 # Copyright (C) 2003 Free Software Foundation, Inc.
 # www.kyfieithu.co.uk <kyfieithu@kyfieithu.co.uk>, 2003.
-# KGyfieithu <kyfieithu@dotmon.com>, 2003
 # Owain Green, Gruffudd Williams, Steve Griffiths, 2003.
+# Dafydd Harries, 2003.
 #
 # More terminology. Floppy disc. See around line 640-650 or so.
 # disg llipa ?
 #
+# daf:
+# did a s/llipa/hyblyg/, s/meddal/hyblyg/ for consistency's sake
+# if we change our minds later, we can always do a s/hyblyg/ffŵ/
+# also did s/cysawd/system/
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2003-07-20 21:02+0100\n"
-"PO-Revision-Date: 2003-07-10 20:23+0100\n"
-"Last-Translator: Telsa Gwynne <hobbit@aloss.ukuu.org.uk>\n"
+"POT-Creation-Date: 2003-07-21 05:12+0100\n"
+"PO-Revision-Date: 2003-07-21 04:38+0100\n"
+"Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>\n"
 "Language-Team: Cymraeg <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0.1\n"
-"\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -32,11 +34,11 @@ msgstr "Chwiliad Geiriadur"
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:3
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
-msgstr "Chwilio geiriau mewn geiriadur ar-lein"
+msgstr "Chwilio am eiriau mewn geiriadur ar-lein"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1
 msgid "_About..."
-msgstr "_Ynglyn..."
+msgstr "_Ynghylch..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_Help"
@@ -48,12 +50,11 @@ msgstr "_Chwilio am y Testun a Ddewisoch..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
 msgid "_Preferences..."
-msgstr "_Hoffiannau"
+msgstr "_Hoffterau..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-#, fuzzy
 msgid "_Show Dictionary"
-msgstr "_Geiriadur"
+msgstr "_Dangos y Geiriadur"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
@@ -74,7 +75,7 @@ msgstr ""
 #. Translator credits
 #: gdictsrc/gdict-about.c:43 logview/about.c:49
 msgid "translator_credits"
-msgstr "Owain Green"
+msgstr "Owain Green, Telsa Gwynne, Dafydd Harries"
 
 #: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
@@ -82,11 +83,8 @@ msgid "Dictionary"
 msgstr "Geiriadur"
 
 #: gdictsrc/gdict-about.c:58
-#, fuzzy
 msgid "A client for the MIT dictionary server."
-msgstr ""
-"Cleient ar gyfer gweinydd geiriadur MIT.\n"
-"\n"
+msgstr "Cleient ar gyfer gweinydd geiriadur MIT."
 
 #: gdictsrc/gdict-app.c:125
 msgid "Spell-checking..."
@@ -345,20 +343,20 @@ msgstr "Defnyddio chwiliad clyfar"
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy Formatter"
-msgstr "Fformatiwr Disg Meddal"
+msgstr "Fformatiwr Disg Hyblyg"
 
 #: gfloppy/gfloppy.desktop.in.h:2
 msgid "Format Floppy Disks"
-msgstr "Fformatio Disgiau Meddal"
+msgstr "Fformadu Disgiau Hyblyg"
 
 #: gfloppy/src/badblocks.c:94
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "Gwall Mewnol: Methu chwilio at y man cywir."
 
 #: gfloppy/src/badblocks.c:103
+#, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
-msgstr ""
-"Gwall Mewnol: Gwerth anisgwyl (%ld) yn do_test\n"
+msgstr "Gwall Mewnol: Gwerth anisgwyl (%ld) yn do_test\n"
 
 #. while (!i)
 #. ;
@@ -367,9 +365,9 @@ msgid "Checking for bad blocks..."
 msgstr "Chwilio am flociau drwg..."
 
 #: gfloppy/src/badblocks.c:273
+#, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr ""
-"Methu agor y ddyfais %s er mwyn chwilio am flociau drwg\n"
+msgstr "Methu agor y ddyfais %s er mwyn chwilio am flociau drwg\n"
 
 #: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
 msgid "Checking for bad blocks... Done"
@@ -384,6 +382,7 @@ msgid "I don't know what this is, but it's very wrong."
 msgstr "Dwi'm yn gwybod beth ydi hwn, ond mae'n hollol anghywir."
 
 #: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
+#, c-format
 msgid "Error formatting track #%d"
 msgstr "Gwall wrth fformatio trac #%d"
 
@@ -407,13 +406,14 @@ msgid ""
 "\n"
 "Please confirm that it is not write-protected."
 msgstr ""
-"Methu ysgrifennu ar y disg meddal.\n"
+"Methu ysgrifennu ar y disg hyblyg.\n"
 "\n"
 "Gofalwch nad yw wedi'w amddiffyn rhag ysgrifennu."
 
 #: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
+#, c-format
 msgid "Insufficient permissions to open floppy device %s."
-msgstr "Dim digon o freintiau i agor y ddyfais disg meddal %s."
+msgstr "Dim digon o freintiau i agor y ddyfais disg hyblyg %s."
 
 #: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
 msgid ""
@@ -422,22 +422,24 @@ msgid ""
 "Please confirm that it is in the drive\n"
 "with the drive door shut."
 msgstr ""
-"Methu cyrchu'r disg meddal.\n"
+"Methu cyrchu'r disg hyblyg.\n"
 " \n"
 "Cadarnhewch ei fod yn y gyrrydd\n"
 "a'r drws ar gau."
 
 #: gfloppy/src/fdformat.c:117
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s:%d"
 msgstr ""
-"Gwall cyffredinol wrth gyrchu'r ddyfais disgen hyblyg %s. \n"
+"Gwall cyffredinol wrth gyrchu'r ddyfais disg hyblyg %s. \n"
 "\n"
 "Côd gwall %s:%d"
 
 #: gfloppy/src/fdformat.c:140
+#, c-format
 msgid ""
 "Read Error:\n"
 "Problem reading cylinder %d, expected %d, read %d"
@@ -446,14 +448,17 @@ msgstr ""
 "Problem wrth ddarllen silindr %d, disgwyliwyd %d, cafwyd %d"
 
 #: gfloppy/src/fdformat.c:143
+#, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "Problem wrth ddarllen silindr %d, disgwyliwyd %d, cafwyd %d"
 
 #: gfloppy/src/fdformat.c:154
+#, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "Data drwg yn sil %d. Cario 'mlaen..."
 
 #: gfloppy/src/fdformat.c:163
+#, c-format
 msgid "Error closing device %s"
 msgstr "Gwall wrth gau dyfais %s"
 
@@ -462,22 +467,24 @@ msgid "Verifying the format... Done"
 msgstr "Cadarnhau y fformat... Wedi gorffen"
 
 #: gfloppy/src/fdformat.c:182
+#, c-format
 msgid "Unable to write to device %s"
 msgstr "Methu ysgrifennu i'r ddyfais %s"
 
 #: gfloppy/src/fdformat.c:202
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s"
 msgstr ""
-"Gwall cyffredinol wrth gyrchu'r ddyfais disg meddal %s.\n"
+"Gwall cyffredinol wrth gyrchu'r ddyfais disg hyblyg %s.\n"
 "\n"
 "Côd gwall %s"
 
 #: gfloppy/src/fdformat.c:214
 msgid "Could not determine current floppy geometry."
-msgstr "Methwyd pennu geometreg y disg meddal cyfredol."
+msgstr "Methwyd pennu geometreg y disg hyblyg cyfredol."
 
 #: gfloppy/src/gfloppy.c:221
 msgid "Error while creating a unique filename for the bad blocks list file."
@@ -488,6 +495,7 @@ msgid "Error while filling the bad blocks list file."
 msgstr "Gwall tra'n llenwi'r rhestr o flociau drwg."
 
 #: gfloppy/src/gfloppy.c:298
+#, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Gwall tra'n rhedeg y gorchymyn (%s): %s."
 
@@ -496,6 +504,7 @@ msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Llofnod dechreuol mke2fs anhysbys, diddymu."
 
 #: gfloppy/src/gfloppy.c:336
+#, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
 "\n"
@@ -510,10 +519,12 @@ msgid "Abnormal child process termination."
 msgstr "Terfyniad proses blentyn anarferol"
 
 #: gfloppy/src/gfloppy.c:378
+#, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Gwall tra'n taenu'r gorchymyn mbadblocks: %s."
 
 #: gfloppy/src/gfloppy.c:390
+#, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
@@ -528,15 +539,15 @@ msgstr "Terfyniad proses blentyn mbadblocks anarferol "
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
 msgid "Making filesystem on disk..."
-msgstr "Yn creu cysawd ffeil ar ddisg..."
+msgstr "Yn creu system ffeil ar ddisg..."
 
 #: gfloppy/src/gfloppy.c:467
 msgid "Unable to create filesystem correctly."
-msgstr "Methu creu cysawd ffeil yn gywir."
+msgstr "Methu creu'r system ffeil yn gywir."
 
 #: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
 msgid "Making filesystem on disk... Done"
-msgstr "Yn creu cysawd ffeil ar ddisg...Wedi Gorffen"
+msgstr "Yn creu system ffeil ar y ddisg... Wedi Gorffen"
 
 #: gfloppy/src/gfloppy.c:516
 msgid "Checking for bad blocks... (this might take a while)"
@@ -561,12 +572,12 @@ msgid ""
 "formatting.</i></small>"
 msgstr ""
 "<small><i><b>Noder</b>: Nid yw'r cyfleuster mbadblocks wedi'i osod ar y "
-"cysawd hwn. Rhaid ei osod er mwyn gwneud fformatiad DOS (fat)"
-"trylwyr.</i></small>"
+"system hwn. Rhaid ei osod er mwyn gwneud fformatiad DOS (fat)trylwyr.</i></"
+"small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">Gosodiadau Cysawd Ffeil</span>"
+msgstr "<span weight=\"bold\">Gosodiadau System Ffeiliau</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
 msgid "<span weight=\"bold\">Formatting Mode</span>"
@@ -590,15 +601,15 @@ msgstr "5.25\" Dwysedd Dwbl (360KB)"
 
 #: gfloppy/src/gfloppy2.glade.h:10
 msgid "File system _type:"
-msgstr "_Math cysawd ffeiliau:"
+msgstr "_Math system ffeiliau:"
 
 #: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy _density:"
-msgstr "_Dwysedd llipa:"
+msgstr "_Dwysedd y disg hyblyg:"
 
 #: gfloppy/src/gfloppy2.glade.h:13
 msgid "Floppy de_vice:"
-msgstr "Dyfais llipa:"
+msgstr "Y dy_fais disg hyblyg:"
 
 #: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 3.5\" (1.44MB)"
@@ -626,7 +637,7 @@ msgstr "_Fformadu"
 
 #: gfloppy/src/gfloppy2.glade.h:20
 msgid "_Quick (only creates the filesystem)"
-msgstr "_Cyflym (creu cysawd ffeiliau yn unig)"
+msgstr "_Cyflym (creu system ffeiliau yn unig)"
 
 #: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
@@ -638,7 +649,7 @@ msgid ""
 "can't format a floppy without one of them."
 msgstr ""
 "Nid yw'r un o'r cymhwysiadau mke2fsk na mkdosfs/mformat wedi''u gosod. Ni "
-"ellwch fformadu disg llipa heb un ohonynt."
+"ellwch fformadu disg hyblyg heb un ohonynt."
 
 #: gfloppy/src/main.c:158 gfloppy/src/main.c:202
 #, c-format
@@ -646,6 +657,7 @@ msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Methu agor y ddyfais %s, ni all fformadu barhau."
 
 #: gfloppy/src/main.c:161 gfloppy/src/main.c:205
+#, c-format
 msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
@@ -654,6 +666,7 @@ msgstr ""
 "Cysylltwch y ddyfais i barhau, os gwelwch yn dda."
 
 #: gfloppy/src/main.c:164 gfloppy/src/main.c:208
+#, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
 "be possible.\n"
@@ -661,9 +674,10 @@ msgid ""
 msgstr ""
 "Ymddengys nad oes gennych y caniatadau cywir i ysgrifennu i %s. Ni fydd "
 "fformadu'n bosib.\n"
-"Cysylltwch â'ch rheolwr cysawd am gael caniatadau ysgrifennu."
+"Cysylltwch â'ch rheolwr system am gael caniatadau ysgrifennu."
 
 #: gfloppy/src/main.c:400
+#, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
 "%s"
@@ -684,20 +698,21 @@ msgid "DEVICE"
 msgstr "DYFAIS"
 
 #: gfloppy/src/progress.c:123
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr ""
-"Fformadwyd y ddisg llipa, ond darganfuwyd <b>%d bloc drwg</b> (allan o %d) "
+"Fformadwyd y ddisg hyblyg, ond darganfuwyd <b>%d bloc drwg</b> (allan o %d) "
 "ac fe'u nodwyd."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
-msgstr "Fformadwyd y ddisg llipa'n llwyddiannus."
+msgstr "Fformadwyd y ddisg hyblyg'n llwyddiannus."
 
 #: gfloppy/src/progress.c:132
 msgid "Floppy formatting cancelled."
-msgstr "Diddymwyd fformadu'r ddisg llipa."
+msgstr "Diddymwyd fformadu'r ddisg hyblyg."
 
 #: gfloppy/src/progress.c:175
 msgid "Format Progress"
@@ -717,11 +732,11 @@ msgstr "DEFNYDDWYR PROFIADOL YN UNIG - Ôl-wyneb rhagosod fformadu FAT"
 
 #: gfloppy/gfloppy.schemas.in.h:3
 msgid "Default filesystem type"
-msgstr "Math cysawd ffeil rhagosod"
+msgstr "Math system ffeil ffeil rhagosodedig"
 
 #: gfloppy/gfloppy.schemas.in.h:4
 msgid "Default formatting mode"
-msgstr "Modd fformadu rhagosod"
+msgstr "Modd fformadu rhagosodedig"
 
 #: gfloppy/gfloppy.schemas.in.h:5
 msgid ""
@@ -734,7 +749,7 @@ msgstr ""
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
-"ext2 ar gyfer cysawd ffeil brodorol linux neu fat ar gyfer cysawd ffeil DOS"
+"ext2 ar gyfer systemffeil brodorol Linux neu fat ar gyfer system ffeil DOS"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
 #: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
@@ -752,11 +767,11 @@ msgstr "Yn cynnwys y _testun"
 
 #: gsearchtool/gsearchtool.c:75
 msgid "_Date modified less than (days)"
-msgstr "Dyddiad addaswyd _llai na (dydd)"
+msgstr "Dyddiad addasu yn _llai na (dydd)"
 
 #: gsearchtool/gsearchtool.c:76
 msgid "Date modified more than (da_ys)"
-msgstr "Dyddiad addaswyd _mwy na (dydd)"
+msgstr "Dyddiad addasu yn _fwy na (dydd)"
 
 #: gsearchtool/gsearchtool.c:78
 msgid "S_ize at least (kilobytes)"
@@ -784,7 +799,7 @@ msgstr "Heb berchennog adnabyddedig"
 
 #: gsearchtool/gsearchtool.c:86
 msgid "Na_me does not contain"
-msgstr ""
+msgstr "_Nid yw'r enw yn cynnwys"
 
 #: gsearchtool/gsearchtool.c:87
 msgid "Name matches regular e_xpression"
@@ -792,7 +807,7 @@ msgstr "Ffeil yn cydweddu â mynegiad _rheolaidd"
 
 #: gsearchtool/gsearchtool.c:89
 msgid "Show hidden files and folders"
-msgstr ""
+msgstr "Dangos ffeiliau a phlygallau cudd"
 
 #: gsearchtool/gsearchtool.c:90
 msgid "Follow symbolic links"
@@ -800,7 +815,7 @@ msgstr "Dilyn cysylltau symbolaidd"
 
 #: gsearchtool/gsearchtool.c:91
 msgid "Include other filesystems"
-msgstr "Cynnwys cysawdau ffeil eraill"
+msgstr "Cynnwys systemau ffeil eraill"
 
 #: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
@@ -813,7 +828,7 @@ msgstr "Galwai'r gofnod newidiedig am ddewisiad di-gofnod!"
 #: gsearchtool/gsearchtool.c:872
 #, c-format
 msgid "The animation file is missing or invalid: %s"
-msgstr ""
+msgstr "Mae'r ffeil animeiddiad ar goll neu'n annilys: %s"
 
 #: gsearchtool/gsearchtool.c:927
 msgid "Searching..."
@@ -829,7 +844,9 @@ msgstr "Gosod testun 'Edrych yn y blygell'"
 
 #: gsearchtool/gsearchtool.c:975
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr "Didoli ffeiliau yn ôl un o'r canlynol: enw, plygell, maint, math, neu ddyddiad"
+msgstr ""
+"Didoli ffeiliau yn ôl un o'r canlynol: enw, plygell, maint, math, neu "
+"ddyddiad"
 
 #: gsearchtool/gsearchtool.c:976
 msgid "Set sort order to descending, the default is ascending"
@@ -850,7 +867,7 @@ msgstr "Pasiwyd dewisiad annilys i sort gan ymresymiad llinell orchymyn."
 
 #: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
-msgstr ""
+msgstr "(stopiwyd)"
 
 #: gsearchtool/gsearchtool.c:1238
 msgid "No Files Found"
@@ -870,9 +887,9 @@ msgid "%d files found"
 msgstr "Canfuwyd %d ffeil"
 
 #: gsearchtool/gsearchtool.c:1247
-#, fuzzy, c-format 
+#, c-format
 msgid "%d Files Found"
-msgstr "Canfuwyd %d ffeil"
+msgstr "Canfuwyd %d Ffeil"
 
 #: gsearchtool/gsearchtool.c:1350
 msgid ""
@@ -895,13 +912,12 @@ msgid "Error while searching for files"
 msgstr "Gwall tra'n chwilio am feiliau"
 
 #: gsearchtool/gsearchtool.c:1399
-#, fuzzy
 msgid "Error parsing the search command"
-msgstr "Gwall tra'n rhedeg y gorchymyn (%s): %s."
+msgstr "Gwall wrth ramadegu'r gorchymyn chwilio"
 
 #: gsearchtool/gsearchtool.c:1419
 msgid "Error running the search command"
-msgstr "Gwall tra'n rhedeg y gorchymyn chwilio"
+msgstr "Gwall wrth weithredu'r gorchymyn chwilio"
 
 #: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
@@ -922,7 +938,7 @@ msgstr "Dewisiadau a_r gael:"
 
 #: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
-msgstr "Dewislen Reolau Chwilio"
+msgstr "Dewislen Rheolau Chwilio"
 
 #: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
@@ -954,11 +970,11 @@ msgstr "Dyddiad Addaswyd"
 
 #: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
-msgstr ""
+msgstr "_Enw yn cynnwys:"
 
 #: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
-msgstr ""
+msgstr "Cofnod Enw'n Cynnwys"
 
 #: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
@@ -973,9 +989,8 @@ msgid "Browse"
 msgstr "Pori"
 
 #: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
-#, fuzzy
 msgid "Look in Folder Entry"
-msgstr "_Edrych yn y blygell:"
+msgstr "Edrych yn y Cofnod Plygell"
 
 #: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
@@ -983,7 +998,7 @@ msgstr "Rhowch enw'r blygell o ble'r hoffech ddechrau'r chwiliad"
 
 #: gsearchtool/gsearchtool.c:1909
 msgid "Show more _options"
-msgstr "Dangos mwt opsiynnau"
+msgstr "Dangos mwy o _opsiynnau"
 
 #: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
@@ -1011,13 +1026,15 @@ msgstr "_Cadw Canlyniadau Fel..."
 
 #: gsearchtool/gsearchtool-callbacks.c:102
 msgid "Could not open help document"
-msgstr ""
+msgstr "Methwyd agor y ddogfen cymorth"
 
 #: gsearchtool/gsearchtool-callbacks.c:307
+#, c-format
 msgid "Open %d documents?"
 msgstr "Agor %d dogfennau?"
 
 #: gsearchtool/gsearchtool-callbacks.c:308
+#, c-format
 msgid "This will open %d separate documents. Are you sure you want to do this?"
 msgstr "Agora hyn %d dogfen gwahanol. A ydych yn sicr eich bod am wneud hyn?"
 
@@ -1025,7 +1042,7 @@ msgstr "Agora hyn %d dogfen gwahanol. A ydych yn sicr eich bod am wneud hyn?"
 #: gsearchtool/gsearchtool-callbacks.c:648
 #, c-format
 msgid "Could not open document \"%s\""
-msgstr ""
+msgstr "Methwyd agor y ddogfen \"%s\""
 
 #: gsearchtool/gsearchtool-callbacks.c:365
 #: gsearchtool/gsearchtool-callbacks.c:649
@@ -1033,6 +1050,7 @@ msgid "There is no installed viewer capable of displaying the document."
 msgstr "Nid oes gwelydd gosodedig sy'n medru dangos \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:411
+#, c-format
 msgid "Open %d folders?"
 msgstr "Agor %d plygell?"
 
@@ -1044,7 +1062,7 @@ msgstr "Agora hyn %d plygell gwahanol. A ydych yn sicr eich bod am wneud hyn?"
 #: gsearchtool/gsearchtool-callbacks.c:453
 #, c-format
 msgid "Could not open folder \"%s\""
-msgstr ""
+msgstr "Methwyd agor y blygell \"%s"
 
 #: gsearchtool/gsearchtool-callbacks.c:459
 msgid "The nautilus file manager is not running."
@@ -1057,35 +1075,40 @@ msgstr "Cadw Canlyniadau Chwiliad Fel..."
 #: gsearchtool/gsearchtool-callbacks.c:877
 #, c-format
 msgid "Could not save document \"\" to %s"
-msgstr ""
+msgstr "Methwyd cadw y ddogfen \"\" i %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:880
 msgid ""
 "You did not select a document name or the name selected was a folder.  The "
 "document is not saved."
 msgstr ""
+"Ni ddewiswch enw dogfen neu roedd yr enw a ddewiswyd yn blygell. Nid yw'r "
+"ddogfen wedi ei gadw."
 
 #: gsearchtool/gsearchtool-callbacks.c:903
 #, c-format
 msgid "The contents of the file \"%s\" will be lost."
-msgstr ""
+msgstr "Fe gaiff cynnwys y ffeil \"%s\" ei golli."
 
 #: gsearchtool/gsearchtool-callbacks.c:909
 msgid "Overwrite an existing file?"
-msgstr ""
+msgstr "Trosysgrifo ffeil sy'n bodoli?"
 
 #: gsearchtool/gsearchtool-callbacks.c:952
 #, c-format
 msgid "Could not save document \"%s\" to %s"
-msgstr ""
+msgstr "Methwyd cadw'r ddogfen \"%s\" i %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:957
 msgid ""
 "You may not have write permissions to the document.  The document is not "
 "saved."
 msgstr ""
+"Does gennych chi ddim caniatad i ysgrifennu i'r ddogfen. Nid yw'r dogfen "
+"wedi ei gadw."
 
 #: gsearchtool/gsearchtool-support.c:58
+#, c-format
 msgid ""
 "GConf error:\n"
 " %s"
@@ -1121,11 +1144,11 @@ msgstr "César Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:44
 msgid "A system log viewer for GNOME."
-msgstr ""
+msgstr "Gwelydd cofnodion system ar gyfer GNOME."
 
 #: logview/about.c:58
 msgid "System Log Viewer"
-msgstr "Gwelydd Cofnodion Cysawd GNOME"
+msgstr "Gwelydd Cofnodion System"
 
 #: logview/actions.c:74
 msgid "Action Database"
@@ -1198,6 +1221,7 @@ msgid "Description of this entry."
 msgstr "Disgrifiad y gofnod hon"
 
 #: logview/actions.c:814
+#, c-format
 msgid ""
 "tag: [%s]\n"
 "log_name: [%s]\n"
@@ -1233,11 +1257,11 @@ msgstr "Methu agor cronfa ddata disgrifiadau <%s>! Methodd yr agor."
 #. ----------------------------------------------------------------------
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
-msgstr "Cofnodion y Cysawd"
+msgstr "Cofnod System"
 
 #: logview/gnome-system-log.desktop.in.h:2
 msgid "View the system log file"
-msgstr "Gweld ffeil gofnod y cysawd"
+msgstr "Gweld y ffeil cofnod system"
 
 #: logview/info.c:65
 msgid "Properties"
@@ -1358,12 +1382,13 @@ msgid "%s is not a regular file."
 msgstr "Nid yw %s yn ffeil rheolaidd"
 
 #: logview/logrtns.c:270
+#, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
 "Nid yw %s yn ddarllenadwy gan ddefnyddwyr. Naill ai rhedwch y rhaglen fel yr "
-"uwchddefnyddiwr (root) neu gofynwch i reolwr y cysawd i newid y caniatadau "
+"uwchddefnyddiwr (root) neu gofynwch i rheolwr y system i newid y caniatadau "
 "ar y ffeil."
 
 #: logview/logrtns.c:287
@@ -1473,6 +1498,7 @@ msgid "Open new logfile"
 msgstr "Agor ffeil gofnod newydd"
 
 #: logview/misc.c:56
+#, c-format
 msgid "Error: [%s]\n"
 msgstr "Gwall: [%s]\n"
 
