@@ -96,7 +96,7 @@ static struct argp_option argp_options [] = {
     "geometry",     /* name */
     GEOMETRY_KEY,   /* key  */
     N_("GEOMETRY"), /* name of argument to option */
-    OPTION_ARG_OPTIONAL,              /* flags */
+    0,              /* flags */
     N_("Where to put the window, and its size"), /* docs */
     1               /* option group for help message sorting */
   },
@@ -232,14 +232,16 @@ int main ( int argc, char ** argv )
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  client = gnome_client_new_default ();
+
+  gnome_init (APPNAME, &parser, argc, argv, 0, 0);
+
+  client = gnome_master_client ();
   if (client){
     gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
                         GTK_SIGNAL_FUNC (session_save_state), argv[0]);
     gtk_signal_connect (GTK_OBJECT (client), "die",
                         GTK_SIGNAL_FUNC (session_die), NULL);
   }
-  gnome_init (APPNAME, &parser, argc, argv, 0, 0);
 
   /* Save the beginning of the lists */
   tmp1 = start_files; 
