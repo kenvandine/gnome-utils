@@ -1,8 +1,25 @@
+/*   GTimeTracker - a time tracker
+ *   Copyright (C) 1997,98 Eckehard Berns
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
 #include <config.h>
 #include <stdlib.h>
 #include <string.h>
 #include <gtk/gtk.h>
-#include <errno.h>
 
 #include "gtt.h"
 
@@ -240,9 +257,34 @@ int project_list_load(char *fname)
 		} else if (s[0] == 's') {
 			/* show seconds? */
 			config_show_secs = (s[3] == 'n');
-		} else {
+		} else if (s[0] == 'c') {
+			/* switch project command */
+			while (s[strlen(s) - 1] == '\n')
+				s[strlen(s) - 1] = 0;
+			if (config_command) g_free(config_command);
+			config_command = g_strdup(&s[2]);
+		} else if (s[0] == 'n') {
+			/* no project command */
+			while (s[strlen(s) - 1] == '\n')
+				s[strlen(s) - 1] = 0;
+			if (config_command_null) g_free(config_command_null);
+			config_command_null = g_strdup(&s[2]);
+		} else if (s[0] == 'l') {
+			if (s[1] == 'u') {
+				/* use logfile? */
+				config_logfile_use = (s[4] == 'n');
+			} else if (s[1] == 'n') {
+				/* logfile name */
+				while (s[strlen(s) - 1] == '\n')
+					s[strlen(s) - 1] = 0;
+				if (config_logfile_name) g_free(config_logfile_name);
+				config_logfile_name = g_strdup(&s[3]);
+			} else if (s[1] == 's') {
+				/* minimum time for a project to get logged */
+				config_logfile_min_secs = atoi(&s[3]);
+			}
+		} else if ((s[0] >= '0') && (s[0] <='9')) {
 			/* new project */
-			/* TODO: sanity checks... */
 			proj = project_new();
 			project_list_add(proj);
 			proj->secs = atol(s);
@@ -302,6 +344,15 @@ int project_list_save(char *fname)
 	/* TODO: time_t can be float! */
 	fprintf(f, "t%ld\n", last_timer);
 	fprintf(f, "s %s\n", (config_show_secs) ? "on" : "off");
+	if (config_command)
+		fprintf(f, "c %s\n", config_command);
+	if (config_command_null)
+		fprintf(f, "n %s\n", config_command_null);
+	fprintf(f, "lu %s\n", (config_logfile_use) ? "on" : "off");
+	if (config_logfile_name)
+		fprintf(f, "ln %s\n", config_logfile_name);
+	if (config_logfile_min_secs)
+		fprintf(f, "ls %d\n", config_logfile_min_secs);
 	
 	for (pl = plist; pl; pl = pl->next) {
 		if (!pl->proj) continue;

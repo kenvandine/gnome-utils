@@ -1,3 +1,21 @@
+/*   GTimeTracker - a time tracker
+ *   Copyright (C) 1997,98 Eckehard Berns
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
 #include <config.h>
 #if HAS_GNOME
 #include <gnome.h>
@@ -5,39 +23,30 @@
 #include <gtk/gtk.h>
 #endif
 
-#include "menus.h"
-#include "gtt-features.h"
+#include "gtt.h"
 
-#if HAS_GNOME && defined(GNOME_USE_TOOLBAR)
-#define WANT_GNOME 1
-#else
-#define WANT_GNOME 0
-#endif
+#include "tb_new.xpm"
 
-#if !WANT_GNOME
-# include "tb_new.xpm"
+#include "tb_open.xpm"
+#include "tb_save.xpm"
 
-# include "tb_open.xpm"
-# include "tb_save.xpm"
+#include "tb_cut.xpm"
+#include "tb_copy.xpm"
+#include "tb_paste.xpm"
 
-# include "tb_cut.xpm"
-# include "tb_copy.xpm"
-# include "tb_paste.xpm"
+#include "tb_properties.xpm"
+#include "tb_prop_dis.xpm"
+#include "tb_timer.xpm"
+#include "tb_timer_stopped.xpm"
 
-# include "tb_properties.xpm"
-# include "tb_timer.xpm"
-# include "tb_timer_stopped.xpm"
-
-# include "tb_preferences.xpm"
-# ifdef EXTENDED_TOOLBAR
-#  include "tb_unknown.xpm"
-#  include "tb_exit.xpm"
-# endif /* EXTENDED_TOOLBAR */
-#endif /* !WANT_GNOME */
+#include "tb_preferences.xpm"
+#ifdef EXTENDED_TOOLBAR
+# include "tb_unknown.xpm"
+# include "tb_exit.xpm"
+#endif /* EXTENDED_TOOLBAR */
 
 
 
-#if !WANT_GNOME
 static GtkWidget *win;
 static GtkBox *hbox;
 static GtkTooltips *tt;
@@ -48,8 +57,8 @@ typedef struct _ToggleData {
 	char *path;
 } ToggleData;
 
-ToggleData *toggle_timer = NULL;
-#endif /* !WANT_GNOME */
+static ToggleData *toggle_timer = NULL;
+static ToggleData *toggle_prop = NULL;
 
 
 
@@ -62,7 +71,6 @@ static void sigfunc(GtkWidget *w,
 
 
 
-#if !WANT_GNOME
 static void set_toggle_state(ToggleData *data)
 {
 	if (!data) return;
@@ -82,11 +90,35 @@ static void set_toggle_state(ToggleData *data)
 		}
 	}
 }
-#endif /* !WANT_GNOME */
 
 
 
-#if !WANT_GNOME
+#ifndef GNOME_USE_APP
+static void set_sensitive_state(ToggleData *data)
+{
+	if (!data) return;
+	if (menus_get_sensitive_state(data->path)) {
+		gtk_widget_set_sensitive(GTK_WIDGET(data->button), 1);
+		if (data->cur_pmap != data->pmap1) {
+			if (data->cur_pmap)
+				gtk_container_remove(data->button, data->cur_pmap);
+			gtk_container_add(data->button, data->pmap1);
+			data->cur_pmap = data->pmap1;
+		}
+	} else {
+		gtk_widget_set_sensitive(GTK_WIDGET(data->button), 0);
+		if (data->cur_pmap != data->pmap2) {
+			if (data->cur_pmap)
+				gtk_container_remove(data->button, data->cur_pmap);
+			gtk_container_add(data->button, data->pmap2);
+			data->cur_pmap = data->pmap2;
+		}
+	}
+}
+#endif /* GNOME_USE_APP */
+
+
+
 static void sigfunc_toggle(GtkWidget *w,
 			   ToggleData *data)
 {
@@ -95,11 +127,9 @@ static void sigfunc_toggle(GtkWidget *w,
 	menus_activate(data->path);
 	set_toggle_state(data);
 }
-#endif /* !WANT_GNOME */
 
 
 
-#if !WANT_GNOME
 static void add_space(gint spacing)
 {
 	GtkWidget *w;
@@ -108,20 +138,9 @@ static void add_space(gint spacing)
 	gtk_widget_show(w);
 	gtk_box_pack_start(hbox, w, FALSE, FALSE, spacing);
 }
-#endif /* !WANT_GNOME */
 
 
 
-void toolbar_set_states(void)
-{
-#if !WANT_GNOME
-	if (toggle_timer) set_toggle_state(toggle_timer);
-#endif /* !WANT_GNOME */
-}
-
-
-
-#if !WANT_GNOME
 static ToggleData *add_toggle_button(gchar **xpm, gchar **xpm2,
 				     char *text,
 				     gchar *path)
@@ -161,12 +180,10 @@ static ToggleData *add_toggle_button(gchar **xpm, gchar **xpm2,
 		gtk_tooltips_set_tips(tt, w, text);
 	return toggle_data;
 }
-#endif /* !WANT_GNOME */
 
 
 
-#if !WANT_GNOME
-static void add_button(gchar **xpm, char *text, gchar *path)
+static GtkButton *add_button(gchar **xpm, char *text, gchar *path)
 {
 	GtkWidget *w, *pixmap;
 	GdkPixmap *pmap;
@@ -190,30 +207,13 @@ static void add_button(gchar **xpm, char *text, gchar *path)
 	}
 	if (text)
 		gtk_tooltips_set_tips(tt, w, text);
+	return GTK_BUTTON(w);
 }
-#endif /* !WANT_GNOME */
 
 
 
 GtkWidget *build_toolbar(GtkWidget *window, GtkTooltips **tips)
 {
-#if WANT_GNOME
-# warning uahhh, that gnome-toolbar suxx!
-	GnomeToolbar *tbar;
-
-	tbar = gnome_create_toolbar(window, GNOME_TB_PACK_START);
-	gnome_toolbar_add(tbar, "New Project...", "tb_new.xpm",
-			  (GnomeToolbarFunc)sigfunc, "<Main>/File/New Project...");
-	gnome_toolbar_add_default(tbar, GNOME_TOOLBAR_RELOAD,
-				  (GnomeToolbarFunc)sigfunc, "<Main>/File/Reload rc");
-	gnome_toolbar_add_default(tbar, GNOME_TOOLBAR_CLOSE,
-				  (GnomeToolbarFunc)sigfunc, "<Main>/File/Save rc");
-	gnome_toolbar_add_default(tbar, GNOME_TOOLBAR_EXIT,
-				  (GnomeToolbarFunc)sigfunc, "<Main>/File/Quit");
-	gnome_toolbar_set_style(tbar, GNOME_TB_TEXT|GNOME_TB_ICONS|GNOME_TB_HORIZONTAL);
-	if (tips) *tips = NULL;
-	return tbar->toolbar;
-#else /* WANT_GNOME */ 
 	win = window;
 
 	tt = gtk_tooltips_new();
@@ -230,7 +230,9 @@ GtkWidget *build_toolbar(GtkWidget *window, GtkTooltips **tips)
 	add_button(tb_copy_xpm, "Copy", "<Main>/Edit/Copy");
 	add_button(tb_paste_xpm, "Paste", "<Main>/Edit/Paste");
 	add_space(2);
-	add_button(tb_properties_xpm, "Edit Properties...", "<Main>/Edit/Properties...");
+	toggle_prop = add_toggle_button(tb_properties_xpm, tb_prop_dis_xpm,
+					"Edit Properties",
+					"<Main>/Edit/Properties...");
 	toggle_timer = add_toggle_button(tb_timer_xpm, tb_timer_stopped_xpm,
 					 "start/stop Timer",
 					 "<Main>/Timer/Timer running");
@@ -243,6 +245,119 @@ GtkWidget *build_toolbar(GtkWidget *window, GtkTooltips **tips)
 
 	if (tips) *tips = tt;
 	return GTK_WIDGET(hbox);
-#endif /* WANT_GNOME */
+}
+
+
+
+#ifdef GNOME_USE_APP
+#include "menucmd.h"
+
+
+
+static void toolbar_toggle_timer(GtkWidget *w, gpointer *data)
+{
+	if (main_timer == 0) {
+		start_timer();
+	} else {
+		stop_timer();
+	}
+	menu_set_states();
+}
+
+
+
+static GnomeToolbarInfo tbar[] = {
+	{GNOME_APP_TOOLBAR_ITEM, "New", "New Project...",
+		GNOME_APP_PIXMAP_DATA, tb_new_xpm, new_project},
+	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
+	{GNOME_APP_TOOLBAR_ITEM, "Reload", "Reload init file",
+		GNOME_APP_PIXMAP_DATA, tb_open_xpm, init_project_list},
+	{GNOME_APP_TOOLBAR_ITEM, "Save", "Save init file",
+		GNOME_APP_PIXMAP_DATA, tb_save_xpm, save_project_list},
+	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
+	{GNOME_APP_TOOLBAR_ITEM, "Cut", "Cut selected project",
+		GNOME_APP_PIXMAP_DATA, tb_cut_xpm, cut_project},
+	{GNOME_APP_TOOLBAR_ITEM, "Copy", "Copy selected project",
+		GNOME_APP_PIXMAP_DATA, tb_copy_xpm, copy_project},
+	{GNOME_APP_TOOLBAR_ITEM, "Paste", "Paste selected project",
+		GNOME_APP_PIXMAP_DATA, tb_paste_xpm, paste_project},
+	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
+	{GNOME_APP_TOOLBAR_ITEM, "Props", "Edit properties...",
+		GNOME_APP_PIXMAP_DATA, tb_properties_xpm, menu_properties},
+	{GNOME_APP_TOOLBAR_ITEM, "Timer", "Start/Stop timer",
+		GNOME_APP_PIXMAP_DATA, tb_timer_xpm, toolbar_toggle_timer},
+	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
+	{GNOME_APP_TOOLBAR_ITEM, "Prefs", "Edit preferences...",
+		GNOME_APP_PIXMAP_DATA, tb_preferences_xpm, menu_options},
+#ifdef EXTENDED_TOOLBAR
+	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
+	{GNOME_APP_TOOLBAR_ITEM, "About", "About...",
+		GNOME_APP_PIXMAP_DATA, tb_unknown_xpm, about_box},
+	{GNOME_APP_TOOLBAR_ITEM, "Quit", "Quit " APP_NAME,
+		GNOME_APP_PIXMAP_DATA, tb_exit_xpm, quit_app},
+#endif /* EXTENDED_TOOLBAR */ 
+	{GNOME_APP_TOOLBAR_ENDOFINFO, NULL, NULL, 0, NULL, NULL}
+};
+
+
+
+#ifndef GNOME_USE_APP
+static GnomeToolbarInfo *toolbar_find(GnomeToolbarInfo *tinfo, const char *text)
+{
+	int i;
+
+	g_return_val_if_fail(tinfo != NULL, NULL);
+	g_return_val_if_fail(text != NULL, NULL);
+
+	for (i = 0; tinfo[i].type != GNOME_APP_TOOLBAR_ENDOFINFO; i++) {
+		if (!tinfo[i].text) continue;
+		if (0 == strcmp(tinfo[i].text, text)) return &tinfo[i];
+	}
+	return NULL;
+}
+#endif /* GNOME_USE_APP */
+
+
+
+/* TODO: I should pass toolbar_set_states the gnome_app, too */
+static GnomeApp *app = NULL;
+
+void toolbar_create(GtkWidget *gnome_app)
+{
+	app = GNOME_APP(gnome_app);
+	gnome_app_create_toolbar(GNOME_APP(gnome_app), tbar);
+	/* gtk_toolbar_set_style(GTK_TOOLBAR(GNOME_APP(gnome_app)->toolbar), GTK_TOOLBAR_ICONS); */
+	/* 
+	 * TODO: GnomeApp has problems with positioning right now. So I put
+	 * the toolbar at the bottom
+	 */
+	/* gnome_app_toolbar_set_position(GNOME_APP(gnome_app), GNOME_APP_POS_BOTTOM); */
+}
+
+#endif /* GNOME_USE_APP */
+
+
+
+void toolbar_set_states(void)
+{
+#ifdef GNOME_USE_APP
+	/* TODO: hmm - that doesn't work */
+# if 0
+	if (!app) return;
+	if (app->toolbar)
+		gtk_widget_destroy(app->toolbar);
+	app->toolbar = NULL;
+	toolbar_find(tbar, "Timer")->pixmap_info =
+		(main_timer != 0) ? tb_timer_xpm : tb_timer_stopped_xpm;
+	gnome_app_create_toolbar(app, tbar);
+# endif
+#else /* GNOME_USE_APP */ 
+	if (toggle_timer) set_toggle_state(toggle_timer);
+	/* TODO: remove me
+	if (prop_button)
+		gtk_widget_set_sensitive(GTK_WIDGET(prop_button), (cur_proj) ? 1 : 0);
+	 */
+	if (toggle_prop) set_sensitive_state(toggle_prop);
+#endif /* GNOME_USE_APP */
 }
 

@@ -1,3 +1,21 @@
+/*   GTimeTracker - a time tracker
+ *   Copyright (C) 1997,98 Eckehard Berns
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
 #include <config.h>
 #include <gtk/gtk.h>
 
@@ -37,7 +55,7 @@ static GtkMenuEntry menu_items[] =
 	{"<Main>/Timer/Start", "<control>A", menu_start_timer, NULL},
 	{"<Main>/Timer/Stop", "<control>P", menu_stop_timer, NULL},
 	{"<Main>/Timer/<check>Timer running", "<control>T", menu_toggle_timer, NULL},
-	{"<Main>/Help/About...", NULL, about_box, NULL},
+	{"<Main>/Help/About...", "<alt>H", about_box, NULL},
 };
 static int nmenu_items = sizeof (menu_items) / sizeof (menu_items[0]);
 
@@ -155,6 +173,24 @@ int menus_get_toggle_state(char *path)
     }
   else
     g_warning ("Unable to get state from menu which doesn't exist: %s", path);
+  return 0;
+}
+
+int menus_get_sensitive_state(char *path)
+{
+  GtkMenuPath *menu_path;
+
+  if (initialize)
+    menus_init ();
+
+  menu_path = gtk_menu_factory_find (factory, path);
+  if (menu_path)
+    {
+      if (GTK_IS_WIDGET (menu_path->widget))
+	return GTK_WIDGET_SENSITIVE(menu_path->widget);
+    }
+  else
+    g_warning ("Unable to get sensitivity from menu which doesn't exist: %s", path);
   return 0;
 }
 

@@ -4,7 +4,7 @@ INCLUDES = 			\
 	-I../.. 		\
 	-I$(srcdir)/../.. 	\
 	-I$(includedir)		\
-	-DHAS_GNOME		\
+	-DHAS_GNOME=1		\
 	$(X_CFLAGS)
 
 bin_PROGRAMS = gtt
@@ -25,6 +25,8 @@ gtt_SOURCES = 	\
 	toolbar.h	\
 	gtt.h		\
 	menucmd.h	\
+	app.c		\
+	log.c		\
 	gtt-features.h
 
 gtt_LDADD = \
@@ -41,6 +43,7 @@ EXTRA_DIST = \
 	tb_cut.xpm		\
 	tb_open.xpm		\
 	tb_properties.xpm	\
+	tb_prop_dis.xpm		\
 	tb_timer_stopped.xpm	\
 	tb_exit.xpm		\
 	tb_paste.xpm		\

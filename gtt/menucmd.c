@@ -1,5 +1,27 @@
+/*   GTimeTracker - a time tracker
+ *   Copyright (C) 1997,98 Eckehard Berns
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
 #include <config.h>
+#if HAS_GNOME
+#include <gnome.h>
+#else
 #include <gtk/gtk.h>
+#endif
 
 #include "gtt.h"
 
@@ -17,20 +39,8 @@ void quit_app(GtkWidget *w, gpointer data)
 {
 	unlock_gtt();
 	if (!project_list_save(NULL)) {
-#if 1
 		msgbox_ok("Warning", "Could not write init file!", "Oops",
 			  GTK_SIGNAL_FUNC(gtk_main_quit));
-#else
-		GtkWidget *dlg, *t;
-		GtkBox *vbox;
-		
-		new_dialog_ok("Warning", &dlg, &vbox,
-			      "Oops", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
-		t = gtk_label_new("Could not write init file!");
-		gtk_widget_show(t);
-		gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
-		gtk_widget_show(dlg);
-#endif 
 		return;
 	}
 	gtk_main_quit();
@@ -76,12 +86,7 @@ static void project_name(GtkWidget *w, GtkEntry *gentry)
 	if (!(s = gtk_entry_get_text(gentry))) return;
 	if (!s[0]) return;
 	project_list_add(proj = project_new_title(s));
-#if 1
 	add_item(glist, proj);
-#else 
-	/* TODO: optimize */
-	setup_list();
-#endif 
 }
 
 void new_project(GtkWidget *widget, gpointer data)
@@ -100,7 +105,7 @@ void new_project(GtkWidget *widget, gpointer data)
 	gtk_widget_show(text);
 	gtk_box_pack_end(vbox, text, TRUE, TRUE, 2);
 	gtk_widget_grab_focus(text);
-	/*
+	/* TODO: verify me
 	gtk_signal_connect(GTK_OBJECT(text), "activate",
 			   GTK_SIGNAL_FUNC(project_name), (gpointer *)text);
 	gtk_signal_connect_object(GTK_OBJECT(text), "activate",
@@ -179,7 +184,7 @@ void cut_project(GtkWidget *w, gpointer data)
 	cutted_project = cur_proj;
 	prop_dialog_set_project(NULL);
 	project_list_remove(cur_proj);
-	cur_proj = NULL;
+	cur_proj_set(NULL);
 	gtk_container_remove(GTK_CONTAINER(glist), GTK_LIST(glist)->selection->data);
 }
 
@@ -236,25 +241,15 @@ void menu_stop_timer(GtkWidget *w, gpointer data)
 
 void menu_toggle_timer(GtkWidget *w, gpointer data)
 {
-	if (GTK_IS_CHECK_MENU_ITEM(w)) {
-		if (GTK_CHECK_MENU_ITEM(w)->active) {
-			start_timer();
-		} else {
-			stop_timer();
-		}
+	g_return_if_fail(GTK_IS_CHECK_MENU_ITEM(w));
+
+	if (GTK_CHECK_MENU_ITEM(w)->active) {
+		start_timer();
+	} else {
+		stop_timer();
 	}
 	menu_set_states();
 }
-
-
-void menu_set_states(void)
-{
-	menus_set_state("<Main>/Timer/Timer running", (main_timer == 0) ? 0 : 1);
-	menus_set_sensitive("<Main>/Timer/Start", (main_timer == 0) ? 1 : 0);
-	menus_set_sensitive("<Main>/Timer/Stop", (main_timer == 0) ? 0 : 1);
-	toolbar_set_states();
-}
-
 
 
 void menu_options(GtkWidget *w, gpointer data)
@@ -268,9 +263,144 @@ void menu_properties(GtkWidget *w, gpointer data)
 {
 	if (cur_proj) {
 		prop_dialog(cur_proj);
-	} else {
-		msgbox_ok("Info", "I cannot edit properties without\n"
-			  "a selected project.", "Oops", NULL);
 	}
+}
+
+
+
+#ifdef GNOME_USE_MENU_INFO
+
+#define SET_ARRAY_SIZE(a, b) static int a = sizeof(b) / sizeof(b[0]);
+static char fileaccel[] = "NRSQ";
+/*
+{
+	'N',
+	'R',
+	'S',
+	'Q'
+};
+SET_ARRAY_SIZE(fileaccel_num, fileaccel);
+ */
+static GnomeMenuInfo filemenu[] = {
+	{GNOME_APP_MENU_ITEM, "New Project...", new_project, NULL},
+	{GNOME_APP_MENU_ITEM, "Reload init file", init_project_list, NULL},
+	{GNOME_APP_MENU_ITEM, "Save init file", save_project_list, NULL},
+	{GNOME_APP_MENU_ITEM, "Quit", quit_app, NULL},
+	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
+};
+
+static char editaccel[] = {
+	'X',
+	'C',
+	'V',
+	'E'
+};
+SET_ARRAY_SIZE(editaccel_num, editaccel);
+#define EDIT_CUT_POS 0
+#define EDIT_COPY_POS 1
+#define EDIT_PASTE_POS 2
+#define EDIT_PROP_POS 3
+static GnomeMenuInfo editmenu[] = {
+	{GNOME_APP_MENU_ITEM, "Cut", cut_project, NULL},
+	{GNOME_APP_MENU_ITEM, "Copy", copy_project, NULL},
+	{GNOME_APP_MENU_ITEM, "Paste", paste_project, NULL},
+	{GNOME_APP_MENU_ITEM, "Properties...", menu_properties, NULL},
+	{GNOME_APP_MENU_ITEM, "Preferences...", menu_options, NULL},
+	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
+};
+
+static char timeraccel[] = {
+	'T',
+	'P'
+};
+SET_ARRAY_SIZE(timeraccel_num, timeraccel);
+#define TIMER_START_POS 0
+#define TIMER_STOP_POS 1
+static GnomeMenuInfo timermenu[] = {
+	{GNOME_APP_MENU_ITEM, "Start", menu_start_timer, NULL},
+	{GNOME_APP_MENU_ITEM, "Stop", menu_stop_timer, NULL},
+	/* {GNOME_APP_MENU_ITEM, "Toggle", menu_toggle_timer, NULL}, */
+	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
+};
+
+static GnomeMenuInfo helpmenu[] = {
+	{GNOME_APP_MENU_ITEM, "About...", about_box, NULL},
+	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
+};
+
+#define HELP_POS 3
+static GnomeMenuInfo mainmenu[] = {
+	{GNOME_APP_MENU_SUBMENU, "File", filemenu, NULL},
+	{GNOME_APP_MENU_SUBMENU, "Edit", editmenu, NULL},
+	{GNOME_APP_MENU_SUBMENU, "Timer", timermenu, NULL},
+	{GNOME_APP_MENU_SUBMENU, "Help", helpmenu, NULL},
+	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
+};
+#endif /* GNOME_USE_MENU_INFO */
+
+#ifdef GNOME_USE_APP
+void menu_create(GtkWidget *gnome_app)
+{
+	GtkAcceleratorTable *accel;
+#ifdef GNOME_USE_MENU_INFO 
+	int i;
+
+	gnome_app_create_menus(GNOME_APP(gnome_app), mainmenu);
+	gtk_menu_item_right_justify(GTK_MENU_ITEM(mainmenu[HELP_POS].widget));
+	accel = gtk_accelerator_table_new();
+	for (i = 0; fileaccel[i]; i++) {
+		if (fileaccel[i] != ' ')
+			gtk_widget_install_accelerator(filemenu[i].widget, accel,
+						       "activate",
+						       fileaccel[i], GDK_CONTROL_MASK);
+	}
+	for (i = 0; i < editaccel_num; i++) {
+		if (editaccel[i])
+			gtk_widget_install_accelerator(editmenu[i].widget, accel,
+						       "activate",
+						       editaccel[i], GDK_CONTROL_MASK);
+	}
+	for (i = 0; i < timeraccel_num; i++) {
+		if (timeraccel[i])
+			gtk_widget_install_accelerator(timermenu[i].widget, accel,
+						       "activate",
+						       timeraccel[i], GDK_CONTROL_MASK);
+	}
+	gtk_widget_install_accelerator(helpmenu[0].widget, accel,
+				       "activate",
+				       'H', GDK_MOD1_MASK);
+	gtk_window_add_accelerator_table(GTK_WINDOW(gnome_app), accel);
+#else /* GNOME_USE_MENU_INFO */
+	GtkWidget *w;
+
+	get_menubar(&w, &accel, MENU_MAIN);
+	gtk_widget_show(w);
+	gtk_window_add_accelerator_table(GTK_WINDOW(gnome_app), accel);
+	gnome_app_set_menus(GNOME_APP(gnome_app), GTK_MENU_BAR(w));
+#endif /* GNOME_USE_MENU_INFO */
+}
+#endif /* GNOME_USE_APP */
+
+
+
+void menu_set_states(void)
+{
+#ifdef GNOME_USE_MENU_INFO
+	gtk_widget_set_sensitive(editmenu[EDIT_CUT_POS].widget, (cur_proj) ? 1 : 0);
+	gtk_widget_set_sensitive(editmenu[EDIT_COPY_POS].widget, (cur_proj) ? 1 : 0);
+	gtk_widget_set_sensitive(editmenu[EDIT_PASTE_POS].widget, (cutted_project) ? 1 : 0);
+	gtk_widget_set_sensitive(editmenu[EDIT_PROP_POS].widget, (cur_proj) ? 1 : 0);
+	gtk_widget_set_sensitive(timermenu[TIMER_START_POS].widget, (main_timer == 0) ? 1 : 0);
+	gtk_widget_set_sensitive(timermenu[TIMER_STOP_POS].widget, (main_timer != 0) ? 1 : 0);
+#else /* GNOME_USE_MENU_INFO */
+	menus_set_state("<Main>/Timer/Timer running", (main_timer == 0) ? 0 : 1);
+	menus_set_sensitive("<Main>/Timer/Start", (main_timer == 0) ? 1 : 0);
+	menus_set_sensitive("<Main>/Timer/Stop", (main_timer == 0) ? 0 : 1);
+	menus_set_sensitive("<Main>/Edit/Cut", (cur_proj) ? 1 : 0);
+	menus_set_sensitive("<Main>/Edit/Copy", (cur_proj) ? 1 : 0);
+	menus_set_sensitive("<Main>/Edit/Paste", (cutted_project) ? 1 : 0);
+	menus_set_sensitive("<Main>/Edit/Properties...", (cur_proj) ? 1 : 0);
+#endif /* GNOME_USE_MENU_INFO */
+	toolbar_set_states();
 }
 

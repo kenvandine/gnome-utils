@@ -1,3 +1,21 @@
+/*   GTimeTracker - a time tracker
+ *   Copyright (C) 1997,98 Eckehard Berns
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
 #ifndef __FEATURES_H__
 #define __FEATURES_H__
 
@@ -11,7 +29,7 @@
  * gtk-0.99.0, but the check is drawn like there should allways be
  * the indicator.
  */
-#define ALLWAYS_SHOW_TOGGLE
+#undef ALLWAYS_SHOW_TOGGLE
 
 
 /*
@@ -21,19 +39,24 @@
  * more to reflect the applications global look (and are transients)
  * If GNOME support is disabled, this define has no effect.
  */
-#undef GNOME_USE_MSGBOX
+#define GNOME_USE_MSGBOX
 
 
 /*
- * GNOME_USE_TOOLBAR
- * If defines and GNOME support is included, GNOME toolbars will be used.
- * blah (see above)
+ * GNOME_USE_APP
+ * If defined and GNOME support is included, GNOME App will be used.
  * 
- * WARNING: I'm not really supporting the GnomeToolbar at the moment.
- *          When the toolbar support of gnome gets better, I may continue
- *          to support it, but not now...
+ * This is still experimetal.
  */
-#undef GNOME_USE_TOOLBAR
+#define GNOME_USE_APP
+
+
+/*
+ * GNOME_USE_MENU_INFO
+ * If define, GnomeMenuInfo (used by GnomeApp) is used. This is experimental
+ * and will be stripped pretty soon.
+ */
+#undef GNOME_USE_MENU_INFO
 
 
 /*
@@ -51,9 +74,24 @@
  * DIALOG_USE_ACCEL
  * If defined, my dialogs will install an accelerator table, using "ENTER"
  * for the "OK" button and "ESC" for "Cancel" (or "OK", if no cancel).
- * This does'nt work right now.
+ * This doesn't work right now.
  */
 #undef DIALOG_USE_ACCEL
+
+
+
+/*
+ * Some dependencies
+ */
+
+#if !HAS_GNOME
+#undef GNOME_USE_MSGBOX
+#undef GNOME_USE_APP
+#endif
+
+#ifndef GNOME_USE_APP
+#undef GNOME_USE_MENU_INFO
+#endif
 
 
 

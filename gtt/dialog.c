@@ -1,14 +1,30 @@
-#include <stdlib.h>
+/*   GTimeTracker - a time tracker
+ *   Copyright (C) 1997,98 Eckehard Berns
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
 
+#include <config.h>
 #if HAS_GNOME
 #include <gnome.h>
 #else
 #include <gtk/gtk.h>
 #endif
-#include <config.h>
 
 #include "dialog.h"
-#include "features.h"
+#include "gtt-features.h"
 
 
 
@@ -21,6 +37,7 @@ void new_dialog(char *title, GtkWidget **dlg, GtkBox **vbox_return, GtkBox **aa_
 	*dlg = gtk_window_new(GTK_WINDOW_DIALOG);
 	gtk_window_set_title(GTK_WINDOW(*dlg), title);
 	gtk_window_position(GTK_WINDOW(*dlg), GTK_WIN_POS_MOUSE);
+	/* gtk_window_position(GTK_WINDOW(*dlg), GTK_WIN_POS_CENTER); */
 	vbox = GTK_BOX(gtk_vbox_new(FALSE, 2));
 	gtk_widget_show(GTK_WIDGET(vbox));
 	gtk_container_add(GTK_CONTAINER(*dlg), GTK_WIDGET(vbox));
@@ -120,7 +137,7 @@ void new_dialog_ok_cancel(char *title, GtkWidget **dlg, GtkBox **vbox,
 void msgbox_ok(char *title, char *text, char *ok_text,
 	       GtkSignalFunc func)
 {
-#if HAS_GNOME && defined(GNOME_USE_MSGBOX)
+#ifdef GNOME_USE_MSGBOX
 	GtkWidget *mbox;
 
 	mbox = gnome_messagebox_new(text, GNOME_MESSAGEBOX_GENERIC, ok_text, NULL, NULL);
@@ -128,7 +145,7 @@ void msgbox_ok(char *title, char *text, char *ok_text,
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
 			   func, NULL);
 	gtk_widget_show(mbox);
-#else /* HAS_GNOME && defined(GNOME_USE_MSGBOX) */
+#else /* GNOME_USE_MSGBOX */
 	GtkWidget *dlg, *t;
 	GtkBox *vbox;
 
@@ -137,7 +154,7 @@ void msgbox_ok(char *title, char *text, char *ok_text,
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 	gtk_widget_show(dlg);
-#endif /* HAS_GNOME && defined(GNOME_USE_MSGBOX) */
+#endif /* GNOME_USE_MSGBOX */
 }
 
 
@@ -146,7 +163,7 @@ void msgbox_ok_cancel(char *title, char *text,
 		      char *ok_text, char *cancel_text,
 		      GtkSignalFunc func)
 {
-#if HAS_GNOME && defined(GNOME_USE_MSGBOX)
+#ifdef GNOME_USE_MSGBOX
 	GtkWidget *mbox;
 	
 	mbox = gnome_messagebox_new(text, GNOME_MESSAGEBOX_GENERIC, ok_text, cancel_text, NULL);
@@ -154,7 +171,7 @@ void msgbox_ok_cancel(char *title, char *text,
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
 			   func, NULL);
 	gtk_widget_show(mbox);
-#else /* HAS_GNOME && defined(GNOME_USE_MSGBOX) */
+#else /* GNOME_USE_MSGBOX */
 	GtkWidget *dlg, *t;
 	GtkBox *vbox;
 	
@@ -165,6 +182,6 @@ void msgbox_ok_cancel(char *title, char *text,
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 	gtk_widget_show(dlg);
-#endif /* HAS_GNOME && defined(GNOME_USE_MSGBOX) */
+#endif /* GNOME_USE_MSGBOX */
 }
 

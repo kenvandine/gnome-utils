@@ -1,7 +1,24 @@
+/*   GTimeTracker - a time tracker
+ *   Copyright (C) 1997,98 Eckehard Berns
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
 #ifndef __GTT_H__
 #define __GTT_H__
 
-#include "features.h"
+#include "gtt-features.h"
 
 #ifdef TIME_WITH_SYS_TIME
 #include <sys/time.h>
@@ -25,6 +42,8 @@
 #define APP_NAME "GTimeTracker"
 #define RC_NAME ".gtimetrackerrc"
 #endif
+
+
 
 
 /* err.c */
@@ -87,17 +106,32 @@ void prop_dialog(project *proj);
 void options_dialog(void);
 
 
-/* main.c */
+/* log.c */
+
+void log_proj(project *proj);
+void log_endofday(void);
+
+
+/* app.c */
 
 extern project *cur_proj;
 extern GtkWidget *glist, *window;
 extern int config_show_secs;
+extern char *config_command, *config_command_null, *config_logfile_name;
+extern int config_logfile_use, config_logfile_min_secs;
 
+void cur_proj_set(project *p);
 void update_title_label(project *p);
 void update_label(project *p);
 void add_item(GtkWidget *glist, project *p);
 void add_item_at(GtkWidget *glist, project *p, int pos);
 void setup_list(void);
+
+void app_new(int argc, char *argv[]);
+
+
+/* main.c */
+
 void unlock_gtt(void);
 
 
