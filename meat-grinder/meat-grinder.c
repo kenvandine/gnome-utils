@@ -29,6 +29,7 @@ static gchar *tarstr = NULL;
 static gchar *filestr = NULL;
 static gchar *gzipstr = NULL;
 static gchar *filename = NULL;
+static gchar *archivename = NULL;
 static pid_t temporary_pid = 0;
 static gchar *temporary_file = NULL;
 struct poptOption options;
@@ -631,8 +632,8 @@ save_ok (GtkWidget *widget, GtkFileSelection *fsel)
 	}
 
         status_msg = g_strdup_printf(_("%s created"), g_path_get_basename(fname));
-	g_free (filename);
-	filename = g_strdup (fname);
+	g_free (archivename);
+	archivename = g_strdup (fname);
         gnome_appbar_push (GNOME_APPBAR (app_bar), 
                            status_msg);
        g_free (status_msg);
@@ -649,8 +650,12 @@ archive_cb (GtkWidget *w, gpointer data)
 	}
 
 	fsel = GTK_FILE_SELECTION(gtk_file_selection_new(_("Save Results")));
-	if (filename != NULL)
-		gtk_file_selection_set_filename (fsel, filename);
+	if (archivename != NULL)
+		gtk_file_selection_set_filename (fsel, archivename);
+	else {
+		gtk_file_selection_set_filename (fsel, "untitled.tar.gz");
+		gtk_editable_select_region (GTK_EDITABLE (fsel->selection_entry), 0, -1);
+	}
 
 	g_signal_connect (G_OBJECT (fsel->ok_button), "clicked",
 			  G_CALLBACK (save_ok), fsel);
