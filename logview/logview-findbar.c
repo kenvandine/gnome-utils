@@ -89,7 +89,10 @@ logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 			}
 		} else {
 			if (gtk_tree_path_compare (search_path, st->current_path) <= st->comparison) {
-				/* if we search backward, continue until we get to the current point. */
+				/* if we search backward, continue until we get to the current point.
+				 * we have to free the previously-found found-path, if we have one. */
+				if (st->found_path)
+					gtk_tree_path_free (st->found_path);
 				st->found_path = search_path;
 				return FALSE;
 			}
@@ -116,7 +119,7 @@ logview_tree_model_find_match (GtkTreeModel *tree_model, const char *pattern,
 	st->comparison = (keep_current ? 0 : -1);
 	st->forward = forward;
 
-	if (!gtk_tree_model_get_iter_root (GTK_TREE_MODEL (tree_model), &iter_root))
+	if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (tree_model), &iter_root))
 		return 0;
 
 	gtk_tree_model_foreach (GTK_TREE_MODEL (tree_model),
@@ -166,6 +169,7 @@ logview_findbar_save_settings (LogviewWindow *window)
     const gchar    *tmp;
 
     tmp = gtk_entry_get_text (GTK_ENTRY (window->find_entry));
+
     g_free (window->find_string);
     window->find_string = g_utf8_casefold (tmp, -1);
 }
@@ -182,21 +186,16 @@ static void
 logview_findbar_entry_activate_cb (GtkEditable *editable, gpointer data)
 {
 	LogviewWindow     *window = data;
-	gchar          *text;
 
 	if (!window->curlog)
 		return;
 
-	text = gtk_editable_get_chars (editable, 0, -1);
-	
 	if (!logview_findbar_action (window, YELP_WINDOW_FIND_NEXT, FALSE)) {
 		gtk_widget_set_sensitive (GTK_WIDGET (window->find_next), FALSE);
 		gtk_widget_set_sensitive (GTK_WIDGET (window->find_prev), TRUE);
 	} else {
 		logview_findbar_buttons_set_sensitive (window, TRUE);
 	}
-	
-	g_free (text);
 }
 
 static void
@@ -204,12 +203,9 @@ logview_findbar_entry_changed_cb (GtkEditable *editable,
 				  gpointer     data)
 {
 	LogviewWindow     *window = data;
-	gchar          *text;
 
 	if (!window->curlog)
 		return;
-
-	text = gtk_editable_get_chars (editable, 0, -1);
 	
 	if (!logview_findbar_action (window, YELP_WINDOW_FIND_NEXT, TRUE)) {
 		gtk_widget_set_sensitive (GTK_WIDGET (window->find_next), FALSE);
@@ -217,8 +213,6 @@ logview_findbar_entry_changed_cb (GtkEditable *editable,
 	} else {
 		logview_findbar_buttons_set_sensitive (window, TRUE);
 	}
-	
-	g_free (text);
 }
 
 static void
