@@ -1489,7 +1489,7 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 					                                 GTK_BUTTONS_OK,
 					                                 _("The search results may be invalid."
 									   "  There were errors while performing this search."));
-					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "");
+					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), " ");
 
 					gtk_window_set_title (GTK_WINDOW (dialog), "");
 					gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -1529,7 +1529,7 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 					                                 GTK_BUTTONS_CANCEL,
 					                                 _("The search results may be invalid."
 									   "  Do you want to disable the quick search feature?"));
-					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "");
+					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), " ");
 
 					gtk_window_set_title (GTK_WINDOW (dialog), "");
 					gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -1606,7 +1606,7 @@ spawn_search_command (GSearchWindow * gsearch,
 		                                 GTK_BUTTONS_OK,
 		                                 _("Error parsing the search command."));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-		                                          (error == NULL) ? "" : error->message);
+		                                          (error == NULL) ? " " : error->message);
 
 		gtk_window_set_title (GTK_WINDOW (dialog), "");
 		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -1639,7 +1639,7 @@ spawn_search_command (GSearchWindow * gsearch,
 		                                 GTK_BUTTONS_OK,
 		                                 _("Error running the search command."));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-		                                          (error == NULL) ? "" : error->message);  
+		                                          (error == NULL) ? " " : error->message);  
 
 		gtk_window_set_title (GTK_WINDOW (dialog), "");
 		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
