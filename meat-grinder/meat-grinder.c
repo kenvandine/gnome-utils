@@ -61,20 +61,18 @@ free_file (File *f)
 	g_free (f);
 }
 
-static gchar *
+static char *
 make_temp_dir (void)
 {
-	gchar *name = NULL;
-	gchar *gname;
+	char *name = NULL;
 	do {
 		if (name != NULL)
-			free (name);
-		*name = g_mkstemp ("gmg");
+			g_free (name);
+		name = g_strdup_printf ("/tmp/gnome-meat-grinder-%d",
+					rand ());
 	} while (mkdir (name, 0755) < 0);
 
-	gname = g_strdup (name);
-	free (name);
-	return gname;
+	return name;
 }
 
 static gboolean
