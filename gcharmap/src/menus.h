@@ -1,8 +1,8 @@
 /*
  *  Gnome Character Map
- *  main.c: what do you think this file is?
+ *  menus.h - Menus for the main window
  *
- *  Copyright (C) 2000 Hongli Lai
+ *  Copyright (C) Hongli Lai
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,24 +19,17 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef _MAIN_C_
-#define _MAIN_C_
+#ifndef _MENUS_H_
+#define _MENUS_H_
 
 #include <gnome.h>
-#include <interface.h>
-#include <config.h>
 
-int
-main (int argc, char *argv[])
-{
-    bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-    textdomain (PACKAGE);
+extern GnomeUIInfo file_menu[];
+extern GnomeUIInfo edit_menu[];
+extern GnomeUIInfo view_menu[];
+extern GnomeUIInfo settings_menu[];
+extern GnomeUIInfo help_menu[];
+extern GnomeUIInfo menubar[];
+extern GnomeUIInfo toolbar[];
 
-    gnome_init (PACKAGE, VERSION, argc, argv);
-
-    gtk_widget_show (GTK_WIDGET (main_app_new ()->window));
-    gtk_main ();
-    return 0;
-}
-
-#endif _MAIN_C_
+#endif _MENUS_H_

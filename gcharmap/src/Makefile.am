@@ -2,10 +2,9 @@ bin_PROGRAMS = gcharmap
 
 INCLUDES =\
 	-DG_LOG_DOMAIN=\"gcharmap\"\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"\
-	-I$(includedir)\
-	-I$(top_srcdir)/gcharmap/pixmaps\
-	$(GNOME_INCLUDEDIR)
+	-I$(srcdir)/../pixmaps\
+	$(GNOME_INCLUDEDIR)\
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
 gcharmap_SOURCES = \
         main.c\

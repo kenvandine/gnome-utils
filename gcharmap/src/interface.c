@@ -62,7 +62,7 @@ create_chartable (void)
 
             button = gtk_button_new_with_label (s);
             mainapp->buttons = g_list_append (mainapp->buttons, button);
-            gtk_widget_set_style (button, mainapp->btnstyle);
+            gtk_widget_set_style (GTK_BIN (button)->child, mainapp->btnstyle);
             gtk_table_attach (GTK_TABLE (chartable), button, h, h + 1, v, v + 1,
               (GtkAttachOptions) (GTK_EXPAND | GTK_SHRINK | GTK_FILL),
               (GtkAttachOptions) (GTK_EXPAND | GTK_SHRINK | GTK_FILL),
@@ -88,7 +88,7 @@ create_chartable (void)
 
             button = gtk_button_new_with_label (s);
             mainapp->buttons = g_list_append (mainapp->buttons, button);
-            gtk_widget_set_style (button, mainapp->btnstyle);
+            gtk_widget_set_style (GTK_BIN (button)->child, mainapp->btnstyle);
             gtk_table_attach (GTK_TABLE (chartable), button,
               h, h + 1, v + 4, v + 5,
               (GtkAttachOptions) (GTK_EXPAND | GTK_SHRINK | GTK_FILL),
@@ -165,6 +165,8 @@ main_app_create_ui (MainApp *app)
           GNOME_FONT_PICKER_MODE_FONT_INFO);
         gnome_font_picker_fi_set_use_font_in_label (GNOME_FONT_PICKER (app->fontpicker),
           TRUE, 12);
+        gnome_font_picker_set_font_name (GNOME_FONT_PICKER (app->fontpicker),
+          "-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1");
         gtk_button_set_relief (GTK_BUTTON (app->fontpicker), GTK_RELIEF_NONE);
         gtk_box_pack_start (GTK_BOX (hbox), app->fontpicker, FALSE, TRUE, 0);
         gtk_signal_connect (GTK_OBJECT (app->fontpicker), "font_set",
@@ -203,6 +205,7 @@ main_app_create_ui (MainApp *app)
 
         chartable = create_chartable ();
         gtk_box_pack_start (GTK_BOX (hbox2), chartable, TRUE, TRUE, 0);
+        app->chartable = chartable;
     }
 
     vbox2 = gtk_vbox_new (FALSE, 0);
@@ -320,4 +323,3 @@ main_app_destroy (MainApp *obj)
 
 
 #endif _INTERFACE_C_
-

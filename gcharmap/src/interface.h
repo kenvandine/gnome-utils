@@ -39,6 +39,7 @@ typedef struct _MainApp
     GtkWidget *actionbar, *textbar;
     GtkWidget *preview_label;
     GtkWidget *fontpicker;
+    GtkWidget *chartable;
     gboolean insert_at_end;
     GList *buttons;
     GtkStyle *btnstyle;
@@ -58,4 +59,3 @@ void main_app_destroy (MainApp *obj);
 
 
 #endif _INTERFACE_H_
-
