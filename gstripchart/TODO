@@ -3,18 +3,14 @@ BUGS TO BE SQUASHED
 
 The code to process a command option error leaves trailing cruft after
 the command name, and includes all the gnome-internal options but
-omits the long-named variants of the gstripchart options.  This seems
-like it's caused by an error in the popt routines.
-
-The help browser doesn't jump to the name tags listed in the
-topics.dat file.  Instead, the help file always loads the help page
-starting at the top of the file.  As far as I can tell, this doesn't
-work for any other apps either, so I'll assume that the problem lies
-with the help browser.
+omits the long-named variants of the gstripchart options.  Also,
+abbreviated long option names aren't recognized.  These all seem like
+they're caused by errors in the popt routines.
 
 Figure out how to account for WM decorations when dealing with a
 geometry string that specify a position relative to the bottom or
-right side.
+right side.  Also, the menubar isn't compensated for when sizing the
+main frame -- should it be?
 
 
 FEATURES TO BE ADDED
@@ -28,8 +24,13 @@ Add an option to include legends along the sides of the display.  The
 vertical legend could include the name and last value of each
 parameter.  This could get crowded in a hurry.
 
+Create a parameter that isn't displayed, but is used only as an
+intermediate value.  This would allow computing things that require
+reading from more than a single file, etc.
+
 Allow the background color to be defined on the command line and in
-the config file.
+the config file -- or should this be done exclusively through the Gtk
+style mechanism?
 
 
 THINGS TO CONSIDER

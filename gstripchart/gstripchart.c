@@ -65,12 +65,14 @@ static float slider_interval = 0.2;
 static float slider_filter = 0.0;
 static int include_menubar = 0;
 static int include_slider = 1;
+static int status_outline = 1;
 static int post_init = 0;
 static int minor_tick=0, major_tick=0;
 static int geometry_flags;
-static int geometry_w=160, geometry_h=100;
+static int geometry_w=160, geometry_h=80;
 static int geometry_x, geometry_y;
 static int root_width, root_height;
+static int update_counts;
 
 /*
  * streq -- case-blind string comparison returning true on equality.
@@ -373,7 +375,6 @@ num_op(Expr *e)
 	  int id_num = atoi(id);
 	  if (id_num > e->vars)
 	    eval_error(e, "no such field: %d", id_num);
-	  stripbl(e, 0);
 	  val = e->now[id_num-1];
 	  if (id_intro == '~')
 	    val -= e->last[id_num-1];
@@ -383,10 +384,14 @@ num_op(Expr *e)
 	  val = chart_interval;
 	  /* if (e->s[-1] == '~') val = 0; */
 	}
-      else if (streq(id, "t"))	/* time of day, in seconds */
+      else if (streq(id, "t"))	/* delta time, in seconds */
 	{
 	  val = e->t_diff;
 	  /* if (e->s[-1] == '~') val = 0; */
+	}
+      else if (streq(id, "u"))	/* update counts, for debugging */
+	{
+	  val = update_counts;
 	}
 #ifdef HAVE_LIBGTOP
       else if (gtop_value(id, e->gtp, &val))
@@ -396,6 +401,7 @@ num_op(Expr *e)
 	eval_error(e, "missing variable identifer");
       else
 	eval_error(e, "invalid variable identifer: %s", id);
+      stripbl(e, 0);
     }
   else
     eval_error(e, "number expected");
@@ -475,7 +481,7 @@ static double eval(
   stripbl(&e, 0);
   e.val = add_op(&e);
   if (*e.s)
-    eval_error(&e, "extra gunk at end");
+    eval_error(&e, "extra gunk at end: \"%s\"", e.s);
 
   return e.val;
 }
@@ -498,9 +504,9 @@ typedef struct
   char *color_name;	/* the name of the fg color for this parameter */
   GdkColor gdk_color;	/* the rgb values for the color */
   GdkGC *gdk_gc;	/* the graphics context entry for the color */
-  char *led_name[3];	/* the names of the fg colors for the LEDs */
-  GdkColor led_color[3];/* the rgb values for the LED colors */
-  GdkGC *led_gc[3];	/* the graphics context entries for the LED colors */
+  int num_leds;
+  GdkColor *led_color;	/* the rgb values for the LED colors */
+  GdkGC **led_gc;	/* the graphics context entries for the LED colors */
   int vars;		/* how many vars to read from the line in the file */
   double *last, *now;	/* the last and current vars, as enumerated above */
   float *val;		/* value history */
@@ -619,7 +625,7 @@ read_param_defns(Param_glob *pgp)
 {
   int i, j, lineno = 0, params = 0;
   Param **p = NULL;
-  char fn[FILENAME_MAX], home_fn[FILENAME_MAX];
+  char fn[FILENAME_MAX], home_fn[FILENAME_MAX], etc_fn[FILENAME_MAX];
 #ifdef CONFDIR
   char conf_fn[FILENAME_MAX];
 #endif
@@ -644,6 +650,7 @@ read_param_defns(Param_glob *pgp)
 	    {
 	      /* Try in the /etc directory. */
 	      strcpy(fn, "/etc/gstripchart.conf");
+	      strcpy(etc_fn, fn);
 	      if ((fd=fopen(fn, "r")) == NULL)
 		{
 #ifdef CONFDIR
@@ -660,7 +667,7 @@ read_param_defns(Param_glob *pgp)
 			"\"%s\", "
 #endif
 			"or \"%s\"", 
-			"./gstripchart.conf", home_fn, fn
+			"./gstripchart.conf", home_fn, etc_fn
 #ifdef CONFDIR
 			, conf_fn
 #endif
@@ -700,6 +707,8 @@ read_param_defns(Param_glob *pgp)
 		include_menubar = yes_no(val);
 	      else if (streq(key, "slider"))
 		include_slider = yes_no(val);
+	      else if (streq(key, "status-outline"))
+		status_outline = yes_no(val);
 	      else if (streq(key, "minor_ticks"))
 		minor_tick = atoi(val);
 	      else if (streq(key, "major_ticks"))
@@ -737,9 +746,9 @@ read_param_defns(Param_glob *pgp)
 		  p[params-1]->eqn = NULL;
 		  p[params-1]->eqn_src = NULL;
 		  p[params-1]->color_name = NULL;
-		  p[params-1]->led_name[0] =
-		  p[params-1]->led_name[1] =
-		  p[params-1]->led_name[2] = NULL;
+		  p[params-1]->num_leds = 0;
+		  p[params-1]->led_color = NULL;
+		  p[params-1]->led_gc = NULL;
 		  p[params-1]->hi = p[params-1]->top = 1.0;
 		  p[params-1]->lo = p[params-1]->bot = 0.0;
 		}
@@ -765,21 +774,19 @@ read_param_defns(Param_glob *pgp)
 		  Param *pp = p[params-1];
 		  char *t = strtok(val, ",");
 		  for (n = 0; t != NULL; n++, t = strtok(NULL, ","))
-		    if (n < 3)
-		      {
-			pp->led_name[n] = strdup(skipbl(t));
-			trimtb(pp->led_name[n]);
-			if (!gdk_color_parse(
-			  pp->led_name[n], &pp->led_color[n]))
-			  {
-			    defns_error(
-			      fn, lineno, "unrecognized color: %s", t);
-			  }
-		      }
-		  if (n != 3)
-		    defns_error(
-		      fn, lineno,
-		      "wrong number of LED colors: found %d, expected 3", n);
+		    {
+		      char *cname = strdup(skipbl(t));
+		      trimtb(cname);
+		      pp->led_color = realloc(
+			pp->led_color, (n+1) * sizeof(*pp->led_color));
+		      if (!gdk_color_parse(cname, &pp->led_color[n]))
+			{
+			  defns_error(
+			    fn, lineno, "unrecognized color: %s", cname);
+			}
+		      free(cname);
+		    }
+		  pp->num_leds = n;
 		  pp->is_led = 1;
 		}
 	      else if (streq(key, "active"))
@@ -886,6 +893,7 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
 {
   int param_num, last_val_pos, next_val_pos;
 
+  update_counts++;
   pgp->t_last = pgp->t_now;
   gettimeofday(&pgp->t_now, NULL);
   pgp->t_diff = (pgp->t_now.tv_sec - pgp->t_last.tv_sec) +
@@ -1088,12 +1096,15 @@ config_handler(GtkWidget *widget, GdkEventConfigure *e, gpointer whence)
 	{
 	  Param *cgp = chart_glob.parray[p];
 	  if (cgp->is_led)
-	    for (c = 0; c < 3; c++)
-	      {
-	      gdk_color_alloc(colormap, &cgp->led_color[c]);
-	      cgp->led_gc[c] = gdk_gc_new(widget->window);
-	      gdk_gc_set_foreground(cgp->led_gc[c], &cgp->led_color[c]);
-	      }
+	    {
+	      cgp->led_gc = malloc(cgp->num_leds * sizeof(*cgp->led_gc));
+	      for (c = 0; c < cgp->num_leds; c++)
+		{
+		  gdk_color_alloc(colormap, &cgp->led_color[c]);
+		  cgp->led_gc[c] = gdk_gc_new(widget->window);
+		  gdk_gc_set_foreground(cgp->led_gc[c], &cgp->led_color[c]);
+		}
+	    }
 	  else
 	    {
 	      gdk_color_alloc(colormap, &cgp->gdk_color);
@@ -1146,21 +1157,21 @@ overlay_tick_marks(GtkWidget *widget, int minor, int major)
 static void
 overlay_status_box(GtkWidget *widget)
 {
-  int p, s=10, x=0, y=0;
+  int p, x=0, y=0, s=10;
+
   for (p = 0; p < chart_glob.params; p++)
     {
       Param *cgp = chart_glob.parray[p];
       if (cgp->is_led)
 	{
-	  float v = cgp->val[chart_glob.new_val];
-	  int c = v + 0.5; // (0.5 < v) + (1.5 < v);
-	  /* printf("%d: %s:\t%d, %g\n", p, cgp->ident, c, v); */
+	  int c = cgp->val[chart_glob.new_val] + 0.5;
+	  if (status_outline)
+	    gdk_draw_rectangle(
+	      widget->window, widget->style->black_gc, FALSE, x,y, s,s);
 	  if (c > 0)
 	    {
-	      /* gdk_draw_rectangle(
-		 widget->window, widget->style->black_gc, FALSE, x,y, s,s); */
-	      if (c > 3)
-		c = 3;
+	      if (c > cgp->num_leds)
+		c = cgp->num_leds;
 	      gdk_draw_rectangle(
 		widget->window, cgp->led_gc[c-1], TRUE, x+1,y+1, s-1,s-1);
 	    }
@@ -1293,11 +1304,9 @@ slider_expose_handler(GtkWidget *widget, GdkEventExpose *event)
   return FALSE;
 }
 
-static int slider_ticks;
 static gint
 slider_timer_handler(GtkWidget *widget)
 {
-  slider_ticks++;
   update_values(&slider_glob, NULL);
   slider_redraw(widget);
   return TRUE;
@@ -1425,8 +1434,6 @@ prefs_callback(GtkWidget *chart, gpointer unused)
   GtkWidget *dialog, *notebook, *vbox, *clist, *active, *label;
 
   notebook = gtk_notebook_new();
-/*    gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_TOP); */
-
   param_active = realloc(
     param_active, chart_glob.params * sizeof(*param_active));
   for (p = 0; p < chart_glob.params; p++)
@@ -1637,7 +1644,6 @@ gtk_graph(void)
 {
   GtkWidget *frame, *h_box, *drawing;
   const int slide_w=10;		/* Set the slider width. */
-  const int min_w=80, min_h=50;	/* Set the minimum width and height. */
 
   /* Create a drawing area.  Add it to the window, show it, and
      set its expose event handler. */
@@ -1678,7 +1684,7 @@ gtk_graph(void)
      initial size (_default_size), and establish delete and destroy
      event handlers. */
   frame = gnome_app_new("gstripchart", "Gnome stripchart viewer");
-  gtk_widget_set_usize(frame, min_w, min_h);
+  gtk_widget_set_usize(frame, 1, 1); /* min_w, min_h */
   gtk_window_set_default_size(GTK_WINDOW(frame), geometry_w, geometry_h);
   gtk_signal_connect(
     GTK_OBJECT(frame), "destroy",

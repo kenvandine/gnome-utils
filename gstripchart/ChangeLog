@@ -1,3 +1,13 @@
+1999-05-16  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (read_param_defns): Add status-outline config
+	parameter, to include or omit borders around status indicators.
+	Also allow any number of status indicator colors to be specified.
+
+	* gstripchart.c (num_op): Added a stripbl() call to eliminate an
+	expression parsing error when some types of num's were followed by
+	whitespace.
+
 1999-04-10  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (overlay_status_box): First cut at status
