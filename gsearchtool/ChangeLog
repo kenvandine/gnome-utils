@@ -1,3 +1,24 @@
+2002-09-11  Dennis M. Cranston <dennis_cranston@yahoo.com>	
+	 
+	"Time is passing. Yet, for the United States of America, there 
+	will be no forgetting September the 11th. We will remember 
+	every rescuer who died in honor. We will remember every family 
+	that lives in grief. We will remember the fire and ash, the last 
+	phone calls, the funerals of the children." 
+	-- President George W. Bush (11/11/2001)
+	
+	Remember those who lost their lives on September 11, 2001.  
+	Honor the spirit of freedom that will live forever.
+	
+	* gsearchtool.c:  Clicking on the OK button in the browse 
+	dialog would incorrectly start a search, so it had been 
+	commented out.  Fixed this by hooking up a 'key_press_event' 
+	signal for the look in folder entry widget.  Also, filter out 
+	the "No such file or directory" errors from our error message
+	dialog.
+	
+	* gsearchtool-callbacks.[ch]:  Add look_in_folder_key_press_cb().
+		
 2002-09-10  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c:  Filter out grep errors from our error 

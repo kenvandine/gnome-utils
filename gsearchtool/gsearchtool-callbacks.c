@@ -587,3 +587,20 @@ escape_key_press_cb (GtkWidget    	*widget,
 	}
 	return FALSE;
 }
+
+gboolean
+look_in_folder_key_press_cb (GtkWidget    	*widget, 
+		     	     GdkEventKey	*event, 
+		     	     gpointer 		data)
+{
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	if (event->keyval == GDK_Return)
+	{
+		if ((GTK_WIDGET_VISIBLE (interface.find_button) == TRUE) && 
+		    (GTK_WIDGET_SENSITIVE (interface.find_button) == TRUE)) {
+			click_find_cb (interface.find_button, NULL);
+		}
+	}
+	return FALSE;
+}

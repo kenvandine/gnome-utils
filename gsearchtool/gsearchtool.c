@@ -615,6 +615,7 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 	
 		if (truncate_error_msgs == FALSE) {
 			if ((strstr (string->str, "ermission denied") == NULL) &&
+			    (strstr (string->str, "No such file or directory") == NULL) &&
 			    (strncmp (string->str, "grep: ", 6) != 0) &&
 			    (strcmp (string->str, "find: ") != 0)){
 				locale = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
@@ -1084,12 +1085,10 @@ create_main_window (void)
 		add_atk_namedesc (GTK_WIDGET(entry), _("Starting folder entry"), _("Enter the folder name where you want to start the search"));
 		add_atk_relation (folder_entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY); 
 	}
-	/* Clicking on 'OK' in the Browse dialog will start a search 
-	   -- commenting out until someone can figure this out.
-	g_signal_connect (G_OBJECT (entry), "activate",
-			  G_CALLBACK (file_is_named_activate_cb),
+	
+	g_signal_connect (G_OBJECT (entry), "key_press_event",
+			  G_CALLBACK (look_in_folder_key_press_cb),
 			  NULL);
-	*/	
 	
 	g_signal_connect (G_OBJECT (interface.look_in_folder_entry), "changed",
 			  G_CALLBACK (constraint_entry_changed_cb),

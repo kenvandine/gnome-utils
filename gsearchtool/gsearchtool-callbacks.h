@@ -108,6 +108,10 @@ gboolean
 escape_key_press_cb 		(GtkWidget 	*widget, 
 				 GdkEventKey 	*event,
 				 gpointer 	data);	
+gboolean    
+look_in_folder_key_press_cb 	(GtkWidget 	*widget, 
+				 GdkEventKey    *event,
+				 gpointer 	data);
 				 
 #ifdef __cplusplus
 }
