@@ -41,7 +41,6 @@
 
 static GObjectClass *parent_class;
 static GSList *logview_windows = NULL;
-static gchar *program_name = NULL;
 static GConfClient *client = NULL;
 static UserPrefsStruct *user_prefs;
 
@@ -214,7 +213,7 @@ save_session (GnomeClient *gnome_client, gint phase,
    numlogs = logview_count_logs ();
 
    argv = g_malloc0 (sizeof (gchar *) * numlogs+1);
-   argv[0] = program_name;
+   argv[0] = g_get_prgname();
 
    for (list = logview_windows; list != NULL; list = g_slist_next (list)) {
 	   LogviewWindow *w = list->data;
@@ -291,7 +290,6 @@ main (int argc, char *argv[])
    open_databases ();
    user_prefs = prefs_load (client);
    
-   program_name = (gchar *) argv[0];
    poptCon = poptGetContext ("gnome-system-log", argc, (const gchar **) argv, 
    							 options, 0);  
    /* Open a new window for each log passed as a parameter */
