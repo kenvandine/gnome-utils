@@ -154,9 +154,9 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
       gtk_widget_show (vbox);
       
       CalendarWidget = GTK_WIDGET (calendar);
+      init_calendar_data ();
    }
    calendarvisible = TRUE;
-   init_calendar_data ();
 
    gtk_widget_show (CalendarDialog);
 
@@ -350,7 +350,6 @@ close_calendar (GtkWidget * widget, gpointer client_data)
 {
    if (calendarvisible)
       gtk_widget_hide (CalendarDialog);
-   CalendarDialog = NULL;
    calendarvisible = FALSE;
 }
 
