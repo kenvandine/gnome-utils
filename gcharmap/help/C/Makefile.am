@@ -1,4 +1,4 @@
-figdur = figures
+figdir = figures
 docname = gnome-character-map
 lang = C
 omffile = gnome-character-map-C.omf
