@@ -488,7 +488,7 @@ file_button_press_event_cb (GtkWidget 		*widget,
 	if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW(interface.tree), event->x, event->y,
 		&path, NULL, NULL, NULL)) {
 		
-		if ((event->button == 1 || event->button == 3)
+		if ((event->button == 1 || event->button == 2 || event->button == 3)
 			&& gtk_tree_selection_path_is_selected (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)), path)) {
 			
 			row_selected_by_button_press_event = FALSE;
@@ -531,7 +531,7 @@ file_button_release_event_cb (GtkWidget 	*widget,
 		return FALSE;
 	}
 		
-	if (event->button == 1) {
+	if (event->button == 1 || event->button == 2) {
 
 		GtkTreePath *path;
 
