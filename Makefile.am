@@ -6,10 +6,6 @@ if GUILE
 guile_DIRS = #cromagnon find-file notepad
 endif
 
-if P_GENIUS
-genius = genius
-endif
-
 if HAVE_LIBGTOP
 gdiskfree = gdiskfree
 endif
