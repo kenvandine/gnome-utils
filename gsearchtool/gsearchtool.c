@@ -238,6 +238,12 @@ make_find_cmd (const char *start_dir)
 	return g_string_free(cmdbuf, FALSE);
 }
 
+static gboolean 
+is_path_of_home_dir (gchar *path)
+{
+	return (g_strstr_len (path, strlen (g_get_home_dir ()), g_get_home_dir ()) != NULL);
+}
+
 static char *
 make_locate_cmd(void)
 {
@@ -271,7 +277,7 @@ make_locate_cmd(void)
 	cmdbuf = g_string_new ("");
 	locate_command = g_find_program_in_path ("locate");
 
-	if (locate_command != NULL)
+	if ((locate_command != NULL) && (is_path_of_home_dir (locale_locate_path) != TRUE))	
 	{
 		g_string_append_printf (cmdbuf, "%s '%s*%s'", locate_command, locale_locate_path,
 					locale_locate_string);
