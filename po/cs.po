@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-24 11:53+0100\n"
-"PO-Revision-Date: 2004-11-24 13:03+0100\n"
+"POT-Creation-Date: 2004-11-26 11:58+0100\n"
+"PO-Revision-Date: 2004-11-26 15:35+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,16 +20,16 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:125
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:122
 msgid "Dictionary Lookup"
 msgstr "Vyhledání ve slovníku"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:31
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:28
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Vyhledávání slov v on-line slovníku"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:587
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:588
 #: logview/logview.c:113
 msgid "_About"
 msgstr "O _aplikaci"
@@ -55,12 +55,16 @@ msgstr "Zobrazit slo_vník"
 #.
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:430
-#: gdictsrc/gdict-pref-dialog.c:479 gdictsrc/gdict-speller.c:696
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:429
+#: gdictsrc/gdict-pref-dialog.c:478 gdictsrc/gdict-speller.c:690
 msgid "Cannot connect to server"
 msgstr "Nemohu se připojit k serveru"
 
 #: gdictsrc/dict.c:689
+msgid "Server Error"
+msgstr "Chyba serveru"
+
+#: gdictsrc/dict.c:690
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -83,7 +87,7 @@ msgid "A client for the MIT dictionary server."
 msgstr "Klient pro server se slovníkem MIT."
 
 #: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:247
-#: gdictsrc/gdict-app.c:810 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Slovník"
 
@@ -98,6 +102,11 @@ msgstr "Kontrola pravopisu dokončena"
 #: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:263
 msgid "No matches found"
 msgstr "Nic nenalezeno"
+
+# FIXME: s/x/ct/
+#: gdictsrc/gdict-app.c:126
+msgid "Connexion error"
+msgstr "Chyba spojení"
 
 #: gdictsrc/gdict-app.c:238
 msgid "Looking up word..."
@@ -119,273 +128,265 @@ msgstr "Hledat"
 msgid "_Search for:"
 msgstr "_Hledat:"
 
-#: gdictsrc/gdict-app.c:504
+#: gdictsrc/gdict-app.c:505
+msgid "Unable to perform requested operation."
+msgstr "Nemohu provést požadovanou operaci."
+
+#: gdictsrc/gdict-app.c:506
 msgid ""
-"Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
-"Nemohu provést požadovanou operaci.\n"
-"Buď není server, který používáte, k dispozici,\n"
+"Buď není server, který používáte, k dispozici, \n"
 "nebo nejste připojeni k Internetu."
 
-#: gdictsrc/gdict-app.c:542 gdictsrc/gdict-applet.c:354
-#, c-format
-msgid "Could not display help: %s"
-msgstr "Nemohu zobrazit nápovědu: %s"
+#: gdictsrc/gdict-app.c:543 gdictsrc/gdict-applet.c:350
+#: gdictsrc/gdict-pref-dialog.c:629
+msgid "Could not display help"
+msgstr "Nemohu zobrazit nápovědu"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:567 gdictsrc/gdict-app.c:857
-#: gdictsrc/gdict-speller.c:259
+#: gdictsrc/gdict-app.c:568 gdictsrc/gdict-app.c:864
+#: gdictsrc/gdict-speller.c:252
 msgid "_Look Up Word"
 msgstr "_Hledat slovo"
 
-#: gdictsrc/gdict-app.c:568
+#: gdictsrc/gdict-app.c:569
 msgid "Lookup word in dictionary"
 msgstr "Hledat slovo ve slovníku"
 
-#: gdictsrc/gdict-app.c:569 gdictsrc/gdict-speller.c:207
+#: gdictsrc/gdict-app.c:570 gdictsrc/gdict-speller.c:191
 msgid "Check _Spelling"
 msgstr "_Kontrolovat pravopis"
 
-#: gdictsrc/gdict-app.c:570
+#: gdictsrc/gdict-app.c:571
 msgid "Check word spelling"
 msgstr "Kontrolovat pravopis"
 
-#: gdictsrc/gdict-app.c:572
+#: gdictsrc/gdict-app.c:573
 msgid "_Print"
 msgstr "Vy_tisknout"
 
-#: gdictsrc/gdict-app.c:573
+#: gdictsrc/gdict-app.c:574
 msgid "Print the current definition"
 msgstr "Vytisknout aktuální definici"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:577 logview/logview.c:105
+#: gdictsrc/gdict-app.c:578 logview/logview.c:105
 msgid "_Find..."
 msgstr "_Hledat..."
 
-#: gdictsrc/gdict-app.c:578
+#: gdictsrc/gdict-app.c:579
 msgid "Find a word in the text"
 msgstr "Hledat slovo v textu"
 
-#: gdictsrc/gdict-app.c:579
+#: gdictsrc/gdict-app.c:580
 msgid "Find Ne_xt"
 msgstr "Hledat _následující"
 
-#: gdictsrc/gdict-app.c:580
+#: gdictsrc/gdict-app.c:581
 msgid "Find next occurrence of the word"
 msgstr "Hledat následující výskyt slova"
 
-#: gdictsrc/gdict-app.c:581
+#: gdictsrc/gdict-app.c:582
 msgid "P_references"
 msgstr "_Nastavení"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:583
 msgid "Configure the application"
 msgstr "Nastavit aplikaci"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:585 logview/logview.c:111
+#: gdictsrc/gdict-app.c:586 logview/logview.c:111
 msgid "_Contents"
 msgstr "_Obsah"
 
-#: gdictsrc/gdict-app.c:586
+#: gdictsrc/gdict-app.c:587
 msgid "View help for this application"
 msgstr "Zobrazit nápovědu k této aplikaci"
 
-#: gdictsrc/gdict-app.c:588
+#: gdictsrc/gdict-app.c:589
 msgid "About this application"
 msgstr "O této aplikaci"
 
-#: gdictsrc/gdict-app.c:595 logview/logview.c:98
+#: gdictsrc/gdict-app.c:596 logview/logview.c:98
 msgid "_Quit"
 msgstr "U_končit"
 
-#: gdictsrc/gdict-app.c:596
+#: gdictsrc/gdict-app.c:597
 msgid "Quit the application"
 msgstr "Ukončit aplikaci"
 
-#: gdictsrc/gdict-app.c:600
+#: gdictsrc/gdict-app.c:601
 msgid "_Close"
 msgstr "_Zavřít"
 
-#: gdictsrc/gdict-app.c:601
+#: gdictsrc/gdict-app.c:602
 msgid "Close the application"
 msgstr "Zavřít aplikaci"
 
-#: gdictsrc/gdict-app.c:606
+#: gdictsrc/gdict-app.c:607
 msgid "Cu_t"
 msgstr "_Vyjmout"
 
-#: gdictsrc/gdict-app.c:607
+#: gdictsrc/gdict-app.c:608
 msgid "Cut the selection"
 msgstr "Vyjmout výběr"
 
-#: gdictsrc/gdict-app.c:608
+#: gdictsrc/gdict-app.c:609
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: gdictsrc/gdict-app.c:609 logview/logview.c:101
+#: gdictsrc/gdict-app.c:610 logview/logview.c:101
 msgid "Copy the selection"
 msgstr "Kopírovat výběr"
 
-#: gdictsrc/gdict-app.c:610
+#: gdictsrc/gdict-app.c:611
 msgid "_Paste"
 msgstr "V_ložit"
 
-#: gdictsrc/gdict-app.c:611
+#: gdictsrc/gdict-app.c:612
 msgid "Paste clipboard"
 msgstr "Vložit schránku"
 
-#: gdictsrc/gdict-app.c:612
+#: gdictsrc/gdict-app.c:613
 msgid "Select _All"
 msgstr "Vybrat vš_e"
 
-#: gdictsrc/gdict-app.c:613
+#: gdictsrc/gdict-app.c:614
 msgid "Select everything"
 msgstr "Vybrat vše"
 
-#: gdictsrc/gdict-app.c:854 gdictsrc/gdict-speller.c:179
+#: gdictsrc/gdict-app.c:861 gdictsrc/gdict-speller.c:179
 msgid "_Word:"
 msgstr "_Slova:"
 
-#: gdictsrc/gdict-app.c:877 gdictsrc/gdict-speller.c:192
+#: gdictsrc/gdict-app.c:884 gdictsrc/gdict-speller.c:198
 msgid "Word"
 msgstr "Slovo"
 
-#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
-#: gdictsrc/gdict-speller.c:194
+#: gdictsrc/gdict-app.c:885 gdictsrc/gdict-app.c:887
+#: gdictsrc/gdict-speller.c:200
 msgid "Word Entry"
 msgstr "Položka se slovem"
 
-#: gdictsrc/gdict-app.c:879
+#: gdictsrc/gdict-app.c:886
 msgid "Enter a Word or select one from the list below"
 msgstr "Zadejte slovo nebo jedno vyberte ze seznamu níže"
 
-#: gdictsrc/gdict-app.c:883
+#: gdictsrc/gdict-app.c:890
 msgid "Look Up for a Word"
 msgstr "Hledat slovo"
 
-#: gdictsrc/gdict-applet.c:130
+#: gdictsrc/gdict-applet.c:127
 msgid "Dictionary word entry"
 msgstr "Pole pro slovo ze slovníku"
 
-#: gdictsrc/gdict-defbox.c:664 gdictsrc/gdict-speller.c:373
-#, c-format
-msgid "Error invoking query: %s"
-msgstr "Chyba při spouštění dotazu: %s"
+#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:367
+msgid "Error invoking query"
+msgstr "Chyba při spouštění dotazu"
 
-#: gdictsrc/gdict-pref-dialog.c:137
+#: gdictsrc/gdict-pref-dialog.c:136
 msgid "Dictionary Preferences"
 msgstr "Nastavení slovníku"
 
-#: gdictsrc/gdict-pref-dialog.c:150
+#: gdictsrc/gdict-pref-dialog.c:149
 msgid "Smart _lookup"
 msgstr "_Chytré hledání"
 
-#: gdictsrc/gdict-pref-dialog.c:168
-msgid "_Server:"
-msgstr "_Server:"
-
-#: gdictsrc/gdict-pref-dialog.c:175
+#: gdictsrc/gdict-pref-dialog.c:163
 msgid "De_fault Server"
 msgstr "_Implicitní server"
 
-#: gdictsrc/gdict-pref-dialog.c:184
+#: gdictsrc/gdict-pref-dialog.c:174
+msgid "_Server:"
+msgstr "_Server:"
+
+#: gdictsrc/gdict-pref-dialog.c:183
 msgid "Reset server to default"
 msgstr "Vrátit implicitní server"
 
-#: gdictsrc/gdict-pref-dialog.c:192
+#: gdictsrc/gdict-pref-dialog.c:191
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:208
+#: gdictsrc/gdict-pref-dialog.c:201
 msgid "Def_ault Port"
 msgstr "I_mplicitní port"
 
-#: gdictsrc/gdict-pref-dialog.c:217
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset port to default"
 msgstr "Vrátit implicitní port"
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:217
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Server Entry"
 msgstr "Položka se serverem"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Enter the Server Name"
 msgstr "Zadejte název serveru"
 
-#: gdictsrc/gdict-pref-dialog.c:221
+#: gdictsrc/gdict-pref-dialog.c:220
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:223
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Port Entry"
 msgstr "Položka s portem"
 
-#: gdictsrc/gdict-pref-dialog.c:223
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Enter the Port Number"
 msgstr "Zadejte číslo portu"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "_Database:"
 msgstr "_Databáze:"
 
-#: gdictsrc/gdict-pref-dialog.c:239
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "D_efault strategy:"
 msgstr "Implicitní strat_egie:"
 
-#: gdictsrc/gdict-pref-dialog.c:422
+#: gdictsrc/gdict-pref-dialog.c:421
 msgid "Search all databases"
 msgstr "Prohledat všechny databáze"
 
-#: gdictsrc/gdict-pref-dialog.c:583
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database"
 msgstr "Databáze"
 
-#: gdictsrc/gdict-pref-dialog.c:583
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database Name"
 msgstr "Název databáze"
 
-#: gdictsrc/gdict-pref-dialog.c:601
+#: gdictsrc/gdict-pref-dialog.c:600
 msgid "Default Strategy"
 msgstr "Implicitní strategie"
 
-#: gdictsrc/gdict-pref-dialog.c:628
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"Při zobrazování nápovědy došlo k chybě: \n"
-"%s"
-
-#: gdictsrc/gdict-speller.c:194
+#: gdictsrc/gdict-speller.c:200
 msgid "Enter a word to know the spelling"
 msgstr "Zadejte slovo a dozvíte se, jak se píše"
 
-#: gdictsrc/gdict-speller.c:200
+#: gdictsrc/gdict-speller.c:205
 msgid "Search s_trategy:"
 msgstr "S_trategie hledání:"
+
+#: gdictsrc/gdict-speller.c:209 gsearchtool/gsearchtool.c:2049
+msgid "Show more _options"
+msgstr "Zobrazit více _možností"
 
 #: gdictsrc/gdict-speller.c:215
 msgid "Click to do the spell check"
 msgstr "Klikněte zde a provedete kontrolu pravopisu"
 
-#: gdictsrc/gdict-speller.c:219
-msgid "Search _results:"
-msgstr "Výsl_edky hledání:"
-
-#: gdictsrc/gdict-speller.c:272
+#: gdictsrc/gdict-speller.c:265
 msgid "Check Spelling"
 msgstr "Kontrolovat pravopis"
 
-#: gdictsrc/gdict-speller.c:658
+#: gdictsrc/gdict-speller.c:652
 msgid "Search Strategy"
 msgstr "Strategie hledání"
 
@@ -494,58 +495,58 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 "ext2 pro nativní systém souborů Linuxu, nebo fat pro systém souborů DOSu."
 
-#: gfloppy/src/badblocks.c:94
+#: gfloppy/src/badblocks.c:84
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "Interní chyba: Nemohu se přesunout na správné místo."
 
-#: gfloppy/src/badblocks.c:103
+#: gfloppy/src/badblocks.c:93
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Interní chyba: Divná hodnota (%ld) v do_test\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:261
+#: gfloppy/src/badblocks.c:251
 msgid "Checking for bad blocks..."
 msgstr "Hledám špatné bloky..."
 
-#: gfloppy/src/badblocks.c:273
+#: gfloppy/src/badblocks.c:263
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Nemohu otevřít zařízení %s pro kontrolu špatných bloků\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
+#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
 msgid "Checking for bad blocks... Done"
 msgstr "Hledám špatné bloky... Hotovo"
 
-#: gfloppy/src/fdformat.c:49
+#: gfloppy/src/fdformat.c:42
 msgid "Formatting the disk..."
 msgstr "Formátuji disketu..."
 
-#: gfloppy/src/fdformat.c:52
+#: gfloppy/src/fdformat.c:45
 msgid "I don't know what this is, but it's very wrong."
 msgstr "Nevím, co to je, ale je to velmi špatné."
 
-#: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
+#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "Chyba při formátování stopy #%d"
 
-#: gfloppy/src/fdformat.c:82
+#: gfloppy/src/fdformat.c:75
 msgid "Error during completion of formatting"
 msgstr "Chyba při ukončování formátování"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:86
+#: gfloppy/src/fdformat.c:79
 msgid "Formatting the disk... Done"
 msgstr "Formátuji disketu... Hotovo"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:102
+#: gfloppy/src/fdformat.c:95
 msgid "Verifying the format..."
 msgstr "Ověřuji formátování..."
 
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -555,12 +556,12 @@ msgstr ""
 "\n"
 "Přesvědčte se prosím, že není chráněná proti zápisu."
 
-#: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "Nedostatečná oprávnění pro otevření zařízení %s."
 
-#: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
+#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -572,7 +573,7 @@ msgstr ""
 "Přesvědčte se, že je vložena do zařízení\n"
 "a že dvířka zařízení jsou zavřena."
 
-#: gfloppy/src/fdformat.c:117
+#: gfloppy/src/fdformat.c:110
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -583,7 +584,7 @@ msgstr ""
 "\n"
 "Chybový kód %s:%d"
 
-#: gfloppy/src/fdformat.c:140
+#: gfloppy/src/fdformat.c:133
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -592,31 +593,31 @@ msgstr ""
 "Chyba při čtení:\n"
 "Problém při čtení cylindru %d, očekáváno %d, přečteno %d"
 
-#: gfloppy/src/fdformat.c:143
+#: gfloppy/src/fdformat.c:136
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "Problém při čtení cylindru %d, očekáváno %d, přečteno %d"
 
-#: gfloppy/src/fdformat.c:154
+#: gfloppy/src/fdformat.c:147
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "Chybná data na cylindru %d. Pokračuji... "
 
-#: gfloppy/src/fdformat.c:163
+#: gfloppy/src/fdformat.c:156
 #, c-format
 msgid "Error closing device %s"
 msgstr "Chyba při zavírání zařízení %s"
 
-#: gfloppy/src/fdformat.c:170
+#: gfloppy/src/fdformat.c:163
 msgid "Verifying the format... Done"
 msgstr "Ověřuji formátování... Hotovo"
 
-#: gfloppy/src/fdformat.c:182
+#: gfloppy/src/fdformat.c:175
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "Nemohu zapisovat na zařízení %s"
 
-#: gfloppy/src/fdformat.c:202
+#: gfloppy/src/fdformat.c:195
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -627,30 +628,30 @@ msgstr ""
 "\n"
 "Chybový kód %s"
 
-#: gfloppy/src/fdformat.c:214
+#: gfloppy/src/fdformat.c:207
 msgid "Could not determine current floppy geometry."
 msgstr "Nemohu určit současnou geometrii diskety."
 
-#: gfloppy/src/gfloppy.c:225
+#: gfloppy/src/gfloppy.c:215
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "Chyba při vytváření unikátního názvu souboru pro soubor se seznamem špatných "
 "bloků."
 
-#: gfloppy/src/gfloppy.c:245
+#: gfloppy/src/gfloppy.c:235
 msgid "Error while filling the bad blocks list file."
 msgstr "Chyba při plnění souboru se seznamem špatných bloků."
 
-#: gfloppy/src/gfloppy.c:308
+#: gfloppy/src/gfloppy.c:298
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Chyba při spouštění příkazu (%s): %s"
 
-#: gfloppy/src/gfloppy.c:334
+#: gfloppy/src/gfloppy.c:324
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Neznámý úvodní podpis mke2fs, přerušuji."
 
-#: gfloppy/src/gfloppy.c:348
+#: gfloppy/src/gfloppy.c:338
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -661,16 +662,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:365
+#: gfloppy/src/gfloppy.c:355
 msgid "Abnormal child process termination."
 msgstr "Nenormální ukončení procesu potomka."
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:380
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Chyba při spouštění příkazu mbadblocks: %s"
 
-#: gfloppy/src/gfloppy.c:402
+#: gfloppy/src/gfloppy.c:392
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -679,28 +680,28 @@ msgstr ""
 "Nástroj pro kontrolu špatných bloků (mbadblocks) ohlásil následující chyby:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:445
+#: gfloppy/src/gfloppy.c:435
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Nenormální ukončení procesu potomka mbadblocks."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
 msgid "Making filesystem on disk..."
 msgstr "Vytvářím na disketě systém souborů..."
 
-#: gfloppy/src/gfloppy.c:479
+#: gfloppy/src/gfloppy.c:469
 msgid "Unable to create filesystem correctly."
 msgstr "Nemohu správně vytvořit systém souborů."
 
-#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
+#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
 msgid "Making filesystem on disk... Done"
 msgstr "Vytvářím na disketě systém souborů... Hotovo"
 
-#: gfloppy/src/gfloppy.c:528
+#: gfloppy/src/gfloppy.c:518
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Hledám špatné bloky... (to může chvíli trvat)"
 
-#: gfloppy/src/gfloppy.c:533
+#: gfloppy/src/gfloppy.c:523
 msgid "Error while checking the bad blocks."
 msgstr "Chyba při hledání špatných bloků."
 
@@ -790,7 +791,11 @@ msgstr "_Rychlé (pouze vytvoří systém souborů)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standardní (k rychlému režimu se přidá formátování na nízké úrovni)"
 
-#: gfloppy/src/main.c:215
+#: gfloppy/src/main.c:224
+msgid "Cannot Format"
+msgstr "Nemohu formátovat"
+
+#: gfloppy/src/main.c:225
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -798,12 +803,12 @@ msgstr ""
 "Nejsou nainstalovány aplikace mke2fs ani mkdosfs/mformat. Bez jedné z těchto "
 "aplikací nelze formátovat disketu."
 
-#: gfloppy/src/main.c:239
+#: gfloppy/src/main.c:245
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Nemohu otevřít zařízení %s, formátování nemůže pokračovat."
 
-#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
+#: gfloppy/src/main.c:248 gfloppy/src/main.c:311
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -812,7 +817,7 @@ msgstr ""
 "Zařízení %s je odpojeno.\n"
 "Připojte prosím zařízení a pokračujte."
 
-#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:251 gfloppy/src/main.c:314
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -822,36 +827,39 @@ msgstr ""
 "Nemáte potřebná práva pro zápis na %s, formátování nebude možné.\n"
 "Kontaktujte správce systému a požádejte jej o práva na zápis."
 
-#: gfloppy/src/main.c:310
+#: gfloppy/src/main.c:258 gfloppy/src/main.c:322
+msgid "Cannot initialize device"
+msgstr "Nemohu inicializovat zařízení"
+
+#: gfloppy/src/main.c:308
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Nemohu otevřít žádné zařízení, formátování nemůže pokračovat."
 
-#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:311 gfloppy/src/main.c:314
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 nebo /dev/fd0"
 
-#: gfloppy/src/main.c:489
-#, c-format
-msgid ""
-"Could not display help for the floppy formatter.\n"
-"%s"
-msgstr ""
-"Nemohu zobrazit nápovědu pro formátovač disket.\n"
-"%s"
+#: gfloppy/src/main.c:475
+msgid "Could not display help for the floppy formatter."
+msgstr "Nemohu zobrazit nápovědu pro formátovač disket."
 
-#: gfloppy/src/main.c:522
+#: gfloppy/src/main.c:494
+msgid "Incorrect volume name"
+msgstr "Nesprávný název svazku"
+
+#: gfloppy/src/main.c:495
 msgid "The volume name can't contain any blank space."
 msgstr "Název svazku nesmí obsahovat prázdné znaky."
 
-#: gfloppy/src/main.c:576
+#: gfloppy/src/main.c:543
 msgid "The device to format"
 msgstr "Zařízení k formátování"
 
-#: gfloppy/src/main.c:577
+#: gfloppy/src/main.c:544
 msgid "DEVICE"
 msgstr "ZAŘÍZENÍ"
 
-#: gfloppy/src/progress.c:123
+#: gfloppy/src/progress.c:122
 #, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -869,15 +877,15 @@ msgstr[2] ""
 "Disketa byla naformátována, ale bylo nalezeno a označeno <b>%d špatných "
 "bloků</b> (z %d)."
 
-#: gfloppy/src/progress.c:126
+#: gfloppy/src/progress.c:125
 msgid "Floppy formatted successfully."
 msgstr "Disketa úspěšně naformátována."
 
-#: gfloppy/src/progress.c:132
+#: gfloppy/src/progress.c:131
 msgid "Floppy formatting cancelled."
 msgstr "Formátování diskety zrušeno."
 
-#: gfloppy/src/progress.c:175
+#: gfloppy/src/progress.c:174
 msgid "Format Progress"
 msgstr "Průběh formátování"
 
@@ -887,7 +895,7 @@ msgstr "Hledat soubory, adresáře a dokumenty ve vašem počítači"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
 #: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
-#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
+#: gsearchtool/gsearchtool.c:2364 gsearchtool/gsearchtool.c:2385
 msgid "Search for Files"
 msgstr "Hledat soubory"
 
@@ -1574,10 +1582,6 @@ msgstr "Probírat"
 msgid "Select the folder where you want to start the search."
 msgstr "Zvolte adresář, kde chcete začít hledat."
 
-#: gsearchtool/gsearchtool.c:2049
-msgid "Show more _options"
-msgstr "Zobrazit více _možností"
-
 #: gsearchtool/gsearchtool.c:2059
 msgid "Show more options"
 msgstr "Zobrazit více možností"
@@ -1594,7 +1598,7 @@ msgstr "Kliknutím zde začnete hledat"
 msgid "Click to Stop the search"
 msgstr "Kliknutím zde zastavíte hledání"
 
-#: gsearchtool/gsearchtool.c:2386
+#: gsearchtool/gsearchtool.c:2381
 msgid "Cannot initialize bonobo."
 msgstr "Nemohu inicializovat bonobo."
 
@@ -2178,7 +2182,9 @@ msgstr "Adresář, ve kterém byl naposledy uložen snímek obrazovky"
 msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"black-line\"."
-msgstr "Efekt, který přidat kolem rámečku. Možné hodnoty jsou \"shadow\", \"none\" a \"black-line\"."
+msgstr ""
+"Efekt, který přidat kolem rámečku. Možné hodnoty jsou \"shadow\", \"none\" a "
+"\"black-line\"."
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -2213,7 +2219,9 @@ msgstr ""
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
-msgstr "Proces potomka pro ukládání neočekávaně skončil. Nemůžeme snímek obrazovky zapsat na disk."
+msgstr ""
+"Proces potomka pro ukládání neočekávaně skončil. Nemůžeme snímek obrazovky "
+"zapsat na disk."
 
 #: gnome-screenshot/screenshot-save.c:188
 msgid "Unknown error saving screenshot to disk"
@@ -2240,6 +2248,16 @@ msgstr "Soubor \"%s\" již existuje. Chcete jej nahradit?"
 #, c-format
 msgid "Unknown GnomeVFSXferProgressStatus %d"
 msgstr "Neznámý GnomeVFSXferProgressStatus %d"
+
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr ""
+#~ "Při zobrazování nápovědy došlo k chybě: \n"
+#~ "%s"
+
+#~ msgid "Search _results:"
+#~ msgstr "Výsl_edky hledání:"
 
 #~ msgid "_Dictionary"
 #~ msgstr "_Slovník"
