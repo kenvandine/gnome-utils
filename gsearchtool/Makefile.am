@@ -5,7 +5,7 @@ SUBDIRS = help
 INCLUDES = 	\
 	$(GNOME_UTILS_CFLAGS)				\
 	$(GNOMEVFS_CFLAGS)				\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
+	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-DDATADIR=\""$(datadir)"\"			\
 	-I$(includedir)					
