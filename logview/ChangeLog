@@ -1,3 +1,11 @@
+Fri Jul 18 12:35:50 2003  George Lebl <jirka@5z.com>
+
+	* logview.c: If gconf is not writable don't write down the logfile
+	  we found.  If the logfile we got is NULL, don't set it to gconf and
+	  don't set the file selection to it to avoid warnings.
+
+	* log_repaint.c: fix user_prefs check to be sane (it's never hit though)
+
 2003-07-18  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
 
 	* gnome-system-log.desktop.in: Use icon from the icon theme.

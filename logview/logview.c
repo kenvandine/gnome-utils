@@ -654,8 +654,9 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
    /* Make window modal */
    gtk_window_set_modal (GTK_WINDOW (filesel), TRUE);
 
-   gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), 
-   				    user_prefs->logfile);
+   if (user_prefs->logfile != NULL)
+   	gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), 
+					 user_prefs->logfile);
 
    gtk_window_set_position (GTK_WINDOW (filesel), GTK_WIN_POS_MOUSE);
    gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->ok_button),
@@ -880,7 +881,9 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs)
 
 void SaveUserPrefs(UserPrefsStruct *prefs)
 {
-    gconf_client_set_string (client, "/apps/logview/logfile", prefs->logfile, NULL);
+    if (gconf_client_key_is_writable (client, "/apps/logview/logfile", NULL) &&
+	prefs->logfile != NULL)
+	    gconf_client_set_string (client, "/apps/logview/logfile", prefs->logfile, NULL);
 }
 
 static void 

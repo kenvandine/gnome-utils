@@ -585,7 +585,7 @@ log_redrawdetail ()
 int
 InitPages ()
 {
-   if (user_prefs && user_prefs->logfile == NULL)
+   if (user_prefs == NULL || user_prefs->logfile == NULL)
 	return -1;
 
    curlog = OpenLogFile (user_prefs->logfile);
