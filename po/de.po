@@ -7,16 +7,15 @@
 # Simon Westhues <westhues@muenster.de>, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
 # Hendrik Richter <hendrik@gnome-de.org>, 2004.
-# Hendrik Brandt <heb@gnome-de.org>, 2004.
-# Hendrik Richter <hendrik@gnome-de.org>, 2004.
+# Hendrik Brandt <heb@gnome-de.org>, 2004-2005.
 # 
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-03 18:00+0100\n"
-"PO-Revision-Date: 2005-01-03 18:12+0100\n"
+"POT-Creation-Date: 2005-01-10 14:35+0100\n"
+"PO-Revision-Date: 2005-01-10 14:39+0100\n"
 "Last-Translator: Hendrik Brandt <heb@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:136
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
 msgid "Dictionary Lookup"
 msgstr "Wörterbuchsuche"
 
@@ -145,7 +144,7 @@ msgstr "Suchen"
 msgid "_Search for:"
 msgstr "_Suchbegriff:"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:304
+#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
 #: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "Hilfedokument konnte nicht angezeigt werden"
@@ -281,15 +280,15 @@ msgstr "Ein Wort eingeben oder eines aus der Liste auswählen"
 msgid "Look Up for a Word"
 msgstr "Ein Wort nachschlagen"
 
-#: gdictsrc/gdict-applet.c:141
+#: gdictsrc/gdict-applet.c:155
 msgid "Dictionary word entry"
 msgstr "Worteintrag im Wörterbuch"
 
-#: gdictsrc/gdict-defbox.c:332
+#: gdictsrc/gdict-defbox.c:335
 msgid "Definition preview"
 msgstr "Definitionsvorschau"
 
-#: gdictsrc/gdict-defbox.c:671 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
 msgid "Error invoking query"
 msgstr "Abfragefehler"
 
@@ -1085,7 +1084,7 @@ msgstr "Dateien, Ordner und Dokumente auf Ihrem Computer finden"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
 #: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2679
+#: gsearchtool/gsearchtool.c:2688
 msgid "Search for Files"
 msgstr "Nach Dateien suchen"
 
@@ -1623,11 +1622,11 @@ msgid "Searching..."
 msgstr "Suche läuft..."
 
 #: gsearchtool/gsearchtool.c:1071
-msgid "Set the text of 'Name contains'"
-msgstr "Den Text von »Dateiname ist« festlegen"
+msgid "Set the text of \"Name contains\" search option"
+msgstr "Den Text von »Dateiname enthält« festlegen"
 
 #: gsearchtool/gsearchtool.c:1072
-msgid "Set the text of 'Look in folder'"
+msgid "Set the text of \"Look in folder\" search option"
 msgstr "Den Text von »Ordner durchsuchen« festlegen"
 
 #: gsearchtool/gsearchtool.c:1073
@@ -1644,16 +1643,21 @@ msgstr "Absteigende Sortierreihenfolge verwenden, die Vorgabe ist aufsteigend"
 msgid "Automatically start a search"
 msgstr "Automatisch eine Suche beginnen"
 
-#: gsearchtool/gsearchtool.c:1080
+#: gsearchtool/gsearchtool.c:1081
 #, c-format
-msgid "Select the '%s' constraint"
-msgstr "Die Einschränkung »%s« auswählen"
+msgid "Select the \"%s\" search option"
+msgstr "Suchoption »%s« auswählen"
 
-#: gsearchtool/gsearchtool.c:1186
+#: gsearchtool/gsearchtool.c:1084
+#, c-format
+msgid "Select and set the \"%s\" search option"
+msgstr "Suchoption »%s« auswählen und setzen"
+
+#: gsearchtool/gsearchtool.c:1191
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ungültige Option an das »sortby«-Befehlszeilenargument übergeben."
 
-#: gsearchtool/gsearchtool.c:1480
+#: gsearchtool/gsearchtool.c:1485
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1661,7 +1665,7 @@ msgstr ""
 "\n"
 "... Mehr Fehler aufgetreten als angezeigt werden können ..."
 
-#: gsearchtool/gsearchtool.c:1494
+#: gsearchtool/gsearchtool.c:1499
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1669,11 +1673,11 @@ msgstr ""
 "Möglicherweise ist das Suchergebnis ungültig. Beim Ausführen der Suche sind "
 "Fehler aufgetreten."
 
-#: gsearchtool/gsearchtool.c:1506 gsearchtool/gsearchtool.c:1546
+#: gsearchtool/gsearchtool.c:1511 gsearchtool/gsearchtool.c:1551
 msgid "Show more _details"
 msgstr "Weitere _Details anzeigen"
 
-#: gsearchtool/gsearchtool.c:1534
+#: gsearchtool/gsearchtool.c:1539
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1681,119 +1685,120 @@ msgstr ""
 "Möglicherweise ist das Suchergebnis ungültig. Wollen Sie die Schnellsuche in "
 "Zukunft deaktivieren?"
 
-#: gsearchtool/gsearchtool.c:1557
+#: gsearchtool/gsearchtool.c:1562
 msgid "Disable _Quick Search"
 msgstr "_Schnellsuche deaktivieren"
 
-#: gsearchtool/gsearchtool.c:1584
+#: gsearchtool/gsearchtool.c:1589
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
-msgstr "Die ID für die Prozessgruppe des Kindes %d konnte nicht gesetzt werden: %s.\n"
+msgstr ""
+"Die ID für die Prozessgruppe des Kindes %d konnte nicht gesetzt werden: %s.\n"
 
-#: gsearchtool/gsearchtool.c:1611
+#: gsearchtool/gsearchtool.c:1616
 msgid "Error parsing the search command."
 msgstr "Fehler beim Verarbeiten des Suchbefehls."
 
-#: gsearchtool/gsearchtool.c:1644
+#: gsearchtool/gsearchtool.c:1649
 msgid "Error running the search command."
 msgstr "Fehler beim Ausführen des Suchbefehls."
 
-#: gsearchtool/gsearchtool.c:1787
+#: gsearchtool/gsearchtool.c:1792
 #, c-format
 msgid "'%s' entry"
 msgstr "»%s«-Eintrag"
 
-#: gsearchtool/gsearchtool.c:1788
+#: gsearchtool/gsearchtool.c:1793
 msgid "Enter a value for search rule"
 msgstr "Geben Sie einen Wert für die Suchregel ein"
 
-#: gsearchtool/gsearchtool.c:1842
+#: gsearchtool/gsearchtool.c:1847
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klicken Sie hier, um die Regel »%s« zu entfernen"
 
-#: gsearchtool/gsearchtool.c:1934
+#: gsearchtool/gsearchtool.c:1939
 msgid "A_vailable options:"
 msgstr "_Verfügbare Kriterien:"
 
-#: gsearchtool/gsearchtool.c:1964
+#: gsearchtool/gsearchtool.c:1969
 msgid "Search Rules Menu"
 msgstr "Suchregelmenü"
 
-#: gsearchtool/gsearchtool.c:1965
+#: gsearchtool/gsearchtool.c:1970
 msgid "Select a search rule from the menu"
 msgstr "Wählen Sie eine Suchregel aus dem Menü"
 
-#: gsearchtool/gsearchtool.c:1994
+#: gsearchtool/gsearchtool.c:1999
 msgid "S_earch results:"
 msgstr "Such_ergebnisse:"
 
-#: gsearchtool/gsearchtool.c:2076
+#: gsearchtool/gsearchtool.c:2081
 msgid "Name"
 msgstr "Name"
 
-#: gsearchtool/gsearchtool.c:2096
+#: gsearchtool/gsearchtool.c:2101
 msgid "Folder"
 msgstr "Ordner"
 
-#: gsearchtool/gsearchtool.c:2107
+#: gsearchtool/gsearchtool.c:2112
 msgid "Size"
 msgstr "Größe"
 
-#: gsearchtool/gsearchtool.c:2117
+#: gsearchtool/gsearchtool.c:2122
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:2127
+#: gsearchtool/gsearchtool.c:2132
 msgid "Date Modified"
 msgstr "Geändert am"
 
-#: gsearchtool/gsearchtool.c:2495
+#: gsearchtool/gsearchtool.c:2500
 msgid "_Name contains:"
 msgstr "_Name enthält:"
 
-#: gsearchtool/gsearchtool.c:2510 gsearchtool/gsearchtool.c:2511
+#: gsearchtool/gsearchtool.c:2515 gsearchtool/gsearchtool.c:2516
 msgid "Enter the file name you want to search."
 msgstr "Geben Sie den Dateinamen ein, nach dem Sie suchen wollen."
 
-#: gsearchtool/gsearchtool.c:2511
+#: gsearchtool/gsearchtool.c:2516
 msgid "Name Contains Entry"
 msgstr "Name enthält-Eingabefeld"
 
-#: gsearchtool/gsearchtool.c:2517
+#: gsearchtool/gsearchtool.c:2522
 msgid "_Look in folder:"
 msgstr "Ordner _durchsuchen:"
 
-#: gsearchtool/gsearchtool.c:2523
+#: gsearchtool/gsearchtool.c:2528
 msgid "Browse"
 msgstr "Auswählen"
 
-#: gsearchtool/gsearchtool.c:2529
+#: gsearchtool/gsearchtool.c:2534
 msgid "Select the folder where you want to start the search."
 msgstr ""
 "Geben Sie den Ordnernamen an, in dem mit der Suche begonnen werden soll."
 
-#: gsearchtool/gsearchtool.c:2540
+#: gsearchtool/gsearchtool.c:2545
 msgid "Show more _options"
 msgstr "Weitere _Einstellungen anzeigen"
 
-#: gsearchtool/gsearchtool.c:2550
+#: gsearchtool/gsearchtool.c:2555
 msgid "Show more options"
 msgstr "Weitere Einstellungen anzeigen"
 
-#: gsearchtool/gsearchtool.c:2550
+#: gsearchtool/gsearchtool.c:2555
 msgid "Expands or collapses a list of search options."
 msgstr "Eine Liste weiterer Sucheinstellungen aus- bzw. einklappen."
 
-#: gsearchtool/gsearchtool.c:2602
+#: gsearchtool/gsearchtool.c:2607
 msgid "Click to Start the search"
 msgstr "Klicken Sie hier, um die Suche zu starten"
 
-#: gsearchtool/gsearchtool.c:2603
+#: gsearchtool/gsearchtool.c:2608
 msgid "Click to Stop the search"
 msgstr "Klicken Sie hier, um die Suche anzuhalten"
 
-#: gsearchtool/gsearchtool.c:2699
+#: gsearchtool/gsearchtool.c:2708
 msgid "Cannot initialize bonobo."
 msgstr "Bonobo konnte nicht initialisiert werden."
 
@@ -1995,6 +2000,11 @@ msgid_plural "%ld bytes"
 msgstr[0] "%ld Byte"
 msgstr[1] "%ld Byte"
 
+#: logview/info.c:97
+#, c-format
+msgid "<b>Size</b>: %s"
+msgstr "<b>Größe</b>: %s"
+
 #: logview/info.c:102
 #, c-format
 msgid "<b>Modified</b>: %s"
@@ -2070,7 +2080,7 @@ msgid "%x"
 msgstr "%x"
 
 #: logview/log_repaint.c:297
-msgid "Last Modified: "
+msgid "Last Modified:"
 msgstr "Zuletzt geändert: "
 
 #. Translators: Make sure this is only Month and Day format, year
@@ -2085,19 +2095,19 @@ msgstr "%e. %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:44
+#: logview/logrtns.c:47
 msgid "The file could not be opened"
 msgstr "Die Datei konnte nicht geöffnet werden"
 
-#: logview/logrtns.c:210
+#: logview/logrtns.c:213
 msgid "Unable to open logfile!\n"
 msgstr "Protokolldatei konnte nicht geöffnet werden!\n"
 
-#: logview/logrtns.c:217
+#: logview/logrtns.c:220
 msgid "Not enough memory!\n"
 msgstr "Nicht genügend Speicher!\n"
 
-#: logview/logrtns.c:269
+#: logview/logrtns.c:272
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2107,27 +2117,27 @@ msgstr ""
 "oder bitten Sie Ihren Systemadministrator, die Zugriffsrechte auf die Datei "
 "zu ändern."
 
-#: logview/logrtns.c:274
+#: logview/logrtns.c:277
 #, c-format
 msgid "%s is too big."
 msgstr "%s ist zu groß."
 
-#: logview/logrtns.c:278
+#: logview/logrtns.c:281
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s konnte nicht geöffnet werden."
 
-#: logview/logrtns.c:319 logview/logrtns.c:330
+#: logview/logrtns.c:322 logview/logrtns.c:333
 #, c-format
 msgid "%s not a log file."
 msgstr "%s ist keine Protokolldatei."
 
-#: logview/logrtns.c:581 logview/logrtns.c:605
+#: logview/logrtns.c:584 logview/logrtns.c:608
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: Kein Speicher mehr"
 
 #: logview/logview-findbar.c:265
-msgid "Fin_d : "
+msgid "Fin_d:"
 msgstr "_Suchen:"
 
 #: logview/logview-findbar.c:283
@@ -2207,8 +2217,8 @@ msgid "Open the help contents for the log viewer"
 msgstr "Die Hilfe für den Systemprotokollbetrachter anzeigen"
 
 #: logview/logview.c:111
-msgid "Show the about dialog for the gconf editor"
-msgstr "Informationen über den Konfigurationseditor anzeigen"
+msgid "Show the about dialog for the log viewer"
+msgstr "Informationen über den Protokollbetrachter anzeigen"
 
 #: logview/logview.c:117
 msgid "_Monitor"
