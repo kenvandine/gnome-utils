@@ -1968,9 +1968,9 @@ create_window(void)
 	gtk_container_set_border_width(GTK_CONTAINER(nbook),GNOME_PAD_SMALL);
 
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_locate_page(),
-				 gtk_label_new_with_mnemonic(_("Si_mple")));  /* Can we connect to this  */
+				 gtk_label_new (_("Simple")));  /* Can we connect to this  */
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_find_page(),
-				 gtk_label_new_with_mnemonic(_("Ad_vanced")));
+				 gtk_label_new (_("Advanced")));
 
 	return nbook;
 }
