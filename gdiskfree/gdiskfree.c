@@ -89,15 +89,15 @@ gdiskfree_convert_size ( unsigned long size)
      /* The firs time we divide by 1024, after that, we divide
 	by 1000 */
      if (size_f < 1024)
-	  return g_strdup_printf ("%.1f b", size_f);
+	  return g_strdup_printf ("%.1f kb", size_f);
      size_f = size_f / 1024;
-     if (size_f < 1024)
+     if (size_f < 1000)
 	  return g_strdup_printf ("%.1f Mb", size_f);
      size_f = size_f / 1000;
-     if (size_f < 1024)
+     if (size_f < 1000)
 	  return g_strdup_printf ("%.1f Gb", size_f);
      size_f = size_f / 1000;
-     if (size_f < 1024)
+     if (size_f < 1000)
 	  return g_strdup_printf ("%.1f Tb", size_f);
      size_f = size_f / 1000;
 }
