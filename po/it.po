@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.3.1\n"
-"POT-Creation-Date: 2002-10-14 15:19+0100\n"
+"POT-Creation-Date: 2002-11-25 14:29+0000\n"
 "PO-Revision-Date: 2001-05-24 18:25+02:00\n"
 "Last-Translator: Giovanni Bortolozzo <borto@pluto.linux.it>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -319,7 +319,7 @@ msgstr ""
 msgid "9"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:1
+#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:2
 msgid "*"
 msgstr ""
 
@@ -492,25 +492,25 @@ msgid ""
 "Select, copy and paste characters from your font into other applications"
 msgstr ""
 
-#: gcharmap/src/callbacks.c:131
-#, c-format
-msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
-msgstr ""
-
-#: gcharmap/src/callbacks.c:134
+#: gcharmap/src/callbacks.c:130 gcharmap/src/callbacks.c:138
 #, fuzzy, c-format
 msgid "Character code: (Unicode) U%04lX"
 msgstr "Carattere:"
 
-#: gcharmap/src/callbacks.c:188
+#: gcharmap/src/callbacks.c:134
+#, c-format
+msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
+msgstr ""
+
+#: gcharmap/src/callbacks.c:192
 msgid "Text copied to clipboard..."
 msgstr "Testo copiato negli appunti..."
 
-#: gcharmap/src/callbacks.c:205
+#: gcharmap/src/callbacks.c:209
 msgid "Text cut to clipboard..."
 msgstr "Testo tagliato negli appunti..."
 
-#: gcharmap/src/callbacks.c:254
+#: gcharmap/src/callbacks.c:259
 msgid "Text pasted from clipboard..."
 msgstr "Testo incollato dagli appunti..."
 
@@ -1033,7 +1033,7 @@ msgstr "MRicerca dei blocchi rovinati... "
 msgid "MFailed to open device %s for badblock checking\n"
 msgstr "MImpossibile aprire il device %s per la ricerca dei blocchi rovinati\n"
 
-#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:540
+#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:536
 msgid "MChecking for bad blocks... Done"
 msgstr "MRicerca dei blocchi rovinati... Fatto"
 
@@ -1168,24 +1168,24 @@ msgstr ""
 msgid "EUnknown mke2fs starting signature, cancelling."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:346
 #, c-format
 msgid ""
 "EThe filesystem creation utility (%s) reported the following errors:\n"
 "\n"
-"%s"
+"%s (%d)"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:363
 msgid "EAbnormal child process termination."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:388
 #, c-format
 msgid "EError while spawning the mbadblocks command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:400
 #, c-format
 msgid ""
 "EThe bad blocks checking utility (mbadblocks) reported the following "
@@ -1193,126 +1193,123 @@ msgid ""
 "%s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:443
 msgid "EAbnormal mbadblocks child process termination."
 msgstr ""
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:469 gfloppy/src/gfloppy.c:509
+#: gfloppy/src/gfloppy.c:470 gfloppy/src/gfloppy.c:510
 msgid "MMaking filesystem on disk..."
 msgstr "MCreazione del filesystem sul disco..."
 
-#: gfloppy/src/gfloppy.c:477
+#: gfloppy/src/gfloppy.c:478
 msgid "EUnable to create filesystem correctly."
 msgstr "EImpossibile creare correttamente il filesystem."
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:526
+#: gfloppy/src/gfloppy.c:482 gfloppy/src/gfloppy.c:522
 msgid "MMaking filesystem on disk... Done"
 msgstr "MCreazione del filesystem sul disco... Fatto"
 
-#. FIXME: Well, I suppose that's like other UNIX commands
-#: gfloppy/src/gfloppy.c:522
-msgid "EUnable to create filesystem."
-msgstr "EImpossibile creare il filesystem."
-
-#: gfloppy/src/gfloppy.c:531
+#: gfloppy/src/gfloppy.c:527
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "MRicerca dei blocchi rovinati... (può durante un po' di tempo)"
 
-#: gfloppy/src/gfloppy.c:536
+#: gfloppy/src/gfloppy.c:532
 #, fuzzy
 msgid "EError while checking the bad blocks."
 msgstr "MRicerca dei blocchi rovinati... "
 
-#: gfloppy/src/gfloppy2.glade.h:2
+#: gfloppy/src/gfloppy2.glade.h:1
+msgid "    "
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:3
 msgid ""
 "<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
 "be installed in order to make a thorough DOS (fat) formatting."
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:3
-msgid "DOS (fat)"
+#: gfloppy/src/gfloppy2.glade.h:4
+msgid "<span weight=\"bold\">Filesystem settings</span>"
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:4
+#: gfloppy/src/gfloppy2.glade.h:5
+msgid "<span weight=\"bold\">Formatting mode</span>"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:6
+msgid "<span weight=\"bold\">Physical settings</span>"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:7
+#, fuzzy
+msgid "DOS (FAT)"
+msgstr "Dos (FAT)"
+
+#: gfloppy/src/gfloppy2.glade.h:8
 #, fuzzy
 msgid "Double Density 3.5\" (720KB)"
 msgstr "3.5\" a doppia densità (720 KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:5
+#: gfloppy/src/gfloppy2.glade.h:9
 #, fuzzy
 msgid "Double Density 5.25\" (360KB)"
 msgstr "5.25\" a doppia densità (360KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:6
+#: gfloppy/src/gfloppy2.glade.h:10
 #, fuzzy
 msgid "File system _type:"
 msgstr "Tipo di file system:"
 
-#: gfloppy/src/gfloppy2.glade.h:7
-#, fuzzy
-msgid "Filesystem settings"
-msgstr "Mantieni impostazioni"
-
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:11
 #, fuzzy
 msgid "Floppy _density:"
 msgstr "Densità del dischetto:"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:12
 #, fuzzy
 msgid "Floppy de_vice:"
 msgstr "Densità del dischetto:"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:13
 #, fuzzy
 msgid "Floppy formatter"
 msgstr "Formattazione del dischetto annullata."
 
-#: gfloppy/src/gfloppy2.glade.h:11
-#, fuzzy
-msgid "Formatting mode"
-msgstr "Formattazione di %s"
-
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:14
 #, fuzzy
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "3.5\" ad alta densità (1.44 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:15
 #, fuzzy
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "5.25\" ad alta densità (1.2 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:16
 msgid "Linux Native (ext2)"
 msgstr "Linux nativo (ext2)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
-#, fuzzy
-msgid "Physical settings"
-msgstr "Impostazioni generali"
-
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:17
+#: gfloppy/src/gfloppy2.glade.h:18
 #, fuzzy
 msgid "Volume _name:"
 msgstr "Nome file:"
 
-#: gfloppy/src/gfloppy2.glade.h:18
+#: gfloppy/src/gfloppy2.glade.h:19
 #, fuzzy
 msgid "_Format"
 msgstr "Formatta"
 
-#: gfloppy/src/gfloppy2.glade.h:19
+#: gfloppy/src/gfloppy2.glade.h:20
 #, fuzzy
 msgid "_Quick (only creates the filesystem)"
 msgstr "EImpossibile creare il filesystem."
 
-#: gfloppy/src/gfloppy2.glade.h:20
+#: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
 
@@ -1322,19 +1319,19 @@ msgid ""
 "can't format a floppy without one of them."
 msgstr ""
 
-#: gfloppy/src/main.c:155 gfloppy/src/main.c:198
+#: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, fuzzy, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "MImpossibile aprire il device %s per la ricerca dei blocchi rovinati\n"
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:201
+#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
 msgstr ""
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:204
+#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -1342,18 +1339,22 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 
-#: gfloppy/src/main.c:389
+#: gfloppy/src/main.c:391
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
 "%s"
 msgstr ""
 
-#: gfloppy/src/main.c:468
+#: gfloppy/src/main.c:425
+msgid "The volume name can't contain any blank space."
+msgstr ""
+
+#: gfloppy/src/main.c:471
 msgid "The device to format"
 msgstr "Il device da formattare"
 
-#: gfloppy/src/main.c:469
+#: gfloppy/src/main.c:472
 msgid "DEVICE"
 msgstr "DEVICE"
 
@@ -1372,7 +1373,7 @@ msgstr "Dischetto formattato con successo."
 msgid "Floppy formatting cancelled."
 msgstr "Formattazione del dischetto annullata."
 
-#: gfloppy/src/progress.c:177
+#: gfloppy/src/progress.c:172
 #, fuzzy
 msgid "Format progress"
 msgstr "Avanzamento della formattazione."
@@ -1407,7 +1408,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1516
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1518
 #, fuzzy
 msgid "Search for Files"
 msgstr "Cerca"
@@ -1556,45 +1557,45 @@ msgstr "Segui i link simbolici"
 msgid "Select the 'Include other filesystems' constraint"
 msgstr "Ricerca espressione regolare estesa"
 
-#: gsearchtool/gsearchtool.c:404
+#: gsearchtool/gsearchtool.c:412
 #, fuzzy
 msgid "No files found"
 msgstr "Non è stata trovata alcuna corrispondenza"
 
-#: gsearchtool/gsearchtool.c:489
+#: gsearchtool/gsearchtool.c:497
 msgid "Entry changed called for a non entry option!"
 msgstr "Il cambiamento della voce ha chiamato una opzione non valida!"
 
-#: gsearchtool/gsearchtool.c:671
+#: gsearchtool/gsearchtool.c:681
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:797
+#: gsearchtool/gsearchtool.c:810
 msgid "(aborted)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:806
+#: gsearchtool/gsearchtool.c:819
 #, fuzzy, c-format
 msgid "No files found %s"
 msgstr "Non è stata trovata alcuna corrispondenza"
 
-#: gsearchtool/gsearchtool.c:811
+#: gsearchtool/gsearchtool.c:824
 #, fuzzy, c-format
 msgid "One file found %s"
 msgstr "Non è stato trovato il file del logo"
 
-#: gsearchtool/gsearchtool.c:815
+#: gsearchtool/gsearchtool.c:828
 #, fuzzy, c-format
 msgid "%d files found %s"
 msgstr "Non è stata trovata alcuna corrispondenza"
 
-#: gsearchtool/gsearchtool.c:908
+#: gsearchtool/gsearchtool.c:921
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:912
+#: gsearchtool/gsearchtool.c:925
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1602,120 +1603,120 @@ msgstr ""
 "\n"
 "... Troppi errori da visualizzare ..."
 
-#: gsearchtool/gsearchtool.c:925
+#: gsearchtool/gsearchtool.c:938
 #, fuzzy
 msgid "Search Errors"
 msgstr "Cerca"
 
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:987
+#: gsearchtool/gsearchtool.c:976 gsearchtool/gsearchtool.c:1000
 #, fuzzy
 msgid "Search for Files Error"
 msgstr "Cerca"
 
-#: gsearchtool/gsearchtool.c:1068
+#: gsearchtool/gsearchtool.c:1081
 msgid "Search Rule Value Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1082
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1103
+#: gsearchtool/gsearchtool.c:1116
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Directory in cui cercare"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1170
 #, fuzzy
 msgid "A_vailable options:"
 msgstr "Viste disponibili"
 
-#: gsearchtool/gsearchtool.c:1168
+#: gsearchtool/gsearchtool.c:1180
 #, fuzzy
 msgid "Search Rules Menu"
 msgstr "Risultati della ricerca"
 
-#: gsearchtool/gsearchtool.c:1169
+#: gsearchtool/gsearchtool.c:1181
 #, fuzzy
 msgid "Select a search rule from the menu"
 msgstr "Crea una nuova finestra per il documento"
 
-#: gsearchtool/gsearchtool.c:1201
+#: gsearchtool/gsearchtool.c:1213
 #, fuzzy
 msgid "S_earch Results"
 msgstr "Risultati della ricerca"
 
-#: gsearchtool/gsearchtool.c:1274
+#: gsearchtool/gsearchtool.c:1286
 msgid "Name"
 msgstr "Nome"
 
-#: gsearchtool/gsearchtool.c:1296
+#: gsearchtool/gsearchtool.c:1306
 #, fuzzy
 msgid "Folder"
 msgstr "Fil_tra"
 
-#: gsearchtool/gsearchtool.c:1308
+#: gsearchtool/gsearchtool.c:1317
 #, fuzzy
 msgid "Size"
 msgstr "Dimensione:"
 
-#: gsearchtool/gsearchtool.c:1319
+#: gsearchtool/gsearchtool.c:1327
 msgid "Type"
 msgstr "Tipo"
 
-#: gsearchtool/gsearchtool.c:1330
+#: gsearchtool/gsearchtool.c:1337
 #, fuzzy
 msgid "Date Modified"
 msgstr "Modificato:"
 
-#: gsearchtool/gsearchtool.c:1371
+#: gsearchtool/gsearchtool.c:1376
 #, fuzzy
 msgid "File is _named:"
 msgstr "Nome file"
 
-#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
+#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
 #, fuzzy
 msgid "File Name Entry"
 msgstr "Nome file :"
 
-#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
+#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
 msgid "Enter the file name you want to search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1399
+#: gsearchtool/gsearchtool.c:1404
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "Stringa non trovata"
 
-#: gsearchtool/gsearchtool.c:1405
+#: gsearchtool/gsearchtool.c:1410
 msgid "Browse"
 msgstr "Sfoglia"
 
-#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
 #, fuzzy
 msgid "Starting folder entry"
 msgstr "Stringa non trovata"
 
-#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
 msgid "Enter the folder name where you want to start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1431 gsearchtool/gsearchtool.c:1432
+#: gsearchtool/gsearchtool.c:1436 gsearchtool/gsearchtool.c:1437
 #, fuzzy
 msgid "Additional Options"
 msgstr "Opzioni monitoraggio"
 
-#: gsearchtool/gsearchtool.c:1474
+#: gsearchtool/gsearchtool.c:1479
 #, fuzzy
 msgid "Click to Start the search"
 msgstr "Avvia la ricerca corrente"
 
-#: gsearchtool/gsearchtool.c:1475
+#: gsearchtool/gsearchtool.c:1480
 #, fuzzy
 msgid "Click to Stop the search"
 msgstr "Directory in cui cercare"
 
-#: gsearchtool/gsearchtool.c:1512
+#: gsearchtool/gsearchtool.c:1514
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -1917,86 +1918,86 @@ msgstr ""
 msgid "%ld bytes"
 msgstr "%ld byte"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "January"
 msgstr "Gennaio"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "February"
 msgstr "Febbraio"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "March"
 msgstr "Marzo"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "April"
 msgstr "Aprile"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "May"
 msgstr "Maggio"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "June"
 msgstr "Giugno"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "July"
 msgstr "Luglio"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "August"
 msgstr "Agosto"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "September"
 msgstr "Settembre"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "October"
 msgstr "Ottobre"
 
-#: logview/log_repaint.c:69
+#: logview/log_repaint.c:61
 msgid "November"
 msgstr "Novembre"
 
-#: logview/log_repaint.c:69
+#: logview/log_repaint.c:61
 msgid "December"
 msgstr "Dicembre"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:411
+#: logview/log_repaint.c:403
 #, c-format
 msgid "%x"
 msgstr ""
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:466
+#: logview/log_repaint.c:458
 msgid "%B %e"
 msgstr ""
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:532
+#: logview/log_repaint.c:524
 #, c-format
 msgid "%X"
 msgstr ""
 
-#: logview/logrtns.c:192
+#: logview/logrtns.c:191
 msgid "Not enough memory!\n"
 msgstr "Memoria insuffciente!\n"
 
-#: logview/logrtns.c:203
+#: logview/logrtns.c:202
 msgid "Unable to open logfile!\n"
 msgstr "Impossibile aprire il file di log!\n"
 
-#: logview/logrtns.c:261
+#: logview/logrtns.c:260
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s non è un file regolare."
 
-#: logview/logrtns.c:269
+#: logview/logrtns.c:268
 #, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2006,17 +2007,17 @@ msgstr ""
 "di lettura. Provare a lanciare il programma come root o chiedere "
 "all'amministratore di sistema di cambiare i permessi del file."
 
-#: logview/logrtns.c:286
+#: logview/logrtns.c:285
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s non può essere aperto."
 
-#: logview/logrtns.c:316 logview/logrtns.c:325
+#: logview/logrtns.c:315 logview/logrtns.c:324
 #, c-format
 msgid "%s not a log file."
 msgstr "%s non è un file di log."
 
-#: logview/logrtns.c:723 logview/logrtns.c:754 logview/logrtns.c:885
+#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memoria esaurita"
 
@@ -2375,6 +2376,21 @@ msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
 msgstr ""
+
+#~ msgid "EUnable to create filesystem."
+#~ msgstr "EImpossibile creare il filesystem."
+
+#, fuzzy
+#~ msgid "Filesystem settings"
+#~ msgstr "Mantieni impostazioni"
+
+#, fuzzy
+#~ msgid "Formatting mode"
+#~ msgstr "Formattazione di %s"
+
+#, fuzzy
+#~ msgid "Physical settings"
+#~ msgstr "Impostazioni generali"
 
 #, fuzzy
 #~ msgid ""
@@ -2790,9 +2806,6 @@ msgstr ""
 
 #~ msgid "Date: "
 #~ msgstr "Data: "
-
-#~ msgid "Dos (FAT)"
-#~ msgstr "Dos (FAT)"
 
 #, fuzzy
 #~ msgid "Archive"

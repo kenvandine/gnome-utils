@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sk\n"
-"POT-Creation-Date: 2002-10-14 15:19+0100\n"
+"POT-Creation-Date: 2002-11-25 14:29+0000\n"
 "PO-Revision-Date: 2002-05-30 09:13+0200\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -303,7 +303,7 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
-#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:1
+#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:2
 msgid "*"
 msgstr "*"
 
@@ -470,25 +470,25 @@ msgid ""
 "Select, copy and paste characters from your font into other applications"
 msgstr "Výber, kopírovanie a vkladanie znakov z vášho písma do iných aplikácií"
 
-#: gcharmap/src/callbacks.c:131
-#, c-format
-msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
-msgstr ""
-
-#: gcharmap/src/callbacks.c:134
+#: gcharmap/src/callbacks.c:130 gcharmap/src/callbacks.c:138
 #, fuzzy, c-format
 msgid "Character code: (Unicode) U%04lX"
 msgstr "Kód znaku:"
 
-#: gcharmap/src/callbacks.c:188
+#: gcharmap/src/callbacks.c:134
+#, c-format
+msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
+msgstr ""
+
+#: gcharmap/src/callbacks.c:192
 msgid "Text copied to clipboard..."
 msgstr "Text skopírovaný do schránky..."
 
-#: gcharmap/src/callbacks.c:205
+#: gcharmap/src/callbacks.c:209
 msgid "Text cut to clipboard..."
 msgstr "Text vystrihnutý do schránky..."
 
-#: gcharmap/src/callbacks.c:254
+#: gcharmap/src/callbacks.c:259
 msgid "Text pasted from clipboard..."
 msgstr "Text vložený zo schránky..."
 
@@ -965,7 +965,7 @@ msgstr "MKontrola chybných blokov..."
 msgid "MFailed to open device %s for badblock checking\n"
 msgstr "MNepodarilo sa otvoriť zariadenie %s pre kontrolu chybných blokov\n"
 
-#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:540
+#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:536
 msgid "MChecking for bad blocks... Done"
 msgstr "MKontrola chybných blokov...Hotovo"
 
@@ -1100,24 +1100,24 @@ msgstr ""
 msgid "EUnknown mke2fs starting signature, cancelling."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:346
 #, c-format
 msgid ""
 "EThe filesystem creation utility (%s) reported the following errors:\n"
 "\n"
-"%s"
+"%s (%d)"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:363
 msgid "EAbnormal child process termination."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:388
 #, c-format
 msgid "EError while spawning the mbadblocks command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:400
 #, c-format
 msgid ""
 "EThe bad blocks checking utility (mbadblocks) reported the following "
@@ -1125,117 +1125,115 @@ msgid ""
 "%s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:443
 msgid "EAbnormal mbadblocks child process termination."
 msgstr ""
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:469 gfloppy/src/gfloppy.c:509
+#: gfloppy/src/gfloppy.c:470 gfloppy/src/gfloppy.c:510
 msgid "MMaking filesystem on disk..."
 msgstr "MVytváram na disku súborový systéme..."
 
-#: gfloppy/src/gfloppy.c:477
+#: gfloppy/src/gfloppy.c:478
 msgid "EUnable to create filesystem correctly."
 msgstr "ENepodarilo sa správne vytvoriť súborový systém."
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:526
+#: gfloppy/src/gfloppy.c:482 gfloppy/src/gfloppy.c:522
 msgid "MMaking filesystem on disk... Done"
 msgstr "MVytváram na disku súborový systéme...Hotovo"
 
-#. FIXME: Well, I suppose that's like other UNIX commands
-#: gfloppy/src/gfloppy.c:522
-msgid "EUnable to create filesystem."
-msgstr "ENepodarilo sa vytvoriť súborový systém."
-
-#: gfloppy/src/gfloppy.c:531
+#: gfloppy/src/gfloppy.c:527
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "MKontrola chybných blokov...(môže chvíľu trvať)"
 
-#: gfloppy/src/gfloppy.c:536
+#: gfloppy/src/gfloppy.c:532
 #, fuzzy
 msgid "EError while checking the bad blocks."
 msgstr "MKontrola chybných blokov..."
 
-#: gfloppy/src/gfloppy2.glade.h:2
+#: gfloppy/src/gfloppy2.glade.h:1
+msgid "    "
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:3
 msgid ""
 "<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
 "be installed in order to make a thorough DOS (fat) formatting."
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:3
-msgid "DOS (fat)"
-msgstr "DOS (fat)"
-
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "Double Density 3.5\" (720KB)"
-msgstr "Dvojitá hustota 3.5\" (720 KB)"
+msgid "<span weight=\"bold\">Filesystem settings</span>"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:5
-msgid "Double Density 5.25\" (360KB)"
-msgstr "Dvojitá hustota 5.25\" (360 KB)"
+msgid "<span weight=\"bold\">Formatting mode</span>"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:6
-msgid "File system _type:"
-msgstr "_Typ súborového systému:"
+msgid "<span weight=\"bold\">Physical settings</span>"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:7
 #, fuzzy
-msgid "Filesystem settings"
-msgstr "Typ súborového systému:"
+msgid "DOS (FAT)"
+msgstr "Dos (FAT)"
 
 #: gfloppy/src/gfloppy2.glade.h:8
+msgid "Double Density 3.5\" (720KB)"
+msgstr "Dvojitá hustota 3.5\" (720 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:9
+msgid "Double Density 5.25\" (360KB)"
+msgstr "Dvojitá hustota 5.25\" (360 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:10
+msgid "File system _type:"
+msgstr "_Typ súborového systému:"
+
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy _density:"
 msgstr "_Hustota záznamu:"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy de_vice:"
 msgstr "_Zariadenie mechaniky:"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:13
 #, fuzzy
 msgid "Floppy formatter"
 msgstr "Formátovanie diskety"
 
-#: gfloppy/src/gfloppy2.glade.h:11
-#, fuzzy
-msgid "Formatting mode"
-msgstr "MFormátujem disk..."
-
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Vysoká hustota 3.5\" (1.44 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Vysoká hustota 5.25\" (1.2 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:16
 msgid "Linux Native (ext2)"
 msgstr "Linux (ext2)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
-msgid "Physical settings"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:17
+#: gfloppy/src/gfloppy2.glade.h:18
 #, fuzzy
 msgid "Volume _name:"
 msgstr "Meno súboru: "
 
-#: gfloppy/src/gfloppy2.glade.h:18
+#: gfloppy/src/gfloppy2.glade.h:19
 msgid "_Format"
 msgstr "_Formát"
 
-#: gfloppy/src/gfloppy2.glade.h:19
+#: gfloppy/src/gfloppy2.glade.h:20
 #, fuzzy
 msgid "_Quick (only creates the filesystem)"
 msgstr "ENepodarilo sa vytvoriť súborový systém."
 
-#: gfloppy/src/gfloppy2.glade.h:20
+#: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
 
@@ -1245,12 +1243,12 @@ msgid ""
 "can't format a floppy without one of them."
 msgstr ""
 
-#: gfloppy/src/main.c:155 gfloppy/src/main.c:198
+#: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Nepodarilo sa otvoriť zariadenie %s, formátovanie nemôže pokračovať."
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:201
+#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -1259,7 +1257,7 @@ msgstr ""
 "Zariadenie %s odpojené.\n"
 "Prosím, pre pokračovanie pripojte zariadenie."
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:204
+#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -1269,7 +1267,7 @@ msgstr ""
 "Nemáte správne práva pre zápis do %s, formátovanie nebude možné.\n"
 "Kontaktujte administrátora vášho systému o získaní práv pre zápis."
 
-#: gfloppy/src/main.c:389
+#: gfloppy/src/main.c:391
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -1278,11 +1276,15 @@ msgstr ""
 "Nepodarilo sa zobraziť pomocníka pre formátovanie diskety.\n"
 "%s"
 
-#: gfloppy/src/main.c:468
+#: gfloppy/src/main.c:425
+msgid "The volume name can't contain any blank space."
+msgstr ""
+
+#: gfloppy/src/main.c:471
 msgid "The device to format"
 msgstr "Ktoré zariadenie formátovať"
 
-#: gfloppy/src/main.c:469
+#: gfloppy/src/main.c:472
 msgid "DEVICE"
 msgstr "ZARIADENIE"
 
@@ -1301,7 +1303,7 @@ msgstr "Disketa úspešne naformátovaná."
 msgid "Floppy formatting cancelled."
 msgstr "Formátovanie diskety zrušené."
 
-#: gfloppy/src/progress.c:177
+#: gfloppy/src/progress.c:172
 #, fuzzy
 msgid "Format progress"
 msgstr "Priebeh formátovania"
@@ -1336,7 +1338,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1516
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1518
 msgid "Search for Files"
 msgstr "Hľadať súbory"
 
@@ -1481,44 +1483,44 @@ msgstr "Sledovať symbolické odkazy"
 msgid "Select the 'Include other filesystems' constraint"
 msgstr "Odpovedá regulárnemu výrazu"
 
-#: gsearchtool/gsearchtool.c:404
+#: gsearchtool/gsearchtool.c:412
 msgid "No files found"
 msgstr "Nenájdené žiadne súbory"
 
-#: gsearchtool/gsearchtool.c:489
+#: gsearchtool/gsearchtool.c:497
 msgid "Entry changed called for a non entry option!"
 msgstr "Zmenená položka volaná pre voľbu bez položiek!"
 
-#: gsearchtool/gsearchtool.c:671
+#: gsearchtool/gsearchtool.c:681
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:797
+#: gsearchtool/gsearchtool.c:810
 msgid "(aborted)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:806
+#: gsearchtool/gsearchtool.c:819
 #, fuzzy, c-format
 msgid "No files found %s"
 msgstr "Nenájdené žiadne súbory"
 
-#: gsearchtool/gsearchtool.c:811
+#: gsearchtool/gsearchtool.c:824
 #, fuzzy, c-format
 msgid "One file found %s"
 msgstr "Nájdený jeden súbor"
 
-#: gsearchtool/gsearchtool.c:815
+#: gsearchtool/gsearchtool.c:828
 #, fuzzy, c-format
 msgid "%d files found %s"
 msgstr "Nájdených %d súborov"
 
-#: gsearchtool/gsearchtool.c:908
+#: gsearchtool/gsearchtool.c:921
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:912
+#: gsearchtool/gsearchtool.c:925
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1526,109 +1528,109 @@ msgstr ""
 "\n"
 "... Príliš veľa chýb ...."
 
-#: gsearchtool/gsearchtool.c:925
+#: gsearchtool/gsearchtool.c:938
 #, fuzzy
 msgid "Search Errors"
 msgstr "Hľadať súbory"
 
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:987
+#: gsearchtool/gsearchtool.c:976 gsearchtool/gsearchtool.c:1000
 #, fuzzy
 msgid "Search for Files Error"
 msgstr "Hľadať súbory"
 
-#: gsearchtool/gsearchtool.c:1068
+#: gsearchtool/gsearchtool.c:1081
 msgid "Search Rule Value Entry"
 msgstr "Hodnota pravidla hľadania"
 
-#: gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1082
 msgid "Enter a value for search rule"
 msgstr "Zadajte hodnotu pre pravidlo hľadanie"
 
-#: gsearchtool/gsearchtool.c:1103
+#: gsearchtool/gsearchtool.c:1116
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Kliknutím odstránite pravidlo"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1170
 msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1168
+#: gsearchtool/gsearchtool.c:1180
 msgid "Search Rules Menu"
 msgstr "Menu pravidiel hľadania"
 
-#: gsearchtool/gsearchtool.c:1169
+#: gsearchtool/gsearchtool.c:1181
 msgid "Select a search rule from the menu"
 msgstr "Vyberte pravidlo hľadanie z menu"
 
-#: gsearchtool/gsearchtool.c:1201
+#: gsearchtool/gsearchtool.c:1213
 msgid "S_earch Results"
 msgstr "_Výsledky hľadania"
 
-#: gsearchtool/gsearchtool.c:1274
+#: gsearchtool/gsearchtool.c:1286
 msgid "Name"
 msgstr "Meno"
 
-#: gsearchtool/gsearchtool.c:1296
+#: gsearchtool/gsearchtool.c:1306
 msgid "Folder"
 msgstr "Priečinok"
 
-#: gsearchtool/gsearchtool.c:1308
+#: gsearchtool/gsearchtool.c:1317
 msgid "Size"
 msgstr "Veľkosť"
 
-#: gsearchtool/gsearchtool.c:1319
+#: gsearchtool/gsearchtool.c:1327
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1330
+#: gsearchtool/gsearchtool.c:1337
 msgid "Date Modified"
 msgstr "Čas zmeny"
 
-#: gsearchtool/gsearchtool.c:1371
+#: gsearchtool/gsearchtool.c:1376
 #, fuzzy
 msgid "File is _named:"
 msgstr "Nájsť súbory pomenované: "
 
-#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
+#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
 msgid "File Name Entry"
 msgstr "Meno súboru"
 
-#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
+#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
 msgid "Enter the file name you want to search"
 msgstr "Zadajte meno súboru, ktoré chcete hľadať"
 
-#: gsearchtool/gsearchtool.c:1399
+#: gsearchtool/gsearchtool.c:1404
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "_Začať v priečinku:"
 
-#: gsearchtool/gsearchtool.c:1405
+#: gsearchtool/gsearchtool.c:1410
 msgid "Browse"
 msgstr "Prechádzať"
 
-#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
 msgid "Starting folder entry"
 msgstr "Začať v priečinku"
 
-#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
 msgid "Enter the folder name where you want to start the search"
 msgstr "Zadajte meno priečinku, kde chcete začať hľadanie"
 
-#: gsearchtool/gsearchtool.c:1431 gsearchtool/gsearchtool.c:1432
+#: gsearchtool/gsearchtool.c:1436 gsearchtool/gsearchtool.c:1437
 #, fuzzy
 msgid "Additional Options"
 msgstr "Možnosti akcií"
 
-#: gsearchtool/gsearchtool.c:1474
+#: gsearchtool/gsearchtool.c:1479
 msgid "Click to Start the search"
 msgstr "Kliknutím spustíte hľadanie"
 
-#: gsearchtool/gsearchtool.c:1475
+#: gsearchtool/gsearchtool.c:1480
 msgid "Click to Stop the search"
 msgstr "Kliknutím zastavíte hľadanie"
 
-#: gsearchtool/gsearchtool.c:1512
+#: gsearchtool/gsearchtool.c:1514
 msgid "Cannot initialize bonobo."
 msgstr "Nepodarilo sa inicializovať Bonobo."
 
@@ -1827,86 +1829,86 @@ msgstr ""
 msgid "%ld bytes"
 msgstr "%ld bajtov"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "January"
 msgstr "Január"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "February"
 msgstr "Február"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "March"
 msgstr "Marec"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "April"
 msgstr "Apríl"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "May"
 msgstr "Máj"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "June"
 msgstr "Jún"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "July"
 msgstr "Júl"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "August"
 msgstr "August"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "September"
 msgstr "September"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "October"
 msgstr "Október"
 
-#: logview/log_repaint.c:69
+#: logview/log_repaint.c:61
 msgid "November"
 msgstr "November"
 
-#: logview/log_repaint.c:69
+#: logview/log_repaint.c:61
 msgid "December"
 msgstr "December"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:411
+#: logview/log_repaint.c:403
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:466
+#: logview/log_repaint.c:458
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:532
+#: logview/log_repaint.c:524
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:192
+#: logview/logrtns.c:191
 msgid "Not enough memory!\n"
 msgstr "Nedostatok pamäti!\n"
 
-#: logview/logrtns.c:203
+#: logview/logrtns.c:202
 msgid "Unable to open logfile!\n"
 msgstr "Nepodarilo sa otvoriť súbor so záznamom!\n"
 
-#: logview/logrtns.c:261
+#: logview/logrtns.c:260
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s nie je normálny súbor."
 
-#: logview/logrtns.c:269
+#: logview/logrtns.c:268
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1915,17 +1917,17 @@ msgstr ""
 "%s nie je čitateľný používateľmi. Buď spusťte program ako root alebo "
 "požiadajte administrátora o zmenu práv k tomuto súboru."
 
-#: logview/logrtns.c:286
+#: logview/logrtns.c:285
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s nebolo možné otvoriť."
 
-#: logview/logrtns.c:316 logview/logrtns.c:325
+#: logview/logrtns.c:315 logview/logrtns.c:324
 #, c-format
 msgid "%s not a log file."
 msgstr "%s nie je súbor so záznamom."
 
-#: logview/logrtns.c:723 logview/logrtns.c:754 logview/logrtns.c:885
+#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: nedostatok pamäti"
 
@@ -2271,6 +2273,20 @@ msgid ""
 msgstr ""
 "Nepodarilo sa nájsť archivačný program (tar).\n"
 "Tento program sa používa pre vytváranie archívov."
+
+#~ msgid "EUnable to create filesystem."
+#~ msgstr "ENepodarilo sa vytvoriť súborový systém."
+
+#~ msgid "DOS (fat)"
+#~ msgstr "DOS (fat)"
+
+#, fuzzy
+#~ msgid "Filesystem settings"
+#~ msgstr "Typ súborového systému:"
+
+#, fuzzy
+#~ msgid "Formatting mode"
+#~ msgstr "MFormátujem disk..."
 
 #, fuzzy
 #~ msgid ""
@@ -2724,9 +2740,6 @@ msgstr ""
 
 #~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-
-#~ msgid "Dos (FAT)"
-#~ msgstr "Dos (FAT)"
 
 #~ msgid "Floppy Density:"
 #~ msgstr "Hustota záznamu:"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.109.0\n"
-"POT-Creation-Date: 2002-10-14 15:19+0100\n"
+"POT-Creation-Date: 2002-11-25 14:29+0000\n"
 "PO-Revision-Date: 2002-06-13 14:55+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
@@ -302,7 +302,7 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
-#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:1
+#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:2
 msgid "*"
 msgstr "*"
 
@@ -470,25 +470,25 @@ msgid ""
 msgstr ""
 "여러분의 글꼴에서 다른 프로그램으로 문자를 선택, 복사하고 붙여 넣습니다"
 
-#: gcharmap/src/callbacks.c:131
-#, c-format
-msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
-msgstr ""
-
-#: gcharmap/src/callbacks.c:134
+#: gcharmap/src/callbacks.c:130 gcharmap/src/callbacks.c:138
 #, fuzzy, c-format
 msgid "Character code: (Unicode) U%04lX"
 msgstr "문자 코드:"
 
-#: gcharmap/src/callbacks.c:188
+#: gcharmap/src/callbacks.c:134
+#, c-format
+msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
+msgstr ""
+
+#: gcharmap/src/callbacks.c:192
 msgid "Text copied to clipboard..."
 msgstr "클립보드로 글자 복사..."
 
-#: gcharmap/src/callbacks.c:205
+#: gcharmap/src/callbacks.c:209
 msgid "Text cut to clipboard..."
 msgstr "클립보드로 글자 자르기..."
 
-#: gcharmap/src/callbacks.c:254
+#: gcharmap/src/callbacks.c:259
 msgid "Text pasted from clipboard..."
 msgstr "클립보드에서 글자 붙이기..."
 
@@ -966,7 +966,7 @@ msgstr "M배드 블록 검사중..."
 msgid "MFailed to open device %s for badblock checking\n"
 msgstr "M배드 블록 검사에서 %s 장치를 여는 데 실패\n"
 
-#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:540
+#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:536
 msgid "MChecking for bad blocks... Done"
 msgstr "M배드 블록 검사... 완료"
 
@@ -1101,24 +1101,24 @@ msgstr ""
 msgid "EUnknown mke2fs starting signature, cancelling."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:346
 #, c-format
 msgid ""
 "EThe filesystem creation utility (%s) reported the following errors:\n"
 "\n"
-"%s"
+"%s (%d)"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:363
 msgid "EAbnormal child process termination."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:388
 #, c-format
 msgid "EError while spawning the mbadblocks command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:400
 #, c-format
 msgid ""
 "EThe bad blocks checking utility (mbadblocks) reported the following "
@@ -1126,117 +1126,115 @@ msgid ""
 "%s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:443
 msgid "EAbnormal mbadblocks child process termination."
 msgstr ""
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:469 gfloppy/src/gfloppy.c:509
+#: gfloppy/src/gfloppy.c:470 gfloppy/src/gfloppy.c:510
 msgid "MMaking filesystem on disk..."
 msgstr "M디스크에 파일시스템을 만듭니다..."
 
-#: gfloppy/src/gfloppy.c:477
+#: gfloppy/src/gfloppy.c:478
 msgid "EUnable to create filesystem correctly."
 msgstr "E파일시스템을 올바르게 만들 수 없습니다."
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:526
+#: gfloppy/src/gfloppy.c:482 gfloppy/src/gfloppy.c:522
 msgid "MMaking filesystem on disk... Done"
 msgstr "M디스크에 파일시스템을 만드는 중... 완료"
 
-#. FIXME: Well, I suppose that's like other UNIX commands
-#: gfloppy/src/gfloppy.c:522
-msgid "EUnable to create filesystem."
-msgstr "E파일시스템을 만들 수 없습니다."
-
-#: gfloppy/src/gfloppy.c:531
+#: gfloppy/src/gfloppy.c:527
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "M배드 블록 검사 중... (좀 시간이 걸릴 수 있습니다)"
 
-#: gfloppy/src/gfloppy.c:536
+#: gfloppy/src/gfloppy.c:532
 #, fuzzy
 msgid "EError while checking the bad blocks."
 msgstr "M배드 블록 검사중..."
 
-#: gfloppy/src/gfloppy2.glade.h:2
+#: gfloppy/src/gfloppy2.glade.h:1
+msgid "    "
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:3
 msgid ""
 "<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
 "be installed in order to make a thorough DOS (fat) formatting."
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:3
-msgid "DOS (fat)"
-msgstr "DOS (fat)"
-
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "Double Density 3.5\" (720KB)"
-msgstr "배밀도 3.5\" (720 KB)"
+msgid "<span weight=\"bold\">Filesystem settings</span>"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:5
-msgid "Double Density 5.25\" (360KB)"
-msgstr "배밀도 5.25\" (360 KB)"
+msgid "<span weight=\"bold\">Formatting mode</span>"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:6
-msgid "File system _type:"
-msgstr "파일 시스템 형식(_T): "
+msgid "<span weight=\"bold\">Physical settings</span>"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:7
 #, fuzzy
-msgid "Filesystem settings"
-msgstr "파일 시스템 형식(_T): "
+msgid "DOS (FAT)"
+msgstr "DOS (fat)"
 
 #: gfloppy/src/gfloppy2.glade.h:8
+msgid "Double Density 3.5\" (720KB)"
+msgstr "배밀도 3.5\" (720 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:9
+msgid "Double Density 5.25\" (360KB)"
+msgstr "배밀도 5.25\" (360 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:10
+msgid "File system _type:"
+msgstr "파일 시스템 형식(_T): "
+
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy _density:"
 msgstr "플로피 밀도(_D):"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy de_vice:"
 msgstr "플로피 장치(_V):"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:13
 #, fuzzy
 msgid "Floppy formatter"
 msgstr "플로피 포맷"
 
-#: gfloppy/src/gfloppy2.glade.h:11
-#, fuzzy
-msgid "Formatting mode"
-msgstr "M디스크 포맷중..."
-
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "고밀도 3.5\" (1.44 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "고밀도 5.25\" (1.2 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:16
 msgid "Linux Native (ext2)"
 msgstr "리눅스 기본 (ext2)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
-msgid "Physical settings"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:17
+#: gfloppy/src/gfloppy2.glade.h:18
 #, fuzzy
 msgid "Volume _name:"
 msgstr "파일이름:"
 
-#: gfloppy/src/gfloppy2.glade.h:18
+#: gfloppy/src/gfloppy2.glade.h:19
 msgid "_Format"
 msgstr "포맷(_F)"
 
-#: gfloppy/src/gfloppy2.glade.h:19
+#: gfloppy/src/gfloppy2.glade.h:20
 #, fuzzy
 msgid "_Quick (only creates the filesystem)"
 msgstr "E파일시스템을 만들 수 없습니다."
 
-#: gfloppy/src/gfloppy2.glade.h:20
+#: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
 
@@ -1246,12 +1244,12 @@ msgid ""
 "can't format a floppy without one of them."
 msgstr ""
 
-#: gfloppy/src/main.c:155 gfloppy/src/main.c:198
+#: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "%s 장치를 열 수 없습니다. 포맷을 계속할 수 없습니다."
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:201
+#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -1260,7 +1258,7 @@ msgstr ""
 "%s 장치의 연결이 끊어졌습니다.\n"
 "계속하려면 장치를 연결하십시오."
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:204
+#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -1270,7 +1268,7 @@ msgstr ""
 "%s에 쓸 수 있는 허가권이 없으므로, 포맷이 불가능합니다.\n"
 "시스템 관리자에게 연락해서 쓰기 허가권을 달라고 하십시오."
 
-#: gfloppy/src/main.c:389
+#: gfloppy/src/main.c:391
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -1279,11 +1277,15 @@ msgstr ""
 "플로피 포맷기에 대한 도움말을 표시할 수 없습니다.\n"
 "%s"
 
-#: gfloppy/src/main.c:468
+#: gfloppy/src/main.c:425
+msgid "The volume name can't contain any blank space."
+msgstr ""
+
+#: gfloppy/src/main.c:471
 msgid "The device to format"
 msgstr "포맷할 장치"
 
-#: gfloppy/src/main.c:469
+#: gfloppy/src/main.c:472
 msgid "DEVICE"
 msgstr "장치"
 
@@ -1302,7 +1304,7 @@ msgstr "플로피가 성공적으로 포맷되었습니다."
 msgid "Floppy formatting cancelled."
 msgstr "플로피디스크의 포맷이 취소되었습니다."
 
-#: gfloppy/src/progress.c:177
+#: gfloppy/src/progress.c:172
 #, fuzzy
 msgid "Format progress"
 msgstr "포맷 진행"
@@ -1337,7 +1339,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1516
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1518
 msgid "Search for Files"
 msgstr "파일 찾기"
 
@@ -1482,44 +1484,44 @@ msgstr "심볼릭 링크 따라가기"
 msgid "Select the 'Include other filesystems' constraint"
 msgstr "정규 표현식과 맞음"
 
-#: gsearchtool/gsearchtool.c:404
+#: gsearchtool/gsearchtool.c:412
 msgid "No files found"
 msgstr "찾은 파일이 없습니다."
 
-#: gsearchtool/gsearchtool.c:489
+#: gsearchtool/gsearchtool.c:497
 msgid "Entry changed called for a non entry option!"
 msgstr "엔트리가 없는 옵션에 대하여 엔트리 변경 콜백이 실행되었습니다!"
 
-#: gsearchtool/gsearchtool.c:671
+#: gsearchtool/gsearchtool.c:681
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:797
+#: gsearchtool/gsearchtool.c:810
 msgid "(aborted)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:806
+#: gsearchtool/gsearchtool.c:819
 #, fuzzy, c-format
 msgid "No files found %s"
 msgstr "찾은 파일이 없습니다."
 
-#: gsearchtool/gsearchtool.c:811
+#: gsearchtool/gsearchtool.c:824
 #, fuzzy, c-format
 msgid "One file found %s"
 msgstr "1개의 파일을 찾았습니다"
 
-#: gsearchtool/gsearchtool.c:815
+#: gsearchtool/gsearchtool.c:828
 #, fuzzy, c-format
 msgid "%d files found %s"
 msgstr "%d개의 파일을 찾았습니다"
 
-#: gsearchtool/gsearchtool.c:908
+#: gsearchtool/gsearchtool.c:921
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:912
+#: gsearchtool/gsearchtool.c:925
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1527,109 +1529,109 @@ msgstr ""
 "\n"
 "... 너무 오류가 많아서 표시할 수 없습니다  ..."
 
-#: gsearchtool/gsearchtool.c:925
+#: gsearchtool/gsearchtool.c:938
 #, fuzzy
 msgid "Search Errors"
 msgstr "파일 찾기"
 
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:987
+#: gsearchtool/gsearchtool.c:976 gsearchtool/gsearchtool.c:1000
 #, fuzzy
 msgid "Search for Files Error"
 msgstr "파일 찾기"
 
-#: gsearchtool/gsearchtool.c:1068
+#: gsearchtool/gsearchtool.c:1081
 msgid "Search Rule Value Entry"
 msgstr "찾기 규칙 값 엔트리"
 
-#: gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1082
 msgid "Enter a value for search rule"
 msgstr "찾기 규칙에 대한 값을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1103
+#: gsearchtool/gsearchtool.c:1116
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "규칙을 제거하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1170
 msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1168
+#: gsearchtool/gsearchtool.c:1180
 msgid "Search Rules Menu"
 msgstr "찾기 규칙 메뉴"
 
-#: gsearchtool/gsearchtool.c:1169
+#: gsearchtool/gsearchtool.c:1181
 msgid "Select a search rule from the menu"
 msgstr "메뉴에서 찾기 규칙을 선택합니다"
 
-#: gsearchtool/gsearchtool.c:1201
+#: gsearchtool/gsearchtool.c:1213
 msgid "S_earch Results"
 msgstr "찾은 결과(_E)"
 
-#: gsearchtool/gsearchtool.c:1274
+#: gsearchtool/gsearchtool.c:1286
 msgid "Name"
 msgstr "성명"
 
-#: gsearchtool/gsearchtool.c:1296
+#: gsearchtool/gsearchtool.c:1306
 msgid "Folder"
 msgstr "폴더"
 
-#: gsearchtool/gsearchtool.c:1308
+#: gsearchtool/gsearchtool.c:1317
 msgid "Size"
 msgstr "크기"
 
-#: gsearchtool/gsearchtool.c:1319
+#: gsearchtool/gsearchtool.c:1327
 msgid "Type"
 msgstr "종류"
 
-#: gsearchtool/gsearchtool.c:1330
+#: gsearchtool/gsearchtool.c:1337
 msgid "Date Modified"
 msgstr "변경 일자"
 
-#: gsearchtool/gsearchtool.c:1371
+#: gsearchtool/gsearchtool.c:1376
 #, fuzzy
 msgid "File is _named:"
 msgstr "찾을 파일 이름(_N):"
 
-#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
+#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
 msgid "File Name Entry"
 msgstr "파일 이름 엔트리"
 
-#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
+#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
 msgid "Enter the file name you want to search"
 msgstr "찾을 파일 이름을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1399
+#: gsearchtool/gsearchtool.c:1404
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "시작할 폴더(_T):"
 
-#: gsearchtool/gsearchtool.c:1405
+#: gsearchtool/gsearchtool.c:1410
 msgid "Browse"
 msgstr "찾아보기"
 
-#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
 msgid "Starting folder entry"
 msgstr "시작 폴더 엔트리"
 
-#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
 msgid "Enter the folder name where you want to start the search"
 msgstr "찾기를 시작할 폴더 이름을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1431 gsearchtool/gsearchtool.c:1432
+#: gsearchtool/gsearchtool.c:1436 gsearchtool/gsearchtool.c:1437
 #, fuzzy
 msgid "Additional Options"
 msgstr "실행 옵션"
 
-#: gsearchtool/gsearchtool.c:1474
+#: gsearchtool/gsearchtool.c:1479
 msgid "Click to Start the search"
 msgstr "찾기를 시작하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1475
+#: gsearchtool/gsearchtool.c:1480
 msgid "Click to Stop the search"
 msgstr "찾기를 중단하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1512
+#: gsearchtool/gsearchtool.c:1514
 msgid "Cannot initialize bonobo."
 msgstr "보노보를 초기화할 수 없습니다."
 
@@ -1827,86 +1829,86 @@ msgstr ""
 msgid "%ld bytes"
 msgstr "%ld 바이트"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "January"
 msgstr "1월"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "February"
 msgstr "2월"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "March"
 msgstr "3월"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "April"
 msgstr "4월"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "May"
 msgstr "5월"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "June"
 msgstr "6월"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "July"
 msgstr "7월"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "August"
 msgstr "8월"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "September"
 msgstr "9월"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "October"
 msgstr "10월"
 
-#: logview/log_repaint.c:69
+#: logview/log_repaint.c:61
 msgid "November"
 msgstr "11월"
 
-#: logview/log_repaint.c:69
+#: logview/log_repaint.c:61
 msgid "December"
 msgstr "12월"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:411
+#: logview/log_repaint.c:403
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:466
+#: logview/log_repaint.c:458
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:532
+#: logview/log_repaint.c:524
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:192
+#: logview/logrtns.c:191
 msgid "Not enough memory!\n"
 msgstr "메모리가 부족합니다!\n"
 
-#: logview/logrtns.c:203
+#: logview/logrtns.c:202
 msgid "Unable to open logfile!\n"
 msgstr "로그 파일을 열 수 없습니다!\n"
 
-#: logview/logrtns.c:261
+#: logview/logrtns.c:260
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s 는 보통파일이 아닙니다."
 
-#: logview/logrtns.c:269
+#: logview/logrtns.c:268
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1915,17 +1917,17 @@ msgstr ""
 "%s은(는) 사용자가 읽을 수 없습니다. 이 프로그램을 root로 실행하거나 시스템 관"
 "리자에게 이 파일의 권한을 바꾸라고 요청하십시오."
 
-#: logview/logrtns.c:286
+#: logview/logrtns.c:285
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s를 열수 없습니다."
 
-#: logview/logrtns.c:316 logview/logrtns.c:325
+#: logview/logrtns.c:315 logview/logrtns.c:324
 #, c-format
 msgid "%s not a log file."
 msgstr "%s 는 로그파일이 아닙니다."
 
-#: logview/logrtns.c:723 logview/logrtns.c:754 logview/logrtns.c:885
+#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: 메모리가 바닥났습니다"
 
@@ -2267,6 +2269,17 @@ msgid ""
 msgstr ""
 "아카이브 (tar) 프로그램을 찾을 수 없습니다!\n"
 "아카이브를 만드는 데 쓰이는 프로그램입니다."
+
+#~ msgid "EUnable to create filesystem."
+#~ msgstr "E파일시스템을 만들 수 없습니다."
+
+#, fuzzy
+#~ msgid "Filesystem settings"
+#~ msgstr "파일 시스템 형식(_T): "
+
+#, fuzzy
+#~ msgid "Formatting mode"
+#~ msgstr "M디스크 포맷중..."
 
 #, fuzzy
 #~ msgid ""

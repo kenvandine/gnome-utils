@@ -12,8 +12,7 @@ always_built_SUBDIRS = \
 	gcharmap 	\
 	gcalc 		\
 	gsearchtool	\
-	gdictsrc	\
-	meat-grinder
+	gdictsrc
 
 SUBDIRS = \
 	$(always_built_SUBDIRS)	\

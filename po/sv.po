@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2002-10-14 15:19+0100\n"
+"POT-Creation-Date: 2002-11-25 14:29+0000\n"
 "PO-Revision-Date: 2002-06-05 01:36+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -308,7 +308,7 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
-#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:1
+#: gcalc/gnome-calc.c:1281 gfloppy/src/gfloppy2.glade.h:2
 msgid "*"
 msgstr "×"
 
@@ -477,25 +477,25 @@ msgid ""
 msgstr ""
 "Markera, kopiera och klistra in tecken från ditt typsnitt till andra program"
 
-#: gcharmap/src/callbacks.c:131
-#, c-format
-msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
-msgstr ""
-
-#: gcharmap/src/callbacks.c:134
+#: gcharmap/src/callbacks.c:130 gcharmap/src/callbacks.c:138
 #, fuzzy, c-format
 msgid "Character code: (Unicode) U%04lX"
 msgstr "Teckenkod:"
 
-#: gcharmap/src/callbacks.c:188
+#: gcharmap/src/callbacks.c:134
+#, c-format
+msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
+msgstr ""
+
+#: gcharmap/src/callbacks.c:192
 msgid "Text copied to clipboard..."
 msgstr "Text kopierad till urklipp..."
 
-#: gcharmap/src/callbacks.c:205
+#: gcharmap/src/callbacks.c:209
 msgid "Text cut to clipboard..."
 msgstr "Text urklippt till urklipp..."
 
-#: gcharmap/src/callbacks.c:254
+#: gcharmap/src/callbacks.c:259
 msgid "Text pasted from clipboard..."
 msgstr "Text inklistrad från urklipp..."
 
@@ -979,7 +979,7 @@ msgstr "MSöker efter trasiga block..."
 msgid "MFailed to open device %s for badblock checking\n"
 msgstr "MKunde inte öppna enhet %s för sökning efter trasiga block\n"
 
-#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:540
+#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:536
 msgid "MChecking for bad blocks... Done"
 msgstr "MSöker efter trasiga block... klart"
 
@@ -1114,24 +1114,24 @@ msgstr ""
 msgid "EUnknown mke2fs starting signature, cancelling."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:346
 #, c-format
 msgid ""
 "EThe filesystem creation utility (%s) reported the following errors:\n"
 "\n"
-"%s"
+"%s (%d)"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:363
 msgid "EAbnormal child process termination."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:388
 #, c-format
 msgid "EError while spawning the mbadblocks command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:400
 #, c-format
 msgid ""
 "EThe bad blocks checking utility (mbadblocks) reported the following "
@@ -1139,118 +1139,116 @@ msgid ""
 "%s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:443
 msgid "EAbnormal mbadblocks child process termination."
 msgstr ""
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:469 gfloppy/src/gfloppy.c:509
+#: gfloppy/src/gfloppy.c:470 gfloppy/src/gfloppy.c:510
 msgid "MMaking filesystem on disk..."
 msgstr "MSkapar filsystem på disketten..."
 
-#: gfloppy/src/gfloppy.c:477
+#: gfloppy/src/gfloppy.c:478
 msgid "EUnable to create filesystem correctly."
 msgstr "EKunde inte skapa filsystem korrekt."
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:526
+#: gfloppy/src/gfloppy.c:482 gfloppy/src/gfloppy.c:522
 msgid "MMaking filesystem on disk... Done"
 msgstr "MSkapar filsystem på disketten... Klart"
 
-#. FIXME: Well, I suppose that's like other UNIX commands
-#: gfloppy/src/gfloppy.c:522
-msgid "EUnable to create filesystem."
-msgstr "EKunde inte skapa filsystem."
-
-#: gfloppy/src/gfloppy.c:531
+#: gfloppy/src/gfloppy.c:527
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "MSöker efter trasiga block... (det kan ta ett tag)"
 
-#: gfloppy/src/gfloppy.c:536
+#: gfloppy/src/gfloppy.c:532
 #, fuzzy
 msgid "EError while checking the bad blocks."
 msgstr "MSöker efter trasiga block..."
 
-#: gfloppy/src/gfloppy2.glade.h:2
+#: gfloppy/src/gfloppy2.glade.h:1
+#, fuzzy
+msgid "    "
+msgstr "        "
+
+#: gfloppy/src/gfloppy2.glade.h:3
 msgid ""
 "<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
 "be installed in order to make a thorough DOS (fat) formatting."
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:3
-msgid "DOS (fat)"
-msgstr "DOS (fat)"
-
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "Double Density 3.5\" (720KB)"
-msgstr "Dubbel densitet 3,5\" (720 kB)"
+msgid "<span weight=\"bold\">Filesystem settings</span>"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:5
-msgid "Double Density 5.25\" (360KB)"
-msgstr "Dubbel densitet 5,25\" (360 kB)"
+msgid "<span weight=\"bold\">Formatting mode</span>"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:6
-msgid "File system _type:"
-msgstr "Filsystems_typ:"
+msgid "<span weight=\"bold\">Physical settings</span>"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:7
 #, fuzzy
-msgid "Filesystem settings"
-msgstr "Behåll inställningar"
+msgid "DOS (FAT)"
+msgstr "Dos (FAT)"
 
 #: gfloppy/src/gfloppy2.glade.h:8
+msgid "Double Density 3.5\" (720KB)"
+msgstr "Dubbel densitet 3,5\" (720 kB)"
+
+#: gfloppy/src/gfloppy2.glade.h:9
+msgid "Double Density 5.25\" (360KB)"
+msgstr "Dubbel densitet 5,25\" (360 kB)"
+
+#: gfloppy/src/gfloppy2.glade.h:10
+msgid "File system _type:"
+msgstr "Filsystems_typ:"
+
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy _density:"
 msgstr "_Diskettdensitet:"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy de_vice:"
 msgstr "Diskett_enhet:"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:13
 #, fuzzy
 msgid "Floppy formatter"
 msgstr "Diskettformaterare"
 
-#: gfloppy/src/gfloppy2.glade.h:11
-#, fuzzy
-msgid "Formatting mode"
-msgstr "Formaterar %s"
-
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Hög densitet 3,5\" (1,44 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Hög densitet 5,25\" (1,2 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:16
 msgid "Linux Native (ext2)"
 msgstr "Linuxformat (ext2)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
-#, fuzzy
-msgid "Physical settings"
-msgstr "Allmänna inställningar"
-
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
 msgstr ""
 
-#: gfloppy/src/gfloppy2.glade.h:17
+#: gfloppy/src/gfloppy2.glade.h:18
 #, fuzzy
 msgid "Volume _name:"
 msgstr "Filnamn:"
 
-#: gfloppy/src/gfloppy2.glade.h:18
+#: gfloppy/src/gfloppy2.glade.h:19
 msgid "_Format"
 msgstr "_Formatera"
 
-#: gfloppy/src/gfloppy2.glade.h:19
+#: gfloppy/src/gfloppy2.glade.h:20
 #, fuzzy
 msgid "_Quick (only creates the filesystem)"
 msgstr "EKunde inte skapa filsystem."
 
-#: gfloppy/src/gfloppy2.glade.h:20
+#: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
 
@@ -1260,12 +1258,12 @@ msgid ""
 "can't format a floppy without one of them."
 msgstr ""
 
-#: gfloppy/src/main.c:155 gfloppy/src/main.c:198
+#: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Kunde inte öppna enhet %s, formateringen kan inte fortsätta."
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:201
+#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -1274,7 +1272,7 @@ msgstr ""
 "Enheten %s är frånkopplad.\n"
 "Anslut enheten för att fortsätta."
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:204
+#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -1285,7 +1283,7 @@ msgstr ""
 "möjlig.\n"
 "Kontakta din systemadministratör angående erhållning av skrivrättigheter."
 
-#: gfloppy/src/main.c:389
+#: gfloppy/src/main.c:391
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -1294,11 +1292,15 @@ msgstr ""
 "Kunde inte visa hjälp för diskettformateraren.\n"
 "%s"
 
-#: gfloppy/src/main.c:468
+#: gfloppy/src/main.c:425
+msgid "The volume name can't contain any blank space."
+msgstr ""
+
+#: gfloppy/src/main.c:471
 msgid "The device to format"
 msgstr "Enheten som skall formateras"
 
-#: gfloppy/src/main.c:469
+#: gfloppy/src/main.c:472
 msgid "DEVICE"
 msgstr "ENHET"
 
@@ -1317,7 +1319,7 @@ msgstr "Formateringen lyckades."
 msgid "Floppy formatting cancelled."
 msgstr "Formateringen avbröts."
 
-#: gfloppy/src/progress.c:177
+#: gfloppy/src/progress.c:172
 #, fuzzy
 msgid "Format progress"
 msgstr "Formateringsförlopp."
@@ -1352,7 +1354,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1516
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1518
 msgid "Search for Files"
 msgstr "Sök efter filer"
 
@@ -1497,44 +1499,44 @@ msgstr "Följ symboliska länkar"
 msgid "Select the 'Include other filesystems' constraint"
 msgstr "Matchar reguljärt uttryck"
 
-#: gsearchtool/gsearchtool.c:404
+#: gsearchtool/gsearchtool.c:412
 msgid "No files found"
 msgstr "Inga filer hittades"
 
-#: gsearchtool/gsearchtool.c:489
+#: gsearchtool/gsearchtool.c:497
 msgid "Entry changed called for a non entry option!"
 msgstr "Poständring anropades för ett alternativ som inte är en post!"
 
-#: gsearchtool/gsearchtool.c:671
+#: gsearchtool/gsearchtool.c:681
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:797
+#: gsearchtool/gsearchtool.c:810
 msgid "(aborted)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:806
+#: gsearchtool/gsearchtool.c:819
 #, fuzzy, c-format
 msgid "No files found %s"
 msgstr "Inga filer hittades"
 
-#: gsearchtool/gsearchtool.c:811
+#: gsearchtool/gsearchtool.c:824
 #, fuzzy, c-format
 msgid "One file found %s"
 msgstr "En fil hittades"
 
-#: gsearchtool/gsearchtool.c:815
+#: gsearchtool/gsearchtool.c:828
 #, fuzzy, c-format
 msgid "%d files found %s"
 msgstr "%d filer hittades"
 
-#: gsearchtool/gsearchtool.c:908
+#: gsearchtool/gsearchtool.c:921
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:912
+#: gsearchtool/gsearchtool.c:925
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1542,33 +1544,33 @@ msgstr ""
 "\n"
 "...För många fel för att visa..."
 
-#: gsearchtool/gsearchtool.c:925
+#: gsearchtool/gsearchtool.c:938
 #, fuzzy
 msgid "Search Errors"
 msgstr "Sök efter filer"
 
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:987
+#: gsearchtool/gsearchtool.c:976 gsearchtool/gsearchtool.c:1000
 #, fuzzy
 msgid "Search for Files Error"
 msgstr "Sök efter filer"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1068
+#: gsearchtool/gsearchtool.c:1081
 msgid "Search Rule Value Entry"
 msgstr "Värdepost för sökningsregel"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1082
 msgid "Enter a value for search rule"
 msgstr "Ange ett värde för sökningsregeln"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1103
+#: gsearchtool/gsearchtool.c:1116
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klicka om du vill ta bort regeln"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1170
 #, fuzzy
 msgid "A_vailable options:"
 msgstr "Tillgängliga vyer"
@@ -1578,7 +1580,7 @@ msgstr "Tillgängliga vyer"
 # Sun vill ha "Sökningsregelmeny"
 # Jag vill ha "Sökregelmeny"
 #
-#: gsearchtool/gsearchtool.c:1168
+#: gsearchtool/gsearchtool.c:1180
 msgid "Search Rules Menu"
 msgstr "Sökregelmeny"
 
@@ -1590,84 +1592,84 @@ msgstr "Sökregelmeny"
 # Sun vill ha "sökningsregel"
 # Jag vill ha "sökregel"
 #
-#: gsearchtool/gsearchtool.c:1169
+#: gsearchtool/gsearchtool.c:1181
 msgid "Select a search rule from the menu"
 msgstr "Välj en sökregel från menyn"
 
-#: gsearchtool/gsearchtool.c:1201
+#: gsearchtool/gsearchtool.c:1213
 msgid "S_earch Results"
 msgstr "S_ökresultat"
 
-#: gsearchtool/gsearchtool.c:1274
+#: gsearchtool/gsearchtool.c:1286
 msgid "Name"
 msgstr "Namn"
 
-#: gsearchtool/gsearchtool.c:1296
+#: gsearchtool/gsearchtool.c:1306
 msgid "Folder"
 msgstr "Mapp"
 
-#: gsearchtool/gsearchtool.c:1308
+#: gsearchtool/gsearchtool.c:1317
 msgid "Size"
 msgstr "Storlek"
 
-#: gsearchtool/gsearchtool.c:1319
+#: gsearchtool/gsearchtool.c:1327
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1330
+#: gsearchtool/gsearchtool.c:1337
 msgid "Date Modified"
 msgstr "Ändringsdatum"
 
-#: gsearchtool/gsearchtool.c:1371
+#: gsearchtool/gsearchtool.c:1376
 #, fuzzy
 msgid "File is _named:"
 msgstr "Sök filer med _namnet:"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
+#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
 msgid "File Name Entry"
 msgstr "Filnamnspost"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
+#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
 msgid "Enter the file name you want to search"
 msgstr "Ange namnet på den fil som du vill söka"
 
-#: gsearchtool/gsearchtool.c:1399
+#: gsearchtool/gsearchtool.c:1404
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "S_tartar i mappen:"
 
-#: gsearchtool/gsearchtool.c:1405
+#: gsearchtool/gsearchtool.c:1410
 msgid "Browse"
 msgstr "Bläddra"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
 msgid "Starting folder entry"
 msgstr "Startmappspost"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
 msgid "Enter the folder name where you want to start the search"
 msgstr "Ange namnet på den mapp där du vill påbörja sökningen"
 
-#: gsearchtool/gsearchtool.c:1431 gsearchtool/gsearchtool.c:1432
+#: gsearchtool/gsearchtool.c:1436 gsearchtool/gsearchtool.c:1437
 #, fuzzy
 msgid "Additional Options"
 msgstr "Åtgärdsalternativ"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1474
+#: gsearchtool/gsearchtool.c:1479
 msgid "Click to Start the search"
 msgstr "Klicka om du vill starta sökningen"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1475
+#: gsearchtool/gsearchtool.c:1480
 msgid "Click to Stop the search"
 msgstr "Klicka om du vill stoppa sökningen"
 
-#: gsearchtool/gsearchtool.c:1512
+#: gsearchtool/gsearchtool.c:1514
 msgid "Cannot initialize bonobo."
 msgstr "Kan inte initiera bonobo."
 
@@ -1866,86 +1868,86 @@ msgstr ""
 msgid "%ld bytes"
 msgstr "%ld byte"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "January"
 msgstr "januari"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "February"
 msgstr "februari"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "March"
 msgstr "mars"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "April"
 msgstr "april"
 
-#: logview/log_repaint.c:67
+#: logview/log_repaint.c:59
 msgid "May"
 msgstr "maj"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "June"
 msgstr "juni"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "July"
 msgstr "juli"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "August"
 msgstr "augusti"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "September"
 msgstr "september"
 
-#: logview/log_repaint.c:68
+#: logview/log_repaint.c:60
 msgid "October"
 msgstr "oktober"
 
-#: logview/log_repaint.c:69
+#: logview/log_repaint.c:61
 msgid "November"
 msgstr "november"
 
-#: logview/log_repaint.c:69
+#: logview/log_repaint.c:61
 msgid "December"
 msgstr "december"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:411
+#: logview/log_repaint.c:403
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:466
+#: logview/log_repaint.c:458
 msgid "%B %e"
 msgstr "%e %B"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:532
+#: logview/log_repaint.c:524
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:192
+#: logview/logrtns.c:191
 msgid "Not enough memory!\n"
 msgstr "Inte tillräckligt med minne!\n"
 
-#: logview/logrtns.c:203
+#: logview/logrtns.c:202
 msgid "Unable to open logfile!\n"
 msgstr "Kunde inte öppna loggfil!\n"
 
-#: logview/logrtns.c:261
+#: logview/logrtns.c:260
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s är ingen vanlig fil."
 
-#: logview/logrtns.c:269
+#: logview/logrtns.c:268
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1954,17 +1956,17 @@ msgstr ""
 "%s är inte läsbar för användare. Kör antingen programmet som root eller be "
 "systemadministratören ändra rättigheterna på filen."
 
-#: logview/logrtns.c:286
+#: logview/logrtns.c:285
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s kunde inte öppnas."
 
-#: logview/logrtns.c:316 logview/logrtns.c:325
+#: logview/logrtns.c:315 logview/logrtns.c:324
 #, c-format
 msgid "%s not a log file."
 msgstr "%s är ingen loggfil."
 
-#: logview/logrtns.c:723 logview/logrtns.c:754 logview/logrtns.c:885
+#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: slut på minne"
 
@@ -2310,6 +2312,24 @@ msgid ""
 msgstr ""
 "Kan inte hitta arkiveringsprogrammet (tar)!\n"
 "Detta program används för att skapa arkiv."
+
+#~ msgid "EUnable to create filesystem."
+#~ msgstr "EKunde inte skapa filsystem."
+
+#~ msgid "DOS (fat)"
+#~ msgstr "DOS (fat)"
+
+#, fuzzy
+#~ msgid "Filesystem settings"
+#~ msgstr "Behåll inställningar"
+
+#, fuzzy
+#~ msgid "Formatting mode"
+#~ msgstr "Formaterar %s"
+
+#, fuzzy
+#~ msgid "Physical settings"
+#~ msgstr "Allmänna inställningar"
 
 # SUN CHANGED MESSAGE
 #, fuzzy
@@ -2844,9 +2864,6 @@ msgstr ""
 
 #~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-
-#~ msgid "Dos (FAT)"
-#~ msgstr "Dos (FAT)"
 
 #~ msgid "Floppy Density:"
 #~ msgstr "Diskettdensitet:"
@@ -3859,9 +3876,6 @@ msgstr ""
 
 #~ msgid "View Project Fields"
 #~ msgstr "Visa projektfält"
-
-#~ msgid "        "
-#~ msgstr "        "
 
 #~ msgid "            "
 #~ msgstr "            "
