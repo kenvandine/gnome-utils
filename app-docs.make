@@ -7,13 +7,13 @@ help_DATA = \
 #Scrollkeeper related stuff
 #omf_dir=$(top_srcdir)/omf-install
 
-#EXTRA_DIST = $(app).sgml $(help_DATA) $(omffiles)
+EXTRA_DIST = $(app).sgml $(help_DATA) #$(omffiles)
 
-#all: index.html
+all: index.html
 	#-scrollkeeper-preinstall $(DESTDIR)$(helpdir)/$(app).sgml $(omffiles) $(omf_dir)/$(omffiles)
 
-#index.html: $(app)/index.html
-	#-cp $(app)/index.html .
+index.html: $(app)/index.html
+	-cp $(app)/index.html .
 
 # the wierd srcdir trick is because the db2html from the Cygnus RPMs
 # cannot handle relative filenames
