@@ -28,6 +28,12 @@
 #include "proj.h"
 #include "proj_p.h"
 
+typedef struct notif_s 
+{
+	GttProjectChanged func;
+	gpointer user_data;
+} Notifier;
+
 // hack alert -- should be static
 GList * plist = NULL;
 
@@ -185,6 +191,18 @@ gtt_project_destroy(GttProject *proj)
 		}
 	}
 
+	/* remove notifiers as well */
+	{
+		Notifier * ntf;
+		GList *node;
+	
+		for (node = proj->listeners; node; node=node->next)
+		{
+			ntf = node->data;
+			g_free (ntf);
+		}
+		if (proj->listeners) g_list_free (proj->listeners);
+	}
 	g_free(proj);
 }
 
@@ -936,13 +954,7 @@ gtt_project_list_compute_secs (void)
 }
 
 /* =========================================================== */
-/* even ntificatin subsystem */
-
-typedef struct notif_s 
-{
-	GttProjectChanged func;
-	gpointer user_data;
-} Notifier;
+/* even notification subsystem */
 
 void
 gtt_project_add_notifier (GttProject *prj, 
@@ -1149,6 +1161,7 @@ gtt_project_timer_start (GttProject *proj)
 {
 	GttTask *task;
 	GttInterval *ival;
+	time_t now;
 
 	if (!proj) return;
 
@@ -1165,8 +1178,30 @@ gtt_project_timer_start (GttProject *proj)
 		task = proj->task_list->data;
 		g_return_if_fail (task);
 	}
+
+	now = time(0);
+
+	/* only add a new interval if there's been a bit of a gap,
+	 * otherwise, reuse the most recent running interval.  */
+	if (task->interval_list)
+	{
+		int delta;
+		ival = task->interval_list->data;
+		delta = now - ival->stop;
+
+		if (delta <= proj->auto_merge_gap)
+		{
+			
+			ival->start += delta;
+			ival->fuzz += delta;
+			ival->stop = now;
+			ival->running = TRUE;
+			return;
+		}
+	} 
+
 	ival = g_new0 (GttInterval, 1);
-	ival->start = time(0);
+	ival->start = now;
 	ival->stop = ival->start;
 	ival->running = TRUE;
 	task->interval_list = g_list_prepend (task->interval_list, ival);
@@ -1255,7 +1290,7 @@ gtt_task_new (void)
 
 	task = g_new0(GttTask, 1);
 	task->parent = NULL;
-	task->memo = g_strdup ("");
+	task->memo = g_strdup (_("New Task"));
 	task->notes = g_strdup ("");
 	task->billable = GTT_BILLABLE;
 	task->billrate = GTT_REGULAR;
@@ -1264,14 +1299,61 @@ gtt_task_new (void)
 	return task;
 }
 
+GttTask *
+gtt_task_dup (GttTask *old)
+{
+	GttTask *task;
+
+	if (!old) return gtt_task_new();
+
+	task = g_new0(GttTask, 1);
+	task->parent = NULL;
+	task->memo = g_strdup (old->memo);
+	task->notes = g_strdup (old->notes);
+
+	/* inherit the properties ... important for user */
+	task->billable = old->billable;
+	task->billrate = old->billrate;
+	task->bill_unit = old->bill_unit;
+	task->interval_list = NULL;
+
+	return task;
+}
+
+static int
+task_suspend (GttTask *tsk)
+{
+	int is_running = 0;
+
+	/* avoid misplaced running intervals, stop the task */
+	if (tsk->interval_list)
+	{
+		GttInterval *first_ivl;
+		first_ivl = (GttInterval *) (tsk->interval_list->data);
+		is_running = first_ivl -> running;
+		if (is_running) 
+		{
+			/* don't call stop here, avoid dispatching redraw events */
+			gtt_project_timer_update (tsk->parent);
+			first_ivl->running = FALSE;
+		}
+	}
+	return is_running;
+}
+
+
 void
 gtt_task_destroy (GttTask *task)
 {
+	int is_running;
 	if (!task) return;
+
+	is_running = task_suspend (task);
 	if (task->parent)
 	{
 		task->parent->task_list = 
 			g_list_remove (task->parent->task_list, task);
+		if (is_running) gtt_project_timer_start (task->parent);
 		proj_refresh_time (task->parent);
 		task->parent = NULL;
 	}
@@ -1293,6 +1375,82 @@ gtt_task_destroy (GttTask *task)
 	}
 }
 
+void
+gtt_task_remove (GttTask *task)
+{
+	int is_running;
+	if (!task) return;
+
+	is_running = task_suspend (task);
+
+	if (task->parent)
+	{
+		task->parent->task_list = 
+			g_list_remove (task->parent->task_list, task);
+		if (is_running) gtt_project_timer_start (task->parent);
+		proj_refresh_time (task->parent);
+		task->parent = NULL;
+	}
+}
+
+
+void
+gtt_task_insert (GttTask *where, GttTask *insertee)
+{
+	GttProject *prj;
+	int idx;
+	int is_running = 0;
+
+	if (!where || !insertee) return;
+
+	prj = where->parent;
+	if (!prj) return;
+
+	gtt_task_remove (insertee);
+	is_running = task_suspend (where);
+
+	insertee->parent = prj;
+	idx = g_list_index (prj->task_list, where);
+	prj->task_list = g_list_insert (prj->task_list, insertee, idx);
+
+	if (is_running) gtt_project_timer_start (prj);
+	proj_refresh_time (prj);
+}
+
+GttTask *
+gtt_task_new_insert (GttTask *old)
+{
+	int is_running = 0;
+	GttProject *prj;
+	GttTask *task;
+	int idx;
+
+	if (!old) return NULL;
+
+	task = g_new0(GttTask, 1);
+	task->memo = g_strdup (_("New Task"));
+	task->notes = g_strdup ("");
+
+	/* inherit the properties ... important for user */
+	task->billable = old->billable;
+	task->billrate = old->billrate;
+	task->bill_unit = old->bill_unit;
+	task->interval_list = NULL;
+
+	/* chain into place */
+	prj = old->parent;
+	task->parent = prj;
+	if (!prj) return task;
+
+	/* avoid misplaced running intervals, stop the task */
+	is_running = task_suspend (old);
+
+	idx = g_list_index (prj->task_list, old);
+	prj->task_list = g_list_insert (prj->task_list, task, idx);
+
+	if (is_running) gtt_project_timer_start (prj);
+	return task;
+}
 
 void
 gtt_task_add_interval (GttTask *tsk, GttInterval *ival)
@@ -1406,6 +1564,45 @@ gtt_task_get_intervals (GttTask *tsk)
 	return tsk->interval_list;
 }
 
+gboolean
+gtt_task_is_first_task (GttTask *tsk)
+{
+	if (!tsk || !tsk->parent || !tsk->parent->task_list) return TRUE;
+	
+	if ((GttTask *) tsk->parent->task_list->data == tsk) return TRUE;
+	return FALSE;
+}
+
+/* =========================================================== */
+
+void 
+gtt_task_merge_up (GttTask *tsk)
+{
+	GttTask *mtask;
+	GList * node;
+	GttProject *prj;
+	if (!tsk) return;
+
+	prj = tsk->parent;
+	if (!prj || !prj->task_list) return;
+
+	node = g_list_find (prj->task_list, tsk);
+	if (!node) return;
+
+	node = node->prev;
+	if (!node) return;
+
+	mtask = node->data;
+
+	for (node=tsk->interval_list; node; node=node->next)
+	{
+		GttInterval *ivl = node->data;
+		ivl->parent = mtask;
+	}
+	mtask->interval_list = g_list_concat (mtask->interval_list, tsk->interval_list);
+	tsk->interval_list = NULL;
+}
+
 /* =========================================================== */
 
 int
@@ -1512,6 +1709,13 @@ gtt_interval_get_running (GttInterval * ivl)
 	return (gboolean) ivl->running;
 }
 
+GttTask *
+gtt_interval_get_parent (GttInterval * ivl)
+{
+	if (!ivl) return NULL;
+	return ivl->parent;
+}
+
 /* ============================================================= */
 
 GttInterval *
@@ -1592,35 +1796,35 @@ gtt_interval_merge_down (GttInterval *ivl)
 	return merge;
 }
 
-GttTask *
-gtt_interval_split (GttInterval *ivl)
+void
+gtt_interval_split (GttInterval *ivl, GttTask *newtask)
 {
 	int is_running = 0;
 	gint idx;
 	GttProject *prj;
 	GttTask *prnt;
-	GttTask *newtask;
 	GList *node;
 	GttInterval *first_ivl;
 
-	if (!ivl) return NULL;
+	if (!ivl || !newtask) return;
 	prnt = ivl->parent;
-	if (!prnt) return NULL;
+	if (!prnt) return;
 	prj = prnt->parent;
-	if (!prj) return NULL;
+	if (!prj) return;
 	node = g_list_find (prnt->interval_list, ivl);
-	if (!node) return NULL;
+	if (!node) return;
 
-	/* avoid mangled intervals, stop the task */
+	gtt_task_remove (newtask);
+
+	/* avoid misplaced running intervals, stop the task */
 	first_ivl = (GttInterval *) (prnt->interval_list->data);
 	is_running = first_ivl -> running;
 	if (is_running) 
 	{
+		/* don't call stop here, avoid dispatching redraw events */
 		gtt_project_timer_update (prj);
 		first_ivl->running = FALSE;
 	}
-
-	newtask = gtt_task_new();
 
 	/* chain the new task into proper order in the parent project */
 	idx = g_list_index (prj->task_list, prnt);
@@ -1651,7 +1855,6 @@ gtt_interval_split (GttInterval *ivl)
 	if (is_running) gtt_project_timer_start (prj);
 
 	proj_refresh_time (prnt->parent);
-	return newtask;
 }
 
 /* ============================================================= */

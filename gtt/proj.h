@@ -268,8 +268,14 @@ int 		gtt_project_list_total_secs_day (void);
 int 		gtt_project_list_total_secs_ever (void);
 
 /* -------------------------------------------------------- */
-/* tasks */
+/* Tasks */
+/* The gtt_task_dup() routine makes a copy of the indicated task.
+ *    it copies the memo, notes, adn billing info, but not the 
+ *    intervals, nor the parent.
+ */
+
 GttTask *	gtt_task_new (void);
+GttTask *	gtt_task_dup (GttTask *);
 void 		gtt_task_destroy (GttTask *);
 
 void		gtt_task_set_memo (GttTask *, const char *);
@@ -288,6 +294,30 @@ GttBillRate	gtt_task_get_billrate (GttTask *);
  */
 void		gtt_task_set_bill_unit (GttTask *, int);
 int		gtt_task_get_bill_unit (GttTask *);
+
+/* The gtt_task_remove() routine will remove teh task from its parent
+ *    project (presumably in preparation for reparenting).
+ *
+ * The gtt_task_new_insert() routine creates a new task with the same
+ *    settings as the indicated task. It does *not* copy the intervals.
+ *    It inserts the new task above the indicated task.
+ *
+ * The gtt_task_insert() routine pastes 'insertee' above 'where'.
+ *
+ * The gtt_task_merge_up() routine will take all of the intervals of 
+ *    the indicated task, and move them into the task above, (thus
+ *    gutting this task of its intervals).  It does not actually 
+ *    destroy this task.
+ *
+ * The gtt_task_is_first_task() routine returns True if this task
+ *    is the leading task of the project.
+ */
+void		gtt_task_remove (GttTask *);
+GttTask *	gtt_task_new_insert (GttTask *);
+void		gtt_task_insert (GttTask *where, GttTask *insertee);
+void		gtt_task_merge_up (GttTask *);
+gboolean	gtt_task_is_first_task (GttTask *);
+
 
 GList *		gtt_task_get_intervals (GttTask *);
 void		gtt_task_add_interval (GttTask *, GttInterval *);
@@ -334,10 +364,11 @@ int		gtt_interval_get_fuzz (GttInterval *);
  *
  * The gtt_interval_split() routine splits the list of intervals 
  *    into two pieces, with the indicated interval and everything
- *    following it going into the new task.  It returns the new task.
+ *    following it going after the specified.  
  */
 GttInterval *	gtt_interval_merge_up (GttInterval *);
 GttInterval *	gtt_interval_merge_down (GttInterval *);
-GttTask *	gtt_interval_split (GttInterval *);
+void		gtt_interval_split (GttInterval *, GttTask *);
+GttTask *	gtt_interval_get_parent (GttInterval *);
 
 #endif /* __GTT_PROJ_H__ */

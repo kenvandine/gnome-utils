@@ -46,7 +46,7 @@
       <name>dockitem4</name>
       <border_width>1</border_width>
       <placement>GNOME_DOCK_TOP</placement>
-      <band>1</band>
+      <band>0</band>
       <position>0</position>
       <offset>0</offset>
       <locked>False</locked>
@@ -93,6 +93,19 @@
 	  </signal>
 	  <label>Save</label>
 	  <stock_pixmap>GNOME_STOCK_PIXMAP_SAVE</stock_pixmap>
+	</widget>
+
+	<widget>
+	  <class>GtkButton</class>
+	  <child_name>Toolbar:button</child_name>
+	  <name>refresh</name>
+	  <signal>
+	    <name>clicked</name>
+	    <handler>on_refresh_clicked</handler>
+	    <last_modification_time>Wed, 12 Sep 2001 16:02:21 GMT</last_modification_time>
+	  </signal>
+	  <label>Refresh</label>
+	  <stock_pixmap>GNOME_STOCK_PIXMAP_REFRESH</stock_pixmap>
 	</widget>
 
 	<widget>

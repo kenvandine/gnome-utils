@@ -43,10 +43,15 @@ typedef struct wiggy_s {
 	GtkHTMLStream *handle;
 	GtkWidget *top;
 	GtkWidget *interval_popup;
+	GtkWidget *interval_paste;
+	GtkWidget *task_popup;
+	GtkWidget *task_delete_memo;
+	GtkWidget *task_paste;
 	GtkFileSelection *filesel;
 	EditIntervalDialog *edit_ivl;
 	char * filepath;
 	GttInterval * interval;
+	GttTask * task;
 	GttProject *prj;
 } Wiggy;
 
@@ -184,48 +189,9 @@ filesel_cancel_clicked_cb (GtkWidget *w, gpointer data)
 }
 
 /* ============================================================== */
+/* global clipboard, allows cut task to be reparented to a different project */
 
-static void 
-on_print_clicked_cb (GtkWidget *w, gpointer data)
-{
-	GladeXML  *glxml;
-	glxml = glade_xml_new ("glade/not-implemented.glade", "Not Implemented");
-}
-
-static void 
-on_save_clicked_cb (GtkWidget *w, gpointer data)
-{
-	GtkWidget *fselw;
-	Wiggy *wig = (Wiggy *) data;
-
-	/* don't show dialog more than once */
-	if (wig->filesel) return;
-
-	fselw = gtk_file_selection_new (_("Save HTML To File"));
-	wig->filesel = GTK_FILE_SELECTION(fselw);
-
-	gtk_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fselw)->ok_button), 
-		"clicked", GTK_SIGNAL_FUNC(filesel_ok_clicked_cb), wig);
-
-	gtk_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fselw)->cancel_button), 
-		"clicked", GTK_SIGNAL_FUNC(filesel_cancel_clicked_cb), wig);
-
-	gtk_widget_show (fselw);
-}
-
-static void 
-on_close_clicked_cb (GtkWidget *w, gpointer data)
-{
-	Wiggy *wig = (Wiggy *) data;
-
-	/* close the main journal window ... everything */
-	gtt_project_remove_notifier (wig->prj, redraw, wig);
-	edit_interval_dialog_destroy (wig->edit_ivl);
-	gtk_widget_destroy (wig->top);
-	gtt_ghtml_destroy (wig->gh);
-	g_free (wig->filepath);
-	g_free (wig);
-}
+static GttTask * cutted_task = NULL;
 
 /* ============================================================== */
 /* interval popup actions */
@@ -269,8 +235,29 @@ interval_insert_memo_cb(GtkWidget * w, gpointer data)
 {
 	Wiggy *wig = (Wiggy *) data;
 	GttTask *newtask;
-	newtask = gtt_interval_split (wig->interval);
+	if (!wig->interval) return;
+
+	/* try to get billrates consistent across gap */
+	newtask = gtt_interval_get_parent (wig->interval);
+	newtask = gtt_task_dup (newtask);
+	gtt_task_set_memo (newtask, _("New Task"));
+	gtt_task_set_notes (newtask, "");
+
+	gtt_interval_split (wig->interval, newtask);
 	prop_task_dialog_show (newtask);
+}
+
+static void
+interval_paste_memo_cb(GtkWidget * w, gpointer data) 
+{
+	Wiggy *wig = (Wiggy *) data;
+	GttTask *newtask;
+
+	if (!cutted_task || !wig->interval) return;
+	newtask = cutted_task;
+	cutted_task = gtt_task_dup (newtask);
+	
+	gtt_interval_split (wig->interval, newtask);
 }
 
 static void
@@ -278,6 +265,152 @@ interval_popup_cb (Wiggy *wig)
 {
 	gtk_menu_popup(GTK_MENU(wig->interval_popup), 
 		NULL, NULL, NULL, wig, 1, 0);
+	if (cutted_task)
+	{
+		gtk_widget_set_sensitive (wig->interval_paste, TRUE);
+	}
+	else 
+	{
+		gtk_widget_set_sensitive (wig->interval_paste, FALSE);
+	}
+}
+
+/* ============================================================== */
+	  
+static void
+task_new_task_clicked_cb(GtkWidget * w, gpointer data) 
+{
+	GttTask *newtask;
+	Wiggy *wig = (Wiggy *) data;
+	newtask = gtt_task_new_insert (wig->task);
+	prop_task_dialog_show (newtask);
+}
+
+static void
+task_edit_task_clicked_cb(GtkWidget * w, gpointer data) 
+{
+	Wiggy *wig = (Wiggy *) data;
+	prop_task_dialog_show (wig->task);
+}
+
+static void
+task_delete_memo_clicked_cb(GtkWidget * w, gpointer data) 
+{
+	Wiggy *wig = (Wiggy *) data;
+
+	/* its physically impossible to cut just the memo,
+	 * when its the first one */
+	if (gtt_task_is_first_task (wig->task)) return;
+
+	gtt_task_merge_up (wig->task);
+
+	if (cutted_task)
+	{
+		gtt_task_destroy (cutted_task);
+	}
+	cutted_task = wig->task;
+	gtt_task_remove (cutted_task);
+}
+
+static void
+task_delete_times_clicked_cb(GtkWidget * w, gpointer data) 
+{
+	Wiggy *wig = (Wiggy *) data;
+	if (cutted_task)
+	{
+		gtt_task_destroy (cutted_task);
+	}
+	cutted_task = wig->task;
+	gtt_task_remove (cutted_task);
+}
+
+static void
+task_paste_clicked_cb(GtkWidget * w, gpointer data) 
+{
+	Wiggy *wig = (Wiggy *) data;
+	GttTask *task;
+
+	if (!cutted_task || !wig->task) return;
+	task = cutted_task;
+	cutted_task = gtt_task_dup (task);
+	
+	gtt_task_insert (wig->task, task);
+}
+
+static void
+task_popup_cb (Wiggy *wig)
+{
+	gtk_menu_popup(GTK_MENU(wig->task_popup), 
+		NULL, NULL, NULL, wig, 1, 0);
+	if (gtt_task_is_first_task (wig->task))
+	{
+		gtk_widget_set_sensitive (wig->task_delete_memo, FALSE);
+	}
+	else 
+	{
+		gtk_widget_set_sensitive (wig->task_delete_memo, TRUE);
+	}
+
+	if (cutted_task)
+	{
+		gtk_widget_set_sensitive (wig->task_paste, TRUE);
+	}
+	else 
+	{
+		gtk_widget_set_sensitive (wig->task_paste, FALSE);
+	}
+
+}
+
+/* ============================================================== */
+
+static void 
+on_print_clicked_cb (GtkWidget *w, gpointer data)
+{
+	GladeXML  *glxml;
+	glxml = glade_xml_new ("glade/not-implemented.glade", "Not Implemented");
+}
+
+static void 
+on_save_clicked_cb (GtkWidget *w, gpointer data)
+{
+	GtkWidget *fselw;
+	Wiggy *wig = (Wiggy *) data;
+
+	/* don't show dialog more than once */
+	if (wig->filesel) return;
+
+	fselw = gtk_file_selection_new (_("Save HTML To File"));
+	wig->filesel = GTK_FILE_SELECTION(fselw);
+
+	gtk_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fselw)->ok_button), 
+		"clicked", GTK_SIGNAL_FUNC(filesel_ok_clicked_cb), wig);
+
+	gtk_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fselw)->cancel_button), 
+		"clicked", GTK_SIGNAL_FUNC(filesel_cancel_clicked_cb), wig);
+
+	gtk_widget_show (fselw);
+}
+
+static void 
+on_close_clicked_cb (GtkWidget *w, gpointer data)
+{
+	Wiggy *wig = (Wiggy *) data;
+
+	/* close the main journal window ... everything */
+	gtt_project_remove_notifier (wig->prj, redraw, wig);
+	edit_interval_dialog_destroy (wig->edit_ivl);
+	gtk_widget_destroy (wig->top);
+	gtt_ghtml_destroy (wig->gh);
+	g_free (wig->filepath);
+	g_free (wig);
+}
+
+static void 
+on_refresh_clicked_cb (GtkWidget *w, gpointer data)
+{
+	Wiggy *wig = (Wiggy *) data;
+	redraw (wig->prj, data);
 }
 
 /* ============================================================== */
@@ -305,7 +438,8 @@ html_link_clicked_cb(GtkHTML * html, const gchar * url, gpointer data)
 	else
 	if (0 == strncmp (url, "gtt:task", 8))
 	{
-		prop_task_dialog_show (addr);
+		wig->task = addr;
+		if (addr) task_popup_cb (wig);
 	}
 	else
 	{
@@ -361,6 +495,9 @@ do_show_report (const char * report, GttProject *prj)
 	glade_xml_signal_connect_data (glxml, "on_print_clicked",
 	        GTK_SIGNAL_FUNC (on_print_clicked_cb), wig);
 	  
+	glade_xml_signal_connect_data (glxml, "on_refresh_clicked",
+	        GTK_SIGNAL_FUNC (on_refresh_clicked_cb), wig);
+	  
 	gtk_signal_connect(GTK_OBJECT(jnl_browser), "link_clicked",
 		GTK_SIGNAL_FUNC(html_link_clicked_cb), wig);
 
@@ -377,6 +514,7 @@ do_show_report (const char * report, GttProject *prj)
 
 	glxml = glade_xml_new ("glade/interval_popup.glade", "Interval Popup");
 	wig->interval_popup = glade_xml_get_widget (glxml, "Interval Popup");
+	wig->interval_paste = glade_xml_get_widget (glxml, "paste_memo");
 	wig->interval=NULL;
 
 	glade_xml_signal_connect_data (glxml, "on_edit_activate",
@@ -393,6 +531,34 @@ do_show_report (const char * report, GttProject *prj)
 	  
 	glade_xml_signal_connect_data (glxml, "on_insert_memo_activate",
 	        GTK_SIGNAL_FUNC (interval_insert_memo_cb), wig);
+	  
+	glade_xml_signal_connect_data (glxml, "on_paste_memo_activate",
+	        GTK_SIGNAL_FUNC (interval_paste_memo_cb), wig);
+	  
+	/* ---------------------------------------------------- */
+	/* this is the popup menu that says 'edit/delete/merge' */
+	/* for tasks */
+
+	glxml = glade_xml_new ("glade/task_popup.glade", "Task Popup");
+	wig->task_popup = glade_xml_get_widget (glxml, "Task Popup");
+	wig->task_delete_memo = glade_xml_get_widget (glxml, "delete_memo");
+	wig->task_paste = glade_xml_get_widget (glxml, "paste");
+	wig->task=NULL;
+
+	glade_xml_signal_connect_data (glxml, "on_new_task_activate",
+	        GTK_SIGNAL_FUNC (task_new_task_clicked_cb), wig);
+	  
+	glade_xml_signal_connect_data (glxml, "on_edit_task_activate",
+	        GTK_SIGNAL_FUNC (task_edit_task_clicked_cb), wig);
+	  
+	glade_xml_signal_connect_data (glxml, "on_delete_memo_activate",
+	        GTK_SIGNAL_FUNC (task_delete_memo_clicked_cb), wig);
+	  
+	glade_xml_signal_connect_data (glxml, "on_delete_times_activate",
+	        GTK_SIGNAL_FUNC (task_delete_times_clicked_cb), wig);
+	  
+	glade_xml_signal_connect_data (glxml, "on_paste_activate",
+	        GTK_SIGNAL_FUNC (task_paste_clicked_cb), wig);
 	  
 	/* ---------------------------------------------------- */
 	/* finally ... display the actual journal */

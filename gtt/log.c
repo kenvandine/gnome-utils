@@ -96,7 +96,7 @@ build_log_entry(const char *format, GttProject *proj)
 				break;
 			case 'd': 
 			{
-				char * desc = gtt_project_get_desc(proj);
+				const char * desc = gtt_project_get_desc(proj);
 				if (desc && desc[0])
 					g_string_append(str, desc);
 				else

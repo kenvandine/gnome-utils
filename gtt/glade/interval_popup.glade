@@ -29,7 +29,7 @@
       <handler>on_edit_activate</handler>
       <last_modification_time>Sat, 01 Sep 2001 04:19:16 GMT</last_modification_time>
     </signal>
-    <label>Edit</label>
+    <label>Edit Interval</label>
     <right_justify>False</right_justify>
   </widget>
 
@@ -42,7 +42,7 @@
       <handler>on_delete_activate</handler>
       <last_modification_time>Sat, 01 Sep 2001 04:16:00 GMT</last_modification_time>
     </signal>
-    <label>Delete</label>
+    <label>Delete Interval</label>
     <right_justify>False</right_justify>
     <stock_icon>GNOME_STOCK_MENU_CUT</stock_icon>
   </widget>
@@ -86,7 +86,7 @@
   </widget>
 
   <widget>
-    <class>GtkMenuItem</class>
+    <class>GtkPixmapMenuItem</class>
     <name>insert_memo</name>
     <tooltip>Insert a new memo above this time interval.</tooltip>
     <signal>
@@ -96,6 +96,21 @@
     </signal>
     <label>Insert Memo</label>
     <right_justify>False</right_justify>
+    <stock_icon>GNOME_STOCK_MENU_NEW</stock_icon>
+  </widget>
+
+  <widget>
+    <class>GtkPixmapMenuItem</class>
+    <name>paste_memo</name>
+    <tooltip>Paste a previously cut memo.</tooltip>
+    <signal>
+      <name>activate</name>
+      <handler>on_paste_memo_activate</handler>
+      <last_modification_time>Wed, 12 Sep 2001 17:38:22 GMT</last_modification_time>
+    </signal>
+    <label>Paste Memo</label>
+    <right_justify>False</right_justify>
+    <stock_icon>GNOME_STOCK_MENU_PASTE</stock_icon>
   </widget>
 </widget>
 
