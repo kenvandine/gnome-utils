@@ -19,7 +19,6 @@
 
 #include "config.h"
 
-#include <errno.h>
 #include <gconf/gconf.h>
 #include <glade/glade.h>
 #include <gnome.h>
@@ -267,12 +266,6 @@ read_config(void)
 	if (GTT_NO_ERR != conf_errcode) 
 	{
 		const char *fp, *errmsg, *qmsg;
-		if (errno == ENOENT) 
-		{
-			errno = 0;
-			return;
-		}
-
 		fp = gtt_get_config_filepath();
 		errmsg = gtt_err_to_string (conf_errcode, fp);
 		qmsg = g_strconcat (errmsg, 

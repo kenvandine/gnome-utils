@@ -275,6 +275,9 @@ gtt_load_config (const char *fname)
 	gnome_config_get_int_with_default(GTT"Misc/NumProjects=0", &got_default);
 	if (got_default) {
 		project_list_load_old(fname);
+		if (NULL == config_data_url) {
+			config_data_url = XML_DATA_FILENAME;
+		}
 		return;
 	}
 
@@ -378,6 +381,10 @@ gtt_load_config (const char *fname)
 
 	/* ------------ */
 	config_data_url = gnome_config_get_string(GTT"Data/URL=" XML_DATA_FILENAME);
+	if (NULL == config_data_url) 
+	{
+		config_data_url = XML_DATA_FILENAME;
+	}
 
 	/* ------------ */
 	num = 0;
