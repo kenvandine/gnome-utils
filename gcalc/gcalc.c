@@ -120,7 +120,7 @@ selection_handle (GtkWidget *widget,
 }
 
 /* Menus */
-static GnomeUIInfo file_menu[] = {
+static GnomeUIInfo calculator_menu[] = {
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb,NULL),
 	GNOMEUIINFO_END
 };
@@ -137,7 +137,9 @@ static GnomeUIInfo help_menu[] = {
 };
 
 static GnomeUIInfo gcalc_menu[] = {
-	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+    { GNOME_APP_UI_SUBTREE_STOCK, N_("_Calculator"), NULL,
+      calculator_menu, NULL, NULL, (GnomeUIPixmapType) 0,
+      NULL, 0, (GdkModifierType) 0, NULL },
 	GNOMEUIINFO_MENU_EDIT_TREE(edit_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
         GNOMEUIINFO_END
