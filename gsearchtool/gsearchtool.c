@@ -200,10 +200,13 @@ make_find_cmd (const char *start_dir)
 				if (!strcmp(templates[opt->templ].option,"-regex '%s'"))
 					regex=quote_quote_string(opt->data.text);
 				else {
+					gchar *locale_s = NULL;
 					s = quote_quote_string(opt->data.text);
+					locale_s = g_locale_from_utf8(s, -1, NULL, NULL, NULL);
 					g_string_append_printf(cmdbuf,
 						  templates[opt->templ].option,
-						  s);
+						  locale_s);
+					g_free(locale_s);
 					g_free(s);
 					g_string_append_c(cmdbuf, ' ');
 				}
@@ -215,12 +218,17 @@ make_find_cmd (const char *start_dir)
 				g_string_append_c(cmdbuf, ' ');
 				break;
 			case FIND_OPTION_TIME:
-				s = quote_quote_string(opt->data.time);
-				g_string_append_printf(cmdbuf,
+				{
+					gchar *locale_s = NULL;
+					s = quote_quote_string(opt->data.time);
+					locale_s = g_locale_from_utf8(s, -1, NULL, NULL, NULL);
+					g_string_append_printf(cmdbuf,
 						  templates[opt->templ].option,
-						  s);
-				g_free(s);
-				g_string_append_c(cmdbuf, ' ');
+						  locale_s);
+					g_free(locale_s);
+					g_free(s);
+					g_string_append_c(cmdbuf, ' ');
+				}
 				break;
 			default:
 			        break;
@@ -229,10 +237,13 @@ make_find_cmd (const char *start_dir)
 	}
 	g_string_append (cmdbuf, "-print ");
 
-	if(regex!=NULL)
-		g_string_append_printf (cmdbuf, " |egrep '%s'",regex);
-
-
+	if(regex!=NULL) 
+	{	
+		gchar *locale_regex = NULL;
+		locale_regex = g_locale_from_utf8 (regex, -1, NULL, NULL, NULL);
+		g_string_append_printf (cmdbuf, " |egrep '%s'", locale_regex);
+		g_free (locale_regex);
+	}
 	g_free(escape_dir);
 
 	return g_string_free(cmdbuf, FALSE);
@@ -244,6 +255,8 @@ make_locate_cmd(void)
 	GString *cmdbuf;
 	gchar *locate_path;
 	gchar *locate_command;
+	gchar *locale_locate_path;
+	gchar *locale_locate_string;
 	
 	locate_string = 
 		(gchar *)gtk_entry_get_text(GTK_ENTRY(gnome_entry_gtk_entry(GNOME_ENTRY(locate_entry))));
@@ -263,16 +276,24 @@ make_locate_cmd(void)
 	} else
 		locate_path = NULL;
 
+	locale_locate_path = g_locale_from_utf8(locate_path, -1, NULL, NULL, NULL);
+	locale_locate_string = g_locale_from_utf8(locate_string, -1, NULL, NULL, NULL);
+
 	cmdbuf = g_string_new ("");
 	locate_command = g_find_program_in_path ("locate");
+
 	if (locate_command != NULL)
 	{
-		g_string_append_printf (cmdbuf, "%s '%s*%s'", locate_command, locate_path, locate_string);
+		g_string_append_printf (cmdbuf, "%s '%s*%s'", locate_command, locale_locate_path,
+					locale_locate_string);
 	} else {
-		g_string_append_printf (cmdbuf, "find \"%s\" -name '%s' -mount", locate_path, locate_string);
-	}
+		g_string_append_printf (cmdbuf, "find \"%s\" -name '%s' -mount", locale_locate_path, 
+					locale_locate_string);
+	}	
 	g_free (locate_path);
 	g_free (locate_command);
+	g_free (locale_locate_path);
+	g_free (locale_locate_string);
 	
 	return g_string_free (cmdbuf, FALSE);
 }
@@ -669,15 +690,16 @@ really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *runnin
 	int files_found;
 	char* str;
 	GPatternSpec *pattern;
-	gchar *base_name = NULL;
 	GString *errors = NULL;
 	gboolean add_to_errors = TRUE;
 	gchar *utf8_locate_string;
 	gchar *wildcarded_string;
+	gchar *locale_pattern_str;
 	
 	lock = TRUE;
 
-	wildcarded_string = g_strdup_printf ("*%s*", pattern_str);
+	locale_pattern_str = g_locale_from_utf8(pattern_str, -1, NULL, NULL, NULL);
+	wildcarded_string = g_strdup_printf ("*%s*", locale_pattern_str);
 	utf8_locate_string = g_locale_to_utf8 (wildcarded_string, -1, NULL, NULL, NULL);
 	pattern = g_pattern_spec_new (utf8_locate_string);
 	/* reset scroll position and clear the tree view */
@@ -745,12 +767,19 @@ really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *runnin
 			if (*running != RUNNING)
 				break;
 			if(ret[i] == sepchar) {
-			        base_name = g_locale_to_utf8 (g_path_get_basename (string->str), -1, NULL, NULL, NULL);
+				gchar *locale_base_name = NULL;
+				gchar *base_name = NULL;
+
+				base_name = g_path_get_basename (string->str);
+			        locale_base_name = g_locale_to_utf8 (base_name, -1, NULL, NULL, NULL);
 				
-				if (g_pattern_match_string (pattern, base_name)) {
+				if (g_pattern_match_string (pattern, locale_base_name)) {
 				        add_file_to_list_store (string->str, store, iter);
 				}
+
 				g_string_assign (string, "");
+				g_free (locale_base_name);
+				g_free (base_name);
 			} else {
 				g_string_append_c (string, ret[i]);
 			}
@@ -790,12 +819,19 @@ really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *runnin
 			if (*running != RUNNING) 
 				break;
 			if(ret[i] == sepchar) {
-			        base_name = g_locale_to_utf8 (g_path_get_basename (string->str), -1, NULL, NULL, NULL);
+				gchar *locale_base_name = NULL;
+				gchar *base_name = NULL;
 				
-				if (g_pattern_match_string (pattern, base_name)) {
+				base_name = g_path_get_basename (string->str);
+			        locale_base_name = g_locale_to_utf8 (base_name, -1, NULL, NULL, NULL);
+				
+				if (g_pattern_match_string (pattern, locale_base_name)) {
 				        add_file_to_list_store (string->str, store, iter);
 				}
+				
 				g_string_assign (string, "");
+				g_free (locale_base_name);
+				g_free (base_name);
 			} else {
 				g_string_append_c (string, ret[i]);
 			}
@@ -856,9 +892,9 @@ really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *runnin
 	
 	g_free (str);
 	g_string_free (string, TRUE);
-	g_free (base_name);
 	g_free (utf8_locate_string);
 	g_free (wildcarded_string);
+	g_free (locale_pattern_str);
 	g_pattern_spec_free (pattern);
 
 	*running = NOT_RUNNING;
@@ -956,6 +992,7 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 {
 	char *cmd;
 	char *start_dir;
+	gchar *locale_cmd = NULL;
 	GtkWidget *dlg;
 	GtkWidget *w, *label;
 	GtkWidget *vbox;
@@ -1008,7 +1045,8 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 	
 	w = gtk_entry_new();
 	gtk_editable_set_editable(GTK_EDITABLE(w), FALSE);
-	gtk_entry_set_text(GTK_ENTRY(w), cmd);
+	locale_cmd = g_locale_to_utf8(cmd, -1, NULL, NULL, NULL);
+	gtk_entry_set_text(GTK_ENTRY(w), locale_cmd);
 	gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
 
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), w);
@@ -1029,6 +1067,7 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 
 	gtk_widget_show_all(dlg); 
 	
+	g_free(locale_cmd);
 	g_free(cmd);
 }
 
@@ -1093,6 +1132,7 @@ static gboolean
 launch_file (GtkWidget *w, GdkEventButton *event, gpointer data)
 {
 	gchar *file = NULL;
+	gchar *locale_file = NULL;
 	gchar *utf8_name = NULL;
 	gchar *utf8_path = NULL;
 	gboolean no_files_found = FALSE;
@@ -1121,17 +1161,19 @@ launch_file (GtkWidget *w, GdkEventButton *event, gpointer data)
 
 		if (!no_files_found) {
 			file = g_build_filename (utf8_path, utf8_name, NULL);
-		
+			locale_file = g_locale_from_utf8(file, -1, NULL, NULL, NULL);
+			
 			if (nautilus_is_running ()) {
-				launch_nautilus (file);
+				launch_nautilus (locale_file);
 			}
 			else {
-				if (!view_file_with_application(file))	
+				if (!view_file_with_application(locale_file))	
 					gnome_error_dialog_parented(_("No viewer available for this mime type."),
 							    	    GTK_WINDOW(app));
 			}
 
 			g_free (file);
+			g_free (locale_file);
 		}
 		
 		g_free (utf8_name);
