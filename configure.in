@@ -24,6 +24,7 @@ dnl *****************************************
 dnl pkg-config check time
 dnl *****************************************
 
+LIBGNOME_DESKTOP_REQUIRED=2.2.0
 LIBGNOME_REQUIRED=2.0.0
 LIBGNOMEUI_REQUIRED=2.1.0
 LIBGLADE_REQUIRED=2.0.0
@@ -60,6 +61,14 @@ dnl *********************************************
 PKG_CHECK_MODULES(GNOMEVFS, gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED gnome-vfs-module-2.0 >= $GNOMEVFS_REQUIRED)
 AC_SUBST(GNOMEVFS_CFLAGS)
 AC_SUBST(GNOMEVFS_LIBS)
+
+dnl *********************************************
+dnl gnome-desktop is need for gsearchtool
+dnl *********************************************
+
+PKG_CHECK_MODULES(GNOMEDESKTOP, gnome-desktop-2.0 >= $LIBGNOME_DESKTOP_REQUIRED)
+AC_SUBST(GNOMEDESKTOP_CFLAGS)
+AC_SUBST(GNOMEDESKTOP_LIBS)
 
 dnl *********************************************
 dnl for anything which calls gconftool-2 correctly
