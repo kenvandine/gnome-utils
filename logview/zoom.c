@@ -26,6 +26,8 @@
 #include <sys/stat.h>
 #include "logview.h"
 #include "gnome.h"
+#include "zoom.h"
+#include "misc.h"
 
 /*
  *  --------------------------
@@ -33,20 +35,19 @@
  *  --------------------------
  */
 
-int zoom_visible;
-GtkWidget *zoom_dialog;
 static GtkWidget *scrolled_window = NULL;
 
-extern Log *curlog;
 extern char *month[12];
 extern GList *regexp_db, *descript_db;
-extern GnomeUIInfo view_menu[];
-extern GtkUIManager *ui_manager;
 
-void close_zoom_view (GtkWidget *widget, gpointer data);
-void quit_zoom_view (GtkWidget *widget, gpointer data);
-void create_zoom_view (void);
 int match_line_in_db (LogLine *line, GList *db);
+
+
+void
+zoom_close_button (GtkWidget *zoom_dialog, int arg, gpointer data)
+{
+	close_zoom_view (zoom_dialog, data);
+}
 
 /* ----------------------------------------------------------------------
    NAME:          create_zoom_view
@@ -54,25 +55,27 @@ int match_line_in_db (LogLine *line, GList *db);
    ---------------------------------------------------------------------- */
 
 void
-create_zoom_view (void)
+create_zoom_view (LogviewWindow *parent)
 {
 
-   if (curlog == NULL || zoom_visible)
+   if (parent->curlog == NULL || parent->zoom_visible)
       return;
 
-   if (zoom_dialog == NULL) {
+   if (parent->zoom_dialog == NULL) {
+	GtkWidget *zoom_dialog;
    	zoom_dialog  = gtk_dialog_new_with_buttons (_("Entry Detail"), 
 					       	    GTK_WINDOW_TOPLEVEL, 
 					            GTK_DIALOG_DESTROY_WITH_PARENT,
 					            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, 
 					            NULL);
-        /* FIXME: no need to pass zoom_dialog - its global !! */ 
+	g_object_set_data (G_OBJECT (zoom_dialog), "logview-window", parent);
+
         g_signal_connect (G_OBJECT (zoom_dialog), "response",
-		          G_CALLBACK (close_zoom_view),
-			  &zoom_dialog);
+		          G_CALLBACK (zoom_close_button),
+			  parent);
    	g_signal_connect (G_OBJECT (zoom_dialog), "destroy",
 		          G_CALLBACK (quit_zoom_view),
-			  &zoom_dialog);
+			  parent);
         g_signal_connect (G_OBJECT (zoom_dialog), "delete_event",
 		          G_CALLBACK (gtk_true),
 			  NULL);
@@ -80,11 +83,12 @@ create_zoom_view (void)
 	gtk_window_set_default_size (GTK_WINDOW (zoom_dialog), 500, 225);
 	gtk_dialog_set_default_response (GTK_DIALOG (zoom_dialog), GTK_RESPONSE_CLOSE);
    	gtk_container_set_border_width (GTK_CONTAINER (zoom_dialog), 5);
+	parent->zoom_dialog = zoom_dialog;
    }
    
-   repaint_zoom();
-   gtk_widget_show (zoom_dialog);
-   zoom_visible = TRUE; 
+   repaint_zoom(parent);
+   gtk_widget_show (parent->zoom_dialog);
+   parent->zoom_visible = TRUE; 
 }
 
 /* ----------------------------------------------------------------------
@@ -93,7 +97,7 @@ create_zoom_view (void)
    ---------------------------------------------------------------------- */
 
 int
-repaint_zoom (void)
+repaint_zoom (LogviewWindow *window)
 {
    static GtkWidget *zoom_tree;
    static GtkCellRenderer *renderer;
@@ -107,6 +111,7 @@ repaint_zoom (void)
    char buffer[1024];
    char *utf8;
    gint i;
+   GtkWidget *zoom_dialog = window->zoom_dialog;
 
    if (scrolled_window == NULL) {
 
@@ -150,8 +155,8 @@ repaint_zoom (void)
 
    }
 
-   if (curlog != NULL)
-       g_snprintf (buffer, sizeof (buffer), "%s", curlog->name);
+   if (window->curlog != NULL)
+       g_snprintf (buffer, sizeof (buffer), "%s", window->curlog->name);
    else
        g_snprintf (buffer, sizeof (buffer), _("<No log loaded>"));
    gtk_tree_view_column_set_title (column2, buffer);
@@ -159,7 +164,7 @@ repaint_zoom (void)
    gtk_widget_show_all (scrolled_window);
 
    /* Check that there is at least one log */
-   if (curlog == NULL) {
+   if (window->curlog == NULL) {
        gtk_list_store_clear (GTK_LIST_STORE (store));
        /* Add entries to the list */
        for (i = 0; titles[i]; ++i) {
@@ -171,8 +176,8 @@ repaint_zoom (void)
   
    if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
 
-       if (curlog->current_line_no <= 0 || 
-           ((line = (curlog->lines)[curlog->current_line_no]) == NULL)) {
+       if (window->curlog->current_line_no <= 0 || 
+           ((line = (window->curlog->lines)[window->curlog->current_line_no]) == NULL)) {
        	   return FALSE;
        }
 
@@ -225,30 +230,33 @@ repaint_zoom (void)
 }
 
 /* ----------------------------------------------------------------------
-   NAME:          CloseLogInfo
+   NAME:          close zoom view
    DESCRIPTION:   Callback called when the log info window is closed.
    ---------------------------------------------------------------------- */
 
 void
-close_zoom_view (GtkWidget *widget, gpointer data)
+close_zoom_view (GtkWidget *zoom_dialog, gpointer data)
 {
-   if (zoom_visible) {
+   LogviewWindow *window = LOGVIEW_WINDOW (data);
+   if (window->zoom_visible) {
       gtk_widget_hide (GTK_WIDGET (zoom_dialog));
       gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
-				      (gtk_ui_manager_get_widget (ui_manager, "/LogviewMenu/ViewMenu/ShowDetails")),
+				      (gtk_ui_manager_get_widget 
+				       (LOGVIEW_WINDOW(window)->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails")),
 				      FALSE);
 /*
       if (G_IS_OBJECT (zoom_layout))
          g_object_unref (G_OBJECT (zoom_layout)); */ 
    }
-   zoom_dialog = NULL;
+   window->zoom_dialog = NULL;
    scrolled_window = NULL;
-   zoom_visible = FALSE;
+   window->zoom_visible = FALSE;
 }
 
 void
-quit_zoom_view (GtkWidget *widget, gpointer data) {
- 
-	zoom_dialog = NULL;
+quit_zoom_view (GtkWidget *zoom_dialog, gpointer data) {
+	
+	LogviewWindow *window = LOGVIEW_WINDOW (data);
+	window->zoom_dialog = NULL;
 	scrolled_window = NULL;
 }

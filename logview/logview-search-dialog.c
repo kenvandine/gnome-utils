@@ -22,9 +22,7 @@
 #include "gedit-output-window.h"
 #include <gtk/gtk.h>
 
-extern GtkWidget *output_window;
 extern GtkWidget *view;
-extern int output_window_type;
 
 #define _(x) gettext (x)
 #define N_(x) (x)
@@ -66,7 +64,7 @@ logview_search_not_found_dialog (GtkWidget *window)
 static void
 logview_search_dialog_search (GtkWidget *button, LogviewSearchDialog *dialog)
 {
-	GtkWidget *window; 
+	LogviewWindow *window; 
 	GdkCursor *cursor;
 
 	gchar *pattern;
@@ -75,10 +73,10 @@ logview_search_dialog_search (GtkWidget *button, LogviewSearchDialog *dialog)
 	GtkTreeModel *tree_model;
 	
 	window = g_object_get_data (G_OBJECT (dialog), "logview-window");
-	gedit_output_window_clear (GEDIT_OUTPUT_WINDOW (output_window));
-	output_window_type = LOGVIEW_WINDOW_OUTPUT_WINDOW_SEARCH;
+	gedit_output_window_clear (GEDIT_OUTPUT_WINDOW (window->output_window));
+	window->output_window_type = LOGVIEW_WINDOW_OUTPUT_WINDOW_SEARCH;
 
-	tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
+	tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
 
 	pattern = g_strdup (gtk_entry_get_text (GTK_ENTRY (dialog->entry)));
 
@@ -90,7 +88,7 @@ logview_search_dialog_search (GtkWidget *button, LogviewSearchDialog *dialog)
 	g_object_add_weak_pointer (G_OBJECT (dialog), (gpointer)&dialog);
 
 	res = logview_tree_model_build_match_list  (tree_model,
-						    GEDIT_OUTPUT_WINDOW (output_window), 
+						    GEDIT_OUTPUT_WINDOW (window->output_window), 
 						    pattern,
 						    G_OBJECT (dialog));
 	
@@ -103,7 +101,7 @@ logview_search_dialog_search (GtkWidget *button, LogviewSearchDialog *dialog)
 		if (res != 0) {
 			gtk_widget_destroy (GTK_WIDGET (dialog));
 		} else {
-			logview_search_not_found_dialog(window);
+			logview_search_not_found_dialog(GTK_WIDGET(window));
 		}
 	}
 }
@@ -196,13 +194,13 @@ logview_search_dialog_get_type (void)
 }
 
 GtkWidget *
-logview_search_dialog_new (GtkWindow *parent)
+logview_search_dialog_new (LogviewWindow *parent)
 {
 	GtkWidget *dialog;
 
 	dialog = g_object_new (LOGVIEW_TYPE_SEARCH_DIALOG, NULL);
 	g_object_set_data (G_OBJECT (dialog), "logview-window", parent);
-	gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
+	gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW(parent));
 	gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
 
 	return dialog;

@@ -5,11 +5,10 @@
 #include <sys/types.h>
 #include <regex.h>
 #include <gnome.h>
+#include "monitor.h"
 
 #define MAX_NUM_MATCHES     10
 #define DELIM               ":"
-
-void mon_edit_actions (GtkWidget *widget, gpointer data);
 
 static GList *copy_actions_db (GList *db);
 void free_actions_db (GList **db);

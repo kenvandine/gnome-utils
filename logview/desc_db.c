@@ -5,14 +5,11 @@
 #include <sys/types.h>
 #include <regex.h>
 #include <stdlib.h>
+#include "desc_db.h"
 
 #define MAX_NUM_MATCHES     10
 #define DELIM               ":"
 
-void free_database (GList **db);
-void print_db (GList *db);
-int match_line_in_db (LogLine *line, GList *db);
-int read_regexp_db (char *filename, GList **db);
 
 /* ----------------------------------------------------------------------
    NAME:        read_regexp_db

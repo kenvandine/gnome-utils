@@ -24,6 +24,7 @@
 #include <gnome.h>
 #include "gtk/gtk.h"
 #include "logview.h"
+#include "calendar.h"
 
 #define CALENDAR_WIDTH           180
 #define CALENDAR_HEIGHT          150
@@ -42,34 +43,6 @@
 #define MARKEDDATE               3
 
 /*
- *       --------
- *       Typedefs
- *       --------
- */
-
-
-/*
- *    -------------------
- *    Function Prototypes
- *    -------------------
- */
-
-void CalendarMenu (GtkWidget *app);
-void close_calendar (GtkWidget * widget, gpointer client_data);
-void set_scrollbar_size (int num_lines);
-void calendar_month_changed (GtkWidget *widget, gpointer data);
-void read_marked_dates (CalendarData *data);
-void calendar_month_changed (GtkWidget *widget, gpointer data);
-void calendar_day_selected (GtkWidget *widget, gpointer unused_data);
-void calendar_day_selected_double_click (GtkWidget *widget, gpointer data);
-CalendarData* init_calendar_data ();
-DateMark* find_prev_mark (CalendarData*);
-DateMark* find_next_mark (CalendarData*);
-DateMark* get_mark_from_month (CalendarData *data, gint month, gint year);
-DateMark *get_mark_from_date (CalendarData *, gint, gint, gint);
-void log_repaint (GtkWidget * canvas, GdkRectangle * area);
-
-/*
  *       ----------------
  *       Global variables
  *       ----------------
@@ -77,16 +50,9 @@ void log_repaint (GtkWidget * canvas, GdkRectangle * area);
 
 extern ConfigData *cfg;
 extern GdkGC *gc;
-extern Log *curlog, *loglist[];
-extern int numlogs, curlognum;
+extern Log *loglist[];
 extern char *month[12];
-extern GtkWidget *view;
-extern GtkUIManager *ui_manager;
-GtkWidget *CalendarDialog = NULL;
 GtkWidget *CalendarWidget;
-int calendarvisible;
-
-
 
 /* ----------------------------------------------------------------------
    NAME:          CalendarMenu
@@ -94,16 +60,18 @@ int calendarvisible;
    ---------------------------------------------------------------------- */
 
 void
-CalendarMenu (GtkWidget *window)
+CalendarMenu (LogviewWindow *window)
 {
-   GtkCalendar *calendar;
-   GtkWidget *vbox;
 
-   if (curlog == NULL || calendarvisible)
+   if (window->curlog == NULL || window->calendar_visible)
       return;
 
-   if (CalendarDialog == NULL)
+   if (window->calendar_dialog == NULL)
    {
+      GtkCalendar *calendar;
+      GtkWidget *CalendarDialog;
+      GtkWidget *vbox;
+
       CalendarDialog = gtk_dialog_new ();
 
       gtk_window_set_title (GTK_WINDOW (CalendarDialog), _("Calendar"));
@@ -115,10 +83,10 @@ CalendarMenu (GtkWidget *window)
 			     GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
       g_signal_connect (G_OBJECT (CalendarDialog), "response",
 		        G_CALLBACK (close_calendar),
-			&CalendarDialog);
+			window);
       g_signal_connect (G_OBJECT (CalendarDialog), "destroy",
 			G_CALLBACK (close_calendar),
-			NULL);
+			window);
       g_signal_connect (G_OBJECT (CalendarDialog), "delete_event",
 			G_CALLBACK (gtk_true),
 			NULL);
@@ -133,13 +101,13 @@ CalendarMenu (GtkWidget *window)
 
       gtk_signal_connect (GTK_OBJECT (calendar), "month_changed",
 			  GTK_SIGNAL_FUNC (calendar_month_changed),
-			  NULL);
+			  window);
       gtk_signal_connect (GTK_OBJECT (calendar), "day_selected",
 			  GTK_SIGNAL_FUNC (calendar_day_selected),
-			  NULL);
+			  window);
       gtk_signal_connect (GTK_OBJECT (calendar), "day_selected_double_click",
 			  GTK_SIGNAL_FUNC (calendar_day_selected_double_click),
-			  NULL);
+			  window);
       gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (calendar), TRUE, TRUE, 0);
       gtk_widget_show (GTK_WIDGET (calendar));
 
@@ -148,11 +116,13 @@ CalendarMenu (GtkWidget *window)
       gtk_widget_show (vbox);
       
       CalendarWidget = GTK_WIDGET (calendar);
-      init_calendar_data ();
-   }
-   calendarvisible = TRUE;
+      init_calendar_data (window);
 
-   gtk_widget_show (CalendarDialog);
+      window->calendar_dialog = CalendarDialog;
+   }
+
+   window->calendar_visible = TRUE;
+   gtk_widget_show (window->calendar_dialog);
 
 }
 
@@ -199,24 +169,24 @@ read_marked_dates (CalendarData *data)
    ---------------------------------------------------------------------- */
 
 CalendarData*
-init_calendar_data ()
+init_calendar_data (LogviewWindow *window)
 {
    CalendarData *data;
 
-   data = curlog->caldata;
+   data = window->curlog->caldata;
    if (data == NULL)
      data = (CalendarData*) malloc (sizeof (CalendarData));
 
    if (data)
      {
-       data->curmonthmark = curlog->lstats.firstmark;
-       curlog->caldata = data;
+       data->curmonthmark = window->curlog->lstats.firstmark;
+       window->curlog->caldata = data;
 
 #if 0
        /* Move mark to first marked date in this month */
        data->curmonthmark = 
-	 get_mark_from_month (data, curlog->curmark->fulldate.tm_mon,
-			      curlog->curmark->fulldate.tm_year);
+	 get_mark_from_month (data, window->curlog->curmark->fulldate.tm_mon,
+			      window->curlog->curmark->fulldate.tm_year);
 #endif
        
        /* signal a redraw event */
@@ -233,7 +203,7 @@ init_calendar_data ()
    ---------------------------------------------------------------------- */
 
 void
-calendar_month_changed (GtkWidget *widget, gpointer unused_data)
+calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
 {
   GtkCalendar *calendar;
   CalendarData *data;
@@ -243,7 +213,7 @@ calendar_month_changed (GtkWidget *widget, gpointer unused_data)
   calendar = GTK_CALENDAR (CalendarWidget);
   g_return_if_fail (calendar);
 
-  data = curlog->caldata;
+  data = window->curlog->caldata;
   g_return_if_fail (data);
 
   /* Get current date */
@@ -265,7 +235,7 @@ calendar_month_changed (GtkWidget *widget, gpointer unused_data)
    ---------------------------------------------------------------------- */
 
 void
-calendar_day_selected (GtkWidget *widget, gpointer unused_data)
+calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
 {
   /* find the selected day in the current logfile */
   gint day, month, year;
@@ -273,11 +243,11 @@ calendar_day_selected (GtkWidget *widget, gpointer unused_data)
 
   gtk_calendar_get_date (GTK_CALENDAR (CalendarWidget), &year, &month, &day);
 
-  path = g_hash_table_lookup (curlog->date_headers,
+  path = g_hash_table_lookup (window->curlog->date_headers,
                 DATEHASH (month, day));
   if (path != NULL)
     {
-      gtk_tree_view_set_cursor (view, path, NULL, FALSE);
+	    gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
     }
 }
 
@@ -287,9 +257,9 @@ calendar_day_selected (GtkWidget *widget, gpointer unused_data)
    ---------------------------------------------------------------------- */
 
 void
-calendar_day_selected_double_click (GtkWidget *widget, gpointer data)
+calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window)
 {
-  calendar_day_selected(widget, data);
+  calendar_day_selected(widget, window);
 }
 
 /* ----------------------------------------------------------------------
@@ -298,15 +268,16 @@ calendar_day_selected_double_click (GtkWidget *widget, gpointer data)
    ---------------------------------------------------------------------- */
 
 void
-close_calendar (GtkWidget *widget, gpointer client_data)
+close_calendar (GtkWidget *widget, int arg, gpointer data)
 {
-   if (calendarvisible) {
-      gtk_widget_hide (CalendarDialog);
+   LogviewWindow *window = LOGVIEW_WINDOW (data);
+   if (window->calendar_visible) {
+      gtk_widget_hide (window->calendar_dialog);
       gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
-				      (gtk_ui_manager_get_widget(ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar")),
+				      (gtk_ui_manager_get_widget(window->ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar")),
 				      FALSE);
    }
-   calendarvisible = FALSE;
+   window->calendar_visible = FALSE;
 }
 
 
@@ -316,7 +287,7 @@ close_calendar (GtkWidget *widget, gpointer client_data)
                 entry that month.
    ---------------------------------------------------------------------- */
 
-DateMark *
+static DateMark *
 get_mark_from_date (CalendarData *data, gint day, gint month, gint year)
 {
   DateMark *mark;
@@ -340,7 +311,7 @@ get_mark_from_date (CalendarData *data, gint day, gint month, gint year)
                 entry that month.
    ---------------------------------------------------------------------- */
 
-DateMark *
+static DateMark *
 get_mark_from_month (CalendarData *data, gint month, gint year)
 {
    DateMark *mark = data->curmonthmark;
@@ -380,7 +351,7 @@ get_mark_from_month (CalendarData *data, gint month, gint year)
    DESCRIPTION:   Returns the previous mark with a different month.
    ---------------------------------------------------------------------- */
 
-DateMark *
+static DateMark *
 find_prev_mark (CalendarData *data)
 {
    DateMark *mark = data->curmonthmark;
@@ -409,7 +380,7 @@ find_prev_mark (CalendarData *data)
    DESCRIPTION:   Returns the next mark with a different month.
    ---------------------------------------------------------------------- */
 
-DateMark *
+static DateMark *
 find_next_mark (CalendarData *data)
 {
    DateMark *mark = data->curmonthmark;

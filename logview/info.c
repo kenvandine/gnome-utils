@@ -25,13 +25,8 @@
 #include <time.h>
 #include <sys/stat.h>
 #include "logview.h"
-
-void LogInfo (GtkAction *action, GtkWidget *callback_data);
-void CloseLogInfo (GtkWidget * widget, GtkWindow ** window);
-void QuitLogInfo (GtkWidget *widget, gpointer data);
-int RepaintLogInfo (void);
-
-
+#include "info.h"
+#include "misc.h"
 
 /*
  *  --------------------------
@@ -39,12 +34,7 @@ int RepaintLogInfo (void);
  *  --------------------------
  */
 
-int loginfovisible;
 static GtkWidget *scrolled_window = NULL;
-GtkWidget *InfoDialog;
-
-extern Log *curlog;
-
 
 /* ----------------------------------------------------------------------
    NAME:          LogInfo
@@ -54,24 +44,25 @@ extern Log *curlog;
 void
 LogInfo (GtkAction *action, GtkWidget *callback_data)
 {
+   LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
 
-   if (curlog == NULL || loginfovisible)
+   if (window->curlog == NULL || window->loginfovisible)
       return;
 
-   if (InfoDialog == NULL) {
+   if (window->info_dialog == NULL) {
+      GtkWidget *InfoDialog;
       InfoDialog = gtk_dialog_new_with_buttons (_("Properties"),
                                                   GTK_WINDOW_TOPLEVEL,
                                                   GTK_DIALOG_DESTROY_WITH_PARENT,
                                                   GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
                                                   NULL);
 
-      /* FIXME: no need to pass InfoDialog - its global !! */ 
       g_signal_connect (G_OBJECT (InfoDialog), "response",
                         G_CALLBACK (CloseLogInfo),
-                        &InfoDialog);
+                        window);
       g_signal_connect (GTK_OBJECT (InfoDialog), "destroy",
                         G_CALLBACK (QuitLogInfo),
-                        &InfoDialog);
+                        window);
       g_signal_connect (GTK_OBJECT (InfoDialog), "delete_event",
                         G_CALLBACK (gtk_true),
                         NULL);
@@ -83,14 +74,13 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
       gtk_container_set_border_width (GTK_CONTAINER (InfoDialog), 5);
       gtk_widget_realize (InfoDialog);
 
-      RepaintLogInfo ();
+      window->info_dialog = InfoDialog;
 
+      RepaintLogInfo (window);
    }
 
-   gtk_widget_show_all (InfoDialog);
-
-   loginfovisible = TRUE;
-
+   gtk_widget_show_all (window->info_dialog);
+   window->loginfovisible = TRUE;
 }
 
 /* ----------------------------------------------------------------------
@@ -99,7 +89,7 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
    ---------------------------------------------------------------------- */
 
 int
-RepaintLogInfo (void)
+RepaintLogInfo (LogviewWindow *window)
 {
    static GtkWidget *info_tree;
    static GtkCellRenderer *renderer;
@@ -111,6 +101,7 @@ RepaintLogInfo (void)
    gchar buffer[1024];
    char *utf8;
    gint i;
+   GtkWidget *InfoDialog = window->info_dialog;
 
    if (scrolled_window == NULL) {
 
@@ -154,8 +145,8 @@ RepaintLogInfo (void)
 
    }
 
-   if (curlog != NULL)
-       g_snprintf (buffer, sizeof (buffer), "%s", curlog->name);
+   if (window->curlog != NULL)
+       g_snprintf (buffer, sizeof (buffer), "%s", window->curlog->name);
    else
        g_snprintf (buffer, sizeof (buffer), _("<No log loaded>"));
    gtk_tree_view_column_set_title (column2, buffer);
@@ -163,7 +154,7 @@ RepaintLogInfo (void)
    gtk_widget_show_all (scrolled_window);
 
    /* Check that there is at least one log */
-   if (curlog == NULL) {
+   if (window->curlog == NULL) {
        if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
            g_snprintf (buffer, sizeof (buffer), "%c", '\0');
            i = 0;
@@ -181,33 +172,33 @@ RepaintLogInfo (void)
     
        g_snprintf (buffer, sizeof (buffer),
                    ngettext ("%ld byte", "%ld bytes",
-                            (long) curlog->lstats.size),
-                   (long) curlog->lstats.size);
+                            (long) window->curlog->lstats.size),
+                   (long) window->curlog->lstats.size);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, strlen (ctime (&curlog->lstats.mtime)), "%s",
-                   ctime (&curlog->lstats.mtime));
+       g_snprintf (buffer, strlen (ctime (&(window->curlog)->lstats.mtime)), "%s",
+                   ctime (&(window->curlog)->lstats.mtime));
        utf8 = LocaleToUTF8 (buffer);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
        g_free (utf8);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, strlen (ctime (&curlog->lstats.startdate)), "%s",
-                   ctime (&curlog->lstats.startdate));
+       g_snprintf (buffer, strlen (ctime (&(window->curlog)->lstats.startdate)), "%s",
+                   ctime (&(window->curlog)->lstats.startdate));
        utf8 = LocaleToUTF8 (buffer);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
        g_free (utf8);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, strlen (ctime (&curlog->lstats.enddate)), "%s",
-                   ctime (&curlog->lstats.enddate));
+       g_snprintf (buffer, strlen (ctime (&(window->curlog)->lstats.enddate)), "%s",
+                   ctime (&(window->curlog)->lstats.enddate));
        utf8 = LocaleToUTF8 (buffer);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
        g_free (utf8);
  
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, sizeof (buffer), "%ld ", curlog->lstats.numlines);
+       g_snprintf (buffer, sizeof (buffer), "%ld ", window->curlog->lstats.numlines);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
  
    }
@@ -221,19 +212,21 @@ RepaintLogInfo (void)
    ---------------------------------------------------------------------- */
 
 void
-CloseLogInfo (GtkWidget * widget, GtkWindow ** window)
+CloseLogInfo (GtkWidget *widget, int arg, gpointer data)
 {
-   if (loginfovisible)
-      gtk_widget_hide (InfoDialog);
-   InfoDialog = NULL;
+   LogviewWindow *window = LOGVIEW_WINDOW (data);
+   if (window->loginfovisible)
+      gtk_widget_hide (widget);
+   window->info_dialog = NULL;
    scrolled_window = NULL;
-   loginfovisible = FALSE;
+   window->loginfovisible = FALSE;
 
 }
 
 void QuitLogInfo (GtkWidget *widget, gpointer data)
 {
+   LogviewWindow *window = LOGVIEW_WINDOW (data);
    scrolled_window = NULL;
-   gtk_widget_destroy (GTK_WIDGET (InfoDialog));
+   gtk_widget_destroy (GTK_WIDGET (window->info_dialog));
 }
 

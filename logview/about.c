@@ -25,15 +25,7 @@
 #include <gnome.h>
 #include "logview.h"
 
-extern ConfigData *cfg;
-extern GtkWidget *window;
-
 static GtkWidget *about_window = NULL;
-
-/* Prototypes */
-
-void AboutShowWindow (GtkWidget *widget, gpointer user_data);
-
 
 void
 AboutShowWindow (GtkWidget *widget, gpointer user_data)
@@ -47,6 +39,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   };
   /* Translator credits */
   gchar *translator_credits = _("translator-credits");
+  GtkWidget *window = GTK_WIDGET (user_data);
 
   if (about_window != NULL) {
 	  gtk_widget_show_now (about_window);

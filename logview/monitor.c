@@ -24,36 +24,8 @@
 #include <time.h>
 #include "logview.h"
 #include "logrtns.h"
-
-#define MON_WINDOW_WIDTH           180
-#define MON_WINDOW_HEIGHT          150
-
-#define MON_MAX_NUM_LOGS         4   /* Max. num of logs to monitor       */
-#define MON_MODE_VISIBLE         1   /* Displays log as it is monitored   */
-#define MON_MODE_INVISIBLE       2   /* Monitors log without output       */
-#define MON_MODE_ICONIFIED       3   /* Monitors log showing only an icon */
-
-/*
- *    -------------------
- *    Function Prototypes
- *    -------------------
- */
-
-void MonitorMenu (GtkAction *action, GtkWidget *callback_data);
-void close_monitor_options (GtkWidget * widget, gpointer client_data);
-void monitor_window_destroyed_cb (GtkWidget * widget, gpointer data);
-void go_monitor_log (GtkWidget * widget, gpointer client_data);
-void mon_remove_log (GtkWidget *widget, GtkWidget *foo);
-void mon_add_log (GtkWidget *widget, GtkWidget *foo);
-void mon_read_last_page (Log *log);
-void mon_read_new_lines (Log *log);
-void mon_format_line (char *buffer, int bufsize, LogLine *line);
-void mon_hide_app_checkbox (GtkWidget *widget, gpointer data);
-void mon_actions_checkbox (GtkWidget *widget, gpointer data);
-void mon_edit_actions (GtkWidget *widget, gpointer data);
-gint mon_check_logs (gpointer);
-int mon_repaint (GtkWidget * widget, GdkEventExpose * event);
-void InitMonitorData (void);
+#include "monitor.h"
+#include "misc.h"
 
 /*
  *       ----------------
@@ -61,9 +33,7 @@ void InitMonitorData (void);
  *       ----------------
  */
 
-extern GtkWidget *window;
-extern Log *curlog, *loglist[];
-extern int numlogs, curlognum;
+extern Log *loglist[];
 
 static GtkWidget *monoptions = NULL;
 static GtkWidget *monwindow = NULL;
@@ -97,8 +67,9 @@ MonitorMenu (GtkAction *action, GtkWidget *callback_data)
    GtkCellRenderer *cell_renderer;
    GtkTreeViewColumn *column;
    GtkTreeIter newiter;
+   LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
 
-   if (curlog == NULL || mon_opts_visible)
+   if (window->curlog == NULL || mon_opts_visible)
       return;
      
    monitorcount = 0;
@@ -118,12 +89,12 @@ MonitorMenu (GtkAction *action, GtkWidget *callback_data)
       button = gtk_dialog_add_button (GTK_DIALOG (monoptions),
                                      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
-                                     GTK_SIGNAL_FUNC (close_monitor_options), NULL);
+                                     GTK_SIGNAL_FUNC (close_monitor_options), window);
 
       button = gtk_dialog_add_button (GTK_DIALOG (monoptions),
                                      GTK_STOCK_OK, GTK_RESPONSE_OK);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
-                                     GTK_SIGNAL_FUNC (go_monitor_log), NULL);
+                                     GTK_SIGNAL_FUNC (go_monitor_log), window);
 
       gtk_dialog_set_default_response (GTK_DIALOG (monoptions),
                                      GTK_RESPONSE_OK); 
@@ -174,7 +145,7 @@ MonitorMenu (GtkAction *action, GtkWidget *callback_data)
       gtk_container_add (GTK_CONTAINER (scrolled_win), srclist_view);
       gtk_widget_show (srclist_view);
 
-      for (i = 0; i < numlogs; i++) {
+      for (i = 0; i < window->numlogs; i++) {
           if (loglist[i]->mon_on == FALSE) {
               gtk_list_store_append (srclist, (GtkTreeIter *)&newiter);
               gtk_list_store_set (srclist, (GtkTreeIter *)&newiter, 0,
@@ -231,7 +202,7 @@ MonitorMenu (GtkAction *action, GtkWidget *callback_data)
       gtk_container_add (GTK_CONTAINER (scrolled_win), destlist_view);
       gtk_widget_show (destlist_view);
 
-      for (i = 0; i < numlogs; i++) {
+      for (i = 0; i < window->numlogs; i++) {
           if (loglist[i]->mon_on == TRUE) {
               monitorcount++;
               gtk_list_store_append (destlist, (GtkTreeIter *)&newiter);
@@ -354,16 +325,6 @@ mon_remove_log (GtkWidget *widget,
 
 
 /* ----------------------------------------------------------------------
-   NAME:          InitMonitorData
-   DESCRIPTION:   
-   ---------------------------------------------------------------------- */
-
-void
-InitMonitorData ()
-{
-}
-
-/* ----------------------------------------------------------------------
    NAME:          mon_repaint
    DESCRIPTION:   
    ---------------------------------------------------------------------- */
@@ -379,7 +340,7 @@ mon_repaint (GtkWidget * widget, GdkEventExpose * event)
    DESCRIPTION:   Callback called when the monitor window is destroyed.
    ---------------------------------------------------------------------- */
 
-void
+static void
 monitor_window_destroyed_cb (GtkWidget * widget, gpointer data)
 {
 	
@@ -395,15 +356,16 @@ monitor_window_destroyed_cb (GtkWidget * widget, gpointer data)
    DESCRIPTION:   Callback called when the log dialog is closed.
    ---------------------------------------------------------------------- */
 
-void
+static void
 close_monitor_options (GtkWidget * widget, gpointer client_data)
 {
+   LogviewWindow *window = LOGVIEW_WINDOW (client_data);
    if (mon_opts_visible)
       gtk_widget_hide (monoptions);
    monoptions = NULL;
    mon_opts_visible = FALSE;
    if (mon_hide_while_monitor && main_app_hidden) {
-	   gtk_widget_show (window);
+	   gtk_widget_show (GTK_WIDGET(window));
 	   main_app_hidden = FALSE;
    }
 }
@@ -413,7 +375,7 @@ close_monitor_options (GtkWidget * widget, gpointer client_data)
    DESCRIPTION:	Start monitoring the logs.
    ---------------------------------------------------------------------- */
 
-void
+static void
 go_monitor_log (GtkWidget * widget, gpointer client_data)
 {
    GtkWidget *label;
@@ -429,6 +391,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    GtkTreeViewColumn *clist_column;
    GtkTreeIter newiter;
    gboolean flag = FALSE;
+   LogviewWindow *window = LOGVIEW_WINDOW (client_data);
 
    /* Set flag in log structures to indicate that they should be
       monitored */
@@ -461,7 +424,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
      return;
 
    /* Setup timer to check log */
-   timer_tag = gtk_timeout_add (1000, mon_check_logs, NULL);
+   timer_tag = gtk_timeout_add (1000, mon_check_logs, window);
 
    /* Create monitor window */
    /* setup size */
@@ -492,7 +455,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    gtk_box_pack_start (GTK_BOX (vbox), notebook, TRUE, TRUE, 0);
    gtk_widget_show (notebook);
    
-   for (i = 0; i < numlogs; i++)
+   for (i = 0; i < window->numlogs; i++)
      {
        if (loglist[i]->mon_on != TRUE)
 	 continue;
@@ -539,7 +502,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    gtk_widget_show (monwindow);
 
    if (mon_hide_while_monitor) {
-	   gtk_widget_hide (window);
+	   gtk_widget_hide (GTK_WIDGET(window));
 	   main_app_hidden = TRUE;
    }
 }
@@ -653,11 +616,11 @@ mon_format_line (char *buffer, int bufsize, LogLine *line)
    ---------------------------------------------------------------------- */
 
 gint
-mon_check_logs (gpointer data)
+mon_check_logs (LogviewWindow *window)
 {
   gint i;
 
-  for (i = 0; i < numlogs; i++) {
+  for (i = 0; i < window->numlogs; i++) {
       if (loglist[i]->mon_on != TRUE)
           continue;
       if (WasModified (loglist[i]) != TRUE)

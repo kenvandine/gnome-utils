@@ -29,6 +29,10 @@
 #include <gnome.h>
 #include "logview.h"
 #include "logrtns.h"
+#include "log_repaint.h"
+#include "info.h"
+#include "zoom.h"
+#include "misc.h"
 
 /* 
  * -------------------
@@ -36,15 +40,8 @@
  * -------------------
  */
 
-extern int loginfovisible, calendarvisible;
-extern int zoom_visible;
 extern ConfigData *cfg;
 extern UserPrefsStruct *user_prefs;
-extern GtkWidget *view;
-extern GtkWidget *window;
-extern GtkWidget *statusbar;
-extern GtkWidget *output_window;
-
 
 /*
  * -------------------
@@ -53,8 +50,6 @@ extern GtkWidget *output_window;
  */
 
 Log *loglist[MAX_NUM_LOGS];
-Log *curlog;
-int numlogs, curlognum;
 
 char *month[12] =
 {N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
@@ -67,36 +62,6 @@ enum {
    PROCESS,
    MESSAGE
 };
-
-/*
- * -------------------
- * Function prototypes
- * -------------------
- */
-
-int InitPages (void);
-int GetLineAtCursor (int y);
-int RepaintCalendar (GtkWidget * widget, GdkEventExpose * event);
-int RepaintLogInfo (void);
-int repaint_zoom (void);
-gboolean log_repaint (void);
-void log_redrawdetail (void);
-void DrawLogLines (Log *current_log);
-void CloseApp (void);
-void UpdateStatusArea (void);
-void change_log (int direction);
-void create_zoom_view (void);
-void close_zoom_view (GtkWidget *widget, gpointer data);
-gboolean handle_log_mouse_button (GtkWidget *view, GdkEventButton * event_key);
-void handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data);
-void handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
-     GtkTreeViewColumn *arg2, gpointer user_data);
-void save_rows_to_expand (Log *log);
-void logview_set_window_title (GtkWidget *window);
-
-static void iterate_thru_children(GtkTreeView  *tree_view,
-                      GtkTreeModel *tree_model, GtkTreePath  *tree_path,
-                      GtkTreePath  *orig, gint *count, gint depth);
 
 /**
  * Recursively called until the row specified by orig is found.
@@ -230,16 +195,21 @@ handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
     GtkTreeModel *model;
     GtkTreePath *root_tree;
     gint row = 0;
+    LogviewWindow *window = LOGVIEW_WINDOW (user_data);
 
-    model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
+    model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
     root_tree = gtk_tree_path_new_root ();
 
-    iterate_thru_children (GTK_TREE_VIEW (view), model, root_tree, path, &row, 0);
+    iterate_thru_children (GTK_TREE_VIEW (window->view), model, root_tree, path, &row, 0);
     
     gtk_tree_path_free (root_tree);
 
-    curlog->current_line_no = row;
-    create_zoom_view ();
+    window->curlog->current_line_no = row;
+
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
+				    (gtk_ui_manager_get_widget 
+				     (LOGVIEW_WINDOW(window)->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails")),
+				    TRUE);
 
 }
 
@@ -256,38 +226,22 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
     GtkTreeModel *model;
     GtkTreePath *path, *root_tree;
     gint row = 0;
+    LogviewWindow *window = LOGVIEW_WINDOW (data);
 
     if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
 
         path = gtk_tree_model_get_path (model, &iter);
         root_tree = gtk_tree_path_new_root ();
 
-        curlog->current_path = gtk_tree_path_copy (path);
-        iterate_thru_children (GTK_TREE_VIEW (view), model, root_tree, path, &row, 0);
+        window->curlog->current_path = gtk_tree_path_copy (path);
+        iterate_thru_children (GTK_TREE_VIEW (window->view), model, root_tree, path, &row, 0);
 
         gtk_tree_path_free (root_tree);
         gtk_tree_path_free (path);
 
-        curlog->current_line_no = row;
-        log_redrawdetail ();
+        window->curlog->current_line_no = row;
+        log_redrawdetail (window);
     }
-
-}
-
-/* ----------------------------------------------------------------------
-   NAME:        handle_log_mouse_button
-   DESCRIPTION: User clicked on main window: open zoom view. 
-   ---------------------------------------------------------------------- */
-
-gboolean
-handle_log_mouse_button (GtkWidget * win, GdkEventButton *event)
-{
-    if (event->type == GDK_2BUTTON_PRESS) {
-        if (!zoom_visible)
-        create_zoom_view ();
-    }
-
-    return FALSE;
 
 }
 
@@ -297,55 +251,56 @@ handle_log_mouse_button (GtkWidget * win, GdkEventButton *event)
    ---------------------------------------------------------------------- */
 
 void
-change_log (int direction)
+change_log (LogviewWindow *window, int direction)
 {
-   if (numlogs == 1)
+   if (window->numlogs == 1)
         return;
    if (direction > 0) {
-       if (curlognum == numlogs - 1)
-	       curlognum = 0;
+       if (window->curlognum == window->numlogs - 1)
+	       window->curlognum = 0;
        else
-	       curlognum++;
+	       window->curlognum++;
    }
    else {
-       if (curlognum == 0)
-	       curlognum = numlogs - 1;
+       if (window->curlognum == 0)
+	       window->curlognum = window->numlogs - 1;
        else
-	       curlognum--;
+	       window->curlognum--;
    }
 
-   save_rows_to_expand (curlog);
+   save_rows_to_expand (window);
 
-   curlog = loglist[curlognum];
+   window->curlog = loglist[window->curlognum];
 
-   log_repaint ();
-   if (loginfovisible)
-       RepaintLogInfo ();
-   if (calendarvisible)
-       init_calendar_data ();
-   UpdateStatusArea();
+   log_repaint (window);
+   if (window->loginfovisible)
+       RepaintLogInfo (window);
+   if (window->calendar_visible)
+       init_calendar_data (window);
+   UpdateStatusArea(window);
 
 }
 
 void 
-save_rows_to_expand (Log *log)
+save_rows_to_expand (LogviewWindow *window)
 {
    GtkTreeModel *tree_model;
    GtkTreePath *tree_path;
    GtkTreeIter iter;
    gint i = 0;
+   Log *log = window->curlog;
 
    if (!log->total_lines)
        return;
 
-   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (view)); 
+   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view)); 
    tree_path = gtk_tree_path_new_root ();
    gtk_tree_model_get_iter (tree_model, &iter, tree_path);
 
    do {
        tree_path = gtk_tree_model_get_path (tree_model, &iter);
        if (gtk_tree_model_iter_has_child (tree_model, &iter) &&
-           gtk_tree_view_row_expanded (GTK_TREE_VIEW (view), tree_path)) {
+           gtk_tree_view_row_expanded (GTK_TREE_VIEW (window->view), tree_path)) {
            log->expand_paths[i] = gtk_tree_path_copy (tree_path);
            ++i; 
        }
@@ -362,32 +317,32 @@ save_rows_to_expand (Log *log)
    ---------------------------------------------------------------------- */
 
 gboolean
-log_repaint ()
+log_repaint (LogviewWindow *window)
 {
    GtkTreeModel *tree_model;
 
    /* Clear the tree view first */
-   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
+   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
    gtk_tree_store_clear (GTK_TREE_STORE (tree_model));
 
-   log_redrawdetail (); 
-   UpdateStatusArea ();	   
+   log_redrawdetail (window); 
+   UpdateStatusArea (window);	   
 
    /* Check that there is at least one log */
-   if (curlog == NULL) {
-	   gtk_widget_hide (output_window);
+   if (window->curlog == NULL) {
+	   gtk_widget_hide (window->output_window);
 	   return FALSE;
    }
    
    /* Draw the tree view */ 
-   DrawLogLines (curlog); 
+   DrawLogLines (window, window->curlog); 
 
    return TRUE;
 
 }
 
 void
-UpdateStatusArea ()
+UpdateStatusArea (LogviewWindow *window)
 {
    struct tm *tdm;
    char status_text[255];
@@ -397,21 +352,16 @@ UpdateStatusArea ()
    /* Translators: Date only format, %x should well do really */
    const char *time_fmt = _("%x"); /* an evil way to avoid warning */
  
-   if (curlog == NULL) { 
-       gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 0);
+   if (window->curlog == NULL) { 
+       gtk_statusbar_pop (GTK_STATUSBAR (window->statusbar), 0);
        gtk_window_set_title (GTK_WINDOW (window), APP_NAME);
        return;
    }
 
    logview_set_window_title (window);
-   /*   if (curlog->name != NULL) {
-       window_title = g_strdup_printf ("%s - %s", curlog->name, APP_NAME);
-       gtk_window_set_title (GTK_WINDOW (window), window_title);
-       g_free (window_title);
-       }*/
 
-   if (curlog->curmark != NULL) {
-       tdm = &curlog->curmark->fulldate;
+   if (window->curlog->curmark != NULL) {
+	   tdm = &(window->curlog)->curmark->fulldate;
 
        if (strftime (status_text, sizeof (status_text), time_fmt, tdm) <= 0) {
    	       /* as a backup print in US style */
@@ -421,8 +371,8 @@ UpdateStatusArea ()
            utf8 = LocaleToUTF8 (status_text);
        }
        statusbar_text = g_strconcat (_("Last Modified: "), utf8, NULL);
-       gtk_statusbar_pop (GTK_STATUSBAR(statusbar), 0);
-       gtk_statusbar_push (GTK_STATUSBAR(statusbar), 0, statusbar_text);
+       gtk_statusbar_pop (GTK_STATUSBAR(window->statusbar), 0);
+       gtk_statusbar_push (GTK_STATUSBAR(window->statusbar), 0, statusbar_text);
        
        g_free (utf8);
        g_free (statusbar_text);
@@ -470,7 +420,7 @@ GetDateHeader (LogLine *line)
    ---------------------------------------------------------------------- */
 
 void
-DrawLogLines (Log *current_log)
+DrawLogLines (LogviewWindow *window, Log *current_log)
 {
    GtkTreeModel *tree_model;
    GtkTreeIter iter;
@@ -486,7 +436,7 @@ DrawLogLines (Log *current_log)
    if (!current_log->total_lines) 
        return;
 
-   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (view));
+   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
    cm = cd = -1;
 
    for (i = 0; i < current_log->total_lines; ++i) {
@@ -543,26 +493,26 @@ DrawLogLines (Log *current_log)
 
        /* Expand the rows */
        path = gtk_tree_model_get_path (tree_model, &iter);
-       gtk_tree_view_expand_row (GTK_TREE_VIEW (view), path, FALSE);
+       gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
        current_log->first_time = FALSE;
 
        /* Scroll and set focus on last row */
        path = gtk_tree_model_get_path (tree_model, &child_iter);
-       gtk_tree_view_set_cursor (GTK_TREE_VIEW (view), path, NULL, FALSE); 
-       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (view), path, NULL, TRUE, 
+       gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), path, NULL, FALSE); 
+       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, TRUE, 
           1, 1);
        gtk_tree_path_free (path);
 
    } else {
        /* Expand the rows */
        for (i = 0; current_log->expand_paths[i]; ++i) 
-           gtk_tree_view_expand_row (GTK_TREE_VIEW (view),
+           gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view),
                current_log->expand_paths[i], FALSE);
 			   
        /* Scroll and set focus on the previously focused row */
-       gtk_tree_view_set_cursor (GTK_TREE_VIEW (view), 
+       gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 
            current_log->current_path, NULL, FALSE); 
-       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (view), 
+       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), 
            current_log->current_path, NULL, TRUE, 1, 1);
    }
 
@@ -576,10 +526,10 @@ DrawLogLines (Log *current_log)
    ---------------------------------------------------------------------- */
 
 void
-log_redrawdetail ()
+log_redrawdetail (LogviewWindow *window)
 {
-  if (zoom_visible)
-    repaint_zoom ();
+  if (window->zoom_visible)
+    repaint_zoom (window);
 
 }
 
@@ -589,17 +539,17 @@ log_redrawdetail ()
    ---------------------------------------------------------------------- */
 
 int
-InitPages ()
+InitPages (LogviewWindow *window)
 {
    if (user_prefs == NULL || user_prefs->logfile == NULL)
 	return -1;
 
-   curlog = OpenLogFile (user_prefs->logfile);
-   if (curlog == NULL)
+   window->curlog = OpenLogFile (user_prefs->logfile);
+   if (window->curlog == NULL)
       return -1;
-   curlog->first_time = TRUE;
-   loglist[0] = curlog;
-   curlognum = 0;
-   numlogs++;
+   window->curlog->first_time = TRUE;
+   loglist[0] = window->curlog;
+   window->curlognum = 0;
+   (window->numlogs)++;
    return TRUE;
 }
