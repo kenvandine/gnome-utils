@@ -29,6 +29,10 @@
 
 #include "gdiskfree_app.h"
 #include "gdiskfree_menus.h"
+#include "gdiskfree_options.h"
+
+extern GDiskFreeOptions *current_options;
+
 /****************************************************************************
  * Forward references 
  **/
@@ -213,8 +217,10 @@ gdiskfree_update (GDiskFreeApp *app)
   gdouble            percent;
   glibtop_fsusage    fsu;
 
+  printf("timeout\n");
+
   gl = app->drives;
-  if (gnome_config_get_bool ("/GDiskFree/properties/sync_required"))
+  if (current_options->sync_required)
     sync ();
   while (gl)
     {
@@ -231,10 +237,7 @@ gdiskfree_update (GDiskFreeApp *app)
       gtk_dial_set_percentage ( (GtkDial *)disk->dial, (percent / 100.0));
       gl = g_list_next (gl);
     }
-  /* Pick up any changes to the app's properties */
-  interval = gnome_config_get_int ("/GDiskFree/properties/update_interval");
-  gtk_timeout_add (interval, (GtkFunction)gdiskfree_update, app);
-  return FALSE;
+  return TRUE;
 }
 /* EOF */
 

@@ -26,6 +26,7 @@
 #include <gnome.h>
 #include "gdiskfree_options.h"
 
+extern guint               timeout_id;
 extern GDiskFreeOptions    *current_options;
 /* working holds a copy of the un-applied config. */
 static GDiskFreeOptions    *working;
@@ -73,7 +74,17 @@ gdiskfree_option_dialog_apply (GnomePropertyBox *box, gint page_num,
       current_options->orientation   = opt->orientation;
       gdiskfree_app_change_orient (app, current_options->orientation);
     }
-  current_options->update_interval = opt->update_interval;
+
+  if(opt->update_interval != current_options->update_interval)
+    {
+      if(timeout_id != 0)
+	gtk_timeout_remove(timeout_id);
+
+      timeout_id = gtk_timeout_add(opt->update_interval,
+				   gdiskfree_update, app);
+      current_options->update_interval = opt->update_interval;
+    }
+
   current_options->show_mount = opt->show_mount;
   gl = app->drives;
   while (gl)
@@ -239,7 +250,7 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   gtk_signal_connect (GTK_OBJECT (udp_adjust), "value_changed",
 		      (GtkSignalFunc) gdiskfree_update_interval_changed,
 		      propbox);
-  label = gtk_label_new (_("Update interval (seconds)"));
+  label = gtk_label_new (_("Update interval (ms)"));
   gtk_table_attach (GTK_TABLE (box), label, 0, 1, 3, 4,
 		    GTK_SHRINK | GTK_FILL, GTK_SHRINK, 3, 0);
   checkbox = gtk_hscale_new (GTK_ADJUSTMENT (udp_adjust));  

@@ -1,27 +1,40 @@
 ## Process this file with automake to produce Makefile.in
 
 gdiskfree_helpdir = $(datadir)/gnome/help/gdiskfree/C
-gdiskfree_help_DATA = index.html topic.dat
+gdiskfree_help_DATA = index.html authors.html usage.html topic.dat
 
 
 SGML_FILES = 		\
 	gdiskfree.sgml	gnome-legalnotice.sgml
 
 EXTRA_DIST = \
-	topic.dat	gdiskfree.html	$(SGML_FILES)
+	topic.dat	gdiskfree	$(SGML_FILES)
 
 all:
 
 index.html: gdiskfree/index.html
 	-cd $(srcdir) && cp gdiskfree/index.html .
+	
+authors.html: gdiskfree/authors.html
+	-cd $(srcdir) && cp gdiskfree/authors.html .
+
+usage.html: gdiskfree/usage.html
+	-cd $(srcdir) && cp gdiskfree/usage.html .
+
 
 gdiskfree/index.html: $(SGML_FILES)
+	-cd $(srcdir) && db2html gdiskfree.sgml
+
+gdiskfree/usage.html: $(SGML_FILES)
+	-cd $(srcdir) && db2html gdiskfree.sgml
+
+gdiskfree/authors.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gdiskfree.sgml
 
 dist-hook:
 	mkdir $(distdir)/gdiskfree
 	-cp $(srcdir)/gdiskfree/*.html gdiskfree/*.css $(distdir)/gdiskfree
-	-cp $(srcdir)/index.html $(distdir)
+	-cp $(srcdir)/*.html $(distdir)
 	mkdir $(distdir)/images
 	-cp $(srcdir)/images/*.png $(distdir)/images
 

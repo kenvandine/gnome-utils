@@ -32,6 +32,8 @@
  **/
 GDiskFreeOptions     *current_options = NULL;
 GList                *excluded = NULL;
+guint                timeout_id;
+
 /****************************************************************************
  * Local functions
  **/
@@ -117,9 +119,8 @@ main (int argc, gchar *argv[])
   gtk_widget_show_all (GTK_WIDGET (app->app));
   gdiskfree_update (app);
   /* Start the update timer */
-  gtk_timeout_add (gnome_config_get_int 
-		   ("/GDiskFree/properties/update_interval"), 
-		   gdiskfree_update, app);
+  timeout_id = gtk_timeout_add (current_options->update_interval,
+				gdiskfree_update, app);
   gtk_main ();
   return 0;
 }
