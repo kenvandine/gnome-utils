@@ -69,8 +69,9 @@ main(int argc, char *argv[])
 	argp_program_version = VERSION;
 
 	gnome_init ("gcalc", NULL, argc, argv, 0, NULL);
-
+	
         app=gnome_app_new("gcalc", _("Gnome Calculator"));
+	gtk_window_set_wmclass (GTK_WINDOW (app), "gcalc", "gcalc");
 	gtk_window_set_policy (GTK_WINDOW (app), TRUE, FALSE, TRUE);
 
         gtk_signal_connect(GTK_OBJECT(app), "delete_event",
