@@ -129,6 +129,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    int win_height;
    GdkRectangle *area;
    LogLine *line;
+   struct tm date = {0};
 
    canvas = zoom_canvas->window;
    win_width = zoom_canvas->allocation.width;
@@ -199,9 +200,25 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
 
    line = &(curlog->pointerpg->line[curlog->pointerln]);
 
-   g_snprintf (buffer, sizeof (buffer),
-	       "%s %d %02d:%02d:%02d", _(month[(int)line->month]), 
-	       (int) line->date, line->hour, line->min, line->sec);
+   date.tm_mon = line->month;
+   date.tm_year = 70 /* bogus */;
+   date.tm_mday = line->date;
+   date.tm_hour = line->hour;
+   date.tm_min = line->min;
+   date.tm_sec = line->sec;
+   date.tm_isdst = 0;
+
+   /* Translators: do not include year, it would be bogus */
+   if (strftime (buffer, sizeof (buffer), _("%B %e %X"), &date) <= 0) {
+	   /* as a backup print in US style */
+	   g_snprintf (buffer, sizeof (buffer),
+		       "%s %d %02d:%02d:%02d",
+		       _(month[(int)line->month]), 
+		       (int) line->date,
+		       (int) line->hour,
+		       (int) line->min,
+		       (int) line->sec);
+   }
    gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ", line->process);

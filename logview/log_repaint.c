@@ -467,7 +467,8 @@ UpdateStatusArea ()
   struct tm *tdm;
   char status_text[255];
   char *buffer;
-  const char *time_fmt = "%x"; /* an evil way to avoid warning */
+  /* Translators: Date only format, %x should well do really */
+  const char *time_fmt = _("%x"); /* an evil way to avoid warning */
 
   if (curlog == NULL)
     return;
@@ -565,11 +566,26 @@ DrawLogLine (LogLine *line, int y)
   
   /*gdk_gc_set_foreground (gc, &cfg->white); */
   gdk_gc_set_foreground (gc, &cfg->black);
-  
-  if (line->hour >= 0 && line->min >= 0 && line->sec >= 0)
-    g_snprintf (tmp, sizeof (tmp), "%02d:%02d:%02d", line->hour, line->min, line->sec);
-  else
-    strcpy (tmp, " ");
+
+  if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
+	  struct tm date = {0};
+	  date.tm_mon = line->month;
+	  date.tm_year = 70 /* bogus */;
+	  date.tm_mday = line->date;
+	  date.tm_hour = line->hour;
+	  date.tm_min = line->min;
+	  date.tm_sec = line->sec;
+	  date.tm_isdst = 0;
+
+	  /* Translators: should be only the time, date could be bogus */
+	  if (strftime (tmp, sizeof (tmp), _("%X"), &date) <= 0) {
+		  /* as a backup print in 24 hours style */
+		  g_snprintf (tmp, sizeof (tmp), "%02d:%02d:%02d", line->hour, line->min, line->sec);
+	  }
+
+  } else {
+	  strcpy (tmp, " ");
+  }
   gdk_draw_string (canvas, cfg->fixedb, gc, LOG_COL1, y, tmp);
 
   /* Print four spaces */

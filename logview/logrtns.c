@@ -68,7 +68,7 @@ extern GList *actions_db;
  * -------------------
  */
 
-char *
+const char *
 C_monthname[12] =
 { "January",
   "February",
@@ -83,11 +83,19 @@ C_monthname[12] =
   "November",
   "December" };
 
+/* space separated list of locales to check, must be space separated, no
+ * newlines */
+/* FIXME: This should be checked for at configure time or something to
+ * that effect */
+char *all_locales = "af_ZA ar_SA bg_BG ca_ES cs_CZ da_DK de_AT de_BE de_CH de_DE de_LU el_GR en_AU en_CA en_DK en_GB en_IE en_US es_ES et_EE eu_ES fi_FI fo_FO fr_BE fr_CA fr_CH fr_FR fr_LU ga_IE gl_ES gv_GB hr_HR hu_HU in_ID is_IS it_CH it_IT iw_IL kl_GL kw_GB lt_LT lv_LV mk_MK nl_BE nl_NL no_NO pl_PL pt_BR pt_PT ro_RO ru_RU.KOI8-R ru_RU ru_UA sk_SK sl_SI sr_YU sv_FI sv_SE th_TH tr_TR uk_UA";
+
 static int
 get_month (const char *str)
 {
-	int i;
+	int i, j;
 	static char *monthname[12] = { 0 };
+	static GHashTable *locales_monthnames = NULL;
+	static char **locales = NULL;
 
 	for (i = 0; i < 12; i++) {
 		if (g_strncasecmp (str, C_monthname[i], 3) == 0) {
@@ -114,6 +122,51 @@ get_month (const char *str)
 
 		if (g_strcasecmp (str, monthname[i]) == 0) {
 			return i;
+		}
+	}
+
+	if (locales == NULL)
+		locales = g_strsplit (all_locales, " ", 0);
+
+	if (locales_monthnames == NULL)
+		locales_monthnames = g_hash_table_new (g_str_hash, g_str_equal);
+
+	/* Try all known locales */
+	for (j = 0; locales != NULL && locales[j] != NULL; j++) {
+		for (i = 0; i < 12; i++) {
+			char *key = g_strdup_printf ("%s %d", locales[j], i);
+			char *name = g_hash_table_lookup (locales_monthnames, key);
+			if (name == NULL) {
+				char buf[256];
+				char *old_locale = g_strdup (setlocale (LC_TIME, NULL));
+				
+				if (setlocale (LC_TIME, locales[j]) == NULL) {
+					strcpy (buf, "");
+				} else {
+					GDate *date;
+
+					date = g_date_new_dmy (1, i+1, 2000 /* bogus */);
+
+					if (g_date_strftime (buf, sizeof (buf), "%b", date) <= 0) {
+						strcpy (buf, "");
+					}
+
+					if (old_locale != NULL) {
+						setlocale (LC_TIME, old_locale);
+						g_free (old_locale);
+					}
+				}
+
+				name = g_strdup (buf);
+				g_hash_table_insert (locales_monthnames, g_strdup (key), name);
+			}
+			g_free (key);
+
+			if (name != NULL &&
+			    name[0] != '\0' &&
+			    g_strcasecmp (str, name) == 0) {
+				return i;
+			}
 		}
 	}
 

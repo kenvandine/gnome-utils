@@ -1,3 +1,14 @@
+Sun Jun 24 21:04:49 2001  George Lebl <jirka@5z.com>
+
+	* logview/log_repaint.c, logview/zoom: Draw dates/times with locale
+	  settings
+
+	* logview/logrtns.c: Get better at reading internationalized logs.
+	  If C locale and current locale fails to produce a monthname,
+	  do some brute force lookup over a large list of locales.  Works
+	  reasonably well, and only does lookup on demand with caching
+	  so it shouldn't be a drag on performance at all.
+
 Sun Jun 24 16:51:56 2001  George Lebl <jirka@5z.com>
 
 	* logview/logrtns.c: wipe a bogus sentence from an error message
