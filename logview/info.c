@@ -24,7 +24,7 @@
 #include "info.h"
 #include "misc.h"
 
-static void RepaintLogInfo (LogviewWindow *window, GtkTextBuffer *info_buffer);
+static void RepaintLogInfo (LogviewWindow *window, GtkWidget *label);
 static void QuitLogInfo (GtkWidget *widget, gpointer data);
 static void CloseLogInfo (GtkWidget *widget, int arg, gpointer data);
 
@@ -36,11 +36,9 @@ static void CloseLogInfo (GtkWidget *widget, int arg, gpointer data);
 void
 LogInfo (GtkAction *action, GtkWidget *callback_data)
 {
-	static GtkWidget *info_dialog = NULL;
-	static GtkWidget *info_text_view;
-	static GtkTextBuffer *info_buffer;
+	static GtkWidget *label;
+	static GtkWidget *info_dialog;
 	LogviewWindow *window = LOGVIEW_WINDOW(callback_data);
-	GtkWidget *frame;
 
 	if (window->curlog == NULL || window->loginfovisible)
 		return;
@@ -67,21 +65,13 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
 		gtk_dialog_set_has_separator (GTK_DIALOG(info_dialog), FALSE);
 		gtk_container_set_border_width (GTK_CONTAINER (info_dialog), 5);
 		
-		frame = gtk_frame_new (NULL);
-		gtk_frame_set_shadow_type (GTK_FRAME(frame), GTK_SHADOW_IN);
-		gtk_container_set_border_width (GTK_CONTAINER(frame), 5);
-
-		info_buffer = gtk_text_buffer_new (NULL);
-		info_text_view = gtk_text_view_new_with_buffer (info_buffer);
-		gtk_container_add (GTK_CONTAINER (frame), info_text_view);
-
-		gtk_text_view_set_editable (GTK_TEXT_VIEW (info_text_view), FALSE);
+		label = gtk_label_new (NULL);
 		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (info_dialog)->vbox), 
-				    frame, TRUE, TRUE, 0);
+				    label, TRUE, TRUE, 0);
 		
 	}
 
-	RepaintLogInfo (window, info_buffer);
+	RepaintLogInfo (window, label);
 	gtk_widget_show_all (info_dialog);
 	window->loginfovisible = TRUE;
 }
@@ -92,7 +82,7 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
    ---------------------------------------------------------------------- */
 
 static void
-RepaintLogInfo (LogviewWindow *window, GtkTextBuffer *info_buffer)
+RepaintLogInfo (LogviewWindow *window, GtkWidget *label)
 {
    char *utf8;
    gchar *info_string, *size, *modified, *start_date, *last_date, *num_lines, *tmp;
@@ -100,23 +90,23 @@ RepaintLogInfo (LogviewWindow *window, GtkTextBuffer *info_buffer)
    if (!window->curlog)
 	   return;
    
-   tmp = g_strdup_printf(_("Size: %ld bytes"), (long) window->curlog->lstats.size);
+   tmp = g_strdup_printf(_("<b>Size</b>: %ld bytes"), (long) window->curlog->lstats.size);
    size = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf (_("Modified: %s"), ctime (&(window->curlog)->lstats.mtime));
+   tmp = g_strdup_printf (_("<b>Modified</b>: %s"), ctime (&(window->curlog)->lstats.mtime));
    modified = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf(_("Start Date: %s"), ctime (&(window->curlog)->lstats.startdate));
+   tmp = g_strdup_printf(_("<b>Start Date</b>: %s"), ctime (&(window->curlog)->lstats.startdate));
    start_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf(_("Last Date: %s"), ctime (&(window->curlog)->lstats.enddate));
+   tmp = g_strdup_printf(_("<b>Last Date</b>: %s"), ctime (&(window->curlog)->lstats.enddate));
    last_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf(_("Number of Lines: %ld"), window->curlog->lstats.numlines);
+   tmp = g_strdup_printf(_("<b>Number of Lines</b>: %ld"), window->curlog->lstats.numlines);
    num_lines = LocaleToUTF8 (tmp);
    g_free (tmp);
    
@@ -128,7 +118,8 @@ RepaintLogInfo (LogviewWindow *window, GtkTextBuffer *info_buffer)
    g_free (last_date);
    g_free (num_lines);
 
-   gtk_text_buffer_set_text (info_buffer, info_string, -1);
+   gtk_label_set_text (GTK_LABEL (label), info_string);
+   gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
 
    g_free (info_string);
 }
