@@ -6,13 +6,12 @@
 # Žygimantas Beručka <uid0@akl.lt>, 2003-2005
 # 
 # 
-#: gdictsrc/gdict-pref-dialog.c:342
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-01 01:53+0200\n"
-"PO-Revision-Date: 2005-01-01 02:06+0200\n"
+"POT-Creation-Date: 2005-01-06 23:20+0200\n"
+"PO-Revision-Date: 2005-01-06 23:25+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@tuxfamily.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -279,11 +278,11 @@ msgstr "Ieškoti žodžio"
 msgid "Dictionary word entry"
 msgstr "Žodžio žodyne įvedimas"
 
-#: gdictsrc/gdict-defbox.c:332
+#: gdictsrc/gdict-defbox.c:335
 msgid "Definition preview"
 msgstr "Aprašymo peržiūra"
 
-#: gdictsrc/gdict-defbox.c:671 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
 msgid "Error invoking query"
 msgstr "Klaida išsiunčiant užklausą"
 
@@ -1058,7 +1057,7 @@ msgstr "Raskite bylas, aplankus ir dokumentus esančius Jūsų kompiuteryje"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
 #: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2678
+#: gsearchtool/gsearchtool.c:2688
 msgid "Search for Files"
 msgstr "Ieškoti bylų"
 
@@ -1285,7 +1284,9 @@ msgstr ""
 "Šis raktas nurodo ar „rodyti paslėptas bylas ir aplankus“ parametras yra "
 "pažymėtas, kai paleidžiamas paieškos įrankis."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:62
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Show more options\" section is expanded when "
 "the search tool is started."
@@ -1293,7 +1294,7 @@ msgstr ""
 "Šis raktas nurodo ar paleidus paieškos įrankį yra išplečiamas „Rodyti "
 "daugiau parametrų“ skyrius."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:63
+#: gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
@@ -1301,7 +1302,7 @@ msgstr ""
 "Šis raktas nurodo ar „dydis nemažesnis kaip“ parametras yra pažymėtas, kai "
 "paleidžiamas paieškos įrankis."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:64
+#: gsearchtool/gnome-search-tool.schemas.in.h:66
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
@@ -1309,7 +1310,7 @@ msgstr ""
 "Šis raktas nurodo ar „dydis nedidesnis kaip“ parametras yra pažymėtas, kai "
 "paleidžiamas paieškos įrankis."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:65
+#: gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
@@ -1317,7 +1318,7 @@ msgstr ""
 "Šis raktas nurodo ar paieškos įrankis išjungia „find“ komandos naudojimą po "
 "greitos paieškos įvykdymo."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:66
+#: gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
@@ -1594,12 +1595,12 @@ msgid "Searching..."
 msgstr "Ieškau..."
 
 #: gsearchtool/gsearchtool.c:1071
-msgid "Set the text of 'Name contains'"
-msgstr "Nustatyti tekstą „Varde yra“ lauke"
+msgid "Set the text of \"Name contains\" search option"
+msgstr "Nustatyti paieškos parametro „Varde yra“ tekstą"
 
 #: gsearchtool/gsearchtool.c:1072
-msgid "Set the text of 'Look in folder'"
-msgstr "Nustatyti tekstą „Ieškoti aplanke“ lauke"
+msgid "Set the text of \"Look in folder\" search option"
+msgstr "Nustatyti paieškos parametro „Ieškoti aplanke“ tekstą"
 
 #: gsearchtool/gsearchtool.c:1073
 msgid "Sort files by one of the following: name, folder, size, type, or date"
@@ -1614,16 +1615,21 @@ msgstr "Rūšiuoti mažėjimo tvarka. Pagal nutylėjimą rūšiuojama didėjant"
 msgid "Automatically start a search"
 msgstr "Automatiškai pradėti paiešką"
 
-#: gsearchtool/gsearchtool.c:1080
+#: gsearchtool/gsearchtool.c:1081
 #, c-format
-msgid "Select the '%s' constraint"
-msgstr "Pasirinkti '%s' sąlygą"
+msgid "Select the \"%s\" search option"
+msgstr "Pasirinkti paieškos parametrą „%s“"
 
-#: gsearchtool/gsearchtool.c:1186
+#: gsearchtool/gsearchtool.c:1084
+#, c-format
+msgid "Select and set the \"%s\" search option"
+msgstr "Pasirinkti ir nustatyti paieškos parametrą „%s“"
+
+#: gsearchtool/gsearchtool.c:1191
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Netinkamas parametras pateiktas kaip rūšiavimo komandos argumentas."
 
-#: gsearchtool/gsearchtool.c:1480
+#: gsearchtool/gsearchtool.c:1485
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1631,18 +1637,18 @@ msgstr ""
 "\n"
 "... Per daug klaidų, kad tilptų ekrane ..."
 
-#: gsearchtool/gsearchtool.c:1494
+#: gsearchtool/gsearchtool.c:1499
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
 "Paieškos rezultatai gali būti neteisingi.  Vykdant šią paiešką, įvyko klaidų."
 
-#: gsearchtool/gsearchtool.c:1506 gsearchtool/gsearchtool.c:1546
+#: gsearchtool/gsearchtool.c:1511 gsearchtool/gsearchtool.c:1551
 msgid "Show more _details"
 msgstr "Ro_dyti daugiau detalių"
 
-#: gsearchtool/gsearchtool.c:1534
+#: gsearchtool/gsearchtool.c:1539
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1650,118 +1656,118 @@ msgstr ""
 "Paieškos rezultatai gali būti neteisingi.  Ar norite atjungti greitos "
 "paieškos galimybę?"
 
-#: gsearchtool/gsearchtool.c:1557
+#: gsearchtool/gsearchtool.c:1562
 msgid "Disable _Quick Search"
 msgstr "Atjungti _greitą paiešką"
 
-#: gsearchtool/gsearchtool.c:1584
+#: gsearchtool/gsearchtool.c:1589
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Nepavyko nustatyti proceso grupės id antrinio proceso %d: %s.\n"
 
-#: gsearchtool/gsearchtool.c:1611
+#: gsearchtool/gsearchtool.c:1616
 msgid "Error parsing the search command."
 msgstr "Įvyko klaida apdorojant paieškos komandą."
 
-#: gsearchtool/gsearchtool.c:1644
+#: gsearchtool/gsearchtool.c:1649
 msgid "Error running the search command."
 msgstr "Įvyko klaida paleidžiant paieškos komandą."
 
-#: gsearchtool/gsearchtool.c:1787
+#: gsearchtool/gsearchtool.c:1792
 #, c-format
 msgid "'%s' entry"
 msgstr "„%s“ įrašas"
 
-#: gsearchtool/gsearchtool.c:1788
+#: gsearchtool/gsearchtool.c:1793
 msgid "Enter a value for search rule"
 msgstr "Įveskite reikšmę paieškos taisyklei"
 
-#: gsearchtool/gsearchtool.c:1842
+#: gsearchtool/gsearchtool.c:1847
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Spauskite, kad pašalinti taisyklę '%s'"
 
-#: gsearchtool/gsearchtool.c:1934
+#: gsearchtool/gsearchtool.c:1939
 msgid "A_vailable options:"
 msgstr "_Galimi nustatymai:"
 
-#: gsearchtool/gsearchtool.c:1964
+#: gsearchtool/gsearchtool.c:1969
 msgid "Search Rules Menu"
 msgstr "Paieškos taisyklių meniu"
 
-#: gsearchtool/gsearchtool.c:1965
+#: gsearchtool/gsearchtool.c:1970
 msgid "Select a search rule from the menu"
 msgstr "Pasirinkite paieškos taisyklę iš meniu"
 
-#: gsearchtool/gsearchtool.c:1994
+#: gsearchtool/gsearchtool.c:1999
 msgid "S_earch results:"
 msgstr "_Paieškos rezultatai:"
 
-#: gsearchtool/gsearchtool.c:2075
+#: gsearchtool/gsearchtool.c:2081
 msgid "Name"
 msgstr "Vardas"
 
-#: gsearchtool/gsearchtool.c:2095
+#: gsearchtool/gsearchtool.c:2101
 msgid "Folder"
 msgstr "Aplankas"
 
-#: gsearchtool/gsearchtool.c:2106
+#: gsearchtool/gsearchtool.c:2112
 msgid "Size"
 msgstr "Dydis"
 
-#: gsearchtool/gsearchtool.c:2116
+#: gsearchtool/gsearchtool.c:2122
 msgid "Type"
 msgstr "Tipas"
 
-#: gsearchtool/gsearchtool.c:2126
+#: gsearchtool/gsearchtool.c:2132
 msgid "Date Modified"
 msgstr "Keitimo data"
 
-#: gsearchtool/gsearchtool.c:2494
+#: gsearchtool/gsearchtool.c:2500
 msgid "_Name contains:"
 msgstr "_Varde yra:"
 
-#: gsearchtool/gsearchtool.c:2509 gsearchtool/gsearchtool.c:2510
+#: gsearchtool/gsearchtool.c:2515 gsearchtool/gsearchtool.c:2516
 msgid "Enter the file name you want to search."
 msgstr "Įveskite ieškomos bylos vardą."
 
-#: gsearchtool/gsearchtool.c:2510
+#: gsearchtool/gsearchtool.c:2516
 msgid "Name Contains Entry"
 msgstr "Ieškomo vardo įrašas"
 
-#: gsearchtool/gsearchtool.c:2516
+#: gsearchtool/gsearchtool.c:2522
 msgid "_Look in folder:"
 msgstr "Ieškoti ap_lanke:"
 
-#: gsearchtool/gsearchtool.c:2522
+#: gsearchtool/gsearchtool.c:2528
 msgid "Browse"
 msgstr "Naršyti"
 
-#: gsearchtool/gsearchtool.c:2528
+#: gsearchtool/gsearchtool.c:2534
 msgid "Select the folder where you want to start the search."
 msgstr "Pasirinkite aplanką, kuriame norite pradėti paiešką"
 
-#: gsearchtool/gsearchtool.c:2539
+#: gsearchtool/gsearchtool.c:2545
 msgid "Show more _options"
 msgstr "R_odyti daugiau nustatymų"
 
-#: gsearchtool/gsearchtool.c:2549
+#: gsearchtool/gsearchtool.c:2555
 msgid "Show more options"
 msgstr "Rodyti daugiau parinkčių"
 
-#: gsearchtool/gsearchtool.c:2549
+#: gsearchtool/gsearchtool.c:2555
 msgid "Expands or collapses a list of search options."
 msgstr "Išskleidžia ir sutraukia paieškos parinkčių sąrašą."
 
-#: gsearchtool/gsearchtool.c:2601
+#: gsearchtool/gsearchtool.c:2607
 msgid "Click to Start the search"
 msgstr "Norėdami pradėti paiešką, spauskite čia"
 
-#: gsearchtool/gsearchtool.c:2602
+#: gsearchtool/gsearchtool.c:2608
 msgid "Click to Stop the search"
 msgstr "Norėdami sustabdyti paiešką, spauskite čia"
 
-#: gsearchtool/gsearchtool.c:2698
+#: gsearchtool/gsearchtool.c:2708
 msgid "Cannot initialize bonobo."
 msgstr "Nepavyko inicializuoti bonobo."
 
@@ -1959,6 +1965,11 @@ msgstr[0] "%ld baitas"
 msgstr[1] "%ld baitai"
 msgstr[2] "%ld baitų"
 
+#: logview/info.c:97
+#, c-format
+msgid "<b>Size</b>: %s"
+msgstr "<b>Dydis</b>: %s"
+
 #: logview/info.c:102
 #, c-format
 msgid "<b>Modified</b>: %s"
@@ -2034,8 +2045,8 @@ msgid "%x"
 msgstr "%x"
 
 #: logview/log_repaint.c:297
-msgid "Last Modified: "
-msgstr "Paskutinio pakeitimo data:"
+msgid "Last Modified:"
+msgstr "Vėliausiai modifikuota:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
@@ -2090,8 +2101,8 @@ msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: baigėsi atmintis"
 
 #: logview/logview-findbar.c:265
-msgid "Fin_d : "
-msgstr "_Rasti: "
+msgid "Fin_d:"
+msgstr "_Rasti:"
 
 #: logview/logview-findbar.c:283
 msgid "Find Next"
@@ -2170,8 +2181,8 @@ msgid "Open the help contents for the log viewer"
 msgstr "Atidaryti žurnalų žiūrėjimo programos pagalbą"
 
 #: logview/logview.c:111
-msgid "Show the about dialog for the gconf editor"
-msgstr "Parodyti gconf redaktoriaus „apie“ langą"
+msgid "Show the about dialog for the log viewer"
+msgstr "Parodyti žurnalų žiūryklės „apie“ langą"
 
 #: logview/logview.c:117
 msgid "_Monitor"
@@ -2248,6 +2259,9 @@ msgstr "Įrašo detalės"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
+#~ msgid "Select the '%s' constraint"
+#~ msgstr "Pasirinkti '%s' sąlygą"
+
 #~ msgid "_Show Dictionary"
 #~ msgstr "_Rodyti žodyną"
 
@@ -2298,9 +2312,6 @@ msgstr "%B %e %X"
 
 #~ msgid "Could not move \"%s\" to the trash."
 #~ msgstr "Nepavyko perkelti „%s“ į šiukšlinę."
-
-#~ msgid "<b>Size</b>: %ld bytes"
-#~ msgstr "<b>Dydis</b>: %ld baitų"
 
 #~ msgid "Open the specified log."
 #~ msgstr "Atidaryti nurodytą žurnalą."
