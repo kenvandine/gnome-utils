@@ -5,19 +5,12 @@ endif
 guile_DIRS = $(guile_extra_DIRS)
 endif
 
-if HAVE_LIBGTOP
-gdiskfree = gdiskfree
-if HAVE_LIBXML
-stripchart = stripchart
-endif
-endif
-
 if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
 SUBDIRS = po idl $(gfloppy) logview gcharmap \
-	gcalc gsearchtool $(gdiskfree) $(stripchart) gtt gdictsrc \
+	gcalc gsearchtool gtt gdictsrc \
 	$(guile_DIRS) mini-utils splash gdialog \
 	meat-grinder exe-handler omf-install
 
