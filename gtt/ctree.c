@@ -444,9 +444,9 @@ ctree_add (GttProject *p, GtkCTreeNode *parent)
 	GtkCTreeNode *treenode;
 	char *tmp[4];
 
-	print_time (ever_timestr, 24, gtt_project_total_secs_ever(p), 
+	print_hours_elapsed (ever_timestr, 24, gtt_project_total_secs_ever(p), 
 			config_show_secs);
-	print_time (day_timestr, 24, gtt_project_total_secs_day(p), 
+	print_hours_elapsed (day_timestr, 24, gtt_project_total_secs_day(p), 
 			config_show_secs);
 	tmp[TOTAL_COL] = ever_timestr;
 	tmp[TIME_COL]  = day_timestr;
@@ -477,9 +477,9 @@ ctree_insert_before (GttProject *p, GttProject *sibling)
 	GtkCTreeNode *parentnode=NULL;
 	char *tmp[4];
 
-	print_time (ever_timestr, 24, gtt_project_total_secs_ever(p), 
+	print_hours_elapsed (ever_timestr, 24, gtt_project_total_secs_ever(p), 
 			config_show_secs);
-	print_time (day_timestr, 24, gtt_project_total_secs_day(p), 
+	print_hours_elapsed (day_timestr, 24, gtt_project_total_secs_day(p), 
 			config_show_secs);
 	tmp[TOTAL_COL] = ever_timestr;
 	tmp[TIME_COL]  = day_timestr;
@@ -510,9 +510,9 @@ ctree_insert_after (GttProject *p, GttProject *sibling)
 	GtkCTreeNode *next_sibling=NULL;
 	char *tmp[4];
 
-	print_time (ever_timestr, 24, gtt_project_total_secs_ever(p), 
+	print_hours_elapsed (ever_timestr, 24, gtt_project_total_secs_ever(p), 
 			config_show_secs);
-	print_time (day_timestr, 24, gtt_project_total_secs_day(p), 
+	print_hours_elapsed (day_timestr, 24, gtt_project_total_secs_day(p), 
 			config_show_secs);
 	tmp[TOTAL_COL] = ever_timestr;
 	tmp[TIME_COL]  = day_timestr;
@@ -569,8 +569,8 @@ cupdate_label(GttProject *p, gboolean expand)
 		secs_day = gtt_project_total_secs_day (p);
 	}
 
-	print_time (ever_timestr, 24, secs_ever, config_show_secs);
-	print_time (day_timestr, 24, secs_day, config_show_secs);
+	print_hours_elapsed (ever_timestr, 24, secs_ever, config_show_secs);
+	print_hours_elapsed (day_timestr, 24, secs_day, config_show_secs);
 
 	gtk_ctree_node_set_text(GTK_CTREE(glist), p->trow, TOTAL_COL,
 			   ever_timestr);

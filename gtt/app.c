@@ -82,7 +82,7 @@ void update_status_bar(void)
         if (!old_day_time) old_day_time = g_strdup("");
         if (!old_project) old_project = g_strdup("");
 
-	print_time (day_total_str, 25, 
+	print_hours_elapsed (day_total_str, 25, 
 		gtt_project_list_total_secs_day(), config_show_secs);
 
         s = g_strdup(day_total_str);

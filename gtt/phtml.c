@@ -43,6 +43,8 @@ show_journal (GttPhtml *phtml, GttProject*prj)
 
 	for (node = gtt_project_get_tasks(prj); node; node=node->next)
 	{
+		int prt_date = 1;
+		time_t prev_stop = 0;
 		GList *in;
 		GttTask *tsk = node->data;
 		
@@ -58,19 +60,40 @@ show_journal (GttPhtml *phtml, GttProject*prj)
 		{
 			size_t len;
 			GttInterval *ivl = in->data;
-			char prn[132], *p;
+			char prn[232], *p;
 			time_t start, stop, elapsed;
 			start = gtt_interval_get_start (ivl);
 			stop = gtt_interval_get_stop (ivl);
 			elapsed = stop - start;
 			
 			p = prn;
-			p = stpcpy (p, "<tr><td>&nbsp<td>");
-			p = print_date_time (p, 100, start);
-			p = stpcpy (p, "<td>");
-			p = print_date_time (p, 70, stop);
-			p = stpcpy (p, "<td>");
-			p = print_time (p, 40, elapsed, TRUE);
+			p = stpcpy (p, 
+		"<tr><td>&nbsp;&nbsp;&nbsp;<td align=right>&nbsp;&nbsp;");
+
+			/* print hour only or date too? */
+			if (0 != prev_stop) {
+				prt_date = is_same_day(start, prev_stop);
+			}
+			if (prt_date) {
+				p = print_date_time (p, 100, start);
+			} else {
+				p = print_time (p, 100, start);
+			}
+
+			/* print hour only or date too? */
+			prt_date = is_same_day(start, stop);
+			p = stpcpy (p, "&nbsp;&nbsp;<td>&nbsp;&nbsp;");
+			if (prt_date) {
+				p = print_date_time (p, 70, stop);
+			} else {
+				p = print_time (p, 70, stop);
+			}
+
+			prev_stop = stop;
+
+			p = stpcpy (p, "&nbsp;&nbsp;<td>&nbsp;&nbsp;");
+			p = print_hours_elapsed (p, 40, elapsed, TRUE);
+			p = stpcpy (p, "&nbsp;&nbsp;");
 			len = p - prn;
 			(phtml->write_stream) (phtml, prn, len);
 		}
