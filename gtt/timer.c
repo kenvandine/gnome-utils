@@ -25,6 +25,7 @@
 
 gint main_timer = 0;
 time_t last_timer = -1;
+static int timer_stopped = 1;
 
 
 
@@ -42,10 +43,14 @@ static gint timer_func(gpointer data)
 			log_endofday();
 			project_list_time_reset();
 		}
-                diff_time = t - last_timer;
+                if (!timer_stopped)
+                        diff_time = t - last_timer;
+                else
+                        diff_time = 1;
 	} else {
                 diff_time = 1;
         }
+        timer_stopped = 0;
 	last_timer = t;
 	if (!cur_proj) return 1;
 	cur_proj->secs += diff_time;
@@ -84,5 +89,6 @@ void stop_timer(void)
 	if (!main_timer) return;
 	gtk_timeout_remove(main_timer);
 	main_timer = 0;
+        timer_stopped = 1;
 }
 

@@ -173,8 +173,20 @@ gtt_help_destroy(GtkObject *object)
 static void
 gtt_help_class_init(GttHelpClass *helpclass)
 {
+        GnomeStockPixmapEntry *entry;
 	GtkObjectClass *object_class = GTK_OBJECT_CLASS(helpclass);
 	object_class->destroy = gtt_help_destroy;
+        entry = g_malloc(sizeof(GnomeStockPixmapEntry));
+        entry->type = GNOME_STOCK_PIXMAP_TYPE_DATA;
+        entry->data.xpm_data = tb_back_xpm;
+        gnome_stock_pixmap_register("GttHelp_Back", GNOME_STOCK_PIXMAP_REGULAR,
+                                    entry);
+        entry = g_malloc(sizeof(GnomeStockPixmapEntry));
+        entry->type = GNOME_STOCK_PIXMAP_TYPE_DATA;
+        entry->data.xpm_data = tb_forward_xpm;
+        gnome_stock_pixmap_register("GttHelp_Forward",
+                                    GNOME_STOCK_PIXMAP_REGULAR,
+                                    entry);
 }
 
 
@@ -367,9 +379,13 @@ gtt_help_init_toolbar(GttHelp *help)
 
         gtk_toolbar_append_space(tbar);
 
+#if 1
+        pixmap = gnome_stock_pixmap_widget(GTK_WIDGET(tbar), "GttHelp_Back");
+#else
         pixmap = gnome_create_pixmap_widget_d(GTK_WIDGET(help),
                                               GTK_WIDGET(tbar),
                                               tb_back_xpm);
+#endif
         w = gtk_toolbar_append_item(tbar, "Back",
                                     "Go to the previouse location "
                                     "in history list",
@@ -379,9 +395,14 @@ gtt_help_init_toolbar(GttHelp *help)
                                   GTK_SIGNAL_FUNC(help_back),
                                   GTK_OBJECT(help));
 
+#if 1
+        pixmap = gnome_stock_pixmap_widget(GTK_WIDGET(tbar),
+                                           "GttHelp_Forward");
+#else
         pixmap = gnome_create_pixmap_widget_d(GTK_WIDGET(help),
                                               GTK_WIDGET(tbar),
                                               tb_forward_xpm);
+#endif
         w = gtk_toolbar_append_item(tbar, "Forward",
                                     "Go to the next location in history list",
                                     pixmap, NULL, NULL);

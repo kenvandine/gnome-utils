@@ -42,7 +42,7 @@
 /* Due to the same problems I define this, if I want to include the
    gtk_widget_show for the frame and the label of the statusbar */
 #ifdef GTK_USE_STATUSBAR
-#undef SB_USE_HACK
+#define SB_USE_HACK
 #endif
 
 

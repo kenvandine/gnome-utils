@@ -75,8 +75,8 @@ EXTRA_DIST = \
 	gtt.text		\
 	gtt.desktop
 
-# Utilitiesdir = $(datadir)/apps/Utilities
-# Utilities_DATA = gtt.desktop
+Utilitiesdir = $(datadir)/apps/Utilities
+Utilities_DATA = gtt.desktop
 
 #install-data-local:
 #	 $(mkinstalldirs) $(Utilitiesdir)
