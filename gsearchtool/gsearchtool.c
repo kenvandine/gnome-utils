@@ -282,10 +282,11 @@ kill_after_nth_nl (GString *str, int n)
 static gchar *
 get_icon_of_file_with_mime_type (const gchar *file_name, const gchar *mime_type) 
 {
-	const char *icon_name = gnome_vfs_mime_get_icon(mime_type);
+	const char *icon_name; 
 	gchar *icon_path;
 	gchar *tmp;
 	
+	icon_name = gnome_vfs_mime_get_icon(mime_type);
 	if (g_file_test ((icon_name), G_FILE_TEST_EXISTS)) {
 		icon_path = g_strdup (icon_name);
 		return icon_path;
@@ -437,10 +438,11 @@ static gchar *
 get_readable_date (time_t file_time_raw)
 {
 	struct tm *file_time;
-	const char *format;
+	gchar *format;
 	GDate *today;
 	GDate *file_date;
 	guint32 file_date_age;
+	gchar *readable_date;
 
 	file_time = localtime (&file_time_raw);
 	file_date = g_date_new_dmy (file_time->tm_mday,
@@ -466,7 +468,10 @@ get_readable_date (time_t file_time_raw)
 		format = g_strdup(_("%m/%-d/%y, %-I:%M %p"));
 	}
 	
-	return strdup_strftime (format, file_time);
+	readable_date = strdup_strftime (format, file_time);
+	g_free (format);
+	
+	return readable_date;
 } 
 
 static gchar *
@@ -506,9 +511,9 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 	gchar *icon_path = get_icon_of_file_with_mime_type (file, mime_type);
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (icon_path, NULL);
 	GnomeVFSFileInfo *vfs_file_info = gnome_vfs_file_info_new ();
-	gchar *utf8_file = g_locale_to_utf8 (file, -1, NULL, NULL, NULL);
 	gchar *readable_size, *readable_date, *date;
 	gchar *utf8_base_name, *utf8_dir_name;
+	gchar *base_name, *dir_name;
 	
 	if (pixbuf != NULL) {
 		GdkPixbuf *scaled = gdk_pixbuf_scale_simple (pixbuf,
@@ -522,10 +527,12 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
 	readable_date = get_readable_date (vfs_file_info->mtime);
 	date = get_basic_date (vfs_file_info->mtime);
-	utf8_base_name = g_locale_to_utf8 (g_path_get_basename(file), -1, NULL, 
-					   NULL, NULL);
-	utf8_dir_name = g_locale_to_utf8 (g_path_get_dirname(file), -1, NULL, 
-					  NULL, NULL);
+	
+	base_name = g_path_get_basename(file);
+	dir_name = g_path_get_dirname(file);
+	
+	utf8_base_name = g_locale_to_utf8 (base_name, -1, NULL, NULL, NULL);
+	utf8_dir_name = g_locale_to_utf8 (dir_name, -1, NULL, NULL, NULL);
 
 	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
 	gtk_list_store_set (GTK_LIST_STORE(store), iter,
@@ -540,9 +547,10 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 			    COLUMN_NO_FILES_FOUND, FALSE,
 			    -1);
 			    
-	gnome_vfs_file_info_clear (vfs_file_info);
+	gnome_vfs_file_info_unref (vfs_file_info);
 	g_object_unref (G_OBJECT (pixbuf));
-	g_free (utf8_file);
+	g_free (base_name);
+	g_free (dir_name);
 	g_free (utf8_base_name);
 	g_free (utf8_dir_name);
 	g_free (icon_path); 
