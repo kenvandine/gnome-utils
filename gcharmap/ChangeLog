@@ -1,3 +1,12 @@
+2002-03-04 Muktha <muktha.narayan@wipro.com>
+        
+        * src/asciiselect.c: convert the strings to utf8 so
+        that the characters after character code 127 are
+        displayed in the 'browse characters' dialog.
+        * src/callbacks.c: convert to unicode character so
+        that the character codes displayed for higher Ascii
+        characters are correct.
+
 2002-03-01 John Fleck <jfleck@inkstain.net>
 
 	* help/C/gnome-character-map.xml

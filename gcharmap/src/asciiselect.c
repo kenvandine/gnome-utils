@@ -81,10 +81,18 @@ cb_ascii_select_spin_changed (GtkEditable *edit, gpointer user_data)
 {
     gint i;
 
+    gchar buf[7];
+    gint n;
+
     if (updating == TRUE) return;
     updating = TRUE;
     i = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (edit));
-    gtk_entry_set_text (GTK_ENTRY (user_data), g_strdup_printf ("%c", i));
+    
+    n=g_unichar_to_utf8(i, buf);
+    buf[n]=0;
+
+    gtk_entry_set_text (GTK_ENTRY (user_data), buf);
+
     updating = FALSE;
 }
 

@@ -125,7 +125,7 @@ cb_charbtn_enter (GtkButton *button, gpointer user_data)
     if (strcmp (text, _("del")) == 0) {
 	    code = 127;
     } else {
-	    code = (unsigned char)text[0];
+            code = g_utf8_get_char(text);
     }
 
     s = g_strdup_printf (_(" %s: Character code %d"), text, code);
