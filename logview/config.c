@@ -43,6 +43,21 @@
 #define HELVETICA_10_FONT  _("-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*")
 #define HELVETICA_10_BFONT _("-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*")
 
+static GdkFont *
+fontset_load (const char *font_name)
+{
+	GdkFont *font;
+
+	font = gdk_fontset_load (font_name);
+	if (font != NULL)
+		return font;
+	font = gdk_font_load ("fixed");
+	if (font != NULL)
+		return font;
+	return gdk_font_load ("*");
+}
+
+
 
 /* ----------------------------------------------------------------------
    NAME:	CreateConfig
@@ -94,11 +109,11 @@ CreateConfig(void)
   newcfg->white = white;
 
   /*  Set up fonts used */
-  newcfg->headingb = gdk_fontset_load (HELVETICA_12_BFONT);
-  newcfg->heading  = gdk_fontset_load (HELVETICA_12_FONT);
-  newcfg->fixed    = gdk_fontset_load (FIXED_10_FONT);
-  newcfg->fixedb   = gdk_fontset_load (FIXED_10_BFONT);
-  newcfg->small    = gdk_fontset_load (HELVETICA_10_FONT);
+  newcfg->headingb = fontset_load (HELVETICA_12_BFONT);
+  newcfg->heading  = fontset_load (HELVETICA_12_FONT);
+  newcfg->fixed    = fontset_load (FIXED_10_FONT);
+  newcfg->fixedb   = fontset_load (FIXED_10_BFONT);
+  newcfg->small    = fontset_load (HELVETICA_10_FONT);
 
   /*  Create styles */
   cs = newcfg->main_style = gtk_style_new ();
@@ -132,7 +147,7 @@ CreateConfig(void)
   /*   } */
 
   gdk_font_unref (cs->font);
-  newcfg->main_style->font = gdk_fontset_load (HELVETICA_10_FONT);
+  newcfg->main_style->font = fontset_load (HELVETICA_10_FONT);
 
   /* Set default style */
 #if 0
@@ -145,7 +160,7 @@ CreateConfig(void)
   cs->bg[GTK_STATE_NORMAL].green = (gushort) 65535;
   cs->bg[GTK_STATE_NORMAL].blue  = (gushort) 65535;
   gdk_font_unref (cs->font);
-  cs->font = gdk_fontset_load (HELVETICA_10_FONT);
+  cs->font = fontset_load (HELVETICA_10_FONT);
 
   cs = newcfg->black_bg_style = gtk_style_new ();
   cs->bg[GTK_STATE_NORMAL].red   = (gushort) 0;
@@ -153,7 +168,7 @@ CreateConfig(void)
   cs->bg[GTK_STATE_NORMAL].blue  = (gushort) 0;
   cs->bg[GTK_STATE_NORMAL].pixel = black.pixel;
   gdk_font_unref (cs->font);
-  cs->font = gdk_fontset_load (HELVETICA_10_FONT);
+  cs->font = fontset_load (HELVETICA_10_FONT);
 
   /* Set paths */
   newcfg->regexp_db_path = NULL;
