@@ -1,3 +1,52 @@
+2000-05-17  Bradford Hovinen  <hovinen@udel.edu>
+
+	* gdictsrc/gdict-speller.c (gdict_speller_reset_strat): Handle
+	error condition correctly
+
+	* gdictsrc/gdict-pref-dialog.c (pref_dialog_reset_db):
+	(pref_dialog_reset_strat): Handle connection error condition
+	correctly
+
+	* gdictsrc/gdict-app.c (gdict_spell): Return -1 on lookup failure
+	(gdict_not_online): New message
+	(gdict_app_do_lookup): Get retval from gdict_spell, call
+	gdict_not_online if either function returned a nonzero value
+	(spell_cb): Call gdict_not_online on failure
+
+	* gdictsrc/gdict-pref-dialog.c (pref_dialog_update_pref): Don't
+ 	abort if we can't connect to the server, but instead show an error
+ 	dialog.
+
+	* gdictsrc/gdict-app.c (gdict_init_context): Don't display error
+	dialog, but instead return nonzero if the host could not be
+	found. main() will ignore the return condition, but
+	pref_dialog_update_pref will not, which is what we want.
+
+	* gdictsrc/dict.c (dict_command_invoke): Test context->hostinfo
+	to see if DNS lookup has succeeded yet, invoke lookup if not
+	(dict_context_do_dns_lookup): Define
+	(dict_command_invoke): Use dict_context_do_dns_lookup if the host
+	information field in the context is not set; make a non-NULL
+	context an invariant
+	(dict_context_new): Use dict_context_do_dns_lookup to perform host 
+	lookup
+
+	* gdictsrc/gdict-app.c (gdict_app_show_preferences): Make it
+	invariant that pref_dialog should not be NULL after construction
+
+	* gdictsrc/dict.c (dict_context_new): Don't return NULL if the
+	hostname lookup fails, instead check the error condition and defer 
+	the lookup if necessary.
+
+	* gdictsrc/dict.h: Added entries for host info and hostname to
+	dict_context_t
+
+	* gdictsrc/dict.c: Added emacs directive to set indentation style
+ 	to k&r, 4-space indent
+
+	* gdictsrc/README: Added my name and email address; added note
+ 	that the command line version is out of date
+
 2000-05-15  Andreas Hyden  <a.hyden@cyberpoint.se>
 
 	* gdictsrc/gdict.desktop: Added Swedish translation.
