@@ -714,6 +714,7 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 {
    char *f;
    Log *tl;
+   gint i;
 
    /* Check that we haven't opened all logfiles allowed    */
    if (numlogs >= MAX_NUM_LOGS)
@@ -724,6 +725,17 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 
    f = g_strdup (gtk_file_selection_get_filename (GTK_FILE_SELECTION (fs)));
    gtk_widget_destroy (GTK_WIDGET (fs));
+
+   /* Check whether we are opening the already opened log file */ 
+   for ( i = 0; i < numlogs; i++)
+   {
+      if (strcmp (f, loglist[i]->name) == 0)
+      {
+         ShowErrMessage (_("File already opened"));
+         g_free (f);
+         return;
+      }
+   }      
 
    if (f != NULL) {
       if ((tl = OpenLogFile (f)) != NULL)
