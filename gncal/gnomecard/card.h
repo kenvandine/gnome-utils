@@ -276,6 +276,8 @@ typedef struct _Card
 	CardStrProperty url;
 	CardStrProperty uid;
 	CardKey         key;
+	
+	void *user_data;
 } Card;
 
 Card *card_new(void);

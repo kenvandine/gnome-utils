@@ -14,16 +14,21 @@
 #include "cardnew.xpm"
 #include "cardedit.xpm"
 
+#define TREE_SPACING 20
 #define _FREE(a) if (a) free (a)
 
 GtkWidget *gnomecard_window;
 GtkWidget *test;
+GtkCTree  *crd_tree;
 
 GtkWidget *tb_next, *tb_prev, *tb_edit, *tb_save, *tb_del;
 GtkWidget *menu_next, *menu_prev, *menu_edit, *menu_save, *menu_del;
 
 GList *crds;
+GList *crd_tree_sib;
 GList *curr_crd;
+
+pix *crd_pix, *ident_pix, *geo_pix, *org_pix, *exp_pix, *sec_pix;
 
 char *gnomecard_fname;
 gboolean gnomecard_changed;
@@ -41,7 +46,6 @@ GnomeStockPixmapEntry *gnomecard_pentry_new(gchar **xpm_data, gint size)
 	
 	return pentry;
 }
-	
 
 void gnomecard_init_stock(void)
 {
@@ -61,6 +65,29 @@ void gnomecard_init_stock(void)
 				    GNOME_STOCK_PIXMAP_REGULAR, pentry);
 }
 
+pix *pix_new(char **xpm)
+{
+	GdkImlibImage *image;
+	pix *new_pix;
+	
+	new_pix = g_malloc(sizeof(pix));
+	
+        image = gdk_imlib_create_image_from_xpm_data(xpm);
+        gdk_imlib_render (image, 16, 16);
+        new_pix->pixmap = gdk_imlib_move_image (image);
+        new_pix->mask = gdk_imlib_move_mask (image);
+	gdk_imlib_destroy_image (image);
+        gdk_window_get_size(new_pix->pixmap, 
+			    &(new_pix->width), &(new_pix->height));
+	
+	return new_pix;
+}
+
+void gnomecard_init_pmaps(void)
+{
+	crd_pix = pix_new(cardnew_xpm);
+}
+	
 GtkWidget *my_gtk_entry_new(gint len, char *init)
 {
 	GtkWidget *entry;
@@ -181,13 +208,13 @@ void my_connect(gpointer widget, char *sig, gpointer box, CardProperty *prop)
 			   prop);
 }
 
-void prop_apply(GtkWidget *widget, int page)
+void gnomecard_prop_apply(GtkWidget *widget, int page)
 {
 	GnomeCardEditor *ce;
 	Card *crd;
 	struct tm *tm;
 	time_t tt;
-	
+
 	if (page != -1)
 	  return;             /* ignore partial applies */
 	
@@ -253,6 +280,11 @@ void prop_apply(GtkWidget *widget, int page)
 	  crd->key.type = KEY_PGP;
 	else
 	  crd->key.type = KEY_X509;
+
+	gtk_ctree_set_node_info(crd_tree, crd->user_data, crd->fname.str,
+				TREE_SPACING, crd_pix->pixmap,
+				crd_pix->mask, crd_pix->pixmap,
+				crd_pix->mask, FALSE, FALSE);
 	
 	gnomecard_set_curr(ce->l);
 	gnomecard_set_changed(TRUE);
@@ -278,7 +310,7 @@ void gnomecard_edit(GList *node)
 	gtk_window_set_wmclass(GTK_WINDOW(box), "gnomecard",
 			       "GnomeCard");
 	gtk_signal_connect(GTK_OBJECT(box), "apply",
-			   (GtkSignalFunc)prop_apply, NULL);
+			   (GtkSignalFunc)gnomecard_prop_apply, NULL);
 	
 	/* Identity */
 	
@@ -630,7 +662,9 @@ int gnomecard_destroy_cards(void)
 	for (l = crds; l; l = l->next)
 	  card_free (l->data);
 	
+	gtk_ctree_clear(crd_tree);
 	g_list_free(crds);
+	crd_tree_sib = NULL;
 	crds = NULL;
 	
 	gnomecard_set_curr(NULL);
@@ -642,13 +676,21 @@ int gnomecard_destroy_cards(void)
 void gnomecard_new_card(GtkWidget *widget, gpointer data)
 {
 	Card *crd;
+	char *text[] = {"No fname for this card."};
+	
+	crd_tree_sib = gtk_ctree_insert(crd_tree, NULL, crd_tree_sib, text,
+					TREE_SPACING, crd_pix->pixmap,
+					crd_pix->mask, crd_pix->pixmap,
+					crd_pix->mask, FALSE, FALSE);
 	
 	crd = card_new();
+	crd->user_data = crd_tree_sib;
 	crds = g_list_append(crds, crd);
 	gnomecard_edit(crds);
 	
 	gnomecard_set_curr(g_list_last(crds));
 	gnomecard_set_changed(TRUE);
+	
 }
 
 void gnomecard_del_card(GtkWidget *widget, gpointer data)
@@ -662,6 +704,7 @@ void gnomecard_del_card(GtkWidget *widget, gpointer data)
 	
 	card_free(curr_crd->data);
 	crds = g_list_remove_link(crds, curr_crd);
+	gtk_ctree_remove(crd_tree, ((Card *) curr_crd->data)->user_data);
 	g_list_free(curr_crd);
 	
 	gnomecard_set_curr(tmp);
@@ -702,7 +745,19 @@ void gnomecard_open_call(GtkWidget *widget, gpointer data)
 		gtk_widget_show(w);
 	} else {
 		if (gnomecard_destroy_cards()) {
+			char *text[1];
+			
 			crds = c;
+			
+			for (c = crds; c; c = c->next) {
+				text[0] = ((Card *) c->data)->fname.str;
+				((Card *) c->data)->user_data = 
+				  crd_tree_sib = gtk_ctree_insert(crd_tree, NULL, crd_tree_sib, text,
+								  TREE_SPACING, crd_pix->pixmap,
+								  crd_pix->mask, crd_pix->pixmap,
+								  crd_pix->mask, FALSE, FALSE);
+			}
+			
 			g_free(gnomecard_fname);
 			gnomecard_fname = g_strdup(fname);
 			gnomecard_set_curr(g_list_first(crds));
@@ -895,11 +950,10 @@ int main (int argc, char *argv[])
 {
 	GtkWidget *vbox;
 
-	crds = NULL;
-	
 	gnome_init("gnomecard", NULL, argc, argv, 0, NULL);
         gdk_imlib_init ();
 	gnomecard_init_stock();
+	gnomecard_init_pmaps();
 	textdomain(PACKAGE);
 	
 	gnomecard_window = gnome_app_new("GnomeCard", "GnomeCard");
@@ -920,6 +974,16 @@ int main (int argc, char *argv[])
 	test = gtk_label_new("");
 	gtk_box_pack_start(GTK_BOX(vbox), test, FALSE, FALSE, 0);
 	gtk_widget_show(test);
+	
+	crd_tree = GTK_CTREE(gtk_ctree_new(1, 0));
+	gtk_ctree_set_line_style (crd_tree, GTK_CTREE_LINES_NONE);
+	gtk_ctree_set_reorderable (crd_tree, FALSE);
+	
+	gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(crd_tree), TRUE, TRUE, 0);
+	gtk_widget_show(GTK_WIDGET(crd_tree));
+	
+	crds = NULL;
+	crd_tree_sib = NULL;
 	
 	tb_save = toolbar[2].widget;
 	tb_edit = toolbar[5].widget;

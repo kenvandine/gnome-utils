@@ -27,3 +27,12 @@ typedef struct
 	GList *l;
 }
 GnomeCardEditor;
+
+typedef struct 
+{
+	GdkPixmap *pixmap;
+	GdkBitmap *mask;
+	
+        gint width;
+        gint height;
+} pix;
