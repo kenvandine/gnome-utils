@@ -285,7 +285,7 @@ main (int argc, char *argv[])
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 
-	gnome_init ("gfontsel", &parser, argc, argv, ARGP_INPUT, NULL, &cfg);
+	gnome_init_with_data ("gfontsel", &parser, argc, argv, 0, NULL, &cfg);
 
 	signal (SIGHUP, handle_signal);
 	signal (SIGINT, handle_signal);
