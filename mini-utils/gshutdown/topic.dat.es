@@ -1,1 +1,0 @@
-gshutdown.es.html	Ayuda sobre como apagar su equipo
