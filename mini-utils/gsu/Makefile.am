@@ -4,10 +4,19 @@ INCLUDES = 			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	$(GNOME_INCLUDEDIR)
 
-bin_PROGRAMS = gsu
+bin_PROGRAMS = gsu-helper
+
+EXTRA_PROGRAMS = gsu
 
 gsu_SOURCES = \
 	gsu.c
+
+gsu_helper_SOURCES = \
+	gsu-helper.c
+
+gsu_helper_LDADD = \
+	$(GLIB_LIBS)		\
+	$(PAM_LIBS)
 
 gsu_LDADD = \
 	$(GNOME_LIBDIR)         \
