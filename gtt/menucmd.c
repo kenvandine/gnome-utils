@@ -126,9 +126,12 @@ project_name_desc(GtkWidget *w, GtkEntry **entries)
         if (!(desc = gtk_entry_get_text(entries[1]))) return;
 	if (!name[0]) return;
 
+	/* New project will have the same parent as the currently
+	 * running project.  This seems like the sanest choice.
+	 */
 	proj = gtt_project_new_title_desc(name, desc);
-	gtt_project_list_append (proj);
-        ctree_add (proj, NULL);
+	gtt_project_insert_before (proj, cur_proj);
+	ctree_insert_before (proj, cur_proj);
 }
 
 static void
@@ -212,7 +215,6 @@ init_project_list_2(GtkWidget *widget, int button)
 	 * The config file contains stuff like the 'current project',
 	 * which is undefined until the projects are read. */
         xml_filepath = gnome_config_get_real_path ("gtt.xml");
-printf ("duuuude init list its %s\n", xml_filepath);
         gtt_xml_read_file (xml_filepath);
 	
 	gtt_load_config (NULL);
