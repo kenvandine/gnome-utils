@@ -22,15 +22,13 @@
 
 #include <config.h>
 #include <gtk/gtk.h>
-
 #include "logview.h"
 
 static gboolean queue_err_messages = FALSE;
 static GList *msg_queue_main = NULL, *msg_queue_sec = NULL;
 
-
 static void
-MakeErrorDialog (LogviewWindow *window, const char *main, char *secondary)
+MakeErrorDialog (GtkWidget *window, const char *main, char *secondary)
 {
 	GtkWidget *dialog;
 	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
@@ -40,7 +38,6 @@ MakeErrorDialog (LogviewWindow *window, const char *main, char *secondary)
 						     "<span weight=\"bold\" size=\"larger\">%s</span>\n\n%s",
 						     main,
 						     secondary);
-	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_dialog_run (GTK_DIALOG (dialog));
 	gtk_widget_destroy (dialog);
@@ -53,7 +50,7 @@ MakeErrorDialog (LogviewWindow *window, const char *main, char *secondary)
    ---------------------------------------------------------------------- */
 
 void
-ShowErrMessage (LogviewWindow *window, char *main, char *secondary)
+ShowErrMessage (GtkWidget *window, char *main, char *secondary)
 {
 	if (queue_err_messages) {
 		msg_queue_main = g_list_append (msg_queue_main, g_strdup (main));

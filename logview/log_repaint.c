@@ -19,22 +19,11 @@
 
     ---------------------------------------------------------------------- */
 
-#include <config.h>
-#include <sys/stat.h>
-#include <gnome.h>
+#include <glib/gi18n.h>
 #include "logview.h"
 #include "logrtns.h"
 #include "log_repaint.h"
 #include "misc.h"
-
-/* 
- * -------------------
- * Global variables 
- * -------------------
- */
-
-extern UserPrefsStruct *user_prefs;
-extern gchar *file_to_open;
 
 /*
  * -------------------

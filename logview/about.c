@@ -20,8 +20,7 @@
 
 #include <config.h>
 #include <glib/gi18n.h>
-#include <gtk/gtk.h>
-#include "logview.h"
+#include <gtk/gtkaboutdialog.h>
 
 void
 AboutShowWindow (GtkWidget *widget, gpointer user_data)
@@ -42,7 +41,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   gchar *documenters[] = {NULL};
   /* Translator credits */
   const gchar *translator_credits = _("translator-credits");
-  LogviewWindow *window = user_data;
+  GtkWidget *window = user_data;
 
   gtk_show_about_dialog (GTK_WINDOW (window),
 		"name",  _("System Log Viewer"),

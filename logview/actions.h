@@ -17,28 +17,18 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef __LOG_DESC_DB_H__
-#define __LOG_DESC_DB_H__
+#ifndef __LOG_ACTIONS_H__
+#define __LOG_ACTIONS_H__
 
 typedef struct
 {
-  char *regexp;
-  GList *matching;
-} ProcessDB;
-
-typedef struct
-{
-  char *text;
   char tag[50];
-} DescriptionEntry;
+  char *log_name;
+  char *process;
+  char *message;
+  char *description;
+  char *action;
+} Action;
 
-int read_regexp_db (char *filename, GList **db);
-int find_tag_in_db (LogLine *line, GList *db);
-int read_descript_db (char *filename, GList **db);
-
-static void free_database (GList **db);
-static void print_db (GList *db);
-
-
-#endif /* __LOG_DESC_DB_H__ */
+#endif /* __LOG_ACTIONS_H__ */
 

@@ -18,7 +18,6 @@
 
     ---------------------------------------------------------------------- */
 
-
 #include <config.h>
 #include <gconf/gconf-client.h>
 #include <gnome.h>
@@ -806,7 +805,7 @@ logview_help (GtkAction *action, GtkWidget *callback_data)
 					      gtk_widget_get_screen (GTK_WIDGET(window)), &error);
 	if (error) {
 		gchar *message;
-		ShowErrMessage (window, _("There was an error displaying help."), error->message);
+		ShowErrMessage (GTK_WIDGET(window), _("There was an error displaying help."), error->message);
 		g_error_free (error);
 	}
 }

@@ -91,28 +91,6 @@ typedef struct
 
 typedef struct
 {
-  char *regexp;
-  GList *matching;
-} ProcessDB;
-
-typedef struct
-{
-  char *text;
-  char tag[50];
-} DescriptionEntry;
-  
-typedef struct
-{
-  char tag[50];
-  char *log_name;
-  char *process;
-  char *message;
-  char *description;
-  char *action;
-} Action;
-
-typedef struct
-{
   char message[MAX_WIDTH];
   char process[MAX_PROC_WIDTH];
   char hostname[MAX_HOSTNAME_WIDTH];
@@ -125,12 +103,6 @@ typedef struct
 } LogLine;
 
 typedef void (*MonActions)();
-
-typedef struct
-{
-	gchar *logfile;
-	int width, height;
-} UserPrefsStruct;
 
 typedef struct
 {
@@ -155,7 +127,6 @@ typedef struct
 }
 Log;
 
-
 /*
  *    ,---------------------.
  *    | Function Prototypes |
@@ -163,8 +134,6 @@ Log;
  */
 
 ConfigData *CreateConfig(void);
-void SetDefaultUserPrefs(UserPrefsStruct *prefs, GConfClient *client);
-int exec_action_in_db (Log *log, LogLine *line, GList *db);
 
 #define LOGVIEW_TYPE_WINDOW		  (logview_window_get_type ())
 #define LOGVIEW_WINDOW(obj)		  (GTK_CHECK_CAST ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindow))

@@ -20,6 +20,12 @@
 #ifndef __LOG_PREFS_H__
 #define __LOG_PREFS_H__
 
+typedef struct
+{
+	gchar *logfile;
+	int width, height;
+} UserPrefsStruct;
+
 void prefs_save (GConfClient *client, LogviewWindow *window, UserPrefsStruct *prefs);
 UserPrefsStruct *prefs_load (GConfClient *client);
 void prefs_store_size (LogviewWindow *window, UserPrefsStruct *prefs);

@@ -18,10 +18,7 @@
 
     ---------------------------------------------------------------------- */
 
-
-#include <config.h>
-#include <time.h>
-#include <gnome.h>
+#include <glib/gi18n.h>
 #include "gtk/gtk.h"
 #include "logview.h"
 #include "calendar.h"
