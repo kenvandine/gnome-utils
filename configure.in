@@ -51,7 +51,7 @@ AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname)
 
 GNOME_CHECK_GUILE
 
-ALL_LINGUAS="de es fr it ko cs no"
+ALL_LINGUAS="de es fr it ko cs no ga"
 AM_GNU_GETTEXT
 
 dnl genius
@@ -97,7 +97,6 @@ if test $ac_cv_func_crypt = no; then
 fi
 
 dnl gsu end.
-
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
