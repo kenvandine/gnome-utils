@@ -85,6 +85,12 @@ PKG_CHECK_MODULES(GNOME_UTILS, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0
 AC_SUBST(GNOME_UTILS_CFLAGS)
 AC_SUBST(GNOME_UTILS_LIBS)
 
+dnl *****************************
+dnl popt is needed for most utils
+dnl *****************************
+
+AC_CHECK_LIB(popt, poptHelpOptions,, AC_MSG_ERROR([popt is required to build gnome-utils. You can download the latest version from ftp://people.redhat.com/sopwith/popt/]))
+
 dnl *********************************************
 dnl gnome-vfs/mime-data is need for gsearchtool
 dnl *********************************************
