@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2001-08-18 18:40+0200\n"
+"POT-Creation-Date: 2001-09-03 05:33-0700\n"
 "PO-Revision-Date: 2000-05-07 01:59+0200\n"
 "Last-Translator: andraz.tori1@guest.arnes.si\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -242,6 +242,7 @@ msgid "del"
 msgstr "zbri¹i"
 
 #: gcharmap/src/callbacks.c:107
+#, c-format
 msgid " %s: Character code %d"
 msgstr "%s: koda znaka %d"
 
@@ -275,7 +276,7 @@ msgid "Exit"
 msgstr "Izhod"
 
 #: gcharmap/src/interface.c:239 gcharmap/src/menus.c:104
-#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:163
+#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:166
 msgid "Copy"
 msgstr "Kopiraj"
 
@@ -357,7 +358,7 @@ msgstr "Nastavi ali gumbi lahko dobijo fokus"
 msgid "Insert character(s) by choosing character codes"
 msgstr "Vstavi znak(e) z izbiro kod znakov"
 
-#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:159
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:162
 msgid "Cut"
 msgstr "Izre¾i"
 
@@ -369,7 +370,7 @@ msgstr "Izre¾i izbrano"
 msgid "Copy the selection"
 msgstr "Kopiraj izbrano"
 
-#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:167
+#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:170
 msgid "Paste"
 msgstr "Prilepi"
 
@@ -514,6 +515,7 @@ msgid "Cannot create applet!\n"
 msgstr "Ne morem ustvariti vstavka!\n"
 
 #: gdictsrc/gdict-defbox.c:524 gdictsrc/gdict-speller.c:417
+#, c-format
 msgid "Error invoking query: %s"
 msgstr "Napaka pri poizvedbi: %s"
 
@@ -550,7 +552,7 @@ msgid "Cross-reference:"
 msgstr "Navzkri¾no sklicevanje:"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:571
 #: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:195
 msgid "Preferences"
 msgstr "Nastavitve"
@@ -640,7 +642,7 @@ msgstr "Ne morem razèleniti niza za geometrijo '%s'"
 msgid "Specify the geometry of the window."
 msgstr "Doloèi geometrijo okna."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:232 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:310 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRIJA"
 
@@ -813,10 +815,12 @@ msgid "Show Command"
 msgstr "Poa¾i ukaz"
 
 #: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:759
+#: gtt/glade/interval_edit_strings.c:9
 msgid "Start"
 msgstr "Zaèni"
 
 #: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:760
+#: gtt/glade/interval_edit_strings.c:8
 msgid "Stop"
 msgstr "Ustavi"
 
@@ -878,15 +882,15 @@ msgstr "Popaèen ukaz"
 msgid "No command for this mime type"
 msgstr "Za ta tip mime ni ukaza"
 
-#: gtt/app.c:118 gtt/app.c:223
+#: gtt/app.c:107 gtt/app.c:216
 msgid "no project selected"
 msgstr "noben projekt ni izbran"
 
-#: gtt/app.c:212
+#: gtt/app.c:205
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:251 mini-utils/gless/gless.c:423
+#: gtt/app.c:248 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -894,32 +898,33 @@ msgstr ""
 "Ne morem razumeti geometrije (mesto in velikost),\n"
 "ki je bila doloèena z ukazno vrstico"
 
-#: gtt/clist.c:170
-msgid "Total"
-msgstr "Skupaj"
+#: gtt/file-io.c:334
+msgid "project %t started"
+msgstr "projekt %t zaèet"
 
-#: gtt/clist.c:171
-msgid "Today"
-msgstr "Danes"
+#: gtt/file-io.c:337
+msgid "stopped project %t"
+msgstr "projekt %t ustavljen"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118
-msgid "Project Title"
-msgstr "Naziv projekta"
+#. Translators: This is a "time format", that is
+#. * format on how to print the elapsed time with
+#. * hours:minutes:seconds.
+#: gtt/file-io.c:533
+#, c-format
+msgid "%d:%02d:%02d"
+msgstr "%d:%02d:%02d"
 
-#: gtt/clist.c:173 gtt/menucmd.c:119 stripchart/params.c:654
-msgid "Description"
-msgstr "Opis"
-
-#: gtt/log.c:54
+#: gtt/log.c:53
+#, c-format
 msgid "Cannot open logfile %s for append"
 msgstr "Ne morem odpreti dnevni¹ke datoteke %s za dodajanje"
 
 #. Translators: Format to use in the gtt logfile
-#: gtt/log.c:63
+#: gtt/log.c:62
 msgid "%b %d %H:%M:%S"
 msgstr "%d %b %H:%M:%S"
 
-#: gtt/log.c:83 gtt/log.c:237
+#: gtt/log.c:83 gtt/log.c:244
 msgid "program started"
 msgstr "program se je pognal"
 
@@ -928,11 +933,11 @@ msgid "no description"
 msgstr "ni opisa"
 
 #. log_if_equal
-#: gtt/log.c:229
+#: gtt/log.c:236
 msgid "program exited"
 msgstr "program je zakljuèil"
 
-#: gtt/main.c:99
+#: gtt/main.c:108
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -940,15 +945,15 @@ msgstr ""
 "Izgleda, da en GTimeTracker ¾e teèe.\n"
 "Pritini V redu, èa naj vseeno za¾enem GTimeTracker, ali Razveljavi za izhod."
 
-#: gtt/main.c:110
+#: gtt/main.c:119
 msgid "Cannot create pid-file!"
 msgstr "Ne morem ustvariti datoteke pid!"
 
-#: gtt/main.c:142
+#: gtt/main.c:185
 msgid "Error"
 msgstr "Napaka"
 
-#: gtt/main.c:143
+#: gtt/main.c:186
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -956,43 +961,57 @@ msgstr ""
 "Zgodila se je napaka ob branju datoteke z nastavitvami\n"
 "Ali naj ponastavim nove nastavitve"
 
-#: gtt/main.c:232
+#: gtt/main.c:310
 msgid "Specify geometry"
 msgstr "Doloèi geometrijo"
 
-#: gtt/main.c:234
+#: gtt/main.c:312
 msgid "Select a project on startup"
 msgstr "Izberi projekt ob prièetku"
 
-#: gtt/main.c:234
+#: gtt/main.c:312
 msgid "PROJECT"
 msgstr "PROJEKT"
 
-#: gtt/menucmd.c:34 gtt/menucmd.c:164 gtt/menucmd.c:196
+#: gtt/main.c:350 gtt/menucmd.c:51 gtt/menucmd.c:59 gtt/menucmd.c:229
+#: gtt/menucmd.c:267
 msgid "Warning"
 msgstr "Opozorilo"
 
-#: gtt/menucmd.c:35 gtt/menucmd.c:198
-msgid "I could not write the configuration file!"
+#: gtt/menucmd.c:52 gtt/menucmd.c:269
+#, fuzzy
+msgid "Could not write the configuration file!"
 msgstr "Nisem mogel zapisati datoteke z nastavitvami!"
 
-#: gtt/menucmd.c:66
+#: gtt/menucmd.c:60
+msgid "Unknown error occurred"
+msgstr ""
+
+#: gtt/menucmd.c:111
 msgid "Time tracking tool for GNOME"
 msgstr "Orodje za sledenje porabljenega èasa za GNOME"
 
-#: gtt/menucmd.c:112 gtt/toolbar.c:142
+#: gtt/menucmd.c:161
 msgid "New Project..."
 msgstr "Nov Projekt..."
 
-#: gtt/menucmd.c:166
+#: gtt/ctree.c:278 gtt/menucmd.c:167
+msgid "Project Title"
+msgstr "Naziv projekta"
+
+#: gtt/ctree.c:279 gtt/menucmd.c:168 stripchart/params.c:654
+msgid "Description"
+msgstr "Opis"
+
+#: gtt/menucmd.c:231
 msgid "I could not read the configuration file"
 msgstr "Nisem mogel prebrati datoteke z nastavitvami"
 
-#: gtt/menucmd.c:180 gtt/toolbar.c:149
+#: gtt/menucmd.c:245 gtt/toolbar.c:152
 msgid "Reload Configuration File"
 msgstr "Znova nalo¾i datoteko z nastavitvami"
 
-#: gtt/menucmd.c:181
+#: gtt/menucmd.c:246
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1000,287 +1019,650 @@ msgstr ""
 "To bo prepisalo va¹ trenutni nabor projektov\n"
 "Ali ste preprièani, da ¾elite na novo nalo¾iti datoteko z nastavitvami?"
 
-#: gtt/menucmd.c:218
+#: gtt/menucmd.c:289
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr "Datoteka %s ¾e obstaja, prepi¹i?"
 
-#: gtt/menucmd.c:229
+#: gtt/menucmd.c:300
 msgid "File cannot be written"
 msgstr "Datoteka ne more biti zapisana"
 
-#: gtt/menucmd.c:249
+#: gtt/menucmd.c:320
 msgid "Export Current State"
 msgstr "Izvozi trenutno stanje"
 
-#: gtt/menus.c:27
+#: gtt/menus.c:30
 msgid "_New Project..."
 msgstr "_Nov projekt..."
 
-#: gtt/menus.c:30
+#: gtt/menus.c:33
 msgid "_Reload Configuration File"
 msgstr "_Znova nalo¾i datoteko z nastavitvami"
 
-#: gtt/menus.c:34
+#: gtt/menus.c:37
 msgid "_Save Configuration File"
 msgstr "_Shrani datoteko z nastavitvami"
 
-#: gtt/menus.c:38
+#: gtt/menus.c:41
 msgid "_Export Current State"
 msgstr "_Izvozi trenutno stanje"
 
-#: gtt/menus.c:63 gtt/menus.c:119
+#: gtt/menus.c:66 gtt/menus.c:127
 msgid "Clear _Daily Counter"
 msgstr "_Zbri¹i dnevni ¹tevec"
 
-#: gtt/menus.c:75
+#: gtt/menus.c:71
+msgid "_Journal..."
+msgstr ""
+
+#: gtt/menus.c:83
 msgid "St_art"
 msgstr "_Zaèni"
 
-#: gtt/menus.c:79
+#: gtt/menus.c:87
 msgid "Sto_p"
 msgstr "_Ustavi"
 
-#: gtt/menus.c:84
+#: gtt/menus.c:92
 msgid "_Timer Running"
 msgstr "_©toparica teèe"
 
-#: gtt/menus.c:103
+#: gtt/menus.c:111
 msgid "_Timer"
 msgstr "_©toparica"
 
-#: gtt/options.c:189
+#: gtt/options.c:234
 msgid "Display"
 msgstr "Poka¾i"
 
-#: gtt/options.c:197
+#: gtt/options.c:242
 msgid "Show Seconds"
 msgstr "Ka¾i sekunde"
 
-#: gtt/options.c:203
+#: gtt/options.c:248
 msgid "Show Status Bar"
 msgstr "Ka¾i vrstico stanja"
 
-#: gtt/options.c:209
+#: gtt/options.c:254
 msgid "Show Table Header"
 msgstr "Ka¾i glave tabel"
 
-#: gtt/options.c:223 gtt/options.c:538
+#: gtt/options.c:260
+#, fuzzy
+msgid "Show Sub-Projects"
+msgstr "Ka¾i `Lastnosti'"
+
+#: gtt/options.c:274 gtt/options.c:591
 msgid "Toolbar"
 msgstr "Orodjarna"
 
-#: gtt/options.c:231
+#: gtt/options.c:282
 msgid "Show Toolbar Icons"
 msgstr "Ka¾i ikone orodjarne"
 
-#: gtt/options.c:237
+#: gtt/options.c:288
 msgid "Show Toolbar Texts"
 msgstr "Ka¾i besedilo orodjarne"
 
-#: gtt/options.c:243
+#: gtt/options.c:294
 msgid "Show Tooltips"
 msgstr "Ka¾I namige"
 
-#: gtt/options.c:249
+#: gtt/options.c:300
 msgid "Toolbar Segments"
 msgstr "Deli orodjarne"
 
-#: gtt/options.c:257
+#: gtt/options.c:308
 msgid "Show `New'"
 msgstr "Ka¾i `Nov'"
 
-#: gtt/options.c:263
+#: gtt/options.c:314
 msgid "Show `Save', `Reload'"
 msgstr "Ka¾i `Shrani', `Znova nalo¾i'"
 
-#: gtt/options.c:269
+#: gtt/options.c:320
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Ka¾i `Izre¾i', `Kopiraj', `Prilepi'"
 
-#: gtt/options.c:275
+#: gtt/options.c:326
 msgid "Show `Properties'"
 msgstr "Ka¾i `Lastnosti'"
 
-#: gtt/options.c:281
+#: gtt/options.c:332
 msgid "Show `Timer'"
 msgstr "Ka¾i `©toparica'"
 
-#: gtt/options.c:287
+#: gtt/options.c:338
 msgid "Show `Preferences'"
 msgstr "Ka¾i `Nastavitve'"
 
-#: gtt/options.c:293
+#: gtt/options.c:344
 msgid "Show `Help'"
 msgstr "Ka¾i `Pomoè'"
 
-#: gtt/options.c:299
+#: gtt/options.c:350
 msgid "Show `Quit'"
 msgstr "Ka¾i `Izhod'"
 
-#: gtt/options.c:313
+#: gtt/options.c:364
 msgid "Shell Commands"
 msgstr "Ukazi ukazne lupine"
 
-#: gtt/options.c:321
+#: gtt/options.c:372
 msgid "Switch Project Command:"
 msgstr "Ukaz za zamenjavo projekta:"
 
-#: gtt/options.c:333
+#: gtt/options.c:384
 msgid "No Project Command:"
 msgstr "Ukaz za ukinitev projekta:"
 
-#: gtt/options.c:368
+#: gtt/options.c:419
 msgid "Logfile"
 msgstr "Dnevni¹ka datoteka"
 
-#: gtt/options.c:376
+#: gtt/options.c:427
 msgid "Use Logfile"
 msgstr "Uporabi dnevni¹ko datoteko"
 
-#: gtt/options.c:385
+#: gtt/options.c:436
 msgid "Filename:"
 msgstr "Ime datoteke:"
 
-#: gtt/options.c:399
+#: gtt/options.c:450
 msgid "Entry Start:"
 msgstr "Zaèetek vnosa:"
 
-#: gtt/options.c:413
+#: gtt/options.c:464
 msgid "Entry Stop:"
 msgstr "Konec vnosa:"
 
-#: gtt/options.c:427
+#: gtt/options.c:478
 msgid "Timeout in secs:"
 msgstr "Èasovna omejitev v sekundah:"
 
-#: gtt/options.c:525
+#: gtt/options.c:578
 msgid "Misc"
 msgstr "Razno"
 
-#: gtt/proj.c:651
-msgid "project %t started"
-msgstr "projekt %t zaèet"
+#: gtt/proj.c:436
+msgid "Old GTT Tasks"
+msgstr ""
 
-#: gtt/proj.c:654
-msgid "stopped project %t"
-msgstr "projekt %t ustavljen"
-
-#. Translators: This is a "time format", that is
-#. * format on how to print the elapsed time with
-#. * hours:minutes:seconds.
-#: gtt/proj.c:790
-#, c-format
-msgid "%d:%02d:%02d"
-msgstr "%d:%02d:%02d"
-
-#: gtt/prop.c:60
-msgid "empty"
-msgstr "prazno"
-
-#: gtt/prop.c:168
-msgid "Properties"
-msgstr "Lastnosti"
-
-#: gtt/prop.c:176
-msgid "Project"
-msgstr "Projekt"
-
-#: gtt/prop.c:195
-msgid "Project Title:"
-msgstr "Naziv projekta:"
-
-#: gtt/prop.c:208
-msgid "Project Description:"
-msgstr "Opis projekta:"
-
-#: gtt/prop.c:221
-msgid "Project Time today:"
-msgstr "Trajanje projekta danes:"
-
-#: gtt/prop.c:237 gtt/prop.c:275
-msgid "hours"
-msgstr "ur"
-
-#: gtt/prop.c:248 gtt/prop.c:286
-msgid "mins"
-msgstr "minut"
-
-#: gtt/prop.c:259 gtt/prop.c:297
-msgid "secs"
-msgstr "sekund"
-
-#: gtt/prop.c:263
-msgid "Project Time ever:"
-msgstr "Trajanje projekta skupaj:"
+#: gtt/proj.c:455 gtt/proj.c:858
+msgid "New Task"
+msgstr ""
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:144
 msgid "[GTT]New"
 msgstr "[GTT]Novo"
 
-#: gtt/toolbar.c:148
+#: gtt/toolbar.c:145
+#, fuzzy
+msgid "Create a New Project..."
+msgstr "Nov Projekt..."
+
+#: gtt/toolbar.c:151
 msgid "Reload"
 msgstr "Znova nalo¾i"
 
-#: gtt/toolbar.c:152 stripchart/params.c:939
+#: gtt/glade/journal_strings.c:11 gtt/toolbar.c:155 stripchart/params.c:939
 msgid "Save"
 msgstr "Shrani"
 
-#: gtt/toolbar.c:153
+#: gtt/toolbar.c:156
 msgid "Save Configuration File"
 msgstr "Shrani datoteko z nastavitvami"
 
-#: gtt/toolbar.c:160
+#: gtt/toolbar.c:163
 msgid "Cut Selected Project"
 msgstr "Izre¾i izbran projekt"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:167
 msgid "Copy Selected Project"
 msgstr "Kopiraj izbran projekt"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:171
 msgid "Paste Project"
 msgstr "Prilepi projekt"
 
-#: gtt/toolbar.c:174
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/journal_strings.c:7 gtt/toolbar.c:178
+msgid "Journal"
+msgstr ""
+
+#: gtt/toolbar.c:179
+msgid "View and Edit Timestamp Logs"
+msgstr ""
+
+#: gtt/toolbar.c:184
 msgid "Props"
 msgstr "Lastnosti"
 
-#: gtt/toolbar.c:175
-msgid "Edit Properties..."
+#: gtt/toolbar.c:185
+#, fuzzy
+msgid "Edit Project Properties..."
 msgstr "Uredi lastnosti..."
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:189
 msgid "Timer"
 msgstr "©toparica"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:190
 msgid "Start/Stop Timer"
 msgstr "Po¾eni/Ustavi ¹toparico"
 
-#: gtt/toolbar.c:189
+#: gtt/toolbar.c:202
 msgid "Prefs"
 msgstr "Nastavitve"
 
-#: gtt/toolbar.c:190
+#: gtt/toolbar.c:203
 msgid "Edit Preferences..."
 msgstr "Uredi nastavitve..."
 
-#: gtt/toolbar.c:194
+#: gtt/toolbar.c:207
 msgid "Manual"
 msgstr "Roèno"
 
-#: gtt/toolbar.c:194
-msgid "Manual..."
-msgstr "Roèno..."
+#: gtt/toolbar.c:208
+msgid "User's Guide and Manual"
+msgstr ""
 
-#: gtt/toolbar.c:199
+#: gtt/toolbar.c:213
 msgid "Quit"
 msgstr "Izhod"
 
-#: gtt/toolbar.c:199
+#: gtt/toolbar.c:213
 msgid "Quit GTimeTracker"
 msgstr "Izhod iz GTimeTracker-ja"
+
+#: gtt/ctree.c:276
+msgid "Total"
+msgstr "Skupaj"
+
+#: gtt/ctree.c:277 gtt/glade/interval_edit_strings.c:20
+msgid "Today"
+msgstr "Danes"
+
+#. ===================== END OF FILE ==============================
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/interval_edit_strings.c:7
+#, fuzzy
+msgid "Start Fuzz"
+msgstr "Zaèni"
+
+#: gtt/glade/interval_edit_strings.c:10
+msgid "Set how Uncertain the Start Time Is"
+msgstr ""
+
+#: gtt/glade/interval_edit_strings.c:11
+msgid "Exact Time"
+msgstr ""
+
+#: gtt/glade/interval_edit_strings.c:12
+#, fuzzy
+msgid "5 Min"
+msgstr "Najmanj"
+
+#: gtt/glade/interval_edit_strings.c:13
+#, fuzzy
+msgid "10 Min"
+msgstr "Najmanj"
+
+#: gtt/glade/interval_edit_strings.c:14
+#, fuzzy
+msgid "15 Min"
+msgstr "Najmanj"
+
+#: gtt/glade/interval_edit_strings.c:15
+#, fuzzy
+msgid "20 Min"
+msgstr "Najmanj"
+
+#: gtt/glade/interval_edit_strings.c:16
+#, fuzzy
+msgid "30 Min"
+msgstr "Najmanj"
+
+#: gtt/glade/interval_edit_strings.c:17
+msgid "1 Hour"
+msgstr ""
+
+#: gtt/glade/interval_edit_strings.c:18
+#, fuzzy
+msgid "2 Hours"
+msgstr "ur"
+
+#: gtt/glade/interval_edit_strings.c:19
+#, fuzzy
+msgid "3 Hours"
+msgstr "ur"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/interval_popup_strings.c:7
+#, fuzzy
+msgid "Edit the Start & Stop Times"
+msgstr "Po¾eni/Ustavi ¹toparico"
+
+#: gtt/glade/interval_popup_strings.c:8 mini-utils/gcolorsel/gcolorsel.c:32
+#: mini-utils/gcolorsel/menus.c:573 mini-utils/gcolorsel/menus.c:660
+#: stripchart/params.c:1041 stripchart/params.c:1044
+msgid "Edit"
+msgstr "Uredi"
+
+#: gtt/glade/interval_popup_strings.c:9
+#, fuzzy
+msgid "Delete This Interval"
+msgstr "Interval osve¾evanja drsilnika"
+
+#: gtt/glade/interval_popup_strings.c:10 mini-utils/gw/gw.c:495
+msgid "Delete"
+msgstr "Zbri¹i"
+
+#: gtt/glade/interval_popup_strings.c:11
+msgid "Merge Into Interval Above"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:12
+msgid "Merge Up"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:13
+msgid "Merege Into Interval Below"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:14
+msgid "Merge Down"
+msgstr ""
+
+#: gtt/glade/journal_strings.c:8
+#, fuzzy
+msgid "New File"
+msgstr "Nov Pogled"
+
+#: gtt/glade/journal_strings.c:9
+#, fuzzy
+msgid "Print"
+msgstr "Toèka"
+
+#: gtt/glade/journal_strings.c:10
+#, fuzzy
+msgid "Open File"
+msgstr "Odpri dnevnik"
+
+#: gtt/glade/journal_strings.c:12
+#, fuzzy
+msgid "Save File"
+msgstr "_Shrani paleto"
+
+#: gtt/glade/journal_strings.c:13 mini-utils/gcolorsel/menus.c:89
+#: mini-utils/gcolorsel/menus.c:913 mini-utils/gshutdown/gshutdown.c:155
+#: mini-utils/gshutdown/gshutdown.c:631 stripchart/params.c:953
+msgid "Close"
+msgstr "Zapri"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/project_properties_strings.c:7
+msgid "A title to assign to this project"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:8
+msgid "a short description that will be printed on the invoice."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:9
+msgid "Project Title:"
+msgstr "Naziv projekta:"
+
+#: gtt/glade/project_properties_strings.c:10
+msgid "Project Description:"
+msgstr "Opis projekta:"
+
+#: gtt/glade/project_properties_strings.c:11
+#: gtt/glade/task_properties_strings.c:8
+msgid "Notes:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:12
+msgid ""
+"Internal notes about the project, memos that will not be printed on an "
+"invoice."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:13
+msgid "Project"
+msgstr "Projekt"
+
+#: gtt/glade/project_properties_strings.c:14
+msgid "Regular Rate:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:15
+msgid "Overtime Rate:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:16
+msgid "Double-Overtime Rate:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:17
+msgid "Flat Fee:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:18
+msgid "        "
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:19
+#, fuzzy
+msgid "                        "
+msgstr "Poveèava                    "
+
+#: gtt/glade/project_properties_strings.c:20
+msgid "The dollars per hour normally charged for this project."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:21
+msgid "The dollars per hour charged for overtime work on this project."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:22
+msgid "The over-overtime rate (overtime on Sundays, etc.)"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:23
+msgid ""
+"If this project is billed for one price no matter how long it takes, enter "
+"the fee here."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:24
+msgid "Rates"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:25
+msgid "Minimum Interval: "
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:26
+msgid "Auto-merge Interval:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:27
+msgid "Auto-merge Gap:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:28
+#: gtt/glade/project_properties_strings.c:29
+#: gtt/glade/project_properties_strings.c:30
+#, fuzzy
+msgid "seconds"
+msgstr "sekund"
+
+#: gtt/glade/project_properties_strings.c:31
+msgid "Intervals smaller than this will be discarded"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:32
+msgid "Time below which an interval is merged with its neighbors"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:33
+msgid ""
+"If the gap between intervals is smaller than this, the intervals will be "
+"merged together."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:34
+#, fuzzy
+msgid "Intervals"
+msgstr "Splo¹no"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/task_properties_strings.c:7
+#, fuzzy
+msgid "Memo:"
+msgstr "Pomnilnik"
+
+#: gtt/glade/task_properties_strings.c:9
+msgid "Billable:"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:10
+msgid "Billing Rate:"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:11
+msgid "Billing Block:"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:12
+msgid ""
+"Can this task be billed to the customer?  \"Hold\" means maybe but not yet, "
+"\"Not Billable\" means don't print on the invoice, \"No Charge\" means print "
+"on the invoice as 'free'."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:13
+#, fuzzy
+msgid "Hold"
+msgstr "Polno"
+
+#: gtt/glade/task_properties_strings.c:14
+#, fuzzy
+msgid "Billable"
+msgstr "Izkljuèeno"
+
+#: gtt/glade/task_properties_strings.c:15
+msgid "Not Billable"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:16
+msgid "No Charge"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:17
+msgid "Fee rate to be charged for this task."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:18
+#, fuzzy
+msgid "Regular"
+msgstr "Znova nalo¾i"
+
+#: gtt/glade/task_properties_strings.c:19
+msgid "Overtime"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:20
+#, fuzzy
+msgid "OverOver"
+msgstr "Stre¾nik"
+
+#: gtt/glade/task_properties_strings.c:21
+#, fuzzy
+msgid "Flat Fee"
+msgstr "Plavajoèe ¹tevilo"
+
+#: gtt/glade/task_properties_strings.c:22
+msgid ""
+"The billed unit of time wioll be rounded to an integer multiple of this time."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:23
+msgid "A set of private notes that will not be printed on an invoice."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:24
+msgid "A short description to attach to this block of time."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:25
+#, fuzzy
+msgid "minutes"
+msgstr "minut"
+
+#: gtt/glade/task_properties_strings.c:26
+#, fuzzy
+msgid "Task Properties"
+msgstr "Lastnosti"
+
+#: gtt/journal.c:91
+msgid "<html><body><h1>Error 404 Not Found</h1>The file "
+msgstr ""
+
+#: gtt/journal.c:95
+msgid "(null)"
+msgstr ""
+
+#: gtt/journal.c:98
+msgid " was not found. </body></html>"
+msgstr ""
+
+#: gtt/journal.c:103
+msgid "<html><body><h1>Unkown Error</h1>"
+msgstr ""
+
+#: gtt/phtml.c:39
+msgid ""
+"<table border=1><caption><em>hey hey hey!</em></caption><tr><th "
+"colspan=4>Memo<tr><th>&nbsp;<th>Start<th>Stop<th>Elapsed"
+msgstr ""
+
+#: gtt/phtml.c:58 gtt/phtml.c:132
+#, fuzzy
+msgid "(empty)"
+msgstr "prazno"
+
+#: gtt/phtml.c:150
+msgid "unknown token: >>>>"
+msgstr ""
+
+#: gtt/props-proj.c:70 gtt/props-proj.c:71 gtt/props-task.c:66
+#: gtt/props-task.c:67
+msgid "empty"
+msgstr "prazno"
 
 #: logview/about.c:41
 msgid "Cesar Miquel (miquel@df.uba.ar)"
@@ -1512,13 +1894,13 @@ msgid "%s is not a regular file."
 msgstr "%s ni navadna datoteka."
 
 #: logview/logrtns.c:296
+#, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
-"Datoteka %s ni berljiva. Ali za¾enite program kot root, "
-"ali pa vpra¹ajte administratorja, da spremeni dovoljenja za dostop do "
-"datoteke."
+"Datoteka %s ni berljiva. Ali za¾enite program kot root, ali pa vpra¹ajte "
+"administratorja, da spremeni dovoljenja za dostop do datoteke."
 
 #: logview/logrtns.c:309
 #, c-format
@@ -1801,12 +2183,6 @@ msgstr "Seznam"
 #: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "Grid"
 msgstr "Mre¾a"
-
-#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1041
-#: stripchart/params.c:1044
-msgid "Edit"
-msgstr "Uredi"
 
 #: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1034
 #: stripchart/params.c:1037
@@ -2168,12 +2544,6 @@ msgstr "Shrani Paleto _Kot..."
 #: mini-utils/gcolorsel/menus.c:83
 msgid "Save the current palette with a different name"
 msgstr "Shrani trenutno paleto v datoteko z razliènim imenom"
-
-#: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
-#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:631
-#: stripchart/params.c:953
-msgid "Close"
-msgstr "Zapri"
 
 #: mini-utils/gcolorsel/menus.c:105
 msgid "Insert color"
@@ -2978,10 +3348,6 @@ msgstr "Ukazna vrstica"
 msgid "Add some defaults"
 msgstr "Dodaj nekaj privzetih nastavitev"
 
-#: mini-utils/gw/gw.c:495
-msgid "Delete"
-msgstr "Zbri¹i"
-
 #: mini-utils/gw/gw.c:513
 msgid "Command Editor"
 msgstr "Urejevalnik ukazov"
@@ -3387,6 +3753,7 @@ msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "MPreverjam za slabe bloke... (to lahko traja)"
 
 #: gfloppy/src/main.c:135 gfloppy/src/main.c:171
+#, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Nisem uspel odpreti naprave %s, formatiranje se ne more nadaljevati."
 
@@ -3718,7 +4085,8 @@ msgid ""
 "The executable is for a different platform and can not be executed on this "
 "system"
 msgstr ""
-"Izvr¹ljiva datoteka je narejena za drugaèno platformo in ne more biti izvr¹ena na tem sistemu"
+"Izvr¹ljiva datoteka je narejena za drugaèno platformo in ne more biti "
+"izvr¹ena na tem sistemu"
 
 #: meat-grinder/meat-grinder.c:106
 #, c-format
@@ -3735,7 +4103,7 @@ msgid ""
 "above to add them to the archive"
 msgstr ""
 "Ni datotek ali map. Za dodajanje v arhiv\n"
-"jih spustite zgoraj" 
+"jih spustite zgoraj"
 
 #: meat-grinder/meat-grinder.c:217 meat-grinder/meat-grinder.c:220
 msgid "Cannot start the archive (tar) program"
@@ -3814,7 +4182,8 @@ msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
 msgstr ""
-"Povlecite ta gumb tja kjer ¾elite, da bo ustvarjen arhiv ali kliknite nanj za dialog izbire datotek."
+"Povlecite ta gumb tja kjer ¾elite, da bo ustvarjen arhiv ali kliknite nanj "
+"za dialog izbire datotek."
 
 #: meat-grinder/meat-grinder.c:883
 msgid "Cannot find proper icons anywhere!"
@@ -3828,6 +4197,14 @@ msgstr ""
 "Ne najdem programa za arhiviranje (tar)!\n"
 "To je program, ki se ga uporablja za izdelavo arhivov."
 
+#~ msgid "Project Time today:"
+#~ msgstr "Trajanje projekta danes:"
+
+#~ msgid "Project Time ever:"
+#~ msgstr "Trajanje projekta skupaj:"
+
+#~ msgid "Manual..."
+#~ msgstr "Roèno..."
 
 #~ msgid "ASCII code:"
 #~ msgstr "Koda ASCII:"
@@ -3861,9 +4238,6 @@ msgstr ""
 
 #~ msgid "Log stats               "
 #~ msgstr "Stanje dnevnika"
-
-#~ msgid "Zoom                    "
-#~ msgstr "Poveèava                    "
 
 #~ msgid "Preferences...          "
 #~ msgstr "Nastavitve...           "
@@ -3990,9 +4364,6 @@ msgstr ""
 
 #~ msgid "Chart low-pass filter time constant"
 #~ msgstr "Konstanta nizko frekvencnega filtra za graf"
-
-#~ msgid "Slider update interval"
-#~ msgstr "Interval osve¾evanja drsilnika"
 
 #~ msgid "Slider low-pass filter time constant"
 #~ msgstr "Konstanta nizko frekvencnega filtra za drsilnik"

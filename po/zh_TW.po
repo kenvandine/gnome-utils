@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.3\n"
-"POT-Creation-Date: 2001-08-15 04:10+0800\n"
+"POT-Creation-Date: 2001-09-03 05:33-0700\n"
 "PO-Revision-Date: 2001-08-15 04:11+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional chinese <zh-l10n@linux.org.tw>\n"
@@ -279,7 +279,7 @@ msgid "Exit"
 msgstr "退出"
 
 #: gcharmap/src/interface.c:239 gcharmap/src/menus.c:104
-#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:163
+#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:166
 msgid "Copy"
 msgstr "複製"
 
@@ -363,7 +363,7 @@ msgstr "設定按鈕可否獲得焦點"
 msgid "Insert character(s) by choosing character codes"
 msgstr "選擇字元碼並插入字元"
 
-#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:159
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:162
 msgid "Cut"
 msgstr "剪下"
 
@@ -375,7 +375,7 @@ msgstr "剪下所選擇的範圍"
 msgid "Copy the selection"
 msgstr "複製所選擇的範圍"
 
-#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:167
+#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:170
 msgid "Paste"
 msgstr "貼上"
 
@@ -554,7 +554,7 @@ msgid "Cross-reference:"
 msgstr "參考："
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:571
 #: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:195
 msgid "Preferences"
 msgstr "偏好設定"
@@ -644,7 +644,7 @@ msgstr "無法解析指定位置大小的字串 '%s'"
 msgid "Specify the geometry of the window."
 msgstr "指定視窗的位置和大小。"
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:231 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:310 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "位置大小"
 
@@ -816,10 +816,12 @@ msgid "Show Command"
 msgstr "顯示指令"
 
 #: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:759
+#: gtt/glade/interval_edit_strings.c:9
 msgid "Start"
 msgstr "開始"
 
 #: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:760
+#: gtt/glade/interval_edit_strings.c:8
 msgid "Stop"
 msgstr "停止"
 
@@ -880,60 +882,60 @@ msgstr "指令被混淆了"
 msgid "No command for this mime type"
 msgstr "沒有這個 mime 類型可使用的指令"
 
-#: gtt/app.c:117 gtt/app.c:222
+#: gtt/app.c:107 gtt/app.c:216
 msgid "no project selected"
 msgstr "沒有選擇任何計劃"
 
-#: gtt/app.c:211
+#: gtt/app.c:205
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:250 mini-utils/gless/gless.c:423
+#: gtt/app.c:248 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
 msgstr "無法識別指令列指定的位置和大小"
 
-#: gtt/clist.c:169
-msgid "Total"
-msgstr "合計"
+#: gtt/file-io.c:334
+msgid "project %t started"
+msgstr "開始計劃 %t"
 
-#: gtt/clist.c:170
-msgid "Today"
-msgstr "今日"
+#: gtt/file-io.c:337
+msgid "stopped project %t"
+msgstr "停止計劃 %t"
 
-#: gtt/clist.c:171 gtt/menucmd.c:117
-msgid "Project Title"
-msgstr "計劃標題"
+#. Translators: This is a "time format", that is
+#. * format on how to print the elapsed time with
+#. * hours:minutes:seconds.
+#: gtt/file-io.c:533
+#, c-format
+msgid "%d:%02d:%02d"
+msgstr "%d時%02d分%02d秒"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:654
-msgid "Description"
-msgstr "描述"
-
-#: gtt/log.c:52
+#: gtt/log.c:53
 #, c-format
 msgid "Cannot open logfile %s for append"
 msgstr "無法開啟紀錄檔 %s 來加入紀錄"
 
 #. Translators: Format to use in the gtt logfile
-#: gtt/log.c:61
+#: gtt/log.c:62
 msgid "%b %d %H:%M:%S"
 msgstr "%b %d %T"
 
-#: gtt/log.c:81 gtt/log.c:235
+#: gtt/log.c:83 gtt/log.c:244
 msgid "program started"
 msgstr "程式已啟動"
 
-#: gtt/log.c:99
+#: gtt/log.c:101
 msgid "no description"
 msgstr "沒有描述"
 
 #. log_if_equal
-#: gtt/log.c:227
+#: gtt/log.c:236
 msgid "program exited"
 msgstr "程式已退出"
 
-#: gtt/main.c:98
+#: gtt/main.c:108
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -941,15 +943,15 @@ msgstr ""
 "似乎有另一個 GTimeTracker 正在執行中。\n"
 "按下 OK 強制啟動 GTimeTracker, 或按下「取消」結束。"
 
-#: gtt/main.c:109
+#: gtt/main.c:119
 msgid "Cannot create pid-file!"
 msgstr "無法開啟 pid 檔案！"
 
-#: gtt/main.c:141
+#: gtt/main.c:185
 msgid "Error"
 msgstr "錯誤"
 
-#: gtt/main.c:142
+#: gtt/main.c:186
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -957,43 +959,57 @@ msgstr ""
 "讀取設定檔時發生錯誤。\n"
 "是否開始一個新的設定檔？"
 
-#: gtt/main.c:231
+#: gtt/main.c:310
 msgid "Specify geometry"
 msgstr "指定位置和大小"
 
-#: gtt/main.c:233
+#: gtt/main.c:312
 msgid "Select a project on startup"
 msgstr "在啟動時選擇計劃"
 
-#: gtt/main.c:233
+#: gtt/main.c:312
 msgid "PROJECT"
 msgstr "計劃"
 
-#: gtt/menucmd.c:33 gtt/menucmd.c:163 gtt/menucmd.c:195
+#: gtt/main.c:350 gtt/menucmd.c:51 gtt/menucmd.c:59 gtt/menucmd.c:229
+#: gtt/menucmd.c:267
 msgid "Warning"
 msgstr "警告"
 
-#: gtt/menucmd.c:34 gtt/menucmd.c:197
-msgid "I could not write the configuration file!"
+#: gtt/menucmd.c:52 gtt/menucmd.c:269
+#, fuzzy
+msgid "Could not write the configuration file!"
 msgstr "無法寫入設定檔！"
 
-#: gtt/menucmd.c:65
+#: gtt/menucmd.c:60
+msgid "Unknown error occurred"
+msgstr ""
+
+#: gtt/menucmd.c:111
 msgid "Time tracking tool for GNOME"
 msgstr "GNOME 的時間追蹤程式"
 
-#: gtt/menucmd.c:111 gtt/toolbar.c:142
+#: gtt/menucmd.c:161
 msgid "New Project..."
 msgstr "新增計劃..."
 
-#: gtt/menucmd.c:165
+#: gtt/ctree.c:278 gtt/menucmd.c:167
+msgid "Project Title"
+msgstr "計劃標題"
+
+#: gtt/ctree.c:279 gtt/menucmd.c:168 stripchart/params.c:654
+msgid "Description"
+msgstr "描述"
+
+#: gtt/menucmd.c:231
 msgid "I could not read the configuration file"
 msgstr "無法讀取設定檔"
 
-#: gtt/menucmd.c:179 gtt/toolbar.c:149
+#: gtt/menucmd.c:245 gtt/toolbar.c:152
 msgid "Reload Configuration File"
 msgstr "重新載入設定檔"
 
-#: gtt/menucmd.c:180
+#: gtt/menucmd.c:246
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1001,287 +1017,649 @@ msgstr ""
 "將要覆寫現存計劃的設定。\n"
 "是否真的要重新載入設定檔？"
 
-#: gtt/menucmd.c:217
+#: gtt/menucmd.c:289
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr "檔案 %s 已存在，要覆寫？"
 
-#: gtt/menucmd.c:228
+#: gtt/menucmd.c:300
 msgid "File cannot be written"
 msgstr "無法覆寫檔案"
 
-#: gtt/menucmd.c:248
+#: gtt/menucmd.c:320
 msgid "Export Current State"
 msgstr "匯出現時的狀態"
 
-#: gtt/menus.c:27
+#: gtt/menus.c:30
 msgid "_New Project..."
 msgstr "新增計劃(_N)..."
 
-#: gtt/menus.c:30
+#: gtt/menus.c:33
 msgid "_Reload Configuration File"
 msgstr "重新載入設定檔(_R)"
 
-#: gtt/menus.c:34
+#: gtt/menus.c:37
 msgid "_Save Configuration File"
 msgstr "儲存設定檔(_S)"
 
-#: gtt/menus.c:38
+#: gtt/menus.c:41
 msgid "_Export Current State"
 msgstr "匯出現時的狀態(_E)"
 
-#: gtt/menus.c:63 gtt/menus.c:119
+#: gtt/menus.c:66 gtt/menus.c:127
 msgid "Clear _Daily Counter"
 msgstr "重設每日的計數器(_D)"
 
-#: gtt/menus.c:75
+#: gtt/menus.c:71
+msgid "_Journal..."
+msgstr ""
+
+#: gtt/menus.c:83
 msgid "St_art"
 msgstr "啟動(_a)"
 
-#: gtt/menus.c:79
+#: gtt/menus.c:87
 msgid "Sto_p"
 msgstr "停止(_p)"
 
-#: gtt/menus.c:84
+#: gtt/menus.c:92
 msgid "_Timer Running"
 msgstr "計時器執行中(_T)"
 
-#: gtt/menus.c:103
+#: gtt/menus.c:111
 msgid "_Timer"
 msgstr "計時器(_T)"
 
-#: gtt/options.c:189
+#: gtt/options.c:234
 msgid "Display"
 msgstr "顯示"
 
-#: gtt/options.c:197
+#: gtt/options.c:242
 msgid "Show Seconds"
 msgstr "顯示秒數"
 
-#: gtt/options.c:203
+#: gtt/options.c:248
 msgid "Show Status Bar"
 msgstr "顯示狀態列"
 
-#: gtt/options.c:209
+#: gtt/options.c:254
 msgid "Show Table Header"
 msgstr "顯示表格檔頭"
 
-#: gtt/options.c:223 gtt/options.c:538
+#: gtt/options.c:260
+#, fuzzy
+msgid "Show Sub-Projects"
+msgstr "顯示「內容」"
+
+#: gtt/options.c:274 gtt/options.c:591
 msgid "Toolbar"
 msgstr "工具列"
 
-#: gtt/options.c:231
+#: gtt/options.c:282
 msgid "Show Toolbar Icons"
 msgstr "顯示工具列圖示"
 
-#: gtt/options.c:237
+#: gtt/options.c:288
 msgid "Show Toolbar Texts"
 msgstr "顯示工具列文字"
 
-#: gtt/options.c:243
+#: gtt/options.c:294
 msgid "Show Tooltips"
 msgstr "顯示工具列提示"
 
-#: gtt/options.c:249
+#: gtt/options.c:300
 msgid "Toolbar Segments"
 msgstr "工具列區塊"
 
-#: gtt/options.c:257
+#: gtt/options.c:308
 msgid "Show `New'"
 msgstr "顯示「新增」"
 
-#: gtt/options.c:263
+#: gtt/options.c:314
 msgid "Show `Save', `Reload'"
 msgstr "顯示「儲存」、「重新載入」"
 
-#: gtt/options.c:269
+#: gtt/options.c:320
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "顯示「剪下」、「複製」、「貼上」"
 
-#: gtt/options.c:275
+#: gtt/options.c:326
 msgid "Show `Properties'"
 msgstr "顯示「內容」"
 
-#: gtt/options.c:281
+#: gtt/options.c:332
 msgid "Show `Timer'"
 msgstr "顯示「計時器」"
 
-#: gtt/options.c:287
+#: gtt/options.c:338
 msgid "Show `Preferences'"
 msgstr "顯示「偏好設定」"
 
-#: gtt/options.c:293
+#: gtt/options.c:344
 msgid "Show `Help'"
 msgstr "顯示「說明」"
 
-#: gtt/options.c:299
+#: gtt/options.c:350
 msgid "Show `Quit'"
 msgstr "顯示「結束」"
 
-#: gtt/options.c:313
+#: gtt/options.c:364
 msgid "Shell Commands"
 msgstr "命令殼指令"
 
-#: gtt/options.c:321
+#: gtt/options.c:372
 msgid "Switch Project Command:"
 msgstr "切換計劃時執行的指令："
 
-#: gtt/options.c:333
+#: gtt/options.c:384
 msgid "No Project Command:"
 msgstr "沒有計劃時執行的指令："
 
-#: gtt/options.c:368
+#: gtt/options.c:419
 msgid "Logfile"
 msgstr "紀錄檔"
 
-#: gtt/options.c:376
+#: gtt/options.c:427
 msgid "Use Logfile"
 msgstr "使用紀錄檔"
 
-#: gtt/options.c:385
+#: gtt/options.c:436
 msgid "Filename:"
 msgstr "檔名："
 
-#: gtt/options.c:399
+#: gtt/options.c:450
 msgid "Entry Start:"
 msgstr "開始時的紀錄："
 
-#: gtt/options.c:413
+#: gtt/options.c:464
 msgid "Entry Stop:"
 msgstr "結束時的紀錄："
 
-#: gtt/options.c:427
+#: gtt/options.c:478
 msgid "Timeout in secs:"
 msgstr "逾時時限（秒）："
 
-#: gtt/options.c:525
+#: gtt/options.c:578
 msgid "Misc"
 msgstr "其它"
 
-#: gtt/proj.c:466
-msgid "project %t started"
-msgstr "開始計劃 %t"
+#: gtt/proj.c:436
+msgid "Old GTT Tasks"
+msgstr ""
 
-#: gtt/proj.c:469
-msgid "stopped project %t"
-msgstr "停止計劃 %t"
-
-#. Translators: This is a "time format", that is
-#. * format on how to print the elapsed time with
-#. * hours:minutes:seconds.
-#: gtt/proj.c:605
-#, c-format
-msgid "%d:%02d:%02d"
-msgstr "%d時%02d分%02d秒"
-
-#: gtt/prop.c:59
-msgid "empty"
-msgstr "空白"
-
-#: gtt/prop.c:167
-msgid "Properties"
-msgstr "內容"
-
-#: gtt/prop.c:175
-msgid "Project"
-msgstr "計劃"
-
-#: gtt/prop.c:194
-msgid "Project Title:"
-msgstr "計劃標題："
-
-#: gtt/prop.c:207
-msgid "Project Description:"
-msgstr "計劃描述："
-
-#: gtt/prop.c:220
-msgid "Project Time today:"
-msgstr "今日計劃佔用的時間："
-
-#: gtt/prop.c:236 gtt/prop.c:274
-msgid "hours"
-msgstr "時"
-
-#: gtt/prop.c:247 gtt/prop.c:285
-msgid "mins"
-msgstr "分"
-
-#: gtt/prop.c:258 gtt/prop.c:296
-msgid "secs"
-msgstr "秒"
-
-#: gtt/prop.c:262
-msgid "Project Time ever:"
-msgstr "計劃佔用的整體時間："
+#: gtt/proj.c:455 gtt/proj.c:858
+msgid "New Task"
+msgstr ""
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:144
 msgid "[GTT]New"
 msgstr "[GTT]新增"
 
-#: gtt/toolbar.c:148
+#: gtt/toolbar.c:145
+#, fuzzy
+msgid "Create a New Project..."
+msgstr "新增計劃..."
+
+#: gtt/toolbar.c:151
 msgid "Reload"
 msgstr "重新載入"
 
-#: gtt/toolbar.c:152 stripchart/params.c:939
+#: gtt/glade/journal_strings.c:11 gtt/toolbar.c:155 stripchart/params.c:939
 msgid "Save"
 msgstr "儲存"
 
-#: gtt/toolbar.c:153
+#: gtt/toolbar.c:156
 msgid "Save Configuration File"
 msgstr "儲存設定檔"
 
-#: gtt/toolbar.c:160
+#: gtt/toolbar.c:163
 msgid "Cut Selected Project"
 msgstr "剪下被選擇的計劃"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:167
 msgid "Copy Selected Project"
 msgstr "複製被選擇的計劃"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:171
 msgid "Paste Project"
 msgstr "貼上計劃"
 
-#: gtt/toolbar.c:174
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/journal_strings.c:7 gtt/toolbar.c:178
+msgid "Journal"
+msgstr ""
+
+#: gtt/toolbar.c:179
+msgid "View and Edit Timestamp Logs"
+msgstr ""
+
+#: gtt/toolbar.c:184
 msgid "Props"
 msgstr "內容"
 
-#: gtt/toolbar.c:175
-msgid "Edit Properties..."
+#: gtt/toolbar.c:185
+#, fuzzy
+msgid "Edit Project Properties..."
 msgstr "編輯內容..."
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:189
 msgid "Timer"
 msgstr "計時器"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:190
 msgid "Start/Stop Timer"
 msgstr "啟動/停止計時器"
 
-#: gtt/toolbar.c:189
+#: gtt/toolbar.c:202
 msgid "Prefs"
 msgstr "偏好設定"
 
-#: gtt/toolbar.c:190
+#: gtt/toolbar.c:203
 msgid "Edit Preferences..."
 msgstr "編輯偏好設定..."
 
-#: gtt/toolbar.c:194
+#: gtt/toolbar.c:207
 msgid "Manual"
 msgstr "使用手冊"
 
-#: gtt/toolbar.c:194
-msgid "Manual..."
-msgstr "使用手冊..."
+#: gtt/toolbar.c:208
+msgid "User's Guide and Manual"
+msgstr ""
 
-#: gtt/toolbar.c:199
+#: gtt/toolbar.c:213
 msgid "Quit"
 msgstr "結束"
 
-#: gtt/toolbar.c:199
+#: gtt/toolbar.c:213
 msgid "Quit GTimeTracker"
 msgstr "結束 GTimeTracker"
+
+#: gtt/ctree.c:276
+msgid "Total"
+msgstr "合計"
+
+#: gtt/ctree.c:277 gtt/glade/interval_edit_strings.c:20
+msgid "Today"
+msgstr "今日"
+
+#. ===================== END OF FILE ==============================
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/interval_edit_strings.c:7
+#, fuzzy
+msgid "Start Fuzz"
+msgstr "開始"
+
+#: gtt/glade/interval_edit_strings.c:10
+msgid "Set how Uncertain the Start Time Is"
+msgstr ""
+
+#: gtt/glade/interval_edit_strings.c:11
+msgid "Exact Time"
+msgstr ""
+
+#: gtt/glade/interval_edit_strings.c:12
+#, fuzzy
+msgid "5 Min"
+msgstr "最小"
+
+#: gtt/glade/interval_edit_strings.c:13
+#, fuzzy
+msgid "10 Min"
+msgstr "最小"
+
+#: gtt/glade/interval_edit_strings.c:14
+#, fuzzy
+msgid "15 Min"
+msgstr "最小"
+
+#: gtt/glade/interval_edit_strings.c:15
+#, fuzzy
+msgid "20 Min"
+msgstr "最小"
+
+#: gtt/glade/interval_edit_strings.c:16
+#, fuzzy
+msgid "30 Min"
+msgstr "最小"
+
+#: gtt/glade/interval_edit_strings.c:17
+msgid "1 Hour"
+msgstr ""
+
+#: gtt/glade/interval_edit_strings.c:18
+#, fuzzy
+msgid "2 Hours"
+msgstr "時"
+
+#: gtt/glade/interval_edit_strings.c:19
+#, fuzzy
+msgid "3 Hours"
+msgstr "時"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/interval_popup_strings.c:7
+#, fuzzy
+msgid "Edit the Start & Stop Times"
+msgstr "啟動/停止計時器"
+
+#: gtt/glade/interval_popup_strings.c:8 mini-utils/gcolorsel/gcolorsel.c:32
+#: mini-utils/gcolorsel/menus.c:573 mini-utils/gcolorsel/menus.c:660
+#: stripchart/params.c:1041 stripchart/params.c:1044
+msgid "Edit"
+msgstr "編輯"
+
+#: gtt/glade/interval_popup_strings.c:9
+msgid "Delete This Interval"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:10 mini-utils/gw/gw.c:495
+msgid "Delete"
+msgstr "刪除"
+
+#: gtt/glade/interval_popup_strings.c:11
+msgid "Merge Into Interval Above"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:12
+msgid "Merge Up"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:13
+msgid "Merege Into Interval Below"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:14
+msgid "Merge Down"
+msgstr ""
+
+#: gtt/glade/journal_strings.c:8
+#, fuzzy
+msgid "New File"
+msgstr "新增觀看模式"
+
+#: gtt/glade/journal_strings.c:9
+#, fuzzy
+msgid "Print"
+msgstr "點"
+
+#: gtt/glade/journal_strings.c:10
+#, fuzzy
+msgid "Open File"
+msgstr "開啟紀錄檔"
+
+#: gtt/glade/journal_strings.c:12
+#, fuzzy
+msgid "Save File"
+msgstr "儲存調色盤(_S)"
+
+#: gtt/glade/journal_strings.c:13 mini-utils/gcolorsel/menus.c:89
+#: mini-utils/gcolorsel/menus.c:913 mini-utils/gshutdown/gshutdown.c:155
+#: mini-utils/gshutdown/gshutdown.c:631 stripchart/params.c:953
+msgid "Close"
+msgstr "關閉"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/project_properties_strings.c:7
+msgid "A title to assign to this project"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:8
+msgid "a short description that will be printed on the invoice."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:9
+msgid "Project Title:"
+msgstr "計劃標題："
+
+#: gtt/glade/project_properties_strings.c:10
+msgid "Project Description:"
+msgstr "計劃描述："
+
+#: gtt/glade/project_properties_strings.c:11
+#: gtt/glade/task_properties_strings.c:8
+msgid "Notes:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:12
+msgid ""
+"Internal notes about the project, memos that will not be printed on an "
+"invoice."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:13
+msgid "Project"
+msgstr "計劃"
+
+#: gtt/glade/project_properties_strings.c:14
+msgid "Regular Rate:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:15
+msgid "Overtime Rate:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:16
+msgid "Double-Overtime Rate:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:17
+msgid "Flat Fee:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:18
+msgid "        "
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:19
+#, fuzzy
+msgid "                        "
+msgstr "過濾..                "
+
+#: gtt/glade/project_properties_strings.c:20
+msgid "The dollars per hour normally charged for this project."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:21
+msgid "The dollars per hour charged for overtime work on this project."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:22
+msgid "The over-overtime rate (overtime on Sundays, etc.)"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:23
+msgid ""
+"If this project is billed for one price no matter how long it takes, enter "
+"the fee here."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:24
+msgid "Rates"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:25
+msgid "Minimum Interval: "
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:26
+msgid "Auto-merge Interval:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:27
+msgid "Auto-merge Gap:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:28
+#: gtt/glade/project_properties_strings.c:29
+#: gtt/glade/project_properties_strings.c:30
+#, fuzzy
+msgid "seconds"
+msgstr "秒"
+
+#: gtt/glade/project_properties_strings.c:31
+msgid "Intervals smaller than this will be discarded"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:32
+msgid "Time below which an interval is merged with its neighbors"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:33
+msgid ""
+"If the gap between intervals is smaller than this, the intervals will be "
+"merged together."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:34
+#, fuzzy
+msgid "Intervals"
+msgstr "一般"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/task_properties_strings.c:7
+#, fuzzy
+msgid "Memo:"
+msgstr "記憶體"
+
+#: gtt/glade/task_properties_strings.c:9
+msgid "Billable:"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:10
+msgid "Billing Rate:"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:11
+msgid "Billing Block:"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:12
+msgid ""
+"Can this task be billed to the customer?  \"Hold\" means maybe but not yet, "
+"\"Not Billable\" means don't print on the invoice, \"No Charge\" means print "
+"on the invoice as 'free'."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:13
+#, fuzzy
+msgid "Hold"
+msgstr "填色"
+
+#: gtt/glade/task_properties_strings.c:14
+#, fuzzy
+msgid "Billable"
+msgstr "不使用"
+
+#: gtt/glade/task_properties_strings.c:15
+msgid "Not Billable"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:16
+msgid "No Charge"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:17
+msgid "Fee rate to be charged for this task."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:18
+#, fuzzy
+msgid "Regular"
+msgstr "重新載入"
+
+#: gtt/glade/task_properties_strings.c:19
+msgid "Overtime"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:20
+#, fuzzy
+msgid "OverOver"
+msgstr "伺服器"
+
+#: gtt/glade/task_properties_strings.c:21
+#, fuzzy
+msgid "Flat Fee"
+msgstr "浮點數"
+
+#: gtt/glade/task_properties_strings.c:22
+msgid ""
+"The billed unit of time wioll be rounded to an integer multiple of this time."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:23
+msgid "A set of private notes that will not be printed on an invoice."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:24
+msgid "A short description to attach to this block of time."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:25
+#, fuzzy
+msgid "minutes"
+msgstr "分"
+
+#: gtt/glade/task_properties_strings.c:26
+#, fuzzy
+msgid "Task Properties"
+msgstr "內容"
+
+#: gtt/journal.c:91
+msgid "<html><body><h1>Error 404 Not Found</h1>The file "
+msgstr ""
+
+#: gtt/journal.c:95
+msgid "(null)"
+msgstr ""
+
+#: gtt/journal.c:98
+msgid " was not found. </body></html>"
+msgstr ""
+
+#: gtt/journal.c:103
+msgid "<html><body><h1>Unkown Error</h1>"
+msgstr ""
+
+#: gtt/phtml.c:39
+msgid ""
+"<table border=1><caption><em>hey hey hey!</em></caption><tr><th "
+"colspan=4>Memo<tr><th>&nbsp;<th>Start<th>Stop<th>Elapsed"
+msgstr ""
+
+#: gtt/phtml.c:58 gtt/phtml.c:132
+#, fuzzy
+msgid "(empty)"
+msgstr "空白"
+
+#: gtt/phtml.c:150
+msgid "unknown token: >>>>"
+msgstr ""
+
+#: gtt/props-proj.c:70 gtt/props-proj.c:71 gtt/props-task.c:66
+#: gtt/props-task.c:67
+msgid "empty"
+msgstr "空白"
 
 #: logview/about.c:41
 msgid "Cesar Miquel (miquel@df.uba.ar)"
@@ -1822,12 +2200,6 @@ msgstr "列表"
 msgid "Grid"
 msgstr "方格"
 
-#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1041
-#: stripchart/params.c:1044
-msgid "Edit"
-msgstr "編輯"
-
 #: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1034
 #: stripchart/params.c:1037
 msgid "File"
@@ -2185,12 +2557,6 @@ msgstr "另存調色盤(_A)..."
 #: mini-utils/gcolorsel/menus.c:83
 msgid "Save the current palette with a different name"
 msgstr "儲存目前的調色盤成為另一檔案"
-
-#: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
-#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:631
-#: stripchart/params.c:953
-msgid "Close"
-msgstr "關閉"
 
 #: mini-utils/gcolorsel/menus.c:105
 msgid "Insert color"
@@ -2993,10 +3359,6 @@ msgstr "指令列"
 #: mini-utils/gw/gw.c:493
 msgid "Add some defaults"
 msgstr "新增預設值"
-
-#: mini-utils/gw/gw.c:495
-msgid "Delete"
-msgstr "刪除"
 
 #: mini-utils/gw/gw.c:513
 msgid "Command Editor"
@@ -3842,6 +4204,15 @@ msgid ""
 msgstr ""
 "找不到保存檔案（tar）程式！\n"
 "它是建立保存檔用的必要程式。"
+
+#~ msgid "Project Time today:"
+#~ msgstr "今日計劃佔用的時間："
+
+#~ msgid "Project Time ever:"
+#~ msgstr "計劃佔用的整體時間："
+
+#~ msgid "Manual..."
+#~ msgstr "使用手冊..."
 
 #~ msgid "Formatting /dev/floppy"
 #~ msgstr "格式化 /dev/floppy"

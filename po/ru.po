@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2001-08-14 10:24+0400\n"
+"POT-Creation-Date: 2001-09-03 05:33-0700\n"
 "PO-Revision-Date: 2001-08-14 10:53+0400\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -276,7 +276,7 @@ msgid "Exit"
 msgstr "Выход"
 
 #: gcharmap/src/interface.c:239 gcharmap/src/menus.c:104
-#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:163
+#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:166
 msgid "Copy"
 msgstr "Скопировать"
 
@@ -358,7 +358,7 @@ msgstr "Установить будут ли кнопки фокусирумыми или нет"
 msgid "Insert character(s) by choosing character codes"
 msgstr "Вставить символы используя их коды"
 
-#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:159
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:162
 msgid "Cut"
 msgstr "Вырезать"
 
@@ -370,7 +370,7 @@ msgstr "Вырезать выделение"
 msgid "Copy the selection"
 msgstr "Скопировать выделение"
 
-#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:167
+#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:170
 msgid "Paste"
 msgstr "Вставить"
 
@@ -551,7 +551,7 @@ msgid "Cross-reference:"
 msgstr "Перекрестные ссылки:"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:571
 #: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:195
 msgid "Preferences"
 msgstr "Настройки"
@@ -641,7 +641,7 @@ msgstr "Не удалось разобрать строку геометрии '%s'"
 msgid "Specify the geometry of the window."
 msgstr "Указать геометрию окна."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:231 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:310 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "ГЕОМЕТРИЯ"
 
@@ -760,7 +760,9 @@ msgstr "Результаты поиска"
 msgid ""
 "\n"
 "... Too many errors to display ..."
-msgstr "\n... Слишком много ошибок ..."
+msgstr ""
+"\n"
+"... Слишком много ошибок ..."
 
 #: gsearchtool/gsearchtool.c:369 gsearchtool/gsearchtool.c:400
 msgid "Start directory does not exist"
@@ -791,6 +793,7 @@ msgid "Enable"
 msgstr "Включить"
 
 #: gsearchtool/gsearchtool.c:576 logview/actions.c:163
+#: meat-grinder/meat-grinder.c:702
 msgid "Remove"
 msgstr "Удалить"
 
@@ -811,10 +814,12 @@ msgid "Show Command"
 msgstr "Показать команду"
 
 #: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:759
+#: gtt/glade/interval_edit_strings.c:9
 msgid "Start"
 msgstr "Старт"
 
 #: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:760
+#: gtt/glade/interval_edit_strings.c:8
 msgid "Stop"
 msgstr "Стоп"
 
@@ -864,7 +869,7 @@ msgstr "Искатель Gnome"
 msgid "Cannot save file"
 msgstr "Не удалось сохранить файл"
 
-#: gsearchtool/outdlg.c:69
+#: gsearchtool/outdlg.c:69 meat-grinder/meat-grinder.c:476
 msgid "Save Results"
 msgstr "Сохранить результаты"
 
@@ -876,15 +881,15 @@ msgstr "Команда искажена"
 msgid "No command for this mime type"
 msgstr "Нет команды для этого MIME-типа"
 
-#: gtt/app.c:117 gtt/app.c:222
+#: gtt/app.c:107 gtt/app.c:216
 msgid "no project selected"
 msgstr "проект не выбран"
 
-#: gtt/app.c:211
+#: gtt/app.c:205
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:250 mini-utils/gless/gless.c:423
+#: gtt/app.c:248 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -892,46 +897,46 @@ msgstr ""
 "Непонятная геометрия (позиция и размер)\n"
 "указана в командной строке"
 
-#: gtt/clist.c:169
-msgid "Total"
-msgstr "Всего"
+#: gtt/file-io.c:334
+msgid "project %t started"
+msgstr "проект \"%t\" запущен"
 
-#: gtt/clist.c:170
-msgid "Today"
-msgstr "Сегодня"
+#: gtt/file-io.c:337
+msgid "stopped project %t"
+msgstr "проект \"%t\" остановлен"
 
-#: gtt/clist.c:171 gtt/menucmd.c:117
-msgid "Project Title"
-msgstr "Название проекта"
+#. Translators: This is a "time format", that is
+#. * format on how to print the elapsed time with
+#. * hours:minutes:seconds.
+#: gtt/file-io.c:533
+#, c-format
+msgid "%d:%02d:%02d"
+msgstr "%d:%02d:%02d"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:654
-msgid "Description"
-msgstr "Описание"
-
-#: gtt/log.c:52
+#: gtt/log.c:53
 #, c-format
 msgid "Cannot open logfile %s for append"
 msgstr "Не удалось открыть файл журнала %s для добавления"
 
 #. Translators: Format to use in the gtt logfile
-#: gtt/log.c:61
+#: gtt/log.c:62
 msgid "%b %d %H:%M:%S"
 msgstr "%b %d %H:%M:%S"
 
-#: gtt/log.c:81 gtt/log.c:235
+#: gtt/log.c:83 gtt/log.c:244
 msgid "program started"
 msgstr "программа запущена"
 
-#: gtt/log.c:99
+#: gtt/log.c:101
 msgid "no description"
 msgstr "нет описания"
 
 #. log_if_equal
-#: gtt/log.c:227
+#: gtt/log.c:236
 msgid "program exited"
 msgstr "программа завершена"
 
-#: gtt/main.c:98
+#: gtt/main.c:108
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -940,15 +945,15 @@ msgstr ""
 "Нажмите \"OK\" чтобы все равно запустить его, или нажмите \"Отмена\" для "
 "выхода."
 
-#: gtt/main.c:109
+#: gtt/main.c:119
 msgid "Cannot create pid-file!"
 msgstr "Не удалось создать pid-файл!"
 
-#: gtt/main.c:141
+#: gtt/main.c:185
 msgid "Error"
 msgstr "Ошибка"
 
-#: gtt/main.c:142
+#: gtt/main.c:186
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -956,43 +961,57 @@ msgstr ""
 "При чтении конфигурационного файла возникла ошибка.\n"
 "Установить новую конфигурацию?"
 
-#: gtt/main.c:231
+#: gtt/main.c:310
 msgid "Specify geometry"
 msgstr "Указать геометрию"
 
-#: gtt/main.c:233
+#: gtt/main.c:312
 msgid "Select a project on startup"
 msgstr "Выбрать проект при запуске"
 
-#: gtt/main.c:233
+#: gtt/main.c:312
 msgid "PROJECT"
 msgstr "ПРОЕКТ"
 
-#: gtt/menucmd.c:33 gtt/menucmd.c:163 gtt/menucmd.c:195
+#: gtt/main.c:350 gtt/menucmd.c:51 gtt/menucmd.c:59 gtt/menucmd.c:229
+#: gtt/menucmd.c:267
 msgid "Warning"
 msgstr "Внимание"
 
-#: gtt/menucmd.c:34 gtt/menucmd.c:197
-msgid "I could not write the configuration file!"
+#: gtt/menucmd.c:52 gtt/menucmd.c:269
+#, fuzzy
+msgid "Could not write the configuration file!"
 msgstr "Не удалось записать файл конфигурации!"
 
-#: gtt/menucmd.c:65
+#: gtt/menucmd.c:60
+msgid "Unknown error occurred"
+msgstr ""
+
+#: gtt/menucmd.c:111
 msgid "Time tracking tool for GNOME"
 msgstr "Инструмент учета времени для GNOME"
 
-#: gtt/menucmd.c:111 gtt/toolbar.c:142
+#: gtt/menucmd.c:161
 msgid "New Project..."
 msgstr "Новый проект..."
 
-#: gtt/menucmd.c:165
+#: gtt/ctree.c:278 gtt/menucmd.c:167
+msgid "Project Title"
+msgstr "Название проекта"
+
+#: gtt/ctree.c:279 gtt/menucmd.c:168 stripchart/params.c:654
+msgid "Description"
+msgstr "Описание"
+
+#: gtt/menucmd.c:231
 msgid "I could not read the configuration file"
 msgstr "Не удалось прочесть файл конфигурации!"
 
-#: gtt/menucmd.c:179 gtt/toolbar.c:149
+#: gtt/menucmd.c:245 gtt/toolbar.c:152
 msgid "Reload Configuration File"
 msgstr "Перезагрузить файл конфигурации"
 
-#: gtt/menucmd.c:180
+#: gtt/menucmd.c:246
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1000,287 +1019,649 @@ msgstr ""
 "Это действие перепишет все текущие установки проекта.\n"
 "Вы действительно хотите перезагрузить файл конфигурации?"
 
-#: gtt/menucmd.c:217
+#: gtt/menucmd.c:289
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr "Файл %s существует, переписать?"
 
-#: gtt/menucmd.c:228
+#: gtt/menucmd.c:300
 msgid "File cannot be written"
 msgstr "Нельзя записать файл"
 
-#: gtt/menucmd.c:248
+#: gtt/menucmd.c:320
 msgid "Export Current State"
 msgstr "Экспортировать текущее состояние"
 
-#: gtt/menus.c:27
+#: gtt/menus.c:30
 msgid "_New Project..."
 msgstr "Новый проект..."
 
-#: gtt/menus.c:30
+#: gtt/menus.c:33
 msgid "_Reload Configuration File"
 msgstr "Перезагрузить файл конфигурации"
 
-#: gtt/menus.c:34
+#: gtt/menus.c:37
 msgid "_Save Configuration File"
 msgstr "Сохранить файл конфигурации"
 
-#: gtt/menus.c:38
+#: gtt/menus.c:41
 msgid "_Export Current State"
 msgstr "Экспортировать текущее состояние"
 
-#: gtt/menus.c:63 gtt/menus.c:119
+#: gtt/menus.c:66 gtt/menus.c:127
 msgid "Clear _Daily Counter"
 msgstr "Очистить счетчик дней"
 
-#: gtt/menus.c:75
+#: gtt/menus.c:71
+msgid "_Journal..."
+msgstr ""
+
+#: gtt/menus.c:83
 msgid "St_art"
 msgstr "Старт"
 
-#: gtt/menus.c:79
+#: gtt/menus.c:87
 msgid "Sto_p"
 msgstr "Стоп"
 
-#: gtt/menus.c:84
+#: gtt/menus.c:92
 msgid "_Timer Running"
 msgstr "Таймер запущен"
 
-#: gtt/menus.c:103
+#: gtt/menus.c:111
 msgid "_Timer"
 msgstr "Таймер"
 
-#: gtt/options.c:189
+#: gtt/options.c:234
 msgid "Display"
 msgstr "Представление"
 
-#: gtt/options.c:197
+#: gtt/options.c:242
 msgid "Show Seconds"
 msgstr "Показывать секунды"
 
-#: gtt/options.c:203
+#: gtt/options.c:248
 msgid "Show Status Bar"
 msgstr "Показывать строку состояния"
 
-#: gtt/options.c:209
+#: gtt/options.c:254
 msgid "Show Table Header"
 msgstr "Показывать заголовок таблицы"
 
-#: gtt/options.c:223 gtt/options.c:538
+#: gtt/options.c:260
+#, fuzzy
+msgid "Show Sub-Projects"
+msgstr "Показывать `Свойства'"
+
+#: gtt/options.c:274 gtt/options.c:591
 msgid "Toolbar"
 msgstr "Панель инструментов"
 
-#: gtt/options.c:231
+#: gtt/options.c:282
 msgid "Show Toolbar Icons"
 msgstr "Показывать пиктограммы на панели инструментов"
 
-#: gtt/options.c:237
+#: gtt/options.c:288
 msgid "Show Toolbar Texts"
 msgstr "Показывать надписи на панели инструментов"
 
-#: gtt/options.c:243
+#: gtt/options.c:294
 msgid "Show Tooltips"
 msgstr "Показывать подсказки"
 
-#: gtt/options.c:249
+#: gtt/options.c:300
 msgid "Toolbar Segments"
 msgstr "Элементы панели инструментов"
 
-#: gtt/options.c:257
+#: gtt/options.c:308
 msgid "Show `New'"
 msgstr "Показывать `Новый'"
 
-#: gtt/options.c:263
+#: gtt/options.c:314
 msgid "Show `Save', `Reload'"
 msgstr "Показывать `Сохранить', `Перезагрузить'"
 
-#: gtt/options.c:269
+#: gtt/options.c:320
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Показывать `Вырезать', `Скопировать', `Вставить'"
 
-#: gtt/options.c:275
+#: gtt/options.c:326
 msgid "Show `Properties'"
 msgstr "Показывать `Свойства'"
 
-#: gtt/options.c:281
+#: gtt/options.c:332
 msgid "Show `Timer'"
 msgstr "Показывать `Таймер'"
 
-#: gtt/options.c:287
+#: gtt/options.c:338
 msgid "Show `Preferences'"
 msgstr "Показывать `Настройки'"
 
-#: gtt/options.c:293
+#: gtt/options.c:344
 msgid "Show `Help'"
 msgstr "Показывать `Помощь'"
 
-#: gtt/options.c:299
+#: gtt/options.c:350
 msgid "Show `Quit'"
 msgstr "Показывать `Выход'"
 
-#: gtt/options.c:313
+#: gtt/options.c:364
 msgid "Shell Commands"
 msgstr "Команды оболочки"
 
-#: gtt/options.c:321
+#: gtt/options.c:372
 msgid "Switch Project Command:"
 msgstr "Команда переключения проекта:"
 
-#: gtt/options.c:333
+#: gtt/options.c:384
 msgid "No Project Command:"
 msgstr "Команда отсутствия проекта:"
 
-#: gtt/options.c:368
+#: gtt/options.c:419
 msgid "Logfile"
 msgstr "Файл регистрации"
 
-#: gtt/options.c:376
+#: gtt/options.c:427
 msgid "Use Logfile"
 msgstr "Использовать файл регистрации"
 
-#: gtt/options.c:385
+#: gtt/options.c:436
 msgid "Filename:"
 msgstr "Имя файла:"
 
-#: gtt/options.c:399
+#: gtt/options.c:450
 msgid "Entry Start:"
 msgstr "Точка старта:"
 
-#: gtt/options.c:413
+#: gtt/options.c:464
 msgid "Entry Stop:"
 msgstr "Точка остановки:"
 
-#: gtt/options.c:427
+#: gtt/options.c:478
 msgid "Timeout in secs:"
 msgstr "Время ожидания в секундах:"
 
-#: gtt/options.c:525
+#: gtt/options.c:578
 msgid "Misc"
 msgstr "Разное"
 
-#: gtt/proj.c:466
-msgid "project %t started"
-msgstr "проект \"%t\" запущен"
+#: gtt/proj.c:436
+msgid "Old GTT Tasks"
+msgstr ""
 
-#: gtt/proj.c:469
-msgid "stopped project %t"
-msgstr "проект \"%t\" остановлен"
-
-#. Translators: This is a "time format", that is
-#. * format on how to print the elapsed time with
-#. * hours:minutes:seconds.
-#: gtt/proj.c:605
-#, c-format
-msgid "%d:%02d:%02d"
-msgstr "%d:%02d:%02d"
-
-#: gtt/prop.c:59
-msgid "empty"
-msgstr "пусто"
-
-#: gtt/prop.c:167
-msgid "Properties"
-msgstr "Свойства"
-
-#: gtt/prop.c:175
-msgid "Project"
-msgstr "Проект"
-
-#: gtt/prop.c:194
-msgid "Project Title:"
-msgstr "Название проекта:"
-
-#: gtt/prop.c:207
-msgid "Project Description:"
-msgstr "Описание проекта:"
-
-#: gtt/prop.c:220
-msgid "Project Time today:"
-msgstr "Время работы над проектом, сегодня:"
-
-#: gtt/prop.c:236 gtt/prop.c:274
-msgid "hours"
-msgstr "часы"
-
-#: gtt/prop.c:247 gtt/prop.c:285
-msgid "mins"
-msgstr "минуты"
-
-#: gtt/prop.c:258 gtt/prop.c:296
-msgid "secs"
-msgstr "секунды"
-
-#: gtt/prop.c:262
-msgid "Project Time ever:"
-msgstr "Время работы над проектом, полное:"
+#: gtt/proj.c:455 gtt/proj.c:858
+msgid "New Task"
+msgstr ""
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:141
+#: gtt/toolbar.c:144
 msgid "[GTT]New"
 msgstr "[GTT]Новый"
 
-#: gtt/toolbar.c:148
+#: gtt/toolbar.c:145
+#, fuzzy
+msgid "Create a New Project..."
+msgstr "Новый проект..."
+
+#: gtt/toolbar.c:151
 msgid "Reload"
 msgstr "Перезагрузить"
 
-#: gtt/toolbar.c:152 stripchart/params.c:939
+#: gtt/glade/journal_strings.c:11 gtt/toolbar.c:155 stripchart/params.c:939
 msgid "Save"
 msgstr "Сохранить"
 
-#: gtt/toolbar.c:153
+#: gtt/toolbar.c:156
 msgid "Save Configuration File"
 msgstr "Сохранить файл конфигурации"
 
-#: gtt/toolbar.c:160
+#: gtt/toolbar.c:163
 msgid "Cut Selected Project"
 msgstr "Вырезать выбранный проект"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:167
 msgid "Copy Selected Project"
 msgstr "Скопировать выбранный проект"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:171
 msgid "Paste Project"
 msgstr "Вставить проект"
 
-#: gtt/toolbar.c:174
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/journal_strings.c:7 gtt/toolbar.c:178
+msgid "Journal"
+msgstr ""
+
+#: gtt/toolbar.c:179
+msgid "View and Edit Timestamp Logs"
+msgstr ""
+
+#: gtt/toolbar.c:184
 msgid "Props"
 msgstr "Свойства"
 
-#: gtt/toolbar.c:175
-msgid "Edit Properties..."
+#: gtt/toolbar.c:185
+#, fuzzy
+msgid "Edit Project Properties..."
 msgstr "Редактировать свойства..."
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:189
 msgid "Timer"
 msgstr "Таймер"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:190
 msgid "Start/Stop Timer"
 msgstr "Таймер Старт/Стоп"
 
-#: gtt/toolbar.c:189
+#: gtt/toolbar.c:202
 msgid "Prefs"
 msgstr "Настройки"
 
-#: gtt/toolbar.c:190
+#: gtt/toolbar.c:203
 msgid "Edit Preferences..."
 msgstr "Редактировать настройки..."
 
-#: gtt/toolbar.c:194
+#: gtt/toolbar.c:207
 msgid "Manual"
 msgstr "Руководство"
 
-#: gtt/toolbar.c:194
-msgid "Manual..."
-msgstr "Руководство..."
+#: gtt/toolbar.c:208
+msgid "User's Guide and Manual"
+msgstr ""
 
-#: gtt/toolbar.c:199
+#: gtt/toolbar.c:213
 msgid "Quit"
 msgstr "Выход"
 
-#: gtt/toolbar.c:199
+#: gtt/toolbar.c:213
 msgid "Quit GTimeTracker"
 msgstr "Выход из GTimeTracker"
+
+#: gtt/ctree.c:276
+msgid "Total"
+msgstr "Всего"
+
+#: gtt/ctree.c:277 gtt/glade/interval_edit_strings.c:20
+msgid "Today"
+msgstr "Сегодня"
+
+#. ===================== END OF FILE ==============================
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/interval_edit_strings.c:7
+#, fuzzy
+msgid "Start Fuzz"
+msgstr "Старт"
+
+#: gtt/glade/interval_edit_strings.c:10
+msgid "Set how Uncertain the Start Time Is"
+msgstr ""
+
+#: gtt/glade/interval_edit_strings.c:11
+msgid "Exact Time"
+msgstr ""
+
+#: gtt/glade/interval_edit_strings.c:12
+#, fuzzy
+msgid "5 Min"
+msgstr "Мин."
+
+#: gtt/glade/interval_edit_strings.c:13
+#, fuzzy
+msgid "10 Min"
+msgstr "Мин."
+
+#: gtt/glade/interval_edit_strings.c:14
+#, fuzzy
+msgid "15 Min"
+msgstr "Мин."
+
+#: gtt/glade/interval_edit_strings.c:15
+#, fuzzy
+msgid "20 Min"
+msgstr "Мин."
+
+#: gtt/glade/interval_edit_strings.c:16
+#, fuzzy
+msgid "30 Min"
+msgstr "Мин."
+
+#: gtt/glade/interval_edit_strings.c:17
+msgid "1 Hour"
+msgstr ""
+
+#: gtt/glade/interval_edit_strings.c:18
+#, fuzzy
+msgid "2 Hours"
+msgstr "часы"
+
+#: gtt/glade/interval_edit_strings.c:19
+#, fuzzy
+msgid "3 Hours"
+msgstr "часы"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/interval_popup_strings.c:7
+#, fuzzy
+msgid "Edit the Start & Stop Times"
+msgstr "Таймер Старт/Стоп"
+
+#: gtt/glade/interval_popup_strings.c:8 mini-utils/gcolorsel/gcolorsel.c:32
+#: mini-utils/gcolorsel/menus.c:573 mini-utils/gcolorsel/menus.c:660
+#: stripchart/params.c:1041 stripchart/params.c:1044
+msgid "Edit"
+msgstr "Выход"
+
+#: gtt/glade/interval_popup_strings.c:9
+msgid "Delete This Interval"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:10 mini-utils/gw/gw.c:495
+msgid "Delete"
+msgstr "Удалить"
+
+#: gtt/glade/interval_popup_strings.c:11
+msgid "Merge Into Interval Above"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:12
+msgid "Merge Up"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:13
+msgid "Merege Into Interval Below"
+msgstr ""
+
+#: gtt/glade/interval_popup_strings.c:14
+msgid "Merge Down"
+msgstr ""
+
+#: gtt/glade/journal_strings.c:8
+#, fuzzy
+msgid "New File"
+msgstr "Новое окно"
+
+#: gtt/glade/journal_strings.c:9
+#, fuzzy
+msgid "Print"
+msgstr "Точка"
+
+#: gtt/glade/journal_strings.c:10
+#, fuzzy
+msgid "Open File"
+msgstr "Открыть журнал"
+
+#: gtt/glade/journal_strings.c:12
+#, fuzzy
+msgid "Save File"
+msgstr "Сохранить палитру"
+
+#: gtt/glade/journal_strings.c:13 mini-utils/gcolorsel/menus.c:89
+#: mini-utils/gcolorsel/menus.c:913 mini-utils/gshutdown/gshutdown.c:155
+#: mini-utils/gshutdown/gshutdown.c:631 stripchart/params.c:953
+msgid "Close"
+msgstr "Закрыть"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/project_properties_strings.c:7
+msgid "A title to assign to this project"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:8
+msgid "a short description that will be printed on the invoice."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:9
+msgid "Project Title:"
+msgstr "Название проекта:"
+
+#: gtt/glade/project_properties_strings.c:10
+msgid "Project Description:"
+msgstr "Описание проекта:"
+
+#: gtt/glade/project_properties_strings.c:11
+#: gtt/glade/task_properties_strings.c:8
+msgid "Notes:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:12
+msgid ""
+"Internal notes about the project, memos that will not be printed on an "
+"invoice."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:13
+msgid "Project"
+msgstr "Проект"
+
+#: gtt/glade/project_properties_strings.c:14
+msgid "Regular Rate:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:15
+msgid "Overtime Rate:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:16
+msgid "Double-Overtime Rate:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:17
+msgid "Flat Fee:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:18
+msgid "        "
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:19
+#, fuzzy
+msgid "                        "
+msgstr "Фильтр..."
+
+#: gtt/glade/project_properties_strings.c:20
+msgid "The dollars per hour normally charged for this project."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:21
+msgid "The dollars per hour charged for overtime work on this project."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:22
+msgid "The over-overtime rate (overtime on Sundays, etc.)"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:23
+msgid ""
+"If this project is billed for one price no matter how long it takes, enter "
+"the fee here."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:24
+msgid "Rates"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:25
+msgid "Minimum Interval: "
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:26
+msgid "Auto-merge Interval:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:27
+msgid "Auto-merge Gap:"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:28
+#: gtt/glade/project_properties_strings.c:29
+#: gtt/glade/project_properties_strings.c:30
+#, fuzzy
+msgid "seconds"
+msgstr "секунды"
+
+#: gtt/glade/project_properties_strings.c:31
+msgid "Intervals smaller than this will be discarded"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:32
+msgid "Time below which an interval is merged with its neighbors"
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:33
+msgid ""
+"If the gap between intervals is smaller than this, the intervals will be "
+"merged together."
+msgstr ""
+
+#: gtt/glade/project_properties_strings.c:34
+#, fuzzy
+msgid "Intervals"
+msgstr "Общие"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gtt/glade/task_properties_strings.c:7
+#, fuzzy
+msgid "Memo:"
+msgstr "Память"
+
+#: gtt/glade/task_properties_strings.c:9
+msgid "Billable:"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:10
+msgid "Billing Rate:"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:11
+msgid "Billing Block:"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:12
+msgid ""
+"Can this task be billed to the customer?  \"Hold\" means maybe but not yet, "
+"\"Not Billable\" means don't print on the invoice, \"No Charge\" means print "
+"on the invoice as 'free'."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:13
+#, fuzzy
+msgid "Hold"
+msgstr "Сплошное"
+
+#: gtt/glade/task_properties_strings.c:14
+#, fuzzy
+msgid "Billable"
+msgstr "Выкл."
+
+#: gtt/glade/task_properties_strings.c:15
+msgid "Not Billable"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:16
+msgid "No Charge"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:17
+msgid "Fee rate to be charged for this task."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:18
+#, fuzzy
+msgid "Regular"
+msgstr "Перезагрузить"
+
+#: gtt/glade/task_properties_strings.c:19
+msgid "Overtime"
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:20
+#, fuzzy
+msgid "OverOver"
+msgstr "Сохранить"
+
+#: gtt/glade/task_properties_strings.c:21
+#, fuzzy
+msgid "Flat Fee"
+msgstr "Плавающее"
+
+#: gtt/glade/task_properties_strings.c:22
+msgid ""
+"The billed unit of time wioll be rounded to an integer multiple of this time."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:23
+msgid "A set of private notes that will not be printed on an invoice."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:24
+msgid "A short description to attach to this block of time."
+msgstr ""
+
+#: gtt/glade/task_properties_strings.c:25
+#, fuzzy
+msgid "minutes"
+msgstr "минуты"
+
+#: gtt/glade/task_properties_strings.c:26
+#, fuzzy
+msgid "Task Properties"
+msgstr "Свойства"
+
+#: gtt/journal.c:91
+msgid "<html><body><h1>Error 404 Not Found</h1>The file "
+msgstr ""
+
+#: gtt/journal.c:95
+msgid "(null)"
+msgstr ""
+
+#: gtt/journal.c:98
+msgid " was not found. </body></html>"
+msgstr ""
+
+#: gtt/journal.c:103
+msgid "<html><body><h1>Unkown Error</h1>"
+msgstr ""
+
+#: gtt/phtml.c:39
+msgid ""
+"<table border=1><caption><em>hey hey hey!</em></caption><tr><th "
+"colspan=4>Memo<tr><th>&nbsp;<th>Start<th>Stop<th>Elapsed"
+msgstr ""
+
+#: gtt/phtml.c:58 gtt/phtml.c:132
+#, fuzzy
+msgid "(empty)"
+msgstr "пусто"
+
+#: gtt/phtml.c:150
+msgid "unknown token: >>>>"
+msgstr ""
+
+#: gtt/props-proj.c:70 gtt/props-proj.c:71 gtt/props-task.c:66
+#: gtt/props-task.c:67
+msgid "empty"
+msgstr "пусто"
 
 #: logview/about.c:41
 msgid "Cesar Miquel (miquel@df.uba.ar)"
@@ -1802,12 +2183,6 @@ msgstr "Список"
 msgid "Grid"
 msgstr "Сетка"
 
-#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1041
-#: stripchart/params.c:1044
-msgid "Edit"
-msgstr "Выход"
-
 #: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1034
 #: stripchart/params.c:1037
 msgid "File"
@@ -2167,12 +2542,6 @@ msgstr "Сохранить палитру как..."
 #: mini-utils/gcolorsel/menus.c:83
 msgid "Save the current palette with a different name"
 msgstr "Сохранить текущую палитру под другим именем"
-
-#: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
-#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:631
-#: stripchart/params.c:953
-msgid "Close"
-msgstr "Закрыть"
 
 #: mini-utils/gcolorsel/menus.c:105
 msgid "Insert color"
@@ -2978,10 +3347,6 @@ msgstr "Командная строка"
 msgid "Add some defaults"
 msgstr "Добавить несколько значений по умолчанию"
 
-#: mini-utils/gw/gw.c:495
-msgid "Delete"
-msgstr "Удалить"
-
 #: mini-utils/gw/gw.c:513
 msgid "Command Editor"
 msgstr "Редактор команд"
@@ -3389,7 +3754,8 @@ msgstr "Проверка на наличие сбойных блоков... (может занять некоторое время)"
 #: gfloppy/src/main.c:135 gfloppy/src/main.c:171
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "Не удалось открыть устройство %s, невозможно продолжать форматирование."
+msgstr ""
+"Не удалось открыть устройство %s, невозможно продолжать форматирование."
 
 #: gfloppy/src/main.c:138 gfloppy/src/main.c:174
 #, c-format
@@ -3714,3 +4080,119 @@ msgid ""
 "The executable is for a different platform and can not be executed on this "
 "system"
 msgstr ""
+
+#: meat-grinder/meat-grinder.c:106
+#, c-format
+msgid ""
+"Number of files: %d\n"
+"Nuber of folders: %d"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:112
+msgid ""
+"No files or folders, drop files or folders\n"
+"above to add them to the archive"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:217 meat-grinder/meat-grinder.c:220
+msgid "Cannot start the archive (tar) program"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:228
+msgid "Cannot run tar/gtar"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:279
+msgid "Archive.tar.gz"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:379
+msgid "The GNOME Archive Generator"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:382
+msgid "Drag files in to make archives"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:444 meat-grinder/meat-grinder.c:602
+#, fuzzy
+msgid "No filename selected"
+msgstr "проект не выбран"
+
+#: meat-grinder/meat-grinder.c:448
+#, fuzzy
+msgid "File exists, overwrite?"
+msgstr "Файл %s существует, переписать?"
+
+#: meat-grinder/meat-grinder.c:472
+msgid "No items to archive"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:605
+#, fuzzy
+msgid "File does not exists"
+msgstr "Начальный каталог не существует"
+
+#: meat-grinder/meat-grinder.c:619
+msgid "Add file or folder"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:689
+msgid "Add file or folder..."
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:690
+msgid "Add a file or folder to the archive"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:693
+#, fuzzy
+msgid "Create archive..."
+msgstr "Создать окна"
+
+#: meat-grinder/meat-grinder.c:694
+#, fuzzy
+msgid "Create a new archive from the items"
+msgstr "Создать новое окно для документа"
+
+#: meat-grinder/meat-grinder.c:703
+#, fuzzy
+msgid "Remove the selected item(s)"
+msgstr "Удалить выбранные цвета"
+
+#: meat-grinder/meat-grinder.c:735
+msgid "GNOME Archive Generator"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:765
+msgid "Drop files here to add them to the archive."
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:783
+msgid "Archive"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:790
+msgid ""
+"Drag this button to the destination where you want the archive to be created "
+"or press it to pop up a file selection dialog."
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:883
+msgid "Cannot find proper icons anywhere!"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:891
+msgid ""
+"Cannot find the archive (tar) program!\n"
+"This is the program used for creating archives."
+msgstr ""
+
+#~ msgid "Project Time today:"
+#~ msgstr "Время работы над проектом, сегодня:"
+
+#~ msgid "Project Time ever:"
+#~ msgstr "Время работы над проектом, полное:"
+
+#~ msgid "Manual..."
+#~ msgstr "Руководство..."
