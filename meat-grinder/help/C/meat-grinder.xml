@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY version "1.4.0.1"> 
-<!ENTITY date "11/20/2001"> 
+<!ENTITY legal SYSTEM "legal.xml">
+<!ENTITY version "2"> 
+<!ENTITY date "02/01/2002"> 
 ]>
 
 <!-- 
@@ -35,26 +36,48 @@
 
    -->
 
-  <legalnotice id="legalnotice">
-   <para>
-    Permission is granted to copy, distribute and/or modify this document
-    under the terms of the <ulink type="help" 
-    url="gnome-help:fdl"><citetitle>GNU Free Documentation
-    License</citetitle></ulink>, Version 1.1 or any later version 
-    published by the Free Software Foundation with no Invariant Sections, 
-    no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license
-    can be found <ulink type="help" url="gnome-help:fdl">here</ulink>.
-   </para>
-   <para>
-    Many of the names used by companies to distinguish their products and
-    services are claimed as trademarks. Where those names appear in any
-    GNOME documentation, and those trademarks are made aware to the members
-    of the GNOME Documentation Project, the names have been printed in caps
-    or initial caps.
-   </para>
-  </legalnotice>
+    <publisher>
+      <publishername>
+	GNOME Documentation Project
+      </publishername>
+    </publisher>
 
- 
+    &legal;
+  
+    <legalnotice id="feedback">
+      <title>Feedback Information</title>
+      <para>
+	To report a bug or make a suggestion regarding this
+	application or this documentation, please see  the
+	<ulink type="help"
+	       url="ghelp:gnome-feedback">GNOME Feedback Page</ulink>.
+      </para>
+    </legalnotice>
+
+    <authorgroup>
+      <author>
+	  <firstname>John </firstname>
+	  <surname> Fleck</surname>
+	  <affiliation>
+		<orgname>GNOME Documentation Project</orgname>
+		<address> 
+	          <email>jfleck@inkstain.net</email>
+		</address>
+	  </affiliation>
+	</author>
+    </authorgroup>
+
+    <revhistory>
+      <revision>
+	<revnumber>1.0</revnumber>
+	<date>17 June 2001</date>
+	<revdescription>
+	  <para role="author">John Fleck
+                     <email>jfleck@inkstain.net</email></para>
+                   <para role="publisher">GNOME Documentation Project</para>
+          </revdescription>
+      </revision>
+    </revhistory>
 
     <releaseinfo>
        This manual describes version &version; of GNOME Archive Generator. It was
@@ -113,13 +136,20 @@
 
       <!-- ==== Figure ==== -->
       <figure id="mainwindow-fig">
-	<title>GNOME Archive Generator Main Window</title>
+	<title>GNOME Archive Generator Main Window.</title>
 	<screenshot>
-	  <screeninfo>GNOME Archive Generator Main Window</screeninfo>
-	  <graphic fileref="figures/meat-grinder-main" format="PNG"
-		     srccredit="John Fleck" />
-	 
-	</screenshot>
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/meat-grinder-main.png" format="PNG"/>
+    </imageobject>
+      <imageobject>
+	<imagedata fileref="figures/meat-grinder-main.eps" format="EPS"/>
+    </imageobject>
+      <textobject>
+	<phrase>GNOME Archive Generator Main Window</phrase>
+      </textobject>
+    </mediaobject>
+    </screenshot>
       </figure>
     <!-- ==== End of Figure ==== -->
     </para> 
@@ -129,6 +159,24 @@
       window. A folder icon represents a directory.
       <figure id="mainwindow-fig-full">
 	<title>GNOME Archive Generator Main Window</title>
+	<screenshot>
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/meat-grinder-main-full.png" format="PNG"/>
+    </imageobject>
+      <imageobject>
+	<imagedata fileref="figures/meat-grinder-main-full.eps" format="EPS"/>
+    </imageobject>
+      <textobject>
+	<phrase>GNOME Archive Generator Main Window</phrase>
+      </textobject>
+    </mediaobject>
+</screenshot>
+      
+
+
+
+
 	<screenshot>
 	  <screeninfo>GNOME Archive Generator Main Window</screeninfo>
 	  <graphic fileref="figures/meat-grinder-main-full" format="PNG"
