@@ -27,13 +27,21 @@
 #ifndef __LOGVIEW_H__
 #define __LOGVIEW_H__
 
+/* #define DEBUG 1 */
+
+#ifdef DEBUG
+#define DB(x) x
+#else
+#define DB(x) while (0) { ; }
+#endif
+
 #define LOG_LINESEP              15
 
 #define LINES_P_PAGE             140
 #define NUM_PAGES                5 
 #define MAX_WIDTH                240
 #define MAX_HOSTNAME_WIDTH       257	/* Need authoritative answer on this value. */
-#define MAX_PROC_WIDTH           20
+#define MAX_PROC_WIDTH           60
 #define NUM_LOGS                 2
 #define R_BUF_SIZE               1024	/* Size of read buffer */
 #define MAX_NUM_LOGS             10
@@ -183,7 +191,7 @@ typedef struct
   Page *currentpg;
   Page *firstpg, *lastpg;
   DateMark *curmark;
-  char name[30];
+  char name[255];
   int firstline;	/* Line at top of screen relative to current page. */
   long ln;		/* Line at top of screen relative to start of log. */
   int pointerln;	/* Line number where the pointer is.               */
@@ -226,4 +234,5 @@ int read_descript_db (char *filename, GList **db);
 int find_tag_in_db (LogLine *line, GList *db);
 int IsLeapYear (int year);
 void SetDefaultUserPrefs(UserPrefsStruct *prefs);
+
 #endif /* __LOGVIEW_H__ */

@@ -20,7 +20,8 @@
     ---------------------------------------------------------------------- */
 
 
-#include "gtk/gtk.h"
+#include <config.h>
+#include <gnome.h>
 #include "logview.h"
 
 extern ConfigData *cfg;

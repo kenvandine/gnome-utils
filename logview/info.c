@@ -19,16 +19,15 @@
     ---------------------------------------------------------------------- */
 
 
+#include <config.h>
+#include <gnome.h>
 #include <unistd.h>
 #include <time.h>
 #include <sys/stat.h>
-#include <config.h>
-#include "gtk/gtk.h"
 #include "logview.h"
 #if 0
 #include "close.xpm"
 #endif
-#include "gnome.h"
 
 #define INFO_WIDTH            350
 #define INFO_HEIGHT           140
@@ -121,7 +120,7 @@ int
 RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
 {
    static GdkDrawable *canvas;
-   char buffer[255];
+   char buffer[1024];
    int x, y, h, w;
    int win_width, win_height;
 
@@ -176,23 +175,25 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
    y = cfg->headingb->ascent + 6;
    y += 9 + cfg->headingb->descent + cfg->fixedb->ascent;
    x = 15*w + 6 + 2;
-   sprintf (buffer, "%s", curlog->name);
+   g_snprintf (buffer, sizeof (buffer), "%s", curlog->name);
    h = cfg->fixedb->descent + cfg->fixedb->ascent+2;
    gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
    y += h;
-   sprintf (buffer, _("%ld bytes"), (long) curlog->lstats.size);
+   g_snprintf (buffer, sizeof (buffer),
+	      _("%ld bytes"), (long) curlog->lstats.size);
    gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
    y += h;
-   sprintf (buffer, "%s ", ctime (&curlog->lstats.mtime));
+   g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.mtime));
    gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
    y += h;
-   sprintf (buffer, "%s ", ctime (&curlog->lstats.startdate));
+   g_snprintf (buffer, sizeof (buffer), "%s ",
+	      ctime (&curlog->lstats.startdate));
    gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
    y += h;
-   sprintf (buffer, "%s ", ctime (&curlog->lstats.enddate));
+   g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.enddate));
    gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
    y += h;
-   sprintf (buffer, "%ld ", curlog->lstats.numlines);
+   g_snprintf (buffer, sizeof (buffer), "%ld ", curlog->lstats.numlines);
    gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
 
    return TRUE;

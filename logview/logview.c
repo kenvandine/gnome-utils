@@ -23,12 +23,11 @@
 
 
 #include <config.h>
+#include <gnome.h>
 #include <unistd.h>
 #include <time.h>
 #include <sys/stat.h>
-#include "gtk/gtk.h"
 #include "logview.h"
-#include <gnome.h>
 #include <libgnomeui/gnome-window-icon.h>
 
 /*
@@ -408,12 +407,13 @@ CreateMainWin ()
 void
 CanvasResized (GtkWidget *widget, GtkAllocation *allocation)
 {
-  if (allocation)
-    printf ("Main screen resized!\n New size = (%d,%d)\n", 
-	    allocation->width, allocation->height);
-  else
-    printf ("Main screen resized!\nNo allocation :(\n");
-
+  DB (
+      if (allocation)
+      	printf ("Main screen resized!\n New size = (%d,%d)\n", 
+		allocation->width, allocation->height);
+      else
+        printf ("Main screen resized!\nNo allocation :(\n");
+	);
 }
 
 /* ----------------------------------------------------------------------
@@ -522,7 +522,6 @@ void set_scrollbar_size (int num_lines)
 {
   GtkObject *adj;
 
-
   /*adj = gtk_adjustment_new ( curlog->ln, 0.0, num_lines+LINES_P_PAGE, 1.0, 10.0, (float) LINES_P_PAGE);*/
   adj = gtk_adjustment_new ( curlog->ln, 0.0, num_lines+LINES_P_PAGE, 1.0, 10.0, (float) 1);
   gtk_range_set_adjustment ( GTK_RANGE (main_win_scrollbar), GTK_ADJUSTMENT (adj) );
@@ -531,6 +530,8 @@ void set_scrollbar_size (int num_lines)
 		      (gpointer) main_win_scrollbar);       
   gtk_adjustment_set_value (GTK_ADJUSTMENT(adj), curlog->ln);
   gtk_widget_realize (main_win_scrollbar);
+
+  gtk_widget_queue_resize (main_win_scrollbar);
 }
 
 /* ----------------------------------------------------------------------
@@ -676,7 +677,7 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
 			      GTK_OBJECT (filesel));
 
    gtk_signal_connect (GTK_OBJECT (filesel),
-		       "destroy", (GtkSignalFunc) gtk_widget_destroy,
+		       "destroy", (GtkSignalFunc) gtk_widget_destroyed,
 		       &open_file_dialog);
 
    gtk_widget_show (filesel);
@@ -724,21 +725,22 @@ CloseApp (void)
 void
 open_databases (void)
 {
-  char full_name[255];
+  char full_name[1024];
   int found;
 
   /* Find regexp DB -----------------------------------------------------  */
   found = FALSE;
   if (cfg->regexp_db_path != NULL)
     {
-      sprintf (full_name, "%s/logview-regexp.db", cfg->regexp_db_path);
-      fprintf (stderr, "Looking for database in [%s]\n", cfg->regexp_db_path);
+      g_snprintf (full_name, sizeof (full_name),
+		  "%s/logview-regexp.db", cfg->regexp_db_path);
+      DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->regexp_db_path));
       if (access (full_name, R_OK) == 0) 
 	found = TRUE;
     }
 
-  strncpy (full_name, LOGVIEWINSTALLPREFIX, 200);
-  strncat (full_name, "share/logview/logview-regexp.db", 40);
+  g_snprintf (full_name, sizeof (full_name),
+	      "%s/share/logview/logview-regexp.db", LOGVIEWINSTALLPREFIX);
   if (access (full_name, R_OK) == 0)
      {
          found = TRUE;
@@ -752,14 +754,15 @@ open_databases (void)
   found = FALSE;
   if (cfg->descript_db_path != NULL)
     {
-      sprintf (full_name, "%s/logview-descript.db", cfg->descript_db_path);
-      fprintf (stderr, "Looking for database in [%s]\n", cfg->descript_db_path);
+      g_snprintf (full_name, sizeof (full_name),
+		  "%s/logview-descript.db", cfg->descript_db_path);
+      DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->descript_db_path));
       if (access (full_name, R_OK) == 0) 
 	found = TRUE;
     }
 
-  strncpy (full_name, LOGVIEWINSTALLPREFIX, 200);
-  strncat (full_name, "share/logview/logview-descript.db", 40);
+  g_snprintf (full_name, sizeof (full_name),
+	      "%s/share/logview/logview-descript.db", LOGVIEWINSTALLPREFIX);
   if (access (full_name, R_OK) == 0)
      {
          found = TRUE;
@@ -774,15 +777,16 @@ open_databases (void)
   found = FALSE;
   if (cfg->action_db_path != NULL)
     {
-      sprintf (full_name, "%s/logview-actions.db", cfg->action_db_path);
-      fprintf (stderr, "Looking for database in [%s]\n", cfg->action_db_path);
+      g_snprintf (full_name, sizeof (full_name),
+		  "%s/logview-actions.db", cfg->action_db_path);
+      DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->action_db_path));
       if (access (full_name, R_OK) == 0) 
 	found = TRUE;
     }
 
 
-  strncpy (full_name, LOGVIEWINSTALLPREFIX, 200);
-  strncat (full_name, "share/logview/logview-actions.db", 40);
+  g_snprintf (full_name, sizeof (full_name),
+	      "%s/share/logview/logview-actions.db", LOGVIEWINSTALLPREFIX);
   if (access (full_name, R_OK) == 0)
      {
          found = TRUE;
@@ -794,7 +798,7 @@ open_databases (void)
 
 
   /* If debugging then print DB */
-  print_db (regexp_db);
+  DB (print_db (regexp_db));
 
   return;
 }

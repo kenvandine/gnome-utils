@@ -20,12 +20,12 @@
 
 
 #include <config.h>
+#include <gnome.h>
+
 #include <unistd.h>
 #include <time.h>
 #include <sys/stat.h>
-#include "gtk/gtk.h"
 #include "logview.h"
-#include "gnome.h"
 
 #define USERPREFSDIALOG_WIDTH            500
 #define USERPREFSDIALOG_HEIGHT           300

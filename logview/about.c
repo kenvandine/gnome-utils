@@ -18,10 +18,10 @@
 
     ---------------------------------------------------------------------- */
 
+#include <config.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <gtk/gtk.h>
-#include <config.h>
 #include <gnome.h>
 #include "logview.h"
 

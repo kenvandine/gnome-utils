@@ -19,18 +19,16 @@
 
     ---------------------------------------------------------------------- */
 
+#include <config.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
-#include <config.h>
 #include <string.h>
 #include <gnome.h>
 #include "logview.h"
 #include "logrtns.h"
-#include "gtk/gtk.h"
-#include "gdk/gdkkeysyms.h"
 
 /*
  * -----------------

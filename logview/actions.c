@@ -1,8 +1,8 @@
+#include <config.h>
 #include "logview.h"
 #include <string.h>
 #include <stdlib.h>
 #include <regex.h>
-#include <config.h>
 #include <gnome.h>
 
 #define MAX_NUM_MATCHES     10
@@ -189,6 +189,7 @@ make_tree_from_actions_db (GList *db)
       else
 	{
 	  strncpy (buffer, action->tag, 50);
+	  buffer[49] = '\0';
 	  sibling = (GList *)gtk_ctree_insert_node (ctree, (GtkCTreeNode *)ctree_parent, NULL, (char **)text, 5, NULL, NULL,
 				      NULL, NULL, FALSE, FALSE);
 	  if (ctree_parent == NULL)
@@ -236,10 +237,11 @@ read_actions_db (char *filename, GList **db)
   fp = fopen (filename, "r");
   if (fp == NULL)
     {
-      sprintf (buffer, "Cannot open action data base <%s>! Open failed.", 
-	       filename);
-     ShowErrMessage (buffer);
-     return(-1);
+      g_snprintf (buffer, sizeof (buffer),
+		  _("Cannot open action data base <%s>! Open failed."), 
+		  filename);
+      ShowErrMessage (buffer);
+      return(-1);
     }
 
 
@@ -474,7 +476,7 @@ add_actions_entry_cb (GtkWidget *widget, gpointer data)
 
   action = malloc (sizeof (Action));
   
-  sprintf (action->tag, _("<empty>"));
+  g_snprintf (action->tag, sizeof (action->tag), _("<empty>"));
   action->log_name = g_strdup (_("log. name regexp"));
   action->process = g_strdup (_("process regexp"));
   action->message = g_strdup (_("message regexp"));

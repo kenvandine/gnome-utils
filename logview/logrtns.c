@@ -19,10 +19,11 @@
 
     ---------------------------------------------------------------------- */
 
+#include <config.h>
+#include <gnome.h>
 #include "config.h"
 #include "logview.h"
 #include "logrtns.h"
-#include <gnome.h>
 
 /*
  * -----------------
@@ -67,10 +68,57 @@ extern GList *regexp_db;
  */
 
 char *
-monthname[12] =
-{"January", "February", "March", "April", "May",
- "June", "July", "August", "September", "October",
- "November", "December"};
+C_monthname[12] =
+{ "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December" };
+
+static int
+get_month (const char *str)
+{
+	int i;
+	static char *monthname[12] = { 0 };
+
+	for (i = 0; i < 12; i++) {
+		if (g_strncasecmp (str, C_monthname[i], 3) == 0) {
+			return i;
+		}
+	}
+
+	for (i = 0; i < 12; i++) {
+		if (monthname[i] == NULL) {
+			GDate *date;
+			char buf[256];
+
+			date = g_date_new_dmy (1, i+1, 2000);
+
+			if (g_date_strftime (buf, sizeof (buf), "%b", date) <= 0) {
+				/* eek, just use C locale cuz we're screwed */
+				monthname[i] = g_strndup (C_monthname[i], 3);
+			} else {
+				monthname[i] = g_strdup (buf);
+			}
+
+			g_date_free (date);
+		}
+
+		if (g_strcasecmp (str, monthname[i]) == 0) {
+			return i;
+		}
+	}
+
+	return 12;
+}
+
 
 
 /* ----------------------------------------------------------------------
@@ -123,7 +171,8 @@ OpenLogFile (char *filename)
    first->prev = cur;
 
    /* Open log files ------------------------------------- */
-   strcpy (tlog->name, filename);
+   strncpy (tlog->name, filename, sizeof (tlog->name)-1);
+   tlog->name[sizeof (tlog->name) - 1] = '\0';
    tlog->fp = fopen (filename, "r");
    if (tlog->fp == NULL)
    {
@@ -171,7 +220,7 @@ int
 isLogFile (char *filename)
 {
    struct stat fstatus;
-   char buff[256];
+   char buff[1024];
    char *token;
    int i;
    FILE *fp;
@@ -181,14 +230,16 @@ isLogFile (char *filename)
    /* Check that its a regular file       */
    if (!S_ISREG (fstatus.st_mode))
    {
-      sprintf (buff, _("%s is not a regular file."), filename);
+      g_snprintf (buff, sizeof (buff),
+		  _("%s is not a regular file."), filename);
       ShowErrMessage (buff);
       return FALSE;
    }
    /* File unreadable                     */
    if ((fstatus.st_mode & S_IRUSR) == 0)
    {
-      sprintf (buff, _("%s is not user readable. Probably has read-only "
+      g_snprintf (buff, sizeof (buff),
+		  _("%s is not user readable. Probably has read-only "
       "permission. Either run the program as root or ask the sysadmin to "
       "change the permissions on the file."), filename);
       ShowErrMessage (buff);
@@ -200,26 +251,31 @@ isLogFile (char *filename)
    fp = fopen (filename, "r");
    if (fp == NULL)
    {
-      sprintf (buff, _("%s could not be opened."), filename);
+      g_snprintf (buff, sizeof (buff),
+		  _("%s could not be opened."), filename);
       ShowErrMessage (buff);
       return FALSE;
    }
    fgets (buff, 255, fp);
    fclose (fp);
    token = strtok (buff, " ");
+   /* This is not a good assumption I don't think, especially
+    * if log is internationalized
+    * -George
    if (strlen (buff) != 3)
    {
-      sprintf (buff, _("%s not a log file."), filename);
+      g_snprintf (buff, sizeof (buff),
+		  _("%s not a log file."), filename);
       ShowErrMessage (buff);
       return FALSE;
    }
-   for (i = 0; i < 12; i++)
-      if (strncasecmp (token, monthname[i], 3) == 0)
-	 break;
+   */
+
+   i = get_month (token);
 
    if (i == 12)
    {
-      sprintf (buff, _("%s not a log file."), filename);
+      g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
       ShowErrMessage (buff);
       return FALSE;
    }
@@ -445,6 +501,9 @@ ParseLine (char *buff, LogLine * line)
 
    token = strtok (buff, " ");
    if (token == NULL) return;
+   /* This is not a good assumption I don't think, especially
+    * if log is internationalized
+    * -George
    if (strlen (token) != 3)
    {
       strncpy (line->message, buff, MAX_WIDTH);
@@ -457,13 +516,13 @@ ParseLine (char *buff, LogLine * line)
       strcpy (line->process, "");
       return;
    }
-   for (i = 0; i < 12; i++)
-      if (strncasecmp (token, monthname[i], 3) == 0)
-	 break;
+   */
+   i = get_month (token);
 
    if (i == 12)
    {
       strncpy (line->message, buff, MAX_WIDTH);
+      line->message[MAX_WIDTH-1] = '\0';
       line->month = -1;
       line->date = -1;
       line->hour = -1;
@@ -530,10 +589,10 @@ ParseLine (char *buff, LogLine * line)
    }
 
    token = strtok (NULL, " ");
-   if (token != NULL)
+   if (token != NULL) {
       strncpy (line->hostname, token, MAX_HOSTNAME_WIDTH);
-   else
-   {
+      line->hostname[MAX_HOSTNAME_WIDTH-1] = '\0';
+   } else {
       line->sec = -1;
       strcpy (line->hostname, "");
       strcpy (line->process, "-");
@@ -546,6 +605,7 @@ ParseLine (char *buff, LogLine * line)
       strncpy (scratch, token, 254);
    else
       strncpy (scratch, " ", 254);
+   scratch[254] = '\0';
    token = strtok (NULL, "\n");
 
    if (token == NULL)
@@ -555,12 +615,15 @@ ParseLine (char *buff, LogLine * line)
       while (scratch[i] == ' ')
 	 i++;
       strncpy (line->message, &scratch[i], MAX_WIDTH);
+      line->message [MAX_WIDTH-1] = '\0';
    } else
    {
       strncpy (line->process, scratch, MAX_PROC_WIDTH);
+      line->process [MAX_PROC_WIDTH-1] = '\0';
       while (*token == ' ')
 	 token++;
       strncpy (line->message, token, MAX_WIDTH);
+      line->message [MAX_WIDTH-1] = '\0';
    }
 
    /* Search current data base for string and attach descritpion */
@@ -944,9 +1007,7 @@ GetDate (char *line)
    if (!token)
        return -1;
    
-   for (i = 0; i < 12; i++)
-      if (strncasecmp (token, monthname[i], 3) == 0)
-	 break;
+   i = get_month (token);
 
    if (i == 12)
       return -1;

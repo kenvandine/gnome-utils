@@ -19,8 +19,8 @@
     ---------------------------------------------------------------------- */
 
 
-#include <time.h>
 #include <config.h>
+#include <time.h>
 #include <gnome.h>
 #include "gtk/gtk.h"
 #include "logview.h"

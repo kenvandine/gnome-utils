@@ -1,3 +1,5 @@
+#include <config.h>
+#include <gnome.h>
 #include "logview.h"
 #include <string.h>
 #include <regex.h>
@@ -30,8 +32,9 @@ read_regexp_db (char *filename, GList **db)
   fp = fopen (filename, "r");
   if (fp == NULL)
     {
-      sprintf (buffer, "Cannot open regexp data base <%s>! Open failed.", 
-	       filename);
+      g_snprintf (buffer, sizeof (buffer),
+		  _("Cannot open regexp data base <%s>! Open failed."), 
+		  filename);
      ShowErrMessage (buffer);
      return(-1);
     }
@@ -139,10 +142,11 @@ read_descript_db (char *filename, GList **db)
   fp = fopen (filename, "r");
   if (fp == NULL)
     {
-      sprintf (buffer, "Cannot open description data base <%s>! Open failed.", 
-	       filename);
-     ShowErrMessage (buffer);
-     return(-1);
+      g_snprintf (buffer, sizeof (buffer),
+		  _("Cannot open description data base <%s>! Open failed."), 
+		  filename);
+      ShowErrMessage (buffer);
+      return(-1);
     }
 
 

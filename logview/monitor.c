@@ -19,10 +19,9 @@
     ---------------------------------------------------------------------- */
 
 
-#include <time.h>
 #include <config.h>
 #include <gnome.h>
-#include "gtk/gtk.h"
+#include <time.h>
 #include "logview.h"
 #include "logrtns.h"
 #include "ok.xpm"
@@ -53,7 +52,7 @@ void mon_remove_log (GtkWidget *widget, GtkWidget *foo);
 void mon_add_log (GtkWidget *widget, GtkWidget *foo);
 void mon_read_last_page (Log *log);
 void mon_read_new_lines (Log *log);
-void mon_format_line (char *buffer, LogLine *line);
+void mon_format_line (char *buffer, int bufsize, LogLine *line);
 void mon_hide_app_checkbox (GtkWidget *widget, gpointer data);
 void mon_actions_checkbox (GtkWidget *widget, gpointer data);
 void mon_edit_actions (GtkWidget *widget, gpointer data);
@@ -158,7 +157,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
         {
           list_item = gtk_list_item_new_with_label (loglist[i]->name);
           gtk_container_add (GTK_CONTAINER (srclist), list_item);
-	  sprintf (buffer, "%d", i);
+	  g_snprintf (buffer, sizeof (buffer), "%d", i);
 	  gtk_widget_set_name (list_item, buffer);
 	  
 	  gtk_widget_set_style (list_item, cfg->main_style);
@@ -279,7 +278,7 @@ mon_add_log (GtkWidget *widget,
   tmp_list = GTK_LIST (srclist)->selection;
   if (tmp_list == NULL)
     {
-    printf (_("tmp_list is NULL\n"));
+    DB (printf (_("tmp_list is NULL\n")));
     return;
     }
   name = gtk_widget_get_name (tmp_list->data);
@@ -326,7 +325,7 @@ mon_remove_log (GtkWidget *widget,
   tmp_list = GTK_LIST (destlist)->selection;
   if (tmp_list == NULL)
     {
-      printf (_("tmp_list is NULL\n"));
+      DB (printf (_("tmp_list is NULL\n")));
       return;
     }
   name = gtk_widget_get_name (tmp_list->data);
@@ -404,7 +403,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    GtkWidget *vbox;
    GtkCList *clist;
    GList *tmplist;
-   char logfile[256];
+   char logfile[1024];
    int i,lnum,x,y,w,h;
 
    /* Set flag in log structures to indicate that they should be
@@ -479,7 +478,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
      {
        if (loglist[i]->mon_on != TRUE)
 	 continue;
-       sprintf (logfile, "%s", loglist[i]->name );
+       g_snprintf (logfile, sizeof (logfile), "%s", loglist[i]->name );
        
        frame = gtk_frame_new (NULL);
        gtk_container_set_border_width (GTK_CONTAINER (frame), 1);
@@ -522,7 +521,7 @@ void
 mon_read_last_page (Log *log)
 {
   Page pg;
-  char buffer[500];
+  char buffer[1024];
   const gchar *texts[2];
   int i, j;
 
@@ -539,7 +538,7 @@ mon_read_last_page (Log *log)
     {
       if (i<0)
 	continue;
-      mon_format_line (buffer, &pg.line[i]);
+      mon_format_line (buffer, sizeof (buffer), &pg.line[i]);
       gtk_clist_append (log->mon_lines, (char **)texts);
       log->mon_numlines++;
       if (log->mon_numlines > MON_MAX_NUM_LINES)
@@ -564,7 +563,7 @@ void
 mon_read_new_lines (Log *log)
 {
   Page pg;
-  char buffer[500];
+  char buffer[1024];
   const gchar *texts[2];
   int i,j;
 
@@ -579,7 +578,7 @@ mon_read_new_lines (Log *log)
     {
       for (i=pg.fl;i<pg.ll;i++)
 	{
-	  mon_format_line (buffer, &pg.line[i]);
+	  mon_format_line (buffer, sizeof (buffer), &pg.line[i]);
 	  gtk_clist_append (log->mon_lines, (char **)texts);
 	  log->mon_numlines++;
 	} 
@@ -604,13 +603,13 @@ mon_read_new_lines (Log *log)
    ---------------------------------------------------------------------- */
 
 void
-mon_format_line (char *buffer, LogLine *line)
+mon_format_line (char *buffer, int bufsize, LogLine *line)
 {
-  sprintf(buffer, "%2d/%2d  %2d:%02d:%02d %s %s", 
-	  (int)line->date, (int)line->month+1,
-	  (int)line->hour, (int)line->min, (int)line->sec,
-	  line->process, line->message);
-  return;
+	/* FIXME: this should be translated I think */
+	g_snprintf (buffer, bufsize, "%2d/%2d  %2d:%02d:%02d %s %s", 
+		    (int)line->date, (int)line->month+1,
+		    (int)line->hour, (int)line->min, (int)line->sec,
+		    line->process, line->message);
 }
 
 /* ----------------------------------------------------------------------
@@ -631,7 +630,7 @@ mon_check_logs (gpointer data)
       continue;
     mon_read_new_lines (loglist[i]);
 
-fprintf(stderr, _("TOUCHED!!\n"));
+    DB (fprintf (stderr, _("TOUCHED!!\n")));
 
     }
     return TRUE;

@@ -1,3 +1,14 @@
+Tue Jun 05 20:23:36 2001  George Lebl <jirka@5z.com>
+
+	* logview/*.c: Fixed i18n problems by including config.h everywhere,
+	  when checking month in a log use also the current locale monthnames
+	  since logs are localized, not perfect but should work for most
+	  people.  Fix usage of strncpy, get rid of sprintf, increase some
+	  buffers.  Fix segfault on second openning of open dialog.
+	  General sanity.
+
+	* logview/logivew*.db:  Added a couple of entries
+
 Tue Jun 05 18:27:30 2001  George Lebl <jirka@5z.com>
 
 	* configure.in, mini-utils/gcolorsel/Makefile.am,
