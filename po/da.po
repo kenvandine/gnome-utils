@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-30 15:19+0100\n"
-"PO-Revision-Date: 2004-11-30 15:19+0100\n"
+"POT-Creation-Date: 2004-12-08 12:17+0100\n"
+"PO-Revision-Date: 2004-12-08 12:17+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:122
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:121
 msgid "Dictionary Lookup"
 msgstr "Ordbogsopslag"
 
@@ -36,7 +36,7 @@ msgstr "Ordbogsopslag"
 msgid "Lookup words in an online dictionary"
 msgstr "Slå ord op i en ordbog på internettet"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:588
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:587
 #: logview/logview.c:113
 msgid "_About"
 msgstr "_Om"
@@ -62,8 +62,8 @@ msgstr "_Vis ordbog"
 #.
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:429
-#: gdictsrc/gdict-pref-dialog.c:478 gdictsrc/gdict-speller.c:689
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:428
+#: gdictsrc/gdict-pref-dialog.c:477 gdictsrc/gdict-speller.c:694
 msgid "Cannot connect to server"
 msgstr "Kan ikke forbinde med server!"
 
@@ -97,52 +97,32 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "En klient til MIT-ordbogsserveren."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:247
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:231 gdictsrc/gdict-app.c:242
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Ordbog"
 
-#: gdictsrc/gdict-app.c:101
+#: gdictsrc/gdict-app.c:74
 msgid "Spell-checking..."
 msgstr "Kontrollerer stavning..."
 
-#: gdictsrc/gdict-app.c:108
+#: gdictsrc/gdict-app.c:82
 msgid "Spell check done"
 msgstr "Stavekontrol fuldført"
 
-#: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:263
+#: gdictsrc/gdict-app.c:90 gdictsrc/gdict-app.c:259
 msgid "No matches found"
 msgstr "Ingen træf"
 
-#: gdictsrc/gdict-app.c:126
+#: gdictsrc/gdict-app.c:102
 msgid "Connexion error"
 msgstr "Forbindelsesfejl"
 
-#: gdictsrc/gdict-app.c:238
-msgid "Looking up word..."
-msgstr "Slår ord op..."
-
-#: gdictsrc/gdict-app.c:253
-msgid "Lookup done"
-msgstr "Opslag fuldført"
-
-#: gdictsrc/gdict-app.c:276
-msgid "String not found"
-msgstr "Tekst ikke fundet"
-
-#: gdictsrc/gdict-app.c:445
-msgid "Find"
-msgstr "Find"
-
-#: gdictsrc/gdict-app.c:455
-msgid "_Search for:"
-msgstr "_Søg efter:"
-
-#: gdictsrc/gdict-app.c:505
+#: gdictsrc/gdict-app.c:161
 msgid "Unable to perform requested operation."
 msgstr "Kunne ikke udføre forespurgt handling."
 
-#: gdictsrc/gdict-app.c:506
+#: gdictsrc/gdict-app.c:162
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -150,230 +130,250 @@ msgstr ""
 "Enten er serveren du bruger, ikke tilgængelig,\n"
 "eller du er ikke koblet til internettet."
 
-#: gdictsrc/gdict-app.c:543 gdictsrc/gdict-applet.c:350
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-app.c:232
+msgid "Looking up word..."
+msgstr "Slår ord op..."
+
+#: gdictsrc/gdict-app.c:248
+msgid "Lookup done"
+msgstr "Opslag fuldført"
+
+#: gdictsrc/gdict-app.c:273
+msgid "String not found"
+msgstr "Tekst ikke fundet"
+
+#: gdictsrc/gdict-app.c:454
+msgid "Find"
+msgstr "Find"
+
+#: gdictsrc/gdict-app.c:464
+msgid "_Search for:"
+msgstr "_Søg efter:"
+
+#: gdictsrc/gdict-app.c:541 gdictsrc/gdict-applet.c:352
+#: gdictsrc/gdict-pref-dialog.c:627
 msgid "Could not display help"
 msgstr "Kunne ikke vise hjælp \"%s\""
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:568 gdictsrc/gdict-app.c:864
-#: gdictsrc/gdict-speller.c:251
+#: gdictsrc/gdict-app.c:567 gdictsrc/gdict-app.c:876
+#: gdictsrc/gdict-speller.c:252
 msgid "_Look Up Word"
 msgstr "_Slå ord op"
 
-#: gdictsrc/gdict-app.c:569
+#: gdictsrc/gdict-app.c:568
 msgid "Lookup word in dictionary"
 msgstr "Slå ordet op i ordbog"
 
-#: gdictsrc/gdict-app.c:570
+#: gdictsrc/gdict-app.c:569
 msgid "Check _Spelling"
 msgstr "Kontrollér _stavning"
 
-#: gdictsrc/gdict-app.c:571
+#: gdictsrc/gdict-app.c:570
 msgid "Check word spelling"
 msgstr "Kontrollér ordets stavning"
 
-#: gdictsrc/gdict-app.c:573
+#: gdictsrc/gdict-app.c:572
 msgid "_Print"
 msgstr "_Udskriv"
 
-#: gdictsrc/gdict-app.c:574
+#: gdictsrc/gdict-app.c:573
 msgid "Print the current definition"
 msgstr "Udskriv den nuværende definition"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:578 logview/logview.c:105
+#: gdictsrc/gdict-app.c:577 logview/logview.c:105
 msgid "_Find..."
 msgstr "_Find..."
 
 # bemærk: denne og følgende skal synkroniseres med senere tekster
-#: gdictsrc/gdict-app.c:579
+#: gdictsrc/gdict-app.c:578
 msgid "Find a word in the text"
 msgstr "Find et ord i teksten"
 
-#: gdictsrc/gdict-app.c:580
+#: gdictsrc/gdict-app.c:579
 msgid "Find Ne_xt"
 msgstr "Find n_æste"
 
-#: gdictsrc/gdict-app.c:581
+#: gdictsrc/gdict-app.c:580
 msgid "Find next occurrence of the word"
 msgstr "Find næste forekomst af ordet"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:581
 msgid "P_references"
 msgstr "_Indstillinger"
 
-#: gdictsrc/gdict-app.c:583
+#: gdictsrc/gdict-app.c:582
 msgid "Configure the application"
 msgstr "Konfigurér programmet"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:586 logview/logview.c:111
+#: gdictsrc/gdict-app.c:585 logview/logview.c:111
 msgid "_Contents"
 msgstr "_Indhold"
 
-#: gdictsrc/gdict-app.c:587
+#: gdictsrc/gdict-app.c:586
 msgid "View help for this application"
 msgstr "Vis hjælp for dette program"
 
-#: gdictsrc/gdict-app.c:589
+#: gdictsrc/gdict-app.c:588
 msgid "About this application"
 msgstr "Om dette program"
 
-#: gdictsrc/gdict-app.c:596 logview/logview.c:98
+#: gdictsrc/gdict-app.c:595 logview/logview.c:98
 msgid "_Quit"
 msgstr "_Afslut"
 
-#: gdictsrc/gdict-app.c:597
+#: gdictsrc/gdict-app.c:596
 msgid "Quit the application"
 msgstr "Afslut programmet"
 
-#: gdictsrc/gdict-app.c:601
+#: gdictsrc/gdict-app.c:600
 msgid "_Close"
 msgstr "_Luk"
 
-#: gdictsrc/gdict-app.c:602
+#: gdictsrc/gdict-app.c:601
 msgid "Close the application"
 msgstr "Luk programmet"
 
-#: gdictsrc/gdict-app.c:607
+#: gdictsrc/gdict-app.c:606
 msgid "Cu_t"
-msgstr "Klip u_d"
+msgstr "Kli_p"
 
-#: gdictsrc/gdict-app.c:608
+#: gdictsrc/gdict-app.c:607
 msgid "Cut the selection"
 msgstr "Klip markeringen ud"
 
-#: gdictsrc/gdict-app.c:609
+#: gdictsrc/gdict-app.c:608
 msgid "_Copy"
 msgstr "_Kopiér"
 
-#: gdictsrc/gdict-app.c:610 logview/logview.c:101
+#: gdictsrc/gdict-app.c:609 logview/logview.c:101
 msgid "Copy the selection"
 msgstr "Kopiér markeringen"
 
-#: gdictsrc/gdict-app.c:611
+#: gdictsrc/gdict-app.c:610
 msgid "_Paste"
 msgstr "_Indsæt"
 
-#: gdictsrc/gdict-app.c:612
+#: gdictsrc/gdict-app.c:611
 msgid "Paste clipboard"
 msgstr "Indsæt udklip"
 
-#: gdictsrc/gdict-app.c:613
+#: gdictsrc/gdict-app.c:612
 msgid "Select _All"
 msgstr "Markér _alt"
 
-#: gdictsrc/gdict-app.c:614
+#: gdictsrc/gdict-app.c:613
 msgid "Select everything"
 msgstr "Markér alt"
 
-#: gdictsrc/gdict-app.c:861 gdictsrc/gdict-speller.c:179
+#: gdictsrc/gdict-app.c:873 gdictsrc/gdict-speller.c:179
 msgid "_Word:"
 msgstr "_Ord:"
 
-#: gdictsrc/gdict-app.c:884 gdictsrc/gdict-speller.c:197
+#: gdictsrc/gdict-app.c:892 gdictsrc/gdict-speller.c:197
 msgid "Word"
 msgstr "Ord"
 
-#: gdictsrc/gdict-app.c:885 gdictsrc/gdict-app.c:887
+#: gdictsrc/gdict-app.c:893 gdictsrc/gdict-app.c:895
 #: gdictsrc/gdict-speller.c:199
 msgid "Word Entry"
 msgstr "Ordindtastning"
 
-#: gdictsrc/gdict-app.c:886
+#: gdictsrc/gdict-app.c:894
 msgid "Enter a Word or select one from the list below"
 msgstr "Indtast et ord eller vælg et fra listen nedenfor"
 
-#: gdictsrc/gdict-app.c:890
+#: gdictsrc/gdict-app.c:898
 msgid "Look Up for a Word"
 msgstr "Slå et ord op"
 
-#: gdictsrc/gdict-applet.c:127
+#: gdictsrc/gdict-applet.c:126
 msgid "Dictionary word entry"
 msgstr "Opslag i ordbog"
 
-#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:366
+#: gdictsrc/gdict-defbox.c:671 gdictsrc/gdict-speller.c:370
 msgid "Error invoking query"
 msgstr "Fejl ved udførsel af forespørgsel"
 
-#: gdictsrc/gdict-pref-dialog.c:136
+#: gdictsrc/gdict-pref-dialog.c:156
 msgid "Dictionary Preferences"
 msgstr "Indstillinger for ordbog"
 
-#: gdictsrc/gdict-pref-dialog.c:149
+#: gdictsrc/gdict-pref-dialog.c:169
 msgid "Smart _lookup"
 msgstr "Smart _opslag"
 
-#: gdictsrc/gdict-pref-dialog.c:163
+#: gdictsrc/gdict-pref-dialog.c:181
 msgid "De_fault Server"
 msgstr "For_valgt server"
 
-#: gdictsrc/gdict-pref-dialog.c:174
+#: gdictsrc/gdict-pref-dialog.c:192
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:183
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "Reset server to default"
 msgstr "Nulstil servernavn til standardnavn"
 
-#: gdictsrc/gdict-pref-dialog.c:191
+#: gdictsrc/gdict-pref-dialog.c:202
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:201
+#: gdictsrc/gdict-pref-dialog.c:212
 msgid "Def_ault Port"
 msgstr "Forv_algt port"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:227
 msgid "Reset port to default"
 msgstr "Nulstil port til standardværdi"
 
-#: gdictsrc/gdict-pref-dialog.c:217
+#: gdictsrc/gdict-pref-dialog.c:228
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:230
 msgid "Server Entry"
 msgstr "Serverindtastning"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:230
 msgid "Enter the Server Name"
 msgstr "Indtast servernavnet"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:222
+#: gdictsrc/gdict-pref-dialog.c:233
 msgid "Port Entry"
 msgstr "Portindtastning"
 
-#: gdictsrc/gdict-pref-dialog.c:222
+#: gdictsrc/gdict-pref-dialog.c:233
 msgid "Enter the Port Number"
 msgstr "Indtast portnummeret"
 
-#: gdictsrc/gdict-pref-dialog.c:231
+#: gdictsrc/gdict-pref-dialog.c:236
 msgid "_Database:"
 msgstr "_Database:"
 
-#: gdictsrc/gdict-pref-dialog.c:238
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "D_efault strategy:"
 msgstr "_Forvalgt strategi:"
 
-#: gdictsrc/gdict-pref-dialog.c:421
+#: gdictsrc/gdict-pref-dialog.c:420
 msgid "Search all databases"
 msgstr "Søg i alle databaser"
 
-#: gdictsrc/gdict-pref-dialog.c:582
+#: gdictsrc/gdict-pref-dialog.c:581
 msgid "Database"
 msgstr "Database"
 
-#: gdictsrc/gdict-pref-dialog.c:582
+#: gdictsrc/gdict-pref-dialog.c:581
 msgid "Database Name"
 msgstr "Databasenavn"
 
-#: gdictsrc/gdict-pref-dialog.c:600
+#: gdictsrc/gdict-pref-dialog.c:598
 msgid "Default Strategy"
 msgstr "Forvalgt strategi"
 
@@ -381,23 +381,23 @@ msgstr "Forvalgt strategi"
 msgid "Enter a word to know the spelling"
 msgstr "Indtast et ord for at få oplyst stavningen"
 
-#: gdictsrc/gdict-speller.c:204
+#: gdictsrc/gdict-speller.c:205
 msgid "Search s_trategy:"
 msgstr "Søgningss_trategi:"
 
-#: gdictsrc/gdict-speller.c:208 gsearchtool/gsearchtool.c:2079
+#: gdictsrc/gdict-speller.c:209 gsearchtool/gsearchtool.c:2106
 msgid "Show more _options"
 msgstr "Vis flere _indstillinger"
 
-#: gdictsrc/gdict-speller.c:214
+#: gdictsrc/gdict-speller.c:215
 msgid "Click to do the spell check"
 msgstr "Klik for at foretage stavekontrol"
 
-#: gdictsrc/gdict-speller.c:264
+#: gdictsrc/gdict-speller.c:265
 msgid "Check Spelling"
 msgstr "Tjek stavning"
 
-#: gdictsrc/gdict-speller.c:651
+#: gdictsrc/gdict-speller.c:656
 msgid "Search Strategy"
 msgstr "Søgningsstrategi"
 
@@ -459,7 +459,7 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Benyt smarte opslag"
 
-#: gdictsrc/main.c:101
+#: gdictsrc/main.c:93
 msgid "Gnome Dictionary"
 msgstr "Ordbog"
 
@@ -904,9 +904,9 @@ msgstr "Formateringsstatus"
 msgid "Find files, folders, and documents on your computer"
 msgstr "Find filer, mapper og dokumenter på din maskine"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
-#: gsearchtool/gsearchtool.c:891 gsearchtool/gsearchtool.c:977
-#: gsearchtool/gsearchtool.c:2394 gsearchtool/gsearchtool.c:2415
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:638
+#: gsearchtool/gsearchtool.c:895 gsearchtool/gsearchtool.c:981
+#: gsearchtool/gsearchtool.c:2421 gsearchtool/gsearchtool.c:2442
 msgid "Search for Files"
 msgstr "Søg efter filer"
 
@@ -1212,20 +1212,16 @@ msgstr[1] "Dette vil åbne %d separate vinduer."
 
 #: gsearchtool/gsearchtool-callbacks.c:372
 #: gsearchtool/gsearchtool-callbacks.c:405
-#: gsearchtool/gsearchtool-callbacks.c:954
-#: gsearchtool/gsearchtool-callbacks.c:987
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Kunne ikke åbne dokumentet \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:375
-#: gsearchtool/gsearchtool-callbacks.c:630
-#: gsearchtool/gsearchtool-callbacks.c:957
+#: gsearchtool/gsearchtool-callbacks.c:631
 msgid "The document does not exist."
 msgstr "Dokumentet findes ikke."
 
 #: gsearchtool/gsearchtool-callbacks.c:408
-#: gsearchtool/gsearchtool-callbacks.c:990
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Der er ikke nogen installeret fremviser der kan vise dokumentet."
 
@@ -1245,84 +1241,84 @@ msgstr "Kunne ikke åbne mappen \"%s\"."
 msgid "The nautilus file manager is not running."
 msgstr "Filhåndteringen Nautilus kører ikke."
 
-#: gsearchtool/gsearchtool-callbacks.c:627
+#: gsearchtool/gsearchtool-callbacks.c:628
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Kunne ikke flytte \"%s\" til papirkurven."
 
-#: gsearchtool/gsearchtool-callbacks.c:667
+#: gsearchtool/gsearchtool-callbacks.c:668
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "Kunne ikke flytte \"%s\" til papirkurven."
 
-#: gsearchtool/gsearchtool-callbacks.c:670
+#: gsearchtool/gsearchtool-callbacks.c:671
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Flytning af \"%s\" mislykkedes: %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:700
+#: gsearchtool/gsearchtool-callbacks.c:701
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Ønsker du at slette \"%s\" permanent?"
 
-#: gsearchtool/gsearchtool-callbacks.c:703
+#: gsearchtool/gsearchtool-callbacks.c:704
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 "Papirkurven er ikke tilgængelig. Kunne ikke flytte \"%s\" til papirkurven."
 
-#: gsearchtool/gsearchtool-callbacks.c:745
+#: gsearchtool/gsearchtool-callbacks.c:746
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Kunne ikke slette \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:748
+#: gsearchtool/gsearchtool-callbacks.c:749
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Sletning af \"%s\" mislykkedes: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1175
+#: gsearchtool/gsearchtool-callbacks.c:1093
 msgid "Save Search Results As..."
 msgstr "Gem søgeresultater som..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1227
+#: gsearchtool/gsearchtool-callbacks.c:1145
 msgid "Could not save document."
 msgstr "Kunne ikke gemme dokument."
 
-#: gsearchtool/gsearchtool-callbacks.c:1229
+#: gsearchtool/gsearchtool-callbacks.c:1147
 msgid "You did not select a document name."
 msgstr "Du valgte ikke et dokumentnavn."
 
-#: gsearchtool/gsearchtool-callbacks.c:1255
-#: gsearchtool/gsearchtool-callbacks.c:1350
+#: gsearchtool/gsearchtool-callbacks.c:1173
+#: gsearchtool/gsearchtool-callbacks.c:1268
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Kunne ikke gemme dokumentet \"%s\" som %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1259
+#: gsearchtool/gsearchtool-callbacks.c:1177
 msgid "The document name you selected is a folder."
 msgstr "Det valgte dokumentnavn er en mappe."
 
-#: gsearchtool/gsearchtool-callbacks.c:1288
+#: gsearchtool/gsearchtool-callbacks.c:1206
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokumentet \"%s\" findes allerede. Ønsker du at erstatte det?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1292
+#: gsearchtool/gsearchtool-callbacks.c:1210
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 "Hvis du erstatter en eksisterende fil, vil filens indhold blive overskrevet."
 
-#: gsearchtool/gsearchtool-callbacks.c:1303
+#: gsearchtool/gsearchtool-callbacks.c:1221
 #: gnome-screenshot/screenshot-xfer.c:190
 msgid "_Replace"
 msgstr "_Erstat"
 
-#: gsearchtool/gsearchtool-callbacks.c:1353
+#: gsearchtool/gsearchtool-callbacks.c:1271
 msgid "You may not have write permissions to the document."
 msgstr "Du har muligvis ikke skriverettigheder til dokumentet."
 
-#: gsearchtool/gsearchtool-support.c:68
+#: gsearchtool/gsearchtool-support.c:70
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1336,23 +1332,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:620
+#: gsearchtool/gsearchtool-support.c:622
 msgid "today at %-I:%M %p"
 msgstr "i dag kl. %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:622
+#: gsearchtool/gsearchtool-support.c:624
 msgid "yesterday at %-I:%M %p"
 msgstr "i går kl. %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
+#: gsearchtool/gsearchtool-support.c:626 gsearchtool/gsearchtool-support.c:628
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %-d %B %Y kl. %-H:%M:%S"
 
-#: gsearchtool/gsearchtool-support.c:797
+#: gsearchtool/gsearchtool-support.c:812
 msgid "link (broken)"
 msgstr "henvisning (ødelagt)"
 
-#: gsearchtool/gsearchtool-support.c:802
+#: gsearchtool/gsearchtool-support.c:818
 #, c-format
 msgid "link to %s"
 msgstr "henvisning til %s"
@@ -1422,73 +1418,73 @@ msgstr "Følg symbolske henvisninger"
 msgid "Include other filesystems"
 msgstr "Medtag andre filsystemer"
 
-#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
+#: gsearchtool/gsearchtool.c:585 gsearchtool/gsearchtool.c:613
 msgid "No files found"
 msgstr "Ingen filer fundet"
 
-#: gsearchtool/gsearchtool.c:602
+#: gsearchtool/gsearchtool.c:606
 msgid "(stopped)"
 msgstr "(stoppet)"
 
-#: gsearchtool/gsearchtool.c:608
+#: gsearchtool/gsearchtool.c:612
 msgid "No Files Found"
 msgstr "Ingen filer fundet"
 
-#: gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:617
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d fil fundet"
 msgstr[1] "%d filer fundet"
 
-#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
+#: gsearchtool/gsearchtool.c:621 gsearchtool/gsearchtool.c:659
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d fil fundet"
 msgstr[1] "%d filer fundet"
 
-#: gsearchtool/gsearchtool.c:727
+#: gsearchtool/gsearchtool.c:731
 msgid "Entry changed called for a non entry option!"
 msgstr "Det ændrede indtastningsfelt ønskede et ikke-indtastningsflag!"
 
-#: gsearchtool/gsearchtool.c:977
+#: gsearchtool/gsearchtool.c:981
 msgid "Searching..."
 msgstr "Søger..."
 
-#: gsearchtool/gsearchtool.c:999
+#: gsearchtool/gsearchtool.c:1003
 msgid "Set the text of 'Name contains'"
 msgstr "Angiv teksten for 'Navn indeholder'"
 
-#: gsearchtool/gsearchtool.c:1000
+#: gsearchtool/gsearchtool.c:1004
 msgid "Set the text of 'Look in folder'"
 msgstr "Angiv teksten for 'Kig i mappe'"
 
-#: gsearchtool/gsearchtool.c:1001
+#: gsearchtool/gsearchtool.c:1005
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sortér fil efter en af de følgende: 'name', 'folder', 'size', 'type' eller "
 "'date'"
 
-#: gsearchtool/gsearchtool.c:1002
+#: gsearchtool/gsearchtool.c:1006
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 "Lad sorteringsrækkefølgen være faldende, som standard benyttes stigende"
 
-#: gsearchtool/gsearchtool.c:1003
+#: gsearchtool/gsearchtool.c:1007
 msgid "Automatically start a search"
 msgstr "Start automatisk en søgning"
 
-#: gsearchtool/gsearchtool.c:1008
+#: gsearchtool/gsearchtool.c:1012
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Udvælg begrænsningen '%s'"
 
-#: gsearchtool/gsearchtool.c:1114
+#: gsearchtool/gsearchtool.c:1118
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ugyldigt parameter givet til kommandolinjeparameteren 'sortby'."
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1417
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1496,13 +1492,13 @@ msgstr ""
 "\n"
 "... For mange fejl til at vise ..."
 
-#: gsearchtool/gsearchtool.c:1422
+#: gsearchtool/gsearchtool.c:1426
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "Søgeresultaterne kan være ugyldige. Der opstod fejl ved søgningen."
 
-#: gsearchtool/gsearchtool.c:1443
+#: gsearchtool/gsearchtool.c:1447
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1510,109 +1506,109 @@ msgstr ""
 "Søgeresultaterne kan være ugyldige. Vil du deaktivere "
 "hurtigsøgningsfaciliteten?"
 
-#: gsearchtool/gsearchtool.c:1451
+#: gsearchtool/gsearchtool.c:1455
 msgid "Disable _Quick Search"
 msgstr "Deaktivér _hurtigsøgning"
 
-#: gsearchtool/gsearchtool.c:1495
+#: gsearchtool/gsearchtool.c:1499
 msgid "Error parsing the search command."
 msgstr "Fejl ved fortolkning af søgekommandoen."
 
-#: gsearchtool/gsearchtool.c:1524
+#: gsearchtool/gsearchtool.c:1528
 msgid "Error running the search command."
 msgstr "Fejl ved kørsel af søgekommandoen."
 
-#: gsearchtool/gsearchtool.c:1638
+#: gsearchtool/gsearchtool.c:1665
 #, c-format
 msgid "'%s' entry"
 msgstr "\"%s\"-indtastningsfelt"
 
-#: gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1666
 msgid "Enter a value for search rule"
 msgstr "Indtast en værdi for søgereglen"
 
-#: gsearchtool/gsearchtool.c:1686
+#: gsearchtool/gsearchtool.c:1713
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klik for at fjerne reglen '%s'"
 
-#: gsearchtool/gsearchtool.c:1775
+#: gsearchtool/gsearchtool.c:1802
 msgid "A_vailable options:"
 msgstr "T_ilgængelige indstillinger:"
 
-#: gsearchtool/gsearchtool.c:1805
+#: gsearchtool/gsearchtool.c:1832
 msgid "Search Rules Menu"
 msgstr "Søgeregelmenu"
 
-#: gsearchtool/gsearchtool.c:1806
+#: gsearchtool/gsearchtool.c:1833
 msgid "Select a search rule from the menu"
 msgstr "Udvælg en søgeregel fra menuen"
 
-#: gsearchtool/gsearchtool.c:1837
+#: gsearchtool/gsearchtool.c:1864
 msgid "S_earch results:"
 msgstr "S_øgeresultater:"
 
-#: gsearchtool/gsearchtool.c:1917
+#: gsearchtool/gsearchtool.c:1944
 msgid "Name"
 msgstr "Navn"
 
-#: gsearchtool/gsearchtool.c:1937
+#: gsearchtool/gsearchtool.c:1964
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1948
+#: gsearchtool/gsearchtool.c:1975
 msgid "Size"
 msgstr "Størrelse"
 
-#: gsearchtool/gsearchtool.c:1958
+#: gsearchtool/gsearchtool.c:1985
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1968
+#: gsearchtool/gsearchtool.c:1995
 msgid "Date Modified"
 msgstr "Ændringstidspunkt"
 
-#: gsearchtool/gsearchtool.c:2025
+#: gsearchtool/gsearchtool.c:2052
 msgid "_Name contains:"
 msgstr "_Navn indeholder:"
 
-#: gsearchtool/gsearchtool.c:2040 gsearchtool/gsearchtool.c:2041
+#: gsearchtool/gsearchtool.c:2067 gsearchtool/gsearchtool.c:2068
 msgid "Enter the file name you want to search."
 msgstr "Indtast filnavnet du ønsker at søge efter."
 
-#: gsearchtool/gsearchtool.c:2041
+#: gsearchtool/gsearchtool.c:2068
 msgid "Name Contains Entry"
 msgstr "Navn indeholder-indtastning"
 
-#: gsearchtool/gsearchtool.c:2052
+#: gsearchtool/gsearchtool.c:2079
 msgid "_Look in folder:"
 msgstr "_Kig i mappen:"
 
-#: gsearchtool/gsearchtool.c:2058
+#: gsearchtool/gsearchtool.c:2085
 msgid "Browse"
 msgstr "Gennemse"
 
-#: gsearchtool/gsearchtool.c:2065
+#: gsearchtool/gsearchtool.c:2092
 msgid "Select the folder where you want to start the search."
 msgstr "Udvælg mappen hvor du ønsker at begynde søgningen."
 
-#: gsearchtool/gsearchtool.c:2089
+#: gsearchtool/gsearchtool.c:2116
 msgid "Show more options"
 msgstr "Vis flere indstillinger"
 
-#: gsearchtool/gsearchtool.c:2089
+#: gsearchtool/gsearchtool.c:2116
 msgid "Expands or collapses a list of search options."
 msgstr "Udvider eller sammenfolder en liste af søgemuligheder."
 
-#: gsearchtool/gsearchtool.c:2136
+#: gsearchtool/gsearchtool.c:2163
 msgid "Click to Start the search"
 msgstr "Klik for at starte søgningen"
 
-#: gsearchtool/gsearchtool.c:2137
+#: gsearchtool/gsearchtool.c:2164
 msgid "Click to Stop the search"
 msgstr "Klik for stoppe søgningen"
 
-#: gsearchtool/gsearchtool.c:2411
+#: gsearchtool/gsearchtool.c:2438
 msgid "Cannot initialize bonobo."
 msgstr "Kan ikke klargøre Bonobo."
 
@@ -2154,7 +2150,7 @@ msgstr "Effekt for vinduesrammen"
 
 #: gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
-msgstr " (Ugyldig Unicode)"
+msgstr " (ugyldig Unicode)"
 
 #: gnome-screenshot/gnome-egg-xfer-dialog.c:471
 #, c-format
