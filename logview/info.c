@@ -87,13 +87,16 @@ static void
 RepaintLogInfo (LogviewWindow *window, GtkWidget *label)
 {
    char *utf8;
-   gchar *info_string, *size, *modified, *start_date, *last_date, *num_lines, *tmp;
+   gchar *info_string, *size, *modified, *start_date, *last_date, *num_lines, *tmp, *size_tmp;
    
    if (!window->curlog)
 	   return;
    
-   tmp = g_strdup_printf(_("<b>Size</b>: %ld bytes"), (long) window->curlog->lstats.size);
-   size = LocaleToUTF8 (tmp);
+   tmp = g_strdup_printf (ngettext ("%ld byte", "%ld bytes", (long) window->curlog->lstats.size),
+			  (long) window->curlog->lstats.size);
+   size_tmp = g_strdup_printf ("<b>Size</b>: %s", tmp);
+   size = LocaleToUTF8 (size_tmp);
+   g_free (size_tmp);
    g_free (tmp);
    
    tmp = g_strdup_printf (_("<b>Modified</b>: %s"), ctime (&(window->curlog)->lstats.mtime));
