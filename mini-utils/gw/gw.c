@@ -359,7 +359,7 @@ static void reset_list(GtkCList * list)
         ++col;
       }
           
-      gtk_clist_append(list, row_text);
+      gtk_clist_append(list, (gchar **)row_text);
 
       returned = fgets(buffer, bufsize, f);
     } 
@@ -453,7 +453,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   name_entry = gtk_entry_new();
   command_entry = gtk_entry_new();
 
-  list = gtk_clist_new_with_titles(2, titles);
+  list = gtk_clist_new_with_titles(2, (gchar **)titles);
   sw = gtk_scrolled_window_new (NULL, NULL);
   gtk_container_add (GTK_CONTAINER (sw), list);
   gtk_clist_set_shadow_type(GTK_CLIST(list), GTK_SHADOW_OUT);
@@ -596,7 +596,7 @@ static void new_action_in_prefs(GtkCList * list, gchar * name, gchar * command)
   text[0] = name;
   text[1] = command;
 
-  new_row = gtk_clist_append(list, text);
+  new_row = gtk_clist_append(list, (gchar **)text);
 
   gtk_clist_select_row(list, new_row, 0);
 

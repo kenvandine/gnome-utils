@@ -168,8 +168,8 @@ static void fill_mem_page(GtkWidget * box)
   clist = create_clist(titles);
   gtk_box_pack_start(GTK_BOX(vbox), clist, TRUE, TRUE, GNOME_PAD);
   gtk_clist_freeze(GTK_CLIST(clist));
-  fill_clist(GTK_CLIST(clist), memory_descriptions, 
-             memory, end_memory_info);
+  fill_clist(GTK_CLIST(clist), (const char **)memory_descriptions, 
+             (const char **)memory, end_memory_info);
   gtk_clist_thaw(GTK_CLIST(clist));
 
   len = strlen(format) + MAX_ITOA_LEN + strlen("memory");
@@ -219,7 +219,7 @@ static void fill_cpuinfo_page(GtkWidget * box)
       titles [0] = N_("Name");
     titles [1] = N_("Value");
 
-    clist = create_clist(titles);
+    clist = create_clist((const gchar **)titles);
     gtk_clist_freeze(GTK_CLIST(clist));
     fill_clist_from_glibtop_entry(GTK_CLIST(clist), &sysinfo->cpuinfo [i]);
     gtk_clist_thaw(GTK_CLIST(clist));
@@ -234,10 +234,12 @@ static void fill_cpuinfo_page(GtkWidget * box)
 
 #endif /* HAVE_LIBGTOP_CPUINFO */
 
+#if 0
 static void fill_status_page(GtkWidget * box)
 {
 
 }
+#endif
 
 static void create_page(GtkWidget * notebook, 
                         void (* fill_func)(GtkWidget *),

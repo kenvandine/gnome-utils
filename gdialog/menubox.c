@@ -72,7 +72,6 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 			GNOME_STOCK_BUTTON_CANCEL, NULL);
 		GtkWidget *hbox;
 		GtkWidget *vbox;
-		GtkWidget *frame;
 		GtkWidget *but;
 		GtkWidget *butframe;
 		GtkWidget *butbox;
@@ -97,8 +96,8 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		
 		for(i=0; i< max_choice; i++)
 		{
-			char *x=items[2*i];
-			char *y=items[2*i+1];
+			char *x=(char *)items[2*i];
+			char *y=(char *)items[2*i+1];
 			char *p=g_malloc(strlen(x)+strlen(y)+10);
 			sprintf(p, "%s  -   %s", x, y);
 			but=gtk_button_new_with_label(p);
@@ -119,7 +118,7 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 		gtk_widget_show_all(w);
 		gtk_main();
-		return;
+		return 0;
 	}
 
 	/* center dialog box on screen */
@@ -266,7 +265,7 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 					continue;	/* wait for another key press */
 				} else
 					i = choice - 1;
-			} else if (key == KEY_DOWN || key == '+')
+			} else if (key == KEY_DOWN || key == '+') {
 				if (choice == max_choice - 1) {
 					if (scroll + choice < item_no - 1) {
 						/* Scroll menu up */
@@ -316,6 +315,7 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 					continue;	/* wait for another key press */
 				} else
 					i = choice + 1;
+			}
 
 			if (i != choice) {
 				/* De-highlight current item */

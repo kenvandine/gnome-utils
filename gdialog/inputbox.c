@@ -90,7 +90,7 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 			GTK_SIGNAL_FUNC(okayed), NULL);
 		gtk_widget_show_all(w);
 		gtk_main();
-		return;
+		return 0;
 	}
 	/* center dialog box on screen */
 	x = (COLS - width) / 2;

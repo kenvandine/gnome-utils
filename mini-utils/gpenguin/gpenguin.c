@@ -8,7 +8,6 @@
 
 static GtkWidget *penguindow;
 static GtkWidget *pixmap;
-static GtkWidget *picholder;
 static char *title;
 static char *prog_name;
 
@@ -16,9 +15,7 @@ static int penguin_x, penguin_y;
 
 static void produce_penguin(void)
 {
-	int x,y;
 	int px,py;
-	GtkStyle *style = gtk_widget_get_default_style();
 	gchar *filename;
 	gchar *pmapdir;
 
@@ -107,5 +104,7 @@ int main(int argc, char *argv[])
 	produce_penguin();
 	set_ticking();
 	gtk_main();
+
+	return 0;
 }
 	

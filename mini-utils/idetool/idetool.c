@@ -2,6 +2,7 @@
 #include <gnome.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/ioctl.h>
 #include <asm/types.h>
 #include <linux/hdreg.h>
 #include <errno.h>
@@ -51,7 +52,7 @@ static char *dma_mode_set(int info)
 	int onoff;
 	int fd=open_drive(info);
 	if(fd==-1)
-		return;
+		return NULL;
 		
 	if(ioctl(fd, HDIO_GET_DMA, &onoff)==-1)
 	{
@@ -115,7 +116,7 @@ static char * keep_set(int info)
 	int onoff;
 	int fd=open_drive(info);
 	if(fd==-1)
-		return;
+		return NULL;
 	if(ioctl(fd, HDIO_GET_KEEPSETTINGS, &onoff)==-1)
 	{
 		GtkWidget *w=gnome_message_box_new(_("The drive refused to keep its settings."),
@@ -123,7 +124,7 @@ static char * keep_set(int info)
 					GNOME_STOCK_BUTTON_OK, NULL);
 		gtk_widget_show(w);
 		close(fd);
-		return;
+		return NULL;
 	}
 	
 	onoff=onoff?0:1;
@@ -148,7 +149,6 @@ static char * keep_set(int info)
 static void modify_drive(GtkWidget *w, gint row, gint col, GdkEventButton *event, gpointer *junk)
 {
 	int id=GPOINTER_TO_INT(junk);
-	int n;
 	char *p=NULL;
 	
 	
@@ -255,7 +255,6 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	int pmode;
 	GtkWidget *vbox, *sw;
 	GtkCList *cl;
-	char *titles[2]= { _("Setting"), _("Value") };
 	
 	/*
 	 *	Process the drive.

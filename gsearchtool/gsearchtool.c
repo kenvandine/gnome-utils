@@ -93,6 +93,7 @@ makecmd(void)
 			case FIND_OPTION_GREP:
 				g_warning("grep options found in find list bad bad!");
 				break;
+			default:
 			}
 		}
 	}
@@ -147,6 +148,7 @@ makecmd(void)
 			case FIND_OPTION_GREP:
 				g_warning("grep options found in find list bad bad!");
 				break;
+			default:
 			}
 		}
 	}
@@ -281,9 +283,6 @@ make_list_of_templates(void)
 	GtkWidget *menu;
 	GtkWidget *menuitem;
 	GSList *group=NULL;
-
-	gchar buf[50];
-
 	gint i;
 
 	menu = gtk_menu_new ();
@@ -379,6 +378,7 @@ set_option_defaults(FindOption *opt)
 	case FIND_OPTION_TIME:
 		opt->data.time=empty_str;
 		break;
+	default:
 	}
 }
 
@@ -422,6 +422,7 @@ create_option_box(FindOption *opt)
 				   GTK_SIGNAL_FUNC(entry_changed),opt);
 		gtk_box_pack_start(GTK_BOX(option),w,TRUE,TRUE,0);
 		break;
+	default:
 	}
 	gtk_container_add(GTK_CONTAINER(frame),option);
 
@@ -528,11 +529,13 @@ create_find_page(void)
 	return vbox;
 }
 
+#ifdef NEED_UNUSED_FUNCTION
 static GtkWidget *
 create_locate_page(void)
 {
 	return gtk_label_new(_("This is not yet implemented"));
 }
+#endif
 
 static GtkWidget *
 create_window(void)

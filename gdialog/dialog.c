@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
 		Usage(argv[0]);
 
 	init_dialog();
-	retval = (*(modePtr->jumper)) (title, argc - offset, argv + offset);
+	retval = (*(modePtr->jumper)) (title, argc - offset, (const char * const *)argv + offset);
 
 	if (clear_screen) {	/* clear screen before exit */
 		attr_clear(stdscr, LINES, COLS, screen_attr);
@@ -273,6 +273,8 @@ int callback_writeerr(GtkWidget *w, gpointer *pt)
 	write(2, p, strlen(p));
 	write(2, "\n", 1);
 	gtk_main_quit();
+
+	return 0;
 }
 
 int callback_exitby(GtkWidget *w, gpointer *pt)

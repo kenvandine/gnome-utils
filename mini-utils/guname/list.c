@@ -57,7 +57,7 @@ void fill_clist(GtkCList * list,
 
     row[0] = col1_items[i];
     row[1] = col2_items[i];
-    gtk_clist_append(list, row);
+    gtk_clist_append(list, (gchar **)row);
 
     /* If the string is longer than any previous ones,
        increase the column width */
@@ -135,7 +135,7 @@ GtkWidget * create_clist(const gchar * titles[])
 {
   GtkCList * list;
 
-  list = GTK_CLIST(gtk_clist_new_with_titles(2, titles));
+  list = GTK_CLIST(gtk_clist_new_with_titles(2, (gchar **)titles));
 
   gtk_clist_set_border(list, GTK_SHADOW_OUT);
 

@@ -275,5 +275,7 @@ int Gpm_Wgetch (WINDOW * w);
 
 extern int callback_exitby(GtkWidget *w , gpointer *p);
 extern int callback_writerr(GtkWidget *w , gpointer *p);
+/* in util.c */
+extern void label_autowrap(GtkWidget *vbox, const char *input, int w);
 
 #endif

@@ -53,7 +53,7 @@ int dialog_yesno(const char *title, const char *prompt, int height, int width)
 		vbox = gtk_vbox_new(FALSE, 0);
 
 
-		label_autowrap(vbox, prompt, width);		
+		label_autowrap(vbox, prompt, width);
 		
 		gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
 

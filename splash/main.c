@@ -23,7 +23,6 @@ static GtkWidget *frame;
 static GtkWidget *pixmap;
 static GdkPixmap *pixmap_data;
 static GdkBitmap *mask;
-static GtkWidget *picholder;
 static char *title;
 
 static void splash_init(char *file)

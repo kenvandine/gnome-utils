@@ -65,11 +65,13 @@ static int show_listed_fs;
 /* If nonzero, use variable sized printouts instead of 512-byte blocks. */
 static int human_blocks;
 
+#ifdef NEED_UNUSED_VARS
 /* If nonzero, use 1K blocks instead of 512-byte blocks. */
 static int kilobyte_blocks;
 
 /* If nonzero, use 1M blocks instead of 512-byte blocks. */
 static int megabyte_blocks;
+#endif
 
 /* If nonzero, use the POSIX output format.  */
 static int posix_format;
@@ -222,6 +224,7 @@ about_cb (GtkWidget *widget, gpointer data)
    For example, 8500 would be converted to 8.3M, 133456345 to 127G,
    and so on.  Numbers smaller than 1024 get the `K' suffix.  */
 
+#ifdef NEED_UNUSED_FUNCTIONS
 static char *
 human_readable_1k_blocks (int n_1k_byte_blocks, char *buf, int buf_len)
 {
@@ -263,6 +266,7 @@ human_readable_1k_blocks (int n_1k_byte_blocks, char *buf, int buf_len)
     }
   return (p);
 }
+#endif
 
 /* If FSTYPE is a type of filesystem that should be listed,
    return nonzero, else zero. */
@@ -304,8 +308,6 @@ update_dev (const char *disk, const char *mount_point, const char *fstype,
   glibtop_fsusage fsu;
   long            blocks_used;
   long            blocks_percent_used;
-  long            inodes_used;
-  long            inodes_percent_used;
   const char      *stat_file;
   gchar           *buf;
 
@@ -341,7 +343,7 @@ update_dev (const char *disk, const char *mount_point, const char *fstype,
    If FSTYPE is non-NULL, it is the type of the filesystem on DISK.
    If MOUNT_POINT is non-NULL, then DISK may be NULL -- certain systems may
    not be able to produce statistics in this case.  */
-
+#ifdef NEED_UNUSED_FUNCTIONS
 static void
 show_dev (const char *disk, const char *mount_point, const char *fstype)
 {
@@ -421,7 +423,8 @@ show_dev (const char *disk, const char *mount_point, const char *fstype)
 
   if (inode_format)
     printf (" %7ld %7ld %7ld %5ld%%",
-	    fsu.files, inodes_used, fsu.ffree, inodes_percent_used);
+	    (long)fsu.files,
+	    (long)inodes_used, (long)fsu.ffree, (long)inodes_percent_used);
   else if (human_blocks)
     {
       char buf[3][LONGEST_HUMAN_READABLE_1K_BYTE_BLOCKS + 1];
@@ -436,7 +439,7 @@ show_dev (const char *disk, const char *mount_point, const char *fstype)
     }
   else
     printf (" %7ld %7ld  %7ld  %5ld%% ",
-	    fsu.blocks, blocks_used, fsu.bavail, blocks_percent_used);
+	    (long)fsu.blocks, blocks_used, (long)fsu.bavail, blocks_percent_used);
 
   if (mount_point)
     {
@@ -453,10 +456,12 @@ show_dev (const char *disk, const char *mount_point, const char *fstype)
     }
   putchar ('\n');
 }
+#endif
 
 /* Identify the directory, if any, that device
    DISK is mounted on, and show its disk usage.  */
 
+#ifdef NEED_UNUSED_FUNCTIONS
 static void
 show_disk (const char *disk)
 {
@@ -542,10 +547,12 @@ done:
 
   return mp;
 }
+#endif
 
 /* Figure out which device file or directory POINT is mounted on
    and show its disk usage.
    STATP is the results of `stat' on POINT.  */
+#ifdef NEED_UNUSED_FUNCTION
 static void
 show_point (const char *point, const struct stat *statp)
 {
@@ -594,10 +601,12 @@ show_point (const char *point, const struct stat *statp)
       error (0, errno, "%s", point);
   }
 }
+#endif
 
 /* Determine what kind of node PATH is and show the disk usage
    for it.  STATP is the results of `stat' on PATH.  */
 
+#ifdef NEED_UNUSED_FUNCTIONS
 static void
 show_entry (const char *path, const struct stat *statp)
 {
@@ -619,6 +628,7 @@ show_all_entries (void)
     show_dev (mount_list [i].devname, mount_list [i].mountdir,
 	      mount_list [i].type);
 }
+#endif
 
 static gboolean
 update_stats (gpointer data)
@@ -637,6 +647,7 @@ update_stats (gpointer data)
 }
 /* Add FSTYPE to the list of filesystem types to display. */
 
+#ifdef NEED_UNUSED_FUNCTION
 static void
 add_fs_type (const char *fstype)
 {
@@ -647,6 +658,7 @@ add_fs_type (const char *fstype)
   fsp->fs_next = fs_select_list;
   fs_select_list = fsp;
 }
+#endif
 
 /* Add FSTYPE to the list of filesystem types to be omitted. */
 
@@ -664,8 +676,7 @@ add_excluded_fs_type (const char *fstype)
 int
 main (int argc, char **argv)
 {
-  int index, udp_timer;
-  struct stat *stats;
+  int udp_timer;
   glibtop_mountlist mountlist;
 
 

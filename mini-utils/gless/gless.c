@@ -71,7 +71,6 @@ static void close_cb(GtkWidget * w, gpointer data);
 static void save_as_cb(GtkWidget * w, gpointer data);
 static void exit_cb(GtkWidget * w, gpointer data);
 static void new_app_cb(GtkWidget * w, gpointer data);
-static void preferences_cb(GtkWidget *w, gpointer data);
 static void fixed_cb(GtkWidget * w, gpointer data);
 
 /***********************************
@@ -675,11 +674,12 @@ static void open_cb(GtkWidget * w, gpointer data)
   gless_app_open((GnomeLessApp *)data);
 }
 
-
+#ifdef NEED_UNUSED_FUNCTION
 static void preferences_cb(GtkWidget *w, gpointer data)
 {
   gnome_ok_dialog("Sorry, no preferences yet.");
 }
+#endif
 
 static void exit_cb(GtkWidget * w, gpointer data)
 {

@@ -64,7 +64,7 @@ static void okayed(GtkWidget *w, int button, gpointer *d)
 	if(button==0)
 	{
 		GList *l=GTK_CLIST(cl)->selection;
-		g_list_foreach(l, err_outputter, GTK_CLIST(cl));
+		g_list_foreach(l, (GFunc)err_outputter, GTK_CLIST(cl));
 		if(format!=0)
 			write(2,"\n",1);
 	}
@@ -168,8 +168,8 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 		gtk_clist_set_border(cl, GTK_SHADOW_IN);		
 				
 		for (i = 0; i < item_no; i++) {
-			char *x = items[3 * i];
-			char *y = items[3 * i + 1];
+			char *x = (char *)items[3 * i];
+			char *y = (char *)items[3 * i + 1];
 			clist_add(cl, x, y);
 			if(strcasecmp(items[3*i+2],"on")==0)
 			{
@@ -195,7 +195,7 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 			GTK_SIGNAL_FUNC(okayed), NULL);
 		gtk_widget_show_all(w);
 		gtk_main();
-		return;
+		return 0;
 	}
 	checkflag = flag;
 

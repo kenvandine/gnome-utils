@@ -95,7 +95,7 @@ void load_system_info()
     /* Clear out the array. */
     int i = 0;
     while ( i < end_system_info ) {
-      if (info[i] != NULL) g_free(info[i]);
+      if (info[i] != NULL) g_free((gpointer)info[i]);
       info[i] = NULL;
       ++i;
     }

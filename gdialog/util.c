@@ -275,7 +275,7 @@ void print_autowrap(WINDOW * win, const char *prompt, int width, int y, int x)
 	}
 }
 
-static char *unquote_nl(char *input)
+static char *unquote_nl(const char *input)
 {
 	char *t=g_malloc(strlen(input)+1);
 	char *p=t;
@@ -287,13 +287,13 @@ static char *unquote_nl(char *input)
 			input+=2;
 		}
 		else
-			*p++=*input++;
+			*p++=*(input++);
 	}
 	*p=0;
 	return t;
 }
 
-void label_autowrap(GtkWidget *vbox, char *input, int w)
+void label_autowrap(GtkWidget *vbox, const char *input, int w)
 {
 	char buf[512];
 	char word[512];
@@ -320,7 +320,7 @@ void label_autowrap(GtkWidget *vbox, char *input, int w)
 		
 		while(!isspace(*input) && *input &&  wlen < w)
 		{
-			*wp++=*input++;
+			*wp++=*(input++);
 			wlen++;
 		}
 		*wp=0;
@@ -367,6 +367,8 @@ void label_autowrap(GtkWidget *vbox, char *input, int w)
 		else
 			pspace=1;
 	}
+	g_free((gpointer)input); /* allocated by unquote_nl() */
+
 	if(blen)
 	{
 		GtkWidget *t;

@@ -74,7 +74,7 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 						GNOME_STOCK_BUTTON_OK,
 						NULL);
 			gtk_widget_show(w);
-			return;
+			return 0;
 		}
 		
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
@@ -122,7 +122,7 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 			GTK_SIGNAL_FUNC(okayed), NULL);
 		gtk_widget_show(w);
 		gtk_main();
-		return;
+		return 0;
 	}
 	search_term[0] = '\0';	/* no search term entered yet */
 
