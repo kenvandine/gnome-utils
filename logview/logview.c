@@ -64,7 +64,6 @@ int read_regexp_db (char *filename, GList **db);
 int read_actions_db (char *filename, GList **db);
 void print_db (GList *gb);
 Log *OpenLogFile (char *);
-GtkWidget *new_pixmap_from_data (char  **, GdkWindow *, GdkColor *);
 void SaveUserPrefs(UserPrefsStruct *prefs);
 void close_zoom_view (GtkWidget *widget, gpointer client_data);
 void handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data);

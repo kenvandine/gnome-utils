@@ -67,7 +67,6 @@ DateMark* find_prev_mark (CalendarData*);
 DateMark* find_next_mark (CalendarData*);
 DateMark* get_mark_from_month (CalendarData *data, gint month, gint year);
 DateMark *get_mark_from_date (CalendarData *, gint, gint, gint);
-GtkWidget *new_pixmap_from_data(char **xpm_data, GdkWindow *w, GdkColor *b);
 void log_repaint (GtkWidget * canvas, GdkRectangle * area);
 
 
@@ -156,28 +155,6 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
 
    gtk_widget_show (CalendarDialog);
 
-}
-
-/* ----------------------------------------------------------------------
-   NAME:	new_pixmap_from_data
-   DESCRIPTION:	
-   ---------------------------------------------------------------------- */
-
-GtkWidget *
-new_pixmap_from_data (char      **xpm_data,
-		      GdkWindow *window,
-		      GdkColor  *background)
-{
-  GtkWidget *wpixmap;
-  GdkPixmap *pixmap;
-  GdkBitmap *mask;
-
-  pixmap = gdk_pixmap_create_from_xpm_d (window, &mask,
-					 background,
-					 xpm_data);
-  wpixmap = gtk_pixmap_new (pixmap, mask);
-
-  return wpixmap;
 }
 
 /* ----------------------------------------------------------------------

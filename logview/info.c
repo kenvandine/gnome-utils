@@ -25,9 +25,6 @@
 #include <time.h>
 #include <sys/stat.h>
 #include "logview.h"
-#if 0
-#include "close.xpm"
-#endif
 
 void LogInfo (GtkWidget * widget, gpointer user_data);
 void CloseLogInfo (GtkWidget * widget, GtkWindow ** window);
