@@ -20,5 +20,6 @@ gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) 	\
 
 EXTRA_DIST = gdiskfree.desktop
 
+Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_DATA = gdiskfree.desktop
 
