@@ -447,6 +447,9 @@ static void popup_main_dialog()
                         GNOME_STOCK_BUTTON_OK,
                         GNOME_STOCK_BUTTON_HELP, 
                         NULL );
+  /* we have loads of timeouts which would crash if the
+   * window is ever destroyed */
+  gnome_dialog_close_hides (GNOME_DIALOG (d), TRUE);
  
   logo_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL/2);
   do_logo_box(logo_box);

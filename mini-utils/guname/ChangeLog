@@ -1,3 +1,9 @@
+Thu Feb 15 17:24:09 2001  George Lebl <jirka@5z.com>
+
+	* guname.c: make the dialog hide on close, since we will quit
+	  momentairly anyway, but jsut to prevent any race with the timeouts
+	  thinking it still exists
+
 Fri Feb 09 05:59:18 2001  George Lebl <jirka@5z.com>
 
 	* guname.c: Fix segfault when closing using the windowmanager
