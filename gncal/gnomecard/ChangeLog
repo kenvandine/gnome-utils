@@ -1,10 +1,44 @@
+1998-07-31  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* gnomecard.c: Several GUI fixes and refinements.
+	* card.c:      Fixed address save bug: should have used
+		VCCityProp instead of VCLocationProp. Changed field name of 
+		locality in CardDelAddr to city.
+
+1998-07-25  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* gnomecard.c: You can add delivery addresses now.
+
+1998-07-24  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* gnomecard.c: (viewmenu, gnomecard_toggle_.*_view) New menu for hiding
+	and showing the canvas and the tree.
+	FIXME: I can't figure out how ti make gtk+ recalculate the vbox's size.
+
+1998-07-23  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* gnomecard.c: You can add phone numbers now.
+
+1998-07-22  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+  * gnomecard.c: several bug fixes. Check the workaround at
+  gnomecard_update_tree.
+	(gnomecard_add_email, gnomecard_email_call,
+	 gnomecard_add_card_sections_to_tree) - You can add emails now (finally).
+
+1998-07-19  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+  * gnomecard.c: (gnomecard_spawn_new) Now you can spawn another gnomecard
+	from gnomecard. This will be useful as soon as I implement DND. gnomecard
+  must be in your path.
+
 1998-07-17  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
 
 	* gnomecard.c: (gnomecard_update_canvas) I'll add all the wysiwyg
 	displaying functionality here. The card view now updates when
 	the card is being editted and "Apply" is clicked.
 		(gnomecard_destroy_cards) now checks for any blocked cards
-		and shows an error if there are any.
+		and shows an error if there are any, then returns FALSE.
 		(gnomecard_cards_blocked) added.
 
 1998-07-16  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>

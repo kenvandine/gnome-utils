@@ -1,4 +1,4 @@
-#help_base = $(datadir)/gnome/help/cal
+xpmhelp_base = $(datadir)/gnome/help/cal
 
 CFLAGS += -Wall
 
@@ -23,8 +23,19 @@ LINK_FLAGS = \
 
 gnomecard_LDADD = $(LINK_FLAGS)
 
-EXTRA_DIST = \
-	cardedit.xpm \
-	cardnew.xpm \
+EXTRA_DIST =  \
+	addr.xpm  \
+	addrtool.xpm  \
+	cardedit.xpm  \
+	cardnew.xpm  \
+	email.xpm  \
+	expl.xpm  \
+	first.xpm  \
+	geo.xpm  \
+	ident.xpm  \
+	last.xpm  \
+	org.xpm  \
+	sec.xpm  \
+	tel.xpm  \
+	teltool.xpm  \
 	world.xpm
-

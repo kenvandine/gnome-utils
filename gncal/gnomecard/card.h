@@ -91,12 +91,12 @@ typedef struct
 
 enum AddrType
 {
-	ADDR_DOM    = 1, 
-	ADDR_INTL   = 2, 
-	ADDR_POSTAL = 4, 
-	ADDR_PARCEL = 8, 
-	ADDR_HOME   = 16, 
-	ADDR_WORK   = 32
+	ADDR_DOM    = 1 << 0,
+	ADDR_INTL   = 1 << 1, 
+	ADDR_POSTAL = 1 << 2, 
+	ADDR_PARCEL = 1 << 3, 
+	ADDR_HOME   = 1 << 4, 
+	ADDR_WORK   = 1 << 5
 };
 
 typedef struct
@@ -107,7 +107,7 @@ typedef struct
 	char *po;         /* Post Office Address */
 	char *ext;        /* Extended Address */
 	char *street;
-	char *locality;
+	char *city;
 	char *region;
 	char *code;
 	char *country;
@@ -125,21 +125,21 @@ typedef struct
 /* TELECOMMUNICATIONS ADDRESSING PROPERTIES */
 
 
-enum TelephoneType
+enum PhoneType
 {
-	PHONE_PREF  = 1,
-	PHONE_WORK  = 2,
-	PHONE_HOME  = 4,
-	PHONE_VOICE = 8,
-	PHONE_FAX   = 16,
-	PHONE_MSG   = 32,
-	PHONE_CELL  = 64,
-	PHONE_PAGER = 128,
-	PHONE_BBS   = 256,
-	PHONE_MODEM = 512,
-	PHONE_CAR   = 1024,
-	PHONE_ISDN  = 2048,
-	PHONE_VIDEO = 4096
+	PHONE_PREF  = 1 << 0,
+	PHONE_WORK  = 1 << 1,
+	PHONE_HOME  = 1 << 2,
+	PHONE_VOICE = 1 << 3,
+	PHONE_FAX   = 1 << 4,
+	PHONE_MSG   = 1 << 5,
+	PHONE_CELL  = 1 << 6,
+	PHONE_PAGER = 1 << 7,
+	PHONE_BBS   = 1 << 8,
+	PHONE_MODEM = 1 << 9,
+	PHONE_CAR   = 1 << 10,
+	PHONE_ISDN  = 1 << 11,
+	PHONE_VIDEO = 1 << 12 
 };
 
 typedef struct
@@ -285,6 +285,7 @@ typedef struct _Card
 
 Card *card_new(void);
 void card_free(Card *crd);
+CardProperty empty_CardProperty(void);
 GList *card_load (GList *crdlist, char *fname);
 void card_save(Card *crd, FILE *fp);
 VObject *card_convert_to_vobject(Card *crd);

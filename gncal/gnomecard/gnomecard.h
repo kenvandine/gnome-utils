@@ -3,6 +3,15 @@
 
 #include "card.h"
 
+typedef struct 
+{
+	GdkPixmap *pixmap;
+	GdkBitmap *mask;
+	
+        gint width;
+        gint height;
+} pix;
+
 typedef struct
 {
 	/* Identity */
@@ -27,11 +36,23 @@ typedef struct
 	GList *l;
 } GnomeCardEditor;
 
-typedef struct 
+typedef struct
 {
-	GdkPixmap *pixmap;
-	GdkBitmap *mask;
+	GtkWidget *data, *type;
 	
-        gint width;
-        gint height;
-} pix;
+	GList *l;
+} GnomeCardEMail;
+
+typedef struct
+{
+	GtkWidget *type[13], *data;
+	
+	GList *l;
+} GnomeCardPhone;
+
+typedef struct
+{
+	GtkWidget *type[6], *data[7];
+	
+	GList *l;
+} GnomeCardDelAddr;

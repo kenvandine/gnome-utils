@@ -17,7 +17,7 @@ typedef struct
 	GList *sons;
 } tree;
 
-static CardProperty 
+extern CardProperty 
 empty_CardProperty(void)
 {
 	CardProperty prop;
@@ -435,7 +435,7 @@ get_CardDelAddr(VObject *o)
 	addr->po = NULL;
 	addr->ext = NULL;
 	addr->street = NULL;
-	addr->locality = NULL;
+	addr->city = NULL;
 	addr->region = NULL;
 	addr->code = NULL;
 	addr->country = NULL;
@@ -454,8 +454,8 @@ get_CardDelAddr(VObject *o)
 		addr->street = g_strdup(str_val(vo));
 		free(the_str);
 	}
-	if (has (o, VCLocationProp)) {
-		addr->locality = g_strdup(str_val(vo));
+	if (has (o, VCCityProp)) {
+		addr->city = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCRegionProp)) {
@@ -1187,7 +1187,7 @@ card_convert_to_vobject(Card *crd)
 			add_strProp(vprop, VCPostalBoxProp, deladdr->po);
 			add_strProp(vprop, VCExtAddressProp, deladdr->ext);
 			add_strProp(vprop, VCStreetAddressProp, deladdr->street);
-			add_strProp(vprop, VCLocationProp, deladdr->locality);
+			add_strProp(vprop, VCCityProp, deladdr->city);
 			add_strProp(vprop, VCRegionProp, deladdr->region);
 			add_strProp(vprop, VCPostalCodeProp, deladdr->code);
 			add_strProp(vprop, VCCountryNameProp, deladdr->country);
