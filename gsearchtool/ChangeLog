@@ -1,3 +1,12 @@
+2003-03-02  Dennis M. Cranston <dennis_cranston at yahoo.com>
+
+	* gsearchtool.[ch]:  Prevent the escape key from quiting
+	the application immediately after a search has either aborted 
+	or finished.  Also, replaced deprecated gtk_timeout_*() calls.
+	
+	* gsearchtool-callbacks.[ch]:  Added not_running_timeout_cb().
+	Replaced deprecated gtk_timeout_*() calls.
+	
 2003-02-28  Dennis M. Cranston <dennis_cranston at yahoo.com>
 
 	* help/C/gnome-search-tool.xml:  Search rules table update.

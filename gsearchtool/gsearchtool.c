@@ -884,6 +884,9 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		search_data->lock = FALSE;
 		search_data->running = NOT_RUNNING;
 		
+		search_data->not_running_timeout = TRUE;
+		g_timeout_add (500, not_running_timeout_cb, NULL);
+
 		total_files = gtk_tree_model_iter_n_children (GTK_TREE_MODEL(interface.model), NULL);
 
 		if (total_files == 0) {
@@ -901,7 +904,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
 		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (interface.progress_bar), 0.0);
 		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), status_bar_string);
-		gtk_timeout_remove (search_data->timeout);
+		g_source_remove (search_data->timeout);
 
 		gtk_widget_set_sensitive (interface.additional_constraints, TRUE);
 		gtk_widget_set_sensitive (interface.disclosure, TRUE);
@@ -1037,7 +1040,7 @@ spawn_search_command (gchar *command)
 		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
 		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (interface.progress_bar), 0.0);
 		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), "");
-		gtk_timeout_remove (search_command.timeout);
+		g_source_remove (search_command.timeout);
 		
 		dialog = gtk_message_dialog_new(GTK_WINDOW (interface.main_window), 
 						GTK_DIALOG_DESTROY_WITH_PARENT, 
@@ -1061,7 +1064,7 @@ spawn_search_command (gchar *command)
 		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
 		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (interface.progress_bar), 0.0);
 		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), "");
-		gtk_timeout_remove (search_command.timeout);
+		g_source_remove (search_command.timeout);
 		
 		dialog = gtk_message_dialog_new(GTK_WINDOW (interface.main_window), 
 						GTK_DIALOG_DESTROY_WITH_PARENT, 

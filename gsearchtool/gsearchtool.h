@@ -77,6 +77,7 @@ struct _SearchStruct {
 	gboolean		lock;	
 	gboolean		show_hidden_files;
 	gboolean		regex_matching_enabled;
+	gboolean		not_running_timeout;
 	RunStatus        	running;
 } search_command;
 

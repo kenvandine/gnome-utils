@@ -126,8 +126,8 @@ click_find_cb (GtkWidget	*widget,
 		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
 		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), 
 				   _("Searching..."));
-		search_command.timeout = gtk_timeout_add (100, update_progress_bar, 
-							  NULL); 
+		search_command.timeout = g_timeout_add (100, update_progress_bar, 
+						  	NULL); 
 		search_command.show_hidden_files = FALSE;
 		
 		spawn_search_command (command);
@@ -869,7 +869,7 @@ key_press_cb (GtkWidget    	*widget,
 		if (search_command.running == RUNNING) {
 			click_stop_cb (widget, NULL);
 		}
-		else {
+		else if (search_command.not_running_timeout == FALSE) {
 			quit_cb (widget, NULL);
 		}
 	}
@@ -919,5 +919,12 @@ look_in_folder_key_press_cb (GtkWidget    	*widget,
 			click_find_cb (interface.find_button, NULL);
 		}
 	}
+	return FALSE;
+}
+
+gboolean
+not_running_timeout_cb (gpointer data)
+{
+	search_command.not_running_timeout = FALSE;
 	return FALSE;
 }

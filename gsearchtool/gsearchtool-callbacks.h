@@ -131,6 +131,9 @@ gboolean
 file_button_press_event_cb	(GtkWidget 	*widget, 
 				 GdkEventButton *event, 
 				 gpointer 	data);
+gboolean
+not_running_timeout_cb 		(gpointer data);
+
 #ifdef __cplusplus
 }
 #endif
