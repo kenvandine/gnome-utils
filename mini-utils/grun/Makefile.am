@@ -17,3 +17,5 @@ grun_LDADD = \
 
 Rootdir = $(datadir)/apps
 Root_DATA = grun.desktop
+
+EXTRA_DIST = grun.desktop

@@ -30,3 +30,5 @@ guname_LDADD = \
 
 Rootdir = $(datadir)/apps
 Root_DATA = guname.desktop
+
+EXTRA_DIST = guname.desktop

@@ -9,3 +9,7 @@ grun_minimalist_SOURCES = \
 
 grun_minimalist_LDADD = $(GTK_LIBS)
 
+Utilitiesdir = $(datadir)/apps/Utilities
+Utilities_DATA = grun-minimalist.desktop
+
+EXTRA_DIST = grun-minimalist.desktop

@@ -25,3 +25,8 @@ install-data-local:
 	 $(mkinstalldirs) $(gshutdown_helpdir)
 	 $(INSTALL_DATA) $(srcdir)/topic.dat $(gshutdown_helpdir)/topic.dat
 	 $(INSTALL_DATA) $(srcdir)/gshutdown.html $(gshutdown_helpdir)/index.html
+
+Systemdir = $(datadir)/apps/System
+System_DATA = gshutdown.desktop
+
+EXTRA_DIST = gshutdown.desktop

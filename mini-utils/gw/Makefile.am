@@ -18,3 +18,4 @@ gw_LDADD = \
 Utilitiesdir = $(datadir)/apps/Utilities
 Utilities_DATA = gw.desktop
 
+EXTRA_DIST = gw.desktop
