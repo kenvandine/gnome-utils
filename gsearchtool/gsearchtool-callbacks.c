@@ -187,7 +187,7 @@ remove_constraint_cb (GtkWidget 	*widget,
 {
 	SearchConstraint *constraint = data;
 	
-      	interface.geometry.min_height -= 30;
+      	interface.geometry.min_height -= 35;
 	
 	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), 
 				       GTK_WIDGET(interface.main_window),

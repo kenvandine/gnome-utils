@@ -1279,7 +1279,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 	GtkWidget *entry;
 	GtkWidget *button;
 	
-	hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
+	hbox = gtk_hbox_new (FALSE, 12);
 
 	switch(templates[opt->constraint_id].type) {
 	case SEARCH_CONSTRAINT_BOOL:
@@ -1287,7 +1287,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 			gchar *text = remove_mnemonic_character (templates[opt->constraint_id].desc);
 			gchar *desc = g_strconcat (LEFT_LABEL_SPACING, _(text), ".", NULL);
 			label = gtk_label_new (desc);
-			gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
+			gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 			g_free (desc);
 			g_free (text);
 		}
@@ -1300,7 +1300,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 			label = gtk_label_new_with_mnemonic (desc);
 			g_free (desc);
 		}
-		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
+		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 		
 		if (templates[opt->constraint_id].type == SEARCH_CONSTRAINT_TEXT) {
 			entry = gtk_entry_new();
@@ -1340,17 +1340,18 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 				  NULL);
 				  
 		/* add label and text field */
-		gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, GNOME_PAD_SMALL);
+		gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
 		
 		break;
 	default:
 		/* This should never happen.  If it does, there is a bug */
 		label = gtk_label_new("???");
-		gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, GNOME_PAD_SMALL);
+		gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 	        break;
 	}
 	
-	button = gtk_button_new_from_stock(GTK_STOCK_REMOVE); 
+	button = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
+	GTK_WIDGET_UNSET_FLAGS (button, GTK_CAN_DEFAULT); 
 	g_signal_connect(G_OBJECT(button), "clicked",
 			 G_CALLBACK(remove_constraint_cb), opt);
         gtk_size_group_add_widget (interface.constraint_size_group, button);
@@ -1379,7 +1380,7 @@ add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 		}
 	} 
 	
-	interface.geometry.min_height += 30; 
+	interface.geometry.min_height += 35; 
 	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), 
 				       GTK_WIDGET(interface.main_window),
 				       &interface.geometry, GDK_HINT_MIN_SIZE);
@@ -1402,30 +1403,24 @@ static GtkWidget *
 create_additional_constraint_section (void)
 {
 	GtkWidget *hbox;
-	GtkWidget *vbox1; 
-	GtkWidget *vbox2;
 	GtkWidget *label;
 	gchar *desc;
 
-	vbox1 = gtk_vbox_new (FALSE, 0);
-	gtk_container_set_border_width (GTK_CONTAINER(vbox1), 0);
+	interface.constraint = gtk_vbox_new (FALSE, 6);	
 
-	interface.constraint = gtk_vbox_new (FALSE, 0); 
-	vbox2 = gtk_vbox_new (FALSE, 0);
-	hbox = gtk_hbox_new (FALSE, 0);
-	
-	gtk_box_pack_end (GTK_BOX(vbox2), hbox, FALSE, FALSE, 0);
-	
+	hbox = gtk_hbox_new (FALSE, 12);
+	gtk_box_pack_end (GTK_BOX(interface.constraint), hbox, FALSE, FALSE, 0);
+
 	desc = g_strconcat (LEFT_LABEL_SPACING, _("A_vailable options:"), NULL);
 	label = gtk_label_new_with_mnemonic (desc);
 	g_free (desc);
 
-	gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
 	
 	interface.constraint_menu = gtk_option_menu_new ();
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), GTK_WIDGET(interface.constraint_menu));
 	gtk_option_menu_set_menu (GTK_OPTION_MENU(interface.constraint_menu), make_list_of_templates());
-	gtk_box_pack_start (GTK_BOX(hbox), interface.constraint_menu, TRUE, TRUE, GNOME_PAD);
+	gtk_box_pack_start (GTK_BOX(hbox), interface.constraint_menu, TRUE, TRUE, 0);
 
 	if (interface.is_gail_loaded)
 	{
@@ -1435,6 +1430,7 @@ create_additional_constraint_section (void)
 	}
 
 	interface.add_button = gtk_button_new_from_stock (GTK_STOCK_ADD);
+	GTK_WIDGET_UNSET_FLAGS (interface.add_button, GTK_CAN_DEFAULT);
 	interface.constraint_size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
 	gtk_size_group_add_widget (interface.constraint_size_group, interface.add_button);
 	
@@ -1442,12 +1438,8 @@ create_additional_constraint_section (void)
 			  G_CALLBACK(add_constraint_cb), NULL);
 	
 	gtk_box_pack_end (GTK_BOX(hbox), interface.add_button, FALSE, FALSE, 0); 
-		
-	gtk_box_pack_start (GTK_BOX(vbox1), interface.constraint, TRUE, TRUE, GNOME_PAD_SMALL);
 	
-	gtk_container_add (GTK_CONTAINER(vbox1), GTK_WIDGET(vbox2));
-	
-	return vbox1;
+	return interface.constraint;
 }
 
 GtkWidget *
@@ -1459,14 +1451,14 @@ create_search_results_section (void)
 	GtkTreeViewColumn *column;	
 	GtkCellRenderer   *renderer;
 	
-	vbox = gtk_vbox_new (FALSE, 0);	
+	vbox = gtk_vbox_new (FALSE, 6);	
 	
 	label = gtk_label_new_with_mnemonic (_("S_earch results:"));
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
-	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 	
 	window = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_IN);	
+	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_NONE);	
 	gtk_container_set_border_width (GTK_CONTAINER(window), 0);
 	gtk_widget_set_size_request (window, 530, 160); 
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(window),
@@ -1611,18 +1603,18 @@ create_main_window (void)
 	GtkWidget 	*window;
 	GtkWidget	*image;
 
-	window = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
-	gtk_container_set_border_width (GTK_CONTAINER(window), GNOME_PAD);
+	window = gtk_vbox_new (FALSE, 6);	
+	gtk_container_set_border_width (GTK_CONTAINER(window), 12);
 
-	hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start (GTK_BOX(window), hbox, FALSE, FALSE, GNOME_PAD_SMALL);
+	hbox = gtk_hbox_new (FALSE, 12);
+	gtk_box_pack_start (GTK_BOX(window), hbox, FALSE, FALSE, 0);
 	
 	image = gtk_image_new_from_stock (GNOME_SEARCH_TOOL_STOCK, gsearchtool_icon_size);
-	gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
 	
 	interface.table = gtk_table_new (2, 2, FALSE);
-	gtk_table_set_row_spacings (GTK_TABLE(interface.table), GNOME_PAD);
-	gtk_table_set_col_spacings (GTK_TABLE(interface.table), GNOME_PAD);
+	gtk_table_set_row_spacings (GTK_TABLE(interface.table), 6);
+	gtk_table_set_col_spacings (GTK_TABLE(interface.table), 12);
 	gtk_container_add (GTK_CONTAINER(hbox), interface.table);
 	
 	label = gtk_label_new_with_mnemonic (_("_Name contains:"));
@@ -1696,24 +1688,26 @@ create_main_window (void)
 	
 	interface.results = create_search_results_section ();
 	gtk_widget_set_sensitive (GTK_WIDGET(interface.results), FALSE);
-	gtk_box_pack_start (GTK_BOX(window), interface.results, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX(window), interface.results, TRUE, TRUE, 0);
 	
 	hbox = gtk_hbutton_box_new ();
 	gtk_button_box_set_layout (GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
-	gtk_box_pack_start (GTK_BOX(window), hbox, FALSE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX(window), hbox, FALSE, FALSE, 0);
 
-	gtk_box_set_spacing (GTK_BOX(hbox), GNOME_PAD);
+	gtk_box_set_spacing (GTK_BOX(hbox), 6);
 	button = gtk_button_new_from_stock (GTK_STOCK_HELP);
-	gtk_box_pack_start (GTK_BOX(hbox), button, FALSE, FALSE, GNOME_PAD_SMALL);
+	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+	gtk_box_pack_start (GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_button_box_set_child_secondary (GTK_BUTTON_BOX(hbox), button, TRUE);
 	g_signal_connect (G_OBJECT(button), "clicked",
 			  G_CALLBACK(help_cb), NULL);
 	
 	button = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
+	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
 	g_signal_connect (G_OBJECT(button), "clicked",
 			  G_CALLBACK(quit_cb), NULL);
 	
-	gtk_box_pack_start (GTK_BOX(hbox), button, FALSE, FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	
 	interface.find_button = gtk_button_new_from_stock (GTK_STOCK_FIND);
 	interface.stop_button = gtk_button_new_from_stock (GTK_STOCK_STOP);
@@ -1724,8 +1718,8 @@ create_main_window (void)
 			  G_CALLBACK(size_allocate_cb), NULL);
 	g_signal_connect (G_OBJECT(interface.stop_button),"clicked",
 			  G_CALLBACK(click_stop_cb), NULL);
-	gtk_box_pack_end (GTK_BOX(hbox), interface.stop_button, FALSE, FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_end (GTK_BOX(hbox), interface.find_button, FALSE, FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_end (GTK_BOX(hbox), interface.stop_button, FALSE, FALSE, 0);
+	gtk_box_pack_end (GTK_BOX(hbox), interface.find_button, FALSE, FALSE, 0);
 	gtk_widget_set_sensitive (interface.stop_button, FALSE);
 	gtk_widget_set_sensitive (interface.find_button, TRUE);
 	
