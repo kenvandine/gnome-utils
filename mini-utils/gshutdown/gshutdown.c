@@ -144,6 +144,8 @@ int main ( int argc, char ** argv )
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
+  gnome_client_disable_master_connection ();
+
   gnome_init (APPNAME, VERSION, argc, argv);
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-shutdown.png");
   if(getuid() && !check_whether_suid_and_executable("shutdown")) {
@@ -579,7 +581,6 @@ GnomeHelpMenuEntry ref = {"gshutdown", "index.html"};
 static void do_shutdown(void)
 {
   gchar * command_name, * command_path;
-  GnomeClient *client;
 
   command_name = g_strdup(runlevel_commands[requested_runlevel]);
   command_name = strtok(command_name, " \r\n\t");
@@ -595,11 +596,6 @@ static void do_shutdown(void)
                     ));
     exit (1);
   }
-
-  client = gnome_master_client();
-  /* (BUGFIX 2031) We don't want gshutdown to be restarted as part of the next session */
-  gnome_client_set_restart_style(client, GNOME_RESTART_NEVER);
-  gnome_client_flush(client);
 
   if ( command_path ) {
     run_command(runlevel_commands[requested_runlevel]);
