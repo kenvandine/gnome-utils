@@ -191,6 +191,7 @@ main_app_create_ui (MainApp *app)
         gtk_box_pack_start (GTK_BOX (hbox), fontlabel, FALSE, TRUE, 0);
 
         app->fontpicker = gnome_font_picker_new ();
+	gtk_label_set_mnemonic_widget (GTK_LABEL (fontlabel), app->fontpicker);
         gnome_font_picker_set_mode (GNOME_FONT_PICKER (app->fontpicker),
                                     GNOME_FONT_PICKER_MODE_FONT_INFO);
         g_signal_connect (app->fontpicker, "font-set",
