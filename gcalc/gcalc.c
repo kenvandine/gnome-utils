@@ -47,6 +47,7 @@ static void
 copy_contents (GtkWidget *widget, gpointer data)
 {
 	strcpy(copied_string,GNOME_CALCULATOR(calc)->result_string);
+	g_strstrip(copied_string);
 	gtk_selection_owner_set (app,
 				 GDK_SELECTION_PRIMARY,
 				 GDK_CURRENT_TIME);
