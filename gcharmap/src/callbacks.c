@@ -59,11 +59,34 @@ cb_charbtn_click (GtkButton *button, gpointer user_data)
     gchar *text;
 
     gtk_label_get (label, &text);
-    if (mainapp->insert_at_end == FALSE)
-        gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
-          strlen (text), &GTK_EDITABLE(mainapp->entry)->current_pos);
-    else
-        gtk_entry_append_text (GTK_ENTRY (mainapp->entry), text);
+
+    if (strcmp (text, _("del")) == 0) {
+	    if ( ! mainapp->insert_at_end) {
+		    GtkEditable *editable = GTK_EDITABLE (mainapp->entry);
+		    /* snarfed from GTK+
+		     * -George */
+			  
+		    if (editable->selection_start_pos != editable->selection_end_pos) {
+			    gtk_editable_delete_selection (editable);
+		    } else {
+			    gint old_pos = editable->current_pos;
+
+			    if ((gint)editable->current_pos < -1)
+				    editable->current_pos = 0;
+			    else if (editable->current_pos + 1 > GTK_ENTRY (editable)->text_length)
+				    editable->current_pos = GTK_ENTRY (editable)->text_length;
+			    else
+				    editable->current_pos += 1;
+
+			    gtk_editable_delete_text (editable, old_pos, editable->current_pos);
+		    }
+	    }
+    } else if ( ! mainapp->insert_at_end) {
+	    gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
+				      strlen (text), &GTK_EDITABLE(mainapp->entry)->current_pos);
+    } else {
+	    gtk_entry_append_text (GTK_ENTRY (mainapp->entry), text);
+    }
 }
 
 
@@ -72,9 +95,16 @@ cb_charbtn_enter (GtkButton *button, gpointer user_data)
 {
     GtkLabel *label = GTK_LABEL (GTK_BIN (button)->child);
     gchar *text, *s;
+    int code;
 
     gtk_label_get (label, &text);
-    s = g_strdup_printf (_("%s: Character code %d"), text, (unsigned char) text[0]);
+    if (strcmp (text, _("del")) == 0) {
+	    code = 127;
+    } else {
+	    code = (unsigned char)text[0];
+    }
+
+    s = g_strdup_printf (_(" %s: Character code %d"), text, code);
     gnome_appbar_set_status (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar), s);
     gtk_label_set_text (GTK_LABEL (mainapp->preview_label), text);
     g_free (s);

@@ -59,8 +59,12 @@ create_chartable (void)
     {
         for (h = 0; h <= 23; h++)
         {
-            gchar *s = (gchar *) g_new0 (gchar, 5);
-            s = g_strdup_printf ("%c", v * 24 + h + 32);
+	    char *s;
+	    int ch = v * 24 + h + 32;
+	    if (ch == 127)
+		    s = g_strdup (_("del"));
+	    else
+		    s = g_strdup_printf ("%c", (char)ch);
 
             button = gtk_button_new_with_label (s);
             mainapp->buttons = g_list_append (mainapp->buttons, button);
@@ -85,8 +89,13 @@ create_chartable (void)
     {
         for (h = 0; h <= 23; h++)
         {
-            gchar *s = (gchar *) g_new0 (gchar, 5);
-            s = g_strdup_printf ("%c", v * 24 + h + 161);
+	    char *s;
+	    int ch = v * 24 + h + 161;
+
+	    if (ch > 0xff)
+		    continue;
+
+            s = g_strdup_printf ("%c", (char)ch);
 
             button = gtk_button_new_with_label (s);
             mainapp->buttons = g_list_append (mainapp->buttons, button);

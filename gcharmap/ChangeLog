@@ -1,3 +1,10 @@
+Sun Jun 24 19:02:39 2001  George Lebl <jirka@5z.com>
+
+	* src/interface.c, src/callbacks.c:  Wipe the 0 char as it's not
+	  printable, "del" now actually works as a "del", perhaps it should
+	  just be removed though.  Also pad the statusbar text with a space
+	  to make it more readable.
+
 2001-06-22  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* src/main.c: Use "gcharmap" instead of PACKAGE in gnome-init().
