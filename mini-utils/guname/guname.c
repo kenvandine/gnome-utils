@@ -368,10 +368,7 @@ static void write_to_filestream(FILE * f)
   ***********************************/
 
 static const gchar * scroll_text[] = {
-  "John Doe",
-  "Doe Jane",
-  "Your Name Here",
-  "Yet Another Name",
+#include "AUTHORS.h"
   "Wanda the GNOME Fish"
 };
 
