@@ -544,6 +544,57 @@ add_no_files_found_message (GtkListStore 	*store,
 		    	    -1);
 }
 
+void
+update_search_counts (void)
+{
+	gchar  *title_bar_string = NULL;
+	gchar  *message_string = NULL;
+	gchar  *stopped_string = g_strdup ("");
+	gchar  *tmp;
+	gint   total_files;
+
+	if (search_command.aborted == TRUE) {
+		stopped_string = g_strdup (_("(stopped)"));
+	}
+	
+	total_files = gtk_tree_model_iter_n_children (GTK_TREE_MODEL(interface.model), NULL);
+
+	if (total_files == 0) {
+		title_bar_string = g_strdup (_("No Files Found"));
+		message_string = g_strdup (_("No files found"));
+		add_no_files_found_message (interface.model, &interface.iter);
+	}
+	else if (total_files == 1) {
+		title_bar_string = g_strdup (_("One File Found"));
+		message_string = g_strdup (_("One file found"));
+	}
+	else {
+		title_bar_string = g_strdup_printf (_("%d Files Found"), total_files);
+		message_string = g_strdup_printf (_("%d files found"), total_files);
+	}
+		
+	if (strlen (stopped_string) > 0) {
+		tmp = message_string;
+		message_string = g_strconcat (message_string, " ", stopped_string, NULL);
+		g_free (tmp);
+		
+		tmp = title_bar_string;
+		title_bar_string = g_strconcat (title_bar_string, " ", stopped_string, NULL);
+		g_free (tmp);
+	}
+		
+	tmp = title_bar_string;
+	title_bar_string = g_strconcat (title_bar_string, " - ", _("Search for Files"), NULL);
+	gtk_window_set_title (GTK_WINDOW (interface.main_window), title_bar_string);
+	g_free (tmp);
+	
+	gtk_label_set_text (GTK_LABEL (interface.results_label), message_string);
+	
+	g_free (title_bar_string);
+	g_free (message_string);
+	g_free (stopped_string);
+}
+
 static GtkWidget *
 make_list_of_templates (void)
 {
@@ -1238,50 +1289,17 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 	}
 
 	if (condition != G_IO_IN || broken_pipe == TRUE) { 
-	
-		gint   total_files;
-		gchar *status_bar_string = NULL;
-		gchar *title_bar_string = NULL;
-		gchar *search_status = g_strdup ("");
-		gchar  *tmp;
 		
 		if (search_data->running == MAKE_IT_STOP) {
-			search_status = g_strdup (_("(stopped)"));
+			search_data->aborted = TRUE;
 		}
 		
 		search_data->lock = FALSE;
 		search_data->running = NOT_RUNNING;
-		
 		search_data->not_running_timeout = TRUE;
 		g_timeout_add (500, not_running_timeout_cb, NULL);
 
-		total_files = gtk_tree_model_iter_n_children (GTK_TREE_MODEL(interface.model), NULL);
-
-		if (total_files == 0) {
-			status_bar_string = g_strdup (_("No files found"));
-			title_bar_string = g_strdup (_("No Files Found"));
-			add_no_files_found_message (interface.model, &interface.iter);
-		}
-		else if (total_files == 1) {
-			status_bar_string = g_strdup (_("One file found"));
-			title_bar_string = g_strdup (_("One File Found"));
-		}
-		else {
-			status_bar_string = g_strdup_printf (_("%d files found"), total_files);
-			title_bar_string = g_strdup_printf (_("%d Files Found"), total_files);
-		}
-		
-		if (strlen(search_status) > 0) {
-			status_bar_string = g_strconcat (status_bar_string, " ", search_status, NULL);
-			title_bar_string = g_strconcat (title_bar_string, " ", search_status, NULL);
-		}
-		gtk_label_set_text (GTK_LABEL (interface.results_label), status_bar_string);
-		
-		tmp = title_bar_string;
-		title_bar_string = g_strconcat (title_bar_string, " - ", _("Search for Files"), NULL);
-		gtk_window_set_title (GTK_WINDOW (interface.main_window), title_bar_string);
-		g_free (tmp);
-
+		update_search_counts ();
 		stop_animation ();
 
 		gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.find_button);
@@ -1293,10 +1311,6 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		gtk_widget_show (interface.find_button);
 
 		g_io_channel_shutdown (ioc, TRUE, NULL);
-		g_free (status_bar_string);
-		g_free (title_bar_string);
-		g_free (search_status);
-		
 		return FALSE;
 	}
 	return TRUE;
@@ -1463,6 +1477,7 @@ spawn_search_command (gchar *command)
 	}
 	
 	search_command.lock = TRUE;
+	search_command.aborted = FALSE;
 	search_command.running = RUNNING; 
 
 	gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.stop_button);

@@ -664,7 +664,7 @@ gsearchtool_hig_dialog_new (GtkWindow      *parent,
 	gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
 	gtk_widget_show (hbox);
 
-	if (buttons != GTK_BUTTONS_OK_CANCEL) {
+	if (buttons != GTK_BUTTONS_OK_CANCEL && buttons != GTK_BUTTONS_YES_NO) {
 		image = gtk_image_new_from_stock ("gtk-dialog-error", GTK_ICON_SIZE_DIALOG);
 	}
 	else {
@@ -712,6 +712,21 @@ gsearchtool_hig_dialog_new (GtkWindow      *parent,
   			GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
 			break;
 		
+		/* The HIG advises against using YES/NO dialogs.  We don't use them; instead, this
+		   dialog type is being used for a CANCEL/DELETE dialog. */  		
+		case GTK_BUTTONS_YES_NO:
+	
+			button = gtk_button_new_from_stock ("gtk-cancel");
+  			gtk_widget_show (button);
+  			gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_CANCEL);
+  			GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+
+		  	button = gtk_button_new_from_stock ("gtk-delete");
+  			gtk_widget_show (button);
+  			gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_OK);
+  			GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+			break;
+			
 		case GTK_BUTTONS_OK:
 		
 			button = gtk_button_new_from_stock ("gtk-ok");

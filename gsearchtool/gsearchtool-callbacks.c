@@ -32,7 +32,9 @@
 #define SILENT_WINDOW_OPEN_LIMIT 5
 
 #include <gnome.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
+#include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnome/gnome-desktop-item.h>
 
 #include <string.h>
@@ -53,6 +55,11 @@ static GnomeUIInfo popup_menu[] = {
 				open_folder_cb,
 				GTK_STOCK_OPEN),
 	GNOMEUIINFO_SEPARATOR,		
+	GNOMEUIINFO_ITEM_STOCK (N_("Mo_ve to Trash"), 
+				NULL, 
+				move_to_trash_cb,
+				GTK_STOCK_DELETE),
+	GNOMEUIINFO_SEPARATOR,	
 	GNOMEUIINFO_ITEM_STOCK (N_("_Save Results As..."), 
 				NULL, 
 				show_file_selector_cb,
@@ -475,6 +482,198 @@ open_folder_cb (GtkWidget 	*widget,
 	g_list_free (list);
 }
 
+static char *
+get_trash_path (const gchar *filename)
+{
+	gchar       *e_filename;
+	GnomeVFSURI *uri;
+	GnomeVFSURI *trash_uri;
+
+	e_filename = gnome_vfs_escape_path_string (filename);
+	uri = gnome_vfs_uri_new (e_filename);
+	g_free (e_filename);
+
+	gnome_vfs_find_directory (uri, 
+				  GNOME_VFS_DIRECTORY_KIND_TRASH,
+				  &trash_uri, 
+				  TRUE,
+				  TRUE,
+				  0777);
+	gnome_vfs_uri_unref (uri);
+
+	if (trash_uri == NULL) {
+		return NULL;
+	}
+	else {
+		gchar *trash_path;
+		trash_path = gnome_vfs_uri_to_string (trash_uri, GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+		gnome_vfs_uri_unref (trash_uri);
+		return trash_path;
+	}
+}
+
+void
+move_to_trash_cb (GtkWidget 	*widget,
+                  gpointer 	data)
+{
+	gint total;
+	gint index;
+		
+	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
+		return;
+	}
+	
+	total = gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection));
+									    
+	for (index = 0; index < total; index++) {
+	
+		gboolean no_files_found = FALSE;
+		GtkTreeIter iter;
+		GList *list;
+		gchar *utf8_basename;
+		gchar *utf8_basepath;
+		gchar *utf8_filename;
+		gchar *locale_filename;
+		gchar *trash_path;
+		
+		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION(interface.selection),
+ 		                                             (GtkTreeModel **)&interface.model);
+			
+		gtk_tree_model_get_iter (GTK_TREE_MODEL(interface.model), &iter, 
+					 g_list_nth (list, 0)->data);
+
+		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
+    				    COLUMN_NAME, &utf8_basename,
+			    	    COLUMN_PATH, &utf8_basepath,
+			   	    COLUMN_NO_FILES_FOUND, &no_files_found,
+			   	    -1);		    
+
+		if (no_files_found) {
+			g_free (utf8_basename);
+			g_free (utf8_basepath);
+			return;
+		}
+		
+		utf8_filename = g_build_filename (utf8_basepath, utf8_basename, NULL);
+		locale_filename = g_locale_from_utf8 (utf8_filename, -1, NULL, NULL, NULL);
+		trash_path = get_trash_path (locale_filename);
+
+		if (trash_path != NULL) {
+		
+			GnomeVFSResult result;
+			gchar *destination;
+			gchar *basename;
+		
+			basename = g_locale_from_utf8 (utf8_basename, -1, NULL, NULL, NULL);
+			destination = g_build_filename (trash_path, basename, NULL);
+		
+			result = gnome_vfs_move (locale_filename, destination, TRUE);
+			gtk_tree_selection_unselect_iter (GTK_TREE_SELECTION (interface.selection), &iter);
+			
+			if (result == GNOME_VFS_OK) {
+				gtk_list_store_remove (GTK_LIST_STORE (interface.model), &iter);
+			}
+			else {
+				GtkWidget *dialog;
+				gchar     *title;
+				gchar     *text;
+
+				title = g_strdup_printf (_("Could not move \"%s\" to the trash."), g_path_get_basename (utf8_filename));
+				text = g_strdup_printf (_("Moving \"%s\" failed: %s."), 
+				                        utf8_filename, gnome_vfs_result_to_string (result));		
+							
+				dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
+				                                     GTK_DIALOG_DESTROY_WITH_PARENT,
+								     GTK_BUTTONS_OK,
+								     title,
+								     text);
+
+               			g_signal_connect (G_OBJECT (dialog),
+                       		                  "response",
+                       		                  G_CALLBACK (gtk_widget_destroy), NULL);
+
+                		gtk_widget_show (dialog);
+				g_free (title);
+				g_free (text);
+			}
+			g_free (basename);
+			g_free (destination);
+		}
+		else {	
+			GnomeVFSResult result;
+			GtkWidget      *dialog;
+			gchar          *text;
+			gchar          *title;
+			gint           response;
+						
+			title = g_strdup_printf (_("Do you want to delete \"%s\" permanently?"),
+			                           g_path_get_basename (utf8_filename));
+			
+			text = g_strdup_printf (_("Trash is unavailable.  Could not move \"%s\" to the trash."), utf8_filename);
+
+			dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
+			                                     0 /* flags */,
+							     GTK_BUTTONS_YES_NO, /* YES/NO is actually CANCEL/DELETE */
+							     title,
+							     text);
+	
+			response = gtk_dialog_run (GTK_DIALOG (dialog));
+		
+			gtk_tree_selection_unselect_iter (GTK_TREE_SELECTION (interface.selection), &iter);
+			gtk_widget_destroy (GTK_WIDGET(dialog));
+			g_free (title);
+			g_free (text);
+						
+			if (response == GTK_RESPONSE_OK) {
+			
+				if (!g_file_test (locale_filename, G_FILE_TEST_IS_DIR)) {
+					result = gnome_vfs_unlink (locale_filename);
+				}
+				else {
+					result = gnome_vfs_remove_directory (locale_filename);	
+				}
+				
+				if (result == GNOME_VFS_OK) {
+					gtk_list_store_remove (GTK_LIST_STORE (interface.model), &iter);
+				}
+				else {
+					GtkWidget *dialog;
+					gchar     *title;
+					gchar     *text;
+
+					title = g_strdup_printf (_("Could not delete \"%s\"."), g_path_get_basename (utf8_filename));
+					text = g_strdup_printf (_("Deleting \"%s\" failed: %s."), utf8_filename,
+					                        gnome_vfs_result_to_string (result));	
+							
+					dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
+					                                     GTK_DIALOG_DESTROY_WITH_PARENT,
+									     GTK_BUTTONS_OK,
+									     title,
+									     text);
+
+                			g_signal_connect (G_OBJECT (dialog),
+                        		                  "response",
+                        		                  G_CALLBACK (gtk_widget_destroy), NULL);
+
+	                		gtk_widget_show (dialog);
+					g_free (title);
+					g_free (text);
+				}						 
+			}
+		}
+		g_list_free (list);
+		g_free (locale_filename);
+		g_free (utf8_filename);
+		g_free (utf8_basename);
+		g_free (utf8_basepath);
+		g_free (trash_path);
+	}
+	
+	if (search_command.running != RUNNING) {
+		update_search_counts ();
+	}
+}
+
 gboolean
 file_button_press_event_cb (GtkWidget 		*widget, 
 			    GdkEventButton 	*event, 
@@ -512,6 +711,10 @@ file_key_press_event_cb  (GtkWidget 		*widget,
 {		
 	if (event->keyval == GDK_space || event->keyval == GDK_Return) {
 		open_file_cb (widget, data);
+		return TRUE;
+	}
+	else if (event->keyval == GDK_Delete) {
+		move_to_trash_cb (widget, data);
 		return TRUE;
 	}
 	return FALSE;
@@ -574,7 +777,7 @@ file_button_release_event_cb (GtkWidget 	*widget,
 			GtkWidget *save_widget;
 				
 			popup = gnome_popup_menu_new (popup_menu);
-			save_widget = popup_menu[3].widget;
+			save_widget = popup_menu[5].widget;
 			
 			if (search_command.running != NOT_RUNNING) {		    	
 		        	gtk_widget_set_sensitive (save_widget, FALSE);
@@ -646,7 +849,7 @@ file_event_after_cb  (GtkWidget 	*widget,
 						gchar     *title;
 						gchar     *text;
 
-						title = g_strdup_printf (_("Could not open document \"%s\""), g_path_get_basename (file));
+						title = g_strdup_printf (_("Could not open document \"%s\"."), g_path_get_basename (file));
 						text = g_strdup (_("There is no installed viewer capable of displaying the document."));	
 							
 						dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),

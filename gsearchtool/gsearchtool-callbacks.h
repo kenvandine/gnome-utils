@@ -83,6 +83,9 @@ open_file_cb 			(GtkWidget 	*widget,
 void	
 open_folder_cb 			(GtkWidget 	*widget, 
 				 gpointer 	data);
+void	
+move_to_trash_cb		(GtkWidget 	*widget, 
+				 gpointer 	data);				 
 void  
 drag_begin_file_cb  		(GtkWidget          *widget,
 	      			 GdkDragContext     *context,

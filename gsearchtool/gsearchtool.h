@@ -89,6 +89,7 @@ struct _SearchStruct {
 	gboolean		show_hidden_files;
 	gboolean		regex_matching_enabled;
 	gboolean		not_running_timeout;
+	gboolean		aborted;
 	RunStatus        	running;
 } search_command;
 
@@ -170,6 +171,9 @@ set_clone_command		(gint *argcp,
 				 gboolean escape_values);
 gchar *
 get_desktop_item_name 		(void);
+
+void
+update_search_counts 		(void);
 
 #ifdef __cplusplus
 }
