@@ -1,0 +1,172 @@
+<html><head>
+<title>GTimeTracker Documentation - The Dialogs</title>
+<link rev=made href="mailto:eb@berns.prima.de">
+</head><body>
+<h1>
+GTimeTracker Documentation - chapter 3<br>
+The Dialogs
+</h1>
+<hr>
+<A name="s-pref"><h2>
+3.1 The Preferences Dialog
+</h2></A>
+<hr>
+<A name="s-display"><h3>
+3.1.1 Display
+</h3></A>
+You can select, what GTimeTracker should display in the main window,
+here.
+
+<dl>
+<dt><code>Show Seconds</code>
+  <dd>You can tell GTimeTracker, if you want the seconds to be displayed
+  in the project list. If seconds are shown, the time displayed in the
+  project list looks like <code>00:12:47</code> (hours:minutes:seconds). If not, you
+  just see <code>00:12</code> (hours:minutes).
+
+  <p><dt><code>Show Toolbar Icons</code> and <code>Show Toolbar Texts</code>
+  <dd>If you're using a GNOME version of GTimeTracker, you can select how
+  the toolbar should look. You can chosse to display icons and/or a text.
+
+  <p><dt><code>Show Status Bar</code>
+  <dd>Just choose, if you want the status bar to be displayed.
+  <p></dl>
+
+
+
+<hr>
+<A name="s-shellcmd"><h3>
+3.1.2 Shell Commands
+</h3></A>
+<dl>
+<dt><code>Switch Project Command</code>
+
+    <dd>This shell command will be executed every time you select a
+    project, which was previously unselected. If you use <code>%s</code> in this
+    command, GTimeTracker will replace that by the title of the selected
+    project. I use the following entry to update my <code>.project</code> file:
+
+    <pre>echo '%s' &gt;~/.project</pre>
+
+  <p><dt><code>No Project Command</code>
+  
+    <dd>This shell command will be executed every time you deselect a
+    project or if you exit GTimeTracker. To complete the example above, I
+    use this command:
+    
+    <pre>rm -f ~/.project</pre>
+<p></dl>
+
+
+
+<hr>
+<A name="s-logfile"><h3>
+3.1.3 Logfile
+</h3></A>
+<dl>
+<dt><code>Use Logfile</code>
+  
+    <dd>You have to enable this, if you want a logfile.
+    
+  <p><dt><code>Filename</code>
+  
+    <dd>Give a filename for the logfile. GTimeTracker currently does not
+    replace <code>$HOME</code> or <code>~</code>. You should give the complete path to the
+    logfile.
+    
+  <p><dt><code>Timeout in secs</code>
+
+    <dd>This value represents the minimum time a project has to be
+    selected, before it will be logged. This is usefull, when you don't want
+    any small task to be logged, or when you clicked on the wrong project
+    first. Let's say, you just wanted to start working on a letter to your
+    friend Joe (so you selected the project <em>Letter to Joe</em>), but that
+    reminds you, that you have to prepare a list of Christmas presents first
+    (Joe has asked you to give him some good ideas). So you switch to the
+    project <em>X-Mas presents</em>. You wouldn't want the project <em>Letter to
+    Joe</em> to be in your logfile, because you didn't really start it yet. I
+    would suggest you set this value at least to 10 seconds.
+<p></dl>
+
+<P>
+Note that a project will not get logged, before you either quit
+GTimeTracker, switch to another project, or deselct that project. So don't
+be confused when you look at your logfile and your current project still
+isn't listed, even if it is running since two hours.
+
+
+<hr>
+<A name="s-ok-apply-cancel"><h3>
+3.1.4 <code>OK</code>, <code>apply</code> and <code>Cancel</code>
+</h3></A>
+If you are pleased with the values of the dialog, press <code>OK</code> to make
+them active and have the dialog go away.
+<P>
+If you want to apply these values just for a given task and plan to
+reopen the dialog again, you can press on <code>Apply</code> to activate the values.
+But the dialog will remain open.
+<P>
+If you don't want to change to working values, you just press
+<code>Cancel</code>. That will close the dialog, but will not change the behavier of
+GTimeTracker in any way. I recommend using <code>Cancel</code> even if you didn't
+change anything.
+
+
+
+
+<hr>
+<A name="s-prop"><h2>
+3.2 The Properties Dialog
+</h2></A>
+This dialog shows you all values that are internally stored with a
+project.
+<P>
+Note that this is the only way to examine the overall time yet.
+
+<dl>
+<dt><code>Project Title</code>
+  
+    <dd>You can change the title of a project here.
+    
+  <p><dt><code>Project Description</code>
+  
+    <dd>You can give the project a more detailed description if you like.
+    Up to now this value will never be used by GTimeTracker
+    
+  <p><dt><code>Project Time today</code>
+  
+    <dd>This is the <em>daily</em> time, you worked on the project today. You
+    can edit this time here.
+    
+  <p><dt><code>Project Time ever</code>
+  
+    <dd>This is the <em>total</em> time, you worked on a project. You can edit
+    this time here.
+<p></dl>
+
+<P>
+See <A href="#s-ok-apply-cancel"><code>OK</code>, <code>apply</code> and <code>Cancel</code>, subsection 3.1.4</A> for the meaning of the buttons at the
+bottom of the dialog.
+
+
+
+<hr>
+<A name="s-newproj"><h2>
+3.3 The New Project Dialog
+</h2></A>
+This dialog is fairly small. It just wants to know, how you want to
+entitle the new project. Just enter a title of the new project and press
+<code>OK</code>, if you are satisfied. Or press <code>Cancel</code> if you changed your mind
+and don't want GTimeTracker to add a new project.
+
+
+
+<hr>
+GTimeTracker Documentation
+- <A href="index.html#copyright">Copyright © 1997,98 Eckehard Berns</A>
+<br>
+<A href="index.html#toc">Contents</A>; <A href="ch-working.html">next</A>; <A href="ch-main.html">back</A>.
+<br>
+<address>last modified: 14 January 1998<br>
+Eckehard Berns <A href="mailto:eb@berns.prima.de">eb@berns.prima.de</A></address>
+</body></html>
