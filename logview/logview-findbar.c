@@ -215,6 +215,7 @@ logview_findbar_populate (LogviewWindow *window, GtkWidget *find_bar)
 {
 	GtkWidget *label;
 	GtkToolItem *item;
+	GtkWidget *placeholder;
 	
 	g_return_if_fail (GTK_IS_TOOLBAR (find_bar));
 	
@@ -245,13 +246,17 @@ logview_findbar_populate (LogviewWindow *window, GtkWidget *find_bar)
 	gtk_toolbar_insert (GTK_TOOLBAR (find_bar), window->find_next, -1);
 	
 	window->find_prev = gtk_tool_button_new_from_stock (GTK_STOCK_GO_UP);
-	gtk_tool_button_set_label (GTK_TOOL_BUTTON(window->find_prev), _("Previous"));
 	gtk_tool_item_set_is_important (item, TRUE);
+	gtk_tool_button_set_label (GTK_TOOL_BUTTON(window->find_prev), _("Previous"));
 	g_signal_connect (window->find_prev,
 			  "clicked",
 			  G_CALLBACK (logview_findbar_clicked_cb),
 			  window);
 	gtk_toolbar_insert (GTK_TOOLBAR (find_bar), window->find_prev, -1);
+
+	item = gtk_tool_item_new ();
+	gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
+	gtk_tool_item_set_expand (item, TRUE);
 	
 	item = gtk_tool_button_new_from_stock (GTK_STOCK_CLOSE);
 	gtk_tool_item_set_is_important (item, FALSE);
