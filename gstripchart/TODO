@@ -12,6 +12,10 @@ starting at the top of the file.  As far as I can tell, this doesn't
 work for any other apps either, so I'll assume that the problem lies
 with the help browser.
 
+Figure out how to account for WM decorations when dealing with a
+geometry string that specify a position relative to the bottom or
+right side.
+
 
 FEATURES TO BE ADDED
 
@@ -20,10 +24,6 @@ are readily editable, and so that new paramaters can be added.
 
 Add session management code.
 
-Figure out how to account for WM decorations when dealing with a
-geometry string that specify a position relative to the bottom or
-right side.
-
 Add an option to include legends along the sides of the display.  The
 vertical legend could include the name and last value of each
 parameter.  This could get crowded in a hurry.
@@ -31,11 +31,12 @@ parameter.  This could get crowded in a hurry.
 Allow the background color to be defined on the command line and in
 the config file.
 
-Add a small left-button pop-up showing the current and top values for
-each active paramater.
-
 
 THINGS TO CONSIDER
+
+Re-work the text popup and the parameter dialog box to show 3
+significant digits in as narrow a field as possible.  Update the text
+popup in real time, or make it go away on a button release.
 
 Allow values to be plotted using a logarithmic basis rather than a
 linear one.  This would be especially handy for values such as load
