@@ -1,10 +1,12 @@
-<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 ]>
 
 <article id="index">
 
 
-  <artheader> 
+  <articleinfo> 
   <title>GNOME Search Tool Manual</title>
     <copyright>
       <year>2000</year>
@@ -33,7 +35,7 @@
     or initial caps.
    </para>
     </legalnotice>
-  </artheader>
+  </articleinfo>
 
   <sect1 id="intro">
     <title>Introduction</title> 
@@ -82,14 +84,13 @@
     for speeding up search; it is much faster, but can only search by
     filename, and is not as accurate as full find. This section
     describes full find mode; quick find is described in <xref
-    linkend="locate">.  
+    linkend="locate" />.  
     </para>      
 <figure id="mainwin">
  <title>Main search window</title>
  <screenshot>
   <screeninfo>Main search window</screeninfo>
-  <graphic format="png"  fileref="figures/mainwin" srccredit="sasha">
-  </graphic>
+  <graphic format="PNG"  fileref="figures/mainwin" srccredit="sasha" />
  </screenshot>
 </figure>
 
@@ -117,7 +118,7 @@
       mounted filesystems</guilabel>, which will exclude from the
       search subdirectories which are physically located (mounted) on
       drives or partitions other than the starting directory &mdash;
-      see <xref linkend="criteria"> for details.
+      see <xref linkend="criteria" /> for details.
     </para>
 
    <para> 
@@ -132,7 +133,7 @@
       files that start with the letter D, enter
       <userinput>D*</userinput> (warning: file names are
       case-sensitive!).  You can also specify much more complicated
-      search criteria &mdash; see <xref linkend="criteria">.
+      search criteria &mdash; see <xref linkend="criteria" />.
    </para>
    
    <para> After you have specified the search criteria and starting
@@ -140,7 +141,7 @@
    time (depending on the directory size and system speed), after
    which you will be presented with a window containing the list of
    all the files matching your criteria (it may be empty), as shown in
-   <xref linkend="results">. If the search is taking too much time,
+   <xref linkend="results" />. If the search is taking too much time,
    you can abort it by pressing <guibutton>Stop</guibutton> button.
    </para>
 
@@ -148,8 +149,7 @@
  <title>Search results window</title>
  <screenshot>
   <screeninfo>Search results window</screeninfo>
-  <graphic format="png"  fileref="figures/results" srccredit="sasha">
-  </graphic>
+  <graphic format="PNG"  fileref="figures/results" srccredit="sasha" />
  </screenshot>
 </figure>
 
@@ -177,7 +177,7 @@
       already existing ones. <application>GNOME Search
       Tool</application> will search for files meeting
       <emphasis>all</emphasis> of the specified criteria. For example,
-      <xref linkend="sample"> shows search for all files with
+      <xref linkend="sample" /> shows search for all files with
       extension <filename>txt</filename> which were modified during
       the last 7 days and which contain the word GNOME.
     </para>
@@ -186,8 +186,7 @@
      <title>Sample GNOME Search Session</title>
      <screenshot>
       <screeninfo>Sample GNOME Search Session</screeninfo>
-      <graphic format="png" fileref="figures/gsearch" srccredit="sasha">
-      </graphic>
+      <graphic format="PNG" fileref="figures/gsearch" srccredit="sasha" />
     </screenshot>
    </figure>
 
@@ -318,15 +317,14 @@
       This section describes quick find mode of <application>GNOME
     search tool</application>. To use this mode, switch to
     <guilabel>Quick find (locate)</guilabel> window, shown in <xref
-    linkend="locatewin">. 
+    linkend="locatewin" />. 
       </para>
 
     <figure id="locatewin">
      <title>Quick find window</title>
      <screenshot>
       <screeninfo>Quick find window</screeninfo>
-      <graphic format="png" fileref="figures/locate" srccredit="sasha">
-      </graphic>
+      <graphic format="PNG" fileref="figures/locate" srccredit="sasha" />
     </screenshot>
    </figure>
 
