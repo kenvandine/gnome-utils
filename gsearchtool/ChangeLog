@@ -1,3 +1,13 @@
+2003-05-28  Dennis Cranston <dennis_cranston at yahoo com>
+
+	* gsearchtool.c (build_search_command):  Added a hidden 
+	'disable_quick_search' gconf key and when set to TRUE the 
+	search tool will not use the locate command for performing 
+	simple file name searches.  By default the key is set to FALSE.
+
+	* gnome-search-tool.schemas:  Added the 'disable_quick_search' 
+	gconf key.
+ 
 2003-05-23  Dennis Cranston <dennis_cranston at yahoo com>
 
 	* gsearchtool.c  (add_file_to_search_results): Modified sort order 

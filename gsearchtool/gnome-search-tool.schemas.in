@@ -225,5 +225,19 @@ To change the gconftool target use the - -config-source=blah option to gconftool
         </long>
       </locale>
     </schema>
+    <schema>
+      <applyto>/apps/gnome-search-tool/disable_quick_search</applyto>
+      <key>/schemas/apps/gnome-search-tool/disable_quick_search</key>
+      <owner>gnome-search-tool</owner>
+      <type>bool</type>
+      <default>FALSE</default>
+      <locale name="C">
+        <short>Disable Quick Search</short>
+        <long>
+          This key determines if the search tool disables the use of
+          the locate command when performing simple file name searches.
+        </long>
+      </locale>
+    </schema>
   </schemalist>
 </gconfschemafile>

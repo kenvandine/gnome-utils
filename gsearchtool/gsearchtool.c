@@ -311,13 +311,16 @@ build_search_command (void)
 	if (GTK_WIDGET_VISIBLE(interface.additional_constraints) == FALSE) {
 	
 		gchar *locate;
+		gboolean disable_quick_search;
 		
 		locate = g_find_program_in_path ("locate");
 		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
+		disable_quick_search = gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search");
 		
-		if ((locate != NULL) && (is_path_in_home_folder (look_in_folder_locale) != TRUE) 
-		     && (is_path_in_mount_folder (look_in_folder_locale) != TRUE)) {	
+		if ((disable_quick_search != TRUE) && (locate != NULL) 
+		    && (is_path_in_home_folder (look_in_folder_locale) != TRUE) 
+		    && (is_path_in_mount_folder (look_in_folder_locale) != TRUE)) {	
 			g_string_append_printf (command, "%s %s '%s*%s'", 
 						locate,
 						locate_command_default_options,
