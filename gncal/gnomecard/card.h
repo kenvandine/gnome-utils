@@ -86,7 +86,8 @@ typedef struct
 
 /* DELIVERY ADDRESSING PROPERTIES */
 
-
+#if 0
+/* NOT USED */
 typedef struct
 {
 	CardProperty prop;
@@ -102,7 +103,21 @@ typedef struct
 	int type;
 	char *data;
 } CardDelLabel;
+#else
+/* new ones I'm using */
+typedef struct
+{
+    CardProperty prop;
 
+    gint type;
+    gchar *street1;
+    gchar *street2;
+    gchar *city;
+    gchar *state;
+    gchar *country;
+    gchar *zip;
+} CardPostAddr;
+#endif
 
 /* TELECOMMUNICATIONS ADDRESSING PROPERTIES */
 
@@ -203,9 +218,12 @@ typedef struct _Card
 	CardName        name;
 	CardPhoto       photo;
 	CardBDay        bday;
-	
-	CardList        deladdr;
+
+/* NOT USED
+        CardList        deladdr;
 	CardList        dellabel;
+*/
+        CardList        postal;
 	
 	CardList        phone;
 	CardEMail       email;

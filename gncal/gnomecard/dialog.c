@@ -12,30 +12,6 @@
 #include "world.xpm"
 
 
-static void gnomecard_prop_close(GtkWidget *widget, gpointer node);
-static void gnomecard_take_from_name(GtkWidget *widget, gpointer data);
-static void gnomecard_cancel(GtkWidget *widget, gpointer data);
-static void gnomecard_setup_apply(GtkWidget *widget, int page);
-static void gnomecard_find_card(GtkWidget *w, gpointer data);
-static void gnomecard_save_call(GtkWidget *widget, gpointer data);
-static int gnomecard_match_pattern(char *pattern, char *str, int sens);
-
-
-char *email_type_name[] = 
-                 { N_("America On-Line"), N_("Apple Link"), N_("AT&T"),
-		               N_("CIS"), N_("e-World"), N_("Internet"), N_("IBM"),
-		               N_("MCI"), N_("Power Share"), N_("Prodigy"), N_("TLX"),
-		               N_("X400"), NULL };
-
-char *phone_type_name[] =
-                 { N_("Preferred"), N_("Work"), N_("Home"), N_("Voice"),
-			 N_("Fax"), N_("Message Recorder"), N_("Cellular"),
-			 N_("Pager"), N_("Bulletin Board"), N_("Modem"),
-			 N_("Car"), N_("ISDN"), N_("Video"), NULL };
-
-char *addr_type_name[] =
-                 { N_("Home"), N_("Work"), N_("Postal Box"), N_("Parcel"),
-		   N_("Domestic"), N_("International"), NULL };
 
 typedef struct
 {
@@ -57,7 +33,9 @@ typedef struct
         /* Address */
         GtkWidget *addrtype[6];
         GtkWidget *street1, *street2, *city, *state, *country, *zip;
-	
+        gint      curaddr;
+        CardList  postal;
+
 	/* Geographical */
 	GtkWidget *tzh, *tzm;
 	GtkWidget *gplon, *gplat;
@@ -74,9 +52,15 @@ typedef struct
 
 typedef struct
 {
+	GtkWidget *entry, *sens, *back;
+} GnomeCardFind;
+
+typedef struct
+{
 	GtkWidget *def_phone, *def_email;
 } GnomeCardSetup;
 
+/* NOT USED
 typedef struct
 {
 	GtkWidget *data, *type;
@@ -105,15 +89,47 @@ typedef struct
 	
 	GList *l;
 } GnomeCardDelLabel;
+*/
 
-typedef struct
-{
-	GtkWidget *entry, *sens, *back;
-} GnomeCardFind;
+static void gnomecard_prop_close(GtkWidget *widget, gpointer node);
+static void gnomecard_take_from_name(GtkWidget *widget, gpointer data);
+static void gnomecard_cancel(GtkWidget *widget, gpointer data);
+static void gnomecard_setup_apply(GtkWidget *widget, int page);
+static void gnomecard_find_card(GtkWidget *w, gpointer data);
+static void gnomecard_save_call(GtkWidget *widget, gpointer data);
+static int gnomecard_match_pattern(char *pattern, char *str, int sens);
+
+static void addrtypeclicked(GtkWidget *widget, gpointer data);
+static void deleteAddrList(CardList src);
+static void copyAddrList(CardList src, CardList *dest);
+static void copyGUIToCurAddr(GnomeCardEditor *ce);
+static void copyCurAddrToGUI(GnomeCardEditor *ce);
+
+
+
+
+char *email_type_name[] = 
+                 { N_("America On-Line"), N_("Apple Link"), N_("AT&T"),
+		               N_("CIS"), N_("e-World"), N_("Internet"), N_("IBM"),
+		               N_("MCI"), N_("Power Share"), N_("Prodigy"), N_("TLX"),
+		               N_("X400"), NULL };
+
+char *phone_type_name[] =
+                 { N_("Preferred"), N_("Work"), N_("Home"), N_("Voice"),
+			 N_("Fax"), N_("Message Recorder"), N_("Cellular"),
+			 N_("Pager"), N_("Bulletin Board"), N_("Modem"),
+			 N_("Car"), N_("ISDN"), N_("Video"), NULL };
+
+char *addr_type_name[] =
+                 { N_("Home"), N_("Work"), N_("Postal Box"), N_("Parcel"),
+		   N_("Domestic"), N_("International"), NULL };
+
+
 
 static void gnomecard_prop_apply(GtkWidget *widget, int page)
 {
 	GnomeCardEditor *ce;
+	GList *node;
 	Card *crd;
 	struct tm *tm;
 	time_t tt;
@@ -185,6 +201,17 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 			 0, gtk_text_get_length(GTK_TEXT(ce->comment)));
 	crd->url.str     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->url)));
 	crd->email.address   = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->email)));
+
+	/* postal addresses */
+	/* store results from current displayed address type, since */
+	/* we may not have stored changes yet                       */
+	copyGUIToCurAddr(ce);
+
+	/* remove old address list */
+	deleteAddrList(crd->postal);
+
+	/* link to new address list */
+	crd->postal = ce->postal;
 
         MY_FREE(crd->key.data);
 	
@@ -443,14 +470,19 @@ extern void gnomecard_edit(GList *node)
 	addrvbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
 	gtk_container_add(GTK_CONTAINER(addrtypeframe), addrvbox);
 
+	/* default to the 1st addr type */
+	ce->curaddr = 1;
 	for (i = 0; i < 6; i++) {
-		ce->addrtype[i] = gtk_radio_button_new_with_label(addrtypegroup, addr_type_name[i]);
+		ce->addrtype[i]=gtk_radio_button_new_with_label(addrtypegroup,
+							addr_type_name[i]);
 		addrtypegroup = gtk_radio_button_group(GTK_RADIO_BUTTON(ce->addrtype[i]));
-		gtk_object_set_user_data(GTK_OBJECT(ce->addrtype[i]), (gpointer) (1 << i));
-		gtk_box_pack_start(GTK_BOX(addrvbox), ce->addrtype[i], FALSE, FALSE, 0);
+		gtk_object_set_user_data(GTK_OBJECT(ce->addrtype[i]),
+					 (gpointer) (1 << i));
+		gtk_box_pack_start(GTK_BOX(addrvbox), ce->addrtype[i],
+				   FALSE, FALSE, 0);
 
-		gtk_toggle_button_set_state( GTK_TOGGLE_BUTTON(ce->addrtype[i]),
-					     (i == 0) );
+		gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(ce->addrtype[i]),
+					    (i == 0) );
 
 	}
 
@@ -462,7 +494,7 @@ extern void gnomecard_edit(GList *node)
 	align = gtk_alignment_new(1.0, 0.5, 0, 0);
         gtk_container_add (GTK_CONTAINER (align), label);
 	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
-	ce->street1 = entry = my_gtk_entry_new(0, "Street1");
+	ce->street1 = entry = my_gtk_entry_new(0, "");
 /*	my_connect(entry, "changed", box, &crd->.prop, PROP_ORG); */
 	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
@@ -474,7 +506,7 @@ extern void gnomecard_edit(GList *node)
 	label = gtk_label_new(_("Street 2:"));
 	align = gtk_alignment_new(1.0, 0.5, 0, 0);
         gtk_container_add (GTK_CONTAINER (align), label);
-	ce->street2 = entry = my_gtk_entry_new(0, "Street2");
+	ce->street2 = entry = my_gtk_entry_new(0, "");
 /*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
 	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 1, 2,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
@@ -486,7 +518,7 @@ extern void gnomecard_edit(GList *node)
 	label = gtk_label_new(_("City:"));
 	align = gtk_alignment_new(1.0, 0.5, 0, 0);
         gtk_container_add (GTK_CONTAINER (align), label);
-	ce->city = entry = my_gtk_entry_new(0, "City");
+	ce->city = entry = my_gtk_entry_new(0, "");
 /*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
 	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 2, 3,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
@@ -498,7 +530,7 @@ extern void gnomecard_edit(GList *node)
 	label = gtk_label_new(_("State:"));
 	align = gtk_alignment_new(1.0, 0.5, 0, 0);
         gtk_container_add (GTK_CONTAINER (align), label);
-	ce->state = entry = my_gtk_entry_new(0, "State");
+	ce->state = entry = my_gtk_entry_new(0, "");
 /*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
 	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 3, 4,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
@@ -510,7 +542,7 @@ extern void gnomecard_edit(GList *node)
 	label = gtk_label_new(_("Zip Code:"));
 	align = gtk_alignment_new(1.0, 0.5, 0, 0);
         gtk_container_add (GTK_CONTAINER (align), label);
-	ce->zip = entry = my_gtk_entry_new(0, "Street2");
+	ce->zip = entry = my_gtk_entry_new(0, "");
 /*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
 	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 4, 5,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
@@ -522,7 +554,7 @@ extern void gnomecard_edit(GList *node)
 	label = gtk_label_new(_("Country:"));
 	align = gtk_alignment_new(1.0, 0.5, 0, 0);
         gtk_container_add (GTK_CONTAINER (align), label);
-	ce->country = entry = my_gtk_entry_new(0, "Country");
+	ce->country = entry = my_gtk_entry_new(0, "");
 /*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
 	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 5, 6,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
@@ -530,6 +562,18 @@ extern void gnomecard_edit(GList *node)
 	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 5, 6,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+
+	/* fill in data structures for the addresses */
+	copyAddrList(crd->postal, &ce->postal);
+
+	/* attach signals now we're finished */
+	for (i=0; i < 6; i++)
+	    gtk_signal_connect(GTK_OBJECT(ce->addrtype[i]), "clicked",
+			       GTK_SIGNAL_FUNC(addrtypeclicked),
+			       ce);
+
+	
 
 /* LOSE BIRTHDAY FOR NOW	
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
@@ -1113,6 +1157,170 @@ extern void gnomecard_add_dellabel_call(GtkWidget *widget, gpointer data)
 #endif
 
 
+/* delete card list of addresses from src, freeing as we go */
+static void
+deleteAddrList(CardList src)
+{
+    GList *l;
+    CardPostAddr *p;
+
+    for (l=src.l; l; l=l->next) {
+	p = (CardPostAddr *)l->data;
+	MY_FREE(p->street1);
+	MY_FREE(p->street2);
+	MY_FREE(p->city);
+	MY_FREE(p->state);
+ 	MY_FREE(p->zip);
+	MY_FREE(p->country);
+	MY_FREE(p);
+    }
+    
+    g_list_free(src.l);
+}
+
+/* copy card list of addresses from src into dest, allocating as we go */
+static void
+copyAddrList(CardList src, CardList *dest)
+{
+    GList *l;
+
+    for (l=src.l; l; l=l->next) {
+	CardPostAddr *p, *srcp;
+
+	srcp = (CardPostAddr *)l->data;
+	p = g_new0(CardPostAddr, 1);
+	p->prop = empty_CardProperty();
+	p->prop = srcp->prop;
+
+	p->type    = srcp->type;
+	p->street1 = g_strdup(srcp->street1);
+	p->street2 = g_strdup(srcp->street2);
+	p->city    = g_strdup(srcp->city);
+	p->state   = g_strdup(srcp->state);
+ 	p->zip     = g_strdup(srcp->zip);
+	p->country = g_strdup(srcp->country);
+	
+	dest->l = g_list_append(dest->l, p);
+   }
+}
+
+/* try to find specific address type in a list of addresses */
+/* returns ptr to list item if found, otherwise return NULL */
+static GList *
+findmatchAddrType(GList *l, gint type)
+{
+    GList *k;
+
+    for (k = l; k; k = k->next) {
+	CardPostAddr *p = ((CardPostAddr *)k->data);
+	
+	if ( p->type == type )
+	    break;
+    }
+
+    return k;
+}
+
+
+/* set address edit fields according to the current address type */
+/* assumes ce is a valid structure from call to gnomecard_edit() */
+static void 
+copyCurAddrToGUI(GnomeCardEditor *ce) {
+    CardPostAddr *p;
+    GList *l;
+
+    l = findmatchAddrType(ce->postal.l, ce->curaddr);
+    if (!l) {
+	CardPostAddr *addr;
+
+	/* create new address type */
+	g_message("Creating addrtype %d in copyCurAddrToGUI()",ce->curaddr);
+	addr = g_new0(CardPostAddr, 1);
+	addr->street1 = g_strdup("");
+	addr->street2 = g_strdup("");
+	addr->city    = g_strdup("");
+	addr->state   = g_strdup("");
+	addr->country = g_strdup("");
+	addr->zip     = g_strdup("");
+	addr->type    = ce->curaddr;
+	addr->prop    = empty_CardProperty();
+	addr->prop.used = TRUE;
+
+	ce->postal.l = g_list_append(ce->postal.l, addr);
+	l = findmatchAddrType(ce->postal.l, ce->curaddr);
+    }
+
+    /* copy address into GUI */
+    p = ((CardPostAddr *)l->data);
+    gtk_entry_set_text(GTK_ENTRY(ce->street1), p->street1);
+    gtk_entry_set_text(GTK_ENTRY(ce->street2), p->street2);
+    gtk_entry_set_text(GTK_ENTRY(ce->city), p->city);
+    gtk_entry_set_text(GTK_ENTRY(ce->state), p->state);
+    gtk_entry_set_text(GTK_ENTRY(ce->zip), p->zip);
+    gtk_entry_set_text(GTK_ENTRY(ce->country), p->country);
+	
+}
+
+/* copies GUI of address entry into current data for address type */
+static void 
+copyGUIToCurAddr(GnomeCardEditor *ce) {
+    CardPostAddr *p;
+    GList *l;
+
+    l = findmatchAddrType(ce->postal.l, ce->curaddr);
+    if (!l) {
+	CardPostAddr *addr;
+
+	/* create new address type */
+	g_message("Creating addrtype %d in copyGUIToCurAddr()",ce->curaddr);
+	addr = g_new0(CardPostAddr, 1);
+	addr->street1 = addr->street2 = addr->city = addr->state = NULL;
+	addr->country = addr->zip = NULL;
+	addr->type    = ce->curaddr;
+	addr->prop    = empty_CardProperty();
+	addr->prop.used = TRUE;
+
+	ce->postal.l = g_list_append(ce->postal.l, addr);
+	l = findmatchAddrType(ce->postal.l, ce->curaddr);
+    }
+
+    /* copy GUI into GUI */
+    p = ((CardPostAddr *)l->data);
+    MY_FREE(p->street1);
+    p->street1 = g_strdup(gtk_entry_get_text(GTK_ENTRY(ce->street1)));
+    MY_FREE(p->street2);
+    p->street2 = g_strdup(gtk_entry_get_text(GTK_ENTRY(ce->street2)));
+    MY_FREE(p->city);
+    p->city = g_strdup(gtk_entry_get_text(GTK_ENTRY(ce->city)));
+    MY_FREE(p->state);
+    p->state = g_strdup(gtk_entry_get_text(GTK_ENTRY(ce->state)));
+    MY_FREE(p->zip);
+    p->zip = g_strdup(gtk_entry_get_text(GTK_ENTRY(ce->zip)));
+    MY_FREE(p->country);
+    p->country = g_strdup(gtk_entry_get_text(GTK_ENTRY(ce->country)));
+}
+
+static void
+addrtypeclicked(GtkWidget *widget, gpointer data)
+{
+    gint num;
+    GnomeCardEditor *ce;
+
+    /* what is the address type of button causing this event */
+    num = GPOINTER_TO_INT(gtk_object_get_user_data(GTK_OBJECT(widget)));
+    ce  = (GnomeCardEditor *)data;
+
+    /* if we are turning off a button, copy entry data into state vars */
+    if (!GTK_TOGGLE_BUTTON(widget)->active) {
+	copyGUIToCurAddr(ce);
+	return;
+    } else {
+	ce->curaddr = num;
+	copyCurAddrToGUI(ce);
+    }
+}
+
+
 extern void gnomecard_edit_card(GtkWidget *widget, gpointer data)
 {
 	if (gnomecard_curr_crd)
@@ -1309,102 +1517,118 @@ static void gnomecard_find_card(GtkWidget *w, gpointer data)
 	l = gnomecard_curr_crd;
 	
 	while (l) {
-		if (wrapped != 1)
-			l = (back)? l->prev : l->next;
-		else
-			wrapped ++;
-
-		if (l) {
-			crd = l->data;
-			crd_text[0] = crd->fname.str;
-			crd_text[1] = crd->name.family;
-			crd_text[2] = crd->name.given;
-			crd_text[3] = crd->name.additional;
-			crd_text[4] = crd->name.prefix;
-			crd_text[5] = crd->name.suffix;
-			crd_text[6] = crd->title.str;
-			crd_text[7] = crd->role.str;
-			crd_text[8] = crd->comment.str;
-			crd_text[9] = crd->url.str;
-			crd_text[10] = crd->org.name;
-			crd_text[11] = crd->org.unit1;
-			crd_text[12] = crd->org.unit2;
-			crd_text[13] = crd->org.unit3;
-			crd_text[14] = crd->org.unit4;
-			
-			for (i = 0; i < 15 && !found; i++)
-				if (gnomecard_match_pattern(pattern, crd_text[i], sens))
-					found = 1;
-
-			for (k = crd->phone.l; k && !found; k = k->next)
-				if (gnomecard_match_pattern(pattern, 
-																		((CardPhone *) k->data)->data, sens))
-					found = 1;
-
+	    if (wrapped != 1)
+		l = (back)? l->prev : l->next;
+	    else
+		wrapped ++;
+	    
+	    if (l) {
+		crd = l->data;
+		crd_text[0] = crd->fname.str;
+		crd_text[1] = crd->name.family;
+		crd_text[2] = crd->name.given;
+		crd_text[3] = crd->name.additional;
+		crd_text[4] = crd->name.prefix;
+		crd_text[5] = crd->name.suffix;
+		crd_text[6] = crd->title.str;
+		crd_text[7] = crd->role.str;
+		crd_text[8] = crd->comment.str;
+		crd_text[9] = crd->url.str;
+		crd_text[10] = crd->org.name;
+		crd_text[11] = crd->org.unit1;
+		crd_text[12] = crd->org.unit2;
+		crd_text[13] = crd->org.unit3;
+		crd_text[14] = crd->org.unit4;
+		
+		for (i = 0; i < 15 && !found; i++)
+		    if (gnomecard_match_pattern(pattern, crd_text[i], sens))
+			found = 1;
+		
+		for (k = crd->phone.l; k && !found; k = k->next)
+		    if (gnomecard_match_pattern(pattern, 
+						((CardPhone *) k->data)->data,
+						sens))
+			found = 1;
+		
 #if 0			
-			for (k = crd->email.l; k && !found; k = k->next)
-				if (gnomecard_match_pattern(pattern, 
-																		((CardEMail *) k->data)->data, sens))
-						found = 1;
+		for (k = crd->email.l; k && !found; k = k->next)
+		    if (gnomecard_match_pattern(pattern, 
+						((CardEMail *) k->data)->data,
+						sens))
+			found = 1;
 #else
-			g_message("Did not search of email (yet)");
+		g_message("Did not search of email (yet)");
 #endif
+		
+/* NOT IMPLEMENTED
+		for (k = crd->dellabel.l; k && !found; k = k->next)
+		    if (gnomecard_match_pattern(pattern, 
+						((CardDelLabel *)k->data)->data, sens))
+			found = 1;
+*/		
 
-			for (k = crd->dellabel.l; k && !found; k = k->next)
-				if (gnomecard_match_pattern(pattern, 
-																		((CardDelLabel *) k->data)->data, sens))
-					found = 1;
+/* NOT USED
+		for (k = crd->deladdr.l; k && !found; k = k->next)
+		    for (i = 0; i < DELADDR_MAX; i++)
+			if (gnomecard_match_pattern(pattern, 
+						    ((CardDelAddr *) k->data)->data[i], sens))
+			    found = 1;
+*/
+		for (k = crd->postal.l; k && !found; k = k->next) {
+		    CardPostAddr *p = ((CardPostAddr *)k->data);
 
-			for (k = crd->deladdr.l; k && !found; k = k->next)
-				for (i = 0; i < DELADDR_MAX; i++)
-					if (gnomecard_match_pattern(pattern, 
-																			((CardDelAddr *) k->data)->data[i], sens))
-						found = 1;
-			
-			if (found) {
-				gnomecard_scroll_list(l);
-				break;
-			}
-			
-		}	else if (wrapped) {
-			GtkWidget *w;
-			
-			w = gnome_message_box_new(_("No matching record found."),
-																GNOME_MESSAGE_BOX_ERROR,
-																GNOME_STOCK_BUTTON_OK, NULL);
-			GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
-			gnome_dialog_button_connect_object(GNOME_DIALOG(w),	0,
-																				 GTK_SIGNAL_FUNC(gnomecard_cancel),
-																				 GTK_OBJECT(w));	
-			gtk_widget_show(w);
-			break;
-		} else {
-			GtkWidget *w;
-			char msg[128], *str1, *str2;
-			
-			str1 = (back)? _("first") : _("last");
-			str2 = (back)? _("last") : _("first");
-			snprintf(msg, 128, _("Reached %s record.\nContinue from the %s one?"),
-							 str1, str2);
-			w = gnome_message_box_new(msg,
-																GNOME_MESSAGE_BOX_QUESTION,
-																GNOME_STOCK_BUTTON_OK,
-																GNOME_STOCK_BUTTON_CANCEL, NULL);
-			GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
-			gtk_widget_show(w);
-			
-			switch(gnome_dialog_run_modal(GNOME_DIALOG(w))) {
-			 case -1:
-			 case 1:
-				l = NULL;
-				break;
-			 case 0:
-				l = (back)? g_list_last(gnomecard_crds) : gnomecard_crds;
-				wrapped = 1;
-			}
+		    found = gnomecard_match_pattern(pattern,p->street1,sens) ||
+			gnomecard_match_pattern(pattern,p->street2,sens) ||
+			gnomecard_match_pattern(pattern,p->city,sens) ||
+			gnomecard_match_pattern(pattern,p->state,sens) ||
+			gnomecard_match_pattern(pattern,p->zip,sens) ||
+			gnomecard_match_pattern(pattern,p->country,sens);
 		}
+		
+		if (found) {
+		    gnomecard_scroll_list(l);
+		    break;
+		}
+		
+	    }	else if (wrapped) {
+		GtkWidget *w;
+		
+		w = gnome_message_box_new(_("No matching record found."),
+					  GNOME_MESSAGE_BOX_ERROR,
+					  GNOME_STOCK_BUTTON_OK, NULL);
+		GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
+		gnome_dialog_button_connect_object(GNOME_DIALOG(w),	0,
+						   GTK_SIGNAL_FUNC(gnomecard_cancel),
+						   GTK_OBJECT(w));	
+		gtk_widget_show(w);
+		break;
+	    } else {
+		GtkWidget *w;
+		char msg[128], *str1, *str2;
+		
+		str1 = (back)? _("first") : _("last");
+		str2 = (back)? _("last") : _("first");
+		snprintf(msg, 128, _("Reached %s record.\nContinue from the %s one?"),
+			 str1, str2);
+		w = gnome_message_box_new(msg,
+					  GNOME_MESSAGE_BOX_QUESTION,
+					  GNOME_STOCK_BUTTON_OK,
+					  GNOME_STOCK_BUTTON_CANCEL, NULL);
+		GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
+		gtk_widget_show(w);
+		
+		switch(gnome_dialog_run_modal(GNOME_DIALOG(w))) {
+		  case -1:
+		  case 1:
+		    l = NULL;
+		    break;
+		  case 0:
+		    l = (back)? g_list_last(gnomecard_crds) : gnomecard_crds;
+		    wrapped = 1;
+		}
+	    }
 	}
-
+	
 	g_free(pattern);
 	
 	gnome_config_set_bool("/GnomeCard/find/sens",  gnomecard_find_sens);
@@ -1417,16 +1641,16 @@ extern void gnomecard_find_card_call(GtkWidget *widget, gpointer data)
 	GtkWidget *w, *hbox, *check;
 	GnomeCardFind *p;
 
-	p = g_malloc(sizeof(GnomeCardPhone));
+	p = g_malloc(sizeof(GnomeCardFind));
 	w = gnome_dialog_new(_("Find Card"), _("Find"),
-											 GNOME_STOCK_BUTTON_CLOSE, NULL);
+			     GNOME_STOCK_BUTTON_CLOSE, NULL);
 	gtk_object_set_user_data(GTK_OBJECT(w), p);
 	gnome_dialog_button_connect(GNOME_DIALOG(w), 0,
-															GTK_SIGNAL_FUNC(gnomecard_find_card),	p);
+				    GTK_SIGNAL_FUNC(gnomecard_find_card), p);
 	gnome_dialog_button_connect_object(GNOME_DIALOG(w),	1,
-																		 GTK_SIGNAL_FUNC(gnomecard_cancel),
-																		 GTK_OBJECT(w));	
-																		 
+					   GTK_SIGNAL_FUNC(gnomecard_cancel),
+					   GTK_OBJECT(w));	
+
 	p->entry = my_hbox_entry(GNOME_DIALOG(w)->vbox, _("Find:"), gnomecard_find_str);
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), hbox, FALSE, FALSE, 0);

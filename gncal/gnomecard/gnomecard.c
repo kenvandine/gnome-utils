@@ -212,6 +212,15 @@ gnomecard_list_button_press(GtkCList *list, GdkEventButton *event,
 		g_message("Somehow selected non-existant card on row %d",row);
 		return;
 	    }
+
+	    g_message("Edit senstivity is %d",items[0].sensitive);
+	    g_message("card use is %d",((Card *) gnomecard_curr_crd->data)->flag);
+	    /* see if card if is being editted */
+	    if (((Card *) tmp->data)->flag)
+		items[0].sensitive = FALSE;
+	    else
+		items[0].sensitive = TRUE;
+
 	    gnomecard_set_curr(tmp);
 	    popup_menu (items, sizeof (items) / sizeof (items[0]), event);
 	}
@@ -230,16 +239,19 @@ gnomecard_list_selected(GtkCList *list, gint row, gint column,
 	g_message("Somehow selected non-existant card on row %d",row);
 	return;
     }
-    
+
     if (!event)
 	return;
     
     switch (event->button) {
       case 1:
-	if (event->type == GDK_2BUTTON_PRESS)
-	    gnomecard_edit(tmp);
-	else
+	if (event->type == GDK_2BUTTON_PRESS) {
+	    /* see if card if is being editted */
+	    if (!((Card *) gnomecard_curr_crd->data)->flag)
+		gnomecard_edit(tmp);
+	} else {
 	    gnomecard_set_curr(tmp);
+	}
 	break;
 	
       default:

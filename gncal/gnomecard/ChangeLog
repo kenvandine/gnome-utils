@@ -1,3 +1,19 @@
+1998-11-10  Michael Fulbright <drmike@redhat.com>
+        * card.[ch]: Changed how the postal address type is handled.
+	Changed the name of several things to not include 'deladdr' in
+	their name, which I found confusing. These are now 'postaddr'
+	instead.
+	
+	* dialog.c:  I've made the addresses for a person a part of
+	the main card editting property box.  Currently there more address
+	types than I think are required. I want to eventually move to
+	a system where the user can add an arbitrary number of address
+	types beyond the default allowed.
+
+	* gnomecard.c: I've made the dbl-click and right button click
+	menus for an item insensitive if the item is already being
+	editted.
+
 1998-11-07  Michael Fulbright <drmike@redhat.com>
 	* (many files):
 

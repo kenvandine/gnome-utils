@@ -81,8 +81,11 @@ card_new(void)
 	c->photo.size = 0;
 	c->photo.data = NULL;
 	c->bday.year = c->bday.month = c->bday.day = 0;
+/* NOT USED
 	c->deladdr.l  = NULL;
 	c->dellabel.l = NULL;
+*/
+	c->postal.l   = NULL;
 	c->phone.l    = NULL;
 	c->email.type  = EMAIL_INET;
 	c->email.address  = NULL;
@@ -109,7 +112,8 @@ card_new(void)
 	
 	c->name.prop   = c->photo.prop = c->bday.prop    = c->timezn.prop   = 
 	c->geopos.prop = c->logo.prop  = c->org.prop     = c->rev.prop      =
-	c->sound.prop  = c->key.prop   = c->deladdr.prop = c->dellabel.prop = 
+/*	c->sound.prop  = c->key.prop   = c->deladdr.prop = c->dellabel.prop =*/
+	c->sound.prop  = c->key.prop   = c->postal.prop =
 	c->phone.prop  = c->email.prop = c->prop = empty_CardProperty();
 	
 	c->prop.type = PROP_CARD;
@@ -117,8 +121,11 @@ card_new(void)
 	c->name.prop.type = PROP_NAME;
 	c->photo.prop.type = PROP_PHOTO;
 	c->bday.prop.type = PROP_BDAY;
+/* NOT USED
 	c->deladdr.prop.type = PROP_DELADDR_LIST;
 	c->dellabel.prop.type = PROP_DELLABEL_LIST;
+*/
+	c->postal.prop.type = PROP_DELADDR_LIST;
 	c->phone.prop.type = PROP_PHONE_LIST;
 	c->email.prop.type = PROP_EMAIL_LIST;
 	c->mailer.prop.type = PROP_MAILER;
@@ -456,54 +463,56 @@ strtoCardBDay(char *str)
 	return bday;
 }
 
-static CardDelAddr *
-get_CardDelAddr(VObject *o)
+static CardPostAddr *
+get_CardPostAddr(VObject *o)
 {
 	VObject *vo;
 	char *the_str;
-	CardDelAddr *addr;
+	CardPostAddr *addr;
 	int i;
 	
-	addr = malloc(sizeof(CardDelAddr));
-	
-	for (i = 0; i < DELADDR_MAX; i++)
-		addr->data[i] = NULL;
-	
-	addr->type = get_addr_type(o);
-	addr->prop = get_CardProperty(o);
-	
+	addr = malloc(sizeof(CardPostAddr));
+
+	addr->street1 = addr->street2 = addr->city = addr->state = NULL;
+	addr->country = addr->zip = NULL;
+	addr->type    = get_addr_type(o);
+	addr->prop    = get_CardProperty(o);
+
+/* NOT IMPLEMENTED CURRENTLY
 	if (has (o, VCPostalBoxProp)) {
 		addr->data[PO] = g_strdup(str_val(vo));
 		free(the_str);
 	}
+*/
 	if (has (o, VCExtAddressProp)) {
-		addr->data[EXT] = g_strdup(str_val(vo));
+		addr->street2 = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCStreetAddressProp)) {
-		addr->data[STREET] = g_strdup(str_val(vo));
+		addr->street1 = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCCityProp)) {
-		addr->data[CITY] = g_strdup(str_val(vo));
+		addr->city = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCRegionProp)) {
-		addr->data[REGION] = g_strdup(str_val(vo));
+		addr->state = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCPostalCodeProp)) {
-		addr->data[CODE] = g_strdup(str_val(vo));
+		addr->zip = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCCountryNameProp)) {
-		addr->data[COUNTRY] = g_strdup(str_val(vo));
+		addr->country = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	
 	return addr;
 }
-	
+
+/* NOT USED	
 static CardDelLabel *
 get_CardDelLabel(VObject *o)
 {
@@ -519,7 +528,7 @@ get_CardDelLabel(VObject *o)
 	free(the_str);
 	return dellabel;
 }
-
+*/
 
 static CardPhone *
 get_CardPhone(VObject *o)
@@ -868,12 +877,13 @@ card_create_from_vobject (VObject *vcrd)
 			break;
 		 case PROP_DELADDR:
 			{
-				CardDelAddr *c;
-				c = get_CardDelAddr(o);
+				CardPostAddr *c;
+				c = get_CardPostAddr(o);
 				prop = &c->prop;
-				crd->deladdr.l = g_list_append(crd->deladdr.l, c);
+				crd->postal.l = g_list_append(crd->postal.l, c);
 			}
 			break;
+/* NOT IMPLEMENTED YET
 		 case PROP_DELLABEL:
 			{
 				CardDelLabel *c;
@@ -882,6 +892,7 @@ card_create_from_vobject (VObject *vcrd)
 				crd->dellabel.l = g_list_append(crd->dellabel.l, c);
 			}
 			break;
+*/
 		 case PROP_PHONE:
 			{
 				CardPhone *c;
@@ -1229,24 +1240,27 @@ card_convert_to_vobject(Card *crd)
 		free(date_str);
 		add_CardProperty(vprop, &crd->bday.prop);
 	}
-	if (crd->deladdr.l) {
+	if (crd->postal.l) {
 		GList *node;
 		
-		for (node = crd->deladdr.l; node; node = node->next) {
-			CardDelAddr *deladdr = (CardDelAddr *) node->data;
+		for (node = crd->postal.l; node; node = node->next) {
+			CardPostAddr *postaddr = (CardPostAddr *) node->data;
 			
 			vprop = addProp(vobj, VCAdrProp);
-			add_AddrType(vprop, deladdr->type);
-			add_strProp(vprop, VCPostalBoxProp, deladdr->data[PO]);
-			add_strProp(vprop, VCExtAddressProp, deladdr->data[EXT]);
-			add_strProp(vprop, VCStreetAddressProp, deladdr->data[STREET]);
-			add_strProp(vprop, VCCityProp, deladdr->data[CITY]);
-			add_strProp(vprop, VCRegionProp, deladdr->data[REGION]);
-			add_strProp(vprop, VCPostalCodeProp, deladdr->data[CODE]);
-			add_strProp(vprop, VCCountryNameProp, deladdr->data[COUNTRY]);
-			add_CardProperty(vprop, &deladdr->prop);
+			add_AddrType(vprop, postaddr->type);
+/* NOT IMPLEMENTED
+			add_strProp(vprop, VCPostalBoxProp, postaddr->data[PO]);
+*/
+			add_strProp(vprop, VCExtAddressProp,postaddr->street2);
+			add_strProp(vprop, VCStreetAddressProp,postaddr->street1);
+			add_strProp(vprop, VCCityProp, postaddr->city);
+			add_strProp(vprop, VCRegionProp, postaddr->state);
+			add_strProp(vprop, VCPostalCodeProp, postaddr->zip);
+			add_strProp(vprop, VCCountryNameProp, postaddr->country);
+			add_CardProperty(vprop, &postaddr->prop);
 		}
 	}
+/* NOT IMPLEMENTED
 	if (crd->dellabel.l) {
 		GList *node;
 		
@@ -1259,6 +1273,7 @@ card_convert_to_vobject(Card *crd)
 			add_CardProperty(vprop, &dellabel->prop);
 		}
 	}
+*/
 	if (crd->phone.l) {
 		GList *node;
 		
