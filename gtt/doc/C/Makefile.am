@@ -9,7 +9,7 @@ HTML_FILES = authors.html	dialogs.html	index.html	ln10.html \
 	bugs.html	license.html	preferences.html	usage.html
 
 EXTRA_DIST = \
-	topic.dat gtt $(SGML_FILES)
+	topic.dat $(SGML_FILES)
 
 gtt_help_DATA = ${HTML_FILES} topic.dat
 
@@ -34,7 +34,6 @@ dist-hook:
 	-cp $(srcdir)/gtt/stylesheet-images/*.gif \
 	 $(distdir)/gtt/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:

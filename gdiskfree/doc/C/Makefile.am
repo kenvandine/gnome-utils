@@ -9,7 +9,7 @@ HTML_FILES = index.html authors.html 	prefs.html	usage.html	\
 	ln7.html
 
 EXTRA_DIST = \
-	topic.dat gdiskfree $(SGML_FILES)
+	topic.dat $(SGML_FILES)
 
 gdiskfree_help_DATA = ${HTML_FILES} topic.dat
 
@@ -34,7 +34,6 @@ dist-hook:
 	-cp $(srcdir)/gdiskfree/stylesheet-images/*.gif \
 	 $(distdir)/gdiskfree/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:

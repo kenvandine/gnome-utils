@@ -8,7 +8,7 @@ SGML_FILES = 		\
 	gstripchart.sgml
 
 EXTRA_DIST = \
-	topic.dat	gstripchart	$(SGML_FILES)
+	topic.dat $(SGML_FILES)
 
 all:
 
@@ -35,7 +35,6 @@ dist-hook:
 	$(mkinstalldirs) $(distdir)/gstripchart
 	-cp $(srcdir)/gstripchart/*.html gstripchart/*.css $(distdir)/gstripchart
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 install-data-local: index.html
