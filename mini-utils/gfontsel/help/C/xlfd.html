@@ -1,7 +1,7 @@
 <HTML
 ><HEAD
 ><TITLE
-> Font attributes in X Window system and XLFD</TITLE
+> Font attributes in X Window System and XLFD</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.44"><LINK
@@ -10,7 +10,10 @@ TITLE="GNOME Font selector"
 HREF="index.html"><LINK
 REL="PREVIOUS"
 TITLE="Filter window"
-HREF="filter.html"></HEAD
+HREF="filter.html"><LINK
+REL="NEXT"
+TITLE="Authors"
+HREF="authors.html"></HEAD
 ><BODY
 BGCOLOR="#FFFFFF"
 TEXT="#000000"
@@ -48,7 +51,10 @@ VALIGN="bottom"
 WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
->&nbsp;</TD
+><A
+HREF="authors.html"
+>Next &#62;&#62;&#62;</A
+></TD
 ></TR
 ></TABLE
 ><HR
@@ -60,7 +66,7 @@ CLASS="SECT1"
 CLASS="SECT1"
 ><A
 NAME="XLFD"
->Font attributes in X Window system and XLFD</A
+>Font attributes in X Window System and XLFD</A
 ></H1
 ><P
 >	As was said earlier, each font in X Window system has a number
@@ -87,11 +93,15 @@ CLASS="PROGRAMLISTING"
 	of the font, separated by dashes. 
       </P
 ><P
->	While such a  name gives a complete information about the font, it is
-	somewhat overwhelming, especially since not all of this parameters are
-	actually useful. To make life a little bit easier, you can use
-	wildcard * in the font name; for example, the previous font can also
-	be referred to as 
+>	While such a name gives a complete information about the font,
+	it is somewhat overwhelming, especially since not all of this
+	parameters are actually useful. To make life a little bit
+	easier, you can use wildcard <SPAN
+CLASS="KEYSYM"
+>*</SPAN
+> in the font
+	name; for example, the previous font can also be referred to
+	as
 	<TABLE
 BORDER="0"
 BGCOLOR="#E0E0E0"
@@ -106,10 +116,14 @@ CLASS="PROGRAMLISTING"
 ></TR
 ></TABLE
 >
-	As usual, * matches any value; if there are several fonts matching the
-	given name, the system will pick the first matching one. In this
-	particular example, most probably there is only one font matching this
-	name, so this name is unambiguous. 
+	As usual, <SPAN
+CLASS="KEYSYM"
+>*</SPAN
+> matches any value; if there are
+	several fonts matching the given name, the system will pick
+	the first matching one. In this particular example, most
+	probably there is only one font matching this name, so this
+	name is unambiguous.
       </P
 ><P
 > 
@@ -119,31 +133,40 @@ CLASS="PROGRAMLISTING"
 ></P
 ><UL
 ><LI
-STYLE="list-style-type: disc"
+STYLE="list-style-type: bull"
 ><P
-> <TT
+> 
+              <TT
 CLASS="GUILABEL"
 ><B
 >foundry</B
 ></TT
-> - font foundry, the company or
-	      individual which made the font (in our example, adobe)
-	    </P
+> &#8212; font
+	      foundry, the company or individual which made the font
+	      (in our example, <TT
+CLASS="LITERAL"
+>adobe</TT
+>) 
+          </P
 ></LI
 ><LI
-STYLE="list-style-type: disc"
+STYLE="list-style-type: bull"
 ><P
->	      <TT
+> <TT
 CLASS="GUILABEL"
 ><B
 >family</B
 ></TT
-> - font family, the popular nickname
-	      of the font (in our example, courier) 
-	    </P
+> &#8212; font
+	      family, the popular nickname of the font (in our
+	      example, <TT
+CLASS="LITERAL"
+>courier</TT
+>) 
+          </P
 ></LI
 ><LI
-STYLE="list-style-type: disc"
+STYLE="list-style-type: bull"
 ><P
 > 
               <TT
@@ -151,66 +174,69 @@ CLASS="GUILABEL"
 ><B
 >weight</B
 ></TT
-> - font weight (in our
-	      example, medium). Admissible values: bold, medium, etc.
-	      </P
+> &#8212; font weight (in our
+	      example, <TT
+CLASS="LITERAL"
+>medium</TT
+>). Admissible values:
+              bold, medium, etc. 
+	  </P
 ></LI
 ><LI
-STYLE="list-style-type: disc"
+STYLE="list-style-type: bull"
 ><P
-> 
-              <TT
+> <TT
 CLASS="GUILABEL"
 ><B
 >slant</B
 ></TT
-> - font slant (in our example,
-	      (r)oman, i.e. unslanted). Admissible values: (i)talics,
-	      (o)blique, (r)roman, etc.  
-	    </P
+> &#8212; font
+              slant (in our example, <TT
+CLASS="LITERAL"
+>(r)oman</TT
+>,
+              i.e. unslanted). Admissible values: (i)talics,
+              (o)blique, (r)roman, etc.  
+          </P
 ></LI
 ><LI
-STYLE="list-style-type: disc"
+STYLE="list-style-type: bull"
 ><P
-> 
-              <TT
+> <TT
 CLASS="GUILABEL"
 ><B
 >pixelsize</B
 ></TT
-> - the number of pixels vertically
-	      in a character (in our example, 12) 
-	    </P
+> &#8212; the
+              number of pixels vertically in a character (in our
+              example, 12) </P
 ></LI
 ><LI
-STYLE="list-style-type: disc"
+STYLE="list-style-type: bull"
 ><P
-> 
-              <TT
+> <TT
 CLASS="GUILABEL"
 ><B
 >pointsize</B
 ></TT
-> - approximate point size of the
-	      text, measured in tenths of a point. In the example
-	      above, point size is 120, that is, 12 points. One point
-              is equal to  1/72.72 of an
-	      inch, which is the common convention in English and
-              American typesetting. 
-	    </P
+> &#8212;
+              approximate point size of the text, measured in tenths
+              of a point. In the example above, point size is 120,
+              that is, 12 points. One point is equal to 1/72 of an
+              inch, which is the common convention in English and
+              American typesetting.  </P
 ></LI
 ><LI
-STYLE="list-style-type: disc"
+STYLE="list-style-type: bull"
 ><P
-> 
-               horizontal and vertical
-	      <TT
+> horizontal and vertical
+               <TT
 CLASS="GUILABEL"
 ><B
 >resolutions</B
 ></TT
-> in dots per inch - in the
-	      example above, both are 75 dpi.
+> in dots per inch
+               &#8212; in the example above, both are 75 dpi.
 	    </P
 ><P
 >	      Note that point size, pixel size, and vertical resolution are
@@ -220,110 +246,133 @@ CLASS="GUILABEL"
 	    </P
 ></LI
 ><LI
-STYLE="list-style-type: disc"
+STYLE="list-style-type: bull"
 ><P
 > <TT
 CLASS="GUILABEL"
 ><B
 >spacing</B
 ></TT
-> - describes variance
-              of character sizes in the font. Allowed values are
-              (m)onospaced, (c)haracter cell (in both of these
-              spacings, all characters have the same width) and
-              proportional (characters have varying
+> &#8212;
+              describes variance of character sizes in the
+              font. Allowed values are (m)onospaced, (c)haracter cell
+              (in both of these spacings, all characters have the same
+              width) and proportional (characters have varying
               sizes). Proportional fonts usually look nicer;
-               </P
+              </P
 ></LI
 ><LI
-STYLE="list-style-type: disc"
+STYLE="list-style-type: bull"
 ><P
 > character set <TT
 CLASS="GUILABEL"
 ><B
 >registry</B
 ></TT
-> and
-              <TT
+>
+              and <TT
 CLASS="GUILABEL"
 ><B
 >encoding</B
 ></TT
-> - these two parameters, commonly
-              referred to as <TT
+> &#8212; these two
+              parameters, commonly referred to as <TT
 CLASS="GUILABEL"
 ><B
->character set</B
+>character
+              set</B
 ></TT
->, or
-              <TT
+>, or <TT
 CLASS="GUILABEL"
 ><B
 >charset</B
 ></TT
-> for short, describe what set of
-              symbols (or what alphabet) this font represents. There
-              is a number of possible charsets. Some of the most
-              popular ones include:
+> for
+              short, describe what set of symbols (or what alphabet)
+              this font represents. There is a number of possible
+              charsets. Some of the most popular ones include:
 	      <P
 ></P
 ><UL
 ><LI
-STYLE="list-style-type: -"
+STYLE="list-style-type: bull"
 ><P
->		    iso8859-1, also known as Latin 1,&#8212; this
-		    character set includes all the symbols found on
-		    the keyboard, i.e. Latin letters, punctuation
-		    marks, numbers, symbols such as @ or $. It also
-		    includes some special symbols, such as the
-		    copyright sign, and a number of accented letters,
-		    thus covering the needs of most Western European
-		    languages (to be precise, Afrikaans, Basque,
-		    Catalan, Danish, Dutch, English, Faeroese,
-		    Finnish, French, Galician, German, Icelandic,
-		    Irish, Italian, Norwegian, Portuguese, Scottish,
-		    Spanish, and Swedish).
+>		    <I
+CLASS="EMPHASIS"
+>iso8859-1</I
+>, also known as
+		    Latin 1,&#8212; this character set includes all
+		    the symbols found on the keyboard, i.e. Latin
+		    letters, punctuation marks, numbers, symbols such
+		    as @ or $. It also includes some special symbols,
+		    such as the copyright sign, and a number of
+		    accented letters, thus covering the needs of most
+		    Western European languages (to be precise,
+		    Afrikaans, Basque, Catalan, Danish, Dutch,
+		    English, Faeroese, Finnish, French, Galician,
+		    German, Icelandic, Irish, Italian, Norwegian,
+		    Portuguese, Scottish, Spanish, and Swedish).
 		  </P
 ></LI
 ><LI
-STYLE="list-style-type: -"
+STYLE="list-style-type: bull"
 ><P
->		    iso8859-7 &#8212; includes Latin and
+>		    <I
+CLASS="EMPHASIS"
+>iso8859-7</I
+> &#8212; includes Latin and
 		    Greek alphabets 
 		  </P
 ></LI
 ><LI
-STYLE="list-style-type: -"
+STYLE="list-style-type: bull"
 ><P
->		    iso8859-8 &#8212; includes Latin and
+>		    <I
+CLASS="EMPHASIS"
+>iso8859-8</I
+> &#8212; includes Latin and
 		    Hebrew alphabets 
 		  </P
 ></LI
 ><LI
-STYLE="list-style-type: -"
+STYLE="list-style-type: bull"
 ><P
->		    koi8-r &#8212; includes Latin and
+>		    <I
+CLASS="EMPHASIS"
+>koi8-r</I
+> &#8212; includes Latin and
 		    Cyrillic alphabets 
 		  </P
 ></LI
 ><LI
-STYLE="list-style-type: -"
+STYLE="list-style-type: bull"
 ><P
->		    big5.eten.3.10-1 &#8212; Chinese
+>		    <I
+CLASS="EMPHASIS"
+>big5.eten.3.10-1</I
+> &#8212; Chinese
 		    (Big5 encoding) 
 		  </P
 ></LI
 ><LI
-STYLE="list-style-type: -"
+STYLE="list-style-type: bull"
 ><P
->		    gb2312.1980-0&#8212;Chinese (GB encoding)
-		  </P
+> <I
+CLASS="EMPHASIS"
+>gb2312.1980-0</I
+>
+		    &#8212; Chinese (GB encoding) 
+		</P
 ></LI
 ><LI
-STYLE="list-style-type: -"
+STYLE="list-style-type: bull"
 ><P
->		    jisx0208.1983-0&#8212;Japanese
-		  </P
+> 
+                    <I
+CLASS="EMPHASIS"
+>jisx0208.1983-0</I
+> &#8212; Japanese
+		</P
 ></LI
 ></UL
 >
@@ -349,10 +398,11 @@ CLASS="GUILABEL"
 >, and <TT
 CLASS="GUILABEL"
 ><B
->Average Width</B
+>Average
+	Width</B
 ></TT
->)
-	are rarely used and therefore we skip their description.
+>) are rarely used and therefore we skip their
+	description.
       </P
 ><P
 >	Full XLFD specifications are included in technical documentation for
@@ -363,7 +413,7 @@ TARGET="_top"
 	  ftp://ftp.x.org/pub/R6.4/xc/doc/hardcopy/XLFD</A
 >; most probably,
 	you will never need it.
-      </P
+    </P
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"
@@ -395,7 +445,10 @@ HREF="index.html"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="authors.html"
+>Next &#62;&#62;&#62;</A
+></TD
 ></TR
 ><TR
 ><TD
@@ -412,7 +465,7 @@ VALIGN="top"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->&nbsp;</TD
+>Authors</TD
 ></TR
 ></TABLE
 ></DIV

@@ -24,6 +24,15 @@ CLASS="TITLE"
 NAME="INDEX"
 >GNOME Font selector</A
 ></H1
+><P
+CLASS="COPYRIGHT"
+><A
+HREF="ln7.html"
+>Copyright</A
+> &copy;  2000 by <SPAN
+CLASS="HOLDER"
+>Alexander Kirillov</SPAN
+></P
 ><HR
 WIDTH="75%"
 ALIGN="CENTER"
@@ -59,7 +68,12 @@ HREF="filter.html"
 ><DT
 ><A
 HREF="xlfd.html"
->Font attributes in X Window system and XLFD</A
+>Font attributes in X Window System and XLFD</A
+></DT
+><DT
+><A
+HREF="authors.html"
+>Authors</A
 ></DT
 ></DL
 ></DIV
@@ -76,43 +90,89 @@ NAME="INTRO"
 >Introduction</A
 ></H1
 ><P
->	GNOME font selector dialog is a simple utility for choosing a screen
-	(i.e. X Window system) font. It is usually launched when you
-	are changing an application's font in a "Settings" or
-	"Preferences" dialog. It can also be launched from the main
-	menu by selecting <B
+>	<TT
+CLASS="APPLICATION"
+>GNOME Font selector</TT
+> is a simple
+	utility for choosing a screen (i.e. X Window System) font.
+        It is included in <TT
+CLASS="APPLICATION"
+>gnome-utils</TT
+>
+	package, which is a part of GNOME environment. This manual
+	describes version 1.0.50 of <TT
+CLASS="APPLICATION"
+>GNOME Font
+	selector</TT
+>.
+    </P
+><P
+>      <TT
+CLASS="APPLICATION"
+>GNOME Font selector</TT
+> 
+	is usually launched when you are changing an application's
+	font in a <SPAN
+CLASS="INTERFACE"
+>Settings</SPAN
+> or
+	<SPAN
+CLASS="INTERFACE"
+>Preferences</SPAN
+> dialog. It can also be
+	launched from the main menu by selecting <B
 CLASS="GUIMENUITEM"
->Font Selector</B
+>Font
+	Selector</B
 > item in the
 	<B
 CLASS="GUIMENU"
->Utitlities</B
+>Utilities</B
 > submenu of the <B
 CLASS="GUIMENU"
->Main Menu</B
->,
-	or from the command line by running command
+>Main
+	Menu</B
+>, or from the command line by running command
 	<B
 CLASS="COMMAND"
 >gfontsel</B
 >. 
       </P
 ><P
-> It is important to know that in X Window system, each
+> It is important to know that in X Window System, each
 	font has a number of attributes, such as family (Helvetica,
-	Times, Courier&#8230;), size, weight, slant, etc., and two fonts
-	are considered different even if they only differ in one of
-	the properties, such as size or weight: Helvetica 10 point,
-	Helvetica 12 point and Helvetica 10 point bold are considered
-	to be different fonts.  Each font has a unique name
-	(officially known as X Logical Font Description, or XLFD),
-	which includes the values of all font's attributes, and by
-	necessity is very long. Detailed description of X Window
-	fonts, their attributes and names can be found in 
-       <A
+	Times, Courier&#8230;), size, weight, slant, etc., and two
+	fonts are considered different even if they only differ in one
+	of the properties, such as size or weight: <TT
+CLASS="GUILABEL"
+><B
+>Helvetica
+	10 point</B
+></TT
+>, <TT
+CLASS="GUILABEL"
+><B
+>Helvetica 12 point</B
+></TT
+>,
+	and <TT
+CLASS="GUILABEL"
+><B
+>Helvetica 10 point bold</B
+></TT
+> are
+	considered as  different fonts.  Each font has a unique name
+	(officially known as <I
+CLASS="EMPHASIS"
+>X Logical Font
+	Description</I
+>, or XLFD), which includes the values of
+	all font's attributes, and by necessity is very long. Detailed
+	description of X Window System fonts, their attributes and names can
+	be found in <A
 HREF="xlfd.html"
 >the section called <I
->Font attributes in X Window system and XLFD</I
+>Font attributes in X Window System and XLFD</I
 ></A
 >.
       </P

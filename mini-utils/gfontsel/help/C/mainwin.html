@@ -76,8 +76,24 @@ CLASS="GUILABEL"
 >Font</B
 ></TT
 >) is the main window
-	used for choosing the font.
+	used for choosing the font. It is shown in <A
+HREF="mainwin.html#MAINSHOT"
+>Figure 1</A
+>. 
 	</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="MAINSHOT"
+></A
+><P
+><IMG
+SRC="mainshot.png"></P
+><P
+><B
+>Figure 1. GNOME Font Selector</B
+></P
+></DIV
 ><DIV
 CLASS="SECT2"
 ><H2
@@ -103,21 +119,19 @@ CLASS="GUILABEL"
 >), and finally, font size. 
       </P
 ><P
->   
-	The
-	<TT
+> The <TT
 CLASS="GUILABEL"
 ><B
 >Preview</B
 ></TT
-> window will show you how the selected font looks
-	like. By default, it shows the Latin alphabet; you can also
-	type any text you like in this window, and it will be shown
-	using the selected font. 
+> window will show you how
+	the selected font looks like. By default, it shows the Latin
+	alphabet; you can also type any text you like in this window,
+	and it will be shown using the selected font.
       </P
 ><P
 >	To find more information about the selected font, you can switch to
-	the window labelled <A
+	the <A
 HREF="fontinfo.html"
 ><TT
 CLASS="GUILABEL"
@@ -125,53 +139,55 @@ CLASS="GUILABEL"
 >Font
 	information</B
 ></TT
-></A
+> window</A
 >. 
       </P
 ><P
->	If the font selector utility was launched by some application, such as
-	one of the preferences dialogs, you will have buttons
+>	If the font selector utility was launched by some application,
+	such as one of the preferences dialogs, you will have buttons
 	<B
 CLASS="GUIBUTTON"
 >OK</B
 > and <B
 CLASS="GUIBUTTON"
 >Cancel</B
-> at the bottom of
-	the window. After you are
-	satisfied with the chosen font, you can press <B
+> at
+	the bottom of the window. After you are satisfied with the
+	chosen font, you can press <B
 CLASS="GUIBUTTON"
 >OK</B
 > and the
 	name of the selected font will be returned to the launching
-	application. 
+	application.
       </P
 ><P
->	If the font selector utility was started from the menu or from the
-	command line, it will have buttons <B
-CLASS="GUIBUTTON"
->Apply</B
-> and
+>	If the font selector utility was started from the menu or from
+	the command line, it will have buttons
 	<B
 CLASS="GUIBUTTON"
+>Apply</B
+> and <B
+CLASS="GUIBUTTON"
 >Close</B
->.  Pressing <B
+>.
+	Pressing <B
 CLASS="GUIBUTTON"
 >Apply</B
-> button will copy
-	the full name (XLFD) of the selected font to the clipboard, so that it
-	can be pasted into any other area of the screen by pressing the middle
-	mouse button. Pressing <B
+> button will copy the
+	full name (XLFD) of the selected font to the clipboard, so
+	that it can be pasted into any other area of the screen by
+	pressing the middle mouse button. Pressing
+	<B
 CLASS="GUIBUTTON"
 >Apply</B
-> button also shows the name
-	of the selected font in the <TT
+> button also shows the name of the
+	selected font in the <TT
 CLASS="GUILABEL"
 ><B
 >Selection</B
 ></TT
-> field at the top of
-	the screen. 
+> field at
+	the top of the screen.
       </P
 ></DIV
 ><DIV
@@ -204,24 +220,25 @@ CLASS="GUILABEL"
 ><B
 >Font Style</B
 ></TT
-> field shows more than just font weight
-	and slant. Namely, it also shows font's spacing, which can be
-	monospaced (<TT
+> field shows more than just
+	font weight and slant. Namely, it also shows font's spacing,
+	which can be monospaced (<TT
 CLASS="GUILABEL"
 ><B
 >[M]</B
 ></TT
->), character-cell
-	(<TT
+>),
+	character-cell (<TT
 CLASS="GUILABEL"
 ><B
 >[C]</B
 ></TT
->), or proportional (no label). In monospaced
-	and character-cell fonts, each character has the same width;
-	in proportional fonts, the character width varies, which
-	usually looks better. 
-         <DIV
+>), or proportional (no
+	label). In monospaced and character-cell fonts, each character
+	has the same width; in proportional fonts, the character width
+	varies, which usually looks better.  
+
+	<DIV
 CLASS="WARNING"
 ><P
 ></P
@@ -252,21 +269,21 @@ VALIGN="CENTER"
 ALIGN="LEFT"
 VALIGN="TOP"
 ><P
-> Unfortunately, terminal emulation
-	programs (including <TT
+> Unfortunately, terminal emulation programs (including
+	  <TT
 CLASS="APPLICATION"
 >xterm</TT
 > and
-	<TT
+	  <TT
 CLASS="APPLICATION"
 >gnome-terminal</TT
->) and many programs initially
-	designed to work in a terminal (such as <TT
+>) and many programs
+	  initially designed to work in a terminal (such as
+	  <TT
 CLASS="APPLICATION"
 > emacs</TT
->
-	editor) can only properly display monospaced and character
-	cell fonts.
+> editor) can only properly
+	  display monospaced and character cell fonts.
        </P
 ></TD
 ></TR
@@ -280,54 +297,59 @@ CLASS="GUILABEL"
 ><B
 >Font Style</B
 ></TT
-> field also shows all possible
-	character sets available for given font (if there is more than
-	one). Roughly speaking, character set describes symbols of
-	what alphabet are shown in this font. The most common charset
-	is iso8859-1, which includes all Latin letters, punctuation
-	marks, numbers and enough accented letters to cover majority
-	of Western European languages. More information is given in
-	<A
+> field also shows all
+	possible character sets available for given font (if there is
+	more than one). Roughly speaking, character set describes
+	symbols of what alphabet are shown in this font. The most
+	common charset is <TT
+CLASS="LITERAL"
+>iso8859-1</TT
+>, which includes
+	all Latin letters, punctuation marks, numbers and enough
+	accented letters to cover majority of Western European
+	languages. More information is given in <A
 HREF="xlfd.html"
 >the section called <I
->Font attributes in X Window system and XLFD</I
+>Font attributes in X Window System and XLFD</I
 ></A
 >.
       </P
 ><P
-> You will also notice that in the <TT
+> You will also notice that in the
+        <TT
 CLASS="GUILABEL"
 ><B
 >Size</B
 ></TT
-> field,
-        some font sizes are marked with stars. These are the sizes of
-        unscaled bitmap fonts; they usually look better than other
-        type (scalable and scaled bitmap) fonts&#8212;see <A
+> field, some font sizes are marked
+        with stars. These are the sizes of unscaled bitmap fonts; they
+        usually look better than other type (scalable and scaled
+        bitmap) fonts &#8212; see <A
 HREF="filter.html"
 >the section called <I
 >Filter window</I
 ></A
 >.  
-      </P
+     </P
 ><P
-> You can configure the font
-        selector dialog to show only those fonts which meet certain
-        criteria. This is done in the <A
+> You can configure the font selector dialog to show only
+        those fonts which meet certain criteria. This is done in the
+        <A
 HREF="filter.html"
 ><TT
 CLASS="GUILABEL"
 ><B
 >Filter</B
 ></TT
-> window</A
->. If you
-        later decide that you again want to see all the fonts, just
-        press the button <B
+>
+        window</A
+>. If you later decide that you again want to see
+        all the fonts, just press the button <B
 CLASS="GUIBUTTON"
->Reset Filter</B
-> either in the main
-        window or in the filter window.
+>Reset
+        Filter</B
+> either in the main window or in the filter
+        window.
       </P
 ></DIV
 ></DIV

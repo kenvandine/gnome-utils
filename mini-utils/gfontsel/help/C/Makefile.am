@@ -8,6 +8,9 @@ EXTRA_DIST = fontsel.sgml \
              fontinfo.html \
              mainwin.html \
              xlfd.html \
+             ln7.html \
+             authors.html \
+	     mainshot.png \
 	     topic.dat
 
 gfontsel_helpdir = $(datadir)/gnome/help/gfontsel/C
@@ -16,4 +19,7 @@ gfontsel_help_DATA = index.html \
                      fontinfo.html \
                      mainwin.html \
                      xlfd.html \
+		     ln7.html \
+		     authors.html \
+		     mainshot.png \
 	             topic.dat
