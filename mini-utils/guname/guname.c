@@ -487,23 +487,25 @@ static void do_logo_box(GtkWidget * box)
 static void do_list_box(GtkWidget * box)
 {
   GtkCList * list;
+  GtkWidget *sw;
   const gchar * titles[] = { _("Category"), _("Your System") };
 
   list = GTK_CLIST(create_clist(titles));
-
+  sw = gtk_scrolled_window_new (NULL, NULL);
+  
   gtk_clist_freeze(list); /* does this matter if we haven't shown yet? */
 
   gtk_clist_set_border(list, GTK_SHADOW_OUT);
   /* Fixme, eventually you might could select an item 
      for cut and paste, or some other effect. */
   gtk_clist_set_selection_mode(list, GTK_SELECTION_BROWSE);
-#if 0
-  gtk_clist_set_policy(list, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-#endif
 
+  gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (list));
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_widget_show (GTK_WIDGET (list));
   gtk_clist_column_titles_passive(list);
 
-  do_popup(GTK_WIDGET(list));
+  do_popup(GTK_WIDGET(sw));
   gtk_widget_set_events(GTK_WIDGET(list), GDK_BUTTON_PRESS_MASK);
   gtk_signal_connect(GTK_OBJECT(list), "button_press_event",
                      GTK_SIGNAL_FUNC(list_clicked_cb), NULL);

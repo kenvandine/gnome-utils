@@ -57,7 +57,7 @@ void fill_clist(GtkCList * list,
 
     row[0] = col1_items[i];
     row[1] = col2_items[i];
-    gtk_clist_append(list, (gchar **)row);
+    gtk_clist_append(list, row);
 
     /* If the string is longer than any previous ones,
        increase the column width */
@@ -135,17 +135,13 @@ GtkWidget * create_clist(const gchar * titles[])
 {
   GtkCList * list;
 
-  list = GTK_CLIST(gtk_clist_new_with_titles(2, (char **)titles));
+  list = GTK_CLIST(gtk_clist_new_with_titles(2, titles));
 
   gtk_clist_set_border(list, GTK_SHADOW_OUT);
 
   /* Fixme, eventually you might could select an item 
      for cut and paste, or some other effect. */
   gtk_clist_set_selection_mode(list, GTK_SELECTION_BROWSE);
-#if 0
-  gtk_clist_set_policy(list, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-#endif
-
   gtk_clist_column_titles_passive(list);
 
   return GTK_WIDGET(list);
