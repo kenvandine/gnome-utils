@@ -35,6 +35,7 @@ struct _GDiskFreeApp {
 };
 struct _GDiskFreeDisk {
   GtkWidget    *dial;
+  GtkWidget    *label;
   gchar        *drive;
   gchar        *mount_point;
 };

@@ -31,6 +31,7 @@ typedef struct _Disk                      Disk;
 struct _GDiskFreeOptions {
   gint             update_interval;
   gboolean         sync_required;
+  gboolean         show_mount;
   GtkOrientation   orientation;
 
 };

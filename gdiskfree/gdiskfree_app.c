@@ -135,13 +135,15 @@ gdiskfree_app_add_disk (GDiskFreeApp *app, const gchar *disk,
 			const gchar *mount_point)
 {
   GtkWidget      *frame;
+  GtkWidget      *box;
   GtkAdjustment  *adjustment;
   GDiskFreeDisk  *gdisk;
 
   frame = gtk_frame_new (disk);
   gtk_box_pack_start (GTK_BOX (app->dial_box), frame, TRUE, TRUE, 0);
   app->drive_frame = g_list_append (app->drive_frame, frame);
-  gtk_widget_show_all (frame);
+  box = gtk_vbox_new (FALSE, 1);
+  gtk_container_add (GTK_CONTAINER (frame), box);
   adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0, 0.0, 100.0, 0.01, 
 						   0.1, 0.0));
   gdisk = g_malloc (sizeof (GDiskFreeDisk));
@@ -149,8 +151,15 @@ gdiskfree_app_add_disk (GDiskFreeApp *app, const gchar *disk,
   gdisk->mount_point = g_strdup (mount_point);
   gdisk->dial = gtk_dial_new (adjustment);
   gtk_dial_set_view_only (GTK_DIAL (gdisk->dial), TRUE);
-  gtk_container_add  (GTK_CONTAINER (frame), gdisk->dial);
+  gtk_box_pack_start (GTK_BOX (box), gdisk->dial, FALSE, FALSE, 0);
   app->drives = g_list_append (app->drives, gdisk);
+  gdisk->label = gtk_label_new (mount_point);
+  gtk_widget_show_all (frame);
+  gtk_box_pack_start (GTK_BOX (box), gdisk->label, FALSE, FALSE, 0);
+  if (gnome_config_get_bool ("/GDiskFree/properties/show_mount"))
+    gtk_widget_show (gdisk->label);
+  else
+    gtk_widget_hide (gdisk->label);
 }
 /**
  * gdiskfree_app_change_orient
