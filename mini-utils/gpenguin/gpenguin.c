@@ -4,13 +4,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include <gdk/gdk.h>
-#include <gtk/gtk.h>
+#include <gnome.h>
 
 static GtkWidget *penguindow;
 static GtkWidget *pixmap;
-static GdkPixmap *pixmap_data;
-static GdkBitmap *mask;
 static GtkWidget *picholder;
 static char *title;
 static char *prog_name;
@@ -22,6 +19,10 @@ static void produce_penguin(void)
 	int x,y;
 	int px,py;
 	GtkStyle *style = gtk_widget_get_default_style();
+	gchar *filename;
+	gchar *pmapdir;
+
+	title = "gpenguin";
 	
 	penguindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (penguindow), title);
@@ -34,38 +35,39 @@ static void produce_penguin(void)
 			&penguindow);
 
 #ifdef SOMEONE_DREW_AN_ICON
-	splashbits = gdk_bitmap_create_from_data (penguindow->window,
+/*plashbits = gdk_bitmap_create_from_data (penguindow->window,
 						splashbits_bits,
 						splashbits_width,
 						splashbits_height);
 	gdk_window_set_icon (penguindow->window, NULL,
 				splashbits, splashbits);
+*/
 #endif
 	gdk_window_set_icon_name (penguindow->window, title);
   
 	gdk_window_set_decorations (penguindow->window, 0);
 	gdk_window_set_functions (penguindow->window, 0);
 	
-	pixmap_data = gdk_pixmap_create_from_xpm (
-			penguindow->window, &mask,
-			&style->bg[GTK_STATE_NORMAL],
-                        "penguin1.xpm");
-	if(pixmap_data == NULL)
+	pmapdir = gnome_unconditional_datadir_file("pixmaps");
+	filename = g_strconcat(pmapdir, "/penguin1.png", NULL);
+	g_print("%s\n", filename);
+	pixmap = NULL;
+	pixmap = gnome_pixmap_new_from_file (filename);
+	g_free(filename);
+	if(pixmap == NULL)
 	{
 		fprintf(stderr,"%s: unable to load the penguin.\n", prog_name);
 		exit(1);
 	}
 	
-	pixmap = gtk_pixmap_new(pixmap_data, mask);
-	
 	gtk_container_add(GTK_CONTAINER(penguindow), pixmap);
-	gtk_widget_shape_combine_mask(penguindow, mask, 0, 0);
+	gtk_widget_shape_combine_mask(penguindow, GNOME_PIXMAP(pixmap)->mask, 0, 0);
 	
 	/*
 	 *	Placement
 	 */
 	
-	gdk_window_get_size(pixmap_data, &px, &py);
+	gdk_window_get_size(GNOME_PIXMAP(pixmap)->pixmap, &px, &py);
 	
 	penguin_x= (gdk_screen_width()-px)/2;
 	penguin_y= (gdk_screen_height()-px)/2;
@@ -97,10 +99,11 @@ void set_ticking(void)
 	gtk_timeout_add(100, (void *)penguin_mover, NULL);
 }
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	prog_name=argv[0];	
 	gtk_init(&argc, &argv);
+	gdk_imlib_init();
 	produce_penguin();
 	set_ticking();
 	gtk_main();
