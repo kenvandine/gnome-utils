@@ -8,8 +8,10 @@ gdiskfree_SOURCES =				\
 	df.c					\
 	pathmax.h				\
 	xgetcwd.c				\
+	fsusage.c                               \
+	mountlist.c				\
 	save-cwd.c				\
-	save-cwd.h
+	save-cwd.h                              \
 
 noinst_HEADERS=error.h mountlist.h fsusage.h
 
