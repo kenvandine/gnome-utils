@@ -51,6 +51,8 @@ struct gtt_project_s
 	GList *sub_projects;   /* sub-projects */
 	GttProject *parent;    /* back pointer to parent project */
 
+	/* hack alert - come gnome-2.0, listeners should be replaced
+	 * by a gobj callback */
 	GList *listeners;      /* listeners for change events */
 
 	int id;		/* simple id number */
