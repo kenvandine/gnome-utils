@@ -6,7 +6,8 @@ INCLUDES = 						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-I$(includedir)					\
-	$(GNOME_UTILS_CFLAGS)
+	$(GNOME_UTILS_CFLAGS)				\
+	$(GNOMEVFS_CFLAGS)
 
 bin_PROGRAMS = gsearchtool 
 
@@ -18,6 +19,7 @@ gsearchtool_SOURCES =	\
 
 gsearchtool_LDADD = \
 	$(GNOME_UTILS_LIBS) \
+	$(GNOMEVFS_LIBS)
 	$(INTLLIBS)
 
 man_MANS = gsearchtool.1

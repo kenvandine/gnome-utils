@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
-#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-mime-utils.h>
 
 #include "gsearchtool.h"
 #include "outdlg.h"

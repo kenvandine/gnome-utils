@@ -136,7 +136,7 @@ enum {
 static gint gnome_calc_signals[LAST_SIGNAL];
 
 GNOME_CLASS_BOILERPLATE (GnomeCalc, gnome_calc,
-			 GtkVBox, gtk_vbox, GTK_TYPE_VBOX)
+			 GtkVBox, GTK_TYPE_VBOX)
 
 static void
 gnome_calc_class_init (GnomeCalcClass *class)
@@ -1387,7 +1387,7 @@ gnome_calc_destroy (GtkObject *object)
 	while(gc->_priv->stack)
 		stack_pop(&gc->_priv->stack);
 
-	GNOME_CALL_PARENT_HANDLER (GTK_OBJECT_CLASS, destroy, (object));
+	GNOME_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
 }
 
 static void
@@ -1407,7 +1407,7 @@ gnome_calc_finalize (GObject *object)
 		gc->_priv = NULL;
 	}
 
-	GNOME_CALL_PARENT_HANDLER (G_OBJECT_CLASS, finalize, (object));
+	GNOME_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
 }
 
 /**
