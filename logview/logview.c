@@ -50,8 +50,7 @@ void create_zoom_view (void);
 void AboutShowWindow (GtkWidget* widget, gpointer user_data);
 void CloseApp (void);
 void CloseLog (Log *);
-void FileSelectCancel (GtkWidget * w, GtkFileSelection * fs);
-void FileSelectOk (GtkWidget * w, GtkFileSelection * fs);
+void FileSelectResponse (GtkWidget * chooser, gint response, gpointer data);
 void LogInfo (GtkWidget * widget, gpointer user_data);
 void UpdateStatusArea (void);
 void change_log (int dir);
@@ -544,16 +543,21 @@ change_log_menu (GtkWidget * widget, gpointer user_data)
 }
 
 /* ----------------------------------------------------------------------
-   NAME:          FileSelectOk
+   NAME:          FileSelectResponse
    DESCRIPTION:   User selected a file.
    ---------------------------------------------------------------------- */
 
 void
-FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
+FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 {
    char *f;
    Log *tl;
    gint i;
+
+   if (response != GTK_RESPONSE_OK) {
+	   gtk_widget_destroy (chooser);
+	   return;
+   }
 
    /* Check that we haven't opened all logfiles allowed    */
    if (numlogs >= MAX_NUM_LOGS)
@@ -562,8 +566,8 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
        return;
      }
 
-   f = g_strdup (gtk_file_selection_get_filename (GTK_FILE_SELECTION (fs)));
-   gtk_widget_destroy (GTK_WIDGET (fs));
+   f = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+   gtk_widget_destroy (GTK_WIDGET (chooser));
 
    /* Check whether we are opening the already opened log file */ 
    for ( i = 0; i < numlogs; i++)
@@ -628,7 +632,7 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 void
 LoadLogMenu (GtkWidget * widget, gpointer user_data)
 {
-   GtkWidget *filesel = NULL;
+   GtkWidget *chooser = NULL;
 
    /*  Cannot open more than MAX_NUM_LOGS */
    if (numlogs == MAX_NUM_LOGS)
@@ -637,7 +641,7 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
        return;
      }
    
-   /*  Cannot have more than one fileselect window */
+   /*  Cannot have more than one file chooser window */
    /*  at one time. */
    if (open_file_dialog != NULL) {
 	   gtk_widget_show_now (open_file_dialog);
@@ -646,32 +650,33 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
    }
 
 
-   filesel = gtk_file_selection_new (_("Open new logfile"));
-   gtk_window_set_transient_for (GTK_WINDOW (filesel), GTK_WINDOW (app));
-   gnome_window_icon_set_from_default (GTK_WINDOW (filesel));
+   chooser = gtk_file_chooser_dialog_new (_("Open new logfile"),
+					  GTK_WINDOW (app),
+					  GTK_FILE_CHOOSER_ACTION_OPEN,
+					  GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					  GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+					  NULL);
+   gtk_dialog_set_default_response (GTK_DIALOG (chooser),
+		   		    GTK_RESPONSE_OK);
+   gtk_window_set_default_size (GTK_WINDOW (chooser), 600, 400);
 
    /* Make window modal */
-   gtk_window_set_modal (GTK_WINDOW (filesel), TRUE);
+   gtk_window_set_modal (GTK_WINDOW (chooser), TRUE);
 
    if (user_prefs->logfile != NULL)
-   	gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), 
-					 user_prefs->logfile);
+   	gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (chooser), 
+				       user_prefs->logfile);
 
-   gtk_window_set_position (GTK_WINDOW (filesel), GTK_WIN_POS_MOUSE);
-   gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->ok_button),
-		       "clicked", (GtkSignalFunc) FileSelectOk,
-		       filesel);
-   gtk_signal_connect_object (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->cancel_button),
-			      "clicked", (GtkSignalFunc) gtk_widget_destroy,
-			      GTK_OBJECT (filesel));
+   gtk_window_set_position (GTK_WINDOW (chooser), GTK_WIN_POS_MOUSE);
+   g_signal_connect (G_OBJECT (chooser), "response",
+		     G_CALLBACK (FileSelectResponse), NULL);
 
-   gtk_signal_connect (GTK_OBJECT (filesel),
-		       "destroy", (GtkSignalFunc) gtk_widget_destroyed,
-		       &open_file_dialog);
+   g_signal_connect (G_OBJECT (chooser), "destroy",
+		     G_CALLBACK (gtk_widget_destroyed), &open_file_dialog);
 
-   gtk_widget_show (filesel);
+   gtk_widget_show (chooser);
 
-   open_file_dialog = filesel;
+   open_file_dialog = chooser;
 
 }
 
