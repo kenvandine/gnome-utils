@@ -50,8 +50,7 @@ apply_actions (GtkWidget *w, gpointer data)
 	actions_db = local_actions_db;
 	local_actions_db = NULL;
 
-	fname = g_strdup_printf ("%s/.gnome/logview-actions.db",
-				 g_get_home_dir ());
+	fname = gnome_util_home_file ("gnome-system-log-actions.db");
 	if (write_actions_db (fname, actions_db)) {
 		gtk_widget_destroy (actions_dialog);
 	}
