@@ -68,11 +68,14 @@ excluded_fstype (const char *fstype)
   while (gl)
     {
       type = (gchar *)gl->data;
-      if (g_strncasecmp (type, fstype, strlen (fstype)))
-	return 0;
+      if (g_strncasecmp (type, fstype, strlen (fstype)) == 0)
+        {
+          g_print ("%s == %s \n", type, fstype);
+	  return 1;
+        }
       gl = g_list_next (gl);
     }
-  return 1;
+  return 0;
 }
 /**
  * Program entry point
@@ -103,8 +106,10 @@ main (int argc, gchar *argv[])
   app = gdiskfree_app_new (geometry);
   mount_list = glibtop_get_mountlist (&mountlist, 0);
   excluded = g_list_append (excluded, "proc");
+  excluded = g_list_append (excluded, "devpts");
   for (i = 0; i < mountlist.number; i++)
     {
+      g_print ("type: %s\n", mount_list[i].type);
       if (!(excluded_fstype (mount_list[i].type)))
 	gdiskfree_app_add_disk (app, mount_list[i].devname,
 				mount_list[i].mountdir);
