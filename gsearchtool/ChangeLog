@@ -1,3 +1,16 @@
+2002-05-03  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c: Add a "Starting in folder" field to the
+	simple tab.  Fixes solaris slow search problem in bug #70827.  
+	
+	* gsearchtool.c: Filter out the annoying "Permission denied" 
+	error messages.  Users do not want to see these errors. 
+	
+	* gsearchtool.c: Commented out code that connects the 
+	activate signal on the gnome_file_entry_gnome_entry widget.  
+	This was causing a search to begin when clicking on the 
+	OK button in the Browse dialog.
+	
 2002-04-09  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c Implement one of the UI suggestions

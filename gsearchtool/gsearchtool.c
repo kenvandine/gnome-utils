@@ -88,6 +88,10 @@ static GtkWidget *start_dir_e = NULL;
 
 static GtkWidget *locate_entry = NULL;
 
+static GtkWidget *locate_path_entry = NULL;
+
+static GtkWidget *locate_browse_entry = NULL;
+
 static GtkWidget *nbook = NULL;
 
 static GtkWidget *app = NULL; 
@@ -221,6 +225,7 @@ static char *
 make_locate_cmd(void)
 {
 	GString *cmdbuf;
+	gchar *locate_path;
 	gchar *locate_string;
 	gchar *locate_command;
 	
@@ -231,15 +236,26 @@ make_locate_cmd(void)
 	if(!locate_string || !*locate_string) {
 		return NULL;
 	}
+	
+	if(locate_path_entry) {
+		locate_path = gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(locate_path_entry), TRUE);
+		if(!locate_path) {
+			gnome_app_error (GNOME_APP(app),
+					 _("Start directory does not exist."));
+			return NULL;
+		}
+	} else
+		locate_path = NULL;
 
 	cmdbuf = g_string_new ("");
 	locate_command = g_find_program_in_path ("locate");
 	if (locate_command != NULL)
 	{
-		g_string_append_printf (cmdbuf, "%s '%s'", locate_command, locate_string);
+		g_string_append_printf (cmdbuf, "%s '%s*%s'", locate_command, locate_path, locate_string);
 	} else {
-		g_string_append_printf (cmdbuf, "find \"/\" -name '%s' -mount", locate_string);
+		g_string_append_printf (cmdbuf, "find \"%s\" -name '%s' -mount", locate_path, locate_string);
 	}
+	g_free (locate_path);
 	g_free (locate_string);
 	g_free (locate_command);
 	
@@ -701,12 +717,15 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, 
 		if (n > 0) {
 			ret[n] = '\0';
 			if (add_to_errors) {
-				if (errors == NULL)
-					errors = g_string_new (ret);
-				else
-					errors = g_string_append (errors, ret);
-				add_to_errors =
-					! kill_after_nth_nl (errors, 20);
+				if (strstr(ret, "ermission denied") == NULL) {
+					if (errors == NULL)
+						errors = g_string_new (ret);
+					else
+						errors = g_string_append (errors, ret);
+					
+					add_to_errors =
+						! kill_after_nth_nl (errors, 20);
+				}
 			}
 			fprintf (stderr, "%s", ret);
 		}
@@ -738,12 +757,15 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, 
 	while((n = read(fderr[0], ret, PIPE_READ_BUFFER-1)) > 0) {
 		ret[n]='\0';
 		if (add_to_errors) {
-			if (errors == NULL)
-				errors = g_string_new (ret);
-			else
-				errors = g_string_append (errors, ret);
-			add_to_errors =
-				! kill_after_nth_nl (errors, 20);
+			if (strstr(ret, "ermission denied") == NULL) {			
+				if (errors == NULL)
+					errors = g_string_new (ret);
+				else
+					errors = g_string_append (errors, ret); 
+				
+				add_to_errors =
+						! kill_after_nth_nl (errors, 20);
+			}
 		}
 		fprintf (stderr, "%s", ret);
 	}
@@ -1245,9 +1267,11 @@ create_find_page(void)
 		add_atk_namedesc (GTK_WIDGET(w), _("Starting folder entry"), _("Enter the folder name where you want to start the search"));
 		add_atk_relation (gnome_entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY); 
 	}
+	/* Clicking on 'OK' in the Browse dialog will start a search -- commenting out until someone can figure this out
 	g_signal_connect (G_OBJECT (gnome_entry), "activate",
 			  G_CALLBACK (advanced_search_activate),
 			  find_buttons);
+	*/
 
 	s = g_get_current_dir();
 	gtk_entry_set_text(GTK_ENTRY(w), s);
@@ -1529,24 +1553,31 @@ stop_search (GtkWidget *w, GdkEventKey *event)
 static GtkWidget *
 create_locate_page(void)
 {
-	GtkWidget *w, *vbox, *hbox, *hbox2, *entry;
+	GtkWidget *w, *vbox, *hbox, *hbox2, *entry, *table;
 	GtkWidget *image, *label, *frame, *align;
 	GtkTreeViewColumn *column;	
 	static gchar *history = NULL;
 	GtkCellRenderer *renderer;
+	gchar *s;
 
 	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox), GNOME_PAD_SMALL);
 
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+	
+	table = gtk_table_new (2, 2, FALSE);
+	gtk_container_set_border_width (GTK_CONTAINER (table), 5);
+	gtk_table_set_row_spacings (GTK_TABLE (table), 5);
+	gtk_container_add (GTK_CONTAINER (hbox), table);
+	
 	w = gtk_label_new_with_mnemonic(_("Find files _named:"));
-	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE, FALSE, 0);
+	gtk_table_attach(GTK_TABLE(table), w, 0, 1, 0, 1, GTK_FILL, 0, 0, 1);
 
 	locate_entry = gnome_entry_new(history);
 	gtk_label_set_mnemonic_widget(GTK_LABEL(w), gnome_entry_gtk_entry(GNOME_ENTRY(locate_entry)));
 	gnome_entry_set_max_saved(GNOME_ENTRY(locate_entry), 10);
-	gtk_box_pack_start(GTK_BOX(hbox), locate_entry, TRUE, TRUE, 0);
+	gtk_table_attach(GTK_TABLE(table), locate_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 0, 0);
 	entry =  gnome_entry_gtk_entry (GNOME_ENTRY(locate_entry));
        
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(locate_entry)))
@@ -1561,6 +1592,32 @@ create_locate_page(void)
 			  G_CALLBACK (locate_activate),
 			  locate_buttons);
 			  
+	label = gtk_label_new_with_mnemonic(_("S_tarting in folder:"));
+	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
+	
+	locate_path_entry = gnome_file_entry_new("directory", _("Browse"));
+	gnome_file_entry_set_directory_entry(GNOME_FILE_ENTRY(locate_path_entry), TRUE);
+	w = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(locate_path_entry));
+	gtk_label_set_mnemonic_widget(GTK_LABEL(label), w);
+	locate_browse_entry = gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(locate_path_entry));
+	gtk_table_attach(GTK_TABLE(table), locate_path_entry, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL, 0, 0, 0);
+	
+	if (gail_loaded)
+	{ 
+		add_atk_namedesc (GTK_WIDGET(locate_browse_entry), _("Starting folder entry"), _("Enter the folder name where you want to start the search"));
+		add_atk_namedesc (GTK_WIDGET(w), _("Starting folder entry"), _("Enter the folder name where you want to start the search"));
+		add_atk_relation (locate_browse_entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY); 
+	}
+	/* Clicking on 'OK' in the Browse dialog will start a search -- commenting out until someone can figure this out
+	g_signal_connect (G_OBJECT (locate_browse_entry), "activate",
+			  G_CALLBACK (locate_activate),
+			  locate_buttons);
+	*/
+			  
+	s = g_get_current_dir();
+	gtk_entry_set_text(GTK_ENTRY(w), s);
+	g_free(s);
+	
 	hbox = gtk_hbutton_box_new();
 	gtk_button_box_set_layout (GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
@@ -1959,7 +2016,7 @@ main(int argc, char *argv[])
 
 	gnome_app_set_contents(GNOME_APP(app), search);
 	
-      	hints.min_width = 320;
+      	hints.min_width = 460;
       	hints.min_height = 360;
 	gtk_window_set_geometry_hints(GTK_WINDOW(app), GTK_WIDGET(app),
 				      &hints, GDK_HINT_MIN_SIZE);
