@@ -20,6 +20,7 @@ chop($dt_dir);
 if ($dt_dir eq "") 
 {
     print "Exiting - GNOME not found...\n";
+    exit 1
 }
 
 $dt_dir = $dt_dir . "/share/apps";
