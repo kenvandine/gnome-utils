@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2001-01-31 18:13+0200\n"
+"POT-Creation-Date: 2001-02-07 11:19+0200\n"
 "PO-Revision-Date: 1999-10-01 19:18+0300\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -49,26 +49,24 @@ msgstr "Мапа символ╕в"
 msgid ""
 "The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
 "contain bad English."
-msgstr ""
+msgstr "Екв╕валент програми Character Map для Windows."
 
 #: gcharmap/src/callbacks.c:76
-#, fuzzy, c-format
+#, c-format
 msgid "%s: ASCII code %d"
-msgstr "Код ASCII:"
+msgstr "%s: Код ASCII %d"
 
 #: gcharmap/src/callbacks.c:103
-#, fuzzy
 msgid "Text copied to clipboard..."
-msgstr "Скоп╕ювати у буфер обм╕ну"
+msgstr "Текст скоп╕йовано у буфер обм╕ну..."
 
 #: gcharmap/src/callbacks.c:115
-#, fuzzy
 msgid "Text cut to clipboard..."
-msgstr "Вир╕зати у буфер обм╕ну"
+msgstr "Текст вир╕зано у буфер обм╕ну..."
 
 #: gcharmap/src/callbacks.c:168
 msgid "Text pasted from clipboard..."
-msgstr ""
+msgstr "Текст вставлено з буферу обм╕ну..."
 
 #: gcharmap/src/interface.c:159
 msgid "Action Toolbar"
@@ -80,6 +78,7 @@ msgstr "Текст для коп╕ювання:"
 
 #: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
 #: gstripchart/gstripchart.c:1798 mini-utils/gcolorsel/menus.c:921
+#: stripchart/chart-app.c:253
 msgid "Exit"
 msgstr "Вийти"
 
@@ -91,12 +90,16 @@ msgstr "Коп╕ювати"
 #: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
 #: gstripchart/gstripchart.c:1786 gstripchart/gstripchart.c:2070
 #: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:319
+#: stripchart/chart-app.c:227 stripchart/params.c:1008
+#: stripchart/stripchart-applet.c:89
 msgid "About"
 msgstr "Про"
 
 #: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
 #: gdictsrc/gdict-applet.c:286 gstripchart/gstripchart.c:1780
-#: gstripchart/gstripchart.c:2067
+#: gstripchart/gstripchart.c:2067 stripchart/chart-app.c:222
+#: stripchart/params.c:1043 stripchart/params.c:1046
+#: stripchart/stripchart-applet.c:86
 msgid "Help"
 msgstr "Дов╕дка"
 
@@ -146,7 +149,7 @@ msgstr "Вставити в к╕нець"
 
 #: gcharmap/src/menus.c:69
 msgid "Insert every selected character at the end of the text entry"
-msgstr ""
+msgstr "Вставляти кожен вибраний символ у к╕нець введеного"
 
 #: gcharmap/src/menus.c:71
 msgid "_Focusable Buttons"
@@ -181,9 +184,8 @@ msgid "Paste the clipboard"
 msgstr "Вставити буфер обм╕ну"
 
 #: gcharmap/src/menus.c:105
-#, fuzzy
 msgid "Show Gnome Character Map's manual"
-msgstr "Мапа символ╕в"
+msgstr "Показати пос╕бник з Мапи Символ╕в GNOME"
 
 #: gcharmap/src/menus.c:107 mini-utils/gcolorsel/menus.c:919
 msgid "About this application"
@@ -344,7 +346,7 @@ msgstr "Посилання:"
 
 #. Fixme these should be stock buttons
 #: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
-#: mini-utils/gshutdown/gshutdown.c:314
+#: mini-utils/gshutdown/gshutdown.c:314 stripchart/prefs.c:194
 msgid "Preferences"
 msgstr "Налаштування"
 
@@ -729,21 +731,21 @@ msgstr "Нема╓ команди для цього типу MIME"
 msgid "rparen expected"
 msgstr "оч╕кувався rparen"
 
-#: gstripchart/gstripchart.c:458
+#: gstripchart/gstripchart.c:458 stripchart/eval.c:269
 #, c-format
 msgid "no such field: %d"
 msgstr "нема╓ поля: %d"
 
-#: gstripchart/gstripchart.c:486
+#: gstripchart/gstripchart.c:486 stripchart/eval.c:285
 msgid "missing variable identifer"
 msgstr "в╕дсутн╕й ╕дентеф╕катор зм╕нно╖"
 
-#: gstripchart/gstripchart.c:488
+#: gstripchart/gstripchart.c:488 stripchart/eval.c:287
 #, c-format
 msgid "invalid variable identifer: %s"
 msgstr "нев╕рний ╕дентеф╕катор зм╕нно╖: %s"
 
-#: gstripchart/gstripchart.c:492
+#: gstripchart/gstripchart.c:492 stripchart/eval.c:291
 msgid "number expected"
 msgstr "очикувалось число"
 
@@ -811,7 +813,7 @@ msgstr "Перервати stripchart"
 msgid "Copyright 1998,99 John Kodis"
 msgstr "Copyright 1998,99 John Kodis"
 
-#: gstripchart/gstripchart.c:1516
+#: gstripchart/gstripchart.c:1516 stripchart/chart-app.c:195
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -824,6 +826,7 @@ msgstr ""
 "╤нш╕ застосування залишен╕ в якост╕ вправи для зац╕кавленого користувача."
 
 #: gstripchart/gstripchart.c:1601 gstripchart/gstripchart.c:1740
+#: stripchart/chart-app.c:157
 msgid "Param"
 msgstr "Параметр"
 
@@ -837,18 +840,19 @@ msgid "Identifier"
 msgstr "╤дентиф╕катор"
 
 #: gstripchart/gstripchart.c:1607 mini-utils/gcolorsel/view-color-list.c:196
+#: stripchart/params.c:815
 msgid "Color"
 msgstr "Кол╕р"
 
-#: gstripchart/gstripchart.c:1609
+#: gstripchart/gstripchart.c:1609 stripchart/params.c:670
 msgid "Filename"
 msgstr "Назва файлу"
 
-#: gstripchart/gstripchart.c:1611
+#: gstripchart/gstripchart.c:1611 stripchart/params.c:681
 msgid "Pattern"
 msgstr "Тип"
 
-#: gstripchart/gstripchart.c:1613
+#: gstripchart/gstripchart.c:1613 stripchart/params.c:659
 msgid "Equation"
 msgstr "Р╕вняння"
 
@@ -872,15 +876,17 @@ msgstr "Зад╕яний"
 msgid "Stripchart Parameters"
 msgstr "Параметри Stripchart"
 
-#: gstripchart/gstripchart.c:1741
+#: gstripchart/gstripchart.c:1741 stripchart/chart-app.c:158
 msgid "Current"
 msgstr "Поточне"
 
-#: gstripchart/gstripchart.c:1742
+#: gstripchart/gstripchart.c:1742 stripchart/chart-app.c:159
+#: stripchart/params.c:692
 msgid "Top"
 msgstr "Найвище"
 
-#: gstripchart/gstripchart.c:1743
+#: gstripchart/gstripchart.c:1743 stripchart/chart-app.c:160
+#: stripchart/params.c:748
 msgid "Scale"
 msgstr "Шкала"
 
@@ -899,7 +905,7 @@ msgstr "gstripchart"
 msgid "Stripchart Viewer"
 msgstr "В╕зуал╕затор Stripchart"
 
-#: gstripchart/gstripchart.c:2073
+#: gstripchart/gstripchart.c:2073 stripchart/stripchart-applet.c:98
 msgid "Params..."
 msgstr "Параметри..."
 
@@ -908,19 +914,23 @@ msgstr "Параметри..."
 msgid "invalid display type: %s\n"
 msgstr "нев╕рний тип представлення: %s\n"
 
-#: gstripchart/gstripchart.c:2143
+#: gstripchart/gstripchart.c:2143 stripchart/stripchart-applet.c:44
+#: stripchart/stripchart.c:66
 msgid "Geometry string: WxH+X+Y"
 msgstr "Рядок геометр╕╖: WxH+X+Y"
 
-#: gstripchart/gstripchart.c:2143
+#: gstripchart/gstripchart.c:2143 stripchart/stripchart-applet.c:44
+#: stripchart/stripchart.c:66
 msgid "GEO"
 msgstr "ГЕО"
 
-#: gstripchart/gstripchart.c:2145
+#: gstripchart/gstripchart.c:2145 stripchart/stripchart-applet.c:46
+#: stripchart/stripchart.c:68
 msgid "Configuration file name"
 msgstr "Назва конф╕гурац╕йного файлу"
 
-#: gstripchart/gstripchart.c:2145
+#: gstripchart/gstripchart.c:2145 stripchart/stripchart-applet.c:46
+#: stripchart/stripchart.c:68
 msgid "FILE"
 msgstr "ФАЙЛ"
 
@@ -1053,7 +1063,7 @@ msgstr "Сьогодн╕"
 msgid "Project Title"
 msgstr "Назва проекта"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118
+#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:642
 msgid "Description"
 msgstr "Опис"
 
@@ -1331,7 +1341,7 @@ msgstr "[GTT]Новий"
 msgid "Reload"
 msgstr "Перезавантажити"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:152 stripchart/params.c:934
 msgid "Save"
 msgstr "Зберегти"
 
@@ -1433,6 +1443,7 @@ msgid "Edit..."
 msgstr "Зм╕нити..."
 
 #: logview/actions.c:141 logview/actions.c:663
+#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Cancel"
 msgstr "В╕дм╕на"
 
@@ -1854,11 +1865,13 @@ msgid "Grid"
 msgstr "С╕тка"
 
 #: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1036
+#: stripchart/params.c:1039
 msgid "Edit"
 msgstr "Редагування"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40
+#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1029
+#: stripchart/params.c:1032
 msgid "File"
 msgstr "Файл"
 
@@ -2245,7 +2258,7 @@ msgstr "Зберегти поточну пал╕тру з ╕ншою назвою"
 
 #: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
 #: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
-#: mini-utils/gsu/gsu-gui-api.c:39
+#: mini-utils/gsu/gsu-gui-api.c:39 stripchart/params.c:948
 msgid "Close"
 msgstr "Закрити"
 
@@ -2839,7 +2852,7 @@ msgstr "Категор╕я"
 msgid "Your System"
 msgstr "Ваша система"
 
-#: mini-utils/guname/guname.c:657
+#: mini-utils/guname/guname.c:657 stripchart/params.c:941
 msgid "Save As..."
 msgstr "Записати як..."
 
@@ -3290,3 +3303,422 @@ msgstr "Лише адм╕н╕стратор може використовувати цей ╕нструмент"
 #: mini-utils/idetool/idetool.c:446
 msgid "You appear to have no IDE drives"
 msgstr "Зда╓ться у вас нема╓ IDE диск╕в"
+
+#: gfloppy/src/badblocks.c:102
+msgid "MInternal Error: Unable to seek to the correct location."
+msgstr "MВнутр╕шня помилка: Не вдалося спозиц╕онуватись у потр╕бне м╕сце."
+
+#: gfloppy/src/badblocks.c:111
+#, c-format
+msgid "MInternal Error: Weird value (%ld) in do_test\n"
+msgstr "MВнутр╕шня помилка: Дивне значення (%ld) в do_test\n"
+
+#: gfloppy/src/badblocks.c:166
+#, c-format
+msgid "EBad block at block %lu"
+msgstr "EБлок %lu -- дефектний"
+
+#. while (!i)
+#. ;
+#: gfloppy/src/badblocks.c:260
+msgid "MChecking for bad blocks..."
+msgstr "MПерев╕рка на дефектн╕ блоки..."
+
+#: gfloppy/src/badblocks.c:272
+#, c-format
+msgid "MFailed to open device %s for badblock checking\n"
+msgstr "MНе вдалося в╕дкрити пристр╕й %s для перев╕рки на дефектн╕ блоки\n"
+
+#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:215
+msgid "MChecking for bad blocks... Done"
+msgstr "MПерев╕рка на дефектн╕ блоки... Завершено"
+
+#: gfloppy/src/fdformat.c:44
+msgid "MFormatting the disk..."
+msgstr "MФорматування диску..."
+
+#: gfloppy/src/fdformat.c:46
+msgid "EI don't know what this is, but it's very wrong."
+msgstr "EНе в╕домо, що це таке, але це дуже погано."
+
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
+#, c-format
+msgid "EError formatting track #%d"
+msgstr "EПомилка форматування дор╕жки #%d"
+
+#: gfloppy/src/fdformat.c:74
+msgid "EError during completion of formatting"
+msgstr "EПомилка п╕д час завершення форматування"
+
+#. XXXX - need to tell parent we're finished
+#: gfloppy/src/fdformat.c:78
+msgid "MFormatting the disk... Done"
+msgstr "MФорматування дискети... Завершено"
+
+#. XXXX - tell parent we're starting verify stage
+#: gfloppy/src/fdformat.c:94
+msgid "MVerifying the format..."
+msgstr "MПерев╕рка форматування..."
+
+#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
+msgid ""
+"EUnable to write to the floppy.\n"
+"\n"
+"Please confirm that it is not write-protected."
+msgstr ""
+"EНе вдалося записати на дискету.\n"
+"\n"
+"Будь ласка, переконайтесь, що дискета не захищена в╕д запису."
+
+#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
+#, c-format
+msgid "EInsufficient permissions to open floppy device %s."
+msgstr "EНевистача╓ прав доступу для в╕дкривання присторою дисковода %s."
+
+#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
+msgid ""
+"EUnable to access the floppy disk.\n"
+"\n"
+"Please confirm that it is in the drive\n"
+"with the drive door shut."
+msgstr ""
+"EНе вдалося отримати лоступ до дискети.\n"
+"\n"
+"Будь ласка, переконайтесь, що дискета в дисковод╕."
+
+#: gfloppy/src/fdformat.c:109
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s:%d"
+msgstr ""
+"EЗагальна помилка доступу до пристрою дисковода %s.\n"
+"\n"
+"Код помилки %s:%d"
+
+#: gfloppy/src/fdformat.c:129
+#, c-format
+msgid ""
+"ERead Error:\n"
+"Problem reading cylinder %d, expected %d, read %d"
+msgstr ""
+"EПомилка зчитування:\n"
+"Проблема ╕з зчитуванням цил╕ндра %d, оч╕кувалось %d, зчитано %d"
+
+#: gfloppy/src/fdformat.c:132
+#, c-format
+msgid "EProblem reading cylinder %d, expected %d, read %d"
+msgstr "EПроблема ╕з зчитуванням цил╕ндра %d, оч╕кувалось %d, зчитано %d"
+
+#: gfloppy/src/fdformat.c:141
+#, c-format
+msgid "MBad data in cyl %d.  Continuing... "
+msgstr "MПоган╕ дан╕ в цил╕ндр╕ %d.  Продовження... "
+
+#: gfloppy/src/fdformat.c:148
+#, c-format
+msgid "EError closing device %s"
+msgstr "EПомилка закривання пристрою %s"
+
+#: gfloppy/src/fdformat.c:153
+msgid "MVerifying the format... Done"
+msgstr "MПерев╕рка форматування... Завершено"
+
+#: gfloppy/src/fdformat.c:165
+#, c-format
+msgid "EUnable to write to device %s"
+msgstr "EНе вдалося записати у пристр╕й %s"
+
+#: gfloppy/src/fdformat.c:184
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s"
+msgstr ""
+"EЗагальна помилка доступу до пристрою дисковода %s.\n"
+"\n"
+"Код помилки: %s"
+
+#: gfloppy/src/fdformat.c:194
+msgid "ECould not determine current format type"
+msgstr "EНе вдалося визначити поточний тип формату"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gfloppy/src/gfloppy-i18n.h:7
+msgid "Format a floppy"
+msgstr "Форматувати дискету"
+
+#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
+msgid "Linux Native (ext2)"
+msgstr "Linux Native (ext2)"
+
+#: gfloppy/src/gfloppy-i18n.h:9
+msgid "Dos (FAT)"
+msgstr "DOS (FAT)"
+
+#: gfloppy/src/gfloppy-i18n.h:11
+msgid "Formatting /dev/floppy"
+msgstr "Форматування /dev/floppy"
+
+#: gfloppy/src/gfloppy-i18n.h:12
+msgid "Floppy Density:"
+msgstr "Щ╕льн╕сть дискети:"
+
+#: gfloppy/src/gfloppy-i18n.h:13
+msgid "File system type:"
+msgstr "Тип файлово╖ системи:"
+
+#: gfloppy/src/gfloppy-i18n.h:14
+msgid "High Density 3.5\" (1.44 MB)"
+msgstr "Висока щ╕льн╕сть 3.5\" (1.44 Мб)"
+
+#: gfloppy/src/gfloppy-i18n.h:15
+msgid "High Density 5.25\" (1.2 MB)"
+msgstr "Висока щ╕льн╕сть 5.25\" (1.2 Мб)"
+
+#: gfloppy/src/gfloppy-i18n.h:16
+msgid "Double Density 3.5\" (720 KB)"
+msgstr "Подв╕йна щ╕льн╕сть 3.5\" (720 Кб)"
+
+#: gfloppy/src/gfloppy-i18n.h:17
+msgid "Double Density 5.25\" (360 KB)"
+msgstr "Подв╕йна щ╕льн╕сть 5.25\" (360 Кб)"
+
+#: gfloppy/src/gfloppy-i18n.h:18
+msgid "Quick format"
+msgstr "Швидке форматування"
+
+#: gfloppy/src/gfloppy.c:166 gfloppy/src/gfloppy.c:199
+msgid "MMaking filesystem on disk..."
+msgstr "MСтворення файлово╖ системи на диску..."
+
+#: gfloppy/src/gfloppy.c:169
+msgid "EUnable to create filesystem correctly."
+msgstr "EНе вдалося створити файлову систему коректно."
+
+#: gfloppy/src/gfloppy.c:173 gfloppy/src/gfloppy.c:205
+msgid "MMaking filesystem on disk... Done"
+msgstr "MСтворення файлово╖ системи на диску... Завершено"
+
+#: gfloppy/src/gfloppy.c:202 gfloppy/src/gfloppy.c:217
+msgid "EUnable to create filesystem."
+msgstr "EНе вдалося створити файлову систему."
+
+#: gfloppy/src/gfloppy.c:211
+msgid "MChecking for bad blocks... (this might take a while)"
+msgstr "MПерев╕рка на дефектн╕ блоки... (це може зайняти певний час)"
+
+#: gfloppy/src/main.c:179
+msgid "The device to format"
+msgstr "Пристр╕й для форматування"
+
+#: gfloppy/src/main.c:180
+msgid "DEVICE"
+msgstr "ПРИСТР╤Й"
+
+#. We do this to get around a bug in libglade.  Ideally we won't need
+#. * to do this in the future.
+#: gfloppy/src/main.c:207
+msgid "Format"
+msgstr "Форматувати"
+
+#. initialize our widgets
+#: gfloppy/src/main.c:212
+#, c-format
+msgid "Formatting %s"
+msgstr "Форматування %s"
+
+#: gfloppy/src/main.c:254
+msgid "Format another floppy?"
+msgstr "Форматувати ╕ншу дискету?"
+
+#: gfloppy/src/progress.c:117
+msgid "Floppy formatted successfully."
+msgstr "Дискету усп╕шно сформатовано."
+
+#: gfloppy/src/progress.c:121
+msgid "Floppy formatting cancelled."
+msgstr "Форматування дискети в╕дм╕нено."
+
+#: gfloppy/src/progress.c:176
+msgid "Format progress."
+msgstr "Поступ форматування."
+
+#: mini-utils/gnome-run/gnome-run.c:48
+#, c-format
+msgid ""
+"Failed to execute command:\n"
+"%s\n"
+"%s"
+msgstr ""
+"Зб╕ий виканання команди:\n"
+"%s\n"
+"%s"
+
+#: mini-utils/gnome-run/gnome-run.c:69
+msgid "Run Program"
+msgstr "Запустити програму"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Run"
+msgstr "Запустити"
+
+#: mini-utils/gnome-run/gnome-run.c:81
+msgid "Select a program to run"
+msgstr "Вибер╕ть прогаму для запуску"
+
+#: stripchart/chart-app.c:192 stripchart/stripchart-applet.c:69
+#: stripchart/stripchart.c:92 stripchart/stripchart.c:97
+msgid "Stripchart"
+msgstr ""
+
+#: stripchart/chart-app.c:193
+msgid "Copyright 2000 John Kodis"
+msgstr "Copyright 2000 John Kodis"
+
+#: stripchart/chart-app.c:234
+msgid "Show values"
+msgstr "Показати значення"
+
+#: stripchart/chart-app.c:241
+msgid "Edit Prefs..."
+msgstr "Зм╕нити установки..."
+
+#: stripchart/chart-app.c:246
+msgid "Edit Params..."
+msgstr "Зм╕нити параметри..."
+
+#: stripchart/eval.c:252
+msgid "closing parenthesis expected"
+msgstr ""
+
+#: stripchart/eval.c:362
+#, c-format
+msgid "extra junk at end: \"%s\""
+msgstr ""
+
+#: stripchart/params.c:621
+msgid "Parameter"
+msgstr "Параметр"
+
+#: stripchart/params.c:702 stripchart/params.c:730
+msgid "Min"
+msgstr "Min"
+
+#: stripchart/params.c:711 stripchart/params.c:739
+msgid "Max"
+msgstr "Max"
+
+#: stripchart/params.c:720
+msgid "Bottom"
+msgstr ""
+
+#: stripchart/params.c:759
+msgid "Linear"
+msgstr ""
+
+#: stripchart/params.c:767
+msgid "Logarithmic"
+msgstr ""
+
+#: stripchart/params.c:772
+msgid "Type"
+msgstr "Тип"
+
+#: stripchart/params.c:783
+msgid "Indicator"
+msgstr "╤ндикатор"
+
+#: stripchart/params.c:790
+msgid "Line"
+msgstr ""
+
+#: stripchart/params.c:797
+msgid "Point"
+msgstr ""
+
+#: stripchart/params.c:804
+msgid "Solid"
+msgstr ""
+
+#: stripchart/params.c:960
+msgid "Add Parameter Before"
+msgstr ""
+
+#: stripchart/params.c:967
+msgid "Add Parameter After"
+msgstr ""
+
+#: stripchart/params.c:974
+msgid "Apply Parameter Changes"
+msgstr "Застосувати зм╕ни параметр╕в"
+
+#: stripchart/params.c:981
+msgid "Delete Parameter"
+msgstr "Стерти параметр"
+
+#: stripchart/params.c:989
+msgid "Add Color"
+msgstr "Додати кол╕р"
+
+#: stripchart/params.c:996
+msgid "Delete Color"
+msgstr "Стерти кол╕р"
+
+#: stripchart/params.c:1015
+msgid "Info"
+msgstr "╤нформац╕я"
+
+#: stripchart/params.c:1086
+msgid "Parameter Editor"
+msgstr "Редектор параметр╕в"
+
+#: stripchart/params.c:1095
+msgid "Parameters"
+msgstr "Параметри"
+
+#: stripchart/prefs.c:205
+msgid "Chart"
+msgstr "Д╕аграма"
+
+#: stripchart/prefs.c:215 stripchart/prefs.c:274
+msgid "enabled"
+msgstr ""
+
+#: stripchart/prefs.c:222
+msgid "minor"
+msgstr ""
+
+#: stripchart/prefs.c:228
+msgid "major"
+msgstr ""
+
+#: stripchart/prefs.c:241 stripchart/prefs.c:259
+msgid "Update"
+msgstr ""
+
+#: stripchart/prefs.c:244 stripchart/prefs.c:267
+msgid "Smooth"
+msgstr ""
+
+#: stripchart/prefs.c:247
+msgid "Ticks"
+msgstr ""
+
+#: stripchart/prefs.c:252
+msgid "Pen"
+msgstr "Перо"
+
+#: stripchart/stripchart-applet.c:92
+msgid "Values"
+msgstr "Значення"
+
+#: stripchart/stripchart-applet.c:95
+msgid "Prefs..."
+msgstr "Установки..."
