@@ -129,6 +129,7 @@ int main(int argc, char *argv[])
 #if defined(LOCALEDIR) && defined(STANDALONE)
 	locale_debug(LOCALEDIR " %s\n", bindtextdomain(PACKAGE, LOCALEDIR));
 #endif
+	locale_debug(GNOMELOCALEDIR " %s\n", bindtextdomain(PACKAGE, GNOMELOCALEDIR));
 	locale_debug(PACKAGE " %s\n", textdomain(PACKAGE));
 
 	lock_gtt();
