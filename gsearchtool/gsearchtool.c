@@ -1996,6 +1996,7 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 	
 	gsearch->files_found_label = gtk_label_new (NULL);
+	gtk_label_set_selectable (GTK_LABEL (gsearch->files_found_label), TRUE);
 	g_object_set (G_OBJECT (gsearch->files_found_label), "xalign", 1.0, NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), gsearch->files_found_label, FALSE, FALSE, 0);
 	
