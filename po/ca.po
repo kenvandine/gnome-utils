@@ -7,8 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.3.3\n"
-"POT-Creation-Date: 2003-06-05 17:52+0200\n"
-"PO-Revision-Date: 2003-06-05 18:26+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-19 14:29+0200\n"
+"PO-Revision-Date: 2003-06-19 14:29+0200\n"
 "Last-Translator: Softcatalà <tradgnome@softcatala.org>\n"
 "Language-Team: Jordi Mallach <jordi@sindominio.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +20,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Accessoris"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:156
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "Cerca al diccionari"
 
@@ -72,9 +73,10 @@ msgstr ""
 "Softcatalà <info@softcatala.org>\n"
 "Jordi Mallach <jordi@sindominio.net>"
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "Diccionari del GNOME"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Diccionari"
 
 #: gdictsrc/gdict-about.c:58
 msgid "A client for the MIT dictionary server."
@@ -143,10 +145,6 @@ msgstr "Comprova l'ortografia de la paraula"
 msgid "_Dictionary"
 msgstr "_Diccionari"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Diccionari"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Paraula:"
@@ -168,7 +166,7 @@ msgstr "Inseriu una paraula o seleccioneu una de la llista de sota"
 msgid "Look Up for a Word"
 msgstr "S'està cercant una paraula"
 
-#: gdictsrc/gdict-applet.c:149
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "_Cerca"
 
@@ -487,7 +485,9 @@ msgstr "No s'ha pogut determinat la geometria del disquet actual."
 
 #: gfloppy/src/gfloppy.c:221
 msgid "Error while creating a unique filename for the bad blocks list file."
-msgstr "Error en crear un nom de fitxer únic per al fitxer amb la llista de blocs amb errors."
+msgstr ""
+"Error en crear un nom de fitxer únic per al fitxer amb la llista de blocs "
+"amb errors."
 
 #: gfloppy/src/gfloppy.c:241
 msgid "Error while filling the bad blocks list file."
@@ -509,7 +509,8 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
-"La utilitat de creació de sistemes de fitxers (%s) ha tornat els següents errors:\n"
+"La utilitat de creació de sistemes de fitxers (%s) ha tornat els següents "
+"errors:\n"
 "\n"
 "%s (%d)"
 
@@ -528,7 +529,8 @@ msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
-"La utilitat de comprovació de blocs amb errors (mbadblocks) ha tornat els següents errors:\n"
+"La utilitat de comprovació de blocs amb errors (mbadblocks) ha tornat els "
+"següents errors:\n"
 "%s."
 
 #: gfloppy/src/gfloppy.c:433
@@ -569,7 +571,10 @@ msgid ""
 "<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
-msgstr "<small><i><b>Nota</b>: La utilitat mbadblocks no està instal·lada en el sistema. Ha d'estar instal·lada per a fer un formatat DOS (fat) exhaustiu.</i></small>"
+msgstr ""
+"<small><i><b>Nota</b>: La utilitat mbadblocks no està instal·lada en el "
+"sistema. Ha d'estar instal·lada per a fer un formatat DOS (fat) exhaustiu.</"
+"i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
@@ -750,8 +755,8 @@ msgstr ""
 "ext2 per al sistema de fitxers natiu o fat per al sistema de fitxers del DOS."
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "Cerca fitxers"
 
@@ -815,7 +820,7 @@ msgstr "Segueix enllaços simbòlics"
 msgid "Include other filesystems"
 msgstr "Inclou altres sistemes de fitxers"
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "No s'ha trobat cap fitxer"
 
@@ -862,20 +867,33 @@ msgstr "Selecciona la condició «%s»"
 msgid "Invalid option passed to sortby command line argument."
 msgstr "S'ha passat una opció no vàlida a la línia d'ordres de sortby."
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
 msgstr "(parat)"
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+msgid "No Files Found"
+msgstr "No s'ha trobat cap fitxer"
+
+#: gsearchtool/gsearchtool.c:1242
 msgid "One file found"
 msgstr "S'ha trobat un fitxer"
 
 #: gsearchtool/gsearchtool.c:1243
+msgid "One File Found"
+msgstr "S'ha trobat un fitxer"
+
+#: gsearchtool/gsearchtool.c:1246
 #, c-format
 msgid "%d files found"
 msgstr "S'ha trobat %d fitxers"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, c-format
+msgid "%d Files Found"
+msgstr "S'han trobat %d fitxers"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -883,7 +901,7 @@ msgstr ""
 "S'han trobat els següents errors al cercar.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -891,108 +909,108 @@ msgstr ""
 "\n"
 "... Massa errors a mostrar ..."
 
-#: gsearchtool/gsearchtool.c:1354
+#: gsearchtool/gsearchtool.c:1360
 msgid "Error while searching for files"
 msgstr "S'ha produït un error en cercar els fitxers"
 
-#: gsearchtool/gsearchtool.c:1393
+#: gsearchtool/gsearchtool.c:1399
 msgid "Error parsing the search command"
 msgstr "S'ha produït un error en analitzar l'ordre de cerca"
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1419
 msgid "Error running the search command"
 msgstr "S'ha produït un error en executar l'ordre de cerca"
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr "Entrada del valor de regla de cerca"
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "Inseriu un valor per a la regla de cerca"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Feu clic per a eliminar la regla «%s»"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 msgid "A_vailable options:"
 msgstr "Opcions _disponibles:"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "Menú de regles de cerca"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "Seleccioneu una regla de cerca del menú"
 
-#: gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gsearchtool.c:1652
 msgid "S_earch results:"
 msgstr "Resultats de la c_erca:"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "Nom"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "Carpeta"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "Mida"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "Tipus"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr "Data de modificació"
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
 msgstr "El _nom conté:"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
 msgstr "Entrada nom conté"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "Inseriu el nom de fitxer que voleu cercar"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 msgid "_Look in folder:"
 msgstr "_Cerca a la carpeta:"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr "Vés a"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Look in Folder Entry"
 msgstr "Cerca en la entrada de carpeta"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr "Inseriu el nom de la carpeta en la que voleu començar la cerca"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1909
 msgid "Show more _options"
 msgstr "Mostra més _opcions"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "Feu clic per a començar la cerca"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "Feu clic per a parar la cerca"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr "No es pot inicialitzar bonobo."
 
@@ -1065,7 +1083,9 @@ msgstr "No s'ha pogut desar el document «» a %s"
 msgid ""
 "You did not select a document name or the name selected was a folder.  The "
 "document is not saved."
-msgstr "No heu seleccionat un nom per al document, o el nom seleccionat era una carpeta. No s'ha desat el document."
+msgstr ""
+"No heu seleccionat un nom per al document, o el nom seleccionat era una "
+"carpeta. No s'ha desat el document."
 
 #: gsearchtool/gsearchtool-callbacks.c:903
 #, c-format
@@ -1085,7 +1105,9 @@ msgstr "No s'ha pogut desar el document «%s» a %s"
 msgid ""
 "You may not have write permissions to the document.  The document is not "
 "saved."
-msgstr "Pot ser que no tingueu permissos d'escriptura per al document. No s'ha desat el document."
+msgstr ""
+"Pot ser que no tingueu permissos d'escriptura per al document. No s'ha desat "
+"el document."
 
 #: gsearchtool/gsearchtool-support.c:58
 #, c-format
@@ -1127,8 +1149,8 @@ msgid "A system log viewer for GNOME."
 msgstr "Un visor de registres del sistema per al GNOME."
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
-msgstr "Visor de registres del sistema del GNOME"
+msgid "System Log Viewer"
+msgstr "Visualitzador de registres del sistema"
 
 #: logview/actions.c:74
 msgid "Action Database"
@@ -1274,7 +1296,7 @@ msgstr "Número de línies:"
 msgid "Log Information"
 msgstr "Informació del registre"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<No s'ha carregat cap registre>"
 
@@ -1535,28 +1557,28 @@ msgstr "TOCAT!!\n"
 msgid "Entry Detail"
 msgstr "Detalls de la entrada"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "Data:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "Procés:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "Missatge:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "Descripció:"
 
-#: logview/zoom.c:130
+#: logview/zoom.c:129
 msgid "Log Line Details"
 msgstr "Detalls d'una línia de registre"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -1568,7 +1590,15 @@ msgstr "Fitxers de registre a obrir a l'iniciar"
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
-msgstr "Especifica el fitxer de registre a obrir en iniciar. Per defecte, és /var/adm/messages o /var/log/messages, depenent del vostre sistema operatiu."
+msgstr ""
+"Especifica el fitxer de registre a obrir en iniciar. Per defecte, és /var/"
+"adm/messages o /var/log/messages, depenent del vostre sistema operatiu."
+
+#~ msgid "GNOME Dictionary"
+#~ msgstr "Diccionari del GNOME"
+
+#~ msgid "GNOME System Log Viewer"
+#~ msgstr "Visor de registres del sistema del GNOME"
 
 #~ msgid ""
 #~ "Executing arbitrary programs that you downloaded from the network might "
@@ -2307,9 +2337,6 @@ msgstr "Especifica el fitxer de registre a obrir en iniciar. Per defecte, és /v
 #~ msgid "symbolic link"
 #~ msgstr "enllaç simbòlic"
 
-#~ msgid "No Files Found."
-#~ msgstr "No s'ha trobat cap fitxer."
-
 #~ msgid ""
 #~ "Cannot perform the search.\n"
 #~ "The Bourne shell was not found\n"
@@ -2425,9 +2452,6 @@ msgstr "Especifica el fitxer de registre a obrir en iniciar. Per defecte, és /v
 
 #~ msgid "_Log"
 #~ msgstr "_Registre"
-
-#~ msgid "System Log Viewer"
-#~ msgstr "Visualitzador de registres del sistema"
 
 #~ msgid "Cannot load required fonts, cannot continue"
 #~ msgstr "No es pot carregar les fonts requerides, no es pot continuar"
