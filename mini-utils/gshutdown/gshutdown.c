@@ -581,7 +581,8 @@ static void help_cb(GtkButton * b, gpointer ignored)
 static void do_shutdown(void)
 {
   gchar * command_name, * command_path;
-  
+  GnomeClient *client;
+
   command_name = g_strdup(runlevel_commands[requested_runlevel]);
   command_name = strtok(command_name, " \r\n\t");
   command_path = gnome_is_program_in_path(command_name);
@@ -596,6 +597,11 @@ static void do_shutdown(void)
                     ));
     exit (1);
   }
+
+  client = gnome_master_client();
+  /* (BUGFIX 2031) We don't want gshutdown to be restarted as part of the next session */
+  gnome_client_set_restart_style(client, GNOME_RESTART_NEVER);
+  gnome_client_flush(client);
 
   if ( command_path ) {
     run_command(runlevel_commands[requested_runlevel]);
