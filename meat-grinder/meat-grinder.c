@@ -98,6 +98,22 @@ query_dialog (const gchar *msg)
 		return FALSE;
 }
 
+static void
+update_status (void)
+{
+	if (number_of_files > 0 || number_of_dirs > 0) {
+		char *msg;
+		msg = g_strdup_printf (_("Number of files: %d\nNuber of folders: %d"),
+				       number_of_files, number_of_dirs);
+		gtk_label_set_text (GTK_LABEL (status_label), msg);
+		g_free (msg);
+	} else {
+		gtk_label_set_text (GTK_LABEL (status_label), 
+				    _("No files or folders, drop files or folders\n"
+				      "above to add them to the archive"));
+	}
+}
+
 /* removes icon, positions should not be trusted after this */
 static void
 remove_pos (int pos)
@@ -119,6 +135,8 @@ remove_pos (int pos)
 	if (number_of_files + number_of_dirs <= 0) {
 		gtk_widget_set_sensitive (compress_button, FALSE);
 	}
+
+	update_status ();
 }
 
 struct argv_adder {
@@ -400,6 +418,7 @@ clear_cb (GtkWidget *w, gpointer data)
 	number_of_files = number_of_dirs = 0;
 	gnome_icon_list_clear (GNOME_ICON_LIST (icon_list));
 	gtk_widget_set_sensitive (compress_button, FALSE);
+	update_status ();
 }
 
 static void
@@ -421,7 +440,7 @@ save_ok (GtkWidget *widget, GtkFileSelection *fsel)
 	setup_busy (GTK_WIDGET (fsel), TRUE);
 
 	fname = gtk_file_selection_get_filename (fsel);
-	if (fname == NULL) {
+	if (fname == NULL || fname[0] == '\0') {
 		ERRDLGP (_("No filename selected"), fsel);
 		setup_busy (GTK_WIDGET (fsel), FALSE);
 		return;
@@ -480,29 +499,52 @@ add_file (const char *file)
 	File *f, *oldf;
 	int type;
 	const char *icon;
-	char *msg;
 	int pos;
 	int i;
-	const char *base_name = g_basename (file);;
+	const char *base_name;
+	char *fullname;
+
+	if (file == NULL ||
+	    file[0] == '\0')
+		return;
+
+	fullname = g_strdup (file);
+
+	while (strcmp (fullname, "/") != 0 &&
+	       fullname[0] != '\0' &&
+	       fullname[strlen(fullname)-1] == '/') {
+		fullname[strlen(fullname)-1] = '\0';
+	}
+
+	if (strcmp (fullname, "/") != 0)
+		base_name = g_basename (fullname);
+	else
+		base_name = "/";
 
 	oldf = g_hash_table_lookup (file_ht, base_name);
 	i = 1;
 	while (oldf != NULL) {
 		char *temp;
-		if (strcmp (oldf->name, file) == 0)
+		if (strcmp (oldf->name, fullname) == 0) {
+			g_free (fullname);
 			return;
+		}
 		temp = g_strdup_printf ("%s-%d", base_name, i++);
 		oldf = g_hash_table_lookup (file_ht, temp);
 		g_free (temp);
 	}
 
-	if (access (file, R_OK) != 0)
+	if (access (fullname, R_OK) != 0) {
 		/* FIXME: perhaps an error of some sort ??? */
+		g_free (fullname);
 		return;
+	}
 
-	if (stat (file, &s) < 0)
+	if (stat (fullname, &s) < 0) {
 		/* FIXME: perhaps an error of some sort ??? */
+		g_free (fullname);
 		return;
+	}
 
 	type = 0;
 	icon = NULL;
@@ -517,6 +559,7 @@ add_file (const char *file)
 		number_of_files ++;
 	} else {
 		/* FIXME: error of some sort */
+		g_free (fullname);
 		return;
 	}
 
@@ -524,7 +567,7 @@ add_file (const char *file)
 
 	f = g_new0 (File, 1);
 	f->type = type;
-	f->name = g_strdup (file);
+	f->name = g_strdup (fullname);
 	if (oldf == NULL) {
 		f->base_name = g_strdup (base_name);
 	} else {
@@ -542,11 +585,56 @@ add_file (const char *file)
 
 	g_hash_table_insert (file_ht, f->base_name, f);
 
-	msg = g_strdup_printf (_("Number of files: %d\nNuber of folders: %d"),
-			       number_of_files, number_of_dirs);
-	gtk_label_set_text (GTK_LABEL (status_label), msg);
-	g_free (msg);
+	update_status ();
+
+	g_free (fullname);
 }
+
+static void
+add_ok (GtkWidget *widget, GtkFileSelection *fsel)
+{
+	char *fname;
+
+	g_return_if_fail (GTK_IS_FILE_SELECTION(fsel));
+
+	fname = gtk_file_selection_get_filename (fsel);
+	if (fname == NULL || fname[0] == '\0') {
+		ERRDLGP (_("No filename selected"), fsel);
+		return;
+	} else if (access (fname, F_OK) != 0) {
+		ERRDLGP (_("File does not exists"), fsel);
+		return;
+	}
+	
+	add_file (fname);
+
+	gtk_widget_destroy (GTK_WIDGET (fsel));
+}
+
+static void
+add_cb (GtkWidget *w, gpointer data)
+{
+	GtkFileSelection *fsel;
+
+	fsel = GTK_FILE_SELECTION(gtk_file_selection_new(_("Add file or folder")));
+	if (filename != NULL)
+		gtk_file_selection_set_filename (fsel, filename);
+
+	gtk_signal_connect (GTK_OBJECT (fsel->ok_button), "clicked",
+			    GTK_SIGNAL_FUNC (add_ok), fsel);
+	gtk_signal_connect_object
+		(GTK_OBJECT (fsel->cancel_button), "clicked",
+		 GTK_SIGNAL_FUNC (gtk_widget_destroy), 
+		 GTK_OBJECT (fsel));
+
+	gtk_window_position (GTK_WINDOW (fsel), GTK_WIN_POS_MOUSE);
+
+	gtk_window_set_transient_for (GTK_WINDOW (fsel),
+				      GTK_WINDOW (app));
+
+	gtk_widget_show (GTK_WIDGET (fsel));
+}
+
 
 static void
 drag_data_received (GtkWidget          *widget,
@@ -597,6 +685,10 @@ drag_data_get (GtkWidget          *widget,
 
 /* Menus */
 static GnomeUIInfo file_menu[] = {
+	GNOMEUIINFO_ITEM_NONE
+		(N_("Add file or folder..."),
+		 N_("Add a file or folder to the archive"),
+		 add_cb),
 	GNOMEUIINFO_ITEM_NONE
 		(N_("Create archive..."),
 		 N_("Create a new archive from the items"),
@@ -670,7 +762,7 @@ init_gui (void)
 	gtk_container_add (GTK_CONTAINER (sw), icon_list);
 
 	gtk_tooltips_set_tip (tips, icon_list,
-			      _("Drop files here to add them to an archive."),
+			      _("Drop files here to add them to the archive."),
 			      NULL);
 
 	w = gtk_hseparator_new ();
@@ -714,11 +806,11 @@ init_gui (void)
 			    GTK_SIGNAL_FUNC (drag_data_get), NULL);
 
 
-	status_label = gtk_label_new (_("Number of files: 0\n"
-					"Number of folders: 0"));
+	status_label = gtk_label_new ("");
 	gtk_label_set_justify (GTK_LABEL (status_label), GTK_JUSTIFY_LEFT);
 	gtk_widget_show (status_label);
 	gtk_box_pack_start (GTK_BOX (hbox), status_label, FALSE, FALSE, 0);
+	update_status ();
 
 	gtk_container_border_width (GTK_CONTAINER (vbox), 5);
 
