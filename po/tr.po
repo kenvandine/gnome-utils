@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.2.0\n"
-"POT-Creation-Date: 2000-06-06 22:04+0200\n"
-"PO-Revision-Date: 2000-06-07 13:30+0200\n"
+"POT-Creation-Date: 2000-06-09 09:56+0200\n"
+"PO-Revision-Date: 2000-06-09 09:57+0200\n"
 "Last-Translator: Fatih Demir <kabalak@gmx.net>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -131,8 +131,7 @@ msgid ""
 "contain bad English.\n"
 "http://users.telekabel.nl/hongli/"
 msgstr ""
-"Microsoft Windows'un Harf Harita uygulamasýna benzer bir uygulama."
-"\n"
+"Microsoft Windows'un Harf Harita uygulamasýna benzer bir uygulama.\n"
 "http://users.telekabel.nl/hongli/"
 
 #: gdictsrc/gdict-about.c:40
@@ -466,12 +465,12 @@ msgstr "Yeni"
 msgid "Clear the search window"
 msgstr "Arama penceresini temizle"
 
-#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:565
+#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:610
 #: mini-utils/gw/gw.c:508
 msgid "Add"
 msgstr "Ekle"
 
-#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:491
+#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:536
 #: logview/actions.c:127
 msgid "Remove"
 msgstr "Sil"
@@ -582,35 +581,58 @@ msgstr "Arama baþka bir sayfada zaten çalýþýyor"
 msgid "Search Results"
 msgstr "Arama sonuçlarý"
 
-#: gsearchtool/gsearchtool.c:329
+#: gsearchtool/gsearchtool.c:329 gsearchtool/gsearchtool.c:360
 msgid "Start directory does not exist"
 msgstr "Baþlama dizini yok"
 
-#: gsearchtool/gsearchtool.c:483
+#: gsearchtool/gsearchtool.c:369
+msgid "Search command line"
+msgstr "Arama komutasý"
+
+#: gsearchtool/gsearchtool.c:375
+msgid ""
+"This is the command line that can be used to execute this search from the "
+"console:\n"
+"(Note: to print one file per line rather then null separated,\n"
+"append \"| tr '\\000' '\\n'\" to the line below)"
+msgstr ""
+"Bu aramayý komutadan yapmak için mümkün olan komuta :\n"
+"( Not : satýr satýr yazdýrmak için alta bunlarý ekle :\n"
+"\"|tr '\\000' '\\n'\" )"
+
+#: gsearchtool/gsearchtool.c:462
+msgid "Entry changed called for a non entry option!"
+msgstr "Birim deðiþti sinyali birim olmayan bir se#_ecenek çin verildi !"
+
+#: gsearchtool/gsearchtool.c:528
 msgid "Enable"
 msgstr "Aç"
 
-#: gsearchtool/gsearchtool.c:543
+#: gsearchtool/gsearchtool.c:588
 msgid "Start in directory:"
 msgstr "Bu dizinde baþla :"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:590
 msgid "Browse"
 msgstr "Gez"
 
-#: gsearchtool/gsearchtool.c:576 gsearchtool/gsearchtool.c:659
+#: gsearchtool/gsearchtool.c:621
+msgid "Show Command"
+msgstr "Komutalarý göster"
+
+#: gsearchtool/gsearchtool.c:626 gsearchtool/gsearchtool.c:709
 msgid "Start"
 msgstr "Baþla"
 
-#: gsearchtool/gsearchtool.c:577 gsearchtool/gsearchtool.c:660
+#: gsearchtool/gsearchtool.c:627 gsearchtool/gsearchtool.c:710
 msgid "Stop"
 msgstr "Dur"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:660
 msgid "Nothing to locate"
 msgstr "Bulunacak bir þey yok"
 
-#: gsearchtool/gsearchtool.c:638
+#: gsearchtool/gsearchtool.c:688
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -621,31 +643,31 @@ msgstr ""
 "amma XYZ'li bir metin aratýrsan o zaman sadece tam dizinlemeleriyle eþ gelen "
 "dosyalar gösterilecektir ."
 
-#: gsearchtool/gsearchtool.c:647
+#: gsearchtool/gsearchtool.c:697
 msgid "Locate file: "
 msgstr "Dosyayý bul :"
 
-#: gsearchtool/gsearchtool.c:681
+#: gsearchtool/gsearchtool.c:731
 msgid "Full find (find)"
 msgstr "Tam bulma ( 'find )"
 
-#: gsearchtool/gsearchtool.c:683
+#: gsearchtool/gsearchtool.c:733
 msgid "Quick find (locate)"
 msgstr "Çabuk bulma ( 'locate )"
 
-#: gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:754
 msgid "The Gnome Search Tool"
 msgstr "Gnome Arama uygulamasý"
 
-#: gsearchtool/gsearchtool.c:705
+#: gsearchtool/gsearchtool.c:755
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "Tel'if hakký (C) 1998,2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:707
+#: gsearchtool/gsearchtool.c:757
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Unix'in find/grep/locate uygulamalarý için bir kullanýcý yüzeyi"
 
-#: gsearchtool/gsearchtool.c:765
+#: gsearchtool/gsearchtool.c:815
 msgid "Gnome Search Tool"
 msgstr "Gnome arama uygulamasý"
 
@@ -1353,9 +1375,9 @@ msgid ""
 "log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 msgstr ""
 "Bu uygulama GNOME projesinin  bir parçasýdý. Logview hýc bir garantiyle "
-"gelmez. Bu bedava bir uygulamadý e bu uygulamayý belirli þartlar altýnda "
-" ( GNU General Public License'e göre ) daðýtabilirsin. Kayýt ikonasý "
-"Tuomas Kuosmanen ( nam-ý diðer tigert ) 'in bir eseridir."
+"gelmez. Bu bedava bir uygulamadý e bu uygulamayý belirli þartlar altýnda  ( "
+"GNU General Public License'e göre ) daðýtabilirsin. Kayýt ikonasý Tuomas "
+"Kuosmanen ( nam-ý diðer tigert ) 'in bir eseridir."
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
 #: logview/about.c:48
@@ -1564,8 +1586,9 @@ msgid ""
 "%s is not user readable. Probably has read-only permission. Either run the "
 "program as root or ask the sysadmin to change the permissions on the file."
 msgstr ""
-"%s kullanýcýlar tarafýndan okunamaz. Büyük bir ihtimalle sadece okuma hakký vardýr."
-"LÜtfen ya uygulamayý 'root' olarak çalýþtýr yada bu dosyanýn eriþim haklarýnýn deðiþtirilmesini iste."
+"%s kullanýcýlar tarafýndan okunamaz. Büyük bir ihtimalle sadece okuma hakký "
+"vardýr.LÜtfen ya uygulamayý 'root' olarak çalýþtýr yada bu dosyanýn eriþim "
+"haklarýnýn deðiþtirilmesini iste."
 
 #: logview/logrtns.c:202
 #, c-format
@@ -1700,7 +1723,8 @@ msgstr "Tarih : "
 
 #: logview/logview.c:611
 msgid "Too many open logs. Close one and try again"
-msgstr "Çok fazla kayýt dosyasý açýk. Lütfen bir tanesini kapat ve yeniden dene"
+msgstr ""
+"Çok fazla kayýt dosyasý açýk. Lütfen bir tanesini kapat ve yeniden dene"
 
 #: logview/logview.c:664
 msgid "Open new logfile"
@@ -1885,9 +1909,8 @@ msgid ""
 "This document read document from one or more other document. Please, choose "
 "these documents."
 msgstr ""
-"Bu doküman baþka dokümanlardan bilgilerini okuyor. Lütfen önceden bu dokümanlarý "
-"kapat ."
-
+"Bu doküman baþka dokümanlardan bilgilerini okuyor. Lütfen önceden bu "
+"dokümanlarý kapat ."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:17
 msgid "Available documents"
@@ -1935,8 +1958,8 @@ msgid ""
 "You can create one or more views for this document. Note that you have to "
 "create at least one view."
 msgstr ""
-"Bu doküman için bir yada daha fazla bakýþ seçebilirsin. Fakat en azýndan "
-"bir bakýþý yaratmak zorunda olduðunu unutma ."
+"Bu doküman için bir yada daha fazla bakýþ seçebilirsin. Fakat en azýndan bir "
+"bakýþý yaratmak zorunda olduðunu unutma ."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:27
 msgid "Available views"
