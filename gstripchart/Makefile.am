@@ -18,7 +18,8 @@ gstripchart_LDADD =					\
 	$(GNOMEUI_LIBS)					\
 	$(INTLLIBS)					\
 	$(LIBGTOP_LIBS)					\
-	$(LIBGTOP_EXTRA_LIBS)
+	$(LIBGTOP_EXTRA_LIBS)				\
+	$(GNOME_APPLETS_LIBS)
 
 EXTRA_DIST = 						\
 	gnome-stripchart.png				\

@@ -38,6 +38,9 @@
 #include <X11/Xlib.h>	/* for the ex-pee-arse-geometry routine */
 #include <X11/Xutil.h>	/* for flags returned above */
 
+#ifdef HAVE_GNOME_APPLET
+#include <applet-widget.h>
+#endif
 #include <gnome.h>
 
 #define NELS(a) (sizeof(a) / sizeof(*a))
@@ -71,7 +74,7 @@ static int minor_tick=0, major_tick=0;
 static int geometry_flags;
 static int geometry_w=200, geometry_h=50;
 static int geometry_x, geometry_y;
-static int root_width, root_height;
+static int root_width=1, root_height;
 static int update_count = 0;
 static int update_chart = 0;
 
@@ -293,11 +296,11 @@ Gtop_data gtop_vars[] =
   { "idletime",         'D', &gtop_uptime,  GTOP_OFF(uptime.idletime)       },
 
   /* glibtop loadavg stats */
-  { "loadavg_running",  'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_running)    },
-  { "loadavg_tasks",    'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_tasks)      },
-  { "loadavg_1m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[0])    },
-  { "loadavg_5m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[1])    },
-  { "loadavg_15m",      'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[2])    },
+  { "load_running",     'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_running)    },
+  { "load_tasks",       'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_tasks)      },
+  { "load_1m",          'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[0])    },
+  { "load_5m",          'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[1])    },
+  { "load_15m",         'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[2])    },
 
   /* netload stats -- Linux-specific for the time being */
   { "net_pkts_in",      'L', &gtop_netload, GTOP_OFF(netload.packets_in)    },
@@ -609,12 +612,13 @@ static Param_glob chart_glob, slider_glob;
 static void no_display(void);
 static void numeric_with_ident(void);
 static void numeric_with_graph(void);
-static void gtk_graph(void);
+static void gnome_graph(void);
+static void applet(void);
 
 /*
  * The display variable points to the display proccessing routine.
  */
-static void (*display)(void) = gtk_graph;
+static void (*display)(void) = gnome_graph;
 
 /*
  * defns_error -- reports error and exits during config file parsing.
@@ -781,20 +785,6 @@ read_param_defns(Param_glob *pgp)
 		minor_tick = atoi(val);
 	      else if (streq(key, "major_ticks"))
 		major_tick = atoi(val);
-	      else if (streq(key, "type"))
-		{
-		  if (streq("none", val))
-		    display = no_display;
-		  else if (streq("text", val))
-		    display = numeric_with_ident;
-		  else if (streq("graph", val))
-		    display = numeric_with_graph;
-		  else if (streq("gtk", val))
-		    display = gtk_graph;
-		  else
-		    defns_error(
-		      fn, lineno, _("invalid display type: %s"), val);
-		}
 	      /* An "identifier" or "begin" keyword introduces a new
                  parameter.  We bump the params count, and allocate
                  and initialize a new Param struct with default
@@ -833,8 +823,9 @@ read_param_defns(Param_glob *pgp)
 	      else if (streq(key, "color"))
 		{
 		  p[params-1]->color_name = strdup(val);
-		  if (!gdk_color_parse(val, &p[params-1]->gdk_color))
-		    defns_error(fn, lineno, _("unrecognized color: %s"), val);
+		  if (display == applet || display == gnome_graph)
+		    if (!gdk_color_parse(val, &p[params-1]->gdk_color))
+		      defns_error(fn,lineno, _("unrecognized color: %s"), val);
 		}
 	      else if (streq(key, "lights"))
 		{
@@ -847,11 +838,12 @@ read_param_defns(Param_glob *pgp)
 		      trimtb(cname);
 		      pp->led_color = realloc(
 			pp->led_color, (n+1) * sizeof(*pp->led_color));
-		      if (!gdk_color_parse(cname, &pp->led_color[n]))
-			{
-			  defns_error(
-			    fn, lineno, _("unrecognized color: %s"), cname);
-			}
+		      if (display == applet || display == gnome_graph)
+			if (!gdk_color_parse(cname, &pp->led_color[n]))
+			  {
+			    defns_error(
+			      fn, lineno, _("unrecognized color: %s"), cname);
+			  }
 		      free(cname);
 		    }
 		  pp->num_leds = n;
@@ -956,6 +948,30 @@ cap(double x)
   return ranges[j] * d;
 }
 
+#ifdef HAVE_LIBGTOP
+/*
+ * glibtop_get_swap_occasionally -- like glibtop_get_swap, except that
+ * glibtop_get_swap only gets called at most once every 15 seconds.
+ * This ugly hack was put in because on Linux, reading /proc/meminfo
+ * to get swap informetion takes ~ 10ms, and this was causing
+ * gstripchart to chew up significant CPU time.
+ */
+static void
+glibtop_get_swap_occasionally(glibtop_swap *swap)
+{
+  time_t time_now = time(NULL);
+  static time_t time_last;
+  static glibtop_swap swap_last;
+
+  if ((time_now - time_last) > 15)
+    {
+      glibtop_get_swap(&swap_last);
+      time_last = time_now;
+    }
+  *swap = swap_last;
+}
+#endif
+
 static void
 update_values(Param_glob *pgp, Param_glob *slave_pgp)
 {
@@ -973,7 +989,7 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
   if (gtop_mem)
     glibtop_get_mem(&pgp->gtop_now.mem);
   if (gtop_swap)
-    glibtop_get_swap(&pgp->gtop_now.swap);
+    glibtop_get_swap_occasionally(&pgp->gtop_now.swap);
   if (gtop_uptime)
     glibtop_get_uptime(&pgp->gtop_now.uptime);
   if (gtop_loadavg)
@@ -1170,6 +1186,17 @@ config_handler(GtkWidget *widget, GdkEventConfigure *e, gpointer whence)
 {
   int p, c, w = widget->allocation.width, h = widget->allocation.height;
 
+#ifdef HAVE_GNOME_APPLET
+  if (display == applet)
+    {
+      AppletWidget *app = APPLET_WIDGET(widget->parent->parent);
+      GNOME_Panel_OrientType po = applet_widget_get_panel_orient(app);
+      GNOME_Panel_SizeType   ps = applet_widget_get_panel_size(app);
+      int fs = applet_widget_get_free_space(app);
+      printf("panel: %d (%c), %d (%c), %d\n",
+	po, "UDLR"[po], ps, "TNLH"[ps], fs);
+    }
+#endif
   /* On the initial configuration event, get the window colormap and
      allocate a color in it for each parameter color. */
   if (colormap == NULL)
@@ -1277,6 +1304,7 @@ chart_expose_handler(GtkWidget *widget, GdkEventExpose *event)
 {
   int p, w = widget->allocation.width, h = widget->allocation.height;
 
+  //printf("exposed: %d,%d\n", w, h);
   /* Plot as much of the value history as is available and as the
      window will hold.  Plot points from newest to oldest until we run
      out of data or the window is full. */
@@ -1335,10 +1363,10 @@ chart_timer_handler(GtkWidget *widget)
       /* Shift the pixmap one pixel left, and clear the RHS  */
       gdk_window_copy_area(
 	pixmap, widget->style->fg_gc[GTK_WIDGET_STATE(widget)], 0, 0,
-	pixmap, 1, 0, w-1, h);
+	pixmap, 1,0, w-1,h);
       gdk_draw_rectangle(
 	pixmap, widget->style->bg_gc[GTK_WIDGET_STATE(widget)],
-	TRUE, w-1, 0, 1, h);
+	TRUE, w-1,0, 1,h);
       for (p = chart_glob.params; p--; )
 	if (chart_glob.parray[p]->active && !chart_glob.parray[p]->is_led)
 	  {
@@ -1730,11 +1758,11 @@ save_handler(GnomeClient *client,
 }
 
 /*
- * gtk_graph -- the display processor for the main, Gtk-based
+ * gnome_graph -- the display processor for the main, Gtk-based
  * graphical display. 
  */
 static void
-gtk_graph(void)
+gnome_graph(void)
 {
   GnomeClient *client;
   GtkWidget *frame, *h_box, *drawing;
@@ -1827,6 +1855,109 @@ gtk_graph(void)
   gtk_main();
 }
 
+#ifdef HAVE_GNOME_APPLET
+static void
+change_orient_handler(AppletWidget *applet, GNOME_Panel_OrientType orient)
+{
+  int fs = applet_widget_get_free_space(applet);
+  printf("orient: %d (%c); fs=%d\n", orient, "UDLR"[orient], fs);
+}
+
+static void
+change_size_handler(AppletWidget *applet, GNOME_Panel_SizeType size)
+{
+  int fs = applet_widget_get_free_space(applet);
+  printf("size: %d (%c); fs=%d\n", size, "TNLH"[size], fs);
+}
+
+static void
+change_pos_handler(AppletWidget *applet, int x, int y)
+{
+  printf("pos: %d, %d\n", x, y);
+}
+
+/*
+ * applet -- a display routine like gnome_graph, but in an applet
+ * rather than a gnome frame. 
+ */
+static void
+applet(void)
+{
+  GtkWidget *frame, *h_box, *drawing;
+  const int slide_w=10;		/* Set the slider width. */
+
+  /* Create a drawing area, show it, and set its expose event
+     handler. */
+  drawing = gtk_drawing_area_new();
+  //gtk_drawing_area_size(GTK_DRAWING_AREA(drawing), geometry_w, geometry_h);
+  gtk_widget_set_events(drawing, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK);
+  gtk_widget_show(drawing);
+
+  h_box = gtk_hbox_new(FALSE, 0);
+  gtk_box_pack_start(GTK_BOX(h_box), drawing, TRUE, TRUE, 0);
+
+  gtk_signal_connect(GTK_OBJECT(drawing),
+    "configure_event", (GtkSignalFunc)config_handler, "draw");
+  gtk_signal_connect(GTK_OBJECT(drawing),
+    "expose_event", (GtkSignalFunc)chart_expose_handler, NULL);
+
+  if (include_slider)
+    {
+      GtkWidget *sep = gtk_vseparator_new();
+      GtkWidget *slider = gtk_drawing_area_new();
+
+      gtk_box_pack_start(GTK_BOX(h_box), sep, FALSE, TRUE, 0);
+      gtk_widget_show(sep);
+
+      gtk_drawing_area_size(GTK_DRAWING_AREA(slider), slide_w, geometry_h);
+      gtk_box_pack_start(GTK_BOX(h_box), slider, FALSE, FALSE, 0);
+      gtk_widget_show(slider);
+
+      gtk_widget_set_events(slider, GDK_EXPOSURE_MASK);
+      gtk_signal_connect(GTK_OBJECT(slider),
+        "expose_event", (GtkSignalFunc)slider_expose_handler, NULL);
+
+      gtk_timeout_add((int)(1000 * slider_interval),
+        (GtkFunction)slider_timer_handler, slider);
+    }
+  gtk_widget_show(h_box);
+
+  /* Create a top-level window. Set the title, minimum size (_usize),
+     initial size (_default_size), and establish delete and destroy
+     event handlers. */
+  frame = applet_widget_new(prog_name);
+  //gtk_widget_set_usize(frame, 1, 1); /* min_w, min_h */
+  //gtk_window_set_default_size(GTK_WINDOW(frame), geometry_w, geometry_h);
+  gtk_signal_connect(GTK_OBJECT(frame),
+    "destroy", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
+  gtk_signal_connect(GTK_OBJECT(frame),
+    "delete_event", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
+
+  gtk_signal_connect(GTK_OBJECT(frame),
+    "change_size", (GtkSignalFunc)change_size_handler, NULL);
+  gtk_signal_connect(GTK_OBJECT(frame),
+    "change_orient", (GtkSignalFunc)change_orient_handler, NULL);
+  gtk_signal_connect(GTK_OBJECT(frame),
+    "change_position", (GtkSignalFunc)change_pos_handler, NULL);
+
+  /* Set up the pop-up menu handler.  Pack the whole works into the
+     top-level applet. */
+  gtk_signal_connect(GTK_OBJECT(frame),
+    "button_press_event", GTK_SIGNAL_FUNC(click_handler), NULL);
+  applet_widget_add(APPLET_WIDGET(frame), h_box);
+
+  /* Create timer events for the drawing and slider widgets. */
+  gtk_timeout_add((int)(1000 * chart_interval),
+    (GtkFunction)chart_timer_handler, drawing);
+
+  /* Show the top-level window and enter the main event loop. */
+  gtk_widget_show(frame);
+  applet_widget_gtk_main();
+}
+#else
+static void applet(void) { gnome_graph(); }
+#endif
+
 static int
 proc_arg(int opt, const char *arg)
 {
@@ -1840,12 +1971,14 @@ proc_arg(int opt, const char *arg)
     case 'M': include_menubar = 1; break;
     case 'S': include_slider = 0; break;
     case 'g':
-      geometry_flags = XParseGeometry(arg,
-	&geometry_x, &geometry_y, &geometry_w, &geometry_h);
+      geometry_flags = XParseGeometry(
+	arg, &geometry_x, &geometry_y, &geometry_w, &geometry_h);
       break;
     case 't':
       if (streq("gtk", arg))
-	display = gtk_graph;
+	display = gnome_graph;
+      else if (streq("applet", arg))
+	display = applet;
       else
 	{
 	  gnome_client_disable_master_connection();
@@ -1876,6 +2009,7 @@ popt_arg_extractor(
        * although the long options aren't shown, all of the Gnome
        * internal options are. */
       poptPrintUsage(state, stderr, 0);
+      exit(EXIT_FAILURE);
     }
 }
 
@@ -1904,7 +2038,6 @@ poptOption arglist[] =
   { NULL,             '\0', 0, NULL, 0 }
 };
 
-
 /*
  * main -- for the stripchart display program.
  */
@@ -1914,25 +2047,36 @@ main(int argc, char **argv)
   int c;
   poptContext popt_context;
 
-  /* Initialize the i18n stuff.  If the gtop library is linked in,
-     initialize that as well.  Let gnome_init initialize the Gnome and
-     Gtk stuff. */
+  /* Initialize the i18n libraries and the gtop library if it is
+     linked in.  The applet_widget_init routine performs applet,
+     gnome, and gtk initialization, and makes the first of two passes
+     through any command line arguments. */
   bindtextdomain(PACKAGE, GNOMELOCALEDIR);
   textdomain(PACKAGE);
 #ifdef HAVE_LIBGTOP
   glibtop_init_r(&glibtop_global_server, 0, 0);
 #endif
 
-  /* Arrange for gnome_init to parse the command line options.  The
-     only option that matters here is the configuration filename.  We
-     then process whatever configuration file is set, either by
-     default or as specified on the command line. */
-  gnome_init_with_popt_table(
-    prog_name, prog_version, argc, argv, arglist, 0, &popt_context);
+  /* Make an initial scan of the command line arguments to get the
+     configuration file name and the type of display requested. */
+  popt_context = poptGetContext(prog_name, argc, argv, arglist, 0);
+  while ((c = poptGetNextOpt(popt_context)) >= 0)
+    proc_arg(c, poptGetOptArg(popt_context));
 
-  root_width = 1;
-  if (display == gtk_graph)
-    gdk_window_get_geometry(NULL, NULL, NULL, &root_width, &root_height, NULL);
+  /* Now we know the display type, and do applet initialization for
+     applets and standard gnome initialization for anything else.  We
+     have to do one or the other so that the color name translation
+     won't dump core. */
+#ifdef HAVE_GNOME_APPLET
+  if (display == applet)
+    applet_widget_init(prog_name, VERSION, argc, argv, arglist, 0, NULL);
+#endif
+  if (display == gnome_graph)
+    gnome_init_with_popt_table(
+      prog_name, VERSION, argc, argv, arglist, 0, NULL);
+  if (display == applet || display == gnome_graph)
+    gdk_window_get_geometry(
+      NULL, NULL, NULL, &root_width, &root_height, NULL);
 
   chart_glob.max_val = root_width;
   chart_glob.new_val = chart_glob.num_val = 0;
@@ -1943,13 +2087,12 @@ main(int argc, char **argv)
   /* Next, we re-parse the command line options so that they'll
      override any values set in the configuration file. */
   popt_context = poptGetContext(prog_name, argc, argv, arglist, 0);
-  while ((c = poptGetNextOpt(popt_context)) != -1)
-    if (c > 0)
-      proc_arg(c, poptGetOptArg(popt_context));
+  while ((c = poptGetNextOpt(popt_context)) >= 0)
+    proc_arg(c, poptGetOptArg(popt_context));
 
   /* Clone chart_param into a new slider_param array, then override
      the next, last, and val arrays and associated sizing values. */
-  if (display == gtk_graph && include_slider)
+  if (include_slider && (display==gnome_graph || display==applet))
     {
       int p;
       slider_glob = chart_glob;

@@ -1,3 +1,25 @@
+1999-10-24  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c Added some applet code, currently #ifdef'd out.
+	(gtop_vars): In the interest of brevity, renamed libgtop parameter
+	names in the loadavg family from loadavg_whatever to
+	load_whatever.
+
+	* gstripchart.conf (Busy): Use cpu_total and cpu_idle to compute
+	CPU busy percentage.  This requires much less numerical precision
+	than the former method of using uptime and idletime.
+
+	* gstripchart.c (glibtop_get_swap_occasionally): New routine to
+	reduce the amount of CPU time gstripchart uses by only reading
+	swap statistics once per 15 seconds.
+
+1999-09-26  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (read_param_defns): Don't allow the display type
+	to be specified in the configuration file.  It's too hard to get
+	the initialization, color name scanning, and command line
+	overrides to play together nicely.
+
 1999-08-29  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.conf (end): Change configuration file to use libgtop
@@ -6,7 +28,7 @@
 	Change PPP status monitor to detect a ppp pid file rather than
 	reading /proc.
 
-	* gstripchart.c Change status_outline default to off.
+	* gstripchart.c: Change status_outline default to off.
 	(update_values): Omit values generated during the
 	first three passes from the history array.  This prevents
 	initialization spikes from affecting the parameter range
@@ -63,8 +85,8 @@
 	Also allow any number of status indicator colors to be specified.
 
 	* gstripchart.c (num_op): Added a stripbl() call to eliminate an
-	expression parsing error when some types of num's were followed by
-	whitespace.
+	expression parsing error when some types of numbers were followed
+	by whitespace.
 
 1999-04-10  John Kodis  <kodis@jagunet.com>
 
