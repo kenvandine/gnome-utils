@@ -9,29 +9,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2003-05-23 15:24+0200\n"
-"PO-Revision-Date: 2003-05-23 15:24+0200\n"
+"POT-Creation-Date: 2003-05-31 03:13+0200\n"
+"PO-Revision-Date: 2003-05-31 03:14+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gdialog/guage.c:78
-msgid "Gdialog progressbar"
-msgstr "Gdialog-förloppsmätare"
-
-#: gdialog/guage.c:78
-msgid "Indicates the percentage specified at the standard input"
-msgstr "Visar det procenttal som anges på standard in"
-
-#: gdialog/inputbox.c:84
-msgid "GDialog Entry"
-msgstr "GDialog-fält"
-
-#: gdialog/inputbox.c:84
-msgid "Enter the text"
-msgstr "Ange texten"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -400,7 +384,7 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Använd smart uppslagning"
 
-#: gfloppy/gfloppy.desktop.in.h:1
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy Formatter"
 msgstr "Diskettformaterare"
 
@@ -628,22 +612,24 @@ msgstr "×"
 
 #: gfloppy/src/gfloppy2.glade.h:3
 msgid ""
-"<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
-"be installed in order to make a thorough DOS (fat) formatting."
+"<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
+"system.  It must be installed in order to perform a thorough DOS (fat) "
+"formatting.</i></small>"
 msgstr ""
-"<b>Observera</b>: Verktyget mbadblocks är inte installerat på detta system. "
-"Det måste installeras för kunna göra en grundlig DOS(fat)-formatering (fat)."
+"<small><i><b>Observera</b>: Verktyget mbadblocks är inte installerat på "
+"detta system. Det måste installeras för kunna göra en grundlig DOS(fat)-"
+"formatering (fat).</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem settings</span>"
+msgid "<span weight=\"bold\">Filesystem Settings</span>"
 msgstr "<span weight=\"bold\">Filsystemsinställningar</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting mode</span>"
+msgid "<span weight=\"bold\">Formatting Mode</span>"
 msgstr "<span weight=\"bold\">Formateringsläge</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical settings</span>"
+msgid "<span weight=\"bold\">Physical Settings</span>"
 msgstr "<span weight=\"bold\">Fysiska inställningar</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:7
@@ -662,17 +648,13 @@ msgstr "Dubbel densitet 5,25\" (360 kB)"
 msgid "File system _type:"
 msgstr "Filsystems_typ:"
 
-#: gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy _density:"
 msgstr "_Diskettdensitet:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "Floppy de_vice:"
 msgstr "Diskett_enhet:"
-
-#: gfloppy/src/gfloppy2.glade.h:13
-msgid "Floppy formatter"
-msgstr "Diskettformaterare"
 
 #: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 3.5\" (1.44MB)"
@@ -715,12 +697,12 @@ msgstr ""
 "Varken mke2fs- eller mkdosfs/mformat-programmen är installerade. Du kan inte "
 "formatera en diskett utan något av dem."
 
-#: gfloppy/src/main.c:155 gfloppy/src/main.c:199
+#: gfloppy/src/main.c:156 gfloppy/src/main.c:200
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Kunde inte öppna enhet %s, formateringen kan inte fortsätta."
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
+#: gfloppy/src/main.c:159 gfloppy/src/main.c:203
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -729,7 +711,7 @@ msgstr ""
 "Enheten %s är frånkopplad.\n"
 "Anslut enheten för att fortsätta."
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
+#: gfloppy/src/main.c:162 gfloppy/src/main.c:206
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -740,7 +722,7 @@ msgstr ""
 "möjlig.\n"
 "Kontakta din systemadministratör angående erhållning av skrivrättigheter."
 
-#: gfloppy/src/main.c:391
+#: gfloppy/src/main.c:395
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -749,15 +731,15 @@ msgstr ""
 "Kunde inte visa hjälp för diskettformateraren.\n"
 "%s"
 
-#: gfloppy/src/main.c:425
+#: gfloppy/src/main.c:429
 msgid "The volume name can't contain any blank space."
 msgstr "Volymnamnet kan inte innehålla blanksteg."
 
-#: gfloppy/src/main.c:474
+#: gfloppy/src/main.c:480
 msgid "The device to format"
 msgstr "Enheten som skall formateras"
 
-#: gfloppy/src/main.c:475
+#: gfloppy/src/main.c:481
 msgid "DEVICE"
 msgstr "ENHET"
 
@@ -816,9 +798,9 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 för linux egna filsystem eller fat för DOS-filsystemet."
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:836
-#: gsearchtool/gsearchtool.c:1160 gsearchtool/gsearchtool.c:2065
-#: gsearchtool/gsearchtool.c:2085
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
+#: gsearchtool/gsearchtool.c:2189 gsearchtool/gsearchtool.c:2209
 msgid "Search for Files"
 msgstr "Sök efter filer"
 
@@ -882,68 +864,68 @@ msgstr "Följ symboliska länkar"
 msgid "Include other filesystems"
 msgstr "Inkludera andra filsystem"
 
-#: gsearchtool/gsearchtool.c:522 gsearchtool/gsearchtool.c:1145
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
 msgid "No files found"
 msgstr "Inga filer hittades"
 
-#: gsearchtool/gsearchtool.c:615
+#: gsearchtool/gsearchtool.c:616
 msgid "Entry changed called for a non entry option!"
 msgstr "Poständring anropades för ett alternativ som inte är en post!"
 
-#: gsearchtool/gsearchtool.c:781
+#: gsearchtool/gsearchtool.c:872
 #, c-format
 msgid "The animation file is missing or invalid: %s"
 msgstr "Animationsfilen saknas eller är ogiltig: %s"
 
-#: gsearchtool/gsearchtool.c:836
+#: gsearchtool/gsearchtool.c:927
 msgid "Searching..."
 msgstr "Söker..."
 
-#: gsearchtool/gsearchtool.c:882
+#: gsearchtool/gsearchtool.c:973
 msgid "Set the text of 'Name contains'"
 msgstr "Ställ in texten för \"Namnet innehåller\""
 
-#: gsearchtool/gsearchtool.c:883
+#: gsearchtool/gsearchtool.c:974
 msgid "Set the text of 'Look in folder'"
 msgstr "Ställ in texten för \"Leta i mappen\""
 
-#: gsearchtool/gsearchtool.c:884
+#: gsearchtool/gsearchtool.c:975
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sortera filer efter ett av följande: namn, mapp, storlek, typ eller datum"
 
-#: gsearchtool/gsearchtool.c:885
+#: gsearchtool/gsearchtool.c:976
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 "Ställ in sorteringsordningen till fallande. Standardalternativet är stigande"
 
-#: gsearchtool/gsearchtool.c:886
+#: gsearchtool/gsearchtool.c:977
 msgid "Automatically start a search"
 msgstr "Starta en sökning automatiskt"
 
-#: gsearchtool/gsearchtool.c:891
+#: gsearchtool/gsearchtool.c:982
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Välj begränsningen \"%s\""
 
-#: gsearchtool/gsearchtool.c:997
+#: gsearchtool/gsearchtool.c:1088
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ogiltigt alternativ skickat till sortby-kommandoradsargument."
 
-#: gsearchtool/gsearchtool.c:1133
+#: gsearchtool/gsearchtool.c:1224
 msgid "(stopped)"
 msgstr "(stoppad)"
 
-#: gsearchtool/gsearchtool.c:1149
+#: gsearchtool/gsearchtool.c:1240
 msgid "One file found"
 msgstr "En fil hittades"
 
-#: gsearchtool/gsearchtool.c:1152
+#: gsearchtool/gsearchtool.c:1243
 #, c-format
 msgid "%d files found"
 msgstr "%d filer hittades"
 
-#: gsearchtool/gsearchtool.c:1253
+#: gsearchtool/gsearchtool.c:1344
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -951,7 +933,7 @@ msgstr ""
 "Under sökningen rapporterades följande fel.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1257
+#: gsearchtool/gsearchtool.c:1348
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -959,28 +941,28 @@ msgstr ""
 "\n"
 "...För många fel för att visa..."
 
-#: gsearchtool/gsearchtool.c:1270
+#: gsearchtool/gsearchtool.c:1361
 msgid "Search Errors"
 msgstr "Sökfel"
 
-#: gsearchtool/gsearchtool.c:1307 gsearchtool/gsearchtool.c:1328
+#: gsearchtool/gsearchtool.c:1398 gsearchtool/gsearchtool.c:1419
 msgid "Search for Files Error"
 msgstr "Fel vid sökning efter filer"
 
-#: gsearchtool/gsearchtool.c:1418
+#: gsearchtool/gsearchtool.c:1509
 msgid "Search Rule Value Entry"
 msgstr "Värdepost för sökregel"
 
-#: gsearchtool/gsearchtool.c:1419
+#: gsearchtool/gsearchtool.c:1510
 msgid "Enter a value for search rule"
 msgstr "Ange ett värde för sökregeln"
 
-#: gsearchtool/gsearchtool.c:1457
+#: gsearchtool/gsearchtool.c:1548
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klicka för att ta bort regeln \"%s\""
 
-#: gsearchtool/gsearchtool.c:1509
+#: gsearchtool/gsearchtool.c:1604
 msgid "A_vailable options:"
 msgstr "_Tillgängliga alternativ:"
 
@@ -989,7 +971,7 @@ msgstr "_Tillgängliga alternativ:"
 # Sun vill ha "Sökningsregelmeny"
 # Jag vill ha "Sökregelmeny"
 #
-#: gsearchtool/gsearchtool.c:1522
+#: gsearchtool/gsearchtool.c:1617
 msgid "Search Rules Menu"
 msgstr "Sökregelmeny"
 
@@ -1001,143 +983,141 @@ msgstr "Sökregelmeny"
 # Sun vill ha "sökningsregel"
 # Jag vill ha "sökregel"
 #
-#: gsearchtool/gsearchtool.c:1523
+#: gsearchtool/gsearchtool.c:1618
 msgid "Select a search rule from the menu"
 msgstr "Välj en sökregel från menyn"
 
-#: gsearchtool/gsearchtool.c:1555
+#: gsearchtool/gsearchtool.c:1650
 msgid "S_earch results:"
 msgstr "S_ökresultat:"
 
-#: gsearchtool/gsearchtool.c:1635
+#: gsearchtool/gsearchtool.c:1730
 msgid "Name"
 msgstr "Namn"
 
-#: gsearchtool/gsearchtool.c:1655
+#: gsearchtool/gsearchtool.c:1750
 msgid "Folder"
 msgstr "Mapp"
 
-#: gsearchtool/gsearchtool.c:1666
+#: gsearchtool/gsearchtool.c:1761
 msgid "Size"
 msgstr "Storlek"
 
-#: gsearchtool/gsearchtool.c:1676
+#: gsearchtool/gsearchtool.c:1771
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1686
+#: gsearchtool/gsearchtool.c:1781
 msgid "Date Modified"
 msgstr "Modifieringsdatum"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1844
 msgid "_Name contains:"
 msgstr "_Namnet innehåller:"
 
-# SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1749 gsearchtool/gsearchtool.c:1750
-msgid "File Name Entry"
-msgstr "Filnamnspost"
+#: gsearchtool/gsearchtool.c:1859 gsearchtool/gsearchtool.c:1860
+msgid "Name Contains Entry"
+msgstr "Namnet innehåller posten"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1749 gsearchtool/gsearchtool.c:1750
+#: gsearchtool/gsearchtool.c:1859 gsearchtool/gsearchtool.c:1860
 msgid "Enter the file name you want to search"
 msgstr "Ange namnet på den fil som du vill söka"
 
-#: gsearchtool/gsearchtool.c:1762
+#: gsearchtool/gsearchtool.c:1872
 msgid "_Look in folder:"
 msgstr "_Leta i mappen:"
 
-#: gsearchtool/gsearchtool.c:1768
+#: gsearchtool/gsearchtool.c:1878
 msgid "Browse"
 msgstr "Bläddra"
 
-# SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1777 gsearchtool/gsearchtool.c:1778
-msgid "Starting folder entry"
-msgstr "Startmappspost"
+#: gsearchtool/gsearchtool.c:1887 gsearchtool/gsearchtool.c:1888
+msgid "Look in Folder Entry"
+msgstr "Leta i mapposten"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1777 gsearchtool/gsearchtool.c:1778
+#: gsearchtool/gsearchtool.c:1887 gsearchtool/gsearchtool.c:1888
 msgid "Enter the folder name where you want to start the search"
 msgstr "Ange namnet på den mapp där du vill påbörja sökningen"
 
-#: gsearchtool/gsearchtool.c:1797
+#: gsearchtool/gsearchtool.c:1907
 msgid "Show more _options"
 msgstr "Visa fler _alternativ"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1957
 msgid "Click to Start the search"
 msgstr "Klicka om du vill starta sökningen"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1848
+#: gsearchtool/gsearchtool.c:1958
 msgid "Click to Stop the search"
 msgstr "Klicka om du vill stoppa sökningen"
 
-#: gsearchtool/gsearchtool.c:2081
+#: gsearchtool/gsearchtool.c:2205
 msgid "Cannot initialize bonobo."
 msgstr "Kan inte initiera bonobo."
 
-#: gsearchtool/gsearchtool-callbacks.c:45
+#: gsearchtool/gsearchtool-callbacks.c:47
 msgid "_Open"
 msgstr "_Öppna"
 
-#: gsearchtool/gsearchtool-callbacks.c:49
+#: gsearchtool/gsearchtool-callbacks.c:51
 msgid "O_pen Folder"
 msgstr "Ö_ppna mapp"
 
-#: gsearchtool/gsearchtool-callbacks.c:54
+#: gsearchtool/gsearchtool-callbacks.c:56
 msgid "_Save Results As..."
 msgstr "_Spara resultat som..."
 
-#: gsearchtool/gsearchtool-callbacks.c:107
+#: gsearchtool/gsearchtool-callbacks.c:109
 msgid "Can't Display Help"
 msgstr "Kan inte visa hjälp"
 
-#: gsearchtool/gsearchtool-callbacks.c:297
+#: gsearchtool/gsearchtool-callbacks.c:312
 #, c-format
 msgid "This will open %d separate files. Are you sure you want to do this?"
 msgstr ""
 "Detta kommer att öppna %d separata filer. Är du säker att du vill göra detta?"
 
-#: gsearchtool/gsearchtool-callbacks.c:300
+#: gsearchtool/gsearchtool-callbacks.c:315
 #, c-format
 msgid "Open %d Files?"
 msgstr "Öppna %d filer?"
 
-#: gsearchtool/gsearchtool-callbacks.c:357
-#: gsearchtool/gsearchtool-callbacks.c:630
+#: gsearchtool/gsearchtool-callbacks.c:372
+#: gsearchtool/gsearchtool-callbacks.c:645
 #, c-format
 msgid "There is no installed viewer capable of displaying \"%s\"."
 msgstr "Det finns ingen visare installerad som klarar visning av \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:364
-#: gsearchtool/gsearchtool-callbacks.c:637
+#: gsearchtool/gsearchtool-callbacks.c:379
+#: gsearchtool/gsearchtool-callbacks.c:652
 msgid "Can't Display Location"
 msgstr "Kan inte visa plats"
 
-#: gsearchtool/gsearchtool-callbacks.c:402
+#: gsearchtool/gsearchtool-callbacks.c:417
 #, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr ""
 "Detta kommer att öppna %d separata mappar. Är du säker att du vill göra "
 "detta?"
 
-#: gsearchtool/gsearchtool-callbacks.c:405
+#: gsearchtool/gsearchtool-callbacks.c:420
 #, c-format
 msgid "Open %d Folders?"
 msgstr "Öppna %d mappar?"
 
-#: gsearchtool/gsearchtool-callbacks.c:444
+#: gsearchtool/gsearchtool-callbacks.c:459
 msgid "The nautilus file manager is not running."
 msgstr "Filhanteraren nautilus körs inte."
 
-#: gsearchtool/gsearchtool-callbacks.c:739
+#: gsearchtool/gsearchtool-callbacks.c:822
 msgid "Save Search Results As..."
 msgstr "Spara sökresultat som..."
 
-#: gsearchtool/gsearchtool-callbacks.c:782
+#: gsearchtool/gsearchtool-callbacks.c:865
 #, c-format
 msgid ""
 "Cannot save search results.\n"
@@ -1146,12 +1126,12 @@ msgstr ""
 "Kan inte spara sökresultat.\n"
 "\"%s\" är en mapp."
 
-#: gsearchtool/gsearchtool-callbacks.c:810
+#: gsearchtool/gsearchtool-callbacks.c:893
 #, c-format
 msgid "File \"%s\" already exists. Overwrite?"
 msgstr "Filen \"%s\" finns redan. Skriva över?"
 
-#: gsearchtool/gsearchtool-callbacks.c:847
+#: gsearchtool/gsearchtool-callbacks.c:932
 #, c-format
 msgid "Cannot save search results to the file \"%s\"."
 msgstr "Kan inte spara sökresultat i filen \"%s\"."
@@ -1165,27 +1145,23 @@ msgstr ""
 "GConf-fel:\n"
 "  %s"
 
-#: gsearchtool/gsearchtool-support.c:294
-msgid "%Y%m%d%H%M%S"
-msgstr "%Y%m%d%H%M%S"
-
-#: gsearchtool/gsearchtool-support.c:325
+#: gsearchtool/gsearchtool-support.c:315
 msgid "today at %-I:%M %p"
 msgstr "idag klockan %H.%M"
 
-#: gsearchtool/gsearchtool-support.c:327
+#: gsearchtool/gsearchtool-support.c:317
 msgid "yesterday at %-I:%M %p"
 msgstr "igår klockan %H.%M"
 
-#: gsearchtool/gsearchtool-support.c:329 gsearchtool/gsearchtool-support.c:331
+#: gsearchtool/gsearchtool-support.c:319 gsearchtool/gsearchtool-support.c:321
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%Y-%m-%d %H.%M"
 
-#: gsearchtool/gsearchtool-support.c:456
+#: gsearchtool/gsearchtool-support.c:446
 msgid "link (broken)"
 msgstr "länk (trasig)"
 
-#: gsearchtool/gsearchtool-support.c:461
+#: gsearchtool/gsearchtool-support.c:451
 #, c-format
 msgid "link to %s"
 msgstr "länk till %s"
@@ -1644,6 +1620,35 @@ msgstr ""
 "antingen /var/adm/messages eller /var/log/messages, beroende på ditt "
 "operativsystem."
 
+#~ msgid "Name Contains"
+#~ msgstr "Namnet innehåller"
+
+#~ msgid "Gdialog progressbar"
+#~ msgstr "Gdialog-förloppsmätare"
+
+#~ msgid "Indicates the percentage specified at the standard input"
+#~ msgstr "Visar det procenttal som anges på standard in"
+
+#~ msgid "GDialog Entry"
+#~ msgstr "GDialog-fält"
+
+#~ msgid "Enter the text"
+#~ msgstr "Ange texten"
+
+#~ msgid "Floppy formatter"
+#~ msgstr "Diskettformaterare"
+
+# SUN CHANGED MESSAGE
+#~ msgid "File Name Entry"
+#~ msgstr "Filnamnspost"
+
+# SUN CHANGED MESSAGE
+#~ msgid "Starting folder entry"
+#~ msgstr "Startmappspost"
+
+#~ msgid "%Y%m%d%H%M%S"
+#~ msgstr "%Y%m%d%H%M%S"
+
 #~ msgid "Date modified more than (days)"
 #~ msgstr "Modifieringsdatum större än (dagar)"
 
@@ -1709,9 +1714,6 @@ msgstr ""
 
 #~ msgid "Name contains:"
 #~ msgstr "Namnet innehåller:"
-
-#~ msgid "Name contains"
-#~ msgstr "Namnet innehåller"
 
 #~ msgid "Show more options"
 #~ msgstr "Visa fler alternativ"
