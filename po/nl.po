@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2002-12-15 22:28+0000\n"
-"PO-Revision-Date: 2002-11-17 00:34+0100\n"
+"POT-Creation-Date: 2002-12-26 06:04+0100\n"
+"PO-Revision-Date: 2002-12-26 23:54+0100\n"
 "Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
 "Language-Team: Dutch <NL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -108,12 +108,10 @@ msgid "GNOME Calculator"
 msgstr "GNOME Rekenmachine"
 
 #: gcalc/gcalc.c:61
-#, fuzzy
-msgid "(C) 1998 Free Software Foundation"
-msgstr "© 1998 the Free Software Foundation"
+msgid "(C) 1998 Free Software Foundation, Inc."
+msgstr "© 1998 Free Software Foundation, Inc."
 
 #: gcalc/gcalc.c:62
-#, fuzzy
 msgid "Simple double precision calculator similar to xcalc"
 msgstr "Eenvoudige dubbele precisie-rekenmachine vergelijkbaar met xcalc"
 
@@ -499,19 +497,19 @@ msgstr ""
 
 #
 #: gcharmap/src/callbacks.c:130 gcharmap/src/callbacks.c:138
-#, fuzzy, c-format
+#, c-format
 msgid "Character code: (Unicode) U%04lX"
-msgstr "Teken_code:"
+msgstr "Tekencode: (Unicode) U%04lX"
 
 #: gcharmap/src/callbacks.c:134
 #, c-format
 msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
-msgstr ""
+msgstr "Karaktercode: (Unicode) U%04lX, (%s) 0x%s"
 
 #
 #: gcharmap/src/callbacks.c:192
 msgid "Text copied to clipboard..."
-msgstr "Tekst gekopieerd naar klembord..."
+msgstr "Tekst gekopiëerd naar klembord..."
 
 #
 #: gcharmap/src/callbacks.c:209
@@ -527,14 +525,13 @@ msgid "Action Toolbar"
 msgstr "Actiewerkbalk"
 
 #: gcharmap/src/interface.c:194
-#, fuzzy
 msgid "_Font:"
-msgstr "_Poort:"
+msgstr "_Lettertype:"
 
 #. The page selector
 #: gcharmap/src/interface.c:210
 msgid "_Page:"
-msgstr ""
+msgstr "_Pagina:"
 
 #. end of page selector
 #: gcharmap/src/interface.c:225
@@ -677,9 +674,8 @@ msgstr "Copyright 1999 Mike Hughes"
 
 #
 #: gdictsrc/gdict-about.c:58
-#, fuzzy
 msgid "Client for MIT dictionary server.\n"
-msgstr "Woordenboekserver"
+msgstr "Client voor MIT-woordenboekserver.\n"
 
 #: gdictsrc/gdict-app.c:128
 msgid "Spell-checking..."
@@ -827,9 +823,8 @@ msgid "_Server:"
 msgstr "_Server:"
 
 #: gdictsrc/gdict-pref-dialog.c:218
-#, fuzzy
 msgid "De_fault Server"
-msgstr "Standaard strategie"
+msgstr "S_tandaardserver"
 
 #: gdictsrc/gdict-pref-dialog.c:224
 msgid "Reset server to default"
@@ -840,9 +835,8 @@ msgid "_Port:"
 msgstr "_Poort:"
 
 #: gdictsrc/gdict-pref-dialog.c:240
-#, fuzzy
 msgid "Def_ault Port"
-msgstr "St_andaard"
+msgstr "St_andaard poort"
 
 #: gdictsrc/gdict-pref-dialog.c:247
 msgid "Reset port to default"
@@ -1128,26 +1122,29 @@ msgstr ""
 "Foutcode %s"
 
 #: gfloppy/src/fdformat.c:194
-#, fuzzy
 msgid "ECould not determine current floppy geometry."
-msgstr "EKan het huidige bestandssysteem niet bepalen"
+msgstr "EKan de huidige diskette-indeling niet bepalen."
 
 #: gfloppy/src/gfloppy.c:229
 msgid "EError while creating a unique filename for the bad blocks list file."
 msgstr ""
+"EEr is een fout opgetreden bij het creëren van een unieke bestandsnaam voor "
+"de lijst van onbetrouwbare blokken."
 
 #: gfloppy/src/gfloppy.c:249
 msgid "EError while filling the bad blocks list file."
 msgstr ""
+"EEr is een fout opgetreden bij het vullen van de lijst van onbetrouwbare "
+"blokken."
 
 #: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "EError while spawning the (%s) command: %s."
-msgstr ""
+msgstr "EEr is een fout opgetreden bij het uitvoeren van de (%s) opdracht: %s"
 
 #: gfloppy/src/gfloppy.c:332
 msgid "EUnknown mke2fs starting signature, cancelling."
-msgstr ""
+msgstr "EOnbekend mke2fs startkenmerk, annuleren."
 
 #: gfloppy/src/gfloppy.c:346
 #, c-format
@@ -1156,15 +1153,20 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
+"EHet hulpprogramma voor creatie van het bestandssysteem (%s) meldde de "
+"volgende fouten:\n"
+"\n"
+"%s (%d)"
 
 #: gfloppy/src/gfloppy.c:363
 msgid "EAbnormal child process termination."
-msgstr ""
+msgstr "EDochterproces op abnormale wijze afgebroken."
 
 #: gfloppy/src/gfloppy.c:388
 #, c-format
 msgid "EError while spawning the mbadblocks command: %s."
 msgstr ""
+"EEr is een fout opgetreden bij het uitvoeren van de mbadblocks-opdracht: %s"
 
 #: gfloppy/src/gfloppy.c:400
 #, c-format
@@ -1173,10 +1175,13 @@ msgid ""
 "errors:\n"
 "%s."
 msgstr ""
+"EHet hulpprogramma voor het controleren op onbetrouwbare blokken "
+"(mbadblocks) meldde de volgende fouten:\n"
+"%s."
 
 #: gfloppy/src/gfloppy.c:443
 msgid "EAbnormal mbadblocks child process termination."
-msgstr ""
+msgstr "EControle op onbetrouwbare blokken op abnormale wijze afgebroken."
 
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:470 gfloppy/src/gfloppy.c:510
@@ -1197,36 +1202,38 @@ msgstr ""
 "MBezig met controleren op slechte blokken... (dit kan enige tijd duren)"
 
 #: gfloppy/src/gfloppy.c:532
-#, fuzzy
 msgid "EError while checking the bad blocks."
-msgstr "MBezig met het controleren op foute blokken..."
+msgstr ""
+"EEr is een fout opgetreden tijdens het controleren op onbetrouwbare blokken."
 
 #: gfloppy/src/gfloppy2.glade.h:1
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: gfloppy/src/gfloppy2.glade.h:3
 msgid ""
 "<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
 "be installed in order to make a thorough DOS (fat) formatting."
 msgstr ""
+"<b>Merk op</b>: Het 'mbadblocks'-hulpprogramma is niet op dit systeem "
+"geïnstalleerd. Het is benodigd om een volledige DOS (fat)-formattering uit "
+"te voeren."
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem settings</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Bestandssysteem-instellingen</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
 msgid "<span weight=\"bold\">Formatting mode</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Formatteermodus</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
 msgid "<span weight=\"bold\">Physical settings</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Fysieke instellingen</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:7
-#, fuzzy
 msgid "DOS (FAT)"
-msgstr "DOS (fat)"
+msgstr "DOS (FAT)"
 
 #: gfloppy/src/gfloppy2.glade.h:8
 msgid "Double Density 3.5\" (720KB)"
@@ -1249,7 +1256,6 @@ msgid "Floppy de_vice:"
 msgstr "_Diskette-apparaat:"
 
 #: gfloppy/src/gfloppy2.glade.h:13
-#, fuzzy
 msgid "Floppy formatter"
 msgstr "Diskettes formatteren"
 
@@ -1268,31 +1274,34 @@ msgstr "Linux Formaat (ext2)"
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
 msgstr ""
+"Volledi_g (voegt een controle op onbetrouwbare blokken toe aan de "
+"standaardmodus)"
 
 #
 #: gfloppy/src/gfloppy2.glade.h:18
-#, fuzzy
 msgid "Volume _name:"
-msgstr "Bestandsnaam:"
+msgstr "Volume_naam:"
 
 #: gfloppy/src/gfloppy2.glade.h:19
 msgid "_Format"
 msgstr "_Formatteren"
 
 #: gfloppy/src/gfloppy2.glade.h:20
-#, fuzzy
 msgid "_Quick (only creates the filesystem)"
-msgstr "EKon het bestandssysteem niet maken."
+msgstr "_Snel (creëert alleen het bestandssysteem)"
 
 #: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
+"_Standaard (voegt een laag-niveau-formattering toe aan de snelle modus)"
 
 #: gfloppy/src/main.c:132
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
+"Noch de mke2fs, noch de mkdosfs/mformat-toepassingen zijn geïnstalleerd. "
+"Zonder deze programma's kunt u geen diskette formatteren."
 
 #: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, c-format
@@ -1330,7 +1339,7 @@ msgstr ""
 
 #: gfloppy/src/main.c:425
 msgid "The volume name can't contain any blank space."
-msgstr ""
+msgstr "De volumenaam kan geen lege spatie bevatten."
 
 #: gfloppy/src/main.c:471
 msgid "The device to format"
@@ -1346,6 +1355,8 @@ msgid ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr ""
+"De diskette is geformatteerd, maar <b>%d onbetrouwbare blokken</b> (uit %d) "
+"zijn gevonden en gemarkeerd."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -1356,39 +1367,44 @@ msgid "Floppy formatting cancelled."
 msgstr "Formatteren van floppy afgebroken."
 
 #: gfloppy/src/progress.c:172
-#, fuzzy
 msgid "Format progress"
-msgstr "Formatteer-voortgang."
+msgstr "Formatteer-voortgang"
 
 #: gfloppy/gfloppy.schemas.in.h:1
 msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
 msgstr ""
+"0 voor de snelle formattering, 1 voor een standaardformattering (op laag "
+"niveau) en tenslotte 2 voor een volledige formattering (controleert op "
+"onbetrouwbare blokken)."
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
 msgstr ""
+"ALLEEN VOOR GEVORDERDE GEBRUIKERS - Standaard back-end voor FAT-formattering"
 
 #: gfloppy/gfloppy.schemas.in.h:3
-#, fuzzy
 msgid "Default filesystem type"
-msgstr "Bestandssysteem_type:"
+msgstr "Standaard bestandssysteemtype"
 
 #: gfloppy/gfloppy.schemas.in.h:4
-#, fuzzy
 msgid "Default formatting mode"
-msgstr "Standaard strategie"
+msgstr "Standaard formatteermodus"
 
 #: gfloppy/gfloppy.schemas.in.h:5
 msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
 msgstr ""
+"TRUE om 'mkdosfs' in te stellen als geprefereerd FAT-formatteringsback-end "
+"of FALSE om 'mtools' hiervoor in te stellen."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
+"ext2 voor het linux-eigen bestandssysteem of fat voor het DOS-"
+"bestandssysteem."
 
 #
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1563
@@ -1397,28 +1413,27 @@ msgstr "Naar bestanden zoeken"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search your disk for files"
-msgstr "Doorzoek de harde schijf naar bestanden"
+msgstr "Uw harde schijf doorzoeken naar bestanden"
 
 #: gsearchtool/gsearchtool.c:63
-#, fuzzy
 msgid "Contains the text"
-msgstr "Tekst kopiëren"
+msgstr "Bevat tekst"
 
 #: gsearchtool/gsearchtool.c:65
 msgid "Date modified less than (days)"
-msgstr ""
+msgstr "Wijzigingsdatum eerder dan (dagen)"
 
 #: gsearchtool/gsearchtool.c:66
 msgid "Date modified more than (days)"
-msgstr ""
+msgstr "Wijzigingsdatum later dan (dagen)"
 
 #: gsearchtool/gsearchtool.c:68
 msgid "Size at least (kilobytes)"
-msgstr ""
+msgstr "Grootte tenminste (kilobytes)"
 
 #: gsearchtool/gsearchtool.c:69
 msgid "Size at most (kilobytes)"
-msgstr ""
+msgstr "Grootte hoogstens (kilobytes)"
 
 #: gsearchtool/gsearchtool.c:70
 msgid "File is empty"
@@ -1434,100 +1449,96 @@ msgstr "Eigendom van groep"
 
 #: gsearchtool/gsearchtool.c:74
 msgid "Owner is unrecognized"
-msgstr ""
+msgstr "Eigenaar is niet herkend"
 
 #: gsearchtool/gsearchtool.c:76
-#, fuzzy
 msgid "File is not named"
-msgstr "Bestandsnaam is niet"
+msgstr "Bestandsnaam is ongelijk"
 
 #: gsearchtool/gsearchtool.c:77
-#, fuzzy
 msgid "File matches regular expression"
-msgstr "Overeenkomst met reguliere expressie"
+msgstr "Bestand komt overeen met reguliere expressie"
 
 #: gsearchtool/gsearchtool.c:79
 msgid "Follow symbolic links"
 msgstr "Volg symbolische verwijzingen"
 
 #: gsearchtool/gsearchtool.c:80
-#, fuzzy
 msgid "Include other filesystems"
-msgstr "EKon het bestandssysteem niet maken."
+msgstr "Andere bestandssystemen meenemen"
 
 #: gsearchtool/gsearchtool.c:136
 msgid "Set the text of 'file is named'"
-msgstr ""
+msgstr "Tekst van 'bestandsnaam is' instellen"
 
 #: gsearchtool/gsearchtool.c:138
 msgid "Set the text of 'look in folder'"
-msgstr ""
+msgstr "Tekst instellen van 'beginnen in map'"
 
 #: gsearchtool/gsearchtool.c:140
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
+"Bestanden sorteren op één van de volgende: naam, map, grootte, type of datum"
 
 #: gsearchtool/gsearchtool.c:142
 msgid "Set sort order to descending, the default is ascending"
-msgstr ""
+msgstr "Sorteervolgorde instellen op aflopend, oplopend is standaard"
 
 #: gsearchtool/gsearchtool.c:144
 msgid "Automatically start a search"
-msgstr ""
+msgstr "Zoekoperatie automatisch starten"
 
 #: gsearchtool/gsearchtool.c:146
 msgid "Select the 'Contains the text' constraint"
-msgstr ""
+msgstr "Selecteer de 'Bevat tekst'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:148
 msgid "Select the 'Date modified less than (days)' constraint"
-msgstr ""
+msgstr "Selecteer de 'Wijzigingsdatum eerder dan (dagen)'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:150
 msgid "Select the 'Date modified more than (days)' constraint"
-msgstr ""
+msgstr "Selecteer de 'Wijzigingsdatum later dan (dagen)'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:152
 msgid "Select the 'Size at most (kilobytes)' constraint"
-msgstr ""
+msgstr "Selecteer de 'Grootte hoogstens (kilobytes)'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:154
 msgid "Select the 'Size at least (kilobytes)' constraint"
-msgstr ""
+msgstr "Selecteer de 'Grootte tenminste (kilobytes)'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:156
 msgid "Select the 'File is empty' constraint"
-msgstr ""
+msgstr "Selecteer de 'Bestand is leeg'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:158
 msgid "Select the 'Owned by user' constraint"
-msgstr ""
+msgstr "Selecteer de 'Eigenaar is gebruiker'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:160
 msgid "Select the 'Owned by group' constraint"
-msgstr ""
+msgstr "Selecteer de 'Eigendom van groep'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:162
 msgid "Select the 'Owner is unrecognized' constraint"
-msgstr ""
+msgstr "Selecteer de 'Eigenaar is niet herkend'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:164
 msgid "Select the 'File is not named' constraint"
-msgstr ""
+msgstr "Selecteer de 'Bestandsnaam is ongelijk'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:166
-#, fuzzy
 msgid "Select the 'File matches regular expression' constraint"
-msgstr "Overeenkomst met reguliere expressie"
+msgstr "Selecteer de 'Bestand komt overeen met reguliere expressie'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:168
-#, fuzzy
 msgid "Select the 'Follow symbolic links' constraint"
-msgstr "Volg symbolische verwijzingen"
+msgstr "Selecteer de 'Volg symbolische verwijzingen'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:170
 msgid "Select the 'Include other filesystems' constraint"
-msgstr ""
+msgstr "Selecteer de 'andere bestandssystemen meenemen'-voorwaarde"
 
 #: gsearchtool/gsearchtool.c:415
 msgid "No files found"
@@ -1539,32 +1550,32 @@ msgstr "Veranderde invoer riep een niet-invoeroptie aan!"
 
 #: gsearchtool/gsearchtool.c:684
 msgid "Invalid option passed to sortby command line argument."
-msgstr ""
+msgstr "Ongeldige optie meegegeven aan 'sort' door opdrachtregel-argument"
 
 #: gsearchtool/gsearchtool.c:813
 msgid "(aborted)"
-msgstr ""
+msgstr "(afgebroken)"
 
 #: gsearchtool/gsearchtool.c:822
-#, fuzzy, c-format
+#, c-format
 msgid "No files found %s"
-msgstr "Geen bestanden gevonden"
+msgstr "Geen bestanden gevonden %s"
 
 #: gsearchtool/gsearchtool.c:827
-#, fuzzy, c-format
+#, c-format
 msgid "One file found %s"
-msgstr "Eén bestand gevonden"
+msgstr "Eén bestand gevonden %s"
 
 #: gsearchtool/gsearchtool.c:831
-#, fuzzy, c-format
+#, c-format
 msgid "%d files found %s"
-msgstr "%d bestanden gevonden"
+msgstr "%d bestanden gevonden %s"
 
 #: gsearchtool/gsearchtool.c:924
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
-msgstr ""
+msgstr "Tijdens de zoekactie werden de volgende fouten gemeld.\n"
 
 #: gsearchtool/gsearchtool.c:928
 msgid ""
@@ -1576,15 +1587,13 @@ msgstr ""
 
 #
 #: gsearchtool/gsearchtool.c:941
-#, fuzzy
 msgid "Search Errors"
-msgstr "Naar bestanden zoeken"
+msgstr "Fouten bij zoekactie"
 
 #
 #: gsearchtool/gsearchtool.c:979 gsearchtool/gsearchtool.c:1003
-#, fuzzy
 msgid "Search for Files Error"
-msgstr "Naar bestanden zoeken"
+msgstr "Fout bij zoeken naar bestanden"
 
 #: gsearchtool/gsearchtool.c:1084
 msgid "Search Rule Value Entry"
@@ -1595,15 +1604,14 @@ msgid "Enter a value for search rule"
 msgstr "Voer een waarde in voor de zoek-regel"
 
 #: gsearchtool/gsearchtool.c:1119
-#, fuzzy, c-format
+#, c-format
 msgid "Click to Remove the '%s' Rule"
-msgstr "Klik om de regel te verwijderen."
+msgstr "Klik om de '%s'-regel te verwijderen."
 
 #
 #: gsearchtool/gsearchtool.c:1174
-#, fuzzy
 msgid "A_vailable options:"
-msgstr "Actie-opties"
+msgstr "_Beschikbare opties:"
 
 #: gsearchtool/gsearchtool.c:1187
 msgid "Search Rules Menu"
@@ -1640,9 +1648,8 @@ msgid "Date Modified"
 msgstr "Wijzigingsdatum"
 
 #: gsearchtool/gsearchtool.c:1382
-#, fuzzy
 msgid "File is _named:"
-msgstr "Zoek bestanden ge_naamd:"
+msgstr "Bestands_naam is:"
 
 #: gsearchtool/gsearchtool.c:1397 gsearchtool/gsearchtool.c:1398
 msgid "File Name Entry"
@@ -1653,7 +1660,6 @@ msgid "Enter the file name you want to search"
 msgstr "Voer de bestandsnaam in die u wilt zoeken"
 
 #: gsearchtool/gsearchtool.c:1410
-#, fuzzy
 msgid "_Look in folder:"
 msgstr "_Beginnen in map:"
 
@@ -1671,9 +1677,8 @@ msgstr "Voer de mapnaam in waar u het zoeken wilt laten beginnen"
 
 #
 #: gsearchtool/gsearchtool.c:1442 gsearchtool/gsearchtool.c:1443
-#, fuzzy
 msgid "Additional Options"
-msgstr "Actie-opties"
+msgstr "Toegevoegde opties"
 
 #: gsearchtool/gsearchtool.c:1487
 msgid "Click to Start the search"
@@ -1689,23 +1694,21 @@ msgstr "Can bonobo niet initialiseren."
 
 #: gsearchtool/gsearchtool-callbacks.c:45
 msgid "_Open"
-msgstr ""
+msgstr "_Openen"
 
 #
 #: gsearchtool/gsearchtool-callbacks.c:49
-#, fuzzy
 msgid "O_pen Folder"
-msgstr "Map"
+msgstr "Map o_penen"
 
 #
 #: gsearchtool/gsearchtool-callbacks.c:54
-#, fuzzy
 msgid "_Save Results As..."
-msgstr "Resultaten opslaan _als..."
+msgstr "Resultaten op_slaan als..."
 
 #: gsearchtool/gsearchtool-callbacks.c:107
 msgid "Can't Display Help"
-msgstr ""
+msgstr "Kan hulptekst niet weergeven"
 
 #: gsearchtool/gsearchtool-callbacks.c:128
 msgid "Searching..."
@@ -1715,99 +1718,105 @@ msgstr "Bezig met zoeken..."
 #, c-format
 msgid "This will open %d separate files. Are you sure you want to do this?"
 msgstr ""
+"Dit zal %d afzonderlijke bestanden openen. Weet u zeker dat u dit wilt doen?"
 
 #: gsearchtool/gsearchtool-callbacks.c:302
 #, c-format
 msgid "Open %d Files?"
-msgstr ""
+msgstr "%d bestanden openen?"
 
 #: gsearchtool/gsearchtool-callbacks.c:359
 #: gsearchtool/gsearchtool-callbacks.c:620
 #, c-format
 msgid "There is no installed viewer capable of displaying \"%s\"."
 msgstr ""
+"Er is geen weergave geïnstalleerd die in staat is \"%s\" weer te geven."
 
 #: gsearchtool/gsearchtool-callbacks.c:366
 #: gsearchtool/gsearchtool-callbacks.c:627
 msgid "Can't Display Location"
-msgstr ""
+msgstr "Kan locatie niet weergeven"
 
 #: gsearchtool/gsearchtool-callbacks.c:404
 #, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr ""
+"Dit zal %d afzonderlijke mappen openen. Weet u zeker dat u dit wilt doen?"
 
 #: gsearchtool/gsearchtool-callbacks.c:407
 #, c-format
 msgid "Open %d Folders?"
-msgstr ""
+msgstr "%d mappen openen?"
 
 #: gsearchtool/gsearchtool-callbacks.c:446
 msgid "The nautilus file manager is not running."
-msgstr ""
+msgstr "Het nautilus-bestandsbeheer is niet actief."
 
 #
 #: gsearchtool/gsearchtool-callbacks.c:729
-#, fuzzy
 msgid "Save Search Results As..."
-msgstr "Resultaten opslaan _als..."
+msgstr "Zoekresultaten opslaan als..."
 
 #: gsearchtool/gsearchtool-callbacks.c:772
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Cannot save search results.\n"
 "\"%s\" is a folder."
-msgstr "Kan resultaten-bestand niet opslaan."
+msgstr ""
+"Kan zoekresultaten niet opslaan.\n"
+"\"%s\" is een map."
 
 #: gsearchtool/gsearchtool-callbacks.c:800
-#, fuzzy, c-format
+#, c-format
 msgid "File \"%s\" already exists. Overwrite?"
-msgstr "Bestand met naam %s bestaat al. Overschrijven?"
+msgstr "Bestand %s bestaat reeds. Overschrijven?"
 
 #: gsearchtool/gsearchtool-callbacks.c:837
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot save search results to the file \"%s\"."
-msgstr "Kan resultaten-bestand niet opslaan."
+msgstr "Kan zoekresultaten niet opslaan naar bestand \"%s\"."
 
-#: gsearchtool/gsearchtool-support.c:272
+#: gsearchtool/gsearchtool-support.c:284
 msgid "Expander Size"
-msgstr ""
+msgstr "Uitschuivergrootte"
 
-#: gsearchtool/gsearchtool-support.c:273
+#: gsearchtool/gsearchtool-support.c:285
 msgid "Size of the expander arrow"
-msgstr ""
+msgstr "Grootte van uitschuiverpijl"
 
-#: gsearchtool/gsearchtool-support.c:334
+#: gsearchtool/gsearchtool-support.c:346
 #, c-format
 msgid ""
 "GConf error:\n"
 "  %s"
 msgstr ""
+"GConf-fout:\n"
+"  %s"
 
-#: gsearchtool/gsearchtool-support.c:489
+#: gsearchtool/gsearchtool-support.c:501
 msgid "%Y%m%d%H%M%S"
 msgstr "%Y%m%d%H%M%S"
 
-#: gsearchtool/gsearchtool-support.c:520
+#: gsearchtool/gsearchtool-support.c:532
 msgid "today at %-I:%M %p"
 msgstr "vandaag om %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:522
+#: gsearchtool/gsearchtool-support.c:534
 msgid "yesterday at %-I:%M %p"
 msgstr "gisteren om %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:524 gsearchtool/gsearchtool-support.c:526
+#: gsearchtool/gsearchtool-support.c:536 gsearchtool/gsearchtool-support.c:538
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:651
+#: gsearchtool/gsearchtool-support.c:663
 msgid "link (broken)"
-msgstr ""
+msgstr "koppeling ("
 
-#: gsearchtool/gsearchtool-support.c:656
+#: gsearchtool/gsearchtool-support.c:668
 #, c-format
 msgid "link to %s"
-msgstr ""
+msgstr "verwijzing naar %s"
 
 #: gsearchtool/help/es/gsearchtool.desktop.in.h:1
 msgid "GNOME Search Tool"
@@ -1818,15 +1827,14 @@ msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:43
-#, fuzzy
 msgid ""
-"This  program  is  part of  the  GNOME  project.Logview comes with "
-"ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
-"redistribute it under the conditions of the GNU General Public Licence. The "
-"log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+"This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
+"WARRANTY. This is free software, and you are welcome to redistribute it "
+"under the conditions of the GNU General Public Licence. The log icon is a "
+"courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 msgstr ""
 "Dit programma is onderdeel van het GNOME-project. Logview komt ZONDER ENIGE "
-"GARANTIE. Dit is Vrije Software en u wordt aangemoedigd om het te "
+"GARANTIE. Dit is vrije software en u wordt aangemoedigd om het te "
 "verspreiden onder de voorwaarden van de GNU General Public Licence. Het log-"
 "pictogram is bijgedragen door Tuomas Kuosmanen (alias tigert)."
 
@@ -1972,24 +1980,20 @@ msgstr "Gewijzigd:"
 
 #
 #: logview/info.c:111
-#, fuzzy
 msgid "Start Date:"
 msgstr "Startdatum:"
 
 #
 #: logview/info.c:111
-#, fuzzy
 msgid "Last Date:"
 msgstr "Laatste datum:"
 
 #: logview/info.c:111
-#, fuzzy
 msgid "Number of Lines:"
-msgstr "Regelnummers:"
+msgstr "Aantal regels:"
 
 #
 #: logview/info.c:137
-#, fuzzy
 msgid "Log Information"
 msgstr "Logboek-informatie"
 
@@ -1997,11 +2001,11 @@ msgstr "Logboek-informatie"
 #: logview/zoom.c:155
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: logview/info.c:163 logview/zoom.c:157
 msgid "<No log loaded>"
-msgstr ""
+msgstr "<Geen logboek geladen>"
 
 #: logview/info.c:186
 #, c-format
@@ -2118,9 +2122,8 @@ msgid "S_witch Log"
 msgstr "Van logboek _veranderen"
 
 #: logview/logview.c:100
-#, fuzzy
 msgid "Switch between already opened logs"
-msgstr "Bestand reeds geopend"
+msgstr "Schakelen tussen reeds geopende logboeken"
 
 #: logview/logview.c:106
 msgid "_Monitor..."
@@ -2128,9 +2131,8 @@ msgstr "_Bewaken..."
 
 #
 #: logview/logview.c:107
-#, fuzzy
 msgid "Monitor Logs"
-msgstr "Logboek bewaken"
+msgstr "Logboeken bewaken"
 
 #: logview/logview.c:115
 msgid "_Properties"
@@ -2143,11 +2145,11 @@ msgstr "Logboekeigenschappen tonen"
 
 #: logview/logview.c:124
 msgid "Clos_e All"
-msgstr ""
+msgstr "All_e sluiten"
 
 #: logview/logview.c:125
 msgid "Close all Log files"
-msgstr ""
+msgstr "Alle logbestanden sluiten"
 
 #: logview/logview.c:137
 msgid "_Calendar"
@@ -2167,11 +2169,11 @@ msgstr "Invoerdetail tonen"
 
 #: logview/logview.c:151
 msgid "_Collapse All"
-msgstr ""
+msgstr "Alle in_klappen"
 
 #: logview/logview.c:152
 msgid "Collapse all the rows"
-msgstr ""
+msgstr "Alle rijen inklappen"
 
 #
 #: logview/logview.c:365
@@ -2180,25 +2182,21 @@ msgstr "Geen logboek-bestanden te openen"
 
 #
 #: logview/logview.c:389
-#, fuzzy
 msgid "Date"
-msgstr "Datum:"
+msgstr "Datum"
 
 #: logview/logview.c:389
-#, fuzzy
 msgid "Host Name"
-msgstr "Naam"
+msgstr "Hostnaam"
 
 #
 #: logview/logview.c:390
-#, fuzzy
 msgid "Process"
-msgstr "Proces:"
+msgstr "Proces"
 
 #: logview/logview.c:390
-#, fuzzy
 msgid "Message"
-msgstr "Bericht:"
+msgstr "Bericht"
 
 #: logview/logview.c:474
 msgid "Last Modified: "
@@ -2224,39 +2222,34 @@ msgstr "Fout: [%s]\n"
 
 #
 #: logview/monitor.c:109
-#, fuzzy
 msgid "Monitor Options"
 msgstr "Bewakingsopties"
 
 #: logview/monitor.c:135
-#, fuzzy
 msgid "Choose logs to monitor:"
-msgstr "Kies logboeken om te bewaken"
+msgstr "Kies logboeken om te bewaken:"
 
 #: logview/monitor.c:140
 msgid "Currently monitored logs:"
-msgstr ""
+msgstr "Momenteel gevolgde logboeken:"
 
 #: logview/monitor.c:188
-#, fuzzy
 msgid "Add logs to monitor"
-msgstr "Kies logboeken om te bewaken"
+msgstr "Te bewaken logboeken toevoegen"
 
 #: logview/monitor.c:197
-#, fuzzy
 msgid "Remove logs from monitor"
-msgstr "Kies logboeken om te bewaken"
+msgstr "Logboeken niet langer bewaken"
 
 #. Check boxes
 #: logview/monitor.c:244
 msgid "_Hide Application"
-msgstr ""
+msgstr "Toepassing _verbergen"
 
 #
 #: logview/monitor.c:252
-#, fuzzy
 msgid "_Execute Actions"
-msgstr "Acties uitvoeren"
+msgstr "Acti_es uitvoeren"
 
 #: logview/monitor.c:289
 msgid "Too many logs to monitor. Remove one and try again"
@@ -2298,9 +2291,8 @@ msgid "Description:"
 msgstr "Beschrijving:"
 
 #: logview/zoom.c:131
-#, fuzzy
 msgid "Log line detail for"
-msgstr "Logboekregel-details voor %s"
+msgstr "Logboekregel-details voor"
 
 #. Translators: do not include year, it would be bogus
 #: logview/zoom.c:185
@@ -2309,13 +2301,16 @@ msgstr "%B %e %X"
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
-msgstr ""
+msgstr "Bij opstarten te openen logbestand "
 
 #: logview/logview.schemas.in.h:2
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your distribution."
 msgstr ""
+"Geeft aan welk logbestand bij het opstarten geopend moet worden. Standaard "
+"is dit /var/adm/messages of /var/log/messages, afhankelijk van uw "
+"besturingssysteem."
 
 #~ msgid "del"
 #~ msgstr "wis"
