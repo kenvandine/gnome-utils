@@ -29,7 +29,9 @@ gsu_server_SOURCES = \
 	$(CORBA_SRCLIST)	\
 	gsu-server.c		\
 	gsu-impl.c		\
-	gsu-impl.h
+	gsu-impl.h		\
+	gsu-lib.c		\
+	gsu-lib.h
 
 gsu_helper_LDADD = \
 	$(PAM_LIBS)

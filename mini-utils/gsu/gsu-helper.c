@@ -204,6 +204,9 @@ static int passwd_fd;
 /* File descriptor we write status messages to. */
 static int message_fd;
 
+/* File descriptor we write error messages to. */
+static int error_fd;
+
 static struct option const longopts[] =
 {
   {"command", required_argument, 0, 'c'},
@@ -235,7 +238,7 @@ helper_io_error (const char *message, ...)
   va_start (args, message);
 
   vfprintf (stderr, message, args);
-  vfprintf (stderr, ": %s\n", strerror (errno));
+  fprintf (stderr, ": %s\n", strerror (errno));
   exit (1);
 }
 
@@ -259,10 +262,10 @@ helper_error (int status, int errnum, const char *message, ...)
   }
 
   if (write (message_fd, &len, sizeof (len)) != sizeof (len))
-    helper_io_error ("write (message_fd)");
+    helper_io_error ("helper-write (message_fd)");
 
   if (write (message_fd, errnum ? buffer2 : buffer, len) != len)
-    helper_io_error ("write (message_fd)");
+    helper_io_error ("helper-write (message_fd)");
 
   va_end (args);
 
@@ -620,14 +623,12 @@ change_identity (const struct passwd *pw)
     helper_error (1, errno, _("cannot set user id"));
 }
 
-#ifdef USE_PAM
 static int caught=0;
 /* Signal handler for parent process later */
 static void su_catch_sig(int sig)
 {
   ++caught;
 }
-#endif
 
 /* Run SHELL, or DEFAULT_SHELL if SHELL is empty.
    If COMMAND is nonzero, pass it to the shell with the -c option.
@@ -639,53 +640,57 @@ run_shell (const char *shell, const char *command, char **additional_args)
 {
   const char **args;
   int argno = 1;
-#ifdef USE_PAM
   int child;
   sigset_t ourset;
   int status;
 
+#ifdef USE_PAM
   retval = pam_open_session(pamh,0);
   if (retval != PAM_SUCCESS) {
     fprintf (stderr, "could not open session\n");
     exit (1);
   }
+#endif
   child = fork();
   if (child == 0) {  /* child shell */
-  pam_end(pamh, 0);
-#endif
-  if (additional_args)
-    args = (const char **) xmalloc (sizeof (char *)
-				    * (10 + elements (additional_args)));
-  else
-    args = (const char **) xmalloc (sizeof (char *) * 10);
-  if (simulate_login)
-    {
-      char *arg0;
-      char *shell_basename;
-
-      shell_basename = basename (shell);
-      arg0 = xmalloc (strlen (shell_basename) + 2);
-      arg0[0] = '-';
-      strcpy (arg0 + 1, shell_basename);
-      args[0] = arg0;
-    }
-  else
-    args[0] = basename (shell);
-  if (fast_startup)
-    args[argno++] = "-f";
-  if (command)
-    {
-      args[argno++] = "-c";
-      args[argno++] = command;
-    }
-  if (additional_args)
-    for (; *additional_args; ++additional_args)
-      args[argno++] = *additional_args;
-  args[argno] = NULL;
-  execv (shell, (char **) args);
-  helper_error (1, errno, _("cannot run %s"), shell);
 #ifdef USE_PAM
+    pam_end(pamh, 0);
+#endif
+    if (additional_args)
+      args = (const char **) xmalloc (sizeof (char *)
+				      * (10 + elements (additional_args)));
+    else
+      args = (const char **) xmalloc (sizeof (char *) * 10);
+    if (simulate_login)
+      {
+	char *arg0;
+	char *shell_basename;
+
+	shell_basename = basename (shell);
+	arg0 = xmalloc (strlen (shell_basename) + 2);
+	arg0[0] = '-';
+	strcpy (arg0 + 1, shell_basename);
+	args[0] = arg0;
+      }
+    else
+      args[0] = basename (shell);
+    if (fast_startup)
+      args[argno++] = "-f";
+    if (command)
+      {
+	args[argno++] = "-c";
+	args[argno++] = command;
+      }
+    if (additional_args)
+      for (; *additional_args; ++additional_args)
+	args[argno++] = *additional_args;
+    args[argno] = NULL;
+    execv (shell, (char **) args);
+    helper_error (1, errno, _("cannot run %s"), shell);
   }
+  /* close the message pipe and use the error pipe from that point on. */
+  close (message_fd);
+  message_fd = error_fd;
   /* parent only */
   sigfillset(&ourset);
   if (sigprocmask(SIG_BLOCK, &ourset, NULL)) {
@@ -725,18 +730,19 @@ run_shell (const char *shell, const char *command, char **additional_args)
     fprintf(stderr, "\nSession terminated, killing shell...");
     kill (child, SIGTERM);
   }
+#ifdef USE_PAM
   retval = pam_close_session(pamh, 0);
   PAM_BAIL_P;
   retval = pam_end(pamh, PAM_SUCCESS);
   PAM_BAIL_P;
+#endif
   if (caught) {
     sleep(2);
     kill(child, SIGKILL);
     fprintf(stderr, " ...killed.\n");
   }
-  helper_error (0, 0, _("OK"));
+  /* helper_error (0, 0, _("OK")); */
   exit (status);
-#endif /* USE_PAM */
 }
 
 /* Return 1 if SHELL is a restricted shell (one not returned by
@@ -791,10 +797,10 @@ A mere - implies -l.   If USER not given, assume root.\n\
 static void
 helper_init (int *argc, char **argv)
 {
-  char *passwd_fd_arg, *message_fd_arg;
+  char *passwd_fd_arg, *message_fd_arg, *error_fd_arg;
   int len, i;
 
-  if (*argc < 3)
+  if (*argc < 4)
     helper_abort ();
 
   (*argc)--;
@@ -809,6 +815,28 @@ helper_init (int *argc, char **argv)
       helper_abort ();
 
   if (sscanf (message_fd_arg, "%d", &message_fd) != 1)
+    helper_abort ();
+
+  /* Set close-on-exec flag on the message pipe. */
+  if (fcntl (message_fd, F_SETFD, FD_CLOEXEC))
+    helper_abort ();
+
+  (*argc)--;
+  error_fd_arg = argv [*argc];
+  len = strlen (error_fd_arg);
+
+  if (len > 5)
+    helper_abort ();
+
+  for (i = 0; i < len; i++)
+    if (!isdigit (error_fd_arg [i]))
+      helper_abort ();
+
+  if (sscanf (error_fd_arg, "%d", &error_fd) != 1)
+    helper_abort ();
+
+  /* Set close-on-exec flag on the error pipe. */
+  if (fcntl (error_fd, F_SETFD, FD_CLOEXEC))
     helper_abort ();
 
   (*argc)--;

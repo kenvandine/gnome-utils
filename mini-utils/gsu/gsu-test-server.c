@@ -34,11 +34,12 @@ main (int argc, char* argv[])
     CORBA_Environment ev;
     CORBA_Object gsu_server;
     GNOME_Su_arg_seq *args = NULL;
+    CORBA_any *any;
     gchar **cargv, **temp;
     poptContext ctx;
     gint cargc;
     int i;
-  
+
     CORBA_exception_init (&ev);
   
     orb = gnome_CORBA_init_with_popt_table
@@ -46,7 +47,7 @@ main (int argc, char* argv[])
     Exception (&ev);
 
     cargv = poptGetArgs (ctx);
-    for (temp = cargv, cargc = 0; *temp; temp++, cargc++) ;
+    for (temp = cargv, cargc = 0; temp && *temp; temp++, cargc++) ;
 
     if (cargc < 1) {
 	fprintf (stderr, "Must give a command to execute.\n");

@@ -4,4 +4,7 @@
 #include <config.h>
 #include <gnome.h>
 
+gchar *gsu_get_helper (void);
+gchar *gsu_getpass (const gchar *new_user);
+
 #endif
