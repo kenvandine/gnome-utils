@@ -26,7 +26,7 @@ gcharmap_help_DATA = ${HTML_FILES} topic.dat
 # The layout this expects things to be in...
 # ./               all *.html files
 # ./<doc name>/    output of db2html winds up here
-# ./images/*       any images/figures needed for the documentation.
+# ./*.png      any images/figures needed for the documentation.
 ${HTML_FILES} : $(SGML_FILES)
 	if [ ! -d gcharmap ] ; then cd $(srcdir) && db2html gcharmap.sgml ; fi
 	-cd $(srcdir) && cp gcharmap/$@ .
@@ -34,13 +34,12 @@ ${HTML_FILES} : $(SGML_FILES)
 
 dist-hook:
 	$(mkinstalldirs) $(distdir)/gcharmap 
-	$(mkinstalldirs) $(distdir)/images
 	$(mkinstalldirs) $(distdir)/gcharmap/stylesheet-images
 	-cp $(srcdir)/gcharmap/*.html gcharmap/*.css $(distdir)/gcharmap
 	-cp $(srcdir)/gcharmap/stylesheet-images/*.gif \
 	 $(distdir)/gcharmap/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir)/images/*.png $(distdir)/images
+	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:
 	-rm -f Makefile
@@ -50,13 +49,12 @@ distclean-generic:
 
 install-data-local: index.html
 	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)/stylesheet-images
-	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)/images
 	-for file in $(srcdir)/gcharmap/*.html $(srcdir)/gcharmap/*.css; do \
 	  basefile=`basename $$file`; \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/$$basefile; \
 	done
-	-for file in $(srcdir)/images/*.png ; do \
-	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/images; \
+	-for file in $(srcdir)/*.png ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir); \
 	done
 	-for file in $(srcdir)/gcharmap/stylesheet-images/*.gif; do \
 	  basefile=`basename $$file`; \
