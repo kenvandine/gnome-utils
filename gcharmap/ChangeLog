@@ -1,3 +1,11 @@
+2002-07-11  Glynn Foster  <glynn.foster@sun.com>
+
+	* src/asciiselect.c: (ascii_select_init): Add mnemonics
+	* src/interface.c: (edit_menu_set_sensitivity): De-sensitize the 
+	Cut and Copy items when there is nothing in the text entry.
+	* src/menus.c: Change mnemonic to avoid a clash. 
+	Fixes #87907, 87908.
+
 2002-07-05  Glynn Foster  <glynn.foster@sun.com>
 
 	* gnome-character-map.desktop.in: s/DocPath/X-GNOME-DocPath. 

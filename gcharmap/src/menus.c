@@ -60,7 +60,7 @@ GnomeUIInfo help_menu[] =
 
 GnomeUIInfo menubar[] =
 {	
-    { GNOME_APP_UI_SUBTREE, N_("_Characters"), NULL,
+    { GNOME_APP_UI_SUBTREE, N_("Ch_aracters"), NULL,
       characters_menu, NULL, NULL, (GnomeUIPixmapType) 0,
       NULL, 0, (GdkModifierType) 0, NULL },
     GNOMEUIINFO_MENU_EDIT_TREE(edit_menu),

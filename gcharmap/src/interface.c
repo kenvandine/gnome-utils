@@ -35,11 +35,11 @@ void
 edit_menu_set_sensitivity (gboolean flag)
 {
     static gboolean sensitivity = TRUE;
-    gint i, items[2] = {4, 6};
+    gint i, items[4] = {0, 1, 4, 6};
     
     if (! (sensitivity ^ flag))
 	return;
-    for (i=0; i < 2; i++) {
+    for (i=0; i < 4; i++) {
        sensitivity = flag;
        gtk_widget_set_sensitive (GTK_WIDGET (edit_menu[items[i]].widget), flag);
     }

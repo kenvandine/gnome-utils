@@ -110,6 +110,7 @@ ascii_select_init (AsciiSelect *obj)
     GtkWidget *spin;
     GtkWidget *entry;
     GtkAdjustment *adj;
+    GtkWidget *label;
     GdkFont *font;
 
 
@@ -119,11 +120,13 @@ ascii_select_init (AsciiSelect *obj)
 					       _("_Insert"), 100,
 					       NULL);
     gtk_dialog_set_default_response (GTK_DIALOG (obj->window), GTK_RESPONSE_CLOSE);
-    gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox),
-      gtk_label_new (_("Character code:")), FALSE, FALSE, 0);
+    label = gtk_label_new_with_mnemonic (_("Character c_ode:"));
+    gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox), 
+			label, FALSE, FALSE, 0);
 
     adj = (GtkAdjustment *)gtk_adjustment_new (65, 0, 255, 1, 10, 10);
     spin = gtk_spin_button_new (GTK_ADJUSTMENT (adj), 1, 0);
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (spin));
     gtk_spin_button_set_update_policy (GTK_SPIN_BUTTON (spin),
       GTK_UPDATE_IF_VALID);
     prev_value = 65;
@@ -131,10 +134,12 @@ ascii_select_init (AsciiSelect *obj)
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox),
       spin, FALSE, TRUE, 0);
 
-    gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox),
-      gtk_label_new (_("Character:")), FALSE, FALSE, 0);
+    label = gtk_label_new_with_mnemonic (_("Ch_aracter:"));
+    gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox), 
+			label, FALSE, FALSE, 0);
 
     entry = gtk_entry_new ();
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
     gtk_entry_set_text (GTK_ENTRY (entry), "A");
     gtk_entry_set_max_length (GTK_ENTRY (entry), 1);
 
