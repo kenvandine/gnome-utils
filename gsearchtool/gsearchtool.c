@@ -538,8 +538,6 @@ make_list_of_templates (void)
 	gboolean ACTIVATE_MENU_OPTION = TRUE;
 	GtkWidget *menu;
 	GtkWidget *menuitem;
-	GtkWidget *separator;
-	GSList    *group = NULL;
 	gint i;
 
 	menu = gtk_menu_new ();
@@ -547,20 +545,16 @@ make_list_of_templates (void)
 	for(i=0; templates[i].type != SEARCH_CONSTRAINT_END; i++) {
 		
 		if (templates[i].type == SEARCH_CONSTRAINT_SEPARATOR) {
-			menuitem = gtk_menu_item_new ();
-			separator = gtk_hseparator_new ();
-			gtk_container_add (GTK_CONTAINER (menuitem), separator);	
+			menuitem = gtk_separator_menu_item_new ();	
 			gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
-			gtk_widget_show (separator);
 			gtk_widget_show (menuitem);
 		} 
 		else {
 			gchar *text = remove_mnemonic_character (_(templates[i].desc));
-			menuitem = gtk_radio_menu_item_new_with_label (group, text);
-			g_signal_connect (G_OBJECT(menuitem), "toggled",
-					  G_CALLBACK(constraint_menu_toggled_cb),
+			menuitem = gtk_menu_item_new_with_label (text);
+			g_signal_connect (G_OBJECT(menuitem), "activate",
+					  G_CALLBACK(constraint_menu_item_activate_cb),
 		        		  (gpointer)(long)i);
-			group = gtk_radio_menu_item_get_group (GTK_RADIO_MENU_ITEM (menuitem));
 			gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
 			gtk_widget_show (menuitem);
 			g_free (text);

@@ -69,8 +69,8 @@ void
 constraint_update_info_cb 	(GtkWidget 	*widget, 
 				 gpointer 	data);	
 void    
-constraint_menu_toggled_cb	(GtkWidget 	*widget, 
-				 gpointer 	data);
+constraint_menu_item_activate_cb(GtkWidget 	*widget,
+                                 gpointer 	data);
 void    
 constraint_entry_changed_cb 	(GtkWidget 	*widget, 
 				 gpointer 	data);

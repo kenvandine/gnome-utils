@@ -244,11 +244,10 @@ constraint_update_info_cb (GtkWidget 	*widget,
 }
 
 void
-constraint_menu_toggled_cb(GtkWidget 	*widget, 
-			   gpointer 	data)
+constraint_menu_item_activate_cb (GtkWidget  *widget, 
+                                  gpointer   data)
 {
-	if (GTK_CHECK_MENU_ITEM(widget)->active)
-		interface.selected_constraint = (long)data;
+	interface.selected_constraint = (long)data;
 }
 
 void
