@@ -32,6 +32,7 @@
 #include <gnome.h>
 
 #include <regex.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
 #include <libgnomevfs/gnome-vfs-ops.h> 
 #include <bonobo-activation/bonobo-activation.h>
@@ -547,10 +548,8 @@ is_nautilus_running (void)
 gboolean
 is_component_action_type (const gchar *filename)
 {
-	gchar *mimeType = gnome_vfs_get_mime_type (filename);	
+	const char *mimeType = gnome_vfs_get_file_mime_type (filename, NULL, FALSE);	
 	GnomeVFSMimeActionType actionType = gnome_vfs_mime_get_default_action_type (mimeType);
-	
-	g_free (mimeType);
 	
 	if (actionType == GNOME_VFS_MIME_ACTION_TYPE_COMPONENT) {
 		return TRUE;
@@ -579,10 +578,8 @@ open_file_with_nautilus (const gchar *filename)
 gboolean
 open_file_with_application (const gchar *filename)
 {
-	gchar *mimeType = gnome_vfs_get_mime_type (filename);	
+	const char *mimeType = gnome_vfs_get_file_mime_type (filename, NULL, FALSE);	
 	GnomeVFSMimeApplication *mimeApp = gnome_vfs_mime_get_default_application (mimeType);
-	
-	g_free (mimeType);
 		
 	if (mimeApp) {
 		gint  argc;
@@ -610,7 +607,7 @@ open_file_with_application (const gchar *filename)
 gboolean
 launch_file (const gchar *filename)
 {
-	gchar *mime_type = gnome_vfs_get_mime_type (filename);	
+	const char *mime_type = gnome_vfs_get_file_mime_type (filename, NULL, FALSE);	
 	gboolean result = FALSE;
 	
 	if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE)) &&
@@ -618,7 +615,6 @@ launch_file (const gchar *filename)
 		result = g_spawn_command_line_async (filename, NULL);
 	}
 	
-	g_free (mime_type);
 	return result;
 }
 

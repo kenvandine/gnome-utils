@@ -56,7 +56,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <libbonobo.h>
-#include <libgnomevfs/gnome-vfs-mime-utils.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 
@@ -450,18 +450,24 @@ add_file_to_search_results (const gchar 	*file,
 			    GtkListStore 	*store, 
 			    GtkTreeIter 	*iter)
 {					
-	gchar *mime_type = gnome_vfs_get_mime_type (file);
-	gchar *description = get_file_type_for_mime_type (file, mime_type);
-	GdkPixbuf *pixbuf = get_file_pixbuf_for_mime_type (file, mime_type);
-	GnomeVFSFileInfo *vfs_file_info = gnome_vfs_file_info_new ();
+	const char *mime_type; 
+	gchar *description;
+	GdkPixbuf *pixbuf;
+	GnomeVFSFileInfo *vfs_file_info;
 	gchar *readable_size, *readable_date;
 	gchar *utf8_base_name, *utf8_dir_name;
 	gchar *base_name, *dir_name;
+	
+	mime_type = gnome_vfs_get_file_mime_type (file, NULL, FALSE);
+	 
+	description = get_file_type_for_mime_type (file, mime_type);
+	pixbuf = get_file_pixbuf_for_mime_type (file, mime_type);
 	
 	if (gtk_tree_view_get_headers_visible (GTK_TREE_VIEW(interface.tree)) == FALSE) {
 		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), TRUE);
 	}
 	
+	vfs_file_info = gnome_vfs_file_info_new ();
 	gnome_vfs_get_file_info (file, vfs_file_info, GNOME_VFS_FILE_INFO_DEFAULT);
 	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
 	readable_date = get_readable_date (vfs_file_info->mtime);
@@ -488,7 +494,6 @@ add_file_to_search_results (const gchar 	*file,
 	gnome_vfs_file_info_unref (vfs_file_info);
 	g_free (base_name);
 	g_free (dir_name);
-	g_free (mime_type);
 	g_free (utf8_base_name);
 	g_free (utf8_dir_name);
 	g_free (readable_size);
