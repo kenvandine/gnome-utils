@@ -347,7 +347,7 @@ read_filesystem_list (need_fs_type, all_fs)
 #ifdef __NetBSD__
 	me->me_type = g_strdup (fsp->f_fstypename);
 #else
-	me->me_type = fstype_to_string (fsp->f_type);
+	me->me_type = xstrdup (fstype_to_string (fsp->f_type));
 #endif
 	me->me_dev = (dev_t) -1;	/* Magic; means not known yet. */
 	me->me_next = NULL;
@@ -444,7 +444,7 @@ read_filesystem_list (need_fs_type, all_fs)
 #endif
 	me->me_mountdir = g_strdup (mnt.mt_filsys);
 	me->me_dev = (dev_t) -1;	/* Magic; means not known yet. */
-	me->me_type = "";
+	me->me_type = xstrdup ("");
 #ifdef GETFSTYP			/* SVR3.  */
 	if (need_fs_type)
 	  {
