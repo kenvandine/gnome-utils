@@ -44,7 +44,6 @@ typedef struct _MainApp
     GtkWidget *fontpicker;
     GtkWidget *chartable;
     GList *buttons;
-    GtkStyle *btnstyle;
     GConfClient *conf;
 } MainApp;
 

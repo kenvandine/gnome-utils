@@ -151,15 +151,6 @@ ascii_select_init (AsciiSelect *obj)
        add_atk_relation(entry, spin, ATK_RELATION_CONTROLLED_BY);
     }
 
-#if 0 /* It seems dumb to hard code the font here */
-    style = gtk_style_copy (gtk_widget_get_style (entry));
-    font = gdk_fontset_load (
-      _("-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*")
-    );
-    if (font != NULL)
-	    gtk_style_set_font(style, font);
-    gtk_widget_set_style (entry, style);
-#endif
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox),
       entry, TRUE, TRUE, 0);
     g_signal_connect (G_OBJECT (spin), "changed",

@@ -34,7 +34,6 @@ void cb_clear_click (GtkWidget *widget, gpointer user_data);
 void cb_copy_click (GtkWidget *widget, gpointer user_data);
 void cb_cut_click (GtkWidget *widget, gpointer user_data);
 void cb_exit_click (GtkWidget *widget, gpointer user_data);
-void cb_fontpicker_font_set (GnomeFontPicker *gfp, gchar *font_name);
 void cb_help_click (GtkWidget *widget, gpointer user_data);
 void cb_set_chartable_font (GtkWidget *widget, gpointer user_data);
 void cb_insert_char_click (GtkWidget *widget, gpointer user_data);

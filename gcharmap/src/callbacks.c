@@ -179,23 +179,6 @@ cb_exit_click (GtkWidget *widget, gpointer user_data)
     gtk_widget_destroy (mainapp->window);
 }
 
-
-void
-cb_fontpicker_font_set (GnomeFontPicker *gfp, gchar *font_name)
-{
-    GdkFont *font;
-    
-    font = gtk_style_get_font(mainapp->btnstyle);
-    gdk_font_unref (font);
-    
-    font = gdk_font_load (font_name);
-    gtk_style_set_font(mainapp->btnstyle, font);
-
-    gtk_widget_hide (mainapp->chartable);
-    gtk_widget_show (mainapp->chartable);
-}
-
-
 void
 cb_help_click (GtkWidget *widget, gpointer user_data)
 {
