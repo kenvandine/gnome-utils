@@ -1,5 +1,3 @@
-#include "world.xpm"
-
 /* Stock pixmaps */
 
 #include "cardnew.xpm"

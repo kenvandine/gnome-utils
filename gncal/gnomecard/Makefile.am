@@ -14,10 +14,24 @@ gnomecard_SOURCES =	\
 	card.c		\
 	card.h		\
 	cardtypes.h	\
-	pairs.h		\
+	canvas.c	\
+	canvas.h	\
+	dialog.c        \
+	dialog.h        \
 	gnomecard.c	\
 	gnomecard.h	\
-	images.h
+	images.h        \
+	init.c          \
+	init.h          \
+	my.c            \
+	my.h            \
+	pix.c           \
+	pix.h           \
+	sort.c          \
+	sort.h          \
+	pairs.h         \
+	tree.c          \
+	tree.h
 	
 LINK_FLAGS = \
 	$(GNOME_LIBDIR) \

@@ -2,31 +2,26 @@
 #include <gnome.h>
 #include <string.h>
 #include <time.h>
-#include <fnmatch.h>
 
 #include <glib.h>
 #include <stdio.h>
 
 #include "../versit/vcc.h"
-#include "gnomecard.h"
 #include "card.h"
+#include "canvas.h"
+#include "dialog.h"
+#include "gnomecard.h"
+#include "init.h"
+#include "my.h"
+#include "sort.h"
+#include "tree.h"
 
-#include "images.h"
-
-#define CANVAS_FONT "-adobe-helvetica-medium-r-*-*-20-240-*-*-p-*-iso8859-1"
-#define CANVAS_WIDTH 250
-#define CANVAS_HEIGHT 150
 #define COL_WIDTH 192
-#define TREE_SPACING 16
 #define TREE_WIDTH 400
 #define TREE_HEIGHT 320
 
 #define NONE  0
 #define FNAME 1
-
-#define MY_FREE(a) if (a) g_free (a)
-#define MY_STRLEN(x) (x?strlen(x):0)
-#define MY_STRDUP(x) (*x?g_strdup(x):NULL)
 
 #define IDENT 0
 #define GEO 1
@@ -34,15 +29,8 @@
 #define EXP 3
 #define SEC 4
 
-#define PHONE 1
-#define EMAIL 2
-
-typedef int (*sort_func) (const void *, const void *);
-
 GtkWidget *gnomecard_window;
-GtkWidget *crd_canvas;
-GnomeCanvasItem *test;
-GtkCTree  *crd_tree;
+GtkCTree  *gnomecard_tree;
 GdkGCValues crd_tree_values;
 GdkColor *crd_tree_sel_col;
 GdkColor *crd_tree_usel_col;
@@ -54,171 +42,20 @@ GtkWidget *menu_edit, *menu_find, *menu_save, *menu_del;
 
 GnomeUIInfo *add_menu; 
 
-GList *crds;
-GList *curr_crd;
-
-pix *null_pix, *crd_pix, *ident_pix, *geo_pix, *org_pix, *exp_pix, *sec_pix;
-pix *phone_pix, *email_pix, *addr_pix, *expl_pix, *org_pix;
+GList *gnomecard_crds;
+GList *gnomecard_curr_crd;
 
 char *gnomecard_fname;
 char *gnomecard_find_str;
 gboolean gnomecard_find_sens;
 gboolean gnomecard_find_back;
 gint gnomecard_def_data;
-sort_func gnomecard_sort_criteria;
 
 gboolean gnomecard_changed;
 gboolean gnomecard_found;                 /* yeah... pretty messy. (fixme) */
 
-char *email_type_name[] = 
-                 { N_("America On-Line"), N_("Apple Link"), N_("AT&T"),
-		               N_("CIS"), N_("e-World"), N_("Internet"), N_("IBM"),
-		               N_("MCI"), N_("Power Share"), N_("Prodigy"), N_("TLX"),
-		               N_("X400"), NULL };
-
-char *phone_type_name[] =
-                 { N_("Preferred"), N_("Work"), N_("Home"), N_("Voice"),
-									 N_("Fax"), N_("Message Recorder"), N_("Cellular"),
-									 N_("Pager"), N_("Bulletin Board"), N_("Modem"),
-									 N_("Car"), N_("ISDN"), N_("Video"), NULL };
-
-char *addr_type_name[] =
-                 { N_("Domiciliary"), N_("International"), N_("Postal Box"),
-									 N_("Parcel"), N_("Home"), N_("Work"), NULL };
-
-char *sort_type_name[] =
-                 { N_("Name"), N_("Address"), N_("E-mail"), 
-									 N_("Title"), N_("Role"), N_("Company"), NULL };
-
-GtkCTreeNode *my_gtk_ctree_insert(GtkCTree *ctree, GtkCTreeNode *parent, 
-																	GtkCTreeNode *sibling, char **text,
-																	pix *p)
-{
-	return gtk_ctree_insert_node(ctree, parent, sibling, text, TREE_SPACING,
-															 p->pixmap, p->mask, p->pixmap, p->mask, 
-															 FALSE, FALSE);
-}
-
-GtkWidget *my_gtk_entry_new(gint len, char *init)
-{
-	GtkWidget *entry;
-	
-	entry = gtk_entry_new();
-	if (len)
-	  gtk_widget_set_usize (entry, 
-				gdk_char_width (entry->style->font, 'M') * len, 0);
-	if (init)
-	  gtk_entry_set_text(GTK_ENTRY(entry), init);
-
-	return entry;
-}
-
-GtkWidget *my_hbox_entry(GtkWidget *parent, char *label, char *init)
-{
-	GtkWidget *hbox, *w;
-
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(parent), hbox, FALSE, FALSE, 0);
-	w = gtk_label_new(label);
-	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE, FALSE, 0);
-	w = my_gtk_entry_new(0, init);
-	gtk_box_pack_start(GTK_BOX(hbox), w, TRUE, TRUE, 0);
-	
-	return w;
-}
-
-GtkWidget *my_gtk_spin_button_new(GtkAdjustment *adj, gint width)
-{
-	GtkWidget *spin;
-	
-	spin = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
-	gtk_spin_button_set_numeric (GTK_SPIN_BUTTON(spin), TRUE);			      
-	gtk_widget_set_usize (spin, /*22 + 8 * width, 0);*/
-		    gdk_char_width (spin->style->font, '-') * width + 22, 0);
-			      
-	return spin;
-}
-
-GtkWidget *my_gtk_vbox_new(void)
-{
-	GtkWidget *vbox;
-	
-	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD_SMALL);
-
-	return vbox;
-}
-
-GtkWidget *my_gtk_table_new(int x, int y)
-{
-	GtkWidget *table;
-	
-	table = gtk_table_new(x, y, FALSE);
-	gtk_table_set_row_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
-	gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD_SMALL);
-	gtk_container_border_width(GTK_CONTAINER(table), GNOME_PAD_SMALL);
-	
-	return table;
-}
-
-void canvas_text_item_set(GnomeCanvasItem *item, char *text) {
-	gnome_canvas_item_set (item, "text", text, NULL);
-}
-
-GnomeStockPixmapEntry *gnomecard_pentry_new(gchar **xpm_data, gint size)
-{
-	GnomeStockPixmapEntry *pentry;
-	
-	pentry = g_malloc(sizeof(GnomeStockPixmapEntry));
-	pentry->data.type = GNOME_STOCK_PIXMAP_TYPE_DATA;
-	pentry->data.width = size;
-	pentry->data.height = size;
-	pentry->data.label = NULL;
-	pentry->data.xpm_data = xpm_data;
-	
-	return pentry;
-}
-
-void gnomecard_init_stock(void)
-{
-	GnomeStockPixmapEntry *pentry;
-	gchar **xpms[] = { cardnew_xpm, cardedit_xpm, first_xpm, last_xpm, cardfind_xpm,
-		                 addr_xpm, phone_xpm, email_xpm, NULL };
-	gchar *names[] = { "New", "Edit", "First", "Last", "Find", "Addr", "Phone", "EMail" };
-	gchar stockname[22];
-	int i;
-	
-	for (i = 0; xpms[i]; i++) {
-		snprintf(stockname, 22, "GnomeCard%s", names[i]);
-		pentry = gnomecard_pentry_new(xpms[i], 24);
-		gnome_stock_pixmap_register(stockname, GNOME_STOCK_PIXMAP_REGULAR, pentry);
-
-		snprintf(stockname, 22, "GnomeCard%sMenu", names[i]);
-		pentry = gnomecard_pentry_new(xpms[i], 16);
-		gnome_stock_pixmap_register(stockname, GNOME_STOCK_PIXMAP_REGULAR, pentry);
-	}
-}
-
-pix *pix_new(char **xpm)
-{
-	GdkImlibImage *image;
-	pix *new_pix;
-	
-	new_pix = g_malloc(sizeof(pix));
-	
-	image = gdk_imlib_create_image_from_xpm_data(xpm);
-	gdk_imlib_render (image, 16, 16);
-	new_pix->pixmap = gdk_imlib_move_image (image);
-	new_pix->mask = gdk_imlib_move_mask (image);
-	gdk_imlib_destroy_image (image);
-	gdk_window_get_size(new_pix->pixmap,
-			    &(new_pix->width), &(new_pix->height));
-	
-	return new_pix;
-}
-
-char *gnomecard_join_name (char *pre, char *given, char *add, 
-			   char *fam, char *suf)
+extern char *gnomecard_join_name (char *pre, char *given, char *add, 
+				  char *fam, char *suf)
 {
 	char *name;
 	
@@ -239,483 +76,27 @@ char *gnomecard_join_name (char *pre, char *given, char *add,
 	return name;
 }
 
-int gnomecard_next_addr_type(int type, int start)
-{
-	int j;
-	
-	for (j = start; j < 6; j++)
-		if (type & (1 << j))
-			return j;
-	
-	return j;
-}
-
-char *gnomecard_first_phone_str(GList *phone)
-{
-	char *ret;
-	
-	if (! phone)
-	  return NULL;
-	
-	ret = ((CardPhone *) phone->data)->data;
-	
-	for ( ; phone; phone = phone->next)
-	  if (((CardPhone *) phone->data)->type & PHONE_PREF)	
-	    ret = ((CardPhone *) phone->data)->data;
-	
-	return ret;
-}
-
-void gnomecard_init_pixes(void)
-{
-	null_pix = g_malloc(sizeof(pix));
-	null_pix->width = 0;
-	null_pix->height = 0;
-	null_pix->pixmap = NULL;
-	null_pix->mask = NULL;
-	
-	crd_pix = pix_new(cardnew_xpm);
-	ident_pix = pix_new(ident_xpm);
-	geo_pix = pix_new(geo_xpm);
-	sec_pix = pix_new(sec_xpm);
-	phone_pix = pix_new(phone_xpm);
-	email_pix = pix_new(email_xpm);
-	addr_pix = pix_new(addr_xpm);
-	expl_pix = pix_new(expl_xpm);
-	org_pix = pix_new(org_xpm);
-}
-	
-void gnomecard_init_defaults(void)
-{
-	gnomecard_def_data = gnome_config_get_int("/GnomeCard/layout/def_data=0");
-	gnomecard_find_sens = gnome_config_get_bool("/GnomeCard/find/sens=False");
-	gnomecard_find_back = gnome_config_get_bool("/GnomeCard/find/back=False");
-	gnomecard_find_str = gnome_config_get_string("/GnomeCard/find/str=");
-	gnomecard_fname = gnome_config_get_string("/GnomeCard/file/open=");
-}
-
-void gnomecard_set_changed(gboolean val)
+extern void gnomecard_set_changed(gboolean val)
 {
 	gnomecard_changed = val;
 	gtk_widget_set_sensitive(tb_save, val);
 	gtk_widget_set_sensitive(menu_save, val);
 }
 
-void gnomecard_scroll_tree(GList *node)
-{
-	GtkCTreeNode *tree_node;
-	
-	tree_node = ((Card *) node->data)->user_data;
-
-	gtk_ctree_node_moveto(crd_tree, tree_node, 0, 0, 0);
-	gtk_ctree_select(crd_tree, tree_node);
-}
-
-int gnomecard_cmp_fnames(const void *crd1, const void *crd2)
-{
-	char *fname1, *fname2;
-	
-	fname1 = (* (Card **) crd1)->fname.str;
-	fname2 = (* (Card **) crd2)->fname.str;
-	
-	if (fname1 == fname2)
-	  return 0;
-	if (!fname1)
-	  return 1;
-	if (!fname2)
-	  return -1;
-	
-	return strcmp(fname1, fname2);
-}
-
-int gnomecard_cmp_names(const void *crd1, const void *crd2)
-{
-	char *name1, *name2;
-	Card *card1, *card2;
-	int ret;
-	
-	card1 = (* (Card **) crd1);
-	card2 = (* (Card **) crd2);
-	
-	name1 = gnomecard_join_name(card1->name.prefix, card1->name.given, 
-				    card1->name.additional, card1->name.family, 
-				    card1->name.suffix);
-	name2 = gnomecard_join_name(card2->name.prefix, card2->name.given, 
-				    card2->name.additional, card2->name.family, 
-				    card2->name.suffix);
-	
-	ret =  strcmp(name1, name2);
-	g_free(name1);
-	g_free(name2);
-	
-	return ret;
-}
-
-int gnomecard_cmp_emails(const void *crd1, const void *crd2)
-{
-	char *email1, *email2;
-	char *host1, *host2;
-	Card *card1, *card2;
-	int ret;
-	
-	card1 = (* (Card **) crd1);
-	card2 = (* (Card **) crd2);
-	
-	if (! card1->email && !card2->email)
-	  return gnomecard_cmp_fnames(crd1, crd2);
-	if (! card1->email)
-	  return 1;
-	if (! card2->email)
-	  return -1;
-	
-	email1 = g_strdup(((CardEMail *) (card1->email->data))->data);
-	email2 = g_strdup(((CardEMail *) (card2->email->data))->data);
-	
-	if ((host1 = strchr(email1, '@'))) {
-		*host1++ = 0;
-		if ((host2 = strchr(email2, '@'))) {
-			*host2++ = 0;
-			if ((ret = strcmp(host1, host2)))
-			  return ret;
-		}
-	}
-	
-	return strcmp(email1, email2);
-}
-
-void gnomecard_sort_card_list(sort_func compar)
-{
-	GList *l;
-	Card **array;
-	guint i, len;
-	
-	len = g_list_length(crds);
-	array = g_malloc(sizeof(Card *) * len);
-	
-	i = 0;
-	for (l = crds; l; l = l->next)
-		array[i++] = l->data;
-	
-	qsort(array, len, sizeof(Card *), compar);
-	
-	i = 0;
-	for (l = crds; l; l = l->next, i++)
-	  l->data = array[i];
-	
-	g_free(array);
-}
-
-void gnomecard_do_sort_cards(sort_func criteria)
-{
-	GList *l;
-	Card *curr;
-	
-	curr = curr_crd->data;
-	gnomecard_sort_card_list(criteria);
-	
-	gtk_clist_freeze(GTK_CLIST(crd_tree));
-	for (l = crds; l; l = l->next) {
-		if (curr == l->data)
-			curr_crd = l;
-		gtk_ctree_move(crd_tree, ((Card *) l->data)->user_data, 
-			       NULL, NULL);
-	}
-	gtk_clist_thaw(GTK_CLIST(crd_tree));
-	
-	gnomecard_scroll_tree(curr_crd);
-	gnomecard_set_changed(TRUE);
-}
-
-void gnomecard_sort_cards(GtkWidget *w, gpointer data)
-{
-	sort_func criteria;
-	
-	criteria = (sort_func) data;
-	if (gnomecard_sort_criteria != criteria) {
-		gnomecard_sort_criteria = criteria;
-		gnomecard_do_sort_cards(criteria);
-	}
-}
-	
 void gnomecard_toggle_card_view(GtkWidget *w, gpointer data)
 {
 	if (GTK_CHECK_MENU_ITEM(w)->active)
-		gtk_widget_hide(crd_canvas);
+		gtk_widget_hide(gnomecard_canvas);
 	else
-		gtk_widget_show(crd_canvas);
+		gtk_widget_show(gnomecard_canvas);
 }
 
 void gnomecard_toggle_tree_view(GtkWidget *w, gpointer data)
 {
 	if (GTK_CHECK_MENU_ITEM(w)->active)
-		gtk_widget_hide(GTK_WIDGET(crd_tree));
+		gtk_widget_hide(GTK_WIDGET(gnomecard_tree));
 	else
-		gtk_widget_show(GTK_WIDGET(crd_tree));
-}
-
-void gnomecard_add_card_sections_to_tree(Card *crd)
-{
-	char *text[2];
-	GtkCTreeNode *parent, *child;
-	
-	parent = crd->user_data;
-	child = parent;
-	
-	text[0] = _("Name");
-	text[1] = gnomecard_join_name(crd->name.prefix, crd->name.given, 
-				      crd->name.additional, crd->name.family, 
-				      crd->name.suffix);
-	if (*text[1])
-		my_gtk_ctree_insert(crd_tree, child, NULL, text, ident_pix);
-	g_free(text[1]);
-	
-	if (crd->bday.prop.used) {
-		text[0] = _("Birth Date");
-		text[1] = card_bday_str(crd->bday);
-		my_gtk_ctree_insert(crd_tree, child, NULL, text, ident_pix);
-		free(text[1]);
-	}
-	
-	if (crd->timezn.prop.used) {
-		text[0] = _("Time Zone");
-		text[1] = card_timezn_str(crd->timezn);
-		my_gtk_ctree_insert(crd_tree, child, NULL, text, geo_pix);
-		free(text[1]);
-		}
-
-	if (crd->geopos.prop.used) {
-		text[0] = _("Geo. Position");
-		text[1] = card_geopos_str(crd->geopos);
-		my_gtk_ctree_insert(crd_tree, child, NULL, text, geo_pix);
-		free(text[1]);
-	}
-	
-	if (crd->title.prop.used) {
-		text[0] = _("Title");
-		text[1] = crd->title.str;
-		my_gtk_ctree_insert(crd_tree, child, NULL, text, org_pix);
-	}
-	if (crd->role.prop.used) {
-		text[0] = _("Role");
-		text[1] = crd->role.str;
-		my_gtk_ctree_insert(crd_tree, child, NULL, text, org_pix);
-	}
-	
-	if (crd->org.prop.used) {
-		GtkCTreeNode *org;
-		
-		text[0] = _("Organization");
-		if (crd->org.name)
-			text[1] = crd->org.name;
-		else
-			text[1] = "";
-		
-		org = my_gtk_ctree_insert(crd_tree, child, NULL, text, org_pix);
-		
-		if (crd->org.unit1) {
-			text[0] = _("Unit 1");
-			text[1] = crd->org.unit1;
-			my_gtk_ctree_insert(crd_tree, org, NULL, text, null_pix);
-		}
-		
-		if (crd->org.unit2) {
-			text[0] = _("Unit 2");
-			text[1] = crd->org.unit2;
-			my_gtk_ctree_insert(crd_tree, org, NULL, text, null_pix);
-	}
-		
-		if (crd->org.unit3) {
-			text[0] = _("Unit 3");
-			text[1] = crd->org.unit3;
-			my_gtk_ctree_insert(crd_tree, org, NULL, text, null_pix);
-		}
-		
-		if (crd->org.unit4) {
-			text[0] = _("Unit 4");
-			text[1] = crd->org.unit4;
-			my_gtk_ctree_insert(crd_tree, org, NULL, text, null_pix);
-		}
-	}
-	
-	if (crd->comment.prop.used) {
-		char *rem, *c;
-		GtkCTreeNode *comment;
-		
-		text[0] = _("Comment");
-		text[1] = "";
-		comment = my_gtk_ctree_insert(crd_tree, child, NULL, text, expl_pix);
-		
-		text[0] = "";
-		c = rem = text[1] = g_strdup(crd->comment.str);
-		while ((c = strchr(text[1], '\n')) != NULL) {
-			*c = 0;
-			my_gtk_ctree_insert(crd_tree, comment, NULL, text, null_pix);
-			text[1] = c + 1;
-		}
-		
-		if (*text[1])
-			my_gtk_ctree_insert(crd_tree, comment, NULL, text, null_pix);
-	}
-	if (crd->url.prop.used) {
-		text[0] = _("URL");
-		text[1] = crd->url.str;
-		my_gtk_ctree_insert(crd_tree, child, NULL, text, null_pix);
-	}
-
-	if (crd->key.prop.used) {
-		text[0] = _("Security");
-		text[1] = "";
-		my_gtk_ctree_insert(crd_tree, parent, NULL, text, sec_pix);
-	}
-	
-	if (crd->phone) {
-		GtkCTreeNode *phone, *phone2;
-		GList *l;
-		int i, len;
-		
-		text[0] = _("Telephone Numbers");
-		text[1] = gnomecard_first_phone_str(crd->phone);
-		if (! crd->phone->next)
-			phone = parent;
-		else
-			phone = my_gtk_ctree_insert(crd_tree, parent, NULL, text, phone_pix);
-		
-		for (l = crd->phone; l; l = l->next) {
-			text[0] = ((CardPhone *)l->data)->data;
-			text[1] = malloc(1);
-			*text[1] = 0;
-			len = 1;
-			for (i = 0; i < 13; i++)
-			  if (((CardPhone *)l->data)->type & (1 << i)) {
-				  len += strlen(phone_type_name[i]) + 1;
-				  text[1] = realloc(text[1], len);
-				  snprintf(text[1], len, "%s %s", text[1], 
-					   phone_type_name[i]);
-			  }
-			
-			phone2 = my_gtk_ctree_insert(crd_tree, phone, NULL, text, phone_pix);
-			free(text[1]);
-		}
-	}
-	
-	if (crd->email) {
-		GtkCTreeNode *email;
-		GList *l;
-		
-		text[0] = _("E-mail Addresses");
-		text[1] = "";
-		
-		if (! crd->email->next)
-			email = parent;
-		else
-			email = my_gtk_ctree_insert(crd_tree, parent, NULL, text, email_pix);
-		
-		for (l = crd->email; l; l = l->next) {
-			text[0] = email_type_name[((CardEMail *)l->data)->type];
-			text[1] = ((CardEMail *)l->data)->data;
-			my_gtk_ctree_insert(crd_tree, email, NULL, text, email_pix);
-		}
-	}
-	
-	if (crd->deladdr || crd->dellabel) {
-		GtkCTreeNode *addr, *addr2;
-		GList *l;
-		int i, j, k;
-		
-		text[0] = _("Delivery Addresses");
-		text[1] = "";
-		
-		/* fixme: not handling dellabel case. */
-		
-		if (! crd->deladdr->next)
-			addr = parent;
-		else
-			addr = my_gtk_ctree_insert(crd_tree, parent, NULL, text, addr_pix);
-		
-		for (l = crd->deladdr; l; l = l->next) {
-			CardDelAddr *deladdr;
-			
-			text[0] = "";
-			text[1] = NULL;
-			deladdr = ((CardDelAddr *)l->data);
-			
-			for (i = 0; i < DELADDR_MAX; i++)
-				if (deladdr->data[i]) {
-					text[1] = deladdr->data[i];
-					break;
-				}
-			
-			if (text[1]) {
-				if ((j = gnomecard_next_addr_type(deladdr->type, 0)) < 6) {
-					text[0] = addr_type_name[j];
-					k = j + 1;
-				} else
-					text[0] = "";
-				
-				addr2 = my_gtk_ctree_insert(crd_tree, addr, NULL, text, addr_pix);
-				
-				for (i = 0; i < DELADDR_MAX; i++)
-					if (deladdr->data[i] && text[1] != deladdr->data[i]) {
-						
-						if ((j = gnomecard_next_addr_type(deladdr->type, k)) < 6) {
-							text[0] = addr_type_name[j];
-							k = j + 1;
-						} else
-							text[0] = "";
-						
-						text[1] = deladdr->data[i];
-						my_gtk_ctree_insert(crd_tree, addr2, NULL, text, null_pix);
-					}
-			}
-		}
-	}
-}
-
-void gnomecard_set_node_info(Card *crd)
-{
-	char *text, *tmp;
-	gint len;
-	
-	if ((text = crd->fname.str) == NULL)
-	  text = _("No Card Name for this card.");
-	
-	gtk_ctree_set_node_info(crd_tree, crd->user_data, text,
-				TREE_SPACING, crd_pix->pixmap,
-				crd_pix->mask, crd_pix->pixmap,
-				crd_pix->mask, FALSE, FALSE);
-
-	text = malloc(1);
-	*text = 0;
-	len = 1;
-	if (crd->phone && (gnomecard_def_data & PHONE)) {
-	  tmp = gnomecard_first_phone_str(crd->phone);
-		len += strlen(tmp) + 1;
-		text = realloc(text, len);
-		snprintf(text, len, "%s %s", text, tmp);
-	}
-	if (crd->email && (gnomecard_def_data & EMAIL)) {
-		tmp = ((CardEMail *) (crd->email->data))->data;
-		len += strlen(tmp) + 1;
-		text = realloc(text, len);
-		snprintf(text, len, "%s %s", text, tmp);
-	}
-
-	gtk_ctree_node_set_text(crd_tree, crd->user_data, 1, text);
-	
-	g_free(text);
-}
-
-void gnomecard_add_card_to_tree(Card *crd)
-{
-	char *text[2];
-	
-	text[0] = text[1] = "";
-	
-	crd->user_data = gtk_ctree_insert_node(crd_tree, NULL, NULL, text,
-																		0, NULL, NULL, NULL, NULL, FALSE, FALSE);
-	
-	gnomecard_set_node_info(crd);
-	gnomecard_add_card_sections_to_tree(crd);
+		gtk_widget_show(GTK_WIDGET(gnomecard_tree));
 }
 
 void gnomecard_set_next(gboolean state)
@@ -734,7 +115,7 @@ void gnomecard_set_prev(gboolean state)
 	gtk_widget_set_sensitive(menu_first, state);
 }
 
-void gnomecard_set_add(gboolean state)
+extern void gnomecard_set_add(gboolean state)
 {
 	int i;
 	
@@ -743,7 +124,7 @@ void gnomecard_set_add(gboolean state)
 			gtk_widget_set_sensitive(GTK_WIDGET(add_menu[i].widget), state);
 }
 
-void gnomecard_set_edit_del(gboolean state)
+extern void gnomecard_set_edit_del(gboolean state)
 {
 	gtk_widget_set_sensitive(tb_edit, state);
 	gtk_widget_set_sensitive(menu_edit, state);
@@ -753,78 +134,32 @@ void gnomecard_set_edit_del(gboolean state)
 	gtk_widget_set_sensitive(menu_find, state);
 }
 
-GtkCTreeNode *gnomecard_search_sorted_tree_pos(Card *crd)
-{
-	GList *l;
-	
-	for (l = crds; l; l = l->next)
-	  if ((*gnomecard_sort_criteria) (& (l->data), &crd) > 0)
-	    return ((Card *) l->data)->user_data;
-	
-	return NULL;
-}
-	
-void gnomecard_tree_set_sorted_pos(Card *crd)
-{
-	gtk_ctree_move(crd_tree, crd->user_data,
-		       NULL, gnomecard_search_sorted_tree_pos(crd));
-}
-	
-/* I'm using collapse and expand to avoid ctree_remove SIGSEGV */
-void gnomecard_update_tree(Card *crd)
-{
-	GtkCTreeNode *node, *tmp;
-	
-	gnomecard_set_node_info(crd);
-	gtk_ctree_collapse_recursive(crd_tree, crd->user_data);
-	
-	/* FIXME: the gtkctree API is broken. This is a workaround.
-	 * GTK_CTREE_NODE_CHILDREN should exist. */
-	node = GTK_CTREE_ROW(&GTK_CTREE_NODE(crd->user_data)->list)->children;
-	while (node) {
-		tmp = GTK_CTREE_NODE_NEXT (node);
-		gtk_ctree_remove_node(crd_tree, node);
-		node = tmp;
-	}
-	
-	gnomecard_add_card_sections_to_tree(crd);
-	gnomecard_tree_set_sorted_pos(crd);
-}
-
-void gnomecard_update_canvas(Card *crd) 
-{
-	if (crd->fname.str)
-	  canvas_text_item_set(test, crd->fname.str);
-	else
-	  canvas_text_item_set(test, _("No fname for this card."));
-}
-
 void gnomecard_set_curr(GList *node)
 {
-	curr_crd = node;
+	gnomecard_curr_crd = node;
 	
-	if (curr_crd) {
-		gnomecard_update_canvas(curr_crd->data);
+	if (gnomecard_curr_crd) {
+		gnomecard_update_canvas(gnomecard_curr_crd->data);
 		
-		if (!((Card *) curr_crd->data)->flag) {
+		if (!((Card *) gnomecard_curr_crd->data)->flag) {
 		  gnomecard_set_edit_del(TRUE);
 			gnomecard_set_add(TRUE);
 		} else { 
 		  gnomecard_set_edit_del(FALSE);
 		}
 
-		if (curr_crd->next)
+		if (gnomecard_curr_crd->next)
 		  gnomecard_set_next(TRUE);
 		else
 		  gnomecard_set_next(FALSE);
 		
-		if (curr_crd->prev)
+		if (gnomecard_curr_crd->prev)
 		  gnomecard_set_prev(TRUE);
 		else
 		  gnomecard_set_prev(FALSE);
 		
 	} else {
-		canvas_text_item_set(test, _("No cards, yet."));
+		gnomecard_canvas_text_item_set(_("No cards, yet."));
 		
 		gnomecard_set_edit_del(FALSE);
 		gnomecard_set_add(FALSE);
@@ -854,7 +189,7 @@ void gnomecard_tree_selected(GtkCTree *tree, GtkCTreeNode *row, gint column)
 													 crd_tree_sel_col);
 	
 	gnomecard_found = FALSE;
-	for (i = crds; i; i = i->next) {
+	for (i = gnomecard_crds; i; i = i->next) {
 		gtk_ctree_post_recursive(tree, ((Card *) i->data)->user_data,
 					 GTK_CTREE_FUNC(gnomecard_cmp_nodes), 
 					 row);
@@ -862,7 +197,7 @@ void gnomecard_tree_selected(GtkCTree *tree, GtkCTreeNode *row, gint column)
 		  break;
 	}
 	
-	if (i && i != curr_crd) {
+	if (i && i != gnomecard_curr_crd) {
 	  gnomecard_set_curr(i);
 	}
 }
@@ -870,495 +205,28 @@ void gnomecard_tree_selected(GtkCTree *tree, GtkCTreeNode *row, gint column)
 void gnomecard_tree_unselected(GtkCTree *tree, GtkCTreeNode *row, gint column)
 {
 	gtk_ctree_post_recursive(tree, row,
-													 GTK_CTREE_FUNC(gnomecard_set_bg),
-													 crd_tree_usel_col);
+				 GTK_CTREE_FUNC(gnomecard_set_bg),
+				 crd_tree_usel_col);
 }
 
-void gnomecard_property_used(GtkWidget *w, gpointer data)
-{
-	CardProperty *prop;
-	
-	prop = (CardProperty *) data;
-	prop->type = (int) gtk_object_get_user_data(GTK_OBJECT(w));
-	prop->used = TRUE;
-}
-
-void my_connect(gpointer widget, char *sig, gpointer box, 
-								CardProperty *prop, enum PropertyType type)
-{
- 	gtk_signal_connect_object(GTK_OBJECT(widget), sig,
-				  GTK_SIGNAL_FUNC(gnome_property_box_changed),
-				  GTK_OBJECT(box));
-	gtk_signal_connect(GTK_OBJECT(widget), sig,
-			   GTK_SIGNAL_FUNC(gnomecard_property_used),
-			   prop);
-	gtk_object_set_user_data(GTK_OBJECT(widget), (gpointer) type);
-}
-
-void gnomecard_prop_apply(GtkWidget *widget, int page)
-{
-	GnomeCardEditor *ce;
-	Card *crd;
-	struct tm *tm;
-	time_t tt;
-
-	if (page != -1)
-	  return;             /* ignore partial applies */
-	
-	ce = (GnomeCardEditor *) gtk_object_get_user_data(GTK_OBJECT(widget));
-	crd = (Card *) ce->l->data;
-	
-	MY_FREE(crd->fname.str);
-	MY_FREE(crd->name.family);
-	MY_FREE(crd->name.given);
-	MY_FREE(crd->name.additional);
-	MY_FREE(crd->name.prefix);
-	MY_FREE(crd->name.suffix);
-	
-	crd->fname.str       = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->fn)));
-	crd->name.family     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->fam)));
-	crd->name.given      = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->given)));
-	crd->name.additional = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->add)));
-	crd->name.prefix     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->pre)));
-	crd->name.suffix     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->suf)));
-	
-	tt = gnome_date_edit_get_date(GNOME_DATE_EDIT(ce->bday));
-	tm = localtime(&tt);
-	
-	crd->bday.year       = tm->tm_year + 1900;
-	crd->bday.month      = tm->tm_mon + 1;
-	crd->bday.day        = tm->tm_mday;
-	
-	crd->timezn.sign  = (ce->tzh < 0)? -1: 1;
-	crd->timezn.hours = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(ce->tzh));
-	crd->timezn.mins  = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(ce->tzm));
-	
-	crd->geopos.lon = gtk_spin_button_get_value_as_float(GTK_SPIN_BUTTON(ce->gplon));
-	crd->geopos.lat = gtk_spin_button_get_value_as_float(GTK_SPIN_BUTTON(ce->gplat));
-	
-	MY_FREE(crd->title.str);
-	MY_FREE(crd->role.str);
-	MY_FREE(crd->org.name);
-	MY_FREE(crd->org.unit1);
-	MY_FREE(crd->org.unit2);
-	MY_FREE(crd->org.unit3);
-	MY_FREE(crd->org.unit4);
-
-	crd->title.str = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->title)));
-	crd->role.str  = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->role)));
-	crd->org.name  = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->orgn)));
-	crd->org.unit1 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org1)));
-	crd->org.unit2 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org2)));
-	crd->org.unit3 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org3)));
-	crd->org.unit4 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org4)));
-	
-	MY_FREE(crd->comment.str);
-	MY_FREE(crd->url.str);
-	
-	crd->comment.str = gtk_editable_get_chars(GTK_EDITABLE(ce->comment), 
-						      0, gtk_text_get_length(GTK_TEXT(ce->comment)));
-	crd->url.str     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->url)));
-	
-        MY_FREE(crd->key.data);
-	
-	crd->key.data = gtk_editable_get_chars(GTK_EDITABLE(ce->key), 
-						   0, gtk_text_get_length(GTK_TEXT(ce->key)));
-	if (GTK_TOGGLE_BUTTON(ce->keypgp)->active)
-	  crd->key.type = KEY_PGP;
-	else
-	  crd->key.type = KEY_X509;
-
-	gnomecard_update_tree(crd);
-	gnomecard_update_canvas(crd);
-	gnomecard_scroll_tree(ce->l);
-	gnomecard_set_changed(TRUE);
-}
-
-void gnomecard_prop_close(GtkWidget *widget, gpointer node)
-{
-	((Card *) ((GList *) node)->data)->flag = FALSE;
-	
-	if ((GList *) node == curr_crd)
-	  gnomecard_set_edit_del(TRUE);
-}
-
-void gnomecard_take_from_name(GtkWidget *widget, gpointer data)
-{
-        GnomeCardEditor *ce;
-	char *name;
-	
-	ce = (GnomeCardEditor *) data;
-	
-	name = gnomecard_join_name(gtk_entry_get_text(GTK_ENTRY(ce->pre)),
-			 gtk_entry_get_text(GTK_ENTRY(ce->given)),
-			 gtk_entry_get_text(GTK_ENTRY(ce->add)),
-			 gtk_entry_get_text(GTK_ENTRY(ce->fam)),
-			 gtk_entry_get_text(GTK_ENTRY(ce->suf)));
-	
-	gtk_entry_set_text(GTK_ENTRY(ce->fn), name);
-	
-	g_free(name);
-}
-	
-void gnomecard_edit(GList *node, int section)
-{
-	GnomePropertyBox *box;
-	GnomeCardEditor *ce;
-	GtkWidget *hbox, *hbox2, *vbox, *frame, *table;
-	GtkWidget *label, *entry, *align, *align2, *pix;
-	GtkWidget *radio1, *radio2, *button;
-	GtkObject *adj;
-	Card *crd;
-	time_t tmp_time;
-	
-	ce = g_malloc(sizeof(GnomeCardEditor));
-	ce->l = node;
-	crd = (Card *) node->data;
-	
-	/* Set flag and disable Delete and Edit. */
-	
-	crd->flag = TRUE;
-	gnomecard_set_edit_del(FALSE);
-	gnomecard_set_add(TRUE);
-	
-	box = GNOME_PROPERTY_BOX(gnome_property_box_new());
-	gtk_object_set_user_data(GTK_OBJECT(box), ce);
-	gtk_window_set_wmclass(GTK_WINDOW(box), "GnomeCard",
-			       "GnomeCard");
-	gtk_signal_connect(GTK_OBJECT(box), "apply",
-			   (GtkSignalFunc)gnomecard_prop_apply, NULL);
-	gtk_signal_connect(GTK_OBJECT(box), "destroy",
-			   (GtkSignalFunc)gnomecard_prop_close, node);
-	
-	/* Identity */
-	
-	vbox = my_gtk_vbox_new();
-	label = gtk_label_new(_("Identity"));
-	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
-	
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	label = gtk_label_new(_("Card Name:"));
-	ce->fn = entry = my_gtk_entry_new(0, crd->fname.str);
-	my_connect(entry, "changed", box, &crd->fname.prop, PROP_FNAME);
-	button = gtk_button_new_with_label(_("Take from Name"));
- 	gtk_signal_connect_object(GTK_OBJECT(button), "clicked",
-				  GTK_SIGNAL_FUNC(gnome_property_box_changed),
-				  GTK_OBJECT(box));
-	gtk_signal_connect(GTK_OBJECT(button), "clicked",
-			   GTK_SIGNAL_FUNC(gnomecard_take_from_name),
-			   ce);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	
-	frame = gtk_frame_new(_("Name"));	
-	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
-	table = my_gtk_table_new(6, 2);
-	gtk_container_add(GTK_CONTAINER(frame), table);
-	label = gtk_label_new(_("Given:"));
-	ce->given = entry = my_gtk_entry_new(12, crd->name.given);
-	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1, 0, 0, 0, 0);
-	label = gtk_label_new(_("Additional:"));
-	ce->add = entry = my_gtk_entry_new(12, crd->name.additional);
-	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1, 0, 0, 0, 0);
-	label = gtk_label_new(_("Family:"));
-	ce->fam = entry = my_gtk_entry_new(15, crd->name.family);
-	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(table), label, 4, 5, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 5, 6, 0, 1, 0, 0, 0, 0);
-	label = gtk_label_new(_("Prefix:"));
-	ce->pre = entry = my_gtk_entry_new(5, crd->name.prefix);
-	align = gtk_alignment_new(0.0, 0.0, 0, 0);
-        gtk_container_add (GTK_CONTAINER (align), entry);
-	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), align, 1, 2, 1, 2, 
-			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
-			 0, 0);
-	label = gtk_label_new(_("Suffix:"));
-	ce->suf = entry = my_gtk_entry_new(5, crd->name.suffix);
-	align = gtk_alignment_new(0.0, 0.0, 0, 0);
-        gtk_container_add (GTK_CONTAINER (align), entry);
-	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-        gtk_table_attach(GTK_TABLE(table), label, 4, 5, 1, 2,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), align, 5, 6, 1, 2, 
-			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
-			 0, 0);
-	
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	label = gtk_label_new(_("Birthdate:"));
-	
-	if (crd->bday.prop.used) {
-		struct tm tm = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-		
-		tm.tm_year = crd->bday.year - 1900;
-		tm.tm_mon  = crd->bday.month - 1;
-		tm.tm_mday = crd->bday.day;
-		
-		tmp_time = mktime(&tm);
-	} else
-	  tmp_time = time(NULL);
-	
-	ce->bday = entry = gnome_date_edit_new(tmp_time, FALSE, FALSE);
-	my_connect(GNOME_DATE_EDIT(entry)->calendar, "day_selected",
-		   box, &crd->bday.prop, PROP_BDAY);
-	my_connect(GNOME_DATE_EDIT(entry)->date_entry, "changed",
-		   box, &crd->bday.prop, PROP_BDAY);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
-	/* Geographical */
-	
-	align2 = gtk_alignment_new(0.5, 0.5, 0, 0);
-	hbox2 = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-        gtk_container_add (GTK_CONTAINER (align2), hbox2);
-	label = gtk_label_new(_("Geographical"));
-	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), align2, label);
-	
-	pix = gnome_pixmap_new_from_xpm_d (world_xpm);
-	gtk_box_pack_start(GTK_BOX(hbox2), pix, FALSE, FALSE, 0);
-	
-	vbox = my_gtk_vbox_new();
-	gtk_box_pack_start(GTK_BOX(hbox2), vbox, FALSE, FALSE, 0);
-	frame = gtk_frame_new(_("Time Zone"));
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 0);
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_container_border_width(GTK_CONTAINER(hbox), GNOME_PAD_SMALL);
-	align = gtk_alignment_new(0.5, 0.5, 0, 0);
-        gtk_container_add (GTK_CONTAINER (align), hbox);
-	gtk_container_add(GTK_CONTAINER(frame), align);
-	label = gtk_label_new(_("hrs."));
-	adj = gtk_adjustment_new(crd->timezn.prop.used? 
-				 crd->timezn.sign * crd->timezn.hours : 0,
-				 -12, 12, 1, 1, 3);
-	my_connect(adj, "value_changed", box, &crd->timezn.prop, PROP_TIMEZN);
-	ce->tzh = entry = my_gtk_spin_button_new(GTK_ADJUSTMENT(adj), 3);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	label = gtk_label_new(_("mins."));
-	adj = gtk_adjustment_new(crd->timezn.prop.used? crd->timezn.mins : 0,
-				 0, 59, 1, 1, 10);
-	my_connect(adj, "value_changed", box, &crd->timezn.prop, PROP_TIMEZN);
-	ce->tzm = entry = my_gtk_spin_button_new(GTK_ADJUSTMENT(adj), 2);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-		
-	frame = gtk_frame_new(_("Geographic Position"));
-	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, TRUE, 0);
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_container_border_width(GTK_CONTAINER(hbox), GNOME_PAD_SMALL);
-	align = gtk_alignment_new(0.5, 0.5, 0, 0);
-        gtk_container_add (GTK_CONTAINER (align), hbox);
-	gtk_container_add(GTK_CONTAINER(frame), align);
-	label = gtk_label_new(_("lat, "));
-	adj = gtk_adjustment_new(crd->geopos.prop.used? crd->geopos.lat : 0,
-				 -90, 90, .01, 1, 1);
-	ce->gplat = entry = my_gtk_spin_button_new(GTK_ADJUSTMENT(adj), 5);
-	gtk_spin_button_set_digits(GTK_SPIN_BUTTON(entry), 2);
-	my_connect(adj, "value_changed", box, &crd->geopos.prop, PROP_GEOPOS);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	label = gtk_label_new(_("lon."));
-	adj = gtk_adjustment_new(crd->geopos.prop.used? crd->geopos.lon : 0,
-				 -180, 180, .01, 1, 1);
-	ce->gplon = entry = my_gtk_spin_button_new(GTK_ADJUSTMENT(adj), 6);
-	gtk_spin_button_set_digits(GTK_SPIN_BUTTON(entry), 2);
-	my_connect(adj, "value_changed", box, &crd->geopos.prop, PROP_GEOPOS);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-
-	/* Organization */
-	
-	vbox = my_gtk_vbox_new();
-	label = gtk_label_new(_("Organization"));
-	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
-
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	label = gtk_label_new(_("Title:"));
-	ce->title = entry = my_gtk_entry_new(0, crd->title.str);
-	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-	label = gtk_label_new(_("Role:"));
-	ce->role = entry = my_gtk_entry_new(0, crd->role.str);
-	my_connect(entry, "changed", box, &crd->role.prop, PROP_ROLE);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	
-	frame = gtk_frame_new(_("Organization"));
-	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
-	table = my_gtk_table_new(4, 5);
-	gtk_container_add(GTK_CONTAINER(frame), table);
-	label = gtk_label_new(_("Name:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
-	ce->orgn = entry = my_gtk_entry_new(0, crd->org.name);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1, 
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	label = gtk_label_new(_("Units:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
-	ce->org1 = entry = my_gtk_entry_new(0, crd->org.unit1);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1, 
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	ce->org2 = entry = my_gtk_entry_new(0, crd->org.unit2);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 1, 2,
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	ce->org3 = entry = my_gtk_entry_new(0, crd->org.unit3);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 2, 3,
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	ce->org4 = entry = my_gtk_entry_new(0, crd->org.unit4);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 4, 5,
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-
-	/* Explanatory */
-	
-	vbox = my_gtk_vbox_new();
-	label = gtk_label_new(_("Explanatory"));
-	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
-	
-	label = gtk_label_new(_("Comment:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
-	gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
-	ce->comment = entry = gtk_text_new(NULL, NULL);
-	gtk_text_set_editable(GTK_TEXT(entry), TRUE);
-	gtk_box_pack_start(GTK_BOX(vbox), entry, FALSE, FALSE, 0);
-	gtk_widget_realize(entry);
-	if (crd->comment.prop.used) {
-		int pos = 0;
-		gtk_editable_insert_text(GTK_EDITABLE(entry), crd->comment.str,
-					 strlen(crd->comment.str), &pos);
-	}
-	gtk_widget_set_usize (entry, 0, (entry->style->font->ascent +
-					 entry->style->font->descent) * 4);
-	my_connect(entry, "changed", box, &crd->comment.prop, PROP_COMMENT);
-	
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	label = gtk_label_new(_("URL:"));
-	ce->url = entry = my_gtk_entry_new(0, crd->url.str);
-	my_connect(entry, "changed", box, &crd->url.prop, PROP_URL);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, GNOME_PAD);
-	label = gtk_label_new(_("Last Revision:"));
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	label = gtk_label_new(_("The last revision goes here."));
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	
-	/* Security */
-	
-	vbox = my_gtk_vbox_new();
-	label = gtk_label_new(_("Security"));
-	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
-
-	label = gtk_label_new(_("Public Key:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
-	gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
-	ce->key = entry = gtk_text_new(NULL, NULL);
-	gtk_text_set_editable(GTK_TEXT(entry), TRUE);
-	gtk_box_pack_start(GTK_BOX(vbox), entry, FALSE, FALSE, 0);
-	gtk_widget_realize(entry);
-	if (crd->key.prop.used) {
-		int pos = 0;
-		gtk_editable_insert_text(GTK_EDITABLE(entry), crd->key.data,
-					 strlen(crd->key.data), &pos);
-	}
-	gtk_widget_set_usize (entry, 0, (entry->style->font->ascent +
-					 entry->style->font->descent) * 6);
-	my_connect(entry, "changed", box, &crd->key.prop, PROP_KEY);
-
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	ce->keypgp = radio1 = gtk_radio_button_new_with_label(NULL, _("PGP"));
-	if (crd->key.prop.used && crd->key.type != KEY_PGP)
-	  gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(radio1), 0);
-	my_connect(radio1, "toggled", box, &crd->key.prop, PROP_KEY);
-	gtk_box_pack_start(GTK_BOX(hbox), radio1, FALSE, FALSE, 0);
-	radio2 = gtk_radio_button_new_with_label(
-		gtk_radio_button_group(GTK_RADIO_BUTTON(radio1)),
-		_("X509"));
-	if (crd->key.prop.used && crd->key.type == KEY_X509)
-	  gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(radio2), 1);
-	my_connect(radio2, "toggled", box, &crd->key.prop, PROP_KEY);
-	gtk_box_pack_start(GTK_BOX(hbox), radio2, FALSE, FALSE, 0);
-
-	gtk_widget_show_all(GTK_WIDGET(box));
-}
-
-void gnomecard_cancel(GtkWidget *widget, gpointer data)
-{
-	void *p;
-
-	if ((p = gtk_object_get_user_data(GTK_OBJECT(widget))) != NULL)
-		g_free(p);
-	
-	gtk_widget_destroy(widget);
-}
-
-void gnomecard_save(void)
+extern void gnomecard_save(void)
 {
 	GList *l;
 	FILE *fp;
 
 	fp = fopen (gnomecard_fname, "w");
-	for (l = crds; l; l= l->next)
+	for (l = gnomecard_crds; l; l= l->next)
 	  card_save((Card *) l->data, fp);
 	fclose(fp);
 	
 	gnomecard_set_changed(FALSE);
 }
 
-void gnomecard_save_call(GtkWidget *widget, gpointer data)
-{
-	g_free(gnomecard_fname);
-	gnomecard_fname = g_strdup(gtk_file_selection_get_filename(GTK_FILE_SELECTION(widget)));
-	gtk_widget_destroy(widget);
-	
-	gnomecard_save();
-}
-
-void gnomecard_save_as(GtkWidget *widget, gpointer data)
-{
-	GtkWidget *fsel;
-	
-	fsel = gtk_file_selection_new(_("Save GnomeCard File As..."));
-	gtk_file_selection_hide_fileop_buttons(GTK_FILE_SELECTION(fsel));
-	gtk_signal_connect_object(GTK_OBJECT(GTK_FILE_SELECTION(fsel)->ok_button),
-			   "clicked", GTK_SIGNAL_FUNC(gnomecard_save_call),
-			   GTK_OBJECT(fsel));
-	gtk_signal_connect_object(GTK_OBJECT(GTK_FILE_SELECTION(fsel)->cancel_button),
-			   "clicked", GTK_SIGNAL_FUNC(gnomecard_cancel),
-			   GTK_OBJECT(fsel));
-	gtk_widget_show(fsel);
-}
-
 gboolean gnomecard_cards_blocked(void)
 {
 	GList *l;
 
-	for (l = crds; l; l = l->next)
+	for (l = gnomecard_crds; l; l = l->next)
 	  if (((Card *) l->data)->flag)
 	    return TRUE;
 	
@@ -1366,8 +234,7 @@ gboolean gnomecard_cards_blocked(void)
 }
 
 /* Returns TRUE if the cards were destroyed. FALSE if canceled */
-int 
-gnomecard_destroy_cards(void)
+extern int gnomecard_destroy_cards(void)
 {
 	GList *l;
 
@@ -1414,12 +281,12 @@ gnomecard_destroy_cards(void)
 		g_free (msg);
 	}
 	
-	for (l = crds; l; l = l->next)
+	for (l = gnomecard_crds; l; l = l->next)
 	  card_free (l->data);
 	
-	gtk_ctree_remove_node(crd_tree,NULL);
-	g_list_free(crds);
-	crds = NULL;
+	gtk_ctree_remove_node(gnomecard_tree,NULL);
+	g_list_free(gnomecard_crds);
+	gnomecard_crds = NULL;
 	
 	gnomecard_set_curr(NULL);
 	gnomecard_set_changed(FALSE);
@@ -1434,10 +301,10 @@ void gnomecard_new_card(GtkWidget *widget, gpointer data)
 	
 	crd = card_new();
 	gnomecard_add_card_to_tree(crd);
-	crds = g_list_append(crds, crd);
+	gnomecard_crds = g_list_append(gnomecard_crds, crd);
 	
-	last = g_list_last(crds);
-	gnomecard_edit(last, IDENT);
+	last = g_list_last(gnomecard_crds);
+	gnomecard_edit(last);
 	gnomecard_scroll_tree(last);
 	
 	gnomecard_set_changed(TRUE);
@@ -1447,15 +314,15 @@ void gnomecard_del_card(GtkWidget *widget, gpointer data)
 {
 	GList *tmp;
 	
-	if (curr_crd->next)
-	  tmp = curr_crd->next;
+	if (gnomecard_curr_crd->next)
+	  tmp = gnomecard_curr_crd->next;
 	else
-	  tmp = curr_crd->prev;
+	  tmp = gnomecard_curr_crd->prev;
 	
-	card_free(curr_crd->data);
-	crds = g_list_remove_link(crds, curr_crd);
-	gtk_ctree_remove_node(crd_tree, ((Card *) curr_crd->data)->user_data);
-	g_list_free(curr_crd);
+	card_free(gnomecard_curr_crd->data);
+	gnomecard_crds = g_list_remove_link(gnomecard_crds, gnomecard_curr_crd);
+	gtk_ctree_remove_node(gnomecard_tree, ((Card *) gnomecard_curr_crd->data)->user_data);
+	g_list_free(gnomecard_curr_crd);
 	
 	if (tmp)
 	  gnomecard_scroll_tree(tmp);
@@ -1465,670 +332,26 @@ void gnomecard_del_card(GtkWidget *widget, gpointer data)
 	gnomecard_set_changed(TRUE);
 }
 
-int gnomecard_match_pattern(char *pattern, char *str, int sens)
-{
-	char *txt;
-	int found = 0;
-	
-	if (! str)
-		return 0;
-	
-	if (sens)
-		txt = str;
-	else
-		g_strup(txt = g_strdup(str));
-	
-	if (fnmatch(pattern, txt, 0) == 0) {
-		found = 1;
-	}
-	
-	if (! sens)
-		g_free(txt);
-	
-	return found;
-}
-
-void gnomecard_find_card(GtkWidget *w, gpointer data)
-{
-	GnomeCardFind *p;
-	GList *l, *k;
-	Card *crd;
-	char *pattern, *crd_text[15];
-	int i, wrapped, found, sens, back;
-	
-	p = (GnomeCardFind *) data;
-
-	found = 0;
-	wrapped = 0;
-
-	if (GTK_TOGGLE_BUTTON(p->back)->active)
-		gnomecard_find_back = back = 1;
-	else
-		gnomecard_find_back = back = 0;
-	
-	MY_FREE(gnomecard_find_str);
-	gnomecard_find_str = g_strdup(gtk_entry_get_text(GTK_ENTRY(p->entry)));
-	pattern = g_malloc(strlen(gnomecard_find_str) + 3);
-	sprintf(pattern, "*%s*", gnomecard_find_str);
-
-	if (GTK_TOGGLE_BUTTON(p->sens)->active)
-		gnomecard_find_sens = sens = 1;
-	else {
-		gnomecard_find_sens = sens = 0;
-		g_strup(pattern);
-	}
-	
-	l = curr_crd;
-	
-	while (l) {
-		if (wrapped != 1)
-			l = (back)? l->prev : l->next;
-		else
-			wrapped ++;
-
-		if (l) {
-			crd = l->data;
-			crd_text[0] = crd->fname.str;
-			crd_text[1] = crd->name.family;
-			crd_text[2] = crd->name.given;
-			crd_text[3] = crd->name.additional;
-			crd_text[4] = crd->name.prefix;
-			crd_text[5] = crd->name.suffix;
-			crd_text[6] = crd->title.str;
-			crd_text[7] = crd->role.str;
-			crd_text[8] = crd->comment.str;
-			crd_text[9] = crd->url.str;
-			crd_text[10] = crd->org.name;
-			crd_text[11] = crd->org.unit1;
-			crd_text[12] = crd->org.unit2;
-			crd_text[13] = crd->org.unit3;
-			crd_text[14] = crd->org.unit4;
-			
-			for (i = 0; i < 15 && !found; i++)
-				if (gnomecard_match_pattern(pattern, crd_text[i], sens))
-					found = 1;
-
-			for (k = crd->phone; k && !found; k = k->next)
-				if (gnomecard_match_pattern(pattern, 
-																		((CardPhone *) k->data)->data, sens))
-					found = 1;
-			
-			for (k = crd->email; k && !found; k = k->next)
-				if (gnomecard_match_pattern(pattern, 
-																		((CardEMail *) k->data)->data, sens))
-						found = 1;
-
-			for (k = crd->dellabel; k && !found; k = k->next)
-				if (gnomecard_match_pattern(pattern, 
-																		((CardDelLabel *) k->data)->data, sens))
-					found = 1;
-
-			for (k = crd->deladdr; k && !found; k = k->next)
-				for (i = 0; i < DELADDR_MAX; i++)
-					if (gnomecard_match_pattern(pattern, 
-																			((CardDelAddr *) k->data)->data[i], sens))
-						found = 1;
-			
-			if (found) {
-				gnomecard_scroll_tree(l);
-				break;
-			}
-			
-		}	else if (wrapped) {
-			GtkWidget *w;
-			
-			w = gnome_message_box_new(_("No matching record found."),
-																GNOME_MESSAGE_BOX_ERROR,
-																GNOME_STOCK_BUTTON_OK, NULL);
-			GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
-			gnome_dialog_button_connect_object(GNOME_DIALOG(w),	0,
-																				 GTK_SIGNAL_FUNC(gnomecard_cancel),
-																				 GTK_OBJECT(w));	
-			gtk_widget_show(w);
-			break;
-		} else {
-			GtkWidget *w;
-			char msg[128], *str1, *str2;
-			
-			str1 = (back)? _("first") : _("last");
-			str2 = (back)? _("last") : _("first");
-			snprintf(msg, 128, _("Reached %s record.\nContinue from the %s one?"),
-							 str1, str2);
-			w = gnome_message_box_new(msg,
-																GNOME_MESSAGE_BOX_QUESTION,
-																GNOME_STOCK_BUTTON_OK,
-																GNOME_STOCK_BUTTON_CANCEL, NULL);
-			GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
-			gtk_widget_show(w);
-			
-			switch(gnome_dialog_run_modal(GNOME_DIALOG(w))) {
-			 case -1:
-			 case 1:
-				l = NULL;
-				break;
-			 case 0:
-				l = (back)? g_list_last(crds) : crds;
-				wrapped = 1;
-			}
-		}
-	}
-
-	g_free(pattern);
-	
-	gnome_config_set_bool("/GnomeCard/find/sens",  gnomecard_find_sens);
-	gnome_config_set_bool("/GnomeCard/find/back",  gnomecard_find_back);
-	gnome_config_set_string("/GnomeCard/find/str",  gnomecard_find_str);
-}
-
-void gnomecard_find_card_call(GtkWidget *widget, gpointer data)
-{
-	GtkWidget *w, *hbox, *check;
-	GnomeCardFind *p;
-
-	p = g_malloc(sizeof(GnomeCardPhone));
-	w = gnome_dialog_new(_("Find Card"), _("Find"),
-											 GNOME_STOCK_BUTTON_CLOSE, NULL);
-	gtk_object_set_user_data(GTK_OBJECT(w), p);
-	gnome_dialog_button_connect(GNOME_DIALOG(w), 0,
-															GTK_SIGNAL_FUNC(gnomecard_find_card),	p);
-	gnome_dialog_button_connect_object(GNOME_DIALOG(w),	1,
-																		 GTK_SIGNAL_FUNC(gnomecard_cancel),
-																		 GTK_OBJECT(w));	
-																		 
-	p->entry = my_hbox_entry(GNOME_DIALOG(w)->vbox, _("Find:"), gnomecard_find_str);
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), hbox, FALSE, FALSE, 0);
-	p->sens = check = gtk_check_button_new_with_label(_("Case Sensitive"));
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_find_sens);
-	gtk_box_pack_start(GTK_BOX(hbox), check, FALSE, FALSE, 0);
-	p->back = check = gtk_check_button_new_with_label(_("Find Backwards"));
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_find_back);
-	gtk_box_pack_end(GTK_BOX(hbox), check, FALSE, FALSE, 0);
-	
-	gtk_widget_show_all(GNOME_DIALOG(w)->vbox);
-	gtk_widget_show(w);
-}
-
-void gnomecard_add_email(GtkWidget *widget, gpointer data)
-{
-	GnomeCardEMail *e;
-	CardEMail *email;
-	char *text;
-	
-	e = (GnomeCardEMail *) data;
-	
-	text = gtk_entry_get_text(GTK_ENTRY(e->data));
-	if (*text == 0)
-		return;
-	
-	email = g_malloc(sizeof(CardEMail));
-	email->data = g_strdup(text);
-  email->prop = empty_CardProperty();
-	email->prop.used = TRUE;
-	email->type = (int) gtk_object_get_user_data(GTK_OBJECT(gtk_menu_get_active(GTK_MENU(e->type))));
-	
-	((Card *) e->l->data)->email = g_list_append(((Card *) e->l->data)->email, email);
-	gnomecard_update_tree(e->l->data);
-	
-	gtk_editable_delete_text(GTK_EDITABLE(e->data), 0, strlen(text));
-	gnomecard_set_changed(TRUE);
-}
-
-void gnomecard_add_email_call(GtkWidget *widget, gpointer data)
-{
-	GtkWidget *w, *hbox, *label, *omenu, *item;
-	GnomeCardEMail *e;
-	char *title;
-	Card *crd;
-	int i;
-	
-	crd = curr_crd->data;
-
-	/* + 7 for case crd->fname == 0, which sprintf's to "(null)" */
-	title = g_malloc(strlen(_("Add E-mail for ")) + MY_STRLEN(crd->fname.str) + 7);
-	
-	sprintf(title, _("Add E-mail for %s"), crd->fname.str);
-	
-	e = g_malloc(sizeof(GnomeCardEMail));
-	e->l = curr_crd;
-	w = gnome_dialog_new(title, "Add", GNOME_STOCK_BUTTON_CLOSE, NULL);
-	gtk_object_set_user_data(GTK_OBJECT(w), e);
-	gnome_dialog_button_connect(GNOME_DIALOG(w), 0,
-															GTK_SIGNAL_FUNC(gnomecard_add_email),	e);
-	gnome_dialog_button_connect_object(GNOME_DIALOG(w),	1,
-																		 GTK_SIGNAL_FUNC(gnomecard_cancel),
-																		 GTK_OBJECT(w));
-
-	e->data = my_hbox_entry(GNOME_DIALOG(w)->vbox, "E-mail address:", NULL);
-
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), hbox, FALSE, FALSE, 0);
-	label = gtk_label_new(_("E-mail type:"));
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	omenu = gtk_option_menu_new();
-	gtk_box_pack_start(GTK_BOX(hbox), omenu, FALSE, FALSE, 0);
-	
-	e->type = gtk_menu_new();
-	
-	for (i = 0; email_type_name[i]; i++) {
-		item = gtk_menu_item_new_with_label(email_type_name[i]);
-		gtk_object_set_user_data(GTK_OBJECT(item), (gpointer) i);
-		gtk_menu_append(GTK_MENU(e->type), item);
-		gtk_widget_show(item);
-	}
-	
-	gtk_menu_set_active(GTK_MENU(e->type), EMAIL_INET);
-	gtk_option_menu_set_menu(GTK_OPTION_MENU(omenu), e->type);
-	
-	gtk_widget_show_all(GNOME_DIALOG(w)->vbox);
-	gtk_widget_show(w);
-}
-
-void gnomecard_add_phone(GtkWidget *widget, gpointer data)
-{
-	GnomeCardPhone *p;
-	CardPhone *phone;
-	char *text;
-	int i;
-	
-	p = (GnomeCardPhone *) data;
-	
-	text = gtk_entry_get_text(GTK_ENTRY(p->data));
-	if (*text == 0)
-		return;
-	
-	phone = g_malloc(sizeof(CardPhone));
-	phone->data = g_strdup(text);
-	phone->prop = empty_CardProperty();
-	phone->prop.used = TRUE;
-	phone->type = 0;
-	for (i = 0; i < 13; i++)
-		if (GTK_TOGGLE_BUTTON(p->type[i])->active)
-			phone->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
-	
-	((Card *) p->l->data)->phone = g_list_append(((Card *) p->l->data)->phone, phone);
-	gnomecard_update_tree(p->l->data);
-	
-	gtk_editable_delete_text(GTK_EDITABLE(p->data), 0, strlen(text));
-	gnomecard_set_changed(TRUE);
-}
-
-void gnomecard_add_phone_call(GtkWidget *widget, gpointer data)
-{
-	GtkWidget *w, *hbox, *frame, *vbox;
-	GnomeCardPhone *p;
-	char *title;
-	Card *crd;
-	int i;
-	
-	crd = curr_crd->data;
-	
-	/* + 7 for case crd->fname == 0, which sprintf's to "(null)" */
-	title = g_malloc(strlen(_("Add Telephone Number for ")) + MY_STRLEN(crd->fname.str) + 7);
-	
-	sprintf(title, _("Add Telephone Number for %s"), crd->fname.str);
-	
-	p = g_malloc(sizeof(GnomeCardPhone));
-	p->l = curr_crd;
-	w = gnome_dialog_new(title, "Add", GNOME_STOCK_BUTTON_CLOSE, NULL);
-	gtk_object_set_user_data(GTK_OBJECT(w), p);
-	gnome_dialog_button_connect(GNOME_DIALOG(w), 0,
-															GTK_SIGNAL_FUNC(gnomecard_add_phone),	p);
-	gnome_dialog_button_connect_object(GNOME_DIALOG(w),	1,
-																		 GTK_SIGNAL_FUNC(gnomecard_cancel),
-																		 GTK_OBJECT(w));
-
-	p->data = my_hbox_entry(GNOME_DIALOG(w)->vbox, "Telephone Number:", NULL);
-	
-	frame = gtk_frame_new(_("Phone type:"));
-	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), frame, FALSE, FALSE, 0);
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_container_add(GTK_CONTAINER(frame), hbox);
-	
-	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(hbox), vbox, FALSE, FALSE, 0);
-
-	for (i = 0; i < 7; i++) {
-		p->type[i] = gtk_check_button_new_with_label(phone_type_name[i]);
-		gtk_object_set_user_data(GTK_OBJECT(p->type[i]), (gpointer) (1 << i));
-		gtk_box_pack_start(GTK_BOX(vbox), p->type[i], FALSE, FALSE, 0);
-	}
-		
-	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(hbox), vbox, FALSE, FALSE, 0);
-
-	for (i = 7; i < 13; i++) {
-		p->type[i] = gtk_check_button_new_with_label(phone_type_name[i]);
-		gtk_object_set_user_data(GTK_OBJECT(p->type[i]), (gpointer) (1 << i));
-		gtk_box_pack_start(GTK_BOX(vbox), p->type[i], FALSE, FALSE, 0);
-	}
-	
-	gtk_widget_show_all(GNOME_DIALOG(w)->vbox);
-	gtk_widget_show(w);
-}
-
-void gnomecard_add_deladdr(GtkWidget *widget, gpointer data)
-{
-	GnomeCardDelAddr *p;
-	CardDelAddr *addr;
-	char *text[7];
-	int i, flag;
-	
-	p = (GnomeCardDelAddr *) data;
-	
-	flag = 0;
-	for (i = 0; i < 7; i++) {
-		text[i] = gtk_entry_get_text(GTK_ENTRY(p->data[i]));
-		if (*text[i])
-			flag = 1;
-	}
-	
-	if (!flag)
-		return;
-	
-	addr = g_malloc(sizeof(CardDelAddr));
-	
-	for (i = 0; i < DELADDR_MAX; i++)
-		addr->data[i] = MY_STRDUP(text[i]);
-	
-	addr->prop = empty_CardProperty();
-	addr->prop.used = TRUE;
-
-	addr->type = 0;
-	for (i = 0; i < 6; i++)
-		if (GTK_TOGGLE_BUTTON(p->type[i])->active)
-			addr->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
-	
-	((Card *) p->l->data)->deladdr = g_list_append(((Card *) p->l->data)->deladdr, addr);
-	gnomecard_update_tree(p->l->data);
-
-	for (i = 0; i < DELADDR_MAX; i++)
-		gtk_editable_delete_text(GTK_EDITABLE(p->data[i]), 0, strlen(text[i]));
-	gnomecard_set_changed(TRUE);
-}
-
-void gnomecard_add_deladdr_call(GtkWidget *widget, gpointer data)
-{
-	GtkWidget *w, *hbox, *frame, *vbox, *table, *label;
-	GnomeCardDelAddr *p;
-	char *title;
-	Card *crd;
-	int i;
-	
-	crd = curr_crd->data;
-	
-	/* + 7 for case crd->fname == 0, which sprintf's to "(null)" */
-	title = g_malloc(strlen(_("Add Delivery Address for ")) + MY_STRLEN(crd->fname.str) + 7);
-	
-	sprintf(title, _("Add Delivery Address for %s"), crd->fname.str);
-	
-	p = g_malloc(sizeof(GnomeCardDelAddr));
-	p->l = curr_crd;
-	w = gnome_dialog_new(title, "Add", GNOME_STOCK_BUTTON_CLOSE, NULL);
-	gtk_object_set_user_data(GTK_OBJECT(w), p);
-	gnome_dialog_button_connect(GNOME_DIALOG(w), 0,
-															GTK_SIGNAL_FUNC(gnomecard_add_deladdr),	p);
-	gnome_dialog_button_connect_object(GNOME_DIALOG(w),	1,
-																		 GTK_SIGNAL_FUNC(gnomecard_cancel),
-																		 GTK_OBJECT(w));
-
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), hbox, FALSE, FALSE, 0);
-	
-	frame = gtk_frame_new(_("Address type:"));
-	gtk_box_pack_start(GTK_BOX(hbox), frame, FALSE, FALSE, 0);
-	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_container_add(GTK_CONTAINER(frame), vbox);
-
-	for (i = 0; i < 6; i++) {
-		p->type[i] = gtk_check_button_new_with_label(addr_type_name[i]);
-		gtk_object_set_user_data(GTK_OBJECT(p->type[i]), (gpointer) (1 << i));
-		gtk_box_pack_start(GTK_BOX(vbox), p->type[i], FALSE, FALSE, 0);
-	}
-	
-	table = my_gtk_table_new(2, DELADDR_MAX);
-	gtk_box_pack_start(GTK_BOX(hbox), table, FALSE, FALSE, 0);
-	
-	label = gtk_label_new("Post Office:");
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	p->data[0] = gtk_entry_new();
-	gtk_table_attach(GTK_TABLE(table), p->data[0], 1, 2, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	label = gtk_label_new("Extended:");
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	p->data[1] = gtk_entry_new();
-	gtk_table_attach(GTK_TABLE(table), p->data[1], 1, 2, 1, 2,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	label = gtk_label_new("Street:");
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 2, 3,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	p->data[2] = gtk_entry_new();
-	gtk_table_attach(GTK_TABLE(table), p->data[2], 1, 2, 2, 3,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	label = gtk_label_new("City:");
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 3, 4,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	p->data[3] = gtk_entry_new();
-	gtk_table_attach(GTK_TABLE(table), p->data[3], 1, 2, 3, 4,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	label = gtk_label_new("Region:");
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 4, 5,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	p->data[4] = gtk_entry_new();
-	gtk_table_attach(GTK_TABLE(table), p->data[4], 1, 2, 4, 5,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	label = gtk_label_new("Code:");
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 5, 6,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	p->data[5] = gtk_entry_new();
-	gtk_table_attach(GTK_TABLE(table), p->data[5], 1, 2, 5, 6,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	label = gtk_label_new("Country:");
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 6, 7,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	p->data[6] = gtk_entry_new();
-	gtk_table_attach(GTK_TABLE(table), p->data[6], 1, 2, 6, 7,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	
-	gtk_widget_show_all(GNOME_DIALOG(w)->vbox);
-	gtk_widget_show(w);
-}
-
-void gnomecard_add_dellabel(GtkWidget *widget, gpointer data)
-{
-	GnomeCardDelLabel *p;
-	CardDelLabel *addr;
-	char *text;
-	int i;
-	
-	p = (GnomeCardDelLabel *) data;
-	
-	text = gtk_editable_get_chars(GTK_EDITABLE(p->data), 0,
-				      gtk_text_get_length(GTK_TEXT(p->data)));
-	if (*text == 0)
-	  return;
-	
-	addr = g_malloc(sizeof(CardDelLabel));
-	addr->data = MY_STRDUP(text);
-	addr->prop = empty_CardProperty();
-	addr->prop.encod = ENC_QUOTED_PRINTABLE;
-	addr->prop.used = TRUE;
-
-	addr->type = 0;
-	for (i = 0; i < 6; i++)
-	  if (GTK_TOGGLE_BUTTON(p->type[i])->active)
-	    addr->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
-	
-	((Card *) p->l->data)->dellabel = g_list_append(((Card *) p->l->data)->dellabel, addr);
-	gnomecard_update_tree(p->l->data);
-
-	gtk_editable_delete_text(GTK_EDITABLE(p->data), 0, strlen(text));
-	gnomecard_set_changed(TRUE);
-}
-
-void gnomecard_add_dellabel_call(GtkWidget *widget, gpointer data)
-{
-}
-
-void gnomecard_edit_card(GtkWidget *widget, gpointer data)
-{
-	if (curr_crd)
-	  gnomecard_edit(curr_crd, IDENT);
-}
-
 void gnomecard_first_card(GtkWidget *widget, gpointer data)
 {
-	gnomecard_scroll_tree(g_list_first(crds));
+	gnomecard_scroll_tree(g_list_first(gnomecard_crds));
 }
 
 void gnomecard_prev_card(GtkWidget *widget, gpointer data)
 {
-	if (curr_crd->prev)
-	  gnomecard_scroll_tree(curr_crd->prev);
+	if (gnomecard_curr_crd->prev)
+	  gnomecard_scroll_tree(gnomecard_curr_crd->prev);
 }
 
 void gnomecard_next_card(GtkWidget *widget, gpointer data)
 {
-	if (curr_crd->next)
-	  gnomecard_scroll_tree(curr_crd->next);
+	if (gnomecard_curr_crd->next)
+	  gnomecard_scroll_tree(gnomecard_curr_crd->next);
 }
 
 void gnomecard_last_card(GtkWidget *widget, gpointer data)
 {
-	gnomecard_scroll_tree(g_list_last(crds));
-}
-
-gboolean gnomecard_open_file(char *fname)
-{
-	GtkWidget *w;
-	GList *c;
-
-	if (! gnomecard_destroy_cards())
-	  return FALSE;
-	
-	if (!(crds = card_load(NULL, fname))) {
-		char *tmp;
-		
-		tmp = g_malloc(strlen(_("Wrong file format.")) + strlen(fname) + 3);
-		sprintf(tmp, "%s: %s", fname, _("Wrong file format."));
-		w = gnome_message_box_new(tmp,
-					  GNOME_MESSAGE_BOX_ERROR,
-					  GNOME_STOCK_BUTTON_OK, NULL);
-		GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
-		gtk_widget_show(w);
-		g_free(tmp);
-		
-		return FALSE;
-	}
-	
-	gnomecard_sort_card_list(gnomecard_sort_criteria);
-	gtk_clist_freeze(GTK_CLIST(crd_tree));
-	for (c = crds; c; c = c->next)
-	  gnomecard_add_card_to_tree((Card *) c->data);
-	gtk_clist_thaw(GTK_CLIST(crd_tree));
-	
-	gnomecard_scroll_tree(crds);
-	
-	return TRUE;
-}
-
-void gnomecard_open_call(GtkWidget *widget, gpointer data)
-{
-	char *fname;
-	
-	fname = gtk_file_selection_get_filename(GTK_FILE_SELECTION(widget));
-	
-	if (gnomecard_open_file(fname)) {
-		g_free(gnomecard_fname);
-		gnomecard_fname = g_strdup(fname);
-		gtk_widget_destroy(widget);
-		gnome_config_set_string("/GnomeCard/file/open",  gnomecard_fname);
-	}
-}
-
-void gnomecard_open(GtkWidget *widget, gpointer data)
-{
-	GtkWidget *fsel;
-	
-	fsel = gtk_file_selection_new(_("Open GnomeCard File"));
-	gtk_file_selection_hide_fileop_buttons(GTK_FILE_SELECTION(fsel));
-	gtk_signal_connect_object(GTK_OBJECT(GTK_FILE_SELECTION(fsel)->ok_button),
-			   "clicked", GTK_SIGNAL_FUNC(gnomecard_open_call),
-			   GTK_OBJECT(fsel));
-	gtk_signal_connect_object(GTK_OBJECT(GTK_FILE_SELECTION(fsel)->cancel_button),
-			   "clicked", GTK_SIGNAL_FUNC(gnomecard_cancel),
-			   GTK_OBJECT(fsel));
-	gtk_widget_show(fsel);
-}
-
-void gnomecard_setup_apply(GtkWidget *widget, int page)
-{
-	GnomeCardSetup *setup;
-	GList *i;
-	int old_def_data;
-
-	if (page != -1)
-	  return;             /* ignore partial applies */
-	
-	setup = (GnomeCardSetup *) gtk_object_get_user_data(GTK_OBJECT(widget));
-	
-	old_def_data = gnomecard_def_data;
-	gnomecard_def_data = 0;
-	
-	if (GTK_TOGGLE_BUTTON(setup->def_phone)->active)
-		gnomecard_def_data |= PHONE;
-	
-	if (GTK_TOGGLE_BUTTON(setup->def_email)->active)
-		gnomecard_def_data |= EMAIL;
-	
-	if (gnomecard_def_data != old_def_data)
-		for (i = crds; i; i = i->next)
-			gnomecard_set_node_info((Card *) i->data);
-
-	gnome_config_set_int("/GnomeCard/layout/def_data",  gnomecard_def_data);
-}
-			
-void gnomecard_setup(GtkWidget *widget, gpointer data)
-{
-	GnomePropertyBox *box;
-	GnomeCardSetup *setup;
-	GtkWidget *vbox, *vbox2, *frame;
-	GtkWidget *label, *check;
-	
-	setup = g_malloc(sizeof(GnomeCardSetup));
-	box = GNOME_PROPERTY_BOX(gnome_property_box_new());
-	gtk_object_set_user_data(GTK_OBJECT(box), setup);
-	gtk_window_set_wmclass(GTK_WINDOW(box), "GnomeCard",
-			       "GnomeCard");
-	gtk_signal_connect(GTK_OBJECT(box), "apply",
-			   (GtkSignalFunc)gnomecard_setup_apply, NULL);
-
-	vbox = my_gtk_vbox_new();
-	label = gtk_label_new(_("Layout"));
-	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
-	
-	frame = gtk_frame_new(_("Default data"));
-	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
-	
-	vbox2 = my_gtk_vbox_new();
-	gtk_container_add(GTK_CONTAINER(frame), vbox2);
-	/* falta conectar con el apply... checa my_connect. */
-	check = setup->def_phone = gtk_check_button_new_with_label("Phone");
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_def_data & PHONE);
- 	gtk_signal_connect_object(GTK_OBJECT(check), "clicked",
-				  GTK_SIGNAL_FUNC(gnome_property_box_changed),
-				  GTK_OBJECT(box));
-	gtk_box_pack_start(GTK_BOX(vbox2), check, FALSE, FALSE, 0);
-	check = setup->def_email = gtk_check_button_new_with_label("E-mail");
- 	gtk_signal_connect_object(GTK_OBJECT(check), "clicked",
-				  GTK_SIGNAL_FUNC(gnome_property_box_changed),
-				  GTK_OBJECT(box));
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_def_data & EMAIL);
-	gtk_box_pack_start(GTK_BOX(vbox2), check, FALSE, FALSE, 0);
-	
-	gtk_widget_show_all(GTK_WIDGET(box));
+	gnomecard_scroll_tree(g_list_last(gnomecard_crds));
 }
 
 void gnomecard_quit(GtkWidget *widget, gpointer data)
@@ -2168,20 +391,6 @@ void gnomecard_spawn_new(GtkWidget *widget, gpointer data)
 		}
 		exit (1);
 	}
-}
-
-void
-gnomecard_about(GtkWidget *widget, gpointer data)
-{
-	GtkWidget *about;
-	const gchar *authors[] = { "arturo@nuclecu.unam.mx", NULL };
-	
-	about = gnome_about_new (_("GnomeCard"), NULL,
-													 "(C) 1997-1998 the Free Software Fundation",
-													 authors,
-													 _("Electronic Business Card Manager"),
-													 NULL);
-	gtk_widget_show (about);
 }
 
 GnomeUIInfo filemenu[] = {
@@ -2413,10 +622,15 @@ GnomeUIInfo toolbar[] = {
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
+void gnomecard_sort_by_fname(GtkWidget *w, gpointer data)
+{
+	gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(sortradios[0].widget), 
+				      TRUE);
+}
+
 void gnomecard_init(void)
 {
 	char *titles[] = { "", ""};
-	GnomeCanvasGroup *root;
 	GtkWidget *canvas, *align, *hpaned;
 	/*, *omenu, *menu, *item;
 	int i;*/
@@ -2440,30 +654,30 @@ void gnomecard_init(void)
 	gnome_app_create_menus(GNOME_APP(gnomecard_window), mainmenu);
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
-	crd_tree = GTK_CTREE(gtk_ctree_new_with_titles(2, 0, titles));
-	gtk_paned_add1(GTK_PANED(hpaned), GTK_WIDGET(crd_tree));
-	gtk_widget_realize(GTK_WIDGET(crd_tree));
-	gdk_gc_get_values(crd_tree->lines_gc, &crd_tree_values);
-	gtk_clist_set_column_width(GTK_CLIST(crd_tree), 0, COL_WIDTH);
-	gtk_signal_connect(GTK_OBJECT(crd_tree), 
+	gnomecard_tree = GTK_CTREE(gtk_ctree_new_with_titles(2, 0, titles));
+	gtk_paned_add1(GTK_PANED(hpaned), GTK_WIDGET(gnomecard_tree));
+	gtk_widget_realize(GTK_WIDGET(gnomecard_tree));
+	gdk_gc_get_values(gnomecard_tree->lines_gc, &crd_tree_values);
+	gtk_clist_set_column_width(GTK_CLIST(gnomecard_tree), 0, COL_WIDTH);
+	gtk_signal_connect(GTK_OBJECT(gnomecard_tree), 
 			   "tree_select_row",
 			   GTK_SIGNAL_FUNC(gnomecard_tree_selected), NULL);
-	gtk_signal_connect(GTK_OBJECT(crd_tree), 
+	gtk_signal_connect(GTK_OBJECT(gnomecard_tree), 
 			   "tree_unselect_row",
 			   GTK_SIGNAL_FUNC(gnomecard_tree_unselected), NULL);
-	gtk_ctree_set_line_style (crd_tree, GTK_CTREE_LINES_SOLID);
-	gtk_ctree_set_reorderable (crd_tree, FALSE);
-	gtk_widget_set_usize (GTK_WIDGET(crd_tree), TREE_WIDTH, TREE_HEIGHT);
-	gtk_clist_column_titles_active(GTK_CLIST(crd_tree));
+	gtk_ctree_set_line_style (gnomecard_tree, GTK_CTREE_LINES_SOLID);
+	gtk_ctree_set_reorderable (gnomecard_tree, FALSE);
+	gtk_widget_set_usize (GTK_WIDGET(gnomecard_tree), TREE_WIDTH, TREE_HEIGHT);
+	gtk_clist_column_titles_active(GTK_CLIST(gnomecard_tree));
 	
-	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(crd_tree)->column->button),
-			   "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_cards),
-			   (gpointer) gnomecard_cmp_fnames);
-	gtk_clist_set_policy(GTK_CLIST(crd_tree),
+	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(gnomecard_tree)->column->button),
+			   "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_by_fname),
+			   (gpointer) NULL);
+	gtk_clist_set_policy(GTK_CLIST(gnomecard_tree),
 			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
 /*	omenu = gtk_option_menu_new();
-	gtk_clist_set_column_widget(GTK_CLIST(crd_tree), 1, omenu);
+	gtk_clist_set_column_widget(GTK_CLIST(gnomecard_tree), 1, omenu);
 	menu = gtk_menu_new();
 	for (i = 0; sort_type_name[i]; i++) {
 		item = gtk_menu_item_new_with_label(sort_type_name[i]);
@@ -2477,18 +691,18 @@ void gnomecard_init(void)
 	
 	crd_tree_sel_col = g_new (GdkColor, 1);
 	crd_tree_sel_col->red = crd_tree_sel_col->green = 
-		crd_tree_sel_col->blue = 50000;
-	gdk_color_alloc(gtk_widget_get_colormap (GTK_WIDGET (crd_tree)),
+	  crd_tree_sel_col->blue = 50000;
+	gdk_color_alloc(gtk_widget_get_colormap (GTK_WIDGET (gnomecard_tree)),
 			crd_tree_sel_col);
 
 	crd_tree_usel_col = g_new (GdkColor, 1);
 	crd_tree_usel_col->red = crd_tree_usel_col->green = 
 		crd_tree_usel_col->blue = 60000;
-	gdk_color_alloc(gtk_widget_get_colormap (GTK_WIDGET (crd_tree)),
+	gdk_color_alloc(gtk_widget_get_colormap (GTK_WIDGET (gnomecard_tree)),
 			crd_tree_usel_col);
 /* & (GTK_WIDGET(crd_tree)->style->fg[GTK_STATE_NORMAL]);*/
 	
-	gtk_widget_show(GTK_WIDGET(crd_tree));
+	gtk_widget_show(GTK_WIDGET(gnomecard_tree));
 
 	align = gtk_alignment_new(0.5, 0.5, 0.5, 0.5);
 	gtk_paned_add2(GTK_PANED(hpaned), align);
@@ -2496,37 +710,12 @@ void gnomecard_init(void)
 
 	gtk_widget_push_visual(gdk_imlib_get_visual());
 	gtk_widget_push_colormap(gdk_imlib_get_colormap());
-	canvas =
-	  crd_canvas = gnome_canvas_new();
-	gtk_widget_pop_visual();
-	gtk_widget_pop_colormap();
-	gnome_canvas_set_size(GNOME_CANVAS(canvas), 
-			      CANVAS_WIDTH, CANVAS_HEIGHT);
-	gnome_canvas_set_scroll_region(GNOME_CANVAS(canvas), 0, 0, 
-				       CANVAS_WIDTH, CANVAS_HEIGHT);
+	
+	canvas = gnomecard_canvas_new();
 	gtk_container_add (GTK_CONTAINER (align), canvas);
 	gtk_widget_show(canvas);
-
-	root = GNOME_CANVAS_GROUP (gnome_canvas_root(GNOME_CANVAS(canvas)));
-	gnome_canvas_item_new (root, gnome_canvas_rect_get_type (),
-			       "x1", 0.0,
-			       "y1", 0.0,
-			       "x2", (double) (CANVAS_WIDTH - 1),
-			       "y2", (double) (CANVAS_HEIGHT - 1),
-			       "fill_color", "white",
-			       "outline_color", "black",
-			       "width_pixels", 0,
-			       NULL);
-	test = gnome_canvas_item_new (root, gnome_canvas_text_get_type (),
-				      "text", "",
-				      "x", CANVAS_WIDTH / 2.0,
-				      "y", CANVAS_HEIGHT / 2.0,
-				      "font", CANVAS_FONT,
-				      "anchor", GTK_ANCHOR_CENTER,
-				      "fill_color", "black",
-				      NULL);
-
-	crds = NULL;
+	
+	gnomecard_crds = NULL;
 	
 	tb_save = toolbar[2].widget;
 	tb_edit = toolbar[5].widget;

@@ -1,75 +1,29 @@
+#ifndef __GNOMECARD
+#define __GNOMECARD
+
 #include <gnome.h>
-#include <glib.h>
 
-#include "card.h"
+#define PHONE 1
+#define EMAIL 2
 
-typedef struct 
-{
-	GdkPixmap *pixmap;
-	GdkBitmap *mask;
-	
-        gint width;
-        gint height;
-} pix;
+#define TREE_SPACING 16
 
-typedef struct
-{
-	/* Identity */
-	GtkWidget *fn;
-	GtkWidget *given, *add, *fam, *pre, *suf;
-	GtkWidget *bday;
-	
-	/* Geographical */
-	GtkWidget *tzh, *tzm;
-	GtkWidget *gplon, *gplat;
-	
-	/* Organization */
-	GtkWidget *title, *role;
-	GtkWidget *orgn, *org1, *org2, *org3, *org4;
+extern GtkCTree  *gnomecard_tree;
 
-	/* Explanatory */
-	GtkWidget *comment, *url;
+extern GList *gnomecard_crds;
+extern GList *gnomecard_curr_crd;
 
-	/* Security */
-	GtkWidget *key, *keypgp;
-	
-	GList *l;
-} GnomeCardEditor;
+extern char *gnomecard_fname;
+extern char *gnomecard_find_str;
+extern gboolean gnomecard_find_sens;
+extern gboolean gnomecard_find_back;
+extern gint gnomecard_def_data;
 
-typedef struct
-{
-	GtkWidget *def_phone, *def_email;
-} GnomeCardSetup;
+extern char *gnomecard_join_name (char *pre, char *given, char *add, 
+				  char *fam, char *suf);
+extern void gnomecard_set_add(gboolean state);
+extern void gnomecard_set_changed(gboolean val);
+extern void gnomecard_set_edit_del(gboolean state);
+extern int  gnomecard_destroy_cards(void);
 
-typedef struct
-{
-	GtkWidget *data, *type;
-	
-	GList *l;
-} GnomeCardEMail;
-
-typedef struct
-{
-	GtkWidget *type[13], *data;
-	
-	GList *l;
-} GnomeCardPhone;
-
-typedef struct
-{
-	GtkWidget *type[6], *data[7];
-	
-	GList *l;
-} GnomeCardDelAddr;
-
-typedef struct
-{
-	GtkWidget *type[6], *data;
-	
-	GList *l;
-} GnomeCardDelLabel;
-
-typedef struct
-{
-	GtkWidget *entry, *sens, *back;
-} GnomeCardFind;
+#endif

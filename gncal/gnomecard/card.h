@@ -216,7 +216,6 @@ void card_free(Card *crd);
 CardProperty empty_CardProperty(void);
 GList *card_load (GList *crdlist, char *fname);
 void card_save(Card *crd, FILE *fp);
-VObject *card_convert_to_vobject(Card *crd);
 
 char *card_bday_str(CardBDay bday);
 char *card_timezn_str(CardTimeZone timezn);
