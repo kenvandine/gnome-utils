@@ -60,7 +60,6 @@ static void CloseLogMenu (GtkAction *action, GtkWidget *callback_data);
 static void FileSelectResponse (GtkWidget * chooser, gint response, gpointer data);
 static void open_databases (void);
 static GtkWidget *logview_create_window (void);
-static char * parse_syslog(gchar * syslog_file);
 static void logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state);
 static void toggle_calendar (GtkAction *action, GtkWidget *callback_data);
 static void toggle_zoom (GtkAction *action, GtkWidget *callback_data);
@@ -708,57 +707,6 @@ IsLeapYear (int year)
    else
       return FALSE;
 
-}
-
-char * parse_syslog(gchar * syslog_file) {
-/* Most of this stolen from sysklogd sources */
-    char * logfile = NULL;
-    char cbuf[BUFSIZ];
-    char *cline;
-    char *p;
-    FILE * cf;
-    if ((cf = fopen(syslog_file, "r")) == NULL) {
-        fprintf(stderr, "Could not open file: (%s)\n", syslog_file);
-        return NULL;
-    }
-    cline = cbuf;
-    while (fgets(cline, sizeof(cbuf) - (cline - cbuf), cf) != NULL) {
-        for (p = cline; isspace(*p); ++p);
-        if (*p == '\0' || *p == '#')
-            continue;
-        for (;*p && !strchr("\t ", *p); ++p);
-        while (*p == '\t' || *p == ' ')
-            p++;
-        if (*p == '-')
-            p++;
-        if (*p == '/') {
-            logfile = g_strdup (p);
-            /* remove trailing newline */
-            if (logfile[strlen(logfile)-1] == '\n')
-                logfile[strlen(logfile)-1] = '\0';
-            fprintf(stderr, "Found a logfile: (%s)\n", logfile);
-            return logfile;
-        }
-        /* I don't totally understand this code
-           it came from syslogd.c and is supposed
-           to read run-on lines that end with \
-           FIXME?? */
-        /*
-        if (*p == '\\') {
-            if ((p - cbuf) > BUFSIZ - 30) {
-                cline = cbuf;
-            } else {
-                *p = 0;
-                cline = p;
-                continue;
-            }
-        }  else
-            cline = cbuf;
-        *++p = '\0';
-        */
-        
-    }
-    return logfile; 
 }
 
 static void 
