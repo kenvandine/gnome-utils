@@ -87,17 +87,22 @@ static GtkTargetEntry dnd_table[] = {
 static guint n_dnds = sizeof (dnd_table) / sizeof (dnd_table[0]);
 
 enum {
-	SEARCH_CONSTRAINT_CONTAINS_THE_TEXT, 
+	SEARCH_CONSTRAINT_CONTAINS_THE_TEXT,
+	SEARCH_CONSTRAINT_SEPARATOR_00, 
+	SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE,
+	SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER,
+	SEARCH_CONSTRAINT_SEPARATOR_01,
+	SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN,	
+	SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
+	SEARCH_CONSTRAINT_FILE_IS_EMPTY,
+	SEARCH_CONSTRAINT_SEPARATOR_02,	
 	SEARCH_CONSTRAINT_OWNED_BY_USER, 
 	SEARCH_CONSTRAINT_OWNED_BY_GROUP,
 	SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED,
-	SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE,
-	SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER,
-	SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
-	SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN,
-	SEARCH_CONSTRAINT_FILE_IS_EMPTY,
+	SEARCH_CONSTRAINT_SEPARATOR_03,	
 	SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED,
 	SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION,
+	SEARCH_CONSTRAINT_SEPARATOR_04,	
 	SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS,
 	SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS
 };
@@ -1020,9 +1025,15 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 		
 		if (templates[opt->constraint_id].type == SEARCH_CONSTRAINT_TEXT) {
 			entry = gtk_entry_new();
+			if (value != NULL) {
+				gtk_entry_set_text (GTK_ENTRY(entry), value);
+			}
 		}
 		else {
 			entry = gtk_spin_button_new_with_range (0, 999999999, 1);
+			if (value != NULL) {
+				gtk_spin_button_set_value (GTK_SPIN_BUTTON(entry), atoi(value));
+			}
 		}
 		
 		if (interface.is_gail_loaded)
@@ -1046,10 +1057,6 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 				  
 		/* add label and text field */
 		gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-		
-		if (value != NULL) {
-			gtk_entry_set_text (GTK_ENTRY(entry), value);
-		}
 		
 		break;
 	default:
