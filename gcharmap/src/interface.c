@@ -186,13 +186,15 @@ main_app_create_ui (MainApp *app)
         vsep = gtk_vseparator_new ();
         gtk_box_pack_start (GTK_BOX (hbox), vsep, FALSE, FALSE, 0);
 #endif	
-        alabel = gtk_label_new (_("Text to copy:"));
+        alabel = gtk_label_new_with_mnemonic (_("_Text to copy:"));
         gtk_box_pack_start (GTK_BOX (hbox), alabel, FALSE, TRUE, 0);
 
         app->entry = gtk_entry_new ();
+        gtk_label_set_mnemonic_widget (GTK_LABEL (alabel), app->entry);
         gtk_box_pack_start (GTK_BOX (hbox), app->entry, TRUE, TRUE, 0);
         
         button = gtk_button_new_with_mnemonic (_("_Copy"));
+        gtk_container_set_border_width (GTK_CONTAINER (button), 2);
         g_signal_connect (G_OBJECT (button), "clicked",
         		  G_CALLBACK (cb_copy_click), NULL);
         gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);		  
@@ -284,8 +286,6 @@ main_app_create_ui (MainApp *app)
       view_menu[0].widget), TRUE);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
       view_menu[1].widget), TRUE);
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
-      view_menu[2].widget), TRUE);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
       settings_menu[1].widget), TRUE);
     gtk_widget_grab_focus (app->entry);

@@ -45,7 +45,7 @@ GnomeUIInfo edit_menu[] =
     GNOMEUIINFO_SEPARATOR,
     GNOMEUIINFO_MENU_SELECT_ALL_ITEM (cb_select_all_click, NULL),
     GNOMEUIINFO_SEPARATOR,
-    GNOMEUIINFO_ITEM_DATA(N_("Browse Characters..."),
+    GNOMEUIINFO_ITEM_DATA(N_("_Browse Characters..."),
       N_("Insert character(s) by choosing character codes."), cb_insert_char_click,
 			  NULL, NULL),
     GNOMEUIINFO_END
@@ -53,8 +53,6 @@ GnomeUIInfo edit_menu[] =
 
 GnomeUIInfo view_menu[] =
 {
-    GNOMEUIINFO_TOGGLEITEM(N_("_Action Toolbar"), N_("View or hide the action toolbar"),
-      cb_toggle_actionbar, NULL),
     GNOMEUIINFO_TOGGLEITEM(N_("_Text Toolbar"), N_("View or hide the text toolbar"),
       cb_toggle_textbar, NULL),
     GNOMEUIINFO_TOGGLEITEM(N_("_Statusbar"), N_("View or hide the statusbar"),
