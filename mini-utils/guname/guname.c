@@ -486,7 +486,10 @@ static void do_list_box(GtkWidget * box)
 {
   GtkCList * list;
   GtkWidget *sw;
-  const gchar * titles[] = { _("Category"), _("Your System") };
+  const gchar * titles[] = { N_("Category"), N_("Your System") };
+
+  titles[0]=_(titles[0]);
+  titles[1]=_(titles[1]);
 
   list = GTK_CLIST(create_clist(titles));
   sw = gtk_scrolled_window_new (NULL, NULL);
