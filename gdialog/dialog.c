@@ -158,10 +158,11 @@ int main(int argc, char *argv[])
 		Usage(argv[0]);
 
 /*
- * Check to avoid Alphabets & Negative Values for height & width
+ * Check the range of values for height & width of dialog box for text mode.
  */
-	if ((atoi(argv[offset+3]) <= 0) || (atoi(argv[offset+4]) <= 0)) {
-		fprintf(stderr, "\nError, can not take alphabets or negative values for height & width. \n");
+	if (((atoi(argv[offset+3]) <= 0) || (atoi(argv[offset+3]) > 25) && !gnome_mode )
+            || ((atoi(argv[offset+4]) <= 0) || (atoi(argv[offset+4]) > 80) && !gnome_mode)) {
+		fprintf(stderr, "\nError, values for height (1..25) & width (1..80) \n");
 		exit(-1);
 	}
 	init_dialog();
