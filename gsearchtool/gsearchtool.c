@@ -328,6 +328,9 @@ build_search_command (void)
 		if ((disable_quick_search != TRUE) && (locate != NULL) 
 		    && (is_path_in_home_folder (look_in_folder_locale) != TRUE) 
 		    && (is_path_in_mount_folder (look_in_folder_locale) != TRUE)
+		    && (is_path_in_proc_folder (look_in_folder_locale) != TRUE) 
+		    && (is_path_in_dev_folder (look_in_folder_locale) != TRUE)
+		    && (is_path_in_var_folder (look_in_folder_locale) != TRUE)
 		    && (is_path_in_tmp_folder (look_in_folder_locale) != TRUE)) {	
 			g_string_append_printf (command, "%s %s '%s*%s'", 
 						locate,
@@ -2343,9 +2346,6 @@ main (int 	argc,
 	gtk_widget_hide (interface.stop_button);
 	
 	gtk_widget_show (interface.main_window);
-	
-	interface.icon_theme = gnome_icon_theme_new ();
-	gnome_icon_theme_set_allow_svg (interface.icon_theme, TRUE);
 
 	setup_animation_image ();
 	

@@ -45,6 +45,15 @@ gboolean
 is_path_in_mount_folder		(const gchar *path);
 
 gboolean  	
+is_path_in_proc_folder		(const gchar *path);
+
+gboolean  	
+is_path_in_dev_folder		(const gchar *path);
+
+gboolean  	
+is_path_in_var_folder		(const gchar *path);
+
+gboolean  	
 is_path_in_tmp_folder		(const gchar *path);
 
 gboolean

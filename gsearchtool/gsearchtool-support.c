@@ -45,6 +45,9 @@
 #define BINARY_EXEC_MIME_TYPE      "application/x-executable-binary"
 #define ICON_THEME_EXECUTABLE_ICON "gnome-fs-executable"
 #define ICON_THEME_REGULAR_ICON    "gnome-fs-regular"
+#define ICON_THEME_CHAR_DEVICE     "gnome-fs-chardev"
+#define ICON_THEME_BLOCK_DEVICE    "gnome-fs-blockdev"
+#define ICON_THEME_SOCKET          "gnome-fs-socket"
 
 
 /* START OF THE GCONF FUNCTIONS */
@@ -183,6 +186,24 @@ gboolean
 is_path_in_mount_folder (const gchar *path)
 {
 	return (g_strstr_len (path, strlen ("/mnt/"), "/mnt/") != NULL);
+}
+
+gboolean 
+is_path_in_proc_folder (const gchar *path)
+{
+	return (g_strstr_len (path, strlen ("/proc/"), "/proc/") != NULL);
+}
+
+gboolean 
+is_path_in_dev_folder (const gchar *path)
+{
+	return (g_strstr_len (path, strlen ("/dev/"), "/dev/") != NULL);
+}
+
+gboolean 
+is_path_in_var_folder (const gchar *path)
+{
+	return (g_strstr_len (path, strlen ("/var/"), "/var/") != NULL);
 }
 
 gboolean 
@@ -469,10 +490,9 @@ gchar *
 get_file_icon_with_mime_type (const gchar *filename, 
 			      const gchar *mimetype) 
 {
-	const GnomeIconData *icon_data;
+	GtkIconInfo *icon_info;
 	gchar *icon_name = NULL;	
 	gchar *icon_path = NULL;
-	int base_size;
 
 	if (filename == NULL || mimetype == NULL) {
 		icon_name = g_strdup (ICON_THEME_REGULAR_ICON);
@@ -481,13 +501,23 @@ get_file_icon_with_mime_type (const gchar *filename,
 	         (g_ascii_strcasecmp (mimetype, "application/x-executable-binary") == 0)) {
 		icon_name = g_strdup (ICON_THEME_EXECUTABLE_ICON);
 	}
+	else if (g_ascii_strcasecmp (mimetype, "x-special/device-char") == 0) {
+		icon_name = g_strdup (ICON_THEME_CHAR_DEVICE);
+	}
+	else if (g_ascii_strcasecmp (mimetype, "x-special/device-block") == 0) {
+		icon_name = g_strdup (ICON_THEME_BLOCK_DEVICE);
+	}
+	else if (g_ascii_strcasecmp (mimetype, "x-special/socket") == 0) {
+		icon_name = g_strdup (ICON_THEME_SOCKET);
+	}
 	else {
-		icon_name = gnome_icon_lookup (interface.icon_theme, NULL, filename, NULL, 
+		icon_name = gnome_icon_lookup (gtk_icon_theme_get_default (), NULL, filename, NULL, 
 					       NULL, mimetype, 0, NULL);
 	}
-
-	icon_path = gnome_icon_theme_lookup_icon (interface.icon_theme, icon_name, ICON_SIZE, 
-						  &icon_data, &base_size);
+	
+	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (), icon_name, 48, 0);
+	icon_path = (gchar *) gtk_icon_info_get_filename (icon_info);
+					  
 	g_free (icon_name);
 	return icon_path;	
 }

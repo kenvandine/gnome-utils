@@ -115,7 +115,6 @@ struct _InterfaceStruct {
 	gchar 		 	*save_results_file;	
 	gint 		  	selected_constraint;
 	gint			current_animation_frame;
-	GnomeIconTheme	 	*icon_theme;
 	gboolean  	  	is_gail_loaded;
 } interface;
 
