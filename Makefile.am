@@ -14,11 +14,15 @@ gdiskfree = gdiskfree
 gstripchart = gstripchart
 endif
 
+if BUILD_GFLOPPY
+gfloppy = gfloppy
+endif
+
 if FALSE
 extras = gnome-find
 endif
 
-SUBDIRS = po intl macros idl \
+SUBDIRS = po intl macros idl $(gfloppy) \
 	gcalc gsearchtool $(gdiskfree) $(gstripchart) gtt gdictsrc \
 	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog $(extras)
 

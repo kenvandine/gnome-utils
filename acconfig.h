@@ -16,6 +16,7 @@
 #undef HAVE_GUILE
 #undef HAVE_LINUX_TABLE
 #undef HAVE_GNOME_PRINT
+#undef HAVE_LINUX_FD_H
 
 /* Define if LibGTop has support for multiple processors. */
 #undef HAVE_LIBGTOP_SMP
