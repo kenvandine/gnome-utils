@@ -81,10 +81,10 @@ dialog_new_view (MDIColorGeneric *mcg_connect)
   mcg = mcg_connect;
 
   gui = glade_xml_new (GCOLORSEL_GLADEDIR "dialog-new-view.glade", NULL);
-  g_assert (gui != NULL);
+  g_return_if_fail (gui != NULL);
 
   dia = glade_xml_get_widget (gui, "dialog-new-view");
-  g_assert (dia != NULL);
+  g_return_if_fail (dia != NULL);
 
   clist_view = GTK_CLIST (glade_xml_get_widget (gui, "clist-view"));
   text_description = glade_xml_get_widget (gui, "text-description");

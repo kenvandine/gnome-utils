@@ -1,3 +1,22 @@
+2000-10-19  Eric Brayeur <eb@ibelgique.com>
+
+	Ok, this module is almost dead. The new version is now in CVS, 
+	see libgcolorsel2 and gcolorsel2 modules.
+
+	* glade/Makefile.am : added dialog-prefs.glade, dialog-prefs.glade.h
+
+	* *.c : replaced some g_assert with g_return_[val_]if_fail, so we 
+	  don't crash if we can't load glade files.
+
+	* gcolorsel.c, menus.c : removed applet code.
+
+	* view-color-list.c : set auto sort mode. Don't sort the clist.
+
+	* *.c : removed a lot of printf.
+
+	* menus.c : *_cb : don't use data for active view, it's a 
+	  GnomeMDI. call gnome_mdi_get_active_view to get it ... 	  
+
 2000-07-04 John Fleck <jfleck@inkstain.net>
 	* fixed doc/C/Makefile.am so it doesn't rebuild htmls on make and
 	make and make install, updated gcolorsel.sgml to prepare for release

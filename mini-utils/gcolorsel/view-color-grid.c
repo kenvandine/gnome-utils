@@ -354,9 +354,10 @@ view_color_grid_get_control (ViewColorGeneric *vcg, GtkVBox *box,
   prop->parent_data = parent_class->get_control (vcg, box, changed_cb, change_data);
 
   prop->gui = glade_xml_new (GCOLORSEL_GLADEDIR "view-color-grid-properties.glade", "frame");
-  g_assert (prop->gui != NULL);
+  g_return_val_if_fail (prop->gui != NULL, NULL);
 
   frame = glade_xml_get_widget (prop->gui, "frame");
+  g_return_val_if_fail (frame != NULL, NULL);
   gtk_box_pack_start_defaults (GTK_BOX (box), frame);
 
   prop->spin_width = glade_xml_get_widget (prop->gui, "spin-width");  

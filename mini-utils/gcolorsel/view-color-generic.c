@@ -207,10 +207,10 @@ view_color_generic_get_control (ViewColorGeneric *vcg, GtkVBox *box,
   prop->change_data = change_data;
 
   prop->gui = glade_xml_new (GCOLORSEL_GLADEDIR "view-color-generic-properties.glade", "frame");
-  g_assert (prop->gui != NULL);
+  g_return_val_if_fail (prop->gui != NULL, NULL);
 
   frame = glade_xml_get_widget (prop->gui, "frame");
-  g_assert (frame != NULL);
+  g_return_val_if_fail (frame != NULL, NULL);
 
   gtk_box_pack_start_defaults (GTK_BOX (box), frame);
 

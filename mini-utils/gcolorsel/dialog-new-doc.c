@@ -474,10 +474,10 @@ dialog_new_doc (void)
   current = D_TYPE;
 
   gui = glade_xml_new (GCOLORSEL_GLADEDIR "dialog-new-doc.glade", NULL);
-  g_assert (gui != NULL);
+  g_return_if_fail (gui != NULL);
 
   dia = glade_xml_get_widget (gui, "dialog-new-doc");
-  g_assert (dia != NULL);
+  g_return_if_fail (dia != NULL);
 
   druid = GNOME_DRUID (glade_xml_get_widget (gui, "druid"));  
 

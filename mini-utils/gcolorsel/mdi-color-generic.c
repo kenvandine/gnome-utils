@@ -202,8 +202,6 @@ mdi_color_generic_create_view (MDIColorGeneric *child)
   int type;
   views_t *views;
   
-  printf ("Create view ...\n");
-
   vbox = gtk_vbox_new (FALSE, 0);
 
   /* Create control */
@@ -268,7 +266,7 @@ mdi_color_generic_create_view (MDIColorGeneric *child)
   gtk_signal_connect_object (GTK_OBJECT (vbox), "destroy",
 			     GTK_SIGNAL_FUNC (gtk_object_destroy), 
 			     GTK_OBJECT (view));
-printf ("Ok\n");
+
   return vbox;
 }
 
@@ -412,8 +410,6 @@ mdi_color_generic_dispatch_changes (MDIColorGeneric *mcg)
   ViewColorGeneric *view;
   GList *list;
   
-  printf ("Dispatch ...\n");
-
   if (!mcg->changes) return;
   list = GNOME_MDI_CHILD (mcg)->views;
   while (list) {

@@ -264,7 +264,7 @@ view_color_edit_new (MDIColorGeneric *mcg)
   VIEW_COLOR_GENERIC (object)->mcg = mcg;
 
   gui = glade_xml_new (GCOLORSEL_GLADEDIR "view-color-edit.glade", "vbox");
-  g_assert (gui != NULL);
+  g_return_val_if_fail (gui != NULL, NULL);
 
   VIEW_COLOR_GENERIC (view)->widget = glade_xml_get_widget (gui, "vbox");
 
@@ -480,8 +480,6 @@ view_color_edit_apply (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
 
-  printf ("Edit    :: apply\n");
-
   /* gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (prop->spin_width)),
      gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (prop->spin_height))); */
 
@@ -492,8 +490,6 @@ static void
 view_color_edit_close (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
-
-  printf ("Edit    :: close\n");
 
   parent_class->close (vcg, prop->parent_data);
 
@@ -506,8 +502,6 @@ view_color_edit_sync (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
 /*  GtkAdjustment *adj;*/
-
-  printf ("Edit    :: sync \n");
 
   /* spin-width */
 /*  adj = gtk_spin_button_get_adjustment (GTK_SPIN_BUTTON (prop->spin_width));

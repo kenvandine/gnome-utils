@@ -126,9 +126,9 @@ mdi_color_file_load (MDIColorFile *mcf, GnomeMDI *mdi)
     g_free (mcf->header);
     mcf->header = NULL;       
   }
-printf ("Load begin\n");  
+
   mdi_color_generic_freeze (MDI_COLOR_GENERIC (mcf));
-printf ("1\n");
+
   while (1) {
     fgets(tmp, 255, fp);    
 
@@ -162,28 +162,24 @@ printf ("1\n");
     pos = ftell (fp);
 
     if (pos > last_pos) {    
-printf ("1\n");    
       if (mdi)
 	progress_set (mdi, ((float)pos / (float)size));
 
       last_pos += size / 150;
     }
-printf ("2\n");      
+
     mdi_color_generic_append_new (MDI_COLOR_GENERIC (mcf), 
 				  r, g, b, name);
-printf ("3\n");				  
     nb++;
   }
-printf ("Load end\n");
+
   if (mdi)
     progress_set (mdi, 0);
-printf ("1\n");
+
   fclose (fp);
 
 //  if (!nb) ok = FALSE;
-printf ("2\n");
   mdi_color_generic_thaw (MDI_COLOR_GENERIC (mcf));
-printf ("3\n");  
   mdi_color_generic_set_modified (MDI_COLOR_GENERIC (mcf), FALSE);
   
   return ok;

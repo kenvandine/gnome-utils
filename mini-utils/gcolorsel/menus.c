@@ -16,10 +16,6 @@
 #include "gnome.h"
 #include <gdk/gdkx.h>
 
-#ifdef HAVE_GNOME_APPLET
-#include "applet-widget.h"
-#endif
-
 static GList *prop_list = NULL;  /* List of GnomePropertyBox */
 
 /* New */
@@ -441,8 +437,6 @@ close_doc_cb (GtkWidget *widget)
   GtkWidget *dia;
   int ret;
   
-  /* FIXME : close applet */
-
   if (!child) return;
   mcg = MDI_COLOR_GENERIC (child);
 
@@ -498,9 +492,6 @@ about_cb (GtkWidget *widget, gpointer data)
   }
   
   about = gnome_about_new (_("Gnome Color Browser"), VERSION
-#ifdef HAVE_GNOME_APPLET
-  "a"
-#endif  
 			   , "(C) 1997-98 Tim P. Gerla", 
 			   (const gchar**)authors,
 			   _("Small utility to browse available X11 colors."),
@@ -526,15 +517,10 @@ copy_cb (GtkWidget *widget, gpointer data)
   char *tmp;
   gboolean first = TRUE;
 
-  if (data)
-    view = VIEW_COLOR_GENERIC (data); 
-  else {
-  
-    w = gnome_mdi_get_active_view (mdi);
-    if (! w) return;
+  w = gnome_mdi_get_active_view (mdi);
+  if (! w) return;
 
-    view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
-  }
+  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
   
   l = list = VIEW_COLOR_GENERIC_GET_CLASS (view)->get_selected (view);
   if (!list) return;
@@ -608,15 +594,10 @@ insert_color_cb (GtkWidget *widget, gpointer data)
   GtkWidget *w;
   int pos;
   
-  if (data)
-    view = VIEW_COLOR_GENERIC (data);
-  else {  
+  w = gnome_mdi_get_active_view (mdi);
+  if (! w) return;
   
-    w = gnome_mdi_get_active_view (mdi);
-    if (! w) return;
-  
-    view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
-  }
+  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
 
   if (! mdi_color_generic_can_do (view->mcg, CHANGE_APPEND)) return;
 
@@ -638,15 +619,10 @@ remove_cb (GtkWidget *widget, gpointer data)
   GList *l;
   MDIColorGeneric *mcg;
   
-  if (data) 
-    view = VIEW_COLOR_GENERIC (data);
-  else {
+  w = gnome_mdi_get_active_view (mdi);
+  if (! w) return;
 
-    w = gnome_mdi_get_active_view (mdi);
-    if (! w) return;
-
-    view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
-  }
+  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
 
   VIEW_COLOR_GENERIC_GET_CLASS (view)->remove_selected (view);
 
@@ -672,29 +648,21 @@ edit_cb (GtkWidget *widget, gpointer data)
   MDIColor *col;
   GList *connect = NULL;
   
-  printf ("1\n");
-  if (data) 
-    view = VIEW_COLOR_GENERIC (data);
-  else {
+  w = gnome_mdi_get_active_view (mdi);
+  if (! w) return;
 
-    w = gnome_mdi_get_active_view (mdi);
-    if (! w) return;
+  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
 
-    view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
-  }
 g_assert (IS_VIEW_COLOR_GENERIC (view));
   l = list = VIEW_COLOR_GENERIC_GET_CLASS (view)->get_selected (view);
   if (!list) return;
-  printf ("2\n");
 
   monitor = mdi_color_virtual_monitor_new ();
   mdi_color_generic_set_name (MDI_COLOR_GENERIC (monitor), _("Edit"));
   mdi_color_generic_set_temp (MDI_COLOR_GENERIC (monitor), TRUE);
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (monitor));
-  printf ("3\n");
 
   while (l) {
-  printf ("4\n");
     col = l->data;
 
     col = mdi_color_generic_get_owner (col);
@@ -705,14 +673,12 @@ g_assert (IS_VIEW_COLOR_GENERIC (view));
       connect = g_list_prepend (connect, col->owner);
 
     l = g_list_next (l);
-    printf ("5\n");
   }
 
   mdi_color_generic_append_view_type (MDI_COLOR_GENERIC (monitor),
 				      TYPE_VIEW_COLOR_EDIT);
-printf ("6\n");
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (monitor));
-printf ("7\n");
+
   l = connect;
   while (l) {
     mdi_color_generic_connect (MDI_COLOR_GENERIC (l->data),
@@ -720,7 +686,7 @@ printf ("7\n");
 
     l = g_list_next (l);
   }
-printf ("8\n");  
+
   g_list_free (connect);
   g_list_free (list);
 }
@@ -871,12 +837,8 @@ properties_cb (GtkWidget *widget, gpointer data)
   MDIColorGeneric *mcg;
   gpointer view_data, mcg_data;
   
-  if (data)
-    view = VIEW_COLOR_GENERIC (data);
-  else {  
-    view = gtk_object_get_data (GTK_OBJECT (mdi->active_view), "view_object");
-    if (!view) return;
-  }
+  view = gtk_object_get_data (GTK_OBJECT (mdi->active_view), "view_object");
+  if (!view) return;
   
   mcg = VIEW_COLOR_GENERIC (view)->mcg;
 
@@ -1086,28 +1048,3 @@ grab_cb (GtkWidget *widget)
 		    picker_cursor,
 		    0);
 }
-
-/*************************** Applet ***********************************/
-
-#ifdef HAVE_GNOME_APPLET
-
-void menu_configure_applet (AppletWidget *applet, ViewColorGeneric *view)
-{
-  applet_widget_register_stock_callback (APPLET_WIDGET (applet), "about",
-                                         GNOME_STOCK_MENU_ABOUT,
-                                         _("About..."), about_cb, view);
-                                         
-  applet_widget_register_stock_callback (APPLET_WIDGET (applet), 
-                                         "properties",
-                                         GNOME_STOCK_MENU_PROP,
-                                         _("Document/View properties"),
-                                         properties_cb, view);
-
-  applet_widget_register_stock_callback (APPLET_WIDGET (applet),
-       					 "preferences", 
-       					 GNOME_STOCK_MENU_PREF,
-       					 _("Preferences"),
-       					 preferences_cb, view);
-}
-
-#endif

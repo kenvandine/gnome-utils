@@ -208,7 +208,7 @@ view_color_list_new (MDIColorGeneric *mcg)
   view_color_list_set_sort_column (VIEW_COLOR_LIST (object), COLUMN_PIXMAP,
 				   GTK_SORT_ASCENDING);
 
-//  gtk_clist_set_auto_sort (cl, TRUE);
+  gtk_clist_set_auto_sort (cl, TRUE);
 
   gtk_clist_column_titles_active (cl);
   gtk_clist_set_use_drag_icons (cl, 0);
@@ -287,9 +287,15 @@ view_color_list_compare_rows (GtkCList *clist,
   row1 = (GtkCListRow *) ptr1;
   row2 = (GtkCListRow *) ptr2;
 
-  c1 = (MDIColor *) row1->data;
-  c2 = (MDIColor *) row2->data;
+  if (! (c1 = (MDIColor *) row1->data)) 
+    c1 = gtk_object_get_data (GTK_OBJECT (clist), "insert_data");
 
+  if (! (c2 = (MDIColor *) row2->data))
+    c2 = gtk_object_get_data (GTK_OBJECT (clist), "insert_data");
+    
+  g_assert (row1 != NULL);
+  g_assert (row2 != NULL);
+  
 /*  if (!c2) return (c1 != NULL);
   if (!c1) return 0;*/
 
@@ -381,7 +387,7 @@ view_color_list_button_press (GtkCList *clist, GdkEventButton *event,
 {
   int col, row;
   GtkCListRow *r;
-
+  
   if (event->type == GDK_BUTTON_PRESS) {
 
     if (event->button == 3) {
@@ -547,8 +553,10 @@ view_color_list_append (ViewColorList *vcl, MDIColor *col)
   string[COLUMN_PIXMAP] = NULL;
   string[COLUMN_VALUE]  = view_color_list_render_value (vcl, col);
   string[COLUMN_NAME]   = col->name;
-  
-  row = gtk_clist_prepend (clist, string);
+
+  gtk_object_set_data (GTK_OBJECT (clist), "insert_data", col);  
+
+  row = gtk_clist_append (clist, string);
 
   if (string[COLUMN_VALUE]) 
     g_free (string[COLUMN_VALUE]);
@@ -655,7 +663,6 @@ view_color_list_data_changed (ViewColorGeneric *vcg, gpointer data)
 	g_list_free (vcl->idle_todo);
 	vcl->idle_todo = NULL;	
       }      
-      gtk_clist_clear (clist); 
     }
 
     else
@@ -695,9 +702,7 @@ view_color_list_data_changed (ViewColorGeneric *vcg, gpointer data)
     list = g_list_next (list);
   }
 
-  gtk_clist_sort (clist); 
   gtk_clist_thaw (clist);
-
 }
 
 static gint
@@ -770,9 +775,10 @@ view_color_list_get_control (ViewColorGeneric *vcg, GtkVBox *box,
 						 changed_cb, change_data);
 
   prop->gui = glade_xml_new (GCOLORSEL_GLADEDIR "view-color-list-properties.glade", "frame");
-  g_assert (prop->gui != NULL);
+  g_return_val_if_fail (prop->gui != NULL, NULL);
 
   frame = glade_xml_get_widget (prop->gui, "frame");
+  g_return_val_if_fail (frame != NULL, NULL);
   gtk_box_pack_start_defaults (GTK_BOX (box), frame);
 
   prop->spin_width = glade_xml_get_widget (prop->gui, "spin-width");  

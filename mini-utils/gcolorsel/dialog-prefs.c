@@ -236,7 +236,7 @@ dialog_prefs (void)
   if (! property) {
     
     gui = glade_xml_new (GCOLORSEL_GLADEDIR "dialog-prefs.glade", NULL);
-    g_assert (gui != NULL);
+    g_return_if_fail (gui != NULL);
     
     property = glade_xml_get_widget (gui, "propertybox");
     g_assert (property != NULL);
