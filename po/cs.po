@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-14 15:05+0200\n"
-"PO-Revision-Date: 2004-06-14 19:35+0200\n"
+"POT-Creation-Date: 2004-06-25 04:06+0200\n"
+"PO-Revision-Date: 2004-06-25 14:34+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -790,9 +790,9 @@ msgstr "Formátování diskety zrušeno."
 msgid "Format Progress"
 msgstr "Průběh formátování"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:577
-#: gsearchtool/gsearchtool.c:831 gsearchtool/gsearchtool.c:915
-#: gsearchtool/gsearchtool.c:2196 gsearchtool/gsearchtool.c:2221
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:578
+#: gsearchtool/gsearchtool.c:832 gsearchtool/gsearchtool.c:916
+#: gsearchtool/gsearchtool.c:2209 gsearchtool/gsearchtool.c:2234
 msgid "Search for Files"
 msgstr "Hledat soubory"
 
@@ -863,20 +863,20 @@ msgstr[2] "Toto otevře %d oddělených oken."
 
 #: gsearchtool/gsearchtool-callbacks.c:383
 #: gsearchtool/gsearchtool-callbacks.c:416
-#: gsearchtool/gsearchtool-callbacks.c:963
-#: gsearchtool/gsearchtool-callbacks.c:996
+#: gsearchtool/gsearchtool-callbacks.c:965
+#: gsearchtool/gsearchtool-callbacks.c:998
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Nemohu otevřít dokument \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:386
 #: gsearchtool/gsearchtool-callbacks.c:641
-#: gsearchtool/gsearchtool-callbacks.c:966
+#: gsearchtool/gsearchtool-callbacks.c:968
 msgid "The document does not exist."
 msgstr "Dokument neexistuje."
 
 #: gsearchtool/gsearchtool-callbacks.c:419
-#: gsearchtool/gsearchtool-callbacks.c:999
+#: gsearchtool/gsearchtool-callbacks.c:1001
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Není nainstalován žádný prohlížeč schopný zobrazit tento dokument."
 
@@ -932,42 +932,42 @@ msgstr "Nemohu odstranit \"%s\"."
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Odstraňování \"%s\" selhalo: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1184
+#: gsearchtool/gsearchtool-callbacks.c:1186
 msgid "Save Search Results As..."
 msgstr "Uložit výsledky hledání jako..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1236
+#: gsearchtool/gsearchtool-callbacks.c:1238
 msgid "Could not save document."
 msgstr "Nemohu uložit dokument."
 
-#: gsearchtool/gsearchtool-callbacks.c:1238
+#: gsearchtool/gsearchtool-callbacks.c:1240
 msgid "You did not select a document name."
 msgstr "Nevybrali jste název dokumentu."
 
-#: gsearchtool/gsearchtool-callbacks.c:1264
-#: gsearchtool/gsearchtool-callbacks.c:1359
+#: gsearchtool/gsearchtool-callbacks.c:1266
+#: gsearchtool/gsearchtool-callbacks.c:1361
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Nemohu uložit dokument \"%s\" do \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:1268
+#: gsearchtool/gsearchtool-callbacks.c:1270
 msgid "The document name you selected is a folder."
 msgstr "Název dokumentu, který jste vybrali, je adresář."
 
-#: gsearchtool/gsearchtool-callbacks.c:1297
+#: gsearchtool/gsearchtool-callbacks.c:1299
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokument \"%s\" již existuje. Chcete jej nahradit?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1301
+#: gsearchtool/gsearchtool-callbacks.c:1303
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Pokud nahradíte existující soubor, jeho obsah bude přepsán."
 
-#: gsearchtool/gsearchtool-callbacks.c:1312
+#: gsearchtool/gsearchtool-callbacks.c:1314
 msgid "_Replace"
 msgstr "_Nahradit"
 
-#: gsearchtool/gsearchtool-callbacks.c:1362
+#: gsearchtool/gsearchtool-callbacks.c:1364
 msgid "You may not have write permissions to the document."
 msgstr "Možná nemáte oprávnění zápisu do dokumentu."
 
@@ -1006,75 +1006,83 @@ msgstr "odkaz (chybný)"
 msgid "link to %s"
 msgstr "odkaz na %s"
 
-#: gsearchtool/gsearchtool.c:73
+#: gsearchtool/gsearchtool.c:74
 msgid "Contains the _text"
 msgstr "_Obsahuje text"
 
-#: gsearchtool/gsearchtool.c:75
-msgid "_Date modified less than (days)"
-msgstr "_Datum úpravy méně než (dní)"
-
 #: gsearchtool/gsearchtool.c:76
-msgid "Date modified more than (da_ys)"
-msgstr "Da_tum úpravy více než (dní)"
+msgid "_Date modified less than"
+msgstr "_Datum úpravy méně než"
 
-#: gsearchtool/gsearchtool.c:78
-msgid "S_ize at least (kilobytes)"
-msgstr "Veliko_st alespoň (kilobajtů)"
+#: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
+msgid "days"
+msgstr "dní"
+
+#: gsearchtool/gsearchtool.c:77
+msgid "Date modified more than"
+msgstr "Datum úpravy více než"
 
 #: gsearchtool/gsearchtool.c:79
-msgid "Si_ze at most (kilobytes)"
-msgstr "Velikost nejví_ce (kilobajtů)"
+msgid "S_ize at least"
+msgstr "Veliko_st alespoň"
+
+#: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
+msgid "kilobytes"
+msgstr "kilobajtů"
 
 #: gsearchtool/gsearchtool.c:80
+msgid "Si_ze at most"
+msgstr "Velikost nejví_ce"
+
+#: gsearchtool/gsearchtool.c:81
 msgid "File is empty"
 msgstr "Soubor je prázdný"
 
-#: gsearchtool/gsearchtool.c:82
+#: gsearchtool/gsearchtool.c:83
 msgid "Owned by _user"
 msgstr "Vlastněno _uživatelem"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:84
 msgid "Owned by _group"
 msgstr "Vlastněno s_kupinou"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:85
 msgid "Owner is unrecognized"
 msgstr "Vlastníka nelze rozpoznat"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:87
 msgid "Na_me does not contain"
 msgstr "Náze_v neobsahuje"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:88
 msgid "Name matches regular e_xpression"
 msgstr "Název odpovídá re_gulárnímu výrazu"
 
-#: gsearchtool/gsearchtool.c:89
+#: gsearchtool/gsearchtool.c:90
 msgid "Show hidden and backup files"
 msgstr "Zobrazovat skryté a záložní soubory"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:91
 msgid "Follow symbolic links"
 msgstr "Sledovat symbolické odkazy"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:92
 msgid "Include other filesystems"
 msgstr "Zahrnout jiné souborové systémy"
 
-#: gsearchtool/gsearchtool.c:524 gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:525 gsearchtool/gsearchtool.c:553
 msgid "No files found"
 msgstr "Nenalezeny žádné soubory"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:546
 msgid "(stopped)"
 msgstr "(zastaveno)"
 
-#: gsearchtool/gsearchtool.c:551
+#: gsearchtool/gsearchtool.c:552
 msgid "No Files Found"
 msgstr "Nenalezeny žádné soubory"
 
-#: gsearchtool/gsearchtool.c:556
+#: gsearchtool/gsearchtool.c:557
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
@@ -1082,7 +1090,7 @@ msgstr[0] "Nalezen %d soubor"
 msgstr[1] "Nalezeny %d soubory"
 msgstr[2] "Nalezeno %d souborů"
 
-#: gsearchtool/gsearchtool.c:560
+#: gsearchtool/gsearchtool.c:561
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
@@ -1090,45 +1098,45 @@ msgstr[0] "Nalezen %d soubor"
 msgstr[1] "Nalezeny %d soubory"
 msgstr[2] "Nalezeno %d souborů"
 
-#: gsearchtool/gsearchtool.c:666
+#: gsearchtool/gsearchtool.c:667
 msgid "Entry changed called for a non entry option!"
 msgstr "Signál změny políčka volán pro volbu bez políčka!"
 
-#: gsearchtool/gsearchtool.c:915
+#: gsearchtool/gsearchtool.c:916
 msgid "Searching..."
 msgstr "Hledání..."
 
-#: gsearchtool/gsearchtool.c:936
+#: gsearchtool/gsearchtool.c:937
 msgid "Set the text of 'Name contains'"
 msgstr "Nastavit text 'Název obsahuje'"
 
-#: gsearchtool/gsearchtool.c:937
+#: gsearchtool/gsearchtool.c:938
 msgid "Set the text of 'Look in folder'"
 msgstr "Nastavit text 'Hledat v adresáři'"
 
-#: gsearchtool/gsearchtool.c:938
+#: gsearchtool/gsearchtool.c:939
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Třídit soubory podle jednoho z následujícího: název, adresář, typ nebo datum"
 
-#: gsearchtool/gsearchtool.c:939
+#: gsearchtool/gsearchtool.c:940
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Nastavit pořadí třídění na sestupné, implicitní je vzestupné"
 
-#: gsearchtool/gsearchtool.c:940
+#: gsearchtool/gsearchtool.c:941
 msgid "Automatically start a search"
 msgstr "Automaticky začít vyhledávat"
 
-#: gsearchtool/gsearchtool.c:945
+#: gsearchtool/gsearchtool.c:946
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Vybrat omezení '%s'"
 
-#: gsearchtool/gsearchtool.c:1051
+#: gsearchtool/gsearchtool.c:1052
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Parametru příkazové řádky sortby byla předána neplatná volba."
 
-#: gsearchtool/gsearchtool.c:1316
+#: gsearchtool/gsearchtool.c:1317
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1136,7 +1144,7 @@ msgstr ""
 "Během hledání byly hlášeny následující chyby.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1320
+#: gsearchtool/gsearchtool.c:1321
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1144,117 +1152,117 @@ msgstr ""
 "\n"
 "... Příliš mnoho chyb k zobrazení ..."
 
-#: gsearchtool/gsearchtool.c:1327
+#: gsearchtool/gsearchtool.c:1328
 msgid "Error while searching for files."
 msgstr "Chyba při hledání souborů."
 
-#: gsearchtool/gsearchtool.c:1368
+#: gsearchtool/gsearchtool.c:1369
 msgid "Error parsing the search command."
 msgstr "Chyba při zpracovávání příkazu hledání."
 
-#: gsearchtool/gsearchtool.c:1391
+#: gsearchtool/gsearchtool.c:1392
 msgid "Error running the search command."
 msgstr "Chyba při spouštění příkazu hledání."
 
-#: gsearchtool/gsearchtool.c:1488
+#: gsearchtool/gsearchtool.c:1492
 #, c-format
 msgid "'%s' entry"
 msgstr "Pole '%s'"
 
-#: gsearchtool/gsearchtool.c:1489
+#: gsearchtool/gsearchtool.c:1493
 msgid "Enter a value for search rule"
 msgstr "Zadejte hodnotu pro vyhledávací pravidlo"
 
-#: gsearchtool/gsearchtool.c:1527
+#: gsearchtool/gsearchtool.c:1540
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Kliknutím zde odstraníte pravidlo '%s'"
 
-#: gsearchtool/gsearchtool.c:1583
+#: gsearchtool/gsearchtool.c:1596
 msgid "A_vailable options:"
 msgstr "Dostupné _volby:"
 
-#: gsearchtool/gsearchtool.c:1596
+#: gsearchtool/gsearchtool.c:1609
 msgid "Search Rules Menu"
 msgstr "Menu pro vyhledávací pravidla"
 
-#: gsearchtool/gsearchtool.c:1597
+#: gsearchtool/gsearchtool.c:1610
 msgid "Select a search rule from the menu"
 msgstr "Vyberte z menu vyhledávací pravidlo"
 
-#: gsearchtool/gsearchtool.c:1628
+#: gsearchtool/gsearchtool.c:1641
 msgid "S_earch results:"
 msgstr "Výsl_edky hledání:"
 
-#: gsearchtool/gsearchtool.c:1708
+#: gsearchtool/gsearchtool.c:1721
 msgid "Name"
 msgstr "Název"
 
-#: gsearchtool/gsearchtool.c:1728
+#: gsearchtool/gsearchtool.c:1741
 msgid "Folder"
 msgstr "Adresář"
 
-#: gsearchtool/gsearchtool.c:1739
+#: gsearchtool/gsearchtool.c:1752
 msgid "Size"
 msgstr "Velikost"
 
-#: gsearchtool/gsearchtool.c:1749
+#: gsearchtool/gsearchtool.c:1762
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1759
+#: gsearchtool/gsearchtool.c:1772
 msgid "Date Modified"
 msgstr "Datum změny"
 
-#: gsearchtool/gsearchtool.c:1817
+#: gsearchtool/gsearchtool.c:1830
 msgid "_Name contains:"
 msgstr "_Název obsahuje:"
 
-#: gsearchtool/gsearchtool.c:1832 gsearchtool/gsearchtool.c:1833
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Enter the file name you want to search"
 msgstr "Zadejte název souboru, který chcete hledat"
 
-#: gsearchtool/gsearchtool.c:1833
+#: gsearchtool/gsearchtool.c:1846
 msgid "Name Contains Entry"
 msgstr "Položka s obsahovaným názvem"
 
-#: gsearchtool/gsearchtool.c:1844
+#: gsearchtool/gsearchtool.c:1857
 msgid "_Look in folder:"
 msgstr "Hledat v _adresáři:"
 
-#: gsearchtool/gsearchtool.c:1850
+#: gsearchtool/gsearchtool.c:1863
 msgid "Browse"
 msgstr "Probírat"
 
-#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
+#: gsearchtool/gsearchtool.c:1874 gsearchtool/gsearchtool.c:1875
 msgid "Enter the folder name where you want to start the search"
 msgstr "Zadejte název adresáře, kde chcete započít vyhledávání"
 
-#: gsearchtool/gsearchtool.c:1862
+#: gsearchtool/gsearchtool.c:1875
 msgid "Look in Folder Entry"
 msgstr "Položka Hledat v adresáři"
 
-#: gsearchtool/gsearchtool.c:1880
+#: gsearchtool/gsearchtool.c:1893
 msgid "Show more _options"
 msgstr "Zobrazit více _možností"
 
-#: gsearchtool/gsearchtool.c:1890
+#: gsearchtool/gsearchtool.c:1903
 msgid "Show more options"
 msgstr "Zobrazit více možností"
 
-#: gsearchtool/gsearchtool.c:1890
+#: gsearchtool/gsearchtool.c:1903
 msgid "Expands or collapses a list of search options."
 msgstr "Rozbalí nebo skryje seznam možností hledání."
 
-#: gsearchtool/gsearchtool.c:1937
+#: gsearchtool/gsearchtool.c:1950
 msgid "Click to Start the search"
 msgstr "Kliknutím zde započnete hledání"
 
-#: gsearchtool/gsearchtool.c:1938
+#: gsearchtool/gsearchtool.c:1951
 msgid "Click to Stop the search"
 msgstr "Kliknutím zde zastavíte hledání"
 
-#: gsearchtool/gsearchtool.c:2217
+#: gsearchtool/gsearchtool.c:2230
 msgid "Cannot initialize bonobo."
 msgstr "Nemohu inicializovat bonobo."
 
@@ -1778,9 +1786,6 @@ msgstr "Podrobnosti řádku záznamu"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%e. %B %X"
-
-#~ msgid "Search Rule Value Entry"
-#~ msgstr "Položka s hodnotou vyhledávacího pravidla"
 
 #~ msgid "The animation file is missing or invalid: %s"
 #~ msgstr "Soubor animace chybí nebo není platný: %s"
