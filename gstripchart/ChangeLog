@@ -1,3 +1,34 @@
+1999-08-29  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.conf (end): Change configuration file to use libgtop
+	parameters rather than reading and processing /proc entries
+	directly.  This should improve portability to non-Linux systems.
+	Change PPP status monitor to detect a ppp pid file rather than
+	reading /proc.
+
+	* gstripchart.c Change status_outline default to off.
+	(update_values): Omit values generated during the
+	first three passes from the history array.  This prevents
+	initialization spikes from affecting the parameter range
+	calculations.
+	(get_all_netload): New routine to get info on network traffic
+	through all interfaces.
+	(gtop_value): Added delta argument and code to return delta values
+	for libgtop parameters.
+	(arglist): Re-order popt option strings.  The --usage output from
+	popt still looks a bit odd.
+
+1999-08-28  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (text_popup): Use a TOPLEVEL rather than a POPUP
+	window for the pop-up value display window.  Swapped the order of
+	text_load_clist() and gtk_widget_show(), as the proper sequence
+	appears to have changed recently.
+	(proc_arg): Call gnome_client_disable_master_connection() for all
+	non-graphical modes of operation.
+	(read_param_defns): Added a gettext() string wrapper.
+	(prefs_callback): Added several gettext() string wrappers.
+
 1999-08-22  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (prefs_callback): Removed an '#if 0' section of

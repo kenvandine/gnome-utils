@@ -1,10 +1,10 @@
 /*
- * This is gstripchart version 1.4.  The gstripchart program produces
+ * This is gstripchart.  The gstripchart program produces
  * stripchart-like graphs using a file-based parameter input mechanism
  * and a Gtk-based display mechanism.  It is a part of the Gnome
  * project, http://www.gnome.org/.
  *
- * Copyright (C) 1998 John Kodis <kodis@jagunet.com>
+ * Copyright (C) 1998,1999 John Kodis <kodis@jagunet.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,14 +66,14 @@ static float slider_interval = 0.2;
 static float slider_filter = 0.0;
 static int include_menubar = 0;
 static int include_slider = 1;
-static int status_outline = 1;
-static int post_init = 0;
+static int status_outline = 0;
 static int minor_tick=0, major_tick=0;
 static int geometry_flags;
 static int geometry_w=200, geometry_h=50;
 static int geometry_x, geometry_y;
 static int root_width, root_height;
-static int update_counts;
+static int update_count = 0;
+static int update_chart = 0;
 
 /*
  * streq -- case-blind string comparison returning true on equality.
@@ -177,7 +177,7 @@ typedef struct
 
   double *last, *now;
 #ifdef HAVE_LIBGTOP
-  gtop_struct *gtp;
+  gtop_struct *gtp_now, *gtp_last;
 #endif
 }
 Expr;
@@ -194,7 +194,7 @@ eval_error(Expr *e, char *msg, ...)
 {
   va_list args;
   e->val = 0.0;
-  if (post_init)
+  if (update_chart)
     longjmp(e->err_jmp, 1);
   fflush(stdout);
   va_start(args, msg);
@@ -247,65 +247,71 @@ typedef struct
 }
 Gtop_data;
 
+/*
+ * Flags indicating that one or more of the libgtop values is
+ * referenced, and so the corresponding libgtop routine should be
+ * called on each eval cycle.
+ */
 static int gtop_cpu;
 static int gtop_mem;
 static int gtop_swap;
 static int gtop_uptime;
 static int gtop_loadavg;
+static int gtop_netload;
 
 #define GTOP_OFF(el) offsetof(gtop_struct, el)
 
 Gtop_data gtop_vars[] = 
 {
   /* glibtop cpu stats */
-  { "cpu_total",        'L', &gtop_cpu,     GTOP_OFF(cpu.total)          },
-  { "cpu_user",         'L', &gtop_cpu,     GTOP_OFF(cpu.user)           },
-  { "cpu_nice",         'L', &gtop_cpu,     GTOP_OFF(cpu.nice)           },
-  { "cpu_sys",          'L', &gtop_cpu,     GTOP_OFF(cpu.sys)            },
-  { "cpu_idle",         'L', &gtop_cpu,     GTOP_OFF(cpu.idle)           },
-  { "cpu_freq",         'L', &gtop_cpu,     GTOP_OFF(cpu.frequency)      },
+  { "cpu_total",        'L', &gtop_cpu,     GTOP_OFF(cpu.total)             },
+  { "cpu_user",         'L', &gtop_cpu,     GTOP_OFF(cpu.user)              },
+  { "cpu_nice",         'L', &gtop_cpu,     GTOP_OFF(cpu.nice)              },
+  { "cpu_sys",          'L', &gtop_cpu,     GTOP_OFF(cpu.sys)               },
+  { "cpu_idle",         'L', &gtop_cpu,     GTOP_OFF(cpu.idle)              },
+  { "cpu_freq",         'L', &gtop_cpu,     GTOP_OFF(cpu.frequency)         },
 
   /* glibtop memory stats */
-  { "mem_total",        'L', &gtop_mem,     GTOP_OFF(mem.total)          },
-  { "mem_used",	        'L', &gtop_mem,     GTOP_OFF(mem.used)           },
-  { "mem_free",	        'L', &gtop_mem,     GTOP_OFF(mem.free)           },
-  { "mem_shared",       'L', &gtop_mem,     GTOP_OFF(mem.shared)         },
-  { "mem_buffer",       'L', &gtop_mem,     GTOP_OFF(mem.buffer)         },
-  { "mem_cached",       'L', &gtop_mem,     GTOP_OFF(mem.cached)         },
-  { "mem_user",	        'L', &gtop_mem,     GTOP_OFF(mem.user)           },
-  { "mem_locked",       'L', &gtop_mem,     GTOP_OFF(mem.locked)         },
+  { "mem_total",        'L', &gtop_mem,     GTOP_OFF(mem.total)             },
+  { "mem_used",	        'L', &gtop_mem,     GTOP_OFF(mem.used)              },
+  { "mem_free",	        'L', &gtop_mem,     GTOP_OFF(mem.free)              },
+  { "mem_shared",       'L', &gtop_mem,     GTOP_OFF(mem.shared)            },
+  { "mem_buffer",       'L', &gtop_mem,     GTOP_OFF(mem.buffer)            },
+  { "mem_cached",       'L', &gtop_mem,     GTOP_OFF(mem.cached)            },
+  { "mem_user",	        'L', &gtop_mem,     GTOP_OFF(mem.user)              },
+  { "mem_locked",       'L', &gtop_mem,     GTOP_OFF(mem.locked)            },
 
   /* glibtop swap stats */
-  { "swap_total",       'L', &gtop_swap,    GTOP_OFF(swap.total)         },
-  { "swap_used",        'L', &gtop_swap,    GTOP_OFF(swap.used)          },
-  { "swap_free",        'L', &gtop_swap,    GTOP_OFF(swap.free)          },
-  { "swap_pagein",      'L', &gtop_swap,    GTOP_OFF(swap.pageout)       },
-  { "swap_pageout",     'L', &gtop_swap,    GTOP_OFF(swap.pagein)        },
+  { "swap_total",       'L', &gtop_swap,    GTOP_OFF(swap.total)            },
+  { "swap_used",        'L', &gtop_swap,    GTOP_OFF(swap.used)             },
+  { "swap_free",        'L', &gtop_swap,    GTOP_OFF(swap.free)             },
+  { "swap_pagein",      'L', &gtop_swap,    GTOP_OFF(swap.pageout)          },
+  { "swap_pageout",     'L', &gtop_swap,    GTOP_OFF(swap.pagein)           },
 
   /* glibtop uptime stats */
-  { "uptime",           'D', &gtop_uptime,  GTOP_OFF(uptime.uptime)      },
-  { "idletime",         'D', &gtop_uptime,  GTOP_OFF(uptime.idletime)    },
+  { "uptime",           'D', &gtop_uptime,  GTOP_OFF(uptime.uptime)         },
+  { "idletime",         'D', &gtop_uptime,  GTOP_OFF(uptime.idletime)       },
 
   /* glibtop loadavg stats */
-  { "loadavg_running",  'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_running) },
-  { "loadavg_tasks",    'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_tasks)   },
-  { "loadavg_1m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[0]) },
-  { "loadavg_5m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[1]) },
-  { "loadavg_15m",      'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[2]) },
-#if 0
-  /* glibtop netload stats */
+  { "loadavg_running",  'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_running)    },
+  { "loadavg_tasks",    'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_tasks)      },
+  { "loadavg_1m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[0])    },
+  { "loadavg_5m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[1])    },
+  { "loadavg_15m",      'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[2])    },
+
+  /* netload stats -- Linux-specific for the time being */
   { "net_pkts_in",      'L', &gtop_netload, GTOP_OFF(netload.packets_in)    },
   { "net_pkts_out",     'L', &gtop_netload, GTOP_OFF(netload.packets_out)   },
-  { "net_pkts_tot",     'L', &gtop_netload, GTOP_OFF(netload.packets_total) },
+  { "net_pkts_total",   'L', &gtop_netload, GTOP_OFF(netload.packets_total) },
 
   { "net_bytes_in",     'L', &gtop_netload, GTOP_OFF(netload.bytes_in)      },
   { "net_bytes_out",    'L', &gtop_netload, GTOP_OFF(netload.bytes_out)     },
-  { "net_bytes_tot",    'L', &gtop_netload, GTOP_OFF(netload.bytes_total)   },
+  { "net_bytes_total",  'L', &gtop_netload, GTOP_OFF(netload.bytes_total)   },
 
   { "net_errs_in",      'L', &gtop_netload, GTOP_OFF(netload.errors_in)     },
   { "net_errs_out",     'L', &gtop_netload, GTOP_OFF(netload.errors_out)    },
-  { "net_errs_tot",     'L', &gtop_netload, GTOP_OFF(netload.errors_total)  },
-#endif
+  { "net_errs_total",   'L', &gtop_netload, GTOP_OFF(netload.errors_total)  },
+
   /* end of array marker */
   { NULL,	         0,  NULL,          0 }
 };
@@ -314,33 +320,76 @@ Gtop_data gtop_vars[] =
  * gtop_value -- looks up a glibtop datum name, and returns its value.
  */
 static int
-gtop_value(char *str, gtop_struct *gtp, double *val)
+gtop_value(
+  char *str, int delta, 
+  gtop_struct *gtp_now, gtop_struct *gtp_last, double *val)
 {
-  int i, init = !post_init;
-  
+  int i;
   for (i=0; gtop_vars[i].name; i++)
     {
       if (streq(str, gtop_vars[i].name))
 	{
-	  char *cp = ((char *)gtp) + gtop_vars[i].off;
-	  if (init)
+	  char *cp = ((char *)gtp_now) + gtop_vars[i].off;
+	  if (update_chart == 0)
 	    {
 	      (*gtop_vars[i].used)++;
 	      *val = 0;
 	    }
 	  else if (gtop_vars[i].type == 'D')
 	    {
-	      *val = *((double *)cp);
+	      double df = *((double *)cp);
+	      if (delta)
+		{
+		  cp = ((char *)gtp_last) + gtop_vars[i].off;
+		  df -= *((double *)cp);
+		}
+	      *val = df;
 	    }
 	  else /* if (gtop_vars[i].type == 'L') */
 	    {
 	      unsigned long ul = *((unsigned long *)cp);
+	      if (delta)
+		{
+		  cp = ((char *)gtp_last) + gtop_vars[i].off;
+		  ul -= *((unsigned long *)cp);
+		}
 	      *val = ul;
 	    }
 	  return 1;
 	}
     }
   return 0;
+}
+
+/*
+ * get_all_netload -- a Linux-specific routine to get net load
+ * information for all interfaces
+ */
+static void
+get_all_netload(glibtop_netload *netload)
+{
+  FILE *fd;
+  memset(netload, 0, sizeof(*netload));
+  if ((fd = fopen("/proc/net/dev", "r")) != NULL)
+    {
+      unsigned long bytes_in, pkts_in, errs_in, bytes_out, pkts_out, errs_out;
+      fscanf(fd, "%*[^\n]\n%*[^\n]\n");
+      while (fscanf(fd,
+	"%*[^:]:%ld%ld%ld%*d%*d%*d%*d%*d%ld%ld%ld%*d%*d%*d%*d%*d",
+	&bytes_in, &pkts_in, &errs_in, &bytes_out, &pkts_out, &errs_out) == 6)
+	{
+	  netload->packets_in    += pkts_in;
+	  netload->packets_out   += pkts_out;
+	  netload->packets_total += pkts_in + pkts_out;
+	  netload->bytes_in      += bytes_in;
+	  netload->bytes_out     += bytes_out;
+	  netload->bytes_total   += bytes_in + bytes_out;
+	  netload->errors_in     += errs_in;
+	  netload->errors_out    += errs_out;
+	  netload->errors_total  += errs_in + errs_out;
+	}
+      fclose(fd);
+    }
 }
 #endif
 
@@ -403,12 +452,16 @@ num_op(Expr *e)
 	  val = e->t_diff;
 	  /* if (e->s[-1] == '~') val = 0; */
 	}
-      else if (streq(id, "u"))	/* update counts, for debugging */
+      else if (streq(id, "u"))	/* update count, for debugging */
 	{
-	  val = update_counts;
+	  val = update_count;
+	}
+      else if (streq(id, "c"))	/* chart update count, for debugging */
+	{
+	  val = update_chart;
 	}
 #ifdef HAVE_LIBGTOP
-      else if (gtop_value(id, e->gtp, &val))
+      else if (gtop_value(id, id_intro == '~', e->gtp_now, e->gtp_last, &val))
 	  ; /* gtop_value handles the assignment to val */
 #endif
       else if (!*id)
@@ -474,7 +527,8 @@ add_op(Expr *e)
 static double eval(
   char *eqn, char *src, double t_diff, 
 #ifdef HAVE_LIBGTOP
-  gtop_struct *gtp,
+  gtop_struct *gtp_now,
+  gtop_struct *gtp_last,
 #endif
   int vars, double *last, double *now )
 {
@@ -486,7 +540,8 @@ static double eval(
   e.now  = now;
   e.t_diff = t_diff;
 #ifdef HAVE_LIBGTOP
-  e.gtp = gtp;
+  e.gtp_now = gtp_now;
+  e.gtp_last = gtp_last;
 #endif
 
   if (setjmp(e.err_jmp))
@@ -541,7 +596,7 @@ typedef struct
   double t_diff;
   struct timeval t_last, t_now;
 #ifdef HAVE_LIBGTOP
-  gtop_struct gtop;
+  gtop_struct gtop_now, gtop_last;
 #endif
 }
 Param_glob;
@@ -674,19 +729,17 @@ read_param_defns(Param_glob *pgp)
 		  if ((fd=fopen(fn, "r")) == NULL)
 #endif
 		    {
-		      /* FIX THIS: i18n required. */
-		      defns_error(
-			NULL, 0,
-			"can't open config file \"%s\", \"%s\", "
 #ifdef CONFDIR
-			"\"%s\", "
+		      defns_error(NULL, 0,
+			_("can't open config file \"./gstripchart.conf\", "
+			  "\"%s\", \"%s\", or \"%s\""), 
+			home_fn, etc_fn, conf_fn);
+#else
+		      defns_error(NULL, 0,
+			_("can't open config file \"./gstripchart.conf\", "
+			  "\"%s\", or \"%s\""), 
+			home_fn, etc_fn);
 #endif
-			"or \"%s\"", 
-			"./gstripchart.conf", home_fn, etc_fn
-#ifdef CONFDIR
-			, conf_fn
-#endif
-			);
 		    }
 		}
 	    }
@@ -908,34 +961,41 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
 {
   int param_num, last_val_pos, next_val_pos;
 
-  update_counts++;
+  update_count++;
   pgp->t_last = pgp->t_now;
   gettimeofday(&pgp->t_now, NULL);
   pgp->t_diff = (pgp->t_now.tv_sec - pgp->t_last.tv_sec) +
     (pgp->t_now.tv_usec - pgp->t_last.tv_usec) / 1e6;
 #ifdef HAVE_LIBGTOP
+  pgp->gtop_last = pgp->gtop_now;
   if (gtop_cpu)
-    glibtop_get_cpu(&pgp->gtop.cpu);
+    glibtop_get_cpu(&pgp->gtop_now.cpu);
   if (gtop_mem)
-    glibtop_get_mem(&pgp->gtop.mem);
+    glibtop_get_mem(&pgp->gtop_now.mem);
   if (gtop_swap)
-    glibtop_get_swap(&pgp->gtop.swap);
+    glibtop_get_swap(&pgp->gtop_now.swap);
   if (gtop_uptime)
-    glibtop_get_uptime(&pgp->gtop.uptime);
+    glibtop_get_uptime(&pgp->gtop_now.uptime);
   if (gtop_loadavg)
-    glibtop_get_loadavg(&pgp->gtop.loadavg);
-#if 0
+    glibtop_get_loadavg(&pgp->gtop_now.loadavg);
   if (gtop_netload)
-    glibtop_get_netload(&pgp->gtop.netload, "FIX THIS: I/F name req'd");
-#endif
+    get_all_netload(&pgp->gtop_now.netload);
 #endif
 
-  last_val_pos = pgp->new_val;
-  if (pgp->num_val < pgp->max_val)
-    pgp->num_val++;
-  next_val_pos = ++pgp->new_val;
-  if (next_val_pos >= pgp->max_val)
-    next_val_pos = pgp->new_val = 0;
+  if (update_chart < 3)
+    {
+      last_val_pos = 0;
+      pgp->num_val = next_val_pos = 1;
+    }
+  else
+    {
+      last_val_pos = pgp->new_val;
+      if (pgp->num_val < pgp->max_val)
+	pgp->num_val++;
+      next_val_pos = ++pgp->new_val;
+      if (next_val_pos >= pgp->max_val)
+	next_val_pos = pgp->new_val = 0;
+    }
 
   for (param_num = 0; param_num < pgp->params; param_num++)
     {
@@ -954,6 +1014,7 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
 		pu = fopen(p->filename, "r");
 	    }
 
+	  *buf = '\0';
 	  if (pu)
 	    {
 	      fgets(buf, sizeof(buf), pu);
@@ -972,12 +1033,12 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
 	      val = eval(
 		p->eqn, p->eqn_src, pgp->t_diff,
 #ifdef HAVE_LIBGTOP
-		&pgp->gtop,
+		&pgp->gtop_now, &pgp->gtop_last,
 #endif
 		p->vars, p->last, p->now );
 	    }
 	  /* Low-pass filter the new val, and add to the val history. */
-	  prev = p->val[last_val_pos];
+	  prev = update_chart < 3 ? 0 : p->val[last_val_pos];
 	  p->val[next_val_pos] = prev + pgp->lpf_const * (val - prev);
 	}
     }
@@ -991,8 +1052,9 @@ no_display(void)
 {
   while (1)
     {
-      usleep((int)(1e6 * chart_interval));
+      update_chart++;
       update_values(&chart_glob, NULL);
+      usleep((int)(1e6 * chart_interval));
     }
 }
 
@@ -1006,7 +1068,7 @@ numeric_with_ident(void)
 
   while (1)
     {
-      usleep((int)(1e6 * chart_interval));
+      update_chart++;
       update_values(&chart_glob, NULL);
 
       for (p=0; p<chart_glob.params; p++)
@@ -1019,6 +1081,7 @@ numeric_with_ident(void)
 	  fprintf(stdout, " %12s", chart_glob.parray[p]->ident);
       fprintf(stdout, "\r");
       fflush(stdout);
+      usleep((int)(1e6 * chart_interval));
     }
 }
 
@@ -1036,7 +1099,7 @@ numeric_with_graph(void)
 
   while (1)
     {
-      usleep((int)(1e6 * chart_interval));
+      update_chart++;
       update_values(&chart_glob, NULL);
 
       for (p = 0; p < chart_glob.params; p++)
@@ -1053,6 +1116,7 @@ numeric_with_graph(void)
 	  }
       trimtb(buf);
       fprintf(stdout, "%s\n", buf);
+      usleep((int)(1e6 * chart_interval));
     }
 }
 
@@ -1254,6 +1318,7 @@ chart_timer_handler(GtkWidget *widget)
   /* Collect new parameter values.  If the scale has changed, clear
      the pixmap and fake an expose event to reload the pixmap.
      Otherwise plot each value in the RHS of the pixmap. */
+  update_chart++;
   update_values(&chart_glob, include_slider? &slider_glob: NULL);
   if (readjust_top_for_width(w))
     {
@@ -1442,18 +1507,19 @@ prefs_callback(GtkWidget *chart, gpointer unused)
   GtkWidget *dialog, *notebook, *vbox, *clist, *active, *label;
 
   notebook = gtk_notebook_new();
-  param_active = realloc(
-    param_active, chart_glob.params * sizeof(*param_active));
+  param_active = realloc(param_active,
+    chart_glob.params * sizeof(*param_active));
   for (p = 0; p < chart_glob.params; p++)
     {
       char lo[20], hi[20], range[100];
-      char *row[2], *ttls[2] = { N_("Param"), N_("Value") };
+      char *row[2], *ttls[2];
+      ttls[0] = _("Param"); ttls[1] = _("Value");
 
       clist = gtk_clist_new_with_titles(NELS(ttls), ttls);
 
       row[0] = _("Identifier"); row[1] = _(chart_glob.parray[p]->ident);
       gtk_clist_append(GTK_CLIST(clist), row);
-      row[0] = _("Color"); row[1] = _( chart_glob.parray[p]->color_name );
+      row[0] = _("Color"); row[1] = _(chart_glob.parray[p]->color_name);
       gtk_clist_append(GTK_CLIST(clist), row);
       row[0] = _("Filename"); row[1] = chart_glob.parray[p]->filename;
       gtk_clist_append(GTK_CLIST(clist), row);
@@ -1559,24 +1625,20 @@ text_popup(GtkWidget *widget, GdkEvent *event)
     }
   else
     {
-      /* FIX THIS: i18n required */
-      static char *titles[] = { "Param", "Current", "Top" };
+      char *titles[3];
+      titles[0] = _("Param"); titles[1] = _("Current"); titles[2] = _("Top");
       txt = gtk_clist_new_with_titles(NELS(titles), titles);
       gtk_widget_show(txt);
 
-      box = gtk_window_new(GTK_WINDOW_POPUP);
+      box = gtk_window_new(GTK_WINDOW_TOPLEVEL);
       gtk_widget_set_style(GTK_WIDGET(box), widget->style);
       gtk_container_add(GTK_CONTAINER(box), txt);
       gtk_window_set_transient_for(GTK_WINDOW(box), GTK_WINDOW(widget));
-      gtk_widget_set_uposition(GTK_WIDGET(box),button->x_root,button->y_root);
-      gtk_signal_connect(
-	GTK_OBJECT(box), "button_press_event", 
-	GTK_SIGNAL_FUNC(text_update), txt);
-      gtk_widget_show(box);
-      /* Load and autosize the clist after it and its containing box
-         are shown; otherwise the column autosize doesn't take the
-         column labels into account. */
+      gtk_widget_set_uposition(GTK_WIDGET(box), button->x_root,button->y_root);
+      gtk_signal_connect(GTK_OBJECT(box),
+	"button_press_event", GTK_SIGNAL_FUNC(text_update), txt);
       text_load_clist(txt, widget);
+      gtk_widget_show(box);
     }
 }
 
@@ -1778,18 +1840,22 @@ proc_arg(int opt, const char *arg)
 	&geometry_x, &geometry_y, &geometry_w, &geometry_h);
       break;
     case 't':
-      if (streq("none", arg))
-	display = no_display;
-      else if (streq("text", arg))
-	display = numeric_with_ident;
-      else if (streq("graph", arg))
-	display = numeric_with_graph;
-      else if (streq("gtk", arg))
+      if (streq("gtk", arg))
 	display = gtk_graph;
       else
 	{
-	  fprintf(stderr, _("invalid display type: %s\n"), arg);
-	  return -1;
+	  gnome_client_disable_master_connection();
+	  if (streq("none", arg))
+	    display = no_display;
+	  else if (streq("text", arg))
+	    display = numeric_with_ident;
+	  else if (streq("graph", arg))
+	    display = numeric_with_graph;
+	  else
+	    {
+	      fprintf(stderr, _("invalid display type: %s\n"), arg);
+	      return -1;
+	    }
 	}
     }
   return 0;
@@ -1802,11 +1868,10 @@ popt_arg_extractor(
 {
   if (proc_arg(opt->val, arg))
     {
-      /* FIX THIS: the prog name includes trailing junk, and although
-       * the long options aren't shown, all of the Gnome internal
-       * options are. */
+      /* FIX THIS: the program name includes trailing junk, and
+       * although the long options aren't shown, all of the Gnome
+       * internal options are. */
       poptPrintUsage(state, stderr, 0);
-      exit(EXIT_FAILURE);
     }
 }
 
@@ -1815,23 +1880,23 @@ poptOption arglist[] =
 {
   { NULL,             '\0', POPT_ARG_CALLBACK, popt_arg_extractor },
   { "geometry",        'g', POPT_ARG_STRING, NULL, 'g',
-    N_("GEO"), N_("geometry") },
+    N_("Geometry string: WxH+X+Y"), N_("GEO") },
   { "config-file",     'f', POPT_ARG_STRING, NULL, 'f',
-    N_("FILE"), N_("configuration file") },
+    N_("Configuration file name"), N_("FILE") },
   { "chart-interval",  'i', POPT_ARG_STRING, NULL, 'i',
-    N_("SECS"), N_("chart update interval") },
+    N_("Chart update interval"), N_("SECS") },
   { "chart-filter",    'I', POPT_ARG_STRING, NULL, 'I',
-    N_("SECS"), N_("chart LP filter TC") },
+    N_("Chart low-pass filter time constant"), N_("SECS"),  },
   { "slider-interval", 'j', POPT_ARG_STRING, NULL, 'j',
-    N_("SECS"), N_("slider update interval") },
+    N_("Slider update interval"), N_("SECS") },
   { "slider-filter",   'J', POPT_ARG_STRING, NULL, 'J',
-    N_("SECS"), N_("slider LP filter TC") },
+    N_("Slider low-pass filter time constant"), N_("SECS") },
   { "menubar",         'M', POPT_ARG_NONE, NULL, 'M',
-    NULL,       N_("add menubar") },
+    N_("Adds a menubar to the main window"), NULL },
   { "omit-slider",     'S', POPT_ARG_NONE, NULL, 'S',
-    NULL,       N_("omit slider") },
+    N_("Omits slider window"), NULL },
   { "display-type",    't', POPT_ARG_STRING, NULL, 't',
-    N_("TYPE"), N_("gtk|text|graph|none") },
+    N_("TYPE is one of gtk, text, graph, or none"), N_("TYPE") },
   { NULL,             '\0', 0, NULL, 0 }
 };
 
@@ -1906,9 +1971,33 @@ main(int argc, char **argv)
       update_values(&slider_glob, NULL);
     }
 
-  post_init = 1;
-  if (display)
-    (*display)();
+  /* This is part of a none-too-satisfactory initialization sequence.
+     During the prior update_chart==0 pass, the parameter equations
+     are evaluated solely to detect syntax errors and to determine
+     which libgtop routines should be called at the beginning of each
+     update_values pass.  Any equation evaluation errors detected
+     during this pass are fatal. */
+
+  /* During the update_chart==1 pass, a set of parameter variables is
+     gathered, but the resulting parameter values are not evaluated.
+     This pass serves only to populate the various *_now values so
+     that reasonable delta values can be computed in the next pass. */
+  update_chart = 1;
+  update_values(&chart_glob, NULL);
+
+  /* During the update_chart==2 pass, the normal chart_interval time
+     delta has elapsed, and can be used to compute time-dependent rate
+     values.  */
+  update_chart = 2;
+  usleep(1000000);
+  update_values(&chart_glob, NULL);
+
+  /* During the update_chart==3 pass, each prev value of each
+     parameter is considered valid, and is used in the low-pass
+     filtering of this and subsequent parameter values. */
+  /* update_chart = 3, set by the display() prior to update_values(). */
+  usleep(1000000);
+  display();
 
   return EXIT_SUCCESS;
 }

@@ -1,9 +1,6 @@
 
 FEATURES TO BE ADDED
 
-Add any remeining libgtop parameters, and use them instead of reading
-from /proc when possible.
-
 Rework the param menu pop-up so that the fields in existing parameters
 are readily editable, and so that new paramaters can be added.
 Perhaps the best way to do this would be to write a COAS CLAM or a
@@ -40,12 +37,6 @@ until the existing scheme proves itself inadequate.
 
 
 BUGS TO BE SQUASHED
-
-The code to process a command option error leaves trailing cruft after
-the command name, and includes all the gnome-internal options but
-omits the long-named variants of the gstripchart options.  Also,
-abbreviated long option names aren't recognized.  These all seem like
-they're caused by errors in the popt routines.
 
 Figure out how to account for WM decorations when dealing with a
 geometry string that specify a position relative to the bottom or

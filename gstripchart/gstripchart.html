@@ -3,26 +3,27 @@
 <a name="introduction">
 <h2> GNOME Stripchart Documentation </h2>
 
-The GNOME stripchart program charts various user-specified parameters as a
-function of time.  Its main use is to chart system performance parameters
-such as CPU load, CPU utilization, network traffic levels, and the like.
-Other more ingenious uses are left as an exercise for the interested
-user.
+The GNOME stripchart program charts various user-specified parameters
+as a function of time.  Its main use is to chart system performance
+parameters such as CPU load, CPU utilization, network traffic levels,
+and the like.  Other more ingenious uses are left as an exercise for
+the interested user.
 
-<p> The gstripchart program periodically reads data from a file, extracts a
-value, and displays these values in one of several formats.  The
-default format is a graphical display similar to that of a stripchart
-recorder.  Hence the name, "gstripchart".
+<p> The gstripchart program periodically reads data from a file,
+extracts a value, and displays these values in one of several formats.
+The default format is a graphical display similar to that of a
+stripchart recorder.  Hence the name, "gstripchart".
 
-<p> On systems such as Linux, in which the system parameters are available
-in human-readable form in the /proc directory, the gstripchart program makes
-a dandy performance monitoring tool, similar to but more versatile
-than xload.  
+<p> On systems such as Linux, in which the system parameters are
+available in human-readable form in the /proc directory, the
+gstripchart program makes a dandy performance monitoring tool, similar
+to but more versatile than xload.
 
-<p> Instead of being limited to a few standard performance parameters, the
-gstripchart program can plot any time-variant parameter than can be read
-from a file or pipe.  This ability to read data from a pipe provides a
-very versatile and easy to use method of setting up custom displays.
+<p> Instead of being limited to a few standard performance parameters,
+the gstripchart program can plot any time-variant parameter than can
+be read from a file or pipe.  This ability to read data from a pipe
+provides a very versatile and easy to use method of setting up custom
+displays.
 
 <p> The gstripchart program determines the parameters to display by
 reading a configuration file.  The gstripchart program will first look
@@ -106,11 +107,11 @@ behavior of the program.
 <a name="configuration">
 <h3> Configuration </h3>
 
-<p> The configuration file has a paragraph of configuration information
-for each parameter to be ploted.  Each of these paragraphs are
-comprised of a series of RFC-822 style "keyword: value" pairs,
+<p> The configuration file has a paragraph of configuration
+information for each parameter to be ploted.  Each of these paragraphs
+are comprised of a series of RFC-822 style "keyword: value" pairs,
 beginning with an "identifier:" line.  A comment can be included by
-putting a sharp sign (#) in the first column of a line.  
+putting a sharp sign (#) in the first column of a line.
 
 <p> The following keywords are available.  Some are optional; some are
 only used by certain display types; many have reasonable default
@@ -207,6 +208,16 @@ libgtop parameters are available:
   <dt> Loadavg Statistics
     <dd> loadavg_running, loadavg_tasks,
     loadavg_1m, loadavg_5m, loadavg_15m
+
+  <dt> Network Statistics
+    <dd> net_pkts_in, net_pkts_out, net_pkts_total,
+    net_bytes_in, net_bytes_out, net_bytes_total,
+    net_errs_in, net_errs_out, net_errs_total
+
+    <p> Note that the network statistics don't use the libgtop
+    library.  Instead, the values are read directly from
+    /proc/net/dev, and so are only available under Linux.
+
 </dl>
 
 <p> These are all signed long integer quantities, except for uptime,
