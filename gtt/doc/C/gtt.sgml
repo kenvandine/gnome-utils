@@ -1,12 +1,11 @@
-<!DOCTYPE Article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN"[
-
+<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN"[
 <!ENTITY version "1.2">
 ]>
 
 <article id="index"> <!-- please do not change the id-->
 
   <artheader> 
-    <title>GNOME Time Tracking Tool</title>
+    <title>GNOME Time Tracking Tool Manual</title>
     <copyright>
       <year>1997-2000</year>
       <holder>Eckehard Berns</holder>
@@ -17,27 +16,22 @@
 
     </copyright>
 
-  <legalnotice>
-   <para>
-    Permission is granted to copy, distribute and/or modify this
-    document under the terms of the <citetitle>GNU Free Documentation
-    License</citetitle>, Version 1.1 or any later version published
-    by the Free Software Foundation with no Invariant Sections, no
-    Front-Cover Texts, and no Back-Cover Texts. You may obtain a copy
-    of the <citetitle>GNU Free Documentation License</citetitle> from
-    the Free Software Foundation by visiting <ulink type="http"
-    url="http://www.fsf.org">their Web site</ulink> or by writing to:
-    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-    Boston, MA 02111-1307, USA.
-   </para>
-   <para>
-    Many of the names used by companies to distinguish their products and
-    services are claimed as trademarks. Where those names appear in any
-    GNOME documentation, and those trademarks are made aware to the members
-    of the GNOME Documentation Project, the names have been printed in caps
-    or initial caps.
-   </para>
-  </legalnotice>
+    <legalnotice id="legalnotice">
+      <para>Permission is granted to copy, distribute and/or modify this document
+	under the terms of the <ulink type="help"
+	url="gnome-help:fdl"><citetitle>GNU Free Documentation
+	    License</citetitle></ulink>, Version 1.1 or any later version 
+	published by the Free Software Foundation with no Invariant Sections, 
+	no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license
+	can be found <ulink type="help" url="gnome-help:fdl">here</ulink>.
+      </para>
+      <para>Many of the names used by companies to distinguish their products and
+	services are claimed as trademarks. Where those names appear in any
+	GNOME documentation, and those trademarks are made aware to the members
+	of the GNOME Documentation Project, the names have been printed in caps
+	or initial caps.
+      </para>
+    </legalnotice>
 
     <releaseinfo> 
 	 This is version 2.0 of the GNOME Time Tracker manual.
@@ -656,11 +650,11 @@ See <link linkend="preferences"></link> for more information.
 		            <guilabel>Switch Project Command</guilabel>:
 		            This shell command is executed every
 		            time you select a project which was previously
-		            unselected. If you use <literal>%s</literal> in this command,
+		            unselected. If you use <literal>&percnt;s</literal> in this command,
 		            <application>GNOME Time Tracker</application> will replace that with the title of the
 		            selected project. I use the following entry to update
 		            my <filename>.project</filename> file:
-		            <userinput>echo '%s' &gt;~/.project</userinput>
+		            <userinput>echo '&percnt;s' &gt;~/.project</userinput>
 		           </para>
                          </listitem>
 		         <listitem>
@@ -704,16 +698,16 @@ See <link linkend="preferences"></link> for more information.
                       This string marks the end of a log entry.  Both this string and the <guilabel>Entry Start</guilabel>
                       can contain the following variables:
                       <itemizedlist>
- <listitem><para><literal>%t</literal> &mdash; The project's title.</para></listitem>
- <listitem><para><literal>%d</literal> &mdash; The project's title.</para></listitem>
- <listitem><para><literal>%t</literal> &mdash; The project's description.</para></listitem>
- <listitem><para><literal>%T</literal> &mdash; The total time logged on the project, in the format Hours:Minutes:Seconds.</para></listitem>
- <listitem><para><literal>%h</literal> &mdash; The number of hours logged on the project today.</para></listitem>
- <listitem><para><literal>%H</literal> &mdash; The number of hours spent on the project today, in two digits.</para></listitem>
- <listitem><para><literal>%m</literal> &mdash; The number of minutes spent on the project today.</para></listitem>
- <listitem><para><literal>%M</literal> &mdash; The number of minutes spent on the project today (00-59).</para></listitem>
- <listitem><para><literal>%s</literal> &mdash; The number of seconds spent on the project today.</para></listitem>
- <listitem><para><literal>%S</literal> &mdash; The number of seconds spent on the project today (00-59).</para></listitem>
+ <listitem><para><literal>&percnt;t</literal> &mdash; The project's title.</para></listitem>
+ <listitem><para><literal>&percnt;d</literal> &mdash; The project's title.</para></listitem>
+ <listitem><para><literal>&percnt;t</literal> &mdash; The project's description.</para></listitem>
+ <listitem><para><literal>&percnt;T</literal> &mdash; The total time logged on the project, in the format Hours:Minutes:Seconds.</para></listitem>
+ <listitem><para><literal>&percnt;h</literal> &mdash; The number of hours logged on the project today.</para></listitem>
+ <listitem><para><literal>&percnt;H</literal> &mdash; The number of hours spent on the project today, in two digits.</para></listitem>
+ <listitem><para><literal>&percnt;m</literal> &mdash; The number of minutes spent on the project today.</para></listitem>
+ <listitem><para><literal>&percnt;M</literal> &mdash; The number of minutes spent on the project today (00-59).</para></listitem>
+ <listitem><para><literal>&percnt;s</literal> &mdash; The number of seconds spent on the project today.</para></listitem>
+ <listitem><para><literal>&percnt;S</literal> &mdash; The number of seconds spent on the project today (00-59).</para></listitem>
 </itemizedlist>
                 </para></listitem>
 		   
@@ -900,7 +894,7 @@ See <link linkend="preferences"></link> for more information.
       Please send all comments
       and suggestions regarding the manual to the GNOME Documentation
       Project at <email>docs@gnome.org</email>. You can also add your
-      comments online by using <ulink url="http://www.gnome.org/gdp/doctable/doctable.php3">GNOME Documentation
+      comments online by using <ulink url="http://developer.gnome.org/projects/gdp/doctable/">GNOME Documentation
       Status Table</ulink>. 
       </para>
     <!-- For translations: uncomment this:
@@ -918,8 +912,8 @@ See <link linkend="preferences"></link> for more information.
   <title>License</title>
   <para>
    This program is free software; you can redistribute it and/or
-   modify it under the terms of the <citetitle>GNU General Public
-   License</citetitle> as published by the Free Software Foundation;
+   modify it under the terms of the<ulink url="gnome-help:gpl">
+   GNU General Public License</ulink> as published by the Free Software Foundation;
    either version 2 of the License, or (at your option) any later
    version.
   </para>
@@ -930,17 +924,15 @@ See <link linkend="preferences"></link> for more information.
    <citetitle>GNU General Public License</citetitle> for more details.
   </para>
   <para>
-   A copy of the <citetitle>GNU General Public License</citetitle> is
-   included as an appendix to the <citetitle>GNOME Users
-   Guide</citetitle>.  You may also obtain a copy of the
-   <citetitle>GNU General Public License</citetitle> from the Free
-   Software Foundation by visiting <ulink type="http"
-   url="http://www.fsf.org">their Web site</ulink> or by writing to
-   <address>
-    Free Software Foundation, Inc.
-    <street>59 Temple Place</street> - Suite 330
-    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
-    <country>USA</country>
+      You may obtain a copy of the
+      <citetitle>GNU General Public License</citetitle> from the Free
+      Software Foundation by visiting <ulink type="http"
+      url="http://www.fsf.org">their Web site</ulink> or by writing to
+      <address>
+	Free Software Foundation, Inc.
+	<street>59 Temple Place</street> - Suite 330
+	<city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
+	<country>USA</country>
    </address>
   </para>
  </sect1>
