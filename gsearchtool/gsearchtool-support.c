@@ -112,6 +112,7 @@ get_x_y (CDDBDisclosure *disclosure,
 	    GTK_WIDGET_MAPPED (disclosure)) {
 		check_button = GTK_CHECK_BUTTON (disclosure);
 		
+		_gtk_check_button_get_props (check_button, &indicator_size, &indicator_spacing);
 		gtk_widget_style_get (widget,
 				      "interior_focus", &interior_focus,
 				      "focus-line-width", &focus_width,
@@ -125,12 +126,12 @@ get_x_y (CDDBDisclosure *disclosure,
 		}
 
 		if (bin->child) {
-			width = bin->child->allocation.x - widget->allocation.x - (2 * GTK_CONTAINER (widget)->border_width);
+			width = indicator_spacing * 3 + indicator_size ;
 		} else {
-			width = widget->allocation.width;
+			width = widget->allocation.width - 2 * GTK_CONTAINER (widget)->border_width;
 		}
 		
-		*x = widget->allocation.x + (width) / 2;
+		*x = widget->allocation.x + GTK_CONTAINER (widget)->border_width + (width) / 2;
 		*y = widget->allocation.y + widget->allocation.height / 2;
 
 		if (interior_focus == FALSE) {
@@ -140,7 +141,7 @@ get_x_y (CDDBDisclosure *disclosure,
 		*state_type = GTK_WIDGET_STATE (widget) == GTK_STATE_ACTIVE ? GTK_STATE_NORMAL : GTK_WIDGET_STATE (widget);
 
 		if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
-			*x = widget->allocation.x + widget->allocation.width - (indicator_size + *x - widget->allocation.x);
+			*x = widget->allocation.x + widget->allocation.width - (*x - widget->allocation.x);
 		}
 	} else {
 		*x = 0;
