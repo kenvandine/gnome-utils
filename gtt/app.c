@@ -102,8 +102,8 @@ void update_status_bar(void)
         s = g_strdup(project_get_timestr(NULL, 0));
         if (0 != strcmp(s, old_day_time)) {
 #ifdef GTK_USE_STATUSBAR
-                gtk_statusbar_pop(status_day_time /* , status_day_time_id */);
-                gtk_statusbar_push(status_day_time, s);
+                gtk_statusbar_pop(status_day_time, status_day_time_id);
+                gtk_statusbar_push(status_day_time, status_day_time_id, s);
 #else /* not GTK_USE_STATUSBAR */
                 gtk_label_set(status_day_time, s);
 #endif /* not GTK_USE_STATUSBAR */
@@ -119,8 +119,8 @@ void update_status_bar(void)
         }
         if (0 != strcmp(s, old_project)) {
 #ifdef GTK_USE_STATUSBAR
-                gtk_statusbar_pop(status_project /* , status_day_time_id */);
-                gtk_statusbar_push(status_project, s);
+                gtk_statusbar_pop(status_project, status_day_time_id);
+                gtk_statusbar_push(status_project, status_day_time_id, s);
 #else /* not GTK_USE_STATUSBAR */
                 gtk_label_set(status_project, s);
 #endif /* not GTK_USE_STATUSBAR */
@@ -299,6 +299,7 @@ void app_new(int argc, char *argv[])
 #endif /* SB_USE_HACK */
         gtk_widget_show(GTK_WIDGET(status_day_time));
         status_day_time_id = gtk_statusbar_push(status_day_time,
+						status_day_time_id,
                                                 _("00:00"));
         gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_day_time),
                            FALSE, FALSE, 1);
@@ -309,6 +310,7 @@ void app_new(int argc, char *argv[])
 #endif /* SB_USE_HACK */
         gtk_widget_show(GTK_WIDGET(status_project));
         status_project_id = gtk_statusbar_push(status_project,
+					       status_project_id,
                                                _("no project selected"));
         gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_project),
                            TRUE, TRUE, 1);
