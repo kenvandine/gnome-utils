@@ -159,10 +159,10 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 	flag_separate_output = separate_output;
 
   	if (gnome_mode) {
- 		GtkWidget *vbox, *viewport, *dialog;
+ 		GtkWidget *vbox, *dialog, *sw;
  		GtkWidget *text;
  		GList *list = NULL;
- 
+		
  		dialog  = gtk_dialog_new_with_buttons (title,
   			NULL,
   			GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -174,18 +174,16 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
  		gtk_dialog_set_default_response (GTK_DIALOG(dialog),
  						 GTK_RESPONSE_OK);
   
- 		text = gtk_label_new (prompt);
+		label_autowrap (GTK_DIALOG (w)->vbox, prompt, width);
+
+		sw = gtk_scrolled_window_new (NULL, NULL);
  		gtk_box_pack_start_defaults (
- 			GTK_BOX (GTK_DIALOG (dialog)->vbox), text);
- 		gtk_widget_show (text);
- 
- 		viewport = gtk_viewport_new (NULL, NULL);
- 		gtk_box_pack_start_defaults (
- 			GTK_BOX (GTK_DIALOG (dialog)->vbox), viewport);
- 		gtk_widget_show (viewport);
- 
+ 			GTK_BOX (GTK_DIALOG (dialog)->vbox), sw);
+		gtk_widget_show (sw);
+
  		vbox = gtk_vbox_new (FALSE, 0);
- 		gtk_container_add (GTK_CONTAINER (viewport), vbox);
+ 		gtk_scrolled_window_add_with_viewport (
+			GTK_SCROLLED_WINDOW (sw), vbox);
  		gtk_widget_show (vbox);
  
  		/*

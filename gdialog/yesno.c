@@ -72,30 +72,11 @@ int dialog_yesno_with_default(const char *title, const char *prompt, int height,
 			gtk_dialog_set_default_response (GTK_DIALOG(w),GTK_RESPONSE_YES);                
 		else
 			gtk_dialog_set_default_response (GTK_DIALOG(w),GTK_RESPONSE_NO);                
-			
-		gtk_window_set_title(GTK_WINDOW(w), title);
-		
-		hbox = gtk_hbox_new(FALSE, 0);
-		vbox = gtk_vbox_new(FALSE, 0);
 
-                if(width != 0)
-                {
-                    label_autowrap(vbox, prompt, width);
-		}
-                else
-                {
-                    GtkWidget *t = gtk_label_new(prompt);
-                    gtk_box_pack_start(GTK_BOX(vbox), t, TRUE, TRUE, 0);
-                    gtk_misc_set_alignment(GTK_MISC(t), -1, 0);
-                }
-                
-		gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
+		label_autowrap(GTK_DIALOG (w)->vbox, prompt, width);
 
-		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(w)->vbox), 
-			hbox,
-			TRUE, TRUE, GNOME_PAD);
 		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
-		
+
 		gtk_signal_connect(GTK_OBJECT(w), "response", GTK_SIGNAL_FUNC(callback_yn), NULL);
 		gtk_signal_connect(GTK_OBJECT(w), "close", GTK_SIGNAL_FUNC(callback_err), NULL);
 		gtk_widget_show_all(w);

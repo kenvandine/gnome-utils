@@ -81,44 +81,46 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 
 	max_choice = MIN(menu_height, item_no);
 	
-	if(gnome_mode)
-	{
-		GtkWidget *w  = gtk_dialog_new_with_buttons (title,
-				NULL,
+	if(gnome_mode) 	{
+		GtkWidget *w;
+		GtkWidget *but;
+		GtkWidget *first_button;
+		GtkWidget *butbox;
+		GtkWidget *sw;
+
+		w = gtk_dialog_new_with_buttons (title,	NULL,
 				GTK_DIALOG_DESTROY_WITH_PARENT,
 				GTK_STOCK_CANCEL,
 				GTK_RESPONSE_CANCEL,
 				NULL);
-
-		GtkWidget *hbox;
-		GtkWidget *vbox;
-		GtkWidget *but;
-		GtkWidget *first_button;
-		GtkWidget *butframe;
-		GtkWidget *butbox;
-		
-		the_items = items;
-
                 gtk_signal_connect (GTK_OBJECT (w), "response",
                               GTK_SIGNAL_FUNC (esc_cancel), NULL);
+		gtk_window_set_position (GTK_WINDOW (w), GTK_WIN_POS_CENTER);
 
-		gtk_window_set_title(GTK_WINDOW(w), title);
-		
-		hbox = gtk_hbox_new(FALSE, 0);
-		vbox = gtk_vbox_new(FALSE, 0);
-		
-		label_autowrap(vbox, prompt, width);
-		
-		butbox=gtk_vbox_new(FALSE, 0);
-		butframe=gtk_frame_new("");
-		
-		gtk_container_set_border_width(GTK_CONTAINER(butframe), GNOME_PAD);
-		gtk_container_set_border_width(GTK_CONTAINER(butbox), GNOME_PAD);
-		gtk_frame_set_shadow_type(GTK_FRAME(butframe), GTK_SHADOW_ETCHED_IN);
-				
+		label_autowrap(GTK_DIALOG(w)->vbox, prompt, width);
+
+		/*
+		 * Setup the containers.
+		 */
+		sw = gtk_scrolled_window_new (NULL, NULL);
+ 		gtk_box_pack_start_defaults (
+			GTK_BOX (GTK_DIALOG (w)->vbox), sw);
+		gtk_widget_show (sw);
+
+ 		butbox = gtk_vbox_new (FALSE, 0);
+ 		gtk_scrolled_window_add_with_viewport (
+			GTK_SCROLLED_WINDOW (sw), butbox);
+ 		gtk_widget_show (butbox);
+
+		gtk_container_set_border_width (GTK_CONTAINER (butbox),
+						GNOME_PAD);
+		/*
+		 * Add the buttons.
+		 */
+		the_items = items;
 		first_button = NULL;
 		
-		for(i=0; i< max_choice; i++)
+		for(i=0; i< item_no; i++)
 		{
 			char *x = (char *)items[2*i];
 			char *y = (char *)items[2*i+1];
@@ -135,16 +137,8 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 			gtk_signal_connect(GTK_OBJECT(but), "clicked",
 			GTK_SIGNAL_FUNC(okayed), GUINT_TO_POINTER(i));
 		}
-		
-		gtk_container_add(GTK_CONTAINER(butframe), butbox);
-		
-		gtk_box_pack_start(GTK_BOX(vbox), butframe, TRUE, TRUE, 0);
-		gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
 
-		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(w)->vbox), 
-			hbox,
-			TRUE, TRUE, GNOME_PAD);
-		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
+
 		gtk_widget_show_all(w);
 		if (first_button != NULL)
 			gtk_widget_grab_focus (first_button);

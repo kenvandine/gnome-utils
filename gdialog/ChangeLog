@@ -1,3 +1,13 @@
+2002-07-28  Archit Baweja  <bighead@users.sourceforge.net>
+
+	* inputbox.c (dialog_inputbox): clean up extra code.
+
+	* checklist.c (dialog_checklist): pack the GtkViewport in a
+	GtkScrolledWindow.
+
+	* menubox.c (dialog_menu): use GtkViewport + GtkScrolledWindow to
+	display the buttons. Fixes #2467 in bugzilla.
+
 2002-07-25  Archit Baweja  <bighead@users.sourceforge.net>
 
 	* checklist.c (err_outputter): handle the separate-output option with 
@@ -21,7 +31,7 @@
 
 	* textbox.c (dialog_textbox): put the GtkTextView in a Scrolled Window,
 	so we don't get broken output. Fixes #78038 in bugzilla.
-	* textbox.c (dialog_textbox_load_file): new function.
+	(dialog_textbox_load_file): new function.
 
 	* inputbox.c (dialog_inputbox): Yes/No should be No/Yes to be HIG
 	complaint.

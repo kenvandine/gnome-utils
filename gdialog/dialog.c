@@ -20,7 +20,8 @@
 
 #include "dialog.h"
 
-void Usage();
+static void Usage ();
+
 extern int dialog_yesno_with_default(const char *title, const char *prompt, int height, 
 				     int width, int yesno_default);
 int callback_writeerr(GtkWidget *w, gpointer *pt);
@@ -161,7 +162,7 @@ int main(int argc, char *argv[])
 				exit(-1);
 			} else if (argc == 2) {		/* we only want to clear the screen */
 				init_dialog();
-				if(!gnome_mode) refresh();	/* init_dialog() will clear the screen for us */
+				if(!gnome_mode) refresh();      /* init_dialog() will clear the screen for us */
 				end_dialog();
 				return 0;
 			} else {

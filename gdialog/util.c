@@ -383,10 +383,9 @@ void label_autowrap(GtkWidget *vbox, const char *input, int w)
 			bp++;
 		t=gtk_label_new(buf);
 		gtk_box_pack_start(GTK_BOX(vbox), t, TRUE, TRUE, 0);
-			gtk_misc_set_alignment(GTK_MISC(t), -1, 0);
+		gtk_misc_set_alignment(GTK_MISC(t), -1, 0);
 	}
 }
-
 
 /*
  * Print a button
