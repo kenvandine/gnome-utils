@@ -18,6 +18,8 @@ SUBDIRS = po intl macros \
 	gcalc gedit $(genius) ghex gsearchtool gdiskfree $(gtop) gtt \
 	$(guile_DIRS) $(objc_DIRS) mini-utils gncal splash gdialog
 
+EXTRA_DIST = gnome-utils.spec
+
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
 @MAINT@include macros/macros.dep
