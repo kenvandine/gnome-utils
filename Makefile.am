@@ -23,5 +23,4 @@ EXTRA_DIST = \
 	xmldocs.make \
 	intltool-extract.in \
 	intltool-merge.in \
-	intltool-update.in \
-	intltool-modules/XML/Parser/Style/OrigTree.pm
+	intltool-update.in
