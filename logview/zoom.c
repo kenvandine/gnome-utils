@@ -152,7 +152,7 @@ repaint_zoom (void)
    }
 
    if (curlog != NULL)
-       g_snprintf (buffer, sizeof (buffer), _("%s"), curlog->name);
+       g_snprintf (buffer, sizeof (buffer), "%s", curlog->name);
    else
        g_snprintf (buffer, sizeof (buffer), _("<No log loaded>"));
    gtk_tree_view_column_set_title (column2, buffer);

@@ -158,7 +158,7 @@ RepaintLogInfo (void)
    }
 
    if (curlog != NULL)
-       g_snprintf (buffer, sizeof (buffer), _("%s"), curlog->name);
+       g_snprintf (buffer, sizeof (buffer), "%s", curlog->name);
    else
        g_snprintf (buffer, sizeof (buffer), _("<No log loaded>"));
    gtk_tree_view_column_set_title (column2, buffer);
@@ -187,21 +187,21 @@ RepaintLogInfo (void)
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, strlen (ctime (&curlog->lstats.mtime)), _("%s"),
+       g_snprintf (buffer, strlen (ctime (&curlog->lstats.mtime)), "%s",
                    ctime (&curlog->lstats.mtime));
        utf8 = LocaleToUTF8 (buffer);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
        g_free (utf8);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, strlen (ctime (&curlog->lstats.startdate)), _("%s"),
+       g_snprintf (buffer, strlen (ctime (&curlog->lstats.startdate)), "%s",
                    ctime (&curlog->lstats.startdate));
        utf8 = LocaleToUTF8 (buffer);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
        g_free (utf8);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, strlen (ctime (&curlog->lstats.enddate)), _("%s"),
+       g_snprintf (buffer, strlen (ctime (&curlog->lstats.enddate)), "%s",
                    ctime (&curlog->lstats.enddate));
        utf8 = LocaleToUTF8 (buffer);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
