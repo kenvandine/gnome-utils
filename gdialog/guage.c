@@ -46,6 +46,12 @@ dialog_guage (const char *title, const char *prompt, int height,
     x = (COLS - width) / 2;
     y = (LINES - height) / 2;
 
+    if(percent < 0) {
+        percent = 0;
+      }      
+    else if (percent > 100) {
+        percent = 100;
+      }
     if(gnome_mode)
       {
 	GtkWidget *w = gnome_dialog_new(title, NULL, NULL);
@@ -53,7 +59,7 @@ dialog_guage (const char *title, const char *prompt, int height,
 	GtkWidget *vbox = gtk_vbox_new(FALSE, 0);
 	
 	label_autowrap(vbox, prompt, width);
-	gtk_progress_bar_update( GTK_PROGRESS_BAR( p ), .34 );
+	gtk_progress_set_percentage( GTK_PROGRESS( p ), ( (gfloat) percent ) / 100);
 	gtk_box_pack_start(GTK_BOX(vbox), p, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), vbox,
 			   TRUE, TRUE, GNOME_PAD);
