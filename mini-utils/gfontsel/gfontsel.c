@@ -249,6 +249,9 @@ error_t parse_an_arg (int key, char *arg, struct argp_state *state)
 	case NO_LOAD_LAST_FONT_KEY:
 		cfg->load_last = FALSE;
 		break;
+
+	default:
+		return ARGP_ERR_UNKNOWN;
 	}
 
 	return 0;
