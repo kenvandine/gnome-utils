@@ -4,7 +4,6 @@ SUBDIRS = doc
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	-DLOCALEDIR=\"$(datadir)/locale\" \
 	-I$(includedir) \
 	@GNOME_UTILS_CFLAGS@
 

@@ -28,8 +28,9 @@ main (int argc, char **argv)
     PortableServer_POAManager pm;
     gchar *ior;
 
-    bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-    textdomain (PACKAGE);
+    bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
+    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+    textdomain(GETTEXT_PACKAGE);
 
     CORBA_exception_init (&ev);
     orb = gnome_CORBA_init ("gsu", VERSION, &argc, argv,

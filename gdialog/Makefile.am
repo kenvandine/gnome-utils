@@ -17,12 +17,14 @@ gdialog_SOURCES =	\
 	util.c 		\
 	yesno.c
 
-INCLUDES=-I. $(GNOME_UTILS_CFLAGS) $(CURSES_INCLUDEDIR) 
+INCLUDES = \
+	-I$(includedir)	\
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	$(GNOME_UTILS_CFLAGS)	\
+	$(CURSES_INCLUDEDIR)
 
 gdialog_LDADD = \
 	$(GNOME_UTILS_LIBS) \
-	$(GTKXMHTML_LIBS) \
-	$(INTLLIBS) \
 	$(CURSES_LIBS)
 
 man_MANS = gdialog.1

@@ -436,8 +436,9 @@ static int ide_parser(void)
 int main(int argc, char *argv[])
 {
 	/* Initialize the i18n stuff */
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-	textdomain (PACKAGE);
+	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
 
 	gnome_init (APPNAME, VERSION, argc, argv);
 

@@ -61,20 +61,14 @@ static struct Mode *modePtr;
 
 int gnome_mode;
 
-#ifdef LOCALE
-#include <locale.h>
-#endif
-
 int main(int argc, char *argv[])
 {
 	int offset = 0, clear_screen = 0, end_common_opts = 0, retval;
 	const char *title = NULL;
 
-#ifdef LOCALE
-	(void) setlocale(LC_ALL, "");
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-	textdomain (PACKAGE);
-#endif
+	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
 
 	if (argc < 2) {
 		Usage(argv[0]);

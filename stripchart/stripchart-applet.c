@@ -52,10 +52,9 @@ main(int argc, char *argv[])
 {
   Chart_app *app;
 
-#ifdef ENABLE_NLS
-  bindtextdomain(PACKAGE, LOCALEDIR);
-  textdomain(PACKAGE);
-#endif
+  bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
+  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+  textdomain(GETTEXT_PACKAGE);
 
   default_w = 200, default_h = 50;
   geometry_w = -1, geometry_h = -1;

@@ -858,8 +858,9 @@ main (int argc, char *argv [])
 	const char **files;
 	
 	/* Initialize the i18n stuff */
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-	textdomain (PACKAGE);
+	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
 
 	gnome_init_with_popt_table ("meat-grinder", VERSION,
 				    argc, argv, NULL, 0, &ctx);

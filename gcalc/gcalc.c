@@ -146,8 +146,9 @@ main(int argc, char *argv[])
 	static gint n_targets = sizeof(targets) / sizeof(targets[0]);
 	
 	/* Initialize the i18n stuff */
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-	textdomain (PACKAGE);
+	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
 
 	gnome_program_init ("gcalc", VERSION, LIBGNOMEUI_MODULE,
 			argc, argv, GNOME_PARAM_POPT_TABLE, options, NULL);
