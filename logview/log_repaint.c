@@ -242,36 +242,6 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 
 }
 
-void 
-save_rows_to_expand (LogviewWindow *window)
-{
-   GtkTreeModel *tree_model;
-   GtkTreePath *tree_path;
-   GtkTreeIter iter;
-   gint i = 0;
-   Log *log = window->curlog;
-
-   if (!log->total_lines)
-       return;
-
-   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view)); 
-   tree_path = gtk_tree_path_new_root ();
-   gtk_tree_model_get_iter (tree_model, &iter, tree_path);
-
-   do {
-       tree_path = gtk_tree_model_get_path (tree_model, &iter);
-       if (gtk_tree_model_iter_has_child (tree_model, &iter) &&
-           gtk_tree_view_row_expanded (GTK_TREE_VIEW (window->view), tree_path)) {
-           log->expand_paths[i] = gtk_tree_path_copy (tree_path);
-           ++i; 
-       }
-   }
-   while (gtk_tree_model_iter_next (tree_model, &iter));
-
-   log->expand_paths[i] = NULL;
-
-}
-
 /* ----------------------------------------------------------------------
    NAME:        log_repaint
    DESCRIPTION: Redraw screen.
