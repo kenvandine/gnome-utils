@@ -1,4 +1,16 @@
+1998-11-07  Michael Fulbright <drmike@redhat.com>
+	* (many files):
 
+	- have removed most of tree view code since now using list view
+	  some routines remain (commented out) until I replace them
+	  with list equivalents
+
+	- noticed in card.c a nasty str_val() macro that depends upon
+	  the a local variable being present! Will have to go through
+	  and change all that (its in alot of places) because that
+	  is just asking for a problem.
+
+	
 1998-11-04  Michael Fulbright <msf@redhat.com>
 	* (many files): I wanted to summarize what I've been doing the
 	past week:
