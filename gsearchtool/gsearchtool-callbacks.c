@@ -289,23 +289,26 @@ open_file_cb (GtkWidget 	*widget,
 			open_file_with_nautilus (locale_file);
 		}
 		else {
-			if (!open_file_with_application (locale_file)) {
-				GtkWidget *dialog;
-
-                		dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
-                        		GTK_DIALOG_DESTROY_WITH_PARENT,
-                        		GTK_MESSAGE_ERROR,
-                        		GTK_BUTTONS_OK,
-                        		_("There is no installed viewer capable of displaying \"%s\"."),
-					file);
-
-                		g_signal_connect (G_OBJECT (dialog),
-                        		"response",
-                        		G_CALLBACK (gtk_widget_destroy), NULL);
+			if (open_file_with_application (locale_file) == FALSE) {
 				
-       	         		gtk_window_set_title (GTK_WINDOW (dialog), _("Can't Display Location"));
-       	         		gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-	                	gtk_widget_show (dialog);
+				if (launch_file (locale_file) == FALSE) {
+					GtkWidget *dialog;
+
+                			dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
+                        			GTK_DIALOG_DESTROY_WITH_PARENT,
+                        			GTK_MESSAGE_ERROR,
+                        			GTK_BUTTONS_OK,
+                        			_("There is no installed viewer capable of displaying \"%s\"."),
+						file);
+
+                			g_signal_connect (G_OBJECT (dialog),
+                        			"response",
+                        			G_CALLBACK (gtk_widget_destroy), NULL);
+				
+       	         			gtk_window_set_title (GTK_WINDOW (dialog), _("Can't Display Location"));
+       	         			gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+	                		gtk_widget_show (dialog);
+				}
 			}
 		} 
 		g_free (file);
@@ -402,22 +405,26 @@ click_file_cb 	     (GtkWidget 	*widget,
 				open_file_with_nautilus (locale_file);
 			}
 			else {
-				if (!open_file_with_application (locale_file)) {
-					GtkWidget *dialog;
+				if (open_file_with_application (locale_file) == FALSE) {
+				
+					if (launch_file (locale_file) == FALSE) {
+						GtkWidget *dialog;
 
-                			dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
-                        			GTK_DIALOG_DESTROY_WITH_PARENT,
-                        			GTK_MESSAGE_ERROR,
-                        			GTK_BUTTONS_OK,
-                        			_("There is no installed viewer capable of displaying \"%s\"."),
-						file);
-					
-					g_signal_connect (G_OBJECT (dialog),
-                        			"response",
-                        			G_CALLBACK (gtk_widget_destroy), NULL);
-					gtk_window_set_title (GTK_WINDOW (dialog), _("Can't Display Location"));
-       	         			gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-	                		gtk_widget_show (dialog);
+                				dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
+                        				GTK_DIALOG_DESTROY_WITH_PARENT,
+                        				GTK_MESSAGE_ERROR,
+                        				GTK_BUTTONS_OK,
+                        				_("There is no installed viewer capable of displaying \"%s\"."),
+							file);
+
+                				g_signal_connect (G_OBJECT (dialog),
+                        				"response",
+                        				G_CALLBACK (gtk_widget_destroy), NULL);
+				
+       	         				gtk_window_set_title (GTK_WINDOW (dialog), _("Can't Display Location"));
+       	         				gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+	                			gtk_widget_show (dialog);
+					}
 				}
 			} 
 			g_free (file);

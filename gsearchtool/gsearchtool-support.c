@@ -47,6 +47,7 @@
 
 #define C_STANDARD_STRFTIME_CHARACTERS "aAbBcdHIjmMpSUwWxXyYZ"
 #define C_STANDARD_NUMERIC_STRFTIME_CHARACTERS "dHIjmMSUwWyY"
+#define BINARY_EXEC_MIME_TYPE      "application/x-executable-binary"
 #define ICON_THEME_DIRECTORY_ICON  "gnome-fs-directory"
 #define ICON_THEME_EXECUTABLE_ICON "gnome-fs-executable"
 
@@ -750,7 +751,7 @@ open_file_with_nautilus (const gchar *filename)
 }
 
 gboolean
-open_file_with_application(const gchar *filename)
+open_file_with_application (const gchar *filename)
 {
 	gchar *mimeType = gnome_vfs_get_mime_type (filename);	
 	GnomeVFSMimeApplication *mimeApp = gnome_vfs_mime_get_default_application (mimeType);
@@ -774,4 +775,19 @@ open_file_with_application(const gchar *filename)
 		return TRUE;
 	}
 	return FALSE;
+}
+
+gboolean
+launch_file (const gchar *filename)
+{
+	gchar *mime_type = gnome_vfs_get_mime_type (filename);	
+	gboolean result = FALSE;
+	
+	if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE) == TRUE) &&
+	    (g_ascii_strcasecmp (mime_type, BINARY_EXEC_MIME_TYPE) == TRUE)) { 
+		result = g_spawn_command_line_async (filename, NULL);
+	}
+	
+	g_free (mime_type);
+	return result;
 }

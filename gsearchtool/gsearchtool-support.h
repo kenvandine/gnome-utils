@@ -109,6 +109,9 @@ open_file_with_nautilus 	(const gchar *filename);
 gboolean  	
 open_file_with_application 	(const gchar *filename);
 
+gboolean
+launch_file 			(const gchar *filename);
+
 #ifdef __cplusplus
 }
 #endif
