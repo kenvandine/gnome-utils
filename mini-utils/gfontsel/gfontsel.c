@@ -9,6 +9,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <stdlib.h>
 
 #include <gdk/gdkkeysyms.h>
 
@@ -133,6 +134,8 @@ gfontsel_create_dialog (gfontsel_cfg_t * cfg)
 					GNOME_STOCK_BUTTON_CLOSE,
 					NULL);
 
+	gtk_window_position (GTK_WINDOW (cfg->dialog), GTK_WIN_POS_CENTER);
+
 	gtk_signal_connect (GTK_OBJECT (cfg->dialog), "close",
 			    GTK_SIGNAL_FUNC (cancel_cb), cfg);
 	gnome_dialog_button_connect (GNOME_DIALOG (cfg->dialog), 0,
@@ -189,7 +192,7 @@ gfontsel_create_dialog (gfontsel_cfg_t * cfg)
 static void
 handle_signal (int sig)
 {
-	exit (0);
+	exit (EXIT_SUCCESS);
 }
 
 static
@@ -271,5 +274,5 @@ main (int argc, char *argv[])
 	gtk_widget_show (cfg.dialog);
 	gtk_main ();
 
-	return 0;
+	return EXIT_SUCCESS;
 }
