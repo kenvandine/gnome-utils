@@ -5,23 +5,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.1\n"
-"POT-Creation-Date: 2001-06-23 15:27+0200\n"
-"PO-Revision-Date: 2001-06-23 15:26+0200\n"
+"POT-Creation-Date: 2001-06-28 01:29+0200\n"
+"PO-Revision-Date: 2001-06-28 01:35+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: gcalc/gcalc.c:40
+#: gcalc/gcalc.c:41
 msgid "The Gnome Calculator"
 msgstr "Gnome kalkulator"
 
-#: gcalc/gcalc.c:43
+#: gcalc/gcalc.c:44
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Enkel dobbeltpresisjonskalkulator lik xcalc"
 
-#: gcalc/gcalc.c:136
+#: gcalc/gcalc.c:124
+msgid "Run in analog (slide rule) mode"
+msgstr "Kjør i analog (skyvelær) modus"
+
+#: gcalc/gcalc.c:152
 msgid "Gnome Calculator"
 msgstr "Gnome kalkulator"
 
@@ -56,6 +60,10 @@ msgstr "CE/C"
 #: gcalc/gnome-calc.c:1178
 msgid "AC"
 msgstr "AC"
+
+#: gcalc/gnome-calc.c:1180 gcalc/gnome-calc.c:1369
+msgid "INV"
+msgstr "INV"
 
 #. inverse button
 #: gcalc/gnome-calc.c:1181
@@ -190,27 +198,29 @@ msgstr "+/-"
 msgid "="
 msgstr "="
 
-#: gcalc/gnome-calc.c:1441
-msgid "INV"
-msgstr "INV"
+#. Translators:  This allows you to create translated font pngs,
+#. * though probably won't be necessary
+#: gcalc/gnome-calc.c:1245
+msgid "calculator-font.png"
+msgstr "calculator-font.png"
 
-#: gcharmap/src/asciiselect.c:123
+#: gcharmap/src/asciiselect.c:96
 msgid "Select Character"
 msgstr "Velg tegn"
 
-#: gcharmap/src/asciiselect.c:124 gcharmap/src/menus.c:99
+#: gcharmap/src/asciiselect.c:97 gcharmap/src/menus.c:99
 msgid "Insert"
 msgstr "Sett inn"
 
-#: gcharmap/src/asciiselect.c:130
+#: gcharmap/src/asciiselect.c:105
 msgid "Character code:"
 msgstr "Tegnkode:"
 
-#: gcharmap/src/asciiselect.c:140
+#: gcharmap/src/asciiselect.c:115
 msgid "Character:"
 msgstr "Tegn:"
 
-#: gcharmap/src/callbacks.c:43 gcharmap/src/interface.c:132
+#: gcharmap/src/callbacks.c:43 gcharmap/src/interface.c:141
 msgid "Gnome Character Map"
 msgstr "Gnome tegnkart"
 
@@ -222,51 +232,56 @@ msgstr ""
 "GNOME versjonen av Microsoft Windows' tegnkart. Advarsel: kan inneholde "
 "dårlig engelsk."
 
-#: gcharmap/src/callbacks.c:77
+#: gcharmap/src/callbacks.c:63 gcharmap/src/callbacks.c:101
+#: gcharmap/src/interface.c:65
+msgid "del"
+msgstr "del"
+
+#: gcharmap/src/callbacks.c:107
 #, c-format
-msgid "%s: Character code %d"
+msgid " %s: Character code %d"
 msgstr "%s: Tegnkode %d"
 
-#: gcharmap/src/callbacks.c:104
+#: gcharmap/src/callbacks.c:134
 msgid "Text copied to clipboard..."
 msgstr "Tekst kopiert til utklippstavlen..."
 
-#: gcharmap/src/callbacks.c:116
+#: gcharmap/src/callbacks.c:146
 msgid "Text cut to clipboard..."
 msgstr "Tekst klippet ut til utklippstavle..."
 
-#: gcharmap/src/callbacks.c:169
+#: gcharmap/src/callbacks.c:199
 msgid "Text pasted from clipboard..."
 msgstr "Tekst limt inn fra utklippstavlen..."
 
-#: gcharmap/src/interface.c:161
+#: gcharmap/src/interface.c:170
 msgid "Action Toolbar"
 msgstr "Verktøylinje for handling"
 
-#: gcharmap/src/interface.c:180
+#: gcharmap/src/interface.c:189
 msgid "Text to copy:"
 msgstr "Tekst som skal kopieres:"
 
-#: gcharmap/src/interface.c:226 gcharmap/src/menus.c:114 logview/logview.c:100
-#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:253
+#: gcharmap/src/interface.c:235 gcharmap/src/menus.c:114 logview/logview.c:100
+#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:255
 msgid "Exit"
 msgstr "Avslutt"
 
-#: gcharmap/src/interface.c:227 gcharmap/src/menus.c:104
-#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:236 gcharmap/src/menus.c:104
+#: gdictsrc/gdict-app.c:518 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopier"
 
-#: gcharmap/src/interface.c:231 gcharmap/src/menus.c:111
+#: gcharmap/src/interface.c:240 gcharmap/src/menus.c:111
 #: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
-#: stripchart/chart-app.c:227 stripchart/params.c:1014
+#: stripchart/chart-app.c:229 stripchart/params.c:1011
 #: stripchart/stripchart-applet.c:89
 msgid "About"
 msgstr "Om"
 
-#: gcharmap/src/interface.c:233 gcharmap/src/menus.c:109
-#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:222
-#: stripchart/params.c:1049 stripchart/params.c:1052
+#: gcharmap/src/interface.c:242 gcharmap/src/menus.c:109
+#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:224
+#: stripchart/params.c:1046 stripchart/params.c:1049
 #: stripchart/stripchart-applet.c:86
 msgid "Help"
 msgstr "Hjelp"
@@ -331,7 +346,7 @@ msgstr "Bestem om knappene skal være fokuserbare eller ikke"
 msgid "Insert character(s) by choosing character codes"
 msgstr "Sett inn tegn ved å velge tegnkoder"
 
-#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:159
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:515 gtt/toolbar.c:159
 msgid "Cut"
 msgstr "Klipp ut"
 
@@ -343,7 +358,7 @@ msgstr "Klipp ut utvalget"
 msgid "Copy the selection"
 msgstr "Kopier utvalget"
 
-#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:167
+#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:521 gtt/toolbar.c:167
 msgid "Paste"
 msgstr "Lim inn"
 
@@ -375,7 +390,7 @@ msgstr ""
 #. * label; FIXME: Memory leak
 #.
 #: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:502
-#: gdictsrc/gdict-pref-dialog.c:546 gdictsrc/gdict-speller.c:393
+#: gdictsrc/gdict-pref-dialog.c:546 gdictsrc/gdict-speller.c:392
 msgid "Cannot connect to server"
 msgstr "Kan ikke koble til tjener"
 
@@ -387,35 +402,35 @@ msgstr ""
 "Klient for MIT ordboktjener.\n"
 "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
 
-#: gdictsrc/gdict-app.c:117
+#: gdictsrc/gdict-app.c:116
 msgid "Spell-checking..."
 msgstr "Stavekontroll..."
 
-#: gdictsrc/gdict-app.c:125
+#: gdictsrc/gdict-app.c:124
 msgid "Spell check done"
 msgstr "Stavekontroll fullført"
 
-#: gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
+#: gdictsrc/gdict-app.c:132 gdictsrc/gdict-app.c:265
 msgid "No matches found"
 msgstr "Ingen treff"
 
-#: gdictsrc/gdict-app.c:250
+#: gdictsrc/gdict-app.c:249
 msgid "Looking up word..."
 msgstr "Slår opp ord..."
 
-#: gdictsrc/gdict-app.c:258
+#: gdictsrc/gdict-app.c:257
 msgid "Lookup done"
 msgstr "Oppslag fullført"
 
-#: gdictsrc/gdict-app.c:278
+#: gdictsrc/gdict-app.c:277
 msgid "String not found"
 msgstr "Streng ikke funnet"
 
-#: gdictsrc/gdict-app.c:381
+#: gdictsrc/gdict-app.c:380
 msgid "Find:"
 msgstr "Finn:"
 
-#: gdictsrc/gdict-app.c:413
+#: gdictsrc/gdict-app.c:412
 msgid ""
 "Unable to perform requested operation, either because the server\n"
 "you are using is down or because you are not connected to the\n"
@@ -426,44 +441,44 @@ msgstr ""
 "bruker er nede eller fordi du ikke er koblet til internett. Hvis\n"
 "du ikke er koblet til internett allerede, gjør dette og prøv igjen."
 
-#: gdictsrc/gdict-app.c:452 gdictsrc/gdict-app.c:509
+#: gdictsrc/gdict-app.c:451 gdictsrc/gdict-app.c:508
 #: gdictsrc/gdict-applet.c:313
 msgid "Lookup"
 msgstr "Slå opp"
 
-#: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
+#: gdictsrc/gdict-app.c:452 gdictsrc/gdict-app.c:509
 msgid "Lookup word in dictionary"
 msgstr "Slå opp ord i ordbok"
 
-#: gdictsrc/gdict-app.c:455 gdictsrc/gdict-app.c:512
+#: gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
 msgid "Spell"
 msgstr "Stav"
 
-#: gdictsrc/gdict-app.c:456 gdictsrc/gdict-app.c:513
+#: gdictsrc/gdict-app.c:455 gdictsrc/gdict-app.c:512
 msgid "Check word spelling"
 msgstr "Sjekk ordets staving"
 
-#: gdictsrc/gdict-app.c:517
+#: gdictsrc/gdict-app.c:516
 msgid "Cut to Clipboard"
 msgstr "Klipp ut til utklippstavle"
 
-#: gdictsrc/gdict-app.c:520
+#: gdictsrc/gdict-app.c:519
 msgid "Copy to Clipboard"
 msgstr "Kopier til utklippstavle"
 
-#: gdictsrc/gdict-app.c:523
+#: gdictsrc/gdict-app.c:522
 msgid "Paste Clipboard Contents"
 msgstr "Lim inn innholdet av utklippstavlen"
 
-#: gdictsrc/gdict-app.c:526
+#: gdictsrc/gdict-app.c:525
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: gdictsrc/gdict-app.c:527
+#: gdictsrc/gdict-app.c:526
 msgid "Server to use, default search strategy, fonts"
 msgstr "Tjener som skal brukes, standard strategi for søk, skrifttyper"
 
-#: gdictsrc/gdict-app.c:588
+#: gdictsrc/gdict-app.c:587
 msgid "Word definition"
 msgstr "Orddefinisjon"
 
@@ -487,7 +502,7 @@ msgstr "Stavekontroll..."
 msgid "Cannot create applet!\n"
 msgstr "Kan ikke opprette applet!\n"
 
-#: gdictsrc/gdict-defbox.c:524 gdictsrc/gdict-speller.c:417
+#: gdictsrc/gdict-defbox.c:523 gdictsrc/gdict-speller.c:416
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Feil utføring av spørring: %s"
@@ -582,23 +597,23 @@ msgstr "Søk i alle databaser"
 msgid "The server you specified could not be found."
 msgstr "Tjeneren du spesifiserte ble ikke funnet."
 
-#: gdictsrc/gdict-speller.c:118
+#: gdictsrc/gdict-speller.c:117
 msgid "Word:"
 msgstr "Ord:"
 
-#: gdictsrc/gdict-speller.c:127
+#: gdictsrc/gdict-speller.c:126
 msgid "Search Strategy:"
 msgstr "Søkestrategi:"
 
-#: gdictsrc/gdict-speller.c:150
+#: gdictsrc/gdict-speller.c:149
 msgid "Find Words..."
 msgstr "Finn ord..."
 
-#: gdictsrc/gdict-speller.c:151
+#: gdictsrc/gdict-speller.c:150
 msgid "Lookup Word..."
 msgstr "Slå opp ord..."
 
-#: gdictsrc/gdict-speller.c:163
+#: gdictsrc/gdict-speller.c:162
 msgid "Spell checker"
 msgstr "Stavekontroll"
 
@@ -768,7 +783,7 @@ msgid "Enable"
 msgstr "Slå på"
 
 #: gsearchtool/gsearchtool.c:576 logview/actions.c:162
-#: meat-grinder/meat-grinder.c:610
+#: meat-grinder/meat-grinder.c:702
 msgid "Remove"
 msgstr "Fjern"
 
@@ -843,7 +858,7 @@ msgstr "Gnome søkeverktøy"
 msgid "Cannot save file"
 msgstr "Kan ikke lagre fil"
 
-#: gsearchtool/outdlg.c:69 meat-grinder/meat-grinder.c:457
+#: gsearchtool/outdlg.c:69 meat-grinder/meat-grinder.c:476
 msgid "Save Results"
 msgstr "Lagre resultater"
 
@@ -883,7 +898,7 @@ msgstr "Idag"
 msgid "Project Title"
 msgstr "Prosjekttittel"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:648
+#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:652
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -892,15 +907,15 @@ msgstr "Beskrivelse"
 msgid "Cannot open logfile %s for append"
 msgstr "Kan ikke legge til data i loggfil %s"
 
-#: gtt/log.c:69 gtt/log.c:227
+#: gtt/log.c:70 gtt/log.c:228
 msgid "program started"
 msgstr "program startet"
 
-#: gtt/log.c:87
+#: gtt/log.c:88
 msgid "no description"
 msgstr "ingen beskrivelse"
 
-#: gtt/log.c:219
+#: gtt/log.c:220
 msgid "program exited"
 msgstr "program avsluttet"
 
@@ -1112,11 +1127,11 @@ msgstr "Tidsavbrudd i sek:"
 msgid "Misc"
 msgstr "Forskjellig"
 
-#: gtt/proj.c:462
+#: gtt/proj.c:466
 msgid "project %t started"
 msgstr "prosjekt %t startet"
 
-#: gtt/proj.c:465
+#: gtt/proj.c:469
 msgid "stopped project %t"
 msgstr "stoppet prosjekt %t"
 
@@ -1169,7 +1184,7 @@ msgstr "[GTT]Ny"
 msgid "Reload"
 msgstr "Les på nytt"
 
-#: gtt/toolbar.c:152 stripchart/params.c:940
+#: gtt/toolbar.c:152 stripchart/params.c:937
 msgid "Save"
 msgstr "Lagre"
 
@@ -1289,8 +1304,8 @@ msgid "<empty>"
 msgstr "<tom>"
 
 #: logview/actions.c:511
-msgid "log. name regexp"
-msgstr "logg. navn regexp"
+msgid "log name regexp"
+msgstr "logg navn regexp"
 
 #: logview/actions.c:512
 msgid "process regexp"
@@ -1422,51 +1437,63 @@ msgstr "November"
 msgid "December"
 msgstr "Desember"
 
+#. Translators: Date only format, %x should well do really
+#: logview/log_repaint.c:471
+#, c-format
+msgid "%x"
+msgstr "%x"
+
+#. Translators: should be only the time, date could be bogus
+#: logview/log_repaint.c:581
+#, c-format
+msgid "%X"
+msgstr "%X"
+
 #. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:649
+#: logview/log_repaint.c:665
 msgid "%B %e"
 msgstr "%B %e"
 
-#: logview/logrtns.c:146
+#: logview/logrtns.c:199
 msgid "Not enough memory!\n"
 msgstr "Ike nok minne!\n"
 
-#: logview/logrtns.c:154
+#: logview/logrtns.c:207
 msgid "Out of memory!\n"
 msgstr "Tom for minne!\n"
 
-#: logview/logrtns.c:180
+#: logview/logrtns.c:233
 msgid "Unable to open logfile!\n"
 msgstr "Kunne ikke åpne loggfil!\n"
 
-#: logview/logrtns.c:235
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s er ikke en vanlig fil."
 
-#: logview/logrtns.c:243
+#: logview/logrtns.c:296
 #, c-format
 msgid ""
-"%s is not user readable. Probably has read-only permission. Either run the "
-"program as root or ask the sysadmin to change the permissions on the file."
+"%s is not user readable. Either run the program as root or ask the sysadmin "
+"to change the permissions on the file."
 msgstr ""
 "%s er ikke lesbar for bruker. Er sannsynlig skrivebeskyttet. Kjør enten "
 "programmet som root eller spør systemadministratoren om å endre rettighetene "
 "til filen."
 
-#: logview/logrtns.c:256
+#: logview/logrtns.c:309
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s kunne ikke åpnes."
 
-#: logview/logrtns.c:279
+#: logview/logrtns.c:332
 #, c-format
 msgid "%s not a log file."
 msgstr "%s er ikke en loggfil."
 
-#: logview/logrtns.c:703 logview/logrtns.c:734 logview/logrtns.c:865
+#: logview/logrtns.c:756 logview/logrtns.c:787 logview/logrtns.c:918
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: tom for minne"
 
@@ -1628,30 +1655,35 @@ msgstr "Kolonner"
 msgid "Zoom view"
 msgstr "Zoom visning"
 
-#: logview/zoom.c:153
+#: logview/zoom.c:154
 #, c-format
 msgid "Log line detail for %s"
 msgstr "Detaljer i logglinje for %s"
 
-#: logview/zoom.c:156
+#: logview/zoom.c:157
 msgid "Log line detail for <No log loaded>"
 msgstr "Detaljer i logglinje for <Ingen logg lastet>"
 
-#: logview/zoom.c:179
+#: logview/zoom.c:180
 msgid "Date:"
 msgstr "Dato:"
 
-#: logview/zoom.c:181
+#: logview/zoom.c:182
 msgid "Process:"
 msgstr "Prosess:"
 
-#: logview/zoom.c:183
+#: logview/zoom.c:184
 msgid "Message:"
 msgstr "Melding:"
 
-#: logview/zoom.c:185
+#: logview/zoom.c:186
 msgid "Description:"
 msgstr "Beskrivelse:"
+
+#. Translators: do not include year, it would be bogus
+#: logview/zoom.c:212
+msgid "%B %e %X"
+msgstr "%B %e %X"
 
 #.
 #. * 	-------------------
@@ -1734,13 +1766,13 @@ msgid "Grid"
 msgstr "Rutenett"
 
 #: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1042
-#: stripchart/params.c:1045
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1039
+#: stripchart/params.c:1042
 msgid "Edit"
 msgstr "Rediger"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1035
-#: stripchart/params.c:1038
+#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1032
+#: stripchart/params.c:1035
 msgid "File"
 msgstr "Fil"
 
@@ -1880,7 +1912,7 @@ msgstr "Vennligst velg type visning du ønsker å lage."
 msgid "Actions"
 msgstr "Handlinger"
 
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:2 stripchart/params.c:726
+#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:2 stripchart/params.c:730
 msgid "Bottom"
 msgstr "Bunn"
 
@@ -1959,7 +1991,7 @@ msgid "Session"
 msgstr "Sesjon"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:21
-#: stripchart/chart-app.c:159 stripchart/params.c:698
+#: stripchart/chart-app.c:159 stripchart/params.c:702
 msgid "Top"
 msgstr "Topp"
 
@@ -2101,8 +2133,8 @@ msgid "Save the current palette with a different name"
 msgstr "Lagre aktiv palett med et nytt navn"
 
 #: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
-#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:598
-#: stripchart/params.c:954
+#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:631
+#: stripchart/params.c:951
 msgid "Close"
 msgstr "Lukk"
 
@@ -2325,7 +2357,7 @@ msgstr "Hex 16 bits"
 msgid "Float"
 msgstr "Flyttall"
 
-#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:821
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:825
 msgid "Color"
 msgstr "Farge"
 
@@ -2552,7 +2584,7 @@ msgstr "Er du sikker på at du vil bytte til kjøringsnivå 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Er du sikker på at du vil starte maskinen på nytt?"
 
-#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:595
+#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:628
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Du må være superbruker (root) for å slå av eller starte maskinen på nytt."
@@ -2604,7 +2636,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "Ikke spør neste gang."
 
-#: mini-utils/gshutdown/gshutdown.c:688
+#: mini-utils/gshutdown/gshutdown.c:722
 msgid "Command execution failed: fork failed"
 msgstr "Kommandokjøringen feilet: fork feilet"
 
@@ -2658,7 +2690,7 @@ msgstr "Kategori"
 msgid "Your System"
 msgstr "Ditt system"
 
-#: mini-utils/guname/guname.c:664 stripchart/params.c:947
+#: mini-utils/guname/guname.c:664 stripchart/params.c:944
 msgid "Save As..."
 msgstr "Lagre som..."
 
@@ -2942,7 +2974,7 @@ msgstr "Menyvalg"
 msgid "Command"
 msgstr "Kommando"
 
-#: mini-utils/gw/gw.c:966
+#: mini-utils/gw/gw.c:978
 #, c-format
 msgid "Running: %s\n"
 msgstr "Kjører: %s\n"
@@ -3371,20 +3403,20 @@ msgstr "Param"
 msgid "Current"
 msgstr "Nåværende"
 
-#: stripchart/chart-app.c:160 stripchart/params.c:754
+#: stripchart/chart-app.c:160 stripchart/params.c:758
 msgid "Scale"
 msgstr "Skala"
 
-#: stripchart/chart-app.c:192 stripchart/stripchart-applet.c:69
+#: stripchart/chart-app.c:194 stripchart/stripchart-applet.c:69
 #: stripchart/stripchart.c:92 stripchart/stripchart.c:97
 msgid "Stripchart"
 msgstr "Stripchart"
 
-#: stripchart/chart-app.c:193
+#: stripchart/chart-app.c:195
 msgid "Copyright 2000 John Kodis"
 msgstr "Copyright 2000 John Kodis"
 
-#: stripchart/chart-app.c:195
+#: stripchart/chart-app.c:197
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -3397,15 +3429,15 @@ msgstr ""
 "finne andre og mer oppfinnsomme bruksområder overlates som en øvelse for den "
 "som bruker programmet."
 
-#: stripchart/chart-app.c:234
+#: stripchart/chart-app.c:236
 msgid "Show values"
 msgstr "Vis verdier"
 
-#: stripchart/chart-app.c:241
+#: stripchart/chart-app.c:243
 msgid "Edit Prefs..."
 msgstr "Rediger brukervalg..."
 
-#: stripchart/chart-app.c:246
+#: stripchart/chart-app.c:248
 msgid "Edit Params..."
 msgstr "Rediger parametere..."
 
@@ -3436,91 +3468,91 @@ msgstr "tall forventet"
 msgid "extra junk at end: \"%s\""
 msgstr "ekstra søppel på slutten: \"%s\""
 
-#: stripchart/params.c:627
+#: stripchart/params.c:631
 msgid "Parameter"
 msgstr "Parameter"
 
-#: stripchart/params.c:665
+#: stripchart/params.c:669
 msgid "Equation"
 msgstr "Likning"
 
-#: stripchart/params.c:676
+#: stripchart/params.c:680
 msgid "Filename"
 msgstr "Filnavn"
 
-#: stripchart/params.c:687
+#: stripchart/params.c:691
 msgid "Pattern"
 msgstr "Mønster"
 
-#: stripchart/params.c:708 stripchart/params.c:736
+#: stripchart/params.c:712 stripchart/params.c:740
 msgid "Min"
 msgstr "Min"
 
-#: stripchart/params.c:717 stripchart/params.c:745
+#: stripchart/params.c:721 stripchart/params.c:749
 msgid "Max"
 msgstr "Maks"
 
-#: stripchart/params.c:765
+#: stripchart/params.c:769
 msgid "Linear"
 msgstr "Lineær"
 
-#: stripchart/params.c:773
+#: stripchart/params.c:777
 msgid "Logarithmic"
 msgstr "Logaritmisk"
 
-#: stripchart/params.c:778
+#: stripchart/params.c:782
 msgid "Type"
 msgstr "Type"
 
-#: stripchart/params.c:789
+#: stripchart/params.c:793
 msgid "Indicator"
 msgstr "Indikator"
 
-#: stripchart/params.c:796
+#: stripchart/params.c:800
 msgid "Line"
 msgstr "Linje"
 
-#: stripchart/params.c:803
+#: stripchart/params.c:807
 msgid "Point"
 msgstr "Punkt:"
 
-#: stripchart/params.c:810
+#: stripchart/params.c:814
 msgid "Solid"
 msgstr "Helfylt"
 
-#: stripchart/params.c:966
+#: stripchart/params.c:963
 msgid "Add Parameter Before"
 msgstr "Legg til parameter før"
 
-#: stripchart/params.c:973
+#: stripchart/params.c:970
 msgid "Add Parameter After"
 msgstr "Legg til parameter etter"
 
-#: stripchart/params.c:980
+#: stripchart/params.c:977
 msgid "Apply Parameter Changes"
 msgstr "Påfør parameterendringer"
 
-#: stripchart/params.c:987
+#: stripchart/params.c:984
 msgid "Delete Parameter"
 msgstr "Slett parameter"
 
-#: stripchart/params.c:995
+#: stripchart/params.c:992
 msgid "Add Color"
 msgstr "Legg til farge"
 
-#: stripchart/params.c:1002
+#: stripchart/params.c:999
 msgid "Delete Color"
 msgstr "Slett farge"
 
-#: stripchart/params.c:1021
+#: stripchart/params.c:1018
 msgid "Info"
 msgstr "Info"
 
-#: stripchart/params.c:1092
+#: stripchart/params.c:1089
 msgid "Parameter Editor"
 msgstr "Parameterredigering"
 
-#: stripchart/params.c:1101
+#: stripchart/params.c:1098
 msgid "Parameters"
 msgstr "Parametere"
 
@@ -3646,39 +3678,7 @@ msgstr ""
 "Den kjørbare filen er for en annen plattform og kan ikke kjøres på dette "
 "systemet"
 
-#: meat-grinder/meat-grinder.c:199 meat-grinder/meat-grinder.c:202
-msgid "Cannot start the archive (tar) program"
-msgstr "Kan ikke starte arkivprogrammet (tar)"
-
-#: meat-grinder/meat-grinder.c:210
-msgid "Cannot run tar/gtar"
-msgstr "Kan ikke kjøre tar/gtar"
-
-#: meat-grinder/meat-grinder.c:261
-msgid "Archive.tar.gz"
-msgstr "Arkiv.tar.gz"
-
-#: meat-grinder/meat-grinder.c:361
-msgid "The GNOME Archive Generator"
-msgstr "GNOME arkivgenerator"
-
-#: meat-grinder/meat-grinder.c:364
-msgid "Drag files in to make archives"
-msgstr "Dra filer hit for å lage arkiv"
-
-#: meat-grinder/meat-grinder.c:425
-msgid "No filename selected"
-msgstr "Ingen filnavn valgt"
-
-#: meat-grinder/meat-grinder.c:429
-msgid "File exists, overwrite?"
-msgstr "Filen eksisterer, overskriv?"
-
-#: meat-grinder/meat-grinder.c:453
-msgid "No items to archive"
-msgstr "Ingen oppføringer å arkivere"
-
-#: meat-grinder/meat-grinder.c:545
+#: meat-grinder/meat-grinder.c:106
 #, c-format
 msgid ""
 "Number of files: %d\n"
@@ -3687,45 +3687,110 @@ msgstr ""
 "Antall filer: %d\n"
 "Antall mapper: %d"
 
-#: meat-grinder/meat-grinder.c:601
+#: meat-grinder/meat-grinder.c:112
+msgid ""
+"No files or folders, drop files or folders\n"
+"above to add them to the archive"
+msgstr ""
+"Ingen filer eller mapper, slipp filer eller mapper\n"
+"over for å legge dem til i arkivet"
+
+#: meat-grinder/meat-grinder.c:217 meat-grinder/meat-grinder.c:220
+msgid "Cannot start the archive (tar) program"
+msgstr "Kan ikke starte arkivprogrammet (tar)"
+
+#: meat-grinder/meat-grinder.c:228
+msgid "Cannot run tar/gtar"
+msgstr "Kan ikke kjøre tar/gtar"
+
+#: meat-grinder/meat-grinder.c:279
+msgid "Archive.tar.gz"
+msgstr "Arkiv.tar.gz"
+
+#: meat-grinder/meat-grinder.c:379
+msgid "The GNOME Archive Generator"
+msgstr "GNOME arkivgenerator"
+
+#: meat-grinder/meat-grinder.c:382
+msgid "Drag files in to make archives"
+msgstr "Dra filer hit for å lage arkiv"
+
+#: meat-grinder/meat-grinder.c:444 meat-grinder/meat-grinder.c:602
+msgid "No filename selected"
+msgstr "Ingen filnavn valgt"
+
+#: meat-grinder/meat-grinder.c:448
+msgid "File exists, overwrite?"
+msgstr "Filen eksisterer, overskriv?"
+
+#: meat-grinder/meat-grinder.c:472
+msgid "No items to archive"
+msgstr "Ingen oppføringer å arkivere"
+
+#: meat-grinder/meat-grinder.c:605
+msgid "File does not exists"
+msgstr "Filen eksisterer ikke"
+
+#: meat-grinder/meat-grinder.c:619
+msgid "Add file or folder"
+msgstr "Legg til fil eller mappe"
+
+#: meat-grinder/meat-grinder.c:689
+msgid "Add file or folder..."
+msgstr "Legg til fil eller mappe..."
+
+#: meat-grinder/meat-grinder.c:690
+msgid "Add a file or folder to the archive"
+msgstr "Legg til en fil eller en mappe i arkivet"
+
+#: meat-grinder/meat-grinder.c:693
 msgid "Create archive..."
 msgstr "Opprett arkiv..."
 
-#: meat-grinder/meat-grinder.c:602
-msgid "Create a new archive from the selected items"
-msgstr "Opprett et nytt arkiv fra valgte oppføringer"
+#: meat-grinder/meat-grinder.c:694
+msgid "Create a new archive from the items"
+msgstr "Opprett et nytt arkiv fra oppføringene"
 
-#: meat-grinder/meat-grinder.c:611
+#: meat-grinder/meat-grinder.c:703
 msgid "Remove the selected item(s)"
 msgstr "Fjern valgt(e) oppføring(er)"
 
-#: meat-grinder/meat-grinder.c:640
+#: meat-grinder/meat-grinder.c:735
 msgid "GNOME Archive Generator"
 msgstr "GNOME arkivgenerator"
 
-#: meat-grinder/meat-grinder.c:684
+#: meat-grinder/meat-grinder.c:765
+msgid "Drop files here to add them to the archive."
+msgstr "Slipp filer her for å legge dem til i arkivet."
+
+#: meat-grinder/meat-grinder.c:783
 msgid "Archive"
 msgstr "Arkiv"
 
-#: meat-grinder/meat-grinder.c:705
+#: meat-grinder/meat-grinder.c:790
 msgid ""
-"Number of files: 0\n"
-"Number of folders: 0"
-msgstr ""
-"Antall filer: 0\n"
-"Antall mapper: 0"
+"Drag this button to the destination where you want the archive to be created "
+"or press it to pop up a file selection dialog."
+msgstr "Dra denne knappen til målet hvor du ønsker at arkivet skal opprettes eller trykk på den for å få opp en filvalg-dialog."
 
-#: meat-grinder/meat-grinder.c:779
+#: meat-grinder/meat-grinder.c:883
 msgid "Cannot find proper icons anywhere!"
 msgstr "Kan ikke finne riktige ikoner noe sted!"
 
-#: meat-grinder/meat-grinder.c:787
+#: meat-grinder/meat-grinder.c:891
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
 msgstr ""
 "Kan ikke finne arkivprogrammet (tar)!\n"
 "Dette er programmet som brukes for å lage arkiv."
+
+#~ msgid ""
+#~ "Number of files: 0\n"
+#~ "Number of folders: 0"
+#~ msgstr ""
+#~ "Antall filer: 0\n"
+#~ "Antall mapper: 0"
 
 #~ msgid "Cancel"
 #~ msgstr "Avbryt"
