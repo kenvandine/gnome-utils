@@ -72,8 +72,8 @@ struct _FindOptionTemplate {
 static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("Contains the _text"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_TIME, "-mtime -%d", N_("_Date modified less than (days)"), FALSE },
-	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Date modified more than (da_ys)"), FALSE },
+	{ SEARCH_CONSTRAINT_TIME_LESS, "-mtime -%d", N_("_Date modified less than (days)"), FALSE },
+	{ SEARCH_CONSTRAINT_TIME_MORE, "\\( -mtime +%d -o -mtime %d \\)", N_("Date modified more than (da_ys)"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_NUMBER, "-size +%uc", N_("S_ize at least (kilobytes)"), FALSE }, 
 	{ SEARCH_CONSTRAINT_NUMBER, "-size -%uc", N_("Si_ze at most (kilobytes)"), FALSE },
@@ -404,9 +404,16 @@ build_search_command (void)
 					  		(constraint->data.number * 1024));
 				g_string_append_c (command, ' ');
 				break;
-			case SEARCH_CONSTRAINT_TIME:
+			case SEARCH_CONSTRAINT_TIME_LESS:
 				g_string_append_printf (command,
 					 		templates[constraint->constraint_id].option,
+					  		constraint->data.time);
+				g_string_append_c (command, ' ');
+				break;	
+			case SEARCH_CONSTRAINT_TIME_MORE:
+				g_string_append_printf (command,
+					 		templates[constraint->constraint_id].option,
+					  		constraint->data.time,
 					  		constraint->data.time);
 				g_string_append_c (command, ' ');
 				break;
@@ -585,7 +592,8 @@ set_constraint_info_defaults (SearchConstraint *opt)
 	case SEARCH_CONSTRAINT_NUMBER:
 		opt->data.number = 0;
 		break;
-	case SEARCH_CONSTRAINT_TIME:
+	case SEARCH_CONSTRAINT_TIME_LESS:
+	case SEARCH_CONSTRAINT_TIME_MORE:
 		opt->data.time = 0;
 		break;
 	default:
@@ -604,7 +612,8 @@ update_constraint_info (SearchConstraint 	*constraint,
 	case SEARCH_CONSTRAINT_NUMBER:
 		sscanf (info, "%d", &constraint->data.number);
 		break;
-	case SEARCH_CONSTRAINT_TIME:
+	case SEARCH_CONSTRAINT_TIME_LESS:
+	case SEARCH_CONSTRAINT_TIME_MORE:
 		sscanf (info, "%d", &constraint->data.time);
 		break;
 	default:
@@ -1477,7 +1486,8 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 		break;
 	case SEARCH_CONSTRAINT_TEXT:
 	case SEARCH_CONSTRAINT_NUMBER:
-	case SEARCH_CONSTRAINT_TIME:
+	case SEARCH_CONSTRAINT_TIME_LESS:
+	case SEARCH_CONSTRAINT_TIME_MORE:
 		{
 			gchar *desc = g_strconcat (LEFT_LABEL_SPACING, _(templates[opt->constraint_id].desc), ":", NULL);
 			label = gtk_label_new_with_mnemonic (desc);
