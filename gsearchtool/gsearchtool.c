@@ -28,6 +28,7 @@
 #define ICON_SIZE 24.0
 #define GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE 48
 #define GNOME_SEARCH_TOOL_STOCK "panel-searchtool"
+#define LEFT_LABEL_SPACING "   "
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
@@ -1049,7 +1050,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 	switch(templates[opt->constraint_id].type) {
 	case SEARCH_CONSTRAINT_BOOL:
 		{
-			gchar *desc = g_strconcat (_(templates[opt->constraint_id].desc), ".", NULL);
+			gchar *desc = g_strconcat (LEFT_LABEL_SPACING, _(templates[opt->constraint_id].desc), ".", NULL);
 			label = gtk_label_new (desc);
 			g_free (desc);
 			gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
@@ -1059,7 +1060,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 	case SEARCH_CONSTRAINT_NUMBER:
 	case SEARCH_CONSTRAINT_TIME:
 		{
-			gchar *desc = g_strconcat (_(templates[opt->constraint_id].desc), ":", NULL);
+			gchar *desc = g_strconcat (LEFT_LABEL_SPACING, _(templates[opt->constraint_id].desc), ":", NULL);
 			label = gtk_label_new (desc);
 			g_free (desc);
 		}
@@ -1159,6 +1160,7 @@ create_additional_constraint_section (void)
 	GtkWidget *vbox1; 
 	GtkWidget *vbox2;
 	GtkWidget *label;
+	gchar *desc;
 
 	vbox1 = gtk_vbox_new (FALSE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER(vbox1), 0);
@@ -1169,7 +1171,10 @@ create_additional_constraint_section (void)
 	
 	gtk_box_pack_end (GTK_BOX(vbox2), hbox, FALSE, FALSE, 0);
 	
-	label = gtk_label_new_with_mnemonic (_("A_vailable options:"));
+	desc = g_strconcat (LEFT_LABEL_SPACING, _("A_vailable options:"), NULL);
+	label = gtk_label_new_with_mnemonic (desc);
+	g_free (desc);
+
 	gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
 	
 	interface.constraint_menu = gtk_option_menu_new ();
