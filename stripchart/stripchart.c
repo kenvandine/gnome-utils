@@ -41,8 +41,6 @@ on_save_yourself(GnomeClient *client,
 
   i = 0;
   argv[i++] = program_invocation_name;
-  argv[i++] = "-g";
-  argv[i++] = gnome_geometry_string(app->frame->window);
   argv[i++] = "-f";
   argv[i++] = config_fn;
   argv[i] = NULL;
