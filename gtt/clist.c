@@ -83,16 +83,29 @@ click_column(GtkCList *clist, gint col)
 	setup_clist();
 }
 
+#ifdef CLIST_HEADER_HACK
+void
+clist_header_hack(GtkWidget *window, GtkWidget *w)
+{
+	GtkStyle *style;
+	GdkGCValues vals;
+	int width;
+
+	style = gtk_widget_get_style(w);
+	g_return_if_fail(style != NULL);
+	gdk_gc_get_values(style->fg_gc[0], &vals);
+	width = gdk_string_width(vals.font, "00:00:00");
+	gtk_clist_set_column_width(GTK_CLIST(w), TOTAL_COL, width);
+	gtk_clist_set_column_width(GTK_CLIST(w), TIME_COL, width);
+	gtk_clist_set_column_width(GTK_CLIST(w), TITLE_COL, 120);
+}
+#endif /* CLIST_HEADER_HACK */
 
 
 GtkWidget *
 create_clist(void)
 {
 	GtkWidget *w;
-#ifdef CLIST_HEADER_HACK
-	GtkStyle *style;
-	GdkGCValues vals;
-#endif
 	char *titles[4] = {
 		N_("Total"),
 		N_("Today"),
@@ -106,18 +119,7 @@ create_clist(void)
 	tmp[TITLE_COL] = _(titles[2]);
 	tmp[DESC_COL]  = _(titles[3]);
 	w = gtk_clist_new_with_titles(4, tmp);
-#ifdef CLIST_HEADER_HACK
-	style = gtk_widget_get_style(w);
-	g_return_val_if_fail(style != NULL, NULL);
-	gdk_gc_get_values(style->fg_gc[0], &vals);
-	{
-	    int wid = gdk_string_width(vals.font, "00:00:00");
 
-	    gtk_clist_set_column_width(GTK_CLIST(w), TOTAL_COL, wid);
-	    gtk_clist_set_column_width(GTK_CLIST(w), TIME_COL,	wid);
-	}
-	gtk_clist_set_column_width(GTK_CLIST(w), TITLE_COL, 120);
-#endif
 	gtk_clist_set_selection_mode(GTK_CLIST(w), GTK_SELECTION_SINGLE);
 	gtk_clist_set_column_justification(GTK_CLIST(w), TOTAL_COL, GTK_JUSTIFY_CENTER);
 	gtk_clist_set_column_justification(GTK_CLIST(w), TIME_COL,  GTK_JUSTIFY_CENTER);
@@ -160,7 +162,14 @@ setup_clist(void)
 		gtk_clist_select_row(GTK_CLIST(glist), cur_proj->row, 0);
 	}
 	err_init();
-	gtk_widget_show(window);
+	if (!GTK_WIDGET_MAPPED(window)) {
+#ifdef CLIST_HEADER_HACK
+		if (!GTK_WIDGET_REALIZED(glist))
+			gtk_widget_realize(window);
+		clist_header_hack(window, glist);
+#endif /* CLIST_HEADER_HACK */
+		gtk_widget_show(window);
+	}
 	if (timer_running) start_timer();
 	menu_set_states();
 	if (config_show_clist_titles)

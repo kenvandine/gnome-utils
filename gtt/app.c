@@ -258,13 +258,15 @@ void app_new(int argc, char *argv[])
 	gtk_box_pack_end(GTK_BOX(vbox), glist, TRUE, TRUE, 0);
 	gtk_widget_show(glist);
 
-	/* start timer before the state of the menu items is set */
-	start_timer();
-	init_list();
 	gtk_widget_show(glist);
-
 	gtk_container_add(GTK_CONTAINER(window), vbox);
 	gtk_widget_show(vbox);
 	gnome_app_set_contents(GNOME_APP(window), vbox);
+
+	gtk_widget_realize(window);
+
+	/* start timer before the state of the menu items is set */
+	start_timer();
+	init_list();
 }
 
