@@ -33,7 +33,6 @@
  */
 
 #define MAX_NUM_LOGS             10
-#define DEF_NUM_LOGS             3
 
 /*
  * -------------------

@@ -30,14 +30,6 @@
 #include "logview.h"
 #include "logrtns.h"
 
-/*
- * -----------------
- * Local definitions
- * ------------------
- */
-
-#define DEF_NUM_LOGS             1
-
 /* 
  * -------------------
  * Global variables 
@@ -599,25 +591,15 @@ log_redrawdetail ()
 int
 InitPages ()
 {
-   int i;
+   if (user_prefs && user_prefs->logfile == NULL)
+	return -1;
 
-   /* Open default logs.            */
-   numlogs = 0;
-   for (i = 0; i < DEF_NUM_LOGS; i++) {
-       curlog = OpenLogFile (user_prefs->logfile);
-       curlog->first_time = TRUE;
-       if (curlog == NULL)
-	       continue;
-       loglist[numlogs] = curlog;
-       numlogs++;
-   }
-
-   if (numlogs == 0)
-       return -1;
-
-   curlognum = numlogs - 1;
-   curlog = loglist[curlognum];
-
+   curlog = OpenLogFile (user_prefs->logfile);
+   if (curlog == NULL)
+      return -1;
+   curlog->first_time = TRUE;
+   loglist[0] = curlog;
+   curlognum = 0;
+   numlogs++;
    return TRUE;
-
 }
