@@ -4,7 +4,7 @@
 #   $attrs{$program_name}{$attribute} = $value
 
 $wmconfig_dir = "/etc/X11/wmconfig";
-$dt_dir = "/tmp/desktop";
+$dt_dir = "/usr/local/share/apps";
 
 opendir(DH, $wmconfig_dir);
 @wments = readdir(DH);

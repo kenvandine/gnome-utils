@@ -14,4 +14,3 @@ gsu_LDADD = \
 	$(GTKXMHTML_LIBS)	\
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
-
