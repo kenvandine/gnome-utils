@@ -14,9 +14,13 @@ gdiskfree = gdiskfree
 gstripchart = gstripchart
 endif
 
+if FALSE
+extras = gnome-find
+endif
+
 SUBDIRS = po intl macros \
 	gcalc ghex gsearchtool $(gdiskfree) $(gstripchart) gtt \
-	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog
+	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog $(extras)
 
 EXTRA_DIST = gnome-utils.spec.in
 
