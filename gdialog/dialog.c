@@ -37,10 +37,10 @@ struct Mode {
 };
 
 jumperFn j_yesno, j_msgbox, j_infobox, j_textbox, j_menu;
-jumperFn j_checklist, j_radiolist, j_inputbox, j_guage;
+jumperFn j_checklist, j_radiolist, j_inputbox, j_gauge;
 
 /*
- * All functions are used in the slackware root disk, apart from "guage"
+ * All functions are used in the slackware root disk, apart from "gauge"
  */
 
 static struct Mode modes[] =
@@ -53,8 +53,7 @@ static struct Mode modes[] =
 	{"--checklist", 9, 0, 3, j_checklist},
 	{"--radiolist", 9, 0, 3, j_radiolist},
 	{"--inputbox", 5, 6, 1, j_inputbox},
-	{"--guage", 6, 6, 1, j_guage},
-	{"--gauge", 6, 6, 1, j_guage},
+	{"--gauge", 6, 6, 1, j_gauge},
 	{NULL, 0, 0, 0, NULL}
 };
 
@@ -245,8 +244,7 @@ static void Usage()
 \n  --menu      <text> <height> <width> <menu height> <tag1> <item1>...\
 \n  --checklist <text> <height> <width> <list height> <tag1> <item1> <status1>...\
 \n  --radiolist <text> <height> <width> <list height> <tag1> <item1> <status1>...\
-\n  --gauge     <text> <height> <width> <percent>\
-\n  --guage     <text> <height> <width> <percent>\n",
+\n  --gauge     <text> <height> <width> <percent>\n",
                 VERSION);
 	exit(-1);
 }
@@ -326,9 +324,9 @@ int j_inputbox(const char *t, int ac, const char *const *av)
 	return ret;
 }
 
-int j_guage(const char *t, int ac, const char *const *av)
+int j_gauge(const char *t, int ac, const char *const *av)
 {
-	return dialog_guage(t, av[2], atoi(av[3]), atoi(av[4]),
+	return dialog_gauge(t, av[2], atoi(av[3]), atoi(av[4]),
 			    atoi(av[5]));
 }
 

@@ -193,7 +193,7 @@ int dialog_checklist (const char *title, const char *prompt, int height,
 extern unsigned char dialog_input_result[];
 int dialog_inputbox (const char *title, const char *prompt, int height,
 		int width, const char *init);
-int dialog_guage (const char *title, const char *prompt, int height, int width,
+int dialog_gauge (const char *title, const char *prompt, int height, int width,
 		int percent);
 
 void add_atk_namedesc (GtkWidget *widget, const gchar *name, const gchar *desc);
