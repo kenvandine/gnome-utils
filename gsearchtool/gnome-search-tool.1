@@ -1,32 +1,109 @@
 .\" gnome-search-tool.1 - GNOME Search Tool
 .\" Copyright 2001  Jochen Voss
-.TH gnome-search-tool 1 "Aug 09 2002" "gnome-utils 2.0.0"
+.TH gnome-search-tool 1 "Dec 30 2004" "gnome-utils 2.6.0"
 .SH NAME
 gnome-search-tool \- the GNOME Search Tool
 .SH SYNOPSIS
 .B gnome-search-tool
+.RI [ options ]
 .sp
 or select
 .B Search for Files...
-from the GNOME menu or from the 
+from the GNOME menu or from the
 .B Actions 
 menu in the Menu Panel.
 .SH DESCRIPTION
 .B GNOME Search Tool
-is a utility for finding files on your system. It can perform a search
-based on a variety of search constraints. 
+is a utility for finding files on your system. To perform a
+basic search, you can type a filename or a partial filename,
+with or without wildcards. To refine your search, you can
+apply additional search options.
+
+The case sensitivity of the search depends on your operating
+system. For example, on Linux, the find, grep, and locate
+commands support the -i option, so all searches are
+case-insensitive.
+
+.B GNOME Search Tool
+uses the find, grep, and locate UNIX commands.
 
 For full documentation see the
 .B GNOME Search Tool
 online help.
 
+.SH OPTIONS
+.TP
+.BR \-\-help ", " \-\^\-?
+Show help message
+.TP
+.BR \-\-usage
+Display brief usage message
+.TP
+.BI "\-\-named=" STRING
+Set the text of 'Name contains'
+.TP
+.BI "\-\-path=" PATH
+Set the text of 'Look in folder'
+.TP
+.BI "\-\-sortby=" VALUE
+Sort files by one of the following: name, folder, size, type, or date
+.TP
+.BR \-\-descending
+Set sort order to descending, the default is ascending
+.TP
+.BR \-\-start
+Automatically start a search
+.TP
+.BI "\-\-contains=" STRING
+Select and set the 'Contains the text' constraint
+.TP
+.BI "\-\-mtimeless=" NUM
+Select and set the 'Date modified less than' contraint
+.TP
+.BI "\-\-mtimemore=" NUM
+Select and set the 'Date modified more than' constraint
+.TP
+.BI "\-\-sizemore=" NUM
+Select and set the 'Size at least' constraint
+.TP
+.BI "\-\-sizeless=" NUM
+Select and set the 'Size at most' constraint
+.TP
+.BR \-\-empty
+Select the 'File is empty' constraint
+.TP
+.BI "\-\-user=" STRING
+Select and set the 'Owned by user' constraint
+.TP
+.BI "\-\-group=" STRING
+Select and set the 'Owned by group' constraint
+.TP
+.BR \-\-nouser
+Select the 'Owner is unrecognized constraint
+.TP
+.BI "\-\-notnamed=" STRING
+Select and set the 'Name does not contain' constaint
+.TP
+.BI "\-\-regex=" STRING
+Select and set the 'Name matches regular expression' constraint
+.TP
+.BR \-\-hidden
+Select the 'Show hidden and backup files' constraint
+.TP
+.BR \-\-follow
+Select the 'Follow symbolic links' constraint
+.TP
+.BR \-\-allmounts
+Select the 'Include other filesystems' constraint
 .SH AUTHOR
 .B GNOME Search Tool
-was originally written by George Lebl (<jirka@5z.com>).  Version 2 
-was written by Dennis M. Cranston (<dennis_cranston@yahoo.com>). 
+was originally written by George Lebl (<jirka@5z.com>).
+Version 2 was written by Dennis M. Cranston
+(<dennis_cranston@yahoo.com>).
 
-This manual page was written by Jochen Voss
-<voss@mathematik.uni-kl.de>.
+This manual page was originally written by Jochen Voss
+<voss@mathematik.uni-kl.de>.  Version 2 was written by
+Dennis M. Cranston (<dennis_cranston@yahoo.com>).
 
 .SH SEE ALSO
 .BR find (1),
