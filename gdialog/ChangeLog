@@ -1,3 +1,11 @@
+Wed Jun 06 16:51:52 2001  George Lebl <jirka@5z.com>
+
+	* menubox.c: Apply patch from voss@debian.org (Jochen Voss) and
+	  also apply the change to the non-gnome portion.  Basically
+	  standard dialog has one 3 return values and we were returning
+	  really bogus ones, that is, we returned the number of the menu item
+	  but that's not standard.
+
 Thu Apr 26 14:31:06 2001  George Lebl <jirka@5z.com>
 
 	* dialog.c: do the gettext voodoo to get actual translations

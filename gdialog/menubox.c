@@ -26,16 +26,22 @@ void cancel_callback (GtkWidget *widget, gpointer data);
 
 static const char* const *the_items;
 
+static void
+esc_cancel (void)
+{
+	exit (-1);
+}
+
 static void okayed(GtkWidget *w, int i)
 {
-  write(2, the_items[2*i], strlen(the_items[2*i]));
-  write(2, "\n", 1);
-  exit(i);
+	write(2, the_items[2*i], strlen(the_items[2*i]));
+	write(2, "\n", 1);
+	exit(0);
 }
 
 void cancel_callback (GtkWidget *widget, gpointer data)
 {
-	gtk_exit (-2);
+	exit (1);
 }
 
 static int menu_width, tag_x, item_x;
@@ -87,6 +93,9 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		GtkWidget *butbox;
 		
 		the_items = items;
+
+		gtk_signal_connect (GTK_OBJECT (w), "destroy",
+				    GTK_SIGNAL_FUNC (esc_cancel), NULL);
 
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
@@ -385,7 +394,7 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 			break;
 		case '\n':
 			delwin(dialog);
-			return (button ? -2 : (scroll + choice));
+			return button;
 		case ESC:
 			break;
 		}
