@@ -476,13 +476,15 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   GtkWidget * command_entry;
   GtkWidget * list;
   GtkWidget * explanation_label, * defaults_label;
-  const gchar * titles[] = { N_("Name"), N_("Command Line") }; 
+  const gchar *titles[2];
   GList * tmp; 
   Action * a;
   gchar * text[2];
   gint row;
 
   /* Create everything. */
+  titles[0] = N_("Name");
+  titles[1] = N_("Command Line");
 
   defaults_button = gtk_button_new_with_label(_("Add some defaults"));
   add_button = gtk_button_new_with_label(_("Add"));

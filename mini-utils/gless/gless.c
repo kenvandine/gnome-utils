@@ -26,7 +26,6 @@
 #include <string.h>
 
 #define APPNAME "gless"
-char COPYRIGHT_NOTICE[]=N_("Copyright 1998, under the GNU General Public License.");
 
 #ifndef VERSION
 #define VERSION "0.0.0"
@@ -438,7 +437,7 @@ static void popup_about()
 
   ga = gnome_about_new (APPNAME,
                         VERSION, 
-                        _(COPYRIGHT_NOTICE),
+                        _("Copyright 1998, under the GNU General Public License."),
                         authors,
                         0,
                         0 );
