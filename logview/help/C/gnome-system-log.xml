@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "1.102.0">
-  <!ENTITY manrevision "2.0">
-  <!ENTITY date "May 2002">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.1">
+  <!ENTITY date "July 2002">
   <!ENTITY app "System Log Viewer">
 ]>
 <!-- 
@@ -43,28 +43,28 @@
 
    &legal;
 
-    <authorgroup> 
-      <author> 
+   <authorgroup> 
+   <author> 
 		<firstname>Sun</firstname> 
 		<surname>GNOME Documentation Team</surname> 
 		<affiliation> 
 	  	<orgname>Sun Microsystems</orgname> 
 	  	<address> <email>gdocteam@sun.com</email> </address> 
 		</affiliation> 
-      </author> 
+   </author> 
 
-      <author> 
+   <author> 
 		<firstname>Judith</firstname> 
 		<surname>Samson</surname> 
 		<affiliation> 
 	  	<orgname>GNOME Documentation Project</orgname> 
 	  	<address> <email>judith@samsonsource.com</email> </address> 
 		</affiliation> 
-      </author> 
+   </author> 
       
 <!-- This is appropriate place for other contributors: translators,
       maintainers,  etc. Commented out by default.
-       <othercredit role="translator">
+   <othercredit role="translator">
 		<firstname>Latin</firstname> 
 		<surname>Translator 1</surname> 
 		<affiliation> 
@@ -72,30 +72,40 @@
 	  	<address> <email>translator@gnome.org</email> </address> 
 		</affiliation>
 		<contrib>Latin translation</contrib>
-      </othercredit>
+   </othercredit>
 -->
     </authorgroup>
 
     <revhistory>
       <revision> 
-		<revnumber>&app; Manual V&manrevision;</revnumber> 
-		<date>&date;</date> 
-		<revdescription> 
-	  		<para role="author">Sun GNOME Documentation Team
-	    	<email>gdocteam@sun.com</email>
-	  	</para>
-	  	<para role="publisher">GNOME Documentation Project</para>
-		</revdescription> 
+					<revnumber>&app; Manual V&manrevision;</revnumber> 
+					<date>&date;</date> 
+					<revdescription> 
+	  					<para role="author">Sun GNOME Documentation Team
+	    			<email>gdocteam@sun.com</email>
+	  					</para>
+	  					<para role="publisher">GNOME Documentation Project</para>
+					</revdescription> 
+      </revision>
+      <revision> 
+					<revnumber>System Log Viewer Manual V2.0</revnumber> 
+					<date>May 2002</date> 
+					<revdescription> 
+	  					<para role="author">Sun GNOME Documentation Team
+	    			<email>gdocteam@sun.com</email>
+	  					</para>
+	  					<para role="publisher">GNOME Documentation Project</para>
+					</revdescription> 
       </revision> 
       <revision> 
-		<revnumber>Logview Manual</revnumber> 
-		<date>2000</date> 
-		<revdescription> 
-	  		<para role="author">Judith Samson
-	    	<email>judith@samsonsource.com</email>
-	  	</para>
-	  	<para role="publisher">GNOME Documentation Project</para>
-		</revdescription> 
+					<revnumber>Logview Manual</revnumber> 
+					<date>2000</date> 
+					<revdescription> 
+	  					<para role="author">Judith Samson
+	    			<email>judith@samsonsource.com</email>
+	  					</para>
+	  					<para role="publisher">GNOME Documentation Project</para>
+					</revdescription> 
       </revision> 
     </revhistory> 
 
@@ -176,20 +186,20 @@
 
     <sect2 id="syslog-open">
     	<title>To View a Log File</title>
-    	<para>To view a log file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open log</guimenuitem></menuchoice>. 
+    	<para>To view a log file, choose <menuchoice><guimenu>Log</guimenu><guimenuitem>Open</guimenuitem></menuchoice>. 
     	In the <guilabel>Open new logfile</guilabel> dialog, enter the name of the log file that you want to open, then click 
     	<guibutton>OK</guibutton>. Use the scrollbars to scroll through the log file.</para>
     	<para>You can open as many log files as you want. <application>&app;</application> displays one log file at a time in 
     	the <guilabel>System Log Viewer</guilabel> window. To display another log file that is already open in 
-    	<application>&app;</application>, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Switch</guimenuitem></menuchoice>. 
-    	To continue to move through the open log files, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Switch</guimenuitem>
+    	<application>&app;</application>, choose <menuchoice><guimenu>Log</guimenu><guimenuitem>Switch Log</guimenuitem></menuchoice>. 
+    	To continue to move through the open log files, choose <menuchoice><guimenu>Log</guimenu><guimenuitem>Switch Log</guimenuitem>
     	</menuchoice>.</para> 
     </sect2>
     
     <sect2 id="syslog-details">
     	<title>To View More Information About a Log File Entry</title>
     	<para>To view more detailed information about a log file entry, select the entry in the display area, then choose
-    	<menuchoice><guimenu>View</guimenu><guimenuitem>Zoom</guimenuitem></menuchoice>. <application>&app;</application>
+    	<menuchoice><guimenu>View</guimenu><guimenuitem>Entry Detail</guimenuitem></menuchoice>. <application>&app;</application>
     	displays a <guilabel>Zoom view</guilabel> window that contains the following information:</para>
     	<itemizedlist>
     		<listitem><para>The date of the log entry.</para>
@@ -211,7 +221,7 @@
     	as they are added.</para>
     	<para>To monitor a log file, perform the following steps:</para>
     	<orderedlist>
-    		<listitem><para>Choose <menuchoice><guimenu>File</guimenu><guimenuitem>Monitor</guimenuitem></menuchoice>.</para></listitem>
+    		<listitem><para>Choose <menuchoice><guimenu>Log</guimenu><guimenuitem>Monitor</guimenuitem></menuchoice>.</para></listitem>
     		<listitem><para>Select the log file that you want to monitor in the left pane of the <guilabel>Monitor options</guilabel> 
     		dialog. </para></listitem>
     		<listitem><para>Click <guibutton>Add</guibutton>. </para></listitem>
@@ -232,7 +242,7 @@
     
     <sect2 id="syslog-stats">
     	<title>To View Log File Properties</title>
-    	<para>To view the properties of the log file, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Log stats</guimenuitem></menuchoice>.
+    	<para>To view the properties of the log file, choose <menuchoice><guimenu>Log</guimenu><guimenuitem>Properties</guimenuitem></menuchoice>.
     	The <guilabel>Log stats</guilabel> dialog displays the following information about the file:</para> 
     	<itemizedlist>
     		<listitem><para>Full path name and filename.</para>
@@ -252,31 +262,10 @@
     
     <sect2 id="syslog-close">
     	<title>To Close a Log File</title>
-    	<para>To close a log file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Close</guimenuitem></menuchoice>. If you 
+    	<para>To close a log file, choose <menuchoice><guimenu>Log</guimenu><guimenuitem>Close</guimenuitem></menuchoice>. If you 
     	close the last log file that is open, the application exits.</para> 
     </sect2>
  
   </sect1>
-
-
-<!-- ================ Settings ================================ -->
-
-  <sect1 id="syslog-settings"> 
-    <title>Settings</title>
-    <para>To configure <application>&app;</application>, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Preferences</guimenuitem>
-    </menuchoice>.</para>
-    
-    <variablelist> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Hostname column width</guilabel> </term> 
-	    <listitem> 
-	      <para>Use this spin box to specify the width of the second column in the log file display area. To hide the hostname column, set the 
-	      value to 0.</para> 
-	      <para>Default: 15.</para> 
-	    </listitem> 
-	  </varlistentry>
-	</variablelist>  
-  </sect1>  
 
 </article>

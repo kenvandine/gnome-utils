@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "1.103.0">
-  <!ENTITY manrevision "2.0">
-  <!ENTITY date "May 2002">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.1">
+  <!ENTITY date "July 2002">
   <!ENTITY app "Search Tool">
 ]>
 <!-- 
@@ -74,8 +74,8 @@
 -->
     </authorgroup>
 
-    <revhistory>
-      <revision> 
+ <revhistory>
+ <revision> 
 	<revnumber>&app; Manual V&manrevision;</revnumber> 
 	<date>&date;</date> 
 	<revdescription> 
@@ -84,8 +84,18 @@
 	  </para>
 	  <para role="publisher">GNOME Documentation Project</para>
 	</revdescription> 
-      </revision> 
-      <revision> 
+ </revision>
+	<revision> 
+			<revnumber>Search Tool Manual V2.0</revnumber> 
+			<date>May 2002</date> 
+			<revdescription> 
+	  		<para role="author">Sun GNOME Documentation Team
+	    <email>gdocteam@sun.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
+ </revision> 
+ <revision> 
 	<revnumber>GNOME Search Tool Manual</revnumber> 
 	<date>2000</date> 
 	<revdescription> 
@@ -94,8 +104,8 @@
 	  </para>
 	  <para role="publisher">GNOME Documentation Project</para>
 	</revdescription> 
-      </revision> 
-    </revhistory> 
+ </revision> 
+ </revhistory> 
 
     <releaseinfo>This manual describes version &appversion; of &app;.
     </releaseinfo> 
@@ -182,27 +192,32 @@
     
     <para>To search for a file on the system, perform the following steps:</para>
     <orderedlist>
-	<listitem>
-	  <para>In the <guilabel>Starting in folder</guilabel> field, enter the
-	  directory you want the search started in. It will search
-	  only that directory and any subdirectories beneath it.</para>
-	</listitem>
-
+     <listitem><para>In the <guilabel>Starting in folder</guilabel> field
+     enter the path to the directory in which you want <application>&app;</application>
+     to begin the search. <application>&app;</application> searches in the directory that you
+     specify and the subdirectories of the directory.</para></listitem>
     	<listitem><para>In the <guilabel>Find files named</guilabel> field, enter one of the following strings:</para>
     		<itemizedlist>
     			<listitem><para>A full filename, for example <userinput>myfile.txt</userinput>. <application>&app;</application>
-    			searches for all files in the specified directory named <userinput>myfile.txt</userinput>.</para></listitem>
+    			searches for all files on the system named <userinput>myfile.txt</userinput>.</para></listitem>
     			<listitem><para>A partial filename, for example <userinput>gnome</userinput>. <application>&app;</application>
-    			searches for all files that contain the string <userinput>gnome</userinput> in their directory path or filename. </para></listitem>
-    			
+    			searches for all files on the system that contain the string <userinput>gnome</userinput> in their directory path or filename. </para></listitem>
+    			<listitem><para>A directory path combined with wildcards (*), for example <userinput>/home/username/*.txt</userinput>. 
+    			<application>&app;</application> searches the directory <userinput>/home/username</userinput> for all files with the 
+    			extension <userinput>.txt</userinput>.</para></listitem>
     		</itemizedlist>
     		<para></para>
     	</listitem>	
-    	<listitem><para>Click <guibutton>Find</guibutton> to perform the search. <application>&app;</application> displays the results
-	of the search in the <guilabel>Results</guilabel> list box. If <application>&app;</application> does not find any files that match the 
-	search criteria, the application does not display anything in the <guilabel>Results</guilabel> list box. </para>
+    	<listitem><para>Click <guibutton>Find</guibutton> to perform the search. 
+     <application>&app;</application> displays the results
+	    of the search in the <guilabel>Search Results</guilabel> list box. 
+     If <application>&app;</application> does not find any files that match the 
+     search criteria, the application does not display anything in the 
+     <guilabel>Search Results</guilabel> list box. </para>
     	</listitem>
-    	<listitem><para>To open a file displayed in the <guilabel>Results</guilabel> list box, double-click on the file. The file opens in your file manager.</para>
+    	<listitem><para>To open a file displayed in the 
+     <guilabel>Search Results</guilabel> list box, double-click on the file. 
+     The file opens in your file manager.</para>
     	</listitem>
     </orderedlist>
     </sect2>
@@ -223,27 +238,28 @@
     			<listitem><para>Select the search rule that you want to apply.</para></listitem>
     			<listitem><para>Click <guibutton>Add</guibutton> to add the search rule to the list of search rules.</para></listitem>
     			<listitem><para>Ensure that the <guilabel>Enable</guilabel> checkbox is selected.</para></listitem>
-    			<listitem><para>Specify the required search information for the search rule, see <xref linkend="tbl-search-rules"/> for information.</para></listitem>
+    			<listitem><para>Specify the required search information for the search rule, see 
+        <xref linkend="tbl-search-rules"/> for information.</para></listitem>
     			<listitem><para>Repeat the above steps for each search rule that you want to apply.</para></listitem>
     		</orderedlist>
     		<para>To disable a search rule, deselect the <guilabel>Enable</guilabel> checkbox next to the rule. To remove a search rule from the 
     		<guilabel>Rules</guilabel> list, select the rule, then click <guibutton>Remove</guibutton>.</para>
     	</listitem>	
     	<listitem><para>Click <guibutton>Find</guibutton> to perform the search. <application>&app;</application> displays the results
-	of the search in the <guilabel>Results</guilabel> list box. If <application>&app;</application> does not find any files that match the 
-	search criteria, the application does not display anything in the <guilabel>Results</guilabel> list box.</para>
+	of the search in the <guilabel>Search Results</guilabel> list box. If <application>&app;</application> does not find any files that match the 
+	search criteria, the application does not display anything in the <guilabel>Search Results</guilabel> list box.</para>
     	</listitem>
-    	<listitem><para>To open a file displayed in the <guilabel>Results</guilabel> list box, double-click on the file. The file opens in your file manager.</para>
+    	<listitem><para>To open a file displayed in the <guilabel>Search Results</guilabel> list box, double-click on the file. The file opens in your file manager.</para>
     	</listitem>
     </orderedlist>
     
-    <table frame="topbot" id="tbl-search-rules">
+    <table id="tbl-search-rules" frame="topbot">
     <title>Search Rules</title> 
 		  <tgroup cols="2" colsep="1" rowsep="1">
 			 <colspec colname="COLSPEC0" colwidth="33*"/>
 			 <colspec colname="COLSPEC1" colwidth="33*"/>
 			 <thead> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Rule Name</para></entry> 
 				  <entry> 
@@ -251,76 +267,70 @@
 				</row> 
 			 </thead> 
 			 <tbody> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>File name is</para></entry> 
 				  <entry> 
 					 <para>Search for a file by filename. Enter a full filename or a partial filename with wildcards in the field provided. 
 					 Use * to indicate a sequence of characters. Use ? to indicate a single character. The search is case sensitive.</para></entry>  
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>File name is not</para></entry> 
 				  <entry> 
 					 <para>Search for files that do not match the filename that you enter. Enter a full filename or a partial filename with wildcards in the
 					 field provided. Use * to indicate a sequence of characters. Use ? to indicate a single character. The search is case sensitive.</para></entry>  
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Don't search mounted filesystems</para></entry> 
 				  <entry> 
 					 <para>Search only the subdirectories that are mounted on the same disk as the start directory.</para></entry>  
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Follow symbolic links</para></entry> 
 				  <entry> 
 					 <para>Follow symbolic links when searching for files.</para></entry>  
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
-					 <para>Process directory contents depth first</para></entry> 
+					 <para>Process folder contents depth first</para></entry> 
 				  <entry> 
 					 <para>Search the directories in ascending order, starting with the lowest directories in the directory hierarchy. </para></entry>  
 				</row> 
-				<row> 
-				  <entry> 
-					 <para>Don't search subdirectories</para></entry> 
-				  <entry> 
-					 <para>Do not search the subdirectories of the start directory.</para></entry>  
-				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Owned by user</para></entry> 
 				  <entry> 
 					 <para>Search for files that are owned by the user specified. Type the name of the user in the text box provided</para></entry>  
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Owned by group</para></entry> 
 				  <entry> 
 					 <para>Search for files that are owned by the group specified. Type the name of the group in the text box provided. </para></entry>  
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Invalid user or group</para></entry> 
 				  <entry> 
 					 <para>Search for files that are owned by a user or group that is unknown to the system.</para></entry>  
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Last time modified</para></entry> 
 				  <entry> 
 					 <para>Search for files that were modified within the number of days specified. Type the number of days in the text box provided. For example, 
 					 type <userinput>3</userinput> to search for files that were modified in the last three days.</para></entry>  
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>File is empty</para></entry> 
 				  <entry> 
 					 <para>Search for empty files.</para></entry>  
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Matches regular expression</para></entry> 
 				  <entry> 
@@ -342,7 +352,7 @@
     <title>To View the Search Command Used by &app;</title>
     <para>To view the command that <application>&app;</application> used to perform the previous search, choose 
     <menuchoice>
-    <guimenu>File</guimenu>
+    <guimenu>Search</guimenu>
     <guimenuitem>Show Command</guimenuitem>
     </menuchoice>. The <guilabel>Search Command Line</guilabel> displays the command. </para>
     </sect2>
@@ -351,7 +361,7 @@
     <title>To Save the Search Results</title>
     <para>To save the results of the last search that <application>&app;</application> performed, choose 
     <menuchoice>
-    <guimenu>File</guimenu>
+    <guimenu>Search</guimenu>
     <guimenuitem>Save Results As</guimenuitem>
     </menuchoice>. Enter the name of the file to which you want to save the results, then click OK.</para>
     </sect2>
