@@ -126,10 +126,14 @@ set_status_bar (GtkButton *button, gpointer user_data)
     utf [g_unichar_to_utf8 (wc, utf)] = 0;
 
     if (utf [0]!=0 && (locale = g_locale_from_utf8 (utf, -1, NULL, &len, NULL)) != NULL) {
-        for (i=0; i<len; i++)
-            g_snprintf (mbstr + i*2, MB_LEN_MAX*2 + 1 - i*2, "%02X", (int)((unsigned char) locale [i]));
-        s = g_strdup_printf (_("Character code: (Unicode) U%04lX, (%s) 0x%s"), wc, charset, mbstr);
-        g_free (locale);
+	if (len == 1 && (utf[0]&0xff) != 0x3f && locale[0] == 0x3f)
+		s = g_strdup_printf (_("Character code: (Unicode) U%04lX"), wc);
+	else {
+		for (i=0; i<len; i++)
+			g_snprintf (mbstr + i*2, MB_LEN_MAX*2 + 1 - i*2, "%02X", (int) ((unsigned char) locale[i]));
+		s = g_strdup_printf (_("Character code: (Unicode) U%04lX, (%s) 0x%s"), wc, charset, mbstr);
+	}
+	g_free (locale);
     } else {
         s = g_strdup_printf (_("Character code: (Unicode) U%04lX"), wc);
     }
