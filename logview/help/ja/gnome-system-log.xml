@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [ 
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "2.1.1">
+  <!ENTITY manrevision "2.4">
+  <!ENTITY date "2003年1月">
+  <!ENTITY app "システムログビューア">
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Apr 11, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="en">
+  <!-- please do not change the id; for translations, change lang to -->
+  <!-- appropriate code -->
+  <articleinfo> 
+    <title>&app;マニュアル V&manrevision;</title>       
+
+    <copyright> 
+      <year>2003</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>2000</year> 
+      <holder>Judith Samson</holder> 
+    </copyright> 
+    <copyright>
+      <year>2003</year>
+      <holder>鎌ヶ迫正俊 (日本語訳)</holder>
+    </copyright>
+
+    <publisher> 
+      <publishername>GNOMEドキュメンテーションプロジェクト</publishername> 
+    </publisher> 
+
+   &legal;
+
+    <authorgroup> 
+      <author> 
+	<firstname>Sun</firstname> 
+	<surname>GNOMEドキュメンテーションチーム</surname> 
+	<affiliation> 
+	  <orgname>サン マイクロシステムズ</orgname> 
+	  <address> <email>gdocteam@sun.com</email> </address> 
+	</affiliation> 
+      </author> 
+      <author> 
+	<firstname>Judith</firstname> 
+	<surname>Samson</surname> 
+	<affiliation> 
+	  <orgname>GNOMEドキュメンテーションプロジェクト</orgname> 
+	  <address> <email>judith@samsonsource.com</email> </address> 
+	</affiliation> 
+      </author> 
+      <othercredit role="translator">
+	<firstname>Masatoshi</firstname> 
+	<surname>KAMAGASAKO</surname> 
+	<affiliation>
+	  <orgname>日本GNOMEユーザ会 翻訳チーム</orgname> 
+	  <address> <email>emerald@gnome.gr.jp</email> </address> 
+	</affiliation>
+	<contrib>日本語訳</contrib>
+      </othercredit>
+    </authorgroup>
+
+    <revhistory>
+      <revision> 
+	<revnumber>&app;マニュアル V&manrevision;</revnumber> 
+	<date>&date;</date> 
+	<revdescription> 
+	  <para role="author">Sun GNOMEドキュメンテーションチーム
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription> 
+      </revision>
+      <revision> 
+	<revnumber>システムログビューアマニュアル V2.3</revnumber> 
+	<date>2002年10月</date> 
+	<revdescription> 
+	  <para role="author">Sun GNOMEドキュメンテーションチーム
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription> 
+      </revision>
+      <revision> 
+	<revnumber>システムログビューアマニュアル V2.2</revnumber> 
+	<date>2002年8月</date> 
+	<revdescription> 
+	  <para role="author">Sun GNOMEドキュメンテーションチーム
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription> 
+      </revision>
+      <revision> 
+	<revnumber>システムログビューアマニュアル V2.1</revnumber> 
+	<date>2002年7月</date> 
+	<revdescription> 
+	  <para role="author">Sun GNOMEドキュメンテーションチーム
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription> 
+      </revision>
+      <revision> 
+	<revnumber>システムログビューアマニュアル V2.0</revnumber> 
+	<date>May 2002</date> 
+	<revdescription> 
+	  <para role="author">Sun GNOMEドキュメンテーションチーム
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>ログビューアマニュアル</revnumber> 
+	<date>2000年</date> 
+	<revdescription> 
+	  <para role="author">Judith Samson
+	    <email>judith@samsonsource.com</email>
+	  </para>
+	  <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription> 
+      </revision> 
+    </revhistory> 
+
+    <releaseinfo>
+      このマニュアルは&app;第&appversion;版について説明しています。
+    </releaseinfo> 
+    <legalnotice>
+      <title>フィードバック</title>
+      <para>
+	この&app;やマニュアルについてのバグレポートや提案は、
+        <ulink url="ghelp:gnome-feedback" type="help">GNOMEフィード
+        バックページ</ulink>を参照してください。
+      </para>
+      <!-- Translators may also add here feedback address for translations -->
+      <para>
+        このマニュアルの日本語訳についての指摘や提案は
+        <email>emerald@gnome.gr.jp</email>
+        までお願いします。
+      </para>
+    </legalnotice> 
+  </articleinfo> 
+
+  <indexterm> 
+    <primary>システムログビューア</primary>
+  </indexterm> 
+
+  <!-- ============= Document Body ============================= -->
+  <!-- ============= Introduction ============================== -->
+
+  <sect1 id="syslog-introduction"> 
+    <title>はじめに</title> 
+    <para>
+      <application>&app;</application>を利用すると、システムログファイ
+      ルを監視したり表示したりすることができます。システムログを表示す
+      るには root としてログインする必要があります。
+    </para>
+  </sect1>
+
+  <sect1 id="syslog-getting-started">
+    <title>起動する</title> 
+    
+    <para>
+      <application>&app;</application>は以下の方法で起動できます:
+    </para> 
+    <variablelist>
+      <varlistentry>
+	<term><guimenu>アプリケーション</guimenu>メニュー</term>
+	<listitem>
+	  <para>
+	    <menuchoice>
+	      <guisubmenu>システム</guisubmenu>
+	      <guimenuitem>システム・ログ</guimenuitem>
+	    </menuchoice>
+	    と選択します。
+	  </para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>コマンドライン</term>
+	<listitem>
+	  <para>
+	    <command>gnome-system-log</command>と入力し、
+	    <keycap>Return</keycap>を押します。
+	  </para>
+	  <para> 		 
+	  </para> 
+	</listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      <application>&app;</application>を起動すると、以下のようなウィン
+      ドウが表示されます。
+    </para>    
+
+    <!-- ==== Figure ==== -->
+    <figure id="syslog-fig"> 
+      <title>&app;ウィンドウ</title> 
+      <screenshot> 
+	<mediaobject> 
+	  <imageobject>
+	    <imagedata fileref="figures/syslog_window.png" format="PNG"/> 
+	  </imageobject>
+	  <textobject> 
+	    <phrase>
+	      &app;メインウィンドウを表示。
+	      メニューバー、表示エリア、スクロールバー、ステータスバー
+	      から構成されている。
+	    </phrase>
+	  </textobject> 
+	</mediaobject> 
+      </screenshot> 
+    </figure>
+    <!-- ==== End of Figure ==== -->
+
+    <para>
+      <application>&app;</application>を起動すると、
+      <filename>/var/log/messages</filename>ログファイルをデフォルトで
+      表示します。
+    </para>
+
+  </sect1>
+
+  <!-- ================ Usage ================================ -->
+  <sect1 id="syslog-usage"> 
+    <title>使い方</title>
+    
+    <sect2 id="syslog-open">
+      <title>ログファイルを表示する</title>
+      <para>
+	ログファイルを表示するには、
+	<menuchoice>
+	  <guimenu>ファイル</guimenu>
+	  <guimenuitem>開く</guimenuitem>
+	</menuchoice>
+	と選択します。<guilabel>テキストファイルを開く</guilabel>ダイ
+	アログに開きたいログファイル名を入力し、
+	<guibutton>OK</guibutton>ボタンをクリックします。ログファイル
+	をスクロールさせるには、スクロールバーを使います。
+      </para>
+      <para>
+	複数のログファイルを開くこともできます。
+	<application>&app;</application>は<guilabel>システムログビュー
+	ア</guilabel>ウィンドウには同時に一つのログファイルしか表示で
+	きません。<application>&app;</application>で既に開かれている別
+	のログファイルを表示するには、
+	<menuchoice>
+	  <guimenu>ファイル</guimenu>
+	  <guimenuitem>ログ切替</guimenuitem>
+	</menuchoice>
+	と選択します。さらに別のログファイルに移動するには、
+	<menuchoice>
+	  <guimenu>ファイル</guimenu>
+	  <guimenuitem>ログ切替</guimenuitem>
+    	</menuchoice>
+	と選択します。
+      </para> 
+    </sect2>
+    
+    <sect2 id="syslog-details">
+      <title>詳細なログエントリを見る</title>
+      <para>
+	詳細なログエントリを表示するには、表示エリアのエントリを選択し、
+    	<menuchoice>
+	  <guimenu>表示</guimenu>
+	  <guimenuitem>エントリ詳細</guimenuitem>
+	</menuchoice>
+	と選択します。<application>&app;</application>は以下の情報を含
+	む<guilabel>拡大表示</guilabel>ウィンドウを表示します:
+      </para>
+      <itemizedlist>
+	<listitem>
+	  <para>エントリの日付</para>
+	</listitem>
+	<listitem>
+	  <para>ログエントリを生成したプロセスの名前</para>
+	</listitem>
+	<listitem>
+	  <para>ログメッセージ</para>
+	</listitem>
+	<listitem>
+	  <para>ログメッセージの説明 (可能な場合)</para>
+	</listitem>
+      </itemizedlist> 
+    </sect2>
+    
+    <sect2 id="syslog-monitor">
+      <title>ログファイルを監視する</title>
+      <para>
+	<application>&app;</application>を使って選択したログファイルを
+	監視することができます。監視するログファイルを選ぶと、
+	<application>&app;</application>は分離したウィンソウにログファ
+	イルの最新のエントリを表示します。
+	<application>&app;</application>は最新のログが追加されるのに合
+	わせて<guilabel>ログの監視</guilabel>ウィンドウを更新します。
+      </para>
+      <para>
+	ログファイルを監視するには、以下の手順を踏みます:
+      </para>
+      <orderedlist>
+	<listitem>
+	  <para>
+	    <menuchoice>
+	      <guimenu>ファイル</guimenu>
+	      <guimenuitem>モニタ</guimenuitem>
+	    </menuchoice>
+	    を選択します。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <guilabel>監視オプション</guilabel>ダイアログの左ペインに
+	    ある監視したいログファイルを選択します。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <guibutton>追加</guibutton>ボタンをクリックします。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    ログファイルを監視している間、
+	    <application>&app;</application>ウィンドウを隠しておきたい
+	    場合は、<guilabel>アプリの非表示</guilabel>チェックボック
+	    スにチェックを入れます。
+	  </para>
+	</listitem>
+      </orderedlist>	
+      <para>
+	<application>&app;</application>は<guilabel>ログを監視
+	</guilabel>ウィンドウにログを表示します。
+	<application>&app;</application>は複数のログファイルを同時に監
+	視することができますが、<guilabel>ログを監視</guilabel>ウィン
+	ドウに表示できるのは1件のみです。
+	<application>&app;</application>は監視しているログファイル毎に
+	タブを追加します。
+      </para>
+    </sect2>
+    
+    <sect2 id="syslog-calendar">
+      <title>カレンダーを表示する</title>
+      <para>
+	カレンダーを表示するには、
+	<menuchoice>
+	  <guimenu>表示</guimenu>
+	  <guimenuitem>カレンダー</guimenuitem>
+	</menuchoice>
+	と選択します。ログファイルが存在している日は、ボール
+	ド体で表示します。特定の日のログファイルを表示するには、
+	カレンダーの表示したい日を選択してください。
+      </para>
+    </sect2>
+    
+    <sect2 id="syslog-stats">
+      <title>ログファイルのプロパティを表示する</title>
+      <para>
+	ログファイルのプロパティを表示するには、
+	<menuchoice>
+	  <guimenu>ファイル</guimenu>
+	  <guimenuitem>設定</guimenuitem>
+	</menuchoice>
+	と選択してください。以下の情報を表示した<guilabel>ログの状態
+	</guilabel>ダイアログが表示されます:
+      </para>
+      <itemizedlist>
+	<listitem>
+	  <para>ファイルサイズ (バイト)</para>
+	</listitem>
+	<listitem>
+	  <para>最終更新日</para>
+	</listitem>
+	<listitem>
+	  <para>生成された日付</para>
+	</listitem>
+	<listitem>
+	  <para>最新のログエントリのある日付</para>
+	</listitem>
+	<listitem>
+	  <para>ファイルの行数</para>
+	</listitem>
+      </itemizedlist> 
+    </sect2>
+    
+    <sect2 id="syslog-close">
+      <title>ログファイルを閉じる</title>
+      <para>
+	ログファイルを閉じるには
+	<menuchoice>
+	  <guimenu>ファイル</guimenu>
+	  <guimenuitem>閉じる</guimenuitem>
+	</menuchoice>
+	を選択します。
+      </para> 
+    </sect2>
+    
+    <sect2 id="syslog-exit">
+      <title>&app;を終了する</title>
+      <para>
+	<application>&app;</application>を終了するには
+	<menuchoice>
+	  <guimenu>ファイル</guimenu>
+	  <guimenuitem>終了</guimenuitem>
+	</menuchoice>
+	を選択します。
+      </para> 
+    </sect2>
+  </sect1>
+</article>

@@ -1,0 +1,525 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "2.1">
+  <!ENTITY manrevision "2.3">
+  <!ENTITY date "2002年9月">
+  <!ENTITY app "ファイル検索ツール">
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp 
+  Template version: 2.0 beta
+  Template last modified Apr 11, 2002  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="en">
+  <!-- please do not change the id; for translations, change lang to -->
+  <!-- appropriate code -->
+  <articleinfo> 
+    <title>&app;マニュアル V&manrevision;</title>       
+    
+    <copyright> 
+      <year>2002</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>2000</year> 
+      <holder>Alexander Kirillov</holder> 
+    </copyright>
+    <copyright>
+      <year>2003</year>
+      <holder>鎌ヶ迫正俊 (日本語訳)</holder>
+    </copyright>
+
+    <publisher> 
+      <publishername>GNOMEドキュメンテーションプロジェクト</publishername> 
+    </publisher> 
+
+    &legal;
+    <authorgroup> 
+      <author> 
+        <firstname>Sun</firstname> 
+        <surname>GNOMEドキュメンテーションチーム</surname> 
+        <affiliation> 
+          <orgname>サン マイクロシステムズ</orgname> 
+          <address> <email>gdocteam@sun.com</email> </address> 
+        </affiliation> 
+      </author> 
+      <author> 
+        <firstname>Alexander</firstname> 
+        <surname>Kirillov</surname> 
+        <affiliation> 
+          <orgname>GNOMEドキュメンテーションプロジェクト</orgname> 
+          <address> <email>kirillov@math.sunysb.edu</email> </address> 
+        </affiliation> 
+      </author> 
+      <othercredit role="translator">
+        <firstname>Masatoshi</firstname> 
+        <surname>KAMAGASAKO</surname> 
+        <affiliation> 
+          <orgname>日本GNOMEユーザ会 翻訳チーム</orgname> 
+          <address> <email>emerald@gnome.gr.jp</email> </address> 
+        </affiliation>
+        <contrib>日本語訳</contrib>
+      </othercredit>
+    </authorgroup>
+
+    <revhistory>
+      <revision> 
+        <revnumber>&app;マニュアル V&manrevision;</revnumber> 
+        <date>&date;</date> 
+        <revdescription> 
+          <para role="author">Sun GNOMEドキュメンテーションチーム
+            <email>gdocteam@sun.com</email>
+          </para>
+          <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+        </revdescription> 
+      </revision>
+      <revision> 
+        <revnumber>ファイル検索ツールマニュアル V2.2</revnumber> 
+        <date>2002年8月</date> 
+        <revdescription> 
+          <para role="author">Sun GNOMEドキュメンテーションチーム
+            <email>gdocteam@sun.com</email>
+          </para>
+          <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+        </revdescription> 
+      </revision> 
+      <revision> 
+        <revnumber>ファイル検索ツールマニュアル V2.1</revnumber> 
+        <date>2002年7月</date> 
+        <revdescription> 
+          <para role="author">Sun GNOMEドキュメンテーションチーム
+            <email>gdocteam@sun.com</email>
+          </para>
+          <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+        </revdescription> 
+      </revision> 
+      <revision> 
+        <revnumber>ファイル検索ツールマニュアル V2.0</revnumber> 
+        <date>2002年5月</date> 
+        <revdescription> 
+          <para role="author">Sun GNOMEドキュメンテーションチーム
+            <email>gdocteam@sun.com</email>
+          </para>
+          <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+        </revdescription> 
+      </revision> 
+      <revision> 
+        <revnumber>GNOME検索ツールマニュアル</revnumber> 
+        <date>2000年</date>
+        <revdescription> 
+          <para role="author">Alexander Kirillov
+            <email>kirillov@math.sunysb.edu</email>
+          </para>
+          <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+        </revdescription> 
+      </revision> 
+    </revhistory> 
+    
+    <releaseinfo>
+      このマニュアルは&app;第&appversion;版について説明しています。
+    </releaseinfo> 
+    <legalnotice>
+      <title>フィードバック</title>
+      <para>
+        この&app;やマニュアルについてのバグレポートや提案は、
+        <ulink url="ghelp:gnome-feedback" type="help">GNOMEフィード
+        バックページ</ulink>を参照してください。
+      </para>
+      <!-- Translators may also add here feedback address for translations -->
+      <para>
+        このマニュアルの日本語訳についての指摘や提案は
+        <email>emerald@gnome.gr.jp</email>
+        までお願いします。
+      </para>
+    </legalnotice>
+  </articleinfo> 
+
+  <indexterm> 
+    <primary>ファイル検索ツール</primary>
+  </indexterm> 
+
+  <!-- ============= Document Body ============================= -->
+  <!-- ============= Introduction ============================== -->
+  <sect1 id="gsearchtool-introduction"> 
+    <title>はじめに</title> 
+    <para>
+      <application>&app;</application>を利用して、システム上のファイル
+      を検索することができます。基本的な検索を実行するには、ファイル名
+      もしくはワイルドカードを利用してファイル名の一部を入力します。
+      検索の精度を上げるために、<application>&app;</application>に適用
+      する検索オプションを選択することができます。
+    </para>
+    <para>
+      <application>&app;</application>は<command>find</command>、
+      <command>grep</command>、<command>locate</command>といったUNIXコ
+      マンドを利用しています。
+    </para>
+  </sect1>
+
+  <sect1 id="gsearchtool-getting-started">
+    <title>起動する</title>
+    <para>
+      <application>&app;</application>は以下のようにして起動します:
+    </para> 
+    <variablelist>
+      <varlistentry>
+        <term><guimenu>アクション</guimenu>メニュー</term>
+        <listitem>
+          <para>
+	    <guimenuitem>ファイルの検索</guimenuitem>
+	    を選択します。
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>コマンドライン</term>
+        <listitem>
+          <para>
+	    <command>gnome-search-tool</command>と入力し、
+	    <keycap>Return</keycap>を押します。
+          </para>
+          <para>                  
+          </para> 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      <application>&app;</application>を起動すると、以下のようなウィン
+      ドウが表示されます。
+    </para>
+
+    <!-- ==== Figure ==== -->
+    <figure id="mainwindow-fig"> 
+      <title>&app;ウィンドウ</title> 
+      <screenshot> 
+        <mediaobject> 
+          <imageobject>
+            <imagedata
+              fileref="figures/gnome-search-tool_window.png" format="PNG"/> 
+          </imageobject>
+          <textobject> 
+            <phrase>&app;メインウィンドウを表示</phrase> 
+          </textobject> 
+        </mediaobject> 
+      </screenshot> 
+    </figure>
+    <!-- ==== End of Figure ==== -->
+
+  </sect1>
+
+  <!-- ================ Usage ================================ -->
+  <sect1 id="gsearchtool-usage"> 
+    <title>使い方</title>
+    <sect2 id="gsearchtool-simple">
+      <title>基本的な検索</title>
+      <para>
+	システム上のファイルに対して基本的な検索を行うには、以下の手順
+	を踏みます:
+      </para>
+      <orderedlist>
+        <listitem>
+          <para>
+	    <guilabel>ファイル名</guilabel>フィールドに以下の項目を入
+	    力します:
+          </para>
+          <itemizedlist>
+            <listitem>
+              <para>
+		文字列を入力します。例えば
+		<userinput>myfile</userinput>といったものです。
+		この場合、<application>&app;</application>は
+		<userinput>myfile</userinput>という文字列を名前に含む、
+		ファイルシステム上の全てのファイルを検索します。
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+		ワイルドカード (* もしくは ?) で連結された文字列を入力
+		します。例えば、<userinput>*.txt</userinput>といったも
+		のです。この場合、<application>&app;</application>は
+		<userinput>.txt</userinput>という拡張子を持つファイル
+		システム上の全てのファイルを検索します。
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para></para>
+        </listitem>
+        <listitem>
+          <para>
+	    <guilabel>検索対象フォルダ</guilabel>には、
+	    <application>&app;</application>が検索の対象とするディレク
+	    トリのパスを入力します。<application>&app;</application>は
+	    入力されたディレクトリの全てのサブディレクトリ内を検索しま
+	    す。
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+	    <guibutton>検索</guibutton>ボタンをクリックすると、検索を
+	    実行します。<application>&app;</application>は検索の結果を
+	    <guilabel>検索結果</guilabel>リストボックスに表示します。
+	    <application>&app;</application>が検索条件に一致するファイ
+	    ルを見つけられなかった場合、<guilabel>検索結果</guilabel>
+	    リストボックスに "ファイルが見つかりません" というメッセー
+	    ジを表示します。
+          </para>
+        </listitem>
+      </orderedlist>
+    </sect2>
+
+    <sect2 id="gsearchtool-advanced">
+      <title>検索オプションを追加する</title>
+      <para>
+	ファイル検索に対する検索オプションを追加するには、以下の手順を
+	踏みます:
+      </para>
+      <orderedlist>
+        <listitem>
+          <para>
+	    <guilabel>追加オプション</guilabel>ラベルをクリックします。
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+	    <guilabel>適用する検索条件</guilabel>ドロップダウンリスト
+	    ボックスをクリックします。
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+	    適用したい検索オプションを選択します。
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+	    <guibutton>追加</guibutton>ボタンをクリックして、追加オプ
+	    ションのリストに検索オプションを追加します。
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+	    検索オプションについて、要求されている検索条件を設定します。
+	    詳細は<xref linkend="tbl-search-rules"/>を参照してください。
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+	    適用したいそれぞれの検索オプションについて、上記の手順を繰
+	    り返してください。
+          </para>
+        </listitem>
+      </orderedlist>        
+      <para>
+	<guilabel>追加オプション</guilabel>リストから検索オプションを
+	削除するには、そのオプションの隣にある<guibutton>削除
+	</guibutton>ボタンをクリックしてください。
+      </para>
+
+      <table id="tbl-search-rules" frame="topbot">
+        <title>検索のルール</title> 
+        <tgroup cols="2" colsep="1" rowsep="1">
+          <colspec colname="COLSPEC0" colwidth="33*"/>
+          <colspec colname="COLSPEC1" colwidth="33*"/>
+          <thead> 
+            <row valign="top"> 
+              <entry><para>ルール名</para></entry> 
+              <entry><para>説明</para></entry> 
+            </row> 
+          </thead> 
+          <tbody> 
+            <row valign="top"> 
+              <entry><para>テキストを含んでいる</para></entry> 
+              <entry> 
+                <para>
+		  指定したテキストを含んでいるファイルを検索します。
+		  この検索はほとんどのシステムで大文字小文字を区別
+		  しません。
+                </para>
+              </entry>  
+            </row> 
+            <row valign="top"> 
+              <entry>
+		<para>ファイルが変更されている (何日以下)</para>
+	      </entry> 
+              <entry> 
+                <para>
+		  指定された日数以降に更新されたファイルを検索します。
+                </para>
+              </entry>  
+            </row>
+            <row valign="top"> 
+              <entry>
+		<para>ファイルが変更されている (何日以上)</para>
+	      </entry>
+              <entry> 
+                <para>
+		  指定された日数以前に更新されたファイルを検索します。
+                </para>
+              </entry>  
+            </row>
+            <row valign="top"> 
+              <entry><para>最小サイズの指定 (Kバイト)</para></entry>
+              <entry> 
+                <para>
+		  指定されたファイルサイズより大きいファイルを検索しま
+		  す。
+                </para>
+              </entry>
+            </row>
+            <row valign="top"> 
+              <entry><para>最大サイズの指定 (Kバイト)</para></entry>
+              <entry> 
+                <para>
+		  指定されたファイルサイズより小さいファイルを検索しま
+		  す。
+                </para>
+              </entry>
+            </row>
+            <row valign="top"> 
+              <entry><para>ファイルが空である</para></entry> 
+              <entry> 
+                <para>空のファイルを検索します。</para>
+              </entry>  
+            </row> 
+            <row valign="top"> 
+              <entry><para>ユーザが所有している</para></entry>
+              <entry> 
+                <para>
+		  指定されたユーザが所有しているファイルを検索します。
+		  テキストボックスにユーザ名を入力してください。
+                </para>
+              </entry>
+            </row> 
+            <row valign="top"> 
+              <entry><para>グループが所有している</para></entry>
+              <entry>
+                <para>
+		  指定されたグループが所有しているファイルを検索します。
+		  テキストボックスにグループ名を入力してください。
+		</para>
+	      </entry>
+            </row> 
+            <row valign="top"> 
+              <entry><para>所有者が不明である</para></entry> 
+              <entry> 
+                <para>
+		  所有しているユーザもしくはグループがシステム上で不明
+		  なファイルを検索します。
+		</para>
+	      </entry>  
+            </row> 
+            <row valign="top"> 
+              <entry><para>ファイル名が違う</para></entry> 
+              <entry> 
+                <para>
+		  指定したテキストをファイル名に含まないファイルを検索
+		  します。指定にワイルドカードを利用できます。* は文字
+		  のシーケンスを表します。? は一文字を表します。ほとん
+		  どのシステム上では大文字小文字を区別しません。
+		</para>
+	      </entry>
+            </row> 
+            <row valign="top"> 
+              <entry><para>正規表現で検索する</para></entry> 
+              <entry> 
+                <para>
+		  正規表現で指定されたディレクトリパスもしくはファイル
+		  名を検索します。テキストボックスに正規表現を入力して
+		  ください。
+		</para>
+	      </entry>
+            </row>
+            <row valign="top"> 
+              <entry><para>シンボリックリンクを追跡する</para></entry>
+              <entry> 
+                <para>
+		  検索時にシンボリックリンクを追跡します。
+		</para>
+	      </entry>  
+            </row>
+            <row valign="top">
+              <entry><para>他のファイルシステムにある</para></entry>
+              <entry>
+                <para>
+		  検索を開始したディレクトリのあるファイルシステムとは
+		  別のファイルシステム上のディレクトリを検索に含めます。
+		</para>
+	      </entry>  
+            </row> 
+          </tbody> 
+        </tgroup> 
+      </table> 
+    </sect2>
+
+    <sect2 id="gsearchtool-stop">
+      <title>検索を停止する</title>
+      <para>
+	<application>&app;</application>が検索を完了する前に検索を停止
+	するには、<guibutton>停止</guibutton>ボタンをクリックします。
+      </para>
+    </sect2>
+    
+    <sect2 id="gsearchtool-view">
+      <title>検索したファイルを開く</title>
+      <para>
+	<guilabel>検索結果</guilabel>リストボックスに表示されているファ
+	イルを開くには、以下のいずれかの操作を行います:
+      </para>
+      <itemizedlist>
+        <listitem>
+	  <para>
+	    ファイルを右クリックし、
+	    <guimenuitem>開く</guimenuitem>を選択する。
+	  </para>
+	</listitem>
+        <listitem>
+	  <para>ファイルをダブルクリックする。</para>
+	</listitem>
+      </itemizedlist>
+      <para>
+	<guilabel>検索結果</guilabel>リストボックスに表示されているファ
+	イルを含むディレクトリを開くには、ファイルを右クリックし、
+	<guimenuitem>フォルダを開く</guimenuitem>を選択します。
+      </para>
+      <para>
+	<guilabel>検索結果</guilabel>リストボックスに表示されているファ
+	イルをデスクトップ上の別の領域に開くには、そのファイルを開きた
+	いエリアまでドラッグしてください。
+      </para>
+    </sect2>
+
+    <!--
+    <sect2 id="gsearchtool-search-command">
+      <title>To View the Search Command Used by &app;</title>
+      <para>
+        To view the command that <application>&app;</application>
+        used to perform the previous search, choose 
+        <menuchoice>
+          <guimenu>Search</guimenu>
+          <guimenuitem>Show Command</guimenuitem>
+        </menuchoice>
+        . The <guilabel>Search Command Line</guilabel> displays
+        the command.
+      </para>
+    </sect2>
+    -->
+    
+    <sect2 id="gsearchtool-savetofile">
+      <title>検索結果を保存する</title>
+      <para>
+	<application>&app;</application>が最後に実行した検索の結果を保
+	存するには、<guilabel>検索結果</guilabel>リストボックスを右ク
+	リックし、<guimenuitem>検索結果に名前を付けて保存
+	</guimenuitem>を選択します。結果を保存したいファイルの名前を入
+	力し、OKボタンをクリックします。
+      </para>
+    </sect2>
+    
+  </sect1>
+</article>
