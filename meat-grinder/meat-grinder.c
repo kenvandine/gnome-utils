@@ -219,11 +219,23 @@ create_archive (const gchar *fname,
 	gboolean status = TRUE;
 	pid_t pid;
 	struct argv_adder argv_adder;
+	gchar *tmpfname = NULL;
 
 	if (dir == NULL)
 		argv_adder.link_dir = make_temp_dir ();
 	else
 		argv_adder.link_dir = (gchar *)dir;
+
+	/* Added code for appending .tar.gz to archive file */
+	tmpfname = g_strstr_len ((gchar *)fname, strlen((gchar *)fname), ".tar.gz");
+	if (tmpfname == NULL)
+		tmpfname = g_strstr_len ((gchar *)fname, strlen((gchar *)fname), ".tgz");
+	if (tmpfname != NULL) {
+		if (!((g_ascii_strcasecmp(tmpfname, ".tar.gz") == 0) || (g_ascii_strcasecmp(tmpfname, ".tgz") == 0)))
+			fname = g_strconcat ((gchar *)fname, ".tar.gz", NULL);
+	} else {
+		fname = g_strconcat ((gchar *)fname, ".tar.gz", NULL);
+	}
 
         /* Since tar -z option is not available in Solaris, doing tar & gzip */
 
