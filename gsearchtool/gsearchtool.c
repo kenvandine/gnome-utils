@@ -12,12 +12,15 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <string.h>
 
 #include <bonobo-activation/bonobo-activation.h>
 #include <libgnomeui/gnome-window-icon.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
+#include <libgnomevfs/gnome-vfs-utils.h> 
 
 #include <string.h>
 #include <unistd.h>
@@ -32,19 +35,34 @@
 #define STDOUT 1
 #define STDERR 2
 
+#define ICON_SIZE 20
+#define ISSLASH(C) ((C) == '/')
+#define BACKSLASH_IS_PATH_SEPARATOR ISSLASH ('\\')
+#define C_STANDARD_STRFTIME_CHARACTERS "aAbBcdHIjmMpSUwWxXyYZ"
+#define C_STANDARD_NUMERIC_STRFTIME_CHARACTERS "dHIjmMSUwWyY"
+
 typedef enum {
 	NOT_RUNNING,
 	RUNNING,
 	MAKE_IT_STOP
 } RunLevel;
 
+enum {
+	COLUMN_ICON,
+	COLUMN_NAME,
+	COLUMN_PATH,
+	COLUMN_READABLE_SIZE,
+	COLUMN_SIZE,
+	COLUMN_TYPE,
+	COLUMN_READABLE_DATE,
+	COLUMN_DATE,
+	NUM_COLUMNS
+};
+
 const FindOptionTemplate templates[] = {
-#define OPTION_FILENAME 0
 	{ FIND_OPTION_TEXT, "-iname '%s'", N_("File name is") },
 	{ FIND_OPTION_TEXT, "'!' -iname '%s'", N_("File name is not") }, 
-#define OPTION_NOMOUNTED 5
 	{ FIND_OPTION_BOOL, "-mount", N_("Don't search mounted filesystems") },
-#define OPTION_NOSUBDIRS 1
 	{ FIND_OPTION_BOOL, "-follow", N_("Follow symbolic links") },	
 	{ FIND_OPTION_BOOL, "-depth", N_("Process directory contents depth first") },
 	{ FIND_OPTION_BOOL, "-maxdepth 1", N_("Don't search subdirectories") },
@@ -76,9 +94,21 @@ static GtkWidget *app = NULL;
 
 static GtkWidget *file_selector = NULL;
 
-static GtkListStore *locate_store = NULL;
+static GtkWidget *locate_results = NULL;
 
-static GtkListStore *find_store = NULL;
+static GtkWidget *find_results = NULL;
+
+static GtkWidget *locate_tree = NULL;
+
+static GtkWidget *find_tree = NULL;
+
+static GtkWidget *locate_buttons[2];
+
+static GtkWidget *find_buttons[2];
+
+static GtkListStore *locate_model = NULL;
+
+static GtkListStore *find_model = NULL;
 
 static GtkTreeSelection *locate_selection = NULL;
 
@@ -90,11 +120,127 @@ static GtkTreeIter find_iter;
 
 static RunLevel find_running = NOT_RUNNING;
 static RunLevel locate_running = NOT_RUNNING;
+static gboolean lock = FALSE;
 
 static int current_template = 0;
 
 static char *filename = NULL;
 
+/* memrchr is gnu specific */
+static const void *
+my_memrchr (const void *mem, int c, size_t n)
+{
+	const char *s = mem;
+	while (n >= 0) {
+		if (s[n] == c)
+			return &s[n];
+		n--;
+	}
+	return NULL;
+}
+
+static gchar *
+get_file_base_name (char const *file)
+{
+  	/* based on code from basename.c of sh-utils */
+  	char const *base = file;
+  	int all_slashes = 1;
+  	char const *p;
+
+  	for (p = file; *p; p++)
+    	{
+      		if (ISSLASH (*p))
+			base = p + 1;
+      		else
+			all_slashes = 0;
+    	}
+
+  	/* If NAME is all slashes, arrange to return `/'.  */
+  	if (*base == '\0' && ISSLASH (*file) && all_slashes)
+    		--base;
+
+  	/* Make sure the last byte is not a slash.  */
+  	if (!(all_slashes || !ISSLASH (*(p - 1)))) 
+  		return (char *) file;
+  	else
+  		return (char *) base;
+}
+
+static size_t
+dir_name_r (const char *path, const char **result)
+{
+  	const char *slash;
+  	int length;	/* Length of result, not including NULL. */
+
+  	slash = strrchr (path, '/');
+  	if (BACKSLASH_IS_PATH_SEPARATOR)
+    	{
+      		char *b = strrchr (path, '\\');
+      		if (b && slash < b)
+			slash = b;
+    	}
+
+  	if (slash && slash[1] == 0)
+    	{
+      		while (path < slash && ISSLASH (slash[-1]))
+		{
+	  		--slash;
+		}
+
+      		if (path < slash)
+		{
+	  	slash = my_memrchr (path, '/', slash - path);
+	  		if (BACKSLASH_IS_PATH_SEPARATOR)
+	    		{
+	      			const char *b = my_memrchr (path, '\\', slash - path);
+	      			if (b && slash < b)
+				slash = b;
+	    		}
+		}
+    	}
+
+  	if (slash == 0)
+    	{
+      		path = ".";
+      		length = 1;
+    	}
+  	else
+    	{
+      		if (BACKSLASH_IS_PATH_SEPARATOR)
+		{
+	  		const char *lim = ((path[0] >= 'A' && path[0] <= 'z'
+					      && path[1] == ':')
+			 		      ? path + 2 : path);
+
+	  		while (slash > lim && ISSLASH (*slash))
+	    		--slash;
+		}
+      		else
+		{
+	  		while (slash > path && ISSLASH (*slash))
+	    		--slash;
+		}
+
+      		length = slash - path + 1;
+    	}
+
+  	*result = path;
+  	return length;
+}
+
+static gchar *
+get_file_dir_name (const char *file)
+{
+	/* based on code from dirname.c of sh-utils */
+  	const char *result;
+  	size_t length = dir_name_r (file, &result);
+	char *newpath = (char *) malloc (length + 1);
+	if (newpath == 0)
+		return 0;
+	strncpy (newpath, result, length);
+  	newpath[length] = 0;
+  	return newpath;
+} 
 
 static int
 count_char (const char *s, char p)
@@ -185,7 +331,6 @@ static char *
 make_locate_cmd(void)
 {
 	GString *cmdbuf;
-	GList *list;
 	gchar *locate_string;
 	
 	locate_string = 
@@ -219,12 +364,274 @@ kill_after_nth_nl (GString *str, int n)
 	return FALSE;
 }
 
-static void
-really_run_command(char *cmd, char sepchar, RunLevel *running, GtkListStore *store, GtkTreeIter *iter)
+static gchar *
+get_icon_of_file_with_mime_type (const gchar *file_name, const gchar *mime_type) 
 {
-	static gboolean lock = FALSE;
-	int idle;
+	const char *icon_name = gnome_vfs_mime_get_icon(mime_type);
+	gchar *icon_path;
+	gchar *tmp;
+	
+	if (g_file_test ((icon_name), G_FILE_TEST_EXISTS)) {
+		icon_path = g_strdup (icon_name);
+		return icon_path;
+	}
+	
+	if (icon_name == NULL)
+		icon_name = g_strdup ("i-regular.png");
+	
+	if (g_file_test ((file_name), G_FILE_TEST_IS_DIR)) 
+		icon_name = g_strdup ("i-directory-24.png");
 
+	icon_path = gnome_vfs_icon_path_from_filename (icon_name);
+
+	if (icon_path == NULL) {
+		tmp = g_strconcat (icon_name, ".png", NULL);
+		icon_path = gnome_vfs_icon_path_from_filename (tmp);
+		g_free (tmp);
+	}
+
+	if (icon_path == NULL) {
+		tmp = g_strconcat ("document-icons/", icon_name, NULL);
+		icon_path = gnome_vfs_icon_path_from_filename (tmp);
+		g_free (tmp);
+	}
+
+	if (icon_path == NULL) {
+		tmp = g_strconcat ("document-icons/", icon_name, ".png", NULL);
+		icon_path = gnome_vfs_icon_path_from_filename (tmp);
+		g_free (tmp);
+	}
+
+	if (icon_path == NULL) {
+		tmp = g_strconcat ("nautilus/gnome/", icon_name, NULL);
+		icon_path = gnome_vfs_icon_path_from_filename (tmp);
+		g_free (tmp);
+	}
+
+	if (icon_path == NULL) {
+		tmp = g_strconcat ("nautilus/gnome/", icon_name, ".png", NULL);
+		icon_path = gnome_vfs_icon_path_from_filename (tmp);
+		g_free (tmp);
+	}
+
+	if (icon_path == NULL)
+		icon_path = gnome_vfs_icon_path_from_filename ("nautilus/gnome/i-regular.png");
+
+	return icon_path;
+}
+
+static char *
+strdup_strftime (const char *format, struct tm *time_pieces)
+{
+	/* based on code from eel */
+	GString *string;
+	const char *remainder, *percent;
+	char code[3], buffer[512];
+	char *piece, *result, *converted;
+	size_t string_length;
+	gboolean strip_leading_zeros, turn_leading_zeros_to_spaces;
+
+	converted = g_locale_from_utf8 (format, -1, NULL, NULL, NULL);
+	g_return_val_if_fail (converted != NULL, NULL);
+	
+	string = g_string_new ("");
+	remainder = converted;
+
+	for (;;) {
+		percent = strchr (remainder, '%');
+		if (percent == NULL) {
+			g_string_append (string, remainder);
+			break;
+		}
+		g_string_append_len (string, remainder,
+				     percent - remainder);
+
+		remainder = percent + 1;
+		switch (*remainder) {
+		case '-':
+			strip_leading_zeros = TRUE;
+			turn_leading_zeros_to_spaces = FALSE;
+			remainder++;
+			break;
+		case '_':
+			strip_leading_zeros = FALSE;
+			turn_leading_zeros_to_spaces = TRUE;
+			remainder++;
+			break;
+		case '%':
+			g_string_append_c (string, '%');
+			remainder++;
+			continue;
+		case '\0':
+			g_warning ("Trailing %% passed to strdup_strftime");
+			g_string_append_c (string, '%');
+			continue;
+		default:
+			strip_leading_zeros = FALSE;
+			turn_leading_zeros_to_spaces = FALSE;
+			break;
+		}
+		
+		if (strchr (C_STANDARD_STRFTIME_CHARACTERS, *remainder) == NULL) {
+			g_warning ("strdup_strftime does not support "
+				   "non-standard escape code %%%c",
+				   *remainder);
+		}
+
+		code[0] = '%';
+		code[1] = *remainder;
+		code[2] = '\0';
+		string_length = strftime (buffer, sizeof (buffer),
+					  code, time_pieces);
+		if (string_length == 0) {
+			buffer[0] = '\0';
+		}
+
+		piece = buffer;
+		if (strip_leading_zeros || turn_leading_zeros_to_spaces) {
+			if (strchr (C_STANDARD_NUMERIC_STRFTIME_CHARACTERS, *remainder) == NULL) {
+				g_warning ("strdup_strftime does not support "
+					   "modifier for non-numeric escape code %%%c%c",
+					   remainder[-1],
+					   *remainder);
+			}
+			if (*piece == '0') {
+				do {
+					piece++;
+				} while (*piece == '0');
+				if (!g_ascii_isdigit (*piece)) {
+				    piece--;
+				}
+			}
+			if (turn_leading_zeros_to_spaces) {
+				memset (buffer, ' ', piece - buffer);
+				piece = buffer;
+			}
+		}
+		remainder++;
+		g_string_append (string, piece);
+	}
+	
+	result = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
+	g_string_free (string, TRUE);
+	g_free (converted);
+	return result;
+}
+
+static gchar *
+get_readable_date (time_t file_time_raw)
+{
+	struct tm *file_time;
+	const char *format;
+	GDate *today;
+	GDate *file_date;
+	guint32 file_date_age;
+
+	file_time = localtime (&file_time_raw);
+	file_date = g_date_new_dmy (file_time->tm_mday,
+			       file_time->tm_mon + 1,
+			       file_time->tm_year + 1900);
+	
+	today = g_date_new ();
+	g_date_set_time (today, time (NULL));
+
+	file_date_age = g_date_get_julian (today) - g_date_get_julian (file_date);
+	 
+	g_date_free (today);
+	g_date_free (file_date);
+			
+	/* the format varies depending on age of file. */
+	if (file_date_age == 0)	{
+		format = g_strdup(_("today at %-I:%M %p"));
+	} else if (file_date_age == 1) {
+		format = g_strdup(_("yesterday at %-I:%M %p"));
+	} else if (file_date_age < 7) {
+		format = g_strdup(_("%m/%-d/%y, %-I:%M %p"));
+	} else {
+		format = g_strdup(_("%m/%-d/%y, %-I:%M %p"));
+	}
+	
+	return strdup_strftime (format, file_time);
+} 
+
+static gchar *
+get_basic_date (time_t file_time_raw)
+{
+	struct tm *file_time;
+	const char *format = _("%Y%m%d%H%M%S");
+
+	file_time = localtime (&file_time_raw);
+	return strdup_strftime (format, file_time);
+} 
+
+static gchar *
+get_file_type (const char *mime_type, const char *file)
+{
+	if (mime_type == NULL) {
+		return NULL;
+	}
+
+	if (g_ascii_strcasecmp (mime_type, GNOME_VFS_MIME_TYPE_UNKNOWN) == 0) {
+		if (g_file_test (file, G_FILE_TEST_IS_DIR))
+			return _("folder");
+		if (g_file_test (file, G_FILE_TEST_IS_EXECUTABLE))
+			return _("program");	
+		if (g_file_test (file, G_FILE_TEST_IS_SYMLINK))
+			return _("symbolic link");
+	}
+
+	return (gchar *)gnome_vfs_mime_get_description (mime_type);
+} 
+
+static void
+add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter)
+{					
+	const gchar *mime_type = gnome_vfs_mime_type_from_name (file);
+	gchar *description = get_file_type (mime_type, file);
+	gchar *icon_path = get_icon_of_file_with_mime_type (file, mime_type);
+	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (icon_path, NULL);
+	GnomeVFSFileInfo *vfs_file_info = gnome_vfs_file_info_new ();
+	gchar *utf8_file = g_locale_to_utf8 (file, -1, NULL, NULL, NULL);
+	gchar *readable_size, *readable_date, *date;
+	
+	if (pixbuf != NULL) {
+		GdkPixbuf *scaled = gdk_pixbuf_scale_simple (pixbuf,
+				  		  ICON_SIZE,
+				  		  ICON_SIZE,
+				  		  GDK_INTERP_BILINEAR);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = scaled;	
+	}
+	gnome_vfs_get_file_info (file, vfs_file_info, GNOME_VFS_FILE_INFO_DEFAULT);
+	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
+	readable_date = get_readable_date (vfs_file_info->mtime);
+	date = get_basic_date (vfs_file_info->mtime);
+	
+	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
+	gtk_list_store_set (GTK_LIST_STORE(store), iter, 
+			    COLUMN_ICON, pixbuf, 
+			    COLUMN_NAME, get_file_base_name(utf8_file),
+			    COLUMN_PATH, get_file_dir_name(utf8_file),
+			    COLUMN_READABLE_SIZE, readable_size,
+			    COLUMN_SIZE, vfs_file_info->size,
+			    COLUMN_TYPE, description,
+			    COLUMN_READABLE_DATE, readable_date,
+			    COLUMN_DATE, date,
+			    -1);
+			    
+	gnome_vfs_file_info_clear (vfs_file_info);
+	g_object_unref (G_OBJECT (pixbuf));
+	g_free (utf8_file);
+	g_free (icon_path); 
+	g_free (readable_size);
+	g_free (readable_date);
+	g_free (date);
+}
+
+static void
+really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, GtkListStore *store, GtkTreeIter *iter)
+{
+	int idle;
 	GString *string;
 	char ret[PIPE_READ_BUFFER];
 	int fd[2], fderr[2];
@@ -232,18 +639,13 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkListStore *sto
 	int pid;
 	GString *errors = NULL;
 	gboolean add_to_errors = TRUE;
-		
-	if( ! lock) {
-		lock = TRUE;
-	} else {
-		gnome_app_error(GNOME_APP(app),
-				_("A search is already running.  Please wait for that search "
-				  "to complete or cancel it."));
-		return;
-	}
+	
+	lock = TRUE;
 
-	gtk_list_store_clear(GTK_LIST_STORE(store));
-
+	/* reset scroll position and clear the tree view */
+	gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(tree), 0, 0);
+	gtk_list_store_clear (GTK_LIST_STORE(store)); 
+	
 	/* running = NOT_RUNNING, RUNNING, MAKE_IT_STOP */
 	*running = RUNNING;
 	
@@ -280,15 +682,16 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkListStore *sto
 	while (*running == RUNNING) {
 		n = read (fd[0], ret, PIPE_READ_BUFFER);
 		for (i = 0; i < n; i++) {
+			if (*running != RUNNING)
+				break;
 			if(ret[i] == sepchar) {
-				gchar *utf8 = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
-				gtk_list_store_append (GTK_LIST_STORE(store), iter); 
-				gtk_list_store_set (GTK_LIST_STORE(store), iter, 0, utf8, -1); 
+				add_file_to_list_store(string->str, store, iter);
 				g_string_assign (string, "");
-				g_free (utf8);
 			} else {
 				g_string_append_c (string, ret[i]);
 			}
+			if(gtk_events_pending())
+				gtk_main_iteration_do (TRUE);
 		}
 
 		n = read (fderr[0], ret, PIPE_READ_BUFFER-1);
@@ -307,11 +710,8 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkListStore *sto
 		
 		if (waitpid (-1, NULL, WNOHANG) != 0)
 			break;
-		/*this for some reason doesn't work, I need to add an
-		  idle handler and do iteration with TRUE*/
-		/*if(gtk_events_pending())
-			gtk_main_iteration_do(FALSE);*/
-		gtk_main_iteration_do (TRUE);
+		if(gtk_events_pending())
+			gtk_main_iteration_do(TRUE);
 		if (*running == MAKE_IT_STOP) {
 			kill(pid, SIGKILL);
 			wait(NULL);
@@ -320,15 +720,16 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkListStore *sto
 	/* now we got it all ... so finish reading from the pipe */
 	while ((n = read (fd[0], ret, PIPE_READ_BUFFER)) > 0) {
 		for (i = 0; i < n; i++) {
-			if (ret[i] == sepchar) {
-				gchar *utf8 = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
-				gtk_list_store_append (GTK_LIST_STORE(store), iter); 
-				gtk_list_store_set (GTK_LIST_STORE(store), iter, 0, utf8, -1); 
+			if (*running != RUNNING) 
+				break;
+			if(ret[i] == sepchar) {
+				add_file_to_list_store(string->str, store, iter);
 				g_string_assign (string, "");
-				g_free (utf8);
 			} else {
 				g_string_append_c (string, ret[i]);
 			}
+			if(gtk_events_pending())
+				gtk_main_iteration_do (TRUE);
 		}
 	}
 	while((n = read(fderr[0], ret, PIPE_READ_BUFFER-1)) > 0) {
@@ -378,8 +779,12 @@ run_command(GtkWidget *w, gpointer data)
 	char *start_dir;
 
 	if (buttons[0] == w) { /*we are in the stop button*/
-		if(find_running == RUNNING)
+		if(find_running == RUNNING) {
 			find_running = MAKE_IT_STOP;
+			gtk_widget_set_sensitive(buttons[1], FALSE);
+			gtk_widget_hide(buttons[0]);
+			gtk_widget_show(buttons[1]);
+		}
 		return;
 	}
 
@@ -402,14 +807,23 @@ run_command(GtkWidget *w, gpointer data)
 		return;
 	}
 
-	gtk_widget_set_sensitive(buttons[0], TRUE);
-	gtk_widget_set_sensitive(buttons[1], FALSE);
+	if (!lock) {
+		gtk_widget_set_sensitive(find_results, TRUE);
+		gtk_widget_set_sensitive(buttons[0], TRUE);
+		gtk_widget_show(buttons[0]);
+		gtk_widget_hide(buttons[1]);
 
-	really_run_command(cmd, '\0', &find_running, find_store, &find_iter);
+		really_run_command(cmd, '\0', &find_running, find_tree, find_model, &find_iter);
+		
+		gtk_widget_set_sensitive(buttons[1], TRUE);
+		gtk_widget_hide(buttons[0]);
+		gtk_widget_show(buttons[1]);
+	} else {
+		gnome_app_error(GNOME_APP(app),
+				_("A search is already running.  Please wait for the search "
+				  "to complete or cancel it."));
+	}
 	g_free(cmd);
-
-	gtk_widget_set_sensitive(buttons[0], FALSE);
-	gtk_widget_set_sensitive(buttons[1], TRUE);
 }
 
 static void
@@ -459,10 +873,8 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 	gtk_dialog_set_default_response (GTK_DIALOG(dlg), GTK_RESPONSE_CLOSE); 
 
 	w = gtk_label_new(_("This is the command line that can be used to "
-			    "execute this search from the console.\n"
-			    "(Note: To print one file per line rather then "
-			    "null separated, append \"| tr '\\000' '\\n'\" "
-			    "to the line below.)\n\nCommand:"));
+			    "execute this search from the console."
+			    "\n\nCommand:"));
 	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), w, TRUE, TRUE, 0);
 	
 	w = gtk_entry_new();
@@ -537,11 +949,31 @@ launch_nautilus (char *file)
 	g_free(argv);
 }
 
+static gchar*
+get_file_full_path_name(gchar *utf8_path, gchar *utf8_name)
+{
+	static gchar *full_name;
+	gchar *path, *name;
+	
+	name = g_locale_from_utf8 (utf8_name, -1, NULL, NULL, NULL);
+	path = g_locale_from_utf8 (utf8_path, -1, NULL, NULL, NULL); 
+
+	if (path[strlen(path) - 1] == '/')
+		full_name = g_strconcat (path, name, NULL);
+	else
+		full_name = g_strconcat (path, "/", name, NULL);
+
+	g_free(path);
+	g_free(name);
+	return full_name;
+}
+
 static gboolean
 launch_file (GtkWidget *w, GdkEventButton *event, gpointer data)
 {
 	gchar *file = NULL;
-	gchar *utf8 = NULL;
+	gchar *utf8_name = NULL;
+	gchar *utf8_path = NULL;
 	GtkListStore *store;
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;
@@ -549,19 +981,21 @@ launch_file (GtkWidget *w, GdkEventButton *event, gpointer data)
 	if (event->type==GDK_2BUTTON_PRESS) {
 		
 		if (!gtk_notebook_get_current_page(GTK_NOTEBOOK(nbook))) {
-			store = locate_store;
+			store = locate_model;
 			selection = locate_selection;
 		}
 		else {
-			store = find_store;
+			store = find_model;
 			selection = find_selection;
 		}
 		
 		if (!gtk_tree_selection_get_selected (selection, NULL, &iter))
     			return TRUE;
 		
-		gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,0,&utf8,-1);
-		file = g_locale_from_utf8 (utf8, -1, NULL, NULL, NULL);
+		gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
+							       COLUMN_PATH, &utf8_path,
+								-1);
+		file = get_file_full_path_name (utf8_path, utf8_name);
 		
 		if (nautilus_is_running ()) {
 			launch_nautilus (file);
@@ -571,7 +1005,8 @@ launch_file (GtkWidget *w, GdkEventButton *event, gpointer data)
 				gnome_error_dialog_parented(_("No viewer available for this mime type."),
 						    	    GTK_WINDOW(app));
 		}
-		g_free(utf8);
+		g_free(utf8_name);
+		g_free(utf8_path);
 		g_free(file);
 		return TRUE;
 	}
@@ -691,7 +1126,7 @@ create_option_box(FindOption *opt, gboolean enabled)
 	hbox = gtk_hbox_new(FALSE,5);
 
 	frame = gtk_frame_new(NULL);
-	gtk_frame_set_shadow_type(GTK_FRAME(frame),GTK_SHADOW_OUT);
+	gtk_frame_set_shadow_type(GTK_FRAME(frame),GTK_SHADOW_NONE);
 	gtk_box_pack_start(GTK_BOX(hbox),frame,TRUE,TRUE,0);
 
 	switch(templates[opt->templ].type) {
@@ -726,6 +1161,7 @@ create_option_box(FindOption *opt, gboolean enabled)
 	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE,FALSE,0);
 
 	w = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
+	gtk_widget_set_size_request (GTK_WIDGET(w), 88, -1);
 	g_signal_connect(G_OBJECT(w), "clicked",
 			 G_CALLBACK(remove_option), opt);
 	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE,FALSE, 0);
@@ -760,96 +1196,204 @@ add_option_cb(GtkWidget *w, gpointer data)
 static GtkWidget *
 create_find_page(void)
 {
-	GtkWidget *vbox;
-	GtkWidget *hbox;
-	GtkWidget *w;
-	GtkWidget *treeview;
-	char *s;
-	static GtkWidget *buttons[2];
-	GtkTreeModel *model;
+	GtkWidget *vbox, *vbox2;
+	GtkWidget *hbox, *hbox2;
+	GtkWidget *label, *w;
+	GtkWidget *vpaned, *image, *align;
+	GtkWidget *frame, *frame2;
+	GtkTreeViewColumn *column;
 	GtkCellRenderer *renderer;
+	char *s;
 
 	vbox = gtk_vbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox),GNOME_PAD_SMALL);
 
 	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
-	w = gtk_label_new(_("Start in directory "));
+	w = gtk_label_new_with_mnemonic(_("S_tarting in folder:"));
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 	start_dir_e = gnome_file_entry_new("directory", _("Browse"));
 	gnome_file_entry_set_directory_entry(GNOME_FILE_ENTRY(start_dir_e), TRUE);
-	gtk_box_pack_start(GTK_BOX(hbox),start_dir_e,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(hbox),start_dir_e,TRUE,TRUE,GNOME_PAD_SMALL);
+	gtk_label_set_mnemonic_widget(GTK_LABEL(w), gnome_file_entry_gtk_entry(GNOME_FILE_ENTRY(start_dir_e)));
 	w = gnome_file_entry_gtk_entry(GNOME_FILE_ENTRY(start_dir_e));
 	s = g_get_current_dir();
 	gtk_entry_set_text(GTK_ENTRY(w), s);
 	g_free(s);
 
-	find_box = gtk_vbox_new(FALSE,GNOME_PAD_SMALL);
+	find_box = gtk_vbox_new(FALSE,0);
+	
+	vpaned = gtk_vpaned_new();
+	frame2 = gtk_frame_new(NULL);
+	vbox2 = gtk_vbox_new(FALSE, 0);
+	gtk_widget_set_size_request (vpaned, 200, 270);
+
+	frame = gtk_frame_new(NULL);
+	gtk_frame_set_label ( GTK_FRAME(frame), _("Rules:"));
 	w = gtk_scrolled_window_new(NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(w),
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
-					
+	
 	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(w), find_box);
-        gtk_box_pack_start (GTK_BOX(vbox),w,TRUE,TRUE,GNOME_PAD_SMALL);
+	gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_NONE);
+	gtk_frame_set_shadow_type(GTK_FRAME(frame2), GTK_SHADOW_NONE);
+	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(w), GTK_SHADOW_NONE);
+        gtk_box_pack_start (GTK_BOX(vbox),vpaned,TRUE,TRUE,0);
+	
+	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(w));
+	gtk_box_pack_start (GTK_BOX(vbox2),frame,TRUE,TRUE,0);
+	gtk_container_add(GTK_CONTAINER(frame2), GTK_WIDGET(vbox2));
+	gtk_paned_pack1 (GTK_PANED (vpaned), frame2, TRUE, FALSE);
+	gtk_widget_set_size_request (frame2, -1, 150);
 	
 	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
-
+	gtk_box_pack_start(GTK_BOX(vbox2),hbox,FALSE,FALSE,0);
+	label = gtk_label_new_with_mnemonic(_("A_dd Rule:"));
+	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 	w = gtk_option_menu_new();
+	gtk_label_set_mnemonic_widget(GTK_LABEL(label), GTK_WIDGET(w));
 	gtk_option_menu_set_menu(GTK_OPTION_MENU(w), make_list_of_templates());
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
-
 	w = gtk_button_new_from_stock(GTK_STOCK_ADD);
+	gtk_widget_set_size_request (GTK_WIDGET(w), 88, -1);
 	g_signal_connect(G_OBJECT(w),"clicked",
 			 G_CALLBACK(add_option_cb),NULL);
+
+	add_option(0, TRUE);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+	
+	hbox = gtk_hbutton_box_new();
+	gtk_button_box_set_layout (GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
+	gtk_box_pack_start(GTK_BOX(vbox2),hbox,FALSE,FALSE,0);
 
-	w = gtk_scrolled_window_new(NULL,NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(w),
-                                        GTK_POLICY_ALWAYS,
-                                        GTK_POLICY_ALWAYS);
-	gtk_box_pack_start(GTK_BOX(vbox),w,TRUE,TRUE,0);
+	/* create find button */
+	find_buttons[1] = gtk_button_new ();
+	gtk_widget_set_size_request (GTK_WIDGET(find_buttons[1]), 88, -1);
 	
-	find_store = gtk_list_store_new(1, G_TYPE_STRING);
-	treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(find_store));
-        gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (treeview), TRUE);
-        gtk_tree_view_set_search_column (GTK_TREE_VIEW (treeview),1);
+	align = gtk_alignment_new(0.5, 0.5, 0, 0);
+	gtk_container_add( GTK_CONTAINER (find_buttons[1]), align);
 	
-	find_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(treeview));
+	hbox2 = gtk_hbox_new (FALSE, 0);
+	gtk_container_add(GTK_CONTAINER(align), hbox2);
 	
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(treeview));
+	image = gtk_image_new_from_stock("gtk-find", GTK_ICON_SIZE_BUTTON);
+	gtk_box_pack_start (GTK_BOX(hbox2), image, FALSE, FALSE, 0);
+	
+	label = gtk_label_new_with_mnemonic(_("F_ind"));
+	gtk_box_pack_start(GTK_BOX(hbox2), label, FALSE, FALSE, 0);
+	
+	find_buttons[0] = gtk_button_new_from_stock(GTK_STOCK_STOP);
+	gtk_widget_set_size_request (GTK_WIDGET(find_buttons[0]), 88, -1);
+	g_signal_connect(G_OBJECT(find_buttons[1]),"clicked",
+			 G_CALLBACK(run_command), find_buttons);
+	g_signal_connect(G_OBJECT(find_buttons[0]),"clicked",
+			 G_CALLBACK(run_command), find_buttons);
+	gtk_box_pack_end(GTK_BOX(hbox),find_buttons[0],FALSE,FALSE,GNOME_PAD_SMALL);
+	gtk_box_pack_end(GTK_BOX(hbox),find_buttons[1],FALSE,FALSE,GNOME_PAD_SMALL);
+	gtk_widget_set_sensitive(find_buttons[0],FALSE);
+	
+	/* create search results section */
+	frame = gtk_frame_new(NULL);
+	gtk_paned_pack2 (GTK_PANED (vpaned), frame, TRUE, FALSE);
+	gtk_widget_set_size_request (frame, -1, 90);
+	gtk_frame_set_label ( GTK_FRAME(frame), _("Results"));
+	find_results = gtk_scrolled_window_new(NULL,NULL);
+	gtk_widget_set_usize(find_results,600,90);
+	gtk_widget_set_sensitive(find_results, FALSE);
+	gtk_container_set_border_width(GTK_CONTAINER(find_results), GNOME_PAD_SMALL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(find_results),
+                                        GTK_POLICY_AUTOMATIC,
+                                        GTK_POLICY_AUTOMATIC);
+	find_model = gtk_list_store_new (NUM_COLUMNS, 
+					 GDK_TYPE_PIXBUF, 
+					 G_TYPE_STRING, 
+					 G_TYPE_STRING, 
+					 G_TYPE_STRING,
+					 G_TYPE_DOUBLE,
+					 G_TYPE_STRING,
+					 G_TYPE_STRING,
+					 G_TYPE_STRING);				 
+	
+	find_tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(find_model));
+	gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (find_tree), TRUE);
+  	g_object_unref (G_OBJECT (find_model));
+	
+	find_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(find_tree));
+	
+	g_signal_connect(G_OBJECT(find_tree), "button_press_event",
+		         G_CALLBACK(launch_file),NULL);		   
+
+	gtk_container_add(GTK_CONTAINER(find_results),GTK_WIDGET(find_tree));
+	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(find_results));
+	
+	/* create the name column */
+	column = gtk_tree_view_column_new ();
+	gtk_tree_view_column_set_title (column, _("Name"));
+	
+	renderer = gtk_cell_renderer_pixbuf_new ();
+	gtk_tree_view_column_pack_start (column, renderer, FALSE);
+        gtk_tree_view_column_set_attributes (column, renderer,
+                                             "pixbuf", COLUMN_ICON,
+                                             NULL);
+					     
 	renderer = gtk_cell_renderer_text_new ();
+        gtk_tree_view_column_pack_start (column, renderer, TRUE);
+        gtk_tree_view_column_set_attributes (column, renderer,
+                                             "text", COLUMN_NAME,
+					     NULL);
+					     
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 175);
+	gtk_tree_view_column_set_resizable (column, TRUE);				     
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME); 
+	gtk_tree_view_append_column (GTK_TREE_VIEW(find_tree), column);
 
-	g_signal_connect(G_OBJECT(treeview), "button_press_event",
-		         G_CALLBACK(launch_file),NULL);	
-	gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW(treeview), -1, 
-			"Results", renderer, "text", NULL);
+	/* create the folder column */
+	renderer = gtk_cell_renderer_text_new (); 
+	column = gtk_tree_view_column_new_with_attributes (_("Folder"), renderer,
+							   "text", COLUMN_PATH,
+							   NULL);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 125);
+	gtk_tree_view_column_set_resizable (column, TRUE);
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_PATH); 
+	gtk_tree_view_append_column (GTK_TREE_VIEW(find_tree), column);
 	
-	gtk_container_add(GTK_CONTAINER(w),treeview);
+	/* create the size column */
+	renderer = gtk_cell_renderer_text_new ();
+	g_object_set( renderer, "xalign", 1.0, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("Size"), renderer,
+							   "text", COLUMN_READABLE_SIZE,
+							   NULL);						   
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 75);
+	gtk_tree_view_column_set_resizable (column, TRUE);
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_SIZE);
+	gtk_tree_view_column_set_alignment (column, 1.0); 
+	gtk_tree_view_append_column (GTK_TREE_VIEW(find_tree), column);
+ 
+	/* create the type column */ 
+	renderer = gtk_cell_renderer_text_new ();
+	column = gtk_tree_view_column_new_with_attributes (_("Type"), renderer,
+							   "text", COLUMN_TYPE,
+							   NULL);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 75);
+	gtk_tree_view_column_set_resizable (column, TRUE);
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_TYPE);
+	gtk_tree_view_append_column (GTK_TREE_VIEW(find_tree), column);
 
-	hbox = gtk_hbutton_box_new(); 
-	gtk_box_pack_end(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
-
-	w = gtk_hseparator_new();
-	gtk_box_pack_end(GTK_BOX(vbox),w,FALSE,FALSE,0);
-
-	w = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
-	g_signal_connect(G_OBJECT(w), "clicked",
-			 G_CALLBACK(quit_cb), NULL);
-	gtk_box_pack_end(GTK_BOX(hbox), w, FALSE, FALSE, 0);
-
-	buttons[1] = gtk_button_new_from_stock(GTK_STOCK_FIND);
-	buttons[0] = gtk_button_new_from_stock(GTK_STOCK_CANCEL);
-	g_signal_connect(G_OBJECT(buttons[1]),"clicked",
-			 G_CALLBACK(run_command), buttons);
-	g_signal_connect(G_OBJECT(buttons[0]),"clicked",
-			 G_CALLBACK(run_command), buttons);
-	gtk_box_pack_end(GTK_BOX(hbox),buttons[0],FALSE,FALSE,0);
-	gtk_box_pack_end(GTK_BOX(hbox),buttons[1],FALSE,FALSE,0);
-	gtk_widget_set_sensitive(buttons[0],FALSE);
-
-	add_option(OPTION_FILENAME, TRUE);
+	/* create the date modified column */ 
+	renderer = gtk_cell_renderer_text_new ();
+	column = gtk_tree_view_column_new_with_attributes (_("Date Modified"), renderer,
+							   "text", COLUMN_READABLE_DATE,
+							   NULL);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 75);
+	gtk_tree_view_column_set_resizable (column, TRUE);
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_DATE);
+	gtk_tree_view_append_column (GTK_TREE_VIEW(find_tree), column);
 
 	return vbox;
 }
@@ -860,11 +1404,12 @@ run_locate_command(GtkWidget *w, gpointer data)
 	gchar *cmd;
 	GtkWidget **buttons = data;
 
-	char *locate_string;
-
 	if (buttons[0] == w) { /*we are in the stop button*/
 		if(locate_running == RUNNING)
 			locate_running = MAKE_IT_STOP;
+			gtk_widget_hide(buttons[0]);
+			gtk_widget_show(buttons[1]);
+			gtk_widget_set_sensitive(buttons[1], FALSE);
 		return;
 	}
 
@@ -877,14 +1422,25 @@ run_locate_command(GtkWidget *w, gpointer data)
 		return;
 	}
 	
-	gtk_widget_set_sensitive(buttons[0], TRUE);
-	gtk_widget_set_sensitive(buttons[1], FALSE);
+	if (!lock) {	
+		gtk_widget_show(buttons[0]);
+		gtk_widget_set_sensitive(buttons[0], TRUE);
+		gtk_widget_hide(buttons[1]);
+		gtk_widget_set_sensitive(buttons[1], FALSE);
+		gtk_widget_set_sensitive(locate_results, TRUE);
 
-	really_run_command(cmd, '\n', &locate_running, locate_store, &locate_iter);
+		really_run_command(cmd, '\n', &locate_running, locate_tree, locate_model, &locate_iter);
+			
+		gtk_widget_hide(buttons[0]);
+		gtk_widget_set_sensitive(buttons[0], FALSE);
+		gtk_widget_show(buttons[1]);
+		gtk_widget_set_sensitive(buttons[1], TRUE);
+	} else {
+		gnome_app_error(GNOME_APP(app),
+				_("A search is already running.  Please wait for the search "
+				  "to complete or cancel it."));
+	}
 	g_free(cmd);
-
-	gtk_widget_set_sensitive(buttons[0], FALSE);
-	gtk_widget_set_sensitive(buttons[1], TRUE);
 }
 
 static void
@@ -897,11 +1453,10 @@ locate_activate (GtkWidget *entry, gpointer data)
 static GtkWidget *
 create_locate_page(void)
 {
-	GtkWidget *w, *vbox, *hbox, *treeview;
+	GtkWidget *w, *vbox, *hbox, *hbox2;
+	GtkWidget *image, *label, *frame, *align;
 	GtkTreeViewColumn *column;	
-	static GtkWidget *buttons[2];
 	static gchar *history = NULL;
-	GtkTreeModel *model;
 	GtkCellRenderer *renderer;
 
 	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
@@ -909,64 +1464,150 @@ create_locate_page(void)
 
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	w = gtk_label_new(_("Search For "));
+	w = gtk_label_new_with_mnemonic(_("Find files _named:"));
 	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE, FALSE, 0);
 
 	locate_entry = gnome_entry_new(history);
+	gtk_label_set_mnemonic_widget(GTK_LABEL(w), gnome_entry_gtk_entry(GNOME_ENTRY(locate_entry)));
 	gnome_entry_set_max_saved(GNOME_ENTRY(locate_entry), 10);
 	gtk_box_pack_start(GTK_BOX(hbox), locate_entry, TRUE, TRUE, 0);
 	
 	g_signal_connect (G_OBJECT (locate_entry), "activate",
 			  G_CALLBACK (locate_activate),
-			  buttons);
-
-	/* add search results window here */
-	w = gtk_scrolled_window_new(NULL,NULL);
-	gtk_widget_set_usize(w,480,260);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(w),
-                                        GTK_POLICY_ALWAYS,
-                                        GTK_POLICY_ALWAYS);
-	gtk_box_pack_start(GTK_BOX(vbox),w,TRUE,TRUE,0);
-	
-	locate_store = gtk_list_store_new(1, G_TYPE_STRING);
-	
-	treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(locate_store));
-        
-	gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (treeview), TRUE);
-        gtk_tree_view_set_search_column (GTK_TREE_VIEW (treeview),1);
-	
-	locate_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(treeview));
-	
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(treeview));
-	renderer = gtk_cell_renderer_text_new ();
-	
-	g_signal_connect(G_OBJECT(treeview), "button_press_event",
-		         G_CALLBACK(launch_file),NULL);		   
-	gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW(treeview), -1, 
-			"Results", renderer, "text", NULL);
-	
-	gtk_container_add(GTK_CONTAINER(w),treeview);
-
+			  locate_buttons);
+			  
 	hbox = gtk_hbutton_box_new();
-	gtk_box_pack_end(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
+	gtk_button_box_set_layout (GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
+	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	w = gtk_hseparator_new();
-	gtk_box_pack_end(GTK_BOX(vbox),w,FALSE,FALSE,0);
+	/* create a custom find button */
+	locate_buttons[1] = gtk_button_new ();
+	gtk_widget_set_size_request (GTK_WIDGET(locate_buttons[1]), 88, -1);
+	
+	align = gtk_alignment_new(0.5, 0.5, 0, 0);
+	gtk_container_add( GTK_CONTAINER (locate_buttons[1]), align);
+	
+	hbox2 = gtk_hbox_new (FALSE, 0);
+	gtk_container_add(GTK_CONTAINER(align), hbox2);
+	
+	image = gtk_image_new_from_stock("gtk-find", GTK_ICON_SIZE_BUTTON);
+	gtk_box_pack_start (GTK_BOX(hbox2), image, FALSE, FALSE, 0);
+	
+	label = gtk_label_new_with_mnemonic(_("F_ind"));
+	gtk_box_pack_start(GTK_BOX(hbox2), label, FALSE, FALSE, 0);
 
-	w = gtk_button_new_from_stock(GTK_STOCK_CLOSE);
-	g_signal_connect(G_OBJECT(w), "clicked",
-			 G_CALLBACK(quit_cb), NULL);
-	gtk_box_pack_end(GTK_BOX(hbox), w, FALSE, FALSE, 0);
+	locate_buttons[0] = gtk_button_new_from_stock(GTK_STOCK_STOP);
+	gtk_widget_set_size_request (GTK_WIDGET(locate_buttons[0]), 88, -1);
+	g_signal_connect(G_OBJECT(locate_buttons[1]),"clicked",
+			 G_CALLBACK(run_locate_command), locate_buttons);
+	g_signal_connect(G_OBJECT(locate_buttons[0]),"clicked",
+			 G_CALLBACK(run_locate_command), locate_buttons);
+	gtk_box_pack_end(GTK_BOX(hbox),locate_buttons[0],FALSE,FALSE,0);
+	gtk_box_pack_end(GTK_BOX(hbox),locate_buttons[1],FALSE,FALSE,0);
+	gtk_widget_set_sensitive(locate_buttons[0],FALSE);
 
-	buttons[1] = gtk_button_new_from_stock(GTK_STOCK_FIND);
-	buttons[0] = gtk_button_new_from_stock(GTK_STOCK_CANCEL);
-	g_signal_connect(G_OBJECT(buttons[1]),"clicked",
-			 G_CALLBACK(run_locate_command), buttons);
-	g_signal_connect(G_OBJECT(buttons[0]),"clicked",
-			 G_CALLBACK(run_locate_command), buttons);
-	gtk_box_pack_end(GTK_BOX(hbox),buttons[0],FALSE,FALSE,0);
-	gtk_box_pack_end(GTK_BOX(hbox),buttons[1],FALSE,FALSE,0);
-	gtk_widget_set_sensitive(buttons[0],FALSE);
+	/* create search results section */
+	frame = gtk_frame_new(NULL);
+	gtk_box_pack_start(GTK_BOX(vbox),frame,TRUE,TRUE,0);
+	gtk_frame_set_label ( GTK_FRAME(frame), _("Results"));
+	locate_results = gtk_scrolled_window_new(NULL,NULL);
+	gtk_widget_set_sensitive(GTK_WIDGET(locate_results), FALSE); 
+	gtk_container_set_border_width(GTK_CONTAINER(locate_results), GNOME_PAD_SMALL);
+	gtk_widget_set_usize(locate_results,600,260);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(locate_results),
+                                        GTK_POLICY_AUTOMATIC,
+                                        GTK_POLICY_AUTOMATIC);
+	
+	locate_model = gtk_list_store_new(NUM_COLUMNS, 
+					  GDK_TYPE_PIXBUF, 
+					  G_TYPE_STRING, 
+					  G_TYPE_STRING, 
+					  G_TYPE_STRING,
+					  G_TYPE_DOUBLE,
+					  G_TYPE_STRING,
+					  G_TYPE_STRING,
+					  G_TYPE_STRING);
+	
+	locate_tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(locate_model));
+	gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (locate_tree), TRUE);
+  	g_object_unref (G_OBJECT (locate_model));
+	
+	locate_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(locate_tree));
+	
+	g_signal_connect(G_OBJECT(locate_tree), "button_press_event",
+		         G_CALLBACK(launch_file),NULL);		   
+	
+	gtk_container_add(GTK_CONTAINER(locate_results),GTK_WIDGET(locate_tree));
+	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(locate_results));
+	
+	/* create the name column */
+	column = gtk_tree_view_column_new ();
+	gtk_tree_view_column_set_title (column, _("Name"));
+	
+	renderer = gtk_cell_renderer_pixbuf_new ();
+	gtk_tree_view_column_pack_start (column, renderer, FALSE);
+        gtk_tree_view_column_set_attributes (column, renderer,
+                                             "pixbuf", COLUMN_ICON,
+                                             NULL);
+					     
+	renderer = gtk_cell_renderer_text_new ();
+        gtk_tree_view_column_pack_start (column, renderer, TRUE);
+        gtk_tree_view_column_set_attributes (column, renderer,
+                                             "text", COLUMN_NAME,
+					     NULL);
+					     
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 175);
+	gtk_tree_view_column_set_resizable (column, TRUE);				     
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME); 
+	gtk_tree_view_append_column (GTK_TREE_VIEW(locate_tree), column);
+
+	/* create the folder column */
+	renderer = gtk_cell_renderer_text_new (); 
+	column = gtk_tree_view_column_new_with_attributes (_("Folder"), renderer,
+							   "text", COLUMN_PATH,
+							   NULL);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 125);
+	gtk_tree_view_column_set_resizable (column, TRUE);
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_PATH); 
+	gtk_tree_view_append_column (GTK_TREE_VIEW(locate_tree), column);
+	
+	/* create the size column */
+	renderer = gtk_cell_renderer_text_new ();
+	g_object_set( renderer, "xalign", 1.0, NULL);
+	column = gtk_tree_view_column_new_with_attributes (_("Size"), renderer,
+							   "text", COLUMN_READABLE_SIZE,
+							   NULL);						   
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 75);
+	gtk_tree_view_column_set_resizable (column, TRUE);
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_SIZE);
+	gtk_tree_view_column_set_alignment (column, 1.0); 
+	gtk_tree_view_append_column (GTK_TREE_VIEW(locate_tree), column);
+ 
+	/* create the type column */ 
+	renderer = gtk_cell_renderer_text_new ();
+	column = gtk_tree_view_column_new_with_attributes (_("Type"), renderer,
+							   "text", COLUMN_TYPE,
+							   NULL);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 75);
+	gtk_tree_view_column_set_resizable (column, TRUE);
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_TYPE);
+	gtk_tree_view_append_column (GTK_TREE_VIEW(locate_tree), column);
+
+	/* create the date modified column */ 
+	renderer = gtk_cell_renderer_text_new ();
+	column = gtk_tree_view_column_new_with_attributes (_("Date Modified"), renderer,
+							   "text", COLUMN_READABLE_DATE,
+							   NULL);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+	gtk_tree_view_column_set_fixed_width (column, 75);
+	gtk_tree_view_column_set_resizable (column, TRUE);
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_DATE);
+	gtk_tree_view_append_column (GTK_TREE_VIEW(locate_tree), column);
+
 
 	return vbox;
 }
@@ -978,10 +1619,10 @@ create_window(void)
 	gtk_container_set_border_width(GTK_CONTAINER(nbook),GNOME_PAD_SMALL);
 
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_locate_page(),
-				 gtk_label_new(_("Simple")));  /* Can we connect to this  */
+				 gtk_label_new_with_mnemonic(_("Si_mple")));  /* Can we connect to this  */
 
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_find_page(),
-				 gtk_label_new(_("Advanced")));
+				 gtk_label_new_with_mnemonic(_("Ad_vanced")));
 	
 	return nbook;
 }
@@ -992,6 +1633,7 @@ about_cb (GtkWidget *widget, gpointer data)
 	static GtkWidget *about = NULL;
 	static const char *authors[] = {
 		"George Lebl <jirka@5z.com>",
+		"Dennis M. Cranston <dennis_cranston@yahoo.com>",
 		NULL
 	};
 	gchar *documenters[] = {
@@ -1000,10 +1642,8 @@ about_cb (GtkWidget *widget, gpointer data)
 	/* Translator credits */
 	gchar *translator_credits = _("translator_credits");
 
-	if (about != NULL)
-	{
-		gdk_window_show(about->window);
-		gdk_window_raise(about->window);
+	if (about != NULL) {
+		gtk_window_present (GTK_WINDOW (about));
 		return;
 	}
 
@@ -1029,9 +1669,9 @@ save_results(GtkFileSelection *selector, gpointer user_data)
 	gint n_children, i;
 	
 	if (!gtk_notebook_get_current_page(GTK_NOTEBOOK(nbook)))
-		store = locate_store;
+		store = locate_model;
 	else
-		store = find_store;
+		store = find_model;
 	
 	filename = (gchar *)gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_selector));
 	
@@ -1043,12 +1683,18 @@ save_results(GtkFileSelection *selector, gpointer user_data)
 			
 			for (i = 0; i < n_children; i++)
 			{
-				gchar *text, *utf8; 
-				gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, 0, &utf8, -1);
-				text = g_locale_from_utf8 (utf8, -1, NULL, NULL, NULL); 
-				gtk_tree_model_iter_next(GTK_TREE_MODEL(store), &iter);						    
-				fprintf(fp, "%s\n", text);
-				g_free(text);
+				gchar *utf8_path, *utf8_name, *file;
+				
+				gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, COLUMN_PATH, &utf8_path, -1);
+				gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, COLUMN_NAME, &utf8_name, -1);
+				gtk_tree_model_iter_next(GTK_TREE_MODEL(store), &iter);	
+				
+				file = get_file_full_path_name (utf8_path, utf8_name);					    
+				fprintf(fp, "%s\n", file);
+				
+				g_free(utf8_path);
+				g_free(utf8_name);
+				g_free(file);
 			}
 		}		 
 		fclose(fp);
@@ -1119,6 +1765,7 @@ int
 main(int argc, char *argv[])
 {
 	GnomeProgram *gsearchtool;
+	GdkGeometry hints;
 	GtkWidget *search;
 
 	/* Initialize the i18n stuff */
@@ -1137,7 +1784,7 @@ main(int argc, char *argv[])
         app = gnome_app_new("gsearchtool", _("Search Tool"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gsearchtool", "gsearchtool");
 	gtk_window_set_policy (GTK_WINDOW (app), TRUE, TRUE, TRUE);
-
+	
         g_signal_connect(G_OBJECT(app), "delete_event",
 			 G_CALLBACK(quit_cb), NULL);
 
@@ -1149,11 +1796,20 @@ main(int argc, char *argv[])
 
 	search = create_window();
 	gtk_widget_show_all(search);
+	gtk_widget_hide(locate_buttons[0]);
+	gtk_widget_hide(find_buttons[0]);
 
 	gnome_app_set_contents(GNOME_APP(app), search);
-
-	gtk_widget_show(app);
 	
+      	hints.min_width = 320;
+      	hints.min_height = 360;
+	gtk_window_set_geometry_hints(GTK_WINDOW(app), GTK_WIDGET(app),
+				      &hints, GDK_HINT_MIN_SIZE);
+	
+	gtk_widget_show(app);
+
+	gtk_window_set_focus(GTK_WINDOW(app), GTK_WIDGET(gnome_entry_gtk_entry(GNOME_ENTRY(locate_entry))));
+
 	gtk_main ();
 
 	return 0;
