@@ -65,6 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/lib/*
 
 %{prefix}/share/locale/*/*/*
-%{prefix}/share/apps/*/*
+%{prefix}/share/apps
 #%{prefix}/share/gtoprc
 %{prefix}/share/gnome/help/*
