@@ -22,7 +22,7 @@ gpostit_SOURCES = 	\
 
 gpostit_LDADD = \
         $(OBGNOME_LIBS) -lgtktty $(OBGTK_LIBS) $(GNOMEUI_LIBS) \
-        $(OBJC_LIBS) $(GNOME_LIBDIR)
+        $(OBJC_LIBS) $(GNOME_LIBDIR) $(INTLLIBS)
 
 EXTRA_DIST = gpostit.desktop
 
