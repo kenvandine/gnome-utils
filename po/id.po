@@ -2,49 +2,44 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
-"POT-Creation-Date: 2004-10-12 12:03+1300\n"
-"PO-Revision-Date: 2003-06-28 21:23+0700\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-28 10:36+0700\n"
+"PO-Revision-Date: 2004-10-27 04:41+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesian <sukarelawan@gnome.linux.or.id>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
-msgid "Accessories"
-msgstr "Aksesoris"
-
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:144
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:169
 msgid "Dictionary Lookup"
 msgstr "Cari di Kamus"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:160
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:185
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Cari kata di dalam kamus online"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1
-#, fuzzy
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:107
 msgid "_About"
-msgstr "_Keterangan..."
+msgstr "_Keterangan Program"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
 msgid "_Help"
-msgstr "_Bantuan"
+msgstr "Ba_ntuan"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:3
 msgid "_Look Up Selected Text"
 msgstr "Cari teks yang dipi_lih"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-#, fuzzy
 msgid "_Preferences"
-msgstr "Settin_g"
+msgstr "_Pengaturan"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
 msgid "_Show Dictionary"
-msgstr "Lihat Kamu_s"
+msgstr "Tampilkan Kamu_s"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
@@ -59,12 +54,11 @@ msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
 msgstr ""
-"Ada error serius terjadi. Silakan cek settingan server dan port.Biasanya "
-"server kamus adalah dict.org dengan port 2628"
+"Ada error serius terjadi. Silakan cek konfigurasi server dan portnya. "
+"Biasanya server kamus adalah dict.org dengan port 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:49
-#, fuzzy
+#: gdictsrc/gdict-about.c:43 logview/about.c:41
 msgid "translator-credits"
 msgstr "Mohammad DAMT <mdamt@bisnisweb.com>"
 
@@ -106,11 +100,10 @@ msgid "Find"
 msgstr "Cari"
 
 #: gdictsrc/gdict-app.c:479
-#, fuzzy
 msgid "_Search for:"
-msgstr "Cari File"
+msgstr "_Cari:"
 
-#: gdictsrc/gdict-app.c:492
+#: gdictsrc/gdict-app.c:492 logview/logview.c:99
 msgid "_Find"
 msgstr "_Cari"
 
@@ -166,14 +159,13 @@ msgstr "Masukan kata atau pilih dari dalam daftar berikut"
 msgid "Look Up for a Word"
 msgstr "Cari Kata"
 
-#: gdictsrc/gdict-applet.c:137
+#: gdictsrc/gdict-applet.c:161
 msgid "_Lookup"
 msgstr "_Cari"
 
-#: gdictsrc/gdict-applet.c:148
-#, fuzzy
+#: gdictsrc/gdict-applet.c:173
 msgid "Dictionary word entry"
-msgstr "Server kamus"
+msgstr "Kata dalam kamus"
 
 #: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
 #, c-format
@@ -194,11 +186,11 @@ msgstr "_Server:"
 
 #: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
-msgstr "Server de_fault"
+msgstr "Server Ba_waan"
 
 #: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
-msgstr "Ganti server kembali ke default"
+msgstr "Ganti server kembali ke konfigurasi awal"
 
 #: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
@@ -238,7 +230,7 @@ msgstr "Masukkan Nomor Port"
 
 #: gdictsrc/gdict-pref-dialog.c:252
 msgid "_Database:"
-msgstr "_Database:"
+msgstr "Basis _Data:"
 
 #: gdictsrc/gdict-pref-dialog.c:259
 msgid "D_efault strategy:"
@@ -250,11 +242,11 @@ msgstr "Cari semua database"
 
 #: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database"
-msgstr "Database"
+msgstr "Basis Data"
 
 #: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database Name"
-msgstr "Nama Database"
+msgstr "Nama Basis Data"
 
 #: gdictsrc/gdict-pref-dialog.c:629
 msgid "Default Strategy"
@@ -266,6 +258,8 @@ msgid ""
 "There was an error displaying help: \n"
 "%s"
 msgstr ""
+"Ada error saat menampilkan layar bantu:\n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -372,11 +366,11 @@ msgstr "UNTUK PEMAKAI YANG AHLI - Program backend untuk pemformatan FAT"
 
 #: gfloppy/gfloppy.schemas.in.h:3
 msgid "Default filesystem type"
-msgstr "Tipe sistem file default"
+msgstr "Tipe sistem berkas utama"
 
 #: gfloppy/gfloppy.schemas.in.h:4
 msgid "Default formatting mode"
-msgstr "Modus pemformatan default"
+msgstr "Moda pemformatan utama"
 
 #: gfloppy/gfloppy.schemas.in.h:5
 msgid ""
@@ -389,7 +383,7 @@ msgstr ""
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr "ext2 untuk sistem file native linux atau fat untuk sistem file DOS"
+msgstr "ext2 untuk sistem berkas native linux atau fat untuk sistem berkas DOS"
 
 #: gfloppy/src/badblocks.c:94
 msgid "Internal Error: Unable to seek to the correct location."
@@ -411,7 +405,7 @@ msgstr "Mencari blok yang rusak..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Gagal membuka %s untuk pemeriksaan blok rusak\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
 msgid "Checking for bad blocks... Done"
 msgstr "Pemeriksaan blok yang rusak telah selesai"
 
@@ -527,45 +521,45 @@ msgstr ""
 msgid "Could not determine current floppy geometry."
 msgstr "Tidak dapat menentukan ukuran disket."
 
-#: gfloppy/src/gfloppy.c:222
+#: gfloppy/src/gfloppy.c:225
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
-"Ada error saat membuat file baru untuk menuliskan daftar blok yang rusak."
+"Ada error saat membuat berkas baru untuk menuliskan daftar blok yang rusak."
 
-#: gfloppy/src/gfloppy.c:242
+#: gfloppy/src/gfloppy.c:245
 msgid "Error while filling the bad blocks list file."
-msgstr "Ada error saat mengisi daftar blok rusak ke file."
+msgstr "Ada error saat mengisi daftar blok rusak ke berkas."
 
-#: gfloppy/src/gfloppy.c:305
+#: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Ada error saat menjalankan perintah (%s): %s."
 
-#: gfloppy/src/gfloppy.c:331
+#: gfloppy/src/gfloppy.c:334
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Proses batal karena ada tanda awal mke2fs tidak dikenal."
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:348
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
 "\n"
 "%s (%d)"
 msgstr ""
-"Program pembuat sistem file (%s) melaporkan adanya error berikut:\n"
+"Program pembuat sistem berkas (%s) melaporkan adanya error berikut:\n"
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:365
 msgid "Abnormal child process termination."
 msgstr "Penghentian proses anak program yang tidak normal"
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:390
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Error saat menjalankan perintah mbadblocks: %s"
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:402
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -574,34 +568,34 @@ msgstr ""
 "Program pengecekan blok rusak (mbadblocks) melaporkan error berikut:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:445
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Penghentian program mbadblocks secara tidak normal."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:468 gfloppy/src/gfloppy.c:508
+#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
 msgid "Making filesystem on disk..."
-msgstr "Sedang membuat sistem file pada disket..."
+msgstr "Sedang membuat sistem berkas pada disket..."
 
-#: gfloppy/src/gfloppy.c:476
+#: gfloppy/src/gfloppy.c:479
 msgid "Unable to create filesystem correctly."
-msgstr "Tidak dapat membuat sistem file dengan sempurna."
+msgstr "Tidak dapat membuat sistem berkas dengan sempurna."
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:520
+#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
 msgid "Making filesystem on disk... Done"
-msgstr "Pembuatan sistem file pada disket selesai"
+msgstr "Pembuatan sistem berkas pada disket selesai"
 
-#: gfloppy/src/gfloppy.c:525
+#: gfloppy/src/gfloppy.c:528
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Memeriksa blok rusak (mohon bersabar)"
 
-#: gfloppy/src/gfloppy.c:530
+#: gfloppy/src/gfloppy.c:533
 msgid "Error while checking the bad blocks."
 msgstr "Ada error saat memeriksa blok yang rusak."
 
 #: gfloppy/src/gfloppy2.glade.h:1
 msgid "    "
-msgstr "\t"
+msgstr "    "
 
 #: gfloppy/src/gfloppy2.glade.h:2
 msgid "*"
@@ -613,13 +607,13 @@ msgid ""
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
-"<small><i><b>Catatan</b>: Program mbadblocks tidak terinstalpada komputer "
-"ini. Program tersebut harus diinstal untuk melakukanpemformatan DOS yang "
+"<small><i><b>Catatan</b>: Program mbadblocks tidak terpasang pada komputer "
+"ini. Program tersebut harus diinstal untuk melakukan pemformatan DOS yang "
 "menyeluruh (fat).</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">Setting Sistem File</span>"
+msgstr "<span weight=\"bold\">Setting Sistem Berkas</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
 msgid "<span weight=\"bold\">Formatting Mode</span>"
@@ -643,15 +637,15 @@ msgstr "Double Density 5.25\" (360KB)"
 
 #: gfloppy/src/gfloppy2.glade.h:10
 msgid "File system _type:"
-msgstr "_Tipe sistem file:"
+msgstr "_Tipe sistem berkas:"
 
 #: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy _density:"
-msgstr "_Kerapatan disket:"
+msgstr "Kerapatan _disket:"
 
 #: gfloppy/src/gfloppy2.glade.h:13
 msgid "Floppy de_vice:"
-msgstr "Perangkat Disket:"
+msgstr "Peran_gkat Disket:"
 
 #: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 3.5\" (1.44MB)"
@@ -667,7 +661,7 @@ msgstr "Linux Native (ext2)"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
-msgstr "Kese_luruhan (lakukan pemeriksaan blok yang rusak pada mode standar)"
+msgstr "Keseluruhan (lakukan pemeriksaan blok yan_g rusak pada mode standar)"
 
 #: gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
@@ -679,13 +673,13 @@ msgstr "_Format"
 
 #: gfloppy/src/gfloppy2.glade.h:20
 msgid "_Quick (only creates the filesystem)"
-msgstr "_Cepat (hanya membuat sistem file)"
+msgstr "_Cepat (hanya membuat sistem berkas)"
 
 #: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standar (lakukan format tingkat bawah)"
 
-#: gfloppy/src/main.c:140
+#: gfloppy/src/main.c:215
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -693,14 +687,14 @@ msgstr ""
 "Program mke2fs atau mkdosfs/mformat belum terinstal dalam komputer ini.Untuk "
 "melakukan format disket, instal dulu program tersebut."
 
-#: gfloppy/src/main.c:164
+#: gfloppy/src/main.c:239
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr ""
 "Proses format tidak dapat dilanjutkan karena tidak dapat membuka perangkat %"
 "s."
 
-#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
+#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -709,7 +703,7 @@ msgstr ""
 "Perangkat %s terputus\n"
 "Hubungkan lagi untuk melanjutkan."
 
-#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -717,21 +711,18 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 "Pemformatan tidak dapat dilakukan karena Anda tidak memiliki hak untuk "
-"menulis ke file %s.Silakan hubungi administrator sistem untuk mendapatkan "
+"menulis ke berkas %s.Silakan hubungi administrator sistem untuk mendapatkan "
 "hak tersebut."
 
-#: gfloppy/src/main.c:216
-#, fuzzy
+#: gfloppy/src/main.c:310
 msgid "Unable to open any device, formatting cannot continue."
-msgstr ""
-"Proses format tidak dapat dilanjutkan karena tidak dapat membuka perangkat %"
-"s."
+msgstr "Perangkat tidak dapat dibuka, pemformatan tidak dapat dilanjutkan."
 
-#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 atau /dev/fd0"
 
-#: gfloppy/src/main.c:394
+#: gfloppy/src/main.c:489
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -740,20 +731,20 @@ msgstr ""
 "Tidak dapat menampilkan layar bantu pemformat disket.\n"
 "%s"
 
-#: gfloppy/src/main.c:427
+#: gfloppy/src/main.c:522
 msgid "The volume name can't contain any blank space."
 msgstr "Nama volume tidak boleh berisi spasi."
 
-#: gfloppy/src/main.c:477
+#: gfloppy/src/main.c:576
 msgid "The device to format"
 msgstr "Perangkat yang hendak diformat"
 
-#: gfloppy/src/main.c:478
+#: gfloppy/src/main.c:577
 msgid "DEVICE"
 msgstr "DEVICE"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
@@ -761,11 +752,8 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
-"Disket telah diformat, tapi <b>%d blok rusak</b> (dari total %d) "
-"telahditemui dan ditandai."
-msgstr[1] ""
-"Disket telah diformat, tapi <b>%d blok rusak</b> (dari total %d) "
-"telahditemui dan ditandai."
+"Disket telah diformat, tapi <b>%d blok rusak</b> (dari total %d) telah "
+"ditemukan dan ditandai."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -781,42 +769,41 @@ msgstr "Kemajuan Proses Format"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
-msgstr ""
+msgstr "Cari berkas, folder, dan dokumen dalam komputer"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
-#: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
-#: gsearchtool/gsearchtool.c:2288 gsearchtool/gsearchtool.c:2313
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
+#: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
+#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
 msgid "Search for Files"
-msgstr "Cari File"
+msgstr "Cari Berkas"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Image/label border"
-msgstr ""
+msgstr "Bingkai gambar/label"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:101
 msgid "Width of border around the label and image in the alert dialog"
-msgstr ""
+msgstr "Lebar bingkai di sekeliling label dan gambar pada dialog siaga"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "Alert Type"
-msgstr ""
+msgstr "Jenis Siaga"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:111
 msgid "The type of alert"
-msgstr ""
+msgstr "Jenis siaga"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "Alert Buttons"
-msgstr ""
+msgstr "Tombol Siaga"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:120
 msgid "The buttons shown in the alert dialog"
-msgstr ""
+msgstr "tombol yang ditampilkan pada dialog siaga"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:172
-#, fuzzy
 msgid "Show more _details"
-msgstr "Berikan pilihan lainn_ya"
+msgstr "Tampilkan _rinciannya"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -828,145 +815,136 @@ msgstr "Buka _Folder"
 
 #: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
-msgstr ""
+msgstr "Buang ke _Tong Sampah"
 
 #: gsearchtool/gsearchtool-callbacks.c:64
 msgid "_Save Results As..."
 msgstr "_Simpan Hasil sebagai..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
-#, fuzzy
 msgid "Could not open help document."
-msgstr "Tidak dapat membuka file bantuan"
+msgstr "Tidak dapat membuka berkas bantuan"
 
 #: gsearchtool/gsearchtool-callbacks.c:319
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Apakah benar ingin membuka %d dokumen?"
 
 #: gsearchtool/gsearchtool-callbacks.c:324
 #: gsearchtool/gsearchtool-callbacks.c:477
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] "Ini akan membuka %d buah folder terpisah. Benar ingin lakukan ini?"
-msgstr[1] "Ini akan membuka %d buah folder terpisah. Benar ingin lakukan ini?"
+msgstr[0] "Ini akan membuka %d buah folder terpisah."
 
 #: gsearchtool/gsearchtool-callbacks.c:384
 #: gsearchtool/gsearchtool-callbacks.c:418
 #: gsearchtool/gsearchtool-callbacks.c:967
 #: gsearchtool/gsearchtool-callbacks.c:1001
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open document \"%s\"."
-msgstr "Tidak dapat membuka dokumen \"%s\""
+msgstr "Dokumen \"%s\" tidak dapat dibuka."
 
 #: gsearchtool/gsearchtool-callbacks.c:387
 #: gsearchtool/gsearchtool-callbacks.c:643
 #: gsearchtool/gsearchtool-callbacks.c:970
 msgid "The document does not exist."
-msgstr ""
+msgstr "Dokumen tidak ada."
 
 #: gsearchtool/gsearchtool-callbacks.c:421
 #: gsearchtool/gsearchtool-callbacks.c:1004
 msgid "There is no installed viewer capable of displaying the document."
-msgstr "Tidak ada pembaca file yang dapat membaca dokumen ini."
+msgstr "Tidak ada pembaca berkas yang dapat membaca dokumen ini."
 
 #: gsearchtool/gsearchtool-callbacks.c:472
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Apakah benar ingin membuka %d folder?"
 
 #: gsearchtool/gsearchtool-callbacks.c:530
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
-msgstr "TIdak dapat membuka folder \"%s\""
+msgstr "Folder \"%s\" tidak dapat dibuka."
 
 #: gsearchtool/gsearchtool-callbacks.c:537
 msgid "The nautilus file manager is not running."
-msgstr "Manajer File sedang tidak jalan."
+msgstr "Pengatur berkas nautilus sedang tidak jalan."
 
 #: gsearchtool/gsearchtool-callbacks.c:640
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to trash."
-msgstr "Tidak dapat menyimpan dokumen \"%s\" ke %s"
+msgstr "\"%s\" tidak dapat dibuang ke tong sampah."
 
 #: gsearchtool/gsearchtool-callbacks.c:680
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to the trash."
-msgstr "Tidak dapat menyimpan dokumen \"%s\" ke %s"
+msgstr "\"%s\" tidak dapat dibuang ke tong sampah."
 
 #: gsearchtool/gsearchtool-callbacks.c:683
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr ""
+msgstr "\"%s\" tidak dapat dipindahkan: %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:713
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
-msgstr ""
+msgstr "Apakah benar ingin menghapus \"%s\" secara permanen?"
 
 #: gsearchtool/gsearchtool-callbacks.c:716
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr ""
+msgstr "Tong sampah tidak ada. Berkas \"%s\" tidak dapat dibuang."
 
 #: gsearchtool/gsearchtool-callbacks.c:758
-#, fuzzy, c-format
+#, c-format
 msgid "Could not delete \"%s\"."
-msgstr "TIdak dapat membuka folder \"%s\""
+msgstr "\"%s\" tidak dapat dihapus."
 
 #: gsearchtool/gsearchtool-callbacks.c:761
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr ""
+msgstr "\"%s\" tidak dapat dihapus: %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:1189
 msgid "Save Search Results As..."
 msgstr "Simpan Hasil Pencarian Sebagai..."
 
 #: gsearchtool/gsearchtool-callbacks.c:1241
-#, fuzzy
 msgid "Could not save document."
-msgstr "Tidak dapat menyimpan dokumen \"\" ke %s"
+msgstr "Dokumen tidak dapat disimpan."
 
 #: gsearchtool/gsearchtool-callbacks.c:1243
-#, fuzzy
 msgid "You did not select a document name."
-msgstr "Tidak dapat membuka dokumen \"%s\""
+msgstr "Nama dokumen belum dipilih."
 
 #: gsearchtool/gsearchtool-callbacks.c:1269
 #: gsearchtool/gsearchtool-callbacks.c:1364
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
-msgstr "Tidak dapat menyimpan dokumen \"\" ke %s"
+msgstr "Dokumen \"%s\" tidak dapat disimpan ke \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:1273
 msgid "The document name you selected is a folder."
-msgstr ""
+msgstr "Nama dokumen yang Anda pilih adalah folder."
 
 #: gsearchtool/gsearchtool-callbacks.c:1302
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "Dokumen \"%s\" sudah ada. Timpa saja?"
 
 #: gsearchtool/gsearchtool-callbacks.c:1306
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr ""
+msgstr "Bila Anda menimpa suatu berkas, isinya yang lama akan ditimpa."
 
 #: gsearchtool/gsearchtool-callbacks.c:1317
 msgid "_Replace"
-msgstr ""
+msgstr "_Ganti"
 
 #: gsearchtool/gsearchtool-callbacks.c:1367
-#, fuzzy
 msgid "You may not have write permissions to the document."
-msgstr ""
-"Kemungkinan Anda tidak memiliki hak untuk menulis ke file ini. Dokumen "
-"initidak disimpan."
+msgstr "Kemungkinan Anda tidak memiliki hak untuk menulis ke berkas ini."
 
 #: gsearchtool/gsearchtool-support.c:68
 #, c-format
@@ -982,24 +960,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:511
+#: gsearchtool/gsearchtool-support.c:620
 msgid "today at %-I:%M %p"
-msgstr "hari ini pada pukul %-H:%M"
+msgstr "hari ini pukul %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:513
+#: gsearchtool/gsearchtool-support.c:622
 msgid "yesterday at %-I:%M %p"
-msgstr "kemarin pada %-H:%M"
+msgstr "kemarin pukul %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:515 gsearchtool/gsearchtool-support.c:517
-#, fuzzy
+#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
-msgstr "%-d/%m/%y. %H:%M"
+msgstr "%A, %-d %B %y pukul %H:%M:%S"
 
-#: gsearchtool/gsearchtool-support.c:688
+#: gsearchtool/gsearchtool-support.c:797
 msgid "link (broken)"
 msgstr "link (terputus)"
 
-#: gsearchtool/gsearchtool-support.c:693
+#: gsearchtool/gsearchtool-support.c:802
 #, c-format
 msgid "link to %s"
 msgstr "link ke %s"
@@ -1009,36 +986,32 @@ msgid "Contains the _text"
 msgstr "Berisi _teks"
 
 #: gsearchtool/gsearchtool.c:76
-#, fuzzy
 msgid "_Date modified less than"
-msgstr "Tanggal lebih mu_da dari (satuan hari)"
+msgstr "Tanggal modifikasi lebih mu_da dari"
 
 #: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
 msgid "days"
-msgstr ""
+msgstr "hari"
 
 #: gsearchtool/gsearchtool.c:77
-#, fuzzy
 msgid "Date modified more than"
-msgstr "Tanggal modifikasi lebih tua dari (satuan _hari)"
+msgstr "Tanggal modifikasi lebih tua dari"
 
 #: gsearchtool/gsearchtool.c:79
-#, fuzzy
 msgid "S_ize at least"
-msgstr "Ukuran pal_ing tidak (satuan kilobyte)"
+msgstr "Ukuran pal_ing tidak"
 
 #: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
 msgid "kilobytes"
-msgstr ""
+msgstr "kilobyte"
 
 #: gsearchtool/gsearchtool.c:80
-#, fuzzy
 msgid "Si_ze at most"
-msgstr "Ukuran paling be_sar (satuan kilobyte)"
+msgstr "Ukuran paling be_sar"
 
 #: gsearchtool/gsearchtool.c:81
 msgid "File is empty"
-msgstr "Filenya kosong"
+msgstr "Berkasnya kosong"
 
 #: gsearchtool/gsearchtool.c:83
 msgid "Owned by _user"
@@ -1061,9 +1034,8 @@ msgid "Name matches regular e_xpression"
 msgstr "Nama cocok dengan e_kspresi reguler"
 
 #: gsearchtool/gsearchtool.c:90
-#, fuzzy
 msgid "Show hidden and backup files"
-msgstr "Tampilkan file dan folder yang tersembunyi"
+msgstr "Tampilkan berkas dan folder yang tersembunyi"
 
 #: gsearchtool/gsearchtool.c:91
 msgid "Follow symbolic links"
@@ -1071,73 +1043,72 @@ msgstr "Ikuti link simbolik"
 
 #: gsearchtool/gsearchtool.c:92
 msgid "Include other filesystems"
-msgstr "Cari di sistem file lain"
+msgstr "Cari di sistem berkas lain"
 
-#: gsearchtool/gsearchtool.c:547 gsearchtool/gsearchtool.c:575
+#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
 msgid "No files found"
-msgstr "Tidak ada file yang ditemukan"
+msgstr "Tidak ada berkas yang ditemukan"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:602
 msgid "(stopped)"
 msgstr "(dihentikan)"
 
-#: gsearchtool/gsearchtool.c:574
+#: gsearchtool/gsearchtool.c:608
 msgid "No Files Found"
-msgstr "File Tidak Ketemu"
+msgstr "Berkas Tidak Ketemu"
 
-#: gsearchtool/gsearchtool.c:579
-#, fuzzy, c-format
+#: gsearchtool/gsearchtool.c:613
+#, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
-msgstr[0] "%d File Ketemu"
-msgstr[1] "%d File Ketemu"
+msgstr[0] "%d Berkas Ditemukan"
 
-#: gsearchtool/gsearchtool.c:583
-#, fuzzy, c-format
+#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
+#, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
-msgstr[0] "%d file ketemu"
-msgstr[1] "%d file ketemu"
+msgstr[0] "%d berkas ditemukan"
 
-#: gsearchtool/gsearchtool.c:689
+#: gsearchtool/gsearchtool.c:743
 msgid "Entry changed called for a non entry option!"
-msgstr ""
+msgstr "Isian yang berubah dipanggil pada setiap pilhan isian!"
 
-#: gsearchtool/gsearchtool.c:942
+#: gsearchtool/gsearchtool.c:998
 msgid "Searching..."
 msgstr "Sedang lakukan pencarian..."
 
-#: gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1020
 msgid "Set the text of 'Name contains'"
 msgstr "Isi teks pada 'Nama berisi'"
 
-#: gsearchtool/gsearchtool.c:964
+#: gsearchtool/gsearchtool.c:1021
 msgid "Set the text of 'Look in folder'"
 msgstr "Isi teks pada 'Cari dalam folder'"
 
-#: gsearchtool/gsearchtool.c:965
+#: gsearchtool/gsearchtool.c:1022
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
-"Urutkan file berdasarkan salah satu dari: nama, folder, ukuran, tipe, tanggal"
+"Urutkan berkas berdasarkan salah satu dari: nama, folder, ukuran, tipe, "
+"tanggal"
 
-#: gsearchtool/gsearchtool.c:966
+#: gsearchtool/gsearchtool.c:1023
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Urutkan terbalik, defaultnya mengurutkan menaik"
 
-#: gsearchtool/gsearchtool.c:967
+#: gsearchtool/gsearchtool.c:1024
 msgid "Automatically start a search"
 msgstr "Lakukan pencarian secara otomatis"
 
-#: gsearchtool/gsearchtool.c:972
+#: gsearchtool/gsearchtool.c:1029
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Pilih konstrain '%s'"
 
-#: gsearchtool/gsearchtool.c:1078
+#: gsearchtool/gsearchtool.c:1135
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Pilihan yang salah diberikan pada argumen perintah sortby"
 
-#: gsearchtool/gsearchtool.c:1350
+#: gsearchtool/gsearchtool.c:1434
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1145,286 +1116,273 @@ msgstr ""
 "\n"
 "... pesan error terlampau banyak ..."
 
-#: gsearchtool/gsearchtool.c:1359
+#: gsearchtool/gsearchtool.c:1443
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
-msgstr ""
+msgstr "Hasil pencarian mungkin keliru. Ada error saat melakukan pencarian."
 
-#: gsearchtool/gsearchtool.c:1380
+#: gsearchtool/gsearchtool.c:1464
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
-msgstr ""
+msgstr "Hasil pencarian mungkin keliru. Matikan fasilitas pencarian cepat?"
 
-#: gsearchtool/gsearchtool.c:1388
+#: gsearchtool/gsearchtool.c:1472
 msgid "Disable _Quick Search"
-msgstr ""
+msgstr "Matikan _Pencarian Cepat"
 
-#: gsearchtool/gsearchtool.c:1432
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1516
 msgid "Error parsing the search command."
-msgstr "Error saat melakukan parse pada perintah pencarian"
+msgstr "Error saat menguraikan perintah pencarian."
 
-#: gsearchtool/gsearchtool.c:1461
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1545
 msgid "Error running the search command."
-msgstr "Error saat menjalankan perintah pencarian"
+msgstr "Error saat menjalankan perintah pencarian."
 
-#: gsearchtool/gsearchtool.c:1572
+#: gsearchtool/gsearchtool.c:1659
 #, c-format
 msgid "'%s' entry"
-msgstr ""
+msgstr "Isian '%s'"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1660
 msgid "Enter a value for search rule"
 msgstr "Masukan nilai aturan pencarian"
 
-#: gsearchtool/gsearchtool.c:1620
+#: gsearchtool/gsearchtool.c:1707
 #, c-format
 msgid "Click to Remove the '%s' Rule"
-msgstr "Klik untuk membuang Aturan '%s'"
+msgstr "Klik Untuk Membuang Aturan '%s'"
 
-#: gsearchtool/gsearchtool.c:1675
+#: gsearchtool/gsearchtool.c:1762
 msgid "A_vailable options:"
 msgstr "Pilihan _tersedia:"
 
-#: gsearchtool/gsearchtool.c:1688
+#: gsearchtool/gsearchtool.c:1775
 msgid "Search Rules Menu"
 msgstr "Menu Aturan Pencarian"
 
-#: gsearchtool/gsearchtool.c:1689
+#: gsearchtool/gsearchtool.c:1776
 msgid "Select a search rule from the menu"
 msgstr "Pilih aturan pencarian dari dalam menu"
 
-#: gsearchtool/gsearchtool.c:1720
+#: gsearchtool/gsearchtool.c:1807
 msgid "S_earch results:"
 msgstr "Hasil P_encarian:"
 
-#: gsearchtool/gsearchtool.c:1800
+#: gsearchtool/gsearchtool.c:1887
 msgid "Name"
 msgstr "Nama"
 
-#: gsearchtool/gsearchtool.c:1820
+#: gsearchtool/gsearchtool.c:1907
 msgid "Folder"
 msgstr "Folder"
 
-#: gsearchtool/gsearchtool.c:1831
+#: gsearchtool/gsearchtool.c:1918
 msgid "Size"
 msgstr "Ukuran"
 
-#: gsearchtool/gsearchtool.c:1841
+#: gsearchtool/gsearchtool.c:1928
 msgid "Type"
 msgstr "Tipe"
 
-#: gsearchtool/gsearchtool.c:1851
+#: gsearchtool/gsearchtool.c:1938
 msgid "Date Modified"
 msgstr "Tanggal Modifikasi"
 
-#: gsearchtool/gsearchtool.c:1909
+#: gsearchtool/gsearchtool.c:1995
 msgid "_Name contains:"
 msgstr "_Nama berisi:"
 
-#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
-msgid "Enter the file name you want to search"
-msgstr "Isi nama file yang hendak dicari"
+#: gsearchtool/gsearchtool.c:2010 gsearchtool/gsearchtool.c:2011
+msgid "Enter the file name you want to search."
+msgstr "Isi nama berkas yang hendak dicari"
 
-#: gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:2011
 msgid "Name Contains Entry"
 msgstr "Isian Pencocokan Nama"
 
-#: gsearchtool/gsearchtool.c:1936
+#: gsearchtool/gsearchtool.c:2022
 msgid "_Look in folder:"
 msgstr "Cari da_lam folder:"
 
-#: gsearchtool/gsearchtool.c:1942
+#: gsearchtool/gsearchtool.c:2028
 msgid "Browse"
 msgstr "Browse"
 
-#: gsearchtool/gsearchtool.c:1953 gsearchtool/gsearchtool.c:1954
-msgid "Enter the folder name where you want to start the search"
+#: gsearchtool/gsearchtool.c:2035
+msgid "Select the folder where you want to start the search."
 msgstr "Isikan nama folder tempat hendak dimulainya pencarian"
 
-#: gsearchtool/gsearchtool.c:1954
-msgid "Look in Folder Entry"
-msgstr "Isian Folder tempat mencari"
-
-#: gsearchtool/gsearchtool.c:1972
+#: gsearchtool/gsearchtool.c:2049
 msgid "Show more _options"
 msgstr "Berikan pilihan lainn_ya"
 
-#: gsearchtool/gsearchtool.c:1982
-#, fuzzy
+#: gsearchtool/gsearchtool.c:2059
 msgid "Show more options"
-msgstr "Berikan pilihan lainn_ya"
+msgstr "Berikan pilihan lainnya"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:2059
 msgid "Expands or collapses a list of search options."
-msgstr ""
+msgstr "Kembangkan atau tutap daftar pilihan pencarian."
 
-#: gsearchtool/gsearchtool.c:2029
+#: gsearchtool/gsearchtool.c:2106
 msgid "Click to Start the search"
 msgstr "Klik untuk mulai Pencarian"
 
-#: gsearchtool/gsearchtool.c:2030
+#: gsearchtool/gsearchtool.c:2107
 msgid "Click to Stop the search"
 msgstr "Klik untuk menghentikan Pencarian"
 
-#: gsearchtool/gsearchtool.c:2309
+#: gsearchtool/gsearchtool.c:2386
 msgid "Cannot initialize bonobo."
 msgstr "Tidak dapat inisialisasi bonobo"
 
 #. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
-#: logview/about.c:43
+#: logview/about.c:35
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
-#: logview/about.c:44
+#: logview/about.c:36
 msgid "A system log viewer for GNOME."
 msgstr "Penampil log untuk GNOME."
 
-#: logview/about.c:58
+#: logview/about.c:51
 msgid "System Log Viewer"
-msgstr "System Log Viewer"
+msgstr "Penampil Log Sistem"
 
-#: logview/actions.c:74
+#: logview/actions.c:73
 msgid "Action Database"
-msgstr "Database Aksi"
+msgstr "Basis Data Kegiatan"
 
-#: logview/actions.c:85
+#: logview/actions.c:84
 msgid "Actions"
-msgstr "Aksi"
+msgstr "Kegiatan"
 
-#: logview/actions.c:157
+#: logview/actions.c:156
 msgid "_Add"
 msgstr "T_ambah"
 
-#: logview/actions.c:162
-#, fuzzy
+#: logview/actions.c:161
 msgid "Add an action"
-msgstr "Aksi"
+msgstr "Tambah kegiatan"
 
-#: logview/actions.c:164
+#: logview/actions.c:163 logview/logview.c:86
 msgid "_Edit"
-msgstr "_Edit"
+msgstr "_Ubah"
 
-#: logview/actions.c:169
-#, fuzzy
+#: logview/actions.c:168
 msgid "Edit an action"
-msgstr "Jalankan _aksi"
+msgstr "Ubah kegiatan"
 
-#: logview/actions.c:171
+#: logview/actions.c:170
 msgid "_Remove"
 msgstr "Hapu_s"
 
-#: logview/actions.c:176
+#: logview/actions.c:175
 msgid "Remove an action"
-msgstr ""
+msgstr "Hapus kegiatan"
 
-#: logview/actions.c:263
+#: logview/actions.c:262
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "Pembukaan gagal karena tidak dapat membuka database aksi <%s>! "
 
-#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
-#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
+#: logview/actions.c:297 logview/actions.c:310 logview/actions.c:321
+#: logview/actions.c:332 logview/actions.c:343 logview/actions.c:354
 msgid "Error parsing actions data base"
 msgstr "Error saat membaca database aksi"
 
-#: logview/actions.c:389
+#: logview/actions.c:388
 msgid "Can't write to actions database!"
 msgstr "Tidak dapat menuliskan database aksi!"
 
-#: logview/actions.c:487
-#, fuzzy, c-format
+#: logview/actions.c:486
+#, c-format
 msgid "Error while executing specified action: %s"
-msgstr "Error saat menjalankan aksi yang ditentukan"
+msgstr "Error saat menjalankan kegiatan yang ditentukan: %s"
 
-#: logview/actions.c:510
+#: logview/actions.c:509
 msgid "<empty>"
 msgstr "<kosong>"
 
-#: logview/actions.c:511
+#: logview/actions.c:510
 msgid "log name regexp"
 msgstr "log name regexp"
 
-#: logview/actions.c:512
+#: logview/actions.c:511
 msgid "process regexp"
 msgstr "process regexp"
 
-#: logview/actions.c:513
+#: logview/actions.c:512
 msgid "message regexp"
 msgstr "message regexp"
 
-#: logview/actions.c:514
+#: logview/actions.c:513
 msgid "action to execute when regexps are TRUE"
 msgstr "Aksi yang dijalankan saat regexps bernilai TRUE"
 
-#: logview/actions.c:515
+#: logview/actions.c:514
 msgid "description"
 msgstr "deskripsi"
 
-#: logview/actions.c:651
-#, fuzzy
+#: logview/actions.c:650
 msgid "Edit Action"
-msgstr "Aksi"
+msgstr "Ubah Kegiatan"
 
-#: logview/actions.c:687
-#, fuzzy
+#: logview/actions.c:686
 msgid "_Tag:"
-msgstr "_Halaman:"
+msgstr "_Tag:"
 
-#: logview/actions.c:696
+#: logview/actions.c:695
 msgid "Tag that identifies the log file."
-msgstr ""
+msgstr "Tag yang mencirikan berkas log."
 
-#: logview/actions.c:705
-#, fuzzy
+#: logview/actions.c:704
 msgid "_Log name:"
-msgstr "_Nama Volume:"
+msgstr "Nama _log:"
 
-#: logview/actions.c:714
+#: logview/actions.c:713
 msgid "Regular expression that will match the log name."
-msgstr ""
+msgstr "Ekspresi reguler yang akan dicocokkan dengan nama log."
 
-#: logview/actions.c:724
-#, fuzzy
+#: logview/actions.c:723
 msgid "_Process:"
-msgstr "Proses:"
+msgstr "_Proses:"
 
-#: logview/actions.c:733
+#: logview/actions.c:732
 msgid "Regular expression that will match process part of message."
-msgstr ""
+msgstr "Ekspresi reguler yang akan dicocokkan dengan bagian pesan"
 
-#: logview/actions.c:743
-#, fuzzy
+#: logview/actions.c:742
 msgid "_Message:"
-msgstr "Pesan:"
+msgstr "_Pesan:"
 
-#: logview/actions.c:752
+#: logview/actions.c:751
 msgid "Regular expression that will match the message."
-msgstr ""
+msgstr "Ekspresi reguler yang akan dicocokkan dengan pesan."
 
-#: logview/actions.c:762
-#, fuzzy
+#: logview/actions.c:761
 msgid "_Action:"
-msgstr "Aksi"
+msgstr "Kegi_atan"
 
-#: logview/actions.c:771
+#: logview/actions.c:770
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
+"Kegiatan yang akan dijalankan bila semua ekspresi cocok. Kegiatan akan "
+"dilakukan dengan perintah sistem: sistem (kegiatan)."
 
-#: logview/actions.c:781
+#: logview/actions.c:780
 msgid "_Description:"
 msgstr "_Deskripsi:"
 
-#: logview/actions.c:790
+#: logview/actions.c:789
 msgid "Description of this entry."
 msgstr "Deskripsi isian ini."
 
-#: logview/actions.c:814
+#: logview/actions.c:813
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1441,16 +1399,16 @@ msgstr ""
 "deskripsi: [%s]\n"
 "aksi: [%s]\n"
 
-#: logview/calendar.c:110
+#: logview/calendar.c:73
 msgid "Calendar"
 msgstr "Kalender"
 
-#: logview/desc_db.c:37
+#: logview/desc_db.c:34
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr "Pembukaan gagal karena tidak dapat membuka database regexp <%s>"
 
-#: logview/desc_db.c:147
+#: logview/desc_db.c:144
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "Pembukaan gagal karena tidak dapat membuka database deskripsi <%s>"
@@ -1465,109 +1423,112 @@ msgstr "Log Sistem"
 
 #: logview/gnome-system-log.desktop.in.h:2
 msgid "View the system log file"
-msgstr "Lihat file log sistem"
+msgstr "Lihat berkas log sistem"
 
-#: logview/info.c:62
+#: logview/info.c:54
 msgid "Properties"
-msgstr "Properti"
+msgstr "Informasi"
 
-#: logview/info.c:108
+#: logview/info.c:98
 msgid "Size:"
 msgstr "Ukuran:"
 
-#: logview/info.c:108
+#: logview/info.c:98
 msgid "Modified:"
 msgstr "Dimodifikasi:"
 
-#: logview/info.c:109
+#: logview/info.c:99
 msgid "Start Date:"
 msgstr "Tanggal Mulai:"
 
-#: logview/info.c:109
+#: logview/info.c:99
 msgid "Last Date:"
 msgstr "Tanggal Terakhir:"
 
-#: logview/info.c:109
+#: logview/info.c:99
 msgid "Number of Lines:"
 msgstr "Jumlah Baris:"
 
-#: logview/info.c:134
+#: logview/info.c:125
 msgid "Log Information"
 msgstr "Informasi Log"
 
-#: logview/info.c:160 logview/zoom.c:155
+#: logview/info.c:151 logview/zoom.c:163
 msgid "<No log loaded>"
 msgstr "<tidak ada log dibuka>"
 
-#: logview/info.c:183
-#, fuzzy, c-format
+#: logview/info.c:174
+#, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld byte"
-msgstr[1] "%ld byte"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:52
 msgid "January"
 msgstr "Januari"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:52
 msgid "February"
 msgstr "Pebruari"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:52
 msgid "March"
 msgstr "Maret"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:52
 msgid "April"
 msgstr "April"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:52
 msgid "May"
 msgstr "Mei"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:53
 msgid "June"
 msgstr "Juni"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:53
 msgid "July"
 msgstr "Juli"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:53
 msgid "August"
 msgstr "Agustus"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:53
 msgid "September"
 msgstr "September"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:53
 msgid "October"
 msgstr "Oktober"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:54
 msgid "November"
 msgstr "Nopember"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:54
 msgid "December"
 msgstr "Desember"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:394
+#: logview/log_repaint.c:284
 #, c-format
 msgid "%x"
 msgstr "%x"
 
+#: logview/log_repaint.c:304
+msgid "Last Modified: "
+msgstr "Terakhir dimodifikasi:"
+
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:449
+#: logview/log_repaint.c:333
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:521
+#: logview/log_repaint.c:405
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1578,616 +1539,248 @@ msgstr "Memori tidak cukup\n"
 
 #: logview/logrtns.c:204
 msgid "Unable to open logfile!\n"
-msgstr "Tidak dapat membuka file log\n"
+msgstr "Tidak dapat membuka berkas log\n"
 
-#: logview/logrtns.c:265
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
-msgstr "%s bukan file biasa"
+msgstr "%s bukan berkas biasa"
 
-#: logview/logrtns.c:273
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
 "%s tidak dapat dibaca. Jalankan program sebagai root atau minta "
-"sistemadministrator untuk merubah hak akses file."
+"sistemadministrator untuk merubah hak akses berkas."
 
-#: logview/logrtns.c:290
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s tidak dapat dibuka"
 
-#: logview/logrtns.c:320 logview/logrtns.c:329
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
-msgstr "%s bukan file log."
+msgstr "%s bukan berkas log."
 
-#: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memori tidak tersedia"
 
-#: logview/logview.c:100
-msgid "S_witch Log"
-msgstr "T_ukar Log"
+#: logview/logview.c:85
+msgid "_Log"
+msgstr "_Log"
 
-#: logview/logview.c:101
-msgid "Switch between already opened logs"
-msgstr "Tukar log yang sudah dibuka"
+#: logview/logview.c:87
+msgid "_View"
+msgstr "_Tampilan"
 
-#: logview/logview.c:107
-msgid "_Monitor..."
-msgstr "_Pantau..."
+#: logview/logview.c:90
+msgid "_Open..."
+msgstr "B_uka..."
 
-#: logview/logview.c:108
-msgid "Monitor Logs"
-msgstr "Log Pantauan"
+#: logview/logview.c:90
+msgid "Open a log from file"
+msgstr "Buka log dari sebuah berkas"
 
-#: logview/logview.c:116
+#: logview/logview.c:92
 msgid "_Properties"
-msgstr "_Properti"
+msgstr "_Informasi"
 
-#: logview/logview.c:117
+#: logview/logview.c:92
 msgid "Show Log Properties"
-msgstr "Setting Tampilan Log"
+msgstr "Pengaturan Tampilan Log"
 
-#: logview/logview.c:125
-msgid "Clos_e All"
-msgstr "Tutup S_emua"
+#: logview/logview.c:94
+msgid "Close"
+msgstr "Tutup"
 
-#: logview/logview.c:126
-msgid "Close all Log files"
-msgstr "Tutup Semua file Log"
+#: logview/logview.c:94
+msgid "Close this log"
+msgstr "Tutup log ini"
 
-#: logview/logview.c:138
-msgid "_Calendar"
-msgstr "_Kalender"
+#: logview/logview.c:96
+msgid "_Quit"
+msgstr "_Keluar"
 
-#: logview/logview.c:139
-msgid "Show Calendar Log"
-msgstr "Tampilkan Log Kalender"
+#: logview/logview.c:96
+msgid "Quit the log viewer"
+msgstr "Keluar dari penampil log ini"
 
-#: logview/logview.c:145
-msgid "_Entry Detail"
-msgstr "Detil _Entri"
+#: logview/logview.c:99
+msgid "Find pattern in logs"
+msgstr "Cari pola dalam log"
 
-#: logview/logview.c:146
-msgid "Show Entry Detail"
-msgstr "Tampilkan Detil Entri"
+#: logview/logview.c:102
+msgid "Collapse _All"
+msgstr "Tutup Semu_a"
 
-#: logview/logview.c:152
-msgid "_Collapse All"
-msgstr "_Tutup Semua"
-
-#: logview/logview.c:153
+#: logview/logview.c:102
 msgid "Collapse all the rows"
 msgstr "Tutup semua baris"
 
-#: logview/logview.c:370
-msgid "No log files to open"
-msgstr "Tidak ada file log yang dibuka"
+#: logview/logview.c:105
+msgid "_Contents"
+msgstr "Daftar _Isi"
 
-#: logview/logview.c:392
+#: logview/logview.c:105
+msgid "Open the help contents for the log viewer"
+msgstr "Buka daftar isi bantuan"
+
+#: logview/logview.c:107
+msgid "Show the about dialog for the gconf editor"
+msgstr "Tampilkan dialog tentang aplikasi penyunting gconf"
+
+#: logview/logview.c:113
+msgid "_Monitor"
+msgstr "_Pantau"
+
+#: logview/logview.c:113
+msgid "Monitor Current Log"
+msgstr "Pantau Log yang Aktif"
+
+#: logview/logview.c:115
+msgid "_Calendar"
+msgstr "_Kalender"
+
+#: logview/logview.c:115
+msgid "Show Calendar Log"
+msgstr "Tampilkan Log Kalender"
+
+#: logview/logview.c:117
+msgid "_Entry Detail"
+msgstr "Rincian _Entri"
+
+#: logview/logview.c:117
+msgid "Show Entry Detail"
+msgstr "Tampilkan Rincian Entri"
+
+#: logview/logview.c:303
+msgid "No log files to open"
+msgstr "Tidak ada berkas log yang dibuka"
+
+#: logview/logview.c:387
 msgid "Date"
 msgstr "Tanggal"
 
-#: logview/logview.c:392
+#: logview/logview.c:387
 msgid "Host Name"
 msgstr "Nama Host"
 
-#: logview/logview.c:393
+#: logview/logview.c:388
 msgid "Process"
 msgstr "Proses"
 
-#: logview/logview.c:393
+#: logview/logview.c:388
 msgid "Message"
 msgstr "Pesan"
 
-#: logview/logview.c:474
-msgid "Last Modified: "
-msgstr "Terakhir dimodifikasi:"
-
-#: logview/logview.c:573 logview/logview.c:648
-msgid "Too many open logs. Close one and try again"
-msgstr "Terlalu banyak membuka log. Tutup satu dan coba lagi"
-
-#: logview/logview.c:585
-msgid "File already opened"
-msgstr "File sudah dibuka."
-
-#: logview/logview.c:661
+#: logview/logview.c:599
 msgid "Open new logfile"
-msgstr "Buka file log baru"
+msgstr "Buka berkas log baru"
+
+#: logview/logview.c:976
+#, c-format
+msgid "%s - %s (monitored)"
+msgstr "%s - %s (dipantau)"
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
-msgstr "File log yang dibuka saat program dijalankan"
+msgstr "Berkas log yang dibuka saat program dijalankan"
 
 #: logview/logview.schemas.in.h:2
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
-"Tentuka file log yang akan dibuka saat program dijalankan. Biasanya bernilai/"
-"var/adm/messages atau /var/log/messages bergantung pada sistem operasi."
+"Tentuka berkas log yang akan dibuka saat program dijalankan. Biasanya "
+"bernilai/var/adm/messages atau /var/log/messages bergantung pada sistem "
+"operasi."
 
-#: logview/misc.c:56
-#, c-format
-msgid "Error: [%s]\n"
-msgstr "Error: [%s]\n"
-
-#: logview/monitor.c:111
-msgid "Monitor Options"
-msgstr "Pilihan Pemantauan"
-
-#: logview/monitor.c:114
-msgid "Ac_tions..."
-msgstr "Ak_si"
-
-#: logview/monitor.c:140
-msgid "_Select logs to monitor:"
-msgstr "Pilih file log yang _hendak dipantau:"
-
-#: logview/monitor.c:145
-msgid "Currently _monitored logs:"
-msgstr "Log yang sedang di_pantau"
-
-#: logview/monitor.c:193
-msgid "Add logs to monitor"
-msgstr "Pantau file log baru"
-
-#: logview/monitor.c:202
-msgid "Remove logs from monitor"
-msgstr "Buang file log dari daftar pantauan"
-
-#. Check boxes
-#: logview/monitor.c:249
-msgid "_Hide application"
-msgstr "Se_mbunyikan aplikasi"
-
-#: logview/monitor.c:257
-msgid "_Execute actions"
-msgstr "Jalankan _aksi"
-
-#: logview/monitor.c:293
-msgid "Too many logs to monitor. Remove one and try again"
-msgstr "Terlalu banyak file log yang dipantau. Buang satu dan coba lagi"
-
-#: logview/monitor.c:301 logview/monitor.c:338
-msgid "tmp_list is NULL\n"
-msgstr "tmp_list bernilai NULL\n"
-
-#: logview/monitor.c:475
-msgid "Monitoring Logs..."
-msgstr "Log sedang dipantau..."
-
-#: logview/monitor.c:667
-msgid "TOUCHED!!\n"
-msgstr "TOUCHED!!\n"
-
-#: logview/zoom.c:63
+#: logview/zoom.c:65
 msgid "Entry Detail"
 msgstr "Detil Entri"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Date:"
 msgstr "Tanggal:"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Process:"
 msgstr "Proses:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Message:"
 msgstr "Pesan:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Description:"
 msgstr "Keterangan:"
 
-#: logview/zoom.c:129
+#: logview/zoom.c:133
 msgid "Log Line Details"
 msgstr "Detil Baris Log"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:187
+#: logview/zoom.c:195
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#~ msgid "Search your disk for files"
-#~ msgstr "Cari file dalam disk"
+#~ msgid "Accessories"
+#~ msgstr "Aksesoris"
 
-#~ msgid ""
-#~ "While searching the following errors were reported.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Ada error berikut saat melakukan pencarian.\n"
-#~ "\n"
+#~ msgid "S_witch Log"
+#~ msgstr "T_ukar Log"
 
-#, fuzzy
-#~ msgid "Error while searching for files."
-#~ msgstr "Ada error saat melakukan pencarian file"
+#~ msgid "Switch between already opened logs"
+#~ msgstr "Tukar log yang sudah dibuka"
 
-#~ msgid "Search Rule Value Entry"
-#~ msgstr "Entri Nilai Aturan Pencarian"
+#~ msgid "Close all Log files"
+#~ msgstr "Tutup Semua berkas Log"
 
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "File animasi hilang atau salah: %s"
+#~ msgid "Too many open logs. Close one and try again"
+#~ msgstr "Terlalu banyak membuka log. Tutup satu dan coba lagi"
 
-#~ msgid "One File Found"
-#~ msgstr "Satu File Ketemu"
+#~ msgid "File already opened"
+#~ msgstr "Berkas sudah dibuka."
 
-#~ msgid "One file found"
-#~ msgstr "Satu file ketemu"
+#~ msgid "Error: [%s]\n"
+#~ msgstr "Error: [%s]\n"
 
-#~ msgid "Open %d documents?"
-#~ msgstr "Buka %d dokumen?"
+#~ msgid "Monitor Options"
+#~ msgstr "Pilihan Pemantauan"
 
-#~ msgid ""
-#~ "This will open %d separate documents. Are you sure you want to do this?"
-#~ msgstr ""
-#~ "Ini akan membuka %d buah dokumen terpisah. Benar ingin melakukan ini?"
+#~ msgid "Ac_tions..."
+#~ msgstr "_Kegiatan..."
 
-#~ msgid "Could not open document \"%s\""
-#~ msgstr "Tidak dapat membuka dokumen \"%s\""
+#~ msgid "_Select logs to monitor:"
+#~ msgstr "Pilih berkas log yang _hendak dipantau:"
 
-#~ msgid "Open %d folders?"
-#~ msgstr "Buka %d folder?"
+#~ msgid "Currently _monitored logs:"
+#~ msgstr "Log yang sedang di_pantau"
 
-#~ msgid ""
-#~ "You did not select a document name or the name selected was a folder.  "
-#~ "The document is not saved."
-#~ msgstr ""
-#~ "Nama dokumen belum dipilih atau nama tersebut sebenarnya merupakan sebuah "
-#~ "folder.Jadinya dokumen tadi tidak jadi disimpan."
+#~ msgid "Add logs to monitor"
+#~ msgstr "Pantau berkas log baru"
 
-#~ msgid "The contents of the file \"%s\" will be lost."
-#~ msgstr "Isi file \"%s\" akan hilang."
+#~ msgid "Remove logs from monitor"
+#~ msgstr "Buang berkas log dari daftar pantauan"
 
-#~ msgid "Overwrite an existing file?"
-#~ msgstr "Timpa file yang sudah ada ini?"
+#~ msgid "_Hide application"
+#~ msgstr "Se_mbunyikan aplikasi"
 
-#~ msgid "Could not save document \"%s\" to %s"
-#~ msgstr "Tidak dapat menyimpan dokumen \"%s\" ke %s"
+#~ msgid "_Execute actions"
+#~ msgstr "Jalankan _aksi"
 
-#~ msgid "GNOME Calculator"
-#~ msgstr "Kalkulator GNOME"
+#~ msgid "Too many logs to monitor. Remove one and try again"
+#~ msgstr "Terlalu banyak berkas log yang dipantau. Buang satu dan coba lagi"
 
-#~ msgid "(C) 1998 Free Software Foundation, Inc."
-#~ msgstr "(C) 1998 Free Software Foundation, Inc."
+#~ msgid "tmp_list is NULL\n"
+#~ msgstr "tmp_list bernilai NULL\n"
 
-#~ msgid "Simple double precision calculator similar to xcalc"
-#~ msgstr "Kalkulator sederhana berpresisi ganda yang mirip dengan xcalc"
+#~ msgid "Monitoring Logs..."
+#~ msgstr "Log sedang dipantau..."
 
-#~ msgid "_Calculator"
-#~ msgstr "_Kalkulator"
-
-#~ msgid "Calculator"
-#~ msgstr "Kalkulator"
-
-#~ msgid "inf"
-#~ msgstr "inf"
-
-#~ msgid "DEG"
-#~ msgstr "DEG"
-
-#~ msgid "RAD"
-#~ msgstr "RAD"
-
-#~ msgid "GRAD"
-#~ msgstr "GRAD"
-
-#~ msgid "1/x"
-#~ msgstr "1/x"
-
-#~ msgid "Inverse"
-#~ msgstr "Inverse"
-
-#~ msgid "x<sup>2</sup>"
-#~ msgstr "x<sup>2</sup>"
-
-#~ msgid "Square"
-#~ msgstr "Akar"
-
-#~ msgid "SQRT"
-#~ msgstr "SQRT"
-
-#~ msgid "Square root"
-#~ msgstr "Akar  Kuadrat"
-
-#~ msgid "CE/C"
-#~ msgstr "CE/C"
-
-#~ msgid "Clear"
-#~ msgstr "Bersihkan"
-
-#~ msgid "AC"
-#~ msgstr "AC"
-
-#~ msgid "Reset"
-#~ msgstr "Reset"
-
-#~ msgid "INV"
-#~ msgstr "INV"
-
-#~ msgid "Inverse trigonometry/log function"
-#~ msgstr "Fungsi trigonometri/log invers"
-
-#~ msgid "sin"
-#~ msgstr "sin"
-
-#~ msgid "Sine"
-#~ msgstr "Sinus"
-
-#~ msgid "cos"
-#~ msgstr "cos"
-
-#~ msgid "Cosine"
-#~ msgstr "Kosinus"
-
-#~ msgid "tan"
-#~ msgstr "tan"
-
-#~ msgid "Tangent"
-#~ msgstr "Tangen"
-
-#~ msgid " DEG  "
-#~ msgstr "DEG"
-
-#~ msgid "Switch degrees / radians / grad"
-#~ msgstr "Ganti degree/radian/grad"
-
-#~ msgid "e"
-#~ msgstr "e"
-
-#~ msgid "Base of Natural Logarithm"
-#~ msgstr "Basis Logaritma Natural"
-
-#~ msgid "EE"
-#~ msgstr "EE"
-
-#~ msgid "Add digit"
-#~ msgstr "Tambah digit"
-
-#~ msgid "log"
-#~ msgstr "log"
-
-#~ msgid "Base 10 Logarithm"
-#~ msgstr "Logaritma basis 10"
-
-#~ msgid "ln"
-#~ msgstr "ln"
-
-#~ msgid "Natural Logarithm"
-#~ msgstr "Logaritma Natural"
-
-#~ msgid "x<sup>y</sup>"
-#~ msgstr "x<sup>y</sup>"
-
-#~ msgid "Power"
-#~ msgstr "Pangkat"
-
-#~ msgid "PI"
-#~ msgstr "PI"
-
-#~ msgid "x!"
-#~ msgstr "x!"
-
-#~ msgid "Factorial"
-#~ msgstr "Faktorial"
-
-#~ msgid "("
-#~ msgstr "("
-
-#~ msgid "Opening Parenthesis"
-#~ msgstr "Kurung buka"
-
-#~ msgid ")"
-#~ msgstr ")"
-
-#~ msgid "Closing Parenthesis"
-#~ msgstr "Kurung tutup"
-
-#~ msgid "/"
-#~ msgstr "/"
-
-#~ msgid "Divide by"
-#~ msgstr "Dibagi dengan"
-
-#~ msgid "STO"
-#~ msgstr "STO"
-
-#~ msgid ""
-#~ "Store the value in the\n"
-#~ "display field in memory"
-#~ msgstr ""
-#~ "Simpan nilai dalam\n"
-#~ "tampilan ke memori"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "Multiply by"
-#~ msgstr "Dikali dengan"
-
-#~ msgid "RCL"
-#~ msgstr "RCL"
-
-#~ msgid ""
-#~ "Display the value in memory\n"
-#~ "in the display field"
-#~ msgstr ""
-#~ "Tampilkan nilai dari memori\n"
-#~ "ke layar"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "Subtract"
-#~ msgstr "Pengurangan"
-
-#~ msgid "SUM"
-#~ msgstr "SUM"
-
-#~ msgid ""
-#~ "Add the value in the display\n"
-#~ "field to the value in memory"
-#~ msgstr ""
-#~ "Tambah nilai pada layar\n"
-#~ "ke nilai yang ada di memori"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "+"
-#~ msgstr "+"
-
-#~ msgid "Add"
-#~ msgstr "Tambahkan"
-
-#~ msgid "EXC"
-#~ msgstr "EXC"
-
-#~ msgid ""
-#~ "Exchange the values in the\n"
-#~ "display field and memory"
-#~ msgstr ""
-#~ "Tukar nilai yang ada di layar\n"
-#~ "dengan yang ada di memori"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "."
-#~ msgstr "."
-
-#~ msgid "Decimal Point"
-#~ msgstr "Titik desimal"
-
-#~ msgid "+/-"
-#~ msgstr "+/-"
-
-#~ msgid "Change sign"
-#~ msgstr "Ganti tanda"
-
-#~ msgid "="
-#~ msgstr "="
-
-#~ msgid "Calculate"
-#~ msgstr "Hitung"
-
-#~ msgid "Perform simple calculations"
-#~ msgstr "Lakukan perhitungan sederhana"
-
-#~ msgid "Character Map"
-#~ msgstr "Peta Karakter"
-
-#~ msgid "Insert special characters into documents"
-#~ msgstr "Masukkan karakter khusus ke dalam dokumen"
-
-#~ msgid "Select Character"
-#~ msgstr "Pilih karakter"
-
-#~ msgid "_Insert"
-#~ msgstr "_Masukkan"
-
-#~ msgid "Character c_ode:"
-#~ msgstr "K_ode karakter:"
-
-#~ msgid "Ch_aracter:"
-#~ msgstr "K_arakter:"
-
-#~ msgid "Character Code"
-#~ msgstr "Kode Karakter"
-
-#~ msgid "Select character code"
-#~ msgstr "Pilih kode karakter"
-
-#~ msgid "Character"
-#~ msgstr "Karakter"
-
-#~ msgid "Character to insert"
-#~ msgstr "Karakter yang hendak dimasukkan"
-
-#~ msgid "GNOME Character Map"
-#~ msgstr "Peta Karakter dari GNOME"
-
-#~ msgid ""
-#~ "Select, copy and paste characters from your font into other applications"
-#~ msgstr "Pilih, salin, dan paste karakter dari font ini ke aplikasi lain"
-
-#~ msgid "Character code: (Unicode) U+%04lX"
-#~ msgstr "Kode karakter: (Unicode) U+%04lX"
-
-#~ msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
-#~ msgstr "Kode Karakter: (Unicode) U+%04lX, (%s) 0x%s"
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "Teks disalin ke klipboard..."
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "Teks diambil ke klipboard..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "Teks dipaste dari klipboard..."
-
-#~ msgid "Action Toolbar"
-#~ msgstr "Toolbar aksi"
-
-#~ msgid "_Font:"
-#~ msgstr "_Font"
-
-#~ msgid "_Text to copy:"
-#~ msgstr "_Teks yang hendak disalin:"
-
-#~ msgid "_Copy"
-#~ msgstr "S_alin"
-
-#~ msgid "Text to copy"
-#~ msgstr "Teks yang hendak disalin"
-
-#~ msgid "Entry"
-#~ msgstr "Isian"
-
-#~ msgid "Copy"
-#~ msgstr "Salin"
-
-#~ msgid "_Browse..."
-#~ msgstr "_Cari..."
-
-#~ msgid "Cut the selection"
-#~ msgstr "Potong bagian yang dipilih"
-
-#~ msgid "Copy the selection"
-#~ msgstr "Salin bagian yang dipilih"
-
-#~ msgid "Paste the clipboard"
-#~ msgstr "Paste isi clipboard"
-
-#~ msgid "Expander Size"
-#~ msgstr "Ukuran ekspander"
-
-#~ msgid "Size of the expander arrow"
-#~ msgstr "Ukuran panah ekspander"
+#~ msgid "TOUCHED!!\n"
+#~ msgstr "TOUCHED!!\n"
