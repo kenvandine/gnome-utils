@@ -773,11 +773,9 @@ drag_data_animation_cb (GtkWidget          *widget,
 	
 	for (i = 0; i < argc; i++) {
 		command = g_string_append (command, argv[i]);
-		if ((i + 1) < argc) {
-			command = g_string_append_c (command, ' '); 
-		}
+		command = g_string_append_c (command, ' ');
 	}
-	command = g_string_append (command, " --start");
+	command = g_string_append (command, "--start");
 		
 	disk = g_locale_from_utf8 (command->str, -1, NULL, NULL, NULL);
 	uri = gnome_vfs_make_uri_from_input_with_dirs (disk, GNOME_VFS_MAKE_URI_DIR_HOMEDIR);

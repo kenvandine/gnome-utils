@@ -1856,8 +1856,8 @@ create_main_window (void)
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(interface.file_is_named_entry)))
 	{
 		interface.is_gail_loaded = TRUE;
-		add_atk_namedesc (interface.file_is_named_entry, _("File Name Entry"), _("Enter the file name you want to search"));
-		add_atk_namedesc (entry, _("File Name Entry"), _("Enter the file name you want to search"));
+		add_atk_namedesc (interface.file_is_named_entry, _("Name Contains Entry"), _("Enter the file name you want to search"));
+		add_atk_namedesc (entry, _("Name Contains Entry"), _("Enter the file name you want to search"));
 		add_atk_relation (interface.file_is_named_entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY);
 	}	
      
@@ -1884,8 +1884,8 @@ create_main_window (void)
 	
 	if (interface.is_gail_loaded)
 	{ 
-		add_atk_namedesc (GTK_WIDGET(folder_entry), _("Starting folder entry"), _("Enter the folder name where you want to start the search"));
-		add_atk_namedesc (GTK_WIDGET(entry), _("Starting folder entry"), _("Enter the folder name where you want to start the search"));
+		add_atk_namedesc (GTK_WIDGET(folder_entry), _("Look in Folder Entry"), _("Enter the folder name where you want to start the search"));
+		add_atk_namedesc (GTK_WIDGET(entry), _("Look in Folder Entry"), _("Enter the folder name where you want to start the search"));
 		add_atk_relation (folder_entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY); 
 	}
 	
