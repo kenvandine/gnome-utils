@@ -121,6 +121,7 @@ GnomeUIInfo view_menu[] = {
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
 };
 
+#if 0
 GnomeUIInfo filter_menu[] = {
         {GNOME_APP_UI_ITEM, N_("Select...               "), 
 	 N_("Select log events"), StubCall, NULL, NULL,
@@ -130,6 +131,7 @@ GnomeUIInfo filter_menu[] = {
          GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
 };
+#endif
 
 GnomeUIInfo help_menu[] = {
         {GNOME_APP_UI_ITEM, N_("About..                "), 
@@ -142,8 +144,8 @@ GnomeUIInfo help_menu[] = {
 GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
 	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
-        {GNOME_APP_UI_SUBTREE, N_("F_ilter"), NULL,  filter_menu, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+/*        {GNOME_APP_UI_SUBTREE, N_("F_ilter"), NULL,  filter_menu, NULL, NULL, */
+/*         GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}, */
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
 };
@@ -286,9 +288,10 @@ CreateMainWin ()
    gtk_widget_set_state (file_menu[1].widget, GTK_STATE_INSENSITIVE);
    if (numlogs < 2)
      gtk_widget_set_state (file_menu[3].widget, GTK_STATE_INSENSITIVE);
+#if 0
    gtk_widget_set_state (filter_menu[0].widget, GTK_STATE_INSENSITIVE);
    gtk_widget_set_state (filter_menu[1].widget, GTK_STATE_INSENSITIVE);
-
+#endif
 
    /* Create main canvas and scroll bar */
    frame = gtk_frame_new (NULL);
