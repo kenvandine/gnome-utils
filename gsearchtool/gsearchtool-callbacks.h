@@ -151,6 +151,11 @@ file_key_press_event_cb		(GtkWidget 	*widget,
 gboolean
 not_running_timeout_cb 		(gpointer data);
 
+void
+disable_quick_search_cb         (GtkWidget 	*dialog, 
+				 gint      	response, 
+				 gpointer  	data);
+
 #ifdef __cplusplus
 }
 #endif

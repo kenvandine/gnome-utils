@@ -27,6 +27,7 @@
 #include <gtk/gtkimage.h>
 #include <gtk/gtkstock.h>
 #include <gtk/gtkiconfactory.h>
+#include <gtk/gtkexpander.h>
 #include <string.h>
 
 enum {
@@ -127,9 +128,11 @@ gsearch_alert_dialog_init (GsearchAlertDialog *dialog)
 {
 	GtkWidget *hbox;
 	GtkWidget *vbox;
+	GtkWidget *expander;
 
 	dialog->primary_label = gtk_label_new (NULL);
 	dialog->secondary_label = gtk_label_new (NULL);
+	dialog->details_label = gtk_label_new (NULL);
 	dialog->image = gtk_image_new_from_stock (NULL, GTK_ICON_SIZE_DIALOG);
 	gtk_misc_set_alignment (GTK_MISC (dialog->image), 0.5, 0.0);
 
@@ -142,6 +145,10 @@ gsearch_alert_dialog_init (GsearchAlertDialog *dialog)
 	gtk_label_set_selectable (GTK_LABEL (dialog->secondary_label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (dialog->secondary_label), 0.0, 0.5);
 
+	gtk_label_set_line_wrap (GTK_LABEL (dialog->details_label), TRUE);
+	gtk_label_set_selectable (GTK_LABEL (dialog->details_label), TRUE);
+	gtk_misc_set_alignment (GTK_MISC (dialog->details_label), 0.0, 0.5);
+	
 	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
 
@@ -162,7 +169,16 @@ gsearch_alert_dialog_init (GsearchAlertDialog *dialog)
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), hbox, 
 	                    FALSE, FALSE, 0);
 
+	expander = gtk_expander_new_with_mnemonic (_("Show more _details"));
+	dialog->details_expander = expander;
+	gtk_expander_set_spacing (GTK_EXPANDER (expander), 6);
+	gtk_container_add (GTK_CONTAINER (expander), dialog->details_label);
+	
+	gtk_box_pack_start (GTK_BOX (vbox), expander, 
+			    FALSE, FALSE, 0);
+
 	gtk_widget_show_all (hbox);
+	gtk_widget_hide (expander);
 }
 
 static GtkMessageType
@@ -296,6 +312,21 @@ gsearch_alert_dialog_set_secondary_label (GsearchAlertDialog *dialog,
 	if (message != NULL) {
 		gtk_label_set_text (GTK_LABEL (GSEARCH_ALERT_DIALOG (dialog)->secondary_label),
 		                    message);
+	}
+	else {
+		gtk_widget_hide (GSEARCH_ALERT_DIALOG (dialog)->secondary_label);
+	}
+}
+
+void
+gsearch_alert_dialog_set_details_label (GsearchAlertDialog *dialog,
+				    const gchar    *message)
+{
+	if (message != NULL) {
+		gtk_widget_show (dialog->details_expander);
+		gtk_label_set_text (GTK_LABEL (dialog->details_label), message);
+	} else {
+		gtk_widget_hide (dialog->details_expander);
 	}
 }
 

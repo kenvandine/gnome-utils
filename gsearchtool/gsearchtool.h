@@ -83,6 +83,7 @@ extern struct _SearchStruct {
 	gboolean		regex_matching_enabled;
 	gboolean		not_running_timeout;
 	gboolean		aborted;
+	gboolean		quick_mode;
 	RunStatus        	running;
 	GHashTable              *pixbuf_hash;
 } search_command;

@@ -1469,3 +1469,14 @@ not_running_timeout_cb (gpointer data)
 	search_command.not_running_timeout = FALSE;
 	return FALSE;
 }
+
+void
+disable_quick_search_cb (GtkWidget 	*dialog, 
+                         gint      	response, 
+                         gpointer   	data)
+{
+	if (response == GTK_RESPONSE_OK) {
+		gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/disable_quick_search", TRUE);
+	}
+	gtk_widget_destroy (GTK_WIDGET (dialog));
+}

@@ -314,6 +314,7 @@ build_search_command (void)
 	
 	command = g_string_new ("");
 	search_command.show_hidden_files = FALSE;
+	search_command.quick_mode = FALSE;
 	
 	if ((GTK_WIDGET_VISIBLE(interface.additional_constraints) == FALSE) ||
 	    (interface.selected_constraints == NULL)) {
@@ -340,6 +341,7 @@ build_search_command (void)
 						locate_command_default_options,
 						look_in_folder_locale,
 						file_is_named_escaped);
+			search_command.quick_mode = TRUE;
 		} 
 		else {
 			g_string_append_printf (command, "find \"%s\" '!' -type p %s '%s' -xdev -print", 
@@ -1317,28 +1319,59 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 				
 				GtkWidget *dialog;
 				
-				error_msgs = g_string_prepend (error_msgs, 
-				     _("While searching the following errors were reported.\n\n"));
-				
 				if (truncate_error_msgs) {
 					error_msgs = g_string_append (error_msgs, 
 				     		_("\n... Too many errors to display ..."));
 				}
 				
-				dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
-		                	                           GTK_DIALOG_DESTROY_WITH_PARENT,
-						                   GTK_MESSAGE_ERROR,
-							           GTK_BUTTONS_OK,
-							           _("Error while searching for files."),
-							           error_msgs->str,
-							           NULL);
+				if (search_command.quick_mode != TRUE) {
+				     
+					dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                		                           GTK_DIALOG_DESTROY_WITH_PARENT,
+							                   GTK_MESSAGE_ERROR,
+								           GTK_BUTTONS_OK,
+								           _("The search results may be invalid."
+									     "  There were errors while performing this search."),
+								           NULL,
+								           NULL);			
 				
-				g_signal_connect (G_OBJECT (dialog),
-					"response",
-					G_CALLBACK (gtk_widget_destroy), NULL);
+					gsearch_alert_dialog_set_secondary_label (GSEARCH_ALERT_DIALOG (dialog), NULL);							   
+					gsearch_alert_dialog_set_details_label (GSEARCH_ALERT_DIALOG (dialog), error_msgs->str);
+					
+					g_signal_connect (G_OBJECT (dialog),
+						"response",
+						G_CALLBACK (gtk_widget_destroy), NULL);
+					
+					gtk_widget_show (dialog);
+				}
+				else {
+					GtkWidget *button;
+								       			       
+					dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                		                           GTK_DIALOG_DESTROY_WITH_PARENT,
+							                   GTK_MESSAGE_ERROR,
+								           GTK_BUTTONS_CANCEL,
+								           _("The search results may be invalid."
+									     "  Do you want to disable the quick search feature?"),
+								           NULL,
+								           NULL);
+									   
+					gsearch_alert_dialog_set_secondary_label (GSEARCH_ALERT_DIALOG (dialog), NULL);							   
+					gsearch_alert_dialog_set_details_label (GSEARCH_ALERT_DIALOG (dialog), error_msgs->str);
+					
+					button = gsearchtool_button_new_with_stock_icon (_("_Disable Quick Search"), GTK_STOCK_OK);
+					GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+					gtk_widget_show (button);
+
+					gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_OK);
+					gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 				
-				gtk_widget_show (dialog);
-	
+					g_signal_connect (G_OBJECT (dialog),
+						"response",
+						G_CALLBACK (disable_quick_search_cb), NULL);
+					
+					gtk_widget_show (dialog);
+				}
 			}
 			truncate_error_msgs = FALSE;
 			g_string_truncate (error_msgs, 0);

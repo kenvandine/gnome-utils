@@ -37,6 +37,8 @@ struct _GsearchAlertDialog
 	GtkWidget *image;
 	GtkWidget *primary_label;
 	GtkWidget *secondary_label;
+	GtkWidget *details_expander;
+	GtkWidget *details_label;
 };
 
 struct _GsearchAlertDialogClass
@@ -60,4 +62,6 @@ void       gsearch_alert_dialog_set_primary_label   (GsearchAlertDialog *dialog,
 void       gsearch_alert_dialog_set_secondary_label (GsearchAlertDialog *dialog,
 		                                     const gchar    *message);
 
+void       gsearch_alert_dialog_set_details_label   (GsearchAlertDialog *dialog,
+						     const gchar    *message);
 #endif /* GSEARCHTOOL_ALERT_DIALOG_H */
