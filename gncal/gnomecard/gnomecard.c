@@ -1912,8 +1912,9 @@ int main (int argc, char *argv[])
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
 	canvas =
-	  crd_canvas = gnome_canvas_new(gtk_widget_get_default_visual(),
-					gtk_widget_get_default_colormap());
+	  crd_canvas = gnome_canvas_new();
+/*					gtk_widget_get_default_visual(),
+					gtk_widget_get_default_colormap());*/
 	gnome_canvas_set_size(GNOME_CANVAS(canvas), 
 			      CANVAS_WIDTH, CANVAS_HEIGHT);
 
