@@ -54,21 +54,8 @@ typedef enum {
 extern const gchar * descriptions[];
 extern const gchar * info[];
 
-/* information about each disk */
-typedef enum {
-  di_device,
-  di_size,
-  di_used,
-  di_free,
-  di_percent,
-  di_mountpoint,
-
-  end_disk_info
-} disk_info;
-
-extern const gchar * disk_descriptions[];
-extern GList * disks;
-
 void load_system_info();
 
 #endif
+
+

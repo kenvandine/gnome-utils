@@ -43,6 +43,7 @@
 static void popup_main_dialog();
 static void save_callback(GtkWidget * menuitem, gpointer data);
 static void mail_callback(GtkWidget * menuitem, gpointer data);
+static void detailed_callback(GtkWidget * menuitem, gpointer data);
 static gint list_clicked_cb(GtkCList * list, GdkEventButton * e);
 
 static void write_to_filestream(FILE * f);
@@ -74,6 +75,7 @@ int main ( int argc, char ** argv )
   gnome_init (APPNAME, 0, argc, argv, 0, 0);
 
   load_system_info();
+  load_moreinfo();
 
   popup_main_dialog();
 
@@ -216,6 +218,13 @@ static void do_popup(GtkWidget * clist)
                      GTK_SIGNAL_FUNC(mail_callback), NULL);
   gtk_menu_append(GTK_MENU(popup), mi);
   gtk_widget_show(mi);  
+
+  mi = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK,
+                             _("Detailed Information..."));
+  gtk_signal_connect(GTK_OBJECT(mi), "activate",
+                     GTK_SIGNAL_FUNC(detailed_callback), NULL);
+  gtk_menu_append(GTK_MENU(popup), mi);
+  gtk_widget_show(mi);  
 }
 
 /**********************************
@@ -316,6 +325,11 @@ static void mailx_callback(gchar * string, gpointer data)
 static void mail_callback(GtkWidget * menuitem, gpointer data)
 {
   gnome_request_string_dialog(_("Address to mail to:"), mailx_callback, NULL);
+}
+
+static void detailed_callback(GtkWidget * menuitem, gpointer data)
+{
+  display_moreinfo();
 }
 
 /*********************************************

@@ -22,6 +22,19 @@
 #ifndef MOREINFO_H
 #define MOREINFO_H
 
-void display_comprehensive_info();
+typedef enum {
+  fs_description,
+  fs_numbers,
+  fs_percent_full,
+
+  end_filesystem_info
+} filesystem_info;
+
+/* List of arrays of filesystem info (well, a white lie; see .c) */
+extern GList * filesystems;
+
+void load_moreinfo();
+
+void display_moreinfo();
 
 #endif

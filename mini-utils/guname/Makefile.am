@@ -10,12 +10,16 @@ guname_SOURCES = \
 	guname.c	\
 	info.c		\
 	list.c		\
-	moreinfo.c
+	moreinfo.c	\
+	fsusage.c	\
+	mountlist.c
 
 noinst_HEADERS = \
 	info.h		\
 	list.h		\
-	moreinfo.h	
+	moreinfo.h	\
+	fsusage.h	\
+	mountlist.h
 
 
 guname_LDADD = \
