@@ -63,5 +63,6 @@ void main_app_destroy (MainApp *obj);
 gboolean check_gail(GtkWidget *widget);
 void add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc);
 void add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type);
+void edit_menu_set_sensitivity (gboolean flag);
 
 #endif /* _INTERFACE_H_ */

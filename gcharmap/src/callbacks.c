@@ -91,21 +91,14 @@ cb_charbtn_click (GtkButton *button, gpointer user_data)
     GtkLabel *label = GTK_LABEL (GTK_BIN (button)->child);
     const gchar *text;
     gint current_pos;
-    
+   
     text = gtk_label_get_text (label);
 
     gtk_editable_get_position(GTK_EDITABLE(mainapp->entry));
     gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
 			      strlen (text), &current_pos);
     gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), current_pos + 1);
-/*
-    } else {
-           gint current_pos;
-           gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), -1);
-           current_pos = gtk_editable_get_position (GTK_EDITABLE (mainapp->entry));
-           gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text, strlen(text), &current_pos);
-           gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), current_pos + 1);
-    } */
+    edit_menu_set_sensitivity (TRUE); 
 }
 
 
@@ -145,7 +138,9 @@ cb_charbtn_leave (GtkButton *button, GdkEventFocus *event, gpointer user_data)
 void
 cb_clear_click (GtkWidget *widget, gpointer user_data)
 {
+    edit_menu_set_sensitivity (FALSE);
     gtk_editable_delete_text (GTK_EDITABLE (mainapp->entry), 0, -1);
+    edit_menu_set_sensitivity (FALSE);
 }
 
 

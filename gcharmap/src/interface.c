@@ -31,6 +31,19 @@
 #include <callbacks.h>
 MainApp *mainapp;
 
+void
+edit_menu_set_sensitivity (gboolean flag)
+{
+    static gboolean sensitivity = TRUE;
+    gint i, items[2] = {4, 6};
+    
+    if (! (sensitivity ^ flag))
+	return;
+    for (i=0; i < 2; i++) {
+       sensitivity = flag;
+       gtk_widget_set_sensitive (GTK_WIDGET (edit_menu[items[i]].widget), flag);
+    }
+}
 
 static GtkWidget *
 create_button (const gchar *label, GtkSignalFunc func)
@@ -204,6 +217,8 @@ main_app_create_ui (MainApp *app)
         gtk_widget_show (appbar);
 
         gnome_app_create_menus (GNOME_APP (app->window), menubar);
+	edit_menu_set_sensitivity (FALSE);
+
         gnome_app_install_menu_hints (GNOME_APP (app->window), menubar);
 
         item = g_list_nth_data (GNOME_APP (app->window)->layout->items, 0);

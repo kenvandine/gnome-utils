@@ -24,6 +24,7 @@
 
 #include <gnome.h>
 
+void edit_menu_set_sensitivity (gboolean flag);
 void cb_about_click (GtkWidget *widget, gpointer user_data);
 void cb_browsebtn_click (GtkButton *button, gpointer data);
 void cb_charbtn_click (GtkButton *button, gpointer user_data);
