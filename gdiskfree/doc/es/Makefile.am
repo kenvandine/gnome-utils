@@ -5,7 +5,8 @@ gdiskfree_helpdir = $(datadir)/gnome/help/gdiskfree/es
 SGML_FILES = \
 	gdiskfree.sgml
 
-HTML_FILES = index.html authors.html 	prefs.html	usage.html
+HTML_FILES = index.html authors.html 	prefs.html	usage.html	\
+	ln7.html
 
 EXTRA_DIST = \
 	topic.dat gdiskfree $(SGML_FILES)
@@ -42,15 +43,15 @@ distclean-generic:
 	-rm -rf gdiskfree
 
 install-data-local: index.html
-	$(mkinstalldirs) $(DESTDIR)$(gdiskfree_helpdir)/images
-	-for file in $(srcdir)/gdiskfree/*.html $(srcdir)/gsearch/*.css; do \
+	$(mkinstalldirs) $(DESTDIR)$(gdiskfree_helpdir)/stylesheet-images
+	-for file in $(srcdir)/gdiskfree/*.html $(srcdir)/gdiskfree/*.css; do \
 	  basefile=`basename $$file`; \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gdiskfree_helpdir)/$$basefile; \
 	done
 	-for file in $(srcdir)/*.png ; do \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gdiskfree_helpdir); \
 	done
-	-for file in $(srcdir)/gdiskfree/styleshee-images/*.gif; do \
+	-for file in $(srcdir)/gdiskfree/stylesheet-images/*.gif; do \
 	  basefile=`basename $$file`; \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gdiskfree_helpdir)/stylesheet-images/$$basefile; \
 	done
