@@ -882,7 +882,7 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs)
 		else
 			prefs->logfile = NULL;
 	}
-	
+	g_free (logfile);
 }
 
 void SaveUserPrefs(UserPrefsStruct *prefs)
