@@ -60,7 +60,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   {
 	  gchar *logo_fn = NULL;
 
-	  logo_fn = gnome_pixmap_file("logview/logview.xpm");
+	  logo_fn = gnome_pixmap_file("gnome-system-log/logview.xpm");
 	  if (logo_fn != NULL)
 	  {
 		  logo = gdk_pixbuf_new_from_file(logo_fn, NULL);
@@ -69,7 +69,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   }
 
   /* go get logview.xpm in $(prefix)/share/pixmaps/logview */
-  about_window = gnome_about_new (_("Logview"), VERSION,
+  about_window = gnome_about_new (_("GNOME System Log"), VERSION,
            			  N_("Copyright (C) 1998"),
 				  _(comments),
 				  author,
