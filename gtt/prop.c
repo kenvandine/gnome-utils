@@ -310,6 +310,8 @@ void prop_dialog(project *proj)
 		w = gtk_label_new(_("secs"));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 6, 7, 3, 4);
+
+		gnome_dialog_close_hides(GNOME_DIALOG(dlg->dlg), TRUE);
 	}
 	prop_dialog_set_project(proj);
 	gtk_widget_show(GTK_WIDGET(dlg->dlg));

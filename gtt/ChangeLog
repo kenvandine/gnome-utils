@@ -1,3 +1,9 @@
+Mon Jun  1 18:05:19 CEST 1998  Eckehard Berns  <eb@berns.prima.de>
+
+	* prop.c options.c: added explicite call to gnome_dialog_close_hides,
+	because gnome-dialog (or gnome-propertybox) doesn't handle
+	delete_events right.
+
 Thu May  7 17:03:10 CEST 1998  Eckehard Berns  <eb@berns.prima.de>
 
 	* main.c (main): explicitly ignore SIGCHLD to avoid zombie processes.

@@ -505,6 +505,8 @@ void options_dialog(void)
                 gtk_widget_show(w);
                 gnome_property_box_append_page(odlg->dlg, GTK_WIDGET(vbox), w);
                 toolbar_options(odlg, vbox);
+
+		gnome_dialog_close_hides(GNOME_DIALOG(odlg->dlg), TRUE);
 	}
 	options_dialog_set(odlg);
 	gtk_widget_show(GTK_WIDGET(odlg->dlg));
