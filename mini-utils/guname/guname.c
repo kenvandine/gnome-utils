@@ -493,7 +493,7 @@ static void do_list_box(GtkWidget * box)
   
   gtk_clist_freeze(list); /* does this matter if we haven't shown yet? */
 
-  gtk_clist_set_border(list, GTK_SHADOW_OUT);
+  //gtk_clist_set_border(list, GTK_SHADOW_OUT);
   /* Fixme, eventually you might could select an item 
      for cut and paste, or some other effect. */
   gtk_clist_set_selection_mode(list, GTK_SELECTION_BROWSE);
@@ -720,7 +720,13 @@ static void mailx_callback(gchar * string, gpointer data)
 
 static void mail_callback(GtkWidget * menuitem, gpointer data)
 {
-  gnome_request_string_dialog(_("Address to mail to:"), mailx_callback, NULL);
+  gnome_request_dialog(FALSE,
+                       _("Address to mail to:"),
+                       NULL,
+                       256,
+                       mailx_callback,
+                       NULL,
+                       NULL);
 }
 
 static void detailed_callback(GtkWidget * menuitem, gpointer data)
