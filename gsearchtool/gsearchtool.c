@@ -1056,6 +1056,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), status_bar_string);
 		g_source_remove (search_data->timeout);
 
+		gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.find_button);
 		gtk_widget_set_sensitive (interface.additional_constraints, TRUE);
 		gtk_widget_set_sensitive (interface.disclosure, TRUE);
 		gtk_widget_set_sensitive (interface.table, TRUE);
@@ -1232,6 +1233,7 @@ spawn_search_command (gchar *command)
 	search_command.lock = TRUE;
 	search_command.running = RUNNING; 
 
+	gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.stop_button);
 	gtk_widget_show (interface.stop_button);
 	gtk_widget_set_sensitive (interface.stop_button, TRUE);
 	gtk_widget_hide (interface.find_button);
