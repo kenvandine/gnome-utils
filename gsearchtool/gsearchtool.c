@@ -185,10 +185,13 @@ build_search_command (void)
 	} 
 	else {
 		file_is_named_locale = g_filename_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
+		gnome_entry_prepend_history (GNOME_ENTRY(interface.file_is_named_entry), TRUE, file_is_named_utf8);
 	}
 	
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), TRUE);
 	look_in_folder_locale = g_filename_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
+	gnome_entry_prepend_history (GNOME_ENTRY(gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))), 
+				     TRUE, look_in_folder_utf8);
 	
 	if (!file_extension_is (look_in_folder_locale, G_DIR_SEPARATOR_S)) {
 		look_in_folder_locale = g_strconcat (look_in_folder_locale, G_DIR_SEPARATOR_S, NULL);
