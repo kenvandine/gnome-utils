@@ -27,6 +27,10 @@ static void
 about_cb (GtkWidget *widget, gpointer data)
 {
 	static GtkWidget *about = NULL;
+	GdkPixbuf  	 *pixbuf;
+	GError     	 *error = NULL;
+	gchar      	 *file;
+	
 	gchar *authors[] = {
 		"George Lebl <jirka@5z.com>",
 		"Bastien Nocera <hadess@hadess.net> (fixes)",
@@ -44,14 +48,28 @@ about_cb (GtkWidget *widget, gpointer data)
 		gdk_window_raise(about->window);
 		return;
 	}
-	about = gnome_about_new(_("The GNOME Calculator"), VERSION,
+	
+	file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-calc2.png", FALSE, NULL);
+	pixbuf = gdk_pixbuf_new_from_file (file, &error);
+	
+	if (error) {
+		g_warning (G_STRLOC ": cannot open %s: %s", file, error->message);
+		g_error_free (error);
+	}
+	g_free (file);
+	
+	about = gnome_about_new(_("GNOME Calculator"), VERSION,
 				"(C) 1998 the Free Software Foundation",
 				_("Simple double precision calculator similiar "
 				  "to xcalc"),
 				(const char **)authors,
 				(const char **)documenters,
 				strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
-				NULL);
+				pixbuf);
+	if (pixbuf) {
+		gdk_pixbuf_unref (pixbuf);
+	}			
+				
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",
 			   GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
 	gtk_widget_show (about);
