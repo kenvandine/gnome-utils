@@ -23,10 +23,17 @@ gstripchart_LDADD =					\
 
 
 EXTRA_DIST = 						\
+	gnome-stripchart.png            \
 	gstripchart.conf				\
 	gstripchart.desktop	 			\
 	gstripchart.html				\
 	topic.dat
+
+pixmapdir =                         \
+    $(datadir)/pixmaps
+
+pixmap_DATA =                       \
+    gnome-stripchart.png
 
 Utilitiesdir =						\
 	$(datadir)/gnome/apps/Utilities

@@ -19,6 +19,9 @@ gsearchtool_LDADD = \
 	$(GNOMEUI_LIBS) \
 	$(INTLLIBS)
 
-EXTRA_DIST = gsearchtool.desktop
+pixmapdir = $(datadir)/pixmaps
+pixmap_DATA = gnome-searchtool.png
+
+EXTRA_DIST = gnome-searchtool.png gsearchtool.desktop
 
 Utilities_DATA = gsearchtool.desktop 
