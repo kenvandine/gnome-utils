@@ -19,18 +19,13 @@
     ---------------------------------------------------------------------- */
 
 #include <config.h>
-#include <stdio.h>
-#include <unistd.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include "logview.h"
 
-static GtkWidget *about_window = NULL;
-
 void
 AboutShowWindow (GtkWidget *widget, gpointer user_data)
 {
-  GdkPixbuf *logo = NULL;
   /* Author needs some sort of dash over the 'e' in Cesar  - U-00E9 */
   static const gchar *author[] = { "Cesar Miquel (miquel@df.uba.ar)", NULL};
   gchar *documenters[] = {NULL};
@@ -38,15 +33,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   const gchar *translator_credits = _("translator-credits");
   LogviewWindow *window = user_data;
 
-  if (about_window != NULL) {
-	  gtk_window_set_screen (GTK_WINDOW(about_window), 
-				 gtk_widget_get_screen(GTK_WIDGET(window)));
-	  gtk_window_present (GTK_WINDOW(about_window));
-	  return;
-  }
-
-  about_window = gtk_about_dialog_new ();
-  g_object_set (about_window,
+  gtk_show_about_dialog (GTK_WINDOW (window),
 		"name",  _("System Log Viewer"),
 		"version", VERSION,
 		"copyright", "Copyright \xc2\xa9 1998-2004 Free Software Foundation, Inc.",
@@ -56,15 +43,5 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 		"translator_credits", strcmp (translator_credits, "translator-credits") != 0 ? translator_credits : NULL,
 		"logo_icon_name", "logviewer",
 		NULL);
-
-  gtk_window_set_screen (GTK_WINDOW (about_window),
-			 gtk_widget_get_screen (GTK_WIDGET(window)));
-
-  gtk_signal_connect (GTK_OBJECT (about_window), "destroy",
-		      GTK_SIGNAL_FUNC (gtk_widget_destroyed),
-		      &about_window);
-
-  gtk_widget_show (about_window);
-
   return;
 }

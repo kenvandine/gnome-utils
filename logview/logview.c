@@ -309,7 +309,7 @@ main (int argc, char *argv[])
    ShowQueuedErrMessages ();
    
    if (gnome_client_get_flags (gnome_client) & GNOME_CLIENT_RESTORED) {
-	   restore_session (logviewwindow));
+	   restore_session (logviewwindow);
    }
 
    g_signal_connect (gnome_client, "save_yourself",
