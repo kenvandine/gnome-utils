@@ -24,7 +24,7 @@
 #include <gnome.h>
 #include <errno.h>
 
-#define APPNAME "grun"
+#define APPNAME "gnome-run"
 
 #ifndef VERSION
 #define VERSION "0.0.0"
@@ -38,6 +38,11 @@ static void string_callback(GnomeDialog *dlg, gint button_num, gpointer data)
     char *s;
 
     s = gtk_entry_get_text(GTK_ENTRY(gnome_file_entry_gtk_entry(fentry)));
+
+#if 0
+    gnome_entry_prepend_history(GNOME_ENTRY(gnome_file_entry_gnome_entry(fentry)),
+			        1, s);
+#endif
 
     if ( gnome_execute_shell(NULL, s) < 0 ) {
       gchar * t = g_copy_strings(_("Failed to execute command:\n"), 
@@ -74,6 +79,12 @@ int main (int argc, char ** argv)
 
   fentry = GNOME_FILE_ENTRY(gnome_file_entry_new("gnome-run", _("Select a program to run")));
 
+#if 0
+  gnome_entry_load_history(GNOME_ENTRY(gnome_file_entry_gnome_entry(fentry)));
+#endif
+
+  gtk_window_set_focus(GTK_WINDOW(dialog), gnome_file_entry_gtk_entry(fentry));
+
   gtk_signal_connect(GTK_OBJECT(GTK_COMBO(fentry->gentry)->entry), "activate", 
 		     GTK_SIGNAL_FUNC(string_callback), NULL);
 
@@ -83,7 +94,11 @@ int main (int argc, char ** argv)
 
   gtk_main();
 
+#if 0
+  gnome_entry_save_history(GNOME_ENTRY(gnome_file_entry_gnome_entry(fentry)));
+#endif
+
+  gtk_widget_destroy(dialog);
+
   exit(EXIT_SUCCESS);
 }
-
-
