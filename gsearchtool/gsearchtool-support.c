@@ -316,12 +316,12 @@ get_readable_date (const time_t file_time_raw)
 	g_date_free (today);
 	g_date_free (file_date);
 			
+	if (file_date_age == 0)	{
 	/* Translators:  Below are the strings displayed in the 'Date Modified'
 	   column of the list view.  The format of this string can vary depending 
 	   on age of a file.  Please modify the format of the timestamp to match
 	   your locale.  For example, to display 24 hour time replace the '%-I' 
 	   with '%-H' and remove the '%p'.  (See bugzilla report #120434.) */
-	if (file_date_age == 0)	{
 		format = g_strdup(_("today at %-I:%M %p"));
 	} else if (file_date_age == 1) {
 		format = g_strdup(_("yesterday at %-I:%M %p"));
