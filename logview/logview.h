@@ -177,6 +177,7 @@ typedef struct
   gint total_lines; /* no of lines in the file */
   LogLine **lines; /* actual lines */
   gboolean first_time;
+  GtkTreePath *current_path;
   GtkTreePath *expand_paths[32];
 
   /* Monitor info */

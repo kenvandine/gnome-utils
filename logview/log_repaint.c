@@ -277,6 +277,7 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
         path = gtk_tree_model_get_path (model, &iter);
         root_tree = gtk_tree_path_new_root ();
 
+        curlog->current_path = gtk_tree_path_copy (path);
         iterate_thru_children (GTK_TREE_VIEW (view), model, root_tree, path, &row, 0);
 
         gtk_tree_path_free (root_tree);
@@ -546,17 +547,33 @@ DrawLogLines (Log *current_log)
            MESSAGE, LocaleToUTF8 (line->message), -1);
    }
  
-   /* Expand the rows */
    if (current_log->first_time) {
+
+       /* Expand the rows */
        path = gtk_tree_model_get_path (tree_model, &iter);
        gtk_tree_view_expand_row (GTK_TREE_VIEW (view), path, FALSE);
        current_log->first_time = FALSE;
+
+       /* Scroll and set focus on last row */
+       path = gtk_tree_model_get_path (tree_model, &child_iter);
+       gtk_tree_view_set_cursor (GTK_TREE_VIEW (view), path, NULL, FALSE); 
+       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (view), path, NULL, TRUE, 
+          1, 1);
        gtk_tree_path_free (path);
-   } else 
+
+   } else {
+       /* Expand the rows */
        for (i = 0; current_log->expand_paths[i]; ++i) 
            gtk_tree_view_expand_row (GTK_TREE_VIEW (view),
                current_log->expand_paths[i], FALSE);
 			   
+       /* Scroll and set focus on the previously focused row */
+       gtk_tree_view_set_cursor (GTK_TREE_VIEW (view), 
+           current_log->current_path, NULL, FALSE); 
+       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (view), 
+           current_log->current_path, NULL, TRUE, 1, 1);
+   }
+
    g_free (utf8);
    
 }

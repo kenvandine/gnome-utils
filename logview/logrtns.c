@@ -1098,6 +1098,8 @@ CloseLog (Log * log)
    for (i = 0; log->expand_paths[i]; ++i)
        gtk_tree_path_free (log->expand_paths[i]);
 
+   gtk_tree_path_free (log->current_path);
+
    g_free (log);
    return;
 
