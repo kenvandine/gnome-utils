@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-05-31 13:42+0300\n"
+"POT-Creation-Date: 2000-06-30 18:47+0300\n"
 "PO-Revision-Date: 1999-10-01 19:18+0300\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -276,7 +276,7 @@ msgid "Cross-reference:"
 msgstr "Посилання:"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:495
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
 #: mini-utils/gcolorsel/menus.c:1109 mini-utils/gshutdown/gshutdown.c:314
 msgid "Preferences"
 msgstr "Налаштування"
@@ -329,7 +329,7 @@ msgstr "Аплет"
 #. * label; FIXME: Memory leak
 #.
 #: gdictsrc/gdict-pref-dialog.c:498 gdictsrc/gdict-pref-dialog.c:542
-#: gdictsrc/gdict-speller.c:386
+#: gdictsrc/gdict-speller.c:393
 msgid "Cannot connect to server"
 msgstr "Неможливо з'╓днатися з словниковим сервером"
 
@@ -354,7 +354,7 @@ msgstr "Вказати геометр╕ю в╕кна"
 msgid "GEOMETRY"
 msgstr "ГЕОМЕТР╤Я"
 
-#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:160
+#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:167
 msgid "Properties"
 msgstr "Властивост╕"
 
@@ -366,35 +366,39 @@ msgstr "Установки програми."
 msgid "GDiskFree is a GNOME implementation of the shell utility 'df'."
 msgstr "GDiskFree - це реал╕зац╕я утил╕ти \"df\" для GNOME."
 
-#: gdiskfree/gdiskfree_options.c:191
+#: gdiskfree/gdiskfree_options.c:206
 msgid "GDiskFree Properties"
 msgstr "Властивост╕ GDiskFree"
 
-#: gdiskfree/gdiskfree_options.c:196
+#: gdiskfree/gdiskfree_options.c:211
 msgid "Invoke sync before getting usage info"
 msgstr "Викликати sync перед отриманням ╕нформац╕╖ про використання"
 
-#: gdiskfree/gdiskfree_options.c:207
+#: gdiskfree/gdiskfree_options.c:223
 msgid "Show drive mount points"
 msgstr "Показати точки монтування пристро╖в"
 
-#: gdiskfree/gdiskfree_options.c:216
+#: gdiskfree/gdiskfree_options.c:234
+msgid "Show drive size"
+msgstr "Показати розм╕р пристрою"
+
+#: gdiskfree/gdiskfree_options.c:244
 msgid "Dial Orientation"
 msgstr "Ор╕╓нтац╕я"
 
-#: gdiskfree/gdiskfree_options.c:221
+#: gdiskfree/gdiskfree_options.c:249
 msgid "Vertical"
 msgstr "Вертакальна"
 
-#: gdiskfree/gdiskfree_options.c:234
+#: gdiskfree/gdiskfree_options.c:262
 msgid "Horizontal"
 msgstr "Горизонтальна"
 
-#: gdiskfree/gdiskfree_options.c:253
+#: gdiskfree/gdiskfree_options.c:281
 msgid "Update interval (ms)"
 msgstr "╤нтервал оновлення (ms)"
 
-#: gdiskfree/gdiskfree_options.c:264
+#: gdiskfree/gdiskfree_options.c:292
 msgid "General Settings"
 msgstr "Загальн╕ установки"
 
@@ -465,12 +469,12 @@ msgstr "Новий"
 msgid "Clear the search window"
 msgstr "Очистити в╕кно пошуку"
 
-#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:565
+#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:610
 #: mini-utils/gw/gw.c:508
 msgid "Add"
 msgstr "Додати"
 
-#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:491
+#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:536
 #: logview/actions.c:127
 msgid "Remove"
 msgstr "Видалити"
@@ -581,35 +585,55 @@ msgstr "Пошук вже працю╓ на ╕нш╕й стор╕нц╕"
 msgid "Search Results"
 msgstr "Результати пошуку"
 
-#: gsearchtool/gsearchtool.c:329
+#: gsearchtool/gsearchtool.c:329 gsearchtool/gsearchtool.c:360
 msgid "Start directory does not exist"
 msgstr "Початкового каталога не ╕сну╓"
 
-#: gsearchtool/gsearchtool.c:483
+#: gsearchtool/gsearchtool.c:369
+msgid "Search command line"
+msgstr "Командний рядок пошуку"
+
+#: gsearchtool/gsearchtool.c:375
+msgid ""
+"This is the command line that can be used to execute this search from the "
+"console:\n"
+"(Note: to print one file per line rather then null separated,\n"
+"append \"| tr '\\000' '\\n'\" to the line below)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:462
+msgid "Entry changed called for a non entry option!"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:528
 msgid "Enable"
 msgstr "Ув╕мкнути"
 
-#: gsearchtool/gsearchtool.c:543
+#: gsearchtool/gsearchtool.c:588
 msgid "Start in directory:"
 msgstr "Починати з каталога:"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:590
 msgid "Browse"
 msgstr "Переглянути"
 
-#: gsearchtool/gsearchtool.c:576 gsearchtool/gsearchtool.c:659
+#: gsearchtool/gsearchtool.c:621
+msgid "Show Command"
+msgstr "Показати команду"
+
+#: gsearchtool/gsearchtool.c:626 gsearchtool/gsearchtool.c:709
 msgid "Start"
 msgstr "Розпочати"
 
-#: gsearchtool/gsearchtool.c:577 gsearchtool/gsearchtool.c:660
+#: gsearchtool/gsearchtool.c:627 gsearchtool/gsearchtool.c:710
 msgid "Stop"
 msgstr "Зупинити"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:660
 msgid "Nothing to locate"
 msgstr "Нема╓ що шукати"
 
-#: gsearchtool/gsearchtool.c:638
+#: gsearchtool/gsearchtool.c:688
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -619,31 +643,31 @@ msgstr ""
 "буде пор╕вняно як п╕дмножину повного шляху, ╕ якщо ви введете рядок\n"
 "з шаблонами - в╕н буде пор╕внюватись з повним шляхом."
 
-#: gsearchtool/gsearchtool.c:647
+#: gsearchtool/gsearchtool.c:697
 msgid "Locate file: "
 msgstr "Пошук файлу: "
 
-#: gsearchtool/gsearchtool.c:681
+#: gsearchtool/gsearchtool.c:731
 msgid "Full find (find)"
 msgstr "Повний пошук (find)"
 
-#: gsearchtool/gsearchtool.c:683
+#: gsearchtool/gsearchtool.c:733
 msgid "Quick find (locate)"
 msgstr "Швидкий пошук (locate)"
 
-#: gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:754
 msgid "The Gnome Search Tool"
 msgstr "Шукач для GNOME"
 
-#: gsearchtool/gsearchtool.c:705
+#: gsearchtool/gsearchtool.c:755
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "© 1998,2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:707
+#: gsearchtool/gsearchtool.c:757
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Оболонка для UNIX команди find/grep/locate"
 
-#: gsearchtool/gsearchtool.c:765
+#: gsearchtool/gsearchtool.c:815
 msgid "Gnome Search Tool"
 msgstr "Зас╕б пошуку фал╕в"
 
@@ -999,11 +1023,11 @@ msgstr "Всього"
 msgid "Today"
 msgstr "Сьогодн╕"
 
-#: gtt/clist.c:171
+#: gtt/clist.c:171 gtt/menucmd.c:117
 msgid "Project Title"
 msgstr "Назва проекта"
 
-#: gtt/clist.c:172
+#: gtt/clist.c:172 gtt/menucmd.c:118
 msgid "Description"
 msgstr "Опис"
 
@@ -1052,35 +1076,31 @@ msgstr "Вибрати проект на початку"
 msgid "PROJECT"
 msgstr "ПРОЕКТ"
 
-#: gtt/menucmd.c:31 gtt/menucmd.c:129 gtt/menucmd.c:161
+#: gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
 msgid "Warning"
 msgstr "Увага"
 
-#: gtt/menucmd.c:32 gtt/menucmd.c:163
+#: gtt/menucmd.c:34 gtt/menucmd.c:195
 msgid "I could not write the configuration file!"
 msgstr "Неможливо записати файл конф╕гурац╕╖"
 
-#: gtt/menucmd.c:63
+#: gtt/menucmd.c:65
 msgid "Time tracking tool for GNOME"
 msgstr "Зас╕б обл╕ку часу для GNOME"
 
-#: gtt/menucmd.c:93 gtt/toolbar.c:142
+#: gtt/menucmd.c:111 gtt/toolbar.c:142
 msgid "New Project..."
 msgstr "Новий проект..."
 
-#: gtt/menucmd.c:97
-msgid "Please enter the name of the new project:"
-msgstr "Будь-ласка введ╕ть назву нового проекту:"
-
-#: gtt/menucmd.c:131
+#: gtt/menucmd.c:163
 msgid "I could not read the configuration file"
 msgstr "Неможливо зчитати файл конф╕гурац╕╖"
 
-#: gtt/menucmd.c:145 gtt/toolbar.c:149
+#: gtt/menucmd.c:177 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Перезавантажити файл конф╕гурац╕╖"
 
-#: gtt/menucmd.c:146
+#: gtt/menucmd.c:178
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1120,155 +1140,155 @@ msgstr "Таймер запущений"
 msgid "_Timer"
 msgstr "_Таймер"
 
-#: gtt/options.c:186
+#: gtt/options.c:189
 msgid "Display"
 msgstr "Представлення"
 
-#: gtt/options.c:194
+#: gtt/options.c:197
 msgid "Show Seconds"
 msgstr "Показувати секунди"
 
-#: gtt/options.c:200
+#: gtt/options.c:203
 msgid "Show Status Bar"
 msgstr "Показувати рядок статусу"
 
-#: gtt/options.c:206
+#: gtt/options.c:209
 msgid "Show Table Header"
 msgstr "Показувати заголовок таблиц╕"
 
-#: gtt/options.c:220 gtt/options.c:514
+#: gtt/options.c:223 gtt/options.c:537
 msgid "Toolbar"
 msgstr "Панель ╕нструмент╕в"
 
-#: gtt/options.c:228
+#: gtt/options.c:231
 msgid "Show Toolbar Icons"
 msgstr "Показувати п╕ктограми на панел╕ ╕нструмент╕в"
 
-#: gtt/options.c:234
+#: gtt/options.c:237
 msgid "Show Toolbar Texts"
 msgstr "Показувати написи на панел╕ ╕нструмент╕в"
 
-#: gtt/options.c:240
+#: gtt/options.c:243
 msgid "Show Tooltips"
 msgstr "Показувати п╕дказки"
 
-#: gtt/options.c:246
+#: gtt/options.c:249
 msgid "Toolbar Segments"
 msgstr "Сегменти панел╕ ╕нструмент╕в"
 
-#: gtt/options.c:254
+#: gtt/options.c:257
 msgid "Show `New'"
 msgstr "Показувати \"Новий\""
 
-#: gtt/options.c:260
+#: gtt/options.c:263
 msgid "Show `Save', `Reload'"
 msgstr "Показувати \"Зберегти\", \"Перезавантажити\""
 
-#: gtt/options.c:266
+#: gtt/options.c:269
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Показувати \"Вир╕зати\", \"Коп╕ювати\", \"Вставити\""
 
-#: gtt/options.c:272
+#: gtt/options.c:275
 msgid "Show `Properties'"
 msgstr "Показувати \"Властивост╕\""
 
-#: gtt/options.c:278
+#: gtt/options.c:281
 msgid "Show `Timer'"
 msgstr "Показувати \"Таймер\""
 
-#: gtt/options.c:284
+#: gtt/options.c:287
 msgid "Show `Preferences'"
 msgstr "Показувати \"Налаштування\""
 
-#: gtt/options.c:290
+#: gtt/options.c:293
 msgid "Show `Help'"
 msgstr "Показувати \"Дов╕дка\""
 
-#: gtt/options.c:296
+#: gtt/options.c:299
 msgid "Show `Quit'"
 msgstr "Показувати \"Вийти\""
 
-#: gtt/options.c:310
+#: gtt/options.c:313
 msgid "Shell Commands"
 msgstr "Команди оболонки"
 
-#: gtt/options.c:318
+#: gtt/options.c:321
 msgid "Switch Project Command:"
 msgstr "Команда визначення проекту:"
 
-#: gtt/options.c:329
+#: gtt/options.c:333
 msgid "No Project Command:"
 msgstr "Команда в╕дсутност╕ проекту:"
 
-#: gtt/options.c:363
+#: gtt/options.c:368
 msgid "Logfile"
 msgstr "Журнал"
 
-#: gtt/options.c:371
+#: gtt/options.c:376
 msgid "Use Logfile"
 msgstr "Використовувати журнал"
 
-#: gtt/options.c:380
+#: gtt/options.c:385
 msgid "Filename:"
 msgstr "Назва файлу:"
 
-#: gtt/options.c:394
+#: gtt/options.c:399
 msgid "Entry Start:"
 msgstr "Точка старту"
 
-#: gtt/options.c:408
+#: gtt/options.c:413
 msgid "Entry Stop:"
 msgstr "Точка зупинки:"
 
-#: gtt/options.c:422
+#: gtt/options.c:427
 msgid "Timeout in secs:"
 msgstr "Час оч╕кування в секундах:"
 
-#: gtt/options.c:501
+#: gtt/options.c:524
 msgid "Misc"
 msgstr "Р╕зне"
 
-#: gtt/proj.c:461
+#: gtt/proj.c:463
 msgid "project %t started"
 msgstr "проект \"%t\" запущений"
 
-#: gtt/proj.c:464
+#: gtt/proj.c:466
 msgid "stopped project %t"
 msgstr "проект \"%t\" зупинений"
 
-#: gtt/prop.c:55
+#: gtt/prop.c:59
 msgid "empty"
 msgstr "пусто"
 
-#: gtt/prop.c:167
+#: gtt/prop.c:174
 msgid "Project"
 msgstr "Проект"
 
-#: gtt/prop.c:186
+#: gtt/prop.c:193
 msgid "Project Title:"
 msgstr "Заголовок проекту:"
 
-#: gtt/prop.c:198
+#: gtt/prop.c:206
 msgid "Project Description:"
 msgstr "Опис проекту:"
 
-#: gtt/prop.c:210
+#: gtt/prop.c:219
 msgid "Project Time today:"
 msgstr "Час роботи над проектом, сьогодн╕:"
 
-#: gtt/prop.c:226 gtt/prop.c:264
+#: gtt/prop.c:235 gtt/prop.c:273
 msgid "hours"
 msgstr "години"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:246 gtt/prop.c:284
 msgid "mins"
 msgstr "хвилини"
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:257 gtt/prop.c:295
 msgid "secs"
 msgstr "секунди"
 
-#: gtt/prop.c:252
+#: gtt/prop.c:261
 msgid "Project Time ever:"
 msgstr "Час роботи над проектом, повний:"
 
@@ -1493,51 +1513,51 @@ msgstr "К╕льсть рядк╕в:"
 msgid "%ld bytes"
 msgstr "байт╕в: %ld"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "January"
 msgstr "С╕чень"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "February"
 msgstr "Лютий"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "March"
 msgstr "Березень"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "April"
 msgstr "Кв╕тень"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "May"
 msgstr "Травень"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "June"
 msgstr "Червень"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "July"
 msgstr "Липень"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "August"
 msgstr "Серпень"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "September"
 msgstr "Вересень"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "October"
 msgstr "Жовтень"
 
-#: logview/log_repaint.c:89
+#: logview/log_repaint.c:90
 msgid "November"
 msgstr "Листопад"
 
-#: logview/log_repaint.c:89
+#: logview/log_repaint.c:90
 msgid "December"
 msgstr "Грудень"
 
@@ -1578,132 +1598,140 @@ msgstr "%s не може бути в╕дкритим."
 msgid "%s not a log file."
 msgstr "%s не ╓ журналом."
 
-#: logview/logrtns.c:614 logview/logrtns.c:645 logview/logrtns.c:776
+#: logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: вих╕д за меж╕ пам'ят╕"
 
-#: logview/logview.c:84
+#: logview/logview.c:85
 msgid "Open log...            "
 msgstr "В╕дкрити журнал...     "
 
-#: logview/logview.c:85
+#: logview/logview.c:86
 msgid "Open log"
 msgstr "В╕дкрити журнал"
 
-#: logview/logview.c:87
+#: logview/logview.c:88
 msgid "Export log...          "
 msgstr "Експортувати журнал... "
 
-#: logview/logview.c:88
+#: logview/logview.c:89
 msgid "Export log"
 msgstr "Експортувати журнал"
 
-#: logview/logview.c:90
+#: logview/logview.c:91
 msgid "Close log              "
 msgstr "Закрити журнал         "
 
-#: logview/logview.c:91
+#: logview/logview.c:92
 msgid "Close log"
 msgstr "Закрити журнал"
 
-#: logview/logview.c:93
+#: logview/logview.c:94
 msgid "Switch log             "
 msgstr "Перемикнути журнал     "
 
-#: logview/logview.c:94
+#: logview/logview.c:95
 msgid "Switch log"
 msgstr "Перемикнути журнал"
 
-#: logview/logview.c:96
+#: logview/logview.c:97
 msgid "Monitor..              "
 msgstr "Мон╕торинг...          "
 
-#: logview/logview.c:97
+#: logview/logview.c:98
 msgid "Monitor log"
 msgstr "Мон╕торинг журналу"
 
-#: logview/logview.c:99
+#: logview/logview.c:100
 msgid "Exit                   "
 msgstr "Вийти                  "
 
-#: logview/logview.c:100
+#: logview/logview.c:101
 msgid "Exit program"
 msgstr "Вийти з програми"
 
-#: logview/logview.c:106
+#: logview/logview.c:107
 msgid "Calendar                "
 msgstr "Календар                "
 
-#: logview/logview.c:107
+#: logview/logview.c:108
 msgid "Show calendar log"
 msgstr "Показати календар журналу"
 
-#: logview/logview.c:109
+#: logview/logview.c:110
 msgid "Log stats               "
 msgstr "╤нформац╕я про журнал   "
 
-#: logview/logview.c:110
+#: logview/logview.c:111
 msgid "Show log stats"
 msgstr "Показати ╕нформац╕ю про журнал"
 
-#: logview/logview.c:112
+#: logview/logview.c:113
 msgid "Zoom                    "
 msgstr "Подробиц╕               "
 
-#: logview/logview.c:113
+#: logview/logview.c:114
 msgid "Show line info"
 msgstr "Показати ╕нформац╕ю про рядок"
 
-#: logview/logview.c:119
+#: logview/logview.c:116
+msgid "Preferences...          "
+msgstr "Налаштування...         "
+
+#: logview/logview.c:117
+msgid "Show user preferences"
+msgstr "Показати налаштування користувача"
+
+#: logview/logview.c:123
 msgid "Select...               "
 msgstr "Вибрати...              "
 
-#: logview/logview.c:120
+#: logview/logview.c:124
 msgid "Select log events"
 msgstr "Вибрати журнальн╕ под╕╖"
 
-#: logview/logview.c:122
+#: logview/logview.c:126
 msgid "Filter..                "
 msgstr "Ф╕льтр..                "
 
-#: logview/logview.c:123
+#: logview/logview.c:127
 msgid "Filter log events"
 msgstr "Ф╕льтр журнальних под╕й"
 
-#: logview/logview.c:129
+#: logview/logview.c:133
 msgid "About..                "
 msgstr "Про..                  "
 
-#: logview/logview.c:130
+#: logview/logview.c:134
 msgid "Info about logview"
 msgstr "╤нформац╕я про програму перегляду журнал╕в"
 
-#: logview/logview.c:139
+#: logview/logview.c:143
 msgid "F_ilter"
 msgstr "Ф╕льтр"
 
-#: logview/logview.c:230
+#: logview/logview.c:238
 msgid "No log files to open"
 msgstr "Нема╓ журнал╕в для в╕дкривання"
 
 #. Create App
-#: logview/logview.c:259
+#: logview/logview.c:267
 msgid "System Log Viewer"
 msgstr "Переглядач системних журнал╕в"
 
-#: logview/logview.c:360
+#: logview/logview.c:368
 msgid "Filename: "
 msgstr "Назва файлу:"
 
-#: logview/logview.c:376
+#: logview/logview.c:384
 msgid "Date: "
 msgstr "Дата: "
 
-#: logview/logview.c:611
+#: logview/logview.c:619
 msgid "Too many open logs. Close one and try again"
 msgstr "надто багато в╕дкритих журнал╕в. Закрийте один та спробуйте знову."
 
-#: logview/logview.c:664
+#: logview/logview.c:672
 msgid "Open new logfile"
 msgstr "В╕дкрити новий журнал"
 
@@ -2432,31 +2460,31 @@ msgstr "Назва"
 msgid "Tolerance :"
 msgstr "Терпим╕сть :"
 
-#: mini-utils/gfontsel/gfontsel.c:157
+#: mini-utils/gfontsel/gfontsel.c:162
 msgid "Font Selector"
 msgstr "Перемикач шрифт╕в"
 
-#: mini-utils/gfontsel/gfontsel.c:185
+#: mini-utils/gfontsel/gfontsel.c:190
 msgid "Selection:"
 msgstr "Вид╕лення:"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:273
 msgid "Font to load"
 msgstr "Шрифт для завантаження"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:273
 msgid "FONTSPEC"
 msgstr "ШРИФТ"
 
-#: mini-utils/gfontsel/gfontsel.c:269
+#: mini-utils/gfontsel/gfontsel.c:274
 msgid "Print selected font name on exit"
 msgstr "Надрукувати назву вибраного шрифта на виход╕"
 
-#: mini-utils/gfontsel/gfontsel.c:270
+#: mini-utils/gfontsel/gfontsel.c:275
 msgid "Inhibit remembering selected font for next run"
 msgstr "Вимкнути запам'ятовування вибраного шрифта для наступного запуску"
 
-#: mini-utils/gfontsel/gfontsel.c:271
+#: mini-utils/gfontsel/gfontsel.c:276
 msgid "Inhibit loading of last font"
 msgstr "Вимкнути завантаження останнього шрифта"
 
