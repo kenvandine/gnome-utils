@@ -303,13 +303,16 @@ chart_parameter_add(Chart *chart,
   datum->range_data = NULL;
   datum->active = TRUE;
   datum->idle = datum->newest = datum->history_count = 0;
+
   if (adj == NULL)
     adj = GTK_ADJUSTMENT(gtk_adjustment_new(0,0,0,0,0,0));
   datum->adj = adj;
-  datum->adj->upper = datum->top_min = 1.0;
-  datum->top_max = G_MAXDOUBLE;
-  datum->adj->lower = datum->bot_max = 0.0;
-  datum->top_min = G_MINDOUBLE;
+  datum->adj->upper = 1.0;
+  datum->adj->lower = 0.0;
+
+  datum->top_max = datum->bot_max = +G_MAXDOUBLE;
+  datum->top_min = datum->bot_min = -G_MAXDOUBLE;
+
   datum->colors = 0;
   datum->color_names = g_strdup(color_names);
   datum->gdk_gc = NULL;

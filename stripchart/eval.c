@@ -273,7 +273,7 @@ num_op(Expr *expr)
 	}
       else if (streq(id, "t"))	/* time or delta time, in seconds */
 	{
-	  if (expr->s[-1] == '~')
+	  if (id_intro == '~')
 	    val = *expr->t_diff;
 	  else
 	    {
