@@ -76,9 +76,7 @@ logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 		g_free (utf8);
 	}
 
-	if ((found[0] == NULL) && (found[1] == NULL) && (found[2] == NULL))
-		return FALSE;
-	else {
+	if ((found[0] != NULL) || (found[1] != NULL) || (found[2] != NULL)) {
 		if (st->forward) {
 			if (gtk_tree_path_compare (st->current_path, search_path) <= st->comparison) {
 				/* if searching forward, stop at the first found item */
@@ -94,6 +92,7 @@ logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 		}
 	}
 
+	gtk_tree_path_free (search_path);
 	return FALSE;
 }
 
