@@ -1,3 +1,14 @@
+1999-07-21  Nat Friedman  <nat@gnome-support.com>
+
+	* guname.c: If capplet support is enabled, include
+ 	guname-capplet.h and support the --capplet argument.
+	(main): Check for the --capplet argument.  Use
+ 	gnome_capplet_init if it is specified.
+	(create_guname_capplet_window): New function.
+
+	* Makefile.am: Link with -lcapplet and -lgnorba and install
+ 	guname-capplet.desktop if guname capplet support is enabled.
+
 1999-05-11  Havoc Pennington  <hp@pobox.com>
 
 	* info.c (get_portable_info): Implement suggestion from

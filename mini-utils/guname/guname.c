@@ -2,6 +2,7 @@
  *   guname: System information dialog.
  *
  *   Copyright (C) 1998 Havoc Pennington <hp@pobox.com> except marquee code.
+ *   Control Center applet support by Nat Friedman <nat@gnome-support.com>.
  *
  * This program is free software; you can redistribute it and/or 
  * modify it under the terms of the GNU General Public License as 
@@ -26,6 +27,10 @@
 #include <sys/utsname.h>
 #include <unistd.h>
 
+#ifdef GUNAME_CAPPLET
+#include <capplet-widget.h>
+#endif
+
 #include "list.h"
 #if HAVE_LIBGTOP
 #include "moreinfo.h"
@@ -39,9 +44,22 @@
 #define VERSION "0.0.0"
 #endif
 
+#ifdef GUNAME_CAPPLET
+static gint ignore_me;
+static struct poptOption guname_options[] = {
+  {"capplet", '\0', POPT_ARG_NONE, &ignore_me, 0,
+   N_("Make guname act as a control center applet"), NULL},
+  {NULL, '\0', 0, NULL, 0}
+};
+#endif /* GUNAME_CAPPLET */
+
 /****************************
   Function prototypes
   ******************************/
+
+#ifdef GUNAME_CAPPLET
+static void create_guname_capplet_window (void);
+#endif /* GUNAME_CAPPLET */
 
 static void popup_main_dialog();
 static void save_callback(GtkWidget * menuitem, gpointer data);
@@ -68,25 +86,104 @@ GtkWidget * popup = NULL;
   Main
   *******************************/
 
-int main ( int argc, char ** argv )
+int
+main ( int argc, char ** argv )
 {
+  gboolean capplet_mode = FALSE;
+  int i;
+
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init (APPNAME, VERSION, argc, argv);
+#ifdef GUNAME_CAPPLET
+  for (i = 1; i < argc; i ++)
+    if (! strcmp (argv [i], "--capplet")) {
+      capplet_mode = TRUE;
+      break;
+    }
 
-  load_system_info();
+  if (capplet_mode) {
+    int init_results;
+    GnomeClient *client;
+    GnomeClientFlags flags;
+
+    init_results = gnome_capplet_init ("guname-capplet", VERSION,
+                                       argc, argv, guname_options, 0, NULL);
+    if (init_results < 0)
+        g_error ("an initialization error occurred while "
+                 "starting 'guname-capplet'.");
+
+    client = gnome_master_client ();
+
+    if (client)
+        flags = gnome_client_get_flags (client);
+    else
+        flags = 0;
+
+    if (flags & GNOME_CLIENT_IS_CONNECTED) {
+        gnome_client_set_restart_style (client, GNOME_RESTART_NEVER);
+            
+        gnome_client_flush (client);
+    }
+  } else {
+    gnome_init_with_popt_table (APPNAME, VERSION, argc, argv, guname_options, 0, NULL);
+  }
+#else /* ! GUNAME_CAPPLET */
+  gnome_init_with_popt_table (APPNAME, VERSION, argc, argv, guname_options, 0, NULL);
+#endif /* ! GUNAME_CAPPLET */
+
+  load_system_info ();
+
 #if HAVE_LIBGTOP
-  load_moreinfo();
+  load_moreinfo ();
 #endif
+
+#ifdef GUNAME_CAPPLET
+  if (capplet_mode) {
+    create_guname_capplet_window ();
+
+    capplet_gtk_main ();
+
+    return EXIT_SUCCESS;
+  }
+#endif /* GUNAME_CAPPLET */
 
   popup_main_dialog();
 
   gtk_main();
 
-  exit(EXIT_SUCCESS);
+  return EXIT_SUCCESS;
 }
+
+#ifdef GUNAME_CAPPLET
+static void
+create_guname_capplet_window (void)
+{
+    GtkWidget *capplet;
+    GtkWidget *vbox;
+    GtkWidget *logo_box;
+    GtkWidget *list_box;
+
+    capplet = capplet_widget_new ();
+
+    vbox = gtk_vbox_new (FALSE, 0);
+
+    logo_box = gtk_vbox_new (FALSE, 0);
+    do_logo_box (logo_box);
+
+    list_box = gtk_vbox_new (TRUE, 0);
+    do_list_box (list_box);
+
+    gtk_box_pack_start (GTK_BOX (vbox), logo_box, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (vbox), list_box, FALSE, FALSE, 0);
+
+    gtk_container_add (GTK_CONTAINER (capplet), vbox);
+
+    gtk_widget_show_all (capplet);
+}
+
+#endif /* GUNAME_CAPPLET */
 
 /****************************
  Little sparkles                            
@@ -449,7 +546,9 @@ static void do_logo_box(GtkWidget * box)
   button = gtk_button_new();
   pixmap = gnome_stock_pixmap_widget(button,GNOME_STOCK_PIXMAP_MAIL_SND);
   label = gtk_label_new(_("Email Information..."));
+
   hbox  = gtk_hbox_new(FALSE, GNOME_PAD_SMALL/2);
+
   gtk_box_pack_start(GTK_BOX(hbox),pixmap,FALSE,FALSE,0);
   gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
   gtk_container_add(GTK_CONTAINER(button),hbox);
@@ -460,7 +559,7 @@ static void do_logo_box(GtkWidget * box)
   button = gtk_button_new();
   pixmap = gnome_stock_pixmap_widget(button,GNOME_STOCK_PIXMAP_SAVE_AS);
   label = gtk_label_new(_("Save Information to File..."));
-  hbox  = gtk_hbox_new(FALSE, GNOME_PAD_SMALL/2);
+  hbox  = gtk_hbox_new(FALSE, GNOME_PAD_SMALL / 2);
   gtk_box_pack_start(GTK_BOX(hbox),pixmap,FALSE,FALSE,0);
   gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
   gtk_container_add(GTK_CONTAINER(button),hbox);

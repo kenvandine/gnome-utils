@@ -108,6 +108,13 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
+dnl guname
+AC_ARG_ENABLE(guname-capplet,
+[  --disable-guname-capplet  Use guname-capplet to build guname with control center applet support[default=yes]], enable_guname_capplet="$enableval", enable_guname_capplet=yes)
+
+AM_CONDITIONAL(GUNAME_CAPPLET, test x$enable_guname_capplet = xyes)
+dnl guname end
+
 AC_OUTPUT([
 Makefile
 gnome-utils.spec

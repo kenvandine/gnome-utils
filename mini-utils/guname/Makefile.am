@@ -1,3 +1,9 @@
+
+if GUNAME_CAPPLET
+GUNAME_CAPPLET_LIBS=-lcapplet -lgnorba
+CFLAGS+=-DGUNAME_CAPPLET
+endif
+
 INCLUDES = 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
@@ -27,13 +33,20 @@ guname_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)		\
 	$(LIBGTOP_NAMES_LIBS)	\
-	$(LIBGTOP_EXTRA_LIBS)
+	$(LIBGTOP_EXTRA_LIBS)	\
+	$(GUNAME_CAPPLET_LIBS)
 
 Rootdir = $(datadir)/gnome/apps/Utilities
 Root_DATA = guname.desktop
 
+if GUNAME_CAPPLET
+install-data-local:
+	$(INSTALL_DATA) $(srcdir)/guname-capplet.desktop $(DESTDIR)$(datadir)/control-center/guname-capplet.desktop
+endif
+
 EXTRA_DIST = 		\
 	guname.desktop	\
 	moreinfo.c	\
-	moreinfo.h
+	moreinfo.h	\
+	guname-capplet.desktop
 
