@@ -2,7 +2,7 @@ dnl
 dnl configure.in for gnome-utils, process with autoconf >= 2.13
 dnl
 
-AC_INIT(gtt)
+AC_INIT(gcalc)
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE(gnome-utils, 1.96.0)
 
@@ -138,12 +138,6 @@ dnl *********************************************
 PKG_CHECK_MODULES(GCONF, gconf-2.0 >= $GCONF_REQUIRED)
 AC_SUBST(GCONF_LIBS)
 AC_SUBST(GCONF_CFLAGS)
-
-dnl *******************************
-dnl guile is needed for gtt
-dnl *******************************
-
-GNOME_CHECK_GUILE
 
 dnl *******************************
 dnl gnome-print checks FIXME
@@ -406,7 +400,8 @@ dnl gdialog checks
 dnl ******************
 
 AC_CHECK_CURSES
-
+AC_SUBST(CURSES_INCLUDEDIR)
+AC_SUBST(CURSES_LIBS)
 
 dnl ******************
 dnl guname checks
