@@ -298,10 +298,9 @@ reduce_stack(GnomeCalc *gc)
 
 	if(errno>0 ||
 	   finite(stack->d.number)==0) {
-		do_error(gc);
+	   	do_error(gc);
 		stack->d.number = 0;
-		errno = 0;
-		gc->_priv->error = FALSE;
+		errno = 0;		
 	}
 }
 
@@ -511,7 +510,11 @@ no_func(GtkWidget *w, gpointer data)
 	}
 
 	reduce_stack_prec(gc,NULL);
-	if(gc->_priv->error) return;
+
+	if(gc->_priv->error) {
+		gc->_priv->error = FALSE;
+		return;
+	}
 	set_result(gc);
 
 	unselect_invert(gc);
@@ -563,7 +566,7 @@ simple_func(GtkWidget *w, gpointer data)
 	
 	if(errno>0 ||
 	   finite(stack->d.number)==0) {
-		do_error(gc);
+	   	do_error(gc);
 		gc->_priv->error = FALSE;
 		stack->d.number = 0;
 		errno = 0;
