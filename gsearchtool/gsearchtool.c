@@ -255,7 +255,7 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
 
 		/* run locate again to check if it can find /dev/null */
 		g_spawn_command_line_sync ("locate /dev/null", &cmd_stdout, NULL, NULL, NULL);
-		if (strstr (cmd_stdout, "/dev/null") != NULL) {
+		if ((cmd_stdout != NULL) && (strstr (cmd_stdout, "/dev/null") != NULL)) {
 			gsearch->is_locate_database_available = TRUE;
 		}
 		else {
