@@ -112,7 +112,11 @@ get_x_y (CDDBDisclosure *disclosure,
 	    GTK_WIDGET_MAPPED (disclosure)) {
 		check_button = GTK_CHECK_BUTTON (disclosure);
 		
-		_gtk_check_button_get_props (check_button, &indicator_size, &indicator_spacing);
+		gtk_widget_style_get (GTK_WIDGET (check_button),
+				      "indicator_size", &indicator_size,
+				      "indicator_spacing", &indicator_spacing,
+				      NULL);
+
 		gtk_widget_style_get (widget,
 				      "interior_focus", &interior_focus,
 				      "focus-line-width", &focus_width,
