@@ -145,7 +145,7 @@ int main ( int argc, char ** argv )
 
   gnome_init (APPNAME, VERSION, argc, argv);
 
-  if(getuid() && !check_whether_suid_and_executable("gshutdown")) {
+  if(getuid() && !check_whether_suid_and_executable("shutdown")) {
     gnome_dialog_run(GNOME_DIALOG(
     gnome_message_box_new(_("You must be the super-user (root) to shut down or restart the computer."),
                           GNOME_MESSAGE_BOX_ERROR,
