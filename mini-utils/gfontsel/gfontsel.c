@@ -122,10 +122,24 @@ close_cb (GtkWidget * widget, gpointer user_data)
 	gtk_main_quit ();
 }
 
+static GtkWidget *
+get_logo (void)
+{
+	GtkWidget *pixmap = NULL;
+	gchar *data = gnome_pixmap_file ("gnome-default.png");
+	
+	if (data) {
+		pixmap = gnome_pixmap_new_from_file (data);
+		g_free (data);
+	}
+	
+	return pixmap;
+}
+
 void
 gfontsel_create_dialog (gfontsel_cfg_t * cfg)
 {
-	GtkWidget *box, *label;
+	GtkWidget *box, *label, *sep, *pixmap;
 	gchar *on_load_font = NULL;
 
 	cfg->dialog = gnome_dialog_new (_("Font Selector"),
@@ -147,6 +161,12 @@ gfontsel_create_dialog (gfontsel_cfg_t * cfg)
 	box = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
 	gtk_widget_show (box);
 
+	pixmap = get_logo ();
+	if (pixmap) {
+		gtk_widget_show (pixmap);
+		gtk_box_pack_start (GTK_BOX (box), pixmap, FALSE, FALSE, 0);
+	}
+	
 	label = gtk_label_new (_("Selection:"));
 	gtk_widget_show (label);
 	gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
@@ -162,6 +182,11 @@ gfontsel_create_dialog (gfontsel_cfg_t * cfg)
 	cfg->entry = GTK_COMBO (cfg->combo)->entry;
 	gtk_signal_connect (GTK_OBJECT (cfg->entry), "changed",
 			    GTK_SIGNAL_FUNC (update_fontsel_cb), cfg);
+
+	sep = gtk_hseparator_new ();
+	gtk_widget_show (sep);
+	gtk_container_add (GTK_CONTAINER (
+		GNOME_DIALOG (cfg->dialog)->vbox), sep);
 
 	cfg->fontsel = gtk_font_selection_new ();
 	gtk_widget_show (cfg->fontsel);
