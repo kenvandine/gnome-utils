@@ -12,9 +12,7 @@ idetool_SOURCES = \
 
 idetool_LDADD = \
 	$(GNOME_LIBDIR)         \
-	$(GTKXMHTML_LIBS)	\
-	$(GNOMEUI_LIBS) 	\
-	$(INTLLIBS)
+	$(GNOMEUI_LIBS)
 
 man_MANS = idetool.8
 
@@ -27,7 +25,7 @@ pixmap_DATA = $(BITMAPS)
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_in_files = idetool.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
 	$(BITMAPS) \

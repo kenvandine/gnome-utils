@@ -60,7 +60,6 @@ gcolorsel_SOURCES = 	dialog-new-doc.c		\
 
 gcolorsel_LDADD = \
 	$(GNOME_UTILS_LIBS) 				\
-	$(INTLLIBS)					\
 	$(LIBGLADE_LIBS)				\
 	$(LIBXML_LIBS)
 
@@ -68,7 +67,7 @@ man_MANS = gcolorsel.1
 
 Utilities_in_files = gcolorsel.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
 	$(man_MANS) \

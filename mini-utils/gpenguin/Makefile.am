@@ -10,8 +10,7 @@ gpenguin_SOURCES = \
 
 gpenguin_LDADD = \
         $(GNOME_LIBDIR)         \
-        $(GNOMEUI_LIBS)		\
-	$(INTLLIBS)
+        $(GNOMEUI_LIBS)
 
 pixmapdir = $(datadir)/pixmaps
 
@@ -22,10 +21,9 @@ pixmap_DATA = $(BITMAPS)
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_in_files = gpenguin.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
 	$(pixmap_DATA) \
 	$(Utilities_in_files) \
-	$(Utilities_DATA) \
 	$(top_srcdir)/sgmldocs.make

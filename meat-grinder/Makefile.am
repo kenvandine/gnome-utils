@@ -12,15 +12,14 @@ meat_grinder_SOURCES = 	\
 	meat-grinder.c
 
 meat_grinder_LDADD = \
-	$(GNOME_UTILS_LIBS)		\
-	$(INTLLIBS)
+	$(GNOME_UTILS_LIBS)
 
 man_MANS = meat-grinder.1
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_in_files = meat-grinder.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
 	$(man_MANS) \

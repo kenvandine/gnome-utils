@@ -20,7 +20,6 @@ gsearchtool_SOURCES =	\
 gsearchtool_LDADD = \
 	$(GNOME_UTILS_LIBS) \
 	$(GNOMEVFS_LIBS)
-	$(INTLLIBS)
 
 man_MANS = gsearchtool.1
 
@@ -29,7 +28,7 @@ pixmap_DATA = gnome-searchtool.png
 
 Utilities_in_files = gsearchtool.desktop.in 
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \
 	$(pixmap_DATA) \

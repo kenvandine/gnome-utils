@@ -41,7 +41,7 @@ Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 Appletdir = $(datadir)/applets/Monitors
 Applet_in_files = stripchart-applet.desktop.in
 Applet_DATA = $(Applet_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
 gnorbadir  = $(sysconfdir)/CORBA/servers
 gnorba_DATA = stripchart-applet.gnorba

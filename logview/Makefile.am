@@ -31,14 +31,13 @@ logview_SOURCES = 	\
 	zoom.c
 
 logview_LDADD = \
-	$(GNOME_UTILS_LIBS) \
-	$(INTLLIBS)
+	$(GNOME_UTILS_LIBS)
 
 man_MANS = logview.1
 
 Utilities_in_files = logview.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
 additional_DATA  = logview-descript.db \
                    logview-regexp.db \

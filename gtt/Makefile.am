@@ -4,7 +4,7 @@ SUBDIRS = doc glade help ghtml src
 Productivitydir = $(datadir)/gnome/apps/Applications
 Productivity_in_files = gtt.desktop.in
 Productivity_DATA = $(Productivity_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = 			\
 	AUTHORS			\

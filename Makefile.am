@@ -13,10 +13,9 @@ SUBDIRS = po idl $(gfloppy) logview gcharmap \
 	  
 #splash stripchart mini-utils $(gtt)
 
-EXTRA_DIST = autogen.sh gnome-utils.spec.in \
-	xml-i18n-extract.in \
-        xml-i18n-merge.in \
-        xml-i18n-update.in
-
-dist-hook: gnome-utils.spec
-	cp gnome-utils.spec $(distdir)
+EXTRA_DIST = \
+	gnome-utils.spec.in \
+	gnome-utils.spec \
+	intltool-extract.in \
+	intltool-merge.in \
+	intltool-update.in

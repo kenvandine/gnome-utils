@@ -25,7 +25,7 @@ man_MANS = gcalc.1
 
 Utilities_in_files = gcalc.desktop.in 
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
-@XML_I18N_MERGE_DESKTOP_RULE@
+@INTLTOOL_DESKTOP_RULE@
 
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = calculator-font.png
