@@ -1,0 +1,9 @@
+
+module GNOME {
+  interface Su {
+    typedef sequence<string> arg_seq;
+
+    void su_command (in string user, in string command, in arg_seq args);
+  };
+};
+  
