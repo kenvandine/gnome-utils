@@ -30,7 +30,7 @@
 
 #define MINIMUM_WINDOW_WIDTH   422
 #define MINIMUM_WINDOW_HEIGHT  310
-#define GNOME_SEARCH_TOOL_ICON  "gnome-searchtool.png"
+#define GNOME_SEARCH_TOOL_ICON  "gnome-searchtool"
 
 #ifdef __cplusplus
 extern "C" {

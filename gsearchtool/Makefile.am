@@ -32,9 +32,6 @@ gnome_search_tool_LDADD =   \
 
 man_MANS = gnome-search-tool.1
 
-pixmapdir = $(datadir)/pixmaps
-pixmap_DATA = gnome-searchtool.png
-
 Utilities_in_files = gnome-search-tool.desktop.in 
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
@@ -44,7 +41,6 @@ animation_DATA = gnome-search-tool-animation.png
 	
 EXTRA_DIST = \
 	$(animation_DATA) \
-	$(pixmap_DATA) \
 	$(Utilities_in_files) \
 	$(Utilities_DATA) \
 	$(schema_DATA) \

@@ -292,6 +292,7 @@ int
 main (int argc, char *argv[])
 {
    GnomeClient *gclient;
+   GtkIconInfo *icon_info;
 
    bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
@@ -303,7 +304,11 @@ main (int argc, char *argv[])
    gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
 			   GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
-   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-log.png");
+   icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (), "logviewer", 48, 0);
+   if (icon_info) {
+       gnome_window_icon_set_default_from_file (gtk_icon_info_get_filename (icon_info));
+       gtk_icon_info_free (icon_info);
+   }
    
    poptCon = poptGetContext ("gnome-system-log", argc, (const gchar **) argv, 
 							 options, 0);  

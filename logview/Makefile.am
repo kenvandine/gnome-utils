@@ -7,7 +7,6 @@ additionaldir  = $(datadir)/gnome-system-log
 
 INCLUDES = -DG_LOG_DOMAIN=\"gnome-system-log\"	$(GNOME_UTILS_CFLAGS) 		\
 	-DGNOMELOCALEDIR=\""$(gnomeutilslocaledir)"\"			\
-	-I$(top_srcdir)/logview/pixmaps\
 	-DDATADIR=\""$(datadir)"\" \
 	-DLOGVIEWINSTALLPREFIX=\""$(prefix)/\""
 
