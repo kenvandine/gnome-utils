@@ -21,7 +21,7 @@
 #define STDOUT 1
 #define STDERR 2
 
-FindOptionTemplate templates[] = {
+const FindOptionTemplate templates[] = {
 #define OPTION_FILENAME 0
 	{ FIND_OPTION_TEXT, "-name '%s'", N_("File name") },
 #define OPTION_NOSUBDIRS 1
@@ -44,7 +44,7 @@ FindOptionTemplate templates[] = {
 };
 
 /*this will not include the directories in search*/
-char defoptions[] = "\\! -type d";
+const static char defoptions[] = "\\! -type d";
 /*this should be done if the above is made optional*/
 /*char defoptions[] = "-mindepth 0";*/
 
@@ -102,9 +102,9 @@ makecmd(char *start_dir)
 	cmdbuf = g_string_new ("");
 
 	if(start_dir)
-		g_string_sprintfa(cmdbuf,"find %s %s ",start_dir,defoptions);
+		g_string_sprintfa(cmdbuf, "find %s %s ", start_dir, defoptions);
 	else
-		g_string_sprintfa(cmdbuf,"find . %s ",defoptions);
+		g_string_sprintfa(cmdbuf, "find . %s ", defoptions);
 
 	for(list=criteria_find;list!=NULL;list=g_list_next(list)) {
 		FindOption *opt = list->data;
@@ -202,7 +202,7 @@ really_run_command(char *cmd, int *running)
 	/*FIXME: add an option to autoclear result box and pass TRUE in that
 	  case*/
 	outdlg_makedlg(_("Search Results"), FALSE);
-
+	
 	pipe(fd);
 	pipe(fderr);
 	
@@ -290,9 +290,9 @@ really_run_command(char *cmd, int *running)
 
 	gtk_idle_remove(idle);
 	outdlg_thaw();
-	
-	outdlg_showdlg(); /* still show */
 
+	outdlg_showdlg();
+	
 	/* if any errors occured */
 	if(errors) {
 		/* make an error message */

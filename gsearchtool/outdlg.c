@@ -5,7 +5,9 @@
  *
  */
 
-#include <gtk/gtk.h>
+#include "config.h"
+#include <gnome.h>
+#include <gdk/gdkprivate.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -102,7 +104,8 @@ outdlg_clicked(GtkWidget * widget, int button, gpointer data)
 
 static gint 
 outdlg_double_click(GtkWidget *widget, GdkEventButton *event,
-		    gpointer func_data) {
+		    gpointer func_data)
+{
 	GtkCList *clist=(GtkCList *)widget;
 	gint row, col;
 	gchar *fileName;
@@ -162,12 +165,11 @@ outdlg_double_click(GtkWidget *widget, GdkEventButton *event,
 	return FALSE;
 }
 
-static int
+static void
 outdlg_closedlg(GtkWidget * widget, gpointer data)
 {
 	list_width = 0;
 	outdlg = NULL;
-	return FALSE;
 }
 
 gboolean
@@ -190,6 +192,8 @@ outdlg_makedlg(char name[], gboolean clear)
 				  "Clear",
 				  GNOME_STOCK_BUTTON_CLOSE,
 				  NULL);
+	gtk_window_set_policy(GTK_WINDOW(outdlg), FALSE, TRUE, FALSE);
+	gtk_window_set_default_size(GTK_WINDOW(outdlg), 200, 400);
 	gnome_dialog_set_parent(GNOME_DIALOG(outdlg), GTK_WINDOW(app));
 	gtk_signal_connect(GTK_OBJECT(outdlg), "destroy",
 			   GTK_SIGNAL_FUNC(outdlg_closedlg), NULL);
@@ -198,12 +202,14 @@ outdlg_makedlg(char name[], gboolean clear)
 			   GTK_SIGNAL_FUNC(outdlg_clicked), NULL);
 
 	w = gtk_scrolled_window_new(NULL,NULL);
-	gtk_widget_set_usize(w,200,350);
+	/*gtk_widget_set_usize(w,200,350);*/
 	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(outdlg)->vbox),w,TRUE,TRUE,0);
 	outlist = gtk_clist_new(1);
 	gtk_signal_connect(GTK_OBJECT(outlist), "button_press_event",
 				GTK_SIGNAL_FUNC(outdlg_double_click),NULL);
 	gtk_container_add(GTK_CONTAINER(w),outlist);
+
+	gtk_widget_ensure_style(outlist);
 
 	return TRUE;
 }
@@ -211,12 +217,18 @@ outdlg_makedlg(char name[], gboolean clear)
 void
 outdlg_additem(char item[])
 {
-	gtk_clist_append(GTK_CLIST(outlist),&item);
-	if(list_width < 
-	   gdk_string_width(GTK_WIDGET(outlist)->style->font,item))
-		list_width = gdk_string_width(GTK_WIDGET(outlist)->style->font,
-					      item);
-	gtk_clist_set_column_width(GTK_CLIST(outlist),0,list_width);
+	int width;
+	
+	if(!outdlg)
+		return;
+
+	gtk_clist_append(GTK_CLIST(outlist), &item);
+
+	width = gdk_string_width(GTK_WIDGET(outlist)->style->font, item);
+	if(list_width < width) {
+		list_width = width;
+		gtk_clist_set_column_width(GTK_CLIST(outlist), 0, list_width);
+	}
 }
 
 void

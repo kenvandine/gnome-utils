@@ -1,3 +1,11 @@
+Sat Feb 12 22:47:05 2000  George Lebl <jirka@5z.com>
+
+	* gsearchtool.c,outdlg.c: call gtk_widget_ensure_style so that
+	  the widget gets the style set so that our list adding function
+	  gets the correct font.  Also use gtk_window_set_default_size
+	  instead of set_usize on the clist and allow the dialog to be
+	  resized
+
 Mon Feb 07 14:52:28 2000  George Lebl <jirka@5z.com>
 
 	* help/C/*: added online help from Alexander Kirillov
