@@ -1,7 +1,7 @@
 INCLUDES = 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	$(GNOME_INCLUDEDIR) $(LIBGTOP_INCS)
+	$(GNOME_INCLUDEDIR) $(LIBGTOP_NAMES_INCS)
 
 bin_PROGRAMS = guname
 
@@ -25,7 +25,7 @@ guname_LDADD = \
 	$(GNOME_LIBDIR)         \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)		\
-	$(LIBGTOP_LIBS)
+	$(LIBGTOP_NAMES_LIBS)
 
 guname_DEPENDENCIES=AUTHORS.h
 
