@@ -314,8 +314,7 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   gtk_signal_connect (GTK_OBJECT (propbox), "apply",
 		      (GtkSignalFunc) gdiskfree_option_dialog_apply,
 		      working);
-  gtk_signal_connect (GTK_OBJECT (propbox), "help",                      
-                                                                                 
-                                                                                                     GTK_SIGNAL_FUNC(gnome_help_pbox_goto), &help_entry); 
+  gtk_signal_connect (GTK_OBJECT (propbox), "help",
+		      GTK_SIGNAL_FUNC (gnome_help_pbox_goto), &help_entry); 
   return propbox;
 }

@@ -310,7 +310,7 @@ isLogFile (char *filename)
       ShowErrMessage (buff);
       return FALSE;
    }
-   fgets (buff, 255, fp);
+   fgets (buff, sizeof (buff), fp);
    fclose (fp);
    token = strtok (buff, " ");
    /* This is not a good assumption I don't think, especially
@@ -821,7 +821,7 @@ ReadLogStats (Log * log)
       if (IsLeapYear (curmark->year - lastyear + thisyear))
 	 curmark->time += 24 * 60 * 60;		/*  Add one day */
 
-#ifdef __NetBSD__
+#if defined(__NetBSD__) || defined(__FreeBSD__)
       curmark->time += correction - tmptm->tm_gmtoff;
 #else
       curmark->time += correction - timezone;
@@ -847,7 +847,7 @@ ReadLogStats (Log * log)
    if (IsLeapYear (thisyear))
       log->lstats.enddate += 24 * 60 * 60;	/*  Add one day */
 
-#ifdef __NetBSD__
+#if defined(__NetBSD__) || defined(__FreeBSD__)
    log->lstats.enddate += correction - tmptm->tm_gmtoff;
 #else
    log->lstats.enddate += correction - timezone;
@@ -858,7 +858,7 @@ ReadLogStats (Log * log)
    if (IsLeapYear (thisyear - lastyear))
       log->lstats.startdate += 24 * 60 * 60;	/*  Add one day */
 
-#ifdef __NetBSD__
+#if defined(__NetBSD__) || defined(__FreeBSD__)
    log->lstats.startdate += correction - tmptm->tm_gmtoff;
 #else
    log->lstats.startdate += correction - timezone;

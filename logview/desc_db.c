@@ -2,6 +2,7 @@
 #include <gnome.h>
 #include "logview.h"
 #include <string.h>
+#include <sys/types.h>
 #include <regex.h>
 #include <stdlib.h>
 
