@@ -108,7 +108,7 @@ static GtkActionEntry entries[] = {
 
        	{ "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
 	  G_CALLBACK (logview_help) },
-	{ "AboutAction", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Show the about dialog for the gconf editor"), 
+	{ "AboutAction", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Show the about dialog for the log viewer"), 
 	  G_CALLBACK (AboutShowWindow) },
 
 };
