@@ -9,14 +9,13 @@ create a 'filter' for showing a journal only between certain dates ..
 
 Create a gtt panel applet for switching projects fast.
 
-Documentation has to be updated/finished.
-
 Optionally allow more than one running project.
-
-Use Gnome MDI for the top-level windows.
 
 Support SQL database for multi-user support; should be easier now,
 just mimic the xml file format layout...
+
+Add support for putting billing/customer address into invoices.
+i.e. some customizable field ...
 
 Create bonobo component to allow tasks to be put into calendar (e.g.
 evolution calender).
@@ -41,6 +40,7 @@ Allow user to configure additional states for project status,
 in addtion to/instead of the pre-defined ones.  etc.
 This could be hard ...
 
+Use Gnome MDI for the top-level windows.
 
 Later:
 ~~~~~~
@@ -63,6 +63,8 @@ http://www.gnu.org/software/toutdoux/en/index.html
 
 Bugs -- High Priority
 ---------------------
+Documentation has to be updated/finished.
+
 When a project times out due to inactivity, set back the clock by 
 the inactivity timeout.
 
@@ -145,4 +147,32 @@ Display sub-projects in journal as well
 >>  This is completely non-intuitive.  If I'm acting on a parent it should
 >>  _always_ include all children.  At least I should be able to set a
 >>  preference for whether to include children or not.
+>>  
+
+invoice table display:
+
+>>  I was also expecting the journal entries to be of the form:
+>>  
+>>          Memo1   Start   Stop    Total
+>>          Memo2   Start   Stop    Total
+>>          Memo3   Start   Stop    Total
+>>  
+>>  not
+>>          Memo1
+>>          Start   Stop    Total
+>>          Memo2
+>>          Start   Stop    Total
+>>          Memo3
+>>          Start   Stop    Total
+>>  
+>>  Then in the journal:
+>>  
+>>                          Journal for - Jim's Deli
+>>  
+>>          Memo                    Date            Start   Stop    Total
+>>          Initial Install         11/09/01        15:00   18:00   03:00
+>>                                  11/10/01        11:00   19:00   08:00
+>>                                  11/12/01        12:00   14:00   02:00
+>>          Network Configuration   11/12/01        14:00   17:00   03:00
+>>                                  11/13/01        14:00   18:00   04:00
 >>  
