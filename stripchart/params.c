@@ -446,7 +446,7 @@ on_color_set(GnomeColorPicker *picker,
     if (GNOME_COLOR_PICKER(page->color[cnum]) == picker)
       break;
 
-  if (cnum < page->colors)
+  if (cnum < page->colors && page->strip_data && page->pen_data)
     {
       set_color(page->strip_data, color_name, cnum);
       set_color(page->pen_data, color_name, cnum);

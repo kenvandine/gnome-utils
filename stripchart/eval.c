@@ -271,10 +271,19 @@ num_op(Expr *expr)
 	  if (id_intro == '~')
 	    val -= expr->last[id_num-1];
 	}
-      else if (streq(id, "t"))	/* delta time, in seconds */
+      else if (streq(id, "t"))	/* time or delta time, in seconds */
 	{
-	  val = *expr->t_diff;
-	  /* if (expr->s[-1] == '~') val = 0; */
+	  if (expr->s[-1] == '~')
+	    val = *expr->t_diff;
+	  else
+	    {
+	      struct timeval t;
+	      static struct timeval t0;
+	      if (t.tv_sec == 0)
+		gettimeofday(&t0, NULL);
+	      gettimeofday(&t, NULL);
+	      val = (t.tv_sec - t0.tv_sec) + (t.tv_usec - t0.tv_usec) / 1e6;
+	    }
 	}
 #ifdef HAVE_LIBGTOP
       else if (gtop_value(id,

@@ -8,7 +8,7 @@
 
     <parameter>
       <name>Busy</name>
-      <description>fraction of time the CPU was not idle</description>
+      <description>Fraction of time the CPU was not idle</description>
       <equation>( ~cpu_total - ~cpu_idle ) / ~cpu_total</equation>
       <color>#0000ff</color>
     </parameter>
@@ -42,6 +42,22 @@
       <equation>~net_bytes_out / ~t</equation>
       <scale>log</scale>
       <plot>line</plot>
+      <color>#00ff00</color>
+    </parameter>
+
+    <parameter>
+      <name>Mail</name>
+      <description>Availability of new mail</description>
+      <filename>? /var/spool/mail/$USER</filename>
+      <plot>indicator</plot>
+      <color>#ffff00 #ff0000</color>
+    </parameter>
+
+    <parameter>
+      <name>PPP</name>
+      <description>Availability of PPP interface</description>
+      <filename>? /var/run/ppp0.pid</filename>
+      <plot>indicator</plot>
       <color>#00ff00</color>
     </parameter>
 

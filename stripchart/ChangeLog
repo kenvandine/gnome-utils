@@ -1,3 +1,17 @@
+2001-03-07  John Kodis  <kodis@jagunet.com>
+
+	* eval.c (num_op): Correct time values: $t is time since startup,
+	and ~t is the delta time between evaluation iterations.
+
+	* stripchart.params: Add mail, ppp parameters.
+
+	* stripchart.conf: Add parameter to monitor e-mail; add
+	description to Busy parameter.
+
+	* params.c (on_color_set): Insure that a parameter datum actually
+	exists before attempting to set its color, thus avoiding an
+	embarrassing seg fault.
+
 2001-02-24 - John Fleck <jfleck@inkstain.net>
 
 	* adding <figure> tags to screenshots in stripchart.sgml to avoid
