@@ -32,6 +32,7 @@
 #define LINES_P_PAGE             140
 #define NUM_PAGES                5 
 #define MAX_WIDTH                240
+#define MAX_HOSTNAME_WIDTH       257	/* Need authoritative answer on this value. */
 #define MAX_PROC_WIDTH           20
 #define NUM_LOGS                 2
 #define R_BUF_SIZE               1024	/* Size of read buffer */
@@ -146,6 +147,7 @@ typedef struct
 {
   char message[MAX_WIDTH];
   char process[MAX_PROC_WIDTH];
+  char hostname[MAX_HOSTNAME_WIDTH];
   char month;
   char date;
   char hour;
@@ -166,6 +168,14 @@ struct log_page
 
 typedef struct log_page Page;
 typedef void (*MonActions)();
+
+typedef struct
+{
+	/* Negative column width indicates don't show */
+	int process_column_width;
+	int hostname_column_width;
+	int message_column_width;
+} UserPrefsStruct;
 
 typedef struct
 {
@@ -213,4 +223,5 @@ int RepaintCalendar (GtkWidget * widget, GdkEventExpose * event);
 int read_descript_db (char *filename, GList **db);
 int find_tag_in_db (LogLine *line, GList *db);
 int IsLeapYear (int year);
+void SetDefaultUserPrefs(UserPrefsStruct *prefs);
 #endif /* __LOGVIEW_H__ */

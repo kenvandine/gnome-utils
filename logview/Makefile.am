@@ -27,6 +27,7 @@ logview_SOURCES = 	\
 	menus.c		\
 	misc.c		\
 	monitor.c       \
+	userprefsdialog.c       \
 	zoom.c
 
 logview_LDADD = \

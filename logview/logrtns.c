@@ -367,10 +367,12 @@ ReadPageDown (Log * lg, Page * pg)
    char *c, ch, buffer[R_BUF_SIZE + 1];
    int ln, len;
 
+   g_return_if_fail (lg != NULL);
+
    fp = lg->fp;
    ln = 0;
 
-   pg->firstchpos = ftell (fp)-1;
+   pg->firstchpos = MAX (0, ftell (fp)-1);
    pg->islastpage = FALSE;
    pg->isfirstpage = FALSE;
    pg->fl = 0;
@@ -449,6 +451,7 @@ ParseLine (char *buff, LogLine * line)
       line->hour = -1;
       line->min = -1;
       line->sec = -1;
+      strcpy (line->hostname, "");
       strcpy (line->process, "");
       return;
    }
@@ -464,6 +467,7 @@ ParseLine (char *buff, LogLine * line)
       line->hour = -1;
       line->min = -1;
       line->sec = -1;
+      strcpy (line->hostname, "");
       strcpy (line->process, "");
       return;
    }
@@ -478,6 +482,7 @@ ParseLine (char *buff, LogLine * line)
       line->hour = -1;
       line->min = -1;
       line->sec = -1;
+      strcpy (line->hostname, "");
       strcpy (line->process, "");
       strcpy (line->message, "");
       return;
@@ -491,6 +496,7 @@ ParseLine (char *buff, LogLine * line)
       line->hour = -1;
       line->min = -1;
       line->sec = -1;
+      strcpy (line->hostname, "");
       strcpy (line->process, "");
       strcpy (line->message, "");
       return;
@@ -503,6 +509,7 @@ ParseLine (char *buff, LogLine * line)
    {
       line->min = -1;
       line->sec = -1;
+      strcpy (line->hostname, "");
       strcpy (line->process, "-");
       strcpy (line->message, "");
       return;
@@ -514,12 +521,24 @@ ParseLine (char *buff, LogLine * line)
    else
    {
       line->sec = -1;
+      strcpy (line->hostname, "");
       strcpy (line->process, "-");
       strcpy (line->message, "");
       return;
    }
 
    token = strtok (NULL, " ");
+   if (token != NULL)
+      strncpy (line->hostname, token, MAX_HOSTNAME_WIDTH);
+   else
+   {
+      line->sec = -1;
+      strcpy (line->hostname, "");
+      strcpy (line->process, "-");
+      strcpy (line->message, "");
+      return;
+   }
+
    token = strtok (NULL, ":\n");
    if (token != NULL)
       strncpy (scratch, token, 254);

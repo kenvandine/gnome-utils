@@ -62,6 +62,7 @@ extern int zoom_visible;
 extern ConfigData *cfg;
 extern GtkWidget *main_win_scrollbar;
 extern GtkLabel *filename_label, *date_label;
+extern UserPrefsStruct *user_prefs;
 
 
 /*
@@ -554,6 +555,10 @@ DrawLogLine (LogLine *line, int y)
 {
   char tmp[1024];
   int num_chars, max_num_chars;
+  int col_pos = 0;
+  int char_width;
+  
+  char_width = gdk_char_width (cfg->fixed, 'A');
   
   /*gdk_gc_set_foreground (gc, &cfg->white); */
   gdk_gc_set_foreground (gc, &cfg->black);
@@ -563,19 +568,52 @@ DrawLogLine (LogLine *line, int y)
   else
     sprintf (tmp, " ");
   gdk_draw_string (canvas, cfg->fixedb, gc, LOG_COL1, y, tmp);
-  sprintf (tmp, "%s", line->process);
-  if (strlen (tmp) > 13)
-    tmp[13] = '\0';
-  gdk_draw_string (canvas, cfg->fixed, gc, LOG_COL2, y, tmp);
 
+  /* Print four spaces */
+  col_pos = LOG_COL1 + strlen(tmp)*char_width;
+  sprintf (tmp, "    ");
+  gdk_draw_string (canvas, cfg->fixedb, gc, col_pos, y, tmp);
+  col_pos = col_pos + 4*char_width;
+
+  sprintf (tmp, " ");
+  if(user_prefs->hostname_column_width > 0)
+  {
+  	sprintf (tmp, "%s", line->hostname);
+  	if (strlen (tmp) > user_prefs->hostname_column_width)
+    		tmp[user_prefs->hostname_column_width+1] = '\0';
+  }
+  gdk_draw_string (canvas, cfg->fixed, gc, col_pos, y, tmp);
+
+  /* Print four spaces */
+  col_pos = col_pos + user_prefs->hostname_column_width*char_width;
+  sprintf (tmp, "    ");
+  gdk_draw_string (canvas, cfg->fixedb, gc, col_pos, y, tmp);
+  col_pos = col_pos + 4*char_width;
+
+  sprintf (tmp, " ");
+  if(user_prefs->process_column_width > 0)
+  {
+  	sprintf (tmp, "%s", line->process);
+  	if (strlen (tmp) > user_prefs->process_column_width)
+    		tmp[user_prefs->process_column_width+1] = '\0';
+  }
+  gdk_draw_string (canvas, cfg->fixed, gc, col_pos, y, tmp);
+
+  /* Print four spaces */
+  col_pos = col_pos + user_prefs->process_column_width*char_width;
+  sprintf (tmp, "    ");
+  gdk_draw_string (canvas, cfg->fixedb, gc, col_pos, y, tmp);
+  col_pos = col_pos + 4*char_width;
+
+  /* For now max string length is ignored */
   num_chars = MAX (strlen (line->message), 1023);
   tmp[1023] = '\0';
   strncpy (tmp, line->message, 1023);
-  max_num_chars = (canvas_width - 10 - LOG_COL3) / gdk_char_width (cfg->fixed, 'A');
+  max_num_chars = (canvas_width - 10 - col_pos) / gdk_char_width (cfg->fixed, 'A');
   if (max_num_chars < num_chars)
     max_num_chars = num_chars;
   tmp[max_num_chars] = '\0';
-  gdk_draw_string (canvas, cfg->fixed, gc, LOG_COL3, y, tmp);
+  gdk_draw_string (canvas, cfg->fixed, gc, col_pos, y, tmp);
 }
 
 

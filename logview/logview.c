@@ -51,6 +51,7 @@ void change_log_menu (GtkWidget * widget, gpointer user_data);
 void CalendarMenu (GtkWidget * widget, gpointer user_data);
 void MonitorMenu (GtkWidget* widget, gpointer user_data); 
 void create_zoom_view (GtkWidget * widget, gpointer user_data);
+void UserPrefsDialog(GtkWidget * widget, gpointer user_data);
 void AboutShowWindow (GtkWidget* widget, gpointer user_data);
 void CloseApp ();
 void CloseLog (Log *);
@@ -112,6 +113,9 @@ GnomeUIInfo view_menu[] = {
         {GNOME_APP_UI_ITEM, N_("Zoom                    "), 
 	 N_("Show line info"), create_zoom_view, NULL, NULL,
          GNOME_APP_PIXMAP_NONE, NULL, 'Z', GDK_CONTROL_MASK, NULL},
+        {GNOME_APP_UI_ITEM, N_("Preferences...          "), 
+	 N_("Show user preferences"), UserPrefsDialog, NULL, NULL,
+         GNOME_APP_PIXMAP_NONE, NULL, 'P', GDK_CONTROL_MASK, NULL},
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
 };
 
@@ -155,6 +159,8 @@ GtkWidget *main_win_scrollbar;
 GtkLabel *filename_label, *date_label;
 
 GList *regexp_db, *descript_db, *actions_db;
+UserPrefsStruct *user_prefs;
+UserPrefsStruct user_prefs_struct;
 ConfigData *cfg;
 int open_log_visible;
 
@@ -221,6 +227,8 @@ InitApp ()
   /*  Initialize variables */
   loginfovisible = FALSE;
   regexp_db = NULL;
+  user_prefs = &user_prefs_struct;
+  SetDefaultUserPrefs(user_prefs);
 
   /* Read databases */
   open_databases ();
@@ -811,4 +819,14 @@ IsLeapYear (int year)
       return TRUE;
    else
       return FALSE;
+}
+
+void SetDefaultUserPrefs(UserPrefsStruct *prefs)
+{
+	/* Make defaults configurable later */
+	/* Will have to save prefs. eventually too*/
+
+	prefs->process_column_width = 12;
+	prefs->hostname_column_width = 15;
+	prefs->message_column_width = 24;
 }
