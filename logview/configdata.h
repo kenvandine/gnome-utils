@@ -17,15 +17,17 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef __LOG_MONITOR_H__
-#define __LOG_MONITOR_H__
+#ifndef __LOG_CONFIGDATA_H__
+#define __LOG_CONFIGDATA_H__
 
-void monitor_stop (LogviewWindow *window);
-GtkWidget *monitor_create_widget (LogviewWindow *window);
-void go_monitor_log (LogviewWindow *window);
-void mon_update_display (LogviewWindow *window);
-/*void mon_check_logs (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri, 
-		const gchar *info_uri, GnomeVFSMonitorEventType event_type, 
-		gpointer data);*/
+typedef struct
+{
+  /* Paths ----------------------------------------------------- */
+  char *regexp_db_path, *descript_db_path, *action_db_path;
 
-#endif /* __LOG_MONITOR_H__ */
+} ConfigData;
+
+ConfigData *CreateConfig(void);
+
+#endif /* __LOG_CONFIGDATA_H__ */
+
