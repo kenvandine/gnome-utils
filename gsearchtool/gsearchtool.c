@@ -1461,7 +1461,7 @@ create_search_results_section (void)
 	
 	vbox = gtk_vbox_new (FALSE, 0);	
 	
-	label = gtk_label_new_with_mnemonic (_("S_earch Results"));
+	label = gtk_label_new_with_mnemonic (_("S_earch results:"));
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
 	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
 	
