@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY date "August 2002">
-  <!ENTITY appversion "1.107.0">
-  <!ENTITY manrevision "2.2">
+  <!ENTITY appversion "2.0.0">
+  <!ENTITY manrevision "2.3">
   <!ENTITY app "Character Map">
   <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY date "September 2002">
 ]>
 <!-- (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
@@ -67,6 +67,17 @@ change lang to appropriate code -->
 		<revision>
 		  <revnumber>&app; Manual V&manrevision;</revnumber>
 		  <date>&date;</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME Documentation Team 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME Character Map Manual V2.2</revnumber>
+		  <date>August 2002</date>
 		  <revdescription>
 			 <para role="author">
 			       Sun GNOME Documentation Team 
@@ -186,8 +197,8 @@ change lang to appropriate code -->
 			format="PNG"/>
 			</imageobject>
 			<textobject>
-			<phrase>Shows Character Map 
-			main window. Shows menubar, text to copy field, 
+			<phrase>Character Map 
+			main window. Shows menubar, toolbar, 
 			and character buttons.</phrase>
 			</textobject>
 			</mediaobject>
@@ -195,39 +206,50 @@ change lang to appropriate code -->
 		</figure> 
 		
 		<para>The <application>&app;</application> window contains the following elements:</para>
-	 	<itemizedlist>
+	 	<variablelist>
+	 	<varlistentry>
+	 	<term>Menubar</term>
 		<listitem>
-		  <para>Menubar </para>
 		  <para>The menubar contains standard GNOME windows menus. </para>
 		</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>Toolbar</term>
 		<listitem>
-		  <para>Text toolbar </para>
-		  <para>The text toolbar contains the 
-			 <guilabel>Text to copy</guilabel> field, and the 
-			 <guilabel>Copy</guilabel> button. You use the 
-			 <guilabel>Text to copy</guilabel> field to create the text string
-			 that you want to copy into another application. 
-			 You can use the 
-			 <guilabel>Copy</guilabel> button to copy the full text string from the 
-			 <guilabel>Text to copy</guilabel> field into a buffer. 
-			 You can enter characters into the 
-			 <guilabel>Text to copy</guilabel> field either from the keyboard or from
-			 the character table. 
-			 </para>
+		  <para>The toolbar contains the following items:</para>
+		  	<itemizedlist>
+		  	<listitem><para>The <guilabel>Font</guilabel> button enables you
+		  	to select the font type and size that you want to use to
+		  	display the characters in the character table.</para></listitem>
+		  	<listitem><para>The <guilabel>Page</guilabel> spin box 
+		  	enables you to display multiple pages of characters if necessary.</para></listitem>
+		  	<listitem><para>The <guilabel>Text to copy</guilabel> 
+		  	field enables you to create the text string that you want to copy into 
+		  	another application.</para></listitem>
+		  	<listitem><para>The <guilabel>Copy</guilabel> button enables you
+		  	to copy the full text string from the <guilabel>Text to copy</guilabel> 
+		  	field into a buffer. You can enter characters into the 
+			<guilabel>Text to copy</guilabel> field either from the keyboard or from
+			the character table. </para></listitem>
+			</itemizedlist>
 		</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>Character table </term>
 		<listitem>
-		  <para>Character table </para>
 		  <para>The character table contains buttons for the 
-		  ISO-8859-1 character set. The default font setting is 
-		  Helvetica 12 point.</para>
+		  ISO-8859-1 character set. </para>
 		</listitem>
+		</varlistentry>
+		<varlistentry>
+		<term>Statusbar</term>
 		<listitem>
-		  <para>Statusbar </para>
 		  <para>The statusbar is located along the bottom edge of the window. The
-			 statusbar displays the ASCII code of the character in the character table that
-			 has focus.</para>
+			statusbar displays the ASCII code of the character in the character table that
+			has focus.</para>
 		</listitem>
-	 	</itemizedlist>
+		</varlistentry>
+	 	</variablelist>
      </sect2> 	
  
   </sect1> 
