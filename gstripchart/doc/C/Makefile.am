@@ -1,48 +1,54 @@
-# Process this file with automake to produce Makefile.in
+## Process this file with automake to produce Makefile.in
 
 gstripchart_helpdir = $(datadir)/gnome/help/gstripchart/C
+gstripchart_help_DATA = index.html authors.html usage.html topic.dat
 
-gstripchart_help_DATA = topic.dat index.html prefs.html usage.html
 
-SGML_FILES = gstripchart.sgml
+SGML_FILES = 		\
+	gstripchart.sgml	gnome-legalnotice.sgml
 
-EXTRA_DIST = $(SGML_FILES) topic.dat gstripchart
+EXTRA_DIST = \
+	topic.dat	gstripchart	$(SGML_FILES)
 
 all:
 
 index.html: gstripchart/index.html
 	-cd $(srcdir) && cp gstripchart/index.html .
 
-prefs.html: gstripchart/prefs.html
-	-cd $(srcdir) && cp gstripchart/prefs.html .
+authors.html: gstripchart/authors.html
+	-cd $(srcdir) && cp gstripchart/authors.html .
 
 usage.html: gstripchart/usage.html
 	-cd $(srcdir) && cp gstripchart/usage.html .
 
+
 gstripchart/index.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gstripchart.sgml
 
-gstripchart/prefs.html: $(SGML_FILES)
+gstripchart/usage.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gstripchart.sgml
 
-gstripchart/usage.html: $(SGML_FILES)
+gstripchart/authors.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gstripchart.sgml
 
 dist-hook:
 	$(mkinstalldirs) $(distdir)/gstripchart
 	-cp $(srcdir)/gstripchart/*.html gstripchart/*.css $(distdir)/gstripchart
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir)/*.png $(srcdir)/*.jpg $(srcdir)/*.gif $(distdir)
+	$(mkinstalldirs) $(distdir)/images
+	-cp $(srcdir)/images/*.png $(distdir)/images
 
 install-data-local: index.html
-	$(mkinstalldirs) $(DESTDIR)$(gstripchart_helpdir)
+	$(mkinstalldirs) $(DESTDIR)$(gstripchart_helpdir)/images
 	-for file in $(srcdir)/gstripchart/*.html $(srcdir)/gstripchart/*.css; do \
 	basefile=`basename $$file`; \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gstripchart_helpdir)/$$basefile; \
 	done
-	-for file in $(srcdir)/*.png $(srcdir)/*.jpg ; do \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gstripchart_helpdir);\
+	-for file in $(srcdir)/images/*.png ; do \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gstripchart_helpdir)/images;\
 	done
-
-gstripchart.ps: gstripchart.sgml
-	-db2ps $<
+	$(mkinstalldirs) $(DESTDIR)$(gstripchart_helpdir)/stylesheet-images
+	-for file in $(srcdir)/gstripchart/stylesheet-images/*.gif; do \
+	basefile=`basename $$file`; \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gstripchart_helpdir)/stylesheet-images/$$basefile; \
+	done

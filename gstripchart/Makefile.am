@@ -1,6 +1,6 @@
 SUBDIRS = doc
 
-INCLUDES = \
+INCLUDES = -DG_LOG_DOMAIN=\"gstripchart\" \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-DLOCALEDIR=\"$(datadir)/locale\" \
 	-DCONFDIR=\"$(datadir)/gstripchart\" \
