@@ -30,6 +30,9 @@ static void     view_color_grid_close       (ViewColorGeneric *vcg,
 static void     view_color_grid_sync        (ViewColorGeneric *vcg,
 					     gpointer data);
 
+static void     view_color_grid_save        (ViewColorGeneric *vcg);
+static void     view_color_grid_load        (ViewColorGeneric *vcg);
+
 GtkType 
 view_color_grid_get_type (void)
 {
@@ -71,6 +74,8 @@ view_color_grid_class_init (ViewColorGridClass *class)
   vcg_class->apply       = view_color_grid_apply;
   vcg_class->close       = view_color_grid_close;
   vcg_class->sync        = view_color_grid_sync;
+  vcg_class->save        = view_color_grid_save;
+  vcg_class->load        = view_color_grid_load;
 }
 
 static void
@@ -348,4 +353,28 @@ view_color_grid_sync (ViewColorGeneric *vcg, gpointer data)
   spin_set_value (GTK_SPIN_BUTTON (prop->spin_height), cg->col_height, prop);
 
   parent_class->sync (vcg, prop->parent_data);
+}
+
+/********************************* Config **********************************/
+
+static void 
+view_color_grid_save (ViewColorGeneric *vcg)
+{
+  ColorGrid *cg = COLOR_GRID (vcg->widget);
+
+  gnome_config_set_int ("ColWidth", cg->col_width);
+  gnome_config_set_int ("ColHeight", cg->col_height);
+
+  parent_class->save (vcg);
+}
+
+static void 
+view_color_grid_load (ViewColorGeneric *vcg)
+{
+  ColorGrid *cg = COLOR_GRID (vcg->widget);
+
+  cg->col_width  = gnome_config_get_int ("ColWidth");
+  cg->col_height = gnome_config_get_int ("ColHeight");
+
+  parent_class->load (vcg);
 }

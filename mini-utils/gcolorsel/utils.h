@@ -17,5 +17,10 @@ void spin_connect_value_changed (GtkSpinButton *spin, GtkSignalFunc cb,
 
 void preview_fill (GtkWidget *preview, int r, int g, int b);
 
+
+void set_config_key_pos (int pos);
+int  get_config_key_pos (void);
+int  get_config_key (void);
+
 #endif
 

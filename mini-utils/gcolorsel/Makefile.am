@@ -26,6 +26,8 @@ gcolorsel_SOURCES = 	gcolorsel.c			\
 			mdi-color-file.h		\
 			mdi-color-virtual.c		\
 			mdi-color-virtual.h		\
+			session.c			\
+			session.h			\
 			view-color-edit.c		\
 			view-color-edit.h		\
 			view-color-generic.c		\

@@ -1,3 +1,25 @@
+2000-04-23 Eric Brayeur <eb2@ibelgique.com>
+
+	* menus.[ch] (toolbar) : new GNOMEUIINFO structure, for toolbar.
+
+	* gcolorsel.c (main) : set toolbar. Set default size to 320x400
+	  instead of 320x380.
+
+	* gcolorsel.c (main) : init i18n.
+	
+2000-04-22 Eric Brayeur <eb2@ibelgique.com>
+
+	* mdi-color-*.[ch], view-color-*.[ch] : load/save properties works.
+
+	* session.[ch] : new files, save gcolorsel state and restore it.
+          Save all, from file loaded in MDIColorFile to SortColumn in ColorList.
+
+	* gcolorsel.c : try loading session; if fail, construct a new
+          session.
+	
+	* session.[ch] (session_create) : move gcolosel session creation
+	  here.
+
 2000-04-22  Fatih Demir	<kabalak@gmx.net>
 
 	* gcolorsel.desktop : Added [tr] .

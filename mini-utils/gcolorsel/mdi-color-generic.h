@@ -22,14 +22,16 @@ typedef struct _MDIColorGenericClass  MDIColorGenericClass;
 struct _MDIColorGeneric {
   GnomeMDIChild mdi_child;
 
+  int key;
+
   int flags; /* What the user can do. For example, it make no sense to
                 move or append a color in a MDIColorVirtual.
 		But he can Remove a color in a MDIColorVirtual */
 
   int freeze_count;
   int last;
-  
-  GtkType next_view_type;
+ 
+  GList *views_type;
 
   GList *other_views;
   GList *parents;
@@ -56,6 +58,9 @@ struct _MDIColorGenericClass {
   void     (*apply)            (MDIColorGeneric *mcg, gpointer data);
   void     (*close)            (MDIColorGeneric *mcg, gpointer data);
   void     (*sync)             (MDIColorGeneric *mcg, gpointer data);
+
+  void     (*save)             (MDIColorGeneric *mcg);
+  void     (*load)             (MDIColorGeneric *mcg);
 };
 
 guint mdi_color_generic_get_type (void);
@@ -112,7 +117,7 @@ GtkType mdi_color_generic_get_control_type (MDIColorGeneric *mcg);
 
 void mdi_color_generic_sync_control     (MDIColorGeneric *mcg);
 
-void mdi_color_generic_next_view_type   (MDIColorGeneric *mcg, GtkType type);
+void mdi_color_generic_append_view_type   (MDIColorGeneric *mcg, GtkType type);
 					
 END_GNOME_DECLS
 

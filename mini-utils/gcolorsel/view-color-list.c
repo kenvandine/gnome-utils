@@ -81,6 +81,9 @@ static void     view_color_list_close (ViewColorGeneric *vcg,
 static void     view_color_list_sync  (ViewColorGeneric *vcg,
 				       gpointer data);
 
+static void     view_color_list_save  (ViewColorGeneric *vcg);
+static void     view_color_list_load  (ViewColorGeneric *vcg);
+
 static void 
 view_color_list_click_column (GtkCList *clist, gint column,ViewColorList *vcl);
 static gint 
@@ -134,6 +137,8 @@ view_color_list_class_init (ViewColorListClass *class)
   vcg_class->close           = view_color_list_close;
   vcg_class->apply           = view_color_list_apply;
   vcg_class->sync            = view_color_list_sync;
+  vcg_class->save            = view_color_list_save;
+  vcg_class->load            = view_color_list_load;
   
   object_class->destroy = view_color_list_destroy;
 }
@@ -812,4 +817,45 @@ view_color_list_sync (ViewColorGeneric *vcg, gpointer data)
   gtk_signal_handler_unblock_by_data (GTK_OBJECT (prop->check_draw_numbers), prop);
 
   parent_class->sync (vcg, prop->parent_data);
+}
+
+/**************************** Config **********************************/
+
+static void
+view_color_list_save (ViewColorGeneric *vcg)
+{
+  ViewColorList *vcl = VIEW_COLOR_LIST (vcg);
+  GtkCList *clist = GTK_CLIST (VIEW_COLOR_GENERIC (vcl)->widget);
+
+  gnome_config_set_int ("ColWidth", vcl->col_width);
+  gnome_config_set_int ("ColHeight", vcl->col_height);
+  gnome_config_set_bool ("DrawNumbers", vcl->draw_numbers);
+
+  gnome_config_set_int ("SortColumn", clist->sort_column);
+  gnome_config_set_bool ("SortAscending", 
+			 clist->sort_type == GTK_SORT_ASCENDING);
+
+  parent_class->save (vcg);
+}
+
+static void
+view_color_list_load (ViewColorGeneric *vcg)
+{
+  ViewColorList *vcl = VIEW_COLOR_LIST (vcg);
+  GtkCList *clist = GTK_CLIST (VIEW_COLOR_GENERIC (vcl)->widget);
+
+  vcl->col_width    = gnome_config_get_int ("ColWidth");
+  vcl->col_height   = gnome_config_get_int ("ColHeight");
+  vcl->draw_numbers = gnome_config_get_bool ("DrawNumbers");
+
+  view_color_list_set_sort_column (vcl, 
+				   gnome_config_get_int ("SortColumn"),
+				   gnome_config_get_bool ("SortAscending") ? 
+				   GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
+  
+
+  gtk_clist_set_row_height (clist, vcl->col_height);
+  gtk_clist_set_column_width (clist, COLUMN_PIXMAP, vcl->col_width);
+
+  parent_class->load (vcg);
 }

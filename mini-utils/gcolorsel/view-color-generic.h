@@ -32,6 +32,8 @@ typedef struct _ViewColorGenericCol ViewColorGenericCol;
 struct _ViewColorGeneric {
   GtkObject object;
 
+  int key;
+
   gboolean show_control;
   ControlGeneric *control;
 
@@ -52,6 +54,9 @@ struct _ViewColorGenericClass {
   void     (*apply)           (ViewColorGeneric *cg, gpointer data);
   void     (*close)           (ViewColorGeneric *cg, gpointer data);
   void     (*sync)            (ViewColorGeneric *cg, gpointer data);
+
+  void     (*save)            (ViewColorGeneric *mcg);
+  void     (*load)            (ViewColorGeneric *mcg);
 };
 
 GtkType view_color_generic_get_type (void);

@@ -15,6 +15,9 @@ static void mdi_color_generic_apply (MDIColorGeneric *mcg, gpointer data);
 static void mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data);
 static void mdi_color_generic_sync  (MDIColorGeneric *mcg, gpointer data);
 
+static void mdi_color_generic_load  (MDIColorGeneric *mcg);
+static void mdi_color_generic_save  (MDIColorGeneric *mcg);
+
 static MDIColorGenericClass *parent_class = NULL;
 
 guint 
@@ -56,6 +59,8 @@ mdi_color_file_class_init (MDIColorFileClass *class)
   mcg_class->apply       = mdi_color_generic_apply;
   mcg_class->close       = mdi_color_generic_close;
   mcg_class->sync        = mdi_color_generic_sync;
+  mcg_class->load        = mdi_color_generic_load;
+  mcg_class->save        = mdi_color_generic_save;
 }
 
 static void
@@ -68,16 +73,25 @@ mdi_color_file_init (MDIColorFile *mcf)
 }
 
 MDIColorFile *
-mdi_color_file_new (const gchar *filename)
+mdi_color_file_new (void)
 {
   MDIColorFile *mcf; 
 
   mcf = gtk_type_new (mdi_color_file_get_type ()); 
 
-  mcf->filename = g_strdup (filename);
-  GNOME_MDI_CHILD(mcf)->name = g_strdup (g_basename (filename));
+/*  mcf->filename = g_strdup (filename);
+    GNOME_MDI_CHILD(mcf)->name = g_strdup (g_basename (filename));*/
 
   return mcf;
+}
+
+void
+mdi_color_file_set_filename (MDIColorFile *mcf, const char *filename)
+{
+  if (mcf->filename)
+    g_free (mcf->filename);
+
+  mcf->filename = g_strdup (filename);  
 }
 
 gboolean
@@ -195,3 +209,22 @@ mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data)
   gtk_object_unref (GTK_OBJECT (prop->gui));
   g_free (prop);
 }
+
+/******************************** Config *********************************/
+
+static void 
+mdi_color_generic_save  (MDIColorGeneric *mcg)
+{
+  gnome_config_set_string ("FileName", MDI_COLOR_FILE (mcg)->filename);
+
+  parent_class->save (mcg);
+}
+
+static void 
+mdi_color_generic_load  (MDIColorGeneric *mcg)
+{
+  MDI_COLOR_FILE (mcg)->filename = gnome_config_get_string ("FileName");
+
+  parent_class->load (mcg);
+}
+

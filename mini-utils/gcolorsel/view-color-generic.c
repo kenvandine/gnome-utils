@@ -33,6 +33,9 @@ static void     view_color_generic_close       (ViewColorGeneric *vcg,
 static void     view_color_generic_sync        (ViewColorGeneric *vcg,
 						gpointer data);
 
+static void     view_color_generic_save        (ViewColorGeneric *vcg);
+static void     view_color_generic_load        (ViewColorGeneric *vcg);
+
 static GList   *str_tab_2_str_list             (char *tab[]);
 
 static GtkObjectClass *parent_class = NULL;
@@ -91,12 +94,15 @@ view_color_generic_class_init (ViewColorGenericClass *class)
   class->apply       = view_color_generic_apply;
   class->close       = view_color_generic_close;
   class->sync        = view_color_generic_sync;
+  class->save        = view_color_generic_save;
+  class->load        = view_color_generic_load;
 }
 
 static void
 view_color_generic_init (ViewColorGeneric *vcg)
 {
-  vcg->format = FORMAT_DEC_8;
+  vcg->key        = get_config_key ();
+  vcg->format     = FORMAT_DEC_8;
 }
 
 void 
@@ -242,4 +248,25 @@ view_color_generic_sync (ViewColorGeneric *vcg, gpointer data)
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prop->check_show_control),
 				vcg->show_control);
   gtk_signal_handler_unblock_by_data (GTK_OBJECT (prop->check_show_control), prop);
+}
+
+/****************************** Config **********************************/
+
+static void 
+view_color_generic_save (ViewColorGeneric *vcg)
+{
+  gnome_config_set_int ("Format", vcg->format);
+  gnome_config_set_bool ("ShowControl", vcg->show_control);
+}
+
+static void 
+view_color_generic_load (ViewColorGeneric *vcg)
+{
+  vcg->format       = gnome_config_get_int ("Format");
+  vcg->show_control = gnome_config_get_bool ("ShowControl");
+
+  if (vcg->show_control) {
+    if (vcg->control) gtk_widget_show (GTK_WIDGET (vcg->control));
+  } else 
+    if (vcg->control) gtk_widget_hide (GTK_WIDGET (vcg->control));
 }

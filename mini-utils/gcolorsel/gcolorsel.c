@@ -1,12 +1,16 @@
+#include "config.h"
+
 #include "gcolorsel.h"
 #include "menus.h"
 #include "mdi-color-generic.h"
 #include "mdi-color-file.h"
 #include "mdi-color-virtual.h"
 #include "view-color-grid.h"
+#include "view-color-list.h"
+#include "view-color-edit.h"
 #include "widget-control-virtual.h"
+#include "session.h"
 
-#include "config.h"
 #include <gnome.h>
 #include <glade/glade.h>
 
@@ -27,61 +31,46 @@ gint mdi_remove_child (GnomeMDI *mdi, MDIColorGeneric *mcg)
   return TRUE;
 }
 
-GnomeMDIChild *child_create (const gchar *config)
-{
-  MDIColorFile *file;
-  printf ("Child create : %s\n", config);
-
-  file = mdi_color_file_new (config);
-  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file));
-  mdi_color_file_load (file);    
-
-  return GNOME_MDI_CHILD (file);
-}
-
 int main (int argc, char *argv[])
 {
-  MDIColorFile *file;
-  MDIColorVirtual *virtual;
-  
+  /* Initialize i18n */
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  textdomain (PACKAGE);
+
   gnome_init ("gcolorsel", VERSION, argc, argv);
   glade_gnome_init ();
+
+  /* For gtk_type_from_name in session.c */
+  mdi_color_virtual_get_type ();
+  mdi_color_file_get_type    ();
+  view_color_list_get_type   ();
+  view_color_grid_get_type   ();
+  view_color_edit_get_type   ();
 	
-  mdi = GNOME_MDI (gnome_mdi_new ("gcolorsel", "GColorsel"));
-  mdi->tab_pos = GTK_POS_BOTTOM;
-  gnome_mdi_set_mode (mdi, GNOME_MDI_NOTEBOOK);
-  gnome_mdi_set_menubar_template (mdi, main_menu);
+  /* Init GnomeMDI */
+  mdi = GNOME_MDI (gnome_mdi_new ("gcolorsel", _("GColorsel")));
+
   gtk_signal_connect (GTK_OBJECT (mdi), "destroy",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
   gtk_signal_connect (GTK_OBJECT (mdi), "remove_child", 
 		      GTK_SIGNAL_FUNC (mdi_remove_child), NULL);
 
-  
-  file = mdi_color_file_new ("/usr/X11R6/lib/X11/rgb.txt");
-  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file));
-  mdi_color_file_load (file);
-  
-  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
-  
-  mdi_color_generic_next_view_type (MDI_COLOR_GENERIC (file), 
-				    TYPE_VIEW_COLOR_GRID);
-  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
-  /*
-    virtual = mdi_color_virtual_new ();
-    gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (virtual));
-    gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
-    mdi_color_generic_next_view_type (MDI_COLOR_GENERIC (virtual), 
-    TYPE_VIEW_COLOR_GRID);
-    gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
-    mdi_color_generic_connect (MDI_COLOR_GENERIC (file),
-    MDI_COLOR_GENERIC (virtual)); */
+  /* Init menu/toolbar */
+  gnome_mdi_set_menubar_template (mdi, main_menu);
+  gnome_mdi_set_toolbar_template (mdi, toolbar);
 
-//  gnome_mdi_restore_state (mdi, "gcolorsel/toto", child_create);
-    
+  /* Try loading old session ; if fail, construct a new session */
+  if (! session_load (mdi)) 
+    session_create (mdi);
+
   gtk_widget_set_usize (GTK_WIDGET (gnome_mdi_get_active_window (mdi)),
-			320, 380);  
+			320, 400);
 
+  /* Load all file */
+  session_load_data (mdi);
+    
   gtk_main ();
 
   return 0;
 }
+

@@ -4,8 +4,7 @@
 #include "gnome.h"
 
 extern GnomeUIInfo main_menu [];
-
-//extern GnomeUIInfo mdi_menu [];
+extern GnomeUIInfo toolbar [];
 
 void menu_view_do_popup (GdkEventButton *event);
 

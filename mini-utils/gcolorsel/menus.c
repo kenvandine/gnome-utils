@@ -5,6 +5,7 @@
 #include "view-color-generic.h"
 #include "view-color-edit.h"
 #include "gcolorsel.h"
+#include "session.h"
 
 #include "config.h"
 #include "gnome.h"
@@ -111,8 +112,9 @@ open_cb (GtkWidget *widget)
   if (!cancel) {
     filename = gtk_file_selection_get_filename (fs);
     
-    child = GNOME_MDI_CHILD (mdi_color_file_new (filename));
+    child = GNOME_MDI_CHILD (mdi_color_file_new ());
     if (child) {
+      mdi_color_file_set_filename (MDI_COLOR_FILE (child), filename);
       gnome_mdi_add_child (mdi, child);
       gnome_mdi_add_view (mdi, child);
       mdi_color_file_load (MDI_COLOR_FILE (child));
@@ -156,13 +158,13 @@ close_cb (GtkWidget *widget)
   }
 }
 
+
 static void 
 exit_cb (GtkWidget *widget)
 {  
   /* Save layout before ... */
   
-  gnome_mdi_save_state (mdi, "gcolorsel/mdi");
-  
+  session_save (mdi);
 
   gtk_main_quit ();
 }
@@ -212,7 +214,7 @@ remove_cb (GtkWidget *widget, gpointer data)
 static void
 edit_cb (GtkWidget *widget, gpointer data)
 {
-  mdi_color_generic_next_view_type (MDI_COLOR_GENERIC (gnome_mdi_get_active_child (mdi)), TYPE_VIEW_COLOR_EDIT);
+  mdi_color_generic_append_view_type (MDI_COLOR_GENERIC (gnome_mdi_get_active_child (mdi)), TYPE_VIEW_COLOR_EDIT);
   gnome_mdi_add_view (mdi, gnome_mdi_get_active_child (mdi));
 }
 
@@ -364,3 +366,17 @@ menu_view_do_popup (GdkEventButton *event)
 
   gnome_popup_menu_do_popup (popup, NULL, NULL, event, edit_menu);
 }
+
+/************************* ToolBar *************************************/
+
+GnomeUIInfo toolbar [] = {
+  GNOMEUIINFO_ITEM_STOCK (N_("Exit"), N_("Exit the program"),
+			  exit_cb, GNOME_STOCK_PIXMAP_EXIT),
+  GNOMEUIINFO_SEPARATOR,
+  GNOMEUIINFO_ITEM_STOCK (N_("Grab"), N_("Grab a color on the screen"),
+			  NULL, GNOME_STOCK_PIXMAP_JUMP_TO),
+  GNOMEUIINFO_SEPARATOR,
+  GNOMEUIINFO_ITEM_STOCK (N_("About"), N_("About this application"),
+			  about_cb, GNOME_STOCK_PIXMAP_ABOUT),
+  GNOMEUIINFO_END
+};

@@ -16,10 +16,13 @@ static int          color_diff                   (int r1, int g1, int b1,
 static int          mdi_color_virtual_get_diff   (MDIColorVirtual *mcv, 
 						  MDIColor *col);
 
-MDIColor *mdi_color_virtual_get_owner  (MDIColor *col);
+MDIColor           *mdi_color_virtual_get_owner  (MDIColor *col);
 GtkType             mdi_color_virtual_get_control_type (MDIColorGeneric *mcg);
 static GList *      mdi_color_virtual_get_append_pos (MDIColorGeneric *mcg,
 						      MDIColor *col);
+
+static void         mdi_color_virtual_save       (MDIColorGeneric *mcg);
+static void         mdi_color_virtual_load       (MDIColorGeneric *mcg);
 
 static MDIColorGenericClass *parent_class = NULL;
 
@@ -49,16 +52,18 @@ mdi_color_virtual_get_type()
 static void 
 mdi_color_virtual_class_init (MDIColorVirtualClass *class)
 {
-  MDIColorGenericClass *mdi_color_generic_class;
+  MDIColorGenericClass *mcg_class;
   GnomeMDIChildClass   *mdi_child_class;
   GtkObjectClass       *object_class;
   
-  object_class            = GTK_OBJECT_CLASS (class);
-  mdi_child_class         = GNOME_MDI_CHILD_CLASS (class);
-  mdi_color_generic_class = MDI_COLOR_GENERIC_CLASS (class);
-  parent_class            = gtk_type_class (mdi_color_generic_get_type());
+  object_class     = GTK_OBJECT_CLASS (class);
+  mdi_child_class  = GNOME_MDI_CHILD_CLASS (class);
+  mcg_class        = (MDIColorGenericClass *)class;
+  parent_class     = gtk_type_class (mdi_color_generic_get_type());
 
-  mdi_color_generic_class->document_changed = mdi_color_virtual_changed;
+  mcg_class->document_changed = mdi_color_virtual_changed;
+  mcg_class->save             = mdi_color_virtual_save;
+  mcg_class->load             = mdi_color_virtual_load;
 }
 
 static void
@@ -361,3 +366,32 @@ mdi_color_virtual_get (MDIColorVirtual *mcv,
   if (t) *t = mcv->t;
 }
 
+/******************************** Config *********************************/
+
+static void         
+mdi_color_virtual_save (MDIColorGeneric *mcg)
+{
+  MDIColorVirtual *mcv = MDI_COLOR_VIRTUAL (mcg);
+
+  gnome_config_set_int ("Red", mcv->r);
+  gnome_config_set_int ("Green", mcv->g);
+  gnome_config_set_int ("Blue", mcv->b);
+  gnome_config_set_int ("Tolerance", mcv->t);
+    
+  parent_class->save (mcg);
+}
+
+static void         
+mdi_color_virtual_load (MDIColorGeneric *mcg)
+{
+  MDIColorVirtual *mcv = MDI_COLOR_VIRTUAL (mcg);
+  
+  mcv->r = gnome_config_get_int ("Red");
+  mcv->g = gnome_config_get_int ("Green");
+  mcv->b = gnome_config_get_int ("Blue");
+  mcv->t = gnome_config_get_int ("Tolerance");
+
+  mdi_color_generic_sync_control (mcg); 
+
+  parent_class->load (mcg);
+}

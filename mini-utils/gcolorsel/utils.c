@@ -112,3 +112,23 @@ preview_fill (GtkWidget *preview, int r, int g, int b)
 
   g_free (buf);    
 }
+
+static int key_pos = 1;
+
+void 
+set_config_key_pos (int pos)
+{
+  key_pos = pos;
+}
+
+int  
+get_config_key_pos (void)
+{
+  return key_pos;
+}
+
+int  
+get_config_key (void)
+{
+  return key_pos++;
+}
