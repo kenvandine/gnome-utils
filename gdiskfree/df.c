@@ -30,6 +30,7 @@
 #include <sys/stat.h>
 #include <string.h>
 
+#include <error.h>
 
 #include "mountlist.h"
 #include "fsusage.h"
