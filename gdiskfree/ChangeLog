@@ -1,3 +1,8 @@
+1999-01-11  Miguel de Icaza  <miguel@nuclecu.unam.mx>
+
+	* df.c: Do not include error.h (include errno instead).  Do not
+	include getopt.h, as we dont even use it.
+
 Wed Jan 06 22:49:41 1999  George Lebl  <jirka@5z.com>
 
 	* df.c: standardized menus with the new app-helper macros

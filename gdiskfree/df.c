@@ -28,14 +28,13 @@
 #include <gnome.h>
 #include <stdio.h>
 #include <sys/types.h>
-#include <getopt.h>
 #include <assert.h>
 #include <sys/errno.h>
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <string.h>
 
-#include <error.h>
+#include <errno.h>
 
 #include "save-cwd.h" 
 #include "util.h"
