@@ -42,7 +42,7 @@ Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 schemadir   = $(sysconfdir)/gconf/schemas
 schemas_in_file = logview.schemas.in
 schema_DATA = $(schemas_in_file:.schemas.in=.schemas)
-schema_source_data = $(foreach file, $(schema_DATA), $(srcdir)/$(file))
+schema_source_data = $(foreach file, $(schema_DATA), $(file))
 @INTLTOOL_SCHEMAS_RULE@
 
 additional_DATA  = gnome-system-log-descript.db \
