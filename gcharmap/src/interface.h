@@ -59,5 +59,8 @@ GType main_app_get_type (void);
 MainApp *main_app_new (void);
 void main_app_destroy (MainApp *obj);
 
+gboolean check_gail(GtkWidget *widget);
+void add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc);
+void add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type);
 
 #endif /* _INTERFACE_H_ */

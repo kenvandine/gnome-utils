@@ -81,6 +81,13 @@ create_chartable (void)
             g_signal_connect (G_OBJECT (button), "leave",
               G_CALLBACK (cb_charbtn_leave), NULL);
 
+
+            gtk_signal_connect (GTK_OBJECT (button), "focus_in_event",
+              GTK_SIGNAL_FUNC (cb_charbtn_enter), NULL);
+            gtk_signal_connect (GTK_OBJECT (button), "focus_out_event",
+              GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
+
+
         }
     }
 
@@ -114,11 +121,57 @@ create_chartable (void)
             g_signal_connect (G_OBJECT (button), "leave",
               G_CALLBACK (cb_charbtn_leave), NULL);
 
+
+            gtk_signal_connect (GTK_OBJECT (button), "focus_in_event",
+              GTK_SIGNAL_FUNC (cb_charbtn_enter), NULL);
+            gtk_signal_connect (GTK_OBJECT (button), "focus_out_event",
+              GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
+
+
         }
     }
 
     gtk_widget_show_all (chartable);
     return chartable;
+}
+
+/* Check if gail is loaded */
+gboolean
+check_gail(GtkWidget *widget)
+{
+   return GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(widget));
+}
+
+
+/* Add AtkName and AtkDescription */
+void
+add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc)
+{
+   AtkObject *atk_widget;
+   atk_widget = gtk_widget_get_accessible(widget);
+   atk_object_set_name(atk_widget, name);
+   atk_object_set_description(atk_widget, desc);
+}
+
+
+/* Add AtkRelation */
+void
+add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type)
+{
+
+    AtkObject *atk_obj1, *atk_obj2;
+    AtkRelationSet *relation_set;
+    AtkRelation *relation;
+
+    atk_obj1 = gtk_widget_get_accessible(obj1);
+
+    atk_obj2 = gtk_widget_get_accessible(obj2);
+
+    relation_set = atk_object_ref_relation_set (atk_obj1);
+    relation = atk_relation_new(&atk_obj2, 1, type);
+    atk_relation_set_add(relation_set, relation);
+    g_object_unref(G_OBJECT (relation));
+
 }
 
 
@@ -131,6 +184,10 @@ main_app_create_ui (MainApp *app)
     GtkWidget *chartable;
     GtkWidget *buttonbox, *button;
     GtkWidget *viewport;
+
+
+    GtkTooltips *button_tips;
+
 
     /* Main window */
     {
@@ -193,12 +250,26 @@ main_app_create_ui (MainApp *app)
         app->entry = gtk_entry_new ();
         gtk_label_set_mnemonic_widget (GTK_LABEL (alabel), app->entry);
         gtk_box_pack_start (GTK_BOX (hbox), app->entry, TRUE, TRUE, 0);
+
+        if (check_gail(app->entry))
+        {
+          add_atk_namedesc(GTK_WIDGET(alabel), _("Text to copy"), _("Text to copy"));
+          add_atk_namedesc(app->entry, _("Entry"), _("Text to copy"));
+
+          add_atk_relation(app->entry, GTK_WIDGET(alabel), ATK_RELATION_LABELLED_BY);
+        }
         
         button = gtk_button_new_with_mnemonic (_("_Copy"));
         gtk_container_set_border_width (GTK_CONTAINER (button), 2);
         g_signal_connect (G_OBJECT (button), "clicked",
         		  G_CALLBACK (cb_copy_click), NULL);
         gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);		  
+        button_tips = gtk_tooltips_new();
+        gtk_tooltips_set_tip(button_tips, button, _("Copy the text"), "");
+
+        g_object_ref(button_tips);
+        gtk_object_sink (GTK_OBJECT (button_tips));
+        g_object_set_data (G_OBJECT (app->window), "tooltips", button_tips);
 
         gtk_widget_show_all (hbox);
         item = g_list_nth_data (GNOME_APP (app->window)->layout->items, 0);
@@ -349,8 +420,17 @@ main_app_new (void)
 void
 main_app_destroy (MainApp *obj)
 {
+    GtkTooltips *tooltips;
+
     g_return_if_fail (obj != NULL);
     g_return_if_fail (MAIN_IS_APP (obj) == TRUE);
+
+    tooltips = g_object_get_data(G_OBJECT(obj->window), "tooltips");
+    if (tooltips)
+    {
+       g_object_unref(tooltips);
+       g_object_set_data(G_OBJECT(obj->window), "tooltips", NULL);
+    }
 
     gtk_main_quit ();
 }

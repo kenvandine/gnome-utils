@@ -116,6 +116,7 @@ ascii_select_init (AsciiSelect *obj)
     GtkAdjustment *adj;
     GdkFont *font;
 
+
     obj->window = gtk_dialog_new_with_buttons (_("Select Character"), NULL,
     					       GTK_DIALOG_DESTROY_WITH_PARENT,
 					       GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
@@ -138,6 +139,15 @@ ascii_select_init (AsciiSelect *obj)
     entry = gtk_entry_new ();
     gtk_entry_set_text (GTK_ENTRY (entry), "A");
     gtk_entry_set_max_length (GTK_ENTRY (entry), 1);
+
+    if(check_gail(spin))
+    {
+       add_atk_namedesc(spin, _("Character Code"), _("Select character code"));
+       add_atk_namedesc(entry, _("Character"), _("Character to insert"));
+       add_atk_relation(spin, entry, ATK_RELATION_CONTROLLER_FOR);
+       add_atk_relation(entry, spin, ATK_RELATION_CONTROLLED_BY);
+    }
+
 #if 0 /* It seems dumb to hard code the font here */
     style = gtk_style_copy (gtk_widget_get_style (entry));
     font = gdk_fontset_load (
