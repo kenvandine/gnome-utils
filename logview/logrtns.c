@@ -22,6 +22,7 @@
 #include <config.h>
 #include <gnome.h>
 #include <locale.h>
+#include <errno.h>
 #include "logview.h"
 #include "logrtns.h"
 
@@ -305,6 +306,10 @@ isLogFile (char *filename)
    fp = fopen (filename, "r");
    if (fp == NULL)
    {
+      /* FIXME: this error message is really quite poor
+       * we should state why the open failed
+       * ie. file too large etc etc..
+       */
       g_snprintf (buff, sizeof (buff),
 		  _("%s could not be opened."), filename);
       ShowErrMessage (buff);

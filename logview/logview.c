@@ -359,7 +359,7 @@ void
 CreateMainWin ()
 {
    GtkWidget *canvas;
-   GtkWidget *w, *box, *table, *hbox2;
+   GtkWidget *w, *vbox, *table, *hbox, *hbox_date;
    GtkWidget *padding;
    GtkLabel *label;
    GtkObject *adj;
@@ -383,31 +383,25 @@ CreateMainWin ()
    /* Create menus */
    gnome_app_create_menus (GNOME_APP (app), main_menu);
 
-   box = gtk_vbox_new (FALSE, 0);
-   gnome_app_set_contents (GNOME_APP (app), box);
+   vbox = gtk_vbox_new (FALSE, 0);
+   gnome_app_set_contents (GNOME_APP (app), vbox);
 
    /* Deactivate unfinished items */
    gtk_widget_set_state (file_menu[1].widget, GTK_STATE_INSENSITIVE);
    if (numlogs < 2)
      gtk_widget_set_state (file_menu[3].widget, GTK_STATE_INSENSITIVE);
-#if 0
-   gtk_widget_set_state (filter_menu[0].widget, GTK_STATE_INSENSITIVE);
-   gtk_widget_set_state (filter_menu[1].widget, GTK_STATE_INSENSITIVE);
-#endif
 
    /* Create main canvas and scroll bars */
    table = gtk_table_new (2, 2, FALSE);
    gtk_widget_show (table);
 
    viewport = gtk_viewport_new (NULL, NULL);
-   gtk_widget_set_usize (viewport, LOG_CANVAS_W, 0); 
+   gtk_widget_set_size_request (viewport, LOG_CANVAS_W, 0); 
    gtk_widget_show (viewport);
                
    canvas = gtk_drawing_area_new ();
-   /*gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W, LOG_CANVAS_H); */
    gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W,
 			  LOG_CANVAS_H); 
-   /*gtk_widget_set_usize ( GTK_WIDGET (canvas), LOG_CANVAS_W, LOG_CANVAS_H);*/
    gtk_container_add (GTK_CONTAINER (viewport), canvas);
    gtk_table_attach (GTK_TABLE (table), viewport, 0, 1, 0, 1,
 		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
@@ -443,15 +437,11 @@ CreateMainWin ()
    gtk_widget_show (main_win_scrollbar);  
 
 
-   gtk_box_pack_start (GTK_BOX (box), table, TRUE, TRUE, 0);
+   gtk_box_pack_start (GTK_BOX (vbox), table, TRUE, TRUE, 0);
    
    /*  Install event handlers */
    gtk_signal_connect (GTK_OBJECT (canvas), "expose_event",
 		       GTK_SIGNAL_FUNC (log_repaint), NULL);
-#if 0
-   gtk_signal_connect (GTK_OBJECT (canvas), "motion_notify_event",
-		       GTK_SIGNAL_FUNC (PointerMoved), NULL);
-#endif
    gtk_signal_connect (GTK_OBJECT (app), "key_press_event",
 		       GTK_SIGNAL_FUNC (HandleLogKeyboard), NULL);
    gtk_signal_connect (GTK_OBJECT (canvas), "button_press_event",
@@ -469,47 +459,50 @@ CreateMainWin ()
    gtk_widget_set_events (app, GDK_KEY_PRESS_MASK);
 
 
-   /*gtk_widget_set_style (canvas, cfg->black_bg_style); */
    gtk_widget_set_style (canvas, cfg->white_bg_style);
    gtk_widget_show (canvas);
 
 
    /* Create status area at bottom */
-   hbox2 = gtk_hbox_new (FALSE, 2);
-   gtk_container_set_border_width ( GTK_CONTAINER (hbox2), 3);
+   hbox = gtk_hbox_new (FALSE, 2);
+   gtk_container_set_border_width ( GTK_CONTAINER (hbox), 3);
 
    label = (GtkLabel *)gtk_label_new (_("Filename: "));
    gtk_label_set_justify (label, GTK_JUSTIFY_LEFT);
-   gtk_box_pack_start (GTK_BOX (hbox2), GTK_WIDGET (label), FALSE, FALSE, 0);
+   gtk_box_pack_start (GTK_BOX (hbox), GTK_WIDGET (label), FALSE, FALSE, 0);
    gtk_widget_show (GTK_WIDGET (label));  
 
    filename_label = (GtkLabel *)gtk_label_new ("");
    gtk_widget_show ( GTK_WIDGET (filename_label));  
    gtk_label_set_justify (label, GTK_JUSTIFY_LEFT);
-   gtk_box_pack_start (GTK_BOX (hbox2), GTK_WIDGET (filename_label), 
+   gtk_box_pack_start (GTK_BOX (hbox), GTK_WIDGET (filename_label), 
 		       FALSE, FALSE, 0);
    
    /* Add padding to right justify */
    padding = gtk_label_new (" ");
    gtk_widget_show (padding);
-   gtk_box_pack_start (GTK_BOX (hbox2), padding, TRUE, TRUE, 0);
+   gtk_box_pack_start (GTK_BOX (hbox), padding, TRUE, TRUE, 0);
 
-   label = (GtkLabel *)gtk_label_new (_("Date: "));
+   hbox_date = gtk_hbox_new (FALSE, 2);
+   gtk_container_set_border_width ( GTK_CONTAINER (hbox_date), 3);
+
+   label = (GtkLabel *)gtk_label_new (_("Last Modified: "));
    gtk_label_set_justify (label, GTK_JUSTIFY_RIGHT);
-   gtk_widget_set_usize (GTK_WIDGET(label), 40, -1);
-   gtk_box_pack_start (GTK_BOX (hbox2), GTK_WIDGET (label), FALSE, FALSE, 0);
+   /* gtk_widget_set_size_request (GTK_WIDGET(label), 240, -1); */
+   gtk_box_pack_start (GTK_BOX (hbox_date), GTK_WIDGET (label), FALSE, FALSE, 0);
    gtk_widget_show (GTK_WIDGET (label));  
 
    date_label = (GtkLabel *)gtk_label_new ("");
    gtk_widget_show (GTK_WIDGET (date_label));  
-   gtk_widget_set_usize (GTK_WIDGET (label), 60, -1);
-   gtk_box_pack_start (GTK_BOX (hbox2), GTK_WIDGET (date_label), FALSE, FALSE, 0);
+   /* gtk_widget_set_size_request (GTK_WIDGET (label), 60, -1); */
+   gtk_box_pack_start (GTK_BOX (hbox_date), GTK_WIDGET (date_label), TRUE, TRUE, 0);
 
-   gtk_widget_show (hbox2);
+   gtk_widget_show (hbox_date);
+   gtk_box_pack_start (GTK_BOX (hbox), hbox_date, FALSE, FALSE, 0);
+   gtk_widget_show (hbox);
+   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
-   gtk_box_pack_start (GTK_BOX (box), hbox2, FALSE, FALSE, 0);
-
-   gtk_widget_show (box);
+   gtk_widget_show (vbox);
    gtk_widget_show (app);
 
 }
@@ -646,7 +639,6 @@ void set_scrollbar_size (int num_lines)
 {
   GtkObject *adj;
 
-  /*adj = gtk_adjustment_new ( curlog->ln, 0.0, num_lines+LINES_P_PAGE, 1.0, 10.0, (float) LINES_P_PAGE);*/
   adj = gtk_adjustment_new (-1, 0.0, num_lines,
 			    1.0, 10.0, (float) LINES_P_PAGE);
   gtk_range_set_adjustment (GTK_RANGE (main_win_scrollbar),

@@ -1,3 +1,13 @@
+2002-05-03  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: s/Date/Last Modified. It seems a slightly better
+	solution, although when you scroll up it seems to randomly
+	change the date in the status bar. Fixes #72782 somewhat
+	but we should get rid of the updates and just use one non
+	changing date, whatever that might be.
+	* logrtns.c: Include <errno.h> in the view to giving more 
+	useful error messages.
+ 
 2002-05-03  Xing Wang <quixon@gnuchina.org>
 
 	* calendar.c: (CalendarMenu), (close_calendar): Don't NULL
