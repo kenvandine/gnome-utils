@@ -405,7 +405,7 @@ build_search_command (GSearchWindow * gsearch,
 		}
 		gnome_entry_prepend_history (GNOME_ENTRY (gsearch->name_contains_entry), TRUE, file_is_named_utf8);
 
-		if (strstr (locale, "*") == NULL) {
+		if ((strstr (locale, "*") == NULL) && (strstr (locale, "?") == NULL)) {
 			gchar *tmp;
 		
 			tmp = file_is_named_utf8;
