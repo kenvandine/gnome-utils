@@ -299,9 +299,14 @@ build_search_command (void)
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
 	gnome_entry_prepend_history (GNOME_ENTRY(gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))), 
 				     TRUE, look_in_folder_utf8);
+	g_free (look_in_folder_utf8);
 	
 	if (!file_extension_is (look_in_folder_locale, G_DIR_SEPARATOR_S)) {
+		gchar *tmp;
+		
+		tmp = look_in_folder_locale;
 		look_in_folder_locale = g_strconcat (look_in_folder_locale, G_DIR_SEPARATOR_S, NULL);
+		g_free (tmp);
 	}
 	search_command.look_in_folder = g_strdup(look_in_folder_locale);
 	
@@ -790,6 +795,7 @@ get_desktop_item_name (void)
 	                                           -1, NULL, NULL, NULL);
 	g_string_append (gs, g_strdup_printf ("named=%s", file_is_named_locale));
 	g_free (file_is_named_locale);
+	g_free (look_in_folder_utf8);
 
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
@@ -1237,6 +1243,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		gchar *status_bar_string = NULL;
 		gchar *title_bar_string = NULL;
 		gchar *search_status = g_strdup ("");
+		gchar  *tmp;
 		
 		if (search_data->running == MAKE_IT_STOP) {
 			search_status = g_strdup (_("(stopped)"));
@@ -1270,8 +1277,10 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		}
 		gtk_label_set_text (GTK_LABEL (interface.results_label), status_bar_string);
 		
+		tmp = title_bar_string;
 		title_bar_string = g_strconcat (title_bar_string, " - ", _("Search for Files"), NULL);
 		gtk_window_set_title (GTK_WINDOW (interface.main_window), title_bar_string);
+		g_free (tmp);
 
 		stop_animation ();
 
@@ -1286,6 +1295,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		g_io_channel_shutdown (ioc, TRUE, NULL);
 		g_free (status_bar_string);
 		g_free (title_bar_string);
+		g_free (search_status);
 		
 		return FALSE;
 	}
@@ -1428,6 +1438,7 @@ spawn_search_command (gchar *command)
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 		g_error_free (error);
+		g_strfreev (argv);
 		return;
 	}	
 
@@ -2057,6 +2068,8 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data, gboolean e
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
 	                                            -1, NULL, NULL, NULL);
+	g_free (look_in_folder_utf8);
+	
 	if (escape_values)
 		tmp = g_shell_quote (look_in_folder_locale);
 	else

@@ -488,6 +488,7 @@ get_file_icon_with_mime_type (const gchar *filename,
 
 	icon_path = gnome_icon_theme_lookup_icon (interface.icon_theme, icon_name, ICON_SIZE, 
 						  &icon_data, &base_size);
+	g_free (icon_name);
 	return icon_path;	
 }
 
@@ -567,7 +568,7 @@ open_file_with_application (const gchar *filename)
 		gnome_execute_async(NULL, argc, argv);	
 		gnome_vfs_mime_application_free(mimeApp);
 		g_free (command_line);	
-		g_free(argv);
+		g_strfreev (argv);
 		return TRUE;
 	}
 	return FALSE;

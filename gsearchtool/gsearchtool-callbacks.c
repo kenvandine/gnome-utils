@@ -265,10 +265,12 @@ constraint_entry_changed_cb (GtkWidget 	*widget,
 
 	if (look_in_folder_string == NULL) {
 		gtk_widget_set_sensitive (interface.find_button, FALSE);
+		g_free (look_in_folder_string);
 		return;
 	}
 	
 	gtk_widget_set_sensitive (interface.find_button, TRUE);
+	g_free (look_in_folder_string);
 }
 	
 
