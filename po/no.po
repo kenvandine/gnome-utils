@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2000-05-13 02:40+0200\n"
-"PO-Revision-Date: 2000-05-13 02:43+02:00\n"
+"POT-Creation-Date: 2000-05-13 21:12+0200\n"
+"PO-Revision-Date: 2000-05-13 21:16+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "Stav"
 msgid "Check word spelling"
 msgstr "Sjekk ordets staving"
 
-#: gdictsrc/gdict-app.c:443 gtt/toolbar.c:159
+#: gcharmap/src/interface.c:66 gdictsrc/gdict-app.c:443 gtt/toolbar.c:159
 msgid "Cut"
 msgstr "Klipp ut"
 
@@ -90,7 +90,7 @@ msgstr "Klipp ut"
 msgid "Cut to Clipboard"
 msgstr "Klipp ut til utklippstavle"
 
-#: gdictsrc/gdict-app.c:444 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:68 gdictsrc/gdict-app.c:444 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopiér"
 
@@ -98,7 +98,7 @@ msgstr "Kopiér"
 msgid "Copy to Clipboard"
 msgstr "Kopiér til utklippstavle"
 
-#: gdictsrc/gdict-app.c:445 gtt/toolbar.c:167
+#: gcharmap/src/interface.c:70 gdictsrc/gdict-app.c:445 gtt/toolbar.c:167
 msgid "Paste"
 msgstr "Lim inn"
 
@@ -207,6 +207,81 @@ msgstr ""
 #: gdictsrc/gdict-pref-dialog.c:259
 msgid "Applet"
 msgstr "Applet"
+
+#: gcharmap/src/interface.c:44
+msgid "_Toolbar"
+msgstr "Verk_tøylinje"
+
+#: gcharmap/src/interface.c:44
+msgid "View or hide the toolbar"
+msgstr "Vis eller skjul verktøylinjen"
+
+#: gcharmap/src/interface.c:46
+msgid "_Statusbar"
+msgstr "_Statuslinje"
+
+#: gcharmap/src/interface.c:46
+msgid "View or hide the statusbar"
+msgstr "Vis eller skjul statuslinjen"
+
+#: gcharmap/src/interface.c:66
+msgid "Cut the text to clipboard"
+msgstr "Klipp ut teksten til utklippstavlen"
+
+#: gcharmap/src/interface.c:68
+msgid "Copy the text to clipboard."
+msgstr "Kopiér teksten til utklippstavlen."
+
+#: gcharmap/src/interface.c:70
+msgid "Paste the text from clipboard."
+msgstr "Lim inn teksten fra utklippstavlen."
+
+#: gcharmap/src/interface.c:73 gstripchart/gstripchart.c:1802
+#: mini-utils/gcolorsel/menus.c:902
+msgid "Exit"
+msgstr "Avslutt"
+
+#: gcharmap/src/interface.c:73
+msgid "Exit the application"
+msgstr "Avslutt applikasjonen"
+
+#: gcharmap/src/interface.c:100 gcharmap/src/interface.c:355
+msgid "Gnome Character Map"
+msgstr "Gnome tegnkart"
+
+#: gcharmap/src/interface.c:146
+msgid "Text to Copy:"
+msgstr "Tekst som skal kopieres:"
+
+#: gcharmap/src/interface.c:303
+#, c-format
+msgid "%s: ASCII character %d"
+msgstr "%s: ASCII tegn %d"
+
+#: gcharmap/src/interface.c:320
+msgid "Text cut to clipboard..."
+msgstr "Tekst klippet ut til utklippstavle..."
+
+#: gcharmap/src/interface.c:329
+msgid "Text copied to clipboard..."
+msgstr "Tekst kopiert til utklippstavlen..."
+
+#: gcharmap/src/interface.c:338
+msgid "Text pasted from clipboard..."
+msgstr "Tekst limt inn fra utklippstavlen..."
+
+#: gcharmap/src/interface.c:356
+msgid ""
+"The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
+"contain bad English.\n"
+"http://users.telekabel.nl/hongli/"
+msgstr ""
+"GNOME versjonen av Microsoft Windows' tegnkart. Advarsel: kan inneholde dårlig engelsk.\n"
+"http://users.telekabel.nl/hongli/"
+
+#: gcharmap/src/interface.c:371
+msgid "There's no documentation available yet."
+msgstr "Ingen dokumentasjon tilgjengelig ennå."
 
 #: gdiskfree/gdiskfree.c:58
 msgid "Specify the geometry of the window."
@@ -530,7 +605,7 @@ msgstr "Fil"
 msgid "_Help"
 msgstr "Hjelp"
 
-#: gstripchart/gstripchart.c:1605 gstripchart/gstripchart.c:1743
+#: gstripchart/gstripchart.c:1605 gstripchart/gstripchart.c:1744
 msgid "Param"
 msgstr "Param"
 
@@ -575,173 +650,169 @@ msgstr "Nåværende verdi"
 msgid "Active"
 msgstr "Aktiv"
 
-#: gstripchart/gstripchart.c:1650
+#: gstripchart/gstripchart.c:1651
 msgid "Stripchart Parameters"
 msgstr "Stripchart parametere"
 
-#: gstripchart/gstripchart.c:1744
+#: gstripchart/gstripchart.c:1745
 msgid "Current"
 msgstr "Nåværende"
 
-#: gstripchart/gstripchart.c:1745
+#: gstripchart/gstripchart.c:1746
 msgid "Top"
 msgstr "Topp"
 
-#: gstripchart/gstripchart.c:1746
+#: gstripchart/gstripchart.c:1747
 msgid "Scale"
 msgstr "Skala"
 
-#: gstripchart/gstripchart.c:1783 gstripchart/gstripchart.c:2070
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:2071
 msgid "Help"
 msgstr "Hjelp"
 
-#: gstripchart/gstripchart.c:1789 gstripchart/gstripchart.c:2073
+#: gstripchart/gstripchart.c:1790 gstripchart/gstripchart.c:2074
 #: mini-utils/gcolorsel/menus.c:912 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "Om"
 
-#: gstripchart/gstripchart.c:1795
+#: gstripchart/gstripchart.c:1796
 msgid "Params"
 msgstr "Param"
-
-#: gstripchart/gstripchart.c:1801 mini-utils/gcolorsel/menus.c:902
-msgid "Exit"
-msgstr "Avslutt"
 
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1907
+#: gstripchart/gstripchart.c:1908
 msgid "gstripchart"
 msgstr "gstripchart"
 
-#: gstripchart/gstripchart.c:1907
+#: gstripchart/gstripchart.c:1908
 msgid "Stripchart Viewer"
 msgstr "Stripchart visning"
 
-#: gstripchart/gstripchart.c:2076
+#: gstripchart/gstripchart.c:2077
 msgid "Params..."
 msgstr "Parametere..."
 
-#: gstripchart/gstripchart.c:2121
+#: gstripchart/gstripchart.c:2122
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "ugyldig skjermtype: %s\n"
 
-#: gstripchart/gstripchart.c:2146
+#: gstripchart/gstripchart.c:2147
 msgid "Geometry string: WxH+X+Y"
 msgstr "Geometristreng: BxH+X+Y"
 
-#: gstripchart/gstripchart.c:2146
+#: gstripchart/gstripchart.c:2147
 msgid "GEO"
 msgstr "GEO"
 
-#: gstripchart/gstripchart.c:2148
+#: gstripchart/gstripchart.c:2149
 msgid "Configuration file name"
 msgstr "Navn på konfigurasjonsfil"
 
-#: gstripchart/gstripchart.c:2148
+#: gstripchart/gstripchart.c:2149
 msgid "FILE"
 msgstr "FIL"
 
-#: gstripchart/gstripchart.c:2150
+#: gstripchart/gstripchart.c:2151
 msgid "Chart update interval"
 msgstr "Plottets oppdateringsintervall"
 
-#: gstripchart/gstripchart.c:2150 gstripchart/gstripchart.c:2152
-#: gstripchart/gstripchart.c:2154 gstripchart/gstripchart.c:2156
+#: gstripchart/gstripchart.c:2151 gstripchart/gstripchart.c:2153
+#: gstripchart/gstripchart.c:2155 gstripchart/gstripchart.c:2157
 msgid "SECS"
 msgstr "SEK"
 
-#: gstripchart/gstripchart.c:2152
+#: gstripchart/gstripchart.c:2153
 msgid "Chart low-pass filter time constant"
 msgstr "Tidskonstant for plottets \"low-pass\" filter"
 
-#: gstripchart/gstripchart.c:2154
+#: gstripchart/gstripchart.c:2155
 msgid "Slider update interval"
 msgstr "Oppdateringsintervall for glider"
 
-#: gstripchart/gstripchart.c:2156
+#: gstripchart/gstripchart.c:2157
 msgid "Slider low-pass filter time constant"
 msgstr "Tidskonstant for gliderens low-pass filter"
 
-#: gstripchart/gstripchart.c:2158
+#: gstripchart/gstripchart.c:2159
 msgid "Adds a menubar to the main window"
 msgstr "Legger til en menylinje i hovedvinduet"
 
-#: gstripchart/gstripchart.c:2160
+#: gstripchart/gstripchart.c:2161
 msgid "Omits slider window"
 msgstr "Utelater vindu for glidefelt"
 
-#: gstripchart/gstripchart.c:2163
+#: gstripchart/gstripchart.c:2164
 msgid "TYPE is one of gtk, applet, text, or none"
 msgstr "TYPE er en av gtk, applet, tekst, eller ingen"
 
-#: gstripchart/gstripchart.c:2163 gstripchart/gstripchart.c:2165
+#: gstripchart/gstripchart.c:2164 gstripchart/gstripchart.c:2166
 msgid "TYPE"
 msgstr "TYPE"
 
-#: gstripchart/gstripchart.c:2165
+#: gstripchart/gstripchart.c:2166
 msgid "TYPE is one of gtk, text, or none"
 msgstr "TYPE er en av gtk, tekst, eller ingen"
 
-#: gstripchart/gstripchart.c:2317
+#: gstripchart/gstripchart.c:2318
 msgid "white"
 msgstr "hvit"
 
-#: gstripchart/gstripchart.c:2317
+#: gstripchart/gstripchart.c:2318
 msgid "black"
 msgstr "sort"
 
-#: gstripchart/gstripchart.c:2317
+#: gstripchart/gstripchart.c:2318
 msgid "red"
 msgstr "rød"
 
-#: gstripchart/gstripchart.c:2317
+#: gstripchart/gstripchart.c:2318
 msgid "yellow"
 msgstr "gul"
 
-#: gstripchart/gstripchart.c:2318
+#: gstripchart/gstripchart.c:2319
 msgid "blue"
 msgstr "blå"
 
-#: gstripchart/gstripchart.c:2318
+#: gstripchart/gstripchart.c:2319
 msgid "green"
 msgstr "grønn"
 
-#: gstripchart/gstripchart.c:2318
+#: gstripchart/gstripchart.c:2319
 msgid "cyan"
 msgstr "cyan"
 
-#: gstripchart/gstripchart.c:2318
+#: gstripchart/gstripchart.c:2319
 msgid "magenta"
 msgstr "magenta"
 
-#: gstripchart/gstripchart.c:2319
+#: gstripchart/gstripchart.c:2320
 msgid "Busy"
 msgstr "Opptatt"
 
-#: gstripchart/gstripchart.c:2319
+#: gstripchart/gstripchart.c:2320
 msgid "Load"
 msgstr "Belastning"
 
-#: gstripchart/gstripchart.c:2319
+#: gstripchart/gstripchart.c:2320
 msgid "Swap"
 msgstr "Swap"
 
-#: gstripchart/gstripchart.c:2319
+#: gstripchart/gstripchart.c:2320
 msgid "Battery"
 msgstr "Batteri"
 
-#: gstripchart/gstripchart.c:2320
+#: gstripchart/gstripchart.c:2321
 msgid "Net In"
 msgstr "Nett inn"
 
-#: gstripchart/gstripchart.c:2320
+#: gstripchart/gstripchart.c:2321
 msgid "Net Out"
 msgstr "Nett ut"
 
-#: gstripchart/gstripchart.c:2320
+#: gstripchart/gstripchart.c:2321
 msgid "ppp"
 msgstr "ppp"
 
