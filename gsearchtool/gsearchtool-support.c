@@ -759,18 +759,20 @@ open_file_with_application (const gchar *filename)
 	g_free (mimeType);
 		
 	if (mimeApp) {
-		char **argv;
-		int argc = 2;
-
-		argv = g_new0 (char *, argc);
-		argv[0] = mimeApp->command;
-		argv[1] = (gchar *)filename;	
+		gint  argc;
+		gchar **argv;
+		gchar *command_line;
 		
-		if (mimeApp->requires_terminal) 
+		command_line = g_strdup_printf("%s %s", mimeApp->command, filename);
+		g_shell_parse_argv (command_line, &argc, &argv, NULL); 
+			
+		if (mimeApp->requires_terminal) {
 			gnome_prepend_terminal_to_vector(&argc, &argv);	
+		}
 		
 		gnome_execute_async(NULL, argc, argv);	
-		gnome_vfs_mime_application_free(mimeApp);	
+		gnome_vfs_mime_application_free(mimeApp);
+		g_free (command_line);	
 		g_free(argv);
 		return TRUE;
 	}
