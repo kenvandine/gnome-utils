@@ -9,13 +9,13 @@ endif
 SUBDIRS = po intl macros \
 	gcalc gedit @PROGRAMS_GENIUS@ ghex gsearchtool gdiskfree\
 	@PROGRAMS_GTOP@ gtt $(guile_DIRS) $(objc_DIRS) mini-utils \
-	@PROGRAMS_GNCAL@ gstripchart
+	@PROGRAMS_GNCAL@ gstripchart splash
 
 # since some of the dirs are conditionally built, we need to tell
 # `automake' all the subdirs that make up `gnome-utils'.
 DIST_SUBDIRS = po intl macros \
 	cromagnon find-file gcalc gedit genius ghex gncal gpostit \
-	gsearchtool gtop gtt mini-utils notepad gdiskfree
+	gsearchtool gtop gtt mini-utils notepad gdiskfree splash
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
