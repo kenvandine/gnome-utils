@@ -48,6 +48,9 @@
 
 
 GttProject *cur_proj = NULL;
+GttProject *prev_proj = NULL;
+
+
 GtkWidget *glist, *window;
 #ifndef GNOME_USE_APP
 GtkBox *window_vbox;
@@ -137,10 +140,17 @@ cur_proj_set(GttProject *proj)
 
 	log_proj(NULL);
 	stop_timer();
-	cur_proj = proj;
 	if (proj) 
 	{
+		cur_proj = proj;
 		start_timer(); 
+		ctree_select (proj);
+	}
+	else
+	{
+		prev_proj = cur_proj;
+		cur_proj = NULL;
+		ctree_unselect (prev_proj);
 	}
 	log_proj(proj);
 	menu_set_states();
