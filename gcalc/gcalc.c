@@ -185,7 +185,7 @@ main(int argc, char *argv[])
 
         app = gnome_app_new("gnome-calculator", _("GNOME Calculator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gnome-calculator", "gnome-calculator");
-	gtk_window_set_policy (GTK_WINDOW (app), FALSE, TRUE, FALSE);
+	gtk_window_set_resizable (GTK_WINDOW (app), TRUE);
 
         gtk_signal_connect(GTK_OBJECT(app), "delete_event",
 			GTK_SIGNAL_FUNC(quit_cb), NULL);
@@ -221,3 +221,4 @@ main(int argc, char *argv[])
 
 	return 0;
 }
+

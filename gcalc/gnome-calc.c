@@ -494,7 +494,7 @@ convert_num(gdouble num, GnomeCalcMode from, GnomeCalcMode to)
 static void
 no_func(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
 
@@ -523,7 +523,7 @@ no_func(GtkWidget *w, gpointer data)
 static void
 simple_func(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 	CalculatorStack *stack;
 	CalculatorButton *but = data;
 	MathFunction1 func = but->data;
@@ -587,7 +587,7 @@ simple_func(GtkWidget *w, gpointer data)
 static void
 math_func(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 	CalculatorStack *stack;
 	CalculatorButton *but = data;
 	MathFunction2 func = but->data;
@@ -633,7 +633,7 @@ reset_calc(GtkWidget *w, gpointer data)
 {
 	GnomeCalc *gc;
 	if(w)
-		gc = gtk_object_get_user_data(GTK_OBJECT(w));
+		gc = g_object_get_data(G_OBJECT(w), "set_data");
 	else
 		gc = data;
 
@@ -660,7 +660,7 @@ reset_calc(GtkWidget *w, gpointer data)
 static void
 clear_calc(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
 
@@ -706,7 +706,7 @@ gnome_calc_clear(GnomeCalc *gc, const gboolean reset)
 static void
 add_digit (GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data (GTK_OBJECT (w));
+	GnomeCalc *gc = g_object_get_data (G_OBJECT (w), "set_data");
 	CalculatorButton *but = data;
 	gchar *digit = but->name;
 
@@ -774,7 +774,7 @@ c_neg(gdouble arg)
 static void
 negate_val(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 	char *p;
 
 	g_return_if_fail(gc!=NULL);
@@ -899,7 +899,7 @@ gnome_calc_set(GnomeCalc *gc, gdouble result)
 static void
 store_m(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 	
 	g_return_if_fail(gc!=NULL);
 
@@ -918,7 +918,7 @@ store_m(GtkWidget *w, gpointer data)
 static void
 recall_m(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
 
@@ -933,7 +933,7 @@ recall_m(GtkWidget *w, gpointer data)
 static void
 sum_m(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 	
 	g_return_if_fail(gc!=NULL);
 
@@ -952,7 +952,7 @@ sum_m(GtkWidget *w, gpointer data)
 static void
 exchange_m(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
 
@@ -967,7 +967,7 @@ exchange_m(GtkWidget *w, gpointer data)
 static void
 invert_toggle(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
 
@@ -983,7 +983,7 @@ invert_toggle(GtkWidget *w, gpointer data)
 static void
 drg_toggle(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 	GnomeCalcMode oldmode;
 
 	g_return_if_fail(gc!=NULL);
@@ -1018,7 +1018,7 @@ drg_toggle(GtkWidget *w, gpointer data)
 static void
 set_pi(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
 
@@ -1033,7 +1033,7 @@ set_pi(GtkWidget *w, gpointer data)
 static void
 set_e(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
 
@@ -1048,7 +1048,7 @@ set_e(GtkWidget *w, gpointer data)
 static void
 add_parenth(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
 
@@ -1072,7 +1072,7 @@ add_parenth(GtkWidget *w, gpointer data)
 static void
 sub_parenth(GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 	g_return_if_fail(gc!=NULL);
 
 	if(gc->_priv->error)
@@ -1233,7 +1233,7 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 		gtk_tooltips_set_tip(GTK_TOOLTIPS(gc->_priv->tooltips), w, _(but->tooltip), but->tooltip_private);
 	}
 
-	gtk_object_set_user_data(GTK_OBJECT(w),gc);
+	g_object_set_data(G_OBJECT(w), "set_data", gc);
 	gtk_widget_show(w);
 	gtk_table_attach(GTK_TABLE(table), w,
 			 x, x+1, y, y+1,
@@ -1315,7 +1315,7 @@ gnome_calc_new (void)
 {
 	GnomeCalc *gcalculator;
 
-	gcalculator = gtk_type_new (gnome_calc_get_type ());
+	gcalculator = g_object_new (gnome_calc_get_type (), NULL);
 
 	return GTK_WIDGET (gcalculator);
 }
@@ -1425,7 +1425,7 @@ gnome_calc_get_result_string(GnomeCalc *gc)
 static void
 backspace_cb (GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 	char *old_locale;
 	gint length;
 
@@ -1539,7 +1539,7 @@ gnome_calc_bind_extra_keys (GnomeCalc *gc,
 	g_return_if_fail (GNOME_IS_CALC (gc));
 	g_return_if_fail (GTK_IS_WIDGET (widget));
 
-	gtk_object_set_user_data (GTK_OBJECT (widget), gc);
+	g_object_set_data (G_OBJECT (widget), "set_data", gc);
 	
 	gtk_signal_connect (GTK_OBJECT (widget), "event",
 			    GTK_SIGNAL_FUNC (event_cb), gc);
