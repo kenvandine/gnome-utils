@@ -1075,7 +1075,7 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("tan"),  (GtkSignalFunc)simple_func, tan,    atan,   TRUE,  {'t','T',0}, N_("Tangent"), NULL },
 		{N_("DEG"),  (GtkSignalFunc)drg_toggle,  NULL,   NULL,   FALSE, {'d','D',0}, N_("Switch degrees / radians / grad"), NULL }
 	},{
-		{N_("e"),    (GtkSignalFunc)set_e,       NULL,   NULL,   FALSE, {'e','E',0}, NULL, NULL },
+		{N_("e"),    (GtkSignalFunc)set_e,       NULL,   NULL,   FALSE, {'e','E',0}, N_("Base of Natural Logarithm"), NULL },
 		{N_("EE"),   (GtkSignalFunc)add_digit,   "e+",   NULL,   FALSE, {0}, N_("Add digit"), NULL },
 		{N_("log"),  (GtkSignalFunc)simple_func, log10,  c_pow10,FALSE, {0}, N_("Base 10 Logarithm"), NULL },
 		{N_("ln"),   (GtkSignalFunc)simple_func, log,    c_powe, FALSE, {'l','L',0}, N_("Natural Logarithm"), NULL },
