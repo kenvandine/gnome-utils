@@ -198,6 +198,11 @@ AC_CHECK_CURSES
 
 dnl gdialog end
 
+dnl The gnome-xml library is required to build the stripchart program.
+GNOME_XML_CHECK
+AM_CONDITIONAL(HAVE_LIBXML, test "x$GNOME_XML_LIB" != "x")
+AC_SUBST(HAVE_LIBXML)
+
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
@@ -270,6 +275,9 @@ gtt/doc/Makefile
 gtt/doc/C/Makefile
 gdialog/Makefile
 splash/Makefile
+stripchart/Makefile
+stripchart/doc/Makefile
+stripchart/doc/C/Makefile
 gdictsrc/Makefile
 gdictsrc/doc/Makefile
 gdictsrc/doc/C/Makefile
