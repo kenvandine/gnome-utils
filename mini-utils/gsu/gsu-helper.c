@@ -667,7 +667,7 @@ main (int argc, char **argv)
 
   program_name = argv[0];
   setlocale (LC_ALL, "");
-  bindtextdomain (PACKAGE, LOCALEDIR);
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
   fast_startup = 0;
@@ -710,7 +710,7 @@ main (int argc, char **argv)
 
   if (show_version)
     {
-      printf ("su (%s) %s\n", GNU_PACKAGE, VERSION);
+      printf ("su (%s) %s\n", PACKAGE, VERSION);
       exit (0);
     }
 
