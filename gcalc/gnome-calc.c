@@ -1640,7 +1640,11 @@ static const GnomeCalcExtraKeys extra_keys [] = {
 	{GDK_KP_Up,     add_digit,    "8"},
 	{GDK_KP_8,      add_digit,    "8"},
 	{GDK_KP_Down,   add_digit,    "2"},
-	{GDK_KP_2,      add_digit,    "2"}	
+	{GDK_KP_2,      add_digit,    "2"},
+	{GDK_End,	add_digit,    "1"},
+	{GDK_Page_Down, add_digit,    "3"},
+	{GDK_Home,	add_digit,    "7"},
+	{GDK_Page_Up,	add_digit,    "9"}
 };
 	
 static gboolean
