@@ -177,11 +177,13 @@ session_save_state (GnomeClient *client, gint phase,
 
   while (tmp) {
     GnomeLessApp * a = tmp->data;
-    argv[argc] = "--geometry";
+    gchar * s
+      = gnome_geometry_string( GTK_WIDGET(a->app)->window );
+    argv[argc] = g_copy_strings("--geometry=", s, NULL);
+    g_free(s);
+    free_me = g_list_prepend(free_me, argv[argc]);
     ++argc;
-    argv[argc] = gnome_geometry_string( GTK_WIDGET(a->app)->window );
-    free_me = g_list_append(free_me, argv[argc]);
-    ++argc;
+
     if ( a->file ) {
       argv[argc] = a->file;
       ++argc;

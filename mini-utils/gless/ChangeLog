@@ -1,0 +1,5 @@
+Tue Jun  9 00:04:30 1998  Havoc Pennington  <hp@pobox.com>
+
+	* mini-utils/gless/gless.c (session_save_state): Put an = and not
+	a space between --geometry and the geometry, so it doesn't try to
+	load filenames like 200x300+50+100 when the session is restored.
