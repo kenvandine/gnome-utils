@@ -7,6 +7,6 @@ figs = \
 docname = gsearchtool
 lang = C
 omffile = gsearchtool-C.omf
-sgml_ents =
+entities =
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook

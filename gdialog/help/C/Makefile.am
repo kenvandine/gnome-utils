@@ -6,6 +6,6 @@ figs = \
 docname = gdialog
 lang = C
 omffile = gdialog-C.omf
-sgml_ents =
+entities =
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
