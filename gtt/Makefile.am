@@ -1,18 +1,20 @@
 Utilitiesdir = $(datadir)/apps/Utilities
-GTT_HELP_DIR = $(datadir)/gtt
+GttHelpdir = $(datadir)/gtt
+
+# DEFS += -ggdb -Wall -DDEBUG
 
 INCLUDES = 			\
 	-I../.. 		\
 	-I$(srcdir)/../.. 	\
 	-I$(includedir)		\
 	-DHAS_GNOME=1		\
-	-DHELP_PATH=\"$(GTT_HELP_DIR)\" \
+	-DHELP_PATH=\"$(GttHelpdir)\" \
 	-DLOCALEDIR=\"$(datadir)/locale\" \
 	$(X_CFLAGS)
 
 bin_PROGRAMS = gtt
 
-gtt_SOURCES = 	\
+gtt_SOURCES = \
 	dialog.c	\
 	dialog.h	\
 	main.c		\
@@ -38,13 +40,13 @@ gtt_LDADD = \
 	$(top_builddir)/libgnomeui/libgnomeui.la 	\
 	$(top_builddir)/libgnome/libgnome.la		\
 	$(top_builddir)/gtk-xmhtml/libgtkxmhtml.la	\
-	$(top_builddir)/intl/libintl.a			\
 	$(GTK_LIBS)					\
         $(X_LIBS) $(x_libs) $(INTLLIBS)			\
 	$(XPM_LIBS) $(DL_LIB)
 
+Utilities_DATA = gtt.desktop
 
-GTT_HELP_FILES = \
+GttHelp_DATA = \
 	index.html		\
 	ch-dialogs.html		\
 	ch-main.html		\
@@ -71,15 +73,15 @@ EXTRA_DIST = \
 	tb_home_.xpm		\
 	tb_back_.xpm		\
 	tb_forward_.xpm		\
-	$(GTT_HELP_FILES)	\
+	gtt.sgml		\
+	gtt.text		\
 	gtt.desktop
 
-install-data-local:
-	$(mkinstalldirs) $(Utilitiesdir)
-	$(INSTALL_DATA) $(srcdir)/gtt.desktop $(Utilitiesdir)/gtt.desktop
-	$(mkinstalldirs) $(GTT_HELP_DIR)
-	@list='$(GTT_HELP_FILES)' ; for i in $$list; do \
-		echo "$(INSTALL_DATA) $(srcdir)/$$i $(GTT_HELP_DIR)/$$i" ; \
-		$(INSTALL_DATA) $(srcdir)/$$i $(GTT_HELP_DIR)/$$i ; \
-	done
-
+#install-data-local:
+#	 $(mkinstalldirs) $(Utilitiesdir)
+#	 $(INSTALL_DATA) $(srcdir)/gtt.desktop $(Utilitiesdir)/gtt.desktop
+#	 $(mkinstalldirs) $(GTT_HELP_DIR)
+#	 @list='$(GTT_HELP_FILES)' ; for i in $$list; do \
+#		 echo "$(INSTALL_DATA) $(srcdir)/$$i $(GTT_HELP_DIR)/$$i" ; \
+#		 $(INSTALL_DATA) $(srcdir)/$$i $(GTT_HELP_DIR)/$$i ; \
+#	 done
