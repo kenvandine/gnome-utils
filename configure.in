@@ -58,6 +58,13 @@ ALL_LINGUAS="de es fi fr it ko cs no ga pt sv ja"
 AM_GNU_GETTEXT
 
 dnl gsu
+AM_PATH_GLIB(1.1.15)
+AC_CHECK_LIB(pam, pam_authenticate, [
+	AC_DEFINE(USE_PAM)
+	PAM_LIBS="-lpam -ldl"
+], [PAM_LIBS=], -ldl)
+AC_SUBST(PAM_LIBS)
+
 AC_CHECK_FUNCS(endgrent endpwent)
 
 dnl idetool
