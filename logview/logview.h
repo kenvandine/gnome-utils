@@ -19,7 +19,6 @@
 
     ---------------------------------------------------------------------- */
 
-
 #include <time.h>
 #include "gtk/gtk.h"
 #include <stdio.h>
@@ -37,9 +36,6 @@
 
 #define LOG_LINESEP              15
 
-/* FIXME: this is wrong, this needs to be recalculated all the time
- * based on the current page, all the math is utterly wrong here
- * it just sucks.  This is bug #58435 */
 #define LINES_P_PAGE             10
 #define NUM_PAGES                5 
 #define MAX_WIDTH                240
@@ -222,7 +218,5 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs);
 int exec_action_in_db (Log *log, LogLine *line, GList *db);
 
 char *LocaleToUTF8 (const char *in);
-
-#define sure_string ((x)?(x):"")
 
 #endif /* __LOGVIEW_H__ */

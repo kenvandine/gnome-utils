@@ -298,7 +298,7 @@ mon_add_log (GtkWidget *widget,
   selected = gtk_tree_selection_get_selected (selection, &model, &newiter);
   if (selected == FALSE)
     {
-    DB (printf (_("tmp_list is NULL\n")));
+    printf (_("tmp_list is NULL\n"));
     return;
     }
   gtk_tree_model_get (model, &newiter, 1, &sellognum, -1);
@@ -335,7 +335,7 @@ mon_remove_log (GtkWidget *widget,
   selected = gtk_tree_selection_get_selected (selection, &model, &newiter);
   if (selected == FALSE)
     {
-      DB (printf (_("tmp_list is NULL\n")));
+      printf (_("tmp_list is NULL\n"));
       return;
     }
   gtk_tree_model_get (model, &newiter, 1, &sellognum, -1);
@@ -663,9 +663,6 @@ mon_check_logs (gpointer data)
       if (WasModified (loglist[i]) != TRUE)
           continue;
       mon_read_new_lines (loglist[i]);
-
-      DB (fprintf (stderr, _("TOUCHED!!\n")));
-
   }
   return TRUE;
 

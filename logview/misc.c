@@ -53,8 +53,6 @@ MakeErrorDialog (const char *msg)
 void
 ShowErrMessage (const char *msg)
 {
-  DB (printf(_("Error: [%s]\n"), msg));
-
   if (queue_err_messages) {
 	  msg_queue = g_list_append (msg_queue, g_strdup (msg));
   } else {
