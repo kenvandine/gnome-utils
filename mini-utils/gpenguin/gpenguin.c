@@ -47,7 +47,7 @@ static void produce_penguin(void)
 	
 	pmapdir = gnome_unconditional_datadir_file("pixmaps");
 	filename = g_strconcat(pmapdir, "/penguin1.png", NULL);
-	g_print("%s\n", filename);
+
 	pixmap = NULL;
 	pixmap = gnome_pixmap_new_from_file (filename);
 	g_free(filename);
