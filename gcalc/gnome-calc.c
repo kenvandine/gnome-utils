@@ -1378,6 +1378,9 @@ gnome_calc_instance_init (GnomeCalc *gc)
 	gc->_priv->text_display = gtk_text_view_new ();
 	gc->_priv->store_display = gtk_text_view_new ();
 
+	g_object_set (G_OBJECT (gc->_priv->store_display), 
+		      "cursor-visible", FALSE, NULL);
+	
         gtk_text_view_set_editable (GTK_TEXT_VIEW (gc->_priv->store_display), FALSE);
         gtk_text_view_set_justification (GTK_TEXT_VIEW (gc->_priv->store_display),
                                          GTK_JUSTIFY_LEFT);
