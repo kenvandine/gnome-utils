@@ -1,3 +1,20 @@
+1998-06-13  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* card.h, card.c: added a flag in the Card structure to handle
+	                  per-card blocking.
+
+	* gnomecard.h: new GnomeCardSib struct to hold tree's sections for 
+	               each card's user_data.
+	* gnomecard.c: delete and edit now block, thanks to the new flag.
+	               gnomecard_add_card_to_tree created.
+	               Prev & Next now scroll the tree.
+		       Several other GUI functionalities and routines to
+		       make my life easier in future development with 
+		       gnomecard.
+	
+	* various xpms for the tree icons added to the cvs. The tree view
+	  starts getting shape.
+
 1998-06-10  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
 
 	* gnomecard.c: Started with the tree view.

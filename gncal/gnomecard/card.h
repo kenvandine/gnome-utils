@@ -34,6 +34,8 @@ typedef struct
 	enum ValueType value;
 	char *charset;
 	char *lang;
+	
+	void *user_data;
 } CardProperty;
 
 typedef struct
@@ -278,6 +280,7 @@ typedef struct _Card
 	CardKey         key;
 	
 	void *user_data;
+	int flag;
 } Card;
 
 Card *card_new(void);

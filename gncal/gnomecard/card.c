@@ -29,6 +29,8 @@ empty_CardProperty(void)
 	prop.lang = NULL;
 	prop.grp = NULL;
 	
+	prop.user_data = NULL;
+	
 	return prop;
 }
 
@@ -98,6 +100,9 @@ card_new(void)
 	c->name.prop    = c->photo.prop    = c->bday.prop   = c->timezn.prop = 
 	c->geopos.prop  = c->logo.prop     = c->org.prop    = c->rev.prop    =
 	c->sound.prop   = c->key.prop = empty_CardProperty();
+	
+	c->flag = 0;
+	c->user_data = NULL;
 	
 	return c;
 }

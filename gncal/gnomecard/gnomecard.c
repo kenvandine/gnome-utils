@@ -13,12 +13,18 @@
 #include "world.xpm"
 #include "cardnew.xpm"
 #include "cardedit.xpm"
+#include "ident.xpm"
+#include "geo.xpm"
+#include "sec.xpm"
+#include "tel.xpm"
+#include "email.xpm"
+#include "addr.xpm"
 
 #define TREE_SPACING 20
-#define _FREE(a) if (a) free (a)
+#define _FREE(a) if (a) g_free (a)
 
 GtkWidget *gnomecard_window;
-GtkWidget *test;
+GtkWidget *test;                  /* To be replaced with a GtkCanvas */
 GtkCTree  *crd_tree;
 
 GtkWidget *tb_next, *tb_prev, *tb_edit, *tb_save, *tb_del;
@@ -29,9 +35,11 @@ GList *crd_tree_sib;
 GList *curr_crd;
 
 pix *crd_pix, *ident_pix, *geo_pix, *org_pix, *exp_pix, *sec_pix;
+pix *tel_pix, *email_pix, *addr_pix;
 
 char *gnomecard_fname;
 gboolean gnomecard_changed;
+gboolean found;                 /* yeah... pretty messy. (fixme) */
 
 GnomeStockPixmapEntry *gnomecard_pentry_new(gchar **xpm_data, gint size)
 {
@@ -86,8 +94,77 @@ pix *pix_new(char **xpm)
 void gnomecard_init_pmaps(void)
 {
 	crd_pix = pix_new(cardnew_xpm);
+	ident_pix = pix_new(ident_xpm);
+	geo_pix = pix_new(geo_xpm);
+	sec_pix = pix_new(sec_xpm);
+	tel_pix = pix_new(tel_xpm);
+	email_pix = pix_new(email_xpm);
+	addr_pix = pix_new(addr_xpm);
 }
 	
+#define TAKE(x,y) if((x = y) == NULL) x = "";
+
+void gnomecard_add_card_to_tree(Card *crd)
+{
+	GnomeCardSib *crdsib;
+	char *text[1];
+	GList *parent;
+	
+	crdsib = g_malloc(sizeof(GnomeCardSib));
+	crd->user_data = crdsib;
+	
+	if ((text[0] = crd->fname.str) == NULL)
+	  text[0] = _("No Formatted Name for this card.");
+	
+	crdsib->card = gtk_ctree_insert(crd_tree, NULL, NULL, text,
+					TREE_SPACING, crd_pix->pixmap,
+					crd_pix->mask, crd_pix->pixmap,
+					crd_pix->mask, FALSE, FALSE);
+	parent = crdsib->card;
+	text[0] = _("Identity");
+	crdsib->ident = gtk_ctree_insert(crd_tree, parent, crd_tree_sib, text,
+					TREE_SPACING, ident_pix->pixmap,
+					ident_pix->mask, ident_pix->pixmap,
+					ident_pix->mask, FALSE, FALSE);
+	text[0] = _("Geographical");
+	crdsib->geo = gtk_ctree_insert(crd_tree, parent, crd_tree_sib, text,
+					TREE_SPACING, geo_pix->pixmap,
+					geo_pix->mask, geo_pix->pixmap,
+					geo_pix->mask, FALSE, FALSE);
+	text[0] = _("Organization");
+	crdsib->org = gtk_ctree_insert(crd_tree, parent, crd_tree_sib, text,
+					TREE_SPACING, crd_pix->pixmap,
+					crd_pix->mask, crd_pix->pixmap,
+					crd_pix->mask, FALSE, FALSE);
+	text[0] = _("Explanatory");
+	crdsib->expl = gtk_ctree_insert(crd_tree, parent, crd_tree_sib, text,
+					TREE_SPACING, crd_pix->pixmap,
+					crd_pix->mask, crd_pix->pixmap,
+					crd_pix->mask, FALSE, FALSE);
+	text[0] = _("Security");
+	crdsib->sec = gtk_ctree_insert(crd_tree, parent, crd_tree_sib, text,
+					TREE_SPACING, sec_pix->pixmap,
+					sec_pix->mask, sec_pix->pixmap,
+					sec_pix->mask, FALSE, FALSE);
+	text[0] = _("Telephone Numbers");
+	crdsib->tel = gtk_ctree_insert(crd_tree, parent, crd_tree_sib, text,
+					TREE_SPACING, tel_pix->pixmap,
+					tel_pix->mask, tel_pix->pixmap,
+					tel_pix->mask, FALSE, FALSE);
+	text[0] = _("E-mail Addresses");
+	crdsib->email = gtk_ctree_insert(crd_tree, parent, crd_tree_sib, text,
+					TREE_SPACING, email_pix->pixmap,
+					email_pix->mask, email_pix->pixmap,
+					email_pix->mask, FALSE, FALSE);
+	text[0] = _("Delivery Addresses");
+	crdsib->addr = gtk_ctree_insert(crd_tree, parent, crd_tree_sib, text,
+					TREE_SPACING, addr_pix->pixmap,
+					addr_pix->mask, addr_pix->pixmap,
+					addr_pix->mask, FALSE, FALSE);
+/*	TAKE(text[0], crd->*/
+}
+	
+
 GtkWidget *my_gtk_entry_new(gint len, char *init)
 {
 	GtkWidget *entry;
@@ -137,11 +214,30 @@ GtkWidget *my_gtk_table_new(int x, int y)
 	return table;
 }
 
+void gnomecard_set_edit_del(gboolean state)
+{
+	gtk_widget_set_sensitive(tb_edit, state);
+	gtk_widget_set_sensitive(menu_edit, state);
+	gtk_widget_set_sensitive(tb_del, state);
+	gtk_widget_set_sensitive(menu_del, state);
+}
+
 void gnomecard_set_changed(gboolean val)
 {
 	gnomecard_changed = val;
 	gtk_widget_set_sensitive(tb_save, val);
 	gtk_widget_set_sensitive(menu_save, val);
+}
+
+void gnomecard_scroll_tree(GList *node)
+{
+	GList *tree_node;
+	
+	tree_node = ((GnomeCardSib *) 
+		     ((Card *) node->data)->user_data)->card;
+
+	gtk_ctree_scroll_to(crd_tree, tree_node, 0, 0, 0);
+	gtk_ctree_select(crd_tree, tree_node);
 }
 
 void gnomecard_set_curr(GList *node)
@@ -154,10 +250,12 @@ void gnomecard_set_curr(GList *node)
 		else
 		  gtk_label_set(GTK_LABEL(test), "No fname for this card.");
 		
-		gtk_widget_set_sensitive(tb_edit, TRUE);
-		gtk_widget_set_sensitive(menu_edit, TRUE);
-		gtk_widget_set_sensitive(tb_del, TRUE);
-		gtk_widget_set_sensitive(menu_del, TRUE);
+		
+		if (!((Card *) curr_crd->data)->flag)
+		  gnomecard_set_edit_del(TRUE);
+		else
+		  gnomecard_set_edit_del(FALSE);
+		  
 
 		if (curr_crd->next) {
 			gtk_widget_set_sensitive(tb_next, TRUE);
@@ -178,10 +276,7 @@ void gnomecard_set_curr(GList *node)
 	} else {
 		gtk_label_set(GTK_LABEL(test), "No cards, yet.");
 		
-		gtk_widget_set_sensitive(tb_edit, FALSE);
-		gtk_widget_set_sensitive(menu_edit, FALSE);
-		gtk_widget_set_sensitive(tb_del, FALSE);
-		gtk_widget_set_sensitive(menu_del, FALSE);
+		gnomecard_set_edit_del(FALSE);
 		
 		gtk_widget_set_sensitive(tb_next, FALSE);
 		gtk_widget_set_sensitive(menu_next, FALSE);
@@ -190,6 +285,30 @@ void gnomecard_set_curr(GList *node)
 	}
 }
 	  
+void gnomecard_cmp_nodes(GtkCTree *tree, GList *node, gpointer data)
+{
+	if ((GList *) data == node)
+	  found = TRUE;
+}
+
+void gnomecard_tree_selected(GtkCTree *tree, GList *row, gint column)
+{
+	GList *i;
+	
+	found = FALSE;
+	for (i = crds; i; i = i->next) {
+		gtk_ctree_post_recursive(tree, ((GnomeCardSib *) 
+						((Card *) i->data)->user_data)->card,
+					 GTK_CTREE_FUNC(gnomecard_cmp_nodes), 
+					 row);
+		if (found)
+		  break;
+	}
+	
+	if (i)
+	  gnomecard_set_curr(i);
+}
+
 void gnomecard_property_used(GtkWidget *w, gpointer data)
 {
 	CardProperty *prop;
@@ -281,13 +400,22 @@ void gnomecard_prop_apply(GtkWidget *widget, int page)
 	else
 	  crd->key.type = KEY_X509;
 
-	gtk_ctree_set_node_info(crd_tree, crd->user_data, crd->fname.str,
-				TREE_SPACING, crd_pix->pixmap,
-				crd_pix->mask, crd_pix->pixmap,
-				crd_pix->mask, FALSE, FALSE);
+	gtk_ctree_set_node_info(crd_tree, 
+				((GnomeCardSib *) crd->user_data)->card,
+				crd->fname.str, TREE_SPACING, 
+				crd_pix->pixmap, crd_pix->mask, 
+				crd_pix->pixmap, crd_pix->mask, FALSE, FALSE);
 	
-	gnomecard_set_curr(ce->l);
+	gnomecard_scroll_tree(ce->l);
 	gnomecard_set_changed(TRUE);
+}
+
+void gnomecard_prop_close(GtkWidget *widget, gpointer node)
+{
+	((Card *) ((GList *) node)->data)->flag = FALSE;
+	
+	if ((GList *) node == curr_crd)
+	  gnomecard_set_edit_del(TRUE);
 }
 
 void gnomecard_edit(GList *node)
@@ -301,16 +429,23 @@ void gnomecard_edit(GList *node)
 	Card *crd;
 	time_t tmp_time;
 	
-	ce = malloc(sizeof(GnomeCardEditor));
+	ce = g_malloc(sizeof(GnomeCardEditor));
 	ce->l = node;
 	crd = (Card *) node->data;
-
+	
+	/* Set flag and disable Delete and Edit. */
+	
+	crd->flag = TRUE;
+	gnomecard_set_edit_del(FALSE);
+	
 	box = GNOME_PROPERTY_BOX(gnome_property_box_new());
 	gtk_object_set_user_data(GTK_OBJECT(box), (gpointer) ce);
 	gtk_window_set_wmclass(GTK_WINDOW(box), "gnomecard",
 			       "GnomeCard");
 	gtk_signal_connect(GTK_OBJECT(box), "apply",
 			   (GtkSignalFunc)gnomecard_prop_apply, NULL);
+	gtk_signal_connect(GTK_OBJECT(box), "destroy",
+			   (GtkSignalFunc)gnomecard_prop_close, node);
 	
 	/* Identity */
 	
@@ -676,19 +811,16 @@ int gnomecard_destroy_cards(void)
 void gnomecard_new_card(GtkWidget *widget, gpointer data)
 {
 	Card *crd;
-	char *text[] = {"No fname for this card."};
-	
-	crd_tree_sib = gtk_ctree_insert(crd_tree, NULL, crd_tree_sib, text,
-					TREE_SPACING, crd_pix->pixmap,
-					crd_pix->mask, crd_pix->pixmap,
-					crd_pix->mask, FALSE, FALSE);
+	GList *last;
 	
 	crd = card_new();
-	crd->user_data = crd_tree_sib;
+	gnomecard_add_card_to_tree(crd);
 	crds = g_list_append(crds, crd);
-	gnomecard_edit(crds);
 	
-	gnomecard_set_curr(g_list_last(crds));
+	last = g_list_last(crds);
+	gnomecard_edit(last);
+	gnomecard_scroll_tree(last);
+	
 	gnomecard_set_changed(TRUE);
 	
 }
@@ -704,10 +836,15 @@ void gnomecard_del_card(GtkWidget *widget, gpointer data)
 	
 	card_free(curr_crd->data);
 	crds = g_list_remove_link(crds, curr_crd);
-	gtk_ctree_remove(crd_tree, ((Card *) curr_crd->data)->user_data);
+	gtk_ctree_remove(crd_tree, ((GnomeCardSib *) 
+				    ((Card *) curr_crd->data)->user_data)->card);
 	g_list_free(curr_crd);
 	
-	gnomecard_set_curr(tmp);
+	if (tmp)
+	  gnomecard_scroll_tree(tmp);
+	else
+	  gnomecard_set_curr(NULL);
+	
 	gnomecard_set_changed(TRUE);
 }
 
@@ -720,13 +857,13 @@ void gnomecard_edit_card(GtkWidget *widget, gpointer data)
 void gnomecard_prev_card(GtkWidget *widget, gpointer data)
 {
 	if (curr_crd->prev)
-	  gnomecard_set_curr(curr_crd->prev);
+	  gnomecard_scroll_tree(curr_crd->prev);
 }
 
 void gnomecard_next_card(GtkWidget *widget, gpointer data)
 {
 	if (curr_crd->next)
-	  gnomecard_set_curr(curr_crd->next);
+	  gnomecard_scroll_tree(curr_crd->next);
 }
 
 void gnomecard_open_call(GtkWidget *widget, gpointer data)
@@ -745,22 +882,14 @@ void gnomecard_open_call(GtkWidget *widget, gpointer data)
 		gtk_widget_show(w);
 	} else {
 		if (gnomecard_destroy_cards()) {
-			char *text[1];
-			
 			crds = c;
 			
-			for (c = crds; c; c = c->next) {
-				text[0] = ((Card *) c->data)->fname.str;
-				((Card *) c->data)->user_data = 
-				  crd_tree_sib = gtk_ctree_insert(crd_tree, NULL, crd_tree_sib, text,
-								  TREE_SPACING, crd_pix->pixmap,
-								  crd_pix->mask, crd_pix->pixmap,
-								  crd_pix->mask, FALSE, FALSE);
-			}
+			for (c = crds; c; c = c->next)
+			  gnomecard_add_card_to_tree((Card *) c->data);
 			
 			g_free(gnomecard_fname);
 			gnomecard_fname = g_strdup(fname);
-			gnomecard_set_curr(g_list_first(crds));
+			gnomecard_scroll_tree(g_list_first(crds));
 			gtk_widget_destroy(widget);
 		}
 	}
@@ -976,6 +1105,9 @@ int main (int argc, char *argv[])
 	gtk_widget_show(test);
 	
 	crd_tree = GTK_CTREE(gtk_ctree_new(1, 0));
+	gtk_signal_connect(GTK_OBJECT(crd_tree), 
+			   "tree_select_row",
+			   GTK_SIGNAL_FUNC(gnomecard_tree_selected), NULL);
 	gtk_ctree_set_line_style (crd_tree, GTK_CTREE_LINES_NONE);
 	gtk_ctree_set_reorderable (crd_tree, FALSE);
 	
