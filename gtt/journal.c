@@ -627,9 +627,9 @@ resolve_path (char *path_frag)
 	list = gnome_i18n_get_language_list ("LC_MESSAGES");
 	for ( ; list; list=list->next) 
 	{
-        	const char *lang = list->data;
+		const char *lang = list->data;
 
-        	/* See if gtt/ghtml/<lang>/<path_frag> exists */
+		/* See if gtt/ghtml/<lang>/<path_frag> exists */
 		/* look in the local build dir first (for testing) */
 		
 		p = buff;

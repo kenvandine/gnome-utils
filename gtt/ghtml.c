@@ -870,7 +870,6 @@ gtt_ghtml_display (GttGhtml *ghtml, const char *filepath,
 			}
 			start = end;
 		}
-			
 	}
 	fclose (ph);
 

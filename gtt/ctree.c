@@ -135,9 +135,9 @@ widget_button_event(GtkCList *clist, GdkEvent *event, gpointer data)
 	if (0 > row) return FALSE;
 	
 	/* change the focus row */
-    	gtk_clist_freeze(clist);
+	gtk_clist_freeze(clist);
 	clist->focus_row = row;
-    	gtk_clist_thaw(clist);
+	gtk_clist_thaw(clist);
 
 	if (event->type == GDK_2BUTTON_PRESS) 
 	{
@@ -484,11 +484,11 @@ ctree_update_column_visibility (ProjTreeWindow *ptw)
 		case TITLE_COL:
 			break;
 		case DESC_COL:
-		gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
 				config_show_title_desc);
 			break;
 		case TASK_COL:
-		gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
 				config_show_title_task);
 			break;
 		case NULL_COL:

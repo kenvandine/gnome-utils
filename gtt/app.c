@@ -78,54 +78,54 @@ void update_status_bar(void)
 {
 	char day_total_str[25];
 	static char *old_day_time = NULL;
-        static char *old_project = NULL;
+	static char *old_project = NULL;
 	char *s;
 
 	if (!status_bar) return;
 	if (status_timer) {
-		if (timer_is_running())
-			gtk_widget_show(status_timer);
-		else
-			gtk_widget_hide(status_timer);
+	if (timer_is_running())
+		gtk_widget_show(status_timer);
+	else
+		gtk_widget_hide(status_timer);
 	}
-        if (!old_day_time) old_day_time = g_strdup("");
-        if (!old_project) old_project = g_strdup("");
+	if (!old_day_time) old_day_time = g_strdup("");
+	if (!old_project) old_project = g_strdup("");
 
 	print_hours_elapsed (day_total_str, 25, 
-		gtt_project_list_total_secs_day(), config_show_secs);
+	gtt_project_list_total_secs_day(), config_show_secs);
 
-        s = g_strdup(day_total_str);
-        if (0 != strcmp(s, old_day_time)) {
+	s = g_strdup(day_total_str);
+	if (0 != strcmp(s, old_day_time)) {
 #ifdef GTK_USE_STATUSBAR
-                gtk_statusbar_remove(status_day_time, 2, status_day_time_id);
-                status_day_time_id = gtk_statusbar_push(status_day_time, 2, s);
+		gtk_statusbar_remove(status_day_time, 2, status_day_time_id);
+		status_day_time_id = gtk_statusbar_push(status_day_time, 2, s);
 #else /* not GTK_USE_STATUSBAR */
-                gtk_label_set(status_day_time, s);
+		gtk_label_set(status_day_time, s);
 #endif /* not GTK_USE_STATUSBAR */
-                g_free(old_day_time);
-                old_day_time = s;
-        } else {
-                g_free(s);
-        }
-        if (cur_proj) {
-                s = g_strdup_printf ("%s - %s", 
-			gtt_project_get_title(cur_proj),
-			gtt_project_get_desc(cur_proj));
-        } else {
-                s = g_strdup(_("no project selected"));
-        }
-        if (0 != strcmp(s, old_project)) {
+		g_free(old_day_time);
+		old_day_time = s;
+	} else {
+		g_free(s);
+	}
+	if (cur_proj) {
+		s = g_strdup_printf ("%s - %s", 
+		gtt_project_get_title(cur_proj),
+		gtt_project_get_desc(cur_proj));
+	} else {
+		s = g_strdup(_("no project selected"));
+	}
+	if (0 != strcmp(s, old_project)) {
 #ifdef GTK_USE_STATUSBAR
-                gtk_statusbar_remove(status_project, 1, status_project_id);
-                status_project_id = gtk_statusbar_push(status_project, 1, s);
+		gtk_statusbar_remove(status_project, 1, status_project_id);
+		status_project_id = gtk_statusbar_push(status_project, 1, s);
 #else /* not GTK_USE_STATUSBAR */
-                gtk_label_set(status_project, s);
+		gtk_label_set(status_project, s);
 #endif /* not GTK_USE_STATUSBAR */
-                g_free(old_project);
-                old_project = s;
-        } else {
-                g_free(s);
-        }
+		g_free(old_project);
+		old_project = s;
+	} else {
+		g_free(s);
+	}
 }
 
 
@@ -193,42 +193,40 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 	gint x, y, w, h;
 
 	window = gnome_app_new("gtt", APP_NAME " " VERSION);
-        gtk_window_set_wmclass(GTK_WINDOW(window),
-                               "gtt", "GTimeTracker");
+	gtk_window_set_wmclass(GTK_WINDOW(window),
+			       "gtt", "GTimeTracker");
 	/* 320 x 220 seems to be a good size to default to */
 	gtk_window_set_default_size(GTK_WINDOW(window), 320, 220);
 	gtk_window_set_policy(GTK_WINDOW(window), TRUE, TRUE, FALSE);
 	menus_create(GNOME_APP(window));
 	widget = build_toolbar();
-        gtk_widget_show(widget);
-        gnome_app_set_toolbar(GNOME_APP(window), GTK_TOOLBAR(widget));
+	gtk_widget_show(widget);
+	gnome_app_set_toolbar(GNOME_APP(window), GTK_TOOLBAR(widget));
 	vbox = gtk_vbox_new(FALSE, 0);
 
 	status_bar = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(status_bar);
 	gtk_box_pack_end(GTK_BOX(vbox), status_bar, FALSE, FALSE, 2);
-        status_day_time = GTK_STATUSBAR(gtk_statusbar_new());
+	status_day_time = GTK_STATUSBAR(gtk_statusbar_new());
 #ifdef SB_USE_HACK
-        gtk_widget_show(GTK_WIDGET(status_day_time->frame));
-        gtk_widget_show(GTK_WIDGET(status_day_time->label));
+	gtk_widget_show(GTK_WIDGET(status_day_time->frame));
+	gtk_widget_show(GTK_WIDGET(status_day_time->label));
 #endif /* SB_USE_HACK */
-        gtk_widget_show(GTK_WIDGET(status_day_time));
-        status_day_time_id = gtk_statusbar_push(status_day_time,
-						2,
-						_("00:00"));
-        gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_day_time),
-                           FALSE, FALSE, 1);
-        status_project = GTK_STATUSBAR(gtk_statusbar_new());
+	gtk_widget_show(GTK_WIDGET(status_day_time));
+	status_day_time_id = gtk_statusbar_push(status_day_time,
+						2, _("00:00"));
+	gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_day_time),
+			   FALSE, FALSE, 1);
+	status_project = GTK_STATUSBAR(gtk_statusbar_new());
 #ifdef SB_USE_HACK
-        gtk_widget_show(GTK_WIDGET(status_project->frame));
-        gtk_widget_show(GTK_WIDGET(status_project->label));
+	gtk_widget_show(GTK_WIDGET(status_project->frame));
+	gtk_widget_show(GTK_WIDGET(status_project->label));
 #endif /* SB_USE_HACK */
-        gtk_widget_show(GTK_WIDGET(status_project));
-        status_project_id = gtk_statusbar_push(status_project,
-					       1,
-					       _("no project selected"));
-        gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_project),
-                           TRUE, TRUE, 1);
+	gtk_widget_show(GTK_WIDGET(status_project));
+	status_project_id = gtk_statusbar_push(status_project,
+					       1, _("no project selected"));
+	gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_project),
+			   TRUE, TRUE, 1);
 	status_timer = gnome_stock_pixmap_widget_at_size(GTK_WIDGET(status_bar),
 							 GNOME_STOCK_PIXMAP_TIMER,
 							 16, 16);
@@ -236,8 +234,8 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 	gtk_box_pack_end(GTK_BOX(status_bar), GTK_WIDGET(status_timer),
 			 FALSE, FALSE, 1);
 
-        global_ptw = ctree_new();
-        glist = ctree_get_widget(global_ptw);
+	global_ptw = ctree_new();
+	glist = ctree_get_widget(global_ptw);
 
 	gtk_box_pack_end(GTK_BOX(vbox), glist->parent, TRUE, TRUE, 0);
 
@@ -259,7 +257,7 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 	} else {
 		gnome_app_error(GNOME_APP(window),
 			_("Couldn't understand geometry (position and size)\n"
-				" specified on command line"));
+			  " specified on command line"));
 	}
 }
 

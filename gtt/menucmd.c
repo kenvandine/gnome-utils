@@ -75,7 +75,7 @@ about_box(GtkWidget *w, gpointer data)
 		gdk_window_raise(about->window);
 		return;
 	}
-	 about = gnome_about_new(APP_NAME,
+	about = gnome_about_new(APP_NAME,
 				    VERSION,
 				    "Copyright (C) 1997,98 Eckehard Berns and others",
 				    (const gchar **)authors,
@@ -86,7 +86,7 @@ about_box(GtkWidget *w, gpointer data)
 #endif
 				    NULL);
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",
-			   GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
+		GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
 	gnome_dialog_set_parent(GNOME_DIALOG(about), GTK_WINDOW(window));
 	gtk_widget_show(about);
 }

@@ -90,7 +90,7 @@ gtt_project_new_title_desc(const char *t, const char *d)
 
 	proj = gtt_project_new();
 	if (t) { g_free(proj->title); proj->title = g_strdup (t); }
-        if (d) { g_free(proj->desc); proj->desc = g_strdup (d); }
+	if (d) { g_free(proj->desc); proj->desc = g_strdup (d); }
 	return proj;
 }
 
@@ -1752,7 +1752,7 @@ gtt_interval_is_first_interval (GttInterval *ivl)
 gboolean
 gtt_interval_is_last_interval (GttInterval *ivl)
 {
-        if (!ivl || !ivl->parent || !ivl->parent->interval_list) return TRUE;
+	if (!ivl || !ivl->parent || !ivl->parent->interval_list) return TRUE;
 
 	if ((GttInterval *) ((g_list_last(ivl->parent->interval_list))->data) == ivl) return TRUE;
 	return FALSE;
@@ -1971,7 +1971,7 @@ cmp_time(const void *aa, const void *bb)
 {
 	GttProject *a = (GttProject *)aa;
 	GttProject *b = (GttProject *)bb;
-        return (gtt_project_total_secs_day(b) - gtt_project_total_secs_day(a));
+	return (gtt_project_total_secs_day(b) - gtt_project_total_secs_day(a));
 }
 
 static int
@@ -1979,7 +1979,7 @@ cmp_total_time(const void *aa, const void *bb)
 {
 	GttProject *a = (GttProject *)aa;
 	GttProject *b = (GttProject *)bb;
-        return (gtt_project_total_secs_ever(b) - gtt_project_total_secs_ever(a));
+	return (gtt_project_total_secs_ever(b) - gtt_project_total_secs_ever(a));
 }
 
 
@@ -1988,7 +1988,7 @@ cmp_title(const void *aa, const void *bb)
 {
 	const GttProject *a = aa;
 	const GttProject *b = bb;
-        return strcmp(a->title, b->title);
+	return strcmp(a->title, b->title);
 }
 
 static int
@@ -2009,7 +2009,7 @@ cmp_desc(const void *aa, const void *bb)
 void
 project_list_sort_time(void)
 {
-        project_list_sort(cmp_time);
+	project_list_sort(cmp_time);
 }
 
 void
@@ -2021,7 +2021,7 @@ project_list_sort_total_time(void)
 void
 project_list_sort_title(void)
 {
-        project_list_sort(cmp_title);
+	project_list_sort(cmp_title);
 }
 
 void

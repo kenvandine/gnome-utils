@@ -49,6 +49,7 @@ int config_show_tb_new = 1;
 int config_show_tb_file = 0;
 int config_show_tb_ccp = 0;
 int config_show_tb_journal = 1;
+int config_show_tb_calendar = 0;
 int config_show_tb_prop = 1;
 int config_show_tb_timer = 1;
 int config_show_tb_pref = 0;

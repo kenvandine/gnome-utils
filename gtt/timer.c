@@ -143,7 +143,7 @@ init_timer(void)
 	idt = idle_timeout_new();
 
 	/* the timer is measured in milliseconds, so 1000
-         * means it pops once a second. */
+	 * means it pops once a second. */
 	main_timer = gtk_timeout_add(1000, timer_func, NULL);
 }
 

@@ -16,6 +16,7 @@ gtt_SOURCES = 		\
 	main.c		\
 	menucmd.c	\
 	menus.c		\
+	myoaf.c		\
 	plug-in.c	\
 	prefs.c		\
 	proj.c		\

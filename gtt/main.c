@@ -316,34 +316,33 @@ const char *
 save_all (void)
 {
 	GttErrCode errcode;
-        const char *errmsg = NULL;
+	const char *errmsg = NULL;
 	const char * xml_filepath;
 
 	xml_filepath = resolve_path (config_data_url);
+	/* Try ... */
+	gtt_err_set_code (GTT_NO_ERR);
+	gtt_xml_write_file (xml_filepath);
 
-        /* Try ... */
-        gtt_err_set_code (GTT_NO_ERR);
-        gtt_xml_write_file (xml_filepath);
+	/* Catch */
+	errcode = gtt_err_get_code();
+	if (GTT_NO_ERR != errcode)
+	{
+		errmsg = gtt_err_to_string (errcode, xml_filepath);
+	}
 
-        /* Catch */
-        errcode = gtt_err_get_code();
-        if (GTT_NO_ERR != errcode)
-        {
-                errmsg = gtt_err_to_string (errcode, xml_filepath);
-        }
+	/* Try ... */
+	gtt_err_set_code (GTT_NO_ERR);
+	gtt_save_config (NULL);
 
-        /* Try ... */
-        gtt_err_set_code (GTT_NO_ERR);
-        gtt_save_config (NULL);
-
-        /* Catch */
-        errcode = gtt_err_get_code();
-        if (GTT_NO_ERR != errcode)
-        {
-                const char *fp;
-                fp = gtt_get_config_filepath();
-                errmsg = gtt_err_to_string (errcode, fp);
-        }
+	/* Catch */
+	errcode = gtt_err_get_code();
+	if (GTT_NO_ERR != errcode)
+	{
+		const char *fp;
+		fp = gtt_get_config_filepath();
+		errmsg = gtt_err_to_string (errcode, fp);
+	}
 
 	return errmsg;
 }
@@ -502,4 +501,5 @@ main(int argc, char *argv[])
 	gh_enter(argc, argv, guile_inner_main);
 	return 0; /* not reached !? */
 }
+
 

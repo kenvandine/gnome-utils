@@ -141,34 +141,34 @@ extern GtkWidget *window;
 NewPluginDialog *
 new_plugin_dialog_new (void)
 {
-        NewPluginDialog *dlg;
-        GladeXML *gtxml;
-        GtkWidget *e;
+	NewPluginDialog *dlg;
+	GladeXML *gtxml;
+	GtkWidget *e;
 
-        dlg = g_malloc(sizeof(NewPluginDialog));
+	dlg = g_malloc(sizeof(NewPluginDialog));
 	dlg->app = GNOME_APP (window);
 
-        gtxml = glade_xml_new ("glade/plugin.glade", "Plugin New");
-        dlg->gtxml = gtxml;
+	gtxml = glade_xml_new ("glade/plugin.glade", "Plugin New");
+	dlg->gtxml = gtxml;
 
-        dlg->dialog = GNOME_DIALOG (glade_xml_get_widget (gtxml,  "Plugin New"));
+	dlg->dialog = GNOME_DIALOG (glade_xml_get_widget (gtxml,  "Plugin New"));
 
-        glade_xml_signal_connect_data (gtxml, "on_ok_button_clicked",
-                GTK_SIGNAL_FUNC (new_plugin_create_cb), dlg);
-          
-        glade_xml_signal_connect_data (gtxml, "on_cancel_button_clicked",
-                GTK_SIGNAL_FUNC (new_plugin_cancel_cb), dlg);
+	glade_xml_signal_connect_data (gtxml, "on_ok_button_clicked",
+		GTK_SIGNAL_FUNC (new_plugin_create_cb), dlg);
+	  
+	glade_xml_signal_connect_data (gtxml, "on_cancel_button_clicked",
+		GTK_SIGNAL_FUNC (new_plugin_cancel_cb), dlg);
 
-        /* ------------------------------------------------------ */
-        /* grab the various entry boxes and hook them up */
-        e = glade_xml_get_widget (gtxml, "plugin name");
-        dlg->plugin_name = GTK_ENTRY(e);
+	/* ------------------------------------------------------ */
+	/* grab the various entry boxes and hook them up */
+	e = glade_xml_get_widget (gtxml, "plugin name");
+	dlg->plugin_name = GTK_ENTRY(e);
 
-        e = glade_xml_get_widget (gtxml, "plugin path");
-        dlg->plugin_path = GTK_ENTRY(e);
+	e = glade_xml_get_widget (gtxml, "plugin path");
+	dlg->plugin_path = GTK_ENTRY(e);
 
-        e = glade_xml_get_widget (gtxml, "plugin tooltip");
-        dlg->plugin_tooltip = GTK_ENTRY(e);
+	e = glade_xml_get_widget (gtxml, "plugin tooltip");
+	dlg->plugin_tooltip = GTK_ENTRY(e);
 
 	gnome_dialog_close_hides(GNOME_DIALOG(dlg->dialog), TRUE);
 
@@ -180,16 +180,16 @@ new_plugin_dialog_new (void)
 void 
 new_plugin_dialog_show(NewPluginDialog *dlg)
 {
-        if (!dlg) return;
-        gtk_widget_show(GTK_WIDGET(dlg->dialog));
+	if (!dlg) return;
+	gtk_widget_show(GTK_WIDGET(dlg->dialog));
 }
 
 void 
 new_plugin_dialog_destroy(NewPluginDialog *dlg)
 {
-        if (!dlg) return;
-        gtk_widget_destroy (GTK_WIDGET(dlg->dialog));
-        g_free (dlg);
+	if (!dlg) return;
+	gtk_widget_destroy (GTK_WIDGET(dlg->dialog));
+	g_free (dlg);
 }
 
 /* ============================================================ */
@@ -200,7 +200,7 @@ void
 new_report(GtkWidget *widget, gpointer data)
 {
 	if (!pdlg) pdlg = new_plugin_dialog_new ();
-        gtk_widget_show(GTK_WIDGET(pdlg->dialog));
+	gtk_widget_show(GTK_WIDGET(pdlg->dialog));
 }
 
 /* ====================== END OF FILE ========================= */
