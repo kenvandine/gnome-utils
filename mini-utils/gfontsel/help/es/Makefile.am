@@ -1,9 +1,10 @@
 figs = \
 	figures/filterwin.png  \
 	figures/mainshot.png
-app = gfontsel
+docname = gfontsel
 lang = es
-omffiles=gfontsel-es.omf
-include $(top_srcdir)/app-docs.make
+omffile = gfontsel-es.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook
 

@@ -6,8 +6,9 @@ figs = \
 	figures/prefs.png  \
 	figures/text.png
 
-app = stripchart
+docname = stripchart
 lang = C
-omffiles=stripchart-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = stripchart-C.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

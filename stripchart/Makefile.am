@@ -28,7 +28,7 @@ stripchart_applet_LDADD = \
 
 EXTRA_DIST = \
  gnome-stripchart.png stripchart.conf stripchart.params \
- stripchart.desktop stripchart-applet.desktop $(top_srcdir)/app-docs.make
+ stripchart.desktop stripchart-applet.desktop $(top_srcdir)/sgmldocs.make
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-stripchart.png

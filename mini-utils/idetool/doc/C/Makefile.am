@@ -1,8 +1,9 @@
 figs = \
 	figures/idetool.png
 
-app = idetool
+docname = idetool
 lang = C
-omffiles=idetool-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = idetool-C.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

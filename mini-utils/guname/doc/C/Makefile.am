@@ -4,8 +4,9 @@ figs = \
 	figures/guname-main.png  \
 	figures/guname-memoryinfo.png
 
-app = guname
+docname = guname
 lang = C
-omffiles=guname-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = guname-C.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

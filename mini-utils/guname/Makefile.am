@@ -52,5 +52,5 @@ EXTRA_DIST = 		\
 	moreinfo.c	\
 	moreinfo.h	\
 	guname-capplet.desktop \
-	$(top_srcdir)/app-docs.make
+	$(top_srcdir)/sgmldocs.make
 

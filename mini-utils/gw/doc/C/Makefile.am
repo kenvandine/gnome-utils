@@ -2,8 +2,9 @@ figs = \
 	figures/gw-main.png  \
 	figures/gw-menuitems.png
 
-app = gw
+docname = gw
 lang = C
-omffiles=gw-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = gw-C.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

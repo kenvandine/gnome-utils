@@ -2,8 +2,9 @@ figs = \
 	figures/gcharmap.png  \
 	figures/gcharmap_insertascii.png
 
-app = gcharmap
+docname = gcharmap
 lang = C
-omffiles=gcharmap-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = gcharmap-C.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

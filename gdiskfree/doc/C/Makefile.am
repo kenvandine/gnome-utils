@@ -2,8 +2,9 @@ figs = \
 	figures/gdiskfree-prefs.png  \
 	figures/gdiskfree.png
 
-app = gdiskfree
+docname = gdiskfree
 lang = C
-omffiles=gdiskfree-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = gdiskfree-C.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

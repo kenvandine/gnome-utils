@@ -3,8 +3,9 @@ figs = \
 	figures/gshutdown-preferences.png  \
 	figures/gshutdown.png
 
-app = gshutdown
+docname = gshutdown
 lang = C
-omffiles=gshutdown-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = gshutdown-C.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

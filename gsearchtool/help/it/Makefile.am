@@ -4,8 +4,9 @@ figs = \
 	figures/mainwin.png  \
 	figures/results.png
 
-app = gsearchtool
+docname = gsearchtool
 lang = it
-omffiles=gsearchtool-it.omf
-include $(top_srcdir)/app-docs.make
+omffile = gsearchtool-it.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

@@ -20,6 +20,6 @@ gfontsel_LDADD = \
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-fontsel.png
 
-EXTRA_DIST = gfontsel.desktop gnome-fontsel.png $(top_srcdir)/app-docs.make
+EXTRA_DIST = gfontsel.desktop gnome-fontsel.png $(top_srcdir)/sgmldocs.make
 
 Utilities_DATA = gfontsel.desktop

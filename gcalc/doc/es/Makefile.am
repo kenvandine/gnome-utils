@@ -1,7 +1,8 @@
 figs = \
 	figures/gcalc-main.png
-app = gcalc
+docname = gcalc
 lang = es
-omffiles=gcalc-es.omf
-include $(top_srcdir)/app-docs.make
+omffile = gcalc-es.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

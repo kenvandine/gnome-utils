@@ -17,7 +17,7 @@ gstripchart_LDADD = \
 EXTRA_DIST = \
 	gnome-stripchart.png gstripchart.conf \
 	gstripchart.desktop gstripchart_applet.desktop \
-	gstripchart_applet.gnorba $(top_srcdir)/app-docs.make
+	gstripchart_applet.gnorba $(top_srcdir)/sgmldocs.make
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-stripchart.png

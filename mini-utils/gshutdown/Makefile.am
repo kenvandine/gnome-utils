@@ -19,7 +19,7 @@ gshutdown_LDADD = \
 EXTRA_DIST = \
 	gshutdown.desktop \
 	gnome-shutdown.png  \
-	$(top_srcdir)/app-docs.make
+	$(top_srcdir)/sgmldocs.make
 
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = gnome-shutdown.png

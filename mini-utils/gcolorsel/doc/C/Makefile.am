@@ -5,8 +5,9 @@ figs = \
 	figures/search.png  \
 	figures/simple.png
 
-app = gcolorsel
+docname = gcolorsel
 lang = C
-omffiles=gcolorsel-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = gcolorsel-C.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook

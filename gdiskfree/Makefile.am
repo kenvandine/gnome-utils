@@ -19,7 +19,7 @@ gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
 		  $(GNOMEUI_LIBS) $(INTLLIBS) \
 		  $(LIBGTOP_LIBS) $(LIBGTOP_EXTRA_LIBS)
 
-EXTRA_DIST = gdiskfree.desktop $(top_srcdir)/app-docs.make
+EXTRA_DIST = gdiskfree.desktop $(top_srcdir)/sgmldocs.make
 
 Systemdir = $(datadir)/gnome/apps/System
 System_DATA = gdiskfree.desktop

@@ -60,7 +60,7 @@ gsu_LDADD = \
 
 CLEANFILES = $(BUILT_SOURCES)
 
-EXTRA_DIST = gsu.gnorba $(top_srcdir)/app-docs.make
+EXTRA_DIST = gsu.gnorba $(top_srcdir)/sgmldocs.make
 
 install-data-local:
 	$(INSTALL_DATA) $(srcdir)/gsu.gnorba \
