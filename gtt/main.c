@@ -19,8 +19,12 @@
 #include <config.h>
 #include <gnome.h>
 #include <string.h>
+#include <signal.h>
 
 #include "gtt.h"
+
+
+#define USE_SM
 
 
 
@@ -124,6 +128,8 @@ static void init_list(void)
 
 
 
+#ifdef USE_SM
+
 /*
  * session management
  */
@@ -174,6 +180,8 @@ session_die(GnomeClient *client)
 {
 	quit_app(NULL, NULL);
 }
+
+#endif /* USE_SM */
 
 
 
@@ -244,7 +252,9 @@ argp_parser(int key, char *arg, struct argp_state *state)
 
 int main(int argc, char *argv[])
 {
+#ifdef USE_SM
 	GnomeClient *client;
+#endif
 	struct argp_option geo_options[] = {
 		{"geometry", 'g', "GEOM", 0, N_("specify geometry"), 0},
 		{"select-project", 's', "PROJECT", 0,
@@ -256,17 +266,20 @@ int main(int argc, char *argv[])
 		argp_parser, NULL, NULL, NULL, NULL, NULL
 	};
 
+#ifdef USE_SM
 	client = gnome_client_new_default();
 	gtk_signal_connect(GTK_OBJECT(client), "save_yourself",
 			   GTK_SIGNAL_FUNC(save_state), (gpointer)argv[0]);
 	gtk_signal_connect(GTK_OBJECT(client), "die",
 			   GTK_SIGNAL_FUNC(session_die), NULL);
+#endif /* USE_SM */
 
 	gnome_init("gtt", &args, argc, argv, 0, NULL);
 
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 
+	signal(SIGCHLD, SIG_IGN);
 	lock_gtt();
 	app_new(argc, argv);
 	if (!w_w) {
