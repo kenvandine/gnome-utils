@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2001-03-16 21:11+0100\n"
-"PO-Revision-Date: 2001-03-05 19:12+01:00\n"
+"POT-Creation-Date: 2001-05-15 01:44+0200\n"
+"PO-Revision-Date: 2001-05-15 01:44+02:00\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -92,14 +92,14 @@ msgstr "Kopiér"
 
 #: gcharmap/src/interface.c:229 gcharmap/src/menus.c:107
 #: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
-#: stripchart/chart-app.c:227 stripchart/params.c:1010
+#: stripchart/chart-app.c:227 stripchart/params.c:1012
 #: stripchart/stripchart-applet.c:89
 msgid "About"
 msgstr "Om..."
 
 #: gcharmap/src/interface.c:231 gcharmap/src/menus.c:105
 #: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:222
-#: stripchart/params.c:1045 stripchart/params.c:1048
+#: stripchart/params.c:1047 stripchart/params.c:1050
 #: stripchart/stripchart-applet.c:86
 msgid "Help"
 msgstr "Hjælp"
@@ -199,8 +199,8 @@ msgstr "Afslut programmet"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:635 gdictsrc/gdict-pref-dialog.c:498
-#: gdictsrc/gdict-pref-dialog.c:542 gdictsrc/gdict-speller.c:393
+#: gdictsrc/dict.c:635 gdictsrc/gdict-pref-dialog.c:502
+#: gdictsrc/gdict-pref-dialog.c:546 gdictsrc/gdict-speller.c:393
 msgid "Cannot connect to server"
 msgstr "Kan ikke koble til server!"
 
@@ -310,7 +310,7 @@ msgstr "Stavekontrol..."
 
 #: gdictsrc/gdict-applet.c:309
 msgid "Cannot create applet!\n"
-msgstr "Kan ikke oprette applet!\n"
+msgstr "Kan ikke oprette panelprogram!\n"
 
 #: gdictsrc/gdict-pref-dialog.c:38
 msgid "Headword:"
@@ -378,11 +378,11 @@ msgstr "Vært"
 msgid "Fonts"
 msgstr "Skrifttyper"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Display handle bar"
 msgstr "Vis håndtagslinje"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid ""
 "You have to restart GDict for these\n"
 "settings to become active."
@@ -390,11 +390,11 @@ msgstr ""
 "Du skal genstarte GDict før disse\n"
 "indstillinger træder i kraft."
 
-#: gdictsrc/gdict-pref-dialog.c:262
+#: gdictsrc/gdict-pref-dialog.c:263
 msgid "Applet"
-msgstr "Applet"
+msgstr "Panelprogram"
 
-#: gdictsrc/gdict-pref-dialog.c:581
+#: gdictsrc/gdict-pref-dialog.c:585
 msgid "The server you specified could not be found."
 msgstr "Den angivne vært blev ikke fundet."
 
@@ -515,26 +515,34 @@ msgstr "grep flag fundet i søgeliste! fy fy!"
 msgid "non-grep option found in grep list, bad bad!"
 msgstr "ikke-grep flag fundet i grep-liste! fy fy!"
 
-#: gsearchtool/gsearchtool.c:201
+#: gsearchtool/gsearchtool.c:219
 msgid "Search already running on another page"
 msgstr "Søgning kører allerede på en anden side"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
-#: gsearchtool/gsearchtool.c:211
+#: gsearchtool/gsearchtool.c:229
 msgid "Search Results"
 msgstr "Søgeresultater"
 
-#: gsearchtool/gsearchtool.c:338 gsearchtool/gsearchtool.c:369
+#: gsearchtool/gsearchtool.c:336
+msgid ""
+"\n"
+"... Too many errors to display ..."
+msgstr ""
+"\n"
+"...for mange fejl til at vise..."
+
+#: gsearchtool/gsearchtool.c:369 gsearchtool/gsearchtool.c:400
 msgid "Start directory does not exist"
 msgstr "Startmappe eksisterer ikke"
 
-#: gsearchtool/gsearchtool.c:378
+#: gsearchtool/gsearchtool.c:409
 msgid "Search command line"
 msgstr "Søgningskommandolinje"
 
-#: gsearchtool/gsearchtool.c:384
+#: gsearchtool/gsearchtool.c:415
 msgid ""
 "This is the command line that can be used to execute this search from the "
 "console:\n"
@@ -546,47 +554,47 @@ msgstr ""
 "(Note: For at skrive en fil per linje i stedet for adskilt med nul,\n"
 "tilføj \"| tr '\\000' '\\n'\" til linjen nedenunder)"
 
-#: gsearchtool/gsearchtool.c:471
+#: gsearchtool/gsearchtool.c:502
 msgid "Entry changed called for a non entry option!"
 msgstr "Den ændrede indgang ønskede et ikke-indgangsflag!"
 
-#: gsearchtool/gsearchtool.c:537
+#: gsearchtool/gsearchtool.c:568
 msgid "Enable"
 msgstr "Anvend"
 
-#: gsearchtool/gsearchtool.c:545 logview/actions.c:127
+#: gsearchtool/gsearchtool.c:576 logview/actions.c:127
 msgid "Remove"
 msgstr "Fjern"
 
-#: gsearchtool/gsearchtool.c:597
+#: gsearchtool/gsearchtool.c:628
 msgid "Start in directory:"
 msgstr "Start i mappe:"
 
-#: gsearchtool/gsearchtool.c:599
+#: gsearchtool/gsearchtool.c:630
 msgid "Browse"
 msgstr "Gennemse"
 
-#: gsearchtool/gsearchtool.c:619 mini-utils/gw/gw.c:505
+#: gsearchtool/gsearchtool.c:650 mini-utils/gw/gw.c:506
 msgid "Add"
 msgstr "Tilføj"
 
-#: gsearchtool/gsearchtool.c:630
+#: gsearchtool/gsearchtool.c:661
 msgid "Show Command"
 msgstr "Vis kommando"
 
-#: gsearchtool/gsearchtool.c:635 gsearchtool/gsearchtool.c:718
+#: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:749
 msgid "Start"
 msgstr "Start"
 
-#: gsearchtool/gsearchtool.c:636 gsearchtool/gsearchtool.c:719
+#: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:750
 msgid "Stop"
 msgstr "Stop"
 
-#: gsearchtool/gsearchtool.c:669
+#: gsearchtool/gsearchtool.c:700
 msgid "Nothing to locate"
 msgstr "Intet at finde"
 
-#: gsearchtool/gsearchtool.c:697
+#: gsearchtool/gsearchtool.c:728
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -597,31 +605,31 @@ msgstr ""
 "hele søgestien, og hvis du indtaster en tekst med jokertegn, skal\n"
 "den stemme med hele stinavnet."
 
-#: gsearchtool/gsearchtool.c:706
+#: gsearchtool/gsearchtool.c:737
 msgid "Locate file: "
 msgstr "Find fil: "
 
-#: gsearchtool/gsearchtool.c:740
+#: gsearchtool/gsearchtool.c:771
 msgid "Full find (find)"
 msgstr "Grundig søgning (find)"
 
-#: gsearchtool/gsearchtool.c:742
+#: gsearchtool/gsearchtool.c:773
 msgid "Quick find (locate)"
 msgstr "Hurtig søgning (locate)"
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:794
 msgid "The Gnome Search Tool"
 msgstr "Gnome søgeværktøj"
 
-#: gsearchtool/gsearchtool.c:764
+#: gsearchtool/gsearchtool.c:795
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998, 2000 Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:766
+#: gsearchtool/gsearchtool.c:797
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Grafisk grænseflade til unix's find/grep/locate-kommandoer"
 
-#: gsearchtool/gsearchtool.c:824
+#: gsearchtool/gsearchtool.c:855
 msgid "Gnome Search Tool"
 msgstr "Gnome filsøgningsværktøj"
 
@@ -665,7 +673,7 @@ msgstr "Idag"
 msgid "Project Title"
 msgstr "Projekttitel"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:644
+#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:646
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -687,7 +695,8 @@ msgid ""
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
 msgstr ""
 "Det er ud til at en anden GTimeTracker allerede kører.\n"
-"Tryk O.k. for at starte GTimeTracker alligevel eller Annullér for at afslutte."
+"Tryk O.k. for at starte GTimeTracker alligevel eller Annullér for at "
+"afslutte."
 
 #: gtt/main.c:124
 msgid "Error"
@@ -942,7 +951,7 @@ msgstr "Ny"
 msgid "Reload"
 msgstr "Genindlæs"
 
-#: gtt/toolbar.c:152 stripchart/params.c:936
+#: gtt/toolbar.c:152 stripchart/params.c:938
 msgid "Save"
 msgstr "Gem"
 
@@ -1460,13 +1469,13 @@ msgid "Grid"
 msgstr "Gitter"
 
 #: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1038
-#: stripchart/params.c:1041
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1040
+#: stripchart/params.c:1043
 msgid "Edit"
 msgstr "Ændr"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1031
-#: stripchart/params.c:1034
+#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1033
+#: stripchart/params.c:1036
 msgid "File"
 msgstr "Fil"
 
@@ -1853,8 +1862,8 @@ msgid "Save the current palette with a different name"
 msgstr "Gem den aktuelle palet under et andet navn"
 
 #: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
-#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:595
-#: stripchart/params.c:950
+#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:598
+#: stripchart/params.c:952
 msgid "Close"
 msgstr "Luk"
 
@@ -2076,7 +2085,7 @@ msgstr "Hexadecimal 16 bit"
 msgid "Float"
 msgstr "Kommatal"
 
-#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:817
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:819
 msgid "Color"
 msgstr "Farve"
 
@@ -2086,7 +2095,7 @@ msgstr "Værdi"
 
 #. Create everything.
 #: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
-#: mini-utils/gw/gw.c:501 mini-utils/gw/gw.c:571
+#: mini-utils/gw/gw.c:502 mini-utils/gw/gw.c:572
 msgid "Name"
 msgstr "Navn"
 
@@ -2301,7 +2310,7 @@ msgstr "Er du sikker på at du vil skifte til kørselsniveau 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Er du sikker på at du vil genstarte systemet?"
 
-#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:592
+#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:595
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Du skal være administrator (root) for at lukke maskinen ned eller genstarte "
@@ -2341,7 +2350,7 @@ msgstr "Kommandoer"
 msgid "Confirm before shutdown?"
 msgstr "Bekræft før nedlukning?"
 
-#: mini-utils/gshutdown/gshutdown.c:451
+#: mini-utils/gshutdown/gshutdown.c:454
 #, c-format
 msgid ""
 "%s\n"
@@ -2350,17 +2359,17 @@ msgstr ""
 "%s\n"
 "Du vil miste alt der ikke er gemt."
 
-#: mini-utils/gshutdown/gshutdown.c:461
+#: mini-utils/gshutdown/gshutdown.c:464
 msgid "Don't ask next time."
 msgstr "Spørg ikke næste gang."
 
-#: mini-utils/gshutdown/gshutdown.c:685
+#: mini-utils/gshutdown/gshutdown.c:688
 msgid "Command execution failed: fork failed"
 msgstr "Kørsel af kommando mislykkedes: kunne ikke fraspalte en ny proces"
 
 #: mini-utils/guname/guname.c:53
 msgid "Make guname act as a control center applet"
-msgstr "Lad guname opføre sig som en kontrolcenter-applet"
+msgstr "Lad guname opføre sig som et kontrolcenterprogram"
 
 #: mini-utils/guname/guname.c:119
 msgid "an initialization error occurred while starting 'guname-capplet'."
@@ -2370,53 +2379,53 @@ msgstr "en klargøringsfejl opstod under opstart af 'guname-capplet'."
 msgid "System Information"
 msgstr "Systeminformation"
 
-#: mini-utils/guname/guname.c:536
+#: mini-utils/guname/guname.c:540
 msgid "Logo file not found"
 msgstr "Logofilen blev ikke fundet"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:540
+#: mini-utils/guname/guname.c:544
 msgid "GNOME contributors:"
 msgstr "Gnome bidragsydere:"
 
 #. fontset used by guname; adapt it if your language requires it
-#: mini-utils/guname/guname.c:544
+#: mini-utils/guname/guname.c:548
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
-#: mini-utils/guname/guname.c:555
+#: mini-utils/guname/guname.c:559
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "Gnome: GNU netværksobjektmiljø"
 
-#: mini-utils/guname/guname.c:579
+#: mini-utils/guname/guname.c:583
 msgid "Email Information..."
 msgstr "Send information pr. epost..."
 
-#: mini-utils/guname/guname.c:592
+#: mini-utils/guname/guname.c:596
 msgid "Save Information to File..."
 msgstr "Gem information som fil..."
 
-#: mini-utils/guname/guname.c:604 mini-utils/guname/guname.c:674
+#: mini-utils/guname/guname.c:608 mini-utils/guname/guname.c:678
 msgid "Detailed Information..."
 msgstr "Detaljeret information..."
 
-#: mini-utils/guname/guname.c:619
+#: mini-utils/guname/guname.c:623
 msgid "Category"
 msgstr "Kategori"
 
-#: mini-utils/guname/guname.c:619
+#: mini-utils/guname/guname.c:623
 msgid "Your System"
 msgstr "Dit system"
 
-#: mini-utils/guname/guname.c:660 stripchart/params.c:943
+#: mini-utils/guname/guname.c:664 stripchart/params.c:945
 msgid "Save As..."
 msgstr "Gem som..."
 
-#: mini-utils/guname/guname.c:666
+#: mini-utils/guname/guname.c:670
 msgid "Mail To..."
 msgstr "Send til..."
 
-#: mini-utils/guname/guname.c:714
+#: mini-utils/guname/guname.c:718
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -2427,27 +2436,27 @@ msgstr ""
 "%s\n"
 "Dele af data eller evt. det hele er måske ikke blevet skrevet."
 
-#: mini-utils/guname/guname.c:726
+#: mini-utils/guname/guname.c:730
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "Kunne ikke åbne filen '%s': %s"
 
-#: mini-utils/guname/guname.c:748
+#: mini-utils/guname/guname.c:752
 msgid "Save System Information As..."
 msgstr "Gem systeminformation som..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:805
+#: mini-utils/guname/guname.c:809
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "Kommando mislykkedes ' %s ': %s"
 
-#: mini-utils/guname/guname.c:813
+#: mini-utils/guname/guname.c:817
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "Kunne ikke køre kommandoen ' %s ': %s"
 
-#: mini-utils/guname/guname.c:837
+#: mini-utils/guname/guname.c:841
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -2456,11 +2465,11 @@ msgstr ""
 "Følgende brev vil blive sendt til %s.\n"
 "Er du sikker på at du vil sende informationerne?"
 
-#: mini-utils/guname/guname.c:848
+#: mini-utils/guname/guname.c:852
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
-#: mini-utils/guname/guname.c:890
+#: mini-utils/guname/guname.c:894
 msgid "Address to mail to:"
 msgstr "Adresse der skal sendes til:"
 
@@ -2624,7 +2633,7 @@ msgstr "%ld megabyte, %ld fri (%ld superbruger); %ld inoder, %ld ledig."
 msgid "%2d%% full "
 msgstr "%2d%% fuld "
 
-#: mini-utils/gw/gw.c:143
+#: mini-utils/gw/gw.c:144
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
@@ -2632,43 +2641,43 @@ msgstr ""
 "Kunne ikke finde \"w\" kommandoen i søgestien.\n"
 "Denne kommando er nødvendig for at programmet kan virke."
 
-#: mini-utils/gw/gw.c:176
+#: mini-utils/gw/gw.c:177
 msgid "_Save..."
 msgstr "_Gem..."
 
-#: mini-utils/gw/gw.c:176
+#: mini-utils/gw/gw.c:177
 msgid "Write information to disk"
 msgstr "Skriv information til disk"
 
-#: mini-utils/gw/gw.c:204
+#: mini-utils/gw/gw.c:205
 msgid "Active User Listing"
 msgstr "Liste over aktive brugere"
 
-#: mini-utils/gw/gw.c:221
+#: mini-utils/gw/gw.c:222
 msgid "Update Information"
 msgstr "Opdatér information"
 
-#: mini-utils/gw/gw.c:473
+#: mini-utils/gw/gw.c:474
 msgid "Save not implemented yet\n"
 msgstr "Gemning er ikke implementeret endnu\n"
 
-#: mini-utils/gw/gw.c:502
+#: mini-utils/gw/gw.c:503
 msgid "Command Line"
 msgstr "Kommandolinje"
 
-#: mini-utils/gw/gw.c:504
+#: mini-utils/gw/gw.c:505
 msgid "Add some defaults"
 msgstr "Tilføj nogle standarder"
 
-#: mini-utils/gw/gw.c:506
+#: mini-utils/gw/gw.c:507
 msgid "Delete"
 msgstr "Slet"
 
-#: mini-utils/gw/gw.c:524
+#: mini-utils/gw/gw.c:525
 msgid "Command Editor"
 msgstr "Kommandoredigering"
 
-#: mini-utils/gw/gw.c:534
+#: mini-utils/gw/gw.c:535
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -2682,7 +2691,7 @@ msgstr ""
 "I kommandoen kan du bruge %u til at repræsentere det\n"
 "valgte brugernavn og %t for tty'en."
 
-#: mini-utils/gw/gw.c:541
+#: mini-utils/gw/gw.c:542
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -2690,15 +2699,15 @@ msgstr ""
 "Tryk på denne knap for at\n"
 "tilføje nogle prøvekommandoer."
 
-#: mini-utils/gw/gw.c:549
+#: mini-utils/gw/gw.c:550
 msgid "Menu items"
 msgstr "Menupunkter"
 
-#: mini-utils/gw/gw.c:577
+#: mini-utils/gw/gw.c:578
 msgid "Command"
 msgstr "Kommando"
 
-#: mini-utils/gw/gw.c:967
+#: mini-utils/gw/gw.c:978
 #, c-format
 msgid "Running: %s\n"
 msgstr "Kører: %s\n"
@@ -2884,38 +2893,38 @@ msgstr "Tjekker efter ugyldige blokke..."
 msgid "MFailed to open device %s for badblock checking\n"
 msgstr "Det lykkedes ikke at åbne enheden %s til tjek efter ugyldige blokke\n"
 
-#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:215
+#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:213
 msgid "MChecking for bad blocks... Done"
 msgstr "Tjekker efter ugyldige blokke... Færdig"
 
-#: gfloppy/src/fdformat.c:44
+#: gfloppy/src/fdformat.c:45
 msgid "MFormatting the disk..."
 msgstr "Formaterer disken..."
 
-#: gfloppy/src/fdformat.c:46
+#: gfloppy/src/fdformat.c:47
 msgid "EI don't know what this is, but it's very wrong."
 msgstr "Aner ikke hvad dette er, men det er meget forkert."
 
-#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
+#: gfloppy/src/fdformat.c:55 gfloppy/src/fdformat.c:67
 #, c-format
 msgid "EError formatting track #%d"
 msgstr "Fejl ved formatering af spor %d"
 
-#: gfloppy/src/fdformat.c:74
+#: gfloppy/src/fdformat.c:75
 msgid "EError during completion of formatting"
 msgstr "Fejl ved fuldbyrdelse af formatering"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:78
+#: gfloppy/src/fdformat.c:79
 msgid "MFormatting the disk... Done"
 msgstr "Formaterer disken... Færdig"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:94
+#: gfloppy/src/fdformat.c:95
 msgid "MVerifying the format..."
 msgstr "Tjekker formatet..."
 
-#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
+#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:175
 msgid ""
 "EUnable to write to the floppy.\n"
 "\n"
@@ -2925,12 +2934,12 @@ msgstr ""
 "\n"
 "Tjek venligst at den ikke er skrivebeskyttet."
 
-#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
+#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:178
 #, c-format
 msgid "EInsufficient permissions to open floppy device %s."
 msgstr "Du har ikke rettighed til at åbne disketteenheden %s."
 
-#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
+#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:182
 msgid ""
 "EUnable to access the floppy disk.\n"
 "\n"
@@ -2942,7 +2951,7 @@ msgstr ""
 "Tjek venligst at den er i drevet med\n"
 "døren lukket."
 
-#: gfloppy/src/fdformat.c:109
+#: gfloppy/src/fdformat.c:110
 #, c-format
 msgid ""
 "EGeneric error accessing floppy device %s.\n"
@@ -2953,7 +2962,7 @@ msgstr ""
 "\n"
 "Fejlkode %s:%d"
 
-#: gfloppy/src/fdformat.c:129
+#: gfloppy/src/fdformat.c:130
 #, c-format
 msgid ""
 "ERead Error:\n"
@@ -2962,32 +2971,32 @@ msgstr ""
 "Læsefejl:\n"
 "Der opstod et problem ved læsning af cylinder %d, forventede %d, læste %d"
 
-#: gfloppy/src/fdformat.c:132
+#: gfloppy/src/fdformat.c:133
 #, c-format
 msgid "EProblem reading cylinder %d, expected %d, read %d"
 msgstr ""
 "Der opstod et problem ved læsning af cylinder %d, forventede %d, læste %d"
 
-#: gfloppy/src/fdformat.c:141
+#: gfloppy/src/fdformat.c:142
 #, c-format
 msgid "MBad data in cyl %d.  Continuing... "
 msgstr "Ugyldig data i cylingder %d. Fortsætter..."
 
-#: gfloppy/src/fdformat.c:148
+#: gfloppy/src/fdformat.c:149
 #, c-format
 msgid "EError closing device %s"
 msgstr "Fejl ved lukning af enhed %s"
 
-#: gfloppy/src/fdformat.c:153
+#: gfloppy/src/fdformat.c:154
 msgid "MVerifying the format... Done"
 msgstr "Tjekker formatet... Færdig"
 
-#: gfloppy/src/fdformat.c:165
+#: gfloppy/src/fdformat.c:166
 #, c-format
 msgid "EUnable to write to device %s"
 msgstr "Ude af stand til at skrive til enhed %s"
 
-#: gfloppy/src/fdformat.c:184
+#: gfloppy/src/fdformat.c:185
 #, c-format
 msgid ""
 "EGeneric error accessing floppy device %s.\n"
@@ -2998,7 +3007,7 @@ msgstr ""
 "\n"
 "Fejlkode %s"
 
-#: gfloppy/src/fdformat.c:194
+#: gfloppy/src/fdformat.c:195
 msgid "ECould not determine current format type"
 msgstr "Kunne ikke bestemme den nuværende formattype"
 
@@ -3051,47 +3060,47 @@ msgstr "Dobbeltdensitets 5.25\" (360 Kb)"
 msgid "Quick format"
 msgstr "Hurtig formatering"
 
-#: gfloppy/src/gfloppy.c:166 gfloppy/src/gfloppy.c:199
+#: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
 msgid "MMaking filesystem on disk..."
 msgstr "MOpretter filsystem på disketten..."
 
-#: gfloppy/src/gfloppy.c:169
+#: gfloppy/src/gfloppy.c:167
 msgid "EUnable to create filesystem correctly."
 msgstr "Kan ikke oprette filsystemet korrekt."
 
-#: gfloppy/src/gfloppy.c:173 gfloppy/src/gfloppy.c:205
+#: gfloppy/src/gfloppy.c:171 gfloppy/src/gfloppy.c:203
 msgid "MMaking filesystem on disk... Done"
 msgstr "MOpretter filsystem på disketten... Færdig"
 
-#: gfloppy/src/gfloppy.c:202 gfloppy/src/gfloppy.c:217
+#: gfloppy/src/gfloppy.c:200 gfloppy/src/gfloppy.c:215
 msgid "EUnable to create filesystem."
 msgstr "Kan ikke oprette filsystemet."
 
-#: gfloppy/src/gfloppy.c:211
+#: gfloppy/src/gfloppy.c:209
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "MKontrollerer for ugyldige blokke... (dette kan tage et stykke tid)"
 
-#: gfloppy/src/main.c:179
+#: gfloppy/src/main.c:186
 msgid "The device to format"
 msgstr "Enheden der skal formatteres"
 
-#: gfloppy/src/main.c:180
+#: gfloppy/src/main.c:187
 msgid "DEVICE"
 msgstr "ENHED"
 
 #. We do this to get around a bug in libglade.  Ideally we won't need
 #. * to do this in the future.
-#: gfloppy/src/main.c:207
+#: gfloppy/src/main.c:218
 msgid "Format"
 msgstr "Formatér"
 
 #. initialize our widgets
-#: gfloppy/src/main.c:212
+#: gfloppy/src/main.c:223
 #, c-format
 msgid "Formatting %s"
 msgstr "Formaterer %s"
 
-#: gfloppy/src/main.c:254
+#: gfloppy/src/main.c:265
 msgid "Format another floppy?"
 msgstr "Formatér en anden diskette?"
 
@@ -3115,11 +3124,11 @@ msgstr "Param"
 msgid "Current"
 msgstr "Nuværende"
 
-#: stripchart/chart-app.c:159 stripchart/params.c:694
+#: stripchart/chart-app.c:159 stripchart/params.c:696
 msgid "Top"
 msgstr "Top"
 
-#: stripchart/chart-app.c:160 stripchart/params.c:750
+#: stripchart/chart-app.c:160 stripchart/params.c:752
 msgid "Scale"
 msgstr "Skalér"
 
@@ -3183,127 +3192,127 @@ msgstr "tal forventet"
 msgid "extra junk at end: \"%s\""
 msgstr "overflødigt bras i slutning: \"%s\""
 
-#: stripchart/params.c:623
+#: stripchart/params.c:625
 msgid "Parameter"
 msgstr "Parameter"
 
-#: stripchart/params.c:661
+#: stripchart/params.c:663
 msgid "Equation"
 msgstr "Ligning"
 
-#: stripchart/params.c:672
+#: stripchart/params.c:674
 msgid "Filename"
 msgstr "Filnavn"
 
-#: stripchart/params.c:683
+#: stripchart/params.c:685
 msgid "Pattern"
 msgstr "Mønster"
 
-#: stripchart/params.c:704 stripchart/params.c:732
+#: stripchart/params.c:706 stripchart/params.c:734
 msgid "Min"
 msgstr "Min."
 
-#: stripchart/params.c:713 stripchart/params.c:741
+#: stripchart/params.c:715 stripchart/params.c:743
 msgid "Max"
 msgstr "Maks."
 
-#: stripchart/params.c:722
+#: stripchart/params.c:724
 msgid "Bottom"
 msgstr "Bund"
 
-#: stripchart/params.c:761
+#: stripchart/params.c:763
 msgid "Linear"
 msgstr "Lineær"
 
-#: stripchart/params.c:769
+#: stripchart/params.c:771
 msgid "Logarithmic"
 msgstr "Logaritmisk"
 
-#: stripchart/params.c:774
+#: stripchart/params.c:776
 msgid "Type"
 msgstr "Type"
 
-#: stripchart/params.c:785
+#: stripchart/params.c:787
 msgid "Indicator"
 msgstr "Indikator"
 
-#: stripchart/params.c:792
+#: stripchart/params.c:794
 msgid "Line"
 msgstr "Linje"
 
-#: stripchart/params.c:799
+#: stripchart/params.c:801
 msgid "Point"
 msgstr "Punkt"
 
-#: stripchart/params.c:806
+#: stripchart/params.c:808
 msgid "Solid"
 msgstr "Solid"
 
-#: stripchart/params.c:962
+#: stripchart/params.c:964
 msgid "Add Parameter Before"
 msgstr "Tilføj parameter før"
 
-#: stripchart/params.c:969
+#: stripchart/params.c:971
 msgid "Add Parameter After"
 msgstr "Tilføj parameter efter"
 
-#: stripchart/params.c:976
+#: stripchart/params.c:978
 msgid "Apply Parameter Changes"
 msgstr "Anvend parameterændringer"
 
-#: stripchart/params.c:983
+#: stripchart/params.c:985
 msgid "Delete Parameter"
 msgstr "Slet parameter"
 
-#: stripchart/params.c:991
+#: stripchart/params.c:993
 msgid "Add Color"
 msgstr "Tilføj farve"
 
-#: stripchart/params.c:998
+#: stripchart/params.c:1000
 msgid "Delete Color"
 msgstr "Fjern farve"
 
-#: stripchart/params.c:1017
+#: stripchart/params.c:1019
 msgid "Info"
 msgstr "Info"
 
-#: stripchart/params.c:1088
+#: stripchart/params.c:1090
 msgid "Parameter Editor"
 msgstr "Parameterredigering"
 
-#: stripchart/params.c:1097
+#: stripchart/params.c:1099
 msgid "Parameters"
 msgstr "Parametre"
 
-#: stripchart/prefs.c:205
+#: stripchart/prefs.c:207
 msgid "Chart"
 msgstr "Graf"
 
-#: stripchart/prefs.c:215 stripchart/prefs.c:274
+#: stripchart/prefs.c:217 stripchart/prefs.c:276
 msgid "enabled"
 msgstr "aktiveret"
 
-#: stripchart/prefs.c:222
+#: stripchart/prefs.c:224
 msgid "minor"
 msgstr "mindre"
 
-#: stripchart/prefs.c:228
+#: stripchart/prefs.c:230
 msgid "major"
 msgstr "større"
 
-#: stripchart/prefs.c:241 stripchart/prefs.c:259
+#: stripchart/prefs.c:243 stripchart/prefs.c:261
 msgid "Update"
 msgstr "Opdatering"
 
-#: stripchart/prefs.c:244 stripchart/prefs.c:267
+#: stripchart/prefs.c:246 stripchart/prefs.c:269
 msgid "Smooth"
 msgstr "Udjævnet"
 
-#: stripchart/prefs.c:247
+#: stripchart/prefs.c:249
 msgid "Ticks"
 msgstr "Mærker"
 
-#: stripchart/prefs.c:252
+#: stripchart/prefs.c:254
 msgid "Pen"
 msgstr "Pen"
 
@@ -3431,14 +3440,8 @@ msgstr "Parametre..."
 #~ msgid "Omits slider window"
 #~ msgstr "Udelader glidervindue"
 
-#~ msgid "TYPE is one of gtk, applet, text, or none"
-#~ msgstr "TYPE er enten gtk, applet, tekst eller ingen"
-
 #~ msgid "TYPE"
 #~ msgstr "TYPE"
-
-#~ msgid "TYPE is one of gtk, text, or none"
-#~ msgstr "TYPE er enten gtk, tekst eller ingen"
 
 #~ msgid "white"
 #~ msgstr "hvid"
