@@ -33,8 +33,7 @@ dist-hook:
 	$(mkinstalldirs) $(distdir)/gless
 	-cp $(srcdir)/gless/*.html gless/*.css $(distdir)/gless
 	-cp $(srcdir)/*.html $(distdir)
-	$(mkinstalldirs) $(distdir)/images
-	-cp $(srcdir)/images/*.png $(distdir)/images
+	-cp $(srcdir)/*.png $(distdir)
 
 install-data-local: index.html
 	$(mkinstalldirs) $(DESTDIR)$(gless_helpdir)/images
@@ -42,7 +41,7 @@ install-data-local: index.html
 	basefile=`basename $$file`; \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gless_helpdir)/$$basefile; \
 	done
-	-for file in $(srcdir)/images/*.png ; do \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gless_helpdir)/images;\
+	-for file in $(srcdir)/*.png ; do \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gless_helpdir);\
 	done
 
