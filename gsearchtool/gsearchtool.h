@@ -54,13 +54,13 @@ typedef enum {
 typedef struct _FindOptionTemplate FindOptionTemplate;
 struct _FindOptionTemplate {
 	FindOptionType type;
-	gchar *option;
-	gchar *description;
+	gchar *option; /*the option string to pass to find or whatever*/
+	gchar *desc; /*description*/
 };
 
 typedef struct _FindOption FindOption;
 struct _FindOption {
-	FindOptionType type;
+	/*the index of the template this uses*/
 	gint templ;
 
 	/*these guys aren't in a union so that they aren't lost when we

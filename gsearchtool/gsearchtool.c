@@ -16,6 +16,7 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <config.h>
 #include <gnome.h>
 
 #include <string.h>
@@ -44,8 +45,10 @@ FindOptionTemplate templates[] = {
 	{ FIND_OPTION_END, NULL,NULL}
 };
 
-GList *criteria=NULL;
+GList *criteria_find=NULL;
+GList *criteria_grep=NULL;
 
+#if 1
 /* search for a filename */
 static void
 search(GtkWidget * widget, gpointer data)
@@ -538,24 +541,254 @@ main(int argc, char *argv[])
 	return 0;
 }
 
+#else
+
 GtkWidget *
 make_list_of_templates(void)
 {
-	
+	GtkWidget *menu;
+	GtkWidget *menuitem;
+	GSList *group=NULL;
+
+	gchar buf[50];
+
+	gint i;
+
+	menu = gtk_menu_new ();
+
+	for(i=0;templates[i].type!=FIND_OPTION_END;i++) {
+		menuitem=gtk_radio_menu_item_new_with_label(group,
+							    templates[i].desc);
+		group=gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(menuitem));
+		gtk_menu_append (GTK_MENU (menu), menuitem);
+		gtk_widget_show (menuitem);
+	}
+	return menu;
 }
 
-/*
+GtkWidget *
+create_option_box(FindOption *opt)
+{
+	GtkWidget *hbox;
+	GtkWidget *option;
+	GtkWidget *frame;
+	GtkWidget *w;
+
+	hbox = gtk_hbox_new(FALSE,5);
+
+	frame = gtk_frame_new(NULL);
+	gtk_frame_set_shadow_type(GTK_FRAME(frame),GTK_SHADOW_OUT);
+	gtk_box_pack_start(GTK_BOX(hbox),frame,TRUE,TRUE,0);
+
+	switch(templates[opt->templ].type) {
+	case FIND_OPTION_CHECKBOX_TRUE:
+		option = gtk_check_button_new_with_label(
+						templates[opt->templ].desc);
+		gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(option),TRUE);
+		break;
+	case FIND_OPTION_CHECKBOX_FALSE:
+		option = gtk_check_button_new_with_label(
+						templates[opt->templ].desc);
+		break;
+	case FIND_OPTION_TEXT:
+	case FIND_OPTION_NUMBER:
+	case FIND_OPTION_TIME:
+	case FIND_OPTION_GREP:
+		option = gtk_hbox_new(FALSE,5);
+		w = gtk_label_new(templates[opt->templ].desc);
+		gtk_box_pack_start(GTK_BOX(option),w,FALSE,FALSE,0);
+		w = gtk_entry_new();
+		gtk_box_pack_start(GTK_BOX(option),w,TRUE,TRUE,0);
+		break;
+	}
+	gtk_container_add(GTK_CONTAINER(frame),option);
+
+	w = gtk_check_button_new_with_label("Enable");
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(w),TRUE);
+	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+
+	w = gtk_button_new_with_label("Remove");
+	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+
+	return hbox;
+}
+
+void
+add_option(gint templ, GtkWidget *find_box, GtkWidget *grep_box)
+{
+	FindOption *opt = g_new(FindOption,1);
+	GtkWidget *w;
+
+	opt->templ = templ;
+	opt->bool = TRUE;
+	opt->text[0] = '\0';
+	opt->number = 0;
+	opt->time[0] = '\0';
+
+	w = create_option_box(opt);
+	gtk_widget_show(w);
+
+	/*if it's a grep type option (criterium)*/
+	if(templates[templ].type == FIND_OPTION_GREP) {
+		criteria_grep = g_list_append(criteria_grep,opt);
+		gtk_box_pack_start(GTK_BOX(grep_box),w,FALSE,FALSE,0);
+	} else {
+		criteria_find = g_list_append(criteria_find,opt);
+		gtk_box_pack_start(GTK_BOX(find_box),w,FALSE,FALSE,0);
+	}
+}
+
+GtkWidget *
+create_find_page(void)
+{
+	GtkWidget *find_box;
+	GtkWidget *grep_box;
+	GtkWidget *vbox;
+	GtkWidget *hbox;
+	GtkWidget *w;
+
+	vbox = gtk_vbox_new(FALSE,5);
+	gtk_container_border_width(GTK_CONTAINER(vbox),5);
+
+	find_box = gtk_vbox_new(TRUE,5);
+	gtk_box_pack_start(GTK_BOX(vbox),find_box,TRUE,TRUE,0);
+	grep_box = gtk_vbox_new(TRUE,5);
+	gtk_box_pack_start(GTK_BOX(vbox),grep_box,TRUE,TRUE,0);
+
+	hbox = gtk_hbox_new(FALSE,5);
+	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
+
+	w = gtk_option_menu_new();
+	gtk_option_menu_set_menu(GTK_OPTION_MENU(w), make_list_of_templates());
+	gtk_option_menu_set_history(GTK_OPTION_MENU (w), 4);
+	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+
+	w = gtk_button_new_with_label(_("Add"));
+	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+
+	w = gtk_hseparator_new();
+	gtk_box_pack_start(GTK_BOX(vbox),w,FALSE,FALSE,0);
+
+	hbox = gtk_hbox_new(FALSE,5);
+	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
+
+	w = gtk_button_new_with_label(_("Start"));
+	gtk_box_pack_end(GTK_BOX(hbox),w,FALSE,FALSE,0);
+	w = gtk_button_new_with_label(_("Stop"));
+	gtk_box_pack_end(GTK_BOX(hbox),w,FALSE,FALSE,0);
+
+	add_option(0,find_box,grep_box);
+
+	return vbox;
+}
+
+GtkWidget *
+create_locate_page(void)
+{
+	return gtk_label_new("This is not yet implemented");
+}
+
+GtkWidget *
+create_window(void)
+{
+	GtkWidget *nbook;
+
+	nbook = gtk_notebook_new();
+	gtk_container_border_width(GTK_CONTAINER(nbook),5);
+
+	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_find_page(),
+				 gtk_label_new(_("Full find (find)")));
+	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_locate_page(),
+				 gtk_label_new(_("Quick find (locate)")));
+
+	return nbook;
+}
+
+static void
+about_cb (GtkWidget *widget, gpointer data)
+{
+	GtkWidget *about;
+	gchar *authors[] = {
+		"George Lebl",
+		NULL
+	};
+
+	about = gnome_about_new(_("The Gnome Search Tool"), VERSION,
+				"(C) 1998 the Free Software Foundation",
+				authors,
+				_("Frontend to the unix find/grep/locate "
+				  "commands"),
+				NULL);
+	gtk_widget_show (about);
+}
+
+static void
+quit_cb (GtkWidget *widget, gpointer data)
+{
+	gtk_main_quit ();
+}
+
+
+
+GnomeUIInfo file_menu[] = {
+	{GNOME_APP_UI_ITEM, N_("Exit"), NULL, quit_cb, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'X', GDK_CONTROL_MASK, NULL},
+	{GNOME_APP_UI_ENDOFINFO}
+};
+
+GnomeUIInfo help_menu[] = {  
+	{ GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}, 
+	
+	{GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
+	
+	{GNOME_APP_UI_ENDOFINFO}
+};
+
+GnomeUIInfo gsearch_menu[] = {
+	{GNOME_APP_UI_SUBTREE, N_("File"), NULL, file_menu, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+	
+	{GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+	
+	{GNOME_APP_UI_ENDOFINFO}
+};
+
+
 int
 main(int argc, char *argv[])
 {
-	GtkWidget *toplevel;
-	GtkWidget *w;
+	GtkWidget *app;
+	GtkWidget *search;
 
-	gtk_init(&argc, &argv);
+	argp_program_version = VERSION;
 
-	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title(GTK_WINDOW(window),"GNOME Search Tool");
-	gtk_signal_connect(GTK_OBJECT(window), "destroy",
-int
+	gnome_init ("gsearchtool", NULL, argc, argv, 0, NULL);
+	
+        app=gnome_app_new("gsearchtool", _("Gnome Search Tool"));
+	gtk_window_set_wmclass (GTK_WINDOW (app), "gsearchtool", "gsearchtool");
+	gtk_window_set_policy (GTK_WINDOW (app), TRUE, FALSE, TRUE);
 
-*/
+        gtk_signal_connect(GTK_OBJECT(app), "delete_event",
+		GTK_SIGNAL_FUNC(quit_cb), NULL);
+        gtk_window_set_policy(GTK_WINDOW(app),1,1,0);
+
+	/*set up the menu*/
+        gnome_app_create_menus(GNOME_APP(app), gsearch_menu);
+	gtk_menu_item_right_justify(GTK_MENU_ITEM(gsearch_menu[1].widget));
+
+	search = create_window();
+	gtk_widget_show_all(search);
+
+	gnome_app_set_contents(GNOME_APP(app), search);
+
+	gtk_widget_show(app);
+
+	gtk_main ();
+
+	return 0;
+}
+
+#endif
