@@ -167,39 +167,28 @@ int main ( int argc, char ** argv )
   ******************************/
 
 static GnomeUIInfo help_menu[] = {
-  GNOMEUIINFO_HELP(APPNAME),
-  {GNOME_APP_UI_ITEM, N_("_About..."), 
-   N_("Tell about this application"), 
-   about_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL },
-  GNOMEUIINFO_END
+	GNOMEUIINFO_HELP(APPNAME),
+	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
+	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo file_menu[] = {
-  {GNOME_APP_UI_ITEM, 
-   N_("_Save..."), N_("Write information to disk"), 
-   save_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 's', 
-   GDK_CONTROL_MASK, NULL },
-  GNOMEUIINFO_SEPARATOR,
-  {GNOME_APP_UI_ITEM, N_("_Preferences..."), 
-   N_("Change application preferences"),
-   preferences_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'p', 
-   GDK_CONTROL_MASK, NULL },
-  {GNOME_APP_UI_ITEM, N_("E_xit"), 
-   N_("Quit the application"),
-   delete_event_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x', 
-   GDK_CONTROL_MASK, NULL },
-  GNOMEUIINFO_END
+	{GNOME_APP_UI_ITEM, 
+		N_("_Save..."), N_("Write information to disk"), 
+		save_cb, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, GNOME_KEY_NAME_SAVE_AS, 
+		GNOME_KEY_MOD_SAVE_AS, NULL },
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_PREFERENCES_ITEM(preferences_cb,NULL),
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_EXIT_ITEM(delete_event_cb,NULL),
+	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo main_menu[] = {
-  GNOMEUIINFO_SUBTREE (N_("_File"), file_menu),
-#define MENU_HELP_POS 1
-  GNOMEUIINFO_SUBTREE (N_("_Help"), help_menu),
-  GNOMEUIINFO_END
+	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
+	GNOMEUIINFO_END
 };
 
 static void prepare_app()
@@ -212,8 +201,6 @@ static void prepare_app()
   app = gnome_app_new( APPNAME, _("User Listing") ); 
 
   gnome_app_create_menus(GNOME_APP(app), main_menu);
-
-  gtk_menu_item_right_justify(GTK_MENU_ITEM(main_menu[MENU_HELP_POS].widget));
 
   app_box = gtk_vbox_new ( FALSE, GNOME_PAD );
   gtk_container_border_width(GTK_CONTAINER(app_box), GNOME_PAD);
