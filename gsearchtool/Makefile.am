@@ -13,9 +13,7 @@ bin_PROGRAMS = gsearchtool
 
 gsearchtool_SOURCES =	\
 	gsearchtool.c	\
-	gsearchtool.h	\
-        outdlg.c	\
-	outdlg.h
+	gsearchtool.h
 
 gsearchtool_LDADD = \
 	$(GNOME_UTILS_LIBS) \
