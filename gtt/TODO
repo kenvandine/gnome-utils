@@ -10,6 +10,10 @@ Support some SQL database for logging?
 Create bonobo component to allow tasks to be put into calander (e.g.
 evolution calender).
 
+implement inactivity timeout.  I started doing this in idle-timer.c
+but need to use XCheckIfEvent... cvs update -r linasn for this code.
+
+
 Later:
 ~~~~~~
 Networked version (Server on one machine -- all others are network clients).
@@ -48,3 +52,5 @@ build fancier reports/journals, including
 
 support for 'minimum billing blocks' is everywhere, exept in the actual invoice
 report. Add it there.
+
+
