@@ -1,5 +1,11 @@
 2004-10-26  Vincent Noel  <vnoel@cox.net>
 
+	* logview.c: Major rewrite :
+	 - remove most global variables
+	 - the log viewer window now creates its own gtkwidget and class
+	 - plenty of unused variables and functions removed
+	 - extracted prototypes into header files, removed duplicate info
+
 	* Makefile.am: remove the menus.c file which was not used anywhere.
 	* logview.h: remove the AddMenu prototype.
 	Remove obsolete comments and useless define.
@@ -29,7 +35,7 @@
 
 	* logview.c (logview_menus_set_state): extract the sensitivity
 	logic for menus. Other code clean-ups.
-
+ 
 2004-10-20  Vincent Noel  <vnoel@cox.net>
 
 	* log_repaint.c (UpdateStatusArea): Use status bar.
