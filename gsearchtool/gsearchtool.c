@@ -1318,8 +1318,12 @@ create_option_box(FindOption *opt, gboolean enabled)
 	case FIND_OPTION_TEXT:
 	case FIND_OPTION_NUMBER:
 	case FIND_OPTION_TIME:
-		option = gtk_hbox_new(FALSE,5);
-		label = gtk_label_new(_(templates[opt->templ].desc));
+		{
+			gchar *desc = g_strconcat (_(templates[opt->templ].desc), _(":"), NULL);
+			option = gtk_hbox_new (FALSE,5);
+			label = gtk_label_new (desc);
+			g_free (desc);
+		}
 		gtk_box_pack_start(GTK_BOX(option),label,FALSE,FALSE,0);
 		w = gtk_entry_new();
 		g_signal_connect(G_OBJECT(w),"changed",
@@ -1350,16 +1354,24 @@ create_option_box(FindOption *opt, gboolean enabled)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), enabled);
 	enable_option(w, opt);
 	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE,FALSE,0);
-	if (gail_loaded)
-		add_atk_namedesc (GTK_WIDGET(w), NULL, _("Toggle On/Off to enable/disable the rule"));
+	if (gail_loaded) {
+		gchar *desc = g_strdup_printf (_("Toggle On/Off to enable/disable the '%s' Rule"), 
+					       _(templates[opt->templ].desc));
+		add_atk_namedesc (GTK_WIDGET(w), NULL, desc);
+		g_free (desc);
+	}
 
 	w = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
 	gtk_widget_set_size_request (GTK_WIDGET(w), 88, -1);
 	g_signal_connect(G_OBJECT(w), "clicked",
 			 G_CALLBACK(remove_option), opt);
 	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE,FALSE, 0);
-	if (gail_loaded)
-		add_atk_namedesc (GTK_WIDGET(w), NULL, _("Click to Remove the Rule"));
+	if (gail_loaded) {
+		gchar *desc = g_strdup_printf (_("Click to Remove the '%s' Rule"), 
+					       _(templates[opt->templ].desc));
+		add_atk_namedesc (GTK_WIDGET(w), NULL, desc);
+		g_free (desc);
+	}
 
 	return hbox;
 }
