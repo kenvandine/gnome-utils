@@ -1,6 +1,6 @@
 bin_PROGRAMS = gnome-exe-handler
 
-SUBDIRS = help
+#SUBDIRS = help
 
 INCLUDES = \
 	-DG_LOG_DOMAIN=\"ExeHandler\" 			\
