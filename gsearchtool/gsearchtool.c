@@ -1128,7 +1128,7 @@ create_additional_constraint_section (void)
 	
 	gtk_box_pack_end (GTK_BOX(vbox2), hbox, FALSE, FALSE, 0);
 	
-	label = gtk_label_new_with_mnemonic (_("A_vailable search constraints:"));
+	label = gtk_label_new_with_mnemonic (_("A_vailable options:"));
 	gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
 	
 	interface.constraint_menu = gtk_option_menu_new ();
@@ -1383,7 +1383,8 @@ create_main_window (void)
 	gtk_entry_set_text (GTK_ENTRY(entry), string);
 	g_free (string);
 	
-	interface.disclosure = cddb_disclosure_new (_("Additional Constraints"), _("Additional Constraints"));
+	interface.disclosure = cddb_disclosure_new (_("Additional Options"),
+						    _("Additional Options"));
 	gtk_box_pack_start (GTK_BOX(window), interface.disclosure, FALSE, FALSE, 0);
 	
 	interface.additional_constraints = create_additional_constraint_section ();
