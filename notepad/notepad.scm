@@ -15,11 +15,14 @@
 
 
 (define-module (gnome notepad)
-  :use-module (toolkits gtk))
+  :use-module (gtk gtk)
+  :use-module (gnome gnome))
 
 ;; FIXME: set up the textdomain here.
 ;; (bindtextdomain ...)
 ;; (textdomain "nsearch")
+
+(define gettext id)
 
 ;;;
 ;;; Variables
@@ -175,16 +178,19 @@
 
 (define about-box
   (let ((box #f))
-    (if (or (not box)
-	    (gtk-destroyed? box))
-	(begin
-	  (set! box (gnome-about (gettext "Gnome Notepad")
-				 "0.0"	; FIXME
-				 (gettext "Copyright (C) 1998 Free Software Foundation")
-				 (gettext "Gnome Notepad is a program for simple text editing")
-				 "gnome-note.png"
-				 "Tom Tromey"))))
-    (gtk-widget-show box)))
+    (lambda ()
+      (if (not box)
+	  (begin
+	    (set! box 
+		  (gnome-about 
+		   (gettext "Gnome Notepad")
+		   "0.0"	; FIXME
+		   (gettext "Copyright (C) 1998 Free Software Foundation")
+		   (gettext "Gnome Notepad is a program for simple text editing")
+		   #f
+		   "Tom Tromey"))
+	    (gtk-signal-connect box "destroy" (lambda () (set! box #f)))))
+      (gtk-widget-show box))))
 
 ;;;
 ;;; Notepad code.
@@ -347,7 +353,7 @@
   (let* ((window (gtk-window-new 'toplevel))
 	 (vbox (gtk-vbox-new #f 0)))
     ;; Main window stuff.
-    (gtk-signal-connect window "delete_event" (lambda (ev) #t))
+    ; (gtk-signal-connect window "delete_event" (lambda (ev) #t))
     (gtk-signal-connect window "destroy" confirm-exit)
 
     ;; Make the menu bar.
@@ -366,6 +372,7 @@
     (gtk-widget-set-usize window 300 300)
 
     window))
+
 
 (define (notepad-save-for-session client phase 
 				  save-style shutdown? interact-style fast?)
@@ -405,6 +412,8 @@
 			     (gettext "FILE"))))
 
 (set! main-window (notepad))
+
+(gtk-widget-realize main-window)
 
 (set-file-name file-name)
 (clear-dirty)
