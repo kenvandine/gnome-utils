@@ -1,0 +1,174 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ *   guname: System information dialog. 
+ *
+ *   Copyright (C) 1998 Havoc Pennington <hp@pobox.com> except marquee code.
+ *
+ * This program is free software; you can redistribute it and/or 
+ * modify it under the terms of the GNU General Public License as 
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+ * USA
+ */
+
+#include "info.h"
+#include <unistd.h>
+#include <string.h> /* memset */
+#include <sys/utsname.h>
+
+
+#define DEBIAN_STRING "Debian GNU/Linux"
+#define REDHAT_STRING "Red Hat Linux"
+
+/************************************
+  Globals
+  ***********************************/
+
+const gchar * descriptions[] = {
+  N_("Distribution:"), 
+  N_("Operating System:"),
+  N_("Distribution Version:"),
+  N_("Operating System Version:"),
+  N_("Operating System Release:"),
+  N_("Processor Type:"),
+  N_("Processor Speed:"),
+  N_("Host Name:"),
+  N_("Domain Name:"),
+  N_("User Name:"),
+  N_("X Display Name:"),
+  N_("System Status:"),
+  N_("Real Memory:"),
+  N_("Swap Space (\"virtual memory\"):"),
+  N_("Total Memory:"),
+  N_("Free Memory:")
+};
+
+const gchar * disk_descriptions[] = {
+  N_("Device"),
+  N_("Size"),
+  N_("Used space"),
+  N_("Free space"),
+  N_("Percent free"),
+  N_("Mount point")
+};
+
+const gchar * info[end_system_info];
+GList * disks = NULL;
+
+/****************
+  Prototypes
+  *******************/
+
+static void get_portable_info();
+static void get_uptime();
+static void get_linux_info();
+
+
+
+/*****************************
+  Code
+  *****************************/
+
+void load_system_info()
+{
+  /* Set all the pointers in the array to NULL */
+  memset(&info, '\0', sizeof(info));
+  
+  get_portable_info();
+
+  get_linux_info();
+}
+
+static void get_portable_info()
+{
+  struct utsname buf;
+
+  if ( uname(&buf) == -1 ) {
+    g_error("uname() failed, %s\n", g_unix_error_string(errno));
+  }
+
+  info[si_OS] = g_strdup(buf.sysname);
+  info[si_release] = g_strdup(buf.release);
+  info[si_OS_version] = g_strdup(buf.version);
+  info[si_CPU_type] = g_strdup(buf.machine);
+  info[si_host] = g_strdup(buf.nodename);
+  /*  info[si_domain] = g_strdup(buf.domainname); */ /* man page wrong? */
+
+  info[si_user] = g_strdup(getlogin());
+
+  info[si_display] = g_strdup(getenv("DISPLAY")); /* hmm */
+
+  get_uptime();
+  
+  /* Add more later */
+
+}
+
+static void get_linux_info()
+{
+  /* Identify distribution (really this could be compiled in) */
+  if (g_file_exists("/etc/debian_version")) {
+    FILE * f;
+    gchar buf[10];
+
+    info[si_distribution] = g_strdup(DEBIAN_STRING);
+    f = fopen("/etc/debian_version", "r");
+    if (f) { 
+      fscanf(f, "%8s", buf);
+      info[si_distribution_version] = g_strdup(buf);
+      fclose(f);
+    }
+  }
+  /* OK, people using other dists will need to add theirs, I have
+     no idea how to identify a Red Hat system. */
+  else {
+    /* This is about the only case where we'll put Unknown instead
+       of simply not showing the info. */
+    info[si_distribution_version] = g_strdup(_("Unknown"));
+  }
+
+  /* More to come. */
+
+}
+
+static void get_uptime()
+{
+  FILE * f;
+  static const gint bufsize = 80;
+  gchar buffer[bufsize + 1];
+  gint chars_read;
+  int i = 0;
+
+  memset(buffer, '\0', bufsize + 1);
+
+  f = popen("uptime", "r");
+
+  if (f) {
+    chars_read = fread(buffer, sizeof(char), bufsize, f);
+
+    if ( chars_read > 0 ) {
+
+      /* Strip leading whitespace from uptime results, looks nicer */
+      while ( (buffer[i] == ' ') && (buffer[i] != '\0') ) {
+        ++i;
+      }
+
+      info[si_uptime] = g_strdup(&buffer[i]);
+    }
+
+    pclose(f);
+  }
+}
+
+
+
+
+

@@ -395,7 +395,7 @@ static gint list_clicked_cb(GtkCList * list, GdkEventButton * e)
 {
   if (e->button == 1) {
     /* Ignore button 1 */
-    return TRUE; 
+    return FALSE; 
   }
 
   /* don't change the CList selection. */

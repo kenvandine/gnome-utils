@@ -1,0 +1,96 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ *   guname: System information dialog.
+ *
+ *   Copyright (C) 1998 Havoc Pennington <hp@pobox.com> except marquee code.
+ *
+ * This program is free software; you can redistribute it and/or 
+ * modify it under the terms of the GNU General Public License as 
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+ * USA
+ */
+
+
+#include <gnome.h>
+
+#include "list.h"
+
+
+/* Want a function not a macro, so a and b are calculated only once */
+static gint max(gint a, gint b)
+{
+  if ( a > b )
+    return a;
+  else return b;
+}
+
+void fill_clist(GtkCList * list, 
+		const gchar ** col1_items, const gchar ** col2_items, 
+		gint numitems)
+{
+  const gchar * row[2];
+  int i;
+  gint col_zero_width, col_one_width;
+  GdkFont * font;
+
+  font = gtk_widget_get_style(GTK_WIDGET(list))->font;
+
+  i = 0; col_zero_width = 0; col_one_width = 0;
+
+  while ( i < numitems ) {
+
+    if ( col2_items[i] == NULL ) {
+      /* Don't have this information. */
+      ++i;
+      continue; 
+    }
+
+    row[0] = col1_items[i];
+    row[1] = col2_items[i];
+    gtk_clist_append(list, (gchar **)row);
+
+    /* If the string is longer than any previous ones,
+       increase the column width */
+    
+    col_zero_width = max ( gdk_string_width(font, row[0]), col_zero_width );
+    col_one_width =  max ( gdk_string_width(font, row[1]), col_one_width );
+
+    ++i;
+  }
+
+  /* The first column is a little wider than the largest string, so 
+     it's not too close to the second column. */
+  gtk_clist_set_column_width(list, 0, col_zero_width + 10);
+  gtk_clist_set_column_width(list, 1, col_one_width);
+  
+  gtk_widget_set_usize(GTK_WIDGET(list), col_zero_width+col_one_width + 30, 
+                       200);
+}
+
+
+GtkWidget * create_clist(const gchar * titles[])
+{
+  GtkCList * list;
+
+  list = GTK_CLIST(gtk_clist_new_with_titles(2, titles));
+
+  gtk_clist_set_border(list, GTK_SHADOW_OUT);
+
+  /* Fixme, eventually you might could select an item 
+     for cut and paste, or some other effect. */
+  gtk_clist_set_selection_mode(list, GTK_SELECTION_BROWSE);
+  gtk_clist_set_policy(list, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+
+  gtk_clist_column_titles_passive(list);
+
+  return GTK_WIDGET(list);
+}
