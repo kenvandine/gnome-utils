@@ -261,7 +261,8 @@ extern int gnomecard_destroy_cards(void)
 	GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
 	gtk_widget_show(w);
 	
-	switch(gnome_dialog_run_modal(GNOME_DIALOG(w))) {
+	gtk_window_set_modal(GTK_WINDOW(w),TRUE);
+	switch(gnome_dialog_run(GNOME_DIALOG(w))) {
 	  case -1:
 	  case 2:
 	    return FALSE;
