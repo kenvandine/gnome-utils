@@ -92,6 +92,9 @@ fi
 
 dnl gsu end.
 
+dnl Some nice conditional
+AM_CONDITIONAL(FALSE, test x = y)
+
 dnl Check for libgtop
 GNOME_INIT_LIBGTOP
 
@@ -138,7 +141,7 @@ mini-utils/gshutdown/Makefile
 mini-utils/gshutdown/help/Makefile
 mini-utils/gshutdown/help/C/Makefile
 mini-utils/gshutdown/help/es/Makefile
-dnl mini-utils/gsu/Makefile
+mini-utils/gsu/Makefile
 mini-utils/guname/Makefile
 mini-utils/gw/Makefile
 mini-utils/idetool/Makefile
