@@ -1,162 +1,134 @@
-#include <config.h>
-#include <gnome.h>
+#include "config.h"
 
+#include <gnome.h>
 #include <gdk/gdkx.h>
 
-typedef enum {
-  DECIMAL_8BIT, 
-  DECIMAL_16BIT,
-  HEX_8BIT, 
-  HEX_16BIT,
-  FLOAT
-} FormatType;
+#include "widget-color-list.h"
+#include "widget-color-search.h"
+#include "widget-editable-label.h"
+#include "utils.h"
 
-typedef struct 
-{
-  char name[256];
-  int r,g,b;
-  int num;
-  float diff;
-  int ref;
-} RGBColor;
+#define CONFIG_TYPE_COLOR_SEARCH 1
+#define CONFIG_TYPE_COLOR_LIST   2
 
-char *rgb_txt[] = { "/usr/X11R6/lib/X11/rgb.txt",
-                    "/usr/X11/lib/X11/rgb.txt",
-                    "/usr/openwin/lib/X11/rgb.txt",
-                    "/usr/lpp/X11/lib/X11/rgb.txt",
-                    "/usr/lib/X11/rgb.txt",
-                    NULL };
+#define PATH_FAVORITES ".gcolorsel_rgb.txt"
 
-char *favorites_rgb_txt[] = { ".gcolorsel_rgb.txt", 
-			      /* We add home path in main */
-			      NULL };
+char *path_rgb_txt[] = { "/usr/X11R6/lib/X11/rgb.txt",
+			 "/usr/X11/lib/X11/rgb.txt",
+			 "/usr/openwin/lib/X11/rgb.txt",
+			 "/usr/lpp/X11/lib/X11/rgb.txt",
+			 "/usr/lib/X11/rgb.txt",
+			 NULL };
 
-/* Menus */
+static void menu_new_cb       (GtkWidget *widget, gpointer data);
+static void menu_open_cb      (GtkWidget *widget, gpointer data);
+static void menu_exit_cb      (GtkWidget *widget, gpointer data);
+
+static void menu_grab_cb      (GtkWidget *widget, gpointer data);
 
 static void menu_about_cb     (GtkWidget *widget, gpointer data);
-static void menu_format_cb    (GtkWidget *widget, gpointer data);
-static void menu_search_in_cb (GtkWidget *widget, gpointer data);
-static void menu_update_cb    (GtkWidget *widget, gpointer data);
-static void menu_on_drop_cb   (GtkWidget *widget, gpointer data);
-static void menu_exit_cb      (GtkWidget *widget, gpointer data);
-static void menu_grab_cb      (GtkWidget *widget, gpointer data);
-static void menu_add_favorites_cb    (GtkWidget *widget, gpointer data);
-static void menu_remove_favorites_cb (GtkWidget *widget, gpointer data);
-static void menu_rename_cb           (GtkWidget *widget, gpointer data);
 
+static void menu_popup_remove (GtkWidget *widget, gpointer data);
+static void menu_popup_rename (GtkWidget *widget, gpointer data);
+
+static void menu_close_cb     (GtkWidget *widget, gpointer data);
+static void menu_save_cb      (GtkWidget *widget, gpointer data);
+static void menu_saveas_cb    (GtkWidget *widget, gpointer data);
+static void menu_revert_cb    (GtkWidget *widget, gpointer data);
+
+static void menu_saveas_search_cb    (GtkWidget *widget, gpointer data);
+
+static void menu_popup_select_all    (GtkWidget *widget, gpointer data);
+static void menu_popup_select_none   (GtkWidget *widget, gpointer data);
+static void menu_popup_select_invert (GtkWidget *widget, gpointer data);
+
+static void color_list_popup_cb      (GtkWidget *widget, gpointer data);
+
+/* Menus */
 static GnomeUIInfo help_menu[] = {
-	GNOMEUIINFO_MENU_ABOUT_ITEM(menu_about_cb,NULL),
+	GNOMEUIINFO_MENU_ABOUT_ITEM(menu_about_cb, NULL),
 	GNOMEUIINFO_END
 };
   
 static GnomeUIInfo file_menu[] = {
-	GNOMEUIINFO_MENU_EXIT_ITEM(menu_exit_cb,NULL),
+        GNOMEUIINFO_MENU_NEW_ITEM(N_("New"), NULL, menu_new_cb, NULL),
+        GNOMEUIINFO_MENU_OPEN_ITEM(menu_open_cb, NULL),
+
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_EXIT_ITEM(menu_exit_cb, NULL),
 	GNOMEUIINFO_END
 };
 
-static GnomeUIInfo format_menu2[] = {
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Decimal (8 bit)"), NULL, 
-				   menu_format_cb, GINT_TO_POINTER(0), NULL),
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Decimal (16 bit)"), NULL, 
-				   menu_format_cb, GINT_TO_POINTER(1), NULL),
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Hex (8 bit)"), NULL,  
-				   menu_format_cb, GINT_TO_POINTER(2), NULL),
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Hex (16 bit)"), NULL, 
-				   menu_format_cb, GINT_TO_POINTER(3), NULL),
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Float"), NULL, 
-				   menu_format_cb, GINT_TO_POINTER(4), NULL),
-	GNOMEUIINFO_END
-};
-
-static GnomeUIInfo format_menu[] = {
-        GNOMEUIINFO_RADIOLIST(format_menu2),
-        GNOMEUIINFO_END
-};
-
-static GnomeUIInfo update_menu2[] = {
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Continuous (Slow)"), NULL, 
-				   menu_update_cb, 
-				   GINT_TO_POINTER(GTK_UPDATE_CONTINUOUS), 
-				   NULL),
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Delayed"), NULL, 
-				   menu_update_cb, 
-				   GINT_TO_POINTER(GTK_UPDATE_DELAYED), 
-				   NULL),
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Discontinuous"), NULL,  
-				   menu_update_cb, 
-				   GINT_TO_POINTER(GTK_UPDATE_DISCONTINUOUS), 
-				   NULL),
-	GNOMEUIINFO_END
-};
-
-static GnomeUIInfo update_menu[] = {
-        GNOMEUIINFO_RADIOLIST(update_menu2),
-        GNOMEUIINFO_END
-};
-
-static GnomeUIInfo search_in_menu[] = {
-        GNOMEUIINFO_TOGGLEITEM_DATA(N_("Simple"), NULL, 
-				    menu_search_in_cb, 
-				    GINT_TO_POINTER(0), NULL),
-        GNOMEUIINFO_TOGGLEITEM_DATA(N_("Favorites"), NULL, 
-				    menu_search_in_cb, 
-				    GINT_TO_POINTER(1), NULL),
-        GNOMEUIINFO_END
-};
-
-static GnomeUIInfo on_drop_menu2[] = {
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Search it"), NULL,
-				   menu_on_drop_cb, 
-				   GINT_TO_POINTER(0), NULL),
-        GNOMEUIINFO_RADIOITEM_DATA(N_("Add it to favorites"), NULL,
-				   menu_on_drop_cb, 
-				   GINT_TO_POINTER(1), NULL),
-	GNOMEUIINFO_END
-};
-
-static GnomeUIInfo on_drop_menu[] = {
-        GNOMEUIINFO_RADIOLIST(on_drop_menu2),
-        GNOMEUIINFO_END
-};
-
-static GnomeUIInfo settings_menu[] = {
-        GNOMEUIINFO_SUBTREE (N_("Format"), format_menu),
-	GNOMEUIINFO_SUBTREE (N_("Search update"), update_menu),
-	GNOMEUIINFO_SUBTREE (N_("Search in"), search_in_menu),
-	GNOMEUIINFO_SUBTREE (N_("On drop"), on_drop_menu),
-	GNOMEUIINFO_END
-};
- 
-static GnomeUIInfo main_menu[] = {
+static GnomeUIInfo app_menu[] = {
         GNOMEUIINFO_MENU_FILE_TREE(file_menu),
-	GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
         GNOMEUIINFO_END
 };
 
-/* Popup */
+/* Notebook Popup */
 
-static GnomeUIInfo popup_menu_add[] = {
-        GNOMEUIINFO_ITEM_STOCK (N_("Add to favorites"), NULL,    
-			        menu_add_favorites_cb, 
-				GNOME_STOCK_PIXMAP_ADD),
+static GnomeUIInfo popup_menu_notebook_color_list[] = {
+        GNOMEUIINFO_MENU_SAVE_ITEM (menu_save_cb, NULL),
+	GNOMEUIINFO_MENU_SAVE_AS_ITEM (menu_saveas_cb, NULL),
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_REVERT_ITEM (menu_revert_cb, NULL),
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_CLOSE_ITEM (menu_close_cb, NULL),
+	
 	GNOMEUIINFO_END
 };
 
-static GnomeUIInfo popup_menu_remove[] = {
-        GNOMEUIINFO_ITEM_STOCK (N_("Remove"), NULL,
-			        menu_remove_favorites_cb, 
-				GNOME_STOCK_PIXMAP_REMOVE),
-        GNOMEUIINFO_ITEM_NONE (N_("Rename"), NULL, menu_rename_cb),
+#define POPUP_NOTEBOOK_POS 2
+
+static GnomeUIInfo popup_menu_notebook_color_search_in[] = {
+        GNOMEUIINFO_SEPARATOR,
+        GNOMEUIINFO_ITEM_NONE (N_("Select All"), 
+			       NULL, menu_popup_select_all),
+        GNOMEUIINFO_ITEM_NONE (N_("UnSelect All"), 
+			       NULL, menu_popup_select_none),
+        GNOMEUIINFO_ITEM_NONE (N_("Invert"), 
+			       NULL, menu_popup_select_invert),
+	GNOMEUIINFO_END
+};
+
+static GnomeUIInfo popup_menu_notebook_color_search[] = {
+	GNOMEUIINFO_MENU_SAVE_AS_ITEM (menu_saveas_search_cb, NULL),
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_SUBTREE (N_("Search in"), NULL),
+        GNOMEUIINFO_END
+};
+
+/* Color List Popup */
+
+#define POPUP_COLOR_LIST_POS 0
+
+static GnomeUIInfo popup_menu_color_list_insert[] = {
+        GNOMEUIINFO_SEPARATOR,
+        GNOMEUIINFO_ITEM_NONE (N_("New"), 
+			       NULL, color_list_popup_cb),
+	GNOMEUIINFO_END
+};
+
+static GnomeUIInfo popup_menu_color_list[] = {
+        GNOMEUIINFO_SUBTREE (N_("Insert to"), NULL),
+        GNOMEUIINFO_SEPARATOR,
+        GNOMEUIINFO_ITEM_STOCK (N_("Remove"), NULL, menu_popup_remove,
+			  GNOME_STOCK_PIXMAP_REMOVE),
+        GNOMEUIINFO_ITEM_NONE  (N_("Rename"), NULL, menu_popup_rename),
+	GNOMEUIINFO_END
+};
+
+/* Color Search Popup */
+
+#define POPUP_COLOR_SEARCH_POS 0
+
+static GnomeUIInfo popup_menu_color_search[] = {
+        GNOMEUIINFO_SUBTREE (N_("Insert to"), NULL),
 	GNOMEUIINFO_END
 };
 
 /* Toolbar */
-
-#define TOOLBAR_ADD_POS    4
-#define TOOLBAR_REMOVE_POS 5
-
-static GnomeUIInfo main_toolbar[] = {
+static GnomeUIInfo app_toolbar[] = {
         GNOMEUIINFO_ITEM_STOCK (N_("Exit"), N_("Exit the program"), 
 				menu_exit_cb, GNOME_STOCK_PIXMAP_EXIT),
 	GNOMEUIINFO_SEPARATOR,
@@ -169,811 +141,117 @@ static GnomeUIInfo main_toolbar[] = {
 	GNOMEUIINFO_END
 };
 
-GtkWidget *window;
-GtkWidget *notebook;
-GtkWidget *clist;
-GtkWidget *clist_found;
-GtkWidget *clist_favorites;
+static void grab_key_press_cb (GtkWidget *widget, GdkEventKey *event, 
+			       gpointer data);
+static void grab_button_press_cb (GtkWidget *widget, 
+				  GdkEventButton *event, gpointer data);
 
-GdkGC *gc;
-GdkColor black;
+static void file_selection_open_ok_cb (GtkWidget *widget, GtkWidget *fs);
 
+GtkWidget  *app_create (GtkWidget *nb);
+static gint app_delete_event_cb (GtkWidget *widget,
+				 GdkEventAny *event, gpointer *data);
+static void app_destroy_cb (GtkWidget *widget, gpointer data);
 
-static void       window_delete_event_cb (GtkWidget *widget, gpointer *data);
+GnomeUIInfo *construct_popup (GtkNotebook *nb, int type, 
+			      GnomeUIInfo *merge, gpointer cb);
 
-static GtkWidget *clist_create          (gboolean with_diff,
-					 GnomeUIInfo *popup);
-static int        clist_load_rgb        (GtkCList *clist, GtkWidget *progress,
-					 char *rgb_txt[]);
-static int        clist_save_rgb        (GtkCList *clist, char *filename);
-static gint       clist_add_color       (GtkCList *clist, RGBColor *col, 
-					 FormatType type);
-static void       clist_find_color      (GtkCList *source, GtkCList *dest,
-					 gint red, gint green, 
-					 gint blue, gint tolerance);
-static void       clist_set_sort_column (GtkCList *clist, gint column);
-static void       clist_click_column_cb (GtkCList *clist, gint column);
-static void       clist_select_row_cb   (GtkCList *clist, gint row, gint col,
-	                                 GdkEvent *event, gpointer data);
-static void       clist_button_press_cb  (GtkCList *clist, 
-					  GdkEventButton *event,
-					  GtkWidget *menu);
-static void       clist_change_format   (GtkCList *clist, int type);
-static void       clist_get_adjustment  (GtkCList *clist, 
-					 GtkAdjustment **adj_red, 
-					 GtkAdjustment **adj_green, 
-					 GtkAdjustment **adj_blue,
-					 GtkAdjustment **adj_tolerance);
-static void       clist_get_range       (GtkCList *clist, GtkRange 
-					 **range_red, GtkRange **range_blue,
-					 GtkRange **range_green, 
-					 GtkRange **range_tolerance);
+void color_search_search_update (GtkWidget *widget, gpointer data);
 
-static void 	  format_color          (FormatType type, 
-					 char *str, int r, int g, int b);
-static void       pixel_to_rgb          (GdkColormap *cmap, guint32 pixel, 
-					 gint *red, gint *green, gint *blue);
+char *notebook_get_label_text (GtkNotebook *nb, GtkWidget *child);
+GtkWidget *notebook_create_color_search (GtkNotebook *nb, char *page);
+GtkWidget *notebook_create_color_list   (GtkNotebook *nb, char *page,
+					 char *filename, gboolean search_in,
+					 gboolean switch_to,
+					 gboolean check_opened);
 
-static void       preview_update        (GtkCList *clist);
-static void       range_update          (GtkCList *clist, 
-					 int red, int green, int blue);
-static void       range_value_changed_cb(GtkWidget *widget, gpointer data);
+void notebook_save_layout (GtkNotebook *nb);
+gboolean notebook_save_files (GtkNotebook *nb);
+gboolean notebook_save_one_file (GtkNotebook *nb, ColorList *cl);
+void notebook_load_layout (GtkNotebook *nb);
+GtkWidget *notebook_switch_to_color_search (GtkNotebook *nb);
+int notebook_search_color_list (GtkNotebook *nb, char *filename);
 
-static void       grab_key_press_cb    (GtkWidget *widget,
-					GdkEventKey *event, gpointer data);
-static void       grab_button_press_cb (GtkWidget *widget, 
-					GdkEventButton *event, 
-					GtkWidget *data);
+gint editable_label_button_press (GtkWidget *widget, GdkEventButton *event, 
+				  GtkWidget *child);
+gboolean editable_label_text_changed (EditableLabel *el, const char *newtext);
 
-static void clist_drag_begin_cb      (GtkWidget *widget,
-				      GdkDragContext *context, 
-				      GtkCList *clist);
-static void clist_drag_data_get_cb   (GtkWidget *widget,
-				      GdkDragContext *context, 
-				      GtkSelectionData *selection_data,
-				      guint info, guint time, GtkCList *clist);
+void color_list_button_press (GtkWidget *widget, GdkEventButton *event,
+			      gpointer data);
+void color_list_select_row (GtkWidget *widget, gint row, gint col,
+			    GdkEvent *event, GtkWidget *nb);
 
-static void preview_button_press_cb  (GtkWidget *widget, 
-				      GdkEventButton *event,
-				      GtkWidget *menu);
-static void preview_drag_begin_cb    (GtkWidget *widget,
-				      GdkDragContext *context, 
-				      GtkCList *clist);		        
-static void preview_drag_data_get_cb (GtkWidget *widget,
-				      GdkDragContext *context, 
-				      GtkSelectionData *selection_data,
-				      guint info, guint time, GtkCList *clist);
+void create_config (void);
 
-static void window_drop_data_cb      (GtkWidget *widget, 
-				      GdkDragContext *context,
-				      gint x, gint y, GtkSelectionData *data,
-				      guint info, guint32 time, gpointer d);
+GtkWidget *app;
 
-static const GtkTargetEntry drag_targets[] = {
-  { "application/x-color", 0 }
-};
+/*************** Menu ****************/
 
-static const GtkTargetEntry drop_targets[] = {
-  { "application/x-color", 0 }
-};
-		           
-static void 
-window_delete_event_cb (GtkWidget *widget, gpointer *data)
-{
-  GtkWidget *dialog;
-
-  /* Save favorites */
-  
-  if (clist_save_rgb (GTK_CLIST (clist_favorites), favorites_rgb_txt[0])) {
-    dialog = gnome_message_box_new(_("Error, cannot save favorites !"), 
-				   "error",
-				   GNOME_STOCK_BUTTON_OK, NULL);
-    gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
-  }
-
-  if (gtk_main_level ()) 
-    gtk_main_quit();
-  
-  exit (0);
-}
-
-static GtkWidget *
-range_create (gchar *title, gfloat max, gfloat val, GtkWidget **prange,
-	      GtkSignalFunc cb)
-{
-  GtkWidget *hbox;
-  GtkWidget *label;
-  GtkWidget *range;
-  GtkObject *adj;
-
-  adj = gtk_adjustment_new (val, 0.0, max, 1.0, 1.0, 1.0);
-
-  gtk_signal_connect (GTK_OBJECT (adj), "value_changed", cb, NULL);
-
-  hbox = gtk_hbox_new (TRUE, 2);
-
-  label = gtk_label_new (title);
-  gtk_box_pack_start_defaults(GTK_BOX(hbox), label);
-
-  range = gtk_hscale_new (GTK_ADJUSTMENT (adj));
-  gtk_scale_set_value_pos (GTK_SCALE (range), GTK_POS_RIGHT);
-  gtk_scale_set_digits (GTK_SCALE (range), 0);
-
-  gtk_box_pack_start_defaults(GTK_BOX(hbox), range);
-
-  if (prange) *prange = range;
-
-  return hbox;
-}
-
-static GtkWidget *
-search_tab_create ()
-{
-  GtkWidget *vbox;
-  GtkWidget *hbox;
-  GtkWidget *range_vbox;
-  GtkWidget *frame;
-  GtkWidget *preview;
-  GtkWidget *sw;
-
-  GtkWidget *range_red;
-  GtkWidget *range_blue;
-  GtkWidget *range_green;
-  GtkWidget *range_tolerance;
-
-  vbox = gtk_vbox_new (FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), 2);
-
-  hbox = gtk_hbox_new (FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (hbox), 2);
-  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 2);
-
-  range_vbox = gtk_vbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (hbox), range_vbox,
-		      FALSE, FALSE, 2);
-
-  /* Create entries */
-  
-  gtk_box_pack_start_defaults (GTK_BOX(range_vbox),
-	      range_create (_("Red :"), 256.0, 0.0, &range_red,
-			    range_value_changed_cb));
-
-  gtk_box_pack_start_defaults (GTK_BOX(range_vbox),
-	      range_create (_("Green : "), 256.0, 0.0, &range_green,
-			    range_value_changed_cb));
-
-  gtk_box_pack_start_defaults (GTK_BOX(range_vbox),
-              range_create (_("Blue : "), 256.0, 0.0, &range_blue,
-			    range_value_changed_cb));
-
-  gtk_box_pack_start_defaults (GTK_BOX(range_vbox),
-              range_create (_("Tolerance (%) : "), 101.0, 10.0, 
-			    &range_tolerance, range_value_changed_cb));
- 
-  /* Create preview */
-  frame = gtk_frame_new (NULL);
-  gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-  gtk_box_pack_start (GTK_BOX(hbox), frame, TRUE, TRUE, 2);
-
-  preview = gtk_preview_new (GTK_PREVIEW_COLOR);    
-  gtk_preview_set_expand (GTK_PREVIEW (preview), TRUE);  
-  gtk_container_add (GTK_CONTAINER (frame), preview);
-
-  gtk_drag_source_set (preview, GDK_BUTTON1_MASK,
-		       drag_targets, 1, 
-		       GDK_ACTION_COPY);
-
-  gtk_signal_connect (GTK_OBJECT (preview), "button_press_event",
-		      GTK_SIGNAL_FUNC (preview_button_press_cb), 
-		      gnome_popup_menu_new (popup_menu_add));
-  
-  gtk_signal_connect (GTK_OBJECT (preview), "drag_data_get",
-		      GTK_SIGNAL_FUNC (preview_drag_data_get_cb), preview);
-  
-  gtk_signal_connect (GTK_OBJECT (preview), "drag_begin",
-		      GTK_SIGNAL_FUNC (preview_drag_begin_cb), preview);
-  
-  /* Create color list */
-  sw = gtk_scrolled_window_new(NULL, NULL);
-  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
-				 GTK_POLICY_AUTOMATIC,
-				 GTK_POLICY_AUTOMATIC);
-  gtk_box_pack_start_defaults(GTK_BOX(vbox), sw);
-
-  clist_found = clist_create (TRUE, popup_menu_add);
-  gtk_container_add(GTK_CONTAINER(sw), clist_found);
-  
-  gtk_object_set_data(GTK_OBJECT(clist_found), "range_red", range_red);
-  gtk_object_set_data(GTK_OBJECT(clist_found), "range_green", range_green);
-  gtk_object_set_data(GTK_OBJECT(clist_found), "range_blue", range_blue);
-  gtk_object_set_data(GTK_OBJECT(clist_found), "range_tolerance", 
-		      range_tolerance);
-  
-  gtk_object_set_data(GTK_OBJECT(clist_found), "preview", preview);    
-
-  /* Allow update */
-  gtk_object_set_data (GTK_OBJECT (clist_found), "do_update",     
-                       GINT_TO_POINTER(TRUE));
-
-  return vbox;
-}
-
-
-int main(int argc, char **argv)
-{
-    GtkWidget *vbox;
-    GtkWidget *label, *sw;
-    GtkWidget *progress, *progress_label;
-
-    gint i, on_drop;
-    FormatType format;
-    GtkUpdateType update;
-        
-#ifdef ENABLE_NLS
-    bindtextdomain(PACKAGE, GNOMELOCALEDIR);
-    textdomain(PACKAGE);
-#endif
-      
-    gnome_init("gcolorsel", VERSION, argc, argv);
-
-    favorites_rgb_txt[0] = gnome_util_prepend_user_home (favorites_rgb_txt[0]);
-
-    window = gnome_app_new("gcolorsel", _("Gnome Color Browser"));
-
-    gtk_widget_set_usize(window, 320, 360);
-    gtk_window_set_title(GTK_WINDOW(window), _("Gnome Color Browser"));
-    gtk_window_set_wmclass(GTK_WINDOW(window), "main_window","gcolorsel");
-    gtk_window_set_policy(GTK_WINDOW(window), TRUE, TRUE, FALSE);
-    gtk_signal_connect( GTK_OBJECT(window), "delete_event",
-			GTK_SIGNAL_FUNC(window_delete_event_cb), NULL);
-
-    gnome_app_create_menus(GNOME_APP (window), main_menu);
-    gnome_app_create_toolbar(GNOME_APP (window), main_toolbar);
-
-    gtk_widget_realize(window);
-
-    gtk_drag_dest_set (window, GTK_DEST_DEFAULT_ALL,
-		       drop_targets, 1,
-		       GDK_ACTION_COPY | GDK_ACTION_MOVE);
-    gtk_signal_connect (GTK_OBJECT (window), "drag_data_received",
-			GTK_SIGNAL_FUNC (window_drop_data_cb), window);
-
-    gc = gdk_gc_new(window->window);
-
-    vbox = gtk_vbox_new(FALSE, 0);
-    gtk_container_border_width(GTK_CONTAINER(vbox), 2);
-    gnome_app_set_contents(GNOME_APP(window), vbox);
-
-    /* Create notebook */
-
-    notebook = gtk_notebook_new ();
-    gtk_box_pack_start (GTK_BOX (vbox), notebook, TRUE, TRUE, 0);
-
-    /* Create color list */
-    sw = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
-				   GTK_POLICY_AUTOMATIC,
-				   GTK_POLICY_AUTOMATIC);
-    
-    clist = clist_create (FALSE, popup_menu_add);
-    gtk_container_add(GTK_CONTAINER(sw), clist);
-
-    label = gtk_label_new (_("Simple"));				    
-    gtk_notebook_append_page (GTK_NOTEBOOK (notebook), 
-			      sw, label);
-
-    /* Page 2 */
-    label = gtk_label_new (_("Search"));
-    gtk_notebook_append_page (GTK_NOTEBOOK (notebook), 
-			      search_tab_create (), label);
-
-    /* Page 3 */
-    sw = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
-				   GTK_POLICY_AUTOMATIC,
-				   GTK_POLICY_AUTOMATIC);
-    
-    clist_favorites = clist_create (FALSE, popup_menu_remove);
-    gtk_container_add(GTK_CONTAINER(sw), clist_favorites);
-
-    label = gtk_label_new (_("Favorites"));				    
-    gtk_notebook_append_page (GTK_NOTEBOOK (notebook), 
-			      sw, label);
-
-    /* Create progress bar */
-    progress_label = gtk_label_new (_("Parsing Colors"));
-    gtk_box_pack_start (GTK_BOX (vbox), progress_label, FALSE, FALSE, 0);
-    
-    progress = gtk_progress_bar_new();
-    gtk_box_pack_start (GTK_BOX (vbox), progress, FALSE, FALSE, 0);
-
-	
-    gtk_widget_show_all(window);
-
-    /* Load preferences */
-
-    format = gnome_config_get_int_with_default ("/gcolorsel/Prefs/Format=0", 
-						NULL);
-    
-    for (i=0; i<sizeof (format_menu2) / sizeof (GnomeUIInfo) - 1; i++) 
-      if (GPOINTER_TO_INT (format_menu2[i].user_data) == format) {
-	gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(format_menu2[i].widget), TRUE);
-      }
-
-    update = gnome_config_get_int_with_default ("/gcolorsel/Prefs/Update=0", 
-						NULL);
-
-    for (i=0; i<sizeof (update_menu2) / sizeof (GnomeUIInfo) - 1; i++) 
-      if (GPOINTER_TO_INT (update_menu2[i].user_data) == update) {
-	gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(update_menu2[i].widget), TRUE);
-      }
-
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(search_in_menu[0].widget), gnome_config_get_int_with_default("/gcolorsel/Prefs/Search_in_simple=1", NULL));
-					
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(search_in_menu[1].widget), gnome_config_get_int_with_default("/gcolorsel/Prefs/Search_in_favorites=0", NULL));
-
-    on_drop = gnome_config_get_int_with_default ("/gcolorsel/Prefs/OnDrop=0", 
-						NULL);
-    
-    for (i=0; i<sizeof (on_drop_menu2) / sizeof (GnomeUIInfo) - 1; i++) 
-      if (GPOINTER_TO_INT (on_drop_menu2[i].user_data) == on_drop) {
-	gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(on_drop_menu2[i].widget), TRUE);
-      }
-
-	
-    /* Load global rgb.txt */
-    gtk_clist_freeze(GTK_CLIST(clist));
-    if (clist_load_rgb(GTK_CLIST(clist), progress, rgb_txt)) {
-      gtk_widget_show(gnome_message_box_new(
-	 _("Error, cannot find the file 'rgb.txt' on your system!"), 
-	 "error", GNOME_STOCK_BUTTON_OK, NULL));
-    }
-    gtk_clist_sort (GTK_CLIST(clist));    
-    gtk_clist_thaw(GTK_CLIST(clist));
-
-    /* Load favorites */
-    gtk_label_set_text (GTK_LABEL (progress_label), "Parsing Favorites");
-
-    gtk_clist_freeze(GTK_CLIST(clist_favorites));
-    clist_load_rgb(GTK_CLIST(clist_favorites), progress, favorites_rgb_txt);
-    gtk_clist_sort (GTK_CLIST(clist_favorites));    
-    gtk_clist_thaw(GTK_CLIST(clist_favorites));
-
-    /* Search color Black ... */
-    range_value_changed_cb (NULL, NULL);
-    
-    gtk_widget_destroy (progress);
-    gtk_widget_destroy (progress_label);
-    
-    gtk_main();
-
-    return EXIT_SUCCESS;
-}
-
-static GtkWidget *
-clist_create_label_arrow (GtkCList *clist, gint col, 
-			  gchar *str, gboolean showit)
-{
-  GtkWidget *hbox;
-  GtkWidget *label;
-  GtkWidget *arrow;
-  gchar *key;
-
-  hbox = gtk_hbox_new (FALSE, 2);
-
-  arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_IN);
-  gtk_box_pack_start(GTK_BOX(hbox), arrow, FALSE, FALSE, 0);
-
-  label = gtk_label_new (str);
-  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
-
-  gtk_widget_show (hbox);
-  gtk_widget_show (label);
-  if (showit) gtk_widget_show (arrow);
-
-  gtk_clist_set_column_widget (clist, col, hbox);
-
-  key = g_strdup_printf ("arrow_%d", col);  
-  gtk_object_set_data (GTK_OBJECT (clist), key, arrow);
-  g_free (key);
-  
-  return hbox;
-}
-
-static GtkWidget *
-clist_create(gboolean with_diff, GnomeUIInfo *popup)
-{
-    GdkColormap *colormap;
-    GtkWidget *clist;
-
-    g_assert (popup != NULL);
-        
-    clist = gtk_clist_new(with_diff ? 4 : 3);;
-    gtk_clist_set_selection_mode (GTK_CLIST (clist), GTK_SELECTION_EXTENDED);
-
-    gtk_clist_set_shadow_type(GTK_CLIST(clist), GTK_SHADOW_IN);
-
-    gtk_clist_set_row_height(GTK_CLIST(clist), 18);
-
-    clist_create_label_arrow (GTK_CLIST(clist), 0, _("Color"), FALSE);
-    gtk_clist_set_column_width(GTK_CLIST(clist), 0, 52);
-
-    clist_create_label_arrow (GTK_CLIST(clist), 1, _("Value"), FALSE);
-    gtk_clist_set_column_width(GTK_CLIST(clist), 1, 72);
-
-    clist_create_label_arrow (GTK_CLIST(clist), 2, _("Name"), !with_diff);
-    gtk_clist_set_column_width(GTK_CLIST(clist), 2, 80);
-
-    if (with_diff) {
-      gtk_clist_set_column_width(GTK_CLIST(clist), 3, 15);
-      clist_create_label_arrow (GTK_CLIST(clist), 3, _("Match"), TRUE);
-
-      clist_set_sort_column (GTK_CLIST(clist), 3);
-    } else 
-      clist_set_sort_column (GTK_CLIST(clist), 2);
-
-    gtk_clist_set_auto_sort (GTK_CLIST(clist), TRUE);
-    gtk_clist_column_titles_show(GTK_CLIST(clist));
-    gtk_clist_column_titles_active (GTK_CLIST (clist));
-    
-    gtk_signal_connect (GTK_OBJECT (clist), "click_column",
-        		GTK_SIGNAL_FUNC (clist_click_column_cb), NULL);
-        		
-    gtk_signal_connect (GTK_OBJECT (clist), "select_row",
-    			GTK_SIGNAL_FUNC (clist_select_row_cb), NULL);        		
-
-    gtk_drag_source_set (clist, GDK_BUTTON1_MASK,
-          	         drag_targets, 1, 
-    		         GDK_ACTION_COPY);
-    
-    gtk_signal_connect (GTK_OBJECT (clist), "drag_data_get",
-    			GTK_SIGNAL_FUNC (clist_drag_data_get_cb), clist);
-    			
-    gtk_signal_connect (GTK_OBJECT (clist), "drag_begin",
-    			GTK_SIGNAL_FUNC (clist_drag_begin_cb), clist);
-
-    gtk_clist_set_use_drag_icons (GTK_CLIST (clist), FALSE);
-
-    /* Set popup menu */
-
-    gtk_signal_connect (GTK_OBJECT (clist), "button_press_event",
-			GTK_SIGNAL_FUNC (clist_button_press_cb), 
-			gnome_popup_menu_new (popup));
-
-    colormap = gtk_widget_get_colormap(clist);
-    gdk_color_parse("black", &black);
-    gdk_color_alloc(colormap, &black);
-	
-    gtk_object_set_data(GTK_OBJECT(clist), "colormap", colormap);
-
-    return clist;
-}
+/* New */
 
 static void 
-color_destroy_notify_cb (gpointer data)
+menu_new_cb (GtkWidget *widget, gpointer data)
 {
-  RGBColor *c = data;
-
-  g_assert (c != NULL);
-
-  if (--(c->ref)) return;
-
-  g_free (data);
+  notebook_create_color_list (GTK_NOTEBOOK (data), "Unknown", 
+			      NULL, TRUE, TRUE, FALSE);
 }
 
-static gint
-clist_add_color (GtkCList *clist, RGBColor *c, FormatType type)
+/* Open */
+
+static void
+file_selection_open_ok_cb (GtkWidget *widget, GtkWidget *fs)
 {
-    gchar *string[4];
-    gint row;
-    GdkPixmap *pixmap;
-    GdkColor color;
+  char *file;
+  GtkWidget *nb;
 
-    g_assert (clist != NULL);
-    g_assert (c != NULL);
-    g_assert (c->name != NULL);
+  file = gtk_file_selection_get_filename (GTK_FILE_SELECTION (fs));
 
-    c->ref++;
+  if (g_file_test (file, G_FILE_TEST_ISFILE)) {
+    nb = gtk_object_get_data (GTK_OBJECT (fs), "notebook");
 
-    color.red = c->r * 255;
-    color.green = c->g * 255;
-    color.blue = c->b * 255;
-   
-    gdk_color_alloc(gtk_object_get_data(GTK_OBJECT(clist), "colormap"), &color);
-       
-    pixmap = gdk_pixmap_new(window->window,
-			    48, 16, gtk_widget_get_visual(window)->depth);
-	
-    gdk_gc_set_foreground(gc, &color);
-    gdk_draw_rectangle(pixmap, gc, TRUE, 0, 0, 47, 15);
-    gdk_gc_set_foreground(gc, &black);
-    gdk_draw_rectangle(pixmap, gc, FALSE, 0, 0, 47, 15);
+    /* Todo : check if file is not open */
 
-    string[0] = NULL;
-    string[1] = g_malloc(64);
-    string[2] = c->name;
-    string[3] = g_malloc(10);
-	
-    format_color(type, string[1], c->r, c->g, c->b);
-    sprintf (string[3], "%d", (int)c->diff);
-	
-    row = gtk_clist_append(clist, string);
-    gtk_clist_set_pixmap (clist, row, 0, pixmap, NULL);
-    gtk_clist_set_row_data_full (clist, row, c, 
-				 color_destroy_notify_cb);
-		
-    g_free(string[1]);
-    g_free(string[3]);
-    
-    return row;
-}
-
-/* grabbed from ee */
-#define GTK_FLUSH \
-    while (gtk_events_pending()) \
-            gtk_main_iteration();
-
-static int
-clist_load_rgb(GtkCList *clist, GtkWidget *progress, char *files[])
-{
-    gchar tmp[256];
-    gint t,i=0;
-    FILE *file = NULL;
-    glong flen;
-    gint iter;
-    FormatType type;
-
-    g_assert (clist != NULL);
-    g_assert (progress != NULL);
-    g_assert (files != NULL);
-	
-    while(files[i] != NULL) {
-        if ((file = fopen(files[i], "r")) != NULL)
-            break;
-        i++;
+    if (!notebook_create_color_list (GTK_NOTEBOOK (nb), 
+			 g_basename (file), file, FALSE, TRUE, TRUE)) {
+      return;
     }
 
-    if(!file) return -1;
-
-    type = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (clist),"format"));
-
-    fseek(file, 0, SEEK_END);
-    flen = ftell(file);
-    fseek(file, 0, SEEK_SET);
-
-    gtk_progress_bar_update(GTK_PROGRESS_BAR(progress), 0);
-
-    for(iter = 0;;)
-    {
-	int or=257, og=257, ob=257;
-	gfloat p;
-	RGBColor *color;
-		
-	fgets(tmp, 255, file);
-
-	if(feof(file))
-	    break;
-
-	color = g_new(RGBColor, 1);
-	color->ref = 0;
-	t = sscanf(tmp, "%d %d %d\t\t%[a-zA-Z0-9 ]\n",
-		   &color->r,
-		   &color->g,
-		   &color->b,
-		   color->name);
-
-	if(t==4 && (color->r != or || color->g != og || color->b != ob))
-	{
-	    color->num = iter;
-
-	    clist_add_color (clist, color, type);
-
-	    or = color->r;
-	    og = color->g;
-	    ob = color->b;
-	
-   	    if (! (iter % 5)) {
-  		p = (gfloat)ftell(file)/(gfloat)flen;
-		gtk_progress_bar_update(GTK_PROGRESS_BAR(progress), p); 
-		GTK_FLUSH;
-   	    }
-   	    
-   	    iter++;
-   	}
-    }
-
-    return 0;
-}
-
-static int        
-clist_save_rgb (GtkCList *clist, char *filename)
-{
-  FILE *file;
-  GList *row_list;
-  GtkCListRow *row;
-  RGBColor *color;
-  gchar tmp[256];
-
-  g_assert (clist != NULL);
-  g_assert (filename != NULL);
-
-  file = fopen (filename, "w");
-  if (!file) return -1;
-  
-  row_list = clist->row_list;
-
-  fputs ("! gcolorsel's favorites\n", file);
-
-  while (row_list) {
-    row = row_list->data;
-    g_assert (row != NULL);
-
-    color = row->data; 
-    g_assert (color != NULL);
-
-    sprintf (tmp, "%d %d %d\t\t%s\n", 
-	     color->r, color->g, color->b, color->name);
-
-    fputs (tmp, file);   
-
-    row_list = row_list->next;
-  }
-
-  fclose (file);
-
-  return 0;
-}
-
-static void 
-format_color(FormatType type, gchar *str, gint r, gint g, gint b)
-{
-  g_assert (str != NULL);
-
-  switch(type) {
-  case DECIMAL_8BIT:
-    g_snprintf(str, 64, "%d %d %d", r,g,b);
-    return;
-  case DECIMAL_16BIT:
-    g_snprintf(str, 64, "%d %d %d", r*256,g*256,b*256);
-    return;
-  case HEX_8BIT:
-    g_snprintf(str, 64, "#%02x%02x%02x", r,g,b);
-    return;
-  case HEX_16BIT:
-    g_snprintf(str, 64, "#%04x%04x%04x", r*256,g*256,b*256);
-    return;
-  case FLOAT:
-    g_snprintf(str, 64, "%1.4g %1.4g %1.4g", 
-	       (float)r/256,
-	       (float)g/256,
-	       (float)b/256);
-    return;
-  default:
-    g_assert_not_reached ();
+    gtk_widget_destroy (fs);
   }
 }
 
-/* From gdk-pixbuf, gdk-pixbuf-drawable.c */       
-void pixel_to_rgb (GdkColormap *cmap, guint32 pixel, 
-		   gint *red, gint *green, gint *blue)
-{
-  GdkVisual *v;
-
-  g_assert (cmap != NULL);
-  g_assert (red != NULL);
-  g_assert (green != NULL);
-  g_assert (blue != NULL);
-
-  v = gdk_colormap_get_visual (cmap);
-
-  switch (v->type) {
-    case GDK_VISUAL_STATIC_GRAY:
-    case GDK_VISUAL_GRAYSCALE:
-    case GDK_VISUAL_STATIC_COLOR:
-    case GDK_VISUAL_PSEUDO_COLOR:
-      *red   = cmap->colors[pixel].red;
-      *green = cmap->colors[pixel].green;
-      *blue  = cmap->colors[pixel].blue;
-      break;
-    case GDK_VISUAL_TRUE_COLOR:
-      *red   = ((pixel & v->red_mask)   << (32 - v->red_shift   - v->red_prec))   >> 24;
-      *green = ((pixel & v->green_mask) << (32 - v->green_shift - v->green_prec)) >> 24;
-      *blue  = ((pixel & v->blue_mask)  << (32 - v->blue_shift  - v->blue_prec))  >> 24;
-                 
-      break;
-    case GDK_VISUAL_DIRECT_COLOR:
-      *red   = cmap->colors[((pixel & v->red_mask)   << (32 - v->red_shift   - v->red_prec))   >> 24].red;
-      *green = cmap->colors[((pixel & v->green_mask) << (32 - v->green_shift - v->green_prec)) >> 24].green; 
-      *blue  = cmap->colors[((pixel & v->blue_mask)  << (32 - v->blue_shift  - v->blue_prec))  >> 24].blue;
-      break;
-  default:
-    g_assert_not_reached ();
-  }  
-}
-
 static void 
-clist_change_format (GtkCList *clist, gint type)
+menu_open_cb (GtkWidget *widget, gpointer data)
 {
-  RGBColor *color;
-  gint i;
-  gchar tmp[64];  
+  static GtkWidget *fs = NULL;
 
-  g_assert (clist != NULL);
-
-  gtk_object_set_data (GTK_OBJECT (clist), "format",
-		       GINT_TO_POINTER (type));
+  if (fs) {
+    gtk_widget_show_now (fs);
+    gdk_window_raise (fs->window);
+    return;
+  }
   
-  for(i=0; i < GTK_CLIST (clist)->rows; i++) {
-    color = gtk_clist_get_row_data(GTK_CLIST(clist), i);
+  fs = gtk_file_selection_new (_("Open file"));
+  gtk_object_set_data (GTK_OBJECT (fs), "notebook", data);
+  gtk_file_selection_hide_fileop_buttons (GTK_FILE_SELECTION (fs));
 
-    g_assert (color != NULL);
+  gtk_signal_connect (GTK_OBJECT (fs), "destroy",
+		      GTK_SIGNAL_FUNC (gtk_widget_destroyed), &fs);
 
-    format_color(type, tmp, color->r, color->g, color->b);
-    gtk_clist_set_text(GTK_CLIST(clist), i, 1, tmp);
-  }            
+  gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (fs)->ok_button),
+	       "clicked", GTK_SIGNAL_FUNC (file_selection_open_ok_cb), fs);
+
+  gtk_signal_connect_object (GTK_OBJECT (
+			       GTK_FILE_SELECTION (fs)->cancel_button), 
+			     "clicked", 
+			     GTK_SIGNAL_FUNC (gtk_widget_destroy), 
+			     GTK_OBJECT (fs));
+
+  gtk_widget_show (fs);
 }
 
-/********************* MENU CALLBACKS **********************/
+/* About */
 
-static void 
-menu_format_cb(GtkWidget *menuitem, gpointer data)
-{
-  gint type;
-
-  type = GPOINTER_TO_INT(data);
-
-  gnome_config_set_int ("/gcolorsel/Prefs/Format", type);
-  gnome_config_sync ();
-  
-  clist_change_format (GTK_CLIST (clist), type);
-  clist_change_format (GTK_CLIST (clist_found), type);
-}
-
-static void 
-menu_update_cb(GtkWidget *menuitem, gpointer data)
-{
-  GtkRange *range_red, *range_green, *range_blue, *range_tolerance;
-  gint type;
-
-  type = GPOINTER_TO_INT(data);
-
-  gnome_config_set_int ("/gcolorsel/Prefs/Update", type);
-  gnome_config_sync ();
-
-  clist_get_range (GTK_CLIST (clist_found), &range_red, &range_green,
-		   &range_blue, &range_tolerance);
-
-  gtk_range_set_update_policy (range_red, type);
-  gtk_range_set_update_policy (range_blue, type);
-  gtk_range_set_update_policy (range_green, type);
-  gtk_range_set_update_policy (range_tolerance, type);
-}
-
-static void 
-menu_search_in_cb (GtkWidget *widget, gpointer data)
-{
-  gnome_config_set_int ("/gcolorsel/Prefs/Search_in_simple", 
-		      GTK_CHECK_MENU_ITEM (search_in_menu[0].widget)->active);
-
-  gnome_config_set_int ("/gcolorsel/Prefs/Search_in_favorites", 
-		      GTK_CHECK_MENU_ITEM (search_in_menu[1].widget)->active);
-
-  gnome_config_sync ();
-
-  range_value_changed_cb (NULL, NULL);
-}
-
-static void 
-menu_on_drop_cb (GtkWidget *widget, gpointer data)
-{
-  gint type;
-
-  type = GPOINTER_TO_INT(data);
-
-  gnome_config_set_int ("/gcolorsel/Prefs/OnDrop", type);
-  gnome_config_sync ();
-}
- 
 static void 
 menu_about_cb (GtkWidget *widget, gpointer data)
 {  
@@ -1001,155 +279,24 @@ menu_about_cb (GtkWidget *widget, gpointer data)
 
     gtk_signal_connect (GTK_OBJECT (about), "destroy",
 			GTK_SIGNAL_FUNC (gtk_widget_destroyed), &about);
+
     gtk_widget_show(about);
-          
-    return;
 }
+
+/* Exit */
 
 static void 
 menu_exit_cb (GtkWidget *widget, gpointer data)
 {
+  if (! notebook_save_files (GTK_NOTEBOOK (data)))
+    return;
+
+  notebook_save_layout (GTK_NOTEBOOK (data));
+
   gtk_main_quit ();  
 }
 
-static void 
-menu_grab_cb (GtkWidget *widget, gpointer data)
-{
-  GdkCursor *cursor;
-
-  gtk_grab_add (window);
-
-  cursor = gdk_cursor_new (GDK_CROSS_REVERSE);
-
-  gdk_pointer_grab (window->window, FALSE, 
-      		    GDK_BUTTON_PRESS_MASK,
-  		    NULL, cursor, GDK_CURRENT_TIME);
-  		    
-  gdk_cursor_destroy (cursor);
-
-  gdk_keyboard_grab (window->window, FALSE, GDK_CURRENT_TIME);
-
-  gtk_signal_connect (GTK_OBJECT (window), "button_press_event",
-  	              GTK_SIGNAL_FUNC (grab_button_press_cb), window);
-
-  gtk_signal_connect (GTK_OBJECT (window), "key_press_event",
-  	              GTK_SIGNAL_FUNC (grab_key_press_cb), window);
-}
-
-static void 
-menu_add_favorites_cb (GtkWidget *widget, gpointer data)
-{
-  GList *l;
-  GtkCList *list;
-  RGBColor *color, *new;
-
-  if (GTK_IS_CLIST (data)) {
-    list = data;
-    l = GTK_CLIST(list)->selection;
-
-    gtk_clist_freeze (GTK_CLIST(clist_favorites));
-    
-    while (l) {
-      
-      color = gtk_clist_get_row_data (list, GPOINTER_TO_INT (l->data));
-      g_assert (color != NULL);
-
-      new = g_new (RGBColor, 1);
-      *new = *color;
-      new->ref = 0;
-      
-      clist_add_color (GTK_CLIST(clist_favorites), new, 
-        GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (widget),"format")));
-   
-      l=l->next;
-    }
-
-    gtk_clist_thaw (GTK_CLIST(clist_favorites));
-  } else {
-    g_assert (GTK_IS_PREVIEW (data));
-
-    new = g_new (RGBColor, 1);
-    strcpy (new->name, _("No Name"));
-    new->r = GPOINTER_TO_INT (gtk_object_get_data(GTK_OBJECT(data),"red"));
-    new->g = GPOINTER_TO_INT (gtk_object_get_data(GTK_OBJECT(data),"green"));
-    new->b = GPOINTER_TO_INT (gtk_object_get_data(GTK_OBJECT(data),"blue"));
-    new->ref = 0;
-
-    clist_add_color (GTK_CLIST(clist_favorites), new,
-     GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (widget),"format")));
-  }
-
-  range_value_changed_cb (NULL, NULL);
-}
-
-static void 
-menu_remove_favorites_cb (GtkWidget *widget, gpointer data)
-{
-  GtkCList *list;
-  GList *l;
-
-  list = GTK_CLIST (clist_favorites);
-
-  gtk_clist_freeze (list);
-
-  l = GTK_CLIST(list)->selection;    
-  while (l) {
-    gtk_clist_remove (list, GPOINTER_TO_INT (l->data));
-    
-    l = GTK_CLIST(list)->selection;    
-  }
-
-  gtk_clist_thaw (list);
-  
-  range_value_changed_cb (NULL, NULL);
-}
-
-static void
-menu_rename_end_cb (gchar *str, gpointer data)
-{
-  int row;
-  RGBColor *color;
-
-  if (!str) return;
-
-  row = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (data),
-					      "row_clicked"));
-  color = gtk_clist_get_row_data (GTK_CLIST(data), row);
-  g_assert (color != NULL);
-
-  strcpy (color->name, str);
-
-  gtk_clist_set_text (GTK_CLIST (data), row, 2, str);
-  
-  g_free (str);
-}
-
-static void
-menu_rename_cb (GtkWidget *widget, gpointer data)
-{
-  GtkWidget *dialog;
-  RGBColor  *color;
-  gchar     *str;
-  int       row;
-
-  row = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (data), 
-					      "row_clicked"));
-
-  color = gtk_clist_get_row_data (GTK_CLIST(data), row);
-  g_assert (color != NULL);
-
-  str = g_strconcat (_("Enter new name for : "), color->name, NULL);
-
-  dialog = gnome_request_dialog (FALSE, str, color->name, 250,
-				 menu_rename_end_cb, data, 
-				 GTK_WINDOW (window));
-
-  g_free (str);
-
-  gnome_dialog_run (GNOME_DIALOG (dialog));
-}
-
-/************************* GRAB COLOR *******************************/
+/* Grab */
 
 static void
 grab_key_press_cb (GtkWidget *widget, GdkEventKey *event, gpointer data)
@@ -1162,16 +309,17 @@ grab_key_press_cb (GtkWidget *widget, GdkEventKey *event, gpointer data)
 				   grab_key_press_cb, data);
     gtk_signal_disconnect_by_func (GTK_OBJECT (data), 
 				   grab_button_press_cb, data);
-    gtk_grab_remove (window);
+    gtk_grab_remove (GTK_WIDGET(data));
     gdk_pointer_ungrab (GDK_CURRENT_TIME); 
     gdk_keyboard_ungrab (GDK_CURRENT_TIME);   
   }
 }
 
-static void 
+static void
 grab_button_press_cb (GtkWidget *widget, 
-		      GdkEventButton *event, GtkWidget *data)
+		      GdkEventButton *event, gpointer data)
 {
+  GtkWidget *cs;
   int red, green, blue;
   
   GdkImage *img;
@@ -1183,7 +331,7 @@ grab_button_press_cb (GtkWidget *widget,
 				 grab_key_press_cb, data);
   gtk_signal_disconnect_by_func (GTK_OBJECT (data), 
 				 grab_button_press_cb, data);
-  gtk_grab_remove (window);
+  gtk_grab_remove (GTK_WIDGET (data));
   gdk_pointer_ungrab (GDK_CURRENT_TIME); 
   gdk_keyboard_ungrab (GDK_CURRENT_TIME); 
 
@@ -1206,536 +354,1193 @@ grab_button_press_cb (GtkWidget *widget,
   gdk_image_destroy (img);           
   gdk_window_unref (win);
 
-  /* Set Range */
+  /* Search */
 
-  range_update (GTK_CLIST (clist_found), red, green, blue);
+  cs = notebook_switch_to_color_search (GTK_NOTEBOOK (data));
+  if (!cs) return;
 
-  gtk_notebook_set_page (GTK_NOTEBOOK (notebook), 1);
+  color_search_search (COLOR_SEARCH (cs), red, green, blue);
+}
+
+static void 
+menu_grab_cb (GtkWidget *widget, gpointer data)
+{
+  GdkCursor *cursor;
+  
+  gtk_grab_add (GTK_WIDGET (data));
+
+  cursor = gdk_cursor_new (GDK_CROSS_REVERSE);
+
+  gdk_pointer_grab (GTK_WIDGET (data)->window, FALSE, 
+       		    GDK_BUTTON_PRESS_MASK,
+   		    NULL, cursor, GDK_CURRENT_TIME);
+  		    
+  gdk_cursor_destroy (cursor);
+
+  gdk_keyboard_grab (GTK_WIDGET(data)->window, FALSE, GDK_CURRENT_TIME);
+
+  gtk_signal_connect (GTK_OBJECT (data), "button_press_event",
+  	              GTK_SIGNAL_FUNC (grab_button_press_cb), data);
+
+  gtk_signal_connect (GTK_OBJECT (data), "key_press_event",
+  	              GTK_SIGNAL_FUNC (grab_key_press_cb), data);
+}
+
+/* Notebook : close */
+
+static void 
+menu_close_cb (GtkWidget *widget, gpointer data)
+{
+  GtkWidget *child = GTK_WIDGET (data);
+  GtkWidget *cl;
+  int page;
+  int ret;
+  
+  cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (child));
+  g_assert (cl != NULL);
+  g_assert (IS_COLOR_LIST (cl));
+  
+  ret = notebook_save_one_file (GTK_NOTEBOOK (child->parent), COLOR_LIST (cl));    
+  if (!ret) return;
+
+  page = gtk_notebook_page_num (GTK_NOTEBOOK (child->parent), child);
+  gtk_notebook_remove_page (GTK_NOTEBOOK (child->parent), page);
+}
+
+/* Save */
+
+static void 
+menu_save_cb (GtkWidget *widget, gpointer data)
+{
+  GtkWidget *sw = GTK_WIDGET (data);
+  GtkWidget *cl;
+  GtkWidget *dialog;
+  char *str;
+  char *filename;
+
+  cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (sw));
+  g_assert (cl != NULL);
+  g_assert (IS_COLOR_LIST (cl));
+
+  filename = gtk_object_get_data (GTK_OBJECT (cl), "file_name");
+  g_assert (filename != NULL);
+
+  if (color_list_save (COLOR_LIST (cl), filename, GNOME_APP (app))) {
+    str = g_strdup_printf (_("Could not save to file '%s'"), filename);
+    dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR, 
+				    GNOME_STOCK_BUTTON_OK, NULL);
+    gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+    g_free (str);
+  } else
+    color_list_set_modified (COLOR_LIST (cl), FALSE);
+}
+
+/* SaveAS */
+
+static void
+file_selection_save_as_ok_cb (GtkWidget *widget, GtkWidget *fs)
+{
+  GtkWidget *cl;
+  GtkWidget *dialog;
+  char *file;
+  char *str;
+  int ret;
+
+  cl = gtk_object_get_data (GTK_OBJECT (fs), "color_list");
+
+  file = gtk_file_selection_get_filename (GTK_FILE_SELECTION (fs));
+
+  /* Does the file already exist ? */
+
+  if (g_file_exists (file)) {
+    str = g_strdup_printf (_("'%s' already exists, ecrase it ?"), file);
+    dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_QUESTION,
+				    GNOME_STOCK_BUTTON_YES,
+				    GNOME_STOCK_BUTTON_NO, NULL);
+    g_free (str);
+    gnome_dialog_set_default (GNOME_DIALOG (dialog), 1);
+    ret = gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+    if (ret != 0) return;
+  }
+
+  /* Todo : Check if file is not open  ... */
+
+  ret = color_list_save (COLOR_LIST (cl), file, GNOME_APP (app));
+  if (ret) { /* Error */
+    str = g_strdup_printf (_("Could not save to file '%s'"), file);
+    dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR,
+				    GNOME_STOCK_BUTTON_OK, NULL);
+    g_free (str);
+    gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+
+    return;
+  }
+
+  g_free (gtk_object_get_data (GTK_OBJECT (cl), "file_name"));
+  gtk_object_set_data (GTK_OBJECT (cl), "file_name", g_strdup (file));
+    
+  gtk_widget_destroy (fs);
+  gtk_main_quit ();
+}
+
+static void 
+menu_saveas_cb (GtkWidget *widget, gpointer data)
+{  
+  static GtkWidget *fs;
+  GtkWidget *nb;
+  GtkWidget *label;
+  GtkWidget *cl;
+
+  nb = GTK_WIDGET (data)->parent;
+
+  fs = gtk_file_selection_new (_("Save file"));
+  gtk_file_selection_hide_fileop_buttons (GTK_FILE_SELECTION (fs));
+
+  gtk_signal_connect (GTK_OBJECT (fs), "destroy",
+		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+
+  gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (fs)->ok_button),
+	    "clicked", GTK_SIGNAL_FUNC (file_selection_save_as_ok_cb), fs);
+
+  gtk_signal_connect_object (GTK_OBJECT (
+			     GTK_FILE_SELECTION (fs)->cancel_button), 
+			     "clicked", 
+			     GTK_SIGNAL_FUNC (gtk_widget_destroy), 
+			     GTK_OBJECT (fs));
+
+  if (GTK_IS_SCROLLED_WINDOW (data)) {
+    label = gtk_notebook_get_tab_label (GTK_NOTEBOOK (nb), data);
+    gtk_file_selection_set_filename (GTK_FILE_SELECTION (fs), 
+				 EDITABLE_LABEL (label)->text);    
+
+    cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (data));
+  } else 
+    cl = COLOR_SEARCH (data)->cl;
+
+  gtk_object_set_data (GTK_OBJECT (fs), "color_list", cl);
+
+  gtk_window_set_modal (GTK_WINDOW (fs), TRUE);
+  gtk_widget_show (fs);
+
+  gtk_main ();
+  printf ("Ok\n");
+}
+
+/* Revert */
+
+static void 
+menu_revert_cb (GtkWidget *widget, gpointer data)
+{
+  GtkWidget *sw = GTK_WIDGET (data);
+  GtkWidget *nb;
+  GtkWidget *cl_orig;  
+  GtkWidget *cl = NULL;
+  GtkWidget *dialog;
+  GtkWidget *label;
+  char *str;
+  char *filename;
+  int ret;
+  int page;
+
+  cl_orig = scrolled_window_get_child (GTK_SCROLLED_WINDOW (sw));
+  g_assert (cl_orig != NULL);
+  g_assert (IS_COLOR_LIST (cl_orig));
+
+  filename = gtk_object_get_data (GTK_OBJECT (cl_orig), "file_name");
+  g_assert (filename != NULL);
+
+  str = g_strdup_printf (_("Are you sure you wish revert all changes ?\n(%s)"),
+			 filename);
+  
+  dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_QUESTION, 
+				  GNOME_STOCK_BUTTON_YES, 
+				  GNOME_STOCK_BUTTON_NO,
+				  NULL);
+  g_free (str);
+
+  gnome_dialog_set_default (GNOME_DIALOG (dialog), 1);
+  ret = gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+
+  if (ret == 0) {
+    nb = GTK_WIDGET (data)->parent;
+    label = gtk_notebook_get_tab_label (GTK_NOTEBOOK (nb), data);
+
+    if (! (cl = notebook_create_color_list (GTK_NOTEBOOK (nb), 
+	    EDITABLE_LABEL (label)->text, filename, FALSE, TRUE, FALSE))){
+      
+      str = g_strdup_printf (_("Could not read file '%s'"), filename);
+      dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR,
+				      GNOME_STOCK_BUTTON_OK, NULL);
+      g_free (str);
+      gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+    } else {
+      gtk_object_set_data (GTK_OBJECT (cl), "search_in",  
+           gtk_object_get_data (GTK_OBJECT (cl_orig), "search_in"));
+           
+      page = gtk_notebook_page_num (GTK_NOTEBOOK (nb), GTK_WIDGET (data));
+      gtk_notebook_remove_page (GTK_NOTEBOOK (nb), page);
+      gtk_notebook_reorder_child (GTK_NOTEBOOK (nb), cl->parent, page);
+
+      color_list_set_modified (COLOR_LIST (cl), FALSE);
+    }
+  }
+}
+
+/* Notebook : save as search result */
+
+static void
+menu_saveas_search_cb (GtkWidget *widget, gpointer data)
+{
+  printf ("Save as ...\n");
+
+}
+
+/* Notebook : search : toggle */
+
+static void
+menu_popup_select_all (GtkWidget *widget, gpointer data)
+{
+  GnomeUIInfo *info;
+  int i = 0;
+
+  info = gtk_object_get_data (GTK_OBJECT (data), "menu_info");
+
+  while (info[i].type != GNOME_APP_UI_ENDOFINFO) {
+    if (GTK_IS_CHECK_MENU_ITEM (info[i].widget)) 
+      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (info[i].widget),
+				      TRUE);
+
+    i++;
+  }
 }
 
 static void
-clist_select_row_cb (GtkCList *clist, gint row, gint col,
-	             GdkEvent *event, gpointer data)
+menu_popup_select_none (GtkWidget *widget, gpointer data)
 {
-  RGBColor *color;
+  GnomeUIInfo *info;
+  int i = 0;
+
+  info = gtk_object_get_data (GTK_OBJECT (data), "menu_info");
+
+  while (info[i].type != GNOME_APP_UI_ENDOFINFO) {
+    if (GTK_IS_CHECK_MENU_ITEM (info[i].widget)) 
+      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (info[i].widget),
+				      FALSE);
+
+    i++;
+  }
+}
+
+static void
+menu_popup_select_invert (GtkWidget *widget, gpointer data)
+{
+  GnomeUIInfo *info;
+  int i = 0;
+
+  info = gtk_object_get_data (GTK_OBJECT (data), "menu_info");
+
+  while (info[i].type != GNOME_APP_UI_ENDOFINFO) {
+    if (GTK_IS_CHECK_MENU_ITEM (info[i].widget)) 
+      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (info[i].widget),
+		     ! GTK_CHECK_MENU_ITEM (info[i].widget)->active);
+
+    i++;
+  }
+}
+
+static void
+menu_popup_remove (GtkWidget *widget, gpointer data)
+{ 
+  GtkWidget *cl;
+
+  cl = gtk_object_get_data (GTK_OBJECT (data), "popup_clist");
+
+  if (GTK_CLIST (cl)->selection) {
+    color_list_set_modified (COLOR_LIST (cl), TRUE);
+
+    gtk_clist_freeze (GTK_CLIST (cl));
+
+    while (GTK_CLIST (cl)->selection) 
+      gtk_clist_remove (GTK_CLIST (cl), 
+			GPOINTER_TO_INT (GTK_CLIST (cl)->selection->data));
+
+    gtk_clist_thaw (GTK_CLIST (cl));
+  }
+}
+
+static void
+menu_popup_rename_end (gchar *str, gpointer data)
+{
+  ColorListData *col;
+  int row;
+
+  if (!str) return;
+
+  row = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (data), 
+					      "row_clicked"));
+
+  col = gtk_clist_get_row_data (GTK_CLIST (data), row);
+  g_assert (col != NULL);
+
+  g_free (col->name);
+  col->name = str;
+
+  gtk_clist_set_text (GTK_CLIST (data), row, 2, str);
+
+  color_list_set_modified (COLOR_LIST (data), TRUE);
+}
+
+static void
+menu_popup_rename (GtkWidget *widget, gpointer data)
+{
+  ColorListData *col;
+  GtkWidget *dialog;
+  GtkWidget *cl;
+  int row;
+  char *str;
+
+  cl = gtk_object_get_data (GTK_OBJECT (data), "popup_clist");
+  row = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (cl), 
+					      "row_clicked"));
+
+  col = gtk_clist_get_row_data (GTK_CLIST (cl), row);
+  g_assert (col != NULL);
+
+  str = g_strdup_printf (_("Enter new name for '%s'"), col->name);
+
+  dialog = gnome_request_dialog (FALSE, str, col->name, 250,
+				 menu_popup_rename_end, cl, 
+				 NULL);
   
-  if ((!event)||(event && event->type != GDK_2BUTTON_PRESS)) return;
+  g_free (str);
+
+  gnome_dialog_run (GNOME_DIALOG (dialog));
+}
+
+/*************** App ****************/
+
+static gint
+app_delete_event_cb (GtkWidget *widget, GdkEventAny *event, gpointer *data)
+{
+  if (! notebook_save_files (GTK_NOTEBOOK (data)))
+    return TRUE;
+
+  notebook_save_layout (GTK_NOTEBOOK (data));
+
+  return FALSE;
+}
+
+static void
+app_destroy_cb (GtkWidget *widget, gpointer data)
+{
+  gtk_main_quit ();
+}
+
+GtkWidget *
+app_create (GtkWidget *nb)
+{
+  GtkWidget *app;
+  GtkWidget *status;
+
+  app = gnome_app_new ("gcolorsel", _("Gnome Color Browser"));
+
+  gtk_widget_set_usize (app, 320, 360);
+
+  gtk_signal_connect (GTK_OBJECT (app), "delete_event",
+		      GTK_SIGNAL_FUNC (app_delete_event_cb), nb);
+  gtk_signal_connect (GTK_OBJECT (app), "destroy",
+		      GTK_SIGNAL_FUNC (app_destroy_cb), nb);
+
+  gnome_app_create_menus_with_data (GNOME_APP (app), app_menu, nb);
+  gnome_app_create_toolbar_with_data (GNOME_APP (app), app_toolbar, nb);
   
-  color = gtk_clist_get_row_data (GTK_CLIST (clist), row);
-  if (!color) return;
+  status = gnome_appbar_new (TRUE, TRUE, GNOME_PREFERENCES_ALWAYS);
+  
+  gnome_app_set_statusbar (GNOME_APP (app), status);
+
+  return app;
+}
+
+/*************** EditableLabel ****************/
+
+GnomeUIInfo *
+construct_popup (GtkNotebook *nb, int type, GnomeUIInfo *merge, gpointer cb)
+{
+  GnomeUIInfo *info;
+  GtkNotebookPage *page;
+  GtkWidget *cl;  
+  GList *list;
+  int size = 0, i = 0;
+
+  while (merge[size].type != GNOME_APP_UI_ENDOFINFO) size++;
+
+  list = nb->children;
+
+  info = g_new0 (GnomeUIInfo, g_list_length (list) + size);
+  
+  while (list) {
+    page = list->data;
+
+    if (GTK_IS_SCROLLED_WINDOW (page->child)) {
+      cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (page->child));
+      if (IS_COLOR_LIST (cl)) {
+	info[i].type  = type;
+	info[i].label = g_strdup (EDITABLE_LABEL (page->tab_label)->text);
+	info[i].pixmap_type = GNOME_APP_PIXMAP_NONE;
+	info[i].moreinfo = cb;
+	
+	i++;
+      }
+    }
     
-  range_update (GTK_CLIST (clist_found), color->r, color->g, color->b);
-  gtk_notebook_set_page (GTK_NOTEBOOK(notebook), 1);    
-}	         
+    list = list->next;
+  }
 
-static void       
-clist_button_press_cb  (GtkCList *clist, GdkEventButton *event, 
-			GtkWidget *menu)
+  memcpy (&info[i], merge, size * sizeof (GnomeUIInfo));
+
+  return info;
+}
+
+gint
+editable_label_button_press (GtkWidget *widget, GdkEventButton *event, 
+			     GtkWidget *child)
 {
-  GtkCListRow *r;
-  gint row, col;
+  GnomeUIInfo *info;
+  GtkWidget *label;
+  GtkWidget *menu;
+  GtkWidget *cl;
+  GtkNotebookPage *nb_page;
+  GList *list;
+  int i, page;
 
-  g_assert (menu != NULL);
+  page = gtk_notebook_page_num (GTK_NOTEBOOK (child->parent), child);
+  gtk_notebook_set_page (GTK_NOTEBOOK (child->parent), page);
 
-  if (event->button != 3) return;
+  if ((event->type != GDK_BUTTON_PRESS)||(event->button != 3)) return FALSE;
 
-  if (!gtk_clist_get_selection_info (clist, event->x, event->y, &row, &col))
+  label = gtk_notebook_get_tab_label (GTK_NOTEBOOK (child->parent), child);
+  g_assert (label != NULL);
+
+  if ((event->window == widget->window) || IS_EDITABLE_LABEL (label)) {
+
+    if (IS_COLOR_SEARCH (child)) {
+
+      info = construct_popup (GTK_NOTEBOOK (child->parent), 
+			      GNOME_APP_UI_TOGGLEITEM, 
+			      popup_menu_notebook_color_search_in, NULL);      
+
+      popup_menu_notebook_color_search[POPUP_NOTEBOOK_POS].moreinfo = info;
+
+      menu = gnome_popup_menu_new (popup_menu_notebook_color_search);
+
+      /* Set toggle item ... */
+
+      list = GTK_NOTEBOOK (child->parent)->children;
+      i = 0;
+
+      while (list) {
+	nb_page = list->data;
+	if (GTK_IS_SCROLLED_WINDOW (nb_page->child)) {
+	  cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (nb_page->child));
+	  if (IS_COLOR_LIST (cl)) {
+
+	      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (info[i].widget), GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (cl), "search_in")));
+	  
+	    i++;
+	  }
+	}
+
+	list = list->next;
+      }
+
+      gtk_object_set_data (GTK_OBJECT (child), "menu_info", info);
+      gnome_popup_menu_do_popup_modal (menu, NULL, NULL, event, child);
+
+      /* Get toggle item ... */
+
+      list = GTK_NOTEBOOK (child->parent)->children;
+      i = 0;
+
+      while (list) {
+	nb_page = list->data;
+	if (GTK_IS_SCROLLED_WINDOW (nb_page->child)) {
+	  cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (nb_page->child));
+	  if (IS_COLOR_LIST (cl)) {
+
+	      gtk_object_set_data (GTK_OBJECT (cl), "search_in", GINT_TO_POINTER (GTK_CHECK_MENU_ITEM (info[i].widget)->active));
+	  
+	    i++;
+	  }
+	}
+
+	list = list->next;
+      }
+
+      gtk_widget_destroy (menu);
+      g_free (info);
+      
+    } else {
+
+      g_assert (GTK_IS_SCROLLED_WINDOW (child));
+
+      cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (child));
+      g_assert (IS_COLOR_LIST (cl));
+    
+      menu = gnome_popup_menu_new (popup_menu_notebook_color_list);
+      gnome_popup_menu_do_popup (menu, NULL, NULL, event, child);
+    }
+  }
+    
+  return FALSE;
+}
+
+gboolean 
+editable_label_text_changed (EditableLabel *el, const char *newtext)
+{  
+  if (!newtext) return FALSE;
+  while (newtext[0] == ' ') newtext++;
+  
+  return newtext[0];  
+}
+
+/*************** ColorList ****************/
+
+void
+color_list_select_row (GtkWidget *widget, gint row, gint col,
+		       GdkEvent *event, GtkWidget *nb)
+{
+  GtkWidget *cs;
+  ColorListData *color;
+
+  if ((!event)||(event && event->type != GDK_2BUTTON_PRESS))
     return;
 
-  r = g_list_nth (clist->row_list, row)->data;
+  cs = notebook_switch_to_color_search (GTK_NOTEBOOK (nb));
+  if (!cs) return;
+
+  color = gtk_clist_get_row_data (GTK_CLIST (widget), row);
+  if (!color) return;
+
+  cs = notebook_switch_to_color_search (GTK_NOTEBOOK (nb));
+  if (!cs) return;
+
+  color_search_search (COLOR_SEARCH (cs), color->r, color->g, color->b);
+}
+
+void 
+color_list_popup_cb (GtkWidget *widget, gpointer data)
+{  
+  GList *list;
+  ColorListData *col;
+  GnomeUIInfo *info;
+  GtkWidget *cl_source;
+  GtkWidget *cl_dest;
+  GtkWidget *sw;
+  int i = 0, j = 0;
+
+  cl_source = gtk_object_get_data (GTK_OBJECT (data), "popup_clist");
+
+  info = gtk_object_get_data (GTK_OBJECT (data), "menu_info");
+  while (widget != info [i].widget) i++;
+
+  for (j=0; j<=i; j++)
+    if (IS_COLOR_SEARCH (gtk_notebook_get_nth_page (GTK_NOTEBOOK (data), j)))
+	i++;
+
+  sw = gtk_notebook_get_nth_page (GTK_NOTEBOOK (data), i);
+  if (!sw) {
+    /* Create new ... */
+    printf ("To new ...\n");
+    cl_dest = notebook_create_color_list (GTK_NOTEBOOK (data), "Unknown",
+					  NULL, TRUE, FALSE, FALSE);
+  } else
+    cl_dest = scrolled_window_get_child (GTK_SCROLLED_WINDOW (sw));
+
+  gtk_clist_freeze (GTK_CLIST (cl_dest));
+
+  list = GTK_CLIST (cl_source)->selection;
+  while (list) {
+    col = gtk_clist_get_row_data (GTK_CLIST (cl_source), 
+				  GPOINTER_TO_INT (list->data));
+    
+    color_list_append (COLOR_LIST (cl_dest), col->r, col->g, col->b, 
+		       col->num, col->name);
+
+    list = list->next;
+  }
+
+  gtk_clist_thaw (GTK_CLIST (cl_dest));
+  gtk_clist_sort (GTK_CLIST (cl_dest));
+
+  color_list_set_modified (COLOR_LIST (cl_dest), TRUE);
+}
+
+void
+color_list_button_press (GtkWidget *widget, GdkEventButton *event,
+			 gpointer data)
+{
+  GnomeUIInfo *info, *uiinfo;
+  GtkWidget *menu;
+  GtkCListRow *r;
+  int row, col, pos;
+  int result;
+
+  if (event->button != 3) return;
+  if (!gtk_clist_get_selection_info (GTK_CLIST (widget), event->x, 
+				     event->y, &row, &col))
+    return;
+
+  r = g_list_nth (GTK_CLIST (widget)->row_list, row)->data;
   g_assert (r != NULL);
 
   if (r->state != GTK_STATE_SELECTED) {
-    gtk_clist_freeze (clist);
-    gtk_clist_unselect_all (clist);
-    clist->focus_row = row;
-    gtk_clist_select_row (clist, row, col);
-    gtk_clist_thaw (clist);
+    gtk_clist_freeze (GTK_CLIST (widget));
+    gtk_clist_unselect_all (GTK_CLIST (widget));
+    GTK_CLIST (widget)->focus_row = row;
+    gtk_clist_select_row (GTK_CLIST (widget), row, col);
+    gtk_clist_thaw (GTK_CLIST (widget));
+
+    r->state = GTK_STATE_SELECTED;
   }
 
-  gtk_object_set_data (GTK_OBJECT (clist), "row_clicked", 
+  gtk_object_set_data (GTK_OBJECT (widget), "row_clicked", 
 		       GINT_TO_POINTER (row));
 
-  gnome_popup_menu_do_popup_modal (menu, NULL, NULL, event, clist);
+  /* Construct inser to menu ... */
+
+  info = construct_popup (GTK_NOTEBOOK (data), 
+			  GNOME_APP_UI_ITEM, 
+			  popup_menu_color_list_insert, color_list_popup_cb);
+  
+  pos = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (widget), 
+					      "uiinfo_pos"));
+  uiinfo = gtk_object_get_data (GTK_OBJECT (widget), "uiinfo");
+
+  uiinfo[pos].moreinfo = info;
+  
+  menu = gnome_popup_menu_new (uiinfo);
+  
+  gtk_object_set_data (GTK_OBJECT (data), "menu_info", info);
+  gtk_object_set_data (GTK_OBJECT (data), "popup_clist", widget);
+  result = gnome_popup_menu_do_popup_modal (menu, NULL, NULL, 
+					    event, data);
 }
 
-/************************* DRAG AND DROP ****************************/
+/*************** ColorSearch **************/
 
-static void 
-preview_button_press_cb  (GtkWidget *widget, GdkEventButton *event,
-			  GtkWidget *menu)
+void
+color_search_search_update (GtkWidget *widget, gpointer data)
 {
-  if (event->button != 3) return;
+  GList *list;
+  GtkWidget *cl;
+  GtkNotebookPage *page;
 
-  gnome_popup_menu_do_popup_modal (menu, NULL, NULL, event, widget);
-}
+  gtk_clist_freeze (GTK_CLIST (COLOR_SEARCH (widget)->cl));  
+  gtk_clist_clear (GTK_CLIST (COLOR_SEARCH (widget)->cl));
 
-/* From gtk+, gtkcolorsel.c */
-static GtkWidget *
-drag_window_create (gint red, gint green, gint blue)
-{
-  GtkWidget *window;
-  GdkColor bg;
+  list = GTK_NOTEBOOK (data)->children;
 
-  window = gtk_window_new (GTK_WINDOW_POPUP);
-  gtk_widget_set_app_paintable (GTK_WIDGET (window), TRUE);
-  gtk_widget_set_usize (window, 48, 32);
-  gtk_widget_realize (window);
-
-  bg.red = (red / 255.0) * 0xffff;
-  bg.green = (green / 255.0) * 0xffff;
-  bg.blue = (blue / 255.0) * 0xffff;
-
-  gdk_color_alloc (gtk_widget_get_colormap (window), &bg);
-  gdk_window_set_background (window->window, &bg);
-
-  return window;
-}
-
-static void 
-preview_drag_begin_cb (GtkWidget *widget, 
-		       GdkDragContext *context, GtkCList *clist)
-{
-  gint red, green, blue;
-
-  red = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT(widget), "red"));
-  green = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT(widget), "green"));
-  blue = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT(widget), "blue"));
-    
-  gtk_drag_set_icon_widget (context, 
-			    drag_window_create (red, green, blue), -2, -2);
-}
-
-static void 
-preview_drag_data_get_cb (GtkWidget *widget, GdkDragContext *context, 
-			  GtkSelectionData *selection_data, guint info,
-			  guint time, GtkCList *clist)
-{
-  gint red, green, blue;
-  guint16 vals[4];
-
-  red = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT(widget), "red"));
-  green = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT(widget), "green"));
-  blue = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT(widget), "blue"));
-
-  vals[0] = (red / 255.0) * 0xffff;
-  vals[1] = (green / 255.0) * 0xffff;
-  vals[2] = (blue / 255.0) * 0xffff;
-  vals[3] = 0xffff;
-    
-  gtk_selection_data_set (selection_data, 
-			  gdk_atom_intern ("application/x-color", FALSE),
-			  16, (guchar *)vals, 8);
-}	         
-
-static void 
-clist_drag_begin_cb (GtkWidget *widget, 
-		     GdkDragContext *context, GtkCList *clist)
-{
-  RGBColor *color;
-
-  if (GTK_CLIST(widget)->click_cell.row < 0) {
-    gtk_clist_select_row (clist, 0, 0);
-    color = gtk_clist_get_row_data (GTK_CLIST(widget), 0);
-  } else {
-    gtk_clist_select_row (clist, GTK_CLIST(widget)->click_cell.row, 0);
-
-    color = gtk_clist_get_row_data (GTK_CLIST(widget), 
-				  GTK_CLIST(widget)->click_cell.row);
-  }				
-				  
-  gtk_drag_set_icon_widget (context, 
-			    drag_window_create (color->r, color->g, color->b),
-			    -2, -2);
-}
-
-static void 
-clist_drag_data_get_cb (GtkWidget *widget, GdkDragContext *context, 
-			GtkSelectionData *selection_data, guint info,
-			guint time, GtkCList *clist)
-{
-    RGBColor *color;
-    guint16 vals[4];
-
-    color = gtk_clist_get_row_data (GTK_CLIST(widget), clist->click_cell.row);
-    g_assert (color != NULL);
-
-    vals[0] = ((gdouble)color->r / 255.0) * 0xffff;
-    vals[1] = ((gdouble)color->g / 255.0) * 0xffff;
-    vals[2] = ((gdouble)color->b / 255.0) * 0xffff;
-    vals[3] = 0xffff;
-    
-    gtk_selection_data_set (selection_data, 
-    		            gdk_atom_intern ("application/x-color", FALSE),
-    		            16, (guchar *)vals, 8);
-}	         
-
-static void
-window_drop_data_cb (GtkWidget *widget, GdkDragContext *context,
-		    gint x, gint y, GtkSelectionData *data,
-		    guint info, guint32 time, gpointer d)
-{
-  guint16 *vals;
-  RGBColor *new;
-  gint row;
-
-  if ((data->length !=8) || (data->format != 16))
-    return;
-
-  vals = (guint16 *)data->data;
-
-  if (GTK_CHECK_MENU_ITEM (on_drop_menu2[0].widget)->active) {
-    /* Search it */
-
-    range_update (GTK_CLIST(clist_found), 
-		  (int)((vals[0] * 255.0) / 0xffff),
-		  (int)((vals[1] * 255.0) / 0xffff),
-		  (int)((vals[2] * 255.0) / 0xffff));
-    
-    gtk_notebook_set_page (GTK_NOTEBOOK (notebook), 1);
-  } else {
-    /* Add it to favorites */
-
-    new = g_new (RGBColor, 1);
-    strcpy (new->name, _("Dropped"));
-    new->r = (vals[0] * 255.0) / 0xffff;
-    new->g = (vals[1] * 255.0) / 0xffff;
-    new->b = (vals[2] * 255.0) / 0xffff;
-    new->ref = 0;
-
-    row = clist_add_color (GTK_CLIST(clist_favorites), new,
-		     GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT(clist_favorites), "format")));
-
-    gtk_clist_unselect_all (GTK_CLIST(clist_favorites));
-    gtk_clist_select_row (GTK_CLIST(clist_favorites), row, 0);
-    gtk_clist_moveto (GTK_CLIST(clist_favorites), row, 0, 0, 0);
-    gtk_notebook_set_page (GTK_NOTEBOOK (notebook), 2);
+  while (list) {
+    page = list->data;
+    if (GTK_IS_SCROLLED_WINDOW (page->child)) {
+      cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (page->child));
+      if (IS_COLOR_LIST (cl)) {
+	
+	if (GPOINTER_TO_INT(gtk_object_get_data(GTK_OBJECT (cl), "search_in")))
+	  color_search_search_in (COLOR_SEARCH (widget), GTK_CLIST (cl));
+      }
+    }    
+     
+    list = list->next;
   }
+
+  gtk_clist_sort (GTK_CLIST (COLOR_SEARCH (widget)->cl));
+  gtk_clist_thaw (GTK_CLIST (COLOR_SEARCH (widget)->cl));
 }
 
-/******************************** SORT *************************************/
+/*************** NoteBook ****************/
 
-static gint 
-clist_val_compare (GtkCList *clist, GtkCListRow *row1, GtkCListRow *row2)
+char *
+notebook_get_label_text (GtkNotebook *nb, GtkWidget *child)
 {
-  RGBColor *c1 = row1->data, *c2 = row2->data;
-  int t1, t2;
+  GtkWidget *label;
 
-  if (!c2) return (c1 != NULL);
-  if (!c1) return -1;
-
-  t1 = c1->r + c1->g + c1->b;
-  t2 = c2->r + c2->g + c2->b;
-
-  if (t1 < t2) return -1;
-  if (t1 > t2) return 1;
-  
-  return 0;
+  label = gtk_notebook_get_tab_label (GTK_NOTEBOOK (nb), child);
+  return EDITABLE_LABEL (label)->text;
 }
 
-static gint 
-clist_col_compare (GtkCList *clist, GtkCListRow *row1, GtkCListRow *row2)
-{
-  RGBColor *c1 = row1->data, *c2 = row2->data;
-
-  if (!c2) return (c1 != NULL);
-  if (!c1) return -1;
+int
+notebook_search_color_list (GtkNotebook *nb, char *filename)
+{  
+  GList *list_child;
+  GtkNotebookPage *page;
+  GtkWidget *cl;
+  int pos = 0;
+  char *file;
   
-  if (c1->num < c2->num) return -1;
-  if (c1->num > c2->num) return 1;
-  
-  return 0;
-}
+  g_assert (nb != NULL);
+  g_assert (filename != NULL);
 
-static gint 
-clist_str_compare (GtkCList *clist, GtkCListRow *row1, GtkCListRow *row2)
-{
-  RGBColor *c1 = row1->data, *c2 = row2->data;
+  list_child = nb->children;
 
-  if (!c2) return (c1 != NULL);
-  if (!c1) return -1;
-  
-  return g_strcasecmp (c1->name, c2->name);
-}
+  while (list_child) {
+    page = list_child->data;
 
-static gint 
-clist_diff_compare (GtkCList *clist, GtkCListRow *row1, GtkCListRow *row2)
-{
-  RGBColor *c1 = row1->data, *c2 = row2->data;
+    if (GTK_IS_SCROLLED_WINDOW (page->child)) {
+      cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (page->child));
+      g_assert (IS_COLOR_LIST (cl));
 
-  if (!c2) return (c1 != NULL);
-  if (!c1) return -1;
-  
-  if (c1->diff < c2->diff) return -1;
-  if (c1->diff > c2->diff) return 1;
-  
-  return 0;  
-}
-
-static void
-clist_set_sort_column (GtkCList *clist, gint column)
-{
-  g_assert (clist != NULL);
-
-  switch (column) {
-  case 0:
-    gtk_clist_set_compare_func (clist,(GtkCListCompareFunc)clist_col_compare);
-    break;
-  case 1:
-    gtk_clist_set_compare_func (clist,(GtkCListCompareFunc)clist_val_compare);
-    break;
-  case 2:    
-    gtk_clist_set_compare_func (clist,(GtkCListCompareFunc)clist_str_compare);
-    break;
-  case 3:
-    gtk_clist_set_compare_func (clist,(GtkCListCompareFunc)clist_diff_compare);
-    break;
-  default:
-    g_assert_not_reached ();
- }
-    
- gtk_clist_set_sort_column (clist, column);
- gtk_clist_sort (clist);
-}
-
-static void 
-clist_click_column_cb (GtkCList *clist, gint column)
-{
-  GtkWidget *arrow;
-  gchar *key;
-  gint cur_col;
-
-  g_assert (clist != NULL);
-
-  cur_col = clist->sort_column;
-
-  key = g_strdup_printf ("arrow_%d", cur_col);
-  arrow = gtk_object_get_data (GTK_OBJECT (clist), key);
-  g_assert (arrow != NULL);
-  g_free (key);
-
-  if (cur_col == column) {
-    if (clist->sort_type == GTK_SORT_ASCENDING) {
-      gtk_clist_set_sort_type (clist, GTK_SORT_DESCENDING);
-      gtk_arrow_set (GTK_ARROW(arrow), GTK_ARROW_UP, GTK_SHADOW_OUT);
-    } else {
-      gtk_clist_set_sort_type (clist, GTK_SORT_ASCENDING);
-      gtk_arrow_set (GTK_ARROW(arrow), GTK_ARROW_DOWN, GTK_SHADOW_IN);
+      file = gtk_object_get_data (GTK_OBJECT (cl), "file_name");
+      
+      if ((file) && (! strcmp (file, filename)))
+	return pos;
     }
 
-  } else {
-
-    gtk_widget_hide (arrow);
-
-    key = g_strdup_printf ("arrow_%d", column);
-    arrow = gtk_object_get_data (GTK_OBJECT (clist), key);
-    g_assert (arrow != NULL);
-    g_free (key);
-    
-    gtk_arrow_set (GTK_ARROW(arrow), GTK_ARROW_DOWN, GTK_SHADOW_IN);
-    gtk_widget_show (arrow);
-    
-    clist_set_sort_column (clist, column);
-    gtk_clist_set_sort_type (clist, GTK_SORT_ASCENDING);
+    pos++; list_child = list_child->next;
   }
 
-  gtk_clist_sort (clist);
+  return -1;
 }
 
-/***************************** FIND COLOR *****************************/
-
-static int 
-color_get_diff (RGBColor *color, int red, int green, int blue)
+GtkWidget *
+notebook_switch_to_color_search (GtkNotebook *nb)
 {
-  g_assert (color != NULL);
+  GList *list_child;
+  GtkNotebookPage *page;
+  int page_num;
 
-  return abs (color->r - red) + abs (color->g - green) 
-                              + abs (color->b - blue);                      
-}                 
+  list_child = nb->children;
 
-static void 
-clist_find_color (GtkCList *source, GtkCList *dest,
-		  gint red, gint green, gint blue, gint tolerance)
-{
-  RGBColor *color;
-  int diff;
-  FormatType type;
-  GList *row_list;
-  GtkCListRow *row;
-
-  g_assert (source != NULL);
-  g_assert (dest != NULL);
-
-  gtk_clist_freeze (dest);
-  gtk_clist_set_auto_sort (GTK_CLIST(dest), FALSE);
-
-  type = GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (source), "format"));
-
-  row_list = source->row_list;
-
-  while (row_list) {
-    row = row_list->data;
-    g_assert (row != NULL);
-
-    color = row->data; 
-    g_assert (color != NULL);
-
-    diff = color_get_diff (color, red, green, blue);
-
-    if (((float)diff / (255.0 * 3.0)) * 100.0  <= (float)tolerance) {
-	color->diff = diff;
-	clist_add_color (dest, color, type);
-    }    
-
-    row_list = row_list->next;
+  while (list_child) {
+    page = list_child->data;
+    if (IS_COLOR_SEARCH (page->child)) break;
+    list_child = list_child->next;
   }
 
-  gtk_clist_set_auto_sort (GTK_CLIST(dest), TRUE);
-  gtk_clist_thaw (dest);
+  if (!list_child) return NULL;
+
+  page_num = gtk_notebook_page_num (GTK_NOTEBOOK (nb), page->child);
+  if (page_num == -1) return NULL;
+  gtk_notebook_set_page (GTK_NOTEBOOK (nb), page_num);
+
+  return page->child;
 }
 
-static void
-clist_get_range (GtkCList *clist, GtkRange **range_red, GtkRange **range_green,
-		 GtkRange **range_blue, GtkRange **range_tolerance)
+GtkWidget *
+notebook_create_color_list (GtkNotebook *nb, char *page_label, 
+			    char *filename, gboolean search_in, 
+			    gboolean switch_to, gboolean check_opened)
 {
-  g_assert (clist != NULL);
+  GtkWidget *cl;
+  GtkWidget *sw;
+  int page_num;
+  GtkWidget *label;
+  GtkWidget *dialog;
+  int result;
+  char *str;
 
-  if (range_red)
-    *range_red = GTK_RANGE (gtk_object_get_data(GTK_OBJECT(clist), "range_red"));
+  if ((check_opened)&&(filename)) { 
+    page_num = notebook_search_color_list (nb, filename);
+    if (page_num >= 0) {
+      if (switch_to) 
+	gtk_notebook_set_page (nb, page_num);
 
-  if (range_blue)
-    *range_blue = GTK_RANGE (gtk_object_get_data(GTK_OBJECT(clist), "range_blue"));
+      str = g_strdup_printf ("'%s' is already opened", filename);
+      dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_WARNING,
+				      GNOME_STOCK_BUTTON_OK, NULL);
+      g_free (str);
+      gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
 
-  if (range_green)
-    *range_green = GTK_RANGE (gtk_object_get_data(GTK_OBJECT(clist), "range_green"));
+      sw = gtk_notebook_get_nth_page (nb, page_num);
+      cl = scrolled_window_get_child (GTK_SCROLLED_WINDOW (sw));
 
-  if (range_tolerance)
-    *range_tolerance = GTK_RANGE (gtk_object_get_data(GTK_OBJECT(clist), "range_tolerance"));
-}
-
-static void
-clist_get_adjustment (GtkCList *clist, GtkAdjustment **adj_red, 
-		      GtkAdjustment **adj_green, GtkAdjustment **adj_blue,
-		      GtkAdjustment **adj_tolerance)
-{
-  g_assert (clist != NULL);
-
-  if (adj_red) {
-    *adj_red = gtk_range_get_adjustment (GTK_RANGE (gtk_object_get_data(GTK_OBJECT(clist), "range_red")));
-    g_assert (*adj_red != NULL);
+      return cl;
+    }      
   }
 
-  if (adj_green) {
-    *adj_green = gtk_range_get_adjustment (GTK_RANGE (gtk_object_get_data(GTK_OBJECT(clist), "range_green")));
-    g_assert (*adj_green != NULL);
-  }
+  cl = color_list_new ();
 
-  if (adj_blue) {
-    *adj_blue = gtk_range_get_adjustment (GTK_RANGE (gtk_object_get_data(GTK_OBJECT(clist), "range_blue")));
-    g_assert (*adj_blue != NULL);
-  }
+  gtk_object_set_data (GTK_OBJECT (cl), "uiinfo_pos",
+		       GINT_TO_POINTER (POPUP_COLOR_LIST_POS));
+  gtk_object_set_data (GTK_OBJECT (cl), "uiinfo", popup_menu_color_list);
 
-  if (adj_tolerance) {
-    *adj_tolerance = gtk_range_get_adjustment (GTK_RANGE (gtk_object_get_data(GTK_OBJECT(clist), "range_tolerance")));
-    g_assert (*adj_tolerance != NULL);
-  }
-}
+  gtk_signal_connect (GTK_OBJECT (cl), "button_press_event",
+		      GTK_SIGNAL_FUNC (color_list_button_press), nb);
+  gtk_signal_connect (GTK_OBJECT (cl), "select_row",
+		      GTK_SIGNAL_FUNC (color_list_select_row), nb);
 
-static void 
-preview_update (GtkCList *clist)
-{
-  GtkAdjustment *adj_red, *adj_blue, *adj_green;
-  GtkWidget *preview;
+  sw = gtk_scrolled_window_new (NULL, NULL);  
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+				  GTK_POLICY_AUTOMATIC,
+				  GTK_POLICY_AUTOMATIC);
+  gtk_container_add (GTK_CONTAINER (sw), cl);
 
-  guchar *buf;
-  gint x, y;
+  label = editable_label_new (page_label);
+  gtk_signal_connect (GTK_OBJECT (label), "button_press_event", 
+                      GTK_SIGNAL_FUNC (editable_label_button_press), sw);
+  gtk_signal_connect (GTK_OBJECT (label), "text_changed",
+                      GTK_SIGNAL_FUNC (editable_label_text_changed), sw); 
+  	              
+  gtk_notebook_append_page (GTK_NOTEBOOK (nb), sw, label);
 
-  g_assert (clist != NULL);
-
-  clist_get_adjustment (clist, &adj_red, &adj_green, &adj_blue, NULL);
-
-  preview = gtk_object_get_data (GTK_OBJECT (clist), "preview");
-  g_assert (preview != NULL);
-
-  gtk_object_set_data (GTK_OBJECT (preview), "red", 
-		       GINT_TO_POINTER((int)adj_red->value));
-  gtk_object_set_data (GTK_OBJECT (preview), "green", 
-		       GINT_TO_POINTER ((int)adj_green->value));
-  gtk_object_set_data (GTK_OBJECT (preview), "blue", 
-		       GINT_TO_POINTER ((int)adj_blue->value));
-    
-  buf = g_new (guchar, 3 * preview->allocation.width);
+  if (filename) {
   
-  for (x = 0; x < preview->allocation.width; x++) {
-    buf [x * 3] = adj_red->value;
-    buf [x * 3 + 1] = adj_green->value;
-    buf [x * 3 + 2] = adj_blue->value;
+    gtk_widget_realize (cl);
+    result = color_list_load (COLOR_LIST (cl), filename, GNOME_APP (app));
+
+    if (result) {
+      str = g_strdup_printf (_("'%s' is not a palette file !"), filename);
+      dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR,
+				      GNOME_STOCK_BUTTON_OK, NULL);
+      
+      gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+      
+      g_free (str);
+      
+      gtk_notebook_remove_page (GTK_NOTEBOOK (nb), -1);
+      
+      return NULL;
+    }
   }
 
-  for (y=0; y<preview->allocation.height; y++)
-     gtk_preview_draw_row (GTK_PREVIEW (preview), 
-			   buf, 0, y, preview->allocation.width);;
-     
-  gtk_widget_draw (preview, NULL);
-
-  g_free (buf);    
-}
-
-static void 
-range_update (GtkCList *clist, int red, int green, int blue)
-{
-  GtkAdjustment *adj_red, *adj_green, *adj_blue;
-
-  g_assert (clist != NULL);
-
-  clist_get_adjustment (clist, &adj_red, &adj_green, &adj_blue, NULL);
-
-  /* Do not update clist_found now ... */
-
-  gtk_object_set_data (GTK_OBJECT (clist_found), "do_update", NULL);
-
-  gtk_adjustment_set_value(adj_red, red);
-  gtk_adjustment_set_value(adj_green, green);
-  gtk_adjustment_set_value(adj_blue, blue);
-
-  /* Now, we can */
+  gtk_object_set_data (GTK_OBJECT (cl), "search_in", 
+		       GINT_TO_POINTER ((search_in)));   
+  gtk_object_set_data (GTK_OBJECT (cl), "file_name", g_strdup (filename));
   
-  gtk_adjustment_value_changed (adj_red);
+  gtk_clist_columns_autosize (GTK_CLIST (cl));
 
-  gtk_object_set_data (GTK_OBJECT (clist_found), "do_update", 
-                       GINT_TO_POINTER (TRUE));
-                       
-  gtk_adjustment_value_changed (adj_red);
+  gtk_widget_show_all (sw);
+  
+  if (switch_to) 
+    gtk_notebook_set_page (GTK_NOTEBOOK (nb), 
+			   gtk_notebook_page_num (GTK_NOTEBOOK (nb), sw)); 
 
-  gtk_adjustment_set_value(adj_blue, blue);
+  return cl;
 }
 
-static void 
-range_value_changed_cb (GtkWidget *widget, gpointer data)
+GtkWidget *
+notebook_create_color_search (GtkNotebook *nb, char *page)
 {
-  GtkAdjustment *adj_red, *adj_green, *adj_blue, *adj_tolerance;
+  GtkWidget *cs;
+  GtkWidget *label;
 
-  if (! gtk_object_get_data (GTK_OBJECT (clist_found), "do_update"))
+  cs = color_search_new ();
+  gtk_signal_connect (GTK_OBJECT (cs), "search_update",
+		      GTK_SIGNAL_FUNC (color_search_search_update), nb);
+
+  gtk_object_set_data (GTK_OBJECT (COLOR_SEARCH (cs)->cl), "uiinfo_pos",
+		       GINT_TO_POINTER (POPUP_COLOR_LIST_POS));
+  gtk_object_set_data (GTK_OBJECT (COLOR_SEARCH (cs)->cl), 
+		       "uiinfo", popup_menu_color_search);
+
+  gtk_signal_connect (GTK_OBJECT (COLOR_SEARCH (cs)->cl), "button_press_event",
+		      GTK_SIGNAL_FUNC (color_list_button_press), nb);
+  gtk_signal_connect (GTK_OBJECT (COLOR_SEARCH (cs)->cl), "select_row",
+		      GTK_SIGNAL_FUNC (color_list_select_row), nb);
+
+  label = editable_label_new (page);
+  gtk_signal_connect (GTK_OBJECT (label), "button_press_event", 
+                      GTK_SIGNAL_FUNC (editable_label_button_press), cs);
+  gtk_signal_connect (GTK_OBJECT (label), "text_changed",
+                      GTK_SIGNAL_FUNC (editable_label_text_changed), cs); 
+
+  gtk_notebook_append_page (GTK_NOTEBOOK (nb), cs, label);
+
+  gtk_widget_show_all (cs);
+
+  return cs;
+}
+
+void  
+notebook_save_layout (GtkNotebook *nb)
+{
+  GtkWidget *widget;
+  GtkWidget *editable;
+  GList *list_child;
+  GtkNotebookPage *page;
+  int i = 0;
+  char *str;
+  char *filename;
+
+  list_child = nb->children;
+
+  if (list_child)
+    gnome_config_set_int ("/gcolorsel/Prefs/ActivePage", 
+		      	  gtk_notebook_get_current_page (GTK_NOTEBOOK (nb)));
+
+  while (list_child) {
+    str = g_strdup_printf ("/gcolorsel/Page_%d/", i);
+    gnome_config_push_prefix (str);
+    g_free (str);
+
+    page = list_child->data;
+    editable = page->tab_label;
+    g_assert (editable != NULL);
+
+    if (IS_COLOR_SEARCH (page->child)) {
+      gnome_config_set_int ("Type", CONFIG_TYPE_COLOR_SEARCH);
+      gnome_config_set_string ("Name", EDITABLE_LABEL (editable)->text);
+    
+      i++;
+    } else {
+
+      widget = scrolled_window_get_child (GTK_SCROLLED_WINDOW (page->child));
+      g_assert (IS_COLOR_LIST (widget));
+      
+      filename = gtk_object_get_data (GTK_OBJECT (widget), "file_name");
+
+      if (filename) {
+	gnome_config_set_int ("Type", CONFIG_TYPE_COLOR_LIST);
+	gnome_config_set_string ("File", filename);
+	gnome_config_set_string ("Name", EDITABLE_LABEL (editable)->text);
+	
+	gnome_config_set_bool ("SearchIn", 
+         	GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (widget), 
+						      "search_in")));
+    
+	i++;
+      }
+    }
+
+    gnome_config_pop_prefix ();
+ 
+    list_child = list_child->next; 
+  }  
+
+  gnome_config_set_int ("/gcolorsel/Prefs/NbPage", i);
+  
+  gnome_config_sync ();
+}
+
+/* Return False if user choose to cancel exit/close process ...  */
+gboolean 
+notebook_save_one_file (GtkNotebook *nb, ColorList *cl)
+{
+  GtkWidget *dialog;
+  char *filename;
+  char *str;
+  int ret;
+  
+  g_assert (nb != NULL);
+  g_assert (cl != NULL);
+  
+  if (! cl->modified) return TRUE;
+  
+  filename = gtk_object_get_data (GTK_OBJECT (cl), "file_name");
+
+  if (!filename) 
+    filename = notebook_get_label_text (nb, GTK_WIDGET (cl)->parent);
+
+    str = g_strdup_printf (_("'%s' has been modified. Do you wish to save it ?"), filename);
+	
+  dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_QUESTION,
+		   		       GNOME_STOCK_BUTTON_YES,
+				       GNOME_STOCK_BUTTON_NO,
+			               GNOME_STOCK_BUTTON_CANCEL,
+				       NULL);
+  g_free (str);
+  gnome_dialog_set_default (GNOME_DIALOG (dialog), 2);
+	
+  ret = gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+  if (ret == 2) return FALSE;
+
+  if (ret == 0) {
+    if (! gtk_object_get_data (GTK_OBJECT (cl), "file_name")) 
+      /* Quick hack ... */
+      menu_saveas_cb (NULL, GTK_WIDGET (cl)->parent);
+    else
+
+     if (color_list_save (cl, filename, GNOME_APP (app))) {
+       str = g_strdup_printf (_("Could not save to file '%s'"), filename);
+       
+       dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR, 
+					    GNOME_STOCK_BUTTON_OK, 
+					    GNOME_STOCK_BUTTON_CANCEL,
+					    NULL);	    
+       g_free (str);
+       gnome_dialog_set_default (GNOME_DIALOG (dialog), 1);
+	    
+       ret = gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+       if (ret == 1) return FALSE;
+     }
+  } else
+    color_list_set_modified (cl, FALSE);  
+    
+  return TRUE;
+}
+
+/* Return False if user choose to cancel exit process ... */
+gboolean
+notebook_save_files (GtkNotebook *nb)
+{
+  GtkWidget *widget;
+  GList *list_child;
+  GtkNotebookPage *page;
+  int ret;
+
+  list_child = nb->children;
+
+  while (list_child) {
+    page = list_child->data;
+
+    if (GTK_IS_SCROLLED_WINDOW (page->child)) {
+
+      widget = scrolled_window_get_child (GTK_SCROLLED_WINDOW (page->child));
+      g_assert (IS_COLOR_LIST (widget));
+
+      ret = notebook_save_one_file (nb, COLOR_LIST (widget));
+      if (!ret) return FALSE;
+    }
+
+    list_child = list_child->next; 
+  }  
+
+  return TRUE;
+}
+
+void
+notebook_load_layout (GtkNotebook *nb)
+{
+  int n, i;
+  char *str, *file, *name;
+  gboolean search_in;
+
+  n = gnome_config_get_int ("/gcolorsel/Prefs/NbPage=0");
+
+  for (i=0; i < n; i++) {
+    str = g_strdup_printf ("/gcolorsel/Page_%d/", i);
+    gnome_config_push_prefix (str);
+    g_free (str);
+
+    name = gnome_config_get_string ("Name");
+
+    switch (gnome_config_get_int ("Type")) {
+    case CONFIG_TYPE_COLOR_LIST:
+      file = gnome_config_get_string ("File");
+      search_in = gnome_config_get_bool ("SearchIn");
+      
+      if (file) {
+	if (g_file_test (file, G_FILE_TEST_ISFILE)) {
+	  if ((name)&&(!name[0])) {
+	    g_free (name);
+	    name = NULL;
+	  }
+	  if (!name) name = g_strdup (g_basename (file));
+	  notebook_create_color_list (nb, name, file, search_in, FALSE, TRUE);
+        }	
+	g_free (file);
+      }
+      
+      if (name) g_free (name);
+      
+      break;
+
+    case CONFIG_TYPE_COLOR_SEARCH:
+      notebook_create_color_search (nb, name);
+      break;
+    }
+      
+    gnome_config_pop_prefix ();
+  }  
+
+  if (n) 
+    gtk_notebook_set_page (nb, 
+	     gnome_config_get_int ("/gcolorsel/Prefs/ActivePage=0"));
+}
+
+/*************** Config ****************/
+
+void
+create_config (void)
+{ 
+  int i = 0, j = 0;
+  FILE *fp;
+  char *str;
+  char *path;
+
+  if (gnome_config_get_int ("/gcolorsel/Prefs/NbPage=-1") != -1) 
     return;
 
-  clist_get_adjustment (GTK_CLIST (clist_found),
-			&adj_red, &adj_green, &adj_blue, &adj_tolerance);
+  /* 1. Search rgb.txt */
 
-  preview_update (GTK_CLIST (clist_found));
+  while (path_rgb_txt[i]) {
+    if (g_file_test (path_rgb_txt[i], G_FILE_TEST_ISFILE)) {
+      str = g_strdup_printf ("/gcolorsel/Page_%d/", j);
+      gnome_config_push_prefix (str);
+      g_free (str);
+      gnome_config_set_int ("Type", CONFIG_TYPE_COLOR_LIST);
+      gnome_config_set_string ("File", path_rgb_txt[i]);
+      gnome_config_set_string ("Name", _("System"));
+      gnome_config_set_bool ("SearchIn", TRUE);
+      gnome_config_pop_prefix ();
 
-  gtk_clist_clear (GTK_CLIST (clist_found));
+      j++;
 
-  if (GTK_CHECK_MENU_ITEM (search_in_menu[0].widget)->active) {
-    clist_find_color (GTK_CLIST (clist), GTK_CLIST (clist_found), 
-		      adj_red->value, adj_green->value, 
-		      adj_blue->value, adj_tolerance->value);
+      break;
+    }
+    i++;
   }
 
-  if (GTK_CHECK_MENU_ITEM (search_in_menu[1].widget)->active) {
-    clist_find_color (GTK_CLIST (clist_favorites), GTK_CLIST (clist_found), 
-		      adj_red->value, adj_green->value, 
-		      adj_blue->value, adj_tolerance->value);
-  }
+  /* 2. Create Search page */  
 
-  gtk_clist_sort (GTK_CLIST (clist_found));
+  str = g_strdup_printf ("/gcolorsel/Page_%d/", j);
+  gnome_config_push_prefix (str);
+  g_free (str);
+  gnome_config_set_int ("Type", CONFIG_TYPE_COLOR_SEARCH);
+  gnome_config_set_string ("Name", _("Search"));
+  gnome_config_pop_prefix ();
+
+  j++;
+
+  /* 3. Create favorites */
+
+  path = gnome_util_prepend_user_home (PATH_FAVORITES);
+  fp = fopen (path, "a");
+  if (fp) {
+    fclose (fp);
+  
+    str = g_strdup_printf ("/gcolorsel/Page_%d/", j);
+    gnome_config_push_prefix (str);
+    g_free (str);
+    gnome_config_set_int ("Type", CONFIG_TYPE_COLOR_LIST);
+    gnome_config_set_string ("File", path);
+    gnome_config_set_string ("Name", _("Favorites"));
+    gnome_config_set_bool ("SearchIn", FALSE);
+    gnome_config_pop_prefix ();
+
+    j++;
+  } /* TODO : show message ? */
+
+  g_free (path);
+
+  gnome_config_set_int ("/gcolorsel/Prefs/NbPage", j);
+  gnome_config_set_int ("/gcolorsel/Prefs/ActivePage", 0);
+  gnome_config_sync ();
+}
+
+int main (int argc, char *argv[])
+{
+  GtkWidget *nb;
+
+  gnome_init("gcolorsel", "", argc, argv);
+
+  nb = gtk_notebook_new ();
+  gtk_notebook_set_scrollable (GTK_NOTEBOOK (nb), TRUE);
+
+  app = app_create (nb);
+
+  gtk_notebook_set_tab_border (GTK_NOTEBOOK (nb), 0);
+  gnome_app_set_contents (GNOME_APP (app), nb);
+
+  gtk_widget_realize (app);
+  gtk_widget_show_all (app);
+  while (gtk_events_pending ()) gtk_main_iteration ();
+
+  create_config ();
+  notebook_load_layout (GTK_NOTEBOOK (nb));
+
+
+  gtk_main ();
+    
+  return EXIT_SUCCESS;
 }
