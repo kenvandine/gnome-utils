@@ -707,6 +707,7 @@ main (int argc, char **argv)
     sync ();
   
   build_app_window ();
+  update_stats (NULL);
   udp_timer = gtk_timeout_add (1000, update_stats, NULL);
   gtk_main ();
   
