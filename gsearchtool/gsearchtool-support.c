@@ -399,10 +399,27 @@ gsearchtool_gconf_get_string (const gchar *key)
 gboolean 
 is_path_hidden (const gchar *path)
 {
-	gint results;
+	gint results = FALSE;
+	gchar *sub_str;
 	gchar *hidden_path_substr = g_strconcat (G_DIR_SEPARATOR_S, ".", NULL);
 	
-	results = (g_strstr_len (path, strlen (path), hidden_path_substr) != NULL);
+	sub_str = g_strstr_len (path, strlen (path), hidden_path_substr);
+
+	if (sub_str != NULL) {
+		gchar *gnome_desktop_str = g_strconcat (G_DIR_SEPARATOR_S, ".gnome-desktop", G_DIR_SEPARATOR_S, NULL);
+
+		/* exclude the .gnome-desktop folder */
+		if (strncmp (sub_str, gnome_desktop_str, strlen (gnome_desktop_str)) == 0) {
+			sub_str++;
+			results = (g_strstr_len (sub_str, strlen (sub_str), hidden_path_substr) != NULL);
+		}
+		else {
+			results = TRUE;
+		}
+		
+		g_free (gnome_desktop_str);
+	}
+
 	g_free (hidden_path_substr);
 	return results;
 }
