@@ -1,3 +1,12 @@
+2003-06-07  Jason Long  <jlong@messiah.edu>
+
+	* logview/logrtns.c (OpenLogFile): create a hash table
+	when log is opened to store paths to date headers
+	* logview/log_repaint.c (DrawLogLines): when a new day
+	is discovered, add an entry to the hash table
+	* logview/calendar.c (calendar_day_selected): use hash
+	table to lookup path to the relevant log entry. Fixes #99676
+
 2003-10-18  Glynn Foster  <glynn.foster@sun.com>
 
 	* gnome-system-log-descript.db: Fix for #124345 from 

@@ -503,6 +503,12 @@ DrawLogLines (Log *current_log)
                PROCESS, FALSE, MESSAGE, FALSE, -1);
            cm = line->month;
            cd = line->date;
+
+           /* store pointer to this date header, using the current
+            * month and day as the key */
+           g_hash_table_insert (current_log->date_headers,
+                        DATEHASH (cm, cd),
+                        gtk_tree_model_get_path (tree_model, &iter));
        }
        if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
 	       struct tm date = {0};

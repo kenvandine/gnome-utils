@@ -82,7 +82,7 @@ extern GdkGC *gc;
 extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 extern char *month[12];
-extern GtkWidget *main_win_scrollbar;
+extern GtkWidget *view;
 extern GnomeUIInfo view_menu[];
 GtkWidget *CalendarDialog = NULL;
 GtkWidget *CalendarWidget;
@@ -268,41 +268,18 @@ calendar_month_changed (GtkWidget *widget, gpointer unused_data)
 void
 calendar_day_selected (GtkWidget *widget, gpointer unused_data)
 {
-#ifdef FIXME
-  /* need to update the calander days with with the ones in logfile */
-
-  GtkCalendar *calendar;
-  CalendarData *data;
+  /* find the selected day in the current logfile */
   gint day, month, year;
+  GtkTreePath *path;
 
-  calendar = GTK_CALENDAR (CalendarWidget);
-  gtk_calendar_get_date (calendar, &year, &month, &day);
-  /* This is Y2K compatible but internally we keep track of years
-     starting from 1900. This is because of Unix and not because 
-     I like it!! */
-  year -= 1900;
-  g_return_if_fail (calendar);
+  gtk_calendar_get_date (GTK_CALENDAR (CalendarWidget), &year, &month, &day);
 
-  data = curlog->caldata;
-  g_return_if_fail (data);
-  
-  /* TODO This is an ugly HACK until I add this function into
-     the widget!!!!!!
-  */
-  /* Dates go from 0-30 in this array!!! I really need to
-     add the function gtk_calendar_day_marked (day) */
-  if (calendar->marked_date[day-1])
+  path = g_hash_table_lookup (curlog->date_headers,
+                DATEHASH (month, day));
+  if (path != NULL)
     {
-      curlog->curmark = get_mark_from_date (data, day, month, year);
-      MoveToMark (curlog);
-      curlog->firstline = 0;
-      curlog->ln = curlog->curmark->ln;
-      gtk_adjustment_set_value ( GTK_RANGE(main_win_scrollbar)->adjustment,
-				 curlog->ln);
-      /* set_scrollbar_size (curlog->lstats.numlines); */
-      log_repaint(NULL, NULL);
+      gtk_tree_view_set_cursor (view, path, NULL, FALSE);
     }
-#endif  
 }
 
 /* ----------------------------------------------------------------------

@@ -60,6 +60,10 @@
 
 #define APP_NAME                 _("System Log Viewer")
 
+/* the following is a simple hashing function that will convert a
+ * given date into an integer value that can be used as a key for
+ * the date_headers hash table */
+#define DATEHASH(month, day)     GUINT_TO_POINTER (month * 31 + day)
 
 /*
  *    ,----------.
@@ -179,6 +183,7 @@ typedef struct
   gboolean first_time;
   GtkTreePath *current_path;
   GtkTreePath *expand_paths[32];
+  GHashTable *date_headers; /* stores paths to date headers */
 
   /* Monitor info */
   GtkWidget *mon_lines;
