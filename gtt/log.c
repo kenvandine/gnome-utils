@@ -28,7 +28,7 @@
 static int log_write(time_t t, char *s)
 {
 	FILE *f;
-	char date[20];
+	char date[256];
 	char *filename;
 
 	if (!config_logfile_name) return 1;
@@ -42,9 +42,14 @@ static int log_write(time_t t, char *s)
 	} else {
 		f = fopen(config_logfile_name, "at");
 	}
-	g_return_val_if_fail(f != NULL, 0);
+	if (f == NULL) {
+		g_warning (_("Cannot open logfile %s for append"),
+			   config_logfile_name);
+		return 0;
+	}
 	if (t == -1) t = time(NULL);
-	strftime(date, 20, "%b %d %H:%M:%S", localtime(&t));
+	if (strftime(date, sizeof (date), "%b %d %H:%M:%S", localtime(&t)) <= 0)
+		strcpy (date, "???");
 	fprintf(f, "%s %s\n", date, s);
 	fclose(f);
 	return 1;
@@ -82,34 +87,40 @@ build_log_entry(char *format, project *proj)
 							_("no description"));
 				break;
 			case 'T':
-				sprintf(tmp, "%d:%02d:%02d", proj->secs / 3600,
-					(proj->secs / 60) % 60,
-					proj->secs % 60);
+				g_snprintf(tmp, sizeof (tmp),
+					   "%d:%02d:%02d", proj->secs / 3600,
+					   (proj->secs / 60) % 60,
+					   proj->secs % 60);
 				g_string_append(str, tmp);
 				break;
 			case 'm':
-				sprintf(tmp, "%d", proj->day_secs / 60);
+				g_snprintf(tmp, sizeof (tmp),
+					   "%d", proj->day_secs / 60);
 				g_string_append(str, tmp);
 				break;
 			case 'M':
-				sprintf(tmp, "%02d",
-					(proj->day_secs / 60) % 60);
+				g_snprintf(tmp, sizeof (tmp), "%02d",
+					   (proj->day_secs / 60) % 60);
 				g_string_append(str, tmp);
 				break;
 			case 's':
-				sprintf(tmp, "%d", proj->day_secs);
+				g_snprintf(tmp, sizeof (tmp),
+					   "%d", proj->day_secs);
 				g_string_append(str, tmp);
 				break;
 			case 'S':
-				sprintf(tmp, "%02d", proj->day_secs % 60);
+				g_snprintf(tmp, sizeof (tmp),
+					   "%02d", proj->day_secs % 60);
 				g_string_append(str, tmp);
 				break;
 			case 'h':
-				sprintf(tmp, "%d", proj->day_secs / 3600);
+				g_snprintf(tmp, sizeof (tmp),
+					   "%d", proj->day_secs / 3600);
 				g_string_append(str, tmp);
 				break;
 			case 'H':
-				sprintf(tmp, "%02d", proj->day_secs / 3600);
+				g_snprintf(tmp, sizeof (tmp),
+					   "%02d", proj->day_secs / 3600);
 				g_string_append(str, tmp);
 				break;
 			default:

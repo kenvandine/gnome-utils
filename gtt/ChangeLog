@@ -1,3 +1,15 @@
+Wed Jun 13 21:49:51 2001  George Lebl <jirka@5z.com>
+
+	* app.c, dialog.c, gtt.h, log.c, main.c, options.c, proj.c, prop.c,
+	  toolbar.c: Whack all uses of sprintf, fix fork to use double fork,
+	  try to use dynamic rather then static buffers to avoid overruns,
+	  when there is a pid file try seeing if the process exists first
+	  before warning to figure out if the pid file might be stale, whack
+	  the pid file on SIGINT and SIGTERM
+
+	* menucmd.c: make focus be on the name entry and enter makes focus
+	  move to the next entry rather then close the dialog
+
 2001-06-03 Manuel de Vega Barreiro <mbarreiro@red.madritel.es>
 
 	* gtt.sgml Spanish Translation

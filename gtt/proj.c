@@ -41,7 +41,7 @@ project *project_new(void)
 {
 	project *proj;
 	
-	proj = g_malloc(sizeof(project));
+	proj = g_new0(project, 1);
 	proj->title = NULL;
 	proj->desc = NULL;
 	proj->secs = proj->day_secs = 0;
@@ -56,10 +56,8 @@ project *project_new_title_desc(char *t, char *d)
 
 	proj = project_new();
 	if (!t || !d) return proj;
-	proj->title = g_malloc(strlen(t) + 1);
-	strcpy(proj->title, t);
-        proj->desc = g_malloc(strlen(d) + 1);
-        strcpy(proj->desc, d);
+	proj->title = g_strdup (t);
+        proj->desc = g_strdup (d);
 	return proj;
 }
 
@@ -90,8 +88,10 @@ void project_destroy(project *proj)
 {
 	if (!proj) return;
 	project_list_remove(proj);
-	if (proj->title) g_free(proj->title);
-	if (proj->desc) g_free(proj->desc);
+	g_free(proj->title);
+	proj->title = NULL;
+	g_free(proj->desc);
+	proj->desc = NULL;
 	g_free(proj);
 }
 
@@ -225,14 +225,13 @@ void project_list_time_reset(void)
 
 static char *build_rc_name(void)
 {
-	static char buf[1024] = { 0 };
+	static char *buf = NULL;
 
-	if (buf[0]) return buf;
-	if (getenv("HOME")) {
-		strcpy(buf, getenv("HOME"));
-		strcat(buf, "/" RC_NAME);
+	if (buf != NULL) return buf;
+	if (g_getenv("HOME") != NULL) {
+		buf = g_concat_dir_and_file (g_getenv ("HOME"), RC_NAME);
 	} else {
-		strcpy(buf, RC_NAME);
+		buf = g_strdup (RC_NAME);
 	}
 	return buf;
 }
@@ -412,7 +411,7 @@ project_list_load_old(char *fname)
 int
 project_list_load(char *fname)
 {
-        char s[64];
+        char s[256];
         int i, num;
         project *proj;
         int _n, _f, _c, _p, _t, _o, _h, _e;
@@ -470,7 +469,7 @@ project_list_load(char *fname)
 	else
 		gtk_widget_hide(status_bar);
 	for (i = 0; i < GTK_CLIST(glist)->columns; i++) {
-		sprintf(s, GTT"CList/ColumnWidth%d=0", i);
+		g_snprintf(s, sizeof (s), GTT"CList/ColumnWidth%d=0", i);
 		num = gnome_config_get_int(s);
 		if (num) {
 			clist_header_width_set = 1;
@@ -482,7 +481,7 @@ project_list_load(char *fname)
         for (i = 0; i < num; i++) {
                 proj = project_new();
                 project_list_add(proj);
-                sprintf(s, GTT"Project%d/Title", i);
+                g_snprintf(s, sizeof (s), GTT"Project%d/Title", i);
                 project_set_title(proj, gnome_config_get_string(s));
 		if ((proj->title) && (first_proj_title)) {
 			if (0 == strcmp(proj->title, first_proj_title)) {
@@ -490,11 +489,11 @@ project_list_load(char *fname)
 				first_proj_title = NULL;
 			}
 		}
-                sprintf(s, GTT"Project%d/Desc", i);
+                g_snprintf(s, sizeof (s), GTT"Project%d/Desc", i);
                 project_set_desc(proj, gnome_config_get_string(s));
-                sprintf(s, GTT"Project%d/SecsEver=0", i);
+                g_snprintf(s, sizeof (s), GTT"Project%d/SecsEver=0", i);
                 proj->secs = gnome_config_get_int(s);
-                sprintf(s, GTT"Project%d/SecsDay=0", i);
+                g_snprintf(s, sizeof (s), GTT"Project%d/SecsDay=0", i);
                 proj->day_secs = gnome_config_get_int(s);
         }
 	first_proj_title = NULL;
@@ -522,7 +521,7 @@ project_list_save(char *fname)
         int i, old_num;
 
         old_num = gnome_config_get_int(GTT"Misc/NumProjects=0");
-        sprintf(s, "%ld", last_timer);
+        g_snprintf(s, sizeof (s), "%ld", last_timer);
         gnome_config_set_string(GTT"Misc/LastTimer", s);
         gnome_config_set_int(GTT"Misc/TimerRunning", (main_timer != 0));
         gnome_config_set_bool(GTT"Display/ShowSecs", config_show_secs);
@@ -563,30 +562,30 @@ project_list_save(char *fname)
 		gnome_config_set_string(GTT"LogFile/EntryStop", "");
         gnome_config_set_int(GTT"LogFile/MinSecs", config_logfile_min_secs);
 	for (i = 0; i < GTK_CLIST(glist)->columns; i++) {
-		sprintf(s, GTT"CList/ColumnWidth%d", i);
+		g_snprintf(s, sizeof (s), GTT"CList/ColumnWidth%d", i);
 		gnome_config_set_int(s, GTK_CLIST(glist)->column[i].width);
 	}
         i = 0;
         for (pl = plist; pl; pl = pl->next) {
                 if (!pl->proj) continue;
                 if (!pl->proj->title) continue;
-                sprintf(s, GTT"Project%d/Title", i);
+                g_snprintf(s, sizeof (s), GTT"Project%d/Title", i);
                 gnome_config_set_string(s, pl->proj->title);
-                sprintf(s, GTT"Project%d/Desc", i);
+                g_snprintf(s, sizeof (s), GTT"Project%d/Desc", i);
                 if (pl->proj->desc) {
                         gnome_config_set_string(s, pl->proj->desc);
                 } else {
                         gnome_config_clean_key(s);
                 }
-                sprintf(s, GTT"Project%d/SecsEver", i);
+                g_snprintf(s, sizeof (s), GTT"Project%d/SecsEver", i);
                 gnome_config_set_int(s, pl->proj->secs);
-                sprintf(s, GTT"Project%d/SecsDay", i);
+                g_snprintf(s, sizeof (s), GTT"Project%d/SecsDay", i);
                 gnome_config_set_int(s, pl->proj->day_secs);
                 i++;
         }
         gnome_config_set_int(GTT"Misc/NumProjects", i);
         for (; i < old_num; i++) {
-                sprintf(s, GTT"Project%d", i);
+                g_snprintf(s, sizeof (s), GTT"Project%d", i);
                 gnome_config_clean_section(s);
         }
         gnome_config_sync();
@@ -610,18 +609,21 @@ char *project_get_timestr(project *proj, int show_secs)
 	}
 	if (t >= 0) {
 		if (show_secs)
-			sprintf(s, "%02d:%02d:%02d", (int)(t / 3600),
-				(int)((t % 3600) / 60), (int)(t % 60));
+			g_snprintf(s, sizeof (s),
+				   "%02d:%02d:%02d", (int)(t / 3600),
+				   (int)((t % 3600) / 60), (int)(t % 60));
 		else
-			sprintf(s, "%02d:%02d", (int)(t / 3600),
-				(int)((t % 3600) / 60));
+			g_snprintf(s, sizeof (s), "%02d:%02d", (int)(t / 3600),
+				   (int)((t % 3600) / 60));
 	} else {
 		if (show_secs)
-			sprintf(s, "-%02d:%02d:%02d", (int)(-t / 3600),
-				(int)((-t % 3600) / 60), (int)(-t % 60));
+			g_snprintf(s, sizeof (s),
+				   "-%02d:%02d:%02d", (int)(-t / 3600),
+				   (int)((-t % 3600) / 60), (int)(-t % 60));
 		else
-			sprintf(s, "-%02d:%02d", (int)(-t / 3600),
-				(int)((-t % 3600) / 60));
+			g_snprintf(s, sizeof (s),
+				   "-%02d:%02d", (int)(-t / 3600),
+				   (int)((-t % 3600) / 60));
 	}
 	return s;
 }
@@ -637,11 +639,11 @@ char *project_get_total_timestr(project *proj, int show_secs)
 		t = proj->secs;
 	}
 	if (show_secs)
-		sprintf(s, "%02d:%02d:%02d", (int)(t / 3600),
-			(int)((t % 3600) / 60), (int)(t % 60));
+		g_snprintf(s, sizeof (s), "%02d:%02d:%02d", (int)(t / 3600),
+			   (int)((t % 3600) / 60), (int)(t % 60));
 	else
-		sprintf(s, "%02d:%02d", (int)(t / 3600),
-			(int)((t % 3600) / 60));
+		g_snprintf(s, sizeof (s), "%02d:%02d", (int)(t / 3600),
+			   (int)((t % 3600) / 60));
 	return s;
 }
 

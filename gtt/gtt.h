@@ -177,7 +177,7 @@ void clist_update_desc(project *p);
 /* main.c */
 
 void unlock_gtt(void);
-char *gtt_gettext(char *s);
+const char *gtt_gettext(const char *s);
 
 
 #endif /* __GTT_H__ */

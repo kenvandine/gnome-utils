@@ -134,10 +134,12 @@ new_project(GtkWidget *widget, gpointer data)
         gtk_widget_show(desc);
         gtk_widget_show(table);
 
-	gtk_widget_grab_focus(title);
+	gtk_widget_grab_focus(entries[0]);
 
-	gnome_dialog_editable_enters(GNOME_DIALOG(dlg),
-				     GTK_EDITABLE(entries[0]));
+	/* enter in first entry goes to next */
+	gtk_signal_connect_object (GTK_OBJECT (entries[0]), "activate",
+				   GTK_SIGNAL_FUNC (gtk_widget_grab_focus),
+				   GTK_OBJECT (entries[1]));
 	gnome_dialog_editable_enters(GNOME_DIALOG(dlg),
 				     GTK_EDITABLE(entries[1]));
 

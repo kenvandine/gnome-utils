@@ -48,18 +48,20 @@ static void dialog_setup(GnomeDialog *dlg, GtkBox **vbox_return)
 void new_dialog_ok(char *title, GtkWidget **dlg, GtkBox **vbox,
 		       char *s, GtkSignalFunc sigfunc, gpointer data)
 {
-        char tmp[256];
+        char *tmp;
 
 	g_return_if_fail( dlg != NULL );
 	g_return_if_fail( vbox != NULL );
 
-        sprintf(tmp, APP_NAME " - %s", title);
+        tmp = g_strdup_printf(APP_NAME " - %s", title);
 	*dlg = gnome_dialog_new(tmp, s, NULL);
 	dialog_setup(GNOME_DIALOG(*dlg), vbox);
 	
 	if (sigfunc)
 	       gnome_dialog_button_connect(GNOME_DIALOG(*dlg), 0,
 					   sigfunc, data);
+
+	g_free (tmp);
 }
 
 
@@ -67,14 +69,14 @@ void new_dialog_ok_cancel(char *title, GtkWidget **dlg, GtkBox **vbox,
 			  char *s_ok, GtkSignalFunc sigfunc, gpointer data,
 			  char *s_cancel, GtkSignalFunc c_sigfunc, gpointer c_data)
 {
-        char tmp[256];
+        char *tmp;
 	
 	g_return_if_fail(dlg != NULL);
 	g_return_if_fail(s_ok != NULL);
 	g_return_if_fail(s_cancel != NULL);
 	g_return_if_fail(title != NULL);
 
-        sprintf(tmp, APP_NAME " - %s", title);
+        tmp = g_strdup_printf(APP_NAME " - %s", title);
 	*dlg = gnome_dialog_new(tmp, s_ok, s_cancel, NULL);
 	dialog_setup(GNOME_DIALOG(*dlg), vbox);
 
@@ -87,17 +89,19 @@ void new_dialog_ok_cancel(char *title, GtkWidget **dlg, GtkBox **vbox,
 					    c_sigfunc, c_data);
 
 	gnome_dialog_set_default(GNOME_DIALOG(*dlg), 0);
+
+	g_free (tmp);
 }
 
 
 void msgbox_ok(char *title, char *text, char *ok_text,
 	       GtkSignalFunc func)
 {
-        char s[256];
+        char *s;
 
 	GtkWidget *mbox;
 
-        sprintf(s, APP_NAME " - %s", title);
+        s = g_strdup_printf(APP_NAME " - %s", title);
         mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_GENERIC, ok_text, NULL, NULL);
 
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
@@ -105,6 +109,8 @@ void msgbox_ok(char *title, char *text, char *ok_text,
         gtk_window_set_title(GTK_WINDOW(mbox), s);
 	gnome_dialog_set_parent(GNOME_DIALOG(mbox), GTK_WINDOW(window));
 	gtk_widget_show(mbox);
+
+	g_free (s);
 }
 
 
@@ -113,11 +119,11 @@ void msgbox_ok_cancel(char *title, char *text,
 		      char *ok_text, char *cancel_text,
 		      GtkSignalFunc func)
 {
-        char s[256];
-
+        char *s;
 	GtkWidget *mbox;
 
-        sprintf(s, APP_NAME " - %s", title);
+        s = g_strdup_printf(APP_NAME " - %s", title);
+
 	mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_GENERIC, ok_text, cancel_text, NULL);
 	gnome_dialog_set_default(GNOME_DIALOG(mbox), 1);
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
@@ -125,5 +131,7 @@ void msgbox_ok_cancel(char *title, char *text,
         gtk_window_set_title(GTK_WINDOW(mbox), s);
 	gnome_dialog_set_parent(GNOME_DIALOG(mbox), GTK_WINDOW(window));
 	gtk_widget_show(mbox);
+
+	g_free (s);
 }
 

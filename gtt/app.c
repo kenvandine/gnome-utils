@@ -134,12 +134,9 @@ void update_status_bar(void)
 
 void cur_proj_set(project *proj)
 {
-	pid_t fork(void);
-
 	pid_t pid;
 	char *cmd, *p;
-	static char s[1024];
-	int i;
+	GString *str;
 
 	if (cur_proj == proj) return;
 
@@ -154,24 +151,25 @@ void cur_proj_set(project *proj)
 	update_status_bar();
 	cmd = (proj) ? config_command : config_command_null;
 	if (!cmd) return;
-	i = 0;
+	str = g_string_new (NULL);
 	for (p = cmd; *p; p++) {
 		if ((p[0] == '%') && (p[1] == 's')) {
-			s[i] = 0;
-			if (cur_proj) strcat(s, cur_proj->title);
-			i = strlen(s);
+			if (cur_proj)
+				g_string_append (str, cur_proj->title);
 			p++;
 		} else {
-			s[i] = *p;
-			i++;
+			g_string_append_c (str, *p);
 		}
 	}
-	s[i] = 0;
 	pid = fork();
 	if (pid == 0) {
-		execlp("sh", "sh", "-c", s, NULL);
-		g_warning("%s: %d: cur_proj_set: couldn't exec\n", __FILE__, __LINE__);
-		exit(1);
+		/* if we can't fork exec in first child */
+		if (fork () <= 0) {
+			execlp("sh", "sh", "-c", str->str, NULL);
+			g_warning("%s: %d: cur_proj_set: couldn't exec\n", __FILE__, __LINE__);
+			exit(1);
+		}
+		exit (0);
 	}
 	if (pid < 0) {
 		g_warning("%s: %d: cur_proj_set: couldn't fork\n", __FILE__, __LINE__);

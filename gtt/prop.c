@@ -132,17 +132,17 @@ void prop_dialog_set_project(project *proj)
 		gtk_entry_set_text(dlg->desc, proj->desc);
 	else
 		gtk_entry_set_text(dlg->desc, "");
-	sprintf(s, "%d", proj->day_secs / 3600);
+	g_snprintf(s, sizeof (s), "%d", proj->day_secs / 3600);
 	gtk_entry_set_text(dlg->day.h, s);
-	sprintf(s, "%d", (proj->day_secs % 3600) / 60);
+	g_snprintf(s, sizeof (s), "%d", (proj->day_secs % 3600) / 60);
 	gtk_entry_set_text(dlg->day.m, s);
-	sprintf(s, "%d", proj->day_secs % 60);
+	g_snprintf(s, sizeof (s), "%d", proj->day_secs % 60);
 	gtk_entry_set_text(dlg->day.s, s);
-	sprintf(s, "%d", proj->secs / 3600);
+	g_snprintf(s, sizeof (s), "%d", proj->secs / 3600);
 	gtk_entry_set_text(dlg->ever.h, s);
-	sprintf(s, "%d", (proj->secs % 3600) / 60);
+	g_snprintf(s, sizeof (s), "%d", (proj->secs % 3600) / 60);
 	gtk_entry_set_text(dlg->ever.m, s);
-	sprintf(s, "%d", proj->secs % 60);
+	g_snprintf(s, sizeof (s), "%d", proj->secs % 60);
 	gtk_entry_set_text(dlg->ever.s, s);
 
 	/* set to unmodified as it reflects the current state of the project */
@@ -161,11 +161,12 @@ void prop_dialog(project *proj)
 
 	if (!proj) return;
 	if (!dlg) {
-		char s[64];
+		char *s;
 		dlg = g_malloc(sizeof(PropDlg));
 		dlg->dlg = GNOME_PROPERTY_BOX(gnome_property_box_new());
-		sprintf(s, APP_NAME " - %s", _("Properties"));
+		s = g_strdup_printf(APP_NAME " - %s", _("Properties"));
 		gtk_window_set_title(GTK_WINDOW(dlg->dlg), s);
+		g_free (s);
 
 		vbox = GTK_BOX(gtk_vbox_new(FALSE, 2));
 		gtk_widget_show(GTK_WIDGET(vbox));

@@ -44,8 +44,8 @@ MyToolbar *mytbar = NULL;
 
 
 static GtkWidget *
-add_stock_button(GtkToolbar *tbar, char *text, char *tt_text,
-                 char *icon, GtkSignalFunc sigfunc)
+add_stock_button(GtkToolbar *tbar, const char *text, const char *tt_text,
+                 const char *icon, GtkSignalFunc sigfunc)
 {
 	GtkWidget *w, *pixmap;
 

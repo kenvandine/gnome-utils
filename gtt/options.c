@@ -475,7 +475,7 @@ static void options_dialog_set(OptionsDlg *odlg)
 		gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestop)), config_logfile_stop);
 	else
 		gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestop)), "");
-	sprintf(s, "%d", config_logfile_min_secs);
+	g_snprintf(s, sizeof (s), "%d", config_logfile_min_secs);
 	gtk_entry_set_text(odlg->logfileminsecs, s);
 
         /* toolbar sections */
@@ -511,12 +511,13 @@ void options_dialog(void)
 	static OptionsDlg *odlg = NULL;
 	
 	if (!odlg) {
-		char s[64];
+		char *s;
 		odlg = g_malloc(sizeof(OptionsDlg));
 
 		odlg->dlg = GNOME_PROPERTY_BOX(gnome_property_box_new());
-		sprintf(s, APP_NAME " - %s", _("Preferences"));
+		s = g_strdup_printf(APP_NAME " - %s", _("Preferences"));
 		gtk_window_set_title(GTK_WINDOW(odlg->dlg), s);
+		g_free (s);
 
 		vbox = (GtkBox *)gtk_vbox_new(FALSE, 0);
 		gtk_widget_show(GTK_WIDGET(vbox));

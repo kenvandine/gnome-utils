@@ -22,6 +22,7 @@
 #include <string.h>
 #include <signal.h>
 #include <errno.h>
+#include <unistd.h>
 
 #include "gtt.h"
 
@@ -32,8 +33,8 @@
 
 
 
-char *
-gtt_gettext(char *s)
+const char *
+gtt_gettext(const char *s)
 {
         g_return_val_if_fail(s != NULL, NULL);
         if (0 == strncmp(s, "[GTT]", 5))
@@ -44,36 +45,53 @@ gtt_gettext(char *s)
 
 
 
-static char *build_lock_fname()
+static char *build_lock_fname(void)
 {
-	static char fname[1024] = "";
+	GString *str;
+	static char *fname = NULL;
 	
-	if (fname[0]) return fname;
-	if (getenv("HOME")) {
-		strcpy(fname, getenv("HOME"));
-	} else {
-		fname[0] = 0;
-	}
-	strcat(fname, "/.gtimetracker");
+	if (fname != NULL) return fname;
+
+	/* note it will handle unset "HOME" fairly gracefully */
+	str = g_string_new (g_getenv ("HOME"));
+	g_string_append (str, "/.gtimetracker");
 #ifdef DEBUG
-	strcat(fname, "-" VERSION);
+	g_string_append (str, "-" VERSION);
 #endif
-	strcat(fname, ".pid");
+	g_string_append (str, ".pid");
+
+	fname = str->str;
+	g_string_free (str, FALSE);
 	return fname;
 }
 
 
 
-static void lock_gtt()
+static void lock_gtt(void)
 {
 	FILE *f;
 	char *fname;
+	gboolean warn = FALSE;
 	
-	fname = build_lock_fname();
+	fname = build_lock_fname ();
+
+	/* if the pid file exists and such a process exists
+	 * and this process is owned by the current user,
+	 * else this pid file is very very stale and can be
+	 * ignored */
 	if (NULL != (f = fopen(fname, "rt"))) {
-		GtkWidget *warning;
+		int pid;
+
+		if (fscanf (f, "%d", &pid) == 1 &&
+		    pid > 0 &&
+		    kill (pid, 0) == 0) {
+			warn = TRUE;
+		}
 		fclose(f);
+	}
 		
+	if (warn) {
+		GtkWidget *warning;
 #ifdef DEBUG
                 g_warning("GTT PID file exists");
 #else /* not DEBUG */
@@ -88,7 +106,7 @@ static void lock_gtt()
 #endif /* not DEBUG */
 	}
 	if (NULL == (f = fopen(fname, "wt"))) {
-		g_error("Cannot create pid-file!");
+		g_warning(_("Cannot create pid-file!"));
 	}
 	fprintf(f, "%d\n", getpid());
 	fclose(f);
@@ -98,8 +116,6 @@ static void lock_gtt()
 
 void unlock_gtt(void)
 {
-	int unlink(const char *);
-
 	log_exit();
 	unlink(build_lock_fname());
 }
@@ -108,7 +124,8 @@ void unlock_gtt(void)
 
 static void init_list_2(GtkWidget *w, gint butnum)
 {
-	if (butnum == 1) { unlock_gtt(); gtk_main_quit(); }
+	if (butnum == 1)
+		gtk_main_quit();
 	else
                 setup_clist();
 }
@@ -166,8 +183,7 @@ save_state(GnomeClient *client, gint phase, GnomeRestartStyle save_style,
 	gdk_window_get_size(window->window, &w, &h);
 	argv[0] = (char *)data;
 	argv[1] = "--geometry";
-	argv[2] = g_malloc(32);
-	sprintf(argv[2], "%dx%d+%d+%d", w, h, x, y);
+	argv[2] = g_strdup_printf("%dx%d+%d+%d", w, h, x, y);
 	if ((cur_proj) && (cur_proj->title)) {
 		argc = 5;
 		argv[3] = "--select-project";
@@ -192,7 +208,15 @@ session_die(GnomeClient *client)
 #endif /* USE_SM */
 
 
-
+static void
+got_signal (int sig)
+{
+	unlock_gtt ();
+	
+	/* whack thyself */
+	signal (sig, SIG_DFL);
+	kill (getpid (), sig);
+}
 
 int 
 main(int argc, char *argv[])
@@ -225,7 +249,9 @@ main(int argc, char *argv[])
 	bindtextdomain(PACKAGE, GNOMELOCALEDIR);
 	textdomain(PACKAGE);
 
-	signal(SIGCHLD, SIG_IGN);
+	signal (SIGCHLD, SIG_IGN);
+	signal (SIGINT, got_signal);
+	signal (SIGTERM, got_signal);
 	lock_gtt();
 	app_new(argc, argv, geometry_string);
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
