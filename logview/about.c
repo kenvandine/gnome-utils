@@ -41,11 +41,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   GdkPixbuf *logo = NULL;
   /* Author needs some sort of dash over the 'e' in Cesar  - U-00E9 */
   const char *author[] = { N_("Cesar Miquel (miquel@df.uba.ar)"), NULL};
-  char *comments = N_("This program is part of the GNOME project. " 
-"Logview comes with ABSOLUTELY NO WARRANTY. This is free " 
-"software, and you are welcome to redistribute it under the conditions "
-"of the GNU General Public Licence. The log icon is a courtesy of "
-"Tuomas Kuosmanen (a.k.a tigert).");
+  char *comments = N_("A system log viewer for GNOME.");
   gchar *documenters[] = {
 	  NULL
   };
@@ -60,7 +56,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 
   logo = gdk_pixbuf_new_from_file (DATADIR G_DIR_SEPARATOR_S "pixmaps" G_DIR_SEPARATOR_S "gnome-log.png", NULL);
   about_window = gnome_about_new (_("GNOME System Log Viewer"), VERSION,
-           			  N_("Copyright (C) 1998"),
+           			  "Copyright \xc2\xa9 1998-2003 Free Software Foundation, Inc.",
 				  _(comments),
 				  author,
 				  (const char **)documenters,
