@@ -1,4 +1,4 @@
-/* Gnome Search Tool 
+/* GNOME Search Tool 
  * (C) 1998,2000 the Free Software Foundation
  *
  * Author:   George Lebl
@@ -1699,6 +1699,10 @@ static void
 about_cb (GtkWidget *widget, gpointer data)
 {
 	static GtkWidget *about = NULL;
+	GdkPixbuf  	 *pixbuf;
+	GError		 *error = NULL;
+	gchar		 *file;
+	
 	static const char *authors[] = {
 		"George Lebl <jirka@5z.com>",
 		"Dennis M. Cranston <dennis_cranston@yahoo.com>",
@@ -1715,14 +1719,27 @@ about_cb (GtkWidget *widget, gpointer data)
 		return;
 	}
 
-	about = gnome_about_new(_("The Gnome Search Tool"), VERSION,
+	file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-searchtool.png", FALSE, NULL);
+	pixbuf = gdk_pixbuf_new_from_file (file, &error);
+	
+	if (error) {
+		g_warning (G_STRLOC ": cannot open %s: %s", file, error->message);
+		g_error_free (error);
+	}
+	g_free (file);
+
+	about = gnome_about_new(_("GNOME Search Tool"), VERSION,
 				_("(C) 1998,2000 the Free Software Foundation"),
 				_("Frontend to the unix find/locate "
 				  "commands"),
 				authors,
 				(const char **)documenters,
 				strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
-				NULL);
+				pixbuf);
+	if (pixbuf) {
+		gdk_pixbuf_unref (pixbuf);
+	}
+										
 	g_signal_connect (G_OBJECT (about), "destroy",
 			  G_CALLBACK (gtk_widget_destroyed), &about);
 	gtk_widget_show (about);
