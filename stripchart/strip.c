@@ -26,7 +26,6 @@ strip_redraw(Strip *strip)
   GtkWidget *widget = GTK_WIDGET(strip);
   gint width = widget->allocation.width;
   gint height = widget->allocation.height;
-  gint indicator_x = 0, indicator_y = 0, indicator_step = 10;
 
   gdk_draw_rectangle(widget->window,
     widget->style->bg_gc[GTK_WIDGET_STATE(widget)], TRUE,
@@ -44,20 +43,7 @@ strip_redraw(Strip *strip)
 	chart_assign_color(CHART(strip), datum);
 
       if (plot == chart_plot_indicator)
-	{
-	  gint c = datum->history[h] + 0.5;
-	  if (c > 0)
-	    {
-	      if (c > datum->colors)
-		c = datum->colors;
-	      gdk_draw_rectangle(
-		widget->window, datum->gdk_gc[c - 1], TRUE,
-		indicator_x + 1, indicator_y + 1,
-		indicator_step - 1, indicator_step - 1);
-	    }
-	  indicator_x += indicator_step;
-	  continue;
-	}
+	continue;
 
       x = width - datum->idle - 1;
       points = datum->history_count;
@@ -165,6 +151,38 @@ strip_overlay_ticks(Strip *strip)
 }
 
 static void
+strip_indicator_marks(Strip *strip)
+{
+  GSList *list;
+  GtkWidget *widget = GTK_WIDGET(strip);
+  gint indicator_x = 0, indicator_y = 0, indicator_step = 10;
+
+  for (list = CHART(strip)->param; list; list = g_slist_next(list))
+    {
+      ChartDatum *datum = (ChartDatum *)list->data;
+      ChartPlotStyle plot = datum->plot_style;
+
+      if (plot == chart_plot_indicator)
+	{
+	  gint c = datum->history[datum->newest] + 0.5;
+	  if (c > 0)
+	    {
+	      if (c > datum->colors)
+		c = datum->colors;
+	      gdk_draw_rectangle(widget->window,
+		widget->style->bg_gc[GTK_WIDGET_STATE(widget)], TRUE,
+		indicator_x, indicator_y, 1, indicator_step);
+	      gdk_draw_rectangle(
+		widget->window, datum->gdk_gc[c - 1], TRUE,
+		indicator_x + 1, indicator_y + 1,
+		indicator_step - 1, indicator_step - 1);
+	    }
+	  indicator_x += indicator_step;
+	}
+    }
+}
+
+static void
 strip_update(Strip *strip)
 {
   static int show_ticks = 1;
@@ -177,7 +195,7 @@ strip_update(Strip *strip)
       if (strip->show_ticks)
 	strip_overlay_ticks(strip);
     }
-
+  strip_indicator_marks(strip);
   show_ticks = strip->show_ticks;
 }
 
