@@ -47,6 +47,7 @@ GtkWidget *status_bar;
 #ifdef GTK_USE_STATUSBAR
 static GtkStatusbar *status_project = NULL;
 static GtkStatusbar *status_day_time = NULL;
+static GtkWidget *status_timer = NULL;
 static gint status_project_id = 1, status_day_time_id = 2;
 #else /* GTK_USE_STATUSBAR */
 static GtkLabel *status_project = NULL;
@@ -89,6 +90,12 @@ void update_status_bar(void)
 	char *s;
 
 	if (!status_bar) return;
+	if (status_timer) {
+		if (main_timer)
+			gtk_widget_show(status_timer);
+		else
+			gtk_widget_hide(status_timer);
+	}
         if (!old_day_time) old_day_time = g_strdup("");
         if (!old_project) old_project = g_strdup("");
         s = g_strdup(project_get_timestr(NULL, config_show_secs));
@@ -216,6 +223,12 @@ void app_new(int argc, char *argv[], char *geometry_string)
 					       _("no project selected"));
         gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_project),
                            TRUE, TRUE, 1);
+	status_timer = gnome_stock_pixmap_widget_at_size(GTK_WIDGET(status_bar),
+							 GNOME_STOCK_PIXMAP_TIMER,
+							 16, 16);
+	gtk_widget_show(status_timer);
+	gtk_box_pack_end(GTK_BOX(status_bar), GTK_WIDGET(status_timer),
+			 FALSE, FALSE, 1);
 
         glist = create_clist();
 	gtk_box_pack_end(GTK_BOX(vbox), glist->parent, TRUE, TRUE, 0);

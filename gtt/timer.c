@@ -74,6 +74,7 @@ void start_timer(void)
 	if (main_timer) return;
 	log_proj(cur_proj);
 	main_timer = gtk_timeout_add(1000, timer_func, NULL);
+	update_status_bar();
 }
 
 
@@ -85,5 +86,6 @@ void stop_timer(void)
 	gtk_timeout_remove(main_timer);
 	main_timer = 0;
         timer_stopped = 1;
+	update_status_bar();
 }
 
