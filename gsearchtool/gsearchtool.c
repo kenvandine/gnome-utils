@@ -1076,8 +1076,9 @@ start_animation (GSearchWindow * gsearch)
 		gtk_window_set_title (GTK_WINDOW (gsearch->window), title);
 	
 		gtk_label_set_text (GTK_LABEL (gsearch->files_found_label), "");
-		gsearch_spinner_start (GSEARCH_SPINNER (gsearch->progress_spinner));
-	
+		if (gsearchtool_gconf_get_boolean ("/desktop/gnome/interface/enable_animations")) {
+			gsearch_spinner_start (GSEARCH_SPINNER (gsearch->progress_spinner));
+		}
 		g_free (title);
 	}
 } 
