@@ -24,6 +24,7 @@ void ShowErrMessage (LogviewWindow *window, char *main, char *secondary);
 void QueueErrMessages (gboolean do_queue);
 void ShowQueuedErrMessages (void);
 char *LocaleToUTF8 (const char *in);
+int IsLeapYear (int year);
 
 #endif /* __LOG_MISC_H__ */
 

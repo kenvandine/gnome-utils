@@ -123,3 +123,17 @@ LocaleToUTF8 (const char *in)
 		return out;
 	}
 }
+
+/* ----------------------------------------------------------------------
+   NAME:          IsLeapYear
+   DESCRIPTION:   Return TRUE if year is a leap year.
+   ---------------------------------------------------------------------- */
+int
+IsLeapYear (int year)
+{
+   if ((1900 + year) % 4 == 0)
+      return TRUE;
+   else
+      return FALSE;
+
+}

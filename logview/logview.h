@@ -163,7 +163,6 @@ Log;
  */
 
 ConfigData *CreateConfig(void);
-int IsLeapYear (int year);
 void SetDefaultUserPrefs(UserPrefsStruct *prefs, GConfClient *client);
 int exec_action_in_db (Log *log, LogLine *line, GList *db);
 
@@ -219,8 +218,6 @@ struct _LogviewWindowClass {
 	GtkWindowClass parent_class;
 };
 
-GType logview_window_get_type (void);
-GtkWidget *logview_window_new (void);
 void logview_set_window_title (LogviewWindow *window);
 
 #endif /* __LOGVIEW_H__ */

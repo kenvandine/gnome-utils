@@ -1,8 +1,11 @@
 2004-11-04  Vincent Noel  <vnoel@cox.net>
 
+	* misc.c (IsLeapYear): moved to misc.c
+
 	* logview.c: (parse_syslog): Kill. Not used anymore.
 	(destroy): If the opened log is zipped, don't save it in gconf.
 	Remove the GNOMELOCALEDIR define from logview.c, it's already in Makefile.am
+	(ExitProg): Kill, just call gtk_main_quit.
 
 2004-11-04  Vincent Noel  <vnoel@cox.net>
 

@@ -49,8 +49,6 @@ static UserPrefsStruct *user_prefs;
  */
 
 void destroy (GObject *object, gpointer data);
-void ExitProg (GtkAction *action, GtkWidget *data);
-
 static void CreateMainWin (LogviewWindow *window_new);
 static void LoadLogMenu (GtkAction *action, GtkWidget *callback_data);
 static void CloseLogMenu (GtkAction *action, GtkWidget *callback_data);
@@ -68,6 +66,7 @@ static void logview_help (GtkAction *action, GtkWidget *callback_data);
 static int logview_count_logs (void);
 gboolean window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
 				 gpointer data);
+GType logview_window_get_type (void);
 
 /*
  *    ,-------.
@@ -88,7 +87,7 @@ static GtkActionEntry entries[] = {
 	{ "CloseLog", GTK_STOCK_CLOSE, N_("Close"), "<control>W", N_("Close this log"), 
 	  G_CALLBACK (CloseLogMenu) },
 	{ "Quit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q", N_("Quit the log viewer"), 
-	  G_CALLBACK (ExitProg) },
+	  G_CALLBACK (gtk_main_quit) },
 
 	{ "Search", GTK_STOCK_FIND, N_("_Find"), "<control>F", N_("Find pattern in logs"),
 	  G_CALLBACK (logview_search) },
@@ -151,7 +150,6 @@ ConfigData *cfg = NULL;
 gchar *file_to_open;
 
 poptContext poptCon;
-gint next_opt;
 
 struct poptOption options[] = {
 	{
@@ -255,6 +253,7 @@ main (int argc, char *argv[])
 {
    GnomeClient *gnome_client;
    GnomeProgram *program;
+   gint next_opt;
 
    bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
@@ -593,17 +592,6 @@ LoadLogMenu (GtkAction *action, GtkWidget *callback_data)
 }
 
 /* ----------------------------------------------------------------------
-   NAME:          ExitProg
-   DESCRIPTION:   Callback to call when program exits.
-   ---------------------------------------------------------------------- */
-
-void 
-ExitProg (GtkAction *action, GtkWidget *data)
-{
-   gtk_main_quit ();
-}
-
-/* ----------------------------------------------------------------------
    NAME:          open_databases
    DESCRIPTION:   Try to locate regexp and descript databases and load
    	          them.
@@ -689,20 +677,6 @@ open_databases (void)
 			read_actions_db (full_name, &actions_db);
 		}
 	}
-
-}
-
-/* ----------------------------------------------------------------------
-   NAME:          IsLeapYear
-   DESCRIPTION:   Return TRUE if year is a leap year.
-   ---------------------------------------------------------------------- */
-int
-IsLeapYear (int year)
-{
-   if ((1900 + year) % 4 == 0)
-      return TRUE;
-   else
-      return FALSE;
 
 }
 
