@@ -39,7 +39,7 @@ Utilities_in_files = gnome-system-log.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-schemadir   = $(sysconfdir)/gconf/schemas
+schemadir   = $(GCONF_SCHEMA_FILE_DIR)
 schemas_in_file = logview.schemas.in
 schema_DATA = $(schemas_in_file:.schemas.in=.schemas)
 schema_source_data = $(foreach file, $(schema_DATA), $(file))
@@ -58,10 +58,14 @@ EXTRA_DIST = \
 	gnome-system-log-security.in	\
 	$(man_MANS)
 
+if GCONF_SCHEMAS_INSTALL
 install-gconf-schemas:
 	if test -z "$(DESTDIR)" ; then \
 		GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(schema_source_data) ; \
 	fi
+else
+install-gconf-schemas:
+endif
 
 install-data-local: gnome-system-log-security install-gconf-schemas
 	

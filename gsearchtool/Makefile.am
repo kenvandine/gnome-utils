@@ -12,7 +12,7 @@ INCLUDES = 	\
 
 bin_PROGRAMS = gnome-search-tool
 
-schemadir = $(sysconfdir)/gconf/schemas
+schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_DATA = gnome-search-tool.schemas
 
 gnome_search_tool_SOURCES =	\
@@ -44,5 +44,9 @@ EXTRA_DIST = \
 	$(schema_DATA) \
 	$(man_MANS)
 
+if GCONF_SCHEMAS_INSTALL
 install-data-local:
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+else
+install-data-local:
+endif
