@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: iPACKAGE VERSION\n"
-"POT-Creation-Date: 2003-06-01 09:49+0800\n"
+"POT-Creation-Date: 2003-07-12 00:10+0800\n"
 "PO-Revision-Date: 2003-06-01 09:49+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -15,7 +15,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Aksesori"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "Carian Kamus"
 
@@ -67,9 +67,10 @@ msgstr ""
 "Mohamad Afifi Omar (App) <mr_mohd_afifi@yahoo.com>\n"
 "Hasbullah Bin Pit <sebol@ikhlas.com>, Merlimau."
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "Kamus GNOME"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Kamus"
 
 #: gdictsrc/gdict-about.c:58
 msgid "A client for the MIT dictionary server."
@@ -138,10 +139,6 @@ msgstr "Semak ejaan perkataan"
 msgid "_Dictionary"
 msgstr "_Kamus"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Kamus"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Perkataan:"
@@ -163,7 +160,7 @@ msgstr "Masukkan Perkataan atau pilih satu dari senarai dibawah"
 msgid "Look Up for a Word"
 msgstr "Cari Perkataan"
 
-#: gdictsrc/gdict-applet.c:272
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "_Cari"
 
@@ -745,8 +742,8 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 untuk sistemfail linux natif atau fat untuk DOS"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "Cari Fail"
 
@@ -810,7 +807,7 @@ msgstr "Ikut pautan simbolik"
 msgid "Include other filesystems"
 msgstr "Termasuk sistem fail lain"
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "Tiada fail dijumpai"
 
@@ -857,20 +854,33 @@ msgstr "Pilih syarat '%s'"
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Opsyen tidak sah dihantar ke hujah arahan baris sortby"
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
 msgstr "(terhenti)"
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+msgid "No Files Found"
+msgstr "Tiada Fail Dijumpai"
+
+#: gsearchtool/gsearchtool.c:1242
 msgid "One file found"
 msgstr "Satu fail dijumpai"
 
 #: gsearchtool/gsearchtool.c:1243
+msgid "One File Found"
+msgstr "Satu Fail Dijumpai"
+
+#: gsearchtool/gsearchtool.c:1246
 #, c-format
 msgid "%d files found"
 msgstr "%d fail dijumpai"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, c-format
+msgid "%d Files Found"
+msgstr "%d Fail Dijumpai"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -878,7 +888,7 @@ msgstr ""
 "Bila mencari, ralat berikut dilaporkan.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -886,108 +896,108 @@ msgstr ""
 "\n"
 "... Terlalu banyak ralat untuk dipaparkan ..."
 
-#: gsearchtool/gsearchtool.c:1354
+#: gsearchtool/gsearchtool.c:1360
 msgid "Error while searching for files"
 msgstr "Ralat bila mencari fail"
 
-#: gsearchtool/gsearchtool.c:1393
+#: gsearchtool/gsearchtool.c:1399
 msgid "Error parsing the search command"
 msgstr "Ralat menghantar arahan carian"
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1419
 msgid "Error running the search command"
 msgstr "Ralat  melaksanakan arahan carian"
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr "Kemasukan Nilai Tatacara Pencarian"
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "Masukkan nilai bagi tatacara pencarian"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klik untuk Buang Tatacara '%s'"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 msgid "A_vailable options:"
 msgstr "Opsyen yang _ada:"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "Menu Tatacara Pencarian"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "Pilih tatacara pencarian dari menu"
 
-#: gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gsearchtool.c:1652
 msgid "S_earch results:"
 msgstr "_Hasil Pencarian:"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "Nama"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "Folder"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "Saiz"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "Jenis"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr "Tarikh Diubahsuai"
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
 msgstr "_Nama mengandungi:"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
 msgstr "Nama Mengandungi Kemasukan"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "Masukkan nama fail untuk dicari"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 msgid "_Look in folder:"
 msgstr "_Cari di folder:"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr "Lungsur"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Look in Folder Entry"
 msgstr "Cari di Kemasukan Folder"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr "Masukkan nama folder di mana anda ingin memulakan pencarian"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1909
 msgid "Show more _options"
 msgstr "Papar lebih _opsyen"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "Klik untuk memulakan pencarian"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "Klik untuk hentikan pencarian"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr "Gagal menginitialisasikan Bonobo."
 
@@ -1125,8 +1135,8 @@ msgid "A system log viewer for GNOME."
 msgstr "Pelihat log sistem bagi GNOME."
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
-msgstr "Pelihat Log Sistem GNOME"
+msgid "System Log Viewer"
+msgstr "Pelihat Log Sistem"
 
 #: logview/actions.c:74
 msgid "Action Database"
@@ -1269,7 +1279,7 @@ msgstr "Bilangan Baris:"
 msgid "Log Information"
 msgstr "Maklumat Log"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<tiada log dimuatkan>"
 
@@ -1530,28 +1540,28 @@ msgstr "TOUCHED!!\n"
 msgid "Entry Detail"
 msgstr "Perincian Kemasukan"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "Tarikh:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "Proses:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "Mesej:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "Penerangan:"
 
-#: logview/zoom.c:130
+#: logview/zoom.c:129
 msgid "Log Line Details"
 msgstr "Perincian Baris Log"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -1566,3 +1576,6 @@ msgid ""
 msgstr ""
 "Nyatakan fail log untuk dibuka pada permulaan. Default adalah samada /var/"
 "adm/messages atau /var/log/messages, bergantung pada sistem pengoperasian."
+
+#~ msgid "GNOME Dictionary"
+#~ msgstr "Kamus GNOME"
