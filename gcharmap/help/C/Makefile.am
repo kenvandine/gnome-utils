@@ -1,54 +1,61 @@
-# Process this file with automake to produce Makefile.in
-
+## Process this file with automake to produce Makefile.in.
+##
 gcharmap_helpdir = $(datadir)/gnome/help/gcharmap/C
-gcharmap_help_DATA = index.html authors.html usage.html topic.dat 
 
 SGML_FILES = \
 	gcharmap.sgml
 
+HTML_FILES = index.html authors.html 	usage.html	\
+	ln7.html	bugs.html	license.html
+
 EXTRA_DIST = \
 	topic.dat gcharmap $(SGML_FILES)
 
-all:
+gcharmap_help_DATA = ${HTML_FILES} topic.dat
 
-index.html: gcharmap/index.html
-	-cd $(srcdir) && cp gcharmap/index.html .
-
-authors.html: gcharmap/authors.html
-	-cd $(srcdir) && cp gcharmap/authors.html .
-
-usage.html: gcharmap/usage.html
-	-cd $(srcdir) && cp gcharmap/usage.html .
-
-gcharmap/index.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcharmap.sgml
-
-gcharmap/authors.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcharmap.sgml
-
-gcharmap/usage.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcharmap.sgml
+#
+# This is icky but insures that the doc files are generated when the sgml 
+# file changes, plus it only generates em once. The distclean target 
+# will take care of clobbering the generated html and the directory that
+# db2html makes, while the dist-hook will make sure that the html files 
+# and directory gets copied into a dist (so mere mortals w/o docbook can 
+# build this) The install-data-local target copies all the bits and pieces
+# where the runtime help system can find it.
+#
+${HTML_FILES} : $(SGML_FILES)
+	if [ ! -d gcharmap ] ; then cd $(srcdir) && db2html gcharmap.sgml ; fi
+	-cd $(srcdir) && cp gcharmap/$@ .
+	if [ -d gcharmap.junk ] ; then cd $(srcdir) && rm -rf gcharmap.junk ; fi
 
 dist-hook:
-	$(mkinstalldirs) $(distdir)/gcharmap
+	$(mkinstalldirs) $(distdir)/gcharmap 
+	$(mkinstalldirs) $(distdir)/gcharmap/images
+	$(mkinstalldirs) $(distdir)/gcharmap/stylesheet-images
 	-cp $(srcdir)/gcharmap/*.html gcharmap/*.css $(distdir)/gcharmap
+	-cp $(srcdir)/gcharmap/stylesheet-images/*.gif \
+	 $(distdir)/gcharmap/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	$(mkinstalldirs) $(distdir)/images
-	-cp $(srcdir)/images/*.png $(distdir)/images
+	-cp $(srcdir)/images/*.png $(distdir)/gcharmap/images
+
+distclean-generic:
+	-rm -f Makefile
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+	-rm -f $(HTML_FILES)
+	-rm -rf gcharmap
 
 install-data-local: index.html
-	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)/images
-	-for file in $(srcdir)/gcharmap/*.html $(srcdir)/gcharmap/*.css; do \
-	basefile=`basename $$file`; \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/$$basefile; \
-	done
-	-for file in $(srcdir)/images/*.png ; do \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/images;\
-	done
 	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)/stylesheet-images
-	-for file in $(srcdir)/gcharmap/stylesheet-images/*.gif; do \
-	basefile=`basename $$file`; \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/stylesheet-images/$$basefile; \
+	-for file in $(srcdir)/gcharmap/*.html $(srcdir)/gsearch/*.css; do \
+	  basefile=`basename $$file`; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/$$basefile; \
 	done
+	-for file in $(srcdir)/*.png ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir); \
+	done
+	-for file in $(srcdir)/gcharmap/stylesheet-images/*.gif; do \
+	  basefile=`basename $$file`; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/stylesheet-images/$$basefile; \
+	done
+
 
 
