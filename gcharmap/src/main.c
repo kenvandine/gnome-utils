@@ -22,9 +22,9 @@
 #ifndef _MAIN_C_
 #define _MAIN_C_
 
+#include <config.h>
 #include <gnome.h>
 #include <interface.h>
-#include <config.h>
 
 int
 main (int argc, char *argv[])
