@@ -40,6 +40,13 @@ PKG_CHECK_MODULES(GNOME_UTILS, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0
 AC_SUBST(GNOME_UTILS_CFLAGS)
 AC_SUBST(GNOME_UTILS_LIBS)
 
+dnl *****************************************
+dnl floppy-buddy needs libglade
+dnl *****************************************
+PKG_CHECK_MODULES(LIBGLADE, libglade-2.0 >= $LIBGLADE_REQUIRED)
+AC_SUBST(LIBGLADE_CFLAGS)
+AC_SUBST(LIBGLADE_LIBS)
+
 dnl *****************************
 dnl popt is needed for most utils
 dnl *****************************
