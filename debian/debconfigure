@@ -1,0 +1,107 @@
+#! /bin/sh
+#
+# debconfigure
+#
+# A script to generate a debian/rules file, with options.
+#
+# By Jim Pick <jim@jimpick.com>, GPL'd of course.
+#
+
+if [ ! -r rules.in ]; then
+	echo "Please run the debconfigure script in the debian directory" 1>&2
+	exit 1
+fi
+
+debtype='official'
+prefix='/usr'
+gtkprefix='/usr'
+pkgsuffix=''
+
+for dc_option
+do
+    case "$dc_option" in
+	-*=*) dc_optarg=`echo "$dc_option" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+	*) dc_optarg= ;;
+    esac
+
+    case "$dc_option" in
+
+	--clean)
+	    rm -f control rules *~ core *files *menu *substvars *.postinst *.debhelper
+	    exit ;;
+
+	--prefix=*)
+	    prefix="$dc_optarg" ;;
+
+	--pkgsuffix=*)
+	    pkgsuffix="$dc_optarg" ;;
+
+	--debtype=*)
+	    debtype="$dc_optarg" ;;
+
+	*)
+	    cat <<EOF 1>&2
+Usage: debconfigure [options]
+Options: [defaults in brackets after descriptions]
+  --help                  print this message
+  --clean		  remove generated files
+  --prefix=PREFIX         install files under under PREFIX dir [/usr]
+  --pkgsuffix=SUFFIX      append SUFFIX onto package names []
+  --debtype=DEBTYPE       enable macros with the name of DEBTYPE [official]
+EOF
+	    exit ;;
+
+    esac
+done
+
+# Strip leading slash
+prefix=`expr $prefix : '/\(.*\)'`
+gtkprefix=`expr $gtkprefix : '/\(.*\)'`
+
+for infile in `ls control.in rules.in`
+do
+    tofile=`expr $infile : '\(.*\)\.in'`
+    cat $infile | \
+       sed "s,@SUFFIX@,$pkgsuffix,g" | \
+       sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,%$debtype>,," | sed '/^%/d' > $tofile
+done
+chmod +x rules
+
+for filesfile in `ls *.files.in`
+do
+    tofile=`expr $filesfile : '\(.*\)\.files\.in'`
+    tofile=`echo $tofile$pkgsuffix.files`
+    cat $filesfile | \
+       sed "s,@SUFFIX@,$pkgsuffix,g" | \
+       sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,%$debtype>,," | sed '/^%/d' > $tofile
+done
+
+for menufile in `ls *.menu.in`
+do
+    tofile=`expr $menufile : '\(.*\)\.menu\.in'`
+    tofile=`echo $tofile$pkgsuffix.menu`
+    cat $menufile | \
+       sed "s,@SUFFIX@,$pkgsuffix,g" | \
+       sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,%$debtype>,," | sed '/^%/d' > $tofile
+done
+
+#for postinst in libguilegtk0$pkgsuffix
+#do
+#
+#cat > $postinst.postinst <<EOF
+##! /bin/sh
+#
+#set -e
+#ldconfig
+#
+##DEBHELPER#
+#EOF
+#
+#done
+
