@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.3.3\n"
-"POT-Creation-Date: 2003-06-04 07:39+0800\n"
-"PO-Revision-Date: 2003-06-04 08:43+0800\n"
+"POT-Creation-Date: 2003-06-09 23:18+0800\n"
+"PO-Revision-Date: 2003-06-10 01:01+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "附屬應用程式"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:156
 msgid "Dictionary Lookup"
 msgstr "查字典"
 
@@ -73,9 +73,10 @@ msgstr ""
 "Abel Cheung <maddog@linux.org.hk>, 2001-2003\n"
 "Ming-Yen Hsu <myhsu@cyberdude.com>, 1999"
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "GNOME 字典"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "字典"
 
 #: gdictsrc/gdict-about.c:58
 msgid "A client for the MIT dictionary server."
@@ -126,27 +127,23 @@ msgstr ""
 #: gdictsrc/gdict-app.c:690 gdictsrc/gdict-app.c:800
 #: gdictsrc/gdict-speller.c:215
 msgid "_Look Up Word"
-msgstr "檢索字詞(_L)"
+msgstr "查字(_L)"
 
 #: gdictsrc/gdict-app.c:691
 msgid "Lookup word in dictionary"
-msgstr "在字典中檢索字詞"
+msgstr "在字典中查字"
 
 #: gdictsrc/gdict-app.c:693 gdictsrc/gdict-speller.c:161
 msgid "Check _Spelling"
-msgstr "檢查拼字(_S)"
+msgstr "拼字檢查(_S)"
 
 #: gdictsrc/gdict-app.c:694
 msgid "Check word spelling"
-msgstr "檢查拼字"
+msgstr "拼字檢查"
 
 #: gdictsrc/gdict-app.c:738
 msgid "_Dictionary"
 msgstr "字典(_D)"
-
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "字典"
 
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
@@ -167,9 +164,9 @@ msgstr "請輸入字詞或在下列的清單中選擇"
 
 #: gdictsrc/gdict-app.c:828
 msgid "Look Up for a Word"
-msgstr "檢索字詞"
+msgstr "查字"
 
-#: gdictsrc/gdict-applet.c:272
+#: gdictsrc/gdict-applet.c:149
 msgid "_Lookup"
 msgstr "檢索(_L)"
 
@@ -1115,14 +1112,14 @@ msgstr "%s 的鏈結"
 #. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
 #: logview/about.c:43
 msgid "Cesar Miquel (miquel@df.uba.ar)"
-msgstr "Cesar Miquel (miquel@df.uba.ar)"
+msgstr "César Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:44
 msgid "A system log viewer for GNOME."
 msgstr "適用於 GNOME 的系統日誌顯示程式。"
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
+msgid "System Log Viewer"
 msgstr "系統日誌顯示程式"
 
 #: logview/actions.c:74
@@ -1266,7 +1263,7 @@ msgstr "行數："
 msgid "Log Information"
 msgstr "日誌資料"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<未載入任何日誌>"
 
@@ -1527,28 +1524,28 @@ msgstr "被更改了！！\n"
 msgid "Entry Detail"
 msgstr "項目細節"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "日期："
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "進程："
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "訊息："
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "說明："
 
-#: logview/zoom.c:130
+#: logview/zoom.c:129
 msgid "Log Line Details"
 msgstr "該行日誌的細節"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -1564,26 +1561,14 @@ msgstr ""
 "指定啟動時預設開啟的日誌。預設值可能是 /var/adm/messages 或 /var/log/"
 "messages，取決於所使用的作業系統。"
 
-#~ msgid "Gdialog progressbar"
-#~ msgstr "Gdialog 進度列"
+#~ msgid "GNOME Dictionary"
+#~ msgstr "GNOME 字典"
 
 #~ msgid "Indicates the percentage specified at the standard input"
 #~ msgstr "顯示參數中指定的進度百分值"
 
-#~ msgid "GDialog Entry"
-#~ msgstr "GDialog 輸入欄"
-
 #~ msgid "Enter the text"
 #~ msgstr "請輸入文字"
-
-#~ msgid "Copyright 1999 by Mike Hughes"
-#~ msgstr "版權所有 ©1999 Mike Hughes"
-
-#~ msgid "_Word: "
-#~ msgstr "字詞(_W)："
-
-#~ msgid "Headword:"
-#~ msgstr "字詞："
 
 #~ msgid "Sub-number:"
 #~ msgstr "編號："
@@ -1609,23 +1594,11 @@ msgstr ""
 #~ msgid "Search _Results"
 #~ msgstr "搜尋結果(_R)"
 
-#~ msgid "Floppy formatter"
-#~ msgstr "軟碟格式化程式"
-
-#~ msgid "(aborted)"
-#~ msgstr "(中止)"
-
 #~ msgid "Search Errors"
 #~ msgstr "搜尋出現錯誤"
 
 #~ msgid "Search for Files Error"
 #~ msgstr "搜尋檔案出現錯誤"
-
-#~ msgid "File Name Entry"
-#~ msgstr "檔案名稱輸入欄"
-
-#~ msgid "Starting folder entry"
-#~ msgstr "開始資料夾輸入欄"
 
 #~ msgid "Additional Options"
 #~ msgstr "額外選項"
@@ -1633,14 +1606,8 @@ msgstr ""
 #~ msgid "Can't Display Help"
 #~ msgstr "無法顯示說明文件"
 
-#~ msgid "This will open %d separate files. Are you sure you want to do this?"
-#~ msgstr "這樣會開啟 %d 個不同的檔案。是否確定要這樣做？"
-
 #~ msgid "Open %d Files?"
 #~ msgstr "是否開啟 %d 個檔案？"
-
-#~ msgid "Can't Display Location"
-#~ msgstr "無法顯示指定位置"
 
 #~ msgid ""
 #~ "Cannot save search results.\n"
@@ -1655,15 +1622,6 @@ msgstr ""
 #~ msgid "Cannot save search results to the file \"%s\"."
 #~ msgstr "無法將搜尋結果儲存至“%s”。"
 
-#~ msgid "Expander Size"
-#~ msgstr "箭頭尺寸"
-
-#~ msgid "Size of the expander arrow"
-#~ msgstr "表示展開項目的箭頭的大小"
-
-#~ msgid "%Y%m%d%H%M%S"
-#~ msgstr "%Y%m%d%H%M%S"
-
 #~ msgid ""
 #~ "This program is part of the GNOME project. Logview comes with ABSOLUTELY "
 #~ "NO WARRANTY. This is free software, and you are welcome to redistribute "
@@ -1674,9 +1632,6 @@ msgstr ""
 #~ "軟體，您可以遵照 GNU 通用公共許可證條款 (GNU General Public License) 重新"
 #~ "發佈本程式。承蒙 Tuomas Kuosmanen (即 tigert) 提供日誌的圖示。"
 
-#~ msgid "Copyright (C) 1998"
-#~ msgstr "版權所有 ©1998"
-
 #~ msgid "Log stats"
 #~ msgstr "日誌統計"
 
@@ -1685,336 +1640,6 @@ msgstr ""
 
 #~ msgid "_Show/Hide Definition Window..."
 #~ msgstr "顯示或隱藏定義視窗(_S)..."
-
-#~ msgid "GNOME Calculator"
-#~ msgstr "GNOME 計算機"
-
-#~ msgid "(C) 1998 Free Software Foundation, Inc."
-#~ msgstr "版權所有 ©1998 Free Software Foundation, Inc."
-
-#~ msgid "Simple double precision calculator similar to xcalc"
-#~ msgstr "類似 xcalc 的雙精準度計算機"
-
-#~ msgid "_Calculator"
-#~ msgstr "計算機(_C)"
-
-#~ msgid "Calculator"
-#~ msgstr "計算機"
-
-#~ msgid "inf"
-#~ msgstr "∞"
-
-#~ msgid "DEG"
-#~ msgstr "DEG"
-
-#~ msgid "RAD"
-#~ msgstr "RAD"
-
-#~ msgid "GRAD"
-#~ msgstr "GRAD"
-
-#~ msgid "1/x"
-#~ msgstr "<sup><small>1</small></sup>/<sub>x</sub>"
-
-#~ msgid "Inverse"
-#~ msgstr "倒數"
-
-#~ msgid "x<sup>2</sup>"
-#~ msgstr "x<sup><small>2</small></sup>"
-
-#~ msgid "Square"
-#~ msgstr "平方"
-
-#~ msgid "SQRT"
-#~ msgstr "√"
-
-#~ msgid "Square root"
-#~ msgstr "平方根"
-
-#~ msgid "CE/C"
-#~ msgstr "<sup>CE</sup>/<sub>C</sub>"
-
-#~ msgid "Clear"
-#~ msgstr "清除"
-
-#~ msgid "AC"
-#~ msgstr "AC"
-
-#~ msgid "Reset"
-#~ msgstr "重設"
-
-#~ msgid "INV"
-#~ msgstr "INV"
-
-#~ msgid "Inverse trigonometry/log function"
-#~ msgstr "反三角/對數函數"
-
-#~ msgid "sin"
-#~ msgstr "sin"
-
-#~ msgid "Sine"
-#~ msgstr "正弦"
-
-#~ msgid "cos"
-#~ msgstr "cos"
-
-#~ msgid "Cosine"
-#~ msgstr "餘弦"
-
-#~ msgid "tan"
-#~ msgstr "tan"
-
-#~ msgid "Tangent"
-#~ msgstr "正切"
-
-#~ msgid " DEG  "
-#~ msgstr "DEG"
-
-#~ msgid "Switch degrees / radians / grad"
-#~ msgstr "切換角度/弧度/梯度單位"
-
-#~ msgid "e"
-#~ msgstr "e"
-
-#~ msgid "Base of Natural Logarithm"
-#~ msgstr "自然對數的底數"
-
-#~ msgid "EE"
-#~ msgstr "EE"
-
-#~ msgid "Add digit"
-#~ msgstr "科學記數法"
-
-#~ msgid "log"
-#~ msgstr "log"
-
-#~ msgid "Base 10 Logarithm"
-#~ msgstr "底數為 10 的對數"
-
-#~ msgid "ln"
-#~ msgstr "ln"
-
-#~ msgid "Natural Logarithm"
-#~ msgstr "自然對數"
-
-#~ msgid "x<sup>y</sup>"
-#~ msgstr "x<sup>y</sup>"
-
-#~ msgid "Power"
-#~ msgstr "次方"
-
-#~ msgid "PI"
-#~ msgstr "π"
-
-#~ msgid "x!"
-#~ msgstr "x!"
-
-#~ msgid "Factorial"
-#~ msgstr "階乘"
-
-#~ msgid "("
-#~ msgstr "("
-
-#~ msgid "Opening Parenthesis"
-#~ msgstr "開括號"
-
-#~ msgid ")"
-#~ msgstr ")"
-
-#~ msgid "Closing Parenthesis"
-#~ msgstr "閉括號"
-
-#~ msgid "/"
-#~ msgstr "÷"
-
-#~ msgid "Divide by"
-#~ msgstr "除"
-
-#~ msgid "STO"
-#~ msgstr "儲存"
-
-#~ msgid ""
-#~ "Store the value in the\n"
-#~ "display field in memory"
-#~ msgstr "將畫面的數字儲存至暫存器內"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "Multiply by"
-#~ msgstr "乘"
-
-#~ msgid "RCL"
-#~ msgstr "載入"
-
-#~ msgid ""
-#~ "Display the value in memory\n"
-#~ "in the display field"
-#~ msgstr "在畫面中顯示暫存器裡的數值"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "-"
-#~ msgstr "－"
-
-#~ msgid "Subtract"
-#~ msgstr "減"
-
-#~ msgid "SUM"
-#~ msgstr "總和"
-
-#~ msgid ""
-#~ "Add the value in the display\n"
-#~ "field to the value in memory"
-#~ msgstr "將畫面的數值加進暫存器數值內"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "+"
-#~ msgstr "＋"
-
-#~ msgid "Add"
-#~ msgstr "加"
-
-#~ msgid "EXC"
-#~ msgstr "交換"
-
-#~ msgid ""
-#~ "Exchange the values in the\n"
-#~ "display field and memory"
-#~ msgstr "將畫面的數值和暫存器中的數值交換"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "."
-#~ msgstr "."
-
-#~ msgid "Decimal Point"
-#~ msgstr "小數點"
-
-#~ msgid "+/-"
-#~ msgstr "±"
-
-#~ msgid "Change sign"
-#~ msgstr "切換正負號"
-
-#~ msgid "="
-#~ msgstr "＝"
-
-#~ msgid "Calculate"
-#~ msgstr "計算結果"
-
-#~ msgid "Perform simple calculations"
-#~ msgstr "可進行簡單的計算"
-
-#~ msgid "Character Map"
-#~ msgstr "選字板"
-
-#~ msgid "Insert special characters into documents"
-#~ msgstr "可在文字中加入特殊字元"
-
-#~ msgid "Select Character"
-#~ msgstr "選取字元"
-
-#~ msgid "_Insert"
-#~ msgstr "插入(_I)"
-
-#~ msgid "Character c_ode:"
-#~ msgstr "字元代碼(_O)："
-
-#~ msgid "Ch_aracter:"
-#~ msgstr "字元(_A)："
-
-#~ msgid "Character Code"
-#~ msgstr "字元代碼"
-
-#~ msgid "Select character code"
-#~ msgstr "選取字元代碼"
-
-#~ msgid "Character"
-#~ msgstr "字元"
-
-#~ msgid "Character to insert"
-#~ msgstr "準備插入的字元"
-
-#~ msgid "GNOME Character Map"
-#~ msgstr "GNOME 選字板"
-
-#~ msgid ""
-#~ "Select, copy and paste characters from your font into other applications"
-#~ msgstr "選取、複製字元，並將字元貼上至其它程式"
-
-#~ msgid "Character code: (Unicode) U+%04lX"
-#~ msgstr "字元代碼：(統一碼) U%04lX"
-
-#~ msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
-#~ msgstr "字元代碼：(統一碼) U%04lX，(%s) 0x%s"
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "複製至剪貼簿的文字..."
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "剪下至剪貼簿的文字..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "從剪貼簿貼上的文字..."
-
-#~ msgid "Action Toolbar"
-#~ msgstr "行動工具列"
-
-#~ msgid "_Font:"
-#~ msgstr "字型(_F)："
-
-#~ msgid "_Page:"
-#~ msgstr "頁面(_P)："
-
-#~ msgid "_Text to copy:"
-#~ msgstr "準備複製的文字(_T)："
-
-#~ msgid "_Copy"
-#~ msgstr "複製(_C)"
-
-#~ msgid "Text to copy"
-#~ msgstr "準備複製的文字"
-
-#~ msgid "Entry"
-#~ msgstr "輸入欄"
-
-#~ msgid "Copy"
-#~ msgstr "複製"
-
-#~ msgid "Copy the text"
-#~ msgstr "複製選定的文字"
-
-#~ msgid "_Browse..."
-#~ msgstr "瀏覽(_B)..."
-
-#~ msgid "Insert character(s) by choosing character codes."
-#~ msgstr "選取字元代碼來將該字元加入選字板。"
-
-#~ msgid "Ch_aracters"
-#~ msgstr "字元(_A)"
 
 #~ msgid "Cut"
 #~ msgstr "剪下"
@@ -2063,12 +1688,6 @@ msgstr ""
 
 #~ msgid "Default strategy"
 #~ msgstr "預設搜尋方式"
-
-#~ msgid "Format a Floppy"
-#~ msgstr "軟碟格式化"
-
-#~ msgid "Process folder contents depth first"
-#~ msgstr "優先處理資料夾內的檔案及副目錄"
 
 #~ msgid "folder"
 #~ msgstr "資料夾"
