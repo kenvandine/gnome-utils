@@ -265,6 +265,35 @@ setup_find_name_options (gchar *filename)
 	return g_string_free (command, FALSE);
 }
 
+gboolean
+has_additional_constraints (void)
+{
+	GList *list;
+	
+	if (interface.selected_constraints != NULL) {
+	
+		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
+			
+			SearchConstraint *constraint = list->data;
+							
+			switch (templates[constraint->constraint_id].type) {
+			case SEARCH_CONSTRAINT_BOOL:
+			case SEARCH_CONSTRAINT_NUMBER:
+			case SEARCH_CONSTRAINT_TIME_LESS:	
+			case SEARCH_CONSTRAINT_TIME_MORE:
+				return TRUE;
+			case SEARCH_CONSTRAINT_TEXT:
+				if (strlen (constraint->data.text) > 0) {
+					return TRUE;
+				} 
+			default:
+				break;
+			}
+		}
+	}
+	return FALSE;
+}
+
 gchar *
 build_search_command (void)
 {
@@ -325,7 +354,7 @@ build_search_command (void)
 	search_command.file_is_named_pattern = NULL;
 	
 	if ((GTK_WIDGET_VISIBLE(interface.additional_constraints) == FALSE) ||
-	    (interface.selected_constraints == NULL)) {
+	    (has_additional_constraints() == FALSE)) {
 	
 		gchar *locate;
 		gboolean disable_quick_search;

@@ -1,3 +1,13 @@
+2004-10-15  Dennis Cranston <dennis_cranston at yahoo com>
+
+	* gsearchtool-support.c: (compare_regex): Fix a potential
+	crash (although it has never been reported).
+	
+	* gsearchtool.c: (build_search_command): Fix logic to correctly 
+	determine if an additional option is selected.
+	
+	Fixes part of bug #153569 (Comments 3-6).
+	
 2004-09-24  Dennis Cranston <dennis_cranston at yahoo com>
 
 	* gsearchtool-support.c: (is_path_in_mount_folder):

@@ -359,6 +359,10 @@ compare_regex (const gchar *regex,
 {
 	regex_t regexec_pattern;
 	
+	if (regex == NULL) {
+		return TRUE;
+	}
+	
 	regcomp (&regexec_pattern, regex, REG_NOSUB);
 	
 	if (regexec (&regexec_pattern, string, 0, 0, 0) != REG_NOMATCH) {
