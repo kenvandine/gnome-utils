@@ -83,8 +83,8 @@ timer_func(gpointer data)
 {
 	time_t now = time(0);
 
-	/* even if there is no active prioject,
-	 * we still ahve to zero out the counters periodically. */
+	/* Even if there is no active project,
+	 * we still have to zero out the counters periodically. */
 	if (0 == now%60) zero_on_rollover (now);
 
 	if (!cur_proj) return 1;
@@ -95,7 +95,7 @@ timer_func(gpointer data)
 	{
 		ctree_update_label(global_ptw, cur_proj);
 	} 
-	else if (0 == gtt_project_total_secs_day(cur_proj)) 
+	else if (0 == gtt_project_get_secs_current(cur_proj) % 60) 
 	{
 		ctree_update_label(global_ptw, cur_proj);
 	}
