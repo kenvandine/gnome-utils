@@ -4,6 +4,7 @@ SUBDIRS = help
 
 INCLUDES = \
 	@GNOME_UTILS_CFLAGS@ \
+	-DDATADIR=\""$(datadir)"\" \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 
 
 bin_PROGRAMS = gnome-calculator 

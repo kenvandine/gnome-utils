@@ -113,7 +113,7 @@ static GnomeUIInfo edit_menu[] = {
 };
 
 static GnomeUIInfo help_menu[] = {
-	GNOMEUIINFO_HELP("gcalc"),
+	GNOMEUIINFO_HELP("gnome-calculator"),
 	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
 	GNOMEUIINFO_END
 };
@@ -174,7 +174,8 @@ main(int argc, char *argv[])
 	textdomain(GETTEXT_PACKAGE);
 
 	gnome_program_init ("gnome-calculator", VERSION, LIBGNOMEUI_MODULE,
-			argc, argv, GNOME_PARAM_POPT_TABLE, options, NULL);
+			argc, argv, GNOME_PARAM_POPT_TABLE, options, 
+			GNOME_PARAM_APP_DATADIR,DATADIR, NULL);
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-calc2.png");
 
 	if (analog) {
