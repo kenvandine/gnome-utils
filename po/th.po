@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-05 23:56+0700\n"
-"PO-Revision-Date: 2005-02-06 13:42+0700\n"
+"POT-Creation-Date: 2005-02-08 18:04+0700\n"
+"PO-Revision-Date: 2005-02-08 18:10+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 #: ../gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
-msgstr "ค้นหาในพจนานุกรม"
+msgstr "เปิดพจนานุกรม"
 
 #: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:2
 #: ../gdictsrc/gdict-applet.c:27 ../gdictsrc/gnome-dictionary.desktop.in.h:2
@@ -439,7 +439,7 @@ msgstr "พจนานุกรม Gnome"
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
-msgstr "ตัวฟอร์แมตแผ่นฟลอปปี้"
+msgstr "ฟอร์แมตแผ่นฟลอปปี้"
 
 #: ../gfloppy/gfloppy.desktop.in.h:2
 msgid "Format Floppy Disks"
@@ -852,11 +852,13 @@ msgstr "อุปกรณ์"
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
+msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr ""
+msgstr[0] ""
 "ฟอร์แมตฟลอปปี้เสร็จแล้ว แต่พบ<b>บล็อกเสีย %d บล็อก</b> (จาก %d) "
 "และได้ทำเครื่องหมายไว้ว่าไม่ให้ใช้"
+msgstr[1] ""
 "ฟอร์แมตฟลอปปี้เสร็จแล้ว แต่พบ<b>บล็อกเสีย %d บล็อก</b> (จาก %d) "
 "และได้ทำเครื่องหมายไว้ว่าไม่ให้ใช้"
 
@@ -982,7 +984,8 @@ msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"black-line\"."
 msgstr ""
-"เอฟเฟกต์ที่จะเพิ่มให้กับขอบนอกกรอบหน้าต่าง ค่าที่เป็นไปได้คือ \"shadow\", \"none\", และ \"black-line\""
+"เอฟเฟกต์ที่จะเพิ่มให้กับขอบนอกกรอบหน้าต่าง ค่าที่เป็นไปได้คือ \"shadow\", \"none\", และ "
+"\"black-line\""
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -1021,8 +1024,7 @@ msgstr ""
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
-msgstr ""
-"โพรเซสลูกที่บันทึกแฟ้มหยุดทำงานกระทันหัน จึงไม่สามารถเขียนแฟ้มภาพหน้าจอลงดิสก์ได้"
+msgstr "โพรเซสลูกที่บันทึกแฟ้มหยุดทำงานกระทันหัน จึงไม่สามารถเขียนแฟ้มภาพหน้าจอลงดิสก์ได้"
 
 #: ../gnome-screenshot/screenshot-save.c:188
 msgid "Unknown error saving screenshot to disk"
@@ -1175,9 +1177,8 @@ msgid ""
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
 msgstr ""
-"กำหนดพาธที่เครื่องมือค้นหาจะไม่รวมในผลลัพธ์ของการค้นอย่างเร็ว "
-"สามารถใช้ wildcard '*' และ '?' ได้ ค่าโดยปริยายคือ /mnt/*, /"
-"media/*, /dev/*, /tmp/*, /proc/*, และ /var/*"
+"กำหนดพาธที่เครื่องมือค้นหาจะไม่รวมในผลลัพธ์ของการค้นอย่างเร็ว สามารถใช้ wildcard '*' และ "
+"'?' ได้ ค่าโดยปริยายคือ /mnt/*, /media/*, /dev/*, /tmp/*, /proc/*, และ /var/*"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:49
 msgid ""
@@ -1187,94 +1188,81 @@ msgid ""
 "not been indexed. The wildcards '*' and '?' are supported. The default value "
 "is /."
 msgstr ""
-"กำหนดพาธที่เครื่องมือค้นหาจะไม่ค้นในรอบสองของการค้นอย่างเร็ว "
-"การค้นรอบสองจะใช้คำสั่ง find ในการค้นหาแฟ้ม "
-"มีจุดมุ่งหมายเพื่อค้นหาแฟ้มที่ยังไม่ถูกทำดัชนี "
-"สามารถใช้ wildcard '*' และ '?' ได้ ค่าโดยปริยายคือ /"
+"กำหนดพาธที่เครื่องมือค้นหาจะไม่ค้นในรอบสองของการค้นอย่างเร็ว การค้นรอบสองจะใช้คำสั่ง find "
+"ในการค้นหาแฟ้ม มีจุดมุ่งหมายเพื่อค้นหาแฟ้มที่ยังไม่ถูกทำดัชนี สามารถใช้ wildcard '*' และ '?' "
+"ได้ ค่าโดยปริยายคือ /"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
 "This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"บรรจุข้อความ\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"บรรจุข้อความ\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"แก้ไขครั้งล่าสุดภายใน\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"แก้ไขครั้งล่าสุดภายใน\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
 "This key determines if the \"Date modified more than\" search option is "
 "selected when the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"แก้ไขครั้งล่าสุดก่อน\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"แก้ไขครั้งล่าสุดก่อน\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:53
 msgid ""
 "This key determines if the \"File is empty\" search option is selected when "
 "the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"แฟ้มเปล่าไม่มีข้อมูล\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"แฟ้มเปล่าไม่มีข้อมูล\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:54
 msgid ""
 "This key determines if the \"Follow symbolic links\" search option is "
 "selected when the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"ติดตามลิงก์สัญลักษณ์\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"ติดตามลิงก์สัญลักษณ์\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:55
 msgid ""
 "This key determines if the \"Include other filesystems\" search option is "
 "selected when the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"รวมระบบแฟ้มอื่น\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"รวมระบบแฟ้มอื่น\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
 "This key determines if the \"Name does not contain\" search option is "
 "selected when the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"ชื่อไม่มีคำว่า\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"ชื่อไม่มีคำว่า\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"ชื่อที่ตรง regular expression\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"ชื่อที่ตรง regular expression\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:58
 msgid ""
 "This key determines if the \"Owned by group\" search option is selected when "
 "the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"เป็นของกลุ่ม\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"เป็นของกลุ่ม\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:59
 msgid ""
 "This key determines if the \"Owned by user\" search option is selected when "
 "the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"เจ้าของคือ\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"เจ้าของคือ\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:60
 msgid ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"ไม่รู้จักเจ้าของ\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"ไม่รู้จักเจ้าของ\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:61
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"แสดงแฟ้มสำรอง และแฟ้มที่ถูกซ่อน\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"แสดงแฟ้มสำรอง และแฟ้มที่ถูกซ่อน\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
@@ -1282,36 +1270,31 @@ msgstr ""
 msgid ""
 "This key determines if the \"Show more options\" section is expanded when "
 "the search tool is started."
-msgstr ""
-"กำหนดให้ส่วน \"แสดงตัวเลือกอื่นๆ\" เปิดไว้เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้ส่วน \"แสดงตัวเลือกอื่นๆ\" เปิดไว้เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"ขนาดอย่างน้อย\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"ขนาดอย่างน้อย\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:66
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
-msgstr ""
-"กำหนดให้เลือกตัวเลือก \"ขนาดไม่เกิน\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
+msgstr "กำหนดให้เลือกตัวเลือก \"ขนาดไม่เกิน\" เมื่อเริ่มเปิดเครื่องมือค้นหา"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
-msgstr ""
-"กำหนดให้เครื่องมือค้นหาปิดการใช้คำสั่ง find หลังจากค้นหาอย่างเร็วเสร็จแล้ว"
+msgstr "กำหนดให้เครื่องมือค้นหาปิดการใช้คำสั่ง find หลังจากค้นหาอย่างเร็วเสร็จแล้ว"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
-msgstr ""
-"กำหนดให้เครื่องมือค้นหาปิดการใช้คำสั่ง locate สำหรับการค้นหาชื่อแฟ้มอย่างง่าย"
+msgstr "กำหนดให้เครื่องมือค้นหาปิดการใช้คำสั่ง locate สำหรับการค้นหาชื่อแฟ้มอย่างง่าย"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:163
 msgid "Could not open help document."
@@ -1321,16 +1304,16 @@ msgstr "ไม่สามารถเปิดเอกสารคำแนะ
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] "แน่ใจหรือไม่ว่าจะเปิด %d เอกสาร ?"
-msgstr[1] "แน่ใจหรือไม่ว่าจะเปิด %d เอกสาร ?"
+msgstr[0] "แน่ใจหรือไม่ว่าจะเปิดเอกสาร %d ฉบับ?"
+msgstr[1] "แน่ใจหรือไม่ว่าจะเปิดเอกสาร %d ฉบับ?"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:303
 #: ../gsearchtool/gsearchtool-callbacks.c:460
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] "จะเปิด %d หน้าต่างแยก"
-msgstr[1] "จะเปิด %d หน้าต่างแยก"
+msgstr[0] "จะเปิดหน้าต่างแยก %d หน้าต่าง"
+msgstr[1] "จะเปิดหน้าต่างแยก %d หน้าต่าง"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:343
 #, c-format
@@ -1350,8 +1333,8 @@ msgstr "ไม่มีตัวแสดงเอกสารนี้ติด
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] "แน่ใจหรือไม่ว่าจะเปิด %d โฟลเดอร์ ?"
-msgstr[1] "แน่ใจหรือไม่ว่าจะเปิด %d โฟลเดอร์ ?"
+msgstr[0] "แน่ใจหรือไม่ว่าจะเปิดโฟลเดอร์ %d โฟลเดอร์?"
+msgstr[1] "แน่ใจหรือไม่ว่าจะเปิดโฟลเดอร์ %d โฟลเดอร์?"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:499
 #, c-format
