@@ -494,7 +494,7 @@ setup_app_progress_bar (void)
 gboolean
 update_progress_bar (gpointer data)
 {
-	if (search_command.running != MAKE_IT_QUIT) {
+	if (GTK_IS_PROGRESS_BAR(interface.progress_bar) == TRUE) {
 		gtk_progress_bar_pulse (GTK_PROGRESS_BAR (interface.progress_bar));
 	}
 	return TRUE;
