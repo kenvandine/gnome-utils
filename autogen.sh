@@ -8,7 +8,7 @@ PKG_NAME="GNOME Utilities"
 
 (test -f $srcdir/configure.in \
   && test -f $srcdir/ChangeLog \
-  && test -d $srcdir/gtt) || {
+  && test -d $srcdir/gsearchtool) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level gnome directory"
     exit 1
