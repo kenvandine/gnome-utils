@@ -1,0 +1,15 @@
+EXTRA_DIST = ABOUT_NLS BUGS gcharmap.lsm gcharmap.desktop gcharmap.kdelnk
+SUBDIRS = src doc pixmaps
+
+sysdir = $(datadir)/gnome/apps/Applications
+sys_DATA = gcharmap.desktop
+
+install-data-local:
+	$(mkinstalldirs) $(prefix)/doc/gcharmap/
+	$(INSTALL_DATA) AUTHORS $(prefix)/doc/gcharmap/AUTHORS
+	$(INSTALL_DATA) COPYING $(prefix)/doc/gcharmap/COPYING
+	$(INSTALL_DATA) ChangeLog $(prefix)/doc/gcharmap/ChangeLog
+	$(INSTALL_DATA) NEWS $(prefix)/doc/gcharmap/NEWS
+	$(INSTALL_DATA) README $(prefix)/doc/gcharmap/README
+	$(INSTALL_DATA) TODO $(prefix)/doc/gcharmap/TODO
+	$(INSTALL_DATA) gcharmap.lsm $(prefix)/doc/gcharmap/gcharmap.lsm
