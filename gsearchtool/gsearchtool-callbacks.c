@@ -48,6 +48,10 @@
 
 #define SILENT_WINDOW_OPEN_LIMIT 5
 
+#ifdef HAVE_GETPGID
+extern pid_t getpgid (pid_t);
+#endif
+
 gboolean row_selected_by_button_press_event;
 
 static void
@@ -1065,7 +1069,7 @@ drag_file_cb  (GtkWidget * widget,
 			gtk_selection_data_set (selection_data,
 			                        selection_data->target,
 			                        8,
-			                        uri_list,
+			                        (guchar *) uri_list,
 			                        strlen (uri_list));
 			g_free (tmp_uri);
 		}
@@ -1140,7 +1144,7 @@ drag_data_animation_cb (GtkWidget * widget,
 	if (gnome_desktop_item_save (ditem, NULL, FALSE, NULL)) {
 		gtk_selection_data_set (selection_data,
 					selection_data->target, 8,
-					uri, strlen (uri));
+					(guchar *) uri, strlen (uri));
 	}
 	gnome_desktop_item_unref (ditem);
 
