@@ -14,6 +14,8 @@ dnl
 dnl a start of some nicer configure.in stuff
 dnl
 GDK_PIXBUF_REQUIRED=0.7.0
+GCONF_REQUIRED=0.12
+OAF_REQUIRED=0.6.5
 
 
 AM_CONFIG_HEADER(config.h)
@@ -371,10 +373,14 @@ dnl Check for libgtop
 GNOME_INIT_LIBGTOP
 
 dnl gdialog
-
 AC_CHECK_CURSES
-
 dnl gdialog end
+
+AM_PATH_OAF($OAF_REQUIRED)
+AC_SUBST(OAF_REQUIRED)
+
+AM_PATH_GCONF($GCONF_REQUIRED,,,gconf-gtk)
+AC_SUBST(GCONF_REQUIRED)
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
