@@ -20,12 +20,7 @@
 #ifndef __LOG_MONITOR_H__
 #define __LOG_MONITOR_H__
 
+void monitor_start (LogviewWindow *window);
 void monitor_stop (LogviewWindow *window);
-GtkWidget *monitor_create_widget (LogviewWindow *window);
-void go_monitor_log (LogviewWindow *window);
 void mon_update_display (LogviewWindow *window);
-/*void mon_check_logs (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri, 
-		const gchar *info_uri, GnomeVFSMonitorEventType event_type, 
-		gpointer data);*/
-
 #endif /* __LOG_MONITOR_H__ */

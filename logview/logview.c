@@ -54,10 +54,11 @@ static UserPrefsStruct *user_prefs;
 
 void destroy (GObject *object, gpointer data);
 static void CreateMainWin (LogviewWindow *window_new);
-static void LoadLogMenu (GtkAction *action, GtkWidget *callback_data);
+static void LoadLogMenu (GtkAction *action, GtkWidget *parent_window);
 static void CloseLogMenu (GtkAction *action, GtkWidget *callback_data);
 static void FileSelectResponse (GtkWidget * chooser, gint response, gpointer data);
 static void open_databases (void);
+GtkWidget *logview_create_monitor_widget (LogviewWindow *window);
 static GtkWidget *logview_create_window (void);
 static void logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state);
 static void toggle_calendar (GtkAction *action, GtkWidget *callback_data);
@@ -378,7 +379,6 @@ CreateMainWin (LogviewWindow *window)
    GtkTreeSelection *selection;
    GtkTreeViewColumn *column;
    GtkCellRenderer *renderer;
-   GtkWidget *scrolled_window = NULL;
    gint i;
    GtkActionGroup *action_group;
    GtkAccelGroup *accel_group;
@@ -417,14 +417,12 @@ CreateMainWin (LogviewWindow *window)
    window->main_view = gtk_frame_new (NULL);
    gtk_box_pack_start (GTK_BOX (vbox), window->main_view, TRUE, TRUE, 0);
 
-   /* Create scrolled window and tree view */
+   /* Scrolled windows for the main view and monitor view */
    window->log_scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-   gtk_widget_set_sensitive (window->log_scrolled_window, TRUE);
    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (window->log_scrolled_window),
                GTK_POLICY_AUTOMATIC,
                GTK_POLICY_AUTOMATIC);
-
-   window->mon_scrolled_window = monitor_create_widget (window);
+   window->mon_scrolled_window = logview_create_monitor_widget (window);
 
    /* We ref the two scrolled_windows so they are not destroyed when we remove one from
     * the main_view to put the other */
@@ -433,24 +431,20 @@ CreateMainWin (LogviewWindow *window)
 
    gtk_container_add (GTK_CONTAINER (window->main_view), window->log_scrolled_window);
 
-   /* Create Tree View */
-   tree_store = gtk_tree_store_new (4,
-                G_TYPE_STRING, G_TYPE_STRING,
-                G_TYPE_STRING, G_TYPE_STRING);
+   /* Main Tree View */
+   tree_store = gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
+				    G_TYPE_STRING, G_TYPE_STRING);
 
    window->view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (tree_store));
    gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (window->view), TRUE);
    g_object_unref (G_OBJECT (tree_store)); 
    
-   /* Add Tree View Columns */
-
    for (i = 0; column_titles[i]; i++) {
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes (_(column_titles[i]),
                     renderer, "text", i, NULL);
         gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE); 
         gtk_tree_view_column_set_resizable (column, TRUE);
-        gtk_tree_view_column_set_spacing (column, 6);
         gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
    }
 
@@ -474,7 +468,7 @@ CreateMainWin (LogviewWindow *window)
    gtk_box_pack_start (GTK_BOX (vbox), window->find_bar, FALSE, FALSE, 0);
    gtk_widget_show (window->find_bar);
 
-   /* Create status area at bottom */
+   /* Status area at bottom */
    window->statusbar = gtk_statusbar_new ();
    gtk_box_pack_start (GTK_BOX (vbox), window->statusbar, FALSE, FALSE, 0);
 
@@ -524,7 +518,6 @@ static void
 FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 {
    char *f;
-   Log *tl;
    LogviewWindow *window = data;
 
    gtk_widget_hide (GTK_WIDGET (chooser));
@@ -551,6 +544,7 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 	   if (window->curlog) {
 		   logview_create_window_open_file (f);		   
 	   } else {
+		   Log *tl;
 		   if ((tl = OpenLogFile (f)) != NULL) {
 			   window->curlog = tl;
 			   window->curlog->first_time = TRUE; 
@@ -576,34 +570,60 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
    ---------------------------------------------------------------------- */
 
 static void
-LoadLogMenu (GtkAction *action, GtkWidget *callback_data)
+LoadLogMenu (GtkAction *action, GtkWidget *parent_window)
 {
    static GtkWidget *chooser = NULL;
-   LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
    
    if (chooser == NULL) {
 	   chooser = gtk_file_chooser_dialog_new (_("Open new logfile"),
-						  GTK_WINDOW (window),
+						  GTK_WINDOW (parent_window),
 						  GTK_FILE_CHOOSER_ACTION_OPEN,
 						  GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 						  GTK_STOCK_OPEN, GTK_RESPONSE_OK,
 						  NULL);
-	   gtk_dialog_set_default_response (GTK_DIALOG (chooser),
-					    GTK_RESPONSE_OK);
-	   gtk_window_set_default_size (GTK_WINDOW (chooser), 600, 400);
+	   gtk_dialog_set_default_response (GTK_DIALOG (chooser), GTK_RESPONSE_OK);
 	   gtk_window_set_modal (GTK_WINDOW (chooser), TRUE);
 	   g_signal_connect (G_OBJECT (chooser), "response",
-			     G_CALLBACK (FileSelectResponse), window);
+			     G_CALLBACK (FileSelectResponse), parent_window);
 	   g_signal_connect (G_OBJECT (chooser), "destroy",
 			     G_CALLBACK (gtk_widget_destroyed), &chooser);
+	   if (user_prefs->logfile != NULL)
+		   gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (chooser), 
+						  user_prefs->logfile);
    }
 
-   if (user_prefs->logfile != NULL)
-   	gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (chooser), 
-				       user_prefs->logfile);
-   gtk_window_set_position (GTK_WINDOW (chooser), GTK_WIN_POS_MOUSE);
-
    gtk_window_present (GTK_WINDOW (chooser));
+}
+
+GtkWidget *logview_create_monitor_widget (LogviewWindow *window)
+{
+	GtkWidget *clist_view, *swin;
+	GtkListStore *clist;   
+	GtkCellRenderer *clist_cellrenderer;
+	GtkTreeViewColumn *clist_column;
+
+	clist = gtk_list_store_new (1, G_TYPE_STRING);
+	clist_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (clist));
+	g_object_unref (clist);
+	clist_cellrenderer = gtk_cell_renderer_text_new ();
+	clist_column = gtk_tree_view_column_new_with_attributes
+		(NULL, clist_cellrenderer, "text", 0, NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (clist_view), clist_column);
+	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (clist_view), FALSE);
+	swin = gtk_scrolled_window_new (NULL, NULL);
+	gtk_container_add (GTK_CONTAINER (swin), GTK_WIDGET (clist_view));
+	gtk_tree_selection_set_mode
+		( (GtkTreeSelection *)gtk_tree_view_get_selection
+		  (GTK_TREE_VIEW (clist_view)),
+		  GTK_SELECTION_MULTIPLE);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (swin),
+					GTK_POLICY_AUTOMATIC,
+					GTK_POLICY_AUTOMATIC);
+	gtk_widget_show_all (swin);
+
+	window->mon_list_view = (GtkWidget *) clist_view;
+
+	return swin;
 }
 
 /* ----------------------------------------------------------------------
@@ -735,14 +755,13 @@ toggle_monitor (GtkAction *action, GtkWidget *callback_data)
     if (!window->curlog->display_name) {
 	    if (window->monitored) {
 		    gtk_container_remove (GTK_CONTAINER (window->main_view), window->mon_scrolled_window);
-		    monitor_stop (window);
 		    gtk_container_add (GTK_CONTAINER (window->main_view), window->log_scrolled_window);
+		    monitor_stop (window);
 		    window->monitored = FALSE;
 	    } else {
 		    gtk_container_remove (GTK_CONTAINER(window->main_view), window->log_scrolled_window);
-		    mon_update_display (window);
 		    gtk_container_add (GTK_CONTAINER(window->main_view), window->mon_scrolled_window);
-		    go_monitor_log (window);
+		    monitor_start (window);
 		    window->monitored = TRUE;
 	    }
 	    logview_set_window_title (window);
@@ -753,13 +772,13 @@ toggle_monitor (GtkAction *action, GtkWidget *callback_data)
 static void
 logview_search (GtkAction *action,GtkWidget *callback_data)
 {
-	static GtkWidget *dialog = NULL;
 	LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
 
-	if (!window->monitored) {
-		gtk_widget_show (window->find_bar);
-		gtk_widget_grab_focus (window->find_entry);
-	}
+	if (window->monitored)
+		return;
+
+	gtk_widget_show (window->find_bar);
+	gtk_widget_grab_focus (window->find_entry);
 }
 
 static void
@@ -801,7 +820,6 @@ static void
 logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state)
 {
 	g_return_if_fail (path);
-
 	gtk_widget_set_sensitive (GTK_WIDGET (gtk_ui_manager_get_widget(logviewwindow->ui_manager, path)), state);
 }
 
@@ -821,7 +839,7 @@ logview_menus_set_state (LogviewWindow *window)
 			else
 				logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", TRUE);
 		} else
-				logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
+			logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
 		
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/Properties", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/CloseLog", (window->curlog != NULL));
@@ -849,16 +867,13 @@ logview_count_logs (void)
 }
 
 static void
-logview_help (GtkAction *action, GtkWidget *callback_data)
+logview_help (GtkAction *action, GtkWidget *parent_window)
 {
-        GError *error = NULL;
-	LogviewWindow *window = LOGVIEW_WINDOW(callback_data);
-                                                                                
+        GError *error = NULL;                                                                                
         gnome_help_display_desktop_on_screen (NULL, "gnome-system-log", "gnome-system-log", NULL,
-					      gtk_widget_get_screen (GTK_WIDGET(window)), &error);
+					      gtk_widget_get_screen (GTK_WIDGET(parent_window)), &error);
 	if (error) {
-		gchar *message;
-		ShowErrMessage (GTK_WIDGET(window), _("There was an error displaying help."), error->message);
+		ShowErrMessage (GTK_WIDGET(parent_window), _("There was an error displaying help."), error->message);
 		g_error_free (error);
 	}
 }

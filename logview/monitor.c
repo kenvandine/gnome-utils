@@ -47,69 +47,17 @@ monitor_stop (LogviewWindow *window)
 		window->curlog->mon_file_handle = NULL;
 	}
 }
-	
-GtkWidget *monitor_create_widget (LogviewWindow *window)
-{
-	GtkWidget *clist_view, *swin;
-	GtkListStore *clist;
-	GtkCellRenderer *clist_cellrenderer;
-	GtkTreeViewColumn *clist_column;
-	GtkTreeIter newiter;
-   
-	/* Create destination list */
-	clist = gtk_list_store_new (1, G_TYPE_STRING); 
-	clist_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (clist));
-	clist_cellrenderer = gtk_cell_renderer_text_new ();
-	clist_column = gtk_tree_view_column_new_with_attributes
-		(NULL, clist_cellrenderer, "text", 0, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (clist_view), clist_column);
-	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (clist_view), FALSE);
-	swin = gtk_scrolled_window_new (NULL, NULL);
-	gtk_container_add (GTK_CONTAINER (swin), GTK_WIDGET (clist_view));
-	gtk_tree_view_column_set_fixed_width (GTK_TREE_VIEW_COLUMN
-					      (clist_column), 300); 
-	gtk_tree_selection_set_mode
-		( (GtkTreeSelection *)gtk_tree_view_get_selection
-		  (GTK_TREE_VIEW (clist_view)),
-		  GTK_SELECTION_MULTIPLE);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (swin),
-					GTK_POLICY_AUTOMATIC,
-					GTK_POLICY_AUTOMATIC);
-	
-	gtk_tree_view_column_set_alignment (GTK_TREE_VIEW_COLUMN (clist_column),
-					    0.0);
-	gtk_widget_show_all (swin);
-
-	window->mon_list_view = (GtkWidget *) clist_view;
-
-	if (window->curlog)
-		mon_update_display (window);
-
-	return swin;
-}
-
-/* ----------------------------------------------------------------------
-   NAME:	go_monitor_log
-   DESCRIPTION:	Start monitoring the logs.
-   ---------------------------------------------------------------------- */
 
 void
-go_monitor_log (LogviewWindow *window)
+monitor_start (LogviewWindow *window)
 {
-	GnomeVFSResult result;
 	Log *log = window->curlog;
-
 	g_return_if_fail (log);
 	
-	/* Setup timer to check log */
+	mon_update_display (window);
+
 	/* the timeout is automatically stopped when mon_check_logs returns false. */
 	window->timer_tag = g_timeout_add (1000, mon_check_logs, window);
-
-	/* Fixme : This doesnt work yet */
-	/*
-	  gnome_vfs_monitor_add (&(log->mon_handle), log->name, GNOME_VFS_MONITOR_FILE,
-			       (GnomeVFSMonitorCallback) mon_check_logs, window);
-	*/
 }
 
 
@@ -145,9 +93,10 @@ mon_update_display (LogviewWindow *window)
 
 	   list = (GtkListStore *) gtk_tree_view_get_model (GTK_TREE_VIEW(window->mon_list_view));
 	   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(window->mon_list_view));
+	   gtk_tree_selection_unselect_all (selection);
+
 	   if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL(list), &parent) == FALSE)
 		   parent_pointer = NULL;
-	   gtk_tree_selection_unselect_all (selection);
 
 	   line = g_new0 (LogLine, 1);
 
@@ -188,15 +137,14 @@ mon_format_line (char *buffer, int bufsize, LogLine *line)
     if (line == NULL)
         return;
 
-	g_snprintf (buffer, bufsize, "%s/%s  %s:%s:%s %s %s", 
-		        LocaleToUTF8 (g_strdup_printf ("%2d", line->date)),
+    g_snprintf (buffer, bufsize, "%s/%s  %s:%s:%s %s %s", 
+		LocaleToUTF8 (g_strdup_printf ("%2d", line->date)),
                 LocaleToUTF8 (g_strdup_printf ("%2d", line->month+1)),
-		        LocaleToUTF8 (g_strdup_printf ("%2d", line->hour)),
+		LocaleToUTF8 (g_strdup_printf ("%2d", line->hour)),
                 LocaleToUTF8 (g_strdup_printf ("%02d", line->min)), 
                 LocaleToUTF8 (g_strdup_printf ("%02d", line->sec)),
-		        LocaleToUTF8 (line->process),
+		LocaleToUTF8 (line->process),
                 LocaleToUTF8 (line->message));
-
 }
 
 /* ----------------------------------------------------------------------
@@ -204,10 +152,6 @@ mon_format_line (char *buffer, int bufsize, LogLine *line)
    DESCRIPTION:	Routinly called to check wheter the logs have changed.
    ---------------------------------------------------------------------- */
 
-/*void
-mon_check_logs (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri, 
-		const gchar *info_uri, GnomeVFSMonitorEventType event_type, 
-		gpointer data)*/
 static gboolean
 mon_check_logs (gpointer data)
 {

@@ -24,7 +24,7 @@
 #include "info.h"
 #include "misc.h"
 
-static void RepaintLogInfo (LogviewWindow *window);
+static void RepaintLogInfo (LogviewWindow *window, GtkTextBuffer *info_buffer);
 static void QuitLogInfo (GtkWidget *widget, gpointer data);
 static void CloseLogInfo (GtkWidget *widget, int arg, gpointer data);
 
@@ -36,54 +36,53 @@ static void CloseLogInfo (GtkWidget *widget, int arg, gpointer data);
 void
 LogInfo (GtkAction *action, GtkWidget *callback_data)
 {
-	GtkWidget *frame;
+	static GtkWidget *info_dialog = NULL;
+	static GtkWidget *info_text_view;
+	static GtkTextBuffer *info_buffer;
 	LogviewWindow *window = LOGVIEW_WINDOW(callback_data);
+	GtkWidget *frame;
 
 	if (window->curlog == NULL || window->loginfovisible)
 		return;
 	
-	if (window->info_dialog == NULL) {
-		GtkWidget *InfoDialog;
-		InfoDialog = gtk_dialog_new_with_buttons (_("Properties"),
+	if (info_dialog == NULL) {
+		info_dialog = gtk_dialog_new_with_buttons (_("Properties"),
 							  GTK_WINDOW (window),
 							  GTK_DIALOG_DESTROY_WITH_PARENT,
 							  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 							  NULL);
 		
-		g_signal_connect (G_OBJECT (InfoDialog), "response",
+		g_signal_connect (G_OBJECT (info_dialog), "response",
 				  G_CALLBACK (CloseLogInfo),
 				  window);
-		g_signal_connect (GTK_OBJECT (InfoDialog), "destroy",
+		g_signal_connect (GTK_OBJECT (info_dialog), "destroy",
 				  G_CALLBACK (QuitLogInfo),
 				  window);
-		g_signal_connect (GTK_OBJECT (InfoDialog), "delete_event",
+		g_signal_connect (GTK_OBJECT (info_dialog), "delete_event",
 				  G_CALLBACK (gtk_true),
 				  NULL);
 		
-		gtk_dialog_set_default_response (GTK_DIALOG (InfoDialog),
+		gtk_dialog_set_default_response (GTK_DIALOG (info_dialog),
 						 GTK_RESPONSE_CLOSE);
-		gtk_dialog_set_has_separator (GTK_DIALOG(InfoDialog), FALSE);
-		gtk_container_set_border_width (GTK_CONTAINER (InfoDialog), 5);
+		gtk_dialog_set_has_separator (GTK_DIALOG(info_dialog), FALSE);
+		gtk_container_set_border_width (GTK_CONTAINER (info_dialog), 5);
 		
-		window->info_dialog = InfoDialog;
-
 		frame = gtk_frame_new (NULL);
 		gtk_frame_set_shadow_type (GTK_FRAME(frame), GTK_SHADOW_IN);
 		gtk_container_set_border_width (GTK_CONTAINER(frame), 5);
 
-		window->info_text_view = gtk_text_view_new_with_buffer (window->info_buffer);
-		gtk_container_add (GTK_CONTAINER (frame), window->info_text_view);
+		info_buffer = gtk_text_buffer_new (NULL);
+		info_text_view = gtk_text_view_new_with_buffer (info_buffer);
+		gtk_container_add (GTK_CONTAINER (frame), info_text_view);
 
-		gtk_text_view_set_editable (GTK_TEXT_VIEW (window->info_text_view), FALSE);
-		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (InfoDialog)->vbox), 
+		gtk_text_view_set_editable (GTK_TEXT_VIEW (info_text_view), FALSE);
+		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (info_dialog)->vbox), 
 				    frame, TRUE, TRUE, 0);
 		
-		RepaintLogInfo (window);
 	}
 
-	gtk_widget_show_all (window->info_text_view);
-	
-	gtk_widget_show_all (window->info_dialog);
+	RepaintLogInfo (window, info_buffer);
+	gtk_widget_show_all (info_dialog);
 	window->loginfovisible = TRUE;
 }
 
@@ -93,7 +92,7 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
    ---------------------------------------------------------------------- */
 
 static void
-RepaintLogInfo (LogviewWindow *window)
+RepaintLogInfo (LogviewWindow *window, GtkTextBuffer *info_buffer)
 {
    char *utf8;
    gchar *info_string, *size, *modified, *start_date, *last_date, *num_lines, *tmp;
@@ -128,15 +127,10 @@ RepaintLogInfo (LogviewWindow *window)
    g_free (start_date);
    g_free (last_date);
    g_free (num_lines);
-   
-   if (window->info_buffer == NULL)
-	   window->info_buffer = gtk_text_buffer_new (NULL);
 
-   gtk_text_buffer_set_text (window->info_buffer, info_string, -1);
+   gtk_text_buffer_set_text (info_buffer, info_string, -1);
+
    g_free (info_string);
-
-   gtk_text_view_set_buffer (GTK_TEXT_VIEW(window->info_text_view), window->info_buffer);
-
 }
 
 /* ----------------------------------------------------------------------
@@ -148,8 +142,7 @@ static void
 CloseLogInfo (GtkWidget *widget, int arg, gpointer data)
 {
    LogviewWindow *window = data;
-   if (window->loginfovisible)
-      gtk_widget_hide (widget);
+   gtk_widget_hide (widget);
    window->loginfovisible = FALSE;
 }
 
@@ -157,9 +150,7 @@ static void
 QuitLogInfo (GtkWidget *widget, gpointer data)
 {
    LogviewWindow *window = data;
-   gtk_widget_destroy (GTK_WIDGET (window->info_dialog));
-   window->info_dialog = NULL;
-   window->info_buffer = NULL;
-   window->info_text_view = NULL;
+   gtk_widget_hide (widget);
+   window->loginfovisible = FALSE;
 }
 

@@ -1,3 +1,13 @@
+2004-11-18  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_create_monitor_widget): Move it here. Remove
+	useless calls.
+	(LoadLogMenu): Don't set the size of the filechooser. Don't change
+	the directory to the preset every time we show the filechooser.
+	(logview_help): Remove unused variable.
+
+	* monitor.c (monitor_stop): Little refactoring.
+
 2004-11-16  Vincent Noel  <vnoel@cox.net>
 
 	* logview.c (save_session): Use g_get_prgname for restoring session.

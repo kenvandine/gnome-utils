@@ -148,14 +148,11 @@ struct _LogviewWindow {
 	GtkListStore *zoom_store;
 	gboolean zoom_visible;
 	
-	GtkWidget *info_dialog;
-	GtkWidget *info_text_view;
-	GtkTextBuffer *info_buffer;
-	gboolean loginfovisible;
-
 	GtkWidget *calendar_dialog;
 	GtkWidget *calendar;
 	gboolean calendar_visible;
+
+	gboolean loginfovisible;
 
 	GtkWidget *find_bar;
 	GtkWidget *find_entry;
