@@ -76,8 +76,8 @@ static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TIME_LESS, "-mtime -%d", N_("_Date modified less than"), N_("days"), FALSE },
 	{ SEARCH_CONSTRAINT_TIME_MORE, "\\( -mtime +%d -o -mtime %d \\)", N_("Date modified more than"), N_("days"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_NUMBER, "-size +%uc", N_("S_ize at least"), N_("kilobytes"), FALSE }, 
-	{ SEARCH_CONSTRAINT_NUMBER, "-size -%uc", N_("Si_ze at most"), N_("kilobytes"), FALSE },
+	{ SEARCH_CONSTRAINT_NUMBER, "\\( -size %uc -o -size +%uc \\)", N_("S_ize at least"), N_("kilobytes"), FALSE }, 
+	{ SEARCH_CONSTRAINT_NUMBER, "\\( -size %uc -o -size -%uc \\)", N_("Si_ze at most"), N_("kilobytes"), FALSE },
 	{ SEARCH_CONSTRAINT_BOOL, "-size 0c \\( -type f -o -type d \\)", N_("File is empty"), NULL, FALSE },	
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TEXT, "-user '%s'", N_("Owned by _user"), NULL, FALSE },
@@ -424,6 +424,7 @@ build_search_command (void)
 			case SEARCH_CONSTRAINT_NUMBER:
 				g_string_append_printf (command,
 					  		templates[constraint->constraint_id].option,
+							(constraint->data.number * 1024),
 					  		(constraint->data.number * 1024));
 				g_string_append_c (command, ' ');
 				break;
