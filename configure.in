@@ -26,10 +26,6 @@ AC_PROG_MAKE_SET
 
 GNOME_X_CHECKS
 
-if test "$USE_DEVGTK" = true; then
-  PROGRAMS_GNCAL="gncal"
-AC_SUBST(PROGRAMS_GNCAL)
-fi
 GNOME_CHECK_OBJC
 if test $OBJECTIVE_C = yes; then
   GNOME_INIT_OBJC
@@ -59,12 +55,12 @@ ALL_LINGUAS="de es fr it ko cs no ga pt"
 AM_GNU_GETTEXT
 
 dnl genius
-PROGRAMS_GENIUS=""
+p_genius=
 GMP_LIB=""
 AC_CHECK_LIB(gmp, mpz_init_set,[
    AM_PROG_LEX
    AC_PROG_YACC
-   PROGRAMS_GENIUS=genius
+   p_genius=genius
    GMP_LIB=-lgmp],
    [AC_CHECK_LIB(gmp2, mpz_init_set_d,[
       AM_PROG_LEX
@@ -72,21 +68,21 @@ AC_CHECK_LIB(gmp, mpz_init_set,[
       PROGRAMS_GENIUS=genius
       GMP_LIB=-lgmp2
       AC_DEFINE(HAVE_GMP2_INCLUDE_DIR)])])
-AC_SUBST(PROGRAMS_GENIUS)
 AC_SUBST(GMP_LIB)
+AM_CONDITIONAL(P_GENIUS,test "$p_genius" = genius)
 
 dnl gtop
-PROGRAMS_GTOP=""
-AC_CHECK_HEADERS(linux/tasks.h,[PROGRAMS_GTOP=gtop])
-AC_SUBST(PROGRAMS_GTOP)
+p_gtop=
+AC_CHECK_HEADERS(linux/tasks.h,[p_gtop=gtop])
+AM_CONDITIONAL(P_GTOP,test "$p_gtop" = gtop)
 
 dnl gsu
 AC_CHECK_FUNCS(endgrent endpwent)
 
 dnl idetool
-PROGRAMS_IDETOOL=""
-AC_CHECK_HEADERS(linux/hdreg.h,[PROGRAMS_IDETOOL=idetool])
-AC_SUBST(PROGRAMS_IDETOOL)
+mu_idetool=
+AC_CHECK_HEADERS(linux/hdreg.h,[mu_idetool=idetool])
+AM_CONDITIONAL(MU_IDETOOL,test "$mu_idetool" = idetool)
 
 dnl Needed on SysV for shadow passwords.
 AC_CHECK_LIB(sec, main)

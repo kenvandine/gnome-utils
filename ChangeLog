@@ -1,6 +1,21 @@
+1998-08-09  Raja R Harinath  <harinath@cs.umn.edu>
+
+	* configure.in (MU_IDETOOL): New automake conditional.
+	(P_GENIUS): Likewise.
+	(P_GTOP): Likewise.
+	(USE_DEVGTK): Remove check.  `gnome' is now `gtk-1.1' only.
+	
+	* Makefile.am (DIST_SUBDIRS): Remove.
+	(genius, gtop): Conditionally define.
+	(SUBDIRS): Use them.  Also build `gncal' unconditionally.
+	
+	* mini-utils/Makefile.am (DIST_SUBDIRS): Remove.
+	(idetool): Conditionally define.
+	(SUBDIRS): List $(idetool).
+
 Sun Aug  9 19:52:00 EDT 1998 Gregory Mclean <gregm@comstar.net>
 
-	* po/POFILES.in : removed generated file getdate.c (getdate.y is there
+	* po/POFILES.in: removed generated file getdate.c (getdate.y is there
 	already) This fixes a compile problem.
 
 1998-08-05  Sebastian Wilhelmi  <wilhelmi@ira.uka.de>

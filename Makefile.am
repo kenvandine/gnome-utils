@@ -1,22 +1,22 @@
 if OBJECTIVE_C
-objc_DIRS =  
-#gpostit
+objc_DIRS = #gpostit
 endif
 
 if GUILE
 guile_DIRS = #cromagnon find-file notepad
 endif
 
-SUBDIRS = po intl macros \
-	gcalc gedit @PROGRAMS_GENIUS@ ghex gsearchtool gdiskfree\
-	@PROGRAMS_GTOP@ gtt $(guile_DIRS) $(objc_DIRS) mini-utils \
-	@PROGRAMS_GNCAL@ splash gdialog
+if P_GENIUS
+genius = genius
+endif
 
-# since some of the dirs are conditionally built, we need to tell
-# `automake' all the subdirs that make up `gnome-utils'.
-DIST_SUBDIRS = po intl macros \
-	cromagnon find-file gcalc gedit genius ghex gncal gpostit \
-	gsearchtool gtop gtt mini-utils notepad gdiskfree splash gdialog
+if P_GTOP
+gtop = gtop
+endif
+
+SUBDIRS = po intl macros \
+	gcalc gedit $(genius) ghex gsearchtool gdiskfree $(gtop) gtt \
+	$(guile_DIRS) $(objc_DIRS) mini-utils gncal splash gdialog
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
