@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util\n"
-"POT-Creation-Date: 2000-08-11 12:17+0000\n"
-"PO-Revision-Date: 2000-08-11 12:29+00:00\n"
+"POT-Creation-Date: 2000-08-13 21:29+0000\n"
+"PO-Revision-Date: 2000-08-13 21:33+00:00\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgstr "Текст для копирования:"
 
 #: gcharmap/src/interface.c:197 mini-utils/gcolorsel/menus.c:93
 #: mini-utils/gcolorsel/menus.c:954 mini-utils/gshutdown/gshutdown.c:153
-#: mini-utils/gshutdown/gshutdown.c:594
+#: mini-utils/gshutdown/gshutdown.c:594 mini-utils/gsu/gsu-gui-api.c:39
 msgid "Close"
 msgstr "Закрыть"
 
@@ -2627,6 +2627,11 @@ msgstr "Поиск..."
 msgid "No search string was specified!"
 msgstr "Искомая строка не задана!"
 
+#: mini-utils/gpenguin/gpenguin.c:56
+#, c-format
+msgid "%s: unable to load the penguin.\n"
+msgstr "%s: невозможно загрузить пингвина.\n"
+
 #: mini-utils/gshutdown/gshutdown.c:87
 msgid "Shut Down"
 msgstr "Выключение"
@@ -2736,6 +2741,49 @@ msgstr "Не спрашивать в следующий раз."
 #: mini-utils/gshutdown/gshutdown.c:689
 msgid "Command execution failed: fork failed"
 msgstr "Не удалось исполнить команду: отпочкование не состоялось"
+
+#: mini-utils/gsu/gsu-impl.c:153
+msgid ""
+"You are trying to do something which requires\n"
+"root (system administrator) privileges.\n"
+"To do this, you must give the root password.\n"
+"Please enter the root password now, or choose\n"
+"Cancel if you do not know it."
+msgstr ""
+"Вы пытаетесь сделать что-то требующее прав\n"
+"root (системного администратора).\n"
+"Чтобы сделать это, вы должны ввести пароль\n"
+"root. Пожалуйста введите его сейчас или\n"
+"выберите \"Отмена\", если вы не знаете его."
+
+#: mini-utils/gsu/gsu-impl.c:160
+#, c-format
+msgid ""
+"You are trying to change your user identity.\n"
+"Please enter the password for user `%s'."
+msgstr ""
+"Вы пытаетесь сменить пользователя.\n"
+"Пожалуйста, введите пароль для пользователя \"%s\"."
+
+#: mini-utils/gsu/gsu-main.c:62
+msgid "Command to be run as another user"
+msgstr "Команда для запуска от имени другого пользователя"
+
+#: mini-utils/gsu/gsu-main.c:64
+msgid "User name to run command as"
+msgstr "Имя пользователя для запуска команды как"
+
+#: mini-utils/gsu/gsu-main.c:66
+msgid "File containing interface description"
+msgstr "Файл содержащий описание интерфейса"
+
+#: mini-utils/gsu/gsu-test-server.c:8
+msgid "Target User"
+msgstr "Целевой пользователь"
+
+#: mini-utils/gsu/gsu-test-server.c:8
+msgid "USER"
+msgstr "ПОЛЬЗОВАТЕЛЬ"
 
 #: mini-utils/guname/guname.c:53
 msgid "Make guname act as a control center applet"
