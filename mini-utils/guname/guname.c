@@ -88,9 +88,235 @@ int main ( int argc, char ** argv )
   exit(EXIT_SUCCESS);
 }
 
+/****************************
+ Little sparkles                            
+ ****************************/
+#ifdef WITH_SPARKLES
+
+#define NUM_FRAMES 8
+
+struct _Sparkle {
+  GnomeCanvasItem* hline;
+  GnomeCanvasItem* vline;
+  GnomeCanvasItem* hsmall;
+  GnomeCanvasItem* vsmall;
+ 
+  GnomeCanvasPoints* hpoints[NUM_FRAMES];
+  GnomeCanvasPoints* vpoints[NUM_FRAMES];
+  GnomeCanvasPoints* hspoints[NUM_FRAMES];
+  GnomeCanvasPoints* vspoints[NUM_FRAMES];
+  /* -1 is magic for "stop" */
+  gint count;
+  /* growing or shrinking */
+  gboolean up;
+};
+
+typedef struct _Sparkle Sparkle;
+
+static void
+sparkle_destroy(Sparkle* sparkle)
+{
+  int i;
+  g_return_if_fail(sparkle != NULL);
+
+  gtk_object_destroy(GTK_OBJECT(sparkle->hline));
+  gtk_object_destroy(GTK_OBJECT(sparkle->vline));
+  gtk_object_destroy(GTK_OBJECT(sparkle->hsmall));
+  gtk_object_destroy(GTK_OBJECT(sparkle->vsmall));
+
+  i = 0;
+  while (i < NUM_FRAMES) {
+    gnome_canvas_points_free(sparkle->hpoints[i]);
+    gnome_canvas_points_free(sparkle->vpoints[i]);
+    gnome_canvas_points_free(sparkle->hspoints[i]);
+    gnome_canvas_points_free(sparkle->vspoints[i]);
+    ++i;
+  }
+  g_free(sparkle);
+}
+
+static gint
+sparkle_timeout(Sparkle* sparkle)
+{
+  g_return_val_if_fail(sparkle != 0, FALSE);
+
+  if (sparkle->count == -1) {
+    sparkle_destroy(sparkle);
+    return FALSE;
+  }
+
+  gnome_canvas_item_set(sparkle->hline, "points", 
+                        sparkle->hpoints[sparkle->count], NULL);
+
+  gnome_canvas_item_set(sparkle->vline, "points", 
+                        sparkle->vpoints[sparkle->count], NULL);
+
+  gnome_canvas_item_set(sparkle->hsmall, "points", 
+                        sparkle->hspoints[sparkle->count], NULL);
+
+  gnome_canvas_item_set(sparkle->vsmall, "points", 
+                        sparkle->vspoints[sparkle->count], NULL);
+
+  
+  if (sparkle->count == NUM_FRAMES-1) sparkle->up = FALSE;
+
+  if (sparkle->up) ++(sparkle->count);
+  else --(sparkle->count);
+  
+  return TRUE;
+}
+
+static void 
+fill_points(GnomeCanvasPoints* points, double x, double y, double delta, 
+            gboolean horizontal, gboolean square)
+{
+  if (horizontal) {
+    if (square) {
+      points->coords[0] = x - delta;
+      points->coords[1] = y;
+      points->coords[2] = x + delta;
+      points->coords[3] = y;
+    }
+    else {
+      points->coords[0] = x - delta;
+      points->coords[1] = y - delta;
+      points->coords[2] = x + delta;
+      points->coords[3] = y + delta;
+    }
+  }
+  else {
+    if (square) {
+      points->coords[0] = x;
+      points->coords[1] = y - delta;
+      points->coords[2] = x;
+      points->coords[3] = y + delta;
+    }
+    else {
+      points->coords[0] = x + delta;
+      points->coords[1] = y - delta;
+      points->coords[2] = x - delta;
+      points->coords[3] = y + delta;
+    }
+  }  
+}
+
+#define DELTA 0.4
+
+static void 
+sparkle_new(GnomeCanvas* canvas, double x, double y)
+{
+  int i; double delta;
+  Sparkle* sparkle = g_new(Sparkle,1);
+
+  GnomeCanvasPoints* points = gnome_canvas_points_new(2);
+
+  fill_points(points, x, y, 0.1, TRUE, TRUE);
+  sparkle->hsmall = gnome_canvas_item_new(GNOME_CANVAS_GROUP(canvas->root),
+                                         gnome_canvas_line_get_type(),
+                                          "points", points,
+                                          "fill_color", "light gray",
+                                          "width_units", 1.0,
+                                          NULL);
+
+  gnome_canvas_item_raise_to_top(sparkle->hsmall);
+
+  fill_points(points, x, y, 0.1, FALSE, TRUE);
+  sparkle->vsmall = gnome_canvas_item_new(GNOME_CANVAS_GROUP(canvas->root),
+                                          gnome_canvas_line_get_type(),
+                                          "points", points,
+                                          "fill_color", "light gray",
+                                          "width_units", 1.0,
+                                          NULL);
+
+  gnome_canvas_item_raise_to_top(sparkle->vsmall);
+
+  fill_points(points, x, y, DELTA, TRUE, TRUE);
+  sparkle->hline = gnome_canvas_item_new(GNOME_CANVAS_GROUP(canvas->root),
+                                         gnome_canvas_line_get_type(),
+                                         "points", points,
+                                         "fill_color", "white",
+                                         "width_units", 1.0,
+                                         NULL);
+
+  fill_points(points, x, y, DELTA, FALSE, TRUE);
+  sparkle->vline = gnome_canvas_item_new(GNOME_CANVAS_GROUP(canvas->root),
+                                         gnome_canvas_line_get_type(),
+                                         "points", points,
+                                         "fill_color", "white",
+                                         "width_units", 1.0,
+                                         NULL);
+
+  gnome_canvas_points_free(points);
+  
+  i = 0;
+  delta = 0.0;
+  while ( i < NUM_FRAMES ) {
+    sparkle->hpoints[i] = gnome_canvas_points_new(2);
+    sparkle->vpoints[i] = gnome_canvas_points_new(2);
+    sparkle->hspoints[i] = gnome_canvas_points_new(2);
+    sparkle->vspoints[i] = gnome_canvas_points_new(2);
+    
+
+    fill_points(sparkle->hspoints[i], x, y, delta, TRUE, FALSE);    
+    fill_points(sparkle->vspoints[i], x, y, delta, FALSE, FALSE);    
+
+    delta += DELTA;
+    fill_points(sparkle->hpoints[i], x, y, delta, TRUE, TRUE);
+    fill_points(sparkle->vpoints[i], x, y, delta + delta*.70, FALSE, TRUE);
+    ++i;
+  }
+
+  sparkle->count = 0;
+  sparkle->up = TRUE;
+  
+  gtk_timeout_add(75,(GtkFunction)sparkle_timeout, sparkle);
+}
+
+
 /**************************************
-  Set up the GUI
+ Set up the GUI
   ******************************/
+
+static gint new_sparkles_timeout(GnomeCanvas* canvas)
+{
+  /* These numbers are all dependent on the particular logo
+     pixmap we're using. */
+  static gint which_sparkle = 0;
+  switch (which_sparkle) {
+  case 0:
+    sparkle_new(canvas,50.0,70.0);
+    break;
+  case 1: 
+    sparkle_new(canvas,70.0,130.0);
+    break;
+  case 2:
+    sparkle_new(canvas,100.0,37.0);
+    break;
+  case 3: 
+    sparkle_new(canvas,120.0,110.0);
+    break;
+  case 4: 
+    sparkle_new(canvas,140.0,120.0);
+    break;
+  case 5: 
+    sparkle_new(canvas,110.0,160.0);
+    break;
+  default:
+    which_sparkle = -1;
+    break;
+  };
+
+  ++which_sparkle;
+  return TRUE;
+}
+
+static void
+free_imlib_image (GtkObject *object, gpointer data)
+{
+	gdk_imlib_destroy_image (data);
+}
+
+#endif
 
 static void popup_main_dialog()
 {
@@ -103,41 +329,78 @@ static void popup_main_dialog()
 
   gnome_dialog_set_close(GNOME_DIALOG(d), TRUE);
  
-  logo_box = gtk_vbox_new(FALSE, GNOME_PAD);
+  logo_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL/2);
   do_logo_box(logo_box);
 
-  list_box = gtk_vbox_new(TRUE, GNOME_PAD);
+  list_box = gtk_vbox_new(TRUE, GNOME_PAD_SMALL/2);
   do_list_box(list_box);
 
   gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(d)->vbox), logo_box,
-                     FALSE, FALSE, GNOME_PAD);
+                     FALSE, FALSE, GNOME_PAD_SMALL/2);
   gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(d)->vbox), list_box,
-                     TRUE, TRUE, GNOME_PAD);
+                     TRUE, TRUE, GNOME_PAD_SMALL/2);
 
   gtk_signal_connect(GTK_OBJECT(d), "close",
                      GTK_SIGNAL_FUNC(gtk_main_quit),
                      NULL);
 
-  gtk_window_position(GTK_WINDOW(d), GTK_WIN_POS_CENTER);
   gtk_widget_show_all(d);
 }
 
 static void do_logo_box(GtkWidget * box)
 {
   GtkWidget * label, *contrib_label;
-  GtkWidget * pixmap;
+  GtkWidget * pixmap = NULL;
   GtkStyle * style;
   GdkFont * font;
   gchar * s;
   GtkWidget * marquee_frame, * align;
+  GdkImlibImage *im;
+  GnomeCanvasItem *image;
 
-  s = gnome_pixmap_file ("gnome-logo-icon-transparent.png");
+  s = gnome_pixmap_file ("gnome-logo-large.png");
 
+  if (s == NULL) {
+    /* Try this one. */
+    s = gnome_pixmap_file ("gnome-default.png");
+  }
+
+#ifndef WITH_SPARKLES
   if (s) {
     pixmap = gnome_pixmap_new_from_file(s);
-    g_free(s);
   }
-  if ( (s == NULL) || (pixmap == NULL) ) {
+#else  
+  if (s) {
+    pixmap = gnome_canvas_new();
+    
+	im = gdk_imlib_load_image (s);
+
+    gnome_canvas_set_size (GNOME_CANVAS (pixmap), im->rgb_width, im->rgb_height);
+    gnome_canvas_set_scroll_region (GNOME_CANVAS (pixmap), 0, 0, 
+                                    im->rgb_width, im->rgb_height);
+
+	image = gnome_canvas_item_new (GNOME_CANVAS_GROUP(GNOME_CANVAS(pixmap)->root),
+                                   gnome_canvas_image_get_type (),
+                                   "image", im,
+                                   "x", 0.0,
+                                   "y", 0.0,
+                                   "width", (double) im->rgb_width,
+                                   "height", (double) im->rgb_height,
+                                   "anchor", GTK_ANCHOR_NW,
+                                   NULL);
+
+	gtk_signal_connect (GTK_OBJECT (image), "destroy",
+                        (GtkSignalFunc) free_imlib_image,
+                        im);
+
+    g_free(s);
+    
+    gtk_timeout_add(1300,(GtkFunction)new_sparkles_timeout,pixmap);
+  }
+#endif
+
+  /* Also covers case where gnome_pixmap_new fails? */
+  if ( pixmap == NULL ) {
     pixmap = gtk_label_new(_("Logo file not found"));
   }
 
@@ -158,8 +421,8 @@ static void do_logo_box(GtkWidget * box)
 
   label = gtk_label_new(_("GNOME: The GNU Network Object Model Environment"));
 
-  gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, GNOME_PAD);
-  gtk_box_pack_start(GTK_BOX(box), pixmap, TRUE, TRUE, GNOME_PAD);
+  gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, GNOME_PAD_SMALL/2);
+  gtk_box_pack_start(GTK_BOX(box), pixmap, TRUE, TRUE, GNOME_PAD_SMALL/2);
 
   if (style->font) {
     gtk_widget_pop_style();
