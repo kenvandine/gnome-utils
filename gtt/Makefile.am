@@ -44,6 +44,7 @@ noinst_HEADERS = 	\
 	
 
 CFLAGS = @CFLAGS@ \
+	${GCONF_CFLAGS} \
 	${GTKHTML_CFLAGS} \
 	${GLADE_CFLAGS} 
 
@@ -58,6 +59,7 @@ gtt_LDADD = \
 	$(GNOME_XML_LIB)        \
 	$(GTKHTML_LIBS)		\
 	$(GNOMEUI_LIBS) 	\
+	$(GCONF_LIBS)	 	\
 	$(INTLLIBS)
 
 EXTRA_DIST = 		\
