@@ -14,7 +14,9 @@ gnomecard_SOURCES = \
 	card.c \
 	card.h \
 	pairs.h \
-	gnomecard.c
+	gnomecard.c \
+	gnomecard.h \
+	images.h
 	
 LINK_FLAGS = \
 	$(GNOME_LIBDIR) \
