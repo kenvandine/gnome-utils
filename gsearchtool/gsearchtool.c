@@ -112,7 +112,8 @@ enum {
 	SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION,
 	SEARCH_CONSTRAINT_SEPARATOR_04,	
 	SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS,
-	SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS
+	SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS,
+	SEARCH_CONSTRAINT_MAXIMUM_POSSIBLE
 };
 
 struct _PoptArgument {	
@@ -752,6 +753,30 @@ handle_popt_args (void)
 		add_constraint (SEARCH_CONSTRAINT_CONTAINS_THE_TEXT, 
 				PoptArgument.contains, TRUE); 	
 	}
+	if (PoptArgument.mtimeless != NULL) {
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE, 
+				PoptArgument.mtimeless, TRUE);		
+	}
+	if (PoptArgument.mtimemore != NULL) {
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER, 
+				PoptArgument.mtimemore, TRUE);
+	}
+	if (PoptArgument.sizemore != NULL) {
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN,
+				PoptArgument.sizemore, TRUE);
+	}
+	if (PoptArgument.sizeless != NULL) {
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
+				PoptArgument.sizeless, TRUE);
+	}
+	if (PoptArgument.empty == TRUE) {
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL, TRUE);
+	}
 	if (PoptArgument.user != NULL) {
 		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_USER, 
@@ -765,30 +790,6 @@ handle_popt_args (void)
 	if (PoptArgument.nouser == TRUE) {
 		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED, NULL, TRUE); 
-	}
-	if (PoptArgument.mtimeless != NULL) {
-		popt_args_found = TRUE;
-		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE, 
-				PoptArgument.mtimeless, TRUE);		
-	}
-	if (PoptArgument.mtimemore != NULL) {
-		popt_args_found = TRUE;
-		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER, 
-				PoptArgument.mtimemore, TRUE);
-	}
-	if (PoptArgument.sizeless != NULL) {
-		popt_args_found = TRUE;
-		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
-				PoptArgument.sizeless, TRUE);
-	}
-	if (PoptArgument.sizemore != NULL) {
-		popt_args_found = TRUE;
-		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN,
-				PoptArgument.sizemore, TRUE);
-	}
-	if (PoptArgument.empty == TRUE) {
-		popt_args_found = TRUE;
-		add_constraint (SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL, TRUE);
 	}
 	if (PoptArgument.notnamed != NULL) {
 		popt_args_found = TRUE;
@@ -1696,6 +1697,77 @@ gsearchtool_init_stock_icons ()
 	register_gsearchtool_icon (factory);
 
 	g_object_unref (factory);
+}
+
+void
+set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data)
+{
+	gchar **argv;
+	GList *list;
+	gint  i = 0;
+
+	argv = g_new0 (gchar*, SEARCH_CONSTRAINT_MAXIMUM_POSSIBLE);
+
+	argv[i++] = (gchar *) client_data;
+
+	if (GTK_WIDGET_VISIBLE(interface.additional_constraints) == TRUE) {
+		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
+			SearchConstraint *constraint = list->data;
+			gchar *locale = NULL;
+			
+			switch (constraint->constraint_id) {
+			case SEARCH_CONSTRAINT_CONTAINS_THE_TEXT:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				argv[i++] = g_strdup_printf ("--contains=%s", locale);
+				break;
+			case SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE:
+				argv[i++] = g_strdup_printf ("--mtimeless=%d", constraint->data.time);
+				break;
+			case SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER:
+				argv[i++] = g_strdup_printf ("--mtimemore=%d", constraint->data.time);
+				break;
+			case SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN:
+				argv[i++] = g_strdup_printf ("--sizemore=%u", constraint->data.number);
+				break;
+			case SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN:
+				argv[i++] = g_strdup_printf ("--sizeless=%u", constraint->data.number);
+				break;
+			case SEARCH_CONSTRAINT_FILE_IS_EMPTY:
+				argv[i++] = g_strdup ("--empty");
+				break;
+			case SEARCH_CONSTRAINT_OWNED_BY_USER:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				argv[i++] = g_strdup_printf ("--user=%s", locale);
+				break;
+			case SEARCH_CONSTRAINT_OWNED_BY_GROUP:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				argv[i++] = g_strdup_printf ("--group=%s", locale);
+				break;
+			case SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED:
+				argv[i++] = g_strdup ("--nouser");
+				break;
+			case SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				argv[i++] = g_strdup_printf ("--notnamed=%s", locale);
+				break;
+			case SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				argv[i++] = g_strdup_printf ("--regex=%s", locale);
+				break;
+			case SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS:
+				argv[i++] = g_strdup ("--follow");
+				break;
+			case SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS:
+				argv[i++] = g_strdup ("--allmounts");
+				break;
+			default:
+				break;
+			}
+		g_free (locale);
+		}		
+	}
+	*argvp = argv;
+	*argcp = i;
 }
 
 void

@@ -863,11 +863,12 @@ save_session_cb (GnomeClient 	    *client,
 		 gint 		    fast,
  	      	 gpointer 	    client_data)
 {
- 	gchar *argv[] = { NULL };
- 
- 	argv[0] = (gchar *) client_data;
- 	gnome_client_set_clone_command (client, 1, argv);
- 	gnome_client_set_restart_command (client, 1, argv);	
+	char **argv;
+	int argc;
+
+	set_clone_command (&argc, &argv, client_data);
+	gnome_client_set_clone_command (client, argc, argv);
+	gnome_client_set_restart_command (client, argc, argv);	
 }
 
 gboolean
