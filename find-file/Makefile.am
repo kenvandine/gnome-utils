@@ -11,4 +11,4 @@ find-file: nsearch.scm Makefile
 EXTRA_DIST = nsearch.scm nsearch.desktop
 
 install-data-local:
-	$(INSTALL_DATA) $(srcdir)/nsearch.desktop $(Utilitiesdir)/"Find files.desktop"
+	$(INSTALL_DATA) $(srcdir)/nsearch.desktop $(Utilitiesdir)/nsearch.desktop
