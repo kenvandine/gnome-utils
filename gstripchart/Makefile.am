@@ -11,7 +11,7 @@ INCLUDES =						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-I$(includedir)					\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR) $(LIBGTOP_INCS)
 
 bin_PROGRAMS =						\
 	gstripchart
@@ -22,7 +22,10 @@ gstripchart_SOURCES =					\
 gstripchart_LDADD =					\
 	$(GNOME_LIBDIR)					\
 	$(GNOMEUI_LIBS)					\
-	$(INTLLIBS)
+	$(INTLLIBS)					\
+	$(LIBGTOP_LIBS)					\
+	$(LIBGTOP_EXTRA_LIBS)
+
 
 EXTRA_DIST = 						\
 	gstripchart.desktop	 			\
