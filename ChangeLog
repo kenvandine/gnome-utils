@@ -1,3 +1,12 @@
+Thu Feb 15 07:17:10 2001  George Lebl <jirka@5z.com>
+
+	* gdictsrc/dict.c:  Try cleanup and some sanity, preventing races
+	  etc.  Still doesn't really fix the problem.  So we leak horribly
+	  and that does fix the crash.  This file is utterly horrible in it's
+	  memory management.  One strange thing is that the io watch
+	  is called even after it's source has been eliminated.  Strange
+	  but true.
+
 2001-02-14 John Fleck <jfleck@inkstain.net>
 
 	* adding omf-install/Makefile.am for further
