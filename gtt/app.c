@@ -57,6 +57,7 @@ GtkBox *window_vbox;
 #endif
 
 GtkWidget *status_bar;
+
 #ifdef GTK_USE_STATUSBAR
 static GtkStatusbar *status_project = NULL;
 static GtkStatusbar *status_day_time = NULL;
@@ -109,7 +110,9 @@ void update_status_bar(void)
                 g_free(s);
         }
         if (cur_proj) {
-                s = g_strdup(gtt_project_get_title(cur_proj));
+                s = g_strdup_printf ("%s - %s", 
+			gtt_project_get_title(cur_proj),
+			gtt_project_get_desc(cur_proj));
         } else {
                 s = g_strdup(_("no project selected"));
         }
