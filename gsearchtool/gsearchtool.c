@@ -1187,6 +1187,8 @@ main (int 	argc,
 	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), GTK_WIDGET(interface.main_window),
 				       &interface.geometry, GDK_HINT_MIN_SIZE);
 
+	gtk_window_set_type_hint (GTK_WINDOW(interface.main_window),GDK_WINDOW_TYPE_HINT_DIALOG);
+
 	gtk_window_set_focus (GTK_WINDOW(interface.main_window), 
 		GTK_WIDGET(gnome_entry_gtk_entry(GNOME_ENTRY(interface.file_is_named_entry))));
 
