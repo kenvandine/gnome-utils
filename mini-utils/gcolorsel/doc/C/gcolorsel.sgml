@@ -1,5 +1,5 @@
 <!DOCTYPE Article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN"[
-<!ENTITY version "1.1.0">
+<!ENTITY version "1.2.0">
 <!ENTITY gcolor "<application>GNOME Color Browser</application>">
 ]>
 
@@ -9,7 +9,7 @@
 <article id="index"> 
 
  <artheader>
-  <title>GNOME Color Browser</title>
+  <title>GNOME Color Browser manual</title>
   <copyright>
    <year>2000</year>
    <holder>Alexander Kirillov</holder>
@@ -98,35 +98,40 @@
       <title>Working with multiple documents</title>
       <para>
 	The main &gcolor; window may contain several sub-windows
-	("documents"). There are 2 types of documents: <link
-	linkend="simple">palette documents</link>, showing system or
-	your personal palette, and <link linkend="search">search
-	documents</link>, used for finding matching colors. For
-	example, in the default configuration &gcolor; starts with 4
-	documents: two showing the system palette (one listing colors
-	by name, the other using small color squares to represent
-	them), and two search documents.  Having multiple documents
-	can be very convenient if you want to work with several
-	palettes at the same time, use drag and drop to move a color
-	from one palette to another, etc.
+	("views"). Each of these views shows either a contents of a
+	<link linkend="simple">palette</link> (system or your personal
+	one) or a <link linkend="search">search window</link>, used
+	for finding matching colors. For example, in the default
+	configuration &gcolor; starts with 4 views: two showing the
+	system palette (one listing colors by name, the other using
+	small color squares to represent them), a view of the users
+	palette (originally empty), and a search window.  Having
+	multiple views can be very convenient if you want to work with
+	several palettes at the same time, use drag and drop to move a
+	color from one palette to another, etc.
       </para>
       <para>
-	To switch between documents, click on the document tab at the
-	bottom of the window.  If there are too many open documents so
-	that the tabs do not fit the screen, you will see 2 arrows at
-	the bottom left of &gcolor; window; these arows allow you to
-	scroll through the tabs.
+	To switch between views, click on the views tab at the
+	top (provided that you are using default GTK theme) of the
+	window.  If there are too many open views so that the tabs
+	do not fit the screen, you will see 2 arrows at the top right
+	of &gcolor; window; these arows allow you to scroll
+	through the tabs.
       </para>
       <para>
-	Every time you open a new palette (using
+	Every time you open a new view, a new
+	sub-window is added to the existing ones.  To close a view,  select
 	<menuchoice><guimenu>File</guimenu>
-	  <guimenuitem>Open</guimenuitem> </menuchoice>), it is opened as
-	a new document. To close a document, select
-	<menuchoice><guimenu>File</guimenu>
-	<guimenuitem>Close</guimenuitem> </menuchoice> (do not forget
+	<guimenuitem>Close</guimenuitem> <guimenuitem>Close
+	view</guimenuitem></menuchoice> or click on the
+	<guibutton>Close</guibutton> in the toolbar. If you have
+	several views showing the same document,  you can close all of
+	them by selecting <menuchoice><guimenu>File</guimenu>
+	<guimenuitem>Close</guimenuitem> <guimenuitem>Close
+	document</guimenuitem></menuchoice> (do not forget
 	to save it first if you made any changes). Finally, you can
-	also drag a document tab out of &gcolor; window; this will
-	create a new &gcolor; window, showing this document.  
+	also drag a view tab out of &gcolor; window; this will
+	create a new &gcolor; window, showing this view. 
       </para>
     </sect2>
 
@@ -172,18 +177,6 @@
   <sect1 id="menus">
    <title>Menus and toolbar</title>
     
-    <sect2 id="toolbar">
-      <title>Toolbar</title> 
-      <para>
-	The toolbar contains three buttons:
-	<guibutton>Exit</guibutton>, which exits the program,
-	<guibutton>About</guibutton>, which shows basic information
-	about &gcolor;, such as the author's name and the application
-	version number, and <guibutton>Grab</guibutton>, which is used
-	to grab a color of a point anywhere on the screen; its use is
-	described in <xref linkend="search">.
-      </para>
-    </sect2> 
     
 
     <sect2 id="menubar">
@@ -200,12 +193,19 @@
 	    <para>
 	      This menu contains the following commands:
 	    </para>
-	    <itemizedlist> 
+	    <itemizedlist> <listitem><para>
+              <guimenuitem>New</guimenuitem>: this command allows you
+              to create a new empty palette (see <xref
+              linkend="newpalette">) or a new view of an existing
+              palette in a different window.
+		</para>
+	      </listitem>
+
 	      <listitem><para>
 		  <menuchoice>
 		    <shortcut> <keysym>F3</keysym></shortcut>
 		    <guimenuitem>Open</guimenuitem>
-		  </menuchoice>:this command opens a new palette,
+		  </menuchoice>: this command opens an existing  palette,
 		  prompting you to select a file containing this palette. 
 		</para>
 	      </listitem>
@@ -213,7 +213,7 @@
 	      <listitem><para>
 		  <menuchoice>
 		    <shortcut> <keysym>Ctrl-S</keysym></shortcut>
-		    <guimenuitem>Save</guimenuitem> </menuchoice>:
+		    <guimenuitem>Save palette</guimenuitem> </menuchoice>:
 		    saves current palette. Note that system palette
 		    can not be changed by a user, so this command has
 		    no effect in the system palette view. It also has
@@ -223,15 +223,18 @@
 
 	      <listitem><para>
 		  <menuchoice>
-		    <guimenuitem>Save as</guimenuitem>
-		  </menuchoice>:saves the current palette under a new name.  
+		    <guimenuitem>Save palette as</guimenuitem>
+		  </menuchoice>: saves the current palette under a new
+		  name. Has no effect in search documents.  
 		</para>
 	      </listitem>
 
 	      <listitem><para>
 		  <menuchoice>
 		    <guimenuitem>Revert</guimenuitem>
-		  </menuchoice>: 
+		  </menuchoice>: discard the changes you made to the
+		  current document,
+		  restoring  the palette to the original state.  
 		</para>
 	      </listitem>
 
@@ -239,7 +242,8 @@
 		  <menuchoice>
 		    <shortcut> <keysym>Ctrl-W</keysym></shortcut>
 		    <guimenuitem>Close</guimenuitem>
-		  </menuchoice>: closes currently active document. 
+		  </menuchoice>: allows you to close the current view
+		    or all views of the current document. 
 		</para>
 	      </listitem>
 	      
@@ -311,7 +315,29 @@
 	    
 	    <itemizedlist> 
 	      <listitem><para>
-		  <guimenuitem>New color</guimenuitem>: 
+		   <menuchoice>
+		    <shortcut> <keysym>Ctrl-C</keysym></shortcut>
+		    <guimenuitem>Copy</guimenuitem>
+		  </menuchoice>: copies the currently selected
+		    color(s) to the clipboard
+		</para>
+	      </listitem>
+
+
+	      <listitem><para>
+		   <menuchoice>
+		    <shortcut> <keysym>Ctrl-V</keysym></shortcut>
+		    <guimenuitem>Paste</guimenuitem>
+		  </menuchoice>: pastes the contents of the clipboard
+		    into current document. 
+		</para>
+	      </listitem>
+
+	      <listitem><para>
+		  <guimenuitem>Insert color</guimenuitem>: creates a
+		  new <link linkend="editcolor">edit</link> sub-window allowing
+		  you to define a new color and add it to the current
+		  document. 
 		</para>
 	      </listitem>
 
@@ -331,9 +357,17 @@
 	      </listitem>
 
 
-	      <listitem><para> <guimenuitem>Properties</guimenuitem>:
-		  launches <interface>Properties</interface> dialog,
-		  described in <xref linkend="properties">
+	      <listitem><para> <guimenuitem>Document/View
+		  properties</guimenuitem>: launches
+		  <interface>Properties</interface> dialog, described
+		  in <xref linkend="properties">
+		</para>
+	      </listitem>
+
+	      <listitem><para> <guimenuitem>Preferences
+		  </guimenuitem>: launches
+		  <interface>Preferences</interface> dialog, described
+		  in <xref linkend="prefs">
 		</para>
 	      </listitem>
 	    </itemizedlist>
@@ -367,51 +401,86 @@
 	</varlistentry>
       </variablelist>
     </sect2>
+
+
+    <sect2 id="toolbar">
+      <title>Toolbar</title> 
+      <para>
+	The toolbar is located under the menubar and contains the
+	following buttons:
+      </para>
+      <itemizedlist>
+
+	<listitem>
+	  <para>
+	    <guibutton>Exit</guibutton>: exits the program.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para>
+	    <guibutton>Open</guibutton>: opens an existing  palette,
+		  prompting you to select a file containing this palette
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para>
+	    <guibutton>Close</guibutton>: closes the current
+	    view sub-window. 
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para>
+	    <guibutton>Grab</guibutton>: allows you to select a
+	    color anywhere on the screen for matching (see <xref
+	    linkend="search"> for detailed description). 
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para>
+	    <guibutton>About</guibutton>: shows basic
+		    information about &gcolor;, such as the author's
+		    name and the application version number.
+		  </para>
+	  </listitem>
+	  </itemizedlist>
+    </sect2> 
+
+
   </sect1> 
 
-<!-- ============================Palette documents ================ -->
-  <sect1 id="simple">
-    <title>Working with palettes</title> 
+
+
+
+
+<!-- ============================Documents and views ================ -->
+  <sect1 id="documents">
+    <title>Documents and views</title> 
     
     <para>
-      This section describes documents (i.e., sub-windows in &gcolor;
-      window) showing some palette. A palette is just a list of
-      colors, each one given a name. For example, X Window System
-      comes with pre-defined system palette, containing hundreds of
-      colors, from simple ones such as "red" or "blue" to exotic ones
-      such as "LavenderBlush". You can also define your own palette,
-      or several of them, as described below. Each palette is saved as
-      a separate file; for example, the sytem palette is defined by
-      the file <filename>rgb.txt</filename>, located in X11 library
-      directory, usually <filename
-      class="directory">/usr/lib/X11R6/lib/X11</filename>).
+       &gcolor; uses the term "document" to refer to any collection of
+       colors, each each color given a name. The simplest type of
+       document is a palette, which is just a collection of colors
+       listed in a file; this is described in <xref
+       linkend="simple">. Another type of document is <link
+       linkend="search">search document</link>, which is a list of
+       colors closely matching a given one found in various palettes.
+       In addition, &gcolor; provides a number of different ways, or
+       "view modes" to show the same document. Available view modes
+       include: 
     </para>
-    <para> 
-     &gcolor; can show a palette in two ways:
-    </para> 
-    <variablelist> 
-      <varlistentry>
-	<term><emphasis>By name:</emphasis></term> 
-	<listitem>
-	  <para> 
-	    In this mode, &gcolor; lists all colors in a palette, showing a
-	    small sample, Red, Green and Blue (RGB) values and name for each
-	    color (see <xref linkend="xcolors"> for detailed information
-	    about RGB values). 
-	  </para>
-
-
-	  <figure id="bynamefig">
-	    <title>System colors by name</title>
-	    <screenshot>
-	      <screeninfo>Color Browser System colors by name</screeninfo>
-	      <graphic fileref="simple" format="png"
-		       srccredit="sasha">
-	      </graphic>
-	    </screenshot>
-	  </figure>
-
-
+	  <itemizedlist>
+            <listitem> <para>
+              <guilabel>List</guilabel>: in this
+                  mode, &gcolor; lists all colors in a document
+                  showing a small sample, Red, Green and Blue (RGB)
+                  values and name for each color (see <xref
+                  linkend="xcolors"> for detailed information about
+                  RGB values).
+             </para>
 	  <para>
 	    By default, the colors are listed in the same order in
 	    which they appear in the file, which is indicated by a
@@ -429,48 +498,120 @@
 	    dragging the separator between these fields with the left mouse
 	    button. 
 	  </para>
-	</listitem>
-      </varlistentry>
- 
-      <varlistentry>
-	<term><emphasis>Palette view</emphasis></term> 
-	<listitem><para>
-	    In this mode, &gcolor; just shows a small sample for each
-	    color in the palette:
-	  </para>
+
+
+
+	  <figure id="bynamefig">
+	    <title>List view</title>
+	    <screenshot>
+	      <screeninfo>Color Browser System colors list view</screeninfo>
+	      <graphic fileref="list" format="png"
+		       srccredit="sasha">
+	      </graphic>
+	    </screenshot>
+	  </figure>
+
+            </listitem> 
+       
+             <listitem> <para>
+                  <guilabel>Grid </guilabel>: in this mode, &gcolor;
+                  shows just a small square color  sample for each
+                  color, arranging this squares in a grid.  
+             </para>
+
+
 	  <figure id="palettefig">
-	    <title>System colors in palette view</title>
+	    <title>Grid view</title>
 	    <screenshot>
 	      <screeninfo>Color Browser System colors by name</screeninfo>
-	      <graphic fileref="palette" format="png"
+	      <graphic fileref="grid" format="png"
 		       srccredit="sasha">
 	      </graphic>
 	    </screenshot>
 	  </figure>
  
-	</listitem>
-      </varlistentry>
-    </variablelist>
 
+            </listitem> 
+       
+           <listitem> <para>
+                  <guilabel>Edit </guilabel> TODO
+             </para>
+            </listitem> 
+       
+         </itemizedlist>
 
-    <para>
+      <para> 
       Regardless of the view you use, you can drag any of the color
       sample rectangles to GNOME Panel, GNOME Terminal, and many other
       GNOME applications windows to change their background colors.
     </para>
 
-    <sect2 id="favorites">
+
+        </sect1>
+
+
+
+<!-- ============================Palette documents ================ -->
+  <sect1 id="simple">
+    <title>Working with palettes</title> 
+    
+    <para>
+      A palette is just a list of colors, each one given a name. For
+      example, X Window System comes with pre-defined system palette,
+      containing hundreds of colors, from simple ones such as "red" or
+      "blue" to exotic ones such as "LavenderBlush". You can also
+      define your own palette, or several of them, as described
+      below. Each palette is saved as a separate file; for example,
+      the system palette is defined by the file
+      <filename>rgb.txt</filename>, located in X11 library directory,
+      usually <filename
+      class="directory">/usr/lib/X11R6/lib/X11</filename>).
+    </para>
+      
+
+
+   <sect2>
+     <title> Opening and closing palettes</title>
+
+    <para>
+      By default, &gcolor; shows you 2 views of the system palette:
+      one list view and one grid view. You can also open any other
+      existing palette file by selecting <menuchoice><guimenu>File</guimenu>
+	<guimenuitem>Open</guimenuitem> </menuchoice> or using the
+      <guibutton>Open</guibutton> button in the toolbar. You can also
+      open another window containing one more view of the current
+      palette by selecting
+      <menuchoice><guimenu>File</guimenu> <guisubmenu>New</guisubmenu>
+       <guimenuitem>New view</guimenuitem></menuchoice>. 
+
+      </para>
+      <para>  To close the current view of a document, select
+      <menuchoice><guimenu>File</guimenu>
+      <guisubmenu>Close</guisubmenu><guimenuitem>Close
+      view</guimenuitem></menuchoice>; to close all views of the
+      current palette, choose <menuchoice><guimenu>File</guimenu>
+      <guisubmenu>Close</guisubmenu><guimenuitem>Close
+      document</guimenuitem></menuchoice>.  
+      </para>
+    </sect2>
+
+    <sect2 id="newpalette">
       <title>Creating new palettes</title>
       <para>
 	In addition to system colors which an ordinary user can not
 	change, you can also create your own color lists. To do so,
-	select <menuchoice><guimenu>File</guimenu>
-	<guimenuitem>Open</guimenuitem> </menuchoice> and enter the
-	name you want for your list (for example,
-	<filename>favorites.txt</filename>). This will add to one more
-	window to &gcolor;, with tab name corresponding to the name of
-	the file. Originally this window is empty; you can add any
-	colors to it by FIXME
+	select
+	<menuchoice><guimenu>File</guimenu><guisubmenu>New</guisubmenu>
+	<guimenuitem>New Document</guimenuitem> </menuchoice>. This
+	will launch a dialog allowing you to select a new document
+	type (choose <guilabel>File</guilabel>), short description,
+	and a short name (this will be used for the tab label). YOu
+	will also have to select a view mode for the new document (you
+	can select several if you want to). After you click
+	<guibutton>Finish</guibutton>, a new document view sub-window
+	will appear in the main window of &gcolor;.  Originally this
+	window is empty; you can add any colors to it as described
+	below. 
       </para>
     </sect2>
 
@@ -486,10 +627,21 @@
       </para>
       <para>
 	To add a new color to a palette, right-click anywhere in the
-	palette and select <guimenuitem>New color</guimenuitem> from
-	the <guimenu>pop-up</guimenu> menu, or select <guimenuitem>New
-	color</guimenuitem> from the <guimenu>Edit</guimenu> menu. 
-       </para> 
+	palette and select <guimenuitem>Insert color</guimenuitem>
+	from the <guimenu>pop-up</guimenu> menu, or select
+	<guimenuitem>Insert color</guimenuitem> from the
+	<guimenu>Edit</guimenu> menu. This will create a new <link
+	linkend="editcolor">dialog</link>, allowing you to specify the
+	name and RGB values for the color.  </para> <para> To copy a
+	color form one palette to another, select this color in the
+	first palette, copy it to the clipboard using
+	<menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem>
+	</menuchoice> switch to the second palette and select
+	<menuchoice><guimenu>Edit</guimenu><guimenuitem>Paste</guimenuitem>
+	</menuchoice>. You can also use keyboard shrotcuts
+	<keysym>Ctrl-C</keysym> and <keysym>Ctrl-V</keysym> for
+	copying and pasting respectively.
+      </para>
        <para>
 	To remove a color from the palette, select this color by
 	clicking on it and select <menuchoice><guimenu>Edit</guimenu>
@@ -505,20 +657,21 @@
 	pressing <keycap>SHIFT</keycap> key.
       </para>
       <para> 
-        Finally, you can cahnge other proeperties of the document,
-        such as the name and format  used by selecting
-        <guimenuitem>Properties</guimenuitem> from
+        Finally, you can change other properties of the document,
+        such as the name and view mode used by selecting
+        <guimenuitem>Document/View Properties</guimenuitem> from
         <guimenu>Edit</guimenu> or <guimenu>pop-up</guimenu>
         menus. This will launch <interface>Properties</interface> dialog,
         described in <xref linkend="properties">.  
       </para>
       <para> 
-	After modifying a palette, you can save your cahnges by
+	After modifying a palette, you can save your changes by
 	selecting <menuchoice><guimenu>File</guimenu>
-                    <guimenuitem>Save</guimenuitem>
+                    <guimenuitem>Save palette</guimenuitem>
 	</menuchoice>. You can also change modified palette under a
-	new name by using <guimenuitem>Save as...</guimenuitem>
-	command. 
+	new name by using <guimenuitem>Save palette as...</guimenuitem>
+	command; this will prompt you for a new file name and
+	location. 
       </para>
 
     </sect2>
@@ -530,7 +683,7 @@
 	and select <menuchoice><guimenu>Edit</guimenu>
 	  <guimenuitem>Edit selected color</guimenuitem> </menuchoice>,
 	or just right click on the color and select <guimenuitem>Edit
-	selected color</guimenuitem> form the
+	selected color</guimenuitem> from the
 	<guimenu>pop-up</guimenu> menu.
       </para>
     </sect2>
@@ -551,7 +704,7 @@
       <guimenu>Settings</guimenu> menu), or by grabbing a color of any
       pixel on the screen. To use this last method, click on
       <guibutton>Grab</guibutton> button in the toolbar. Your mouse
-      cursor will turn into a "crosshair". Place this crosshair over
+      cursor will turn into a dropper. Place the tip of this dropper  over
       any point of the screen and click. &gcolor; will analyze the
       color of this point, determine the RGB values, and show this
       color and the RGB values in the <guilabel>Search</guilabel>
@@ -582,17 +735,13 @@
     </para> 
     <para> 
       By default, &gcolor; only looks for matches among the system
-      ("simple") colors. This can be changed using <guimenuitem>Search
-      in...</guimenuitem> item in the <guimenu>Settings
-      menu</guimenu>, which allows you to enable or disable searches
-      in "simple"(system) and "favorites" (personal) colors
-      independently. 
+      colors. This can be changed TODO
     </para>
     <para>Another configurable option is the update mode. By default,
     &gcolor; continuously 
     updates matches when you change the color (for example, by using
     the RGB sliders) &mdash;. If you find that this is slow on your
-    sytem, you can use <menuchoice><guimenu>Settings</guimenu>
+    system, you can use <menuchoice><guimenu>Settings</guimenu>
      <guimenuitem>Search update</guimenuitem>
       </menuchoice> to change the update mode to
     <guilabel>Discontinuous</guilabel> (&gcolor; will only update
@@ -605,6 +754,14 @@
 <!-- ================Properties Dialog =================== -->
   <sect1 id="properties">
     <title>Properties dialog</title>
+    <para>
+      FIXME
+    </para>
+  </sect1>
+
+<!-- ================Preferences Dialog =================== -->
+  <sect1 id="prefs">
+    <title>Preferences  dialog</title>
     <para>
       FIXME
     </para>
@@ -643,7 +800,7 @@
  <sect1 id="bugs">
   <title>Known Bugs and Limitations</title>
   <para>
-   This application has no known bugs.
+   At the moment, too many to list. 
   </para>
  </sect1>
 
@@ -658,8 +815,7 @@
       url="http://bugs.gnome.org" type="http">GNOME bug tracking
       database</ulink>. (Instructions for submitting bug reports can
       be found <ulink url="http://bugs.gnome.org/Reporting.html"
-      type="http"> on-line</ulink>.) If you are using GNOME 1.1 or
-      later, you can also use <application>Bug Report
+      type="http"> on-line</ulink>.) You can also use <application>Bug Report
       Tool</application> (<command>bug-buddy</command>), available in
       the <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
       Menu</guimenu>, for submitting bug reports.
