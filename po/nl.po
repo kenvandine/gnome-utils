@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-13 04:47+0100\n"
-"PO-Revision-Date: 2004-01-07 15:32+0100\n"
+"POT-Creation-Date: 2004-01-16 20:51+0100\n"
+"PO-Revision-Date: 2004-01-17 01:54+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,8 @@ msgstr ""
 #: gdictsrc/gdict-about.c:43 logview/about.c:49
 msgid "translator_credits"
 msgstr ""
-"Mensen die mee hebben gewerkt aan het vertalen van dit programma\n"
+"Mensen die hebben meegewerkt aan\n"
+"het vertalen van dit programma\n"
 "Almer S. Tigelaar\n"
 "André van Dijk \n"
 "Dennis Smit \n"
@@ -212,7 +213,7 @@ msgstr "S_tandaardserver"
 
 #: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset server to default"
-msgstr "Stel server in op standaardwaarde"
+msgstr "Server resetten naar standaardwaarde"
 
 #: gdictsrc/gdict-pref-dialog.c:224
 msgid "_Port:"
@@ -224,7 +225,7 @@ msgstr "St_andaard poort"
 
 #: gdictsrc/gdict-pref-dialog.c:250
 msgid "Reset port to default"
-msgstr "Stel poort in op standaardwaarde"
+msgstr "Poort resetten naar standaardwaarde"
 
 #: gdictsrc/gdict-pref-dialog.c:251
 msgid "Server"
@@ -236,7 +237,7 @@ msgstr "Server Invoer"
 
 #: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Server Name"
-msgstr "Voer de Servernaam in"
+msgstr "Servernaam invoeren"
 
 #: gdictsrc/gdict-pref-dialog.c:255
 msgid "Port"
@@ -248,7 +249,7 @@ msgstr "Poort-invoer"
 
 #: gdictsrc/gdict-pref-dialog.c:256
 msgid "Enter the Port Number"
-msgstr "Voer het poortnummer in"
+msgstr "Poortnummer invoeren"
 
 #: gdictsrc/gdict-pref-dialog.c:267
 msgid "_Database:"
@@ -260,7 +261,7 @@ msgstr "Standaard strat_egie:"
 
 #: gdictsrc/gdict-pref-dialog.c:466
 msgid "Search all databases"
-msgstr "Doorzoek alle databases"
+msgstr "Alle databases doorzoeken"
 
 #: gdictsrc/gdict-pref-dialog.c:629
 msgid "Database"
@@ -276,7 +277,7 @@ msgstr "Standaard strategie"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
-msgstr "Voer het te spellen woord in"
+msgstr "Het te spellen woord invoeren"
 
 #: gdictsrc/gdict-speller.c:154
 msgid "Search s_trategy:"
@@ -284,7 +285,7 @@ msgstr "Zoeks_trategie:"
 
 #: gdictsrc/gdict-speller.c:166
 msgid "Click to do the spell check"
-msgstr "Klik om de spelling te laten controleren"
+msgstr "Klikken om de spelling te controleren"
 
 #: gdictsrc/gdict-speller.c:170
 msgid "Search _results:"
@@ -897,8 +898,8 @@ msgstr ""
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Weet u zeker dat u %d map wilt openen?"
+msgstr[1] "Weet u zeker dat u %d mappen wilt openen?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
 #, c-format
@@ -1029,7 +1030,7 @@ msgstr "verwijzing naar %s"
 msgid "Contains the _text"
 msgstr "Bevat de _tekst"
 
-# Ietwat crytische Engelse omschrijving, maar er wordt bijv
+# Ietwat cryptische Engelse omschrijving, maar er wordt bijv
 # gezocht naar bestanden die minder dan 5 dagen geleden zijn veranderd
 #
 # Gewijzigd minder dan (dagen) geleden
@@ -1045,11 +1046,11 @@ msgstr "M_eer dan (dagen) geleden gewijzigd"
 
 #: gsearchtool/gsearchtool.c:75
 msgid "S_ize at least (kilobytes)"
-msgstr "Grootte _tenminste (kilobytes)"
+msgstr "Grootte _tenminste (kilobyte)"
 
 #: gsearchtool/gsearchtool.c:76
 msgid "Si_ze at most (kilobytes)"
-msgstr "Grootte _hoogstens (kilobytes)"
+msgstr "Grootte _hoogstens (kilobyte)"
 
 #: gsearchtool/gsearchtool.c:77
 msgid "File is empty"
@@ -1309,13 +1310,26 @@ msgstr "Acties"
 msgid "_Add"
 msgstr "_Toevoegen"
 
+#: logview/actions.c:162
+msgid "Add an action"
+msgstr "Een actie toevoegen"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "Be_werken"
 
+#: logview/actions.c:169
+msgid "Edit an action"
+msgstr "Een actie bewerken"
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "_Verwijderen"
+
+#
+#: logview/actions.c:176
+msgid "Remove an action"
+msgstr "Een actie verwijderen"
 
 #: logview/actions.c:263
 #, c-format
@@ -1358,6 +1372,54 @@ msgstr "uit te voeren actie als de expressie WAAR is"
 #: logview/actions.c:515
 msgid "description"
 msgstr "beschrijving"
+
+#: logview/actions.c:651
+msgid "Edit Action"
+msgstr "Actie bewerken"
+
+#: logview/actions.c:687
+msgid "_Tag:"
+msgstr "_Tag:"
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr "Tag dat het log-bestand identificeert."
+
+#: logview/actions.c:705
+msgid "_Log name:"
+msgstr "_Lognaam:"
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr "Reguliere expressie dat overeenkomt met de lognaam."
+
+# zoals het staat lijkt het het werkwoord Process.
+# maar in de context van de uitleg is het het proces
+#: logview/actions.c:724
+msgid "_Process:"
+msgstr "_Proces:"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr "Reguliere expressie dat overeenkomt met het proces-deel van het bericht."
+
+#: logview/actions.c:743
+msgid "_Message:"
+msgstr "_Bericht:"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr "Reguliere expressie dat met het bericht overeenkomt."
+
+#: logview/actions.c:762
+msgid "_Action:"
+msgstr "_Actie:"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr "Actie die wordt uitgevoerd als aan alle voorgaande reguliere expressies is voldaan. Dit wordt uitgevoerd door een systeemopdracht: systeem (actie)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1737,6 +1799,9 @@ msgstr "Beschrijving:"
 msgid "Log Line Details"
 msgstr "Details logboekregel"
 
+# %B is volledige naam van maand
+# %e is 
+# %X is lokale tijd
 #. Translators: do not include year, it would be bogus
 #: logview/zoom.c:187
 msgid "%B %e %X"
@@ -2346,30 +2411,14 @@ msgstr "%B %e %X"
 #~ msgid "Add a file or folder to archive"
 #~ msgstr "Bestand of map toevoegen aan archief"
 
-#
-#~ msgid "_Create archive..."
-#~ msgstr "Archief _creëren..."
-
 #~ msgid "Create a new archive from the items"
 #~ msgstr "Een nieuw archief van de items creëren"
 
 #~ msgid "Remove the selected item"
 #~ msgstr "Geselecteerd item verwijderen"
 
-#
-#~ msgid "R_emove All"
-#~ msgstr "All_es verwijderen "
-
-#
-#~ msgid "Remove all items"
-#~ msgstr "Alle items verwijderen "
-
 #~ msgid "Drop files here to add them to the archive."
 #~ msgstr "Sleep bestanden hierheen om ze aan het archief toe te voegen."
-
-#
-#~ msgid "_Create Archive"
-#~ msgstr "Archief _creëren"
 
 #~ msgid ""
 #~ "Drag this button to the destination where you want the archive to be "
@@ -2390,12 +2439,6 @@ msgstr "%B %e %X"
 
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-
-#~ msgid "x^2"
-#~ msgstr "x^2"
-
-#~ msgid "x^y"
-#~ msgstr "x^y"
 
 #~ msgid "Default database. ! indicates all databases"
 #~ msgstr "Standaard database. ! betekent alle databases"
