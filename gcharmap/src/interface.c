@@ -293,7 +293,7 @@ main_app_create_ui (MainApp *app)
 static void
 main_app_init (MainApp *obj)
 {
-    gchar *defaultfont = "Sans 12";
+    gchar *defaultfont = g_strdup ("Sans 12");
    
     mainapp = obj;
     mainapp->current_page=0;

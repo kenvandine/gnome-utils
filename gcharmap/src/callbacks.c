@@ -218,8 +218,9 @@ cb_fontpicker_font_set (GnomeFontPicker *picker, gchar *font, gpointer app)
     /* if font setting isn't changed, do nothing */
     if ( strcmp(font, ((MainApp *)app)->font) == 0 )
       return;
-   
-    g_free( ((MainApp *)app)->font);
+  
+    if (((MainApp *)app)->font) 
+      g_free( ((MainApp *)app)->font);
     ((MainApp *)app)->font = g_strdup(font);
    
     main_app_set_font ((MainApp *) app, font);
