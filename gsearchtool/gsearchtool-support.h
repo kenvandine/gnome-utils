@@ -69,7 +69,7 @@ gchar *
 escape_single_quotes 		(const gchar *string);
 
 gchar *	
-backslash_backslashes		(const gchar *string);
+backslash_special_characters	(const gchar *string);
 
 gchar *
 remove_mnemonic_character	(const gchar *string);

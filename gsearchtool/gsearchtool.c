@@ -323,7 +323,7 @@ build_search_command (void)
 		gboolean disable_quick_search;
 		
 		locate = g_find_program_in_path ("locate");
-		file_is_named_backslashed = backslash_backslashes (file_is_named_locale);
+		file_is_named_backslashed = backslash_special_characters (file_is_named_locale);
 		file_is_named_escaped = escape_single_quotes (file_is_named_backslashed);
 
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
@@ -356,7 +356,7 @@ build_search_command (void)
 		gboolean disable_mount_argument = FALSE;
 		
 		search_command.regex_matching_enabled = FALSE;
-		file_is_named_backslashed = backslash_backslashes (file_is_named_locale);
+		file_is_named_backslashed = backslash_special_characters (file_is_named_locale);
 		file_is_named_escaped = escape_single_quotes (file_is_named_backslashed);
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
@@ -387,7 +387,7 @@ build_search_command (void)
 					gchar *escaped;
 					gchar *regex;
 					
-					escaped = backslash_backslashes (constraint->data.text);
+					escaped = backslash_special_characters (constraint->data.text);
 					regex = escape_single_quotes (escaped);
 					
 					if (regex != NULL) {	
@@ -403,7 +403,7 @@ build_search_command (void)
 					gchar *backslashed;
 					gchar *locale;
 					
-					backslashed = backslash_backslashes (constraint->data.text);
+					backslashed = backslash_special_characters (constraint->data.text);
 					escaped = escape_single_quotes (backslashed);
 					
 					locale = g_locale_from_utf8 (escaped, -1, NULL, NULL, NULL);

@@ -407,7 +407,7 @@ escape_single_quotes (const gchar *string)
 }
 
 gchar *
-backslash_backslashes (const gchar *string)
+backslash_special_characters (const gchar *string)
 {
 	GString *gs;
 
@@ -415,13 +415,17 @@ backslash_backslashes (const gchar *string)
 		return NULL;
 	}
 
-	if (count_of_char_in_string (string, '\\') == 0) {
+	if ((count_of_char_in_string (string, '\\') == 0) &&
+	    (count_of_char_in_string (string, '-') == 0)) {
 		return g_strdup(string);
 	}
 	gs = g_string_new ("");
 	for(; *string; string++) {
 		if (*string == '\\') {
 			g_string_append(gs, "\\\\");
+		}
+		else if (*string == '-') {
+			g_string_append(gs, "\\-");
 		}
 		else {
 			g_string_append_c(gs, *string);
