@@ -27,6 +27,7 @@ gnomecard_SOURCES =	\
 	dialog.h        \
 	gnomecard.c	\
 	gnomecard.h	\
+	gnome-pim-impl.c \
 	images.h        \
 	init.c          \
 	init.h          \
