@@ -414,6 +414,10 @@ static void
 about_cb (GtkWidget *widget, gpointer data)
 {
 	static GtkWidget *about = NULL;
+	GdkPixbuf	 *pixbuf;
+	GError		 *error = NULL;
+	gchar		 *file;
+	
 	gchar *authors[] = {
 		"George Lebl <jirka@5z.com>",
 		NULL
@@ -429,13 +433,29 @@ about_cb (GtkWidget *widget, gpointer data)
 		gdk_window_raise (about->window);
 		return;
 	}
-	about = gnome_about_new (_("The GNOME Archive Generator"), VERSION,
+	
+	file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, 
+			"document-icons/gnome-compressed.png", FALSE, NULL);
+	pixbuf = gdk_pixbuf_new_from_file (file, &error);
+	
+	if (error) {
+		g_warning (G_STRLOC ": cannot open %s: %s", file, error->message);
+		g_error_free (error);
+	}
+	g_free (file);
+	
+	about = gnome_about_new (_("GNOME Archive Generator"), VERSION,
 				 "(C) 2001 George Lebl",
 				 _("Drag files in to make archives"),
 				 (const gchar **)authors,
 				 (const gchar **)documenters,
 				 strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
-				 NULL);
+				 pixbuf);
+				 
+	if (pixbuf) {
+		gdk_pixbuf_unref (pixbuf);
+	}			 
+	
 	g_signal_connect (G_OBJECT (about), "destroy",
 			  G_CALLBACK (gtk_widget_destroyed),
 			  &about);
@@ -827,6 +847,8 @@ init_gui (void)
 				"archive-generator",
 				"archive-generator");
 	gtk_window_set_resizable (GTK_WINDOW (app), TRUE);
+
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/document-icons/gnome-compressed.png");
 
         g_signal_connect (G_OBJECT (app), "delete_event",
 			  G_CALLBACK (quit_cb), NULL);
