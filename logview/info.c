@@ -67,7 +67,8 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
 		
 		label = gtk_label_new (NULL);
 		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (info_dialog)->vbox), 
-				    label, TRUE, TRUE, 0);
+				    label, TRUE, TRUE, 5);
+		gtk_window_set_resizable (GTK_WINDOW (info_dialog), FALSE);
 		
 	}
 
