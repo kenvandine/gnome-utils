@@ -1,0 +1,193 @@
+<!DOCTYPE Article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN" [
+  
+<!ENTITY legalnotice SYSTEM "gnome-legalnotice.sgml">
+<!ENTITY version "1.0.50"> 
+       
+]>
+
+
+<!-- =============Document Header ============================= -->
+
+
+<article id="index"> 
+  <title>GDiskFree</title>
+
+  <artheader> 
+    <copyright>
+      <year>2000</year>
+      <holder>John Fleck</holder>
+    </copyright>
+  
+
+    &legalnotice;
+    <releaseinfo> 
+		  This is version 1.0 of the GDiskFree manual.
+     </releaseinfo>
+  </artheader>
+
+<!-- =============Document Body ============================= -->
+
+<!-- =============Introduction ============================= -->
+  <sect1 id="intro">
+      <title>Introduction</title> 
+
+    <para>
+      <application>GDiskFree</application> is a program for monitoring
+      disk usage on your computer. It is included in the
+      <filename>GNOME-Utils</filename> package, which is a
+      part of the GNOME desktop environment. This document describes
+      version &version; of <application>GDiskFree</application>.
+    </para>
+
+    <para><application>GDiskFree</application> can be started by
+      selecting <guimenuitem>GNOME DiskFree</guimenuitem> from the
+      <guisubmenu>Utilities</guisubmenu> submenu of the
+      <guimenu>System Menu</guimenu>, or by running the command
+      <command>gdiskfree</command> on the command line.  
+    </para>
+
+     </sect1>
+
+
+<!-- =============New section============================= --> 
+
+  <sect1 id="usage"> 
+    <title>Using GDiskFree</title>
+ 
+
+      <!-- =========Subsection=========================== -->   
+      <sect2 id="mainwin">
+      <title>Basic usage</title>
+      <para>
+	When you start <application>GDiskFree</application>, you see
+	the programs's <interface>Main window</interface>, as shown in 
+	<xref linkend="mainshot">.
+<!-- ==============Figure=================================== -->
+	<figure id="mainshot">
+	  <title>GDiskFree Main Window</title>
+	  <screenshot>
+	    <screeninfo>GDiskFree Main Window</screeninfo>
+	    <graphic fileref="gdiskfree.png" format="png"
+	    srccredit="John Fleck">
+	    </graphic>
+	  </screenshot>
+	</figure>
+<!-- ==============End of Figure=================================== -->
+      </para>
+
+      <para>You'll see a dial for each of the mounted disk drives
+      and/or disk partitions on your computer. The position of the pointer, and the number
+      beneath it, indicate the amount of space used on the
+      disk.</para>
+
+      <para>The label at the top of each dial identifies the drive
+      or partition it's measuring. <filename>/dev/hda1</filename>, for
+      example, measures the first partition on the first hard drive
+      (hda). <filename>/dev/fd0</filename> indicates it's the first
+      floppy disk. Other identifiers can include
+      <filename>/dev/sda</filename>, for the first
+      <acronym>SCSI</acronym> hard drive, and
+      <filename>/dev/sga</filename> for the first generic
+      <acronym>SCSI</acronym> device.</para>
+     
+  
+    </sect2>
+
+      <!-- =========Subsection=========================== -->   
+    <sect2 id="menubar">
+      <title> Menus</title>
+      <para>
+         The menu bar, located at the top of the <interface>Main
+         Window</interface>, provides the following commands:
+      </para>
+      <!-- =========List=========================== -->
+      <variablelist>
+	<varlistentry> <term><guimenu>File</guimenu></term>
+          <listitem><para> This menu contains command
+	      <menuchoice>
+	        <shortcut><keysym>Ctrl-q</keysym>
+		</shortcut>
+		<guimenuitem>Exit</guimenuitem>
+	      </menuchoice>
+	     which is self-explanatory.
+	    </para>
+	  </listitem> 
+	</varlistentry> 
+
+	
+
+	
+
+	<varlistentry>
+	  <term><guimenu>Help</guimenu></term>
+	  <listitem><para>
+	      This menu contains commands
+	      <itemizedlist>
+		<listitem>
+		  <para><guimenuitem>Help</guimenuitem> &mdash;
+		    shows this manual
+		  </para>
+		</listitem>
+
+		<listitem>
+		  <para><guimenuitem>About</guimenuitem> &mdash;
+		    shows basic information about
+		    <application>GDiskFree</application>, such as
+		    author's name and version number.
+		  </para>
+		</listitem>
+	      </itemizedlist>
+
+	      </para>
+	  </listitem>
+	</varlistentry>
+
+	</variablelist>
+      <!-- =========End of list=========================== -->
+	</sect2>
+
+  </sect1>   
+
+
+
+
+
+
+  <sect1 id="authors">
+    <title>Authors</title>
+     <para>
+      <application>GDiskFree</application> was written by Gregory McLean
+      (<email>gregm@comstar.net</email>). Please send all comments, suggestions, and bug reports to the
+      <ulink url="http://bugs.gnome.org" type="http">GNOME bug
+      tracking database</ulink>. Instructions for submitting bug reports
+      can be found on-line at <ulink
+      url="http://bugs.gnome.org/Reporting.html" type="http">
+      http://bugs.gnome.org/Reporting.html</ulink>. If you are using GNOME
+      1.1 or later, you can also use command
+      <command>bug-buddy</command> for submitting bug reports. 
+      </para>
+    <para>
+      This manual was written by John Fleck
+      (<email>jfleck@inkstain.net</email>). Please send all comments
+      and suggestions regarding the manual to the GNOME Documentation
+      Project at <email>docs@gnome.org</email>. 
+      </para>
+    </sect1>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
