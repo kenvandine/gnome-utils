@@ -1,5 +1,5 @@
 
-Add an gtt panel applet for switching projects fast.
+Create a gtt panel applet for switching projects fast.
 
 Documentation has to be updated/finished.
 
@@ -9,8 +9,6 @@ Support some SQL database for logging?
 
 Create bonobo component to allow tasks to be put into calander (e.g.
 evolution calender).
-
-Inactivity timeout works. Just need to hook it up to preferences dialog ...
 
 
 Later:
@@ -25,8 +23,10 @@ bugs
 During read of data,  don't destroy old project list until we are sure 
 that read of new project list succeeded.
 
-export is broken with new heirarchy (should be stripped, in favour 
-of 'print'?)
+export is broken with new heirarchy. Should probably be 
+reworked to use ghtml infrastructure, and output to file, 
+instead of html viewer.  That way user gets total flexibility 
+over export formats.
 
 fix annoying cursor shape when dragging projects around
 

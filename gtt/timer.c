@@ -39,7 +39,6 @@ static void
 restart_proj (GtkWidget *w, gpointer data)
 {
 	GttProject *prj = data;
-	ctree_select (prj);
 	cur_proj_set (prj);
 }
 
@@ -68,7 +67,6 @@ timer_func(gpointer data)
 		{
 			char *msg;
 			GttProject *prj = cur_proj;
-			ctree_unselect (cur_proj);
 
 			/* don't just stop the timer, make the needed 
 			 * higher-level calls */

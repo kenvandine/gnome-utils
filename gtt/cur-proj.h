@@ -22,6 +22,7 @@
 #include <proj.h>
 
 extern GttProject *cur_proj;
+extern GttProject *prev_proj;
 void cur_proj_set(GttProject *p);
 
 #endif /* __CUR_PROJ_H__ */

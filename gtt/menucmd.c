@@ -400,8 +400,7 @@ copy_project(GtkWidget *w, gpointer data)
 void
 menu_start_timer(GtkWidget *w, gpointer data)
 {
-	start_timer();
-	menu_set_states();
+	cur_proj_set (prev_proj);
 }
 
 
@@ -409,8 +408,7 @@ menu_start_timer(GtkWidget *w, gpointer data)
 void
 menu_stop_timer(GtkWidget *w, gpointer data)
 {
-	stop_timer();
-	menu_set_states();
+	cur_proj_set (NULL);
 }
 
 
@@ -419,11 +417,10 @@ menu_toggle_timer(GtkWidget *w, gpointer data)
 {
 	/* if (GTK_CHECK_MENU_ITEM(menus_get_toggle_timer())->active) { */
 	if (timer_is_running()) {
-		stop_timer();
+		cur_proj_set (NULL);
 	} else {
-		start_timer();
+		cur_proj_set (prev_proj);
 	}
-	menu_set_states();
 }
 
 

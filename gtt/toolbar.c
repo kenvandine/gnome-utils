@@ -109,7 +109,7 @@ toolbar_set_states(void)
 				     GNOME_STOCK_PIXMAP_TIMER);
 	if (mytbar->timer_w)
 		gtk_widget_set_sensitive(GTK_WIDGET(mytbar->timer_w),
-					 (cur_proj != NULL));
+			(NULL != prev_proj) || (NULL != cur_proj));
 
 	if ((config_show_tb_icons) && (config_show_tb_texts)) {
 		tb_style = GTK_TOOLBAR_BOTH;

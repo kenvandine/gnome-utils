@@ -252,9 +252,9 @@ menu_set_states(void)
 	mi = GTK_CHECK_MENU_ITEM(menu_main_timer[MENU_TIMER_TOGGLE_POS].widget);
 	mi->active = timer_is_running();
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_TOGGLE_POS].widget,
-				 (cur_proj != NULL));
+				 ((NULL != cur_proj)||(NULL != prev_proj)));
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_START_POS].widget,
-				 (FALSE == timer_is_running()) && (cur_proj));
+				 (FALSE == timer_is_running()) && (prev_proj));
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_STOP_POS].widget,
 				 (timer_is_running()) && (cur_proj));
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_CUT_POS].widget,

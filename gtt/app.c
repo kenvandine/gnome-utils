@@ -133,8 +133,8 @@ void
 cur_proj_set(GttProject *proj)
 {
 	pid_t pid;
-	char *cmd, *p;
-	GString *str;
+	char *cmd;
+	const char *str;
 
 	if (cur_proj == proj) return;
 
@@ -160,24 +160,11 @@ cur_proj_set(GttProject *proj)
 
 	/* handle commands */
 	if (!cmd) return;
-	str = g_string_new (NULL);
-	for (p = cmd; *p; p++) 
-	{
-		if ((p[0] == '%') && (p[1] == 's')) 
-		{
-			if (cur_proj)
-			{
-				g_string_append (str, gtt_project_get_title(cur_proj));
-			}
-			p++;
-		} else {
-			g_string_append_c (str, *p);
-		}
-	}
+	str = printf_project (cmd, (proj) ? cur_proj : prev_proj);
 	pid = fork();
 	if (pid == 0) 
 	{
-		execlp("sh", "sh", "-c", str->str, NULL);
+		execlp("sh", "sh", "-c", str, NULL);
 		g_warning("%s: %d: cur_proj_set: couldn't exec\n", __FILE__, __LINE__);
 		exit(1);
 	}

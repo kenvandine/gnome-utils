@@ -70,8 +70,8 @@ log_write(time_t t, const char *s)
 }
 
 
-static char *
-build_log_entry(const char *format, GttProject *proj)
+char *
+printf_project(const char *format, GttProject *proj)
 {
 	GString *str;
 	char tmp[256];
@@ -79,12 +79,9 @@ build_log_entry(const char *format, GttProject *proj)
 	char *ret;
 	int sss;
 
-	if (!format)
-		format = config_logfile_start;
-	if (!proj)
-		return g_strdup(_("program started"));
-	if ((!format) || (!format[0]))
-		return g_strdup(gtt_project_get_title(proj));
+	if (!format) return NULL;
+	if (!proj) return g_strdup (format);
+
 	str = g_string_new (NULL);
 	for (p = format; *p; p++) {
 		if (*p != '%') {
@@ -158,6 +155,18 @@ build_log_entry(const char *format, GttProject *proj)
 	ret = str->str;
 	g_string_free (str, FALSE);
 	return ret;
+}
+
+
+static char *
+build_log_entry(const char *format, GttProject *proj)
+{
+	if (!format || !format[0])
+		format = config_logfile_start;
+	if (!proj)
+		return g_strdup(_("program started"));
+
+	return printf_project (format, proj);
 }
 
 static void
