@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-19 04:07+0200\n"
-"PO-Revision-Date: 2004-07-19 16:16+0200\n"
+"POT-Creation-Date: 2004-07-20 15:10+0200\n"
+"PO-Revision-Date: 2004-07-20 16:48+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,11 @@ msgstr ""
 msgid "Accessories"
 msgstr "Aksesorë"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:144
 msgid "Dictionary Lookup"
 msgstr "Kërkim në fjalor"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:421
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:160
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Kërko fjalët tek një fjalor online"
@@ -167,11 +167,11 @@ msgstr "Shkruaj një fjalë ose zgjidh një nga lista e mëposhtme"
 msgid "Look Up for a Word"
 msgstr "Kërko fjalën"
 
-#: gdictsrc/gdict-applet.c:144
+#: gdictsrc/gdict-applet.c:137
 msgid "_Lookup"
 msgstr "_Kërko"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:148
 msgid "Dictionary word entry"
 msgstr "Zëri në fjalor i fjalës"
 
@@ -1324,9 +1324,10 @@ msgstr "Gabim gjatë analizimit të databazës së veprimeve"
 msgid "Can't write to actions database!"
 msgstr "I pamundur shkrimi tek databazë e veprimeve!"
 
-#: logview/actions.c:489
-msgid "Error while executing specified action"
-msgstr "Gabim gjatë ekzekutimit të veprimit të specifikuar"
+#: logview/actions.c:487
+#, c-format
+msgid "Error while executing specified action: %s"
+msgstr "Gabim gjatë ekzekutimit të veprimit të specifikuar: %s"
 
 #: logview/actions.c:510
 msgid "<empty>"
@@ -1702,53 +1703,53 @@ msgstr ""
 msgid "Error: [%s]\n"
 msgstr "Gabim: [%s]\n"
 
-#: logview/monitor.c:108
+#: logview/monitor.c:111
 msgid "Monitor Options"
 msgstr "Opcionet e monitorimit"
 
-#: logview/monitor.c:111
+#: logview/monitor.c:114
 msgid "Ac_tions..."
 msgstr "Veprime_t..."
 
-#: logview/monitor.c:137
+#: logview/monitor.c:140
 msgid "_Select logs to monitor:"
 msgstr "_Zgjidh logs për t'u monitoruar:"
 
-#: logview/monitor.c:142
+#: logview/monitor.c:145
 msgid "Currently _monitored logs:"
 msgstr "Logs aktualë duke u _monitoruar:"
 
-#: logview/monitor.c:190
+#: logview/monitor.c:193
 msgid "Add logs to monitor"
 msgstr "Shto logs për monitorim"
 
-#: logview/monitor.c:199
+#: logview/monitor.c:202
 msgid "Remove logs from monitor"
 msgstr "Hiq logs nga monitorimi"
 
 #. Check boxes
-#: logview/monitor.c:246
+#: logview/monitor.c:249
 msgid "_Hide application"
 msgstr "_Fshih programin"
 
-#: logview/monitor.c:254
+#: logview/monitor.c:257
 msgid "_Execute actions"
 msgstr "_Ekzekuto veprimet"
 
-#: logview/monitor.c:290
+#: logview/monitor.c:293
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Tepër logs për t'u mbajtur nën vëzhgim. Hiq ndonjërin dhe provo përsëri"
 
-#: logview/monitor.c:298 logview/monitor.c:335
+#: logview/monitor.c:301 logview/monitor.c:338
 #, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list është NULL\n"
 
-#: logview/monitor.c:457
+#: logview/monitor.c:475
 msgid "Monitoring Logs..."
 msgstr "Duke monitoruar logs..."
 
-#: logview/monitor.c:643
+#: logview/monitor.c:667
 #, c-format
 msgid "TOUCHED!!\n"
 msgstr "NDRYSHUAR!!\n"
