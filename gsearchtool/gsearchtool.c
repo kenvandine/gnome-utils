@@ -1786,11 +1786,26 @@ create_constraint_box (GSearchWindow * gsearch,
 			}
 		}
 		
-		if (gsearch->is_window_accessible)
-		{
+		if (gsearch->is_window_accessible) {
 			gchar * text = remove_mnemonic_character (GSearchOptionTemplates[opt->constraint_id].desc);
-			gchar * desc = g_strdup_printf (_("'%s' entry"), _(text));
-			add_atk_namedesc (GTK_WIDGET (entry), desc, _("Enter a value for search rule"));
+			gchar * name;
+			gchar * desc;
+			
+			if (GSearchOptionTemplates[opt->constraint_id].units == NULL) {	
+				name = g_strdup (_(text)); 		
+				desc = g_strdup_printf (_("Enter a text value for the \"%s\" search option."), _(text));
+			}
+			else {
+				/* Translators:  Below is a string displaying the search options name 
+				and unit value.  For example, "\"Date modified less than\" in days". */
+				name = g_strdup_printf (_("\"%s\" in %s"), _(text),
+				                        _(GSearchOptionTemplates[opt->constraint_id].units));
+				desc = g_strdup_printf (_("Enter a value in %s for the \"%s\" search option."), 
+				                        _(GSearchOptionTemplates[opt->constraint_id].units),
+				                        _(text));
+			}
+			add_atk_namedesc (GTK_WIDGET (entry), name, desc);
+			g_free (name);
 			g_free (desc);
 			g_free (text);
 		}
@@ -1843,9 +1858,11 @@ create_constraint_box (GSearchWindow * gsearch,
 	gtk_box_pack_end (GTK_BOX (hbox), button, FALSE, FALSE, 0);
 	
 	if (gsearch->is_window_accessible) {
-		gchar *text = remove_mnemonic_character (GSearchOptionTemplates[opt->constraint_id].desc);
-		gchar *desc = g_strdup_printf (_("Click to Remove the '%s' Rule"), _(text));
-		add_atk_namedesc (GTK_WIDGET (button), NULL, desc);
+		gchar * text = remove_mnemonic_character (GSearchOptionTemplates[opt->constraint_id].desc);
+		gchar * name = g_strdup_printf (_("Remove \"%s\""), _(text));
+		gchar * desc = g_strdup_printf (_("Click to remove the \"%s\" search option."), _(text));
+		add_atk_namedesc (GTK_WIDGET (button), name, desc);
+		g_free (name);
 		g_free (desc);
 		g_free (text);
 	}
@@ -1964,10 +1981,9 @@ create_additional_constraint_section (GSearchWindow * gsearch)
 	gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (gsearch->available_options_combo_box), 
 	                                      is_separator, NULL, NULL);
 
-	if (gsearch->is_window_accessible)
-	{
-		add_atk_namedesc (GTK_WIDGET (gsearch->available_options_combo_box), _("Search Rules Menu"), 
-				  _("Select a search rule from the menu"));
+	if (gsearch->is_window_accessible) {
+		add_atk_namedesc (GTK_WIDGET (gsearch->available_options_combo_box), _("Available options"), 
+				  _("Select a search option from the drop-down list."));
 	}
 
 	gsearch->available_options_add_button = gtk_button_new_from_stock (GTK_STOCK_ADD);
@@ -1978,6 +1994,11 @@ create_additional_constraint_section (GSearchWindow * gsearch)
 	g_signal_connect (G_OBJECT (gsearch->available_options_add_button),"clicked",
 			  G_CALLBACK (add_constraint_cb), (gpointer) gsearch);
 	
+	if (gsearch->is_window_accessible) {
+		add_atk_namedesc (GTK_WIDGET (gsearch->available_options_add_button), _("Add search option"), 
+				  _("Click to add the selected available search option."));
+	}
+
 	gtk_box_pack_end (GTK_BOX (hbox), gsearch->available_options_add_button, FALSE, FALSE, 0); 
 }
 
@@ -2030,6 +2051,10 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_set_headers_visible (gsearch->search_results_tree_view, FALSE);						
 	gtk_tree_view_set_rules_hint (gsearch->search_results_tree_view, TRUE);
   	g_object_unref (G_OBJECT (gsearch->search_results_list_store));
+
+	if (gsearch->is_window_accessible) {
+		add_atk_namedesc (GTK_WIDGET (gsearch->search_results_tree_view), _("List View"), NULL);
+	}
 	
 	gsearch->search_results_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (gsearch->search_results_tree_view));
 	
@@ -2509,11 +2534,10 @@ gsearch_app_create (GSearchWindow * gsearch)
 	gtk_table_attach (GTK_TABLE (gsearch->name_and_folder_table), gsearch->name_contains_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
 	entry =  gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry));
        
-	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (gsearch->name_contains_entry)))
-	{
+	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (gsearch->name_contains_entry))) {
 		gsearch->is_window_accessible = TRUE;
-		add_atk_namedesc (gsearch->name_contains_entry, NULL, _("Enter the file name you want to search."));
-		add_atk_namedesc (entry, _("Name Contains Entry"), _("Enter the file name you want to search."));
+		add_atk_namedesc (gsearch->name_contains_entry, NULL, _("Enter a filename or partial filename with or without wildcards."));
+		add_atk_namedesc (entry, _("Name contains"), _("Enter a filename or partial filename with or without wildcards."));
 	}	
 	g_signal_connect (G_OBJECT (gsearch->name_contains_entry), "activate",
 			  G_CALLBACK (name_contains_activate_cb),
@@ -2529,9 +2553,8 @@ gsearch_app_create (GSearchWindow * gsearch)
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (gsearch->look_in_folder_button));		
 	gtk_table_attach (GTK_TABLE (gsearch->name_and_folder_table), gsearch->look_in_folder_button, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
 
-	if (gsearch->is_window_accessible)
-	{ 
-		add_atk_namedesc (GTK_WIDGET (gsearch->look_in_folder_button), NULL, _("Select the folder where you want to start the search."));
+	if (gsearch->is_window_accessible) { 
+		add_atk_namedesc (GTK_WIDGET (gsearch->look_in_folder_button), _("Look in folder"), _("Select the folder or device from which you want to begin the search."));
 	}
 			  
 	locale_string = g_get_current_dir ();
@@ -2550,9 +2573,8 @@ gsearch_app_create (GSearchWindow * gsearch)
 	create_additional_constraint_section (gsearch);
 	gtk_box_pack_start (GTK_BOX (container), GTK_WIDGET (gsearch->available_options_vbox), FALSE, FALSE, 0);
 	
-	if (gsearch->is_window_accessible)
-	{ 
-		add_atk_namedesc (GTK_WIDGET (gsearch->show_more_options_expander), _("Show more options"), _("Expands or collapses a list of search options."));
+	if (gsearch->is_window_accessible) { 
+		add_atk_namedesc (GTK_WIDGET (gsearch->show_more_options_expander), _("Show more options"), _("Click to expand or collapse the list of available options."));
 		add_atk_relation (GTK_WIDGET (gsearch->available_options_vbox), GTK_WIDGET (gsearch->show_more_options_expander), ATK_RELATION_CONTROLLED_BY);
 		add_atk_relation (GTK_WIDGET (gsearch->show_more_options_expander), GTK_WIDGET (gsearch->available_options_vbox), ATK_RELATION_CONTROLLER_FOR);
 	}
@@ -2575,11 +2597,17 @@ gsearch_app_create (GSearchWindow * gsearch)
 	gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (hbox), button, TRUE);
 	g_signal_connect (G_OBJECT (button), "clicked",
 			  G_CALLBACK (click_help_cb), (gpointer) gsearch->window);
+  	if (gsearch->is_window_accessible) {
+		add_atk_namedesc (GTK_WIDGET (button), NULL, _("Click to display the help manual."));
+	}
 	
 	button = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
 	g_signal_connect (G_OBJECT (button), "clicked",
 			  G_CALLBACK (click_close_cb), (gpointer) gsearch->command_details);
+  	if (gsearch->is_window_accessible) {
+		add_atk_namedesc (GTK_WIDGET (button), NULL, _("Click to close \"Search for Files\"."));
+	}
 	
 	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
 
@@ -2604,8 +2632,8 @@ gsearch_app_create (GSearchWindow * gsearch)
 	                  G_CALLBACK (click_stop_cb), (gpointer) gsearch);
 	
 	if (gsearch->is_window_accessible) {
-		add_atk_namedesc (GTK_WIDGET (gsearch->find_button), NULL, _("Click to Start the search"));
-		add_atk_namedesc (GTK_WIDGET (gsearch->stop_button), NULL, _("Click to Stop the search"));
+		add_atk_namedesc (GTK_WIDGET (gsearch->find_button), NULL, _("Click to perform a search."));
+		add_atk_namedesc (GTK_WIDGET (gsearch->stop_button), NULL, _("Click to stop a search."));
 	}
 
 	gtk_widget_show_all (container);
