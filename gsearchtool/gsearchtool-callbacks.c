@@ -564,7 +564,7 @@ save_results_cb (GtkFileSelection *selector,
 			 0 /* flags */,
 			 GTK_MESSAGE_QUESTION,
 			 GTK_BUTTONS_YES_NO,
-			 _("File %s already exists. Overwrite?"),
+			 _("File \"%s\" already exists. Overwrite?"),
 			 interface.save_results_file);
 		gtk_window_set_transient_for (GTK_WINDOW(dialog), GTK_WINDOW (interface.main_window));
 		response = gtk_dialog_run (GTK_DIALOG (dialog));
@@ -599,7 +599,23 @@ save_results_cb (GtkFileSelection *selector,
 		fclose(fp);
 	} 
 	else {
-		gnome_app_error(GNOME_APP(interface.main_window), _("Cannot save the results file."));
+		GtkWidget *dialog;
+		gchar *error_msg = g_strdup_printf (_("Cannot save search results to the file \"%s\"."),
+						      interface.save_results_file);
+				
+		dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
+				GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_MESSAGE_ERROR,
+				GTK_BUTTONS_OK,
+				error_msg);
+
+		g_signal_connect (G_OBJECT (dialog),
+				"response",
+				G_CALLBACK (gtk_widget_destroy), NULL);
+					
+		gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+		gtk_widget_show (dialog);
+		g_free (error_msg);
 	}
 }
 

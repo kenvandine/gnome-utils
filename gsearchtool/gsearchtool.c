@@ -897,6 +897,9 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 		if (error_msgs != NULL) {
 
 			if (error_msgs->len > 0) {	
+				
+				GtkWidget *dialog;
+				
 				error_msgs = g_string_prepend (error_msgs, 
 				     _("While searching the following errors were reported.\n\n"));
 				
@@ -905,7 +908,20 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 				     		_("\n... Too many errors to display ..."));
 				}
 		
-				gnome_app_error (GNOME_APP (interface.main_window), error_msgs->str);	
+				dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
+					GTK_DIALOG_DESTROY_WITH_PARENT,
+					GTK_MESSAGE_ERROR,
+					GTK_BUTTONS_OK,
+					error_msgs->str);
+
+				g_signal_connect (G_OBJECT (dialog),
+					"response",
+					G_CALLBACK (gtk_widget_destroy), NULL);
+		
+				gtk_window_set_title (GTK_WINDOW (dialog), _("Search Errors"));	
+				gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+				gtk_widget_show (dialog);
+	
 			}
 			truncate_error_msgs = FALSE;
 			g_string_truncate (error_msgs, 0);
