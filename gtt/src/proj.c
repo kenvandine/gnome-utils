@@ -37,7 +37,7 @@ typedef struct notif_s
 	gpointer user_data;
 } Notifier;
 
-// hack alert -- should be static/private to this file
+// hack alert -- plist should be made static/private to this file
 GList * plist = NULL;
 
 static void proj_refresh_time (GttProject *proj);
@@ -81,7 +81,7 @@ gtt_project_new(void)
 	proj->sub_projects = NULL;
 	proj->parent = NULL;
 	proj->listeners = NULL;
-        proj->private_data = NULL;
+	proj->private_data = NULL;
 
 	proj->being_destroyed = FALSE;
 	proj->frozen = FALSE;
@@ -93,7 +93,7 @@ gtt_project_new(void)
 	proj->secs_month = 0;
 	proj->secs_year = 0;
 
-        proj->id = next_free_id;
+	proj->id = next_free_id;
 	next_free_id ++;
 
 	return proj;
@@ -202,7 +202,7 @@ gtt_project_destroy(GttProject *proj)
 	if (proj->custid) g_free(proj->custid);
 	proj->custid = NULL;
 
-        if (proj->task_list)
+	if (proj->task_list)
 	{
 		while (proj->task_list)
 		{
@@ -212,7 +212,7 @@ gtt_project_destroy(GttProject *proj)
 	}
 	proj->task_list = NULL;
 
-        if (proj->sub_projects)
+	if (proj->sub_projects)
 	{
 		while (proj->sub_projects)
 		{
@@ -1470,10 +1470,13 @@ gtt_clear_daily_counter (GttProject *proj)
 	time_t midnight;
 	int not_done = TRUE;
 	GList *tsk_node, *in;
+	int is_running;
 
 	if (!proj) return;
+	if (!proj->task_list) return;
 
-	gtt_project_timer_stop (proj);
+	is_running = task_suspend ((GttTask *) proj->task_list->data);
+
 	gtt_project_freeze (proj);
 	midnight = get_midnight (-1);
 
@@ -1504,7 +1507,7 @@ gtt_clear_daily_counter (GttProject *proj)
 		}
 	}
 	gtt_project_thaw (proj);
-	gtt_project_timer_start (proj);
+	if (is_running) gtt_project_timer_start (proj);
 }
 
 /* =========================================================== */
@@ -1582,7 +1585,10 @@ gtt_project_timer_update (GttProject *proj)
 	 * of the task */
 	task = proj->task_list->data;
 	g_return_if_fail (task);
-	g_return_if_fail (task->interval_list);
+
+	/* Its possible that there are no intervals (which implies 
+	 * that the timer isn't running). */
+	if (NULL == task->interval_list) return;
 	ival = task->interval_list->data;
 	g_return_if_fail (ival);
 
@@ -1596,6 +1602,7 @@ gtt_project_timer_update (GttProject *proj)
 	/* compute the delta change, update cached data */
 	now = time(0);
 
+	/* hack alert -- why aren't we checking a midnight rollover? */
 	prev_update = ival->stop;
 	ival->stop = now;
 	diff = now - prev_update;
@@ -1620,11 +1627,15 @@ gtt_project_timer_stop (GttProject *proj)
 	/* Also note that the timer really has stopped. */
 	task = proj->task_list->data;
 	g_return_if_fail (task);
-	g_return_if_fail (task->interval_list);
-	ival = task->interval_list->data;
-	g_return_if_fail (ival);
 
-	ival->running = FALSE;
+	/* its 'legal' to have no intervals, which implies 
+	 * that the timer isn't running anyway. */
+	if (task->interval_list)
+	{
+		ival = task->interval_list->data;
+		g_return_if_fail (ival);
+		ival->running = FALSE;
+	}
 
 	/* When we stop the timer, call proj_refresh_time(),
 	 * as this will do several things: first, it will 
