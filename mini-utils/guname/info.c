@@ -179,12 +179,7 @@ static void get_linux_info()
     f = fopen("/etc/redhat-release", "r");
     if (f) {
       fgets(buf, 79, f);
-/* drmike - this seems unecessary in RH 5.2 and later
-      if (strchr(buf, ' '))
-        info[si_distribution_version] = g_strdup(strchr(buf, ' ')+1);
-      else
-*/
-        info[si_distribution_version] = g_strdup(buf);
+      info[si_distribution_version] = g_strdup(buf);
       fclose(f);
     }
   } else if (g_file_exists("/etc/SuSE-release")) {
