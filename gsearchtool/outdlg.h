@@ -12,7 +12,7 @@
 #include "gsearchtool.h"
 
 
-int outdlg_makedlg(char name[],int clear);
+gboolean outdlg_makedlg(char name[], gboolean clear);
 void outdlg_additem(char item[]);
 void outdlg_showdlg(void);
 void outdlg_freeze(void);

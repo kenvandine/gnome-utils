@@ -1,5 +1,5 @@
 /* Gnome Search Tool 
- * (C) 1998 the Free Software Foundation
+ * (C) 1998,2000 the Free Software Foundation
  *
  * Author:   George Lebl
  */
@@ -22,21 +22,20 @@
 #define STDERR 2
 
 FindOptionTemplate templates[] = {
+#define OPTION_FILENAME 0
 	{ FIND_OPTION_TEXT, "-name '%s'", N_("File name") },
-	{ FIND_OPTION_CHECKBOX_TRUE, "-maxdepth 1",
-				N_("Don't search subdirectories") },
+#define OPTION_NOSUBDIRS 1
+	{ FIND_OPTION_BOOL, "-maxdepth 1", N_("Don't search subdirectories") },
 	{ FIND_OPTION_TEXT, "-user '%s'", N_("File owner") },
 	{ FIND_OPTION_TEXT, "-group '%s'", N_("File owner group") },
 	{ FIND_OPTION_TIME, "-mtime '%s'", N_("Last modification time") },
-	{ FIND_OPTION_CHECKBOX_TRUE, "-mount",
-				N_("Don't search mounted filesystems") },
-	{ FIND_OPTION_CHECKBOX_TRUE, "-empty",
-				N_("Empty file") },
-	{ FIND_OPTION_CHECKBOX_TRUE, "-nouser -o -nogroup",
+#define OPTION_NOMOUNTED 5
+	{ FIND_OPTION_BOOL, "-mount", N_("Don't search mounted filesystems") },
+	{ FIND_OPTION_BOOL, "-empty", N_("Empty file") },
+	{ FIND_OPTION_BOOL, "-nouser -o -nogroup",
 				N_("Invalid user or group") },
 	{ FIND_OPTION_TEXT, "\\! -name '%s'", N_("Filenames except") },
-	{ FIND_OPTION_CHECKBOX_TRUE, "-follow",
-				N_("Follow symbolic links") },
+	{ FIND_OPTION_BOOL, "-follow", N_("Follow symbolic links") },
 	{ FIND_OPTION_GREP, "fgrep -l '%s'", N_("Simple substring search") },
 	{ FIND_OPTION_GREP, "grep -l '%s'", N_("Regular expression search") },
 	{ FIND_OPTION_GREP, "egrep -l '%s'",
@@ -45,58 +44,98 @@ FindOptionTemplate templates[] = {
 };
 
 /*this will not include the directories in search*/
-char defoptions[]="\\! -type d";
+char defoptions[] = "\\! -type d";
 /*this should be done if the above is made optional*/
-/*char defoptions[]="-mindepth 0";*/
+/*char defoptions[] = "-mindepth 0";*/
 
-GList *criteria_find=NULL;
-GList *criteria_grep=NULL;
+GList *criteria_find = NULL;
+GList *criteria_grep = NULL;
 
-static GtkWidget *find_box=NULL;
-static GtkWidget *grep_box=NULL;
+static GtkWidget *find_box = NULL;
+static GtkWidget *grep_box = NULL;
 
-static GtkWidget *start_dir_e=NULL;
+static GtkWidget *start_dir_e = NULL;
 
-static gint current_template=0;
+static GtkWidget *locate_entry = NULL;
 
-static GtkWidget *app; 
+static int current_template = 0;
+
+GtkWidget *app; 
+
+static int
+count_char(char *s, char p)
+{
+	int cnt = 0;
+	for(;*s;s++) {
+		if(*s == p)
+			cnt++;
+	}
+	return cnt;
+}
 
 static char *
-makecmd(void)
+quote_quote_string(char *s)
 {
-	char *cmdbuf;
-	char *p;
+	GString *gs;
+	char *ret;
+	if(count_char(s, '\'') == 0)
+		return g_strdup(s);
+	gs = g_string_new("");
+	for(;*s;s++) {
+		if(*s == '\'')
+			g_string_append(gs,"'\\''");
+		else
+			g_string_append_c(gs,*s);
+	}
+
+	ret = gs->str;
+	g_string_free(gs, FALSE);
+	return ret;
+}
+
+static char *
+makecmd(char *start_dir)
+{
+	GString *cmdbuf;
 	GList *list;
-	int len=1; /*length of the cmdbuf needed*/
-	char *start_dir;
-	
-	if(start_dir_e &&
-	   gtk_entry_get_text(GTK_ENTRY(start_dir_e)) &&
-	   *gtk_entry_get_text(GTK_ENTRY(start_dir_e)))
-		start_dir = gtk_entry_get_text(GTK_ENTRY(start_dir_e));
-	else
-		start_dir = NULL;
 
-	len+=strlen("find . -print "); /*the neccessary base of the command*/
-	len+=strlen(defoptions)+1;
+	cmdbuf = g_string_new ("");
+
 	if(start_dir)
-		len+=strlen(start_dir)+1;
+		g_string_sprintfa(cmdbuf,"find %s %s ",start_dir,defoptions);
+	else
+		g_string_sprintfa(cmdbuf,"find . %s ",defoptions);
+
 	for(list=criteria_find;list!=NULL;list=g_list_next(list)) {
 		FindOption *opt = list->data;
 		if(opt->enabled) {
-			len+=strlen(templates[opt->templ].option)+1;
+			char *s;
 			switch(templates[opt->templ].type) {
-			case FIND_OPTION_CHECKBOX_TRUE:
-			case FIND_OPTION_CHECKBOX_FALSE:
+			case FIND_OPTION_BOOL:
+				g_string_sprintfa(cmdbuf,"%s ",
+						  templates[opt->templ].option);
 				break;
 			case FIND_OPTION_TEXT:
-				len+=strlen(opt->data.text)+1;
+				s = quote_quote_string(opt->data.text);
+				g_string_sprintfa(cmdbuf,
+						  templates[opt->templ].option,
+						  s);
+				g_free(s);
+				g_string_append_c(cmdbuf, ' ');
 				break;
 			case FIND_OPTION_NUMBER:
-				len+=log10(opt->data.number)+2;
+				g_string_sprintfa(cmdbuf,
+						  templates[opt->templ].option,
+						  opt->data.number);
+				g_string_append_c(cmdbuf, ' ');
 				break;
 			case FIND_OPTION_TIME:
-				len+=strlen(opt->data.time)+1;
+				s = quote_quote_string(opt->data.time);
+				g_string_sprintfa(cmdbuf,
+						  templates[opt->templ].option,
+						  s);
+				g_free(s);
+				g_string_append_c(cmdbuf, ' ');
 				break;
 			case FIND_OPTION_GREP:
 				g_warning(_("grep options found in find list bad bad!"));
@@ -106,87 +145,36 @@ makecmd(void)
 			}
 		}
 	}
+	g_string_append(cmdbuf,"-print ");
 
 	for(list=criteria_grep;list!=NULL;list=g_list_next(list)) {
 		FindOption *opt = list->data;
 		if(opt->enabled) {
-			len+=strlen(" | xargs ");
-			len+=strlen(templates[opt->templ].option)+1;
-			if(templates[opt->templ].type!=FIND_OPTION_GREP)
-				g_warning("non-grep option found in grep list, bad bad!");
-			else
-				len+=strlen(opt->data.text)+1;
-		}
-	}
-	
-	cmdbuf = g_new(char,len);
-	p = cmdbuf;
-	
-	if(start_dir)
-		p+=sprintf(p,"find %s %s ",start_dir,defoptions);
-	else
-		p+=sprintf(p,"find . %s ",defoptions);
-
-	for(list=criteria_find;list!=NULL;list=g_list_next(list)) {
-		FindOption *opt = list->data;
-		if(opt->enabled) {
-			switch(templates[opt->templ].type) {
-			case FIND_OPTION_CHECKBOX_TRUE:
-				if(opt->data.bool)
-					p+=sprintf(p,"%s ",templates[opt->templ].option);
-				break;
-			case FIND_OPTION_CHECKBOX_FALSE:
-				if(!opt->data.bool)
-					p+=sprintf(p,"%s ",templates[opt->templ].option);
-				break;
-			case FIND_OPTION_TEXT:
-				p+=sprintf(p,templates[opt->templ].option,
-					   opt->data.text);
-				strcat(p++," ");
-				break;
-			case FIND_OPTION_NUMBER:
-				p+=sprintf(p,templates[opt->templ].option,
-					   opt->data.number);
-				strcat(p++," ");
-				break;
-			case FIND_OPTION_TIME:
-				p+=sprintf(p,templates[opt->templ].option,
-					   opt->data.time);
-				strcat(p++," ");
-				break;
-			case FIND_OPTION_GREP:
-				g_warning(_("grep options found in find list bad bad!"));
-				break;
-			default:
-			        break;
-			}
-		}
-	}
-
-	p+=sprintf(p,"-print ");
-
-	for(list=criteria_grep;list!=NULL;list=g_list_next(list)) {
-		FindOption *opt = list->data;
-		if(opt->enabled) {
-			p+=sprintf(p,"| xargs ");
+			g_string_sprintfa(cmdbuf, "| xargs ");
 			if(templates[opt->templ].type!=FIND_OPTION_GREP)
 				g_warning(_("non-grep option found in grep list, bad bad!"));
-			else
-				p+=sprintf(p,templates[opt->templ].option,
-					   opt->data.text);
-			strcat(p++," ");
+			else {
+				char *s = quote_quote_string(opt->data.text);
+				g_string_sprintfa(cmdbuf,
+						  templates[opt->templ].option,
+						  s);
+				g_free(s);
+			}
+			g_string_append_c(cmdbuf, ' ');
 		}
 	}
 
-	return cmdbuf;
+	{
+		char *ret = cmdbuf->str;
+		g_string_free(cmdbuf, FALSE);
+		return ret;
+	}
 }
 
 static void
-run_command(GtkWidget *w, gpointer data)
+really_run_command(char *cmd, int *running)
 {
-	char *cmd;
-	static int running = 0;
-	GtkWidget *stopbutton = data;
+	static gboolean lock = FALSE;
 	int idle;
 
 	char s[PATH_MAX+1];
@@ -197,26 +185,24 @@ run_command(GtkWidget *w, gpointer data)
 	int i,n;
 	GString *errors = NULL;
 
-	if(data==w) {/*we are in the stop button*/
-		if(running>0)
-			running = 2;
+	if(!lock)
+		lock = TRUE;
+	else {
+		gnome_app_error(GNOME_APP(app),
+				_("Search already running on another page"));
 		return;
 	}
 
 	/* running =0 not running */
 	/* running =1 running */
 	/* running =2 make it stop! */
-	running=1;
+	*running = 1;
 
 	/*create the results box*/
 	/*FIXME: add an option to autoclear result box and pass TRUE in that
 	  case*/
-	outdlg_makedlg(_("Search Results"),FALSE);
+	outdlg_makedlg(_("Search Results"), FALSE);
 
-	gtk_widget_set_sensitive(stopbutton,TRUE);
-	gtk_grab_add(stopbutton);
-	
-	cmd = makecmd();
 	pipe(fd);
 	pipe(fderr);
 	
@@ -246,7 +232,7 @@ run_command(GtkWidget *w, gpointer data)
 	fcntl(fd[0],F_SETFL,O_NONBLOCK);
 	fcntl(fderr[0],F_SETFL,O_NONBLOCK);
 
-	while(running==1) {
+	while(*running==1) {
 		n=read(fd[0],ret,PIPE_READ_BUFFER);
 		for(i=0;i<n;i++) {
 			if(ret[i]=='\n') {
@@ -274,7 +260,7 @@ run_command(GtkWidget *w, gpointer data)
 		/*if(gtk_events_pending())
 			gtk_main_iteration_do(FALSE);*/
 		gtk_main_iteration_do(TRUE);
-		if(running==2) {
+		if(*running==2) {
 			kill(pid,SIGKILL);
 			wait(NULL);
 		}
@@ -305,11 +291,6 @@ run_command(GtkWidget *w, gpointer data)
 	gtk_idle_remove(idle);
 	outdlg_thaw();
 	
-	g_free(cmd);
-
-	gtk_grab_remove(stopbutton);
-	gtk_widget_set_sensitive(stopbutton,FALSE);
-	
 	outdlg_showdlg(); /* still show */
 
 	/* if any errors occured */
@@ -319,6 +300,46 @@ run_command(GtkWidget *w, gpointer data)
 		/* freeing allocated memory */
 		g_string_free(errors,TRUE);
 	}
+
+	lock = FALSE;
+}
+
+static void
+run_command(GtkWidget *w, gpointer data)
+{
+	char *cmd;
+	static int running = 0;
+	GtkWidget *stopbutton = data;
+
+	char *start_dir;
+
+	if(data==w) {/*we are in the stop button*/
+		if(running>0)
+			running = 2;
+		return;
+	}
+
+	if(start_dir_e) {
+		start_dir = gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(start_dir_e), TRUE);
+		if(!start_dir) {
+			gnome_app_error (GNOME_APP(app),
+					 _("Start directory does not exist"));
+			return;
+		}
+	} else
+		start_dir = NULL;
+
+	gtk_widget_set_sensitive(stopbutton,TRUE);
+	gtk_grab_add(stopbutton);
+	
+	cmd = makecmd(start_dir);
+	g_free(start_dir);
+
+	really_run_command(cmd, &running);
+	g_free(cmd);
+
+	gtk_grab_remove(stopbutton);
+	gtk_widget_set_sensitive(stopbutton,FALSE);
 }
 
 
@@ -335,7 +356,7 @@ make_list_of_templates(void)
 	GtkWidget *menu;
 	GtkWidget *menuitem;
 	GSList *group=NULL;
-	gint i;
+	int i;
 
 	menu = gtk_menu_new ();
 
@@ -352,7 +373,7 @@ make_list_of_templates(void)
 	return menu;
 }
 
-static gint
+static void
 remove_option(GtkWidget *w, gpointer data)
 {
 	FindOption *opt = data;
@@ -363,10 +384,9 @@ remove_option(GtkWidget *w, gpointer data)
 		gtk_container_remove(GTK_CONTAINER(find_box),w->parent);
 		criteria_find = g_list_remove(criteria_find,opt);
 	}
-	return FALSE;
 }
 
-static gint
+static void
 enable_option(GtkWidget *w, gpointer data)
 {
 	FindOption *opt = data;
@@ -374,38 +394,28 @@ enable_option(GtkWidget *w, gpointer data)
 	gtk_widget_set_sensitive(GTK_WIDGET(frame),
 				 GTK_TOGGLE_BUTTON(w)->active);
 	opt->enabled = GTK_TOGGLE_BUTTON(w)->active;
-	return FALSE;
 }
 
-static gint
+static void
 entry_changed(GtkWidget *w, gpointer data)
 {
 	FindOption *opt = data;
 	switch(templates[opt->templ].type) {
 	case FIND_OPTION_TEXT:
 	case FIND_OPTION_GREP:
-		opt->data.text=gtk_entry_get_text(GTK_ENTRY(w));
+		opt->data.text = gtk_entry_get_text(GTK_ENTRY(w));
 		break;
 	case FIND_OPTION_NUMBER:
 		sscanf(gtk_entry_get_text(GTK_ENTRY(w)),"%d",
 		       &opt->data.number);
 		break;
 	case FIND_OPTION_TIME:
-		opt->data.time=gtk_entry_get_text(GTK_ENTRY(w));
+		opt->data.time = gtk_entry_get_text(GTK_ENTRY(w));
 		break;
 	default:
 		g_warning("Entry changed called for a non entry option!");
 		break;
 	}
-	return FALSE;
-}
-
-static gint
-bool_changed(GtkWidget *w, gpointer data)
-{
-	FindOption *opt = data;
-	opt->data.bool = (GTK_TOGGLE_BUTTON(w)->active!=FALSE);
-	return FALSE;
 }
 
 char empty_str[]="";
@@ -414,21 +424,17 @@ static void
 set_option_defaults(FindOption *opt)
 {
 	switch(templates[opt->templ].type) {
-	case FIND_OPTION_CHECKBOX_TRUE:
-		opt->data.bool = TRUE;
-		break;
-	case FIND_OPTION_CHECKBOX_FALSE:
-		opt->data.bool = FALSE;
+	case FIND_OPTION_BOOL:
 		break;
 	case FIND_OPTION_TEXT:
 	case FIND_OPTION_GREP:
-		opt->data.text=empty_str;
+		opt->data.text = empty_str;
 		break;
 	case FIND_OPTION_NUMBER:
 		opt->data.number = 0;
 		break;
 	case FIND_OPTION_TIME:
-		opt->data.time=empty_str;
+		opt->data.time = empty_str;
 		break;
 	default:
 	        break;
@@ -436,7 +442,7 @@ set_option_defaults(FindOption *opt)
 }
 
 static GtkWidget *
-create_option_box(FindOption *opt)
+create_option_box(FindOption *opt, gboolean enabled)
 {
 	GtkWidget *hbox;
 	GtkWidget *option;
@@ -450,18 +456,9 @@ create_option_box(FindOption *opt)
 	gtk_box_pack_start(GTK_BOX(hbox),frame,TRUE,TRUE,0);
 
 	switch(templates[opt->templ].type) {
-	case FIND_OPTION_CHECKBOX_TRUE:
-		option = gtk_check_button_new_with_label(
-						_(templates[opt->templ].desc));
-		gtk_signal_connect(GTK_OBJECT(option),"toggled",
-				   GTK_SIGNAL_FUNC(bool_changed),opt);
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(option),TRUE);
-		break;
-	case FIND_OPTION_CHECKBOX_FALSE:
-		option = gtk_check_button_new_with_label(
-						_(templates[opt->templ].desc));
-		gtk_signal_connect(GTK_OBJECT(option),"toggled",
-				   GTK_SIGNAL_FUNC(bool_changed),opt);
+	case FIND_OPTION_BOOL:
+		option = gtk_label_new(_(templates[opt->templ].desc));
+		gtk_misc_set_alignment(GTK_MISC(option), 0.0, 0.5);
 		break;
 	case FIND_OPTION_TEXT:
 	case FIND_OPTION_NUMBER:
@@ -483,8 +480,9 @@ create_option_box(FindOption *opt)
 	w = gtk_check_button_new_with_label(_("Enable"));
 	gtk_object_set_user_data(GTK_OBJECT(w),frame);
 	gtk_signal_connect(GTK_OBJECT(w),"toggled",
-			   GTK_SIGNAL_FUNC(enable_option),opt);
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w),TRUE);
+			   GTK_SIGNAL_FUNC(enable_option), opt);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), enabled);
+	enable_option(w, opt);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 
 	w = gtk_button_new_with_label(_("Remove"));
@@ -496,7 +494,7 @@ create_option_box(FindOption *opt)
 }
 
 static void
-add_option(gint templ)
+add_option(int templ, gboolean enabled)
 {
 	FindOption *opt = g_new(FindOption,1);
 	GtkWidget *w;
@@ -506,7 +504,7 @@ add_option(gint templ)
 
 	set_option_defaults(opt);
 
-	w = create_option_box(opt);
+	w = create_option_box(opt, enabled);
 	gtk_widget_show_all(w);
 
 	/*if it's a grep type option (criterium)*/
@@ -519,11 +517,10 @@ add_option(gint templ)
 	}
 }
 
-static gint
+static void
 add_option_cb(GtkWidget *w, gpointer data)
 {
-	add_option(current_template);
-	return FALSE;
+	add_option(current_template, TRUE);
 }
 
 static GtkWidget *
@@ -533,24 +530,29 @@ create_find_page(void)
 	GtkWidget *hbox;
 	GtkWidget *w;
 	GtkWidget *sb;
+	char *s;
 
-	vbox = gtk_vbox_new(FALSE,5);
-	gtk_container_border_width(GTK_CONTAINER(vbox),5);
+	vbox = gtk_vbox_new(FALSE,GNOME_PAD_SMALL);
+	gtk_container_border_width(GTK_CONTAINER(vbox),GNOME_PAD_SMALL);
 
-	hbox = gtk_hbox_new(FALSE,5);
+	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 	w = gtk_label_new(_("Start in directory:"));
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
-	start_dir_e = gtk_entry_new();
+	start_dir_e = gnome_file_entry_new("directory", _("Browse"));
+	gnome_file_entry_set_directory(GNOME_FILE_ENTRY(start_dir_e), TRUE);
 	gtk_box_pack_start(GTK_BOX(hbox),start_dir_e,TRUE,TRUE,0);
-	gtk_entry_set_text(GTK_ENTRY(start_dir_e),".");
+	w = gnome_file_entry_gtk_entry(GNOME_FILE_ENTRY(start_dir_e));
+	s = g_get_current_dir();
+	gtk_entry_set_text(GTK_ENTRY(w), s);
+	g_free(s);
 
-	find_box = gtk_vbox_new(TRUE,5);
+	find_box = gtk_vbox_new(TRUE,GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox),find_box,TRUE,TRUE,0);
-	grep_box = gtk_vbox_new(TRUE,5);
+	grep_box = gtk_vbox_new(TRUE,GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox),grep_box,TRUE,TRUE,0);
 
-	hbox = gtk_hbox_new(FALSE,5);
+	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
 	w = gtk_option_menu_new();
@@ -562,11 +564,11 @@ create_find_page(void)
 			   GTK_SIGNAL_FUNC(add_option_cb),NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 
-	w = gtk_hseparator_new();
-	gtk_box_pack_start(GTK_BOX(vbox),w,FALSE,FALSE,0);
+	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
+	gtk_box_pack_end(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	hbox = gtk_hbox_new(FALSE,5);
-	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
+	w = gtk_hseparator_new();
+	gtk_box_pack_end(GTK_BOX(vbox),w,FALSE,FALSE,0);
 
 	w = gtk_button_new_with_label(_("Start"));
 	sb = gtk_button_new_with_label(_("Stop"));
@@ -578,18 +580,91 @@ create_find_page(void)
 	gtk_box_pack_end(GTK_BOX(hbox),sb,FALSE,FALSE,0);
 	gtk_widget_set_sensitive(sb,FALSE);
 
-	add_option(0);
+	add_option(OPTION_FILENAME, TRUE);
+	add_option(OPTION_NOSUBDIRS, FALSE);
+	add_option(OPTION_NOMOUNTED, FALSE);
 
 	return vbox;
 }
 
-#ifdef NEED_UNUSED_FUNCTION
+static void
+run_locate_command(GtkWidget *w, gpointer data)
+{
+	char *cmd;
+	static int running = 0;
+	GtkWidget *stopbutton = data;
+
+	char *locate_string;
+
+	if(data==w) {/*we are in the stop button*/
+		if(running>0)
+			running = 2;
+		return;
+	}
+
+	locate_string = gtk_entry_get_text(GTK_ENTRY(locate_entry));
+	if(!locate_string || !*locate_string) {
+		gnome_app_error (GNOME_APP(app),
+				 _("Nothing to locate"));
+		return;
+	}
+	locate_string = quote_quote_string(locate_string);
+
+	gtk_widget_set_sensitive(stopbutton, TRUE);
+	gtk_grab_add(stopbutton);
+
+	cmd = g_strdup_printf("locate '%s'", locate_string);
+
+	g_free(locate_string);
+
+	really_run_command(cmd, &running);
+	g_free(cmd);
+
+	gtk_grab_remove(stopbutton);
+	gtk_widget_set_sensitive(stopbutton,FALSE);
+}
+
 static GtkWidget *
 create_locate_page(void)
 {
-	return gtk_label_new(_("This is not yet implemented"));
+	GtkWidget *w, *vbox, *hbox, *sb;
+
+	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD_SMALL);
+
+	w = gtk_label_new(_("This is an interface to locate.  If you type in "
+			    "a simple string it\nwill be matched as a subset "
+			    "of the full path, and if you type\nin a string "
+			    "with wildcards, it will have to match the full "
+			    "path"));
+	gtk_box_pack_start(GTK_BOX(vbox), w, FALSE, FALSE, 0);
+
+	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+	w = gtk_label_new(_("Locate file: "));
+	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE, FALSE, 0);
+
+	locate_entry = gtk_entry_new();
+	gtk_box_pack_start(GTK_BOX(hbox), locate_entry, TRUE, TRUE, 0);
+
+	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
+	gtk_box_pack_end(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
+
+	w = gtk_hseparator_new();
+	gtk_box_pack_end(GTK_BOX(vbox),w,FALSE,FALSE,0);
+
+	w = gtk_button_new_with_label(_("Start"));
+	sb = gtk_button_new_with_label(_("Stop"));
+	gtk_signal_connect(GTK_OBJECT(w),"clicked",
+			   GTK_SIGNAL_FUNC(run_locate_command),sb);
+	gtk_signal_connect(GTK_OBJECT(sb),"clicked",
+			   GTK_SIGNAL_FUNC(run_locate_command),sb);
+	gtk_box_pack_end(GTK_BOX(hbox),w,FALSE,FALSE,0);
+	gtk_box_pack_end(GTK_BOX(hbox),sb,FALSE,FALSE,0);
+	gtk_widget_set_sensitive(sb,FALSE);
+
+	return vbox;
 }
-#endif
 
 static GtkWidget *
 create_window(void)
@@ -597,14 +672,12 @@ create_window(void)
 	GtkWidget *nbook;
 
 	nbook = gtk_notebook_new();
-	gtk_container_border_width(GTK_CONTAINER(nbook),5);
+	gtk_container_border_width(GTK_CONTAINER(nbook),GNOME_PAD_SMALL);
 
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_find_page(),
 				 gtk_label_new(_("Full find (find)")));
-#ifdef QUICKFIND_IMPLEMENTED
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_locate_page(),
 				 gtk_label_new(_("Quick find (locate)")));
-#endif
 
 	return nbook;
 }
@@ -619,7 +692,7 @@ about_cb (GtkWidget *widget, gpointer data)
 	};
 
 	about = gnome_about_new(_("The Gnome Search Tool"), VERSION,
-				_("(C) 1998 the Free Software Foundation"),
+				_("(C) 1998,2000 the Free Software Foundation"),
 				authors,
 				_("Frontend to the unix find/grep/locate "
 				  "commands"),

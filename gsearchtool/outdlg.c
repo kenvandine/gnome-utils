@@ -1,40 +1,113 @@
 /* Gnome Search Tool 
- * (C) 1998 the Free Software Foundation
+ * (C) 1998,2000 the Free Software Foundation
  *
  * Author:   George Lebl
  *
  */
 
 #include <gtk/gtk.h>
+#include <stdio.h>
 #include <string.h>
 
 #include "gsearchtool.h"
 #include "outdlg.h"
 
-static GtkWidget *outdlg=NULL;
+static GtkWidget *outdlg = NULL;
 static GtkWidget *outlist;
-static int list_width=0;
+static int list_width = 0;
+
+extern GtkWidget *app;
+
+static char *filename = NULL;
+
+static gboolean
+save_file(char *fname)
+{
+	FILE *fp;
+	int i;
+	fp = fopen(fname, "w");
+	if(!fp) return FALSE;
+	for(i=0; i<GTK_CLIST(outlist)->rows; i++) {
+		char *text = "";
+		gtk_clist_get_text(GTK_CLIST(outlist), i, 0, &text);
+		fprintf(fp, "%s\n", text);
+	}
+	fclose(fp);
+	return TRUE;
+}
+
+static void
+save_ok(GtkWidget *widget, GtkFileSelection *fsel)
+{
+	char *fname;
+	g_return_if_fail(GTK_IS_FILE_SELECTION(fsel));
+
+	fname = gtk_file_selection_get_filename(fsel);
+	if(!fname ||
+	   !save_file(fname)) {
+		GtkWidget *dlg;
+		dlg = gnome_error_dialog_parented("Cannot save file",
+						  GTK_WINDOW(fsel));
+		gtk_window_set_modal(GTK_WINDOW(dlg), TRUE);
+	} else {
+		gtk_widget_destroy(GTK_WIDGET(fsel));
+		g_free(filename);
+		filename = g_strdup(fname);
+	}
+}
+
+
 
 static void
 outdlg_clicked(GtkWidget * widget, int button, gpointer data)
 {
-	if(button == 0)
+	GtkFileSelection *fsel;
+	switch(button) {
+	case 0:
+		fsel = GTK_FILE_SELECTION(gtk_file_selection_new(_("Save Results")));
+		if(filename)
+			gtk_file_selection_set_filename(fsel, filename);
+
+		gtk_signal_connect (GTK_OBJECT (fsel->ok_button), "clicked",
+				    GTK_SIGNAL_FUNC (save_ok), fsel);
+		gtk_signal_connect_object
+			(GTK_OBJECT (fsel->cancel_button), "clicked",
+			 GTK_SIGNAL_FUNC (gtk_widget_destroy), 
+			 GTK_OBJECT(fsel));
+
+		gtk_window_position (GTK_WINDOW (fsel), GTK_WIN_POS_MOUSE);
+
+		gtk_window_set_transient_for(GTK_WINDOW(fsel),
+					     GTK_WINDOW(outdlg));
+
+		gtk_signal_connect_object_while_alive(GTK_OBJECT(widget),
+						      "destroy",
+						      GTK_SIGNAL_FUNC(gtk_widget_destroy),
+						      GTK_OBJECT(fsel));
+
+		gtk_widget_show (GTK_WIDGET (fsel));
+
+		break;
+	case 1:
 		gtk_clist_clear(GTK_CLIST(outlist));
-	else
+		list_width = 0;
+		break;
+	case 2:
+	default:
 		gtk_widget_destroy(outdlg);
-	list_width=0;
+		list_width = 0;
+		break;
+	}
 }
 
-gint 
-outdlg_double_click(GtkWidget *widget, GdkEventButton *event, gpointer func_data) {
+static gint 
+outdlg_double_click(GtkWidget *widget, GdkEventButton *event,
+		    gpointer func_data) {
 	GtkCList *clist=(GtkCList *)widget;
-	gint row, col, argsize;
+	gint row, col;
 	gchar *fileName;
 	const gchar *program;
 	const gchar *mimeType;
-	gchar *shellcommand;
-	gchar *tempstring;
-	gchar **args;
 
 	if (event->type==GDK_2BUTTON_PRESS) {
 		if (!gtk_clist_get_selection_info(clist, event->x, event->y, &row, &col))
@@ -45,60 +118,79 @@ outdlg_double_click(GtkWidget *widget, GdkEventButton *event, gpointer func_data
 		program=gnome_mime_program(mimeType);
 		
 		if (program) {
-			args=g_strsplit(program, " ", 255);
-			for (argsize=0; args[argsize] !=NULL; argsize++) {
-				if (!strcmp(args[argsize], "%f")) {
-						g_free(args[argsize]);
-						args[argsize]=g_strdup(fileName);
+			char **argv;
+			int argc, i;
+			/* we use a popt function as it does exactly
+			   what we want to do and
+			   gnome already uses popt */
+			if(poptParseArgvString(program, &argc, &argv) != 0) {
+				gnome_error_dialog_parented(_("Command mangeled"),
+							    GTK_WINDOW(outdlg));
+				return FALSE;
+			}
+
+			for (i = 0; i<argc; i++) {
+				if (strcmp(argv[i], "%f") == 0 ||
+				    strcmp(argv[i], "%s") == 0) {
+					argv[i]=fileName;
+					break;
 				}
 			}
 
 			if (gnome_mime_needsterminal(mimeType, NULL)) {
-				tempstring=g_strjoinv(" ", args);
-				shellcommand=g_strconcat("gnome-terminal#--command=", tempstring, "", NULL);
-				g_print("Test: %s\n",shellcommand);
-				g_strfreev(args);
-				args=g_strsplit(shellcommand, "#", 2);
-				argsize=2;
-				g_free(tempstring);
-				g_free(shellcommand);
-			} 
+				char **bigargv;
+				bigargv = g_new0(char *, argc+3);
+				bigargv[0] = "gnome-terminal";
+				bigargv[1] = "-x";
+				for(i=2; i<argc+2; i++)
+					bigargv[i] = argv[i-2];
+				bigargv[i] = NULL;
 
-			gnome_execute_async(NULL, argsize, args);
-			g_strfreev(args);
+				gnome_execute_async(NULL, argc+2, bigargv);
+				g_free(bigargv);
+			} else {
+				gnome_execute_async(NULL, argc, argv);
+			}
+			free(argv);
+		} else {
+			gnome_error_dialog_parented(_("No command for this mime type"),
+						    GTK_WINDOW(outdlg));
+			return FALSE;
 		}
 		return TRUE;
 	}
-	 return FALSE;
+	return FALSE;
 }
 
 static int
 outdlg_closedlg(GtkWidget * widget, gpointer data)
 {
-	list_width=0;
-	outdlg=NULL;
+	list_width = 0;
+	outdlg = NULL;
 	return FALSE;
 }
 
-int
-outdlg_makedlg(char name[], int clear)
+gboolean
+outdlg_makedlg(char name[], gboolean clear)
 {
 	GtkWidget *w;
 
 	/*we already have a dialog!!!*/
 	if(outdlg!=NULL) {
 		if(clear) {
-			list_width=0;
+			list_width = 0;
 			gtk_clist_clear(GTK_CLIST(outlist));
 		}
 		return FALSE;
 	}
-	list_width=0;
+	list_width = 0;
 
-	outdlg=gnome_dialog_new(name,
-				"Clear",
-				GNOME_STOCK_BUTTON_CLOSE,
-				NULL);
+	outdlg = gnome_dialog_new(name,
+				  "Save",
+				  "Clear",
+				  GNOME_STOCK_BUTTON_CLOSE,
+				  NULL);
+	gnome_dialog_set_parent(GNOME_DIALOG(outdlg), GTK_WINDOW(app));
 	gtk_signal_connect(GTK_OBJECT(outdlg), "destroy",
 			   GTK_SIGNAL_FUNC(outdlg_closedlg), NULL);
 

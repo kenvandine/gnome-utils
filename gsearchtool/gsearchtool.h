@@ -12,10 +12,8 @@
 #define PIPE_READ_BUFFER 4096
 
 typedef enum {
-	FIND_OPTION_END, /*end the option templates list*/
-	FIND_OPTION_CHECKBOX_TRUE, /*if the user checks this use the option*/
-	FIND_OPTION_CHECKBOX_FALSE, /* if the user checks it don't use the
-				       option*/
+	FIND_OPTION_END, /* end the option templates list */
+	FIND_OPTION_BOOL, /* if this is enabled, use the option */
 	FIND_OPTION_TEXT,
 	FIND_OPTION_NUMBER,
 	FIND_OPTION_TIME,
@@ -32,15 +30,12 @@ struct _FindOptionTemplate {
 typedef struct _FindOption FindOption;
 struct _FindOption {
 	/*the index of the template this uses*/
-	gint templ;
+	int templ;
 
 	/* is this option enabled */
-	gint enabled;
+	gboolean enabled;
 
 	union {
-		/* true false data */
-		int bool;
-
 		/* this is a char string of the data */
 		char *text;
 
