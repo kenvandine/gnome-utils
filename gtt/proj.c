@@ -116,6 +116,8 @@ void project_set_desc(project *proj, char *d)
 		return;
 	}
 	proj->desc = g_strdup(d);
+	if (proj->row != -1)
+		clist_update_desc(proj);
 }
 
 
@@ -564,6 +566,25 @@ char *project_get_timestr(project *proj, int show_secs)
 	return s;
 }
 
+char *project_get_total_timestr(project *proj, int show_secs)
+{
+	static char s[20];
+	time_t t;
+
+	if (proj == NULL) {
+		return NULL;
+	} else {
+		t = proj->secs;
+	}
+	if (show_secs)
+		sprintf(s, "%02d:%02d:%02d", (int)(t / 3600),
+			(int)((t % 3600) / 60), (int)(t % 60));
+	else
+		sprintf(s, "%02d:%02d", (int)(t / 3600),
+			(int)((t % 3600) / 60));
+	return s;
+}
+
 
 
 static void
@@ -600,6 +621,14 @@ cmp_time(const void *aa, const void *bb)
         return (int)(b->proj->day_secs - a->proj->day_secs);
 }
 
+static int
+cmp_total_time(const void *aa, const void *bb)
+{
+	project_list *a = *(project_list **)aa;
+	project_list *b = *(project_list **)bb;
+	return (int)(b->proj->secs - a->proj->secs);
+}
+
 
 
 static int
@@ -610,6 +639,13 @@ cmp_title(const void *aa, const void *bb)
         return strcmp(a->proj->title, b->proj->title);
 }
 
+static int
+cmp_desc(const void *aa, const void *bb)
+{
+	project_list *a = *(project_list **)aa;
+	project_list *b = *(project_list **)bb;
+	return strcmp(a->proj->desc, b->proj->desc);
+}
 
 
 void
@@ -618,10 +654,21 @@ project_list_sort_time(void)
         project_list_sort(cmp_time);
 }
 
-
+void
+project_list_sort_total_time(void)
+{
+	project_list_sort(cmp_total_time);
+}
 
 void
 project_list_sort_title(void)
 {
         project_list_sort(cmp_title);
 }
+
+void
+project_list_sort_desc(void)
+{
+	project_list_sort(cmp_desc);
+}
+

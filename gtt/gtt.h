@@ -104,9 +104,12 @@ void project_list_time_reset(void);
 int project_list_load(char *fname);
 int project_list_save(char *fname);
 void project_list_sort_time(void);
+void project_list_sort_total_time(void);
 void project_list_sort_title(void);
+void project_list_sort_desc(void);
 
 char *project_get_timestr(project *p, int show_secs);
+char *project_get_total_timestr(project *p, int show_secs);
 
 
 /* prop.c */
