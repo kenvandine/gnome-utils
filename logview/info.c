@@ -151,7 +151,7 @@ RepaintLogInfo (LogviewWindow *window)
 
    /* Check that there is at least one log */
    if (window->curlog == NULL) {
-       if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
+       if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
            g_snprintf (buffer, sizeof (buffer), "%c", '\0');
            i = 0;
            while (1) {
@@ -164,7 +164,7 @@ RepaintLogInfo (LogviewWindow *window)
        return -1;
    }
 
-   if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
+   if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
     
        g_snprintf (buffer, sizeof (buffer),
                    ngettext ("%ld byte", "%ld bytes",
