@@ -1,0 +1,67 @@
+
+Okay, I haven't really finished the documentation. So this incomplete README
+is all you get. But you might want to check out
+http://www.i-s-o.net/~ecki/gtt/ for more info and news on GTimeTracker.
+
+
+Copyright
+=========
+
+This software is released under the terms of the GPL license. Read the file
+COPYING for more details.
+
+
+
+What is GTimeTracker
+====================
+
+GTimeTracker basically just messures the time you spend on a given project
+or task. You can setup any number of projects and tell GTimeTracker, which
+project you're currently working at. On each new day GTimeTracker will clear
+the time on all projects (but will keep an overall time).
+
+
+
+What you need to compile GTimeTracker
+=====================================
+
+GTimeTracker needs the X11R6 libraries. It also needs GTK/GDK libraries. GTK
+is an X Toolkit, that was originally written for GIMP, the famouse imaging
+software. You can get it from http://www.gimp.org/gtk/.
+
+If you wish to include support for The GNOME Project you will need at least
+version 0.10.0 of the GNOME libraries libgnome and libgnomeui. I do not need
+any guile or such yet.
+
+If you do not have those libraries, and you are running a i386 linux box
+with ELF support, you might want to get the precompiles static ELF binary.
+It is available from http://www.i-s-o.net/~ecki/gtt/index.html#download.
+
+
+
+Installation
+============
+
+If all goes well, you just have to start "./configure" and than do a "make",
+followed by a "make install". This will install an executable called "gtt"
+in /usr/local/bin.
+
+There are some things you can twist. You can choose whether or not to
+include GNOME support (for more info on The GNOME Project see
+http://www.gnome.org). The default is to include GNOME support if the
+configure script can find the libraries needed, and to exclude it if not.
+You can disable GNOME support by adding "--disable-gnome" to the command
+line of "./configure".
+
+You may want to have a look at the file features.h.
+
+
+
+Author
+======
+
+This program is written by Eckehard Berns <eb@berns.prima.de>. If you are
+having trouble installing and/or running GTimeTracker, feel free to send me
+an e-mail.
+
+

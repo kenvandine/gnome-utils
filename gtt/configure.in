@@ -1,0 +1,103 @@
+AC_INIT(gtt.h)
+AM_CONFIG_HEADER(config.h)
+
+PACKAGE=gtt
+VERSION=0.11
+
+dnl
+dnl Package GNOME
+dnl
+
+AC_DEFINE(HAS_GNOME, 0)
+AC_ARG_ENABLE(gnome,
+GNOME Support:
+  --enable-gnome          include GNOME support (default, if GNOME is found)
+  --disable-gnome         explicitly diable GNOME support,
+  WANT_GNOME="$enableval"
+  )
+
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_ARG_PROGRAM
+AC_PATH_X
+
+AC_DEFINE(VERSION, "0.10.0")
+
+dnl Checks for header files.
+AC_HEADER_STDC
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_STRUCT_TM
+AC_HEADER_TIME
+
+
+dnl
+dnl Checks for libraries.
+dnl
+
+AC_CHECK_LIB(X11, XSetIOErrorHandler,
+  LIBS="$LIBS -L$x_libraries -lX11"
+  ,
+  echo "You should have X installed"
+  exit
+  ,
+  -L$x_libraries)
+AC_SUBST(LIBS)
+
+
+dnl
+dnl GTK
+dnl
+
+AC_CHECK_LIB(gtk, gtk_init,
+  LIBS="$LIBS -lXext -lm -lgtk -lgdk -lglib"
+  ,
+  echo "No GTK installed?"
+  exit, -lX11 -lXext -lglib -lgdk -lm)
+AC_SUBST(LIBS)
+
+
+dnl GNOME configure script passes HAS_GNOME, so we know we are being
+dnl built as part of the GNOME distribution
+dnl
+if x$USE_GNOME = xyes; then
+   AC_DEFINE(HAS_GNOME,1)
+   GTK_LIBS=$xGTK_LIBS
+   x_libs=$xx_libs
+   X_LIBS=$X_LIBS
+   AC_SUBST(X_LIBS)
+   AC_SUBST(x_libs)
+   AC_SUBST(GTK_LIBS)
+else
+    dnl
+    dnl Built outside of GNOME with GNOME?
+    dnl
+
+    if test "$WANT_GNOME" != "no"
+    then
+    AC_CHECK_LIB(gnomeui, gnome_init,
+      HAS_GNOME="1"
+      LIBS="$LIBS -lgnome -lgnomeui -lSM -lICE"
+      ,
+      if test "$WANT_GNOME" = "yes"
+      then
+	cat - <<EOF
+
+      You enabled GNOME support but I was not able to find the GNOME libraries.
+
+    EOF
+	exit
+      fi
+      , -lgnome -lSM -lICE)
+    AC_SUBST(LIBS)
+    if test "$HAS_GNOME" = "1"
+    then
+      AC_DEFINE(HAS_GNOME, 1)
+    fi
+    fi
+fi
+
+AC_OUTPUT(Makefile)
