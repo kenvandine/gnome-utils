@@ -890,18 +890,20 @@ open_file_with_application (const gchar *filename)
 	const char *mimeType = gnome_vfs_get_file_mime_type (filename, NULL, FALSE);	
 	GnomeVFSMimeApplication *mimeApp = gnome_vfs_mime_get_default_application (mimeType);
 		
-	if (mimeApp) {
-		GnomeVFSResult result;
-		GList *uris = NULL;
-		char *uri;
+	if (!g_file_test (filename, G_FILE_TEST_IS_DIR)) {
+		if (mimeApp) {
+			GnomeVFSResult result;
+			GList *uris = NULL;
+			char *uri;
 
-		uri = gnome_vfs_get_uri_from_local_path (filename);
-		uris = g_list_append (uris, uri);
-		result = gnome_vfs_mime_application_launch (mimeApp, uris);
-		g_list_free (uris);
-		g_free (uri);
+			uri = gnome_vfs_get_uri_from_local_path (filename);
+			uris = g_list_append (uris, uri);
+			result = gnome_vfs_mime_application_launch (mimeApp, uris);
+			g_list_free (uris);
+			g_free (uri);
 
-		return (result == GNOME_VFS_OK);
+			return (result == GNOME_VFS_OK);
+		}
 	}
 	return FALSE;
 }
