@@ -5,9 +5,9 @@
 # András Tímár <timar@gnome.hu>, 2001.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 1.2.1\n"
-"POT-Creation-Date: 2003-01-07 22:04+0100\n"
-"PO-Revision-Date: 2003-01-07 22:16+0100\n"
+"Project-Id-Version: gnome-utils 2.2.0\n"
+"POT-Creation-Date: 2003-01-08 11:40+0100\n"
+"PO-Revision-Date: 2003-01-08 11:53+0100\n"
 "Last-Translator: András Tímár <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -1098,20 +1098,20 @@ msgstr "ENem sikerült megállapítani a hajlékonylemez jelenlegi geometriájá
 
 #: gfloppy/src/gfloppy.c:229
 msgid "EError while creating a unique filename for the bad blocks list file."
-msgstr ""
+msgstr "EHiba történt a hibás blokkokat felsoroló fájl egyedi nevének létrehozása közben."
 
 #: gfloppy/src/gfloppy.c:249
 msgid "EError while filling the bad blocks list file."
-msgstr ""
+msgstr "EHiba történt a hibás blokkokat felsoroló fájl feltöltése közben."
 
 #: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "EError while spawning the (%s) command: %s."
-msgstr ""
+msgstr "EHiba történt a(z) (%s) parancs elindítása közben: %s."
 
 #: gfloppy/src/gfloppy.c:332
 msgid "EUnknown mke2fs starting signature, cancelling."
-msgstr ""
+msgstr "EIsmeretlen mke2fs kezdőszignatúra, művelet megszakítva."
 
 #: gfloppy/src/gfloppy.c:346
 #, c-format
@@ -1120,6 +1120,9 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
+"EA fájlrendszer-létrehozó segédprogram (%s) a következő hibákat jelentette:\n"
+"\n"
+"%s (%d)"
 
 #: gfloppy/src/gfloppy.c:363
 msgid "EAbnormal child process termination."
@@ -1137,6 +1140,8 @@ msgid ""
 "errors:\n"
 "%s."
 msgstr ""
+"EA hibás blokkokat ellenőrző segédprogram (mbadblocks) a következő hibákat jelentette:\n"
+"%s."
 
 #: gfloppy/src/gfloppy.c:443
 msgid "EAbnormal mbadblocks child process termination."
@@ -1171,7 +1176,9 @@ msgstr "    "
 msgid ""
 "<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
 "be installed in order to make a thorough DOS (fat) formatting."
-msgstr "<b>Megjegyzés:</b> Az mbadblocks segédprogram nincs telepítve a rendszerre. Telepíteni kell a teljes DOS (fat) formázáshoz."
+msgstr ""
+"<b>Megjegyzés:</b> Az mbadblocks segédprogram nincs telepítve a rendszerre. "
+"Telepíteni kell a teljes DOS (fat) formázáshoz."
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem settings</span>"
@@ -1249,7 +1256,9 @@ msgstr "_Szokásos (alacsony szintű formázás)"
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
-msgstr "Sem az mke2fs, sem az mkdosfs/mformat alkalmazások nincsenek telepítve. Ezek nélkül nem lehet lemezt formázni."
+msgstr ""
+"Sem az mke2fs, sem az mkdosfs/mformat alkalmazások nincsenek telepítve. Ezek "
+"nélkül nem lehet lemezt formázni."
 
 #: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, c-format
@@ -1301,7 +1310,9 @@ msgstr "ESZKÖZ"
 msgid ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr "A lemez formázása kész. <b>%d hibás blokk</b> (a %d blokkból) van a lemezen, amelyek meg lettek jelölve."
+msgstr ""
+"A lemez formázása kész. <b>%d hibás blokk</b> (a %d blokkból) van a lemezen, "
+"amelyek meg lettek jelölve."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -1319,7 +1330,9 @@ msgstr "Formázás állása"
 msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
-msgstr "0 a gyors formázást, 1 a szabványos formázás (alacsony szintű formázás is) és 2 a teljes formázás (hibás blokkok keresése is)"
+msgstr ""
+"0 a gyors formázást, 1 a szabványos formázás (alacsony szintű formázás is) "
+"és 2 a teljes formázás (hibás blokkok keresése is)"
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
@@ -1337,11 +1350,11 @@ msgstr "Alapértelmezett formázási mód"
 msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
-msgstr ""
+msgstr "A TRUE (igaz) beállítás az mkdosfs-t jelöli ki az alapértelmezett FAT-formázó programként. A FALSE (hamis) az mtools-t jelöli ki alapértelmezett FAT-formázó programként."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr ""
+msgstr "ext2 a Linux saját fájlrendszeréhez vagy fat a DOS fájlrendszeréhez."
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1569
 msgid "Search for Files"
@@ -1440,7 +1453,7 @@ msgstr "A(z) '%s' feltétel kiválasztása"
 
 #: gsearchtool/gsearchtool.c:685
 msgid "Invalid option passed to sortby command line argument."
-msgstr ""
+msgstr "Érvénytelen beállítás lett átadva a sortby parancssori argumentumnak."
 
 #: gsearchtool/gsearchtool.c:814
 msgid "(aborted)"
@@ -1459,7 +1472,7 @@ msgstr "%d fájlt találtam"
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
-msgstr ""
+msgstr "Keresés közben a következő hibák merültek fel.\n\n"
 
 #: gsearchtool/gsearchtool.c:930
 msgid ""
@@ -1604,7 +1617,7 @@ msgstr "%d fájl megnyitása?"
 #: gsearchtool/gsearchtool-callbacks.c:620
 #, c-format
 msgid "There is no installed viewer capable of displaying \"%s\"."
-msgstr ""
+msgstr "Nincs olyan nézőprogram telepítve, amely képes lenne megjeleníteni \"%s\"-t."
 
 #: gsearchtool/gsearchtool-callbacks.c:366
 #: gsearchtool/gsearchtool-callbacks.c:627
@@ -1647,7 +1660,7 @@ msgstr "A(z) \"%s\" már fájl létezik. Felülírod?"
 #: gsearchtool/gsearchtool-callbacks.c:837
 #, c-format
 msgid "Cannot save search results to the file \"%s\"."
-msgstr ""
+msgstr "Nem sikerült a keresés eredményeit menteni a(z) \"%s\" fájlba."
 
 #: gsearchtool/gsearchtool-support.c:284
 msgid "Expander Size"
@@ -1710,12 +1723,11 @@ msgstr ""
 "garancia. Szabad szoftver, és nyugodtan továbbadhatod a GNU GPL szerint. A "
 "napló ikon Tuomas Kuosmanen (más néven tigert) munkája."
 
-#. go get logview.xpm in $(prefix)/share/pixmaps/logview
-#: logview/about.c:72
+#: logview/about.c:61
 msgid "GNOME System Log Viewer"
 msgstr "GNOME Rendszernaplónéző"
 
-#: logview/about.c:73
+#: logview/about.c:62
 msgid "Copyright (C) 1998"
 msgstr "Copyright © 1998"
 
