@@ -151,7 +151,7 @@ strip_overlay_ticks(Strip *strip)
 }
 
 static void
-strip_indicator_marks(Strip *strip)
+strip_overlay_indicators(Strip *strip)
 {
   GSList *list;
   GtkWidget *widget = GTK_WIDGET(strip);
@@ -195,7 +195,7 @@ strip_update(Strip *strip)
       if (strip->show_ticks)
 	strip_overlay_ticks(strip);
     }
-  strip_indicator_marks(strip);
+  strip_overlay_indicators(strip);
   show_ticks = strip->show_ticks;
 }
 
@@ -206,6 +206,7 @@ strip_expose(GtkWidget *widget, GdkEventExpose *event, void *nil)
   strip_redraw(strip);
   if (strip->show_ticks)
     strip_overlay_ticks(strip);
+  strip_overlay_indicators(strip);
   return FALSE;
 }
 
