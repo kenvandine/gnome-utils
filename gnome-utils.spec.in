@@ -62,8 +62,17 @@ make prefix=$RPM_BUILD_ROOT%{_prefix} \
 
 %doc AUTHORS COPYING ChangeLog NEWS README THANKS
 
+%post
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
+
+%postun
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
+
 
 %changelog
+* Thu Mar 29 2001 <dan@eazel.com>
+- scrollkeeper stuff
+
 * Wed Mar 14 2001 <jirka@5z.com>
 - Fixes to the damn %files thing
 
