@@ -5,8 +5,8 @@
 #include "mdi-color-generic.h"
 #include "mdi-color-virtual-rgb.h"
 
-#include "gnome.h"
-#include "glade/glade.h"
+#include <gnome.h>
+#include <glade/glade.h>
 
 static GtkWidget *property = NULL;
 
