@@ -11,7 +11,7 @@ gdiskfree = gdiskfree
 endif
 
 SUBDIRS = po intl macros \
-	gcalc $(genius) ghex gsearchtool $(gdiskfree) gtt \
+	gcalc ghex gsearchtool $(gdiskfree) gtt \
 	$(guile_DIRS) $(objc_DIRS) mini-utils gncal splash gdialog
 
 EXTRA_DIST = gnome-utils.spec
