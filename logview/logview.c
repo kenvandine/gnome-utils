@@ -511,10 +511,8 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
    LogviewWindow *window = data;
 
    gtk_widget_hide (GTK_WIDGET (chooser));
-   if (response != GTK_RESPONSE_OK) {
-	   //	   gtk_widget_hide (chooser);
+   if (response != GTK_RESPONSE_OK)
 	   return;
-   }
    
    f = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
 
