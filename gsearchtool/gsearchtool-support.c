@@ -647,14 +647,13 @@ gchar *
 get_file_type_with_mime_type (const gchar *filename, 
 			      const gchar *mimetype)
 {
-	if (mimetype == NULL) {
+	if (filename == NULL || mimetype == NULL) {
 		return (gchar *)gnome_vfs_mime_get_description (GNOME_VFS_MIME_TYPE_UNKNOWN);
 	}
 
-	if (g_ascii_strcasecmp (mimetype, GNOME_VFS_MIME_TYPE_UNKNOWN) == 0) {	
-		if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK)) {
-			return _("symbolic link");
-		}
+	if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK)) {
+		return g_strdup_printf (_("link to %s"), 
+				(gchar *)gnome_vfs_mime_get_description (mimetype));
 	}
 
 	return (gchar *)gnome_vfs_mime_get_description (mimetype);
