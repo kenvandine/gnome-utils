@@ -3,15 +3,12 @@
 !#
 
 ;; TO DO:
-;; * Undo (needs text widget to work)
-;; * Actual editing (likewise)
-;; * Selections (likewise)
+;; * Undo
+;; * Selections
 ;; * Save edited file
 ;; * Make initial size bigger
 ;; * Save state correctly
 ;; * Allow user to choose font
-;; * Set bg on text widget?
-;; * A toolbar and a status area at the bottom
 ;; * Search/replace (or use ILU?)
 ;; * Whatever FIXME comments there are
 ;; * Page setup and Print (should write gtk widgets for these)
@@ -291,8 +288,7 @@
 
 (define (edit-menu)
   (let ((menu (gtk-menu-new)))
-    ;; FIXME: should be stock.
-    (add-menu-item menu (gettext "Undo") FIXME)
+    (add-stock-menu-item menu 'undo (gettext "Undo") FIXME)
     (add-stock-menu-item menu 'copy (gettext "Copy") FIXME)
     (add-stock-menu-item menu 'cut (gettext "Cut") FIXME)
     (add-stock-menu-item menu 'paste (gettext "Paste") FIXME)
@@ -339,6 +335,8 @@
     (gtk-text-set-editable text #t)
     table))
 
+;; FIXME: use the gnome-app code.  There's no guile interface to it,
+;; yet.
 (define (notepad)
   (let* ((window (gtk-window-new 'toplevel))
 	 (vbox (gtk-vbox-new #f 0)))
@@ -358,6 +356,8 @@
 
     (gtk-widget-show vbox)
     (gtk-container-add window vbox)
+
+    (gtk-widget-set-usize window 300 300)
 
     window))
 
