@@ -199,9 +199,9 @@ main(int argc, char *argv[])
         gnome_app_create_menus_with_data(GNOME_APP(app), gcalc_menu, app);
 
 	calc = gnome_calc_new();
-/*
+
 	gnome_calc_bind_extra_keys (GNOME_CALC (calc), GTK_WIDGET (app)); 
-*/
+
 	gtk_widget_show(calc);
 
 	gtk_selection_add_targets (GTK_WIDGET (app), GDK_SELECTION_CLIPBOARD,

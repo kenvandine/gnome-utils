@@ -1634,9 +1634,13 @@ static const GnomeCalcExtraKeys extra_keys [] = {
 	{GDK_Delete,    clear_calc,   NULL},
 	{GDK_KP_Delete, add_digit,    "."},
 	{GDK_KP_Left,   add_digit,    "4"},
+	{GDK_KP_4,      add_digit,    "4"},
 	{GDK_KP_Right,  add_digit,    "6"},
+	{GDK_KP_6,      add_digit,    "6"},
 	{GDK_KP_Up,     add_digit,    "8"},
-	{GDK_KP_Down,   add_digit,    "2"}
+	{GDK_KP_8,      add_digit,    "8"},
+	{GDK_KP_Down,   add_digit,    "2"},
+	{GDK_KP_2,      add_digit,    "2"}	
 };
 	
 static gboolean
