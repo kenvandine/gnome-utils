@@ -71,7 +71,7 @@ struct _FindOptionTemplate {
 };
 	
 static FindOptionTemplate templates[] = {
-	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("Contains the _text"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_TEXT, "'!' -type p -exec grep -c '%s' {} \\;", N_("Contains the _text"), NULL, FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TIME_LESS, "-mtime -%d", N_("_Date modified less than"), N_("days"), FALSE },
 	{ SEARCH_CONSTRAINT_TIME_MORE, "\\( -mtime +%d -o -mtime %d \\)", N_("Date modified more than"), N_("days"), FALSE },
@@ -200,7 +200,7 @@ setup_case_insensitive_arguments (void)
 	g_spawn_command_line_sync ("grep -i 'string' /dev/null", NULL, &cmd_stderr, NULL, NULL);
 
 	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
-		templates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = g_strdup ("-exec grep -i -c '%s' {} \\;");
+		templates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = g_strdup ("'!' -type p -exec grep -i -c '%s' {} \\;");
 	}
 	g_free (cmd_stderr);
 
