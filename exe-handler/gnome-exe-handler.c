@@ -40,7 +40,7 @@ error (char *msg)
 void execute (char *file)
 {
 	char *msg = g_strdup_printf (
-		_("Executing arbitrary programs that you downloaded from the network"
+		_("Executing arbitrary programs that you downloaded from the network "
 		  "might be dangerous.\n\nAre you sure you want to run `%s'?"), file);
 	struct stat s;
 	
@@ -100,7 +100,7 @@ launch (char *file)
 	}
 
 	if (n < 0){
-		char *msg = g_strdup_printf (_("There was an error `%s' is empty"), file);
+		char *msg = g_strdup_printf (_("There was an error. `%s' is empty"), file);
 		error (msg);
 	}
 
@@ -115,7 +115,7 @@ launch (char *file)
 		switch (buffer [16]){
 		case 1:
 		case 0:
-			error (_("This is library and can not be executed"));
+			error (_("This is a library and can not be executed"));
 			
 		case 2:
 			break;
