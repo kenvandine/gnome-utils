@@ -209,11 +209,11 @@
     
     <para>To perform a basic search for a file on the system, perform the following steps:</para>
     <orderedlist>
-    <listitem><para>In the <guilabel>File is named</guilabel> field, enter one of the following strings:</para>
+    <listitem><para>In the <guilabel>Name Contains</guilabel> field, enter the following:</para>
     		<itemizedlist>
-    			<listitem><para>A full filename, for example <userinput>myfile.txt</userinput>. <application>&app;</application>
-    			searches for all files on the system named <userinput>myfile.txt</userinput>.</para></listitem>
-    			<listitem><para>A partial filename combined with wildcards (*), for example <userinput>*.txt</userinput>. 
+    			<listitem><para>A string, for example <userinput>myfile</userinput>. <application>&app;</application>
+    			searches the filesystem for all filenames that contain the string <userinput>myfile</userinput>.</para></listitem>
+    			<listitem><para>A string combined with wildcards (* or ?), for example <userinput>*.txt</userinput>. 
     			<application>&app;</application> searches the filesystem for all files with the 
     			extension <userinput>.txt</userinput>.</para></listitem>
     		</itemizedlist>
@@ -269,7 +269,7 @@
 				  <entry> 
 					 <para>Contains the text</para></entry> 
 				  <entry> 
-					 <para>Search for files that contain specific text. The search is case sensitive.</para></entry>  
+					 <para>Search for files that contain specific text. The search is case insensitive on most systems.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
@@ -321,10 +321,10 @@
 				</row> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>File is not named</para></entry> 
+					 <para>Name does not contain</para></entry> 
 				  <entry> 
-					 <para>Search for files that do not match the filename that you enter. Enter a full filename or a partial filename with wildcards in the
-					 field provided. Use * to indicate a sequence of characters. Use ? to indicate a single character. The search is case sensitive.</para></entry>  
+					 <para>Search for files with names that do not contain the text that you enter. Wildcards are supported in the field provided. 
+					 Use * to indicate a sequence of characters. Use ? to indicate a single character. The search is case insensitive on most systems.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
