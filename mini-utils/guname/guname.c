@@ -131,7 +131,7 @@ static void do_logo_box(GtkWidget * box)
   gchar * s;
   GtkWidget * marquee_frame, * align;
 
-  s = gnome_pixmap_file ("gnome-default.png");
+  s = gnome_pixmap_file ("gnome-logo-icon-transparent.png");
 
   if (s) {
     pixmap = gnome_pixmap_new_from_file(s);
