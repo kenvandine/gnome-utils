@@ -1251,24 +1251,24 @@ static const CalculatorButton buttons[8][5] = {
 	{
 		{N_("1/x"),  (GtkSignalFunc)simple_func, c_inv,  NULL,   FALSE, {0}, N_("Inverse"), NULL },
 		{N_("x<sup>2</sup>"),  (GtkSignalFunc)simple_func, c_pow2, sqrt,   FALSE, {0}, N_("Square"), NULL },
-		{N_("SQRT"), (GtkSignalFunc)simple_func, sqrt,   c_pow2, FALSE, {'r','R',0}, N_("Square root"), NULL },
+		{N_("SQRT"), (GtkSignalFunc)simple_func, sqrt,   c_pow2, FALSE, {'r',0}, N_("Square root"), NULL },
 		{N_("CE/C"), (GtkSignalFunc)clear_calc,  NULL,   NULL,   FALSE, {GDK_Clear,GDK_Delete,0}, N_("Clear"), NULL },
-		{N_("AC"),   (GtkSignalFunc)reset_calc,  NULL,   NULL,   FALSE, {'a','A', GDK_Escape, 0}, N_("Reset"), NULL }
+		{N_("AC"),   (GtkSignalFunc)reset_calc,  NULL,   NULL,   FALSE, {'a', GDK_Escape, 0}, N_("Reset"), NULL }
 	},{
-		{N_("INV"),  NULL,                       NULL,   NULL,   FALSE, {'i','I',0}, N_("Inverse trigonometry/log function"), NULL }, /*inverse button*/
-		{N_("sin"),  (GtkSignalFunc)simple_func, sin_helper, asin, TRUE,{'s','S',0}, N_("Sine"), NULL },
-		{N_("cos"),  (GtkSignalFunc)simple_func, cos_helper, acos, TRUE,{'c','C',0}, N_("Cosine"), NULL },
-		{N_("tan"),  (GtkSignalFunc)simple_func, tan_helper,    atan,   TRUE,  {'t','T',0}, N_("Tangent"), NULL },
+		{N_("INV"),  NULL,                       NULL,   NULL,   FALSE, {'i',0}, N_("Inverse trigonometry/log function"), NULL }, /*inverse button*/
+		{N_("sin"),  (GtkSignalFunc)simple_func, sin_helper, asin, TRUE,{'s',0}, N_("Sine"), NULL },
+		{N_("cos"),  (GtkSignalFunc)simple_func, cos_helper, acos, TRUE,{'c',0}, N_("Cosine"), NULL },
+		{N_("tan"),  (GtkSignalFunc)simple_func, tan_helper,    atan,   TRUE,  {'t',0}, N_("Tangent"), NULL },
 		/* Ugly hack so that window won't resize when selecting GRAD - there should be a better fix that this */
-		{N_(" DEG  "),  (GtkSignalFunc)drg_toggle,  NULL,   NULL,   FALSE, {'d','D',0}, N_("Switch degrees / radians / grad"), NULL }
+		{N_(" DEG  "),  (GtkSignalFunc)drg_toggle,  NULL,   NULL,   FALSE, {'d',0}, N_("Switch degrees / radians / grad"), NULL }
 	},{
-		{N_("e"),    (GtkSignalFunc)set_e,       NULL,   NULL,   FALSE, {'e','E',0}, N_("Base of Natural Logarithm"), NULL },
+		{N_("e"),    (GtkSignalFunc)set_e,       NULL,   NULL,   FALSE, {'e',0}, N_("Base of Natural Logarithm"), NULL },
 		{N_("EE"),   (GtkSignalFunc)add_digit,   "e+",   NULL,   FALSE, {0}, N_("Add digit"), NULL },
 		{N_("log"),  (GtkSignalFunc)simple_func, log10,  c_pow10,FALSE, {0}, N_("Base 10 Logarithm"), NULL },
-		{N_("ln"),   (GtkSignalFunc)simple_func, log,    c_powe, FALSE, {'l','L',0}, N_("Natural Logarithm"), NULL },
+		{N_("ln"),   (GtkSignalFunc)simple_func, log,    c_powe, FALSE, {'l',0}, N_("Natural Logarithm"), NULL },
 		{N_("x<sup>y</sup>"),  (GtkSignalFunc)math_func,   pow,    NULL,   FALSE, {'^',0}, N_("Power"), NULL }
 	},{
-		{N_("PI"),   (GtkSignalFunc)set_pi,      NULL,   NULL,   FALSE, {'p','P',0}, N_("PI"), NULL },
+		{N_("PI"),   (GtkSignalFunc)set_pi,      NULL,   NULL,   FALSE, {'p',0}, N_("PI"), NULL },
 		{N_("x!"),   (GtkSignalFunc)simple_func, c_fact, NULL,   FALSE, {'!',0}, N_("Factorial"), NULL },
 		{N_("("),    (GtkSignalFunc)add_parenth, NULL,   NULL,   FALSE, {'(',0}, N_("Opening Parenthesis"), NULL },
 		{N_(")"),    (GtkSignalFunc)sub_parenth, NULL,   NULL,   FALSE, {')',0}, N_("Closing Parenthesis"), NULL },
