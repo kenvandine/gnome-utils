@@ -58,26 +58,40 @@ gtt_project_new(void)
 	proj->desc = g_strdup ("");
 	proj->notes = g_strdup ("");
 	proj->custid = NULL;
+
 	proj->min_interval = 3;
 	proj->auto_merge_interval = 60;
 	proj->auto_merge_gap = 60;
+
+	proj->billrate = 10.0;
+	proj->overtime_rate = 15.0;
+	proj->overover_rate = 20.0;
+	proj->flat_fee = 1000.0;
+
+	proj->estimated_start = -1;
+	proj->estimated_end = -1;
+	proj->due_date = -1;
+	proj->sizing = 0;
+	proj->percent_complete = 0;
+	proj->urgency = GTT_UNDEFINED;
+	proj->importance = GTT_UNDEFINED;
+	proj->status = GTT_NOT_STARTED;
+
+	proj->task_list = NULL;
+	proj->sub_projects = NULL;
+	proj->parent = NULL;
+	proj->listeners = NULL;
+        proj->private_data = NULL;
+
+	proj->being_destroyed = FALSE;
+	proj->frozen = FALSE;
+	proj->dirty_time = FALSE;
+
 	proj->secs_ever = 0;
 	proj->secs_day = 0;
 	proj->secs_week = 0;
 	proj->secs_month = 0;
 	proj->secs_year = 0;
-	proj->billrate = 10.0;
-	proj->overtime_rate = 15.0;
-	proj->overover_rate = 20.0;
-	proj->flat_fee = 1000.0;
-	proj->task_list = NULL;
-	proj->sub_projects = NULL;
-	proj->parent = NULL;
-	proj->listeners = NULL;
-	proj->being_destroyed = FALSE;
-	proj->frozen = FALSE;
-	proj->dirty_time = FALSE;
-        proj->private_data = NULL;
 
         proj->id = next_free_id;
 	next_free_id ++;
@@ -107,14 +121,6 @@ gtt_project_dup(GttProject *proj)
 
 	if (!proj) return NULL;
 	p = gtt_project_new();
-	p->min_interval = proj->min_interval;
-	p->auto_merge_interval = proj->auto_merge_interval;
-	p->auto_merge_gap = proj->auto_merge_gap;
-	p->secs_ever = proj->secs_ever;
-	p->secs_day = proj->secs_day;
-	p->secs_week = proj->secs_week;
-	p->secs_month = proj->secs_month;
-	p->secs_year = proj->secs_year;
 
 	g_free(p->title);
 	g_free(p->desc);
@@ -125,10 +131,24 @@ gtt_project_dup(GttProject *proj)
 	p->notes = g_strdup(proj->notes);
 	if (proj->custid) p->custid = g_strdup(proj->custid);
 
+	p->min_interval = proj->min_interval;
+	p->auto_merge_interval = proj->auto_merge_interval;
+	p->auto_merge_gap = proj->auto_merge_gap;
+
 	p->billrate = proj->billrate;
 	p->overtime_rate = proj->overtime_rate;
 	p->overover_rate = proj->overover_rate;
 	p->flat_fee = proj->flat_fee;
+
+	p->estimated_start = proj->estimated_start;
+	p->estimated_end = proj->estimated_end;
+	p->due_date = proj->due_date;
+	p->sizing = proj->sizing;
+	p->percent_complete = proj->percent_complete;
+	p->urgency = proj->urgency;
+	p->importance = proj->importance;
+	p->status = proj->status;
+	
 
 	/* Don't copy the tasks.  Do copy the sub-projects */
 	for (node=proj->sub_projects; node; node=node->next)
@@ -377,7 +397,7 @@ gtt_project_set_min_interval (GttProject *proj, int r)
 int
 gtt_project_get_min_interval (GttProject *proj)
 {
-	if (!proj) return 0.0;
+	if (!proj) return 0;
 	return proj->min_interval;
 }
 
@@ -392,7 +412,7 @@ gtt_project_set_auto_merge_interval (GttProject *proj, int r)
 int
 gtt_project_get_auto_merge_interval (GttProject *proj)
 {
-	if (!proj) return 0.0;
+	if (!proj) return 0;
 	return proj->auto_merge_interval;
 }
 
@@ -407,7 +427,7 @@ gtt_project_set_auto_merge_gap (GttProject *proj, int r)
 int
 gtt_project_get_auto_merge_gap (GttProject *proj)
 {
-	if (!proj) return 0.0;
+	if (!proj) return 0;
 	return proj->auto_merge_gap;
 }
 
@@ -423,6 +443,128 @@ gtt_project_get_private_data (GttProject *proj)
 {
 	if (!proj) return NULL;
 	return proj->private_data;
+}
+
+void
+gtt_project_set_estimated_start (GttProject *proj, time_t r)
+{
+	if (!proj) return;
+	proj->estimated_start = r;
+	proj_modified (proj);
+}
+
+time_t
+gtt_project_get_estimated_start (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->estimated_start;
+}
+
+void
+gtt_project_set_estimated_end (GttProject *proj, time_t r)
+{
+	if (!proj) return;
+	proj->estimated_end = r;
+	proj_modified (proj);
+}
+
+time_t
+gtt_project_get_estimated_end (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->estimated_end;
+}
+
+void
+gtt_project_set_due_date (GttProject *proj, time_t r)
+{
+	if (!proj) return;
+	proj->due_date = r;
+	proj_modified (proj);
+}
+
+time_t
+gtt_project_get_due_date (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->due_date;
+}
+
+void
+gtt_project_set_sizing (GttProject *proj, int r)
+{
+	if (!proj) return;
+	proj->sizing = r;
+	proj_modified (proj);
+}
+
+int
+gtt_project_get_sizing (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->sizing;
+}
+
+void
+gtt_project_set_percent_complete (GttProject *proj, int r)
+{
+	if (!proj) return;
+	if (0 > r) r = 0;
+	if (100 < r) r = 100;
+	proj->percent_complete = r;
+	proj_modified (proj);
+}
+
+int
+gtt_project_get_percent_complete (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->percent_complete;
+}
+
+void
+gtt_project_set_urgency (GttProject *proj, GttRank r)
+{
+	if (!proj) return;
+	proj->urgency = r;
+	proj_modified (proj);
+}
+
+GttRank
+gtt_project_get_urgency (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->urgency;
+}
+
+void
+gtt_project_set_importance (GttProject *proj, GttRank r)
+{
+	if (!proj) return;
+	proj->importance = r;
+	proj_modified (proj);
+}
+
+GttRank
+gtt_project_get_importance (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->importance;
+}
+
+void
+gtt_project_set_status (GttProject *proj, GttProjectStatus r)
+{
+	if (!proj) return;
+	proj->status = r;
+	proj_modified (proj);
+}
+
+GttProjectStatus
+gtt_project_get_status (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->status;
 }
 
 /* =========================================================== */
@@ -2254,6 +2396,72 @@ cmp_desc(const void *aa, const void *bb)
 	return strcmp(a->desc, b->desc);
 }
 
+static int
+cmp_start(const void *aa, const void *bb)
+{
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	return (b->estimated_start - a->estimated_start);
+}
+
+static int
+cmp_end(const void *aa, const void *bb)
+{
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	return (b->estimated_end - a->estimated_end);
+}
+
+
+static int
+cmp_due(const void *aa, const void *bb)
+{
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	return (b->due_date - a->due_date);
+}
+
+
+static int
+cmp_sizing(const void *aa, const void *bb)
+{
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	return (b->sizing - a->sizing);
+}
+
+static int
+cmp_percent(const void *aa, const void *bb)
+{
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	return (b->percent_complete - a->percent_complete);
+}
+
+static int
+cmp_urgency(const void *aa, const void *bb)
+{
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	return (b->urgency - a->urgency);
+}
+
+static int
+cmp_importance(const void *aa, const void *bb)
+{
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	return (b->importance - a->importance);
+}
+
+static int
+cmp_status(const void *aa, const void *bb)
+{
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	return (b->status - a->status);
+}
+
 
 void
 project_list_sort_day(void)
@@ -2301,6 +2509,54 @@ void
 project_list_sort_desc(void)
 {
 	plist = project_list_sort(plist, cmp_desc);
+}
+
+void
+project_list_sort_start(void)
+{
+	plist = project_list_sort(plist, cmp_start);
+}
+
+void
+project_list_sort_end(void)
+{
+	plist = project_list_sort(plist, cmp_end);
+}
+
+void
+project_list_sort_due(void)
+{
+	plist = project_list_sort(plist, cmp_due);
+}
+
+void
+project_list_sort_sizing(void)
+{
+	plist = project_list_sort(plist, cmp_sizing);
+}
+
+void
+project_list_sort_percent(void)
+{
+	plist = project_list_sort(plist, cmp_percent);
+}
+
+void
+project_list_sort_urgency(void)
+{
+	plist = project_list_sort(plist, cmp_urgency);
+}
+
+void
+project_list_sort_importance(void)
+{
+	plist = project_list_sort(plist, cmp_importance);
+}
+
+void
+project_list_sort_status(void)
+{
+	plist = project_list_sort(plist, cmp_status);
 }
 
 /* =========================== END OF FILE ========================= */

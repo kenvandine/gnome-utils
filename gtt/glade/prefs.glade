@@ -44,6 +44,406 @@
 
     <widget>
       <class>GtkFrame</class>
+      <name>frame7</name>
+      <border_width>4</border_width>
+      <label>View Project Fields</label>
+      <label_xalign>0</label_xalign>
+      <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+
+      <widget>
+	<class>GtkTable</class>
+	<name>table5</name>
+	<rows>16</rows>
+	<columns>1</columns>
+	<homogeneous>False</homogeneous>
+	<row_spacing>0</row_spacing>
+	<column_spacing>0</column_spacing>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show importance</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Project Importance</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>0</top_attach>
+	    <bottom_attach>1</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show urgency</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Project Urgency</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>1</top_attach>
+	    <bottom_attach>2</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show status</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Project Status</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>2</top_attach>
+	    <bottom_attach>3</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show ever</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Total Time Ever</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>3</top_attach>
+	    <bottom_attach>4</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show year</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Time This Year</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>4</top_attach>
+	    <bottom_attach>5</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show month</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Time This Month</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>5</top_attach>
+	    <bottom_attach>6</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show week</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Time This Week</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>6</top_attach>
+	    <bottom_attach>7</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show day</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Time Today</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>7</top_attach>
+	    <bottom_attach>8</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show current</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Time For The Current Task</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>8</top_attach>
+	    <bottom_attach>9</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show desc</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Project Description</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>9</top_attach>
+	    <bottom_attach>10</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show task</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Current Task</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>10</top_attach>
+	    <bottom_attach>11</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show estimated_start</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Planned Project Start Date</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>11</top_attach>
+	    <bottom_attach>12</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show estimated_end</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Planned Project End Date</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>12</top_attach>
+	    <bottom_attach>13</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show due_date</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Project Due Date</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>13</top_attach>
+	    <bottom_attach>14</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show sizing</name>
+	  <tooltip>Show the 'szing', that is, the estimated amount of work that it will take to perform this project.</tooltip>
+	  <can_focus>True</can_focus>
+	  <label>Show Estimated Effort</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>14</top_attach>
+	    <bottom_attach>15</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>show percent_complete</name>
+	  <can_focus>True</can_focus>
+	  <label>Show Percent Complete</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>15</top_attach>
+	    <bottom_attach>16</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+      </widget>
+    </widget>
+
+    <widget>
+      <class>GtkLabel</class>
+      <child_name>Notebook:tab</child_name>
+      <name>label9</name>
+      <label>Fields</label>
+      <justify>GTK_JUSTIFY_CENTER</justify>
+      <wrap>False</wrap>
+      <xalign>0.5</xalign>
+      <yalign>0.5</yalign>
+      <xpad>0</xpad>
+      <ypad>0</ypad>
+    </widget>
+    <widget>
+      <class>GtkFrame</class>
       <name>frame1</name>
       <border_width>4</border_width>
       <label>Project List Display</label>
@@ -53,7 +453,7 @@
       <widget>
 	<class>GtkTable</class>
 	<name>table1</name>
-	<rows>12</rows>
+	<rows>4</rows>
 	<columns>1</columns>
 	<homogeneous>False</homogeneous>
 	<row_spacing>0</row_spacing>
@@ -84,7 +484,7 @@
 
 	<widget>
 	  <class>GtkCheckButton</class>
-	  <name>show status</name>
+	  <name>show statusbar</name>
 	  <can_focus>True</can_focus>
 	  <label>Show Status Bar</label>
 	  <active>False</active>
@@ -107,7 +507,7 @@
 
 	<widget>
 	  <class>GtkCheckButton</class>
-	  <name>show head</name>
+	  <name>show header</name>
 	  <can_focus>True</can_focus>
 	  <label>Show Table Header</label>
 	  <active>False</active>
@@ -140,190 +540,6 @@
 	    <right_attach>1</right_attach>
 	    <top_attach>3</top_attach>
 	    <bottom_attach>4</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCheckButton</class>
-	  <name>show task</name>
-	  <can_focus>True</can_focus>
-	  <label>Show Current Task</label>
-	  <active>False</active>
-	  <draw_indicator>True</draw_indicator>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>5</top_attach>
-	    <bottom_attach>6</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCheckButton</class>
-	  <name>show desc</name>
-	  <can_focus>True</can_focus>
-	  <label>Show Project Description</label>
-	  <active>False</active>
-	  <draw_indicator>True</draw_indicator>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>4</top_attach>
-	    <bottom_attach>5</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCheckButton</class>
-	  <name>show ever</name>
-	  <can_focus>True</can_focus>
-	  <label>Show Total Time Ever</label>
-	  <active>False</active>
-	  <draw_indicator>True</draw_indicator>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>6</top_attach>
-	    <bottom_attach>7</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCheckButton</class>
-	  <name>show year</name>
-	  <can_focus>True</can_focus>
-	  <label>Show Time This Year</label>
-	  <active>False</active>
-	  <draw_indicator>True</draw_indicator>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>7</top_attach>
-	    <bottom_attach>8</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCheckButton</class>
-	  <name>show month</name>
-	  <can_focus>True</can_focus>
-	  <label>Show Time This Month</label>
-	  <active>False</active>
-	  <draw_indicator>True</draw_indicator>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>8</top_attach>
-	    <bottom_attach>9</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCheckButton</class>
-	  <name>show week</name>
-	  <can_focus>True</can_focus>
-	  <label>Show Time This Week</label>
-	  <active>False</active>
-	  <draw_indicator>True</draw_indicator>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>9</top_attach>
-	    <bottom_attach>10</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCheckButton</class>
-	  <name>show day</name>
-	  <can_focus>True</can_focus>
-	  <label>Show Time Today</label>
-	  <active>False</active>
-	  <draw_indicator>True</draw_indicator>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>10</top_attach>
-	    <bottom_attach>11</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCheckButton</class>
-	  <name>show current</name>
-	  <can_focus>True</can_focus>
-	  <label>Show Time For The Current Task</label>
-	  <active>False</active>
-	  <draw_indicator>True</draw_indicator>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>11</top_attach>
-	    <bottom_attach>12</bottom_attach>
 	    <xpad>0</xpad>
 	    <ypad>0</ypad>
 	    <xexpand>False</xexpand>
@@ -841,7 +1057,7 @@
 
 	  <widget>
 	    <class>GtkCheckButton</class>
-	    <name>show tooltips</name>
+	    <name>show tips</name>
 	    <can_focus>True</can_focus>
 	    <label>Show Tooltips</label>
 	    <active>True</active>
@@ -890,7 +1106,7 @@
 
 	  <widget>
 	    <class>GtkCheckButton</class>
-	    <name>show save</name>
+	    <name>show file</name>
 	    <can_focus>True</can_focus>
 	    <label>Show `Save', `Reload'</label>
 	    <active>False</active>
@@ -904,7 +1120,7 @@
 
 	  <widget>
 	    <class>GtkCheckButton</class>
-	    <name>show cut</name>
+	    <name>show ccp</name>
 	    <can_focus>True</can_focus>
 	    <label>Show `Cut', `Copy', `Paste'</label>
 	    <active>False</active>
@@ -932,7 +1148,7 @@
 
 	  <widget>
 	    <class>GtkCheckButton</class>
-	    <name>show props</name>
+	    <name>show prop</name>
 	    <can_focus>True</can_focus>
 	    <label>Show `Properties'</label>
 	    <active>True</active>
@@ -960,7 +1176,7 @@
 
 	  <widget>
 	    <class>GtkCheckButton</class>
-	    <name>show prefs</name>
+	    <name>show pref</name>
 	    <can_focus>True</can_focus>
 	    <label>Show `Preferences'</label>
 	    <active>False</active>
@@ -988,7 +1204,7 @@
 
 	  <widget>
 	    <class>GtkCheckButton</class>
-	    <name>show quit</name>
+	    <name>show exit</name>
 	    <can_focus>True</can_focus>
 	    <label>Show `Quit'</label>
 	    <active>True</active>
@@ -1110,6 +1326,7 @@
       <xpad>0</xpad>
       <ypad>0</ypad>
     </widget>
+
   </widget>
 </widget>
 

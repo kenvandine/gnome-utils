@@ -54,12 +54,98 @@
 	sstr;							\
 })
 
+#define GET_STR(SELF,FN,TOK)				\
+	if (0 == strcmp (TOK, node->name))		\
+	{						\
+		const char *str = GET_TEXT (node);	\
+		FN (SELF, str);				\
+	} 						\
+	else
+
+
+#define GET_DBL(SELF,FN,TOK)				\
+	if (0 == strcmp (TOK, node->name))		\
+	{						\
+		const char *str = GET_TEXT (node);	\
+		double rate = atof (str);		\
+		FN (SELF, rate);			\
+	} 						\
+	else
+
+#define GET_INT(SELF,FN,TOK)				\
+	if (0 == strcmp (TOK, node->name))		\
+	{						\
+		const char *str = GET_TEXT (node);	\
+		int ival = atoi (str);			\
+		FN (SELF, ival);			\
+	} 						\
+	else
+
+#define GET_TIM(SELF,FN,TOK)				\
+	if (0 == strcmp (TOK, node->name))		\
+	{						\
+		const char *str = GET_TEXT (node);	\
+		time_t tval = atol (str);		\
+		FN (SELF, tval);			\
+	} 						\
+	else
+
+#define GET_BOL(SELF,FN,TOK)				\
+	if (0 == strcmp (TOK, node->name))		\
+	{						\
+		const char *str = GET_TEXT (node);	\
+		gboolean bval = atol (str);		\
+		FN (SELF, bval);			\
+	} 						\
+	else
+
+#define GET_ENUM_3(SELF,FN,TOK,A,B,C)				\
+	if (0 == strcmp (TOK, node->name))			\
+	{							\
+		const char *str = GET_TEXT (node);		\
+		int ival = GTT_##A;				\
+		if (!strcmp (#A, str)) ival = GTT_##A;		\
+		else if (!strcmp (#B, str)) ival = GTT_##B;	\
+		else if (!strcmp (#C, str)) ival = GTT_##C;	\
+                else gtt_err_set_code (GTT_UNKNOWN_VALUE);	\
+		FN (SELF, ival);				\
+	} 							\
+	else
+
+#define GET_ENUM_4(SELF,FN,TOK,A,B,C,D)				\
+	if (0 == strcmp (TOK, node->name))			\
+	{							\
+		const char *str = GET_TEXT (node);		\
+		int ival = GTT_##A;				\
+		if (!strcmp (#A, str)) ival = GTT_##A;		\
+		else if (!strcmp (#B, str)) ival = GTT_##B;	\
+		else if (!strcmp (#C, str)) ival = GTT_##C;	\
+		else if (!strcmp (#D, str)) ival = GTT_##D;	\
+                else gtt_err_set_code (GTT_UNKNOWN_VALUE);	\
+		FN (SELF, ival);				\
+	} 							\
+	else
+
+#define GET_ENUM_5(SELF,FN,TOK,A,B,C,D,E)			\
+	if (0 == strcmp (TOK, node->name))			\
+	{							\
+		const char *str = GET_TEXT (node);		\
+		int ival = GTT_##A;				\
+		if (!strcmp (#A, str)) ival = GTT_##A;		\
+		else if (!strcmp (#B, str)) ival = GTT_##B;	\
+		else if (!strcmp (#C, str)) ival = GTT_##C;	\
+		else if (!strcmp (#D, str)) ival = GTT_##D;	\
+		else if (!strcmp (#E, str)) ival = GTT_##E;	\
+                else gtt_err_set_code (GTT_UNKNOWN_VALUE);	\
+		FN (SELF, ival);				\
+	} 							\
+	else
+
 /* =========================================================== */
 
 static GttInterval *
 parse_interval (xmlNodePtr interval)
 {
-	char * str;
 	xmlNodePtr node;
 	GttInterval *ivl = NULL;
 
@@ -71,40 +157,12 @@ parse_interval (xmlNodePtr interval)
 	ivl = gtt_interval_new ();
 	for (node=interval->childs; node; node=node->next)
 	{
-		if (0 == strcmp ("start", node->name))
-		{
-			time_t thyme;
-			str = GET_TEXT (node);
-			thyme = atol (str);
-			gtt_interval_set_start (ivl, thyme);
-		} 
-		else
-		if (0 == strcmp ("stop", node->name))
-		{
-			time_t thyme;
-			str = GET_TEXT (node);
-			thyme = atol (str);
-			gtt_interval_set_stop (ivl, thyme);
-		} 
-		else
-		if (0 == strcmp ("fuzz", node->name))
-		{
-			int thyme;
-			str = GET_TEXT (node);
-			thyme = atoi (str);
-			gtt_interval_set_fuzz (ivl, thyme);
-		} 
-		else
-		if (0 == strcmp ("running", node->name))
-		{
-			gboolean ru;
-			str = GET_TEXT (node);
-			ru = atol (str);
-			gtt_interval_set_running (ivl, ru);
-		} 
-		else
+		GET_TIM (ivl, gtt_interval_set_start, "start")
+		GET_TIM (ivl, gtt_interval_set_stop, "stop")
+		GET_TIM (ivl, gtt_interval_set_fuzz, "fuzz")
+		GET_BOL (ivl, gtt_interval_set_running, "running")
 		{ 
-			gtt_err_set_code (GTT_FILE_CORRUPT);
+			gtt_err_set_code (GTT_UNKNOWN_TOKEN);
 		}
 	}
 	return ivl;
@@ -115,7 +173,6 @@ parse_interval (xmlNodePtr interval)
 static GttTask *
 parse_task (xmlNodePtr task)
 {
-	char * str;
 	xmlNodePtr node;
 	GttTask *tsk = NULL;
 
@@ -127,57 +184,16 @@ parse_task (xmlNodePtr task)
 	tsk = gtt_task_new ();
 	for (node=task->childs; node; node=node->next)
 	{
-		if (0 == strcmp ("memo", node->name))
-		{
-			str = GET_TEXT (node);
-			gtt_task_set_memo (tsk, str);
-		} 
-		else
-		if (0 == strcmp ("notes", node->name))
-		{
-			str = GET_TEXT (node);
-			gtt_task_set_notes (tsk, str);
-		} 
-		else
-		if (0 == strcmp ("billable", node->name))
-		{
-			GttBillable billable = GTT_NOT_BILLABLE;
-			str = GET_TEXT (node);
-			if (!strcmp ("BILLABLE", str)) billable=GTT_BILLABLE;
-			else if (!strcmp ("NOT_BILLABLE", str)) billable=GTT_NOT_BILLABLE;
-			else if (!strcmp ("NO_CHARGE", str)) billable=GTT_NO_CHARGE;
-			gtt_task_set_billable (tsk, billable);
-		} 
-		else
-		if (0 == strcmp ("billrate", node->name))
-		{
-			GttBillRate billrate = GTT_REGULAR;
-			str = GET_TEXT (node);
-			if (!strcmp ("REGULAR", str)) billrate=GTT_REGULAR;
-			else if (!strcmp ("OVERTIME", str)) billrate=GTT_OVERTIME;
-			else if (!strcmp ("OVEROVER", str)) billrate=GTT_OVEROVER;
-			else if (!strcmp ("FLAT_FEE", str)) billrate=GTT_FLAT_FEE;
-			gtt_task_set_billrate (tsk, billrate);
-		} 
-		else
-		if (0 == strcmp ("billstatus", node->name))
-		{
-			GttBillStatus billstatus = GTT_HOLD;
-			str = GET_TEXT (node);
-			if (!strcmp ("HOLD", str)) billstatus=GTT_HOLD;
-			else if (!strcmp ("BILL", str)) billstatus=GTT_BILL;
-			else if (!strcmp ("PAID", str)) billstatus=GTT_PAID;
-			gtt_task_set_billstatus (tsk, billstatus);
-		} 
-		else
-		if (0 == strcmp ("bill_unit", node->name))
-		{
-			int thyme;
-			str = GET_TEXT (node);
-			thyme = atoi (str);
-			gtt_task_set_bill_unit (tsk, thyme);
-		} 
-		else
+		GET_STR (tsk, gtt_task_set_memo, "memo")
+		GET_STR (tsk, gtt_task_set_notes, "notes")
+		GET_INT (tsk, gtt_task_set_bill_unit, "bill_unit")
+
+		GET_ENUM_3 (tsk, gtt_task_set_billable, "billable", 
+			NOT_BILLABLE, BILLABLE, NO_CHARGE)
+		GET_ENUM_3 (tsk, gtt_task_set_billstatus, "billstatus", 
+			HOLD, BILL, PAID)
+		GET_ENUM_4 (tsk, gtt_task_set_billrate, "billrate", 
+			REGULAR, OVERTIME, OVEROVER, FLAT_FEE)
 		if (0 == strcmp ("interval-list", node->name))
 		{
 			xmlNodePtr tn;
@@ -190,7 +206,7 @@ parse_task (xmlNodePtr task)
 		} 
 		else
 		{ 
-			gtt_err_set_code (GTT_FILE_CORRUPT);
+			gtt_err_set_code (GTT_UNKNOWN_TOKEN);
 		}
 	}
 	return tsk;
@@ -198,10 +214,10 @@ parse_task (xmlNodePtr task)
 
 /* =========================================================== */
 
+
 static GttProject *
 parse_project (xmlNodePtr project)
 {
-	char * str;
 	xmlNodePtr node;
 	GttProject *prj = NULL;
 
@@ -214,94 +230,35 @@ parse_project (xmlNodePtr project)
 	gtt_project_freeze (prj);
 	for (node=project->childs; node; node=node->next)
 	{
-		if (0 == strcmp ("title", node->name))
-		{
-			str = GET_TEXT (node);
-			gtt_project_set_title (prj, str);
-		} 
-		else
-		if (0 == strcmp ("desc", node->name))
-		{
-			str = GET_TEXT (node);
-			gtt_project_set_desc (prj, str);
-		} 
-		else
-		if (0 == strcmp ("notes", node->name))
-		{
-			str = GET_TEXT (node);
-			gtt_project_set_notes (prj, str);
-		} 
-		else
-		if (0 == strcmp ("custid", node->name))
-		{
-			str = GET_TEXT (node);
-			gtt_project_set_custid (prj, str);
-		} 
-		else
-		if (0 == strcmp ("billrate", node->name))
-		{
-			double rate;
-			str = GET_TEXT (node);
-			rate = atof (str);
-			gtt_project_set_billrate (prj, rate);
-		} 
-		else
-		if (0 == strcmp ("overtime_rate", node->name))
-		{
-			double rate;
-			str = GET_TEXT (node);
-			rate = atof (str);
-			gtt_project_set_overtime_rate (prj, rate);
-		} 
-		else
-		if (0 == strcmp ("overover_rate", node->name))
-		{
-			double rate;
-			str = GET_TEXT (node);
-			rate = atof (str);
-			gtt_project_set_overover_rate (prj, rate);
-		} 
-		else
-		if (0 == strcmp ("flat_fee", node->name))
-		{
-			double rate;
-			str = GET_TEXT (node);
-			rate = atof (str);
-			gtt_project_set_flat_fee (prj, rate);
-		} 
-		else
-		if (0 == strcmp ("min_interval", node->name))
-		{
-			int ivl;
-			str = GET_TEXT (node);
-			ivl = atoi (str);
-			gtt_project_set_min_interval (prj, ivl);
-		} 
-		else
-		if (0 == strcmp ("auto_merge_interval", node->name))
-		{
-			int ivl;
-			str = GET_TEXT (node);
-			ivl = atoi (str);
-			gtt_project_set_auto_merge_interval (prj, ivl);
-		} 
-		else
-		if (0 == strcmp ("auto_merge_gap", node->name))
-		{
-			int ivl;
-			str = GET_TEXT (node);
-			ivl = atoi (str);
-			gtt_project_set_auto_merge_gap (prj, ivl);
-		} 
-		else
-		if (0 == strcmp ("id", node->name))
-		{
-			int id;
-			str = GET_TEXT (node);
-			id = atoi (str);
-			gtt_project_set_id (prj, id);
-		} 
-		else
+		GET_STR (prj, gtt_project_set_title, "title")
+		GET_STR (prj, gtt_project_set_desc, "desc")
+		GET_STR (prj, gtt_project_set_notes, "notes")
+		GET_STR (prj, gtt_project_set_custid, "custid")
+
+		GET_DBL (prj, gtt_project_set_billrate, "billrate")
+		GET_DBL (prj, gtt_project_set_overtime_rate, "overtime_rate")
+		GET_DBL (prj, gtt_project_set_overover_rate, "overover_rate")
+		GET_DBL (prj, gtt_project_set_flat_fee, "flat_fee")
+
+		GET_INT (prj, gtt_project_set_min_interval, "min_interval")
+		GET_INT (prj, gtt_project_set_auto_merge_interval, "auto_merge_interval")
+		GET_INT (prj, gtt_project_set_auto_merge_gap, "auto_merge_gap")
+
+		GET_INT (prj, gtt_project_set_id, "id")
+
+		GET_TIM (prj, gtt_project_set_estimated_start, "estimated_start")
+		GET_TIM (prj, gtt_project_set_estimated_end, "estimated_end")
+		GET_TIM (prj, gtt_project_set_due_date, "due_date")
+		GET_INT (prj, gtt_project_set_sizing, "sizing")
+		GET_INT (prj, gtt_project_set_percent_complete, "percent_complete")
+
+		GET_ENUM_4 (prj, gtt_project_set_urgency, "urgency",
+			UNDEFINED, LOW, MEDIUM, HIGH)
+		GET_ENUM_4 (prj, gtt_project_set_importance, "importance",
+			UNDEFINED, LOW, MEDIUM, HIGH)
+		GET_ENUM_5 (prj, gtt_project_set_status, "status",
+			NOT_STARTED, IN_PROGRESS, ON_HOLD, CANCELLED, COMPLETED)
+
 		if (0 == strcmp ("task-list", node->name))
 		{
 			xmlNodePtr tn;
@@ -325,8 +282,8 @@ parse_project (xmlNodePtr project)
 		} 
 		else
 		{ 
-			g_warning ("unexpected node %s\n", node->name);
-			gtt_err_set_code (GTT_FILE_CORRUPT);
+			g_warning ("unexpected node %s", node->name);
+			gtt_err_set_code (GTT_UNKNOWN_TOKEN);
 		}
 	}
 	gtt_project_thaw (prj);

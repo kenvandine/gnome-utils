@@ -39,42 +39,111 @@ static xmlNodePtr gtt_project_list_to_dom_tree (GList *list);
 
 /* ======================================================= */
 
+#define PUT_STR(TOK,VAL)	{			\
+	const char * str = (VAL);			\
+	if (str && 0 != str[0])				\
+	{						\
+		node = xmlNewNode (NULL, TOK);		\
+		xmlNodeAddContent(node, str);		\
+		xmlAddChild (topnode, node);		\
+	}						\
+}
+
+#define PUT_INT(TOK,VAL)	{			\
+	char buff[80];					\
+	g_snprintf (buff, sizeof(buff), "%d", (VAL));	\
+	node = xmlNewNode (NULL, TOK);			\
+	xmlNodeAddContent(node, buff);			\
+	xmlAddChild (topnode, node);			\
+}
+
+#define PUT_LONG(TOK,VAL)	{			\
+	char buff[80];					\
+	g_snprintf (buff, sizeof(buff), "%ld", (VAL));	\
+	node = xmlNewNode (NULL, TOK);			\
+	xmlNodeAddContent(node, buff);			\
+	xmlAddChild (topnode, node);			\
+}
+
+
+#define PUT_DBL(TOK,VAL)	{			\
+	char buff[80];					\
+	g_snprintf (buff, sizeof(buff), "%.18g", (VAL));\
+	node = xmlNewNode (NULL, TOK);			\
+	xmlNodeAddContent(node, buff);			\
+	xmlAddChild (topnode, node);			\
+}
+
+#define PUT_BOOL(TOK,VAL)	{			\
+	gboolean boll = (VAL);				\
+	node = xmlNewNode (NULL, TOK);			\
+        if (boll) {					\
+		xmlNodeAddContent(node, "T");		\
+	} else {					\
+		xmlNodeAddContent(node, "F");		\
+	}						\
+	xmlAddChild (topnode, node);			\
+}
+
+#define PUT_ENUM_3(TOK,VAL,A,B,C) {			\
+	const char * str = #A;				\
+	switch (VAL)					\
+	{						\
+		case GTT_##A: str = #A; break;		\
+		case GTT_##B: str = #B; break;		\
+		case GTT_##C: str = #C; break; 		\
+	}						\
+	node = xmlNewNode (NULL, TOK);			\
+	xmlNodeAddContent(node, str);			\
+	xmlAddChild (topnode, node);			\
+}
+
+#define PUT_ENUM_4(TOK,VAL,A,B,C, D) {			\
+	const char * str = #A;				\
+	switch (VAL)					\
+	{						\
+		case GTT_##A: str = #A; break;		\
+		case GTT_##B: str = #B; break;		\
+		case GTT_##C: str = #C; break; 		\
+		case GTT_##D: str = #D; break; 		\
+	}						\
+	node = xmlNewNode (NULL, TOK);			\
+	xmlNodeAddContent(node, str);			\
+	xmlAddChild (topnode, node);			\
+}
+
+#define PUT_ENUM_5(TOK,VAL,A,B,C,D,E) {			\
+	const char * str = #A;				\
+	switch (VAL)					\
+	{						\
+		case GTT_##A: str = #A; break;		\
+		case GTT_##B: str = #B; break;		\
+		case GTT_##C: str = #C; break; 		\
+		case GTT_##D: str = #D; break; 		\
+		case GTT_##E: str = #E; break; 		\
+	}						\
+	node = xmlNewNode (NULL, TOK);			\
+	xmlNodeAddContent(node, str);			\
+	xmlAddChild (topnode, node);			\
+}
+
+/* ======================================================= */
+
 /* convert one interval to a dom tree */
 
 static xmlNodePtr
 gtt_xml_interval_to_dom_tree (GttInterval *ivl)
 {
-	gboolean running;
-	char buff[80];
 	xmlNodePtr node, topnode;
 
 	if (!ivl) return NULL;
 
 	topnode = xmlNewNode (NULL, "gtt:interval");
 
-	g_snprintf (buff, sizeof(buff), "%ld", gtt_interval_get_start (ivl));
-	node = xmlNewNode (NULL, "start");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
-
-	g_snprintf (buff, sizeof(buff), "%ld", gtt_interval_get_stop (ivl));
-	node = xmlNewNode (NULL, "stop");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
-
-	g_snprintf (buff, sizeof(buff), "%d", gtt_interval_get_fuzz (ivl));
-	node = xmlNewNode (NULL, "fuzz");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
-
-	running = gtt_interval_get_running (ivl);
-	node = xmlNewNode (NULL, "running");
-        if (running) {
-		xmlNodeAddContent(node, "T");
-	} else {
-		xmlNodeAddContent(node, "F");
-	}
-	xmlAddChild (topnode, node);
+	PUT_LONG("start", gtt_interval_get_start(ivl));
+	PUT_LONG("stop", gtt_interval_get_stop(ivl));
+	PUT_INT("fuzz", gtt_interval_get_fuzz(ivl));
+	PUT_BOOL("running", gtt_interval_get_running(ivl));
 
 	return topnode;
 }
@@ -109,73 +178,23 @@ static xmlNodePtr
 gtt_xml_task_to_dom_tree (GttTask *task)
 {
 	GList *p;
-	char buff[80];
-	const char * str;
 	xmlNodePtr node, topnode;
 
 	if (!task) return NULL;
 
 	topnode = xmlNewNode (NULL, "gtt:task");
 
-	str = gtt_task_get_memo(task);
-	if (str && str[0])
-	{
-		node = xmlNewNode (NULL, "memo");
-		xmlNodeAddContent(node, str);
-		xmlAddChild (topnode, node);
-	}
+	PUT_STR ("memo", gtt_task_get_memo(task));
+	PUT_STR ("notes", gtt_task_get_notes(task));
+	PUT_INT ("bill_unit", gtt_task_get_bill_unit(task));
 
-	str = gtt_task_get_notes(task);
-	if (str && str[0])
-	{
-		node = xmlNewNode (NULL, "notes");
-		xmlNodeAddContent(node, str);
-		xmlAddChild (topnode, node);
-	}
-	{
-		GttBillable billable = gtt_task_get_billable(task);
-		switch (billable)
-		{
-			case GTT_BILLABLE: str = "BILLABLE"; break;
-			case GTT_NOT_BILLABLE: str = "NOT_BILLABLE"; break;
-			case GTT_NO_CHARGE: str = "NO_CHARGE"; break;
-		}
-		node = xmlNewNode (NULL, "billable");
-		xmlNodeAddContent(node, str);
-		xmlAddChild (topnode, node);
-	}
+	PUT_ENUM_3 ("billable", gtt_task_get_billable(task),
+		BILLABLE, NOT_BILLABLE, NO_CHARGE);
+	PUT_ENUM_4 ("billrate", gtt_task_get_billrate(task),
+		REGULAR, OVERTIME, OVEROVER, FLAT_FEE);
+	PUT_ENUM_3 ("billstatus", gtt_task_get_billstatus(task),
+		HOLD, BILL, PAID);
 
-	{
-		GttBillRate billrate = gtt_task_get_billrate(task);
-		switch (billrate)
-		{
-			case GTT_REGULAR: str = "REGULAR"; break;
-			case GTT_OVERTIME: str = "OVERTIME"; break;
-			case GTT_OVEROVER: str = "OVEROVER"; break;
-			case GTT_FLAT_FEE: str = "FLAT_FEE"; break;
-		}
-		node = xmlNewNode (NULL, "billrate");
-		xmlNodeAddContent(node, str);
-		xmlAddChild (topnode, node);
-	}
-
-	{
-		GttBillStatus billstatus = gtt_task_get_billstatus(task);
-		switch (billstatus)
-		{
-			case GTT_HOLD: str = "HOLD"; break;
-			case GTT_BILL: str = "BILL"; break;
-			case GTT_PAID: str = "PAID"; break;
-		}
-		node = xmlNewNode (NULL, "billstatus");
-		xmlNodeAddContent(node, str);
-		xmlAddChild (topnode, node);
-	}
-
-	g_snprintf (buff, sizeof(buff), "%d", gtt_task_get_bill_unit (task));
-	node = xmlNewNode (NULL, "bill_unit");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
 
 	/* add list of intervals */
 	p = gtt_task_get_intervals (task);
@@ -209,13 +228,12 @@ gtt_task_list_to_dom_tree (GList *list)
 
 /* ======================================================= */
 
+
 /* convert one project into a dom tree */
 static xmlNodePtr
 gtt_xml_project_to_dom_tree (GttProject *prj)
 {
 	GList *children, *tasks;
-	const char * str;
-	char buff[80];
 	xmlNodePtr node, topnode;
 
 	if (!prj) return NULL;
@@ -225,85 +243,34 @@ gtt_xml_project_to_dom_tree (GttProject *prj)
 	xmlNodeAddContent(node, gtt_project_get_title(prj));
 	xmlAddChild (topnode, node);
 
-	str = gtt_project_get_desc(prj);
-	if (str && 0 != str[0])
-	{
-		node = xmlNewNode (NULL, "desc");
-		xmlNodeAddContent(node, str);
-		xmlAddChild (topnode, node);	
-	}
+	PUT_STR ("desc", gtt_project_get_desc(prj));
+	PUT_STR ("notes", gtt_project_get_notes(prj));
+	PUT_STR ("custid", gtt_project_get_custid(prj));
 
-	str = gtt_project_get_notes(prj);
-	if (str && 0 != str[0])
-	{
-		node = xmlNewNode (NULL, "notes");
-		xmlNodeAddContent(node, str);
-		xmlAddChild (topnode, node);	
-	}
+	PUT_INT ("id", gtt_project_get_id(prj));
 
-	str = gtt_project_get_custid(prj);
-	if (str && 0 != str[0])
-	{
-		node = xmlNewNode (NULL, "custid");
-		xmlNodeAddContent(node, str);
-		xmlAddChild (topnode, node);	
-	}
+	PUT_DBL ("billrate", gtt_project_get_billrate(prj));
+	PUT_DBL ("overtime_rate", gtt_project_get_overtime_rate(prj));
+	PUT_DBL ("overover_rate", gtt_project_get_overover_rate(prj));
+	PUT_DBL ("flat_fee", gtt_project_get_flat_fee(prj));
 
-	/* store id */
-	g_snprintf (buff, sizeof(buff), "%d",
-                    gtt_project_get_id(prj));
-	node = xmlNewNode (NULL, "id");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
+	PUT_INT ("min_interval", gtt_project_get_min_interval(prj));
+	PUT_INT ("auto_merge_interval", gtt_project_get_auto_merge_interval(prj));
+	PUT_INT ("auto_merge_gap", gtt_project_get_auto_merge_gap(prj));
 
-	/* store price */
-	g_snprintf (buff, sizeof(buff), "%.18g",
-                    gtt_project_get_billrate(prj));
-	node = xmlNewNode (NULL, "billrate");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
+	PUT_LONG ("estimated_start", gtt_project_get_estimated_start(prj));
+	PUT_LONG ("estimated_end", gtt_project_get_estimated_end(prj));
+	PUT_LONG ("due_date", gtt_project_get_due_date(prj));
 
-	/* store price */
-	g_snprintf (buff, sizeof(buff), "%.18g",
-                    gtt_project_get_overtime_rate(prj));
-	node = xmlNewNode (NULL, "overtime_rate");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
+	PUT_INT ("sizing", gtt_project_get_sizing(prj));
+	PUT_INT ("percent_complete", gtt_project_get_percent_complete(prj));
 
-	/* store price */
-	g_snprintf (buff, sizeof(buff), "%.18g",
-                    gtt_project_get_overover_rate(prj));
-	node = xmlNewNode (NULL, "overover_rate");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
-
-	/* store price */
-	g_snprintf (buff, sizeof(buff), "%.18g",
-                    gtt_project_get_flat_fee(prj));
-	node = xmlNewNode (NULL, "flat_fee");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
-
-	/* store min_interval */
-	g_snprintf (buff, sizeof(buff), "%d",
-                    gtt_project_get_min_interval(prj));
-	node = xmlNewNode (NULL, "min_interval");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
-
-	/* store auto_merge_interval */
-	g_snprintf (buff, sizeof(buff), "%d",
-                    gtt_project_get_auto_merge_interval(prj));
-	node = xmlNewNode (NULL, "auto_merge_interval");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
-
-	/* store auto_merge_gap */
-	g_snprintf (buff, sizeof(buff), "%d",
-                    gtt_project_get_auto_merge_gap(prj));
-	node = xmlNewNode (NULL, "auto_merge_gap");
-	xmlNodeAddContent(node, buff);
-	xmlAddChild (topnode, node);
+	PUT_ENUM_4 ("urgency", gtt_project_get_urgency(prj),
+		UNDEFINED, LOW, MEDIUM, HIGH);
+	PUT_ENUM_4 ("importance", gtt_project_get_importance(prj),
+		UNDEFINED, LOW, MEDIUM, HIGH);
+	PUT_ENUM_5 ("status", gtt_project_get_status(prj),
+		NOT_STARTED, IN_PROGRESS, ON_HOLD, CANCELLED, COMPLETED);
 
 	/* handle tasks */
 	tasks = gtt_project_get_tasks(prj);

@@ -33,7 +33,7 @@ struct gtt_project_s
 	char *title;     /* short title */
 	char *desc;      /* breif description for invoice */
 	char *notes;     /* long description */
-	char *custid;    /* customer id */
+	char *custid;    /* customer id (TBD -- index to addresbook) */
 
 	int min_interval;  /* smallest recorded interval */
 	int auto_merge_interval;  /* merge intervals smaller than this */
@@ -43,6 +43,15 @@ struct gtt_project_s
         double overtime_rate;  /*  in units of currency per hour */
         double overover_rate;  /*  the good money is here ... */
         double flat_fee;  /* flat price, in units of currency */
+
+	time_t estimated_start;  /* projected/planned start date */
+	time_t estimated_end;    /* projected/planned end date */
+	time_t due_date;         /* drop-dead date */
+	int sizing;  /* estimate amount of time to complete (seconds) */
+	short percent_complete;  /* estimate how much work left */
+	GttRank urgency;         /* does this have to get done quickly? */
+	GttRank importance;      /* is this important to get done? */
+	GttProjectStatus status; /* overall project status */
 
 	GList *task_list;      /* annotated chunks of time */
 

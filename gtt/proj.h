@@ -34,6 +34,12 @@
 #endif /* TIME_WITH_SYS_TIME */
 
 
+/* hack alert -- these are hard-coded enums; they should 
+ * probably be replaced by a system of user-defined 
+ * enumerated values, especially for GttProjectStatus
+ */
+
+
 typedef enum 
 {
 	GTT_BILLABLE = 1,   /* billable time */
@@ -55,6 +61,23 @@ typedef enum
 	GTT_BILL = 1,    /* print this on invoice, its done, ready */
 	GTT_PAID         /* its been paid; do not print on invoice any more */
 } GttBillStatus;
+
+typedef enum
+{
+	GTT_UNDEFINED = 0,
+	GTT_LOW = 1,
+	GTT_MEDIUM,
+	GTT_HIGH
+} GttRank;
+
+typedef enum
+{
+	GTT_NOT_STARTED = 0,  /* hack alert-- we should allow */
+	GTT_IN_PROGRESS,      /* user-defined status states */
+	GTT_ON_HOLD,          /* wating for something */
+	GTT_CANCELLED,
+	GTT_COMPLETED
+} GttProjectStatus;
 		
 
 /* The three basic structures */
@@ -140,6 +163,47 @@ void		gtt_project_set_auto_merge_interval (GttProject *, int);
 int		gtt_project_get_auto_merge_interval (GttProject *);
 void		gtt_project_set_auto_merge_gap (GttProject *, int);
 int		gtt_project_get_auto_merge_gap (GttProject *);
+
+/* Todo-list management stuff.
+ * The estimated start date is when we expect to first start working 
+ * on this project.  The estimated end date is when we expect to be 
+ * done working on this project.  The due date is the date that the
+ * project is supposed to be finished.
+ *
+ * The sizing is the estimate (in seconds) of how long it will take to 
+ * complete this task.  The precent-complete is the estimate of how
+ * much of this project has been completed.
+ *
+ * The urgency is how time-critical this task is:  does it need an
+ * immediate response?  The importance is a ranking of how important
+ * this task is.  Note that things may be urgent, but not important
+ * (Bob wants me to answer his email today, but I don't really care).
+ * Things can be important but not urgent.  (Its important for me
+ * to pass  this exam, but its not urgent -- I have all school-year 
+ * to study for it.)
+ * 
+ * The project status indicates whether this is an ongoing project or
+ * not.  We really should allow configurable values, so that users
+ * could define multiple stages: e.g. 'testing', 'designing', 
+ * 'on-hold', 'waiting for response', etc.
+ */
+void		gtt_project_set_estimated_start (GttProject *, time_t);
+time_t		gtt_project_get_estimated_start (GttProject *);
+void		gtt_project_set_estimated_end (GttProject *, time_t);
+time_t		gtt_project_get_estimated_end (GttProject *);
+void		gtt_project_set_due_date (GttProject *, time_t);
+time_t		gtt_project_get_due_date (GttProject *);
+void		gtt_project_set_sizing (GttProject *, int);
+int		gtt_project_get_sizing (GttProject *);
+void		gtt_project_set_percent_complete (GttProject *, int);
+int		gtt_project_get_percent_complete (GttProject *);
+void		gtt_project_set_urgency (GttProject *, GttRank);
+GttRank		gtt_project_get_urgency (GttProject *);
+void		gtt_project_set_importance (GttProject *, GttRank);
+GttRank		gtt_project_get_importance (GttProject *);
+void		gtt_project_set_status (GttProject *, GttProjectStatus);
+GttProjectStatus		gtt_project_get_status (GttProject *);
+
 
 /* The id is a simple id, handy for .. stuff */
 void 		gtt_project_set_id (GttProject *, int id);
@@ -298,6 +362,14 @@ void project_list_sort_year(void);
 void project_list_sort_ever(void);
 void project_list_sort_title(void);
 void project_list_sort_desc(void);
+void project_list_sort_start(void);
+void project_list_sort_end(void);
+void project_list_sort_due(void);
+void project_list_sort_sizing(void);
+void project_list_sort_percent(void);
+void project_list_sort_urgency(void);
+void project_list_sort_importance(void);
+void project_list_sort_status(void);
 
 /* The gtt_project_list_total_secs_day() routine returns the
  *    total number of seconds spent on all projects today,

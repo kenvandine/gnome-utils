@@ -82,6 +82,16 @@ gtt_err_to_string (GttErrCode code, const char * filename)
 				  "seems to be corrupt\n"),
 				filename);
 			break;
+		case GTT_UNKNOWN_TOKEN:
+			ret = g_strdup_printf (
+				_("An unknown token was found during the parsing of\n\t%s\n"),
+				filename);
+			break;
+		case GTT_UNKNOWN_VALUE:
+			ret = g_strdup_printf (
+				_("An unknown value was found during the parsing of\n\t%s\n"),
+				filename);
+			break;
 		case GTT_CANT_WRITE_CONFIG:
 			ret = g_strdup_printf (
 				_("Cannot write the config file\n\t%s\n"),
