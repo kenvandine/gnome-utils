@@ -1,3 +1,10 @@
+2002-06-04  George Lebl <jirka@5z.com>
+
+	* logview.c: use _UI_SUBTREE instead of _UI_SUBTREE_STOCK since 
+	that makes translations actually work. _UI_SUBTREE_STOCK means
+	that the string comes from libgnomeui which in this case it 
+	doesn't.
+
 2002-05-31  Hidetoshi Tajima <hidetoshi.tajima@sun.com>
 
 	* Makefile.am: Update for #83627.

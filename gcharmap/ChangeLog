@@ -1,3 +1,10 @@
+2002-06-10  Malcolm Tredinnick <malcolm@commsecure.com.au>
+
+        * src/menus.c: use _UI_SUBTREE instead of _UI_SUBTREE_STOCK 
+	since that makes translations actually work. _UI_SUBTREE_STOCK 
+	means that the string comes from libgnomeui which in these cases
+	it doesn't.
+	
 2002-06-01  Ross Burton  <ross@hactar>
 
 	* src/interface.c (main_app_create_ui): Pass a reference to the
