@@ -25,14 +25,12 @@
  * 0 pixels wide. This hack fixes this. */
 #define CLIST_HEADER_HACK
 
-/* I'm having some trouble with the gtk_clist_moveto. So it can be disabled
- * here */
-#define CLIST_USE_MOVETO
-
 #define TOTAL_COL	0
 #define TIME_COL	1
 #define TITLE_COL	2
 #define DESC_COL	3
+
+int clist_header_width_set = 0;
 
 static void
 select_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
@@ -107,6 +105,8 @@ clist_header_hack(GtkWidget *window, GtkWidget *w)
 	GdkGCValues vals;
 	int width;
 
+	if (clist_header_width_set) return;
+	clist_header_width_set = 1;
 	style = gtk_widget_get_style(w);
 	g_return_if_fail(style != NULL);
 	if (!style->fg_gc[0]) {
@@ -181,22 +181,11 @@ setup_clist(void)
 		cur_proj_set(NULL);
 	} else if (cur_proj) {
 		gtk_clist_select_row(GTK_CLIST(glist), cur_proj->row, 0);
-#ifdef CLIST_USE_MOVETO
-#ifdef DEBUG
-		g_message("moveto: %d", cur_proj->row);
-#endif
-		gtk_clist_moveto(GTK_CLIST(glist), cur_proj->row, 0,
-				  0.5, -1);
-#endif /* CLIST_USE_MOVETO */
 	}
 	err_init();
 	if (!GTK_WIDGET_MAPPED(window)) {
 		gtk_widget_show(window);
 #ifdef CLIST_HEADER_HACK
-		/*
-		if (!GTK_WIDGET_REALIZED(glist))
-			gtk_widget_realize(window);
-		 */
 		clist_header_hack(window, glist);
 #endif /* CLIST_HEADER_HACK */
 	}
@@ -206,6 +195,10 @@ setup_clist(void)
 		gtk_clist_column_titles_show(GTK_CLIST(glist));
 	else
 		gtk_clist_column_titles_hide(GTK_CLIST(glist));
+	if (cur_proj) {
+		gtk_clist_moveto(GTK_CLIST(glist), cur_proj->row, -1,
+				 0.5, 0.0);
+	}
 }
 
 

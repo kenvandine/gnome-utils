@@ -173,48 +173,6 @@ void cur_proj_set(project *proj)
 
 
 
-static void unlock_quit(void)
-{
-	unlock_gtt();
-	gtk_main_quit();
-}
-
-
-
-static void init_list_2(GtkWidget *w, gint butnum)
-{
-	if (butnum == 1) unlock_quit();
-	else
-                setup_clist();
-}
-
-static void init_list(void)
-{
-	if (!project_list_load(NULL)) {
-#ifdef ENOENT
-                if (errno == ENOENT) {
-                        errno = 0;
-                        setup_clist();
-                        return;
-                }
-#else
-#warning ENOENT not defined?
-#endif
-		msgbox_ok_cancel(_("Error"),
-				 _("An error occured while reading the "
-                                   "configuration file.\n"
-				   "Shall I setup a new configuration?"),
-				 GNOME_STOCK_BUTTON_YES, 
-				 GNOME_STOCK_BUTTON_NO,
-				 GTK_SIGNAL_FUNC(init_list_2));
-	} else {
-                setup_clist();
-	}
-}
-
-
-
-
 void app_new(int argc, char *argv[])
 {
 	GtkWidget *vbox;
@@ -223,6 +181,7 @@ void app_new(int argc, char *argv[])
 	window = gnome_app_new("gtt", APP_NAME " " VERSION);
         gtk_window_set_wmclass(GTK_WINDOW(window),
                                "gtt", "GTimeTracker");
+	gtk_window_set_policy(GTK_WINDOW(window), TRUE, TRUE, FALSE);
 	menus_create(GNOME_APP(window));
 	widget = build_toolbar();
         gtk_widget_show(widget);
@@ -265,9 +224,5 @@ void app_new(int argc, char *argv[])
 	gnome_app_set_contents(GNOME_APP(window), vbox);
 
 	gtk_widget_realize(window);
-
-	/* start timer before the state of the menu items is set */
-	start_timer();
-	init_list();
 }
 

@@ -420,6 +420,9 @@ project_list_load(char *fname)
         if (got_default) {
                 return project_list_load_old(fname);
         }
+	if ((cur_proj) && (cur_proj->title) && (!first_proj_title)) {
+		first_proj_title = g_strdup(cur_proj->title);
+	}
         project_list_destroy();
         _n = config_show_tb_new;
         _f = config_show_tb_file;
@@ -430,6 +433,11 @@ project_list_load(char *fname)
         _h = config_show_tb_help;
         _e = config_show_tb_exit;
         last_timer = atol(gnome_config_get_string(GTT"Misc/LastTimer=-1"));
+	if (gnome_config_get_int(GTT"Misc/TimerRunning=1")) {
+		start_timer();
+	} else {
+		stop_timer();
+	}
         config_show_secs = gnome_config_get_bool(GTT"Display/ShowSecs=false");
         config_show_clist_titles = gnome_config_get_bool(GTT"Display/ShowTableHeader=false");
         config_show_tb_icons = gnome_config_get_bool(GTT"Toolbar/ShowIcons=true");
@@ -449,6 +457,15 @@ project_list_load(char *fname)
         config_logfile_use = gnome_config_get_bool(GTT"LogFile/Use=false");
         config_logfile_name = gnome_config_get_string(GTT"LogFile/Filename");
         config_logfile_min_secs = gnome_config_get_int(GTT"LogFile/MinSecs");
+	for (i = 0; i < GTK_CLIST(glist)->columns; i++) {
+		sprintf(s, GTT"CList/ColumnWidth%d=0", i);
+		num = gnome_config_get_int(s);
+		if (num) {
+			clist_header_width_set = 1;
+			gtk_clist_set_column_width(GTK_CLIST(glist),
+						   i, num);
+		}
+	}
         num = gnome_config_get_int(GTT"Misc/NumProjects=0");
         for (i = 0; i < num; i++) {
                 proj = project_new();
@@ -458,6 +475,7 @@ project_list_load(char *fname)
 		if ((proj->title) && (first_proj_title)) {
 			if (0 == strcmp(proj->title, first_proj_title)) {
 				cur_proj_set(proj);
+				g_free(first_proj_title);
 				first_proj_title = NULL;
 			}
 		}
@@ -468,6 +486,7 @@ project_list_load(char *fname)
                 sprintf(s, GTT"Project%d/SecsDay=0", i);
                 proj->day_secs = gnome_config_get_int(s);
         }
+	g_free(first_proj_title);
 	first_proj_title = NULL;
         update_status_bar();
         if ((_n != config_show_tb_new) ||
@@ -495,6 +514,7 @@ project_list_save(char *fname)
         old_num = gnome_config_get_int(GTT"Misc/NumProjects=0");
         sprintf(s, "%ld", last_timer);
         gnome_config_set_string(GTT"Misc/LastTimer", s);
+        gnome_config_set_int(GTT"Misc/TimerRunning", (main_timer != 0));
         gnome_config_set_bool(GTT"Display/ShowSecs", config_show_secs);
         gnome_config_set_bool(GTT"Display/ShowTableHeader", config_show_clist_titles);
         gnome_config_set_bool(GTT"Toolbar/ShowIcons", config_show_tb_icons);
@@ -523,6 +543,10 @@ project_list_save(char *fname)
         else
                 gnome_config_clean_key(GTT"LogFile/Filename");
         gnome_config_set_int(GTT"LogFile/MinSecs", config_logfile_min_secs);
+	for (i = 0; i < GTK_CLIST(glist)->columns; i++) {
+		sprintf(s, GTT"CList/ColumnWidth%d", i);
+		gnome_config_set_int(s, GTK_CLIST(glist)->column[i].width);
+	}
         i = 0;
         for (pl = plist; pl; pl = pl->next) {
                 if (!pl->proj) continue;

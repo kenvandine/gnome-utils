@@ -67,10 +67,6 @@ void new_dialog_ok(char *title, GtkWidget **dlg, GtkBox **vbox,
 	if (sigfunc)
 	       gnome_dialog_button_connect(GNOME_DIALOG(*dlg), 0,
 					   sigfunc, data);
-
-	/* I took out the accelerator stuff because it belongs 
-	   in gnome-dialog, eventually. I don't think it was compiled
-	   anyway. */
 }
 
 
@@ -88,7 +84,7 @@ void new_dialog_ok_cancel(char *title, GtkWidget **dlg, GtkBox **vbox,
         sprintf(tmp, APP_NAME " - %s", title);
 	*dlg = gnome_dialog_new(tmp, s_ok, s_cancel, NULL);
 	dialog_setup(GNOME_DIALOG(*dlg), vbox);
-	
+
 	if (sigfunc)
 		gnome_dialog_button_connect(GNOME_DIALOG(*dlg), 0,
 					    sigfunc, data);

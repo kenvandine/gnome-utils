@@ -161,6 +161,8 @@ void app_new(int argc, char *argv[]);
 
 /* clist.c */
 
+extern int clist_header_width_set;
+
 GtkWidget *create_clist(void);
 void setup_clist(void);
 void clist_add(project *p);

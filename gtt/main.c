@@ -94,6 +94,36 @@ void unlock_gtt(void)
 
 
 
+static void init_list_2(GtkWidget *w, gint butnum)
+{
+	if (butnum == 1) { unlock_gtt(); gtk_main_quit(); }
+	else
+                setup_clist();
+}
+
+static void init_list(void)
+{
+	if (!project_list_load(NULL)) {
+                if (errno == ENOENT) {
+                        errno = 0;
+                        setup_clist();
+                        return;
+                }
+		msgbox_ok_cancel(_("Error"),
+				 _("An error occured while reading the "
+                                   "configuration file.\n"
+				   "Shall I setup a new configuration?"),
+				 GNOME_STOCK_BUTTON_YES, 
+				 GNOME_STOCK_BUTTON_NO,
+				 GTK_SIGNAL_FUNC(init_list_2));
+	} else {
+                setup_clist();
+	}
+}
+
+
+
+
 /*
  * session management
  */
@@ -159,7 +189,7 @@ argp_parser(int key, char *arg, struct argp_state *state)
 	char c;
 
 	if (key == 's') {
-		first_proj_title = arg;
+		first_proj_title = g_strdup(arg);
 		return 0;
 	}
 	if (key != 'g') return ARGP_ERR_UNKNOWN;
@@ -265,8 +295,13 @@ int main(int argc, char *argv[])
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
 			   GTK_SIGNAL_FUNC(quit_app), NULL);
 
+	/* start timer before the state of the menu items is set */
+	start_timer();
+	init_list();
 	log_start();
+
 	gtk_main();
+
 	unlock_gtt();
 	return 0;
 }
