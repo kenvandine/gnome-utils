@@ -245,7 +245,9 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 	if (!geometry_string) {
 		return;
 	}
-	// xxx gtk_window_parse_geometry(GTK_WIDGET(window),geometry_string);
+#if OLD_GNOME_12_CODE
+	/* XXX get rid of this at earliest convenience, 
+	 * after testing, of course ...  */
 	if (gnome_parse_geometry(geometry_string, &x, &y, &w, &h)) {
 		if ((x != -1) && (y != -1)) {
 			gtk_widget_set_uposition(GTK_WIDGET(window), x, y);
@@ -255,7 +257,15 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 			gtk_window_set_default_size(GTK_WINDOW(window), w, h);
 			geom_size_override=TRUE;
 		}
-	} else {
+	} 
+#else
+	if (gtk_window_parse_geometry(GTK_WINDOW(window),geometry_string))
+	{
+		geom_size_override=TRUE;
+	}
+#endif
+	else 
+	{
 		gnome_app_error(GNOME_APP(window),
 			_("Couldn't understand geometry (position and size)\n"
 			  " specified on command line"));

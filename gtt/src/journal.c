@@ -23,7 +23,7 @@
 #include <errno.h>
 #include <glade/glade.h>
 #include <gnome.h>
-#include <gtkhtml/gtkhtml.h>
+#include <libgtkhtml/gtkhtml.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -41,8 +41,8 @@
 
 typedef struct wiggy_s {
 	GttGhtml *gh;    
-	GtkHTML *htmlw;
-	GtkHTMLStream *handle;
+	HtmlView *html_view;
+	HtmlDocument *html_doc;
 	GtkWidget *top;
 	GtkWidget *interval_popup;
 	GtkWidget *interval_paste;
@@ -68,7 +68,9 @@ wiggy_open (GttGhtml *pl, gpointer ud)
 	Wiggy *wig = (Wiggy *) ud;
 
 	/* open the browser for writing */
-	wig->handle = gtk_html_begin_content(wig->htmlw, "text/html");
+	// wig->handle = gtk_html_begin_content(wig->htmlw, "text/html");
+	html_document_clear (wig->html_doc);
+	html_document_open_stream (wig->html_doc, "text/html");
 }
 
 static void
@@ -77,8 +79,9 @@ wiggy_close (GttGhtml *pl, gpointer ud)
 	Wiggy *wig = (Wiggy *) ud;
 
 	/* close the browser stream */
-	gtk_html_end (wig->htmlw, wig->handle, GTK_HTML_STREAM_OK);
-	wig->handle = NULL;
+	// gtk_html_end (wig->htmlw, wig->handle, GTK_HTML_STREAM_OK);
+	html_document_close_stream (wig->html_doc);
+	wig->html_doc = NULL;
 }
 
 static void
@@ -87,18 +90,19 @@ wiggy_write (GttGhtml *pl, const char *str, size_t len, gpointer ud)
 	Wiggy *wig = (Wiggy *) ud;
 
 	/* write to the browser stream */
-	gtk_html_write (wig->htmlw, wig->handle, str, len);
+	// gtk_html_write (wig->htmlw, wig->handle, str, len);
+	html_document_write_stream (wig->html_doc, str, len);
 }
 
 static void
 wiggy_error (GttGhtml *pl, int err, const char * msg, gpointer ud)
 {
 	Wiggy *wig = (Wiggy *) ud;
-	GtkHTML *htmlw = wig->htmlw;
-	GtkHTMLStream *han;
+	HtmlDocument *doc = wig->html_doc;
 	char buff[1000], *p;
 
-	han = gtk_html_begin_content(htmlw, "text/html");
+	html_document_clear (doc);
+	html_document_open_stream (doc, "text/html");
 
 	if (404 == err)
 	{
@@ -110,7 +114,8 @@ wiggy_error (GttGhtml *pl, int err, const char * msg, gpointer ud)
 		             (msg? (char*) msg : _("(null)")));
 		
 		p = g_stpcpy (p, "</body></html>");
-		gtk_html_write (htmlw, han, buff, p-buff);
+		// gtk_html_write (htmlw, han, buff, p-buff);
+		html_document_write_stream (doc, buff, p-buff);
 	}
 	else
 	{
@@ -118,10 +123,12 @@ wiggy_error (GttGhtml *pl, int err, const char * msg, gpointer ud)
 		p = g_stpcpy (p, "<html><body><h1>");
 		p = g_stpcpy (p, _("Unkown Error"));
 		p = g_stpcpy (p, "</h1></body></html>");
-		gtk_html_write (htmlw, han, buff, p-buff);
+		// gtk_html_write (htmlw, han, buff, p-buff);
+		html_document_write_stream (doc, buff, p-buff);
 	}
 	
-	gtk_html_end (htmlw, han, GTK_HTML_STREAM_OK);
+	// gtk_html_end (htmlw, han, GTK_HTML_STREAM_OK);
+	html_document_close_stream (doc);
 
 }
 
@@ -176,7 +183,8 @@ filesel_ok_clicked_cb (GtkWidget *w, gpointer data)
 	}
 	else
 	{
-		gtk_html_save (wig->htmlw, raw_html_receiver, fh);
+		// gtk_html_save (wig->htmlw, raw_html_receiver, fh);
+		g_warning ("save to file not currently supported\n");
 		fclose (fh);
 	}
 
@@ -481,7 +489,7 @@ on_refresh_clicked_cb (GtkWidget *w, gpointer data)
 /* html events */
 
 static void
-html_link_clicked_cb(GtkHTML * html, const gchar * url, gpointer data) 
+html_link_clicked_cb(HtmlDocument *doc, const gchar * url, gpointer data) 
 {
 	Wiggy *wig = (Wiggy *) data;
 	gpointer addr = NULL;
@@ -514,7 +522,7 @@ html_link_clicked_cb(GtkHTML * html, const gchar * url, gpointer data)
 }
 
 static void
-html_on_url_cb(GtkHTML * html, const gchar * url, gpointer data) 
+html_on_url_cb(HtmlDocument *doc, const gchar * url, gpointer data) 
 {
 	// printf ("hover over the url show hover help duude=%s\n", url);
 }
@@ -525,7 +533,7 @@ html_on_url_cb(GtkHTML * html, const gchar * url, gpointer data)
 static void
 do_show_report (const char * report, GttProject *prj)
 {
-	GtkWidget *jnl_top, *jnl_viewport, *jnl_browser;
+	GtkWidget *jnl_top, *jnl_viewport;
 	GladeXML  *glxml;
 	Wiggy *wig;
 
@@ -535,8 +543,10 @@ do_show_report (const char * report, GttProject *prj)
 	jnl_viewport = glade_xml_get_widget (glxml, "Journal ScrollWin");
 
 	/* create browser, plug it into the viewport */
-	jnl_browser = gtk_html_new();
-	gtk_container_add(GTK_CONTAINER(jnl_viewport), jnl_browser);
+	wig->html_doc = html_document_new();
+	wig->html_view = HTML_VIEW(html_view_new());
+        html_view_set_document (wig->html_view, wig->html_doc);
+	gtk_container_add(GTK_CONTAINER(jnl_viewport), GTK_WIDGET(wig->html_view));
 
 	/* ---------------------------------------------------- */
 	/* signals for the browser, and the journal window */
@@ -546,7 +556,6 @@ do_show_report (const char * report, GttProject *prj)
 	wig->filesel = NULL;
 
 	wig->top = jnl_top;
-	wig->htmlw = GTK_HTML(jnl_browser);
 
 	wig->gh = gtt_ghtml_new();
 	gtt_ghtml_set_stream (wig->gh, wig, wiggy_open, wiggy_write, 
@@ -564,14 +573,16 @@ do_show_report (const char * report, GttProject *prj)
 	glade_xml_signal_connect_data (glxml, "on_refresh_clicked",
 	        GTK_SIGNAL_FUNC (on_refresh_clicked_cb), wig);
 	  
-	gtk_signal_connect(GTK_OBJECT(jnl_browser), "link_clicked",
+	gtk_signal_connect(GTK_OBJECT(wig->html_doc), "link_clicked",
 		GTK_SIGNAL_FUNC(html_link_clicked_cb), wig);
 
-	gtk_signal_connect(GTK_OBJECT(jnl_browser), "on_url",
+#if LATER
+	gtk_signal_connect(GTK_OBJECT(wig->html_doc), "on_url",
 		GTK_SIGNAL_FUNC(html_on_url_cb), wig);
+#endif
 
 
-	gtk_widget_show (jnl_browser);
+	gtk_widget_show (GTK_WIDGET(wig->html_view));
 	gtk_widget_show (jnl_top);
 
 	/* ---------------------------------------------------- */
