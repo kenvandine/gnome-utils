@@ -226,7 +226,7 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 	    window->curlog->current_path = gtk_tree_path_copy (selected_path);
 	    window->curlog->selected_line_first = selected_first;
 	    window->curlog->selected_line_last = selected_last;
-	    g_list_foreach (selected_paths, gtk_tree_path_free, NULL);
+	    g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
 	    g_list_free (selected_paths);
     }
 }

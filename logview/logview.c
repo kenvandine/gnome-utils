@@ -69,6 +69,7 @@ static void logview_menus_set_state (LogviewWindow *logviewwindow);
 static void logview_search (GtkAction *action, GtkWidget *callback_data);
 static void logview_help (GtkAction *action, GtkWidget *callback_data);
 static void logview_copy (GtkAction *action, GtkWidget *callback_data);
+static void logview_select_all (GtkAction *action, GtkWidget *callback_data);
 static int logview_count_logs (void);
 gboolean window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
 				 gpointer data);
@@ -97,10 +98,12 @@ static GtkActionEntry entries[] = {
 
 	{ "Copy", GTK_STOCK_COPY, N_("Copy"), "<control>C", N_("Copy the selection"),
 	  G_CALLBACK (logview_copy) },
+	{ "SelectAll", NULL, N_("Select All"), "<Control>A", N_("Select the entire log"),
+	  G_CALLBACK (logview_select_all) },
 	{ "Search", GTK_STOCK_FIND, N_("_Find..."), "<control>F", N_("Find pattern in logs"),
 	  G_CALLBACK (logview_search) },
 
-	{"CollapseAll", NULL, N_("Collapse _All"), "<control>A", N_("Collapse all the rows"),
+	{"CollapseAll", NULL, N_("Collapse _All"), NULL, N_("Collapse all the rows"),
 	 G_CALLBACK (toggle_collapse_rows) },
 
        	{ "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
@@ -134,6 +137,7 @@ static const char *ui_description =
 	"		</menu>"
 	"		<menu action='EditMenu'>"
 	"                       <menuitem action='Copy'/>"
+	"                       <menuitem action='SelectAll'/>"
 	"			<menuitem action='Search'/>"
 	"		</menu>"	
 	"		<menu action='ViewMenu'>"
@@ -767,12 +771,15 @@ logview_copy (GtkAction *action, GtkWidget *callback_data)
 	int nline, i;
 	gchar *text, **lines;
 
-	if (window->curlog->selected_line_first > 0 && window->curlog->selected_line_last > 0) {
+	if (window->curlog->selected_line_first > -1 && window->curlog->selected_line_last > -1) {
 		nline = window->curlog->selected_line_last - window->curlog->selected_line_first + 1;
-		lines = g_new0 (gpointer, nline+1);
+		lines = g_new0(gchar *, (nline));
 		for (i=0; i<=nline; i++) {
-			line = (window->curlog->lines)[window->curlog->selected_line_first + i];
-			lines[i] = g_strdup_printf ("%s %s %s", line->hostname, line->process, line->message);
+			if (window->curlog->selected_line_first + i < window->curlog->total_lines) {
+				line = (window->curlog->lines)[window->curlog->selected_line_first + i];
+				lines[i] = g_strdup_printf ("%s %s %s", line->hostname, line->process, line->message);
+			} else
+				lines[i] = NULL;
 		}
 		lines[nline] = NULL;
 		text = g_strjoinv ("\n", lines);
@@ -780,6 +787,15 @@ logview_copy (GtkAction *action, GtkWidget *callback_data)
 		g_free (text);
 		g_strfreev (lines);
 	}
+}
+
+static void
+logview_select_all (GtkAction *action, GtkWidget *callback_data)
+{
+	GtkTreeSelection *selection;
+	LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->view));
+	gtk_tree_selection_select_all (selection);
 }
 
 static void

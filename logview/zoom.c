@@ -175,7 +175,7 @@ repaint_zoom (LogviewWindow *window)
 
        if (window->curlog->current_line_no <= 0 || 
            ((line = (window->curlog->lines)[window->curlog->current_line_no]) == NULL)) {
-       	   return FALSE;
+	       return FALSE;
        }
 
        date.tm_mon = line->month;
