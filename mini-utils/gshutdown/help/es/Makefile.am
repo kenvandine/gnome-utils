@@ -3,7 +3,7 @@
 EXTRA_DIST = index.html \
 	     topic.dat
 
-gshutdown_helpdir = $(datadir)/gnome/help/gshutdown/C
+gshutdown_helpdir = $(datadir)/gnome/help/gshutdown/es
 
 install-data-local:
 	$(mkinstalldirs) $(gshutdown_helpdir)
