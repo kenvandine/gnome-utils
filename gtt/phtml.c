@@ -29,15 +29,20 @@
 
 typedef enum {
 	NUL=0,
+
+	/* task things */
 	MEMO = 1,
 	TASK_TIME,
 	BILLABLE,
 	BILLRATE,
 	VALUE,
 	BILLABLE_VALUE,
+
+	/* interval things */
 	START_DATIME =100,
 	STOP_DATIME,
 	ELAPSED,
+	FUZZ,
 
 } TableCol;
 
@@ -134,6 +139,9 @@ show_table (GttPhtml *phtml, GttProject *prj, int show_links, int invoice)
 				break;
 			case ELAPSED:
 				p = stpcpy (p, _("Elapsed"));
+				break;
+			case FUZZ:
+				p = stpcpy (p, _("Start Time Fuzziness"));
 				break;
 			default:
 				p = stpcpy (p, _("Error - Unknown"));
@@ -362,6 +370,13 @@ show_table (GttPhtml *phtml, GttProject *prj, int show_links, int invoice)
 		p = stpcpy (p, "&nbsp;&nbsp;");
 		break;
 	}
+	case FUZZ:
+	{
+		p = stpcpy (p, "<td>&nbsp;&nbsp;");
+		p = print_hours_elapsed (p, 40, gtt_interval_get_fuzz(ivl), TRUE);
+		p = stpcpy (p, "&nbsp;&nbsp;");
+		break;
+	}
 	default:
 		p = stpcpy (p, "<td>");
 				}
@@ -522,6 +537,12 @@ dispatch_phtml (GttPhtml *phtml, char *tok, GttProject*prj)
 		if (0 == strncmp (tok, "$stop_datime", 12))
 		{
 			phtml->invl_cols[phtml->ninvl_cols] = STOP_DATIME;
+			if (NCOL-1 > phtml->ninvl_cols) phtml->ninvl_cols ++;
+		}
+		else
+		if (0 == strncmp (tok, "$fuzz", 5))
+		{
+			phtml->invl_cols[phtml->ninvl_cols] = FUZZ;
 			if (NCOL-1 > phtml->ninvl_cols) phtml->ninvl_cols ++;
 		}
 		else
