@@ -13,7 +13,10 @@
     <copyright>
       <year>2000</year>
       <holder>Helix Code, Inc.</holder>
-
+    </copyright>
+    <copyright>
+      <year>2001</year>
+      <holder>Linas Vepstas</holder>
     </copyright>
 
     <legalnotice id="legalnotice">
@@ -34,7 +37,7 @@
     </legalnotice>
 
     <releaseinfo> 
-	 This is version 2.0 of the GNOME Time Tracker manual.
+	 This is version 2.0.1 of the GNOME Time Tracker manual.
      </releaseinfo> 
 <!-- this is version of manual, not application --> 
   </artheader>
@@ -50,7 +53,8 @@
       <application>GNOME Time Tracker</application> is a program for managing workflow
       and keeping track of the time spent on a given project. 
 
-      Once you have learned to use<application>GNOME Time Tracker</application>effectively, it can be of great help.
+      Once you have learned to use <application>GNOME Time Tracker</application>
+      effectively, it can be of great help.
       You can use it to optimize your work and decide if you are spending too
       much time on unimportant tasks.  You can count the hours
       you spend on a project that is billed by the hour. You may discover many other
@@ -69,6 +73,15 @@
       Menu</guimenu>, or by running the command
       <command>gtt</command> on the commandline.  
     </para>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<para>
+<emphasis>
+Notice:  The current version of GTT has many, many new features which are not
+documented in this manual.  A few of the features documented below might work 
+slightly differently in this new version.
+</emphasis>
+</para>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
   </sect2>
 </sect1>
 
@@ -77,17 +90,29 @@
    <title>Using GNOME Time Tracker</title>
    <sect2 id="working">
       <title>Working with GNOME Time Tracker</title>
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<para>
+<emphasis>
+Notice:  The current version of GTT has many, many new features which are not
+documented in this manual.  A few of the features documented below might work 
+slightly differently in this new version.
+</emphasis>
+</para>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
       <para> <application>GNOME Time Tracker</application> can be
     used to keep track of the amount of time you spend on different
     things you do.  You do this by defining several projects
-    and then, as you go through the day, telling<application>GNOME Time Tracker</application> which
+    and then, as you go through the day, telling
+    <application>GNOME Time Tracker</application> which
     project you're working on.  It will tell you how much time you spend
     on each project each day, the total time spent on each project,
     and the amount of time logged on all projects each day.
     </para>
 
     <para>
-        Unfortunately,<application>GNOME Time Tracker</application> isn't particularly smart: it won't turn the timer off for you if you 
+      Unfortunately, <application>GNOME Time Tracker</application> 
+      isn't particularly smart: it won't turn the timer off for you if you 
       take a break for a quick game of solitaire and it turns into several hours of distraction.
       When you stop work on a project, be sure to turn off
       the timer by clicking the <guibutton>Timer</guibutton> button or using <guimenuitem>
@@ -550,6 +575,15 @@ See <link linkend="preferences"></link> for more information.
 <!-- =============New section============================= --> 
   <sect1 id="preferences">
       <title>Customization</title> 
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<para>
+<emphasis>
+Notice:  The current version of GTT has many, many new features which are not
+documented in this manual.  A few of the features documented below might work 
+slightly differently in this new version.
+</emphasis>
+</para>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
       <para>
       To change default settings, select the
       <guimenuitem>Preferences</guimenuitem> command in
@@ -778,6 +812,15 @@ See <link linkend="preferences"></link> for more information.
        <title>Additional GNOME Time Tracker Dialogs</title>
          <sect2 id="properties">  
 	<title>The Properties Dialog</title>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<para>
+<emphasis>
+Notice:  The current version of GTT has many, many new features which are not
+documented in this manual.  A few of the features documented below might work 
+slightly differently in this new version.
+</emphasis>
+</para>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
         <para>In this dialog, you can view and edit all the properties of a project:
 
         <itemizedlist>      
@@ -825,30 +868,21 @@ See <link linkend="preferences"></link> for more information.
 <!-- =============New section============================= -->
   <sect1 id="bugs">
     <title>Known bugs and limitations</title>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<para>
+<emphasis>
+Notice:  The current version of GTT has many, many new features which are not
+documented in this manual.  A few of the features documented below might work 
+slightly differently in this new version.
+</emphasis>
+</para>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
       <para>
         <itemizedlist>
           <listitem>
 	    <para>
-	     If you alter the day's time in the project properties window, it does not affect the total time.
-            </para>
-          </listitem>
-          <listitem>
-	    <para>
-	      You can enter negative times for projects; negative times will display strangely.
-            </para>
-          </listitem>
-          <listitem>
-	    <para>
 	      Some effort has been put into recovering from dying X servers, but there is no guarantee that
               values will be saved if the application dies unexpectedly.  There is no autosave function.
-            </para>
-          </listitem>
-	   <listitem>
-	    <para>
-	      The <guibutton>OK</guibutton> button in the preferences dialog may not work &mdash;
-              it remains greyed out even after default values have been altered.  You must click 
-              <guibutton>Apply</guibutton> 
-              and then <guibutton>Close</guibutton> to keep values you have changed.
             </para>
           </listitem>
           <listitem>
@@ -873,11 +907,16 @@ See <link linkend="preferences"></link> for more information.
        <author>
            <firstname>Eckehard</firstname> 
            <surname>Berns</surname> 
+       </author>
+       and
+       <author>
+           <firstname>Linas</firstname> 
+           <surname>Vepstas</surname> 
        </author>.
-       It is no
-      longer maintained.  If you wish to be the maintainer of the application,
-      please contact the author at <email>eb@berns.i-s-o.net</email>.
-      Please send all comments, suggestions, and bug reports regarding the software to the
+       It is currently maintained by Linas Vepstas <email>linas@linas.org</email>.
+
+      Please send all comments, suggestions, and bug reports to Linas, as well as 
+      to the 
       <ulink url="http://bugzilla.gnome.org">GNOME bug
       tracking database</ulink>.  Instructions for submitting bug
       reports can be found <ulink   url="http://bugs.gnome.org/Reporting.html" type="http">
