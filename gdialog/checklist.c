@@ -194,11 +194,14 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 			add_atk_relation(GTK_WIDGET(cl), GTK_WIDGET(labellist->data), ATK_RELATION_LABELLED_BY);
 		}
 
-		if(flag!=FLAG_CHECK)
+		if(flag!=FLAG_CHECK || separate_output)
 		{
 			format=0;
 			selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (cl));
-			gtk_tree_selection_set_mode (selection,GTK_SELECTION_BROWSE);
+            if (!separate_output)
+			   gtk_tree_selection_set_mode (selection,GTK_SELECTION_BROWSE);
+            else 
+               gtk_tree_selection_set_mode (selection,GTK_SELECTION_MULTIPLE);
 		}
 		else
 		{
