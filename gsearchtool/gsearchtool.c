@@ -68,7 +68,7 @@ static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TEXT, "'!' -name '%s'", N_("File is not named"), FALSE },
 	{ SEARCH_CONSTRAINT_TEXT, "-regex '%s'", N_("File matches regular expression"), FALSE }, 
 	{ SEARCH_CONSTRAINT_BOOL, "-follow", N_("Follow symbolic links"), FALSE },
-	{ SEARCH_CONSTRAINT_BOOL, "-mount", N_("Search only this filesystem"), FALSE },
+	{ SEARCH_CONSTRAINT_BOOL, "-mount", N_("Search other filesystems"), FALSE },
 	{ SEARCH_CONSTRAINT_END, NULL, NULL, FALSE}
 }; 
 
@@ -129,6 +129,7 @@ build_search_command (void)
 	} 
 	else {
 		GList *list;
+		gboolean disable_mount_argument = FALSE;
 		
 		search_command.regex_matching_enabled = FALSE;
 		search_command.file_is_named_pattern = escape_single_quotes (file_is_named_locale);
@@ -150,8 +151,13 @@ build_search_command (void)
 						
 			switch (templates[constraint->constraint_id].type) {
 			case SEARCH_CONSTRAINT_BOOL:
-				g_string_append_printf(command, "%s ",
+				if (strcmp (templates[constraint->constraint_id].option, "-mount") != 0) {
+					g_string_append_printf(command, "%s ",
 						       templates[constraint->constraint_id].option);
+				}
+				else {
+					disable_mount_argument = TRUE;
+				} 
 				break;
 			case SEARCH_CONSTRAINT_TEXT:
 				if (strcmp (templates[constraint->constraint_id].option, "-regex '%s'") == 0) {
@@ -200,6 +206,11 @@ build_search_command (void)
 			}
 		}
 		search_command.file_is_named_pattern = g_strdup ("*");
+		
+		if (disable_mount_argument != TRUE) {
+			g_string_append (command, "-mount ");
+		}
+		
 		g_string_append (command, "-print ");
 	}
 	g_free (file_is_named_locale);
