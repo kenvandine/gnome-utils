@@ -205,24 +205,17 @@ OpenLogFile (char *filename)
    }
    /* fseek (tlog->fp, -1L, SEEK_END); */
 
-   for (;;)
-   {
-      if (fgets (buffer, sizeof (buffer), tlog->fp) == NULL) {
-        /* printf ("EOF\n"); */
-         break;
-      }
+   while (fgets (buffer, sizeof (buffer), tlog->fp)) {
 
       ++(tlog->total_lines);
       tlog->lines = realloc (tlog->lines, sizeof(*(tlog->lines)) * tlog->total_lines);
-      if (!tlog->lines)
-      {
+      if (!tlog->lines) {
          ShowErrMessage ("Unable to realloc for lines\n");
          return (Log *) NULL;
       }
 
       line = malloc (sizeof(**(tlog->lines)));
-      if (!line)
-      {
+      if (!line) {
          ShowErrMessage ("Unable to malloc for lines[i]\n");
          return (Log *) NULL;
       }
@@ -231,17 +224,15 @@ OpenLogFile (char *filename)
    }
 
    tlog->mon_on = FALSE;
-   fseek(tlog->fp, -1L, SEEK_END);
-   tlog->offset_end = ftell(tlog->fp);
-
-   /* for (i = 0; i < tlog->total_lines; ++i)
-      printf ("line's  string: %s \n", (tlog->lines)[i]->message); */
-
-   if (!tlog->offset_end)
-      printf ("Empty file! \n");
 
    /* Read log stats */
    ReadLogStats (tlog);
+
+   fseek(tlog->fp, 0L, SEEK_END); 
+   tlog->offset_end = ftell(tlog->fp);
+
+   if (!tlog->offset_end)
+      printf ("Empty file! \n");
 
    return tlog;
 
@@ -469,90 +460,53 @@ ReadPageUp (Log * lg, Page * pg)
 
    return pg->isfirstpage;
 }
+#endif
 
 /* ----------------------------------------------------------------------
    NAME:        ReadPageDown
-   DESCRIPTION: Reads a page from the log file.
+   DESCRIPTION: Reads new log lines 
    ---------------------------------------------------------------------- */
 
 int
-ReadPageDown (Log * lg, Page * pg, gboolean exec_actions)
+ReadPageDown (Log *log, LogLine ***inp_mon_lines, gboolean exec_actions)
 {
+   char buffer[1024];
+   gint new_lines_read = 0;
    FILE *fp;
    LogLine *line;
-   char *c, buffer[R_BUF_SIZE + 1];
-   int ch;
-   int ln, len;
+   LogLine **new_mon_lines = NULL;
+   
+   g_return_val_if_fail (log != NULL, FALSE);
 
-   g_return_val_if_fail (lg != NULL, FALSE);
+   fp = log->fp;
 
-   fp = lg->fp;
-   ln = 0;
+   while (fgets (buffer, sizeof (buffer), fp)) {
+       ++new_lines_read;
+       new_mon_lines = realloc (new_mon_lines,
+               sizeof(*(new_mon_lines)) * new_lines_read);
 
-   pg->firstchpos = MAX (0, ftell (fp)-1);
-   pg->islastpage = FALSE;
-   pg->isfirstpage = FALSE;
-   pg->fl = 0;
-   pg->ll = 0;
+       if (!new_mon_lines) {
+           ShowErrMessage ("Unable to realloc for new_mon_lines\n");
+           return 0; 
+       }
 
-   /* Check if its the first page */
-   if ( ftell(fp) == 0)
-     pg->isfirstpage = TRUE;
+       line = malloc (sizeof(**(new_mon_lines)));
+       if (!line) {
+           ShowErrMessage ("Unable to malloc for line\n");
+           return 0;
+       }
+       ParseLine (buffer, line);
+       new_mon_lines[new_lines_read - 1] = line;
 
-   while (ln < LINES_P_PAGE)
-   {
-      c = buffer;
-      ch = fgetc (fp);
-      if (ch == '\n')
-	 ch = fgetc (fp);
-      if (ch == EOF)
-      {
-	 if (ln == 0)
-	   {
-	     if (pg->prev != NULL)
-	       pg->prev->islastpage = TRUE;
-	     else
-	       pg->islastpage = TRUE; 
-	   }
-	 else
-	   pg->islastpage = TRUE;
-	 ungetc (ch, fp);
-	 break;
-      }
-      len = 0;
-      while (ch != '\n')
-      {
-	 if (len < R_BUF_SIZE)
-	 {
-	    *c = ch;
-	    c++;
-	    len++;
-	 }
-	 ch = fgetc (fp);
-	 if (ch == EOF)
-	 {
-	    pg->islastpage = TRUE;
-	    ungetc (ch, fp);
-	    break;
-	 }
-      }
-      ungetc (ch, fp);
-      *c = '\0';
-
-      line = &pg->line[ln];
-      ParseLine (buffer, line);
-
-      if (exec_actions)
-	      exec_action_in_db (lg, line, actions_db);
-
-      ln++;
+       if (exec_actions)
+           exec_action_in_db (log, line, actions_db);
    }
-   pg->ll = ln-1;
-   pg->lastchpos = ftell (fp);
+   *inp_mon_lines = new_mon_lines;
+   log->offset_end = ftell (fp);
 
-   return TRUE;
+   return new_lines_read;
+
 }
-#endif
 
 
 /* ----------------------------------------------------------------------
@@ -1161,13 +1115,12 @@ WasModified (Log *log)
   struct stat filestatus;
 
   stat (log->name, &filestatus);
-  if (filestatus.st_mtime != log->lstats.mtime)
-    {
+  if (filestatus.st_mtime != log->lstats.mtime) {
       log->lstats.mtime = filestatus.st_mtime;
       return TRUE;
-    }
-  else
-    return FALSE;
+  } else
+      return FALSE;
+
 }
 
 /* ----------------------------------------------------------------------

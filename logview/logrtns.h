@@ -35,7 +35,6 @@
 int ReadNPagesUp (Log * lg, Page * pg, int n);
 int ReadNPagesDown (Log * lg, Page * pg, int n);
 int ReadPageUp (Log * lg, Page * pg);
-int ReadPageDown (Log * lg, Page * pg, gboolean exec_actions);
 #endif
 
 int isLogFile (char *filename);
@@ -49,5 +48,6 @@ void UpdateLogStats( Log *log );
 void CloseLog (Log * log);
 time_t GetDate (char *line);
 Log * OpenLogFile (char *filename);
+int ReadPageDown (Log *log, LogLine ***inp_mon_lines, gboolean exec_actions);
 
 #endif /* __LOGRTNS_H__ */

@@ -73,8 +73,6 @@ static int monitorcount = 0;
 static gboolean mon_opts_visible = FALSE, mon_win_visible = FALSE;
 static gboolean mon_exec_actions = FALSE, mon_hide_while_monitor = FALSE;
 static gboolean main_app_hidden = FALSE;
-static long new_pos_offset = 0L;
-static gboolean is_first_line = TRUE;
 
 /* ----------------------------------------------------------------------
    NAME:         MonitorMenu
@@ -523,11 +521,12 @@ mon_read_last_page (Log *log)
    int i;
    GtkTreeIter iter;
    GtkListStore *list;
+   GtkTreePath *path;
  
    log->mon_numlines = 0;
    
    if (!log->total_lines)
-      return; 
+       return; 
 
    for (i = 5; i; --i) {
        mon_format_line (buffer, sizeof(buffer), 
@@ -538,6 +537,10 @@ mon_read_last_page (Log *log)
        gtk_list_store_set (list, &iter, 0, buffer, -1);
        log->mon_numlines++;
    }
+   path = gtk_tree_model_get_path (GTK_TREE_MODEL (list), &iter);
+   gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (log->mon_lines),
+       path, NULL, TRUE, 0, 0);
+   gtk_tree_path_free (path);
  
 }
 
@@ -550,62 +553,35 @@ mon_read_last_page (Log *log)
 void
 mon_read_new_lines (Log *log)
 {
-#ifdef FIXME
-  Page pg;
-  char buffer[1024], buf[10];
-  int i,j;
-  GtkTreeIter iter;
-  GtkListStore *list;
-  GtkTreePath *path;
-  pg.prev = NULL;
+   char buffer[1024];
+   int i;
+   gint lines_read = 0;
+   LogLine **lines;
+   GtkTreeIter iter;
+   GtkTreePath *path;
+   GtkListStore *list;
 
-  if (is_first_line)
-    {
-      new_pos_offset = log->offset_end;
-      is_first_line = FALSE;
-    }
-  fseek (log->fp, new_pos_offset, SEEK_SET);
-  
-  list = (GtkListStore *)
-          gtk_tree_view_get_model (GTK_TREE_VIEW(log->mon_lines));
+   fseek (log->fp, log->offset_end, SEEK_SET);
 
-  /* Read pages into buffers --------------------------- */
-  ReadPageDown (log, &pg, mon_exec_actions);
+   list = (GtkListStore *)
+   gtk_tree_view_get_model (GTK_TREE_VIEW(log->mon_lines));
 
-  /* Get last changed position & start reading next set of lines from there */
-  new_pos_offset = pg.lastchpos;
+   /* Read new lines */
+   lines_read = ReadPageDown (log, &lines, mon_exec_actions);
 
-  while (TRUE) 
-    {
-      for (i=pg.fl;i<=pg.ll;i++)
-	{
-	  mon_format_line (buffer, sizeof (buffer), &pg.line[i]);
-	  gtk_list_store_append (list, &iter);
-	  gtk_list_store_set (list, &iter, 0, buffer, -1);
-	  log->mon_numlines++;
-	} 
-      if (log->mon_numlines > MON_MAX_NUM_LINES)
-	{
-	  for(j=0;j<LINES_P_PAGE;j++)
-	    {
-              g_snprintf (buf, sizeof (buf), "%d", j);
-              gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL(list),
-                                                   &iter, buf);
-              gtk_list_store_remove (list, &iter);
-            }
-	  log->mon_numlines -= LINES_P_PAGE;
-	}
-      g_snprintf (buf, sizeof (buf), "%d", log->mon_numlines);
-      path = gtk_tree_path_new_from_string (buf);
-      gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (log->mon_lines),
-                                    path, NULL, TRUE, 0, 0);
-      gtk_tree_path_free (path);
-      if (pg.islastpage)
-	break;
-      ReadPageDown (log, &pg, mon_exec_actions);
-      new_pos_offset = pg.lastchpos;
-    }
-#endif
+   for (i = 0;  i < lines_read; ++i ) {
+	   mon_format_line (buffer, sizeof (buffer), lines[i]);
+	   gtk_list_store_insert_before (list, &iter, NULL);
+	   gtk_list_store_set (list, &iter, 0, buffer, -1);
+	   ++log->mon_numlines; 
+   } 
+   if (lines_read) {
+       path = gtk_tree_model_get_path (GTK_TREE_MODEL (list), &iter);
+       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (log->mon_lines),
+           path, NULL, TRUE, 0, 0);
+       gtk_tree_path_free (path);
+   }
+
 }
 
 /* ----------------------------------------------------------------------
@@ -627,6 +603,7 @@ mon_format_line (char *buffer, int bufsize, LogLine *line)
                 LocaleToUTF8 (g_strdup_printf ("%02d", line->sec)),
 		        LocaleToUTF8 (line->process),
                 LocaleToUTF8 (line->message));
+
 }
 
 /* ----------------------------------------------------------------------
@@ -637,20 +614,20 @@ mon_format_line (char *buffer, int bufsize, LogLine *line)
 gint
 mon_check_logs (gpointer data)
 {
-  int i;
+  gint i;
 
-  for(i=0;i<numlogs;i++)
-    {
-    if (loglist[i]->mon_on != TRUE)
-      continue;
-    if (WasModified(loglist[i]) != TRUE)
-      continue;
-    mon_read_new_lines (loglist[i]);
+  for (i = 0; i < numlogs; i++) {
+      if (loglist[i]->mon_on != TRUE)
+          continue;
+      if (WasModified (loglist[i]) != TRUE)
+          continue;
+      mon_read_new_lines (loglist[i]);
 
-    DB (fprintf (stderr, _("TOUCHED!!\n")));
+      DB (fprintf (stderr, _("TOUCHED!!\n")));
 
-    }
-    return TRUE;
+  }
+  return TRUE;
+
 }
 
 
