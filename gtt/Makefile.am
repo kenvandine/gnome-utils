@@ -4,8 +4,7 @@ GttHelpdir = $(datadir)/gtt
 INCLUDES = 			\
 	-I$(includedir)		\
 	-DHAS_GNOME=1		\
-	-DHELP_PATH=\"$(GttHelpdir)\" \
-	$(X_CFLAGS)
+	-DHELP_PATH=\"$(GttHelpdir)\"
 
 bin_PROGRAMS = gtt
 

@@ -35,6 +35,7 @@
 #undef dgettext
 #undef fcgettext
 #undef _
+#include <locale.h>
 #include <libintl.h>
 #define _(String) gettext(String)
 
