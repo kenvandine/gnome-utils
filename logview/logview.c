@@ -485,6 +485,11 @@ CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 	   gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
 					   (gtk_ui_manager_get_widget(window->ui_manager, "/LogviewMenu/FileMenu/MonitorLogs")),
 					   FALSE);
+   if (window->calendar_visible)
+	   gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
+					   (gtk_ui_manager_get_widget(window->ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar")),
+					   FALSE);
+
    gtk_widget_hide (window->find_bar);
 
    CloseLog (window->curlog);

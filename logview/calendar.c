@@ -115,8 +115,10 @@ CalendarMenu (LogviewWindow *window)
 
       window->calendar_dialog = CalendarDialog;
       window->calendar = CalendarWidget;
-      init_calendar_data (window);
    }
+
+   if (window->curlog->caldata == NULL)
+	   init_calendar_data (window);
 
    window->calendar_visible = TRUE;
    gtk_widget_show (window->calendar_dialog);
