@@ -34,7 +34,11 @@ int
 main(int argc, char *argv[])
 {
 	GtkWidget *theent;
+#ifdef GTK_HAVE_ACCEL_GROUP
 	GtkAccelGroup *accel;
+#else
+	GtkAcceleratorTable *accel;
+#endif
 
 	gtk_init(&argc, &argv);
 
@@ -52,7 +56,12 @@ main(int argc, char *argv[])
 			   GTK_SIGNAL_FUNC(dorun), theent);
 	gtk_window_set_focus(GTK_WINDOW(thewin), theent);
 
+#ifdef GTK_HAVE_ACCEL_GROUP
 	accel = gtk_accel_group_new();
+#else
+	accel = gtk_accelerator_table_new ();
+#endif
+
 #if 0
 	gtk_widget_install_accelerator (thewin, accel,
 				"delete_event",
