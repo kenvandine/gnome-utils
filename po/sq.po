@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils.HEAD.sq\n"
+"Project-Id-Version: gnome-utils.HEAD.sq.po\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-01 19:46+0100\n"
-"PO-Revision-Date: 2004-02-01 19:57+0100\n"
+"POT-Creation-Date: 2004-02-05 13:45+0100\n"
+"PO-Revision-Date: 2004-02-05 14:06+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -683,7 +683,7 @@ msgstr ""
 #: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "E pamundur hapja e device %s, formatimi nuk mund të vazhdojë."
+msgstr "E pamundur hapja e dispozitivit %s, formatimi nuk mund të vazhdojë."
 
 #: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
@@ -691,7 +691,7 @@ msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
 msgstr ""
-"Device %s është e shkëputur.\n"
+"Dispozitivi %s është i shkëputur.\n"
 "Ju lutem, montoni këtë device që të vazhdojmë."
 
 #: gfloppy/src/main.c:170 gfloppy/src/main.c:222
@@ -728,7 +728,7 @@ msgstr "Emri i volumit nuk mund të përmbajë asnjë hapësirë boshe."
 
 #: gfloppy/src/main.c:477
 msgid "The device to format"
-msgstr "Device që duhet formatuar"
+msgstr "Dispozitivi që duhet formatuar"
 
 #: gfloppy/src/main.c:478
 msgid "DEVICE"
@@ -739,13 +739,15 @@ msgstr "DISPOZITIVI"
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
+msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr ""
-"Floppy u formatua, por u gjet dhe e u shënua si të tillë <b>%d bllok i "
-"dëmtuar</b> (në %d)."
-"Floppy u formatua, por u gjetën dhe e u shënuan si të "
-"tillë <b>%d blloqe të dëmtuar</b> (në %d)."
+msgstr[0] ""
+"Floppy u formatua por, <b>%d bllok i dëmtuar</b> (në %d) u gjet"
+"dhe u shënua si tillë."
+msgstr[1] ""
+"Floppy u formatua por, <b>%d bllok i dëmtuar</b> (në %d) u gjet"
+"dhe u shënua si tillë."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -818,13 +820,17 @@ msgstr "E pamundur hapja e dokumentit të ndihmës."
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
 msgid "Are you sure you want to open %d document?"
-msgstr "Jeni i sigurt që dëshironi të hapni %d dokument?"
+msgid_plural "Are you sure you want to open %d documents?"
+msgstr[0] "Jeni i sigurt që dëshironi të hapni %d dokument?"
+msgstr[1] "Jeni i sigurt që dëshironi të hapni %d dokument?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
 #, c-format
 msgid "This will open %d separate window."
-msgstr "Ka për të hapur %d dritare të veçantë."
+msgid_plural "This will open %d separate windows."
+msgstr[0] "Ka për të hapur %d dritare të veçantë."
+msgstr[1] "Ka për të hapur %d dritare të veçantë."
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
@@ -835,12 +841,14 @@ msgstr "E pamundur hapja e dokumentit \"%s\"."
 #: gsearchtool/gsearchtool-callbacks.c:393
 #: gsearchtool/gsearchtool-callbacks.c:947
 msgid "There is no installed viewer capable of displaying the document."
-msgstr "Asnjë shikues i instaluar në gjendje të shfaqë dokumentin."
+msgstr "Asnjë shikues i instaluar aktualisht është në gjendje të shfaqë dokumentin."
 
 #: gsearchtool/gsearchtool-callbacks.c:444
 #, c-format
 msgid "Are you sure you want to open %d folder?"
-msgstr "Jeni i sigurt që dëshironi të hapni %d kartelë?"
+msgid_plural "Are you sure you want to open %d folders?"
+msgstr[0] "Jeni i sigurt që dëshironi të hapni %d kartelë?"
+msgstr[1] "Jeni i sigurt që dëshironi të hapni %d kartelë?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
 #, c-format
@@ -1035,12 +1043,16 @@ msgstr "Nuk u gjet asnjë file"
 #: gsearchtool/gsearchtool.c:541
 #, c-format
 msgid "%d File Found"
-msgstr "U gjet %d file"
+msgid_plural "%d Files Found"
+msgstr[0] "U gjet %d File"
+msgstr[1] "U gjet %d File"
 
 #: gsearchtool/gsearchtool.c:545
 #, c-format
 msgid "%d file found"
-msgstr "U gjet %d file"
+msgid_plural "%d files found"
+msgstr[0] "U gjet %d file"
+msgstr[1] "U gjet %d file"
 
 #: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
@@ -1431,7 +1443,9 @@ msgstr "<Asnjë log i ngarkuar>"
 #: logview/info.c:183
 #, c-format
 msgid "%ld byte"
-msgstr "%ld byte"
+msgid_plural "%ld bytes"
+msgstr[0] "%ld byte"
+msgstr[1] "%ld byte"
 
 #: logview/log_repaint.c:59
 msgid "January"
