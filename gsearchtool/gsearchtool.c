@@ -22,6 +22,12 @@
 #define STDOUT 1
 #define STDERR 2
 
+typedef enum {
+	NOT_RUNNING,
+	RUNNING,
+	MAKE_IT_STOP
+} RunLevel;
+
 const FindOptionTemplate templates[] = {
 #define OPTION_FILENAME 0
 	{ FIND_OPTION_TEXT, "-name '%s'", N_("File name") },
@@ -63,8 +69,8 @@ static int current_template = 0;
 
 GtkWidget *app; 
 
-static int find_running = 0;
-static int locate_running = 0;
+static RunLevel find_running = NOT_RUNNING;
+static RunLevel locate_running = NOT_RUNNING;
 
 static int
 count_char(char *s, char p)
@@ -176,31 +182,28 @@ makecmd(char *start_dir)
 }
 
 static void
-really_run_command(char *cmd, int *running)
+really_run_command(char *cmd, RunLevel *running)
 {
 	static gboolean lock = FALSE;
 	int idle;
 
-	char s[PATH_MAX+1];
-	int spos=0;
+	GString *string;
 	char ret[PIPE_READ_BUFFER];
 	int fd[2], fderr[2];
 	int i,n;
 	int pid;
 	GString *errors = NULL;
 
-	if(!lock)
+	if( ! lock) {
 		lock = TRUE;
-	else {
+	} else {
 		gnome_app_error(GNOME_APP(app),
 				_("Search already running on another page"));
 		return;
 	}
 
-	/* running =0 not running */
-	/* running =1 running */
-	/* running =2 make it stop! */
-	*running = 1;
+	/* running = NOT_RUNNING, RUNNING, MAKE_IT_STOP */
+	*running = RUNNING;
 
 	/*create the results box*/
 	/*FIXME: add an option to autoclear result box and pass TRUE in that
@@ -210,7 +213,7 @@ really_run_command(char *cmd, int *running)
 	pipe(fd);
 	pipe(fderr);
 	
-	if((pid=fork())==0) {
+	if ( (pid = fork()) == 0) {
 		close(fd[0]);
 		close(fderr[0]);
 		
@@ -224,7 +227,7 @@ really_run_command(char *cmd, int *running)
 		close(fd[1]);
 		close(fderr[1]);
 
-		execl("/bin/sh","/bin/sh","-c",cmd,NULL);
+		execl("/bin/sh", "/bin/sh", "-c", cmd, NULL);
 		_exit(0); /* in case it fails */
 	}
 	close(fd[1]);
@@ -233,60 +236,62 @@ really_run_command(char *cmd, int *running)
 	outdlg_freeze();
 	idle = gtk_idle_add((GtkFunction)gtk_true,NULL);
 
-	fcntl(fd[0],F_SETFL,O_NONBLOCK);
-	fcntl(fderr[0],F_SETFL,O_NONBLOCK);
+	fcntl(fd[0], F_SETFL, O_NONBLOCK);
+	fcntl(fderr[0], F_SETFL, O_NONBLOCK);
 
-	while(*running==1) {
-		n = read(fd[0], ret, PIPE_READ_BUFFER);
-		for(i=0;i<n;i++) {
-			if(ret[i]=='\0') {
-				s[spos]=0;
-				spos=0;
-				outdlg_additem(s);
-			} else
-				s[spos++]=ret[i];
+	string = g_string_new (NULL);
+
+	while (*running == RUNNING) {
+		n = read (fd[0], ret, PIPE_READ_BUFFER);
+		for (i = 0; i < n; i++) {
+			if(ret[i] == '\0') {
+				outdlg_additem (string->str);
+				g_string_assign (string, "");
+			} else {
+				g_string_append_c (string, ret[i]);
+			}
 		}
 
-		n=read(fderr[0], ret, PIPE_READ_BUFFER-1);
-		if(n > 0) {
+		n = read (fderr[0], ret, PIPE_READ_BUFFER-1);
+		if (n > 0) {
 			ret[n] = '\0';
 			if(!errors)
 				errors = g_string_new(ret);
 			else
-				errors = g_string_append(errors,ret);
+				errors = g_string_append(errors, ret);
 			fprintf(stderr, "%s", ret);
 		}
 		
-		if(waitpid(-1,NULL,WNOHANG)!=0)
+		if (waitpid (-1, NULL, WNOHANG) != 0)
 			break;
 		/*this for some reason doesn't work, I need to add an
 		  idle handler and do iteration with TRUE*/
 		/*if(gtk_events_pending())
 			gtk_main_iteration_do(FALSE);*/
-		gtk_main_iteration_do(TRUE);
-		if(*running == 2) {
+		gtk_main_iteration_do (TRUE);
+		if (*running == MAKE_IT_STOP) {
 			kill(pid, SIGKILL);
 			wait(NULL);
 		}
 	}
 	/* now we got it all ... so finish reading from the pipe */
-	while((n=read(fd[0],ret,PIPE_READ_BUFFER))>0) {
-		for(i=0;i<n;i++) {
-			if(ret[i]=='\0') {
-				s[spos]=0;
-				spos=0;
-				outdlg_additem(s);
-			} else
-				s[spos++]=ret[i];
+	while ((n = read (fd[0], ret, PIPE_READ_BUFFER)) > 0) {
+		for (i = 0; i < n; i++) {
+			if (ret[i] == '\0') {
+				outdlg_additem (string->str);
+				g_string_assign (string, "");
+			} else {
+				g_string_append_c (string, ret[i]);
+			}
 		}
 	}
-	while((n=read(fderr[0],ret,PIPE_READ_BUFFER-1))>0) {
+	while((n = read(fderr[0], ret, PIPE_READ_BUFFER-1)) > 0) {
 		ret[n]='\0';
-		if(!errors)
+		if(errors == NULL)
 			errors = g_string_new(ret);
 		else
-			errors = g_string_append(errors,ret);
-		fprintf(stderr,"%s",ret);
+			errors = g_string_append(errors, ret);
+		fprintf(stderr, "%s", ret);
 	}
 
 	close(fd[0]);
@@ -300,10 +305,14 @@ really_run_command(char *cmd, int *running)
 	/* if any errors occured */
 	if(errors) {
 		/* make an error message */
-		gnome_app_error(GNOME_APP(app),errors->str);
+		gnome_app_error(GNOME_APP(app), errors->str);
 		/* freeing allocated memory */
-		g_string_free(errors,TRUE);
+		g_string_free(errors, TRUE);
 	}
+
+	g_string_free (string, TRUE);
+
+	*running = NOT_RUNNING;
 
 	lock = FALSE;
 }
@@ -316,9 +325,9 @@ run_command(GtkWidget *w, gpointer data)
 
 	char *start_dir;
 
-	if(buttons[0]==w) {/*we are in the stop button*/
-		if(find_running>0)
-			find_running = 2;
+	if (buttons[0] == w) { /*we are in the stop button*/
+		if(find_running == RUNNING)
+			find_running = MAKE_IT_STOP;
 		return;
 	}
 
@@ -648,9 +657,9 @@ run_locate_command(GtkWidget *w, gpointer data)
 
 	char *locate_string;
 
-	if(buttons[0]==w) {/*we are in the stop button*/
-		if(locate_running>0)
-			locate_running = 2;
+	if (buttons[0] == w) { /*we are in the stop button*/
+		if(locate_running == RUNNING)
+			locate_running = MAKE_IT_STOP;
 		return;
 	}
 
@@ -775,10 +784,10 @@ window_click(GtkWidget *w, GdkEventButton *be)
 static void
 quit_cb(GtkWidget *w, gpointer data)
 {
-	if(find_running > 0)
-		find_running = 2;
-	if(locate_running > 0)
-		locate_running = 2;
+	if(find_running == RUNNING)
+		find_running = MAKE_IT_STOP;
+	if(locate_running == RUNNING)
+		locate_running = MAKE_IT_STOP;
 	gtk_main_quit();
 }
 
