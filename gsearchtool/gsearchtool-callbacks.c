@@ -839,10 +839,6 @@ file_button_release_event_cb (GtkWidget 	*widget,
 	if (event->window != gtk_tree_view_get_bin_window (GTK_TREE_VIEW(interface.tree))) {
 		return FALSE;
 	}
-	
-	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
-		return FALSE;
-	}
 		
 	if (event->button == 1 || event->button == 2) {
 
@@ -859,7 +855,9 @@ file_button_release_event_cb (GtkWidget 	*widget,
 				}
 			}
 			else {
-				gtk_tree_selection_unselect_all (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)));
+				if (search_command.single_click_to_activate == FALSE) { 
+					gtk_tree_selection_unselect_all (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)));
+				}
 				gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)), path);
 			}
 		}
@@ -908,8 +906,6 @@ file_event_after_cb  (GtkWidget 	*widget,
 		      GdkEventButton 	*event, 
 		      gpointer 		data)
 {	
-	GtkTreeIter 	 iter;
-
 	if (event->window != gtk_tree_view_get_bin_window (GTK_TREE_VIEW(interface.tree))) {
 		return FALSE;
 	}
@@ -917,103 +913,19 @@ file_event_after_cb  (GtkWidget 	*widget,
 	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
 		return FALSE;
 	}
-		
-	if (event->type == GDK_2BUTTON_PRESS) {
-
-		gboolean no_files_found = FALSE;
-		gchar *utf8_name;
-		gchar *utf8_path;	 
-		GList *list;
-		
-		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION(interface.selection),
-							     (GtkTreeModel **)&interface.model);
-		
-		gtk_tree_model_get_iter (GTK_TREE_MODEL(interface.model), &iter, 
-					 g_list_first (list)->data);
-					 
-		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
-    				    COLUMN_NAME, &utf8_name,
-			    	    COLUMN_PATH, &utf8_path,
-			    	    COLUMN_NO_FILES_FOUND, &no_files_found,
-			   	    -1);	
-		
-		if (!no_files_found) {
-			
-			gchar *file;
-			gchar *locale_file;
-			
-			file = g_build_filename (utf8_path, utf8_name, NULL);
-			locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
-		
-			if (!g_file_test (locale_file, G_FILE_TEST_EXISTS)) {
-		
-				GtkWidget      *dialog;
-				gchar          *primary;
-				gchar          *secondary;
-			
-				primary = g_strdup_printf (_("Could not open document \"%s\"."), 
-			                           g_path_get_basename (utf8_name));
-					
-				secondary = g_strdup  (_("The document does not exist."));
-
-				dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
-			    	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-								   GTK_MESSAGE_ERROR,
-								   GTK_BUTTONS_OK,
-								   primary,
-								   secondary,
-								   NULL);
-			
-				gtk_dialog_run (GTK_DIALOG (dialog));
-		
-				gtk_tree_selection_unselect_iter (GTK_TREE_SELECTION (interface.selection), &iter);
-				gtk_widget_destroy (GTK_WIDGET(dialog));
-				g_free (primary);
-				g_free (secondary);
-			}
-			else if (open_file_with_application (locale_file) == FALSE) {
-				
-				if (launch_file (locale_file) == FALSE) {
-				
-					if (is_nautilus_running () &&
-					    g_file_test (locale_file, G_FILE_TEST_IS_DIR)) {
-						open_file_with_nautilus (locale_file);
-					}
-					else {
-						GtkWidget *dialog;
-						gchar     *primary;
-						gchar     *secondary;
-
-						primary = g_strdup_printf (_("Could not open document \"%s\"."), 
-						                           g_path_get_basename (file));
-									   
-						secondary = g_strdup (_("There is no installed viewer capable "
-						                        "of displaying the document."));
-					
-						dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
-						                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-										   GTK_MESSAGE_ERROR,
-										   GTK_BUTTONS_OK,
-										   primary,
-										   secondary,
-										   NULL);
-
-                				g_signal_connect (G_OBJECT (dialog),
-                        				"response",
-                        				G_CALLBACK (gtk_widget_destroy), NULL);
-
-	                			gtk_widget_show (dialog);
-						g_free (primary);
-						g_free (secondary);
-					}
-				}
-			} 
-			g_free (file);
-			g_free (locale_file);
+	
+	if (search_command.single_click_to_activate == TRUE) { 	
+		if (event->type == GDK_BUTTON_PRESS 
+		     && (event->button == 1 || event->button == 2)
+		     && !(event->state & GDK_CONTROL_MASK) 
+	   	     && !(event->state & GDK_SHIFT_MASK)) {  
+			open_file_cb (widget, data); 
+			return TRUE;	
 		}
-		g_free (utf8_name);
-		g_free (utf8_path);
-		g_list_free (list);
+	} 
+	else if (event->type == GDK_2BUTTON_PRESS) {
+		open_file_cb (widget, data); 
+		return TRUE;
 	}
 	return FALSE;
 }

@@ -87,6 +87,7 @@ extern struct _SearchStruct {
 	gboolean		quick_mode;
 	gboolean		first_pass;
 	gboolean		disable_second_pass;
+	gboolean                single_click_to_activate;
 	RunStatus        	running;
 	GHashTable              *pixbuf_hash;
 	GHashTable		*file_hash;
@@ -113,6 +114,7 @@ extern struct _InterfaceStruct {
 	GtkWidget       	*results;
 	GtkWidget        	*tree;
 	GtkListStore     	*model;	
+	GtkCellRenderer		*name_column_renderer;
 	GtkTreeSelection 	*selection;
 	GtkTreeIter       	iter;
 	GdkGeometry 		geometry;

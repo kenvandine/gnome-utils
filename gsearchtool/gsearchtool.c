@@ -1539,15 +1539,37 @@ spawn_search_command (gchar *command)
 	}
 	
 	if (search_command.first_pass == TRUE) {
+		gchar *click_to_activate_pref;
+		
 		search_command.lock = TRUE;
 		search_command.aborted = FALSE;
 		search_command.running = RUNNING; 
+		search_command.single_click_to_activate = FALSE;
 		search_command.pixbuf_hash = g_hash_table_new (g_str_hash, g_str_equal);
 		search_command.file_hash = g_hash_table_new (g_str_hash, g_str_equal);
 	
 		/* Get value of nautilus date_format key */
 		search_command.date_format_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/date_format");
 
+		/* Get value of nautilus click behaivor (single or double click to activate items) */
+		click_to_activate_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/click_policy");
+		
+		if (strncmp (click_to_activate_pref, "single", 6) == 0) { 
+			/* Format name column for double click to activate items */
+			search_command.single_click_to_activate = TRUE;		
+			g_object_set (interface.name_column_renderer,
+			       "underline", PANGO_UNDERLINE_SINGLE,
+			       "underline-set", TRUE,
+			       NULL);
+		}
+		else {
+			/* Format name column for single click to activate items */
+			g_object_set (interface.name_column_renderer,
+			       "underline", PANGO_UNDERLINE_NONE,
+			       "underline-set", FALSE,
+			       NULL);
+		}
+		
 		gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.stop_button);
 		gtk_widget_show (interface.stop_button);
 		gtk_widget_set_sensitive (interface.stop_button, TRUE);
@@ -1560,6 +1582,7 @@ spawn_search_command (gchar *command)
 
 		gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), 0, 0);	
 		gtk_list_store_clear (GTK_LIST_STORE(interface.model));
+		g_free (click_to_activate_pref);
 	}
 	
 	ioc_stdout = g_io_channel_unix_new (child_stdout);
@@ -1922,9 +1945,9 @@ create_search_results_section (void)
                                              "pixbuf", COLUMN_ICON,
                                              NULL);
 					     
-	renderer = gtk_cell_renderer_text_new ();
-        gtk_tree_view_column_pack_start (column, renderer, TRUE);
-        gtk_tree_view_column_set_attributes (column, renderer,
+	interface.name_column_renderer = gtk_cell_renderer_text_new ();
+        gtk_tree_view_column_pack_start (column, interface.name_column_renderer, TRUE);
+        gtk_tree_view_column_set_attributes (column, interface.name_column_renderer,
                                              "text", COLUMN_NAME,
 					     NULL);				     
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
