@@ -83,6 +83,11 @@ AC_SUBST(PROGRAMS_GTOP)
 dnl gsu
 AC_CHECK_FUNCS(endgrent endpwent)
 
+dnl idetool
+PROGRAMS_IDETOOL=""
+AC_CHECK_HEADERS(linux/hdreg.h,[PROGRAMS_IDETOOL=idetool])
+AC_SUBST(PROGRAMS_IDETOOL)
+
 dnl Needed on SysV for shadow passwords.
 AC_CHECK_LIB(sec, main)
 
