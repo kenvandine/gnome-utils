@@ -383,8 +383,10 @@ add_op(Expr *e)
  * eval -- sets up an Expr, then calls add_op to evaluate an expression.
  */
 static double eval(
-  char *eqn, char *src, 
-  double t_diff, gtop_struct *gtp,
+  char *eqn, char *src, double t_diff, 
+#ifdef HAVE_LIBGTOP
+  gtop_struct *gtp,
+#endif
   int vars, double *last, double *now )
 {
   Expr e;
@@ -394,7 +396,9 @@ static double eval(
   e.last = last;
   e.now  = now;
   e.t_diff = t_diff;
+#ifdef HAVE_LIBGTOP
   e.gtp = gtp;
+#endif
 
   if (setjmp(e.err_jmp))
     return e.val;
@@ -542,6 +546,9 @@ read_param_defns(Param ***ppp)
   int i, j, lineno = 0, params = 0;
   Param **p = NULL;
   char fn[FILENAME_MAX], home_fn[FILENAME_MAX];
+#ifdef CONFDIR
+  char conf_fn[FILENAME_MAX];
+#endif
   FILE *fd;
 
   *ppp = p;
@@ -565,9 +572,28 @@ read_param_defns(Param ***ppp)
 	      /* Try in the /etc directory. */
 	      strcpy(fn, "/etc/gstripchart.conf");
 	      if ((fd=fopen(fn, "r")) == NULL)
-		defns_error(NULL, 0,
-		  "can't open config file \"%s\", \"%s\", or \"%s\"", 
-		  "gstripchart.conf", home_fn, fn);
+		{
+#ifdef CONFDIR
+		  /* Try in the conf directory. */
+		  sprintf(fn, "%s/%s", CONFDIR, "gstripchart.conf");
+		  strcpy(conf_fn, fn);
+		  if ((fd=fopen(fn, "r")) == NULL)
+#endif
+		    {
+		      defns_error(
+			NULL, 0,
+			"can't open config file \"%s\", \"%s\", "
+#ifdef CONFDIR
+			"\"%s\", "
+#endif
+			"or \"%s\"", 
+			"./gstripchart.conf", home_fn, fn
+#ifdef CONFDIR
+			, conf_fn
+#endif
+			);
+		    }
+		}
 	    }
 	}
     }
@@ -763,7 +789,10 @@ update_values(Param_glob *pgp)
       memcpy(p->last, p->now, p->vars * sizeof(*(p->last)));
       split_and_extract(buf, p);
       val = eval(
-	p->eqn, p->eqn_src, pgp->t_diff, &pgp->gtop,
+	p->eqn, p->eqn_src, pgp->t_diff,
+#ifdef HAVE_LIBGTOP
+	&pgp->gtop,
+#endif
 	p->vars, p->last, p->now );
 
       /* Put the new val into the val history. */
