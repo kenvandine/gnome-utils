@@ -84,6 +84,7 @@ static void clist_unselected_cb(GtkCList * clist, gint row,
 static void name_changed_cb(GtkEntry * entry, GtkCList * clist);
 static void command_changed_cb(GtkEntry * entry, GtkCList * clist);
 static void apply_prefs_cb(GnomePropertyBox * pb, gint page, GtkCList * data);
+static void add_defaults_cb(GtkButton * button, GtkCList * clist);
 
 static void load_actions(); 
 static void clear_actions();
@@ -112,6 +113,16 @@ static GtkMenu * actions_popup = NULL;
 
 static gint popup_x, popup_y;
 static gint tty_column, name_column;
+
+/* Hmm, well, I can't think of much else. */
+static Action default_actions[] = {
+  {"YTalk", "ytalk %u#%t"},
+  {"write", "xterm -e write %u %t"},
+  {"talk", "xterm -e talk %u %t"}
+};
+/* {"Slay", "slay %u"} */ /* Root-only. */
+
+static gint num_defaults = sizeof(default_actions)/sizeof(Action);
 
 /*******************************
   Main
@@ -151,7 +162,7 @@ static GnomeUIInfo help_menu[] = {
 
 static GnomeUIInfo file_menu[] = {
   {GNOME_APP_UI_ITEM, 
-   N_("Save"), N_("Write information to disk"), 
+   N_("Save..."), N_("Write information to disk"), 
    save_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 's', 
    GDK_CONTROL_MASK, NULL },
@@ -165,7 +176,7 @@ static GnomeUIInfo file_menu[] = {
 };
 
 static GnomeUIInfo prefs_menu[] = {
-  {GNOME_APP_UI_ITEM, N_("Preferences"), 
+  {GNOME_APP_UI_ITEM, N_("Preferences..."), 
    N_("Change application preferences"),
    preferences_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'p', 
@@ -417,12 +428,12 @@ static void preferences_cb(GtkWidget *w, gpointer data)
 {
   GtkWidget * pb;
   GtkWidget * frame, * frame_vbox, * page_vbox, 
-    * bottom_hbox, * entry_hbox;
-  GtkWidget * samples_button, * add_button, * delete_button;
+    * bottom_hbox, * entry_hbox, * button_shrink_vbox;
+  GtkWidget * defaults_button, * add_button, * delete_button;
   GtkWidget * name_entry;
   GtkWidget * command_entry;
   GtkWidget * list;
-  GtkWidget * explanation_label;
+  GtkWidget * explanation_label, * defaults_label;
   gchar * titles[] = { _("Name"), _("Command Line") }; 
   GList * tmp; 
   Action * a;
@@ -431,7 +442,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
 
   /* Create everything. */
 
-  samples_button = gtk_button_new_with_label(_("Add some samples"));
+  defaults_button = gtk_button_new_with_label(_("Add some defaults"));
   add_button = gtk_button_new_with_label(_("Add"));
   delete_button = gtk_button_new_with_label(_("Delete"));
 
@@ -446,6 +457,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   gtk_clist_set_column_width(GTK_CLIST(list), 0, 130); /* Otherwise it's 0 */
   gtk_clist_column_titles_show(GTK_CLIST(list));
   gtk_clist_column_titles_passive(GTK_CLIST(list));
+  gtk_widget_set_usize(list, -1, 230);
 
   frame = gtk_frame_new(_("Command Editor"));
   gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD);
@@ -454,6 +466,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   page_vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
   bottom_hbox = gtk_hbox_new(FALSE, GNOME_PAD);
   entry_hbox = gtk_hbox_new(FALSE, GNOME_PAD);
+  button_shrink_vbox = gtk_vbox_new(FALSE, 0);
 
   explanation_label = 
     gtk_label_new(_("You can configure the commands on the popup menus.\n"
@@ -461,6 +474,10 @@ static void preferences_cb(GtkWidget *w, gpointer data)
                     "menu, and the command to execute.\n"
                     "In the command, you can use %u to represent the\n"
                     "currently selected username, and %t for the tty."));
+
+  defaults_label =
+    gtk_label_new(_("Click this button to add\n"
+                    "some sample commands."));
 
   pb = gnome_property_box_new();
   
@@ -471,10 +488,15 @@ static void preferences_cb(GtkWidget *w, gpointer data)
 
   gtk_box_pack_start(GTK_BOX(page_vbox), frame, TRUE, TRUE, GNOME_PAD_SMALL);
   gtk_box_pack_start(GTK_BOX(page_vbox), bottom_hbox, FALSE, FALSE, GNOME_PAD);
-
   gtk_box_pack_start(GTK_BOX(bottom_hbox), explanation_label, 
                      FALSE, FALSE, GNOME_PAD);
-  gtk_box_pack_end(GTK_BOX(bottom_hbox), samples_button, 
+
+  gtk_box_pack_start(GTK_BOX(button_shrink_vbox), defaults_label, 
+                     FALSE, FALSE, 0);
+  gtk_box_pack_end(GTK_BOX(button_shrink_vbox), defaults_button, 
+                   FALSE, FALSE, 0);
+
+  gtk_box_pack_end(GTK_BOX(bottom_hbox), button_shrink_vbox, 
                    FALSE, FALSE, GNOME_PAD);
 
   gtk_container_add(GTK_CONTAINER(frame), frame_vbox);
@@ -526,6 +548,9 @@ static void preferences_cb(GtkWidget *w, gpointer data)
 
   gtk_signal_connect(GTK_OBJECT(delete_button), "clicked",
                      GTK_SIGNAL_FUNC(delete_action_cb), list);
+
+  gtk_signal_connect(GTK_OBJECT(defaults_button), "clicked",
+                     GTK_SIGNAL_FUNC(add_defaults_cb), list);
     
   gtk_signal_connect(GTK_OBJECT(list), "select_row",
                      GTK_SIGNAL_FUNC(clist_selected_cb), NULL);
@@ -576,6 +601,20 @@ static void new_action_in_prefs(GtkCList * list, gchar * name, gchar * command)
 static void add_action_cb(GtkButton * button, gpointer clist)
 { 
   new_action_in_prefs(GTK_CLIST(clist), "", "");
+}
+
+static void add_defaults_cb(GtkButton * button, GtkCList * clist)
+{
+  gint i = 0;
+
+  gtk_clist_freeze(clist);
+
+  while ( i < num_defaults ) {
+    new_action_in_prefs(clist, default_actions[i].key, 
+                        default_actions[i].format);
+    ++i;
+  }
+  gtk_clist_thaw(clist);
 }
 
 static void delete_action_cb(GtkButton * button, gpointer clist)
