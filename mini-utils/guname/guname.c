@@ -422,11 +422,11 @@ free_imlib_image (GtkObject *object, gpointer data)
 
 #endif
 
-static void
+static gboolean
 close_cb (GtkWidget * widget, gpointer user_data)
 {
-        gtk_widget_destroy (widget);
         gtk_main_quit ();
+	return FALSE;
 }
 
 static void
