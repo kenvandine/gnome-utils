@@ -36,6 +36,7 @@ dist-hook:
 	 $(distdir)/idetool/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
 	-cp $(srcdir)/images/*.png $(distdir)/idetool/images
+	-cp $(srcdir)/*.png $distdir/idetool/images
 
 distclean-generic:
 	-rm -f Makefile
