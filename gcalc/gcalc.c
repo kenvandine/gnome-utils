@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /* Simple Double precision calculator using the GnomeCalculator widget
    Copyright (C) 1998 Free Software Foundation
 
@@ -7,6 +8,8 @@
 #include <config.h>
 #include <gnome.h>
 #include <libgnomeui/gnome-window-icon.h>
+
+#include "gnome-calc.h"
 
 /* values for selection info */
 enum {
@@ -55,7 +58,7 @@ quit_cb (GtkWidget *widget, gpointer data)
 static void
 copy_contents (GtkWidget *widget, gpointer data)
 {
-	strcpy(copied_string,GNOME_CALCULATOR(calc)->result_string);
+	strcpy(copied_string, gnome_calc_get_result_string(GNOME_CALC (calc)));
 	g_strstrip(copied_string);
 	gtk_selection_owner_set (app,
 				 GDK_SELECTION_PRIMARY,
@@ -135,12 +138,13 @@ main(int argc, char *argv[])
 	gtk_window_set_policy (GTK_WINDOW (app), FALSE, TRUE, FALSE);
 
         gtk_signal_connect(GTK_OBJECT(app), "delete_event",
-		GTK_SIGNAL_FUNC(quit_cb), NULL);
+			GTK_SIGNAL_FUNC(quit_cb), NULL);
 
 	/*set up the menu*/
         gnome_app_create_menus(GNOME_APP(app), gcalc_menu);
 
-	calc = gnome_calculator_new();
+	calc = gnome_calc_new();
+	gnome_calc_bind_extra_keys (GNOME_CALC (calc), GTK_WIDGET (app));
 	gtk_widget_show(calc);
 
 	gtk_selection_add_targets (GTK_WIDGET (app), GDK_SELECTION_PRIMARY,
@@ -153,7 +157,7 @@ main(int argc, char *argv[])
 
 	/* add calculator accel table to our window*/
 	gtk_window_add_accel_group(GTK_WINDOW(app),
-				   GNOME_CALCULATOR(calc)->accel);
+				   gnome_calc_get_accel_group(GNOME_CALC(calc)));
 
 	gtk_widget_show(app);
 

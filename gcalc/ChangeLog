@@ -1,3 +1,26 @@
+2001-06-18  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* *: Added the below patch.
+	
+2001-03-17  Chema Celorio  <chema@celorio.com>
+
+	* gnome-calc.c: moved from gnome-libs into here.
+	backported it form GTK+2 (ifdef the two builds)
+	s/GnomeCalculator/GnomeCalc/g
+	s/gnome_calculator_/gnome_calc_/g
+	since we don't want to clash with the symbols in libgnomeui
+	(backspace_cb): implement
+	(key_press_event_cb): ditto
+	(gnome_calc_bind_extra_keys): ditto
+
+	* gnome-calc.h: ditto, add the header for _bind_extra_keys
+
+	* gcalc.c (main): after creating the gnome_calc, call
+	gnome_calc_bind_extra_keys
+
+	* Makefile.am (INCLUDES): add the pixbuf includes
+	(gcalc_LDADD): and LDADD
+	
 2001-06-05  Christian Rose  <menthos@menthos.com>
 
 	* gcalc.desktop: Modified sv translation.
