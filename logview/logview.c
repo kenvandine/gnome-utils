@@ -127,7 +127,7 @@ GnomeUIInfo help_menu[] = {
 };
 
 GnomeUIInfo main_menu[] = {
-        { GNOME_APP_UI_SUBTREE_STOCK, N_("_Log"), NULL,
+        { GNOME_APP_UI_SUBTREE, N_("_Log"), NULL,
           log_menu, NULL, NULL, (GnomeUIPixmapType) 0,
           NULL, 0, (GdkModifierType) 0, NULL },
 	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),

@@ -137,7 +137,7 @@ static GnomeUIInfo help_menu[] = {
 };
 
 static GnomeUIInfo gcalc_menu[] = {
-    { GNOME_APP_UI_SUBTREE_STOCK, N_("_Calculator"), NULL,
+    { GNOME_APP_UI_SUBTREE, N_("_Calculator"), NULL,
       calculator_menu, NULL, NULL, (GnomeUIPixmapType) 0,
       NULL, 0, (GdkModifierType) 0, NULL },
 	GNOMEUIINFO_MENU_EDIT_TREE(edit_menu),

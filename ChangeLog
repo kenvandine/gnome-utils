@@ -1,3 +1,11 @@
+Tue Jun 04 18:07:34 2002  George Lebl <jirka@5z.com>
+
+	* logview/logview.c, gcalc/gcalc.c, gdictsrc/gdict-app.c:
+	  use _UI_SUBTREE instead of _UI_SUBTREE_STOCK since that
+	  makes translations actually work. _UI_SUBTREE_STOCK means
+	  that the string comes from libgnomeui which in these cases
+	  (the _Log, _Calculator and _Dictionary) it doesn't.
+
 2002-06-03  Glynn Foster  <glynn.foster@sun.com>
 
 	* configure.in: release 1.108.0 " This ain't no disco "
