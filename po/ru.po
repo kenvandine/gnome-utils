@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util\n"
-"POT-Creation-Date: 2000-06-16 12:31+0000\n"
-"PO-Revision-Date: 2000-06-16 12:32+00:00\n"
+"POT-Creation-Date: 2000-06-24 15:32+0000\n"
+"PO-Revision-Date: 2000-06-24 15:33+00:00\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -278,7 +278,7 @@ msgid "Cross-reference:"
 msgstr "Перекрестные ссылки:"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:495
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
 #: mini-utils/gcolorsel/menus.c:1109 mini-utils/gshutdown/gshutdown.c:314
 msgid "Preferences"
 msgstr "Настройки"
@@ -356,7 +356,7 @@ msgstr "Указать геометрию окна."
 msgid "GEOMETRY"
 msgstr "ГЕОМЕТРИЯ"
 
-#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:160
+#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:167
 msgid "Properties"
 msgstr "Свойства"
 
@@ -609,7 +609,7 @@ msgstr ""
 
 #: gsearchtool/gsearchtool.c:462
 msgid "Entry changed called for a non entry option!"
-msgstr ""
+msgstr "Вызвано изменение записи для параметра не являющегося записью!"
 
 #: gsearchtool/gsearchtool.c:528
 msgid "Enable"
@@ -1030,11 +1030,11 @@ msgstr "Всего"
 msgid "Today"
 msgstr "Сегодня"
 
-#: gtt/clist.c:171
+#: gtt/clist.c:171 gtt/menucmd.c:117
 msgid "Project Title"
 msgstr "Название проекта"
 
-#: gtt/clist.c:172
+#: gtt/clist.c:172 gtt/menucmd.c:118
 msgid "Description"
 msgstr "Описание"
 
@@ -1083,35 +1083,31 @@ msgstr "Выбрать проект при запуске"
 msgid "PROJECT"
 msgstr "ПРОЕКТ"
 
-#: gtt/menucmd.c:31 gtt/menucmd.c:129 gtt/menucmd.c:161
+#: gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
 msgid "Warning"
 msgstr "Внимание"
 
-#: gtt/menucmd.c:32 gtt/menucmd.c:163
+#: gtt/menucmd.c:34 gtt/menucmd.c:195
 msgid "I could not write the configuration file!"
 msgstr "Не удалось записать файл конфигурации!"
 
-#: gtt/menucmd.c:63
+#: gtt/menucmd.c:65
 msgid "Time tracking tool for GNOME"
 msgstr "Инструмент учета времени для GNOME"
 
-#: gtt/menucmd.c:93 gtt/toolbar.c:142
+#: gtt/menucmd.c:111 gtt/toolbar.c:142
 msgid "New Project..."
 msgstr "Новый проект..."
 
-#: gtt/menucmd.c:97
-msgid "Please enter the name of the new project:"
-msgstr "Введите название нового проекта:"
-
-#: gtt/menucmd.c:131
+#: gtt/menucmd.c:163
 msgid "I could not read the configuration file"
 msgstr "Не удалось прочесть файл конфигурации!"
 
-#: gtt/menucmd.c:145 gtt/toolbar.c:149
+#: gtt/menucmd.c:177 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Перезагрузить файл конфигурации"
 
-#: gtt/menucmd.c:146
+#: gtt/menucmd.c:178
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1151,155 +1147,155 @@ msgstr "Таймер запущен"
 msgid "_Timer"
 msgstr "Таймер"
 
-#: gtt/options.c:186
+#: gtt/options.c:189
 msgid "Display"
 msgstr "Представление"
 
-#: gtt/options.c:194
+#: gtt/options.c:197
 msgid "Show Seconds"
 msgstr "Показывать секунды"
 
-#: gtt/options.c:200
+#: gtt/options.c:203
 msgid "Show Status Bar"
 msgstr "Показывать строку состояния"
 
-#: gtt/options.c:206
+#: gtt/options.c:209
 msgid "Show Table Header"
 msgstr "Показывать заголовок таблицы"
 
-#: gtt/options.c:220 gtt/options.c:514
+#: gtt/options.c:223 gtt/options.c:537
 msgid "Toolbar"
 msgstr "Панель инструментов"
 
-#: gtt/options.c:228
+#: gtt/options.c:231
 msgid "Show Toolbar Icons"
 msgstr "Показывать пиктограммы на панели инструментов"
 
-#: gtt/options.c:234
+#: gtt/options.c:237
 msgid "Show Toolbar Texts"
 msgstr "Показывать надписи на панели инструментов"
 
-#: gtt/options.c:240
+#: gtt/options.c:243
 msgid "Show Tooltips"
 msgstr "Показывать подсказки"
 
-#: gtt/options.c:246
+#: gtt/options.c:249
 msgid "Toolbar Segments"
 msgstr "Элементы панели инструментов"
 
-#: gtt/options.c:254
+#: gtt/options.c:257
 msgid "Show `New'"
 msgstr "Показывать `Новый'"
 
-#: gtt/options.c:260
+#: gtt/options.c:263
 msgid "Show `Save', `Reload'"
 msgstr "Показывать `Сохранить', `Перезагрузить'"
 
-#: gtt/options.c:266
+#: gtt/options.c:269
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Показывать `Вырезать', `Скопировать', `Вставить'"
 
-#: gtt/options.c:272
+#: gtt/options.c:275
 msgid "Show `Properties'"
 msgstr "Показывать `Свойства'"
 
-#: gtt/options.c:278
+#: gtt/options.c:281
 msgid "Show `Timer'"
 msgstr "Показывать `Таймер'"
 
-#: gtt/options.c:284
+#: gtt/options.c:287
 msgid "Show `Preferences'"
 msgstr "Показывать `Настройки'"
 
-#: gtt/options.c:290
+#: gtt/options.c:293
 msgid "Show `Help'"
 msgstr "Показывать `Помощь'"
 
-#: gtt/options.c:296
+#: gtt/options.c:299
 msgid "Show `Quit'"
 msgstr "Показывать `Выход'"
 
-#: gtt/options.c:310
+#: gtt/options.c:313
 msgid "Shell Commands"
 msgstr "Команды оболочки"
 
-#: gtt/options.c:318
+#: gtt/options.c:321
 msgid "Switch Project Command:"
 msgstr "Команда переключения проекта:"
 
-#: gtt/options.c:329
+#: gtt/options.c:333
 msgid "No Project Command:"
 msgstr "Команда отсутствия проекта:"
 
-#: gtt/options.c:363
+#: gtt/options.c:368
 msgid "Logfile"
 msgstr "Файл регистрации"
 
-#: gtt/options.c:371
+#: gtt/options.c:376
 msgid "Use Logfile"
 msgstr "Использовать файл регистрации"
 
-#: gtt/options.c:380
+#: gtt/options.c:385
 msgid "Filename:"
 msgstr "Имя файла:"
 
-#: gtt/options.c:394
+#: gtt/options.c:399
 msgid "Entry Start:"
 msgstr "Точка старта:"
 
-#: gtt/options.c:408
+#: gtt/options.c:413
 msgid "Entry Stop:"
 msgstr "Точка остановки:"
 
-#: gtt/options.c:422
+#: gtt/options.c:427
 msgid "Timeout in secs:"
 msgstr "Время ожидания в секундах:"
 
-#: gtt/options.c:501
+#: gtt/options.c:524
 msgid "Misc"
 msgstr "Разное"
 
-#: gtt/proj.c:461
+#: gtt/proj.c:463
 msgid "project %t started"
 msgstr "проект \"%t\" запущен"
 
-#: gtt/proj.c:464
+#: gtt/proj.c:466
 msgid "stopped project %t"
 msgstr "проект \"%t\" остановлен"
 
-#: gtt/prop.c:55
+#: gtt/prop.c:59
 msgid "empty"
 msgstr "пусто"
 
-#: gtt/prop.c:167
+#: gtt/prop.c:174
 msgid "Project"
 msgstr "Проект"
 
-#: gtt/prop.c:186
+#: gtt/prop.c:193
 msgid "Project Title:"
 msgstr "Название проекта:"
 
-#: gtt/prop.c:198
+#: gtt/prop.c:206
 msgid "Project Description:"
 msgstr "Описание проекта:"
 
-#: gtt/prop.c:210
+#: gtt/prop.c:219
 msgid "Project Time today:"
 msgstr "Время работы над проектом, сегодня:"
 
-#: gtt/prop.c:226 gtt/prop.c:264
+#: gtt/prop.c:235 gtt/prop.c:273
 msgid "hours"
 msgstr "часы"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:246 gtt/prop.c:284
 msgid "mins"
 msgstr "минуты"
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:257 gtt/prop.c:295
 msgid "secs"
 msgstr "секунды"
 
-#: gtt/prop.c:252
+#: gtt/prop.c:261
 msgid "Project Time ever:"
 msgstr "Время работы над проектом, полное:"
 
