@@ -13,7 +13,7 @@ gdiskfree_SOURCES =				\
 	save-cwd.c				\
 	save-cwd.h                              \
 
-noinst_HEADERS=error.h mountlist.h fsusage.h
+noinst_HEADERS=mountlist.h fsusage.h
 
-gdiskfree_LDADD = @LIBOBJS@ $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
+gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
 		   $(GNOMEUI_LIBS) $(INTLLIBS) -lgtktty
