@@ -86,9 +86,6 @@ GdkPixbuf *
 get_file_pixbuf_for_mime_type (GHashTable * hash,
                                const gchar * file,
                                const gchar * mime);
-gboolean  	
-is_nautilus_running (void);
-
 gboolean 	
 open_file_with_nautilus (GtkWidget * window,
                          const gchar * file);

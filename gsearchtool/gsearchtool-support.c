@@ -32,7 +32,6 @@
 #include <glib/gi18n.h>
 #include <regex.h>
 #include <gdk/gdkx.h>
-#include <bonobo-activation/bonobo-activation.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
 #include <libgnomevfs/gnome-vfs-ops.h> 
@@ -761,25 +760,6 @@ get_file_pixbuf_for_mime_type (GHashTable * hash,
 						  
 	g_free (icon_name);
 	return pixbuf;
-}
-
-gboolean
-is_nautilus_running (void)
-{
-	CORBA_Environment ev;
-	CORBA_Object obj;
-	gboolean ret;
-	
-	CORBA_exception_init (&ev); 
-	obj = bonobo_activation_activate_from_id ("OAFIID:Nautilus_Factory",
-		Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, NULL, &ev);
-		
-	ret = !CORBA_Object_is_nil (obj, &ev);
-	
-	CORBA_Object_release (obj, &ev);	
-	CORBA_exception_free (&ev);
-	
-	return ret;
 }
 
 gboolean

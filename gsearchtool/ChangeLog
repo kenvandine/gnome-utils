@@ -1,3 +1,29 @@
+2005-03-13  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-callbacks.c: (quit_application), (click_stop_cb):
+	Fix bug #170163, "Build failure with gcc 2.x".  Patch submitted 
+	by jensgr@gmx.net (Jens Granseuer).
+	
+2005-03-12  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-support.c: After previous commit, we don't need 
+	to include <bonobo-activation/bonobo-activation.h>.
+	
+2005-03-12  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-callbacks.c: (open_file_cb), (open_folder_cb):
+	Remove the is_nautilus_running () function since nautilus 
+	is launched with the '--no-desktop" command line argument.
+	* gsearchtool-support.[ch]: Removed is_nautilus_running().
+	Fixes the issue of opening a directory in nautilus when double
+	clicked in case of multihead. Fixes bug #168990.  Based on a 
+	patch submitted by Vinay M R  <vinay.mandyakoppal@wipro.com>.
+
+2005-03-11  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-callbacks.c (open_file_cb): Use 
+	correct error dialog when nautilus is not running.
+
 2005-02-28  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c (setup_case_insensitive_arguments):

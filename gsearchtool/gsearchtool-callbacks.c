@@ -54,10 +54,11 @@ static void
 quit_application (GSearchCommandDetails * command_details)
 {
 	if (command_details->command_status == RUNNING) {
-		command_details->command_status = MAKE_IT_QUIT;
 #ifdef HAVE_GETPGID
 		pid_t pgid;
-		
+#endif
+		command_details->command_status = MAKE_IT_QUIT;
+#ifdef HAVE_GETPGID
 		pgid = getpgid (command_details->command_pid);
 		
 		if ((pgid > 1) && (pgid != getpid ())) {
@@ -124,11 +125,12 @@ click_stop_cb (GtkWidget * widget,
 	GSearchWindow * gsearch = data;
 
 	if (gsearch->command_details->command_status == RUNNING) {
+#ifdef HAVE_GETPGID
+		pid_t pgid;
+#endif
 		gtk_widget_set_sensitive (gsearch->stop_button, FALSE);
 		gsearch->command_details->command_status = MAKE_IT_STOP;
 #ifdef HAVE_GETPGID
-		pid_t pgid;
-		
 		pgid = getpgid (gsearch->command_details->command_pid);
 		
 		if ((pgid > 1) && (pgid != getpid ())) {
@@ -362,6 +364,35 @@ display_dialog_could_not_open_file (GtkWidget * window,
 	g_free (primary);
 }
 
+static void
+display_dialog_could_not_open_folder (GtkWidget * window,
+                                      const gchar * folder)
+{ 		
+	GtkWidget * dialog;
+	gchar * primary;
+
+	primary = g_strdup_printf (_("Could not open folder \"%s\"."), folder);
+
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_OK,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          _("The nautilus file manager is not running."));
+
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
+
+	g_signal_connect (G_OBJECT (dialog),
+               		  "response",
+               		  G_CALLBACK (gtk_widget_destroy), NULL);
+
+	gtk_widget_show (dialog);			
+	g_free (primary);
+}
+
 void
 open_file_cb (GtkAction * action,
               gpointer data)
@@ -422,10 +453,12 @@ open_file_cb (GtkAction * action,
 				
 				if (launch_file (locale_file) == FALSE) {
 					
-					if (is_nautilus_running () &&
-					    g_file_test (locale_file, G_FILE_TEST_IS_DIR)) {
-						open_file_with_nautilus (gsearch->window, locale_file);
-					}
+					if (g_file_test (locale_file, G_FILE_TEST_IS_DIR)) {
+					
+						if (open_file_with_nautilus (gsearch->window, locale_file) == FALSE) {
+							display_dialog_could_not_open_folder (gsearch->window, utf8_name);
+						}
+					} 
 					else {
 						display_dialog_could_not_open_file (gsearch->window, utf8_name, 
 						                                    _("There is no installed viewer capable "
@@ -488,35 +521,6 @@ display_dialog_folder_open_limit (GtkWidget * window,
 
 	return response;
 }
-
-static void
-display_dialog_could_not_open_folder (GtkWidget * window,
-                                      const gchar * folder)
-{ 		
-	GtkWidget * dialog;
-	gchar * primary;
-
-	primary = g_strdup_printf (_("Could not open folder \"%s\"."), folder);
-
-	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
-	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
-	                                 GTK_MESSAGE_ERROR,
-	                                 GTK_BUTTONS_OK,
-	                                 primary);
-	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          _("The nautilus file manager is not running."));
-
-	gtk_window_set_title (GTK_WINDOW (dialog), "");
-	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
-	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
-
-	g_signal_connect (G_OBJECT (dialog),
-               		  "response",
-               		  G_CALLBACK (gtk_widget_destroy), NULL);
-
-	gtk_widget_show (dialog);			
-	g_free (primary);
-}
 	
 void
 open_folder_cb (GtkAction * action,
@@ -559,10 +563,8 @@ open_folder_cb (GtkAction * action,
 			    							
 		folder_locale = g_filename_from_utf8 (folder_utf8, -1, NULL, NULL, NULL);
 		
-		if (is_nautilus_running ()) {
-			open_file_with_nautilus (gsearch->window, folder_locale);
-		}
-		else {
+		if (open_file_with_nautilus (gsearch->window, folder_locale) == FALSE) {
+		
 			display_dialog_could_not_open_folder (gsearch->window, folder_utf8);
 			
 			g_list_free (list);
