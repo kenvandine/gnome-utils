@@ -12,11 +12,11 @@
     </copyright>
     <copyright>
       <year>2000</year>
-      <holder>Helix Code, Inc.</holder>
+      <holder>Ximian, Inc.</holder>
     </copyright>
     <copyright>
       <year>2001</year>
-      <holder>Linas Vepstas</holder>
+      <holder>Linas Vepstas &lt;linas@linas.org&gt;</holder>
     </copyright>
 
     <legalnotice id="legalnotice">
@@ -44,21 +44,167 @@
 
 <!-- =============Document Body ============================= -->
 
+
+
 <!-- =============Introduction ============================= -->
   <sect1 id="introduction">
       <title>Introduction</title> 
     <sect2 id="whatis">
     <title>What is GNOME Time Tracker?</title>
     <para>
-      <application>GNOME Time Tracker</application> is a program for managing workflow
-      and keeping track of the time spent on a given project. 
+      <application>GNOME Time Tracker</application> 
+      is a combination stop-watch, diary, to-do list tracker and 
+      consultant billing system.  You can measure the amount of time you
+      spend on a task, associate a memo with it, set a billing rate, print
+      an invoice, as well as track that status of other projects.
 
-      Once you have learned to use <application>GNOME Time Tracker</application>
-      effectively, it can be of great help.
-      You can use it to optimize your work and decide if you are spending too
-      much time on unimportant tasks.  You can count the hours
-      you spend on a project that is billed by the hour. You may discover many other
-      ways<application>GNOME Time Tracker</application> can work for you.
+
+      You do not need to learn or use every feature in
+      <application>GNOME Time Tracker</application>
+      to be productive: it is meant to be quite usable
+      without requiring a deep study of the documentation.
+      But once you have learned to use 
+      <application>GNOME Time Tracker</application>
+      effectively, it can be as effective as any desktop organizer.
+    </para>
+    <para>
+     Features include:
+     <itemizedlist>
+        <listitem>
+          <para>
+    <emphasis>Basic Stop-Watch Support</emphasis>
+    At its core, GTT is a fancy stop-watch: you can click on
+    an icon to start and stop one of any number of timers.
+    It is the times measured by these clocks that make up
+    the core data that GTT works with.
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Project Planning Support</emphasis>
+    Well, OK, "project planning" may be an overstatment.  But GTT
+    does provide basic to-do list support, including the ability
+    to rank by importance and urgency, specify expected start/stop
+    times, state the project status, and estimate the amount of
+    time needed to complete the project.
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Basic Billing/Invoicing Support</emphasis>
+    Infrastructure for storing price & billing information has been
+     put into place.  This allows billing invoices to be generated.
+     Tasks can be marked as billable, non-billable, on-hold, or
+     free-of-charge. Billing rates for regular, overtime,
+     double-overtime or flat-fee can be set per task.
+     (Fancier-looking invoices still needed).
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Sub-Project Support</emphasis>
+    New projects can be listed
+     as sub-projects of other projects.  The time totals will show
+     the total including sub-projects.  The Hierarchical tree can be
+     expanded / collapsed to simplify viewing.  The tree can be
+     re-arranged by dragging-n-dropping projects.
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Simpler Navigation</emphasis>
+    Arrow keys and carriage return now work in the main window.
+     Up/down keys can be used to move up & down.  The left/right arrow
+     keys expand/collapse a sub-project list.  Hitting return selects
+     the project.
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Log Journal</emphasis>
+    A journal showing explicit start and stop times is maintained.
+     Blocks of time can be annotated with memos.  The journal can be
+     exported as an html page, or printed (OK, printer support not
+     yet finished).
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Auto-merge/cleanup of Short Intervals Support</emphasis>
+    Extremely short
+     intervals (the length is configurable) are automatically removed
+     from the logs.  Slightly longer but still short intervals
+     are auto-merged into nearby neighbors. Short gaps between intervals
+     are coalesced as well.  You can specify a time period of 0 seconds
+     to turn these features off.
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>HTML-based GUI</emphasis>
+    The journal GUI is based on extended html pages.  If you know
+     HTML, then you can create customized report pages.  Particularly
+     handy for slapping the company logo and mailing address on the top
+     of the page, and generating a unique, custom look.
+     User-defined reports (contained in ghtml files) can be added to the
+     menus by typing in the filename into the 'new report' GUI dialog.
+     Typically, a 'user-defined report' is one with customized layout,
+     maybe a logo added, all-spiffed up & such.
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Inactivity Timeout</emphasis>
+    An inactivity timeout has been implemented. If the keyboard
+     or mouse have been idle for more than some period of time, then
+     the clock is stopped.
+     <br><br>
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Shell Commands</emphasis>
+    A shell command can be executed whenever a project timer is
+    started or stopped.
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Scheme Extension Language</emphasis>
+    Scheme (guile) is used as an extension language, although scheme
+     support is currently limited to report generation.
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>XML File Format</emphasis>
+    All project and journal data are stored in an XML file format.
+    This should simplify future interoperability and data access concerns.
+          </para> 
+        </listitem>
+
+        <listitem>
+          <para>
+    <emphasis>Multi-Language Support</emphasis>
+    The basic GTT menus have been translated to dozens of languages.
+    Translations are need for the manual. (Actually, the manual needs
+    a re-write).
+          </para> 
+        </listitem>
+
+    </itemizedlist>
+
     </para>
     <para>
      <application>GNOME Time Tracker</application> is included in the package 
@@ -73,15 +219,6 @@
       Menu</guimenu>, or by running the command
       <command>gtt</command> on the commandline.  
     </para>
-<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
-<para>
-<emphasis>
-Notice:  The current version of GTT has many, many new features which are not
-documented in this manual.  A few of the features documented below might work 
-slightly differently in this new version.
-</emphasis>
-</para>
-<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
   </sect2>
 </sect1>
 
@@ -114,6 +251,8 @@ slightly differently in this new version.
       Unfortunately, <application>GNOME Time Tracker</application> 
       isn't particularly smart: it won't turn the timer off for you if you 
       take a break for a quick game of solitaire and it turns into several hours of distraction.
+      The inactivity timer will notice that you are still using the keyboard and mouse;
+      it does not know that its just solitaire.
       When you stop work on a project, be sure to turn off
       the timer by clicking the <guibutton>Timer</guibutton> button or using <guimenuitem>
       Stop</guimenuitem> from the <guimenu>Timer</guimenu> menu.  As long as you remember to do 
@@ -124,7 +263,7 @@ slightly differently in this new version.
 <para id="timer"><application>GNOME Time Tracker</application> can inform you about your
       project times in several ways.
       For each project, it maintains a timer for the amount  
-      of time you have spent on the project today,
+      of time you have spent on the project today, this week, this month, this year, 
       and how much time you have spent on it total.
       In addition,<application>GNOME Time Tracker</application> counts how much time you have spent
       on all projects in the current day.  This last figure is the one displayed in the lower left hand
@@ -920,19 +1059,28 @@ slightly differently in this new version.
       <ulink url="http://bugzilla.gnome.org">GNOME bug
       tracking database</ulink>.  Instructions for submitting bug
       reports can be found <ulink   url="http://bugs.gnome.org/Reporting.html" type="http">
-      on-line</ulink>. If you are using
-      GNOME 1.1 or later, you can also use <application>Bug Report
+      on-line</ulink>. 
+      You can also use the <application>GNOME Bug Report
       Tool</application> (<command>bug-buddy</command>), available in the
       <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
       Menu</guimenu>, for submitting bug reports.
     </para>
     <para>
-      This manual was written by Aaron Weber
-      (<email>aaron@helixcode.com</email>) and (Eckehard Berns<email>eb@berns.i-s-o.net</email>).
+      There is a webpage devoted to the latest GTT news at
+      <ulink url="http://www.linas.org/linux/gtt/gtt.html">
+       http://www.linas.org/linux/gtt/gtt.html</ulink>.  
+    </para>
+    <para>
+      This manual was written by 
+      Aaron Weber (<email>aaron@helixcode.com</email>) 
+      Eckehard Berns (<email>eb@berns.i-s-o.net</email>)
+      and 
+      Linas Vepstas (<email>linas@linas.org</email>)
       Please send all comments
       and suggestions regarding the manual to the GNOME Documentation
       Project at <email>docs@gnome.org</email>. You can also add your
-      comments online by using <ulink url="http://developer.gnome.org/projects/gdp/doctable/">GNOME Documentation
+      comments online by using 
+      <ulink url="http://developer.gnome.org/projects/gdp/doctable/">GNOME Documentation
       Status Table</ulink>. 
       </para>
     <!-- For translations: uncomment this:
