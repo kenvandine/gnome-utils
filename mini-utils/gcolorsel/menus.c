@@ -82,7 +82,7 @@ GnomeUIInfo file_menu[] = {
   GNOMEUIINFO_ITEM_STOCK        (N_("Save palette _As..."),
                                  N_("Save the current palette with a different name"),
                                  save_as_cb, GNOME_STOCK_MENU_SAVE_AS),
-  GNOMEUIINFO_MENU_REVERT_ITEM  (revert_cb,  NULL),
+/*  GNOMEUIINFO_MENU_REVERT_ITEM  (revert_cb,  NULL), */
   
   GNOMEUIINFO_SEPARATOR,
 
