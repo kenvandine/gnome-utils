@@ -9,21 +9,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
-"POT-Creation-Date: 2004-02-06 20:04+0100\n"
-"PO-Revision-Date: 2004-02-07 02:20+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-20 15:07+0100\n"
+"PO-Revision-Date: 2004-02-20 21:34+0100\n"
 "Last-Translator: Sanlig Badral <badral@openmn.org>\n"
-"Language-Team: Mongolian <openmn-translation@lists.sf.net>\n"
+"Language-Team: Mongolian <openmn-core@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
 msgstr "Хэрэгсэлүүд"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2
-#: gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "Толь бичиг - Хайх"
 
@@ -55,25 +55,25 @@ msgstr "_Толь бичиг харуулах"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664
-#: gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524
-#: gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "Сервер лүү холбогдохгүй байна"
 
 #: gdictsrc/dict.c:677
-msgid "A serious error occured. Please check that your server and port are correct. For reference the default server is dict.org and the port 2628"
-msgstr "Ноцтой алдаа гарлаа. Та өгөгдсөн серверийг болон портыг зөв эсэхийг шалгана уу. Стандарт сервер dict.org ба порт 2628"
+msgid ""
+"A serious error occured. Please check that your server and port are correct. "
+"For reference the default server is dict.org and the port 2628"
+msgstr ""
+"Ноцтой алдаа гарлаа. Та өгөгдсөн серверийг болон портыг зөв эсэхийг шалгана "
+"уу. Стандарт сервер dict.org ба порт 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43
-#: logview/about.c:49
+#: gdictsrc/gdict-about.c:43 logview/about.c:49
 msgid "translator_credits"
 msgstr "Санлигийн Бадрал <badral@chinggis.com>"
 
-#: gdictsrc/gdict-about.c:56
-#: gdictsrc/gdict-app.c:776
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:776
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Толь бичиг"
@@ -90,8 +90,7 @@ msgstr "Зөв бичилт шалгаж байна..."
 msgid "Spell check done"
 msgstr "Зөв бичилт шалгалт дууслаа"
 
-#: gdictsrc/gdict-app.c:141
-#: gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:141 gdictsrc/gdict-app.c:288
 msgid "No matches found"
 msgstr "Ямарч тохиолдол олдсонгүй"
 
@@ -125,8 +124,7 @@ msgstr ""
 "хэрэглэхийг хүссэн сервер алга эсвэл \n"
 "та интернэт холболтгүй байна."
 
-#: gdictsrc/gdict-app.c:693
-#: gdictsrc/gdict-app.c:803
+#: gdictsrc/gdict-app.c:693 gdictsrc/gdict-app.c:803
 #: gdictsrc/gdict-speller.c:215
 msgid "_Look Up Word"
 msgstr "Үг _хайх"
@@ -135,8 +133,7 @@ msgstr "Үг _хайх"
 msgid "Lookup word in dictionary"
 msgstr "Үгийг толь бичгээс хайх"
 
-#: gdictsrc/gdict-app.c:696
-#: gdictsrc/gdict-speller.c:161
+#: gdictsrc/gdict-app.c:696 gdictsrc/gdict-speller.c:161
 msgid "Check _Spelling"
 msgstr "Зөв бичилт _шалгах"
 
@@ -148,18 +145,15 @@ msgstr "Үгийн зөв бичилт шалгах"
 msgid "_Dictionary"
 msgstr "_Толь бичиг"
 
-#: gdictsrc/gdict-app.c:799
-#: gdictsrc/gdict-speller.c:134
+#: gdictsrc/gdict-app.c:799 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "Ү_г:"
 
-#: gdictsrc/gdict-app.c:827
-#: gdictsrc/gdict-speller.c:146
+#: gdictsrc/gdict-app.c:827 gdictsrc/gdict-speller.c:146
 msgid "Word"
 msgstr "Үг"
 
-#: gdictsrc/gdict-app.c:828
-#: gdictsrc/gdict-app.c:829
+#: gdictsrc/gdict-app.c:828 gdictsrc/gdict-app.c:829
 #: gdictsrc/gdict-speller.c:147
 msgid "Word Entry"
 msgstr "Үгийн бичлэг"
@@ -172,95 +166,103 @@ msgstr "Та нэгэн үг өгнө үү эсвэл та нэгийг жигс
 msgid "Look Up for a Word"
 msgstr "Үг хайх"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "_Хайх"
 
-#: gdictsrc/gdict-defbox.c:639
-#: gdictsrc/gdict-speller.c:478
+#: gdictsrc/gdict-defbox.c:639 gdictsrc/gdict-speller.c:478
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Хүсэлтийн үед алдаа: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "Толь бичгийн тохируулга"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "_Ухаалаг хайлт"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "_Сервер:"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "_Стандарт сервер"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "Стандарт серверийг сэргээх"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "_Порт:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "Стан_дарт-порт"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "Стандарт портыг сэргээх"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "Сервер"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "Сервер-бичлэг"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "Та серверын нэрийг өгнө үү"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "Порт"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "Порт-бичлэг"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "Порт-дугаар өгнө үү"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "Ө_гөгдлийн бааз:"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "Стандарт с_тратеги:"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "Бүх өгөгдлийн баазыг нэгжих"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "Өгөгдлийн бааз"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "Өгөгдлийн баазын нэр"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "Стандарт стратеги"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Тусламж үзүүлэхэд алдаа гарлаа: \n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -295,20 +297,32 @@ msgid "Port used to connect to server"
 msgstr "Сервертэй холбогдоход хэрэглэгдэх порт"
 
 #: gdictsrc/gdict.schemas.in.h:3
-msgid "Specify whether to use smart lookup. This key is dependant on whether the dictionary server supports this option. The default is TRUE"
-msgstr "Энэ ухаалаг хайлтыг хэрэглэх үү? Энэ түлхүүр нь толь бичгийн сервер энэ сонголтыг дэмжисэн эсэхээс хамаарна. Стандарт нь ҮНЭН"
+msgid ""
+"Specify whether to use smart lookup. This key is dependant on whether the "
+"dictionary server supports this option. The default is TRUE"
+msgstr ""
+"Энэ ухаалаг хайлтыг хэрэглэх үү? Энэ түлхүүр нь толь бичгийн сервер энэ "
+"сонголтыг дэмжисэн эсэхээс хамаарна. Стандарт нь ҮНЭН"
 
 #: gdictsrc/gdict.schemas.in.h:4
 msgid "The database to use in the dictionary server."
 msgstr "Толь бичиг-серверийн хэрэглэж буй өгөгдийн бааз."
 
 #: gdictsrc/gdict.schemas.in.h:5
-msgid "The dictionary server to connect to. The default server is dict.org. See http://www.dict.org for details on other servers"
-msgstr "Толь бичиг-сервер стандарт сервер dict.org. руу холбогдоно Өөр серверүүдийн тухай дэлгэрэнгүй мэдээллийг http://www.dict.org -с авна уу."
+msgid ""
+"The dictionary server to connect to. The default server is dict.org. See "
+"http://www.dict.org for details on other servers"
+msgstr ""
+"Толь бичиг-сервер стандарт сервер dict.org. руу холбогдоно Өөр серверүүдийн "
+"тухай дэлгэрэнгүй мэдээллийг http://www.dict.org -с авна уу."
 
 #: gdictsrc/gdict.schemas.in.h:6
-msgid "The name of the individual database to use in the dictionary server. ! specifies that gnome-dictionary should search all databases in a given server"
-msgstr "Толь бичиг-сервер дээр хэрэглэгдэх өгөгдлийн баазын нэр.Хэрвээ энэ түлхүүр »!« бол өгөгдсөн серверын бүх баазаас нэгжинэ"
+msgid ""
+"The name of the individual database to use in the dictionary server. ! "
+"specifies that gnome-dictionary should search all databases in a given server"
+msgstr ""
+"Толь бичиг-сервер дээр хэрэглэгдэх өгөгдлийн баазын нэр.Хэрвээ энэ түлхүүр "
+"»!« бол өгөгдсөн серверын бүх баазаас нэгжинэ"
 
 #: gdictsrc/gdict.schemas.in.h:7
 msgid "The port number to connect to. The default port is 2628."
@@ -319,16 +333,21 @@ msgid "The search strategy to use"
 msgstr "Хэрэглэх хайх стратеги"
 
 #: gdictsrc/gdict.schemas.in.h:9
-msgid "The search strategy to use. This is dependant on the search strategy that the dictionary server supports. The default strategy is 'lev' - Match words within Levenshtein distance one"
-msgstr "Хэрэглэж буй хайлтын стратеги. Энэ түлхүүр ямар хайх стратеги толь бичиг сервер дэмжиж байгаас хамаарна. Стандарт стратеги бол 'lev' -үгс Levenshtein-зай 1 дотороос олдох хайлт"
+msgid ""
+"The search strategy to use. This is dependant on the search strategy that "
+"the dictionary server supports. The default strategy is 'lev' - Match words "
+"within Levenshtein distance one"
+msgstr ""
+"Хэрэглэж буй хайлтын стратеги. Энэ түлхүүр ямар хайх стратеги толь бичиг "
+"сервер дэмжиж байгаас хамаарна. Стандарт стратеги бол 'lev' -үгс Levenshtein-"
+"зай 1 дотороос олдох хайлт"
 
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "Ухаалаг хайлт хэрэглэх"
 
 # CHECK - nicht perfekt aber Formatierprogramm ist noch grausamer
-#: gfloppy/gfloppy.desktop.in.h:1
-#: gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy Formatter"
 msgstr "А-диск форматлагч"
 
@@ -337,8 +356,12 @@ msgid "Format Floppy Disks"
 msgstr "Зөөлөн диск форматлах"
 
 #: gfloppy/gfloppy.schemas.in.h:1
-msgid "0 for the quick format, 1 for a standard one (adds a low-level format) and finally 2 for a thorough format (adds a bad blocks scan)."
-msgstr "Боломжит утгууд 0 (Түргэн формат), 1 (Стандарт формат нэмэлт Low-Level-формат) ба 2 (Бүрэн формат, нэмэлт алдаатай блок шалгалтай)."
+msgid ""
+"0 for the quick format, 1 for a standard one (adds a low-level format) and "
+"finally 2 for a thorough format (adds a bad blocks scan)."
+msgstr ""
+"Боломжит утгууд 0 (Түргэн формат), 1 (Стандарт формат нэмэлт Low-Level-"
+"формат) ба 2 (Бүрэн формат, нэмэлт алдаатай блок шалгалтай)."
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
@@ -353,12 +376,18 @@ msgid "Default formatting mode"
 msgstr "Стандарт формат горим"
 
 #: gfloppy/gfloppy.schemas.in.h:5
-msgid "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set mtools as the preferred FAT formatting backend."
-msgstr "mkdosfs -г эрхэм FAT-форматлагчаар хэрэглэх үү? Тийм бол ҮНЭНҮгүй бол mtools программын пакет хэрэглэгдэнэ."
+msgid ""
+"TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
+"mtools as the preferred FAT formatting backend."
+msgstr ""
+"mkdosfs -г эрхэм FAT-форматлагчаар хэрэглэх үү? Тийм бол ҮНЭНҮгүй бол mtools "
+"программын пакет хэрэглэгдэнэ."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr "Боломжит утгууд »ext2« (native Linux-файлын систем) ба »fat« (DOS-Файлын систем)."
+msgstr ""
+"Боломжит утгууд »ext2« (native Linux-файлын систем) ба »fat« (DOS-Файлын "
+"систем)."
 
 #: gfloppy/src/badblocks.c:94
 msgid "Internal Error: Unable to seek to the correct location."
@@ -380,8 +409,7 @@ msgstr "Алдаатай блокын шалгаж б/а..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Алдаатай блокыг нь шалгахын тулд төхөөрөмж %s -г нээх бүтсэнгүй\n"
 
-#: gfloppy/src/badblocks.c:293
-#: gfloppy/src/gfloppy.c:533
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
 msgid "Checking for bad blocks... Done"
 msgstr "Алдаатай блок шалгаж байна... Бэлэн"
 
@@ -393,8 +421,7 @@ msgstr "Дискийг форматлаж байна..."
 msgid "I don't know what this is, but it's very wrong."
 msgstr "Энэ юу болохыг чөтгөр бүү мэд гэхдээ энэ маш буруу."
 
-#: gfloppy/src/fdformat.c:60
-#: gfloppy/src/fdformat.c:73
+#: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "Алдаа. %d замыг форматлаж байхад"
@@ -413,8 +440,7 @@ msgstr "Дискийг форматлаж байна...Бэлэн"
 msgid "Verifying the format..."
 msgstr "Формат шалгаж байна..."
 
-#: gfloppy/src/fdformat.c:107
-#: gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -424,14 +450,12 @@ msgstr ""
 "\n"
 "Бичихээс хамгаалагдсан байгаа эсэхийг шалгана уу."
 
-#: gfloppy/src/fdformat.c:110
-#: gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "Дискийн төхөөрөмж %s -г нээхэд хангалтгүй эрхтэй байна"
 
-#: gfloppy/src/fdformat.c:114
-#: gfloppy/src/fdformat.c:199
+#: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -554,8 +578,7 @@ msgid "Abnormal mbadblocks child process termination."
 msgstr "mbadblocks-Хүү процесс зүй бусаар тасрав."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:467
-#: gfloppy/src/gfloppy.c:507
+#: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
 msgid "Making filesystem on disk..."
 msgstr "Дискэн дээр файлын систем үүсгэж байна..."
 
@@ -563,8 +586,7 @@ msgstr "Дискэн дээр файлын систем үүсгэж байна.
 msgid "Unable to create filesystem correctly."
 msgstr "Файлын систем зөв үүсгэгдэх боломжгүй байна."
 
-#: gfloppy/src/gfloppy.c:480
-#: gfloppy/src/gfloppy.c:519
+#: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
 msgid "Making filesystem on disk... Done"
 msgstr "Дискэн дээр файлын систем үүсгэж байна... Бэлэн"
 
@@ -585,8 +607,14 @@ msgid "*"
 msgstr "*"
 
 #: gfloppy/src/gfloppy2.glade.h:3
-msgid "<small><i><b>Note</b>: The mbadblocks utility isn't installed on this system.  It must be installed in order to perform a thorough DOS (fat) formatting.</i></small>"
-msgstr "<small><i><b>Зөвлөмж</b>: »mbadblocks« хэрэгсэл энэ систем дээр суугаагүй байна. Тиймээс бүрэн DOS-формат (FAT) хийж чадахгүй. Та түүнийг суулгах хэрэгтэй.</i></small>"
+msgid ""
+"<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
+"system.  It must be installed in order to perform a thorough DOS (fat) "
+"formatting.</i></small>"
+msgstr ""
+"<small><i><b>Зөвлөмж</b>: »mbadblocks« хэрэгсэл энэ систем дээр суугаагүй "
+"байна. Тиймээс бүрэн DOS-формат (FAT) хийж чадахгүй. Та түүнийг суулгах "
+"хэрэгтэй.</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
@@ -657,16 +685,19 @@ msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Стандарт (нэмэлт Low-Level-формат хийнэ)"
 
 #: gfloppy/src/main.c:140
-msgid "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You can't format a floppy without one of them."
-msgstr "Программ »mke2fs« ч »mkdosfs/mformat« ч суугаагүй байна. Диск форматлахын тулд ядаж нэг нь хэрэгтэй."
+msgid ""
+"Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
+"can't format a floppy without one of them."
+msgstr ""
+"Программ »mke2fs« ч »mkdosfs/mformat« ч суугаагүй байна. Диск форматлахын "
+"тулд ядаж нэг нь хэрэгтэй."
 
 #: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "%s төхөөрөмж рүү хандаж чадахгүй байна. Форматыг үргэлжилүүлэх боломжгүй."
 
-#: gfloppy/src/main.c:167
-#: gfloppy/src/main.c:219
+#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -675,11 +706,11 @@ msgstr ""
 "%s төрөөрөмж салгагдсан.\n"
 "Та үргэлжлүүлэхийг хүсэж байвал холбоно уу."
 
-#: gfloppy/src/main.c:170
-#: gfloppy/src/main.c:222
+#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
 #, c-format
 msgid ""
-"You do not have the proper permissions to write to %s, formatting will not be possible.\n"
+"You do not have the proper permissions to write to %s, formatting will not "
+"be possible.\n"
 "Contact your system administrator about getting write permissions."
 msgstr ""
 "Таньд %s дээр бичих хангалттай эрх алга. Тиймээс формат боломжгүй.\n"
@@ -689,8 +720,7 @@ msgstr ""
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Төхөөрөмж нээж чадахгүй байна. Форматыг үргэлжилүүлэх боломжгүй."
 
-#: gfloppy/src/main.c:219
-#: gfloppy/src/main.c:222
+#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 эсвэл /dev/fd0"
 
@@ -716,8 +746,19 @@ msgid "DEVICE"
 msgstr "ТӨХӨӨРӨМЖ"
 
 #: gfloppy/src/progress.c:123
-#: gfloppy/src/progress.c:126
 #, c-format
+msgid ""
+"The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
+"found and marked."
+msgid_plural ""
+"The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
+"been found and marked."
+msgstr[0] ""
+"Уян диск форматлагдсан боловч <b>%d эвдэрхий блок</b> (%d-с гадна) олдож "
+"тэмдэгдлээ."
+msgstr[1] ""
+
+#: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
 msgstr "Уян диск амжилттай форматлагдлаа."
 
@@ -729,12 +770,9 @@ msgstr "Дискийн формат тасарлаа."
 msgid "Format Progress"
 msgstr "Формат төлөв"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1
-#: gsearchtool/gsearchtool.c:562
-#: gsearchtool/gsearchtool.c:816
-#: gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181
-#: gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
+#: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
+#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2210
 msgid "Search for Files"
 msgstr "Файл хайх"
 
@@ -787,8 +825,20 @@ msgid "Could not open help document."
 msgstr "Тусламж баримтыг нээж чадсангүй."
 
 #: gsearchtool/gsearchtool-callbacks.c:318
+#, c-format
+msgid "Are you sure you want to open %d document?"
+msgid_plural "Are you sure you want to open %d documents?"
+msgstr[0] "Та %d баримт нээхдээ итгэлтэй байна уу?"
+msgstr[1] ""
+
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
+#, c-format
+msgid "This will open %d separate window."
+msgid_plural "This will open %d separate windows."
+msgstr[0] "Энэ нь %d тусдаа цонх нээнэ."
+msgstr[1] ""
+
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
 #, c-format
@@ -801,6 +851,12 @@ msgid "There is no installed viewer capable of displaying the document."
 msgstr "Энэ баримтыг харуулчих программ суугаагүй байна."
 
 #: gsearchtool/gsearchtool-callbacks.c:444
+#, c-format
+msgid "Are you sure you want to open %d folder?"
+msgid_plural "Are you sure you want to open %d folders?"
+msgstr[0] "Та %d хавтас нээхдээ итгэлтэй байна уу?"
+msgstr[1] ""
+
 #: gsearchtool/gsearchtool-callbacks.c:502
 #, c-format
 msgid "Could not open folder \"%s\"."
@@ -910,8 +966,7 @@ msgstr "Өнөөдөр %-I:%M %p"
 msgid "yesterday at %-I:%M %p"
 msgstr "Өчигдөр %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:352
-#: gsearchtool/gsearchtool-support.c:354
+#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%y/%m/% %-d, %-I:%M %p"
 
@@ -980,8 +1035,7 @@ msgstr "Дагалдах символик холбоос "
 msgid "Include other filesystems"
 msgstr "Өөр файлын систем холбох"
 
-#: gsearchtool/gsearchtool.c:509
-#: gsearchtool/gsearchtool.c:537
+#: gsearchtool/gsearchtool.c:509 gsearchtool/gsearchtool.c:537
 msgid "No files found"
 msgstr "Ямарч файл олдсонгүй"
 
@@ -994,9 +1048,20 @@ msgid "No Files Found"
 msgstr "Ямарч файл олдсонгүй"
 
 #: gsearchtool/gsearchtool.c:541
-#: gsearchtool/gsearchtool.c:545
-#: gsearchtool/gsearchtool.c:651
 #, c-format
+msgid "%d File Found"
+msgid_plural "%d Files Found"
+msgstr[0] "%d Файл олдлоо"
+msgstr[1] "%d Файлууд олдлоо"
+
+#: gsearchtool/gsearchtool.c:545
+#, c-format
+msgid "%d file found"
+msgid_plural "%d files found"
+msgstr[0] "%d файл олдлоо"
+msgstr[1] "%d файл олдлоо"
+
+#: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
 msgstr "»Бичлэг өөрчилөгдсөн« сонголт дуудагдлаа, бичлэг алга байна!"
 
@@ -1014,7 +1079,9 @@ msgstr "»Хавтасанд хайх«-д текстэд олголоо"
 
 #: gsearchtool/gsearchtool.c:923
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr "Файлууд дараах ангилалаар эрэмбэлэгдэх: Нэр, Лавлах, Хэмжээ, төрөл эсвэл огноо"
+msgstr ""
+"Файлууд дараах ангилалаар эрэмбэлэгдэх: Нэр, Лавлах, Хэмжээ, төрөл эсвэл "
+"огноо"
 
 #: gsearchtool/gsearchtool.c:924
 msgid "Set sort order to descending, the default is ascending"
@@ -1087,83 +1154,79 @@ msgstr "Хайх дүрэм-Цэс"
 msgid "Select a search rule from the menu"
 msgstr "Та цэснээс нэгэн хайх дүрэм сонгоно уу"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1612
 msgid "S_earch results:"
 msgstr "Хайлтын үр _дүн:"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1692
 msgid "Name"
 msgstr "Нэр"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1712
 msgid "Folder"
 msgstr "Лавлах"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1723
 msgid "Size"
 msgstr "Хэмжээ"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1733
 msgid "Type"
 msgstr "Төрөл"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1743
 msgid "Date Modified"
 msgstr "Өөрчилөгдсөн огноо"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1801
 msgid "_Name contains:"
 msgstr "Файлын _нэр:"
 
-#: gsearchtool/gsearchtool.c:1817
-#: gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1816 gsearchtool/gsearchtool.c:1817
 msgid "Name Contains Entry"
 msgstr "Нэр бичлэг агуулна"
 
-#: gsearchtool/gsearchtool.c:1817
-#: gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1816 gsearchtool/gsearchtool.c:1817
 msgid "Enter the file name you want to search"
 msgstr "Та олохыг хүсэж байгаа файлын нэрээ өгнө үү"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1829
 msgid "_Look in folder:"
 msgstr "_Нэгжих лавлах"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1835
 msgid "Browse"
 msgstr "Сонгох"
 
-#: gsearchtool/gsearchtool.c:1845
-#: gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1849 gsearchtool/gsearchtool.c:1850
 msgid "Look in Folder Entry"
 msgstr "Хавтас объектод _хайх"
 
-#: gsearchtool/gsearchtool.c:1845
-#: gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1849 gsearchtool/gsearchtool.c:1850
 msgid "Enter the folder name where you want to start the search"
 msgstr "Та хайлт эхлэх лавлахын нэрийг өгнө үү"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1869
 msgid "Show more _options"
 msgstr "Зарим _сонголтуудыг харуулах"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1879
 msgid "Show more options"
 msgstr "Илүү _сонголтуудыг харуулах"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1879
 msgid "Expands or collapses a list of search options."
 msgstr "Хайлтын сонголтын жагсаалтыг задлах эсвэл эвхэх."
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1926
 msgid "Click to Start the search"
 msgstr "Хайлтаа эхлэхдээ та энд дарна уу"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1927
 msgid "Click to Stop the search"
 msgstr "Хайлтаа зосоохдоо та энд дарна уу"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2206
 msgid "Cannot initialize bonobo."
 msgstr "Bonobo инициацлагдсангүй."
 
@@ -1217,12 +1280,8 @@ msgstr "Үйлдлийг устгах"
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "Үйлдлийн өгөгдлийн бааз <%s> нээгдэхгүй байна! Нээх бүтсэнгүй."
 
-#: logview/actions.c:298
-#: logview/actions.c:311
-#: logview/actions.c:322
-#: logview/actions.c:333
-#: logview/actions.c:344
-#: logview/actions.c:355
+#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
+#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
 msgid "Error parsing actions data base"
 msgstr "Үйлдлийн өгөгдлийн баазыг уншиж байхад алдаа"
 
@@ -1299,8 +1358,12 @@ msgid "_Action:"
 msgstr "Ү_йлдэл:"
 
 #: logview/actions.c:771
-msgid "Action that will be executed if all previous regexps. are matched. This is executed by a system command: system (action)."
-msgstr "Өмнөх бүх энгийн илэрхийллийг олдоход гүйцэтгэх үйлдэл. Энэ нь системийн тушаал: system (action) -р гүйцэтгэгдэнэ."
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
+"Өмнөх бүх энгийн илэрхийллийг олдоход гүйцэтгэх үйлдэл. Энэ нь системийн "
+"тушаал: system (action) -р гүйцэтгэгдэнэ."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1381,14 +1444,18 @@ msgstr "Мөрийн тоо:"
 msgid "Log Information"
 msgstr "Протоколлын мэдээлэл"
 
-#: logview/info.c:160
-#: logview/zoom.c:155
+#: logview/info.c:160 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<Ачаалагдсан протоколл алга>"
 
 #: logview/info.c:183
-#: logview/log_repaint.c:59
 #, c-format
+msgid "%ld byte"
+msgid_plural "%ld bytes"
+msgstr[0] "%ld байт"
+msgstr[1] ""
+
+#: logview/log_repaint.c:59
 msgid "January"
 msgstr "Хулгана сар"
 
@@ -1469,23 +1536,25 @@ msgstr "%s энгийн бус файл байна."
 
 #: logview/logrtns.c:273
 #, c-format
-msgid "%s is not user readable. Either run the program as root or ask the sysadmin to change the permissions on the file."
-msgstr "%s уншигдах боломжгүй байна. Та программаа »root« -р ажиллуулах эсвэл системийн зохион байгуулагчаасаа энэ файлыг өөрчилөхөөр хандаж чадах эрх хүснэ үү."
+msgid ""
+"%s is not user readable. Either run the program as root or ask the sysadmin "
+"to change the permissions on the file."
+msgstr ""
+"%s уншигдах боломжгүй байна. Та программаа »root« -р ажиллуулах эсвэл "
+"системийн зохион байгуулагчаасаа энэ файлыг өөрчилөхөөр хандаж чадах эрх "
+"хүснэ үү."
 
 #: logview/logrtns.c:290
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s нээгдсэнгүй."
 
-#: logview/logrtns.c:320
-#: logview/logrtns.c:329
+#: logview/logrtns.c:320 logview/logrtns.c:329
 #, c-format
 msgid "%s not a log file."
 msgstr "%s протоколл файл биш."
 
-#: logview/logrtns.c:727
-#: logview/logrtns.c:758
-#: logview/logrtns.c:889
+#: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: Санах ойгоос халив"
 
@@ -1569,10 +1638,11 @@ msgstr "Мэдээ"
 msgid "Last Modified: "
 msgstr "Сүүлийн өөрчилөлт: "
 
-#: logview/logview.c:570
-#: logview/logview.c:645
+#: logview/logview.c:570 logview/logview.c:645
 msgid "Too many open logs. Close one and try again"
-msgstr "Хэтэрхий олон протоколл нээллтэй байна. Та нэгийг нь хаагаад дахин оролдоно уу"
+msgstr ""
+"Хэтэрхий олон протоколл нээллтэй байна. Та нэгийг нь хаагаад дахин оролдоно "
+"уу"
 
 #: logview/logview.c:582
 msgid "File already opened"
@@ -1587,8 +1657,12 @@ msgid "Log file to open up on startup"
 msgstr "Эхлэлд протоколл файлыг нээх"
 
 #: logview/logview.schemas.in.h:2
-msgid "Specifies the log file to open up at startup. The default is either /var/adm/messages or /var/log/messages, depending on your operating system."
-msgstr "Эхлэлд ямар протоколл файл нээхийг өнгө үү. Стандартаар »/var/adm/messages« эсвэл »/var/log/messages« байдаг. Энэ нь таны хуваарилалтаас хамаарна."
+msgid ""
+"Specifies the log file to open up at startup. The default is either /var/adm/"
+"messages or /var/log/messages, depending on your operating system."
+msgstr ""
+"Эхлэлд ямар протоколл файл нээхийг өнгө үү. Стандартаар »/var/adm/messages« "
+"эсвэл »/var/log/messages« байдаг. Энэ нь таны хуваарилалтаас хамаарна."
 
 #: logview/misc.c:56
 #, c-format
@@ -1632,8 +1706,7 @@ msgstr "Үйлдлүүд _гүйцэтгэх"
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Хэтэрхий олон хянасан протоколл. Нэгийг нь хаагаад дахин оролдоно уу"
 
-#: logview/monitor.c:298
-#: logview/monitor.c:335
+#: logview/monitor.c:298 logview/monitor.c:335
 #, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list NULL байна\n"
