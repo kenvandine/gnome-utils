@@ -81,8 +81,9 @@ struct IdleTimeout_s
 
   guint check_pointer_timer_id;	/* `prefs.pointer_timeout' */
 
-  time_t last_activity_time;		   /* Used only when no server exts. */
-  time_t last_wall_clock_time;             /* Used to detect laptop suspend. */
+  time_t dispatch_time;		   /* Time of event dispatch. */
+  time_t last_activity_time;	   /* Time of last user activity. */
+  time_t last_wall_clock_time;     /* Used to detect laptop suspend. */
   IdleTimeoutScreen *last_activity_screen;
 
   Bool emergency_lock_p;        /* Set when the wall clock has jumped
@@ -392,7 +393,7 @@ check_for_clock_skew (IdleTimeout *si)
  */
 
 int
-poll_idle_time (IdleTimeout *si)
+poll_last_activity (IdleTimeout *si)
 {
   if (!si) return 0;
 
@@ -400,8 +401,8 @@ poll_idle_time (IdleTimeout *si)
     if (si->using_xidle_extension)
     {
       Time idle;
-      /* The XIDLE extension uses the synthetic event to prod us into
-         re-asking the server how long the user has been idle. */
+      /* The XIDLE extension uses ...
+         ask the server how long the user has been idle. */
       if (! XGetIdleTime (si->dpy, &idle))
       {
          fprintf (stderr, "XGetIdleTime() failed.\n");
@@ -642,7 +643,7 @@ printf ("duude event type %d\n", ev->xany.type);
     case MotionNotify:
     case EnterNotify:
     case LeaveNotify:
-      si->last_activity_time = time ((time_t *) 0);
+      si->last_activity_time = si->dispatch_time;
       break;
 
     case CreateNotify:
@@ -706,6 +707,7 @@ idle_timeout_main_loop (gpointer data)
      /* Monitor X input queue */
      {
         XEvent event;
+        si->dispatch_time = time (0);
         XCheckIfEvent (si->dpy, &event, if_event_predicate, (XPointer) si);
      }
 

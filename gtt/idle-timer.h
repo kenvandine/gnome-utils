@@ -16,13 +16,17 @@
 #define __IDLE_TIMER_H__
 
 #include <glib.h>
+#include <sys/time.h>
 
 typedef struct IdleTimeout_s IdleTimeout;
 
 IdleTimeout * idle_timeout_new (void);
 
-/* return number of seconds that system has been idle */
-int poll_idle_time (IdleTimeout *si);
+/* The poll_last_activity() routine returns the wall-clock-time of the last
+ * user activity on this X server.  i.e. the number of seconds since
+ * last activity is given by (time(0) - poll_last_activity())
+ */
+time_t poll_last_activity (IdleTimeout *si);
 
 
 #endif /* __IDLE_TIMER_H__ */
