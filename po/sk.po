@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.1\n"
-"POT-Creation-Date: 2002-02-04 12:12+0100\n"
+"POT-Creation-Date: 2002-02-17 23:42-0500\n"
 "PO-Revision-Date: 2002-02-04 12:16+0100\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -378,39 +378,41 @@ msgid "Action Toolbar"
 msgstr "Nástrojový pruh akcií"
 
 #: gcharmap/src/interface.c:189
-msgid "Text to copy:"
+#, fuzzy
+msgid "_Text to copy:"
 msgstr "Kopírovaný text:"
 
-#: gcharmap/src/interface.c:195
+#: gcharmap/src/interface.c:196
 msgid "_Copy"
 msgstr "_Kopírovať"
 
-#: gcharmap/src/interface.c:219
+#: gcharmap/src/interface.c:221
 msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 
-#: gcharmap/src/interface.c:243 logview/logview.c:102
+#: gcharmap/src/interface.c:245 logview/logview.c:102
 msgid "Exit"
 msgstr "Koniec"
 
-#: gcharmap/src/interface.c:244 gcharmap/src/menus.c:101
+#: gcharmap/src/interface.c:246 gcharmap/src/menus.c:99
 msgid "Copy"
 msgstr "Kopírovať"
 
-#: gcharmap/src/interface.c:248
+#: gcharmap/src/interface.c:250
 msgid "About"
 msgstr "O programe"
 
-#: gcharmap/src/interface.c:250
+#: gcharmap/src/interface.c:252 gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "Help"
 msgstr "Pomocník"
 
-#: gcharmap/src/interface.c:269
+#: gcharmap/src/interface.c:271
 msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
 #: gcharmap/src/menus.c:48
-msgid "Browse Characters..."
+#, fuzzy
+msgid "_Browse Characters..."
 msgstr "Prechádzať znaky..."
 
 #: gcharmap/src/menus.c:49
@@ -418,68 +420,60 @@ msgid "Insert character(s) by choosing character codes."
 msgstr "Vloží znak(y) pomocou ich kódov."
 
 #: gcharmap/src/menus.c:56
-msgid "_Action Toolbar"
-msgstr "Panel _akcií"
-
-#: gcharmap/src/menus.c:56
-msgid "View or hide the action toolbar"
-msgstr "Ukáže alebo skryje panel nástrojov s akciami"
-
-#: gcharmap/src/menus.c:58
 msgid "_Text Toolbar"
 msgstr "Panel _textu"
 
-#: gcharmap/src/menus.c:58
+#: gcharmap/src/menus.c:56
 msgid "View or hide the text toolbar"
 msgstr "Ukáže alebo skryje panel nástrojov pre text"
 
-#: gcharmap/src/menus.c:60
+#: gcharmap/src/menus.c:58
 msgid "_Statusbar"
 msgstr "_Stavový riadok"
 
-#: gcharmap/src/menus.c:60
+#: gcharmap/src/menus.c:58
 msgid "View or hide the statusbar"
 msgstr "Ukáže alebo skryje stavový riadok"
 
 #. GNOMEUIINFO_ITEM_STOCK(N_("Character Table's Font..."), N_("Set the character "
 #. "table's font."), cb_set_chartable_font, GNOME_STOCK_MENU_FONT),
 #. GNOMEUIINFO_SEPARATOR,
-#: gcharmap/src/menus.c:70
+#: gcharmap/src/menus.c:68
 msgid "_Insert at end"
 msgstr "Vložiť na konie_c"
 
-#: gcharmap/src/menus.c:70
+#: gcharmap/src/menus.c:68
 msgid "Insert every selected character at the end of the text entry"
 msgstr "Vloží každý vybraný znak na koniec textového poľa"
 
-#: gcharmap/src/menus.c:72
+#: gcharmap/src/menus.c:70
 msgid "_Focusable Buttons"
 msgstr "Tlačidlá s _fokusom"
 
-#: gcharmap/src/menus.c:72
+#: gcharmap/src/menus.c:70
 msgid "Set the buttons to be focusable or not"
 msgstr "Nastaví, či môžu mať tlačidlá fokus"
 
 #. GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
 #. cb_insert_char_click, NULL),
 #. GNOMEUIINFO_SEPARATOR,
-#: gcharmap/src/menus.c:99
+#: gcharmap/src/menus.c:97
 msgid "Cut"
 msgstr "Vystrihnúť"
 
-#: gcharmap/src/menus.c:99
+#: gcharmap/src/menus.c:97
 msgid "Cut the selection"
 msgstr "Vystrihne výber"
 
-#: gcharmap/src/menus.c:101
+#: gcharmap/src/menus.c:99
 msgid "Copy the selection"
 msgstr "Skopíruje výber"
 
-#: gcharmap/src/menus.c:103
+#: gcharmap/src/menus.c:101
 msgid "Paste"
 msgstr "Vložiť"
 
-#: gcharmap/src/menus.c:103
+#: gcharmap/src/menus.c:101
 msgid "Paste the clipboard"
 msgstr "Vloží zo schránky"
 
@@ -534,7 +528,8 @@ msgid ""
 "or you are not connected to the Internet."
 msgstr ""
 "Nepodarilo sa vykonať požadovanú operáciu.\n"
-"Buď server, ktorý používate, nefunguje, alebo nie ste pripojený na Internet."
+"Buď server, ktorý používate, nefunguje, alebo nie ste pripojený na "
+"Internet."
 
 #: gdictsrc/gdict-app.c:489
 msgid "Lookup"
@@ -560,7 +555,7 @@ msgstr "Slovo: "
 msgid "_Look Up"
 msgstr "_Hľadať"
 
-#: gdictsrc/gdict-applet.c:268
+#: gdictsrc/gdict-applet.c:273
 msgid "Press button to look up any highlighted text in a dictionary"
 msgstr "Stlačením tlačidla nájdete vybraný text v slovníku"
 
@@ -665,6 +660,18 @@ msgstr "_Hľadať slovo"
 msgid "Spell checker"
 msgstr "Kontrola pravopisu"
 
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:137
+msgid "About..."
+msgstr "O programe..."
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:3 logview/logview.c:118
+msgid "Preferences..."
+msgstr "Nastavenia..."
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:4
+msgid "Show/Hide Definition Window..."
+msgstr ""
+
 #: gsearchtool/gsearchtool.c:63
 msgid "File name is"
 msgstr "Meno súboru je"
@@ -761,7 +768,9 @@ msgstr "Nie je možné hľadať. Prosím, zadajte kritériá hľadania."
 msgid ""
 "A search is already running.  Please wait for the search to complete or "
 "cancel it."
-msgstr "Hľadanie už prebieha. Prosím, čakaje, kým neskončí, alebo ho prerušte."
+msgstr ""
+"Hľadanie už prebieha. Prosím, čakaje, kým neskončí, alebo ho "
+"prerušte."
 
 #: gsearchtool/gsearchtool.c:841
 msgid "Start directory does not exist"
@@ -770,8 +779,8 @@ msgstr "Počiatočný priečinok neexistuje"
 #: gsearchtool/gsearchtool.c:856
 msgid "Cannot show the search command line. Please specify a search criteria."
 msgstr ""
-"Nie je možné zobraziť príkazový riadok hľadania. Prosím, zadajte kritériá "
-"hľadania."
+"Nie je možné zobraziť príkazový riadok hľadania. Prosím, zadajte "
+"kritériá hľadania."
 
 #: gsearchtool/gsearchtool.c:860
 msgid "Search Command Line"
@@ -784,7 +793,8 @@ msgid ""
 "\n"
 "Command:"
 msgstr ""
-"Toto je príkazový riadok, ktorý môže byť použitý pre hľadanie z konzole.\n"
+"Toto je príkazový riadok, ktorý môže byť použitý pre hľadanie z "
+"konzole.\n"
 "\n"
 "Príkaz:"
 
@@ -904,9 +914,9 @@ msgid ""
 "log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 msgstr ""
 "Tento  program  je  súčasťou  projektu GNOME pre Linux. Logview nedáva "
-"ABSOLÚTNE ŽIADNE ZÁRUKY. Je to voľne šíriteľný softvér, a budeme radi ak ho "
-"budete distribuovať ďalej podľa pravidiel GNU General Public Licence. Log "
-"ikona je od Tuomasa Kuosmanena (a.k.a tigert)."
+"ABSOLÚTNE ŽIADNE ZÁRUKY. Je to voľne šíriteľný softvér, a budeme "
+"radi ak ho budete distribuovať ďalej podľa pravidiel GNU General Public "
+"Licence. Log ikona je od Tuomasa Kuosmanena (a.k.a tigert)."
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
 #: logview/about.c:72
@@ -1200,10 +1210,6 @@ msgstr "Lupa"
 msgid "Show line info"
 msgstr "Zobraziť informácie o riadku"
 
-#: logview/logview.c:118
-msgid "Preferences..."
-msgstr "Nastavenia..."
-
 #: logview/logview.c:119
 msgid "Show user preferences"
 msgstr "Zobraziť používateľské nastavenia"
@@ -1223,10 +1229,6 @@ msgstr "Filter..                "
 #: logview/logview.c:130
 msgid "Filter log events"
 msgstr "Filtruje udalosti záznamu"
-
-#: logview/logview.c:137
-msgid "About..."
-msgstr "O programe..."
 
 #: logview/logview.c:138
 msgid "Info about logview"
@@ -1251,7 +1253,8 @@ msgstr "Dátum: "
 
 #: logview/logview.c:628
 msgid "Too many open logs. Close one and try again"
-msgstr "Príliš veľa otvorených záznamov. Zatvorte niektorý a skúste to znovu."
+msgstr ""
+"Príliš veľa otvorených záznamov. Zatvorte niektorý a skúste to znovu."
 
 #: logview/logview.c:685
 msgid "Open new logfile"
@@ -1344,55 +1347,12 @@ msgstr "Popis:"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#.
-#. * 	-------------------
-#. * 	     Defines
-#. * 	-------------------
-#.
-#: logview/config.c:34
-msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:35
-msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:36
-msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:37
-msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:39
-msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-
-#: logview/config.c:40
-msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-
-#: logview/config.c:41
-msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:42
-msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:43
-msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:44
-msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "Nepodarilo sa otvoriť databázu regulárnych výrazov  <%s>! Otvorenie zlyhalo."
+msgstr ""
+"Nepodarilo sa otvoriť databázu regulárnych výrazov  <%s>! Otvorenie "
+"zlyhalo."
 
 #: logview/desc_db.c:147
 #, c-format
@@ -1564,7 +1524,8 @@ msgstr "MKontrola chybných blokov...(môže chvíľu trvať)"
 #: gfloppy/src/main.c:126 gfloppy/src/main.c:169
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "Nepodarilo sa otvoriť zariadenie %s, formátovanie nemôže pokračovať."
+msgstr ""
+"Nepodarilo sa otvoriť zariadenie %s, formátovanie nemôže pokračovať."
 
 #: gfloppy/src/main.c:129 gfloppy/src/main.c:172
 #, c-format
@@ -1716,8 +1677,8 @@ msgid ""
 "The executable is for a different platform and can not be executed on this "
 "system"
 msgstr ""
-"Spustiteľný súbor je určený pre inú platformu a na tomto systéme ho nie je "
-"možné spustiť."
+"Spustiteľný súbor je určený pre inú platformu a na tomto systéme ho "
+"nie je možné spustiť."
 
 #: meat-grinder/meat-grinder.c:109
 #, c-format
@@ -1813,14 +1774,14 @@ msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
 msgstr ""
-"Myšou ťahajte toto tlačidlo na miesto, kde chcete vytvoriť archív, alebo ho "
-"stlačte, aby sa objavil dialóg pre výber súboru."
+"Myšou ťahajte toto tlačidlo na miesto, kde chcete vytvoriť archív, "
+"alebo ho stlačte, aby sa objavil dialóg pre výber súboru."
 
-#: meat-grinder/meat-grinder.c:900
+#: meat-grinder/meat-grinder.c:899
 msgid "Cannot find proper icons anywhere!"
 msgstr "Nepodarilo sa nájsť správne ikony!"
 
-#: meat-grinder/meat-grinder.c:908
+#: meat-grinder/meat-grinder.c:907
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
@@ -1876,3 +1837,52 @@ msgstr "Kalkulačka"
 msgid "Perform simple calculations"
 msgstr "Vykoná jednoduché výpočty"
 
+#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
+#, fuzzy
+msgid "GNOME Search Tool"
+msgstr "Hľadanie"
+
+#: logview/gnome-system-log.desktop.in.h:1
+#, fuzzy
+msgid "System Log"
+msgstr "Zobrazovač systémových záznamov"
+
+#: logview/gnome-system-log.desktop.in.h:2
+msgid "View the system log file"
+msgstr ""
+
+#~ msgid "_Action Toolbar"
+#~ msgstr "Panel _akcií"
+
+#~ msgid "View or hide the action toolbar"
+#~ msgstr "Ukáže alebo skryje panel nástrojov s akciami"
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
