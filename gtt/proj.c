@@ -55,10 +55,10 @@ gtt_project_new(void)
 	proj->auto_merge_gap = 60;
 	proj->secs_ever = 0;
 	proj->secs_day = 0;
-	proj->billrate = 1.0;
-	proj->overtime_rate = 1.5;
-	proj->overover_rate = 2.0;
-	proj->flat_fee = 1.0;
+	proj->billrate = 10.0;
+	proj->overtime_rate = 15.0;
+	proj->overover_rate = 20.0;
+	proj->flat_fee = 1000.0;
 	proj->task_list = NULL;
 	proj->sub_projects = NULL;
 	proj->parent = NULL;

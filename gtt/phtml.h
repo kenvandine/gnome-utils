@@ -22,7 +22,7 @@
 #define __GTT_PHTML_H__
 
 /* PHTML == parsed html.  These routines will read in specially-marked
- * up gtt-style html, plug in gtt-specific data, and output planin-old
+ * up gtt-style html, plug in gtt-specific data, and output plain-old
  * html to the indicated stream.
  *
  * By appropriately supplying the stream structure, gtt HTML data
@@ -34,13 +34,19 @@
 
 typedef struct gtt_phtml_s GttPhtml;
 
-struct gtt_phtml_s
-{
-	void (*open_stream) (GttPhtml *);
-	void (*write_stream) (GttPhtml *, const char *, size_t len);
-	void (*close_stream) (GttPhtml *);
-	void (*error) (GttPhtml *, int errcode, const char * msg);
-};
+GttPhtml * gtt_phtml_new (void);
+void gtt_phtml_destroy (GttPhtml *p);
+
+typedef void (*GttPhtmlOpenStream) (GttPhtml *, gpointer);
+typedef void (*GttPhtmlWriteStream) (GttPhtml *, const char *, size_t len, gpointer);
+typedef void (*GttPhtmlCloseStream) (GttPhtml *, gpointer);
+typedef void (*GttPhtmlError) (GttPhtml *, int errcode, const char * msg, gpointer);
+
+void gtt_phtml_set_stream (GttPhtml *, gpointer user_data,
+                                       GttPhtmlOpenStream, 
+                                       GttPhtmlWriteStream,
+                                       GttPhtmlCloseStream, 
+                                       GttPhtmlError);
 
 /* The gtt_phtml_display() routine will parse the indicated gtt file, 
  * and output standard HTML to the indicated stream

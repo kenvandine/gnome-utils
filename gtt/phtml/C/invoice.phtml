@@ -1,0 +1,32 @@
+
+<html>
+<head>
+<title>Invoice</title>
+</head>
+<body>
+<center>
+<h1>Invoice for <?gtt $project_title ?> - <?gtt $project_desc ?></h1>
+
+This is a sample invoice
+It only shows billable and no-charge hours.
+<br><br>
+The displayed columns, and the order in which they are displayed,
+can be changed by making a copy of the file "invoice.phtml"
+(probably in /usr/share/gtt/phtml/C/invoice.phtml) 
+and editing the copy to suit your needs.  When finished, you can 
+add the new copy to your system by picking 
+the menu item "Reports... New Report".
+<br><br>
+
+<!--
+<?gtt $memo $billable $billrate $task_time $value $bill_value 
+$start_datime $stop_datime $elapsed $invoice ?>
+-->
+
+<?gtt $memo $task_time $billable $billrate $value $bill_value $invoice ?>
+
+<br><br>
+That's all Folks!
+</center>
+</body>
+</html>

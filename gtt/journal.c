@@ -16,6 +16,8 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#define _GNU_SOURCE
+
 #include "config.h"
 
 #include <errno.h>
@@ -36,13 +38,14 @@
 /* this struct is a random mish-mash of stuff, not well organized */
 
 typedef struct wiggy_s {
-	GttPhtml  ph;     /* must be first elt for cast to work */
+	GttPhtml *ph;    
 	GtkHTML *htmlw;
 	GtkHTMLStream *handle;
 	GtkWidget *top;
 	GtkWidget *interval_popup;
 	GtkFileSelection *filesel;
 	EditIntervalDialog *edit_ivl;
+	char * filepath;
 	GttInterval * interval;
 	GttProject *prj;
 } Wiggy;
@@ -51,18 +54,18 @@ typedef struct wiggy_s {
 /* html i/o routines */
 
 static void
-wiggy_open (GttPhtml *pl)
+wiggy_open (GttPhtml *pl, gpointer ud)
 {
-	Wiggy *wig = (Wiggy *) pl;
+	Wiggy *wig = (Wiggy *) ud;
 
 	/* open the browser for writing */
 	wig->handle = gtk_html_begin_content(wig->htmlw, "text/html");
 }
 
 static void
-wiggy_close (GttPhtml *pl)
+wiggy_close (GttPhtml *pl, gpointer ud)
 {
-	Wiggy *wig = (Wiggy *) pl;
+	Wiggy *wig = (Wiggy *) ud;
 
 	/* close the browser stream */
 	gtk_html_end (wig->htmlw, wig->handle, GTK_HTML_STREAM_OK);
@@ -70,18 +73,18 @@ wiggy_close (GttPhtml *pl)
 }
 
 static void
-wiggy_write (GttPhtml *pl, const char *str, size_t len)
+wiggy_write (GttPhtml *pl, const char *str, size_t len, gpointer ud)
 {
-	Wiggy *wig = (Wiggy *) pl;
+	Wiggy *wig = (Wiggy *) ud;
 
 	/* write to the browser stream */
 	gtk_html_write (wig->htmlw, wig->handle, str, len);
 }
 
 static void
-wiggy_error (GttPhtml *pl, int err, const char * msg)
+wiggy_error (GttPhtml *pl, int err, const char * msg, gpointer ud)
 {
-	Wiggy *wig = (Wiggy *) pl;
+	Wiggy *wig = (Wiggy *) ud;
 	GtkHTML *htmlw = wig->htmlw;
 	GtkHTMLStream *han;
 	char * buff;
@@ -117,7 +120,8 @@ static void
 redraw (GttProject * prj, gpointer data)
 {
 	Wiggy *wig = (Wiggy *) data;
-	gtt_phtml_display (&(wig->ph), "journal.phtml", wig->prj);
+
+	gtt_phtml_display (wig->ph, wig->filepath, wig->prj);
 }
 
 /* ============================================================== */
@@ -215,6 +219,8 @@ on_close_clicked_cb (GtkWidget *w, gpointer data)
 	gtt_project_remove_notifier (wig->prj, redraw, wig);
 	edit_interval_dialog_destroy (wig->edit_ivl);
 	gtk_widget_destroy (wig->top);
+	gtt_phtml_destroy (wig->ph);
+	g_free (wig->filepath);
 	g_free (wig);
 }
 
@@ -338,10 +344,9 @@ do_show_report (const char * report, GttProject *prj)
 
 	wig->top = jnl_top;
 	wig->htmlw = GTK_HTML(jnl_browser);
-	wig->ph.open_stream = wiggy_open;
-	wig->ph.write_stream = wiggy_write;
-	wig->ph.close_stream = wiggy_close;
-	wig->ph.error = wiggy_error;
+	wig->ph = gtt_phtml_new();
+	gtt_phtml_set_stream (wig->ph, wig, wiggy_open, wiggy_write, 
+		wiggy_close, wiggy_error);
 	
 	glade_xml_signal_connect_data (glxml, "on_close_clicked",
 	        GTK_SIGNAL_FUNC (on_close_clicked_cb), wig);
@@ -389,34 +394,66 @@ do_show_report (const char * report, GttProject *prj)
 	/* finally ... display the actual journal */
 
 	wig->prj = prj;
+	wig->filepath = g_strdup (report);
 	if (!prj)
 	{
-		gtt_phtml_display (&(wig->ph), "noproject.phtml", NULL);
+		gtt_phtml_display (wig->ph, "noproject.phtml", NULL);
 	} 
 	else 
 	{
 		gtt_project_add_notifier (prj, redraw, wig);
-		gtt_phtml_display (&(wig->ph), report, prj);
+		gtt_phtml_display (wig->ph, report, prj);
 	}
 }
 
 /* ============================================================== */
 
-void
-edit_journal(GtkWidget *w, gpointer data)
+static char *
+resolve_path (char *path_frag)
 {
-	char * path;
+	char buff[200], *p, *path;
 
 	/* xxx hack alert fixme the gnome_datadir gives full
          * path e.g. /usr/share/gtt, but I don't think it gets 
 	 * the i18n path right (subst C for es, fr, de, etc.) */
 
 	/* look in the local build dir first (for testing) */
-	path = gnome_datadir_file ("phtml/C/journal.phtml");
+	
+	p = buff;
+	p = stpcpy (p, "phtml/C/");
+	p = stpcpy (p, path_frag);
+	path = gnome_datadir_file (buff);
 	if (NULL == path)
 	{
-		path = gnome_datadir_file ("gtt/phtml/C/journal.phtml");
+		p = buff;
+		p = stpcpy (p, "gtt/phtml/C/");
+		p = stpcpy (p, path_frag);
+		path = gnome_datadir_file (buff);
 	}
+	return path;
+}
+
+void
+edit_journal(GtkWidget *w, gpointer data)
+{
+	char * path;
+	path = resolve_path ("journal.phtml");
+	do_show_report (path, cur_proj);
+}
+
+void
+edit_alldata(GtkWidget *w, gpointer data)
+{
+	char * path;
+	path = resolve_path ("alldata.phtml");
+	do_show_report (path, cur_proj);
+}
+
+void
+edit_invoice(GtkWidget *w, gpointer data)
+{
+	char * path;
+	path = resolve_path ("invoice.phtml");
 	do_show_report (path, cur_proj);
 }
 

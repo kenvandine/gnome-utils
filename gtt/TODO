@@ -1,41 +1,39 @@
 
-Add an gtt applet for fast-switching projects.
+Add an gtt panel applet for switching projects fast.
 
 Documentation has to be updated/finished.
 
 Optionally allow more then one running project.
 
-Support some SQL database for loggin?
+Support some SQL database for logging?
 
 Create bonobo component to allow tasks to be put into calander (e.g.
 evolution calender).
-
-print prices; make prices configurable
 
 Later:
 ~~~~~~
 Networked version (Server on one machine -- all others are network clients).
 Security (but read-only for some users). Viewable / editable on multiple
-mashines at the same time.
+machines at the same time.
 
 
 bugs
 ----
-don't destroy old project list until we are sure that read of new
-project list succeeded.
+During read of data,  don't destroy old project list until we are sure 
+that read of new project list succeeded.
 
-export is broken with new heirarchy (shuld be stripped, in favour 
+export is broken with new heirarchy (should be stripped, in favour 
 of 'print'?)
 
 config_show_tb_journal should be configurable/savable
 
-fix annoying curosr shape when dragging projects around
+fix annoying cursor shape when dragging projects around
 
 auto-save every xxx minutes
 
 grep for xxx fixme hack alert for additional todo items ... 
 
-implement hover over url link
+implement tooltips when there is a hover over url link
 
 implement ability to remove task from journal
 
@@ -45,5 +43,8 @@ add dialogs for suggested auto-merge intervals when the default values
 are too small (should be 60/300/300, not 3/60/60)
 
 build fancier reports/journals, including 
--- invoices
--- embedded gif/png/jpg
+-- fancier, nicer layout for invoice (including configurable column titles)
+-- handle embedded gif/png/jpg
+
+support for 'minimum billing blocks' is everywhere, exept in the actual invoice
+report. Add it there.
