@@ -119,6 +119,9 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
       g_signal_connect (G_OBJECT (CalendarDialog), "destroy",
 			G_CALLBACK (close_calendar),
 			NULL);
+      g_signal_connect (G_OBJECT (CalendarDialog), "delete_event",
+			G_CALLBACK (gtk_true),
+			NULL);
       gtk_widget_set_style (CalendarDialog, cfg->main_style);
 
       vbox = gtk_vbox_new (FALSE, 2);
@@ -346,7 +349,7 @@ calendar_day_selected_double_click (GtkWidget *widget, gpointer data)
    ---------------------------------------------------------------------- */
 
 void
-close_calendar (GtkWidget * widget, gpointer client_data)
+close_calendar (GtkWidget *widget, gpointer client_data)
 {
    if (calendarvisible) {
       gtk_widget_hide (CalendarDialog);

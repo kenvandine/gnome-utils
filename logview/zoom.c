@@ -50,6 +50,7 @@ extern GList *regexp_db, *descript_db;
 extern GnomeUIInfo view_menu[];
 
 void close_zoom_view (GtkWidget *widget, gpointer data);
+void quit_zoom_view (GtkWidget *widget, gpointer data);
 void create_zoom_view (GtkWidget *widget, gpointer data);
 int match_line_in_db (LogLine *line, GList *db);
 void draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,  \
@@ -63,81 +64,91 @@ void draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,  \
 void
 create_zoom_view (GtkWidget *widget, gpointer data)
 {
-   GtkWidget *frame;
-   GtkWidget *vbox;
-   int h1, h2, height;
-   PangoContext *context;
-   PangoFontMetrics *metrics;
-   PangoFont *font;
 
    if (curlog == NULL || zoom_visible)
       return;
 
-   zoom_dialog  = gtk_dialog_new_with_buttons (_("Zoom view"), 
-					       GTK_WINDOW_TOPLEVEL,
-					       GTK_DIALOG_DESTROY_WITH_PARENT,
-					       GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, 
-					       NULL);
-   gtk_signal_connect (GTK_OBJECT (zoom_dialog), "destroy",
-		       (GtkSignalFunc) close_zoom_view,
-		       &zoom_dialog);
-   gtk_signal_connect (GTK_OBJECT (zoom_dialog), "delete_event",
-		       (GtkSignalFunc) close_zoom_view,
-		       &zoom_dialog);
-   gtk_container_set_border_width (GTK_CONTAINER (zoom_dialog), 0);
-   gtk_widget_set_style (zoom_dialog, cfg->main_style);
+   if (zoom_dialog == NULL) {
+   	GtkWidget *frame;
+   	GtkWidget *vbox;
+   	int h1, h2, height;
+   	PangoContext *context;
+   	PangoFontMetrics *metrics;
+   	PangoFont *font;
 
-   vbox = gtk_vbox_new (FALSE, 2);
-   gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
-   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (zoom_dialog)->vbox), vbox,
-                          TRUE, TRUE, 0);
-   gtk_widget_show (vbox);
+   	zoom_dialog  = gtk_dialog_new_with_buttons (_("Zoom view"), 
+					       	    GTK_WINDOW_TOPLEVEL,
+					            GTK_DIALOG_DESTROY_WITH_PARENT,
+					            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, 
+					            NULL);
+  
+        g_signal_connect (G_OBJECT (zoom_dialog), "response",
+		          G_CALLBACK (close_zoom_view),
+		            &zoom_dialog);
+   	g_signal_connect (G_OBJECT (zoom_dialog), "destroy",
+		          G_CALLBACK (quit_zoom_view),
+		            &zoom_dialog);
+        g_signal_connect (G_OBJECT (zoom_dialog), "delete_event",
+		          G_CALLBACK (gtk_true),
+		            NULL);
+   	
+	gtk_dialog_set_default_response (GTK_DIALOG (zoom_dialog), GTK_RESPONSE_CLOSE);
+   	gtk_container_set_border_width (GTK_CONTAINER (zoom_dialog), 0);
+   	gtk_widget_set_style (zoom_dialog, cfg->main_style);
 
-   /* Create frame for main view */
-   frame = gtk_frame_new (NULL);
-   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
-   gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
-   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
-   gtk_widget_set_style (frame, cfg->main_style);
-   gtk_widget_show (frame);
+   	vbox = gtk_vbox_new (FALSE, 2);
+   	gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
+   	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (zoom_dialog)->vbox), vbox,
+                            TRUE, TRUE, 0);
+   	gtk_widget_show (vbox);
+
+   	/* Create frame for main view */
+   	frame = gtk_frame_new (NULL);
+   	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
+   	gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
+   	gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
+   	gtk_widget_set_style (frame, cfg->main_style);
+   	gtk_widget_show (frame);
 
 
-   /* Create drawing area where data will be drawn */
-   zoom_canvas = gtk_drawing_area_new ();
-   gtk_signal_connect (GTK_OBJECT (zoom_canvas), "expose_event",
-		       (GtkSignalFunc) repaint_zoom, zoom_canvas);
+   	/* Create drawing area where data will be drawn */
+   	zoom_canvas = gtk_drawing_area_new ();
+   	gtk_signal_connect (GTK_OBJECT (zoom_canvas), "expose_event",
+		            (GtkSignalFunc) repaint_zoom, zoom_canvas);
 
-   zoom_layout = gtk_widget_create_pango_layout (zoom_canvas, "");
-   context = gdk_pango_context_get ();
-   pango_context_set_language (context, gtk_get_default_language ()); 
-   font = pango_context_load_font (context, cfg->headingb);
-   metrics = pango_font_get_metrics
-	     (font, pango_context_get_language (context));
-   h1 = PANGO_PIXELS (pango_font_metrics_get_descent (metrics)) +
-	PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
-   font = pango_context_load_font (context, cfg->fixedb);
-   metrics = pango_font_get_metrics
-	     (font, pango_context_get_language (context));
-   h2 = PANGO_PIXELS (pango_font_metrics_get_descent (metrics)) +
-	PANGO_PIXELS (pango_font_metrics_get_ascent (metrics))+2;
-   height = h1*2+14*h2;
-   GTK_WIDGET (zoom_canvas)->requisition.height = height;
-   GTK_WIDGET (zoom_canvas)->requisition.width = ZOOM_WIDTH;
-   gtk_widget_queue_resize (GTK_WIDGET (zoom_canvas));
-   gtk_widget_set_events (zoom_canvas, GDK_EXPOSURE_MASK);
-   /* gtk_widget_set_style (zoom_canvas, cfg->black_bg_style); */
-   gtk_widget_set_style (zoom_canvas, cfg->white_bg_style);
-   gtk_container_add (GTK_CONTAINER (frame), zoom_canvas);
-   gtk_widget_show (zoom_canvas);
-   gtk_widget_realize (zoom_canvas);
+   	zoom_layout = gtk_widget_create_pango_layout (zoom_canvas, "");
+   	context = gdk_pango_context_get ();
+   	pango_context_set_language (context, gtk_get_default_language ()); 
 
+   	font = pango_context_load_font (context, cfg->headingb);
+   	metrics = pango_font_get_metrics (font, pango_context_get_language (context));
+   	h1 = PANGO_PIXELS (pango_font_metrics_get_descent (metrics)) +
+	     PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
+
+   	font = pango_context_load_font (context, cfg->fixedb);
+   	metrics = pango_font_get_metrics (font, pango_context_get_language (context));
+   	h2 = PANGO_PIXELS (pango_font_metrics_get_descent (metrics)) +
+	     PANGO_PIXELS (pango_font_metrics_get_ascent (metrics))+2;
+
+   	height = h1*2+14*h2;
+   	GTK_WIDGET (zoom_canvas)->requisition.height = height;
+   	GTK_WIDGET (zoom_canvas)->requisition.width = ZOOM_WIDTH;
+   	gtk_widget_queue_resize (GTK_WIDGET (zoom_canvas));
+   	gtk_widget_set_events (zoom_canvas, GDK_EXPOSURE_MASK);
+   	/* gtk_widget_set_style (zoom_canvas, cfg->black_bg_style); */
+   	gtk_widget_set_style (zoom_canvas, cfg->white_bg_style);
+   	gtk_container_add (GTK_CONTAINER (frame), zoom_canvas);
+   	gtk_widget_show (zoom_canvas);
+   	gtk_widget_realize (zoom_canvas);
+   
+	g_object_unref (G_OBJECT (context));
+   	pango_font_metrics_unref (metrics);
+   	g_object_unref (G_OBJECT (font));
+   }
    gtk_widget_show (zoom_dialog);
    gtk_widget_queue_draw (zoom_canvas);
 
    zoom_visible = TRUE;
-   g_object_unref (G_OBJECT (context));
-   pango_font_metrics_unref (metrics);
-   g_object_unref (G_OBJECT (font));
 }
 
 /* ----------------------------------------------------------------------
@@ -400,12 +411,20 @@ void
 close_zoom_view (GtkWidget *widget, gpointer data)
 {
    if (zoom_visible) {
-      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (view_menu[1].widget), FALSE);
       gtk_widget_hide (GTK_WIDGET (zoom_dialog));
+      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (view_menu[1].widget), FALSE);
+/*
       if (G_IS_OBJECT (zoom_layout))
-         g_object_unref (G_OBJECT (zoom_layout));
+         g_object_unref (G_OBJECT (zoom_layout)); */
    }
    zoom_dialog = NULL;
    zoom_visible = FALSE;
 }
 
+void
+quit_zoom_view (GtkWidget *widget, gpointer data) {
+
+	if (G_IS_OBJECT (zoom_layout))
+		g_object_unref (G_OBJECT (zoom_layout));
+	gtk_widget_destroy (GTK_WIDGET (zoom_dialog));
+}

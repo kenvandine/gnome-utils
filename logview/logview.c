@@ -1020,7 +1020,7 @@ static void
 toggle_zoom (void)
 {
     if (zoom_visible) {
-	close_zoom_view (zoom_dialog, NULL);
+	close_zoom_view (app, NULL);
     }
     else
 	create_zoom_view (NULL, NULL);
