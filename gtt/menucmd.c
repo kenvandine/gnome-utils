@@ -59,6 +59,7 @@ void quit_app(GtkWidget *w, gpointer data)
 
 void about_box(GtkWidget *w, gpointer data)
 {
+#ifdef STANDALONE
 	GtkWidget *dlg, *t;
 	GtkBox *vbox;
 	char s[128];
@@ -80,17 +81,30 @@ void about_box(GtkWidget *w, gpointer data)
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 
-#ifdef STANDALONE
 	t = gtk_label_new("Eckehard Berns <eb@berns.prima.de>\n"
 			  "http://www.i-s-o.net/~ecki/gtt/");
-#else
-	t = gtk_label_new("Eckehard Berns <eb@berns.prima.de>\n"
-			  "http://www.gnome.org/");
-#endif
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 
 	gtk_widget_show(dlg);
+#else /* not STANDALONE */
+        GtkWidget *about;
+        gchar *authors[] = {
+                "Eckehard Berns\n<eb@berns.prima.de>",
+                NULL
+        };
+        about = gnome_about_new(APP_NAME,
+                                VERSION,
+                                "Copyright (C) 1997,98 Eckehard Berns",
+                                authors,
+#ifdef DEBUG
+                                __DATE__ ", " __TIME__,
+#else
+                                NULL,
+#endif
+                                NULL);
+        gtk_widget_show(about);
+#endif /* not STANDALONE */
 }
 
 

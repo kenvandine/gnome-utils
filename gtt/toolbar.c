@@ -40,10 +40,6 @@
 #define WANT_STOCK
 #endif
 
-#if HAS_GNOME && 0
-#define USE_HACK
-#endif
-
 
 
 #ifndef WANT_STOCK
@@ -75,9 +71,7 @@ typedef struct _MyToolbar MyToolbar;
 struct _MyToggle {
         GtkWidget *button;
         GtkPixmap *pmap1, *pmap2, *cur_pmap;
-#ifndef USE_HACK
         GtkBox *vbox;
-#endif
 };
 
 struct _MyToolbar {
@@ -112,19 +106,26 @@ add_button(GtkToolbar *tbar, char *text, char *tt_text,
            gchar **pmap_data, char *menu_path)
 {
 	GtkWidget *w, *pixmap;
-	GdkPixmap *pmap;
-	GdkBitmap *bmap;
-	static GtkStyle *style = NULL;
 
         /* TODO: hmmm, I should rename some global variables some
            time. `window' is the main window of the app.
            I will be doing this at least when I have to support
            multiple app window (e.g. for the networked version) */
+#if 1
+        pixmap = gnome_create_pixmap_widget_d((GtkWidget *)window,
+                                              (GtkWidget *)tbar,
+                                              pmap_data);
+#else
+	GdkPixmap *pmap;
+	GdkBitmap *bmap;
+	static GtkStyle *style = NULL;
+
 	if (!style) style = gtk_widget_get_style(window);
 	pmap = gdk_pixmap_create_from_xpm_d(window->window, &bmap,
 					    &style->bg[GTK_STATE_NORMAL],
 					    pmap_data);
 	pixmap = gtk_pixmap_new(pmap, bmap);
+#endif
 
         w = gtk_toolbar_append_item(tbar, text, tt_text, pixmap,
                                     (GtkSignalFunc)sigfunc,
@@ -204,12 +205,6 @@ add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
 					    pmap2);
 	w->pmap2 = (GtkPixmap *)gtk_pixmap_new(pmap, bmap);
 
-#ifdef USE_HACK
-        w->button = gtk_toolbar_append_item(tbar, text, tt_text,
-                                            GTK_WIDGET(w->pmap1),
-                                            (GtkSignalFunc)sigfunc,
-                                            (gpointer *)menu_path);
-#else /* not USE_HACK */
         gtk_widget_show(GTK_WIDGET(w->pmap1));
         gtk_widget_show(GTK_WIDGET(w->pmap2));
         w->vbox = (GtkBox *)gtk_vbox_new(FALSE, 0);
@@ -219,62 +214,12 @@ add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
                                             GTK_WIDGET(w->vbox),
                                             (GtkSignalFunc)sigfunc,
                                             (gpointer *)menu_path);
-#endif /* not USE_HACK */
         w->cur_pmap = w->pmap1;
 
 	return w;
 }
 
 
-
-#ifdef USE_HACK
-/* Okay, since nobody made a GtkToolbarItem, I have to hack a lot */
-
-typedef enum
-{
-  CHILD_SPACE,
-  CHILD_BUTTON,
-  CHILD_WIDGET
-} ChildType;
-
-typedef struct
-{
-  ChildType type;
-  GtkWidget *widget;
-  GtkWidget *icon;
-  GtkWidget *label;
-} Child;
-
-static void
-my_set_icon(GtkToolbar *toolbar, MyToggle *toggle, GtkPixmap *pmap)
-{
-        GList *gl;
-        Child *child;
-
-        if (toggle->cur_pmap == pmap) return;
-
-        for (gl = toolbar->children; gl; gl = gl->next)
-                if (((Child *)(gl->data))->widget == toggle->button) break;
-        if (!gl) return;
-        child = gl->data;
-        if (GTK_WIDGET_VISIBLE(child->icon)) {
-                gtk_widget_show(GTK_WIDGET(pmap));
-        } else {
-                gtk_widget_hide(GTK_WIDGET(pmap));
-        }
-        gtk_container_remove(GTK_CONTAINER(((GtkButton *)(child->widget))->child),
-                             child->icon);
-        gtk_container_remove(GTK_CONTAINER(((GtkButton *)(child->widget))->child),
-                             child->label);
-        child->icon = GTK_WIDGET(pmap);
-        gtk_box_pack_start(GTK_BOX(((GtkButton *)(child->widget))->child),
-                           child->icon, FALSE, FALSE, 0);
-        gtk_box_pack_start(GTK_BOX(((GtkButton *)(child->widget))->child),
-                           child->label, FALSE, FALSE, 0);
-        toggle->cur_pmap = pmap;
-}
-
-#else /* not USE_HACK */
 
 static void
 my_set_icon(GtkToolbar *toolbar, MyToggle *toggle, GtkPixmap *pmap)
@@ -285,7 +230,6 @@ my_set_icon(GtkToolbar *toolbar, MyToggle *toggle, GtkPixmap *pmap)
         gtk_box_pack_start(toggle->vbox, GTK_WIDGET(pmap), FALSE, FALSE, 0);
         toggle->cur_pmap = pmap;
 }
-#endif /* USE_HACK */
 
 
 
@@ -392,34 +336,44 @@ build_toolbar(void)
 #else /* not WANT_STOCK */
         /* TODO: If I keep this, I will have to add config_show_tb_bla
            checks */
-        /* Note to translators: just skip the `[GTT]' */
-        add_button(mytbar->tbar, gtt_gettext(_("[GTT]New")),
-                   _("New Project..."), tb_new_xpm,
-                   _("<Main>/File/New Project..."));
-        gtk_toolbar_append_space(mytbar->tbar);
-	add_button(mytbar->tbar, _("Reload"), _("Reload Configuration File"),
-                   tb_open_xpm,
-                   _("<Main>/File/Reload Configuration File"));
-	add_button(mytbar->tbar, _("Save"), _("Save Configuration File"),
-                   tb_save_xpm,
-                   _("<Main>/File/Save Configuration File"));
-        gtk_toolbar_append_space(mytbar->tbar);
-	mytbar->cut = add_button(mytbar->tbar, _("Cut"), _("Cut Selected Project"),
-                               tb_cut_xpm,
-                               _("<Main>/Edit/Cut"));
-	mytbar->copy = add_button(mytbar->tbar, _("Copy"),
-                                _("Copy Selected Project"),
-                                tb_copy_xpm,
-                                _("<Main>/Edit/Copy"));
-	mytbar->paste = add_button(mytbar->tbar, _("Paste"), _("Paste Project"),
-                                 tb_paste_xpm,
-                                 _("<Main>/Edit/Paste"));
-        gtk_toolbar_append_space(mytbar->tbar);
-	mytbar->prop = add_toggle_button(mytbar->tbar, _("Props"),
-                                       _("Edit Properties..."),
-                                       tb_properties_xpm,
-                                       tb_prop_dis_xpm,
-                                       _("<Main>/Edit/Properties..."));
+        if (config_show_tb_new) {
+                /* Note to translators: just skip the `[GTT]' */
+                add_button(mytbar->tbar, gtt_gettext(_("[GTT]New")),
+                           _("New Project..."), tb_new_xpm,
+                           _("<Main>/File/New Project..."));
+                gtk_toolbar_append_space(mytbar->tbar);
+        }
+        if (config_show_tb_file) {
+                add_button(mytbar->tbar, _("Reload"),
+                           _("Reload Configuration File"),
+                           tb_open_xpm,
+                           _("<Main>/File/Reload Configuration File"));
+                add_button(mytbar->tbar, _("Save"),
+                           _("Save Configuration File"),
+                           tb_save_xpm,
+                           _("<Main>/File/Save Configuration File"));
+                gtk_toolbar_append_space(mytbar->tbar);
+        }
+        if (config_show_tb_ccp) {
+                mytbar->cut = add_button(mytbar->tbar, _("Cut"), _("Cut Selected Project"),
+                                         tb_cut_xpm,
+                                         _("<Main>/Edit/Cut"));
+                mytbar->copy = add_button(mytbar->tbar, _("Copy"),
+                                          _("Copy Selected Project"),
+                                          tb_copy_xpm,
+                                          _("<Main>/Edit/Copy"));
+                mytbar->paste = add_button(mytbar->tbar, _("Paste"), _("Paste Project"),
+                                           tb_paste_xpm,
+                                           _("<Main>/Edit/Paste"));
+                gtk_toolbar_append_space(mytbar->tbar);
+        }
+        if (config_show_tb_prop) {
+                mytbar->prop = add_toggle_button(mytbar->tbar, _("Props"),
+                                                 _("Edit Properties..."),
+                                                 tb_properties_xpm,
+                                                 tb_prop_dis_xpm,
+                                                 _("<Main>/Edit/Properties..."));
+        }
 #endif /* not WANT_STOCK */
         if (config_show_tb_timer)
                 mytbar->timer = add_toggle_button(mytbar->tbar, _("Timer"),
@@ -489,6 +443,7 @@ update_toolbar_sections(void)
 void
 toolbar_test(void)
 {
+#ifdef WANT_STOCK
         static shown = 1;
 
         if (!mytbar) return;
@@ -500,5 +455,6 @@ toolbar_test(void)
                 gtk_widget_show(mytbar->prop_w);
                 shown = 1;
         }
+#endif
 }
 #endif /* DEBUG */
