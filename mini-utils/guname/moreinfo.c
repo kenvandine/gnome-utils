@@ -19,14 +19,7 @@
  * USA
  */
 
-
-#include <gnome.h>
 #include "config.h"
-#include "info.h"
-#include "mountlist.h"
-#include "fsusage.h"
-#include "moreinfo.h"
-#include "list.h"
 
 #ifdef HAVE_LIBGTOP
 #include <glibtop.h>
@@ -34,6 +27,14 @@
 #include <glibtop/mem.h>
 #include <glibtop/swap.h>
 #endif
+
+#include <gnome.h>
+#include "info.h"
+#include "mountlist.h"
+#include "fsusage.h"
+#include "moreinfo.h"
+#include "list.h"
+
 
 /* From the comp.lang.c FAQ */
 #define MAX_ITOA_LEN ((sizeof(long) * CHAR_BIT + 2) / 3 + 1)  /* +1 for '-' */
@@ -143,10 +144,10 @@ static void fill_mem_page(GtkWidget * box)
   GtkWidget * hbox;
   GtkWidget * bar;
   GtkWidget * label;
-  const gchar * titles[] = { _("Memory"), _("Kilobytes") };
+  const gchar * titles[] = { N_("Memory"), N_("Kilobytes") };
   gchar * s;
   gint len;
-  static const gchar * format = _("%ld%% %s used.");
+  static const gchar * format = N_("%ld%% %s used.");
 
   vbox = gtk_vbox_new(FALSE, GNOME_PAD);
   gtk_container_add(GTK_CONTAINER(box), vbox);
