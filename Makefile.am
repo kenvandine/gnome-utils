@@ -12,7 +12,7 @@ SUBDIRS = po idl $(gfloppy) logview gcharmap \
 	meat-grinder exe-handler omf-install
 #splash stripchart
 
-EXTRA_DIST = gnome-utils.spec.in
+EXTRA_DIST = autogen.sh gnome-utils.spec.in
 
 dist-hook: gnome-utils.spec
 	cp gnome-utils.spec $(distdir)
