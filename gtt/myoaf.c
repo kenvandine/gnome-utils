@@ -9,8 +9,10 @@
 
 
 #include <gtk/gtk.h>
+#if 0
 #include <liboaf/liboaf.h>
 #include <orb/orbit.h>
+#endif
 
 #include "myoaf.h"
 
