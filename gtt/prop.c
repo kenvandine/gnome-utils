@@ -157,7 +157,7 @@ void prop_dialog_set_project(project *proj)
 
 void prop_dialog(project *proj)
 {
-        static GnomeHelpMenuEntry help_entry = { NULL, "properties-edit" };
+        static GnomeHelpMenuEntry help_entry = { NULL, "index.html#PROP" };
 	GtkWidget *w;
 	GtkBox *vbox;
 	GtkTable *table;
@@ -184,7 +184,7 @@ void prop_dialog(project *proj)
 
 		help_entry.name = gnome_app_id;
 		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "help",
-				   GTK_SIGNAL_FUNC(gnome_help_pbox_display),
+				   GTK_SIGNAL_FUNC(gnome_help_pbox_goto),
 				   &help_entry);
 
 		table = GTK_TABLE(gtk_table_new(4, 7, FALSE));
