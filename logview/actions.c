@@ -508,7 +508,7 @@ add_actions_entry_cb (GtkWidget *widget, gpointer data)
   action = g_new (Action, 1);
   
   g_snprintf (action->tag, sizeof (action->tag), _("<empty>"));
-  action->log_name = g_strdup (_("log. name regexp"));
+  action->log_name = g_strdup (_("log name regexp"));
   action->process = g_strdup (_("process regexp"));
   action->message = g_strdup (_("message regexp"));
   action->action = g_strdup (_("action to execute when regexps are TRUE"));
