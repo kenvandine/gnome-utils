@@ -42,11 +42,17 @@ quit_app(GtkWidget *w, gpointer data)
 void
 about_box(GtkWidget *w, gpointer data)
 {
-        GtkWidget *about;
+        static GtkWidget *about = NULL;
         gchar *authors[] = {
                 "Eckehard Berns\n<eb@berns.i-s-o.net>",
                 NULL
         };
+	if (about != NULL)
+	{
+		gdk_window_show(about->window);
+		gdk_window_raise(about->window);
+		return;
+	}
         about = gnome_about_new(APP_NAME,
                                 VERSION,
                                 "Copyright (C) 1997,98 Eckehard Berns",
@@ -57,6 +63,8 @@ about_box(GtkWidget *w, gpointer data)
                                 NULL,
 #endif
                                 NULL);
+	gtk_signal_connect(GTK_OBJECT(about), "destroy",
+			   GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
         gtk_widget_show(about);
 }
 
