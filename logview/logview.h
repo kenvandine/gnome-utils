@@ -142,6 +142,7 @@ typedef struct
 
 	DateMark *curmark;
 	char name[255];
+	char *display_name;
 	CalendarData *caldata;
 	LogStats lstats;
 	gint current_line_no; /* indicates the line that is selected */
