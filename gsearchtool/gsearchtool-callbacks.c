@@ -341,6 +341,7 @@ click_file_cb 	     (GtkWidget 	*widget,
 	gchar *utf8_name = NULL;
 	gchar *utf8_path = NULL;
 	gboolean no_files_found = FALSE;
+	GtkWidget *save_widget;
 	GtkTreeIter iter;
 	
 	if (event->type==GDK_2BUTTON_PRESS) {
@@ -387,8 +388,17 @@ click_file_cb 	     (GtkWidget 	*widget,
 				   -1);
 				   
 		if (!no_files_found) {
+			
 			popup = gnome_popup_menu_new (popup_menu);
-		    
+			save_widget = popup_menu[3].widget;
+			
+			if (search_command.running != NOT_RUNNING) {		    	
+		        	gtk_widget_set_sensitive (save_widget, FALSE);
+			}
+			else {
+				gtk_widget_set_sensitive (save_widget, TRUE);
+			}
+			
 			gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL, 
 						   (GdkEventButton *)event, data, NULL);
 		}
@@ -452,10 +462,6 @@ void
 show_file_selector_cb (GtkWidget 	*widget, 
 		       gpointer		data)
 {
-	if (search_command.running != NOT_RUNNING) {
-		return;
-	}
-	
 	interface.file_selector = gtk_file_selection_new(_("Save Search Results As..."));
 		
 	if (interface.save_results_file) gtk_file_selection_set_filename(GTK_FILE_SELECTION(interface.file_selector), 
