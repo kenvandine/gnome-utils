@@ -68,6 +68,7 @@ static void save_cb(GtkWidget * w, gpointer data);
 
 static void preferences_cb(GtkWidget *w, gpointer data);
 
+static void get_list_column_number (void);
 static void reset_list(GtkCList * list);
 static gint list_clicked_cb(GtkCList * list, GdkEventButton * e);
 
@@ -97,11 +98,7 @@ static void do_action_cb(GtkWidget * menuitem, Action * a);
   Globals
   ***********************************/
 
-/* This is bad, it shouldn't be hardcoded;
-   but CList won't let you change it after the list
-   is created. The alternative is to recreate the 
-   CList each time, I guess; may do that later. */
-static gint num_columns = 7;
+static gint num_columns;
 
 static GtkWidget * app;
 static GtkCList * main_clist;
@@ -223,6 +220,7 @@ static void prepare_app()
   gtk_box_pack_start(GTK_BOX(app_box), reset_button, 
                      FALSE, FALSE, GNOME_PAD_SMALL);
 
+  get_list_column_number ();
   clist = gtk_clist_new(num_columns);
   sw = gtk_scrolled_window_new (NULL, NULL);
   gtk_container_add (GTK_CONTAINER (sw), clist);
@@ -284,25 +282,65 @@ static gint max(gint a, gint b)
   else return b;
 }
 
-static void reset_list(GtkCList * list)
+/* Adapted from reset_list below */
+static void 
+get_list_column_number (void)
 {
   gchar * token;
-  gint col;
-  const gchar * row_text[num_columns];
+  gint col = 0;
   static const gint bufsize = 255;
   gchar buffer[bufsize+1]; /* For a single line */
   FILE * f;
   gchar * returned;
-  GdkFont * font;
-  gint col_widths[num_columns];
+
+  /* Start getting "w" information */
+  memset(buffer, '\0', sizeof(buffer));
+
+  f = popen(w_command, "r");
+
+  if ( f != NULL ) {
+
+    /* The first line on Linux and Solaris is uname garbage. Skip it.
+       (How portable this is, I have no idea.) */
+    returned = fgets(buffer, bufsize, f);
+
+    /* Grab the second line, and use it to find column number. */
+    returned = fgets(buffer, bufsize, f);
+
+    if ( returned == NULL ) {
+      /* FIXME error handling */
+    }
+
+    token = strtok(buffer, WHITESPACE);
+    while ( token ) {
+      ++col;
+      token = strtok(NULL, WHITESPACE);
+    }
+
+    num_columns = col;
+
+  }
+
+  fclose (f);
+
+}
+
+
+static void reset_list(GtkCList * list)
+{
+  gchar * token;
+  gint col;
+  gchar ** row_text; 
+  static const gint bufsize = 255;
+  gchar buffer[bufsize+1]; /* For a single line */
+  FILE * f;
+  gchar * returned;
   gint total_width;
+  gint optimal_width;
+   
+  row_text = (gchar **) g_malloc (sizeof (gchar *) * num_columns); 
 
   gtk_clist_freeze(list);  
-
-  /* To compute column widths */
-  font = gtk_widget_get_style(GTK_WIDGET(list))->font;
-  col = 0; 
-  while ( col < num_columns ) { col_widths[col] = 0; ++col; }
 
   /* Put in invalid values, so we know if they aren't found. */
   tty_column = -1; name_column = -1;
@@ -327,7 +365,7 @@ static void reset_list(GtkCList * list)
 
     col = 0;
     token = strtok(buffer, WHITESPACE);
-    while ( token ) {
+    while ( token && (col < num_columns) ) {
       gtk_clist_set_column_title(list, col, token);
       
       /* See if this is the username or tty column.
@@ -352,12 +390,8 @@ static void reset_list(GtkCList * list)
       /* Have a line, parse it. */
       col = 0;
       token = strtok(buffer, WHITESPACE);
-      while ( (col < num_columns) && (token != NULL) ) {
+      while ( (col < num_columns) ) {
         row_text[col] = token;
-
-        /* I hope this is fast enough. Save maximum width of anything
-           in the column. Seems to be reasonably fast. */
-        col_widths[col] = max(col_widths[col], gdk_string_width(font, token));
 
         token = strtok(NULL, WHITESPACE);
         ++col;
@@ -370,14 +404,12 @@ static void reset_list(GtkCList * list)
 
     fclose(f);
         
-    /* Now set column widths to maximums we found, and sum
-       total width, throwing in a little padding. */
-    col = 0; total_width = 0;
-    while ( col < num_columns ) {
-      gtk_clist_set_column_width(list, col, col_widths[col] + 10);
-      total_width += (col_widths[col] + 15);
-      ++col;
-    }
+    for (col=0; col<num_columns; col++)
+    {
+      optimal_width = gtk_clist_optimal_column_width (list, col);
+      gtk_clist_set_column_width (list, col, optimal_width);
+    }                           
+    
     total_width = gtk_clist_columns_autosize(list);
 
     /* set total widget size to the sum of all column widths, 
@@ -390,6 +422,8 @@ static void reset_list(GtkCList * list)
   }
 
   gtk_clist_thaw(list);
+
+  g_free (row_text);
 }
 
 

@@ -11,7 +11,6 @@ gw_SOURCES = \
 
 gw_LDADD = \
 	$(GNOME_LIBDIR)         \
-	$(GTKXMHTML_LIBS)	\
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
