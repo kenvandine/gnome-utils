@@ -152,7 +152,7 @@
       name, current value, and full-scale value of each of the
       parameters being plotted.  It can be dismissed either by
       clicking on the <guibutton>close</guibutton> button in the
-      titlebar of the <interface>numeric value</interface> window, or
+      title bar of the <interface>numeric value</interface> window, or
       by a second mouse click in the <interface>main
       window</interface>.
       </para>
@@ -289,7 +289,7 @@
 	<varlistentry>
 	  <term> &ndash;&ndash;menubar </term> 
 	  <listitem>
-	    <para>Adds an application menubar to the main window.
+	    <para>Adds an application menu bar to the main window.
 	    Normally this is omitted, and the menu is popped up by
 	    right-clicking on the chart window. </para>
 	  </listitem>
@@ -416,8 +416,8 @@ major_ticks:		5
 	    <term>  menu: <replaceable>YES-OR-NO</replaceable>
 	    </term> 
 	    <listitem>
-	      <para>Adds or omits an application menubar to the main window.
-	      </para>
+	      <para>Adds or omits an application menu bar to the main
+	      window.</para>
 	    </listitem>
 	  </varlistentry>
 
@@ -504,7 +504,7 @@ end:		Load
 	    <term>end: <replaceable>[ PARAMETER-NAME ]</replaceable></term>
 	    <listitem>
 	      <para>Closes a parameter block introduced by the
-	      "begin" or "identifer" keyword. The
+	      "begin" or "identifier" keyword. The
 	      <replaceable>PARAMETER-NAME</replaceable> must match any
 	      <replaceable>PARAMETER-NAME</replaceable> supplied in
 	      the corresponding "begin" statement. </para>
@@ -514,7 +514,7 @@ end:		Load
 	  <varlistentry>
 	    <term>equation: <replaceable>STRING</replaceable></term>
 	    <listitem>
-	      <para>An equation used to obtain the value to be ploted
+	      <para>An equation used to obtain the value to be plotted
 	      for this parameter. </para>
 
 	      <para>A value is obtained by evaluating the "equation"
@@ -524,11 +524,14 @@ end:		Load
 	      and the current iteration is denoted by ~1, ~2, and so
 	      forth.  The elapsed time in seconds between the last and
 	      current iteration is ~t.  The requested update interval
-	      is $i (and the delta is ~i, but will always be zero).
-	      The usual infix arithmatic operators &mdash; addition (
-	      + ), subtraction ( - ), multiplication ( * ), division (
-	      / ), and remaindering ( % ) &mdash; are available, along
-	      with parenthesis for grouping subexpressions. </para>
+	      is $i, and the delta (which will always be zero) is
+	      ~i.</para>
+
+	      <para>The usual infix arithmetic operators &mdash;
+	      addition (+), subtraction (-), multiplication (*),
+	      division (/), and remaindering (%) &mdash; are
+	      available, along with parenthesis for grouping
+	      subexpressions. </para>
 	    </listitem>
 	  </varlistentry>
 
@@ -559,7 +562,7 @@ end:		Load
 	      <para>If a pattern was specified, lines are read until
 	      one is found that contains the pattern string anywhere
 	      in the line.  This line is split into a series of
-	      whitespace seperated fields, each of which is
+	      whitespace separated fields, each of which is
 	      interpreted as a floating point number. </para>
 
 	    </listitem>
@@ -631,12 +634,19 @@ end:		Load
 	  </varlistentry>
 
 	</variablelist>
+      </sect3>
 
-	<para>If libgtop support has been compiled into the
-	gstripchart program, a value can be obtained from this
-	library.  This provides a portable method of obtaining many
-	system performance parameters.  The following libgtop
-	parameters are available: </para>
+      <sect3 id="libgtop">
+	<title>libgtop Values</title>
+
+	<para>Normally, the <application>gstripchart</application>
+	program will be built with the libgtop library linked in.  The
+	libgtop library provides a portable and well-standardized
+	method of accessing common system performance parameters.
+	This is the preferred method of obtaining a value to be
+	plotted.</para>
+
+	<para>The following libgtop parameters are available: </para>
 
 	<itemizedlist>
 	  <listitem> <para>CPU Statistics &mdash; cpu_total,
@@ -660,17 +670,17 @@ end:		Load
 	  <listitem> <para>Network Statistics &mdash; net_pkts_in,
 	    net_pkts_out, net_pkts_total, net_bytes_in, net_bytes_out,
 	    net_bytes_total, net_errs_in, net_errs_out, net_errs_total
-	    </para> </listitem>
-	</itemizedlist>
+	    </para> 
 
-	<para>Note that the network statistics don't use the libgtop
-	library.  Instead, the values are read directly from
-	/proc/net/dev, and so are only available under Linux. </para>
+	    <para>Note that the network statistic values don't use the
+	    libgtop library.  Instead, they are read directly from
+	    /proc/net/dev, and so are only available under
+	    Linux. </para> </listitem>
+	</itemizedlist>
 
 	<para>These are all signed long integer quantities, except
 	for uptime, idletime, and the five load values which are
 	floating point values. </para>
-
       </sect3>
     </sect2>
   </sect1>
