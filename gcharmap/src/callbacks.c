@@ -127,15 +127,15 @@ set_status_bar (GtkButton *button, gpointer user_data)
 
     if (utf [0]!=0 && (locale = g_locale_from_utf8 (utf, -1, NULL, &len, NULL)) != NULL) {
 	if (len == 1 && (utf[0]&0xff) != 0x3f && locale[0] == 0x3f)
-		s = g_strdup_printf (_("Character code: (Unicode) U%04lX"), wc);
+		s = g_strdup_printf (_("Character code: (Unicode) U+%04lX"), wc);
 	else {
 		for (i=0; i<len; i++)
 			g_snprintf (mbstr + i*2, MB_LEN_MAX*2 + 1 - i*2, "%02X", (int) ((unsigned char) locale[i]));
-		s = g_strdup_printf (_("Character code: (Unicode) U%04lX, (%s) 0x%s"), wc, charset, mbstr);
+		s = g_strdup_printf (_("Character code: (Unicode) U+%04lX, (%s) 0x%s"), wc, charset, mbstr);
 	}
 	g_free (locale);
     } else {
-        s = g_strdup_printf (_("Character code: (Unicode) U%04lX"), wc);
+        s = g_strdup_printf (_("Character code: (Unicode) U+%04lX"), wc);
     }
 
     gnome_appbar_set_status (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar), s);
