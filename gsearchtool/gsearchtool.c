@@ -65,7 +65,7 @@ const FindOptionTemplate templates[] = {
 	{ FIND_OPTION_TEXT, "'!' -name '%s'", N_("File name is not") }, 
 	{ FIND_OPTION_BOOL, "-mount", N_("Don't search mounted filesystems") },
 	{ FIND_OPTION_BOOL, "-follow", N_("Follow symbolic links") },	
-	{ FIND_OPTION_BOOL, "-depth", N_("Process directory contents depth first") },
+	{ FIND_OPTION_BOOL, "-depth", N_("Process folder contents depth first") },
 	{ FIND_OPTION_TEXT, "-user '%s'", N_("Owned by user") },
 	{ FIND_OPTION_TEXT, "-group '%s'", N_("Owned by group") },
 	{ FIND_OPTION_BOOL, "\\( -nouser -o -nogroup \\)", N_("Invalid user or group") },
@@ -241,7 +241,7 @@ make_locate_cmd(void)
 		locate_path = gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(locate_path_entry), TRUE);
 		if(!locate_path) {
 			gnome_app_error (GNOME_APP(app),
-					 _("Start directory does not exist."));
+					 _("Start folder does not exist."));
 			return NULL;
 		}
 	} else
@@ -821,7 +821,7 @@ run_command(GtkWidget *w, gpointer data)
 		start_dir = gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(start_dir_e), TRUE);
 		if(!start_dir) {
 			gnome_app_error (GNOME_APP(app),
-					 _("Start directory does not exist."));
+					 _("Start folder does not exist."));
 			return;
 		}
 	} else
@@ -868,7 +868,7 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 		start_dir = gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(start_dir_e), TRUE);
 		if(!start_dir) {
 			gnome_app_error (GNOME_APP(app),
-					 _("Start directory does not exist"));
+					 _("Start folder does not exist"));
 			return;
 		}
 	} else
