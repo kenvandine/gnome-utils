@@ -254,7 +254,6 @@ log_repaint (LogviewWindow *window)
 
    /* Check that there is at least one log */
    if (window->curlog == NULL) {
-	   gtk_widget_hide (window->output_window);
 	   return FALSE;
    }
    
