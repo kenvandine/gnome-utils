@@ -180,7 +180,7 @@ GnomeUIInfo main_menu[] = {
  */
 	
 GtkWidget *app = NULL;
-GtkLabel *date_label = NULL;
+GtkWidget *statusbar = NULL;
 
 GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
 UserPrefsStruct *user_prefs = NULL;
@@ -460,29 +460,10 @@ CreateMainWin ()
                      G_CALLBACK (handle_row_activation_cb), NULL);
 
    /* Create status area at bottom */
-   hbox = gtk_hbox_new (FALSE, 12);
+   statusbar = gtk_statusbar_new ();
+   gtk_box_pack_start (GTK_BOX (vbox), statusbar, FALSE, FALSE, 0);
 
-   hbox_date = gtk_hbox_new (FALSE, 12);
-
-   date_label = (GtkLabel *)gtk_label_new ("");
-   gtk_widget_show (GTK_WIDGET (date_label));
-   gtk_box_pack_end (GTK_BOX (hbox_date), GTK_WIDGET (date_label), 
-		     TRUE, TRUE, 0);
-
-
-   label = (GtkLabel *)gtk_label_new (_("Last Modified: "));
-   gtk_label_set_justify (label, GTK_JUSTIFY_RIGHT);
-   gtk_box_pack_end (GTK_BOX (hbox_date), GTK_WIDGET (label), 
-		     FALSE, FALSE, 0);
-   gtk_widget_show (GTK_WIDGET (label));  
-
-
-   gtk_widget_show (hbox_date);
-   gtk_box_pack_end (GTK_BOX (hbox), hbox_date, FALSE, FALSE, 0);
-   gtk_widget_show (hbox);
-   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
-
-   gtk_widget_show (vbox);
+   gtk_widget_show_all (vbox);
    gtk_widget_show_now (app);
 
 }

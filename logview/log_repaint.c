@@ -39,10 +39,10 @@
 extern int loginfovisible, calendarvisible;
 extern int zoom_visible;
 extern ConfigData *cfg;
-extern GtkLabel *date_label;
 extern UserPrefsStruct *user_prefs;
 extern GtkWidget *view;
 extern GtkWidget *app;
+extern GtkWidget *statusbar;
 
 
 /*
@@ -390,11 +390,12 @@ UpdateStatusArea ()
    char *utf8;
    char *buffer;
    char *window_title;
+   char *statusbar_text;
    /* Translators: Date only format, %x should well do really */
    const char *time_fmt = _("%x"); /* an evil way to avoid warning */
  
    if (curlog == NULL) { 
-       gtk_label_set_text (date_label, "");    
+       gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 0);
        gtk_window_set_title (GTK_WINDOW (app), APP_NAME);
        return;
    }
@@ -415,14 +416,12 @@ UpdateStatusArea ()
        } else {
            utf8 = LocaleToUTF8 (status_text);
        }
-       gtk_label_get (date_label, (char **)&buffer);
-       /* FIXME: is this if statement needed?  would it make sense 
-       to set the text every time?  doesn't gtk test for it in 
-       a more efficient manner? */
-       if (strcmp (utf8, buffer) != 0)
-	       gtk_label_set_text (date_label, utf8);
-
+       statusbar_text = g_strconcat (_("Last Modified: "), utf8, NULL);
+       gtk_statusbar_pop (GTK_STATUSBAR(statusbar), 0);
+       gtk_statusbar_push (GTK_STATUSBAR(statusbar), 0, statusbar_text);
+       
        g_free (utf8);
+       g_free (statusbar_text);
    }
 
 }
