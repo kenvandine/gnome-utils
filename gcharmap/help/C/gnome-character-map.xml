@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY date "March 2002">
+  <!ENTITY appversion "1.98.0">
+  <!ENTITY manrevision "2.0">
+  <!ENTITY app "GNOME Character Map">
+  <!ENTITY legal SYSTEM "legal.xml">
+]>
+<!-- (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Jan 2, 2002   
+  -->
+<article id="index" lang="en"> 
+<!-- Please do not change the id; for translations, 
+change lang to appropriate code -->
+  <articleinfo>
+	 <title>&app; Manual V&manrevision;</title>
+	 <copyright>
+		<year>2002</year>
+		<holder>Sun Microsystems</holder>
+	 </copyright>
+	 <copyright>
+		<year>2000</year>
+		<holder>Hongli Lai</holder>
+	 </copyright> 
+<!-- Translators: uncomment this:
+  <copyright>
+   <year>2000</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+-->
+	 <publisher>
+		<publishername>GNOME Documentation Project</publishername>
+	 </publisher> &legal;
+
+<!-- This file  contains link to license for the documentation (GNU
+               FDL), and other
+               legal stuff such as "NO WARRANTY" statement. Please do
+               not change any of this.--> 
+	 <legalnotice id="feedback">
+		<para>To report a bug or make a suggestion regarding this application or
+		  this manual, follow the directions in the 
+		  <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback
+			 Page</ulink>. </para>
+	 </legalnotice> 
+	 <authorgroup>
+		<author>
+		  <firstname>Sun </firstname>
+		  <surname>GNOME Documentation Team</surname>
+		  <affiliation>
+			 <orgname>Sun Microsystems</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Hongli</firstname>
+		  <surname>Lai</surname>
+		  <affiliation>
+			 <orgname>GNOME Documentation Project</orgname>
+		  </affiliation>
+		</author>
+	 </authorgroup>
+	 <revhistory>
+		<revision>
+		  <revnumber>&manrevision;</revnumber>
+		  <date>&date;</date>
+		  <revdescription>
+			 <para>Author: Sun GNOME Documentation Team <email>gdocteam@sun.com</email></para>
+			 <para>Publisher: GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>1..0</revnumber>
+		  <date>2000</date>
+		  <revdescription>
+			 <para>Authors: Hongli Lai, Dan Mueth
+				<email>hongli@telekabel.nl</email>, <email>d-mueth@uchicago.edu</email></para>
+			 <para>Publisher: GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>This manual describes version &appversion; of &app;.
+		</releaseinfo>
+  </articleinfo>
+  <indexterm zone="index">
+	 <primary>&app;</primary>
+  </indexterm>
+  <indexterm zone="index">
+	 <primary>Character Map</primary>
+  </indexterm> <!-- ============= Document Body ============================= -->
+  <!-- ============= Introduction ============================== 
+--> 
+  <sect1 id="gcharmap-introduction">
+	 <title>Introduction</title>
+	 <para>The <application>&app;</application>
+		<indexterm>
+		  <primary>character map application</primary>
+		</indexterm> utility enables you to select characters from a character
+		table, then combine the characters into a text string with standard characters.
+		You can insert the text string that you create into applications such as text
+		editor documents. </para>
+	 <para>The <application>&app;</application> works primarily with the
+		ISO-8859-1 Latin 1 character set. The utility also provides 
+		options to work with some non-Latin character sets, such as 
+		Cryllic. The utility provides accented characters, 
+		mathematical symbols, special symbols, and punctuation marks. 
+		Many of the
+		characters are not available on a standard keyboard. </para>
+	 <para>To start <application>&app;</application>, open the 
+		<guimenu>Applications Menu</guimenu>, then choose 
+		<menuchoice>
+		  <guisubmenu>Utilities </guisubmenu>
+		  <guimenuitem>Character Map</guimenuitem>
+		</menuchoice>. </para> 
+<!-- ==== Figure ==== --> 
+<figure id="gcharmap-mainwindow-fig">
+	<title>&app; Window</title>
+	<screenshot>
+	<mediaobject>
+	<imageobject><imagedata fileref="figures/gnome-character-map.png"
+			format="PNG"/>
+	</imageobject>
+	<textobject>
+	<phrase>Screenshot of GNOME Character Map 
+		main window. Shows menubar, text to copy field, 
+		and character buttons.</phrase>
+		</textobject>
+	</mediaobject>
+	</screenshot>
+</figure> <!-- ==== End of Figure ==== --> 
+  </sect1> 
+<!-- ================ Usage ================================ -->
+
+  <sect1 id="gcharmap-usage">
+	 <title>Usage</title>
+	 <para>The main elements of the <application>&app;</application> window are
+		as follows:</para>
+	 <itemizedlist>
+		<listitem>
+		  <para>Menubar </para>
+		  <para>The menubar contains standard GNOME windows menus. </para>
+		</listitem>
+		<listitem>
+		  <para>Text toolbar </para>
+		  <para>The text toolbar contains the 
+			 <guilabel>Text to copy</guilabel> field, and the 
+			 <guilabel>Copy</guilabel> button. You use the 
+			 <guilabel>Text to copy</guilabel> field to create the text string
+			 that you want to copy into another application. 
+			 You can use the 
+			 <guilabel>Copy</guilabel> button on the Text toolbar 
+			 to copy the full text string from the 
+			 <guilabel>Text to copy</guilabel> field into a buffer. 
+			 You can enter characters into the 
+			 <guilabel>Text to copy</guilabel> field either from the keyboard or from
+			 the character table. 
+			 </para>
+		</listitem>
+		<listitem>
+		  <para>Character table </para>
+		  <para>The character table contains buttons for the 
+		  ISO-8859-1 character set. The default font setting is 
+		  Helvetica 12 point.</para>
+		</listitem>
+		<listitem>
+		  <para>Statusbar </para>
+		  <para>The statusbar is located along the bottom edge of the window. The
+			 statusbar displays the ASCII code of the character in the character table that
+			 has focus.</para>
+		</listitem>
+	 </itemizedlist>
+ 
+<!-- =============== To Create a Text String ===================================== 
+--> 
+	 <sect2 id="gcharmap-create-textstring">
+		<title>To Create a Text String</title>
+		<para>To create a text string in the 
+		  <guilabel>Text to copy</guilabel> field, you can insert characters in
+		  the following ways: </para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Click on a character button in the character table to insert
+				the character in the 
+				<guilabel>Text to copy</guilabel> field. </para>
+		  </listitem>
+		  <listitem>
+			 <para>Click on the 
+				<guilabel>Text to copy</guilabel> field to give focus to the field.
+				If a text string is already in the field, click on the text string at the point
+				where you want to insert the character. Press a character key on your keyboard
+				to insert that character into the field. </para>
+		  </listitem>
+		  <listitem>
+			 <para>Open the  
+				<guimenu>Edit</guimenu> menu on the menubar, 
+				then choose <guimenuitem>Browse Characters</guimenuitem> 
+				 to open the 
+				<guilabel>Select Character</guilabel> 
+				dialog. 
+				
+				Use the spin box in
+				the dialog to specify an ASCII character in the range 0 to 255. This range
+				includes non-visible characters that are not available in the character table.
+				Click 
+				<guibutton>OK</guibutton> to add the character to the 
+				<guilabel>Text to copy</guilabel> field. </para>
+		  </listitem>
+		</itemizedlist>
+
+	 </sect2> 
+<!-- =============== To Copy and Paste a Text String ====================== -->
+	 
+	 <sect2 id="gcharmap-copy-textstring">
+		<title>To Copy and Paste Your Text String into an Application</title>
+		<para>To copy and paste the text string that you create in the 
+		  <guilabel>Text to copy</guilabel> field into an application, perform
+		  the following steps: </para>
+		<orderedlist>
+		  <listitem>
+			 <para>Drag the pointer to select the text string in the 
+				<guilabel>Text to copy</guilabel> field, or click 
+				<guibutton>Copy</guibutton>. The selected text string appears
+				highlighted. </para>
+		  </listitem>
+		  <listitem>
+			 <para>Point to the location in an application where you want to put
+				the text string and middle-click to insert the text string. You can also paste the
+				text string into the application if a Paste facility is available. You can repeat
+				the insertion as many times as you want while the text string is selected.
+				Click on the 
+				<guilabel>Text to copy</guilabel> field to deselect the text
+				string. </para>
+		  </listitem>
+		</orderedlist>
+		<para>When you paste the contents of the 
+		  <guilabel>Text to copy</guilabel> field into other applications, the
+		  text string appears in the current character set of the application.  
+		</para>
+		<para>If your text string contains non-visible characters, you can only
+		  insert the text string into applications that support the full character set.
+		  </para>
+		<para>If you quit <application>&app;</application> before you paste the
+		  text string into an application, your text string is lost. </para>
+	 </sect2> 
+<!-- =============== To Change the Input Mode  ========================= -->
+	 
+	 <sect2 id="gcharmap-change-charset">
+		<title>To Change the Input Mode</title>
+		<para>To change the input mode, right-click on the 
+		<guilabel>Text to copy</guilabel> field and select 
+		<guimenuitem>Input Methods</guimenuitem>. The 
+		<guimenuitem>Insert Unicode control character</guimenuitem> menu item provides character 
+		layout options that are useful for working with non-Latin character sets. 
+		</para>
+
+	 </sect2> 
+  </sect1> 
+<!-- ============= Customization ============================= -->
+  <sect1 id="gcharmap-prefs">
+	 <title>Settings</title>
+	 <para>The 
+		<guimenu>Settings</guimenu> menu provides the following items that you
+		can use to configure <application>&app;</application>: </para>
+	 <itemizedlist>
+		<listitem>
+		  <para>
+			 <guimenuitem>Insert at end</guimenuitem> </para>
+		  <para>Select this option if you want the utility to insert characters
+			 at the end of the text string in the 
+			 <guilabel>Text to copy</guilabel> field. This option applies to
+			 character selections from the character table or from the 
+			 <guilabel>Select character</guilabel> dialog. </para>
+		  <para>Default: unselected.</para>
+		</listitem>
+		<listitem>
+		  <para>
+			 <guimenuitem>Focusable Buttons</guimenuitem> </para>
+		  <para>Deselect this option if you want the 
+			 <guilabel>Text to copy</guilabel> field to retain focus, even when
+			 you click on the buttons in the character table. When you deselect this option,
+			 you can mix keyboard and mouse input without the need to click on the 
+			 <guilabel>Text to copy</guilabel> field to give focus. </para>
+		  <para>Default: selected.</para>
+		</listitem>
+	 </itemizedlist>
+  </sect1> 
+</article> 

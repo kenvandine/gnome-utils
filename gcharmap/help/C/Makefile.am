@@ -1,10 +1,9 @@
 figs = \
-	figures/gcharmap.png  \
-	figures/gcharmap_insertascii.png
+	figures/gnome-character-map.png
 
-docname = gcharmap
+docname = gnome-character-map
 lang = C
-omffile = gcharmap-C.omf
-entities =
+omffile = gnome-character-map-C.omf
+entities = legal.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
