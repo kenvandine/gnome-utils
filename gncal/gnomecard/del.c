@@ -4,7 +4,110 @@
 #include "cardtypes.h"
 #include "del.h"
 #include "gnomecard.h"
+#include "my.h"
 #include "tree.h"
+
+static void del_prop(GtkCTreeNode *node, gpointer data)
+{
+	CardProperty *prop = data;
+	
+	card_prop_free(*prop);
+	
+	gtk_ctree_remove_node(gnomecard_tree, node);
+	gtk_ctree_select(gnomecard_tree, 
+			 ((Card *) gnomecard_curr_crd->data)->prop.user_data);
+}
+
+static void del_str_prop(GtkCTreeNode *node, gpointer data)
+{
+	MY_FREE(((CardStrProperty *) data)->str);
+	del_prop(node, data);
+}
+
+static void del_card(GtkCTreeNode *node, gpointer data)
+{
+	GList *tmp;
+	
+	node = 0; /* avoid warnings */
+	data = 0;
+	
+	if (gnomecard_curr_crd->next)
+	  tmp = gnomecard_curr_crd->next;
+	else
+	  tmp = gnomecard_curr_crd->prev;
+	
+	card_free(gnomecard_curr_crd->data);
+	gnomecard_crds = g_list_remove_link(gnomecard_crds, gnomecard_curr_crd);
+	gtk_ctree_remove_node(gnomecard_tree, ((Card *) gnomecard_curr_crd->data)->prop.user_data);
+	g_list_free(gnomecard_curr_crd);
+	
+	if (tmp)
+	  gnomecard_scroll_tree(tmp);
+	else
+	  gnomecard_set_curr(NULL);
+}
+
+static void del_name(GtkCTreeNode *node, gpointer data)
+{
+	CardName *name = data;
+	
+	MY_FREE(name->family); card_prop_free(name->prop);
+	MY_FREE(name->given);
+	MY_FREE(name->additional);
+	MY_FREE(name->prefix);
+	MY_FREE(name->suffix);
+	
+	gtk_ctree_remove_node(gnomecard_tree, node);
+	gtk_ctree_select(gnomecard_tree, 
+			 ((Card *) gnomecard_curr_crd->data)->prop.user_data);
+}
+
+static void del_deladdr_list(GtkCTreeNode *node, gpointer data)
+{
+}
+
+static void del_deladdr(GtkCTreeNode *node, gpointer data)
+{
+}
+
+static void del_dellabel_list(GtkCTreeNode *node, gpointer data)
+{
+}
+
+static void del_dellabel(GtkCTreeNode *node, gpointer data)
+{
+}
+
+static void del_phone_list(GtkCTreeNode *node, gpointer data)
+{
+}
+
+static void del_phone(GtkCTreeNode *node, gpointer data)
+{
+}
+
+static void del_email_list(GtkCTreeNode *node, gpointer data)
+{
+	CardList *email_list;
+	GList *email;
+	
+	email_list = data;
+	card_prop_free(email_list->prop);
+	
+	while ((email = email_list->l)) {
+		gtk_ctree_remove_node(gnomecard_tree, 
+				      ((CardEMail *) email->data)->prop.user_data);
+
+		email_list->l = g_list_remove_link(email_list->l, email);
+		g_free(((CardEMail *) email->data)->data);
+		g_free(email->data);
+		g_list_free(email);
+	}
+	
+	gtk_ctree_remove_node(gnomecard_tree, node);
+	gtk_ctree_select(gnomecard_tree, 
+			 ((Card *) gnomecard_curr_crd->data)->prop.user_data);
+}
 
 static void del_email(GtkCTreeNode *node, gpointer data)
 {
@@ -50,27 +153,19 @@ static void del_email(GtkCTreeNode *node, gpointer data)
 	}
 }
 
-static void del_card(GtkCTreeNode *node, gpointer data)
+static void del_org(GtkCTreeNode *node, gpointer data)
 {
-	GList *tmp;
+	CardOrg *org = data;
 	
-	node = 0; /* avoid warnings */
-	data = 0;
+	MY_FREE(org->name); card_prop_free(org->prop);
+	MY_FREE(org->unit1);
+	MY_FREE(org->unit2);
+	MY_FREE(org->unit3);
+	MY_FREE(org->unit4);
 	
-	if (gnomecard_curr_crd->next)
-	  tmp = gnomecard_curr_crd->next;
-	else
-	  tmp = gnomecard_curr_crd->prev;
-	
-	card_free(gnomecard_curr_crd->data);
-	gnomecard_crds = g_list_remove_link(gnomecard_crds, gnomecard_curr_crd);
-	gtk_ctree_remove_node(gnomecard_tree, ((Card *) gnomecard_curr_crd->data)->prop.user_data);
-	g_list_free(gnomecard_curr_crd);
-	
-	if (tmp)
-	  gnomecard_scroll_tree(tmp);
-	else
-	  gnomecard_set_curr(NULL);
+	gtk_ctree_remove_node(gnomecard_tree, node);
+	gtk_ctree_select(gnomecard_tree, 
+			 ((Card *) gnomecard_curr_crd->data)->prop.user_data);
 }
 
 typedef void (*DelFunc) (GtkCTreeNode *, gpointer);
@@ -79,10 +174,12 @@ extern void gnomecard_del(GtkWidget *widget, gpointer data)
 {
 	CardProperty *prop;
 	DelFunc del_func[] = {
-		NULL, del_card, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-		NULL, NULL, NULL, NULL, del_email, NULL, NULL, NULL, NULL, 
-		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-		NULL };
+		NULL, del_card, del_card, del_name, NULL, del_prop,
+		del_deladdr_list, del_deladdr, del_dellabel_list, 
+		del_dellabel, del_phone_list, del_phone, del_email_list,
+		del_email, del_str_prop, del_prop, del_prop, del_str_prop, 
+		del_str_prop, NULL, NULL, del_org, del_str_prop, NULL, NULL, 
+		del_str_prop, del_str_prop, NULL, NULL };
 	
 	prop = gtk_ctree_node_get_row_data(gnomecard_tree, gnomecard_selected_node);
 	

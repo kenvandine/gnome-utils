@@ -221,6 +221,7 @@ typedef struct _Card
 
 Card *card_new(void);
 void card_free(Card *crd);
+void card_prop_free(CardProperty prop);
 CardProperty empty_CardProperty(void);
 GList *card_load (GList *crdlist, char *fname);
 void card_save(Card *crd, FILE *fp);

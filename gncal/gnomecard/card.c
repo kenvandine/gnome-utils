@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "pairs.h"
 #include "card.h"
+#include "my.h"
+#include "pairs.h"
 
 #define is_a_prop_of(obj,prop) isAPropertyOf (obj,prop)
 #define str_val(obj) the_str = fakeCString (vObjectUStringZValue (obj))
@@ -48,20 +49,20 @@ empty_CardStrProperty(void)
 	return strprop;
 }
 
-#define _FREE(a) if (a) free (a)
-
-static void
-free_CardProperty(CardProperty prop)
+extern void
+card_prop_free(CardProperty prop)
 {
 	CardGroup *node, *node2;
 	
-	_FREE(prop.charset);
-	_FREE(prop.lang);
+	MY_FREE(prop.charset);
+	MY_FREE(prop.lang);
 	
 	for (node = prop.grp; node; node = node2) {
 		node2 = node->parent;
 		free(node);
 	}
+	
+	prop.used = FALSE;
 }
 	
 Card *
@@ -140,27 +141,27 @@ card_free(Card *crd)
 {
 	g_return_if_fail (crd != NULL);
 	  
-	_FREE(crd->name.family); free_CardProperty(crd->name.prop);
-	_FREE(crd->name.given);
-	_FREE(crd->name.additional);
-	_FREE(crd->name.prefix);
-	_FREE(crd->name.suffix);
-	_FREE(crd->photo.data); free_CardProperty(crd->photo.prop);
-	_FREE(crd->logo.data); free_CardProperty(crd->logo.prop);
-	_FREE(crd->org.name); free_CardProperty(crd->org.prop);
-	_FREE(crd->org.unit1);
-	_FREE(crd->org.unit2);
-	_FREE(crd->org.unit3);
-	_FREE(crd->org.unit4);
-	_FREE(crd->key.data); free_CardProperty(crd->key.prop);
-	_FREE(crd->sound.data); free_CardProperty(crd->sound.prop);
-	_FREE(crd->fname.str); free_CardProperty(crd->fname.prop);
-	_FREE(crd->mailer.str); free_CardProperty(crd->mailer.prop);
-	_FREE(crd->title.str); free_CardProperty(crd->title.prop);
-	_FREE(crd->role.str); free_CardProperty(crd->role.prop);
-	_FREE(crd->comment.str); free_CardProperty(crd->comment.prop);
-	_FREE(crd->url.str); free_CardProperty(crd->url.prop);
-	_FREE(crd->uid.str); free_CardProperty(crd->uid.prop);
+	MY_FREE(crd->name.family); card_prop_free(crd->name.prop);
+	MY_FREE(crd->name.given);
+	MY_FREE(crd->name.additional);
+	MY_FREE(crd->name.prefix);
+	MY_FREE(crd->name.suffix);
+	MY_FREE(crd->photo.data); card_prop_free(crd->photo.prop);
+	MY_FREE(crd->logo.data); card_prop_free(crd->logo.prop);
+	MY_FREE(crd->org.name); card_prop_free(crd->org.prop);
+	MY_FREE(crd->org.unit1);
+	MY_FREE(crd->org.unit2);
+	MY_FREE(crd->org.unit3);
+	MY_FREE(crd->org.unit4);
+	MY_FREE(crd->key.data); card_prop_free(crd->key.prop);
+	MY_FREE(crd->sound.data); card_prop_free(crd->sound.prop);
+	MY_FREE(crd->fname.str); card_prop_free(crd->fname.prop);
+	MY_FREE(crd->mailer.str); card_prop_free(crd->mailer.prop);
+	MY_FREE(crd->title.str); card_prop_free(crd->title.prop);
+	MY_FREE(crd->role.str); card_prop_free(crd->role.prop);
+	MY_FREE(crd->comment.str); card_prop_free(crd->comment.prop);
+	MY_FREE(crd->url.str); card_prop_free(crd->url.prop);
+	MY_FREE(crd->uid.str); card_prop_free(crd->uid.prop);
 	
 	free(crd);
 }
