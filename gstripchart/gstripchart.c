@@ -52,12 +52,13 @@ typedef struct
   glibtop_swap    swap;
   glibtop_uptime  uptime;
   glibtop_loadavg loadavg;
+  glibtop_netload netload;
 }
 gtop_struct;
 #endif
 
 static char *prog_name = "gstripchart";
-static char *prog_version = "1.5";
+static char *prog_version = "1.6";
 static char *config_file = NULL;
 static float chart_interval = 5.0;
 static float chart_filter = 0.0;
@@ -69,7 +70,7 @@ static int status_outline = 1;
 static int post_init = 0;
 static int minor_tick=0, major_tick=0;
 static int geometry_flags;
-static int geometry_w=160, geometry_h=80;
+static int geometry_w=200, geometry_h=50;
 static int geometry_x, geometry_y;
 static int root_width, root_height;
 static int update_counts;
@@ -291,7 +292,20 @@ Gtop_data gtop_vars[] =
   { "loadavg_1m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[0]) },
   { "loadavg_5m",       'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[1]) },
   { "loadavg_15m",      'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[2]) },
+#if 0
+  /* glibtop netload stats */
+  { "net_pkts_in",      'L', &gtop_netload, GTOP_OFF(netload.packets_in)    },
+  { "net_pkts_out",     'L', &gtop_netload, GTOP_OFF(netload.packets_out)   },
+  { "net_pkts_tot",     'L', &gtop_netload, GTOP_OFF(netload.packets_total) },
 
+  { "net_bytes_in",     'L', &gtop_netload, GTOP_OFF(netload.bytes_in)      },
+  { "net_bytes_out",    'L', &gtop_netload, GTOP_OFF(netload.bytes_out)     },
+  { "net_bytes_tot",    'L', &gtop_netload, GTOP_OFF(netload.bytes_total)   },
+
+  { "net_errs_in",      'L', &gtop_netload, GTOP_OFF(netload.errors_in)     },
+  { "net_errs_out",     'L', &gtop_netload, GTOP_OFF(netload.errors_out)    },
+  { "net_errs_tot",     'L', &gtop_netload, GTOP_OFF(netload.errors_total)  },
+#endif
   /* end of array marker */
   { NULL,	         0,  NULL,          0 }
 };
@@ -357,7 +371,7 @@ num_op(Expr *e)
       if (*e->s == ')')
 	stripbl(e, 1);
       else
-	eval_error(e, "rparen expected");
+	eval_error(e, _("rparen expected"));
     }
   else if (*e->s == '$' || *e->s == '~')
     {
@@ -374,7 +388,7 @@ num_op(Expr *e)
 	{
 	  int id_num = atoi(id);
 	  if (id_num > e->vars)
-	    eval_error(e, "no such field: %d", id_num);
+	    eval_error(e, _("no such field: %d"), id_num);
 	  val = e->now[id_num-1];
 	  if (id_intro == '~')
 	    val -= e->last[id_num-1];
@@ -398,13 +412,13 @@ num_op(Expr *e)
 	  ; /* gtop_value handles the assignment to val */
 #endif
       else if (!*id)
-	eval_error(e, "missing variable identifer");
+	eval_error(e, _("missing variable identifer"));
       else
-	eval_error(e, "invalid variable identifer: %s", id);
+	eval_error(e, _("invalid variable identifer: %s"), id);
       stripbl(e, 0);
     }
   else
-    eval_error(e, "number expected");
+    eval_error(e, _("number expected"));
   return val;
 }
 
@@ -481,7 +495,7 @@ static double eval(
   stripbl(&e, 0);
   e.val = add_op(&e);
   if (*e.s)
-    eval_error(&e, "extra gunk at end: \"%s\"", e.s);
+    eval_error(&e, _("extra gunk at end: \"%s\""), e.s);
 
   return e.val;
 }
@@ -558,7 +572,7 @@ defns_error(char *fn, int ln, char *fmt, ...)
   va_start(args, fmt);
   fprintf(stderr, "%s: ", prog_name);
   if (fn)
-    fprintf(stderr, "%s, line %d: ", fn, ln);
+    fprintf(stderr, _("%s, line %d: "), fn, ln);
   vfprintf(stderr, fmt, args);
   fprintf(stderr, "\n");
   va_end(args);
@@ -635,7 +649,7 @@ read_param_defns(Param_glob *pgp)
     {
       strcpy(fn, config_file);
       if ((fd=fopen(fn, "r")) == NULL)
-	defns_error(NULL, 0, "can't open config file \"%s\"", config_file);
+	defns_error(NULL, 0, _("can't open config file \"%s\""), config_file);
     }
   else
     {
@@ -660,6 +674,7 @@ read_param_defns(Param_glob *pgp)
 		  if ((fd=fopen(fn, "r")) == NULL)
 #endif
 		    {
+		      /* FIX THIS: i18n required. */
 		      defns_error(
 			NULL, 0,
 			"can't open config file \"%s\", \"%s\", "
@@ -725,7 +740,7 @@ read_param_defns(Param_glob *pgp)
 		    display = gtk_graph;
 		  else
 		    defns_error(
-		      fn, lineno, "invalid display type: %s", val);
+		      fn, lineno, _("invalid display type: %s"), val);
 		}
 	      /* An "identifier" or "begin" keyword introduces a new
                  parameter.  We bump the params count, and allocate
@@ -759,14 +774,14 @@ read_param_defns(Param_glob *pgp)
 		      val, p[params-1]->ident);
 		}
 	      else if (params == 0)
-		defns_error(fn, lineno, "identifier or begin must be first");
+		defns_error(fn, lineno,_("identifier or begin must be first"));
 	      else if (streq(key, "id_char"))
 		p[params-1]->id_char = val[0];
 	      else if (streq(key, "color"))
 		{
 		  p[params-1]->color_name = strdup(val);
 		  if (!gdk_color_parse(val, &p[params-1]->gdk_color))
-		    defns_error(fn, lineno, "unrecognized color: %s", val);
+		    defns_error(fn, lineno, _("unrecognized color: %s"), val);
 		}
 	      else if (streq(key, "lights"))
 		{
@@ -782,7 +797,7 @@ read_param_defns(Param_glob *pgp)
 		      if (!gdk_color_parse(cname, &pp->led_color[n]))
 			{
 			  defns_error(
-			    fn, lineno, "unrecognized color: %s", cname);
+			    fn, lineno, _("unrecognized color: %s"), cname);
 			}
 		      free(cname);
 		    }
@@ -809,7 +824,7 @@ read_param_defns(Param_glob *pgp)
 	      else if (streq(key, "minimum"))
 		p[params-1]->lo = p[params-1]->bot = atof(val);
 	      else
-		defns_error(fn, lineno, "invalid option: \"%s\"", bp);
+		defns_error(fn, lineno, _("invalid option: \"%s\""), bp);
 	    }
 	}
     }
@@ -909,6 +924,10 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
     glibtop_get_uptime(&pgp->gtop.uptime);
   if (gtop_loadavg)
     glibtop_get_loadavg(&pgp->gtop.loadavg);
+#if 0
+  if (gtop_netload)
+    glibtop_get_netload(&pgp->gtop.netload, "FIX THIS: I/F name req'd");
+#endif
 #endif
 
   last_val_pos = pgp->new_val;
@@ -1321,17 +1340,6 @@ exit_callback(void)
 
 GnomeUIInfo file_menu[] =
 {
-#if 0
-  /*
-     FIX THIS: Trying to use an event handler (click_handler) as a
-     callback doesn't work.
-  */
-  {
-    GNOME_APP_UI_ITEM, N_("Params"), N_("Examine and adjust parameters"), 
-    click_handler, NULL, NULL, 
-    GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_EXIT, 0, 0, NULL
-  },
-#endif
   {
     GNOME_APP_UI_ITEM, N_("E_xit"), N_("Terminate the stripchart program"), 
     exit_callback, NULL, NULL, 
@@ -1351,11 +1359,11 @@ about_callback(void)
     _(prog_name), prog_version,
     _("Copyright 1998 John Kodis"),
     authors,
-    "The GNOME stripchart program plots various user-specified parameters "
-    "as a function of time.  Its main use is to chart system performance "
-    "parameters such as CPU load, CPU utilization, network traffic levels, "
-    "and the like.  Other more ingenious uses are left as an exercise for "
-    "the interested user.",
+    _("The GNOME stripchart program plots various user-specified parameters "
+      "as a function of time.  Its main use is to chart system performance "
+      "parameters such as CPU load, CPU utilization, network traffic levels, "
+      "and the like.  Other more ingenious uses are left as an exercise for "
+      "the interested user."),
     "/usr/local/share/pixmaps/gnoapp-logo.xpm");
   gtk_widget_show(about);
   return 1;
@@ -1439,29 +1447,29 @@ prefs_callback(GtkWidget *chart, gpointer unused)
   for (p = 0; p < chart_glob.params; p++)
     {
       char lo[20], hi[20], range[100];
-      char *row[2], *ttls[2] = { "Param", "Value" };
+      char *row[2], *ttls[2] = { _("Param"), _("Value") };
 
       clist = gtk_clist_new_with_titles(NELS(ttls), ttls);
 
-      row[0] = "Identifier"; row[1] = chart_glob.parray[p]->ident;
+      row[0] = _("Identifier"); row[1] = chart_glob.parray[p]->ident;
       gtk_clist_append(GTK_CLIST(clist), row);
-      row[0] = "Color"; row[1] = chart_glob.parray[p]->color_name;
+      row[0] = _("Color"); row[1] = chart_glob.parray[p]->color_name;
       gtk_clist_append(GTK_CLIST(clist), row);
-      row[0] = "Filename"; row[1] = chart_glob.parray[p]->filename;
+      row[0] = _("Filename"); row[1] = chart_glob.parray[p]->filename;
       gtk_clist_append(GTK_CLIST(clist), row);
-      row[0] = "Pattern"; row[1] = chart_glob.parray[p]->pattern;
+      row[0] = _("Pattern"); row[1] = chart_glob.parray[p]->pattern;
       gtk_clist_append(GTK_CLIST(clist), row);
-      row[0] = "Equation"; row[1] = chart_glob.parray[p]->eqn;
+      row[0] = _("Equation"); row[1] = chart_glob.parray[p]->eqn;
       gtk_clist_append(GTK_CLIST(clist), row);
-      row[0] = "Expected range"; row[1] = range;
+      row[0] = _("Expected range"); row[1] = range;
       hi_lo_fmt(chart_glob.parray[p]->lo, lo, chart_glob.parray[p]->hi, hi);
       sprintf(range, "%s ... %s", lo, hi);
       gtk_clist_append(GTK_CLIST(clist), row);
-      row[0] = "Displayed range"; row[1] = range;
+      row[0] = _("Displayed range"); row[1] = range;
       hi_lo_fmt(chart_glob.parray[p]->bot, lo, chart_glob.parray[p]->top, hi);
       sprintf(range, "%s ... %s", lo, hi);
       gtk_clist_append(GTK_CLIST(clist), row);
-      row[0] = "Current value"; row[1] = range;
+      row[0] = _("Current value"); row[1] = range;
       hi_lo_fmt(chart_glob.parray[p]->val[chart_glob.new_val], range, 0, NULL);
       gtk_clist_append(GTK_CLIST(clist), row);
 
@@ -1484,7 +1492,7 @@ prefs_callback(GtkWidget *chart, gpointer unused)
     }
   gtk_widget_show(notebook);
 
-  dialog = gnome_dialog_new("Gnome Stripchart Parameters",
+  dialog = gnome_dialog_new(_("Gnome Stripchart Parameters"),
     GNOME_STOCK_BUTTON_OK, GNOME_STOCK_BUTTON_APPLY,
     GNOME_STOCK_BUTTON_CANCEL, GNOME_STOCK_BUTTON_HELP, NULL);
   gnome_dialog_set_parent(GNOME_DIALOG(dialog), GTK_WINDOW(chart));
@@ -1551,6 +1559,7 @@ text_popup(GtkWidget *widget, GdkEvent *event)
     }
   else
     {
+      /* FIX THIS: i18n required */
       static char *titles[] = { "Param", "Current", "Top" };
       txt = gtk_clist_new_with_titles(NELS(titles), titles);
       gtk_widget_show(txt);
@@ -1583,25 +1592,25 @@ menu_popup(GtkWidget *widget, GdkEvent *event)
     {
       menu = gtk_menu_new();
 
-      menu_item = gtk_menu_item_new_with_label("Help");
+      menu_item = gtk_menu_item_new_with_label(_("Help"));
       gtk_menu_append(GTK_MENU(menu), menu_item);
       gtk_signal_connect_object(GTK_OBJECT(menu_item), "activate",
 	GTK_SIGNAL_FUNC(help_menu_action), GTK_OBJECT(widget));
       gtk_widget_show(menu_item);
 
-      menu_item = gtk_menu_item_new_with_label("About");
+      menu_item = gtk_menu_item_new_with_label(_("About"));
       gtk_menu_append(GTK_MENU(menu), menu_item);
       gtk_signal_connect_object(GTK_OBJECT(menu_item), "activate",
 	GTK_SIGNAL_FUNC(about_callback), NULL);
       gtk_widget_show(menu_item);
 
-      menu_item = gtk_menu_item_new_with_label("Params");
+      menu_item = gtk_menu_item_new_with_label(_("Params"));
       gtk_menu_append(GTK_MENU(menu), menu_item);
       gtk_signal_connect_object(GTK_OBJECT(menu_item), "activate",
         GTK_SIGNAL_FUNC(prefs_callback), GTK_OBJECT(widget));
       gtk_widget_show(menu_item);
 
-      menu_item = gtk_menu_item_new_with_label("Exit");
+      menu_item = gtk_menu_item_new_with_label(_("Exit"));
       gtk_menu_append(GTK_MENU(menu), menu_item);
       gtk_signal_connect_object(GTK_OBJECT(menu_item), "activate",
         GTK_SIGNAL_FUNC(exit_callback), NULL);
@@ -1629,10 +1638,29 @@ click_handler(GtkWidget *widget, GdkEvent *event, gpointer unused)
     }
 }
 
-static void
-destroy_handler(GtkWidget *widget, gpointer *data)
+/*
+ * save_handler -- run in response to a "save-yourself" signal.
+ */
+static int
+save_handler(GnomeClient *client,
+  gint phase, GnomeRestartStyle restart,
+  gint shutdown, GnomeInteractStyle interact,
+  gint fast, GtkWidget *frame)
 {
-  gtk_main_quit();
+  int i = 0;
+  char *argv[20];
+
+  argv[i++] = program_invocation_name;
+  argv[i++] = "-g";
+  argv[i++] = gnome_geometry_string(frame->window);
+  if (config_file)
+    {
+      argv[i++] = "-f";
+      argv[i++] = config_file;
+    }
+  gnome_client_set_restart_command(client, i, argv);
+
+  return TRUE;
 }
 
 /*
@@ -1642,6 +1670,7 @@ destroy_handler(GtkWidget *widget, gpointer *data)
 static void
 gtk_graph(void)
 {
+  GnomeClient *client;
   GtkWidget *frame, *h_box, *drawing;
   const int slide_w=10;		/* Set the slider width. */
 
@@ -1655,10 +1684,10 @@ gtk_graph(void)
   h_box = gtk_hbox_new(FALSE, 0);
   gtk_box_pack_start(GTK_BOX(h_box), drawing, TRUE, TRUE, 0);
 
-  gtk_signal_connect(GTK_OBJECT(drawing), "configure_event", 
-    (GtkSignalFunc)config_handler, "draw");
-  gtk_signal_connect(GTK_OBJECT(drawing), "expose_event", 
-    (GtkSignalFunc)chart_expose_handler, NULL);
+  gtk_signal_connect(GTK_OBJECT(drawing),
+    "configure_event", (GtkSignalFunc)config_handler, "draw");
+  gtk_signal_connect(GTK_OBJECT(drawing),
+    "expose_event", (GtkSignalFunc)chart_expose_handler, NULL);
   if (include_slider)
     {
       GtkWidget *sep = gtk_vseparator_new();
@@ -1672,8 +1701,8 @@ gtk_graph(void)
       gtk_widget_show(slider);
 
       gtk_widget_set_events(slider, GDK_EXPOSURE_MASK);
-      gtk_signal_connect(GTK_OBJECT(slider), "expose_event", 
-        (GtkSignalFunc)slider_expose_handler, NULL);
+      gtk_signal_connect(GTK_OBJECT(slider),
+        "expose_event", (GtkSignalFunc)slider_expose_handler, NULL);
 
       gtk_timeout_add((int)(1000 * slider_interval),
         (GtkFunction)slider_timer_handler, slider);
@@ -1683,21 +1712,18 @@ gtk_graph(void)
   /* Create a top-level window. Set the title, minimum size (_usize),
      initial size (_default_size), and establish delete and destroy
      event handlers. */
-  frame = gnome_app_new("gstripchart", "Gnome stripchart viewer");
+  frame = gnome_app_new(_("gstripchart"), _("Gnome stripchart viewer"));
   gtk_widget_set_usize(frame, 1, 1); /* min_w, min_h */
   gtk_window_set_default_size(GTK_WINDOW(frame), geometry_w, geometry_h);
-  gtk_signal_connect(
-    GTK_OBJECT(frame), "destroy",
-    GTK_SIGNAL_FUNC(destroy_handler), NULL);
-  gtk_signal_connect(
-    GTK_OBJECT(frame), "delete_event",
-    GTK_SIGNAL_FUNC(destroy_handler), NULL);
+  gtk_signal_connect(GTK_OBJECT(frame),
+    "destroy", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
+  gtk_signal_connect(GTK_OBJECT(frame),
+    "delete_event", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
 
   /* Set up the pop-up menu handler.  If a mennubar was requested, set
      that up as well.  Pack the whole works into the top-level frame. */
-  gtk_signal_connect(
-    GTK_OBJECT(frame), "button_press_event", 
-    GTK_SIGNAL_FUNC(click_handler), NULL);
+  gtk_signal_connect(GTK_OBJECT(frame),
+    "button_press_event", GTK_SIGNAL_FUNC(click_handler), NULL);
   if (include_menubar)
     gnome_app_create_menus(GNOME_APP(frame), mainmenu);
   gnome_app_set_contents(GNOME_APP(frame), h_box);
@@ -1720,6 +1746,16 @@ gtk_graph(void)
   if (geometry_flags & (XValue | YValue))
     gtk_widget_set_uposition(frame, geometry_x, geometry_y);
 
+  /* Set up session management "save-yourself" signal handler. */
+  if ((client = gnome_master_client()) != NULL)
+    {
+      char cwd[PATH_MAX];
+      getcwd(cwd, sizeof(cwd));
+      gnome_client_set_current_directory(client, cwd);
+      gtk_signal_connect(GTK_OBJECT(client),
+        "save_yourself", GTK_SIGNAL_FUNC(save_handler), frame);
+    }
+
   /* Show the top-level window and enter the main event loop. */
   gtk_widget_show(frame);
   gtk_main();
@@ -1738,8 +1774,8 @@ proc_arg(int opt, const char *arg)
     case 'M': include_menubar = 1; break;
     case 'S': include_slider = 0; break;
     case 'g':
-      geometry_flags = XParseGeometry(
-	arg, &geometry_x, &geometry_y, &geometry_w, &geometry_h);
+      geometry_flags = XParseGeometry(arg,
+	&geometry_x, &geometry_y, &geometry_w, &geometry_h);
       break;
     case 't':
       if (streq("none", arg))
@@ -1752,7 +1788,7 @@ proc_arg(int opt, const char *arg)
 	display = gtk_graph;
       else
 	{
-	  fprintf(stderr, "invalid display type: %s\n", arg);
+	  fprintf(stderr, _("invalid display type: %s\n"), arg);
 	  return -1;
 	}
     }
@@ -1799,6 +1835,7 @@ poptOption arglist[] =
   { NULL,             '\0', 0, NULL, 0 }
 };
 
+
 /*
  * main -- for the stripchart display program.
  */
@@ -1827,6 +1864,7 @@ main(int argc, char **argv)
   root_width = 1;
   if (display == gtk_graph)
     gdk_window_get_geometry(NULL, NULL, NULL, &root_width, &root_height, NULL);
+
   chart_glob.max_val = root_width;
   chart_glob.new_val = chart_glob.num_val = 0;
   chart_glob.params = read_param_defns(&chart_glob);
