@@ -347,7 +347,8 @@ AC_CHECK_CURSES
 
 dnl gdialog end
 
-dnl The gnome-xml library is required to build the stripchart program.
+dnl The gnome-xml library is required to build the stripchart and 
+dnl gtt programs.
 GNOME_XML_CHECK
 AM_CONDITIONAL(HAVE_LIBXML, test "x$GNOME_XML_LIB" != "x")
 AC_SUBST(HAVE_LIBXML)
