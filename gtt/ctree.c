@@ -65,8 +65,16 @@ widget_key_event(GtkCTree *ctree, GdkEvent *event, gpointer data)
 			{
 				GttProject *prj;
 				prj = gtk_ctree_node_get_row_data(ctree, rownode);
-				gtk_ctree_select (ctree, rownode);
-				cur_proj_set (prj);
+				if ((prj == cur_proj) && timer_is_running())
+				{
+					gtk_ctree_unselect (ctree, rownode);
+					cur_proj_set (NULL);
+				}
+				else
+				{
+					gtk_ctree_select (ctree, rownode);
+					cur_proj_set (prj);
+				}
 			}
 			return TRUE;
 		case GDK_Up:

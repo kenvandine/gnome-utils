@@ -99,6 +99,8 @@ toolbar_set_states(void)
                                          (cutted_project != NULL));
         if (mytbar->prop_w)
                 gtk_widget_set_sensitive(mytbar->prop_w, (cur_proj != NULL));
+        if (mytbar->journal_w)
+                gtk_widget_set_sensitive(mytbar->journal_w, (cur_proj != NULL));
         if (mytbar->timer)
 		gnome_stock_set_icon(mytbar->timer,
 				     (timer_is_running()) ?
