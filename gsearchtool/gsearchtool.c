@@ -434,7 +434,7 @@ add_file_to_search_results (const gchar 	*file,
 	gchar *icon_path = get_file_icon_with_mime_type (file, mime_type);
 	GnomeVFSFileInfo *vfs_file_info = gnome_vfs_file_info_new ();
 	GdkPixbuf *pixbuf = NULL;
-	gchar *readable_size, *readable_date, *date;
+	gchar *readable_size, *readable_date;
 	gchar *utf8_base_name, *utf8_dir_name;
 	gchar *base_name, *dir_name;
 	
@@ -472,7 +472,6 @@ add_file_to_search_results (const gchar 	*file,
 	gnome_vfs_get_file_info (file, vfs_file_info, GNOME_VFS_FILE_INFO_DEFAULT);
 	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
 	readable_date = get_readable_date (vfs_file_info->mtime);
-	date = get_date (vfs_file_info->mtime);
 	
 	base_name = g_path_get_basename (file);
 	dir_name = g_path_get_dirname (file);
@@ -486,10 +485,10 @@ add_file_to_search_results (const gchar 	*file,
 			    COLUMN_NAME, utf8_base_name,
 			    COLUMN_PATH, utf8_dir_name,
 			    COLUMN_READABLE_SIZE, readable_size,
-			    COLUMN_SIZE, (gdouble) vfs_file_info->size,
+			    COLUMN_SIZE, (-1) * (gdouble) vfs_file_info->size,
 			    COLUMN_TYPE, description,
 			    COLUMN_READABLE_DATE, readable_date,
-			    COLUMN_DATE, date,
+			    COLUMN_DATE, (-1) * (gdouble) vfs_file_info->mtime,
 			    COLUMN_NO_FILES_FOUND, FALSE,
 			    -1);
 
@@ -506,7 +505,6 @@ add_file_to_search_results (const gchar 	*file,
 	g_free (icon_path); 
 	g_free (readable_size);
 	g_free (readable_date);
-	g_free (date);
 }
 
 static void
@@ -1576,7 +1574,7 @@ create_search_results_section (void)
 					      G_TYPE_DOUBLE,
 					      G_TYPE_STRING,
 					      G_TYPE_STRING,
-					      G_TYPE_STRING,
+					      G_TYPE_DOUBLE,
 					      G_TYPE_BOOLEAN);
 	
 	interface.tree = gtk_tree_view_new_with_model (GTK_TREE_MODEL(interface.model));

@@ -288,16 +288,6 @@ count_of_char_in_string (const gchar *string,
 }
 
 gchar *
-get_date (const time_t file_time_raw)
-{
-	struct tm *file_time;
-	const char *format = _("%Y%m%d%H%M%S");
-
-	file_time = localtime (&file_time_raw);
-	return strdup_strftime (format, file_time);
-}
-
-gchar *
 get_readable_date (const time_t file_time_raw)
 {
 	struct tm *file_time;

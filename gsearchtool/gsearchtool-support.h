@@ -62,9 +62,6 @@ remove_mnemonic_character	(const gchar *string);
 gint 	 	
 count_of_char_in_string		(const gchar *string, 
 				 const gchar q);
-gchar *    	
-get_date 			(const time_t file_time_raw);
-
 gchar *   	
 get_readable_date 		(const time_t file_time_raw);
 
