@@ -1,2 +1,2 @@
-SUBDIRS = C #ja
+SUBDIRS = C ja
 

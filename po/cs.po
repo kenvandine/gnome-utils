@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
-"POT-Creation-Date: 2003-02-14 08:46+0100\n"
+"POT-Creation-Date: 2003-03-25 10:00+0000\n"
 "PO-Revision-Date: 2003-02-14 08:50GMT\n"
 "Last-Translator: Michal Bukovjan <bukm@centrum.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -360,7 +360,7 @@ msgstr "Spočítat"
 msgid "Perform simple calculations"
 msgstr "Provádět jednoduché kalkulace"
 
-#: gcharmap/gnome-character-map.desktop.in.h:1 gcharmap/src/interface.c:160
+#: gcharmap/gnome-character-map.desktop.in.h:1 gcharmap/src/interface.c:159
 msgid "Character Map"
 msgstr "Mapa znaků"
 
@@ -405,17 +405,19 @@ msgid "GNOME Character Map"
 msgstr "Mapa znaků GNOME"
 
 #: gcharmap/src/callbacks.c:66
-msgid "Select, copy and paste characters from your font into other applications"
-msgstr "Vybírejte, kopírujte a vkládejte znaky z vašeho písma do jiných aplikací"
+msgid ""
+"Select, copy and paste characters from your font into other applications"
+msgstr ""
+"Vybírejte, kopírujte a vkládejte znaky z vašeho písma do jiných aplikací"
 
 #: gcharmap/src/callbacks.c:130 gcharmap/src/callbacks.c:138
-#, c-format
-msgid "Character code: (Unicode) U%04lX"
+#, fuzzy, c-format
+msgid "Character code: (Unicode) U+%04lX"
 msgstr "Kód znaku: (Unicode) U%04lX"
 
 #: gcharmap/src/callbacks.c:134
-#, c-format
-msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
+#, fuzzy, c-format
+msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
 msgstr "Kód znaku: (Unicode) U%04lX, (%s) 0x%s"
 
 #: gcharmap/src/callbacks.c:192
@@ -430,41 +432,41 @@ msgstr "Text vyjmutý do schránky..."
 msgid "Text pasted from clipboard..."
 msgstr "Text vložený ze schránky..."
 
-#: gcharmap/src/interface.c:190
+#: gcharmap/src/interface.c:189
 msgid "Action Toolbar"
 msgstr "Nástrojová lišta akcí"
 
-#: gcharmap/src/interface.c:194
+#: gcharmap/src/interface.c:193
 msgid "_Font:"
 msgstr "_Písmo:"
 
 #. The page selector
-#: gcharmap/src/interface.c:210
+#: gcharmap/src/interface.c:209
 msgid "_Page:"
 msgstr "_Stránka:"
 
 #. end of page selector
-#: gcharmap/src/interface.c:225
+#: gcharmap/src/interface.c:224
 msgid "_Text to copy:"
 msgstr "_Text na zkopírování:"
 
-#: gcharmap/src/interface.c:240
+#: gcharmap/src/interface.c:239
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: gcharmap/src/interface.c:262 gcharmap/src/interface.c:263
+#: gcharmap/src/interface.c:263 gcharmap/src/interface.c:264
 msgid "Text to copy"
 msgstr "Text na zkopírování"
 
-#: gcharmap/src/interface.c:263
+#: gcharmap/src/interface.c:264
 msgid "Entry"
 msgstr "Položka"
 
-#: gcharmap/src/interface.c:264 gcharmap/src/menus.c:77
+#: gcharmap/src/interface.c:265 gcharmap/src/menus.c:77
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: gcharmap/src/interface.c:264
+#: gcharmap/src/interface.c:265
 msgid "Copy the text"
 msgstr "Kopírovat text"
 
@@ -886,60 +888,69 @@ msgstr "Formátovač disket"
 msgid "Format Floppy Disks"
 msgstr "Formátování disket"
 
-#: gfloppy/src/badblocks.c:102
-msgid "MInternal Error: Unable to seek to the correct location."
+#: gfloppy/src/badblocks.c:94
+#, fuzzy
+msgid "Internal Error: Unable to seek to the correct location."
 msgstr "MInterní chyba: Nelze se přesunout na správné místo."
 
-#: gfloppy/src/badblocks.c:111
-#, c-format
-msgid "MInternal Error: Weird value (%ld) in do_test\n"
+#: gfloppy/src/badblocks.c:103
+#, fuzzy, c-format
+msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "MInterní chyba: Divná hodnota (%ld) ve funkci do_test\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:269
-msgid "MChecking for bad blocks..."
+#: gfloppy/src/badblocks.c:261
+#, fuzzy
+msgid "Checking for bad blocks..."
 msgstr "MHledám chybné bloky..."
 
-#: gfloppy/src/badblocks.c:281
-#, c-format
-msgid "MFailed to open device %s for badblock checking\n"
+#: gfloppy/src/badblocks.c:273
+#, fuzzy, c-format
+msgid "Failed to open device %s for badblock checking\n"
 msgstr "MSelhalo otevření zařízení %s pro kontrolu chybných bloků\n"
 
-#: gfloppy/src/badblocks.c:301 gfloppy/src/gfloppy.c:536
-msgid "MChecking for bad blocks... Done"
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:529
+#, fuzzy
+msgid "Checking for bad blocks... Done"
 msgstr "MHledám chybné bloky... Hotovo"
 
-#: gfloppy/src/fdformat.c:44
-msgid "MFormatting the disk..."
+#: gfloppy/src/fdformat.c:49
+#, fuzzy
+msgid "Formatting the disk..."
 msgstr "MFormátuji disketu..."
 
-#: gfloppy/src/fdformat.c:46
-msgid "EI don't know what this is, but it's very wrong."
+#: gfloppy/src/fdformat.c:52
+#, fuzzy
+msgid "I don't know what this is, but it's very wrong."
 msgstr "ENevím, co to je, ale je to velmi špatné."
 
-#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
-#, c-format
-msgid "EError formatting track #%d"
+#: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
+#, fuzzy, c-format
+msgid "Error formatting track #%d"
 msgstr "EChyba při formátování stopy #%d"
 
-#: gfloppy/src/fdformat.c:74
-msgid "EError during completion of formatting"
+#: gfloppy/src/fdformat.c:82
+#, fuzzy
+msgid "Error during completion of formatting"
 msgstr "EChyba při ukončování formátování"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:78
-msgid "MFormatting the disk... Done"
+#: gfloppy/src/fdformat.c:86
+#, fuzzy
+msgid "Formatting the disk... Done"
 msgstr "MFormátuji disketu... Hotovo"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:94
-msgid "MVerifying the format..."
+#: gfloppy/src/fdformat.c:102
+#, fuzzy
+msgid "Verifying the format..."
 msgstr "MOvěřuji formátování..."
 
-#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
+#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#, fuzzy
 msgid ""
-"EUnable to write to the floppy.\n"
+"Unable to write to the floppy.\n"
 "\n"
 "Please confirm that it is not write-protected."
 msgstr ""
@@ -947,14 +958,15 @@ msgstr ""
 "\n"
 "Přesvědčte se prosím, že není chráněná proti zápisu."
 
-#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
-#, c-format
-msgid "EInsufficient permissions to open floppy device %s."
+#: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
+#, fuzzy, c-format
+msgid "Insufficient permissions to open floppy device %s."
 msgstr "ENedostatečné povolení přístupu pro otevření zařízení %s."
 
-#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
+#: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
+#, fuzzy
 msgid ""
-"EUnable to access the floppy disk.\n"
+"Unable to access the floppy disk.\n"
 "\n"
 "Please confirm that it is in the drive\n"
 "with the drive door shut."
@@ -964,10 +976,10 @@ msgstr ""
 "Přesvědčte se, že je vložena do zařízení\n"
 "a že dvířka zařízení jsou zavřena."
 
-#: gfloppy/src/fdformat.c:109
-#, c-format
+#: gfloppy/src/fdformat.c:117
+#, fuzzy, c-format
 msgid ""
-"EGeneric error accessing floppy device %s.\n"
+"Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s:%d"
 msgstr ""
@@ -975,43 +987,44 @@ msgstr ""
 "\n"
 "Chybový kód %s: %d"
 
-#: gfloppy/src/fdformat.c:129
-#, c-format
+#: gfloppy/src/fdformat.c:140
+#, fuzzy, c-format
 msgid ""
-"ERead Error:\n"
+"Read Error:\n"
 "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
 "EChyba při čtení:\n"
 "Problém při čtení cylindru %d, očekáváno %d, přečteno %d"
 
-#: gfloppy/src/fdformat.c:132
-#, c-format
-msgid "EProblem reading cylinder %d, expected %d, read %d"
+#: gfloppy/src/fdformat.c:143
+#, fuzzy, c-format
+msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "EProblém při čtení cylindru %d, očekáváno %d, přečteno %d"
 
-#: gfloppy/src/fdformat.c:141
-#, c-format
-msgid "MBad data in cyl %d.  Continuing... "
+#: gfloppy/src/fdformat.c:154
+#, fuzzy, c-format
+msgid "Bad data in cyl %d.  Continuing... "
 msgstr "MChybná data na cylindru %d.  Pokračuji... "
 
-#: gfloppy/src/fdformat.c:148
-#, c-format
-msgid "EError closing device %s"
+#: gfloppy/src/fdformat.c:163
+#, fuzzy, c-format
+msgid "Error closing device %s"
 msgstr "EChyba při zavírání zařízení %s"
 
-#: gfloppy/src/fdformat.c:153
-msgid "MVerifying the format... Done"
+#: gfloppy/src/fdformat.c:170
+#, fuzzy
+msgid "Verifying the format... Done"
 msgstr "MOvěřuji formátování... Hotovo"
 
-#: gfloppy/src/fdformat.c:165
-#, c-format
-msgid "EUnable to write to device %s"
+#: gfloppy/src/fdformat.c:182
+#, fuzzy, c-format
+msgid "Unable to write to device %s"
 msgstr "ENelze psát na zařízení %s"
 
-#: gfloppy/src/fdformat.c:184
-#, c-format
+#: gfloppy/src/fdformat.c:202
+#, fuzzy, c-format
 msgid ""
-"EGeneric error accessing floppy device %s.\n"
+"Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s"
 msgstr ""
@@ -1019,33 +1032,37 @@ msgstr ""
 "\n"
 "Chybový kód %s"
 
-#: gfloppy/src/fdformat.c:194
-msgid "ECould not determine current floppy geometry."
+#: gfloppy/src/fdformat.c:214
+#, fuzzy
+msgid "Could not determine current floppy geometry."
 msgstr "ENelze určit současnou geometrii diskety."
 
-#: gfloppy/src/gfloppy.c:229
-msgid "EError while creating a unique filename for the bad blocks list file."
+#: gfloppy/src/gfloppy.c:221
+#, fuzzy
+msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "EChyba při vytváření unikátního názvu souboru pro soubor se seznamem vadných "
 "bloků."
 
-#: gfloppy/src/gfloppy.c:249
-msgid "EError while filling the bad blocks list file."
+#: gfloppy/src/gfloppy.c:241
+#, fuzzy
+msgid "Error while filling the bad blocks list file."
 msgstr "EChyba při plnění souboru se seznamem vadných bloků."
 
-#: gfloppy/src/gfloppy.c:308
-#, c-format
-msgid "EError while spawning the (%s) command: %s."
+#: gfloppy/src/gfloppy.c:300
+#, fuzzy, c-format
+msgid "Error while spawning the (%s) command: %s."
 msgstr "EChyba při spouštění příkazu (%s): %s"
 
-#: gfloppy/src/gfloppy.c:332
-msgid "EUnknown mke2fs starting signature, cancelling."
+#: gfloppy/src/gfloppy.c:324
+#, fuzzy
+msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "ENeznámý úvodní podpis mke2fs, přerušuji."
 
-#: gfloppy/src/gfloppy.c:346
-#, c-format
+#: gfloppy/src/gfloppy.c:338
+#, fuzzy, c-format
 msgid ""
-"EThe filesystem creation utility (%s) reported the following errors:\n"
+"The filesystem creation utility (%s) reported the following errors:\n"
 "\n"
 "%s (%d)"
 msgstr ""
@@ -1053,48 +1070,54 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:363
-msgid "EAbnormal child process termination."
+#: gfloppy/src/gfloppy.c:355
+#, fuzzy
+msgid "Abnormal child process termination."
 msgstr "ENenormální ukončení procesu potomka."
 
-#: gfloppy/src/gfloppy.c:388
-#, c-format
-msgid "EError while spawning the mbadblocks command: %s."
+#: gfloppy/src/gfloppy.c:380
+#, fuzzy, c-format
+msgid "Error while spawning the mbadblocks command: %s."
 msgstr "EChyba při spouštění příkazu mbadblocks: %s"
 
-#: gfloppy/src/gfloppy.c:400
-#, c-format
+#: gfloppy/src/gfloppy.c:392
+#, fuzzy, c-format
 msgid ""
-"EThe bad blocks checking utility (mbadblocks) reported the following "
-"errors:\n"
+"The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
 "ENástroj pro kontrolu vadných bloků (mbadblocks) hlásí následující chyby:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:443
-msgid "EAbnormal mbadblocks child process termination."
+#: gfloppy/src/gfloppy.c:435
+#, fuzzy
+msgid "Abnormal mbadblocks child process termination."
 msgstr "ENenormální ukončení procesu potomka mbadblocks."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:470 gfloppy/src/gfloppy.c:510
-msgid "MMaking filesystem on disk..."
+#: gfloppy/src/gfloppy.c:462 gfloppy/src/gfloppy.c:503
+#, fuzzy
+msgid "Making filesystem on disk..."
 msgstr "MVytvářím na disketě souborový systém..."
 
-#: gfloppy/src/gfloppy.c:478
-msgid "EUnable to create filesystem correctly."
+#: gfloppy/src/gfloppy.c:470
+#, fuzzy
+msgid "Unable to create filesystem correctly."
 msgstr "ENelze správně vytvořit souborový systém."
 
-#: gfloppy/src/gfloppy.c:482 gfloppy/src/gfloppy.c:522
-msgid "MMaking filesystem on disk... Done"
+#: gfloppy/src/gfloppy.c:475 gfloppy/src/gfloppy.c:515
+#, fuzzy
+msgid "Making filesystem on disk... Done"
 msgstr "MVytvářím na disketě souborový systém... Hotovo"
 
-#: gfloppy/src/gfloppy.c:527
-msgid "MChecking for bad blocks... (this might take a while)"
+#: gfloppy/src/gfloppy.c:520
+#, fuzzy
+msgid "Checking for bad blocks... (this might take a while)"
 msgstr "MHledám vadné bloky... (to může chvíli trvat)"
 
-#: gfloppy/src/gfloppy.c:532
-msgid "EError while checking the bad blocks."
+#: gfloppy/src/gfloppy.c:525
+#, fuzzy
+msgid "Error while checking the bad blocks."
 msgstr "EChyba při hledání vadných bloků."
 
 #: gfloppy/src/gfloppy2.glade.h:1
@@ -1286,9 +1309,11 @@ msgstr ""
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr "ext2 pro nativní souborový systém Linuxu, nebo fat pro souborový systém DOS."
+msgstr ""
+"ext2 pro nativní souborový systém Linuxu, nebo fat pro souborový systém DOS."
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1872
+#: gsearchtool/gsearchtool.c:1892
 msgid "Search for Files"
 msgstr "Hledat soubory"
 
@@ -1348,57 +1373,59 @@ msgstr "Sledovat symbolické odkazy"
 msgid "Include other filesystems"
 msgstr "Zahrnout jiné souborové systémy"
 
-#: gsearchtool/gsearchtool.c:466 gsearchtool/gsearchtool.c:895
+#: gsearchtool/gsearchtool.c:461 gsearchtool/gsearchtool.c:979
 msgid "No files found"
 msgstr "Nenalezeny žádné soubory"
 
-#: gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:547
 msgid "Entry changed called for a non entry option!"
 msgstr "Signál změny políčka volán pro volbu bez políčka!"
 
-#: gsearchtool/gsearchtool.c:662
+#: gsearchtool/gsearchtool.c:720
 msgid "Set the text of 'Name contains'"
 msgstr "Nastavit text 'Název obsahuje'"
 
-#: gsearchtool/gsearchtool.c:663
+#: gsearchtool/gsearchtool.c:721
 msgid "Set the text of 'Look in folder'"
 msgstr "Nastavit text 'Hledat v adresáři'"
 
-#: gsearchtool/gsearchtool.c:664
+#: gsearchtool/gsearchtool.c:722
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr "Třídit soubory podle jednoho z následujícího: název, adresář, typ nebo datum"
+msgstr ""
+"Třídit soubory podle jednoho z následujícího: název, adresář, typ nebo datum"
 
-#: gsearchtool/gsearchtool.c:665
+#: gsearchtool/gsearchtool.c:723
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Nastavit pořadí třídění na sestupné, výchozí je vzestupné"
 
-#: gsearchtool/gsearchtool.c:666
+#: gsearchtool/gsearchtool.c:724
 msgid "Automatically start a search"
 msgstr "Automaticky začít vyhledávat"
 
-#: gsearchtool/gsearchtool.c:671
+#: gsearchtool/gsearchtool.c:729
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Vybrat omezení '%s'"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:831
 msgid "Invalid option passed to sortby command line argument."
-msgstr "Parametru příkazové řádky pro program sortby byla předána neplatná volba."
+msgstr ""
+"Parametru příkazové řádky pro program sortby byla předána neplatná volba."
 
-#: gsearchtool/gsearchtool.c:886
+#: gsearchtool/gsearchtool.c:967
 msgid "(aborted)"
 msgstr "(přerušeno)"
 
-#: gsearchtool/gsearchtool.c:899
+#: gsearchtool/gsearchtool.c:983
 msgid "One file found"
 msgstr "Nalezen jeden soubor"
 
-#: gsearchtool/gsearchtool.c:902
+#: gsearchtool/gsearchtool.c:986
 #, c-format
 msgid "%d files found"
 msgstr "Nalezeno %d souborů"
 
-#: gsearchtool/gsearchtool.c:998
+#: gsearchtool/gsearchtool.c:1082
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1406,7 +1433,7 @@ msgstr ""
 "Během hledání byly hlášeny následující chyby.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1002
+#: gsearchtool/gsearchtool.c:1086
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1414,104 +1441,104 @@ msgstr ""
 "\n"
 "... Příliš mnoho chyb k zobrazení ..."
 
-#: gsearchtool/gsearchtool.c:1015
+#: gsearchtool/gsearchtool.c:1099
 msgid "Search Errors"
 msgstr "Chyby hledání"
 
-#: gsearchtool/gsearchtool.c:1053 gsearchtool/gsearchtool.c:1077
+#: gsearchtool/gsearchtool.c:1137 gsearchtool/gsearchtool.c:1161
 msgid "Search for Files Error"
 msgstr "Chyby Hledání souborů"
 
-#: gsearchtool/gsearchtool.c:1163
+#: gsearchtool/gsearchtool.c:1250
 msgid "Search Rule Value Entry"
 msgstr "Políčko pro hodnotu s vyhledávacím pravidlem"
 
-#: gsearchtool/gsearchtool.c:1164
+#: gsearchtool/gsearchtool.c:1251
 msgid "Enter a value for search rule"
 msgstr "Zadejte hodnotu pro vyhledávací pravidlo"
 
-#: gsearchtool/gsearchtool.c:1201
+#: gsearchtool/gsearchtool.c:1288
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Kliknutím zde odstraníte pravidlo '%s'"
 
-#: gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:1346
 msgid "A_vailable options:"
 msgstr "Dostupné _volby:"
 
-#: gsearchtool/gsearchtool.c:1269
+#: gsearchtool/gsearchtool.c:1359
 msgid "Search Rules Menu"
 msgstr "Menu pro vyhledávací pravidla"
 
-#: gsearchtool/gsearchtool.c:1270
+#: gsearchtool/gsearchtool.c:1360
 msgid "Select a search rule from the menu"
 msgstr "Vyberte z menu vyhledávací pravidlo"
 
-#: gsearchtool/gsearchtool.c:1302
+#: gsearchtool/gsearchtool.c:1391
 msgid "S_earch Results"
 msgstr "Výsl_edky hledání"
 
-#: gsearchtool/gsearchtool.c:1374
+#: gsearchtool/gsearchtool.c:1467
 msgid "Name"
 msgstr "Název"
 
-#: gsearchtool/gsearchtool.c:1394
+#: gsearchtool/gsearchtool.c:1487
 msgid "Folder"
 msgstr "Adresář"
 
-#: gsearchtool/gsearchtool.c:1405
+#: gsearchtool/gsearchtool.c:1498
 msgid "Size"
 msgstr "Velikost"
 
-#: gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1508
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1425
+#: gsearchtool/gsearchtool.c:1518
 msgid "Date Modified"
 msgstr "Datum změny"
 
-#: gsearchtool/gsearchtool.c:1462
+#: gsearchtool/gsearchtool.c:1555
 msgid "_Name contains:"
 msgstr "_Název obsahuje:"
 
-#: gsearchtool/gsearchtool.c:1477 gsearchtool/gsearchtool.c:1478
+#: gsearchtool/gsearchtool.c:1570 gsearchtool/gsearchtool.c:1571
 msgid "File Name Entry"
 msgstr "Políčko s názvem souboru"
 
-#: gsearchtool/gsearchtool.c:1477 gsearchtool/gsearchtool.c:1478
+#: gsearchtool/gsearchtool.c:1570 gsearchtool/gsearchtool.c:1571
 msgid "Enter the file name you want to search"
 msgstr "Zadejte název souboru, který chcete hledat"
 
-#: gsearchtool/gsearchtool.c:1490
+#: gsearchtool/gsearchtool.c:1583
 msgid "_Look in folder:"
 msgstr "H_ledat v adresáři:"
 
-#: gsearchtool/gsearchtool.c:1496
+#: gsearchtool/gsearchtool.c:1589
 msgid "Browse"
 msgstr "Probírat"
 
-#: gsearchtool/gsearchtool.c:1505 gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1598 gsearchtool/gsearchtool.c:1599
 msgid "Starting folder entry"
 msgstr "Políčko počátečního adresáře"
 
-#: gsearchtool/gsearchtool.c:1505 gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1598 gsearchtool/gsearchtool.c:1599
 msgid "Enter the folder name where you want to start the search"
 msgstr "Zadejte název adresáře, kde chcete započít vyhledávání"
 
-#: gsearchtool/gsearchtool.c:1522 gsearchtool/gsearchtool.c:1523
+#: gsearchtool/gsearchtool.c:1615 gsearchtool/gsearchtool.c:1616
 msgid "Additional Options"
 msgstr "Další volby"
 
-#: gsearchtool/gsearchtool.c:1568
+#: gsearchtool/gsearchtool.c:1661
 msgid "Click to Start the search"
 msgstr "Kliknutím zde započnete hledání"
 
-#: gsearchtool/gsearchtool.c:1569
+#: gsearchtool/gsearchtool.c:1662
 msgid "Click to Stop the search"
 msgstr "Kliknutím zde zastavíte hledání"
 
-#: gsearchtool/gsearchtool.c:1642
+#: gsearchtool/gsearchtool.c:1888
 msgid "Cannot initialize bonobo."
 msgstr "Nelze inicializovat rozhraní bonobo."
 
@@ -1535,46 +1562,46 @@ msgstr "Nelze zobrazit nápovědu"
 msgid "Searching..."
 msgstr "Hledání..."
 
-#: gsearchtool/gsearchtool-callbacks.c:299
+#: gsearchtool/gsearchtool-callbacks.c:288
 #, c-format
 msgid "This will open %d separate files. Are you sure you want to do this?"
 msgstr "Toto otevře %d různých souborů. Jste si jisti, že to chcete provést?"
 
-#: gsearchtool/gsearchtool-callbacks.c:302
+#: gsearchtool/gsearchtool-callbacks.c:291
 #, c-format
 msgid "Open %d Files?"
 msgstr "Otevřít %d souborů?"
 
-#: gsearchtool/gsearchtool-callbacks.c:359
-#: gsearchtool/gsearchtool-callbacks.c:620
+#: gsearchtool/gsearchtool-callbacks.c:348
+#: gsearchtool/gsearchtool-callbacks.c:621
 #, c-format
 msgid "There is no installed viewer capable of displaying \"%s\"."
 msgstr "Není nainstalován žádný prohlížeč schopný zobrazit \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:366
-#: gsearchtool/gsearchtool-callbacks.c:627
+#: gsearchtool/gsearchtool-callbacks.c:355
+#: gsearchtool/gsearchtool-callbacks.c:628
 msgid "Can't Display Location"
 msgstr "Nelze zobrazit umístění"
 
-#: gsearchtool/gsearchtool-callbacks.c:404
+#: gsearchtool/gsearchtool-callbacks.c:393
 #, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr "Toto otevře %d různých adresářů. Jste si jisti, že to chcete provést?"
 
-#: gsearchtool/gsearchtool-callbacks.c:407
+#: gsearchtool/gsearchtool-callbacks.c:396
 #, c-format
 msgid "Open %d Folders?"
 msgstr "Otevřít %d adresářů?"
 
-#: gsearchtool/gsearchtool-callbacks.c:446
+#: gsearchtool/gsearchtool-callbacks.c:435
 msgid "The nautilus file manager is not running."
 msgstr "Správce souborů Nautilus neběží."
 
-#: gsearchtool/gsearchtool-callbacks.c:729
+#: gsearchtool/gsearchtool-callbacks.c:730
 msgid "Save Search Results As..."
 msgstr "Uložit výsledky hledání jako..."
 
-#: gsearchtool/gsearchtool-callbacks.c:772
+#: gsearchtool/gsearchtool-callbacks.c:773
 #, c-format
 msgid ""
 "Cannot save search results.\n"
@@ -1583,25 +1610,25 @@ msgstr ""
 "Nelze zapsat výsledky hledání.\n"
 "\"%s\" je adresář."
 
-#: gsearchtool/gsearchtool-callbacks.c:800
+#: gsearchtool/gsearchtool-callbacks.c:801
 #, c-format
 msgid "File \"%s\" already exists. Overwrite?"
 msgstr "Soubor \"%s\" již existuje. Přepsat?"
 
-#: gsearchtool/gsearchtool-callbacks.c:837
+#: gsearchtool/gsearchtool-callbacks.c:838
 #, c-format
 msgid "Cannot save search results to the file \"%s\"."
 msgstr "Nelze zapsat výsledky hledání do souboru \"%s\"."
 
-#: gsearchtool/gsearchtool-support.c:284
+#: gsearchtool/gsearchtool-support.c:290
 msgid "Expander Size"
 msgstr "Velikost rozbalovače"
 
-#: gsearchtool/gsearchtool-support.c:285
+#: gsearchtool/gsearchtool-support.c:291
 msgid "Size of the expander arrow"
 msgstr "Velikost šipky rozbalovače"
 
-#: gsearchtool/gsearchtool-support.c:346
+#: gsearchtool/gsearchtool-support.c:350
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1610,27 +1637,27 @@ msgstr ""
 "Chyba GConf:\n"
 "  %s"
 
-#: gsearchtool/gsearchtool-support.c:528
+#: gsearchtool/gsearchtool-support.c:586
 msgid "%Y%m%d%H%M%S"
 msgstr "%Y%m%d%H%M%S"
 
-#: gsearchtool/gsearchtool-support.c:559
+#: gsearchtool/gsearchtool-support.c:617
 msgid "today at %-I:%M %p"
 msgstr "dnes v %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:561
+#: gsearchtool/gsearchtool-support.c:619
 msgid "yesterday at %-I:%M %p"
 msgstr "včera v %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:563 gsearchtool/gsearchtool-support.c:565
+#: gsearchtool/gsearchtool-support.c:621 gsearchtool/gsearchtool-support.c:623
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:690
+#: gsearchtool/gsearchtool-support.c:748
 msgid "link (broken)"
 msgstr "odkaz (chybný)"
 
-#: gsearchtool/gsearchtool-support.c:695
+#: gsearchtool/gsearchtool-support.c:753
 #, c-format
 msgid "link to %s"
 msgstr "odkaz na %s"
@@ -1998,7 +2025,8 @@ msgstr "Poslední změna: "
 
 #: logview/logview.c:568 logview/logview.c:643
 msgid "Too many open logs. Close one and try again"
-msgstr "Příliš mnoho otevřených souborů se záznamy. Zavřete nějaký a zkuste to znovu."
+msgstr ""
+"Příliš mnoho otevřených souborů se záznamy. Zavřete nějaký a zkuste to znovu."
 
 #: logview/logview.c:580
 msgid "File already opened"
@@ -2459,4 +2487,3 @@ msgstr ""
 
 #~ msgid "Columns"
 #~ msgstr "Sloupce"
-
