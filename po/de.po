@@ -1,23 +1,39 @@
 # German messages for gnome-utils.
 # Copyright (C) 1999 Free Software Foundation, Inc.
-# Karl Eichwalder <ke@suse.de>, 2000.
 # Matthias Warkus <mawa@iname.com>, 1999.
-#
-# 2000-05-11 06:54:24 CEST
-# I'm still looking for somebody who's willing to take over this message file.
-# Please, mail to de@li.org or ke@suse.de.
-# -ke-
+# Karl Eichwalder <ke@suse.de>, 2000.
+# Benedikt Roth <Benedikt.Roth@gmx.net>, 2000
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-1.1.1cvs\n"
-"POT-Creation-Date: 2000-05-20 03:03+0200\n"
-"PO-Revision-Date: 2000-05-20 08:52+02:00\n"
-"Last-Translator: Karl Eichwalder <ke@suse.de>\n"
-"Language-Team: Matthias Warkus <mawa@iname.com>\n"
+"POT-Creation-Date: 2000-06-01 12:38+0200\n"
+"PO-Revision-Date: 2000-06-01 12:46+02:00\n"
+"Last-Translator: Benedikt Roth <Benedikt.Roth@gmx.net>\n"
+"Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: gcalc/gcalc.c:37
+msgid "The Gnome Calculator"
+msgstr "Der GNOME Taschenrechner"
+
+#: gcalc/gcalc.c:40
+msgid "Simple double precision calculator similiar to xcalc"
+msgstr "Einfacher Taschenrechner mit doppelter Genauigkeit, ähnlich wie xcalc"
+
+#: gcalc/gcalc.c:133
+msgid "Gnome Calculator"
+msgstr "GNOME Taschenrechner"
+
+#: gcharmap/src/asciiselect.c:42 gcharmap/src/interface.c:38
+msgid "Insert ASCII character"
+msgstr "ASCII-Zeichen einfügen"
+
+#: gcharmap/src/interface.c:38
+msgid "Insert ASCII character..."
+msgstr "Folgendes ASCII-Zeichen einfügen..."
 
 #: gcharmap/src/interface.c:44
 msgid "_Toolbar"
@@ -43,7 +59,8 @@ msgstr "Ausschneiden"
 msgid "Cut the text to clipboard"
 msgstr "Text in die Zwischenablage ausschneiden."
 
-#: gcharmap/src/interface.c:68 gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:68 gcharmap/src/interface.c:191
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -60,7 +77,7 @@ msgid "Paste the text from clipboard."
 msgstr "Text aus der Zwischenablage einfügen."
 
 #: gcharmap/src/interface.c:73 gnome-find/gnome-find.c:49
-#: gstripchart/gstripchart.c:1802 mini-utils/gcolorsel/menus.c:902
+#: gstripchart/gstripchart.c:1802 mini-utils/gcolorsel/menus.c:950
 msgid "Exit"
 msgstr "Beenden"
 
@@ -75,6 +92,23 @@ msgstr "GNOME-Zeichentabelle"
 #: gcharmap/src/interface.c:146
 msgid "Text to Copy:"
 msgstr "Zu kopierender Text:"
+
+#: gcharmap/src/interface.c:185 mini-utils/gcolorsel/menus.c:93
+#: mini-utils/gcolorsel/menus.c:954 mini-utils/gshutdown/gshutdown.c:153
+#: mini-utils/gshutdown/gshutdown.c:594
+msgid "Close"
+msgstr "Schließen"
+
+#: gcharmap/src/interface.c:197 gstripchart/gstripchart.c:1790
+#: gstripchart/gstripchart.c:2074 mini-utils/gcolorsel/menus.c:960
+#: mini-utils/gshutdown/gshutdown.c:319
+msgid "About"
+msgstr "Info"
+
+#: gcharmap/src/interface.c:203 gnome-find/gnome-find.c:89
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:2071
+msgid "Help"
+msgstr "Hilfe"
 
 #: gcharmap/src/interface.c:303
 #, c-format
@@ -196,7 +230,7 @@ msgstr "Wortdefinition"
 msgid "Cannot create applet!\n"
 msgstr "Kann Applet nicht anlegen!\n"
 
-#: gdictsrc/gdict-applet.c:130
+#: gdictsrc/gdict-applet.c:130 mini-utils/gcolorsel/menus.c:1098
 msgid "About..."
 msgstr "Info..."
 
@@ -206,7 +240,7 @@ msgstr "Einstellungen..."
 
 #: gdictsrc/gdict-applet.c:138
 msgid "Show/Hide Definition Window..."
-msgstr ""
+msgstr "Zeigfe/Verstecke Definitions-Fenster"
 
 #: gdictsrc/gdict-applet.c:142
 msgid "Spell Check..."
@@ -246,7 +280,7 @@ msgstr "Querverweis:"
 
 #. Fixme these should be stock buttons
 #: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:495
-#: mini-utils/gshutdown/gshutdown.c:314
+#: mini-utils/gcolorsel/menus.c:1109 mini-utils/gshutdown/gshutdown.c:314
 msgid "Preferences"
 msgstr "Einstellungen:"
 
@@ -414,23 +448,19 @@ msgstr "Suche starten"
 msgid "About Gnome Find..."
 msgstr "Info zur GNOME-Suche..."
 
-#: gnome-find/gnome-find.c:86 mini-utils/gcolorsel/gcolorsel.c:40
+#: gnome-find/gnome-find.c:86 mini-utils/gcolorsel/gcolorsel.c:44
 msgid "File"
 msgstr "Datei"
 
-#: gnome-find/gnome-find.c:87 mini-utils/gcolorsel/gcolorsel.c:32
-#: mini-utils/gcolorsel/menus.c:566
+#: gnome-find/gnome-find.c:87 mini-utils/gcolorsel/gcolorsel.c:36
+#: mini-utils/gcolorsel/menus.c:588 mini-utils/gcolorsel/menus.c:691
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: gnome-find/gnome-find.c:88 gnome-find/gnome-find.c:109
+#: mini-utils/gcolorsel/session.c:437
 msgid "Search"
 msgstr "Suche"
-
-#: gnome-find/gnome-find.c:89 gstripchart/gstripchart.c:1784
-#: gstripchart/gstripchart.c:2071
-msgid "Help"
-msgstr "Hilfe"
 
 #: gnome-find/gnome-find.c:95
 msgid "New"
@@ -756,7 +786,7 @@ msgstr "_Hilfe"
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:196
+#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:197
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Wert"
@@ -765,7 +795,7 @@ msgstr "Wert"
 msgid "Identifier"
 msgstr "Bezeichner"
 
-#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:195
+#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:196
 msgid "Color"
 msgstr "Farbe"
 
@@ -812,11 +842,6 @@ msgstr "Oben"
 #: gstripchart/gstripchart.c:1747
 msgid "Scale"
 msgstr "Skalierung"
-
-#: gstripchart/gstripchart.c:1790 gstripchart/gstripchart.c:2074
-#: mini-utils/gcolorsel/menus.c:912 mini-utils/gshutdown/gshutdown.c:319
-msgid "About"
-msgstr "Info"
 
 #: gstripchart/gstripchart.c:1796
 msgid "Params"
@@ -1758,58 +1783,58 @@ msgstr "Nachricht:"
 msgid "Description:"
 msgstr "Beschreibung:"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:116
+#: mini-utils/gcolorsel/dialog-prefs.c:117
 msgid "Do nothing"
 msgstr "Nichts machen"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:121
+#: mini-utils/gcolorsel/dialog-prefs.c:122
 msgid "Append it to ->"
-msgstr ""
+msgstr "Anfügen an ->"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:126
+#: mini-utils/gcolorsel/dialog-prefs.c:127
 msgid "Search it in ->"
-msgstr ""
+msgstr "Suchen in ->"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:132
+#: mini-utils/gcolorsel/dialog-prefs.c:133
 msgid "Edit it"
 msgstr "Dies bearbeiten"
 
 #. First view is considered as the default view ...
-#: mini-utils/gcolorsel/gcolorsel.c:24
+#: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "List"
 msgstr "Liste"
 
-#: mini-utils/gcolorsel/gcolorsel.c:28
+#: mini-utils/gcolorsel/gcolorsel.c:32
 msgid "Grid"
 msgstr "Gitter"
 
-#: mini-utils/gcolorsel/gcolorsel.c:42
+#: mini-utils/gcolorsel/gcolorsel.c:46
 msgid "Search RGB"
 msgstr "RGB-Suche"
 
-#: mini-utils/gcolorsel/gcolorsel.c:44
+#: mini-utils/gcolorsel/gcolorsel.c:48
 msgid "Monitor"
 msgstr "Kontrolle"
 
-#: mini-utils/gcolorsel/gcolorsel.c:46
+#: mini-utils/gcolorsel/gcolorsel.c:50
 msgid "Concat"
 msgstr "Zusammenfügen"
 
-#: mini-utils/gcolorsel/gcolorsel.c:94
+#: mini-utils/gcolorsel/gcolorsel.c:100
 #, c-format
 msgid "'%s' document has been modified; do you wish to save it ?"
 msgstr "Das Dokument '%s' wurde verändert.  Wollen Sie es speichern?"
 
-#: mini-utils/gcolorsel/gcolorsel.c:204
+#: mini-utils/gcolorsel/gcolorsel.c:210
 msgid "GColorsel was unable to paste colors from the clipboard."
 msgstr ""
 "Der Farbwähler konnte die Farben aus der Zwischenablage nicht einfügen."
 
-#: mini-utils/gcolorsel/gcolorsel.c:218
+#: mini-utils/gcolorsel/gcolorsel.c:224
 msgid "Please select a file document before."
 msgstr "Bitte wählen Sie zuvor ein Datei-Dokument aus."
 
-#: mini-utils/gcolorsel/gcolorsel.c:390
+#: mini-utils/gcolorsel/gcolorsel.c:396
 msgid ""
 "I can't execute this action. Check that :\n"
 "\n"
@@ -1829,8 +1854,12 @@ msgstr ""
 "Gehen Sie dazu zu den Einstellungen in dem Menü\n"
 "'Bearbeiten'."
 
+#: mini-utils/gcolorsel/gcolorsel.c:586 mini-utils/gcolorsel/session.c:429
+msgid "User Colors"
+msgstr "Benutzer Farben"
+
 #. Init GnomeMDI
-#: mini-utils/gcolorsel/gcolorsel.c:508
+#: mini-utils/gcolorsel/gcolorsel.c:717
 msgid "GColorsel"
 msgstr "Farbwähler"
 
@@ -1924,7 +1953,9 @@ msgstr "Ansichten schließen"
 msgid ""
 "You can create one or more views for this document. Note that you have to "
 "create at least one view."
-msgstr "Sie können eine oder mehrere Ansichten dieses Dokuments erzeugen.  Bitte beachten Sie, dass Sie zumindest eine Ansicht erzeugen müssen."
+msgstr ""
+"Sie können eine oder mehrere Ansichten dieses Dokuments erzeugen.  Bitte "
+"beachten Sie, dass Sie zumindest eine Ansicht erzeugen müssen."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:27
 msgid "Available views"
@@ -1977,11 +2008,11 @@ msgstr "Allgemein"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:11
 msgid "MDI (Multiple Document Interface)"
-msgstr ""
+msgstr "MDI (Multiples Dokumenten Interface)"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:12
 msgid "Notebook Tab position:"
-msgstr ""
+msgstr "Tabulator Position:"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:13
 msgid "Mode:"
@@ -2017,7 +2048,7 @@ msgstr "Dokumente"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:26
 msgid "On ... execute ..."
-msgstr ""
+msgstr "Wenn ... dann führe ... aus"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:27
 msgid "DoubleClick in previews:"
@@ -2095,17 +2126,17 @@ msgid "Name :"
 msgstr "Name:"
 
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:9
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:97
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:98
 msgid "Red :"
 msgstr "Rot:"
 
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:10
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:101
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:102
 msgid "Green :"
 msgstr "Grün:"
 
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:11
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:105
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:106
 msgid "Blue :"
 msgstr "Blau:"
 
@@ -2131,56 +2162,79 @@ msgstr "Höhe des Farbkastens:"
 msgid "Draw numbers"
 msgstr "Farben nummerieren"
 
-#: mini-utils/gcolorsel/menus.c:52
+#: mini-utils/gcolorsel/menus.c:56
 msgid "New Document"
 msgstr "Neues Dokument"
 
-#: mini-utils/gcolorsel/menus.c:53
+#: mini-utils/gcolorsel/menus.c:57
 msgid "Create a new document"
 msgstr "Ein neues Dokument anlegen"
 
-#: mini-utils/gcolorsel/menus.c:55
+#: mini-utils/gcolorsel/menus.c:59
 msgid "New View"
 msgstr "Neue Ansicht"
 
-#: mini-utils/gcolorsel/menus.c:56
+#: mini-utils/gcolorsel/menus.c:60
 msgid "Create a new view for a document"
 msgstr "Eine neue Ansicht eines Dokuments erzeugen"
 
-#: mini-utils/gcolorsel/menus.c:62
+#: mini-utils/gcolorsel/menus.c:66
 msgid "Close document"
 msgstr "Dokument schließen"
 
-#: mini-utils/gcolorsel/menus.c:63
+#: mini-utils/gcolorsel/menus.c:67
 msgid "Close the current document"
 msgstr "Das aktuelle Dokument schließen"
 
-#: mini-utils/gcolorsel/menus.c:65
+#: mini-utils/gcolorsel/menus.c:69
 msgid "Close view"
 msgstr "Schließen"
 
-#: mini-utils/gcolorsel/menus.c:66 mini-utils/gcolorsel/menus.c:906
+#: mini-utils/gcolorsel/menus.c:70 mini-utils/gcolorsel/menus.c:954
 msgid "Close the current view"
 msgstr "Die aktuelle Ansicht schließen"
 
-#: mini-utils/gcolorsel/menus.c:83 mini-utils/gcolorsel/menus.c:906
-#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
-msgid "Close"
-msgstr "Schließen"
+#: mini-utils/gcolorsel/menus.c:80
+msgid "_Open palette..."
+msgstr "_Palette öffnen..."
 
-#: mini-utils/gcolorsel/menus.c:99
+#: mini-utils/gcolorsel/menus.c:81
+msgid "Load a palette"
+msgstr "Eine Palette laden"
+
+#: mini-utils/gcolorsel/menus.c:83
+msgid "_Save palette"
+msgstr "Palette _speichern"
+
+#: mini-utils/gcolorsel/menus.c:84
+msgid "Save the current palette in a file"
+msgstr "Speichere die momentane Palette in einer Datei"
+
+#: mini-utils/gcolorsel/menus.c:86
+msgid "Save palette _As..."
+msgstr "Palette speichern _unter"
+
+#: mini-utils/gcolorsel/menus.c:87
+msgid "Save the current palette with a different name"
+msgstr "Speichere die momentane Palette unter einem anderen Namen"
+
+#: mini-utils/gcolorsel/menus.c:109
 msgid "Insert color"
 msgstr "Farbe einfügen"
 
-#: mini-utils/gcolorsel/menus.c:101
+#: mini-utils/gcolorsel/menus.c:111
 msgid "Remove selected colors"
 msgstr "Gewählte Farben entfernen"
 
-#: mini-utils/gcolorsel/menus.c:103
+#: mini-utils/gcolorsel/menus.c:113
 msgid "Edit selected colors ..."
 msgstr "Gewählte Farben bearbeiten..."
 
-#: mini-utils/gcolorsel/menus.c:172
+#: mini-utils/gcolorsel/menus.c:117 mini-utils/gcolorsel/menus.c:1103
+msgid "Document/View properties"
+msgstr "Dokument/Betrachtungs Eigenschaften"
+
+#: mini-utils/gcolorsel/menus.c:183
 #, c-format
 msgid ""
 "GColorsel was unable to save the file :\n"
@@ -2202,7 +2256,7 @@ msgstr ""
 "\n"
 "Wiederholen?"
 
-#: mini-utils/gcolorsel/menus.c:191
+#: mini-utils/gcolorsel/menus.c:202
 #, c-format
 msgid ""
 "GColorsel was unable to load the file:\n"
@@ -2220,27 +2274,27 @@ msgstr ""
 "tatsächlich existiert und dass Sie über die notwendigen\n"
 "Schreibrechte verfügen, um die Datei zu öffnen."
 
-#: mini-utils/gcolorsel/menus.c:210
+#: mini-utils/gcolorsel/menus.c:221
 msgid "Open Palette"
 msgstr "Palette öffnen"
 
-#: mini-utils/gcolorsel/menus.c:235
+#: mini-utils/gcolorsel/menus.c:246
 msgid "Loading file, please wait ..."
 msgstr "Lade Datei, bitte Geduld..."
 
-#: mini-utils/gcolorsel/menus.c:266
+#: mini-utils/gcolorsel/menus.c:277
 msgid "Save Palette as"
 msgstr "Palette speichern unter..."
 
-#: mini-utils/gcolorsel/menus.c:313
+#: mini-utils/gcolorsel/menus.c:324
 msgid "File not saved ..."
 msgstr "Datei nicht gespeichert..."
 
-#: mini-utils/gcolorsel/menus.c:323
+#: mini-utils/gcolorsel/menus.c:334
 msgid "File saved ..."
 msgstr "Datei gespeichert..."
 
-#: mini-utils/gcolorsel/menus.c:401
+#: mini-utils/gcolorsel/menus.c:412
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -2258,7 +2312,7 @@ msgstr ""
 "Bitte beachten Sie, dass das virtuelle Dokument %d\n"
 "Daten von diesem Dokument verwendet."
 
-#: mini-utils/gcolorsel/menus.c:403
+#: mini-utils/gcolorsel/menus.c:414
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -2271,7 +2325,7 @@ msgstr ""
 "Das Dokument wird damit zugleich geschlossen.\n"
 "Wollen Sie fortfahren?"
 
-#: mini-utils/gcolorsel/menus.c:437
+#: mini-utils/gcolorsel/menus.c:450
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -2289,7 +2343,7 @@ msgstr ""
 "\n"
 "Wollen Sie fortfahren?"
 
-#: mini-utils/gcolorsel/menus.c:439
+#: mini-utils/gcolorsel/menus.c:452
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -2304,51 +2358,51 @@ msgstr ""
 "\n"
 "Wollen Sie fortfahren?"
 
-#: mini-utils/gcolorsel/menus.c:487
+#: mini-utils/gcolorsel/menus.c:500
 msgid "Gnome Color Browser"
 msgstr "GNOME-Farbbetrachter"
 
-#: mini-utils/gcolorsel/menus.c:490
+#: mini-utils/gcolorsel/menus.c:506
 msgid "Small utility to browse available X11 colors."
 msgstr "Kleines Hilfsprogramm, um verfügbare X11-Farben zu betrachten."
 
-#: mini-utils/gcolorsel/menus.c:599
+#: mini-utils/gcolorsel/menus.c:626
 msgid "New Color"
 msgstr "Neue Farbe"
 
-#: mini-utils/gcolorsel/menus.c:854
+#: mini-utils/gcolorsel/menus.c:902
 msgid "View properties"
 msgstr "Eigenschaften der Ansicht"
 
-#: mini-utils/gcolorsel/menus.c:869
+#: mini-utils/gcolorsel/menus.c:917
 msgid "Document properties"
 msgstr "Eigenschaften des Dokuments"
 
-#: mini-utils/gcolorsel/menus.c:902
+#: mini-utils/gcolorsel/menus.c:950
 msgid "Exit the program"
 msgstr "Das Programm beenden"
 
-#: mini-utils/gcolorsel/menus.c:904
+#: mini-utils/gcolorsel/menus.c:952
 msgid "Open"
 msgstr "Öffnen"
 
-#: mini-utils/gcolorsel/menus.c:904
+#: mini-utils/gcolorsel/menus.c:952
 msgid "Open a palette"
 msgstr "Palette öffnen"
 
-#: mini-utils/gcolorsel/menus.c:909
+#: mini-utils/gcolorsel/menus.c:957
 msgid "Grab"
 msgstr "Auswählen"
 
-#: mini-utils/gcolorsel/menus.c:909
+#: mini-utils/gcolorsel/menus.c:957
 msgid "Grab a color on the screen"
 msgstr "Eine Farbe vom Bildschirm auswählen"
 
-#: mini-utils/gcolorsel/menus.c:912
+#: mini-utils/gcolorsel/menus.c:960
 msgid "About this application"
 msgstr "Info zu dieser Anwendung"
 
-#: mini-utils/gcolorsel/session.c:303
+#: mini-utils/gcolorsel/session.c:304
 msgid ""
 "Your config file is corrupted.\n"
 "Do you want to create a new session ?"
@@ -2356,11 +2410,11 @@ msgstr ""
 "Ihre Konfigurationsdatei ist beschädigt.\n"
 "Wollen Sie eine neue Sitzung erzeugen?"
 
-#: mini-utils/gcolorsel/session.c:356
+#: mini-utils/gcolorsel/session.c:357
 msgid "Loading files, please wait ..."
 msgstr "Lade Dateien, bitte etwas Geduld..."
 
-#: mini-utils/gcolorsel/session.c:381
+#: mini-utils/gcolorsel/session.c:382
 msgid ""
 "One or more files can not be restored :\n"
 "\n"
@@ -2369,35 +2423,39 @@ msgstr ""
 "wiederhergestellt werden:\n"
 "\n"
 
-#: mini-utils/gcolorsel/view-color-generic.c:15
+#: mini-utils/gcolorsel/session.c:408
+msgid "System Colors"
+msgstr "System Farben"
+
+#: mini-utils/gcolorsel/view-color-generic.c:16
 msgid "Decimal 8 bits"
 msgstr "Dezimal 8 Bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:16
+#: mini-utils/gcolorsel/view-color-generic.c:17
 msgid "Decimal 16 bits"
 msgstr "Dezimal 16 Bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:17
+#: mini-utils/gcolorsel/view-color-generic.c:18
 msgid "Hex 8 bits"
 msgstr "Hex 8 Bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:18
+#: mini-utils/gcolorsel/view-color-generic.c:19
 msgid "Hex 16 bits"
 msgstr "Hex 16 Bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:19
+#: mini-utils/gcolorsel/view-color-generic.c:20
 msgid "Float"
 msgstr "Gleitkomma"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:504 mini-utils/gw/gw.c:574
 msgid "Name"
 msgstr "Name"
 
 # Erlaubte Abweichung?
 # 2000-05-18 06:04:57 CEST -ke-
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:109
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:110
 msgid "Tolerance :"
 msgstr "Toleranz:"
 
@@ -2928,7 +2986,6 @@ msgid "%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."
 msgstr "%ld Megabytes, %ld frei (%ld Superuser); %ld Inodes, %ld frei."
 
 #: mini-utils/guname/moreinfo.c:353
-#, ycp-format
 msgid "%2d%% full "
 msgstr "%2d%% voll "
 
@@ -3169,3 +3226,6 @@ msgstr "Nur der Superuser (root) kann dieses Werkzeug benutzen"
 #: mini-utils/idetool/idetool.c:451
 msgid "You appear to have no IDE drives"
 msgstr "Sie scheinen keine IDE-Laufwerke zu besitzen"
+
+#~ msgid "System"
+#~ msgstr "System"
