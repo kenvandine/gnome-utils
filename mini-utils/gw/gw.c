@@ -718,7 +718,7 @@ static void load_actions()
   if (!config_iterator)
     return;
 
-  while (config_iterator = gnome_config_iterator_next(config_iterator, &name, &command)) {
+  while ((config_iterator = gnome_config_iterator_next(config_iterator, &name, &command))) {
     a = g_new(Action, 1);
     a->key = name; a->format = command;
     actions = g_list_prepend(actions, a);

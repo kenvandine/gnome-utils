@@ -15,3 +15,13 @@ gshutdown_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
+EXTRA_DIST = \
+	topic.dat		\
+	gshutdown.html
+
+gshutdown_helpdir = $(datadir)/gnome/help/gshutdown/C
+
+install-data-local:
+	 $(mkinstalldirs) $(gshutdown_helpdir)
+	 $(INSTALL_DATA) $(srcdir)/topic.dat $(gshutdown_helpdir)/topic.dat
+	 $(INSTALL_DATA) $(srcdir)/gshutdown.html $(gshutdown_helpdir)/index.html

@@ -39,6 +39,7 @@ static void prepare_advanced_vbox(GtkWidget * vbox);
 
 static void dialog_clicked_cb(GnomeDialog * d, gint which, gpointer data);
 static void runlevel_cb(GtkRadioButton * b, gint data);
+static void help_cb(GtkButton * b, gpointer ignored);
 static void apply_prefs_cb(GnomePropertyBox * pb, gint page, 
                            GtkEntry ** entries);
 static void confirm_cb(GnomeDialog * d, gint which);
@@ -209,7 +210,7 @@ static void popup_main_dialog()
 
 static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
 {
-  GtkWidget * button, * label, * warning_hbox;
+  GtkWidget * button, * label, * warning_hbox, * help_box;
   GtkWidget * warning_pixmap = NULL;
   gchar * s;
 
@@ -231,13 +232,13 @@ static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
   gtk_box_pack_end (GTK_BOX (warning_hbox), 
                     label, TRUE, TRUE, 0);
 
-  button = gtk_radio_button_new_with_label(NULL, _("Reboot"));
+  button = gtk_radio_button_new_with_label(NULL, human_readable[Reboot]);
 
   gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (button), TRUE);
   requested_runlevel = Reboot;
 
   gtk_box_pack_start (GTK_BOX (vbox), 
-		      button, TRUE, TRUE, GNOME_PAD);
+                      button, TRUE, TRUE, GNOME_PAD);
   
   /* Hacky int-to-pointer cast */
   gtk_signal_connect ( GTK_OBJECT(button), "clicked",
@@ -247,16 +248,26 @@ static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
   runlevel_radio_group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
 
   button = gtk_radio_button_new_with_label (runlevel_radio_group, 
-                                            _("Shut Down"));
+                                            human_readable[Halt]);
   runlevel_radio_group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
 
   gtk_box_pack_start (GTK_BOX (vbox), 
-		      button, TRUE, TRUE, GNOME_PAD);
+                      button, TRUE, TRUE, GNOME_PAD);
 
   gtk_signal_connect ( GTK_OBJECT(button), "clicked",
                        GTK_SIGNAL_FUNC(runlevel_cb),
                        (gpointer)Halt );
 
+  help_box = gtk_hbox_new(FALSE, GNOME_PAD);
+  gtk_box_pack_start (GTK_BOX (vbox), 
+                      help_box, TRUE, TRUE, 0);
+
+  button = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
+  gtk_box_pack_end(GTK_BOX(help_box), button, FALSE, FALSE, 0);
+  
+  gtk_signal_connect( GTK_OBJECT(button), "clicked",
+                      GTK_SIGNAL_FUNC(help_cb),
+                      NULL );
 }
 
 static void prepare_advanced_vbox(GtkWidget * vbox)
@@ -539,6 +550,17 @@ static void runlevel_cb(GtkRadioButton * b, gint data)
 static void toggle_confirm_cb(GtkWidget * button, gpointer data)
 {
   confirm_button_state = !confirm_button_state;
+}
+
+static void help_cb(GtkButton * b, gpointer ignored)
+{
+  gchar * path;
+
+  path = gnome_help_file_find_file(APPNAME, "index.html");
+
+  gnome_help_goto(NULL, path);
+
+  g_free(path);
 }
 
 /*********************************************
