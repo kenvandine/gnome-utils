@@ -12,7 +12,8 @@ sort_func gnomecard_sort_criteria;
                  { N_("Name"), N_("Address"), N_("E-mail"), 
 		   N_("Title"), N_("Role"), N_("Company"), NULL };*/
 
-extern void gnomecard_sort_card_list(sort_func compar)
+void
+gnomecard_sort_card_list(sort_func compar)
 {
 	GList *l;
 	Card **array;
@@ -35,12 +36,14 @@ extern void gnomecard_sort_card_list(sort_func compar)
 }
 
 #ifndef B4MSF
-static void gnomecard_do_sort_cards(sort_func criteria)
+static void
+gnomecard_do_sort_cards(sort_func criteria)
 {
     g_message("gnomecard_do_sort_cards not implemented");
 }
 #else
-static void gnomecard_do_sort_cards(sort_func criteria)
+static void
+gnomecard_do_sort_cards(sort_func criteria)
 {
 	GList *l;
 	Card *curr;
@@ -61,7 +64,9 @@ static void gnomecard_do_sort_cards(sort_func criteria)
 	gnomecard_set_changed(TRUE);
 }
 #endif
-extern void gnomecard_sort_cards(GtkWidget *w, gpointer data)
+
+void
+gnomecard_sort_cards(GtkWidget *w, gpointer data)
 {
 	sort_func criteria;
 	
@@ -72,7 +77,9 @@ extern void gnomecard_sort_cards(GtkWidget *w, gpointer data)
 	}
 }
 
-extern GtkCTreeNode *gnomecard_search_sorted_pos(Card *crd)
+/* NOT USED
+GtkCTreeNode
+*gnomecard_search_sorted_pos(Card *crd)
 {
 	GList *l;
 	
@@ -82,8 +89,10 @@ extern GtkCTreeNode *gnomecard_search_sorted_pos(Card *crd)
 	
 	return NULL;
 }
+*/
 	
-extern int gnomecard_cmp_fnames(const void *crd1, const void *crd2)
+gint
+gnomecard_cmp_fnames(const void *crd1, const void *crd2)
 {
 	char *fname1, *fname2;
 	
@@ -142,8 +151,8 @@ extern int gnomecard_cmp_emails(const void *crd1, const void *crd2)
 	if (! card2->email.address)
 	  return -1;
 	
-	email1 = g_strdup(((CardEMail *) (card1->email.address));
-	email2 = g_strdup(((CardEMail *) (card2->email.address));
+	email1 = g_strdup(card1->email.address);
+	email2 = g_strdup(card2->email.address);
 	
 	if ((host1 = strchr(email1, '@'))) {
 		*host1++ = 0;
