@@ -7,7 +7,6 @@ SGML_FILES =\
 
 EXTRA_DIST = 		\
 	topic.dat 	\
-	gcharmap	\
 	$(SGML_FILES)
 
 all:
