@@ -17,8 +17,8 @@ AC_PROG_CPP
 AC_STDC_HEADERS
 AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
-AC_PROG_LEX
-AC_DECL_YYTEXT
+AM_PROG_LEX
+dnl AC_DECL_YYTEXT
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
@@ -52,12 +52,12 @@ dnl genius
 PROGRAMS_GENIUS=""
 GMP_LIB=""
 AC_CHECK_LIB(gmp, mpz_init_set,[
-   AC_PROG_LEX
+   AM_PROG_LEX
    AC_PROG_YACC
    PROGRAMS_GENIUS=genius
    GMP_LIB=-lgmp],
    [AC_CHECK_LIB(gmp2, mpz_init_set_d,[
-      AC_PROG_LEX
+      AM_PROG_LEX
       AC_PROG_YACC
       PROGRAMS_GENIUS=genius
       GMP_LIB=-lgmp2
@@ -80,6 +80,7 @@ po/Makefile.in
 intl/Makefile
 macros/Makefile
 cromagnon/Makefile
+edit-menus/Makefile
 find-file/Makefile
 genius/Makefile
 ghex/Makefile
