@@ -22,6 +22,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnome/gnome-util.h>
 #include <libgnomeui/gnome-window-icon.h>
 #include <errno.h>
 
@@ -779,7 +780,15 @@ static void mail_clicked_callback(GtkWidget* dialog, gint button,
     
     /* This isn't translated; maybe good, since most tech support email should be
        in English? don't know. */
-    command = g_strconcat("mailx -s \"System Information for host ", 
+    if (gnome_is_program_in_path("mailx"))
+
+        command = g_strconcat("mailx -s \"System Information for host ", 
+                             info[si_host] ? info[si_host] : "Unknown",
+                             "\" ", data->to, NULL);
+    
+    else if (gnome_is_program_in_path("mail"))
+    
+        command = g_strconcat("mail -s \"System Information for host ", 
                              info[si_host] ? info[si_host] : "Unknown",
                              "\" ", data->to, NULL);
     
