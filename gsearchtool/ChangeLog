@@ -1,3 +1,26 @@
+2002-08-20  Dennis M. Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c: ** FIX BUG #81821 **  GUI enhancements
+	
+	Merge tabs together.  Place advanced constraints in a 
+	disclosure widget.  
+	
+	Implement changes suggested from discussions on 
+	usability@gnome.org.  (1) various string changes, (2) remove 
+	the menu bar, (3) add help and close buttons, and (4) add 
+	right click menu for search results.
+	
+	Also, add search by size constraints. Fixes bug #90774.
+	
+	* gsearchtool-support.[ch]:  new files for the support 
+	functions.
+	
+	* gsearchtool-callbacks.[ch]:  new files for callback 
+	functions.
+	
+	* Makefile.am:  build gsearchtool-support.[ch] and
+	gsearchtool-callbacks.[ch].
+	
 2002-08-12  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c:  Use the stock button (GTK_STOCK_FIND).

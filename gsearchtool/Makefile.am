@@ -12,7 +12,11 @@ INCLUDES = 	\
 bin_PROGRAMS = gnome-search-tool
 
 gnome_search_tool_SOURCES =	\
-	gsearchtool.c	\
+	gsearchtool-support.c   \
+	gsearchtool-support.h   \
+	gsearchtool-callbacks.c \
+	gsearchtool-callbacks.h \
+	gsearchtool.c	        \
 	gsearchtool.h
 
 gnome_search_tool_LDADD = \
