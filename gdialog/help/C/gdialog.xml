@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY version "0.6gnome1"> <!-- replace with application version -->
+<!ENTITY legal SYSTEM "legal.xml">
+<!ENTITY version "2"> 
 ]>
 
 
@@ -16,7 +17,7 @@
 
 <!-- =============Document Header ============================= -->
 
-<article id="index"> <!-- please do not change the id -->
+<article id="index" lang="en"> <!-- please do not change the id -->
 
   <articleinfo>
     <title>gdialog Manual</title>
@@ -33,36 +34,66 @@
   </copyright>
 
    -->
+    <publisher>
+      <publishername>
+	GNOME Documentation Project
+      </publishername>
+    </publisher>
 
-  <!-- do not put authorname in the header except in copyright - use
-  section "authors" below -->
-
-  <!-- Use this legal notice for online documents which depend on -->
-  <!-- core GNOME packages.                                       -->
-  <legalnotice id="legalnotice">
-   <para>
-    Permission is granted to copy, distribute and/or modify this document
-    under the terms of the <ulink type="help" 
-    url="gnome-help:fdl"><citetitle>GNU Free Documentation
-    License</citetitle></ulink>, Version 1.1 or any later version 
-    published by the Free Software Foundation with no Invariant Sections, 
-    no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license
-    can be found <ulink type="help" url="gnome-help:fdl">here</ulink>.
-   </para>
-   <para>
-    Many of the names used by companies to distinguish their products and
-    services are claimed as trademarks. Where those names appear in any
-    GNOME documentation, and those trademarks are made aware to the members
-    of the GNOME Documentation Project, the names have been printed in caps
-    or initial caps.
-   </para>
-  </legalnotice>
+&legal;
 
   <!-- This is the manual version, not application version. --> 
     <releaseinfo>
        This is version 0.1 of the GDialog manual.
     </releaseinfo>
 
+    <legalnotice id="feedback">
+      <title>Feedback Information</title>
+      <para>
+	To report a bug or make a suggestion regarding this
+	application or this documentation, please see  the
+	<ulink type="help"
+	       url="ghelp:gnome-feedback">GNOME Feedback Page</ulink>.
+      </para>
+    </legalnotice>
+
+    <authorgroup>
+	<author>
+	  <firstname>Patanjali </firstname>
+	  <surname> Somayaji</surname>
+	  <affiliation>
+		<orgname>GNOME Documentation Project</orgname>
+		
+	  </affiliation>
+	</author>
+    </authorgroup>
+    <revhistory>
+
+	<revision>
+	  <revnumber>1.0</revnumber>
+	  <date> 25 Aug. 2001</date> <!-- or use &date; -->
+	  <revdescription>
+	  <para role="author">Patanjali Somayaji</para>
+	  <para role="publisher">GNOME Documentation Project</para>
+          </revdescription>
+
+	</revision>
+
+	<revision>
+	  <revnumber>1.0</revnumber>
+	  <date>15 May 2000</date>
+	  <revdescription>
+                   <para role="author">Documentation Writer 1 
+                    <email>docwriter1@gnome.org</email></para>
+                   <para role="publisher">GNOME Documentation
+                    Project</para>
+	            <para>This was the original release, for GNOME 1.4</para>
+          </revdescription>
+
+
+	</revision>
+
+  </revhistory>
   </articleinfo>
 
  <!-- ============= Document Body ============================= -->
@@ -116,15 +147,25 @@
 	<xref linkend="example-dialog" />.
 
         <!-- ==== Figure ==== -->
-        <figure id="example-dialog">
+        
+	<figure  id="example-dialog">
 	  <title>gdialog example</title>
 	  <screenshot>
-	    <screeninfo>gdialog msgbox example</screeninfo>
-	    <graphic fileref="figures/example-dialog" format="PNG" 
-			srccredit="Patanjali Somayaji" />
-	  </screenshot>
-	</figure>
-    <!-- ==== End of Figure ==== -->
+	    <mediaobject>
+	      <imageobject>
+		<imagedata fileref="figures/example-dialog.png" format="PNG"/>
+      </imageobject>
+	<imageobject>
+	  <imagedata fileref="figures/example-dialog.eps" format="EPS"/>
+      </imageobject>
+	<textobject>
+	  <phrase>gdialog msgbox example</phrase>
+	</textobject>
+      </mediaobject>
+      </screenshot>
+      </figure>
+
+	<!-- ==== End of Figure ==== -->
       </para> 
 
 	<para>
@@ -432,12 +473,3 @@
   </para>
  </sect1>
 </article>
-
-
-
-
-
-
-
-
-
