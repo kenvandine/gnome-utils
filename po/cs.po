@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-19 04:07+0200\n"
-"PO-Revision-Date: 2004-07-19 15:01+0200\n"
+"POT-Creation-Date: 2004-07-20 15:10+0200\n"
+"PO-Revision-Date: 2004-07-20 17:49+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,11 +24,11 @@ msgstr ""
 msgid "Accessories"
 msgstr "Příslušenství"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:144
 msgid "Dictionary Lookup"
 msgstr "Vyhledání ve slovníku"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:421
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:160
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Vyhledávání slov v on-line slovníku"
@@ -176,11 +176,11 @@ msgstr "Zadejte slovo nebo jedno vyberte ze seznamu níže"
 msgid "Look Up for a Word"
 msgstr "Hledat slovo"
 
-#: gdictsrc/gdict-applet.c:144
+#: gdictsrc/gdict-applet.c:137
 msgid "_Lookup"
 msgstr "H_ledat"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:148
 msgid "Dictionary word entry"
 msgstr "Pole pro slovo ze slovníku"
 
@@ -1334,9 +1334,10 @@ msgstr "Chyba při zpracování databáze akcí"
 msgid "Can't write to actions database!"
 msgstr "Nemohu zapisovat do databáze akcí!"
 
-#: logview/actions.c:489
-msgid "Error while executing specified action"
-msgstr "Chyba při spuštění zadané akce"
+#: logview/actions.c:487
+#, c-format
+msgid "Error while executing specified action: %s"
+msgstr "Chyba při spuštění zadané akce: %s"
 
 #: logview/actions.c:510
 msgid "<empty>"
@@ -1714,55 +1715,55 @@ msgstr ""
 msgid "Error: [%s]\n"
 msgstr "Chyba: [%s]\n"
 
-#: logview/monitor.c:108
+#: logview/monitor.c:111
 msgid "Monitor Options"
 msgstr "Možnosti sledování"
 
-#: logview/monitor.c:111
+#: logview/monitor.c:114
 msgid "Ac_tions..."
 msgstr "A_kce..."
 
-#: logview/monitor.c:137
+#: logview/monitor.c:140
 msgid "_Select logs to monitor:"
 msgstr "_Vyberte záznamy ke sledování:"
 
-#: logview/monitor.c:142
+#: logview/monitor.c:145
 msgid "Currently _monitored logs:"
 msgstr "Právě _sledované záznamy:"
 
-#: logview/monitor.c:190
+#: logview/monitor.c:193
 msgid "Add logs to monitor"
 msgstr "Přidat záznamy ke sledovaným"
 
-#: logview/monitor.c:199
+#: logview/monitor.c:202
 msgid "Remove logs from monitor"
 msgstr "Odstranit záznamy ze sledovaných"
 
 #. Check boxes
-#: logview/monitor.c:246
+#: logview/monitor.c:249
 msgid "_Hide application"
 msgstr "Skrýt _aplikaci"
 
-#: logview/monitor.c:254
+#: logview/monitor.c:257
 msgid "_Execute actions"
 msgstr "Spustit akc_e"
 
-#: logview/monitor.c:290
+#: logview/monitor.c:293
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr ""
 "Příliš mnoho souborů se záznamy ke sledování. Odeberte prosím nějaký a "
 "zkuste to znovu."
 
-#: logview/monitor.c:298 logview/monitor.c:335
+#: logview/monitor.c:301 logview/monitor.c:338
 #, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list je NULL\n"
 
-#: logview/monitor.c:457
+#: logview/monitor.c:475
 msgid "Monitoring Logs..."
 msgstr "Sleduji záznamy..."
 
-#: logview/monitor.c:643
+#: logview/monitor.c:667
 #, c-format
 msgid "TOUCHED!!\n"
 msgstr "DOTČEN!!\n"
