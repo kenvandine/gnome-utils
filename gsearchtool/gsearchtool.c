@@ -132,42 +132,24 @@ struct _PoptArgument {
 } PoptArgument;
 
 struct poptOption options[] = { 
-  	{ "name", '\0', POPT_ARG_STRING, &PoptArgument.name, 0, 
-	  N_("Set the text of 'file is named'"), NULL},
-	{ "path", '\0', POPT_ARG_STRING, &PoptArgument.path, 0, 
-	  N_("Set the text of 'look in folder'"), NULL},
-  	{ "sortby", '\0', POPT_ARG_STRING, &PoptArgument.sortby, 0, 
-	  N_("Sort files by one of the following: name, folder, size, type, or date"), NULL},
-  	{ "descending", '\0', POPT_ARG_NONE, &PoptArgument.descending, 0, 
-	  N_("Set sort order to descending, the default is ascending"), NULL},
-  	{ "start", '\0', POPT_ARG_NONE, &PoptArgument.start, 0, 
-	  N_("Automatically start a search"), NULL},
-  	{ "contains", '\0', POPT_ARG_STRING, &PoptArgument.contains, 0, 
-	  N_("Select the 'Contains the text' constraint"), NULL},
-  	{ "mtimeless", '\0', POPT_ARG_STRING, &PoptArgument.mtimeless, 0, 
-	  N_("Select the 'Date modified less than (days)' constraint"), NULL},
-  	{ "mtimemore", '\0', POPT_ARG_STRING, &PoptArgument.mtimemore, 0, 
-	  N_("Select the 'Date modified more than (days)' constraint"), NULL},
-	{ "sizeless", '\0', POPT_ARG_STRING, &PoptArgument.sizeless, 0, 
-	  N_("Select the 'Size at most (kilobytes)' constraint"), NULL},
-	{ "sizemore", '\0', POPT_ARG_STRING, &PoptArgument.sizemore, 0, 
-	  N_("Select the 'Size at least (kilobytes)' constraint"), NULL},
-	{ "empty", '\0', POPT_ARG_NONE, &PoptArgument.empty, 0, 
-	  N_("Select the 'File is empty' constraint"), NULL},
-  	{ "user", '\0', POPT_ARG_STRING, &PoptArgument.user, 0, 
-	  N_("Select the 'Owned by user' constraint"), NULL},
-  	{ "group", '\0', POPT_ARG_STRING, &PoptArgument.group, 0, 
-	  N_("Select the 'Owned by group' constraint"), NULL},
-  	{ "nouser", '\0', POPT_ARG_NONE, &PoptArgument.nouser, 0, 
-	  N_("Select the 'Owner is unrecognized' constraint"), NULL},
-  	{ "notnamed", '\0', POPT_ARG_STRING, &PoptArgument.notnamed, 0, 
-	  N_("Select the 'File is not named' constraint"), NULL},
-  	{ "regex", '\0', POPT_ARG_STRING, &PoptArgument.regex, 0, 
-	  N_("Select the 'File matches regular expression' constraint"), NULL},
-  	{ "follow", '\0', POPT_ARG_NONE, &PoptArgument.follow, 0, 
-	  N_("Select the 'Follow symbolic links' constraint"), NULL},
-  	{ "allmounts", '\0', POPT_ARG_NONE, &PoptArgument.allmounts, 0, 
-	  N_("Select the 'Include other filesystems' constraint"), NULL},
+  	{ "named", '\0', POPT_ARG_STRING, &PoptArgument.name, 0, NULL, NULL},
+	{ "path", '\0', POPT_ARG_STRING, &PoptArgument.path, 0, NULL, NULL},
+  	{ "sortby", '\0', POPT_ARG_STRING, &PoptArgument.sortby, 0, NULL, NULL},
+  	{ "descending", '\0', POPT_ARG_NONE, &PoptArgument.descending, 0, NULL, NULL},
+  	{ "start", '\0', POPT_ARG_NONE, &PoptArgument.start, 0, NULL, NULL},
+  	{ "contains", '\0', POPT_ARG_STRING, &PoptArgument.contains, 0, NULL, NULL},
+  	{ "mtimeless", '\0', POPT_ARG_STRING, &PoptArgument.mtimeless, 0, NULL, NULL},
+  	{ "mtimemore", '\0', POPT_ARG_STRING, &PoptArgument.mtimemore, 0, NULL, NULL},
+	{ "sizemore", '\0', POPT_ARG_STRING, &PoptArgument.sizemore, 0, NULL, NULL},
+	{ "sizeless", '\0', POPT_ARG_STRING, &PoptArgument.sizeless, 0, NULL, NULL},
+	{ "empty", '\0', POPT_ARG_NONE, &PoptArgument.empty, 0, NULL, NULL},
+  	{ "user", '\0', POPT_ARG_STRING, &PoptArgument.user, 0, NULL, NULL},
+  	{ "group", '\0', POPT_ARG_STRING, &PoptArgument.group, 0, NULL, NULL},
+  	{ "nouser", '\0', POPT_ARG_NONE, &PoptArgument.nouser, 0, NULL, NULL},
+  	{ "notnamed", '\0', POPT_ARG_STRING, &PoptArgument.notnamed, 0, NULL, NULL},
+  	{ "regex", '\0', POPT_ARG_STRING, &PoptArgument.regex, 0, NULL, NULL},
+  	{ "follow", '\0', POPT_ARG_NONE, &PoptArgument.follow, 0, NULL, NULL},
+  	{ "allmounts", '\0', POPT_ARG_NONE, &PoptArgument.allmounts, 0, NULL, NULL},
   	{ NULL,'\0', 0, NULL, 0, NULL, NULL}
 };
 
@@ -599,6 +581,25 @@ add_atk_relation (GtkWidget 		*obj1,
 	atk_relation_set_add(relation_set, relation);
 	g_object_unref(G_OBJECT (relation));
 	
+}
+
+void
+define_popt_descriptions (void) 
+{
+	gint i = 0;
+	gint j;
+
+	options[i++].descrip = g_strdup (_("Set the text of 'file is named'"));
+	options[i++].descrip = g_strdup (_("Set the text of 'look in folder'"));
+  	options[i++].descrip = g_strdup (_("Sort files by one of the following: name, folder, size, type, or date"));
+  	options[i++].descrip = g_strdup (_("Set sort order to descending, the default is ascending"));
+  	options[i++].descrip = g_strdup (_("Automatically start a search"));
+
+	for (j = 0; templates[j].type != SEARCH_CONSTRAINT_END; j++) {
+		if (templates[j].type != SEARCH_CONSTRAINT_SEPARATOR) {
+			options[i++].descrip = g_strdup_printf (_("Select the '%s' constraint"), templates[j].desc);
+		}
+	}
 }
 
 void 
@@ -1541,6 +1542,8 @@ main (int 	argc,
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
+
+	define_popt_descriptions ();
 
 	gsearchtool = gnome_program_init ("gnome-search-tool", VERSION, 
 					  LIBGNOMEUI_MODULE, 
