@@ -1,3 +1,13 @@
+2003-03-05  Dennis M. Cranston <dennis_cranston at yahoo.com>
+
+	* gsearchtool.c:  Connected the key press event to 
+	file_key_press_event_cb() for search results.
+	
+	* gsearchtool-callbacks.[ch]:  Added file_key_press_event_cb()
+	to open a file if space or return is pressed like in nautilus'
+	list view.  Also, removed an unused variable in 
+	constraint_entry_changed_cb().
+	
 2003-03-02  Dennis M. Cranston <dennis_cranston at yahoo.com>
 
 	* gsearchtool.[ch]:  Prevent the escape key from quiting

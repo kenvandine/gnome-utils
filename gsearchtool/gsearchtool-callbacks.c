@@ -232,7 +232,6 @@ void
 constraint_entry_changed_cb (GtkWidget 	*widget, 
 			     gpointer 	data)
 {
-	static gchar *file_is_named_string;
 	static gchar *look_in_folder_string;
 	
 	if (GTK_WIDGET_VISIBLE (interface.main_window) == FALSE) {
@@ -473,6 +472,18 @@ file_button_press_event_cb (GtkWidget 		*widget,
 	}
 	
 	return !(row_selected_by_button_press_event);
+}
+
+gboolean
+file_key_press_event_cb  (GtkWidget 		*widget, 
+		    	  GdkEventKey	 	*event, 
+		     	  gpointer 		data)
+{		
+	if (event->keyval == GDK_space || event->keyval == GDK_Return) {
+		open_file_cb (widget, data);
+		return TRUE;
+	}
+	return FALSE;
 }
 
 gboolean

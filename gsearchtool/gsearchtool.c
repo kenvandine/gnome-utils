@@ -1360,6 +1360,11 @@ create_search_results_section (void)
 		          G_CALLBACK(file_button_press_event_cb), 
 			  NULL);		   
 
+	g_signal_connect (G_OBJECT(interface.tree),
+			  "key_press_event",
+			  G_CALLBACK(file_key_press_event_cb),
+			  NULL);
+			  
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), interface.tree);
 	
 	gtk_container_add (GTK_CONTAINER(window), GTK_WIDGET(interface.tree));
