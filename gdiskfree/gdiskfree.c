@@ -133,6 +133,8 @@ main (int argc, gchar *argv[])
   mount_list = glibtop_get_mountlist (&mountlist, 0);
   excluded = g_list_append (excluded, "proc");
   excluded = g_list_append (excluded, "devpts");
+  excluded = g_list_append (excluded, "shm");
+  excluded = g_list_append (excluded, "usbfs");
   for (i = 0; i < mountlist.number; i++)
     {
       glibtop_fsusage    fsusage;

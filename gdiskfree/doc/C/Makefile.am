@@ -44,7 +44,7 @@ distclean-generic:
 
 install-data-local: index.html
 	$(mkinstalldirs) $(DESTDIR)$(gdiskfree_helpdir)/stylesheet-images
-	-for file in $(srcdir)/gdiskfree/*.html $(srcdir)/gsearch/*.css; do \
+	-for file in $(srcdir)/gdiskfree/*.html $(srcdir)/gdiskfree/*.css; do \
 	  basefile=`basename $$file`; \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gdiskfree_helpdir)/$$basefile; \
 	done

@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in.
 ##
-gdiskfree_helpdir = $(datadir)/gnome/help/gdiskfree/C
+gdiskfree_helpdir = $(datadir)/gnome/help/gdiskfree/es
 
 SGML_FILES = \
 	gdiskfree.sgml

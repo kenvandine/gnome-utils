@@ -1,72 +1,62 @@
-## Process this file with automake to produce Makefile.in
-
+## Process this file with automake to produce Makefile.in.
+##
 idetool_helpdir = $(datadir)/gnome/help/idetool/C
-idetool_help_DATA = index.html usage.html ln7.html license.html bugs.html \
-	authors.html topic.dat
 
-
-SGML_FILES = 		\
+SGML_FILES = \
 	idetool.sgml
 
+HTML_FILES = authors.html configuring.html index.html ln7.html viewing.html \
+	bugs.html license.html
+
 EXTRA_DIST = \
-	topic.dat	idetool	$(SGML_FILES)
+	topic.dat idetool $(SGML_FILES)
 
-all:
+idetool_help_DATA = ${HTML_FILES} topic.dat
 
-index.html: idetool/index.html
-	-cd $(srcdir) && cp idetool/index.html .
-
-usage.html: idetool/usage.html
-	-cd $(srcdir) && cp idetool/usage.html .
-
-ln7.html: idetool/ln7.html
-	-cd $(srcdir) && cp idetool/ln7.html .
-
-license.html: idetool/license.html
-	-cd $(srcdir) && cp idetool/license.html .
-
-bugs.html: idetool/bugs.html
-	-cd $(srcdir) && cp idetool/bugs.html .
-
-authors.html: idetool/authors.html
-	-cd $(srcdir) && cp idetool/authors.html .
-
-idetool/index.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html idetool.sgml
-
-idetool/usage.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html idetool.sgml
-
-idetool/ln7.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html idetool.sgml
-
-idetool/license.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html idetool.sgml
-
-idetool/bugs.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html idetool.sgml
-
-idetool/authors.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html idetool.sgml
+#
+# This is icky but insures that the doc files are generated when the sgml 
+# file changes, plus it only generates em once. The distclean target 
+# will take care of clobbering the generated html and the directory that
+# db2html makes, while the dist-hook will make sure that the html files 
+# and directory gets copied into a dist (so mere mortals w/o docbook can 
+# build this) The install-data-local target copies all the bits and pieces
+# where the runtime help system can find it.
+#
+${HTML_FILES} : $(SGML_FILES)
+	if [ ! -d idetool ] ; then cd $(srcdir) && db2html idetool.sgml ; fi
+	-cd $(srcdir) && cp idetool/$@ .
+	if [ -d idetool.junk ] ; then cd $(srcdir) && rm -rf idetool.junk ; fi
 
 dist-hook:
-	$(mkinstalldirs) $(distdir)/idetool
+	$(mkinstalldirs) $(distdir)/idetool 
+	$(mkinstalldirs) $(distdir)/idetool/stylesheet-images
+	$(mkinstalldirs) $(distdir)/idetool/images
 	-cp $(srcdir)/idetool/*.html idetool/*.css $(distdir)/idetool
+	-cp $(srcdir)/idetool/stylesheet-images/*.gif \
+	 $(distdir)/idetool/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	$(mkinstalldirs) $(distdir)/images
-	-cp $(srcdir)/images/*.png $(distdir)/images
+	-cp $(srcdir)/images/*.png $(distdir)/idetool/images
+
+distclean-generic:
+	-rm -f Makefile
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+	-rm -f $(HTML_FILES)
+	-rm -rf idetool
 
 install-data-local: index.html
+	$(mkinstalldirs) $(DESTDIR)$(idetool_helpdir)/stylesheet-images
 	$(mkinstalldirs) $(DESTDIR)$(idetool_helpdir)/images
 	-for file in $(srcdir)/idetool/*.html $(srcdir)/idetool/*.css; do \
-	basefile=`basename $$file`; \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(idetool_helpdir)/$$basefile; \
+	  basefile=`basename $$file`; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(idetool_helpdir)/$$basefile; \
 	done
 	-for file in $(srcdir)/images/*.png ; do \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(idetool_helpdir)/images;\
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(idetool_helpdir)/images; \
 	done
-	$(mkinstalldirs) $(DESTDIR)$(idetool_helpdir)/stylesheet-images
 	-for file in $(srcdir)/idetool/stylesheet-images/*.gif; do \
-	basefile=`basename $$file`; \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(idetool_helpdir)/stylesheet-images/$$basefile; \
+	  basefile=`basename $$file`; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(idetool_helpdir)/stylesheet-images/$$basefile; \
 	done
+
+
+

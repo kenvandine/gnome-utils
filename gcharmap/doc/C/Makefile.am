@@ -45,12 +45,13 @@ distclean-generic:
 
 install-data-local: index.html
 	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)/stylesheet-images
+	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)/images
 	-for file in $(srcdir)/gcharmap/*.html $(srcdir)/gsearch/*.css; do \
 	  basefile=`basename $$file`; \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/$$basefile; \
 	done
-	-for file in $(srcdir)/*.png ; do \
-	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir); \
+	-for file in $(srcdir)/images/*.png ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/images; \
 	done
 	-for file in $(srcdir)/gcharmap/stylesheet-images/*.gif; do \
 	  basefile=`basename $$file`; \
