@@ -92,7 +92,7 @@ static GnomeUIInfo main_menu [] = {
 
 
 static GnomeUIInfo main_toolbar [] = {
-  GNOMEUIINFO_ITEM_STOCK (N_("New"),  N_("Start a new search"), 
+  GNOMEUIINFO_ITEM_STOCK (N_("New"),  N_("Clear the search window"), 
 			  new_cb, GNOME_STOCK_PIXMAP_NEW),
 
   GNOMEUIINFO_SEPARATOR,
@@ -106,7 +106,7 @@ static GnomeUIInfo main_toolbar [] = {
 
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_ITEM_STOCK (N_("Search"), N_("Add a search condition"), 
+  GNOMEUIINFO_ITEM_STOCK (N_("Search"), N_("Start the current search"), 
 			  start_search_cb, GNOME_STOCK_PIXMAP_SEARCH),
 
   GNOMEUIINFO_END
@@ -341,7 +341,7 @@ preferences_cb (GtkWidget *widget, void *data)
 				   vbox,
 				   box_label);
 
-   gtk_signal_connect(GTK_OBJECT(property_box),"apply",apply_preferences_cb, NULL);
+    gtk_signal_connect(GTK_OBJECT(property_box),"apply",apply_preferences_cb, NULL);
     gtk_signal_connect(GTK_OBJECT(property_box),"delete_event",close_preferences_cb, NULL);
     gtk_widget_show(property_box);
   }
