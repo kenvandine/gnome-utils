@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-14 21:53+0900\n"
-"PO-Revision-Date: 2004-01-14 21:52+0900\n"
+"POT-Creation-Date: 2004-03-09 01:15+0900\n"
+"PO-Revision-Date: 2004-03-09 01:15+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "アクセサリ"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "辞書検索"
 
@@ -57,8 +57,8 @@ msgstr "辞書の表示(_S)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "サーバに接続できません"
 
@@ -118,6 +118,10 @@ msgstr "文字が見つかりません"
 msgid "Find"
 msgstr "検索"
 
+#: gdictsrc/gdict-app.c:477
+msgid "_Search for:"
+msgstr "検索の対象(_S):"
+
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
 msgstr "検索(_F)"
@@ -174,7 +178,7 @@ msgstr "単語を入力するか、下の一覧から選択して下さい"
 msgid "Look Up for a Word"
 msgstr "単語の検索"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "検索(_L)"
 
@@ -183,85 +187,94 @@ msgstr "検索(_L)"
 msgid "Error invoking query: %s"
 msgstr "%s の問い合わせの際にエラー"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "辞書の設定"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "スマート検索を有効にする(_L)"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "サーバ(_S):"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "デフォルトのサーバ(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "サーバをデフォルトにリセット"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "ポート(_P):"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "デフォルトのポート(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "ポートをデフォルトにリセット"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "サーバ"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "サーバ・エントリ"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "サーバ名を入力して下さい"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "ポート"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "ポート・エントリ"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "ポート番号を入力して下さい"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "データベース(_D):"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "デフォルトの検索方法(_E):"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "全てのデーターベースを検索する"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "データベース"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "データベース名"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "デフォルトの検索方法"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"ヘルプを表示する際にエラーが発生しました:\n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -771,7 +784,7 @@ msgstr "フォーマットの進行状況"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "ファイルの検索"
 
@@ -943,7 +956,7 @@ msgstr "置き換える(_R)"
 msgid "You may not have write permissions to the document."
 msgstr "そのドキュメントに対する書き込み権限がないようです。"
 
-#: gsearchtool/gsearchtool-support.c:63
+#: gsearchtool/gsearchtool-support.c:64
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -957,23 +970,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:348
+#: gsearchtool/gsearchtool-support.c:349
 msgid "today at %-I:%M %p"
 msgstr "今日の %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:351
 msgid "yesterday at %-I:%M %p"
 msgstr "昨日の %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
+#: gsearchtool/gsearchtool-support.c:353 gsearchtool/gsearchtool-support.c:355
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:487
+#: gsearchtool/gsearchtool-support.c:526
 msgid "link (broken)"
 msgstr "リンク (リンク切れ)"
 
-#: gsearchtool/gsearchtool-support.c:492
+#: gsearchtool/gsearchtool-support.c:531
 #, c-format
 msgid "link to %s"
 msgstr "%s へのリンク"
@@ -1135,96 +1148,96 @@ msgstr "検索規則値を入力して下さい"
 msgid "Enter a value for search rule"
 msgstr "検索規則用の値を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "削除する条件 '%s' をクリックして下さい"
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "適用する検索条件:"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "検索規則メニュー"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "検索条件をメニューから選択して下さい"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "検索結果(_E):"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "名前"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "フォルダ"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "サイズ"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "種類"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "変更日時"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "対象となる名前(_N):"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr "エントリを含む名前です"
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "検索したいファイル名を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr "エントリを含む名前です"
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "対象となるフォルダ(_L):"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "参照"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "検索対象のフォルダです"
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
 msgid "Enter the folder name where you want to start the search"
 msgstr "検索を開始したいフォルダの名前を入力"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1844
+msgid "Look in Folder Entry"
+msgstr "検索対象のフォルダです"
+
+#: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
 msgstr "追加オプションの表示(_O)"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Show more options"
 msgstr "もっとたくさんのオプションを表示します"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
 msgstr "検索オプションの一覧を展開するまたは畳みます"
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "クリックすると検索を開始します"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "クリックすると検索を停止します"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr "Bonobo を初期化できません。"
 
@@ -1253,13 +1266,25 @@ msgstr "アクション"
 msgid "_Add"
 msgstr "追加(_A)"
 
+#: logview/actions.c:162
+msgid "Add an action"
+msgstr "アクションの追加"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "編集(_E)"
 
+#: logview/actions.c:169
+msgid "Edit an action"
+msgstr "アクションの編集"
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "削除(_R)"
+
+#: logview/actions.c:176
+msgid "Remove an action"
+msgstr "アクション削除"
 
 #: logview/actions.c:263
 #, c-format
@@ -1285,23 +1310,71 @@ msgstr "<空>"
 
 #: logview/actions.c:511
 msgid "log name regexp"
-msgstr "ログ名称 正規表現"
+msgstr "ログ名称の正規表現"
 
 #: logview/actions.c:512
 msgid "process regexp"
-msgstr "プロセス 正規表現:"
+msgstr "プロセスの正規表現:"
 
 #: logview/actions.c:513
 msgid "message regexp"
-msgstr "メッセージ 正規表現"
+msgstr "メッセージの正規表現"
 
 #: logview/actions.c:514
 msgid "action to execute when regexps are TRUE"
-msgstr "正規表現が真のときに実行するアクション"
+msgstr "正規表現が真のときに実行するアクションです"
 
 #: logview/actions.c:515
 msgid "description"
 msgstr "説明"
+
+#: logview/actions.c:651
+msgid "Edit Action"
+msgstr "アクションの編集"
+
+#: logview/actions.c:687
+msgid "_Tag:"
+msgstr "タグ(_T):"
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr "ログ・ファイルを識別するタグです"
+
+#: logview/actions.c:705
+msgid "_Log name:"
+msgstr "ログの名前(_L):"
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr "ログの名前に一致する正規表現です"
+
+#: logview/actions.c:724
+msgid "_Process:"
+msgstr "プロセス(_P):"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr "メッセージにあるプロセスの部分に一致する正規表現です"
+
+#: logview/actions.c:743
+msgid "_Message:"
+msgstr "メッセージ(_M):"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr "メッセージに一致する正規表現です"
+
+#: logview/actions.c:762
+msgid "_Action:"
+msgstr "アクション(_A):"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
+"前の正規表現式が全て一致したら、アクションが実行されます。これはシステム・コ"
+"マンドが実行します: system (action)"
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1335,12 +1408,12 @@ msgstr "カレンダ"
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "正規表現データベース <%s> をオープンできません!"
+msgstr "正規表現データ・ベース <%s> をオープンできません！"
 
 #: logview/desc_db.c:147
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
-msgstr "説明データベース <%s> をオープンできません!"
+msgstr "説明データ・ベース <%s> をオープンできません！"
 
 #. ----------------------------------------------------------------------
 #. NAME:
@@ -1451,7 +1524,7 @@ msgstr "%x"
 #. * will be bogus here
 #: logview/log_repaint.c:452
 msgid "%B %e"
-msgstr "%B %e"
+msgstr "%B%e日"
 
 #. Translators: should be only the time, date could be bogus
 #: logview/log_repaint.c:524
@@ -1470,7 +1543,7 @@ msgstr "ログファイルを開けません！\n"
 #: logview/logrtns.c:265
 #, c-format
 msgid "%s is not a regular file."
-msgstr "%sは通常のファイルではありません。"
+msgstr "%s は通常のファイルではありません。"
 
 #: logview/logrtns.c:273
 #, c-format
@@ -1478,8 +1551,8 @@ msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
-"ユーザは %s を読めません。root でプログラムを起動するか、管理者に頼んでファイ"
-"ルのパーミッションを変更してもらって下さい。"
+"%s を読むことはできません。root でプログラムを起動するか、管理者に頼んでファ"
+"イルのパーミッションを変更してもらって下さい。"
 
 #: logview/logrtns.c:290
 #, c-format
@@ -1683,4 +1756,4 @@ msgstr "ログの詳細"
 #. Translators: do not include year, it would be bogus
 #: logview/zoom.c:187
 msgid "%B %e %X"
-msgstr "%B %e %X"
+msgstr "%B%e日 %X"
