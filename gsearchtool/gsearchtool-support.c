@@ -577,3 +577,46 @@ launch_file (const gchar *filename)
 	g_free (mime_type);
 	return result;
 }
+
+gchar *
+gsearchtool_unique_filename (const gchar *dir,
+                             const gchar *suffix)
+{
+	const gint num_of_words = 12;
+	gchar      *words[] = {
+		    "foo",
+		    "bar",
+		    "blah",
+	   	    "gegl",
+		    "frobate",
+		    "hadjaha",
+		    "greasy",
+		    "hammer",
+		    "eek",
+		    "larry",
+		    "curly",
+		    "moe",
+		    NULL};
+	gchar      *retval = NULL;
+	gboolean   exists = TRUE;
+
+	while (exists) {
+		gchar *filename;
+		gint   rnd;
+		gint   word;
+
+		rnd = rand ();
+		word = rand () % num_of_words;
+
+		filename = g_strdup_printf ("%s-%010x%s",
+					    words [word],
+					    (guint) rnd,
+					    suffix);
+
+		g_free (retval);
+		retval = g_strconcat (dir, "/", filename, NULL);
+		exists = g_file_test (retval, G_FILE_TEST_EXISTS);
+		g_free (filename);
+	}
+	return retval;
+}

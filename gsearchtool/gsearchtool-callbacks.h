@@ -97,6 +97,13 @@ drag_file_cb  			(GtkWidget          *widget,
 	       			 guint               info,
 	       			 guint               time,
 	       			 gpointer            data);
+void  
+drag_data_animation_cb		(GtkWidget          *widget,
+	      			 GdkDragContext     *context,
+	       			 GtkSelectionData   *selection_data,
+	       			 guint               info,
+	       			 guint               time,
+	       			 gpointer            data);
 void    
 show_file_selector_cb 		(GtkWidget 	*widget,
 				 gpointer 	data);

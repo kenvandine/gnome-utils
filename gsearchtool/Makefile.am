@@ -3,10 +3,11 @@ Utilitiesdir = $(datadir)/applications
 SUBDIRS = help
 
 INCLUDES = 	\
-	$(GNOME_UTILS_CFLAGS)				\
-	$(GNOMEVFS_CFLAGS)				\
+	$(GNOME_UTILS_CFLAGS)					\
+	$(GNOMEVFS_CFLAGS)					\
+	$(GNOMEDESKTOP_CFLAGS)					\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" 	\
-	-DLOCALEDIR=\"$(datadir)/locale\"		\
+	-DLOCALEDIR=\"$(datadir)/locale\"			\
 	-DDATADIR=\""$(datadir)"\"
 
 bin_PROGRAMS = gnome-search-tool
@@ -22,9 +23,10 @@ gnome_search_tool_SOURCES =	\
 	gsearchtool.c	        \
 	gsearchtool.h
 
-gnome_search_tool_LDADD = \
+gnome_search_tool_LDADD =   \
 	$(GNOME_UTILS_LIBS) \
-	$(GNOMEVFS_LIBS)
+	$(GNOMEVFS_LIBS)    \
+	$(GNOMEDESKTOP_LIBS)
 
 man_MANS = gnome-search-tool.1
 

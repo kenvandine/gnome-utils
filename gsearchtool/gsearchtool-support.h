@@ -96,6 +96,10 @@ void
 gsearchtool_gconf_set_boolean 	(const gchar *key, 
 				 const gboolean flag);
 
+gchar *
+gsearchtool_unique_filename 	(const gchar *dir,
+				 const gchar *suffix);
+			      
 #ifdef __cplusplus
 }
 #endif

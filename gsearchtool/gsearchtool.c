@@ -766,6 +766,96 @@ add_atk_relation (GtkWidget 		*obj1,
 	
 }
 
+gchar *
+get_desktop_item_name (void)
+{
+
+	GString *gs;
+	gchar *file_is_named_utf8;
+	gchar *file_is_named_locale;
+	gchar *look_in_folder_utf8;
+	gchar *look_in_folder_locale;
+	GList *list;
+	
+	gs = g_string_new ("");
+	g_string_append (gs, _("Search for Files"));
+	g_string_append (gs, " (");
+	
+	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))));
+	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8 != NULL ? file_is_named_utf8 : "" , 
+	                                           -1, NULL, NULL, NULL);
+	g_string_append (gs, g_strdup_printf ("named=%s", file_is_named_locale));
+	g_free (file_is_named_locale);
+
+	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
+	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
+	                                            -1, NULL, NULL, NULL);
+	g_string_append (gs, g_strdup_printf ("&path=%s", look_in_folder_locale));
+	g_free (look_in_folder_locale); 
+
+	if (GTK_WIDGET_VISIBLE(interface.additional_constraints) == TRUE) {
+		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
+			SearchConstraint *constraint = list->data;
+			gchar *locale = NULL;
+			
+			switch (constraint->constraint_id) {
+			case SEARCH_CONSTRAINT_CONTAINS_THE_TEXT:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				g_string_append (gs, g_strdup_printf ("&contains=%s", locale));
+				break;
+			case SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE:
+				g_string_append (gs, g_strdup_printf ("&mtimeless=%d", constraint->data.time));
+				break;
+			case SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER:
+				g_string_append (gs, g_strdup_printf ("&mtimemore=%d", constraint->data.time));
+				break;
+			case SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN:
+				g_string_append (gs, g_strdup_printf ("&sizemore=%u", constraint->data.number));
+				break;
+			case SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN:
+				g_string_append (gs, g_strdup_printf ("&sizeless=%u", constraint->data.number));
+				break;
+			case SEARCH_CONSTRAINT_FILE_IS_EMPTY:
+				g_string_append (gs, g_strdup ("&empty"));
+				break;
+			case SEARCH_CONSTRAINT_OWNED_BY_USER:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				g_string_append (gs, g_strdup_printf ("&user=%s", locale));
+				break;
+			case SEARCH_CONSTRAINT_OWNED_BY_GROUP:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				g_string_append (gs, g_strdup_printf ("&group=%s", locale));
+				break;
+			case SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED:
+				g_string_append (gs, g_strdup ("&nouser"));
+				break;
+			case SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				g_string_append (gs, g_strdup_printf ("&notnamed=%s", locale));
+				break;
+			case SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION:
+				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
+				g_string_append (gs, g_strdup_printf ("&regex=%s", locale));
+				break;
+			case SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS:
+				g_string_append (gs, g_strdup ("&hidden"));
+				break;
+			case SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS:
+				g_string_append (gs, g_strdup ("&follow"));
+				break;
+			case SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS:
+				g_string_append (gs, g_strdup ("&allmounts"));
+				break;
+			default:
+				break;
+			}
+		g_free (locale);
+		}		
+	}
+	g_string_append_c (gs, ')');
+	return g_string_free (gs, FALSE);
+}
+
 static gboolean
 setup_animation_image (void)
 {
@@ -1702,6 +1792,7 @@ create_search_results_section (void)
 GtkWidget *
 create_main_window (void)
 {
+	GtkTargetEntry  drag_types[] = { { "text/uri-list", 0, 0 } };
 	gchar 		*locale_string;
 	gchar		*utf8_string;
 	GtkWidget 	*hbox;	
@@ -1727,6 +1818,20 @@ create_main_window (void)
 	gtk_drawing_area_size (GTK_DRAWING_AREA (interface.drawing_area),
 	                       DEFAULT_ANIMATION_WIDTH,
 			       DEFAULT_ANIMATION_HEIGHT);
+			  
+	gtk_drag_source_set (interface.drawing_area, 
+			     GDK_BUTTON1_MASK,
+			     drag_types, 
+			     G_N_ELEMENTS (drag_types), 
+			     GDK_ACTION_COPY);
+			     
+	gtk_drag_source_set_icon_stock (interface.drawing_area,
+	                                GTK_STOCK_FIND);
+			  
+	g_signal_connect (G_OBJECT (interface.drawing_area), 
+			  "drag_data_get",
+			  G_CALLBACK (drag_data_animation_cb), 
+			  interface.main_window);
 
 	g_signal_connect (interface.drawing_area, "expose-event",
 			  G_CALLBACK (animation_expose_event_cb), NULL);
@@ -1864,7 +1969,7 @@ register_gsearchtool_icon (GtkIconFactory *factory)
 
 	source = gtk_icon_source_new ();
 
-	gtk_icon_source_set_filename (source, GNOME_ICONDIR"/gnome-searchtool.png");
+	gtk_icon_source_set_filename (source, GNOME_ICONDIR"/"GNOME_SEARCH_TOOL_ICON);
 
 	icon_set = gtk_icon_set_new ();
 	gtk_icon_set_add_source (icon_set, source);
@@ -1894,7 +1999,7 @@ gsearchtool_init_stock_icons ()
 }
 
 void
-set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data)
+set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data, gboolean escape_values)
 {
 	gchar **argv;
 	gchar *file_is_named_utf8;
@@ -1911,13 +2016,17 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data)
 	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))));
 	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8 != NULL ? file_is_named_utf8 : "" , 
 	                                           -1, NULL, NULL, NULL);
-	argv[i++] = g_strdup_printf ("--named=%s", file_is_named_locale);
+	argv[i++] = (escape_values == TRUE) ? 
+	            g_strdup_printf ("--named=\"%s\"", g_strescape (file_is_named_locale, NULL)) : 
+		    g_strdup_printf ("--named=%s", file_is_named_locale);	
 	g_free (file_is_named_locale);
 
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
 	                                            -1, NULL, NULL, NULL);
-	argv[i++] = g_strdup_printf ("--path=%s", look_in_folder_locale);
+	argv[i++] = (escape_values == TRUE) ? 
+	            g_strdup_printf ("--path=\"%s\"", g_strescape (look_in_folder_locale, NULL)) : 
+		    g_strdup_printf ("--path=%s", look_in_folder_locale);
 	g_free (look_in_folder_locale);
 
 	if (GTK_WIDGET_VISIBLE(interface.additional_constraints) == TRUE) {
@@ -1928,7 +2037,9 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data)
 			switch (constraint->constraint_id) {
 			case SEARCH_CONSTRAINT_CONTAINS_THE_TEXT:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = g_strdup_printf ("--contains=%s", locale);
+				argv[i++] = (escape_values == TRUE) ? 
+				            g_strdup_printf ("--contains=\"%s\"", g_strescape (locale, NULL)) : 
+					    g_strdup_printf ("--contains=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE:
 				argv[i++] = g_strdup_printf ("--mtimeless=%d", constraint->data.time);
@@ -1947,22 +2058,30 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data)
 				break;
 			case SEARCH_CONSTRAINT_OWNED_BY_USER:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = g_strdup_printf ("--user=%s", locale);
+				argv[i++] = (escape_values == TRUE) ? 
+				            g_strdup_printf ("--user=\"%s\"", g_strescape (locale, NULL)) : 
+					    g_strdup_printf ("--user=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_OWNED_BY_GROUP:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = g_strdup_printf ("--group=%s", locale);
+				argv[i++] = (escape_values == TRUE) ? 
+				            g_strdup_printf ("--group=\"%s\"", g_strescape (locale, NULL)) : 
+					    g_strdup_printf ("--group=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED:
 				argv[i++] = g_strdup ("--nouser");
 				break;
 			case SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = g_strdup_printf ("--notnamed=%s", locale);
+				argv[i++] = (escape_values == TRUE) ? 
+				            g_strdup_printf ("--notnamed=\"%s\"", g_strescape (locale, NULL)) : 
+					    g_strdup_printf ("--notnamed=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = g_strdup_printf ("--regex=%s", locale);
+				argv[i++] = (escape_values == TRUE) ? 
+				            g_strdup_printf ("--regex=\"%s\"", g_strescape (locale, NULL)) : 
+					    g_strdup_printf ("--regex=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS:
 				argv[i++] = g_strdup ("--hidden");
@@ -2080,7 +2199,7 @@ main (int 	argc,
 					  GNOME_PARAM_APP_DATADIR, DATADIR,  
 					  NULL);
 	gsearchtool_init_stock_icons ();				  
-	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-searchtool.png");
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/"GNOME_SEARCH_TOOL_ICON);
 
 	if (!bonobo_init_full (&argc, argv, bonobo_activation_orb_get (), NULL, NULL))
 		g_error (_("Cannot initialize bonobo."));

@@ -32,6 +32,8 @@
 #define SILENT_WINDOW_OPEN_LIMIT 5
 
 #include <gnome.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
+#include <libgnome/gnome-desktop-item.h>
 
 #include <string.h>
 #include <signal.h>
@@ -745,6 +747,75 @@ drag_file_cb  (GtkWidget          *widget,
 	g_free (uri_list);
 }
 
+void  
+drag_data_animation_cb (GtkWidget          *widget,
+                        GdkDragContext     *context,
+                        GtkSelectionData   *selection_data,
+                        guint               info,
+                        guint               time,
+                        gpointer            data)
+{
+	GnomeDesktopItem *ditem;
+	GString          *command = g_string_new ("");
+	gchar            *uri;
+	gchar            *path;
+	gchar            *disk;
+	gchar            *scheme;
+	gchar		 *desktop_item_name = NULL;
+	gchar            **argv;
+	gint             argc, i;
+	
+	set_clone_command (&argc, &argv, "gnome-search-tool", TRUE);
+	
+	if (argc == 0) {
+		return;
+	}
+	
+	for (i = 0; i < argc; i++) {
+		command = g_string_append (command, argv[i]);
+		if ((i - 1) < argc) {
+			command = g_string_append_c (command, ' '); 
+		}
+	}
+	command = g_string_append (command, " --start");
+		
+	disk = g_locale_from_utf8 (command->str, -1, NULL, NULL, NULL);
+	uri = gnome_vfs_make_uri_from_input_with_dirs (disk, GNOME_VFS_MAKE_URI_DIR_HOMEDIR);
+	scheme = gnome_vfs_get_uri_scheme (uri);
+	
+	ditem = gnome_desktop_item_new ();
+	
+	gnome_desktop_item_set_entry_type (ditem, GNOME_DESKTOP_ITEM_TYPE_APPLICATION);
+	gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC, command->str);
+	
+	desktop_item_name = get_desktop_item_name ();
+	
+	gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_NAME, desktop_item_name);
+	gnome_desktop_item_set_boolean (ditem, GNOME_DESKTOP_ITEM_TERMINAL, FALSE);					
+	gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_ICON, GNOME_SEARCH_TOOL_ICON);
+	
+	g_string_free (command, TRUE);
+	g_free (desktop_item_name);
+	g_free (uri);
+
+	path = gsearchtool_unique_filename (g_get_tmp_dir(), ".desktop");
+	gnome_desktop_item_set_location (ditem, path);
+
+	uri = gnome_vfs_get_uri_from_local_path (path);
+		
+	if (gnome_desktop_item_save (ditem, NULL, FALSE, NULL)) {
+		gtk_selection_data_set (selection_data,
+					selection_data->target, 8,
+					uri, strlen (uri));
+	}
+	gnome_desktop_item_unref (ditem);
+
+	g_free (uri);
+	g_free (path);
+	g_free (disk);
+	g_free (scheme);
+}
+
 void
 show_file_selector_cb (GtkWidget 	*widget, 
 		       gpointer		data)
@@ -890,7 +961,7 @@ save_session_cb (GnomeClient 	    *client,
 	char **argv;
 	int argc;
 
-	set_clone_command (&argc, &argv, client_data);
+	set_clone_command (&argc, &argv, client_data, FALSE);
 	gnome_client_set_clone_command (client, argc, argv);
 	gnome_client_set_restart_command (client, argc, argv);	
 }

@@ -36,6 +36,7 @@
 
 #define MINIMUM_WINDOW_WIDTH   422
 #define MINIMUM_WINDOW_HEIGHT  310
+#define GNOME_SEARCH_TOOL_ICON  "gnome-searchtool.png"
 
 #ifdef __cplusplus
 extern "C" {
@@ -165,8 +166,10 @@ update_animation_timeout_cb 	(gpointer data);
 void
 set_clone_command		(gint *argcp,
 				 gchar ***argvp,
-				 gpointer client_data);
-
+				 gpointer client_data,
+				 gboolean escape_values);
+gchar *
+get_desktop_item_name 		(void);
 
 #ifdef __cplusplus
 }
