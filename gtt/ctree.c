@@ -626,4 +626,10 @@ ctree_update_label(GttProject *p)
 }
 
 
+void 
+ctree_unselect (GttProject *p)
+{
+	gtk_ctree_unselect(GTK_CTREE(glist), p->trow);
+}
+
 /* ===================== END OF FILE ==============================  */

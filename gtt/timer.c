@@ -56,6 +56,7 @@ timer_func(gpointer data)
 printf ("duuude man yeah idle %ld secs \n", idle_time);
 		if (idle_time > config_idle_timeout) 
 		{
+			ctree_unselect (cur_proj);
 			stop_timer();
 			return 0;
 		}
