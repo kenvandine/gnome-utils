@@ -1,0 +1,28 @@
+
+Known problems:
+
+If you try to cut the root menu, the program will get horribly
+confused.
+
+When the test menu is being created, Gtk dribbles little gray squares.
+
+The icewm-saver doesn't handle memory right, and it doesn't write
+to disk.
+
+No i18n, no gnome-config, no standard accelerators, etc.
+
+Menu icons aren't shown in the tree view.
+
+Need a way to handle "special" cases: e.g. the root menu, special
+window manager commands (restart, etc.), multiple save files (e.g.
+system and user, or the Debian menu system), inability to save to
+system files.
+
+The tree view should be a widget, that manages the selection and so
+on. This would allow 2 tree views, and reduce the number of global
+variables. This is already started in the menutree.* files - if you
+work on this please don't feel bound by the cruddy API in menutree.h
+now, figure out a good one.
+
+
+
