@@ -2851,247 +2851,290 @@ msgstr "Tikai superlietotâjs (superuser) var lietot ðo darbrîku"
 msgid "You appear to have no IDE drives"
 msgstr "Izskatâs, ka jums nav IDE draivu."
 
-#: gfloppy/src/badblocks.c:102
+#: src/badblocks.c:102
 msgid "MInternal Error: Unable to seek to the correct location."
 msgstr ""
 
-#: gfloppy/src/badblocks.c:111
+#: src/badblocks.c:111
 #, c-format
 msgid "MInternal Error: Weird value (%ld) in do_test\n"
 msgstr ""
 
-#: gfloppy/src/badblocks.c:166
+#: src/badblocks.c:166
 #, c-format
 msgid "EBad block at block %lu"
 msgstr ""
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:260
+#: src/badblocks.c:260
 msgid "MChecking for bad blocks..."
 msgstr ""
 
-#: gfloppy/src/badblocks.c:272
+#: src/badblocks.c:272
 #, c-format
 msgid "MFailed to open device %s for badblock checking\n"
 msgstr ""
 
-#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:215
+#: src/badblocks.c:291 src/gfloppy.c:215
 msgid "MChecking for bad blocks... Done"
 msgstr ""
 
-#: gfloppy/src/fdformat.c:44
+# src/fdformat.c:44
+#: src/fdformat.c:44
 msgid "MFormatting the disk..."
-msgstr ""
+msgstr "MDiska formatçðana..."
 
-#: gfloppy/src/fdformat.c:46
+# src/fdformat.c:46
+#: src/fdformat.c:46
 msgid "EI don't know what this is, but it's very wrong."
-msgstr ""
+msgstr "ENezinu, kas tas ir, bet tas galîgi garâm."
 
-#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
+# src/fdformat.c:54 src/fdformat.c:66
+#: src/fdformat.c:54 src/fdformat.c:66
 #, c-format
 msgid "EError formatting track #%d"
-msgstr ""
+msgstr "EKïûda formatçjot celiòu #%d"
 
-#: gfloppy/src/fdformat.c:74
+# src/fdformat.c:74
+#: src/fdformat.c:74
 msgid "EError during completion of formatting"
-msgstr ""
+msgstr "EKïûda pabeidzot formatççsanu"
 
+# src/fdformat.c:78
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:78
+#: src/fdformat.c:78
 msgid "MFormatting the disk... Done"
-msgstr ""
+msgstr "MDiska formatçðana... Izdarîta"
 
+# src/fdformat.c:94
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:94
+#: src/fdformat.c:94
 msgid "MVerifying the format..."
-msgstr ""
+msgstr "MPârbaudam formâtu..."
 
-#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
+# src/fdformat.c:99 src/fdformat.c:174
+#: src/fdformat.c:99 src/fdformat.c:174
 msgid ""
 "EUnable to write to the floppy.\n"
 "\n"
 "Please confirm that it is not write-protected."
 msgstr ""
+"ENevar ierakstît disketç.\n"
+"\n"
+"Lûdzu apstipriniet ka tam nav ierakstu aizsardzîba."
 
-#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
+# src/fdformat.c:102 src/fdformat.c:177
+#: src/fdformat.c:102 src/fdformat.c:177
 #, c-format
 msgid "EInsufficient permissions to open floppy device %s."
-msgstr ""
+msgstr "ENepietiekamas atïaujas lai atvçrtu disketes iekârtu %s."
 
-#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
+# src/fdformat.c:106 src/fdformat.c:181
+#: src/fdformat.c:106 src/fdformat.c:181
 msgid ""
 "EUnable to access the floppy disk.\n"
 "\n"
 "Please confirm that it is in the drive\n"
 "with the drive door shut."
 msgstr ""
+"ENav pieejas disketei.\n"
+"\n"
+"Lûdzu apskatieties vai tâ ir diskdzinî\n"
+"un tâ durtiòas aizstaisîtas."
 
-#: gfloppy/src/fdformat.c:109
+# src/fdformat.c:109
+#: src/fdformat.c:109
 #, c-format
 msgid ""
 "EGeneric error accessing floppy device %s.\n"
 "\n"
 "Error code %s:%d"
 msgstr ""
+"EParasta kïûda lietojot disketes iekârtu %s.\n"
+"\n"
+"Kïûdas kods %s:%d"
 
-#: gfloppy/src/fdformat.c:129
+# src/fdformat.c:129
+#: src/fdformat.c:129
 #, c-format
 msgid ""
 "ERead Error:\n"
 "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
+"ELasîðanas Kïûda:\n"
+"Problçma lasot cilindru %d, cerçts %d, lasa %d"
 
-#: gfloppy/src/fdformat.c:132
+# src/fdformat.c:132
+#: src/fdformat.c:132
 #, c-format
 msgid "EProblem reading cylinder %d, expected %d, read %d"
-msgstr ""
+msgstr "EProblçma lasot cilindru %d cerçts %d, lasa %d"
 
-#: gfloppy/src/fdformat.c:141
+# src/fdformat.c:141
+#: src/fdformat.c:141
 #, c-format
 msgid "MBad data in cyl %d.  Continuing... "
-msgstr ""
+msgstr "MSlikti dati %d cilindrâ. Turpinâm..."
 
-#: gfloppy/src/fdformat.c:148
-#, fuzzy, c-format
+# src/fdformat.c:148
+#: src/fdformat.c:148
+#, c-format
 msgid "EError closing device %s"
-msgstr ""
-"Kïûda ielâdçjot datni:\n"
-"%s\n"
-"%s"
+msgstr "EKïûda aizvçrot iekârtu %s"
 
-#: gfloppy/src/fdformat.c:153
+# src/fdformat.c:153
+#: src/fdformat.c:153
 msgid "MVerifying the format... Done"
-msgstr ""
+msgstr "MPârbaudam formâtu... Darîts"
 
-#: gfloppy/src/fdformat.c:165
-#, fuzzy, c-format
+# src/fdformat.c:165
+#: src/fdformat.c:165
+#, c-format
 msgid "EUnable to write to device %s"
-msgstr ""
-"Nevar ierakstît datni:\n"
-"%s\n"
-"%s"
+msgstr "ENevar ierakstît iekârtâ %s"
 
-#: gfloppy/src/fdformat.c:184
+# src/fdformat.c:184
+#: src/fdformat.c:184
 #, c-format
 msgid ""
 "EGeneric error accessing floppy device %s.\n"
 "\n"
 "Error code %s"
 msgstr ""
+"EParasta kïûda lietojot disketes iekârtu %s.\n"
+"\n"
+"Error code %s"
 
-#: gfloppy/src/fdformat.c:194
+# src/fdformat.c:194
+#: src/fdformat.c:194
 msgid "ECould not determine current format type"
+msgstr "ENevarçju noteikt paðreizçjo formâta tipu"
+
+# src/fdformat.c:44
+#: src/gfloppy.c:166 src/gfloppy.c:199
+#, fuzzy
+msgid "MMaking filesystem on disk..."
+msgstr "MDiska formatçðana..."
+
+#: src/gfloppy.c:169
+msgid "EUnable to create filesystem correctly."
 msgstr ""
 
+# src/fdformat.c:78
+#: src/gfloppy.c:173 src/gfloppy.c:205
+#, fuzzy
+msgid "MMaking filesystem on disk... Done"
+msgstr "MDiska formatçðana... Izdarîta"
+
+# src/fdformat.c:165
+#: src/gfloppy.c:202 src/gfloppy.c:217
+#, fuzzy
+msgid "EUnable to create filesystem."
+msgstr "ENevar ierakstît iekârtâ %s"
+
+#: src/gfloppy.c:211
+msgid "MChecking for bad blocks... (this might take a while)"
+msgstr ""
+
+# src/main.c:179
+#: src/main.c:179
+msgid "The device to format"
+msgstr "Iekârta, kuru formatçt"
+
+# src/main.c:180
+#: src/main.c:180
+msgid "DEVICE"
+msgstr "IEKÂRTA"
+
+# src/main.c:207
+#. We do this to get around a bug in libglade.  Ideally we won't need
+#. * to do this in the future.
+#: src/main.c:207
+msgid "Format"
+msgstr "Formatçðana"
+
+# src/main.c:212
+#. initialize our widgets
+#: src/main.c:212
+#, c-format
+msgid "Formatting %s"
+msgstr "%s formatçðana"
+
+# src/main.c:254
+#: src/main.c:254
+msgid "Format another floppy?"
+msgstr "Formatçt citu disketi?"
+
+# src/progress.c:116
+#: src/progress.c:117
+msgid "Floppy formatted successfully."
+msgstr "Diskete noformatçta veiksmîgi"
+
+# src/progress.c:120
+#: src/progress.c:121
+msgid "Floppy formatting cancelled."
+msgstr "Disketes formatçðana atsaukta."
+
+# src/progress.c:175
+#: src/progress.c:176
+msgid "Format progress."
+msgstr "Formatçðana notiek."
+
+# src/gfloppy-i18n.h:7
 #.
 #. * Translatable strings file generated by Glade.
 #. * Add this file to your project's POTFILES.in.
 #. * DO NOT compile it as part of your application.
 #.
-#: gfloppy/src/gfloppy-i18n.h:7
+#: src/gfloppy-i18n.h:7
 msgid "Format a floppy"
-msgstr ""
+msgstr "Formatçt disketi"
 
-#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
+# src/gfloppy-i18n.h:11
+#: src/gfloppy-i18n.h:8 src/gfloppy-i18n.h:10
 msgid "Linux Native (ext2)"
-msgstr ""
+msgstr "Linux Native (ext2)"
 
-#: gfloppy/src/gfloppy-i18n.h:9
+#: src/gfloppy-i18n.h:9
 msgid "Dos (FAT)"
 msgstr ""
 
-#: gfloppy/src/gfloppy-i18n.h:11
+# src/gfloppy-i18n.h:12
+#: src/gfloppy-i18n.h:11
 msgid "Formatting /dev/floppy"
-msgstr ""
+msgstr "Formatçjam /dev/floppy"
 
-#: gfloppy/src/gfloppy-i18n.h:12
+# src/gfloppy-i18n.h:13
+#: src/gfloppy-i18n.h:12
 msgid "Floppy Density:"
-msgstr ""
+msgstr "Disketes Blîvums:"
 
-#: gfloppy/src/gfloppy-i18n.h:13
-#, fuzzy
+# src/gfloppy-i18n.h:14
+#: src/gfloppy-i18n.h:13
 msgid "File system type:"
-msgstr "    Datòu Sistçmas Tips: "
+msgstr "Datòu sistçmas tips:"
 
-#: gfloppy/src/gfloppy-i18n.h:14
+#: src/gfloppy-i18n.h:14
 msgid "High Density 3.5\" (1.44 MB)"
 msgstr ""
 
-#: gfloppy/src/gfloppy-i18n.h:15
+#: src/gfloppy-i18n.h:15
 msgid "High Density 5.25\" (1.2 MB)"
 msgstr ""
 
-#: gfloppy/src/gfloppy-i18n.h:16
+#: src/gfloppy-i18n.h:16
 msgid "Double Density 3.5\" (720 KB)"
 msgstr ""
 
-#: gfloppy/src/gfloppy-i18n.h:17
+#: src/gfloppy-i18n.h:17
 msgid "Double Density 5.25\" (360 KB)"
 msgstr ""
 
-#: gfloppy/src/gfloppy-i18n.h:18
-#, fuzzy
+# src/gfloppy-i18n.h:20
+#: src/gfloppy-i18n.h:18
 msgid "Quick format"
-msgstr "Âtrâ meklçðana (atrast)"
-
-#: gfloppy/src/gfloppy.c:166 gfloppy/src/gfloppy.c:199
-msgid "MMaking filesystem on disk..."
-msgstr ""
-
-#: gfloppy/src/gfloppy.c:169
-#, fuzzy
-msgid "EUnable to create filesystem correctly."
-msgstr "Nevar lietot iekârtu."
-
-#: gfloppy/src/gfloppy.c:173 gfloppy/src/gfloppy.c:205
-msgid "MMaking filesystem on disk... Done"
-msgstr ""
-
-#: gfloppy/src/gfloppy.c:202 gfloppy/src/gfloppy.c:217
-#, fuzzy
-msgid "EUnable to create filesystem."
-msgstr "Nevar lietot iekârtu."
-
-#: gfloppy/src/gfloppy.c:211
-msgid "MChecking for bad blocks... (this might take a while)"
-msgstr ""
-
-#: gfloppy/src/main.c:179
-msgid "The device to format"
-msgstr ""
-
-#: gfloppy/src/main.c:180
-msgid "DEVICE"
-msgstr ""
-
-#. We do this to get around a bug in libglade.  Ideally we won't need
-#. * to do this in the future.
-#: gfloppy/src/main.c:207
-msgid "Format"
-msgstr ""
-
-#. initialize our widgets
-#: gfloppy/src/main.c:212
-#, c-format
-msgid "Formatting %s"
-msgstr ""
-
-#: gfloppy/src/main.c:254
-msgid "Format another floppy?"
-msgstr ""
-
-#: gfloppy/src/progress.c:117
-msgid "Floppy formatted successfully."
-msgstr ""
-
-#: gfloppy/src/progress.c:121
-msgid "Floppy formatting cancelled."
-msgstr ""
-
-#: gfloppy/src/progress.c:176
-msgid "Format progress."
-msgstr ""
+msgstr "Âtra formatçðana"
 
 #: stripchart/chart-app.c:157
 msgid "Param"
