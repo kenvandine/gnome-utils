@@ -60,8 +60,8 @@ struct _Action {
   Function prototypes
   ******************************/
 
-static void prepare_app();
-static void popup_about();
+static void prepare_app(void);
+static void popup_about(void);
 
 static gint delete_event_cb(GtkWidget * w, gpointer data);
 static void about_cb(GtkWidget * w, gpointer data);
@@ -88,11 +88,11 @@ static void command_changed_cb(GtkEntry * entry, GtkCList * clist);
 static void apply_prefs_cb(GnomePropertyBox * pb, gint page, GtkCList * data);
 static void add_defaults_cb(GtkButton * button, GtkCList * clist);
 
-static void load_actions(); 
-static void clear_actions();
-static void save_actions(); 
+static void load_actions(void); 
+static void clear_actions(void);
+static void save_actions(void); 
 static void prepend_action(const gchar * key, const gchar * format);
-static void make_actions_popup();
+static void make_actions_popup(void);
 static void do_action_cb(GtkWidget * menuitem, Action * a);
 
 /***********************************
@@ -194,7 +194,7 @@ static GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_END
 };
 
-static void prepare_app()
+static void prepare_app(void)
 {
   GtkWidget * app_box;
   GtkWidget * clist;
@@ -247,13 +247,19 @@ static void prepare_app()
   gtk_signal_connect(GTK_OBJECT(clist), "button_press_event",
                      GTK_SIGNAL_FUNC(list_clicked_cb), NULL);
 
+  make_actions_popup();  
   reset_list(GTK_CLIST(clist));
-  make_actions_popup();
 
   gtk_widget_show_all(app);
+  
+  /* This is probably just a hack to get around a problem in one of */
+  /* the other functions that causes the columns not to be sized by */
+  /* the labels, but the data instead. */
+    
+  reset_list(GTK_CLIST(clist));
 }
 
-static void popup_about()
+static void popup_about(void)
 {
   static GtkWidget * ga = NULL;
   static const char * authors[] = { "Havoc Pennington <hp@pobox.com>",
@@ -282,15 +288,6 @@ static void popup_about()
   *******************************/
 
 #define WHITESPACE " \t\r\n"
-
-
-/* Want a function not a macro, so a and b are calculated only once */
-static gint max(gint a, gint b)
-{
-  if ( a > b )
-    return a;
-  else return b;
-}
 
 /* Adapted from reset_list below */
 static void 
@@ -414,7 +411,7 @@ static void reset_list(GtkCList * list)
 
     fclose(f);
         
-    for (col=0; col<num_columns; col++)
+    for (col=0; col < num_columns; col++)
     {
       optimal_width = gtk_clist_optimal_column_width (list, col);
       gtk_clist_set_column_width (list, col, optimal_width);
@@ -814,7 +811,7 @@ static void apply_prefs_cb(GnomePropertyBox * pb, gint page, GtkCList * clist)
   Non-GUI
   ***********************/
 
-static void load_actions()
+static void load_actions(void)
 {
   void * config_iterator;
   Action * a;
@@ -833,7 +830,7 @@ static void load_actions()
 }
 
 /* Just clears the loaded list, not gnome_config */
-static void clear_actions()
+static void clear_actions(void)
 {
   GList * tmp;
   Action * a;
@@ -861,7 +858,7 @@ static void prepend_action(const gchar * key, const gchar * format)
   actions = g_list_prepend(actions, a);
 }
 
-static void save_actions()
+static void save_actions(void)
 {
   Action * a;
   GList * tmp;
@@ -881,7 +878,7 @@ static void save_actions()
   gnome_config_pop_prefix();
 }
 
-static void make_actions_popup()
+static void make_actions_popup(void)
 {
   GtkWidget * mi;
   GList * tmp;
