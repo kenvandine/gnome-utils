@@ -1,26 +1,34 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-
-/* gsearchtool-alert-dialog.c: An HIG compliant alert dialog.
-
-   The Gnome Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Library General Public License as
-   published by the Free Software Foundation; either version 2 of the
-   License, or (at your option) any later version.
-
-   The Gnome Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Library General Public License for more details.
-
-   You should have received a copy of the GNU Library General Public
-   License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
-
-*/
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/* 
+ * GNOME Search Tool
+ *
+ *  File:  gsearchtool-alert-dialog.c
+ *
+ *  (C) 2004 the Free Software Foundation
+ *
+ *  The Gnome Library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Library General Public License as
+ *  published by the Free Software Foundation; either version 2 of the
+ *  License, or (at your option) any later version.
+ *
+ *  The Gnome Library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Library General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Library General Public
+ *  License along with the Gnome Library; see the file COPYING.LIB.  If not,
+ *  write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ *  Boston, MA 02111-1307, USA.
+ *
+ *  Gsearchtool port by Dennis Cranston <dennis_cranston@yahoo.com>
+ *
+ */
 
 #include "gsearchtool-alert-dialog.h"
-#include <bonobo/bonobo-i18n.h>
+
+#include <string.h>
+#include <glib/gi18n.h>
 #include <gtk/gtklabel.h>
 #include <gtk/gtkhbox.h>
 #include <gtk/gtkvbox.h>
@@ -28,7 +36,6 @@
 #include <gtk/gtkstock.h>
 #include <gtk/gtkiconfactory.h>
 #include <gtk/gtkexpander.h>
-#include <string.h>
 
 enum {
   PROP_0,
@@ -38,20 +45,20 @@ enum {
 
 static gpointer parent_class;
 
-static void gsearch_alert_dialog_class_init   (GsearchAlertDialogClass *klass);
-static void gsearch_alert_dialog_init         (GsearchAlertDialog      *dialog);
-static void gsearch_alert_dialog_style_set    (GtkWidget           *widget,
-                                               GtkStyle            *prev_style);
-static void gsearch_alert_dialog_set_property (GObject          *object,
-					       guint             prop_id,
-					       const GValue     *value,
-					       GParamSpec       *pspec);
-static void gsearch_alert_dialog_get_property (GObject          *object,
-					       guint             prop_id,
-					       GValue           *value,
-					       GParamSpec       *pspec);
-static void gsearch_alert_dialog_add_buttons  (GsearchAlertDialog   *alert_dialog,
-					       GtkButtonsType    buttons);
+static void gsearch_alert_dialog_class_init (GSearchAlertDialogClass * klass);
+static void gsearch_alert_dialog_init (GSearchAlertDialog * dialog);
+static void gsearch_alert_dialog_style_set (GtkWidget * widget,
+                                            GtkStyle * prev_style);
+static void gsearch_alert_dialog_set_property (GObject * object,
+                                               guint prop_id,
+                                               const GValue * value,
+                                               GParamSpec * pspec);
+static void gsearch_alert_dialog_get_property (GObject * object,
+                                               guint prop_id,
+                                               GValue * value,
+                                               GParamSpec * pspec);
+static void gsearch_alert_dialog_add_buttons (GSearchAlertDialog * alert_dialog,
+                                              GtkButtonsType buttons);
 
 GType
 gsearch_alert_dialog_get_type (void)
@@ -62,28 +69,28 @@ gsearch_alert_dialog_get_type (void)
 	
 		static const GTypeInfo dialog_info =
 		{
-			sizeof (GsearchAlertDialogClass),
+			sizeof (GSearchAlertDialogClass),
 			NULL,
 			NULL,
 			(GClassInitFunc) gsearch_alert_dialog_class_init,
 			NULL,
 			NULL,
-			sizeof (GsearchAlertDialog),
+			sizeof (GSearchAlertDialog),
 			0,
 			(GInstanceInitFunc) gsearch_alert_dialog_init,
 		};
 	
-		dialog_type = g_type_register_static (GTK_TYPE_DIALOG, "GsearchAlertDialog",
+		dialog_type = g_type_register_static (GTK_TYPE_DIALOG, "GSearchAlertDialog",
 	                                              &dialog_info, 0);
 	}
 	return dialog_type;
 }
 
 static void
-gsearch_alert_dialog_class_init (GsearchAlertDialogClass *class)
+gsearch_alert_dialog_class_init (GSearchAlertDialogClass * class)
 {
-	GtkWidgetClass *widget_class;
-	GObjectClass   *gobject_class;
+	GtkWidgetClass * widget_class;
+	GObjectClass   * gobject_class;
 
 	widget_class = GTK_WIDGET_CLASS (class);
 	gobject_class = G_OBJECT_CLASS (class);
@@ -124,11 +131,11 @@ gsearch_alert_dialog_class_init (GsearchAlertDialogClass *class)
 }
 
 static void
-gsearch_alert_dialog_init (GsearchAlertDialog *dialog)
+gsearch_alert_dialog_init (GSearchAlertDialog * dialog)
 {
-	GtkWidget *hbox;
-	GtkWidget *vbox;
-	GtkWidget *expander;
+	GtkWidget * hbox;
+	GtkWidget * vbox;
+	GtkWidget * expander;
 
 	dialog->primary_label = gtk_label_new (NULL);
 	dialog->secondary_label = gtk_label_new (NULL);
@@ -182,9 +189,9 @@ gsearch_alert_dialog_init (GsearchAlertDialog *dialog)
 }
 
 static GtkMessageType
-gsearch_alert_dialog_get_alert_type (GsearchAlertDialog *dialog)
+gsearch_alert_dialog_get_alert_type (GSearchAlertDialog * dialog)
 {
-	const gchar* stock_id = NULL;
+	const gchar * stock_id = NULL;
 
 	g_return_val_if_fail (GTK_IS_MESSAGE_DIALOG (dialog), GTK_MESSAGE_INFO);
 	g_return_val_if_fail (GTK_IS_IMAGE (dialog->image), GTK_MESSAGE_INFO);
@@ -211,10 +218,10 @@ gsearch_alert_dialog_get_alert_type (GsearchAlertDialog *dialog)
 }
 
 static void
-setup_type (GsearchAlertDialog *dialog,
-	    GtkMessageType  type)
+setup_type (GSearchAlertDialog * dialog,
+	    GtkMessageType type)
 {
-	const gchar *stock_id = NULL;
+	const gchar * stock_id = NULL;
 	GtkStockItem item;
   
 	switch (type) {
@@ -249,12 +256,12 @@ setup_type (GsearchAlertDialog *dialog,
 }
 
 static void 
-gsearch_alert_dialog_set_property (GObject      *object,
-                                   guint         prop_id,
-                                   const GValue *value,
-                                   GParamSpec   *pspec)
+gsearch_alert_dialog_set_property (GObject * object,
+                                   guint prop_id,
+                                   const GValue * value,
+                                   GParamSpec * pspec)
 {
-	GsearchAlertDialog *dialog;
+	GSearchAlertDialog * dialog;
   
 	dialog = GSEARCH_ALERT_DIALOG (object);
   
@@ -272,12 +279,12 @@ gsearch_alert_dialog_set_property (GObject      *object,
 }
 
 static void 
-gsearch_alert_dialog_get_property (GObject     *object,
-                                   guint        prop_id,
-                                   GValue      *value,
-                                   GParamSpec  *pspec)
+gsearch_alert_dialog_get_property (GObject * object,
+                                   guint prop_id,
+                                   GValue * value,
+                                   GParamSpec * pspec)
 {
-	GsearchAlertDialog *dialog;
+	GSearchAlertDialog * dialog;
   
 	dialog = GSEARCH_ALERT_DIALOG (object);
   
@@ -292,10 +299,10 @@ gsearch_alert_dialog_get_property (GObject     *object,
 }
 
 void
-gsearch_alert_dialog_set_primary_label (GsearchAlertDialog *dialog,
-                                        const gchar *message)
+gsearch_alert_dialog_set_primary_label (GSearchAlertDialog * dialog,
+                                        const gchar * message)
 {
-	gchar *markup_str;
+	gchar * markup_str;
 	
 	if (message != NULL) {
 		markup_str = g_strconcat ("<span weight=\"bold\" size=\"larger\">", message, "</span>", NULL);
@@ -306,8 +313,8 @@ gsearch_alert_dialog_set_primary_label (GsearchAlertDialog *dialog,
 }
 
 void
-gsearch_alert_dialog_set_secondary_label (GsearchAlertDialog *dialog,
-                                      const gchar *message)
+gsearch_alert_dialog_set_secondary_label (GSearchAlertDialog * dialog,
+                                          const gchar *message)
 {
 	if (message != NULL) {
 		gtk_label_set_text (GTK_LABEL (GSEARCH_ALERT_DIALOG (dialog)->secondary_label),
@@ -319,8 +326,8 @@ gsearch_alert_dialog_set_secondary_label (GsearchAlertDialog *dialog,
 }
 
 void
-gsearch_alert_dialog_set_details_label (GsearchAlertDialog *dialog,
-				    const gchar    *message)
+gsearch_alert_dialog_set_details_label (GSearchAlertDialog * dialog,
+                                        const gchar * message)
 {
 	if (message != NULL) {
 		gtk_widget_show (dialog->details_expander);
@@ -330,17 +337,17 @@ gsearch_alert_dialog_set_details_label (GsearchAlertDialog *dialog,
 	}
 }
 
-GtkWidget*
-gsearch_alert_dialog_new (GtkWindow     *parent,
+GtkWidget *
+gsearch_alert_dialog_new (GtkWindow * parent,
                           GtkDialogFlags flags,
                           GtkMessageType type,
                           GtkButtonsType buttons,
-                          const gchar   *primary_message,
-                          const gchar   *secondary_message,
-		          const gchar   *title)
+                          const gchar * primary_message,
+                          const gchar * secondary_message,
+                          const gchar * title)
 {
-	GtkWidget *widget;
-	GtkDialog *dialog;
+	GtkWidget * widget;
+	GtkDialog * dialog;
 
 	g_return_val_if_fail (parent == NULL || GTK_IS_WINDOW (parent), NULL);
 
@@ -382,10 +389,10 @@ gsearch_alert_dialog_new (GtkWindow     *parent,
 }
 
 static void
-gsearch_alert_dialog_add_buttons (GsearchAlertDialog* alert_dialog,
-                                  GtkButtonsType  buttons)
+gsearch_alert_dialog_add_buttons (GSearchAlertDialog * alert_dialog,
+                                  GtkButtonsType buttons)
 {
-	GtkDialog* dialog;
+	GtkDialog * dialog;
 	
 	dialog = GTK_DIALOG (alert_dialog);
 
@@ -441,10 +448,10 @@ gsearch_alert_dialog_add_buttons (GsearchAlertDialog* alert_dialog,
 }
 
 static void
-gsearch_alert_dialog_style_set (GtkWidget *widget,
-                                GtkStyle  *prev_style)
+gsearch_alert_dialog_style_set (GtkWidget * widget,
+                                GtkStyle * prev_style)
 {
-	GtkWidget *parent;
+	GtkWidget * parent;
 	gint border_width;
 	
 	border_width = 0;

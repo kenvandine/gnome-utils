@@ -6,8 +6,8 @@
  *
  *  (C) 1998,2002 the Free Software Foundation 
  *
- *  Authors:	George Lebl
- *		Dennis Cranston  <dennis_cranston@yahoo.com>
+ *  Authors:	Dennis Cranston  <dennis_cranston@yahoo.com>
+ *              George Lebl		
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -28,10 +28,6 @@
 #ifndef _GSEARCHTOOL_H_
 #define _GSEARCHTOOL_H_
 
-#define MINIMUM_WINDOW_WIDTH   422
-#define MINIMUM_WINDOW_HEIGHT  310
-#define GNOME_SEARCH_TOOL_ICON  "gnome-searchtool"
-
 #ifdef __cplusplus
 extern "C" {
 #pragma }
@@ -40,24 +36,24 @@ extern "C" {
 #include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
 
-static GConfClient * global_gconf_client;
+#define GSEARCH_TYPE_WINDOW            (gsearch_window_get_type ())
+#define GSEARCH_WINDOW(obj)            (GTK_CHECK_CAST((obj), GSEARCH_TYPE_WINDOW, GSearchWindow))
+#define GSEARCH_WINDOW_CLASS(klass)    (GTK_CHECK_CLASS_CAST((klass), GSEARCH_TYPE_WINDOW, GSearchWindowClass))
+#define GSEARCH_IS_WINDOW(obj)         (GTK_CHECK_TYPE((obj), GSEARCH_TYPE_WINDOW))
+#define GSEARCH_IS_WINDOW_CLASS(klass) (GTK_CHECK_CLASS_TYPE((obj), GSEARCH_TYPE_WINDOW))
+#define GSEARCH_WINDOW_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS((obj), GSEARCH_TYPE_WINDOW, GSearchWindowClass))
+
+#define GNOME_SEARCH_TOOL_ICON "gnome-searchtool"
+#define MINIMUM_WINDOW_WIDTH   422
+#define MINIMUM_WINDOW_HEIGHT  310
 
 typedef enum {
-	SEARCH_CONSTRAINT_END, 
-	SEARCH_CONSTRAINT_BOOL, 
-	SEARCH_CONSTRAINT_TEXT,
-	SEARCH_CONSTRAINT_NUMBER,
-	SEARCH_CONSTRAINT_TIME_LESS,
-	SEARCH_CONSTRAINT_TIME_MORE,
-	SEARCH_CONSTRAINT_SEPARATOR
-} SearchConstraintType;
-
-typedef enum {
-	NOT_RUNNING,
+	STOPPED,
+	ABORTED,
 	RUNNING,
 	MAKE_IT_STOP,
 	MAKE_IT_QUIT
-} RunStatus;
+} GSearchCommandStatus;
 
 typedef enum {
 	COLUMN_ICON,
@@ -71,108 +67,124 @@ typedef enum {
 	COLUMN_DATE,
 	COLUMN_NO_FILES_FOUND,
 	NUM_COLUMNS
-} ResultColumn;
-	  
-extern struct _SearchStruct {
-	gint			pid;
-	gint 	        	timeout;
-	gchar			*look_in_folder;
-	gchar           	*file_is_named_pattern;
-	gchar 	  		*regex_string;
-	gchar                   *date_format_pref;
-	gboolean		lock;	
-	gboolean		show_hidden_files;
-	gboolean		regex_matching_enabled;
-	gboolean		not_running_timeout;
-	gboolean		aborted;
-	gboolean		quick_mode;
-	gboolean		first_pass;
-	gboolean		disable_second_pass;
-	gboolean                single_click_to_activate;
-	RunStatus        	running;
-	GHashTable              *pixbuf_hash;
-	GHashTable		*file_hash;
-} search_command;
+} GSearchResultColumns;
 
-extern struct _InterfaceStruct {
-	GtkWidget		*file_is_named_entry;
-	GtkWidget 		*look_in_folder_entry;
-	GtkWidget		*find_button;
-	GtkWidget		*stop_button;
-	GtkWidget 		*save_button;
-	GtkWidget 		*main_window;	
-	GtkWidget		*popup_menu;	
-	GtkWidget               *spinner;
-	GdkPixbuf		*pixbuf;	
-	GtkWidget		*table;	
-	GtkWidget 		*file_selector;
-	GtkWidget		*expander;
-	GtkWidget		*add_button;
-	GtkWidget 		*additional_constraints;
-	GtkWidget		*constraint_menu;
-	GtkWidget		*constraint_menu_label;
-	GtkWidget 		*constraint;
-	GtkWidget		*results_label;
-	GtkWidget       	*results;
-	GtkWidget        	*tree;
-	GtkListStore     	*model;	
-	GtkCellRenderer		*name_column_renderer;
-	GtkTreeSelection 	*selection;
-	GtkTreeIter       	iter;
-	GdkGeometry 		geometry;
-	GtkSizeGroup 	 	*constraint_size_group;
-	GtkUIManager		*ui_manager;
-	GList 			*selected_constraints;
-	gchar 		 	*save_results_file;	
-	gboolean  	  	is_gail_loaded;
-} interface;
+typedef struct _GSearchWindow GSearchWindow;
+typedef struct _GSearchWindowClass GSearchWindowClass;
+typedef struct _GSearchCommandDetails GSearchCommandDetails;
+typedef struct _GSearchConstraint GSearchConstraint;
 
-typedef struct _SearchConstraint SearchConstraint;
-struct _SearchConstraint {
-	gint constraint_id;	/* the index of the template this uses */
+struct _GSearchWindow {
+	GtkWindow               parent_instance;
+
+	GtkWidget             * window;
+	GtkUIManager          * window_ui_manager;
+	GdkGeometry             window_geometry;
+	gboolean                is_window_accessible;
+	
+	GtkWidget             * name_contains_entry;
+	GtkWidget             * look_in_folder_button;
+	GtkWidget             * name_and_folder_table;
+	GtkWidget             * progress_spinner;
+	GtkWidget             * find_button;
+	GtkWidget             * stop_button;
+
+	GtkWidget             * show_more_options_expander;
+	GtkWidget             * available_options_vbox;
+	GtkWidget             * available_options_label;
+	GtkWidget             * available_options_combo_box;
+	GtkWidget             * available_options_add_button;
+	GtkSizeGroup          * available_options_button_size_group;
+	GList                 * available_options_selected_list;
+
+	GtkWidget             * files_found_label;
+	GtkWidget             * search_results_vbox;
+	GtkWidget             * search_results_popup_menu;
+	GtkTreeView           * search_results_tree_view;	
+	GtkListStore          * search_results_list_store;	
+	GtkCellRenderer       * search_results_name_cell_renderer;
+	GtkTreeSelection      * search_results_selection;
+	GtkTreeIter             search_results_iter;
+	GHashTable            * search_results_filename_hash_table;
+	GHashTable            * search_results_pixbuf_hash_table;
+	gchar                 * search_results_date_format_string;
+	gboolean                is_search_results_single_click_to_activate;
+
+	gchar                 * save_results_as_default_filename;
+	
+	GSearchCommandDetails * command_details;
+};
+
+struct _GSearchCommandDetails {
+	pid_t                   command_pid;
+	GSearchCommandStatus    command_status;
+		
+	gchar                 * name_contains_pattern_string;
+	gchar                 * name_contains_regex_string;
+	gchar                 * look_in_folder_string;
+	
+	gboolean		is_command_first_pass;
+	gboolean		is_command_using_quick_mode;
+	gboolean		is_command_second_pass_enabled;
+	gboolean		is_command_show_hidden_files_enabled;
+	gboolean		is_command_regex_matching_enabled;
+	gboolean		is_command_timeout_enabled;
+};
+
+struct _GSearchConstraint {
+	gint constraint_id;
 	union {
-		gchar 	*text; 	/* this is a char string of data */
-		gint 	time; 	/* time data   */
-		gint 	number; /* number data */
+		gchar * text;
+		gint 	time;
+		gint 	number;
 	} data;
 };
 
+struct _GSearchWindowClass {
+	GtkWindowClass parent_class;
+};
+
+GType 
+gsearch_window_get_type (void);
+
 gchar *
-build_search_command 		(gboolean first_pass);
-
+build_search_command (GSearchWindow * gsearch, 
+                      gboolean first_pass);
 void
-spawn_search_command 		(gchar *command);
-
+spawn_search_command (GSearchWindow * gsearch,
+                      gchar * command);
 void  		
-add_constraint 			(gint constraint_id,
-				 gchar *value,
-				 gboolean show_constraint);
-
+add_constraint (GSearchWindow * gsearch,
+                gint constraint_id,
+                gchar * value,
+                gboolean show_constraint);
 void  		
-remove_constraint 		(gint constraint_id);
-
+update_constraint_info (GSearchConstraint * constraint, 
+                        gchar * info);
 void  		
-update_constraint_info 		(SearchConstraint *constraint, 
-				 gchar *info);
+remove_constraint (gint constraint_id);
+
 void
-set_constraint_selected_state	(gint		constraint_id, 
-				 gboolean	state);
+set_constraint_gconf_boolean (gint constraint_id, 
+                              gboolean flag);
 void
-set_constraint_gconf_boolean 	(gint 		constraint_id, 
-				 gboolean 	flag);
+set_constraint_selected_state (GSearchWindow * gsearch,
+                               gint constraint_id, 
+                               gboolean state);
 void
-set_clone_command		(gint *argcp,
-				 gchar ***argvp,
-				 gpointer client_data,
-				 gboolean escape_values);
+set_clone_command (GSearchWindow * gsearch,
+                   gint * argcp,
+                   gchar *** argvp,
+                   gpointer client_data,
+                   gboolean escape_values);
 gchar *
-get_desktop_item_name 		(void);
+get_desktop_item_name (GSearchWindow * gsearch);
 
 void
-update_search_counts 		(void);
+update_search_counts (GSearchWindow * gsearch);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif /* _GSEARCHTOOL_H_ */

@@ -1,32 +1,31 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /* 
  * GNOME Search Tool
  *
  *  File:  gsearchtool-spinner.c
  *
- * Copyright (C) 2000 Eazel, Inc.
- * Copyright (C) 2002 Marco Pesenti Gritti
- * Copyright (C) 2004 Dennis Cranston
+ *  Copyright (C) 2004 Dennis Cranston
+ *  Copyright (C) 2002 Marco Pesenti Gritti
+ *  Copyright (C) 2000 Eazel, Inc.
  *
- * Nautilus is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ *  Nautilus is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
  *
- * Nautilus is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ *  Nautilus is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * Author: Andy Hertzfeld <andy@eazel.com>
+ *  Author: Andy Hertzfeld <andy@eazel.com>
  *
- * Ephy port by Marco Pesenti Gritti <marco@it.gnome.org>
- * Gsearchtool port by Dennis Cranston <dennis_cranston@yahoo.com>
- * 
- * This is the spinner (for busy feedback) for the location bar
+ *  Ephy port by Marco Pesenti Gritti <marco@it.gnome.org>
+ *  Gsearchtool port by Dennis Cranston <dennis_cranston@yahoo.com>
  *
  */
 
@@ -39,34 +38,33 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtkicontheme.h>
 
-#define spinner_DEFAULT_TIMEOUT 200	/* Milliseconds Per Frame */
+#define spinner_DEFAULT_TIMEOUT 200  /* Milliseconds Per Frame */
 
-#define GSEARCH_SPINNER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), GSEARCH_TYPE_SPINNER, GsearchSpinnerDetails))
+#define GSEARCH_SPINNER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), GSEARCH_TYPE_SPINNER, GSearchSpinnerDetails))
 
-struct GsearchSpinnerDetails
-{
-	GList	*image_list;
-	GdkPixbuf *quiescent_pixbuf;
-	GtkIconTheme *icon_theme;
+struct _GSearchSpinnerDetails {
+	GList        * image_list;
+	GdkPixbuf    * quiescent_pixbuf;
+	GtkIconTheme * icon_theme;
 
-	int	max_frame;
-	int	delay;
-	int	current_frame;
-	guint	timer_task;
+	int            max_frame;
+	int            delay;
+	int            current_frame;
+	guint          timer_task;
 
-	gboolean ready;
-	gboolean small_mode;
+	gboolean       ready;
+	gboolean       small_mode;
 };
 
-static void gsearch_spinner_class_init            	(GsearchSpinnerClass *class);
-static void gsearch_spinner_init                  	(GsearchSpinner *spinner);
-static void gsearch_spinner_load_images           	(GsearchSpinner *spinner);
-static void gsearch_spinner_unload_images         	(GsearchSpinner *spinner);
-static void gsearch_spinner_remove_update_callback	(GsearchSpinner *spinner);
-static void gsearch_spinner_theme_changed         	(GtkIconTheme *icon_theme,
-                                         		 GsearchSpinner *spinner);
+static void gsearch_spinner_class_init (GSearchSpinnerClass * class);
+static void gsearch_spinner_init (GSearchSpinner * spinner);
+static void gsearch_spinner_load_images (GSearchSpinner * spinner);
+static void gsearch_spinner_unload_images (GSearchSpinner * spinner);
+static void gsearch_spinner_remove_update_callback (GSearchSpinner * spinner);
+static void gsearch_spinner_theme_changed (GtkIconTheme * icon_theme,
+                                           GSearchSpinner * spinner);
 
-static GObjectClass *parent_class = NULL;
+static GObjectClass * parent_class = NULL;
 
 GType
 gsearch_spinner_get_type (void)
@@ -77,19 +75,19 @@ gsearch_spinner_get_type (void)
         {
                 static const GTypeInfo our_info =
                 {
-                        sizeof (GsearchSpinnerClass),
+                        sizeof (GSearchSpinnerClass),
                         NULL, /* base_init */
                         NULL, /* base_finalize */
                         (GClassInitFunc) gsearch_spinner_class_init,
                         NULL,
                         NULL, /* class_data */
-                        sizeof (GsearchSpinner),
+                        sizeof (GSearchSpinner),
                         0, /* n_preallocs */
                         (GInstanceInitFunc) gsearch_spinner_init
                 };
 
                 type = g_type_register_static (GTK_TYPE_EVENT_BOX,
-                                               "GsearchSpinner",
+                                               "GSearchSpinner",
                                                &our_info, 0);
         }
 
@@ -99,7 +97,7 @@ gsearch_spinner_get_type (void)
 /*
  * gsearch_spinner_new:
  *
- * Create a new #GsearchSpinner. The spinner is a widget
+ * Create a new #GSearchSpinner. The spinner is a widget
  * that gives the user feedback about search status with
  * an animated image.
  *
@@ -112,19 +110,19 @@ gsearch_spinner_new (void)
 }
 
 static gboolean
-is_throbbing (GsearchSpinner *spinner)
+is_throbbing (GSearchSpinner *spinner)
 {
 	return spinner->details->timer_task != 0;
 }
 
 /* loop through all the images taking their union to compute the width and height of the spinner */
 static void
-get_spinner_dimensions (GsearchSpinner *spinner, int *spinner_width, int* spinner_height)
+get_spinner_dimensions (GSearchSpinner * spinner, int * spinner_width, int * spinner_height)
 {
 	int current_width, current_height;
 	int pixbuf_width, pixbuf_height;
-	GList *image_list;
-	GdkPixbuf *pixbuf;
+	GList * image_list;
+	GdkPixbuf * pixbuf;
 
 	current_width = 0;
 	current_height = 0;
@@ -163,9 +161,9 @@ get_spinner_dimensions (GsearchSpinner *spinner, int *spinner_width, int* spinne
 }
 
 static void
-gsearch_spinner_init (GsearchSpinner *spinner)
+gsearch_spinner_init (GSearchSpinner * spinner)
 {
-	GtkWidget *widget = GTK_WIDGET (spinner);
+	GtkWidget * widget = GTK_WIDGET (spinner);
 
 	GTK_WIDGET_UNSET_FLAGS (spinner, GTK_NO_WINDOW);
 
@@ -196,7 +194,7 @@ gsearch_spinner_init (GsearchSpinner *spinner)
 
 /* handler for handling theme changes */
 static void
-gsearch_spinner_theme_changed (GtkIconTheme *icon_theme, GsearchSpinner *spinner)
+gsearch_spinner_theme_changed (GtkIconTheme * icon_theme, GSearchSpinner * spinner)
 {
 	gtk_widget_hide (GTK_WIDGET (spinner));
 	gsearch_spinner_load_images (spinner);
@@ -207,9 +205,9 @@ gsearch_spinner_theme_changed (GtkIconTheme *icon_theme, GsearchSpinner *spinner
 /* here's the routine that selects the image to draw, based on the spinner's state */
 
 static GdkPixbuf *
-select_spinner_image (GsearchSpinner *spinner)
+select_spinner_image (GSearchSpinner * spinner)
 {
-	GList *element;
+	GList * element;
 
 	if (spinner->details->timer_task == 0)
 	{
@@ -237,11 +235,11 @@ select_spinner_image (GsearchSpinner *spinner)
 /* handle expose events */
 
 static int
-gsearch_spinner_expose (GtkWidget *widget, GdkEventExpose *event)
+gsearch_spinner_expose (GtkWidget * widget, GdkEventExpose * event)
 {
-	GsearchSpinner *spinner;
-	GdkPixbuf *pixbuf;
-	GdkGC *gc;
+	GSearchSpinner * spinner;
+	GdkPixbuf * pixbuf;
+	GdkGC * gc;
 	int x_offset, y_offset, width, height;
 	GdkRectangle pix_area, dest;
 
@@ -293,7 +291,7 @@ gsearch_spinner_expose (GtkWidget *widget, GdkEventExpose *event)
 static gboolean
 bump_spinner_frame (gpointer callback_data)
 {
-	GsearchSpinner *spinner;
+	GSearchSpinner * spinner;
 
 	spinner = GSEARCH_SPINNER (callback_data);
 
@@ -314,12 +312,12 @@ bump_spinner_frame (gpointer callback_data)
 
 /**
  * gsearch_spinner_start:
- * @spinner: a #GsearchSpinner
+ * @spinner: a #GSearchSpinner
  *
  * Start the spinner animation.
  **/
 void
-gsearch_spinner_start (GsearchSpinner *spinner)
+gsearch_spinner_start (GSearchSpinner * spinner)
 {
 	if (is_throbbing (spinner))
 	{
@@ -339,7 +337,7 @@ gsearch_spinner_start (GsearchSpinner *spinner)
 }
 
 static void
-gsearch_spinner_remove_update_callback (GsearchSpinner *spinner)
+gsearch_spinner_remove_update_callback (GSearchSpinner * spinner)
 {
 	if (spinner->details->timer_task != 0)
 	{
@@ -351,12 +349,12 @@ gsearch_spinner_remove_update_callback (GsearchSpinner *spinner)
 
 /**
  * gsearch_spinner_stop:
- * @spinner: a #GsearchSpinner
+ * @spinner: a #GSearchSpinner
  *
  * Stop the spinner animation.
  **/
 void
-gsearch_spinner_stop (GsearchSpinner *spinner)
+gsearch_spinner_stop (GSearchSpinner * spinner)
 {
 	if (!is_throbbing (spinner))
 	{
@@ -373,9 +371,9 @@ gsearch_spinner_stop (GsearchSpinner *spinner)
 /* unload all the images, and the list itself */
 
 static void
-gsearch_spinner_unload_images (GsearchSpinner *spinner)
+gsearch_spinner_unload_images (GSearchSpinner * spinner)
 {
-	GList *current_entry;
+	GList * current_entry;
 
 	if (spinner->details->quiescent_pixbuf != NULL)
 	{
@@ -398,9 +396,9 @@ gsearch_spinner_unload_images (GsearchSpinner *spinner)
 }
 
 static GdkPixbuf *
-scale_to_real_size (GsearchSpinner *spinner, GdkPixbuf *pixbuf)
+scale_to_real_size (GSearchSpinner * spinner, GdkPixbuf * pixbuf)
 {
-	GdkPixbuf *result;
+	GdkPixbuf * result;
 	int size;
 
 	size = gdk_pixbuf_get_height (pixbuf);
@@ -421,9 +419,9 @@ scale_to_real_size (GsearchSpinner *spinner, GdkPixbuf *pixbuf)
 }
 
 static GdkPixbuf *
-extract_frame (GsearchSpinner *spinner, GdkPixbuf *grid_pixbuf, int x, int y, int size)
+extract_frame (GSearchSpinner * spinner, GdkPixbuf * grid_pixbuf, int x, int y, int size)
 {
-	GdkPixbuf *pixbuf, *result;
+	GdkPixbuf * pixbuf, * result;
 
 	if (x + size > gdk_pixbuf_get_width (grid_pixbuf) ||
 	    y + size > gdk_pixbuf_get_height (grid_pixbuf))
@@ -444,13 +442,13 @@ extract_frame (GsearchSpinner *spinner, GdkPixbuf *grid_pixbuf, int x, int y, in
 
 /* load all of the images of the spinner sequentially */
 static void
-gsearch_spinner_load_images (GsearchSpinner *spinner)
+gsearch_spinner_load_images (GSearchSpinner * spinner)
 {
 	int grid_width, grid_height, x, y, size;
-	const char *icon;
-	GdkPixbuf *icon_pixbuf, *pixbuf;
-	GList *image_list;
-	GtkIconInfo *icon_info;
+	const char * icon;
+	GdkPixbuf * icon_pixbuf, * pixbuf;
+	GList * image_list;
+	GtkIconInfo * icon_info;
 
 	gsearch_spinner_unload_images (spinner);
 
@@ -516,14 +514,14 @@ gsearch_spinner_load_images (GsearchSpinner *spinner)
 
 /*
  * gsearch_spinner_set_small_mode:
- * @spinner: a #GsearchSpinner
+ * @spinner: a #GSearchSpinner
  * @new_mode: pass true to enable the small mode, false to disable
  *
  * Set the size mode of the spinner. We need a small mode to deal
  * with only icons toolbars.
  **/
 void
-gsearch_spinner_set_small_mode (GsearchSpinner *spinner, gboolean new_mode)
+gsearch_spinner_set_small_mode (GSearchSpinner * spinner, gboolean new_mode)
 {
 	if (new_mode != spinner->details->small_mode)
 	{
@@ -537,10 +535,10 @@ gsearch_spinner_set_small_mode (GsearchSpinner *spinner, gboolean new_mode)
 /* handle setting the size */
 
 static void
-gsearch_spinner_size_request (GtkWidget *widget, GtkRequisition *requisition)
+gsearch_spinner_size_request (GtkWidget * widget, GtkRequisition * requisition)
 {
 	int spinner_width, spinner_height;
-	GsearchSpinner *spinner = GSEARCH_SPINNER (widget);
+	GSearchSpinner * spinner = GSEARCH_SPINNER (widget);
 
 	get_spinner_dimensions (spinner, &spinner_width, &spinner_height);
 
@@ -550,9 +548,9 @@ gsearch_spinner_size_request (GtkWidget *widget, GtkRequisition *requisition)
 }
 
 static void
-gsearch_spinner_finalize (GObject *object)
+gsearch_spinner_finalize (GObject * object)
 {
-	GsearchSpinner *spinner = GSEARCH_SPINNER (object);
+	GSearchSpinner * spinner = GSEARCH_SPINNER (object);
 
 	gsearch_spinner_remove_update_callback (spinner);
 	gsearch_spinner_unload_images (spinner);
@@ -561,10 +559,10 @@ gsearch_spinner_finalize (GObject *object)
 }
 
 static void
-gsearch_spinner_class_init (GsearchSpinnerClass *class)
+gsearch_spinner_class_init (GSearchSpinnerClass * class)
 {
-	GObjectClass *object_class;
-	GtkWidgetClass *widget_class;
+	GObjectClass * object_class;
+	GtkWidgetClass * widget_class;
 
 	object_class = G_OBJECT_CLASS (class);
 	widget_class = GTK_WIDGET_CLASS (class);
@@ -576,5 +574,5 @@ gsearch_spinner_class_init (GsearchSpinnerClass *class)
 	widget_class->expose_event = gsearch_spinner_expose;
 	widget_class->size_request = gsearch_spinner_size_request;
 
-	g_type_class_add_private (object_class, sizeof (GsearchSpinnerDetails));
+	g_type_class_add_private (object_class, sizeof (GSearchSpinnerDetails));
 }

@@ -1,5 +1,18 @@
 2004-12-15  Dennis Cranston <dennis_cranston@yahoo.com>
 
+	* gsearchtool.[ch], gsearchtool-callbacks.[ch],
+	gsearchtool-support.[ch], gsearchtool-spinner.[ch],
+	gsearchtool-alert-dialog.[ch]:
+	
+	  + Major code cleanup.
+	  + Remove unused functions.
+	  + Remove the extern(ed) interface and command structures, 
+	    and create a GSEARCH_WINDOW.
+	  + If getpgid() is available use it to kill spawned commands.
+	    This prevents creating zombie grep processes.
+	
+2004-12-15  Dennis Cranston <dennis_cranston@yahoo.com>
+
 	* help/C/figures/gnome-search-tool_window.png:  Update for 
 	newest gtk+ 2.6 file chooser button widget changes.
 

@@ -33,85 +33,79 @@ extern "C" {
 #pragma }
 #endif
 
+#include "gsearchtool.h"
+
 #define ICON_SIZE 24
 
-gboolean  	
-is_path_hidden 			(const gchar *path);
-
-gboolean  	
-is_quick_search_excluded_path	(const gchar *path);
-
-gboolean  	
-is_second_scan_excluded_path	(const gchar *path);
-
-gboolean
-file_extension_is 		(const char *filename, 
-		   		 const char *ext);
-gboolean  	
-compare_regex	 		(const gchar *regex, 
-				 const gchar *string);
-gboolean  	
-limit_string_to_x_lines		(GString *string, 
-				 gint x);
-gchar *	
-escape_single_quotes 		(const gchar *string);
-
-gchar *	
-backslash_special_characters	(const gchar *string);
-
-gchar *
-remove_mnemonic_character	(const gchar *string);
-
-gint 	 	
-count_of_char_in_string		(const gchar *string, 
-				 const gchar q);
-gchar *   	
-get_readable_date 		(const time_t file_time_raw);
-
-gchar *    	
-gsearchtool_strdup_strftime	(const gchar *format, 
-				 struct tm *time_pieces); 
-const char *
-get_file_type_for_mime_type	(const gchar *filename,
-				 const gchar *mimetype);
-GdkPixbuf *
-get_file_pixbuf_for_mime_type 	(const gchar *filename,
-				 const gchar *mimetype);
-gboolean  	
-is_nautilus_running 		(void);
-
-gboolean 	
-open_file_with_nautilus 	(const gchar *filename);
-
-gboolean  	
-open_file_with_application 	(const gchar *filename);
-
-gboolean
-launch_file 			(const gchar *filename);
-
 gboolean 
-gsearchtool_gconf_get_boolean 	(const gchar *key);
+gsearchtool_gconf_get_boolean (const gchar * key);
 
 void
-gsearchtool_gconf_set_boolean 	(const gchar *key, 
-				 const gboolean flag);
-
+gsearchtool_gconf_set_boolean (const gchar * key, 
+                               const gboolean flag);
 char *
-gsearchtool_gconf_get_string 	(const gchar *key);
+gsearchtool_gconf_get_string (const gchar * key);
 
 GSList * 
-gsearchtool_gconf_get_list 	(const gchar *key);
+gsearchtool_gconf_get_list (const gchar * key);
+
+gboolean  	
+is_path_hidden (const gchar * path);
+
+gboolean  	
+is_quick_search_excluded_path (const gchar * path);
+
+gboolean  	
+is_second_scan_excluded_path (const gchar * path);
+
+gboolean  	
+compare_regex (const gchar * regex, 
+               const gchar * string);
+gboolean  	
+limit_string_to_x_lines (GString * string, 
+                         gint x);
+gchar *	
+escape_single_quotes (const gchar * string);
+
+gchar *	
+backslash_special_characters (const gchar * string);
 
 gchar *
-gsearchtool_unique_filename 	(const gchar *dir,
-				 const gchar *suffix);
-			      
+remove_mnemonic_character (const gchar * string);
+
+gchar *   	
+get_readable_date (const gchar * format_string,
+                   const time_t file_time_raw);
+gchar *    	
+gsearchtool_strdup_strftime (const gchar * format, 
+                             struct tm * time_pieces); 
+const char *
+get_file_type_for_mime_type (const gchar * file,
+                             const gchar * mime);
+GdkPixbuf *
+get_file_pixbuf_for_mime_type (GHashTable * hash,
+                               const gchar * file,
+                               const gchar * mime);
+gboolean  	
+is_nautilus_running (void);
+
+gboolean 	
+open_file_with_nautilus (GtkWidget * window,
+                         const gchar * file);
+gboolean  	
+open_file_with_application (GtkWidget * window,
+                            const gchar * file);
+gboolean
+launch_file (const gchar * file);
+
+gchar *
+gsearchtool_get_unique_filename (const gchar * path,
+                                 const gchar * suffix);
 GtkWidget *
-gsearchtool_button_new_with_stock_icon (const gchar *label,
-                                        const gchar *stock_id);
-				 			      
+gsearchtool_button_new_with_stock_icon (const gchar * string,
+                                        const gchar * stock_id);
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif /* _GSEARCHTOOL_SUPPORT_H */

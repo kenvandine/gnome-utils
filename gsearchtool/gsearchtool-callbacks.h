@@ -33,124 +33,122 @@ extern "C" {
 #pragma }
 #endif
 
-
-void	
-die_cb 				(GnomeClient 	*client, 
-				 gpointer 	data);						 						 
-void	
-quit_cb 			(GtkWidget 	*widget, 
-				 gpointer 	data);
-void    
-help_cb 			(GtkWidget 	*widget, 
-				 gpointer 	data);
-void   
-click_find_cb	 		(GtkWidget 	*widget, 
-				 gpointer 	data);
 void
-click_stop_cb 			(GtkWidget 	*widget, 
-	       			 gpointer 	data);
+die_cb (GnomeClient * client,
+        gpointer data);
 void
-click_expander_cb		(GtkWidget	*widget, 
-				 gpointer 	data);
-void   
-size_allocate_cb 		(GtkWidget 	*widget,
-				 GtkAllocation  *allocation, 
-				 gpointer 	data);
-void    
-add_constraint_cb		(GtkWidget 	*widget, 
-				 gpointer 	data);
-void    
-remove_constraint_cb		(GtkWidget 	*widget, 
-				 gpointer 	data);
-void    
-constraint_activate_cb 		(GtkWidget 	*widget, 
-				 gpointer 	data);
-void    
-constraint_update_info_cb 	(GtkWidget 	*widget, 
-				 gpointer 	data);	
-void    
-constraint_entry_changed_cb 	(GtkWidget 	*widget, 
-				 gpointer 	data);
-void    
-file_is_named_activate_cb 	(GtkWidget 	*widget, 
-				 gpointer 	data);
-void 	
-open_file_cb 			(GtkWidget 	*widget, 
-				 gpointer 	data);
-void	
-open_folder_cb 			(GtkWidget 	*widget, 
-				 gpointer 	data);
-void	
-move_to_trash_cb		(GtkWidget 	*widget, 
-				 gpointer 	data);				 
-void  
-drag_begin_file_cb  		(GtkWidget          *widget,
-	      			 GdkDragContext     *context,
-	       			 GtkSelectionData   *selection_data,
-	       			 guint               info,
-	       			 guint               time,
-	       			 gpointer            data);
-void  
-drag_file_cb  			(GtkWidget          *widget,
-	      			 GdkDragContext     *context,
-	       			 GtkSelectionData   *selection_data,
-	       			 guint               info,
-	       			 guint               time,
-	       			 gpointer            data);
-void  
-drag_data_animation_cb		(GtkWidget          *widget,
-	      			 GdkDragContext     *context,
-	       			 GtkSelectionData   *selection_data,
-	       			 guint               info,
-	       			 guint               time,
-	       			 gpointer            data);
-void    
-show_file_selector_cb 		(GtkWidget 	*widget,
-				 gpointer 	data);
-void   	
-save_results_cb 		(GtkWidget         *chooser, 
-				 gint	 	    response, 
-				 gpointer 	    data);
-void    
-save_session_cb 		(GnomeClient 	    *client, 
-				 gint 		    phase,
-  				 GnomeRestartStyle  save_style, 
-				 gint 		    shutdown,
-      				 GnomeInteractStyle interact_style, 
-				 gint 		    fast, 
-				 gpointer 	    client_data);
-gboolean  
-key_press_cb 			(GtkWidget 	*widget, 
-				 GdkEventKey 	*event,
-				 gpointer 	data);	
-				 
+quit_cb (GtkWidget * widget,
+         GdkEvent * event,
+         gpointer data);
+void
+click_close_cb (GtkWidget * widget,
+                gpointer data);
+void
+click_find_cb (GtkWidget * widget,
+               gpointer	data);
+void
+click_stop_cb (GtkWidget * widget,
+               gpointer	data);
+void
+click_help_cb (GtkWidget * widget,
+               gpointer data);
+void
+click_expander_cb (GObject * object,
+                   GParamSpec * param_spec,
+                   gpointer data);
+void
+size_allocate_cb (GtkWidget * widget,
+                  GtkAllocation * allocation, 
+                  gpointer data);
+void
+add_constraint_cb (GtkWidget * widget,
+                   gpointer data);
+void
+remove_constraint_cb (GtkWidget * widget,
+                      gpointer data);
+void
+constraint_activate_cb (GtkWidget * widget,
+                        gpointer data);
+void
+constraint_update_info_cb (GtkWidget * widget,
+                           gpointer data);
+void
+name_contains_activate_cb (GtkWidget * widget, 
+                           gpointer data);
+void
+open_file_cb (GtkAction * action,
+              gpointer data);
+void
+open_folder_cb (GtkAction * action,
+                gpointer data);
+void
+move_to_trash_cb (GtkAction * action,
+                  gpointer data);
+void
+drag_begin_file_cb (GtkWidget * widget,
+                    GdkDragContext * context,
+                    GtkSelectionData * selection_data,
+                    guint info,
+                    guint time,
+                    gpointer data);
+void
+drag_file_cb (GtkWidget * widget,
+              GdkDragContext * context,
+              GtkSelectionData * selection_data,
+              guint info,
+              guint time,
+              gpointer data);
+void
+drag_data_animation_cb (GtkWidget * widget,
+                        GdkDragContext * context,
+                        GtkSelectionData * selection_data,
+                        guint info,
+                        guint time,
+                        gpointer data);
+void
+show_file_selector_cb (GtkAction * action,
+                       gpointer data);
+void
+save_results_cb (GtkWidget * chooser,
+                 gint response,
+                 gpointer data);
+void
+save_session_cb (GnomeClient * client,
+                 gint phase,
+                 GnomeRestartStyle save_style,
+                 gint shutdown,
+                 GnomeInteractStyle interact_style,
+                 gint fast,
+                 gpointer client_data);
 gboolean
-file_button_release_event_cb	(GtkWidget 	*widget,
-				 GdkEventButton *event,
-				 gpointer 	data);
-
+key_press_cb (GtkWidget * widget,
+              GdkEventKey * event,
+              gpointer data);
 gboolean
-file_event_after_cb	        (GtkWidget 	*widget,
-				 GdkEventButton *event,
-				 gpointer 	data);  
-gboolean	
-file_button_press_event_cb	(GtkWidget 	*widget, 
-				 GdkEventButton *event, 
-				 gpointer 	data);
-gboolean	
-file_key_press_event_cb		(GtkWidget 	*widget,
-				 GdkEventKey    *event,
-				 gpointer 	data);
+file_button_release_event_cb (GtkWidget * widget,
+                              GdkEventButton * event,
+                              gpointer data);
 gboolean
-not_running_timeout_cb 		(gpointer data);
+file_event_after_cb (GtkWidget 	* widget,
+                     GdkEventButton * event,
+                     gpointer data);
+gboolean
+file_button_press_event_cb (GtkWidget * widget,
+                            GdkEventButton * event,
+                            gpointer data);
+gboolean
+file_key_press_event_cb (GtkWidget * widget,
+                         GdkEventKey * event,
+                         gpointer data);
+gboolean
+not_running_timeout_cb (gpointer data);
 
 void
-disable_quick_search_cb         (GtkWidget 	*dialog, 
-				 gint      	response, 
-				 gpointer  	data);
-
+disable_quick_search_cb (GtkWidget * dialog,
+                         gint response,
+                         gpointer data);
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif /* _GSEARCHTOOL_CALLBACKS_H_ */
