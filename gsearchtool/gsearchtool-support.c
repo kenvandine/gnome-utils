@@ -730,7 +730,7 @@ get_file_pixbuf_for_mime_type (const gchar *filename,
 	if (pixbuf == NULL) {
 		pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), icon_name, 
 		                                   ICON_SIZE, 0, NULL);
-		g_hash_table_insert (search_command.pixbuf_hash, g_strdup (icon_name), pixbuf);
+		g_hash_table_insert (search_command.pixbuf_hash, &icon_name, pixbuf);
 	}
 						  
 	g_free (icon_name);

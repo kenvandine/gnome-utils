@@ -278,7 +278,7 @@ build_search_command (void)
 
 	setup_case_insensitive_arguments ();
 	
-	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))));
+	file_is_named_utf8 = g_strdup ((gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry)))));
 
 	if (!file_is_named_utf8 || !*file_is_named_utf8) {
 		file_is_named_utf8 = g_strdup ("*");
@@ -290,7 +290,11 @@ build_search_command (void)
 		gnome_entry_prepend_history (GNOME_ENTRY(interface.file_is_named_entry), TRUE, file_is_named_utf8);
 
 		if (strstr (locale, "*") == NULL) {
+			gchar *tmp;
+		
+			tmp = file_is_named_utf8;
 			file_is_named_utf8 = g_strconcat ("*", file_is_named_utf8, "*", NULL);
+			g_free (tmp);
 		}
 		
 		g_free (locale);
@@ -315,6 +319,9 @@ build_search_command (void)
 	command = g_string_new ("");
 	search_command.show_hidden_files = FALSE;
 	search_command.quick_mode = FALSE;
+	search_command.regex_string = NULL;
+	search_command.date_format_pref = NULL;
+	search_command.file_is_named_pattern = NULL;
 	
 	if ((GTK_WIDGET_VISIBLE(interface.additional_constraints) == FALSE) ||
 	    (interface.selected_constraints == NULL)) {
@@ -358,7 +365,6 @@ build_search_command (void)
 		search_command.regex_matching_enabled = FALSE;
 		file_is_named_backslashed = backslash_special_characters (file_is_named_locale);
 		file_is_named_escaped = escape_single_quotes (file_is_named_backslashed);
-		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
 		g_string_append_printf (command, "find \"%s\" %s", 
 					look_in_folder_locale,
@@ -454,7 +460,9 @@ build_search_command (void)
 		g_string_append (command, "-print ");
 	}
 	g_free (file_is_named_locale);
+	g_free (file_is_named_utf8);
 	g_free (file_is_named_backslashed);
+	g_free (file_is_named_escaped);
 	g_free (look_in_folder_locale);
 	
 	return g_string_free (command, FALSE);
@@ -541,7 +549,7 @@ update_search_counts (void)
 {
 	gchar  *title_bar_string = NULL;
 	gchar  *message_string = NULL;
-	gchar  *stopped_string = g_strdup ("");
+	gchar  *stopped_string = NULL;
 	gchar  *tmp;
 	gint   total_files;
 
@@ -567,7 +575,7 @@ update_search_counts (void)
 						  total_files);
 	}
 
-	if (strlen (stopped_string) > 0) {
+	if (stopped_string != NULL) {
 		tmp = message_string;
 		message_string = g_strconcat (message_string, " ", stopped_string, NULL);
 		g_free (tmp);
@@ -1233,6 +1241,12 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		gtk_widget_hide (interface.stop_button);
 		gtk_widget_show (interface.find_button);
 
+		/* Free the gchar fields of search_command structure. */
+		g_free (search_data->look_in_folder);
+		g_free (search_data->file_is_named_pattern);
+		g_free (search_data->regex_string);
+		g_free (search_data->date_format_pref);
+
 		g_io_channel_shutdown (ioc, TRUE, NULL);
 		return FALSE;
 	}
@@ -1412,6 +1426,12 @@ spawn_search_command (gchar *command)
 		gtk_widget_destroy (dialog);
 		g_error_free (error);
 		g_strfreev (argv);
+		
+		/* Free the gchar fields of search_command structure. */
+		g_free (search_command.look_in_folder);
+		g_free (search_command.file_is_named_pattern);
+		g_free (search_command.regex_string);
+		g_free (search_command.date_format_pref);
 		return;
 	}	
 
@@ -1434,6 +1454,13 @@ spawn_search_command (gchar *command)
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 		g_error_free (error);
+		g_strfreev (argv);
+		
+		/* Free the gchar fields of search_command structure. */
+		g_free (search_command.look_in_folder);
+		g_free (search_command.file_is_named_pattern);
+		g_free (search_command.regex_string);
+		g_free (search_command.date_format_pref);
 		return;
 	}
 	
@@ -1443,9 +1470,6 @@ spawn_search_command (gchar *command)
 	search_command.pixbuf_hash = g_hash_table_new (g_str_hash, g_str_equal);
 	
 	/* Get value of nautilus date_format key */
-	if (search_command.date_format_pref !=NULL) {
-		g_free (search_command.date_format_pref);
-	}
 	search_command.date_format_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/date_format");
 
 	gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.stop_button);
@@ -1477,6 +1501,7 @@ spawn_search_command (gchar *command)
 
 	g_io_channel_unref (ioc_stdout);
 	g_io_channel_unref (ioc_stderr);
+	g_strfreev (argv);
 }
   
 static GtkWidget *
@@ -1518,7 +1543,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 			entry = gtk_entry_new();
 			if (value != NULL) {
 				gtk_entry_set_text (GTK_ENTRY(entry), value);
-				opt->data.text = g_strdup (value);
+				opt->data.text = value;
 			}
 		}
 		else {

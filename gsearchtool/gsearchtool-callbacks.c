@@ -230,6 +230,7 @@ remove_constraint_cb (GtkWidget 	*widget,
 	
 	set_constraint_selected_state (constraint->constraint_id, FALSE);	
 	set_constraint_gconf_boolean (constraint->constraint_id, FALSE);	
+	g_free (constraint);
 }
 
 void
