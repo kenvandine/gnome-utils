@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.5.0\n"
-"POT-Creation-Date: 2002-05-11 19:18+0200\n"
+"POT-Creation-Date: 2002-05-14 02:37+0100\n"
 "PO-Revision-Date: 2002-05-11 19:21+0200\n"
 "Last-Translator: Christophe Fergeau <teuf@users.sourceforge.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -83,7 +83,7 @@ msgstr ""
 #. Translator credits
 #: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:47 gdictsrc/gdict-about.c:43
 #: gsearchtool/gsearchtool.c:1953 logview/about.c:52
-#: meat-grinder/meat-grinder.c:439
+#: meat-grinder/meat-grinder.c:474
 msgid "translator_credits"
 msgstr ""
 "Mainteneur :\n"
@@ -477,56 +477,56 @@ msgstr ""
 "Sélectionne, copie et colle les caractères de votre police vers d'autres "
 "applications"
 
-#: gcharmap/src/callbacks.c:121
+#: gcharmap/src/callbacks.c:114
 msgid "del"
 msgstr "del"
 
-#: gcharmap/src/callbacks.c:127
+#: gcharmap/src/callbacks.c:120
 #, c-format
 msgid " %s: Character code %d"
 msgstr "%s : code du caractère : %d"
 
-#: gcharmap/src/callbacks.c:166
+#: gcharmap/src/callbacks.c:161
 msgid "Text copied to clipboard..."
 msgstr "Texte copié dans le presse-papiers..."
 
-#: gcharmap/src/callbacks.c:183
+#: gcharmap/src/callbacks.c:178
 msgid "Text cut to clipboard..."
 msgstr "Texte coupé dans le presse-papiers..."
 
-#: gcharmap/src/callbacks.c:232
+#: gcharmap/src/callbacks.c:227
 msgid "Text pasted from clipboard..."
 msgstr "Texte collé du presse-papiers..."
 
-#: gcharmap/src/interface.c:195
+#: gcharmap/src/interface.c:208
 msgid "Gnome Character Map"
 msgstr "Mappage caractère GNOME"
 
-#: gcharmap/src/interface.c:223
+#: gcharmap/src/interface.c:238
 msgid "Action Toolbar"
 msgstr "Barre d'outils d'action"
 
-#: gcharmap/src/interface.c:227
+#: gcharmap/src/interface.c:242
 msgid "_Text to copy:"
 msgstr "_Texte à copier :"
 
-#: gcharmap/src/interface.c:240
+#: gcharmap/src/interface.c:255
 msgid "_Copy"
 msgstr "_Copier"
 
-#: gcharmap/src/interface.c:262 gcharmap/src/interface.c:263
+#: gcharmap/src/interface.c:277 gcharmap/src/interface.c:278
 msgid "Text to copy"
 msgstr "Texte à copier"
 
-#: gcharmap/src/interface.c:263
+#: gcharmap/src/interface.c:278
 msgid "Entry"
 msgstr "Entrée"
 
-#: gcharmap/src/interface.c:264 gcharmap/src/menus.c:77
+#: gcharmap/src/interface.c:279 gcharmap/src/menus.c:77
 msgid "Copy"
 msgstr "Copier"
 
-#: gcharmap/src/interface.c:264
+#: gcharmap/src/interface.c:279
 msgid "Copy the text"
 msgstr "Copier le texte"
 
@@ -594,31 +594,35 @@ msgstr "Rechcher dans un dictionnaire"
 msgid "Lookup words in an online dictionary"
 msgstr "Recherche des mots dans un dictionnaire en ligne"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:122
-msgid "About..."
-msgstr "À propos..."
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
-msgid "Help"
-msgstr "Aide"
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#: gdictsrc/GNOME_GDictApplet.xml.h:1
 msgid "Look Up Selected Text..."
 msgstr "Rechercher le texte sélectionné..."
 
+#: gdictsrc/GNOME_GDictApplet.xml.h:2
+#, fuzzy
+msgid "_About..."
+msgstr "À propos..."
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#, fuzzy
+msgid "_Help"
+msgstr "Aide"
+
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-msgid "Preferences"
+#, fuzzy
+msgid "_Preferences"
 msgstr "Préférences"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-msgid "Show/Hide Definition Window..."
+#, fuzzy
+msgid "_Show/Hide Definition Window..."
 msgstr "Afficher/Cacher la fenêtre de définition..."
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:648 gdictsrc/gdict-pref-dialog.c:463
-#: gdictsrc/gdict-pref-dialog.c:514 gdictsrc/gdict-speller.c:463
+#: gdictsrc/dict.c:648 gdictsrc/gdict-pref-dialog.c:465
+#: gdictsrc/gdict-pref-dialog.c:516 gdictsrc/gdict-speller.c:463
 msgid "Cannot connect to server"
 msgstr "Ne peut se connecter au serveur"
 
@@ -628,8 +632,8 @@ msgid ""
 "For reference the default server is dict.org and the port 2628"
 msgstr ""
 "Une erreur sérieuse est survenue. veuillez vérifier que votre server et "
-"votre port sont corrects. Pour référence, le serveur par défaut est "
-"dict.org et le port 2628"
+"votre port sont corrects. Pour référence, le serveur par défaut est dict.org "
+"et le port 2628"
 
 #: gdictsrc/gdict-about.c:58
 msgid ""
@@ -639,40 +643,40 @@ msgstr ""
 "Client pour le serveur de dictionnaire du MIT.\n"
 "Web : http://gdict.dhs.org/, http://www.psilord.com/code/"
 
-#: gdictsrc/gdict-app.c:125
+#: gdictsrc/gdict-app.c:128
 msgid "Spell-checking..."
 msgstr "Vérification orthographique..."
 
-#: gdictsrc/gdict-app.c:133
+#: gdictsrc/gdict-app.c:136
 msgid "Spell check done"
 msgstr "Vérification orthographique effectuée"
 
-#: gdictsrc/gdict-app.c:141 gdictsrc/gdict-app.c:270
+#: gdictsrc/gdict-app.c:144 gdictsrc/gdict-app.c:274
 msgid "No matches found"
 msgstr "Aucune correspondances trouvées"
 
-#: gdictsrc/gdict-app.c:254
+#: gdictsrc/gdict-app.c:257
 msgid "Looking up word..."
 msgstr "Recherche du mot..."
 
-#: gdictsrc/gdict-app.c:262
+#: gdictsrc/gdict-app.c:265
 msgid "Lookup done"
 msgstr "Recherche effectuée"
 
-#: gdictsrc/gdict-app.c:282
+#: gdictsrc/gdict-app.c:287
 msgid "String not found"
 msgstr "Chaîne non trouvée"
 
-#: gdictsrc/gdict-app.c:449
+#: gdictsrc/gdict-app.c:455
 msgid "Find"
 msgstr "Rechercher"
 
-#: gdictsrc/gdict-app.c:470 gsearchtool/gsearchtool.c:1458
+#: gdictsrc/gdict-app.c:476 gsearchtool/gsearchtool.c:1458
 #: gsearchtool/gsearchtool.c:1791
 msgid "_Find"
 msgstr "_Rechercher"
 
-#: gdictsrc/gdict-app.c:520
+#: gdictsrc/gdict-app.c:526
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -682,49 +686,49 @@ msgstr ""
 "Soit parce que le serveur que vous utilisez n'est pas disponible,\n"
 "soit parce que vous n'etes pas connecté sur Internet."
 
-#: gdictsrc/gdict-app.c:681 gdictsrc/gdict-app.c:791
+#: gdictsrc/gdict-app.c:687 gdictsrc/gdict-app.c:798
 #: gdictsrc/gdict-speller.c:221
 msgid "_Look Up Word"
 msgstr "_Rechercher un mot"
 
-#: gdictsrc/gdict-app.c:682
+#: gdictsrc/gdict-app.c:688
 msgid "Lookup word in dictionary"
 msgstr "Recherche du mot dans le dictionnaire"
 
-#: gdictsrc/gdict-app.c:684 gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-app.c:690 gdictsrc/gdict-speller.c:165
 msgid "Check _Spelling"
 msgstr "_Vérifier l'orthographe"
 
-#: gdictsrc/gdict-app.c:685
+#: gdictsrc/gdict-app.c:691
 msgid "Check word spelling"
 msgstr "Vérifier l'orthographe du mot"
 
-#: gdictsrc/gdict-app.c:729
+#: gdictsrc/gdict-app.c:735
 msgid "_Dictionary"
 msgstr "_Dictionnaire"
 
-#: gdictsrc/gdict-app.c:765 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:771 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Dictionnaire"
 
-#: gdictsrc/gdict-app.c:787
+#: gdictsrc/gdict-app.c:794
 msgid "_Word: "
 msgstr "_Mot : "
 
-#: gdictsrc/gdict-app.c:814 gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:821 gdictsrc/gdict-speller.c:147
 msgid "Word"
 msgstr "Mot"
 
-#: gdictsrc/gdict-app.c:815 gdictsrc/gdict-app.c:816
+#: gdictsrc/gdict-app.c:822 gdictsrc/gdict-app.c:823
 #: gdictsrc/gdict-speller.c:148
 msgid "Word Entry"
 msgstr "Entrée de mot"
 
-#: gdictsrc/gdict-app.c:815
+#: gdictsrc/gdict-app.c:822
 msgid "Enter a Word or select one from the list below"
 msgstr "Saisissez un mot ou choisissez en un dans la liste ci-dessous"
 
-#: gdictsrc/gdict-app.c:818
+#: gdictsrc/gdict-app.c:825
 msgid "Look Up for a Word"
 msgstr "Rechercher un mot"
 
@@ -773,83 +777,83 @@ msgstr "Corps principal :"
 msgid "Cross-reference:"
 msgstr "Référence croisée :"
 
-#: gdictsrc/gdict-pref-dialog.c:186
+#: gdictsrc/gdict-pref-dialog.c:185
 msgid "Dictionary Preferences"
 msgstr "Préférences du dictionnaire"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:197
 msgid "Smart _lookup"
 msgstr "Recherche _intelligente"
 
-#: gdictsrc/gdict-pref-dialog.c:211
+#: gdictsrc/gdict-pref-dialog.c:210
 msgid "_Server:"
 msgstr "_Serveur :"
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:217
 msgid "De_fault"
 msgstr "Dé_faut"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:223
 msgid "Reset server to default"
 msgstr "Revenir au serveur par défaut"
 
-#: gdictsrc/gdict-pref-dialog.c:226
+#: gdictsrc/gdict-pref-dialog.c:225
 msgid "_Port:"
 msgstr "_Port :"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Def_ault"
 msgstr "Dé_faut"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:246
 msgid "Reset port to default"
 msgstr "Revenir au port par défaut"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:247
 msgid "Server"
 msgstr "Serveur"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Server Entry"
 msgstr "Entrée de serveur"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Enter the Server Name"
 msgstr "Saisissez le nom du serveur"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Port Entry"
 msgstr "Entrée de port"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Port Number"
 msgstr "Saisissez le numéro du port"
 
-#: gdictsrc/gdict-pref-dialog.c:258
+#: gdictsrc/gdict-pref-dialog.c:257
 msgid "_Database:"
 msgstr "_Base de données :"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:264
 msgid "D_efault strategy:"
 msgstr "S_tratégie par défaut :"
 
-#: gdictsrc/gdict-pref-dialog.c:455
+#: gdictsrc/gdict-pref-dialog.c:457
 msgid "Search all databases"
 msgstr "Chercher dans toutes les bases de données"
 
-#: gdictsrc/gdict-pref-dialog.c:620
+#: gdictsrc/gdict-pref-dialog.c:622
 msgid "Database"
 msgstr "Base de données"
 
-#: gdictsrc/gdict-pref-dialog.c:620
+#: gdictsrc/gdict-pref-dialog.c:622
 msgid "Database Name"
 msgstr "Nom de la base de données"
 
-#: gdictsrc/gdict-pref-dialog.c:632
+#: gdictsrc/gdict-pref-dialog.c:634
 msgid "Default Strategy"
 msgstr "Stratégie par défaut"
 
@@ -877,7 +881,7 @@ msgstr "Ré_sultats de la recherche"
 msgid "Check Spelling"
 msgstr "Vérifier l'orthographe"
 
-#: gdictsrc/gdict-speller.c:653
+#: gdictsrc/gdict-speller.c:654
 msgid "Search Strategy"
 msgstr "Stratégie de recherche"
 
@@ -1113,12 +1117,12 @@ msgstr ""
 #: gfloppy/src/main.c:132 gfloppy/src/main.c:175
 #, c-format
 msgid ""
-"You do not have the proper permissions to write to %s, formatting will not be "
-"possible.\n"
+"You do not have the proper permissions to write to %s, formatting will not "
+"be possible.\n"
 "Contact your system administrator about getting write permissions."
 msgstr ""
-"Vous n'avez pas les permissions nécessaires pour écrire sur %s, le "
-"formatage ne pourra pas être possible.\n"
+"Vous n'avez pas les permissions nécessaires pour écrire sur %s, le formatage "
+"ne pourra pas être possible.\n"
 "Contactez votre administrateur systèmeafin d'obtenir les permissions en "
 "écriture."
 
@@ -1368,8 +1372,7 @@ msgstr "Entrée de répertoire de démarrage"
 #: gsearchtool/gsearchtool.c:1760 gsearchtool/gsearchtool.c:1761
 msgid "Enter the folder name where you want to start the search"
 msgstr ""
-"Saisissez le nom du répertoire dans lequel vous voulez démarrer la "
-"recherche"
+"Saisissez le nom du répertoire dans lequel vous voulez démarrer la recherche"
 
 #: gsearchtool/gsearchtool.c:1401
 msgid "Rules:"
@@ -1473,7 +1476,7 @@ msgstr "Le fichier %s existe, l'écraser ?"
 msgid "Cannot save the results file."
 msgstr "Impossible d'enregistrer le fichier de résultats."
 
-#: gsearchtool/gsearchtool.c:2052 meat-grinder/meat-grinder.c:618
+#: gsearchtool/gsearchtool.c:2052 meat-grinder/meat-grinder.c:652
 msgid "Save Results"
 msgstr "Enregistrer les résultats"
 
@@ -1511,16 +1514,16 @@ msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:43
 msgid ""
-"This  program  is  part of  the  GNOME  project for Linux. Logview comes with "
-"ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
+"This  program  is  part of  the  GNOME  project for Linux. Logview comes "
+"with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
 "redistribute it under the conditions of the GNU General Public Licence. The "
 "log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 msgstr ""
 "Ce programme fait partie du projet GNOME pour Linux. Le visualiseur "
 "d'historique est fournit avec ABSOLUMENT AUCUNE GARANTIE. Ceci est un "
-"logiciel libre, et vous êtes encouragé à le redistribuer sous les "
-"conditions de la Licence Publique Générale GNU.  L'icône du journal est un "
-"petit cadeau de Tuomas Kuosmanen (a.k.a tigert)."
+"logiciel libre, et vous êtes encouragé à le redistribuer sous les conditions "
+"de la Licence Publique Générale GNU.  L'icône du journal est un petit cadeau "
+"de Tuomas Kuosmanen (a.k.a tigert)."
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
 #: logview/about.c:72
@@ -1668,8 +1671,8 @@ msgstr "Helvetica Bold 10"
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr ""
-"Ne peut ouvrir la base de données d'expressions rationnelles <%s> ! Échec "
-"de l'ouverture."
+"Ne peut ouvrir la base de données d'expressions rationnelles <%s> ! Échec de "
+"l'ouverture."
 
 #: logview/desc_db.c:147
 #, c-format
@@ -1875,6 +1878,10 @@ msgstr "_Détails sur l'entrée"
 msgid "Show Entry Detail"
 msgstr "Affiche des détails sur l'entrée en cours"
 
+#: logview/logview.c:122
+msgid "About..."
+msgstr "À propos..."
+
 #: logview/logview.c:123
 msgid "Info about logview"
 msgstr "Information à propos de logview"
@@ -2011,7 +2018,7 @@ msgstr "Générateur d'Archive GNOME"
 msgid "Create compressed archives containing many files"
 msgstr "Stocke des fichiers dans des archives compressées"
 
-#: meat-grinder/meat-grinder.c:135
+#: meat-grinder/meat-grinder.c:136
 #, c-format
 msgid ""
 "Number of files: %d\n"
@@ -2020,7 +2027,7 @@ msgstr ""
 "Nombre de fichiers : %d\n"
 "Nombre de dossiers : %d"
 
-#: meat-grinder/meat-grinder.c:141
+#: meat-grinder/meat-grinder.c:142
 msgid ""
 "No files or folders, drop files or folders\n"
 "above to add them to the archive"
@@ -2028,111 +2035,111 @@ msgstr ""
 "Aucun fichiers ou répertoires. déposez des fichiers\n"
 "ou répertoires au-dessus pour les ajouter à l'archive"
 
-#: meat-grinder/meat-grinder.c:164
+#: meat-grinder/meat-grinder.c:165
 #, c-format
 msgid "%s removed"
 msgstr "%s enlevé"
 
-#: meat-grinder/meat-grinder.c:274 meat-grinder/meat-grinder.c:277
-msgid "Cannot start the archive (tar) program"
-msgstr "Ne peut démarrer le programme d'archivage (tar)"
+#: meat-grinder/meat-grinder.c:327 meat-grinder/meat-grinder.c:332
+#, fuzzy, c-format
+msgid "Failed to create %s"
+msgstr ""
+"Échec lors de l'enregistrement du fichier :\n"
+"%s\n"
+"%s"
 
-#: meat-grinder/meat-grinder.c:285
-msgid "Cannot run tar/gtar"
-msgstr "Ne peut exécuter tar/gtar"
-
-#: meat-grinder/meat-grinder.c:337
+#: meat-grinder/meat-grinder.c:372
 msgid "Archive.tar.gz"
 msgstr "Archive.tar.gz"
 
-#: meat-grinder/meat-grinder.c:457 meat-grinder/meat-grinder.c:937
+#: meat-grinder/meat-grinder.c:492 meat-grinder/meat-grinder.c:971
 msgid "GNOME Archive Generator"
 msgstr "Le Générateur d'Archive GNOME"
 
-#: meat-grinder/meat-grinder.c:459
+#: meat-grinder/meat-grinder.c:494
 msgid "Drag files in to make archives"
 msgstr "Déplacer des fichiers pour faire des archives"
 
-#: meat-grinder/meat-grinder.c:491
+#: meat-grinder/meat-grinder.c:526
 msgid "All files selected"
 msgstr "Tous les fichiers sélectionnés"
 
-#: meat-grinder/meat-grinder.c:510
+#: meat-grinder/meat-grinder.c:545
 msgid "All files removed"
 msgstr "Tous les fichiers supprimés"
 
-#: meat-grinder/meat-grinder.c:572 meat-grinder/meat-grinder.c:753
+#: meat-grinder/meat-grinder.c:607 meat-grinder/meat-grinder.c:787
 msgid "No filename selected"
 msgstr "Aucun nom de fichier sélectionné"
 
-#: meat-grinder/meat-grinder.c:576
+#: meat-grinder/meat-grinder.c:611
 msgid "File exists, overwrite?"
 msgstr "Le fichier existe, écraser ?"
 
-#: meat-grinder/meat-grinder.c:600
+#: meat-grinder/meat-grinder.c:634
 #, c-format
 msgid "%s created"
 msgstr "%s créé"
 
-#: meat-grinder/meat-grinder.c:614
+#: meat-grinder/meat-grinder.c:648
 msgid "No items to archive"
 msgstr "Pas d'élément à archiver"
 
-#: meat-grinder/meat-grinder.c:737
+#: meat-grinder/meat-grinder.c:771
 #, c-format
 msgid "%s added"
 msgstr "%s ajouté"
 
-#: meat-grinder/meat-grinder.c:756
+#: meat-grinder/meat-grinder.c:790
 msgid "File does not exists"
 msgstr "Le fichier n'existe pas"
 
-#: meat-grinder/meat-grinder.c:770
+#: meat-grinder/meat-grinder.c:804
 msgid "Add file or folder"
 msgstr "Ajouter un fichier ou un répertoire"
 
-#: meat-grinder/meat-grinder.c:887
+#: meat-grinder/meat-grinder.c:921
 msgid "_Add file or folder..."
 msgstr "_Ajouter un fichier ou un répertoire..."
 
-#: meat-grinder/meat-grinder.c:888
+#: meat-grinder/meat-grinder.c:922
 msgid "Add a file or folder to archive"
 msgstr "Ajoute un fichier ou un répertoire à l'archive"
 
-#: meat-grinder/meat-grinder.c:891
+#: meat-grinder/meat-grinder.c:925
 msgid "_Create archive..."
 msgstr "_Créer une archive..."
 
-#: meat-grinder/meat-grinder.c:891
+#: meat-grinder/meat-grinder.c:925
 msgid "Create a new archive from the items"
 msgstr "Crée une nouvelle archive à partir des éléments"
 
-#: meat-grinder/meat-grinder.c:901
+#: meat-grinder/meat-grinder.c:935
 msgid "_Remove"
 msgstr "_Supprimer"
 
-#: meat-grinder/meat-grinder.c:902
+#: meat-grinder/meat-grinder.c:936
 msgid "Remove the selected item"
 msgstr "Supprimer l'élément sélectionné"
 
-#: meat-grinder/meat-grinder.c:904
+#: meat-grinder/meat-grinder.c:938
 msgid "R_emove All"
 msgstr "_Enlever tout"
 
-#: meat-grinder/meat-grinder.c:905
+#: meat-grinder/meat-grinder.c:939
 msgid "Remove all items"
 msgstr "Enlever tous les éléments"
 
-#: meat-grinder/meat-grinder.c:977
+#: meat-grinder/meat-grinder.c:1010
 msgid "Drop files here to add them to the archive."
 msgstr "Déposer des fichiers ici pour les ajouter à l'archive."
 
 #. tarball icon
-#: meat-grinder/meat-grinder.c:989
+#: meat-grinder/meat-grinder.c:1022
 msgid "_Create Archive"
 msgstr "_Créer une archive"
 
-#: meat-grinder/meat-grinder.c:997
+#: meat-grinder/meat-grinder.c:1030
 msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
@@ -2140,17 +2147,23 @@ msgstr ""
 "Glissez ce bouton ver sla destination où vous voulez que l'archive soit "
 "créée ou cliquez-le pour ouvrir un dialogue de sélection de fichier."
 
-#: meat-grinder/meat-grinder.c:1125
+#: meat-grinder/meat-grinder.c:1168
 msgid "Cannot find proper icons anywhere!"
 msgstr "Ne peut trouver où que ce soit les bonnes icônes !"
 
-#: meat-grinder/meat-grinder.c:1133
+#: meat-grinder/meat-grinder.c:1176
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
 msgstr ""
 "Ne peut trouver le programme d'archive (tar) !\n"
 "Il s'agit du programme utilisé pour la création d'archives."
+
+#~ msgid "Cannot start the archive (tar) program"
+#~ msgstr "Ne peut démarrer le programme d'archivage (tar)"
+
+#~ msgid "Cannot run tar/gtar"
+#~ msgstr "Ne peut exécuter tar/gtar"
 
 #~ msgid "Find:"
 #~ msgstr "Rechercher :"
@@ -3441,15 +3454,6 @@ msgstr ""
 
 #~ msgid "Saving..."
 #~ msgstr "Enregistrement..."
-
-#~ msgid ""
-#~ "Failed to write file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Échec lors de l'enregistrement du fichier :\n"
-#~ "%s\n"
-#~ "%s"
 
 #~ msgid "Save Text As..."
 #~ msgstr "Enregistrer le texte sous..."

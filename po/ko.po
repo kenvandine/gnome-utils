@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.3.0\n"
-"POT-Creation-Date: 2002-05-07 12:40+0100\n"
+"POT-Creation-Date: 2002-05-14 02:37+0100\n"
 "PO-Revision-Date: 2002-05-06 10:04+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
@@ -14,10 +14,70 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: exe-handler/gnome-exe-handler.c:76
+#, c-format
+msgid ""
+"Executing arbitrary programs that you downloaded from the network might be "
+"dangerous.\n"
+"\n"
+"Are you sure you want to run `%s'?"
+msgstr ""
+"네트워크에서 내려 받은 임의의 프로그램을 실행하는 것은 위험합니다.\n"
+"\n"
+"정말로 `%s'을(를) 실행할까요?"
+
+#: exe-handler/gnome-exe-handler.c:83
+msgid "Could not access file permissions"
+msgstr "파일 권한에 접근할 수 없습니다"
+
+#: exe-handler/gnome-exe-handler.c:88
+#, c-format
+msgid "Could not execute the file `%s' due to a permission problem"
+msgstr "권한 문제 때문에 `%s' 파일을 실행할 수 없습니다"
+
+#: exe-handler/gnome-exe-handler.c:104
+#, c-format
+msgid "Failure at executing `%s'"
+msgstr "`%s' 실행에 실패했습니다"
+
+#: exe-handler/gnome-exe-handler.c:123
+#, c-format
+msgid "It was not possible to open the file `%s'"
+msgstr "`%s' 파일 열기가 가능하지 않습니다"
+
+#: exe-handler/gnome-exe-handler.c:132
+#, c-format
+msgid "The file `%s' is empty"
+msgstr "`%s' 파일이 비어 있습니다"
+
+#: exe-handler/gnome-exe-handler.c:137
+#, c-format
+msgid "There was an error. `%s' is empty"
+msgstr "오류가 발생했습니다. `%s'가 비어 있습니다"
+
+#: exe-handler/gnome-exe-handler.c:152
+msgid "This is a library and can not be executed"
+msgstr "라이브러리이며 실행할 수 없습니다"
+
+#: exe-handler/gnome-exe-handler.c:158
+msgid "The file is a core file and can not be executed"
+msgstr "메모리 덤프 파일이며 실행할 수 ㅇ벗습니다"
+
+#: exe-handler/gnome-exe-handler.c:162 exe-handler/gnome-exe-handler.c:196
+msgid "This is an unknown kind of executable"
+msgstr "알 수 없는 종류의 실행 파일입니다"
+
+#: exe-handler/gnome-exe-handler.c:192
+msgid ""
+"The executable is for a different platform and can not be executed on this "
+"system"
+msgstr ""
+"이 실행 파일은 다른 플랫폼을 위한 것이며 이 시스템에서는 실행할 수 없습니다"
+
 #. Translator credits
 #: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:47 gdictsrc/gdict-about.c:43
-#: gsearchtool/gsearchtool.c:1812 logview/about.c:52
-#: meat-grinder/meat-grinder.c:431
+#: gsearchtool/gsearchtool.c:1953 logview/about.c:52
+#: meat-grinder/meat-grinder.c:474
 msgid "translator_credits"
 msgstr ""
 "류창우 <cwryu@debian.org>\n"
@@ -35,185 +95,185 @@ msgstr "간단하면서 double을 사용한 정밀하고 xcalc와 비슷한 계�
 msgid "_Calculator"
 msgstr "계산기(_C)"
 
-#: gcalc/gnome-calc.c:230
+#: gcalc/gnome-calc.c:232
 msgid "inf"
 msgstr "inf"
 
-#: gcalc/gnome-calc.c:453
+#: gcalc/gnome-calc.c:455
 msgid "DEG"
 msgstr "DEG"
 
-#: gcalc/gnome-calc.c:455
+#: gcalc/gnome-calc.c:457
 msgid "RAD"
 msgstr "RAD"
 
-#: gcalc/gnome-calc.c:457
+#: gcalc/gnome-calc.c:459
 msgid "GRAD"
 msgstr "GRAD"
 
-#: gcalc/gnome-calc.c:1149
+#: gcalc/gnome-calc.c:1226
 msgid "1/x"
 msgstr "1/x"
 
-#: gcalc/gnome-calc.c:1149
+#: gcalc/gnome-calc.c:1226
 msgid "Inverse"
 msgstr "Inverse"
 
-#: gcalc/gnome-calc.c:1150
+#: gcalc/gnome-calc.c:1227
 msgid "x^2"
 msgstr "x^2"
 
-#: gcalc/gnome-calc.c:1150
+#: gcalc/gnome-calc.c:1227
 msgid "Square"
 msgstr "제곱"
 
-#: gcalc/gnome-calc.c:1151
+#: gcalc/gnome-calc.c:1228
 msgid "SQRT"
 msgstr "SQRT"
 
-#: gcalc/gnome-calc.c:1151
+#: gcalc/gnome-calc.c:1228
 msgid "Square root"
 msgstr "제곱근"
 
-#: gcalc/gnome-calc.c:1152
+#: gcalc/gnome-calc.c:1229
 msgid "CE/C"
 msgstr "CE/C"
 
-#: gcalc/gnome-calc.c:1152
+#: gcalc/gnome-calc.c:1229
 msgid "Clear"
 msgstr "지우기"
 
-#: gcalc/gnome-calc.c:1153
+#: gcalc/gnome-calc.c:1230
 msgid "AC"
 msgstr "전원"
 
-#: gcalc/gnome-calc.c:1153
+#: gcalc/gnome-calc.c:1230
 msgid "Reset"
 msgstr "리셋"
 
-#: gcalc/gnome-calc.c:1155 gcalc/gnome-calc.c:1211
+#: gcalc/gnome-calc.c:1232 gcalc/gnome-calc.c:1288
 msgid "INV"
 msgstr "INV"
 
-#: gcalc/gnome-calc.c:1155
+#: gcalc/gnome-calc.c:1232
 msgid "Inverse trigonometry/log function"
 msgstr "삼각/로그 함수의 역"
 
 #. inverse button
-#: gcalc/gnome-calc.c:1156
+#: gcalc/gnome-calc.c:1233
 msgid "sin"
 msgstr "sin"
 
-#: gcalc/gnome-calc.c:1156
+#: gcalc/gnome-calc.c:1233
 msgid "Sine"
 msgstr "사인"
 
-#: gcalc/gnome-calc.c:1157
+#: gcalc/gnome-calc.c:1234
 msgid "cos"
 msgstr "cos"
 
-#: gcalc/gnome-calc.c:1157
+#: gcalc/gnome-calc.c:1234
 msgid "Cosine"
 msgstr "코사인"
 
-#: gcalc/gnome-calc.c:1158
+#: gcalc/gnome-calc.c:1235
 msgid "tan"
 msgstr "tan"
 
-#: gcalc/gnome-calc.c:1158
+#: gcalc/gnome-calc.c:1235
 msgid "Tangent"
 msgstr "탄젠트"
 
 #. Ugly hack so that window won't resize when selecting GRAD - there should be a better fix that this
-#: gcalc/gnome-calc.c:1160
+#: gcalc/gnome-calc.c:1237
 msgid " DEG  "
 msgstr " DEG  "
 
-#: gcalc/gnome-calc.c:1160
+#: gcalc/gnome-calc.c:1237
 msgid "Switch degrees / radians / grad"
 msgstr "degree / radian / grad 전환"
 
-#: gcalc/gnome-calc.c:1162
+#: gcalc/gnome-calc.c:1239
 msgid "e"
 msgstr "e"
 
-#: gcalc/gnome-calc.c:1162
+#: gcalc/gnome-calc.c:1239
 msgid "Base of Natural Logarithm"
 msgstr "자연 로그 밑"
 
-#: gcalc/gnome-calc.c:1163
+#: gcalc/gnome-calc.c:1240
 msgid "EE"
 msgstr "EE"
 
-#: gcalc/gnome-calc.c:1163
+#: gcalc/gnome-calc.c:1240
 msgid "Add digit"
 msgstr "숫자 추가"
 
-#: gcalc/gnome-calc.c:1164
+#: gcalc/gnome-calc.c:1241
 msgid "log"
 msgstr "log"
 
-#: gcalc/gnome-calc.c:1164
+#: gcalc/gnome-calc.c:1241
 msgid "Base 10 Logarithm"
 msgstr "상용 로그"
 
-#: gcalc/gnome-calc.c:1165
+#: gcalc/gnome-calc.c:1242
 msgid "ln"
 msgstr "ln"
 
-#: gcalc/gnome-calc.c:1165
+#: gcalc/gnome-calc.c:1242
 msgid "Natural Logarithm"
 msgstr "자연 로그"
 
-#: gcalc/gnome-calc.c:1166
+#: gcalc/gnome-calc.c:1243
 msgid "x^y"
 msgstr "x^y"
 
-#: gcalc/gnome-calc.c:1166
+#: gcalc/gnome-calc.c:1243
 msgid "Power"
 msgstr "지수"
 
-#: gcalc/gnome-calc.c:1168
+#: gcalc/gnome-calc.c:1245
 msgid "PI"
 msgstr "PI"
 
-#: gcalc/gnome-calc.c:1169
+#: gcalc/gnome-calc.c:1246
 msgid "x!"
 msgstr "x!"
 
-#: gcalc/gnome-calc.c:1169
+#: gcalc/gnome-calc.c:1246
 msgid "Factorial"
 msgstr "Factorial"
 
-#: gcalc/gnome-calc.c:1170
+#: gcalc/gnome-calc.c:1247
 msgid "("
 msgstr "("
 
-#: gcalc/gnome-calc.c:1170
+#: gcalc/gnome-calc.c:1247
 msgid "Opening Parenthesis"
 msgstr "괄호 열기"
 
-#: gcalc/gnome-calc.c:1171
+#: gcalc/gnome-calc.c:1248
 msgid ")"
 msgstr ")"
 
-#: gcalc/gnome-calc.c:1171
+#: gcalc/gnome-calc.c:1248
 msgid "Closing Parenthesis"
 msgstr "괄호 닫기"
 
-#: gcalc/gnome-calc.c:1172
+#: gcalc/gnome-calc.c:1249
 msgid "/"
 msgstr "/"
 
-#: gcalc/gnome-calc.c:1172
+#: gcalc/gnome-calc.c:1249
 msgid "Divide by"
 msgstr "나누기"
 
-#: gcalc/gnome-calc.c:1174
+#: gcalc/gnome-calc.c:1251
 msgid "STO"
 msgstr "STO"
 
-#: gcalc/gnome-calc.c:1174
+#: gcalc/gnome-calc.c:1251
 msgid ""
 "Store the value in the\n"
 "display field in memory"
@@ -221,31 +281,31 @@ msgstr ""
 "표시 창에 있는 값을 \n"
 "메모리에 저장하기"
 
-#: gcalc/gnome-calc.c:1175
+#: gcalc/gnome-calc.c:1252
 msgid "7"
 msgstr "7"
 
-#: gcalc/gnome-calc.c:1176
+#: gcalc/gnome-calc.c:1253
 msgid "8"
 msgstr "8"
 
-#: gcalc/gnome-calc.c:1177
+#: gcalc/gnome-calc.c:1254
 msgid "9"
 msgstr "9"
 
-#: gcalc/gnome-calc.c:1178
+#: gcalc/gnome-calc.c:1255
 msgid "*"
 msgstr "*"
 
-#: gcalc/gnome-calc.c:1178
+#: gcalc/gnome-calc.c:1255
 msgid "Multiply by"
 msgstr "곱하기"
 
-#: gcalc/gnome-calc.c:1180
+#: gcalc/gnome-calc.c:1257
 msgid "RCL"
 msgstr "RCL"
 
-#: gcalc/gnome-calc.c:1180
+#: gcalc/gnome-calc.c:1257
 msgid ""
 "Display the value in memory\n"
 "in the display field"
@@ -253,31 +313,31 @@ msgstr ""
 "메모리에 있는 값을 \n"
 "표시 창에 표시하기"
 
-#: gcalc/gnome-calc.c:1181
+#: gcalc/gnome-calc.c:1258
 msgid "4"
 msgstr "4"
 
-#: gcalc/gnome-calc.c:1182
+#: gcalc/gnome-calc.c:1259
 msgid "5"
 msgstr "5"
 
-#: gcalc/gnome-calc.c:1183
+#: gcalc/gnome-calc.c:1260
 msgid "6"
 msgstr "6"
 
-#: gcalc/gnome-calc.c:1184
+#: gcalc/gnome-calc.c:1261
 msgid "-"
 msgstr "-"
 
-#: gcalc/gnome-calc.c:1184
+#: gcalc/gnome-calc.c:1261
 msgid "Subtract"
 msgstr "빼기"
 
-#: gcalc/gnome-calc.c:1186
+#: gcalc/gnome-calc.c:1263
 msgid "SUM"
 msgstr "SUM"
 
-#: gcalc/gnome-calc.c:1186
+#: gcalc/gnome-calc.c:1263
 msgid ""
 "Add the value in the display\n"
 "field to the value in memory"
@@ -285,31 +345,31 @@ msgstr ""
 "표시 창에 있는 값을\n"
 "메모리에 있는 값에 더하기"
 
-#: gcalc/gnome-calc.c:1187
+#: gcalc/gnome-calc.c:1264
 msgid "1"
 msgstr "1"
 
-#: gcalc/gnome-calc.c:1188
+#: gcalc/gnome-calc.c:1265
 msgid "2"
 msgstr "2"
 
-#: gcalc/gnome-calc.c:1189
+#: gcalc/gnome-calc.c:1266
 msgid "3"
 msgstr "3"
 
-#: gcalc/gnome-calc.c:1190
+#: gcalc/gnome-calc.c:1267
 msgid "+"
 msgstr "+"
 
-#: gcalc/gnome-calc.c:1190
+#: gcalc/gnome-calc.c:1267
 msgid "Add"
 msgstr "더하기"
 
-#: gcalc/gnome-calc.c:1192
+#: gcalc/gnome-calc.c:1269
 msgid "EXC"
 msgstr "EXC"
 
-#: gcalc/gnome-calc.c:1192
+#: gcalc/gnome-calc.c:1269
 msgid ""
 "Exchange the values in the\n"
 "display field and memory"
@@ -317,31 +377,31 @@ msgstr ""
 "표시 창의 값과 메모리에\n"
 "있는 값을 뒤 바꾸기"
 
-#: gcalc/gnome-calc.c:1193
+#: gcalc/gnome-calc.c:1270
 msgid "0"
 msgstr "0"
 
-#: gcalc/gnome-calc.c:1194
+#: gcalc/gnome-calc.c:1271
 msgid "."
 msgstr "."
 
-#: gcalc/gnome-calc.c:1194
+#: gcalc/gnome-calc.c:1271
 msgid "Decimal Point"
 msgstr "소수점"
 
-#: gcalc/gnome-calc.c:1195
+#: gcalc/gnome-calc.c:1272
 msgid "+/-"
 msgstr "+/-"
 
-#: gcalc/gnome-calc.c:1195
+#: gcalc/gnome-calc.c:1272
 msgid "Change sign"
 msgstr "부호"
 
-#: gcalc/gnome-calc.c:1196
+#: gcalc/gnome-calc.c:1273
 msgid "="
 msgstr "="
 
-#: gcalc/gnome-calc.c:1196
+#: gcalc/gnome-calc.c:1273
 msgid "Calculate"
 msgstr "계산"
 
@@ -409,56 +469,56 @@ msgid ""
 msgstr ""
 "여러분의 글꼴에서 다른 프로그램으로 문자를 선택, 복사하고 붙여 넣습니다"
 
-#: gcharmap/src/callbacks.c:121
+#: gcharmap/src/callbacks.c:114
 msgid "del"
 msgstr "del"
 
-#: gcharmap/src/callbacks.c:127
+#: gcharmap/src/callbacks.c:120
 #, c-format
 msgid " %s: Character code %d"
 msgstr "%s: 문자 코드 %d"
 
-#: gcharmap/src/callbacks.c:166
+#: gcharmap/src/callbacks.c:161
 msgid "Text copied to clipboard..."
 msgstr "클립보드로 글자 복사..."
 
-#: gcharmap/src/callbacks.c:183
+#: gcharmap/src/callbacks.c:178
 msgid "Text cut to clipboard..."
 msgstr "클립보드로 글자 자르기..."
 
-#: gcharmap/src/callbacks.c:232
+#: gcharmap/src/callbacks.c:227
 msgid "Text pasted from clipboard..."
 msgstr "클립보드에서 글자 붙이기..."
 
-#: gcharmap/src/interface.c:195
+#: gcharmap/src/interface.c:208
 msgid "Gnome Character Map"
 msgstr "그놈 문자 맵"
 
-#: gcharmap/src/interface.c:223
+#: gcharmap/src/interface.c:238
 msgid "Action Toolbar"
 msgstr "행동 도구 모음"
 
-#: gcharmap/src/interface.c:227
+#: gcharmap/src/interface.c:242
 msgid "_Text to copy:"
 msgstr "복사할 텍스트(_T):"
 
-#: gcharmap/src/interface.c:240
+#: gcharmap/src/interface.c:255
 msgid "_Copy"
 msgstr "복사(_C)"
 
-#: gcharmap/src/interface.c:262 gcharmap/src/interface.c:263
+#: gcharmap/src/interface.c:277 gcharmap/src/interface.c:278
 msgid "Text to copy"
 msgstr "복사할 텍스트"
 
-#: gcharmap/src/interface.c:263
+#: gcharmap/src/interface.c:278
 msgid "Entry"
 msgstr "항목"
 
-#: gcharmap/src/interface.c:264 gcharmap/src/menus.c:78
+#: gcharmap/src/interface.c:279 gcharmap/src/menus.c:77
 msgid "Copy"
 msgstr "복사"
 
-#: gcharmap/src/interface.c:264
+#: gcharmap/src/interface.c:279
 msgid "Copy the text"
 msgstr "텍스트 복사"
 
@@ -470,38 +530,93 @@ msgstr "찾아보기(_B)..."
 msgid "Insert character(s) by choosing character codes."
 msgstr "문자 코드를 선택해 문자를 삽입합니다."
 
-#: gcharmap/src/menus.c:64
+#: gcharmap/src/menus.c:63
 msgid "_Characters"
 msgstr "문자(_C)"
 
 #. GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
 #. cb_insert_char_click, NULL),
 #. GNOMEUIINFO_SEPARATOR,
-#: gcharmap/src/menus.c:76
+#: gcharmap/src/menus.c:75
 msgid "Cut"
 msgstr "자르기"
 
-#: gcharmap/src/menus.c:76
+#: gcharmap/src/menus.c:75
 msgid "Cut the selection"
 msgstr "선택한 부분 자르기"
 
-#: gcharmap/src/menus.c:78
+#: gcharmap/src/menus.c:77
 msgid "Copy the selection"
 msgstr "선택한 부분 복사"
 
-#: gcharmap/src/menus.c:80
+#: gcharmap/src/menus.c:79
 msgid "Paste"
 msgstr "붙이기"
 
-#: gcharmap/src/menus.c:80
+#: gcharmap/src/menus.c:79
 msgid "Paste the clipboard"
 msgstr "클립보드에서 붙임"
+
+#: gdialog/guage.c:78
+msgid "Gdialog progressbar"
+msgstr ""
+
+#: gdialog/guage.c:78
+msgid "Indicates the percentage specified at the standard input"
+msgstr ""
+
+#: gdialog/inputbox.c:90
+#, fuzzy
+msgid "GDialog Entry"
+msgstr "단어 엔트리"
+
+#: gdialog/inputbox.c:90
+#, fuzzy
+msgid "Enter the text"
+msgstr "포트 번호를 입력합니다"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:1
+msgid "Accessories"
+msgstr "액세서리"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:2
+msgid "Dictionary Lookup"
+msgstr "사전 찾기"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:3
+#: gdictsrc/gnome-dictionary.desktop.in.h:2
+msgid "Lookup words in an online dictionary"
+msgstr "온라인 사전에서 단어 찾아 보기"
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:1
+msgid "Look Up Selected Text..."
+msgstr ""
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:2
+#, fuzzy
+msgid "_About..."
+msgstr "정보..."
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#, fuzzy
+msgid "_Help"
+msgstr "도움말"
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:4
+#, fuzzy
+msgid "_Preferences"
+msgstr "기본 설정"
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:5
+#, fuzzy
+msgid "_Show/Hide Definition Window..."
+msgstr "정의 창 보이거나 닫기..."
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:648 gdictsrc/gdict-pref-dialog.c:461
-#: gdictsrc/gdict-pref-dialog.c:512 gdictsrc/gdict-speller.c:478
+#: gdictsrc/dict.c:648 gdictsrc/gdict-pref-dialog.c:465
+#: gdictsrc/gdict-pref-dialog.c:516 gdictsrc/gdict-speller.c:463
 msgid "Cannot connect to server"
 msgstr "서버로 접속할수 없습니다."
 
@@ -521,35 +636,41 @@ msgstr ""
 "MIT 사전 서버용 클라이언트.\n"
 "웹: http://gdict.dhs.org/, http://www.psilord.com/code/"
 
-#: gdictsrc/gdict-app.c:119
+#: gdictsrc/gdict-app.c:128
 msgid "Spell-checking..."
 msgstr "철자 검사중..."
 
-#: gdictsrc/gdict-app.c:127
+#: gdictsrc/gdict-app.c:136
 msgid "Spell check done"
 msgstr "철자 검사 완료"
 
-#: gdictsrc/gdict-app.c:135 gdictsrc/gdict-app.c:264
+#: gdictsrc/gdict-app.c:144 gdictsrc/gdict-app.c:274
 msgid "No matches found"
 msgstr "일치 하는것이 없습니다"
 
-#: gdictsrc/gdict-app.c:248
+#: gdictsrc/gdict-app.c:257
 msgid "Looking up word..."
 msgstr "단어를 찾는중..."
 
-#: gdictsrc/gdict-app.c:256
+#: gdictsrc/gdict-app.c:265
 msgid "Lookup done"
 msgstr "찾기 완료"
 
-#: gdictsrc/gdict-app.c:276
+#: gdictsrc/gdict-app.c:287
 msgid "String not found"
 msgstr "문자열을 찾을수 없습니다"
 
-#: gdictsrc/gdict-app.c:418
-msgid "Find:"
-msgstr "찾기:"
+#: gdictsrc/gdict-app.c:455
+#, fuzzy
+msgid "Find"
+msgstr "찾기(_I)"
 
-#: gdictsrc/gdict-app.c:443
+#: gdictsrc/gdict-app.c:476 gsearchtool/gsearchtool.c:1458
+#: gsearchtool/gsearchtool.c:1791
+msgid "_Find"
+msgstr "찾기(_F)"
+
+#: gdictsrc/gdict-app.c:526
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -559,61 +680,61 @@ msgstr ""
 "사용하고 있는 서버를 사용할 수 없거나\n"
 "인터넷에 연결되어 있지 않은것 같습니다."
 
-#: gdictsrc/gdict-app.c:582 gdictsrc/gdict-app.c:691
-#: gdictsrc/gdict-speller.c:243
+#: gdictsrc/gdict-app.c:687 gdictsrc/gdict-app.c:798
+#: gdictsrc/gdict-speller.c:221
 msgid "_Look Up Word"
 msgstr "단어 찾아 보기(_L)"
 
-#: gdictsrc/gdict-app.c:583
+#: gdictsrc/gdict-app.c:688
 msgid "Lookup word in dictionary"
 msgstr "사전에서 단어를 찾음"
 
-#: gdictsrc/gdict-app.c:585 gdictsrc/gdict-speller.c:187
+#: gdictsrc/gdict-app.c:690 gdictsrc/gdict-speller.c:165
 msgid "Check _Spelling"
 msgstr "맞춤법 검사(_S)"
 
-#: gdictsrc/gdict-app.c:586
+#: gdictsrc/gdict-app.c:691
 msgid "Check word spelling"
 msgstr "맞춤법 검사"
 
-#: gdictsrc/gdict-app.c:630
+#: gdictsrc/gdict-app.c:735
 msgid "_Dictionary"
 msgstr "사전(_D)"
 
-#: gdictsrc/gdict-app.c:666 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:771 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "사전"
 
-#: gdictsrc/gdict-app.c:687
+#: gdictsrc/gdict-app.c:794
 msgid "_Word: "
 msgstr "단어(_W): "
 
-#: gdictsrc/gdict-app.c:714 gdictsrc/gdict-speller.c:169
+#: gdictsrc/gdict-app.c:821 gdictsrc/gdict-speller.c:147
 msgid "Word"
 msgstr "단어"
 
-#: gdictsrc/gdict-app.c:715 gdictsrc/gdict-app.c:716
-#: gdictsrc/gdict-speller.c:170
+#: gdictsrc/gdict-app.c:822 gdictsrc/gdict-app.c:823
+#: gdictsrc/gdict-speller.c:148
 msgid "Word Entry"
 msgstr "단어 엔트리"
 
-#: gdictsrc/gdict-app.c:715
+#: gdictsrc/gdict-app.c:822
 msgid "Enter a Word or select one from the list below"
 msgstr "단어를 입력하거나 다음 목록에서 선택하십시오"
 
-#: gdictsrc/gdict-app.c:718
+#: gdictsrc/gdict-app.c:825
 msgid "Look Up for a Word"
 msgstr "단어 찾아 보기"
 
-#: gdictsrc/gdict-applet.c:266
+#: gdictsrc/gdict-applet.c:239
+msgid "_Lookup"
+msgstr "찾기(_L)"
+
+#: gdictsrc/gdict-applet.c:245
 msgid "Dictionary Applet"
 msgstr "사전 애플릿"
 
-#: gdictsrc/gdict-applet.c:278
-msgid "Press button to look up any highlighted text in a dictionary"
-msgstr "강조된 텍스트를 사전에서 찾아 보려면 단추를 누르십시오"
-
-#: gdictsrc/gdict-defbox.c:638 gdictsrc/gdict-speller.c:503
+#: gdictsrc/gdict-defbox.c:643 gdictsrc/gdict-speller.c:488
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "질의를 실행하는 데 오류: %s"
@@ -714,78 +835,49 @@ msgstr "데이타베이스(_D):"
 msgid "D_efault strategy:"
 msgstr "기본 전략(_E):"
 
-#: gdictsrc/gdict-pref-dialog.c:453
+#: gdictsrc/gdict-pref-dialog.c:457
 msgid "Search all databases"
 msgstr "모든 데이타베이스 찾기"
 
-#: gdictsrc/gdict-pref-dialog.c:618
+#: gdictsrc/gdict-pref-dialog.c:622
 msgid "Database"
 msgstr "데이타베이스"
 
-#: gdictsrc/gdict-pref-dialog.c:618
+#: gdictsrc/gdict-pref-dialog.c:622
 msgid "Database Name"
 msgstr "데이타베이스 이름"
 
-#: gdictsrc/gdict-pref-dialog.c:630
+#: gdictsrc/gdict-pref-dialog.c:634
 msgid "Default Strategy"
 msgstr "기본 전략"
 
-#: gdictsrc/gdict-speller.c:157
+#: gdictsrc/gdict-speller.c:135
 msgid "_Word:"
 msgstr "단어(_W): "
 
-#: gdictsrc/gdict-speller.c:170
+#: gdictsrc/gdict-speller.c:148
 msgid "Enter a word to know the spelling"
 msgstr "맞춤법을 검사하려면 단어를 입력하십시오"
 
-#: gdictsrc/gdict-speller.c:175
+#: gdictsrc/gdict-speller.c:153
 msgid "Click to do the spell check"
 msgstr "맞춤법 검사를 하려면 클릭하십시오"
 
-#: gdictsrc/gdict-speller.c:180
+#: gdictsrc/gdict-speller.c:158
 msgid "Search S_trategy:"
 msgstr "기본 전략(_T):"
 
-#: gdictsrc/gdict-speller.c:196
+#: gdictsrc/gdict-speller.c:174
 msgid "Search _Results"
 msgstr "찾은 결과(_R)"
 
-#: gdictsrc/gdict-speller.c:251
+#: gdictsrc/gdict-speller.c:236
 msgid "Check Spelling"
 msgstr "맞춤법 검사"
 
-#: gdictsrc/gdict-speller.c:668
+#: gdictsrc/gdict-speller.c:654
 msgid "Search Strategy"
 msgstr "기본 전략"
-
-#: gdictsrc/GNOME_GDictApplet.server.in.h:3
-#: gdictsrc/gnome-dictionary.desktop.in.h:2
-msgid "Lookup words in an online dictionary"
-msgstr "온라인 사전에서 단어 찾아 보기"
-
-#: gdictsrc/GNOME_GDictApplet.server.in.h:1
-msgid "Accessories"
-msgstr "액세서리"
-
-#: gdictsrc/GNOME_GDictApplet.server.in.h:2
-msgid "Dictionary Lookup"
-msgstr "사전 찾기"
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:141
-msgid "About..."
-msgstr "정보..."
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
-msgid "Help"
-msgstr "도움말"
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:3
-msgid "Preferences"
-msgstr "기본 설정"
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:4
-msgid "Show/Hide Definition Window..."
-msgstr "정의 창 보이거나 닫기..."
 
 #: gfloppy/gfloppy.desktop.in.h:1
 msgid "Floppy Formatter"
@@ -937,6 +1029,26 @@ msgstr ""
 msgid "ECould not determine current format type"
 msgstr "E현재 포맷 종류를 알아 볼 수 없습니다"
 
+#: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
+msgid "MMaking filesystem on disk..."
+msgstr "M디스크에 파일시스템을 만듭니다..."
+
+#: gfloppy/src/gfloppy.c:167
+msgid "EUnable to create filesystem correctly."
+msgstr "E파일시스템을 올바르게 만들 수 없습니다."
+
+#: gfloppy/src/gfloppy.c:171 gfloppy/src/gfloppy.c:203
+msgid "MMaking filesystem on disk... Done"
+msgstr "M디스크에 파일시스템을 만드는 중... 완료"
+
+#: gfloppy/src/gfloppy.c:200 gfloppy/src/gfloppy.c:215
+msgid "EUnable to create filesystem."
+msgstr "E파일시스템을 만들 수 없습니다."
+
+#: gfloppy/src/gfloppy.c:209
+msgid "MChecking for bad blocks... (this might take a while)"
+msgstr "M배드 블록 검사 중... (좀 시간이 걸릴 수 있습니다)"
+
 #: gfloppy/src/gfloppy2.glade.h:1
 msgid "DOS (fat)"
 msgstr "DOS (fat)"
@@ -980,26 +1092,6 @@ msgstr "플로피 장치(_F):"
 #: gfloppy/src/gfloppy2.glade.h:11
 msgid "_Quick format"
 msgstr "빠른 포맷(_Q)"
-
-#: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
-msgid "MMaking filesystem on disk..."
-msgstr "M디스크에 파일시스템을 만듭니다..."
-
-#: gfloppy/src/gfloppy.c:167
-msgid "EUnable to create filesystem correctly."
-msgstr "E파일시스템을 올바르게 만들 수 없습니다."
-
-#: gfloppy/src/gfloppy.c:171 gfloppy/src/gfloppy.c:203
-msgid "MMaking filesystem on disk... Done"
-msgstr "M디스크에 파일시스템을 만드는 중... 완료"
-
-#: gfloppy/src/gfloppy.c:200 gfloppy/src/gfloppy.c:215
-msgid "EUnable to create filesystem."
-msgstr "E파일시스템을 만들 수 없습니다."
-
-#: gfloppy/src/gfloppy.c:209
-msgid "MChecking for bad blocks... (this might take a while)"
-msgstr "M배드 블록 검사 중... (좀 시간이 걸릴 수 있습니다)"
 
 #: gfloppy/src/main.c:126 gfloppy/src/main.c:169
 #, c-format
@@ -1057,83 +1149,87 @@ msgstr "파일 찾기"
 msgid "Search your disk for files"
 msgstr "디스크에서 파일을 찾습니다"
 
-#: gsearchtool/gsearchtool.c:64
+#: gsearchtool/gsearchtool.c:65
 msgid "File name is"
 msgstr "파일 이름"
 
-#: gsearchtool/gsearchtool.c:65
+#: gsearchtool/gsearchtool.c:66
 msgid "File name is not"
 msgstr "파일 이름 제외"
 
-#: gsearchtool/gsearchtool.c:66
+#: gsearchtool/gsearchtool.c:67
 msgid "Don't search mounted filesystems"
 msgstr "마운트된 파일시스템을 찾지 않음"
 
-#: gsearchtool/gsearchtool.c:67
+#: gsearchtool/gsearchtool.c:68
 msgid "Follow symbolic links"
 msgstr "심볼릭 링크 따라가기"
 
-#: gsearchtool/gsearchtool.c:68
+#: gsearchtool/gsearchtool.c:69
 msgid "Process folder contents depth first"
 msgstr "깊이 우선으로 폴더 내용 처리"
 
-#: gsearchtool/gsearchtool.c:69
+#: gsearchtool/gsearchtool.c:70
 msgid "Owned by user"
 msgstr "소유한 사용자"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:71
 msgid "Owned by group"
 msgstr "소유한 그룹"
 
-#: gsearchtool/gsearchtool.c:71
+#: gsearchtool/gsearchtool.c:72
 msgid "Invalid user or group"
 msgstr "잘못된 사용자 혹은 그룹"
 
-#: gsearchtool/gsearchtool.c:72
+#: gsearchtool/gsearchtool.c:73
 msgid "Last time modified"
 msgstr "마지막 수정 시각"
 
-#: gsearchtool/gsearchtool.c:73
+#: gsearchtool/gsearchtool.c:74
 msgid "File is empty"
 msgstr "비어 있는 파일"
 
-#: gsearchtool/gsearchtool.c:244 gsearchtool/gsearchtool.c:824
+#: gsearchtool/gsearchtool.c:75
+msgid "Matches regular expression"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:260 gsearchtool/gsearchtool.c:906
 msgid "Start folder does not exist."
 msgstr "시작할 폴더가 존재하지 않습니다."
 
-#: gsearchtool/gsearchtool.c:460
+#: gsearchtool/gsearchtool.c:477
 msgid "today at %-I:%M %p"
 msgstr "오늘 %p %-I:%M"
 
-#: gsearchtool/gsearchtool.c:462
+#: gsearchtool/gsearchtool.c:479
 msgid "yesterday at %-I:%M %p"
 msgstr "어제 %p %-I:%M"
 
-#: gsearchtool/gsearchtool.c:464 gsearchtool/gsearchtool.c:466
+#: gsearchtool/gsearchtool.c:481 gsearchtool/gsearchtool.c:483
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%y/%m/%-d, %p %-I:%M"
 
-#: gsearchtool/gsearchtool.c:476
+#: gsearchtool/gsearchtool.c:496
 msgid "%Y%m%d%H%M%S"
 msgstr "%Y%m%d%H%M%S"
 
-#: gsearchtool/gsearchtool.c:491
+#: gsearchtool/gsearchtool.c:511
 msgid "folder"
 msgstr "폴더"
 
-#: gsearchtool/gsearchtool.c:493
+#: gsearchtool/gsearchtool.c:513
 msgid "program"
 msgstr "프로그램"
 
-#: gsearchtool/gsearchtool.c:495
+#: gsearchtool/gsearchtool.c:515
 msgid "symbolic link"
 msgstr "심볼릭 링크"
 
-#: gsearchtool/gsearchtool.c:619
+#: gsearchtool/gsearchtool.c:641
 msgid "No Files Found."
 msgstr "찾은 파일이 없습니다."
 
-#: gsearchtool/gsearchtool.c:680
+#: gsearchtool/gsearchtool.c:719
 msgid ""
 "Cannot perform the search.\n"
 "The Bourne shell was not found\n"
@@ -1143,7 +1239,12 @@ msgstr ""
 "본 쉘을 찾을 수 없습니다.\n"
 "본 쉘은 보통 /bin/sh이나 /usr/bin/sh에 설치되어 있어야 합니다."
 
-#: gsearchtool/gsearchtool.c:783
+#: gsearchtool/gsearchtool.c:734
+#, fuzzy
+msgid "Searching..."
+msgstr "철자 검사중..."
+
+#: gsearchtool/gsearchtool.c:834
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1151,29 +1252,44 @@ msgstr ""
 "\n"
 "... 너무 오류가 많아서 표시할 수 없습니다  ..."
 
-#: gsearchtool/gsearchtool.c:835 gsearchtool/gsearchtool.c:1504
+#: gsearchtool/gsearchtool.c:845
+#, fuzzy
+msgid "No files found"
+msgstr "찾은 파일이 없습니다."
+
+#: gsearchtool/gsearchtool.c:848
+#, fuzzy
+msgid "One file found"
+msgstr "찾은 파일이 없습니다."
+
+#: gsearchtool/gsearchtool.c:850
+#, fuzzy, c-format
+msgid "%d files found"
+msgstr "찾은 파일이 없습니다."
+
+#: gsearchtool/gsearchtool.c:917 gsearchtool/gsearchtool.c:1622
 msgid "Cannot perform the search. Please specify a search criteria."
 msgstr "찾기를 수행할 수 없습니다. 찾기 범위를 지정하십시오."
 
-#: gsearchtool/gsearchtool.c:852 gsearchtool/gsearchtool.c:1525
+#: gsearchtool/gsearchtool.c:934 gsearchtool/gsearchtool.c:1643
 msgid ""
 "A search is already running.  Please wait for the search to complete or "
 "cancel it."
 msgstr "찾기가 이미 실행중입니다.  찾기가 끝날 때까지 기다리거나 취소하십시오."
 
-#: gsearchtool/gsearchtool.c:872
+#: gsearchtool/gsearchtool.c:967
 msgid "Start folder does not exist"
 msgstr "시작할 폴더가 존재하지 않습니다"
 
-#: gsearchtool/gsearchtool.c:887
+#: gsearchtool/gsearchtool.c:982
 msgid "Cannot show the search command line. Please specify a search criteria."
 msgstr "찾기 명령 행을 보여줄 수 없습니다. 찾기 범위를 지정하십시오."
 
-#: gsearchtool/gsearchtool.c:891
+#: gsearchtool/gsearchtool.c:986
 msgid "Search Command Line"
 msgstr "찾기 명령 행"
 
-#: gsearchtool/gsearchtool.c:909
+#: gsearchtool/gsearchtool.c:1004
 msgid ""
 "This is the command line that can be used to execute this search\n"
 "from the console.\n"
@@ -1184,191 +1300,196 @@ msgstr ""
 "\n"
 "명령어(_O):"
 
-#: gsearchtool/gsearchtool.c:929
+#: gsearchtool/gsearchtool.c:1024
 msgid "Command"
 msgstr "명령어"
 
-#: gsearchtool/gsearchtool.c:930
+#: gsearchtool/gsearchtool.c:1025
 msgid "Command Line Entry"
 msgstr "명령 행 엔트리"
 
-#: gsearchtool/gsearchtool.c:930
+#: gsearchtool/gsearchtool.c:1025
 msgid "Use this command line to execute the search from console"
 msgstr "이 명령 행을 사용해 콘솔에서 찾기를 실행합니다"
 
-#: gsearchtool/gsearchtool.c:1031
+#: gsearchtool/gsearchtool.c:1130
 msgid "No viewer available for this mime type."
 msgstr "이 MIME 타입에 대한 기본 프로그램이 없습니다"
 
-#: gsearchtool/gsearchtool.c:1117
+#: gsearchtool/gsearchtool.c:1220
 msgid "Entry changed called for a non entry option!"
 msgstr "엔트리가 없는 옵션에 대하여 엔트리 변경 콜백이 실행되었습니다!"
 
-#: gsearchtool/gsearchtool.c:1187
+#: gsearchtool/gsearchtool.c:1290
 msgid "Search Rule Value Entry"
 msgstr "찾기 규칙 값 엔트리"
 
-#: gsearchtool/gsearchtool.c:1187
+#: gsearchtool/gsearchtool.c:1290
 msgid "Enter a value for search rule"
 msgstr "찾기 규칙에 대한 값을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1202
+#: gsearchtool/gsearchtool.c:1305
 msgid "Enabled"
 msgstr "사용하기"
 
-#: gsearchtool/gsearchtool.c:1210
+#: gsearchtool/gsearchtool.c:1313
 msgid "Toggle On/Off to enable/disable the rule"
 msgstr "이 규칙을 사용할지 안할 지 토글하십시오"
 
-#: gsearchtool/gsearchtool.c:1218
+#: gsearchtool/gsearchtool.c:1321
 msgid "Click to Remove the Rule"
 msgstr "규칙을 제거하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1264 gsearchtool/gsearchtool.c:1608
+#: gsearchtool/gsearchtool.c:1367 gsearchtool/gsearchtool.c:1745
 msgid "S_tarting in folder:"
 msgstr "시작할 폴더(_T):"
 
-#: gsearchtool/gsearchtool.c:1266 gsearchtool/gsearchtool.c:1611
+#: gsearchtool/gsearchtool.c:1371 gsearchtool/gsearchtool.c:1751
 msgid "Browse"
 msgstr "찾아보기"
 
-#: gsearchtool/gsearchtool.c:1274 gsearchtool/gsearchtool.c:1275
-#: gsearchtool/gsearchtool.c:1620 gsearchtool/gsearchtool.c:1621
+#: gsearchtool/gsearchtool.c:1379 gsearchtool/gsearchtool.c:1380
+#: gsearchtool/gsearchtool.c:1760 gsearchtool/gsearchtool.c:1761
 msgid "Starting folder entry"
 msgstr "시작 폴더 엔트리"
 
-#: gsearchtool/gsearchtool.c:1274 gsearchtool/gsearchtool.c:1275
-#: gsearchtool/gsearchtool.c:1620 gsearchtool/gsearchtool.c:1621
+#: gsearchtool/gsearchtool.c:1379 gsearchtool/gsearchtool.c:1380
+#: gsearchtool/gsearchtool.c:1760 gsearchtool/gsearchtool.c:1761
 msgid "Enter the folder name where you want to start the search"
 msgstr "찾기를 시작할 폴더 이름을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1296
+#: gsearchtool/gsearchtool.c:1401
 msgid "Rules:"
 msgstr "규칙:"
 
-#: gsearchtool/gsearchtool.c:1316
+#: gsearchtool/gsearchtool.c:1421
 msgid "A_dd Rule:"
 msgstr "규칙 추가(_D):"
 
-#: gsearchtool/gsearchtool.c:1325
+#: gsearchtool/gsearchtool.c:1430
 msgid "Search Rules Menu"
 msgstr "찾기 규칙 메뉴"
 
-#: gsearchtool/gsearchtool.c:1325
+#: gsearchtool/gsearchtool.c:1430
 msgid "Select a search rule from the menu"
 msgstr "메뉴에서 찾기 규칙을 선택합니다"
 
-#: gsearchtool/gsearchtool.c:1353 gsearchtool/gsearchtool.c:1651
-msgid "_Find"
-msgstr "찾기(_F)"
-
-#: gsearchtool/gsearchtool.c:1368
+#: gsearchtool/gsearchtool.c:1473
 msgid "Click to Add a Rule"
 msgstr "규칙을 추가하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1369
+#: gsearchtool/gsearchtool.c:1474
 msgid "Click to Start the Search"
 msgstr "찾기를 시작하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1370
+#: gsearchtool/gsearchtool.c:1475
 msgid "Click to Stop the Search"
 msgstr "찾기를 중단하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1375 gsearchtool/gsearchtool.c:1672
+#: gsearchtool/gsearchtool.c:1480 gsearchtool/gsearchtool.c:1812
 msgid "S_earch Results"
 msgstr "찾은 결과(_E)"
 
-#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1711
+#: gsearchtool/gsearchtool.c:1520 gsearchtool/gsearchtool.c:1852
 msgid "Name"
 msgstr "성명"
 
-#: gsearchtool/gsearchtool.c:1436 gsearchtool/gsearchtool.c:1733
+#: gsearchtool/gsearchtool.c:1542 gsearchtool/gsearchtool.c:1874
 msgid "Folder"
 msgstr "폴더"
 
-#: gsearchtool/gsearchtool.c:1448 gsearchtool/gsearchtool.c:1745
+#: gsearchtool/gsearchtool.c:1554 gsearchtool/gsearchtool.c:1886
 msgid "Size"
 msgstr "크기"
 
-#: gsearchtool/gsearchtool.c:1460 gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1566 gsearchtool/gsearchtool.c:1898
 msgid "Type"
 msgstr "종류"
 
-#: gsearchtool/gsearchtool.c:1471 gsearchtool/gsearchtool.c:1768
+#: gsearchtool/gsearchtool.c:1577 gsearchtool/gsearchtool.c:1909
 msgid "Date Modified"
 msgstr "변경 일자"
 
-#: gsearchtool/gsearchtool.c:1587
+#: gsearchtool/gsearchtool.c:1721
 msgid "Find files _named:"
 msgstr "찾을 파일 이름(_N):"
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1736 gsearchtool/gsearchtool.c:1737
 msgid "File Name Entry"
 msgstr "파일 이름 엔트리"
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1736 gsearchtool/gsearchtool.c:1737
 msgid "Enter the file name you want to search"
 msgstr "찾을 파일 이름을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1666
+#: gsearchtool/gsearchtool.c:1806
 msgid "Click to Start the search"
 msgstr "찾기를 시작하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1667
+#: gsearchtool/gsearchtool.c:1807
 msgid "Click to Stop the search"
 msgstr "찾기를 중단하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1788
+#: gsearchtool/gsearchtool.c:1929
 msgid "Si_mple"
 msgstr "기본(_M)"
 
-#: gsearchtool/gsearchtool.c:1790
+#: gsearchtool/gsearchtool.c:1931
 msgid "Ad_vanced"
 msgstr "고급(_V)"
 
-#: gsearchtool/gsearchtool.c:1828
+#: gsearchtool/gsearchtool.c:1969
 #: gsearchtool/help/es/gsearchtool.desktop.in.h:1
 msgid "GNOME Search Tool"
 msgstr "그놈 찾기 도구"
 
-#: gsearchtool/gsearchtool.c:1829
+#: gsearchtool/gsearchtool.c:1970
 msgid "(C) 1998,2002 the Free Software Foundation"
 msgstr "(C) 1998,2002 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1971
 msgid "Frontend to the unix find/locate commands"
 msgstr "유닉스 find/locate 명령의 프론트 엔드"
 
-#: gsearchtool/gsearchtool.c:1869
+#: gsearchtool/gsearchtool.c:2010
 #, c-format
 msgid "File %s already exists. Overwrite?"
 msgstr "%s 파일이 이미 존재합니다. 덮어쓸까요?"
 
-#: gsearchtool/gsearchtool.c:1904
+#: gsearchtool/gsearchtool.c:2045
 msgid "Cannot save the results file."
 msgstr "결과 파일을 저장할 수 없습니다."
 
-#: gsearchtool/gsearchtool.c:1911 meat-grinder/meat-grinder.c:588
+#: gsearchtool/gsearchtool.c:2052 meat-grinder/meat-grinder.c:652
 msgid "Save Results"
 msgstr "결과 저장"
 
-#: gsearchtool/gsearchtool.c:1967
+#: gsearchtool/gsearchtool.c:2108
 msgid "S_how Command..."
 msgstr "명령 보기(_H)..."
 
-#: gsearchtool/gsearchtool.c:1968
+#: gsearchtool/gsearchtool.c:2109
+msgid "Show the command used to perform the search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:2112
 msgid "Save Results _As..."
 msgstr "결과를 다른 이름으로 저장(_A)..."
 
-#: gsearchtool/gsearchtool.c:1981
+#: gsearchtool/gsearchtool.c:2113
+#, fuzzy
+msgid "Save the search results"
+msgstr "찾은 결과(_R)"
+
+#: gsearchtool/gsearchtool.c:2128
 msgid "Sear_ch"
 msgstr "찾기(_C)"
 
-#: gsearchtool/gsearchtool.c:2003
+#: gsearchtool/gsearchtool.c:2150
 msgid "Cannot initialize bonobo."
 msgstr "보노보를 초기화할 수 없습니다."
 
-#: gsearchtool/gsearchtool.c:2007
+#: gsearchtool/gsearchtool.c:2154
 msgid "Search Tool"
 msgstr "찾기 도구"
 
@@ -1390,80 +1511,82 @@ msgstr ""
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
 #: logview/about.c:72
-msgid "GNOME System Log"
-msgstr "그놈 시스템 로그"
+#, fuzzy
+msgid "GNOME System Log Viewer"
+msgstr "시스템 로그 보기"
 
 #: logview/about.c:73
 msgid "Copyright (C) 1998"
 msgstr "Copyright (C) 1998"
 
-#: logview/actions.c:75
+#: logview/actions.c:74
 msgid "Action database"
 msgstr "실행 데이터베이스"
 
-#: logview/actions.c:82 logview/monitor.c:114
-msgid "Monitor options"
+#: logview/actions.c:81
+#, fuzzy
+msgid "Action options"
 msgstr "감시 옵션"
 
-#: logview/actions.c:139
+#: logview/actions.c:138
 msgid "Add..."
 msgstr "추가..."
 
-#: logview/actions.c:145
+#: logview/actions.c:144
 msgid "Edit..."
 msgstr "편집..."
 
-#: logview/actions.c:151
+#: logview/actions.c:150
 msgid "Remove"
 msgstr "지우기"
 
-#: logview/actions.c:263
+#: logview/actions.c:257
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "<%s> 작업 데이타 베이스를 열 수 없습니다! 열기가 실패했습니다."
 
-#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
-#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
+#: logview/actions.c:292 logview/actions.c:305 logview/actions.c:316
+#: logview/actions.c:327 logview/actions.c:338 logview/actions.c:349
 msgid "Error parsing actions data base"
 msgstr "데이터 베이스 파싱 오류"
 
-#: logview/actions.c:389
+#: logview/actions.c:383
 msgid "Can't write to actions database!"
 msgstr "데이터 베이스에 쓰기를 할수 없습니다!"
 
-#: logview/actions.c:496
+#: logview/actions.c:490
 msgid "<empty>"
 msgstr "<비어있슴>"
 
-#: logview/actions.c:497
+#: logview/actions.c:491
 msgid "log name regexp"
 msgstr "로그 이름 정규식"
 
-#: logview/actions.c:498
+#: logview/actions.c:492
 msgid "process regexp"
 msgstr "프로세스 정규식"
 
-#: logview/actions.c:499
+#: logview/actions.c:493
 msgid "message regexp"
 msgstr "메세지 정규식"
 
-#: logview/actions.c:500
+#: logview/actions.c:494
 msgid "action to execute when regexps are TRUE"
 msgstr "정규식에 맞을 때 실행할 작업"
 
-#: logview/actions.c:501
+#: logview/actions.c:495
 msgid "description"
 msgstr "설명"
 
-#: logview/actions.c:749
+#: logview/actions.c:742
 msgid "description:"
 msgstr "설명:"
 
-#: logview/actions.c:757
+#: logview/actions.c:750
 msgid "Description of this entry."
 msgstr "이 항목의 설명"
 
-#: logview/actions.c:814
+#: logview/actions.c:803
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1480,7 +1603,7 @@ msgstr ""
 "설명: [%s]\n"
 "작업: [%s]\n"
 
-#: logview/calendar.c:112 logview/logview.c:110
+#: logview/calendar.c:112
 msgid "Calendar"
 msgstr "달력"
 
@@ -1551,7 +1674,7 @@ msgstr "시스템 로그"
 msgid "View the system log file"
 msgstr "시스템의 로그 파일을 보여줌"
 
-#: logview/info.c:83 logview/logview.c:113
+#: logview/info.c:83
 msgid "Log stats"
 msgstr "로그 상태"
 
@@ -1643,7 +1766,7 @@ msgid "%x"
 msgstr "%x"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:628
+#: logview/log_repaint.c:631
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1651,7 +1774,7 @@ msgstr "%X"
 #. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:738
+#: logview/log_repaint.c:741
 msgid "%B %e"
 msgstr "%B %e"
 
@@ -1686,114 +1809,97 @@ msgstr ""
 msgid "%s could not be opened."
 msgstr "%s를 열수 없습니다."
 
-#: logview/logrtns.c:335 logview/logrtns.c:344
+#: logview/logrtns.c:344 logview/logrtns.c:353
 #, c-format
 msgid "%s not a log file."
 msgstr "%s 는 로그파일이 아닙니다."
 
-#: logview/logrtns.c:770 logview/logrtns.c:801 logview/logrtns.c:932
+#: logview/logrtns.c:779 logview/logrtns.c:810 logview/logrtns.c:941
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: 메모리가 바닥났습니다"
 
-#: logview/logview.c:88
-msgid "Open log..."
-msgstr "로그 열기..."
+#: logview/logview.c:95
+#, fuzzy
+msgid "S_witch Log"
+msgstr "로그 바꾸기"
 
-#: logview/logview.c:89
-msgid "Open log"
-msgstr "로그 열기"
-
-#: logview/logview.c:91
-msgid "Export log..."
-msgstr "로그 저장..."
-
-#: logview/logview.c:92
-msgid "Export log"
-msgstr "로그 저장"
-
-#: logview/logview.c:94 logview/logview.c:95
-msgid "Close log"
-msgstr "로그 닫기"
-
-#: logview/logview.c:97 logview/logview.c:98
+#: logview/logview.c:96
 msgid "Switch log"
 msgstr "로그 바꾸기"
 
-#: logview/logview.c:100
-msgid "Monitor..."
+#: logview/logview.c:98
+#, fuzzy
+msgid "_Monitor..."
 msgstr "감시..."
 
-#: logview/logview.c:101
-msgid "Monitor log"
+#: logview/logview.c:99
+#, fuzzy
+msgid "Monitor Log"
 msgstr "로그 감시"
 
+#: logview/logview.c:102
+msgid "_Properties"
+msgstr ""
+
 #: logview/logview.c:103
-msgid "Exit"
-msgstr "끝내기"
+#, fuzzy
+msgid "Show Log Properties"
+msgstr "로그 상태 보기"
 
-#: logview/logview.c:104
-msgid "Exit program"
-msgstr "프로그램 끝내기"
+#: logview/logview.c:112
+#, fuzzy
+msgid "_Calendar"
+msgstr "달력"
 
-#: logview/logview.c:111
-msgid "Show calendar log"
+#: logview/logview.c:112
+#, fuzzy
+msgid "Show Calendar Log"
 msgstr "달력로그 보기"
 
 #: logview/logview.c:114
-msgid "Show log stats"
-msgstr "로그 상태 보기"
+msgid "_Entry Detail"
+msgstr ""
 
-#: logview/logview.c:116
-msgid "Zoom"
-msgstr "확대/축소"
+#: logview/logview.c:114
+msgid "Show Entry Detail"
+msgstr ""
 
-#: logview/logview.c:117
-msgid "Show line info"
-msgstr "라인 정보 보여주기"
+#: logview/logview.c:122
+msgid "About..."
+msgstr "정보..."
 
-#: logview/logview.c:129
-msgid "Select...               "
-msgstr "선택...                 "
-
-#: logview/logview.c:130
-msgid "Select log events"
-msgstr "로그 상황 선택"
-
-#: logview/logview.c:132
-msgid "Filter..                "
-msgstr "필터..                  "
-
-#: logview/logview.c:133
-msgid "Filter log events"
-msgstr "로그 상황 필터"
-
-#: logview/logview.c:142
+#: logview/logview.c:123
 msgid "Info about logview"
 msgstr "로그보기의 정보"
 
-#: logview/logview.c:347
+#: logview/logview.c:130
+#, fuzzy
+msgid "_Log"
+msgstr "로그:"
+
+#: logview/logview.c:331
 msgid "No log files to open"
 msgstr "읽을 로그파일이 없습니다"
 
 #. Create App
-#: logview/logview.c:370
+#: logview/logview.c:354
 msgid "System Log Viewer"
 msgstr "시스템 로그 보기"
 
-#: logview/logview.c:470
+#: logview/logview.c:454
 msgid "Filename: "
 msgstr "파일이름:"
 
-#: logview/logview.c:489
+#: logview/logview.c:475
 #, fuzzy
 msgid "Last Modified: "
 msgstr "변경 일자"
 
-#: logview/logview.c:741 logview/logview.c:796
+#: logview/logview.c:723 logview/logview.c:778
 msgid "Too many open logs. Close one and try again"
 msgstr "너무 많은 로그파일을 열었습니다. 닫고 재시도 하십시오"
 
-#: logview/logview.c:809
+#: logview/logview.c:791
 msgid "Open new logfile"
 msgstr "새 로그 파일 열기"
 
@@ -1801,6 +1907,10 @@ msgstr "새 로그 파일 열기"
 #, c-format
 msgid "Error: [%s]\n"
 msgstr "오류: [%s]\n"
+
+#: logview/monitor.c:114
+msgid "Monitor options"
+msgstr "감시 옵션"
 
 #: logview/monitor.c:128
 msgid "Choose logs to monitor"
@@ -1854,37 +1964,37 @@ msgstr "호스트이름 열의 너비 ( 이 열을 감추려면 0 ): "
 msgid "Columns"
 msgstr "열"
 
-#: logview/zoom.c:82
+#: logview/zoom.c:79
 msgid "Zoom view"
 msgstr "확대해서 보기"
 
-#: logview/zoom.c:190
+#: logview/zoom.c:205
 #, c-format
 msgid "Log line detail for %s"
 msgstr "%s의 자세한 로그"
 
-#: logview/zoom.c:193
+#: logview/zoom.c:208
 msgid "Log line detail for <No log loaded>"
 msgstr "<읽어들인 로그 없음>의 자세한 로그"
 
-#: logview/zoom.c:227
+#: logview/zoom.c:243
 msgid "Date:"
 msgstr "날짜:"
 
-#: logview/zoom.c:231
+#: logview/zoom.c:247
 msgid "Process:"
 msgstr "작업:"
 
-#: logview/zoom.c:234
+#: logview/zoom.c:250
 msgid "Message:"
 msgstr "메세지:"
 
-#: logview/zoom.c:237
+#: logview/zoom.c:253
 msgid "Description:"
 msgstr "설명:"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:262
+#: logview/zoom.c:278
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -1896,7 +2006,7 @@ msgstr "아카이브 만들기"
 msgid "Create compressed archives containing many files"
 msgstr "여러 개의 파일이 들어 있는 압축된 아카이브를 만듭니다"
 
-#: meat-grinder/meat-grinder.c:133
+#: meat-grinder/meat-grinder.c:136
 #, c-format
 msgid ""
 "Number of files: %d\n"
@@ -1905,7 +2015,7 @@ msgstr ""
 "파일 개수: %d\n"
 "폴더 개수: %d"
 
-#: meat-grinder/meat-grinder.c:139
+#: meat-grinder/meat-grinder.c:142
 msgid ""
 "No files or folders, drop files or folders\n"
 "above to add them to the archive"
@@ -1913,88 +2023,109 @@ msgstr ""
 "파일이나 폴더가 없습니다. 아카이브에 추가할 파일이나 \n"
 "폴더를 위에 끌어다 놓으십시오"
 
-#: meat-grinder/meat-grinder.c:266 meat-grinder/meat-grinder.c:269
-msgid "Cannot start the archive (tar) program"
-msgstr "아카이브 (tar) 프로그램을 시작할 수 없습니다"
+#: meat-grinder/meat-grinder.c:165
+#, fuzzy, c-format
+msgid "%s removed"
+msgstr "지우기"
 
-#: meat-grinder/meat-grinder.c:277
-msgid "Cannot run tar/gtar"
-msgstr "tar/gtar를 실행할 수 없습니다"
+#: meat-grinder/meat-grinder.c:327 meat-grinder/meat-grinder.c:332
+#, fuzzy, c-format
+msgid "Failed to create %s"
+msgstr "E파일시스템을 만들 수 없습니다."
 
-#: meat-grinder/meat-grinder.c:329
+#: meat-grinder/meat-grinder.c:372
 msgid "Archive.tar.gz"
 msgstr "아카이브.tar.gz"
 
-#: meat-grinder/meat-grinder.c:449 meat-grinder/meat-grinder.c:901
+#: meat-grinder/meat-grinder.c:492 meat-grinder/meat-grinder.c:971
 msgid "GNOME Archive Generator"
 msgstr "그놈 아카이브 만들기"
 
-#: meat-grinder/meat-grinder.c:451
+#: meat-grinder/meat-grinder.c:494
 msgid "Drag files in to make archives"
 msgstr "아카이브를 만드려면 파일을 끌어다 놓으십시오"
 
-#: meat-grinder/meat-grinder.c:556 meat-grinder/meat-grinder.c:717
+#: meat-grinder/meat-grinder.c:526
+#, fuzzy
+msgid "All files selected"
+msgstr "파일이름을 선택하지 않았습니다"
+
+#: meat-grinder/meat-grinder.c:545
+msgid "All files removed"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:607 meat-grinder/meat-grinder.c:787
 msgid "No filename selected"
 msgstr "파일이름을 선택하지 않았습니다"
 
-#: meat-grinder/meat-grinder.c:560
+#: meat-grinder/meat-grinder.c:611
 msgid "File exists, overwrite?"
 msgstr "파일이 존재합니다. 덮어쓸까요?"
 
-#: meat-grinder/meat-grinder.c:584
+#: meat-grinder/meat-grinder.c:634
+#, c-format
+msgid "%s created"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:648
 msgid "No items to archive"
 msgstr "아카이브에 넣을 항목이 없습니다"
 
-#: meat-grinder/meat-grinder.c:720
+#: meat-grinder/meat-grinder.c:771
+#, c-format
+msgid "%s added"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:790
 msgid "File does not exists"
 msgstr "파일이 존재하지 않습니다"
 
-#: meat-grinder/meat-grinder.c:734
+#: meat-grinder/meat-grinder.c:804
 msgid "Add file or folder"
 msgstr "파일 혹은 폴더 추가"
 
-#: meat-grinder/meat-grinder.c:851
+#: meat-grinder/meat-grinder.c:921
 msgid "_Add file or folder..."
 msgstr "파일 혹은 폴더 추가(_A)..."
 
-#: meat-grinder/meat-grinder.c:852
+#: meat-grinder/meat-grinder.c:922
 msgid "Add a file or folder to archive"
 msgstr "파일 혹은 폴더를 아카이브에 추가"
 
-#: meat-grinder/meat-grinder.c:855
+#: meat-grinder/meat-grinder.c:925
 msgid "_Create archive..."
 msgstr "아카이브 만들기(_C)..."
 
-#: meat-grinder/meat-grinder.c:855
+#: meat-grinder/meat-grinder.c:925
 msgid "Create a new archive from the items"
 msgstr "항목들에서 새 아카이브를 만듭니다"
 
-#: meat-grinder/meat-grinder.c:865
+#: meat-grinder/meat-grinder.c:935
 msgid "_Remove"
 msgstr "지우기(_R)"
 
-#: meat-grinder/meat-grinder.c:866
+#: meat-grinder/meat-grinder.c:936
 msgid "Remove the selected item"
 msgstr "선택된 항목을 지웁니다"
 
-#: meat-grinder/meat-grinder.c:868
+#: meat-grinder/meat-grinder.c:938
 msgid "R_emove All"
 msgstr "모두 지우기(_E)"
 
-#: meat-grinder/meat-grinder.c:869
+#: meat-grinder/meat-grinder.c:939
 msgid "Remove all items"
 msgstr "모든 항목을 지웁니다"
 
-#: meat-grinder/meat-grinder.c:941
+#: meat-grinder/meat-grinder.c:1010
 msgid "Drop files here to add them to the archive."
 msgstr "아카이브에 추가할 파일들을 여기에 끌어다 놓으십시오."
 
 #. tarball icon
-#: meat-grinder/meat-grinder.c:953
+#: meat-grinder/meat-grinder.c:1022
 msgid "_Create Archive"
 msgstr "아카이브 만들기(_C)"
 
-#: meat-grinder/meat-grinder.c:961
+#: meat-grinder/meat-grinder.c:1030
 msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
@@ -2002,11 +2133,11 @@ msgstr ""
 "아카이브를 만들고 싶은 위치에 이 단추를 끌어다 놓으십시오. 아니면 단추를 눌"
 "러 파일 선택 대화 상자를 실행하십시오."
 
-#: meat-grinder/meat-grinder.c:1086
+#: meat-grinder/meat-grinder.c:1168
 msgid "Cannot find proper icons anywhere!"
 msgstr "어디에서도 적당한 아이콘을 찾을 수 없습니다!"
 
-#: meat-grinder/meat-grinder.c:1094
+#: meat-grinder/meat-grinder.c:1176
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
@@ -2014,55 +2145,65 @@ msgstr ""
 "아카이브 (tar) 프로그램을 찾을 수 없습니다!\n"
 "아카이브를 만드는 데 쓰이는 프로그램입니다."
 
+#~ msgid "Find:"
+#~ msgstr "찾기:"
+
+#~ msgid "Press button to look up any highlighted text in a dictionary"
+#~ msgstr "강조된 텍스트를 사전에서 찾아 보려면 단추를 누르십시오"
+
+#~ msgid "GNOME System Log"
+#~ msgstr "그놈 시스템 로그"
+
+#~ msgid "Open log..."
+#~ msgstr "로그 열기..."
+
+#~ msgid "Open log"
+#~ msgstr "로그 열기"
+
+#~ msgid "Export log..."
+#~ msgstr "로그 저장..."
+
+#~ msgid "Export log"
+#~ msgstr "로그 저장"
+
+#~ msgid "Close log"
+#~ msgstr "로그 닫기"
+
+#~ msgid "Exit"
+#~ msgstr "끝내기"
+
+#~ msgid "Exit program"
+#~ msgstr "프로그램 끝내기"
+
+#~ msgid "Zoom"
+#~ msgstr "확대/축소"
+
+#~ msgid "Show line info"
+#~ msgstr "라인 정보 보여주기"
+
+#~ msgid "Select...               "
+#~ msgstr "선택...                 "
+
+#~ msgid "Select log events"
+#~ msgstr "로그 상황 선택"
+
+#~ msgid "Filter..                "
+#~ msgstr "필터..                  "
+
+#~ msgid "Filter log events"
+#~ msgstr "로그 상황 필터"
+
+#~ msgid "Cannot start the archive (tar) program"
+#~ msgstr "아카이브 (tar) 프로그램을 시작할 수 없습니다"
+
+#~ msgid "Cannot run tar/gtar"
+#~ msgstr "tar/gtar를 실행할 수 없습니다"
+
 #~ msgid "Run in analog (slide rule) mode"
 #~ msgstr "아날로그 모드(슬라이드 눈금자)로 실행"
 
 #~ msgid "Date: "
 #~ msgstr "날짜: "
-
-#~ msgid ""
-#~ "Executing arbitrary programs that you downloaded from the network might "
-#~ "be dangerous.\n"
-#~ "\n"
-#~ "Are you sure you want to run `%s'?"
-#~ msgstr ""
-#~ "네트워크에서 내려 받은 임의의 프로그램을 실행하는 것은 위험합니다.\n"
-#~ "\n"
-#~ "정말로 `%s'을(를) 실행할까요?"
-
-#~ msgid "Could not access file permissions"
-#~ msgstr "파일 권한에 접근할 수 없습니다"
-
-#~ msgid "Could not execute the file `%s' due to a permission problem"
-#~ msgstr "권한 문제 때문에 `%s' 파일을 실행할 수 없습니다"
-
-#~ msgid "Failure at executing `%s'"
-#~ msgstr "`%s' 실행에 실패했습니다"
-
-#~ msgid "It was not possible to open the file `%s'"
-#~ msgstr "`%s' 파일 열기가 가능하지 않습니다"
-
-#~ msgid "The file `%s' is empty"
-#~ msgstr "`%s' 파일이 비어 있습니다"
-
-#~ msgid "There was an error. `%s' is empty"
-#~ msgstr "오류가 발생했습니다. `%s'가 비어 있습니다"
-
-#~ msgid "This is a library and can not be executed"
-#~ msgstr "라이브러리이며 실행할 수 없습니다"
-
-#~ msgid "The file is a core file and can not be executed"
-#~ msgstr "메모리 덤프 파일이며 실행할 수 ㅇ벗습니다"
-
-#~ msgid "This is an unknown kind of executable"
-#~ msgstr "알 수 없는 종류의 실행 파일입니다"
-
-#~ msgid ""
-#~ "The executable is for a different platform and can not be executed on "
-#~ "this system"
-#~ msgstr ""
-#~ "이 실행 파일은 다른 플랫폼을 위한 것이며 이 시스템에서는 실행할 수 없습니"
-#~ "다"
 
 #~ msgid ""
 #~ "The GNOME equalivant of Microsoft Windows' Character Map. Warning: might "
@@ -2147,9 +2288,6 @@ msgstr ""
 #~ msgstr ""
 #~ "단추 촛점 가능 변경에 대한 알림을 사용하는 데 오류가 발생했습니다. (%s)\n"
 
-#~ msgid "_Lookup"
-#~ msgstr "찾기(_L)"
-
 #~ msgid "_Spell"
 #~ msgstr "맞춤법(_S)"
 
@@ -2164,9 +2302,6 @@ msgstr ""
 
 #~ msgid "Spell checker"
 #~ msgstr "맞춤법 검사기"
-
-#~ msgid "F_ind"
-#~ msgstr "찾기(_I)"
 
 #~ msgid "Results"
 #~ msgstr "결과"

@@ -812,7 +812,7 @@ add_digit (GtkWidget *w, gpointer data)
 		else if(strlen(gc->_priv->result_string)>9)
 			return;
 		else if(gc->_priv->result_string[0]=='\0')
-			strcpy(gc->_priv->result_string," 1");
+			strcpy(gc->_priv->result_string," 0");
 	} else if(digit[0]=='.') {
 		if(strchr(gc->_priv->result_string,'.'))
 			return;
