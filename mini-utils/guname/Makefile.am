@@ -32,7 +32,10 @@ guname_LDADD = \
 Rootdir = $(datadir)/apps/Utilities
 Root_DATA = guname.desktop
 
-EXTRA_DIST = guname.desktop
+EXTRA_DIST = 		\
+	guname.desktop	\
+	moreinfo.c	\
+	moreinfo.h
 
 build_AUTHORS: $(wildcard $(top_srcdir)/../gnome-*/AUTHORS)
 	cat $(top_srcdir)/../gnome-*/AUTHORS \
