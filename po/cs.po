@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-30 17:35-0300\n"
-"PO-Revision-Date: 2004-10-30 15:16+0200\n"
+"POT-Creation-Date: 2004-11-01 13:10+0100\n"
+"PO-Revision-Date: 2004-11-01 22:18+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -396,8 +396,7 @@ msgstr ""
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr ""
-"ext2 pro nativní souborový systém Linuxu, nebo fat pro souborový systém DOS."
+msgstr "ext2 pro nativní systém souborů Linuxu, nebo fat pro systém souborů DOSu."
 
 #: gfloppy/src/badblocks.c:94
 msgid "Internal Error: Unable to seek to the correct location."
@@ -562,7 +561,7 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
-"Nástroj pro vytvoření souborového systému (%s) ohlásil následující chyby:\n"
+"Nástroj pro vytvoření systému souborů (%s) ohlásil následující chyby:\n"
 "\n"
 "%s (%d)"
 
@@ -591,15 +590,15 @@ msgstr "Nenormální ukončení procesu potomka mbadblocks."
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
 msgid "Making filesystem on disk..."
-msgstr "Vytvářím na disketě souborový systém..."
+msgstr "Vytvářím na disketě systém souborů..."
 
 #: gfloppy/src/gfloppy.c:479
 msgid "Unable to create filesystem correctly."
-msgstr "Nemohu správně vytvořit souborový systém."
+msgstr "Nemohu správně vytvořit systém souborů."
 
 #: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
 msgid "Making filesystem on disk... Done"
-msgstr "Vytvářím na disketě souborový systém... Hotovo"
+msgstr "Vytvářím na disketě systém souborů... Hotovo"
 
 #: gfloppy/src/gfloppy.c:528
 msgid "Checking for bad blocks... (this might take a while)"
@@ -629,7 +628,7 @@ msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">Nastavení souborového systému</span>"
+msgstr "<span weight=\"bold\">Nastavení systému souborů</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
 msgid "<span weight=\"bold\">Formatting Mode</span>"
@@ -689,7 +688,7 @@ msgstr "_Formátovat"
 
 #: gfloppy/src/gfloppy2.glade.h:20
 msgid "_Quick (only creates the filesystem)"
-msgstr "_Rychlé (pouze vytvoří souborový systém)"
+msgstr "_Rychlé (pouze vytvoří systém souborů)"
 
 #: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
@@ -795,6 +794,200 @@ msgstr "Hledat soubory, adresáře a dokumenty ve vašem počítači"
 #: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
 msgid "Search for Files"
 msgstr "Hledat soubory"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:1
+msgid "Disable Quick Search"
+msgstr "Zakázat rychlé hledání"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:2
+msgid "Disable Quick Search Second Scan"
+msgstr "Zakázat druhý průchod rychlého hledání"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:3
+msgid "Quick Search Excluded Paths"
+msgstr "Cesty vyjmuté z rychlého hledání"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:4
+msgid "Quick Search Second Scan Excluded Paths"
+msgstr "Cesty vyjmuté z druhého průchodu rychlého hledání"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:5
+msgid "Select Contains the Text"
+msgstr "Zvolit Obsahuje text"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:6
+msgid "Select Date Modified Less Than"
+msgstr "Zvolit Datum úpravy méně než"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:7
+msgid "Select Date Modified More Than"
+msgstr "Zvolit Datum úpravy více než"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:8
+msgid "Select File is Empty"
+msgstr "Zvolit Soubor je prázdný"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:9
+msgid "Select Follow Symbolic Links"
+msgstr "Zvolit Sledovat symbolické odkazy"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:10
+msgid "Select Include Other Filesystems"
+msgstr "Zvolit Zahrnout jiné systémy souborů"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:11
+msgid "Select Name Matches Regular Expression"
+msgstr "Zvolit Název odpovídá regulárnímu výrazu"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:12
+msgid "Select Name does not Contain"
+msgstr "Zvolit Název neobsahuje"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:13
+msgid "Select Owned by Group"
+msgstr "Zvolit Vlastněno skupinou"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:14
+msgid "Select Owned by User"
+msgstr "Zvolit Vlastněno uživatelem"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:15
+msgid "Select Owner is Unrecognized"
+msgstr "Zvolit Vlastníka nelze rozpoznat"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:16
+msgid "Select Show Hidden Files and Folders"
+msgstr "Zvolit Zobrazovat skryté soubory a složky"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:17
+msgid "Select Size At Least"
+msgstr "Zvolit Velikost alespoň"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:18
+msgid "Select Size At Most"
+msgstr "Zvolit Velikost nejvíce"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:19
+msgid "Show Additional Options"
+msgstr "Zvolit Zobrazit více možností"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:20
+msgid ""
+"This key defines the paths the search tool will exclude from a quick search. "
+"The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
+"media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
+msgstr "Tento klíč definuje cesty, které nástroj hledání vyjme z rychlého hledání. Jsou podporovány zástupné znaky '*' a '?'. Implicitní hodnoty jsou /mnt/*, /media/*, /dev/*, /tmp/*, /proc/* a /var/*."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:21
+msgid ""
+"This key defines the paths the search tool will exclude from a second scan "
+"when performing a quick search. The second scan uses the find command to "
+"search for files. The purpose of the second scan is to find files that have "
+"not been indexed. The wildcards '*' and '?' are supported. The default value "
+"is /."
+msgstr "Tento klíč definuje cesty, které nástroj hledání vyjme z druhého průchodu při rychlém hledání. Druhý průchod používá pro hledání příkaz find. Účel druhého průchodu je najít cesty, které nebyly indexovány. Jsou podporovány zástupné znaky '*' a '?'. Implicitní hodnota je /."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:22
+msgid ""
+"This key determines if the Additional Options section is expanded when the "
+"search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání rozbalen oddíl Další možnosti."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:23
+msgid ""
+"This key determines if the Contains the Text option is selected when the "
+"search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Obsahuje text."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:24
+msgid ""
+"This key determines if the Date Modified Less Than option is selected when "
+"the search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Datum úpravy méně než."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:25
+msgid ""
+"This key determines if the Date Modified More Than option is selected when "
+"the search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Datum úpravy více než."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:26
+msgid ""
+"This key determines if the File is Empty option is selected when the search "
+"tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Soubor je prázdný."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:27
+msgid ""
+"This key determines if the Follow Symbolic Links option is selected when the "
+"search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Sledovat symbolické odkazy."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:28
+msgid ""
+"This key determines if the Include Other Filesystems option is selected when "
+"the search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Zahrnout jiné systémy souborů."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:29
+msgid ""
+"This key determines if the Name Matches Regular Expression option is "
+"selected when the search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Název odpovídá regulárnímu výrazu."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:30
+msgid ""
+"This key determines if the Name does not Contain option is selected when the "
+"search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Název neobsahuje."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:31
+msgid ""
+"This key determines if the Owned by Group option is selected when the search "
+"tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Vlastněno skupinou."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:32
+msgid ""
+"This key determines if the Owned by User option is selected when the search "
+"tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Vlastněno uživatelem."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:33
+msgid ""
+"This key determines if the Owner is Unrecognized option is selected when the "
+"search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Vlastníka nelze rozpoznat."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:34
+msgid ""
+"This key determines if the Show Hidden Files and Folders option is selected "
+"when the search tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Zobrazovat skryté soubory a složky."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:35
+msgid ""
+"This key determines if the Size At Least option is selected when the search "
+"tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Velikost alespoň."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:36
+msgid ""
+"This key determines if the Size At Most option is selected when the search "
+"tool is started."
+msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost Velikost nejvíce."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:37
+msgid ""
+"This key determines if the search tool disables the use of the find command "
+"after performing a quick search."
+msgstr "Tento klíč určuje, jestli nástroj hledání zakazuje použití příkazu find pro provedení rychlého hledání."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:38
+msgid ""
+"This key determines if the search tool disables the use of the locate "
+"command when performing simple file name searches."
+msgstr "Tento klíč určuje, jestli nástroj hledání zakazuje použití příkazu locate při provádění jednoduchých hledání názvů souborů."
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Image/label border"
@@ -1068,7 +1261,7 @@ msgstr "Sledovat symbolické odkazy"
 
 #: gsearchtool/gsearchtool.c:92
 msgid "Include other filesystems"
-msgstr "Zahrnout jiné souborové systémy"
+msgstr "Zahrnout jiné systémy souborů"
 
 #: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
 msgid "No files found"
