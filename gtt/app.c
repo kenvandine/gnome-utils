@@ -223,7 +223,7 @@ void app_new(int argc, char *argv[])
 	GtkWidget *vbox;
 	char *p, *p0, c;
 	int i;
-	int x, y, w, h, xy_set;
+	int x, y, sx, sy, w, h, xy_set;
 	GtkWidget *widget;
 
 	w = 0; h = 0; xy_set = 0;
@@ -258,6 +258,7 @@ void app_new(int argc, char *argv[])
 			for (p++; (*p >= '0') && (*p <= '9'); p++) ;
 			c = *p;
 			*p = 0;
+			sx = (*p0 != '-');
 			x = atoi(p0);
 			*p = c;
 			if ((*p != '-') && (*p != '+')) {
@@ -270,6 +271,7 @@ void app_new(int argc, char *argv[])
 				g_print(_("error in geometry string \"%s\"\n"), argv[i]);
 				continue;
 			}
+			sy = (*p0 != '-');
 			y = atoi(p0);
 			xy_set++;
 		} else {
@@ -312,8 +314,6 @@ void app_new(int argc, char *argv[])
                            TRUE, TRUE, 1);
 
         glist = create_clist();
-	/* TODO: remove hard coded pixel values...? */
-	gtk_widget_set_usize(glist, 200, 170);
 	gtk_box_pack_end(GTK_BOX(vbox), glist, TRUE, TRUE, 0);
 	gtk_widget_show(glist);
 
@@ -324,29 +324,30 @@ void app_new(int argc, char *argv[])
 
 	gtk_container_add(GTK_CONTAINER(window), vbox);
 	gtk_widget_show(vbox);
+	gnome_app_set_contents(GNOME_APP(window), vbox);
 
-	if ((w >= 50) || (h >= 50)) {
-		if (w < 50) w = 50;
-		if (h < 50) h = 50;
+	gtk_widget_size_request(window, &window->requisition);
+	if (w != 0) {
+		if (window->requisition.width > w) w = window->requisition.width;
+		if (window->requisition.height > h) h = window->requisition.height;
 		gtk_widget_set_usize(window, w, h);
 	} else {
-		w = 50;
-		h = 50;
+		w = window->requisition.width;
+		h = window->requisition.height;
 	}
 	if (xy_set) {
 		int t;
 		t = gdk_screen_width();
-		if (x < 0) x += t - w;
+		if (!sx) x += t - w;
 		while (x < 0) x += t;
 		while (x > t) x -= t;
 		t = gdk_screen_height();
-		if (y < 0) y += t - h;
+		if (!sy) y += t - h;
 		while (y < 0) y += t;
 		while (y > t) y -= t;
 		gtk_widget_set_uposition(window, x, y);
 	}
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
 			   GTK_SIGNAL_FUNC(quit_app), NULL);
-	gnome_app_set_contents(GNOME_APP(window), vbox);
 }
 

@@ -189,8 +189,8 @@ void prop_dialog(project *proj)
 		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 		w = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
 		gtk_widget_show(w);
-		t = gnome_help_file_path("gtt", "ch-dialogs.html");
-		s1 = g_copy_strings("file:///", t, "#s-prop", NULL);
+		t = gnome_help_file_path("gtt", "index.html");
+		s1 = g_copy_strings("file:///", t, "#PROP", NULL);
 		g_free(t);
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",
 				   GTK_SIGNAL_FUNC(gnome_help_goto), s1);

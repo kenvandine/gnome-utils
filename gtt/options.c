@@ -178,8 +178,8 @@ static void buttons(OptionsDlg *odlg, GtkBox *aa)
 
 	w = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
 	gtk_widget_show(w);
-	t = gnome_help_file_path("gtt", "ch-dialogs.html");
-	s = g_copy_strings("file:///", t, "#s-pref", NULL);
+	t = gnome_help_file_path("gtt", "index.html");
+	s = g_copy_strings("file:///", t, "#PREF", NULL);
 	g_free(t);
 	gtk_signal_connect(GTK_OBJECT(w), "clicked",
 			   GTK_SIGNAL_FUNC(gnome_help_goto), s);

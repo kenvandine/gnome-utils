@@ -267,14 +267,13 @@ update_toolbar_sections(void)
         GtkWidget *tb;
         GtkWidget *w;
 
-        if (!window) return;
-        if (!mytbar) return;
+	if (!window) return;
+	if (!mytbar) return;
 
-        /* TODO: I still get the segfault after destroying a widget */
         w = GTK_WIDGET(mytbar->tbar)->parent;
 	if (w) {
-		gtk_container_remove(GTK_CONTAINER(w), GTK_WIDGET(mytbar->tbar));
-		gtk_widget_hide(GTK_WIDGET(mytbar->tbar));
+		gtk_container_remove(GTK_CONTAINER(w),
+				     GTK_WIDGET(mytbar->tbar));
 	}
 
         g_free(mytbar);

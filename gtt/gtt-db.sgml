@@ -80,20 +80,6 @@
 	may discover many other ways, GTimeTracker can work for
 	you.</para>
     </sect1>
-
-    <sect1 id="start">
-      <title>First starting GTimeTracker</title>
-      <para>After first starting GTimeTracker you will be notified,
-	that there is no readable configuration file in your home
-	directory (<literal>$HOME/.gtimetrackerrc</literal>). You will
-	be asked, whether or not you want GTimeTracker to install a
-	new one. This is a safety question, because something could
-	have happend that made your configuration file unreadable and
-	maybe you will want to look for it yourself. Writing a new
-	config file will cause the loss of all your projects and time
-	measurements. If you started GTimeTracker for the first time,
-	you can just press the <literal/OK/ button.</para>
-    </sect1>
   </chapter>
 
   <chapter id="main">
@@ -115,177 +101,187 @@
 
     <sect1 id="menubar">
       <title>The Menu Bar</title>
-      <para>The menu bar is located at the top of the window by
-	default. If you are using a GNOME version of GTimeTracker, you
-	can change the location of the menu bar in numerouse ways.
-	This customization of the menu bar is subject of the GNOME
-	global documentation and not covered here.</para>
+
+      <para>The menu bar is located at the top of the window by default. You
+      can change the location of the menu bar in numerouse ways. This
+      customization of the menu bar is subject of the GNOME global
+      documentation and not covered here.</para>
 
       <para>Nearly all menu items in GTimeTracker have a shortcut (or
-	accelerator key). Those key sequences are shown behind the
-	name of the function. If for example you want to activate the
-	function <literal/New Project.../ from the <literal/File/
-	menu, you can just hold down the <literal/Control/ key and
-	press the <literal/N/ key. In the menu this is shown as
-	<literal/Ctl+N/.</para>
+      accelerator key). Those key sequences are shown behind the name of the
+      function. If for example you want to activate the function
+      <literal/New Project.../ from the <literal/File/ menu, you can just
+      hold down the <literal/Control/ key and press the <literal/N/ key. In
+      the menu this is shown as <literal/Ctl+N/.</para>
 
       <para>The menu bar consists of four menus: <literal/File/,
-	<literal/Edit/, <literal/Timer/ and <literal/Help/. I will
-	describe these menus in the following sections.</para>
+      <literal/Edit/, <literal/Timer/ and <literal/Help/. I will describe
+      these menus in the following sections.</para>
 
       <sect2 id="filemenu">
 	<title>The <literal/File/ Menu</title>
-	<para>In the <literal/File/ menu you will find the functions
-	  dealing with the configuration file --
-	  <literal>$HOME/.gtimetrackerrc</literal>. In addition there
-	  is a function to quit GTimeTracker. I have also put the
-	  <literal/New Project.../ funtion there. This is mainly
-	  because nearly all software has a <emphasis/new/ function in
-	  the <literal/File/ menu and that's the place I would search
-	  for it.</para>
+
+	<para>In the <literal/File/ menu you will find the functions dealing
+	with the configuration file -- <literal>$HOME/.gnome/gtt</literal>.
+	In addition there is a function to quit GTimeTracker. I have also
+	put the <literal/New Project.../ funtion there. This is mainly
+	because nearly all software has a <emphasis/new/ function in the
+	<literal/File/ menu and that's the place I would search for
+	it.</para>
 
 
 	<sect3 id="filemenu-newproj">
 	  <title><literal/New Project.../</title>
-	  <para>This function shows the <emphasis/New Project Dialog/.
-	    Have a look at <xref linkend="newproj"> for more info.</para>
-	</sect3>
+
+	  <para>This function shows the <emphasis/New Project Dialog/. Have
+	  a look at <xref linkend="newproj"> for more info.</para> </sect3>
 
 	<sect3 id="filemenu-rc">
 	  <title><literal/Reload/ and <literal/Save Configuration
 	      File/</title>
-	  <para>Okay, let's have a look at the functions dealing with
-	    the configuration file. The configuration file holds infos
-	    about your preferences (see <xref linkend="pref">) and
-	    about your list of projects (see <xref
-	      linkend="projlist">). The functions are <literal/Reload
-	      Configuration File/ and <literal/Save Configuration
-	      File/.</para>
+
+	  <para>Okay, let's have a look at the functions dealing with the
+	  configuration file. The configuration file holds infos about your
+	  preferences (see <xref linkend="pref">) and about your list of
+	  projects (see <xref linkend="projlist">). The functions are
+	  <literal/Reload Configuration File/ and <literal/Save
+	  Configuration File/.</para>
 
 	  <para>The configuration file will be saved every time,
-	    GTimeTracker exits. I have made some effort, to verify
-	    that this file will be updated even in case of program
-	    aborts. So there should be no need to save the
-	    configuration file for safety purpose. But you might want
-	    to rearrange your projects a bit. You may want to save the
-	    current state of the projects just to make sure you cannot
-	    delete a project by accident.</para>
+	  GTimeTracker exits. I have made some effort, to verify that this
+	  file will be updated even in case of program aborts. So there
+	  should be no need to save the configuration file for safety
+	  purpose. But you might want to rearrange your projects a bit. You
+	  may want to save the current state of the projects just to make
+	  sure you cannot delete a project by accident.</para>
 
 	  <para>In case you made some mistakes you can then use the
-	    <literal>Reload Configuration File</literal> function. You
-	    will be asked, if you really want to discard your current
-	    set of projects. Just press <literal/OK/, if you really
-	    ment to reload the old configuration file. If you
-	    activated this function by accident, you can press
-	    <literal/Cancel/.</para>
+	  <literal>Reload Configuration File</literal> function. You will be
+	  asked, if you really want to discard your current set of projects.
+	  Just press <literal/OK/, if you really ment to reload the old
+	  configuration file. If you activated this function by accident,
+	  you can press <literal/Cancel/.</para>
+	  
 	</sect3>
 
 	<sect3 id="filemenu-quit">
 	  <title><literal/Quit/</title>
-	  <para>This function just quits GTimeTracker. The
-	    configuration file with your current list of projects will
-	    automatically be saved.</para>
+
+	  <para>This function just quits GTimeTracker. The configuration
+	  file with your current list of projects will automatically be
+	  saved.</para>
+
 	</sect3>
       </sect2>
 
       <sect2 id="editmenu">
 	<title>The <literal/Edit/ Menu</title>
-	<para>The <literal/Edit/ menu holds all the functions to edit
-	  the project list. In addition there is a menu item to
-	  activate the <emphasis/preferences dialog/.</para>
+
+	<para>The <literal/Edit/ menu holds all the functions to edit the
+	project list. In addition there is a menu item to activate the
+	<emphasis/preferences dialog/.</para>
 
 	<sect3 id="editmenu-cut">
 	  <title><literal/Cut/, <literal/Copy/ and
 	    <literal/Paste/</title>
-	  <para>These functions are usefull to rearrange your project
-	    list. You can use <literal/Cut/ to remove projects from
-	    the list. But these cutted projects aren't discarted right
-	    away. You can use <literal/Paste/ to insert a
-	    <emphasis/cutted/ or <emphasis/copied/ project either
-	    before the current selected project, or, if no project is
-	    selected, at the bottom of your project list. The
-	    <literal/Copy/ function does the same as the <literal/Cut/
-	    function, but will not remove the project from the
-	    list.</para>
 
-	  <para>Note that there is only room for <emphasis/one/
-	    project to be <emphasis/cutted/ or <emphasis/copied/. If
-	    you cut or copy another project, before <emphasis/pasting/
-	    the previous one, that project will be lost
-	    forever.</para>
+	  <para>These functions are usefull to rearrange your project list.
+	  You can use <literal/Cut/ to remove projects from the list. But
+	  these cutted projects aren't discarted right away. You can use
+	  <literal/Paste/ to insert a <emphasis/cutted/ or <emphasis/copied/
+	  project either before the current selected project, or, if no
+	  project is selected, at the bottom of your project list. The
+	  <literal/Copy/ function does the same as the <literal/Cut/
+	  function, but will not remove the project from the list.</para>
 
-	  <para>On the other hand it is possible to paste a cutted or
-	    copied project multiple times.</para>
+	  <para>Note that there is only room for <emphasis/one/ project to
+	  be <emphasis/cutted/ or <emphasis/copied/. If you cut or copy
+	  another project, before <emphasis/pasting/ the previous one, that
+	  project will be lost forever.</para>
+
+	  <para>On the other hand it is possible to paste a cutted or copied
+	  project multiple times.</para>
+
+	</sect3>
+
+	<sect3 id="editmenu-cdc">
+	  <title><literal/Clear daily counters.../</title>
+
+	  <para>This function is a quick way to clear the daily counter of
+	  the currenly selected project. You can use it if you don't care
+	  about the real daily counter, but want to count the time of a
+	  process more than once (maybe to see how long your current PPP
+	  connection to the internet lasts). The global timer is not
+	  affected.</para>
+
 	</sect3>
 
 	<sect3 id="editmenu-prop">
 	  <title><literal/Properties.../</title>
-	  <para>This function shows the <emphasis/properties dialog/,
-	    or, if it is allready shown, updates its contents. See
-	    <xref linkend="prop"> for more details.</para>
+
+	  <para>This function shows the <emphasis/properties dialog/, or, if
+	  it is allready shown, updates its contents. See <xref
+	  linkend="prop"> for more details.</para>
+
+	</sect3>
 
 	<sect3 id="editmenu-pref">
 	  <title><literal/Preferences.../</title>
-	  <para>This function shows the <emphasis/preferences dialog/.
-	    See <xref linkend="pref"> for more details.</para>
+
+	  <para>This function shows the <emphasis/preferences dialog/. See
+	  <xref linkend="pref"> for more details.</para>
 
       <sect2 id="timermenu">
 	<title>The <literal/Timer/ Menu</title>
-	<para>The <literal/Timer/ menu lets you start and stop the
-	  internal timer (see <xref linkend="timer"> and <xref
-	  linkend="projstates">).</para>
+
+	<para>The <literal/Timer/ menu lets you start and stop the internal
+	timer (see <xref linkend="timer"> and <xref
+	linkend="projstates">).</para>
 
 	<para>You can start the timer by activating <literal/Start/.
-	  <literal/Stop/ will stop the timer. And you can toggle the
-	  state of the timer with <literal/Timer running/.</para>
+	<literal/Stop/ will stop the timer. And you can toggle the state of
+	the timer with <literal/Timer running/. Having all these functions
+	in the menu may seem bogus, but it is usefull when using the
+	accelerator keys.</para>
 
       <sect2 id="helpmenu">
 	<title>The <literal/Help/ Menu</title>
-	<para>The only menu item in the <literal/Help/ menu is
-	  <literal/About.../. This function will popup the
-	  <emphasis/about dialog/. Just press <literal/Close/ to get
-	  rid of it...</para>
+
+	<para>The <literal/Help/ menu has some starting points to this help
+	system. If unsure, just select the menu item <literal/Manual/ to get
+	to the table of contents.</para>
+
+	<para>Besides these there is a menu item called <literal/About.../.
+	This function will popup the <emphasis/about dialog/. Just press
+	<literal/Close/ to get rid of it...</para>
+
       </sect2>
     </sect1>
 
     <sect1 id="toolbar">
       <title>The Toolbar</title>
-      <para>Each item in the toolbar activates a menu item. So besides
-	the menu itself and the shotcut (or accelerator key), I
-	described above, you can use the toolbar items as a third way
-	of executing a given function.</para>
 
-      <para>The initial state of the toolbar shows icons for the
-	following functions from left to right:</para>
+      <para>Each item in the toolbar activates a menu item. So besides the
+      menu itself and the shotcut (or accelerator key), I described above,
+      you can use the toolbar items as a third way of executing a given
+      function.</para>
+      
+      <para>Since the toolbar is highly configurable, I won't describe all
+      icons. You can enable the <emphasis/tool tips/ in the
+      <emphasis/preferences dialog/ (they are enabled by default) and hold
+      the mouse pointer over an icon. After a short time a tool tip will be
+      displayed describing the current toolbar button. If you enabled the
+      toolbar texts, a (very) short describing text will be displayed in
+      each toolbar button.
 
-      <itemizedlist>
-	<listitem><para><emphasis/File/ &mdash; New Project...</para>
-	</listitem>
-	<listitem><para><emphasis/File/ &mdash; Reload Configuration
-	    File</para>
-	</listitem>
-	<listitem><para><emphasis/File/ &mdash; Save Configuration
-	    File</para>
-	</listitem>
-	<listitem><para><emphasis/Edit/ &mdash; Cut</para>
-	</listitem>
-	<listitem><para><emphasis/Edit/ &mdash; Copy</para>
-	</listitem>
-	<listitem><para><emphasis/Edit/ &mdash; Paste</para>
-	</listitem>
-	<listitem><para><emphasis/Edit/ &mdash; Properties...</para>
-	</listitem>
-  	<listitem><para><emphasis/Timer/ &mdash; Timer Running</para>
-	</listitem>
-	<listitem><para><emphasis/Edit/ &mdash; Preferences...</para>
-	</listitem>
-      </itemizedlist>
     </sect1>
 
     <sect1 id="projlist">
       <title>The Project List</title>
+
       <sect2 id="projwhat">
 	<title>What is a Project</title>
+
 	<para>A project consists of the following:</para>
 
 	<itemizedlist>
@@ -381,9 +377,13 @@
 
     <sect1 id="statusbar">
       <title>The Status Bar</title>
-      <para>The status bar displays the currently selected project. It
-	will display more info in the future, but that's not
-	implemented in the current version of GTimeTracker.</para>
+
+      <para>The status bar displays the sum of all preject's daily time. If
+      you didn't zero a daily counter, that reflects the total time, you
+      have worked on your projects today.</para>
+      
+      <para>The second field holds the title of the currently selected
+      project.</para>
 
       <para>The status bar helps to have a better info about the state
 	of a project I was blabbering about in <xref
@@ -398,6 +398,12 @@
     <title>The Dialogs</title>
     <sect1 id="pref">
       <title>The Preferences Dialog</title>
+      
+      <para>The <emphasis/preferences dialog/ has two <emphasis/notebooks/.
+      <!-- TODO: add more info about GTK notebooks -->
+      </para>
+      
+      <!-- TODO: this description is out of date! -->
       <sect2 id="display">
 	<title>Display</title>
 	<para>You can select, what GTimeTracker should display in the

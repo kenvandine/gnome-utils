@@ -54,8 +54,9 @@ EXTRA_DIST = \
 	tb_home_.xpm		\
 	tb_back_.xpm		\
 	tb_forward_.xpm		\
-	gtt.sgml		\
-	gtt.text		\
+	topic.dat		\
+	gtt-db.sgml		\
+	gtt-db.html		\
 	gtt.desktop
 
 Productivitydir = $(datadir)/apps/Productivity
@@ -65,17 +66,9 @@ Productivity_DATA = gtt.desktop
 # maybe there is a macro for that?
 
 gtt_helpdir = $(datadir)/gnome/help/gtt/C
-gtt_helpfiles = \
-	topic.dat		\
-	index.html		\
-	ch-dialogs.html		\
-	ch-main.html		\
-	ch-intro.html		\
-	ch-working.html
 
 install-data-local:
 	 $(mkinstalldirs) $(gtt_helpdir)
-	 @list='$(gtt_helpfiles)' ; for i in $$list; do \
-		 echo "$(INSTALL_DATA) $(srcdir)/$$i $(gtt_helpdir)/$$i" ; \
-		 $(INSTALL_DATA) $(srcdir)/$$i $(gtt_helpdir)/$$i ; \
-	 done
+	 $(INSTALL_DATA) $(srcdir)/topic.dat $(gtt_helpdir)/topic.dat
+	 $(INSTALL_DATA) $(srcdir)/gtt-db.html $(gtt_helpdir)/index.html
+
