@@ -485,7 +485,6 @@ actions_views (MDIColor *col)
 
 int main (int argc, char *argv[])
 {
-  char *goad_id;
 
   /* Initialize i18n */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
