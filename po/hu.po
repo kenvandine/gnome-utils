@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.2.1\n"
-"POT-Creation-Date: 2002-02-17 23:42-0500\n"
+"POT-Creation-Date: 2002-05-07 12:40+0100\n"
 "PO-Revision-Date: 2001-09-03 18:16+0200\n"
 "Last-Translator: András Tímár <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
@@ -15,489 +15,509 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Translator credits
-#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
-#: gsearchtool/gsearchtool.c:1643 logview/about.c:52
-#: meat-grinder/meat-grinder.c:380
+#: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:47 gdictsrc/gdict-about.c:43
+#: gsearchtool/gsearchtool.c:1812 logview/about.c:52
+#: meat-grinder/meat-grinder.c:431
 msgid "translator_credits"
 msgstr ""
 
-#: gcalc/gcalc.c:47
-#, fuzzy
-msgid "The GNOME Calculator"
-msgstr "GNOME számológép"
-
-#: gcalc/gcalc.c:49
-msgid "Simple double precision calculator similiar to xcalc"
-msgstr "Az xcalc-hoz hasonló egyszerû duplapontosságú számológép"
-
-#: gcalc/gcalc.c:132
-msgid "Run in analog (slide rule) mode"
-msgstr "Futtatás analóg (csúszka) üzemmódban"
-
-#: gcalc/gcalc.c:162
+#: gcalc/gcalc.c:60 gcalc/gcalc.c:190
 #, fuzzy
 msgid "GNOME Calculator"
 msgstr "Gnome számológép"
 
-#: gcalc/gnome-calc.c:433 gcalc/gnome-calc.c:1076
+#: gcalc/gcalc.c:62
+msgid "Simple double precision calculator similiar to xcalc"
+msgstr "Az xcalc-hoz hasonló egyszerû duplapontosságú számológép"
+
+#: gcalc/gcalc.c:139
+#, fuzzy
+msgid "_Calculator"
+msgstr "Gnome számológép"
+
+#: gcalc/gnome-calc.c:230
+#, fuzzy
+msgid "inf"
+msgstr "sin"
+
+#: gcalc/gnome-calc.c:453
 msgid "DEG"
 msgstr "DEG"
 
-#: gcalc/gnome-calc.c:435
+#: gcalc/gnome-calc.c:455
 msgid "RAD"
 msgstr "RAD"
 
-#: gcalc/gnome-calc.c:437
+#: gcalc/gnome-calc.c:457
 msgid "GRAD"
 msgstr "GRAD"
 
-#: gcalc/gnome-calc.c:1066
+#: gcalc/gnome-calc.c:1149
 msgid "1/x"
 msgstr "1/x"
 
-#: gcalc/gnome-calc.c:1066
+#: gcalc/gnome-calc.c:1149
 #, fuzzy
 msgid "Inverse"
 msgstr "Idõtartamok"
 
-#: gcalc/gnome-calc.c:1067
+#: gcalc/gnome-calc.c:1150
 msgid "x^2"
 msgstr "x^2"
 
-#: gcalc/gnome-calc.c:1067
+#: gcalc/gnome-calc.c:1150
 #, fuzzy
 msgid "Square"
 msgstr "Mentés"
 
-#: gcalc/gnome-calc.c:1068
+#: gcalc/gnome-calc.c:1151
 msgid "SQRT"
 msgstr "SQRT"
 
-#: gcalc/gnome-calc.c:1068
+#: gcalc/gnome-calc.c:1151
 msgid "Square root"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1069
+#: gcalc/gnome-calc.c:1152
 msgid "CE/C"
 msgstr "CE/C"
 
 # logview/calendar.c:118
-#: gcalc/gnome-calc.c:1069
+#: gcalc/gnome-calc.c:1152
 #, fuzzy
 msgid "Clear"
 msgstr "Naptár"
 
-#: gcalc/gnome-calc.c:1070
+#: gcalc/gnome-calc.c:1153
 msgid "AC"
 msgstr "AC"
 
-#: gcalc/gnome-calc.c:1070
+#: gcalc/gnome-calc.c:1153
 #, fuzzy
 msgid "Reset"
 msgstr "Rezetkor"
 
-#: gcalc/gnome-calc.c:1072 gcalc/gnome-calc.c:1127
+#: gcalc/gnome-calc.c:1155 gcalc/gnome-calc.c:1211
 msgid "INV"
 msgstr "INV"
 
-#: gcalc/gnome-calc.c:1072
-#, fuzzy
-msgid "Shift"
-msgstr "fehér"
+#: gcalc/gnome-calc.c:1155
+msgid "Inverse trigonometry/log function"
+msgstr ""
 
 #. inverse button
-#: gcalc/gnome-calc.c:1073
+#: gcalc/gnome-calc.c:1156
 msgid "sin"
 msgstr "sin"
 
-#: gcalc/gnome-calc.c:1073
+#: gcalc/gnome-calc.c:1156
 #, fuzzy
 msgid "Sine"
 msgstr "Méret"
 
-#: gcalc/gnome-calc.c:1074
+#: gcalc/gnome-calc.c:1157
 msgid "cos"
 msgstr "cos"
 
-#: gcalc/gnome-calc.c:1074
+#: gcalc/gnome-calc.c:1157
 #, fuzzy
 msgid "Cosine"
 msgstr "Bezárás"
 
-#: gcalc/gnome-calc.c:1075
+#: gcalc/gnome-calc.c:1158
 msgid "tan"
 msgstr "tan"
 
-#: gcalc/gnome-calc.c:1075
+#: gcalc/gnome-calc.c:1158
 #, fuzzy
 msgid "Tangent"
 msgstr "lila"
 
-#: gcalc/gnome-calc.c:1076
+#. Ugly hack so that window won't resize when selecting GRAD - there should be a better fix that this
+#: gcalc/gnome-calc.c:1160
+#, fuzzy
+msgid " DEG  "
+msgstr "DEG"
+
+#: gcalc/gnome-calc.c:1160
 msgid "Switch degrees / radians / grad"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1078
+#: gcalc/gnome-calc.c:1162
 msgid "e"
 msgstr "e"
 
-#: gcalc/gnome-calc.c:1078
+#: gcalc/gnome-calc.c:1162
 msgid "Base of Natural Logarithm"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1079
+#: gcalc/gnome-calc.c:1163
 msgid "EE"
 msgstr "EE"
 
-#: gcalc/gnome-calc.c:1079
+#: gcalc/gnome-calc.c:1163
 msgid "Add digit"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1080
+#: gcalc/gnome-calc.c:1164
 msgid "log"
 msgstr "log"
 
-#: gcalc/gnome-calc.c:1080
+#: gcalc/gnome-calc.c:1164
 #, fuzzy
 msgid "Base 10 Logarithm"
 msgstr "Logaritmusos"
 
-#: gcalc/gnome-calc.c:1081
+#: gcalc/gnome-calc.c:1165
 msgid "ln"
 msgstr "ln"
 
-#: gcalc/gnome-calc.c:1081
+#: gcalc/gnome-calc.c:1165
 #, fuzzy
 msgid "Natural Logarithm"
 msgstr "Logaritmusos"
 
-#: gcalc/gnome-calc.c:1082
+#: gcalc/gnome-calc.c:1166
 msgid "x^y"
 msgstr "x^y"
 
 # gdictsrc/gdict-pref-dialog.c:161
-#: gcalc/gnome-calc.c:1082
+#: gcalc/gnome-calc.c:1166
 #, fuzzy
 msgid "Power"
 msgstr "Port:"
 
-#: gcalc/gnome-calc.c:1084
+#: gcalc/gnome-calc.c:1168
 msgid "PI"
 msgstr "PI"
 
-#: gcalc/gnome-calc.c:1085
+#: gcalc/gnome-calc.c:1169
 msgid "x!"
 msgstr "x!"
 
-#: gcalc/gnome-calc.c:1085
+#: gcalc/gnome-calc.c:1169
 msgid "Factorial"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1086
+#: gcalc/gnome-calc.c:1170
 msgid "("
 msgstr "("
 
-#: gcalc/gnome-calc.c:1086
+#: gcalc/gnome-calc.c:1170
 #, fuzzy
 msgid "Opening Parenthesis"
 msgstr "Paletta megnyitása"
 
-#: gcalc/gnome-calc.c:1087
+#: gcalc/gnome-calc.c:1171
 msgid ")"
 msgstr ")"
 
-#: gcalc/gnome-calc.c:1087
+#: gcalc/gnome-calc.c:1171
 #, fuzzy
 msgid "Closing Parenthesis"
 msgstr "záró zárójelet vártam"
 
-#: gcalc/gnome-calc.c:1088
+#: gcalc/gnome-calc.c:1172
 msgid "/"
 msgstr "/"
 
-#: gcalc/gnome-calc.c:1088
+#: gcalc/gnome-calc.c:1172
 msgid "Divide by"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1090
+#: gcalc/gnome-calc.c:1174
 msgid "STO"
 msgstr "STO"
 
-#: gcalc/gnome-calc.c:1090
-#, fuzzy
-msgid "Store"
-msgstr "Megállítás"
+#: gcalc/gnome-calc.c:1174
+msgid ""
+"Store the value in the\n"
+"display field in memory"
+msgstr ""
 
-#: gcalc/gnome-calc.c:1091
+#: gcalc/gnome-calc.c:1175
 msgid "7"
 msgstr "7"
 
-#: gcalc/gnome-calc.c:1092
+#: gcalc/gnome-calc.c:1176
 msgid "8"
 msgstr "8"
 
-#: gcalc/gnome-calc.c:1093
+#: gcalc/gnome-calc.c:1177
 msgid "9"
 msgstr "9"
 
-#: gcalc/gnome-calc.c:1094
+#: gcalc/gnome-calc.c:1178
 msgid "*"
 msgstr "*"
 
-#: gcalc/gnome-calc.c:1094
+#: gcalc/gnome-calc.c:1178
 msgid "Multiply by"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1096
+#: gcalc/gnome-calc.c:1180
 msgid "RCL"
 msgstr "RCL"
 
-#: gcalc/gnome-calc.c:1096
-msgid "Recall"
+#: gcalc/gnome-calc.c:1180
+msgid ""
+"Display the value in memory\n"
+"in the display field"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1097
+#: gcalc/gnome-calc.c:1181
 msgid "4"
 msgstr "4"
 
-#: gcalc/gnome-calc.c:1098
+#: gcalc/gnome-calc.c:1182
 msgid "5"
 msgstr "5"
 
-#: gcalc/gnome-calc.c:1099
+#: gcalc/gnome-calc.c:1183
 msgid "6"
 msgstr "6"
 
-#: gcalc/gnome-calc.c:1100
+#: gcalc/gnome-calc.c:1184
 msgid "-"
 msgstr "-"
 
-#: gcalc/gnome-calc.c:1100
+#: gcalc/gnome-calc.c:1184
 #, fuzzy
 msgid "Subtract"
 msgstr "Indítás"
 
-#: gcalc/gnome-calc.c:1102
+#: gcalc/gnome-calc.c:1186
 msgid "SUM"
 msgstr "SUM"
 
-#: gcalc/gnome-calc.c:1102
-msgid "Sum"
+#: gcalc/gnome-calc.c:1186
+msgid ""
+"Add the value in the display\n"
+"field to the value in memory"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1103
+#: gcalc/gnome-calc.c:1187
 msgid "1"
 msgstr "1"
 
-#: gcalc/gnome-calc.c:1104
+#: gcalc/gnome-calc.c:1188
 msgid "2"
 msgstr "2"
 
-#: gcalc/gnome-calc.c:1105
+#: gcalc/gnome-calc.c:1189
 msgid "3"
 msgstr "3"
 
-#: gcalc/gnome-calc.c:1106
+#: gcalc/gnome-calc.c:1190
 msgid "+"
 msgstr "+"
 
-#: gcalc/gnome-calc.c:1106
+#: gcalc/gnome-calc.c:1190
 msgid "Add"
 msgstr "Hozzáadás"
 
-#: gcalc/gnome-calc.c:1108
+#: gcalc/gnome-calc.c:1192
 msgid "EXC"
 msgstr "EXC"
 
-#: gcalc/gnome-calc.c:1108
-#, fuzzy
-msgid "Exchange"
-msgstr "Hibás tartomány"
+#: gcalc/gnome-calc.c:1192
+msgid ""
+"Exchange the values in the\n"
+"display field and memory"
+msgstr ""
 
-#: gcalc/gnome-calc.c:1109
+#: gcalc/gnome-calc.c:1193
 msgid "0"
 msgstr "0"
 
-#: gcalc/gnome-calc.c:1110
+#: gcalc/gnome-calc.c:1194
 msgid "."
 msgstr "."
 
-#: gcalc/gnome-calc.c:1110
+#: gcalc/gnome-calc.c:1194
 #, fuzzy
 msgid "Decimal Point"
 msgstr "Decimális 8 bit"
 
-#: gcalc/gnome-calc.c:1111
+#: gcalc/gnome-calc.c:1195
 msgid "+/-"
 msgstr "+/-"
 
-#: gcalc/gnome-calc.c:1111
+#: gcalc/gnome-calc.c:1195
 msgid "Change sign"
 msgstr ""
 
-#: gcalc/gnome-calc.c:1112
+#: gcalc/gnome-calc.c:1196
 msgid "="
 msgstr "="
 
-#: gcalc/gnome-calc.c:1112
+#: gcalc/gnome-calc.c:1196
 #, fuzzy
 msgid "Calculate"
 msgstr "Gnome számológép"
 
-#: gcharmap/src/asciiselect.c:100
+#: gcalc/gnome-calculator.desktop.in.h:1
+#, fuzzy
+msgid "Calculator"
+msgstr "Gnome számológép"
+
+#: gcalc/gnome-calculator.desktop.in.h:2
+#, fuzzy
+msgid "Perform simple calculations"
+msgstr "Számológép"
+
+#: gcharmap/gnome-character-map.desktop.in.h:1
+#, fuzzy
+msgid "Character Map"
+msgstr "Gnome karaktertábla"
+
+#: gcharmap/gnome-character-map.desktop.in.h:2
+msgid "Insert special characters into documents"
+msgstr ""
+
+#: gcharmap/src/asciiselect.c:116
 msgid "Select Character"
 msgstr "Karakter kiválasztása"
 
-#: gcharmap/src/asciiselect.c:103
+#: gcharmap/src/asciiselect.c:119
 #, fuzzy
 msgid "_Insert"
 msgstr "Beillesztés"
 
-#: gcharmap/src/asciiselect.c:107
+#: gcharmap/src/asciiselect.c:123
 msgid "Character code:"
 msgstr "Karakterkód:"
 
-#: gcharmap/src/asciiselect.c:117
+#: gcharmap/src/asciiselect.c:135
 msgid "Character:"
 msgstr "Karakter:"
 
-#: gcharmap/src/asciiselect.c:125
+#: gcharmap/src/asciiselect.c:143
+#, fuzzy
+msgid "Character Code"
+msgstr "Karakterkód:"
+
+#: gcharmap/src/asciiselect.c:143
+#, fuzzy
+msgid "Select character code"
+msgstr "Karakter kiválasztása"
+
+#: gcharmap/src/asciiselect.c:144
+#, fuzzy
+msgid "Character"
+msgstr "Karakter:"
+
+#: gcharmap/src/asciiselect.c:144
+#, fuzzy
+msgid "Character to insert"
+msgstr "Karakterkód:"
+
+#: gcharmap/src/asciiselect.c:152
 msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
-#: gcharmap/src/callbacks.c:57 gcharmap/src/interface.c:139
-msgid "Gnome Character Map"
+#: gcharmap/src/callbacks.c:64
+#, fuzzy
+msgid "GNOME Character Map"
 msgstr "Gnome karaktertábla"
 
-#: gcharmap/src/callbacks.c:60
+#: gcharmap/src/callbacks.c:67
 msgid ""
-"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
-"contain bad English."
-msgstr "A Gnome charmap ugyan olyan, mint a Microsoft Windows karaktertáblája."
+"Select, copy and paste characters from your font into other applications"
+msgstr ""
 
-#: gcharmap/src/callbacks.c:85 gcharmap/src/callbacks.c:125
+#: gcharmap/src/callbacks.c:121
 msgid "del"
 msgstr "del"
 
-#: gcharmap/src/callbacks.c:131
+#: gcharmap/src/callbacks.c:127
 #, c-format
 msgid " %s: Character code %d"
 msgstr "%s: Karakterkód %d"
 
-#: gcharmap/src/callbacks.c:162
+#: gcharmap/src/callbacks.c:166
 msgid "Text copied to clipboard..."
 msgstr "A vágólapra másolt szöveg..."
 
-#: gcharmap/src/callbacks.c:174
+#: gcharmap/src/callbacks.c:183
 msgid "Text cut to clipboard..."
 msgstr "A vágólapra vágott szöveg..."
 
-#: gcharmap/src/callbacks.c:225
+#: gcharmap/src/callbacks.c:232
 msgid "Text pasted from clipboard..."
 msgstr "A vágólapról beillesztett szöveg..."
 
-#: gcharmap/src/interface.c:170
+#: gcharmap/src/interface.c:195
+msgid "Gnome Character Map"
+msgstr "Gnome karaktertábla"
+
+#: gcharmap/src/interface.c:223
 msgid "Action Toolbar"
 msgstr "Mûvelet eszköztár"
 
-#: gcharmap/src/interface.c:189
+#: gcharmap/src/interface.c:227
 #, fuzzy
 msgid "_Text to copy:"
 msgstr "Másolandó szöveg:"
 
-#: gcharmap/src/interface.c:196
+#: gcharmap/src/interface.c:240
 #, fuzzy
 msgid "_Copy"
 msgstr "Másolás"
 
-#: gcharmap/src/interface.c:221
-msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
-msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
+#: gcharmap/src/interface.c:262 gcharmap/src/interface.c:263
+#, fuzzy
+msgid "Text to copy"
+msgstr "Másolandó szöveg:"
 
-#: gcharmap/src/interface.c:245 logview/logview.c:102
-msgid "Exit"
-msgstr "Kilépés"
+#: gcharmap/src/interface.c:263
+#, fuzzy
+msgid "Entry"
+msgstr "Bejegyzés vége:"
 
-#: gcharmap/src/interface.c:246 gcharmap/src/menus.c:99
+#: gcharmap/src/interface.c:264 gcharmap/src/menus.c:78
 msgid "Copy"
 msgstr "Másolás"
 
-#: gcharmap/src/interface.c:250
-msgid "About"
-msgstr "Névjegy"
-
-#: gcharmap/src/interface.c:252 gdictsrc/GNOME_GDictApplet.xml.h:2
-msgid "Help"
-msgstr "Súgó"
-
-#: gcharmap/src/interface.c:271
-msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-
-#: gcharmap/src/menus.c:48
+#: gcharmap/src/interface.c:264
 #, fuzzy
-msgid "_Browse Characters..."
-msgstr "Karakter beszúrása..."
+msgid "Copy the text"
+msgstr "Kijelölés másolása"
 
-#: gcharmap/src/menus.c:49
+#: gcharmap/src/menus.c:34
+#, fuzzy
+msgid "_Browse..."
+msgstr "Keresés"
+
+#: gcharmap/src/menus.c:35
 msgid "Insert character(s) by choosing character codes."
 msgstr "Karakter(ek) beszúrása karakterkód alapján."
 
-#: gcharmap/src/menus.c:56
-msgid "_Text Toolbar"
-msgstr "_Szöveg eszköztár"
-
-#: gcharmap/src/menus.c:56
-msgid "View or hide the text toolbar"
-msgstr "A Szöveg eszköztár mutatása vagy elrejtése"
-
-#: gcharmap/src/menus.c:58
-msgid "_Statusbar"
-msgstr "_Állapotsor"
-
-#: gcharmap/src/menus.c:58
-msgid "View or hide the statusbar"
-msgstr "Állapotsor mutatása vagy elrejtése"
-
-#. GNOMEUIINFO_ITEM_STOCK(N_("Character Table's Font..."), N_("Set the character "
-#. "table's font."), cb_set_chartable_font, GNOME_STOCK_MENU_FONT),
-#. GNOMEUIINFO_SEPARATOR,
-#: gcharmap/src/menus.c:68
-msgid "_Insert at end"
-msgstr "_Beszúrás a végére"
-
-#: gcharmap/src/menus.c:68
-msgid "Insert every selected character at the end of the text entry"
-msgstr "Minden kiválasztott karakter beszúrása a szövegmezõ végére"
-
-#: gcharmap/src/menus.c:70
-msgid "_Focusable Buttons"
-msgstr "_Fókuszálható gombok"
-
-#: gcharmap/src/menus.c:70
-msgid "Set the buttons to be focusable or not"
-msgstr "A gombok fókuszálhatók legyenek vagy sem"
+#: gcharmap/src/menus.c:64
+#, fuzzy
+msgid "_Characters"
+msgstr "Karakter:"
 
 #. GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
 #. cb_insert_char_click, NULL),
 #. GNOMEUIINFO_SEPARATOR,
-#: gcharmap/src/menus.c:97
+#: gcharmap/src/menus.c:76
 msgid "Cut"
 msgstr "Kivágás"
 
-#: gcharmap/src/menus.c:97
+#: gcharmap/src/menus.c:76
 msgid "Cut the selection"
 msgstr "Kijelölés kivágása"
 
-#: gcharmap/src/menus.c:99
+#: gcharmap/src/menus.c:78
 msgid "Copy the selection"
 msgstr "Kijelölés másolása"
 
-#: gcharmap/src/menus.c:101
+#: gcharmap/src/menus.c:80
 msgid "Paste"
 msgstr "Beillesztés"
 
-#: gcharmap/src/menus.c:101
+#: gcharmap/src/menus.c:80
 msgid "Paste the clipboard"
 msgstr "Vágólap beillesztése"
 
@@ -506,13 +526,19 @@ msgstr "Vágólap beillesztése"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:418
-#: gdictsrc/gdict-pref-dialog.c:462 gdictsrc/gdict-speller.c:434
+#: gdictsrc/dict.c:648 gdictsrc/gdict-pref-dialog.c:461
+#: gdictsrc/gdict-pref-dialog.c:512 gdictsrc/gdict-speller.c:478
 msgid "Cannot connect to server"
 msgstr "Nem sikerült a kapcsolódni a kiszolgálóhoz"
 
+#: gdictsrc/dict.c:661
+msgid ""
+"A serious error occured. Please check that your server and port are correct. "
+"For reference the default server is dict.org and the port 2628"
+msgstr ""
+
 # gdictsrc/gdict-about.c:40
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:58
 msgid ""
 "Client for MIT dictionary server.\n"
 "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
@@ -528,27 +554,27 @@ msgstr "Helyesírás-ellenõrzés..."
 msgid "Spell check done"
 msgstr "A helyesírás-ellenõrzés befejezõdött"
 
-#: gdictsrc/gdict-app.c:135 gdictsrc/gdict-app.c:273
+#: gdictsrc/gdict-app.c:135 gdictsrc/gdict-app.c:264
 msgid "No matches found"
 msgstr "Nincs egyezés"
 
-#: gdictsrc/gdict-app.c:257
+#: gdictsrc/gdict-app.c:248
 msgid "Looking up word..."
 msgstr "Keresés szóra..."
 
-#: gdictsrc/gdict-app.c:265
+#: gdictsrc/gdict-app.c:256
 msgid "Lookup done"
 msgstr "A keresés befejezõdött"
 
-#: gdictsrc/gdict-app.c:285
+#: gdictsrc/gdict-app.c:276
 msgid "String not found"
 msgstr "Nincs ilyen karakterlánc"
 
-#: gdictsrc/gdict-app.c:427
+#: gdictsrc/gdict-app.c:418
 msgid "Find:"
 msgstr "Keresés:"
 
-#: gdictsrc/gdict-app.c:452
+#: gdictsrc/gdict-app.c:443
 #, fuzzy
 msgid ""
 "Unable to perform requested operation. \n"
@@ -560,38 +586,68 @@ msgstr ""
 "felkapcsolódva. Ha nem vagy felkapcsolva az Internetre, csatlakozz\n"
 "és próbáld újra."
 
-#: gdictsrc/gdict-app.c:489
-msgid "Lookup"
+#: gdictsrc/gdict-app.c:582 gdictsrc/gdict-app.c:691
+#: gdictsrc/gdict-speller.c:243
+#, fuzzy
+msgid "_Look Up Word"
 msgstr "Keresés"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:583
 msgid "Lookup word in dictionary"
 msgstr "Szó keresése a szótárban"
 
-#: gdictsrc/gdict-app.c:492
-msgid "Spell"
-msgstr "Helyesírás"
+#: gdictsrc/gdict-app.c:585 gdictsrc/gdict-speller.c:187
+#, fuzzy
+msgid "Check _Spelling"
+msgstr "Helyesírás-ellenõrzés"
 
-#: gdictsrc/gdict-app.c:493
+#: gdictsrc/gdict-app.c:586
 msgid "Check word spelling"
 msgstr "Helyesírás-ellenõrzés"
 
-#: gdictsrc/gdict-app.c:594 gdictsrc/gdict-speller.c:128
+#: gdictsrc/gdict-app.c:630
 #, fuzzy
-msgid "Word : "
+msgid "_Dictionary"
+msgstr "_Mûvelet eszköztár"
+
+#: gdictsrc/gdict-app.c:666 gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:687
+#, fuzzy
+msgid "_Word: "
 msgstr "Szó:"
 
-#: gdictsrc/gdict-app.c:598
+#: gdictsrc/gdict-app.c:714 gdictsrc/gdict-speller.c:169
 #, fuzzy
-msgid "_Look Up"
+msgid "Word"
+msgstr "Szó:"
+
+#: gdictsrc/gdict-app.c:715 gdictsrc/gdict-app.c:716
+#: gdictsrc/gdict-speller.c:170
+msgid "Word Entry"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:715
+msgid "Enter a Word or select one from the list below"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:718
+#, fuzzy
+msgid "Look Up for a Word"
 msgstr "Keresés"
 
-#: gdictsrc/gdict-applet.c:273
+#: gdictsrc/gdict-applet.c:266
+msgid "Dictionary Applet"
+msgstr ""
+
+#: gdictsrc/gdict-applet.c:278
 msgid "Press button to look up any highlighted text in a dictionary"
 msgstr ""
 
 # mini-utils/gless/gless.c:548
-#: gdictsrc/gdict-defbox.c:633 gdictsrc/gdict-speller.c:459
+#: gdictsrc/gdict-defbox.c:638 gdictsrc/gdict-speller.c:503
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Hiba a lekérdezésnél: %s"
@@ -628,801 +684,179 @@ msgstr "Törzs:"
 msgid "Cross-reference:"
 msgstr "Kereszthivatkozás:"
 
-#: gdictsrc/gdict-pref-dialog.c:177
-msgid "Preferences"
-msgstr "Tulajdonságok"
+#: gdictsrc/gdict-pref-dialog.c:185
+#, fuzzy
+msgid "Dictionary Preferences"
+msgstr "Tulajdonságok szerkesztése..."
 
-#: gdictsrc/gdict-pref-dialog.c:189
-msgid "Smart lookup"
+#: gdictsrc/gdict-pref-dialog.c:197
+#, fuzzy
+msgid "Smart _lookup"
 msgstr "Gyors lekérés"
 
 # gdictsrc/gdict-pref-dialog.c:156
-#: gdictsrc/gdict-pref-dialog.c:200
-msgid "Server:"
+#: gdictsrc/gdict-pref-dialog.c:210
+#, fuzzy
+msgid "_Server:"
 msgstr "Kiszolgáló:"
 
-# gdictsrc/gdict-pref-dialog.c:185
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:217
 #, fuzzy
-msgid "Set _Server"
-msgstr "Kiszolgáló"
+msgid "De_fault"
+msgstr "Alap"
+
+#: gdictsrc/gdict-pref-dialog.c:223
+#, fuzzy
+msgid "Reset server to default"
+msgstr "Alapállapot visszaállítása"
 
 # gdictsrc/gdict-pref-dialog.c:161
-#: gdictsrc/gdict-pref-dialog.c:210
-msgid "Port:"
+#: gdictsrc/gdict-pref-dialog.c:225
+#, fuzzy
+msgid "_Port:"
 msgstr "Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:239
 #, fuzzy
-msgid "Set _Port"
-msgstr "_Indítás"
+msgid "Def_ault"
+msgstr "Alap"
 
-#: gdictsrc/gdict-pref-dialog.c:225
-msgid "Database:"
+#: gdictsrc/gdict-pref-dialog.c:246
+#, fuzzy
+msgid "Reset port to default"
+msgstr "Alapállapot visszaállítása"
+
+# gdictsrc/gdict-pref-dialog.c:156
+#: gdictsrc/gdict-pref-dialog.c:247
+#, fuzzy
+msgid "Server"
+msgstr "Kiszolgáló:"
+
+# gdictsrc/gdict-pref-dialog.c:156
+#: gdictsrc/gdict-pref-dialog.c:248
+#, fuzzy
+msgid "Server Entry"
+msgstr "Kiszolgáló:"
+
+#: gdictsrc/gdict-pref-dialog.c:248
+msgid "Enter the Server Name"
+msgstr ""
+
+# gdictsrc/gdict-pref-dialog.c:161
+#: gdictsrc/gdict-pref-dialog.c:251
+#, fuzzy
+msgid "Port"
+msgstr "Port:"
+
+#: gdictsrc/gdict-pref-dialog.c:252
+msgid "Port Entry"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:252
+msgid "Enter the Port Number"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:257
+#, fuzzy
+msgid "_Database:"
 msgstr "Adatbázis:"
 
-#: gdictsrc/gdict-pref-dialog.c:232
-msgid "Default strategy:"
+#: gdictsrc/gdict-pref-dialog.c:264
+#, fuzzy
+msgid "D_efault strategy:"
 msgstr "Alapértelmezett stratégia:"
 
-#: gdictsrc/gdict-pref-dialog.c:410
+#: gdictsrc/gdict-pref-dialog.c:453
 msgid "Search all databases"
 msgstr "Keresés az összes adatbázisban"
 
-#: gdictsrc/gdict-pref-dialog.c:598
-msgid "The server you specified could not be found."
-msgstr "A megadott kiszolgáló nem található."
-
-#: gdictsrc/gdict-pref-dialog.c:649
+#: gdictsrc/gdict-pref-dialog.c:618
 #, fuzzy
-msgid "The server could not be found on that port."
-msgstr "A megadott kiszolgáló nem található."
+msgid "Database"
+msgstr "Adatbázis:"
 
-#: gdictsrc/gdict-speller.c:136
+#: gdictsrc/gdict-pref-dialog.c:618
 #, fuzzy
-msgid "_Spell"
-msgstr "Helyesírás"
+msgid "Database Name"
+msgstr "Adatbázis:"
 
-#: gdictsrc/gdict-speller.c:150
-msgid "Search Strategy:"
+#: gdictsrc/gdict-pref-dialog.c:630
+#, fuzzy
+msgid "Default Strategy"
+msgstr "Alapértelmezett stratégia:"
+
+#: gdictsrc/gdict-speller.c:157
+#, fuzzy
+msgid "_Word:"
+msgstr "Szó:"
+
+#: gdictsrc/gdict-speller.c:170
+msgid "Enter a word to know the spelling"
+msgstr ""
+
+#: gdictsrc/gdict-speller.c:175
+msgid "Click to do the spell check"
+msgstr ""
+
+#: gdictsrc/gdict-speller.c:180
+#, fuzzy
+msgid "Search S_trategy:"
 msgstr "Keresési stratégia:"
 
-#: gdictsrc/gdict-speller.c:162
-msgid "Search Results"
+#: gdictsrc/gdict-speller.c:196
+#, fuzzy
+msgid "Search _Results"
 msgstr "Keresés eredménye"
 
-#: gdictsrc/gdict-speller.c:200
+#: gdictsrc/gdict-speller.c:251
 #, fuzzy
-msgid "_Look Up Word"
-msgstr "Keresés"
-
-#: gdictsrc/gdict-speller.c:207
-msgid "Spell checker"
+msgid "Check Spelling"
 msgstr "Helyesírás-ellenõrzés"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:137
+#: gdictsrc/gdict-speller.c:668
+#, fuzzy
+msgid "Search Strategy"
+msgstr "Keresési stratégia:"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:3
+#: gdictsrc/gnome-dictionary.desktop.in.h:2
+#, fuzzy
+msgid "Lookup words in an online dictionary"
+msgstr "Szó keresése a szótárban"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:1
+msgid "Accessories"
+msgstr ""
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:2
+msgid "Dictionary Lookup"
+msgstr ""
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:141
 msgid "About..."
 msgstr "Névjegy..."
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:3 logview/logview.c:118
-msgid "Preferences..."
-msgstr "Tulajdonságok..."
+#: gdictsrc/GNOME_GDictApplet.xml.h:2
+msgid "Help"
+msgstr "Súgó"
+
+#: gdictsrc/GNOME_GDictApplet.xml.h:3
+msgid "Preferences"
+msgstr "Tulajdonságok"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
 msgid "Show/Hide Definition Window..."
 msgstr "Mutatja/Elrejti a definíciós ablakot..."
 
-#: gsearchtool/gsearchtool.c:63
+#: gfloppy/gfloppy.desktop.in.h:1
 #, fuzzy
-msgid "File name is"
-msgstr "Fájlnév :"
+msgid "Floppy Formatter"
+msgstr "A floppy formázása megszakítva."
 
-#: gsearchtool/gsearchtool.c:64
+#: gfloppy/gfloppy.desktop.in.h:2
 #, fuzzy
-msgid "File name is not"
-msgstr "Fájlnév :"
-
-#: gsearchtool/gsearchtool.c:65
-msgid "Don't search mounted filesystems"
-msgstr "Nem keres beillesztett fájlrendszeren"
-
-#: gsearchtool/gsearchtool.c:66
-msgid "Follow symbolic links"
-msgstr "Szimbolikus linkek követése"
-
-#: gsearchtool/gsearchtool.c:67
-#, fuzzy
-msgid "Process directory contents depth first"
-msgstr "A kezdõ könyvtár nem létezik"
-
-#: gsearchtool/gsearchtool.c:68
-msgid "Don't search subdirectories"
-msgstr "Nem keres alkönyvtárakban"
-
-#: gsearchtool/gsearchtool.c:69
-msgid "Owned by user"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:70
-#, fuzzy
-msgid "Owned by group"
-msgstr "Fájltulajdonos csoportja"
-
-#: gsearchtool/gsearchtool.c:71
-msgid "Invalid user or group"
-msgstr "Érvénytelen felhasználó vagy csoport"
-
-#: gsearchtool/gsearchtool.c:72
-#, fuzzy
-msgid "Last time modified"
-msgstr "Utolsó módosítás idõpontja"
-
-#: gsearchtool/gsearchtool.c:73
-#, fuzzy
-msgid "File is empty"
-msgstr "A fájl üres: `%s'"
-
-#: gsearchtool/gsearchtool.c:74
-#, fuzzy
-msgid "Matches regular expression"
-msgstr "Kiterjesztett reguláris kifejezés"
-
-#: gsearchtool/gsearchtool.c:545
-msgid "today at %-I:%M %p"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:547
-msgid "yesterday at %-I:%M %p"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:549 gsearchtool/gsearchtool.c:551
-msgid "%m/%-d/%y, %-I:%M %p"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:561
-#, fuzzy
-msgid "%Y%m%d%H%M%S"
-msgstr "%b %d %H:%M:%S"
-
-#: gsearchtool/gsearchtool.c:576
-#, fuzzy
-msgid "folder"
-msgstr "Tömör"
-
-#: gsearchtool/gsearchtool.c:578
-#, fuzzy
-msgid "program"
-msgstr "Kilépés a programból"
-
-#: gsearchtool/gsearchtool.c:580
-#, fuzzy
-msgid "symbolic link"
-msgstr "Szimbolikus linkek követése"
-
-#: gsearchtool/gsearchtool.c:758
-msgid ""
-"\n"
-"... Too many errors to display ..."
-msgstr ""
-"\n"
-"... Túl sok hiba van, nem lehet ennyit megjeleníteni ..."
-
-#: gsearchtool/gsearchtool.c:795
-#, fuzzy
-msgid "Start directory does not exist."
-msgstr "A kezdõ könyvtár nem létezik"
-
-#: gsearchtool/gsearchtool.c:806 gsearchtool/gsearchtool.c:1420
-msgid "Cannot perform the search. Please specify a search criteria."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:823 gsearchtool/gsearchtool.c:1440
-msgid ""
-"A search is already running.  Please wait for the search to complete or "
-"cancel it."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:841
-msgid "Start directory does not exist"
-msgstr "A kezdõ könyvtár nem létezik"
-
-#: gsearchtool/gsearchtool.c:856
-msgid "Cannot show the search command line. Please specify a search criteria."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:860
-#, fuzzy
-msgid "Search Command Line"
-msgstr "Keresõ parancssor"
-
-#: gsearchtool/gsearchtool.c:875
-#, fuzzy
-msgid ""
-"This is the command line that can be used to execute this search from the "
-"console.\n"
-"\n"
-"Command:"
-msgstr ""
-"Ez egy parancssor, amellyel kereséseket indíthatsz a konzolról:\n"
-" (Megjegyzés: ha egy fájlt akarsz soronként, add az alábbi sorhoz\n"
-" \"| tr '\\000' '\\n'\"-t)"
-
-#: gsearchtool/gsearchtool.c:1005
-#, fuzzy
-msgid "No viewer available for this mime type."
-msgstr "Nincs parancs ehhez mime típushoz"
-
-#: gsearchtool/gsearchtool.c:1091
-msgid "Entry changed called for a non entry option!"
-msgstr "A beviteli mezõ változás hívódott meg egy nem beviteli mezõhöz!"
-
-#: gsearchtool/gsearchtool.c:1155
-msgid "Enabled"
-msgstr "Engedélyezve"
-
-#: gsearchtool/gsearchtool.c:1213
-#, fuzzy
-msgid "S_tarting in folder:"
-msgstr "Nincs ilyen karakterlánc"
-
-#: gsearchtool/gsearchtool.c:1215
-msgid "Browse"
-msgstr "Keresés"
-
-#: gsearchtool/gsearchtool.c:1232
-msgid "Rules:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1252
-msgid "A_dd Rule:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1283 gsearchtool/gsearchtool.c:1496
-#, fuzzy
-msgid "F_ind"
-msgstr "Keresés"
-
-#: gsearchtool/gsearchtool.c:1300 gsearchtool/gsearchtool.c:1512
-#, fuzzy
-msgid "Results"
-msgstr "Eredmény mentése"
-
-#: gsearchtool/gsearchtool.c:1332 gsearchtool/gsearchtool.c:1545
-msgid "Name"
-msgstr "Név"
-
-#: gsearchtool/gsearchtool.c:1354 gsearchtool/gsearchtool.c:1567
-#, fuzzy
-msgid "Folder"
-msgstr "Tömör"
-
-#: gsearchtool/gsearchtool.c:1366 gsearchtool/gsearchtool.c:1579
-#, fuzzy
-msgid "Size"
-msgstr "Méret:"
-
-#: gsearchtool/gsearchtool.c:1378 gsearchtool/gsearchtool.c:1591
-msgid "Type"
-msgstr "Típus"
-
-#: gsearchtool/gsearchtool.c:1389 gsearchtool/gsearchtool.c:1602
-#, fuzzy
-msgid "Date Modified"
-msgstr "Módosítva:"
-
-#: gsearchtool/gsearchtool.c:1467
-#, fuzzy
-msgid "Find files _named:"
-msgstr "Fájlnév"
-
-#: gsearchtool/gsearchtool.c:1622
-#, fuzzy
-msgid "Si_mple"
-msgstr "Fájl"
-
-#: gsearchtool/gsearchtool.c:1625
-#, fuzzy
-msgid "Ad_vanced"
-msgstr "Haladó"
-
-#: gsearchtool/gsearchtool.c:1650
-msgid "The Gnome Search Tool"
-msgstr "Gnome keresõ"
-
-#: gsearchtool/gsearchtool.c:1651
-msgid "(C) 1998,2000 the Free Software Foundation"
-msgstr "(C) 1998,2000 the Free Software Foundation"
-
-#: gsearchtool/gsearchtool.c:1652
-#, fuzzy
-msgid "Frontend to the unix find/locate commands"
-msgstr "Felület a find/grep/locate parancsokhoz"
-
-#: gsearchtool/gsearchtool.c:1703
-#, fuzzy
-msgid "Cannot save the results file."
-msgstr "Nem sikerült menteni a fájlt"
-
-#: gsearchtool/gsearchtool.c:1710 meat-grinder/meat-grinder.c:492
-msgid "Save Results"
-msgstr "Eredmény mentése"
-
-#: gsearchtool/gsearchtool.c:1745
-#, fuzzy
-msgid "S_how Command"
-msgstr "Mutasd a parancsokat"
-
-#: gsearchtool/gsearchtool.c:1746
-#, fuzzy
-msgid "Save Results _As..."
-msgstr "Eredmény mentése"
-
-#: gsearchtool/gsearchtool.c:1780
-msgid "Cannot initialize bonobo."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1784
-#, fuzzy
-msgid "Search Tool"
-msgstr "Gnome keresõ"
-
-#: logview/about.c:42
-msgid "Cesar Miquel (miquel@df.uba.ar)"
-msgstr "Cesar Miquel (miquel@df.uba.ar)"
-
-#: logview/about.c:43
-msgid ""
-"This  program  is  part of  the  GNOME  project for Linux. Logview comes "
-"with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
-"redistribute it under the conditions of the GNU General Public Licence. The "
-"log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-msgstr ""
-"Ez a program a GNOME projekt része Linuxra. A naplónézõ minden garancia "
-"nélkül jött ki. Szabad szoftver, és nyugodtan forgalmazhatod a GNU GPL "
-"szerint. A napló ikon Tuomas Kuosmanen (a.k.a tigert) munkája."
-
-#. go get logview.xpm in $(prefix)/share/pixmaps/logview
-#: logview/about.c:72
-msgid "Logview"
-msgstr "Naplónézõ"
-
-#: logview/about.c:73
-msgid "Copyright (C) 1998"
-msgstr "Copyright (C) 1998"
-
-#: logview/actions.c:92
-msgid "Action database"
-msgstr "Tevékenységadatbázis"
-
-#: logview/actions.c:97 logview/monitor.c:110
-msgid "Monitor options"
-msgstr "Mit figyeljen?"
-
-#: logview/actions.c:151
-msgid "Add..."
-msgstr "Hozzáadás.."
-
-#: logview/actions.c:157
-msgid "Edit..."
-msgstr "Szerkesztés..."
-
-#: logview/actions.c:163 meat-grinder/meat-grinder.c:718
-msgid "Remove"
-msgstr "Eltávolítás"
-
-#: logview/actions.c:278
-#, c-format
-msgid "Cannot open action data base <%s>! Open failed."
-msgstr "Nem sikerült megnyitni a tevékenységadatbázist: %s!"
-
-#: logview/actions.c:313 logview/actions.c:326 logview/actions.c:337
-#: logview/actions.c:348 logview/actions.c:359 logview/actions.c:370
-msgid "Error parsing actions data base"
-msgstr "Hiba a tevékenységadatbázis értelmezése közben"
-
-#: logview/actions.c:404
-msgid "Can't write to actions database!"
-msgstr "Nem sikerült írni a tevékenységadatbázisba!"
-
-#: logview/actions.c:511
-msgid "<empty>"
-msgstr "<üres>"
-
-#: logview/actions.c:512
-msgid "log name regexp"
-msgstr "naplónév regkif"
-
-# logview/actions.c:479
-#: logview/actions.c:513
-msgid "process regexp"
-msgstr "folyamat regkif"
-
-# logview/actions.c:480
-#: logview/actions.c:514
-msgid "message regexp"
-msgstr "üzenet regkif"
-
-#: logview/actions.c:515
-msgid "action to execute when regexps are TRUE"
-msgstr "a regexp teljesülése esetén futtatandó parancs"
-
-#: logview/actions.c:516
-msgid "description"
-msgstr "leírás"
-
-#: logview/actions.c:746
-msgid "description:"
-msgstr "leírás:"
-
-#: logview/actions.c:754
-msgid "Description of this entry."
-msgstr "A bejegyzés leírása."
-
-#: logview/actions.c:810
-#, c-format
-msgid ""
-"tag: [%s]\n"
-"log_name: [%s]\n"
-"process: [%s]\n"
-"message: [%s]\n"
-"description: [%s]\n"
-"action: [%s]\n"
-msgstr ""
-"címke: [%s]\n"
-"napló_név: [%s]\n"
-"folyamat: [%s]\n"
-"üzenet: [%s]\n"
-"leírás: [%s]\n"
-"tevékenység: [%s]\n"
-
-# logview/calendar.c:118
-#: logview/calendar.c:112 logview/logview.c:109
-msgid "Calendar"
-msgstr "Naptár"
-
-#: logview/info.c:79 logview/logview.c:112
-msgid "Log stats"
-msgstr "Naplóstatisztikák"
-
-#: logview/info.c:139
-msgid "Log information"
-msgstr "Naplóinformáció"
-
-#: logview/info.c:156
-msgid "Log:"
-msgstr "Napló:"
-
-#: logview/info.c:158
-msgid "Size:"
-msgstr "Méret:"
-
-#: logview/info.c:160
-msgid "Modified:"
-msgstr "Módosítva:"
-
-#: logview/info.c:162
-msgid "Start date:"
-msgstr "Kezdési idõpont:"
-
-#: logview/info.c:164
-msgid "Last date:"
-msgstr "Utolsó idõpont:"
-
-#: logview/info.c:166
-msgid "Num. lines:"
-msgstr "Sorok száma"
-
-#: logview/info.c:183
-#, c-format
-msgid "%ld bytes"
-msgstr "%ld bájt"
-
-#: logview/log_repaint.c:83
-msgid "January"
-msgstr "Január"
-
-#: logview/log_repaint.c:83
-msgid "February"
-msgstr "Február"
-
-#: logview/log_repaint.c:83
-msgid "March"
-msgstr "Március"
-
-#: logview/log_repaint.c:83
-msgid "April"
-msgstr "Április"
-
-#: logview/log_repaint.c:83
-msgid "May"
-msgstr "Május"
-
-#: logview/log_repaint.c:84
-msgid "June"
-msgstr "Június"
-
-#: logview/log_repaint.c:84
-msgid "July"
-msgstr "Július"
-
-#: logview/log_repaint.c:84
-msgid "August"
-msgstr "Augusztus"
-
-#: logview/log_repaint.c:84
-msgid "September"
-msgstr "Szeptember"
-
-#: logview/log_repaint.c:84
-msgid "October"
-msgstr "Október"
-
-#: logview/log_repaint.c:85
-msgid "November"
-msgstr "November"
-
-#: logview/log_repaint.c:85
-msgid "December"
-msgstr "December"
-
-#. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:475
-#, c-format
-msgid "%x"
-msgstr "%x"
-
-#. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:585
-#, c-format
-msgid "%X"
-msgstr "%X"
-
-#. bogus
-#. Translators: Make sure this is only Month and Day format, year
-#. * will be bogus here
-#: logview/log_repaint.c:669
-msgid "%B %e"
-msgstr "%B %e"
-
-#: logview/logrtns.c:199
-msgid "Not enough memory!\n"
-msgstr "Nincs elég memória!\n"
-
-#: logview/logrtns.c:207
-msgid "Out of memory!\n"
-msgstr "Elfogyott a memória!\n"
-
-#: logview/logrtns.c:233
-msgid "Unable to open logfile!\n"
-msgstr "Nem lehet megnyitni a naplófájlt!\n"
-
-#: logview/logrtns.c:288
-#, c-format
-msgid "%s is not a regular file."
-msgstr "a %s nem közönséges fájl."
-
-#: logview/logrtns.c:296
-#, c-format
-msgid ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
-msgstr ""
-"%s nem olvasható a felhasználók által. Lehet, hogy csak olvasható. Vagy "
-"futtasd a programot rootként, vagy kérj a rendszergazdától jogokat a fájlhoz."
-
-#: logview/logrtns.c:309
-#, c-format
-msgid "%s could not be opened."
-msgstr "%s-t nem tudom megnyitni."
-
-#: logview/logrtns.c:332
-#, c-format
-msgid "%s not a log file."
-msgstr "%s nem naplófájl."
-
-#: logview/logrtns.c:756 logview/logrtns.c:787 logview/logrtns.c:918
-msgid "ReadLogStats: out of memory"
-msgstr "ReadLogStats: elfogyott a memória"
-
-#: logview/logview.c:87
-msgid "Open log..."
-msgstr "Napló megnyitása..."
-
-#: logview/logview.c:88
-msgid "Open log"
-msgstr "Napló megnyitása"
-
-#: logview/logview.c:90
-msgid "Export log..."
-msgstr "Napló exportálása..."
-
-#: logview/logview.c:91
-msgid "Export log"
-msgstr "Napló exportálása"
-
-#: logview/logview.c:93 logview/logview.c:94
-msgid "Close log"
-msgstr "Napló bezárása"
-
-#: logview/logview.c:96 logview/logview.c:97
-msgid "Switch log"
-msgstr "Napló átváltása"
-
-#: logview/logview.c:99
-msgid "Monitor..."
-msgstr "Megfigyelés..."
-
-#: logview/logview.c:100
-msgid "Monitor log"
-msgstr "Napló figyelése"
-
-#: logview/logview.c:103
-msgid "Exit program"
-msgstr "Kilépés a programból"
-
-#: logview/logview.c:110
-msgid "Show calendar log"
-msgstr "Naptár naplójának mutatása"
-
-#: logview/logview.c:113
-msgid "Show log stats"
-msgstr "Naplóstatisztikák mutatása"
-
-#: logview/logview.c:115
-msgid "Zoom"
-msgstr "Nagyítás"
-
-#: logview/logview.c:116
-msgid "Show line info"
-msgstr "Sorok információinak mutatása"
-
-#: logview/logview.c:119
-msgid "Show user preferences"
-msgstr "Felhasználó beállítások mutatása"
-
-#: logview/logview.c:126
-msgid "Select...               "
-msgstr "Kiválasztás...          "
-
-#: logview/logview.c:127
-msgid "Select log events"
-msgstr "Válaszd ki a naplóeseményeket"
-
-#: logview/logview.c:129
-msgid "Filter..                "
-msgstr "Szûrõ...                "
-
-#: logview/logview.c:130
-msgid "Filter log events"
-msgstr "Naplóesemények szûrése"
-
-#: logview/logview.c:138
-msgid "Info about logview"
-msgstr "A naplónézõrõl"
-
-#: logview/logview.c:250
-msgid "No log files to open"
-msgstr "Nincs megnyitandó naplófájl"
-
-#. Create App
-#: logview/logview.c:273
-msgid "System Log Viewer"
-msgstr "Rendszernaplónézõ"
-
-#: logview/logview.c:377
-msgid "Filename: "
-msgstr "Fájlnév: "
-
-#: logview/logview.c:393
-msgid "Date: "
-msgstr "Dátum: "
-
-#: logview/logview.c:628
-msgid "Too many open logs. Close one and try again"
-msgstr "Túl sok napló van megnyitva. Zárj be egyet, és próbáld újra"
-
-#: logview/logview.c:685
-msgid "Open new logfile"
-msgstr "Napló megnyitása"
-
-#: logview/misc.c:55
-#, c-format
-msgid "Error: [%s]\n"
-msgstr "Hiba: [%s]\n"
-
-#: logview/monitor.c:124
-msgid "Choose logs to monitor"
-msgstr "Válassz nézendõ naplót"
-
-#. Arrowed buttons
-#: logview/monitor.c:168
-msgid "Add >>"
-msgstr "Hozzáadás >>"
-
-#. Remove button
-#: logview/monitor.c:176
-msgid "Remove <<"
-msgstr "Eltávolítás <<"
-
-#. Check boxes
-#: logview/monitor.c:207
-msgid "Hide app"
-msgstr "Alkalmazás elrejtése"
-
-#: logview/monitor.c:215
-msgid "Exec actions"
-msgstr "Tevékenységek futtatása"
-
-#. Actions button
-#: logview/monitor.c:227
-msgid "Actions..."
-msgstr "Tevékenységek..."
-
-#: logview/monitor.c:282 logview/monitor.c:329
-msgid "tmp_list is NULL\n"
-msgstr "a tmp_list NULL\n"
-
-#: logview/monitor.c:456
-msgid "Monitoring logs..."
-msgstr "Naplók megfigyelése..."
-
-#: logview/monitor.c:638
-msgid "TOUCHED!!\n"
-msgstr "HOZZÁÉRVE!!\n"
-
-#: logview/userprefsdialog.c:65
-msgid "hostname column width ( 0 to hide this column ): "
-msgstr "gépnév oszlop szélessége (0 szélességnél rejtve): "
-
-#: logview/userprefsdialog.c:66
-msgid "Columns"
-msgstr "Oszlop"
-
-#: logview/zoom.c:78
-msgid "Zoom view"
-msgstr "Nagyított nézet"
-
-#: logview/zoom.c:154
-#, c-format
-msgid "Log line detail for %s"
-msgstr "Naplósor részletek %s-re"
-
-#: logview/zoom.c:157
-msgid "Log line detail for <No log loaded>"
-msgstr "Napló sor részletek <nincs log betöltve>-re"
-
-#: logview/zoom.c:180
-msgid "Date:"
-msgstr "Dátum:"
-
-# logview/zoom.c:179
-#: logview/zoom.c:182
-msgid "Process:"
-msgstr "Folyamat:"
-
-# logview/zoom.c:181
-#: logview/zoom.c:184
-msgid "Message:"
-msgstr "Üzenet:"
-
-#: logview/zoom.c:186
-msgid "Description:"
-msgstr "Leírás:"
-
-#. Translators: do not include year, it would be bogus
-#: logview/zoom.c:212
-msgid "%B %e %X"
-msgstr "%B %e %X"
-
-#: logview/desc_db.c:37
-#, c-format
-msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "Nem sikerült megnyitni a reguláris kifejezés adatbázist: %s!"
-
-#: logview/desc_db.c:147
-#, c-format
-msgid "Cannot open description data base <%s>! Open failed."
-msgstr "Nem sikerült megnyitni a leíróadatbázist: %s!"
+msgid "Format Floppy Disks"
+msgstr "Floppy formázása"
 
 #: gfloppy/src/badblocks.c:102
 msgid "MInternal Error: Unable to seek to the correct location."
@@ -1567,6 +1001,53 @@ msgstr ""
 msgid "ECould not determine current format type"
 msgstr "Nem tudtam megállapírani a jelenlegi formátumot"
 
+#: gfloppy/src/gfloppy2.glade.h:1
+msgid "DOS (fat)"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:2
+msgid "Double Density 3.5\" (720 KB)"
+msgstr "Double Density 3.5\" (720 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:3
+msgid "Double Density 5.25\" (360 KB)"
+msgstr "Double Density 5.25\" (360 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:4
+#, fuzzy
+msgid "File system _type:"
+msgstr "Fájlrendszer típusa:"
+
+#: gfloppy/src/gfloppy2.glade.h:5
+#, fuzzy
+msgid "Floppy _Density:"
+msgstr "Floppy típusa:"
+
+#: gfloppy/src/gfloppy2.glade.h:6
+msgid "Format a floppy"
+msgstr "Floppy formázása"
+
+#: gfloppy/src/gfloppy2.glade.h:7
+msgid "High Density 3.5\" (1.44 MB)"
+msgstr "High Density 3.5\" (1.44 MB)"
+
+#: gfloppy/src/gfloppy2.glade.h:8
+msgid "High Density 5.25\" (1.2 MB)"
+msgstr "High Density 5.25\" (1.2 MB)"
+
+#: gfloppy/src/gfloppy2.glade.h:9
+msgid "Linux Native (ext2)"
+msgstr "Linux fájlrendszer (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:10
+#, fuzzy
+msgid "_Floppy Device:"
+msgstr "Hajlékonylemezes egység:"
+
+#: gfloppy/src/gfloppy2.glade.h:11
+msgid "_Quick format"
+msgstr "_Gyors formázás"
+
 #: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
 msgid "MMaking filesystem on disk..."
 msgstr "Fájlrendszer létrehozása..."
@@ -1619,7 +1100,7 @@ msgstr "A formázandó eszköz"
 msgid "DEVICE"
 msgstr "ESZKÖZ"
 
-#: gfloppy/src/main.c:366
+#: gfloppy/src/main.c:365
 msgid "Format another floppy?"
 msgstr "Még egy floppy formázása?"
 
@@ -1635,253 +1116,6 @@ msgstr "A floppy formázása megszakítva."
 msgid "Format progress."
 msgstr "Formázás állása."
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gfloppy/src/gfloppy-i18n.h:7
-msgid "Format a floppy"
-msgstr "Floppy formázása"
-
-#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
-msgid "Linux Native (ext2)"
-msgstr "Linux fájlrendszer (ext2)"
-
-#: gfloppy/src/gfloppy-i18n.h:9
-msgid "Dos (FAT)"
-msgstr "Dos (FAT)"
-
-#: gfloppy/src/gfloppy-i18n.h:11
-msgid "Floppy Density:"
-msgstr "Floppy típusa:"
-
-#: gfloppy/src/gfloppy-i18n.h:12
-msgid "File system type:"
-msgstr "Fájlrendszer típusa:"
-
-#: gfloppy/src/gfloppy-i18n.h:13
-msgid "High Density 3.5\" (1.44 MB)"
-msgstr "High Density 3.5\" (1.44 MB)"
-
-#: gfloppy/src/gfloppy-i18n.h:14
-msgid "High Density 5.25\" (1.2 MB)"
-msgstr "High Density 5.25\" (1.2 MB)"
-
-#: gfloppy/src/gfloppy-i18n.h:15
-msgid "Double Density 3.5\" (720 KB)"
-msgstr "Double Density 3.5\" (720 KB)"
-
-#: gfloppy/src/gfloppy-i18n.h:16
-msgid "Double Density 5.25\" (360 KB)"
-msgstr "Double Density 5.25\" (360 KB)"
-
-#: gfloppy/src/gfloppy-i18n.h:17
-msgid "_Quick format"
-msgstr "_Gyors formázás"
-
-#: gfloppy/src/gfloppy-i18n.h:18
-msgid "Floppy Device:"
-msgstr "Hajlékonylemezes egység:"
-
-#: exe-handler/gnome-exe-handler.c:76
-#, c-format
-msgid ""
-"Executing arbitrary programs that you downloaded from the network might be "
-"dangerous.\n"
-"\n"
-"Are you sure you want to run `%s'?"
-msgstr ""
-"A hálózatról letöltött ismeretlen program futtatása veszélyes lehet.\n"
-"\n"
-"Biztos, hogy futtatni szeretnéd `%s'-t?"
-
-#: exe-handler/gnome-exe-handler.c:83
-msgid "Could not access file permissions"
-msgstr "A fájl engedélyei nem elérhetõek."
-
-#: exe-handler/gnome-exe-handler.c:88
-#, c-format
-msgid "Could not execute the file `%s' due to a permission problem"
-msgstr "Nem sikerült végrehajtani `%s' fájlt jogosultsági problémák miatt"
-
-#: exe-handler/gnome-exe-handler.c:104
-#, c-format
-msgid "Failure at executing `%s'"
-msgstr "Hiba `%s' futtatásakor"
-
-#: exe-handler/gnome-exe-handler.c:123
-#, c-format
-msgid "It was not possible to open the file `%s'"
-msgstr "Nem lehetett megnyitni ezt a fájlt: `%s'"
-
-#: exe-handler/gnome-exe-handler.c:132
-#, c-format
-msgid "The file `%s' is empty"
-msgstr "A fájl üres: `%s'"
-
-#: exe-handler/gnome-exe-handler.c:137
-#, c-format
-msgid "There was an error. `%s' is empty"
-msgstr "Hiba történt. A fájl üres: `%s'"
-
-#: exe-handler/gnome-exe-handler.c:152
-msgid "This is a library and can not be executed"
-msgstr "Ez egy programkönyvtár, amelyet nem lehet végrehajtani"
-
-#: exe-handler/gnome-exe-handler.c:158
-msgid "The file is a core file and can not be executed"
-msgstr "A fájl egy core fájl, amelyet nem lehet végrehajtani"
-
-#: exe-handler/gnome-exe-handler.c:162 exe-handler/gnome-exe-handler.c:196
-msgid "This is an unknown kind of executable"
-msgstr "Ez egy ismeretlen végrehajtható típus"
-
-#: exe-handler/gnome-exe-handler.c:192
-msgid ""
-"The executable is for a different platform and can not be executed on this "
-"system"
-msgstr ""
-"Ez a végrehajtható fájl egy másik platformra készült, nem futtatható ezen a "
-"rendszeren"
-
-#: meat-grinder/meat-grinder.c:109
-#, c-format
-msgid ""
-"Number of files: %d\n"
-"Nuber of folders: %d"
-msgstr ""
-"Fájlok száma: %d\n"
-"Mappák száma: %d"
-
-#: meat-grinder/meat-grinder.c:115
-msgid ""
-"No files or folders, drop files or folders\n"
-"above to add them to the archive"
-msgstr ""
-"Nincsenek fájlok vagy köynvtárak. Húzz fájlokat\n"
-"vagy könyvtárakat ide, az archívumba rakáshoz."
-
-#: meat-grinder/meat-grinder.c:220 meat-grinder/meat-grinder.c:223
-msgid "Cannot start the archive (tar) program"
-msgstr "Nem sikerült az archiválóprogram (tar) elindítása"
-
-#: meat-grinder/meat-grinder.c:231
-msgid "Cannot run tar/gtar"
-msgstr "Nem sikerült a tar/gtar futtatása"
-
-#: meat-grinder/meat-grinder.c:282
-msgid "Archive.tar.gz"
-msgstr "Archívum.tar.gz"
-
-#: meat-grinder/meat-grinder.c:387
-msgid "The GNOME Archive Generator"
-msgstr "A GNOME Archívumgenerátora"
-
-#: meat-grinder/meat-grinder.c:389
-msgid "Drag files in to make archives"
-msgstr "Húzd be az archiválandó fájlokat"
-
-#: meat-grinder/meat-grinder.c:460 meat-grinder/meat-grinder.c:618
-msgid "No filename selected"
-msgstr "Nincs fájlnév kiválasztva"
-
-#: meat-grinder/meat-grinder.c:464
-msgid "File exists, overwrite?"
-msgstr "A fájl létezik, felülírod?"
-
-#: meat-grinder/meat-grinder.c:488
-msgid "No items to archive"
-msgstr "Nincs mit archiválni"
-
-#: meat-grinder/meat-grinder.c:621
-msgid "File does not exists"
-msgstr "A fájl nem létezik"
-
-#: meat-grinder/meat-grinder.c:635
-msgid "Add file or folder"
-msgstr "Fájl vagy könyvtár hozzáadása"
-
-#: meat-grinder/meat-grinder.c:705
-msgid "Add file or folder..."
-msgstr "Fájl vagy könyvtár hozzáadása..."
-
-#: meat-grinder/meat-grinder.c:706
-msgid "Add a file or folder to the archive"
-msgstr "Add hozzá a fájlt vagy a könyvtárat az archívumhoz"
-
-#: meat-grinder/meat-grinder.c:709
-msgid "Create archive..."
-msgstr "Archívum készítése"
-
-#: meat-grinder/meat-grinder.c:710
-msgid "Create a new archive from the items"
-msgstr "Új archívum készítése a kijelölt elemekbõl"
-
-#: meat-grinder/meat-grinder.c:719
-msgid "Remove the selected item(s)"
-msgstr "A kijelölt elemek törlése"
-
-#: meat-grinder/meat-grinder.c:751
-msgid "GNOME Archive Generator"
-msgstr "GNOME Archívumkészítõ"
-
-#: meat-grinder/meat-grinder.c:781
-msgid "Drop files here to add them to the archive."
-msgstr "Húzd be ide az archiválandó fájlokat"
-
-#: meat-grinder/meat-grinder.c:799
-msgid "Archive"
-msgstr "Archívum"
-
-#: meat-grinder/meat-grinder.c:806
-msgid ""
-"Drag this button to the destination where you want the archive to be created "
-"or press it to pop up a file selection dialog."
-msgstr ""
-"Húzd ezt a gombot oda, ahol az archívumot létre szeretnéd hozni, vagy nyomd "
-"meg a fájlkiválasztó párbeszédablakhoz."
-
-#: meat-grinder/meat-grinder.c:899
-msgid "Cannot find proper icons anywhere!"
-msgstr "Sehol sem találhatóak megfelelõ ikonok!"
-
-#: meat-grinder/meat-grinder.c:907
-msgid ""
-"Cannot find the archive (tar) program!\n"
-"This is the program used for creating archives."
-msgstr ""
-"Nem található a tar program!\n"
-"Ez a program szükséges az archívumkészítéshez."
-
-#: gfloppy/gfloppy.desktop.in.h:1
-#, fuzzy
-msgid "Floppy Formatter"
-msgstr "A floppy formázása megszakítva."
-
-#: gfloppy/gfloppy.desktop.in.h:2
-#, fuzzy
-msgid "Format Floppy Disks"
-msgstr "Floppy formázása"
-
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr ""
-
-#: gdictsrc/gnome-dictionary.desktop.in.h:2
-#, fuzzy
-msgid "Lookup words in an online dictionary"
-msgstr "Szó keresése a szótárban"
-
-#: meat-grinder/archive-generator.desktop.in.h:1
-#, fuzzy
-msgid "Archive Generator"
-msgstr "GNOME Archívumkészítõ"
-
-#: meat-grinder/archive-generator.desktop.in.h:2
-msgid "Create compressed archives containing many files"
-msgstr ""
-
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 #, fuzzy
 msgid "Search for Files"
@@ -1891,29 +1125,533 @@ msgstr "Keresés"
 msgid "Search your disk for files"
 msgstr ""
 
-#: gcharmap/gnome-character-map.desktop.in.h:1
+#: gsearchtool/gsearchtool.c:64
 #, fuzzy
-msgid "Character Map"
-msgstr "Gnome karaktertábla"
+msgid "File name is"
+msgstr "Fájlnév :"
 
-#: gcharmap/gnome-character-map.desktop.in.h:2
-msgid "Insert special characters into documents"
+#: gsearchtool/gsearchtool.c:65
+#, fuzzy
+msgid "File name is not"
+msgstr "Fájlnév :"
+
+#: gsearchtool/gsearchtool.c:66
+msgid "Don't search mounted filesystems"
+msgstr "Nem keres beillesztett fájlrendszeren"
+
+#: gsearchtool/gsearchtool.c:67
+msgid "Follow symbolic links"
+msgstr "Szimbolikus linkek követése"
+
+#: gsearchtool/gsearchtool.c:68
+#, fuzzy
+msgid "Process folder contents depth first"
+msgstr "A kezdõ könyvtár nem létezik"
+
+#: gsearchtool/gsearchtool.c:69
+msgid "Owned by user"
 msgstr ""
 
-#: gcalc/gnome-calculator.desktop.in.h:1
+#: gsearchtool/gsearchtool.c:70
 #, fuzzy
-msgid "Calculator"
-msgstr "Gnome számológép"
+msgid "Owned by group"
+msgstr "Fájltulajdonos csoportja"
 
-#: gcalc/gnome-calculator.desktop.in.h:2
+#: gsearchtool/gsearchtool.c:71
+msgid "Invalid user or group"
+msgstr "Érvénytelen felhasználó vagy csoport"
+
+#: gsearchtool/gsearchtool.c:72
 #, fuzzy
-msgid "Perform simple calculations"
-msgstr "Számológép"
+msgid "Last time modified"
+msgstr "Utolsó módosítás idõpontja"
 
+#: gsearchtool/gsearchtool.c:73
+#, fuzzy
+msgid "File is empty"
+msgstr "A fájl üres: `%s'"
+
+#: gsearchtool/gsearchtool.c:244 gsearchtool/gsearchtool.c:824
+#, fuzzy
+msgid "Start folder does not exist."
+msgstr "A kezdõ könyvtár nem létezik"
+
+#: gsearchtool/gsearchtool.c:460
+msgid "today at %-I:%M %p"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:462
+msgid "yesterday at %-I:%M %p"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:464 gsearchtool/gsearchtool.c:466
+msgid "%m/%-d/%y, %-I:%M %p"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:476
+#, fuzzy
+msgid "%Y%m%d%H%M%S"
+msgstr "%b %d %H:%M:%S"
+
+#: gsearchtool/gsearchtool.c:491
+#, fuzzy
+msgid "folder"
+msgstr "Tömör"
+
+#: gsearchtool/gsearchtool.c:493
+#, fuzzy
+msgid "program"
+msgstr "Kilépés a programból"
+
+#: gsearchtool/gsearchtool.c:495
+#, fuzzy
+msgid "symbolic link"
+msgstr "Szimbolikus linkek követése"
+
+#: gsearchtool/gsearchtool.c:619
+#, fuzzy
+msgid "No Files Found."
+msgstr "Nincs egyezés"
+
+#: gsearchtool/gsearchtool.c:680
+msgid ""
+"Cannot perform the search.\n"
+"The Bourne shell was not found\n"
+"It is typically installed as /bin/sh or /usr/bin/sh."
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:783
+msgid ""
+"\n"
+"... Too many errors to display ..."
+msgstr ""
+"\n"
+"... Túl sok hiba van, nem lehet ennyit megjeleníteni ..."
+
+#: gsearchtool/gsearchtool.c:835 gsearchtool/gsearchtool.c:1504
+msgid "Cannot perform the search. Please specify a search criteria."
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:852 gsearchtool/gsearchtool.c:1525
+msgid ""
+"A search is already running.  Please wait for the search to complete or "
+"cancel it."
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:872
+#, fuzzy
+msgid "Start folder does not exist"
+msgstr "A kezdõ könyvtár nem létezik"
+
+#: gsearchtool/gsearchtool.c:887
+msgid "Cannot show the search command line. Please specify a search criteria."
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:891
+#, fuzzy
+msgid "Search Command Line"
+msgstr "Keresõ parancssor"
+
+#: gsearchtool/gsearchtool.c:909
+#, fuzzy
+msgid ""
+"This is the command line that can be used to execute this search\n"
+"from the console.\n"
+"\n"
+"C_ommand:"
+msgstr ""
+"Ez egy parancssor, amellyel kereséseket indíthatsz a konzolról:\n"
+" (Megjegyzés: ha egy fájlt akarsz soronként, add az alábbi sorhoz\n"
+" \"| tr '\\000' '\\n'\"-t)"
+
+#: gsearchtool/gsearchtool.c:929
+msgid "Command"
+msgstr "Parancs"
+
+#: gsearchtool/gsearchtool.c:930
+#, fuzzy
+msgid "Command Line Entry"
+msgstr "Parancssor"
+
+#: gsearchtool/gsearchtool.c:930
+#, fuzzy
+msgid "Use this command line to execute the search from console"
+msgstr ""
+"Ez egy parancssor, amellyel kereséseket indíthatsz a konzolról:\n"
+" (Megjegyzés: ha egy fájlt akarsz soronként, add az alábbi sorhoz\n"
+" \"| tr '\\000' '\\n'\"-t)"
+
+#: gsearchtool/gsearchtool.c:1031
+#, fuzzy
+msgid "No viewer available for this mime type."
+msgstr "Nincs parancs ehhez mime típushoz"
+
+#: gsearchtool/gsearchtool.c:1117
+msgid "Entry changed called for a non entry option!"
+msgstr "A beviteli mezõ változás hívódott meg egy nem beviteli mezõhöz!"
+
+#: gsearchtool/gsearchtool.c:1187
+msgid "Search Rule Value Entry"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1187
+msgid "Enter a value for search rule"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1202
+msgid "Enabled"
+msgstr "Engedélyezve"
+
+#: gsearchtool/gsearchtool.c:1210
+msgid "Toggle On/Off to enable/disable the rule"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1218
+msgid "Click to Remove the Rule"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1264 gsearchtool/gsearchtool.c:1608
+#, fuzzy
+msgid "S_tarting in folder:"
+msgstr "Nincs ilyen karakterlánc"
+
+#: gsearchtool/gsearchtool.c:1266 gsearchtool/gsearchtool.c:1611
+msgid "Browse"
+msgstr "Keresés"
+
+#: gsearchtool/gsearchtool.c:1274 gsearchtool/gsearchtool.c:1275
+#: gsearchtool/gsearchtool.c:1620 gsearchtool/gsearchtool.c:1621
+#, fuzzy
+msgid "Starting folder entry"
+msgstr "Nincs ilyen karakterlánc"
+
+#: gsearchtool/gsearchtool.c:1274 gsearchtool/gsearchtool.c:1275
+#: gsearchtool/gsearchtool.c:1620 gsearchtool/gsearchtool.c:1621
+msgid "Enter the folder name where you want to start the search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1296
+msgid "Rules:"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1316
+msgid "A_dd Rule:"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1325
+#, fuzzy
+msgid "Search Rules Menu"
+msgstr "Keresés eredménye"
+
+#: gsearchtool/gsearchtool.c:1325
+#, fuzzy
+msgid "Select a search rule from the menu"
+msgstr "Új archívum készítése a kijelölt elemekbõl"
+
+#: gsearchtool/gsearchtool.c:1353 gsearchtool/gsearchtool.c:1651
+#, fuzzy
+msgid "_Find"
+msgstr "Keresés:"
+
+#: gsearchtool/gsearchtool.c:1368
+msgid "Click to Add a Rule"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1369
+msgid "Click to Start the Search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1370
+msgid "Click to Stop the Search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1375 gsearchtool/gsearchtool.c:1672
+#, fuzzy
+msgid "S_earch Results"
+msgstr "Keresés eredménye"
+
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1711
+msgid "Name"
+msgstr "Név"
+
+#: gsearchtool/gsearchtool.c:1436 gsearchtool/gsearchtool.c:1733
+#, fuzzy
+msgid "Folder"
+msgstr "Tömör"
+
+#: gsearchtool/gsearchtool.c:1448 gsearchtool/gsearchtool.c:1745
+#, fuzzy
+msgid "Size"
+msgstr "Méret:"
+
+#: gsearchtool/gsearchtool.c:1460 gsearchtool/gsearchtool.c:1757
+msgid "Type"
+msgstr "Típus"
+
+#: gsearchtool/gsearchtool.c:1471 gsearchtool/gsearchtool.c:1768
+#, fuzzy
+msgid "Date Modified"
+msgstr "Módosítva:"
+
+#: gsearchtool/gsearchtool.c:1587
+#, fuzzy
+msgid "Find files _named:"
+msgstr "Fájlnév"
+
+#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1600
+#, fuzzy
+msgid "File Name Entry"
+msgstr "Fájlnév :"
+
+#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1600
+msgid "Enter the file name you want to search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1666
+msgid "Click to Start the search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1667
+msgid "Click to Stop the search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1788
+#, fuzzy
+msgid "Si_mple"
+msgstr "Fájl"
+
+#: gsearchtool/gsearchtool.c:1790
+#, fuzzy
+msgid "Ad_vanced"
+msgstr "Haladó"
+
+#: gsearchtool/gsearchtool.c:1828
 #: gsearchtool/help/es/gsearchtool.desktop.in.h:1
 msgid "GNOME Search Tool"
 msgstr "GNOME keresõ"
 
+#: gsearchtool/gsearchtool.c:1829
+#, fuzzy
+msgid "(C) 1998,2002 the Free Software Foundation"
+msgstr "(C) 1998,2000 the Free Software Foundation"
+
+#: gsearchtool/gsearchtool.c:1830
+#, fuzzy
+msgid "Frontend to the unix find/locate commands"
+msgstr "Felület a find/grep/locate parancsokhoz"
+
+#: gsearchtool/gsearchtool.c:1869
+#, fuzzy, c-format
+msgid "File %s already exists. Overwrite?"
+msgstr "%s fájl létezik, felülírod?"
+
+#: gsearchtool/gsearchtool.c:1904
+#, fuzzy
+msgid "Cannot save the results file."
+msgstr "Nem sikerült menteni a fájlt"
+
+#: gsearchtool/gsearchtool.c:1911 meat-grinder/meat-grinder.c:588
+msgid "Save Results"
+msgstr "Eredmény mentése"
+
+#: gsearchtool/gsearchtool.c:1967
+#, fuzzy
+msgid "S_how Command..."
+msgstr "Mutasd a parancsokat"
+
+#: gsearchtool/gsearchtool.c:1968
+#, fuzzy
+msgid "Save Results _As..."
+msgstr "Eredmény mentése"
+
+#: gsearchtool/gsearchtool.c:1981
+#, fuzzy
+msgid "Sear_ch"
+msgstr "RGB Keresés"
+
+#: gsearchtool/gsearchtool.c:2003
+msgid "Cannot initialize bonobo."
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:2007
+#, fuzzy
+msgid "Search Tool"
+msgstr "Gnome keresõ"
+
+#: logview/about.c:42
+msgid "Cesar Miquel (miquel@df.uba.ar)"
+msgstr "Cesar Miquel (miquel@df.uba.ar)"
+
+#: logview/about.c:43
+msgid ""
+"This  program  is  part of  the  GNOME  project for Linux. Logview comes "
+"with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
+"redistribute it under the conditions of the GNU General Public Licence. The "
+"log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+msgstr ""
+"Ez a program a GNOME projekt része Linuxra. A naplónézõ minden garancia "
+"nélkül jött ki. Szabad szoftver, és nyugodtan forgalmazhatod a GNU GPL "
+"szerint. A napló ikon Tuomas Kuosmanen (a.k.a tigert) munkája."
+
+#. go get logview.xpm in $(prefix)/share/pixmaps/logview
+#: logview/about.c:72
+#, fuzzy
+msgid "GNOME System Log"
+msgstr "Rendszerinformációk"
+
+#: logview/about.c:73
+msgid "Copyright (C) 1998"
+msgstr "Copyright (C) 1998"
+
+#: logview/actions.c:75
+msgid "Action database"
+msgstr "Tevékenységadatbázis"
+
+#: logview/actions.c:82 logview/monitor.c:114
+msgid "Monitor options"
+msgstr "Mit figyeljen?"
+
+#: logview/actions.c:139
+msgid "Add..."
+msgstr "Hozzáadás.."
+
+#: logview/actions.c:145
+msgid "Edit..."
+msgstr "Szerkesztés..."
+
+#: logview/actions.c:151
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: logview/actions.c:263
+#, c-format
+msgid "Cannot open action data base <%s>! Open failed."
+msgstr "Nem sikerült megnyitni a tevékenységadatbázist: %s!"
+
+#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
+#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
+msgid "Error parsing actions data base"
+msgstr "Hiba a tevékenységadatbázis értelmezése közben"
+
+#: logview/actions.c:389
+msgid "Can't write to actions database!"
+msgstr "Nem sikerült írni a tevékenységadatbázisba!"
+
+#: logview/actions.c:496
+msgid "<empty>"
+msgstr "<üres>"
+
+#: logview/actions.c:497
+msgid "log name regexp"
+msgstr "naplónév regkif"
+
+# logview/actions.c:479
+#: logview/actions.c:498
+msgid "process regexp"
+msgstr "folyamat regkif"
+
+# logview/actions.c:480
+#: logview/actions.c:499
+msgid "message regexp"
+msgstr "üzenet regkif"
+
+#: logview/actions.c:500
+msgid "action to execute when regexps are TRUE"
+msgstr "a regexp teljesülése esetén futtatandó parancs"
+
+#: logview/actions.c:501
+msgid "description"
+msgstr "leírás"
+
+#: logview/actions.c:749
+msgid "description:"
+msgstr "leírás:"
+
+#: logview/actions.c:757
+msgid "Description of this entry."
+msgstr "A bejegyzés leírása."
+
+#: logview/actions.c:814
+#, c-format
+msgid ""
+"tag: [%s]\n"
+"log_name: [%s]\n"
+"process: [%s]\n"
+"message: [%s]\n"
+"description: [%s]\n"
+"action: [%s]\n"
+msgstr ""
+"címke: [%s]\n"
+"napló_név: [%s]\n"
+"folyamat: [%s]\n"
+"üzenet: [%s]\n"
+"leírás: [%s]\n"
+"tevékenység: [%s]\n"
+
+# logview/calendar.c:118
+#: logview/calendar.c:112 logview/logview.c:110
+msgid "Calendar"
+msgstr "Naptár"
+
+#.
+#. * 	-------------------
+#. * 	     Defines
+#. * 	-------------------
+#.
+#: logview/config.c:34
+msgid "fixed 12"
+msgstr ""
+
+#: logview/config.c:35
+msgid "fixed Bold 12"
+msgstr ""
+
+#: logview/config.c:36
+msgid "fixed 10"
+msgstr ""
+
+#: logview/config.c:37
+msgid "fixed Bold 8"
+msgstr ""
+
+#: logview/config.c:39
+msgid "Helvetica 14"
+msgstr ""
+
+#: logview/config.c:40
+msgid "Helvetica Bold 14"
+msgstr ""
+
+#: logview/config.c:41
+msgid "Helvetica 12"
+msgstr ""
+
+#: logview/config.c:42
+msgid "Helvetica Bold 12"
+msgstr ""
+
+#: logview/config.c:43
+msgid "Helvetica 10"
+msgstr ""
+
+#: logview/config.c:44
+msgid "Helvetica Bold 10"
+msgstr ""
+
+#: logview/desc_db.c:37
+#, c-format
+msgid "Cannot open regexp data base <%s>! Open failed."
+msgstr "Nem sikerült megnyitni a reguláris kifejezés adatbázist: %s!"
+
+#: logview/desc_db.c:147
+#, c-format
+msgid "Cannot open description data base <%s>! Open failed."
+msgstr "Nem sikerült megnyitni a leíróadatbázist: %s!"
+
+#. ----------------------------------------------------------------------
+#. NAME:
+#. DESCRIPTION:
+#. ----------------------------------------------------------------------
 #: logview/gnome-system-log.desktop.in.h:1
 #, fuzzy
 msgid "System Log"
@@ -1924,8 +1662,658 @@ msgstr "Rendszerinformációk"
 msgid "View the system log file"
 msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 
-#~ msgid "_Action Toolbar"
-#~ msgstr "_Mûvelet eszköztár"
+#: logview/info.c:83 logview/logview.c:113
+msgid "Log stats"
+msgstr "Naplóstatisztikák"
+
+#: logview/info.c:176
+msgid "Log information"
+msgstr "Naplóinformáció"
+
+#: logview/info.c:204
+msgid "Log:"
+msgstr "Napló:"
+
+#: logview/info.c:207
+msgid "Size:"
+msgstr "Méret:"
+
+#: logview/info.c:210
+msgid "Modified:"
+msgstr "Módosítva:"
+
+#: logview/info.c:213
+msgid "Start date:"
+msgstr "Kezdési idõpont:"
+
+#: logview/info.c:216
+msgid "Last date:"
+msgstr "Utolsó idõpont:"
+
+#: logview/info.c:219
+msgid "Num. lines:"
+msgstr "Sorok száma"
+
+#: logview/info.c:237
+#, c-format
+msgid "%ld bytes"
+msgstr "%ld bájt"
+
+#: logview/log_repaint.c:84
+msgid "January"
+msgstr "Január"
+
+#: logview/log_repaint.c:84
+msgid "February"
+msgstr "Február"
+
+#: logview/log_repaint.c:84
+msgid "March"
+msgstr "Március"
+
+#: logview/log_repaint.c:84
+msgid "April"
+msgstr "Április"
+
+#: logview/log_repaint.c:84
+msgid "May"
+msgstr "Május"
+
+#: logview/log_repaint.c:85
+msgid "June"
+msgstr "Június"
+
+#: logview/log_repaint.c:85
+msgid "July"
+msgstr "Július"
+
+#: logview/log_repaint.c:85
+msgid "August"
+msgstr "Augusztus"
+
+#: logview/log_repaint.c:85
+msgid "September"
+msgstr "Szeptember"
+
+#: logview/log_repaint.c:85
+msgid "October"
+msgstr "Október"
+
+#: logview/log_repaint.c:86
+msgid "November"
+msgstr "November"
+
+#: logview/log_repaint.c:86
+msgid "December"
+msgstr "December"
+
+#. Translators: Date only format, %x should well do really
+#: logview/log_repaint.c:510
+#, c-format
+msgid "%x"
+msgstr "%x"
+
+#. Translators: should be only the time, date could be bogus
+#: logview/log_repaint.c:628
+#, c-format
+msgid "%X"
+msgstr "%X"
+
+#. bogus
+#. Translators: Make sure this is only Month and Day format, year
+#. * will be bogus here
+#: logview/log_repaint.c:738
+msgid "%B %e"
+msgstr "%B %e"
+
+#: logview/logrtns.c:200
+msgid "Not enough memory!\n"
+msgstr "Nincs elég memória!\n"
+
+#: logview/logrtns.c:208
+msgid "Out of memory!\n"
+msgstr "Elfogyott a memória!\n"
+
+#: logview/logrtns.c:234
+msgid "Unable to open logfile!\n"
+msgstr "Nem lehet megnyitni a naplófájlt!\n"
+
+#: logview/logrtns.c:289
+#, c-format
+msgid "%s is not a regular file."
+msgstr "a %s nem közönséges fájl."
+
+#: logview/logrtns.c:297
+#, c-format
+msgid ""
+"%s is not user readable. Either run the program as root or ask the sysadmin "
+"to change the permissions on the file."
+msgstr ""
+"%s nem olvasható a felhasználók által. Lehet, hogy csak olvasható. Vagy "
+"futtasd a programot rootként, vagy kérj a rendszergazdától jogokat a fájlhoz."
+
+#: logview/logrtns.c:314
+#, c-format
+msgid "%s could not be opened."
+msgstr "%s-t nem tudom megnyitni."
+
+#: logview/logrtns.c:335 logview/logrtns.c:344
+#, c-format
+msgid "%s not a log file."
+msgstr "%s nem naplófájl."
+
+#: logview/logrtns.c:770 logview/logrtns.c:801 logview/logrtns.c:932
+msgid "ReadLogStats: out of memory"
+msgstr "ReadLogStats: elfogyott a memória"
+
+#: logview/logview.c:88
+msgid "Open log..."
+msgstr "Napló megnyitása..."
+
+#: logview/logview.c:89
+msgid "Open log"
+msgstr "Napló megnyitása"
+
+#: logview/logview.c:91
+msgid "Export log..."
+msgstr "Napló exportálása..."
+
+#: logview/logview.c:92
+msgid "Export log"
+msgstr "Napló exportálása"
+
+#: logview/logview.c:94 logview/logview.c:95
+msgid "Close log"
+msgstr "Napló bezárása"
+
+#: logview/logview.c:97 logview/logview.c:98
+msgid "Switch log"
+msgstr "Napló átváltása"
+
+#: logview/logview.c:100
+msgid "Monitor..."
+msgstr "Megfigyelés..."
+
+#: logview/logview.c:101
+msgid "Monitor log"
+msgstr "Napló figyelése"
+
+#: logview/logview.c:103
+msgid "Exit"
+msgstr "Kilépés"
+
+#: logview/logview.c:104
+msgid "Exit program"
+msgstr "Kilépés a programból"
+
+#: logview/logview.c:111
+msgid "Show calendar log"
+msgstr "Naptár naplójának mutatása"
+
+#: logview/logview.c:114
+msgid "Show log stats"
+msgstr "Naplóstatisztikák mutatása"
+
+#: logview/logview.c:116
+msgid "Zoom"
+msgstr "Nagyítás"
+
+#: logview/logview.c:117
+msgid "Show line info"
+msgstr "Sorok információinak mutatása"
+
+#: logview/logview.c:129
+msgid "Select...               "
+msgstr "Kiválasztás...          "
+
+#: logview/logview.c:130
+msgid "Select log events"
+msgstr "Válaszd ki a naplóeseményeket"
+
+#: logview/logview.c:132
+msgid "Filter..                "
+msgstr "Szûrõ...                "
+
+#: logview/logview.c:133
+msgid "Filter log events"
+msgstr "Naplóesemények szûrése"
+
+#: logview/logview.c:142
+msgid "Info about logview"
+msgstr "A naplónézõrõl"
+
+#: logview/logview.c:347
+msgid "No log files to open"
+msgstr "Nincs megnyitandó naplófájl"
+
+#. Create App
+#: logview/logview.c:370
+msgid "System Log Viewer"
+msgstr "Rendszernaplónézõ"
+
+#: logview/logview.c:470
+msgid "Filename: "
+msgstr "Fájlnév: "
+
+#: logview/logview.c:489
+#, fuzzy
+msgid "Last Modified: "
+msgstr "Módosítva:"
+
+#: logview/logview.c:741 logview/logview.c:796
+msgid "Too many open logs. Close one and try again"
+msgstr "Túl sok napló van megnyitva. Zárj be egyet, és próbáld újra"
+
+#: logview/logview.c:809
+msgid "Open new logfile"
+msgstr "Napló megnyitása"
+
+#: logview/misc.c:55
+#, c-format
+msgid "Error: [%s]\n"
+msgstr "Hiba: [%s]\n"
+
+#: logview/monitor.c:128
+msgid "Choose logs to monitor"
+msgstr "Válassz nézendõ naplót"
+
+#. Arrowed buttons
+#: logview/monitor.c:175
+msgid "Add >>"
+msgstr "Hozzáadás >>"
+
+#. Remove button
+#: logview/monitor.c:183
+msgid "Remove <<"
+msgstr "Eltávolítás <<"
+
+#. Check boxes
+#: logview/monitor.c:222
+msgid "Hide app"
+msgstr "Alkalmazás elrejtése"
+
+#: logview/monitor.c:230
+msgid "Exec actions"
+msgstr "Tevékenységek futtatása"
+
+#. Actions button
+#: logview/monitor.c:242
+msgid "Actions..."
+msgstr "Tevékenységek..."
+
+#: logview/monitor.c:292
+#, fuzzy
+msgid "Too many logs to monitor. Remove one and try again"
+msgstr "Túl sok napló van megnyitva. Zárj be egyet, és próbáld újra"
+
+#: logview/monitor.c:300 logview/monitor.c:338
+msgid "tmp_list is NULL\n"
+msgstr "a tmp_list NULL\n"
+
+#: logview/monitor.c:458
+msgid "Monitoring logs..."
+msgstr "Naplók megfigyelése..."
+
+#: logview/monitor.c:671
+msgid "TOUCHED!!\n"
+msgstr "HOZZÁÉRVE!!\n"
+
+#: logview/userprefsdialog.c:65
+msgid "hostname column width ( 0 to hide this column ): "
+msgstr "gépnév oszlop szélessége (0 szélességnél rejtve): "
+
+#: logview/userprefsdialog.c:66
+msgid "Columns"
+msgstr "Oszlop"
+
+#: logview/zoom.c:82
+msgid "Zoom view"
+msgstr "Nagyított nézet"
+
+#: logview/zoom.c:190
+#, c-format
+msgid "Log line detail for %s"
+msgstr "Naplósor részletek %s-re"
+
+#: logview/zoom.c:193
+msgid "Log line detail for <No log loaded>"
+msgstr "Napló sor részletek <nincs log betöltve>-re"
+
+#: logview/zoom.c:227
+msgid "Date:"
+msgstr "Dátum:"
+
+# logview/zoom.c:179
+#: logview/zoom.c:231
+msgid "Process:"
+msgstr "Folyamat:"
+
+# logview/zoom.c:181
+#: logview/zoom.c:234
+msgid "Message:"
+msgstr "Üzenet:"
+
+#: logview/zoom.c:237
+msgid "Description:"
+msgstr "Leírás:"
+
+#. Translators: do not include year, it would be bogus
+#: logview/zoom.c:262
+msgid "%B %e %X"
+msgstr "%B %e %X"
+
+#: meat-grinder/archive-generator.desktop.in.h:1
+#, fuzzy
+msgid "Archive Generator"
+msgstr "GNOME Archívumkészítõ"
+
+#: meat-grinder/archive-generator.desktop.in.h:2
+msgid "Create compressed archives containing many files"
+msgstr ""
+
+#: meat-grinder/meat-grinder.c:133
+#, fuzzy, c-format
+msgid ""
+"Number of files: %d\n"
+"Number of folders: %d"
+msgstr ""
+"Fájlok száma: %d\n"
+"Mappák száma: %d"
+
+#: meat-grinder/meat-grinder.c:139
+msgid ""
+"No files or folders, drop files or folders\n"
+"above to add them to the archive"
+msgstr ""
+"Nincsenek fájlok vagy köynvtárak. Húzz fájlokat\n"
+"vagy könyvtárakat ide, az archívumba rakáshoz."
+
+#: meat-grinder/meat-grinder.c:266 meat-grinder/meat-grinder.c:269
+msgid "Cannot start the archive (tar) program"
+msgstr "Nem sikerült az archiválóprogram (tar) elindítása"
+
+#: meat-grinder/meat-grinder.c:277
+msgid "Cannot run tar/gtar"
+msgstr "Nem sikerült a tar/gtar futtatása"
+
+#: meat-grinder/meat-grinder.c:329
+msgid "Archive.tar.gz"
+msgstr "Archívum.tar.gz"
+
+#: meat-grinder/meat-grinder.c:449 meat-grinder/meat-grinder.c:901
+msgid "GNOME Archive Generator"
+msgstr "GNOME Archívumkészítõ"
+
+#: meat-grinder/meat-grinder.c:451
+msgid "Drag files in to make archives"
+msgstr "Húzd be az archiválandó fájlokat"
+
+#: meat-grinder/meat-grinder.c:556 meat-grinder/meat-grinder.c:717
+msgid "No filename selected"
+msgstr "Nincs fájlnév kiválasztva"
+
+#: meat-grinder/meat-grinder.c:560
+msgid "File exists, overwrite?"
+msgstr "A fájl létezik, felülírod?"
+
+#: meat-grinder/meat-grinder.c:584
+msgid "No items to archive"
+msgstr "Nincs mit archiválni"
+
+#: meat-grinder/meat-grinder.c:720
+msgid "File does not exists"
+msgstr "A fájl nem létezik"
+
+#: meat-grinder/meat-grinder.c:734
+msgid "Add file or folder"
+msgstr "Fájl vagy könyvtár hozzáadása"
+
+#: meat-grinder/meat-grinder.c:851
+#, fuzzy
+msgid "_Add file or folder..."
+msgstr "Fájl vagy könyvtár hozzáadása..."
+
+#: meat-grinder/meat-grinder.c:852
+#, fuzzy
+msgid "Add a file or folder to archive"
+msgstr "Add hozzá a fájlt vagy a könyvtárat az archívumhoz"
+
+#: meat-grinder/meat-grinder.c:855
+#, fuzzy
+msgid "_Create archive..."
+msgstr "Archívum készítése"
+
+#: meat-grinder/meat-grinder.c:855
+msgid "Create a new archive from the items"
+msgstr "Új archívum készítése a kijelölt elemekbõl"
+
+#: meat-grinder/meat-grinder.c:865
+#, fuzzy
+msgid "_Remove"
+msgstr "Eltávolítás"
+
+#: meat-grinder/meat-grinder.c:866
+#, fuzzy
+msgid "Remove the selected item"
+msgstr "A kijelölt elemek törlése"
+
+#: meat-grinder/meat-grinder.c:868
+#, fuzzy
+msgid "R_emove All"
+msgstr "<- Mindent eltávolít"
+
+#: meat-grinder/meat-grinder.c:869
+#, fuzzy
+msgid "Remove all items"
+msgstr "<- Mindent eltávolít"
+
+#: meat-grinder/meat-grinder.c:941
+msgid "Drop files here to add them to the archive."
+msgstr "Húzd be ide az archiválandó fájlokat"
+
+#. tarball icon
+#: meat-grinder/meat-grinder.c:953
+#, fuzzy
+msgid "_Create Archive"
+msgstr "Archívum készítése"
+
+#: meat-grinder/meat-grinder.c:961
+msgid ""
+"Drag this button to the destination where you want the archive to be created "
+"or press it to pop up a file selection dialog."
+msgstr ""
+"Húzd ezt a gombot oda, ahol az archívumot létre szeretnéd hozni, vagy nyomd "
+"meg a fájlkiválasztó párbeszédablakhoz."
+
+#: meat-grinder/meat-grinder.c:1086
+msgid "Cannot find proper icons anywhere!"
+msgstr "Sehol sem találhatóak megfelelõ ikonok!"
+
+#: meat-grinder/meat-grinder.c:1094
+msgid ""
+"Cannot find the archive (tar) program!\n"
+"This is the program used for creating archives."
+msgstr ""
+"Nem található a tar program!\n"
+"Ez a program szükséges az archívumkészítéshez."
+
+#, fuzzy
+#~ msgid "The GNOME Calculator"
+#~ msgstr "GNOME számológép"
+
+#~ msgid "Run in analog (slide rule) mode"
+#~ msgstr "Futtatás analóg (csúszka) üzemmódban"
+
+#, fuzzy
+#~ msgid "Shift"
+#~ msgstr "fehér"
+
+#, fuzzy
+#~ msgid "Store"
+#~ msgstr "Megállítás"
+
+#, fuzzy
+#~ msgid "Exchange"
+#~ msgstr "Hibás tartomány"
+
+#~ msgid ""
+#~ "The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+#~ "contain bad English."
+#~ msgstr ""
+#~ "A Gnome charmap ugyan olyan, mint a Microsoft Windows karaktertáblája."
+
+#~ msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
+#~ msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
+
+#~ msgid "About"
+#~ msgstr "Névjegy"
+
+#~ msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+#~ msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+
+#, fuzzy
+#~ msgid "_Browse Characters..."
+#~ msgstr "Karakter beszúrása..."
+
+#~ msgid "_Text Toolbar"
+#~ msgstr "_Szöveg eszköztár"
+
+#~ msgid "View or hide the text toolbar"
+#~ msgstr "A Szöveg eszköztár mutatása vagy elrejtése"
+
+#~ msgid "_Statusbar"
+#~ msgstr "_Állapotsor"
+
+#~ msgid "View or hide the statusbar"
+#~ msgstr "Állapotsor mutatása vagy elrejtése"
+
+#~ msgid "_Insert at end"
+#~ msgstr "_Beszúrás a végére"
+
+#~ msgid "Insert every selected character at the end of the text entry"
+#~ msgstr "Minden kiválasztott karakter beszúrása a szövegmezõ végére"
+
+#~ msgid "_Focusable Buttons"
+#~ msgstr "_Fókuszálható gombok"
+
+#~ msgid "Set the buttons to be focusable or not"
+#~ msgstr "A gombok fókuszálhatók legyenek vagy sem"
+
+#~ msgid "Lookup"
+#~ msgstr "Keresés"
+
+#~ msgid "Spell"
+#~ msgstr "Helyesírás"
+
+#, fuzzy
+#~ msgid "_Look Up"
+#~ msgstr "Keresés"
+
+# gdictsrc/gdict-pref-dialog.c:185
+#, fuzzy
+#~ msgid "Set _Server"
+#~ msgstr "Kiszolgáló"
+
+#, fuzzy
+#~ msgid "Set _Port"
+#~ msgstr "_Indítás"
+
+#~ msgid "The server you specified could not be found."
+#~ msgstr "A megadott kiszolgáló nem található."
+
+#, fuzzy
+#~ msgid "The server could not be found on that port."
+#~ msgstr "A megadott kiszolgáló nem található."
+
+#, fuzzy
+#~ msgid "_Spell"
+#~ msgstr "Helyesírás"
+
+#~ msgid "Spell checker"
+#~ msgstr "Helyesírás-ellenõrzés"
+
+#~ msgid "Preferences..."
+#~ msgstr "Tulajdonságok..."
+
+#~ msgid "Don't search subdirectories"
+#~ msgstr "Nem keres alkönyvtárakban"
+
+#, fuzzy
+#~ msgid "Matches regular expression"
+#~ msgstr "Kiterjesztett reguláris kifejezés"
+
+#, fuzzy
+#~ msgid "F_ind"
+#~ msgstr "Keresés"
+
+#, fuzzy
+#~ msgid "Results"
+#~ msgstr "Eredmény mentése"
+
+#~ msgid "The Gnome Search Tool"
+#~ msgstr "Gnome keresõ"
+
+#~ msgid "Logview"
+#~ msgstr "Naplónézõ"
+
+#~ msgid "Show user preferences"
+#~ msgstr "Felhasználó beállítások mutatása"
+
+#~ msgid "Date: "
+#~ msgstr "Dátum: "
+
+#~ msgid "Dos (FAT)"
+#~ msgstr "Dos (FAT)"
+
+#~ msgid ""
+#~ "Executing arbitrary programs that you downloaded from the network might "
+#~ "be dangerous.\n"
+#~ "\n"
+#~ "Are you sure you want to run `%s'?"
+#~ msgstr ""
+#~ "A hálózatról letöltött ismeretlen program futtatása veszélyes lehet.\n"
+#~ "\n"
+#~ "Biztos, hogy futtatni szeretnéd `%s'-t?"
+
+#~ msgid "Could not access file permissions"
+#~ msgstr "A fájl engedélyei nem elérhetõek."
+
+#~ msgid "Could not execute the file `%s' due to a permission problem"
+#~ msgstr "Nem sikerült végrehajtani `%s' fájlt jogosultsági problémák miatt"
+
+#~ msgid "Failure at executing `%s'"
+#~ msgstr "Hiba `%s' futtatásakor"
+
+#~ msgid "It was not possible to open the file `%s'"
+#~ msgstr "Nem lehetett megnyitni ezt a fájlt: `%s'"
+
+#~ msgid "The file `%s' is empty"
+#~ msgstr "A fájl üres: `%s'"
+
+#~ msgid "There was an error. `%s' is empty"
+#~ msgstr "Hiba történt. A fájl üres: `%s'"
+
+#~ msgid "This is a library and can not be executed"
+#~ msgstr "Ez egy programkönyvtár, amelyet nem lehet végrehajtani"
+
+#~ msgid "The file is a core file and can not be executed"
+#~ msgstr "A fájl egy core fájl, amelyet nem lehet végrehajtani"
+
+#~ msgid "This is an unknown kind of executable"
+#~ msgstr "Ez egy ismeretlen végrehajtható típus"
+
+#~ msgid ""
+#~ "The executable is for a different platform and can not be executed on "
+#~ "this system"
+#~ msgstr ""
+#~ "Ez a végrehajtható fájl egy másik platformra készült, nem futtatható ezen "
+#~ "a rendszeren"
+
+#~ msgid "The GNOME Archive Generator"
+#~ msgstr "A GNOME Archívumgenerátora"
+
+#~ msgid "Archive"
+#~ msgstr "Archívum"
 
 #~ msgid "View or hide the action toolbar"
 #~ msgstr "A Mûvelet eszköztár mutatása vagy elrejtése"
@@ -1975,11 +2363,11 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ msgstr "Kilépés a programból"
 
 #~ msgid ""
-#~ "Couldn't start the dictionary; most likely, http://www.dict.org could not be "
-#~ "contacted."
+#~ "Couldn't start the dictionary; most likely, http://www.dict.org could not "
+#~ "be contacted."
 #~ msgstr ""
-#~ "Nem sikerült elindítani a szótárat. Valószínûleg a http://www.dict.org nem "
-#~ "elérhetõ."
+#~ "Nem sikerült elindítani a szótárat. Valószínûleg a http://www.dict.org "
+#~ "nem elérhetõ."
 
 #~ msgid "Word definition"
 #~ msgstr "Szó definíciója"
@@ -2203,9 +2591,6 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ "Felül fogod írni a jelenlegi projektek listáját.\n"
 #~ "Tényleg újra akarod tölteni a konfigurációs fájlt?"
 
-#~ msgid "File %s exists, overwrite?"
-#~ msgstr "%s fájl létezik, felülírod?"
-
 #~ msgid "File cannot be written"
 #~ msgstr "A fájl nem írható"
 
@@ -2315,9 +2700,6 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ msgid "Entry Start:"
 #~ msgstr "Bejegyzés kezdete:"
 
-#~ msgid "Entry Stop:"
-#~ msgstr "Bejegyzés vége:"
-
 #~ msgid "Timeout in secs:"
 #~ msgstr "Idõtúllépés másodpercekben:"
 
@@ -2368,9 +2750,6 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 
 #~ msgid "Prefs"
 #~ msgstr "Tulajdonságok"
-
-#~ msgid "Edit Preferences..."
-#~ msgstr "Tulajdonságok szerkesztése..."
 
 #~ msgid "Manual"
 #~ msgstr "Kézikönyv"
@@ -2503,11 +2882,11 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ msgstr "A különleges túlóradíj (vasárnapi munka, stb.)"
 
 #~ msgid ""
-#~ "If this project is billed for one price no matter how long it takes, enter "
-#~ "the fee here."
+#~ "If this project is billed for one price no matter how long it takes, "
+#~ "enter the fee here."
 #~ msgstr ""
-#~ "Ha a projekt adott árral lesz kiszámlázva, függetlenül a ráfordított idõtõl, "
-#~ "akkor ide írd be azt az árat."
+#~ "Ha a projekt adott árral lesz kiszámlázva, függetlenül a ráfordított "
+#~ "idõtõl, akkor ide írd be azt az árat."
 
 #~ msgid "Rates"
 #~ msgstr "Díjak"
@@ -2619,9 +2998,6 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ msgid "Grid"
 #~ msgstr "Rács"
 
-#~ msgid "Search RGB"
-#~ msgstr "RGB Keresés"
-
 #~ msgid "Monitor"
 #~ msgstr "Monitor"
 
@@ -2659,9 +3035,6 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 
 #~ msgid "<- Remove"
 #~ msgstr "<- Eltávolítás"
-
-#~ msgid "<- Remove all"
-#~ msgstr "<- Mindent eltávolít"
 
 #~ msgid "Add ->"
 #~ msgstr "Hozzáadás ->"
@@ -2704,11 +3077,11 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ msgstr "Rövid név :"
 
 #~ msgid ""
-#~ "This document read document from one or more other document. Please, choose "
-#~ "these documents."
+#~ "This document read document from one or more other document. Please, "
+#~ "choose these documents."
 #~ msgstr ""
-#~ "Ez a dokumentum beolvas egy vagy több más dokumentumot. Kérlek, válaszd ki "
-#~ "ezeket."
+#~ "Ez a dokumentum beolvas egy vagy több más dokumentumot. Kérlek, válaszd "
+#~ "ki ezeket."
 
 #~ msgid ""
 #~ "You can create one or more views for this document. Note that you have to "
@@ -2728,9 +3101,6 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 
 #~ msgid "Bottom"
 #~ msgstr "Alsó"
-
-#~ msgid "Default"
-#~ msgstr "Alap"
 
 #~ msgid "Display documents menu (restart required)."
 #~ msgstr "A dokumentum menü megjelenítése (újraindítás után)"
@@ -2954,7 +3324,8 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ "\n"
 #~ "Ez a dokumentum is be lesz zárva. Folytassam ?\n"
 #~ "\n"
-#~ "Vedd figyelembe, hogy %d virtuális dokumentum használja ezt a dokumentumot."
+#~ "Vedd figyelembe, hogy %d virtuális dokumentum használja ezt a "
+#~ "dokumentumot."
 
 #~ msgid ""
 #~ "I'm going to close the last view of '%s'.\n"
@@ -3239,9 +3610,6 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ "Nyomd meg az OK gombot, hogy kikapcsold vagy újraindítsd a gépet\n"
 #~ "A megnyitott alkalmazások minden mentetlen adata elvész."
 
-#~ msgid "Revert to Defaults"
-#~ msgstr "Alapállapot visszaállítása"
-
 #~ msgid "Commands"
 #~ msgstr "Parancsok"
 
@@ -3468,9 +3836,6 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ msgid "Update Information"
 #~ msgstr "Információ frissítése"
 
-#~ msgid "Command Line"
-#~ msgstr "Parancssor"
-
 #~ msgid "Add some defaults"
 #~ msgstr "Alapbeállítás hozzáadása"
 
@@ -3499,9 +3864,6 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 
 #~ msgid "Menu items"
 #~ msgstr "Menüelemek"
-
-#~ msgid "Command"
-#~ msgstr "Parancs"
 
 #~ msgid "Running: %s\n"
 #~ msgstr "Fut: %s\n"
@@ -3638,8 +4000,8 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ msgstr ""
 #~ "A GNOME függvényrajzoló program változatos felhasználó által definiált "
 #~ "paramétereket tud megjeleníteni az idõ függvényében. A program a rendszer "
-#~ "minõségi paramétereinek ábrázolására van használva, mint a CPU load, a CPU "
-#~ "kihasználtság, hálózati forgalom, és egyéb hasonló dolgokra. Egyéb "
+#~ "minõségi paramétereinek ábrázolására van használva, mint a CPU load, a "
+#~ "CPU kihasználtság, hálózati forgalom, és egyéb hasonló dolgokra. Egyéb "
 #~ "felhasználási területek csak a felhasználó tapasztalatától függnek."
 
 #~ msgid "Show values"
@@ -3881,7 +4243,8 @@ msgstr "Kilistázza az éppen bejelentkezett felhasználókat"
 #~ msgid ""
 #~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 #~ msgstr ""
-#~ "nem tudom megnyitni './gstripchart.conf'-t, \"%s\"-t, \"%s\"-t, vagy \"%s\"-t"
+#~ "nem tudom megnyitni './gstripchart.conf'-t, \"%s\"-t, \"%s\"-t, vagy \"%s"
+#~ "\"-t"
 
 #~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
 #~ msgstr ""

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.1\n"
-"POT-Creation-Date: 2002-04-10 16:45+0200\n"
+"POT-Creation-Date: 2002-05-07 12:40+0100\n"
 "PO-Revision-Date: 2002-04-10 16:48+0200\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -15,508 +15,489 @@ msgstr ""
 "X-Generator: KBabel 0.9.6\n"
 
 #. Translator credits
-#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
-#: gsearchtool/gsearchtool.c:1846 logview/about.c:52
-#: meat-grinder/meat-grinder.c:410
+#: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:47 gdictsrc/gdict-about.c:43
+#: gsearchtool/gsearchtool.c:1812 logview/about.c:52
+#: meat-grinder/meat-grinder.c:431
 msgid "translator_credits"
 msgstr "Stanislav Višňovský"
 
-#: gcalc/gcalc.c:47
-msgid "The GNOME Calculator"
-msgstr "Kalkulačka pre GNOME"
-
-#: gcalc/gcalc.c:49
-msgid "Simple double precision calculator similiar to xcalc"
-msgstr "Jednoduchý kalkulačka s dvojitou presnosťou podobný xcalc"
-
-#: gcalc/gcalc.c:132
-msgid "Run in analog (slide rule) mode"
-msgstr "Bežať v analógovom móde"
-
-#: gcalc/gcalc.c:185
+#: gcalc/gcalc.c:60 gcalc/gcalc.c:190
 msgid "GNOME Calculator"
 msgstr "Kalkulačka GNOME"
 
-#: gcalc/gnome-calc.c:227
+#: gcalc/gcalc.c:62
+msgid "Simple double precision calculator similiar to xcalc"
+msgstr "Jednoduchý kalkulačka s dvojitou presnosťou podobný xcalc"
+
+#: gcalc/gcalc.c:139
+#, fuzzy
+msgid "_Calculator"
+msgstr "Kalkulačka"
+
+#: gcalc/gnome-calc.c:230
 msgid "inf"
 msgstr "inf"
 
-#: gcalc/gnome-calc.c:450 gcalc/gnome-calc.c:1153
+#: gcalc/gnome-calc.c:453
 msgid "DEG"
 msgstr "DEG"
 
-#: gcalc/gnome-calc.c:452
+#: gcalc/gnome-calc.c:455
 msgid "RAD"
 msgstr "RAD"
 
-#: gcalc/gnome-calc.c:454
+#: gcalc/gnome-calc.c:457
 msgid "GRAD"
 msgstr "GRAD"
 
-#: gcalc/gnome-calc.c:1143
+#: gcalc/gnome-calc.c:1149
 msgid "1/x"
 msgstr "1/x"
 
-#: gcalc/gnome-calc.c:1143
+#: gcalc/gnome-calc.c:1149
 msgid "Inverse"
 msgstr "Opačné číslo"
 
-#: gcalc/gnome-calc.c:1144
+#: gcalc/gnome-calc.c:1150
 msgid "x^2"
 msgstr "x^2"
 
-#: gcalc/gnome-calc.c:1144
+#: gcalc/gnome-calc.c:1150
 msgid "Square"
 msgstr "Druhá mocnina"
 
-#: gcalc/gnome-calc.c:1145
+#: gcalc/gnome-calc.c:1151
 msgid "SQRT"
 msgstr "SQRT"
 
-#: gcalc/gnome-calc.c:1145
+#: gcalc/gnome-calc.c:1151
 msgid "Square root"
 msgstr "Druhá odmocnina"
 
-#: gcalc/gnome-calc.c:1146
+#: gcalc/gnome-calc.c:1152
 msgid "CE/C"
 msgstr "CE/C"
 
-#: gcalc/gnome-calc.c:1146
+#: gcalc/gnome-calc.c:1152
 msgid "Clear"
 msgstr "Vyčistiť"
 
-#: gcalc/gnome-calc.c:1147
+#: gcalc/gnome-calc.c:1153
 msgid "AC"
 msgstr "AC"
 
-#: gcalc/gnome-calc.c:1147
+#: gcalc/gnome-calc.c:1153
 msgid "Reset"
 msgstr "Resetovať"
 
-#: gcalc/gnome-calc.c:1149 gcalc/gnome-calc.c:1204
+#: gcalc/gnome-calc.c:1155 gcalc/gnome-calc.c:1211
 msgid "INV"
 msgstr "INV"
 
-#: gcalc/gnome-calc.c:1149
-msgid "Shift"
-msgstr "Shift"
+#: gcalc/gnome-calc.c:1155
+msgid "Inverse trigonometry/log function"
+msgstr ""
 
 #. inverse button
-#: gcalc/gnome-calc.c:1150
+#: gcalc/gnome-calc.c:1156
 msgid "sin"
 msgstr "sin"
 
-#: gcalc/gnome-calc.c:1150
+#: gcalc/gnome-calc.c:1156
 msgid "Sine"
 msgstr "Sínus"
 
-#: gcalc/gnome-calc.c:1151
+#: gcalc/gnome-calc.c:1157
 msgid "cos"
 msgstr "cos"
 
-#: gcalc/gnome-calc.c:1151
+#: gcalc/gnome-calc.c:1157
 msgid "Cosine"
 msgstr "Kosínus"
 
-#: gcalc/gnome-calc.c:1152
+#: gcalc/gnome-calc.c:1158
 msgid "tan"
 msgstr "tan"
 
-#: gcalc/gnome-calc.c:1152
+#: gcalc/gnome-calc.c:1158
 msgid "Tangent"
 msgstr "Tangens"
 
-#: gcalc/gnome-calc.c:1153
+#. Ugly hack so that window won't resize when selecting GRAD - there should be a better fix that this
+#: gcalc/gnome-calc.c:1160
+#, fuzzy
+msgid " DEG  "
+msgstr "DEG"
+
+#: gcalc/gnome-calc.c:1160
 msgid "Switch degrees / radians / grad"
 msgstr "Prepína stupne/radiány/gradiány"
 
-#: gcalc/gnome-calc.c:1155
+#: gcalc/gnome-calc.c:1162
 msgid "e"
 msgstr "e"
 
-#: gcalc/gnome-calc.c:1155
+#: gcalc/gnome-calc.c:1162
 msgid "Base of Natural Logarithm"
 msgstr "Základ prirodzého logaritmu"
 
-#: gcalc/gnome-calc.c:1156
+#: gcalc/gnome-calc.c:1163
 msgid "EE"
 msgstr "EE"
 
-#: gcalc/gnome-calc.c:1156
+#: gcalc/gnome-calc.c:1163
 msgid "Add digit"
 msgstr "Pridá číslicu"
 
-#: gcalc/gnome-calc.c:1157
+#: gcalc/gnome-calc.c:1164
 msgid "log"
 msgstr "log"
 
-#: gcalc/gnome-calc.c:1157
+#: gcalc/gnome-calc.c:1164
 msgid "Base 10 Logarithm"
 msgstr "Logaritmus o základe 10"
 
-#: gcalc/gnome-calc.c:1158
+#: gcalc/gnome-calc.c:1165
 msgid "ln"
 msgstr "ln"
 
-#: gcalc/gnome-calc.c:1158
+#: gcalc/gnome-calc.c:1165
 msgid "Natural Logarithm"
 msgstr "Prirodzený logaritmus"
 
-#: gcalc/gnome-calc.c:1159
+#: gcalc/gnome-calc.c:1166
 msgid "x^y"
 msgstr "x^y"
 
-#: gcalc/gnome-calc.c:1159
+#: gcalc/gnome-calc.c:1166
 msgid "Power"
 msgstr "Mocnina"
 
-#: gcalc/gnome-calc.c:1161
+#: gcalc/gnome-calc.c:1168
 msgid "PI"
 msgstr "PI"
 
-#: gcalc/gnome-calc.c:1162
+#: gcalc/gnome-calc.c:1169
 msgid "x!"
 msgstr "x!"
 
-#: gcalc/gnome-calc.c:1162
+#: gcalc/gnome-calc.c:1169
 msgid "Factorial"
 msgstr "Faktoriál"
 
-#: gcalc/gnome-calc.c:1163
+#: gcalc/gnome-calc.c:1170
 msgid "("
 msgstr "("
 
-#: gcalc/gnome-calc.c:1163
+#: gcalc/gnome-calc.c:1170
 msgid "Opening Parenthesis"
 msgstr "Otvárajúca zátvorka"
 
-#: gcalc/gnome-calc.c:1164
+#: gcalc/gnome-calc.c:1171
 msgid ")"
 msgstr ")"
 
-#: gcalc/gnome-calc.c:1164
+#: gcalc/gnome-calc.c:1171
 msgid "Closing Parenthesis"
 msgstr "Zatvárajúca zátvorka"
 
-#: gcalc/gnome-calc.c:1165
+#: gcalc/gnome-calc.c:1172
 msgid "/"
 msgstr "/"
 
-#: gcalc/gnome-calc.c:1165
+#: gcalc/gnome-calc.c:1172
 msgid "Divide by"
 msgstr "Delenie"
 
-#: gcalc/gnome-calc.c:1167
+#: gcalc/gnome-calc.c:1174
 msgid "STO"
 msgstr "STO"
 
-#: gcalc/gnome-calc.c:1167
-msgid "Store"
-msgstr "Uložiť"
+#: gcalc/gnome-calc.c:1174
+msgid ""
+"Store the value in the\n"
+"display field in memory"
+msgstr ""
 
-#: gcalc/gnome-calc.c:1168
+#: gcalc/gnome-calc.c:1175
 msgid "7"
 msgstr "7"
 
-#: gcalc/gnome-calc.c:1169
+#: gcalc/gnome-calc.c:1176
 msgid "8"
 msgstr "8"
 
-#: gcalc/gnome-calc.c:1170
+#: gcalc/gnome-calc.c:1177
 msgid "9"
 msgstr "9"
 
-#: gcalc/gnome-calc.c:1171
+#: gcalc/gnome-calc.c:1178
 msgid "*"
 msgstr "*"
 
-#: gcalc/gnome-calc.c:1171
+#: gcalc/gnome-calc.c:1178
 msgid "Multiply by"
 msgstr "Násobenie"
 
-#: gcalc/gnome-calc.c:1173
+#: gcalc/gnome-calc.c:1180
 msgid "RCL"
 msgstr "RCL"
 
-#: gcalc/gnome-calc.c:1173
-msgid "Recall"
-msgstr "Obnoviť"
+#: gcalc/gnome-calc.c:1180
+msgid ""
+"Display the value in memory\n"
+"in the display field"
+msgstr ""
 
-#: gcalc/gnome-calc.c:1174
+#: gcalc/gnome-calc.c:1181
 msgid "4"
 msgstr "4"
 
-#: gcalc/gnome-calc.c:1175
+#: gcalc/gnome-calc.c:1182
 msgid "5"
 msgstr "5"
 
-#: gcalc/gnome-calc.c:1176
+#: gcalc/gnome-calc.c:1183
 msgid "6"
 msgstr "6"
 
-#: gcalc/gnome-calc.c:1177
+#: gcalc/gnome-calc.c:1184
 msgid "-"
 msgstr "-"
 
-#: gcalc/gnome-calc.c:1177
+#: gcalc/gnome-calc.c:1184
 msgid "Subtract"
 msgstr "Rozdiel"
 
-#: gcalc/gnome-calc.c:1179
+#: gcalc/gnome-calc.c:1186
 msgid "SUM"
 msgstr "SUM"
 
-#: gcalc/gnome-calc.c:1179
-msgid "Sum"
-msgstr "Súčet"
+#: gcalc/gnome-calc.c:1186
+msgid ""
+"Add the value in the display\n"
+"field to the value in memory"
+msgstr ""
 
-#: gcalc/gnome-calc.c:1180
+#: gcalc/gnome-calc.c:1187
 msgid "1"
 msgstr "1"
 
-#: gcalc/gnome-calc.c:1181
+#: gcalc/gnome-calc.c:1188
 msgid "2"
 msgstr "2"
 
-#: gcalc/gnome-calc.c:1182
+#: gcalc/gnome-calc.c:1189
 msgid "3"
 msgstr "3"
 
-#: gcalc/gnome-calc.c:1183
+#: gcalc/gnome-calc.c:1190
 msgid "+"
 msgstr "+"
 
-#: gcalc/gnome-calc.c:1183
+#: gcalc/gnome-calc.c:1190
 msgid "Add"
 msgstr "Pridať"
 
-#: gcalc/gnome-calc.c:1185
+#: gcalc/gnome-calc.c:1192
 msgid "EXC"
 msgstr "EXC"
 
-#: gcalc/gnome-calc.c:1185
-msgid "Exchange"
-msgstr "Výmena"
+#: gcalc/gnome-calc.c:1192
+msgid ""
+"Exchange the values in the\n"
+"display field and memory"
+msgstr ""
 
-#: gcalc/gnome-calc.c:1186
+#: gcalc/gnome-calc.c:1193
 msgid "0"
 msgstr "0"
 
-#: gcalc/gnome-calc.c:1187
+#: gcalc/gnome-calc.c:1194
 msgid "."
 msgstr "."
 
-#: gcalc/gnome-calc.c:1187
+#: gcalc/gnome-calc.c:1194
 msgid "Decimal Point"
 msgstr "Desatinná čiarka"
 
-#: gcalc/gnome-calc.c:1188
+#: gcalc/gnome-calc.c:1195
 msgid "+/-"
 msgstr "+/-"
 
-#: gcalc/gnome-calc.c:1188
+#: gcalc/gnome-calc.c:1195
 msgid "Change sign"
 msgstr "Zmena znamienka"
 
-#: gcalc/gnome-calc.c:1189
+#: gcalc/gnome-calc.c:1196
 msgid "="
 msgstr "="
 
-#: gcalc/gnome-calc.c:1189
+#: gcalc/gnome-calc.c:1196
 msgid "Calculate"
 msgstr "Vypočítať"
 
-#: gcharmap/src/asciiselect.c:126
+#: gcalc/gnome-calculator.desktop.in.h:1
+msgid "Calculator"
+msgstr "Kalkulačka"
+
+#: gcalc/gnome-calculator.desktop.in.h:2
+msgid "Perform simple calculations"
+msgstr "Vykoná jednoduché výpočty"
+
+#: gcharmap/gnome-character-map.desktop.in.h:1
+msgid "Character Map"
+msgstr "Mapa znakov"
+
+#: gcharmap/gnome-character-map.desktop.in.h:2
+msgid "Insert special characters into documents"
+msgstr "Vloží špeciálne znaky do dokumentov"
+
+#: gcharmap/src/asciiselect.c:116
 msgid "Select Character"
 msgstr "Vyberte znak"
 
-#: gcharmap/src/asciiselect.c:129
+#: gcharmap/src/asciiselect.c:119
 msgid "_Insert"
 msgstr "_Vložiť"
 
-#: gcharmap/src/asciiselect.c:133
+#: gcharmap/src/asciiselect.c:123
 msgid "Character code:"
 msgstr "Kód znaku:"
 
-#: gcharmap/src/asciiselect.c:145
+#: gcharmap/src/asciiselect.c:135
 msgid "Character:"
 msgstr "Znak:"
 
-#: gcharmap/src/asciiselect.c:153
+#: gcharmap/src/asciiselect.c:143
 msgid "Character Code"
 msgstr "Kód znaku"
 
-#: gcharmap/src/asciiselect.c:153
+#: gcharmap/src/asciiselect.c:143
 msgid "Select character code"
 msgstr "Vyberte kód znaku"
 
-#: gcharmap/src/asciiselect.c:154
+#: gcharmap/src/asciiselect.c:144
 msgid "Character"
 msgstr "Znak"
 
-#: gcharmap/src/asciiselect.c:154
+#: gcharmap/src/asciiselect.c:144
 msgid "Character to insert"
 msgstr "Vkladaný znaku"
 
-#: gcharmap/src/asciiselect.c:162
+#: gcharmap/src/asciiselect.c:152
 msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
-#: gcharmap/src/callbacks.c:57 gcharmap/src/interface.c:193
-msgid "Gnome Character Map"
-msgstr "Mapa znakov GNOME"
+#: gcharmap/src/callbacks.c:64
+#, fuzzy
+msgid "GNOME Character Map"
+msgstr "Mapa znakov"
 
-#: gcharmap/src/callbacks.c:60
+#: gcharmap/src/callbacks.c:67
 msgid ""
-"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
-"contain bad English."
-msgstr "GNOME ekvivalent pre Mapu znakov z Microsoft Windows."
+"Select, copy and paste characters from your font into other applications"
+msgstr ""
 
-#: gcharmap/src/callbacks.c:85 gcharmap/src/callbacks.c:131
+#: gcharmap/src/callbacks.c:121
 msgid "del"
 msgstr "del"
 
-#: gcharmap/src/callbacks.c:137
+#: gcharmap/src/callbacks.c:127
 #, c-format
 msgid " %s: Character code %d"
 msgstr "%s: Kód znaku %d"
 
-#: gcharmap/src/callbacks.c:179
+#: gcharmap/src/callbacks.c:166
 msgid "Text copied to clipboard..."
 msgstr "Text skopírovaný do schránky..."
 
-#: gcharmap/src/callbacks.c:201
+#: gcharmap/src/callbacks.c:183
 msgid "Text cut to clipboard..."
 msgstr "Text vystrihnutý do schránky..."
 
-#: gcharmap/src/callbacks.c:252
+#: gcharmap/src/callbacks.c:232
 msgid "Text pasted from clipboard..."
 msgstr "Text vložený zo schránky..."
 
-#: gcharmap/src/interface.c:224
+#: gcharmap/src/interface.c:195
+msgid "Gnome Character Map"
+msgstr "Mapa znakov GNOME"
+
+#: gcharmap/src/interface.c:223
 msgid "Action Toolbar"
 msgstr "Nástrojový pruh akcií"
 
-#: gcharmap/src/interface.c:243
+#: gcharmap/src/interface.c:227
 msgid "_Text to copy:"
 msgstr "Kopírovaný _text:"
 
-#: gcharmap/src/interface.c:251
+#: gcharmap/src/interface.c:240
 msgid "_Copy"
 msgstr "_Kopírovať"
 
-#: gcharmap/src/interface.c:258 gcharmap/src/interface.c:259
+#: gcharmap/src/interface.c:262 gcharmap/src/interface.c:263
 msgid "Text to copy"
 msgstr "Kopírovaný text"
 
-#: gcharmap/src/interface.c:259
+#: gcharmap/src/interface.c:263
 msgid "Entry"
 msgstr "Položka"
 
-#: gcharmap/src/interface.c:260 gcharmap/src/interface.c:308
-#: gcharmap/src/menus.c:99
+#: gcharmap/src/interface.c:264 gcharmap/src/menus.c:78
 msgid "Copy"
 msgstr "Kopírovať"
 
-#: gcharmap/src/interface.c:260
+#: gcharmap/src/interface.c:264
 msgid "Copy the text"
 msgstr "Skopíruje text"
 
-#: gcharmap/src/interface.c:283
-msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
-msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
+#: gcharmap/src/menus.c:34
+#, fuzzy
+msgid "_Browse..."
+msgstr "Prechádzať"
 
-#: gcharmap/src/interface.c:307 logview/logview.c:103
-msgid "Exit"
-msgstr "Koniec"
-
-#: gcharmap/src/interface.c:312
-msgid "About"
-msgstr "O programe"
-
-#: gcharmap/src/interface.c:314 gdictsrc/GNOME_GDictApplet.xml.h:2
-msgid "Help"
-msgstr "Pomocník"
-
-#: gcharmap/src/interface.c:333
-msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-
-#: gcharmap/src/menus.c:48
-msgid "_Browse Characters..."
-msgstr "_Prechádzať znaky..."
-
-#: gcharmap/src/menus.c:49
+#: gcharmap/src/menus.c:35
 msgid "Insert character(s) by choosing character codes."
 msgstr "Vloží znak(y) pomocou ich kódov."
 
-#: gcharmap/src/menus.c:56
-msgid "_Text Toolbar"
-msgstr "Panel _textu"
-
-#: gcharmap/src/menus.c:56
-msgid "View or hide the text toolbar"
-msgstr "Ukáže alebo skryje panel nástrojov pre text"
-
-#: gcharmap/src/menus.c:58
-msgid "_Statusbar"
-msgstr "_Stavový riadok"
-
-#: gcharmap/src/menus.c:58
-msgid "View or hide the statusbar"
-msgstr "Ukáže alebo skryje stavový riadok"
-
-#. GNOMEUIINFO_ITEM_STOCK(N_("Character Table's Font..."), N_("Set the character "
-#. "table's font."), cb_set_chartable_font, GNOME_STOCK_MENU_FONT),
-#. GNOMEUIINFO_SEPARATOR,
-#: gcharmap/src/menus.c:68
-msgid "_Insert at end"
-msgstr "Vložiť na konie_c"
-
-#: gcharmap/src/menus.c:68
-msgid "Insert every selected character at the end of the text entry"
-msgstr "Vloží každý vybraný znak na koniec textového poľa"
-
-#: gcharmap/src/menus.c:70
-msgid "_Focusable Buttons"
-msgstr "Tlačidlá s _fokusom"
-
-#: gcharmap/src/menus.c:70
-msgid "Set the buttons to be focusable or not"
-msgstr "Nastaví, či môžu mať tlačidlá fokus"
+#: gcharmap/src/menus.c:64
+#, fuzzy
+msgid "_Characters"
+msgstr "Znak"
 
 #. GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
 #. cb_insert_char_click, NULL),
 #. GNOMEUIINFO_SEPARATOR,
-#: gcharmap/src/menus.c:97
+#: gcharmap/src/menus.c:76
 msgid "Cut"
 msgstr "Vystrihnúť"
 
-#: gcharmap/src/menus.c:97
+#: gcharmap/src/menus.c:76
 msgid "Cut the selection"
 msgstr "Vystrihne výber"
 
-#: gcharmap/src/menus.c:99
+#: gcharmap/src/menus.c:78
 msgid "Copy the selection"
 msgstr "Skopíruje výber"
 
-#: gcharmap/src/menus.c:101
+#: gcharmap/src/menus.c:80
 msgid "Paste"
 msgstr "Vložiť"
 
-#: gcharmap/src/menus.c:101
+#: gcharmap/src/menus.c:80
 msgid "Paste the clipboard"
 msgstr "Vloží zo schránky"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:450
-#: gdictsrc/gdict-pref-dialog.c:494 gdictsrc/gdict-speller.c:449
+#: gdictsrc/dict.c:648 gdictsrc/gdict-pref-dialog.c:461
+#: gdictsrc/gdict-pref-dialog.c:512 gdictsrc/gdict-speller.c:478
 msgid "Cannot connect to server"
 msgstr "Nepodarilo sa spojiť so serverom"
 
-#: gdictsrc/dict.c:650
+#: gdictsrc/dict.c:661
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -524,7 +505,7 @@ msgstr ""
 "Nastala vážna chyba. Prosím, overte, že je správne zadaný server a port. "
 "Štandardný server je dict.org a port 2628"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:58
 msgid ""
 "Client for MIT dictionary server.\n"
 "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
@@ -532,35 +513,35 @@ msgstr ""
 "Klient pre slovníkový server MIT.\n"
 "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
 
-#: gdictsrc/gdict-app.c:120
+#: gdictsrc/gdict-app.c:119
 msgid "Spell-checking..."
 msgstr "Kontrola pravopisu..."
 
-#: gdictsrc/gdict-app.c:128
+#: gdictsrc/gdict-app.c:127
 msgid "Spell check done"
 msgstr "Kontrola pravopisu hotová"
 
-#: gdictsrc/gdict-app.c:136 gdictsrc/gdict-app.c:265
+#: gdictsrc/gdict-app.c:135 gdictsrc/gdict-app.c:264
 msgid "No matches found"
 msgstr "Nič nenájdené"
 
-#: gdictsrc/gdict-app.c:249
+#: gdictsrc/gdict-app.c:248
 msgid "Looking up word..."
 msgstr "Hľadám slovo..."
 
-#: gdictsrc/gdict-app.c:257
+#: gdictsrc/gdict-app.c:256
 msgid "Lookup done"
 msgstr "Hľadanie hotové"
 
-#: gdictsrc/gdict-app.c:277
+#: gdictsrc/gdict-app.c:276
 msgid "String not found"
 msgstr "Reťazec nenájdený"
 
-#: gdictsrc/gdict-app.c:419
+#: gdictsrc/gdict-app.c:418
 msgid "Find:"
 msgstr "Nájsť:"
 
-#: gdictsrc/gdict-app.c:444
+#: gdictsrc/gdict-app.c:443
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -569,51 +550,65 @@ msgstr ""
 "Nepodarilo sa vykonať požadovanú operáciu.\n"
 "Buď server, ktorý používate, nefunguje, alebo nie ste pripojený na Internet."
 
-#: gdictsrc/gdict-app.c:535
-msgid "Lookup"
-msgstr "Hľadať"
+#: gdictsrc/gdict-app.c:582 gdictsrc/gdict-app.c:691
+#: gdictsrc/gdict-speller.c:243
+msgid "_Look Up Word"
+msgstr "_Hľadať slovo"
 
-#: gdictsrc/gdict-app.c:536
+#: gdictsrc/gdict-app.c:583
 msgid "Lookup word in dictionary"
 msgstr "Hľadá slovo v slovníku"
 
-#: gdictsrc/gdict-app.c:538
-msgid "Spell"
-msgstr "Kontrola"
+#: gdictsrc/gdict-app.c:585 gdictsrc/gdict-speller.c:187
+#, fuzzy
+msgid "Check _Spelling"
+msgstr "Skontroluje slovo"
 
-#: gdictsrc/gdict-app.c:539
+#: gdictsrc/gdict-app.c:586
 msgid "Check word spelling"
 msgstr "Skontroluje slovo"
 
-#: gdictsrc/gdict-app.c:638 gdictsrc/gdict-speller.c:130
-msgid "_Word : "
+#: gdictsrc/gdict-app.c:630
+#, fuzzy
+msgid "_Dictionary"
+msgstr "Slovník"
+
+#: gdictsrc/gdict-app.c:666 gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Slovník"
+
+#: gdictsrc/gdict-app.c:687
+#, fuzzy
+msgid "_Word: "
 msgstr "_Slovo: "
 
-#: gdictsrc/gdict-app.c:642
-msgid "_Look Up"
-msgstr "_Hľadať"
-
-#: gdictsrc/gdict-app.c:670 gdictsrc/gdict-speller.c:143
+#: gdictsrc/gdict-app.c:714 gdictsrc/gdict-speller.c:169
 msgid "Word"
 msgstr "Slovo"
 
-#: gdictsrc/gdict-app.c:671 gdictsrc/gdict-speller.c:144
+#: gdictsrc/gdict-app.c:715 gdictsrc/gdict-app.c:716
+#: gdictsrc/gdict-speller.c:170
 msgid "Word Entry"
 msgstr "Položka slova"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:715
 msgid "Enter a Word or select one from the list below"
 msgstr "Zadajte slovo alebo vyberte nejaké zo zoznamu"
 
-#: gdictsrc/gdict-app.c:673
+#: gdictsrc/gdict-app.c:718
 msgid "Look Up for a Word"
 msgstr "Hľadať slovo"
 
-#: gdictsrc/gdict-applet.c:275
+#: gdictsrc/gdict-applet.c:266
+#, fuzzy
+msgid "Dictionary Applet"
+msgstr "Slovník"
+
+#: gdictsrc/gdict-applet.c:278
 msgid "Press button to look up any highlighted text in a dictionary"
 msgstr "Stlačením tlačidla nájdete vybraný text v slovníku"
 
-#: gdictsrc/gdict-defbox.c:633 gdictsrc/gdict-speller.c:474
+#: gdictsrc/gdict-defbox.c:638 gdictsrc/gdict-speller.c:503
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Chyba spúšťaní otázky: %s"
@@ -650,117 +645,122 @@ msgstr "Hlavné telo:"
 msgid "Cross-reference:"
 msgstr "Krížová referencia:"
 
-#: gdictsrc/gdict-pref-dialog.c:180
-msgid "Preferences"
+#: gdictsrc/gdict-pref-dialog.c:185
+#, fuzzy
+msgid "Dictionary Preferences"
 msgstr "Nastavenie"
 
-#: gdictsrc/gdict-pref-dialog.c:192
+#: gdictsrc/gdict-pref-dialog.c:197
 msgid "Smart _lookup"
 msgstr "Šikovné _hľadanie"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:210
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:212
+#: gdictsrc/gdict-pref-dialog.c:217
 msgid "De_fault"
 msgstr "Š_tandard"
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:223
 msgid "Reset server to default"
 msgstr "Nastaví štandardný server"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:225
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:234
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Def_ault"
 msgstr "Št_andard"
 
-#: gdictsrc/gdict-pref-dialog.c:241
+#: gdictsrc/gdict-pref-dialog.c:246
 msgid "Reset port to default"
 msgstr "Nastaví štandardný port"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:247
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Server Entry"
 msgstr "Položka serveru"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Enter the Server Name"
 msgstr "Zadajte meno serveru"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Port Entry"
 msgstr "Položka portu"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Port Number"
 msgstr "Zadajte číslo portu"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:257
 msgid "_Database:"
 msgstr "_Databáza:"
 
-#: gdictsrc/gdict-pref-dialog.c:261
+#: gdictsrc/gdict-pref-dialog.c:264
 msgid "D_efault strategy:"
 msgstr "Š_tandardná stratégia:"
 
-#: gdictsrc/gdict-pref-dialog.c:442
+#: gdictsrc/gdict-pref-dialog.c:453
 msgid "Search all databases"
 msgstr "Hľadať vo všetkých databázach"
 
-#: gdictsrc/gdict-pref-dialog.c:601
+#: gdictsrc/gdict-pref-dialog.c:618
 msgid "Database"
 msgstr "Databáza"
 
-#: gdictsrc/gdict-pref-dialog.c:601
+#: gdictsrc/gdict-pref-dialog.c:618
 msgid "Database Name"
 msgstr "Meno databázy"
 
-#: gdictsrc/gdict-pref-dialog.c:614
+#: gdictsrc/gdict-pref-dialog.c:630
 msgid "Default Strategy"
 msgstr "Štandardná stratégia"
 
-#: gdictsrc/gdict-speller.c:144
+#: gdictsrc/gdict-speller.c:157
+#, fuzzy
+msgid "_Word:"
+msgstr "_Slovo: "
+
+#: gdictsrc/gdict-speller.c:170
 msgid "Enter a word to know the spelling"
 msgstr "Zadajte slovo, ktoré chcete zistiť"
 
-#: gdictsrc/gdict-speller.c:149
-msgid "_Spell"
-msgstr "_Kontrola"
-
-#: gdictsrc/gdict-speller.c:158
+#: gdictsrc/gdict-speller.c:175
 msgid "Click to do the spell check"
 msgstr "Kliknutím spustíte kontrolu pravopisu"
 
-#: gdictsrc/gdict-speller.c:164
+#: gdictsrc/gdict-speller.c:180
 msgid "Search S_trategy:"
 msgstr "_Stratégia hľadania:"
 
-#: gdictsrc/gdict-speller.c:176
-msgid "Search Results"
+#: gdictsrc/gdict-speller.c:196
+#, fuzzy
+msgid "Search _Results"
 msgstr "Výsledky hľadania"
 
-#: gdictsrc/gdict-speller.c:214
-msgid "_Look Up Word"
-msgstr "_Hľadať slovo"
+#: gdictsrc/gdict-speller.c:251
+#, fuzzy
+msgid "Check Spelling"
+msgstr "Skontroluje slovo"
 
-#: gdictsrc/gdict-speller.c:222
-msgid "Spell checker"
-msgstr "Kontrola pravopisu"
-
-#: gdictsrc/gdict-speller.c:631
+#: gdictsrc/gdict-speller.c:668
 msgid "Search Strategy"
 msgstr "Stratégia hľadania"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:3
+#: gdictsrc/gnome-dictionary.desktop.in.h:2
+msgid "Lookup words in an online dictionary"
+msgstr "Hľadá slovo v on-line slovníku"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.h:1
 msgid "Accessories"
@@ -770,881 +770,29 @@ msgstr "Príslušenstvo"
 msgid "Dictionary Lookup"
 msgstr "Hľadanie v slovníku"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.h:3
-#: gdictsrc/gnome-dictionary.desktop.in.h:2
-msgid "Lookup words in an online dictionary"
-msgstr "Hľadá slovo v on-line slovníku"
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:140
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:141
 msgid "About..."
 msgstr "O programe..."
 
+#: gdictsrc/GNOME_GDictApplet.xml.h:2
+msgid "Help"
+msgstr "Pomocník"
+
 #: gdictsrc/GNOME_GDictApplet.xml.h:3
-msgid "Preferences..."
-msgstr "Nastavenia..."
+msgid "Preferences"
+msgstr "Nastavenie"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
 msgid "Show/Hide Definition Window..."
 msgstr "Zobraziť/skryť okno definícií..."
 
-#: gsearchtool/gsearchtool.c:64
-msgid "File name is"
-msgstr "Meno súboru je"
-
-#: gsearchtool/gsearchtool.c:65
-msgid "File name is not"
-msgstr "Meno súboru nie je"
-
-#: gsearchtool/gsearchtool.c:66
-msgid "Don't search mounted filesystems"
-msgstr "Nehľadať na pripojených systémoch súborov"
-
-#: gsearchtool/gsearchtool.c:67
-msgid "Follow symbolic links"
-msgstr "Sledovať symbolické odkazy"
-
-#: gsearchtool/gsearchtool.c:68
-msgid "Process directory contents depth first"
-msgstr "Najprv spracovať podpriečinky"
-
-#: gsearchtool/gsearchtool.c:69
-msgid "Owned by user"
-msgstr "Vlastní používateľ"
-
-#: gsearchtool/gsearchtool.c:70
-msgid "Owned by group"
-msgstr "Vlastní skupina"
-
-#: gsearchtool/gsearchtool.c:71
-msgid "Invalid user or group"
-msgstr "Neplatný používateľ alebo skupina"
-
-#: gsearchtool/gsearchtool.c:72
-msgid "Last time modified"
-msgstr "Čas poslednej zmeny"
-
-#: gsearchtool/gsearchtool.c:73
-msgid "File is empty"
-msgstr "Súbor je prázdny"
-
-#: gsearchtool/gsearchtool.c:560
-msgid "today at %-I:%M %p"
-msgstr "dnes o %-I:%M"
-
-#: gsearchtool/gsearchtool.c:562
-msgid "yesterday at %-I:%M %p"
-msgstr "včera o %-I:%M"
-
-#: gsearchtool/gsearchtool.c:564 gsearchtool/gsearchtool.c:566
-msgid "%m/%-d/%y, %-I:%M %p"
-msgstr "%-d/%m/%y, %-I:%M"
-
-#: gsearchtool/gsearchtool.c:576
-msgid "%Y%m%d%H%M%S"
-msgstr "%d%m%Y%H%M%S"
-
-#: gsearchtool/gsearchtool.c:591
-msgid "folder"
-msgstr "priečinok"
-
-#: gsearchtool/gsearchtool.c:593
-msgid "program"
-msgstr "program"
-
-#: gsearchtool/gsearchtool.c:595
-msgid "symbolic link"
-msgstr "symbolický odkaz"
-
-#: gsearchtool/gsearchtool.c:760
-msgid ""
-"Cannot perform the search.\n"
-"The Bourne shell was not found\n"
-"It is typically installed as /bin/sh or /usr/bin/sh."
-msgstr ""
-"Vyhľadávanie nie je možné.\n"
-"Bourne shell sa nepodari nájsť.\n"
-"Obvykle je nainštalovaný ako /bin/sh alebo /usr/bin/sh."
-
-#: gsearchtool/gsearchtool.c:857
-msgid ""
-"\n"
-"... Too many errors to display ..."
-msgstr ""
-"\n"
-"... Príliš veľa chýb ...."
-
-#: gsearchtool/gsearchtool.c:896
-msgid "Start directory does not exist."
-msgstr "Počiatočný priečinok neexistuje."
-
-#: gsearchtool/gsearchtool.c:907 gsearchtool/gsearchtool.c:1580
-msgid "Cannot perform the search. Please specify a search criteria."
-msgstr "Nie je možné hľadať. Prosím, zadajte kritériá hľadania."
-
-#: gsearchtool/gsearchtool.c:924 gsearchtool/gsearchtool.c:1601
-msgid ""
-"A search is already running.  Please wait for the search to complete or "
-"cancel it."
-msgstr "Hľadanie už prebieha. Prosím, čakaje, kým neskončí, alebo ho prerušte."
-
-#: gsearchtool/gsearchtool.c:943
-msgid "Start directory does not exist"
-msgstr "Počiatočný priečinok neexistuje"
-
-#: gsearchtool/gsearchtool.c:958
-msgid "Cannot show the search command line. Please specify a search criteria."
-msgstr ""
-"Nie je možné zobraziť príkazový riadok hľadania. Prosím, zadajte kritériá "
-"hľadania."
-
-#: gsearchtool/gsearchtool.c:962
-msgid "Search Command Line"
-msgstr "Príkazový riadok pre hľadanie"
-
-#: gsearchtool/gsearchtool.c:977
-msgid ""
-"This is the command line that can be used to execute this search from the "
-"console.\n"
-"\n"
-"Command:"
-msgstr ""
-"Toto je príkazový riadok, ktorý môže byť použitý pre hľadanie z konzole.\n"
-"\n"
-"Príkaz:"
-
-#: gsearchtool/gsearchtool.c:993
-msgid "Command"
-msgstr "Príkaz"
-
-#: gsearchtool/gsearchtool.c:994
-msgid "Command Line Entry"
-msgstr "Príkazový riadok"
-
-#: gsearchtool/gsearchtool.c:994
-msgid "Use this command line to execute the search from console"
-msgstr "Toto je príkazový riadok, ktorý môže byť použitý pre hľadanie z konzole"
-
-#: gsearchtool/gsearchtool.c:1114
-msgid "No viewer available for this mime type."
-msgstr "Pre tento typ MIME nie je dostupný prehliadač."
-
-#: gsearchtool/gsearchtool.c:1200
-msgid "Entry changed called for a non entry option!"
-msgstr "Zmenená položka volaná pre voľbu bez položiek!"
-
-#: gsearchtool/gsearchtool.c:1270
-msgid "Search Rule Value Entry"
-msgstr "Hodnota pravidla hľadania"
-
-#: gsearchtool/gsearchtool.c:1270
-msgid "Enter a value for search rule"
-msgstr "Zadajte hodnotu pre pravidlo hľadanie"
-
-#: gsearchtool/gsearchtool.c:1285
-msgid "Enabled"
-msgstr "Povolené"
-
-#: gsearchtool/gsearchtool.c:1293
-msgid "Toggle On/Off to enable/disable the rule"
-msgstr "Zapne alebo vypne pravidlo"
-
-#: gsearchtool/gsearchtool.c:1301
-msgid "Click to Remove the Rule"
-msgstr "Kliknutím odstránite pravidlo"
-
-#: gsearchtool/gsearchtool.c:1347
-msgid "S_tarting in folder:"
-msgstr "_Začať v priečinku:"
-
-#: gsearchtool/gsearchtool.c:1349
-msgid "Browse"
-msgstr "Prechádzať"
-
-#: gsearchtool/gsearchtool.c:1357 gsearchtool/gsearchtool.c:1358
-msgid "Starting folder entry"
-msgstr "Začať v priečinku"
-
-#: gsearchtool/gsearchtool.c:1357 gsearchtool/gsearchtool.c:1358
-msgid "Enter the folder name where you want to start the search"
-msgstr "Zadajte meno priečinku, kde chcete začať hľadanie"
-
-#: gsearchtool/gsearchtool.c:1377
-msgid "Rules:"
-msgstr "Pravidlá:"
-
-#: gsearchtool/gsearchtool.c:1397
-msgid "A_dd Rule:"
-msgstr "_Pridať pravidlo:"
-
-#: gsearchtool/gsearchtool.c:1406
-msgid "Search Rules Menu"
-msgstr "Menu pravidiel hľadania"
-
-#: gsearchtool/gsearchtool.c:1406
-msgid "Select a search rule from the menu"
-msgstr "Vyberte pravidlo hľadanie z menu"
-
-#: gsearchtool/gsearchtool.c:1434 gsearchtool/gsearchtool.c:1694
-msgid "F_ind"
-msgstr "_Nájsť:"
-
-#: gsearchtool/gsearchtool.c:1449
-msgid "Click to Add a Rule"
-msgstr "Kliknutím pridáte pravidlo"
-
-#: gsearchtool/gsearchtool.c:1450
-msgid "Click to Start the Search"
-msgstr "Kliknutím spustíte hľadanie"
-
-#: gsearchtool/gsearchtool.c:1451
-msgid "Click to Stop the Search"
-msgstr "Kliknutím zastavíte hľadanie"
-
-#: gsearchtool/gsearchtool.c:1458 gsearchtool/gsearchtool.c:1716
-msgid "Results"
-msgstr "Výsledky"
-
-#: gsearchtool/gsearchtool.c:1490 gsearchtool/gsearchtool.c:1749
-msgid "Name"
-msgstr "Meno"
-
-#: gsearchtool/gsearchtool.c:1512 gsearchtool/gsearchtool.c:1771
-msgid "Folder"
-msgstr "Priečinok"
-
-#: gsearchtool/gsearchtool.c:1524 gsearchtool/gsearchtool.c:1783
-msgid "Size"
-msgstr "Veľkosť"
-
-#: gsearchtool/gsearchtool.c:1536 gsearchtool/gsearchtool.c:1795
-msgid "Type"
-msgstr "Typ"
-
-#: gsearchtool/gsearchtool.c:1547 gsearchtool/gsearchtool.c:1806
-msgid "Date Modified"
-msgstr "Čas zmeny"
-
-#: gsearchtool/gsearchtool.c:1656
-msgid "Find files _named:"
-msgstr "Nájsť súbory pomenované: "
-
-#: gsearchtool/gsearchtool.c:1668 gsearchtool/gsearchtool.c:1669
-msgid "File Name Entry"
-msgstr "Meno súboru"
-
-#: gsearchtool/gsearchtool.c:1668 gsearchtool/gsearchtool.c:1669
-msgid "Enter the file name you want to search"
-msgstr "Zadajte meno súboru, ktoré chcete hľadať"
-
-#: gsearchtool/gsearchtool.c:1709
-msgid "Click to Start the search"
-msgstr "Kliknutím spustíte hľadanie"
-
-#: gsearchtool/gsearchtool.c:1710
-msgid "Click to Stop the search"
-msgstr "Kliknutím zastavíte hľadanie"
-
-#: gsearchtool/gsearchtool.c:1826
-msgid "Si_mple"
-msgstr "_Jednoduché"
-
-#: gsearchtool/gsearchtool.c:1828
-msgid "Ad_vanced"
-msgstr "_Pokročilé"
-
-#: gsearchtool/gsearchtool.c:1853
-msgid "The Gnome Search Tool"
-msgstr "GNOME Nástoj pre hľadanie"
-
-#: gsearchtool/gsearchtool.c:1854
-msgid "(C) 1998,2000 the Free Software Foundation"
-msgstr "(C) 1998,2000 Free Software Foundation"
-
-#: gsearchtool/gsearchtool.c:1855
-msgid "Frontend to the unix find/locate commands"
-msgstr "Rozhranie pre unixové príkazy find/locate"
-
-#: gsearchtool/gsearchtool.c:1890
-#, c-format
-msgid "File %s already exists. Overwrite?"
-msgstr "Súbor %s existuje, prepísať?"
-
-#: gsearchtool/gsearchtool.c:1925
-msgid "Cannot save the results file."
-msgstr "Nemôžem uložiť súbor s výsledkami."
-
-#: gsearchtool/gsearchtool.c:1932 meat-grinder/meat-grinder.c:523
-msgid "Save Results"
-msgstr "Uložiť výsledky"
-
-#: gsearchtool/gsearchtool.c:1988
-msgid "S_how Command"
-msgstr "_Zobraziť príkaz"
-
-#: gsearchtool/gsearchtool.c:1989
-msgid "Save Results _As..."
-msgstr "Uložiť výsledky _ako..."
-
-#: gsearchtool/gsearchtool.c:2024
-msgid "Cannot initialize bonobo."
-msgstr "Nepodarilo sa inicializovať Bonobo."
-
-#: gsearchtool/gsearchtool.c:2028
-msgid "Search Tool"
-msgstr "Hľadanie"
-
-#: logview/about.c:42
-msgid "Cesar Miquel (miquel@df.uba.ar)"
-msgstr "Cesar Miquel (miquel@df.uba.ar)"
-
-#: logview/about.c:43
-msgid ""
-"This  program  is  part of  the  GNOME  project for Linux. Logview comes "
-"with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
-"redistribute it under the conditions of the GNU General Public Licence. The "
-"log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-msgstr ""
-"Tento  program  je  súčasťou  projektu GNOME pre Linux. Logview nedáva "
-"ABSOLÚTNE ŽIADNE ZÁRUKY. Je to voľne šíriteľný softvér, a budeme radi ak ho "
-"budete distribuovať ďalej podľa pravidiel GNU General Public Licence. Log "
-"ikona je od Tuomasa Kuosmanena (a.k.a tigert)."
-
-#. go get logview.xpm in $(prefix)/share/pixmaps/logview
-#: logview/about.c:72
-msgid "Logview"
-msgstr "Logview"
-
-#: logview/about.c:73
-msgid "Copyright (C) 1998"
-msgstr "Copyright (C) 1998"
-
-#: logview/actions.c:75
-msgid "Action database"
-msgstr "Databáza akcií"
-
-#: logview/actions.c:82 logview/monitor.c:114
-msgid "Monitor options"
-msgstr "Možnosti monitoru"
-
-#: logview/actions.c:139
-msgid "Add..."
-msgstr "Pridať..."
-
-#: logview/actions.c:145
-msgid "Edit..."
-msgstr "Upraviť..."
-
-#: logview/actions.c:151 meat-grinder/meat-grinder.c:750
-msgid "Remove"
-msgstr "Odstrániť"
-
-#: logview/actions.c:263
-#, c-format
-msgid "Cannot open action data base <%s>! Open failed."
-msgstr "Nepodarilo sa otvoriť databázu <%s>! Otvorenie zlyhalo."
-
-#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
-#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
-msgid "Error parsing actions data base"
-msgstr "Chyba pre spracovaní databáze akcií"
-
-#: logview/actions.c:389
-msgid "Can't write to actions database!"
-msgstr "Nepodarilo sa zapisovať do databáze akcií!"
-
-#: logview/actions.c:496
-msgid "<empty>"
-msgstr "<prázdne>"
-
-#: logview/actions.c:497
-msgid "log name regexp"
-msgstr "reg výraz pre meno záznamu"
-
-#: logview/actions.c:498
-msgid "process regexp"
-msgstr "reg. výraz pre proces"
-
-#: logview/actions.c:499
-msgid "message regexp"
-msgstr "reg. výraz pre správu"
-
-#: logview/actions.c:500
-msgid "action to execute when regexps are TRUE"
-msgstr "vykonať akciu ak platia reg. výrazy"
-
-#: logview/actions.c:501
-msgid "description"
-msgstr "popis"
-
-#: logview/actions.c:749
-msgid "description:"
-msgstr "popis:"
-
-#: logview/actions.c:757
-msgid "Description of this entry."
-msgstr "Popis tejto položky."
-
-#: logview/actions.c:814
-#, c-format
-msgid ""
-"tag: [%s]\n"
-"log_name: [%s]\n"
-"process: [%s]\n"
-"message: [%s]\n"
-"description: [%s]\n"
-"action: [%s]\n"
-msgstr ""
-"tag: [%s]\n"
-"log_name: [%s]\n"
-"process: [%s]\n"
-"message: [%s]\n"
-"description: [%s]\n"
-"action: [%s]\n"
-
-#: logview/calendar.c:112 logview/logview.c:110
-msgid "Calendar"
-msgstr "Kalendár"
-
-#: logview/info.c:79 logview/logview.c:113
-msgid "Log stats"
-msgstr "Štatistika záznamov"
-
-#: logview/info.c:139
-msgid "Log information"
-msgstr "Informácia o súbore so záznamom"
-
-#: logview/info.c:156
-msgid "Log:"
-msgstr "Súbor:"
-
-#: logview/info.c:158
-msgid "Size:"
-msgstr "Veľkosť:"
-
-#: logview/info.c:160
-msgid "Modified:"
-msgstr "Zmena:"
-
-#: logview/info.c:162
-msgid "Start date:"
-msgstr "Prvý dátum:"
-
-#: logview/info.c:164
-msgid "Last date:"
-msgstr "Posledný dátum:"
-
-#: logview/info.c:166
-msgid "Num. lines:"
-msgstr "Poč. riadkov:"
-
-#: logview/info.c:183
-#, c-format
-msgid "%ld bytes"
-msgstr "%ld bajtov"
-
-#: logview/log_repaint.c:83
-msgid "January"
-msgstr "Január"
-
-#: logview/log_repaint.c:83
-msgid "February"
-msgstr "Február"
-
-#: logview/log_repaint.c:83
-msgid "March"
-msgstr "Marec"
-
-#: logview/log_repaint.c:83
-msgid "April"
-msgstr "Apríl"
-
-#: logview/log_repaint.c:83
-msgid "May"
-msgstr "Máj"
-
-#: logview/log_repaint.c:84
-msgid "June"
-msgstr "Jún"
-
-#: logview/log_repaint.c:84
-msgid "July"
-msgstr "Júl"
-
-#: logview/log_repaint.c:84
-msgid "August"
-msgstr "August"
-
-#: logview/log_repaint.c:84
-msgid "September"
-msgstr "September"
-
-#: logview/log_repaint.c:84
-msgid "October"
-msgstr "Október"
-
-#: logview/log_repaint.c:85
-msgid "November"
-msgstr "November"
-
-#: logview/log_repaint.c:85
-msgid "December"
-msgstr "December"
-
-#. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:497
-#, c-format
-msgid "%x"
-msgstr "%x"
-
-#. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:611
-#, c-format
-msgid "%X"
-msgstr "%X"
-
-#. bogus
-#. Translators: Make sure this is only Month and Day format, year
-#. * will be bogus here
-#: logview/log_repaint.c:695
-msgid "%B %e"
-msgstr "%B %e"
-
-#: logview/logrtns.c:199
-msgid "Not enough memory!\n"
-msgstr "Nedostatok pamäti!\n"
-
-#: logview/logrtns.c:207
-msgid "Out of memory!\n"
-msgstr "Nedostatok pamäti!\n"
-
-#: logview/logrtns.c:233
-msgid "Unable to open logfile!\n"
-msgstr "Nepodarilo sa otvoriť súbor so záznamom!\n"
-
-#: logview/logrtns.c:288
-#, c-format
-msgid "%s is not a regular file."
-msgstr "%s nie je normálny súbor."
-
-#: logview/logrtns.c:296
-#, c-format
-msgid ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
-msgstr ""
-"%s nie je čitateľný používateľmi. Buď spusťte program ako root alebo "
-"požiadajte administrátora o zmenu práv k tomuto súboru."
-
-#: logview/logrtns.c:309
-#, c-format
-msgid "%s could not be opened."
-msgstr "%s nebolo možné otvoriť."
-
-#: logview/logrtns.c:330 logview/logrtns.c:339
-#, c-format
-msgid "%s not a log file."
-msgstr "%s nie je súbor so záznamom."
-
-#: logview/logrtns.c:765 logview/logrtns.c:796 logview/logrtns.c:927
-msgid "ReadLogStats: out of memory"
-msgstr "ReadLogStats: nedostatok pamäti"
-
-#: logview/logview.c:88
-msgid "Open log..."
-msgstr "Otvoriť súbor so záznamom..."
-
-#: logview/logview.c:89
-msgid "Open log"
-msgstr "Otvorí súbor so záznamom"
-
-#: logview/logview.c:91
-msgid "Export log..."
-msgstr "Exportovať súbor so záznamom..."
-
-#: logview/logview.c:92
-msgid "Export log"
-msgstr "Exportuje súbor so záznamom"
-
-#: logview/logview.c:94 logview/logview.c:95
-msgid "Close log"
-msgstr "Zatvorí súbor so záznamom"
-
-#: logview/logview.c:97 logview/logview.c:98
-msgid "Switch log"
-msgstr "Prepne na iný záznam"
-
-#: logview/logview.c:100
-msgid "Monitor..."
-msgstr "Monitorovať..."
-
-#: logview/logview.c:101
-msgid "Monitor log"
-msgstr "Monitoruje záznam"
-
-#: logview/logview.c:104
-msgid "Exit program"
-msgstr "Ukončí program"
-
-#: logview/logview.c:111
-msgid "Show calendar log"
-msgstr "Zobrazí záznam kalendára"
-
-#: logview/logview.c:114
-msgid "Show log stats"
-msgstr "Zobrazí štatistiky o zázname"
-
-#: logview/logview.c:116
-msgid "Zoom"
-msgstr "Lupa"
-
-#: logview/logview.c:117
-msgid "Show line info"
-msgstr "Zobraziť informácie o riadku"
-
-#: logview/logview.c:129
-msgid "Select...               "
-msgstr "Vybrať..."
-
-#: logview/logview.c:130
-msgid "Select log events"
-msgstr "Vyberie udalosti záznamu"
-
-#: logview/logview.c:132
-msgid "Filter..                "
-msgstr "Filter..                "
-
-#: logview/logview.c:133
-msgid "Filter log events"
-msgstr "Filtruje udalosti záznamu"
-
-#: logview/logview.c:141
-msgid "Info about logview"
-msgstr "Zobrazí informácie o logview"
-
-#: logview/logview.c:344
-msgid "No log files to open"
-msgstr "Neotvorené žiadne súbory so záznamom"
-
-#. Create App
-#: logview/logview.c:367
-msgid "System Log Viewer"
-msgstr "Zobrazovač systémových záznamov"
-
-#: logview/logview.c:478
-msgid "Filename: "
-msgstr "Meno súboru: "
-
-#: logview/logview.c:494
-msgid "Date: "
-msgstr "Dátum: "
-
-#: logview/logview.c:746 logview/logview.c:801
-msgid "Too many open logs. Close one and try again"
-msgstr "Príliš veľa otvorených záznamov. Zatvorte niektorý a skúste to znovu."
-
-#: logview/logview.c:814
-msgid "Open new logfile"
-msgstr "Otvoriť nový súbor so záznamom"
-
-#: logview/misc.c:55
-#, c-format
-msgid "Error: [%s]\n"
-msgstr "Chyba: [%s]\n"
-
-#: logview/monitor.c:128
-msgid "Choose logs to monitor"
-msgstr "Vybrať monitorované záznamy"
-
-#. Arrowed buttons
-#: logview/monitor.c:175
-msgid "Add >>"
-msgstr "Pridať >>"
-
-#. Remove button
-#: logview/monitor.c:183
-msgid "Remove <<"
-msgstr "Odstrániť <<"
-
-#. Check boxes
-#: logview/monitor.c:222
-msgid "Hide app"
-msgstr "Skryť apl."
-
-#: logview/monitor.c:230
-msgid "Exec actions"
-msgstr "Vykonať akcie"
-
-#. Actions button
-#: logview/monitor.c:242
-msgid "Actions..."
-msgstr "Akcie..."
-
-#: logview/monitor.c:292
-msgid "Too many logs to monitor. Remove one and try again"
-msgstr "Príliš veľa sledovaných záznamov. Odstráňte niektorý a skúste to znovu."
-
-#: logview/monitor.c:300 logview/monitor.c:338
-msgid "tmp_list is NULL\n"
-msgstr "tmp_list je NULL\n"
-
-#: logview/monitor.c:458
-msgid "Monitoring logs..."
-msgstr "Monitorujem záznamy.."
-
-#: logview/monitor.c:671
-msgid "TOUCHED!!\n"
-msgstr "ZMENENÝ!!\n"
-
-#: logview/userprefsdialog.c:65
-msgid "hostname column width ( 0 to hide this column ): "
-msgstr "šírka stĺpca s menom hostiteľa ( 0 skryje tento stĺpec ): "
-
-#: logview/userprefsdialog.c:66
-msgid "Columns"
-msgstr "Stĺpcov"
-
-#: logview/zoom.c:78
-msgid "Zoom view"
-msgstr "Zväčšiť pohľad"
-
-#: logview/zoom.c:154
-#, c-format
-msgid "Log line detail for %s"
-msgstr "Detaily pre riadok záznamu %s"
-
-#: logview/zoom.c:157
-msgid "Log line detail for <No log loaded>"
-msgstr "Detaily pre riadok záznamu <Nenačítaný žiadny záznam>"
-
-#: logview/zoom.c:180
-msgid "Date:"
-msgstr "Dátum:"
-
-#: logview/zoom.c:182
-msgid "Process:"
-msgstr "Proces:"
-
-#: logview/zoom.c:184
-msgid "Message:"
-msgstr "Správa:"
-
-#: logview/zoom.c:186
-msgid "Description:"
-msgstr "Popis:"
-
-#. Translators: do not include year, it would be bogus
-#: logview/zoom.c:212
-msgid "%B %e %X"
-msgstr "%B %e %X"
-
-#.
-#. * 	-------------------
-#. * 	     Defines
-#. * 	-------------------
-#.
-#: logview/config.c:34
-msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:35
-msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:36
-msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:37
-msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:39
-msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-
-#: logview/config.c:40
-msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-
-#: logview/config.c:41
-msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:42
-msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:43
-msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:44
-msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-
-#: logview/desc_db.c:37
-#, c-format
-msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "Nepodarilo sa otvoriť databázu regulárnych výrazov  <%s>! Otvorenie zlyhalo."
-
-#: logview/desc_db.c:147
-#, c-format
-msgid "Cannot open description data base <%s>! Open failed."
-msgstr "Nepodarilo sa otvoriť databázu popisov  <%s>! Otvorenie zlyhalo."
-
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
-#: gfloppy/src/gfloppy2.glade.h:1
-msgid "DOS (fat)"
-msgstr "DOS (fat)"
-
-#: gfloppy/src/gfloppy-i18n.h:15 gfloppy/src/gfloppy2.glade.h:2
-msgid "Double Density 3.5\" (720 KB)"
-msgstr "Dvojitá 3.5\" (720 KB)"
-
-#: gfloppy/src/gfloppy-i18n.h:16 gfloppy/src/gfloppy2.glade.h:3
-msgid "Double Density 5.25\" (360 KB)"
-msgstr "Dvojitá 5.25\" (360 KB)"
-
-#: gfloppy/src/gfloppy2.glade.h:4
-msgid "File system _type:"
-msgstr "_Typ súborového systému:"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "Floppy _Density:"
-msgstr "_Hustota záznamu:"
-
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gfloppy/src/gfloppy-i18n.h:7 gfloppy/src/gfloppy2.glade.h:6
-msgid "Format a floppy"
+#: gfloppy/gfloppy.desktop.in.h:1
+msgid "Floppy Formatter"
 msgstr "Formátovanie diskety"
 
-#: gfloppy/src/gfloppy-i18n.h:13 gfloppy/src/gfloppy2.glade.h:7
-msgid "High Density 3.5\" (1.44 MB)"
-msgstr "Vysoká 3.5\" (1.44 MB)"
-
-#: gfloppy/src/gfloppy-i18n.h:14 gfloppy/src/gfloppy2.glade.h:8
-msgid "High Density 5.25\" (1.2 MB)"
-msgstr "Vysoká 5.25\" (1.2 MB)"
-
-#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
-#: gfloppy/src/gfloppy2.glade.h:9
-msgid "Linux Native (ext2)"
-msgstr "Linux (ext2)"
-
-#: gfloppy/src/gfloppy2.glade.h:10
-msgid "_Floppy Device:"
-msgstr "Zariadenie _diskety:"
-
-#: gfloppy/src/gfloppy-i18n.h:17 gfloppy/src/gfloppy2.glade.h:11
-msgid "_Quick format"
-msgstr "_Rýchle formátovanie"
+#: gfloppy/gfloppy.desktop.in.h:2
+msgid "Format Floppy Disks"
+msgstr "Formátuje diskety"
 
 #: gfloppy/src/badblocks.c:102
 msgid "MInternal Error: Unable to seek to the correct location."
@@ -1788,6 +936,50 @@ msgstr ""
 msgid "ECould not determine current format type"
 msgstr "ENie je možné určiť aktuálny typ formátu"
 
+#: gfloppy/src/gfloppy2.glade.h:1
+msgid "DOS (fat)"
+msgstr "DOS (fat)"
+
+#: gfloppy/src/gfloppy2.glade.h:2
+msgid "Double Density 3.5\" (720 KB)"
+msgstr "Dvojitá 3.5\" (720 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:3
+msgid "Double Density 5.25\" (360 KB)"
+msgstr "Dvojitá 5.25\" (360 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:4
+msgid "File system _type:"
+msgstr "_Typ súborového systému:"
+
+#: gfloppy/src/gfloppy2.glade.h:5
+msgid "Floppy _Density:"
+msgstr "_Hustota záznamu:"
+
+#: gfloppy/src/gfloppy2.glade.h:6
+msgid "Format a floppy"
+msgstr "Formátovanie diskety"
+
+#: gfloppy/src/gfloppy2.glade.h:7
+msgid "High Density 3.5\" (1.44 MB)"
+msgstr "Vysoká 3.5\" (1.44 MB)"
+
+#: gfloppy/src/gfloppy2.glade.h:8
+msgid "High Density 5.25\" (1.2 MB)"
+msgstr "Vysoká 5.25\" (1.2 MB)"
+
+#: gfloppy/src/gfloppy2.glade.h:9
+msgid "Linux Native (ext2)"
+msgstr "Linux (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:10
+msgid "_Floppy Device:"
+msgstr "Zariadenie _diskety:"
+
+#: gfloppy/src/gfloppy2.glade.h:11
+msgid "_Quick format"
+msgstr "_Rýchle formátovanie"
+
 #: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
 msgid "MMaking filesystem on disk..."
 msgstr "MVytváram na disku súborový systéme..."
@@ -1840,7 +1032,7 @@ msgstr "Ktoré zariadenie formátovať"
 msgid "DEVICE"
 msgstr "ZARIADENIE"
 
-#: gfloppy/src/main.c:366
+#: gfloppy/src/main.c:365
 msgid "Format another floppy?"
 msgstr "Formátovať ďalšiu disketu?"
 
@@ -1856,203 +1048,860 @@ msgstr "Formátovanie diskety zrušené."
 msgid "Format progress."
 msgstr "Priebeh formátovania"
 
-#: gfloppy/src/gfloppy-i18n.h:9
-msgid "Dos (FAT)"
-msgstr "Dos (FAT)"
+#: gsearchtool/gnome-search-tool.desktop.in.h:1
+msgid "Search for Files"
+msgstr "Hľadať súbory"
 
-#: gfloppy/src/gfloppy-i18n.h:11
-msgid "Floppy Density:"
-msgstr "Hustota záznamu:"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+msgid "Search your disk for files"
+msgstr "Hľadajte súbory na disku"
 
-#: gfloppy/src/gfloppy-i18n.h:12
-msgid "File system type:"
-msgstr "Typ súborového systému:"
+#: gsearchtool/gsearchtool.c:64
+msgid "File name is"
+msgstr "Meno súboru je"
 
-#: gfloppy/src/gfloppy-i18n.h:18
-msgid "Floppy Device:"
-msgstr "Zariadenie mechaniky:"
+#: gsearchtool/gsearchtool.c:65
+msgid "File name is not"
+msgstr "Meno súboru nie je"
 
-#: exe-handler/gnome-exe-handler.c:76
-#, c-format
+#: gsearchtool/gsearchtool.c:66
+msgid "Don't search mounted filesystems"
+msgstr "Nehľadať na pripojených systémoch súborov"
+
+#: gsearchtool/gsearchtool.c:67
+msgid "Follow symbolic links"
+msgstr "Sledovať symbolické odkazy"
+
+#: gsearchtool/gsearchtool.c:68
+#, fuzzy
+msgid "Process folder contents depth first"
+msgstr "Najprv spracovať podpriečinky"
+
+#: gsearchtool/gsearchtool.c:69
+msgid "Owned by user"
+msgstr "Vlastní používateľ"
+
+#: gsearchtool/gsearchtool.c:70
+msgid "Owned by group"
+msgstr "Vlastní skupina"
+
+#: gsearchtool/gsearchtool.c:71
+msgid "Invalid user or group"
+msgstr "Neplatný používateľ alebo skupina"
+
+#: gsearchtool/gsearchtool.c:72
+msgid "Last time modified"
+msgstr "Čas poslednej zmeny"
+
+#: gsearchtool/gsearchtool.c:73
+msgid "File is empty"
+msgstr "Súbor je prázdny"
+
+#: gsearchtool/gsearchtool.c:244 gsearchtool/gsearchtool.c:824
+#, fuzzy
+msgid "Start folder does not exist."
+msgstr "Počiatočný priečinok neexistuje."
+
+#: gsearchtool/gsearchtool.c:460
+msgid "today at %-I:%M %p"
+msgstr "dnes o %-I:%M"
+
+#: gsearchtool/gsearchtool.c:462
+msgid "yesterday at %-I:%M %p"
+msgstr "včera o %-I:%M"
+
+#: gsearchtool/gsearchtool.c:464 gsearchtool/gsearchtool.c:466
+msgid "%m/%-d/%y, %-I:%M %p"
+msgstr "%-d/%m/%y, %-I:%M"
+
+#: gsearchtool/gsearchtool.c:476
+msgid "%Y%m%d%H%M%S"
+msgstr "%d%m%Y%H%M%S"
+
+#: gsearchtool/gsearchtool.c:491
+msgid "folder"
+msgstr "priečinok"
+
+#: gsearchtool/gsearchtool.c:493
+msgid "program"
+msgstr "program"
+
+#: gsearchtool/gsearchtool.c:495
+msgid "symbolic link"
+msgstr "symbolický odkaz"
+
+#: gsearchtool/gsearchtool.c:619
+#, fuzzy
+msgid "No Files Found."
+msgstr "Nič nenájdené"
+
+#: gsearchtool/gsearchtool.c:680
 msgid ""
-"Executing arbitrary programs that you downloaded from the network might be "
-"dangerous.\n"
+"Cannot perform the search.\n"
+"The Bourne shell was not found\n"
+"It is typically installed as /bin/sh or /usr/bin/sh."
+msgstr ""
+"Vyhľadávanie nie je možné.\n"
+"Bourne shell sa nepodari nájsť.\n"
+"Obvykle je nainštalovaný ako /bin/sh alebo /usr/bin/sh."
+
+#: gsearchtool/gsearchtool.c:783
+msgid ""
 "\n"
-"Are you sure you want to run `%s'?"
+"... Too many errors to display ..."
 msgstr ""
-"Spúšťanie programov stiahnutých zo siete môže byť nebezpečné.\n"
 "\n"
-"Naozaj chcete spustiť `%s'?"
+"... Príliš veľa chýb ...."
 
-#: exe-handler/gnome-exe-handler.c:83
-msgid "Could not access file permissions"
-msgstr "Nepodarilo sa získať práva"
+#: gsearchtool/gsearchtool.c:835 gsearchtool/gsearchtool.c:1504
+msgid "Cannot perform the search. Please specify a search criteria."
+msgstr "Nie je možné hľadať. Prosím, zadajte kritériá hľadania."
 
-#: exe-handler/gnome-exe-handler.c:88
-#, c-format
-msgid "Could not execute the file `%s' due to a permission problem"
-msgstr "Nepodarilo sa spustiť súbor `%s' kvôli problému s právami."
-
-#: exe-handler/gnome-exe-handler.c:104
-#, c-format
-msgid "Failure at executing `%s'"
-msgstr "Zlyhanie pri spúšťaní `%s'"
-
-#: exe-handler/gnome-exe-handler.c:123
-#, c-format
-msgid "It was not possible to open the file `%s'"
-msgstr "Nepodarilo sa otvoriť súbor `%s'"
-
-#: exe-handler/gnome-exe-handler.c:132
-#, c-format
-msgid "The file `%s' is empty"
-msgstr "Súbor `%s' je prázdny"
-
-#: exe-handler/gnome-exe-handler.c:137
-#, c-format
-msgid "There was an error. `%s' is empty"
-msgstr "Nastala chyba. `%s' je prázdny."
-
-#: exe-handler/gnome-exe-handler.c:152
-msgid "This is a library and can not be executed"
-msgstr "Toto je knižnica a tie nie je možné spustiť."
-
-#: exe-handler/gnome-exe-handler.c:158
-msgid "The file is a core file and can not be executed"
-msgstr "Súbor je typu core a nie je možné ho spustiť"
-
-#: exe-handler/gnome-exe-handler.c:162 exe-handler/gnome-exe-handler.c:196
-msgid "This is an unknown kind of executable"
-msgstr "Toto je neznámy typ spustiteľného súboru"
-
-#: exe-handler/gnome-exe-handler.c:192
+#: gsearchtool/gsearchtool.c:852 gsearchtool/gsearchtool.c:1525
 msgid ""
-"The executable is for a different platform and can not be executed on this "
-"system"
-msgstr ""
-"Spustiteľný súbor je určený pre inú platformu a na tomto systéme ho nie je "
-"možné spustiť."
+"A search is already running.  Please wait for the search to complete or "
+"cancel it."
+msgstr "Hľadanie už prebieha. Prosím, čakaje, kým neskončí, alebo ho prerušte."
 
-#: meat-grinder/meat-grinder.c:130
+#: gsearchtool/gsearchtool.c:872
+#, fuzzy
+msgid "Start folder does not exist"
+msgstr "Počiatočný priečinok neexistuje"
+
+#: gsearchtool/gsearchtool.c:887
+msgid "Cannot show the search command line. Please specify a search criteria."
+msgstr ""
+"Nie je možné zobraziť príkazový riadok hľadania. Prosím, zadajte kritériá "
+"hľadania."
+
+#: gsearchtool/gsearchtool.c:891
+msgid "Search Command Line"
+msgstr "Príkazový riadok pre hľadanie"
+
+#: gsearchtool/gsearchtool.c:909
+#, fuzzy
+msgid ""
+"This is the command line that can be used to execute this search\n"
+"from the console.\n"
+"\n"
+"C_ommand:"
+msgstr ""
+"Toto je príkazový riadok, ktorý môže byť použitý pre hľadanie z konzole.\n"
+"\n"
+"Príkaz:"
+
+#: gsearchtool/gsearchtool.c:929
+msgid "Command"
+msgstr "Príkaz"
+
+#: gsearchtool/gsearchtool.c:930
+msgid "Command Line Entry"
+msgstr "Príkazový riadok"
+
+#: gsearchtool/gsearchtool.c:930
+msgid "Use this command line to execute the search from console"
+msgstr ""
+"Toto je príkazový riadok, ktorý môže byť použitý pre hľadanie z konzole"
+
+#: gsearchtool/gsearchtool.c:1031
+msgid "No viewer available for this mime type."
+msgstr "Pre tento typ MIME nie je dostupný prehliadač."
+
+#: gsearchtool/gsearchtool.c:1117
+msgid "Entry changed called for a non entry option!"
+msgstr "Zmenená položka volaná pre voľbu bez položiek!"
+
+#: gsearchtool/gsearchtool.c:1187
+msgid "Search Rule Value Entry"
+msgstr "Hodnota pravidla hľadania"
+
+#: gsearchtool/gsearchtool.c:1187
+msgid "Enter a value for search rule"
+msgstr "Zadajte hodnotu pre pravidlo hľadanie"
+
+#: gsearchtool/gsearchtool.c:1202
+msgid "Enabled"
+msgstr "Povolené"
+
+#: gsearchtool/gsearchtool.c:1210
+msgid "Toggle On/Off to enable/disable the rule"
+msgstr "Zapne alebo vypne pravidlo"
+
+#: gsearchtool/gsearchtool.c:1218
+msgid "Click to Remove the Rule"
+msgstr "Kliknutím odstránite pravidlo"
+
+#: gsearchtool/gsearchtool.c:1264 gsearchtool/gsearchtool.c:1608
+msgid "S_tarting in folder:"
+msgstr "_Začať v priečinku:"
+
+#: gsearchtool/gsearchtool.c:1266 gsearchtool/gsearchtool.c:1611
+msgid "Browse"
+msgstr "Prechádzať"
+
+#: gsearchtool/gsearchtool.c:1274 gsearchtool/gsearchtool.c:1275
+#: gsearchtool/gsearchtool.c:1620 gsearchtool/gsearchtool.c:1621
+msgid "Starting folder entry"
+msgstr "Začať v priečinku"
+
+#: gsearchtool/gsearchtool.c:1274 gsearchtool/gsearchtool.c:1275
+#: gsearchtool/gsearchtool.c:1620 gsearchtool/gsearchtool.c:1621
+msgid "Enter the folder name where you want to start the search"
+msgstr "Zadajte meno priečinku, kde chcete začať hľadanie"
+
+#: gsearchtool/gsearchtool.c:1296
+msgid "Rules:"
+msgstr "Pravidlá:"
+
+#: gsearchtool/gsearchtool.c:1316
+msgid "A_dd Rule:"
+msgstr "_Pridať pravidlo:"
+
+#: gsearchtool/gsearchtool.c:1325
+msgid "Search Rules Menu"
+msgstr "Menu pravidiel hľadania"
+
+#: gsearchtool/gsearchtool.c:1325
+msgid "Select a search rule from the menu"
+msgstr "Vyberte pravidlo hľadanie z menu"
+
+#: gsearchtool/gsearchtool.c:1353 gsearchtool/gsearchtool.c:1651
+#, fuzzy
+msgid "_Find"
+msgstr "Nájsť:"
+
+#: gsearchtool/gsearchtool.c:1368
+msgid "Click to Add a Rule"
+msgstr "Kliknutím pridáte pravidlo"
+
+#: gsearchtool/gsearchtool.c:1369
+msgid "Click to Start the Search"
+msgstr "Kliknutím spustíte hľadanie"
+
+#: gsearchtool/gsearchtool.c:1370
+msgid "Click to Stop the Search"
+msgstr "Kliknutím zastavíte hľadanie"
+
+#: gsearchtool/gsearchtool.c:1375 gsearchtool/gsearchtool.c:1672
+#, fuzzy
+msgid "S_earch Results"
+msgstr "Výsledky hľadania"
+
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1711
+msgid "Name"
+msgstr "Meno"
+
+#: gsearchtool/gsearchtool.c:1436 gsearchtool/gsearchtool.c:1733
+msgid "Folder"
+msgstr "Priečinok"
+
+#: gsearchtool/gsearchtool.c:1448 gsearchtool/gsearchtool.c:1745
+msgid "Size"
+msgstr "Veľkosť"
+
+#: gsearchtool/gsearchtool.c:1460 gsearchtool/gsearchtool.c:1757
+msgid "Type"
+msgstr "Typ"
+
+#: gsearchtool/gsearchtool.c:1471 gsearchtool/gsearchtool.c:1768
+msgid "Date Modified"
+msgstr "Čas zmeny"
+
+#: gsearchtool/gsearchtool.c:1587
+msgid "Find files _named:"
+msgstr "Nájsť súbory pomenované: "
+
+#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1600
+msgid "File Name Entry"
+msgstr "Meno súboru"
+
+#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1600
+msgid "Enter the file name you want to search"
+msgstr "Zadajte meno súboru, ktoré chcete hľadať"
+
+#: gsearchtool/gsearchtool.c:1666
+msgid "Click to Start the search"
+msgstr "Kliknutím spustíte hľadanie"
+
+#: gsearchtool/gsearchtool.c:1667
+msgid "Click to Stop the search"
+msgstr "Kliknutím zastavíte hľadanie"
+
+#: gsearchtool/gsearchtool.c:1788
+msgid "Si_mple"
+msgstr "_Jednoduché"
+
+#: gsearchtool/gsearchtool.c:1790
+msgid "Ad_vanced"
+msgstr "_Pokročilé"
+
+#: gsearchtool/gsearchtool.c:1828
+#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
+msgid "GNOME Search Tool"
+msgstr "GNOME nástroj pre hľadanie"
+
+#: gsearchtool/gsearchtool.c:1829
+#, fuzzy
+msgid "(C) 1998,2002 the Free Software Foundation"
+msgstr "(C) 1998,2000 Free Software Foundation"
+
+#: gsearchtool/gsearchtool.c:1830
+msgid "Frontend to the unix find/locate commands"
+msgstr "Rozhranie pre unixové príkazy find/locate"
+
+#: gsearchtool/gsearchtool.c:1869
+#, c-format
+msgid "File %s already exists. Overwrite?"
+msgstr "Súbor %s existuje, prepísať?"
+
+#: gsearchtool/gsearchtool.c:1904
+msgid "Cannot save the results file."
+msgstr "Nemôžem uložiť súbor s výsledkami."
+
+#: gsearchtool/gsearchtool.c:1911 meat-grinder/meat-grinder.c:588
+msgid "Save Results"
+msgstr "Uložiť výsledky"
+
+#: gsearchtool/gsearchtool.c:1967
+#, fuzzy
+msgid "S_how Command..."
+msgstr "_Zobraziť príkaz"
+
+#: gsearchtool/gsearchtool.c:1968
+msgid "Save Results _As..."
+msgstr "Uložiť výsledky _ako..."
+
+#: gsearchtool/gsearchtool.c:1981
+#, fuzzy
+msgid "Sear_ch"
+msgstr "Hľadanie"
+
+#: gsearchtool/gsearchtool.c:2003
+msgid "Cannot initialize bonobo."
+msgstr "Nepodarilo sa inicializovať Bonobo."
+
+#: gsearchtool/gsearchtool.c:2007
+msgid "Search Tool"
+msgstr "Hľadanie"
+
+#: logview/about.c:42
+msgid "Cesar Miquel (miquel@df.uba.ar)"
+msgstr "Cesar Miquel (miquel@df.uba.ar)"
+
+#: logview/about.c:43
+msgid ""
+"This  program  is  part of  the  GNOME  project for Linux. Logview comes "
+"with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
+"redistribute it under the conditions of the GNU General Public Licence. The "
+"log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+msgstr ""
+"Tento  program  je  súčasťou  projektu GNOME pre Linux. Logview nedáva "
+"ABSOLÚTNE ŽIADNE ZÁRUKY. Je to voľne šíriteľný softvér, a budeme radi ak ho "
+"budete distribuovať ďalej podľa pravidiel GNU General Public Licence. Log "
+"ikona je od Tuomasa Kuosmanena (a.k.a tigert)."
+
+#. go get logview.xpm in $(prefix)/share/pixmaps/logview
+#: logview/about.c:72
+#, fuzzy
+msgid "GNOME System Log"
+msgstr "Systémové záznamy"
+
+#: logview/about.c:73
+msgid "Copyright (C) 1998"
+msgstr "Copyright (C) 1998"
+
+#: logview/actions.c:75
+msgid "Action database"
+msgstr "Databáza akcií"
+
+#: logview/actions.c:82 logview/monitor.c:114
+msgid "Monitor options"
+msgstr "Možnosti monitoru"
+
+#: logview/actions.c:139
+msgid "Add..."
+msgstr "Pridať..."
+
+#: logview/actions.c:145
+msgid "Edit..."
+msgstr "Upraviť..."
+
+#: logview/actions.c:151
+msgid "Remove"
+msgstr "Odstrániť"
+
+#: logview/actions.c:263
+#, c-format
+msgid "Cannot open action data base <%s>! Open failed."
+msgstr "Nepodarilo sa otvoriť databázu <%s>! Otvorenie zlyhalo."
+
+#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
+#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
+msgid "Error parsing actions data base"
+msgstr "Chyba pre spracovaní databáze akcií"
+
+#: logview/actions.c:389
+msgid "Can't write to actions database!"
+msgstr "Nepodarilo sa zapisovať do databáze akcií!"
+
+#: logview/actions.c:496
+msgid "<empty>"
+msgstr "<prázdne>"
+
+#: logview/actions.c:497
+msgid "log name regexp"
+msgstr "reg výraz pre meno záznamu"
+
+#: logview/actions.c:498
+msgid "process regexp"
+msgstr "reg. výraz pre proces"
+
+#: logview/actions.c:499
+msgid "message regexp"
+msgstr "reg. výraz pre správu"
+
+#: logview/actions.c:500
+msgid "action to execute when regexps are TRUE"
+msgstr "vykonať akciu ak platia reg. výrazy"
+
+#: logview/actions.c:501
+msgid "description"
+msgstr "popis"
+
+#: logview/actions.c:749
+msgid "description:"
+msgstr "popis:"
+
+#: logview/actions.c:757
+msgid "Description of this entry."
+msgstr "Popis tejto položky."
+
+#: logview/actions.c:814
 #, c-format
 msgid ""
-"Number of files: %d\n"
-"Number of folders: %d"
+"tag: [%s]\n"
+"log_name: [%s]\n"
+"process: [%s]\n"
+"message: [%s]\n"
+"description: [%s]\n"
+"action: [%s]\n"
 msgstr ""
-"Počet súborov: %d\n"
-"Počet priečinkov: %d"
+"tag: [%s]\n"
+"log_name: [%s]\n"
+"process: [%s]\n"
+"message: [%s]\n"
+"description: [%s]\n"
+"action: [%s]\n"
 
-#: meat-grinder/meat-grinder.c:136
+#: logview/calendar.c:112 logview/logview.c:110
+msgid "Calendar"
+msgstr "Kalendár"
+
+#.
+#. * 	-------------------
+#. * 	     Defines
+#. * 	-------------------
+#.
+#: logview/config.c:34
+msgid "fixed 12"
+msgstr ""
+
+#: logview/config.c:35
+msgid "fixed Bold 12"
+msgstr ""
+
+#: logview/config.c:36
+msgid "fixed 10"
+msgstr ""
+
+#: logview/config.c:37
+msgid "fixed Bold 8"
+msgstr ""
+
+#: logview/config.c:39
+msgid "Helvetica 14"
+msgstr ""
+
+#: logview/config.c:40
+msgid "Helvetica Bold 14"
+msgstr ""
+
+#: logview/config.c:41
+msgid "Helvetica 12"
+msgstr ""
+
+#: logview/config.c:42
+msgid "Helvetica Bold 12"
+msgstr ""
+
+#: logview/config.c:43
+msgid "Helvetica 10"
+msgstr ""
+
+#: logview/config.c:44
+msgid "Helvetica Bold 10"
+msgstr ""
+
+#: logview/desc_db.c:37
+#, c-format
+msgid "Cannot open regexp data base <%s>! Open failed."
+msgstr ""
+"Nepodarilo sa otvoriť databázu regulárnych výrazov  <%s>! Otvorenie zlyhalo."
+
+#: logview/desc_db.c:147
+#, c-format
+msgid "Cannot open description data base <%s>! Open failed."
+msgstr "Nepodarilo sa otvoriť databázu popisov  <%s>! Otvorenie zlyhalo."
+
+#. ----------------------------------------------------------------------
+#. NAME:
+#. DESCRIPTION:
+#. ----------------------------------------------------------------------
+#: logview/gnome-system-log.desktop.in.h:1
+msgid "System Log"
+msgstr "Systémové záznamy"
+
+#: logview/gnome-system-log.desktop.in.h:2
+msgid "View the system log file"
+msgstr "Zobrazuje súbor so systémovým záznamom"
+
+#: logview/info.c:83 logview/logview.c:113
+msgid "Log stats"
+msgstr "Štatistika záznamov"
+
+#: logview/info.c:176
+msgid "Log information"
+msgstr "Informácia o súbore so záznamom"
+
+#: logview/info.c:204
+msgid "Log:"
+msgstr "Súbor:"
+
+#: logview/info.c:207
+msgid "Size:"
+msgstr "Veľkosť:"
+
+#: logview/info.c:210
+msgid "Modified:"
+msgstr "Zmena:"
+
+#: logview/info.c:213
+msgid "Start date:"
+msgstr "Prvý dátum:"
+
+#: logview/info.c:216
+msgid "Last date:"
+msgstr "Posledný dátum:"
+
+#: logview/info.c:219
+msgid "Num. lines:"
+msgstr "Poč. riadkov:"
+
+#: logview/info.c:237
+#, c-format
+msgid "%ld bytes"
+msgstr "%ld bajtov"
+
+#: logview/log_repaint.c:84
+msgid "January"
+msgstr "Január"
+
+#: logview/log_repaint.c:84
+msgid "February"
+msgstr "Február"
+
+#: logview/log_repaint.c:84
+msgid "March"
+msgstr "Marec"
+
+#: logview/log_repaint.c:84
+msgid "April"
+msgstr "Apríl"
+
+#: logview/log_repaint.c:84
+msgid "May"
+msgstr "Máj"
+
+#: logview/log_repaint.c:85
+msgid "June"
+msgstr "Jún"
+
+#: logview/log_repaint.c:85
+msgid "July"
+msgstr "Júl"
+
+#: logview/log_repaint.c:85
+msgid "August"
+msgstr "August"
+
+#: logview/log_repaint.c:85
+msgid "September"
+msgstr "September"
+
+#: logview/log_repaint.c:85
+msgid "October"
+msgstr "Október"
+
+#: logview/log_repaint.c:86
+msgid "November"
+msgstr "November"
+
+#: logview/log_repaint.c:86
+msgid "December"
+msgstr "December"
+
+#. Translators: Date only format, %x should well do really
+#: logview/log_repaint.c:510
+#, c-format
+msgid "%x"
+msgstr "%x"
+
+#. Translators: should be only the time, date could be bogus
+#: logview/log_repaint.c:628
+#, c-format
+msgid "%X"
+msgstr "%X"
+
+#. bogus
+#. Translators: Make sure this is only Month and Day format, year
+#. * will be bogus here
+#: logview/log_repaint.c:738
+msgid "%B %e"
+msgstr "%B %e"
+
+#: logview/logrtns.c:200
+msgid "Not enough memory!\n"
+msgstr "Nedostatok pamäti!\n"
+
+#: logview/logrtns.c:208
+msgid "Out of memory!\n"
+msgstr "Nedostatok pamäti!\n"
+
+#: logview/logrtns.c:234
+msgid "Unable to open logfile!\n"
+msgstr "Nepodarilo sa otvoriť súbor so záznamom!\n"
+
+#: logview/logrtns.c:289
+#, c-format
+msgid "%s is not a regular file."
+msgstr "%s nie je normálny súbor."
+
+#: logview/logrtns.c:297
+#, c-format
 msgid ""
-"No files or folders, drop files or folders\n"
-"above to add them to the archive"
+"%s is not user readable. Either run the program as root or ask the sysadmin "
+"to change the permissions on the file."
 msgstr ""
-"Zatiaľ žiadne súbory ani priečinky. Pustite\n"
-"súbory alebo priečinky hore, aby ste ich pridali do archívu."
+"%s nie je čitateľný používateľmi. Buď spusťte program ako root alebo "
+"požiadajte administrátora o zmenu práv k tomuto súboru."
 
-#: meat-grinder/meat-grinder.c:249 meat-grinder/meat-grinder.c:252
-msgid "Cannot start the archive (tar) program"
-msgstr "Nepodarilo sa spustiť archivačný program (tar)"
+#: logview/logrtns.c:314
+#, c-format
+msgid "%s could not be opened."
+msgstr "%s nebolo možné otvoriť."
 
-#: meat-grinder/meat-grinder.c:260
-msgid "Cannot run tar/gtar"
-msgstr "Nepodarilo sa spustiť tar/gtar"
+#: logview/logrtns.c:335 logview/logrtns.c:344
+#, c-format
+msgid "%s not a log file."
+msgstr "%s nie je súbor so záznamom."
 
-#: meat-grinder/meat-grinder.c:312
-msgid "Archive.tar.gz"
-msgstr "Archiv.tar.gz"
+#: logview/logrtns.c:770 logview/logrtns.c:801 logview/logrtns.c:932
+msgid "ReadLogStats: out of memory"
+msgstr "ReadLogStats: nedostatok pamäti"
 
-#: meat-grinder/meat-grinder.c:417
-msgid "The GNOME Archive Generator"
-msgstr "Generátor archívov GNOME"
+#: logview/logview.c:88
+msgid "Open log..."
+msgstr "Otvoriť súbor so záznamom..."
 
-#: meat-grinder/meat-grinder.c:419
-msgid "Drag files in to make archives"
-msgstr "Pomocou ťahania vytvárajte archívy"
+#: logview/logview.c:89
+msgid "Open log"
+msgstr "Otvorí súbor so záznamom"
 
-#: meat-grinder/meat-grinder.c:491 meat-grinder/meat-grinder.c:650
-msgid "No filename selected"
-msgstr "Nevybrané meno súboru"
+#: logview/logview.c:91
+msgid "Export log..."
+msgstr "Exportovať súbor so záznamom..."
 
-#: meat-grinder/meat-grinder.c:495
-msgid "File exists, overwrite?"
-msgstr "Súbor existuje, prepísať?"
+#: logview/logview.c:92
+msgid "Export log"
+msgstr "Exportuje súbor so záznamom"
 
-#: meat-grinder/meat-grinder.c:519
-msgid "No items to archive"
-msgstr "Nie je čo archivovať"
+#: logview/logview.c:94 logview/logview.c:95
+msgid "Close log"
+msgstr "Zatvorí súbor so záznamom"
 
-#: meat-grinder/meat-grinder.c:653
-msgid "File does not exists"
-msgstr "Súbor neexistuje"
+#: logview/logview.c:97 logview/logview.c:98
+msgid "Switch log"
+msgstr "Prepne na iný záznam"
 
-#: meat-grinder/meat-grinder.c:667
-msgid "Add file or folder"
-msgstr "Pridať súbor alebo priečinok"
+#: logview/logview.c:100
+msgid "Monitor..."
+msgstr "Monitorovať..."
 
-#: meat-grinder/meat-grinder.c:737
-msgid "Add file or folder..."
-msgstr "Pridať súbor alebo priečinok..."
+#: logview/logview.c:101
+msgid "Monitor log"
+msgstr "Monitoruje záznam"
 
-#: meat-grinder/meat-grinder.c:738
-msgid "Add a file or folder to the archive"
-msgstr "Pridať súbor alebo priečinok do archívu"
+#: logview/logview.c:103
+msgid "Exit"
+msgstr "Koniec"
 
-#: meat-grinder/meat-grinder.c:741
-msgid "Create archive..."
-msgstr "Vytvoriť archív..."
+#: logview/logview.c:104
+msgid "Exit program"
+msgstr "Ukončí program"
 
-#: meat-grinder/meat-grinder.c:742
-msgid "Create a new archive from the items"
-msgstr "Vytvorí nový archív z položiek"
+#: logview/logview.c:111
+msgid "Show calendar log"
+msgstr "Zobrazí záznam kalendára"
 
-#: meat-grinder/meat-grinder.c:751
-msgid "Remove the selected item(s)"
-msgstr "Odstrániť vybrané položky"
+#: logview/logview.c:114
+msgid "Show log stats"
+msgstr "Zobrazí štatistiky o zázname"
 
-#: meat-grinder/meat-grinder.c:783
-msgid "GNOME Archive Generator"
-msgstr "Generátor archívov GNOME"
+#: logview/logview.c:116
+msgid "Zoom"
+msgstr "Lupa"
 
-#: meat-grinder/meat-grinder.c:813
-msgid "Drop files here to add them to the archive."
-msgstr "Pustením súboru sem ho pridáte do archívu."
+#: logview/logview.c:117
+msgid "Show line info"
+msgstr "Zobraziť informácie o riadku"
 
-#: meat-grinder/meat-grinder.c:831
-msgid "Archive"
-msgstr "Archív"
+#: logview/logview.c:129
+msgid "Select...               "
+msgstr "Vybrať..."
 
-#: meat-grinder/meat-grinder.c:838
-msgid ""
-"Drag this button to the destination where you want the archive to be created "
-"or press it to pop up a file selection dialog."
+#: logview/logview.c:130
+msgid "Select log events"
+msgstr "Vyberie udalosti záznamu"
+
+#: logview/logview.c:132
+msgid "Filter..                "
+msgstr "Filter..                "
+
+#: logview/logview.c:133
+msgid "Filter log events"
+msgstr "Filtruje udalosti záznamu"
+
+#: logview/logview.c:142
+msgid "Info about logview"
+msgstr "Zobrazí informácie o logview"
+
+#: logview/logview.c:347
+msgid "No log files to open"
+msgstr "Neotvorené žiadne súbory so záznamom"
+
+#. Create App
+#: logview/logview.c:370
+msgid "System Log Viewer"
+msgstr "Zobrazovač systémových záznamov"
+
+#: logview/logview.c:470
+msgid "Filename: "
+msgstr "Meno súboru: "
+
+#: logview/logview.c:489
+#, fuzzy
+msgid "Last Modified: "
+msgstr "Čas zmeny"
+
+#: logview/logview.c:741 logview/logview.c:796
+msgid "Too many open logs. Close one and try again"
+msgstr "Príliš veľa otvorených záznamov. Zatvorte niektorý a skúste to znovu."
+
+#: logview/logview.c:809
+msgid "Open new logfile"
+msgstr "Otvoriť nový súbor so záznamom"
+
+#: logview/misc.c:55
+#, c-format
+msgid "Error: [%s]\n"
+msgstr "Chyba: [%s]\n"
+
+#: logview/monitor.c:128
+msgid "Choose logs to monitor"
+msgstr "Vybrať monitorované záznamy"
+
+#. Arrowed buttons
+#: logview/monitor.c:175
+msgid "Add >>"
+msgstr "Pridať >>"
+
+#. Remove button
+#: logview/monitor.c:183
+msgid "Remove <<"
+msgstr "Odstrániť <<"
+
+#. Check boxes
+#: logview/monitor.c:222
+msgid "Hide app"
+msgstr "Skryť apl."
+
+#: logview/monitor.c:230
+msgid "Exec actions"
+msgstr "Vykonať akcie"
+
+#. Actions button
+#: logview/monitor.c:242
+msgid "Actions..."
+msgstr "Akcie..."
+
+#: logview/monitor.c:292
+msgid "Too many logs to monitor. Remove one and try again"
 msgstr ""
-"Myšou ťahajte toto tlačidlo na miesto, kde chcete vytvoriť archív, alebo ho "
-"stlačte, aby sa objavil dialóg pre výber súboru."
+"Príliš veľa sledovaných záznamov. Odstráňte niektorý a skúste to znovu."
 
-#: meat-grinder/meat-grinder.c:963
-msgid "Cannot find proper icons anywhere!"
-msgstr "Nepodarilo sa nájsť správne ikony!"
+#: logview/monitor.c:300 logview/monitor.c:338
+msgid "tmp_list is NULL\n"
+msgstr "tmp_list je NULL\n"
 
-#: meat-grinder/meat-grinder.c:971
-msgid ""
-"Cannot find the archive (tar) program!\n"
-"This is the program used for creating archives."
-msgstr ""
-"Nepodarilo sa nájsť archivačný program (tar).\n"
-"Tento program sa používa pre vytváranie archívov."
+#: logview/monitor.c:458
+msgid "Monitoring logs..."
+msgstr "Monitorujem záznamy.."
 
-#: gfloppy/gfloppy.desktop.in.h:1
-msgid "Floppy Formatter"
-msgstr "Formátovanie diskety"
+#: logview/monitor.c:671
+msgid "TOUCHED!!\n"
+msgstr "ZMENENÝ!!\n"
 
-#: gfloppy/gfloppy.desktop.in.h:2
-msgid "Format Floppy Disks"
-msgstr "Formátuje diskety"
+#: logview/userprefsdialog.c:65
+msgid "hostname column width ( 0 to hide this column ): "
+msgstr "šírka stĺpca s menom hostiteľa ( 0 skryje tento stĺpec ): "
 
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Slovník"
+#: logview/userprefsdialog.c:66
+msgid "Columns"
+msgstr "Stĺpcov"
+
+#: logview/zoom.c:82
+msgid "Zoom view"
+msgstr "Zväčšiť pohľad"
+
+#: logview/zoom.c:190
+#, c-format
+msgid "Log line detail for %s"
+msgstr "Detaily pre riadok záznamu %s"
+
+#: logview/zoom.c:193
+msgid "Log line detail for <No log loaded>"
+msgstr "Detaily pre riadok záznamu <Nenačítaný žiadny záznam>"
+
+#: logview/zoom.c:227
+msgid "Date:"
+msgstr "Dátum:"
+
+#: logview/zoom.c:231
+msgid "Process:"
+msgstr "Proces:"
+
+#: logview/zoom.c:234
+msgid "Message:"
+msgstr "Správa:"
+
+#: logview/zoom.c:237
+msgid "Description:"
+msgstr "Popis:"
+
+#. Translators: do not include year, it would be bogus
+#: logview/zoom.c:262
+msgid "%B %e %X"
+msgstr "%B %e %X"
 
 #: meat-grinder/archive-generator.desktop.in.h:1
 msgid "Archive Generator"
@@ -2062,41 +1911,318 @@ msgstr "Generátor archívov"
 msgid "Create compressed archives containing many files"
 msgstr "Vytvára komprimované archívy obsahujúce veľa súborov"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1
-msgid "Search for Files"
-msgstr "Hľadať súbory"
+#: meat-grinder/meat-grinder.c:133
+#, c-format
+msgid ""
+"Number of files: %d\n"
+"Number of folders: %d"
+msgstr ""
+"Počet súborov: %d\n"
+"Počet priečinkov: %d"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2
-msgid "Search your disk for files"
-msgstr "Hľadajte súbory na disku"
+#: meat-grinder/meat-grinder.c:139
+msgid ""
+"No files or folders, drop files or folders\n"
+"above to add them to the archive"
+msgstr ""
+"Zatiaľ žiadne súbory ani priečinky. Pustite\n"
+"súbory alebo priečinky hore, aby ste ich pridali do archívu."
 
-#: gcharmap/gnome-character-map.desktop.in.h:1
-msgid "Character Map"
-msgstr "Mapa znakov"
+#: meat-grinder/meat-grinder.c:266 meat-grinder/meat-grinder.c:269
+msgid "Cannot start the archive (tar) program"
+msgstr "Nepodarilo sa spustiť archivačný program (tar)"
 
-#: gcharmap/gnome-character-map.desktop.in.h:2
-msgid "Insert special characters into documents"
-msgstr "Vloží špeciálne znaky do dokumentov"
+#: meat-grinder/meat-grinder.c:277
+msgid "Cannot run tar/gtar"
+msgstr "Nepodarilo sa spustiť tar/gtar"
 
-#: gcalc/gnome-calculator.desktop.in.h:1
-msgid "Calculator"
-msgstr "Kalkulačka"
+#: meat-grinder/meat-grinder.c:329
+msgid "Archive.tar.gz"
+msgstr "Archiv.tar.gz"
 
-#: gcalc/gnome-calculator.desktop.in.h:2
-msgid "Perform simple calculations"
-msgstr "Vykoná jednoduché výpočty"
+#: meat-grinder/meat-grinder.c:449 meat-grinder/meat-grinder.c:901
+msgid "GNOME Archive Generator"
+msgstr "Generátor archívov GNOME"
 
-#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
-msgid "GNOME Search Tool"
-msgstr "GNOME nástroj pre hľadanie"
+#: meat-grinder/meat-grinder.c:451
+msgid "Drag files in to make archives"
+msgstr "Pomocou ťahania vytvárajte archívy"
 
-#: logview/gnome-system-log.desktop.in.h:1
-msgid "System Log"
-msgstr "Systémové záznamy"
+#: meat-grinder/meat-grinder.c:556 meat-grinder/meat-grinder.c:717
+msgid "No filename selected"
+msgstr "Nevybrané meno súboru"
 
-#: logview/gnome-system-log.desktop.in.h:2
-msgid "View the system log file"
-msgstr "Zobrazuje súbor so systémovým záznamom"
+#: meat-grinder/meat-grinder.c:560
+msgid "File exists, overwrite?"
+msgstr "Súbor existuje, prepísať?"
+
+#: meat-grinder/meat-grinder.c:584
+msgid "No items to archive"
+msgstr "Nie je čo archivovať"
+
+#: meat-grinder/meat-grinder.c:720
+msgid "File does not exists"
+msgstr "Súbor neexistuje"
+
+#: meat-grinder/meat-grinder.c:734
+msgid "Add file or folder"
+msgstr "Pridať súbor alebo priečinok"
+
+#: meat-grinder/meat-grinder.c:851
+#, fuzzy
+msgid "_Add file or folder..."
+msgstr "Pridať súbor alebo priečinok..."
+
+#: meat-grinder/meat-grinder.c:852
+#, fuzzy
+msgid "Add a file or folder to archive"
+msgstr "Pridať súbor alebo priečinok do archívu"
+
+#: meat-grinder/meat-grinder.c:855
+#, fuzzy
+msgid "_Create archive..."
+msgstr "Vytvoriť archív..."
+
+#: meat-grinder/meat-grinder.c:855
+msgid "Create a new archive from the items"
+msgstr "Vytvorí nový archív z položiek"
+
+#: meat-grinder/meat-grinder.c:865
+#, fuzzy
+msgid "_Remove"
+msgstr "Odstrániť"
+
+#: meat-grinder/meat-grinder.c:866
+#, fuzzy
+msgid "Remove the selected item"
+msgstr "Odstrániť vybrané položky"
+
+#: meat-grinder/meat-grinder.c:868
+#, fuzzy
+msgid "R_emove All"
+msgstr "Odstrániť"
+
+#: meat-grinder/meat-grinder.c:869
+#, fuzzy
+msgid "Remove all items"
+msgstr "Odstrániť vybrané položky"
+
+#: meat-grinder/meat-grinder.c:941
+msgid "Drop files here to add them to the archive."
+msgstr "Pustením súboru sem ho pridáte do archívu."
+
+#. tarball icon
+#: meat-grinder/meat-grinder.c:953
+#, fuzzy
+msgid "_Create Archive"
+msgstr "Vytvoriť archív..."
+
+#: meat-grinder/meat-grinder.c:961
+msgid ""
+"Drag this button to the destination where you want the archive to be created "
+"or press it to pop up a file selection dialog."
+msgstr ""
+"Myšou ťahajte toto tlačidlo na miesto, kde chcete vytvoriť archív, alebo ho "
+"stlačte, aby sa objavil dialóg pre výber súboru."
+
+#: meat-grinder/meat-grinder.c:1086
+msgid "Cannot find proper icons anywhere!"
+msgstr "Nepodarilo sa nájsť správne ikony!"
+
+#: meat-grinder/meat-grinder.c:1094
+msgid ""
+"Cannot find the archive (tar) program!\n"
+"This is the program used for creating archives."
+msgstr ""
+"Nepodarilo sa nájsť archivačný program (tar).\n"
+"Tento program sa používa pre vytváranie archívov."
+
+#~ msgid "The GNOME Calculator"
+#~ msgstr "Kalkulačka pre GNOME"
+
+#~ msgid "Run in analog (slide rule) mode"
+#~ msgstr "Bežať v analógovom móde"
+
+#~ msgid "Shift"
+#~ msgstr "Shift"
+
+#~ msgid "Store"
+#~ msgstr "Uložiť"
+
+#~ msgid "Recall"
+#~ msgstr "Obnoviť"
+
+#~ msgid "Sum"
+#~ msgstr "Súčet"
+
+#~ msgid "Exchange"
+#~ msgstr "Výmena"
+
+#~ msgid ""
+#~ "The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+#~ "contain bad English."
+#~ msgstr "GNOME ekvivalent pre Mapu znakov z Microsoft Windows."
+
+#~ msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
+#~ msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
+
+#~ msgid "About"
+#~ msgstr "O programe"
+
+#~ msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+#~ msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+
+#~ msgid "_Browse Characters..."
+#~ msgstr "_Prechádzať znaky..."
+
+#~ msgid "_Text Toolbar"
+#~ msgstr "Panel _textu"
+
+#~ msgid "View or hide the text toolbar"
+#~ msgstr "Ukáže alebo skryje panel nástrojov pre text"
+
+#~ msgid "_Statusbar"
+#~ msgstr "_Stavový riadok"
+
+#~ msgid "View or hide the statusbar"
+#~ msgstr "Ukáže alebo skryje stavový riadok"
+
+#~ msgid "_Insert at end"
+#~ msgstr "Vložiť na konie_c"
+
+#~ msgid "Insert every selected character at the end of the text entry"
+#~ msgstr "Vloží každý vybraný znak na koniec textového poľa"
+
+#~ msgid "_Focusable Buttons"
+#~ msgstr "Tlačidlá s _fokusom"
+
+#~ msgid "Set the buttons to be focusable or not"
+#~ msgstr "Nastaví, či môžu mať tlačidlá fokus"
+
+#~ msgid "Lookup"
+#~ msgstr "Hľadať"
+
+#~ msgid "Spell"
+#~ msgstr "Kontrola"
+
+#~ msgid "_Look Up"
+#~ msgstr "_Hľadať"
+
+#~ msgid "_Spell"
+#~ msgstr "_Kontrola"
+
+#~ msgid "Spell checker"
+#~ msgstr "Kontrola pravopisu"
+
+#~ msgid "Preferences..."
+#~ msgstr "Nastavenia..."
+
+#~ msgid "F_ind"
+#~ msgstr "_Nájsť:"
+
+#~ msgid "Results"
+#~ msgstr "Výsledky"
+
+#~ msgid "The Gnome Search Tool"
+#~ msgstr "GNOME Nástoj pre hľadanie"
+
+#~ msgid "Logview"
+#~ msgstr "Logview"
+
+#~ msgid "Date: "
+#~ msgstr "Dátum: "
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+
+#~ msgid "Dos (FAT)"
+#~ msgstr "Dos (FAT)"
+
+#~ msgid "Floppy Density:"
+#~ msgstr "Hustota záznamu:"
+
+#~ msgid "File system type:"
+#~ msgstr "Typ súborového systému:"
+
+#~ msgid "Floppy Device:"
+#~ msgstr "Zariadenie mechaniky:"
+
+#~ msgid ""
+#~ "Executing arbitrary programs that you downloaded from the network might "
+#~ "be dangerous.\n"
+#~ "\n"
+#~ "Are you sure you want to run `%s'?"
+#~ msgstr ""
+#~ "Spúšťanie programov stiahnutých zo siete môže byť nebezpečné.\n"
+#~ "\n"
+#~ "Naozaj chcete spustiť `%s'?"
+
+#~ msgid "Could not access file permissions"
+#~ msgstr "Nepodarilo sa získať práva"
+
+#~ msgid "Could not execute the file `%s' due to a permission problem"
+#~ msgstr "Nepodarilo sa spustiť súbor `%s' kvôli problému s právami."
+
+#~ msgid "Failure at executing `%s'"
+#~ msgstr "Zlyhanie pri spúšťaní `%s'"
+
+#~ msgid "It was not possible to open the file `%s'"
+#~ msgstr "Nepodarilo sa otvoriť súbor `%s'"
+
+#~ msgid "The file `%s' is empty"
+#~ msgstr "Súbor `%s' je prázdny"
+
+#~ msgid "There was an error. `%s' is empty"
+#~ msgstr "Nastala chyba. `%s' je prázdny."
+
+#~ msgid "This is a library and can not be executed"
+#~ msgstr "Toto je knižnica a tie nie je možné spustiť."
+
+#~ msgid "The file is a core file and can not be executed"
+#~ msgstr "Súbor je typu core a nie je možné ho spustiť"
+
+#~ msgid "This is an unknown kind of executable"
+#~ msgstr "Toto je neznámy typ spustiteľného súboru"
+
+#~ msgid ""
+#~ "The executable is for a different platform and can not be executed on "
+#~ "this system"
+#~ msgstr ""
+#~ "Spustiteľný súbor je určený pre inú platformu a na tomto systéme ho nie "
+#~ "je možné spustiť."
+
+#~ msgid "The GNOME Archive Generator"
+#~ msgstr "Generátor archívov GNOME"
+
+#~ msgid "Archive"
+#~ msgstr "Archív"
 
 #~ msgid "Set _Server"
 #~ msgstr "Nastaviť _server"
@@ -2127,4 +2253,3 @@ msgstr "Zobrazuje súbor so systémovým záznamom"
 
 #~ msgid "Utility"
 #~ msgstr "Nástroj"
-
