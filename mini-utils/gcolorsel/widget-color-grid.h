@@ -78,6 +78,10 @@ void color_grid_can_move (ColorGrid *cg, gboolean value);
 
 void color_grid_set_col_width_height (ColorGrid *cg, int width, int height);
 
+int  color_grid_find_item_from_data  (ColorGrid *cg, gpointer data);
+
+void color_grid_change_rgb (ColorGrid *cg, int pos, int r, int g, int b);
+
 END_GNOME_DECLS
 
 #endif /* _COLOR_GRID_H_ */

@@ -67,10 +67,12 @@ struct _MDIColorGeneric {
   GList *parents;
 
   GList *col;
+  GList *last_col;
   GList *changes;
+  GList *last_changes;
 
   MDIColorGenericCol * (*get_owner) (MDIColorGenericCol *col);
-  int (*get_append_pos)     (MDIColorGeneric *mcg, MDIColorGenericCol *col);
+  GList * (*get_append_pos)     (MDIColorGeneric *mcg, MDIColorGenericCol *col);
   GtkType (*get_control_type) (MDIColorGeneric *mcg);
 };
 

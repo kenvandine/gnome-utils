@@ -1,3 +1,50 @@
+2000-04-16 Eric Brayeur <eb2@ibelgique.com>
+
+	* mdi-color-generic.[ch] (mdi_color_generic_post_change, 
+	  (mdi_color_generic_append, mdi_color_generic_remove, 
+	   mdi_color_generic_change_pos) : keep a pointer to the end of
+           col and changes list (faster in append case).
+	  
+2000-04-14 Eric Brayeur <eb2@ibelgique.com>
+
+	* mdi-color-generic.c (mdi_color_generic_view_realize) : disconnect.
+
+	* mdi-color-virtual.c : CHANGE_NAME and CHANGE_RGB works.
+
+	* view-color-edit.c : Change NAME works.
+	  (and sync edit if CHANGE_NAME or CHANGE_RGB request).
+	  Prev and Next button.
+	  Set sensitive on button.
+
+	* Fu** !!! I was calling gtk_signal_disconnect_by_data in 
+	  mdi-color-generic.c, and some other callbacks were disconnected
+	  too (popup menu, dnd, column click) ! Replace by 
+	  gtk_signal_disconnect_by_func.
+
+	* view-color-edit.c : set sensitive of view to FALSE if no more color
+	  to edit.
+
+2000-04-13 Eric Brayeur <eb2@ibelgique.com>
+
+	* glade/view-color-edit.glade : new file.
+	* view-color-edit.[ch] : new files; A view that let you edit colors.
+	  (do nothing, now ...)
+
+	* mdi-color-generic.c : change : send all the document colors
+	  when the document is connected to a view/other_document.
+	
+	* mdi-color-virtual.c : speed; didn't freeze the document in	
+	  data_changed.
+
+	* view-color-grid.c (view_color_grid_data_changed) correct a bug
+	  when remove request.
+
+	* widget-color-grid.c : SHIFT select works.
+
+	* view-color-edit.c : Append colors in combo; change RGB works.
+	* view-color-list.c, view-color-grid, widget-color-grid.c : support
+	  change RGB request.
+
 2000-04-12 Eric Brayeur <eb2@ibelgique.com>
 
 	* widget-color-grid.c : bug in allocate

@@ -8,5 +8,14 @@ void pixel_to_rgb (GdkColormap *cmap, guint32 pixel,
 
 GtkWidget *drag_window_create (gint red, gint green, gint blue);
 
+/* Set properties without emiting a signal */
+void spin_set_value (GtkSpinButton *spin, float val, gpointer data);
+void entry_set_text (GtkEntry *entry, char *str, gpointer data);
+
+void spin_connect_value_changed (GtkSpinButton *spin, GtkSignalFunc cb, 
+				 gpointer data);
+
+void preview_fill (GtkWidget *preview, int r, int g, int b);
+
 #endif
 

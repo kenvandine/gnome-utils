@@ -1,8 +1,10 @@
+(Updated on 2000-06-14)
+
 + Properties :
 
 [DONE] * ColorList : width - height - show number
 [DONE] + All : show / hide control.
- + ColorGrid : Order ?
+ + ColorGrid : Order by ?
 [DONE] + Show info on a document (file loaded ...).
 
 + Save session on exit
@@ -11,6 +13,7 @@
 
 + New color
 + Edit color
+[UPDATE] new/edit color is implemented in a view. But do nothing yet ...
 + Save / Save as
 + Last version
 
@@ -22,6 +25,13 @@
 
   * Scroll when drag / key.
   + Cancel drag
+  + Change item border if color is black ... (?)
+  + Popup menu
+
++ ViewColorEdit :
+
+  + DnD for preview
+  * Maybe sort color in GtkList. (order by pos / name)
 
 + Grab a color :
   
@@ -58,12 +68,31 @@
 
   + With some shortcut to properties ?
 
-+ Speed
-+ Bugs fix
-+ Help
++ Don't use GnomeMDI to display EDIT menu. (since all the view have the 
+  same menu)
 
++ Virtual document :
+
+  + Split; make mdi-color-virtual base class for :
+
+    + mdi-color-virtual-search-rgb
+    + mdi-color-virtual-search-name
+
+  + And, maybe a virtual view constructed from selected colors, viewed
+    by a view-color-edit ... so, the only colors you get in the combo's view
+    will be the selected colors ...
+
++ Speed
+
+  + Perhaps render pixmap in a timeout/pending, or when the GtkCList want to 
+    display them.
+
++ Bugs fix / tests
++ Help
 
 ************************ BUGS ***********************
 
 - Bad icon when dragging a color from ColorList
 - Need to delete GnomePropertyBox when closing a view/document ...
+[FIXED] - view_color_list_button_press never called.
+[FIXED] [UPDATE] : click_column and drag_begin never, too ... ?!?

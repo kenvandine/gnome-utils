@@ -335,6 +335,30 @@ color_grid_key_press_event (GtkWidget *widget, GdkEventKey *event)
   return TRUE;
 }
 
+static void
+color_grid_select_from_to (ColorGrid *cg, ColorGridCol *from, ColorGridCol *to)
+{
+  GList *list = cg->col;
+  
+
+  while (list) {
+    if ((list->data == from) || (list->data == to)) break;
+    list = g_list_next (list);
+  }
+
+  if (!list) return;
+
+  if (list->data == to) to = from;
+
+  while (list) {
+    color_grid_select (list->data, TRUE);
+
+    if (list->data == to) break;
+
+    list = g_list_next (list);
+  }    
+}
+
 static gint
 color_grid_item_event (GnomeCanvasItem *item, GdkEvent *event, gpointer data)
 {
@@ -418,7 +442,6 @@ color_grid_item_event (GnomeCanvasItem *item, GdkEvent *event, gpointer data)
     cg->last_focus = col;
 
     if (event->button.state & GDK_SHIFT_MASK) {
-      GList *list;
       ColorGridCol *from;
 
       if (! (event->button.state & GDK_CONTROL_MASK))
@@ -429,20 +452,7 @@ color_grid_item_event (GnomeCanvasItem *item, GdkEvent *event, gpointer data)
       else 
 	from = cg->col->data;      
 
-      list = g_list_find (cg->col, from);
-	
-/*      if (from->pos < col->pos) 
-	while (list) {
-	  color_grid_select (list->data, TRUE);
-	  if (list->data == col) break;
-	  list = g_list_next (list);
-	}
-      else 
-	while (list) {
-	  color_grid_select (list->data, TRUE);
-	  if (list->data == col) break;
-	    list = g_list_previous (list);
-	}            */
+      color_grid_select_from_to (cg, from, col);
     }
     
     else
@@ -464,6 +474,22 @@ color_grid_item_event (GnomeCanvasItem *item, GdkEvent *event, gpointer data)
   }
     
   return TRUE;
+}
+
+void
+color_grid_change_rgb (ColorGrid *cg, int pos, int r, int g, int b)
+{
+  ColorGridCol *col = g_list_nth (cg->col, pos)->data;  
+  GdkColor color;
+
+  color.red   = r * 255; 
+  color.green = g * 255;
+  color.blue  = b * 255; 
+  gdk_color_alloc (gtk_widget_get_default_colormap (), &color);
+      
+  gnome_canvas_item_set (col->item,
+			 "fill_color_gdk", &color,
+			 NULL);
 }
 
 int
@@ -511,7 +537,9 @@ color_grid_append (ColorGrid *cg, int r, int g, int b, gpointer data)
 void
 color_grid_remove (ColorGrid *cg, int pos)
 {
-  ColorGridCol *col = g_list_nth (cg->col, pos)->data;
+  ColorGridCol *col;
+
+  col = g_list_nth (cg->col, pos)->data;  
 
   cg->col = g_list_remove (cg->col, col);
 
@@ -589,4 +617,24 @@ color_grid_set_col_width_height (ColorGrid *cg, int width, int height)
   cg->nb_col = GTK_WIDGET (cg)->allocation.width / cg->col_width;
 
   color_grid_reorganize (cg);
+}
+
+int
+color_grid_find_item_from_data (ColorGrid *cg, gpointer data)
+{
+  GList *list = cg->col;
+  ColorGridCol *col;
+  int pos = 0;
+
+  while (list) {
+    col = list->data;
+
+    if (col->data == data) return pos;
+
+    list = g_list_next (list);
+
+    pos++;
+  }
+
+  return -1;
 }

@@ -2,6 +2,7 @@
 #include "view-color-generic.h"
 #include "view-color-list.h"
 #include "view-color-grid.h"
+#include "view-color-edit.h"
 #include "menus.h"
 
 #include <gnome.h>
@@ -15,7 +16,7 @@ static void mdi_color_generic_document_changed (MDIColorGeneric *mcg,
 static GtkWidget *
 mdi_color_generic_create_view                  (MDIColorGeneric *child);
 
-static gint mdi_color_generic_get_append_pos   (MDIColorGeneric *mcg, 
+static GList *mdi_color_generic_get_append_pos   (MDIColorGeneric *mcg, 
 						MDIColorGenericCol *col);
 static void mdi_color_generic_free_col         (MDIColorGenericCol *col);
 static GList *mdi_color_generic_find_col       (MDIColorGeneric *mcg, int pos);
@@ -122,57 +123,101 @@ mdi_color_generic_destroy (GtkObject *obj)
     (* GTK_OBJECT_CLASS(parent_class)->destroy)(obj);
 }
 
+static void
+mdi_color_generic_set_all_color_change (MDIColorGeneric *mcg, int val)
+{
+  GList *list = mcg->col;
+  MDIColorGenericCol *col;
+
+  while (list) {
+    col = list->data;
+    col->change = val;
+    list = g_list_next (list);
+  }
+}
+
+static void
+mdi_color_generic_view_realize (GtkWidget *widget, ViewColorGeneric *view)
+{
+  /* Quick hack. Send all the color to the newly created view.
+     Humm ... col->change should be null, so no problem with that */
+
+  mdi_color_generic_set_all_color_change (view->mcg, CHANGE_APPEND);
+  view_color_generic_data_changed (view, view->mcg->col);
+  mdi_color_generic_set_all_color_change (view->mcg, 0);
+
+  gtk_signal_disconnect_by_func (GTK_OBJECT (widget), 
+				 mdi_color_generic_view_realize, view);
+}
+
 static GtkWidget * 
 mdi_color_generic_create_view (MDIColorGeneric *child)
 {
   GtkWidget *vbox;
-  GtkWidget *control = NULL;
-  GtkWidget *sw;
-  GtkObject *view = NULL;
+  GtkWidget *sw = NULL;
+  ControlGeneric *control = NULL;
+  ViewColorGeneric *view = NULL;
   int type;
 
   vbox = gtk_vbox_new (FALSE, 0);
 
+  /* Create control */
+
   type = mdi_color_generic_get_control_type (child);
   if (type) {
-    control = gtk_type_new (mdi_color_generic_get_control_type (child));
-    gtk_box_pack_start (GTK_BOX (vbox), control, FALSE, FALSE, 0);
+    control = CONTROL_GENERIC (gtk_type_new (mdi_color_generic_get_control_type (child)));
+    gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (control), FALSE, FALSE, 0);
   
-    control_generic_assign (CONTROL_GENERIC (control), child);
+    control_generic_assign (control, child);
   }
 
-  sw = gtk_scrolled_window_new (NULL, NULL);  
-  gtk_box_pack_start (GTK_BOX (vbox), sw, TRUE, TRUE, 0);
+  /* Create scrolled window, if needed and view*/
 
-  if (child->next_view_type == TYPE_VIEW_COLOR_LIST)
+  if (child->next_view_type == TYPE_VIEW_COLOR_LIST) { /* List */
+    sw = gtk_scrolled_window_new (NULL, NULL);  
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
 				    GTK_POLICY_AUTOMATIC,
 				    GTK_POLICY_ALWAYS);
-  else
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
-				    GTK_POLICY_NEVER,
-				    GTK_POLICY_AUTOMATIC);
-  
-  if (child->next_view_type == TYPE_VIEW_COLOR_LIST)  
-    view = view_color_list_new (child); 
-  else
-    if (child->next_view_type == TYPE_VIEW_COLOR_GRID) {
-      view = view_color_grid_new (child); 
-    } else 
-      g_assert_not_reached ();
 
-  gtk_container_add (GTK_CONTAINER (sw), VIEW_COLOR_GENERIC (view)->widget);
+    view = VIEW_COLOR_GENERIC (view_color_list_new (child)); 
+  } else 
+    if (child->next_view_type == TYPE_VIEW_COLOR_GRID) { /* Grid */
+      sw = gtk_scrolled_window_new (NULL, NULL);  
+      gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+				      GTK_POLICY_NEVER,
+				      GTK_POLICY_AUTOMATIC);
+      view = VIEW_COLOR_GENERIC (view_color_grid_new (child)); 
+    } else
+      if (child->next_view_type == TYPE_VIEW_COLOR_EDIT) {
+	view = VIEW_COLOR_GENERIC (view_color_edit_new (child));
+      } else
+	g_assert_not_reached ();
+
+  /* Pack view */
+
+  if (sw) {
+    gtk_box_pack_start (GTK_BOX (vbox), sw, TRUE, TRUE, 0);
+    gtk_container_add (GTK_CONTAINER (sw), view->widget);
+  } else
+    gtk_box_pack_start (GTK_BOX (vbox), view->widget, TRUE, TRUE, 0);
+
+  /* Set view */
 
   gtk_object_set_data (GTK_OBJECT (vbox), "view_object", view);
 
-  VIEW_COLOR_GENERIC (view)->control = control ? CONTROL_GENERIC (control) : NULL;
-  VIEW_COLOR_GENERIC (view)->show_control = control ? TRUE : FALSE;
+  view->control = control ? CONTROL_GENERIC (control) : NULL;
+  view->show_control = control ? TRUE : FALSE;
+
+  gtk_signal_connect_after (GTK_OBJECT (view->widget), "realize",
+		      GTK_SIGNAL_FUNC (mdi_color_generic_view_realize), view);
+
+  /* Sync control */
+
   
-
-  gtk_widget_show_all (vbox);
-
   if (control) 
     control_generic_sync (CONTROL_GENERIC (control));
+
+  gtk_widget_show_all (vbox);
 
   return vbox;
 }
@@ -238,6 +283,16 @@ mdi_color_generic_find_col (MDIColorGeneric *mcg, int pos)
   return NULL;
 }
 
+static void 
+append_change (MDIColorGeneric *mcg, MDIColorGenericCol *col)
+{
+  if (mcg->changes) { /* 1 or more in list */
+    g_list_append (mcg->last_changes, col);
+    mcg->last_changes = mcg->last_changes->next;
+  } else  /* Empty */
+    mcg->changes = mcg->last_changes = g_list_append (mcg->changes, col);  
+}
+
 void
 mdi_color_generic_post_change (MDIColorGeneric *mcg, MDIColorGenericCol *col,
 			       MDIColorGenericChangeType type)
@@ -252,17 +307,25 @@ mdi_color_generic_post_change (MDIColorGeneric *mcg, MDIColorGenericCol *col,
     g_list_free (mcg->changes);
     col = g_new0 (MDIColorGenericCol, 1);
     col->change = CHANGE_CLEAR;
-    mcg->changes = g_list_append (mcg->changes, col);
+    mcg->changes = mcg->last_changes = NULL;
+    append_change (mcg, col);
   } else {
     if (! col->change) {
-      mcg->changes = g_list_append (mcg->changes, col);
+      append_change (mcg, col);
       col->change = type;
     } else {
       col->change = col->change | type;  
       
       if (col->change & CHANGE_APPEND) {
 	if (col->change & CHANGE_REMOVE) { /* 1 */
-	  mcg->changes = g_list_remove (mcg->changes, col);
+	  if (mcg->last_changes->data == col) {
+	    GList *prev = mcg->last_changes->prev;
+	    g_list_remove (mcg->last_changes, col);
+	    mcg->last_changes = prev;
+
+	    if (! mcg->last_changes) mcg->changes = NULL;
+	  } else
+	    mcg->changes = g_list_remove (mcg->changes, col);
 	  return;
 	}
 	
@@ -293,7 +356,7 @@ mdi_color_generic_dispatch_changes (MDIColorGeneric *mcg)
 
     list = g_list_next (list);
   }
-
+  
   list = mcg->other_views;
   while (list) {
     gtk_signal_emit_by_name (GTK_OBJECT (list->data), "document_changed", 
@@ -315,7 +378,7 @@ mdi_color_generic_dispatch_changes (MDIColorGeneric *mcg)
   }
 
   g_list_free (mcg->changes);
-  mcg->changes = NULL;
+  mcg->changes = mcg->last_changes = NULL;
 }
 
 static void
@@ -351,29 +414,40 @@ void
 mdi_color_generic_append (MDIColorGeneric *mcg, MDIColorGenericCol *col)
 {
   MDIColorGenericCol *col2;
-  GList *next;
-  
-  col->pos = mdi_color_generic_get_append_pos (mcg, col);
+  GList *pos;
 
   mcg->last++;
 
-  if (col->pos == -1) {
-    col->pos = mcg->last;
-    mcg->col = g_list_append (mcg->col, col);
+  if (! mcg->col) { /* Empty */
+    mcg->col = mcg->last_col = g_list_append (NULL, col);
+    col->pos = 0;
   } else {
-    /* We need to update position of other colors ! */
+    pos = mdi_color_generic_get_append_pos (mcg, col);
+    if (! pos) /* append last */ {
+      g_list_append (mcg->last_col, col);
+      mcg->last_col = mcg->last_col->next;
+      col->pos = mcg->last;
+    } else {
+      if (pos == mcg->col) /* append first */ {
+	mcg->col = g_list_prepend (pos, col);
+      } else {
+	g_list_prepend (pos, col);
+      }
 
-    mcg->col = g_list_insert (mcg->col, col, col->pos);
+      col->pos = ((MDIColorGenericCol *)(pos->data))->pos;
+	
+      /* We need to update position of other colors ! */
 
-    next = g_list_find (mcg->col, col)->next;
-    while (next) {
-      col2 = next->data;
-      col2->pos++;
-      mdi_color_generic_post_change (mcg, col2, CHANGE_POS);
-
-      next = g_list_next (next);
+      pos = pos;
+      while (pos) {
+	col2 = pos->data;
+	col2->pos++;
+	mdi_color_generic_post_change (mcg, col2, CHANGE_POS);
+	
+	pos = g_list_next (pos);
+      }
+      
     }
-
   }
 
   mdi_color_generic_post_change (mcg, col, CHANGE_APPEND);
@@ -396,7 +470,7 @@ mdi_color_generic_clear (MDIColorGeneric *mcg)
     
     g_list_free (mcg->col);
 
-    mcg->col = NULL;
+    mcg->last_col = mcg->col = NULL;
     mdi_color_generic_post_change (mcg, NULL, CHANGE_CLEAR);  
   }
 }
@@ -404,24 +478,45 @@ mdi_color_generic_clear (MDIColorGeneric *mcg)
 void 
 mdi_color_generic_remove (MDIColorGeneric *mcg, MDIColorGenericCol *col)
 {
-  GList *next;
-
-  next = g_list_find (mcg->col, col)->next;
-  mcg->col = g_list_remove (mcg->col, col);
-
+  GList *list;
+  GList *next, *prev;  
   mdi_color_generic_post_change (mcg, col, CHANGE_REMOVE);
 
-  /* We need to update position of other colors ! */
+  if (mcg->last_col->data == col) { /* remove last */
+    if (mcg->col == mcg->last_col) {/* 1 color in list */
+      mcg->last_col = mcg->col = NULL;
+      g_list_free (mcg->col);
+    } else {
+      prev = mcg->last_col->prev;
+      g_list_remove (mcg->last_col, col);
+      mcg->last_col = prev;
+    }
 
-  while (next) {
-    col = next->data;
+  } else {
 
-    col->pos--;;
-    mdi_color_generic_post_change (mcg, col, CHANGE_POS);
+    if (mcg->col->data == col) { /* remove first */
+      next = mcg->col->next;
+      mcg->col = g_list_remove (mcg->col, col);
+    } else { /* Not first, not last */
 
-    next = g_list_next (next);
+      list = g_list_find (mcg->col, col);
+      next = list->next;
+
+      g_list_remove (list, col);   
+    }
+
+    /* We need to update position of other colors ! */
+    
+    while (next) {
+      col = next->data;
+      
+      col->pos--;;
+      mdi_color_generic_post_change (mcg, col, CHANGE_POS);
+      
+      next = g_list_next (next);
+    }
   }
-
+    
   mcg->last--;
 }
 
@@ -455,6 +550,8 @@ mdi_color_generic_change_pos (MDIColorGeneric *mcg,
   GList *list;
   MDIColorGenericCol *col_tmp;
   int i;
+
+  if (new_pos == -1) new_pos = mcg->last;
 
   if (new_pos < col->pos) {
     list = mdi_color_generic_find_col (mcg, new_pos);
@@ -507,8 +604,14 @@ void
 mdi_color_generic_connect (MDIColorGeneric *mcg,
 			   MDIColorGeneric *to)
 {
-  mcg->other_views = g_list_append (mcg->other_views, to);
-  to->parents = g_list_append (to->parents, mcg);
+  mcg->other_views = g_list_prepend (mcg->other_views, to);
+  to->parents = g_list_prepend (to->parents, mcg);
+  
+  /* send append request for 'mcg color' to connected document 'to' */
+
+  mdi_color_generic_set_all_color_change (mcg, CHANGE_APPEND);
+  gtk_signal_emit_by_name (GTK_OBJECT (to), "document_changed", mcg->col);
+  mdi_color_generic_set_all_color_change (mcg, 0);
 }
 
 void mdi_color_generic_disconnect (MDIColorGeneric *mcg,
@@ -516,6 +619,12 @@ void mdi_color_generic_disconnect (MDIColorGeneric *mcg,
 {
   mcg->other_views = g_list_remove (mcg->other_views, to);
   to->parents = g_list_remove (to->parents, mcg);
+
+  /* send remove request for 'mcg color' to disconnected document 'to' */
+
+  mdi_color_generic_set_all_color_change (mcg, CHANGE_REMOVE);
+  gtk_signal_emit_by_name (GTK_OBJECT (to), "document_changed", mcg->col);
+  mdi_color_generic_set_all_color_change (mcg, 0);
 }
 
 MDIColorGenericCol *
@@ -527,14 +636,14 @@ mdi_color_generic_get_owner (MDIColorGenericCol *col)
   return col;
 }
 
-gint
+GList *
 mdi_color_generic_get_append_pos (MDIColorGeneric *mcg, 
 				  MDIColorGenericCol *col)
 {
   if (mcg->get_append_pos)
     return mcg->get_append_pos (mcg, col);
 
-  return -1;
+  return NULL;
 }
 
 GtkType 

@@ -66,6 +66,7 @@ view_color_list_compare_rows    (GtkCList *clist,
 
 static void
 view_color_list_data_changed    (ViewColorGeneric *vcg, gpointer data);
+
 static void
 view_color_list_remove_selected (ViewColorGeneric *vcg);
 static gpointer 
@@ -125,7 +126,7 @@ view_color_list_class_init (ViewColorListClass *class)
   parent_class = gtk_type_class (TYPE_VIEW_COLOR_GENERIC);
   widget_class = (GtkWidgetClass *)class;
   vcg_class    = (ViewColorGenericClass *)class;
-  
+
   vcg_class->data_changed    = view_color_list_data_changed;
   vcg_class->remove_selected = view_color_list_remove_selected;
   vcg_class->get_control     = view_color_list_get_control;
@@ -163,18 +164,14 @@ view_color_list_new (MDIColorGeneric *mcg)
   cl = GTK_CLIST (gtk_clist_new (3));
   VIEW_COLOR_GENERIC (object)->widget = GTK_WIDGET (cl);
 
-  gtk_signal_connect (GTK_OBJECT (cl), "click_column", 
-		      GTK_SIGNAL_FUNC (view_color_list_click_column), object);
-  gtk_signal_connect (GTK_OBJECT (cl), "button_press_event", 
-		      GTK_SIGNAL_FUNC (view_color_list_button_press), object);
   gtk_signal_connect (GTK_OBJECT (cl), "drag_begin",
 		      GTK_SIGNAL_FUNC (view_color_list_drag_begin), object);
   gtk_signal_connect (GTK_OBJECT (cl), "drag_data_get",
 		      GTK_SIGNAL_FUNC (view_color_list_drag_data_get), object);
-
+  
   gtk_drag_source_set (GTK_WIDGET (cl), GDK_BUTTON1_MASK, 
 		       drag_targets, 1, GDK_ACTION_COPY);
-
+  
   gtk_clist_set_selection_mode (cl, GTK_SELECTION_EXTENDED);
   gtk_clist_column_titles_show (cl);
 
@@ -192,6 +189,15 @@ view_color_list_new (MDIColorGeneric *mcg)
   gtk_clist_set_compare_func (cl, view_color_list_compare_rows);
   view_color_list_set_sort_column (VIEW_COLOR_LIST (object), COLUMN_PIXMAP,
 				   GTK_SORT_ASCENDING);
+
+  gtk_clist_column_titles_active (cl);
+  gtk_clist_set_use_drag_icons (cl, 0);
+  gtk_signal_connect (GTK_OBJECT (cl), "click_column", 
+		      GTK_SIGNAL_FUNC (view_color_list_click_column), object);
+
+  gtk_signal_connect (GTK_OBJECT (cl), "button_press_event", 
+		      GTK_SIGNAL_FUNC (view_color_list_button_press), object);
+
 
   return object;
 }
@@ -348,7 +354,7 @@ view_color_list_button_press (GtkCList *clist, GdkEventButton *event,
       gtk_clist_select_row (clist, row, col);
       gtk_clist_thaw (clist);
     }      
-  
+
     menu_view_do_popup (event);
     return FALSE;
   }
@@ -548,32 +554,37 @@ view_color_list_data_changed (ViewColorGeneric *vcg, gpointer data)
   while (list) {
     col = list->data;
 
-    if (col->change & CHANGE_CLEAR) {
-      gtk_clist_clear (clist);
-    }
+    if (col->change & CHANGE_CLEAR) gtk_clist_clear (clist); 
 
     else
 
-      if (col->change & CHANGE_APPEND) {
-	view_color_list_append (vcl, col);
-      } 
+      if (col->change & CHANGE_APPEND) view_color_list_append (vcl, col);
     
-      else
-	
-	if (col->change & CHANGE_REMOVE) {
-	  row = gtk_clist_find_row_from_data (clist, col);
-	  gtk_clist_remove (clist, row);
-	}
-    
-	else
+      else {
+	row = gtk_clist_find_row_from_data (clist, col);
+
+	if (col->change & CHANGE_REMOVE) gtk_clist_remove (clist, row); 
+
+	else {
 	  
-	  if (col->change & CHANGE_POS) { 
-	    if (vcl->draw_numbers) {
-	      row = gtk_clist_find_row_from_data (clist, col);
+	  /* Redraw pixmap if CHANGE_RGB   OR  (CHANGE_POS and DRAW_NUMBERS) */
+	  if ((col->change & CHANGE_POS)||(col->change & CHANGE_RGB)) {
+	    if ((vcl->draw_numbers)||(col->change & CHANGE_RGB)) {
 	      gtk_clist_get_pixmap (clist, row, 0, &pixmap, &mask);
 	      view_color_list_render_pixmap (vcl, pixmap, col);
+
+	      if (col->change & CHANGE_RGB) {
+		char *str = view_color_list_render_value (vcl, col);
+		gtk_clist_set_text (clist, row, COLUMN_VALUE, str);
+		g_free (str);	    		
+	      }
 	    }
 	  }
+	  
+	  if (col->change & CHANGE_NAME) 
+	    gtk_clist_set_text (clist, row, COLUMN_NAME, col->name);
+	}
+      }
     
     list = g_list_next (list);
   }
@@ -716,28 +727,17 @@ static void
 view_color_list_sync (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
-  GtkAdjustment *adj;
+  ViewColorList *vcl = VIEW_COLOR_LIST (vcg);
 
   printf ("List    :: sync \n");
 
-  /* spin-width */
-  adj = gtk_spin_button_get_adjustment (GTK_SPIN_BUTTON (prop->spin_width));
-  gtk_signal_handler_block_by_data (GTK_OBJECT (adj), prop);
-  gtk_spin_button_set_value(GTK_SPIN_BUTTON (prop->spin_width), 
-			    VIEW_COLOR_LIST (vcg)->col_width);
-  gtk_signal_handler_unblock_by_data (GTK_OBJECT (adj), prop);
-
-  /* spin-height */
-  adj = gtk_spin_button_get_adjustment (GTK_SPIN_BUTTON (prop->spin_height));
-  gtk_signal_handler_block_by_data (GTK_OBJECT (adj), prop);
-  gtk_spin_button_set_value(GTK_SPIN_BUTTON (prop->spin_height),
-			    VIEW_COLOR_LIST (vcg)->col_height);
-  gtk_signal_handler_unblock_by_data (GTK_OBJECT (adj), prop);
+  spin_set_value (GTK_SPIN_BUTTON (prop->spin_width), vcl->col_width, prop);
+  spin_set_value (GTK_SPIN_BUTTON (prop->spin_height), vcl->col_height, prop);
 
   /* check-draw-numbers */
   gtk_signal_handler_block_by_data (GTK_OBJECT (prop->check_draw_numbers), prop);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (prop->check_draw_numbers),
-				VIEW_COLOR_LIST (vcg)->draw_numbers);
+				vcl->draw_numbers);
   gtk_signal_handler_unblock_by_data (GTK_OBJECT (prop->check_draw_numbers), prop);
 
   parent_class->sync (vcg, prop->parent_data);

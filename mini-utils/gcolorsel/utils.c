@@ -62,3 +62,53 @@ drag_window_create (gint red, gint green, gint blue)
   return window;
 }
 
+void
+spin_set_value (GtkSpinButton *spin, float val, gpointer data)
+{
+  GtkAdjustment *adj;
+  
+  adj = gtk_spin_button_get_adjustment (spin);
+  gtk_signal_handler_block_by_data (GTK_OBJECT (adj), data);
+  gtk_spin_button_set_value (spin, val);
+  gtk_signal_handler_unblock_by_data (GTK_OBJECT (adj), data);
+}
+
+void 
+entry_set_text (GtkEntry *entry, char *str, gpointer data) 
+{
+  gtk_signal_handler_block_by_data (GTK_OBJECT (entry), data);
+  gtk_entry_set_text (GTK_ENTRY (entry), str);
+  gtk_signal_handler_unblock_by_data (GTK_OBJECT (entry), data);
+}
+
+void 
+spin_connect_value_changed (GtkSpinButton *spin, GtkSignalFunc cb, gpointer data)
+{
+  GtkAdjustment *adj;
+
+  adj = gtk_spin_button_get_adjustment (spin);
+  gtk_signal_connect (GTK_OBJECT (adj), "value_changed", cb, data);
+}
+
+void
+preview_fill (GtkWidget *preview, int r, int g, int b)
+{
+  guchar *buf;    
+  int x, y;
+
+  buf = g_new (guchar, 3 * preview->allocation.width);
+  
+  for (x = 0; x < preview->allocation.width; x++) {
+    buf [x * 3]     = r;
+    buf [x * 3 + 1] = g;
+    buf [x * 3 + 2] = b;
+  }
+
+  for (y=0; y < preview->allocation.height; y++)
+     gtk_preview_draw_row (GTK_PREVIEW (preview), 
+			   buf, 0, y, preview->allocation.width);
+     
+  gtk_widget_draw (preview, NULL);
+
+  g_free (buf);    
+}

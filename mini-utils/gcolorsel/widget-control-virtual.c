@@ -225,24 +225,7 @@ preview_drag_data_get_cb (GtkWidget *widget, GdkDragContext *context,
 void
 control_virtual_update_preview (ControlVirtual *cv)
 {
-  guchar *buf;    
-  int x, y;
-
-  buf = g_new (guchar, 3 * cv->preview->allocation.width);
-  
-  for (x = 0; x < cv->preview->allocation.width; x++) {
-    buf [x * 3]     = cv->r;
-    buf [x * 3 + 1] = cv->g;
-    buf [x * 3 + 2] = cv->b;
-  }
-
-  for (y=0; y < cv->preview->allocation.height; y++)
-     gtk_preview_draw_row (GTK_PREVIEW (cv->preview), 
-			   buf, 0, y, cv->preview->allocation.width);
-     
-  gtk_widget_draw (cv->preview, NULL);
-
-  g_free (buf);    
+  preview_fill (cv->preview, cv->r, cv->g, cv->b);
 }
 
 void

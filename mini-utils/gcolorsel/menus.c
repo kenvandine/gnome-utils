@@ -3,6 +3,7 @@
 #include "mdi-color-generic.h"
 #include "mdi-color-file.h"
 #include "view-color-generic.h"
+#include "view-color-edit.h"
 #include "gcolorsel.h"
 
 #include "config.h"
@@ -169,6 +170,7 @@ about_cb (GtkWidget *widget)
 /****************** Edit Menu ***************************************/
 
 static void remove_cb     (GtkWidget *widget, gpointer data);
+static void edit_cb       (GtkWidget *widget, gpointer data);
 static void properties_cb (GtkWidget *widget, gpointer data);
 
 GnomeUIInfo edit_menu[] = {
@@ -176,7 +178,7 @@ GnomeUIInfo edit_menu[] = {
 			  NULL, GNOME_STOCK_PIXMAP_ADD),
   GNOMEUIINFO_ITEM_STOCK (N_("Remove selected colors"), NULL, 
 			  remove_cb, GNOME_STOCK_PIXMAP_REMOVE),
-  GNOMEUIINFO_ITEM_NONE (N_("Edit selected color..."), NULL, NULL),
+  GNOMEUIINFO_ITEM_NONE (N_("Edit selected color..."), NULL, edit_cb),
   
   GNOMEUIINFO_SEPARATOR,
 
@@ -196,9 +198,17 @@ remove_cb (GtkWidget *widget, gpointer data)
 {
   ViewColorGeneric *view;
 
-  view = gtk_object_get_data (GTK_OBJECT (mdi->active_view), "view_object");
+  view = gtk_object_get_data (GTK_OBJECT (gnome_mdi_get_active_view (mdi)), 
+					  "view_object");
 
   view_color_generic_remove_selected (view);
+}
+
+static void
+edit_cb (GtkWidget *widget, gpointer data)
+{
+  mdi_color_generic_next_view_type (MDI_COLOR_GENERIC (gnome_mdi_get_active_child (mdi)), TYPE_VIEW_COLOR_EDIT);
+  gnome_mdi_add_view (mdi, gnome_mdi_get_active_child (mdi));
 }
 
 /******* Properties ********/

@@ -18,7 +18,7 @@ static int          mdi_color_virtual_get_diff   (MDIColorVirtual *mcv,
 
 MDIColorGenericCol *mdi_color_virtual_get_owner  (MDIColorGenericCol *col);
 GtkType             mdi_color_virtual_get_control_type (MDIColorGeneric *mcg);
-static int          mdi_color_virtual_get_append_pos (MDIColorGeneric *mcg,
+static GList *      mdi_color_virtual_get_append_pos (MDIColorGeneric *mcg,
 						      MDIColorGenericCol *col);
 
 static MDIColorGenericClass *parent_class = NULL;
@@ -107,7 +107,7 @@ mdi_color_virtual_get_control_type (MDIColorGeneric *mcg)
   return control_virtual_get_type ();
 }
 
-static int         
+static GList *
 mdi_color_virtual_get_append_pos (MDIColorGeneric *mcg,
 				  MDIColorGenericCol *col)
 {
@@ -120,15 +120,17 @@ mdi_color_virtual_get_append_pos (MDIColorGeneric *mcg,
 
   list = mcg->col;
   while (list) {
-    if (diff < mdi_color_virtual_get_diff (mcv, list->data)) 
-      return pos;    
-    
-    pos++;
+    if (col != list->data) {/* see CHANGE_RGB case */
+
+      if (diff <= mdi_color_virtual_get_diff (mcv, list->data)) return list;
+      
+      pos++;
+    }
     
     list = g_list_next (list);
   }
 
-  return -1;
+  return NULL;
 }
 
 static int 
@@ -153,13 +155,14 @@ mdi_color_virtual_changed (MDIColorGeneric *mcg, gpointer data)
 
   mcv = MDI_COLOR_VIRTUAL (mcg);
 
+  mdi_color_generic_freeze (mcg);
+  
   while (list) {
     col_parent = list->data;
     
-    if (col_parent->change & CHANGE_CLEAR) 
+    if (col_parent->change & CHANGE_CLEAR) mdi_color_generic_clear (mcg);
       /* TODO : clear if only 1 parent
 	        if > 1 parent, remove some item */
-      mdi_color_generic_clear (mcg);
     else {
 
       if (mdi_color_virtual_get_diff (mcv, col_parent) < mcv->t) {   
@@ -169,15 +172,51 @@ mdi_color_virtual_changed (MDIColorGeneric *mcg, gpointer data)
 					      col_parent);	
         else {
 	  col = mdi_color_generic_search_by_data (mcg, col_parent);
-      
-	  if (col_parent->change & CHANGE_REMOVE) 
+
+	  if (col_parent->change & CHANGE_REMOVE) {
+	    g_assert (col != NULL);
 	    mdi_color_generic_remove (mcg, col);
-        }	
+	  } else {
+	    if (!col) /* Yes, it's possible */ {
+/*		      col_parent->r, col_parent->g, col_parent->b, 
+		      col_parent->name);*/
+	      mdi_color_generic_append_new (mcg, col_parent->r, col_parent->g,
+					    col_parent->b, col_parent->name,
+					    col_parent);
+	    } else {
+	      if (col_parent->change & CHANGE_RGB) {
+		GList *new_pos;
+
+		mdi_color_generic_change_rgb (mcg, col, col_parent->r, 
+					      col_parent->g, col_parent->b);
+		
+		new_pos = mdi_color_virtual_get_append_pos (mcg, col);
+
+		mdi_color_generic_change_pos (mcg, col, 
+				((MDIColorGenericCol *)new_pos->data)->pos);
+		
+	      }
+	      if (col_parent->change & CHANGE_NAME)
+		mdi_color_generic_change_name (mcg, col, col_parent->name);
+	      
+	    }
+	  }	
+	}
+      } else {
+	/* Maybe we should remove the color */
+
+	if (col_parent->change & CHANGE_RGB) {
+	  col = mdi_color_generic_search_by_data (mcg, col_parent);
+
+	  if (col) mdi_color_generic_remove (mcg, col);
+	}
       }
     }
 
     list = g_list_next (list);
   }
+  
+  mdi_color_generic_thaw (mcg);
 }
 
 void 
@@ -233,8 +272,7 @@ mdi_color_virtual_set (MDIColorVirtual *mcv,
         col = list2->data;
        
         /* Si action = 0 -> on ajoute toujours
-           Si action = 1 -> on ajoute EVENTUELLEMENT (si pas deja dedans)
-           Si action = 2 -> on retire EVENTUELLEMENT (si existe) */
+           Si action = 1 -> on ajoute EVENTUELLEMENT (si pas deja dedans) */
              
         if (action == 0) {
           if (mdi_color_virtual_get_diff (mcv, col) < t)

@@ -11,12 +11,6 @@
 
 static ViewColorGenericClass *parent_class = NULL;
 
-static const GtkTargetEntry drag_targets[] = {
-  { "application/x-color", 0 }
-};
-
-extern char *ColFormatStr[];
-
 static void view_color_grid_class_init (ViewColorGridClass *class);
 static void view_color_grid_init       (ViewColorGrid *vcl);
 static void view_color_grid_move_item  (ColorGrid *cg, int old_pos,
@@ -115,7 +109,7 @@ view_color_grid_new (MDIColorGeneric *mcg)
 
   gtk_signal_connect (GTK_OBJECT (cg), "move_item", 
 		      GTK_SIGNAL_FUNC (view_color_grid_move_item), object);
-
+  
   return object;
 }
 
@@ -125,34 +119,38 @@ view_color_grid_data_changed (ViewColorGeneric *vcg, gpointer data)
   GList *list = data;
   MDIColorGenericCol *col;
   ColorGrid *cg = COLOR_GRID (vcg->widget);
+  int pos;
 
   color_grid_freeze (cg);
 
   while (list) {
     col = list->data;
 
-    if (col->change & CHANGE_APPEND) {
+    if (col->change & CHANGE_APPEND) 
       color_grid_append (cg, col->r, col->g, col->b, col);
-    } 
-
+    
     else
+
+      if (col->change & CHANGE_CLEAR) color_grid_clear (cg);
+    
+      else {
+
+	pos = color_grid_find_item_from_data (cg, col);
       
-      if (col->change & CHANGE_REMOVE) {
-	color_grid_remove (cg, col->pos);
-      }
+	if (col->change & CHANGE_REMOVE) color_grid_remove (cg, pos);
 
-      else
+	else 
 
-	if (col->change & CHANGE_CLEAR) {
-	  color_grid_clear (cg);
-	}
+	  if (col->change & CHANGE_RGB) {
+	    pos = color_grid_find_item_from_data (cg, col);
 
-	else
-
-	  if (col->change & CHANGE_POS) {
-	    /* automatic, see color_grid_sort */ 
+	    color_grid_change_rgb (cg, pos, col->r, col->g, col->b);
 	  }
-
+	
+	/* CHANGE_NAME, don't care */
+	/* CHAGE_POS, automatic see color_grid_sort */
+      }
+    
     list = g_list_next (list);
   }
 
@@ -288,21 +286,11 @@ view_color_grid_sync (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
   ColorGrid *cg = COLOR_GRID (vcg->widget);
-  GtkAdjustment *adj;
 
   printf ("Grid    :: sync \n");
 
-  /* spin-width */
-  adj = gtk_spin_button_get_adjustment (GTK_SPIN_BUTTON (prop->spin_width));
-  gtk_signal_handler_block_by_data (GTK_OBJECT (adj), prop);
-  gtk_spin_button_set_value(GTK_SPIN_BUTTON (prop->spin_width), cg->col_width);
-  gtk_signal_handler_unblock_by_data (GTK_OBJECT (adj), prop);
-
-  /* spin-height */
-  adj = gtk_spin_button_get_adjustment (GTK_SPIN_BUTTON (prop->spin_height));
-  gtk_signal_handler_block_by_data (GTK_OBJECT (adj), prop);
-  gtk_spin_button_set_value(GTK_SPIN_BUTTON (prop->spin_height),cg->col_height);
-  gtk_signal_handler_unblock_by_data (GTK_OBJECT (adj), prop);
+  spin_set_value (GTK_SPIN_BUTTON (prop->spin_width), cg->col_width, prop);
+  spin_set_value (GTK_SPIN_BUTTON (prop->spin_height), cg->col_height, prop);
 
   parent_class->sync (vcg, prop->parent_data);
 }

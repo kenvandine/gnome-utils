@@ -101,7 +101,6 @@ view_color_generic_init (ViewColorGeneric *vcg)
 void 
 view_color_generic_data_changed (ViewColorGeneric *vcg, GList *changes)
 {
-  printf ("data_changed ...\n");
   gtk_signal_emit (GTK_OBJECT (vcg), cg_signals[DATA_CHANGED], changes);
 }
 
@@ -234,9 +233,7 @@ view_color_generic_sync (ViewColorGeneric *vcg, gpointer data)
 
   entry = GTK_COMBO (prop->combo_format)->entry;
 
-  gtk_signal_handler_block_by_data (GTK_OBJECT (entry), prop);
-  gtk_entry_set_text (GTK_ENTRY (entry), ColFormatStr[vcg->format]);
-  gtk_signal_handler_unblock_by_data (GTK_OBJECT (entry), prop);
+  entry_set_text (GTK_ENTRY (entry), ColFormatStr[vcg->format], prop);
 
   /* Show control */
 
