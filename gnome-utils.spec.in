@@ -25,7 +25,7 @@ manager for the X Window System.  GNOME is similar in purpose and scope
 to CDE and KDE, but GNOME is based completely on free software.
 
 This package will install some GNOME utilities, such as the
-calculator, search tool, and system information overview tool.
+search tool, and system information overview tool.
 
 %prep
 %setup -q
@@ -68,18 +68,14 @@ make prefix=$RPM_BUILD_ROOT%{_prefix} \
 %{_sysconfdir}/CORBA/servers/*
 %{_datadir}/applets/*/*
 %{_datadir}/application-registry/*
-%{_datadir}/gcolorsel
 %{_datadir}/gnome-utils
 %{_datadir}/gnome/apps/*/*
 %{_datadir}/locale/*/*/*
 %{_datadir}/gnome/help/*/*
-%{_datadir}/gtt
-%{_datadir}/idl/*
 %{_datadir}/logview
 %{_datadir}/mime-info/*
 %{_datadir}/omf/*
 %{_datadir}/pixmaps/*
-%{_datadir}/stripchart
 
 %doc AUTHORS COPYING ChangeLog NEWS README THANKS
 
@@ -91,6 +87,9 @@ if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
 
 
 %changelog
+* Sun May 18 2003 <glynn.foster@sun.com>
+- Not even an attempt to update this spec file
+
 * Thu Mar 29 2001 <dan@eazel.com>
 - scrollkeeper stuff
 
