@@ -101,7 +101,7 @@ parse_an_arg (poptContext ctx,
   switch (opt->val){
     
   case GEOMETRY_KEY:
-    start_geometries = g_list_append (start_geometries, arg);
+    start_geometries = g_list_append (start_geometries, (char*)arg);
     break;
     
   case NOSTDIN_KEY:
@@ -198,7 +198,7 @@ session_save_state (GnomeClient *client, gint phase,
 int main ( int argc, char ** argv )
 {
   GnomeClient * client;
-  GList * tmp1 = NULL, * tmp2 = NULL;
+  GList * tmp2 = NULL;
   poptContext ctx;
   int i;
 
@@ -219,24 +219,25 @@ int main ( int argc, char ** argv )
   }
 
   /* Save the beginning of the lists */
-  tmp1 = start_files; 
   tmp2 = start_geometries;
 
   /* Start by putting up windows for any files on the command line. */
-  for(i = 0; start_files[i]; i++) {
+  i = 0;
+  while (start_files && start_files[i]) {
     gchar * geometry = NULL;
     if ( start_geometries ) {
       geometry = start_geometries->data;
       start_geometries = g_list_next(start_geometries);
     }
     gless_new_app(start_files[i], geometry, INVALID_FD);
+    ++i;
   }
 
   poptFreeContext(ctx);
 
   /* Next case is just a geometry on the command line - we want
      it to apply if reading from stdin. */
-  if ( (tmp1 == NULL) && start_geometries ) {
+  if ( (start_files == NULL) && start_geometries ) {
     gless_new_app(NULL, start_geometries->data, 
                   ignore_stdin ? INVALID_FD : STDIN_FILENO);
     start_geometries = g_list_next(start_geometries);
@@ -253,14 +254,14 @@ int main ( int argc, char ** argv )
      FIXME: if you run just "gless" with no useful stdin (pipe or tty)
      then the program may block forever? Seems like it should but 
      sometimes it doesn't. Thus the ignore_stdin option as a hack. */
-  if ( (tmp1 == NULL) && (tmp2 == NULL) ) {
+  if ( (start_files == NULL) && (tmp2 == NULL) ) {
     gless_new_app(NULL, NULL, 
                   ignore_stdin ? INVALID_FD : STDIN_FILENO);
   }
 
   /* I am guessing that the char * in the lists (from argp) do 
      not need to be freed. ??? */
-  g_list_free(tmp1); g_list_free(tmp2);
+  g_list_free(tmp2);
 
   gtk_main();
 
