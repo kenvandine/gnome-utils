@@ -22,25 +22,34 @@ Security (but read-only for some users). Viewable / editable on multiple
 machines at the same time.
 
 
-bugs
-----
-During read of data,  don't destroy old project list until we are sure 
-that read of new project list succeeded.
+Bugs -- High Priority
+---------------------
+implement 'print' journal for html window ...
+
+xxxgtk_text_get_text() and its sister are just plain wrong, and lead to garbage.
+This occures in 'notes' part of dialogs ...
+
+support for 'minimum billing blocks' is everywhere, exept in the actual invoice
+report. Add it there.
+
+fix annoying cursor shape when dragging projects around
 
 export is broken with new heirarchy. Should probably be 
 reworked to use ghtml infrastructure, and output to file, 
 instead of html viewer.  That way user gets total flexibility 
 over export formats.
 
-fix annoying cursor shape when dragging projects around
+Bugs -- Low Priority
+--------------------
+
+During read of data,  don't destroy old project list until we are sure 
+that read of new project list succeeded.
 
 auto-save every xxx minutes
 
 grep for xxx fixme hack alert for additional todo items ... 
 
 implement tooltips when there is a hover over url link
-
-implement 'print' journal for html window ...
 
 add dialogs for suggested auto-merge intervals when the default values 
 are too small (should be 60/300/300, not 3/60/60)
@@ -50,7 +59,5 @@ build fancier reports/journals, including
    (including configurable values for printed enums)
 -- handle embedded gif/png/jpg
 
-support for 'minimum billing blocks' is everywhere, exept in the actual invoice
-report. Add it there.
-
 the log file should be gziped on write.
+
