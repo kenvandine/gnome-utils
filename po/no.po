@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2000-04-08 23:04+0200\n"
-"PO-Revision-Date: 2000-04-08 23:09+02:00\n"
+"POT-Creation-Date: 2000-04-14 22:20+0200\n"
+"PO-Revision-Date: 2000-04-14 22:39+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Brukervalg..."
 
 #: gdictsrc/gdict-pref-dialog.c:38
 msgid "Headword:"
-msgstr ""
+msgstr "Hovedord:"
 
 #: gdictsrc/gdict-pref-dialog.c:39
 msgid "Pronunciation:"
@@ -142,7 +142,7 @@ msgstr "Uttale:"
 
 #: gdictsrc/gdict-pref-dialog.c:40
 msgid "Etymology:"
-msgstr ""
+msgstr "Etymologi:"
 
 #: gdictsrc/gdict-pref-dialog.c:41
 msgid "Example:"
@@ -150,7 +150,7 @@ msgstr "Eksempel:"
 
 #: gdictsrc/gdict-pref-dialog.c:42
 msgid "Main body:"
-msgstr ""
+msgstr "Hovedkropp:"
 
 #: gdictsrc/gdict-pref-dialog.c:43
 msgid "Sub-number:"
@@ -209,8 +209,8 @@ msgid "Applet"
 msgstr "Applet"
 
 #: gdiskfree/gdiskfree.c:57
-msgid "Specifiy the geometry of the window."
-msgstr "Spesifiser geometrien til vinduet."
+msgid "Specify the geometry of the window."
+msgstr "Spesifiserr geometrien til vinduet."
 
 #: gdiskfree/gdiskfree.c:58 gtt/main.c:206 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
@@ -534,7 +534,9 @@ msgstr "Hjelp"
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1584 mini-utils/guname/moreinfo.c:227
+#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/view-color-list.c:182
+#: mini-utils/gcolorsel/widget-color-list.c:242
+#: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Verdi"
 
@@ -542,7 +544,8 @@ msgstr "Verdi"
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: gstripchart/gstripchart.c:1590
+#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/view-color-list.c:181
+#: mini-utils/gcolorsel/widget-color-list.c:240
 msgid "Color"
 msgstr "Farge"
 
@@ -1105,6 +1108,78 @@ msgstr "Avslutt"
 msgid "Quit GTimeTracker"
 msgstr "Avslutt GTimeTracker"
 
+#: mini-utils/gcolorsel/menus.c:71
+msgid "Open file"
+msgstr "Åpne fil"
+
+#: mini-utils/gcolorsel/menus.c:95
+msgid "Can not open file !"
+msgstr "Kan ikke åpne fil !"
+
+#: mini-utils/gcolorsel/menus.c:157
+msgid "Gnome Color Browser"
+msgstr "Gnome fargeleser"
+
+#: mini-utils/gcolorsel/menus.c:160
+msgid "Small utility to browse available X11 colors."
+msgstr "Lite verktøy for å bla gjennom tilgjengelige X11-farger."
+
+#: mini-utils/gcolorsel/menus.c:175
+msgid "New color"
+msgstr "Ny farge"
+
+#: mini-utils/gcolorsel/menus.c:177
+msgid "Remove selected colors"
+msgstr "Fjern valgte farger"
+
+#: mini-utils/gcolorsel/menus.c:179
+msgid "Edit selected color..."
+msgstr "Rediger valgt farge..."
+
+#: mini-utils/gcolorsel/view-color-generic.c:15
+msgid "Decimal 8 bits"
+msgstr "Desimal 8 bits"
+
+#: mini-utils/gcolorsel/view-color-generic.c:16
+msgid "Decimal 16 bits"
+msgstr "Desimal 16 bits"
+
+#: mini-utils/gcolorsel/view-color-generic.c:17
+msgid "Hex 8 bits"
+msgstr "Hex 8 bits"
+
+#: mini-utils/gcolorsel/view-color-generic.c:18
+msgid "Hex 16 bits"
+msgstr "Hex 16 bits"
+
+#: mini-utils/gcolorsel/view-color-generic.c:19
+msgid "Float"
+msgstr "Flyttall"
+
+#. Create everything.
+#: mini-utils/gcolorsel/view-color-list.c:183
+#: mini-utils/gcolorsel/widget-color-list.c:244
+#: mini-utils/guname/moreinfo.c:225 mini-utils/gw/gw.c:502
+#: mini-utils/gw/gw.c:572
+msgid "Name"
+msgstr "Navn"
+
+#: mini-utils/gcolorsel/widget-control-virtual.c:94
+msgid "Red :"
+msgstr "Rød :"
+
+#: mini-utils/gcolorsel/widget-control-virtual.c:98
+msgid "Green :"
+msgstr "Grønn :"
+
+#: mini-utils/gcolorsel/widget-control-virtual.c:102
+msgid "Blue :"
+msgstr "Blå :"
+
+#: mini-utils/gcolorsel/widget-control-virtual.c:106
+msgid "Tolerance :"
+msgstr "Toleranse :"
+
 #: mini-utils/gfontsel/gfontsel.c:157
 msgid "Font Selector"
 msgstr "Skrifttypevelger"
@@ -1631,12 +1706,6 @@ msgstr "%ld%% swap brukt."
 #, c-format
 msgid "CPU %d"
 msgstr "CPU %d"
-
-#. Create everything.
-#: mini-utils/guname/moreinfo.c:225 mini-utils/gw/gw.c:502
-#: mini-utils/gw/gw.c:572
-msgid "Name"
-msgstr "Navn"
 
 #: mini-utils/guname/moreinfo.c:276
 msgid "Detailed System Information"
