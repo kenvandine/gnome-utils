@@ -880,8 +880,8 @@ scrub_intervals (GttTask *tsk)
 	return changed;
 }
 
-void
-gtt_project_compute_secs (GttProject *proj)
+static void
+project_compute_secs (GttProject *proj)
 {
 	int total_ever = 0;
 	int total_day = 0;
@@ -894,7 +894,7 @@ gtt_project_compute_secs (GttProject *proj)
 	for (prj_node= proj->sub_projects; prj_node; prj_node=prj_node->next)
 	{
 		GttProject * prj = prj_node->data;
-		gtt_project_compute_secs (prj);
+		project_compute_secs (prj);
 	}
 
 	midnight = get_midnight (-1);
@@ -930,7 +930,8 @@ gtt_project_list_compute_secs (void)
 	for (node= plist; node; node=node->next)
 	{
 		GttProject * prj = node->data;
-		gtt_project_compute_secs (prj);
+		/* refresh will recompute seconds *and* send an event */
+		proj_refresh_time (prj);
 	}
 }
 
@@ -1035,7 +1036,7 @@ proj_refresh_time (GttProject *proj)
 	if (proj->being_destroyed) return;
 	proj->dirty_time = TRUE;
 	if (proj->frozen) return;
-	gtt_project_compute_secs (proj);
+	project_compute_secs (proj);
 
 	/* let listeners know that the times have changed */
 	for (node=proj->listeners; node; node=node->next)

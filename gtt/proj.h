@@ -187,7 +187,7 @@ int 		gtt_project_get_secs_ever (GttProject *proj);
 int 		gtt_project_total_secs_day (GttProject *proj);
 int 		gtt_project_total_secs_ever (GttProject *proj);
 
-void gtt_project_compute_secs (GttProject *proj);
+
 void gtt_project_list_compute_secs (void);
 
 
