@@ -27,6 +27,158 @@ static char *power_names[]={
 	"Standby"
 };
 
+
+static int open_drive(int info)
+{
+	char buf[64];
+	int fd;
+	
+	sprintf(buf,"/dev/hd%c", (info>>8)&0xFF);
+	fd=open(buf, O_RDONLY);
+	if(fd==-1)
+	{
+		GtkWidget *w=gnome_message_box_new(_("Unable to access the drive."),
+					GNOME_MESSAGE_BOX_ERROR,
+					GNOME_STOCK_BUTTON_OK, NULL);
+		gtk_widget_show(w);
+	}
+	return fd;
+}
+
+static char *dma_mode_set(int info)
+{
+	int onoff;
+	int fd=open_drive(info);
+	if(fd==-1)
+		return;
+		
+	if(ioctl(fd, HDIO_GET_DMA, &onoff)==-1)
+	{
+		GtkWidget *w=gnome_message_box_new(_("The DMA setting for this drive cannot be changed."),
+					GNOME_MESSAGE_BOX_ERROR,
+					GNOME_STOCK_BUTTON_OK, NULL);
+		gtk_widget_show(w);
+		close(fd);
+		return NULL;
+	}
+	
+	onoff=onoff?0:1;
+		
+	if(ioctl(fd, HDIO_SET_DMA, onoff)==-1)
+	{
+		GtkWidget *w=gnome_message_box_new(_("The DMA setting for this drive cannot be changed."),
+					GNOME_MESSAGE_BOX_ERROR,
+					GNOME_STOCK_BUTTON_OK, NULL);
+		gtk_widget_show(w);
+		close(fd);
+		return NULL;
+	}
+	close(fd);
+	return onoff?_("Enabled"):_("Disabled");
+}
+
+static char *unmask_set(int info)
+{
+	int onoff;
+	int fd=open_drive(info);
+	if(fd==-1)
+		return NULL;
+		
+	if(ioctl(fd, HDIO_GET_UNMASKINTR, &onoff)==-1)
+	{
+		GtkWidget *w=gnome_message_box_new(_("The IRQ unmask setting for this drive cannot be changed."),
+					GNOME_MESSAGE_BOX_ERROR,
+					GNOME_STOCK_BUTTON_OK, NULL);
+		gtk_widget_show(w);
+		close(fd);
+		return NULL;
+	}
+	
+	onoff=onoff?0:1;
+	
+	if(ioctl(fd, HDIO_SET_UNMASKINTR, onoff)==-1)
+	{
+		GtkWidget *w=gnome_message_box_new(_("The IRQ unmask setting for this drive cannot be changed."),
+					GNOME_MESSAGE_BOX_ERROR,
+					GNOME_STOCK_BUTTON_OK, NULL);
+		gtk_widget_show(w);
+		close(fd);
+		return NULL;
+	}
+	close(fd);
+	return onoff?_("Enabled"):_("Disabled");
+}
+
+static char * keep_set(int info)
+{
+	int onoff;
+	int fd=open_drive(info);
+	if(fd==-1)
+		return;
+	if(ioctl(fd, HDIO_GET_KEEPSETTINGS, &onoff)==-1)
+	{
+		GtkWidget *w=gnome_message_box_new(_("The drive refused to keep its settings."),
+					GNOME_MESSAGE_BOX_ERROR,
+					GNOME_STOCK_BUTTON_OK, NULL);
+		gtk_widget_show(w);
+		close(fd);
+		return;
+	}
+	
+	onoff=onoff?0:1;
+	
+	if(ioctl(fd, HDIO_SET_KEEPSETTINGS, onoff)==-1)
+	{
+		GtkWidget *w=gnome_message_box_new(_("The drive refused to keep its settings."),
+					GNOME_MESSAGE_BOX_ERROR,
+					GNOME_STOCK_BUTTON_OK, NULL);
+		gtk_widget_show(w);
+		close(fd);
+		return NULL;
+	}
+	close(fd);
+	return onoff?_("Keep settings"):_("Default");
+}
+
+/*
+ *	User double clicked a setting.
+ */
+ 
+static void modify_drive(GtkWidget *w, gint row, gint col, GdkEventButton *event, gpointer *junk)
+{
+	int id=(int)junk;
+	int n;
+	char *p=NULL;
+	
+	
+	if(event->type != GDK_2BUTTON_PRESS)
+		return;
+
+	if((id&1)==0)		/* Less rows on a legacy drive */
+		row+=5;	
+	
+	switch(row)
+	{
+		case 6: 	/* DMA */
+			p=dma_mode_set(id);
+			break;
+		case 7:		/* IO */
+
+//			modifier_range(pio_mode_set, _("PIO Mode"), 0, 5);
+			break;
+		case 8:		/* IRQ mask */
+			p=unmask_set(id);
+			break;
+		case 9:		/* Multisector */
+			break;
+		case 10:	/* Reset */
+			p=keep_set(id);
+			break;
+	}
+	if(p)
+		gtk_clist_set_text(GTK_CLIST(w), row, 1, (gchar *)p);
+}
+
 static int get_power_mode(int fd)
 {
 	unsigned char args[4] = {0x98, 0, 0 , 0};
@@ -170,6 +322,8 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	clist_add(cl,_("On Reset"), keepsetting?_("Keep settings"):_("Default"),255);
 	
 	gtk_clist_thaw(cl);
+	
+	gtk_signal_connect(GTK_OBJECT(cl), "select_row", (GtkSignalFunc)modify_drive, (void *)(id+(drive[2]<<8)));
 	gtk_container_add(GTK_CONTAINER(vbox), GTK_WIDGET(cl));
 	gtk_widget_show(GTK_WIDGET(cl));
 	gtk_widget_show(vbox);
@@ -267,7 +421,7 @@ int main(int argc, char *argv[])
 	}
 	if(ide_parser()==0)
 	{
-		GtkWidget *w=gnome_message_box_new(_("I can find no IDE drives"),
+		GtkWidget *w=gnome_message_box_new(_("You appear to have no IDE drives"),
 					GNOME_MESSAGE_BOX_ERROR,
 					GNOME_STOCK_BUTTON_OK, NULL);
 		gtk_signal_connect(GTK_OBJECT(w), "destroy", 
