@@ -105,6 +105,37 @@ if $build_gfloppy; then
 fi
 AM_CONDITIONAL(BUILD_GFLOPPY, test "$build_gfloppy" = true)
 
+dnl ********************
+dnl logview
+dnl ********************
+withval=""
+
+AC_ARG_WITH(messages,
+[      --with-messages=<filename>   specify messages log file],[
+if test x$withval != x; then
+   AC_MSG_RESULT("Setting messages logfile as specified $withval.")
+   AC_DEFINE_UNQUOTED(PATH_MESSAGES, "$withval")
+fi])
+
+if test x$withval = x; then
+AC_MSG_CHECKING([for /var/adm/messages])
+if test -f /var/adm/messages; then
+  AC_MSG_RESULT([found])
+  AC_DEFINE(PATH_MESSAGES, "/var/adm/messages")
+else
+  AC_MSG_RESULT([not found])
+  AC_MSG_CHECKING([for /var/log/messages])
+  if test -f /var/log/messages; then
+    AC_MSG_RESULT([found])
+    AC_DEFINE(PATH_MESSAGES, "/var/log/messages")
+  else
+    AC_MSG_RESULT([not found])
+    AC_MSG_ERROR([Cannot find messages log file, you should specify one in --wit
+h-messages=<filename>.])
+  fi
+fi
+fi
+
 dnl ******************** 
 dnl gsu
 dnl ********************
@@ -196,6 +227,8 @@ gcalc/Makefile
 gdiskfree/Makefile
 gdiskfree/doc/Makefile
 gdiskfree/doc/C/Makefile
+logview/Makefile
+logview/pixmaps/Makefile
 gnome-find/Makefile
 gsearchtool/Makefile
 gsearchtool/help/Makefile
