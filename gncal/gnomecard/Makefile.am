@@ -40,4 +40,5 @@ EXTRA_DIST =  \
 	sec.xpm  \
 	tel.xpm  \
 	teltool.xpm  \
+	phone.xpm    \
 	world.xpm
