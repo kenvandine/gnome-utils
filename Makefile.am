@@ -3,7 +3,7 @@ guile_DIRS = cromagnon find-file notepad
 endif
 
 SUBDIRS = po intl macros \
-	edit-menus @PROGRAMS_GENIUS@ gcalc ghex gncal \
+	edit-menus @PROGRAMS_GENIUS@ gcalc ghex gncal gedit \
 	@PROGRAMS_GTOP@ gtt mini-utils $(guile_DIRS)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in

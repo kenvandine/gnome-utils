@@ -16,11 +16,11 @@ about_cb (GtkWidget *widget, gpointer data)
 		NULL
 	};
 
-	about = gnome_about_new("The Gnome Calculator", VERSION,
+	about = gnome_about_new(_("The Gnome Calculator"), VERSION,
 				"(C) 1998 the Free Software Foundation",
 				authors,
-				"Simple double precision calculator similiar "
-				"to xcalc",
+				_("Simple double precision calculator similiar "
+				  "to xcalc"),
 				NULL);
 	gtk_widget_show (about);
 }
@@ -70,7 +70,7 @@ main(int argc, char *argv[])
 
 	gnome_init ("gcalc", NULL, argc, argv, 0, NULL);
 
-        app=gnome_app_new("gcalc", "Gnome Calculator");
+        app=gnome_app_new("gcalc", _("Gnome Calculator"));
 	gtk_window_set_policy (GTK_WINDOW (app), TRUE, FALSE, TRUE);
 
         gtk_signal_connect(GTK_OBJECT(app), "delete_event",
