@@ -1,3 +1,9 @@
+2002-09-26  Dennis M. Cransotn <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c:  Replace g_pattern_match_string()
+	with fnmatch() so that searches of the type "*.[ch]" 
+	will work.
+	
 2002-09-25  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c: Add "'!' -type p" argument to exclude 

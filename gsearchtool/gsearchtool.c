@@ -38,6 +38,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <signal.h>
+#include <fnmatch.h>
 #include <sys/wait.h>
 #include <gdk/gdkkeysyms.h>
 #include <libgnomeui/gnome-window-icon.h>
@@ -667,12 +668,10 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 	
 		GError       *error = NULL;
 		GString      *string;
-		GPatternSpec *pattern;
 		GdkRectangle prior_rect;
 		GdkRectangle after_rect;
 		
 		string = g_string_new (NULL);
-		pattern = g_pattern_spec_new (search_data->file_is_named_pattern);	
 
 		while (ioc->is_readable != TRUE);
 
@@ -717,7 +716,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			
 			filename = g_path_get_basename (locale);
 			
-			if (g_pattern_match_string (pattern, filename)) {
+			if (fnmatch (search_data->file_is_named_pattern, filename, FNM_NOESCAPE) != FNM_NOMATCH) {
 				if (search_data->show_hidden_files == TRUE) {
 					if (search_data->regex_matching_enabled == FALSE) {
 						add_file_to_search_results (string->str, interface.model, &interface.iter);
@@ -757,7 +756,6 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		} while (g_io_channel_get_buffer_condition(ioc) == G_IO_IN);
 		
 		g_string_free (string, TRUE);
-		g_pattern_spec_free (pattern);
 	}
 
 	if (condition != G_IO_IN) { 
