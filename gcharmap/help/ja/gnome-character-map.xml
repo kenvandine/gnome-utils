@@ -1,0 +1,436 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+ "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [ 
+  <!ENTITY appversion "2.0.2">
+  <!ENTITY manrevision "2.4">
+  <!ENTITY app "文字マップ">
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY date "2003年1月">
+]>
+<!-- (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Jan 2, 2002   
+ 
+  -->
+<article id="index" lang="ja"> 
+  <!-- Please do not change the id; for translations, 
+  change lang to appropriate code -->
+  <articleinfo>
+    <title>&app; Manual V&manrevision;</title>
+    <copyright>
+      <year>2003</year>
+      <holder>Sun Microsystems</holder>
+    </copyright>
+    <copyright>
+      <year>2000</year>
+      <holder>Hongli Lai</holder>
+    </copyright> 
+    <copyright>
+      <year>2003</year>
+      <holder>鎌ヶ迫正俊 (日本語訳)</holder>
+    </copyright>
+    <publisher>
+      <publishername>GNOMEドキュメンテーションプロジェクト</publishername>
+    </publisher>
+
+    &legal;
+    <!-- This file  contains link to license for the documentation (GNU
+    FDL), and other
+    legal stuff such as "NO WARRANTY" statement. Please do
+    not change any of this. --> 
+    <legalnotice id="feedback">
+      <para>
+	この&app;やマニュアルについてのバグレポートや提案は、
+        <ulink url="ghelp:gnome-feedback" type="help">GNOMEフィード
+        バックページ</ulink>を参照してください。
+      </para>
+      <para>
+        このマニュアルの日本語訳についての指摘や提案は
+        <email>emerald@gnome.gr.jp</email>
+        までお願いします。
+      </para>
+    </legalnotice> 
+
+    <authorgroup>
+      <author>
+	<firstname>Sun</firstname>
+	<surname>GNOMEドキュメンテーションチーム</surname>
+	<affiliation>
+	  <orgname>サン マイクロシステムズ</orgname>
+	</affiliation>
+      </author>
+      <author>
+	<firstname>Hongli</firstname>
+	<surname>Lai</surname>
+	<affiliation>
+	  <orgname>GNOMEドキュメンテーションプロジェクト</orgname>
+	</affiliation>
+      </author>
+      <othercredit role="translator">
+	<firstname>Masatoshi</firstname>
+	<surname>KAMAGASAKO</surname>
+	<affiliation>
+	  <orgname>日本GNOMEユーザ会 翻訳チーム</orgname>
+	  <address><email>emerald@gnome.gr.jp</email></address>
+	</affiliation>
+	<contrib>日本語訳</contrib>
+      </othercredit>
+    </authorgroup>
+
+    <revhistory>
+      <revision>
+	<revnumber>&app;マニュアル V&manrevision;</revnumber>
+	<date>&date;</date>
+	<revdescription>
+	  <para role="author">
+            Sun GNOMEドキュメンテーションチーム 
+	    <email>gdocteam@sun.com</email>
+          </para>
+	  <para role="publisher">
+	    GNOMEドキュメンテーションプロジェクト
+          </para>
+	</revdescription>
+      </revision>
+      <revision>
+	<revnumber>GNOME文字マップマニュアル V2.3</revnumber>
+	<date>2002年9月</date>
+	<revdescription>
+	  <para role="author">
+	    Sun GNOMEドキュメンテーションチーム 
+	    <email>gdocteam@sun.com</email></para>
+	  <para role="publisher">
+	    GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription>
+      </revision>
+      <revision>
+	<revnumber>GNOME文字マップマニュアル V2.2</revnumber>
+	<date>2002年8月</date>
+	<revdescription>
+	  <para role="author">
+	    Sun GNOMEドキュメンテーションチーム 
+	    <email>gdocteam@sun.com</email></para>
+	  <para role="publisher">
+	    GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription>
+      </revision>
+      <revision>
+	<revnumber>GNOME文字マップマニュアル V2.1</revnumber>
+	<date>2002年7月</date>
+	<revdescription>
+	  <para role="author">
+	    Sun GNOMEドキュメンテーションチーム 
+	    <email>gdocteam@sun.com</email></para>
+	  <para role="publisher">
+	    GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription>
+      </revision>
+      <revision>
+	<revnumber>GNOME文字マップ V2.0</revnumber>
+	<date>2002年3月</date>
+	<revdescription>
+	  <para role="author">
+	    Sun GNOMEドキュメンテーションチーム 
+	    <email>gdocteam@sun.com</email></para>
+	  <para role="publisher">
+	    GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription>
+      </revision>
+      <revision>
+	<revnumber>GNOME文字マップ マニュアル</revnumber>
+	<date>2000年</date>
+	<revdescription>
+	  <para role="author">
+	    Hongli Lai, Dan Mueth
+	    <email>h.lai@chello.nl</email>,
+	    <email>d-mueth@uchicago.edu</email></para>
+	  <para role="publisher">
+	    GNOMEドキュメンテーションプロジェクト</para>
+	</revdescription>
+      </revision>
+    </revhistory>
+    <releaseinfo>
+      このマニュアルは&app;第&appversion;版について説明しています。
+    </releaseinfo>
+  </articleinfo>
+  <indexterm>
+    <primary>文字マップ</primary>
+  </indexterm> 
+  
+  <!-- ============= Document Body ============================= -->
+  <!-- ============= Introduction ============================== --> 
+  <sect1 id="gcharmap-introduction">
+    <title>はじめに</title>
+    <para>
+      <application>&app;</application>
+      <indexterm>
+	<primary>文字マップアプリケーション</primary>
+      </indexterm>
+      アプリケーションを利用すると、文字テーブルから文字を選択し、
+      選択した文字を標準的な文字でテキスト文字列として連結することがで
+      きます。このテキスト文字列はテキストエディタといったようなアプリ
+      ケーションに挿入することができます。
+    </para>
+    <para>
+      <application>&app;</application>は基本的にISO-8859-1 Latin 1文字
+      集合を扱います。オプションとして、キリル文字のようないくつかの非
+      Latin文字集合を扱うこともできます。また、アクセント文字、数学記
+      号、特別なシンボル、そして句読点も扱うことができます。これらの多
+      くの文字は、標準的なキーボードでは扱うことができません。
+    </para>
+  </sect1>
+  
+  <sect1 id="gcharmap-get-started"> 
+    <title>起動する</title> 
+    <para>
+      この章では、<application>&app;</application>の起動の仕方を説明します。
+    </para>
+    <sect2 id="gcharmap-to-start"> 
+      <title>&app;を起動する</title> 
+      <para>
+	<application>&app;</application>は以下のような方法で起動するこ
+	とができます:
+      </para>
+      <variablelist> 
+	<varlistentry> 
+	  <term>アプリケーションメニュー</term> 
+	  <listitem> 
+	    <para>
+	      <menuchoice> 
+		<guimenu>アクセサリ</guimenu> 
+		<guimenuitem>GNOME 文字選択</guimenuitem>
+	      </menuchoice>
+	      と選択します
+	    </para>
+	  </listitem> 
+	</varlistentry> 
+	<varlistentry> 
+	  <term>コマンドライン</term> 
+	  <listitem> 
+	    <para>
+	      <command>gnome-character-map</command>
+	      と入力し、
+	      <keycap>Return</keycap>
+	      を押下します。
+	    </para>
+	  </listitem> 
+	</varlistentry> 
+      </variablelist> 
+    </sect2> 
+    <sect2 id="gcharmap-first-start"> 
+      <title>&app;を起動すると</title> 
+      <para>
+	<application>&app;</application>を起動すると、以下のようなウィ
+	ンドウが開きます。
+      </para>
+      <figure id="gcharmap-mainwindow-fig">
+	<title>&app;ウィンドウ</title>
+	<screenshot>
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/gnome-character-map.png"
+		format="PNG"/>
+	    </imageobject>
+	    <textobject>
+	      <phrase>
+		文字マップ メインウィンドウ。
+		メニューバー、ツールバー、文字ボタンが表示されている。
+	      </phrase>
+	    </textobject>
+	  </mediaobject>
+	</screenshot>
+      </figure> 
+      
+      <para>
+	<application>&app;</application>ウィンドウは以下のような要素に
+	よって構成されています:
+      </para>
+      <variablelist>
+	<varlistentry>
+	  <term>メニューバー</term>
+	  <listitem>
+	    <para>
+	      標準的なGNOMEウィンドウメニューが表示されます。
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>ツールバー</term>
+	  <listitem>
+	    <para>
+	      ツールバーには以下のような項目があります:
+	    </para>
+	    <itemizedlist>
+	      <listitem>
+		<para>
+		  <guilabel>フォント</guilabel>ボタンで、文字テーブル
+		  の文字を表示するためのフォントの型とサイズを選択しま
+		  す。
+		</para>
+	      </listitem>
+	      <listitem>
+		<para>
+		  必要であれば、<guilabel>ページ</guilabel>スピンボッ
+		  クスで複数の文字マップのページを表示することができま
+		  す。
+		</para>
+	      </listitem>
+	      <listitem>
+		<para>
+		  <guilabel>コピーするテキスト</guilabel>フィールドは、
+		  他のアプリケーションにコピーしたいテキスト文字列を生
+		  成するのに利用します。
+		</para>
+	      </listitem>
+	      <listitem>
+		<para>
+		  <guilabel>コピー</guilabel>ボタンで、<guilabel>コピー
+		  するテキスト</guilabel>フィールドの全テキスト文字列
+		  をバッファへコピーします。<guilabel>コピーするテキス
+		  ト</guilabel>フィールドへはキーボードからでも文字テー
+		  ブルからでも入力することができます。
+		</para>
+	      </listitem>
+	    </itemizedlist>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>文字テーブル</term>
+	  <listitem>
+	    <para>
+	      ISO-8859-1文字集合の各文字のボタンのテーブルです。
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>ステータスバー</term>
+	  <listitem>
+	    <para>
+	      ステータスバーはウィンドウの下端に位置し、フォーカスされ
+	      ている文字テーブル上の文字のASCIIコードを表示します。
+	    </para>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+    </sect2>
+  </sect1>
+
+  <!-- ================ Usage ================================ -->
+  <sect1 id="gcharmap-usage">
+    <title>使い方</title>
+    <sect2 id="gcharmap-create-textstring">
+      <title>テキスト文字列を生成する</title>
+      <para>
+	<guilabel>コピーするテキスト</guilabel>フィールドにテキスト文
+	字列を生成するために、以下の方法で文字を入力します:
+      </para>
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    文字テーブル上の文字ボタンをクリックして<guilabel>コピーす
+	    るテキスト</guilabel>フィールドに文字を入力できます。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <guilabel>コピーするテキスト</guilabel>フィールドをクリッ
+	    クしてフォーカスを当てます。既にフィールドに文字列が入力さ
+	    れていた場合は、文字を入力したい位置をクリックします。キー
+	    ボードのキーを押してフィールドに文字を入力します。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <menuchoice>
+	      <guimenu>文字</guimenu>
+	      <guimenuitem>参照</guimenuitem>
+	    </menuchoice>
+	    と選択し、<guilabel>文字を選択</guilabel>ダイアログを開き
+	    ます。ダイアログ上のスピンボックスを使って0から255の範囲で
+	    ASCII文字を指定します。この範囲には文字テーブル上では利用
+	    できない非視覚的な文字も含まれています。
+	    <guibutton>挿入</guibutton>ボタンをクリックして<guilabel>
+	    コピーするテキスト</guilabel>フィールドに文字を追加します。
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </sect2>
+
+    <!-- =============== To Copy and Paste a Text String ================== -->
+	 
+    <sect2 id="gcharmap-copy-textstring">
+      <title>
+	テキスト文字列をアプリケーションにコピー・ペーストする
+      </title>
+      <para>
+	<guilabel>コピーするテキスト</guilabel>フィールドに生成したテ
+	キスト文字列をアプリケーションにコピー・ペーストするには、
+	以下の操作を行います:
+      </para>
+      <orderedlist>
+	<listitem>
+	  <para>
+	    <guilabel>コピーするテキスト</guilabel>フィールドのテキス
+	    ト文字列をドラッグして選択するか<guibutton>コピー
+	    </guibutton>ボタンをクリックします。選択された文字列は
+	   強調表示されます。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    テキスト文字列を貼り付けたいアプリケーション上の位置をポイ
+	    ンタで選択し、マウスの中ボタンをクリックして文字列を挿入し
+	    ます。貼り付け機能が帰寮できるアプリケーションであれば、テ
+	    キスト文字列を貼り付けることもできます。テキスト文字列が選
+	    択されている間は何度でも文字列の挿入を繰り返すことが可能で
+	    す。
+	    テキスト文字列の選択を解除するには<guilabel>コピーするテキ
+	    スト</guilabel>フィールドをクリックしてください。
+	  </para>
+	</listitem>
+      </orderedlist>
+      <para>
+	<guilabel>コピーするテキスト</guilabel>フィールドの内容を他の
+	アプリケーションに貼り付けた場合、テキスト文字列はそのアプケー
+	ションの現在の文字集合で表示されます。
+      </para>
+      <para>
+	テキスト文字列に非視覚的な文字が含まれていた場合、十分な文字集
+	合をサポートしているアプリケーションにのみテキスト文字列を挿入
+	できます。
+      </para>
+      <para>
+	他のアプリケーションにテキスト文字列を貼り付ける前に
+	<application>&app;</application>を終了した場合、そのテキスト文
+	字列は破棄されてしまいます。
+      </para>
+    </sect2> 
+
+    <!-- =============== To Change the Input Mode  ====================== -->
+    <sect2 id="gcharmap-clear-field">
+      <title>"コピーするテキスト" フィールドをクリアする</title>
+      <para>
+	<guilabel>コピーするテキスト</guilabel>フィールドをクリアする
+	には、
+	<menuchoice> 
+	  <guimenu>編集</guimenu>
+	  <guimenuitem>消去</guimenuitem> 
+	</menuchoice>
+	と選択します。
+      </para>
+    </sect2> 
+
+    <sect2 id="gcharmap-change-charset">
+      <title>入力メソッドを変更する</title>
+      <para>
+	入力メソッドを変更するには、<guilabel>コピーするテキスト
+	</guilabel>フィールドを右クリックし、<guimenuitem>入力メソッド
+	</guimenuitem>を選択します。<guimenuitem>Unicode制御キャラクタ
+	を挿入</guimenuitem>メニュー項目を選択すると、非Latin文字集合
+	で作業しているときに便利なキャラクタレイアウトオプションが
+	表示されます。
+      </para>
+    </sect2> 
+  </sect1> 
+</article> 
