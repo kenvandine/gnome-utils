@@ -21,7 +21,6 @@
 
 #include <config.h>
 #include <gnome.h>
-#include <gtkdial.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <getopt.h>
