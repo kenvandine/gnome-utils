@@ -145,7 +145,6 @@ click_stop_cb (GtkWidget 	*widget,
 	}
 	
 	gtk_widget_set_sensitive (interface.find_button, TRUE);
-	gtk_widget_set_sensitive (interface.find_button, TRUE);
 }
 
 void
@@ -581,7 +580,7 @@ escape_key_press_cb (GtkWidget    	*widget,
 	{
 		if (search_command.running == RUNNING)
 		{
-			search_command.running = MAKE_IT_STOP;
+			click_stop_cb (widget, NULL);
 			return FALSE;	
 		}
 	}
