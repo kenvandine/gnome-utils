@@ -55,7 +55,7 @@ poptContext        pctx;
 struct poptOption options[] = {
   { "geometry", '\0', POPT_ARG_STRING, &geometry, 0,
     N_("Specifiy the geometry of the window."),
-    N_("GOMETRY") },
+    N_("GEOMETRY") },
   { NULL, '\0', 0, NULL, 0 }
 };
 /** Support functions **/
