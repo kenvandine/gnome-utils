@@ -292,6 +292,8 @@ gtt_load_config (const char *fname)
 	/* get last running project */
        	cur_proj_id = gnome_config_get_int(GTT"Misc/CurrProject=-1");
 
+       	config_idle_timeout = gnome_config_get_int(GTT"Misc/IdleTimeout=-1");
+
 	/* Reset the main window width and height to the values 
 	 * last stored in the config file.  Note that if the user 
 	 * specified command-line flags, then the command line 
@@ -486,12 +488,12 @@ gtt_save_config(const char *fname)
 
 	/* save the configure dialog values */
         gnome_config_set_bool(GTT"Display/ShowSecs", config_show_secs);
-        gnome_config_set_bool(GTT"Display/ShowTableHeader", config_show_clist_titles);
+        gnome_config_set_bool(GTT"Display/ShowStatusbar", config_show_statusbar);
         gnome_config_set_bool(GTT"Display/ShowSubProjects", config_show_subprojects);
+        gnome_config_set_bool(GTT"Display/ShowTableHeader", config_show_clist_titles);
         gnome_config_set_bool(GTT"Toolbar/ShowIcons", config_show_tb_icons);
         gnome_config_set_bool(GTT"Toolbar/ShowTexts", config_show_tb_texts);
         gnome_config_set_bool(GTT"Toolbar/ShowTips", config_show_tb_tips);
-        gnome_config_set_bool(GTT"Display/ShowStatusbar", config_show_statusbar);
         gnome_config_set_bool(GTT"Toolbar/ShowNew", config_show_tb_new);
         gnome_config_set_bool(GTT"Toolbar/ShowFile", config_show_tb_file);
         gnome_config_set_bool(GTT"Toolbar/ShowCCP", config_show_tb_ccp);
@@ -530,7 +532,8 @@ gtt_save_config(const char *fname)
 
         g_snprintf(s, sizeof (s), "%ld", time(0));
         gnome_config_set_string(GTT"Misc/LastTimer", s);
-        gnome_config_set_int(GTT"Misc/TimerRunning", (timer_is_running()));
+        gnome_config_set_int(GTT"Misc/IdleTimeout", config_idle_timeout);
+        gnome_config_set_int(GTT"Misc/TimerRunning", timer_is_running());
         gnome_config_set_int(GTT"Misc/CurrProject", gtt_project_get_id (cur_proj));
         gnome_config_set_int(GTT"Misc/NumProjects", -1);
 

@@ -23,10 +23,14 @@
 #include "ctree.h"
 #include "cur-proj.h"
 #include "gtt.h"
+#include "idle-timer.h"
 #include "proj.h"
 
 
 static gint main_timer = 0;
+static IdleTimeout *idt = NULL;
+
+int config_idle_timeout = -1;
 
 static gint 
 timer_func(gpointer data)
@@ -35,6 +39,7 @@ timer_func(gpointer data)
 	if (!cur_proj) return 1;
 
 	gtt_project_timer_update (cur_proj);
+
 	if (config_show_secs) 
 	{
 		ctree_update_label(cur_proj);
@@ -43,17 +48,32 @@ timer_func(gpointer data)
 	{
 		ctree_update_label(cur_proj);
 	}
+
+	if (0 < config_idle_timeout) 
+	{
+		int idle_time;
+		idle_time = time(0) - poll_last_activity (idt);
+printf ("duuude man yeah idle %ld secs \n", idle_time);
+		if (idle_time > config_idle_timeout) 
+		{
+			stop_timer();
+			return 0;
+		}
+	}
 	return 1;
 }
 
 
 void menu_timer_state(int);
 
-void start_timer(void)
+void 
+start_timer(void)
 {
 	if (main_timer) return;
 	log_proj(cur_proj);
 	gtt_project_timer_start (cur_proj);
+
+	if ((0 < config_idle_timeout) && !idt) idt = idle_timeout_new();
 
 	/* the timer is measured in milliseconds, so 1000
          * means it pops once a second. */
@@ -62,8 +82,8 @@ void start_timer(void)
 }
 
 
-
-void stop_timer(void)
+void 
+stop_timer(void)
 {
 	if (!main_timer) return;
 	log_proj(NULL);

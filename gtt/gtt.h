@@ -53,6 +53,7 @@ void err_init(void);
 void start_timer(void);
 void stop_timer(void);
 gboolean timer_is_running (void);
+extern int config_idle_timeout;
 
 
 /* options.c */
@@ -89,9 +90,13 @@ void log_endofday(void);
 extern GtkWidget *glist, *window;
 extern GtkWidget *status_bar;
 
-extern char *config_command, *config_command_null, *config_logfile_name,
-	*config_logfile_str, *config_logfile_stop;
-extern int config_logfile_use, config_logfile_min_secs;
+extern char *config_command;
+extern char *config_command_null;
+extern char *config_logfile_name;
+extern char *config_logfile_str;
+extern char *config_logfile_stop;
+extern int config_logfile_use;
+extern int config_logfile_min_secs;
 
 /* true if command line over-rides geometry */
 extern gboolean geom_size_override;

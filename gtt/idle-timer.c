@@ -392,7 +392,7 @@ check_for_clock_skew (IdleTimeout *si)
    I trust that explains why this function is a big hairy mess.
  */
 
-int
+time_t
 poll_last_activity (IdleTimeout *si)
 {
   if (!si) return 0;
