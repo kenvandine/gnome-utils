@@ -35,10 +35,14 @@
 static void popup_main_dialog(void);
 static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox);
 static void prepare_advanced_vbox(GtkWidget * vbox);
+
 static void dialog_clicked_cb(GnomeDialog * d, gint which, gpointer data);
 static void runlevel_cb(GtkRadioButton * b, gint data);
+static void apply_prefs_cb(GnomePropertyBox * pb, gint page, 
+                           GtkEntry ** entries);
 
 static void popup_preferences(void);
+static void popup_about(void);
 static void popup_not_in_path(const gchar * command);
 
 void run_command(gchar * command);
@@ -67,6 +71,16 @@ static gchar * config_keys[] = {
   "Reboot"
 };
 
+static gchar * human_readable[] = {
+  N_("Shut Down"),
+  N_("Single User Mode"),
+  N_("Runlevel 2"),
+  N_("Runlevel 3"),
+  N_("Runlevel 4"),
+  N_("Runlevel 5"),
+  N_("Reboot")
+};
+
 static gchar * runlevel_commands[] = {
   "shutdown -h now",
   "shutdown",
@@ -78,6 +92,10 @@ static gchar * runlevel_commands[] = {
 };
 
 static Runlevel requested_runlevel;
+
+/* The runlevel radio buttons are on different notebook pages
+   but in the same group, so only one is active at a time. */
+static GSList * runlevel_radio_group;
 
 /*******************************
   Main
@@ -124,7 +142,7 @@ static void popup_main_dialog()
   d = gnome_dialog_new( _("Shutdown or Reboot"), GNOME_STOCK_BUTTON_OK,
 			GNOME_STOCK_BUTTON_CANCEL, NULL );
   gnome_dialog_set_destroy( GNOME_DIALOG(d), TRUE );
-  gnome_dialog_set_modal( GNOME_DIALOG(d) );
+  /*  gnome_dialog_set_modal( GNOME_DIALOG(d) ); */
 
   notebook = gtk_notebook_new();
 
@@ -159,9 +177,8 @@ static void popup_main_dialog()
 
 static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
 {
-  GtkWidget * button, * label, * label_vbox, * warning_hbox;
+  GtkWidget * button, * label, * warning_hbox;
   GtkWidget * warning_pixmap = NULL;
-  GSList * group;
   gchar * s;
 
   warning_hbox = gtk_hbox_new(TRUE, GNOME_PAD);
@@ -177,16 +194,10 @@ static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
 			warning_pixmap, TRUE, TRUE, GNOME_PAD);
   }
   
-  label_vbox = gtk_vbox_new(TRUE, GNOME_PAD);
+  label = gtk_label_new(_("Click OK to shutdown or reboot. You will lose\n"
+                          "any unsaved information in open applications."));
   gtk_box_pack_end (GTK_BOX (warning_hbox), 
-		      label_vbox, TRUE, TRUE, GNOME_PAD);
-
-  label = gtk_label_new(_("Click OK to shutdown or reboot. You will lose"));
-  gtk_box_pack_start (GTK_BOX (label_vbox), 
-		      label, TRUE, TRUE, 0);
-  label = gtk_label_new(_("any unsaved information in open applications."));
-  gtk_box_pack_start (GTK_BOX (label_vbox), 
-		      label, TRUE, TRUE, 0);
+                    label, TRUE, TRUE, 0);
 
   button = gtk_radio_button_new_with_label(NULL, _("Reboot"));
 
@@ -201,9 +212,12 @@ static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
                        GTK_SIGNAL_FUNC(runlevel_cb),
                        (gpointer)Reboot );
 
-  group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
+  runlevel_radio_group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
 
-  button = gtk_radio_button_new_with_label (group, _("Shut Down"));
+  button = gtk_radio_button_new_with_label (runlevel_radio_group, 
+                                            _("Shut Down"));
+  runlevel_radio_group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
+
   gtk_box_pack_start (GTK_BOX (vbox), 
 		      button, TRUE, TRUE, GNOME_PAD);
 
@@ -215,8 +229,26 @@ static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
 
 static void prepare_advanced_vbox(GtkWidget * vbox)
 {
-  GtkWidget * button, * label;
+  GtkWidget * button;
   GtkWidget * box;
+  int i;
+
+  box = gtk_vbox_new(TRUE, GNOME_PAD_SMALL);
+  gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD);
+  gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, FALSE, 0); 
+ 
+  i = SingleUser;
+  while ( i < Reboot ) {
+    button = gtk_radio_button_new_with_label (runlevel_radio_group, 
+                                              human_readable[i]);
+    runlevel_radio_group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
+    
+    gtk_signal_connect ( GTK_OBJECT(button), "clicked",
+                         GTK_SIGNAL_FUNC(runlevel_cb),
+                         (gpointer)i );
+    gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 0); 
+    ++i;
+  }
 
   box = gtk_hbox_new(FALSE, GNOME_PAD);
   gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD);
@@ -224,30 +256,49 @@ static void prepare_advanced_vbox(GtkWidget * vbox)
 
   /* Fixme add the appropriate stock buttons to gnome-stock */
   button = gnome_stock_or_ordinary_button("Preferences");
-  gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
+  gtk_box_pack_end(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
+  gtk_signal_connect(GTK_OBJECT(button), "clicked",
+                     GTK_SIGNAL_FUNC(popup_preferences), NULL);
 
   button = gnome_stock_or_ordinary_button("About");
-  gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
+  gtk_box_pack_end(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
+  gtk_signal_connect(GTK_OBJECT(button), "clicked",
+                     GTK_SIGNAL_FUNC(popup_about), NULL);
 }
 
 static void popup_preferences() 
 {
-  GtkWidget * box, * entry, * label;
+  GtkWidget * box, * label;
   GtkWidget * d;
+  static GtkWidget * entries[7];
+  Runlevel i;
+
+  d = gnome_property_box_new();
 
   box = gtk_vbox_new(FALSE, GNOME_PAD);
-  gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD_SMALL);
-  gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(d)->vbox), box, TRUE, TRUE, GNOME_PAD); 
- 
-  label = gtk_label_new(_("Reboot command"));
-  gtk_box_pack_start(GTK_BOX(box), label, TRUE, TRUE, 0); 
-  entry = gtk_entry_new();
-  gtk_box_pack_start(GTK_BOX(box), entry, TRUE, TRUE, 0); 
+  gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD);
 
-  label = gtk_label_new(_("Shutdown command"));
-  gtk_box_pack_start(GTK_BOX(box), label, TRUE, TRUE, 0); 
-  entry = gtk_entry_new();
-  gtk_box_pack_start(GTK_BOX(box), entry, TRUE, TRUE, 0); 
+  i = Halt;
+  while ( i <= Reboot ) {
+    label = gtk_label_new(human_readable[i]);
+    gtk_box_pack_start(GTK_BOX(box), label, TRUE, TRUE, 0); 
+    entries[i] = gtk_entry_new();
+    gtk_box_pack_start(GTK_BOX(box), entries[i], TRUE, TRUE, 0);
+    gtk_entry_set_text(GTK_ENTRY(entries[i]), runlevel_commands[i]);
+    gtk_widget_set_usize(GTK_WIDGET(entries[i]), 60, 20);
+    gtk_signal_connect_object( GTK_OBJECT(entries[i]), "changed",
+                               GTK_SIGNAL_FUNC(gnome_property_box_changed),
+                               GTK_OBJECT(d) );
+    ++i;
+  }
+
+  gnome_property_box_append_page(GNOME_PROPERTY_BOX(d), box,
+                                 gtk_label_new(_("Commands")) );
+
+  gtk_signal_connect( GTK_OBJECT(d), "apply",
+                      GTK_SIGNAL_FUNC(apply_prefs_cb), entries );
+
+  gtk_widget_show_all(d);
 }
 
 static void popup_not_in_path(const gchar * command)
@@ -274,18 +325,67 @@ static void popup_not_in_path(const gchar * command)
   g_free(message);
 }
 
+static void popup_about()
+{
+  GtkWidget * ga;
+  gchar * authors[] = { "Havoc Pennington <hp@pobox.com>",
+                        NULL };
+
+  ga = gnome_about_new (APPNAME,
+                        VERSION, 
+                        COPYRIGHT_NOTICE,
+                        authors,
+                        0,
+                        0 );
+  
+  gtk_widget_show(ga);
+}
+
 /**********************************
   Callbacks
   *******************************/
+static void apply_prefs_cb(GnomePropertyBox * pb, gint page, 
+                           GtkEntry ** entries)
+{
+  gchar * config_path;
+  Runlevel i;
+
+  if ( page == 0 ) {
+    i = Halt;
+    while ( i <= Reboot ) {
+      g_free(runlevel_commands[i]);
+      runlevel_commands[i] = 
+        g_strdup( gtk_entry_get_text(entries[i]) );
+
+      config_path = g_copy_strings( "/", APPNAME, "/Commands/", 
+                                    config_keys[i], NULL );
+      gnome_config_set_string(config_path, runlevel_commands[i]);
+      g_free(config_path);
+      ++i;
+    }
+  }
+  else if ( page == -1 ) { /* End of global apply */
+    gnome_config_sync();
+  }
+  else {
+    g_assert_not_reached();
+  }
+}
+
 static void dialog_clicked_cb(GnomeDialog * d, gint which, gpointer data)
 {
+  gchar * command_name;
   /* 0 is the OK button */
   if ( which == 0 ) {
-    if ( gnome_is_program_in_path(runlevel_commands[requested_runlevel]) ) {
+    command_name = g_strdup(runlevel_commands[requested_runlevel]);
+    command_name = strtok(command_name, " \r\n\t");
+    if ( gnome_is_program_in_path(command_name) ) {
       run_command(runlevel_commands[requested_runlevel]);
+      g_free(command_name);
     }
     else {
-      popup_not_in_path(runlevel_commands[requested_runlevel]);
+      popup_not_in_path(command_name);
+      g_free(command_name);
       return;
     }
   }
