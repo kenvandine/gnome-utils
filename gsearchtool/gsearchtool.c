@@ -819,18 +819,16 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		total_files = gtk_tree_model_iter_n_children (GTK_TREE_MODEL(interface.model), NULL);
 
 		if (total_files == 0) {
-			status_bar_string = g_strdup_printf (_("No files found %s"), 
-							     search_status);
+			status_bar_string = g_strdup (_("No files found"));
 			add_no_files_found_message (interface.model, &interface.iter);
 		}
 		else if (total_files == 1) {
-			status_bar_string = g_strdup_printf (_("One file found %s"),
-							     search_status);
+			status_bar_string = g_strdup (_("One file found"));
 		}
 		else {
-			status_bar_string = g_strdup_printf (_("%d files found %s"), total_files,
-							     search_status);
+			status_bar_string = g_strdup_printf (_("%d files found"), total_files);
 		}
+		status_bar_string = g_strconcat (status_bar_string, " ", search_status, NULL);
 
 		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
 		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (interface.progress_bar), 0.0);
