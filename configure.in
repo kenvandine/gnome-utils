@@ -165,9 +165,10 @@ dnl gtkhtml
 dnl gtkhtml is needed to build gtt
 dnl *******************************
 
-PKG_CHECK_MODULES(GTKHTML, gtkhtml >= $GTKHTML_REQUIRED)
-AC_SUBST(GTKHTML_LIBS)
-AC_SUBST(GTKHTML_CFLAGS)
+dnl gtkhtml does not exist on GNOME2
+dnl PKG_CHECK_MODULES(GTKHTML, gtkhtml >= $GTKHTML_REQUIRED)
+dnl AC_SUBST(GTKHTML_LIBS)
+dnl AC_SUBST(GTKHTML_CFLAGS)
 
 dnl *******************************
 dnl Applet checks
