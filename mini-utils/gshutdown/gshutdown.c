@@ -20,6 +20,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <string.h> /* strtok */
 
 #define APPNAME "gshutdown"
 #define COPYRIGHT_NOTICE _("Copyright 1998, under the GNU General Public License.")
@@ -125,7 +126,8 @@ static gboolean confirm;
 static gboolean confirm_button_state; /* button - may not reflect synced 
                                          setting. (Not enough data fields
                                          in property box callback). Also 
-                                         used in confirm dialog. */
+                                         used in confirm dialog. 
+                                         */
 
 int main ( int argc, char ** argv )
 {
@@ -431,7 +433,7 @@ static void popup_confirm(void)
   g_free(message);
 
   button = gtk_check_button_new_with_label(_("Don't ask next time."));
-  confirm_button_state = confirm; /* Will always be true */
+  confirm_button_state = !confirm; /* Will always be true */
   gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(button), confirm_button_state);
   gtk_signal_connect(GTK_OBJECT(button), "clicked",
                      GTK_SIGNAL_FUNC(toggle_confirm_cb), NULL);
@@ -466,9 +468,9 @@ static void revert_defaults_cb(GtkWidget * button, GtkEntry ** entries)
 
 static void confirm_cb(GnomeDialog * d, gint which)
 {
-  if (confirm_button_state == FALSE) {
+  if (confirm_button_state == TRUE) {
     /* Don't want to be asked next time. */
-    confirm = confirm_button_state; /* not necessary, just nicer */
+    confirm = !confirm_button_state; /* not necessary, just nicer */
     gnome_config_set_bool("/"APPNAME"/General/Confirm", confirm);
     gnome_config_sync();
   }
