@@ -1,7 +1,13 @@
-<body> <title> GNOME Stripchart Documentation </title>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+ "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>GNOME Stripchart Documentation</title>
+  <link rev="made" href="mailto:kodis@jagunet.com">
+</head>
+<body>
 
-<a name="introduction">
-<h2> GNOME Stripchart Documentation </h2>
+<h1><a name="introduction">GNOME Stripchart Documentation</a></h1>
 
 The GNOME stripchart program charts various user-specified parameters
 as a function of time.  Its main use is to chart system performance
@@ -33,8 +39,7 @@ a file named .gstripchart.conf in the users home directory, then look
 for a file named /etc/gstripchart.conf.  If no configuration file is
 found, the program displays an error message and exits.
 
-<a name="options">
-<h3> Options </h3>
+<h2><a name="options">Options</a></h2>
 
 There are a few command line switches that can be used to alter the
 behavior of the program.  In addition to the common help, usage,
@@ -59,7 +64,7 @@ gstripchart-specific options are available:
 </pre>
 
 <dl>
-<dt> config-file <i>filename</i>
+<dt> config-file <em>filename</em>
   <dd> Specifies a file from which to read configuration information.
   If unspecified, the current working directory is checked for a file
   named "gstripchart.conf", the user's home directory is checked for a
@@ -67,18 +72,18 @@ gstripchart-specific options are available:
   for a file named "gstripchart.conf".  The first such file found is
   used.
 
-<dt> geometry <i>geometry-spec</i>
+<dt> geometry <em>geometry-spec</em>
   <dd> A standard X11 geometry specification of the form WxH+X+Y.
 
-<dt> chart-interval <i>update-interval</i>
-<dt> slider-interval <i>update-interval</i>
+<dt> chart-interval <em>update-interval</em>
+<dt> slider-interval <em>update-interval</em>
   <dd> Specifies the time interval in seconds between updates to the
   chart window and slider window.  If unspecified, the chart window
   will be updated every 5 seconds and the slider window will be
   updated every 0.2 seconds.
 
-<dt> chart-filter <i>time-constant</i>
-<dt> slider-filter <i>time-constant</i>
+<dt> chart-filter <em>time-constant</em>
+<dt> slider-filter <em>time-constant</em>
   <dd> Specifies the time constant in seconds to be used in low-pass
   filtering the data displayed in the chart or slider windows.  A time
   constant of 0 seconds turns low-pass filtering off, which can result
@@ -97,8 +102,7 @@ gstripchart-specific options are available:
 
 </dl>
 
-<a name="configuration">
-<h3> Configuration </h3>
+<h2><a name="configuration">Configuration</a></h2>
 
 <p> The configuration file has a paragraph of configuration
 information for each parameter to be ploted.  Each of these paragraphs
@@ -118,18 +122,18 @@ supplied for any of these parameters both in the configuration file
 and on the command line, the command line value takes precedence.
 
 <dl>
-<dt> chart-interval: <i>update-interval</i>
-<dt> slider-interval: <i>update-interval</i>
+<dt> chart-interval: <em>update-interval</em>
+<dt> slider-interval: <em>update-interval</em>
 <dd>	The same as the chart-interval and slider-interval command
 	line switches described previously.
 
-<dt> chart-filter: <i>time-constant</i>
-<dt> slider-filter: <i>time-constant</i>
+<dt> chart-filter: <em>time-constant</em>
+<dt> slider-filter: <em>time-constant</em>
 <dd>	The same as the chart-filter and slider-filter command
 	line switches described previously.
 
-<dt> menu: <i>yes-or-no</i>
-<dt> slider: <i>yes-or-no</i>
+<dt> menu: <em>yes-or-no</em>
+<dt> slider: <em>yes-or-no</em>
 <dd>	Enables or disables the menu bar and slider window.
 
 <dt> minor_ticks:
@@ -141,36 +145,38 @@ and on the command line, the command line value takes precedence.
 	tick marks on the gtk and applet displays.
 </dl>
 
+<h2><a name="parameters">Parameters</a></h2>
+
 <p> The following keywords are used to define the parameters that are
 displayed.
 
 <dl>
-<dt> begin: <i>parameter-name</i>
-<dt> identifier: <i>parameter-name</i>
+<dt> begin: <em>parameter-name</em>
+<dt> identifier: <em>parameter-name</em>
 <dd>	Introduces a parameter definition, and assigns a name to the
-	parameter.  This line <b>must</b> be the first line of a
-	parameter description.  The "begin" and "identifier" keywords
-	are synonymous.
+	parameter.  This line <strong>must</strong> be the first line
+	of a parameter description.  The "begin" and "identifier"
+	keywords are synonymous.
 
-<dt> end: <i>parameter-name</i>
+<dt> end: <em>parameter-name</em>
 <dd>	Closes a parameter block introduced by the "begin" or 
 	"identifer" keyword.
 
-<dt> active: <i>yes-or-no</i>
+<dt> active: <em>yes-or-no</em>
 <dd>	If a parameter is marked "active: no", it will not be
 	displayed.  This provides a convenient way to disable a
 	parameter without deleting it from a parameter file.
 
-<dt> id_char: <i>character</i>
+<dt> id_char: <em>character</em>
 <dd>	Provides a single-character abbreviation for a parameter.
 	Currently unused, this is intended for the non-existant
 	character-graphics display mode.
 
-<dt> color: <i>color-name</i>
+<dt> color: <em>color-name</em>
 <dd>	Determines the color to be used in displaying a parameter.
 	The color names and their RGB values are taken from X11/rgb.txt.
 
-<dt> lights: <i>color-name [color-name ...]</i>
+<dt> lights: <em>color-name [color-name ...]</em>
 <dd>	If a parameter block contains a "lights:" line instead of a
 	"color:" line, the parameter will not be plotted.  Rather, a
 	small square in one of the supplied colors is displayed near
@@ -181,34 +187,34 @@ displayed.
 	1.5 and 2.5 displays a light in the second color; and so forth
 	for as many colors were supplied on the "lights:" line.
 
-<dt> filename: <i>path</i>
+<dt> filename: <em>path</em>
 <dd>	The file from which a parameter value is read.
 	When a filename beginning with a "|" is supplied, input lines
 	will be read from a pipe.
 
-<dt> pattern: <i>string</i>
+<dt> pattern: <em>string</em>
 <dd>	The pattern which identifies the line from which a parameter
 	value is to be extracted.  If no pattern is provided, the
 	first line of the file is used.
 
-<dt> fields: <i>number</i>
+<dt> fields: <em>number</em>
 <dd>	The number of fields to be split out of the first line which
 	matches the pattern.  Splitting is done on whitespace.
 
-<dt> equation: <i>eqn</i>
+<dt> equation: <em>eqn</em>
 <dd>	An equation used to obtain the value to be ploted for this
 	parameter.
 
-<dt> scale: <i>log-or-linear</i>
+<dt> scale: <em>log-or-linear</em>
 <dd>	Specifies whether a logarithmic or linear scale factor is to
 	be used when plotting a parameter value.
 
-<dt> maximum: <i>number</i>
+<dt> maximum: <em>number</em>
 <dd>	The largest value that can be displayed.  Any value in excess
 	of the maximum will be plotted at the top of the display.
 	If omitted, a default value of 1.0 is used.
 
-<dt> minimum: <i>number</i>
+<dt> minimum: <em>number</em>
 <dd>	The smallest value that can be displayed.  Any value less than
 	the minimum will be plotted at the bottom of the display.
 	If omitted, a default value of 0.0 is used.
@@ -233,6 +239,8 @@ The elapsed time in seconds between the last and current iteration is
 ~t.  The requested update interval is $i (and the delta is ~i, but
 will always be zero).  All the usual infix arithmatic operators are
 available.
+
+<h2><a name="libgtop">libgtop</a></h2>
 
 <p> If libgtop support has been compiled into the gstripchart program,
 a value can be obtained from this library.  This provides a portable
@@ -270,3 +278,4 @@ libgtop parameters are available:
 idletime, and the five load values which are floating point values.
 
 </body>
+</html>
