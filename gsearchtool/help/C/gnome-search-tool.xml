@@ -87,7 +87,7 @@
   </revhistory>
 
      <releaseinfo>
-       This manual describes version &version; of &application;. It was
+       This manual describes version &version; of &application;. The manual was
        last updated on &date;.
     </releaseinfo>
 
@@ -100,8 +100,8 @@
       <indexterm>
 	<primary>file search</primary>
       </indexterm>
-       &app; searches for files. It can
-       search by by filename, modification date or other characteristics.</para>
+       &app; searches for files. &app; can
+       search by filename, modification date or other characteristics.</para>
 
     <para> To start the search tool, select
       <guimenuitem>GNOME Search Tool</guimenuitem> from
@@ -116,11 +116,22 @@
     <title>Usage</title>
     <para>
     <application>GNOME Search Tool</application> provides two types of
-      search: <guilabel>Simple</guilabel> and
-      <guilabel>Advanced</guilabel>. <guilabel>Advanced</guilabel> find is
-      reliable and provides many possibilities, but can be
-      slow. <guilabel>Simple</guilabel> is faster but can only
-      search by filename.
+      search:
+	      <variablelist>
+		<varlistentry>
+		  <term>simple</term>
+		  <listitem>
+		    <para>Simple search is faster, but can only search by filename.</para>
+		  </listitem>
+		</varlistentry>
+		<varlistentry>
+		  <term>Advanced</term>
+		  <listitem>
+		    <para>Advanced search provides many possibilities, but is
+		    slower.</para>
+		  </listitem>
+		</varlistentry>
+	      </variablelist>
     </para>      
   </sect1>
 
@@ -148,12 +159,12 @@
     
 
     <para> In <guilabel>Simple</guilabel> mode, &app; uses a database containing the
-      names of all the files on the system. It is fast, but only allows
-      searches by file names and will not find files
+      names of all the files on the system. Simple mode is fast, but only allows
+      searches by filenames. Simple mode will not find files
       added after the last database update.
     </para>
     <para> To find a file with the simple mode, enter a
-      substring of the file name in the <guilabel>Search For</guilabel> field
+      any portion of the file name in the <guilabel>Search For</guilabel> field
       and click <guibutton>Find</guibutton>.
     </para>
     <para> To restrict search to a subdirectory, use the
