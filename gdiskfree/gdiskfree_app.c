@@ -1,0 +1,229 @@
+/* -*- Mode: C -*-
+ * $Id$
+ *
+ * GDiskFree -- A disk free space toy (df on steriods).
+ * Copyright 1998,1999 Gregory McLean
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc.,  59 Temple Place - Suite 330, Cambridge, MA 02139, USA.
+ *
+ */
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+#include <gnome.h>
+#include <glibtop.h>
+#include <glibtop/fsusage.h>
+#include <glibtop/mountlist.h>
+
+#include "gdiskfree_app.h"
+#include "gdiskfree_menus.h"
+
+/****************************************************************************
+ * Forward references 
+ **/
+static gint           delete_event_cb              (GtkWidget      *w,
+						    GdkEventAny    *e,
+						    gpointer       data);
+/**
+ * gdiskfree_app_new:
+ **/
+GDiskFreeApp *
+gdiskfree_app_new (const gchar *geometry)
+{
+  GDiskFreeApp     *app;
+  GtkOrientation   orientation;
+
+  app = g_new (GDiskFreeApp, 1);
+  
+  app->app = gnome_app_new (PACKAGE, _("GDiskFree"));
+  app->drive_frame  = NULL;
+  app->drives       = NULL;
+  gdiskfree_install_menus_and_toolbar (app);
+  gtk_signal_connect (GTK_OBJECT (app->app), "delete_event", 
+		      (GtkSignalFunc) delete_event_cb,
+		      app);
+  /** geometry parsing **/
+  if (geometry != NULL)
+    {
+      gint x, y, w, h;
+      if (gnome_parse_geometry (geometry, &x, &y, &w, &h) )
+        {
+          if (x != -1)
+            gtk_widget_set_uposition (app->app, x, y);
+          if (w != -1)
+            gtk_window_set_default_size (GTK_WINDOW (app->app), w, h);
+        }
+      else
+        {
+          g_error (_("Unable to parse the geometry string '%s'"), geometry);
+        }
+    }
+  else
+    {                              /* Lets see if the config has a geometry */
+      gint x, y, w, h;
+      w = gnome_config_get_int ("/GDiskFree/Geometry/width");
+      h = gnome_config_get_int ("/GDiskFree/Geometry/height");
+      if (w != 0 && h != 0)
+        gtk_window_set_default_size (GTK_WINDOW (app->app), w, h);
+      x = gnome_config_get_int ("/GDiskFree/Geometry/xpos");
+      y = gnome_config_get_int ("/GDiskFree/Geometry/ypos");
+      if (x != 0 && y != 0)
+        gtk_widget_set_uposition (app->app, x, y);
+    }
+  orientation = gnome_config_get_int ("/GDiskFree/properties/orientation");
+  if (orientation == GTK_ORIENTATION_VERTICAL)
+    app->dial_box = gtk_vbox_new (FALSE, 2);
+  else
+    app->dial_box = gtk_hbox_new (FALSE, 2);
+  gnome_app_set_contents (GNOME_APP (app->app), app->dial_box);
+  return app;
+}
+/**
+ * gdiskfree_app_close:
+ **/
+void
+gdiskfree_app_close (GDiskFreeApp *app)
+{
+  gint x, y, w, h;
+  g_return_if_fail (app != NULL);
+
+  /* Last window save the position of the window */
+  gdk_window_get_position (app->app->window, &x, &y);
+  gdk_window_get_size (app->app->window, &w, &h);
+  
+  gnome_config_set_int ("/GDiskFree/Geometry/width", w);
+  gnome_config_set_int ("/GDiskFree/Geometry/height", h);
+  gnome_config_set_int ("/GDiskFree/Geometry/xpos", x);
+  gnome_config_set_int ("/GDiskFree/Geometry/ypos", y);
+  gnome_config_sync ();
+  
+  gtk_widget_destroy (GTK_WIDGET (app->app));
+  app->app = NULL;
+  g_free (app);
+  gtk_main_quit ();
+}
+/***
+ * delete_event handling
+ **/
+static gint 
+delete_event_cb (GtkWidget *window, GdkEventAny *e, gpointer data)
+{
+  GDiskFreeApp *app = (GDiskFreeApp *)data;
+  gdiskfree_app_close (app);
+  return TRUE;
+}
+/****************************************************************************
+ * Support functions
+ **/
+/**
+ * gdiskfree_app_add_disk:
+ **/
+void
+gdiskfree_app_add_disk (GDiskFreeApp *app, const gchar *disk,
+			const gchar *mount_point)
+{
+  GtkWidget      *frame;
+  GtkAdjustment  *adjustment;
+  GDiskFreeDisk  *gdisk;
+
+  frame = gtk_frame_new (disk);
+  gtk_box_pack_start (GTK_BOX (app->dial_box), frame, TRUE, TRUE, 0);
+  app->drive_frame = g_list_append (app->drive_frame, frame);
+  gtk_widget_show_all (frame);
+  adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0, 0.0, 100.0, 0.01, 
+						   0.1, 0.0));
+  gdisk = g_malloc (sizeof (GDiskFreeDisk));
+  gdisk->drive = g_strdup (disk);
+  gdisk->mount_point = g_strdup (mount_point);
+  gdisk->dial = gtk_dial_new (adjustment);
+  gtk_dial_set_view_only (GTK_DIAL (gdisk->dial), TRUE);
+  gtk_container_add  (GTK_CONTAINER (frame), gdisk->dial);
+  app->drives = g_list_append (app->drives, gdisk);
+}
+/**
+ * gdiskfree_app_change_orient
+ **/
+void
+gdiskfree_app_change_orient (GDiskFreeApp *app, GtkOrientation orientation)
+{
+  GList          *gl;
+  GtkWidget      *frame;
+
+  gl = app->drive_frame;
+  while (gl)
+    {
+      frame = GTK_WIDGET (gl->data);
+      gtk_widget_ref (frame);
+      gtk_container_remove (GTK_CONTAINER (app->dial_box), frame);
+      gl = g_list_next (gl);
+    }
+  gtk_widget_destroy (app->dial_box);
+  if (orientation == GTK_ORIENTATION_VERTICAL)
+    {
+      app->dial_box = gtk_vbox_new (FALSE, 2);
+    }
+  else
+    {
+      app->dial_box = gtk_hbox_new (FALSE, 2);
+    }
+  gl = app->drive_frame;
+  while (gl)
+    {
+      frame = GTK_WIDGET (gl->data);
+      gtk_box_pack_start (GTK_BOX (app->dial_box), frame, TRUE, TRUE, 0);
+      gtk_widget_unref (GTK_WIDGET (frame));
+      gl = g_list_next (gl);
+    }
+  gnome_app_set_contents (GNOME_APP (app->app), app->dial_box);
+  gtk_container_resize_children (GTK_CONTAINER (app->dial_box));
+  gtk_widget_show_all (app->dial_box);
+}
+/**
+ * gdiskfree_update
+ *
+ * The main update function.
+ **/
+gboolean
+gdiskfree_update (GDiskFreeApp *app)
+{
+  GList              *gl;
+  GDiskFreeDisk      *disk;
+  gint               interval;
+  gdouble            used;
+  gdouble            percent;
+  glibtop_fsusage    fsu;
+
+  gl = app->drives;
+  if (gnome_config_get_bool ("/GDiskFree/properties/sync_required"))
+    sync ();
+  while (gl)
+    {
+      disk = (GDiskFreeDisk *)gl->data;
+      glibtop_get_fsusage (&fsu, disk->mount_point);
+      fsu.blocks /= 2*1024;
+      fsu.bfree  /= 2*1024;
+      fsu.bavail /= 2*1024;
+      used = fsu.blocks - fsu.bfree;
+      percent = (gdouble) (used * 100.0 / (used + fsu.bavail));
+      gtk_dial_set_percentage ( (GtkDial *)disk->dial, (percent / 100.0));
+      gl = g_list_next (gl);
+    }
+  /* Pick up any changes to the app's properties */
+  interval = gnome_config_get_int ("/GDiskFree/properties/update_interval");
+  gtk_timeout_add (interval, (GtkFunction)gdiskfree_update, app);
+  return FALSE;
+}
+/* EOF */
+

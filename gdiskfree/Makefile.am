@@ -6,16 +6,13 @@ INCLUDES = -DG_LOG_DOMAIN=\"GDiskFree\"			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-I$(includedir) $(GNOME_INCLUDEDIR) $(LIBGTOP_INCS)
 
-bin_PROGRAMS = gdiskfree
+bin_PROGRAMS = gdiskfree 
 
-gdiskfree_SOURCES =				\
-	df.c					\
-	util.c					\
-	util.h					\
-	pathmax.h				\
-	xgetcwd.c				\
-	save-cwd.c				\
-	save-cwd.h
+gdiskfree_SOURCES = \
+	gdiskfree_app.c		gdiskfree_app.h		\
+	gdiskfree_menus.c	gdiskfree_menus.h	\
+	gdiskfree_options.c	gdiskfree_options.h	\
+	gdiskfree.c
 
 
 gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
