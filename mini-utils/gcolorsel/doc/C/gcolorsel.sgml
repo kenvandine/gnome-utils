@@ -1,0 +1,521 @@
+<!DOCTYPE Article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN"[
+<!ENTITY version "1.0.51">
+<!ENTITY gcolor "<application>GNOME Color Browser</application>">
+]>
+
+
+<!-- =============Document Header ============================= -->
+
+<article id="index"> 
+
+ <artheader>
+  <title>GNOME Color Browser</title>
+  <copyright>
+   <year>2000</year>
+   <holder>Alexander Kirillov</holder>
+  </copyright>
+
+  <legalnotice>
+   <para>
+    Permission is granted to copy, distribute and/or modify this
+    document under the terms of the <citetitle>GNU Free Documentation
+    License</citetitle>, Version 1.1 or any later version published
+    by the Free Software Foundation with no Invariant Sections, no
+    Front-Cover Texts, and no Back-Cover Texts. You may obtain a copy
+    of the <citetitle>GNU Free Documentation License</citetitle> from
+    the Free Software Foundation by visiting <ulink type="http"
+    url="http://www.fsf.org">their Web site</ulink> or by writing to:
+    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+   </para>
+   <para>
+    Many of the names used by companies to distinguish their products and
+    services are claimed as trademarks. Where those names appear in any
+    GNOME documentation, and those trademarks are made aware to the members
+    of the GNOME Documentation Project, the names have been printed in caps
+    or initial caps.
+   </para>
+  </legalnotice>
+
+
+ </artheader>
+
+ <!-- ============= Document Body ============================= -->
+
+ <!-- ============= Introduction ============================== -->
+ <sect1 id="intro">
+  <title>Introduction</title>
+
+  <para>
+   &gcolor; is a utility for selecting screen (i.e., X Window System)
+   color. X Window System comes with many pre-defined colors, from
+   Alice Blue to Pale Goldenrod to Yellow Green. &gcolor; lets you
+   browse these colors and select one of them to use by an
+   application. It also allows you define your own collection of
+   favorite colors, or find a pre-defined color most closely matching
+   a given one.
+   </para>
+  <para>
+   To run &gcolor; select
+   <guimenuitem>Color Browser</guimenuitem> from the
+   <guisubmenu>Utilities</guisubmenu> submenu of the <guimenu>Main
+   Menu</guimenu>, or type <command>gcolorsel</command> on the
+   command line. 
+  </para>
+
+  <para>
+   &gcolor; is included in the
+   <filename>gnome-utils</filename> package, which is part of the
+   GNOME desktop environment. This document describes version
+   &version; of &gcolor;. 
+  </para>
+
+ </sect1>
+
+
+ <!-- ================ Usage ================================ -->
+ <!-- This section should describe basic usage of the application. -->
+
+  <sect1 id="usage">
+    <title>Using GNOME Color Browser</title>
+    <para>
+    &gcolor; is used for selecting a screen color to be used by an
+    application. Unlike the default color selector used by GNOME
+    applications, the primary goal of &gcolor; is to let you choose
+    one of a list of already defined colors, hence the name "color
+    browser". It allows you to browse the list of all pre-defined
+    system colors (see <xref linkend="simple">), or define your own
+    "favorite" colors (see <xref linkend="favorites">). It can also
+    show you those colors from these lists which most closely match a
+    given one (see <xref linkend="search">). 
+   </para> 
+   
+
+    <para> Once you have found a color you like, there are two ways
+      you can use this color in an application. The easiest way is to
+      utilize drag and drop: all the color bars you see in the
+      &gcolor; window can be drag-and-dropped onto any GNOME component
+      which has configurable colors. For example, you can drag a color
+      onto GNOME <interface>Panel</interface> to change Panel's
+      background color, or onto GNOME Terminal to change its
+      background.
+   </para>
+   <para> You can also use the color with many X Window applications
+    which are not GNOME-compliant, for example with
+    <application>emacs</application> text editor. Most of X
+    applications accept command line options <command>-bg
+    <replaceable>COLOR</replaceable></command> and  <command>-fg
+    <replaceable>COLOR</replaceable></command> to specify the
+    background and foreground color. <replaceable>COLOR</replaceable>
+    can be either color name, as shown by &gcolor; or its description
+    by a triple of numbers, Red, Green, and Blue (RGB).  For example,
+    the command 
+<programlisting>
+<command>emacs -bg lightblue -fg darkgreen</command>
+</programlisting>
+     will start <application>emacs</application> with light blue
+     background and dark green foreground. Note that contrary to
+     common UNIX conventions, color names are
+     case-insensitive.
+     More information about colors in X Window System, color depth,
+     RGB values, is given in <xref linkend="xcolors">. 
+    </para>
+    <para>Note that &gcolor; only allows you to select one of the
+    colors known to it (system colors or favorites); you can not
+    use it to "create" new colors. For example, it does not allow you
+    to select a color by entering its Red, Green and Blue (RGB)
+    values. However, it does give you a list of known colors most
+    closely matching given RGB values (see <xref linkend="search"> for
+    details). 
+     </para> 
+
+
+  <sect2 id="menubar">
+   <title>Menus</title>
+   <para>
+    The menu bar, located at the top of the &gcolor; window, contains
+    the following menus: 
+   </para>
+
+   <variablelist>
+    <varlistentry>
+     <term><guimenu>File</guimenu></term>
+     <listitem>
+      <para>
+       This menu contains only one command, 
+       <menuchoice>
+        <shortcut>
+         <keysym>Ctrl-Q</keysym>
+        </shortcut>
+        <guimenuitem>Quit</guimenuitem>
+       </menuchoice>.        
+      </para>
+     </listitem>
+    </varlistentry>
+
+    <varlistentry>
+     <term><guimenu>Settings</guimenu></term>
+     <listitem>
+      <para>
+       This menu contains commands for changing various settings and
+       preferences of &gcolor;: 
+       <itemizedlist>
+        <listitem>
+         <para>
+          <guimenuitem>Format</guimenuitem>
+           &mdash; this option allows you to change the format used by
+           &gcolor; for showing Red, Green and Blue (RGB) values for
+           each color (see details in <xref linkend="xcolors">). Unless
+           you know what you are doing, it is best to use the default
+           format (8-bit decimal). 
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          <guimenuitem>Search update</guimenuitem>
+          &mdash;this command is described in <xref linkend="search">.
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          <guimenuitem>Search in </guimenuitem>
+          &mdash;this command is described in <xref linkend="search">.
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          <guimenuitem>On drop</guimenuitem>
+          &mdash;this command allows you to choose the default action
+          to perform when you drop into &gcolor; window a color from
+          some different source, such as the default GNOME color
+          selector. Possible options are <guilabel>Search
+          it</guilabel>, i.e. automatically switch to
+          <guilabel>Search</guilabel> window and show the best matches
+          to the dropped color among the system colors and favorites,
+          or <guilabel>Add to favorites</guilabel>, i.e. add the
+          dropped color to your list of favorites.  
+         </para>
+        </listitem>
+       </itemizedlist>
+      </para>
+     </listitem>
+    </varlistentry>
+
+    <varlistentry>
+     <term><guimenu>Help</guimenu></term>
+     <listitem>
+      <para>
+       This menu contains:
+       <itemizedlist>
+        <listitem>
+         <para>
+          <guimenuitem>Manual</guimenuitem> &mdash;
+          shows this manual.
+         </para>
+        </listitem>
+
+        <listitem>
+         <para>
+          <guimenuitem>About</guimenuitem> &mdash; shows
+          basic information about
+          &gcolor;, such as
+          the author's name and the application version number.
+         </para>
+        </listitem>
+       </itemizedlist>
+
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </sect2>
+    <sect2 id="toolbar"> 
+     <title>Toolbar</title>
+     <para> 
+         The toolbar contains three buttons:
+     <guibutton>Exit</guibutton>, which exits the program,
+     <guibutton>About</guibutton>, which shows basic information about
+          &gcolor;, such as
+          the author's name and the application version number, and
+     <guibutton>Grab</guibutton>, which is used to grab a color 
+     of a point anywhere on the screen; its use is described in <xref
+     linkend="search">. 
+     </para>
+     </sect2> 
+
+ </sect1>
+ 
+
+  <sect1 id="simple">
+   <title>Simple browsing</title>
+    <para> 
+      This window, labelled <guilabel>Simple</guilabel>, shows you all
+    pre-defined named  system colors, as shown in <xref
+    linkend="simplefig">. For each color, it shows a small sample,
+    Red, Green and Blue (RGB) values, and color name.  
+    These colors can not be changed by the user (for advanced users,
+    we note that these colors are defined in a special configuration
+    file, <filename>rgb.txt</filename>, located in X11 library
+    directory, usually <filename
+    class="directory">/usr/lib/X11R6/lib/X11</filename>). 
+    </para> 
+
+
+    <figure id="simplefig">
+     <title>Main Window</title>
+     <screenshot>
+      <screeninfo>Color Browser Main Window</screeninfo>
+      <graphic fileref="simple" format="png"
+       srccredit="sasha">
+      </graphic>
+     </screenshot>
+    </figure>
+
+
+
+
+
+    <para>As was mentioned before, you can drag any of the color
+      rectangles to GNOME Panel, GNOME Terminal, and many other GNOME
+      applications windows to change their background colors. 
+    </para>
+    <para> 
+      By default, the colors are listed alphabetically by name, which is
+      indicated by a small downward triangle next to the label
+      <guilabel>Name</guilabel>.  As with
+      all GNOME applications, you can reverse the order by clicking on
+      the word <guilabel>Name</guilabel> once. You can also have the list
+      ordered by the RGB values, by clicking on 
+      <guilabel>Value</guilabel>,  though it seems to be of little use. 
+    </para> 
+    <para> 
+      You can change the default width of <guilabel>Color</guilabel>,
+      <guilabel>Search</guilabel> and <guilabel>Name</guilabel> fields by
+      dragging the separator between these fileds with the left mouse
+      button. 
+    </para>
+  </sect1> 
+
+  <sect1 id="search">
+    <title> Search</title> 
+    <para>This window, labelled <guilabel>Search</guilabel>, is used
+    to find a system color most closely matching a given one. You can
+    specify a color to match in several ways: by explicitly giving
+    the RGB values using the sliders, by dragging and dropping a color
+    from some other color source, such as default GNOME color
+    selector (if you have selected the option 
+     <menuchoice><guisubmenu>On drop</guisubmenu> 
+       <guimenuitem>Search</guimenuitem>
+   </menuchoice> in <guimenu>Settings</guimenu> menu), or by grabbing
+    a color of any pixel on the screen. To use this last method, click
+    on <guibutton>Grab</guibutton> button in the toolbar. Your mouse
+    cursor will turn into a "crosshair". Place this crosshair
+    over any point of the screen and click. &gcolor; will analyze the
+    color of this point, determine the RGB values, and show this color
+    and the RGB values in the <guilabel>Search</guilabel> window. It
+    will also show all system colors closely matching this one. 
+    </para>
+
+
+    <figure id="searchfig">
+     <title>Search Window</title>
+     <screenshot>
+      <screeninfo>Color Browser Search Window</screeninfo>
+      <graphic fileref="search" format="png"
+       srccredit="sasha">
+      </graphic>
+     </screenshot>
+    </figure>
+
+    <para> 
+      &gcolor; shows only those colors which match the given one
+      "close enough", and orders them by how close they are, so that
+      the best matches are shown first. You can adjust its tolerance
+      by using the <guilabel>Tolerance</guilabel> slider: smaller
+      values make &gcolor; to be more selective, so that only very close
+      matches are shown. Setting the tolerance value to 0 will show
+      only exact matches; setting tolerance to 100 will show all the
+      colors. 
+    </para> 
+    <para> 
+      By default, &gcolor; only looks for matches among the system
+      ("simple") colors. This can be changed using <guimenuitem>Search
+      in...</guimenuitem> item in the <guimenu>Settings
+      menu</guimenu>, which allows you to enable or disable searches
+      in "simple"(system) and "favorites" (personal) colors
+      independently. 
+    </para>
+    <para>Another configurable option is the update mode. By default,
+    &gcolor; continuously 
+    updates matches when you change the color (for example, by using
+    the RGB sliders) &mdash;. If you find that this is slow on your
+    sytem, you can use <menuchoice><guimenu>Settings</guimenu>
+     <guimenuitem>Search update</guimenuitem>
+      </menuchoice> to change the update mode to
+    <guilabel>Discontinuous</guilabel> (&gcolor; will only update
+    matches after you released the slider) or
+    <guilabel>Delayed</guilabel> ((&gcolor; will  update
+    matches with a delay of about 1/2 second). 
+    </para>
+
+
+
+
+  </sect1>
+
+
+
+  <sect1 id="favorites">
+    <title> Favorites</title> 
+
+   <para>In addition to system colors, which are defined in a
+    system-wide configuration file and are shown in <link
+    linkend="simple">Simple browsing</link> window, &gcolor; also
+    allows you to define your personal favorite colors. You can browse
+    these colors in <guilabel>Favorites</guilabel> window, shown in
+    <xref linkend="favoritesfig">. You can use these colors in the same
+    way as system-wide colors, by dragging them to a GNOME application
+    such as GNOME Panel or GNOME Terminal to change background color.
+    </para>
+
+    <figure id="favoritesfig">
+     <title>Favorites Window</title>
+     <screenshot>
+      <screeninfo>Color Browser Favorites Window</screeninfo>
+      <graphic fileref="favorites" format="png"
+       srccredit="sasha">
+      </graphic>
+     </screenshot>
+    </figure>
+    <para> You can add a color to the list of favorites in several
+    ways. First, you can click with the right mouse button on any of
+    the system colors in <guilabel>Simple</guilabel> or
+    <guilabel>Search</guilabel> windows and select
+    <guimenuitem>Add to favorites</guimenuitem> from the
+    <guimenu>pop-up</guimenu> menu. Second,you can use drag and drop: if
+    you have selected  the option 
+    <menuchoice><guisubmenu>On drop</guisubmenu> 
+       <guimenuitem>Add to favorites</guimenuitem>
+   </menuchoice>
+   in <guimenu>Settings</guimenu> menu, then dragging a color from a
+    GNOME color source, such as the default GNOME color selector onto
+    the &gcolor; window automatically adds this color to the list of
+    favorites.  Finally, you can also explicitly specify the RGB
+    values for a color in the <guilabel>Search</guilabel> window, then
+    right-click on the rectangle showing this color (to the right of
+    RGB sliders) and select <guimenuitem>Add to
+    favorites</guimenuitem> from the <guimenu>pop-up</guimenu>
+    menu. In the same way, you can also add a color which you grabbed
+    from the screen using <guibutton>Grab</guibutton> button in the
+    toolbar. 
+   </para>
+   <para> Right-clicking on any color in the
+   <guilabel>Favorites</guilabel> window produces a
+   <guimenu>pop-up</guimenu> menu, which allows you to rename or
+   remove a color.
+    </para>
+   </sect1>
+  
+  <sect1 id="xcolors">
+    <title>Colors in X Window System</title> 
+
+    <para> In X Window system, each color is described by 3 numbers,
+      namely the contents of Red, Green and Blue (as is well known,
+      every color can be obtained by combining these three primary
+      colors). These 3 values are commonly called the RGB
+      values. Usually each of them is allowed to range from 0 to 255;
+      for example, triple (0,0,0) is black, (255,0,0) is pure red, and
+      (255, 255, 255) is white.  
+      </para> 
+      <para> The total number of possible colors is thus
+      256&times;256&times;256=2<superscript>24</superscript>=16,777,216.
+      Of course, whether or not your system is actually able to show
+      that many different colors depends on the configuration of X
+      Window system, which is limited by the capabilities of your
+      video card. Most modern video cards are capable of showing all
+      these colors; some older cards will only be able to use
+      2<superscript>16</superscript>=64,536 (colordepth 16) or even
+      2<superscript>8</superscript>=256 (colordepth 8) colors. In this
+      case, X Window System will still use triples like (234, 112,
+      243) for describing RGB values, but some of these triples will
+      produce identical colors. More information about colors can be
+      found in the manual page for X. 
+  </para>
+  </sect1>
+ <!-- ============= Bugs ================================== -->
+
+ <sect1 id="bugs">
+  <title>Known Bugs and Limitations</title>
+  <para>
+   This application has no known bugs.
+  </para>
+ </sect1>
+
+
+<!-- ============= Authors ================================ -->
+
+ <sect1 id="authors">
+  <title>Authors</title>
+  <para>
+   &gcolor; was written by Tim Gerla and Eric Brayeur.  Please send
+   all comments, suggestions, and bug reports to the <ulink
+   url="http://bugs.gnome.org" type="http">GNOME bug tracking
+   database</ulink>. (Instructions for submitting bug reports can be
+   found <ulink url="http://bugs.gnome.org/Reporting.html"
+   type="http"> on-line</ulink>.) If you are using GNOME 1.1 or later,
+   you can also use <application>Bug Report Tool</application>
+   (<command>bug-buddy</command>), available in the
+   <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
+   Menu</guimenu>, for submitting bug reports.
+  </para>
+
+  <para>
+   This manual was written by Alexander Kirillov
+   (<email>kirillov@math.sunysb.edu</email>). Please send all comments and
+   suggestions regarding this manual to the <ulink type="http"
+   url="http://www.gnome.org/gdp">GNOME Documentation Project</ulink> 
+   by sending an email to <email>docs@gnome.org</email>. You can also
+   add your comments online by using the <ulink type="http"
+   url="http://www.gnome.org/gdp/doctable/">GNOME Documentation Status
+   Table</ulink>.
+  </para>
+ </sect1>
+
+
+ <!-- ============= Application License ============================= -->
+
+ <sect1 id="license">
+  <title>License</title>
+  <para>
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the <citetitle>GNU General Public
+   License</citetitle> as published by the Free Software Foundation;
+   either version 2 of the License, or (at your option) any later
+   version.
+  </para>
+  <para>
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   <citetitle>GNU General Public License</citetitle> for more details.
+  </para>
+  <para>
+   A copy of the <citetitle>GNU General Public License</citetitle> is
+   included as an appendix to the <citetitle>GNOME Users
+   Guide</citetitle>.  You may also obtain a copy of the
+   <citetitle>GNU General Public License</citetitle> from the Free
+   Software Foundation by visiting <ulink type="http"
+   url="http://www.fsf.org">their Web site</ulink> or by writing to
+   <address>
+    Free Software Foundation, Inc.
+    <street>59 Temple Place</street> - Suite 330
+    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
+    <country>USA</country>
+   </address>
+  </para>
+ </sect1>
+</article>
+
+
+
+

@@ -59,6 +59,7 @@ GnomeUIInfo edit_menu[] = {
 };
 
 GnomeUIInfo help_menu[] = {
+  GNOMEUIINFO_HELP ("gcolorsel"),
   GNOMEUIINFO_MENU_ABOUT_ITEM   (about_cb,   NULL),
   GNOMEUIINFO_END
 };

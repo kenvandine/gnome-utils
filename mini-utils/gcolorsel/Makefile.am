@@ -1,4 +1,7 @@
-SUBDIRS = glade
+# Process this file with automake to produce Makefile.in
+
+SUBDIRS = glade doc
+
 gladedir = $(datadir)/gcolorsel/glade
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 

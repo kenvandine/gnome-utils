@@ -182,6 +182,8 @@ if test "x$GNOME_APPLETS_LIBS" != "x"; then
 fi
 AM_CONDITIONAL(BUILD_GSTRIPCHART_APPLET, test $enable_gstripchart_applet = yes)
 
+dnl **********************************************************************
+
 AC_OUTPUT([
 Makefile
 gnome-utils.spec
@@ -224,6 +226,8 @@ mini-utils/gfontsel/help/C/Makefile
 mini-utils/gfontsel/help/C/stylesheet-images/Makefile
 mini-utils/gcolorsel/Makefile
 mini-utils/gcolorsel/glade/Makefile
+mini-utils/gcolorsel/doc/Makefile
+mini-utils/gcolorsel/doc/C/Makefile
 gdictsrc/Makefile])
 
 #mini-utils/gsu/Makefile
