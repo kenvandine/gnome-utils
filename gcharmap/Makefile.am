@@ -8,5 +8,4 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 EXTRA_DIST = \
 	BUGS \
 	$(desktop_in_files) \
-	$(desktop_DATA)	\
-	$(schema_DATA)
+	$(desktop_DATA)
