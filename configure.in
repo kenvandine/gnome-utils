@@ -116,8 +116,24 @@ dnl gfloppy
 dnl ********************
 AC_CHECK_HEADER(linux/fd.h, build_gfloppy=true,
                 AC_MSG_WARN([*** gfloppy will not be built.]))
-if $build_gfloppy; then
-  AC_CONFIG_SUBDIRS(gfloppy)
+# Check for the ext2fs library
+AC_CHECK_LIB(ext2fs, ext2fs_mkdir, build_gfloppy2=true, 
+  AC_MSG_WARN([
+*** libext2fs not found. You need e2fsprogs and e2fsprogs-devel installed to build gfloppy.]))
+# check for ext2fs header specific includes
+AC_CHECK_HEADER(ext2fs/ext2_io.h, build_gfloppy3=true,
+  AC_MSG_WARN([
+*** ext2fs/ext2_io.h not found.  You need e2fsprogs-devel installed.]))
+if test "$build_gfloppy2" = true; then
+  if test "$build_gfloppy3" = true; then
+    if test "$build_gfloppy" = true; then
+      AC_CONFIG_SUBDIRS(gfloppy)
+    fi
+  else
+    build_gfloppy=
+  fi
+else
+  build_gfloppy=
 fi
 AM_CONDITIONAL(BUILD_GFLOPPY, test "$build_gfloppy" = true)
 
