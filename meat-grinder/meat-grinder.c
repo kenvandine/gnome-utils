@@ -14,6 +14,7 @@ static GtkWidget *app = NULL;
 static GtkWidget *icon_list = NULL;
 static GtkWidget *status_label = NULL;
 static GtkWidget *compress_button = NULL;
+static GtkWidget *status_bar = NULL;
 static GHashTable *file_ht = NULL;
 static gint number_of_files = 0;
 static gint number_of_dirs = 0;
@@ -146,6 +147,7 @@ static void
 remove_pos (gint pos)
 {
 	File *f;
+	gchar *status_msg;
 
 	f = gnome_icon_list_get_icon_data (GNOME_ICON_LIST (icon_list), pos);
 	gnome_icon_list_remove (GNOME_ICON_LIST (icon_list), pos);
@@ -157,6 +159,12 @@ remove_pos (gint pos)
 	else if (f->type == TYPE_FOLDER)
 		number_of_dirs --;
 	g_hash_table_remove (file_ht, f->base_name);
+        
+ 	status_msg = g_strdup_printf(_("%s removed"), f->base_name);
+        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
+                           0,
+                           status_msg);
+        g_free (status_msg);
 	free_file (f);
 
 	if (number_of_files + number_of_dirs <= 0) {
@@ -495,6 +503,11 @@ clear_cb (GtkWidget *w, gpointer data)
 	g_hash_table_foreach_remove (file_ht, file_remove_fe, NULL);
 	number_of_files = number_of_dirs = 0;
 	gnome_icon_list_clear (GNOME_ICON_LIST (icon_list));
+
+        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
+                           0,
+                           _("All files removed"));
+
 	gtk_widget_set_sensitive (compress_button, FALSE);
 	gtk_widget_set_sensitive (create_archive_widget, FALSE);
 	gtk_widget_set_sensitive (remove_widget, FALSE);
@@ -546,6 +559,8 @@ static void
 save_ok (GtkWidget *widget, GtkFileSelection *fsel)
 {
 	gchar *fname;
+        gchar *status_msg;
+        gchar *tmpfname = NULL;
 
 	g_return_if_fail (GTK_IS_FILE_SELECTION(fsel));
 
@@ -570,9 +585,25 @@ save_ok (GtkWidget *widget, GtkFileSelection *fsel)
 
 	setup_busy (GTK_WIDGET (fsel), FALSE);
 
+	/* Added code for appending .tar.gz to archive file */
+	tmpfname = g_strstr_len ((gchar *)fname, strlen((gchar *)fname), ".tar.gz");
+	if (tmpfname == NULL)
+		tmpfname = g_strstr_len ((gchar *)fname, strlen((gchar *)fname), ".tgz");
+	if (tmpfname != NULL) {
+		if (!((g_ascii_strcasecmp(tmpfname, ".tar.gz") == 0) || (g_ascii_strcasecmp(tmpfname, ".tgz") == 0)))
+			fname = g_strconcat ((gchar *)fname, ".tar.gz", NULL);
+	} else {
+		fname = g_strconcat ((gchar *)fname, ".tar.gz", NULL);
+	}
+
+        status_msg = g_strdup_printf(_("%s created"), g_path_get_basename(fname));
 	g_free (filename);
 	filename = g_strdup (fname);
 	gtk_widget_destroy (GTK_WIDGET (fsel));
+        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
+                           0,
+                           status_msg);
+       g_free (status_msg);
 }
 
 static void
@@ -615,6 +646,7 @@ add_file (const gchar *file)
 	gint i;
 	const gchar *base_name;
 	gchar *fullname;
+        gchar *status_msg;
 
 	if (file == NULL ||
 	    file[0] == '\0')
@@ -680,6 +712,8 @@ add_file (const gchar *file)
 	gtk_widget_set_sensitive (clear_widget, TRUE);
 	gtk_widget_set_sensitive (selectall_widget, TRUE);
 
+        filename = g_strdup_printf("%s/",g_path_get_dirname(fullname));
+
 	f = g_new0 (File, 1);
 	f->type = type;
 	f->name = g_strdup (fullname);
@@ -699,9 +733,13 @@ add_file (const gchar *file)
 	gnome_icon_list_set_icon_data (GNOME_ICON_LIST (icon_list), pos, f);
 
 	g_hash_table_insert (file_ht, f->base_name, f);
-
+    
 	update_status ();
-
+        status_msg = g_strdup_printf(_("%s added"), base_name);
+        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
+                           0,
+                           status_msg);
+        g_free (status_msg);
 	g_free (fullname);
 }
 
@@ -997,6 +1035,10 @@ init_gui (void)
 			  G_CALLBACK (drag_data_received), NULL);
 
 	gnome_app_set_contents (GNOME_APP (app), vbox);
+       status_bar = gtk_statusbar_new ();
+
+       gtk_box_pack_start (GTK_BOX (vbox), status_bar, TRUE, TRUE, 0);
+       gtk_widget_show (status_bar);
 
 	gtk_widget_show (app);
 }
