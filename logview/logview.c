@@ -36,6 +36,7 @@
 #include "misc.h"
 #include "logview-findbar.h"
 #include <popt.h>
+#include <libgnomevfs/gnome-vfs.h>
 
 static GObjectClass *parent_class;
 static GSList *logview_windows = NULL;
@@ -269,6 +270,7 @@ main (int argc, char *argv[])
 
    gconf_init (argc, argv, NULL);
    client = gconf_client_get_default ();
+   gnome_vfs_init ();
 
    gtk_window_set_default_icon_name ("logviewer");
    /*  Load graphics config and prefs */
@@ -616,10 +618,7 @@ LoadLogMenu (GtkAction *action, GtkWidget *callback_data)
 void 
 ExitProg (GtkAction *action, GtkWidget *data)
 {
-   LogviewWindow *window = LOGVIEW_WINDOW (data);
-
    gtk_main_quit ();
-
 }
 
 /* ----------------------------------------------------------------------
@@ -857,7 +856,7 @@ toggle_monitor (GtkAction *action, GtkWidget *callback_data)
 	    window->monitored = FALSE;
     } else {
 	    gtk_container_remove (GTK_CONTAINER(window->main_view), window->log_scrolled_window);
-	    mon_read_last_page (window);
+	    mon_update_display (window);
 	    gtk_container_add (GTK_CONTAINER(window->main_view), window->mon_scrolled_window);
 	    go_monitor_log (window);
 	    window->monitored = TRUE;
@@ -931,7 +930,7 @@ logview_set_window_title (LogviewWindow *window)
 	gchar *window_title;
 	if ((window->curlog != NULL) && (window->curlog->name != NULL))
 		if (window->monitored) 
-			window_title = g_strdup_printf (_("%s - %s (monitored)"), window->curlog->name, APP_NAME);
+			window_title = g_strdup_printf (_("%s (monitored) - %s"), window->curlog->name, APP_NAME);
 		else
 			window_title = g_strdup_printf ("%s - %s", window->curlog->name, APP_NAME);
 	else

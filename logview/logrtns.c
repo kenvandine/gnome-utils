@@ -28,14 +28,7 @@
 #include <errno.h>
 #include "logview.h"
 #include "logrtns.h"
-
-/*
- * -----------------
- * Local definitions
- * ------------------
- */
-
-#define MAX_NUM_LOGS             10
+#include <libgnomevfs/gnome-vfs.h>
 
 /*
  * -------------------
@@ -166,7 +159,15 @@ get_month (const char *str)
 	return 12;
 }
 
+GnomeVFSFileSize GetLogSize (Log *log)
+{
+	GnomeVFSFileInfo info;
+	GnomeVFSResult result;
 
+	result = gnome_vfs_get_file_info (log->name, &info, GNOME_VFS_FILE_INFO_DEFAULT);
+	return (info.size);
+}
+	
 
 /* ----------------------------------------------------------------------
    NAME:          OpenLogFile
@@ -178,63 +179,68 @@ OpenLogFile (char *filename)
 {
    Log *tlog;
    LogLine *line;
-   char buffer[1024];
+   char *buffer;
+   char **buffer_lines;
+   int i;
+   GnomeVFSResult result;
+   GnomeVFSFileSize size, read_bytes;
 
-   /* Check that the file exists and is readable and is a
-      logfile */
+   /* Check that the file exists and is readable and is a logfile */
    if (!isLogFile (filename))
-      return (Log *) NULL;
+	   return NULL;
 
-   /* Alloc memory for  log structures -------------------- */
-   tlog = malloc (sizeof (Log));
-   if (tlog == NULL)
-   {
-      ShowErrMessage (_("Not enough memory!\n"));
-      return ((Log *) NULL);
+   /* Alloc memory for log structure */
+   tlog = g_new0 (Log, 1);
+   if (tlog == NULL) {
+	   ShowErrMessage (_("Not enough memory!\n"));
+	   return NULL;
    }
-   memset (tlog, 0, sizeof (Log));
 
-   /* Open log files ------------------------------------- */
+   /* Open log files */
    strncpy (tlog->name, filename, sizeof (tlog->name)-1);
    tlog->name[sizeof (tlog->name) - 1] = '\0';
-   tlog->fp = fopen (filename, "r");
-   if (tlog->fp == NULL)
-   {
-      ShowErrMessage (_("Unable to open logfile!\n"));
-      return (Log *) NULL;
+
+   result = gnome_vfs_open (&(tlog->handle), filename, GNOME_VFS_OPEN_READ);
+   if (result != GNOME_VFS_OK) {
+	   ShowErrMessage (_("Unable to open logfile!\n"));
+	   return NULL;
    }
-   /* fseek (tlog->fp, -1L, SEEK_END); */
 
-   while (fgets (buffer, sizeof (buffer), tlog->fp)) {
+   size = GetLogSize (tlog);
+   buffer = g_malloc (size);
+   if (gnome_vfs_read (tlog->handle, buffer, size, &read_bytes) != GNOME_VFS_OK)
+	   return NULL;
+   buffer_lines = g_strsplit (buffer, "\n", -1);
 
-      ++(tlog->total_lines);
-      tlog->lines = realloc (tlog->lines, sizeof(*(tlog->lines)) * tlog->total_lines);
-      if (!tlog->lines) {
-         ShowErrMessage ("Unable to realloc for lines\n");
-         return (Log *) NULL;
-      }
+   /* count the lines */
+   for (i=0; buffer_lines[i+1] != NULL; i++);
+   tlog->total_lines = i;
 
-      line = malloc (sizeof(**(tlog->lines)));
-      if (!line) {
-         ShowErrMessage ("Unable to malloc for lines[i]\n");
-         return (Log *) NULL;
-      }
-      ParseLine (buffer, line);
-      (tlog->lines)[tlog->total_lines - 1] = line;
-   }
+   tlog->lines = g_malloc (sizeof (*(tlog->lines)) * tlog->total_lines);
+   for (i=0; buffer_lines[i+1] != NULL; i++) {	   
+	   line = g_malloc (sizeof(**(tlog->lines)));
+	   if (!line) {
+		   ShowErrMessage ("Unable to malloc for lines[i]\n");
+		   return NULL;
+	   }
+
+	   ParseLine (buffer_lines[i], line);
+	   (tlog->lines)[i] = line;
+   }   
 
    /* Read log stats */
-   ReadLogStats (tlog);
+   ReadLogStats (tlog, buffer_lines);
+   g_strfreev (buffer_lines);
 
-   fseek(tlog->fp, 0L, SEEK_END); 
-   tlog->offset_end = ftell(tlog->fp);
+   gnome_vfs_seek (tlog->handle, 0L, GNOME_VFS_SEEK_END);
+   result = gnome_vfs_tell (tlog->handle, &(tlog->filesize));
 
-   if (!tlog->offset_end)
-      printf ("Empty file! \n");
+   if (!tlog->filesize)
+	   printf ("Empty file! \n");
 
    /* initialize date headers hash table */
-   tlog->date_headers = g_hash_table_new_full (
-                NULL, NULL, NULL, (GDestroyNotify) gtk_tree_path_free);
+   tlog->date_headers = g_hash_table_new_full (NULL, NULL, NULL, 
+					       (GDestroyNotify) gtk_tree_path_free);
    tlog->first_time = TRUE;
    return tlog;
 
@@ -248,25 +254,27 @@ OpenLogFile (char *filename)
 int
 isLogFile (char *filename)
 {
-   struct stat fstatus;
    char buff[1024];
-   char *token;
+   char **token;
+   char *found_space;
    int i;
-   FILE *fp;
+   GnomeVFSFileInfo info;
+   GnomeVFSHandle *handle;
+   GnomeVFSResult result;
+   GnomeVFSFileSize size;
 
-   stat (filename, &fstatus);
+   result = gnome_vfs_get_file_info (filename, &info, GNOME_VFS_FILE_INFO_DEFAULT);
 
    /* Check that its a regular file       */
-   if (!S_ISREG (fstatus.st_mode))
-   {
+   if (info.type != GNOME_VFS_FILE_TYPE_REGULAR) {
       g_snprintf (buff, sizeof (buff),
 		  _("%s is not a regular file."), filename);
       ShowErrMessage (buff);
       return FALSE;
    }
+
    /* File unreadable                     */
-   if ((fstatus.st_mode & S_IRUSR) == 0)
-   {
+   if (!(info.permissions & GNOME_VFS_PERM_USER_READ)) {
       g_snprintf (buff, sizeof (buff),
 		  _("%s is not user readable. "
       "Either run the program as root or ask the sysadmin to "
@@ -274,11 +282,12 @@ isLogFile (char *filename)
       ShowErrMessage (buff);
       return FALSE;
    }
+
    /* Read first line and check that it has the format
-      of a log file: Date ...
-    */
-   fp = fopen (filename, "r");
-   if (fp == NULL)
+    * of a log file: Date ...    */
+   result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
+
+   if (result != GNOME_VFS_OK)
    {
       /* FIXME: this error message is really quite poor
        * we should state why the open failed
@@ -289,227 +298,96 @@ isLogFile (char *filename)
       ShowErrMessage (buff);
       return FALSE;
    }
-   if (fgets (buff, sizeof (buff), fp) == NULL) {
-       /* Either an error, or empty log */
-       fclose (fp);
-       if (feof(fp)) 
-           /* EOF -> empty file, still a valid log though */
-           return TRUE;
-       else 
-           /* !EOF -> read error */
-           return FALSE;
-   }
-   fclose (fp);
-   token = strtok (buff, " ");
-   /* This is not a good assumption I don't think, especially
-    * if log is internationalized
-    * -George
-   if (strlen (buff) != 3)
-   {
-      g_snprintf (buff, sizeof (buff),
-		  _("%s not a log file."), filename);
-      ShowErrMessage (buff);
-      return FALSE;
-   }
-   */
 
-   if (token == NULL)
-   {
-      g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-      ShowErrMessage (buff);
-      return FALSE;
+   switch (gnome_vfs_read (handle, buff, sizeof(buff), &size)) {
+   case GNOME_VFS_ERROR_EOF :
+	   gnome_vfs_close (handle);
+	   return TRUE;
+	   break;
+   case GNOME_VFS_OK :
+	   gnome_vfs_close (handle);
+	   break;
+   default:
+	   gnome_vfs_close (handle);
+	   return FALSE;
+	   break;
    }
 
-   i = get_month (token);
-
-   if (i == 12)
-   {
-      g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-      ShowErrMessage (buff);
-      return FALSE;
+   found_space = g_strstr_len (buff, 1024, " ");
+   if (found_space == NULL) {
+	   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
+	   ShowErrMessage (buff);
+	   return FALSE;
    }
+   
+   token = g_strsplit (buff, " ", 1);
+   i = get_month (token[0]);
+   g_strfreev (token);
+   if (i == 12) {
+	   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
+	   ShowErrMessage (buff);
+	   return FALSE;
+   }
+
    /* It looks like a log file... */
    return TRUE;
 }
 
-/* ----------------------------------------------------------------------
-   NAME:        ReadNPagesUp
-   DESCRIPTION: 
-   ---------------------------------------------------------------------- */
 
-#ifdef FIXME
-int
-ReadNPagesUp (Log * lg, Page * pg, int n)
+gchar **ReadLastPage (Log *log)
 {
-   Page *cp;
-   int i;
+	GnomeVFSFileSize size, bytes_read;
+	GnomeVFSResult result;
+	gchar *buffer;
 
-   /* Go to place on file. */
-   fseek (lg->fp, pg->firstchpos, SEEK_SET);
+	g_return_val_if_fail (log, NULL);
 
-   cp = pg->prev;
-   /* Read n pages up.             */
-   for (i = 0; i < n; i++)
-   {
-      ReadPageUp (lg, cp);
-      lg->firstpg = cp;
-      lg->lastpg = lg->lastpg->prev;
-      if (cp->isfirstpage == TRUE)
-	 return i+1;
-      cp = cp->prev;
-   }
+	size = GetLogSize (log);
+	g_return_val_if_fail (size > 0, NULL);
 
-   return n;
+	buffer = g_malloc (size);
+
+	result = gnome_vfs_seek (log->handle, GNOME_VFS_SEEK_START, 0L);
+	result = gnome_vfs_read (log->handle, buffer, size, &bytes_read);
+
+	log->filesize = size;
+	result = gnome_vfs_tell (log->handle, &(log->mon_offset));
+
+	if (bytes_read > 0) {
+		gchar **buffer_lines;
+		buffer_lines = g_strsplit (buffer, "\n", -1);
+		return buffer_lines;
+	}
+	return NULL;
 }
 
-/* ----------------------------------------------------------------------
-   NAME:        ReadNPagesDown
-   DESCRIPTION: 
-   ---------------------------------------------------------------------- */
-
-int
-ReadNPagesDown (Log * lg, Page * pg, int n)
+gchar **ReadNewLines (Log *log)
 {
-   Page *cp;
-   int i;
+	GnomeVFSFileSize newsize, size, bytes_read;
+	GnomeVFSResult result;
+	gchar *buffer, **buffer_lines;
+	
+	g_return_val_if_fail (log, NULL);
+	g_return_val_if_fail (log->mon_offset > 0, NULL);
+	
+	newsize = GetLogSize (log);
 
-   /* Go to place on file. */
-   fseek (lg->fp, pg->lastchpos, SEEK_SET);
+	buffer = g_malloc (newsize - log->filesize);
 
-   cp = pg->next;
-   /* Read n pages down.   */
-   for (i = 0; i < n; i++)
-   {
-      ReadPageDown (lg, cp, FALSE /* exec_actions */);
-      lg->lastpg = cp;
-      lg->firstpg = lg->firstpg->next;
-      if (cp->islastpage == TRUE)
-	 return i+1;
-      cp = cp->next;
-   }
+	g_return_val_if_fail (log, NULL);
+	
+	result = gnome_vfs_seek (log->handle, GNOME_VFS_SEEK_START, log->mon_offset);
+	result = gnome_vfs_read (log->handle, buffer, newsize - log->filesize, &bytes_read);
 
-   return n;
+	log->filesize = newsize;
+	result = gnome_vfs_tell (log->handle, &(log->mon_offset));
+	
+	if (bytes_read > 0) {
+		gchar **buffer_lines;
+		buffer_lines = g_strsplit (buffer, "\n", -1);
+		return buffer_lines;
+	}
 }
-
-/* ----------------------------------------------------------------------
-   NAME:        ReadPageUp
-   DESCRIPTION: Reads a page from the log file.
-   ---------------------------------------------------------------------- */
-
-int
-ReadPageUp (Log * lg, Page * pg)
-{
-   LogLine *line;
-   FILE *fp;
-   char *c, buffer[R_BUF_SIZE + 1];
-   int ch;
-   int ln;
-   long int old_pos;
-
-   fp = lg->fp;
-   ln = LINES_P_PAGE - 1;
-
-   pg->lastchpos = ftell (fp);
-   pg->islastpage = FALSE;
-   pg->isfirstpage = FALSE;
-   pg->fl = 0;
-   pg->ll = LINES_P_PAGE - 1;
-
-   /* Tell if we are reading the last page */
-   ch = fgetc (fp);
-   if (ch == EOF)
-     pg->islastpage = TRUE;
-   ungetc (ch,fp);
-
-   while (ln >= pg->fl)
-   {
-      c = buffer;
-      if (fseek (fp, -1L, SEEK_CUR) < 0)
-      {
-	 pg->fl = ln;
-	 pg->isfirstpage = TRUE;
-	 break;
-      }
-      /* Go to end of previous line */
-      ch = fgetc (fp);
-      while (ch != '\n')
-      {
-	 if (fseek (fp, -2L, SEEK_CUR) < 0)
-	 {
-	    /*   ch = fgetc (fp); */
-	    pg->isfirstpage = TRUE;
-	    pg->fl = ln;
-	    break;
-	 }
-	 ch = fgetc (fp);
-      }
-      ungetc (ch, fp);
-
-      /* Read the line now. */
-      old_pos = ftell (fp);
-      if (pg->isfirstpage == FALSE)
-	 fseek (fp, 1L, SEEK_CUR);
-      fgets (buffer, R_BUF_SIZE, fp);
-
-      /* Put cursor back where it was. */
-      fseek (fp, old_pos, SEEK_SET);
-
-      line = &pg->line[ln];
-      ParseLine (buffer, line);
-      ln--;
-   }
-   pg->firstchpos = ftell (fp);
-
-   return pg->isfirstpage;
-}
-#endif
-
-/* ----------------------------------------------------------------------
-   NAME:        ReadPageDown
-   DESCRIPTION: Reads new log lines 
-   ---------------------------------------------------------------------- */
-
-int
-ReadPageDown (Log *log, LogLine ***inp_mon_lines, gboolean exec_actions)
-{
-   char buffer[1024];
-   gint new_lines_read = 0;
-   FILE *fp;
-   LogLine *line;
-   LogLine **new_mon_lines = NULL;
-   
-   g_return_val_if_fail (log != NULL, FALSE);
-
-   fp = log->fp;
-
-   while (fgets (buffer, sizeof (buffer), fp)) {
-       ++new_lines_read;
-       new_mon_lines = realloc (new_mon_lines,
-               sizeof(*(new_mon_lines)) * new_lines_read);
-
-       if (!new_mon_lines) {
-           ShowErrMessage ("Unable to realloc for new_mon_lines\n");
-           return 0; 
-       }
-
-       line = malloc (sizeof(**(new_mon_lines)));
-       if (!line) {
-           ShowErrMessage ("Unable to malloc for line\n");
-           return 0;
-       }
-       ParseLine (buffer, line);
-       new_mon_lines[new_lines_read - 1] = line;
-
-       if (exec_actions)
-           exec_action_in_db (log, line, actions_db);
-   }
-   *inp_mon_lines = new_mon_lines;
-   log->offset_end = ftell (fp);
-
-   return new_lines_read;
-
-}
-
 
 /* ----------------------------------------------------------------------
    NAME:        ParseLine
@@ -673,20 +551,23 @@ ParseLine (char *buff, LogLine * line)
    All dates are given with respect to the 1/1/1970
    and are then corrected to the correct year once we
    reach the end.
+   buffer_lines must NOT be freed.
    ---------------------------------------------------------------------- */
 
 void
-ReadLogStats (Log * log)
+ReadLogStats (Log *log, gchar **buffer_lines)
 {
-   FILE *fp;
-   char buffer[256];
-   long filemark;
+   gchar *buffer;
    int offsetyear, lastyear, thisyear;
-   int nl;
+   int nl, i;
    time_t curdate, newdate, correction;
    DateMark *curmark;
    struct stat filestat;
    struct tm *tmptm, footm;
+   GnomeVFSResult result;
+   GnomeVFSFileInfo info;
+   GnomeVFSFileOffset pos;
+   GnomeVFSFileSize size;
 
    /* Clear struct.      */
    log->lstats.startdate = 0;
@@ -695,33 +576,28 @@ ReadLogStats (Log * log)
    log->lstats.mtime = 0;
    log->lstats.size = 0;
 
-   fp = log->fp;
-   if (fp == NULL)
+   if (log->handle == NULL)
       return;
 
-   rewind (fp);
-   stat (log->name, &filestat);
-   log->lstats.mtime = filestat.st_mtime;
-   log->lstats.size = filestat.st_size;
+   result = gnome_vfs_get_file_info_from_handle (log->handle, &info, GNOME_VFS_FILE_INFO_DEFAULT);
+   log->lstats.mtime = info.mtime;
+   log->lstats.size = info.size;
 
    /* Make sure we have at least a starting date. */
    nl = 0;
    curdate = -1;
-   while (curdate < 0)
+   while ((curdate < 0) && (buffer_lines[nl]!=NULL))
    {
-      filemark = ftell (fp);
-      if (fgets (buffer, 255, fp) == NULL)
-	 return;
-      curdate = GetDate (buffer);
+	   curdate = GetDate (buffer_lines[nl]);
+	   nl++;
    }
    log->lstats.startdate = curdate;
-   nl++;
 
    /* Start building the list */
+
    offsetyear = 0;
    curmark = malloc (sizeof (DateMark));
-   if (curmark == NULL)
-   {
+   if (curmark == NULL) {
       ShowErrMessage (_("ReadLogStats: out of memory"));
       exit (0);
    }
@@ -730,50 +606,43 @@ ReadLogStats (Log * log)
    curmark->year = offsetyear;
    curmark->next = NULL;
    curmark->prev = NULL;
-   curmark->offset = filemark;
+   curmark->offset = info.size;
    curmark->ln = nl;
 
-   /* Count lines up to end */
-   filemark = ftell (fp);
-   while (fgets (buffer, 255, fp) != NULL)
-   {
-     nl++;
-     newdate = GetDate (buffer);
-     if (newdate < 0)
-       {
-	 /*  lines continues */
-	 nl--;
-	 continue;
-       }
-     if (isSameDay (newdate, curdate) )
-       {
-	 filemark = ftell (fp);
-	 continue;
-       }
-     curmark->next = malloc (sizeof (DateMark));
-     if (curmark->next == NULL)
-       {
-	 ShowErrMessage (_("ReadLogStats: out of memory"));
-	 exit (0);
-       }
-     curmark->next->prev = curmark;
-     curmark = curmark->next;
-     curmark->time = newdate;
-     if (newdate < curdate)	/* The newdate is next year */
-       offsetyear++;
-     curmark->year = offsetyear;
-     curmark->next = NULL;
-     curmark->offset = filemark;
-     curmark->ln = nl;
-     curdate = newdate;
-     filemark = ftell (fp);
+   /* Count days appearing in the log */
+
+   i = 0;
+   for (i=0; buffer_lines[i]!=NULL; i++) {
+	   newdate = GetDate (buffer_lines[nl]);
+
+	   if (newdate < 0)
+		   continue;
+	   if (isSameDay (newdate, curdate) )
+		   continue;
+	   
+	   curmark->next = malloc (sizeof (DateMark));
+	   if (curmark->next == NULL) {
+		   ShowErrMessage (_("ReadLogStats: out of memory"));
+		   exit (0);
+	   }
+
+	   curmark->next->prev = curmark;
+	   curmark = curmark->next;
+	   curmark->time = newdate;
+	   if (newdate < curdate)	/* The newdate is next year */
+		   offsetyear++;
+	   curmark->year = offsetyear;
+	   curmark->next = NULL;
+	   curmark->ln = nl;
+	   curdate = newdate;
    }
-   
+
    log->lstats.enddate = curdate;
 
    /* Correct years now. We assume that the last date on the log
       is the date last accessed */
-   curdate = filestat.st_mtime;
+
+   curdate = info.mtime;
    tmptm = localtime (&curdate);
    thisyear = tmptm->tm_year;
    lastyear = offsetyear;
@@ -782,50 +651,48 @@ ReadLogStats (Log * log)
    footm.tm_isdst = 0;
    footm.tm_mday = 1;
    curmark = log->lstats.firstmark;
-   while (curmark != NULL)
-   {
-      footm.tm_year = (curmark->year - lastyear) + thisyear;
-      correction = mktime (&footm);
-/*       fprintf (stderr, "Antes de corregir: [%s]\n", ctime (&curmark->time)); */
-      if (IsLeapYear (curmark->year - lastyear + thisyear))
-	 curmark->time += 24 * 60 * 60;		/*  Add one day */
 
+   while (curmark != NULL) {
+	   footm.tm_year = (curmark->year - lastyear) + thisyear;
+	   correction = mktime (&footm);
+	   if (IsLeapYear (curmark->year - lastyear + thisyear))
+		   curmark->time += 24 * 60 * 60;		/*  Add one day */
+	   
 #if defined(__NetBSD__) || defined(__FreeBSD__)
-      curmark->time += correction - tmptm->tm_gmtoff;
+	   curmark->time += correction - tmptm->tm_gmtoff;
 #else
-      curmark->time += correction - timezone;
+	   curmark->time += correction - timezone;
 #endif
-
-      memcpy (&curmark->fulldate, localtime (&curmark->time), sizeof (struct tm));
-
-/*       fprintf (stderr, "%s\n", ctime (&curmark->time)); */
-      if (curmark->next != NULL)
-	 curmark = curmark->next;
-      else
-      {
-	 log->lstats.lastmark = curmark;
-	 break;
-      }
+	   
+	   memcpy (&curmark->fulldate, localtime (&curmark->time), sizeof (struct tm));
+	   
+	   fprintf (stderr, "%s\n", ctime (&curmark->time)); 
+	   if (curmark->next != NULL)
+		   curmark = curmark->next;
+	   else {
+		   log->lstats.lastmark = curmark;
+		   break;
+	   }
    }
-
+   
    log->curmark = log->lstats.lastmark;
 
    /* Correct start and end year in lstats. */
    footm.tm_year = thisyear;
    correction = mktime (&footm);
    if (IsLeapYear (thisyear))
-      log->lstats.enddate += 24 * 60 * 60;	/*  Add one day */
-
+	   log->lstats.enddate += 24 * 60 * 60;	/*  Add one day */
+   
 #if defined(__NetBSD__) || defined(__FreeBSD__)
    log->lstats.enddate += correction - tmptm->tm_gmtoff;
 #else
    log->lstats.enddate += correction - timezone;
 #endif
-
+   
    footm.tm_year = thisyear - lastyear;
    correction = mktime (&footm);
    if (IsLeapYear (thisyear - lastyear))
-      log->lstats.startdate += 24 * 60 * 60;	/*  Add one day */
+	   log->lstats.startdate += 24 * 60 * 60;	/*  Add one day */
 
 #if defined(__NetBSD__) || defined(__FreeBSD__)
    log->lstats.startdate += correction - tmptm->tm_gmtoff;
@@ -845,154 +712,72 @@ ReadLogStats (Log * log)
 void
 UpdateLogStats( Log *log )
 {
-   FILE *fp;
-   char buffer[256];
-   long filemark;
-   int thisyear, nl;
+   gchar *buffer;
+   gchar **buffer_lines;
+   int i, thisyear, nl, newbytes;
    time_t curdate, newdate;
    DateMark *curmark;
    struct tm *tmptm;
+   GnomeVFSFileSize filesize;
+   GnomeVFSFileSize read_bytes;
+   GnomeVFSResult result;
 
    if (log == NULL)
      return;
-
-   fp = log->fp;
-   if (fp == NULL)
-      return;
 
    curmark = log->lstats.lastmark;
    curdate = log->lstats.enddate;
    tmptm = localtime (&curdate);
    thisyear = tmptm->tm_year;
-   fseek( fp, curmark->offset, SEEK_SET);
 
-   /* Read last line again and discard it */
-   fgets (buffer, 255, fp);
+   /* Count the new bytes that were added to the file since last time */
+   result = gnome_vfs_seek (log->handle, GNOME_VFS_SEEK_END, 0L);
+   filesize = gnome_vfs_tell (log->handle, &(filesize));
+   newbytes = filesize - curmark->offset;
 
-   /* Add all new entries to the list */
-   filemark = ftell (fp);
+   /* Read these new bytes */
+   gnome_vfs_seek (log->handle, curmark->offset, GNOME_VFS_SEEK_START);   
+   buffer = g_malloc (newbytes);
+   result = gnome_vfs_read (log->handle, buffer, newbytes, &read_bytes);
+   buffer_lines = g_strsplit (buffer, "\n", -1);
+   
+   /* Go back to where we were */
+   gnome_vfs_seek (log->handle, log->filesize, 0L);
+
    nl=0;
-   while (fgets (buffer, 255, fp) != NULL)
-   {
-     nl++;
-     newdate = GetDate (buffer);
-     if (newdate < 0 || isSameDay (newdate, curdate) )
-       {
-	 filemark = ftell (fp);
-	 continue;
-       }
-     curmark->next = malloc (sizeof (DateMark));
-     if (curmark->next == NULL)
-       {
-	 ShowErrMessage (_("ReadLogStats: out of memory"));
-	 exit (0);
-       }
-     curmark->next->prev = curmark;
-     curmark = curmark->next;
-     curmark->time = newdate;
-     if (newdate < curdate)	/* The newdate is next year */
-       thisyear++;
-     curmark->year = thisyear;
-     curmark->next = NULL;
-     curmark->offset = filemark;
-     curdate = newdate;
-     filemark = ftell (fp);
+   for (i=1; buffer_lines[i]!=NULL; i++) {
+	   nl++;
+	   newdate = GetDate (buffer_lines[i]);
+	   
+	   if (newdate < 0 || isSameDay (newdate, curdate) )
+		   continue;
+	   curmark->next = malloc (sizeof (DateMark));
+	   if (curmark->next == NULL) {
+		   ShowErrMessage (_("ReadLogStats: out of memory"));
+		   exit (0);
+	   }
+	   curmark->next->prev = curmark;
+	   curmark = curmark->next;
+	   curmark->time = newdate;
+	   if (newdate < curdate)	/* The newdate is next year */
+		   thisyear++;
+	   curmark->year = thisyear;
+	   curmark->next = NULL;
+	   curmark->offset = filesize;
+	   curdate = newdate;
    }
    
    log->lstats.enddate = curdate;
    log->lstats.lastmark = curmark;
    log->lstats.numlines += nl;
 
+   g_strfreev (buffer_lines);
+   g_free (buffer);
+
    return;
 }
 
 
-
-/* ----------------------------------------------------------------------
-   NAME:          MoveToMark
-   DESCRIPTION:   From the current mark read NUM_PAGES/2 pages ahead and
-                  NUM_PAGES/2 pages behind (if possible).
-   ---------------------------------------------------------------------- */
-
-#ifdef FIXME
-void
-MoveToMark (Log *log)
-{
-  DateMark *mark;
-  FILE *fp;
-  Page *middlepg;
-  int pagesread, pagesdown, i;
-  
-  g_return_if_fail (log);
-  
-  mark = log->curmark;
-  g_return_if_fail (mark);
-  fp = log->fp;
-  
-  pagesdown = NUM_PAGES>>1;
-  
-  /* Read relative to middle page */
-  middlepg = log->lastpg;
-  for(i=0;i<pagesdown;i++)
-    middlepg = middlepg->prev;
-  
-  /* Move file pointer to the current offset 
-     into the file */
-  if (mark->offset > 1)
-    fseek(fp, mark->offset-1, SEEK_SET);
-  else
-    fseek(fp, mark->offset, SEEK_SET);
-  ReadPageDown(log, middlepg, FALSE /* exec_actions */);
-  if (middlepg->islastpage)
-    {
-      middlepg = log->lastpg;
-      if (mark->offset > 1)
-	fseek(fp, mark->offset-1, SEEK_SET);
-      else
-	fseek(fp, mark->offset, SEEK_SET);
-      ReadPageDown(log, middlepg, FALSE /* exec_actions */);
-      ReadNPagesUp(log, middlepg, NUM_PAGES-1);
-      log->currentpg = middlepg;
-      return;
-    }
-  
-  if (middlepg->isfirstpage)
-    {
-      middlepg = log->firstpg;
-      fseek(fp, mark->offset, SEEK_SET);
-      ReadPageDown(log, middlepg, FALSE /* exec_actions */);
-      ReadNPagesDown(log, middlepg, NUM_PAGES-1);
-      log->currentpg = middlepg;
-      return;
-    }
-  
-  pagesread = ReadNPagesDown (log, middlepg, NUM_PAGES-1);
-  ReadNPagesUp (log, middlepg, MAX (pagesdown, (NUM_PAGES-1-pagesread)));
-
-  log->currentpg = middlepg;
-   
-}
-#endif
-
-
-
-#ifdef FIXME
-/* ----------------------------------------------------------------------
-   NAME:	UpdateLastPage
-   DESCRIPTION:	Re-read the last log page.
-   ---------------------------------------------------------------------- */
-
-void
-UpdateLastPage (Log *log)
-{
-
-  /* Check that the last page is in the list. */
-  if (!log->lastpg->islastpage)
-    return;
-
-
-}
-#endif
 
 /* ----------------------------------------------------------------------
    NAME:          isSameDay
@@ -1088,9 +873,9 @@ CloseLog (Log * log)
    g_return_if_fail (log);
 
    /* Close file */
-   if (log->fp != NULL) {
-       fclose (log->fp);
-       log->fp = NULL;
+   if (log->handle != NULL) {
+	   gnome_vfs_close (log->handle);
+	   log->handle = NULL;
    }
 
    /* Free all used memory */
@@ -1117,37 +902,293 @@ CloseLog (Log * log)
 int
 WasModified (Log *log)
 {
-  struct stat filestatus;
+	GnomeVFSResult result;
+	GnomeVFSFileInfo info;
 
-  stat (log->name, &filestatus);
-  if (filestatus.st_mtime != log->lstats.mtime) {
-      log->lstats.mtime = filestatus.st_mtime;
-      return TRUE;
-  } else
-      return FALSE;
+	result = gnome_vfs_get_file_info_from_handle (log->handle, 
+						      &(info),
+						      GNOME_VFS_FILE_INFO_DEFAULT);
+	if (info.mtime != log->lstats.mtime) {
+		log->lstats.mtime = info.mtime;
+		return TRUE;
+	} else
+		return FALSE;
+}
 
+
+/* Unmaintained functions that may be deleted */
+
+#ifdef FIXME
+
+/* ----------------------------------------------------------------------
+   NAME:        ReadNPagesUp
+   DESCRIPTION: 
+   ---------------------------------------------------------------------- */
+
+int
+ReadNPagesUp (Log * lg, Page * pg, int n)
+{
+   Page *cp;
+   int i;
+
+   /* Go to place on file. */
+   fseek (lg->fp, pg->firstchpos, SEEK_SET);
+
+   cp = pg->prev;
+   /* Read n pages up.             */
+   for (i = 0; i < n; i++)
+   {
+      ReadPageUp (lg, cp);
+      lg->firstpg = cp;
+      lg->lastpg = lg->lastpg->prev;
+      if (cp->isfirstpage == TRUE)
+	 return i+1;
+      cp = cp->prev;
+   }
+
+   return n;
 }
 
 /* ----------------------------------------------------------------------
-   NAME:        reverse
-   DESCRIPTION: Reverse the string.
+   NAME:        ReadNPagesDown
+   DESCRIPTION: 
+   ---------------------------------------------------------------------- */
+
+int
+ReadNPagesDown (Log * lg, Page * pg, int n)
+{
+   Page *cp;
+   int i;
+
+   /* Go to place on file. */
+   fseek (lg->fp, pg->lastchpos, SEEK_SET);
+
+   cp = pg->next;
+   /* Read n pages down.   */
+   for (i = 0; i < n; i++)
+   {
+      ReadPageDown (lg, cp, FALSE /* exec_actions */);
+      lg->lastpg = cp;
+      lg->firstpg = lg->firstpg->next;
+      if (cp->islastpage == TRUE)
+	 return i+1;
+      cp = cp->next;
+   }
+
+   return n;
+}
+
+/* ----------------------------------------------------------------------
+   NAME:        ReadPageUp
+   DESCRIPTION: Reads a page from the log file.
+   ---------------------------------------------------------------------- */
+
+int
+ReadPageUp (Log * lg, Page * pg)
+{
+   LogLine *line;
+   FILE *fp;
+   char *c, buffer[R_BUF_SIZE + 1];
+   int ch;
+   int ln;
+   long int old_pos;
+
+   fp = lg->fp;
+   ln = LINES_P_PAGE - 1;
+
+   pg->lastchpos = ftell (fp);
+   pg->islastpage = FALSE;
+   pg->isfirstpage = FALSE;
+   pg->fl = 0;
+   pg->ll = LINES_P_PAGE - 1;
+
+   /* Tell if we are reading the last page */
+   ch = fgetc (fp);
+   if (ch == EOF)
+     pg->islastpage = TRUE;
+   ungetc (ch,fp);
+
+   while (ln >= pg->fl)
+   {
+      c = buffer;
+      if (fseek (fp, -1L, SEEK_CUR) < 0)
+      {
+	 pg->fl = ln;
+	 pg->isfirstpage = TRUE;
+	 break;
+      }
+      /* Go to end of previous line */
+      ch = fgetc (fp);
+      while (ch != '\n')
+      {
+	 if (fseek (fp, -2L, SEEK_CUR) < 0)
+	 {
+	    /*   ch = fgetc (fp); */
+	    pg->isfirstpage = TRUE;
+	    pg->fl = ln;
+	    break;
+	 }
+	 ch = fgetc (fp);
+      }
+      ungetc (ch, fp);
+
+      /* Read the line now. */
+      old_pos = ftell (fp);
+      if (pg->isfirstpage == FALSE)
+	 fseek (fp, 1L, SEEK_CUR);
+      fgets (buffer, R_BUF_SIZE, fp);
+
+      /* Put cursor back where it was. */
+      fseek (fp, old_pos, SEEK_SET);
+
+      line = &pg->line[ln];
+      ParseLine (buffer, line);
+      ln--;
+   }
+   pg->firstchpos = ftell (fp);
+
+   return pg->isfirstpage;
+}
+
+/* ----------------------------------------------------------------------
+   NAME:        ReadPageDown
+   DESCRIPTION: Reads new log lines 
+   ---------------------------------------------------------------------- */
+
+int
+ReadPageDown (Log *log, LogLine ***inp_mon_lines, gboolean exec_actions)
+{
+	gchar *buffer;
+	gint new_lines_read = 0;
+	FILE *fp;
+	LogLine *line;
+	LogLine **new_mon_lines = NULL;	 
+	GnomeVFSFileSize filesize;
+	GnomeVFSFileSize size_read;
+	GnomeVFSResult result;
+	
+	g_return_val_if_fail (log != NULL, FALSE);
+	
+	/* Count the new bytes that were added to the file since last time */
+	result = gnome_vfs_seek (log->handle, GNOME_VFS_SEEK_END, 0L);
+	filesize = gnome_vfs_tell (log->handle, &(filesize));
+	result = gnome_vfs_seek (log->handle, log->filesize, 0L);
+	
+	if ((filesize - log->filesize) > 0) {
+	
+		buffer = g_malloc (filesize - log->filesize);
+		result = gnome_vfs_read (log->handle, buffer, filesize - log->filesize, &size_read);
+		
+		if (size_read > 0) {
+			gchar **buffer_lines;
+			int i;
+			
+			buffer_lines = g_strsplit (buffer, "\n", -1);
+			for (i=0; buffer_lines[i] != NULL; i++) {
+				++new_lines_read;
+				new_mon_lines = realloc (new_mon_lines,
+							 sizeof(*(new_mon_lines)) * new_lines_read);
+				
+				if (!new_mon_lines) {
+					ShowErrMessage ("Unable to realloc for new_mon_lines\n");
+					return 0; 
+				}
+				
+				line = malloc (sizeof(**(new_mon_lines)));
+				if (!line) {
+					ShowErrMessage ("Unable to malloc for line\n");
+					return 0;
+				}
+				ParseLine (buffer, line);
+				new_mon_lines[new_lines_read - 1] = line;
+				
+				if (exec_actions)
+					exec_action_in_db (log, line, actions_db);
+			}
+			*inp_mon_lines = new_mon_lines;
+		} else new_lines_read = 0;
+	} else new_lines_read = 0;
+
+	return new_lines_read;
+}
+
+/* ----------------------------------------------------------------------
+   NAME:          MoveToMark
+   DESCRIPTION:   From the current mark read NUM_PAGES/2 pages ahead and
+                  NUM_PAGES/2 pages behind (if possible).
    ---------------------------------------------------------------------- */
 
 void
-reverse (char *line)
+MoveToMark (Log *log)
 {
-   int i, j, len;
-   char ch;
+  DateMark *mark;
+  FILE *fp;
+  Page *middlepg;
+  int pagesread, pagesdown, i;
+  
+  g_return_if_fail (log);
+  
+  mark = log->curmark;
+  g_return_if_fail (mark);
+  fp = log->fp;
+  
+  pagesdown = NUM_PAGES>>1;
+  
+  /* Read relative to middle page */
+  middlepg = log->lastpg;
+  for(i=0;i<pagesdown;i++)
+    middlepg = middlepg->prev;
+  
+  /* Move file pointer to the current offset 
+     into the file */
+  if (mark->offset > 1)
+    fseek(fp, mark->offset-1, SEEK_SET);
+  else
+    fseek(fp, mark->offset, SEEK_SET);
+  ReadPageDown(log, middlepg, FALSE /* exec_actions */);
+  if (middlepg->islastpage)
+    {
+      middlepg = log->lastpg;
+      if (mark->offset > 1)
+	fseek(fp, mark->offset-1, SEEK_SET);
+      else
+	fseek(fp, mark->offset, SEEK_SET);
+      ReadPageDown(log, middlepg, FALSE /* exec_actions */);
+      ReadNPagesUp(log, middlepg, NUM_PAGES-1);
+      log->currentpg = middlepg;
+      return;
+    }
+  
+  if (middlepg->isfirstpage)
+    {
+      middlepg = log->firstpg;
+      fseek(fp, mark->offset, SEEK_SET);
+      ReadPageDown(log, middlepg, FALSE /* exec_actions */);
+      ReadNPagesDown(log, middlepg, NUM_PAGES-1);
+      log->currentpg = middlepg;
+      return;
+    }
+  
+  pagesread = ReadNPagesDown (log, middlepg, NUM_PAGES-1);
+  ReadNPagesUp (log, middlepg, MAX (pagesdown, (NUM_PAGES-1-pagesread)));
 
-   len = strlen (line);
-   j = len - 1;
-   for (i = 0; i < (len >> 1); i++)
-   {
-      ch = line[i];
-      line[i] = line[j];
-      line[j] = ch;
-      j--;
-   }
-
-   return;
+  log->currentpg = middlepg;
+   
 }
+
+/* ----------------------------------------------------------------------
+   NAME:	UpdateLastPage
+   DESCRIPTION:	Re-read the last log page.
+   ---------------------------------------------------------------------- */
+
+void
+UpdateLastPage (Log *log)
+{
+
+  /* Check that the last page is in the list. */
+  if (!log->lastpg->islastpage)
+    return;
+
+
+}
+#endif

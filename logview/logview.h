@@ -25,6 +25,7 @@
 #include <time.h>
 #include "gtk/gtk.h"
 #include <gconf/gconf-client.h>
+#include <libgnomevfs/gnome-vfs.h>
 
 #define LINES_P_PAGE             10
 #define NUM_PAGES                5 
@@ -147,23 +148,25 @@ typedef struct
 
 typedef struct
 {
-  FILE *fp;
-  DateMark *curmark;
-  char name[255];
-  CalendarData *caldata;
-  LogStats lstats;
-  gint current_line_no; /* indicates the line that is selected */
-  gint total_lines; /* no of lines in the file */
-  LogLine **lines; /* actual lines */
-  gboolean first_time;
-  GtkTreePath *current_path;
-  GtkTreePath *expand_paths[32];
-  GHashTable *date_headers; /* stores paths to date headers */
+	GnomeVFSHandle *handle;
+	GnomeVFSFileSize filesize;
 
-  /* Monitor info */
-  MonActions alert;
-  long offset_end;
-  int mon_numlines;
+	DateMark *curmark;
+	char name[255];
+	CalendarData *caldata;
+	LogStats lstats;
+	gint current_line_no; /* indicates the line that is selected */
+	gint total_lines; /* no of lines in the file */
+	LogLine **lines; /* actual lines */
+	gboolean first_time;
+	GtkTreePath *current_path;
+	GtkTreePath *expand_paths[32];
+	GHashTable *date_headers; /* stores paths to date headers */
+	
+	/* Monitor info */
+	MonActions alert;
+	GnomeVFSFileOffset mon_offset;
+	GnomeVFSMonitorHandle *mon_handle;
 }
 Log;
 

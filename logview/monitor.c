@@ -28,8 +28,14 @@ void
 monitor_stop (LogviewWindow *window)
 {
 	if (window->timer_tag > 0) {
+		GtkListStore *list;
+		list = (GtkListStore *) gtk_tree_view_get_model (GTK_TREE_VIEW(window->mon_list_view));
+		gtk_list_store_clear (list);
+
 		window->timer_tag = 0;
 		window->monitored = FALSE;
+		window->curlog->mon_offset = 0;
+		gtk_list_store_clear (list);
 	}
 }
 	
@@ -56,7 +62,7 @@ GtkWidget *monitor_create_widget (LogviewWindow *window)
 	gtk_tree_selection_set_mode
 		( (GtkTreeSelection *)gtk_tree_view_get_selection
 		  (GTK_TREE_VIEW (clist_view)),
-		  GTK_SELECTION_BROWSE);
+		  GTK_SELECTION_MULTIPLE);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (swin),
 					GTK_POLICY_AUTOMATIC,
 					GTK_POLICY_AUTOMATIC);
@@ -68,7 +74,7 @@ GtkWidget *monitor_create_widget (LogviewWindow *window)
 	window->mon_list_view = (GtkWidget *) clist_view;
 
 	if (window->curlog)
-		mon_read_last_page (window);
+		mon_update_display (window);
 
 	return swin;
 }
@@ -81,98 +87,85 @@ GtkWidget *monitor_create_widget (LogviewWindow *window)
 void
 go_monitor_log (LogviewWindow *window)
 {
-	g_return_if_fail (window->curlog);
+	GnomeVFSResult result;
+	Log *log = window->curlog;
+
+	g_return_if_fail (log);
+	
 	/* Setup timer to check log */
 	/* the timeout is automatically stopped when mon_check_logs returns false. */
 	window->timer_tag = g_timeout_add (1000, mon_check_logs, window);
+
+	/* Fixme : This doesnt work yet */
+	/*
+	  gnome_vfs_monitor_add (&(log->mon_handle), log->name, GNOME_VFS_MONITOR_FILE,
+			       (GnomeVFSMonitorCallback) mon_check_logs, window);
+	*/
 }
 
+
 /* ----------------------------------------------------------------------
-   NAME:	mon_read_last_page
-   DESCRIPTION:	read last lines of the log into the monitor window.
+   NAME:	mon_update_display
+   DESCRIPTION:	Update the monitor display by reading the last page of the log or
+   newly-added lines.
    ---------------------------------------------------------------------- */
 
 void
-mon_read_last_page (LogviewWindow *window)
+mon_update_display (LogviewWindow *window)
 {
    char buffer[1024];
-   int i;
-   GtkTreeIter iter;
+   gchar **buffer_lines;
+   int nlines, nlines_to_show;
+   GtkTreeIter iter, parent, *parent_pointer = &(parent);
    GtkListStore *list;
    GtkTreePath *path;
-   gint num_of_lines_to_display;
+   GtkTreeSelection *selection;
    Log *log = window->curlog;
 
    g_return_if_fail (log);
-   g_return_if_fail (window->mon_list_view);
- 
-   log->mon_numlines = 0;
-   
-   if (!log->total_lines)
-       return; 
-
-   if (log->total_lines < 5)
-       num_of_lines_to_display = log->total_lines;
+      
+   /* Read either the whole file to get the last page or only the new lines */
+   if (log->mon_offset == 0)
+	   buffer_lines = ReadLastPage (log);
    else
-       num_of_lines_to_display = 5;
+	   buffer_lines = ReadNewLines (log);
 
-   for (i = num_of_lines_to_display; i; --i) {
-       mon_format_line (buffer, sizeof(buffer), 
-                        (log->lines)[log->total_lines - i]);
-       list = (GtkListStore *)
-               gtk_tree_view_get_model (GTK_TREE_VIEW(window->mon_list_view));
-       gtk_list_store_append (list, &iter);
-       gtk_list_store_set (list, &iter, 0, buffer, -1);
-       log->mon_numlines++;
+   if (buffer_lines[0] != NULL) {
+	   LogLine *line;
+	   int i;
+
+	   list = (GtkListStore *) gtk_tree_view_get_model (GTK_TREE_VIEW(window->mon_list_view));
+	   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(window->mon_list_view));
+	   if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL(list), &parent) == FALSE)
+		   parent_pointer = NULL;
+	   gtk_tree_selection_unselect_all (selection);
+
+	   line = g_new0 (LogLine, 1);
+
+	   /* Count the lines */
+	   for (nlines=0; buffer_lines[nlines]!=NULL; nlines++);
+	   nlines_to_show = MIN (MONITORED_LINES, nlines);
+
+	   for (i=nlines; i >= (nlines-nlines_to_show); --i) {
+		   if (buffer_lines[i] != NULL) {
+			   ParseLine (buffer_lines[i], line);
+			   if (line->date > 0) {
+				   mon_format_line (buffer, sizeof (buffer), line);
+				   gtk_list_store_insert_before (list, &iter, parent_pointer);
+				   gtk_list_store_set (list, &iter, 0, buffer, -1);
+				   parent = iter;
+				   gtk_tree_selection_select_iter (selection, &iter);
+			   }
+		   }
+	   }
+	   g_free (line);
+	   g_strfreev (buffer_lines);
+
+	   path = gtk_tree_model_get_path (GTK_TREE_MODEL(list), &iter);
+	   gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->mon_list_view), path, NULL,
+							FALSE, 0, 0);
+	   gtk_tree_path_free (path);
    }
-   path = gtk_tree_model_get_path (GTK_TREE_MODEL (list), &iter);
-   gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->mon_list_view),
-       path, NULL, TRUE, 0, 0);
-   gtk_tree_path_free (path);
- 
-}
-
-/* ----------------------------------------------------------------------
-   NAME:	mon_read_new_lines
-   DESCRIPTION:	Read last lines in the log file and add to the monitor
-   		window.
-   ---------------------------------------------------------------------- */
-
-static void
-mon_read_new_lines (LogviewWindow *window)
-{
-   char buffer[1024];
-   int i;
-   gint lines_read = 0;
-   LogLine **lines;
-   GtkTreeIter iter;
-   GtkTreePath *path;
-   GtkListStore *list;
-   Log *log = window->curlog;
-
-   g_return_if_fail (log);
-
-   fseek (log->fp, log->offset_end, SEEK_SET);
-
-   list = (GtkListStore *)
-   gtk_tree_view_get_model (GTK_TREE_VIEW(window->mon_list_view));
-
-   /* Read new lines */
-   lines_read = ReadPageDown (log, &lines, FALSE);
-
-   for (i = 0;  i < lines_read; ++i ) {
-	   mon_format_line (buffer, sizeof (buffer), lines[i]);
-	   gtk_list_store_insert_before (list, &iter, NULL);
-	   gtk_list_store_set (list, &iter, 0, buffer, -1);
-	   ++log->mon_numlines; 
-   } 
-   if (lines_read) {
-       path = gtk_tree_model_get_path (GTK_TREE_MODEL (list), &iter);
-       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->mon_list_view),
-           path, NULL, TRUE, 0, 0);
-       gtk_tree_path_free (path);
-   }
-
 }
 
 /* ----------------------------------------------------------------------
@@ -202,8 +195,11 @@ mon_format_line (char *buffer, int bufsize, LogLine *line)
    DESCRIPTION:	Routinly called to check wheter the logs have changed.
    ---------------------------------------------------------------------- */
 
-gboolean
-mon_check_logs (gpointer data)
+/*void
+mon_check_logs (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri, 
+		const gchar *info_uri, GnomeVFSMonitorEventType event_type, 
+		gpointer data)*/
+gboolean mon_check_logs (gpointer data)
 {
 	LogviewWindow *window = data;
 	g_return_if_fail (window->curlog);
@@ -212,6 +208,6 @@ mon_check_logs (gpointer data)
 		return FALSE;
 
 	if (WasModified (window->curlog))
-		mon_read_new_lines (window);
+		mon_update_display (window);
 	return TRUE;
 }
