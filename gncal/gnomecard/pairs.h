@@ -15,7 +15,7 @@ struct pair prop_lookup[] = {
 		{          VCNameProp, PROP_NAME },
 		{         VCPhotoProp, PROP_PHOTO },
 		{     VCBirthDateProp, PROP_BDAY },
-		{           VCAdrProp, PROP_DELADDR },
+		{           VCAdrProp, PROP_POSTADDR },
 		{ VCDeliveryLabelProp, PROP_DELLABEL },
 		{     VCTelephoneProp, PROP_PHONE },
 		{  VCEmailAddressProp, PROP_EMAIL },

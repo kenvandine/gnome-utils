@@ -213,13 +213,8 @@ gnomecard_list_button_press(GtkCList *list, GdkEventButton *event,
 		return;
 	    }
 
-	    g_message("Edit senstivity is %d",items[0].sensitive);
-	    g_message("card use is %d",((Card *) gnomecard_curr_crd->data)->flag);
 	    /* see if card if is being editted */
-	    if (((Card *) tmp->data)->flag)
-		items[0].sensitive = FALSE;
-	    else
-		items[0].sensitive = TRUE;
+	    items[0].sensitive = !((Card *) tmp->data)->flag;
 
 	    gnomecard_set_curr(tmp);
 	    popup_menu (items, sizeof (items) / sizeof (items[0]), event);

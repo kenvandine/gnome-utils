@@ -125,7 +125,7 @@ card_new(void)
 	c->deladdr.prop.type = PROP_DELADDR_LIST;
 	c->dellabel.prop.type = PROP_DELLABEL_LIST;
 */
-	c->postal.prop.type = PROP_DELADDR_LIST;
+	c->postal.prop.type = PROP_POSTADDR_LIST;
 	c->phone.prop.type = PROP_PHONE_LIST;
 	c->email.prop.type = PROP_EMAIL_LIST;
 	c->mailer.prop.type = PROP_MAILER;
@@ -875,7 +875,7 @@ card_create_from_vobject (VObject *vcrd)
 			crd->bday = strtoCardBDay(str_val(o));
 			free(the_str);
 			break;
-		 case PROP_DELADDR:
+		 case PROP_POSTADDR:
 			{
 				CardPostAddr *c;
 				c = get_CardPostAddr(o);
