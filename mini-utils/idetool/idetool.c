@@ -253,7 +253,7 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	int id=1;
 	struct hd_driveid hd;
 	int pmode;
-	GtkWidget *vbox;
+	GtkWidget *vbox, *sw;
 	GtkCList *cl;
 	char *titles[2]= { _("Setting"), _("Value") };
 	
@@ -293,8 +293,11 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD);
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook), vbox, gtk_label_new(drive));
 	cl=GTK_CLIST(gtk_clist_new(2));
+	sw=gtk_scrolled_window_new (NULL, NULL);
+	gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (cl));
 	gtk_clist_set_selection_mode(cl, GTK_SELECTION_BROWSE);
-	gtk_clist_set_policy(cl, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (sw),
+				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_clist_column_titles_passive(cl);
 	gtk_clist_set_column_width(cl, 0, 70);
 	gtk_clist_freeze(cl);
@@ -326,7 +329,7 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	
 	gtk_signal_connect(GTK_OBJECT(cl), "select_row", (GtkSignalFunc)modify_drive, (void *)(id+(drive[2]<<8)));
 	gtk_container_add(GTK_CONTAINER(vbox), GTK_WIDGET(cl));
-	gtk_widget_show(GTK_WIDGET(cl));
+	gtk_widget_show_all(GTK_WIDGET(sw));
 	gtk_widget_show(vbox);
 }
 
