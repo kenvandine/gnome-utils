@@ -41,7 +41,6 @@ gnomecard_SOURCES =	\
 	popup-menu.c	\
 	popup-menu.h	\
 	sort.c          \
-	gnome-pim-impl.c\
 	sort.h          \
 	pairs.h		\
 	gnome-pim-impl.c
@@ -84,3 +83,9 @@ EXTRA_DIST =		\
 	teltool.xpm	\
 	phone.xpm	\
 	world.xpm
+
+install-data-local:
+	$(mkinstalldirs) $(prefix)/etc/CORBA/servers
+	$(INSTALL_DATA)  $(srcdir)/gnomecard.gnorba \
+		$(prefix)/etc/CORBA/servers/gnomecard.gnorba
+
