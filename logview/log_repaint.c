@@ -532,7 +532,10 @@ UpdateStatusArea ()
 		      tdm->tm_mday, tdm->tm_mon, tdm->tm_year % 100);
   }
   gtk_label_get ( date_label, (char **)&buffer);
-  if (strcmp (status_text, buffer) != 0)
+/* FIXME: is this if statement needed?  would it make sense 
+   to set the text every time?  doesn't gtk test for it in 
+   a more efficient manner? */
+   if (strcmp (status_text, buffer) != 0)
     gtk_label_set_text (date_label, status_text);
 }
 
