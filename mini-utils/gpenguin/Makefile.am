@@ -10,7 +10,8 @@ gpenguin_SOURCES = \
 
 gpenguin_LDADD = \
         $(GNOME_LIBDIR)         \
-        $(GNOMEUI_LIBS)
+        $(GNOMEUI_LIBS)		\
+	$(INTLLIBS)
 
 pixmapdir = $(datadir)/pixmaps
 
