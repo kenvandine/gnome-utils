@@ -46,7 +46,6 @@ GDiskFreeApp *
 gdiskfree_app_new (const gchar *geometry)
 {
   GDiskFreeApp     *app;
-  GtkOrientation   orientation;
 
   app = g_new (GDiskFreeApp, 1);
   
@@ -80,13 +79,18 @@ gdiskfree_app_new (const gchar *geometry)
       h = gnome_config_get_int ("/GDiskFree/Geometry/height");
       if (w != 0 && h != 0)
         gtk_window_set_default_size (GTK_WINDOW (app->app), w, h);
-      x = gnome_config_get_int ("/GDiskFree/Geometry/xpos");
-      y = gnome_config_get_int ("/GDiskFree/Geometry/ypos");
-      if (x != 0 && y != 0)
+      x = gnome_config_get_int ("/GDiskFree/Geometry/xpos=-1");
+      y = gnome_config_get_int ("/GDiskFree/Geometry/ypos=-1");
+      /* this should really do fitting to screen, not just showing a 50x50
+       * corner of the window, but I'm too lazy -George */
+      if (x > gdk_screen_width () - 50)
+	      x = gdk_screen_width () - 50;
+      if (y > gdk_screen_height () - 50)
+	      y = gdk_screen_height () - 50;
+      if (x != -1 && y != -1)
         gtk_widget_set_uposition (app->app, x, y);
     }
-  orientation = gnome_config_get_int ("/GDiskFree/properties/orientation");
-  if (orientation == GTK_ORIENTATION_VERTICAL)
+  if (current_options->orientation == GTK_ORIENTATION_VERTICAL)
     app->dial_box = gtk_vbox_new (FALSE, 8);
   else
     app->dial_box = gtk_hbox_new (FALSE, 8);
@@ -162,14 +166,14 @@ gdiskfree_app_add_disk (GDiskFreeApp *app, const gchar *disk,
   gdisk->mount_label = gtk_label_new (mount_point);
   gtk_box_pack_start (GTK_BOX (box), gdisk->mount_label, FALSE, FALSE, 0);
   gtk_widget_show_all (frame);
-  if (gnome_config_get_bool ("/GDiskFree/properties/show_mount"))
+  if (current_options->show_mount)
     gtk_widget_show (gdisk->mount_label);
   else
     gtk_widget_hide (gdisk->mount_label);
   /* Add disk size label */
   gdisk->size_label = gtk_label_new (disk_size);
   gtk_box_pack_start (GTK_BOX (box), gdisk->size_label, FALSE, FALSE, 0);
-  if (gnome_config_get_bool ("/GDiskFree/properties/show_size"))
+  if (current_options->show_size)
     gtk_widget_show (gdisk->size_label);
   else
     gtk_widget_hide (gdisk->size_label);
@@ -247,6 +251,8 @@ gdiskfree_update (GDiskFreeApp *app)
         percent = (gdouble) (used * 100.0 / (used + fsu.bavail));
       else
         percent = 100.0;
+      if (percent > 100.0)
+	      percent = 100.0;
       gtk_dial_set_percentage ( (GtkDial *)disk->dial, (percent / 100.0));
       gl = g_list_next (gl);
     }

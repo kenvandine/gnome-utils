@@ -98,9 +98,7 @@ gdiskfree_convert_size ( unsigned long size)
      if (size_f < 1000)
 	  return g_strdup_printf ("%.1f Gb", size_f);
      size_f = size_f / 1000;
-     if (size_f < 1000)
-	  return g_strdup_printf ("%.1f Tb", size_f);
-     size_f = size_f / 1000;
+     return g_strdup_printf ("%.1f Tb", size_f);
 }
 
 /**

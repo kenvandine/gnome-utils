@@ -1,3 +1,22 @@
+Wed Jun 06 16:22:15 2001  George Lebl <jirka@5z.com>
+
+	* gdiskfree_app.c: When percentage is over 100% just trim to 100%.
+	  You can't show more then 100% with gtk-dial anyhow.  Use current
+	  options rather then always reading from config since that's the
+	  only way the defaults will work.  When the stored location is off
+	  screen make sure at least 50 pixels are showing on screen.  Also
+	  allow saving at 0,0 location, this should really be done by the
+	  session manager.
+
+	* gdiskfree.c: don't crash on VERY large disks (currently over
+	  1000Tb) and it fixes a warning as well.
+
+	* gdiskfree_options.c: make show_mount and show_size default to on,
+	  since most users will have NO clue about the mount point and size
+	  and that's the important information we care about.  Also sanitize
+	  things.  Make the lowest update time 300, since that's basically
+	  about the lowest useful time where the CPU isn't hogged.
+
 2001-06-06  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* gdiskfree.c (main): Use "gdiskfree" instead of PACKAGE in

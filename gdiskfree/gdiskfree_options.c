@@ -149,26 +149,31 @@ gdiskfree_show_size_changed (GtkWidget *widget, GnomePropertyBox *box)
  * gdiskfree_option_init:
  **/
 void
-gdiskfree_option_init ()
+gdiskfree_option_init (void)
 {
   if (!current_options)
     current_options = g_malloc (sizeof (GDiskFreeOptions));
-  current_options->sync_required = gnome_config_get_bool_with_default
-    ("/GDiskFree/properties/sync_required=FALSE", NULL);
-  current_options->update_interval = gnome_config_get_int_with_default
-    ("/GDiskFree/properties/update_interval=10000", NULL);
-  current_options->orientation = gnome_config_get_int_with_default 
-    ("/GDiskFree/properties/orientation=GTK_ORIENTATION_VERTICAL", NULL);
-  current_options->show_mount = gnome_config_get_bool_with_default
-    ("/GDiskFree/properties/show_mount=FALSE", NULL);
-  current_options->show_size = gnome_config_get_bool_with_default
-    ("/GDiskFree/properties/show_size=FALSE", NULL);
+  current_options->sync_required = gnome_config_get_bool
+    ("/GDiskFree/properties/sync_required=FALSE");
+  current_options->update_interval = gnome_config_get_int
+    ("/GDiskFree/properties/update_interval=10000");
+  if (current_options->update_interval < 300)
+	  current_options->update_interval = 300;
+  current_options->orientation = gnome_config_get_int
+    ("/GDiskFree/properties/orientation=0");
+  if (current_options->orientation < 0 ||
+      current_options->orientation < GTK_ORIENTATION_VERTICAL)
+	  current_options->orientation = GTK_ORIENTATION_HORIZONTAL;
+  current_options->show_mount = gnome_config_get_bool
+    ("/GDiskFree/properties/show_mount=TRUE");
+  current_options->show_size = gnome_config_get_bool
+    ("/GDiskFree/properties/show_size=TRUE");
 }
 /**
  * gdiskfree_option_save:
  **/
 void
-gdiskfree_option_save ()
+gdiskfree_option_save (void)
 {
   gnome_config_set_bool ("/GDiskFree/properties/sync_required",
 			 current_options->sync_required);
@@ -275,7 +280,7 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   working->orientation = current_options->orientation;
   working->update_interval = current_options->update_interval;
   udp_adjust = gtk_adjustment_new ((gfloat)working->update_interval, 
-				   1, 20000, 1, 10, 0);
+				   300, 20000, 1, 10, 0);
   gtk_signal_connect (GTK_OBJECT (udp_adjust), "value_changed",
 		      (GtkSignalFunc) gdiskfree_update_interval_changed,
 		      propbox);
