@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils CVS\n"
-"POT-Creation-Date: 2004-05-21 16:58+1200\n"
-"PO-Revision-Date: 2004-05-18 20:18-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-06-14 18:42-0400\n"
+"PO-Revision-Date: 2004-06-14 18:43-0400\n"
 "Last-Translator: Gareth Owen <gowen72@yahoo.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
@@ -29,8 +29,8 @@ msgid "Lookup words in an online dictionary"
 msgstr "Lookup words in an online dictionary"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1
-msgid "_About..."
-msgstr "_About..."
+msgid "_About"
+msgstr "_About"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_Help"
@@ -41,8 +41,8 @@ msgid "_Look Up Selected Text"
 msgstr "_Look Up Selected Text"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-msgid "_Preferences..."
-msgstr "_Preferences..."
+msgid "_Preferences"
+msgstr "_Preferences"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
 msgid "_Show Dictionary"
@@ -71,7 +71,7 @@ msgstr ""
 "Bastien Nocera <hadess@hadess.net>\n"
 "Gareth Owen <gowen72@yahoo.com>"
 
-#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:923
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:925
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Dictionary"
@@ -126,45 +126,45 @@ msgstr ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 
-#: gdictsrc/gdict-app.c:695 gdictsrc/gdict-app.c:950
+#: gdictsrc/gdict-app.c:697 gdictsrc/gdict-app.c:952
 #: gdictsrc/gdict-speller.c:214
 msgid "_Look Up Word"
 msgstr "_Look Up Word"
 
-#: gdictsrc/gdict-app.c:696
+#: gdictsrc/gdict-app.c:698
 msgid "Lookup word in dictionary"
 msgstr "Lookup word in dictionary"
 
-#: gdictsrc/gdict-app.c:698 gdictsrc/gdict-speller.c:160
+#: gdictsrc/gdict-app.c:700 gdictsrc/gdict-speller.c:160
 msgid "Check _Spelling"
 msgstr "Check _Spelling"
 
-#: gdictsrc/gdict-app.c:699
+#: gdictsrc/gdict-app.c:701
 msgid "Check word spelling"
 msgstr "Check word's spelling"
 
-#: gdictsrc/gdict-app.c:743
+#: gdictsrc/gdict-app.c:745
 msgid "_Dictionary"
 msgstr "_Dictionary"
 
-#: gdictsrc/gdict-app.c:946 gdictsrc/gdict-speller.c:134
+#: gdictsrc/gdict-app.c:948 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Word:"
 
-#: gdictsrc/gdict-app.c:974 gdictsrc/gdict-speller.c:146
+#: gdictsrc/gdict-app.c:976 gdictsrc/gdict-speller.c:146
 msgid "Word"
 msgstr "Word"
 
-#: gdictsrc/gdict-app.c:975 gdictsrc/gdict-app.c:976
+#: gdictsrc/gdict-app.c:977 gdictsrc/gdict-app.c:978
 #: gdictsrc/gdict-speller.c:147
 msgid "Word Entry"
 msgstr "Word Entry"
 
-#: gdictsrc/gdict-app.c:975
+#: gdictsrc/gdict-app.c:977
 msgid "Enter a Word or select one from the list below"
 msgstr "Enter a Word or select one from the list below"
 
-#: gdictsrc/gdict-app.c:978
+#: gdictsrc/gdict-app.c:980
 msgid "Look Up for a Word"
 msgstr "Look Up for a Word"
 
@@ -837,115 +837,119 @@ msgstr[0] "Are you sure you want to open %d document?"
 msgstr[1] "Are you sure you want to open %d documents?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
-#: gsearchtool/gsearchtool-callbacks.c:449
+#: gsearchtool/gsearchtool-callbacks.c:475
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "This will open %d separate window."
 msgstr[1] "This will open %d separate windows."
 
-#: gsearchtool/gsearchtool-callbacks.c:390
-#: gsearchtool/gsearchtool-callbacks.c:944
+#: gsearchtool/gsearchtool-callbacks.c:383
+#: gsearchtool/gsearchtool-callbacks.c:416
+#: gsearchtool/gsearchtool-callbacks.c:963
+#: gsearchtool/gsearchtool-callbacks.c:996
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Could not open document \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:393
-#: gsearchtool/gsearchtool-callbacks.c:947
+#: gsearchtool/gsearchtool-callbacks.c:386
+#: gsearchtool/gsearchtool-callbacks.c:641
+#: gsearchtool/gsearchtool-callbacks.c:966
+msgid "The document does not exist."
+msgstr "The document does not exist."
+
+#: gsearchtool/gsearchtool-callbacks.c:419
+#: gsearchtool/gsearchtool-callbacks.c:999
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "There is no installed viewer capable of displaying the document."
 
-#: gsearchtool/gsearchtool-callbacks.c:444
+#: gsearchtool/gsearchtool-callbacks.c:470
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Are you sure you want to open %d folder?"
 msgstr[1] "Are you sure you want to open %d folders?"
 
-#: gsearchtool/gsearchtool-callbacks.c:502
+#: gsearchtool/gsearchtool-callbacks.c:528
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Could not open folder \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:509
+#: gsearchtool/gsearchtool-callbacks.c:535
 msgid "The nautilus file manager is not running."
 msgstr "The nautilus file manager is not running."
 
-#: gsearchtool/gsearchtool-callbacks.c:612
+#: gsearchtool/gsearchtool-callbacks.c:638
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Could not move \"%s\" to wastebasket."
 
-#: gsearchtool/gsearchtool-callbacks.c:615
-msgid "The document does not exist."
-msgstr "The document does not exist."
-
-#: gsearchtool/gsearchtool-callbacks.c:652
+#: gsearchtool/gsearchtool-callbacks.c:678
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "Could not move \"%s\" to the wastebasket."
 
-#: gsearchtool/gsearchtool-callbacks.c:655
+#: gsearchtool/gsearchtool-callbacks.c:681
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Moving \"%s\" failed: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:685
+#: gsearchtool/gsearchtool-callbacks.c:711
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Do you want to delete \"%s\" permanently?"
 
-#: gsearchtool/gsearchtool-callbacks.c:688
+#: gsearchtool/gsearchtool-callbacks.c:714
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Wastebasket is unavailable.  Could not move \"%s\" to the wastebasket."
 
-#: gsearchtool/gsearchtool-callbacks.c:730
+#: gsearchtool/gsearchtool-callbacks.c:756
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Could not delete \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:733
+#: gsearchtool/gsearchtool-callbacks.c:759
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Deleting \"%s\" failed: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1132
+#: gsearchtool/gsearchtool-callbacks.c:1184
 msgid "Save Search Results As..."
 msgstr "Save Search Results As..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1184
+#: gsearchtool/gsearchtool-callbacks.c:1236
 msgid "Could not save document."
 msgstr "Could not save document."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1238
 msgid "You did not select a document name."
 msgstr "You did not select a document name."
 
-#: gsearchtool/gsearchtool-callbacks.c:1212
-#: gsearchtool/gsearchtool-callbacks.c:1307
+#: gsearchtool/gsearchtool-callbacks.c:1264
+#: gsearchtool/gsearchtool-callbacks.c:1359
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Could not save \"%s\" document to \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:1216
+#: gsearchtool/gsearchtool-callbacks.c:1268
 msgid "The document name you selected is a folder."
 msgstr "The document name you selected is a folder."
 
-#: gsearchtool/gsearchtool-callbacks.c:1245
+#: gsearchtool/gsearchtool-callbacks.c:1297
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "The document \"%s\" already exists.  Would you like to replace it?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1249
+#: gsearchtool/gsearchtool-callbacks.c:1301
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "If you replace an existing file, its contents will be overwritten."
 
-#: gsearchtool/gsearchtool-callbacks.c:1260
+#: gsearchtool/gsearchtool-callbacks.c:1312
 msgid "_Replace"
 msgstr "_Replace"
 
-#: gsearchtool/gsearchtool-callbacks.c:1310
+#: gsearchtool/gsearchtool-callbacks.c:1362
 msgid "You may not have write permissions to the document."
 msgstr "You may not have write permissions to the document."
 
