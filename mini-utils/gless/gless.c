@@ -98,6 +98,7 @@ parse_an_arg (poptContext ctx,
               const struct poptOption *opt,
               const char *arg, void *data)
 {
+  g_print("Reason %d\n", reason);
   switch (opt->val){
     
   case GEOMETRY_KEY:
@@ -276,8 +277,8 @@ static GnomeUIInfo help_menu[] = {
 
 static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_MENU_NEW_ITEM(N_("_New Window"),
-				  N_("New text viewer window"), 
-				  new_app_cb, NULL),
+                              N_("New text viewer window"), 
+                              new_app_cb, NULL),
 	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb,NULL),
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb,NULL),
 	GNOMEUIINFO_SEPARATOR,
@@ -343,7 +344,7 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
     }
   }
 
-  gtk_window_set_policy(GTK_WINDOW(app->app), TRUE, TRUE, TRUE);
+  gtk_window_set_policy(GTK_WINDOW(app->app), TRUE, TRUE, FALSE);
   gtk_widget_set_usize (GTK_WIDGET(app->app), width, height);
 
   gnome_app_create_menus_with_data(GNOME_APP(app->app), main_menu, app);
