@@ -663,30 +663,26 @@ string_width(GtkWidget *w, const char * str)
 		style = gtk_widget_get_default_style ();
 		if (NULL == style) return 49;
 	}
-	font = style->font;
 
-	/* glurg. Try really hard to find a font */
-	if (NULL == font)
+	/* Try really hard to find a font */
+	gc = style->text_gc[0];
+	if (NULL == gc) gc = style->fg_gc[0];
+	if (NULL == gc) gc = style->bg_gc[0];
+	if (NULL == gc) gc = style->base_gc[0];
+	if (NULL == gc)
 	{
+		style = gtk_widget_get_default_style ();
+		if (NULL == style) return 50;
+
 		gc = style->text_gc[0];
 		if (NULL == gc) gc = style->fg_gc[0];
 		if (NULL == gc) gc = style->bg_gc[0];
 		if (NULL == gc) gc = style->base_gc[0];
-		if (NULL == gc)
-		{
-			style = gtk_widget_get_default_style ();
-			if (NULL == style) return 50;
-	
-			gc = style->text_gc[0];
-			if (NULL == gc) gc = style->fg_gc[0];
-			if (NULL == gc) gc = style->bg_gc[0];
-			if (NULL == gc) gc = style->base_gc[0];
-			if (NULL == gc) return 51;
-		}
-	
-		gdk_gc_get_values(gc, &vals);
-		font = vals.font;
+		if (NULL == gc) return 51;
 	}
+	
+	gdk_gc_get_values(gc, &vals);
+	font = vals.font;
 
 	/* ha. Finally. Get the width. */
 	width = gdk_string_width(font, str);

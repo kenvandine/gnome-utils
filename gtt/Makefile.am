@@ -59,7 +59,10 @@ noinst_HEADERS = 	\
 	xml-gtt.h
 	
 
-CFLAGS = @CFLAGS@ 		\
+# remove GTK_ENABLE_BROKEN when gnome-2.0 works for real
+CFLAGS = -DGTK_ENABLE_BROKEN	\ 
+	@CFLAGS@ 		\
+	${GNOME_UTILS_CFLAGS}	\
 	${GCONF_CFLAGS} 	\
 	${GTKHTML_CFLAGS} 	\
 	${LIBGLADE_CFLAGS} 
@@ -68,7 +71,7 @@ INCLUDES = 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-DGTTGLADEDIR=\""$(datadir)/gtt"\" \
-	$(GNOME_INCLUDEDIR)	\
+	${GNOME_INCLUDEDIR}	\
 	${GUILE_INCS}
 						 
 gtt_LDADD = \
