@@ -346,7 +346,6 @@ chart_app_new(void)
   gtk_signal_connect(GTK_OBJECT(app->strip),
     "chart_post_update", text_refresh, app);
   strip_set_ticks(STRIP(app->strip), 1, 0, 0);
-  strip_set_history_size(STRIP(app->strip), gdk_screen_width()/2);
 
   app->strip_param_group->filter = 0.5;
   app->strip_param_group->interval = 5000;

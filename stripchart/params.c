@@ -351,29 +351,31 @@ opts_to_file(Chart_app *app, char *fn)
   for (pl = app->plist; pl != NULL; pl = g_list_next(pl))
     {
       Param_page *page = pl->data;
-      Param_desc *desc = g_malloc0(sizeof(*desc));
-      page_to_desc(page, desc);
-      node = xmlNewChild(list, NULL, "parameter", NULL);
+      if (page->strip_data->active)
+	{
+	  Param_desc *desc = g_malloc0(sizeof(*desc));
+	  page_to_desc(page, desc);
+	  node = xmlNewChild(list, NULL, "parameter", NULL);
 
-      add_node(node, "name", desc->name);
-      add_node(node, "description", desc->desc);
-      add_node(node, "equation", desc->eqn);
-      add_node(node, "filename", desc->fn);
-      add_node(node, "pattern", desc->pattern);
-      add_node(node, "top-min", desc->top_min);
-      add_node(node, "top-max", desc->top_max);
-      add_node(node, "bot-min", desc->bot_min);
-      add_node(node, "bot-max", desc->bot_max);
-      add_node(node, "scale", desc->scale);
-      add_node(node, "plot", desc->plot);
-      add_node(node, "color", desc->color_names);
-      g_free(desc);
+	  add_node(node, "name", desc->name);
+	  add_node(node, "description", desc->desc);
+	  add_node(node, "equation", desc->eqn);
+	  add_node(node, "filename", desc->fn);
+	  add_node(node, "pattern", desc->pattern);
+	  add_node(node, "top-min", desc->top_min);
+	  add_node(node, "top-max", desc->top_max);
+	  add_node(node, "bot-min", desc->bot_min);
+	  add_node(node, "bot-max", desc->bot_max);
+	  add_node(node, "scale", desc->scale);
+	  add_node(node, "plot", desc->plot);
+	  add_node(node, "color", desc->color_names);
+	  g_free(desc);
+	}
     }
-
   stat = xmlSaveFile(fn, doc);
-  #ifdef DEBUG
+#ifdef DEBUG
   printf("opts to file: wrote %d bytes to %s\n", stat, fn);
-  #endif
+#endif
   xmlFreeDoc(doc);
   return stat;
 }
