@@ -97,6 +97,7 @@
       filename)))
 
 ;; FIXME: allow for some icon to be displayed.
+;; FIXME: use the gnome messagebox once it uses stock icons.
 (define yes-no-cancel-message-box
   (let* ((dialog #f)
 	 (label-widget #f)
@@ -172,14 +173,18 @@
 ;;; Fluff.
 ;;;
 
-;; FIXME: if about box already up, don't show it again.
-(define (about-box)
-  (gtk-widget-show (gnome-about (gettext "Gnome Notepad")
-				"0.0"	; FIXME
-				(gettext "Copyright (C) 1998 Free Software Foundation")
-				(gettext "Gnome Notepad is a program for simple text editing")
-				"" ; No pixmap for now.
-				"Tom Tromey")))
+(define about-box
+  (let ((box #f))
+    (if (or (not box)
+	    (gtk-destroyed? box))
+	(begin
+	  (set! box (gnome-about (gettext "Gnome Notepad")
+				 "0.0"	; FIXME
+				 (gettext "Copyright (C) 1998 Free Software Foundation")
+				 (gettext "Gnome Notepad is a program for simple text editing")
+				 "gnome-note.png"
+				 "Tom Tromey"))))
+    (gtk-widget-show box)))
 
 ;;;
 ;;; Notepad code.
@@ -206,8 +211,9 @@
 ;; user wants to continue) or 'cancel (user hit Cancel button).
 (define (query-for-save)
   (if dirty?
-      (let ((result (yes-no-cancel-message-box (gettext "File Modified")
-					       "FIXME: Blah Blah Blah")))
+      (let ((result (yes-no-cancel-message-box
+		     (gettext "File Modified")
+		     (gettext "You have edited the file.  Save it before exiting?"))))
 	(cond
 	 ((eq? result 'yes)
 	  (FIXME save it))
@@ -278,7 +284,7 @@
     (add-menu-item menu (gettext "Close") notepad-close)
     (set! save-menu-item (add-stock-menu-item menu 'save (gettext "Save")
 					      notepad-save))
-    (add-menu-item menu (gettext "Save As...") notepad-save-as)
+    (add-stock-menu-item menu 'save-as (gettext "Save As...") notepad-save-as)
     ;; This is just for debugging; we'll remove it later.
     (add-menu-item menu "Save session (debugging only)"
 		   (lambda ()
@@ -289,8 +295,8 @@
 (define (edit-menu)
   (let ((menu (gtk-menu-new)))
     (add-stock-menu-item menu 'undo (gettext "Undo") FIXME)
-    (add-stock-menu-item menu 'copy (gettext "Copy") FIXME)
     (add-stock-menu-item menu 'cut (gettext "Cut") FIXME)
+    (add-stock-menu-item menu 'copy (gettext "Copy") FIXME)
     (add-stock-menu-item menu 'paste (gettext "Paste") FIXME)
     menu))
 
@@ -309,7 +315,6 @@
   (let ((mbar (gtk-menu-bar-new)))
     (add-menu mbar (file-menu) (gettext "File"))
     (add-menu mbar (edit-menu) (gettext "Edit"))
-    ;; FIXME: right justify.
     (add-menu mbar (help-menu) (gettext "Help"))
     (gtk-widget-show mbar)
     mbar))
@@ -330,7 +335,8 @@
     (gtk-widget-show vscroll)
     (gtk-widget-show text)
     (gtk-text-thaw text)
-    ;; FIXME: connect to all signals required to handle Undo.
+    ;; FIXME: connect to all signals required to handle Undo.  The
+    ;; text widget actually doesn't export enough info to do this yet.
     (gtk-signal-connect text "changed" set-dirty)
     (gtk-text-set-editable text #t)
     table))
