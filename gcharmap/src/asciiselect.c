@@ -60,7 +60,6 @@ cb_ascii_select_entry_changed (GtkEditable *edit, gpointer user_data)
 {
     gchar *s;
     gint i, f;
-    gunichar c;
 
     if (updating == TRUE) return;
     updating = TRUE;
@@ -111,7 +110,6 @@ ascii_select_init (AsciiSelect *obj)
     GtkWidget *entry;
     GtkAdjustment *adj;
     GtkWidget *label;
-    GdkFont *font;
 
 
     obj->window = gtk_dialog_new_with_buttons (_("Select Character"), NULL,

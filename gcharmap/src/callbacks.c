@@ -196,6 +196,12 @@ cb_exit_click (GtkWidget *widget, gpointer user_data)
 }
 
 void
+cb_fontpicker_font_set (GnomeFontPicker *picker, gchar *font, gpointer app)
+{
+    main_app_set_font ((MainApp *) app, font);
+}
+
+void
 cb_help_click (GtkWidget *widget, gpointer user_data)
 {
     GError *error = NULL;

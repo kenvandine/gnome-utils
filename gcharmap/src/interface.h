@@ -60,6 +60,7 @@ extern MainApp *mainapp;
 GType main_app_get_type (void);
 MainApp *main_app_new (void);
 void main_app_destroy (MainApp *obj);
+void main_app_set_font (MainApp *app, gchar *font);
 
 gboolean check_gail(GtkWidget *widget);
 void add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc);

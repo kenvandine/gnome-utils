@@ -61,7 +61,7 @@ create_button (const gchar *label, GtkSignalFunc func)
 
 
 static GtkWidget *
-create_chartable (void)
+create_chartable (MainApp *app)
 {
     GtkWidget *chartable, *button;
     gint v, h;
@@ -90,6 +90,7 @@ create_chartable (void)
     }
 
     set_chartable_labels ();
+    main_app_set_font (app, "Sans 12");
     gtk_widget_show_all (chartable);
     return chartable;
 }
@@ -141,10 +142,10 @@ main_app_create_ui (MainApp *app)
     GtkWidget *vbox, *hbox, *hbox2, *hbox3, *vbox2;
     GtkWidget *vsep, *alabel, *label;
     GtkWidget *chartable;
-    GtkWidget *buttonbox, *button;
+    GtkWidget *button;
     GtkWidget *align;
-    GtkWidget *viewport;
     GtkWidget *image;
+    GtkWidget *fontlabel;
 
     GtkObject *page_adj;
 
@@ -185,6 +186,20 @@ main_app_create_ui (MainApp *app)
         gnome_app_add_docked (GNOME_APP (app->window), hbox, _("Action Toolbar"),
           BONOBO_DOCK_ITEM_BEH_EXCLUSIVE | BONOBO_DOCK_ITEM_BEH_NEVER_VERTICAL,
           BONOBO_DOCK_TOP, 2, 0, 1);
+
+        fontlabel = gtk_label_new_with_mnemonic (_("_Font:"));
+        gtk_misc_set_padding (GTK_MISC (fontlabel), GNOME_PAD_SMALL, -1);
+        gtk_box_pack_start (GTK_BOX (hbox), fontlabel, FALSE, TRUE, 0);
+
+        app->fontpicker = gnome_font_picker_new ();
+        gnome_font_picker_set_mode (GNOME_FONT_PICKER (app->fontpicker),
+                                    GNOME_FONT_PICKER_MODE_FONT_INFO);
+        g_signal_connect (app->fontpicker, "font-set",
+                          G_CALLBACK (cb_fontpicker_font_set), app);
+        gtk_box_pack_start (GTK_BOX (hbox), app->fontpicker, FALSE, TRUE, 0);
+
+        vsep = gtk_vseparator_new ();
+        gtk_box_pack_start (GTK_BOX (hbox), vsep, FALSE, TRUE, 0);
 
         /* The page selector */
         alabel = gtk_label_new_with_mnemonic (_("_Page:"));
@@ -256,7 +271,7 @@ main_app_create_ui (MainApp *app)
 
     /* The character table */
     {
-        chartable = create_chartable ();
+        chartable = create_chartable (app);
         gtk_box_pack_start (GTK_BOX (hbox2), chartable, TRUE, TRUE, 0);
         app->chartable = chartable;
     }
@@ -281,8 +296,7 @@ main_app_init (MainApp *obj)
 static void
 main_app_class_init (MainAppClass *klass)
 {
-    GObjectClass *object_class = G_OBJECT_CLASS (klass);
-    
+    /* Do nothing */
 }
 
 GType
@@ -322,9 +336,34 @@ void
 main_app_destroy (MainApp *obj)
 {
     g_return_if_fail (obj != NULL);
-    g_return_if_fail (MAIN_IS_APP (obj) == TRUE);
+    g_return_if_fail (MAIN_IS_APP (obj));
 
     gtk_main_quit ();
+}
+
+
+void
+main_app_set_font (MainApp *app, gchar *font)
+{
+    PangoFontDescription *desc;
+    GList *list;
+
+    g_return_if_fail (app != NULL);
+    g_return_if_fail (font != NULL);
+    g_return_if_fail (MAIN_IS_APP (app));
+
+    desc = pango_font_description_from_string (font);
+    g_return_if_fail (desc != NULL);
+
+    list = app->buttons;
+    while (list != NULL)
+    {
+        GtkWidget *label;
+
+        label = ((GtkBin *) list->data)->child;
+        gtk_widget_modify_font (label, desc);
+        list = list->next;
+    }
 }
 
 

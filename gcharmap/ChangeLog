@@ -1,3 +1,11 @@
+2002-08-15  Hongli Lai	<h.lai@chello.nl>
+
+	* src/interface.[ch]: added main_app_set_font().
+	  Removed unused variables. Added font picker button.
+	* src/callbacks.[ch] (cb_fontpicker_font_set):
+	  Changed arguments. Calls main_app_set_font().
+	* src/asciiselect.c: Removed unused variables. Fixes #86527.
+
 2002-08-15  James Su <suzhe@turbolinux.com.cn>
 
 	* src/callbacks.c, src/callbacks.h, src/interface.c,
