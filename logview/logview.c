@@ -104,7 +104,7 @@ GnomeUIInfo log_menu[] = {
       GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 'W',
       GDK_CONTROL_MASK | GDK_SHIFT_MASK, NULL },
 	GNOMEUIINFO_MENU_QUIT_ITEM(ExitProg, NULL),
-    { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
+    GNOMEUIINFO_END
 };
 
 GnomeUIInfo view_menu[] = {
@@ -114,22 +114,20 @@ GnomeUIInfo view_menu[] = {
     { GNOME_APP_UI_TOGGLEITEM, N_("_Entry Detail"), 
       N_("Show Entry Detail"), toggle_zoom, NULL, NULL, 
       GNOME_APP_PIXMAP_NONE, NULL, 'D', GDK_CONTROL_MASK, NULL },
-    { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
+    GNOMEUIINFO_END
 };
 
 GnomeUIInfo help_menu[] = {
-	GNOMEUIINFO_HELP("gnome-system-log"),
-    { GNOME_APP_UI_ITEM, N_("About..."), 
-	  N_("Info about logview"), AboutShowWindow, NULL, NULL,
-      GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-    { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
+      GNOMEUIINFO_HELP("gnome-system-log"),
+      GNOMEUIINFO_MENU_ABOUT_ITEM (AboutShowWindow, NULL),
+      GNOMEUIINFO_END
 };
 
 GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE (log_menu),
 	GNOMEUIINFO_MENU_VIEW_TREE (view_menu),
 	GNOMEUIINFO_MENU_HELP_TREE (help_menu),
-    { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
+    	GNOMEUIINFO_END
 };
                  
 
