@@ -20,7 +20,6 @@
 #include <gnome.h>
 #include <string.h>
 
-#include "cur-proj.h"
 #include "gtt.h"
 #include "journal.h"
 #include "menucmd.h"
@@ -266,30 +265,42 @@ menu_set_states(void)
 				 1);
 	mi = GTK_CHECK_MENU_ITEM(menu_main_timer[MENU_TIMER_TOGGLE_POS].widget);
 	mi->active = timer_is_running();
+#if 0
+/* not done any more, we use the focus project now .. */
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_TOGGLE_POS].widget,
 				 ((NULL != cur_proj)||(NULL != prev_proj)));
+#endif
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_START_POS].widget,
-				 (FALSE == timer_is_running()) && (prev_proj));
+				 (FALSE == timer_is_running()) );
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_STOP_POS].widget,
-				 (timer_is_running()) && (cur_proj));
+				 (timer_is_running()) );
+#if 0
+/* not done any more, we use the focus project now .. */
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_CUT_POS].widget,
 				 (cur_proj) ? 1 : 0);
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_COPY_POS].widget,
 				 (cur_proj) ? 1 : 0);
+#endif
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_PASTE_POS].widget,
 				 (cutted_project) ? 1 : 0);
+#if 0
+/* not done any more, we use the focus project now .. */
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_CDC_POS].widget,
 				 (cur_proj) ? 1 : 0);
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_JNL_POS].widget,
 				 (cur_proj) ? 1 : 0);
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_PROP_POS].widget,
 				 (cur_proj) ? 1 : 0);
+#endif
 
 	if (!menu_popup[MENU_POPUP_CUT_POS].widget) return;
+#if 0
+/* not done any more, we use the focus project now .. */
 	gtk_widget_set_sensitive(menu_popup[MENU_POPUP_CUT_POS].widget,
 				 (cur_proj) ? 1 : 0);
 	gtk_widget_set_sensitive(menu_popup[MENU_POPUP_COPY_POS].widget,
 				 (cur_proj) ? 1 : 0);
+#endif
 	gtk_widget_set_sensitive(menu_popup[MENU_POPUP_PASTE_POS].widget,
 				 (cutted_project) ? 1 : 0);
 

@@ -50,7 +50,6 @@
 
 
 GttProject *cur_proj = NULL;
-GttProject *prev_proj = NULL;
 
 ProjTreeWindow *global_ptw;
 GtkWidget *window;
@@ -134,6 +133,7 @@ void update_status_bar(void)
 void 
 cur_proj_set(GttProject *proj)
 {
+	GttProject *prev_proj = NULL;
 	pid_t pid;
 	char *cmd;
 	const char *str;

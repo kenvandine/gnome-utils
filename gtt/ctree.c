@@ -34,7 +34,6 @@
 /* There is a bug in clist which makes all but the last column headers
  * 0 pixels wide. This hack fixes this. */
 // #define CLIST_HEADER_HACK 1
-int clist_header_width_set = 0;
 
 /* column types */
 typedef enum {
@@ -66,6 +65,8 @@ struct ProjTreeWindow_s
 	int ncols;
 	char ever_timestr[24];
 	char day_timestr[24];
+
+	// int clist_header_width_set;
 };
 
 static void cupdate_label(ProjTreeNode *ptn, gboolean expand);
@@ -119,10 +120,13 @@ widget_key_event(GtkCTree *ctree, GdkEvent *event, gpointer data)
 static int
 widget_button_event(GtkCList *clist, GdkEvent *event, gpointer data)
 {
+	ProjTreeWindow *ptw = data;
 	int row,column;
 	GdkEventButton *bevent = (GdkEventButton *)event;
 	GtkWidget *menu;
 	
+	/* The only button event we handle are right-mouse-button,
+	 * end double-click-left-mouse-button. */
 	if (!((event->type == GDK_2BUTTON_PRESS && bevent->button==1) ||
 	      (event->type == GDK_BUTTON_PRESS && bevent->button==3)))
 		return FALSE;
@@ -130,26 +134,47 @@ widget_button_event(GtkCList *clist, GdkEvent *event, gpointer data)
 	gtk_clist_get_selection_info(clist,bevent->x,bevent->y,&row,&column);
 	if (0 > row) return FALSE;
 	
-	gtk_clist_select_row(clist,row,column);
-	if(!cur_proj)
-		return FALSE;
+	/* change the focus row */
+    	gtk_clist_freeze(clist);
+	clist->focus_row = row;
+    	gtk_clist_thaw(clist);
 
 	if (event->type == GDK_2BUTTON_PRESS) 
 	{
-		prop_dialog_show(cur_proj);
-		/* hmmm so that the event selects it ... weird*/
-		gtk_clist_unselect_row(clist,row,column);
-
-		/* Hmm it would be nice to be able to double-click to edit 
-		 * a project, without changing the current project.  But 
-		 * no simple way to do this that I can see right now ... */
+		/* double-click left mouse edits the project.
+		 * but maybe we want to change double-click to 
+		 * something more useful ... */
+		GttProject *prj;
+		prj = ctree_get_focus_project (ptw);
+		prop_dialog_show (prj);
 	} 
 	else 
 	{
+		/* right mouse button brings up popup menu */
 		menu = menus_get_popup();
 		gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, bevent->time);
 	}
 	return TRUE;
+}
+
+/* ============================================================== */
+
+GttProject *
+ctree_get_focus_project (ProjTreeWindow *ptw)
+{
+	GttProject * proj = NULL;
+	GtkCTreeNode *rownode;
+	if (!ptw) return NULL;
+
+	rownode = gtk_ctree_node_nth (ptw->ctree,  GTK_CLIST(ptw->ctree)->focus_row);
+	if (rownode)
+	{
+		ProjTreeNode *ptn;
+		ptn = gtk_ctree_node_get_row_data(ptw->ctree, rownode);
+		if (ptn) proj = ptn->prj;
+	}
+
+	return proj;
 }
 
 /* ============================================================== */
@@ -580,7 +605,7 @@ ctree_new(void)
 
 	gtk_widget_set_usize(w, -1, 120);
 	ctree_update_column_visibility (ptw);
-	gtk_ctree_set_show_stub(w, FALSE);
+	gtk_ctree_set_show_stub(GTK_CTREE(w), FALSE);
 
 	/* create the top-level window to hold the c-tree */
 	sw = gtk_scrolled_window_new (NULL, NULL);
@@ -591,9 +616,9 @@ ctree_new(void)
 	gtk_widget_show_all (sw);
 
 	gtk_signal_connect(GTK_OBJECT(w), "button_press_event",
-			   GTK_SIGNAL_FUNC(widget_button_event), NULL);
+			   GTK_SIGNAL_FUNC(widget_button_event), ptw);
 	gtk_signal_connect(GTK_OBJECT(w), "key_release_event",
-			   GTK_SIGNAL_FUNC(widget_key_event), NULL);
+			   GTK_SIGNAL_FUNC(widget_key_event), ptw);
 	gtk_signal_connect(GTK_OBJECT(w), "tree_select_row",
 			   GTK_SIGNAL_FUNC(tree_select_row), NULL);
 	gtk_signal_connect(GTK_OBJECT(w), "click_column",
@@ -719,6 +744,8 @@ ctree_setup (ProjTreeWindow *ptw)
 		ptn = gtt_project_get_private_data (cur_proj);
 		gtk_ctree_node_moveto(tree_w, ptn->ctnode, -1,
 				 0.5, 0.0);
+		/* hack alert -- we should set the focus row 
+		 * here as well */
 	}
 	gtk_widget_queue_draw(GTK_WIDGET(tree_w));
 }
@@ -988,6 +1015,27 @@ ctree_subproj_hide (ProjTreeWindow *ptw)
 	gtk_ctree_set_show_stub(ptw->ctree, FALSE);
 	gtk_ctree_set_line_style(ptw->ctree, GTK_CTREE_LINES_NONE);
 	gtk_ctree_set_expander_style(ptw->ctree,GTK_CTREE_EXPANDER_NONE);
+}
+
+/* ============================================================== */
+
+void
+ctree_set_col_width (ProjTreeWindow *ptw, int col, int width)
+{
+	if (!ptw) return;
+	gtk_clist_set_column_width(GTK_CLIST(ptw->ctree), col, width);
+	// ptw->clist_header_width_set = 1;
+}
+
+int
+ctree_get_col_width (ProjTreeWindow *ptw, int col)
+{
+	int width;
+	if (!ptw) return -1;
+	if (0 > col) return -1;
+	if (col >= GTK_CLIST(ptw->ctree)->columns) return -1;
+	width = GTK_CLIST(ptw->ctree)->column[col].width;
+	return width;
 }
 
 /* ===================== END OF FILE ==============================  */

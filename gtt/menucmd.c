@@ -99,17 +99,20 @@ project_name_desc(GtkWidget *w, GtkEntry **entries)
 {
 	char *name, *desc;
 	GttProject *proj;
+	GttProject *sib_prj;
+	
+	sib_prj = ctree_get_focus_project (global_ptw);
 
 	if (!(name = gtk_entry_get_text(entries[0]))) return;
-	 if (!(desc = gtk_entry_get_text(entries[1]))) return;
+	if (!(desc = gtk_entry_get_text(entries[1]))) return;
 	if (!name[0]) return;
 
 	/* New project will have the same parent as the currently
 	 * running project.  This seems like the sanest choice.
 	 */
 	proj = gtt_project_new_title_desc(name, desc);
-	gtt_project_insert_after (proj, cur_proj);
-	ctree_insert_after (global_ptw, proj, cur_proj);
+	gtt_project_insert_after (proj, sib_prj);
+	ctree_insert_after (global_ptw, proj, sib_prj);
 }
 
 static void
@@ -307,13 +310,19 @@ GttProject *cutted_project = NULL;
 void
 cut_project(GtkWidget *w, gpointer data)
 {
-	if (!cur_proj) return;
+	GttProject *prj;
+	prj = ctree_get_focus_project (global_ptw);
+
+	if (!prj) return;
 	if (cutted_project)
+	{
 		gtt_project_destroy(cutted_project);
-	cutted_project = cur_proj;
+	}
+	cutted_project = prj;
 	prop_dialog_set_project(NULL);
-	gtt_project_remove(cur_proj);
-	cur_proj_set(NULL);
+
+	gtt_project_remove(cutted_project);
+	if (cutted_project == cur_proj) cur_proj_set(NULL);
 	ctree_remove(global_ptw, cutted_project);
 }
 
@@ -322,24 +331,27 @@ cut_project(GtkWidget *w, gpointer data)
 void
 paste_project(GtkWidget *w, gpointer data)
 {
+	GttProject *sib_prj;
 	GttProject *p;
 	
+	sib_prj = ctree_get_focus_project (global_ptw);
+
 	if (!cutted_project) return;
 	p = cutted_project;
 
 	/* if we paste a second time, we better paste a copy ... */
 	cutted_project = gtt_project_dup(cutted_project);
 
-	/* insert before the current proj */
-	gtt_project_insert_before (p, cur_proj);
+	/* insert before the focus proj */
+	gtt_project_insert_before (p, sib_prj);
 
-	if (!cur_proj) 
+	if (!sib_prj) 
 	{
 		/* top-level insert */
-		  ctree_add(global_ptw, p, NULL);
+		ctree_add(global_ptw, p, NULL);
 		return;
 	}
-	ctree_insert_before(global_ptw, p, cur_proj);
+	ctree_insert_before(global_ptw, p, sib_prj);
 }
 
 
@@ -347,10 +359,16 @@ paste_project(GtkWidget *w, gpointer data)
 void
 copy_project(GtkWidget *w, gpointer data)
 {
-	if (!cur_proj) return;
-	if (cutted_project)
+	GttProject *prj;
+	prj = ctree_get_focus_project (global_ptw);
+
+	if (!prj) return;
+
+	if (cutted_project) 
+	{
 		gtt_project_destroy(cutted_project);
-	cutted_project = gtt_project_dup(cur_proj);
+	}
+	cutted_project = gtt_project_dup(prj);
 	menu_set_states(); /* to enable paste */
 }
 
@@ -364,7 +382,9 @@ copy_project(GtkWidget *w, gpointer data)
 void
 menu_start_timer(GtkWidget *w, gpointer data)
 {
-	cur_proj_set (prev_proj);
+	GttProject *prj;
+	prj = ctree_get_focus_project (global_ptw);
+	cur_proj_set (prj);
 }
 
 
@@ -379,11 +399,14 @@ menu_stop_timer(GtkWidget *w, gpointer data)
 void
 menu_toggle_timer(GtkWidget *w, gpointer data)
 {
+	GttProject *prj;
+	prj = ctree_get_focus_project (global_ptw);
+
 	/* if (GTK_CHECK_MENU_ITEM(menus_get_toggle_timer())->active) { */
 	if (timer_is_running()) {
 		cur_proj_set (NULL);
 	} else {
-		cur_proj_set (prev_proj);
+		cur_proj_set (prj);
 	}
 }
 
@@ -399,8 +422,11 @@ menu_options(GtkWidget *w, gpointer data)
 void
 menu_properties(GtkWidget *w, gpointer data)
 {
-	if (cur_proj) {
-		prop_dialog_show(cur_proj);
+	GttProject *prj;
+	prj = ctree_get_focus_project (global_ptw);
+
+	if (prj) {
+		prop_dialog_show(prj);
 	}
 }
 
@@ -409,10 +435,11 @@ menu_properties(GtkWidget *w, gpointer data)
 void
 menu_clear_daily_counter(GtkWidget *w, gpointer data)
 {
-	g_return_if_fail(cur_proj != NULL);
+	GttProject *prj;
+	prj = ctree_get_focus_project (global_ptw);
 
-	gtt_clear_daily_counter (cur_proj);
-	ctree_update_label(global_ptw, cur_proj);
+	gtt_clear_daily_counter (prj);
+	ctree_update_label(global_ptw, prj);
 }
 
 /* ============================ END OF FILE ======================= */

@@ -27,7 +27,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "cur-proj.h"
+#include "app.h"
+#include "ctree.h"
 #include "journal.h"
 #include "ghtml.h"
 #include "proj.h"
@@ -301,11 +302,14 @@ interval_popup_cb (Wiggy *wig)
 void
 change_task(GtkWidget *w, gpointer data)
 {
+	GttProject *prj;
 	GttTask *newtask;
-	if (!cur_proj) return;
+
+	prj = ctree_get_focus_project (global_ptw);
+	if (!prj) return;
 
 	newtask = gtt_task_new ();
-	gtt_project_prepend_task (cur_proj, newtask);
+	gtt_project_prepend_task (prj, newtask);
 	prop_task_dialog_show (newtask);
 }
 
@@ -650,42 +654,66 @@ resolve_path (char *path_frag)
 void
 edit_journal(GtkWidget *w, gpointer data)
 {
+	GttProject *prj;
 	char * path;
+
+	prj = ctree_get_focus_project (global_ptw);
+	if (!prj) return;
+
 	path = resolve_path ("journal.ghtml");
-	do_show_report (path, cur_proj);
+	do_show_report (path, prj);
 }
 
 void
 edit_alldata(GtkWidget *w, gpointer data)
 {
+	GttProject *prj;
 	char * path;
+
+	prj = ctree_get_focus_project (global_ptw);
+	if (!prj) return;
+
 	path = resolve_path ("bigtable.ghtml");
-	do_show_report (path, cur_proj);
+	do_show_report (path, prj);
 }
 
 void
 edit_invoice(GtkWidget *w, gpointer data)
 {
+	GttProject *prj;
 	char * path;
+
+	prj = ctree_get_focus_project (global_ptw);
+	if (!prj) return;
+
 	path = resolve_path ("invoice.ghtml");
-	do_show_report (path, cur_proj);
+	do_show_report (path, prj);
 }
 
 void
 edit_primer(GtkWidget *w, gpointer data)
 {
+	GttProject *prj;
 	char * path;
+
+	prj = ctree_get_focus_project (global_ptw);
+	if (!prj) return;
+
 	path = resolve_path ("primer.ghtml");
-	do_show_report (path, cur_proj);
+	do_show_report (path, prj);
 }
 
 void
 invoke_report(GtkWidget *widget, gpointer data)
 {
+	GttProject *prj;
 	char * filepath = (char *) data;
 
+	prj = ctree_get_focus_project (global_ptw);
+	if (!prj) return;
+
 	/* do not gnome-filepath this, this is for user-defined reports */
-	do_show_report (filepath, cur_proj);
+	do_show_report (filepath, prj);
 }
 
 /* ===================== END OF FILE ==============================  */

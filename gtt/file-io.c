@@ -107,7 +107,6 @@ project_list_load_old(const char *fname)
 	GttProject *proj = NULL;
 	char s[1024];
 	int i;
-	time_t tmp_time = -1;
 	int _n, _f, _c, _p, _t, _o, _h, _e;
 
 	if (fname != NULL)
@@ -151,7 +150,7 @@ project_list_load_old(const char *fname)
 			gtt_project_set_desc(proj, &s[1]);
 		} else if (s[0] == 't') {
 			/* last_timer */
-			tmp_time = (time_t)atol(&s[1]);
+			last_timer = (time_t)atol(&s[1]);
 		} else if (s[0] == 's') {
 			/* show seconds? */
 			config_show_secs = (s[3] == 'n');
@@ -171,10 +170,8 @@ project_list_load_old(const char *fname)
 			} else if (s[1] == 's') {
 				/* show status bar */
 				if (s[4] == 'n') {
-					gtk_widget_show(GTK_WIDGET(status_bar));
 					config_show_statusbar = 1;
 				} else {
-					gtk_widget_hide(GTK_WIDGET(status_bar));
 					config_show_statusbar = 0;
 				}
 			} else if (s[1] == '_') {
@@ -216,7 +213,7 @@ project_list_load_old(const char *fname)
 			for (i = 0; s[i] != ' '; i++) ;
 			i++;
 			day_secs = atol(&s[i]);
-			gtt_project_compat_set_secs (proj, ever_secs, day_secs, tmp_time);
+			gtt_project_compat_set_secs (proj, ever_secs, day_secs, last_timer);
 			for (; s[i] != ' '; i++) ;
 			i++;
 			while (s[strlen(s) - 1] == '\n')
@@ -231,12 +228,17 @@ project_list_load_old(const char *fname)
 	plist = pl;
 	project_list_destroy();
 	plist = t;
-
 	gtt_project_list_compute_secs();
-	if (tmp_time > 0) {
-		set_last_reset (tmp_time);
-		zero_on_rollover (time(0));
+
+	if (config_show_statusbar)
+	{
+		gtk_widget_show(status_bar);
 	}
+	else
+	{
+		gtk_widget_hide(status_bar);
+	}
+
 	update_status_bar();
 	if ((_n != config_show_tb_new) ||
 	    (_f != config_show_tb_file) ||
@@ -363,17 +365,13 @@ gtt_load_config (const char *fname)
 	config_data_url = gnome_config_get_string(GTT"Data/URL=" XML_DATA_FILENAME);
 
 	/* ------------ */
-	if (config_show_statusbar)
-		gtk_widget_show(status_bar);
-	else
-		gtk_widget_hide(status_bar);
-	for (i = 0; i < GTK_CLIST(glist)->columns; i++) {
-		g_snprintf(s, sizeof (s), GTT"CList/ColumnWidth%d=0", i);
+	num = 0;
+	for (i = 0; -1 < num; i++) {
+		g_snprintf(s, sizeof (s), GTT"CList/ColumnWidth%d=-1", i);
 		num = gnome_config_get_int(s);
-		if (num) {
-			clist_header_width_set = 1;
-			gtk_clist_set_column_width(GTK_CLIST(glist),
-						   i, num);
+		if (-1 < num) 
+		{
+			ctree_set_col_width (global_ptw, i, num);
 		}
 	}
 
@@ -435,6 +433,15 @@ gtt_load_config (const char *fname)
 	} 
 
 	/* redraw the GUI */
+	if (config_show_statusbar)
+	{
+		gtk_widget_show(status_bar);
+	}
+	else
+	{
+		gtk_widget_hide(status_bar);
+	}
+
 	update_status_bar();
 	if ((_n != config_show_tb_new) ||
 	    (_f != config_show_tb_file) ||
@@ -483,7 +490,7 @@ gtt_post_data_config (void)
 	first_proj_title = NULL;
 
 	/* reset the clocks, if needed */
-	if (last_timer > 0) 
+	if (0 < last_timer) 
 	{
 		set_last_reset (last_timer);
 		zero_on_rollover (time(0));
@@ -573,9 +580,13 @@ gtt_save_config(const char *fname)
 	gnome_config_set_string(GTT"Data/URL", config_data_url);
 
 	/* ------------- */
-	for (i = 0; i < GTK_CLIST(glist)->columns; i++) {
+	w = 0;
+	for (i = 0; -1< w; i++) 
+	{
 		g_snprintf(s, sizeof (s), GTT"CList/ColumnWidth%d", i);
-		gnome_config_set_int(s, GTK_CLIST(glist)->column[i].width);
+		w = ctree_get_col_width (global_ptw, i);
+		if (0 > w) break;
+		gnome_config_set_int(s, w);
 	}
 
 	/* ------------- */

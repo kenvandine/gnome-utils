@@ -46,6 +46,8 @@ void ctree_update_desc(ProjTreeWindow *, GttProject *p);
 void ctree_unselect(ProjTreeWindow *, GttProject *p);
 void ctree_select(ProjTreeWindow *, GttProject *p);
 
+void ctree_set_col_width (ProjTreeWindow *ptw, int col, int width);
+int  ctree_get_col_width (ProjTreeWindow *ptw, int col);
 void ctree_update_column_visibility (ProjTreeWindow *ptw);
 void ctree_titles_show (ProjTreeWindow *ptw);
 void ctree_titles_hide (ProjTreeWindow *ptw);
@@ -53,5 +55,11 @@ void ctree_subproj_show (ProjTreeWindow *ptw);
 void ctree_subproj_hide (ProjTreeWindow *ptw);
 
 GtkWidget * ctree_get_widget(ProjTreeWindow *);
+
+/* The 'focus project' corresponds to the 'focus row' in the ctree:
+ *    its the project that corresponds to where the keyboard events
+ *    are directed.
+ */
+GttProject *ctree_get_focus_project (ProjTreeWindow *);
 
 #endif /* __GTT_CTREE_H__ */

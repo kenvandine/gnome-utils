@@ -22,7 +22,6 @@
 #include <string.h>
 
 #include "app.h"
-#include "cur-proj.h"
 #include "gtt.h"
 #include "journal.h"
 #include "menucmd.h"
@@ -92,25 +91,34 @@ toolbar_set_states(void)
                 else
                         gtk_tooltips_disable(mytbar->tt);
         }
+#if 0
+/* not done any more, use the focus project instead */
         if (mytbar->cut)
                 gtk_widget_set_sensitive(mytbar->cut, (cur_proj != NULL));
         if (mytbar->copy)
                 gtk_widget_set_sensitive(mytbar->copy, (cur_proj != NULL));
+#endif
         if (mytbar->paste)
                 gtk_widget_set_sensitive(mytbar->paste,
                                          (cutted_project != NULL));
+#if 0
+/* not done any more, use the focus project instead */
         if (mytbar->prop_w)
                 gtk_widget_set_sensitive(mytbar->prop_w, (cur_proj != NULL));
         if (mytbar->journal_w)
                 gtk_widget_set_sensitive(mytbar->journal_w, (cur_proj != NULL));
+#endif
         if (mytbar->timer)
 		gnome_stock_set_icon(mytbar->timer,
 				     (timer_is_running()) ?
 				     GNOME_STOCK_PIXMAP_TIMER_STOP :
 				     GNOME_STOCK_PIXMAP_TIMER);
+#if 0
+/* not done any more, use the focus project */
 	if (mytbar->timer_w)
 		gtk_widget_set_sensitive(GTK_WIDGET(mytbar->timer_w),
 			(NULL != prev_proj) || (NULL != cur_proj));
+#endif
 
 	if ((config_show_tb_icons) && (config_show_tb_texts)) {
 		tb_style = GTK_TOOLBAR_BOTH;
