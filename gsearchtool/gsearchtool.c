@@ -934,10 +934,13 @@ spawn_search_command (gchar *command)
 		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), "");
 		gtk_timeout_remove (search_command.timeout);
 		
-		dialog = gtk_message_dialog_new(NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-						_("Sorry, could not start the search.\n%s\n"), 
+		dialog = gtk_message_dialog_new(GTK_WINDOW (interface.main_window), 
+						GTK_DIALOG_DESTROY_WITH_PARENT, 
+						GTK_MESSAGE_ERROR, 
+						GTK_BUTTONS_OK,
 						error->message);
-		gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (interface.main_window));
+						
+		gtk_window_set_title (GTK_WINDOW (dialog), _("Search for Files Error"));
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 		g_error_free (error);
@@ -955,10 +958,13 @@ spawn_search_command (gchar *command)
 		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), "");
 		gtk_timeout_remove (search_command.timeout);
 		
-		dialog = gtk_message_dialog_new(NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-						_("Sorry, could not start the search.\n%s\n"), 
+		dialog = gtk_message_dialog_new(GTK_WINDOW (interface.main_window), 
+						GTK_DIALOG_DESTROY_WITH_PARENT, 
+						GTK_MESSAGE_ERROR, 
+						GTK_BUTTONS_OK,
 						error->message);
-		gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (interface.main_window));
+
+		gtk_window_set_title (GTK_WINDOW (dialog), _("Search for Files Error"));
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 		g_error_free (error);
