@@ -144,15 +144,17 @@ gtt_phtml_display (GttPhtml *phtml, const char *path_fragment)
 
 	/* XXX hack alert FIXME  need to get the full 
 	 * path e.g. /usr/share/gtt, and also need to get i18n path */
-	fullpath = g_strconcat ("phtml/C/", path_fragment);
+	fullpath = g_strconcat ("phtml/C/", path_fragment, 0);
 	
 	/* try to get the phtml file ... */
 	ph = fopen (fullpath, "r");
 	if (!ph)
 	{
 		(phtml->error) (phtml, 404, fullpath);
+		g_free (fullpath);
 		return;
 	}
+	g_free (fullpath); fullpath = NULL;
 
 	/* Now open the output stream for writing */
 	(phtml->open_stream) (phtml);
