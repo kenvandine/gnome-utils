@@ -279,11 +279,14 @@ cb_entry_changed (GtkWidget *widget, gpointer data)
     gchar *text;
 
     text = gtk_editable_get_chars (GTK_EDITABLE (widget), 0, -1);
-    if (strcmp (text, "") == 0) 
-      edit_menu_set_sensitivity (FALSE);
-    else
-      edit_menu_set_sensitivity (TRUE);
-
+    if (strcmp (text, "") == 0) {
+        gtk_widget_set_sensitive (mainapp->copy_button, FALSE);
+        edit_menu_set_sensitivity (FALSE);
+    }
+    else {
+        gtk_widget_set_sensitive (mainapp->copy_button, TRUE);
+        edit_menu_set_sensitivity (TRUE);
+    }
     g_free (text);
 }
 

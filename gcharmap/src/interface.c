@@ -146,7 +146,6 @@ main_app_create_ui (MainApp *app)
     GtkWidget *vbox, *hbox, *hbox2, *hbox3, *vbox2;
     GtkWidget *vsep, *alabel, *label;
     GtkWidget *chartable;
-    GtkWidget *button;
     GtkWidget *align;
     GtkWidget *image;
     GtkWidget *fontlabel;
@@ -232,13 +231,13 @@ main_app_create_ui (MainApp *app)
 	g_signal_connect (G_OBJECT (GTK_EDITABLE (app->entry)), "changed",
 			  G_CALLBACK (cb_entry_changed), NULL);
         
-	button = gtk_button_new ();
-	if (GTK_BIN (button)->child)
-                gtk_container_remove (GTK_CONTAINER (button),
-                                      GTK_BIN (button)->child);
+	app->copy_button = gtk_button_new ();
+	if (GTK_BIN (app->copy_button)->child)
+                gtk_container_remove (GTK_CONTAINER (app->copy_button),
+                                      GTK_BIN (app->copy_button)->child);
 
 	label = gtk_label_new_with_mnemonic (_("_Copy"));
-        gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (app->copy_button));
 
         image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_BUTTON);
         hbox3 = gtk_hbox_new (FALSE, 2);
@@ -248,20 +247,22 @@ main_app_create_ui (MainApp *app)
         gtk_box_pack_start (GTK_BOX (hbox3), image, FALSE, FALSE, 0);
         gtk_box_pack_end (GTK_BOX (hbox3), label, FALSE, FALSE, 0);
 
-        gtk_container_add (GTK_CONTAINER (button), align);
+        gtk_container_add (GTK_CONTAINER (app->copy_button), align);
         gtk_container_add (GTK_CONTAINER (align), hbox3);
 	
         gtk_widget_show_all (align);
-
-        gtk_container_set_border_width (GTK_CONTAINER (button), 2);
-        g_signal_connect (G_OBJECT (button), "clicked",
+    
+        gtk_container_set_border_width (GTK_CONTAINER (app->copy_button), 2);
+        g_signal_connect (G_OBJECT (app->copy_button), "clicked",
         		  G_CALLBACK (cb_copy_click), NULL);
-        gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);		 
+        gtk_box_pack_start (GTK_BOX (hbox), app->copy_button, FALSE, FALSE, 0);	
+        gtk_widget_set_sensitive (app->copy_button, FALSE);
+
         if (check_gail(app->entry))
         {
           add_atk_namedesc(GTK_WIDGET(alabel), _("Text to copy"), _("Text to copy"));
           add_atk_namedesc(app->entry, _("Entry"), _("Text to copy"));
-          add_atk_namedesc(button, _("Copy"), _("Copy the text"));
+          add_atk_namedesc(app->copy_button, _("Copy"), _("Copy the text"));
           add_atk_relation(app->entry, GTK_WIDGET(alabel), ATK_RELATION_LABELLED_BY);
         }
  

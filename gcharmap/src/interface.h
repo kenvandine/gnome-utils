@@ -39,6 +39,7 @@ typedef struct _MainApp
     GObject parent_struct;
     GtkWidget *window;
     GtkWidget *entry;
+    GtkWidget *copy_button;
     GtkWidget *textbar;
     GtkWidget *preview_label;
     GtkWidget *fontpicker;
