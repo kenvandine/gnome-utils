@@ -315,8 +315,8 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 			text[0] = _("Comment");
 			text[1] = "";
 			comment = gtk_ctree_insert(crd_tree, expl, NULL, text, TREE_SPACING, 
-																 expl_pix->pixmap,	expl_pix->mask, 
-																 expl_pix->pixmap, expl_pix->mask, FALSE, FALSE);
+						   expl_pix->pixmap,	expl_pix->mask, 
+						   expl_pix->pixmap, expl_pix->mask, FALSE, FALSE);
 			
 			text[0] = "";
 			c = rem = text[1] = g_strdup(crd->comment.str);
@@ -1474,7 +1474,7 @@ void gnomecard_add_deladdr(GtkWidget *widget, gpointer data)
 	addr->region = MY_STRDUP(text[4]);
 	addr->code = MY_STRDUP(text[5]);
 	addr->country = MY_STRDUP(text[6]);
-  addr->prop = empty_CardProperty();
+	addr->prop = empty_CardProperty();
 	addr->prop.used = TRUE;
 
 	addr->type = 0;
@@ -1578,9 +1578,40 @@ void gnomecard_add_deladdr_call(GtkWidget *widget, gpointer data)
 	gtk_widget_show(w);
 }
 
+void gnomecard_add_dellabel(GtkWidget *widget, gpointer data)
+{
+	GnomeCardDelLabel *p;
+	CardDelLabel *addr;
+	char *text;
+	int i, flag;
+	
+	p = (GnomeCardDelLabel *) data;
+	
+	text = gtk_editable_get_chars(GTK_EDITABLE(p->data), 0,
+				      gtk_text_get_length(GTK_TEXT(p->data)));
+	if (*text == 0)
+	  return;
+	
+	addr = g_malloc(sizeof(CardDelLabel));
+	addr->data = MY_STRDUP(text);
+	addr->prop = empty_CardProperty();
+	addr->prop.encod = ENC_QUOTED_PRINTABLE;
+	addr->prop.used = TRUE;
+
+	addr->type = 0;
+	for (i = 0; i < 6; i++)
+	  if (GTK_TOGGLE_BUTTON(p->type[i])->active)
+	    addr->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
+	
+	((Card *) p->l->data)->dellabel = g_list_append(((Card *) p->l->data)->dellabel, addr);
+	gnomecard_update_tree(p->l->data);
+
+	gtk_editable_delete_text(GTK_EDITABLE(p->data), 0, strlen(text));
+	gnomecard_set_changed(TRUE);
+}
+
 void gnomecard_add_dellabel_call(GtkWidget *widget, gpointer data)
 {
-	g_warning ("gnomecard_add_dellabel_call.");
 }
 
 void gnomecard_edit_card(GtkWidget *widget, gpointer data)

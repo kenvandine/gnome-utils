@@ -56,3 +56,10 @@ typedef struct
 	
 	GList *l;
 } GnomeCardDelAddr;
+
+typedef struct
+{
+	GtkWidget *type[6], *data;
+	
+	GList *l;
+} GnomeCardDelLabel;

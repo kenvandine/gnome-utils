@@ -97,6 +97,8 @@ card_new(void)
 	c->fname = c->mailer  = c->title = c->role  = c->comment = 
 	c->url   = c->uid     = empty_CardStrProperty();
 	
+	c->comment.prop.encod = ENC_QUOTED_PRINTABLE;
+	
 	c->name.prop    = c->photo.prop    = c->bday.prop   = c->timezn.prop = 
 	c->geopos.prop  = c->logo.prop     = c->org.prop    = c->rev.prop    =
 	c->sound.prop   = c->key.prop = empty_CardProperty();
@@ -887,6 +889,7 @@ card_create_from_vobject (VObject *vcrd)
 		 case COMMENT:
 			prop = &crd->comment.prop;
 			crd->comment.str = g_strdup(str_val(o));
+			crd->comment.prop.encod = ENC_QUOTED_PRINTABLE;
 			free(the_str);
 			break;
 		 case REV:
