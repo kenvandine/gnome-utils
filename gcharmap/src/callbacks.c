@@ -161,7 +161,16 @@ cb_clear_click (GtkWidget *widget, gpointer user_data)
 void
 cb_copy_click (GtkWidget *widget, gpointer user_data)
 {
-    cb_select_all_click (widget, user_data);
+    gint start, end;
+    gboolean selection_flag;
+
+    selection_flag = gtk_editable_get_selection_bounds (GTK_EDITABLE (mainapp->entry), &start, &end);
+
+    if(selection_flag)
+        gtk_editable_select_region (GTK_EDITABLE (mainapp->entry), start, end);
+    else
+        cb_select_all_click (widget, user_data);
+
     gtk_editable_copy_clipboard (GTK_EDITABLE (mainapp->entry));
     gnome_app_flash (GNOME_APP (mainapp->window), _("Text copied to clipboard..."));
 }
@@ -170,10 +179,20 @@ cb_copy_click (GtkWidget *widget, gpointer user_data)
 void
 cb_cut_click (GtkWidget *widget, gpointer user_data)
 {
-    cb_select_all_click (widget, user_data);
+    gint start, end;
+    gboolean selection_flag;
+
+    selection_flag = gtk_editable_get_selection_bounds (GTK_EDITABLE (mainapp->entry), &start, &end);
+
+    if(selection_flag)
+        gtk_editable_select_region (GTK_EDITABLE (mainapp->entry), start, end);
+    else
+        cb_select_all_click (widget, user_data);
+#if 0 /* Why the heck is this here? It makes cutting noticable slow */
     while (gtk_events_pending ()) gtk_main_iteration ();
     usleep (500000);
     while (gtk_events_pending ()) gtk_main_iteration ();
+#endif
     gtk_editable_cut_clipboard (GTK_EDITABLE (mainapp->entry));
     gnome_app_flash (GNOME_APP (mainapp->window), _("Text cut to clipboard..."));
 }

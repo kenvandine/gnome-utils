@@ -1,3 +1,16 @@
+2002-03-14  Kevin Vandersloot <kfv101@psu.edu>
+
+	* src/callbacks.c: comment out the delay when cutting.
+	It just seems to put in a noticable delay for no purpose
+
+2002-03-13  Ganesan Sethuraman <ganesan.sethuraman@wipro.com>
+
+	* src/callbacks.c: Fix for copy/cut operations.If some portion of 
+	the text is selected, then copy/cut that portion only otherwise 
+	copy/cut the entire text.Fix for bug #73845
+	* src/callbacks.c : Replaced the deprecated call 
+	gtk_entry_select_region() with gtk_editable_select_region().
+
 2002-03-01   Muktha  <muktha.narayan@wipro.com>
 
         * src/interface.c: Added new code and functions
