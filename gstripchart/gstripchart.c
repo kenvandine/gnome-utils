@@ -562,6 +562,7 @@ static double eval(
 /*
  * Param -- struct describing a single parameter.
  */
+typedef enum { scale_linear, scale_log } scale_t;
 typedef struct
 {
   char active;		/* set if this parameter should be evaluated */
@@ -583,6 +584,7 @@ typedef struct
   int vars;		/* how many vars to read from the line in the file */
   double *last, *now;	/* the last and current vars, as enumerated above */
   float *val;		/* value history */
+  scale_t scale;	/* function to scale value by prior to display */
 }
 Param;
 
@@ -810,10 +812,11 @@ read_param_defns(Param_glob *pgp)
 		  p[params-1]->led_gc = NULL;
 		  p[params-1]->hi = p[params-1]->top = 1.0;
 		  p[params-1]->lo = p[params-1]->bot = 0.0;
+		  p[params-1]->scale = scale_linear;
 		}
 	      else if (streq(key, "end"))
 		{
-		  if (!streq(p[params-1]->ident, val))
+		  if (val && !streq(p[params-1]->ident, val))
 		    defns_error(fn, lineno, "found %s when expecting %s",
 		      val, p[params-1]->ident);
 		}
@@ -849,6 +852,16 @@ read_param_defns(Param_glob *pgp)
 		    }
 		  pp->num_leds = n;
 		  pp->is_led = 1;
+		}
+	      else if (streq(key, "scale"))
+		{
+		  if (streq(val, "linear"))
+		    p[params-1]->scale = scale_linear;
+		  else if (streq(val, "log"))
+		    p[params-1]->scale = scale_log;
+		  else
+		    defns_error(fn, lineno,
+		      _("scale must be either \"log\" or \"linear\""));
 		}
 	      else if (streq(key, "active"))
 		p[params-1]->active = yes_no(val);
@@ -1281,8 +1294,10 @@ overlay_status_box(GtkWidget *widget)
  * val2y -- scales a parameter value into a y coordinate value.
  */
 static int
-val2y(float val, float top, int height)
+val2y(float val, float top, int height, scale_t scale)
 {
+  if (scale == scale_log)
+    return height - (height * logf(1+val) / logf(1+top));
   return height - (height * val / top);
 }
 
@@ -1298,16 +1313,17 @@ chart_expose_handler(GtkWidget *widget, GdkEventExpose *event)
     if (chart_glob.parray[p]->active && !chart_glob.parray[p]->is_led)
       {
 	float top = chart_glob.parray[p]->top;
+	scale_t scale = chart_glob.parray[p]->scale;
 	int n = w < chart_glob.num_val ? w : chart_glob.num_val;
 	int i, j = chart_glob.new_val;
 	int x0, x1 = w - 1;
-	int y0, y1 = val2y(chart_glob.parray[p]->val[j], top, h);
+	int y0, y1 = val2y(chart_glob.parray[p]->val[j], top, h, scale);
 	for (i=0; i<n; i++)
 	  {
 	    if (--j < 0) j = chart_glob.max_val - 1;
 	    x0 = x1; y0 = y1;
 	    x1 = x0 - 1;
-	    y1 = val2y(chart_glob.parray[p]->val[j], top, h);
+	    y1 = val2y(chart_glob.parray[p]->val[j], top, h, scale);
 	    gdk_draw_line(pixmap, chart_glob.parray[p]->gdk_gc, x0,y0, x1,y1);
 	  }
       }
@@ -1324,6 +1340,8 @@ chart_expose_handler(GtkWidget *widget, GdkEventExpose *event)
 
   return FALSE;
 }
+
+static void text_popup_refresh(void);
 
 static gint
 chart_timer_handler(GtkWidget *widget)
@@ -1357,10 +1375,12 @@ chart_timer_handler(GtkWidget *widget)
 	if (chart_glob.parray[p]->active && !chart_glob.parray[p]->is_led)
 	  {
 	    float top = chart_glob.parray[p]->top;
+	    scale_t scale = chart_glob.parray[p]->scale;
 	    int i = chart_glob.new_val;
 	    int m = chart_glob.max_val;
-	    int y1 = val2y(chart_glob.parray[p]->val[i], top, h);
-	    int y0 = val2y(chart_glob.parray[p]->val[(i+m-1) % m], top, h);
+	    int y1 = val2y(chart_glob.parray[p]->val[i], top, h, scale);
+	    int y0 = val2y(chart_glob.parray[p]->val[(i+m-1) % m],
+	      top, h, scale);
 	    gdk_draw_line(pixmap, chart_glob.parray[p]->gdk_gc,
 	      w-2,y0, w-1,y1);
 	  }
@@ -1370,6 +1390,8 @@ chart_timer_handler(GtkWidget *widget)
       overlay_tick_marks(widget, minor_tick, major_tick);
       overlay_status_box(widget);
     }
+
+  text_popup_refresh();
   return TRUE;
 }
 
@@ -1385,7 +1407,7 @@ slider_redraw(GtkWidget *widget)
 	GdkPoint tri[3];
 	int y = val2y(
 	  slider_glob.parray[p]->val[slider_glob.new_val],
-	  slider_glob.parray[p]->top, h);
+	  slider_glob.parray[p]->top, h, slider_glob.parray[p]->scale);
 	tri[0].x = 0; tri[0].y = y;
 	tri[1].x = w; tri[1].y = y-w/2;
 	tri[2].x = w; tri[2].y = y+w/2;
@@ -1572,7 +1594,7 @@ prefs_callback(GtkWidget *chart, void *unused)
     }
   gtk_widget_show(notebook);
 
-  dialog = gnome_dialog_new(_("Gnome Stripchart Parameters"),
+  dialog = gnome_dialog_new(_("Stripchart Parameters"),
     GNOME_STOCK_BUTTON_OK, GNOME_STOCK_BUTTON_APPLY,
     GNOME_STOCK_BUTTON_CANCEL, GNOME_STOCK_BUTTON_HELP, NULL);
   gnome_dialog_set_parent(GNOME_DIALOG(dialog), GTK_WINDOW(chart));
@@ -1594,69 +1616,102 @@ prefs_callback(GtkWidget *chart, void *unused)
  * text_load_clist -- fills a clist with chart ident, current, and top values.
  */
 static void
-text_load_clist(GtkWidget *txt, GtkWidget *box)
+text_load_clist(GtkWidget *text_popup_clist, GtkWidget *text_popup_window)
 {
   int n;
-  gtk_clist_freeze(GTK_CLIST(txt));
-  gtk_clist_clear(GTK_CLIST(txt));
+  gtk_clist_freeze(GTK_CLIST(text_popup_clist));
+  gtk_clist_clear(GTK_CLIST(text_popup_clist));
   for (n = 0; n < chart_glob.params; n++)
     {
       Param *p = chart_glob.parray[n];
       char val_str[100], top_str[100];
-      char *row_strs[3];
+      char *row_strs[4];
 
       row_strs[0] = _(p->ident);
       row_strs[1] = val_str;
       row_strs[2] = top_str;
+      row_strs[3] = p->is_led ? "*" : p->scale ? "log" : "-";
       hi_lo_fmt(p->top, top_str, p->val[chart_glob.new_val], val_str);
-      gtk_clist_append(GTK_CLIST(txt), row_strs);
-      gtk_clist_set_foreground(GTK_CLIST(txt), n, &p->gdk_color);
-      gtk_clist_set_background(GTK_CLIST(txt), n, &box->style->bg[0]);
+      gtk_clist_append(GTK_CLIST(text_popup_clist), row_strs);
+      gtk_clist_set_foreground(GTK_CLIST(text_popup_clist),
+	n, &p->gdk_color);
+      gtk_clist_set_background(GTK_CLIST(text_popup_clist),
+	n, &text_popup_window->style->bg[0]);
     }
-  gtk_clist_columns_autosize(GTK_CLIST(txt));
-  gtk_clist_thaw(GTK_CLIST(txt));
+  gtk_clist_columns_autosize(GTK_CLIST(text_popup_clist));
+  gtk_clist_thaw(GTK_CLIST(text_popup_clist));
 }
 
 /*
- * text_update -- updates the text box values on response to a box click.
+ * text_popup widgets: these are file-scoped so that the text popup
+ * window can be refreshed from the chart timer handler.
+ */
+static GtkWidget *text_popup_window, *text_popup_clist;
+
+/*
+ * text_popup_refresh -- if the text popup window is up, refresh the
+ * values.  Called from chart_timer_handler().
  */
 static void
-text_update(GtkWidget *box, GdkEvent *event, GtkWidget *txt)
+text_popup_refresh(void)
 {
-  text_load_clist(txt, box);
+  if (text_popup_window)
+    text_load_clist(text_popup_clist, text_popup_window);
+}
+
+/*
+ * text_popup_close -- destroy event handler.  Destroys the window.
+ */
+static void
+text_popup_close(void)
+{
+  if (text_popup_window)
+    {
+      gtk_widget_destroy(GTK_WIDGET(text_popup_window));
+      text_popup_window = NULL;
+    }
 }
 
 /*
  * text_popup -- pops up a top level textual display of current
- * parameter values in response to a mouse click.
+ * parameter values in response to a mouse click.  Closes this window
+ * if it's already displayed.
  */
 static void
 text_popup(GtkWidget *widget, GdkEvent *event)
 {
-  static GtkWidget *box, *txt;
   GdkEventButton *button = (GdkEventButton*)event;
 
-  if (box)
-    {
-      gtk_widget_destroy(GTK_WIDGET(box));
-      box = NULL;
-    }
+  if (text_popup_window)
+    text_popup_close();
   else
     {
-      char *titles[3];
-      titles[0] = _("Param"); titles[1] = _("Current"); titles[2] = _("Top");
-      txt = gtk_clist_new_with_titles(NELS(titles), titles);
-      gtk_widget_show(txt);
+      char *titles[4];
+      titles[0] = _("Param");
+      titles[1] = _("Current");
+      titles[2] = _("Top");
+      titles[3] = _("Scale");
+      text_popup_clist = gtk_clist_new_with_titles(NELS(titles), titles);
+      gtk_widget_show(text_popup_clist);
 
-      box = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-      gtk_widget_set_style(GTK_WIDGET(box), widget->style);
-      gtk_container_add(GTK_CONTAINER(box), txt);
-      gtk_window_set_transient_for(GTK_WINDOW(box), GTK_WINDOW(widget));
-      gtk_widget_set_uposition(GTK_WIDGET(box), button->x_root,button->y_root);
-      gtk_signal_connect(GTK_OBJECT(box),
-	"button_press_event", GTK_SIGNAL_FUNC(text_update), txt);
-      text_load_clist(txt, widget);
-      gtk_widget_show(box);
+      text_popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+      gtk_widget_set_style(GTK_WIDGET(text_popup_window), widget->style);
+      gtk_container_add(GTK_CONTAINER(text_popup_window), text_popup_clist);
+      gtk_window_set_transient_for(GTK_WINDOW(text_popup_window),
+	GTK_WINDOW(widget));
+      gtk_widget_set_uposition(GTK_WIDGET(text_popup_window),
+	button->x_root, button->y_root);
+      gtk_widget_show(text_popup_window);
+
+      /* Load the initial batch of parameter values after showing the
+         toplevel window.  This odd sequence is required to get the
+         auto-sizing right. */
+      text_load_clist(text_popup_clist, widget);
+
+      /* Handle any button press events by updating the parameter
+         values in the clist popup. */
+      gtk_signal_connect(GTK_OBJECT(text_popup_window),
+	"destroy", GTK_SIGNAL_FUNC(text_popup_close), NULL);
     }
 }
 
@@ -1796,7 +1851,7 @@ gnome_graph(void)
   /* Create a top-level application window. Set minimum size (_usize),
      initial size (_default_size), and establish delete and destroy
      event handlers. */
-  frame = gnome_app_new(_("gstripchart"), _("Gnome stripchart viewer"));
+  frame = gnome_app_new(_("gstripchart"), _("Stripchart Viewer"));
   gtk_widget_set_usize(frame, 1, 1); /* min_w, min_h */
   gtk_window_set_default_size(GTK_WINDOW(frame), geometry_w, geometry_h);
   gtk_signal_connect(GTK_OBJECT(frame),

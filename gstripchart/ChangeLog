@@ -1,3 +1,20 @@
+1999-11-26  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (text_popup): Show the text_popup toplevel frame
+	before loading its initial values so the clist autosizing works.
+	(text_popup): Add a destroy event handler to close the text_popup
+	window cleanly.
+	(chart_timer_handler): Call text_popup_refresh() to refresh the
+	parameter values in the text popup window if it's being displayed.
+	(text_load_clist): Added a "Scale" column to the text popup.
+
+1999-11-25  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (val2y, read_param_defns, and elsewhere): Add code
+	to handle log-scaled parameters.
+	(read_param_defns): Don't check the label after an end tag if none
+	has been supplied.
+
 1999-11-25  Pablo Saratxaga <pablo@mandrakesoft.com>
 
 	* gstripchart.c: added a placeholder for xgettext to find some
