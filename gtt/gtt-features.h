@@ -19,7 +19,6 @@
 #ifndef __FEATURES_H__
 #define __FEATURES_H__
 
-
 /*
  * ALWAYS_SHOW_TOGGLE
  * If defined, the gtk_check_menu_item_set_show_toggle will be called with

@@ -21,7 +21,6 @@
 
 #include <string.h>
 
-
 #include "gtt-features.h"
 #include "menus.h"
 #include "menucmd.h"

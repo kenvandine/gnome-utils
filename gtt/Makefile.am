@@ -1,7 +1,7 @@
 Utilitiesdir = $(datadir)/apps/Utilities
 GTT_HELP_DIR = $(datadir)/gtt
 
-DEFS += -ggdb -Wall -DDEBUG
+# DEFS += -ggdb -Wall -DDEBUG
 
 INCLUDES = 			\
 	-I../.. 		\

@@ -19,6 +19,7 @@
 #ifndef __GTT_HELP_H__
 #define __GTT_HELP_H__
 
+
 #include <gnome.h>
 #include <gtk-xmhtml/gtk-xmhtml.h>
 

@@ -20,7 +20,7 @@
 #include <gtk/gtk.h>
 
 #include "gtt.h"
-
+ 
 #include <X11/Xlib.h>
 #include <signal.h>
 

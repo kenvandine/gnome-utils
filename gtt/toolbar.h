@@ -19,7 +19,6 @@
 #ifndef __TOOLBAR_H__
 #define __TOOLBAR_H__
 
-
 GtkWidget *build_toolbar(void);
 void toolbar_set_states(void);
 

@@ -21,15 +21,16 @@
 #ifdef USE_GTT_HELP
 #include "gtthelp.h"
 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
 
 
-#include "tb_home.xpm"
-#include "tb_back.xpm"
-#include "tb_forward.xpm"
+#include "tb_home_.xpm"
+#include "tb_back_.xpm"
+#include "tb_forward_.xpm"
 #include "tb_unknown.xpm"
 #include "tb_exit.xpm"
 

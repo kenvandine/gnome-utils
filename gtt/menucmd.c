@@ -24,6 +24,7 @@
 #endif
 #include <string.h>
 
+
 #include "gtt.h"
 
 #undef gettext

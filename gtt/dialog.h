@@ -18,6 +18,7 @@
 #ifndef __DIALOG_H__
 #define __DIALOG_H__
 
+
 /*
  * The dialog created is a window widget - not a dialog widget!
  */

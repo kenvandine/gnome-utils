@@ -19,6 +19,7 @@
 #ifndef __MENUCMD_H__
 #define __MENUCMD_H__
 
+
 /* void not_implemented(GtkWidget *w, gpointer data); */
 
 void quit_app(GtkWidget *, gpointer);

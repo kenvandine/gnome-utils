@@ -21,6 +21,7 @@
 
 #include "gtt.h"
 
+
 #undef gettext
 #undef _
 #include <libintl.h>

@@ -23,7 +23,6 @@
 #include "gtt.h"
 
 
-
 gint main_timer = 0;
 time_t last_timer = -1;
 
