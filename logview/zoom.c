@@ -76,15 +76,14 @@ create_zoom_view (void)
 		          G_CALLBACK (gtk_true),
 			  NULL);
 	gtk_dialog_set_has_separator (GTK_DIALOG (zoom_dialog), FALSE);
-	gtk_window_set_default_size (GTK_WINDOW (zoom_dialog), 500, 175);
+	gtk_window_set_default_size (GTK_WINDOW (zoom_dialog), 500, 225);
 	gtk_dialog_set_default_response (GTK_DIALOG (zoom_dialog), GTK_RESPONSE_CLOSE);
    	gtk_container_set_border_width (GTK_CONTAINER (zoom_dialog), 5);
-
-    repaint_zoom ();
    }
+   
+   repaint_zoom();
    gtk_widget_show (zoom_dialog);
-
-   zoom_visible = TRUE;
+   zoom_visible = TRUE; 
 }
 
 /* ----------------------------------------------------------------------
@@ -166,11 +165,15 @@ repaint_zoom (void)
            gtk_list_store_append (GTK_LIST_STORE (store), &iter);
            gtk_list_store_set (GTK_LIST_STORE (store), &iter, 0, titles[i], -1);
        }
-       return -1;
+       return FALSE;
    }
   
    if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
-       line = (curlog->lines)[curlog->current_line_no];
+
+       if (curlog->current_line_no <= 0 || 
+           ((line = (curlog->lines)[curlog->current_line_no - 1]) == NULL)) {
+       	   return FALSE;
+       }
 
        date.tm_mon = line->month;
        date.tm_year = 70 /* bogus */;
