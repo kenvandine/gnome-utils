@@ -50,7 +50,7 @@ void
 click_stop_cb 			(GtkWidget 	*widget, 
 	       			 gpointer 	data);
 void
-click_check_button_cb		(GtkWidget	*widget, 
+click_expander_cb		(GtkWidget	*widget, 
 				 gpointer 	data);
 void   
 size_allocate_cb 		(GtkWidget 	*widget,

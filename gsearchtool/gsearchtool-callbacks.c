@@ -119,10 +119,10 @@ help_cb (GtkWidget 	*widget,
 }
 
 void
-click_check_button_cb (GtkWidget	*widget, 
-	       	       gpointer 	data)
+click_expander_cb (GtkWidget	*widget, 
+	       	   gpointer 	data)
 {
-	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget))) {
+	if (gtk_expander_get_expanded (GTK_EXPANDER (widget))) {
 		gtk_widget_show (interface.additional_constraints);
 		gtk_window_set_geometry_hints (GTK_WINDOW (interface.main_window), 
 		                               GTK_WIDGET (interface.main_window),

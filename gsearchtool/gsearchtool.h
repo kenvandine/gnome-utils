@@ -98,7 +98,7 @@ struct _InterfaceStruct {
 	GdkPixbuf		*pixbuf;	
 	GtkWidget		*table;	
 	GtkWidget 		*file_selector;
-	GtkWidget		*checkbutton;
+	GtkWidget		*expander;
 	GtkWidget		*add_button;
 	GtkWidget 		*additional_constraints;
 	GtkWidget		*constraint_menu;

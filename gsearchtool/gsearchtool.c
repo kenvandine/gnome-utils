@@ -1305,7 +1305,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 
 		gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.find_button);
 		gtk_widget_set_sensitive (interface.additional_constraints, TRUE);
-		gtk_widget_set_sensitive (interface.checkbutton, TRUE);
+		gtk_widget_set_sensitive (interface.expander, TRUE);
 		gtk_widget_set_sensitive (interface.table, TRUE);
 		gtk_widget_set_sensitive (interface.find_button, TRUE);
 		gtk_widget_hide (interface.stop_button);
@@ -1488,7 +1488,7 @@ spawn_search_command (gchar *command)
 	gtk_widget_set_sensitive (interface.find_button, FALSE);
 	gtk_widget_set_sensitive (interface.results, TRUE);
 	gtk_widget_set_sensitive (interface.additional_constraints, FALSE);
-	gtk_widget_set_sensitive (interface.checkbutton, FALSE);
+	gtk_widget_set_sensitive (interface.expander, FALSE);
 	gtk_widget_set_sensitive (interface.table, FALSE);
 
 	gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), 0, 0);
@@ -1617,7 +1617,7 @@ add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 
 	if (show_constraint) {
 		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
-			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "clicked", 0);
+			gtk_expander_set_expanded (GTK_EXPANDER (interface.expander), TRUE);
 			gtk_widget_show (interface.additional_constraints);
 		}
 	} 
@@ -1960,10 +1960,10 @@ create_main_window (void)
 	g_free (locale_string);
 	g_free (utf8_string);
 	
-	interface.checkbutton = gtk_check_button_new_with_mnemonic (_("Show more _options"));
-	gtk_box_pack_start (GTK_BOX(window), interface.checkbutton, FALSE, FALSE, 0);
-	g_signal_connect (G_OBJECT (interface.checkbutton),"clicked",
-			  G_CALLBACK (click_check_button_cb), NULL);
+	interface.expander = gtk_expander_new_with_mnemonic (_("Show more _options"));
+	gtk_box_pack_start (GTK_BOX(window), interface.expander, FALSE, FALSE, 0);
+	g_signal_connect (G_OBJECT (interface.expander),"notify::expanded",
+			  G_CALLBACK (click_expander_cb), NULL);
 			  
 	interface.additional_constraints = create_additional_constraint_section ();
 	gtk_box_pack_start (GTK_BOX(window), GTK_WIDGET(interface.additional_constraints), FALSE, FALSE, 0);
@@ -2187,7 +2187,7 @@ handle_gconf_settings (void)
 {
 	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_additional_options")) {
 		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
-			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "clicked", 0);
+			gtk_expander_set_expanded (GTK_EXPANDER (interface.expander), TRUE);
 			gtk_widget_show (interface.additional_constraints);
 		}
 	}
