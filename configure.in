@@ -1,47 +1,11 @@
-dnl 
-dnl configure.in for gnome-utils, process with autoconf >= 2.13
-dnl
-
 AC_INIT(gcalc)
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE(gnome-utils, 1.103.0)
 
 AM_MAINTAINER_MODE
 
-dnl
-dnl Due to the sed scripts being split on 90 line
-dnl blocks, this macro needs to be right at the beggining.
-dnl
-
 AC_PROG_INTLTOOL
 
-dnl We could probably remove this cruft
-dnl 
-dnl # find the actual value for $prefix that we'll end up with
-dnl REAL_PREFIX=
-dnl if test "x$prefix" = "xNONE"; then
-dnl   REAL_PREFIX=$ac_default_prefix
-dnl else
-dnl   REAL_PREFIX=$prefix
-dnl fi
-dnl old_prefix=$prefix
-dnl prefix=$REAL_PREFIX
-dnl
-dnl REAL_EXEC_PREFIX=
-dnl if test "x$exec_prefix" = "xNONE"; then
-dnl   REAL_EXEC_PREFIX=$prefix
-dnl else
-dnl   REAL_EXEC_PREFIX=$exec_prefix
-dnl fi
-dnl old_exec_prefix=$exec_prefix
-dnl exec_prefix=$REAL_EXEC_PREFIX
-
-
-dnl GNOME_INIT(applets)
-
-dnl Can someone have a look at this list and see if we actually
-dnl need *all* of them??
- 
 AC_ISC_POSIX
 AC_PROG_CXX
 AC_PROG_CC
