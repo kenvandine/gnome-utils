@@ -10,7 +10,7 @@ EXTRA_DIST = gtt-db.sgml \
 gtt_helpdir = $(datadir)/gnome/help/gtt/C
 
 install-data-local:
-	$(mkinstalldirs) $(ghex_helpdir)
-	$(INSTALL_DATA)  index.html $(ghex_helpdir)
-	$(INSTALL_DATA)  topic.dat $(ghex_helpdir)
+	$(mkinstalldirs) $(gtt_helpdir)
+	$(INSTALL_DATA)  $(srcdir)/index.html $(gtt_helpdir)
+	$(INSTALL_DATA)  $(srcdir)/topic.dat $(gtt_helpdir)
 
