@@ -48,6 +48,9 @@
 
 project *cur_proj = NULL;
 GtkWidget *glist, *window;
+#ifndef GNOME_USE_APP
+GtkBox *window_vbox;
+#endif
 
 GtkWidget *status_bar;
 #ifdef GTK_USE_STATUSBAR
@@ -64,8 +67,17 @@ int config_show_secs = 1;
 #else
 int config_show_secs = 0;
 #endif
+int config_show_statusbar = 1;
 int config_show_tb_icons = 1;
-int config_show_tb_texts = 0;
+int config_show_tb_texts = 1;
+int config_show_tb_new = 1;
+int config_show_tb_file = 0;
+int config_show_tb_ccp = 0;
+int config_show_tb_prop = 0;
+int config_show_tb_timer = 1;
+int config_show_tb_pref = 1;
+int config_show_tb_help = 1;
+int config_show_tb_exit = 1;
 char *config_command = NULL;
 char *config_command_null = NULL;
 char *config_logfile_name = NULL;
@@ -465,6 +477,7 @@ void app_new(int argc, char *argv[])
 	gtk_container_border_width(GTK_CONTAINER(window), 1);
 
 	vbox = gtk_vbox_new(FALSE, 3);
+        window_vbox = GTK_BOX(vbox);
 
 	get_menubar(&widget, &accel, MENU_MAIN);
 	gtk_widget_show(widget);

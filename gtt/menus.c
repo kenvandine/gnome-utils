@@ -45,7 +45,7 @@ menus_remove_accel (GtkWidget *widget,
 
 
 
-#define MAX_MENU_ITEMS 28
+#define MAX_MENU_ITEMS 29
 static void set_menu_item(GtkMenuEntry me[], int i, char *path, char *accel,
 			  GtkMenuCallback func, gpointer data)
 {
@@ -83,6 +83,9 @@ static GtkMenuEntry *build_menu_items(int *ret_num)
 	set_menu_item(menu_items, i, _("<Main>/Timer/Start"), _("<control>A"), menu_start_timer, NULL); i++;
 	set_menu_item(menu_items, i, _("<Main>/Timer/Stop"), _("<control>P"), menu_stop_timer, NULL); i++;
 	set_menu_item(menu_items, i, _("<Main>/Timer/<check>Timer running"), _("<control>T"), menu_toggle_timer, NULL); i++;
+#ifdef DEBUG
+	set_menu_item(menu_items, i, "<Main>/Test/Test", NULL, menu_test, NULL); i++;
+#endif /* DEBUG */
 #ifdef USE_GTT_HELP
 	set_menu_item(menu_items, i, _("<Main>/Help/Help on Help..."), NULL, menu_help_contents, "help on help"); i++;
 	set_menu_item(menu_items, i, _("<Main>/Help/Contents..."), _("<alt>H"), menu_help_contents, "contents"); i++;

@@ -64,10 +64,8 @@
 #include "tb_timer_stopped.xpm"
 
 #include "tb_preferences.xpm"
-#ifdef EXTENDED_TOOLBAR
-# include "tb_unknown.xpm"
-# include "tb_exit.xpm"
-#endif /* EXTENDED_TOOLBAR */
+#include "tb_unknown.xpm"
+#include "tb_exit.xpm"
 
 
 
@@ -300,36 +298,35 @@ toolbar_set_states(void)
         g_return_if_fail(mytbar != NULL);
         g_return_if_fail(mytbar->tbar != NULL);
         g_return_if_fail(GTK_IS_TOOLBAR(mytbar->tbar));
-        g_return_if_fail(mytbar->cut != NULL);
-        g_return_if_fail(mytbar->copy != NULL);
-        g_return_if_fail(mytbar->paste != NULL);
-#ifdef WANT_STOCK
-        g_return_if_fail(mytbar->prop_w != NULL);
-#else /* not WANT_STOCK */
-        g_return_if_fail(mytbar->prop != NULL);
-#endif /* not WANT_STOCK */
-        g_return_if_fail(mytbar->timer != NULL);
 
-        gtk_widget_set_sensitive(mytbar->cut, (cur_proj != NULL));
-        gtk_widget_set_sensitive(mytbar->copy, (cur_proj != NULL));
-        gtk_widget_set_sensitive(mytbar->paste, (cutted_project != NULL));
+        if (mytbar->cut)
+                gtk_widget_set_sensitive(mytbar->cut, (cur_proj != NULL));
+        if (mytbar->copy)
+                gtk_widget_set_sensitive(mytbar->copy, (cur_proj != NULL));
+        if (mytbar->paste)
+                gtk_widget_set_sensitive(mytbar->paste,
+                                         (cutted_project != NULL));
 #ifdef WANT_STOCK
-        gtk_widget_set_sensitive(mytbar->prop_w, (cur_proj != NULL));
+        if (mytbar->prop_w)
+                gtk_widget_set_sensitive(mytbar->prop_w, (cur_proj != NULL));
 #else /* not WANT_STOCK */
-        if (cur_proj) {
-                gtk_widget_set_sensitive(GTK_WIDGET(mytbar->prop->button), 1);
-                my_set_icon(mytbar->tbar, mytbar->prop,
-                            mytbar->prop->pmap1);
-        } else {
-                gtk_widget_set_sensitive(GTK_WIDGET(mytbar->prop->button), 0);
-                my_set_icon(mytbar->tbar, mytbar->prop,
-                            mytbar->prop->pmap2);
+        if (mytbar->prop) {
+                if (cur_proj) {
+                        gtk_widget_set_sensitive(GTK_WIDGET(mytbar->prop->button), 1);
+                        my_set_icon(mytbar->tbar, mytbar->prop,
+                                    mytbar->prop->pmap1);
+                } else {
+                        gtk_widget_set_sensitive(GTK_WIDGET(mytbar->prop->button), 0);
+                        my_set_icon(mytbar->tbar, mytbar->prop,
+                                    mytbar->prop->pmap2);
+                }
         }
 #endif /* not WANT_STOCK */
-        my_set_icon(mytbar->tbar, mytbar->timer,
-                    (main_timer != 0) ?
-                    mytbar->timer->pmap1 :
-                    mytbar->timer->pmap2);
+        if (mytbar->timer)
+                my_set_icon(mytbar->tbar, mytbar->timer,
+                            (main_timer != 0) ?
+                            mytbar->timer->pmap1 :
+                            mytbar->timer->pmap2);
 
 	if ((config_show_tb_icons) && (config_show_tb_texts)) {
 		tb_style = GTK_TOOLBAR_BOTH;
@@ -348,41 +345,51 @@ GtkWidget *
 build_toolbar(void)
 {
         if (mytbar) return GTK_WIDGET(mytbar->tbar);
-        mytbar = g_malloc(sizeof(MyToolbar));
+        mytbar = g_malloc0(sizeof(MyToolbar));
         mytbar->tbar = GTK_TOOLBAR(gtk_toolbar_new(GTK_ORIENTATION_HORIZONTAL,
                                                    GTK_TOOLBAR_ICONS));
 
 #ifdef WANT_STOCK
-        add_stock_button(mytbar->tbar, _("New"), _("New Project..."),
-                         GNOME_STOCK_PIXMAP_NEW,
-                         _("<Main>/File/New Project..."));
-        gtk_toolbar_append_space(mytbar->tbar);
-	add_stock_button(mytbar->tbar, _("Reload"),
-                         _("Reload Configuration File"),
-                         GNOME_STOCK_PIXMAP_OPEN,
-                         _("<Main>/File/Reload Configuration File"));
-	add_stock_button(mytbar->tbar, _("Save"), _("Save Configuration File"),
-                         GNOME_STOCK_PIXMAP_SAVE,
-                         _("<Main>/File/Save Configuration File"));
-        gtk_toolbar_append_space(mytbar->tbar);
-	mytbar->cut = add_stock_button(mytbar->tbar, _("Cut"),
-                                       _("Cut Selected Project"),
-                                       GNOME_STOCK_PIXMAP_CUT,
-                                       _("<Main>/Edit/Cut"));
-	mytbar->copy = add_stock_button(mytbar->tbar, _("Copy"),
-                                        _("Copy Selected Project"),
-                                        GNOME_STOCK_PIXMAP_COPY,
-                                        _("<Main>/Edit/Copy"));
-	mytbar->paste = add_stock_button(mytbar->tbar, _("Paste"),
-                                         _("Paste Project"),
-                                         GNOME_STOCK_PIXMAP_PASTE,
-                                         _("<Main>/Edit/Paste"));
-        gtk_toolbar_append_space(mytbar->tbar);
-	mytbar->prop_w = add_stock_button(mytbar->tbar, _("Props"),
-                                          _("Edit Properties..."),
-                                          GNOME_STOCK_PIXMAP_PROPERTIES,
-                                          _("<Main>/Edit/Properties..."));
+        if (config_show_tb_new) {
+                add_stock_button(mytbar->tbar, _("New"), _("New Project..."),
+                                 GNOME_STOCK_PIXMAP_NEW,
+                                 _("<Main>/File/New Project..."));
+                gtk_toolbar_append_space(mytbar->tbar);
+        }
+        if (config_show_tb_file) {
+                add_stock_button(mytbar->tbar, _("Reload"),
+                                 _("Reload Configuration File"),
+                                 GNOME_STOCK_PIXMAP_OPEN,
+                                 _("<Main>/File/Reload Configuration File"));
+                add_stock_button(mytbar->tbar, _("Save"),
+                                 _("Save Configuration File"),
+                                 GNOME_STOCK_PIXMAP_SAVE,
+                                 _("<Main>/File/Save Configuration File"));
+                gtk_toolbar_append_space(mytbar->tbar);
+        }
+        if (config_show_tb_ccp) {
+                mytbar->cut = add_stock_button(mytbar->tbar, _("Cut"),
+                                               _("Cut Selected Project"),
+                                               GNOME_STOCK_PIXMAP_CUT,
+                                               _("<Main>/Edit/Cut"));
+                mytbar->copy = add_stock_button(mytbar->tbar, _("Copy"),
+                                                _("Copy Selected Project"),
+                                                GNOME_STOCK_PIXMAP_COPY,
+                                                _("<Main>/Edit/Copy"));
+                mytbar->paste = add_stock_button(mytbar->tbar, _("Paste"),
+                                                 _("Paste Project"),
+                                                 GNOME_STOCK_PIXMAP_PASTE,
+                                                 _("<Main>/Edit/Paste"));
+                gtk_toolbar_append_space(mytbar->tbar);
+        }
+        if (config_show_tb_prop)
+                mytbar->prop_w = add_stock_button(mytbar->tbar, _("Props"),
+                                                  _("Edit Properties..."),
+                                                  GNOME_STOCK_PIXMAP_PROPERTIES,
+                                                  _("<Main>/Edit/Properties..."));
 #else /* not WANT_STOCK */
+        /* TODO: If I keep this, I will have to add config_show_tb_bla
+           checks */
         add_button(mytbar->tbar, _("New"), _("New Project..."), tb_new_xpm,
                    _("<Main>/File/New Project..."));
         gtk_toolbar_append_space(mytbar->tbar);
@@ -410,29 +417,84 @@ build_toolbar(void)
                                        tb_prop_dis_xpm,
                                        _("<Main>/Edit/Properties..."));
 #endif /* not WANT_STOCK */
-	mytbar->timer = add_toggle_button(mytbar->tbar, _("Timer"),
-                                        _("Start/Stop Timer"),
-                                        tb_timer_xpm,
-                                        tb_timer_stopped_xpm,
-                                        _("<Main>/Timer/Timer running"));
-        gtk_toolbar_append_space(mytbar->tbar);
-	add_button(mytbar->tbar, _("Prefs"), _("Edit Preferences..."),
-                   tb_preferences_xpm,
-                   _("<Main>/Edit/Preferences..."));
-#ifdef EXTENDED_TOOLBAR
+        if (config_show_tb_timer)
+                mytbar->timer = add_toggle_button(mytbar->tbar, _("Timer"),
+                                                  _("Start/Stop Timer"),
+                                                  tb_timer_xpm,
+                                                  tb_timer_stopped_xpm,
+                                                  _("<Main>/Timer/Timer running"));
+        if (((config_show_tb_timer) || (config_show_tb_prop)) &&
+            ((config_show_tb_pref) || (config_show_tb_help) ||
+             (config_show_tb_exit)))
+                gtk_toolbar_append_space(mytbar->tbar);
+        if (config_show_tb_pref)
+                add_button(mytbar->tbar, _("Prefs"), _("Edit Preferences..."),
+                           tb_preferences_xpm,
+                           _("<Main>/Edit/Preferences..."));
+        if (config_show_tb_help) {
 #ifdef USE_GTT_HELP
-	add_button(mytbar->tbar, _("Help"), _("Help Contents..."),
-                   tb_unknown_xpm,
-                   _("<Main>/Help/Contents..."));
+                add_button(mytbar->tbar, _("Help"), _("Help Contents..."),
+                           tb_unknown_xpm,
+                           _("<Main>/Help/Contents..."));
 #else /* not USE_GTT_HELP */
-	add_button(mytbar->tbar, _("About"), _("About..."),
-                   tb_unknown_xpm,
-                   _("<Main>/Help/About..."));
+                add_button(mytbar->tbar, _("About"), _("About..."),
+                           tb_unknown_xpm,
+                           _("<Main>/Help/About..."));
 #endif /* not USE_GTT_HELP */
-	add_button(mytbar->tbar, _("Exit"), _("Exit GTimeTracker"),
-                   tb_exit_xpm,
-                   _("<Main>/File/Exit"));
-#endif /* EXTENDED_TOOLBAR */
+        }
+        if (config_show_tb_exit) {
+                add_button(mytbar->tbar, _("Exit"), _("Exit GTimeTracker"),
+                           tb_exit_xpm,
+                           _("<Main>/File/Exit"));
+        }
 	return GTK_WIDGET(mytbar->tbar);
 }
 
+
+
+void
+update_toolbar_sections(void)
+{
+        GtkWidget *tb;
+        GtkWidget *w;
+
+        if (!window) return;
+        if (!mytbar) return;
+
+        /* TODO: I still get the segfault after destroying a widget */
+        w = GTK_WIDGET(mytbar->tbar)->parent;
+        gtk_container_remove(GTK_CONTAINER(w), GTK_WIDGET(mytbar->tbar));
+        gtk_widget_hide(GTK_WIDGET(mytbar->tbar));
+
+        g_free(mytbar);
+        mytbar = NULL;
+        tb = build_toolbar();
+#ifdef GNOME_USE_APP
+        gtk_container_add(GTK_CONTAINER(w), GTK_WIDGET(mytbar->tbar));
+        gtk_widget_show(GTK_WIDGET(tb));
+#else /* not GNOME_USE_APP */
+        gtk_box_pack_start(window_vbox, tb, FALSE, FALSE, 0);
+        gtk_box_reorder_child(window_vbox, tb, 2);
+        gtk_widget_show(tb);
+#endif /* not GNOME_USE_APP */
+}
+
+
+
+#ifdef DEBUG
+void
+toolbar_test(void)
+{
+        static shown = 1;
+
+        if (!mytbar) return;
+        if (!mytbar->prop_w) return;
+        if (shown) {
+                gtk_widget_hide(mytbar->prop_w);
+                shown = 0;
+        } else {
+                gtk_widget_show(mytbar->prop_w);
+                shown = 1;
+        }
+}
+#endif /* DEBUG */

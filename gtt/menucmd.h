@@ -53,4 +53,8 @@ void menu_help_contents(GtkWidget *w, gpointer data);
 void menu_create(GtkWidget *gnome_app);
 #endif
 
+#ifdef DEBUG
+void menu_test(GtkWidget *w, gpointer data);
+#endif
+
 #endif

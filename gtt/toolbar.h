@@ -21,5 +21,6 @@
 
 GtkWidget *build_toolbar(void);
 void toolbar_set_states(void);
+void update_toolbar_sections(void);
 
 #endif

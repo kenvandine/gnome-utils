@@ -1,3 +1,16 @@
+Sun Jan 25 03:36:25 1998  Eckehard Berns  <eb@berns.prima.de>
+
+	* gtthelp.c: gnome_config'ed the GttHelp settings.
+
+	* proj.c: I'm using gnome config now. If no gnome config is found,
+ 	  a fallback to the old (and non-GNOME) config file is used to
+ 	  convert old config files.
+
+	* added support to shorten the toolbar by choosing `toolbar
+ 	  sections'. This includes some not so pretty gtk_widget_hides
+ 	  (instead of _destroys), and some hacks around gnome_app. But I
+ 	  think, it's worth it.
+
 1998-01-25  Mark Galassi  <rosalia@cygnus.com>
 
 	* gtt-db.sgml: translated Eckehard's debiandoc SGML into DocBook.

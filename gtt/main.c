@@ -69,9 +69,7 @@ static void lock_gtt()
 	if (NULL != (f = fopen(fname, "rt"))) {
 		fclose(f);
 #ifdef DEBUG
-                msgbox_ok("Error", "PID file panic! :-)\nBut I will continue",
-                          "Continue",
-                          GTK_SIGNAL_FUNC(gtk_true));
+                g_warning("GTT PID file exists");
 #else /* not DEBUG */
 		msgbox_ok(_("Error"), _("There seems to be another GTimeTracker running.\n"
 			  "Please remove the pid file, if that is not correct."),

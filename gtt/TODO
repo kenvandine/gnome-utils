@@ -1,17 +1,13 @@
 
 An option to let the tooltips be displayed in the status bar.
 
-Toolbar in GTT should be configurable. At least should be able to
-disable groups of toolbar buttons (Cut, Copy, Paste -- or Save, Reload
--- or what have you).
-
-Configuration file needs to be gnomefied.
-
-Toolbar settings in help window should be saved. But I may skip this,
-because GttHelp is just a temporary hack until a real GnomeHelp is
-coded.
-
 I should use CList. That would make the list sortable in a good way.
+
+Changing the toolbar is very ugly. I cannot remove or add toolbar
+icons as needed, but have to build a new toolbar each time icons are
+added/removed. Additionally I always get segfaults when I destroy
+widgets - therfore I just hide the old toolbar. That consumes some
+bytes every time.
 
 
 

@@ -365,3 +365,14 @@ void menu_set_states(void)
 	toolbar_set_states();
 }
 
+
+
+#ifdef DEBUG
+void
+menu_test(GtkWidget *w, gpointer data)
+{
+        void toolbar_test(void);
+
+        toolbar_test();
+}
+#endif /* DEBUG */

@@ -17,7 +17,11 @@
  */
 
 #include <config.h>
+#if HAS_GNOME
+#include <gnome.h>
+#else /* not HAS_GNOME */
 #include <gtk/gtk.h>
+#endif
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -25,6 +29,14 @@
 
 
 #include "gtt.h"
+
+#if HAS_GNOME
+#ifdef DEBUG
+#define GTT "/gtt-DEBUG/"
+#else /* not DEBUG */
+#define GTT "/gtt/"
+#endif /* not DEBUG */
+#endif /* HAS_GNOME */
 
 
 
@@ -227,7 +239,32 @@ static char *build_rc_name(void)
 
 
 
-int project_list_load(char *fname)
+static void
+read_tb_sects(char *s)
+{
+        if (s[2] == 'n') {
+                config_show_tb_new = (s[5] == 'n');
+        } else if (s[2] == 'f') {
+                config_show_tb_file = (s[5] == 'n');
+        } else if (s[2] == 'c') {
+                config_show_tb_ccp = (s[5] == 'n');
+        } else if (s[2] == 'p') {
+                config_show_tb_prop = (s[5] == 'n');
+        } else if (s[2] == 't') {
+                config_show_tb_timer = (s[5] == 'n');
+        } else if (s[2] == 'o') {
+                config_show_tb_pref = (s[5] == 'n');
+        } else if (s[2] == 'h') {
+                config_show_tb_help = (s[5] == 'n');
+        } else if (s[2] == 'e') {
+                config_show_tb_exit = (s[5] == 'n');
+        }
+}
+
+
+
+static int
+project_list_load_old(char *fname)
 {
 	FILE *f;
 	project_list *pl, *t;
@@ -235,6 +272,7 @@ int project_list_load(char *fname)
 	char s[1024];
 	int i;
 	time_t tmp_time = -1;
+        int _n, _f, _c, _p, _t, _o, _h, _e;
 
 	if (!fname) fname = build_rc_name();
 	if (NULL == (f = fopen(fname, "rt"))) {
@@ -248,7 +286,15 @@ int project_list_load(char *fname)
 	}
 	pl = plist;
 	plist = NULL;
-	
+
+        _n = config_show_tb_new;
+        _f = config_show_tb_file;
+        _c = config_show_tb_ccp;
+        _p = config_show_tb_prop;
+        _t = config_show_tb_timer;
+        _o = config_show_tb_pref;
+        _h = config_show_tb_help;
+        _e = config_show_tb_exit;
 	errno = 0;
 	while ((!feof(f)) && (!errno)) {
 		if (!fgets(s, 1023, f)) continue;
@@ -276,9 +322,13 @@ int project_list_load(char *fname)
 				/* show status bar */
 				if (s[4] == 'n') {
 					gtk_widget_show(GTK_WIDGET(status_bar));
+                                        config_show_statusbar = 1;
 				} else {
 					gtk_widget_hide(GTK_WIDGET(status_bar));
+                                        config_show_statusbar = 0;
 				}
+                        } else if (s[1] == '_') {
+                                read_tb_sects(s);
 			}
 		} else if (s[0] == 'c') {
 			/* switch project command */
@@ -333,6 +383,16 @@ int project_list_load(char *fname)
 	else
 		last_timer = 0;
 	update_status_bar();
+        if ((_n != config_show_tb_new) ||
+            (_f != config_show_tb_file) ||
+            (_c != config_show_tb_ccp) ||
+            (_p != config_show_tb_prop) ||
+            (_t != config_show_tb_timer) ||
+            (_o != config_show_tb_pref) ||
+            (_h != config_show_tb_help) ||
+            (_e != config_show_tb_exit)) {
+                update_toolbar_sections();
+        }
 	return 1;
 
 	err:
@@ -345,7 +405,9 @@ int project_list_load(char *fname)
 
 
 
-int project_list_save(char *fname)
+#if !HAS_GNOME
+static int
+project_list_save_old(char *fname)
 {
 	FILE *f;
 	project_list *pl;
@@ -370,7 +432,15 @@ int project_list_save(char *fname)
 	fprintf(f, "s %s\n", (config_show_secs) ? "on" : "off");
 	fprintf(f, "bi %s\n", (config_show_tb_icons) ? "on" : "off");
 	fprintf(f, "bt %s\n", (config_show_tb_texts) ? "on" : "off");
-	fprintf(f, "bs %s\n", (GTK_WIDGET_VISIBLE(status_bar)) ? "on" : "off");
+	fprintf(f, "bs %s\n", (config_show_statusbar) ? "on" : "off");
+        fprintf(f, "b_n %s\n", (config_show_tb_new) ? "on" : "off");
+        fprintf(f, "b_f %s\n", (config_show_tb_file) ? "on" : "off");
+        fprintf(f, "b_c %s\n", (config_show_tb_ccp) ? "on" : "off");
+        fprintf(f, "b_p %s\n", (config_show_tb_prop) ? "on" : "off");
+        fprintf(f, "b_t %s\n", (config_show_tb_timer) ? "on" : "off");
+        fprintf(f, "b_o %s\n", (config_show_tb_pref) ? "on" : "off");
+        fprintf(f, "b_h %s\n", (config_show_tb_help) ? "on" : "off");
+        fprintf(f, "b_e %s\n", (config_show_tb_exit) ? "on" : "off");
 	if (config_command)
 		fprintf(f, "c %s\n", config_command);
 	if (config_command_null)
@@ -397,6 +467,148 @@ int project_list_save(char *fname)
 		return 0;
 	}
 	return 1;
+}
+#endif /* not HAS_GNOME */
+
+
+
+int
+project_list_load(char *fname)
+{
+#if HAS_GNOME
+        char s[64];
+        int i, num;
+        project *proj;
+        int _n, _f, _c, _p, _t, _o, _h, _e;
+
+        gnome_config_get_int_with_default(GTT"Misc/NumProjects=0", &i);
+        if (i) {
+                return project_list_load_old(fname);
+        }
+        project_list_destroy();
+        _n = config_show_tb_new;
+        _f = config_show_tb_file;
+        _c = config_show_tb_ccp;
+        _p = config_show_tb_prop;
+        _t = config_show_tb_timer;
+        _o = config_show_tb_pref;
+        _h = config_show_tb_help;
+        _e = config_show_tb_exit;
+        last_timer = atol(gnome_config_get_string(GTT"Misc/LastTimer=-1"));
+        config_show_secs = gnome_config_get_bool(GTT"Display/ShowSecs=false");
+        config_show_tb_icons = gnome_config_get_bool(GTT"Toolbar/ShowIcons=true");
+        config_show_tb_texts = gnome_config_get_bool(GTT"Toolbar/ShowTexts=true");
+        config_show_statusbar = gnome_config_get_bool(GTT"Display/ShowStatusbar=true");
+        config_show_tb_new = gnome_config_get_bool(GTT"Toolbar/ShowNew=true");
+        config_show_tb_file = gnome_config_get_bool(GTT"Toolbar/ShowFile=false");
+        config_show_tb_ccp = gnome_config_get_bool(GTT"Toolbar/ShowCCP=false");
+        config_show_tb_prop = gnome_config_get_bool(GTT"Toolbar/ShowProp=true");
+        config_show_tb_timer = gnome_config_get_bool(GTT"Toolbar/ShowTimer=true");
+        config_show_tb_pref = gnome_config_get_bool(GTT"Toolbar/ShowPref=false");
+        config_show_tb_help = gnome_config_get_bool(GTT"Toolbar/ShowHelp=true");
+        config_show_tb_exit = gnome_config_get_bool(GTT"Toolbar/ShowExit=true");
+        config_command = gnome_config_get_string(GTT"Actions/ProjCommand");
+        config_command_null = gnome_config_get_string(GTT"Actions/NullCommand");
+        config_logfile_use = gnome_config_get_bool(GTT"LogFile/Use=false");
+        config_logfile_name = gnome_config_get_string(GTT"LogFile/Filename");
+        config_logfile_min_secs = gnome_config_get_int(GTT"LogFile/MinSecs");
+        num = gnome_config_get_int(GTT"Misc/NumProjects=0");
+        for (i = 0; i < num; i++) {
+                proj = project_new();
+                project_list_add(proj);
+                sprintf(s, GTT"Project%d/Title", i);
+                project_set_title(proj, gnome_config_get_string(s));
+                sprintf(s, GTT"Project%d/Desc", i);
+                project_set_desc(proj, gnome_config_get_string(s));
+                sprintf(s, GTT"Project%d/SecsEver=0", i);
+                proj->secs = gnome_config_get_int(s);
+                sprintf(s, GTT"Project%d/SecsDay=0", i);
+                proj->day_secs = gnome_config_get_int(s);
+        }
+        update_status_bar();
+        if ((_n != config_show_tb_new) ||
+            (_f != config_show_tb_file) ||
+            (_c != config_show_tb_ccp) ||
+            (_p != config_show_tb_prop) ||
+            (_t != config_show_tb_timer) ||
+            (_o != config_show_tb_pref) ||
+            (_h != config_show_tb_help) ||
+            (_e != config_show_tb_exit)) {
+                update_toolbar_sections();
+        }
+        return 1;
+#else /* not HAS_GNOME */
+        return project_list_load_old(fname);
+#endif /* not HAS_GNOME */
+}
+
+
+
+int
+project_list_save(char *fname)
+{
+#if HAS_GNOME
+        char s[64];
+        project_list *pl;
+        int i, old_num;
+
+        old_num = gnome_config_get_int(GTT"Misc/NumProjects=0");
+        sprintf(s, "%ld", last_timer);
+        gnome_config_set_string(GTT"Misc/LastTimer", s);
+        gnome_config_set_bool(GTT"Display/ShowSecs", config_show_secs);
+        gnome_config_set_bool(GTT"Toolbar/ShowIcons", config_show_tb_icons);
+        gnome_config_set_bool(GTT"Toolbar/ShowTexts", config_show_tb_texts);
+        gnome_config_set_bool(GTT"Display/ShowStatusbar", config_show_statusbar);
+        gnome_config_set_bool(GTT"Toolbar/ShowNew", config_show_tb_new);
+        gnome_config_set_bool(GTT"Toolbar/ShowFile", config_show_tb_file);
+        gnome_config_set_bool(GTT"Toolbar/ShowCCP", config_show_tb_ccp);
+        gnome_config_set_bool(GTT"Toolbar/ShowProp", config_show_tb_prop);
+        gnome_config_set_bool(GTT"Toolbar/ShowTimer", config_show_tb_timer);
+        gnome_config_set_bool(GTT"Toolbar/ShowPref", config_show_tb_pref);
+        gnome_config_set_bool(GTT"Toolbar/ShowHelp", config_show_tb_help);
+        gnome_config_set_bool(GTT"Toolbar/ShowExit", config_show_tb_exit);
+        if (config_command)
+                gnome_config_set_string(GTT"Actions/ProjCommand", config_command);
+        else
+                gnome_config_clean_key(GTT"Actions/ProjCommand");
+        if (config_command_null)
+                gnome_config_set_string(GTT"Actions/NullCommand", config_command_null);
+        else
+                gnome_config_clean_key(GTT"Actions/NullCommand");
+        gnome_config_set_bool(GTT"LogFile/Use", config_logfile_use);
+        if (config_logfile_name)
+                gnome_config_set_string(GTT"LogFile/Filename", config_logfile_name);
+        else
+                gnome_config_clean_key(GTT"LogFile/Filename");
+        gnome_config_set_int(GTT"LogFile/MinSecs", config_logfile_min_secs);
+        i = 0;
+        for (pl = plist; pl; pl = pl->next) {
+                if (!pl->proj) continue;
+                if (!pl->proj->title) continue;
+                sprintf(s, GTT"Project%d/Title", i);
+                gnome_config_set_string(s, pl->proj->title);
+                sprintf(s, GTT"Project%d/Desc", i);
+                if (pl->proj->desc) {
+                        gnome_config_set_string(s, pl->proj->desc);
+                } else {
+                        gnome_config_clean_key(s);
+                }
+                sprintf(s, GTT"Project%d/SecsEver", i);
+                gnome_config_set_int(s, pl->proj->secs);
+                sprintf(s, GTT"Project%d/SecsDay", i);
+                gnome_config_set_int(s, pl->proj->day_secs);
+                i++;
+        }
+        gnome_config_set_int(GTT"Misc/NumProjects", i);
+        for (; i < old_num; i++) {
+                sprintf(s, GTT"Project%d", i);
+                gnome_config_clean_section(s);
+        }
+        gnome_config_sync();
+        return 1;
+#else /* not HAS_GNOME */
+        return project_list_save_old(fname);
+#endif /* not HAS_GNOME */
 }
 
 

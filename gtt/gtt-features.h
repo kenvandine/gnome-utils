@@ -63,21 +63,8 @@
 /*
  * GNOME_USE_APP
  * If defined and GNOME support is included, GNOME App will be used.
- * 
- * This is still experimetal.
  */
 #define GNOME_USE_APP
-
-
-/*
- * EXTENDED_TOOLBAR
- * I only define this when DEBUG defined also. If defined, I add two more
- * buttons to the toolbar, one of which is the quit button, which I'm using
- * very often, when debugging.
- */
-#ifdef DEBUG
-# define EXTENDED_TOOLBAR
-#endif
 
 
 /*

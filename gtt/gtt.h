@@ -120,10 +120,22 @@ void log_endofday(void);
 
 extern project *cur_proj;
 extern GtkWidget *glist, *window;
+#ifndef GNOME_USE_APP
+extern GtkBox *window_vbox;
+#endif
 extern GtkWidget *status_bar;
 extern int config_show_secs;
+extern int config_show_statusbar;
 extern int config_show_tb_icons;
 extern int config_show_tb_texts;
+extern int config_show_tb_new;
+extern int config_show_tb_file;
+extern int config_show_tb_ccp;
+extern int config_show_tb_prop;
+extern int config_show_tb_timer;
+extern int config_show_tb_pref;
+extern int config_show_tb_help;
+extern int config_show_tb_exit;
 extern char *config_command, *config_command_null, *config_logfile_name;
 extern int config_logfile_use, config_logfile_min_secs;
 

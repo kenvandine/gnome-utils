@@ -35,6 +35,15 @@
 #include "tb_exit.xpm"
 
 
+
+#ifdef DEBUG
+#define CFG_SECTION "/gtt-DEBUG/Help"
+#else
+#define CFG_SECTION "/gtt/Help"
+#endif
+
+
+
 /*******************/
 /* history helpers */
 /*******************/
@@ -280,7 +289,8 @@ gtt_help_init_menu(GttHelp *help)
 #ifdef USE_HELP_TOOLBAR
 	menu = gtk_menu_new();
 	w = gtk_check_menu_item_new_with_label("Toolbar Icons");
-        gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(w), 1);
+        gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(w),
+                                      gnome_config_get_bool(CFG_SECTION "/ShowIcons=true"));
 	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
 				  GTK_SIGNAL_FUNC(gtt_help_update),
 				  GTK_OBJECT(help));
@@ -290,7 +300,8 @@ gtt_help_init_menu(GttHelp *help)
 	gtk_widget_install_accelerator(w, accel, "activate",
 				       'H', GDK_MOD1_MASK);
 	w = gtk_check_menu_item_new_with_label("Toolbar Texts");
-        gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(w), 1);
+        gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(w),
+                                      gnome_config_get_bool(CFG_SECTION "/ShowTexts=true"));
 	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
 				  GTK_SIGNAL_FUNC(gtt_help_update),
 				  GTK_OBJECT(help));
@@ -298,7 +309,8 @@ gtt_help_init_menu(GttHelp *help)
 	gtk_widget_show(w);
 	gtk_menu_append(GTK_MENU(menu), w);
 	w = gtk_check_menu_item_new_with_label("Show Tooltips");
-        gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(w), 1);
+        gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(w),
+                                      gnome_config_get_bool(CFG_SECTION "/ShowTips=true"));
 	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
 				  GTK_SIGNAL_FUNC(gtt_help_update),
 				  GTK_OBJECT(help));
@@ -495,6 +507,10 @@ gtt_help_update(GttHelp *help)
                         gtk_toolbar_set_style(help->toolbar,
                                               GTK_TOOLBAR_ICONS);
                 }
+                gnome_config_set_bool(CFG_SECTION "/ShowIcons",
+                                      help->tbar_icon->active);
+                gnome_config_set_bool(CFG_SECTION "/ShowTexts",
+                                      help->tbar_text->active);
         }
         if (help->tbar_contents)
                 gtk_widget_set_sensitive(help->tbar_contents,
@@ -505,9 +521,12 @@ gtt_help_update(GttHelp *help)
         if (help->tbar_forward)
                 gtk_widget_set_sensitive(help->tbar_forward,
                                          gtt_help_history_is_next(help));
-        if (help->tbar_tooltips)
+        if (help->tbar_tooltips) {
                 gtk_toolbar_set_tooltips(help->toolbar,
                                          help->tbar_tooltips->active);
+                gnome_config_set_bool(CFG_SECTION "/ShowTips",
+                                      help->tbar_tooltips->active);
+        }
 }
 
 

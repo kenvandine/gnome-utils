@@ -41,9 +41,10 @@ gtt_LDADD = \
 	$(top_builddir)/libgnome/libgnome.la		\
 	$(top_builddir)/gtk-xmhtml/libgtkxmhtml.la	\
 	$(top_builddir)/intl/libintl.a			\
-	$(XPM_LIBS)					\
 	$(GTK_LIBS)					\
-        $(X_LIBS) $(x_libs) $(INTLLIBS)
+        $(X_LIBS) $(x_libs) $(INTLLIBS)			\
+	$(XPM_LIBS)
+
 
 GTT_HELP_FILES = \
 	index.html		\
@@ -72,9 +73,7 @@ EXTRA_DIST = \
 	tb_home_.xpm		\
 	tb_back_.xpm		\
 	tb_forward_.xpm		\
-	gtt.sgml		\
 	$(GTT_HELP_FILES)	\
-	gtt.text		\
 	gtt.desktop
 
 install-data-local:
