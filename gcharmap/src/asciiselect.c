@@ -76,31 +76,65 @@ cb_ascii_select_entry_changed (GtkEditable *edit, gpointer user_data)
 static void
 cb_ascii_select_spin_changed (GtkEditable *edit, gpointer user_data)
 {
-    gint i;
     gchar *text;
     gchar buf[7];
     gint n;
+    gchar *err;
+    gdouble res;
 
     if (updating == TRUE) return;
     updating = TRUE;
     text = gtk_editable_get_chars (edit, 0, -1);
     if (!text)
     	return;
-    i = atoi (text);
+    res = strtol(text, &err, 16);
     g_free (text);
-    if(i > 255)
+    if (res > 0xffff)
     {	     
-        gtk_spin_button_set_value (GTK_SPIN_BUTTON (edit), prev_value);
-        i = prev_value;
+      gtk_spin_button_set_value (GTK_SPIN_BUTTON (edit), 0xffff);
+      res = prev_value;
     }	
 
-    prev_value = i;
-    n=g_unichar_to_utf8(i, buf);
+    prev_value = res;
+    n = g_unichar_to_utf8(res, buf);
     buf[n]=0;
 
     gtk_entry_set_text (GTK_ENTRY (user_data), buf);
 
     updating = FALSE;
+}
+
+static gint
+spin_button_hex_input_func (GtkSpinButton *spin_button,
+			    gdouble       *new_val)
+{
+  const gchar *buf;
+  gchar *err;
+  gdouble res;
+
+  buf = gtk_entry_get_text (GTK_ENTRY (spin_button));
+  res = strtol(buf, &err, 16);
+  *new_val = res;
+  if (*err)
+    return GTK_INPUT_ERROR;
+  else
+    return TRUE;
+}
+
+static gint
+spin_button_hex_output_func (GtkSpinButton *spin_button)
+{
+  static gchar buf[7];
+  gint val;
+
+  val = (gint) spin_button->adjustment->value;
+  if (fabs (val) < 1e-5)
+    sprintf (buf, "0x00");
+  else
+    sprintf (buf, "0x%.2X", val);
+  if (strcmp (buf, gtk_entry_get_text (GTK_ENTRY (spin_button))))
+    gtk_entry_set_text (GTK_ENTRY (spin_button), buf);
+  return TRUE;
 }
 
 static void
@@ -122,13 +156,22 @@ ascii_select_init (AsciiSelect *obj)
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox), 
 			label, FALSE, FALSE, 0);
 
-    adj = (GtkAdjustment *)gtk_adjustment_new (65, 0, 255, 1, 10, 10);
+    adj = (GtkAdjustment *)gtk_adjustment_new (65, 0, 0xFFFF, 1, 10, 10);
     spin = gtk_spin_button_new (GTK_ADJUSTMENT (adj), 1, 0);
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (spin));
     gtk_spin_button_set_update_policy (GTK_SPIN_BUTTON (spin),
       GTK_UPDATE_IF_VALID);
+    gtk_signal_connect (GTK_OBJECT (spin),
+			"input",
+			GTK_SIGNAL_FUNC (spin_button_hex_input_func),
+			NULL);
+    gtk_signal_connect (GTK_OBJECT (spin),
+			"output",
+			GTK_SIGNAL_FUNC (spin_button_hex_output_func),
+			NULL);
+    gtk_spin_button_set_wrap (GTK_SPIN_BUTTON (spin), TRUE);
+
     prev_value = 65;
-    gtk_spin_button_set_numeric(GTK_SPIN_BUTTON (spin), TRUE);
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox),
       spin, FALSE, TRUE, 0);
 

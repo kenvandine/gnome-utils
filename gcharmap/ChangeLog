@@ -1,3 +1,13 @@
+Fri Aug 30 13:20:12 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
+
+	* src/asciiselect.c
+	(spin_button_hex_input_func): add
+	(spin_button_hex_output_func): add
+	(cb_ascii_select_spin_changed): modify
+	(ascii_select_init): modify
+	use hex input and output (like "0x41" for "A") in "Select
+	character" dialog, and change maximum input value to 0xff to 0xffff
+	
 2002-08-22  Glynn Foster  <glynn.foster@sun.com>
 
 	* src/interface.c: s/GNOME Character Map/Character Map as per
