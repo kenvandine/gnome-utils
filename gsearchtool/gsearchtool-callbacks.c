@@ -570,6 +570,9 @@ key_press_cb (GtkWidget    	*widget,
 		if (search_command.running == RUNNING) {
 			click_stop_cb (widget, NULL);
 		}
+		else {
+			quit_cb (widget, NULL);
+		}
 	}
 	else if (event->keyval == GDK_F10) {
 		if (event->state & GDK_SHIFT_MASK) {

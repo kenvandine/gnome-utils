@@ -760,6 +760,11 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 	
 		gint   total_files;
 		gchar *status_bar_string = NULL;
+		gchar *search_status = g_strdup ("");
+		
+		if (search_data->running == MAKE_IT_STOP) {
+			search_status = g_strdup (_("(aborted)"));
+		}
 		
 		search_data->lock = FALSE;
 		search_data->running = NOT_RUNNING;
@@ -767,14 +772,17 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		total_files = gtk_tree_model_iter_n_children (GTK_TREE_MODEL(interface.model), NULL);
 
 		if (total_files == 0) {
-			status_bar_string = g_strdup (_("No files found"));
+			status_bar_string = g_strdup_printf (_("No files found %s"), 
+							     search_status);
 			add_no_files_found_message (interface.model, &interface.iter);
 		}
 		else if (total_files == 1) {
-			status_bar_string = g_strdup (_("One file found"));
+			status_bar_string = g_strdup_printf (_("One file found %s"),
+							     search_status);
 		}
 		else {
-			status_bar_string = g_strdup_printf (_("%d files found"), total_files);
+			status_bar_string = g_strdup_printf (_("%d files found %s"), total_files,
+							     search_status);
 		}
 
 		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
