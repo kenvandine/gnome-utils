@@ -1,13 +1,13 @@
 # traditional Chinese translation of gnome-utils.
-# Copyright (C) 1999,2001-2003 Free Software Foundation, Inc.
+# Copyright (C) 1999,2001, 02, 03 Free Software Foundation, Inc.
 # Ming-Yen Hsu <myhsu@cyberdude.com>, 1999.
 # Abel Cheung <maddog@linux.org.hk>, 2001-2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.3.0\n"
-"POT-Creation-Date: 2003-03-25 10:00+0000\n"
-"PO-Revision-Date: 2003-01-06 17:39+0800\n"
+"POT-Creation-Date: 2003-04-23 22:55+0800\n"
+"PO-Revision-Date: 2003-04-24 19:56+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,7 @@ msgstr "GRAD"
 
 #: gcalc/gnome-calc.c:1245
 msgid "1/x"
-msgstr "<sup>1</sup>/<sub>x</sub>"
+msgstr "<sup><small>1</small></sup>/<sub>x</sub>"
 
 #: gcalc/gnome-calc.c:1245
 msgid "Inverse"
@@ -71,7 +71,7 @@ msgstr "倒數"
 
 #: gcalc/gnome-calc.c:1246
 msgid "x<sup>2</sup>"
-msgstr "x<sup>2</sup>"
+msgstr "x<sup><small>2</small></sup>"
 
 #: gcalc/gnome-calc.c:1246
 msgid "Square"
@@ -227,7 +227,7 @@ msgstr "儲存"
 msgid ""
 "Store the value in the\n"
 "display field in memory"
-msgstr "將畫面的數字儲存進記憶內"
+msgstr "將畫面的數字儲存至暫存器內"
 
 #: gcalc/gnome-calc.c:1271
 msgid "7"
@@ -257,7 +257,7 @@ msgstr "載入"
 msgid ""
 "Display the value in memory\n"
 "in the display field"
-msgstr "在畫面中顯示記憶裡的數值"
+msgstr "在畫面中顯示暫存器裡的數值"
 
 #: gcalc/gnome-calc.c:1277
 msgid "4"
@@ -287,7 +287,7 @@ msgstr "總和"
 msgid ""
 "Add the value in the display\n"
 "field to the value in memory"
-msgstr "將畫面的數值加進記憶的數值內"
+msgstr "將畫面的數值加進暫存器數值內"
 
 #: gcalc/gnome-calc.c:1283
 msgid "1"
@@ -317,7 +317,7 @@ msgstr "交換"
 msgid ""
 "Exchange the values in the\n"
 "display field and memory"
-msgstr "將畫面的數值和記憶中的數值交換"
+msgstr "將畫面的數值和暫存器中的數值交換"
 
 #: gcalc/gnome-calc.c:1289
 msgid "0"
@@ -401,14 +401,14 @@ msgid ""
 msgstr "選取、複製字元，並將字元貼上至其它應用程式"
 
 #: gcharmap/src/callbacks.c:130 gcharmap/src/callbacks.c:138
-#, fuzzy, c-format
+#, c-format
 msgid "Character code: (Unicode) U+%04lX"
-msgstr "字元代碼：(Unicode) U%04lX"
+msgstr "字元代碼：(統一碼) U%04lX"
 
 #: gcharmap/src/callbacks.c:134
-#, fuzzy, c-format
+#, c-format
 msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
-msgstr "字元代碼：(Unicode) U%04lX，(%s) 0x%s"
+msgstr "字元代碼：(統一碼) U%04lX，(%s) 0x%s"
 
 #: gcharmap/src/callbacks.c:192
 msgid "Text copied to clipboard..."
@@ -466,7 +466,7 @@ msgstr "瀏覽(_B)..."
 
 #: gcharmap/src/menus.c:35
 msgid "Insert character(s) by choosing character codes."
-msgstr "以選擇字元代碼的方式插入字元。"
+msgstr "以選取字元代碼的方式插入字元。"
 
 #: gcharmap/src/menus.c:63
 msgid "Ch_aracters"
@@ -875,197 +875,181 @@ msgid "Format Floppy Disks"
 msgstr "將軟碟格式化"
 
 #: gfloppy/src/badblocks.c:94
-#, fuzzy
 msgid "Internal Error: Unable to seek to the correct location."
-msgstr "M內部錯誤：無法搜尋正確的位置。"
+msgstr "內部錯誤：無法搜尋正確的位置。"
 
 #: gfloppy/src/badblocks.c:103
-#, fuzzy, c-format
+#, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
-msgstr "M內部錯誤：do_test 中的值 (%ld) 有誤\n"
+msgstr "內部錯誤：do_test 中的值 (%ld) 有誤\n"
 
 #. while (!i)
 #. ;
 #: gfloppy/src/badblocks.c:261
-#, fuzzy
 msgid "Checking for bad blocks..."
-msgstr "M檢查壞磁區..."
+msgstr "檢查壞磁區..."
 
 #: gfloppy/src/badblocks.c:273
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr "M開啟裝置 %s 失敗，無法檢查壞磁區\n"
+msgstr "開啟裝置 %s 失敗，無法檢查壞磁區\n"
 
 #: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:529
-#, fuzzy
 msgid "Checking for bad blocks... Done"
-msgstr "M檢查壞磁區...完成"
+msgstr "檢查壞磁區...完成"
 
 #: gfloppy/src/fdformat.c:49
-#, fuzzy
 msgid "Formatting the disk..."
-msgstr "M正在格式化碟片..."
+msgstr "格式化碟片..."
 
 #: gfloppy/src/fdformat.c:52
-#, fuzzy
 msgid "I don't know what this is, but it's very wrong."
-msgstr "E不清楚發生甚麼事，不過肯定是出了問題。"
+msgstr "不清楚發生甚麼事，不過肯定是出了問題。"
 
 #: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
-#, fuzzy, c-format
+#, c-format
 msgid "Error formatting track #%d"
-msgstr "E格式化磁軌 #%d 時發生錯誤"
+msgstr "格式化第 %d 個磁軌時發生錯誤"
 
 #: gfloppy/src/fdformat.c:82
-#, fuzzy
 msgid "Error during completion of formatting"
-msgstr "E格式化完成時發生錯誤"
+msgstr "格式化進行最後程序時發生錯誤"
 
 #. XXXX - need to tell parent we're finished
 #: gfloppy/src/fdformat.c:86
-#, fuzzy
 msgid "Formatting the disk... Done"
-msgstr "M格式化碟片...完成"
+msgstr "格式化碟片...完成"
 
 #. XXXX - tell parent we're starting verify stage
 #: gfloppy/src/fdformat.c:102
-#, fuzzy
 msgid "Verifying the format..."
-msgstr "M正在檢驗格式..."
+msgstr "正在檢驗格式..."
 
 #: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
-#, fuzzy
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
 "Please confirm that it is not write-protected."
 msgstr ""
-"E無法寫入軟碟。\n"
+"無法寫入軟碟。\n"
 "\n"
 "請確認軟碟沒有加上防寫保護。"
 
 #: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
-#, fuzzy, c-format
+#, c-format
 msgid "Insufficient permissions to open floppy device %s."
-msgstr "E沒有足夠權限開啟軟碟裝置 %s。"
+msgstr "沒有足夠權限開啟軟碟裝置 %s。"
 
 #: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
-#, fuzzy
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
 "Please confirm that it is in the drive\n"
 "with the drive door shut."
 msgstr ""
-"E無法存取磁軟碟。\n"
+"無法存取磁軟碟。\n"
 "\n"
 "請確認軟碟已放進軟碟機中\n"
 "而且活門已經關閉。"
 
 #: gfloppy/src/fdformat.c:117
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s:%d"
 msgstr ""
-"E在存取軟碟裝置 %s 時發生一般性錯誤。\n"
+"在存取軟碟裝置 %s 時發生一般性錯誤。\n"
 "\n"
-"錯誤碼 %s:%d"
+"錯誤碼為 %s:%d"
 
 #: gfloppy/src/fdformat.c:140
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Read Error:\n"
 "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
-"E讀取錯誤：\n"
-"問題發生在磁區 %d，預計資料為 %d，實際讀取資料為 %d"
+"讀取資料發生錯誤：\n"
+"問題發生在第 %d 個磁區，預計資料為 %d，實際讀取資料為 %d"
 
 #: gfloppy/src/fdformat.c:143
-#, fuzzy, c-format
+#, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
-msgstr "E問題發生在磁區 %d，預計資料為 %d，實際讀取資料為 %d"
+msgstr "問題發生在第 %d 個磁區，預計資料為 %d，實際讀取資料為 %d"
 
 #: gfloppy/src/fdformat.c:154
-#, fuzzy, c-format
+#, c-format
 msgid "Bad data in cyl %d.  Continuing... "
-msgstr "M磁區 %d 有壞磁軌。繼續格式化..."
+msgstr "第 %d 個磁區有壞磁軌。繼續格式化..."
 
 #: gfloppy/src/fdformat.c:163
-#, fuzzy, c-format
+#, c-format
 msgid "Error closing device %s"
-msgstr "E關閉裝置 %s 時發生錯誤"
+msgstr "關閉裝置 %s 時發生錯誤"
 
 #: gfloppy/src/fdformat.c:170
-#, fuzzy
 msgid "Verifying the format... Done"
-msgstr "M檢驗格式...完成"
+msgstr "檢驗格式...完成"
 
 #: gfloppy/src/fdformat.c:182
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write to device %s"
-msgstr "E無法寫入裝置 %s"
+msgstr "無法寫入裝置 %s"
 
 #: gfloppy/src/fdformat.c:202
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s"
 msgstr ""
-"E存取軟碟裝置 %s 時發生一般性錯誤。\n"
+"存取軟碟裝置 %s 時發生一般性錯誤。\n"
 "\n"
 "錯誤代碼 %s"
 
 #: gfloppy/src/fdformat.c:214
-#, fuzzy
 msgid "Could not determine current floppy geometry."
-msgstr "E無法決定目前碟片的大小。"
+msgstr "無法決定目前碟片的大小。"
 
 #: gfloppy/src/gfloppy.c:221
-#, fuzzy
 msgid "Error while creating a unique filename for the bad blocks list file."
-msgstr "E當產生給壞磁區清單檔所用的檔案名稱時出現錯誤。"
+msgstr "當為壞磁區清單檔命名時出現錯誤。"
 
 #: gfloppy/src/gfloppy.c:241
-#, fuzzy
 msgid "Error while filling the bad blocks list file."
-msgstr "E當填上壞磁區清單檔案時發生錯誤。"
+msgstr "當填上壞磁區清單檔案時發生錯誤。"
 
 #: gfloppy/src/gfloppy.c:300
-#, fuzzy, c-format
+#, c-format
 msgid "Error while spawning the (%s) command: %s."
-msgstr "E執行 (%s) 指令時發生錯誤：%s。"
+msgstr "執行 (%s) 指令時發生錯誤：%s。"
 
 #: gfloppy/src/gfloppy.c:324
-#, fuzzy
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr "E不明的 mke2fs 輸出結果，取消操作。"
+msgstr "不明的 mke2fs 輸出結果，取消操作。"
 
 #: gfloppy/src/gfloppy.c:338
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
 "\n"
 "%s (%d)"
 msgstr ""
-"E檔案系統製作程式 (%s) 回報了以下的錯誤：\n"
+"檔案系統製作程式 (%s) 回報了以下的錯誤：\n"
 "\n"
 "%s (%d)"
 
 #: gfloppy/src/gfloppy.c:355
-#, fuzzy
 msgid "Abnormal child process termination."
-msgstr "E副程序不正常地中止了。"
+msgstr "副程序不正常地中止了。"
 
 #: gfloppy/src/gfloppy.c:380
-#, fuzzy, c-format
+#, c-format
 msgid "Error while spawning the mbadblocks command: %s."
-msgstr "E當啟動 mbadblocks 指令時出錯：%s。"
+msgstr "當啟動 mbadblocks 指令時出錯：%s。"
 
 #: gfloppy/src/gfloppy.c:392
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
@@ -1074,35 +1058,29 @@ msgstr ""
 "%s。"
 
 #: gfloppy/src/gfloppy.c:435
-#, fuzzy
 msgid "Abnormal mbadblocks child process termination."
-msgstr "Embadblocks 副程序不正常地中止了。"
+msgstr "mbadblocks 副程序不正常地中止了。"
 
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:462 gfloppy/src/gfloppy.c:503
-#, fuzzy
 msgid "Making filesystem on disk..."
-msgstr "M在碟片中建立檔案系統..."
+msgstr "在碟片中建立檔案系統..."
 
 #: gfloppy/src/gfloppy.c:470
-#, fuzzy
 msgid "Unable to create filesystem correctly."
-msgstr "E無法正確地建立檔案系統。"
+msgstr "無法正確地建立檔案系統。"
 
 #: gfloppy/src/gfloppy.c:475 gfloppy/src/gfloppy.c:515
-#, fuzzy
 msgid "Making filesystem on disk... Done"
-msgstr "M在碟片中建立檔案系統...完成"
+msgstr "在碟片中建立檔案系統...完成"
 
 #: gfloppy/src/gfloppy.c:520
-#, fuzzy
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr "M正在檢查壞磁區...（可能需要一段時間）"
+msgstr "正在檢查壞磁區...（可能需要一段時間）"
 
 #: gfloppy/src/gfloppy.c:525
-#, fuzzy
 msgid "Error while checking the bad blocks."
-msgstr "M檢查壞磁區時出現錯誤。"
+msgstr "檢查壞磁區時出現錯誤。"
 
 #: gfloppy/src/gfloppy2.glade.h:1
 msgid "    "
@@ -1293,8 +1271,8 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 表示 linux 沿用的檔案系統，或是 fat 表示 DOS 的檔案系統。"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1872
-#: gsearchtool/gsearchtool.c:1892
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1952
+#: gsearchtool/gsearchtool.c:1972
 msgid "Search for Files"
 msgstr "搜尋檔案"
 
@@ -1347,64 +1325,68 @@ msgid "Name matches regular e_xpression"
 msgstr "檔名符合正規表示式(_X)"
 
 #: gsearchtool/gsearchtool.c:84
+msgid "Show hidden files and folders"
+msgstr "顯示隱藏的檔案或資料夾"
+
+#: gsearchtool/gsearchtool.c:85
 msgid "Follow symbolic links"
 msgstr "跟隨符號連結"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:86
 msgid "Include other filesystems"
 msgstr "包括其它檔案系統"
 
-#: gsearchtool/gsearchtool.c:461 gsearchtool/gsearchtool.c:979
+#: gsearchtool/gsearchtool.c:517 gsearchtool/gsearchtool.c:1050
 msgid "No files found"
 msgstr "找不到符合條件的檔案"
 
-#: gsearchtool/gsearchtool.c:547
+#: gsearchtool/gsearchtool.c:610
 msgid "Entry changed called for a non entry option!"
 msgstr "所改變的欄位使用了無效的欄位選項！"
 
-#: gsearchtool/gsearchtool.c:720
+#: gsearchtool/gsearchtool.c:787
 msgid "Set the text of 'Name contains'"
 msgstr "預先填上準備搜尋的檔案名稱"
 
-#: gsearchtool/gsearchtool.c:721
+#: gsearchtool/gsearchtool.c:788
 msgid "Set the text of 'Look in folder'"
 msgstr "預先填上會搜尋的資料夾"
 
-#: gsearchtool/gsearchtool.c:722
+#: gsearchtool/gsearchtool.c:789
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "根據以下其中一種屬性排列檔案：名稱、資料夾、大小、類型或日期"
 
-#: gsearchtool/gsearchtool.c:723
+#: gsearchtool/gsearchtool.c:790
 msgid "Set sort order to descending, the default is ascending"
 msgstr "設定為相反次序排列 (預設為順序排列)"
 
-#: gsearchtool/gsearchtool.c:724
+#: gsearchtool/gsearchtool.c:791
 msgid "Automatically start a search"
 msgstr "自動開始搜尋"
 
-#: gsearchtool/gsearchtool.c:729
+#: gsearchtool/gsearchtool.c:796
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "指定「%s」條件"
 
-#: gsearchtool/gsearchtool.c:831
+#: gsearchtool/gsearchtool.c:902
 msgid "Invalid option passed to sortby command line argument."
 msgstr "sortby 指令列參數中的選項無效。"
 
-#: gsearchtool/gsearchtool.c:967
+#: gsearchtool/gsearchtool.c:1038
 msgid "(aborted)"
 msgstr "(中止)"
 
-#: gsearchtool/gsearchtool.c:983
+#: gsearchtool/gsearchtool.c:1054
 msgid "One file found"
 msgstr "找到一個檔案"
 
-#: gsearchtool/gsearchtool.c:986
+#: gsearchtool/gsearchtool.c:1057
 #, c-format
 msgid "%d files found"
 msgstr "找到 %d 個檔案"
 
-#: gsearchtool/gsearchtool.c:1082
+#: gsearchtool/gsearchtool.c:1154
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1412,7 +1394,7 @@ msgstr ""
 "當搜尋時發生以下的錯誤。\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1086
+#: gsearchtool/gsearchtool.c:1158
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1420,104 +1402,104 @@ msgstr ""
 "\n"
 "... 錯誤過多，無法顯示 ..."
 
-#: gsearchtool/gsearchtool.c:1099
+#: gsearchtool/gsearchtool.c:1171
 msgid "Search Errors"
 msgstr "搜尋出現錯誤"
 
-#: gsearchtool/gsearchtool.c:1137 gsearchtool/gsearchtool.c:1161
+#: gsearchtool/gsearchtool.c:1209 gsearchtool/gsearchtool.c:1233
 msgid "Search for Files Error"
 msgstr "搜尋檔案出現錯誤"
 
-#: gsearchtool/gsearchtool.c:1250
+#: gsearchtool/gsearchtool.c:1323
 msgid "Search Rule Value Entry"
 msgstr "搜尋條件輸入欄"
 
-#: gsearchtool/gsearchtool.c:1251
+#: gsearchtool/gsearchtool.c:1324
 msgid "Enter a value for search rule"
 msgstr "請輸入有關該搜尋條件的值"
 
-#: gsearchtool/gsearchtool.c:1288
+#: gsearchtool/gsearchtool.c:1361
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "按下本按鈕後會移除‘%s’條件"
 
-#: gsearchtool/gsearchtool.c:1346
+#: gsearchtool/gsearchtool.c:1419
 msgid "A_vailable options:"
 msgstr "可提供的選項(_V)："
 
-#: gsearchtool/gsearchtool.c:1359
+#: gsearchtool/gsearchtool.c:1432
 msgid "Search Rules Menu"
 msgstr "搜尋條件選單"
 
-#: gsearchtool/gsearchtool.c:1360
+#: gsearchtool/gsearchtool.c:1433
 msgid "Select a search rule from the menu"
 msgstr "在選單中選擇搜尋條件"
 
-#: gsearchtool/gsearchtool.c:1391
+#: gsearchtool/gsearchtool.c:1464
 msgid "S_earch Results"
 msgstr "搜尋結果(_E)"
 
-#: gsearchtool/gsearchtool.c:1467
+#: gsearchtool/gsearchtool.c:1540
 msgid "Name"
 msgstr "名稱"
 
-#: gsearchtool/gsearchtool.c:1487
+#: gsearchtool/gsearchtool.c:1560
 msgid "Folder"
 msgstr "資料夾"
 
-#: gsearchtool/gsearchtool.c:1498
+#: gsearchtool/gsearchtool.c:1571
 msgid "Size"
 msgstr "大小"
 
-#: gsearchtool/gsearchtool.c:1508
+#: gsearchtool/gsearchtool.c:1581
 msgid "Type"
 msgstr "類型"
 
-#: gsearchtool/gsearchtool.c:1518
+#: gsearchtool/gsearchtool.c:1591
 msgid "Date Modified"
 msgstr "最後修改時間"
 
-#: gsearchtool/gsearchtool.c:1555
+#: gsearchtool/gsearchtool.c:1628
 msgid "_Name contains:"
 msgstr "檔名中含有(_N)："
 
-#: gsearchtool/gsearchtool.c:1570 gsearchtool/gsearchtool.c:1571
+#: gsearchtool/gsearchtool.c:1643 gsearchtool/gsearchtool.c:1644
 msgid "File Name Entry"
 msgstr "檔案名稱輸入欄"
 
-#: gsearchtool/gsearchtool.c:1570 gsearchtool/gsearchtool.c:1571
+#: gsearchtool/gsearchtool.c:1643 gsearchtool/gsearchtool.c:1644
 msgid "Enter the file name you want to search"
 msgstr "請輸入想搜尋的檔案名稱"
 
-#: gsearchtool/gsearchtool.c:1583
+#: gsearchtool/gsearchtool.c:1656
 msgid "_Look in folder:"
 msgstr "在指定資料夾開始(_L)："
 
-#: gsearchtool/gsearchtool.c:1589
+#: gsearchtool/gsearchtool.c:1662
 msgid "Browse"
 msgstr "瀏覽"
 
-#: gsearchtool/gsearchtool.c:1598 gsearchtool/gsearchtool.c:1599
+#: gsearchtool/gsearchtool.c:1671 gsearchtool/gsearchtool.c:1672
 msgid "Starting folder entry"
 msgstr "開始資料夾輸入欄"
 
-#: gsearchtool/gsearchtool.c:1598 gsearchtool/gsearchtool.c:1599
+#: gsearchtool/gsearchtool.c:1671 gsearchtool/gsearchtool.c:1672
 msgid "Enter the folder name where you want to start the search"
 msgstr "請輸入準備搜尋的資料夾"
 
-#: gsearchtool/gsearchtool.c:1615 gsearchtool/gsearchtool.c:1616
+#: gsearchtool/gsearchtool.c:1688 gsearchtool/gsearchtool.c:1689
 msgid "Additional Options"
 msgstr "額外選項"
 
-#: gsearchtool/gsearchtool.c:1661
+#: gsearchtool/gsearchtool.c:1734
 msgid "Click to Start the search"
 msgstr "按下本按鈕後會開始搜尋"
 
-#: gsearchtool/gsearchtool.c:1662
+#: gsearchtool/gsearchtool.c:1735
 msgid "Click to Stop the search"
 msgstr "按下本按鈕後會停止搜尋"
 
-#: gsearchtool/gsearchtool.c:1888
+#: gsearchtool/gsearchtool.c:1968
 msgid "Cannot initialize bonobo."
 msgstr "無法初始化 bonobo。"
 
@@ -1537,50 +1519,50 @@ msgstr "將搜尋結果儲存為(_S)..."
 msgid "Can't Display Help"
 msgstr "無法顯示說明文件"
 
-#: gsearchtool/gsearchtool-callbacks.c:128
+#: gsearchtool/gsearchtool-callbacks.c:132
 msgid "Searching..."
 msgstr "搜尋中..."
 
-#: gsearchtool/gsearchtool-callbacks.c:288
+#: gsearchtool/gsearchtool-callbacks.c:290
 #, c-format
 msgid "This will open %d separate files. Are you sure you want to do this?"
 msgstr "這樣會開啟 %d 個不同的檔案。是否確定要這樣做？"
 
-#: gsearchtool/gsearchtool-callbacks.c:291
+#: gsearchtool/gsearchtool-callbacks.c:293
 #, c-format
 msgid "Open %d Files?"
 msgstr "是否開啟 %d 個檔案？"
 
-#: gsearchtool/gsearchtool-callbacks.c:348
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: gsearchtool/gsearchtool-callbacks.c:350
+#: gsearchtool/gsearchtool-callbacks.c:623
 #, c-format
 msgid "There is no installed viewer capable of displaying \"%s\"."
 msgstr "沒有任何已安裝的瀏覽程式可以顯示“%s”。"
 
-#: gsearchtool/gsearchtool-callbacks.c:355
-#: gsearchtool/gsearchtool-callbacks.c:628
+#: gsearchtool/gsearchtool-callbacks.c:357
+#: gsearchtool/gsearchtool-callbacks.c:630
 msgid "Can't Display Location"
 msgstr "無法顯示指定位置"
 
-#: gsearchtool/gsearchtool-callbacks.c:393
+#: gsearchtool/gsearchtool-callbacks.c:395
 #, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr "這樣會開啟 %d 個不同的資料夾。是否確定要這樣做？"
 
-#: gsearchtool/gsearchtool-callbacks.c:396
+#: gsearchtool/gsearchtool-callbacks.c:398
 #, c-format
 msgid "Open %d Folders?"
 msgstr "是否開啟 %d 個資料夾？"
 
-#: gsearchtool/gsearchtool-callbacks.c:435
+#: gsearchtool/gsearchtool-callbacks.c:437
 msgid "The nautilus file manager is not running."
-msgstr "nautilus 檔案管理程式並未執行。"
+msgstr "nautilus 檔案總管並未執行。"
 
-#: gsearchtool/gsearchtool-callbacks.c:730
+#: gsearchtool/gsearchtool-callbacks.c:732
 msgid "Save Search Results As..."
 msgstr "將搜尋結果儲存為..."
 
-#: gsearchtool/gsearchtool-callbacks.c:773
+#: gsearchtool/gsearchtool-callbacks.c:775
 #, c-format
 msgid ""
 "Cannot save search results.\n"
@@ -1589,12 +1571,12 @@ msgstr ""
 "無法儲存搜尋結果。\n"
 "“%s”是一個資料夾。"
 
-#: gsearchtool/gsearchtool-callbacks.c:801
+#: gsearchtool/gsearchtool-callbacks.c:803
 #, c-format
 msgid "File \"%s\" already exists. Overwrite?"
 msgstr "檔案“%s”已存在。是否覆寫？"
 
-#: gsearchtool/gsearchtool-callbacks.c:838
+#: gsearchtool/gsearchtool-callbacks.c:840
 #, c-format
 msgid "Cannot save search results to the file \"%s\"."
 msgstr "無法將搜尋結果儲存至“%s”。"
@@ -1605,7 +1587,7 @@ msgstr "箭頭尺寸"
 
 #: gsearchtool/gsearchtool-support.c:291
 msgid "Size of the expander arrow"
-msgstr "用作展開資料的箭頭的尺寸"
+msgstr "表示展開項目的箭頭的大小"
 
 #: gsearchtool/gsearchtool-support.c:350
 #, c-format
@@ -1640,10 +1622,6 @@ msgstr "鏈結 (目標不存在)"
 #, c-format
 msgid "link to %s"
 msgstr "%s 的鏈結"
-
-#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
-msgid "GNOME Search Tool"
-msgstr "GNOME 搜尋工具"
 
 #: logview/about.c:42
 msgid "Cesar Miquel (miquel@df.uba.ar)"
@@ -1728,15 +1706,15 @@ msgstr "當符合正規表示式時所執行的行動"
 
 #: logview/actions.c:511
 msgid "description"
-msgstr "描述"
+msgstr "說明"
 
 #: logview/actions.c:771
 msgid "_Description:"
-msgstr "描述(_D)："
+msgstr "說明(_D)："
 
 #: logview/actions.c:780
 msgid "Description of this entry."
-msgstr "本項目的描述文字。"
+msgstr "本項目的說明文字。"
 
 #: logview/actions.c:804
 #, c-format
@@ -1752,7 +1730,7 @@ msgstr ""
 "紀錄名稱：[%s]\n"
 "程序：[%s]\n"
 "訊息：[%s]\n"
-"描述：[%s]\n"
+"說明：[%s]\n"
 "行動：[%s]\n"
 
 #: logview/calendar.c:112
@@ -1767,7 +1745,7 @@ msgstr "無法開啟正規表示式資料庫 <%s>！開啟失敗。"
 #: logview/desc_db.c:147
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
-msgstr "無法開啟描述資料庫 <%s>！開啟失敗。"
+msgstr "無法開啟說明文字資料庫 <%s>！開啟失敗。"
 
 #. ----------------------------------------------------------------------
 #. NAME:
@@ -2022,9 +2000,8 @@ msgid "Monitor Options"
 msgstr "有關監察的選項"
 
 #: logview/monitor.c:112
-#, fuzzy
 msgid "Ac_tions"
-msgstr "行動"
+msgstr "行動(_T)"
 
 #: logview/monitor.c:135
 msgid "Choose logs to monitor:"
@@ -2085,7 +2062,7 @@ msgstr "訊息："
 
 #: logview/zoom.c:103
 msgid "Description:"
-msgstr "描述："
+msgstr "說明："
 
 # translation hell. I'd want to keep this entry as accurately as possible,
 # but can't. -- Abel
@@ -2109,6 +2086,9 @@ msgid ""
 msgstr ""
 "指定啟動時預設開啟的紀錄檔。預設可能是 /var/adm/messages 或 /var/log/"
 "messages，取決於所使用的系統。"
+
+#~ msgid "GNOME Search Tool"
+#~ msgstr "GNOME 搜尋工具"
 
 #~ msgid ""
 #~ "Executing arbitrary programs that you downloaded from the network might "
@@ -2217,9 +2197,6 @@ msgstr ""
 #~ msgid "File does not exists"
 #~ msgstr "檔案不存在"
 
-#~ msgid "Add file or folder"
-#~ msgstr "加入檔案或資料夾"
-
 #~ msgid "_Add file or folder..."
 #~ msgstr "加入檔案或資料夾(_A)..."
 
@@ -2289,15 +2266,6 @@ msgstr ""
 #~ msgid "No Files Found."
 #~ msgstr "找不到符合的檔案。"
 
-#~ msgid ""
-#~ "Cannot perform the search.\n"
-#~ "The Bourne shell was not found\n"
-#~ "It is typically installed as /bin/sh or /usr/bin/sh."
-#~ msgstr ""
-#~ "無法進行搜尋。\n"
-#~ "找不到 Bourne shell。\n"
-#~ "通常它會安裝在 /bin/sh 或 /usr/bin/sh。"
-
 #~ msgid "Cannot perform the search. Please specify a search criteria."
 #~ msgstr "無法進行搜尋。請指定搜尋條件。"
 
@@ -2364,9 +2332,6 @@ msgstr ""
 #~ msgid "Remove"
 #~ msgstr "移除"
 
-#~ msgid "description:"
-#~ msgstr "描述："
-
 #~ msgid "Log:"
 #~ msgstr "紀錄："
 
@@ -2379,14 +2344,8 @@ msgstr ""
 #~ msgid "About..."
 #~ msgstr "關於..."
 
-#~ msgid "Info about logview"
-#~ msgstr "關於紀錄檔檢視程式的資訊"
-
 #~ msgid "_Log"
 #~ msgstr "紀錄(_L)"
-
-#~ msgid "System Log Viewer"
-#~ msgstr "系統紀錄檔檢視程式"
 
 #~ msgid "Columns"
 #~ msgstr "欄位"
