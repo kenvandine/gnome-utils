@@ -239,10 +239,16 @@ AC_CHECK_LIB(ext2fs, ext2fs_mkdir, x_libs="-lext2fs",
   AC_MSG_WARN([
 *** libext2fs not found. You need e2fsprogs and e2fsprogs-devel installed to build gfloppy.]))
 # check for ext2fs header specific includes
-AC_CHECK_HEADER(ext2fs/ext2_io.h, ,
-  build_gfloppy=false
+AC_CHECK_HEADERS([et/com_err.h])
+AC_CHECK_HEADER([ext2fs/ext2_io.h], [],
+  [build_gfloppy=false
   AC_MSG_WARN([
-*** ext2fs/ext2_io.h not found.  You need e2fsprogs-devel installed.]))
+*** ext2fs/ext2_io.h not found.  You need e2fsprogs-devel installed.])],
+  [#include <string.h>
+#if HAVE_ET_COM_ERR_H
+#include <et/com_err.h>
+#endif
+])
 AM_CONDITIONAL(BUILD_GFLOPPY, test "$build_gfloppy" = true)
 
 
