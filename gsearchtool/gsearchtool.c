@@ -523,7 +523,7 @@ add_no_files_found_message (GtkListStore 	*store,
 			    COLUMN_SIZE, (gdouble) 0,
 			    COLUMN_TYPE, "",
 		    	    COLUMN_READABLE_DATE, "",
-		    	    COLUMN_DATE, 0,
+		    	    COLUMN_DATE, (gdouble) 0,
 			    COLUMN_NO_FILES_FOUND, TRUE,
 		    	    -1);
 }
