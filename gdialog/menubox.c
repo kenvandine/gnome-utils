@@ -394,7 +394,8 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 			break;
 		case '\n':
 			delwin(dialog);
-			return button;
+			if (button == 1) return -2;
+			return scroll+choice;
 		case ESC:
 			break;
 		}
