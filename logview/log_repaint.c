@@ -109,11 +109,8 @@ static void iterate_thru_children(GtkTreeView  *tree_view,
  *
  * NOTE: the value for depth must be 0 when this recursive function
  * is initially called, or it may not function as expected.
- * 
- * I took this function from gail/gail/gailtreeview.c 
  **/
-
-static void
+static void 
 iterate_thru_children(GtkTreeView  *tree_view,
                       GtkTreeModel *tree_model,
                       GtkTreePath  *tree_path,
@@ -125,7 +122,7 @@ iterate_thru_children(GtkTreeView  *tree_view,
 
   gtk_tree_model_get_iter (tree_model, &iter, tree_path);
 
-  if (orig != NULL && !gtk_tree_path_compare (tree_path, orig))
+  if (orig != NULL && !gtk_tree_path_compare (tree_path, orig)) 
     /* Found it! */
     return;
 
@@ -135,22 +132,21 @@ iterate_thru_children(GtkTreeView  *tree_view,
       *count = -1;
       return;
     }
-  else if /* (gtk_tree_view_row_expanded (tree_view, tree_path) && */
-    (gtk_tree_model_iter_has_child (tree_model, &iter))
+  else if (gtk_tree_view_row_expanded (tree_view, tree_path) && 
+    gtk_tree_model_iter_has_child (tree_model, &iter)) 
     {
-     /* we do not want to count the Date Header row 
-        (*count)++; */ 
+      (*count)++;
       gtk_tree_path_append_index (tree_path, 0);
       iterate_thru_children (tree_view, tree_model, tree_path,
                              orig, count, (depth + 1));
       return;
     }
-  else if (gtk_tree_model_iter_next (tree_model, &iter))
+  else if (gtk_tree_model_iter_next (tree_model, &iter)) 
     {
       (*count)++;
       tree_path = gtk_tree_model_get_path (tree_model, &iter);
       iterate_thru_children (tree_view, tree_model, tree_path,
-                             orig, count, depth);
+                             orig, count, depth); 
       gtk_tree_path_free (tree_path);
       return;
   }
@@ -171,7 +167,7 @@ iterate_thru_children(GtkTreeView  *tree_view,
           if (gtk_tree_path_get_depth (tree_path) == 0)
               /* depth is now zero so */
             return;
-          gtk_tree_path_next (tree_path);
+          gtk_tree_path_next (tree_path);	
 
           /* Verify that the next row is a valid row! */
           exit_loop = gtk_tree_model_get_iter (tree_model, &temp_iter, tree_path);
@@ -189,7 +185,7 @@ iterate_thru_children(GtkTreeView  *tree_view,
                  /*
                   * If depth is 1 and gtk_tree_model_get_iter returns FALSE,
                   * then we are at the last row, so just return.
-                  */
+                  */ 
                   if (orig != NULL)
                     *count = -1;
 
@@ -209,6 +205,7 @@ iterate_thru_children(GtkTreeView  *tree_view,
                             orig, count, new_depth);
       return;
     }
+
  /*
   * If it gets here, then the path wasn't found.  Situations
   * that would cause this would be if the path passed in is
@@ -221,9 +218,7 @@ iterate_thru_children(GtkTreeView  *tree_view,
     *count = -1;
 
   return;
-
 }
-
 /* ----------------------------------------------------------------------
    NAME:        handle_row_activation_cb
    DESCRIPTION: User pressed space bar on a row in the main window
