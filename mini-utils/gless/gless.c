@@ -319,7 +319,7 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
   app = g_new(GnomeLessApp, 1);
 
   app->app = gnome_app_new( APPNAME, _("Text File Viewer") ); 
-  app->appbar = GNOME_APPBAR(gnome_appbar_new(TRUE, TRUE, 
+  app->appbar = GNOME_APPBAR(gnome_appbar_new(FALSE, TRUE, 
                                               GNOME_PREFERENCES_USER));
   gnome_app_set_statusbar(GNOME_APP(app->app), GTK_WIDGET(app->appbar));
 
