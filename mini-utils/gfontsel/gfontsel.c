@@ -136,7 +136,7 @@ get_logo (void)
 	return pixmap;
 }
 
-void
+static void
 gfontsel_create_dialog (gfontsel_cfg_t * cfg)
 {
 	GtkWidget *box, *label, *sep, *pixmap;
