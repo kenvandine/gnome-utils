@@ -18,7 +18,7 @@ LINK    = $(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) $(OBGNOME_LIBDIR) -o
 bin_PROGRAMS = gpostit
 
 gpostit_SOURCES = 	\
-	gpostit.m	\
+	gpostit.m
 
 gpostit_LDADD = \
         $(OBGNOME_LIBS) -lgtktty $(OBGTK_LIBS) $(GNOMEUI_LIBS) \
