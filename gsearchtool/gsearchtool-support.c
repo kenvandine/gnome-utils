@@ -784,7 +784,7 @@ launch_file (const gchar *filename)
 	gboolean result = FALSE;
 	
 	if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE) == TRUE) &&
-	    (g_ascii_strcasecmp (mime_type, BINARY_EXEC_MIME_TYPE) == TRUE)) { 
+	    (g_ascii_strcasecmp (mime_type, BINARY_EXEC_MIME_TYPE) == 0)) { 
 		result = g_spawn_command_line_async (filename, NULL);
 	}
 	
