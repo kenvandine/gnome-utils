@@ -679,7 +679,7 @@ update_progress_bar (gpointer p)
 }
 
 static void
-really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *running, GtkWidget *tree, GtkListStore *store, GtkTreeIter *iter)
+really_run_command(char *cmd, char sepchar, gchar *utf8_pattern_str, RunLevel *running, GtkWidget *tree, GtkListStore *store, GtkTreeIter *iter)
 {
 	int timeout;
 	GString *string;
@@ -692,16 +692,10 @@ really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *runnin
 	GPatternSpec *pattern;
 	GString *errors = NULL;
 	gboolean add_to_errors = TRUE;
-	gchar *utf8_locate_string;
-	gchar *wildcarded_string;
-	gchar *locale_pattern_str;
 	
 	lock = TRUE;
 
-	locale_pattern_str = g_locale_from_utf8(pattern_str, -1, NULL, NULL, NULL);
-	wildcarded_string = g_strdup_printf ("*%s*", locale_pattern_str);
-	utf8_locate_string = g_locale_to_utf8 (wildcarded_string, -1, NULL, NULL, NULL);
-	pattern = g_pattern_spec_new (utf8_locate_string);
+	pattern = g_pattern_spec_new (utf8_pattern_str);
 	/* reset scroll position and clear the tree view */
 	gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(tree), 0, 0);
 	gtk_list_store_clear (GTK_LIST_STORE(store)); 
@@ -892,9 +886,6 @@ really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *runnin
 	
 	g_free (str);
 	g_string_free (string, TRUE);
-	g_free (utf8_locate_string);
-	g_free (wildcarded_string);
-	g_free (locale_pattern_str);
 	g_pattern_spec_free (pattern);
 
 	*running = NOT_RUNNING;
