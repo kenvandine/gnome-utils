@@ -2,11 +2,10 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"[
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "1.99.2">
-  <!ENTITY manrevision "2.0">
-  <!ENTITY date "March 2002">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.1">
+  <!ENTITY date "June 2002">
   <!ENTITY app "GNOME Calculator">
-  <!-- Information about the entities. The legal.xml file contains legal information, there is no need to edit the file. Use the appversion entity to specify the version of the application. Use the manrevision entity to specify the revision number of this manual. Use the date entity to specify the release date of this manual. Use the app entity to specify the name of the application. -->
 ]>
 <!-- 
       (Do not remove this comment block.)
@@ -84,6 +83,15 @@
 		  </revdescription> 
 		</revision> 
 		<revision> 
+		  <revnumber>GNOME Calculator Manual V2.0</revnumber> 
+		  <date>March 2002</date> 
+		  <revdescription> 
+			 <para role="author">Sun GNOME Documentation Team
+				<email>gdocteam@sun.com</email> </para> 
+			 <para role="publisher">GNOME Documentation Project</para> 
+		  </revdescription> 
+		</revision> 
+		<revision> 
 		  <revnumber>GNOME Calculator Manual</revnumber> 
 		  <date>2000</date> 
 		  <revdescription> 
@@ -142,31 +150,7 @@
 <!-- ============= Usage ============================= -->
   <sect1 id="gcalc-usage"> 
 	 <title>Usage</title> 
-	 <para>You can use <application>&app;</application> to perform the following
-		tasks: 
-		<itemizedlist> 
-		  <listitem> 
-			 <para> <xref linkend="gcalc-basic-functions"/> </para> 
-		  </listitem> 
-		  <listitem> 
-			 <para> <xref linkend="gcalc-arithmetic-funcs"/> </para> 
-		  </listitem> 
-		  <listitem> 
-			 <para> <xref linkend="gcalc-trig-funcs"/> </para> 
-		  </listitem> 
-		  <listitem> 
-			 <para> <xref linkend="gcalc-log-funcs"/> </para> 
-		  </listitem> 
-		  <listitem> 
-			 <para> <xref linkend="gcalc-exp-numbers"/> </para> 
-		  </listitem> 
-		  <listitem> 
-			 <para> <xref linkend="gcalc-pi-e-values"/> </para> 
-		  </listitem> 
-		  <listitem> 
-			 <para> <xref linkend="gcalc-memory-funcs"/> </para> 
-		  </listitem> 
-		</itemizedlist> </para> 
+	 
 	 <sect2 id="gcalc-basic-functions"> 
 		<title>To Use Basic Calculator Functions</title> 
 		<para>To perform a basic calculation, use one of the following
@@ -224,7 +208,7 @@
 			 <colspec colname="COLSPEC2" colwidth="50*"/>
 			 <colspec colname="COLSPEC3" colwidth="50*"/> 
 			 <thead> 
-				<row> 
+				<row valign="top"> 
 				  <entry colname="COLSPEC0"> 
 					 <para>Function</para></entry> 
 				  <entry colname="COLSPEC1"> 
@@ -236,7 +220,7 @@
 				</row> 
 			 </thead> 
 			 <tbody> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Change the sign</para> </entry> 
 				  <entry> 
@@ -246,7 +230,7 @@
 				  <entry> 
 					 <para>-8</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Reciprocal</para> </entry> 
 				  <entry> 
@@ -256,7 +240,7 @@
 				  <entry> 
 					 <para>0.25</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Square</para> </entry> 
 				  <entry> 
@@ -266,7 +250,7 @@
 				  <entry> 
 					 <para>9</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Square root</para> </entry> 
 				  <entry> 
@@ -276,7 +260,7 @@
 				  <entry> 
 					 <para>3</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Power</para> </entry> 
 				  <entry> 
@@ -287,7 +271,7 @@
 				  <entry> 
 					 <para>16</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Factorial</para> </entry> 
 				  <entry> 
@@ -312,7 +296,7 @@
 			 <colspec colname="COLSPEC2" colwidth="39.00*"/>
 			 <colspec colname="COLSPEC3" colwidth="39.00*"/> 
 			 <thead> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Function</para> </entry> 
 				  <entry> 
@@ -324,7 +308,7 @@
 				</row> 
 			 </thead> 
 			 <tbody> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Sine</para> </entry> 
 				  <entry> 
@@ -334,7 +318,7 @@
 				  <entry> 
 					 <para>1</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Inverse sine</para> </entry> 
 				  <entry> 
@@ -346,7 +330,7 @@
 				  <entry> 
 					 <para>90</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Cosine</para> </entry> 
 				  <entry> 
@@ -356,7 +340,7 @@
 				  <entry> 
 					 <para>0.5</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Inverse cosine</para> </entry> 
 				  <entry> 
@@ -368,7 +352,7 @@
 				  <entry> 
 					 <para>60</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Tangent</para> </entry> 
 				  <entry> 
@@ -378,7 +362,7 @@
 				  <entry> 
 					 <para>1</para> </entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry colname="COLSPEC0"> 
 					 <para>Inverse tangent</para></entry> 
 				  <entry colname="COLSPEC1"> 
@@ -412,7 +396,7 @@
 			 <colspec colname="COLSPEC2" colwidth="33*"/>
 			 <colspec colname="COLSPEC3" colwidth="33*"/> 
 			 <thead> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Function</para></entry> 
 				  <entry> 
@@ -424,7 +408,7 @@
 				</row> 
 			 </thead> 
 			 <tbody> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Common logarithm</para></entry> 
 				  <entry> 
@@ -434,7 +418,7 @@
 				  <entry> 
 					 <para>1</para></entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Common antilogarithm</para></entry> 
 				  <entry> 
@@ -446,7 +430,7 @@
 				  <entry> 
 					 <para>10</para></entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Natural logarithm</para></entry> 
 				  <entry> 
@@ -456,7 +440,7 @@
 				  <entry> 
 					 <para>2.302585093</para></entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry colname="COLSPEC0"> 
 					 <para>Natural antilogarithm</para></entry> 
 				  <entry colname="COLSPEC1"> 
@@ -488,7 +472,7 @@
 			 <colspec colname="COLSPEC1" colwidth="33*"/>
 			 <colspec colname="COLSPEC2" colwidth="33*"/> 
 			 <thead> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Number</para></entry> 
 				  <entry> 
@@ -498,7 +482,7 @@
 				</row> 
 			 </thead> 
 			 <tbody> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>1200000000</para></entry> 
 				  <entry> 
@@ -507,7 +491,7 @@
 				  <entry> 
 					 <para>1200000000</para></entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>-1200000000</para></entry> 
 				  <entry> 
@@ -516,7 +500,7 @@
 				  <entry> 
 					 <para>-1200000000</para></entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>0.00000012</para></entry> 
 				  <entry> 
@@ -525,7 +509,7 @@
 				  <entry> 
 					 <para>1.2e-07</para></entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry colname="COLSPEC0"> 
 					 <para>-0.00000012</para></entry> 
 				  <entry colname="COLSPEC1"> 
@@ -564,7 +548,7 @@
 			 <colspec colname="COLSPEC0" colwidth="66.89*"/>
 			 <colspec colname="COLSPEC1" colwidth="33.11*"/> 
 			 <thead> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Function</para></entry> 
 				  <entry> 
@@ -572,28 +556,28 @@
 				</row> 
 			 </thead> 
 			 <tbody> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Store the value in the display field in
 						memory.</para></entry> 
 				  <entry> 
 					 <para> <guibutton>STO</guibutton></para></entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Display the value in memory in the display
 						field.</para></entry> 
 				  <entry> 
 					 <para> <guibutton>RCL</guibutton></para></entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry colname="COLSPEC0"> 
 					 <para>Add the value in the display field to the value in
 						memory.</para></entry> 
 				  <entry colname="COLSPEC1"> 
 					 <para> <guibutton>SUM</guibutton></para></entry> 
 				</row> 
-				<row> 
+				<row valign="top"> 
 				  <entry> 
 					 <para>Exchange the values in the display field and
 						memory.</para></entry> 
@@ -604,7 +588,7 @@
 		  </tgroup> 
 		</informaltable> 
 		<para>When the memory contains a non-zero value, the calculator displays
-		  an M in the top left corner of the display field. To clear the memory, click 
+		  an m on the left side of the display field. To clear the memory, click 
 		  <guibutton>AC</guibutton>. </para> 
 	 </sect2> 
   </sect1>
