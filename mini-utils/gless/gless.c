@@ -348,7 +348,7 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
 
   gnome_app_create_menus_with_data(GNOME_APP(app->app), main_menu, app);
 
-  gnome_app_install_menu_hints((GnomeApp *)app->app, main_menu);
+  gnome_app_install_menu_hints(GNOME_APP(app->app), main_menu);
 
   app_box = gtk_vbox_new ( FALSE, GNOME_PAD );
   gtk_container_border_width(GTK_CONTAINER(app_box), GNOME_PAD);
