@@ -1890,7 +1890,7 @@ GnomeUIInfo toolbar[] = {
 int main (int argc, char *argv[])
 {
 	GnomeCanvasGroup *root;
-	GtkWidget *vbox, *canvas, *align;
+	GtkWidget *canvas, *align, *hpaned;
 	char *titles[] = { N_("Field"), N_("Value")};
 
 	gnome_init("gnomecard", NULL, argc, argv, 0, NULL);
@@ -1907,17 +1907,32 @@ int main (int argc, char *argv[])
 	gtk_signal_connect(GTK_OBJECT(gnomecard_window), "delete_event",
 			   GTK_SIGNAL_FUNC(gnomecard_delete), NULL);
 	
-	vbox = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(vbox);
+	hpaned = gtk_hpaned_new();
 
-	gnome_app_set_contents(GNOME_APP(gnomecard_window), vbox);
+	gnome_app_set_contents(GNOME_APP(gnomecard_window), hpaned);
 	gnome_app_create_menus(GNOME_APP(gnomecard_window), mainmenu);
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
+	crd_tree = GTK_CTREE(gtk_ctree_new_with_titles(2, 0, titles));
+	gtk_clist_set_column_width(GTK_CLIST(crd_tree), 0, COL_WIDTH);
+	gtk_signal_connect(GTK_OBJECT(crd_tree), 
+			   "tree_select_row",
+			   GTK_SIGNAL_FUNC(gnomecard_tree_selected), NULL);
+	gtk_ctree_set_line_style (crd_tree, GTK_CTREE_LINES_SOLID);
+	gtk_ctree_set_reorderable (crd_tree, FALSE);
+	gtk_clist_column_titles_passive(GTK_CLIST(crd_tree));
+	gtk_clist_set_policy(GTK_CLIST(crd_tree),
+			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_widget_set_usize (GTK_WIDGET(crd_tree), 0, 200);
+	
+	gtk_paned_add1(GTK_PANED(hpaned), GTK_WIDGET(crd_tree));
+	gtk_widget_push_visual(gdk_imlib_get_visual());
+	gtk_widget_push_colormap(gdk_imlib_get_colormap());
 	canvas =
 	  crd_canvas = gnome_canvas_new();
-/*					gtk_widget_get_default_visual(),
-					gtk_widget_get_default_colormap());*/
+	gtk_widget_pop_visual();
+	gnome_canvas_set_scroll_region(GNOME_CANVAS(canvas), 0, 0, 
+				       CANVAS_WIDTH, CANVAS_HEIGHT);
 	gnome_canvas_set_size(GNOME_CANVAS(canvas), 
 			      CANVAS_WIDTH, CANVAS_HEIGHT);
 
@@ -1945,21 +1960,7 @@ int main (int argc, char *argv[])
 	align = gtk_alignment_new(0.5, 0.5, 0, GNOME_PAD_SMALL);
         gtk_container_add (GTK_CONTAINER (align), canvas);
 	gtk_widget_show(align);
-	gtk_box_pack_start(GTK_BOX(vbox), align, FALSE, FALSE, GNOME_PAD_SMALL);
-
-	crd_tree = GTK_CTREE(gtk_ctree_new_with_titles(2, 0, titles));
-	gtk_clist_set_column_width(GTK_CLIST(crd_tree), 0, COL_WIDTH);
-	gtk_signal_connect(GTK_OBJECT(crd_tree), 
-			   "tree_select_row",
-			   GTK_SIGNAL_FUNC(gnomecard_tree_selected), NULL);
-	gtk_ctree_set_line_style (crd_tree, GTK_CTREE_LINES_SOLID);
-	gtk_ctree_set_reorderable (crd_tree, FALSE);
-	gtk_clist_column_titles_passive(GTK_CLIST(crd_tree));
-	gtk_clist_set_policy(GTK_CLIST(crd_tree),
-			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_widget_set_usize (GTK_WIDGET(crd_tree), 0, 200);
-	
-	gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(crd_tree), TRUE, TRUE, 0);
+	gtk_paned_add2(GTK_PANED(hpaned), align);
 	gtk_widget_show(GTK_WIDGET(crd_tree));
 
 	crds = NULL;
