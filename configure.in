@@ -24,7 +24,7 @@ dnl *****************************************
 dnl pkg-config check time
 dnl *****************************************
 
-GTK_REQUIRED=2.5.4
+GTK_REQUIRED=2.6.0
 LIBGNOME_DESKTOP_REQUIRED=2.2.0
 LIBGNOME_REQUIRED=2.5.0
 LIBGNOMEUI_REQUIRED=2.5.0
@@ -224,7 +224,7 @@ AC_FUNC_ALLOCA
 AC_FUNC_MMAP
 AC_TYPE_SIGNAL
 AC_FUNC_STRFTIME
-AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf)
+AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgid)
 
 dnl *****************************************************************
 dnl Allow users to run logview using the console helper 
