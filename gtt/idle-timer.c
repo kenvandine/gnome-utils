@@ -43,10 +43,6 @@
 
    I trust that explains why this function is a big hairy mess.
 
-   N.B. it might have been cleaner/simpler to use 
-   gdk_window_add_filter (and specify a null filter) to get all window
-   events. Or os its advertised.  If so, then we could chop out all
-   of the XQueryTree stuff, as well as the main loop takeover. 
  */
 
 # include "config.h"
