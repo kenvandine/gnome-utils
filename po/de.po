@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-1.1.0\n"
-"POT-Creation-Date: 2000-04-15 11:30+0200\n"
-"PO-Revision-Date: 2000-04-16 19:54+02:00\n"
+"POT-Creation-Date: 2000-04-26 14:27+0200\n"
+"PO-Revision-Date: 2000-04-26 14:48+02:00\n"
 "Last-Translator: Karl Eichwalder <ke@suse.de>\n"
 "Language-Team: Matthias Warkus <mawa@iname.com>\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Rechtschreibung"
 msgid "Check word spelling"
 msgstr "Rechtschreibung prüfen"
 
-#: gdictsrc/gdict-app.c:440 gtt/toolbar.c:163
+#: gdictsrc/gdict-app.c:440 gtt/toolbar.c:159
 msgid "Cut"
 msgstr "Ausschneiden"
 
@@ -91,7 +91,7 @@ msgstr "Ausschneiden"
 msgid "Cut to Clipboard"
 msgstr "In Zwischenablage ausschneiden"
 
-#: gdictsrc/gdict-app.c:441 gtt/toolbar.c:167
+#: gdictsrc/gdict-app.c:441 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -99,7 +99,7 @@ msgstr "Kopieren"
 msgid "Copy to Clipboard"
 msgstr "In Zwischenablage kopieren"
 
-#: gdictsrc/gdict-app.c:442 gtt/toolbar.c:171
+#: gdictsrc/gdict-app.c:442 gtt/toolbar.c:167
 msgid "Paste"
 msgstr "Einfügen"
 
@@ -536,8 +536,7 @@ msgstr "_Hilfe"
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/view-color-list.c:182
-#: mini-utils/gcolorsel/widget-color-list.c:242
+#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/view-color-list.c:191
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Wert"
@@ -546,8 +545,7 @@ msgstr "Wert"
 msgid "Identifier"
 msgstr "Bezeichner"
 
-#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/view-color-list.c:181
-#: mini-utils/gcolorsel/widget-color-list.c:240
+#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/view-color-list.c:190
 msgid "Color"
 msgstr "Farbe"
 
@@ -600,7 +598,7 @@ msgid "Help"
 msgstr "Hilfe"
 
 #: gstripchart/gstripchart.c:1768 gstripchart/gstripchart.c:2052
-#: mini-utils/gshutdown/gshutdown.c:318
+#: mini-utils/gcolorsel/menus.c:380 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "Info"
 
@@ -608,7 +606,7 @@ msgstr "Info"
 msgid "Params"
 msgstr "Parameter"
 
-#: gstripchart/gstripchart.c:1780
+#: gstripchart/gstripchart.c:1780 mini-utils/gcolorsel/menus.c:374
 msgid "Exit"
 msgstr "Beenden"
 
@@ -839,7 +837,7 @@ msgstr "Achtung!"
 msgid "I could not write the configuration file!"
 msgstr "Ich konnte die Konfigurationsdatei nicht speichern!"
 
-#: gtt/menucmd.c:93 gtt/toolbar.c:146
+#: gtt/menucmd.c:93 gtt/toolbar.c:142
 msgid "New Project..."
 msgstr "Neues Projekt..."
 
@@ -851,7 +849,7 @@ msgstr "Bitte geben Sie den Namen für das neue Projekt ein:"
 msgid "I could not read the configuration file"
 msgstr "Ich konnte die Konfigurationsdatei nicht lesen"
 
-#: gtt/menucmd.c:145 gtt/toolbar.c:153
+#: gtt/menucmd.c:145 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Konfigurationsdatei neu einlesen"
 
@@ -1048,138 +1046,160 @@ msgid "Project Time ever:"
 msgstr "Gesamte Projektzeit:"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:145
+#: gtt/toolbar.c:141
 msgid "[GTT]New"
 msgstr "Neu"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:148
 msgid "Reload"
 msgstr "Einlesen"
 
-#: gtt/toolbar.c:156
+#: gtt/toolbar.c:152
 msgid "Save"
 msgstr "Speichern"
 
-#: gtt/toolbar.c:157
+#: gtt/toolbar.c:153
 msgid "Save Configuration File"
 msgstr "Konfigurationsdatei speichern"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:160
 msgid "Cut Selected Project"
 msgstr "Ausgewähltes Projekt ausschneiden"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:164
 msgid "Copy Selected Project"
 msgstr "Ausgewähltes Projekt kopieren"
 
-#: gtt/toolbar.c:172
+#: gtt/toolbar.c:168
 msgid "Paste Project"
 msgstr "Projekt einfügen"
 
-#: gtt/toolbar.c:178
+#: gtt/toolbar.c:174
 msgid "Props"
 msgstr "Eigenschaften"
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:175
 msgid "Edit Properties..."
 msgstr "Eigenschaften bearbeiten..."
 
-#: gtt/toolbar.c:183
+#: gtt/toolbar.c:179
 msgid "Timer"
 msgstr "Stoppuhr"
 
-#: gtt/toolbar.c:184
+#: gtt/toolbar.c:180
 msgid "Start/Stop Timer"
 msgstr "Stoppuhr starten/stoppen"
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:189
 msgid "Prefs"
 msgstr "Einstellungen"
 
-#: gtt/toolbar.c:194
+#: gtt/toolbar.c:190
 msgid "Edit Preferences..."
 msgstr "Einstellungen bearbeiten..."
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:194
 msgid "Manual"
 msgstr "Handbuch"
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:194
 msgid "Manual..."
 msgstr "Handbuch..."
 
-#: gtt/toolbar.c:203
+#: gtt/toolbar.c:199
 msgid "Quit"
 msgstr "Beenden"
 
-#: gtt/toolbar.c:203
+#: gtt/toolbar.c:199
 msgid "Quit GTimeTracker"
 msgstr "GTimeTracker verlassen"
 
-#: mini-utils/gcolorsel/menus.c:71
-msgid "Open file"
-msgstr "Datei öffnen"
+#. Init GnomeMDI
+#: mini-utils/gcolorsel/gcolorsel.c:51
+msgid "GColorsel"
+msgstr "Farbwähler"
 
-#: mini-utils/gcolorsel/menus.c:95
-msgid "Can not open file !"
-msgstr "Kann Datei nicht öffnen!"
-
-#: mini-utils/gcolorsel/menus.c:157
-msgid "Gnome Color Browser"
-msgstr "GNOME Farbbetrachter"
-
-#: mini-utils/gcolorsel/menus.c:160
-msgid "Small utility to browse available X11 colors."
-msgstr "Kleines Hilfsprogramm, um verfügbare X11-Farben zu betrachten."
-
-#: mini-utils/gcolorsel/menus.c:175
+#: mini-utils/gcolorsel/menus.c:47
 msgid "New color"
 msgstr "Neue Farbe"
 
-#: mini-utils/gcolorsel/menus.c:177
+#: mini-utils/gcolorsel/menus.c:49
 msgid "Remove selected colors"
 msgstr "Gewählte Farbe entfernen"
 
-#: mini-utils/gcolorsel/menus.c:179
+#: mini-utils/gcolorsel/menus.c:51
 msgid "Edit selected color..."
 msgstr "Gewählte Farbe editieren..."
 
-#: mini-utils/gcolorsel/view-color-generic.c:15
+#: mini-utils/gcolorsel/menus.c:98
+msgid "Open file"
+msgstr "Datei öffnen"
+
+#: mini-utils/gcolorsel/menus.c:123
+msgid "Can not open file !"
+msgstr "Kann Datei nicht öffnen!"
+
+#: mini-utils/gcolorsel/menus.c:190
+msgid "Gnome Color Browser"
+msgstr "GNOME Farbbetrachter"
+
+#: mini-utils/gcolorsel/menus.c:193
+msgid "Small utility to browse available X11 colors."
+msgstr "Kleines Hilfsprogramm, um verfügbare X11-Farben zu betrachten."
+
+#: mini-utils/gcolorsel/menus.c:374
+msgid "Exit the program"
+msgstr "Das Programm beenden"
+
+#: mini-utils/gcolorsel/menus.c:377
+msgid "Grab"
+msgstr "Auswählen"
+
+#: mini-utils/gcolorsel/menus.c:377
+msgid "Grab a color on the screen"
+msgstr "Eine Farbe vom Bildschirm auswählen"
+
+#: mini-utils/gcolorsel/menus.c:380
+msgid "About this application"
+msgstr "Info zu dieser Anwendung"
+
+#: mini-utils/gcolorsel/view-color-generic.c:16
 msgid "Decimal 8 bits"
 msgstr "Dezimal 8 Bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:16
+#: mini-utils/gcolorsel/view-color-generic.c:17
 msgid "Decimal 16 bits"
 msgstr "Dezimal 16 Bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:17
+#: mini-utils/gcolorsel/view-color-generic.c:18
 msgid "Hex 8 bits"
 msgstr "Hex 8 Bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:18
+#: mini-utils/gcolorsel/view-color-generic.c:19
 msgid "Hex 16 bits"
 msgstr "Hex 16 Bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:19
+#: mini-utils/gcolorsel/view-color-generic.c:20
 msgid "Float"
 msgstr "Gleitkomma"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:183
-#: mini-utils/gcolorsel/widget-color-list.c:244
-#: mini-utils/guname/moreinfo.c:225 mini-utils/gw/gw.c:502
-#: mini-utils/gw/gw.c:572
+#: mini-utils/gcolorsel/view-color-list.c:192 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gw/gw.c:502 mini-utils/gw/gw.c:572
 msgid "Name"
 msgstr "Name"
 
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:9
 #: mini-utils/gcolorsel/widget-control-virtual.c:94
 msgid "Red :"
 msgstr "Rot:"
 
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:10
 #: mini-utils/gcolorsel/widget-control-virtual.c:98
 msgid "Green :"
 msgstr "Grün:"
 
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:11
 #: mini-utils/gcolorsel/widget-control-virtual.c:102
 msgid "Blue :"
 msgstr "Blau:"
@@ -1188,31 +1208,96 @@ msgstr "Blau:"
 msgid "Tolerance :"
 msgstr "Streuung:"
 
-#: mini-utils/gfontsel/gfontsel.c:157
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:8
+#: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:8
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:8
+#: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:8
+#: mini-utils/gcolorsel/glade/view-color-grid-properties.glade.h:8
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:8
+msgid "window1"
+msgstr "fenster1"
+
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:9
+#: mini-utils/gcolorsel/glade/view-color-grid-properties.glade.h:9
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:9
+msgid "Special properties"
+msgstr "Besondere Eigenschaften"
+
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:10
+msgid "File name :"
+msgstr "Dateiname:"
+
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:11
+msgid "Comments :"
+msgstr "Kommentare:"
+
+#: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:9
+#: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:9
+msgid "Common properties"
+msgstr "Allgemeine Eigenschaften"
+
+#: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:10
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:13
+msgid "Name :"
+msgstr "Name:"
+
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:12
+msgid "Position :"
+msgstr "Position:"
+
+#: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:10
+msgid "Colors format :"
+msgstr "Farbformat:"
+
+#: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:11
+msgid "Display document control (if exists)"
+msgstr ""
+
+#: mini-utils/gcolorsel/glade/view-color-grid-properties.glade.h:10
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:11
+msgid "Color width :"
+msgstr ""
+
+#: mini-utils/gcolorsel/glade/view-color-grid-properties.glade.h:11
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:12
+msgid "Color height :"
+msgstr ""
+
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:10
+msgid "Draw numbers"
+msgstr ""
+
+#: mini-utils/gfontsel/gfontsel.c:156
 msgid "Font Selector"
 msgstr "Schriftwähler"
 
-#: mini-utils/gfontsel/gfontsel.c:185
+#: mini-utils/gfontsel/gfontsel.c:184
 msgid "Selection:"
 msgstr "Auswahl:"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:267
 msgid "Font to load"
 msgstr "Zu ladende Schriftart"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:267
 msgid "FONTSPEC"
 msgstr "SCHRIFT"
 
-#: mini-utils/gfontsel/gfontsel.c:269
+#: mini-utils/gfontsel/gfontsel.c:268
 msgid "Print selected font name on exit"
 msgstr "Ausgewählten Schriftartnamen beim Verlassen ausgeben"
 
-#: mini-utils/gfontsel/gfontsel.c:270
+#: mini-utils/gfontsel/gfontsel.c:269
 msgid "Inhibit remembering selected font for next run"
 msgstr "Ausgewählten Font beim nächsten Start nicht laden"
 
-#: mini-utils/gfontsel/gfontsel.c:271
+#: mini-utils/gfontsel/gfontsel.c:270
 msgid "Inhibit loading of last font"
 msgstr "Letzten Font nicht laden"
 
@@ -1339,33 +1424,6 @@ msgstr "Suche..."
 msgid "No search string was specified!"
 msgstr "Es wurde keine Suchzeichenkette angegeben!"
 
-#: mini-utils/gnome-run/gnome-run.c:48
-#, c-format
-msgid ""
-"Failed to execute command:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Konnte Befehl nicht ausführen:\n"
-"%s\n"
-"%s"
-
-#: mini-utils/gnome-run/gnome-run.c:69
-msgid "Run Program"
-msgstr "Programm ausführen"
-
-#: mini-utils/gnome-run/gnome-run.c:70
-msgid "Run"
-msgstr "Ausführen"
-
-#: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: mini-utils/gnome-run/gnome-run.c:81
-msgid "Select a program to run"
-msgstr "Ein Programm zum Ausführen auswählen"
-
 #: mini-utils/gshutdown/gshutdown.c:86
 msgid "Shut Down"
 msgstr "Herunterfahren"
@@ -1422,13 +1480,13 @@ msgstr "Wollen Sie wirklich auf Runlevel 5 umschalten?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Sind Sie sicher, dass Sie das System neu booten wollen?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:590
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Sie müssen der Superuser (root) sein, um den Computer herunterzufahren\n"
 "oder neu zu starten."
 
-#: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:596
+#: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:593
 msgid "Close"
 msgstr "Schließen"
 
@@ -1484,7 +1542,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "Nächstes Mal nicht fragen."
 
-#: mini-utils/gshutdown/gshutdown.c:691
+#: mini-utils/gshutdown/gshutdown.c:688
 msgid "Command execution failed: fork failed"
 msgstr "Kommandoausführung fehlgeschlagen: fork() fehlgeschlagen"
 
@@ -1995,3 +2053,24 @@ msgstr "Nur der Superuser kann dieses Werkzeug benutzen"
 #: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "Sie scheinen keine IDE-Laufwerke zu besitzen"
+
+#~ msgid ""
+#~ "Failed to execute command:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Konnte Befehl nicht ausführen:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid "Run Program"
+#~ msgstr "Programm ausführen"
+
+#~ msgid "Run"
+#~ msgstr "Ausführen"
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgid "Select a program to run"
+#~ msgstr "Ein Programm zum Ausführen auswählen"
