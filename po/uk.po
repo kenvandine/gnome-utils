@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-14 12:10+0200\n"
-"PO-Revision-Date: 2005-02-14 10:50+0300\n"
+"POT-Creation-Date: 2005-03-05 18:15+0200\n"
+"PO-Revision-Date: 2005-03-05 10:50+0300\n"
 "Last-Translator: Maxim Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -108,10 +108,15 @@ msgstr "Знайти"
 msgid "_Search for:"
 msgstr "Знай_ти:"
 
-#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:313
+#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
 #: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "Не вдається відобразити довідку."
+
+#. Top
+#: gdictsrc/gdict-app.c:626
+msgid "_Dictionary"
+msgstr "_Словник"
 
 #. Dictionary menu
 #: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
@@ -976,8 +981,8 @@ msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"black-line\"."
 msgstr ""
-"Ефект, що додається навколо рамки. Можливі варіанти: \"shadow\", "
-"\"none\", та \"black-line\"."
+"Ефект, що додається навколо рамки. Можливі варіанти: \"shadow\", \"none\", "
+"та \"black-line\"."
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -1103,7 +1108,8 @@ msgstr "Встановлювати параметр пошуку \"Файл по
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:19
 msgid "Select the search option \"Follow symbolic links\""
-msgstr "Встановлювати параметр пошуку \"Переходити за символьними посиланнями\""
+msgstr ""
+"Встановлювати параметр пошуку \"Переходити за символьними посиланнями\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
@@ -1145,7 +1151,9 @@ msgstr "Встановлювати параметр пошуку \"Власни�
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:40
 msgid "Select the search option \"Show hidden files and folders\""
-msgstr "Встановлювати параметр пошуку \"Показувати приховані файли та резервні копії файлів\""
+msgstr ""
+"Встановлювати параметр пошуку \"Показувати приховані файли та резервні копії "
+"файлів\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
@@ -1169,8 +1177,9 @@ msgid ""
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
 msgstr ""
-"Цей ключ визначає шляхи, які будуть виключені з швидкого пошуку. Підтримуються "
-"шаблони '*' та '?'. Типові значення /mnt/*, /media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
+"Цей ключ визначає шляхи, які будуть виключені з швидкого пошуку. "
+"Підтримуються шаблони '*' та '?'. Типові значення /mnt/*, /media/*, /dev/*, /"
+"tmp/*, /proc/*, and /var/*."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:49
 msgid ""
@@ -1180,10 +1189,10 @@ msgid ""
 "not been indexed. The wildcards '*' and '?' are supported. The default value "
 "is /."
 msgstr ""
-"Цей ключ визначає шляхи, які програма пошуку буде виключати при другому проході. "
-"Другий прохід використовує команду \"find\" для пошуку файлів. Мета "
-"другого проходу - знайти файли, які не були проіндексовані. "
-"Підтримуються шаблони '*' и '?'. Типові значення - /."
+"Цей ключ визначає шляхи, які програма пошуку буде виключати при другому "
+"проході. Другий прохід використовує команду \"find\" для пошуку файлів. Мета "
+"другого проходу - знайти файли, які не були проіндексовані. Підтримуються "
+"шаблони '*' и '?'. Типові значення - /."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
@@ -1198,16 +1207,16 @@ msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
 msgstr ""
-"Цей ключ визначає чи буде вибрано параметр \"Дата останньої зміни менша за\" при запуску "
-"програми пошуку."
+"Цей ключ визначає чи буде вибрано параметр \"Дата останньої зміни менша за\" "
+"при запуску програми пошуку."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
 "This key determines if the \"Date modified more than\" search option is "
 "selected when the search tool is started."
 msgstr ""
-"Цей ключ визначає чи буде вибрано параметр \"Дата останньої зміни більша за\" при запуску "
-"програми пошуку."
+"Цей ключ визначає чи буде вибрано параметр \"Дата останньої зміни більша за"
+"\" при запуску програми пошуку."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:53
 msgid ""
@@ -1222,16 +1231,16 @@ msgid ""
 "This key determines if the \"Follow symbolic links\" search option is "
 "selected when the search tool is started."
 msgstr ""
-"Цей ключ визначає чи буде вибрано параметр \"Переходити за символічними посиланнями\" при запуску "
-"програми пошуку."
+"Цей ключ визначає чи буде вибрано параметр \"Переходити за символічними "
+"посиланнями\" при запуску програми пошуку."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:55
 msgid ""
 "This key determines if the \"Include other filesystems\" search option is "
 "selected when the search tool is started."
 msgstr ""
-"Цей ключ визначає чи буде вибрано параметр \"Охоплювати інші файлові системи\" при запуску "
-"програми пошуку."
+"Цей ключ визначає чи буде вибрано параметр \"Охоплювати інші файлові системи"
+"\" при запуску програми пошуку."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
@@ -1246,8 +1255,8 @@ msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
 msgstr ""
-"Цей ключ визначає чи буде вибрано параметр \"Назва відповідає регулярному виразу\" при запуску "
-"програми пошуку."
+"Цей ключ визначає чи буде вибрано параметр \"Назва відповідає регулярному "
+"виразу\" при запуску програми пошуку."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:58
 msgid ""
@@ -1262,8 +1271,8 @@ msgid ""
 "This key determines if the \"Owned by user\" search option is selected when "
 "the search tool is started."
 msgstr ""
-"Цей ключ визначає чи буде вибрано параметр \"Належить користувачу\" при запуску "
-"програми пошуку."
+"Цей ключ визначає чи буде вибрано параметр \"Належить користувачу\" при "
+"запуску програми пошуку."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:60
 msgid ""
@@ -1278,8 +1287,8 @@ msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
 msgstr ""
-"Цей ключ визначає чи буде вибрано параметр \"Показувати приховані файли та резервні копії файлів\" при запуску "
-"програми пошуку."
+"Цей ключ визначає чи буде вибрано параметр \"Показувати приховані файли та "
+"резервні копії файлів\" при запуску програми пошуку."
 
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
@@ -1320,8 +1329,8 @@ msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
 msgstr ""
-"Цей ключ визначає, чи забороняє утиліта пошуку використання команди "
-"locate для прискорення пошуку."
+"Цей ключ визначає, чи забороняє утиліта пошуку використання команди locate "
+"для прискорення пошуку."
 
 #: gsearchtool/gsearchtool-callbacks.c:163
 msgid "Could not open help document."
@@ -1554,28 +1563,28 @@ msgstr "Пере_містити у смітник"
 msgid "_Save Results As..."
 msgstr "З_берегти результати як..."
 
-#: gsearchtool/gsearchtool.c:245 gsearchtool/gsearchtool.c:262
+#: gsearchtool/gsearchtool.c:249 gsearchtool/gsearchtool.c:266
 msgid "A locate database has probably not been created."
 msgstr "Схоже, база даних locate не була створена."
 
-#: gsearchtool/gsearchtool.c:358
+#: gsearchtool/gsearchtool.c:369
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Помилка перетворення кодування для \"%s\""
 
-#: gsearchtool/gsearchtool.c:724 gsearchtool/gsearchtool.c:753
+#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
 msgid "No files found"
 msgstr "Файлів не знайдено"
 
-#: gsearchtool/gsearchtool.c:746
+#: gsearchtool/gsearchtool.c:757
 msgid "(stopped)"
 msgstr "(зупинено)"
 
-#: gsearchtool/gsearchtool.c:752
+#: gsearchtool/gsearchtool.c:763
 msgid "No Files Found"
 msgstr "Файлів не знайдено"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:768
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
@@ -1583,7 +1592,7 @@ msgstr[0] "Знайдено %d файл"
 msgstr[1] "Знайдено %d файли"
 msgstr[2] "Знайдено %d файлів"
 
-#: gsearchtool/gsearchtool.c:761 gsearchtool/gsearchtool.c:799
+#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
@@ -1591,55 +1600,55 @@ msgstr[0] "Знайдено %d файл"
 msgstr[1] "Знайдено %d файли"
 msgstr[2] "Знайдено %d файлів"
 
-#: gsearchtool/gsearchtool.c:778 gsearchtool/gsearchtool.c:1037
-#: gsearchtool/gsearchtool.c:1123 gsearchtool/gsearchtool.c:2793
+#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
+#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
 msgid "Search for Files"
 msgstr "Пошук файлів"
 
-#: gsearchtool/gsearchtool.c:871
+#: gsearchtool/gsearchtool.c:882
 msgid "Entry changed called for a non entry option!"
 msgstr "Викликано зміну запису для параметру, що не є записом!"
 
-#: gsearchtool/gsearchtool.c:1123
+#: gsearchtool/gsearchtool.c:1134
 msgid "Searching..."
 msgstr "Триває пошук..."
 
-#: gsearchtool/gsearchtool.c:1146
+#: gsearchtool/gsearchtool.c:1157
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Встановити текст параметра пошуку \"Назва містить\""
 
-#: gsearchtool/gsearchtool.c:1147
+#: gsearchtool/gsearchtool.c:1158
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Встановити текст параметра пошуку \"Перевіряти теки\""
 
-#: gsearchtool/gsearchtool.c:1148
+#: gsearchtool/gsearchtool.c:1159
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "Сортувати файли по: name, folder, size, type, чи date"
 
-#: gsearchtool/gsearchtool.c:1149
+#: gsearchtool/gsearchtool.c:1160
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 "Встановлює порядок сортування на низхідний, типовий порядок - висхідний"
 
-#: gsearchtool/gsearchtool.c:1150
+#: gsearchtool/gsearchtool.c:1161
 msgid "Automatically start a search"
 msgstr "Автоматично починати пошук"
 
-#: gsearchtool/gsearchtool.c:1156
+#: gsearchtool/gsearchtool.c:1167
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Вибрати параметр пошуку \"%s\""
 
-#: gsearchtool/gsearchtool.c:1159
+#: gsearchtool/gsearchtool.c:1170
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Встановлювати параметр пошуку \"%s\""
 
-#: gsearchtool/gsearchtool.c:1266
+#: gsearchtool/gsearchtool.c:1277
 msgid "Invalid option passed to sortby command line argument."
 msgstr "У аргументі sortby передано неправильний параметр."
 
-#: gsearchtool/gsearchtool.c:1562
+#: gsearchtool/gsearchtool.c:1573
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1647,173 +1656,173 @@ msgstr ""
 "\n"
 "... Надто багато помилок ..."
 
-#: gsearchtool/gsearchtool.c:1576
+#: gsearchtool/gsearchtool.c:1587
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
 "Результати пошуку можуть бути неправильні. В процесі пошуку виникали помилки."
 
-#: gsearchtool/gsearchtool.c:1588 gsearchtool/gsearchtool.c:1628
+#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
 msgid "Show more _details"
 msgstr "Показати додаткові _подробиці"
 
-#: gsearchtool/gsearchtool.c:1616
+#: gsearchtool/gsearchtool.c:1627
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 "Результати пошуку можуть бути неправильні. Вимкнути функцію швидкого пошуку?"
 
-#: gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1650
 msgid "Disable _Quick Search"
 msgstr "Вимкнути _Швидкий пошук"
 
-#: gsearchtool/gsearchtool.c:1666
+#: gsearchtool/gsearchtool.c:1677
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Не вдається ідентифікатор групи для процесу %d: %s.\n"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1704
 msgid "Error parsing the search command."
 msgstr "Помилка граматичного аналізу команди пошуку."
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1737
 msgid "Error running the search command."
 msgstr "Помилка запуску команди пошуку."
 
-#: gsearchtool/gsearchtool.c:1873
+#: gsearchtool/gsearchtool.c:1884
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Введіть текстове значення для параметра пошуку \"%s\"."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1878
+#: gsearchtool/gsearchtool.c:1889
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" за %s"
 
-#: gsearchtool/gsearchtool.c:1880
+#: gsearchtool/gsearchtool.c:1891
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Введіть значення у %s для параметра пошуку \"%s\"."
 
-#: gsearchtool/gsearchtool.c:1939
+#: gsearchtool/gsearchtool.c:1950
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Видалити \"%s\""
 
-#: gsearchtool/gsearchtool.c:1940
+#: gsearchtool/gsearchtool.c:1951
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Натисніть, щоб видалити параметр пошуку \"%s\"."
 
-#: gsearchtool/gsearchtool.c:2033
+#: gsearchtool/gsearchtool.c:2044
 msgid "A_vailable options:"
 msgstr "_Можливі параметри:"
 
-#: gsearchtool/gsearchtool.c:2062
+#: gsearchtool/gsearchtool.c:2073
 msgid "Available options"
 msgstr "Можливі параметри"
 
-#: gsearchtool/gsearchtool.c:2063
+#: gsearchtool/gsearchtool.c:2074
 msgid "Select a search option from the drop-down list."
 msgstr "Виберіть параметр пошуку з розкривного меню."
 
-#: gsearchtool/gsearchtool.c:2075
+#: gsearchtool/gsearchtool.c:2086
 msgid "Add search option"
 msgstr "Додати параметр пошуку"
 
-#: gsearchtool/gsearchtool.c:2076
+#: gsearchtool/gsearchtool.c:2087
 msgid "Click to add the selected available search option."
 msgstr "Натисніть, щоб додати вибраний параметр пошуку."
 
-#: gsearchtool/gsearchtool.c:2097
+#: gsearchtool/gsearchtool.c:2108
 msgid "S_earch results:"
 msgstr "_Результати пошуку:"
 
-#: gsearchtool/gsearchtool.c:2133
+#: gsearchtool/gsearchtool.c:2144
 msgid "List View"
 msgstr "Перегляд списку"
 
-#: gsearchtool/gsearchtool.c:2183
+#: gsearchtool/gsearchtool.c:2194
 msgid "Name"
 msgstr "Назва"
 
-#: gsearchtool/gsearchtool.c:2203
+#: gsearchtool/gsearchtool.c:2214
 msgid "Folder"
 msgstr "Тека"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2225
 msgid "Size"
 msgstr "Розмір"
 
-#: gsearchtool/gsearchtool.c:2224
+#: gsearchtool/gsearchtool.c:2235
 msgid "Type"
 msgstr "Тип"
 
-#: gsearchtool/gsearchtool.c:2234
+#: gsearchtool/gsearchtool.c:2245
 msgid "Date Modified"
 msgstr "Дата зміни"
 
-#: gsearchtool/gsearchtool.c:2602
+#: gsearchtool/gsearchtool.c:2613
 msgid "_Name contains:"
 msgstr "Н_азва містить:"
 
-#: gsearchtool/gsearchtool.c:2616 gsearchtool/gsearchtool.c:2617
+#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "Введіть повну або часткову назву файла, з шаблоном або без."
 
-#: gsearchtool/gsearchtool.c:2617
+#: gsearchtool/gsearchtool.c:2628
 msgid "Name contains"
 msgstr "Назва містить"
 
-#: gsearchtool/gsearchtool.c:2623
+#: gsearchtool/gsearchtool.c:2634
 msgid "_Look in folder:"
 msgstr "_Шукати у теці:"
 
-#: gsearchtool/gsearchtool.c:2629
+#: gsearchtool/gsearchtool.c:2640
 msgid "Browse"
 msgstr "Переглянути"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2645
 msgid "Look in folder"
 msgstr "Шукати у теці"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2645
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Виберіть теку чи пристрій, звідки ви хочете розпочати пошук."
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2656
 msgid "Show more _options"
 msgstr "Показати додаткові _параметри"
 
-#: gsearchtool/gsearchtool.c:2654
+#: gsearchtool/gsearchtool.c:2665
 msgid "Show more options"
 msgstr "Показати додаткові параметри"
 
-#: gsearchtool/gsearchtool.c:2654
+#: gsearchtool/gsearchtool.c:2665
 msgid "Click to expand or collapse the list of available options."
 msgstr "Натисніть, щоб розтягнути або стиснути доступних параметрів."
 
-#: gsearchtool/gsearchtool.c:2678
+#: gsearchtool/gsearchtool.c:2689
 msgid "Click to display the help manual."
 msgstr "Натисніть для відображення довідки."
 
-#: gsearchtool/gsearchtool.c:2686
+#: gsearchtool/gsearchtool.c:2697
 msgid "Click to close \"Search for Files\"."
 msgstr "Натисніть, щоб закрити \"Пошук файлів\""
 
-#: gsearchtool/gsearchtool.c:2712
+#: gsearchtool/gsearchtool.c:2723
 msgid "Click to perform a search."
 msgstr "Натисніть, щоб виконати пошук."
 
-#: gsearchtool/gsearchtool.c:2713
+#: gsearchtool/gsearchtool.c:2724
 msgid "Click to stop a search."
 msgstr "Натисніть, щоб зупинити пошук."
 
-#: gsearchtool/gsearchtool.c:2813
+#: gsearchtool/gsearchtool.c:2824
 msgid "Cannot initialize bonobo."
 msgstr "Не вдається ініціалізувати Bonobo."
 
@@ -2026,6 +2035,7 @@ msgid "<b>Modified</b>: %s"
 msgstr "<b>Змінено</b>: %s"
 
 #: logview/info.c:106
+#, c-format
 msgid "<b>Start Date</b>: %s"
 msgstr "<b>Початкова дата</b>: %s"
 
@@ -2121,7 +2131,7 @@ msgstr "Не вдається відкрити журнал!\n"
 msgid "Not enough memory!\n"
 msgstr "Недостатньо пам'яті!\n"
 
-#: logview/logrtns.c:275
+#: logview/logrtns.c:276
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2130,22 +2140,22 @@ msgstr ""
 "%s не може бути прочитаний. Або запустіть програму як root, або попросіть "
 "системного адміністратора змінити права доступу до файла."
 
-#: logview/logrtns.c:280
+#: logview/logrtns.c:281
 #, c-format
 msgid "%s is too big."
 msgstr "%s занадто великий."
 
-#: logview/logrtns.c:284
+#: logview/logrtns.c:285
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s не може бути відкритим."
 
-#: logview/logrtns.c:325 logview/logrtns.c:336
+#: logview/logrtns.c:326 logview/logrtns.c:337
 #, c-format
 msgid "%s not a log file."
 msgstr "%s не є журналом."
 
-#: logview/logrtns.c:587 logview/logrtns.c:611
+#: logview/logrtns.c:588 logview/logrtns.c:612
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: вихід за межі пам'яті"
 
