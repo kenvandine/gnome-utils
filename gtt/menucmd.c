@@ -130,8 +130,8 @@ project_name_desc(GtkWidget *w, GtkEntry **entries)
 	 * running project.  This seems like the sanest choice.
 	 */
 	proj = gtt_project_new_title_desc(name, desc);
-	gtt_project_insert_before (proj, cur_proj);
-	ctree_insert_before (proj, cur_proj);
+	gtt_project_insert_after (proj, cur_proj);
+	ctree_insert_after (proj, cur_proj);
 }
 
 static void

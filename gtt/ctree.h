@@ -29,6 +29,7 @@ GtkWidget *create_ctree(void);
 void setup_ctree(void);
 void ctree_add(GttProject *p, GtkCTreeNode *parent);
 void ctree_insert_before(GttProject *p, GttProject *insert_before_me);
+void ctree_insert_after(GttProject *p, GttProject *insert_after_me);
 void ctree_remove(GttProject *p);
 void ctree_update_label(GttProject *p);
 void ctree_update_title(GttProject *p);

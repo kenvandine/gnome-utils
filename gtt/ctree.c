@@ -477,6 +477,36 @@ ctree_insert_before (GttProject *p, GttProject *sibling)
 	p->trow = treenode;
 }
 
+void
+ctree_insert_after (GttProject *p, GttProject *sibling)
+{
+	char ever_timestr[24], day_timestr[24];
+	GtkCTreeNode *treenode;
+	GtkCTreeNode *parentnode=NULL;
+	GtkCTreeNode *next_sibling=NULL;
+	char *tmp[4];
+
+	print_time (ever_timestr, 24, gtt_project_total_secs_ever(p), 
+			config_show_secs);
+	print_time (day_timestr, 24, gtt_project_total_secs_day(p), 
+			config_show_secs);
+	tmp[TOTAL_COL] = ever_timestr;
+	tmp[TIME_COL]  = day_timestr;
+	tmp[TITLE_COL] = (char *) gtt_project_get_title(p);
+	tmp[DESC_COL]  = (char *) gtt_project_get_desc(p);
+
+	if (sibling->parent) parentnode = sibling->parent->trow;
+	next_sibling = GTK_CTREE_NODE_NEXT(sibling->trow);
+	treenode = gtk_ctree_insert_node (GTK_CTREE(glist),  
+                               parentnode, next_sibling,
+                               tmp, 0, NULL, NULL, NULL, NULL,
+                               FALSE, FALSE);
+
+	gtk_ctree_node_set_row_data(GTK_CTREE(glist), treenode, p);
+
+	p->trow = treenode;
+}
+
 
 
 void
