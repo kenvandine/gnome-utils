@@ -8,7 +8,6 @@ endif
 
 always_built_SUBDIRS = \
 	po 		\
-	idl		\
 	logview 	\
 	gcharmap 	\
 	gcalc 		\
