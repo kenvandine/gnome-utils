@@ -2,13 +2,13 @@ Utilitiesdir = $(datadir)/applications
 
 SUBDIRS = help
 
-INCLUDES = 						\
+INCLUDES = 	\
+	$(GNOME_UTILS_CFLAGS)				\
+	$(GNOMEVFS_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
-	-I$(includedir)					\
-	$(GNOME_UTILS_CFLAGS)				\
-	$(GNOMEVFS_CFLAGS)
-
+	-I$(includedir)					
+	
 bin_PROGRAMS = gsearchtool 
 
 gsearchtool_SOURCES =	\
