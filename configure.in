@@ -7,7 +7,7 @@ AC_INIT(gtt)
 AM_CONFIG_HEADER(config.h)
 AC_CANONICAL_SYSTEM
 
-AM_INIT_AUTOMAKE(gnome-utils, 1.0.51)
+AM_INIT_AUTOMAKE(gnome-utils, 1.1.0)
 
 dnl 
 dnl only useful for maintainers
@@ -16,6 +16,7 @@ AM_MAINTAINER_MODE
 
 AM_ACLOCAL_INCLUDE(macros)
 AC_CONFIG_SUBDIRS(gfloppy)
+AC_CONFIG_SUBDIRS(gdict)
 
 GNOME_INIT(applets)
 
