@@ -1,8 +1,22 @@
+1998-11-29 Michael Fulbright <drmike@redhat.com>
+
+	* changed sorting functions to use ColumnType as argument for
+	column you want to sort by, not the actually sorting function.
+	There are helper functions to map between ColumnType and sorting
+	function.
+
+	* started to rework the canvas display of the currently selected
+	card. Still in early stages.
+
+	* Column display editor is pretty complete, will store
+	user configuration persistantly via gnome_config.
+
 Sat Nov 28 22:58:10 1998  George Lebl  <jirka@5z.com>
 
 	* gnomecard.c: remove right justify stuff
 
 1998-11-26 Michael Fulbright <drmike@redhat.com>
+
 	* many files: Column Header Editor almost working, so you can
 	pick which columns are displayed in the master column list.
 

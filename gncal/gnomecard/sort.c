@@ -6,18 +6,101 @@
 #include "sort.h"
 #include "list.h"
 
-sort_func gnomecard_sort_criteria;
+/* sort_func gnomecard_sort_criteria; */
 
-/*static char *sort_type_name[] =
-                 { N_("Name"), N_("Address"), N_("E-mail"), 
-		   N_("Title"), N_("Role"), N_("Company"), NULL };*/
+gint gnomecard_sort_col=COLTYPE_CARDNAME;
+
+static gint gnomecard_cmp_fnames(const void *crd1, const void *crd2);
+static gint gnomecard_cmp_names(const void *crd1, const void *crd2);
+static gint gnomecard_cmp_firstnames(const void *crd1, const void *crd2);
+static gint gnomecard_cmp_middlenames(const void *crd1, const void *crd2);
+static gint gnomecard_cmp_lastnames(const void *crd1, const void *crd2);
+static gint gnomecard_cmp_titles(const void *crd1, const void *crd2);
+static gint gnomecard_cmp_urls(const void *crd1, const void *crd2);
+static gint gnomecard_cmp_emails(const void *crd1, const void *crd2);
+static gint gnomecard_cmp_orgs(const void *crd1, const void *crd2);
+static sort_func getSortFuncFromColType(gint sort_col);
+
+
+
+
+static sort_func
+getSortFuncFromColType(gint sort_col)
+{
+    sort_func func=NULL;
+
+    switch (sort_col) {
+      case COLTYPE_FULLNAME:
+	func = gnomecard_cmp_names;
+	break;
+
+      case COLTYPE_CARDNAME:
+	func = gnomecard_cmp_fnames;
+	break;
+
+      case COLTYPE_FIRSTNAME:
+	func = gnomecard_cmp_firstnames;
+	break;
+
+      case COLTYPE_MIDDLENAME:
+	func = gnomecard_cmp_middlenames;
+	break;
+
+      case COLTYPE_LASTNAME:
+	func = gnomecard_cmp_lastnames;
+	break;
+
+      case COLTYPE_PREFIX:
+	func = NULL;
+	break;
+
+      case COLTYPE_SUFFIX:
+	func = NULL;
+	break;
+
+      case COLTYPE_ORG:
+	func = gnomecard_cmp_orgs;
+	break;
+
+      case COLTYPE_TITLE:
+	func = gnomecard_cmp_titles;
+	break;
+
+      case COLTYPE_EMAIL:
+	func = gnomecard_cmp_emails;
+	break;
+
+      case COLTYPE_WEBPAGE:
+	func = gnomecard_cmp_urls;
+	break;
+
+      case COLTYPE_HOMEPHONE:
+	func = NULL;
+	break;
+
+      case COLTYPE_WORKPHONE:
+	func = NULL;
+	break;
+	
+      default:
+	break;
+    }
+
+    return func;
+}
+
 
 void
-gnomecard_sort_card_list(sort_func compar)
+gnomecard_sort_card_list(gint sort_col)
 {
 	GList *l;
 	Card **array;
 	guint i, len;
+	sort_func compar;
+
+	compar = getSortFuncFromColType(sort_col);
+	if (!compar)
+	    return;
 	
 	len = g_list_length(gnomecard_crds);
 	array = g_malloc(sizeof(Card *) * len);
@@ -35,14 +118,21 @@ gnomecard_sort_card_list(sort_func compar)
 	g_free(array);
 }
 
+
+void
+gnomecard_sort_card_list_by_default(void)
+{
+    gnomecard_sort_card_list(gnomecard_sort_col);
+}
+
 static void
-gnomecard_do_sort_cards(sort_func criteria)
+gnomecard_do_sort_cards(gint sort_col)
 {
     GList *l;
     Card *curr;
     
     curr = gnomecard_curr_crd->data;
-    gnomecard_sort_card_list(criteria);
+    gnomecard_sort_card_list(sort_col);
     
     for (l = gnomecard_crds; l; l = l->next) {
 	if (curr == l->data)
@@ -55,30 +145,15 @@ gnomecard_do_sort_cards(sort_func criteria)
 void
 gnomecard_sort_cards(GtkWidget *w, gpointer data)
 {
-	sort_func criteria;
+	gint  sort_col;
 	
-	criteria = (sort_func) data;
-	if (gnomecard_sort_criteria != criteria) {
-		gnomecard_sort_criteria = criteria;
-		gnomecard_do_sort_cards(criteria);
-	}
+	sort_col = GPOINTER_TO_INT(data);
+	gnomecard_sort_col = sort_col;
+	gnomecard_do_sort_cards(sort_col);
+
 }
 
-/* NOT USED
-GtkCTreeNode
-*gnomecard_search_sorted_pos(Card *crd)
-{
-	GList *l;
-	
-	for (l = gnomecard_crds; l; l = l->next)
-	  if ((*gnomecard_sort_criteria) (& (l->data), &crd) > 0)
-	    return ((Card *) l->data)->prop.user_data;
-	
-	return NULL;
-}
-*/
-	
-gint
+static gint
 gnomecard_cmp_fnames(const void *crd1, const void *crd2)
 {
 	char *fname1, *fname2;
@@ -96,7 +171,98 @@ gnomecard_cmp_fnames(const void *crd1, const void *crd2)
 	return strcmp(fname1, fname2);
 }
 
-int
+static gint
+gnomecard_cmp_lastnames(const void *crd1, const void *crd2)
+{
+	char *name1, *name2;
+	
+	name1 = (* (Card **) crd1)->name.family;
+	name2 = (* (Card **) crd2)->name.family;
+	
+	if (name1 == name2)
+	  return 0;
+	if (!name1)
+	  return 1;
+	if (!name2)
+	  return -1;
+	
+	return strcmp(name1, name2);
+}
+
+static gint
+gnomecard_cmp_firstnames(const void *crd1, const void *crd2)
+{
+	char *name1, *name2;
+	
+	name1 = (* (Card **) crd1)->name.given;
+	name2 = (* (Card **) crd2)->name.given;
+	
+	if (name1 == name2)
+	  return 0;
+	if (!name1)
+	  return 1;
+	if (!name2)
+	  return -1;
+	
+	return strcmp(name1, name2);
+}
+
+static gint
+gnomecard_cmp_middlenames(const void *crd1, const void *crd2)
+{
+	char *name1, *name2;
+	
+	name1 = (* (Card **) crd1)->name.additional;
+	name2 = (* (Card **) crd2)->name.additional;
+	
+	if (name1 == name2)
+	  return 0;
+	if (!name1)
+	  return 1;
+	if (!name2)
+	  return -1;
+	
+	return strcmp(name1, name2);
+}
+
+static gint
+gnomecard_cmp_titles(const void *crd1, const void *crd2)
+{
+	char *name1, *name2;
+	
+	name1 = (* (Card **) crd1)->title.str;
+	name2 = (* (Card **) crd2)->title.str;
+	
+	if (name1 == name2)
+	  return 0;
+	if (!name1)
+	  return 1;
+	if (!name2)
+	  return -1;
+	
+	return strcmp(name1, name2);
+}
+
+static gint
+gnomecard_cmp_urls(const void *crd1, const void *crd2)
+{
+	char *name1, *name2;
+	
+	name1 = (* (Card **) crd1)->url.str;
+	name2 = (* (Card **) crd2)->url.str;
+	
+	if (name1 == name2)
+	  return 0;
+	if (!name1)
+	  return 1;
+	if (!name2)
+	  return -1;
+	
+	return strcmp(name1, name2);
+}
+
+
+static int
 gnomecard_cmp_names(const void *crd1, const void *crd2)
 {
 	char *name1, *name2;
@@ -107,10 +273,12 @@ gnomecard_cmp_names(const void *crd1, const void *crd2)
 	card2 = (* (Card **) crd2);
 	
 	name1 = gnomecard_join_name(card1->name.prefix, card1->name.given, 
-				    card1->name.additional, card1->name.family, 
+				    card1->name.additional, 
+				    card1->name.family, 
 				    card1->name.suffix);
 	name2 = gnomecard_join_name(card2->name.prefix, card2->name.given, 
-				    card2->name.additional, card2->name.family, 
+				    card2->name.additional,
+				    card2->name.family, 
 				    card2->name.suffix);
 	
 	ret =  strcmp(name1, name2);
@@ -120,7 +288,7 @@ gnomecard_cmp_names(const void *crd1, const void *crd2)
 	return ret;
 }
 
-int
+static int
 gnomecard_cmp_emails(const void *crd1, const void *crd2)
 {
 	char *email1, *email2;
@@ -159,8 +327,8 @@ gnomecard_cmp_emails(const void *crd1, const void *crd2)
 	return ret;
 }
 
-gint
-gnomecard_cmp_org(const void *crd1, const void *crd2)
+static gint
+gnomecard_cmp_orgs(const void *crd1, const void *crd2)
 {
 	char *fname1, *fname2;
 	

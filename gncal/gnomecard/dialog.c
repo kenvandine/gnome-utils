@@ -194,7 +194,7 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 /*	gnomecard_update_list(crd);
 	gnomecard_scroll_list(ce->l);
 */
-	gnomecard_sort_card_list(gnomecard_sort_criteria); 
+	gnomecard_sort_card_list_by_default();
 	gnomecard_rebuild_list();
 	gnomecard_update_canvas(crd);
 	gnomecard_set_changed(TRUE);
@@ -623,7 +623,7 @@ gnomecard_setup_apply(GtkWidget *widget, int page)
     ColumnType *hdrs, *p;
     ColumnHdrEditor *edit;
     GList *l, *cols;
-    gint  ncol;
+    gint  ncol, i;
 
     if (page != -1)
 	return;             /* ignore partial applies */
@@ -653,12 +653,22 @@ gnomecard_setup_apply(GtkWidget *widget, int page)
 	g_list_free(cols);
 
     gnomecard_list = gnomecardCreateCardListDisplay(hdrs);
-    gtk_container_add(GTK_CONTAINER(cardlist_scrollwin), gnomecard_list);
+    gtk_container_add(GTK_CONTAINER(cardlist_scrollwin), 
+		      GTK_WIDGET(gnomecard_list));
 
     /* FIXME - see if old sort criteria still exists */
-    gnomecard_sort_card_list(gnomecard_sort_criteria);
+    gnomecard_sort_card_list_by_default();
     gnomecard_rebuild_list();
-	
+
+    /* save settings via gnome_config */
+    gnome_config_clean_section("/GnomeCard/CardDisplay");
+    gnome_config_set_int("/GnomeCard/CardDisplay/ncols", ncol);
+    for (i=0; i<ncol; i++) {
+	gchar path[200];
+
+	snprintf(path, sizeof(path), "/GnomeCard/CardDisplay/Column%0d", i);
+	gnome_config_set_string(path, getColumnTypeNameFromType(hdrs[i]));
+    }
 }
 
 
@@ -958,6 +968,7 @@ gnomecard_setup(GtkWidget *widget, gpointer data)
 	edit->selHdrs = NULL;
 	for (l=cols; l; l=l->next) {
 	    const gchar *rowtxt[2];
+	    gint  row;
 
 	    hdr = (ColumnHeader *)l->data;
 	    edit->selHdrs = g_list_append(edit->selHdrs, 
@@ -965,7 +976,9 @@ gnomecard_setup(GtkWidget *widget, gpointer data)
 
 	    rowtxt[0] = getColumnNameFromType(hdr->coltype);
 	    rowtxt[1] = NULL;
-	    gtk_clist_append(GTK_CLIST(edit->destList), rowtxt);
+	    row=gtk_clist_append(GTK_CLIST(edit->destList), rowtxt);
+	    gtk_clist_set_row_data(GTK_CLIST(edit->destList),
+				   row, GINT_TO_POINTER(hdr->coltype));
 	}
 
 	gtk_signal_connect(GTK_OBJECT(edit->addButton), "clicked",
@@ -1352,7 +1365,7 @@ static gboolean gnomecard_append_file(char *fname)
 	}
 	
 	gnomecard_crds = crds;
-	gnomecard_sort_card_list(gnomecard_sort_criteria);
+	gnomecard_sort_card_list_by_default();
 	gnomecard_rebuild_list();
 	gnomecard_scroll_list(gnomecard_crds);
 	gnomecard_set_curr(gnomecard_crds);

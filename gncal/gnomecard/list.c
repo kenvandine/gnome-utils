@@ -108,72 +108,12 @@ gnomecard_sort_by_col(GtkWidget *w, gint col, GtkWidget *list)
     cols = gtk_object_get_data(GTK_OBJECT(list), "ColumnHeaders");
     l = g_list_nth(cols, col);
     hdr = (ColumnHeader *)l->data;
-    switch (hdr->coltype) {
-      case COLTYPE_FULLNAME:
-	func = gnomecard_cmp_names;
-	break;
+    gnomecard_sort_card_list(hdr->coltype);
 
-      case COLTYPE_CARDNAME:
-	func = gnomecard_cmp_fnames;
-	break;
-
-      case COLTYPE_FIRSTNAME:
-	func = NULL;
-	break;
-
-      case COLTYPE_MIDDLENAME:
-	func = NULL;
-	break;
-
-      case COLTYPE_LASTNAME:
-	func = NULL;
-	break;
-
-      case COLTYPE_PREFIX:
-	func = NULL;
-	break;
-
-      case COLTYPE_SUFFIX:
-	func = NULL;
-	break;
-
-      case COLTYPE_ORG:
-	func = gnomecard_cmp_org;
-	break;
-
-      case COLTYPE_TITLE:
-	func = NULL;
-	break;
-
-      case COLTYPE_EMAIL:
-	func = gnomecard_cmp_emails;
-	break;
-
-      case COLTYPE_WEBPAGE:
-	func = NULL;
-	break;
-
-      case COLTYPE_HOMEPHONE:
-	func = NULL;
-	break;
-
-      case COLTYPE_WORKPHONE:
-	func = NULL;
-	break;
-	
-      default:
-	break;
-    }
-
-    if (func) {
-	gnomecard_sort_card_list(func);
-
-	/* this is a hack - need function to just rebuid list    */
-	/* and maintain current selection in list w/o me knowing */
-	/* about it here                                         */
-	gnomecard_rebuild_list();
-    }
-
+    /* this is a hack - need function to just rebuid list    */
+    /* and maintain current selection in list w/o me knowing */
+    /* about it here                                         */
+    gnomecard_rebuild_list();
 }
 
 
@@ -486,7 +426,8 @@ gnomecardCreateCardListDisplay(ColumnType *hdrs)
 	gtk_clist_set_column_title( GTK_CLIST(cardlist), i, (gchar *)l->data);
 
 	/* need to set widths based on user settings probably */
-	gtk_clist_set_column_width( GTK_CLIST(cardlist), i, 100);
+	/* gtk_clist_set_column_width( GTK_CLIST(cardlist), i, 100); */
+	gtk_clist_set_column_auto_resize(GTK_CLIST(cardlist), i, TRUE);
     }
     
     gtk_clist_column_titles_show(GTK_CLIST(cardlist));

@@ -6,7 +6,8 @@
 extern GtkWidget *gnomecard_canvas;
 
 GtkWidget *gnomecard_canvas_new(void);
-void gnomecard_canvas_text_item_set(gchar *text);
 void gnomecard_update_canvas(Card *crd);
+void gnomecard_clear_canvas(void);
+
 
 #endif

@@ -22,12 +22,15 @@ typedef enum {
 
 typedef struct {
     gchar      *colname;
+    gchar      *coltypename;
     ColumnType  coltype;
 } ColumnHeader;
 
 
 gchar *getColumnNameFromType(ColumnType type);
+gchar *getColumnTypeNameFromType(ColumnType type);
 ColumnType getColumnTypeFromName(gchar *name);
+ColumnType getColumnTypeFromTypeName(gchar *typename);
 ColumnHeader *getColumnHdrFromType(ColumnType type);
 gint numColumnHeaders(GList *cols);
 GList *buildColumnHeaders(ColumnType *cols);

@@ -191,7 +191,7 @@ gnomecard_set_curr(GList *node)
 	    gnomecard_set_prev(FALSE);
 	
     } else {
-	gnomecard_canvas_text_item_set(_("No cards, yet.")); 
+	gnomecard_clear_canvas();
 	
 	gnomecard_set_edit_del(FALSE);
 	/*gnomecard_set_add(FALSE);*/
@@ -427,19 +427,19 @@ GnomeUIInfo gomenu[] = {
 GnomeUIInfo sortradios[] = {
 	
 	{GNOME_APP_UI_ITEM, N_("By Card Name"), "",
-	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_fnames, NULL,
+	 gnomecard_sort_cards, (gpointer) COLTYPE_CARDNAME, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
 	{GNOME_APP_UI_ITEM, N_("By Name"), "",
-	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_names, NULL,
+	 gnomecard_sort_cards, (gpointer) COLTYPE_FULLNAME, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
 	{GNOME_APP_UI_ITEM, N_("By E-mail"), "",
-	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_emails, NULL,
+	 gnomecard_sort_cards, (gpointer) COLTYPE_EMAIL, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
 	{GNOME_APP_UI_ITEM, N_("By Organization"), "",
-	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_org, NULL,
+	 gnomecard_sort_cards, (gpointer) COLTYPE_ORG, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
 	{GNOME_APP_UI_ENDOFINFO}
@@ -610,11 +610,12 @@ void gnomecard_sort_by_fname(GtkWidget *w, gpointer data)
 void gnomecard_init(void)
 {
 	GtkWidget *canvas, *align, *hbox, *hbox1, *hbox2;
+	gint ncol, i;
 
 	/* hard coded column headers */
-	ColumnType hdrs[] = {COLTYPE_CARDNAME, COLTYPE_EMAIL, COLTYPE_ORG, 
-			     COLTYPE_END};
-
+	ColumnType defaulthdrs[] = {COLTYPE_CARDNAME, COLTYPE_EMAIL, 
+				    COLTYPE_ORG, COLTYPE_END};
+	ColumnType *hdrs, *p;
 
 	gnomecard_init_stock();
 	gnomecard_init_pixes();
@@ -633,11 +634,33 @@ void gnomecard_init(void)
 	gnome_app_create_menus(GNOME_APP(gnomecard_window), mainmenu);
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
-	
 	cardlist_scrollwin = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(cardlist_scrollwin),
 				   GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-        gnomecard_list = gnomecardCreateCardListDisplay(hdrs);
+
+	/* card display layout */
+	ncol=gnome_config_get_int("/GnomeCard/CardDisplay/ncols=0");
+	if (!ncol) {
+	    gnomecard_list = gnomecardCreateCardListDisplay(defaulthdrs);
+	} else {
+	    hdrs = g_new0(ColumnType, ncol+1);
+	    for (p=hdrs, i=0; i<ncol; i++) {
+		gchar path[200];
+		gint  coltype;
+		gchar *s;
+
+		snprintf(path, sizeof(path),
+			 "/GnomeCard/CardDisplay/Column%0d=", i);
+		s=gnome_config_get_string(path);
+		
+		if (s && *s) {
+		    *p++ = getColumnTypeFromTypeName(s);
+		}
+	    }
+	    *p = COLTYPE_END;
+	    gnomecard_list = gnomecardCreateCardListDisplay(hdrs);
+	}
+
 	gtk_container_add(GTK_CONTAINER(cardlist_scrollwin), 
 			  gnomecard_list);
 	gtk_widget_show(cardlist_scrollwin);
@@ -675,9 +698,7 @@ void gnomecard_init(void)
 	menu_next = gomenu[2].widget;
 	menu_last = gomenu[3].widget;
 
-/* NOT USED	add_menu = addmenu; */
-/* NOT USED	gnomecard_def_data = PHONE; */
-	gnomecard_sort_criteria = gnomecard_cmp_fnames;
+	gnomecard_sort_col = COLTYPE_CARDNAME;
 	
 	gnomecard_init_defaults();
 	gnomecard_set_changed(FALSE);

@@ -61,10 +61,9 @@ extern void gnomecard_init_pixes(void)
 	
 extern void gnomecard_init_defaults(void)
 {
-/* NOT USED	gnomecard_def_data = gnome_config_get_int("/GnomeCard/layout/def_data=0"); */
-	gnomecard_find_sens = gnome_config_get_bool("/GnomeCard/find/sens=False");
-	gnomecard_find_back = gnome_config_get_bool("/GnomeCard/find/back=False");
-	gnomecard_find_str = gnome_config_get_string("/GnomeCard/find/str=");
-	gnomecard_fname = gnome_config_get_string("/GnomeCard/file/open=");
+    gnomecard_find_sens = gnome_config_get_bool("/GnomeCard/find/sens=False");
+    gnomecard_find_back = gnome_config_get_bool("/GnomeCard/find/back=False");
+    gnomecard_find_str = gnome_config_get_string("/GnomeCard/find/str=");
+    gnomecard_fname = gnome_config_get_string("/GnomeCard/file/open=");
 }
 

@@ -8,20 +8,20 @@
 #include "phonelist.h"
 
 static ColumnHeader column_hdrs[] = { 
-    {N_("Full Name"), COLTYPE_FULLNAME},
-    {N_("Card Name"), COLTYPE_CARDNAME},
-    {N_("First Name"), COLTYPE_FIRSTNAME},
-    {N_("Middle Name"), COLTYPE_MIDDLENAME},
-    {N_("Last Name"), COLTYPE_LASTNAME},
-    {N_("Prefix"), COLTYPE_PREFIX},
-    {N_("Suffix"), COLTYPE_SUFFIX},
-    {N_("Organization"), COLTYPE_ORG},
-    {N_("Title"), COLTYPE_TITLE},
-    {N_("Email"), COLTYPE_EMAIL},
-    {N_("Web Page"), COLTYPE_WEBPAGE},
-    {N_("Home Phone"), COLTYPE_HOMEPHONE},
-    {N_("Business Phone"), COLTYPE_WORKPHONE},
-    {NULL, COLTYPE_END},
+    {N_("Full Name"), "COLTYPE_FULLNAME", COLTYPE_FULLNAME},
+    {N_("Card Name"), "COLTYPE_CARDNAME", COLTYPE_CARDNAME},
+    {N_("First Name"), "COLTYPE_FIRSTNAME", COLTYPE_FIRSTNAME},
+    {N_("Middle Name"), "COLTYPE_MIDDLENAME", COLTYPE_MIDDLENAME},
+    {N_("Last Name"), "COLTYPE_LASTNAME", COLTYPE_LASTNAME},
+    {N_("Prefix"), "COLTYPE_PREFIX", COLTYPE_PREFIX},
+    {N_("Suffix"), "COLTYPE_SUFFIX", COLTYPE_SUFFIX},
+    {N_("Organization"), "COLTYPE_ORG", COLTYPE_ORG},
+    {N_("Title"), "COLTYPE_TITLE", COLTYPE_TITLE},
+    {N_("Email"), "COLTYPE_EMAIL", COLTYPE_EMAIL},
+    {N_("Web Page"), "COLTYPE_WEBPAGE", COLTYPE_WEBPAGE},
+    {N_("Home Phone"), "COLTYPE_HOMEPHONE", COLTYPE_HOMEPHONE},
+    {N_("Work Phone"), "COLTYPE_WORKPHONE", COLTYPE_WORKPHONE},
+    {NULL, "COLTYPE_END", COLTYPE_END},
 };
 
 		      
@@ -36,6 +36,31 @@ getColumnNameFromType(ColumnType type)
 	    break;
 
     return column_hdrs[i].colname;
+}
+
+gchar *
+getColumnTypeNameFromType(ColumnType type)
+{
+    gint i;
+
+    for (i=0; column_hdrs[i].colname; i++)
+	if (column_hdrs[i].coltype == type)
+	    break;
+
+    return column_hdrs[i].coltypename;
+}
+
+gint
+getColumnTypeFromTypeName(gchar *typename)
+{
+    gint i;
+
+    for (i=0; column_hdrs[i].colname; i++)
+	if (!strncmp(typename, column_hdrs[i].coltypename, 
+		     strlen(column_hdrs[i].coltypename)))
+	    break;
+
+    return column_hdrs[i].coltype;
 }
 
 /* < 0 means no match */
