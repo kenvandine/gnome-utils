@@ -17,6 +17,10 @@
 #include "gsearchtool.h"
 #include "outdlg.h"
 
+#define STDIN  0
+#define STDOUT 1
+#define STDERR 2
+
 FindOptionTemplate templates[] = {
 	{ FIND_OPTION_TEXT, "-name '%s'", N_("File name") },
 	{ FIND_OPTION_CHECKBOX_TRUE, "-maxdepth 1",
@@ -31,6 +35,8 @@ FindOptionTemplate templates[] = {
 	{ FIND_OPTION_CHECKBOX_TRUE, "-nouser -o -nogroup",
 				N_("Invalid user or group") },
 	{ FIND_OPTION_TEXT, "\\! -name '%s'", N_("Filenames except") },
+	{ FIND_OPTION_CHECKBOX_TRUE, "-follow",
+				N_("Follow symbolic links") },
 	{ FIND_OPTION_GREP, "fgrep -l '%s'", N_("Simple substring search") },
 	{ FIND_OPTION_GREP, "grep -l '%s'", N_("Regular expression search") },
 	{ FIND_OPTION_GREP, "egrep -l '%s'",
@@ -52,6 +58,8 @@ static GtkWidget *grep_box=NULL;
 static GtkWidget *start_dir_e=NULL;
 
 static gint current_template=0;
+
+static GtkWidget *app; 
 
 static char *
 makecmd(void)
@@ -184,9 +192,10 @@ run_command(GtkWidget *w, gpointer data)
 	char s[PATH_MAX+1];
 	int spos=0;
 	char ret[PIPE_READ_BUFFER];
-	int fd[2];
+	int fd[2], fderr[2];
 	int pid;
 	int i,n;
+	GString *errors = NULL;
 
 	if(data==w) {/*we are in the stop button*/
 		if(running>0)
@@ -209,19 +218,34 @@ run_command(GtkWidget *w, gpointer data)
 	
 	cmd = makecmd();
 	pipe(fd);
+	pipe(fderr);
 	
 	if((pid=fork())==0) {
 		close(fd[0]);
-		close(1); dup(fd[1]); close(fd[1]);
+		close(fderr[0]);
+		
+		close(STDOUT); 
+		close(STDIN);
+		close(STDERR);
+
+		dup2(fd[1],STDOUT);
+		dup2(fderr[1],STDERR);
+
+		close(fd[1]);
+		close(fderr[1]);
+
 		execl("/bin/sh","/bin/sh","-c",cmd,NULL);
 		_exit(0); /* in case it fails */
 	}
 	close(fd[1]);
+	close(fderr[1]);
 
 	outdlg_freeze();
 	idle = gtk_idle_add((GtkFunction)gtk_true,NULL);
 
 	fcntl(fd[0],F_SETFL,O_NONBLOCK);
+	fcntl(fderr[0],F_SETFL,O_NONBLOCK);
+
 	while(running==1) {
 		n=read(fd[0],ret,PIPE_READ_BUFFER);
 		for(i=0;i<n;i++) {
@@ -232,6 +256,17 @@ run_command(GtkWidget *w, gpointer data)
 			} else
 				s[spos++]=ret[i];
 		}
+
+		n=read(fderr[0],ret,PIPE_READ_BUFFER-1);
+		if(n>0) {
+			ret[n]='\0';
+			if(!errors)
+				errors = g_string_new(ret);
+			else
+				errors = g_string_append(errors,ret);
+			fprintf(stderr,"%s",ret);
+		}
+		
 		if(waitpid(-1,NULL,WNOHANG)!=0)
 			break;
 		/*this for some reason doesn't work, I need to add an
@@ -255,7 +290,17 @@ run_command(GtkWidget *w, gpointer data)
 				s[spos++]=ret[i];
 		}
 	}
+	while((n=read(fderr[0],ret,PIPE_READ_BUFFER-1))>0) {
+		ret[n]='\0';
+		if(!errors)
+			errors = g_string_new(ret);
+		else
+			errors = g_string_append(errors,ret);
+		fprintf(stderr,"%s",ret);
+	}
+
 	close(fd[0]);
+	close(fderr[0]);
 
 	gtk_idle_remove(idle);
 	outdlg_thaw();
@@ -265,7 +310,15 @@ run_command(GtkWidget *w, gpointer data)
 	gtk_grab_remove(stopbutton);
 	gtk_widget_set_sensitive(stopbutton,FALSE);
 	
-	outdlg_showdlg();
+	outdlg_showdlg(); /* still show */
+
+	/* if any errors occured */
+	if(errors) {
+		/* make an error message */
+		gnome_app_error(GNOME_APP(app),errors->str);
+		/* freeing allocated memory */
+		g_string_free(errors,TRUE);
+	}
 }
 
 
@@ -602,7 +655,6 @@ static GnomeUIInfo gsearch_menu[] = {
 int
 main(int argc, char *argv[])
 {
-	GtkWidget *app;
 	GtkWidget *search;
 
 	/* Initialize the i18n stuff */
