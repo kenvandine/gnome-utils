@@ -17,6 +17,7 @@
 "Radek Doulik",
 "Seth Alves",
 "Shawn Amundson",
+"Stuart Parmenter",
 "Szekeres Istvan",
 "The Rasterman",
 "Tim Janik",
