@@ -1291,18 +1291,16 @@ GtkWidget *
 create_search_results_section (void)
 {
 	GtkWidget 	  *label;
-	GtkWidget 	  *frame;
+	GtkWidget 	  *vbox;
 	GtkWidget	  *window;	
 	GtkTreeViewColumn *column;	
 	GtkCellRenderer   *renderer;
 	
-	frame = gtk_frame_new (NULL);
-	gtk_frame_set_shadow_type (GTK_FRAME(frame), GTK_SHADOW_NONE); 
+	vbox = gtk_vbox_new (FALSE, 0);	
 	
 	label = gtk_label_new_with_mnemonic (_("S_earch Results"));
-	gtk_label_set_justify (GTK_LABEL(label), GTK_JUSTIFY_LEFT);
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
-	gtk_frame_set_label_widget (GTK_FRAME(frame), label);
+	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
 	
 	window = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_IN);	
@@ -1367,7 +1365,7 @@ create_search_results_section (void)
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), interface.tree);
 	
 	gtk_container_add (GTK_CONTAINER(window), GTK_WIDGET(interface.tree));
-	gtk_container_add (GTK_CONTAINER(frame), GTK_WIDGET(window));
+	gtk_box_pack_end (GTK_BOX (vbox), window, TRUE, TRUE, 0);
 	
 	/* create the name column */
 	column = gtk_tree_view_column_new ();
@@ -1430,7 +1428,7 @@ create_search_results_section (void)
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_DATE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW(interface.tree), column);
 
-	return frame;
+	return vbox;
 }
 
 GtkWidget *
@@ -1468,7 +1466,7 @@ create_main_window (void)
 	interface.file_is_named_entry = gnome_entry_new ("gsearchtool-file-entry");
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry)));
 	gnome_entry_set_max_saved (GNOME_ENTRY(interface.file_is_named_entry), 10);
-	gtk_table_attach (GTK_TABLE(interface.table), interface.file_is_named_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 0, 0);
+	gtk_table_attach (GTK_TABLE(interface.table), interface.file_is_named_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
 	entry =  gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry));
        
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(interface.file_is_named_entry)))
@@ -1498,7 +1496,7 @@ create_main_window (void)
 	entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), entry);
 	folder_entry = gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
-	gtk_table_attach (GTK_TABLE(interface.table), interface.look_in_folder_entry, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL, 0, 0, 0);
+	gtk_table_attach (GTK_TABLE(interface.table), interface.look_in_folder_entry, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
 	
 	if (interface.is_gail_loaded)
 	{ 
