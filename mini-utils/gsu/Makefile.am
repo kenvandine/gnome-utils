@@ -17,7 +17,6 @@ gsu_helper_SOURCES = \
 	xstrdup.c
 
 gsu_helper_LDADD = \
-	$(GLIB_LIBS)		\
 	$(PAM_LIBS)
 
 gsu_LDADD = \
