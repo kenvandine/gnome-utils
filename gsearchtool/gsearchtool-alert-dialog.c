@@ -320,7 +320,7 @@ gsearch_alert_dialog_new (GtkWindow     *parent,
 
 	dialog = GTK_DIALOG (widget);
 	
-	atk_object_set_role (gtk_widget_get_accessible (dialog), ATK_ROLE_ALERT);
+	atk_object_set_role (gtk_widget_get_accessible (GTK_WIDGET (dialog)), ATK_ROLE_ALERT);
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);		
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
