@@ -467,6 +467,7 @@ UpdateStatusArea ()
   struct tm *tdm;
   char status_text[255];
   char *buffer;
+  const char *time_fmt = "%x"; /* an evil way to avoid warning */
 
   if (curlog == NULL)
     return;
@@ -480,13 +481,15 @@ UpdateStatusArea ()
     }
 
   tdm = &curlog->curmark->fulldate;
-  g_snprintf (status_text, sizeof (status_text), "%02d/%02d/%02d", 
-	      tdm->tm_mday, tdm->tm_mon, tdm->tm_year % 100);
+
+  if (strftime (status_text, sizeof (status_text), time_fmt, tdm) <= 0) {
+	  /* as a backup print in US style */
+	  g_snprintf (status_text, sizeof (status_text), "%02d/%02d/%02d", 
+		      tdm->tm_mday, tdm->tm_mon, tdm->tm_year % 100);
+  }
   gtk_label_get ( date_label, (char **)&buffer);
   if (strcmp (status_text, buffer) != 0)
     gtk_label_set_text (date_label, status_text);
-
-  return;
 }
 
 /* ----------------------------------------------------------------------
@@ -639,10 +642,18 @@ DrawMonthHeader (LogLine * line, int y)
    Draw3DBox (canvas, gc, 5, y - log_line_sep + skip , canvas_width - 10, 2*log_line_sep-skip, color);
 
    gdk_gc_set_foreground (gc, &cfg->black);
-   if (line->month >= 0 && line->month < 12)
-	   g_snprintf (buf, sizeof (buf), "%s %d", _(month[(int) line->month]), line->date);
-   else
+   if (line->month >= 0 && line->month < 12) {
+	   GDate *date = g_date_new_dmy (line->date, line->month+1, 2000 /* bogus */);
+	   /* Translators: Make sure this is only Month and Day format, year
+	    * will be bogus here */
+	   if (g_date_strftime (buf, sizeof (buf), _("%B %e"), date) <= 0) {
+		   /* If we fail just use the US format */
+		   g_snprintf (buf, sizeof (buf), "%s %d", _(month[(int) line->month]), line->date);
+	   }
+	   g_date_free (date);
+   } else {
 	   g_snprintf (buf, sizeof (buf), "?%d? %d", (int) line->month, line->date);
+   }
    gdk_draw_string (canvas, cfg->headingb, gc, LOG_COL1 - 1, centery + 1, buf);
    gdk_gc_set_foreground (gc, &cfg->white);
    gdk_draw_string (canvas, cfg->headingb, gc, LOG_COL1, centery, buf);

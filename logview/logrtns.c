@@ -100,7 +100,7 @@ get_month (const char *str)
 			GDate *date;
 			char buf[256];
 
-			date = g_date_new_dmy (1, i+1, 2000);
+			date = g_date_new_dmy (1, i+1, 2000 /* bogus */);
 
 			if (g_date_strftime (buf, sizeof (buf), "%b", date) <= 0) {
 				/* eek, just use C locale cuz we're screwed */
