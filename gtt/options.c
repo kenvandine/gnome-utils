@@ -192,11 +192,6 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(frame);
 	gtk_box_pack_start(vbox, frame, FALSE, FALSE, 2);
 	
-#ifndef DEBUG
-	/* TODO: logfiles don't work right now */
-	gtk_widget_set_sensitive(GTK_WIDGET(frame), 0);
-#endif 
-
 	vbox2 = GTK_BOX(gtk_vbox_new(FALSE, 2));
 	gtk_widget_show(GTK_WIDGET(vbox2));
 	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(vbox2));
