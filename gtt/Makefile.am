@@ -35,25 +35,6 @@ gtt_LDADD = \
 	$(INTLLIBS)
 
 EXTRA_DIST = \
-	tb_copy.xpm		\
-	tb_new.xpm		\
-	tb_preferences.xpm	\
-	tb_timer.xpm		\
-	tb_cut.xpm		\
-	tb_open.xpm		\
-	tb_properties.xpm	\
-	tb_prop_dis.xpm		\
-	tb_timer_stopped.xpm	\
-	tb_exit.xpm		\
-	tb_paste.xpm		\
-	tb_save.xpm		\
-	tb_unknown.xpm		\
-	tb_home.xpm		\
-	tb_back.xpm		\
-	tb_forward.xpm		\
-	tb_home_.xpm		\
-	tb_back_.xpm		\
-	tb_forward_.xpm		\
 	topic.dat		\
 	gtt-db.sgml		\
 	gtt-db.html		\

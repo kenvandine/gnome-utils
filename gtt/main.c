@@ -94,6 +94,62 @@ void unlock_gtt(void)
 
 
 
+/*
+ * session management
+ */
+
+#ifdef DEBUG
+#define GTT "/gtt-DEBUG/"
+#else /* not DEBUG */
+#define GTT "/gtt/"
+#endif /* not DEBUG */
+
+static int
+save_state(GnomeClient *client, gint phase, GnomeRestartStyle save_style,
+	   gint shutdown, GnomeInteractStyle interact_styyle, gint fast,
+	   gpointer data)
+{
+	char *sess_id;
+	char *argv[5];
+	int argc;
+	int x, y, w, h;
+
+	sess_id  = gnome_client_get_id(client);
+	if (!window)
+		return FALSE;
+
+	gdk_window_get_geometry(window->window, &x, &y, &w, &h, NULL);
+	argv[0] = (char *)data;
+	argv[1] = "--geometry";
+	argv[2] = g_malloc(32);
+	sprintf(argv[2], "%dx%d+%d+%d", w, h, x, y);
+	if ((cur_proj) && (cur_proj->title)) {
+		argc = 5;
+		argv[3] = "--select-project";
+		argv[4] = cur_proj->title;
+	} else {
+		argc = 3;
+	}
+	gnome_client_set_clone_command(client, argc, argv);
+	gnome_client_set_restart_command(client, argc, argv);
+	g_free(argv[2]);
+
+	return project_list_save(NULL);
+}
+
+
+static void
+session_die(GnomeClient *client)
+{
+	quit_app(NULL, NULL);
+}
+
+
+
+/*
+ * argument parsing
+ */
+
 static int w_x = 0, w_y = 0, w_w = 0, w_h = 0, w_xyset = 0, w_sx = 0, w_sy = 0;
 
 static error_t
@@ -102,6 +158,11 @@ argp_parser(int key, char *arg, struct argp_state *state)
 	char *p, *p0;
 	char c;
 
+	if (key == 's') {
+		g_message("arg = %s", arg);
+		first_proj_title = arg;
+		return 0;
+	}
 	if (key != 'g') return ARGP_ERR_UNKNOWN;
 	p = arg;
 	if ((*p >= '0') && (*p <= '9')) {
@@ -153,14 +214,24 @@ argp_parser(int key, char *arg, struct argp_state *state)
 
 int main(int argc, char *argv[])
 {
+	GnomeClient *client;
 	struct argp_option geo_options[] = {
 		{"geometry", 'g', "GEOM", 0, N_("specify geometry"), 0},
+		{"select-project", 's', "PROJECT", 0,
+			N_("select a project on startup"), 0},
 		{NULL, 0, NULL, 0, NULL, 0}
 	};
 	struct argp args = {
 		geo_options,
 		argp_parser, NULL, NULL, NULL, NULL, NULL
 	};
+
+	client = gnome_client_new_default();
+	gtk_signal_connect(GTK_OBJECT(client), "save_yourself",
+			   GTK_SIGNAL_FUNC(save_state), (gpointer)argv[0]);
+	gtk_signal_connect(GTK_OBJECT(client), "die",
+			   GTK_SIGNAL_FUNC(session_die), NULL);
+
 	gnome_init("gtt", &args, argc, argv, 0, NULL);
 
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);

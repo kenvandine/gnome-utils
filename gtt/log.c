@@ -118,7 +118,7 @@ void log_proj(project *proj)
 
 void log_exit(void)
 {
-	static was_run = 0;
+	static int was_run = 0;
 	
 	if ((!config_logfile_name) || (!config_logfile_use))
 		return;

@@ -87,6 +87,7 @@ typedef struct _project_list {
 } project_list;
 
 extern project_list *plist;
+extern char *first_proj_title;
 
 
 project *project_new(void);

@@ -33,6 +33,9 @@
 #endif /* not DEBUG */
 
 
+char *first_proj_title = NULL;
+
+
 
 project *project_new(void)
 {
@@ -452,6 +455,12 @@ project_list_load(char *fname)
                 project_list_add(proj);
                 sprintf(s, GTT"Project%d/Title", i);
                 project_set_title(proj, gnome_config_get_string(s));
+		if ((proj->title) && (first_proj_title)) {
+			if (0 == strcmp(proj->title, first_proj_title)) {
+				cur_proj = proj;
+				first_proj_title = NULL;
+			}
+		}
                 sprintf(s, GTT"Project%d/Desc", i);
                 project_set_desc(proj, gnome_config_get_string(s));
                 sprintf(s, GTT"Project%d/SecsEver=0", i);
@@ -459,6 +468,7 @@ project_list_load(char *fname)
                 sprintf(s, GTT"Project%d/SecsDay=0", i);
                 proj->day_secs = gnome_config_get_int(s);
         }
+	first_proj_title = NULL;
         update_status_bar();
         if ((_n != config_show_tb_new) ||
             (_f != config_show_tb_file) ||

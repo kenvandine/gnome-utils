@@ -93,8 +93,13 @@ clist_header_hack(GtkWidget *window, GtkWidget *w)
 
 	style = gtk_widget_get_style(w);
 	g_return_if_fail(style != NULL);
-	gdk_gc_get_values(style->fg_gc[0], &vals);
-	width = gdk_string_width(vals.font, "00:00:00");
+	if (!style->fg_gc[0]) {
+		/* Fallback if the GC still isn't available */
+		width = 50;
+	} else {
+		gdk_gc_get_values(style->fg_gc[0], &vals);
+		width = gdk_string_width(vals.font, "00:00:00");
+	}
 	gtk_clist_set_column_width(GTK_CLIST(w), TOTAL_COL, width);
 	gtk_clist_set_column_width(GTK_CLIST(w), TIME_COL, width);
 	gtk_clist_set_column_width(GTK_CLIST(w), TITLE_COL, 120);
@@ -163,12 +168,14 @@ setup_clist(void)
 	}
 	err_init();
 	if (!GTK_WIDGET_MAPPED(window)) {
+		gtk_widget_show(window);
 #ifdef CLIST_HEADER_HACK
+		/*
 		if (!GTK_WIDGET_REALIZED(glist))
 			gtk_widget_realize(window);
+		 */
 		clist_header_hack(window, glist);
 #endif /* CLIST_HEADER_HACK */
-		gtk_widget_show(window);
 	}
 	if (timer_running) start_timer();
 	menu_set_states();
