@@ -1,3 +1,9 @@
+1998-08-09  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* gnomecard.c: (gnomecard_find_card): oh, yes: the find utility is here.
+		I'm using shell wilcard pattern matching (fnmatch) instead of regexps.
+		BTW: any resemblance with Netscape's find utility is pure coincidence.
+
 1998-08-08  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
 
 	* card.[hc], gnomecard.c: CardDelAddr now uses an array of DELADDR_MAX
@@ -5,8 +11,8 @@
 		getting pretty heary... how could one arrive to these situations?
 		Where did common sense go?
 	* cardfind.xpm, Makefile.am: new icon for find utility!
-	* gnomecard.c (gnomecard_find_card): getting ready for the find utility 
-		(to regexp or not to regexp?)
+	* gnomecard.c (gnomecard_find_card_call): getting ready for the find 
+		utility	(to regexp or not to regexp?)
 
 1998-08-07  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
 

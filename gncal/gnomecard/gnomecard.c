@@ -2,6 +2,7 @@
 #include <gnome.h>
 #include <string.h>
 #include <time.h>
+#include <fnmatch.h>
 
 #include <glib.h>
 #include <stdio.h>
@@ -20,7 +21,7 @@
 #define TREE_WIDTH 400
 #define TREE_HEIGHT 320
 
-#define _FREE(a) if (a) g_free (a)
+#define MY_FREE(a) if (a) g_free (a)
 #define MY_STRLEN(x) (x?strlen(x):0)
 #define MY_STRDUP(x) (*x?g_strdup(x):NULL)
 
@@ -55,7 +56,7 @@ char *gnomecard_fname;
 char *gnomecard_search_str;
 gint gnomecard_def_data;
 gboolean gnomecard_changed;
-gboolean found;                 /* yeah... pretty messy. (fixme) */
+gboolean gnomecard_found;                 /* yeah... pretty messy. (fixme) */
 
 char *email_type_name[] = 
                  { N_("America On-Line"), N_("Apple Link"), N_("AT&T"),
@@ -703,19 +704,19 @@ void gnomecard_set_curr(GList *node)
 void gnomecard_cmp_nodes(GtkCTree *tree, GList *node, gpointer data)
 {
 	if ((GList *) data == node)
-	  found = TRUE;
+	  gnomecard_found = TRUE;
 }
 
 void gnomecard_tree_selected(GtkCTree *tree, GList *row, gint column)
 {
 	GList *i;
 	
-	found = FALSE;
+	gnomecard_found = FALSE;
 	for (i = crds; i; i = i->next) {
 		gtk_ctree_post_recursive(tree, ((Card *) i->data)->user_data,
 					 GTK_CTREE_FUNC(gnomecard_cmp_nodes), 
 					 row);
-		if (found)
+		if (gnomecard_found)
 		  break;
 	}
 	
@@ -754,12 +755,12 @@ void gnomecard_prop_apply(GtkWidget *widget, int page)
 	ce = (GnomeCardEditor *) gtk_object_get_user_data(GTK_OBJECT(widget));
 	crd = (Card *) ce->l->data;
 	
-	_FREE(crd->fname.str);
-	_FREE(crd->name.family);
-	_FREE(crd->name.given);
-	_FREE(crd->name.additional);
-	_FREE(crd->name.prefix);
-	_FREE(crd->name.suffix);
+	MY_FREE(crd->fname.str);
+	MY_FREE(crd->name.family);
+	MY_FREE(crd->name.given);
+	MY_FREE(crd->name.additional);
+	MY_FREE(crd->name.prefix);
+	MY_FREE(crd->name.suffix);
 	
 	crd->fname.str       = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->fn)));
 	crd->name.family     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->fam)));
@@ -782,13 +783,13 @@ void gnomecard_prop_apply(GtkWidget *widget, int page)
 	crd->geopos.lon = gtk_spin_button_get_value_as_float(GTK_SPIN_BUTTON(ce->gplon));
 	crd->geopos.lat = gtk_spin_button_get_value_as_float(GTK_SPIN_BUTTON(ce->gplat));
 	
-	_FREE(crd->title.str);
-	_FREE(crd->role.str);
-	_FREE(crd->org.name);
-	_FREE(crd->org.unit1);
-	_FREE(crd->org.unit2);
-	_FREE(crd->org.unit3);
-	_FREE(crd->org.unit4);
+	MY_FREE(crd->title.str);
+	MY_FREE(crd->role.str);
+	MY_FREE(crd->org.name);
+	MY_FREE(crd->org.unit1);
+	MY_FREE(crd->org.unit2);
+	MY_FREE(crd->org.unit3);
+	MY_FREE(crd->org.unit4);
 
 	crd->title.str = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->title)));
 	crd->role.str  = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->role)));
@@ -798,14 +799,14 @@ void gnomecard_prop_apply(GtkWidget *widget, int page)
 	crd->org.unit3 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org3)));
 	crd->org.unit4 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org4)));
 	
-	_FREE(crd->comment.str);
-	_FREE(crd->url.str);
+	MY_FREE(crd->comment.str);
+	MY_FREE(crd->url.str);
 	
 	crd->comment.str = gtk_editable_get_chars(GTK_EDITABLE(ce->comment), 
 						      0, gtk_text_get_length(GTK_TEXT(ce->comment)));
 	crd->url.str     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->url)));
 	
-        _FREE(crd->key.data);
+        MY_FREE(crd->key.data);
 	
 	crd->key.data = gtk_editable_get_chars(GTK_EDITABLE(ce->key), 
 						   0, gtk_text_get_length(GTK_TEXT(ce->key)));
@@ -1219,7 +1220,7 @@ gnomecard_destroy_cards(void)
 
 	if (gnomecard_cards_blocked()) {
 		GtkWidget *w;
-		
+
 		w = gnome_message_box_new("There are cards which are currently being modified.\nFinish any pending modifications and try again.",
 					  GNOME_MESSAGE_BOX_ERROR,
 					  GNOME_STOCK_BUTTON_OK, NULL);
@@ -1312,8 +1313,155 @@ void gnomecard_del_card(GtkWidget *widget, gpointer data)
 	gnomecard_set_changed(TRUE);
 }
 
+int gnomecard_match_pattern(char *pattern, char *str, int sens)
+{
+	char *txt;
+	int found = 0;
+	
+	if (! str)
+		return 0;
+	
+	if (sens)
+		txt = str;
+	else
+		g_strup(txt = g_strdup(str));
+	
+	if (fnmatch(pattern, txt, 0) == 0) {
+		found = 1;
+	}
+	
+	if (! sens)
+		g_free(txt);
+	
+	return found;
+}
+
 void gnomecard_find_card(GtkWidget *w, gpointer data)
 {
+	GnomeCardFind *p;
+	GList *l, *k;
+	Card *crd;
+	char *pattern, *crd_text[15];
+	int i, wrapped, found, sens, back;
+	
+	p = (GnomeCardFind *) data;
+
+	found = 0;
+	wrapped = 0;
+
+	if (GTK_TOGGLE_BUTTON(p->back)->active)
+		back = 1;
+	else
+		back = 0;
+	
+	MY_FREE(gnomecard_search_str);
+	gnomecard_search_str = g_strdup(gtk_entry_get_text(GTK_ENTRY(p->entry)));
+	pattern = g_malloc(strlen(gtk_entry_get_text(GTK_ENTRY(p->entry))) + 3);
+	sprintf(pattern, "*%s*", gtk_entry_get_text(GTK_ENTRY(p->entry)));
+
+	if (GTK_TOGGLE_BUTTON(p->sens)->active)
+		sens = 1;
+	else {
+		sens = 0;
+		g_strup(pattern);
+	}
+	
+	l = curr_crd;
+	
+	while (l) {
+		if (wrapped != 1)
+			l = (back)? l->prev : l->next;
+		else
+			wrapped ++;
+
+		if (l) {
+			crd = l->data;
+			crd_text[0] = crd->fname.str;
+			crd_text[1] = crd->name.family;
+			crd_text[2] = crd->name.given;
+			crd_text[3] = crd->name.additional;
+			crd_text[4] = crd->name.prefix;
+			crd_text[5] = crd->name.suffix;
+			crd_text[6] = crd->title.str;
+			crd_text[7] = crd->role.str;
+			crd_text[8] = crd->comment.str;
+			crd_text[9] = crd->url.str;
+			crd_text[10] = crd->org.name;
+			crd_text[11] = crd->org.unit1;
+			crd_text[12] = crd->org.unit2;
+			crd_text[13] = crd->org.unit3;
+			crd_text[14] = crd->org.unit4;
+			
+			for (i = 0; i < 15 && !found; i++)
+				if (gnomecard_match_pattern(pattern, crd_text[i], sens))
+					found = 1;
+
+			for (k = crd->phone; k && !found; k = k->next)
+				if (gnomecard_match_pattern(pattern, 
+																		((CardPhone *) k->data)->data, sens))
+					found = 1;
+			
+			for (k = crd->email; k && !found; k = k->next)
+				if (gnomecard_match_pattern(pattern, 
+																		((CardEMail *) k->data)->data, sens))
+						found = 1;
+
+			for (k = crd->dellabel; k && !found; k = k->next)
+				if (gnomecard_match_pattern(pattern, 
+																		((CardDelLabel *) k->data)->data, sens))
+					found = 1;
+
+			for (k = crd->deladdr; k && !found; k = k->next)
+				for (i = 0; i < DELADDR_MAX; i++)
+					if (gnomecard_match_pattern(pattern, 
+																			((CardDelAddr *) k->data)->data[i], sens))
+						found = 1;
+			
+			if (found) {
+				gnomecard_scroll_tree(l);
+				break;
+			}
+			
+		}	else if (wrapped) {
+			GtkWidget *w;
+			
+			w = gnome_message_box_new(_("No matching record found."),
+																GNOME_MESSAGE_BOX_ERROR,
+																GNOME_STOCK_BUTTON_OK, NULL);
+			GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
+			gnome_dialog_button_connect_object(GNOME_DIALOG(w),	0,
+																				 GTK_SIGNAL_FUNC(gnomecard_cancel),
+																				 GTK_OBJECT(w));	
+			gtk_widget_show(w);
+			break;
+		} else {
+			GtkWidget *w;
+			char msg[128], *str1, *str2;
+			
+			str1 = (back)? _("first") : _("last");
+			str2 = (back)? _("last") : _("first");
+			snprintf(msg, 128, _("Reached %s record.\nContinue from the %s one?"),
+							 str1, str2);
+			w = gnome_message_box_new(msg,
+																GNOME_MESSAGE_BOX_QUESTION,
+																GNOME_STOCK_BUTTON_OK,
+																GNOME_STOCK_BUTTON_CANCEL, NULL);
+			GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
+			gtk_widget_show(w);
+			
+			switch(gnome_dialog_run_modal(GNOME_DIALOG(w))) {
+			 case -1:
+			 case 1:
+				l = NULL;
+				break;
+			 case 0:
+				l = (back)? g_list_last(crds) : crds;
+				wrapped = 1;
+			}
+		}
+	}
+
+	g_free(pattern);
 }
 
 void gnomecard_find_card_call(GtkWidget *widget, gpointer data)
@@ -1323,7 +1471,7 @@ void gnomecard_find_card_call(GtkWidget *widget, gpointer data)
 
 	p = g_malloc(sizeof(GnomeCardPhone));
 	w = gnome_dialog_new(_("Find Card"), "Find", 
-														GNOME_STOCK_BUTTON_CLOSE, NULL);
+											 GNOME_STOCK_BUTTON_CLOSE, NULL);
 	gtk_object_set_user_data(GTK_OBJECT(w), p);
 	gnome_dialog_button_connect(GNOME_DIALOG(w), 0,
 															GTK_SIGNAL_FUNC(gnomecard_find_card),	p);
