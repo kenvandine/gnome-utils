@@ -942,12 +942,35 @@ drag_begin_file_cb (GtkWidget * widget,
                     gpointer data)
 {
 	GSearchWindow * gsearch = data;
+	gint number_of_selected_rows;
 
-	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection)) > 1) {
+	number_of_selected_rows = gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection));
+
+	if (number_of_selected_rows > 1) {
 		gtk_drag_set_icon_stock (context, GTK_STOCK_DND_MULTIPLE, 0, 0);
 	}
-	else {
-		gtk_drag_set_icon_stock (context, GTK_STOCK_DND, 0, 0);
+	else if (number_of_selected_rows == 1) {
+		GdkPixbuf * pixbuf;
+		GtkTreeIter iter;
+		GList * list;
+
+		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
+		                                             (GtkTreeModel **) &gsearch->search_results_list_store);
+
+		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
+		                         g_list_first (list)->data);
+ 
+		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
+		                    COLUMN_ICON, &pixbuf,
+		                    -1);
+		g_list_free (list);
+
+		if (pixbuf) {
+			gtk_drag_set_icon_pixbuf (context, pixbuf, 0, 0);
+		}
+		else {
+			gtk_drag_set_icon_stock (context, GTK_STOCK_DND, 0, 0);
+		}
 	}
 }
 
