@@ -1597,6 +1597,7 @@ create_main_window (void)
 	gchar 		*locale_string;
 	gchar		*utf8_string;
 	GtkWidget 	*hbox;	
+	GtkWidget	*vbox;
 	GtkWidget 	*entry;
 	GtkWidget	*label;
 	GtkWidget 	*folder_entry;
@@ -1690,13 +1691,16 @@ create_main_window (void)
 
 	gtk_box_pack_start (GTK_BOX(window), GTK_WIDGET(interface.additional_constraints), FALSE, FALSE, 0);
 	
+	vbox = gtk_vbox_new (FALSE, 12);
+	gtk_box_pack_start (GTK_BOX (window), vbox, TRUE, TRUE, 0);
+	
 	interface.results = create_search_results_section ();
-	gtk_widget_set_sensitive (GTK_WIDGET(interface.results), FALSE);
-	gtk_box_pack_start (GTK_BOX(window), interface.results, TRUE, TRUE, 0);
+	gtk_widget_set_sensitive (GTK_WIDGET (interface.results), FALSE);
+	gtk_box_pack_start (GTK_BOX (vbox), interface.results, TRUE, TRUE, 0);
 	
 	hbox = gtk_hbutton_box_new ();
-	gtk_button_box_set_layout (GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
-	gtk_box_pack_start (GTK_BOX(window), hbox, FALSE, FALSE, 0);
+	gtk_button_box_set_layout (GTK_BUTTON_BOX (hbox), GTK_BUTTONBOX_END);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
 	gtk_box_set_spacing (GTK_BOX(hbox), 10);
 	button = gtk_button_new_from_stock (GTK_STOCK_HELP);
