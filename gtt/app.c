@@ -169,10 +169,11 @@ void cur_proj_set(project *proj)
 
 
 
-void app_new(int argc, char *argv[])
+void app_new(int argc, char *argv[], char *geometry_string)
 {
 	GtkWidget *vbox;
 	GtkWidget *widget;
+	gboolean geometry_error = FALSE;
 
 	window = gnome_app_new("gtt", APP_NAME " " VERSION);
         gtk_window_set_wmclass(GTK_WINDOW(window),
@@ -212,11 +213,30 @@ void app_new(int argc, char *argv[])
 
         glist = create_clist();
 	gtk_box_pack_end(GTK_BOX(vbox), glist->parent, TRUE, TRUE, 0);
+	gtk_widget_set_usize(glist, -1, 120);
 	gtk_widget_show_all(glist->parent);
 
 	gtk_widget_show(vbox);
 	gnome_app_set_contents(GNOME_APP(window), vbox);
 
+	if (geometry_string) {
+		gint x, y, w, h;
+		if (gnome_parse_geometry(geometry_string,
+					&x, &y, &w, &h)) {
+			if ((x != -1) && (y != -1))
+				gtk_widget_set_uposition(GTK_WIDGET(window),
+						x, y);
+			if ((w != -1) && (h != -1))
+				gtk_widget_set_usize(GTK_WIDGET(window), w, h);
+		} else {
+			geometry_error = TRUE;
+		}
+	}
 	gtk_widget_realize(window);
-}
 
+	if (geometry_error) {
+		gnome_app_error(GNOME_APP(window),
+			_("Couldn't understand geometry (position and size)\n"
+				" specified on command line"));
+        }
+}

@@ -157,7 +157,7 @@ extern int config_logfile_use, config_logfile_min_secs;
 void update_status_bar(void);
 void cur_proj_set(project *p);
 
-void app_new(int argc, char *argv[]);
+void app_new(int argc, char *argv[], char *geometry_string);
 
 
 /* clist.c */
