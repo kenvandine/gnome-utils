@@ -22,6 +22,9 @@
 #ifdef __CYGWIN__
 #define timezonevar
 #endif
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include <string.h>
