@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.96.0\n"
-"POT-Creation-Date: 2002-07-22 16:06+0200\n"
+"POT-Creation-Date: 2002-10-02 11:26+0100\n"
 "PO-Revision-Date: 2002-04-30 14:02MET\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
@@ -78,8 +78,7 @@ msgstr ""
 
 #. Translator credits
 #: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:46 gdictsrc/gdict-about.c:43
-#: gsearchtool/gsearchtool.c:2002 logview/about.c:52
-#: meat-grinder/meat-grinder.c:475
+#: logview/about.c:52 meat-grinder/meat-grinder.c:475
 msgid "translator_credits"
 msgstr ""
 "Ratournaedje e walon fwait pa:\n"
@@ -91,17 +90,27 @@ msgstr ""
 "eployeye chal loukîz so:\n"
 "http://rifondou.walon.org/"
 
-#: gcalc/gcalc.c:60 gcalc/gcalc.c:191
+#: gcalc/gcalc.c:60
 msgid "GNOME Calculator"
 msgstr "Carculete Gnome"
 
+#: gcalc/gcalc.c:61
+#, fuzzy
+msgid "(C) 1998 Free Software Foundation"
+msgstr "© 1998,2002 li Free Software Foundation"
+
 #: gcalc/gcalc.c:62
-msgid "Simple double precision calculator similiar to xcalc"
+#, fuzzy
+msgid "Simple double precision calculator similar to xcalc"
 msgstr "Carculete simpe di dobe precizion, ki s' ravize a xcalc"
 
 #: gcalc/gcalc.c:140
 msgid "_Calculator"
 msgstr "_Carculete"
+
+#: gcalc/gcalc.c:191 gcalc/gnome-calculator.desktop.in.h:1
+msgid "Calculator"
+msgstr "Carculete"
 
 #: gcalc/gnome-calc.c:252
 #, fuzzy
@@ -406,15 +415,11 @@ msgstr "="
 msgid "Calculate"
 msgstr "Carculer"
 
-#: gcalc/gnome-calculator.desktop.in.h:1
-msgid "Calculator"
-msgstr "Carculete"
-
 #: gcalc/gnome-calculator.desktop.in.h:2
 msgid "Perform simple calculations"
 msgstr "Fé des carculaedjes simpes"
 
-#: gcharmap/gnome-character-map.desktop.in.h:1
+#: gcharmap/gnome-character-map.desktop.in.h:1 gcharmap/src/interface.c:160
 msgid "Character Map"
 msgstr "Tåvlea di caracteres"
 
@@ -422,41 +427,37 @@ msgstr "Tåvlea di caracteres"
 msgid "Insert special characters into documents"
 msgstr ""
 
-#: gcharmap/src/asciiselect.c:117
+#: gcharmap/src/asciiselect.c:149
 msgid "Select Character"
 msgstr "Tchoezixhoz on caractere"
 
-#: gcharmap/src/asciiselect.c:120
+#: gcharmap/src/asciiselect.c:152
 msgid "_Insert"
 msgstr "_Sititchî"
 
-#: gcharmap/src/asciiselect.c:123
+#: gcharmap/src/asciiselect.c:155
 msgid "Character c_ode:"
 msgstr "Cô_de do caractere:"
 
-#: gcharmap/src/asciiselect.c:137
+#: gcharmap/src/asciiselect.c:178
 msgid "Ch_aracter:"
 msgstr "C_aractere:"
 
-#: gcharmap/src/asciiselect.c:148
+#: gcharmap/src/asciiselect.c:189
 msgid "Character Code"
 msgstr "Côde do caractere"
 
-#: gcharmap/src/asciiselect.c:148
+#: gcharmap/src/asciiselect.c:189
 msgid "Select character code"
 msgstr "Tchoezixhoz li côde do caractere"
 
-#: gcharmap/src/asciiselect.c:149
+#: gcharmap/src/asciiselect.c:190
 msgid "Character"
 msgstr "Caractere"
 
-#: gcharmap/src/asciiselect.c:149
+#: gcharmap/src/asciiselect.c:190
 msgid "Character to insert"
 msgstr "Caractere a stitchî"
-
-#: gcharmap/src/asciiselect.c:157
-msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-msgstr "-adobe-helvetica-bold-r-normal--*-180-*-*-*-*-*-*,*"
 
 #: gcharmap/src/callbacks.c:63
 msgid "GNOME Character Map"
@@ -467,56 +468,64 @@ msgid ""
 "Select, copy and paste characters from your font into other applications"
 msgstr ""
 
-#: gcharmap/src/callbacks.c:113
-msgid "del"
-msgstr "del"
-
-#: gcharmap/src/callbacks.c:119
+#: gcharmap/src/callbacks.c:131
 #, c-format
-msgid " %s: Character code %d"
-msgstr "%s: caractere di côde %d"
+msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
+msgstr ""
 
-#: gcharmap/src/callbacks.c:155
+#: gcharmap/src/callbacks.c:134
+#, fuzzy, c-format
+msgid "Character code: (Unicode) U%04lX"
+msgstr "Cô_de do caractere:"
+
+#: gcharmap/src/callbacks.c:188
 msgid "Text copied to clipboard..."
 msgstr "Tecse copyî el tchapea emacralé..."
 
-#: gcharmap/src/callbacks.c:172
+#: gcharmap/src/callbacks.c:205
 msgid "Text cut to clipboard..."
 msgstr "Tecse côpé evoye el tchapea emacralé..."
 
-#: gcharmap/src/callbacks.c:225
+#: gcharmap/src/callbacks.c:254
 msgid "Text pasted from clipboard..."
 msgstr "Tecse aclapé do tchapea emacralé..."
 
-#: gcharmap/src/interface.c:208
-msgid "Gnome Character Map"
-msgstr "Tåvlea di caracteres di Gnome"
-
-#: gcharmap/src/interface.c:238
+#: gcharmap/src/interface.c:190
 msgid "Action Toolbar"
 msgstr "Bår d' accions"
 
-#: gcharmap/src/interface.c:242
+#: gcharmap/src/interface.c:194
+#, fuzzy
+msgid "_Font:"
+msgstr "_Pôrt:"
+
+#. The page selector
+#: gcharmap/src/interface.c:210
+msgid "_Page:"
+msgstr ""
+
+#. end of page selector
+#: gcharmap/src/interface.c:225
 msgid "_Text to copy:"
 msgstr "_Tecse a copyî:"
 
-#: gcharmap/src/interface.c:257
+#: gcharmap/src/interface.c:240
 msgid "_Copy"
 msgstr "_Copyî"
 
-#: gcharmap/src/interface.c:279 gcharmap/src/interface.c:280
+#: gcharmap/src/interface.c:262 gcharmap/src/interface.c:263
 msgid "Text to copy"
 msgstr "Tecse a copyî:"
 
-#: gcharmap/src/interface.c:280
+#: gcharmap/src/interface.c:263
 msgid "Entry"
 msgstr "Intrêye"
 
-#: gcharmap/src/interface.c:281 gcharmap/src/menus.c:77
+#: gcharmap/src/interface.c:264 gcharmap/src/menus.c:77
 msgid "Copy"
 msgstr "Copyî"
 
-#: gcharmap/src/interface.c:281
+#: gcharmap/src/interface.c:264
 msgid "Copy the text"
 msgstr "Copyî l' tecse"
 
@@ -563,11 +572,11 @@ msgstr ""
 msgid "Indicates the percentage specified at the standard input"
 msgstr ""
 
-#: gdialog/inputbox.c:90
+#: gdialog/inputbox.c:84
 msgid "GDialog Entry"
 msgstr ""
 
-#: gdialog/inputbox.c:90
+#: gdialog/inputbox.c:84
 msgid "Enter the text"
 msgstr "Tapez l' tecse"
 
@@ -618,8 +627,8 @@ msgid ""
 "For reference the default server is dict.org and the port 2628"
 msgstr ""
 "I gn a-st avou ene grosse aroke. Verifyîz ki vost apontiaedje pol sierveu "
-"eyet l' limero d' pôrt sont coreks. Les prémetowès valixhances sont "
-"dict.org pol sierveu eyet 2628 pol pôrt." 
+"eyet l' limero d' pôrt sont coreks. Les prémetowès valixhances sont dict.org "
+"pol sierveu eyet 2628 pol pôrt."
 
 #: gdictsrc/gdict-about.c:56
 msgid "GNOME Dictionary"
@@ -645,32 +654,31 @@ msgstr "Coridjaedje..."
 msgid "Spell check done"
 msgstr "Coridjaedje fwait"
 
-#: gdictsrc/gdict-app.c:144 gdictsrc/gdict-app.c:274
+#: gdictsrc/gdict-app.c:144 gdictsrc/gdict-app.c:288
 msgid "No matches found"
 msgstr "Dji n' a rén trové"
 
-#: gdictsrc/gdict-app.c:257
+#: gdictsrc/gdict-app.c:271
 msgid "Looking up word..."
 msgstr "Cwerant on mot..."
 
-#: gdictsrc/gdict-app.c:265
+#: gdictsrc/gdict-app.c:279
 msgid "Lookup done"
 msgstr "Cweraedje fwait"
 
-#: gdictsrc/gdict-app.c:287
+#: gdictsrc/gdict-app.c:301
 msgid "String not found"
 msgstr "Tchinne nén trovêye"
 
-#: gdictsrc/gdict-app.c:455
+#: gdictsrc/gdict-app.c:469
 msgid "Find"
 msgstr "Trover"
 
-#: gdictsrc/gdict-app.c:476 gsearchtool/gsearchtool.c:1507
-#: gsearchtool/gsearchtool.c:1840
+#: gdictsrc/gdict-app.c:490
 msgid "_Find"
 msgstr "_Trover"
 
-#: gdictsrc/gdict-app.c:526
+#: gdictsrc/gdict-app.c:540
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -680,49 +688,49 @@ msgstr ""
 "Soeye-t i ki l' sierveu ki vos vloz eployî n' est nén en alaedje \n"
 "soeye-t i ki vos n' estoz nén raloyî al daegntoele."
 
-#: gdictsrc/gdict-app.c:687 gdictsrc/gdict-app.c:798
+#: gdictsrc/gdict-app.c:701 gdictsrc/gdict-app.c:812
 #: gdictsrc/gdict-speller.c:221
 msgid "_Look Up Word"
 msgstr "C_weri l' mot"
 
-#: gdictsrc/gdict-app.c:688
+#: gdictsrc/gdict-app.c:702
 msgid "Lookup word in dictionary"
 msgstr "Cweri on mot el diccionaire"
 
-#: gdictsrc/gdict-app.c:690 gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-app.c:704 gdictsrc/gdict-speller.c:165
 msgid "Check _Spelling"
 msgstr "_Verifyî l' ortografeye"
 
-#: gdictsrc/gdict-app.c:691
+#: gdictsrc/gdict-app.c:705
 msgid "Check word spelling"
 msgstr "Verifyî l' ortografeye"
 
-#: gdictsrc/gdict-app.c:735
+#: gdictsrc/gdict-app.c:749
 msgid "_Dictionary"
 msgstr "_Diccionaire"
 
-#: gdictsrc/gdict-app.c:771 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:785 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Diccionaire"
 
-#: gdictsrc/gdict-app.c:794
+#: gdictsrc/gdict-app.c:808
 msgid "_Word: "
 msgstr "_Mot: "
 
-#: gdictsrc/gdict-app.c:821 gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:836 gdictsrc/gdict-speller.c:147
 msgid "Word"
 msgstr "Mot"
 
-#: gdictsrc/gdict-app.c:822 gdictsrc/gdict-app.c:823
+#: gdictsrc/gdict-app.c:837 gdictsrc/gdict-app.c:838
 #: gdictsrc/gdict-speller.c:148
 msgid "Word Entry"
 msgstr "Intrêye"
 
-#: gdictsrc/gdict-app.c:822
+#: gdictsrc/gdict-app.c:837
 msgid "Enter a Word or select one from the list below"
 msgstr "Tapez on mot ou l' tchoezi dins l' djivêye chal pa dzo"
 
-#: gdictsrc/gdict-app.c:825
+#: gdictsrc/gdict-app.c:840
 msgid "Look Up for a Word"
 msgstr "Cweri après on mot"
 
@@ -780,8 +788,9 @@ msgid "_Server:"
 msgstr "_Sierveu:"
 
 #: gdictsrc/gdict-pref-dialog.c:218
-msgid "De_fault"
-msgstr "P_rémetou"
+#, fuzzy
+msgid "De_fault Server"
+msgstr "Prémetowe sitratédjeye"
 
 #: gdictsrc/gdict-pref-dialog.c:224
 msgid "Reset server to default"
@@ -792,7 +801,8 @@ msgid "_Port:"
 msgstr "_Pôrt:"
 
 #: gdictsrc/gdict-pref-dialog.c:240
-msgid "Def_ault"
+#, fuzzy
+msgid "Def_ault Port"
 msgstr "Pré_metou"
 
 #: gdictsrc/gdict-pref-dialog.c:247
@@ -889,8 +899,8 @@ msgid ""
 "dictionary server supports this option. The default is TRUE"
 msgstr ""
 "Defini s' i fåt eployî li sûti cweraedje ou nén. Cisse tchuze dipind si "
-"l' sierveu di diccionaeraedje ki vs eployîz l' sopoite ou nén. "
-"Li prémetowe valixhance est TRUE (vraiy)"
+"l' sierveu di diccionaeraedje ki vs eployîz l' sopoite ou nén. Li prémetowe "
+"valixhance est TRUE (vraiy)"
 
 #: gdictsrc/gdict.schemas.in.h:4
 msgid "The database to use in the dictionary server."
@@ -901,17 +911,17 @@ msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers"
 msgstr ""
-"Li sierveu di diccionairaedje a s' raloyî avou. Li prémetou sierveu "
-"est dict.org. Loukîz a http://www.dict.org po des detays so d' ôtes "
-"sierveus. On sierveu avou on diccionaire e walon si trove so moti.walon.org"
+"Li sierveu di diccionairaedje a s' raloyî avou. Li prémetou sierveu est dict."
+"org. Loukîz a http://www.dict.org po des detays so d' ôtes sierveus. On "
+"sierveu avou on diccionaire e walon si trove so moti.walon.org"
 
 #: gdictsrc/gdict.schemas.in.h:6
 msgid ""
 "The name of the individual database to use in the dictionary server. ! "
 "specifies that gnome-dictionary should search all databases in a given server"
 msgstr ""
-"Li no di tchaeke des båzes di dnêyes a-z eployî sol sierveu. « ! » vout "
-"dire ki gnome-dictionary doet cweri dins totes les båzes k' i gn a sol sierveu"
+"Li no di tchaeke des båzes di dnêyes a-z eployî sol sierveu. « ! » vout dire "
+"ki gnome-dictionary doet cweri dins totes les båzes k' i gn a sol sierveu"
 
 #: gdictsrc/gdict.schemas.in.h:7
 msgid "The port number to connect to. The default port is 2628."
@@ -1304,7 +1314,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1414
 msgid "Search for Files"
 msgstr "Cweri après des fitchîs"
 
@@ -1312,98 +1322,172 @@ msgstr "Cweri après des fitchîs"
 msgid "Search your disk for files"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:66
-msgid "File name is"
-msgstr "Li no di fitchî est"
+#: gsearchtool/gsearchtool.c:60
+#, fuzzy
+msgid "Contains the text"
+msgstr "Copyî l' tecse"
 
-#: gsearchtool/gsearchtool.c:67
-msgid "File name is not"
-msgstr "Li no di fitchî n' est nén"
-
-#: gsearchtool/gsearchtool.c:68
-msgid "Don't search mounted filesystems"
-msgstr "Nén cweri dvins les ôtes sistinmes di fitchîs montés"
-
-#: gsearchtool/gsearchtool.c:69
-msgid "Follow symbolic links"
-msgstr "Shuve les loyéns simbolikes"
-
-#: gsearchtool/gsearchtool.c:70
-msgid "Process folder contents depth first"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:71
+#: gsearchtool/gsearchtool.c:61
 msgid "Owned by user"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:72
+#: gsearchtool/gsearchtool.c:62
 msgid "Owned by group"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:73
-msgid "Invalid user or group"
-msgstr "Uzeus ou groupes nén valides"
+#: gsearchtool/gsearchtool.c:63
+msgid "Owner is unrecognized"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:74
-msgid "Last time modified"
-msgstr "Tins di dierin ramîdraedje"
+#: gsearchtool/gsearchtool.c:64
+msgid "Date modified before (days)"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:75
+#: gsearchtool/gsearchtool.c:65
+msgid "Date modified after (days)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:66
+msgid "Size is less than (kilobytes)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:67
+msgid "Size is more than (kilobytes)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:68
 msgid "File is empty"
 msgstr "Li fitchî est vude"
 
-#: gsearchtool/gsearchtool.c:76
-msgid "Matches regular expression"
+#: gsearchtool/gsearchtool.c:69
+#, fuzzy
+msgid "File is not named"
+msgstr "Li no di fitchî n' est nén"
+
+#: gsearchtool/gsearchtool.c:70
+msgid "File matches regular expression"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:274 gsearchtool/gsearchtool.c:943
-msgid "Start folder does not exist."
-msgstr "Li ridant di dpårt n' egzisteye nén."
+#: gsearchtool/gsearchtool.c:71
+msgid "Follow symbolic links"
+msgstr "Shuve les loyéns simbolikes"
 
-#: gsearchtool/gsearchtool.c:499
-msgid "today at %-I:%M %p"
-msgstr "ouy a %H:%M"
+#: gsearchtool/gsearchtool.c:72
+#, fuzzy
+msgid "Search other filesystems"
+msgstr "Nén cweri dvins les ôtes sistinmes di fitchîs montés"
 
-#: gsearchtool/gsearchtool.c:501
-msgid "yesterday at %-I:%M %p"
-msgstr "ayir a %H:%M"
+#: gsearchtool/gsearchtool.c:123
+msgid "Set the text of 'file is named'"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:503 gsearchtool/gsearchtool.c:505
-msgid "%m/%-d/%y, %-I:%M %p"
-msgstr "%-d/%-m/%y, %H:%M"
+#: gsearchtool/gsearchtool.c:125
+msgid "Set the text of 'look in folder'"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:518
-msgid "%Y%m%d%H%M%S"
-msgstr "%Y%m%d%H%M%S"
+#: gsearchtool/gsearchtool.c:127
+msgid "Sort files by one of the following: name, folder, size, type, or date"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:533
-msgid "folder"
-msgstr "ridant"
+#: gsearchtool/gsearchtool.c:129
+msgid "Set sort order to descending, the default is ascending"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:535
-msgid "program"
-msgstr "programe"
+#: gsearchtool/gsearchtool.c:131
+msgid "Automatically start a search"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:537
-msgid "symbolic link"
-msgstr "loyén simbolike"
+#: gsearchtool/gsearchtool.c:133
+msgid "Select the 'Contains the text' constraint"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:663
-msgid "No Files Found."
+#: gsearchtool/gsearchtool.c:135
+msgid "Select the 'Owned by user' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:137
+msgid "Select the 'Owned by group' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:139
+msgid "Select the 'Owner is unrecognized' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:141
+msgid "Select the 'Date modified before (days)' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:143
+msgid "Select the 'Date modified after (days)' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:145
+msgid "Select the 'Size is less than (kilobytes)' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:147
+msgid "Select the 'Size is more than (kilobytes)' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:149
+msgid "Select the 'File is empty' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:151
+msgid "Select the 'File is not named' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:153
+msgid "Select the 'File matches regular expression' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:155
+#, fuzzy
+msgid "Select the 'Follow symbolic links' constraint"
+msgstr "Shuve les loyéns simbolikes"
+
+#: gsearchtool/gsearchtool.c:157
+msgid "Select the 'Search other filesystems' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:389
+msgid "No files found"
 msgstr "Dji n' a trové nou fitchî"
 
-#: gsearchtool/gsearchtool.c:736
-msgid ""
-"Cannot perform the search.\n"
-"The Bourne shell was not found\n"
-"It is typically installed as /bin/sh or /usr/bin/sh."
+#: gsearchtool/gsearchtool.c:463
+msgid "Entry changed called for a non entry option!"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:752
-msgid "Searching..."
-msgstr "Cweriaedje..."
+#: gsearchtool/gsearchtool.c:645
+msgid "Invalid option passed to sortby command line argument."
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:866
+#: gsearchtool/gsearchtool.c:771
+msgid "(aborted)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:780
+#, fuzzy, c-format
+msgid "No files found %s"
+msgstr "Dji n' a trové nou fitchî"
+
+#: gsearchtool/gsearchtool.c:785
+#, fuzzy, c-format
+msgid "One file found %s"
+msgstr "Dj' a trové on fitchî"
+
+#: gsearchtool/gsearchtool.c:789
+#, fuzzy, c-format
+msgid "%d files found %s"
+msgstr "Dj' a trové %d fitchîs"
+
+#: gsearchtool/gsearchtool.c:852
+msgid ""
+"While searching the following errors were reported.\n"
+"\n"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:856
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1411,255 +1495,124 @@ msgstr ""
 "\n"
 "... I gn a pår trop d' arokes po les pleur håyner ..."
 
-#: gsearchtool/gsearchtool.c:877
-msgid "No files found"
-msgstr "Dji n' a trové nou fitchî"
-
-#: gsearchtool/gsearchtool.c:880
-msgid "One file found"
-msgstr "Dj' a trové on fitchî"
-
-#: gsearchtool/gsearchtool.c:882
-#, c-format
-msgid "%d files found"
-msgstr "Dj' a trové %d fitchîs"
-
-#: gsearchtool/gsearchtool.c:954 gsearchtool/gsearchtool.c:1671
-msgid "Cannot perform the search. Please specify a search criteria."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:971 gsearchtool/gsearchtool.c:1692
+#: gsearchtool/gsearchtool.c:889 gsearchtool/gsearchtool.c:910
+#, fuzzy, c-format
 msgid ""
-"A search is already running.  Please wait for the search to complete or "
-"cancel it."
-msgstr ""
+"Sorry, could not start the search.\n"
+"%s\n"
+msgstr "Clitchiz po-z enonder l' cweraedje"
 
-#: gsearchtool/gsearchtool.c:1005
-msgid "Start folder does not exist"
-msgstr "Li ridant di dpårt n' egzisteye nén"
-
-#: gsearchtool/gsearchtool.c:1020
-msgid "Cannot show the search command line. Please specify a search criteria."
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1024
-msgid "Search Command Line"
-msgstr "Roye di comande pol cweraedje"
-
-#: gsearchtool/gsearchtool.c:1042
-msgid ""
-"This is the command line that can be used to execute this search\n"
-"from the console.\n"
-"\n"
-"C_ommand:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1063
-msgid "Command"
-msgstr "Comande"
-
-#: gsearchtool/gsearchtool.c:1064
-msgid "Command Line Entry"
-msgstr "Intrêye pol roye di comande"
-
-#: gsearchtool/gsearchtool.c:1064
-msgid "Use this command line to execute the search from console"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1172
-msgid "No viewer available for this mime type."
-msgstr "Nou håyneu di disponibe po cisse sôre MIME la."
-
-#: gsearchtool/gsearchtool.c:1269
-msgid "Entry changed called for a non entry option!"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1339
+#: gsearchtool/gsearchtool.c:981
 msgid "Search Rule Value Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1339
+#: gsearchtool/gsearchtool.c:982
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1354
-msgid "Enabled"
-msgstr "En alaedje"
+#: gsearchtool/gsearchtool.c:1020
+#, fuzzy, c-format
+msgid "Click to Remove the '%s' Rule"
+msgstr "Clitchîz po verifyî l' ortografeye"
 
-#: gsearchtool/gsearchtool.c:1362
-msgid "Toggle On/Off to enable/disable the rule"
+#: gsearchtool/gsearchtool.c:1075
+msgid "A_vailable search constraints:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1370
-msgid "Click to Remove the Rule"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1416
-msgid "S_tart in folder:"
-msgstr "Kimincî a pårti do ridant:"
-
-#: gsearchtool/gsearchtool.c:1420 gsearchtool/gsearchtool.c:1800
-msgid "Browse"
-msgstr "Foyter"
-
-#: gsearchtool/gsearchtool.c:1428 gsearchtool/gsearchtool.c:1429
-#: gsearchtool/gsearchtool.c:1809 gsearchtool/gsearchtool.c:1810
-msgid "Starting folder entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1428 gsearchtool/gsearchtool.c:1429
-#: gsearchtool/gsearchtool.c:1809 gsearchtool/gsearchtool.c:1810
-msgid "Enter the folder name where you want to start the search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1450
-msgid "Rules:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1470
-msgid "A_dd Rule:"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1479
+#: gsearchtool/gsearchtool.c:1085
 #, fuzzy
 msgid "Search Rules Menu"
 msgstr "Rizultat do cweraedje"
 
-#: gsearchtool/gsearchtool.c:1479
+#: gsearchtool/gsearchtool.c:1086
 #, fuzzy
 msgid "Select a search rule from the menu"
 msgstr "Askepyî ene novele årtchive a pårti des cayets"
 
-#: gsearchtool/gsearchtool.c:1522
-msgid "Click to Add a Rule"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1523
-msgid "Click to Start the Search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1524
-msgid "Click to Stop the Search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1529 gsearchtool/gsearchtool.c:1861
+#: gsearchtool/gsearchtool.c:1118
 msgid "S_earch Results"
 msgstr "Rizultats do c_weraedje"
 
-#: gsearchtool/gsearchtool.c:1569 gsearchtool/gsearchtool.c:1901
+#: gsearchtool/gsearchtool.c:1173
 msgid "Name"
 msgstr "No"
 
-#: gsearchtool/gsearchtool.c:1591 gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1195
 msgid "Folder"
 msgstr "Ridant"
 
-#: gsearchtool/gsearchtool.c:1603 gsearchtool/gsearchtool.c:1935
+#: gsearchtool/gsearchtool.c:1207
 msgid "Size"
 msgstr "Grandeu"
 
-#: gsearchtool/gsearchtool.c:1615 gsearchtool/gsearchtool.c:1947
+#: gsearchtool/gsearchtool.c:1218
 msgid "Type"
 msgstr "Sôre"
 
-#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1958
+#: gsearchtool/gsearchtool.c:1229
 msgid "Date Modified"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1770
-msgid "Find files _named:"
+#: gsearchtool/gsearchtool.c:1270
+#, fuzzy
+msgid "File is _named:"
 msgstr "Trover les fitchîs _lomés:"
 
-#: gsearchtool/gsearchtool.c:1785 gsearchtool/gsearchtool.c:1786
+#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
 msgid "File Name Entry"
 msgstr "Intrêye no di fitchî"
 
-#: gsearchtool/gsearchtool.c:1785 gsearchtool/gsearchtool.c:1786
+#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
 msgid "Enter the file name you want to search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1794
-msgid "S_tarting in folder:"
+#: gsearchtool/gsearchtool.c:1298
+#, fuzzy
+msgid "_Look in folder:"
+msgstr "Kimincî a pårti do ridant:"
+
+#: gsearchtool/gsearchtool.c:1304
+msgid "Browse"
+msgstr "Foyter"
+
+#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+msgid "Starting folder entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855
+#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+msgid "Enter the folder name where you want to start the search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1330
+#, fuzzy
+msgid "Additional Constraints"
+msgstr "Tchuzes po les accions"
+
+#: gsearchtool/gsearchtool.c:1372
 msgid "Click to Start the search"
 msgstr "Clitchiz po-z enonder l' cweraedje"
 
-#: gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1373
 msgid "Click to Stop the search"
 msgstr "Clitchîz po-z arester l' cweraedje"
 
-#: gsearchtool/gsearchtool.c:1978
-msgid "Simple"
-msgstr "Simpe"
-
-#: gsearchtool/gsearchtool.c:1980
-msgid "Advanced"
-msgstr "Sipepieus"
-
-#: gsearchtool/gsearchtool.c:2018
-#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
-msgid "GNOME Search Tool"
-msgstr "Trover des fitchîs"
-
-#: gsearchtool/gsearchtool.c:2019
-msgid "(C) 1998,2002 the Free Software Foundation"
-msgstr "© 1998,2002 li Free Software Foundation"
-
-#: gsearchtool/gsearchtool.c:2020
-msgid "Frontend to the unix find/locate commands"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:2060
-#, c-format
-msgid "File %s already exists. Overwrite?"
-msgstr "Li fitchî %s egzisteye dedja. El sipotchî?"
-
-#: gsearchtool/gsearchtool.c:2095
-msgid "Cannot save the results file."
-msgstr "Dji n' sai schaper li fitchî des rzultats."
-
-#: gsearchtool/gsearchtool.c:2102 meat-grinder/meat-grinder.c:654
-msgid "Save Results"
-msgstr "Schaper les rzultats"
-
-#: gsearchtool/gsearchtool.c:2159
-msgid "S_how Command..."
-msgstr "_Mostrer l' comande..."
-
-#: gsearchtool/gsearchtool.c:2160
-msgid "Show the command used to perform the search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:2163
-msgid "Save Results _As..."
-msgstr "Schaper eyet r_lomer les rzultats..."
-
-#: gsearchtool/gsearchtool.c:2164
-msgid "Save the search results"
-msgstr "Schaper les rzultats do cweraedje"
-
-#: gsearchtool/gsearchtool.c:2179
-msgid "Sear_ch"
-msgstr "C_weri"
-
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:1410
 msgid "Cannot initialize bonobo."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2205
-msgid "Search Tool"
-msgstr "Usteye di cweraedje"
+#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
+msgid "GNOME Search Tool"
+msgstr "Trover des fitchîs"
 
 #: logview/about.c:42
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:43
+#, fuzzy
 msgid ""
-"This  program  is  part of  the  GNOME  project for Linux. Logview comes "
-"with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
+"This  program  is  part of  the  GNOME  project.Logview comes with "
+"ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
 "redistribute it under the conditions of the GNU General Public Licence. The "
 "log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 msgstr ""
@@ -1677,77 +1630,77 @@ msgstr "Håyneu des djournås do sistinme po Gnome"
 msgid "Copyright (C) 1998"
 msgstr "Copyright © 1998"
 
-#: logview/actions.c:75
+#: logview/actions.c:74
 msgid "Action database"
 msgstr "Båze di dnêyes des bouyes"
 
-#: logview/actions.c:85
+#: logview/actions.c:84
 msgid "Actions"
 msgstr "Accions"
 
-#: logview/actions.c:153
+#: logview/actions.c:152
 msgid "_Add"
 msgstr "_Radjouter"
 
-#: logview/actions.c:160
+#: logview/actions.c:159
 msgid "_Edit"
 msgstr "_Candjî"
 
-#: logview/actions.c:167 meat-grinder/meat-grinder.c:941
+#: logview/actions.c:166 meat-grinder/meat-grinder.c:941
 msgid "_Remove"
 msgstr "_Oister"
 
-#: logview/actions.c:260
+#: logview/actions.c:259
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr ""
 
-#: logview/actions.c:295 logview/actions.c:308 logview/actions.c:319
-#: logview/actions.c:330 logview/actions.c:341 logview/actions.c:352
+#: logview/actions.c:294 logview/actions.c:307 logview/actions.c:318
+#: logview/actions.c:329 logview/actions.c:340 logview/actions.c:351
 msgid "Error parsing actions data base"
 msgstr "Dj' a-st aroké come dji corwaitîve li båze di dnêyes des bouyes"
 
-#: logview/actions.c:386
+#: logview/actions.c:385
 msgid "Can't write to actions database!"
 msgstr "Dji n' parvén nén a scrire el båze di dnêyes des bouyes"
 
-#: logview/actions.c:486
+#: logview/actions.c:485
 msgid "Error while executing specified action"
 msgstr ""
 
-#: logview/actions.c:507
+#: logview/actions.c:506
 msgid "<empty>"
 msgstr "<vude>"
 
-#: logview/actions.c:508
+#: logview/actions.c:507
 msgid "log name regexp"
 msgstr ""
 
-#: logview/actions.c:509
+#: logview/actions.c:508
 msgid "process regexp"
 msgstr "regexp po processus"
 
-#: logview/actions.c:510
+#: logview/actions.c:509
 msgid "message regexp"
 msgstr "regexp po messaedjes"
 
-#: logview/actions.c:511
+#: logview/actions.c:510
 msgid "action to execute when regexps are TRUE"
 msgstr "bouye a enonder si li regexp est VEUR"
 
-#: logview/actions.c:512
+#: logview/actions.c:511
 msgid "description"
 msgstr "discrijhaedje"
 
-#: logview/actions.c:772
+#: logview/actions.c:771
 msgid "_Description:"
 msgstr "_Discrijhaedje:"
 
-#: logview/actions.c:781
+#: logview/actions.c:780
 msgid "Description of this entry."
 msgstr "Discrijhaedje di cisse intrêye chal."
 
-#: logview/actions.c:805
+#: logview/actions.c:804
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1882,19 +1835,19 @@ msgid "December"
 msgstr "Decimbe"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:410
+#: logview/log_repaint.c:411
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:465
+#: logview/log_repaint.c:466
 msgid "%B %e"
 msgstr "%e di %B"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:531
+#: logview/log_repaint.c:532
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1936,95 +1889,89 @@ msgstr "%s n' est nén on fitchî log."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memwere sipoujheye"
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "S_witch Log"
 msgstr "_Discandjî di djournå"
 
-#: logview/logview.c:91
-msgid "Switch log"
-msgstr "Discandjî di djournå"
+#: logview/logview.c:99
+#, fuzzy
+msgid "Switch between already opened logs"
+msgstr "Li fitchî est ddja drovou"
 
-#: logview/logview.c:93
+#: logview/logview.c:105
 msgid "_Monitor..."
 msgstr "Cor_waitî..."
 
-#: logview/logview.c:94
-msgid "Monitor Log"
+#: logview/logview.c:106
+#, fuzzy
+msgid "Monitor Logs"
 msgstr "Corwaitî li djournå"
 
-#: logview/logview.c:97
+#: logview/logview.c:114
 msgid "_Properties"
 msgstr "_Prôpietés"
 
-#: logview/logview.c:98
+#: logview/logview.c:115
 msgid "Show Log Properties"
 msgstr "Mostrer les prôpietés do djournå"
 
-#: logview/logview.c:102
+#: logview/logview.c:123
 msgid "Clos_e All"
 msgstr "Clôr_e totafwait"
 
-#: logview/logview.c:103
+#: logview/logview.c:124
 msgid "Close all Log files"
 msgstr "Clôre tos les fitchîs djournås"
 
-#: logview/logview.c:111
+#: logview/logview.c:136
 msgid "_Calendar"
 msgstr "_Calindrî"
 
-#: logview/logview.c:112
+#: logview/logview.c:137
 msgid "Show Calendar Log"
 msgstr "Mostrer li calindrî des djournås"
 
-#: logview/logview.c:114
+#: logview/logview.c:143
 msgid "_Entry Detail"
 msgstr "Detays del intrêye"
 
-#: logview/logview.c:115
+#: logview/logview.c:144
 msgid "Show Entry Detail"
 msgstr "Mostrer les detays del intrêye"
 
-#: logview/logview.c:122
-msgid "About..."
-msgstr "Å dfait..."
-
-#: logview/logview.c:123
-msgid "Info about logview"
-msgstr "Å dfait di logview"
-
-#: logview/logview.c:326
+#: logview/logview.c:357
 msgid "No log files to open"
 msgstr "Nou fitchî di djournå a drovi"
 
-#: logview/logview.c:350
+#: logview/logview.c:381
 msgid "Date"
 msgstr "Date"
 
-#: logview/logview.c:350
+#: logview/logview.c:381
 msgid "Host Name"
 msgstr "No do lodjoe"
 
-#: logview/logview.c:351
+#: logview/logview.c:382
 msgid "Process"
 msgstr "Process"
 
-#: logview/logview.c:351
+#: logview/logview.c:382
 msgid "Message"
 msgstr "Messaedje"
 
-#: logview/logview.c:437
+#: logview/logview.c:466
 msgid "Last Modified: "
 msgstr "Candjî pol dierin côp: "
 
-#: logview/logview.c:531 logview/logview.c:604
+#: logview/logview.c:560 logview/logview.c:634
 msgid "Too many open logs. Close one and try again"
 msgstr "Trop di log di drovîs. Cloyoz ndè onk et s' rissayî"
 
-#: logview/logview.c:543
+#: logview/logview.c:572
 msgid "File already opened"
 msgstr "Li fitchî est ddja drovou"
 
-#: logview/logview.c:617
+#: logview/logview.c:647
 msgid "Open new logfile"
 msgstr "Drovi on novea fitchî log"
 
@@ -2183,6 +2130,10 @@ msgstr ""
 msgid "No items to archive"
 msgstr "Nou cayet po mete el årtchive"
 
+#: meat-grinder/meat-grinder.c:654
+msgid "Save Results"
+msgstr "Schaper les rzultats"
+
 #: meat-grinder/meat-grinder.c:777
 #, c-format
 msgid "%s added"
@@ -2249,6 +2200,114 @@ msgid ""
 "This is the program used for creating archives."
 msgstr ""
 
+#~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal--*-180-*-*-*-*-*-*,*"
+
+#~ msgid "del"
+#~ msgstr "del"
+
+#~ msgid " %s: Character code %d"
+#~ msgstr "%s: caractere di côde %d"
+
+#~ msgid "Gnome Character Map"
+#~ msgstr "Tåvlea di caracteres di Gnome"
+
+#~ msgid "De_fault"
+#~ msgstr "P_rémetou"
+
+#~ msgid "File name is"
+#~ msgstr "Li no di fitchî est"
+
+#~ msgid "Invalid user or group"
+#~ msgstr "Uzeus ou groupes nén valides"
+
+#~ msgid "Last time modified"
+#~ msgstr "Tins di dierin ramîdraedje"
+
+#~ msgid "Start folder does not exist."
+#~ msgstr "Li ridant di dpårt n' egzisteye nén."
+
+#~ msgid "today at %-I:%M %p"
+#~ msgstr "ouy a %H:%M"
+
+#~ msgid "yesterday at %-I:%M %p"
+#~ msgstr "ayir a %H:%M"
+
+#~ msgid "%m/%-d/%y, %-I:%M %p"
+#~ msgstr "%-d/%-m/%y, %H:%M"
+
+#~ msgid "%Y%m%d%H%M%S"
+#~ msgstr "%Y%m%d%H%M%S"
+
+#~ msgid "folder"
+#~ msgstr "ridant"
+
+#~ msgid "program"
+#~ msgstr "programe"
+
+#~ msgid "symbolic link"
+#~ msgstr "loyén simbolike"
+
+#~ msgid "No Files Found."
+#~ msgstr "Dji n' a trové nou fitchî"
+
+#~ msgid "Searching..."
+#~ msgstr "Cweriaedje..."
+
+#~ msgid "Start folder does not exist"
+#~ msgstr "Li ridant di dpårt n' egzisteye nén"
+
+#~ msgid "Search Command Line"
+#~ msgstr "Roye di comande pol cweraedje"
+
+#~ msgid "Command"
+#~ msgstr "Comande"
+
+#~ msgid "Command Line Entry"
+#~ msgstr "Intrêye pol roye di comande"
+
+#~ msgid "No viewer available for this mime type."
+#~ msgstr "Nou håyneu di disponibe po cisse sôre MIME la."
+
+#~ msgid "Enabled"
+#~ msgstr "En alaedje"
+
+#~ msgid "Simple"
+#~ msgstr "Simpe"
+
+#~ msgid "Advanced"
+#~ msgstr "Sipepieus"
+
+#~ msgid "File %s already exists. Overwrite?"
+#~ msgstr "Li fitchî %s egzisteye dedja. El sipotchî?"
+
+#~ msgid "Cannot save the results file."
+#~ msgstr "Dji n' sai schaper li fitchî des rzultats."
+
+#~ msgid "S_how Command..."
+#~ msgstr "_Mostrer l' comande..."
+
+#~ msgid "Save Results _As..."
+#~ msgstr "Schaper eyet r_lomer les rzultats..."
+
+#~ msgid "Save the search results"
+#~ msgstr "Schaper les rzultats do cweraedje"
+
+#~ msgid "Sear_ch"
+#~ msgstr "C_weri"
+
+#~ msgid "Search Tool"
+#~ msgstr "Usteye di cweraedje"
+
+#~ msgid "Switch log"
+#~ msgstr "Discandjî di djournå"
+
+#~ msgid "About..."
+#~ msgstr "Å dfait..."
+
+#~ msgid "Info about logview"
+#~ msgstr "Å dfait di logview"
+
 #~ msgid "x^2"
 #~ msgstr "x²"
 
@@ -2272,9 +2331,6 @@ msgstr ""
 
 #~ msgid "Format another floppy?"
 #~ msgstr "Abwesner ene ôte plakete?"
-
-#~ msgid "Action options"
-#~ msgstr "Tchuzes po les accions"
 
 #~ msgid "Add..."
 #~ msgstr "Radjouter..."
