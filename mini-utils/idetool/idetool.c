@@ -18,6 +18,7 @@ static char *bit32_names[]=
 {
 	N_("Default 16-bit"),
 	N_("32-bit"),
+	N_("Unknown"), /* there is no 2 apparently */
 	N_("32-bit w/sync")
 };
 

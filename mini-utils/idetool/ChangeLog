@@ -1,3 +1,9 @@
+Fri Jun 29 21:45:38 2001  George Lebl <jirka@5z.com>
+
+	* idetool.c: do note, from the hdparm man page, the 32bit support
+	  is 0 (none), 1 (32bit), 3 (32bit w/ sync), not 0,1,2 as the code
+	  assumed, fixes #20212
+
 Fri Jun 29 21:24:48 2001  George Lebl <jirka@5z.com>
 
 	* idetool.c: replace all sprintfs with snprintfs just because I'm a
