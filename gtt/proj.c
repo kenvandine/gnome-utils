@@ -25,6 +25,7 @@
 
 
 #include "gtt.h"
+#include "proj_p.h"
 
 #ifdef DEBUG
 #define GTT "/gtt-DEBUG/"
@@ -37,22 +38,24 @@ char *first_proj_title = NULL;
 
 
 
-project *project_new(void)
+GttProject *project_new(void)
 {
-	project *proj;
+	GttProject *proj;
 	
-	proj = g_new0(project, 1);
+	proj = g_new0(GttProject, 1);
 	proj->title = NULL;
 	proj->desc = NULL;
 	proj->secs = proj->day_secs = 0;
         proj->row = -1;
+	proj->task_list = NULL;
+	proj->sub_projects = NULL;
 	return proj;
 }
 
 
-project *project_new_title_desc(const char *t, const char *d)
+GttProject *project_new_title_desc(const char *t, const char *d)
 {
-	project *proj;
+	GttProject *proj;
 
 	proj = project_new();
 	if (!t || !d) return proj;
@@ -63,9 +66,9 @@ project *project_new_title_desc(const char *t, const char *d)
 
 
 
-project *project_dup(project *proj)
+GttProject *project_dup(GttProject *proj)
 {
-	project *p;
+	GttProject *p;
 
 	if (!proj) return NULL;
 	p = project_new();
@@ -79,12 +82,15 @@ project *project_dup(project *proj)
 		p->desc = g_strdup(proj->desc);
 	else
 		p->desc = NULL;
+
+	p->task_list = NULL;
+	p->sub_projects = NULL;
 	return p;
 }
 
 
 
-void project_destroy(project *proj)
+void project_destroy(GttProject *proj)
 {
 	if (!proj) return;
 	project_list_remove(proj);
@@ -92,12 +98,35 @@ void project_destroy(project *proj)
 	proj->title = NULL;
 	g_free(proj->desc);
 	proj->desc = NULL;
+
+        if (proj->task_list)
+	{
+		GList *node;
+		for (node=proj->task_list; node; node=node->next)
+		{
+			gtt_task_destroy (node->data);
+		}
+		g_list_free (proj->task_list);
+	}
+	proj->task_list = NULL;
+
+        if (proj->sub_projects)
+	{
+		GList *node;
+		for (node=proj->sub_projects; node; node=node->next)
+		{
+			project_destroy (node->data);
+		}
+		g_list_free (proj->sub_projects);
+	}
+	proj->sub_projects = NULL;
+
 	g_free(proj);
 }
 
 
 
-void project_set_title(project *proj, const char *t)
+void project_set_title(GttProject *proj, const char *t)
 {
 	if (!proj) return;
 	if (proj->title) g_free(proj->title);
@@ -112,7 +141,7 @@ void project_set_title(project *proj, const char *t)
 
 
 
-void project_set_desc(project *proj, const char *d)
+void project_set_desc(GttProject *proj, const char *d)
 {
 	if (!proj) return;
 	if (proj->desc) g_free(proj->desc);
@@ -125,7 +154,158 @@ void project_set_desc(project *proj, const char *d)
 		clist_update_desc(proj);
 }
 
+/* =========================================================== */
+/* zero out day counts if rolled past mignight */
 
+static void
+zero_on_rollover (time_t now, time_t last)
+{
+	struct tm t1, t0;
+	time_t diff = now - last;
+
+	/* zero out day counts */
+        if (0 < diff) 
+	{
+                memcpy(&t0, localtime(&last), sizeof(struct tm));
+                memcpy(&t1, localtime(&now), sizeof(struct tm));
+                if ((t0.tm_year != t1.tm_year) ||
+                    (t0.tm_yday != t1.tm_yday)) 
+		{
+                        project_list_time_reset();
+			log_endofday();
+                }
+        }
+}
+
+
+/* =========================================================== */
+
+void 
+gtt_project_timer_start (GttProject *proj)
+{
+	GttTask *task;
+	GttInterval *ival;
+
+	if (!proj) return;
+	if (NULL == proj->task_list)
+	{
+		task = gtt_task_new();
+		proj->task_list = g_list_prepend (NULL, task);
+	}
+
+	/* by definition, the current task is the one at the head 
+	 * of the list, and the current interval is  at the ehad 
+	 * of the task */
+	task = proj->task_list->data;
+	g_return_if_fail (task);
+	ival = g_new0 (GttInterval, 1);
+	ival->start = time(0);
+	ival->stop = 0;
+	ival->running = TRUE;
+	task->interval_list = g_list_prepend (task->interval_list, ival);
+}
+
+void 
+gtt_project_timer_update (GttProject *proj)
+{
+	GttTask *task;
+	GttInterval *ival;
+	time_t prev_update, now, diff;
+
+	if (!proj) return;
+	if (!proj->task_list) return;
+
+	/* by definition, the current task is the one at the head 
+	 * of the list, and the current interval is  at the ehad 
+	 * of the task */
+	task = proj->task_list->data;
+	g_return_if_fail (task);
+	g_return_if_fail (task->interval_list);
+	ival = task->interval_list->data;
+	g_return_if_fail (ival);
+
+
+	/* compute the delta change, update cached data */
+	if (0 != ival->stop)
+	{
+		prev_update = ival->stop;
+	}
+	else
+	{
+		prev_update = ival->start;
+	}
+	now = time(0);
+
+	/* zero out day counts if rolled past mignight */
+	zero_on_rollover (now, prev_update);
+
+	/* if timer isn't running, do nothing.  Its arguabley
+	 * an error condition if this routine was called with the timer
+	 * stopped .... maybe we should printf a complaint ?
+	 */
+	if (FALSE == ival->running) 
+	{
+		printf ("error: update called while timer stopped!\n");
+		return;
+	}
+
+	ival->stop = now;
+	diff = now - prev_update;
+	proj->secs += diff;
+	proj->day_secs += diff;
+}
+
+void 
+gtt_project_timer_stop (GttProject *proj)
+{
+	GttTask *task;
+	GttInterval *ival;
+
+	if (!proj) return;
+	if (!proj->task_list) return;
+
+	gtt_project_timer_update (proj);
+
+	/* Also note that the timer really has stopped. */
+	task = proj->task_list->data;
+	g_return_if_fail (task);
+	g_return_if_fail (task->interval_list);
+	ival = task->interval_list->data;
+	g_return_if_fail (ival);
+
+	ival->running = FALSE;
+}
+
+/* =========================================================== */
+
+GttTask *
+gtt_task_new (void)
+{
+	GttTask *task;
+
+	task = g_new0(GttTask, 1);
+	task->memo = NULL;
+	task->interval_list = NULL;
+	return task;
+}
+
+void
+gtt_task_destroy (GttTask *task)
+{
+	if (!task) return;
+	if (task->memo) g_free(task->memo);
+	task->memo = NULL;
+	if (task->interval_list)
+	{
+		GList *node;
+		for (node = task->interval_list; node; node=node->next)
+		{
+			g_free (node->data);
+		}
+		g_list_free (task->interval_list);
+		task->interval_list = NULL;
+	}
+}
 
 
 /*******************************************************************
@@ -135,7 +315,7 @@ void project_set_desc(project *proj, const char *d)
 project_list *plist = NULL;
 
 
-void project_list_add(project *p)
+void project_list_add(GttProject *p)
 {
 	project_list *t, *t2;
 
@@ -153,7 +333,7 @@ void project_list_add(project *p)
 
 
 
-void project_list_insert(project *p, int pos)
+void project_list_insert(GttProject *p, int pos)
 {
 	project_list *t, *t2;
 	int i;
@@ -178,7 +358,7 @@ void project_list_insert(project *p, int pos)
 
 
 
-void project_list_remove(project *p)
+void project_list_remove(GttProject *p)
 {
 	project_list *t, *t2;
 	
@@ -268,7 +448,7 @@ project_list_load_old(const char *fname)
 	FILE *f;
 	const char *realname;
 	project_list *pl, *t;
-	project *proj = NULL;
+	GttProject *proj = NULL;
 	char s[1024];
 	int i;
 	time_t tmp_time = -1;
@@ -385,10 +565,9 @@ project_list_load_old(const char *fname)
 	plist = pl;
 	project_list_destroy();
 	plist = t;
-	if (tmp_time > 0)
-		last_timer = tmp_time;
-	else
-		last_timer = 0;
+	if (tmp_time > 0) {
+		zero_on_rollover (time(0), tmp_time);
+	}
 	update_status_bar();
         if ((_n != config_show_tb_new) ||
             (_f != config_show_tb_file) ||
@@ -415,9 +594,10 @@ project_list_load_old(const char *fname)
 int
 project_list_load(const char *fname)
 {
+	time_t last_timer = -1;
         char s[256];
         int i, num;
-        project *proj;
+        GttProject *proj;
         int _n, _f, _c, _p, _t, _o, _h, _e;
 	gboolean got_default;
 
@@ -438,10 +618,15 @@ project_list_load(const char *fname)
         _h = config_show_tb_help;
         _e = config_show_tb_exit;
         last_timer = atol(gnome_config_get_string(GTT"Misc/LastTimer=-1"));
+	if (last_timer > 0) {
+		zero_on_rollover (time(0), last_timer);
+	}
 	if (gnome_config_get_int(GTT"Misc/TimerRunning=1")) {
 		start_timer();
+printf ("duuude we started a timer running on startup but we don't know which task to time !!\n");
 	} else {
 		stop_timer();
+printf ("duuude timer is stopped on startup\n");
 	}
         config_show_secs = gnome_config_get_bool(GTT"Display/ShowSecs=false");
         config_show_clist_titles = gnome_config_get_bool(GTT"Display/ShowTableHeader=false");
@@ -525,7 +710,7 @@ project_list_save(const char *fname)
         int i, old_num;
 
         old_num = gnome_config_get_int(GTT"Misc/NumProjects=0");
-        g_snprintf(s, sizeof (s), "%ld", last_timer);
+        g_snprintf(s, sizeof (s), "%ld", time(0));
         gnome_config_set_string(GTT"Misc/LastTimer", s);
         gnome_config_set_int(GTT"Misc/TimerRunning", (main_timer != 0));
         gnome_config_set_bool(GTT"Display/ShowSecs", config_show_secs);
@@ -645,7 +830,7 @@ project_list_export (const char *fname)
 
 
 
-char *project_get_timestr(project *proj, int show_secs)
+char *project_get_timestr(GttProject *proj, int show_secs)
 {
 	static char s[20];
 	time_t t;
@@ -679,7 +864,7 @@ char *project_get_timestr(project *proj, int show_secs)
 	return s;
 }
 
-char *project_get_total_timestr(project *proj, int show_secs)
+char *project_get_total_timestr(GttProject *proj, int show_secs)
 {
 	static char s[20];
 	time_t t;

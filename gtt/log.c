@@ -20,6 +20,7 @@
 #include <gnome.h>
 
 #include "gtt.h"
+#include "proj_p.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -27,7 +28,8 @@
 #define CAN_LOG ((config_logfile_name!=NULL)&&(config_logfile_use))
 
 
-static gboolean log_write(time_t t, const char *s)
+static gboolean 
+log_write(time_t t, const char *s)
 {
 	FILE *f;
 	char date[256];
@@ -68,7 +70,7 @@ static gboolean log_write(time_t t, const char *s)
 
 
 static char *
-build_log_entry(const char *format, project *proj)
+build_log_entry(const char *format, GttProject *proj)
 {
 	GString *str;
 	char tmp[256];
@@ -147,7 +149,7 @@ build_log_entry(const char *format, project *proj)
 }
 
 static void
-do_log_proj (time_t t, project *proj, gboolean start)
+do_log_proj (time_t t, GttProject *proj, gboolean start)
 {
 	char *s;
 
@@ -161,9 +163,9 @@ do_log_proj (time_t t, project *proj, gboolean start)
 }
 
 static void
-log_proj_intern (project *proj, gboolean log_if_equal)
+log_proj_intern (GttProject *proj, gboolean log_if_equal)
 {
-	static project *last_proj = NULL;
+	static GttProject *last_proj = NULL;
 	static gboolean logged_last = FALSE;
 	static time_t logged_last_time = 0;
 	time_t t;
@@ -210,7 +212,7 @@ log_proj_intern (project *proj, gboolean log_if_equal)
 }
 
 void
-log_proj (project *proj)
+log_proj (GttProject *proj)
 {
 	if ( ! CAN_LOG)
 		return;

@@ -24,6 +24,7 @@
 #include <string.h>
 
 #include "gtt.h"
+#include "proj_p.h"
 
 
 /* I had some problems with the GtkStatusbar (frame and label didn't
@@ -37,7 +38,7 @@
 #endif
 
 
-project *cur_proj = NULL;
+GttProject *cur_proj = NULL;
 GtkWidget *glist, *window;
 #ifndef GNOME_USE_APP
 GtkBox *window_vbox;
@@ -132,7 +133,7 @@ void update_status_bar(void)
 
 
 
-void cur_proj_set(project *proj)
+void cur_proj_set(GttProject *proj)
 {
 	pid_t pid;
 	char *cmd, *p;

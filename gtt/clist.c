@@ -20,6 +20,7 @@
 #include <gnome.h>
 
 #include "gtt.h"
+#include "proj_p.h"
 
 /* There is a bug in clist which makes all but the last column headers
  * 0 pixels wide. This hack fixes this. */
@@ -251,7 +252,7 @@ setup_clist(void)
 
 
 void
-clist_add(project *p)
+clist_add(GttProject *p)
 {
 	char *tmp[4];
 
@@ -266,7 +267,7 @@ clist_add(project *p)
 
 
 void
-clist_insert(project *p, gint pos)
+clist_insert(GttProject *p, gint pos)
 {
 	project_list *pl;
 	char *tmp[4];
@@ -287,7 +288,7 @@ clist_insert(project *p, gint pos)
 
 
 void
-clist_remove(project *p)
+clist_remove(GttProject *p)
 {
 	project_list *pl;
 
@@ -302,7 +303,7 @@ clist_remove(project *p)
 
 
 void
-clist_update_label(project *p)
+clist_update_label(GttProject *p)
 {
 	g_return_if_fail(p->row != -1);
 	gtk_clist_set_text(GTK_CLIST(glist), p->row, TOTAL_COL,
@@ -315,7 +316,7 @@ clist_update_label(project *p)
 
 
 void
-clist_update_title(project *p)
+clist_update_title(GttProject *p)
 {
 	g_return_if_fail(p->row != -1);
 	gtk_clist_set_text(GTK_CLIST(glist), p->row, TITLE_COL,
@@ -324,7 +325,7 @@ clist_update_title(project *p)
 
 
 void
-clist_update_desc(project *p)
+clist_update_desc(GttProject *p)
 {
 	g_return_if_fail(p->row != -1);
 	gtk_clist_set_text(GTK_CLIST(glist), p->row, DESC_COL,

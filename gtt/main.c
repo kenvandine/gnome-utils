@@ -25,6 +25,7 @@
 #include <unistd.h>
 
 #include "gtt.h"
+#include "proj_p.h"
 
 #include "shorts.h"		/* SMH 2000-03-22: connect_short_cuts() */
 

@@ -21,41 +21,19 @@
 #include <string.h>
 
 #include "gtt.h"
+#include "proj_p.h"
 
 
 gint main_timer = 0;
-time_t last_timer = -1;
-static int timer_stopped = 1;
 
-
-
-static gint timer_func(gpointer data)
+static gint 
+timer_func(gpointer data)
 {
-	time_t t, diff_time;
-	struct tm t1, t0;
-
 	log_proj(cur_proj);
-	t = time(NULL);
-	if (last_timer != -1) {
-		memcpy(&t0, localtime(&last_timer), sizeof(struct tm));
-		memcpy(&t1, localtime(&t), sizeof(struct tm));
-		if ((t0.tm_year != t1.tm_year) ||
-		    (t0.tm_yday != t1.tm_yday)) {
-			log_endofday();
-			project_list_time_reset();
-		}
-                if (!timer_stopped)
-                        diff_time = t - last_timer;
-                else
-                        diff_time = 1;
-	} else {
-                diff_time = 1;
-        }
-        timer_stopped = 0;
-	last_timer = t;
 	if (!cur_proj) return 1;
-	cur_proj->secs += diff_time;
-	cur_proj->day_secs += diff_time;
+
+	gtt_project_timer_update (cur_proj);
+
 	if (config_show_secs) {
 		if (cur_proj->row != -1) clist_update_label(cur_proj);
 	} else if (cur_proj->day_secs % 60 == 0) {
@@ -65,14 +43,13 @@ static gint timer_func(gpointer data)
 }
 
 
-
-
 void menu_timer_state(int);
 
 void start_timer(void)
 {
 	if (main_timer) return;
 	log_proj(cur_proj);
+	gtt_project_timer_start (cur_proj);
 	main_timer = gtk_timeout_add(1000, timer_func, NULL);
 	update_status_bar();
 }
@@ -83,9 +60,9 @@ void stop_timer(void)
 {
 	if (!main_timer) return;
 	log_proj(NULL);
+	gtt_project_timer_update (cur_proj);
 	gtk_timeout_remove(main_timer);
 	main_timer = 0;
-        timer_stopped = 1;
 	update_status_bar();
 }
 

@@ -21,6 +21,7 @@
 #include <string.h>
 
 #include "gtt.h"
+#include "proj_p.h"
 
 /* XXX: this is our main window, perhaps it is a bit ugly this way and
  * should be passed around in the data fields */
@@ -78,7 +79,7 @@ static void
 project_name_desc(GtkWidget *w, GtkEntry **entries)
 {
 	char *name, *desc;
-	project *proj;
+	GttProject *proj;
 
 	if (!(name = gtk_entry_get_text(entries[0]))) return;
         if (!(desc = gtk_entry_get_text(entries[1]))) return;
@@ -266,7 +267,7 @@ export_current_state (GtkWidget *widget, gpointer data)
 }
 
 
-project *cutted_project = NULL;
+GttProject *cutted_project = NULL;
 
 void
 cut_project(GtkWidget *w, gpointer data)
@@ -287,7 +288,7 @@ void
 paste_project(GtkWidget *w, gpointer data)
 {
 	int pos;
-	project *p;
+	GttProject *p;
 	
 	if (!cutted_project) return;
 	p = project_dup(cutted_project);

@@ -1,0 +1,67 @@
+/*   gtt project private data structure file.
+ *   Copyright (C) 2001 Linas Vepstas
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+#ifndef __GTT_PROJ_P_H__
+#define __GTT_PROJ_P_H__
+
+
+#ifdef TIME_WITH_SYS_TIME
+#include <sys/time.h>
+#include <time.h>
+#else
+#ifdef TM_IN_SYS_TIME
+#include <sys/time.h>
+#endif /* TM_IN_SYS_TIME */
+#include <time.h>
+#endif /* TIME_WITH_SYS_TIME */
+
+
+#include "gtt.h"
+
+
+struct gtt_project_s {
+	char *title;
+	int secs;
+	int day_secs;
+	char *desc;
+        gint row;
+
+	GList *task_list;
+	GList *sub_projects;
+};
+
+
+/* A 'task' is a group of start-stops that have a common 'memo'
+ * associated with them.   Note that by definition, the 'current',
+ * active interval is the one at the head of the list.
+ */
+struct gtt_task_s {
+	char * memo;
+	GList *interval_list;   /* collection of start-stop's */
+};
+
+/* one start-stop interval */
+struct gtt_interval_s {
+	time_t	start;		/* when the timer started */
+	time_t	stop;		/* if stopped, shows when timer stopped, 
+				 * if running, then the most recent log point */
+	short	running;	/* boolean: is the timer running? */
+};
+
+
+#endif /* __GTT_PROJ_P_H__ */

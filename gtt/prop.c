@@ -22,6 +22,7 @@
 #include <string.h>
 
 #include "gtt.h"
+#include "proj_p.h"
 
 /* XXX: this is our main window, perhaps it is a bit ugly this way and
  * should be passed around in the data fields */
@@ -38,7 +39,7 @@ typedef struct _PropDlg {
 		GtkEntry *h, *m, *s;
 	} ever, day;
 	GtkEntry *title, *desc;
-	project *proj;
+	GttProject *proj;
 } PropDlg;
 
 
@@ -105,7 +106,7 @@ static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 
 static PropDlg *dlg = NULL;
 
-void prop_dialog_set_project(project *proj)
+void prop_dialog_set_project(GttProject *proj)
 {
 	char s[128];
 
@@ -152,7 +153,7 @@ void prop_dialog_set_project(project *proj)
 
 
 
-void prop_dialog(project *proj)
+void prop_dialog(GttProject *proj)
 {
         static GnomeHelpMenuEntry help_entry = { NULL, "index.html#PROP" };
 	GtkWidget *w, *e;

@@ -20,7 +20,7 @@
 #define __MENUCMD_H__
 
 
-extern project *cutted_project;
+extern GttProject *cutted_project;
 
 
 void quit_app(GtkWidget *, gpointer);

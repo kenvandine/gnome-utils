@@ -73,7 +73,7 @@ add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
 void
 toolbar_set_states(void)
 {
-        extern project *cutted_project;
+        extern GttProject *cutted_project;
 	GtkToolbarStyle tb_style;
 
         g_return_if_fail(mytbar != NULL);

@@ -31,7 +31,7 @@
 #endif /* TIME_WITH_SYS_TIME */
 
 
-typedef struct _project project;
+typedef struct gtt_project_s GttProject;
 
 #include "dialog.h"
 #include "menucmd.h"
@@ -44,7 +44,6 @@ typedef struct _project project;
 #define APP_NAME "GTimeTracker"
 #define RC_NAME ".gtimetrackerrc"
 #endif
-
 
 
 /* menus.h */
@@ -65,7 +64,6 @@ void err_init(void);
 /* timer.c */
 
 extern gint main_timer;
-extern time_t last_timer;
 
 void start_timer(void);
 void stop_timer(void);
@@ -73,33 +71,39 @@ void stop_timer(void);
 
 
 /* proj.c */
-
-struct _project {
-	char *title;
-	int secs, day_secs;
-	char *desc;
-        gint row;
-};
+typedef struct gtt_task_s GttTask;
+typedef struct gtt_interval_s GttInterval;
 
 typedef struct _project_list {
-	project *proj;
+	GttProject *proj;
 	struct _project_list *next;
 } project_list;
+
+
 
 extern project_list *plist;
 extern char *first_proj_title;
 
 
-project *project_new(void);
-project *project_new_title_desc(const char *, const char *);
-project *project_dup(project *);
-void project_destroy(project *);
-void project_set_title(project *proj, const char *t);
-void project_set_desc(project *proj, const char *d);
+GttProject *project_new(void);
+GttProject *project_new_title_desc(const char *, const char *);
+GttProject *project_dup(GttProject *);
+void project_destroy(GttProject *);
+void project_set_title(GttProject *proj, const char *t);
+void project_set_desc(GttProject *proj, const char *d);
 
-void project_list_add(project *p);
-void project_list_insert(project *p, int pos);
-void project_list_remove(project *p);
+/* The project_timer_start() routine logs the time when
+ *    a new task interval starts.
+ * The project_timer_update() routine updates the end-time
+ *    for a task interval. 
+ */
+void gtt_project_timer_start (GttProject *);
+void gtt_project_timer_update (GttProject *);
+void gtt_project_timer_stop (GttProject *);
+
+void project_list_add(GttProject *p);
+void project_list_insert(GttProject *p, int pos);
+void project_list_remove(GttProject *p);
 void project_list_destroy(void);
 void project_list_time_reset(void);
 int project_list_load(const char *fname);
@@ -110,14 +114,18 @@ void project_list_sort_total_time(void);
 void project_list_sort_title(void);
 void project_list_sort_desc(void);
 
-char *project_get_timestr(project *p, int show_secs);
-char *project_get_total_timestr(project *p, int show_secs);
+char *project_get_timestr(GttProject *p, int show_secs);
+char *project_get_total_timestr(GttProject *p, int show_secs);
+
+/* tasks */
+GttTask *	gtt_task_new (void);
+void 		gtt_task_destroy (GttTask *task);
 
 
 /* prop.c */
 
-void prop_dialog_set_project(project *proj);
-void prop_dialog(project *proj);
+void prop_dialog_set_project(GttProject *proj);
+void prop_dialog(GttProject *proj);
 
 /* options.c */
 
@@ -126,7 +134,7 @@ void options_dialog(void);
 
 /* log.c */
 
-void log_proj(project *proj);
+void log_proj(GttProject *proj);
 void log_start(void);
 void log_exit(void);
 void log_endofday(void);
@@ -134,7 +142,7 @@ void log_endofday(void);
 
 /* app.c */
 
-extern project *cur_proj;
+extern GttProject *cur_proj;
 extern GtkWidget *glist, *window;
 extern GtkWidget *status_bar;
 extern int config_show_secs;
@@ -156,7 +164,7 @@ extern char *config_command, *config_command_null, *config_logfile_name,
 extern int config_logfile_use, config_logfile_min_secs;
 
 void update_status_bar(void);
-void cur_proj_set(project *p);
+void cur_proj_set(GttProject *p);
 
 void app_new(int argc, char *argv[], const char *geometry_string);
 
@@ -167,12 +175,12 @@ extern int clist_header_width_set;
 
 GtkWidget *create_clist(void);
 void setup_clist(void);
-void clist_add(project *p);
-void clist_insert(project *p, gint pos);
-void clist_remove(project *p);
-void clist_update_label(project *p);
-void clist_update_title(project *p);
-void clist_update_desc(project *p);
+void clist_add(GttProject *p);
+void clist_insert(GttProject *p, gint pos);
+void clist_remove(GttProject *p);
+void clist_update_label(GttProject *p);
+void clist_update_title(GttProject *p);
+void clist_update_desc(GttProject *p);
 
 
 /* main.c */
