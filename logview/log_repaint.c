@@ -479,8 +479,8 @@ UpdateStatusArea ()
     }
 
   tdm = &curlog->curmark->fulldate;
-  sprintf (status_text, "%02d/%02d/%02d", 
-	   tdm->tm_mday, tdm->tm_mon, tdm->tm_year % 100);
+  g_snprintf (status_text, sizeof (status_text), "%02d/%02d/%02d", 
+	      tdm->tm_mday, tdm->tm_mon, tdm->tm_year % 100);
   gtk_label_get ( date_label, (char **)&buffer);
   if (strcmp (status_text, buffer) != 0)
     gtk_label_set_text (date_label, status_text);
@@ -563,21 +563,21 @@ DrawLogLine (LogLine *line, int y)
   gdk_gc_set_foreground (gc, &cfg->black);
   
   if (line->hour >= 0 && line->min >= 0 && line->sec >= 0)
-    sprintf (tmp, "%02d:%02d:%02d", line->hour, line->min, line->sec);
+    g_snprintf (tmp, sizeof (tmp), "%02d:%02d:%02d", line->hour, line->min, line->sec);
   else
-    sprintf (tmp, " ");
+    strcpy (tmp, " ");
   gdk_draw_string (canvas, cfg->fixedb, gc, LOG_COL1, y, tmp);
 
   /* Print four spaces */
   col_pos = LOG_COL1 + strlen(tmp)*char_width;
-  sprintf (tmp, "    ");
+  strcpy (tmp, "    ");
   gdk_draw_string (canvas, cfg->fixedb, gc, col_pos, y, tmp);
   col_pos = col_pos + 4*char_width;
 
-  sprintf (tmp, " ");
+  strcpy (tmp, " ");
   if(user_prefs->hostname_column_width > 0)
   {
-  	sprintf (tmp, "%s", line->hostname);
+  	g_snprintf (tmp, sizeof (tmp), "%s", line->hostname);
   	if (strlen (tmp) > user_prefs->hostname_column_width)
     		tmp[user_prefs->hostname_column_width+1] = '\0';
   }
@@ -585,14 +585,14 @@ DrawLogLine (LogLine *line, int y)
 
   /* Print four spaces */
   col_pos = col_pos + user_prefs->hostname_column_width*char_width;
-  sprintf (tmp, "    ");
+  strcpy (tmp, "    ");
   gdk_draw_string (canvas, cfg->fixedb, gc, col_pos, y, tmp);
   col_pos = col_pos + 4*char_width;
 
-  sprintf (tmp, " ");
+  strcpy (tmp, " ");
   if(user_prefs->process_column_width > 0)
   {
-  	sprintf (tmp, "%s", line->process);
+  	g_snprintf (tmp, sizeof (tmp), "%s", line->process);
   	if (strlen (tmp) > user_prefs->process_column_width)
     		tmp[user_prefs->process_column_width+1] = '\0';
   }
@@ -600,7 +600,7 @@ DrawLogLine (LogLine *line, int y)
 
   /* Print four spaces */
   col_pos = col_pos + user_prefs->process_column_width*char_width;
-  sprintf (tmp, "    ");
+  strcpy (tmp, "    ");
   gdk_draw_string (canvas, cfg->fixedb, gc, col_pos, y, tmp);
   col_pos = col_pos + 4*char_width;
 
@@ -635,7 +635,10 @@ DrawMonthHeader (LogLine * line, int y)
    Draw3DBox (canvas, gc, 5, y - log_line_sep + skip , canvas_width - 10, 2*log_line_sep-skip, color);
 
    gdk_gc_set_foreground (gc, &cfg->black);
-   sprintf (buf, "%s %d", _(month[(int) line->month]), line->date);
+   if (line->month >= 0 && line->month < 12)
+	   g_snprintf (buf, sizeof (buf), "%s %d", _(month[(int) line->month]), line->date);
+   else
+	   g_snprintf (buf, sizeof (buf), "?%d? %d", (int) line->month, line->date);
    gdk_draw_string (canvas, cfg->headingb, gc, LOG_COL1 - 1, centery + 1, buf);
    gdk_gc_set_foreground (gc, &cfg->white);
    gdk_draw_string (canvas, cfg->headingb, gc, LOG_COL1, centery, buf);
