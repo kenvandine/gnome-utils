@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2003-01-20 22:26+0000\n"
+"POT-Creation-Date: 2003-01-16 16:12+0100\n"
 "PO-Revision-Date: 2000-05-07 01:59+0200\n"
 "Last-Translator: andraz.tori1@guest.arnes.si\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -464,7 +464,6 @@ msgid ""
 msgstr "Izberi, kopiraj in prilepi znake vaše pisave v druge programe"
 
 #: gcharmap/src/callbacks.c:130 gcharmap/src/callbacks.c:138
-#, c-format
 msgid "Character code: (Unicode) U%04lX"
 msgstr "Koda znaka: (Unicode) U%04lX"
 
@@ -473,7 +472,6 @@ msgstr "Koda znaka: (Unicode) U%04lX"
 msgid "Character code: (Unicode) U%04lX, (%s) 0x%s"
 msgstr "Koda znaka: (Unicode) U%04lX, (%s) 0x%s"
 
-#: gcharmap/src/callbacks.c:192
 msgid "Text copied to clipboard..."
 msgstr "Besedilo skopirano na odložišče..."
 
@@ -885,8 +883,7 @@ msgid ""
 "Specify whether to use smart lookup. This key is dependant on whether the "
 "dictionary server supports this option. The default is TRUE"
 msgstr ""
-"Navedi ali uporabiti pametno poizvedbo. Ta ključ je odvisen od tega kater "
-"strežnik slovarjev podpira to možnost. Privzeto je TRUE (resnično)."
+"Navedi ali uporabiti pametno poizvedbo. Ta ključ je odvisen od tega kater strežnik slovarjev podpira to možnost. Privzeto je TRUE (resnično)."
 
 #: gdictsrc/gdict.schemas.in.h:4
 msgid "The database to use in the dictionary server."
@@ -923,8 +920,7 @@ msgid ""
 "within Levenshtein distance one"
 msgstr ""
 "Katera strategija iskanja naj se uporabi. To je odvisno od strategij, ki jih "
-"podpira strežnik slovarjev. Privzeta strategija je 'lev' - najdi besede z "
-"Levenshteinovo oddaljenosto ena."
+"podpira strežnik slovarjev. Privzeta strategija je 'lev' - najdi besede z Levenshteinovo oddaljenosto ena."
 
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
@@ -1099,8 +1095,7 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
-"EPripomoček za ustvarjanje datotečnega sistema (%s) je sporočil naslednje "
-"napake:\n"
+"EPripomoček za ustvarjanje datotečnega sistema (%s) je sporočil naslednje napake:\n"
 "\n"
 "%s (%d)"
 
@@ -1119,9 +1114,7 @@ msgid ""
 "EThe bad blocks checking utility (mbadblocks) reported the following "
 "errors:\n"
 "%s."
-msgstr ""
-"EPripomoček za preverjanje slabih blokov (mbadblocks) je sporočil naslednje "
-"napake:\n"
+msgstr "EPripomoček za preverjanje slabih blokov (mbadblocks) je sporočil naslednje napake:\n"
 "%s."
 
 #: gfloppy/src/gfloppy.c:443
@@ -1158,8 +1151,9 @@ msgid ""
 "<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
 "be installed in order to make a thorough DOS (fat) formatting."
 msgstr ""
-"<b>Opomba</b>: Pripomoček mbadblocks na ta sistem ni nameščen. Za celovito "
-"DOS (fat) formatiranje mora biti nameščen."
+"<b>Opomba</b>: Pripomoček mbadblocks na ta sistem ni nameščen. "
+"Za celovito DOS (fat) formatiranje mora biti nameščen."
+
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem settings</span>"
@@ -1173,7 +1167,6 @@ msgstr "<span weight=\"bold\">Vrsta formatiranja</span>"
 msgid "<span weight=\"bold\">Physical settings</span>"
 msgstr "<span weight=\"bold\">Fizični podatki</span>"
 
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
@@ -1238,8 +1231,7 @@ msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
-"Nameščen ni niti program mke2fs niti mkdosfs/mformat. Disket brez enega od "
-"njiju ne morete formatirati."
+"Nameščen ni niti program mke2fs niti mkdosfs/mformat. Disket brez enega od njiju ne morete formatirati."
 
 #: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, c-format
@@ -1292,8 +1284,7 @@ msgid ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr ""
-"Datoteka je bila formatirana, a najdeno in označeno je bilo<b>%d slabih "
-"blokov</b> (od %d)."
+"Datoteka je bila formatirana, a najdeno in označeno je bilo<b>%d slabih blokov</b> (od %d)."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -1312,8 +1303,9 @@ msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
 msgstr ""
-"0 za hitro formatiranje, 1 za običajno (doda nizkostopenjsko formatiranje) "
-"in 2 za celovito formatiranje (doda preverjanje slabih blokov)."
+"0 za hitro formatiranje, 1 za običajno (doda nizkostopenjsko formatiranje) in "
+"2 za celovito formatiranje (doda preverjanje slabih blokov)."
+
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
@@ -1332,13 +1324,12 @@ msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
 msgstr ""
-"TRUE (resnično) za nastavitev mkdosfs kot privzetega delavnega programa za "
-"formatiranje FAT ali FALSE za uporabo mtools."
+"TRUE (resnično) za nastavitev mkdosfs kot privzetega delavnega programa za formatiranje FAT ali "
+"FALSE za uporabo mtools."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr ""
-"ext2 za Linuxu domač datotečni sistem ali fat za datotečni sistem DOSa."
+msgstr "ext2 za Linuxu domač datotečni sistem ali fat za datotečni sistem DOSa."
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1570
 msgid "Search for Files"
@@ -1418,8 +1409,7 @@ msgstr "Nastavi besedilo 'poglej v mapo'"
 
 #: gsearchtool/gsearchtool.c:595
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr ""
-"Razvrsti datoteke po enem od sledečega: ime, mapa, velikost, vrsta ali datum"
+msgstr "Razvrsti datoteke po enem od sledečega: ime, mapa, velikost, vrsta ali datum"
 
 #: gsearchtool/gsearchtool.c:596
 msgid "Set sort order to descending, the default is ascending"
@@ -1484,7 +1474,6 @@ msgid "Enter a value for search rule"
 msgstr "Vpišite vrednost za iskalno pravilo"
 
 #: gsearchtool/gsearchtool.c:1125
-#, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klik za odstranitev pravila '%s'"
 
@@ -1589,12 +1578,11 @@ msgid "Searching..."
 msgstr "Iščem..."
 
 #: gsearchtool/gsearchtool-callbacks.c:299
-#, c-format
 msgid "This will open %d separate files. Are you sure you want to do this?"
-msgstr "To bo odprlo %d ločenih datotek. Ste prepričani, da to želite storiti?"
+msgstr ""
+"To bo odprlo %d ločenih datotek. Ste prepričani, da to želite storiti?"
 
 #: gsearchtool/gsearchtool-callbacks.c:302
-#, c-format
 msgid "Open %d Files?"
 msgstr "Odpri %d datotek"
 
@@ -1610,9 +1598,9 @@ msgid "Can't Display Location"
 msgstr "Ne morem prikazati lokacije"
 
 #: gsearchtool/gsearchtool-callbacks.c:404
-#, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
-msgstr "To bo odprlo %d ločenih map. Ste prepričani, da to želite storiti?"
+msgstr ""
+"To bo odprlo %d ločenih map. Ste prepričani, da to želite storiti?"
 
 #: gsearchtool/gsearchtool-callbacks.c:407
 #, c-format
@@ -1628,21 +1616,16 @@ msgid "Save Search Results As..."
 msgstr "Shrani izide iskanja kot..."
 
 #: gsearchtool/gsearchtool-callbacks.c:772
-#, c-format
 msgid ""
 "Cannot save search results.\n"
 "\"%s\" is a folder."
-msgstr ""
-"Ne morem shraniti izidov iskanja.\n"
-"\"%s\" je mapa."
+msgstr "Ne morem shraniti izidov iskanja.\n\"%s\" je mapa."
 
 #: gsearchtool/gsearchtool-callbacks.c:800
-#, c-format
 msgid "File \"%s\" already exists. Overwrite?"
 msgstr "Datoteka \"%s\" že obstaja. Prepiši?"
 
 #: gsearchtool/gsearchtool-callbacks.c:837
-#, c-format
 msgid "Cannot save search results to the file \"%s\"."
 msgstr "Ne morem shraniti izidov iskanja v datoteko \"%s\"."
 
@@ -1703,10 +1686,10 @@ msgid ""
 "under the conditions of the GNU General Public Licence. The log icon is a "
 "courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 msgstr ""
-"Ta program je del projekta GNOME. Logview prihaja BREZ KAKRŠNIHKOLI "
-"ZAgOTOVIL. To je prosto programje in pozvani ste, da ga redistributirate pod "
-"pogoji GNU Splošne Javne Licence. Ikona dnevnika je v lasti Tuomas-a "
-"Kuosmanen-a (znagnega kot tigert)."
+"Ta program je del projekta GNOME. Logview prihaja BREZ "
+"KAKRŠNIHKOLI ZAgOTOVIL. To je prosto programje in pozvani ste, da ga "
+"redistributirate pod pogoji GNU Splošne Javne Licence. Ikona dnevnika je v "
+"lasti Tuomas-a Kuosmanen-a (znagnega kot tigert)."
 
 #: logview/about.c:61
 msgid "GNOME System Log Viewer"
@@ -2148,8 +2131,8 @@ msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your distribution."
 msgstr ""
-"Določa dnevniško datoteko, ki se odpre ob zagonu. Privzeto je ali /var/adm/"
-"messages ali /var/log/messages, odvisno od distribucije Linuxa."
+"Določa dnevniško datoteko, ki se odpre ob zagonu. Privzeto je ali /var/adm/messages"
+" ali /var/log/messages, odvisno od distribucije Linuxa."
 
 #~ msgid "x^2"
 #~ msgstr "x^2"
