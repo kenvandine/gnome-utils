@@ -47,17 +47,17 @@ dist-hook:
 	$(mkinstalldirs) $(distdir)/gcolorsel
 	-cp $(srcdir)/gcolorsel/*.html gcolorsel/*.css $(distdir)/gcolorsel
 	-cp $(srcdir)/*.html $(distdir)
-	$(mkinstalldirs) $(distdir)/images
-	-cp $(srcdir)/images/*.png $(distdir)/images
+	$(mkinstalldirs) $(distdir)
+	-cp $(srcdir)/*.png $(distdir)
 
 install-data-local: index.html
-	$(mkinstalldirs) $(DESTDIR)$(gcolorsel_helpdir)/images
+	$(mkinstalldirs) $(DESTDIR)$(gcolorsel_helpdir)
 	-for file in $(srcdir)/gcolorsel/*.html $(srcdir)/gcolorsel/*.css; do \
 	basefile=`basename $$file`; \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gcolorsel_helpdir)/$$basefile; \
 	done
-	-for file in $(srcdir)/images/*.png ; do \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gcolorsel_helpdir)/images;\
+	-for file in $(srcdir)/*.png ; do \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gcolorsel_helpdir);\
 	done
 	$(mkinstalldirs) $(DESTDIR)$(gcolorsel_helpdir)/stylesheet-images
 	-for file in $(srcdir)/gcolorsel/stylesheet-images/*.gif; do \
