@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2000-05-06 12:37+0200\n"
-"PO-Revision-Date: 2000-05-06 12:44+02:00\n"
+"POT-Creation-Date: 2000-05-13 02:40+0200\n"
+"PO-Revision-Date: 2000-05-13 02:43+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -534,7 +534,7 @@ msgstr "Hjelp"
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:193
+#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:196
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Verdi"
@@ -543,7 +543,7 @@ msgstr "Verdi"
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:192
+#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:195
 msgid "Color"
 msgstr "Farge"
 
@@ -596,7 +596,7 @@ msgid "Help"
 msgstr "Hjelp"
 
 #: gstripchart/gstripchart.c:1789 gstripchart/gstripchart.c:2073
-#: mini-utils/gcolorsel/menus.c:824 mini-utils/gshutdown/gshutdown.c:319
+#: mini-utils/gcolorsel/menus.c:912 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "Om"
 
@@ -604,7 +604,7 @@ msgstr "Om"
 msgid "Params"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1801 mini-utils/gcolorsel/menus.c:814
+#: gstripchart/gstripchart.c:1801 mini-utils/gcolorsel/menus.c:902
 msgid "Exit"
 msgstr "Avslutt"
 
@@ -1464,11 +1464,11 @@ msgstr "Filnavn: "
 msgid "Date: "
 msgstr "Dato: "
 
-#: logview/logview.c:626
+#: logview/logview.c:611
 msgid "Too many open logs. Close one and try again"
 msgstr "For mange åpne logger. Lukk en og prøv på nytt"
 
-#: logview/logview.c:679
+#: logview/logview.c:664
 msgid "Open new logfile"
 msgstr "Åpne ny loggfil"
 
@@ -1532,94 +1532,139 @@ msgid "Description:"
 msgstr "Beskrivelse:"
 
 #. First view is considered as the default view ...
-#: mini-utils/gcolorsel/gcolorsel.c:22
+#: mini-utils/gcolorsel/gcolorsel.c:24
 msgid "List"
 msgstr "Liste"
 
-#: mini-utils/gcolorsel/gcolorsel.c:26
+#: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "Grid"
 msgstr "Rutenett"
 
-#: mini-utils/gcolorsel/gcolorsel.c:30 mini-utils/gcolorsel/menus.c:480
+#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:566
 msgid "Edit"
 msgstr "Redigér"
 
-#: mini-utils/gcolorsel/gcolorsel.c:38
+#: mini-utils/gcolorsel/gcolorsel.c:40
 msgid "File"
 msgstr "Fil"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40
+#: mini-utils/gcolorsel/gcolorsel.c:42
 msgid "Search RGB"
 msgstr "Søk RGB"
 
-#: mini-utils/gcolorsel/gcolorsel.c:42
+#: mini-utils/gcolorsel/gcolorsel.c:44
 msgid "Monitor"
 msgstr "Overvåk"
 
-#: mini-utils/gcolorsel/gcolorsel.c:44
+#: mini-utils/gcolorsel/gcolorsel.c:46
 msgid "Concat"
 msgstr "Slå sammen"
 
-#: mini-utils/gcolorsel/gcolorsel.c:88
+#: mini-utils/gcolorsel/gcolorsel.c:94
 #, c-format
 msgid "'%s' document has been modified; do you wish to save it ?"
 msgstr "dokumentet '%s' er endret; vil du lagre det?"
 
+#: mini-utils/gcolorsel/gcolorsel.c:204
+msgid "GColorsel was unable to paste colors from the clipboard."
+msgstr "GColorsel kunne ikke lime inn farger fra utklippstavlen."
+
+#: mini-utils/gcolorsel/gcolorsel.c:218
+msgid "Please select a file document before."
+msgstr "Vennligst velg et fildokument først."
+
+#: mini-utils/gcolorsel/gcolorsel.c:390
+msgid ""
+"I can't execute this action. Check that :\n"
+"\n"
+"1. You have associated an action with this event.\n"
+"2. The associated document still exits.\n"
+"3. The type of the associated document.\n"
+"\n"
+"Go to preferences, in the edit menu."
+msgstr ""
+"Kan ikke utføre denne handlingen. Sjekk at:\n"
+"\n"
+"1. Du har assosiert en handling med denne hendelsen.\n"
+"2. Det assosierte dokumentet fremdeles eksisterer.\n"
+"3. Typen til det assosierte dokumentet er riktig.\n"
+"\n"
+"Gå til brukervalg, i 'rediger' menyen."
+
 #. Init GnomeMDI
-#: mini-utils/gcolorsel/gcolorsel.c:148
+#: mini-utils/gcolorsel/gcolorsel.c:508
 msgid "GColorsel"
 msgstr "GColorsel"
 
-#: mini-utils/gcolorsel/menus.c:48
+#: mini-utils/gcolorsel/menus.c:52
 msgid "New Document"
 msgstr "Nytt dokument"
 
-#: mini-utils/gcolorsel/menus.c:49
+#: mini-utils/gcolorsel/menus.c:53
 msgid "Create a new document"
 msgstr "Opprett et nytt dokument"
 
-#: mini-utils/gcolorsel/menus.c:51
+#: mini-utils/gcolorsel/menus.c:55
 msgid "New View"
 msgstr "Ny visning"
 
-#: mini-utils/gcolorsel/menus.c:52
+#: mini-utils/gcolorsel/menus.c:56
 msgid "Create a new view for a document"
 msgstr "Opprett en ny visning for et dokument"
 
-#: mini-utils/gcolorsel/menus.c:58
+#: mini-utils/gcolorsel/menus.c:62
 msgid "Close document"
 msgstr "Lukk dokument"
 
-#: mini-utils/gcolorsel/menus.c:59
+#: mini-utils/gcolorsel/menus.c:63
 msgid "Close the current document"
 msgstr "Lukk aktivt dokument"
 
-#: mini-utils/gcolorsel/menus.c:61
+#: mini-utils/gcolorsel/menus.c:65
 msgid "Close view"
 msgstr "Lukk visning"
 
-#: mini-utils/gcolorsel/menus.c:62 mini-utils/gcolorsel/menus.c:818
+#: mini-utils/gcolorsel/menus.c:66 mini-utils/gcolorsel/menus.c:906
 msgid "Close the current view"
 msgstr "Lukk aktiv visning"
 
-#: mini-utils/gcolorsel/menus.c:79 mini-utils/gcolorsel/menus.c:818
+#: mini-utils/gcolorsel/menus.c:83 mini-utils/gcolorsel/menus.c:906
 #: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
 msgid "Close"
 msgstr "Lukk"
 
-#: mini-utils/gcolorsel/menus.c:90
+#: mini-utils/gcolorsel/menus.c:99
 msgid "Insert color"
 msgstr "Sett inn farge"
 
-#: mini-utils/gcolorsel/menus.c:92
+#: mini-utils/gcolorsel/menus.c:101
 msgid "Remove selected colors"
 msgstr "Fjern valgte farger"
 
-#: mini-utils/gcolorsel/menus.c:94
+#: mini-utils/gcolorsel/menus.c:103
 msgid "Edit selected colors ..."
 msgstr "Rediger valgte farger ..."
 
-#: mini-utils/gcolorsel/menus.c:165
+#: mini-utils/gcolorsel/menus.c:172
+#, c-format
+msgid ""
+"GColorsel was unable to save the file :\n"
+"\n"
+"%s\n"
+"\n"
+"Make sure that the path you provided exits,\n"
+"and that you have the approprate write permissions.\n"
+"\n"
+"Do you want to retry ?"
+msgstr ""
+"GColorsel kunne ikke lagre filen:\n"
+"\n"
+"%s\n"
+"\n"
+"Forsikre deg om at stien du oppga eksisterer,\n"
+"og at du har skriverettigheter til filen."
+
+#: mini-utils/gcolorsel/menus.c:191
 #, c-format
 msgid ""
 "GColorsel was unable to load the file:\n"
@@ -1636,27 +1681,27 @@ msgstr ""
 "Forsikre deg om at stien du oppga eksisterer,\n"
 "og at du har rettigheter til å åpne filen."
 
-#: mini-utils/gcolorsel/menus.c:184
+#: mini-utils/gcolorsel/menus.c:210
 msgid "Open Palette"
 msgstr "Åpne palett"
 
-#: mini-utils/gcolorsel/menus.c:209
+#: mini-utils/gcolorsel/menus.c:235
 msgid "Loading file, please wait ..."
 msgstr "Laster fil, vennligst vent..."
 
-#: mini-utils/gcolorsel/menus.c:240
+#: mini-utils/gcolorsel/menus.c:266
 msgid "Save Palette as"
 msgstr "Lagre palett som"
 
-#: mini-utils/gcolorsel/menus.c:287
+#: mini-utils/gcolorsel/menus.c:313
 msgid "File not saved ..."
 msgstr "Fil ikke lagret ..."
 
-#: mini-utils/gcolorsel/menus.c:297
+#: mini-utils/gcolorsel/menus.c:323
 msgid "File saved ..."
 msgstr "Fil lagret ..."
 
-#: mini-utils/gcolorsel/menus.c:375
+#: mini-utils/gcolorsel/menus.c:401
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -1669,9 +1714,10 @@ msgstr ""
 "\n"
 "Dette dokumentet vil også lukkes. Fortsett?\n"
 "\n"
-"Legg merke til at det virtuelle dokumentet %d bruker data fra dette dokumentet."
+"Legg merke til at det virtuelle dokumentet %d bruker data fra dette "
+"dokumentet."
 
-#: mini-utils/gcolorsel/menus.c:377
+#: mini-utils/gcolorsel/menus.c:403
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -1682,7 +1728,7 @@ msgstr ""
 "\n"
 "Dette dokumentet vil bli lukket også. Fortsett?"
 
-#: mini-utils/gcolorsel/menus.c:411
+#: mini-utils/gcolorsel/menus.c:437
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -1699,7 +1745,7 @@ msgstr ""
 "\n"
 "Vil du fortsette?"
 
-#: mini-utils/gcolorsel/menus.c:413
+#: mini-utils/gcolorsel/menus.c:439
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -1714,39 +1760,47 @@ msgstr ""
 "\n"
 "Vil du fortsette?"
 
-#: mini-utils/gcolorsel/menus.c:458
+#: mini-utils/gcolorsel/menus.c:487
 msgid "Gnome Color Browser"
 msgstr "Gnome fargeleser"
 
-#: mini-utils/gcolorsel/menus.c:461
+#: mini-utils/gcolorsel/menus.c:490
 msgid "Small utility to browse available X11 colors."
 msgstr "Lite verktøy for å bla gjennom tilgjengelige X11-farger."
 
-#: mini-utils/gcolorsel/menus.c:513
+#: mini-utils/gcolorsel/menus.c:599
 msgid "New Color"
 msgstr "Ny farge"
 
-#: mini-utils/gcolorsel/menus.c:814
+#: mini-utils/gcolorsel/menus.c:854
+msgid "View properties"
+msgstr "Vis egenskaper"
+
+#: mini-utils/gcolorsel/menus.c:869
+msgid "Document properties"
+msgstr "Egenskaper for dokument"
+
+#: mini-utils/gcolorsel/menus.c:902
 msgid "Exit the program"
 msgstr "Avslutt programmet"
 
-#: mini-utils/gcolorsel/menus.c:816
+#: mini-utils/gcolorsel/menus.c:904
 msgid "Open"
 msgstr "Åpne"
 
-#: mini-utils/gcolorsel/menus.c:816
+#: mini-utils/gcolorsel/menus.c:904
 msgid "Open a palette"
 msgstr "Åpne en palett"
 
-#: mini-utils/gcolorsel/menus.c:821
+#: mini-utils/gcolorsel/menus.c:909
 msgid "Grab"
 msgstr "Hent"
 
-#: mini-utils/gcolorsel/menus.c:821
+#: mini-utils/gcolorsel/menus.c:909
 msgid "Grab a color on the screen"
 msgstr "Hent en farge fra skjermen"
 
-#: mini-utils/gcolorsel/menus.c:824
+#: mini-utils/gcolorsel/menus.c:912
 msgid "About this application"
 msgstr "Om denne applikasjonen"
 
@@ -1771,7 +1825,7 @@ msgid "Float"
 msgstr "Flyttall"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:194 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:504 mini-utils/gw/gw.c:574
 msgid "Name"
 msgstr "Navn"
