@@ -5,8 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 2003-05-31 17:28-0700\n"
-"PO-Revision-Date: 2003-01-10 20:57+0700\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-07-03 12:57+0200\n"
+"PO-Revision-Date: 2003-07-24 15:31+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +18,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Đồ phụ tùng"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "Tìm từ điển"
 
@@ -35,19 +36,16 @@ msgid "_Help"
 msgstr "_Trợ giúp"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:3
-#, fuzzy
 msgid "_Look Up Selected Text"
-msgstr "Tìm chữ được chọn..."
+msgstr "_Tìm chữ được chọn..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-#, fuzzy
 msgid "_Preferences..."
-msgstr "Thông số..."
+msgstr "_Thông số..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-#, fuzzy
 msgid "_Show Dictionary"
-msgstr "_Từ điển"
+msgstr "_Hiện Từ điển"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
@@ -70,14 +68,14 @@ msgstr ""
 msgid "translator_credits"
 msgstr "Nguyễn Thái Ngọc Duy"
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "Từ điển GNOME"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Từ điển"
 
 #: gdictsrc/gdict-about.c:58
-#, fuzzy
 msgid "A client for the MIT dictionary server."
-msgstr "Client cho server từ điển MIT.\n"
+msgstr "Client cho server từ điển MIT."
 
 #: gdictsrc/gdict-app.c:125
 msgid "Spell-checking..."
@@ -142,10 +140,6 @@ msgstr "Kiểm tra chính tả"
 msgid "_Dictionary"
 msgstr "_Từ điển"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Từ điển"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Từ:"
@@ -167,7 +161,7 @@ msgstr "Nhập từ hoặc chọn một từ từ danh sách bên dưới"
 msgid "Look Up for a Word"
 msgstr "Tìm từ"
 
-#: gdictsrc/gdict-applet.c:272
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "_Tìm"
 
@@ -261,7 +255,6 @@ msgid "Enter a word to know the spelling"
 msgstr "Nhập một từ cần kiểm tra chính tả"
 
 #: gdictsrc/gdict-speller.c:154
-#, fuzzy
 msgid "Search s_trategy:"
 msgstr "Chiến lược _tìm:"
 
@@ -270,9 +263,8 @@ msgid "Click to do the spell check"
 msgstr "Nhấn để tiến hành kiểm tra chính tả"
 
 #: gdictsrc/gdict-speller.c:170
-#, fuzzy
 msgid "Search _results:"
-msgstr "_Kết quả tìm"
+msgstr "_Kết quả tìm:"
 
 #: gdictsrc/gdict-speller.c:230
 msgid "Check Spelling"
@@ -349,232 +341,210 @@ msgid "Format Floppy Disks"
 msgstr "Định dạng đĩa mềm"
 
 #: gfloppy/src/badblocks.c:94
-#, fuzzy
 msgid "Internal Error: Unable to seek to the correct location."
-msgstr "MLỗi nội tại: Không thể tìm vị trí đúng."
+msgstr "Lỗi nội tại: Không thể tìm vị trí đúng."
 
 #: gfloppy/src/badblocks.c:103
-#, fuzzy, c-format
+#, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
-msgstr "MLỗi nội tại: Giá trị lạ (%ld) trong do_test\n"
+msgstr "Lỗi nội tại: Giá trị lạ (%ld) trong do_test\n"
 
 #. while (!i)
 #. ;
 #: gfloppy/src/badblocks.c:261
-#, fuzzy
 msgid "Checking for bad blocks..."
-msgstr "MĐang kiểm tra tìm khối hỏng..."
+msgstr "Đang kiểm tra tìm khối hỏng..."
 
 #: gfloppy/src/badblocks.c:273
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr "MLỗi khi mở thiết bị %s để tìm khối hỏng\n"
+msgstr "Lỗi khi mở thiết bị %s để tìm khối hỏng\n"
 
 #: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
-#, fuzzy
 msgid "Checking for bad blocks... Done"
-msgstr "MĐang kiểm tra tìm khối hỏng... Xong"
+msgstr "Đang kiểm tra tìm khối hỏng... Xong"
 
 #: gfloppy/src/fdformat.c:49
-#, fuzzy
 msgid "Formatting the disk..."
-msgstr "MĐang định dạng đĩa..."
+msgstr "Đang định dạng đĩa..."
 
 #: gfloppy/src/fdformat.c:52
-#, fuzzy
 msgid "I don't know what this is, but it's very wrong."
-msgstr "EKhông biết đây là cái gì, nhưng chắc chắn là sai."
+msgstr "Không biết đây là cái gì, nhưng chắc chắn là sai."
 
 #: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
-#, fuzzy, c-format
+#, c-format
 msgid "Error formatting track #%d"
-msgstr "ELỗi khi định dạng track #%d"
+msgstr "Lỗi khi định dạng track #%d"
 
 #: gfloppy/src/fdformat.c:82
-#, fuzzy
 msgid "Error during completion of formatting"
-msgstr "ELỗi khi đang hoàn tất việc định dạng"
+msgstr "Lỗi khi đang hoàn tất việc định dạng"
 
 #. XXXX - need to tell parent we're finished
 #: gfloppy/src/fdformat.c:86
-#, fuzzy
 msgid "Formatting the disk... Done"
-msgstr "MĐang định dạng đĩa... Xong"
+msgstr "Đang định dạng đĩa... Xong"
 
 #. XXXX - tell parent we're starting verify stage
 #: gfloppy/src/fdformat.c:102
-#, fuzzy
 msgid "Verifying the format..."
-msgstr "MĐang kiểm tra định dạng..."
+msgstr "Đang kiểm tra định dạng..."
 
 #: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
-#, fuzzy
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
 "Please confirm that it is not write-protected."
 msgstr ""
-"EKhông thể ghi vào đĩa mềm.\n"
+"Không thể ghi vào đĩa mềm.\n"
 "\n"
 "Vui lòng kiểm tra xem đĩa có chống ghi hay không."
 
 #: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
-#, fuzzy, c-format
+#, c-format
 msgid "Insufficient permissions to open floppy device %s."
-msgstr "EKhông đủ quyền truy cập để mở thiết bị điều khiển đĩa mềm %s."
+msgstr "Không đủ quyền truy cập để mở thiết bị điều khiển đĩa mềm %s."
 
 #: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
-#, fuzzy
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
 "Please confirm that it is in the drive\n"
 "with the drive door shut."
 msgstr ""
-"EKhông thể truy cập đĩa mềm.\n"
+"Không thể truy cập đĩa mềm.\n"
 "\n"
 "Vui lòng kiểm tra xem có đĩa trong ổ đĩa hay chưa."
 
 #: gfloppy/src/fdformat.c:117
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s:%d"
 msgstr ""
-"ELỗi truy cập chung của đĩa mềm %s.\n"
+"Lỗi truy cập chung của đĩa mềm %s.\n"
 "\n"
 "Mã lỗi %s:%d"
 
 #: gfloppy/src/fdformat.c:140
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Read Error:\n"
 "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
-"ELỗi đọc:\n"
+"Lỗi đọc:\n"
 "Gặp vấn đề ở cylinder %d, yêu cầu %d, đọc được %d"
 
 #: gfloppy/src/fdformat.c:143
-#, fuzzy, c-format
+#, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
-msgstr "ELỗi đọc ở cylinder %d, yêu cầu %d, đọc được %d"
+msgstr "Lỗi đọc ở cylinder %d, yêu cầu %d, đọc được %d"
 
 #: gfloppy/src/fdformat.c:154
-#, fuzzy, c-format
+#, c-format
 msgid "Bad data in cyl %d.  Continuing... "
-msgstr "MDữ liệu hỏng ở cylinder %d. Tiếp tục..."
+msgstr "Dữ liệu hỏng ở cylinder %d. Tiếp tục..."
 
 #: gfloppy/src/fdformat.c:163
-#, fuzzy, c-format
+#, c-format
 msgid "Error closing device %s"
-msgstr "ELỗi khi đóng thiết bị %s"
+msgstr "Lỗi khi đóng thiết bị %s"
 
 #: gfloppy/src/fdformat.c:170
-#, fuzzy
 msgid "Verifying the format... Done"
-msgstr "MĐang kiểm tra định dạng... Xong"
+msgstr "Đang kiểm tra định dạng... Xong"
 
 #: gfloppy/src/fdformat.c:182
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write to device %s"
-msgstr "EKhông thể ghi vào thiết bị %s"
+msgstr "Không thể ghi vào thiết bị %s"
 
 #: gfloppy/src/fdformat.c:202
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s"
 msgstr ""
-"ELỗi chung khi truy cập thiết bị %s.\n"
+"Lỗi chung khi truy cập thiết bị %s.\n"
 "Mã lỗi %s"
 
 #: gfloppy/src/fdformat.c:214
-#, fuzzy
 msgid "Could not determine current floppy geometry."
-msgstr "EKhông thể xác định geometry hiện thời của đĩa mềm."
+msgstr "Không thể xác định geometry hiện thời của đĩa mềm."
 
 #: gfloppy/src/gfloppy.c:221
-#, fuzzy
 msgid "Error while creating a unique filename for the bad blocks list file."
-msgstr "ELỗi tạo tên tập tin duy nhất cho tập tin danh sách bad block."
+msgstr "Lỗi tạo tên tập tin duy nhất cho tập tin danh sách bad block."
 
 #: gfloppy/src/gfloppy.c:241
-#, fuzzy
 msgid "Error while filling the bad blocks list file."
-msgstr "ELỗi khi điền tập tin danh sách bad block."
+msgstr "Lỗi khi điền tập tin danh sách bad block."
 
 #: gfloppy/src/gfloppy.c:298
-#, fuzzy, c-format
+#, c-format
 msgid "Error while spawning the (%s) command: %s."
-msgstr "ELỗi khi thực hiện lệnh %s: %s."
+msgstr "Lỗi khi thực hiện lệnh (%s): %s."
 
 #: gfloppy/src/gfloppy.c:322
-#, fuzzy
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr "Eký hiệu bắt đầu mke2fs lạ, hủy bỏ."
+msgstr "Ký hiệu bắt đầu mke2fs không biết, hủy bỏ."
 
 #: gfloppy/src/gfloppy.c:336
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
 "\n"
 "%s (%d)"
 msgstr ""
-"ETiện ích tạo hệ thống tập tin (%s) gặp những lỗi sau:\n"
+"Tiện ích tạo hệ thống tập tin (%s) gặp những lỗi sau:\n"
 "\n"
 "%s (%d)"
 
 #: gfloppy/src/gfloppy.c:353
-#, fuzzy
 msgid "Abnormal child process termination."
-msgstr "EKết thúc tiến trình con bất thường."
+msgstr "Kết thúc tiến trình con bất thường."
 
 #: gfloppy/src/gfloppy.c:378
-#, fuzzy, c-format
+#, c-format
 msgid "Error while spawning the mbadblocks command: %s."
-msgstr "ELỗi thực hiện lệnh mbadblocks: %s."
+msgstr "Lỗi thực hiện lệnh mbadblocks: %s."
 
 #: gfloppy/src/gfloppy.c:390
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
-"ETiện ích kiểm tra bad block (mbadblocks) gặp những lỗi sau:\n"
+"Tiện ích kiểm tra bad block (mbadblocks) gặp những lỗi sau:\n"
 "%s."
 
 #: gfloppy/src/gfloppy.c:433
-#, fuzzy
 msgid "Abnormal mbadblocks child process termination."
-msgstr "EKết thúc tiến trình con mbadblocks bất thường."
+msgstr "Kết thúc tiến trình con mbadblocks bất thường."
 
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
-#, fuzzy
 msgid "Making filesystem on disk..."
-msgstr "MĐang tạo hệ thống tập tin trên đĩa..."
+msgstr "Đang tạo hệ thống tập tin trên đĩa..."
 
 #: gfloppy/src/gfloppy.c:467
-#, fuzzy
 msgid "Unable to create filesystem correctly."
-msgstr "EKhông thể tạo hệ thống tập tin đúng."
+msgstr "Không thể tạo hệ thống tập tin đúng."
 
 #: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
-#, fuzzy
 msgid "Making filesystem on disk... Done"
-msgstr "MĐang tạo hệ thống tập tin trên đĩa... Xong"
+msgstr "Đang tạo hệ thống tập tin trên đĩa... Xong"
 
 #: gfloppy/src/gfloppy.c:516
-#, fuzzy
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr "MĐang kiểm tra tìm khối hỏng... (có lẽ hơi lâu)"
+msgstr "Đang kiểm tra tìm khối hỏng... (có thể hơi lâu)"
 
 #: gfloppy/src/gfloppy.c:521
-#, fuzzy
 msgid "Error while checking the bad blocks."
-msgstr "ELỗi khi kiểm tra tìm khối hỏng."
+msgstr "Lỗi khi kiểm tra tìm khối hỏng."
 
 #: gfloppy/src/gfloppy2.glade.h:1
 msgid "    "
@@ -585,27 +555,21 @@ msgid "*"
 msgstr "*"
 
 #: gfloppy/src/gfloppy2.glade.h:3
-#, fuzzy
 msgid ""
 "<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
-msgstr ""
-"<b>Chú ý</b>: Tiện ích mbadblocks chưa được cài đặt. Nó phải được cài đặt để "
-"có thể tiến hành định dạng DOS (FAT) hoàn chỉnh."
+msgstr "<small><i><b>Chú ý</b>: Tiện ích mbadblocks chưa được cài đặt. Nó phải được cài đặt để có thể tiến hành định dạng DOS (FAT) hoàn chỉnh.</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-#, fuzzy
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
 msgstr "<span weight=\"bold\">Thiết lập hệ thống tập tin</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
-#, fuzzy
 msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">Chế độ định dạng</span>"
+msgstr "<span weight=\"bold\">Kiểu định dạng</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
-#, fuzzy
 msgid "<span weight=\"bold\">Physical Settings</span>"
 msgstr "<span weight=\"bold\">Thiết lập vật lý</span>"
 
@@ -736,7 +700,6 @@ msgid "Floppy formatting cancelled."
 msgstr "Định dạng đĩa mềm bị hủy."
 
 #: gfloppy/src/progress.c:175
-#, fuzzy
 msgid "Format Progress"
 msgstr "Tiến trình định dạng"
 
@@ -775,8 +738,8 @@ msgstr ""
 "DOS"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "Tìm tập tin"
 
@@ -785,43 +748,36 @@ msgid "Search your disk for files"
 msgstr "Tìm tập tin trên đĩa"
 
 #: gsearchtool/gsearchtool.c:73
-#, fuzzy
 msgid "Contains the _text"
-msgstr "Chứa chữ"
+msgstr "Chứa _chữ"
 
 #: gsearchtool/gsearchtool.c:75
-#, fuzzy
 msgid "_Date modified less than (days)"
-msgstr "Ngày sửa đổi nhỏ hơn (ngày)"
+msgstr "_Ngày sửa đổi nhỏ hơn (ngày)"
 
 #: gsearchtool/gsearchtool.c:76
-#, fuzzy
 msgid "Date modified more than (da_ys)"
-msgstr "Ngày sửa đổi lớn hơn (ngày)"
+msgstr "Ngày sửa đổi lớn hơn (n_gày)"
 
 #: gsearchtool/gsearchtool.c:78
-#, fuzzy
 msgid "S_ize at least (kilobytes)"
-msgstr "Kích thước ít nhất (kilo byte)"
+msgstr "_Kích thước ít nhất (kilo byte)"
 
 #: gsearchtool/gsearchtool.c:79
-#, fuzzy
 msgid "Si_ze at most (kilobytes)"
-msgstr "Kích thước lớn nhất (kilo byte)"
+msgstr "Kích thước _lớn nhất (kilo byte)"
 
 #: gsearchtool/gsearchtool.c:80
 msgid "File is empty"
 msgstr "Tập tin rỗng"
 
 #: gsearchtool/gsearchtool.c:82
-#, fuzzy
 msgid "Owned by _user"
-msgstr "Được sở hữu bởi người dùng"
+msgstr "Được sở hữu bởi người _dùng"
 
 #: gsearchtool/gsearchtool.c:83
-#, fuzzy
 msgid "Owned by _group"
-msgstr "Được sở hữu bởi nhóm"
+msgstr "Được sở hữu bởi _nhóm"
 
 #: gsearchtool/gsearchtool.c:84
 msgid "Owner is unrecognized"
@@ -829,27 +785,25 @@ msgstr "Không nhận ra chủ sở hữu"
 
 #: gsearchtool/gsearchtool.c:86
 msgid "Na_me does not contain"
-msgstr ""
+msgstr "Tên _không chứa"
 
 #: gsearchtool/gsearchtool.c:87
-#, fuzzy
 msgid "Name matches regular e_xpression"
 msgstr "Tập tin khớp biểu thức chính quy"
 
 #: gsearchtool/gsearchtool.c:89
-#, fuzzy
 msgid "Show hidden files and folders"
-msgstr "Thêm tập tin hoặc thư mục"
+msgstr "Hiện tập tin hoặc thư mục ẩn"
 
 #: gsearchtool/gsearchtool.c:90
 msgid "Follow symbolic links"
-msgstr "Đi theo các liên kết"
+msgstr "Theo các liên kết"
 
 #: gsearchtool/gsearchtool.c:91
 msgid "Include other filesystems"
 msgstr "Bao gồm các hệ thống tập tin khác"
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "Không tìm thấy"
 
@@ -860,7 +814,7 @@ msgstr ""
 #: gsearchtool/gsearchtool.c:872
 #, c-format
 msgid "The animation file is missing or invalid: %s"
-msgstr ""
+msgstr "Tập tin hoạt bị thiếu hoặc không hợp lệ: %s"
 
 #: gsearchtool/gsearchtool.c:927
 msgid "Searching..."
@@ -897,20 +851,33 @@ msgstr "Chọn ràng buộc '%s'"
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Chuyển tùy chọn không hợp lệ cho lệnh sortby."
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
-msgstr ""
+msgstr "(dừng)"
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+msgid "No Files Found"
+msgstr "Không tìm thấy"
+
+#: gsearchtool/gsearchtool.c:1242
 msgid "One file found"
 msgstr "Tìm thấy 1 tập tin"
 
 #: gsearchtool/gsearchtool.c:1243
+msgid "One File Found"
+msgstr "Tìm thấy 1 tập tin"
+
+#: gsearchtool/gsearchtool.c:1246
 #, c-format
 msgid "%d files found"
 msgstr "Tìm thấy %d tập tin"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, c-format
+msgid "%d Files Found"
+msgstr "Tìm thấy %d tập tin"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -918,7 +885,7 @@ msgstr ""
 "Những lỗi sau xuất hiện khi đang tìm kiếm.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -926,114 +893,108 @@ msgstr ""
 "\n"
 "... Quá nhiều lỗi, không thể hiển thị hết ..."
 
-#: gsearchtool/gsearchtool.c:1354
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1360
 msgid "Error while searching for files"
-msgstr "ELỗi khi kiểm tra tìm khối hỏng."
+msgstr "Lỗi khi kiểm tra tìm khối hỏng."
 
-#: gsearchtool/gsearchtool.c:1393
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1399
 msgid "Error parsing the search command"
-msgstr "ELỗi khi thực hiện lệnh %s: %s."
+msgstr "Lỗi phân tích lệnh tìm kiếm"
 
-#: gsearchtool/gsearchtool.c:1413
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1419
 msgid "Error running the search command"
-msgstr "ELỗi khi thực hiện lệnh %s: %s."
+msgstr "Lỗi thực hiện lệnh tìm kiếm"
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr "Mục nhập giá trị quy tắc tìm"
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "Nhập giá trị cho quy tắc tìm"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Nhấn vào để loại bỏ quy tắc '%s'"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 msgid "A_vailable options:"
 msgstr "Tùy chọn _hiện có:"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "Menu quy tắc tìm"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "Chọn một quy tắc tìm từ menu"
 
-#: gsearchtool/gsearchtool.c:1646
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1652
 msgid "S_earch results:"
-msgstr "_Kết quả tìm"
+msgstr "_Kết quả tìm:"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "Tên"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "Thư mục"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "Kích thước"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "Loại"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr "Ngày sửa đổi"
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
-msgstr ""
+msgstr "_Tên chứa:"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "Nhập tên tập tin bạn muốn tìm"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 msgid "_Look in folder:"
 msgstr "_Tìm trong thư mục:"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr "Duyệt"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Look in Folder Entry"
-msgstr "_Tìm trong thư mục:"
+msgstr "Tìm trong thư mục"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr "Nhập tên thư mục, nơi bạn muốn bắt đầu tìm"
 
-#: gsearchtool/gsearchtool.c:1903
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1909
 msgid "Show more _options"
-msgstr "Hiện thuộc tính log"
+msgstr "Hiện nhiều _tùy chọn hơn"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "Nhấn để bắt đầu tìm"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "Nhấn để chấm dứt tìm"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr "Không thể khởi động Bonobo."
 
@@ -1051,15 +1012,15 @@ msgstr "Lư_u kết quả là..."
 
 #: gsearchtool/gsearchtool-callbacks.c:102
 msgid "Could not open help document"
-msgstr ""
+msgstr "Không thể mở tài liệu"
 
 #: gsearchtool/gsearchtool-callbacks.c:307
-#, fuzzy, c-format
+#, c-format
 msgid "Open %d documents?"
-msgstr "Mở %d thư mục?"
+msgstr "Mở %d thư mục chứ?"
 
 #: gsearchtool/gsearchtool-callbacks.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate documents. Are you sure you want to do this?"
 msgstr ""
 "Hành động này sẽ mở %d thư mục riêng biệt. Bạn có chắc muốn thực hiện không?"
@@ -1068,18 +1029,17 @@ msgstr ""
 #: gsearchtool/gsearchtool-callbacks.c:648
 #, c-format
 msgid "Could not open document \"%s\""
-msgstr ""
+msgstr "Không thể mở tài liệu \"%s\""
 
 #: gsearchtool/gsearchtool-callbacks.c:365
 #: gsearchtool/gsearchtool-callbacks.c:649
-#, fuzzy
 msgid "There is no installed viewer capable of displaying the document."
-msgstr "Chưa cài đặt chương trình nào có khả năng hiển thị \"%s\"."
+msgstr "Chưa cài đặt chương trình nào có khả năng hiển thị tài liệu này."
 
 #: gsearchtool/gsearchtool-callbacks.c:411
-#, fuzzy, c-format
+#, c-format
 msgid "Open %d folders?"
-msgstr "Mở %d thư mục?"
+msgstr "Mở %d thư mục chứ?"
 
 #: gsearchtool/gsearchtool-callbacks.c:412
 #, c-format
@@ -1090,7 +1050,7 @@ msgstr ""
 #: gsearchtool/gsearchtool-callbacks.c:453
 #, c-format
 msgid "Could not open folder \"%s\""
-msgstr ""
+msgstr "Không thể mở thư muc \"%s\""
 
 #: gsearchtool/gsearchtool-callbacks.c:459
 msgid "The nautilus file manager is not running."
@@ -1103,27 +1063,27 @@ msgstr "Lư_u kết quả tìm kiếm là..."
 #: gsearchtool/gsearchtool-callbacks.c:877
 #, c-format
 msgid "Could not save document \"\" to %s"
-msgstr ""
+msgstr "Không thể lưu tài liệu \"\" vào %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:880
 msgid ""
 "You did not select a document name or the name selected was a folder.  The "
 "document is not saved."
-msgstr ""
+msgstr "Bạn chưa chọn tên tài liệu hoặc tên được chọn là thư mục. Tài liệu chưa được lưu."
 
 #: gsearchtool/gsearchtool-callbacks.c:903
 #, c-format
 msgid "The contents of the file \"%s\" will be lost."
-msgstr ""
+msgstr "Nội dung tập tin \"%s\" sẽ bị mất."
 
 #: gsearchtool/gsearchtool-callbacks.c:909
 msgid "Overwrite an existing file?"
-msgstr ""
+msgstr "Ghi đè tập tin đã có chứ?"
 
 #: gsearchtool/gsearchtool-callbacks.c:952
 #, c-format
 msgid "Could not save document \"%s\" to %s"
-msgstr ""
+msgstr "Không thể lưu tài liệu \"%s\" vào %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:957
 msgid ""
@@ -1168,14 +1128,13 @@ msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:44
 msgid "A system log viewer for GNOME."
-msgstr ""
+msgstr "Bộ xem log hệ thống của GNOME."
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
+msgid "System Log Viewer"
 msgstr "Trình xem log hệ thống"
 
 #: logview/actions.c:74
-#, fuzzy
 msgid "Action Database"
 msgstr "Cơ sở dữ liệu hành động"
 
@@ -1289,9 +1248,8 @@ msgid "View the system log file"
 msgstr "Xem tập tin log hệ thống"
 
 #: logview/info.c:65
-#, fuzzy
 msgid "Properties"
-msgstr "_Thuộc tính"
+msgstr "Thuộc tính"
 
 #: logview/info.c:111
 msgid "Size:"
@@ -1317,7 +1275,7 @@ msgstr "Số dòng:"
 msgid "Log Information"
 msgstr "Thông tin log"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<Chưa nạp log>"
 
@@ -1530,19 +1488,16 @@ msgid "Monitor Options"
 msgstr "Tùy chọn theo dõi"
 
 #: logview/monitor.c:111
-#, fuzzy
 msgid "Ac_tions..."
-msgstr "Hành động"
+msgstr "Hành động..."
 
 #: logview/monitor.c:137
-#, fuzzy
 msgid "_Select logs to monitor:"
-msgstr "Chọn log cần theo dõi:"
+msgstr "_Chọn log cần theo dõi:"
 
 #: logview/monitor.c:142
-#, fuzzy
 msgid "Currently _monitored logs:"
-msgstr "Log đang được theo dõi:"
+msgstr "_Log đang được theo dõi:"
 
 #: logview/monitor.c:190
 msgid "Add logs to monitor"
@@ -1554,12 +1509,10 @@ msgstr "Loại bỏ log, không cần theo dõi"
 
 #. Check boxes
 #: logview/monitor.c:246
-#, fuzzy
 msgid "_Hide application"
 msgstr "Ẩ_n ứng dụng"
 
 #: logview/monitor.c:254
-#, fuzzy
 msgid "_Execute actions"
 msgstr "_Thực hiện hành động"
 
@@ -1572,7 +1525,6 @@ msgid "tmp_list is NULL\n"
 msgstr "tmp_list là NULL\n"
 
 #: logview/monitor.c:457
-#, fuzzy
 msgid "Monitoring Logs..."
 msgstr "Đang theo dõi log..."
 
@@ -1581,33 +1533,31 @@ msgid "TOUCHED!!\n"
 msgstr "ĐÃ CẬP NHẬT!!\n"
 
 #: logview/zoom.c:63
-#, fuzzy
 msgid "Entry Detail"
 msgstr "Chi tiết _mục nhập"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "Ngày:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "Tiến trình:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "Thông điệp:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "Mô tả:"
 
-#: logview/zoom.c:130
-#, fuzzy
+#: logview/zoom.c:129
 msgid "Log Line Details"
 msgstr "Dòng log chi tiết cho"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%e %B %X"
 
@@ -1616,13 +1566,18 @@ msgid "Log file to open up on startup"
 msgstr "Tập tin log cần mở lúc khởi động"
 
 #: logview/logview.schemas.in.h:2
-#, fuzzy
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "Xác định tập tin log cần mở lúc khởi động. Mặc định hoặc là /var/adm/"
 "messages hoặc là /var/log/messages, tùy thuộc vào bản phân phối."
+
+#~ msgid "GNOME Dictionary"
+#~ msgstr "Từ điển GNOME"
+
+#~ msgid "GNOME System Log Viewer"
+#~ msgstr "Trình xem log hệ thống"
 
 #~ msgid "Gdialog progressbar"
 #~ msgstr "Thanh tiến trình GDialog"
@@ -2032,11 +1987,9 @@ msgstr ""
 #~ "Select, copy and paste characters from your font into other applications"
 #~ msgstr "Chọn, sao chép và dán các ký tự từ font của bạn vào ứng dụng khác"
 
-#, fuzzy
 #~ msgid "Character code: (Unicode) U+%04lX"
 #~ msgstr "Mã ký tự: (Unicode) U%04lX"
 
-#, fuzzy
 #~ msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
 #~ msgstr "Mã ký tự: (Unicode) U%04lX, (%s) 0x%s"
 
@@ -2154,34 +2107,6 @@ msgstr ""
 
 #~ msgid "File is _named:"
 #~ msgstr "Tập tin được định _tên:"
-
-#, fuzzy
-#~ msgid "Select the 'Date modified less than (days)' constraint"
-#~ msgstr "Đi theo các liên kết"
-
-#, fuzzy
-#~ msgid "Select the 'Date modified more than (days)' constraint"
-#~ msgstr "Đi theo các liên kết"
-
-#, fuzzy
-#~ msgid "Select the 'Size at most (kilobytes)' constraint"
-#~ msgstr "Dùng biểu thức chính quy"
-
-#, fuzzy
-#~ msgid "Select the 'Size at least (kilobytes)' constraint"
-#~ msgstr "Dùng biểu thức chính quy"
-
-#, fuzzy
-#~ msgid "Select the 'File matches regular expression' constraint"
-#~ msgstr "Dùng biểu thức chính quy"
-
-#, fuzzy
-#~ msgid "Select the 'Include other filesystems' constraint"
-#~ msgstr "Dùng biểu thức chính quy"
-
-#, fuzzy
-#~ msgid "No files found %s"
-#~ msgstr "Không tìm thấy"
 
 #~ msgid ""
 #~ "Client for MIT dictionary server.\n"
@@ -2302,20 +2227,6 @@ msgstr ""
 #~ msgid "DOS (fat)"
 #~ msgstr "DOS (fat)"
 
-#, fuzzy
-#~ msgid "Filesystem settings"
-#~ msgstr "Loại hệ thống tập tin:"
-
-#, fuzzy
-#~ msgid "Formatting mode"
-#~ msgstr "MĐang định dạng đĩa..."
-
-#, fuzzy
-#~ msgid ""
-#~ "Sorry, could not start the search.\n"
-#~ "%s\n"
-#~ msgstr "Nhấn để bắt đầu tìm"
-
 #~ msgid "x^2"
 #~ msgstr "x^2"
 
@@ -2378,9 +2289,6 @@ msgstr ""
 
 #~ msgid "symbolic link"
 #~ msgstr "liên kết"
-
-#~ msgid "No Files Found."
-#~ msgstr "Không tìm thấy."
 
 #~ msgid ""
 #~ "Cannot perform the search.\n"
@@ -2537,9 +2445,6 @@ msgstr ""
 
 #~ msgid "_Log"
 #~ msgstr "_Log"
-
-#~ msgid "System Log Viewer"
-#~ msgstr "Trình xem log hệ thống"
 
 #~ msgid "Cannot load required fonts, cannot continue"
 #~ msgstr "Không thể nạp font yêu cầu, không thể tiếp tục"
