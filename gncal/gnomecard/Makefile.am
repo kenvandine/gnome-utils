@@ -62,8 +62,7 @@ LINK_FLAGS = \
 
 gnomecard_LDADD = $(LINK_FLAGS)\
 	$(GNOME_LIBDIR) \
-	$(ORB_LIBS) \
-	 -lgnorba \
+	$(GNORBA_LIBS) \
 	$(GNOMEUI_LIBS)
 
 EXTRA_DIST =		\
