@@ -88,6 +88,8 @@ struct ProjTreeWindow_s
 	/* stuff that defines the column layout */
 	ColType cols[NCOLS];
 	char * col_titles[NCOLS];
+	char * col_tooltips[NCOLS];
+	GtkTooltips *col_tt_w[NCOLS];
 	GtkJustification col_justify[NCOLS];
 	gboolean col_width_set[NCOLS];
 	int ncols;
@@ -506,92 +508,136 @@ ctree_init_cols (ProjTreeWindow *ptw)
 		{
 			case TIME_EVER_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
-				ptw->col_titles[i] =  _("Total");
+				ptw->col_titles[i] = _("Total");
+				ptw->col_tooltips[i] = 
+					_("Total time spent on this project.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_CURRENT_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
-				ptw->col_titles[i] =  _("This Memo");
+				ptw->col_titles[i] = _("This Memo");
+				ptw->col_tooltips[i] = 
+					_("Time spent under the current "
+					"task memo.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_TODAY_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
-				ptw->col_titles[i] =  _("Today");
+				ptw->col_titles[i] = _("Today");
+				ptw->col_tooltips[i] =  
+					_("Time spent on this project today.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_WEEK_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
-				ptw->col_titles[i] =  _("Week");
+				ptw->col_titles[i] = _("Week");
+				ptw->col_tooltips[i] = 
+					_("Time spent on this project "
+					"this week.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_MONTH_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("Month");
+				ptw->col_tooltips[i] =  
+					_("Time spent on this project "
+					"this month.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_YEAR_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("Year");
+				ptw->col_tooltips[i] = 
+					_("Time spent on this project "
+					"this year.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case TITLE_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
-				ptw->col_titles[i] =  _("Project Title");
+				ptw->col_titles[i] =  _("Title");
+				ptw->col_tooltips[i] =  _("Project Title");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case DESC_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  _("Description");
+				ptw->col_tooltips[i] =  _("Description");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case TASK_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  _("Task");
+				ptw->col_tooltips[i] = 
+					_("The memo for the current task");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case START_COL:
-				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
-				ptw->col_titles[i] =  _("Estimated Start Date");
+				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
+				ptw->col_titles[i] =  _("Start");
+				ptw->col_tooltips[i] =  
+					_("Estimated Project Start Date");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case END_COL:
-				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
-				ptw->col_titles[i] =  _("Estimated End Date");
+				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
+				ptw->col_titles[i] =  _("End");
+				ptw->col_tooltips[i] =  
+					_("Estimated Project Completion Date");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case DUE_COL:
-				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
-				ptw->col_titles[i] =  _("Date Due");
+				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
+				ptw->col_titles[i] =  _("Due");
+				ptw->col_tooltips[i] =  
+					_("Due Date: the date by which "
+					"the project absolutely must be "
+					"completed by.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case SIZING_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
-				ptw->col_titles[i] =  _("Sizing");
+				ptw->col_titles[i] = _("Size");
+				ptw->col_tooltips[i] = 
+					_("Sizing: How much work it will "
+					"take to finish this project.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case PERCENT_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
-				ptw->col_titles[i] =  _("% Complete");
+				ptw->col_titles[i] =  _("Done");
+				ptw->col_tooltips[i] = 
+					_("Percent Complete: How much "
+					"of this project has been "
+					"finished till now.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case URGENCY_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
-				ptw->col_titles[i] =  _("Urgency");
+				ptw->col_titles[i] = _("U");
+				ptw->col_tooltips[i] = 
+					_("Urgency: Does this project need "
+					"to be done soon, done quickly?");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case IMPORTANCE_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
-				ptw->col_titles[i] =  _("Importance");
+				ptw->col_titles[i] = _("Imp");
+				ptw->col_tooltips[i] = 
+					_("Importance: How important "
+					"is this project?");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case STATUS_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
-				ptw->col_titles[i] =  _("Status");
+				ptw->col_titles[i] = _("Status");
+				ptw->col_tooltips[i] = 
+					_("The current status of this project.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case NULL_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  "";
+				ptw->col_tooltips[i] =  "";
 				ptw->col_width_set[i] = FALSE;
 				break;
 		}
@@ -732,7 +778,7 @@ ctree_update_column_visibility (ProjTreeWindow *ptw)
 				i, config_show_title_due_date);
 			break;
 		case SIZING_COL:
-			default_col_width (ptw, i, "xx.xx");
+			default_col_width (ptw, i, "XXX.XX");
 			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
 				i, config_show_title_sizing);
 			break;
@@ -774,8 +820,13 @@ ctree_update_column_visibility (ProjTreeWindow *ptw)
 		} else {						\
 			secs = gtt_project_total_secs_##SLOT(prj); 	\
 		}							\
-		print_hours_elapsed (ptn->SLOT##_timestr, 24, 		\
-			secs, config_show_secs);			\
+		if (0 < secs) { 					\
+			print_hours_elapsed (ptn->SLOT##_timestr, 24,	\
+				secs, config_show_secs);		\
+		} else {						\
+			ptn->SLOT##_timestr[0] = '-';			\
+			ptn->SLOT##_timestr[1] = 0x0;			\
+		}							\
 	}								\
 }
 
@@ -842,7 +893,8 @@ ctree_col_values (ProjTreeNode *ptn, gboolean expand)
 				if (0 < secs) {
 					print_date (ptn->start_timestr, 24, secs);
 				} else {
-					ptn->start_timestr[0] = 0x0;
+					ptn->start_timestr[0] = '-';
+					ptn->start_timestr[1] = 0x0;
 				}
 			}
 			break;
@@ -854,7 +906,8 @@ ctree_col_values (ProjTreeNode *ptn, gboolean expand)
 				if (0 < secs) {
 					print_date (ptn->end_timestr, 24, secs);
 				} else {
-					ptn->end_timestr[0] = 0x0;
+					ptn->end_timestr[0] = '-';
+					ptn->end_timestr[1] = 0x0;
 				}
 			}
 			break;
@@ -866,7 +919,8 @@ ctree_col_values (ProjTreeNode *ptn, gboolean expand)
 				if (0 < secs) {
 					print_date (ptn->due_timestr, 24, secs);
 				} else {
-					ptn->due_timestr[0] = 0x0;
+					ptn->due_timestr[0] = '-';
+					ptn->due_timestr[1] = 0x0;
 				}
 			}
 			break;
@@ -875,8 +929,14 @@ ctree_col_values (ProjTreeNode *ptn, gboolean expand)
 			if (config_show_title_sizing) {
 				int sz;
 				sz = gtt_project_get_sizing(prj);
-				snprintf (ptn->sizing_str, 24, 
-					"%.2f", (((double)sz)/3600.0));
+				if (0 < sz)
+				{
+					snprintf (ptn->sizing_str, 24, 
+						"%.2f", (((double)sz)/3600.0));
+				} else {
+					ptn->sizing_str[0] = '-';
+					ptn->sizing_str[1] = 0x0;
+				}
 			}
 			break;
 		case PERCENT_COL:
@@ -1052,6 +1112,17 @@ ctree_new(void)
 	}
 	gtk_clist_column_titles_active(GTK_CLIST(w));
 	gtk_clist_set_selection_mode(GTK_CLIST(w), GTK_SELECTION_SINGLE);
+
+	/* some columns are quite narrow, so put tooltips over them. */
+	for (i=0; i<ptw->ncols; i++)
+	{
+		GtkTooltips *tt;
+		tt = gtk_tooltips_new();
+		gtk_tooltips_enable (tt);
+		gtk_tooltips_set_tip (tt, GTK_CLIST(w)->column[i].button,
+			ptw->col_tooltips[i], NULL);
+		ptw->col_tt_w[i] = tt;
+	}
 
 	gtk_widget_set_usize(w, -1, 120);
 	ctree_update_column_visibility (ptw);
