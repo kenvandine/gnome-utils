@@ -27,13 +27,14 @@
 #include "dialog.h"
 #include "gtt.h"
 #include "menucmd.h"
+#include "shorts.h"		/* SMH 2000-03-22: connect_short_cuts() */
 #include "xml-gtt.h"
 
-#include "shorts.h"		/* SMH 2000-03-22: connect_short_cuts() */
 
+char *first_proj_title = NULL;  /* command line over-ride */
 
+/* SM == session management */
 #define USE_SM
-
 
 
 const char *

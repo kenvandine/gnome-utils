@@ -26,8 +26,7 @@ typedef struct gtt_project_s GttProject;
 typedef struct gtt_task_s GttTask;
 typedef struct gtt_interval_s GttInterval;
 
-extern char *first_proj_title;
-
+/* create, destroy a new project */
 GttProject *gtt_project_new(void);
 GttProject *gtt_project_new_title_desc(const char *, const char *);
 GttProject *project_dup(GttProject *);
@@ -37,7 +36,8 @@ void gtt_project_set_title(GttProject *, const char *);
 void gtt_project_set_desc(GttProject *, const char *);
 
 /* These two routines return the title & desc strings.
- * Do *not* free these strings when done. */
+ * Do *not* free these strings when done.  Note that 
+ * are freed when project is deleted. */
 const char * gtt_project_get_title (GttProject *);
 const char * gtt_project_get_desc (GttProject *);
 

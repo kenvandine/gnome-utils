@@ -108,6 +108,7 @@ extern int config_logfile_use, config_logfile_min_secs;
 
 extern gboolean geom_size_override;
 extern gboolean geom_place_override;
+extern char *first_proj_title;	/* command line flag */
 
 void update_status_bar(void);
 void cur_proj_set(GttProject *p);

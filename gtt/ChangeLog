@@ -2,12 +2,15 @@
 
 Fri Aug 24 23:05:16 CDT 2001
 	* app.c clist.c gtt.h main.c menucmd.c menus.c proj.c timer.c
-	  toolbar.c: small bug fix, also, add routine gboolean
-	  timer_is_running()
+	  toolbar.c: add routine gboolean timer_is_running()
+
+	* app.c main.c proj.c: bug fix, sometimes timer doesn't start right.
 
 	* file-io.c, proj.c: split out i/o routines to its own file
 	
 	* app.c, file-io.c: save and restore the window size and placement
+
+	* file-io.c: save and restore the current project
 
 Fri Aug 17 10:56:14 CDT 2001 Linas Vepstas <linas@linas.org>
 

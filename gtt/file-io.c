@@ -39,9 +39,6 @@
 #endif /* not DEBUG */
 
 
-char *first_proj_title = NULL;
-
-
 /* FIXME: we should not extern this; but for now its ok */
 extern GList * plist;
 
@@ -246,15 +243,27 @@ project_list_load(const char *fname)
         GttProject *proj;
         int _n, _f, _c, _p, _t, _o, _h, _e;
 	gboolean got_default;
+	int cur_proj_id = -1;
 
+	/* the old file type doesn't have numprojets in it */
         gnome_config_get_int_with_default(GTT"Misc/NumProjects=0", &got_default);
         if (got_default) {
                 return project_list_load_old(fname);
         }
-	if ((cur_proj) && (cur_proj->title) && (!first_proj_title)) {
-		first_proj_title = cur_proj->title;
+
+	/* If already running, and we are over-loading a new file,
+	 * then save the currently running project, and try to set it
+	 * running again ... */
+	if (gtt_project_get_title(cur_proj) && (!first_proj_title)) 
+	{
+		/* we need to strdup because title is freed when 
+		 * the project list is destroyed ... */
+		first_proj_title = g_strdup (gtt_project_get_title (cur_proj));
 	}
+
+	/* start with a clean slate */
         project_list_destroy();
+
         _n = config_show_tb_new;
         _f = config_show_tb_file;
         _c = config_show_tb_ccp;
@@ -263,22 +272,20 @@ project_list_load(const char *fname)
         _o = config_show_tb_pref;
         _h = config_show_tb_help;
         _e = config_show_tb_exit;
+
+	/* reset the clocks, if needed */
         last_timer = atol(gnome_config_get_string(GTT"Misc/LastTimer=-1"));
 	if (last_timer > 0) {
 		zero_on_rollover (time(0), last_timer);
 	}
-	if (gnome_config_get_int(GTT"Misc/TimerRunning=1")) {
-// FIXME. Actually, we need to make a policy decision in order to fix this ...
-		 // start_timer();
- // printf ("duuude we started a timer running on startup but we don't know which task to time !!\n");
-	} else {
-//		stop_timer();
-// printf ("duuude timer is stopped on startup\n");
-	}
 
-	/* reset the main window width and height to the values last stored
-	 * in the config file.  Note that if the user specified command-line flags,
-	 * then the command line over-rides the config file. */
+	/* get last running project */
+       	cur_proj_id = gnome_config_get_int(GTT"Misc/CurrProject=-1");
+
+	/* Reset the main window width and height to the values 
+	 * last stored in the config file.  Note that if the user 
+	 * specified command-line flags, then the command line 
+	 * over-rides the config file. */
 	if (!geom_place_override) 
 	{
 		int x, y;
@@ -339,12 +346,12 @@ project_list_load(const char *fname)
                 project_list_add(proj);
                 g_snprintf(s, sizeof (s), GTT"Project%d/Title", i);
                 gtt_project_set_title(proj, gnome_config_get_string(s));
-		if ((proj->title) && (first_proj_title)) {
-			if (0 == strcmp(proj->title, first_proj_title)) {
-				cur_proj_set(proj);
-				first_proj_title = NULL;
-			}
+
+		/* Match the last running project */
+		if (i == cur_proj_id) {
+			cur_proj_set(proj);
 		}
+
                 g_snprintf(s, sizeof (s), GTT"Project%d/Desc", i);
                 gtt_project_set_desc(proj, gnome_config_get_string(s));
                 g_snprintf(s, sizeof (s), GTT"Project%d/SecsEver=0", i);
@@ -352,7 +359,35 @@ project_list_load(const char *fname)
                 g_snprintf(s, sizeof (s), GTT"Project%d/SecsDay=0", i);
                 proj->day_secs = gnome_config_get_int(s);
         }
+
+	/* Over-ride the current project based on the 
+	 * command-line setting */
+	if (first_proj_title)
+	{
+		GList *node;
+        	for (node = gtt_get_project_list(); node; node = node->next) 
+		{
+			GttProject *prj = node->data;
+			if (!prj->title) continue;
+
+			/* set project based on command line */
+			if (0 == strcmp(prj->title, first_proj_title)) {
+				cur_proj_set(prj);
+				break;
+			}
+		}
+	}
 	first_proj_title = NULL;
+
+	/* if a project is running, then set it running again,
+	 * otherwise be sure to stop the clock. */
+	if (gnome_config_get_int(GTT"Misc/TimerRunning=1")) {
+		start_timer();
+	} else {
+		stop_timer();
+	}
+
+	/* redraw the GUI */
         update_status_bar();
         if ((_n != config_show_tb_new) ||
             (_f != config_show_tb_file) ||
@@ -364,6 +399,7 @@ project_list_load(const char *fname)
             (_e != config_show_tb_exit)) {
                 update_toolbar_sections();
         }
+
 #if 0
 	/* hack alert XXX FIXME bogus */
 	gtt_err_set_code (GTT_NO_ERR);
@@ -382,23 +418,22 @@ project_list_save(const char *fname)
 	GList *node;
         int i, old_num;
 	int x, y, w, h;
+	int cur_run_proj=-1;
 #if 0
 	/* hack alert XXX FIXME bogus */
 	gtt_xml_write_file ("/home/linas/.gnome/gtt.xml");
 #endif
+        old_num = gnome_config_get_int(GTT"Misc/NumProjects=0");
 
+	/* save the window location and size */
         gdk_window_get_origin(window->window, &x, &y);
         gdk_window_get_size(window->window, &w, &h);
-
-        old_num = gnome_config_get_int(GTT"Misc/NumProjects=0");
         gnome_config_set_int(GTT"Geometry/Width", w);
         gnome_config_set_int(GTT"Geometry/Height", h);
         gnome_config_set_int(GTT"Geometry/X", x);
         gnome_config_set_int(GTT"Geometry/Y", y);
 
-        g_snprintf(s, sizeof (s), "%ld", time(0));
-        gnome_config_set_string(GTT"Misc/LastTimer", s);
-        gnome_config_set_int(GTT"Misc/TimerRunning", (timer_is_running()));
+	/* save the configure dialog values */
         gnome_config_set_bool(GTT"Display/ShowSecs", config_show_secs);
         gnome_config_set_bool(GTT"Display/ShowTableHeader", config_show_clist_titles);
         gnome_config_set_bool(GTT"Toolbar/ShowIcons", config_show_tb_icons);
@@ -440,11 +475,18 @@ project_list_save(const char *fname)
 		g_snprintf(s, sizeof (s), GTT"CList/ColumnWidth%d", i);
 		gnome_config_set_int(s, GTK_CLIST(glist)->column[i].width);
 	}
+
+	/* save the individual projects */
         i = 0;
-        for (node = plist; node; node = node->next) 
+        for (node = gtt_get_project_list(); node; node = node->next) 
 	{
 		GttProject *prj = node->data;
                 if (!prj->title) continue;
+
+		/* get the file index of the current project */
+		if (prj == cur_proj) cur_run_proj = i;
+
+		/* save the project info */
                 g_snprintf(s, sizeof (s), GTT"Project%d/Title", i);
                 gnome_config_set_string(s, prj->title);
                 g_snprintf(s, sizeof (s), GTT"Project%d/Desc", i);
@@ -459,7 +501,14 @@ project_list_save(const char *fname)
                 gnome_config_set_int(s, prj->day_secs);
                 i++;
         }
+
+        g_snprintf(s, sizeof (s), "%ld", time(0));
+        gnome_config_set_string(GTT"Misc/LastTimer", s);
+        gnome_config_set_int(GTT"Misc/TimerRunning", (timer_is_running()));
         gnome_config_set_int(GTT"Misc/NumProjects", i);
+        gnome_config_set_int(GTT"Misc/CurrProject", cur_run_proj);
+
+	/* delete excess projects, if any */
         for (; i < old_num; i++) {
                 g_snprintf(s, sizeof (s), GTT"Project%d", i);
                 gnome_config_clean_section(s);
@@ -498,7 +547,7 @@ project_list_export (const char *fname)
 	 * I don't think most spreadsheets would handle that well. */
 	fprintf (fp, "Title\tDescription\tTotal time\tTime today\n");
 
-        for (node = plist; node; node = node->next) 
+        for (node = gtt_get_project_list(); node; node = node->next) 
 	{
 		GttProject *prj = node->data;
 		char *total_time, *time_today;
