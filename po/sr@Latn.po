@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
-"PO-Revision-Date: 2004-01-05 22:20+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-17 02:03+0100\n"
+"PO-Revision-Date: 2004-01-17 02:05+0100\n"
 "Last-Translator: Sasha Maric <sasha_maric@yahoo.com>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nognu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
@@ -606,8 +606,8 @@ msgid ""
 "formatting.</i></small>"
 msgstr ""
 "<small><b>Primedba</b>: Alat mbadblocks nije instaliran na ovom sistemu. Da "
-"bi se izvršilo detaljno DOS (fat) formatizovanje mora se prethodno "
-"instalirati.</small>"
+"bi se izvršilo detaljno DOS (fat) formatizovanje mora se prethodno instalirati."
+"</small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
@@ -682,8 +682,8 @@ msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
-"Ni mke2fs niti mkdosfs/mformat aplikacije nisu instalirane. Bez jedne od "
-"njih disketa se ne može formatizovati."
+"Ni mke2fs niti mkdosfs/mformat aplikacije nisu instalirane. Bez jedne od njih "
+"disketa se ne može formatizovati."
 
 #: gfloppy/src/main.c:164
 #, c-format
@@ -1256,19 +1256,30 @@ msgstr "Akcije"
 msgid "_Add"
 msgstr "_Dodaj"
 
+#: logview/actions.c:162
+msgid "Add an action"
+msgstr "Dodaj akciju"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "_Uređivanje"
+
+#: logview/actions.c:169
+msgid "Edit an action"
+msgstr "Uredite akciju"
 
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "_Ukloni"
 
+#: logview/actions.c:176
+msgid "Remove an action"
+msgstr "Uklonite akciju"
+
 #: logview/actions.c:263
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
-msgstr ""
-"Ne mogu da otvorim bazu podataka sa akcijama <%s>! Otvaranje neuspešno."
+msgstr "Ne mogu da otvorim bazu podataka sa akcijama <%s>! Otvaranje neuspešno."
 
 #: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
 #: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
@@ -1307,6 +1318,52 @@ msgstr "akcija za izvođenje kad se slažu regularni izrazi"
 #: logview/actions.c:515
 msgid "description"
 msgstr "opis"
+
+#: logview/actions.c:651
+msgid "Edit Action"
+msgstr "Uredi akciju"
+
+#: logview/actions.c:687
+msgid "_Tag:"
+msgstr "_Oznaka:"
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr "Oznaka koja određuje datoteku dnevnika."
+
+#: logview/actions.c:705
+msgid "_Log name:"
+msgstr "Ime _dnevnika:"
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr "Regularni izraz sa kojim se poklapa ime dnevnika."
+
+#: logview/actions.c:724
+msgid "_Process:"
+msgstr "_Proces:"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr "Regularni izraz sa kojim se poklapa deo poruke sa procesom."
+
+#: logview/actions.c:743
+msgid "_Message:"
+msgstr "Po_ruka:"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr "Regularni izraz sa kojim se poklapa poruka."
+
+#: logview/actions.c:762
+msgid "_Action:"
+msgstr "_Akcija:"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr "Akcija koja se izvršava kada se poklope svi prethodni regularni izrazi. Ovo se izvršava naredbom system: system(akcija)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -2169,9 +2226,6 @@ msgstr "%e. %B, %X"
 
 #~ msgid "_Font:"
 #~ msgstr "Pismo:"
-
-#~ msgid "_Page:"
-#~ msgstr "_Strana:"
 
 #~ msgid "_Text to copy:"
 #~ msgstr "_Tekst za kopiranje:"
