@@ -80,7 +80,7 @@ static void
 update_fontsel_cb (GtkWidget * widget, gpointer user_data)
 {
 	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) user_data;
-	gchar *fontname;
+	const gchar *fontname;
 
 	fontname = gtk_entry_get_text (GTK_ENTRY (cfg->entry));
 
@@ -107,17 +107,16 @@ cancel_cb (GtkWidget * widget, gpointer user_data)
 static void
 help_cb (GtkWidget * widget, gpointer user_data)
 {
-	gnome_help_display(gnome_program_get (),
-			"index.html",
-			NULL,
-			NULL /* error */);
+	gnome_help_display("index.html",
+			   NULL,
+			   NULL /* error */);
 }
 
 static void
 close_cb (GtkWidget * widget, gpointer user_data)
 {
 	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) user_data;
-	gchar *fontname;
+	const gchar *fontname;
 
 	fontname = gtk_entry_get_text (GTK_ENTRY (cfg->entry));
 
