@@ -88,7 +88,6 @@ typedef enum {
 	CALCULATOR_PARENTHESIS
 } CalculatorActionType;
 
-static gboolean store = FALSE;
 typedef gdouble (*MathFunction1) (gdouble);
 typedef gdouble (*MathFunction2) (gdouble, gdouble);
 
@@ -112,7 +111,7 @@ static void gnome_calc_finalize	(GObject		*object);
 typedef struct _CalculatorButton CalculatorButton;
 struct _CalculatorButton {
 	char *name;
-	GtkSignalFunc signal_func;
+	GCallback signal_func;
 	gpointer data;
 	gpointer invdata;
 	gboolean convert_to_rad;
@@ -238,7 +237,7 @@ set_display (GnomeCalc *gc)
         gtk_text_buffer_delete (buffer, &start, &end);
         gtk_text_buffer_insert_with_tags_by_name (buffer,
                                                   &end,
-                                                  store ? "m" : " ",
+                                                  (gc->_priv->memory != 0.0) ? "m" : " ",
                                                   -1,
                                                   "x-large",
                                                   NULL);
@@ -739,7 +738,6 @@ reset_calc(GtkWidget *w, gpointer data)
 	gc->_priv->mode = GNOME_CALC_DEG;
 	gc->_priv->invert = FALSE;
 	gc->_priv->error = FALSE;
-	store = FALSE;
 
 	gc->_priv->add_digit = TRUE;
 	push_input(gc);
@@ -1000,8 +998,6 @@ store_m(GtkWidget *w, gpointer data)
 
 	g_return_if_fail(gc!=NULL);
 
-	store = TRUE;
-
 	if(gc->_priv->error)
 		return;
 
@@ -1129,16 +1125,23 @@ set_pi(GtkWidget *w, gpointer data)
 	unselect_invert(gc);
 }
 
+static gboolean
+maybe_run_slide_rule (GtkWidget *w, GdkEvent *event, gpointer data)
+{
+	if (event->type == GDK_3BUTTON_PRESS) {
+		run_slide_rule ();
+		return TRUE;
+	}
+	return FALSE;
+}
+
 static void
-set_e(GtkWidget *w, GdkEvent *event, gpointer data)
+set_e (GtkWidget *w, gpointer data)
 {
 	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
 	
-	if (event->type == GDK_3BUTTON_PRESS)
-		run_slide_rule ();
-
 	if(gc->_priv->error)
 		return;
 
@@ -1247,6 +1250,8 @@ tan_helper (double value)
 static const CalculatorButton buttons[8][5] = {
 	{
 		{N_("1/x"),  (GtkSignalFunc)simple_func, c_inv,  NULL,   FALSE, {0}, N_("Inverse"), NULL },
+		/* FIXME: XXXX when we can break strings again change
+		 * this to x<sup>2</sup> and turn on markup (search for XXXX) */
 		{N_("x^2"),  (GtkSignalFunc)simple_func, c_pow2, sqrt,   FALSE, {0}, N_("Square"), NULL },
 		{N_("SQRT"), (GtkSignalFunc)simple_func, sqrt,   c_pow2, FALSE, {'r','R',0}, N_("Square root"), NULL },
 		{N_("CE/C"), (GtkSignalFunc)clear_calc,  NULL,   NULL,   FALSE, {GDK_Clear,GDK_Delete,0}, N_("Clear"), NULL },
@@ -1263,6 +1268,8 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("EE"),   (GtkSignalFunc)add_digit,   "e+",   NULL,   FALSE, {0}, N_("Add digit"), NULL },
 		{N_("log"),  (GtkSignalFunc)simple_func, log10,  c_pow10,FALSE, {0}, N_("Base 10 Logarithm"), NULL },
 		{N_("ln"),   (GtkSignalFunc)simple_func, log,    c_powe, FALSE, {'l','L',0}, N_("Natural Logarithm"), NULL },
+		/* FIXME: XXXX when we can break strings again change
+		 * this to x<sup>y</sup> and turn on markup (search for XXXX) */
 		{N_("x^y"),  (GtkSignalFunc)math_func,   pow,    NULL,   FALSE, {'^',0}, N_("Power"), NULL }
 	},{
 		{N_("PI"),   (GtkSignalFunc)set_pi,      NULL,   NULL,   FALSE, {'p','P',0}, N_("PI"), NULL },
@@ -1301,30 +1308,36 @@ static void
 create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 {
 	const CalculatorButton *but = &buttons[y][x];
-	GtkWidget *w;
+	GtkWidget *w, *l;
 	int i;
 
 	if(!but->name)
 		return;
 
+	l = gtk_label_new (_(but->name));
+	gtk_widget_show (l);
+	/* FIXME: see comment (search for XXXX) among labels and
+	 * turn this on when we can break strings again */
+	gtk_label_set_use_markup (GTK_LABEL (l), FALSE);
+
 	if (strcmp (but->name, "INV") == 0) {
-		w = gtk_toggle_button_new_with_label(_("INV"));
+		w = gtk_toggle_button_new ();
+		gtk_container_add (GTK_CONTAINER (w), l);
 		gc->_priv->invert_button = w;
-		gtk_signal_connect (GTK_OBJECT (w), "toggled",
-				    GTK_SIGNAL_FUNC(invert_toggle), gc);
-	} 
-	else if (strcmp (but->name, "e") == 0) {
-		w = gtk_button_new_with_label (_(but->name));
-		gtk_signal_connect (GTK_OBJECT (w), "button_press_event",
-				    but->signal_func,
-				    (gpointer) but);
+		g_signal_connect (G_OBJECT (w), "toggled",
+				  G_CALLBACK (invert_toggle), gc);
+	} else {
+		w = gtk_button_new ();
+		gtk_container_add (GTK_CONTAINER (w), l);
+		g_signal_connect (G_OBJECT(w), "clicked",
+				  but->signal_func,
+				  (gpointer) but);
 	}
-	else {
-		w = gtk_button_new_with_label(_(but->name));
-		gtk_signal_connect(GTK_OBJECT(w), "clicked",
-				   but->signal_func,
-				   (gpointer) but);
-	}
+
+	if (strcmp (but->name, "e") == 0)
+		g_signal_connect (G_OBJECT (w), "button_press_event",
+				  G_CALLBACK (maybe_run_slide_rule),
+				  (gpointer) but);
 	
 	for(i=0;but->keys[i]!=0;i++) {
 		gtk_widget_add_accelerator(w, "clicked",
@@ -1356,7 +1369,7 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 			 GTK_FILL | GTK_EXPAND | GTK_SHRINK, 2, 2);
 
 	/* if this is the DRG button, remember it's pointer */
-	if(but->signal_func == GTK_SIGNAL_FUNC(drg_toggle))
+	if(but->signal_func == G_CALLBACK (drg_toggle))
 		gc->_priv->drg_button = w;
 }
 
@@ -1672,7 +1685,7 @@ gnome_calc_bind_extra_keys (GnomeCalc *gc,
 
 	g_object_set_data (G_OBJECT (widget), "set_data", gc);
 	
-	gtk_signal_connect (GTK_OBJECT (widget), "event",
-			    GTK_SIGNAL_FUNC (event_cb), gc);
+	g_signal_connect (GTK_OBJECT (widget), "event",
+			  G_CALLBACK (event_cb), gc);
 
 }

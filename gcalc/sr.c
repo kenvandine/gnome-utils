@@ -602,9 +602,21 @@ run_slide_rule (void)
 	char *geom = "";
 	int border = 5;
 
-	dpy = GDK_DISPLAY ();
+	if (fork () != 0)
+		return;
+
+	dpy = XOpenDisplay (gdk_get_display ());
+	if (dpy == NULL)
+		_exit (0);
+
 	/*XSynchronize(dpy, True);*/
 	do_sr(argc, argv, geom, border);
+
+	/* FIXME: we never get here cuz the slide rule is a bit screwed */
+
+	XCloseDisplay (dpy);
+
+	_exit (0);
 
 	/*gtk_main ();*/
 }

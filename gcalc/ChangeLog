@@ -1,3 +1,14 @@
+Fri May 31 13:29:24 2002  George Lebl <jirka@5z.com>
+
+	* gnome-calc.c: fix the 'e' button so that it actually works (use
+	  clicked and not the button press event).  Prepare so that we can
+	  use the superscripts for the power labels which I didn't change
+	  since we're in string freeze.  whack the 'store' global EEEK!
+	  Use the fact that memory == 0.0 to see if something is set,
+	  that's how most calculators do it.
+
+	* sr.c: random fixage.
+
 2002-05-31  Hidetoshi Tajima <hidetoshi.tajima@sun.com>
 
 	* Makefile.am: Updated fix for #83627.
