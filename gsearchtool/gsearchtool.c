@@ -1831,10 +1831,7 @@ create_main_window (void)
 	
 	interface.look_in_folder_entry = gnome_file_entry_new ("gsearchtool-folder-entry", _("Browse"));
 	gnome_file_entry_set_directory_entry (GNOME_FILE_ENTRY (interface.look_in_folder_entry), TRUE);
-
-	/* TODO: Turn on the new filechooser when and if libgnomeui bug #132043 is fixed.
 	g_object_set (G_OBJECT (interface.look_in_folder_entry), "use-filechooser", TRUE, NULL);
-	*/
 	
 	entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), interface.look_in_folder_entry);
