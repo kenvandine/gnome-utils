@@ -204,7 +204,8 @@ static void init_list(void)
 				 _("An error occured while reading the "
                                    "configuration file.\n"
 				   "Shall I setup a new configuration?"),
-				 _("Yes"), _("No"),
+				 GNOME_STOCK_BUTTON_YES, 
+				 GNOME_STOCK_BUTTON_NO,
 				 GTK_SIGNAL_FUNC(init_list_2));
 	} else {
                 setup_clist();

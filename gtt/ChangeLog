@@ -1,3 +1,12 @@
+Sun Apr 26 12:07:51 1998  Havoc Pennington  <hp@pobox.com>
+
+	* dialog.h: Removed function new_dialog(); it was unused
+	and didn't work with GnomeDialog.
+	* dialog.c (dialog_setup): New static function.
+	* dialog.c: Everything converted to GnomeDialog. Conditional
+	sans-Gnome compile stuff taken out.
+	* app.c, main.c, menucmd.c: Use stock buttons for dialogs.
+
 Sun Apr 26 01:19:31 CEST 1998  Eckehard Berns  <eb@berns.prima.de>
 
 	* menus.c: moved `Preferences...' menu item to the file menu.

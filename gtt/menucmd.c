@@ -30,7 +30,7 @@ quit_app(GtkWidget *w, gpointer data)
 	if (!project_list_save(NULL)) {
 		msgbox_ok(gettext("Warning"),
 			  gettext("I could not write the configuration file!"),
-			  gettext("Oops"),
+			  GNOME_STOCK_BUTTON_OK,
 			  GTK_SIGNAL_FUNC(gtk_main_quit));
 		return;
 	}
@@ -83,9 +83,9 @@ new_project(GtkWidget *widget, gpointer data)
 
 	text = gtk_entry_new();
 	new_dialog_ok_cancel(gettext("New Project..."), &dlg, &vbox,
-			     gettext("OK"),
+			     GNOME_STOCK_BUTTON_OK,
 			     GTK_SIGNAL_FUNC(project_name), (gpointer *)text,
-			     gettext("Cancel"), NULL, NULL);
+			     GNOME_STOCK_BUTTON_CANCEL, NULL, NULL);
 	t = gtk_label_new(gettext("Please enter the name of the new project:"));
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
@@ -119,7 +119,7 @@ init_project_list_2(GtkWidget *widget, int button)
 	if (button != 0) return;
 	if (!project_list_load(NULL)) {
 		new_dialog_ok(gettext("Warning"), &dlg, &vbox,
-			      gettext("Oops"), NULL, NULL);
+			      GNOME_STOCK_BUTTON_OK, NULL, NULL);
 		t = gtk_label_new(gettext("I could not read the configuration file"));
 		gtk_widget_show(t);
 		gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
@@ -137,7 +137,7 @@ init_project_list(GtkWidget *widget, gpointer data)
 	msgbox_ok_cancel(gettext("Reload Configuration File"),
 			 _("This will overwrite your current set of projects.\n"
 			   "Do you really want to reload the configuration file?"),
-			 gettext("Yes"), gettext("No"),
+			 GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
 			 GTK_SIGNAL_FUNC(init_project_list_2));
 }
 
@@ -151,7 +151,7 @@ save_project_list(GtkWidget *widget, gpointer data)
 		GtkBox *vbox;
 		
 		new_dialog_ok(gettext("Warning"), &dlg, &vbox,
-			      gettext("Oops"), NULL, NULL);
+			      GNOME_STOCK_BUTTON_OK, NULL, NULL);
 		t = gtk_label_new(gettext("I could not write the configuration file!"));
 		gtk_widget_show(t);
 		gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);

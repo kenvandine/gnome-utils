@@ -34,46 +34,20 @@ gtt_delete_event(GtkWidget *w, gpointer *data)
 
 
 
-void new_dialog(char *title, GtkWidget **dlg, GtkBox **vbox_return, GtkBox **aa_return)
+static void dialog_setup(GnomeDialog *dlg, GtkBox **vbox_return)
 {
-	GtkWidget *t;
-	GtkBox *vbox;
-        GtkBox *aa;
+	g_return_if_fail(dlg != NULL);
 
-#ifdef GTK_USE_DIALOG
-	if (!dlg) return;
-        *dlg = gtk_dialog_new();
-        vbox = GTK_BOX(GTK_DIALOG(*dlg)->vbox);
-        aa = GTK_BOX(GTK_DIALOG(*dlg)->action_area);
-
-#else /* not GTK_USE_DIALOG */
-
-	if (!dlg) return;
-	*dlg = gtk_window_new(GTK_WINDOW_DIALOG);
-	gtk_window_position(GTK_WINDOW(*dlg), GTK_WIN_POS_MOUSE);
+	gtk_window_position(GTK_WINDOW(dlg), GTK_WIN_POS_MOUSE);
 	/* gtk_window_position(GTK_WINDOW(*dlg), GTK_WIN_POS_CENTER); */
-	vbox = GTK_BOX(gtk_vbox_new(FALSE, 2));
-	gtk_widget_show(GTK_WIDGET(vbox));
-	gtk_container_add(GTK_CONTAINER(*dlg), GTK_WIDGET(vbox));
-	aa = GTK_BOX(gtk_hbox_new(TRUE, 2));
-	gtk_widget_show(GTK_WIDGET(aa));
-	gtk_box_pack_end(vbox, GTK_WIDGET(aa), TRUE, TRUE, 5);
-	t = gtk_hseparator_new();
-	gtk_widget_show(t);
-	gtk_box_pack_end(vbox, t, FALSE, FALSE, 1);
-#endif /* GTK_USE_DIALOG */
 
-	t = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(t);
-	gtk_box_pack_start(vbox, t, FALSE, FALSE, 0);
-	gtk_container_border_width(GTK_CONTAINER(t), 10);
-
-	gtk_window_set_title(GTK_WINDOW(*dlg), title);
-	gtk_signal_connect(GTK_OBJECT(*dlg), "delete_event",
+	/* Is this needed? */
+	gtk_signal_connect(GTK_OBJECT(dlg), "delete_event",
 			   GTK_SIGNAL_FUNC(gtk_true), NULL);
 
-	if (aa_return) *aa_return = aa;
-	if (vbox_return) *vbox_return = GTK_BOX(t);
+	gnome_dialog_set_destroy(dlg, TRUE);
+
+	if (vbox_return) *vbox_return = GTK_BOX(dlg->vbox);
 }
 
 
@@ -81,34 +55,22 @@ void new_dialog(char *title, GtkWidget **dlg, GtkBox **vbox_return, GtkBox **aa_
 void new_dialog_ok(char *title, GtkWidget **dlg, GtkBox **vbox,
 		       char *s, GtkSignalFunc sigfunc, gpointer *data)
 {
-	GtkWidget *t;
-	GtkBox *aa;
         char tmp[256];
-#ifdef DIALOG_USE_ACCEL
-	GtkAcceleratorTable *accel;
-#endif
 
-	if (!dlg) return;
+	g_return_if_fail( dlg != NULL );
+	g_return_if_fail( vbox != NULL );
+
         sprintf(tmp, APP_NAME " - %s", title);
-	new_dialog(tmp, dlg, vbox, &aa);
+	*dlg = gnome_dialog_new(tmp, s, NULL);
+	dialog_setup(GNOME_DIALOG(*dlg), vbox);
 	
-	t = gtk_button_new_with_label(s);
-	gtk_widget_show(t);
-	gtk_box_pack_start(aa, t, FALSE, FALSE, 0);
 	if (sigfunc)
-		gtk_signal_connect(GTK_OBJECT(t), "clicked",
-				   sigfunc, data);
-	gtk_signal_connect_object(GTK_OBJECT(t), "clicked",
-				  GTK_SIGNAL_FUNC(gtk_widget_destroy),
-				  GTK_OBJECT(*dlg));
-#ifdef DIALOG_USE_ACCEL
-	accel = gtk_accelerator_table_new();
-	gtk_accelerator_table_install(accel, GTK_OBJECT(t), "clicked",
-				      '\n', 0);
-	gtk_accelerator_table_install(accel, GTK_OBJECT(t), "clicked",
-				      '\x1b', 0);
-	gtk_window_add_accelerator_table(GTK_WINDOW(*dlg), accel);
-#endif
+	       gnome_dialog_button_connect(GNOME_DIALOG(*dlg), 0,
+					   sigfunc, data);
+
+	/* I took out the accelerator stuff because it belongs 
+	   in gnome-dialog, eventually. I don't think it was compiled
+	   anyway. */
 }
 
 
@@ -116,49 +78,26 @@ void new_dialog_ok_cancel(char *title, GtkWidget **dlg, GtkBox **vbox,
 			  char *s_ok, GtkSignalFunc sigfunc, gpointer *data,
 			  char *s_cancel, GtkSignalFunc c_sigfunc, gpointer *c_data)
 {
-	GtkWidget *t;
-	GtkBox *aa;
         char tmp[256];
-#ifdef DIALOG_USE_ACCEL
-	GtkAcceleratorTable *accel;
-#endif 
 	
-	if (!dlg) return;
+	g_return_if_fail(dlg != NULL);
+	g_return_if_fail(s_ok != NULL);
+	g_return_if_fail(s_cancel != NULL);
+	g_return_if_fail(title != NULL);
+
         sprintf(tmp, APP_NAME " - %s", title);
-	new_dialog(tmp, dlg, vbox, &aa);
+	*dlg = gnome_dialog_new(tmp, s_ok, s_cancel, NULL);
+	dialog_setup(GNOME_DIALOG(*dlg), vbox);
 	
-	t = gtk_button_new_with_label(s_ok);
-	gtk_widget_show(t);
-	gtk_box_pack_start(aa, t, TRUE, FALSE, 5);
 	if (sigfunc)
-		gtk_signal_connect(GTK_OBJECT(t), "clicked",
-				   sigfunc, data);
-	gtk_signal_connect_object(GTK_OBJECT(t), "clicked",
-				  GTK_SIGNAL_FUNC(gtk_widget_destroy),
-				  GTK_OBJECT(*dlg));
-#ifdef DEFBUTTON_TEST
-	GTK_WIDGET_SET_FLAGS(t, GTK_CAN_DEFAULT);
-	gtk_widget_grab_default(t);
-#endif
-#ifdef DIALOG_USE_ACCEL
-	accel = gtk_accelerator_table_new();
-	gtk_accelerator_table_install(accel, GTK_OBJECT(t), "clicked",
-				      '\n', 0);
-#endif
-	t = gtk_button_new_with_label(s_cancel);
-	gtk_widget_show(t);
-	gtk_box_pack_start(aa, t, TRUE, FALSE, 5);
+		gnome_dialog_button_connect(GNOME_DIALOG(*dlg), 0,
+					    sigfunc, data);
+
 	if (c_sigfunc)
-		gtk_signal_connect(GTK_OBJECT(t), "clicked",
-				   c_sigfunc, c_data);
-	gtk_signal_connect_object(GTK_OBJECT(t), "clicked",
-				  GTK_SIGNAL_FUNC(gtk_widget_destroy),
-				  GTK_OBJECT(*dlg));
-#ifdef DIALOG_USE_ACCEL
-	gtk_accelerator_table_install(accel, GTK_OBJECT(t), "clicked",
-				      '\x1b', 0);
-	gtk_window_add_accelerator_table(GTK_WINDOW(*dlg), accel);
-#endif 
+		gnome_dialog_button_connect(GNOME_DIALOG(*dlg), 1,
+					    c_sigfunc, c_data);
+
+	gnome_dialog_set_default(GNOME_DIALOG(*dlg), 0);
 }
 
 
@@ -166,29 +105,20 @@ void msgbox_ok(char *title, char *text, char *ok_text,
 	       GtkSignalFunc func)
 {
         char s[256];
-#ifdef GNOME_USE_MSGBOX
+
 	GtkWidget *mbox;
 
         sprintf(s, APP_NAME " - %s", title);
         mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_GENERIC, ok_text, NULL, NULL);
-	gnome_message_box_set_default(GNOME_MESSAGE_BOX(mbox), 1);
+	gnome_dialog_set_default(GNOME_DIALOG(mbox), 1);
+
+	/* Is this necessary? */
 	gtk_signal_connect(GTK_OBJECT(mbox), "delete_event",
 			   GTK_SIGNAL_FUNC(gtk_true), NULL);
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
 			   func, NULL);
         gtk_window_set_title(GTK_WINDOW(mbox), s);
 	gtk_widget_show(mbox);
-#else /* GNOME_USE_MSGBOX */
-	GtkWidget *dlg, *t;
-	GtkBox *vbox;
-
-        sprintf(s, APP_NAME " - %s", title);
-	new_dialog_ok(s, &dlg, &vbox, ok_text, func, (gpointer *)1);
-	t = gtk_label_new(text);
-	gtk_widget_show(t);
-	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
-	gtk_widget_show(dlg);
-#endif /* GNOME_USE_MSGBOX */
 }
 
 
@@ -198,30 +128,17 @@ void msgbox_ok_cancel(char *title, char *text,
 		      GtkSignalFunc func)
 {
         char s[256];
-#ifdef GNOME_USE_MSGBOX
+
 	GtkWidget *mbox;
 
         sprintf(s, APP_NAME " - %s", title);
 	mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_GENERIC, ok_text, cancel_text, NULL);
-	gnome_message_box_set_default(GNOME_MESSAGE_BOX(mbox), 1);
+	gnome_dialog_set_default(GNOME_DIALOG(mbox), 1);
 	gtk_signal_connect(GTK_OBJECT(mbox), "delete_event",
 			   GTK_SIGNAL_FUNC(gtk_true), NULL);
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
 			   func, NULL);
         gtk_window_set_title(GTK_WINDOW(mbox), s);
 	gtk_widget_show(mbox);
-#else /* GNOME_USE_MSGBOX */
-	GtkWidget *dlg, *t;
-	GtkBox *vbox;
-	
-        sprintf(s, APP_NAME " - %s", title);
-	new_dialog_ok_cancel(s, &dlg, &vbox,
-			     ok_text, func, (gpointer *)1,
-			     cancel_text, func, (gpointer *)2);
-	t = gtk_label_new(text);
-	gtk_widget_show(t);
-	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
-	gtk_widget_show(dlg);
-#endif /* GNOME_USE_MSGBOX */
 }
 

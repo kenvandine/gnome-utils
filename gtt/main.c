@@ -69,7 +69,7 @@ static void lock_gtt()
 #else /* not DEBUG */
 		msgbox_ok(_("Error"), _("There seems to be another GTimeTracker running.\n"
 			  "Please remove the pid file, if that is not correct."),
-			  _("Oops"),
+			  GNOME_STOCK_BUTTON_OK,
 			  GTK_SIGNAL_FUNC(gtk_main_quit));
 		gtk_main();
 		exit(0);
