@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
-"POT-Creation-Date: 2004-04-20 22:54+1200\n"
+"POT-Creation-Date: 2004-05-21 16:58+1200\n"
 "PO-Revision-Date: 2004-03-22 14:51+0100\n"
 "Last-Translator: Åsmund Skjæveland\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
@@ -28,7 +28,7 @@ msgstr "Hjelpemiddel"
 msgid "Dictionary Lookup"
 msgstr "Oppslag i ordbok"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:421
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Slå opp ord i ordliste på nettet"
@@ -56,8 +56,8 @@ msgstr "Vi_s ordbok"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
-#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
+#: gdictsrc/gdict-pref-dialog.c:509 gdictsrc/gdict-speller.c:452
 msgid "Cannot connect to server"
 msgstr "Kan ikkje kople til tenar"
 
@@ -77,7 +77,7 @@ msgstr ""
 "Kjartan Maraas  <kmaraas@gnome.org>\n"
 "Roy-Magne Mo <rmo@sunnmore.net>"
 
-#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:776
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:923
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Ordliste"
@@ -86,43 +86,43 @@ msgstr "Ordliste"
 msgid "A client for the MIT dictionary server."
 msgstr "Ein klient for MIT-ordboktenaren."
 
-#: gdictsrc/gdict-app.c:125
+#: gdictsrc/gdict-app.c:127
 msgid "Spell-checking..."
 msgstr "Stavekontroll ..."
 
-#: gdictsrc/gdict-app.c:133
+#: gdictsrc/gdict-app.c:135
 msgid "Spell check done"
 msgstr "Stavekontroll ferdig"
 
-#: gdictsrc/gdict-app.c:141 gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:143 gdictsrc/gdict-app.c:290
 msgid "No matches found"
 msgstr "Ingen treff"
 
-#: gdictsrc/gdict-app.c:271
+#: gdictsrc/gdict-app.c:273
 msgid "Looking up word..."
 msgstr "Slår opp ord ..."
 
-#: gdictsrc/gdict-app.c:279
+#: gdictsrc/gdict-app.c:281
 msgid "Lookup done"
 msgstr "Oppslag ferdig"
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:303
 msgid "String not found"
 msgstr "Fann ikkje strengen"
 
-#: gdictsrc/gdict-app.c:469
+#: gdictsrc/gdict-app.c:471
 msgid "Find"
 msgstr "Finn"
 
-#: gdictsrc/gdict-app.c:477
+#: gdictsrc/gdict-app.c:479
 msgid "_Search for:"
 msgstr "_Søk etter:"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:492
 msgid "_Find"
 msgstr "_Finn"
 
-#: gdictsrc/gdict-app.c:532
+#: gdictsrc/gdict-app.c:534
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -133,45 +133,45 @@ msgstr ""
 "eller fordi du er tilkoplinga du brukar er \n"
 "nede, eller fordi du ikkje er kopla til Internett."
 
-#: gdictsrc/gdict-app.c:693 gdictsrc/gdict-app.c:803
-#: gdictsrc/gdict-speller.c:215
+#: gdictsrc/gdict-app.c:695 gdictsrc/gdict-app.c:950
+#: gdictsrc/gdict-speller.c:214
 msgid "_Look Up Word"
 msgstr "S_lå opp ord"
 
-#: gdictsrc/gdict-app.c:694
+#: gdictsrc/gdict-app.c:696
 msgid "Lookup word in dictionary"
 msgstr "Slå opp ord i ordliste"
 
-#: gdictsrc/gdict-app.c:696 gdictsrc/gdict-speller.c:161
+#: gdictsrc/gdict-app.c:698 gdictsrc/gdict-speller.c:160
 msgid "Check _Spelling"
 msgstr "Kontroller _staving"
 
-#: gdictsrc/gdict-app.c:697
+#: gdictsrc/gdict-app.c:699
 msgid "Check word spelling"
 msgstr "Kontroller staving"
 
-#: gdictsrc/gdict-app.c:741
+#: gdictsrc/gdict-app.c:743
 msgid "_Dictionary"
 msgstr "Or_dbok"
 
-#: gdictsrc/gdict-app.c:799 gdictsrc/gdict-speller.c:134
+#: gdictsrc/gdict-app.c:946 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Ord:"
 
-#: gdictsrc/gdict-app.c:827 gdictsrc/gdict-speller.c:146
+#: gdictsrc/gdict-app.c:974 gdictsrc/gdict-speller.c:146
 msgid "Word"
 msgstr "Ord"
 
-#: gdictsrc/gdict-app.c:828 gdictsrc/gdict-app.c:829
+#: gdictsrc/gdict-app.c:975 gdictsrc/gdict-app.c:976
 #: gdictsrc/gdict-speller.c:147
 msgid "Word Entry"
 msgstr "Ordoppføring"
 
-#: gdictsrc/gdict-app.c:828
+#: gdictsrc/gdict-app.c:975
 msgid "Enter a Word or select one from the list below"
 msgstr "Skriv inn eit ord eller vel eit frå lista under"
 
-#: gdictsrc/gdict-app.c:831
+#: gdictsrc/gdict-app.c:978
 msgid "Look Up for a Word"
 msgstr "Slå opp eit ord"
 
@@ -179,7 +179,12 @@ msgstr "Slå opp eit ord"
 msgid "_Lookup"
 msgstr "S_lå opp"
 
-#: gdictsrc/gdict-defbox.c:639 gdictsrc/gdict-speller.c:478
+#: gdictsrc/gdict-applet.c:155
+#, fuzzy
+msgid "Dictionary word entry"
+msgstr "Ordboktenar"
+
+#: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Feil ved å sette opp spørjing: %s"
@@ -228,43 +233,43 @@ msgstr "Tenaroppføring"
 msgid "Enter the Server Name"
 msgstr "Skriv inn tenarnamnet"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:242
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port Entry"
 msgstr "Portoppføring"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Enter the Port Number"
 msgstr "Skriv inn portnummeret"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "_Database:"
 msgstr "_Database:"
 
-#: gdictsrc/gdict-pref-dialog.c:261
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "D_efault strategy:"
 msgstr "_Standardstrategi:"
 
-#: gdictsrc/gdict-pref-dialog.c:454
+#: gdictsrc/gdict-pref-dialog.c:452
 msgid "Search all databases"
 msgstr "Søk i alle databasar"
 
-#: gdictsrc/gdict-pref-dialog.c:615
+#: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database"
 msgstr "Database"
 
-#: gdictsrc/gdict-pref-dialog.c:615
+#: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database Name"
 msgstr "Databasenamn"
 
-#: gdictsrc/gdict-pref-dialog.c:631
+#: gdictsrc/gdict-pref-dialog.c:629
 msgid "Default Strategy"
 msgstr "Standardstrategi"
 
-#: gdictsrc/gdict-pref-dialog.c:658
+#: gdictsrc/gdict-pref-dialog.c:656
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -277,23 +282,23 @@ msgstr ""
 msgid "Enter a word to know the spelling"
 msgstr "Skriv inn eit ord for å visa stavinga"
 
-#: gdictsrc/gdict-speller.c:154
+#: gdictsrc/gdict-speller.c:153
 msgid "Search s_trategy:"
 msgstr "Søkes_trategi:"
 
-#: gdictsrc/gdict-speller.c:166
+#: gdictsrc/gdict-speller.c:165
 msgid "Click to do the spell check"
 msgstr "Klikk for å kontrollera stavinga"
 
-#: gdictsrc/gdict-speller.c:170
+#: gdictsrc/gdict-speller.c:169
 msgid "Search _results:"
 msgstr "Søke_resultat:"
 
-#: gdictsrc/gdict-speller.c:230
+#: gdictsrc/gdict-speller.c:229
 msgid "Check Spelling"
 msgstr "Kontroller staving"
 
-#: gdictsrc/gdict-speller.c:644
+#: gdictsrc/gdict-speller.c:643
 msgid "Search Strategy"
 msgstr "Søkestrategi"
 
@@ -782,9 +787,9 @@ msgstr "Formatering avbrote."
 msgid "Format Progress"
 msgstr "Framdrift i formateringa"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:565
-#: gsearchtool/gsearchtool.c:819 gsearchtool/gsearchtool.c:903
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:577
+#: gsearchtool/gsearchtool.c:831 gsearchtool/gsearchtool.c:915
+#: gsearchtool/gsearchtool.c:2196 gsearchtool/gsearchtool.c:2221
 msgid "Search for Files"
 msgstr "Søk etter filer"
 
@@ -974,23 +979,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:470
+#: gsearchtool/gsearchtool-support.c:494
 msgid "today at %-I:%M %p"
 msgstr "i dag kl. %H.%M"
 
-#: gsearchtool/gsearchtool-support.c:472
+#: gsearchtool/gsearchtool-support.c:496
 msgid "yesterday at %-I:%M %p"
 msgstr "i går kl. %H.%M"
 
-#: gsearchtool/gsearchtool-support.c:474 gsearchtool/gsearchtool-support.c:476
+#: gsearchtool/gsearchtool-support.c:498 gsearchtool/gsearchtool-support.c:500
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%-d.%m.%y kl. %-H.%M"
 
-#: gsearchtool/gsearchtool-support.c:647
+#: gsearchtool/gsearchtool-support.c:671
 msgid "link (broken)"
 msgstr "lenkje (broten)"
 
-#: gsearchtool/gsearchtool-support.c:652
+#: gsearchtool/gsearchtool-support.c:676
 #, c-format
 msgid "link to %s"
 msgstr "lenkje til %s"
@@ -1051,72 +1056,72 @@ msgstr "Følg symbolske lenkjer"
 msgid "Include other filesystems"
 msgstr "Ta med andre filsystem"
 
-#: gsearchtool/gsearchtool.c:512 gsearchtool/gsearchtool.c:540
+#: gsearchtool/gsearchtool.c:524 gsearchtool/gsearchtool.c:552
 msgid "No files found"
 msgstr "Ingen filer funne"
 
-#: gsearchtool/gsearchtool.c:533
+#: gsearchtool/gsearchtool.c:545
 msgid "(stopped)"
 msgstr "(stoppa)"
 
-#: gsearchtool/gsearchtool.c:539
+#: gsearchtool/gsearchtool.c:551
 msgid "No Files Found"
 msgstr "Ingen filer funne"
 
-#: gsearchtool/gsearchtool.c:544
+#: gsearchtool/gsearchtool.c:556
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d fil funnen"
 msgstr[1] "%d filer funne"
 
-#: gsearchtool/gsearchtool.c:548
+#: gsearchtool/gsearchtool.c:560
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d fil funnen"
 msgstr[1] "%d filer funne"
 
-#: gsearchtool/gsearchtool.c:654
+#: gsearchtool/gsearchtool.c:666
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 "Oppføringa som vart endra, ville ha eit val som ikkje gjeld for oppføringar!"
 
-#: gsearchtool/gsearchtool.c:903
+#: gsearchtool/gsearchtool.c:915
 msgid "Searching..."
 msgstr "Søker ..."
 
-#: gsearchtool/gsearchtool.c:924
+#: gsearchtool/gsearchtool.c:936
 msgid "Set the text of 'Name contains'"
 msgstr "Sett teksten i «Namnet inneheld»"
 
-#: gsearchtool/gsearchtool.c:925
+#: gsearchtool/gsearchtool.c:937
 msgid "Set the text of 'Look in folder'"
 msgstr "Sett teksten i «Sjå i mappe»"
 
-#: gsearchtool/gsearchtool.c:926
+#: gsearchtool/gsearchtool.c:938
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sorter filene etter ein av desse: namn, mappe, storleik, type eller dato"
 
-#: gsearchtool/gsearchtool.c:927
+#: gsearchtool/gsearchtool.c:939
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Vel minkande sorteringsrekkefølgje. Standard er aukande"
 
-#: gsearchtool/gsearchtool.c:928
+#: gsearchtool/gsearchtool.c:940
 msgid "Automatically start a search"
 msgstr "Start søk automatisk"
 
-#: gsearchtool/gsearchtool.c:933
+#: gsearchtool/gsearchtool.c:945
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Vel avgrensinga «%s»"
 
-#: gsearchtool/gsearchtool.c:1039
+#: gsearchtool/gsearchtool.c:1051
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ugyldig val sendt til kommandolinjeargumentet «sortby»."
 
-#: gsearchtool/gsearchtool.c:1304
+#: gsearchtool/gsearchtool.c:1316
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1124,7 +1129,7 @@ msgstr ""
 "Desse feila vart funne i løpet av søket.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1308
+#: gsearchtool/gsearchtool.c:1320
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1132,116 +1137,117 @@ msgstr ""
 "\n"
 "... For mange feil å visa ..."
 
-#: gsearchtool/gsearchtool.c:1315
+#: gsearchtool/gsearchtool.c:1327
 msgid "Error while searching for files."
 msgstr "Feil under søk etter filer."
 
-#: gsearchtool/gsearchtool.c:1356
+#: gsearchtool/gsearchtool.c:1368
 msgid "Error parsing the search command."
 msgstr "Feil under tolking av søkekommandoen."
 
-#: gsearchtool/gsearchtool.c:1379
+#: gsearchtool/gsearchtool.c:1391
 msgid "Error running the search command."
 msgstr "Feil under køyring av søkekommandoen."
 
-#: gsearchtool/gsearchtool.c:1475
-msgid "Search Rule Value Entry"
-msgstr "Oppføring for verdi av søkeregel"
+#: gsearchtool/gsearchtool.c:1488
+#, c-format
+msgid "'%s' entry"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1476
+#: gsearchtool/gsearchtool.c:1489
 msgid "Enter a value for search rule"
 msgstr "Skriv inn ein verdi av søkeregelen"
 
-#: gsearchtool/gsearchtool.c:1512
+#: gsearchtool/gsearchtool.c:1527
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klikk for å fjerna regelen «%s»"
 
-#: gsearchtool/gsearchtool.c:1568
+#: gsearchtool/gsearchtool.c:1583
 msgid "A_vailable options:"
 msgstr "Til_gjengelege alternativ:"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1596
 msgid "Search Rules Menu"
 msgstr "Søkereglar-meny"
 
-#: gsearchtool/gsearchtool.c:1582
+#: gsearchtool/gsearchtool.c:1597
 msgid "Select a search rule from the menu"
 msgstr "Vel ein søkeregel frå menyen"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1628
 msgid "S_earch results:"
 msgstr "Søk_eresultat:"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1708
 msgid "Name"
 msgstr "Namn"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1728
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1739
 msgid "Size"
 msgstr "Storleik"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1749
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1759
 msgid "Date Modified"
 msgstr "Dato endra"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1817
 msgid "_Name contains:"
 msgstr "_Namnet inneheld:"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1832 gsearchtool/gsearchtool.c:1833
 msgid "Enter the file name you want to search"
 msgstr "Skriv inn namnet på fila du vil søka etter"
 
-#: gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1833
 msgid "Name Contains Entry"
 msgstr "Namnet inneheld-oppføring"
 
-#: gsearchtool/gsearchtool.c:1829
+#: gsearchtool/gsearchtool.c:1844
 msgid "_Look in folder:"
 msgstr "S_jå i mappe:"
 
-#: gsearchtool/gsearchtool.c:1835
+#: gsearchtool/gsearchtool.c:1850
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: gsearchtool/gsearchtool.c:1846 gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the folder name where you want to start the search"
 msgstr "Skriv inn namnet på mappa der du vil at søket skal starta"
 
-#: gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1862
 msgid "Look in Folder Entry"
 msgstr "Sjå i mappe-oppføring"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1880
 msgid "Show more _options"
 msgstr "Vis fleire _alternativ"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1890
 msgid "Show more options"
 msgstr "Vis fleire alternativ"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1890
 msgid "Expands or collapses a list of search options."
 msgstr "Pakk opp eller pakk saman ei liste over søkealternativ."
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1937
 msgid "Click to Start the search"
 msgstr "Klikk for å starta søket"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1938
 msgid "Click to Stop the search"
 msgstr "Klikk for å stoppa søket"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2217
 msgid "Cannot initialize bonobo."
 msgstr "Klarar ikkje starta bonobo."
 
@@ -1519,19 +1525,19 @@ msgid "December"
 msgstr "Desember"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:397
+#: logview/log_repaint.c:394
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:452
+#: logview/log_repaint.c:449
 msgid "%B %e"
 msgstr "%e. %B"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:524
+#: logview/log_repaint.c:521
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1572,95 +1578,95 @@ msgstr "%s er ikkje ei loggfil."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: tomt for minne"
 
-#: logview/logview.c:97
+#: logview/logview.c:100
 msgid "S_witch Log"
 msgstr "B_ytt logg"
 
-#: logview/logview.c:98
+#: logview/logview.c:101
 msgid "Switch between already opened logs"
 msgstr "Byt mellom allereie opna loggfiler"
 
-#: logview/logview.c:104
+#: logview/logview.c:107
 msgid "_Monitor..."
 msgstr "_Overvak ..."
 
-#: logview/logview.c:105
+#: logview/logview.c:108
 msgid "Monitor Logs"
 msgstr "Overvak loggar"
 
-#: logview/logview.c:113
+#: logview/logview.c:116
 msgid "_Properties"
 msgstr "_Eigenskapar"
 
-#: logview/logview.c:114
+#: logview/logview.c:117
 msgid "Show Log Properties"
 msgstr "Vis loggeigenskapar"
 
-#: logview/logview.c:122
+#: logview/logview.c:125
 msgid "Clos_e All"
 msgstr "Lukk all_e"
 
-#: logview/logview.c:123
+#: logview/logview.c:126
 msgid "Close all Log files"
 msgstr "Lukk alle loggfilene"
 
-#: logview/logview.c:135
+#: logview/logview.c:138
 msgid "_Calendar"
 msgstr "_Kalender"
 
-#: logview/logview.c:136
+#: logview/logview.c:139
 msgid "Show Calendar Log"
 msgstr "Vis kalenderlogg"
 
-#: logview/logview.c:142
+#: logview/logview.c:145
 msgid "_Entry Detail"
 msgstr "_Oppføringsdetalj"
 
-#: logview/logview.c:143
+#: logview/logview.c:146
 msgid "Show Entry Detail"
 msgstr "Vis detaljar om oppføring"
 
-#: logview/logview.c:149
+#: logview/logview.c:152
 msgid "_Collapse All"
 msgstr "_Pakk saman alt"
 
-#: logview/logview.c:150
+#: logview/logview.c:153
 msgid "Collapse all the rows"
 msgstr "Pakk saman radene"
 
-#: logview/logview.c:367
+#: logview/logview.c:370
 msgid "No log files to open"
 msgstr "Ingen loggfiler å opna"
 
-#: logview/logview.c:389
+#: logview/logview.c:392
 msgid "Date"
 msgstr "Dato"
 
-#: logview/logview.c:389
+#: logview/logview.c:392
 msgid "Host Name"
 msgstr "Vertsnamn"
 
-#: logview/logview.c:390
+#: logview/logview.c:393
 msgid "Process"
 msgstr "Prosess"
 
-#: logview/logview.c:390
+#: logview/logview.c:393
 msgid "Message"
 msgstr "Melding"
 
-#: logview/logview.c:471
+#: logview/logview.c:474
 msgid "Last Modified: "
 msgstr "Sist endra: "
 
-#: logview/logview.c:570 logview/logview.c:645
+#: logview/logview.c:573 logview/logview.c:648
 msgid "Too many open logs. Close one and try again"
 msgstr "For mange opne loggar. Lukk ein og prøv igjen"
 
-#: logview/logview.c:582
+#: logview/logview.c:585
 msgid "File already opened"
 msgstr "Fila er allereie open"
 
-#: logview/logview.c:658
+#: logview/logview.c:661
 msgid "Open new logfile"
 msgstr "Opna ei ny loggfil"
 
@@ -1758,3 +1764,6 @@ msgstr "Logglinjedetaljar"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%e. %B %X"
+
+#~ msgid "Search Rule Value Entry"
+#~ msgstr "Oppføring for verdi av søkeregel"

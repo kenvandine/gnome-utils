@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2004-04-20 22:54+1200\n"
+"POT-Creation-Date: 2004-05-21 16:58+1200\n"
 "PO-Revision-Date: 2003-01-03 21:59+0200\n"
 "Last-Translator: Artis Trops <hornet@navigator.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
@@ -23,7 +23,7 @@ msgid "Dictionary Lookup"
 msgstr "Vārdnīcas Meklēšana"
 
 # gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:421
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Lūkoties pēc vārda tiešsaites vārdnīcā"
@@ -62,8 +62,8 @@ msgstr "_Vārdnīca"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
-#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
+#: gdictsrc/gdict-pref-dialog.c:509 gdictsrc/gdict-speller.c:452
 msgid "Cannot connect to server"
 msgstr "Nevar savienoties ar serveri"
 
@@ -80,7 +80,7 @@ msgstr ""
 msgid "translator_credits"
 msgstr "Artis Trops <hornet@navigator.lv>"
 
-#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:776
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:923
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Vārdnīca"
@@ -91,53 +91,53 @@ msgid "A client for the MIT dictionary server."
 msgstr "Klients MIT vārdnīcas serverim.\n"
 
 # gdictsrc/gdict-app.c:117
-#: gdictsrc/gdict-app.c:125
+#: gdictsrc/gdict-app.c:127
 msgid "Spell-checking..."
 msgstr "Pareizrakstības pārbaude..."
 
 # gdictsrc/gdict-app.c:125
-#: gdictsrc/gdict-app.c:133
+#: gdictsrc/gdict-app.c:135
 msgid "Spell check done"
 msgstr "Pareizrakstības parbaude veikta"
 
 # gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
-#: gdictsrc/gdict-app.c:141 gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:143 gdictsrc/gdict-app.c:290
 msgid "No matches found"
 msgstr "Nav nevienas sakrišanas"
 
 # gdictsrc/gdict-app.c:250
-#: gdictsrc/gdict-app.c:271
+#: gdictsrc/gdict-app.c:273
 msgid "Looking up word..."
 msgstr "Skatīties pēc vārda..."
 
 # gdictsrc/gdict-app.c:258
-#: gdictsrc/gdict-app.c:279
+#: gdictsrc/gdict-app.c:281
 msgid "Lookup done"
 msgstr "Skatīšanās veikta"
 
 # gdictsrc/gdict-app.c:278
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:303
 msgid "String not found"
 msgstr "Virkne nav atrasta"
 
 # gdictsrc/gdict-app.c:381
-#: gdictsrc/gdict-app.c:469
+#: gdictsrc/gdict-app.c:471
 msgid "Find"
 msgstr "Meklēt"
 
 # gsearchtool/gsearchtool.c:824
-#: gdictsrc/gdict-app.c:477
+#: gdictsrc/gdict-app.c:479
 #, fuzzy
 msgid "_Search for:"
 msgstr "Meklēt Kļūdas"
 
 # gdictsrc/gdict-app.c:381
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:492
 msgid "_Find"
 msgstr "_Meklēt"
 
 # gdictsrc/gdict-app.c:414
-#: gdictsrc/gdict-app.c:532
+#: gdictsrc/gdict-app.c:534
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -149,51 +149,51 @@ msgstr ""
 
 # gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
 # gdictsrc/gdict-applet.c:153
-#: gdictsrc/gdict-app.c:693 gdictsrc/gdict-app.c:803
-#: gdictsrc/gdict-speller.c:215
+#: gdictsrc/gdict-app.c:695 gdictsrc/gdict-app.c:950
+#: gdictsrc/gdict-speller.c:214
 msgid "_Look Up Word"
 msgstr "_Sameklēt Vārdu"
 
 # gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
-#: gdictsrc/gdict-app.c:694
+#: gdictsrc/gdict-app.c:696
 msgid "Lookup word in dictionary"
 msgstr "Sameklēt vārdu vārdnīcā"
 
 # gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
-#: gdictsrc/gdict-app.c:696 gdictsrc/gdict-speller.c:161
+#: gdictsrc/gdict-app.c:698 gdictsrc/gdict-speller.c:160
 msgid "Check _Spelling"
 msgstr "Pārbaudīt _Pareizrakstību"
 
 # gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
-#: gdictsrc/gdict-app.c:697
+#: gdictsrc/gdict-app.c:699
 msgid "Check word spelling"
 msgstr "Pārbaudīt vārda pareizrakstību"
 
-#: gdictsrc/gdict-app.c:741
+#: gdictsrc/gdict-app.c:743
 msgid "_Dictionary"
 msgstr "_Vārdnīca"
 
-#: gdictsrc/gdict-app.c:799 gdictsrc/gdict-speller.c:134
+#: gdictsrc/gdict-app.c:946 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Vārds:"
 
-#: gdictsrc/gdict-app.c:827 gdictsrc/gdict-speller.c:146
+#: gdictsrc/gdict-app.c:974 gdictsrc/gdict-speller.c:146
 msgid "Word"
 msgstr "Vārds"
 
 # gtt/options.c:413
-#: gdictsrc/gdict-app.c:828 gdictsrc/gdict-app.c:829
+#: gdictsrc/gdict-app.c:975 gdictsrc/gdict-app.c:976
 #: gdictsrc/gdict-speller.c:147
 msgid "Word Entry"
 msgstr "Vārda Ieraksts"
 
-#: gdictsrc/gdict-app.c:828
+#: gdictsrc/gdict-app.c:975
 msgid "Enter a Word or select one from the list below"
 msgstr "Ievadi Vārdu vai izvēlies vienu no zemākesošā saraksta"
 
 # gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
 # gdictsrc/gdict-applet.c:153
-#: gdictsrc/gdict-app.c:831
+#: gdictsrc/gdict-app.c:978
 msgid "Look Up for a Word"
 msgstr "Sameklēt Vardu"
 
@@ -203,8 +203,13 @@ msgstr "Sameklēt Vardu"
 msgid "_Lookup"
 msgstr "_Sameklēt"
 
+#: gdictsrc/gdict-applet.c:155
+#, fuzzy
+msgid "Dictionary word entry"
+msgstr "Vārdnīcas serveris"
+
 # mini-utils/gless/gless.c:548
-#: gdictsrc/gdict-defbox.c:639 gdictsrc/gdict-speller.c:478
+#: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Kļūda izpildot pieprasījumu: %s"
@@ -261,49 +266,49 @@ msgid "Enter the Server Name"
 msgstr "Ievadi Servera Nosaukumu"
 
 # gdictsrc/gdict-pref-dialog.c:161
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:242
 msgid "Port"
 msgstr "Ports"
 
 # gtt/options.c:413
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port Entry"
 msgstr "Porta Ieraksts"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Enter the Port Number"
 msgstr "Ievadi Porta Numuru"
 
 # gdictsrc/gdict-pref-dialog.c:171
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "_Database:"
 msgstr "_Datubāze:"
 
 # gdictsrc/gdict-pref-dialog.c:178
-#: gdictsrc/gdict-pref-dialog.c:261
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "D_efault strategy:"
 msgstr "N_oklusētā stratēģija:"
 
-#: gdictsrc/gdict-pref-dialog.c:454
+#: gdictsrc/gdict-pref-dialog.c:452
 msgid "Search all databases"
 msgstr "Meklēt visās datubāzēs"
 
 # gdictsrc/gdict-pref-dialog.c:171
-#: gdictsrc/gdict-pref-dialog.c:615
+#: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database"
 msgstr "Datubāze"
 
 # gdictsrc/gdict-pref-dialog.c:171
-#: gdictsrc/gdict-pref-dialog.c:615
+#: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database Name"
 msgstr "Datubāzes Nosaukums"
 
 # gdictsrc/gdict-pref-dialog.c:178
-#: gdictsrc/gdict-pref-dialog.c:631
+#: gdictsrc/gdict-pref-dialog.c:629
 msgid "Default Strategy"
 msgstr "Noklusētā Stratēģija"
 
-#: gdictsrc/gdict-pref-dialog.c:658
+#: gdictsrc/gdict-pref-dialog.c:656
 #, fuzzy, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -315,28 +320,28 @@ msgid "Enter a word to know the spelling"
 msgstr "Ievadi vārdu, lai zinātu pareizrakstību"
 
 # gdictsrc/gdict-pref-dialog.c:178
-#: gdictsrc/gdict-speller.c:154
+#: gdictsrc/gdict-speller.c:153
 #, fuzzy
 msgid "Search s_trategy:"
 msgstr "Meklēšanas S_tratēģija:"
 
-#: gdictsrc/gdict-speller.c:166
+#: gdictsrc/gdict-speller.c:165
 msgid "Click to do the spell check"
 msgstr "Klikšķis, lai izpildītu pareizrakstības pārbaudi"
 
 # gsearchtool/gsearchtool.c:211
-#: gdictsrc/gdict-speller.c:170
+#: gdictsrc/gdict-speller.c:169
 #, fuzzy
 msgid "Search _results:"
 msgstr "M_eklēšanas Rezultāti"
 
 # gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
-#: gdictsrc/gdict-speller.c:230
+#: gdictsrc/gdict-speller.c:229
 msgid "Check Spelling"
 msgstr "Pārbaudīt Pareizrakstību"
 
 # gdictsrc/gdict-pref-dialog.c:178
-#: gdictsrc/gdict-speller.c:644
+#: gdictsrc/gdict-speller.c:643
 msgid "Search Strategy"
 msgstr "Meklēšanas Stratēģija"
 
@@ -865,9 +870,9 @@ msgid "Format Progress"
 msgstr "Formatēšanas progress"
 
 # gsearchtool/gsearchtool.c:824
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:565
-#: gsearchtool/gsearchtool.c:819 gsearchtool/gsearchtool.c:903
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:577
+#: gsearchtool/gsearchtool.c:831 gsearchtool/gsearchtool.c:915
+#: gsearchtool/gsearchtool.c:2196 gsearchtool/gsearchtool.c:2221
 msgid "Search for Files"
 msgstr "Meklēt Failus"
 
@@ -1063,23 +1068,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:470
+#: gsearchtool/gsearchtool-support.c:494
 msgid "today at %-I:%M %p"
 msgstr "šodien %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:472
+#: gsearchtool/gsearchtool-support.c:496
 msgid "yesterday at %-I:%M %p"
 msgstr "vakardien %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:474 gsearchtool/gsearchtool-support.c:476
+#: gsearchtool/gsearchtool-support.c:498 gsearchtool/gsearchtool-support.c:500
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%-d/%m/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:647
+#: gsearchtool/gsearchtool-support.c:671
 msgid "link (broken)"
 msgstr "saite (nedarbojas)"
 
-#: gsearchtool/gsearchtool-support.c:652
+#: gsearchtool/gsearchtool-support.c:676
 #, c-format
 msgid "link to %s"
 msgstr "saite uz %s"
@@ -1153,22 +1158,22 @@ msgid "Include other filesystems"
 msgstr "Iekļaut citas failsistēmas"
 
 # gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
-#: gsearchtool/gsearchtool.c:512 gsearchtool/gsearchtool.c:540
+#: gsearchtool/gsearchtool.c:524 gsearchtool/gsearchtool.c:552
 msgid "No files found"
 msgstr "Neviens fails nav atrasts"
 
-#: gsearchtool/gsearchtool.c:533
+#: gsearchtool/gsearchtool.c:545
 msgid "(stopped)"
 msgstr ""
 
 # gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
-#: gsearchtool/gsearchtool.c:539
+#: gsearchtool/gsearchtool.c:551
 #, fuzzy
 msgid "No Files Found"
 msgstr "Neviens fails nav atrasts"
 
 # gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
-#: gsearchtool/gsearchtool.c:544
+#: gsearchtool/gsearchtool.c:556
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
@@ -1176,7 +1181,7 @@ msgstr[0] "Atrasti %d faili"
 msgstr[1] "Atrasti %d faili"
 
 # gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
-#: gsearchtool/gsearchtool.c:548
+#: gsearchtool/gsearchtool.c:560
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
@@ -1184,49 +1189,49 @@ msgstr[0] "Atrasti %d faili"
 msgstr[1] "Atrasti %d faili"
 
 # gsearchtool/gsearchtool.c:471
-#: gsearchtool/gsearchtool.c:654
+#: gsearchtool/gsearchtool.c:666
 msgid "Entry changed called for a non entry option!"
 msgstr "Ieraksta maiņu izsauca ne-ieraksta opcija!"
 
 # gdictsrc/gdict-app.c:117
-#: gsearchtool/gsearchtool.c:903
+#: gsearchtool/gsearchtool.c:915
 msgid "Searching..."
 msgstr "Meklēju..."
 
-#: gsearchtool/gsearchtool.c:924
+#: gsearchtool/gsearchtool.c:936
 #, fuzzy
 msgid "Set the text of 'Name contains'"
 msgstr "Iestati 'fails ar nosaukumu' tekstu"
 
-#: gsearchtool/gsearchtool.c:925
+#: gsearchtool/gsearchtool.c:937
 #, fuzzy
 msgid "Set the text of 'Look in folder'"
 msgstr "Iestati 'meklēt mapē' tekstu"
 
-#: gsearchtool/gsearchtool.c:926
+#: gsearchtool/gsearchtool.c:938
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Kārtot failus pēc viena no sekojošajiem: nosaukums, mape, izmērs, tips, vai "
 "datums"
 
-#: gsearchtool/gsearchtool.c:927
+#: gsearchtool/gsearchtool.c:939
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Iestatīt kārtošanas kārtību uz dilstošu, noklusētā ir augoša"
 
-#: gsearchtool/gsearchtool.c:928
+#: gsearchtool/gsearchtool.c:940
 msgid "Automatically start a search"
 msgstr "Automātiski sākt meklēšanu"
 
-#: gsearchtool/gsearchtool.c:933
+#: gsearchtool/gsearchtool.c:945
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Izvēlieties '%s' piespiešanu"
 
-#: gsearchtool/gsearchtool.c:1039
+#: gsearchtool/gsearchtool.c:1051
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Nederīga opcija piespēlēta sortby komandrindas argumentam."
 
-#: gsearchtool/gsearchtool.c:1304
+#: gsearchtool/gsearchtool.c:1316
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1234,7 +1239,7 @@ msgstr ""
 "Meklēšanas laikā tika paziņotas sekojošās kļūdas.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1308
+#: gsearchtool/gsearchtool.c:1320
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1242,133 +1247,134 @@ msgstr ""
 "\n"
 "... Pārāk daudz kļūdu uz ekrāna ..."
 
-#: gsearchtool/gsearchtool.c:1315
+#: gsearchtool/gsearchtool.c:1327
 #, fuzzy
 msgid "Error while searching for files."
 msgstr "EKļuda pārbaudot sliktos sektorus."
 
-#: gsearchtool/gsearchtool.c:1356
+#: gsearchtool/gsearchtool.c:1368
 #, fuzzy
 msgid "Error parsing the search command."
 msgstr "EKļūda pavairojot (%s) komandu: %s."
 
-#: gsearchtool/gsearchtool.c:1379
+#: gsearchtool/gsearchtool.c:1391
 #, fuzzy
 msgid "Error running the search command."
 msgstr "EKļūda pavairojot (%s) komandu: %s."
 
-#: gsearchtool/gsearchtool.c:1475
-msgid "Search Rule Value Entry"
-msgstr "Meklēšanas Nosacījuma Vērtības Ieraksts"
+#: gsearchtool/gsearchtool.c:1488
+#, c-format
+msgid "'%s' entry"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1476
+#: gsearchtool/gsearchtool.c:1489
 msgid "Enter a value for search rule"
 msgstr "Ievadi vērtību meklēšanas nosacījumam"
 
-#: gsearchtool/gsearchtool.c:1512
+#: gsearchtool/gsearchtool.c:1527
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klikšķis, lai Izņemtu '%s' Nosacījumu"
 
-#: gsearchtool/gsearchtool.c:1568
+#: gsearchtool/gsearchtool.c:1583
 msgid "A_vailable options:"
 msgstr "P_ieejamās opcijas:"
 
 # gsearchtool/gsearchtool.c:211
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1596
 msgid "Search Rules Menu"
 msgstr "Meklēšanas Nosacījumu Izvēlne"
 
 # mini-utils/gcolorsel/menus.c:60
-#: gsearchtool/gsearchtool.c:1582
+#: gsearchtool/gsearchtool.c:1597
 msgid "Select a search rule from the menu"
 msgstr "Izvēlies meklēšanas nosacījumu no izvēlnes"
 
 # gsearchtool/gsearchtool.c:211
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1628
 #, fuzzy
 msgid "S_earch results:"
 msgstr "M_eklēšanas Rezultāti"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1708
 msgid "Name"
 msgstr "Nosaukums"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1728
 msgid "Folder"
 msgstr "Direktorija"
 
 # mini-utils/guname/info.c:61
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1739
 msgid "Size"
 msgstr "Lielums"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1749
 msgid "Type"
 msgstr "Tips"
 
 # logview/info.c:161
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1759
 msgid "Date Modified"
 msgstr "Modificēšanas Datums"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1817
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1832 gsearchtool/gsearchtool.c:1833
 msgid "Enter the file name you want to search"
 msgstr "Ievadi faila nosaukumu, kuru vēlies atrast"
 
-#: gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1833
 msgid "Name Contains Entry"
 msgstr ""
 
 # gdictsrc/gdict-app.c:278
-#: gsearchtool/gsearchtool.c:1829
+#: gsearchtool/gsearchtool.c:1844
 msgid "_Look in folder:"
 msgstr "_Skatīties mapē:"
 
 # gsearchtool/gsearchtool.c:599
-#: gsearchtool/gsearchtool.c:1835
+#: gsearchtool/gsearchtool.c:1850
 msgid "Browse"
 msgstr "Lūkties"
 
-#: gsearchtool/gsearchtool.c:1846 gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the folder name where you want to start the search"
 msgstr "Ievadi direktorijas nosaukumu, kurā vēlies sākt meklēšanu"
 
 # gdictsrc/gdict-app.c:278
-#: gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1862
 #, fuzzy
 msgid "Look in Folder Entry"
 msgstr "_Skatīties mapē:"
 
 # logview/logview.c:113
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1880
 #, fuzzy
 msgid "Show more _options"
 msgstr "Parādīt Žurnāla Rekvizītus"
 
 # logview/logview.c:113
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1890
 #, fuzzy
 msgid "Show more options"
 msgstr "Parādīt Žurnāla Rekvizītus"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1890
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1937
 msgid "Click to Start the search"
 msgstr "Klikšķis, lai Sāktu meklēšanu"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1938
 msgid "Click to Stop the search"
 msgstr "Klikšķis, lai Apstādinātu meklēšanu"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2217
 msgid "Cannot initialize bonobo."
 msgstr "Nevaru inicializēt bonabo."
 
@@ -1704,19 +1710,19 @@ msgid "December"
 msgstr "Decembris"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:397
+#: logview/log_repaint.c:394
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:452
+#: logview/log_repaint.c:449
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:524
+#: logview/log_repaint.c:521
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1765,107 +1771,107 @@ msgid "ReadLogStats: out of memory"
 msgstr "Lasīt Žurnāla Statistiku: nav vairs atmiņas"
 
 # logview/logview.c:97
-#: logview/logview.c:97
+#: logview/logview.c:100
 msgid "S_witch Log"
 msgstr "_Pārslēgt Žurnālu"
 
-#: logview/logview.c:98
+#: logview/logview.c:101
 msgid "Switch between already opened logs"
 msgstr "Slegties starp jau atvērtiem žurnāliem"
 
 # mini-utils/gcolorsel/gcolorsel.c:48
-#: logview/logview.c:104
+#: logview/logview.c:107
 msgid "_Monitor..."
 msgstr "_Novērot..."
 
 # logview/logview.c:100
-#: logview/logview.c:105
+#: logview/logview.c:108
 msgid "Monitor Logs"
 msgstr "Novērot Žurnālus"
 
-#: logview/logview.c:113
+#: logview/logview.c:116
 msgid "_Properties"
 msgstr "_Rekvizīti"
 
 # logview/logview.c:113
-#: logview/logview.c:114
+#: logview/logview.c:117
 msgid "Show Log Properties"
 msgstr "Parādīt Žurnāla Rekvizītus"
 
-#: logview/logview.c:122
+#: logview/logview.c:125
 msgid "Clos_e All"
 msgstr "Izvē_lēties Visu"
 
-#: logview/logview.c:123
+#: logview/logview.c:126
 msgid "Close all Log files"
 msgstr "Izvēlēties visus Žurnālfailus"
 
 # logview/calendar.c:118
-#: logview/logview.c:135
+#: logview/logview.c:138
 msgid "_Calendar"
 msgstr "_Kalendārs"
 
 # logview/logview.c:110
-#: logview/logview.c:136
+#: logview/logview.c:139
 msgid "Show Calendar Log"
 msgstr "Parādīt Kalendāra Žurnālu"
 
-#: logview/logview.c:142
+#: logview/logview.c:145
 msgid "_Entry Detail"
 msgstr "_Ieraksta Detaļas"
 
-#: logview/logview.c:143
+#: logview/logview.c:146
 msgid "Show Entry Detail"
 msgstr "Parādīt ieraksta detaļas"
 
-#: logview/logview.c:149
+#: logview/logview.c:152
 msgid "_Collapse All"
 msgstr "_Sakļaut Visus"
 
-#: logview/logview.c:150
+#: logview/logview.c:153
 msgid "Collapse all the rows"
 msgstr "Sakļaut visas rindas"
 
 # logview/logview.c:241
-#: logview/logview.c:367
+#: logview/logview.c:370
 msgid "No log files to open"
 msgstr "Nav žurnālfaila ko atvērt"
 
 # logview/zoom.c:177
-#: logview/logview.c:389
+#: logview/logview.c:392
 msgid "Date"
 msgstr "Datums"
 
-#: logview/logview.c:389
+#: logview/logview.c:392
 msgid "Host Name"
 msgstr "Hostdatora Vārds"
 
 # logview/zoom.c:179
-#: logview/logview.c:390
+#: logview/logview.c:393
 msgid "Process"
 msgstr "Process"
 
 # logview/zoom.c:181
-#: logview/logview.c:390
+#: logview/logview.c:393
 msgid "Message"
 msgstr "Ziņojums"
 
 # logview/info.c:161
-#: logview/logview.c:471
+#: logview/logview.c:474
 msgid "Last Modified: "
 msgstr "Pēdējoriez Izmainīts: "
 
 # logview/logview.c:621
-#: logview/logview.c:570 logview/logview.c:645
+#: logview/logview.c:573 logview/logview.c:648
 msgid "Too many open logs. Close one and try again"
 msgstr "Par daudz atvērtu žurnālu."
 
-#: logview/logview.c:582
+#: logview/logview.c:585
 msgid "File already opened"
 msgstr "Fails jau atvērts"
 
 # logview/logview.c:674
-#: logview/logview.c:658
+#: logview/logview.c:661
 msgid "Open new logfile"
 msgstr "Atvērt jaunu žurnālfailu"
 
@@ -1988,6 +1994,9 @@ msgstr "Žurnāla rindiņas detaļas priekš"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Search Rule Value Entry"
+#~ msgstr "Meklēšanas Nosacījuma Vērtības Ieraksts"
 
 # gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
 #, fuzzy

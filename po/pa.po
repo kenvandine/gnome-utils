@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD VERSION\n"
-"POT-Creation-Date: 2004-04-20 22:54+1200\n"
+"POT-Creation-Date: 2004-05-21 16:58+1200\n"
 "PO-Revision-Date: 2004-03-21 15:03+0530\n"
 "Last-Translator: Amanpreet Singh Alam <amanlinux@netscape.net>\n"
 "Language-Team: Punjabi\n"
@@ -26,7 +26,7 @@ msgstr "ਸਹਾੲਿਕ"
 msgid "Dictionary Lookup"
 msgstr "ਸ਼ਬਦ-ਕੋਸ਼ ਛਾਣਬੀਨ"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:421
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "ਅਾਨਲਾੲੀਨ ਸ਼ਬਦ-ਕੋਸ਼ ਵਿੱਚ ਸ਼ਬਦ ਵੇਖੋ"
@@ -54,8 +54,8 @@ msgstr "ਸ਼ਬਦ-ਕੋਸ਼ ਵੇਖਾੳੁ"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
-#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
+#: gdictsrc/gdict-pref-dialog.c:509 gdictsrc/gdict-speller.c:452
 msgid "Cannot connect to server"
 msgstr "ਸਰਵਰ ਨਾਲ ਜੁੜ ਨਹੀ ਸਕਿਅਾ"
 
@@ -72,7 +72,7 @@ msgstr ""
 msgid "translator_credits"
 msgstr "ਅਮਨਪ੍ੀਤ ਸਿੰਘ ਅਾਲਮ<amanlinux@netscape.net>"
 
-#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:776
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:923
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "ਸ਼ਬਦ-ਕੋਸ਼"
@@ -81,43 +81,43 @@ msgstr "ਸ਼ਬਦ-ਕੋਸ਼"
 msgid "A client for the MIT dictionary server."
 msgstr "ਸ਼ਬਦ-ਕੋਸ਼ MIT ਸਰਵਰ ਲੲੀ ਕਲ੾ੲੀਟ"
 
-#: gdictsrc/gdict-app.c:125
+#: gdictsrc/gdict-app.c:127
 msgid "Spell-checking..."
 msgstr "ਸ਼ਬਦ-ਜੋੜ ਦੀ ਜ੾ਚ ਜਾਰੀ਼਼਼"
 
-#: gdictsrc/gdict-app.c:133
+#: gdictsrc/gdict-app.c:135
 msgid "Spell check done"
 msgstr "ਸ਼ਬਦ ਜੋੜ ਦੀ ਜ੾ਚ ਹੋ ਗੲੀ"
 
-#: gdictsrc/gdict-app.c:141 gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:143 gdictsrc/gdict-app.c:290
 msgid "No matches found"
 msgstr "ਕੋੲੀ ਮੇਲ ਨਹੀ ਲੱਭਿਅਾ"
 
-#: gdictsrc/gdict-app.c:271
+#: gdictsrc/gdict-app.c:273
 msgid "Looking up word..."
 msgstr "ਸ਼ਬਦ ਦੀ ਖੋਜ ਜਾਰੀ਼਼਼"
 
-#: gdictsrc/gdict-app.c:279
+#: gdictsrc/gdict-app.c:281
 msgid "Lookup done"
 msgstr "ਖੋਜ ਪੂਰੀ ਹੋ ਗੲੀ"
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:303
 msgid "String not found"
 msgstr "ਸਤਰ ਨਹੀ ਲੱਭੀ"
 
-#: gdictsrc/gdict-app.c:469
+#: gdictsrc/gdict-app.c:471
 msgid "Find"
 msgstr "ਖੋਜ"
 
-#: gdictsrc/gdict-app.c:477
+#: gdictsrc/gdict-app.c:479
 msgid "_Search for:"
 msgstr "ਦੀ ਖੋਜਃ"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:492
 msgid "_Find"
 msgstr "ਖੋਜ"
 
-#: gdictsrc/gdict-app.c:532
+#: gdictsrc/gdict-app.c:534
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -127,45 +127,45 @@ msgstr ""
 "ਜ੾ ਤ੾ ਜੋ ਸਰਵਰ ਤੁਸੀ ਜੋ ਵਰਤ ਰਹੇ ਹੋ ੳੁਹ ੳੁਪਲੱਬਧ ਨਹੀ ਹੈ \n"
 "ਜ੾ ਤੁਸੀ ੲਿੰਟਰਨੈਟ ਨਾਲ ਜੁੜੇ ਨਹੀ ਹੋੲੇ ੤"
 
-#: gdictsrc/gdict-app.c:693 gdictsrc/gdict-app.c:803
-#: gdictsrc/gdict-speller.c:215
+#: gdictsrc/gdict-app.c:695 gdictsrc/gdict-app.c:950
+#: gdictsrc/gdict-speller.c:214
 msgid "_Look Up Word"
 msgstr "ਸ਼ਬਦ ਦੀ ਖੋਜ"
 
-#: gdictsrc/gdict-app.c:694
+#: gdictsrc/gdict-app.c:696
 msgid "Lookup word in dictionary"
 msgstr "ਸ਼ਬਦ-ਕੋਸ਼ ਵਿੱਚ ਸ਼ਬਦ ਦੀ ਖੋਜ"
 
-#: gdictsrc/gdict-app.c:696 gdictsrc/gdict-speller.c:161
+#: gdictsrc/gdict-app.c:698 gdictsrc/gdict-speller.c:160
 msgid "Check _Spelling"
 msgstr "ਸ਼ਬਦ ਜੋੜ ਦੀ ਜ੾ਚ"
 
-#: gdictsrc/gdict-app.c:697
+#: gdictsrc/gdict-app.c:699
 msgid "Check word spelling"
 msgstr "ਸ਼ਬਦ ਜੋੜ ਦੀ ਜ੾ਚ"
 
-#: gdictsrc/gdict-app.c:741
+#: gdictsrc/gdict-app.c:743
 msgid "_Dictionary"
 msgstr "ਸ਼ਬਦ-ਕੋਸ਼"
 
-#: gdictsrc/gdict-app.c:799 gdictsrc/gdict-speller.c:134
+#: gdictsrc/gdict-app.c:946 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "ਸ਼ਬਦਃ"
 
-#: gdictsrc/gdict-app.c:827 gdictsrc/gdict-speller.c:146
+#: gdictsrc/gdict-app.c:974 gdictsrc/gdict-speller.c:146
 msgid "Word"
 msgstr "ਸ਼ਬਦ"
 
-#: gdictsrc/gdict-app.c:828 gdictsrc/gdict-app.c:829
+#: gdictsrc/gdict-app.c:975 gdictsrc/gdict-app.c:976
 #: gdictsrc/gdict-speller.c:147
 msgid "Word Entry"
 msgstr "ਸ਼ਬਦ ੲਿੰਦਰਾਜ਼"
 
-#: gdictsrc/gdict-app.c:828
+#: gdictsrc/gdict-app.c:975
 msgid "Enter a Word or select one from the list below"
 msgstr "ਸ਼ਬਦ ਦਿੳੁ ਜ੾ ਹੇਠ ਲਿਖੀ ਸੂਚੀ ਵਿੱਚੋ ਚੁਣੋ"
 
-#: gdictsrc/gdict-app.c:831
+#: gdictsrc/gdict-app.c:978
 msgid "Look Up for a Word"
 msgstr "ਸ਼ਬਦ ਦੀ ਖੋਜ"
 
@@ -173,7 +173,12 @@ msgstr "ਸ਼ਬਦ ਦੀ ਖੋਜ"
 msgid "_Lookup"
 msgstr "ਖੋਜ"
 
-#: gdictsrc/gdict-defbox.c:639 gdictsrc/gdict-speller.c:478
+#: gdictsrc/gdict-applet.c:155
+#, fuzzy
+msgid "Dictionary word entry"
+msgstr "ਸ਼ਬਦ-ਕੋਸ਼ ਸਰਵਰ"
+
+#: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "ਗਲਤੀ ਸਵਾਲ ਵਿੱਚ: %s"
@@ -222,43 +227,43 @@ msgstr "ਸਰਵਰ ੲਿੰਦਰਾਜ਼"
 msgid "Enter the Server Name"
 msgstr "ਸਰਵਰ ਨਾੳੁ ਭਰੋ"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:242
 msgid "Port"
 msgstr "ਪੋਰਟ"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port Entry"
 msgstr "ਪੋਰਟ ੲਿੰਦਰਾਜ਼"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Enter the Port Number"
 msgstr "ਪੋਰਟ ਨੰਬਰ ਦਿੳੁ"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "_Database:"
 msgstr "ਡਾਟਾਬੇਸਃ"
 
-#: gdictsrc/gdict-pref-dialog.c:261
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "D_efault strategy:"
 msgstr "ਮੂਲ ਢੰਗਃ"
 
-#: gdictsrc/gdict-pref-dialog.c:454
+#: gdictsrc/gdict-pref-dialog.c:452
 msgid "Search all databases"
 msgstr "ਸਾਰੇ ਡਾਟਾਬੇਸ ਵਿੱਚ ਖੋਜੋ"
 
-#: gdictsrc/gdict-pref-dialog.c:615
+#: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database"
 msgstr "ਡਾਟਾਬੇਸ"
 
-#: gdictsrc/gdict-pref-dialog.c:615
+#: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database Name"
 msgstr "ਡਾਟਾਬੇਸ ਨਾੳੁ"
 
-#: gdictsrc/gdict-pref-dialog.c:631
+#: gdictsrc/gdict-pref-dialog.c:629
 msgid "Default Strategy"
 msgstr "ਮੂਲ ਢੰਗ"
 
-#: gdictsrc/gdict-pref-dialog.c:658
+#: gdictsrc/gdict-pref-dialog.c:656
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -271,23 +276,23 @@ msgstr ""
 msgid "Enter a word to know the spelling"
 msgstr "ਸ਼ਬਦ-ਜੋੜ ਜ੾ਚਣ ਲੲੀ ਸ਼ਬਦ ਦਿੳੁ"
 
-#: gdictsrc/gdict-speller.c:154
+#: gdictsrc/gdict-speller.c:153
 msgid "Search s_trategy:"
 msgstr "ਖੋਜ ਢੰਗਃ"
 
-#: gdictsrc/gdict-speller.c:166
+#: gdictsrc/gdict-speller.c:165
 msgid "Click to do the spell check"
 msgstr "ਸ਼ਬਦ-ਜੋੜ ਜ੾ਚ ਲੲੀ ਦਬਾੳੁ"
 
-#: gdictsrc/gdict-speller.c:170
+#: gdictsrc/gdict-speller.c:169
 msgid "Search _results:"
 msgstr "ਖੋਜ ਨਤੀਜਾਃ"
 
-#: gdictsrc/gdict-speller.c:230
+#: gdictsrc/gdict-speller.c:229
 msgid "Check Spelling"
 msgstr "ਸ਼ਬਦ-ਜੋੜ ਜ੾ਚ"
 
-#: gdictsrc/gdict-speller.c:644
+#: gdictsrc/gdict-speller.c:643
 msgid "Search Strategy"
 msgstr "ਖੋਜ ਢੰਗ"
 
@@ -769,9 +774,9 @@ msgstr "ਫਲਾਪੀ ਫਾਰਮਿਟਿੰਗ ਰੱਦ ਕੀਤੀ"
 msgid "Format Progress"
 msgstr "ਫਾਰਮਿਟ ਤਰੱਕੀ"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:565
-#: gsearchtool/gsearchtool.c:819 gsearchtool/gsearchtool.c:903
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:577
+#: gsearchtool/gsearchtool.c:831 gsearchtool/gsearchtool.c:915
+#: gsearchtool/gsearchtool.c:2196 gsearchtool/gsearchtool.c:2221
 msgid "Search for Files"
 msgstr "ਫਾੲਿਲ੾ ਦੀ ਖੋਜ"
 
@@ -955,23 +960,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:470
+#: gsearchtool/gsearchtool-support.c:494
 msgid "today at %-I:%M %p"
 msgstr "ਅੱਜ  %-I:%M %p ਵਜੇ"
 
-#: gsearchtool/gsearchtool-support.c:472
+#: gsearchtool/gsearchtool-support.c:496
 msgid "yesterday at %-I:%M %p"
 msgstr "ਕੱਲ੏  %-I:%M %p ਵਜੇ"
 
-#: gsearchtool/gsearchtool-support.c:474 gsearchtool/gsearchtool-support.c:476
+#: gsearchtool/gsearchtool-support.c:498 gsearchtool/gsearchtool-support.c:500
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:647
+#: gsearchtool/gsearchtool-support.c:671
 msgid "link (broken)"
 msgstr "ਸੰਬੰਧ (ਟੁੱਟਾ)"
 
-#: gsearchtool/gsearchtool-support.c:652
+#: gsearchtool/gsearchtool-support.c:676
 #, c-format
 msgid "link to %s"
 msgstr "%s ਨਾਲ ਸੰਬੰਧ"
@@ -1032,68 +1037,68 @@ msgstr "ਨਿਸ਼ਾਨ ਸੰਬੰਧ ਦਾ ਪਿੱਛਾ ਕਰੋ"
 msgid "Include other filesystems"
 msgstr "ਹੋਰ ਫਾੲਿਲ-ਸਿਸਟਮ ਵੀ ਜੋੜੋ"
 
-#: gsearchtool/gsearchtool.c:512 gsearchtool/gsearchtool.c:540
+#: gsearchtool/gsearchtool.c:524 gsearchtool/gsearchtool.c:552
 msgid "No files found"
 msgstr "ਕੋੲੀ ਫਾੲਿਲ ਨਹੀ ਲੱਭੀ"
 
-#: gsearchtool/gsearchtool.c:533
+#: gsearchtool/gsearchtool.c:545
 msgid "(stopped)"
 msgstr "(ਰੋਕਿਅਾ)"
 
-#: gsearchtool/gsearchtool.c:539
+#: gsearchtool/gsearchtool.c:551
 msgid "No Files Found"
 msgstr "ਕੋੲੀ ਫਾੲਿਲ ਨਹੀ ਲੱਭੀ"
 
-#: gsearchtool/gsearchtool.c:544
+#: gsearchtool/gsearchtool.c:556
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d ਫਾੲਿਲ ਲੱਭੀ"
 
-#: gsearchtool/gsearchtool.c:548
+#: gsearchtool/gsearchtool.c:560
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d ਫਾੲਿਲ ਲੱਭੀ"
 
-#: gsearchtool/gsearchtool.c:654
+#: gsearchtool/gsearchtool.c:666
 msgid "Entry changed called for a non entry option!"
 msgstr "ਨਾ -ੲਿੰਦਰਾਜ਼ ਚੋਣ ਲੲੀ ੲਿੰਦਰਾਜ਼ ਤਬਦੀਲੀ ਕਰੋ"
 
-#: gsearchtool/gsearchtool.c:903
+#: gsearchtool/gsearchtool.c:915
 msgid "Searching..."
 msgstr "ਖੋਜ ਜਾਰੀ ਹੈ਼਼਼"
 
-#: gsearchtool/gsearchtool.c:924
+#: gsearchtool/gsearchtool.c:936
 msgid "Set the text of 'Name contains'"
 msgstr "'ਨਾੳੁ ਰੱਖਦਾ ਹੈ' ਦਾ ਪਾਠ ਨਿਰਧਾਰਿਤ ਕਰੋ"
 
-#: gsearchtool/gsearchtool.c:925
+#: gsearchtool/gsearchtool.c:937
 msgid "Set the text of 'Look in folder'"
 msgstr "'ਫੋਲਡਰ ਵਿੱਚ ਵੇਖੋ' ਦਾ ਪਾਠ ਨਿਰਧਾਰਿਤ ਕਰੋ"
 
-#: gsearchtool/gsearchtool.c:926
+#: gsearchtool/gsearchtool.c:938
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "ਫਾੲਿਲ ਨੰੂ ੲਿੱਕ ਢੰਗ ਨਾਲ ਨਿਰਧਾਰਿਤ ਕਰੋਃ ਨਾੳੁ, ਫੋਲਡਰ, ਅਕਾਰ, ਕਿਸਮ, ਜ੾ ਮਿਤੀ "
 
-#: gsearchtool/gsearchtool.c:927
+#: gsearchtool/gsearchtool.c:939
 msgid "Set sort order to descending, the default is ascending"
 msgstr "ਕ੍ਮ ਨੂੰ ਘੱਟਦੇ ਕ੍ਮ ਅਨੁਸਾਰ ਨਿਰਧਾਰਿਤ ਕਰੋ, ਮੂਲ ਵੱਧਦੇ ਕ੍ਮ ਅਨੁਸਾਰ ਹੈ"
 
-#: gsearchtool/gsearchtool.c:928
+#: gsearchtool/gsearchtool.c:940
 msgid "Automatically start a search"
 msgstr "ਸਵੈ ਹੀ ਖੋਜ ਚਾਲੂ ਕਰੋ"
 
-#: gsearchtool/gsearchtool.c:933
+#: gsearchtool/gsearchtool.c:945
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "ਬੰਦਸ਼ '%s' ਚੁਣੋ"
 
-#: gsearchtool/gsearchtool.c:1039
+#: gsearchtool/gsearchtool.c:1051
 msgid "Invalid option passed to sortby command line argument."
 msgstr "ਕ੍ਮ ਅਨੁਸਾਰ ਕਮ੾ਡ ਲਾੲੀਨ ਲੲੀ ਗਲਤ ਚੋਣ ਅਾਰਗੂਮੈਟ ਦਿੱਤਾ ਗਿਅਾ ਹੈ ੤"
 
-#: gsearchtool/gsearchtool.c:1304
+#: gsearchtool/gsearchtool.c:1316
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1101,7 +1106,7 @@ msgstr ""
 "ਖੋਜ ਦੌਰਾਨ ਹੇਠ ਲਿਖੀਅ੾ ਗਲਤੀਅ੾ ਦਰਜ ਕੀਤੀਅ੾ ਗੲੀਅ੾ ਹਨ ੤\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1308
+#: gsearchtool/gsearchtool.c:1320
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1109,116 +1114,117 @@ msgstr ""
 "\n"
 "... ਵੇਖਾੳੁਣ ਲੲੀ ਗਲਤੀਅ੾ ਬਹੁਤ ਜਿਅਾਦਾ ਹਨ ..."
 
-#: gsearchtool/gsearchtool.c:1315
+#: gsearchtool/gsearchtool.c:1327
 msgid "Error while searching for files."
 msgstr "ਗਲਤੀ, ਫਾੲਿਲ੾ ਦੀ ਖੋਜ ਦੌਰਾਨ ੤"
 
-#: gsearchtool/gsearchtool.c:1356
+#: gsearchtool/gsearchtool.c:1368
 msgid "Error parsing the search command."
 msgstr "ਗਲਤੀ ਖੋਜ ਕਮ੾ਡ ਨੰੂ ਪਾਰਸ ਕਰਨ ਦੌਰਾਨ"
 
-#: gsearchtool/gsearchtool.c:1379
+#: gsearchtool/gsearchtool.c:1391
 msgid "Error running the search command."
 msgstr "ਗਲਤੀ ਖੋਜ ਕਮ੾ਡ ਨੰੂ ਚਲਾੳੁਣ ਦੌਰਾਨ"
 
-#: gsearchtool/gsearchtool.c:1475
-msgid "Search Rule Value Entry"
-msgstr "ਖੋਜ ਰੂਲ ਮੁੱਲ ੲਿੰਦਰਾਜ ਦੀ"
+#: gsearchtool/gsearchtool.c:1488
+#, c-format
+msgid "'%s' entry"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1476
+#: gsearchtool/gsearchtool.c:1489
 msgid "Enter a value for search rule"
 msgstr "ਖੋਜ ਰੂਲ ਲੲੀ ੲਿੱਕ ਮੁੱਲ ਦਿੳੁ"
 
-#: gsearchtool/gsearchtool.c:1512
+#: gsearchtool/gsearchtool.c:1527
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "ਹਟਾੳੁਣ ਲੲੀ ਰੂਲ  '%s' ਤੇ ਕਲਿੱਕ ਕਰੋ"
 
-#: gsearchtool/gsearchtool.c:1568
+#: gsearchtool/gsearchtool.c:1583
 msgid "A_vailable options:"
 msgstr "ੳੁਪਲੱਬਧ ਚੋਣਃ"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1596
 msgid "Search Rules Menu"
 msgstr "ਖੋਜ ਰੂਲ ਮੇਨੂ"
 
-#: gsearchtool/gsearchtool.c:1582
+#: gsearchtool/gsearchtool.c:1597
 msgid "Select a search rule from the menu"
 msgstr "ਮੇਨੂ ਵਿੱਚੋ ਖੋਜ ਰੂਲ ਚੁਣੋ"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1628
 msgid "S_earch results:"
 msgstr "ਖੋਜ ਨਤੀਜਾਃ"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1708
 msgid "Name"
 msgstr "ਨਾੳੁ"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1728
 msgid "Folder"
 msgstr "ਫੋਲਡਰ"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1739
 msgid "Size"
 msgstr "ਅਕਾਰ"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1749
 msgid "Type"
 msgstr "ਕਿਸਮ"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1759
 msgid "Date Modified"
 msgstr "ਸੋਧ ਮਿਤੀ"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1817
 msgid "_Name contains:"
 msgstr "ਨਾੳੁ ਰੱਖਦਾ ਹੈਃ"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1832 gsearchtool/gsearchtool.c:1833
 msgid "Enter the file name you want to search"
 msgstr "ਫਾੲਿਲ ਦਾ ਨਾੳੁ ਦਿੳੁ, ਜੋ ਕਿ ਲੱਭਣੀ ਹੈ"
 
-#: gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1833
 msgid "Name Contains Entry"
 msgstr "ਨਾੳੁ ਰੱਖਣ ੲਿੰਦਰਾਜ਼"
 
-#: gsearchtool/gsearchtool.c:1829
+#: gsearchtool/gsearchtool.c:1844
 msgid "_Look in folder:"
 msgstr "ਫੋਲਡਰ ਵਿੱਚ ਵੇਖੋਃ"
 
-#: gsearchtool/gsearchtool.c:1835
+#: gsearchtool/gsearchtool.c:1850
 msgid "Browse"
 msgstr "ਝਲਕ"
 
-#: gsearchtool/gsearchtool.c:1846 gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the folder name where you want to start the search"
 msgstr "ਫੋਲਡਰ ਦਾ ਨਾੳੁ ਦਿੳੁ, ਜਿਥੋ ਕਿ ਤੁਸੀ ਖੋਜ ਸ਼ੁਰੂ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ"
 
-#: gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1862
 msgid "Look in Folder Entry"
 msgstr "ਫੋਲਡਰ ਵਿੱਚ ਖੋਜ ੲਿੰਦਰਾਜ਼"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1880
 msgid "Show more _options"
 msgstr "ਹੋਰ ਚੋਣ ਵੇਖਾੳੁ"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1890
 msgid "Show more options"
 msgstr "ਹੋਰ ਚੋਣ ਵੇਖਾੳੁ"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1890
 msgid "Expands or collapses a list of search options."
 msgstr "ਖੋਜ ਚੋਣ ਦੀ ਸੂਚੀ ਨੰੂ ੲਿੱਕਠਾ ਕਰੋ ਜ੾ ਫੈਲਾੳੁ ੤"
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1937
 msgid "Click to Start the search"
 msgstr "ਖੋਜ ਸ਼ੁਰੂ ਕਰਨ ਲੲੀ ਦਬਾੳੁ"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1938
 msgid "Click to Stop the search"
 msgstr "ਖੋਜ ਰੋਕਣ ਲੲੀ ਦਬਾੳੁ"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2217
 msgid "Cannot initialize bonobo."
 msgstr "ਬੋਨਬੋ ਨੰੂ ਅਾਰੰਭ ਨਹੀ ਕਰ ਸਕਿਅਾ ੤"
 
@@ -1495,19 +1501,19 @@ msgid "December"
 msgstr "ਦਸੰਬਰ"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:397
+#: logview/log_repaint.c:394
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:452
+#: logview/log_repaint.c:449
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:524
+#: logview/log_repaint.c:521
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1548,95 +1554,95 @@ msgstr "%s ੲਿੱਕ ਲਾਗ ਫਾੲਿਲ ਨਹੀ ਹੈ ੤"
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: ਮੈਮੋਰੀ ਦੀ ਹੱਦ ਤੋ ਬਾਹਰ"
 
-#: logview/logview.c:97
+#: logview/logview.c:100
 msgid "S_witch Log"
 msgstr "ਸਵਿੱਚ ਲਾਗ"
 
-#: logview/logview.c:98
+#: logview/logview.c:101
 msgid "Switch between already opened logs"
 msgstr "ਮੌਜੂਦਾ ਖੁੱਲੇ ਲਾਗ ਵਿੱਚ ੲੇਧਰ-ਓਧਰ"
 
-#: logview/logview.c:104
+#: logview/logview.c:107
 msgid "_Monitor..."
 msgstr "ਮਾਨੀਟਰ਼਼਼"
 
-#: logview/logview.c:105
+#: logview/logview.c:108
 msgid "Monitor Logs"
 msgstr "ਮਾਨੀਟਰ ਲਾਗ"
 
-#: logview/logview.c:113
+#: logview/logview.c:116
 msgid "_Properties"
 msgstr "ਵਿਸ਼ੇਸਤਾ"
 
-#: logview/logview.c:114
+#: logview/logview.c:117
 msgid "Show Log Properties"
 msgstr "ਲਾਗ ਵਿਸ਼ੇਸਤਾ ਵੇਖਾੳੁ"
 
-#: logview/logview.c:122
+#: logview/logview.c:125
 msgid "Clos_e All"
 msgstr "ਸਭ ਬੰਦ ਕਰੋ"
 
-#: logview/logview.c:123
+#: logview/logview.c:126
 msgid "Close all Log files"
 msgstr "ਸਾਰੀਅ੾ ਲਾਗ ਫਾੲਿਲ੾ ਬੰਦ ਕਰੋ"
 
-#: logview/logview.c:135
+#: logview/logview.c:138
 msgid "_Calendar"
 msgstr "ਕੈਲੰਡਰ"
 
-#: logview/logview.c:136
+#: logview/logview.c:139
 msgid "Show Calendar Log"
 msgstr "ਕੈਲੰਡਰ ਲਾਗ ਵੇਖਾੳੁ"
 
-#: logview/logview.c:142
+#: logview/logview.c:145
 msgid "_Entry Detail"
 msgstr "ੲਿੰਦਰਾਜ਼ ਵੇਰਵਾ"
 
-#: logview/logview.c:143
+#: logview/logview.c:146
 msgid "Show Entry Detail"
 msgstr "ੲਿੰਦਰਾਜ਼ ਵੇਰਵਾ ਵੇਖਾੳੁ"
 
-#: logview/logview.c:149
+#: logview/logview.c:152
 msgid "_Collapse All"
 msgstr "ਸਭ ਸਮੇਟੋ"
 
-#: logview/logview.c:150
+#: logview/logview.c:153
 msgid "Collapse all the rows"
 msgstr "ਸਾਰੀਅ੾ ਕਤਾਰ੾ ਸਮੇਟੋ"
 
-#: logview/logview.c:367
+#: logview/logview.c:370
 msgid "No log files to open"
 msgstr "ਕੋੲੀ ਲਾਗ ਫਾੲਿਲ ਖੁੱਲੀ ਹੈ"
 
-#: logview/logview.c:389
+#: logview/logview.c:392
 msgid "Date"
 msgstr "ਮਿਤੀ"
 
-#: logview/logview.c:389
+#: logview/logview.c:392
 msgid "Host Name"
 msgstr "ਮੇਜ਼ਬਾਨ ਨਾੳੁ"
 
-#: logview/logview.c:390
+#: logview/logview.c:393
 msgid "Process"
 msgstr "ਕਾਰਜ"
 
-#: logview/logview.c:390
+#: logview/logview.c:393
 msgid "Message"
 msgstr "ਸੁਨੇਹਾ"
 
-#: logview/logview.c:471
+#: logview/logview.c:474
 msgid "Last Modified: "
 msgstr "ਅਖੀਰੀ ਸੋਧਃ"
 
-#: logview/logview.c:570 logview/logview.c:645
+#: logview/logview.c:573 logview/logview.c:648
 msgid "Too many open logs. Close one and try again"
 msgstr "ਬਹੁਤ ਲਾਗ ਖੁੱਲੇ ਹਨ ੤ ੲਿੱਕ ਬੰਦ ਕਰਕੇ ਮੁੜ ਕੋਸ਼ਿਸ ਕਰੋ "
 
-#: logview/logview.c:582
+#: logview/logview.c:585
 msgid "File already opened"
 msgstr "ਫਾੲਿਲ ਪਹਿਲ੾ ਹੀ ਖੁੱਲੀ ਹੈ"
 
-#: logview/logview.c:658
+#: logview/logview.c:661
 msgid "Open new logfile"
 msgstr "ਨਵੀ ਲਾਗ ਫਾੲਿਲ ਖੋਲੋ੏"
 
@@ -1734,3 +1740,6 @@ msgstr "ਲਾਗ ਕਤਾਰ ਵੇਰਵਾ"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Search Rule Value Entry"
+#~ msgstr "ਖੋਜ ਰੂਲ ਮੁੱਲ ੲਿੰਦਰਾਜ ਦੀ"
