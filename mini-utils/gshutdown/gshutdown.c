@@ -566,13 +566,10 @@ static void toggle_confirm_cb(GtkWidget * button, gpointer data)
 
 static void help_cb(GtkButton * b, gpointer ignored)
 {
-  gchar * path;
+ 
+GnomeHelpMenuEntry ref = {"gshutdown", "index.html"};
+			gnome_help_display (NULL, &ref);
 
-  path = gnome_help_file_find_file(APPNAME, "index.html");
-
-  gnome_help_goto(NULL, path);
-
-  g_free(path);
 }
 
 /*********************************************
