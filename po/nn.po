@@ -9,14 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-19 09:33+0100\n"
-"PO-Revision-Date: 2004-02-19 09:54+0100\n"
+"POT-Creation-Date: 2004-02-25 14:56+0100\n"
+"PO-Revision-Date: 2004-02-27 10:29+0100\n"
 "Last-Translator: Åsmund Skjæveland <aasmunds@fys.uio.no>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 #, fuzzy
@@ -65,6 +66,8 @@ msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
 msgstr ""
+"Ein alvorleg feil oppstod. Kontroller at tenar og port er stilt rett. "
+"For referanse: Standard tenar er dict.org, port 2628"
 
 #. Translator credits
 #: gdictsrc/gdict-about.c:43 logview/about.c:49
@@ -81,7 +84,7 @@ msgstr "Ordliste"
 
 #: gdictsrc/gdict-about.c:58
 msgid "A client for the MIT dictionary server."
-msgstr ""
+msgstr "Ein klient for MIT-ordboktenaren."
 
 #: gdictsrc/gdict-app.c:125
 msgid "Spell-checking..."
@@ -110,6 +113,10 @@ msgstr "Fann ikkje søketekst!"
 #: gdictsrc/gdict-app.c:469
 msgid "Find"
 msgstr "Finn"
+
+#: gdictsrc/gdict-app.c:477
+msgid "_Search for:"
+msgstr "_Søk etter:"
 
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
@@ -162,7 +169,7 @@ msgstr "Ordoppføring"
 
 #: gdictsrc/gdict-app.c:828
 msgid "Enter a Word or select one from the list below"
-msgstr ""
+msgstr "Skriv inn eit ord eller vel eit frå lista under"
 
 #: gdictsrc/gdict-app.c:831
 msgid "Look Up for a Word"
@@ -194,9 +201,8 @@ msgid "De_fault Server"
 msgstr "Standardtenar:"
 
 #: gdictsrc/gdict-pref-dialog.c:205
-#, fuzzy
 msgid "Reset server to default"
-msgstr "Gjenopprett standardinnstillingar"
+msgstr "Gå tilbake til standardtenar"
 
 #: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
@@ -208,7 +214,7 @@ msgstr "St_andardport"
 
 #: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
-msgstr ""
+msgstr "Gå tilbake til standardport"
 
 #: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
@@ -220,7 +226,7 @@ msgstr "Tenaroppføring"
 
 #: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
-msgstr ""
+msgstr "Skriv inn tenarnamnet"
 
 #: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
@@ -232,7 +238,7 @@ msgstr "Portoppføring"
 
 #: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
-msgstr ""
+msgstr "Skriv inn portnummeret"
 
 #: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
@@ -269,7 +275,7 @@ msgstr ""
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
-msgstr ""
+msgstr "Skriv inn eit ord for å visa stavinga"
 
 #: gdictsrc/gdict-speller.c:154
 msgid "Search s_trategy:"
@@ -277,7 +283,7 @@ msgstr "Søkes_trategi:"
 
 #: gdictsrc/gdict-speller.c:166
 msgid "Click to do the spell check"
-msgstr ""
+msgstr "Klikk for å kontrollera stavinga"
 
 #: gdictsrc/gdict-speller.c:170
 msgid "Search _results:"
@@ -304,6 +310,8 @@ msgid ""
 "Specify whether to use smart lookup. This key is dependant on whether the "
 "dictionary server supports this option. The default is TRUE"
 msgstr ""
+"Vel om smarte oppslag skal brukast. Denne nøkkelen er berre aktuell dersom "
+"ordboktenaren støttar dette valet. Standard er sann."
 
 #: gdictsrc/gdict.schemas.in.h:4
 msgid "The database to use in the dictionary server."
@@ -314,16 +322,20 @@ msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers"
 msgstr ""
+"Ordboktenaren som skal brukast. Standard er dict.org. Sjå http://www.dict.org/ "
+"for informasjon om andre tenarar."
 
 #: gdictsrc/gdict.schemas.in.h:6
 msgid ""
 "The name of the individual database to use in the dictionary server. ! "
 "specifies that gnome-dictionary should search all databases in a given server"
 msgstr ""
+"Namn på einskild database som skal brukast på tenaren. "
+"«!» tyder at programmet skal søka i alle databasane på tenaren."
 
 #: gdictsrc/gdict.schemas.in.h:7
 msgid "The port number to connect to. The default port is 2628."
-msgstr ""
+msgstr "Portnummeret som skal koplast til. Standardporten er 2628."
 
 #: gdictsrc/gdict.schemas.in.h:8
 msgid "The search strategy to use"
@@ -747,8 +759,8 @@ msgid ""
 msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Disketten er formatert, men <b>%d øydelagt blokk</b> vart funne og merka øydelagt. Det er totalt %d blokker på disketten."
+msgstr[1] "Disketten er formatert, men <b>%d øydelagte blokker</b> vart funne og merka øydelagt. Det er totalt %d blokker på disketten<."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -765,7 +777,7 @@ msgstr "Framgong i formatering."
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2216
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 #, fuzzy
 msgid "Search for Files"
 msgstr "Søk etter filer"
@@ -830,23 +842,19 @@ msgid "Could not open help document."
 msgstr "Lukk dokument"
 
 #: gsearchtool/gsearchtool-callbacks.c:318
-#, fuzzy, c-format
+#, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] "Er du sikker på at du vil stenge ned datamaskina?"
-msgstr[1] "Er du sikker på at du vil stenge ned datamaskina?"
+msgstr[0] "Er du sikker på at du vil opna eitt dokument?"
+msgstr[1] "Er du sikker på at du vil opna %d dokument?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] ""
-"Den følgjane e-posten vil bli sendt til %s.\n"
-" Er du sikker på at du vil sende denne informasjonen?"
-msgstr[1] ""
-"Den følgjane e-posten vil bli sendt til %s.\n"
-" Er du sikker på at du vil sende denne informasjonen?"
+msgstr[0] "Dette vil opna eitt nytt vindauge."
+msgstr[1] "Dette vil opna %d nye vindauge."
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
@@ -962,8 +970,7 @@ msgid "You may not have write permissions to the document."
 msgstr ""
 
 #: gsearchtool/gsearchtool-support.c:63
-#, c-format
-#, fuzzy
+#, fuzzy, c-format
 msgid ""
 "GConf error:\n"
 "  %s"
@@ -997,8 +1004,7 @@ msgid "link (broken)"
 msgstr "lenkje (broten)"
 
 #: gsearchtool/gsearchtool-support.c:492
-#, c-format
-#, fuzzy
+#, fuzzy, c-format
 msgid "link to %s"
 msgstr "lenkje til %s"
 
@@ -1170,107 +1176,107 @@ msgstr ""
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 #, fuzzy
 msgid "A_vailable options:"
 msgstr "Til_gjengelege alternativ:"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 #, fuzzy
 msgid "Search Rules Menu"
 msgstr "Søkeresultat"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 #, fuzzy
 msgid "Select a search rule from the menu"
 msgstr "Lag eit nytt arkiv frå elementa"
 
-#: gsearchtool/gsearchtool.c:1612
+#: gsearchtool/gsearchtool.c:1610
 #, fuzzy
 msgid "S_earch results:"
 msgstr "Søkeresultat"
 
-#: gsearchtool/gsearchtool.c:1692
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "Namn"
 
-#: gsearchtool/gsearchtool.c:1712
+#: gsearchtool/gsearchtool.c:1710
 #, fuzzy
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1723
+#: gsearchtool/gsearchtool.c:1721
 #, fuzzy
 msgid "Size"
 msgstr "Storleik"
 
-#: gsearchtool/gsearchtool.c:1733
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1743
+#: gsearchtool/gsearchtool.c:1741
 #, fuzzy
 msgid "Date Modified"
 msgstr "Dato endra"
 
-#: gsearchtool/gsearchtool.c:1801
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1816 gsearchtool/gsearchtool.c:1817
-msgid "Name Contains Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1816 gsearchtool/gsearchtool.c:1817
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1829
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1826
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "Fann ikkje søketekst!"
 
-#: gsearchtool/gsearchtool.c:1835
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
+msgid "Enter the folder name where you want to start the search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1844
 #, fuzzy
 msgid "Look in Folder Entry"
 msgstr "Fann ikkje søketekst!"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
-msgid "Enter the folder name where you want to start the search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1862
 #, fuzzy
 msgid "Show more _options"
 msgstr "Vis «eigenskapari»"
 
-#: gsearchtool/gsearchtool.c:1885
+#: gsearchtool/gsearchtool.c:1872
 #, fuzzy
 msgid "Show more options"
 msgstr "Vis «eigenskapari»"
 
-#: gsearchtool/gsearchtool.c:1885
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1932
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1933
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2212
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr "Klarar ikkje å starte bonobo."
 
@@ -1918,10 +1924,6 @@ msgstr "%B %e %X"
 #, fuzzy
 #~ msgid "Floppy formatter"
 #~ msgstr "Diskettformaterar"
-
-#, fuzzy
-#~ msgid "Search Errors"
-#~ msgstr "Søk etter"
 
 #, fuzzy
 #~ msgid "Search for Files Error"
