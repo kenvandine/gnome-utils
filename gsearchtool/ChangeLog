@@ -1,3 +1,19 @@
+2005-02-03  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	Prevent crash if the glib character conversion 
+	routines fail. Bug #166049.
+	
+	* gsearchtool.c:  Added a new function,
+	display_dialog_character_set_conversion_error (). 
+	(build_search_command):  Call 
+	display_dialog_character_set_conversion_error ()
+	if g_locale_from_utf8 () fails. 
+	(handle_search_command_stdout_io):  Do not spawn 
+	search if the command is NULL.
+
+	* gsearchtool-callbacks.c: (click_find_cb):
+	Do not spawn search if the command is NULL.
+	
 2005-01-31  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c: (start_animation):  Respect the value

@@ -344,11 +344,40 @@ has_additional_constraints (GSearchWindow * gsearch)
 	return FALSE;
 }
 
+static void
+display_dialog_character_set_conversion_error (GtkWidget * window,
+                                               gchar * string, 
+                                               GError * error)
+{
+	GtkWidget * dialog;
+
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+ 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_OK,
+	                                 _("Character set conversion failed for \"%s\""),
+					 string);
+
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          (error == NULL) ? " " : error->message);
+
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
+
+	g_signal_connect (G_OBJECT (dialog),
+	                  "response",
+	                   G_CALLBACK (gtk_widget_destroy), NULL);
+					
+	gtk_widget_show (dialog);
+}
+
 gchar *
 build_search_command (GSearchWindow * gsearch,
                       gboolean first_pass)
 {
 	GString * command;
+	GError * error = NULL;
 	gchar * file_is_named_utf8;
 	gchar * file_is_named_locale;
 	gchar * file_is_named_escaped;
@@ -367,7 +396,13 @@ build_search_command (GSearchWindow * gsearch,
 	else {
 		gchar * locale;
 
-		locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
+		locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, &error);
+		if (locale == NULL) {
+			display_dialog_character_set_conversion_error (gsearch->window, file_is_named_utf8, error);
+			g_free (file_is_named_utf8);
+			g_error_free (error);
+			return NULL;
+		}
 		gnome_entry_prepend_history (GNOME_ENTRY (gsearch->name_contains_entry), TRUE, file_is_named_utf8);
 
 		if (strstr (locale, "*") == NULL) {
@@ -380,13 +415,26 @@ build_search_command (GSearchWindow * gsearch,
 		
 		g_free (locale);
 	}
-	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
-	
+
+	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, &error);
+	if (file_is_named_locale == NULL) {
+		display_dialog_character_set_conversion_error (gsearch->window, file_is_named_utf8, error);
+		g_free (file_is_named_utf8);
+		g_error_free (error);
+		return NULL;
+	}	
+
 	look_in_folder_utf8 = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (gsearch->look_in_folder_button));
 
 	if (look_in_folder_utf8 != NULL) {
-		look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
-		g_free (look_in_folder_utf8);
+		look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, &error);
+		if (look_in_folder_locale == NULL) {
+			display_dialog_character_set_conversion_error (gsearch->window, look_in_folder_utf8, error);
+			g_free (look_in_folder_utf8);
+			g_error_free (error);
+			return NULL;
+		}
+		g_free (look_in_folder_utf8);		
 	}
 	else {
 		/* If for some reason a path was not returned fallback to the user's home directory. */
@@ -1389,8 +1437,10 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 			gchar * command;
 			
 			command = build_search_command (gsearch, FALSE);
-			spawn_search_command (gsearch, command);
-			g_free (command);
+			if (command != NULL) {
+				spawn_search_command (gsearch, command);
+				g_free (command);
+			}
 		}
 		else {
 			gsearch->command_details->command_status = (gsearch->command_details->command_status == MAKE_IT_STOP) ? ABORTED : STOPPED;

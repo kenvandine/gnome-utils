@@ -110,8 +110,10 @@ click_find_cb (GtkWidget * widget,
 	if ((gsearch->command_details->command_status == STOPPED) ||
 	    (gsearch->command_details->command_status == ABORTED)) {
 	    	command = build_search_command (gsearch, TRUE);
-		spawn_search_command (gsearch, command);
-		g_free (command);
+		if (command != NULL) {
+			spawn_search_command (gsearch, command);
+			g_free (command);
+		}
 	}
 }
 
