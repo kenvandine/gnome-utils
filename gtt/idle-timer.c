@@ -632,13 +632,26 @@ if_event_predicate (Display *dpy, XEvent *ev, XPointer arg)
 {
   IdleTimeout *si = (IdleTimeout *) arg;
 
-  si->last_activity_time = time ((time_t *) 0);
+printf ("duude event type %d\n", ev->xany.type);
   switch (ev->xany.type) 
   {
+    case KeyPress:
+    case KeyRelease:
+    case ButtonPress:
+    case ButtonRelease:
+    case MotionNotify:
+    case EnterNotify:
+    case LeaveNotify:
+      si->last_activity_time = time ((time_t *) 0);
+      break;
 
     case CreateNotify:
       /* A window has been created on the screen somewhere.  If we're
-         supposed to scan all windows for events, prepare this window. */
+         supposed to scan all windows for events, prepare this window.
+         Don't reset the timer on this event. The xscreensaver typically
+         generates one of these every 10 minutes ('phosphor' mode), so
+         we shouldn't mistake this for user activity.
+       */
       if (si->scanning_all_windows)
       {
         Window w = ev->xcreatewindow.window;
@@ -646,14 +659,9 @@ if_event_predicate (Display *dpy, XEvent *ev, XPointer arg)
       }
       break;
 
-    case KeyPress:
-    case KeyRelease:
-    case ButtonPress:
-    case ButtonRelease:
-    case MotionNotify:
-      break;
-
     default:
+      /* We assume all other messages might occur 'spontaneously', without
+       * the activity of a user, and therefore, we ignore them. */
       break;
   }
 
