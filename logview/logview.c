@@ -831,6 +831,7 @@ logview_menus_set_state (LogviewWindow *window)
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", (window->curlog != NULL));
+		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/SelectAll", (window->curlog != NULL));
 	}
 }
 
