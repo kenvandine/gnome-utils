@@ -110,6 +110,7 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
       CalendarDialog = gtk_dialog_new ();
 
       gtk_window_set_title (GTK_WINDOW (CalendarDialog), _("Calendar"));
+      gtk_window_set_resizable (GTK_WINDOW (CalendarDialog), FALSE);
       gtk_dialog_add_button (GTK_DIALOG (CalendarDialog), 
 			     GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
       g_signal_connect (G_OBJECT (CalendarDialog), "response",
