@@ -33,7 +33,7 @@
 static void string_callback(gchar * s, gpointer data)
 {
   if (s) {
-    if ( gnome_execute_shell(NULL, s) != 0 ) {
+    if ( gnome_execute_shell(NULL, s) < 0 ) {
       gchar * t = g_copy_strings(_("Failed to execute command:\n"), 
                                  s, "\n", g_unix_error_string(errno),
                                  NULL);

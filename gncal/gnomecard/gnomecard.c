@@ -776,13 +776,12 @@ int main (int argc, char *argv[])
 	ior = CORBA_ORB_object_to_string(orb, server, &ev);
 	g_print ("%s\n", ior);
 
-	/*	name_server = gnome_name_service_get ();
-		gnome_register_corba_server (name_server,
-                                     server,
-                                     "Gnome Card",
-                                     "Cnome Card:1.0",
-				     &ev);*/
-  
+	name_server = gnome_name_service_get ();
+	goad_server_register (name_server,
+                              server,
+                              "gnomecard",
+                              "object",
+			      &ev);
 
 	gnomecard_init();
 	gtk_main();

@@ -41,9 +41,9 @@ gnomecard_SOURCES =	\
 	popup-menu.c	\
 	popup-menu.h	\
 	sort.c          \
+	gnome-pim-impl.c\
 	sort.h          \
-	pairs.h		\
-	gnome-pim-impl.c
+	pairs.h
 #         \
 #	tree.c          \
 #	tree.h
