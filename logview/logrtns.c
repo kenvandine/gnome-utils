@@ -308,7 +308,8 @@ ReadPageUp (Log * lg, Page * pg)
    pg->ll = LINES_P_PAGE - 1;
 
    /* Tell if we are reading the last page */
-   if (fgetc (fp) == EOF)
+   ch = fgetc (fp);
+   if (ch == EOF)
      pg->islastpage = TRUE;
    ungetc (ch,fp);
 
@@ -367,7 +368,7 @@ ReadPageDown (Log * lg, Page * pg)
    char *c, ch, buffer[R_BUF_SIZE + 1];
    int ln, len;
 
-   g_return_if_fail (lg != NULL);
+   g_return_val_if_fail (lg != NULL, FALSE);
 
    fp = lg->fp;
    ln = 0;

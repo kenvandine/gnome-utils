@@ -71,6 +71,7 @@ DateMark* find_next_mark (CalendarData*);
 DateMark* get_mark_from_month (CalendarData *data, gint month, gint year);
 DateMark *get_mark_from_date (CalendarData *, gint, gint, gint);
 GtkWidget *new_pixmap_from_data(char **xpm_data, GdkWindow *w, GdkColor *b);
+void log_repaint (GtkWidget * canvas, GdkRectangle * area);
 
 
 
@@ -103,9 +104,6 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
    GtkCalendar *calendar;
    GtkWidget *frame;
    GtkWidget *vbox;
-   GtkWidget *toolbar;
-   GtkWidget *icon;
-   CalendarData *data;
 
    if (curlog == NULL || calendarvisible)
       return;
@@ -127,22 +125,6 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
       gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
       gtk_container_add (GTK_CONTAINER (CalendarDialog), vbox);
       gtk_widget_show (vbox);
-
-#if 0
-      /* Create toolbar */
-      toolbar = gtk_toolbar_new (GTK_ORIENTATION_HORIZONTAL, 
-				 GTK_TOOLBAR_ICONS);
-      icon = new_pixmap_from_data (closexpm, CalendarDialog->window, 
-		   &CalendarDialog->style->bg[GTK_STATE_NORMAL]);
-      gtk_toolbar_append_item (GTK_TOOLBAR (toolbar),
-                               NULL, _("Hide calendar"), NULL,
-			       icon,
-                               (GtkSignalFunc) close_calendar, 
-			       toolbar);
-
-      gtk_box_pack_start (GTK_BOX (vbox), toolbar, TRUE, TRUE, 0);
-      gtk_widget_show (toolbar);
-#endif
 
       frame = gtk_frame_new (NULL);
       gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
@@ -240,7 +222,6 @@ read_marked_dates (CalendarData *data)
 CalendarData*
 init_calendar_data ()
 {
-   DateMark *mark;
    CalendarData *data;
 
    data = curlog->caldata;
@@ -378,13 +359,13 @@ get_mark_from_date (CalendarData *data, gint day, gint month, gint year)
 {
   DateMark *mark;
 
-  g_return_if_fail (data);
+  g_return_val_if_fail (data, NULL);
   mark = get_mark_from_month (data, month, year);
   
   while (mark)
     {
       if (mark->fulldate.tm_mday == day)
-	return;
+	return mark;
       mark = mark->next;
     }
 
@@ -423,7 +404,7 @@ get_mark_from_month (CalendarData *data, gint month, gint year)
    }
 
    if (mark == NULL)
-      return;
+      return NULL;
 
    if (month == mark->fulldate.tm_mon && 
        year == mark->fulldate.tm_year)

@@ -35,7 +35,7 @@
 
 
 void LogInfo (GtkWidget * widget, gpointer user_data);
-void CloseLogInfo ();
+void CloseLogInfo (GtkWidget * widget, GtkWindow ** window);
 int RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event);
 
 

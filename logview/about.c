@@ -32,8 +32,6 @@ extern ConfigData *cfg;
 extern GtkWidget *app;
 
 static GtkWidget *about_window = NULL;
-static GdkGC *gc = NULL;
-static GdkPixmap *logviewpix = NULL, *logpix = NULL;
 
 /* Prototypes */
 
@@ -64,7 +62,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   if (app != NULL)
 	  gnome_dialog_set_parent (GNOME_DIALOG (about_window),
 				   GTK_WINDOW (app));
-  gtk_signal_connect (GTK_WIDGET (about_window), "destroy",
+  gtk_signal_connect (GTK_OBJECT (about_window), "destroy",
 		      GTK_SIGNAL_FUNC (gtk_widget_destroyed),
 		      &about_window);
   gtk_widget_show (about_window);
