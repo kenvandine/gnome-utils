@@ -14,7 +14,7 @@ all:
 
 index.html: gdiskfree/index.html
 	-cd $(srcdir) && cp gdiskfree/index.html .
-	
+
 authors.html: gdiskfree/authors.html
 	-cd $(srcdir) && cp gdiskfree/authors.html .
 
@@ -32,10 +32,10 @@ gdiskfree/authors.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gdiskfree.sgml
 
 dist-hook:
-	mkdir $(distdir)/gdiskfree
+	$(mkinstalldirs) $(distdir)/gdiskfree
 	-cp $(srcdir)/gdiskfree/*.html gdiskfree/*.css $(distdir)/gdiskfree
 	-cp $(srcdir)/*.html $(distdir)
-	mkdir $(distdir)/images
+	$(mkinstalldirs) $(distdir)/images
 	-cp $(srcdir)/images/*.png $(distdir)/images
 
 install-data-local: index.html
