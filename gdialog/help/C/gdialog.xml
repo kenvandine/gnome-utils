@@ -2,7 +2,8 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
-<!ENTITY version "2"> 
+<!ENTITY version "2.2">
+<!ENTITY app "<application>gdialog</application>">
 ]>
 
 
@@ -26,7 +27,7 @@
       <holder>Patanjali Somayaji</holder>
     </copyright>
     <copyright>
-      <year>2002</year>
+      <year>2002, 2003</year>
       <holder>John Fleck</holder>
     </copyright>
 
@@ -48,7 +49,7 @@
 
   <!-- This is the manual version, not application version. --> 
     <releaseinfo>
-       This is version 0.2 of the GDialog manual.
+       This is version 2.0 of the GDialog manual.
     </releaseinfo>
 
     <legalnotice id="feedback">
@@ -100,9 +101,18 @@
                     Project</para>
 	            <para>GNOME 2 version</para>
           </revdescription>
-
-
 	</revision>
+      <revision>
+	<revnumber>2.2</revnumber>
+	<date>14 January 2003</date>
+	<revdescription>
+	  <para role="author">John Fleck
+	    <email>jfleck@inkstain.net</email></para>
+	  <para role="publisher">GNOME Documentation
+	    Project</para>
+	  <para>GNOME 2 version</para>
+	</revdescription>
+      </revision>
 
   </revhistory>
   </articleinfo>
@@ -114,13 +124,12 @@
     <title>Introduction</title>
 
     <para>
-     <application>gdialog</application> is a command prompt 
-     application which displays GNOME dialog boxes. It is used display dialog
-     boxes within shell scripts.
+     &app;  displays GNOME dialogs from the command line or in 
+     shell scripts.
     </para>
 
     <para>
-      <application>gdialog</application> is included in the
+      &app; is included in the
       <filename>gnome-utils</filename> package, which is part of the
       GNOME desktop environment. This document describes version
       &version; of <application>gdialog</application>.
@@ -136,20 +145,19 @@
     <!-- ========= Basic Usage =========================== -->
     <sect2 id="mainwin">
       <title>Basic usage</title>
-
-    <para>	  
-	<application>gdialog</application> is used
-	in shell scripts or from the command prompt.
-	To use gdialog, give instructions describing the dialog to be created on
-	the command line or in a shell 
-	script. For example,
+      <para>
+	A series of command line options appended to <command>gdialog</command>
+	control dialog to be created. For example,
 	<programlisting>
 	<command>
-	gdialog --msgbox "Here's a test message !" 200 150 
+	gdialog --msgbox "Test message" 200 150 
 	</command>
 	</programlisting>
 	creates and displays the dialog box shown in 
-	<xref linkend="example-dialog" />.
+	<xref linkend="example-dialog" />. The option
+	<command>--msgbox</command> describes the type of dialog to be created.
+	<command>"Test message"</command> provides the message. The numbers that
+	follow specify the dialog's height and width.
 
         <!-- ==== Figure ==== -->
         
@@ -174,8 +182,7 @@
       </para> 
 
 	<para>
-	The complete command line options list for 
-	<application>gdialog</application> is:</para>
+	The complete &app; command line options list is:</para>
 	<para> 
 	<command>
 	  gdialog [--title <replaceable>title</replaceable>] [--separate-output] 
@@ -266,30 +273,25 @@
 	</command>
 	    </para>
 	</listitem>
-	<listitem>
-	    <para>
-	<command>
-		 --guage   <replaceable>file</replaceable> 
-		<replaceable>text</replaceable> <replaceable>height</replaceable> <replaceable>width</replaceable>
-		<replaceable>percent</replaceable>
-	</command>
-	    </para>
-	</listitem>
-	
 	</itemizedlist>
       </para>
-
+      <note>
+	<para>In the current implementation of &app;, a
+	  <replaceable>height</replaceable> and <replaceable>width</replaceable>
+	  must be specified, but they have no effect. This is a known
+	  bug.</para>
+      </note>
     </sect2>
  
     
   </sect1>
 
-<sect1 id="dialogs">
-<title>Using different types of dialog boxes</title>
+  <sect1 id="dialogs">
+    <title>Using different types of dialog boxes</title>
 	
-	<sect2 id="yesnobox">
-	<title>Creating a Confirmation Dialog</title>
-	<para>
+    <sect2 id="yesnobox">
+      <title>Confirmation Dialog &mdash; A Yes/No Box</title>
+      <para>
 	To create a dialog box showing a question and a "Yes" and 
 	a "No" button, use the <command>--yesno</command> option. 
 	To create a dialog box with the 
@@ -324,24 +326,31 @@
 	</figure>
 	 
 	</para>		
-	<para>
-	The return value from gdialog is 0 if the user clicked on "Yes"
-	and 1 if the user clicked on "No".</para>
+      <para>The following script shows a "Yes/No" dialog and responds based on
+      the input provided:
+	<programlisting>
+#!/bin/sh
+if gdialog --title "Yes/No Test" --yesno "Yes No Test" 300 300
+    then echo "You clicked yes."
+    else echo "You clicked no."
+fi
+	</programlisting>
+
+      </para>
       <para>By default, the "Yes" button is
-	highlighted when the dialog is displayed. In case you want the "No" 
-	button to be highlighted, add <command>--defaultno</command>
+	highlighted when the dialog is displayed. To highlight "No", add
+	<command>--defaultno</command>:
+	<programlisting>
+gdialog --title "test" --yesno "test" 1 1 --defaultno
+	</programlisting>
 	</para>	
 	</sect2>
 	
 	<sect2 id="messagebox">
-	<title>Creating a Message Box</title>
+	<title>Message Box</title>
 	<para>
-	You can create a dialog box that shows a message 
-	using the <command>--msgbox</command> option. 
-	To create a dialog box with the 
-	title as "My Dialog",
-	and message to be shown "Here's a message !"
-	use the following command:
+	Create a dialog box that shows a message 
+	with the <command>--msgbox</command> option:
 	<programlisting> 
 	<command>
 	gdialog --title "My Dialog" --msgbox "Here's a message" 250 150		 
@@ -349,7 +358,7 @@
 	</programlisting>
 	</para>
 	<para>
-	The above command displays the dialog box shown in figure
+	This displays the dialog box shown in figure
 	<xref linkend="gdialog-msgbox" />. 
       	
 <figure id="gdialog-msgbox">
@@ -372,9 +381,166 @@
 	</para>		
 	</sect2>
 
+    <sect2 id="gdialoginfobox">
+      <title>Infobox</title>
+      <para>
+	The <command>--infobox</command> option creates a box identical to a
+	<command>--msgbox</command> but leaves it on the screen only temporarily
+	before it destroys itself.
+      </para>
+    </sect2>
+
+    <sect2 id="gdialoginputbox">
+      <title>Inputting Text &mdash; Inputbox</title>
+      <para>
+	Use <command>--inputbox</command> to display a text input box. The
+	following script displays the input text. It responds with an error
+	message if the <guibutton>Cancel</guibutton> button is clicked:
+	<programlisting>
+#!/bin/sh
+
+if gdialog --title "An Input Box" \
+        --inputbox "This box accepts a message." 20 20
+    then echo $?
+else echo "No text input."
+fi
+	</programlisting>
+      </para>
+    </sect2>    
+    
+    <sect2 id="gdialogtextbox">
+      <title>Text Box</title>
+      <para>
+	&app; can display a text file in a window using the
+	<command>--textbox</command> option:
+	<programlisting>
+gdialog --title "textbox" --textbox "gdialog.xml" 30 50
+	</programlisting>
+      </para>
+      <para>
+	If the file is successfully displayed, &app; returns the value
+	<constant>TRUE</constant> to your shell script.  If the file does not
+	exist, &app; will display an error dialogue and return the value
+	<constant>FALSE</constant> to your shell script.
+      </para>
+    </sect2>
+    
+    <sect2 id="gdialogmenu">
+      <title>Menu</title>
+      <para>
+	The <command>--menu</command> option creates a menu and returns a value
+	selected by the user. Each menu option includes two values, a
+	<varname>tag</varname> and an <varname>item</varname>. &app; returns the
+	value of the selected <varname>tag</varname>, as demonstrated in the
+	following script:
+	<programlisting>
+#!/bin/sh
+
+if gdialog --title "A Menu" \
+        --menu "This is a menu of options." 100 200 1 \
+    "One" "First menu item" \
+    "Two" "Second menu item" \
+    "Three" "Third menu item" \
+    "Four" "Fourth menu item" \
+    "Five" "Fifth menu item"
+    then echo $?
+else echo "No selection made."
+fi
+	</programlisting>
+	If a menu item is chosen, &app; returns <constant>TRUE</constant>. If
+	the user clicks <guibutton>Cancel</guibutton> the script returns
+	<constant>FALSE.</constant>
+      </para>
+      <para>FIXME - the height and width bits seem to do nothing here</para>
+    </sect2>  
+
+    <sect2 id="gdialogchecklist">
+      <title>Checklist</title>
+      <para>
+	The <command>--checklist</command> option creates a checklist and
+	returns the selected values. Each checklist option includes three
+	values:
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      A <varname>tag</varname>;
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      A descriptive <varname>item</varname> to display in the dialog;
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      A <varname>status</varname>, which must be either
+	      <constant>on</constant> or <constant>off</constant>. It determines
+	      whether the <guibutton>check box</guibutton> is checked or
+	      unchecked by default.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+	 All selected <varname>tag</varname> values are
+	returned, as demonstrated in the following script:
+	<programlisting>
+#!/bin/sh
+
+if gdialog --title "A Checkllist" \
+        --checklist "This is a checklist of options." 300 300 100 \
+    "One" "First menu item" off \
+    "Two" "Second menu item" on \
+    "Three" "Third menu item" on \
+    "Four" "Fourth menu item" on \
+    "Five" "Fifth menu item" on
+    then echo $@
+else echo "No selection made."
+fi
+	</programlisting>
+      </para>
+    </sect2> 
+
+    <sect2 id="gdialogradiolist">
+      <title>Radio List</title>
+      <para>
+	The <command>--radiolist</command> creates a list of options, only one
+	of which can be selected. <command>--radiolist</command> uses the same
+	syntax as the <command>--checklist</command>, except that only a single
+	item can be given the <varname>status</varname> of
+	<constant>on</constant> by default. If more than one item is set
+	<constant>on</constant>, &app; selects the last one chosen as its
+	default.
+      </para>
+    </sect2> 
+
+    <sect2 id="gdialogauge">
+      <title>Gauge</title>
+      <para>The <command>--gauge</command> option creates a progress bar. In
+      addition to the normal height and width parameters, a final parameter
+      indicating the percentage of progress is displayed. In
+      this example:
+	<programlisting>
+gdialog --title "Gauge" --gauge "This is a gauge" 100 100 20
+	</programlisting>	
+      </para>
+      <para>
+	Changing values for the progress bar can be fed to &app; from STDIN, as
+	follows:
+	<programlisting>
+#!/bin/sh
+
+(
+echo "10" ; sleep 1
+echo "20" ; sleep 1
+echo "50" ; sleep 1
+echo "75" ; sleep 1
+echo "100" ; sleep 1
+) |
+gdialog --title "GAUGE" --gauge "This is a gauge widget" 10 10 0
+	</programlisting>
+      </para>
+    </sect2> 
+
 </sect1>
-
-
 
 <!-- ============= Authors ================================ -->
 
@@ -385,11 +551,8 @@
    (<email>lam836@cs.cuhk.hk</email>) and Stuart Herbert
    (<email>S.Herbert@shef.ac.uk</email>). 
    Please send all comments, suggestions, and bug
-   reports to the <ulink url="http://bugs.gnome.org" type="http">GNOME
-   bug tracking database</ulink>.  (Instructions for submitting bug
-   reports can be found <ulink
-   url="http://bugs.gnome.org/Reporting.html" type="http">
-   on-line</ulink>.)  You can also use <application>Bug Report
+   reports to the <ulink url="http://bugzilla.gnome.org" type="http">GNOME
+   bug tracking database</ulink>. You can also use <application>Bug Report
    Tool</application> (<command>bug-buddy</command>), available in the
    <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
    Menu</guimenu>, for submitting bug reports.
@@ -397,7 +560,8 @@
 
   <para>
    This manual was written by Patanjali Somayaji
-   (<email>patanjali@morelinux.com</email>). Please send all comments and
+      (<email>patanjali@morelinux.com</email>) and John Fleck
+      (<email>jfleck@inkstain.net</email>) Please send all comments and
    suggestions regarding this manual to the <ulink type="http"
    url="http://developer.gnome.org/projects/gdp">GNOME Documentation
    Project</ulink> by sending an email to
