@@ -592,6 +592,26 @@ add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType rel_type)
 
 
 static void
+add_message_to_list_store(GtkListStore *store, GtkTreeIter *iter)
+{
+	/* when the list is empty append a 'No Files Found.' message */
+	if (gtk_tree_model_iter_n_children(GTK_TREE_MODEL(store),NULL) == 0) {
+		
+		gtk_list_store_append (GTK_LIST_STORE(store), iter); 
+		gtk_list_store_set (GTK_LIST_STORE(store), iter,
+			    		COLUMN_ICON, NULL, 
+		    			COLUMN_NAME, _("No Files Found."),
+		    			COLUMN_PATH, "",
+			    		COLUMN_READABLE_SIZE, "",
+			    		COLUMN_SIZE, (gdouble) 0,
+			    		COLUMN_TYPE, "",
+		    			COLUMN_READABLE_DATE, "",
+		    			COLUMN_DATE, 0,
+		    			-1);
+	}
+}
+
+static void
 really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, GtkListStore *store, GtkTreeIter *iter)
 {
 	int idle;
@@ -745,6 +765,8 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, 
 		/* freeing allocated memory */
 		g_string_free (errors, TRUE);
 	}
+
+	add_message_to_list_store (store, iter);
 
 	g_string_free (string, TRUE);
 
