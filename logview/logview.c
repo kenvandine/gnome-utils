@@ -26,10 +26,7 @@
 #include <gconf/gconf-client.h>
 #include <gnome.h>
 #include "logview.h"
-#include "logview-search.h"
-#include "logview-search-dialog.h"
 #include "log_repaint.h"
-#include "gedit-output-window.h"
 #include "logrtns.h"
 #include "info.h"
 #include "zoom.h"
@@ -37,6 +34,7 @@
 #include "about.h"
 #include "desc_db.h"
 #include "misc.h"
+#include "logview-findbar.h"
 
 static GObjectClass *parent_class;
 static GSList *logview_windows = NULL;
@@ -65,8 +63,6 @@ static void toggle_collapse_rows (GtkAction *action, GtkWidget *callback_data);
 static void toggle_monitor (GtkAction *action, GtkWidget *callback_data);
 static void logview_menus_set_state (LogviewWindow *logviewwindow);
 static void logview_search (GtkAction *action, GtkWidget *callback_data);
-static void logview_close_output_window (GtkWidget *widget, gpointer user_data);
-static void logview_output_window_changed (GtkWidget *widget, gchar *key, gpointer user_data);
 static void logview_help (GtkAction *action, GtkWidget *callback_data);
 static int logview_count_logs (void);
 
@@ -459,24 +455,18 @@ CreateMainWin (LogviewWindow *window)
    g_signal_connect (G_OBJECT (window->view), "row_activated",
                      G_CALLBACK (handle_row_activation_cb), window);
 
-   /* Create ouput window */
-   window->output_window = gedit_output_window_new ();
-   window->output_window_type = LOGVIEW_WINDOW_OUTPUT_WINDOW_NONE;
-   gedit_output_window_set_select_multiple (GEDIT_OUTPUT_WINDOW (window->output_window),
-					    GTK_SELECTION_SINGLE);
-   gtk_box_pack_start (GTK_BOX (vbox), window->output_window, FALSE, FALSE, 0);
-   g_signal_connect (G_OBJECT (window->output_window), "close_requested",
-		     G_CALLBACK (logview_close_output_window), window);
-   
-   g_signal_connect (G_OBJECT (window->output_window), "selection_changed",
-		     G_CALLBACK (logview_output_window_changed), window);
+   window->find_bar = gtk_toolbar_new ();
+   logview_findbar_populate (window, window->find_bar);
+   gtk_toolbar_set_style (GTK_TOOLBAR (window->find_bar), GTK_TOOLBAR_BOTH_HORIZ);
+   gtk_box_pack_start (GTK_BOX (vbox), window->find_bar, FALSE, FALSE, 0);
+   gtk_widget_show (window->find_bar);
 
    /* Create status area at bottom */
    window->statusbar = gtk_statusbar_new ();
    gtk_box_pack_start (GTK_BOX (vbox), window->statusbar, FALSE, FALSE, 0);
 
    gtk_widget_show_all (vbox);
-   gtk_widget_hide (window->output_window);
+   gtk_widget_hide (window->find_bar);
 }
 
 /* ----------------------------------------------------------------------
@@ -487,12 +477,13 @@ CreateMainWin (LogviewWindow *window)
 static void
 CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 {
-   int i;
    LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
 
    g_return_if_fail (window->curlog);
 
    CloseLog (window->curlog);
+
+   gtk_widget_hide (window->find_bar);
 
    window->curlog = NULL;
    logview_menus_set_state (window);
@@ -880,40 +871,8 @@ logview_search (GtkAction *action,GtkWidget *callback_data)
 	static GtkWidget *dialog = NULL;
 	LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
 
-	if (dialog != NULL) {
-		gtk_window_present (GTK_WINDOW (dialog));
-		return;
-	}
-
-	dialog = logview_search_dialog_new (window);
-	g_object_add_weak_pointer (G_OBJECT (dialog), (gpointer)&dialog);
-	gtk_widget_show (dialog);
-}
-
-static void
-logview_close_output_window (GtkWidget *widget, gpointer user_data)
-{
-	gedit_output_window_clear (GEDIT_OUTPUT_WINDOW (widget));
-	gtk_widget_hide (widget);
-}
-
-static void
-logview_output_window_changed (GtkWidget *widget, gchar *key, gpointer user_data)
-{
-	GtkTreePath *child_path, *path;
-	GtkTreeModel *model;
-	LogviewWindow *window = user_data;
-
-	model = gtk_tree_view_get_model (GTK_TREE_VIEW(window->view));
-	child_path = logview_tree_path_from_key (model, key);
-	if (child_path) {
-		gtk_tree_view_expand_to_path (GTK_TREE_VIEW (window->view), child_path);
-		gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW (window->view)),
-						child_path);
-		gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view),
-					      child_path, NULL, FALSE, 0, 0);
-	}
-	return;
+	gtk_widget_show (window->find_bar);
+	gtk_widget_grab_focus (window->find_entry);
 }
 
 static void

@@ -202,9 +202,6 @@ struct _LogviewWindow {
 	GtkWidget *log_scrolled_window;
 	GtkWidget *mon_scrolled_window;
 		
-	GtkWidget *output_window;
-	int output_window_type;
-
 	GtkWidget *statusbar;
 	GtkUIManager *ui_manager;
 
@@ -219,6 +216,12 @@ struct _LogviewWindow {
 	GtkWidget *calendar_dialog;
 	GtkWidget *calendar;
 	gboolean calendar_visible;
+
+	GtkWidget *find_bar;
+	GtkWidget *find_entry;
+	GtkToolItem *find_next;
+	GtkToolItem *find_prev;
+	gchar *find_string;
 
 	int numlogs, curlognum;
 	Log *curlog;	

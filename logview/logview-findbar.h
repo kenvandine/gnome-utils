@@ -17,24 +17,27 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef __LOGVIEW_SEARCH_H__
-#define __LOGVIEW_SEARCH_H__
+#ifndef __LOG_FINDBAR_H__
+#define __LOG_FINDBAR_H__
 
 #include "logview.h"
-#include "gedit-output-window.h"
 #include <gtk/gtk.h>
+
+typedef enum {
+    YELP_WINDOW_FIND_PREV = 1,
+    YELP_WINDOW_FIND_NEXT
+} LogviewFindAction;
 
 typedef struct _SearchIter SearchIter;
 
 struct _SearchIter {
 	const char *pattern;
-	GeditOutputWindow *output_window;
-	GObject *searching;
-	int res;
+	GtkTreePath *found_path;
+	GtkTreePath *current_path;
+	int comparison;
+	gboolean forward;
 };
+void logview_findbar_populate (LogviewWindow *window, GtkWidget *widget);
 
-int logview_tree_model_build_match_list (GtkTreeModel *tree_model, GeditOutputWindow *output_window,
-				       const char *pattern, GObject *dialog);
-GtkTreePath *logview_tree_path_from_key (GtkTreeModel *model, char *key);
+#endif /* __LOG_FINDBAR_H__ */
 
-#endif /* __LOGVIEW_SEARCH_H__ */
