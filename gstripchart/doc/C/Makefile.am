@@ -5,7 +5,7 @@ gstripchart_help_DATA = index.html authors.html usage.html topic.dat
 
 
 SGML_FILES = 		\
-	gstripchart.sgml	gnome-legalnotice.sgml
+	gstripchart.sgml
 
 EXTRA_DIST = \
 	topic.dat	gstripchart	$(SGML_FILES)
