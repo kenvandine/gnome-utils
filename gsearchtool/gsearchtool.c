@@ -1816,7 +1816,7 @@ main(int argc, char *argv[])
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-	gsearchtool = gnome_program_init ("gsearchtool", VERSION, LIBGNOMEUI_MODULE, argc, argv, NULL);
+	gsearchtool = gnome_program_init ("gnome-search-tool", VERSION, LIBGNOMEUI_MODULE, argc, argv, NULL);
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-searchtool.png");
 
 	if (!bonobo_init (bonobo_activation_orb_get (), NULL, NULL))
@@ -1824,8 +1824,8 @@ main(int argc, char *argv[])
 
 	bonobo_activate();
 
-        app = gnome_app_new("gsearchtool", _("Search Tool"));
-	gtk_window_set_wmclass (GTK_WINDOW (app), "gsearchtool", "gsearchtool");
+        app = gnome_app_new("gnome-search-tool", _("Search Tool"));
+	gtk_window_set_wmclass (GTK_WINDOW (app), "gnome-search-tool", "gnome-search-tool");
 	gtk_window_set_policy (GTK_WINDOW (app), TRUE, TRUE, TRUE);
 	
         g_signal_connect(G_OBJECT(app), "delete_event",
