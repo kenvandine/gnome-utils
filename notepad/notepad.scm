@@ -254,6 +254,10 @@
     (add-menu-item menu (gettext "Close") notepad-close)
     (set! save-menu-item (add-menu-item menu (gettext "Save") notepad-save))
     (add-menu-item menu (gettext "Save As...") notepad-save-as)
+    ;; This is just for debugging; we'll remove it later.
+    (add-menu-item menu "Save session (debugging only)"
+		   (lambda ()
+		     (gnome-session-request-save 'both #f 'any #f #t)))
     (add-menu-item menu (gettext "Exit") confirm-exit)
     menu))
 
