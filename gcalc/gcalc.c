@@ -188,7 +188,7 @@ main(int argc, char *argv[])
 			argc, argv, GNOME_PARAM_APP_DATADIR,DATADIR, NULL);
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-calc3.png");
 
-        app = gnome_app_new("gnome-calculator", _("GNOME Calculator"));
+        app = gnome_app_new("gnome-calculator", _("Calculator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gnome-calculator", "gnome-calculator");
 	gtk_window_set_resizable (GTK_WINDOW (app), TRUE);
 
