@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-24 04:58+0100\n"
-"PO-Revision-Date: 2004-02-24 10:33+0100\n"
+"POT-Creation-Date: 2004-03-03 00:00+0100\n"
+"PO-Revision-Date: 2004-03-03 00:03+0100\n"
 "Last-Translator: Alessio Frusciante <algol@firenze.linux.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -112,13 +112,12 @@ msgid "Find"
 msgstr "Trova"
 
 #: gdictsrc/gdict-app.c:477
-#, fuzzy
 msgid "_Search for:"
-msgstr "Cerca file"
+msgstr "C_erca:"
 
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
-msgstr "C_erca"
+msgstr "_Trova"
 
 #: gdictsrc/gdict-app.c:532
 msgid ""
@@ -267,6 +266,8 @@ msgid ""
 "There was an error displaying help: \n"
 "%s"
 msgstr ""
+"Si è verificato un errore visualizzando l'aiuto: \n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -762,19 +763,15 @@ msgid "DEVICE"
 msgstr "DEVICE"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
 msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr[0] ""
-"Il floppy è stato formattato, ma sono stati trovati e segnati <b>%d blocchi "
-"rovinati</b> (su %d)."
-msgstr[1] ""
-"Il floppy è stato formattato, ma sono stati trovati e segnati <b>%d blocchi "
-"rovinati</b> (su %d)."
+msgstr[0] "Il floppy è stato formattato, ma è stato trovato e segnato <b>%d blocco rovinato</b> (su %d)."
+msgstr[1] "Il floppy è stato formattato, ma sono stati trovati e segnati <b>%d blocchi rovinati</b> (su %d)."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -790,7 +787,7 @@ msgstr "Avanzamento della formattazione"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "Cerca file"
 
@@ -804,7 +801,9 @@ msgstr "Bordo dell'immagine/etichetta"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Width of border around the label and image in the alert dialog"
-msgstr "Larghezza del bordo intorno all'etichetta e all'immagine nella finestra di dialogo di avviso"
+msgstr ""
+"Larghezza del bordo intorno all'etichetta e all'immagine nella finestra di "
+"dialogo di avviso"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
 msgid "Alert Type"
@@ -846,15 +845,15 @@ msgstr "Impossibile aprire il documento di aiuto"
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Si è sicuri di voler aprire %d documento?"
+msgstr[1] "Si è sicuri di voler aprire %d documenti?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] "Verranno aperte %d cartelle. Continuare?"
+msgstr[0] "Verrà aperta %d cartella. Continuare?"
 msgstr[1] "Verranno aperte %d cartelle. Continuare?"
 
 #: gsearchtool/gsearchtool-callbacks.c:390
@@ -872,8 +871,8 @@ msgstr "Non è installato nessun visualizzatore per il documento."
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Si è sicuri di voler aprire %d cartella?"
+msgstr[1] "Si è sicuri di voler aprire %d cartelle?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
 #, c-format
@@ -901,7 +900,7 @@ msgstr "Impossibile spostare il documento \"%s\" nel cestino."
 #: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr ""
+msgstr "Spostamento di \"%s\" fallito: %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
@@ -911,7 +910,7 @@ msgstr "Si desidera cancellare \"%s\" definitivamente?"
 #: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr ""
+msgstr "Il cestino non è disponibile. Impossibile spostare \"%s\" nel cestino."
 
 #: gsearchtool/gsearchtool-callbacks.c:730
 #, c-format
@@ -932,9 +931,8 @@ msgid "Could not save document."
 msgstr "Impossibile salvare il documento."
 
 #: gsearchtool/gsearchtool-callbacks.c:1186
-#, fuzzy
 msgid "You did not select a document name."
-msgstr "Impossibile aprire il documento \"%s\""
+msgstr "Non si è selezionato il nome di un documento."
 
 #: gsearchtool/gsearchtool-callbacks.c:1212
 #: gsearchtool/gsearchtool-callbacks.c:1307
@@ -944,27 +942,25 @@ msgstr "Impossibile salvare il documento \"%s\" su \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
-msgstr ""
+msgstr "Il documento selezionato è una cartella."
 
 #: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "Il documento \"%s\" esiste già. Si desidera sostituirlo?"
 
 #: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
+"Se si sostituisce un file esistente il suo contenuto verrà sovrascritto."
 
 #: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
-msgstr ""
+msgstr "_Sostituisci"
 
 #: gsearchtool/gsearchtool-callbacks.c:1310
-#, fuzzy
 msgid "You may not have write permissions to the document."
-msgstr ""
-"Non si hanno i permessi di scrittura sul documento. Il documento non verrà "
-"salvato."
+msgstr "Si potrebbe non avere i permessi di scrittura sul documento."
 
 #: gsearchtool/gsearchtool-support.c:63
 #, c-format
@@ -1224,35 +1220,35 @@ msgstr "Cerca in:"
 msgid "Browse"
 msgstr "Sfoglia"
 
-#: gsearchtool/gsearchtool.c:1846 gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
 msgid "Enter the folder name where you want to start the search"
 msgstr "Inserire la cartella dalla quale inizierà la ricerca"
 
-#: gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1844
 msgid "Look in Folder Entry"
 msgstr "Voce \"Cerca in\""
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
 msgstr "Mostra altre _opzioni"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Show more options"
 msgstr "Mostra altre opzioni"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
-msgstr ""
+msgstr "Espande o contrae una lista di opzioni."
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "Cliccare per iniziare la ricerca"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "Cliccare per interrompere la ricerca"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr "Impossibile inizializzare bonobo."
 
@@ -1362,7 +1358,7 @@ msgstr "Nome del _log:"
 
 #: logview/actions.c:714
 msgid "Regular expression that will match the log name."
-msgstr ""
+msgstr "Espressione regolare che corrisponde al nome del log."
 
 #: logview/actions.c:724
 msgid "_Process:"
@@ -1370,7 +1366,7 @@ msgstr "_Processo:"
 
 #: logview/actions.c:733
 msgid "Regular expression that will match process part of message."
-msgstr ""
+msgstr "Espressione regolare che corrisponde al parte processo del messaggio."
 
 #: logview/actions.c:743
 msgid "_Message:"
@@ -1378,7 +1374,7 @@ msgstr "_Messaggio:"
 
 #: logview/actions.c:752
 msgid "Regular expression that will match the message."
-msgstr ""
+msgstr "Espressione regolare che corrisponde al messaggio."
 
 #: logview/actions.c:762
 msgid "_Action:"
@@ -1389,6 +1385,8 @@ msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
+"Azione che verrà eseguita se tutte le espressioni regolari precedenti "
+"corrispondono. Verrà eseguito da un comando di sistema: system(azione)."
 
 #: logview/actions.c:781
 msgid "_Description:"
