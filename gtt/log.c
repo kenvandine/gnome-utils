@@ -29,10 +29,19 @@ static int log_write(time_t t, char *s)
 {
 	FILE *f;
 	char date[20];
+	char *filename;
 
 	if (!config_logfile_name) return 1;
 	g_return_val_if_fail(s != NULL, 0);
-	f = fopen(config_logfile_name, "at");
+	if ((config_logfile_name[0] == '~') &&
+	    (config_logfile_name[1] == '/') &&
+	    (config_logfile_name[2] != 0)) {
+		filename = gnome_util_prepend_user_home(&config_logfile_name[2]);
+		f = fopen(filename, "at");
+		g_free(filename);
+	} else {
+		f = fopen(config_logfile_name, "at");
+	}
 	g_return_val_if_fail(f != NULL, 0);
 	if (t == -1) t = time(NULL);
 	strftime(date, 20, "%b %d %H:%M:%S", localtime(&t));
