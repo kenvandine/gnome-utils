@@ -44,8 +44,9 @@ extern "C" {
 #define GSEARCH_WINDOW_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS((obj), GSEARCH_TYPE_WINDOW, GSearchWindowClass))
 
 #define GNOME_SEARCH_TOOL_ICON "gnome-searchtool"
-#define MINIMUM_WINDOW_WIDTH   422
+#define MINIMUM_WINDOW_WIDTH   420
 #define MINIMUM_WINDOW_HEIGHT  310
+#define WINDOW_HEIGHT_STEP      35
 
 typedef enum {
 	STOPPED,
@@ -100,6 +101,7 @@ struct _GSearchWindow {
 	GtkWidget             * files_found_label;
 	GtkWidget             * search_results_vbox;
 	GtkWidget             * search_results_popup_menu;
+	GtkWidget             * search_results_save_results_as_item;
 	GtkTreeView           * search_results_tree_view;	
 	GtkListStore          * search_results_list_store;	
 	GtkCellRenderer       * search_results_name_cell_renderer;

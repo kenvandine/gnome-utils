@@ -51,25 +51,6 @@
 
 gboolean row_selected_by_button_press_event;
 
-static GtkActionEntry ui_entries[] = {
-  { "Open",          GTK_STOCK_OPEN,    N_("_Open"),               NULL, NULL, NULL },
-  { "OpenFolder",    GTK_STOCK_OPEN,    N_("O_pen Folder"),        NULL, NULL, NULL },
-  { "MoveToTrash",   GTK_STOCK_DELETE,  N_("Mo_ve to Trash"),      NULL, NULL, NULL },
-  { "SaveResultsAs", GTK_STOCK_SAVE_AS, N_("_Save Results As..."), NULL, NULL, NULL },
-};
-
-static const char *ui_description =
-"<ui>"
-"  <popup name='PopupMenu'>"
-"      <menuitem action='Open'/>"
-"      <menuitem action='OpenFolder'/>"
-"      <separator/>"
-"      <menuitem action='MoveToTrash'/>"
-"      <separator/>"
-"      <menuitem action='SaveResultsAs'/>"
-"  </popup>"
-"</ui>";
-
 static void
 quit_application (GSearchCommandDetails * command_details)
 {
@@ -90,9 +71,6 @@ quit_application (GSearchCommandDetails * command_details)
 		kill (command_details->command_pid, SIGKILL);
 #endif
 		wait (NULL);
-		
-		gtk_main_quit ();
-		return;
 	}
 	gtk_main_quit ();
 }
@@ -224,7 +202,7 @@ size_allocate_cb (GtkWidget * widget,
                   GtkAllocation * allocation,
                   gpointer data)
 {
-	GtkWidget *button = data;
+	GtkWidget * button = data;
 
  	gtk_widget_set_size_request (button, allocation->width, -1);
 }
@@ -246,10 +224,10 @@ remove_constraint_cb (GtkWidget * widget,
 {
 	GList * list = data;
 
-	GSearchWindow *gsearch = g_list_first (list)->data;
-	GSearchConstraint *constraint = g_list_last (list)->data; 
+	GSearchWindow * gsearch = g_list_first (list)->data;
+	GSearchConstraint * constraint = g_list_last (list)->data; 
 
-      	gsearch->window_geometry.min_height -= 35;
+      	gsearch->window_geometry.min_height -= WINDOW_HEIGHT_STEP;
 
 	gtk_window_set_geometry_hints (GTK_WINDOW (gsearch->window),
 	                               GTK_WIDGET (gsearch->window),
@@ -526,7 +504,7 @@ open_folder_cb (GtkAction * action,
 	GList * list;
 	guint index;
 
-	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(gsearch->search_results_selection)) == 0) {
+	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection)) == 0) {
 		return;
 	}
 
@@ -702,11 +680,11 @@ move_to_trash_cb (GtkAction * action,
 	gint total;
 	gint index;
 		
-	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(gsearch->search_results_selection)) == 0) {
+	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection)) == 0) {
 		return;
 	}
 	
-	total = gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(gsearch->search_results_selection));
+	total = gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection));
 									    
 	for (index = 0; index < total; index++) {
 		gboolean no_files_found = FALSE;
@@ -865,64 +843,6 @@ file_key_press_event_cb (GtkWidget * widget,
 	return FALSE;
 }
 
-static void
-setup_ui_manager (GSearchWindow * gsearch) 
-{
-	static gboolean ui_manager_is_setup = FALSE;
-	GtkActionGroup * action_group;
-	GtkAccelGroup * accel_group;
-	GtkAction * action;
-	GError * error = NULL;
-
-	if (ui_manager_is_setup == TRUE) {
-		return;
-	}
-
-	ui_manager_is_setup = TRUE;
-
-	action_group = gtk_action_group_new ("PopupActions");
-	gtk_action_group_set_translation_domain (action_group, NULL);
-	gtk_action_group_add_actions (action_group, ui_entries, G_N_ELEMENTS (ui_entries), gsearch->window);
-			
-	gsearch->window_ui_manager = gtk_ui_manager_new ();
-	gtk_ui_manager_insert_action_group (gsearch->window_ui_manager, action_group, 0);
-				
-	accel_group = gtk_ui_manager_get_accel_group (gsearch->window_ui_manager);
-	gtk_window_add_accel_group (GTK_WINDOW (gsearch->window), accel_group);
-			
-	if (!gtk_ui_manager_add_ui_from_string (gsearch->window_ui_manager, ui_description, -1, &error)) {
-      		g_message ("Building menus failed: %s", error->message);
-		g_error_free (error);
-      		exit (EXIT_FAILURE);
-	}
-	
-	action = gtk_ui_manager_get_action (gsearch->window_ui_manager, "/PopupMenu/Open");
-	g_signal_connect (G_OBJECT (action),
-	                  "activate",
-	                  G_CALLBACK (open_file_cb),
-	                  (gpointer) gsearch);
-
-	action = gtk_ui_manager_get_action (gsearch->window_ui_manager, "/PopupMenu/OpenFolder");
-	g_signal_connect (G_OBJECT (action),
-	                  "activate",
-	                  G_CALLBACK (open_folder_cb), 
-	                  (gpointer) gsearch);
-
-	action = gtk_ui_manager_get_action (gsearch->window_ui_manager, "/PopupMenu/MoveToTrash");
-	g_signal_connect (G_OBJECT (action), 
-	                  "activate",
-	                  G_CALLBACK (move_to_trash_cb), 
-	                  (gpointer) gsearch);			  
-	  
-	action = gtk_ui_manager_get_action (gsearch->window_ui_manager, "/PopupMenu/SaveResultsAs");
-	g_signal_connect (G_OBJECT (action), 
-	                  "activate",
-	                  G_CALLBACK (show_file_selector_cb), 
-	                  (gpointer) gsearch);
-
-	gsearch->search_results_popup_menu = gtk_ui_manager_get_widget (gsearch->window_ui_manager, "/PopupMenu");							   
-}
-
 gboolean
 file_button_release_event_cb (GtkWidget * widget, 
                               GdkEventButton * event,
@@ -976,19 +896,7 @@ file_button_release_event_cb (GtkWidget * widget,
 			    	    COLUMN_NO_FILES_FOUND, &no_files_found,
 			   	    -1);    
      
-		if (!no_files_found) {
-			GtkWidget * save_widget;
-
-			setup_ui_manager (gsearch);
-
-			save_widget = gtk_ui_manager_get_widget (gsearch->window_ui_manager, "/PopupMenu/SaveResultsAs");  
-			if (gsearch->command_details->command_status != STOPPED &&
-			    gsearch->command_details->command_status != ABORTED) {		    	
-		        	gtk_widget_set_sensitive (save_widget, FALSE);
-			}
-			else {
-				gtk_widget_set_sensitive (save_widget, TRUE);
-			}		   
+		if (!no_files_found) {		   
 			gtk_menu_popup (GTK_MENU (gsearch->search_results_popup_menu), NULL, NULL, NULL, NULL,
 			                event->button, event->time);				   
 		}
@@ -1130,7 +1038,7 @@ drag_data_animation_cb (GtkWidget * widget,
 	gchar * disk;
 	gchar * scheme;
 	gint argc;
-	gint i;
+	gint index;
 
 	set_clone_command (gsearch, &argc, &argv, "gnome-search-tool", TRUE);
 
@@ -1138,8 +1046,8 @@ drag_data_animation_cb (GtkWidget * widget,
 		return;
 	}
 
-	for (i = 0; i < argc; i++) {
-		command = g_string_append (command, argv[i]);
+	for (index = 0; index < argc; index++) {
+		command = g_string_append (command, argv[index]);
 		command = g_string_append_c (command, ' ');
 	}
 	command = g_string_append (command, "--start");
@@ -1446,19 +1354,6 @@ key_press_cb (GtkWidget * widget,
 					    COLUMN_NO_FILES_FOUND, &no_files_found, -1);
 
 			if (!no_files_found) {
-				GtkWidget * save_widget;
-
-				setup_ui_manager (gsearch);	
-				save_widget = gtk_ui_manager_get_widget (gsearch->window_ui_manager, "/PopupMenu/SaveResultsAs"); 
-
-				if (gsearch->command_details->command_status != STOPPED &&
-				    gsearch->command_details->command_status != ABORTED) {		    	
-		  		      	gtk_widget_set_sensitive (save_widget, FALSE);
-				}
-				else {
-					gtk_widget_set_sensitive (save_widget, TRUE);
-				}
- 
 				gtk_menu_popup (GTK_MENU (gsearch->search_results_popup_menu), NULL, NULL, NULL, NULL,
 				                event->keyval, event->time);	
 				return TRUE;

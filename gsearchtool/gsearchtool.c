@@ -66,34 +66,34 @@ typedef enum {
 	SEARCH_CONSTRAINT_TYPE_DATE_AFTER,
 	SEARCH_CONSTRAINT_TYPE_SEPARATOR,
 	SEARCH_CONSTRAINT_TYPE_NONE
-} SearchConstraintType;
+} GSearchConstraintType;
 
-typedef struct _FindOptionTemplate FindOptionTemplate;
+typedef struct _GSearchOptionTemplate GSearchOptionTemplate;
 
-struct _FindOptionTemplate {
-	SearchConstraintType type; /* The available option type */
-	gchar * option;            /* An option string to pass to the command */
-	gchar * desc;              /* The description for display */
-	gchar * units;             /* Optional units for display */
-	gboolean is_selected;     
+struct _GSearchOptionTemplate {
+	GSearchConstraintType type; /* The available option type */
+	gchar * option;             /* An option string to pass to the command */
+	gchar * desc;               /* The description for display */
+	gchar * units;              /* Optional units for display */
+	gboolean is_selected;
 };
 
-static FindOptionTemplate templates[] = {
+static GSearchOptionTemplate GSearchOptionTemplates[] = {
 	{ SEARCH_CONSTRAINT_TYPE_TEXT, "'!' -type p -exec grep -c '%s' {} \\;", N_("Contains the _text"), NULL, FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_SEPARATOR, NULL, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TYPE_DATE_BEFORE, "-mtime -%d", N_("_Date modified less than"), N_("days"), FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_DATE_AFTER, "\\( -mtime +%d -o -mtime %d \\)", N_("Date modified more than"), N_("days"), FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_SEPARATOR, NULL, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_TYPE_NUMERIC, "\\( -size %uc -o -size +%uc \\)", N_("S_ize at least"), N_("kilobytes"), FALSE }, 
+	{ SEARCH_CONSTRAINT_TYPE_NUMERIC, "\\( -size %uc -o -size +%uc \\)", N_("S_ize at least"), N_("kilobytes"), FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_NUMERIC, "\\( -size %uc -o -size -%uc \\)", N_("Si_ze at most"), N_("kilobytes"), FALSE },
-	{ SEARCH_CONSTRAINT_TYPE_BOOLEAN, "-size 0c \\( -type f -o -type d \\)", N_("File is empty"), NULL, FALSE },	
+	{ SEARCH_CONSTRAINT_TYPE_BOOLEAN, "-size 0c \\( -type f -o -type d \\)", N_("File is empty"), NULL, FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_SEPARATOR, NULL, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TYPE_TEXT, "-user '%s'", N_("Owned by _user"), NULL, FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_TEXT, "-group '%s'", N_("Owned by _group"), NULL, FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_BOOLEAN, "\\( -nouser -o -nogroup \\)", N_("Owner is unrecognized"), NULL, FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_SEPARATOR, NULL, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TYPE_TEXT, "'!' -name '*%s*'", N_("Na_me does not contain"), NULL, FALSE },
-	{ SEARCH_CONSTRAINT_TYPE_TEXT, "-regex '%s'", N_("Name matches regular e_xpression"), NULL, FALSE }, 
+	{ SEARCH_CONSTRAINT_TYPE_TEXT, "-regex '%s'", N_("Name matches regular e_xpression"), NULL, FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_SEPARATOR, NULL, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TYPE_BOOLEAN, "SHOW_HIDDEN_FILES", N_("Show hidden and backup files"), NULL, FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_BOOLEAN, "-follow", N_("Follow symbolic links"), NULL, FALSE },
@@ -101,25 +101,17 @@ static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TYPE_NONE, NULL, NULL, NULL, FALSE}
 }; 
 
-static GtkTargetEntry dnd_table[] = {
-	{ "STRING",        0, 0 },
-	{ "text/plain",    0, 0 },
-	{ "text/uri-list", 0, 1 }
-};
-
-static guint n_dnds = sizeof (dnd_table) / sizeof (dnd_table[0]);
-
 enum {
 	SEARCH_CONSTRAINT_CONTAINS_THE_TEXT,
-	SEARCH_CONSTRAINT_TYPE_SEPARATOR_00, 
+	SEARCH_CONSTRAINT_TYPE_SEPARATOR_00,
 	SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE,
 	SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER,
 	SEARCH_CONSTRAINT_TYPE_SEPARATOR_01,
 	SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN,	
 	SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
 	SEARCH_CONSTRAINT_FILE_IS_EMPTY,
-	SEARCH_CONSTRAINT_TYPE_SEPARATOR_02,	
-	SEARCH_CONSTRAINT_OWNED_BY_USER, 
+	SEARCH_CONSTRAINT_TYPE_SEPARATOR_02,
+	SEARCH_CONSTRAINT_OWNED_BY_USER,
 	SEARCH_CONSTRAINT_OWNED_BY_GROUP,
 	SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED,
 	SEARCH_CONSTRAINT_TYPE_SEPARATOR_03,	
@@ -132,7 +124,15 @@ enum {
 	SEARCH_CONSTRAINT_MAXIMUM_POSSIBLE
 };
 
-struct _PoptArgument {
+static GtkTargetEntry GSearchDndTable[] = {
+	{ "STRING",        0, 0 },
+	{ "text/plain",    0, 0 },
+	{ "text/uri-list", 0, 1 }
+};
+
+static guint GSearchTotalDnds = sizeof (GSearchDndTable) / sizeof (GSearchDndTable[0]);
+
+struct _GSearchPoptArgument {
 	gchar * name;
 	gchar * path;
 	gchar * contains;
@@ -152,55 +152,73 @@ struct _PoptArgument {
 	gchar * sortby;
 	gboolean descending;
 	gboolean start;
-} PoptArgument;
+} GSearchPoptArgument;
 
-struct poptOption options[] = { 
-  	{ "named", '\0', POPT_ARG_STRING, &PoptArgument.name, 0, NULL, NULL},
-	{ "path", '\0', POPT_ARG_STRING, &PoptArgument.path, 0, NULL, NULL},
-  	{ "sortby", '\0', POPT_ARG_STRING, &PoptArgument.sortby, 0, NULL, NULL},
-  	{ "descending", '\0', POPT_ARG_NONE, &PoptArgument.descending, 0, NULL, NULL},
-  	{ "start", '\0', POPT_ARG_NONE, &PoptArgument.start, 0, NULL, NULL},
-  	{ "contains", '\0', POPT_ARG_STRING, &PoptArgument.contains, 0, NULL, NULL},
-  	{ "mtimeless", '\0', POPT_ARG_STRING, &PoptArgument.mtimeless, 0, NULL, NULL},
-  	{ "mtimemore", '\0', POPT_ARG_STRING, &PoptArgument.mtimemore, 0, NULL, NULL},
-	{ "sizemore", '\0', POPT_ARG_STRING, &PoptArgument.sizemore, 0, NULL, NULL},
-	{ "sizeless", '\0', POPT_ARG_STRING, &PoptArgument.sizeless, 0, NULL, NULL},
-	{ "empty", '\0', POPT_ARG_NONE, &PoptArgument.empty, 0, NULL, NULL},
-  	{ "user", '\0', POPT_ARG_STRING, &PoptArgument.user, 0, NULL, NULL},
-  	{ "group", '\0', POPT_ARG_STRING, &PoptArgument.group, 0, NULL, NULL},
-  	{ "nouser", '\0', POPT_ARG_NONE, &PoptArgument.nouser, 0, NULL, NULL},
-  	{ "notnamed", '\0', POPT_ARG_STRING, &PoptArgument.notnamed, 0, NULL, NULL},
-  	{ "regex", '\0', POPT_ARG_STRING, &PoptArgument.regex, 0, NULL, NULL},
-	{ "hidden", '\0', POPT_ARG_NONE, &PoptArgument.hidden, 0, NULL, NULL},
-  	{ "follow", '\0', POPT_ARG_NONE, &PoptArgument.follow, 0, NULL, NULL},
-  	{ "allmounts", '\0', POPT_ARG_NONE, &PoptArgument.allmounts, 0, NULL, NULL},
+struct poptOption GSearchPoptOptions[] = { 
+  	{ "named", '\0', POPT_ARG_STRING, &GSearchPoptArgument.name, 0, NULL, NULL},
+	{ "path", '\0', POPT_ARG_STRING, &GSearchPoptArgument.path, 0, NULL, NULL},
+  	{ "sortby", '\0', POPT_ARG_STRING, &GSearchPoptArgument.sortby, 0, NULL, NULL},
+  	{ "descending", '\0', POPT_ARG_NONE, &GSearchPoptArgument.descending, 0, NULL, NULL},
+  	{ "start", '\0', POPT_ARG_NONE, &GSearchPoptArgument.start, 0, NULL, NULL},
+  	{ "contains", '\0', POPT_ARG_STRING, &GSearchPoptArgument.contains, 0, NULL, NULL},
+  	{ "mtimeless", '\0', POPT_ARG_STRING, &GSearchPoptArgument.mtimeless, 0, NULL, NULL},
+  	{ "mtimemore", '\0', POPT_ARG_STRING, &GSearchPoptArgument.mtimemore, 0, NULL, NULL},
+	{ "sizemore", '\0', POPT_ARG_STRING, &GSearchPoptArgument.sizemore, 0, NULL, NULL},
+	{ "sizeless", '\0', POPT_ARG_STRING, &GSearchPoptArgument.sizeless, 0, NULL, NULL},
+	{ "empty", '\0', POPT_ARG_NONE, &GSearchPoptArgument.empty, 0, NULL, NULL},
+  	{ "user", '\0', POPT_ARG_STRING, &GSearchPoptArgument.user, 0, NULL, NULL},
+  	{ "group", '\0', POPT_ARG_STRING, &GSearchPoptArgument.group, 0, NULL, NULL},
+  	{ "nouser", '\0', POPT_ARG_NONE, &GSearchPoptArgument.nouser, 0, NULL, NULL},
+  	{ "notnamed", '\0', POPT_ARG_STRING, &GSearchPoptArgument.notnamed, 0, NULL, NULL},
+  	{ "regex", '\0', POPT_ARG_STRING, &GSearchPoptArgument.regex, 0, NULL, NULL},
+	{ "hidden", '\0', POPT_ARG_NONE, &GSearchPoptArgument.hidden, 0, NULL, NULL},
+  	{ "follow", '\0', POPT_ARG_NONE, &GSearchPoptArgument.follow, 0, NULL, NULL},
+  	{ "allmounts", '\0', POPT_ARG_NONE, &GSearchPoptArgument.allmounts, 0, NULL, NULL},
   	{ NULL,'\0', 0, NULL, 0, NULL, NULL}
 };
 
-static gchar * find_command_default_name_option;
+static GtkActionEntry GSearchUiEntries[] = {
+  { "Open",          GTK_STOCK_OPEN,    N_("_Open"),               NULL, NULL, NULL },
+  { "OpenFolder",    GTK_STOCK_OPEN,    N_("O_pen Folder"),        NULL, NULL, NULL },
+  { "MoveToTrash",   GTK_STOCK_DELETE,  N_("Mo_ve to Trash"),      NULL, NULL, NULL },
+  { "SaveResultsAs", GTK_STOCK_SAVE_AS, N_("_Save Results As..."), NULL, NULL, NULL },
+};
+
+static const char * GSearchUiDescription =
+"<ui>"
+"  <popup name='PopupMenu'>"
+"      <menuitem action='Open'/>"
+"      <menuitem action='OpenFolder'/>"
+"      <separator/>"
+"      <menuitem action='MoveToTrash'/>"
+"      <separator/>"
+"      <menuitem action='SaveResultsAs'/>"
+"  </popup>"
+"</ui>";
+
+static gchar * find_command_default_name_argument;
 static gchar * locate_command_default_options;
-	
-static void   
+
+static void
 setup_case_insensitive_arguments (void)
 {
-	static gboolean first_pass = TRUE;
+	static gboolean case_insensitive_arguments_setup = TRUE;
 	gchar * cmd_stderr;
 
-	if (first_pass != TRUE) {
+	if (case_insensitive_arguments_setup != TRUE) {
 		return;
 	}
-
-	first_pass = FALSE;
+	case_insensitive_arguments_setup = FALSE;
 
 	/* check find command for -iname argument compatibility */
 	g_spawn_command_line_sync ("find /dev/null -iname 'string'", NULL, &cmd_stderr, NULL, NULL);
 
 	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
-		find_command_default_name_option = g_strdup ("-iname");
-		templates[SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED].option = g_strdup ("'!' -iname '*%s*'");
+		find_command_default_name_argument = g_strdup ("-iname");
+		GSearchOptionTemplates[SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED].option = g_strdup ("'!' -iname '*%s*'");
 	}
 	else {
-		find_command_default_name_option = g_strdup ("-name");
+		find_command_default_name_argument = g_strdup ("-name");
 	}
 	g_free (cmd_stderr);
 
@@ -208,7 +226,7 @@ setup_case_insensitive_arguments (void)
 	g_spawn_command_line_sync ("grep -i 'string' /dev/null", NULL, &cmd_stderr, NULL, NULL);
 
 	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
-		templates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = g_strdup ("'!' -type p -exec grep -i -c '%s' {} \\;");
+		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = g_strdup ("'!' -type p -exec grep -i -c '%s' {} \\;");
 	}
 	g_free (cmd_stderr);
 
@@ -225,7 +243,7 @@ setup_case_insensitive_arguments (void)
 }
   
 static gchar *
-setup_find_name_options (gchar * filename)
+setup_find_name_options (gchar * file)
 {
 	/* This function builds the name options for the find command.  This in
 	   done to insure that the find command returns hidden files and folders. */
@@ -233,40 +251,40 @@ setup_find_name_options (gchar * filename)
 	GString * command;
 	command = g_string_new ("");
 
-	if (strstr(filename, "*") == NULL) {
+	if (strstr (file, "*") == NULL) {
 
-		if ((strlen(filename) == 0) || (filename[0] != '.')) {
+		if ((strlen (file) == 0) || (file[0] != '.')) {
 	 		g_string_append_printf (command, "\\( %s '*%s*' -o %s '.*%s*' \\) ", 
-					find_command_default_name_option, filename,
-					find_command_default_name_option, filename);
+					find_command_default_name_argument, file,
+					find_command_default_name_argument, file);
 		}
 		else {
 			g_string_append_printf (command, "\\( %s '*%s*' -o %s '.*%s*' -o %s '%s*' \\) ", 
-					find_command_default_name_option, filename,
-					find_command_default_name_option, filename,
-					find_command_default_name_option, filename);
+					find_command_default_name_argument, file,
+					find_command_default_name_argument, file,
+					find_command_default_name_argument, file);
 		}
 	}
 	else {
-		if (filename[0] == '.') {
+		if (file[0] == '.') {
 			g_string_append_printf (command, "\\( %s '%s' -o %s '.*%s' \\) ", 
-					find_command_default_name_option, filename,
-					find_command_default_name_option, filename);	
+					find_command_default_name_argument, file,
+					find_command_default_name_argument, file);	
 		}
-		else if (filename[0] != '*') {
+		else if (file[0] != '*') {
 			g_string_append_printf (command, "%s '%s' ", 
-					find_command_default_name_option, filename);
+					find_command_default_name_argument, file);
 		}
 		else {
-			if ((strlen(filename) >= 1) && (filename[1] == '.')) {
+			if ((strlen (file) >= 1) && (file[1] == '.')) {
 				g_string_append_printf (command, "\\( %s '%s' -o %s '%s' \\) ", 
-					find_command_default_name_option, filename,
-					find_command_default_name_option, &filename[1]);
+					find_command_default_name_argument, file,
+					find_command_default_name_argument, &file[1]);
 			}
 			else {
 				g_string_append_printf (command, "\\( %s '%s' -o %s '.%s' \\) ", 
-					find_command_default_name_option, filename,
-					find_command_default_name_option, filename);
+					find_command_default_name_argument, file,
+					find_command_default_name_argument, file);
 			}
 		}
 	}
@@ -282,9 +300,9 @@ has_additional_constraints (GSearchWindow * gsearch)
 	
 		for (list = gsearch->available_options_selected_list; list != NULL; list = g_list_next (list)) {
 			
-			GSearchConstraint *constraint = list->data;
-							
-			switch (templates[constraint->constraint_id].type) {
+			GSearchConstraint * constraint = list->data;
+		
+			switch (GSearchOptionTemplates[constraint->constraint_id].type) {
 			case SEARCH_CONSTRAINT_TYPE_BOOLEAN:
 			case SEARCH_CONSTRAINT_TYPE_NUMERIC:
 			case SEARCH_CONSTRAINT_TYPE_DATE_BEFORE:	
@@ -323,10 +341,10 @@ build_search_command (GSearchWindow * gsearch,
 		file_is_named_utf8 = g_strdup ("*");
 	} 
 	else {
-		gchar *locale;
+		gchar * locale;
 
 		locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
-		gnome_entry_prepend_history (GNOME_ENTRY(gsearch->name_contains_entry), TRUE, file_is_named_utf8);
+		gnome_entry_prepend_history (GNOME_ENTRY (gsearch->name_contains_entry), TRUE, file_is_named_utf8);
 
 		if (strstr (locale, "*") == NULL) {
 			gchar *tmp;
@@ -351,7 +369,7 @@ build_search_command (GSearchWindow * gsearch,
 		look_in_folder_locale = g_strconcat (look_in_folder_locale, G_DIR_SEPARATOR_S, NULL);
 		g_free (tmp);
 	}
-	gsearch->command_details->look_in_folder_string = g_strdup(look_in_folder_locale);
+	gsearch->command_details->look_in_folder_string = g_strdup (look_in_folder_locale);
 	
 	command = g_string_new ("");
 	gsearch->command_details->is_command_show_hidden_files_enabled = FALSE;
@@ -364,16 +382,16 @@ build_search_command (GSearchWindow * gsearch,
 		gsearch->command_details->is_command_using_quick_mode = FALSE;
 	}
 	
-	if ((GTK_WIDGET_VISIBLE(gsearch->available_options_vbox) == FALSE) ||
-	    (has_additional_constraints(gsearch) == FALSE)) {
+	if ((GTK_WIDGET_VISIBLE (gsearch->available_options_vbox) == FALSE) ||
+	    (has_additional_constraints (gsearch) == FALSE)) {
 	
 		file_is_named_backslashed = backslash_special_characters (file_is_named_locale);
 		file_is_named_escaped = escape_single_quotes (file_is_named_backslashed);
-		gsearch->command_details->name_contains_pattern_string = g_strdup(file_is_named_utf8);
+		gsearch->command_details->name_contains_pattern_string = g_strdup (file_is_named_utf8);
 		
 		if (gsearch->command_details->is_command_first_pass == TRUE) {
 		
-			gchar *locate;
+			gchar * locate;
 			gboolean disable_quick_search;
 		
 			locate = g_find_program_in_path ("locate");
@@ -394,7 +412,7 @@ build_search_command (GSearchWindow * gsearch,
 			else {		
 				g_string_append_printf (command, "find \"%s\" %s '%s' -xdev -print", 
 							look_in_folder_locale, 
-							find_command_default_name_option, 
+							find_command_default_name_argument, 
 							file_is_named_escaped);
 			}
 			g_free (locate);
@@ -402,7 +420,7 @@ build_search_command (GSearchWindow * gsearch,
 		else {
 			g_string_append_printf (command, "find \"%s\" %s '%s' -xdev -print", 
 						look_in_folder_locale, 
-						find_command_default_name_option, 
+						find_command_default_name_argument, 
 						file_is_named_escaped);
 		}
 	}
@@ -420,26 +438,26 @@ build_search_command (GSearchWindow * gsearch,
 	
 		for (list = gsearch->available_options_selected_list; list != NULL; list = g_list_next (list)) {
 			
-			GSearchConstraint *constraint = list->data;
+			GSearchConstraint * constraint = list->data;
 						
-			switch (templates[constraint->constraint_id].type) {
+			switch (GSearchOptionTemplates[constraint->constraint_id].type) {
 			case SEARCH_CONSTRAINT_TYPE_BOOLEAN:
-				if (strcmp (templates[constraint->constraint_id].option, "INCLUDE_OTHER_FILESYSTEMS") == 0) {
+				if (strcmp (GSearchOptionTemplates[constraint->constraint_id].option, "INCLUDE_OTHER_FILESYSTEMS") == 0) {
 					disable_mount_argument = TRUE;
 				}
-				else if (strcmp (templates[constraint->constraint_id].option, "SHOW_HIDDEN_FILES") == 0) {
+				else if (strcmp (GSearchOptionTemplates[constraint->constraint_id].option, "SHOW_HIDDEN_FILES") == 0) {
 					gsearch->command_details->is_command_show_hidden_files_enabled = TRUE;
 				}
 				else {
-					g_string_append_printf(command, "%s ",
-						templates[constraint->constraint_id].option);
+					g_string_append_printf (command, "%s ",
+						GSearchOptionTemplates[constraint->constraint_id].option);
 				}
 				break;
 			case SEARCH_CONSTRAINT_TYPE_TEXT:
-				if (strcmp (templates[constraint->constraint_id].option, "-regex '%s'") == 0) {
+				if (strcmp (GSearchOptionTemplates[constraint->constraint_id].option, "-regex '%s'") == 0) {
 					
-					gchar *escaped;
-					gchar *regex;
+					gchar * escaped;
+					gchar * regex;
 					
 					escaped = backslash_special_characters (constraint->data.text);
 					regex = escape_single_quotes (escaped);
@@ -453,9 +471,9 @@ build_search_command (GSearchWindow * gsearch,
 					g_free (regex);
 				} 
 				else {
-					gchar *escaped;
-					gchar *backslashed;
-					gchar *locale;
+					gchar * escaped;
+					gchar * backslashed;
+					gchar * locale;
 					
 					backslashed = backslash_special_characters (constraint->data.text);
 					escaped = escape_single_quotes (backslashed);
@@ -464,7 +482,7 @@ build_search_command (GSearchWindow * gsearch,
 					
 					if (strlen (locale) != 0) { 
 						g_string_append_printf (command,
-							  	        templates[constraint->constraint_id].option,
+							  	        GSearchOptionTemplates[constraint->constraint_id].option,
 						  		        locale);
 
 						g_string_append_c (command, ' ');
@@ -477,20 +495,20 @@ build_search_command (GSearchWindow * gsearch,
 				break;
 			case SEARCH_CONSTRAINT_TYPE_NUMERIC:
 				g_string_append_printf (command,
-					  		templates[constraint->constraint_id].option,
+					  		GSearchOptionTemplates[constraint->constraint_id].option,
 							(constraint->data.number * 1024),
 					  		(constraint->data.number * 1024));
 				g_string_append_c (command, ' ');
 				break;
 			case SEARCH_CONSTRAINT_TYPE_DATE_BEFORE:
 				g_string_append_printf (command,
-					 		templates[constraint->constraint_id].option,
+					 		GSearchOptionTemplates[constraint->constraint_id].option,
 					  		constraint->data.time);
 				g_string_append_c (command, ' ');
 				break;	
 			case SEARCH_CONSTRAINT_TYPE_DATE_AFTER:
 				g_string_append_printf (command,
-					 		templates[constraint->constraint_id].option,
+					 		GSearchOptionTemplates[constraint->constraint_id].option,
 					  		constraint->data.time,
 					  		constraint->data.time);
 				g_string_append_c (command, ' ');
@@ -520,30 +538,35 @@ static void
 add_file_to_search_results (const gchar * file, 
 			    GtkListStore * store, 
 			    GtkTreeIter * iter,
-			    GSearchWindow* gsearch)
+			    GSearchWindow * gsearch)
 {					
 	const char * mime_type; 
 	const char * description;
 	GdkPixbuf * pixbuf;
 	GnomeVFSFileInfo * vfs_file_info;
-	gchar * readable_size, * readable_date;
-	gchar * utf8_base_name, * utf8_dir_name, * utf8_relative_dir_name;
-	gchar * base_name, * dir_name, * relative_dir_name;
+	gchar * readable_size;
+	gchar * readable_date;
+	gchar * utf8_base_name;
+	gchar * utf8_dir_name;
+	gchar * utf8_relative_dir_name;
+	gchar * base_name;
+	gchar * dir_name;
+	gchar * relative_dir_name;
 	gchar * look_in_folder;
 	
 	if (g_hash_table_lookup_extended (gsearch->search_results_filename_hash_table, file, NULL, NULL) == TRUE) {
 		return;
 	}
 	
-	g_hash_table_insert (gsearch->search_results_filename_hash_table, g_strdup(file), NULL);
+	g_hash_table_insert (gsearch->search_results_filename_hash_table, g_strdup (file), NULL);
 	
 	mime_type = gnome_vfs_get_file_mime_type (file, NULL, FALSE);
 	 
 	description = get_file_type_for_mime_type (file, mime_type);
 	pixbuf = get_file_pixbuf_for_mime_type (gsearch->search_results_pixbuf_hash_table, file, mime_type);
 	
-	if (gtk_tree_view_get_headers_visible (GTK_TREE_VIEW(gsearch->search_results_tree_view)) == FALSE) {
-		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(gsearch->search_results_tree_view), TRUE);
+	if (gtk_tree_view_get_headers_visible (GTK_TREE_VIEW (gsearch->search_results_tree_view)) == FALSE) {
+		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (gsearch->search_results_tree_view), TRUE);
 	}
 	
 	vfs_file_info = gnome_vfs_file_info_new ();
@@ -556,7 +579,7 @@ add_file_to_search_results (const gchar * file,
 	
 	look_in_folder = g_strdup (gsearch->command_details->look_in_folder_string);
 	if (strlen (look_in_folder) > 1) {
-		gchar *path;
+		gchar * path;
 
 		if (g_str_has_suffix (look_in_folder, G_DIR_SEPARATOR_S) == TRUE) {
 			look_in_folder[strlen (look_in_folder) - 1] = '\0'; 
@@ -573,8 +596,8 @@ add_file_to_search_results (const gchar * file,
 	utf8_dir_name = g_locale_to_utf8 (dir_name, -1, NULL, NULL, NULL);
 	utf8_relative_dir_name = g_locale_to_utf8 (relative_dir_name, -1, NULL, NULL, NULL); 
 	
-	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
-	gtk_list_store_set (GTK_LIST_STORE(store), iter,
+	gtk_list_store_append (GTK_LIST_STORE (store), iter); 
+	gtk_list_store_set (GTK_LIST_STORE (store), iter,
 			    COLUMN_ICON, pixbuf, 
 			    COLUMN_NAME, utf8_base_name,
 			    COLUMN_RELATIVE_PATH, utf8_relative_dir_name,
@@ -604,14 +627,14 @@ add_no_files_found_message (GSearchWindow * gsearch)
 {
 	/* When the list is empty append a 'No Files Found.' message. */
 	gtk_widget_set_sensitive (GTK_WIDGET (gsearch->search_results_tree_view), FALSE);
-	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(gsearch->search_results_tree_view), FALSE);
-	gtk_tree_view_columns_autosize (GTK_TREE_VIEW(gsearch->search_results_tree_view));
+	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (gsearch->search_results_tree_view), FALSE);
+	gtk_tree_view_columns_autosize (GTK_TREE_VIEW (gsearch->search_results_tree_view));
 	g_object_set (gsearch->search_results_name_cell_renderer,
 	              "underline", PANGO_UNDERLINE_NONE,
 	              "underline-set", FALSE,
 	              NULL);
-	gtk_list_store_append (GTK_LIST_STORE(gsearch->search_results_list_store), &gsearch->search_results_iter); 
-	gtk_list_store_set (GTK_LIST_STORE(gsearch->search_results_list_store), &gsearch->search_results_iter,
+	gtk_list_store_append (GTK_LIST_STORE (gsearch->search_results_list_store), &gsearch->search_results_iter); 
+	gtk_list_store_set (GTK_LIST_STORE (gsearch->search_results_list_store), &gsearch->search_results_iter,
 		    	    COLUMN_ICON, NULL, 
 			    COLUMN_NAME, _("No files found"),
 			    COLUMN_RELATIVE_PATH, "",
@@ -638,7 +661,7 @@ update_search_counts (GSearchWindow * gsearch)
 		stopped_string = g_strdup (_("(stopped)"));
 	}
 	
-	total_files = gtk_tree_model_iter_n_children (GTK_TREE_MODEL(gsearch->search_results_list_store), NULL);
+	total_files = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (gsearch->search_results_list_store), NULL);
 
 	if (total_files == 0) {
 		title_bar_string = g_strdup (_("No Files Found"));
@@ -684,7 +707,7 @@ intermediate_file_count_update (GSearchWindow * gsearch)
 	gchar * string;
 	gint count;
 	
-	count = gtk_tree_model_iter_n_children (GTK_TREE_MODEL(gsearch->search_results_list_store), NULL);
+	count = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (gsearch->search_results_list_store), NULL);
 	
 	if (count > 0) {
 		
@@ -699,22 +722,22 @@ intermediate_file_count_update (GSearchWindow * gsearch)
 }
 
 static GtkTreeModel *
-make_list_of_templates (void)
+gsearch_create_list_of_templates (void)
 {
 	GtkListStore * store;
 	GtkTreeIter iter;
-	gint i;
+	gint index;
 
 	store = gtk_list_store_new (1, G_TYPE_STRING);
 
-	for(i=0; templates[i].type != SEARCH_CONSTRAINT_TYPE_NONE; i++) {
+	for (index = 0; GSearchOptionTemplates[index].type != SEARCH_CONSTRAINT_TYPE_NONE; index++) {
 		
-		if (templates[i].type == SEARCH_CONSTRAINT_TYPE_SEPARATOR) {
+		if (GSearchOptionTemplates[index].type == SEARCH_CONSTRAINT_TYPE_SEPARATOR) {
 		        gtk_list_store_append (store, &iter);
 		        gtk_list_store_set (store, &iter, 0, "separator", -1);
 		} 
 		else {
-			gchar *text = remove_mnemonic_character (_(templates[i].desc));
+			gchar * text = remove_mnemonic_character (_(GSearchOptionTemplates[index].desc));
 			gtk_list_store_append (store, &iter);
 		        gtk_list_store_set (store, &iter, 0, text, -1);
 			g_free (text);
@@ -726,7 +749,7 @@ make_list_of_templates (void)
 static void
 set_constraint_info_defaults (GSearchConstraint * opt)
 {	
-	switch (templates[opt->constraint_id].type) {
+	switch (GSearchOptionTemplates[opt->constraint_id].type) {
 	case SEARCH_CONSTRAINT_TYPE_BOOLEAN:
 		break;
 	case SEARCH_CONSTRAINT_TYPE_TEXT:
@@ -748,7 +771,7 @@ void
 update_constraint_info (GSearchConstraint * constraint, 
 			gchar * info)
 {
-	switch (templates[constraint->constraint_id].type) {
+	switch (GSearchOptionTemplates[constraint->constraint_id].type) {
 	case SEARCH_CONSTRAINT_TYPE_TEXT:
 		constraint->data.text = info;
 		break;
@@ -772,10 +795,10 @@ set_constraint_selected_state (GSearchWindow * gsearch,
 {
 	gint index;
 	
-	templates[constraint_id].is_selected = state;
+	GSearchOptionTemplates[constraint_id].is_selected = state;
 	
-	for (index=0; templates[index].type != SEARCH_CONSTRAINT_TYPE_NONE; index++) {
-		if (templates[index].is_selected == FALSE) {
+	for (index = 0; GSearchOptionTemplates[index].type != SEARCH_CONSTRAINT_TYPE_NONE; index++) {
+		if (GSearchOptionTemplates[index].is_selected == FALSE) {
 			gtk_combo_box_set_active (GTK_COMBO_BOX (gsearch->available_options_combo_box), index);
 			gtk_widget_set_sensitive (gsearch->available_options_add_button, TRUE);
 			gtk_widget_set_sensitive (gsearch->available_options_combo_box, TRUE);
@@ -929,7 +952,7 @@ get_desktop_item_name (GSearchWindow * gsearch)
 	g_string_append (gs, _("Search for Files"));
 	g_string_append (gs, " (");
 	
-	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(gsearch->name_contains_entry))));
+	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry))));
 	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8 != NULL ? file_is_named_utf8 : "" , 
 	                                           -1, NULL, NULL, NULL);
 	g_string_append (gs, g_strdup_printf ("named=%s", file_is_named_locale));
@@ -942,10 +965,10 @@ get_desktop_item_name (GSearchWindow * gsearch)
 	g_free (look_in_folder_locale);
 	g_free (look_in_folder_utf8); 
 
-	if (GTK_WIDGET_VISIBLE(gsearch->available_options_vbox)) {
+	if (GTK_WIDGET_VISIBLE (gsearch->available_options_vbox)) {
 		for (list = gsearch->available_options_selected_list; list != NULL; list = g_list_next (list)) {
-			GSearchConstraint *constraint = list->data;
-			gchar *locale = NULL;
+			GSearchConstraint * constraint = list->data;
+			gchar * locale = NULL;
 			
 			switch (constraint->constraint_id) {
 			case SEARCH_CONSTRAINT_CONTAINS_THE_TEXT:
@@ -1034,16 +1057,16 @@ define_popt_table_options (void)
 	gint i = 0;
 	gint j;
 
-	options[i++].descrip = g_strdup (_("Set the text of 'Name contains'"));
-	options[i++].descrip = g_strdup (_("Set the text of 'Look in folder'"));
-  	options[i++].descrip = g_strdup (_("Sort files by one of the following: name, folder, size, type, or date"));
-  	options[i++].descrip = g_strdup (_("Set sort order to descending, the default is ascending"));
-  	options[i++].descrip = g_strdup (_("Automatically start a search"));
+	GSearchPoptOptions[i++].descrip = g_strdup (_("Set the text of 'Name contains'"));
+	GSearchPoptOptions[i++].descrip = g_strdup (_("Set the text of 'Look in folder'"));
+  	GSearchPoptOptions[i++].descrip = g_strdup (_("Sort files by one of the following: name, folder, size, type, or date"));
+  	GSearchPoptOptions[i++].descrip = g_strdup (_("Set sort order to descending, the default is ascending"));
+  	GSearchPoptOptions[i++].descrip = g_strdup (_("Automatically start a search"));
 
-	for (j = 0; templates[j].type != SEARCH_CONSTRAINT_TYPE_NONE; j++) {
-		if (templates[j].type != SEARCH_CONSTRAINT_TYPE_SEPARATOR) {
-			gchar *text = remove_mnemonic_character (templates[j].desc);
-			options[i++].descrip = g_strdup_printf (_("Select the '%s' constraint"), _(text));
+	for (j = 0; GSearchOptionTemplates[j].type != SEARCH_CONSTRAINT_TYPE_NONE; j++) {
+		if (GSearchOptionTemplates[j].type != SEARCH_CONSTRAINT_TYPE_SEPARATOR) {
+			gchar *text = remove_mnemonic_character (GSearchOptionTemplates[j].desc);
+			GSearchPoptOptions[i++].descrip = g_strdup_printf (_("Select the '%s' constraint"), _(text));
 			g_free (text);
 		}
 	}
@@ -1055,97 +1078,97 @@ handle_popt_args (GSearchWindow * gsearch)
 	gboolean popt_args_found = FALSE;
 	gint sort_by;
 
-	if (PoptArgument.name != NULL) {
+	if (GSearchPoptArgument.name != NULL) {
 		popt_args_found = TRUE;
-		gtk_entry_set_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(gsearch->name_contains_entry))),
-				    g_locale_to_utf8 (PoptArgument.name, -1, NULL, NULL, NULL));
+		gtk_entry_set_text (GTK_ENTRY (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry))),
+				    g_locale_to_utf8 (GSearchPoptArgument.name, -1, NULL, NULL, NULL));
 	}
-	if (PoptArgument.path != NULL) {
+	if (GSearchPoptArgument.path != NULL) {
 		popt_args_found = TRUE;
 		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (gsearch->look_in_folder_button),
-		                               g_locale_to_utf8 (PoptArgument.path, -1, NULL, NULL, NULL));
+		                               g_locale_to_utf8 (GSearchPoptArgument.path, -1, NULL, NULL, NULL));
 	}	
-	if (PoptArgument.contains != NULL) {
+	if (GSearchPoptArgument.contains != NULL) {
 		popt_args_found = TRUE;	
 		add_constraint (gsearch, SEARCH_CONSTRAINT_CONTAINS_THE_TEXT, 
-				PoptArgument.contains, TRUE); 	
+				GSearchPoptArgument.contains, TRUE); 	
 	}
-	if (PoptArgument.mtimeless != NULL) {
+	if (GSearchPoptArgument.mtimeless != NULL) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE, 
-				PoptArgument.mtimeless, TRUE);		
+				GSearchPoptArgument.mtimeless, TRUE);		
 	}
-	if (PoptArgument.mtimemore != NULL) {
+	if (GSearchPoptArgument.mtimemore != NULL) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER, 
-				PoptArgument.mtimemore, TRUE);
+				GSearchPoptArgument.mtimemore, TRUE);
 	}
-	if (PoptArgument.sizemore != NULL) {
+	if (GSearchPoptArgument.sizemore != NULL) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN,
-				PoptArgument.sizemore, TRUE);
+				GSearchPoptArgument.sizemore, TRUE);
 	}
-	if (PoptArgument.sizeless != NULL) {
+	if (GSearchPoptArgument.sizeless != NULL) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
-				PoptArgument.sizeless, TRUE);
+				GSearchPoptArgument.sizeless, TRUE);
 	}
-	if (PoptArgument.empty) {
+	if (GSearchPoptArgument.empty) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL, TRUE);
 	}
-	if (PoptArgument.user != NULL) {
+	if (GSearchPoptArgument.user != NULL) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_OWNED_BY_USER, 
-				PoptArgument.user, TRUE); 
+				GSearchPoptArgument.user, TRUE); 
 	}
-	if (PoptArgument.group != NULL) {
+	if (GSearchPoptArgument.group != NULL) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_OWNED_BY_GROUP, 
-				PoptArgument.group, TRUE);
+				GSearchPoptArgument.group, TRUE);
 	}
-	if (PoptArgument.nouser) {
+	if (GSearchPoptArgument.nouser) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED, NULL, TRUE); 
 	}
-	if (PoptArgument.notnamed != NULL) {
+	if (GSearchPoptArgument.notnamed != NULL) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED, 
-				PoptArgument.notnamed, TRUE);
+				GSearchPoptArgument.notnamed, TRUE);
 	}
-	if (PoptArgument.regex != NULL) {
+	if (GSearchPoptArgument.regex != NULL) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION, 
-				PoptArgument.regex, TRUE);
+				GSearchPoptArgument.regex, TRUE);
 	}
-	if (PoptArgument.hidden) {
+	if (GSearchPoptArgument.hidden) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS, NULL, TRUE);
 	}
-	if (PoptArgument.follow) {
+	if (GSearchPoptArgument.follow) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS, NULL, TRUE); 
 	}
-	if (PoptArgument.allmounts) {
+	if (GSearchPoptArgument.allmounts) {
 		popt_args_found = TRUE;
 		add_constraint (gsearch, SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS, NULL, TRUE);
 	}
-	if (PoptArgument.sortby != NULL) {
+	if (GSearchPoptArgument.sortby != NULL) {
 	
 		popt_args_found = TRUE;
-		if (strcmp (PoptArgument.sortby, "name") == 0) {
+		if (strcmp (GSearchPoptArgument.sortby, "name") == 0) {
 			sort_by = COLUMN_NAME;
 		}
-		else if (strcmp (PoptArgument.sortby, "folder") == 0) {
+		else if (strcmp (GSearchPoptArgument.sortby, "folder") == 0) {
 			sort_by = COLUMN_PATH;
 		}
-		else if (strcmp (PoptArgument.sortby, "size") == 0) {
+		else if (strcmp (GSearchPoptArgument.sortby, "size") == 0) {
 			sort_by = COLUMN_SIZE;
 		}
-		else if (strcmp (PoptArgument.sortby, "type") == 0) {
+		else if (strcmp (GSearchPoptArgument.sortby, "type") == 0) {
 			sort_by = COLUMN_TYPE;
 		}
-		else if (strcmp (PoptArgument.sortby, "date") == 0) {
+		else if (strcmp (GSearchPoptArgument.sortby, "date") == 0) {
 			sort_by = COLUMN_DATE;
 		}
 		else {
@@ -1153,7 +1176,7 @@ handle_popt_args (GSearchWindow * gsearch)
 			sort_by = COLUMN_NAME;
 		}
 			
-		if (PoptArgument.descending) {
+		if (GSearchPoptArgument.descending) {
 			gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (gsearch->search_results_list_store), sort_by,
 							      GTK_SORT_DESCENDING);
 		} 
@@ -1162,7 +1185,7 @@ handle_popt_args (GSearchWindow * gsearch)
 							      GTK_SORT_ASCENDING);
 		}
 	}
-	if (PoptArgument.start) {
+	if (GSearchPoptArgument.start) {
 		popt_args_found = TRUE;
 		click_find_cb (gsearch->find_button, (gpointer) gsearch);
 	}
@@ -1179,26 +1202,26 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 
 	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
 	
-		GError       *error = NULL;
-		GTimer       *timer;
-		GString      *string;
+		GError * error = NULL;
+		GTimer * timer;
+		GString * string;
 		GdkRectangle prior_rect;
 		GdkRectangle after_rect;
-		gulong       duration;
-		gint	     look_in_folder_string_length;
+		gulong duration;
+		gint look_in_folder_string_length;
 		
 		string = g_string_new (NULL);
 		look_in_folder_string_length = strlen (gsearch->command_details->look_in_folder_string);
 
-		timer = g_timer_new();
+		timer = g_timer_new ();
 		g_timer_start (timer);
 
 		while (ioc->is_readable != TRUE);
 
 		do {
-			gint  status;
-			gchar *utf8 = NULL;
-			gchar *filename = NULL;
+			gchar * utf8 = NULL;
+			gchar * filename = NULL;
+			gint status;
 			
 			if (gsearch->command_details->command_status == MAKE_IT_STOP) {
 				broken_pipe = TRUE;
@@ -1280,12 +1303,12 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 			g_free (utf8);
 			g_free (filename);
 
-			gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(gsearch->search_results_tree_view), &prior_rect);
+			gtk_tree_view_get_visible_rect (GTK_TREE_VIEW (gsearch->search_results_tree_view), &prior_rect);
 			
 			if (prior_rect.y == 0) {
-				gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(gsearch->search_results_tree_view), &after_rect);
+				gtk_tree_view_get_visible_rect (GTK_TREE_VIEW (gsearch->search_results_tree_view), &after_rect);
 				if (after_rect.y <= 40) {  /* limit this hack to the first few pixels */
-					gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(gsearch->search_results_tree_view), -1, 0);
+					gtk_tree_view_scroll_to_point (GTK_TREE_VIEW (gsearch->search_results_tree_view), -1, 0);
 				}	
 			}
 
@@ -1320,11 +1343,10 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 		     && (gsearch->command_details->is_command_second_pass_enabled == TRUE)
 		     && (is_second_scan_excluded_path (gsearch->command_details->look_in_folder_string) == FALSE)) { 
 		    
-			gchar *command;
+			gchar * command;
 			
 			command = build_search_command (gsearch, FALSE);
 			spawn_search_command (gsearch, command);
-			
 			g_free (command);
 		}
 		else {
@@ -1337,11 +1359,12 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 			update_search_counts (gsearch); 
 			stop_animation (gsearch);
 
-			gtk_window_set_default (GTK_WINDOW(gsearch->window), gsearch->find_button);
+			gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->find_button);
 			gtk_widget_set_sensitive (gsearch->available_options_vbox, TRUE);
 			gtk_widget_set_sensitive (gsearch->show_more_options_expander, TRUE);
 			gtk_widget_set_sensitive (gsearch->name_and_folder_table, TRUE);
 			gtk_widget_set_sensitive (gsearch->find_button, TRUE);
+			gtk_widget_set_sensitive (gsearch->search_results_save_results_as_item, TRUE);
 			gtk_widget_hide (gsearch->stop_button);
 			gtk_widget_show (gsearch->find_button); 
 
@@ -1368,9 +1391,9 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 	
 	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
 	
-		GString         *string;
-		GError          *error = NULL;
-		gchar           *utf8 = NULL;
+		GString * string;
+		GError * error = NULL;
+		gchar * utf8 = NULL;
 		
 		string = g_string_new (NULL);
 		
@@ -1439,7 +1462,7 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 
 			if (error_msgs->len > 0) {	
 				
-				GtkWidget *dialog;
+				GtkWidget * dialog;
 				
 				if (truncate_error_msgs) {
 					error_msgs = g_string_append (error_msgs, 
@@ -1467,7 +1490,7 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 					gtk_widget_show (dialog);
 				}
 				else {
-					GtkWidget *button;
+					GtkWidget * button;
 								       			       
 					dialog = gsearch_alert_dialog_new (GTK_WINDOW (gsearch->window),
 		                		                           GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -1498,7 +1521,7 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 			truncate_error_msgs = FALSE;
 			g_string_truncate (error_msgs, 0);
 		}
-		g_io_channel_shutdown(ioc, TRUE, NULL);
+		g_io_channel_shutdown (ioc, TRUE, NULL);
 		return FALSE;
 	}
 	return TRUE;
@@ -1527,7 +1550,7 @@ spawn_search_command (GSearchWindow * gsearch,
 	start_animation (gsearch);
 	
 	if (!g_shell_parse_argv (command, NULL, &argv, &error)) {
-		GtkWidget *dialog;
+		GtkWidget * dialog;
 
 		stop_animation (gsearch);
 
@@ -1556,7 +1579,7 @@ spawn_search_command (GSearchWindow * gsearch,
 				       G_SPAWN_SEARCH_PATH,
 				       child_command_set_pgid_cb, NULL, &gsearch->command_details->command_pid, NULL, &child_stdout, 
 				       &child_stderr, &error)) {
-		GtkWidget *dialog;
+		GtkWidget * dialog;
 		
 		stop_animation (gsearch);
 		
@@ -1582,7 +1605,7 @@ spawn_search_command (GSearchWindow * gsearch,
 	}
 	
 	if (gsearch->command_details->is_command_first_pass == TRUE) {
-		gchar *click_to_activate_pref;
+		gchar * click_to_activate_pref;
 		
 		gsearch->command_details->command_status = RUNNING; 
 		gsearch->is_search_results_single_click_to_activate = FALSE;
@@ -1611,19 +1634,20 @@ spawn_search_command (GSearchWindow * gsearch,
 			       NULL);
 		}
 		
-		gtk_window_set_default (GTK_WINDOW(gsearch->window), gsearch->stop_button);
+		gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->stop_button);
 		gtk_widget_show (gsearch->stop_button);
 		gtk_widget_set_sensitive (gsearch->stop_button, TRUE);
 		gtk_widget_hide (gsearch->find_button);
 		gtk_widget_set_sensitive (gsearch->find_button, FALSE);
+		gtk_widget_set_sensitive (gsearch->search_results_save_results_as_item, FALSE);
 		gtk_widget_set_sensitive (gsearch->search_results_vbox, TRUE);
 		gtk_widget_set_sensitive (GTK_WIDGET (gsearch->search_results_tree_view), TRUE);
 		gtk_widget_set_sensitive (gsearch->available_options_vbox, FALSE);
 		gtk_widget_set_sensitive (gsearch->show_more_options_expander, FALSE);
 		gtk_widget_set_sensitive (gsearch->name_and_folder_table, FALSE);
 
-		gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(gsearch->search_results_tree_view), 0, 0);	
-		gtk_list_store_clear (GTK_LIST_STORE(gsearch->search_results_list_store));
+		gtk_tree_view_scroll_to_point (GTK_TREE_VIEW (gsearch->search_results_tree_view), 0, 0);	
+		gtk_list_store_clear (GTK_LIST_STORE (gsearch->search_results_list_store));
 		g_free (click_to_activate_pref);
 	}
 	
@@ -1659,13 +1683,13 @@ create_constraint_box (GSearchWindow * gsearch,
 	
 	hbox = gtk_hbox_new (FALSE, 12);
 
-	switch(templates[opt->constraint_id].type) {
+	switch (GSearchOptionTemplates[opt->constraint_id].type) {
 	case SEARCH_CONSTRAINT_TYPE_BOOLEAN:
 		{
-			gchar *text = remove_mnemonic_character (templates[opt->constraint_id].desc);
-			gchar *desc = g_strconcat (LEFT_LABEL_SPACING, _(text), ".", NULL);
+			gchar * text = remove_mnemonic_character (GSearchOptionTemplates[opt->constraint_id].desc);
+			gchar * desc = g_strconcat (LEFT_LABEL_SPACING, _(text), ".", NULL);
 			label = gtk_label_new (desc);
-			gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
+			gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 			g_free (desc);
 			g_free (text);
 		}
@@ -1675,43 +1699,43 @@ create_constraint_box (GSearchWindow * gsearch,
 	case SEARCH_CONSTRAINT_TYPE_DATE_BEFORE:
 	case SEARCH_CONSTRAINT_TYPE_DATE_AFTER:
 		{
-			gchar *desc = g_strconcat (LEFT_LABEL_SPACING, _(templates[opt->constraint_id].desc), ":", NULL);
+			gchar * desc = g_strconcat (LEFT_LABEL_SPACING, _(GSearchOptionTemplates[opt->constraint_id].desc), ":", NULL);
 			label = gtk_label_new_with_mnemonic (desc);
 			g_free (desc);
 		}
 		
 		/* add description label */
-		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 		
-		if (templates[opt->constraint_id].type == SEARCH_CONSTRAINT_TYPE_TEXT) {
-			entry = gtk_entry_new();
+		if (GSearchOptionTemplates[opt->constraint_id].type == SEARCH_CONSTRAINT_TYPE_TEXT) {
+			entry = gtk_entry_new ();
 			if (value != NULL) {
-				gtk_entry_set_text (GTK_ENTRY(entry), value);
+				gtk_entry_set_text (GTK_ENTRY (entry), value);
 				opt->data.text = value;
 			}
 		}
 		else {
 			entry = gtk_spin_button_new_with_range (0, 999999999, 1);
 			if (value != NULL) {
-				gtk_spin_button_set_value (GTK_SPIN_BUTTON(entry), atoi(value));
-				opt->data.time = atoi(value);
-				opt->data.number = atoi(value);
+				gtk_spin_button_set_value (GTK_SPIN_BUTTON (entry), atoi (value));
+				opt->data.time = atoi (value);
+				opt->data.number = atoi (value);
 			}
 		}
 		
 		if (gsearch->is_window_accessible)
 		{
-			gchar *text = remove_mnemonic_character (templates[opt->constraint_id].desc);
-			gchar *desc = g_strdup_printf (_("'%s' entry"), _(text));
-			add_atk_namedesc (GTK_WIDGET(entry), desc, _("Enter a value for search rule"));
+			gchar * text = remove_mnemonic_character (GSearchOptionTemplates[opt->constraint_id].desc);
+			gchar * desc = g_strdup_printf (_("'%s' entry"), _(text));
+			add_atk_namedesc (GTK_WIDGET (entry), desc, _("Enter a value for search rule"));
 			g_free (desc);
 			g_free (text);
 		}
 		
 		gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (entry));
 		
-		g_signal_connect (G_OBJECT(entry), "changed",
-			 	  G_CALLBACK(constraint_update_info_cb), opt);
+		g_signal_connect (G_OBJECT (entry), "changed",
+			 	  G_CALLBACK (constraint_update_info_cb), opt);
 		
 		g_signal_connect (G_OBJECT (entry), "activate",
 				  G_CALLBACK (constraint_activate_cb),
@@ -1719,45 +1743,46 @@ create_constraint_box (GSearchWindow * gsearch,
 				  
 		/* add text field */
 		entry_hbox = gtk_hbox_new (FALSE, 6);
-		gtk_box_pack_start (GTK_BOX(hbox), entry_hbox, TRUE, TRUE, 0);
-		gtk_box_pack_start (GTK_BOX(entry_hbox), entry, TRUE, TRUE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), entry_hbox, TRUE, TRUE, 0);
+		gtk_box_pack_start (GTK_BOX (entry_hbox), entry, TRUE, TRUE, 0);
 		
 		/* add units label */
-		if (templates[opt->constraint_id].units != NULL)
+		if (GSearchOptionTemplates[opt->constraint_id].units != NULL)
 		{
-			label = gtk_label_new_with_mnemonic (_(templates[opt->constraint_id].units));
-			gtk_box_pack_start (GTK_BOX(entry_hbox), label, FALSE, FALSE, 0);
+			label = gtk_label_new_with_mnemonic (_(GSearchOptionTemplates[opt->constraint_id].units));
+			gtk_box_pack_start (GTK_BOX (entry_hbox), label, FALSE, FALSE, 0);
 		}
 		
 		break;
 	default:
 		/* This should never happen.  If it does, there is a bug */
-		label = gtk_label_new("???");
-		gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
+		label = gtk_label_new ("???");
+		gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 	        break;
 	}
 	
-	button = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
+	button = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
 	GTK_WIDGET_UNSET_FLAGS (button, GTK_CAN_DEFAULT); 
 	
 	{
-		GList *list = NULL;
+		GList * list = NULL;
 		
 		list = g_list_append (list, (gpointer) gsearch);
 		list = g_list_append (list, (gpointer) opt);
 		
 	
-		g_signal_connect(G_OBJECT(button), "clicked",
-			 G_CALLBACK(remove_constraint_cb), (gpointer) list);
+		g_signal_connect (G_OBJECT (button), "clicked",
+		                  G_CALLBACK (remove_constraint_cb),
+		                  (gpointer) list);
 			 
 	}
 	gtk_size_group_add_widget (gsearch->available_options_button_size_group, button);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gtk_box_pack_end (GTK_BOX (hbox), button, FALSE, FALSE, 0);
 	
 	if (gsearch->is_window_accessible) {
-		gchar *text = remove_mnemonic_character (templates[opt->constraint_id].desc);
+		gchar *text = remove_mnemonic_character (GSearchOptionTemplates[opt->constraint_id].desc);
 		gchar *desc = g_strdup_printf (_("Click to Remove the '%s' Rule"), _(text));
-		add_atk_namedesc (GTK_WIDGET(button), NULL, desc);
+		add_atk_namedesc (GTK_WIDGET (button), NULL, desc);
 		g_free (desc);
 		g_free (text);
 	}
@@ -1770,7 +1795,7 @@ add_constraint (GSearchWindow * gsearch,
                 gchar * value,
                 gboolean show_constraint)
 {
-	GSearchConstraint * constraint = g_new(GSearchConstraint,1);
+	GSearchConstraint * constraint = g_new (GSearchConstraint,1);
 	GtkWidget * widget;
 
 	if (show_constraint) {
@@ -1780,7 +1805,7 @@ add_constraint (GSearchWindow * gsearch,
 		}
 	} 
 	
-	gsearch->window_geometry.min_height += 35;
+	gsearch->window_geometry.min_height += WINDOW_HEIGHT_STEP;
 	
 	if (GTK_WIDGET_VISIBLE (gsearch->available_options_vbox)) {
 		gtk_window_set_geometry_hints (GTK_WINDOW (gsearch->window), 
@@ -1794,7 +1819,7 @@ add_constraint (GSearchWindow * gsearch,
 	set_constraint_gconf_boolean (constraint->constraint_id, TRUE);
 	
 	widget = create_constraint_box (gsearch, constraint, value);
-	gtk_box_pack_start (GTK_BOX(gsearch->available_options_vbox), widget, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (gsearch->available_options_vbox), widget, FALSE, FALSE, 0);
 	gtk_widget_show_all (widget);
 	
 	gsearch->available_options_selected_list =
@@ -1817,7 +1842,7 @@ set_sensitive (GtkCellLayout * cell_layout,
 	index = gtk_tree_path_get_indices (path)[0];
 	gtk_tree_path_free (path);
 
-	g_object_set (cell, "sensitive", !(templates[index].is_selected), NULL);
+	g_object_set (cell, "sensitive", !(GSearchOptionTemplates[index].is_selected), NULL);
 }
 
 static gboolean
@@ -1832,7 +1857,7 @@ is_separator (GtkTreeModel * model,
 	index = gtk_tree_path_get_indices (path)[0];
 	gtk_tree_path_free (path);
 
-	return (templates[index].type == SEARCH_CONSTRAINT_TYPE_SEPARATOR);
+	return (GSearchOptionTemplates[index].type == SEARCH_CONSTRAINT_TYPE_SEPARATOR);
 }
 
 static void
@@ -1852,9 +1877,9 @@ create_additional_constraint_section (GSearchWindow * gsearch)
 	gsearch->available_options_label = gtk_label_new_with_mnemonic (desc);
 	g_free (desc);
 
-	gtk_box_pack_start (GTK_BOX(hbox), gsearch->available_options_label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), gsearch->available_options_label, FALSE, FALSE, 0);
 	
-	model = make_list_of_templates ();
+	model = gsearch_create_list_of_templates ();
 	gsearch->available_options_combo_box = gtk_combo_box_new_with_model (model);
 	g_object_unref (model);
 
@@ -1909,7 +1934,7 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 	
 	label = gtk_label_new_with_mnemonic (_("S_earch results:"));
-	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
+	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 	
 	gsearch->files_found_label = gtk_label_new (NULL);
@@ -1917,10 +1942,10 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_box_pack_start (GTK_BOX (hbox), gsearch->files_found_label, FALSE, FALSE, 0);
 	
 	window = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_IN);
-	gtk_container_set_border_width (GTK_CONTAINER(window), 0);
+	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (window), GTK_SHADOW_IN);
+	gtk_container_set_border_width (GTK_CONTAINER (window), 0);
 	gtk_widget_set_size_request (window, 530, 160); 
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(window),
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (window),
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
 	
@@ -1940,16 +1965,16 @@ create_search_results_section (GSearchWindow * gsearch)
 
 	gtk_tree_view_set_headers_visible (gsearch->search_results_tree_view, FALSE);						
 	gtk_tree_view_set_rules_hint (gsearch->search_results_tree_view, TRUE);
-  	g_object_unref (G_OBJECT(gsearch->search_results_list_store));
+  	g_object_unref (G_OBJECT (gsearch->search_results_list_store));
 	
-	gsearch->search_results_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(gsearch->search_results_tree_view));
+	gsearch->search_results_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (gsearch->search_results_tree_view));
 	
-	gtk_tree_selection_set_mode (GTK_TREE_SELECTION(gsearch->search_results_selection),
+	gtk_tree_selection_set_mode (GTK_TREE_SELECTION (gsearch->search_results_selection),
 				     GTK_SELECTION_MULTIPLE);
 				     
 	gtk_drag_source_set (GTK_WIDGET (gsearch->search_results_tree_view), 
 			     GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
-			     dnd_table, n_dnds, 
+			     GSearchDndTable, GSearchTotalDnds, 
 			     GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK);	
 
 	g_signal_connect (G_OBJECT (gsearch->search_results_tree_view), 
@@ -1962,29 +1987,29 @@ create_search_results_section (GSearchWindow * gsearch)
 			  G_CALLBACK (drag_begin_file_cb),
 			  (gpointer) gsearch);	  
 			  
-	g_signal_connect (G_OBJECT(gsearch->search_results_tree_view), 
+	g_signal_connect (G_OBJECT (gsearch->search_results_tree_view), 
 			  "event_after",
-		          G_CALLBACK(file_event_after_cb), 
+		          G_CALLBACK (file_event_after_cb), 
 			  (gpointer) gsearch);
 			  
-	g_signal_connect (G_OBJECT(gsearch->search_results_tree_view), 
+	g_signal_connect (G_OBJECT (gsearch->search_results_tree_view), 
 			  "button_release_event",
-		          G_CALLBACK(file_button_release_event_cb), 
+		          G_CALLBACK (file_button_release_event_cb), 
 			  (gpointer) gsearch);
 			  		  
-	g_signal_connect (G_OBJECT(gsearch->search_results_tree_view), 
+	g_signal_connect (G_OBJECT (gsearch->search_results_tree_view), 
 			  "button_press_event",
-		          G_CALLBACK(file_button_press_event_cb), 
+		          G_CALLBACK (file_button_press_event_cb), 
 			  (gpointer) gsearch->search_results_tree_view);		   
 
-	g_signal_connect (G_OBJECT(gsearch->search_results_tree_view),
+	g_signal_connect (G_OBJECT (gsearch->search_results_tree_view),
 			  "key_press_event",
-			  G_CALLBACK(file_key_press_event_cb),
+			  G_CALLBACK (file_key_press_event_cb),
 			  (gpointer) gsearch);
 			  
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (gsearch->search_results_tree_view));
 	
-	gtk_container_add (GTK_CONTAINER(window), GTK_WIDGET(gsearch->search_results_tree_view));
+	gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (gsearch->search_results_tree_view));
 	gtk_box_pack_end (GTK_BOX (vbox), window, TRUE, TRUE, 0);
 	
 	/* create the name column */
@@ -2005,7 +2030,7 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);				     
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME); 
-	gtk_tree_view_append_column (GTK_TREE_VIEW(gsearch->search_results_tree_view), column);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
 
 	/* create the folder column */
 	renderer = gtk_cell_renderer_text_new (); 
@@ -2015,18 +2040,18 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_PATH); 
-	gtk_tree_view_append_column (GTK_TREE_VIEW(gsearch->search_results_tree_view), column);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
 	
 	/* create the size column */
 	renderer = gtk_cell_renderer_text_new ();
-	g_object_set( renderer, "xalign", 1.0, NULL);
+	g_object_set (renderer, "xalign", 1.0, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("Size"), renderer,
 							   "text", COLUMN_READABLE_SIZE,
 							   NULL);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_SIZE);
-	gtk_tree_view_append_column (GTK_TREE_VIEW(gsearch->search_results_tree_view), column);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
  
 	/* create the type column */ 
 	renderer = gtk_cell_renderer_text_new ();
@@ -2036,7 +2061,7 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_TYPE);
-	gtk_tree_view_append_column (GTK_TREE_VIEW(gsearch->search_results_tree_view), column);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
 
 	/* create the date modified column */ 
 	renderer = gtk_cell_renderer_text_new ();
@@ -2046,7 +2071,7 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_DATE);
-	gtk_tree_view_append_column (GTK_TREE_VIEW(gsearch->search_results_tree_view), column);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
 
 	return vbox;
 }
@@ -2109,7 +2134,7 @@ set_clone_command (GSearchWindow * gsearch,
 
 	argv[i++] = (gchar *) client_data;
 
-	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(gsearch->name_contains_entry))));
+	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry))));
 	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8 != NULL ? file_is_named_utf8 : "" , 
 	                                           -1, NULL, NULL, NULL);
 	if (escape_values)
@@ -2133,10 +2158,10 @@ set_clone_command (GSearchWindow * gsearch,
 	g_free (tmp);
 	g_free (look_in_folder_locale);
 
-	if (GTK_WIDGET_VISIBLE(gsearch->available_options_vbox)) {
+	if (GTK_WIDGET_VISIBLE (gsearch->available_options_vbox)) {
 		for (list = gsearch->available_options_selected_list; list != NULL; list = g_list_next (list)) {
-			GSearchConstraint *constraint = list->data;
-			gchar *locale = NULL;
+			GSearchConstraint * constraint = list->data;
+			gchar * locale = NULL;
 			
 			switch (constraint->constraint_id) {
 			case SEARCH_CONSTRAINT_CONTAINS_THE_TEXT:
@@ -2288,6 +2313,60 @@ handle_gconf_settings (GSearchWindow * gsearch)
 	}
 }
 
+static void
+gsearchtool_ui_manager (GSearchWindow * gsearch) 
+{
+	GtkActionGroup * action_group;
+	GtkAccelGroup * accel_group;
+	GtkAction * action;
+	GError * error = NULL;
+
+	action_group = gtk_action_group_new ("PopupActions");
+	gtk_action_group_set_translation_domain (action_group, NULL);
+	gtk_action_group_add_actions (action_group, GSearchUiEntries, G_N_ELEMENTS (GSearchUiEntries), gsearch->window);
+			
+	gsearch->window_ui_manager = gtk_ui_manager_new ();
+	gtk_ui_manager_insert_action_group (gsearch->window_ui_manager, action_group, 0);
+				
+	accel_group = gtk_ui_manager_get_accel_group (gsearch->window_ui_manager);
+	gtk_window_add_accel_group (GTK_WINDOW (gsearch->window), accel_group);
+			
+	if (!gtk_ui_manager_add_ui_from_string (gsearch->window_ui_manager, GSearchUiDescription, -1, &error)) {
+      		g_message ("Building menus failed: %s", error->message);
+		g_error_free (error);
+      		exit (EXIT_FAILURE);
+	}
+	
+	action = gtk_ui_manager_get_action (gsearch->window_ui_manager, "/PopupMenu/Open");
+	g_signal_connect (G_OBJECT (action),
+	                  "activate",
+	                  G_CALLBACK (open_file_cb),
+	                  (gpointer) gsearch);
+
+	action = gtk_ui_manager_get_action (gsearch->window_ui_manager, "/PopupMenu/OpenFolder");
+	g_signal_connect (G_OBJECT (action),
+	                  "activate",
+	                  G_CALLBACK (open_folder_cb), 
+	                  (gpointer) gsearch);
+
+	action = gtk_ui_manager_get_action (gsearch->window_ui_manager, "/PopupMenu/MoveToTrash");
+	g_signal_connect (G_OBJECT (action), 
+	                  "activate",
+	                  G_CALLBACK (move_to_trash_cb), 
+	                  (gpointer) gsearch);			  
+	  
+	action = gtk_ui_manager_get_action (gsearch->window_ui_manager, "/PopupMenu/SaveResultsAs");
+	g_signal_connect (G_OBJECT (action), 
+	                  "activate",
+	                  G_CALLBACK (show_file_selector_cb), 
+	                  (gpointer) gsearch);
+
+	gsearch->search_results_popup_menu = gtk_ui_manager_get_widget (gsearch->window_ui_manager, 
+	                                                                "/PopupMenu");							   
+	gsearch->search_results_save_results_as_item = gtk_ui_manager_get_widget (gsearch->window_ui_manager,
+	                                                                          "/PopupMenu/SaveResultsAs");
+}
+
 static GtkWidget *
 gsearch_app_create (GSearchWindow * gsearch)
 {
@@ -2339,23 +2418,23 @@ gsearch_app_create (GSearchWindow * gsearch)
 			  (gpointer) gsearch);
 	
 	gsearch->name_and_folder_table = gtk_table_new (2, 2, FALSE);
-	gtk_table_set_row_spacings (GTK_TABLE(gsearch->name_and_folder_table), 6);
-	gtk_table_set_col_spacings (GTK_TABLE(gsearch->name_and_folder_table), 12);
-	gtk_container_add (GTK_CONTAINER(hbox), gsearch->name_and_folder_table);
+	gtk_table_set_row_spacings (GTK_TABLE (gsearch->name_and_folder_table), 6);
+	gtk_table_set_col_spacings (GTK_TABLE (gsearch->name_and_folder_table), 12);
+	gtk_container_add (GTK_CONTAINER (hbox), gsearch->name_and_folder_table);
 	
 	label = gtk_label_new_with_mnemonic (_("_Name contains:"));
-	gtk_label_set_justify (GTK_LABEL(label), GTK_JUSTIFY_LEFT);
-	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
+	gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
 	
-	gtk_table_attach (GTK_TABLE(gsearch->name_and_folder_table), label, 0, 1, 0, 1, GTK_FILL, 0, 0, 1);
+	gtk_table_attach (GTK_TABLE (gsearch->name_and_folder_table), label, 0, 1, 0, 1, GTK_FILL, 0, 0, 1);
 
 	gsearch->name_contains_entry = gnome_entry_new ("gsearchtool-file-entry");
-	gtk_label_set_mnemonic_widget (GTK_LABEL(label), gsearch->name_contains_entry);
-	gnome_entry_set_max_saved (GNOME_ENTRY(gsearch->name_contains_entry), 10);
-	gtk_table_attach (GTK_TABLE(gsearch->name_and_folder_table), gsearch->name_contains_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
-	entry =  gnome_entry_gtk_entry (GNOME_ENTRY(gsearch->name_contains_entry));
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), gsearch->name_contains_entry);
+	gnome_entry_set_max_saved (GNOME_ENTRY (gsearch->name_contains_entry), 10);
+	gtk_table_attach (GTK_TABLE (gsearch->name_and_folder_table), gsearch->name_contains_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
+	entry =  gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry));
        
-	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(gsearch->name_contains_entry)))
+	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (gsearch->name_contains_entry)))
 	{
 		gsearch->is_window_accessible = TRUE;
 		add_atk_namedesc (gsearch->name_contains_entry, NULL, _("Enter the file name you want to search."));
@@ -2366,18 +2445,18 @@ gsearch_app_create (GSearchWindow * gsearch)
 			  (gpointer) gsearch);	 
 			  
 	label = gtk_label_new_with_mnemonic (_("_Look in folder:"));
-	gtk_label_set_justify (GTK_LABEL(label), GTK_JUSTIFY_LEFT);
-	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
+	gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
 	
-	gtk_table_attach(GTK_TABLE(gsearch->name_and_folder_table), label, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
+	gtk_table_attach (GTK_TABLE (gsearch->name_and_folder_table), label, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
 	
 	gsearch->look_in_folder_button = gtk_file_chooser_button_new (_("Browse"), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER);
-	gtk_label_set_mnemonic_widget (GTK_LABEL(label), GTK_WIDGET (gsearch->look_in_folder_button));		
-	gtk_table_attach (GTK_TABLE(gsearch->name_and_folder_table), gsearch->look_in_folder_button, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (gsearch->look_in_folder_button));		
+	gtk_table_attach (GTK_TABLE (gsearch->name_and_folder_table), gsearch->look_in_folder_button, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
 
 	if (gsearch->is_window_accessible)
 	{ 
-		add_atk_namedesc (GTK_WIDGET(gsearch->look_in_folder_button), NULL, _("Select the folder where you want to start the search."));
+		add_atk_namedesc (GTK_WIDGET (gsearch->look_in_folder_button), NULL, _("Select the folder where you want to start the search."));
 	}
 			  
 	locale_string = g_get_current_dir ();
@@ -2389,12 +2468,12 @@ gsearch_app_create (GSearchWindow * gsearch)
 	g_free (utf8_string);
 
 	gsearch->show_more_options_expander = gtk_expander_new_with_mnemonic (_("Show more _options"));
-	gtk_box_pack_start (GTK_BOX(container), gsearch->show_more_options_expander, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (container), gsearch->show_more_options_expander, FALSE, FALSE, 0);
 	g_signal_connect (G_OBJECT (gsearch->show_more_options_expander), "notify::expanded",
 			  G_CALLBACK (click_expander_cb), (gpointer) gsearch);
 
 	create_additional_constraint_section (gsearch);
-	gtk_box_pack_start (GTK_BOX(container), GTK_WIDGET(gsearch->available_options_vbox), FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (container), GTK_WIDGET (gsearch->available_options_vbox), FALSE, FALSE, 0);
 	
 	if (gsearch->is_window_accessible)
 	{ 
@@ -2414,20 +2493,20 @@ gsearch_app_create (GSearchWindow * gsearch)
 	gtk_button_box_set_layout (GTK_BUTTON_BOX (hbox), GTK_BUTTONBOX_END);
 	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
-	gtk_box_set_spacing (GTK_BOX(hbox), 10);
+	gtk_box_set_spacing (GTK_BOX (hbox), 10);
 	button = gtk_button_new_from_stock (GTK_STOCK_HELP);
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
-	gtk_box_pack_start (GTK_BOX(hbox), button, FALSE, FALSE, 0);
-	gtk_button_box_set_child_secondary (GTK_BUTTON_BOX(hbox), button, TRUE);
-	g_signal_connect (G_OBJECT(button), "clicked",
-			  G_CALLBACK(click_help_cb), (gpointer) gsearch->window);
+	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
+	gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (hbox), button, TRUE);
+	g_signal_connect (G_OBJECT (button), "clicked",
+			  G_CALLBACK (click_help_cb), (gpointer) gsearch->window);
 	
 	button = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
-	g_signal_connect (G_OBJECT(button), "clicked",
-			  G_CALLBACK(click_close_cb), (gpointer) gsearch->command_details);
+	g_signal_connect (G_OBJECT (button), "clicked",
+			  G_CALLBACK (click_close_cb), (gpointer) gsearch->command_details);
 	
-	gtk_box_pack_start (GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
 
 	/* Find and Stop buttons... */
 	gsearch->find_button = gtk_button_new_from_stock (GTK_STOCK_FIND);
@@ -2436,8 +2515,8 @@ gsearch_app_create (GSearchWindow * gsearch)
 	GTK_WIDGET_SET_FLAGS (gsearch->find_button, GTK_CAN_DEFAULT);
 	GTK_WIDGET_SET_FLAGS (gsearch->stop_button, GTK_CAN_DEFAULT);
 
-	gtk_box_pack_end (GTK_BOX(hbox), gsearch->stop_button, FALSE, FALSE, 0);
-	gtk_box_pack_end (GTK_BOX(hbox), gsearch->find_button, FALSE, FALSE, 0);
+	gtk_box_pack_end (GTK_BOX (hbox), gsearch->stop_button, FALSE, FALSE, 0);
+	gtk_box_pack_end (GTK_BOX (hbox), gsearch->find_button, FALSE, FALSE, 0);
 
 	gtk_widget_set_sensitive (gsearch->stop_button, FALSE);
 	gtk_widget_set_sensitive (gsearch->find_button, TRUE);
@@ -2473,7 +2552,7 @@ gsearch_window_finalize (GObject * object)
 }
 
 static void
-gsearch_window_class_init (GSearchWindowClass *klass)
+gsearch_window_class_init (GSearchWindowClass * klass)
 {
 	GObjectClass * object_class = (GObjectClass *) klass;
 
@@ -2522,7 +2601,7 @@ main (int argc,
 	                              VERSION,
 	                              LIBGNOMEUI_MODULE,
 	                              argc, argv,
-	                              GNOME_PARAM_POPT_TABLE, options,
+	                              GNOME_PARAM_POPT_TABLE, GSearchPoptOptions,
 	                              GNOME_PARAM_POPT_FLAGS, 0,
 	                              GNOME_PARAM_APP_DATADIR, DATADIR,
 	                              NULL);
@@ -2534,6 +2613,7 @@ main (int argc,
 
 	window = g_object_new (GSEARCH_TYPE_WINDOW, NULL);
 	gsearch = GSEARCH_WINDOW (window);
+	gsearchtool_ui_manager (gsearch);
 
 	gtk_window_set_wmclass (GTK_WINDOW (gsearch->window), "gnome-search-tool", "gnome-search-tool");
 	gtk_window_set_policy (GTK_WINDOW (gsearch->window), TRUE, TRUE, TRUE);
