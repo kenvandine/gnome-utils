@@ -58,7 +58,6 @@ ALL_LINGUAS="de es fi fr it ko cs no ga pt sv ja"
 AM_GNU_GETTEXT
 
 dnl gsu
-AM_PATH_GLIB(1.1.15)
 AC_CHECK_LIB(pam, pam_authenticate, [
 	AC_DEFINE(USE_PAM)
 	AC_CHECK_LIB(pam_misc, pam_misc_setenv,
