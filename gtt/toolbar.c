@@ -130,7 +130,7 @@ add_button(GtkToolbar *tbar, char *text, char *tt_text,
 	pixmap = gtk_pixmap_new(pmap, bmap);
 #endif
 
-        w = gtk_toolbar_append_item(tbar, text, tt_text, pixmap,
+        w = gtk_toolbar_append_item(tbar, text, tt_text, NULL, pixmap,
                                     (GtkSignalFunc)sigfunc,
                                     (gpointer *)menu_path);
 
@@ -164,7 +164,7 @@ add_stock_button(GtkToolbar *tbar, char *text, char *tt_text,
         gtk_signal_connect(GTK_OBJECT(button), "clicked",
                            (GtkSignalFunc)sigfunc,
                            (gpointer *)menu_path);
-        gtk_toolbar_append_widget(tbar, tt_text, button);
+        gtk_toolbar_append_widget(tbar, tt_text, NULL, button);
         w = button;
 #elif 1
         /* TODO: see notes above (window) */
@@ -179,14 +179,14 @@ add_stock_button(GtkToolbar *tbar, char *text, char *tt_text,
 		gtk_widget_realize(window);
 #endif
 	pixmap = gnome_stock_pixmap_widget((GtkWidget *)window, icon);
-	w = gtk_toolbar_append_item(tbar, text, tt_text, pixmap,
+	w = gtk_toolbar_append_item(tbar, text, tt_text, NULL, pixmap,
 				    (GtkSignalFunc)sigfunc,
 				    (gpointer *)menu_path);
 #else
         /* TODO: see notes above (window) */
 	pixmap = (GtkWidget *)gnome_stock_pixmap((GtkWidget *)window, icon,
                                                  GNOME_STOCK_PIXMAP_REGULAR);
-        w = gtk_toolbar_append_item(tbar, text, tt_text, pixmap,
+        w = gtk_toolbar_append_item(tbar, text, tt_text, NULL, pixmap,
                                     (GtkSignalFunc)sigfunc,
                                     (gpointer *)menu_path);
 #endif
@@ -225,7 +225,7 @@ add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
         w->vbox = (GtkBox *)gtk_vbox_new(FALSE, 0);
         gtk_widget_show((GtkWidget *)(w->vbox));
         gtk_box_pack_start(w->vbox, GTK_WIDGET(w->pmap1), FALSE, FALSE, 0);
-        w->button = gtk_toolbar_append_item(tbar, text, tt_text,
+        w->button = gtk_toolbar_append_item(tbar, text, tt_text, NULL,
                                             GTK_WIDGET(w->vbox),
                                             (GtkSignalFunc)sigfunc,
                                             (gpointer *)menu_path);
