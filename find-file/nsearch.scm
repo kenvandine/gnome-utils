@@ -220,7 +220,7 @@
   (cond
    ((object-property search-panel 'search-panel-add-line)
     => (lambda (proc) (proc)))
-   (else (error 'wrong-type-arg seacrh-panel))))
+   (else (error 'wrong-type-arg search-panel))))
 
 
 (define (make-search-panel-line notifier)
