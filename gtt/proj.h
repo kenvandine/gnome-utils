@@ -323,8 +323,13 @@ int		gtt_interval_get_fuzz (GttInterval *);
  *
  * The gtt_interval_merge_down() routine does the same, except that
  *    it merges with the next interval by incrementing its stop time.
+ *
+ * The gtt_interval_split() routine splits the list of intervals 
+ *    into two pieces, with the indicated interval and everything
+ *    following it going into the new task.  It returns the new task.
  */
 GttInterval *	gtt_interval_merge_up (GttInterval *);
 GttInterval *	gtt_interval_merge_down (GttInterval *);
+GttTask *	gtt_interval_split (GttInterval *);
 
 #endif /* __GTT_PROJ_H__ */

@@ -1447,6 +1447,51 @@ gtt_interval_merge_down (GttInterval *ivl)
 	return merge;
 }
 
+GttTask *
+gtt_interval_split (GttInterval *ivl)
+{
+	gint idx;
+	GttProject *prj;
+	GttTask *prnt;
+	GttTask *newtask;
+	GList *node;
+
+	if (!ivl) return NULL;
+	prnt = ivl->parent;
+	if (!prnt) return NULL;
+	prj = prnt->parent;
+	if (!prj) return NULL;
+	node = g_list_find (prnt->interval_list, ivl);
+	if (!node) return NULL;
+
+	newtask = gtt_task_new();
+
+	/* chain the new task into proper order in the parent project */
+	idx = g_list_index (prj->task_list, prnt);
+	idx ++;
+	prj->task_list = g_list_insert (prj->task_list, newtask, idx);
+	newtask->parent = prj;
+
+	/* Rechain the intervals.  We do this by hand, since it
+	 * seems that glib doesn't provide this function. */
+	if (node->prev)
+	{
+		node->prev->next = NULL;
+		node->prev = NULL;
+	}
+
+	newtask->interval_list = node;
+
+	for (; node; node=node->next)
+	{
+		GttInterval *nivl = node->data;
+		nivl->parent = newtask;
+	}
+
+	proj_refresh_time (prnt->parent);
+	return newtask;
+}
+
 /* ============================================================= */
 /* project_list -- simple wrapper around glib routines */
 /* hack alert -- this list should probably be replaced with a 
