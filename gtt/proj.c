@@ -28,8 +28,6 @@
 #include "proj.h"
 #include "proj_p.h"
 
-static void project_list_time_reset (void);
-
 // hack alert -- should be static
 GList * plist = NULL;
 
@@ -1122,7 +1120,6 @@ zero_on_rollover (time_t now)
 	    (day_last_reset != t1->tm_yday)) 
 	{
 		gtt_project_list_compute_secs ();
-		project_list_time_reset();
 		log_endofday();
 		year_last_reset = t1->tm_year;
 	    	day_last_reset = t1->tm_yday;
@@ -1703,21 +1700,6 @@ GttProject *
 gtt_project_locate_from_id (int prj_id)
 {
 	return locate_from_id (plist, prj_id);
-}
-
-/* ============================================================= */
-/* misc GUI-related routines */
-
-static void 
-project_list_time_reset(void)
-{
-	GList *node;
-	for (node = plist; node; node=node->next)
-	{
-		GttProject *prj = node->data;
-		prj->secs_day = 0;
-		proj_modified (prj);
-	}
 }
 
 /* ==================================================================== */
