@@ -1734,13 +1734,13 @@ stop_search (GtkWidget *w, GdkEventKey *event)
 	{
 		if (locate_running == RUNNING)
 		{
-			buttons = locate_buttons;
-			run_locate_command (buttons[0], buttons);
+			locate_running = MAKE_IT_STOP;
+			return TRUE;
 		}
 		else if (find_running == RUNNING)
 		{
-			buttons = find_buttons;
-			run_command (buttons[0], buttons);
+			find_running = MAKE_IT_STOP;
+			return TRUE;
 		}
 	}
 	return FALSE;
