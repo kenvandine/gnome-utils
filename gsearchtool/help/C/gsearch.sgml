@@ -12,9 +12,23 @@
     </copyright>
     <legalnotice>
       <para>
-	This document can be freely redistributed according to the
-	terms of the GNU General Public License.
+        Permission is granted to make and distribute verbatim copies of this
+        manual provided the copyright notice and this permission notice are
+        preserved on all copies.
       </para>
+      <para>
+        Permission is granted to copy and distribute modified versions of
+        this manual under the conditions for verbatim copying, provided that
+        the entire resulting derived work is distributed under the terms of a
+        permission notice identical to this one.
+      </para>
+      <para>
+        Permission is granted to copy and distribute translations of this
+        manual into another language, under the above conditions for modified
+        versions, except that this permission notice may be stated in a
+        translation approved by the Free Software Foundation.
+      </para>
+
       <para> UNIX is a trade mark of X/Open Group.</para>
     </legalnotice>
   </artheader>
@@ -36,77 +50,116 @@
       <guimenuitem>GNOME Search Tool</guimenuitem> from
       <guimenu>Utilities</guimenu> submenu of the <guimenu>Main
       Menu</guimenu>, or by running the command
-      <command>gsearch</command> on the command line.  
+      <command>gsearchtool</command> on the command line.  
     </para> 
 
     <para>
       Note that <application>GNOME Search Tool</application> is just a
-      front-end to the UNIX commands <command>find</command> and
-      <command>grep</command>. These commands are extremely powerful,
-      but not very easy for a new user. <application>GNOME Search
-      Tool</application> provides an easy-to-use interface for most
-      common uses of these commands. If you need to perform some type
-      of search which is not covered by the <application>GNOME Search
-      Tool</application>, chances are that you can do it from the
-      command line, using <command>find</command> and
-      <command>grep</command> with appropriate options. In this case,
-      you should read the info pages for these commands, which can be
-      done using the <application>GNOME Help Browser</application>.
+      front-end to the UNIX commands <command>find</command>,
+      <command>grep</command>, and <command>locate</command>. These
+      commands are extremely powerful, but not very easy for a new
+      user. <application>GNOME Search Tool</application> provides an
+      easy-to-use interface for most common uses of these commands. If
+      you need to perform some type of search which is not covered by
+      the <application>GNOME Search Tool</application>, chances are
+      that you can do it from the command line, using
+      <command>find</command> and <command>grep</command> with
+      appropriate options. In this case, you should read the info
+      pages for these commands, which can be done using the
+      <application>GNOME Help Browser</application>.
     </para>
     </sect1>
 
   <sect1 id="usage"> 
     <title>Usage</title>
+    <para>
+    <application>GNOME Search Tool</application> provides two types of
+    search: <emphasis>Full find</emphasis> and <emphasis>Quick
+    find</emphasis>. Full find is reliable and provides many
+    possibilities, but can be slow. Quick find uses special technique
+    for speeding up search; it is much faster, but can only search by
+    filename, and is not as accurate as full find. This section
+    describes full find mode; quick find is described in <xref
+    linkend="locate">.  
+    </para>      
+<figure id="mainwin">
+ <title>Main search window</title>
+ <screenshot>
+  <screeninfo>Main search window</screeninfo>
+  <graphic format="png"  fileref="mainwin" srccredit="sasha">
+  </graphic>
+ </screenshot>
+</figure>
+
     <para> 
       To start a search, you must give the GNOME Search Tool the
       search criteria and the directory to start in. 
     </para> 
 
-   <para>  
-      By default, the search starts in the current working directory
-      (denoted by period (.)); if the GNOME Search Tool was started from the
-      menu, then the current working directory is your home
-      directory. You can change the starting directory by entering any
-      valid path in the <guilabel>Start in directory</guilabel> field; for
-      example, to search through all the files in on your system, enter
-      <filename>/</filename> in this field (warning: it will take <emphasis>
-	very</emphasis> long time).
-   </para> 
+   <para> By default, the search starts in the current working
+      directory; if the <application>GNOME Search Tool</application>
+      was started from the menu, then the current working directory is
+      your home directory. You can change the starting directory by
+      entering any valid path in the <guilabel>Start in
+      directory</guilabel> field, or by choosing a directory using the
+      <guibutton>Browse...</guibutton> button. For example, to search
+      through all the files in on your system, enter
+      <filename>/</filename> in this field (warning: it will take
+      <emphasis> very</emphasis> long time).  </para>
 
-   <para> 
-      By default, <application>GNOME Search Tool</application>
+   <para> By default, <application>GNOME Search Tool</application>
       also searches through all subdirectories of the given directory;
-      you can turn this behavior off using the option <guilabel>Don't
-      search subdirectories</guilabel>, as described in <xref
-      linkend="criteria">.  
+      you can turn this behavior off by enabling the option
+      <guilabel>Don't search subdirectories</guilabel>. For finer
+      control, you can enable the option <guilabel>Don't search
+      mounted filesystems</guilabel>, which will exclude from the
+      search subdirectories which are physically located (mounted) on
+      drives or partitions other than the starting directory &mdash;
+      see <xref linkend="criteria"> for details.
     </para>
 
    <para> 
       The only search criterion presented by default is the
-      <guilabel>Filename</guilabel>. You can use the wildcards *
-      (matches any sequence of symbols, including an empty one) and ?
+      <guilabel>Filename</guilabel>. You can use the wildcards
+      <keysym>*</keysym> 
+      (matches any sequence of symbols, including an empty one) and
+      <keysym>?</keysym> 
       (matches any single symbol) in this field. For example, to find
       the files with the extension <filename>txt</filename>, enter
       <userinput>*.txt</userinput> in this field; to find all the
       files that start with the letter D, enter
       <filename>D*</filename> (warning: file names are
       case-sensitive!).  You can also specify much more complicated
-      search criteria&mdash; see <xref linkend="criteria">.
+      search criteria &mdash; see <xref linkend="criteria">.
    </para>
    
    <para> After you have specified the search criteria and starting
-   directory, press <guibutton>Start</guibutton>. This will take some time
-   (depending on the directory size and system speed), after which
-   you will be presented with a window containing the list of all the
-   files matching your criteria (it may be empty). If the search is
-   taking too much time, you can abort it by pressing
-   <guibutton>Stop</guibutton> button. 
+   directory, press <guibutton>Start</guibutton>. This will take some
+   time (depending on the directory size and system speed), after
+   which you will be presented with a window containing the list of
+   all the files matching your criteria (it may be empty), as shown in
+   <xref linkend="results">. If the search is taking too much time,
+   you can abort it by pressing <guibutton>Stop</guibutton> button.
    </para>
+
+<figure id="results">
+ <title>Search results window</title>
+ <screenshot>
+  <screeninfo>Search results window</screeninfo>
+  <graphic format="png"  fileref="results" srccredit="sasha">
+  </graphic>
+ </screenshot>
+</figure>
+
 
    <para> In the search results window, you can double-click on any
       file to open it. It will have the same effect as double-clicking
-      on this file in a File Manager window&mdash;that is, the file
-      will be opened using the default action for this file type. 
+      on this file in a File Manager window &mdash; that is, the file
+      will be opened using the default action for this file type. You
+      can also save the list of found files  to disk by pressing
+      <guibutton>Save</guibutton> button. You wil be prompted for a
+      filename to save the list to; the list will be saved in a plain
+      text format. 
     </para> 
     </sect1>
       
@@ -122,16 +175,16 @@
       already existing ones. <application>GNOME Search
 	Tool</application> will search for files meeting
       <emphasis>all</emphasis> of the specified criteria. For example,
-      Figure 1 shows search for all files with extension
+      <xref linkend="sample"> shows search for all files with extension
       <filename>txt</filename> which were modified during the last 7
       days and which contain the word GNOME.
     </para>
  
-    <figure>
+    <figure id="sample">
      <title>Sample GNOME Search Session</title>
      <screenshot>
       <screeninfo>Sample GNOME Search Session</screeninfo>
-      <graphic format="png" fileref="gsearch.png" srccredit="sasha">
+      <graphic format="png" fileref="gsearch" srccredit="sasha">
       </graphic>
     </screenshot>
    </figure>
@@ -154,7 +207,7 @@
 	</para></listitem>
 
 	<listitem>
-          <para> <emphasis>Don't search subdirectories</emphasis> - if
+          <para> <emphasis>Don't search subdirectories</emphasis> &mdash; if
            this option is selected, GNOME Search Tool will not search
            the files in the subdirectories of the start directory.
            </para></listitem>
@@ -255,6 +308,91 @@
     </para>
   </sect1>
 
+  <sect1 id="locate">
+    <title>Quick  find mode</title>
+    <para> 
+      This section describes quick find mode of <application>GNOME
+    search tool</application>. To use this mode, switch to
+    <guilabel>Quick find (locate)</guilabel> window, shown in <xref
+    linkend="locatewin">. 
+      </para>
+
+    <figure id="locatewin">
+     <title>Quick find window</title>
+     <screenshot>
+      <screeninfo>Quick find window</screeninfo>
+      <graphic format="png" fileref="locate" srccredit="sasha">
+      </graphic>
+    </screenshot>
+   </figure>
+
+    <para> In the quick search mode, <application>GNOME Search
+      tool</application> doesn not actually search for a file on the
+      disk &mdash; instead, it uses a special database containing the
+      names of all the files on the system. It makes search much
+      faster. However, it also means that the only type of search you
+      can do is by filename. Moreover, this search will not find files
+      which were added after the last database update (on most
+      systems, it is updated daily, usually at night &mdash; see below
+      for more info).
+    </para>
+    <para> To find a file using the quick search mode, just enter a
+      substring of the file name in the <guilabel>Locate
+      file</guilabel> field. For example, to find all the files whose
+      filenames contain the string "searchtool", enter
+      <userinput>searchtool</userinput> in this field. This will also
+      show all the files that contain the string "searchtool" in their
+      full pathname &mdash; in particular, all the files in <filename
+      class="directory">/usr/share/help/gsearchtool</filename>.
+    </para>
+    <para> To restrict search to a subdirectory, you can use the
+      directory name in combination with the wildcards. For example,
+      to do quick search for all files with extension
+      <filename>txt</filename> in the directory <filename
+      class="directory">/home/user</filename>, enter <userinput>
+      /home/user/*.txt</userinput> in the <guilabel>Locate
+      file</guilabel> field.
+    </para>
+
+    <para>The quick search mode is actually a front-end to <command>locate
+      </command> command, so if you need more detailed information,
+      read the appropriate manual page. 
+    </para>
+    <sect2 id="locatedb">
+      <title> The locate database</title>
+      <para>
+	This section discusses updating the database used for quick
+	search. Unless you are a system administrator or just curious,
+	you do not need to read it. 
+      </para>
+      <para>
+	On most systems, the database used for locate command (and
+	thus, for quick search mode of GNOME Search tool), is updated
+	daily, usually at nights. This is done as a
+	<command>cron</command> job &mdash; see the manual page for
+	<command>cron</command> if you are unfamiliar with this
+	utility. Note that if your computer is usually turned off at
+	night time, the database doesn't get updated. In this case,
+	you should change the default update time by either manully
+	editing <filename>/etc/crontab</filename> or using a graphical
+	tool such as <application>cromagnon</application>. This
+	requires system administrator (root) privileges. 
+      </para>
+
+      <para>You can also issue the command "Update databse now" by
+      running the command <command>updatedb</command>. Again, this
+      requires system administrator (root) privileges. Without any
+      options, it rebuilds the whole database, for all the files on
+      your system. It also has many command line options allowing you
+      to fine-tune it (for example, istructing it to skip certain
+      directories). For more information, read the manual page for
+      <command>updatedb</command>.
+      </para>
+    </sect2>
+
+
+    </sect1>
+
   <sect1 id="authors">
     <title>Authors</title>
      <para>
@@ -281,6 +419,7 @@
     </sect1>
 
 </article>
+
 
 
 
