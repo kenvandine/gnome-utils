@@ -35,6 +35,7 @@
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
 #include <libgnomevfs/gnome-vfs-ops.h> 
+#include <libgnomevfs/gnome-vfs-utils.h>
 #include <bonobo-activation/bonobo-activation.h>
 
 #include "gsearchtool-support.h"
@@ -51,6 +52,7 @@
 #define ICON_THEME_BLOCK_DEVICE    "gnome-fs-blockdev"
 #define ICON_THEME_SOCKET          "gnome-fs-socket"
 #define ICON_THEME_FIFO            "gnome-fs-fifo"
+#define MAX_SYMLINKS_FOLLOWED      32
 
 
 /* START OF THE GCONF FUNCTIONS */
@@ -149,6 +151,98 @@ gsearchtool_gconf_set_boolean (const gchar *key, const gboolean flag)
 	gsearchtool_gconf_handle_error (&error);
 }
 
+/* START OF THE GNOME-VFS RELATED FUNCTIONS */
+
+GnomeVFSResult
+uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
+			      GnomeVFSURI **result_uri)
+{
+	GnomeVFSURI *new_uri, *resolved_uri;
+	GnomeVFSFileInfo *info;
+	GnomeVFSResult res;
+	char *p;
+	int n_followed_symlinks;
+
+	/* Ref the original uri so we don't lose it */
+	uri = gnome_vfs_uri_ref (uri);
+
+	*result_uri = NULL;
+
+	info = gnome_vfs_file_info_new ();
+
+	p = uri->text;
+	n_followed_symlinks = 0;
+	while (*p != 0) {
+		while (*p == GNOME_VFS_URI_PATH_CHR)
+			p++;
+		while (*p != 0 && *p != GNOME_VFS_URI_PATH_CHR)
+			p++;
+
+		new_uri = gnome_vfs_uri_dup (uri);
+		g_free (new_uri->text);
+		new_uri->text = g_strndup (uri->text, p - uri->text);
+		
+		gnome_vfs_file_info_clear (info);
+		res = gnome_vfs_get_file_info_uri (new_uri, info, GNOME_VFS_FILE_INFO_DEFAULT);
+		if (res != GNOME_VFS_OK) {
+			gnome_vfs_uri_unref (new_uri);
+			goto out;
+		}
+		if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK &&
+		    info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME) {
+			n_followed_symlinks++;
+			if (n_followed_symlinks > MAX_SYMLINKS_FOLLOWED) {
+				res = GNOME_VFS_ERROR_TOO_MANY_LINKS;
+				gnome_vfs_uri_unref (new_uri);
+				goto out;
+			}
+			resolved_uri = gnome_vfs_uri_resolve_relative (new_uri,
+								       info->symlink_name);
+			if (*p != 0) {
+				gnome_vfs_uri_unref (uri);
+				uri = gnome_vfs_uri_append_path (resolved_uri, p);
+				gnome_vfs_uri_unref (resolved_uri);
+			} else {
+				gnome_vfs_uri_unref (uri);
+				uri = resolved_uri;
+			}
+
+			p = uri->text;
+		} 
+		gnome_vfs_uri_unref (new_uri);
+	}
+
+	res = GNOME_VFS_OK;
+	*result_uri = gnome_vfs_uri_dup (uri);
+ out:
+	gnome_vfs_file_info_unref (info);
+	gnome_vfs_uri_unref (uri);
+	return res;
+}
+
+GnomeVFSResult
+uri_resolve_all_symlinks (const char *text_uri,
+	                  char **resolved_text_uri)
+{
+	GnomeVFSURI *uri, *resolved_uri;
+	GnomeVFSResult res;
+
+	*resolved_text_uri = NULL;
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL || uri->text == NULL) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	res = uri_resolve_all_symlinks_uri (uri, &resolved_uri);
+
+	if (res == GNOME_VFS_OK) {
+		*resolved_text_uri = gnome_vfs_uri_to_string (resolved_uri, GNOME_VFS_URI_HIDE_NONE);
+		gnome_vfs_uri_unref (resolved_uri);
+	}
+	return res;
+}
+
 /* START OF GENERIC GNOME-SEARCH-TOOL FUNCTIONS */
 
 gboolean 
@@ -182,7 +276,34 @@ is_path_hidden (const gchar *path)
 gboolean 
 is_path_in_home_folder (const gchar *path)
 {
-	return (g_strstr_len (path, strlen (g_get_home_dir ()), g_get_home_dir ()) != NULL);
+	if (g_strstr_len (path, strlen (g_get_home_dir ()), g_get_home_dir ()) != NULL) {
+		return TRUE;
+	}
+
+	/* See bugzilla report #137404 */
+	if (g_file_test (g_get_home_dir(), G_FILE_TEST_IS_SYMLINK)) {
+
+		GnomeVFSResult res;
+		gchar *uri;
+	
+		res = uri_resolve_all_symlinks (g_get_home_dir (), &uri);
+
+		if (res == GNOME_VFS_OK) {
+	
+			gchar *target;
+			gboolean value;
+		
+			target = (gchar *) gnome_vfs_get_local_path_from_uri (uri);
+			value = (g_strstr_len (path, strlen (target), target) != NULL);
+		
+			g_free (target);
+			g_free (uri);
+		
+			return value;
+		}
+		g_free (uri);
+	}		
+	return FALSE;
 }
 
 gboolean 
