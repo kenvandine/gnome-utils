@@ -59,6 +59,7 @@ typedef void (*sighandler_t)(int);
 
 struct _GnomeCalcPrivate {
 	GtkWidget *text_display;
+	GtkWidget *store_display;
 
 	GtkWidget *invert_button;
 	GtkWidget *drg_button;
@@ -87,6 +88,7 @@ typedef enum {
 	CALCULATOR_PARENTHESIS
 } CalculatorActionType;
 
+static gboolean store = FALSE;
 typedef gdouble (*MathFunction1) (gdouble);
 typedef gdouble (*MathFunction2) (gdouble, gdouble);
 
@@ -216,12 +218,19 @@ stack_pop(GList **stack)
 static void
 set_display (GnomeCalc *gc)
 {
-	GtkWidget *label = gc->_priv->text_display;
+	GtkWidget *string_label = gc->_priv->text_display;
+	GtkWidget *store_label = gc->_priv->store_display;
 	gchar *string;
+	gchar *store_string;
 
 	string = g_strconcat ("<span foreground=\"white\"  font_desc=\"Helvetica 24\">", gc->_priv->result_string, "</span>", NULL);
-	gtk_label_set_markup (GTK_LABEL (label), string);
+	gtk_label_set_markup (GTK_LABEL (string_label), string);
 	g_free (string);
+
+	store_string = g_strconcat ("<span foreground=\"white\" font_desc=\"Helvetica 8\">", store ? "m" : " ", "</span>", NULL);
+	gtk_label_set_markup (GTK_LABEL (store_label), store_string);
+	g_free (store_string);
+
 }
 
 static void
@@ -718,11 +727,11 @@ reset_calc(GtkWidget *w, gpointer data)
 	gc->_priv->mode = GNOME_CALC_DEG;
 	gc->_priv->invert = FALSE;
 	gc->_priv->error = FALSE;
+	store = FALSE;
 
 	gc->_priv->add_digit = TRUE;
 	push_input(gc);
 	set_result(gc);
-
 	unselect_invert(gc);
 	setup_drg_label(gc);
 }
@@ -976,8 +985,10 @@ static void
 store_m(GtkWidget *w, gpointer data)
 {
 	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
-	
+
 	g_return_if_fail(gc!=NULL);
+
+	store = TRUE;
 
 	if(gc->_priv->error)
 		return;
@@ -1359,10 +1370,16 @@ gnome_calc_instance_init (GnomeCalc *gc)
 	gtk_container_add (GTK_CONTAINER (event), hbox);
 	
 	gc->_priv->text_display = gtk_label_new (NULL);
+	gc->_priv->store_display = gtk_label_new (NULL);
+	gtk_widget_set_size_request (GTK_WIDGET (gc->_priv->store_display), 5, -1);
 	gtk_label_set_selectable (GTK_LABEL (gc->_priv->text_display), TRUE);
-	/*gtk_label_set_justify (GTK_LABEL (gc->_priv->text_display), GTK_JUSTIFY_RIGHT);*/
-	gtk_widget_show (gc->_priv->text_display);
+	gtk_label_set_selectable (GTK_LABEL (gc->_priv->store_display), FALSE);
 	gtk_box_pack_end (GTK_BOX (hbox), gc->_priv->text_display, FALSE, TRUE, 0);	
+	gtk_box_pack_start (GTK_BOX (hbox), gc->_priv->store_display, FALSE, TRUE, 0);	
+	gtk_widget_show (gc->_priv->text_display);
+	gtk_widget_show (gc->_priv->store_display);
+	
+	/*gtk_label_set_justify (GTK_LABEL (gc->_priv->text_display), GTK_JUSTIFY_RIGHT);*/
 	
 	gc->_priv->stack = NULL;
 	gc->_priv->result = 0;
