@@ -1,81 +1,61 @@
-/***************************************************************************
-                     interface.h  -  header of interface.c
-                             -------------------
-    begin                : Sat Apr 15 2000
-    copyright            : (C) 2000 by Hongli Lai
-    email                : hongli@telekabel.nl
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+ *  Gnome Character Map
+ *  interface.h - The main window
+ *
+ *  Copyright (C) Hongli Lai
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2, or (at your option)
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
 
 #ifndef _INTERFACE_H_
 #define _INTERFACE_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
-#include <gnome.h>
+#include <gtk/gtk.h>
 
 
-/* The functions */
+#define MAIN_APP_TYPE             (main_app_get_type ())
+#define MAIN_APP(obj)             GTK_CHECK_CAST (obj, MAIN_APP_TYPE, MainApp)
+#define MAIN_APP_CLASS(klass)     GTK_CHECK_CLASS_CAST ((klass), MAIN_APP_TYPE, MainAppClass)
+#define MAIN_IS_APP(obj)          GTK_CHECK_TYPE (obj, MAIN_APP_TYPE)
+#define MAIN_IS_APP_CLASS(klass)  GTK_CHECK_TYPE ((klass), MAIN_APP_TYPE)
 
-void main_new (void);
-void main_controls_new (void);
-void main_charmap_new (void);
-gboolean ButtonClick (GtkWidget *widget, gpointer gdata);
-gboolean ButtonEnter (GtkWidget *widget, gpointer gdata);
-gboolean ButtonLeave (GtkWidget *widget, gpointer gdata);
-gboolean EditMouseDown (GtkWidget *widget, GdkEventButton *event,
-  gpointer user_data);
-gboolean CutClick (GtkWidget *widget, gpointer gdata);
-gboolean CopyClick (GtkWidget *widget, gpointer gdata);
-gboolean PasteClick (GtkWidget *widget, gpointer gdata);
-gboolean SelectAllClick (GtkWidget *widget, gpointer gdata);
-gboolean AboutClick (GtkWidget *widget, gpointer gdata);
-gboolean HelpClick (GtkWidget *widget, gpointer gdata);
-gboolean ToolbarToggle (GtkCheckMenuItem *checkmenuitem,
-  gpointer user_data);
-gboolean StatusbarToggle (GtkCheckMenuItem *checkmenuitem,
-  gpointer user_data);
-void PopupMenuDetach (GtkWidget *attach_widget, GtkMenu *Menu);
-gboolean main_close (GtkWidget *widget, gpointer gdata);
+typedef struct _MainApp
+{
+    GtkObject parent_struct;
+    GtkWidget *window;
+    GtkWidget *entry;
+    GtkWidget *actionbar, *textbar;
+    GtkWidget *preview_label;
+    GtkWidget *fontpicker;
+    gboolean insert_at_end;
+    GList *buttons;
+    GtkStyle *btnstyle;
+} MainApp;
+
+typedef struct _MainAppClass
+{
+    GtkObjectClass parent_klass;
+} MainAppClass;
 
 
-/* The widgets */
+extern MainApp *mainapp;
 
-GtkWidget *mainf;
-GtkWidget *vbox0;
-  GtkWidget *AppToolbar;
-  GtkWidget *hbox;
-    GtkWidget *vbox;
-      GtkWidget *hbox1;
-        GtkWidget *Label;
-        GtkWidget *Edit;
-      GtkWidget *table;
-        GtkWidget *button;
-    GtkWidget *vbox2;
-      GtkWidget *btnbox;
-        GtkWidget *Close;
-        GtkWidget *Copy;
-        GtkWidget *About;
-        GtkWidget *Help;
-      GtkWidget *Viewport;
-        GtkWidget *Preview;
-  GtkWidget *Status;
-GtkWidget *PopupMenu;
-GtkStyle *PreviewStyle;
-GtkTooltips *tooltips;
+guint main_app_get_type (void);
+MainApp *main_app_new (void);
+void main_app_destroy (MainApp *obj);
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
 
-#endif /* _INTERFACE_H_ */
+#endif _INTERFACE_H_
+

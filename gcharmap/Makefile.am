@@ -1,9 +1,6 @@
-# Process this file with automake to produce Makefile.in
+SUBDIRS = src pixmaps doc
 
-Utilitiesdir = $(datadir)/gnome/apps/Utilities
+desktopdir = $(datadir)/gnome/apps/Utilities
+desktop_DATA = gcharmap.desktop
 
-EXTRA_DIST = AUTHORS README TODO BUGS gcharmap.desktop 
-SUBDIRS = src doc pixmaps
-
-Utilities_DATA = gcharmap.desktop
-
+EXTRA_DIST = BUGS gcharmap.desktop gcharmap.spec.in

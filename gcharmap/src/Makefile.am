@@ -1,16 +1,19 @@
-# Process this file with automake to produce Makefile.in
-
 bin_PROGRAMS = gcharmap
 
-INCLUDES = -DG_LOG_DOMAIN=\"gcharmap\"			\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-I$(includedir) $(GNOME_INCLUDEDIR) 		\
-	-I$(top_srcdir)/gcharmap/pixmaps
+INCLUDES =\
+	-DG_LOG_DOMAIN=\"gcharmap\"\
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"\
+	-I$(includedir)\
+	-I$(top_srcdir)/gcharmap/pixmaps\
+	$(GNOME_INCLUDEDIR)
 
 gcharmap_SOURCES = \
-        asciiselect.c  asciiselect.h \
-        interface.c    interface.h \
-        main.c
+        main.c\
+        interface.c interface.h\
+        menus.c menus.h\
+        callbacks.c callbacks.h\
+        asciiselect.c asciiselect.h
 
-gcharmap_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
+gcharmap_LDADD = $(GNOME_LIBDIR) $(GNOME_LIBS) $(GNOMEUI_LIBS) $(INTLLIBS)
 
+EXTRA_DIST = $(gcharmap_SOURCES)

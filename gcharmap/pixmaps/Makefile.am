@@ -1,6 +1,7 @@
 pixmapsdir = $(datadir)/pixmaps
 
 pixmaps_DATA = \
-	gnome-character-map.xpm
+	gcharmap-map-16.xpm\
+	gcharmap-logo.png
 
-EXTRA_DIST = charmap_big.xpm charmap_24.xpm $(pixmaps_DATA)
+EXTRA_DIST = $(pixmaps_DATA) gcharmap-map-big.xpm gcharmap-map-24.xpm

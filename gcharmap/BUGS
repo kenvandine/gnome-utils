@@ -1,6 +1,16 @@
-* Small memory leaks. I couldn't find out what caused all those
-  memory leaks. If you have a fix, please contact me.
-* That's all folks!
+src/interface.c, src/callbacks.c:
+* The character table has it's own font style.
+  But for some reason, the font isn't showed in the button.
+  The font picker doesn't work.
+  I can't find the cause of this problem.
 
-Oh, wait a minute. There is another bug: bad English! :-)
-Please report all language errors.
+src/main.c:
+* Every time this file is compiled I get a warning at this line:
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  textdomain (PACKAGE);
+
+  It's something about "statement with no effect".
+
+po/nl.po:
+* File does not get installed so localization doesn't work.
+  (why????)
