@@ -1,3 +1,12 @@
+1998-06-02  Marius Vollmer  <mvo@zagadka.ping.de>
+
+	* cromagnon.scm: Use modules `(gnome gnome)' and `(gtk gtk)'.
+	(cm-internal-close-window): Return `#f' to indicate default
+	action.
+	(gnome-toolbar-style): Use `gtk-object-destroyed' instead of
+	`gtk-destroyed?'.
+	(cm-internal-modify): Remove grab unconditionally.
+	
 Sat Mar 14 15:37:41 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* cromagnon.scm: Call gnome-init-hack.
