@@ -202,7 +202,7 @@ static void prepare_app()
   GtkWidget * sw;
   GtkWidget * reset_button;
 
-  app = gnome_app_new( APPNAME, _("User Listing") ); 
+  app = gnome_app_new( APPNAME, _("Active User Listing") ); 
 
   gnome_app_create_menus(GNOME_APP(app), main_menu);
 
