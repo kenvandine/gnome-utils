@@ -1,5 +1,8 @@
 2001-03-07  John Kodis  <kodis@jagunet.com>
 
+	* params.c (param_desc_ingest): If a parameter file is missing or
+	invalid, only complain about it once.
+
 	* eval.c (num_op): Correct time values: $t is time since startup,
 	and ~t is the delta time between evaluation iterations.
 

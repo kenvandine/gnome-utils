@@ -177,7 +177,9 @@ param_desc_ingest(const char *fn)
   ||  !doc->root || doc->root->type != XML_ELEMENT_NODE
   ||  !streq(doc->root->name, "stripchart") )
     {
-      error("Can't parse parameter file \"%s\".\n", fn);
+      static int complaints;
+      if (complaints++ == 0)
+	error("Can't parse parameter file \"%s\".\n", fn);
       return NULL;
     }
 
