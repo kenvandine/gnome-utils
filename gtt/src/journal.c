@@ -201,6 +201,18 @@ static GttTask * cutted_task = NULL;
 /* interval popup actions */
 
 static void
+interval_new_clicked_cb (GtkWidget * w, gpointer data)
+{
+	Wiggy *wig = (Wiggy *) data;
+
+	if (NULL == wig->edit_ivl) wig->edit_ivl = edit_interval_dialog_new();
+
+	wig->interval = gtt_interval_new_insert_after(wig->interval);
+	edit_interval_set_interval (wig->edit_ivl, wig->interval);
+	edit_interval_dialog_show (wig->edit_ivl);
+}
+
+static void
 interval_edit_clicked_cb(GtkWidget * dw, gpointer data) 
 {
 	Wiggy *wig = (Wiggy *) data;
@@ -376,6 +388,20 @@ task_paste_clicked_cb(GtkWidget * w, gpointer data)
 }
 
 static void
+task_new_interval_cb (GtkWidget * w, gpointer data)
+{
+	Wiggy *wig = (Wiggy *) data;
+
+	if (NULL == wig->edit_ivl) wig->edit_ivl = edit_interval_dialog_new();
+
+	wig->interval = gtt_interval_new();
+	gtt_task_add_interval (wig->task, wig->interval);
+
+	edit_interval_set_interval (wig->edit_ivl, wig->interval);
+	edit_interval_dialog_show (wig->edit_ivl);
+}
+
+static void
 task_popup_cb (Wiggy *wig)
 {
 	gtk_menu_popup(GTK_MENU(wig->task_popup), 
@@ -471,17 +497,19 @@ html_link_clicked_cb(GtkHTML * html, const gchar * url, gpointer data)
 	if (0 == strncmp (url, "gtt:interval", 12))
 	{
 		wig->interval = addr;
+		wig->task = NULL;
 		if (addr) interval_popup_cb (wig);
 	}
 	else
 	if (0 == strncmp (url, "gtt:task", 8))
 	{
 		wig->task = addr;
+		wig->interval = NULL;
 		if (addr) task_popup_cb (wig);
 	}
 	else
 	{
-		g_warning ("clicked on unknown link duude=%s\n", url);
+		g_warning ("clicked on unknown link %s\n", url);
 	}
 }
 
@@ -557,6 +585,9 @@ do_show_report (const char * report, GttProject *prj)
 	wig->interval_merge_down = glade_xml_get_widget (glxml, "merge_down");
 	wig->interval=NULL;
 
+	glade_xml_signal_connect_data (glxml, "on_new_interval_activate",
+	        GTK_SIGNAL_FUNC (interval_new_clicked_cb), wig);
+	  
 	glade_xml_signal_connect_data (glxml, "on_edit_activate",
 	        GTK_SIGNAL_FUNC (interval_edit_clicked_cb), wig);
 	  
@@ -600,6 +631,9 @@ do_show_report (const char * report, GttProject *prj)
 	glade_xml_signal_connect_data (glxml, "on_paste_activate",
 	        GTK_SIGNAL_FUNC (task_paste_clicked_cb), wig);
 	  
+	glade_xml_signal_connect_data (glxml, "on_new_interval_activate",
+	        GTK_SIGNAL_FUNC (task_new_interval_cb), wig);
+
 	/* ---------------------------------------------------- */
 	/* finally ... display the actual journal */
 

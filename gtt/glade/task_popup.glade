@@ -56,7 +56,7 @@
       <handler>on_delete_memo_activate</handler>
       <last_modification_time>Tue, 11 Sep 2001 21:08:07 GMT</last_modification_time>
     </signal>
-    <label>_Delete Diary Entry</label>
+    <label>_Cut Diary Entry</label>
     <right_justify>False</right_justify>
     <stock_icon>GNOME_STOCK_MENU_CUT</stock_icon>
   </widget>
@@ -70,7 +70,7 @@
       <handler>on_delete_times_activate</handler>
       <last_modification_time>Tue, 11 Sep 2001 21:08:07 GMT</last_modification_time>
     </signal>
-    <label>Delete _Times</label>
+    <label>Cut Entry &amp; _Times</label>
     <right_justify>False</right_justify>
     <stock_icon>GNOME_STOCK_MENU_CUT</stock_icon>
   </widget>
@@ -87,6 +87,26 @@
     <label>_Paste Diary Entry</label>
     <right_justify>False</right_justify>
     <stock_icon>GNOME_STOCK_MENU_PASTE</stock_icon>
+  </widget>
+
+  <widget>
+    <class>GtkMenuItem</class>
+    <name>separator1</name>
+    <right_justify>False</right_justify>
+  </widget>
+
+  <widget>
+    <class>GtkPixmapMenuItem</class>
+    <name>new_interval</name>
+    <tooltip>Add a new time interval</tooltip>
+    <signal>
+      <name>activate</name>
+      <handler>on_new_interval_activate</handler>
+      <last_modification_time>Fri, 30 Nov 2001 06:23:59 GMT</last_modification_time>
+    </signal>
+    <label>New Time Interval</label>
+    <right_justify>False</right_justify>
+    <stock_icon>GNOME_STOCK_MENU_NEW</stock_icon>
   </widget>
 </widget>
 

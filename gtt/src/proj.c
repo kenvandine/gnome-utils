@@ -2139,6 +2139,35 @@ gtt_interval_is_last_interval (GttInterval *ivl)
 /* ============================================================= */
 
 GttInterval *
+gtt_interval_new_insert_after (GttInterval *where)
+{
+	GttInterval *ivl;
+	GttTask *tsk;
+	int idx;
+
+	if (!where) return NULL;
+
+	tsk = where->parent;
+	if (!tsk) return NULL;
+
+	/* clone the other interval */
+	ivl = g_new0 (GttInterval, 1);
+	ivl->parent = tsk;
+	ivl->start = where->start;
+	ivl->stop = where->stop;
+	ivl->running = FALSE;
+	ivl->fuzz = where->fuzz;
+
+	idx = g_list_index (tsk->interval_list, where);
+	tsk->interval_list = g_list_insert (tsk->interval_list, ivl, idx);
+
+	proj_refresh_time (tsk->parent);
+
+	return ivl;
+}
+
+
+GttInterval *
 gtt_interval_merge_up (GttInterval *ivl)
 {
 	int more_fuzz;

@@ -486,7 +486,11 @@ time_t		gtt_interval_get_stop (GttInterval *);
 gboolean	gtt_interval_get_running (GttInterval *);
 int		gtt_interval_get_fuzz (GttInterval *);
 
-/* The gtt_interval_merge_up() routine merges the given interval with 
+/* The gtt_interval_new_insert_after() routine creates a new interval 
+ *    and inserts it after the interval "where".  It returns the new 
+ *    interval.
+ *
+ * The gtt_interval_merge_up() routine merges the given interval with 
  *    the immediately more recent one above it.  It does this by 
  *    decrementing the start time.  The resulting interval has the
  *    max of the two fuzz factors, and is running if the first was.
@@ -499,6 +503,7 @@ int		gtt_interval_get_fuzz (GttInterval *);
  *    into two pieces, with the indicated interval and everything
  *    following it going after the specified.  
  */
+GttInterval *   gtt_interval_new_insert_after (GttInterval *where);
 GttInterval *	gtt_interval_merge_up (GttInterval *);
 GttInterval *	gtt_interval_merge_down (GttInterval *);
 void		gtt_interval_split (GttInterval *, GttTask *);
