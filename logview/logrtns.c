@@ -161,15 +161,6 @@ get_month (const char *str)
 	return 12;
 }
 
-GnomeVFSFileSize GetLogSize (Log *log)
-{
-	GnomeVFSFileInfo info;
-	GnomeVFSResult result;
-
-	result = gnome_vfs_get_file_info (log->name, &info, GNOME_VFS_FILE_INFO_DEFAULT);
-	return (info.size);
-}
-
 static gboolean
 file_is_zipped (char *filename)
 {
@@ -295,10 +286,6 @@ isLogFile (char *filename, gboolean show_error)
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
 
    if (result != GNOME_VFS_OK) {
-	   /* FIXME: this error message is really quite poor
-	    * we should state why the open failed
-	    * ie. file too large etc etc..
-	    */
 	   if (show_error) {
 		   switch (result) {
 		   case GNOME_VFS_ERROR_ACCESS_DENIED:
@@ -373,22 +360,23 @@ gchar **ReadLastPage (Log *log)
 
 gchar **ReadNewLines (Log *log)
 {
-	GnomeVFSFileSize newsize, bytes_read;
+	GnomeVFSFileSize bytes_read;
+	GnomeVFSFileInfo info;
 	GnomeVFSResult result;
 	gchar *buffer;
 	
 	g_return_val_if_fail (log, NULL);
 	g_return_val_if_fail (log->mon_file_handle, NULL);
 	
-	newsize = GetLogSize (log);
-	buffer = g_malloc (newsize - log->mon_offset);
+	result = gnome_vfs_get_file_info_from_handle (log->mon_file_handle, &info, GNOME_VFS_FILE_INFO_DEFAULT);
+	buffer = g_malloc (info.size - log->mon_offset);
 
 	result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, log->mon_offset);
-	result = gnome_vfs_read (log->mon_file_handle, buffer, newsize - log->mon_offset, &bytes_read);
+	result = gnome_vfs_read (log->mon_file_handle, buffer, info.size - log->mon_offset, &bytes_read);
 	
-	if (bytes_read > 0) {
+	if (result == GNOME_VFS_OK && bytes_read > 0) {
 		gchar **buffer_lines;
-		log->mon_offset = newsize;
+		log->mon_offset = info.size;
 		result = gnome_vfs_tell (log->mon_file_handle, &(log->mon_offset));
 		buffer_lines = g_strsplit (buffer, "\n", -1);
 		g_free (buffer);
