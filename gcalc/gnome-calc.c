@@ -1174,10 +1174,10 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("1/x"),  (GtkSignalFunc)simple_func, c_inv,  NULL,   FALSE, {0} },
 		{N_("x^2"),  (GtkSignalFunc)simple_func, c_pow2, sqrt,   FALSE, {0} },
 		{N_("SQRT"), (GtkSignalFunc)simple_func, sqrt,   c_pow2, FALSE, {'r','R',0} },
-		{N_("CE/C"), (GtkSignalFunc)clear_calc,  NULL,   NULL,   FALSE, {GDK_Clear,0} },
+		{N_("CE/C"), (GtkSignalFunc)clear_calc,  NULL,   NULL,   FALSE, {GDK_Clear,GDK_Delete,0} },
 		{N_("AC"),   (GtkSignalFunc)reset_calc,  NULL,   NULL,   FALSE, {'a','A', GDK_Escape, 0} }
 	},{
-		{NULL,       NULL,                       NULL,   NULL,   FALSE, {0} }, /*inverse button*/
+		{N_("INV"),  NULL,                       NULL,   NULL,   FALSE, {'i','I',0} }, /*inverse button*/
 		{N_("sin"),  (GtkSignalFunc)simple_func, sin,    asin,   TRUE,  {'s','S',0} },
 		{N_("cos"),  (GtkSignalFunc)simple_func, cos,    acos,   TRUE,  {'c','C',0} },
 		{N_("tan"),  (GtkSignalFunc)simple_func, tan,    atan,   TRUE,  {'t','T',0} },
@@ -1365,10 +1365,17 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 	if(!but->name)
 		return;
 
-	w = gtk_button_new_with_label(_(but->name));
-	gtk_signal_connect(GTK_OBJECT(w), "clicked",
-			   but->signal_func,
-			   (gpointer) but);
+	if (strcmp (but->name, "INV") == 0) {
+		w = gtk_toggle_button_new_with_label(_("INV"));
+		gc->_priv->invert_button = w;
+		gtk_signal_connect (GTK_OBJECT (w), "toggled",
+				    GTK_SIGNAL_FUNC(invert_toggle), gc);
+	} else {
+		w = gtk_button_new_with_label(_(but->name));
+		gtk_signal_connect(GTK_OBJECT(w), "clicked",
+				   but->signal_func,
+				   (gpointer) but);
+	}
 
 	for(i=0;but->keys[i]!=0;i++) {
 		gtk_widget_add_accelerator(w, "clicked",
@@ -1442,16 +1449,6 @@ gnome_calc_init (GnomeCalc *gc)
 			create_button(gc, table, x, y);
 		}
 	}
-	gc->_priv->invert_button = gtk_toggle_button_new_with_label(_("INV"));
-	gtk_signal_connect(GTK_OBJECT(gc->_priv->invert_button), "toggled",
-			   GTK_SIGNAL_FUNC(invert_toggle), gc);
-	gtk_object_set_user_data(GTK_OBJECT(gc->_priv->invert_button), gc);
-	gtk_widget_show(gc->_priv->invert_button);
-	gtk_table_attach (GTK_TABLE(table), gc->_priv->invert_button,
-			  0, 1, 1, 2,
-			  GTK_FILL | GTK_EXPAND |
-			  GTK_SHRINK,
-			  0, 2, 2);
 }
 
 
@@ -1656,6 +1653,7 @@ static const GnomeCalcExtraKeys extra_keys [] = {
 	{GDK_BackSpace, backspace_cb, NULL},
 	{GDK_Return,    no_func,      NULL},
 	{GDK_KP_Enter,  no_func,      NULL},
+	{GDK_Delete,    clear_calc,   NULL},
 	{GDK_KP_Delete, add_digit,    "."},
 	{GDK_KP_Left,   add_digit,    "4"},
 	{GDK_KP_Right,  add_digit,    "6"},
