@@ -415,26 +415,34 @@ do_show_report (const char * report, GttProject *prj)
 static char *
 resolve_path (char *path_frag)
 {
+	const GList *list;
 	char buff[200], *p, *path;
 
-	/* xxx hack alert fixme the gnome_datadir gives full
-         * path e.g. /usr/share/gtt, but I don't think it gets 
-	 * the i18n path right (subst C for es, fr, de, etc.) */
-
-	/* look in the local build dir first (for testing) */
-	
-	p = buff;
-	p = stpcpy (p, "ghtml/C/");
-	p = stpcpy (p, path_frag);
-	path = gnome_datadir_file (buff);
-	if (NULL == path)
+	list = gnome_i18n_get_language_list ("LC_MESSAGES");
+	for ( ; list; list=list->next) 
 	{
+        	const char *lang = list->data;
+
+        	/* See if gtt/ghtml/<lang>/<path_frag> exists */
+		/* look in the local build dir first (for testing) */
+		
 		p = buff;
-		p = stpcpy (p, "gtt/ghtml/C/");
+		p = stpcpy (p, "ghtml/");
+		p = stpcpy (p, lang);
+		p = stpcpy (p, "/");
 		p = stpcpy (p, path_frag);
 		path = gnome_datadir_file (buff);
+		if (path) return path;
+
+		p = buff;
+		p = stpcpy (p, "gtt/ghtml/");
+		p = stpcpy (p, lang);
+		p = stpcpy (p, "/");
+		p = stpcpy (p, path_frag);
+		path = gnome_datadir_file (buff);
+		if (path) return path;
 	}
-	return path;
+	return g_strdup(path_frag);
 }
 
 void
