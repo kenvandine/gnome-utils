@@ -336,6 +336,7 @@ make_locate_cmd(void)
 {
 	GString *cmdbuf;
 	gchar *locate_string;
+	gchar *locate_command;
 	
 	locate_string = 
 		(gchar *)gtk_entry_get_text(GTK_ENTRY(gnome_entry_gtk_entry(GNOME_ENTRY(locate_entry))));
@@ -346,7 +347,15 @@ make_locate_cmd(void)
 	}
 
 	cmdbuf = g_string_new ("");
-	g_string_append_printf(cmdbuf, "locate '%s'", locate_string);
+	locate_command = g_find_program_in_path ("locate");
+	if (locate_command != NULL)
+	{
+		g_string_append_printf (cmdbuf, "%s '%s'", locate_command, locate_string);
+	} else {
+		g_string_append_printf (cmdbuf, "find \"/\" -name '%s' -mount", locate_string);
+	}
+	g_free (locate_string);
+	g_free (locate_command);
 	
 	return g_string_free (cmdbuf, FALSE);
 }
