@@ -4,5 +4,5 @@ endif
 
 gsu = gsu gpenguin
 
-SUBDIRS = gshutdown guname gw gnome-run grun gless $(idetool) \
+SUBDIRS = gshutdown guname gw gless $(idetool) \
 	gfontsel gcolorsel
