@@ -384,9 +384,15 @@ get_all_netload(glibtop_netload *netload)
     {
       u_int64_t bytes_in, pkts_in, errs_in, bytes_out, pkts_out, errs_out;
       fscanf(fd, "%*[^\n]\n%*[^\n]\n");
+#if G_MAXLONG == 9223372036854775807
+      while (fscanf(fd,
+	"%*[^:]:%ld%ld%ld%*d%*d%*d%*d%*d%ld%ld%ld%*d%*d%*d%*d%*d",
+	&bytes_in, &pkts_in, &errs_in, &bytes_out, &pkts_out, &errs_out) == 6)
+#else
       while (fscanf(fd,
 	"%*[^:]:%lld%lld%lld%*d%*d%*d%*d%*d%lld%lld%lld%*d%*d%*d%*d%*d",
 	&bytes_in, &pkts_in, &errs_in, &bytes_out, &pkts_out, &errs_out) == 6)
+#endif
 	{
 	  netload->packets_in    += pkts_in;
 	  netload->packets_out   += pkts_out;
@@ -1931,8 +1937,12 @@ static void
 applet_orient_handler(AppletWidget *applet, int i, GtkDrawingArea *drawings[2])
 {
   int o, h, w;
-  o = applet->orient;
-  h = applet->size;
+  o = applet_widget_get_panel_orient(applet);
+#ifdef HAVE_PANEL_PIXEL_SIZE
+  h = applet_widget_get_panel_pixel_size(applet);
+#else
+  h = 48;
+#endif
   if (o == ORIENT_UP || o == ORIENT_DOWN)
     w = h * 3;
   else
@@ -1945,12 +1955,13 @@ applet_orient_handler(AppletWidget *applet, int i, GtkDrawingArea *drawings[2])
 #endif
 }
 
+#ifdef HAVE_PANEL_PIXEL_SIZE
 static void
 applet_resize_handler(AppletWidget *applet, int i, GtkDrawingArea *drawings[2])
 {
   int o, h, w;
-  o = applet->orient;
-  h = applet->size;
+  o = applet_widget_get_panel_orient(applet);
+  h = applet_widget_get_panel_pixel_size(applet);
   if (o == ORIENT_UP || o == ORIENT_DOWN)
     w = h * 3;
   else
@@ -1962,6 +1973,7 @@ applet_resize_handler(AppletWidget *applet, int i, GtkDrawingArea *drawings[2])
   printf("resize: %dx%d, %c(%d), %d\n", w, h, "UDLR"[o], o, i);
 #endif
 }
+#endif
 
 /*
  * applet -- a display routine like gnome_graph, but in an applet
@@ -2024,8 +2036,10 @@ applet(void)
     "destroy", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
   gtk_signal_connect(GTK_OBJECT(frame),
     "delete_event", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
+#ifdef HAVE_PANEL_PIXEL_SIZE
   gtk_signal_connect(GTK_OBJECT(frame),
     "change_pixel_size", (GtkSignalFunc)applet_resize_handler, drawings);
+#endif
   gtk_signal_connect(GTK_OBJECT(frame),
     "change_orient", (GtkSignalFunc)applet_orient_handler, drawings);
   gtk_signal_connect(GTK_OBJECT(frame),

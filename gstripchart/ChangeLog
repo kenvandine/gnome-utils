@@ -1,3 +1,10 @@
+Fri Feb 04 17:08:07 2000  George Lebl <jirka@5z.com>
+
+	* gstripchart.c: make it theoretically compile with 1.0 core
+	  by using HAVE_PANEL_PIXEL_SIZE to #ifdef out the pixel size
+	  parts.  Also use the accessorts rather then size/orient vars
+	  directly.  And fix a 64bit warning by using %ld if long is 64bits.
+
 1999-12-01  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (read_param_defns): If the number of fields to
