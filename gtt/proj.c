@@ -1378,6 +1378,7 @@ gtt_interval_get_running (GttInterval * ivl)
 GttInterval *
 gtt_interval_merge_up (GttInterval *ivl)
 {
+	int more_fuzz;
 	GList *node;
 	GttInterval *merge;
 	GttTask *prnt;
@@ -1397,11 +1398,16 @@ gtt_interval_merge_up (GttInterval *ivl)
 	merge = node->data;
 	if (!merge) return NULL;
 
+	/* the fuzz is the gap between stop and start times */
+	more_fuzz = merge->start - ivl->stop;
+
 	merge->start -= (ivl->stop - ivl->start);
 	if (ivl->fuzz > merge->fuzz) merge->fuzz = ivl->fuzz;
+	if (more_fuzz > merge->fuzz) merge->fuzz = more_fuzz;
+
 	gtt_interval_destroy (ivl);
 
-	if (ivl->parent) proj_refresh_time (ivl->parent->parent);
+	proj_refresh_time (prnt->parent);
 	return merge;
 }
 
@@ -1409,6 +1415,7 @@ gtt_interval_merge_up (GttInterval *ivl)
 GttInterval *
 gtt_interval_merge_down (GttInterval *ivl)
 {
+	int more_fuzz;
 	GList *node;
 	GttInterval *merge;
 	GttTask *prnt;
@@ -1428,11 +1435,15 @@ gtt_interval_merge_down (GttInterval *ivl)
 	merge = node->data;
 	if (!merge) return NULL;
 
+	/* the fuzz is the gap between stop and start times */
+	more_fuzz = ivl->start - merge->stop;
+
 	merge->stop -= (ivl->stop - ivl->start);
 	if (ivl->fuzz > merge->fuzz) merge->fuzz = ivl->fuzz;
+	if (more_fuzz > merge->fuzz) merge->fuzz = more_fuzz;
 	gtt_interval_destroy (ivl);
 
-	if (ivl->parent) proj_refresh_time (ivl->parent->parent);
+	proj_refresh_time (prnt->parent);
 	return merge;
 }
 
