@@ -17,7 +17,11 @@ gshutdown_LDADD = \
 	$(INTLLIBS)
 
 EXTRA_DIST = \
-	gshutdown.desktop
+	gshutdown.desktop \
+	gnome-shutdown.png 
+
+pixmapsdir = $(datadir)/pixmaps
+pixmaps_DATA = gnome-shutdown.png
 
 Systemdir = $(datadir)/gnome/apps/System
 System_DATA = gshutdown.desktop
