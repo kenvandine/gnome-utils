@@ -554,8 +554,8 @@ make_list_of_templates (void)
 			gtk_widget_show (menuitem);
 		} 
 		else {
-			gchar *text = remove_mnemonic_character (templates[i].desc);
-			menuitem = gtk_radio_menu_item_new_with_label (group, _(text));
+			gchar *text = remove_mnemonic_character (_(templates[i].desc));
+			menuitem = gtk_radio_menu_item_new_with_label (group, text);
 			g_signal_connect (G_OBJECT(menuitem), "toggled",
 					  G_CALLBACK(constraint_menu_toggled_cb),
 		        		  (gpointer)(long)i);
