@@ -23,7 +23,7 @@ gdiskfree_help_DATA = ${HTML_FILES} topic.dat
 # where the runtime help system can find it.
 #
 ${HTML_FILES} : $(SGML_FILES)
-	if [ ! -d gdiskfree ] ; then cd $(srcdir) && db2html gdiskfree.sgml ; fi
+	if [ ! -f gdiskfree/index.html ] ; then cd $(srcdir) && db2html gdiskfree.sgml ; fi
 	-cd $(srcdir) && cp gdiskfree/$@ .
 	if [ -d gdiskfree.junk ] ; then cd $(srcdir) && rm -rf gdiskfree.junk ; fi
 
