@@ -1,3 +1,4 @@
+SUBDIRS = help
 
 INCLUDES = 			\
 	-I$(includedir)		\
@@ -5,8 +6,6 @@ INCLUDES = 			\
 	$(GNOME_INCLUDEDIR)
 
 bin_PROGRAMS = gtt
-
-man_MANS = gtt.1
 
 gtt_SOURCES = \
 	dialog.c	\
@@ -35,22 +34,9 @@ gtt_LDADD = \
 	$(INTLLIBS)
 
 EXTRA_DIST = \
-	topic.dat		\
-	gtt-db.sgml		\
-	gtt-db.html		\
-	gtt.desktop		\
-	gtt.1
+	gtt.desktop
 
 Productivitydir = $(datadir)/apps/Productivity
 Productivity_DATA = gtt.desktop
 
-
-# maybe there is a macro for that?
-
-gtt_helpdir = $(datadir)/gnome/help/gtt/C
-
-install-data-local:
-	 $(mkinstalldirs) $(gtt_helpdir)
-	 $(INSTALL_DATA) $(srcdir)/topic.dat $(gtt_helpdir)/topic.dat
-	 $(INSTALL_DATA) $(srcdir)/gtt-db.html $(gtt_helpdir)/index.html
 
