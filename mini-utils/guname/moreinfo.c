@@ -39,14 +39,14 @@
 #define BLOCKS_TO_MB(blocks) ( blocks / 2048 )
 
 GList * filesystems = NULL;
+GList * filesystems_percent_full = NULL;
 gchar ** memory = NULL;
 gchar ** memory_descriptions = NULL;
 
-gdouble filesystem_percent_full;
 gdouble memory_percent_full;
 gdouble swap_percent_full;
 
-static GtkWidget * create_disk_box(const gchar ** fs_info)
+static GtkWidget * create_disk_box(const gchar ** fs_info, gdouble * percent_full)
 {
   GtkWidget * label;
   GtkWidget * vbox;
@@ -75,7 +75,7 @@ static GtkWidget * create_disk_box(const gchar ** fs_info)
     label = gtk_label_new(fs_info[fs_numbers]);
     gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
   }
-  if (fs_info[fs_percent_full]) {
+  if (fs_info[fs_percent_full] && percent_full) {
     hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
             
     label = gtk_label_new(fs_info[fs_percent_full]);
@@ -85,7 +85,7 @@ static GtkWidget * create_disk_box(const gchar ** fs_info)
     bar = gtk_progress_bar_new();
     gtk_box_pack_end(GTK_BOX(hbox), bar, TRUE, TRUE, GNOME_PAD);
     
-    gtk_progress_bar_update(GTK_PROGRESS_BAR(bar), filesystem_percent_full);
+    gtk_progress_bar_update(GTK_PROGRESS_BAR(bar), *percent_full);
   }
   else {
     hbox = gtk_label_new(_("No information for this filesystem."));
@@ -101,7 +101,7 @@ static void fill_disk_page(GtkWidget * box)
   GtkWidget * scrolled_win;
   GtkWidget * scrolled_box;
   GtkWidget * frame;
-  GList * tmp;
+  GList * tmp1, *tmp2;
   
   frame = gtk_frame_new(_("Mounted filesystems"));
 
@@ -118,14 +118,17 @@ static void fill_disk_page(GtkWidget * box)
   gtk_box_pack_start(GTK_BOX(box), frame, TRUE, TRUE, 0);
   
   
-  tmp = filesystems;
-  while ( tmp ) {
-    disk_box = create_disk_box((const gchar**)(tmp->data));
+  tmp1 = filesystems;
+  tmp2 = filesystems_percent_full;
+  while ( tmp1 ) {
+    disk_box = create_disk_box((const gchar**)tmp1->data, 
+                               (gdouble *)tmp2->data);
 
     gtk_container_border_width(GTK_CONTAINER(disk_box), GNOME_PAD_SMALL);
     gtk_box_pack_start(GTK_BOX(scrolled_box), disk_box, FALSE, FALSE, 0);
 
-    tmp = g_list_next(tmp);
+    tmp1 = g_list_next(tmp1);
+    tmp2 = g_list_next(tmp2);
   }
 }
 
@@ -231,6 +234,7 @@ void display_moreinfo()
 void load_fsinfo()
 {
   gchar ** fs_info;
+  gdouble * percent_full;
   struct mount_entry * me, * tmp;
   const gchar * percent_full_format = _("%2d%% full ");
   const gchar * device_info_format = 
@@ -245,6 +249,7 @@ void load_fsinfo()
   while ( me ) {
     fs_info = g_malloc(sizeof(gchar *) * end_filesystem_info);
     filesystems = g_list_append(filesystems, fs_info);
+    percent_full = NULL;
 
     fs_info[fs_description] = 
       g_copy_strings(_("Mount Point: "), me->me_mountdir, 
@@ -269,10 +274,11 @@ void load_fsinfo()
                    fu.fsu_ffree);
         fs_info[fs_numbers] = s;
 
-        filesystem_percent_full =
+        percent_full = g_malloc(sizeof(gdouble));
+        *percent_full =
           1.0 - ((gdouble)fu.fsu_bavail)/((gdouble)fu.fsu_blocks);
-
-        percent = (gint)(filesystem_percent_full * 100);
+        
+        percent = (gint)((*percent_full) * 100);
         
         len = strlen(percent_full_format); /* The format makes it big enough */
         s = g_malloc(len);
@@ -284,6 +290,9 @@ void load_fsinfo()
       fs_info[fs_numbers] = NULL;
       fs_info[fs_percent_full] = NULL;
     }
+
+    filesystems_percent_full = 
+      g_list_append(filesystems_percent_full, percent_full);
 
     tmp = me;
     me = me->me_next;
