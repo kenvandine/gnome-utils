@@ -5,7 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-2.0.hi\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-25 19:25+0530\n"
 "PO-Revision-Date: 2003-09-08 17:32+0530\n"
 "Last-Translator: G Karunakar <karunakar@freedomink.org>\n"
 "Language-Team: Hindi <indlinux-hindi-gnome@lists.sourceforge.net>\n"
@@ -13,14 +14,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "net>\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
 msgstr "अतिरिक्त सहायता सामान"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "डिक्शनरी देखें"
 
@@ -52,8 +52,8 @@ msgstr "शब्दकोष दिखाएं (_S)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "सरवर से जुड़ नहीं पा रहा"
 
@@ -106,6 +106,11 @@ msgstr "वाक्य नहीं मिला"
 #: gdictsrc/gdict-app.c:469
 msgid "Find"
 msgstr "ढूंढो"
+
+#: gdictsrc/gdict-app.c:477
+#, fuzzy
+msgid "_Search for:"
+msgstr "फाईल ढूँढो"
 
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
@@ -163,7 +168,7 @@ msgstr "शब्द लिखो या नीचे सूची से चु
 msgid "Look Up for a Word"
 msgstr "शब्द को खोजें"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "खोजें (_L)"
 
@@ -172,85 +177,92 @@ msgstr "खोजें (_L)"
 msgid "Error invoking query: %s"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "शब्दकोष की"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "स्मार्ट लुकअप (_l)"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "सरवर (_S):"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "डिफॉल्ट सर्वर (_f)"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "सरवर को पूर्वनिर्धारित तरीके से"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "पोर्ट (_P):"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "डिफॉल्ट पोर्ट (_a)"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "पोर्ट को पूर्वनिर्धारित"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "सरवर"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "सरवर प्रविष्टि"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "सरवर का नाम प्रविष्ट करें"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "पोर्ट"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "पोर्ट प्रविष्टि"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "पोर्ट का नम्बर लिखें"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "डाटाबेस (_D)"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "पूर्व निर्धारित सरीका (_e)"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "सभी डाटाबेसों में खोजें"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "डाटाबेस"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "डाटाबेस का नाम"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "पूर्वनिर्धारित तरीका"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, fuzzy, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr "यहां एक गलती है %s खाली है।"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -730,7 +742,7 @@ msgstr "फार्मेट की प्रगति"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "फाईल ढूँढो"
 
@@ -1100,60 +1112,60 @@ msgstr ""
 msgid "Enter a value for search rule"
 msgstr "निर्देश नियम के लिए"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "नियम %s को हटाने के लिए क्लिक करें"
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "उपलब्ध विकल्प (_v):"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "नियम की तालिका ढूंढो"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "तालिका के लिए खोजने का नियम चुनो"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "खोज के परिणाम (_e):"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "नाम"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "फोल्डर"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "आकार"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "प्रकार"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "तारीख बदली गई"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "नाम मे है (_N):"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "ढूंढने के लिए फाइल का नाम दो"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "फोलचर में खोजें (_L):"
 
@@ -1161,40 +1173,40 @@ msgstr "फोलचर में खोजें (_L):"
 # libgnome-desktop/gnome-ditem-edit.c:381
 # #-#-#-#-#  libgnomeui.HEAD.hi.po (libgnomeui-2.0.hi)  #-#-#-#-#
 # libgnomeui/gnome-icon-entry.c:930
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "ब्राउस"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "फोलडर एंट्री मे देखें"
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
 msgid "Enter the folder name where you want to start the search"
 msgstr "खोज शुरू करने के लिए फोल्डर का नाम दो"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1844
+msgid "Look in Folder Entry"
+msgstr "फोलडर एंट्री मे देखें"
+
+#: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
 msgstr "और विकल्प दिखाएं (_o)"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 #, fuzzy
 msgid "Show more options"
 msgstr "और विकल्प दिखाएं (_o)"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "खोज शुरू करने के लिए दबाएं"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "खोज बंद करने के लिए दबाएं"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -1223,13 +1235,28 @@ msgstr "क्रियाएं"
 msgid "_Add"
 msgstr "जोड़ना (_A)"
 
+#: logview/actions.c:162
+#, fuzzy
+msgid "Add an action"
+msgstr "क्रियाएं"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "संपादन (_E)"
 
+#: logview/actions.c:169
+#, fuzzy
+msgid "Edit an action"
+msgstr "कार्य करो (_E)"
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "हटाओ"
+
+#: logview/actions.c:176
+#, fuzzy
+msgid "Remove an action"
+msgstr "सभी आयटम हटाओ"
 
 #: logview/actions.c:263
 #, c-format
@@ -1272,6 +1299,57 @@ msgstr "कार्य करो जब regexps सही हो"
 #: logview/actions.c:515
 msgid "description"
 msgstr "विवरण"
+
+#: logview/actions.c:651
+#, fuzzy
+msgid "Edit Action"
+msgstr "क्रियाएं"
+
+#: logview/actions.c:687
+msgid "_Tag:"
+msgstr ""
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr ""
+
+#: logview/actions.c:705
+#, fuzzy
+msgid "_Log name:"
+msgstr "वोल्यूम का नाम (_n):"
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr ""
+
+#: logview/actions.c:724
+#, fuzzy
+msgid "_Process:"
+msgstr "क्रिया"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr ""
+
+#: logview/actions.c:743
+#, fuzzy
+msgid "_Message:"
+msgstr "संदेश"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr ""
+
+#: logview/actions.c:762
+#, fuzzy
+msgid "_Action:"
+msgstr "क्रियाएं"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1613,6 +1691,7 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "मानीटर पर बहुत सारे लाग है। एक हटाकर फिर से कोशिस करो"
 
 #: logview/monitor.c:298 logview/monitor.c:335
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list खाली है\n"
 
@@ -1621,6 +1700,7 @@ msgid "Monitoring Logs..."
 msgstr "लाग्स का निरीक्षण चल रहा है..."
 
 #: logview/monitor.c:643
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr ""
 
@@ -1644,698 +1724,3 @@ msgstr "संदेश"
 msgid "Description:"
 msgstr "विवरण"
 
-#: logview/zoom.c:129
-msgid "Log Line Details"
-msgstr "लाग पंक्ति का विवरण"
-
-#. Translators: do not include year, it would be bogus
-#: logview/zoom.c:187
-msgid "%B %e %X"
-msgstr "%B %e %X"
-
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "एनिमेशन फाइल या तो गुम है या अवैध है : %s"
-
-#~ msgid "One File Found"
-#~ msgstr "एक फाईल मिली"
-
-#~ msgid "One file found"
-#~ msgstr "एक फाईल मिली"
-
-#~ msgid "Open %d documents?"
-#~ msgstr "%d दस्तावेज खोलें ?"
-
-#~ msgid "Could not open document \"%s\""
-#~ msgstr "दस्तावेज \"%s\" नही खोल पाए"
-
-#~ msgid "Open %d folders?"
-#~ msgstr "%d फोल्डर खोलें ?"
-
-#~ msgid "The contents of the file \"%s\" will be lost."
-#~ msgstr "फाइल \"%s\" के तत्व समाप्त हो जाएंगे"
-
-#~ msgid "GNOME Dictionary"
-#~ msgstr "गनोम शब्दकोष"
-
-#~ msgid "Gdialog progressbar"
-#~ msgstr "डायलाग प्रविष्टि"
-
-#~ msgid "GDialog Entry"
-#~ msgstr "डायलाग प्रविष्टि"
-
-#~ msgid "Enter the text"
-#~ msgstr "पाठ्य लिखो"
-
-#~ msgid "_Word: "
-#~ msgstr "शब्द (_W):"
-
-#~ msgid "Headword:"
-#~ msgstr "मुख्यशब्द:"
-
-#~ msgid "Pronunciation:"
-#~ msgstr "उच्चारण:"
-
-#~ msgid "Part of speech:"
-#~ msgstr "भाषण का भाग:"
-
-#~ msgid "Example:"
-#~ msgstr "उदाहरण:"
-
-#~ msgid "Main body:"
-#~ msgstr "मुख्य भाग:"
-
-#~ msgid "Search _Results"
-#~ msgstr "खोज का परिणाम (_R)"
-
-#, fuzzy
-#~ msgid "Floppy formatter"
-#~ msgstr "फ्लापी डिस्क फार्मेट करें"
-
-#, fuzzy
-#~ msgid "Search Errors"
-#~ msgstr "फाईल ढूँढो"
-
-#, fuzzy
-#~ msgid "Search for Files Error"
-#~ msgstr "फाईल ढूँढो"
-
-#~ msgid "File Name Entry"
-#~ msgstr "फाइल के नाम की प्रविष्टि"
-
-#, fuzzy
-#~ msgid "Additional Options"
-#~ msgstr "कार्य के"
-
-#, fuzzy
-#~ msgid "File \"%s\" already exists. Overwrite?"
-#~ msgstr "फाइल %s फाईल से उपस्थित है, उसी पर लिखें"
-
-#~ msgid "%Y%m%d%H%M%S"
-#~ msgstr "%Y%m%d%H%M%S"
-
-#, fuzzy
-#~ msgid ""
-#~ "This program is part of the GNOME project. Logview comes with ABSOLUTELY "
-#~ "NO WARRANTY. This is free software, and you are welcome to redistribute "
-#~ "it under the conditions of the GNU General Public Licence. The log icon "
-#~ "is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-#~ msgstr ""
-#~ "यह प्रोग्राम लायनेक्स के जीनोम प्रोजेक्ट का भाग है लागवीव बिना किसी वारंटी के आता है। "
-#~ "यह एक मुफ्त साफ्टवेयर है और इसे"
-
-#~ msgid "Copyright (C) 1998"
-#~ msgstr "कापीराइट (C) 1998"
-
-#, fuzzy
-#~ msgid "Ac_tions"
-#~ msgstr "कार्य"
-
-#~ msgid "_Show/Hide Definition Window..."
-#~ msgstr "परिभाषा खिड़की दिखाएं/छिपाएं... (_S)"
-
-#~ msgid "GNOME Calculator"
-#~ msgstr "जीनोम गणक"
-
-#, fuzzy
-#~ msgid "(C) 1998 Free Software Foundation, Inc."
-#~ msgstr "(C) 1998, 2002 मुक्त साफ्टवेयर फाउण्डेशन"
-
-#~ msgid "_Calculator"
-#~ msgstr "गणक (c)"
-
-#~ msgid "Calculator"
-#~ msgstr "गणना करने वाला"
-
-#~ msgid "inf"
-#~ msgstr "inf"
-
-#~ msgid "DEG"
-#~ msgstr "डिग्री"
-
-#~ msgid "RAD"
-#~ msgstr "रेडियन"
-
-#~ msgid "GRAD"
-#~ msgstr "GRAD"
-
-#~ msgid "1/x"
-#~ msgstr "1/x"
-
-#~ msgid "Inverse"
-#~ msgstr "उल्टा"
-
-#~ msgid "Square"
-#~ msgstr "वर्ग"
-
-#~ msgid "SQRT"
-#~ msgstr "वर्गमूल"
-
-#~ msgid "Square root"
-#~ msgstr "वर्गमूल"
-
-#~ msgid "Clear"
-#~ msgstr "खाली"
-
-#~ msgid "sin"
-#~ msgstr "साइन"
-
-#~ msgid "Sine"
-#~ msgstr "साइन"
-
-#~ msgid "cos"
-#~ msgstr "कोस"
-
-#~ msgid "Cosine"
-#~ msgstr "कोसाइन"
-
-#~ msgid "tan"
-#~ msgstr "टेन"
-
-#~ msgid "Tangent"
-#~ msgstr "स्पर्शज्या"
-
-#~ msgid "e"
-#~ msgstr "ई"
-
-#~ msgid "Base of Natural Logarithm"
-#~ msgstr "प्राकत लघुगणक आधार"
-
-#~ msgid "EE"
-#~ msgstr "इइ"
-
-#~ msgid "Add digit"
-#~ msgstr "अंक जोड़ो"
-
-#~ msgid "log"
-#~ msgstr "लघुगणक"
-
-#~ msgid "ln"
-#~ msgstr "इन"
-
-#~ msgid "Natural Logarithm"
-#~ msgstr "प्राकत लघुगणक"
-
-#~ msgid "Power"
-#~ msgstr "घात"
-
-#~ msgid "PI"
-#~ msgstr "पाई"
-
-#~ msgid "Opening Parenthesis"
-#~ msgstr "कोष्ठक खोलना"
-
-#~ msgid "Closing Parenthesis"
-#~ msgstr "कोष्ठक बंद करना"
-
-#~ msgid "Divide by"
-#~ msgstr "से भाग"
-
-#~ msgid "Multiply by"
-#~ msgstr "से गुणा करो"
-
-#~ msgid "Subtract"
-#~ msgstr "घटाना"
-
-#~ msgid "SUM"
-#~ msgstr "जोड़ना"
-
-#~ msgid ""
-#~ "Add the value in the display\n"
-#~ "field to the value in memory"
-#~ msgstr "दिखाई गई जगह की मान को मेमोरी के मान से जोड़ों"
-
-#~ msgid "Add"
-#~ msgstr "जोड़ना"
-
-#~ msgid ""
-#~ "Exchange the values in the\n"
-#~ "display field and memory"
-#~ msgstr "मान को दिखाई गई जगह पर और मेमोरी में बदलो"
-
-#~ msgid "Decimal Point"
-#~ msgstr "दशमलव बिन्दू"
-
-#~ msgid "Calculate"
-#~ msgstr "गणना"
-
-#~ msgid "Perform simple calculations"
-#~ msgstr "सरल गणना करो"
-
-#~ msgid "Character Map"
-#~ msgstr "शब्द नक्शा"
-
-#~ msgid "Insert special characters into documents"
-#~ msgstr "विशेष शब्द"
-
-#~ msgid "Select Character"
-#~ msgstr "शब्द चुनो"
-
-#~ msgid "_Insert"
-#~ msgstr "भरो"
-
-#, fuzzy
-#~ msgid "Character c_ode:"
-#~ msgstr "शब्द"
-
-#, fuzzy
-#~ msgid "Ch_aracter:"
-#~ msgstr "शब्द"
-
-#~ msgid "Character Code"
-#~ msgstr "अछर संकेत"
-
-#~ msgid "Select character code"
-#~ msgstr "शब्द चुनो"
-
-#~ msgid "Character"
-#~ msgstr "शब्द"
-
-#~ msgid "Character to insert"
-#~ msgstr "भरने के लिए अछर"
-
-#~ msgid "GNOME Character Map"
-#~ msgstr "जीनोम अछर नक्शा"
-
-#~ msgid ""
-#~ "Select, copy and paste characters from your font into other applications"
-#~ msgstr "अपने फोन्ट से शब्द चुने, उसकी प्रति बनाकर अन्य एप्लीकेशन में चिपकाना"
-
-#, fuzzy
-#~ msgid "Character code: (Unicode) U+%04lX"
-#~ msgstr "शब्द"
-
-#, fuzzy
-#~ msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
-#~ msgstr "शब्द"
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "क्लिपबोर्ड पर पाठ्य की प्रति बन गई..."
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "क्लिपबोर्ड पर पाठ्य कट गया..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "क्लिपबोर्ड पर पाठ्य चिपक गया..."
-
-#~ msgid "Action Toolbar"
-#~ msgstr "कार्य टूलबार"
-
-#, fuzzy
-#~ msgid "_Font:"
-#~ msgstr "पोर्ट (_P):"
-
-#~ msgid "_Text to copy:"
-#~ msgstr "पाठ्य जिसकी प्रतिलिपि बनानी है (_T)"
-
-#~ msgid "_Copy"
-#~ msgstr "प्रतिलिपि बनाओ (_C)"
-
-#~ msgid "Text to copy"
-#~ msgstr "पाठ्य जिसकी प्रतिलिपि बनानी है"
-
-#~ msgid "Entry"
-#~ msgstr "प्रविष्टि"
-
-#~ msgid "Copy"
-#~ msgstr "प्रतिलिपि"
-
-#~ msgid "Copy the text"
-#~ msgstr "पाठ्य की प्रतिलिपि"
-
-#~ msgid "_Browse..."
-#~ msgstr "ब्राउज...(_B)"
-
-#~ msgid "Insert character(s) by choosing character codes."
-#~ msgstr "अछर संकेत से चुनकर अछर भरें"
-
-#~ msgid "Ch_aracters"
-#~ msgstr "अक्षर (_a)"
-
-#~ msgid "Cut"
-#~ msgstr "काटो"
-
-#~ msgid "Cut the selection"
-#~ msgstr "चुने हुए को काटो"
-
-#~ msgid "Copy the selection"
-#~ msgstr "चुने हुए की प्रतिलिपि बनाओ"
-
-#~ msgid "Paste"
-#~ msgstr "चिपकाओ"
-
-#~ msgid "Paste the clipboard"
-#~ msgstr "क्लिपबोर्ड पर चिपकाएं"
-
-#~ msgid "GNOME Search Tool"
-#~ msgstr "जीनोम खोज उपकरण"
-
-#~ msgid ""
-#~ "Executing arbitrary programs that you downloaded from the network might "
-#~ "be dangerous.\n"
-#~ "\n"
-#~ "Are you sure you want to run `%s'?"
-#~ msgstr ""
-#~ "आरबीटरी प्रोग्राम जो आपने नेटवर्क से डाउनलोड किया है, को चलाना खतर्नाक हो सकता "
-#~ "हैं \n"
-#~ "\n"
-#~ "क्या आप वाकई '%s' को चलाना करना चाहते हैं"
-
-#~ msgid "Could not access file permissions"
-#~ msgstr "फाईल की अनुमति प्राप्त नहीं कर सकता"
-
-#~ msgid "Could not execute the file `%s' due to a permission problem"
-#~ msgstr "%s फाईह को अनुमति की समस्या के कारण चला नहीं सकता"
-
-#~ msgid "Failure at executing `%s'"
-#~ msgstr "%s चलाने में असमर्थ"
-
-#~ msgid "It was not possible to open the file `%s'"
-#~ msgstr "%s फाईल को खोलना संभव नहीं"
-
-#~ msgid "The file `%s' is empty"
-#~ msgstr "%s फाईल खाली है"
-
-#~ msgid "There was an error. `%s' is empty"
-#~ msgstr "यहां एक गलती है %s खाली है।"
-
-#~ msgid "This is a library and can not be executed"
-#~ msgstr "यह एक लायब्रेरी है और चल नहीं सकती"
-
-#~ msgid "The file is a core file and can not be executed"
-#~ msgstr "यह कोर फाइल है और चल नहीं सकता"
-
-#~ msgid "This is an unknown kind of executable"
-#~ msgstr "यह अंजान प्रकार की चलने वाली है"
-
-#~ msgid ""
-#~ "The executable is for a different platform and can not be executed on "
-#~ "this system"
-#~ msgstr "यह भिन्न प्लेटफार्म पर चलता है और यहां नहीं चह सकता"
-
-#, fuzzy
-#~ msgid "File is not named"
-#~ msgstr "फाईल का नाम नहीं है"
-
-#, fuzzy
-#~ msgid "File is _named:"
-#~ msgstr "फाइल का नाम ढूंढो"
-
-#~ msgid " %s: Character code %d"
-#~ msgstr "%s: अक्षर संकेत %d"
-
-#~ msgid "Gnome Character Map"
-#~ msgstr "जीनोम अक्षर नक्शा"
-
-#~ msgid ""
-#~ "Client for MIT dictionary server.\n"
-#~ "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
-#~ msgstr ""
-#~ "एम आई टी डिक्शनरी सरवर के लिए क्लाइंट\n"
-#~ "वेब: http://gdict.dhs.org/, http://www.psilord.com/code/"
-
-#~ msgid "De_fault"
-#~ msgstr "पूर्वनिर्धारित (_f)"
-
-#~ msgid "EBad block at block %lu"
-#~ msgstr "ब्लाक %lu पर खराब ब्लाक है"
-
-#~ msgid "Format a Floppy"
-#~ msgstr "एक फ्लापी को फार्मेट करो"
-
-#~ msgid "_Quick format"
-#~ msgstr "त्वरित फोर्मेट (_Q)"
-
-#~ msgid "File name is"
-#~ msgstr "फाईल का नाम है"
-
-#~ msgid "Don't search mounted filesystems"
-#~ msgstr "माउन्टेड फाईल सिस्टम को मत ढूँढें"
-
-#~ msgid "Process folder contents depth first"
-#~ msgstr "फोल्डर के सामान पर गहराई से पहले कार्य करें"
-
-#~ msgid "Invalid user or group"
-#~ msgstr "गलत यूसर या समूह"
-
-#~ msgid "Last time modified"
-#~ msgstr "पिछली बार माडिफाइड"
-
-#~ msgid "folder"
-#~ msgstr "फोल्डर"
-
-#~ msgid "program"
-#~ msgstr "प्रोग्राम"
-
-#~ msgid "symbolic link"
-#~ msgstr "सांकेतिक कड़ी"
-
-#~ msgid ""
-#~ "Cannot perform the search.\n"
-#~ "The Bourne shell was not found\n"
-#~ "It is typically installed as /bin/sh or /usr/bin/sh."
-#~ msgstr ""
-#~ "ढूंढना संभव नहीं मिला। यह सामान्यत /bin/sn पर /use/sin/sn के रूप में इन्सटाल होता है"
-
-#~ msgid "Cannot perform the search. Please specify a search criteria."
-#~ msgstr "ढूंढना संभव नहीं। कपया ढूँढने का तरीका बताएं"
-
-#~ msgid ""
-#~ "A search is already running.  Please wait for the search to complete or "
-#~ "cancel it."
-#~ msgstr "एक खोज पहले से चल रही है कपया प्रतीछा करें या उसे निरस्त करें।"
-
-#~ msgid "Start folder does not exist"
-#~ msgstr "स्टार्ट फोल्डर उपस्थित नहीं है"
-
-#~ msgid ""
-#~ "Cannot show the search command line. Please specify a search criteria."
-#~ msgstr "ढूँढने की कमांड लाईन नहीं दिखा सकता कपया ढूँढने का तरीका बताएँ।"
-
-#~ msgid "Search Command Line"
-#~ msgstr "खोज निर्देश पंक्ति"
-
-#~ msgid ""
-#~ "This is the command line that can be used to execute this search\n"
-#~ "from the console.\n"
-#~ "\n"
-#~ "C_ommand:"
-#~ msgstr "खोज को संग्रह से शुरू करने के लिए यह निर्देश पंक्ति है"
-
-#~ msgid "Command"
-#~ msgstr "निर्देश"
-
-#~ msgid "Command Line Entry"
-#~ msgstr "निर्देश पंक्ति की प्रविष्टि"
-
-#~ msgid "Use this command line to execute the search from console"
-#~ msgstr "संग्रह से खोज प्रारंभ करने के लिए यह निर्देश पंक्ति उपयोग करो"
-
-#~ msgid "Rules:"
-#~ msgstr "नियम"
-
-#~ msgid "A_dd Rule:"
-#~ msgstr "नियम जोड़ा"
-
-#~ msgid "Click to Add a Rule"
-#~ msgstr "नियम जोड़ने के लिए दवाओ"
-
-#~ msgid "Click to Start the Search"
-#~ msgstr "खोज शुरू करने के लिए दबाओ"
-
-#~ msgid "Click to Stop the Search"
-#~ msgstr "खोज बंद करने के लिए दवाओ"
-
-#~ msgid "Simple"
-#~ msgstr "सादा"
-
-#~ msgid "(C) 1998,2002 the Free Software Foundation"
-#~ msgstr "(C) 1998, 2002 मुक्त साफ्टवेयर फाउण्डेशन"
-
-#~ msgid "Save Results"
-#~ msgstr "परिणाम"
-
-#~ msgid "S_how Command..."
-#~ msgstr "निर्देश दिखाओ"
-
-#~ msgid "Show the command used to perform the search"
-#~ msgstr "खोजने के लिए उपयोग आने वाले निर्देश दिखाओ"
-
-#~ msgid "Save the search results"
-#~ msgstr "खोजे हुए परिणाम"
-
-#~ msgid "Sear_ch"
-#~ msgstr "खोजें"
-
-#~ msgid "Search Tool"
-#~ msgstr "खोजने का उपकरण"
-
-#~ msgid "fixed 12"
-#~ msgstr "फिक्स्ड १२"
-
-#~ msgid "fixed Bold 12"
-#~ msgstr "फिक्स्ड गाढ़ा १२"
-
-#~ msgid "fixed 10"
-#~ msgstr "फिक्स्ड 10"
-
-#~ msgid "fixed Bold 8"
-#~ msgstr "फिक्स्ड गाढ़ा 8"
-
-#~ msgid "Helvetica 14"
-#~ msgstr "हेलबेटिका 14"
-
-#~ msgid "Helvetica Bold 14"
-#~ msgstr "हेलवेटिका गाढ़ा 14"
-
-#~ msgid "Helvetica 12"
-#~ msgstr "हेलवेटिका 12"
-
-#~ msgid "Helvetica Bold 12"
-#~ msgstr "हेलवेटिका गाढ़ा 12"
-
-#~ msgid "Helvetica 10"
-#~ msgstr "हेलवेटिका 10"
-
-#~ msgid "Helvetica Bold 10"
-#~ msgstr "हेलवेटिका गाढ़ा 10"
-
-#~ msgid "Log:"
-#~ msgstr "लाग"
-
-#~ msgid "Out of memory!\n"
-#~ msgstr "मेमोरी से बाहर!\n"
-
-#~ msgid "About..."
-#~ msgstr "बारे में..."
-
-#~ msgid "Cannot load required fonts, cannot continue"
-#~ msgstr "जरूरी फान्ट्स, आगे नहीं बढ़ सकता"
-
-#~ msgid "Add >>"
-#~ msgstr "जोड़ो"
-
-#~ msgid "Remove <<"
-#~ msgstr "हटाओ"
-
-#~ msgid "hostname column width ( 0 to hide this column ): "
-#~ msgstr "होस्टनेम के"
-
-#~ msgid "Archive Generator"
-#~ msgstr "आर्चीव निर्माता (बनाने वाला)"
-
-#~ msgid "Create compressed archives containing many files"
-#~ msgstr "बहुत सी फाइल्स के रखने वाला संकुचित आर्चीव बनाना"
-
-#~ msgid ""
-#~ "Number of files: %d\n"
-#~ "Number of folders: %d"
-#~ msgstr ""
-#~ "फाइल्स की संख्या: %d\n"
-#~ "फोल्डर की संख्या: %d"
-
-#~ msgid ""
-#~ "No files or folders, drop files or folders\n"
-#~ "above to add them to the archive"
-#~ msgstr ""
-#~ "कोई फाइल फोल्डर नहीं है, ऊपर के फाइल या फोल्डर को आर्चीव में जोड़ने के लिए हटाओ"
-
-#~ msgid "%s removed"
-#~ msgstr "%s हटा दिए"
-
-#~ msgid "Failed to create %s"
-#~ msgstr "%s बनाने में असफल"
-
-#~ msgid "Archive.tar.gz"
-#~ msgstr "आर्चीव.टार.जीजेड"
-
-#~ msgid "Drag files in to make archives"
-#~ msgstr "बने हुए आर्चीव में फाइल्स ले जाओ"
-
-#~ msgid "All files selected"
-#~ msgstr "सभी फाइल्स चन ली"
-
-#~ msgid "All files removed"
-#~ msgstr "सभी फाइल्स हटा दी"
-
-#~ msgid "No filename selected"
-#~ msgstr "कोई फाइल का नाम नहीं चुना"
-
-#~ msgid "File exists, overwrite?"
-#~ msgstr "फाइल अस्तित्व में है, उसी पर पुन लिखें"
-
-#~ msgid "%s created"
-#~ msgstr "%s बनाइ गई"
-
-#~ msgid "No items to archive"
-#~ msgstr "आर्चीव में कोई आयटम नहीं है"
-
-#~ msgid "%s added"
-#~ msgstr "%s जोड़ लिया"
-
-#~ msgid "File does not exists"
-#~ msgstr "फाइल उपस्थित नहीं है"
-
-#~ msgid "_Add file or folder..."
-#~ msgstr "फाइल और फोल्डर जोड़ो"
-
-#~ msgid "Add a file or folder to archive"
-#~ msgstr "फाइल और फोल्डर आर्चीव में डालो"
-
-#~ msgid "_Create archive..."
-#~ msgstr "आर्चीव बनाओ"
-
-#~ msgid "Create a new archive from the items"
-#~ msgstr "आयटम में से नया आर्चीव बनाओ"
-
-#~ msgid "Remove the selected item"
-#~ msgstr "चुने हुए वस्तु को निकालो"
-
-#~ msgid "R_emove All"
-#~ msgstr "सबको हटाओ"
-
-#~ msgid "Remove all items"
-#~ msgstr "सभी आयटम हटाओ"
-
-#~ msgid "Drop files here to add them to the archive."
-#~ msgstr "वस्तुओं के आर्चीव में जोड़ने के लिए यहां से फाइल्स हटाओ"
-
-#~ msgid "_Create Archive"
-#~ msgstr "आर्चीव बनाओ"
-
-#~ msgid ""
-#~ "Drag this button to the destination where you want the archive to be "
-#~ "created or press it to pop up a file selection dialog."
-#~ msgstr "इस बटन को खींचकर उस जगह ले जाओ जहां आर्चीव बनाना है।"
-
-#~ msgid "Cannot find proper icons anywhere!"
-#~ msgstr "सही आयटम कहीं नही मिल पा रहा"
-
-#~ msgid ""
-#~ "Cannot find the archive (tar) program!\n"
-#~ "This is the program used for creating archives."
-#~ msgstr ""
-#~ "आर्चीव प्रोग्राम नहीं मिल रहा यह प्रोग्राम आर्चीव बनाने के लिए उपयोग में लाया जाता है।"
-
-#~ msgid "x^2"
-#~ msgstr "x^2"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-#~ msgstr "एडोब हेल्वेटिका बोल्ड सामान्य"
-
-#~ msgid "Default database. ! indicates all databases"
-#~ msgstr "पूर्वनिर्धारित डाटाबेस सभी डाटाबेस प्रदर्शित करें"
-
-#~ msgid "Default strategy"
-#~ msgstr "पूर्वनिर्धारित तरीका"
-
-#~ msgid "Format another floppy?"
-#~ msgstr "अन्य फ्लापी को फार्मेट करता है"
-
-#~ msgid "Add..."
-#~ msgstr "जोड़ना"
-
-#~ msgid "Remove"
-#~ msgstr "हटाओ"
-
-#~ msgid "description:"
-#~ msgstr "विवरण:"
