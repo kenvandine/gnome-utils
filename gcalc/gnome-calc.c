@@ -1150,7 +1150,8 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("sin"),  (GtkSignalFunc)simple_func, sin_helper, asin, TRUE,{'s','S',0}, N_("Sine"), NULL },
 		{N_("cos"),  (GtkSignalFunc)simple_func, cos_helper, acos, TRUE,{'c','C',0}, N_("Cosine"), NULL },
 		{N_("tan"),  (GtkSignalFunc)simple_func, tan_helper,    atan,   TRUE,  {'t','T',0}, N_("Tangent"), NULL },
-		{N_("DEG"),  (GtkSignalFunc)drg_toggle,  NULL,   NULL,   FALSE, {'d','D',0}, N_("Switch degrees / radians / grad"), NULL }
+		/* Ugly hack so that window won't resize when selecting GRAD - there should be a better fix that this */
+		{N_(" DEG  "),  (GtkSignalFunc)drg_toggle,  NULL,   NULL,   FALSE, {'d','D',0}, N_("Switch degrees / radians / grad"), NULL }
 	},{
 		{N_("e"),    (GtkSignalFunc)set_e,       NULL,   NULL,   FALSE, {'e','E',0}, N_("Base of Natural Logarithm"), NULL },
 		{N_("EE"),   (GtkSignalFunc)add_digit,   "e+",   NULL,   FALSE, {0}, N_("Add digit"), NULL },
