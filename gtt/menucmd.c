@@ -1,5 +1,6 @@
 /*   GTimeTracker - a time tracker
  *   Copyright (C) 1997,98 Eckehard Berns
+ *   Copyright (C) 2001 Linas Vepstas <linas@linas.org>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 #include <gnome.h>
 #include <string.h>
 
+#include "app.h"
 #include "ctree.h"
 #include "cur-proj.h"
 #include "dialog.h"
@@ -27,74 +29,30 @@
 #include "file-io.h"
 #include "gtt.h"
 #include "menucmd.h"
+#include "menus.h"
 #include "prefs.h"
 #include "proj.h"
 #include "props-proj.h"
 #include "timer.h"
 #include "xml-gtt.h"
 
-/* XXX: this is our main window, perhaps it is a bit ugly this way and
- * should be passed around in the data fields */
-extern GtkWidget *window;
-
-static void 
-gtt_show_err (GttErrCode code)
-{
-	switch (code)
-	{
-		case GTT_NO_ERR:
-			return;
-
-		case GTT_CANT_OPEN_FILE:
-		case GTT_CANT_WRITE_FILE:
-		{
-			msgbox_ok(_("Warning"),
-			  _("Could not write the data file!"),
-			  GNOME_STOCK_BUTTON_OK,
-			  GTK_SIGNAL_FUNC(gtk_main_quit));
-			return;
-		}
-		case GTT_NOT_A_GTT_FILE:
-		{
-			msgbox_ok(_("Warning"),
-			  _("Could not read the data file!"),
-			  GNOME_STOCK_BUTTON_OK,
-			  GTK_SIGNAL_FUNC(gtk_main_quit));
-			return;
-		}
-		case GTT_CANT_WRITE_CONFIG:
-		{
-			msgbox_ok(_("Warning"),
-			  _("Could not write the configuration file!"),
-			  GNOME_STOCK_BUTTON_OK,
-			  GTK_SIGNAL_FUNC(gtk_main_quit));
-			return;
-		}
-		default:
-		{
-			msgbox_ok(_("Warning"),
-			  _("Unknown error occurred"),
-			  GNOME_STOCK_BUTTON_OK,
-			  GTK_SIGNAL_FUNC(gtk_main_quit));
-			return;
-		}
-	}
-}
 
 void
 quit_app(GtkWidget *w, gpointer data)
 {
-	GttErrCode errcode;
+	const char * errmsg;
 
-	gtt_err_set_code (GTT_NO_ERR);
-	save_all();
-
-	errcode = gtt_err_get_code();
-	if (GTT_NO_ERR != errcode)
+	errmsg = save_all ();
+	if (errmsg)
 	{
-		gtt_show_err (errcode);
+		msgbox_ok(_("Warning"),
+		     errmsg,
+		     GNOME_STOCK_BUTTON_OK,
+		     GTK_SIGNAL_FUNC(gtk_main_quit));
+		g_free ((gchar *) errmsg);
 		return;
 	}
+
 	gtk_main_quit();
 }
 
@@ -103,34 +61,34 @@ quit_app(GtkWidget *w, gpointer data)
 void
 about_box(GtkWidget *w, gpointer data)
 {
-        static GtkWidget *about = NULL;
-        gchar *authors[] = {
-                "Eckehard Berns\n<eb@berns.i-s-o.net>",
-                "George Lebl\n<jirka@5z.com>",
-                "Linas Vepstas\n<linas@linas.org>",
-                "and dozens of bug-fixers and translators",
-                NULL
-        };
+	 static GtkWidget *about = NULL;
+	 gchar *authors[] = {
+		  "Eckehard Berns\n<eb@berns.i-s-o.net>",
+		  "George Lebl\n<jirka@5z.com>",
+		  "Linas Vepstas\n<linas@linas.org>",
+		  "and dozens of bug-fixers and translators",
+		  NULL
+	 };
 	if (about != NULL)
 	{
 		gdk_window_show(about->window);
 		gdk_window_raise(about->window);
 		return;
 	}
-        about = gnome_about_new(APP_NAME,
-                                VERSION,
-                                "Copyright (C) 1997,98 Eckehard Berns and others",
-                                (const gchar **)authors,
+	 about = gnome_about_new(APP_NAME,
+				    VERSION,
+				    "Copyright (C) 1997,98 Eckehard Berns and others",
+				    (const gchar **)authors,
 #ifdef DEBUG
-                                __DATE__ ", " __TIME__,
+				    __DATE__ ", " __TIME__,
 #else
 				_("Time tracking tool for GNOME"),
 #endif
-                                NULL);
+				    NULL);
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",
 			   GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
 	gnome_dialog_set_parent(GNOME_DIALOG(about), GTK_WINDOW(window));
-        gtk_widget_show(about);
+	gtk_widget_show(about);
 }
 
 
@@ -143,7 +101,7 @@ project_name_desc(GtkWidget *w, GtkEntry **entries)
 	GttProject *proj;
 
 	if (!(name = gtk_entry_get_text(entries[0]))) return;
-        if (!(desc = gtk_entry_get_text(entries[1]))) return;
+	 if (!(desc = gtk_entry_get_text(entries[1]))) return;
 	if (!name[0]) return;
 
 	/* New project will have the same parent as the currently
@@ -151,7 +109,7 @@ project_name_desc(GtkWidget *w, GtkEntry **entries)
 	 */
 	proj = gtt_project_new_title_desc(name, desc);
 	gtt_project_insert_after (proj, cur_proj);
-	ctree_insert_after (proj, cur_proj);
+	ctree_insert_after (global_ptw, proj, cur_proj);
 }
 
 static void
@@ -166,39 +124,39 @@ new_project(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *dlg, *t, *title, *d, *desc;
 	GtkBox *vbox;
-        GtkWidget **entries = g_new0(GtkWidget *, 2);
-        GtkWidget *table;
+	GtkWidget **entries = g_new0(GtkWidget *, 2);
+	GtkWidget *table;
 
 	title = gnome_entry_new("project_title");
-        desc = gnome_entry_new("project_description");
-        entries[0] = gnome_entry_gtk_entry(GNOME_ENTRY(title));
-        entries[1] = gnome_entry_gtk_entry(GNOME_ENTRY(desc));
+	desc = gnome_entry_new("project_description");
+	entries[0] = gnome_entry_gtk_entry(GNOME_ENTRY(title));
+	entries[1] = gnome_entry_gtk_entry(GNOME_ENTRY(desc));
 
 	new_dialog_ok_cancel(_("New Project..."), &dlg, &vbox,
 			     GNOME_STOCK_BUTTON_OK,
 			     GTK_SIGNAL_FUNC(project_name_desc),
-                             entries,
+				 entries,
 			     GNOME_STOCK_BUTTON_CANCEL, NULL, NULL);
 
 	t = gtk_label_new(_("Project Title"));
-        d = gtk_label_new(_("Description"));
+	d = gtk_label_new(_("Description"));
 
-        table = gtk_table_new(2,2, FALSE);
-        gtk_table_attach(GTK_TABLE(table), t,     0,1, 0,1,
-                         GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
-        gtk_table_attach(GTK_TABLE(table), title, 1,2, 0,1,
-                         GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
-        gtk_table_attach(GTK_TABLE(table), d,     0,1, 1,2,
-                         GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
-        gtk_table_attach(GTK_TABLE(table), desc,  1,2, 1,2,
-                         GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
+	table = gtk_table_new(2,2, FALSE);
+	gtk_table_attach(GTK_TABLE(table), t,     0,1, 0,1,
+			    GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
+	gtk_table_attach(GTK_TABLE(table), title, 1,2, 0,1,
+			    GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
+	gtk_table_attach(GTK_TABLE(table), d,     0,1, 1,2,
+			    GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
+	gtk_table_attach(GTK_TABLE(table), desc,  1,2, 1,2,
+			    GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
 
-        gtk_box_pack_start(vbox, table, FALSE, FALSE, 2);
+	gtk_box_pack_start(vbox, table, FALSE, FALSE, 2);
 	gtk_widget_show(t);
 	gtk_widget_show(title);
-        gtk_widget_show(d);
-        gtk_widget_show(desc);
-        gtk_widget_show(table);
+	gtk_widget_show(d);
+	gtk_widget_show(desc);
+	gtk_widget_show(table);
 
 	gtk_widget_grab_focus(entries[0]);
 
@@ -221,35 +179,33 @@ new_project(GtkWidget *widget, gpointer data)
 static void
 init_project_list_2(GtkWidget *widget, int button)
 {
-	GttErrCode errcode;
-        const char * xml_filepath;
+	GttErrCode conf_errcode;
 
-	GtkWidget *dlg, *t;
-	GtkBox *vbox;
-	
 	if (button != 0) return;
 
+	/* Try ... */
 	gtt_err_set_code (GTT_NO_ERR);
-
-	/* Read the data file first, and the config later. 
-	 * The config file contains stuff like the 'current project',
-	 * which is undefined until the projects are read. */
-        xml_filepath = gnome_config_get_real_path (XML_DATA_FILENAME);
-        gtt_xml_read_file (xml_filepath);
-	
 	gtt_load_config (NULL);
-	errcode = gtt_err_get_code();
 
-	if (GTT_NO_ERR != errcode) 
+	/* Catch ... */
+	conf_errcode = gtt_err_get_code();
+	if (GTT_NO_ERR != conf_errcode)
 	{
-		new_dialog_ok(_("Warning"), &dlg, &vbox,
-			      GNOME_STOCK_BUTTON_OK, NULL, NULL);
-		t = gtk_label_new(_("I could not read the configuration file"));
-		gtk_widget_show(t);
-		gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
-		gtk_widget_show(dlg);
-	} else {
-                setup_ctree();
+		const char *fp, *errmsg;
+		fp = gtt_get_config_filepath();
+		errmsg = gtt_err_to_string (conf_errcode, fp);
+		msgbox_ok(_("Warning"),
+			errmsg, GNOME_STOCK_BUTTON_OK, NULL);
+
+		g_free ((gchar *) errmsg);
+	}
+	else
+	{
+
+		gtt_post_data_config ();
+		ctree_setup(global_ptw);
+		menus_add_plugins (GNOME_APP(window));
+		app_show();
 	}
 }
 
@@ -259,8 +215,7 @@ void
 init_project_list(GtkWidget *widget, gpointer data)
 {
 	msgbox_ok_cancel(_("Reload Configuration File"),
-			 _("This will overwrite your current set of projects.\n"
-			   "Do you really want to reload the configuration file?"),
+			 _("Do you really want to reload the configuration file?"),
 			 GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
 			 GTK_SIGNAL_FUNC(init_project_list_2));
 }
@@ -270,23 +225,16 @@ init_project_list(GtkWidget *widget, gpointer data)
 void
 save_project_list(GtkWidget *widget, gpointer data)
 {
-	GttErrCode errcode;
+	const char * errmsg;
 
-	gtt_err_set_code (GTT_NO_ERR);
-	save_all ();
-	errcode = gtt_err_get_code();
-	if (GTT_NO_ERR != errcode) 
+	errmsg = save_all ();
+	if (errmsg)
 	{
-		GtkWidget *dlg, *t;
-		GtkBox *vbox;
-		
-		new_dialog_ok(_("Warning"), &dlg, &vbox,
-			      GNOME_STOCK_BUTTON_OK, NULL, NULL);
-		t = gtk_label_new(_("Could not write the configuration file!"));
-		gtk_widget_show(t);
-		gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
-		gtk_widget_show(dlg);
-		return;
+		msgbox_ok(_("Warning"),
+		     errmsg,
+		     GNOME_STOCK_BUTTON_OK,
+		     NULL);
+		g_free ((gchar *) errmsg);
 	}
 }
 
@@ -366,7 +314,7 @@ cut_project(GtkWidget *w, gpointer data)
 	prop_dialog_set_project(NULL);
 	gtt_project_remove(cur_proj);
 	cur_proj_set(NULL);
-        ctree_remove(cutted_project);
+	ctree_remove(global_ptw, cutted_project);
 }
 
 
@@ -385,12 +333,13 @@ paste_project(GtkWidget *w, gpointer data)
 	/* insert before the current proj */
 	gtt_project_insert_before (p, cur_proj);
 
-	if (!cur_proj) {
+	if (!cur_proj) 
+	{
 		/* top-level insert */
-                ctree_add(p, NULL);
+		  ctree_add(global_ptw, p, NULL);
 		return;
 	}
-        ctree_insert_before(p, cur_proj);
+	ctree_insert_before(global_ptw, p, cur_proj);
 }
 
 
@@ -463,7 +412,7 @@ menu_clear_daily_counter(GtkWidget *w, gpointer data)
 	g_return_if_fail(cur_proj != NULL);
 
 	gtt_clear_daily_counter (cur_proj);
-        ctree_update_label(cur_proj);
+	ctree_update_label(global_ptw, cur_proj);
 }
 
 /* ============================ END OF FILE ======================= */

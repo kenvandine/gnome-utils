@@ -297,7 +297,20 @@ interval_popup_cb (Wiggy *wig)
 }
 
 /* ============================================================== */
-	  
+
+void
+change_task(GtkWidget *w, gpointer data)
+{
+	GttTask *newtask;
+	if (!cur_proj) return;
+
+	newtask = gtt_task_new ();
+	gtt_project_prepend_task (cur_proj, newtask);
+	prop_task_dialog_show (newtask);
+}
+
+/* ============================================================== */
+
 static void
 task_new_task_clicked_cb(GtkWidget * w, gpointer data) 
 {

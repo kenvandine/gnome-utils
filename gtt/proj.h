@@ -163,6 +163,10 @@ void		gtt_project_add_notifier (GttProject *,
 void		gtt_project_remove_notifier (GttProject *,
 			GttProjectChanged, gpointer);
 
+/* generic place to hang arbitrary data on the project (used by GUI) */
+gpointer	gtt_project_get_private_data (GttProject *);
+void		gtt_project_set_private_data (GttProject *, gpointer);
+
 /* -------------------------------------------------------- */
 /* project manipulation */
 
@@ -241,7 +245,8 @@ void	gtt_project_append_project (GttProject *parent, GttProject *child);
 void	gtt_project_insert_before (GttProject *proj, GttProject *before_me);
 void	gtt_project_insert_after (GttProject *proj, GttProject *after_me);
 
-void	gtt_project_add_task (GttProject *, GttTask *);
+void	gtt_project_append_task (GttProject *, GttTask *);
+void	gtt_project_prepend_task (GttProject *, GttTask *);
 
 /* The gtt_clear_daily_counter() will delete all intervals from 
  *    the project that started after midnight.  Typically, this 

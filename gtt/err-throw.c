@@ -18,7 +18,8 @@
 
 #include "config.h"
 
-#include <assert.h>
+#include <glib.h>
+#include <gnome.h>  /* needed only to define the _() macro */
 
 #include "err-throw.h"
  
@@ -46,6 +47,48 @@ GttErrCode
 gtt_err_get_code (void)
 {
 	return err;
+}
+
+/* ================================================================ */
+
+const char *
+gtt_err_to_string (GttErrCode code, const char * filename)
+{
+	const char * ret = NULL;
+	switch (code)
+	{
+		case GTT_NO_ERR:
+			ret = g_strdup (_("No Error"));
+			break;
+		case GTT_CANT_OPEN_FILE:
+			ret = g_strdup_printf (
+				_("Cannot open the project data file\n\t%s\n"),
+				filename);
+			break;
+		case GTT_CANT_WRITE_FILE:
+			ret = g_strdup_printf (
+				_("Cannot write the project data file\n\t%s\n"),
+				filename);
+			break;
+		case GTT_NOT_A_GTT_FILE:
+			ret = g_strdup_printf (
+				_("The file\n\t%s\n"
+				  "doesn't seem to be a GTT project data file\n"),
+				filename);
+			break;
+		case GTT_FILE_CORRUPT:
+			ret = g_strdup_printf (
+				_("The file\n\t%s\n"
+				  "seems to be corrupt\n"),
+				filename);
+			break;
+		case GTT_CANT_WRITE_CONFIG:
+			ret = g_strdup_printf (
+				_("Cannot write the config file\n\t%s\n"),
+				filename);
+			break;
+	}
+	return ret;
 }
 
 /* =========================== END OF FILE ======================== */

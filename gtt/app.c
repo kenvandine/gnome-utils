@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "app.h"
 #include "ctree.h"
 #include "cur-proj.h"
 #include "gtt.h"
@@ -51,12 +52,9 @@
 GttProject *cur_proj = NULL;
 GttProject *prev_proj = NULL;
 
-
-GtkWidget *glist, *window;
-#ifndef GNOME_USE_APP
-GtkBox *window_vbox;
-#endif
-
+ProjTreeWindow *global_ptw;
+GtkWidget *window;
+GtkWidget *glist;
 GtkWidget *status_bar;
 
 #ifdef GTK_USE_STATUSBAR
@@ -150,13 +148,13 @@ cur_proj_set(GttProject *proj)
 	{
 		cur_proj = proj;
 		gtt_project_timer_start (proj); 
-		ctree_select (proj);
+		ctree_select (global_ptw, proj);
 	}
 	else
 	{
 		prev_proj = cur_proj;
 		cur_proj = NULL;
-		if (prev_proj) ctree_unselect (prev_proj);
+		if (prev_proj) ctree_unselect (global_ptw, prev_proj);
 	}
 	log_proj(proj);
 	menu_set_states();
@@ -238,10 +236,10 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 	gtk_box_pack_end(GTK_BOX(status_bar), GTK_WIDGET(status_timer),
 			 FALSE, FALSE, 1);
 
-        glist = create_ctree();
+        global_ptw = ctree_new();
+        glist = ctree_get_widget(global_ptw);
+
 	gtk_box_pack_end(GTK_BOX(vbox), glist->parent, TRUE, TRUE, 0);
-	gtk_widget_set_usize(glist, -1, 120);
-	gtk_widget_show_all(glist->parent);
 
 	gtk_widget_show(vbox);
 	gnome_app_set_contents(GNOME_APP(window), vbox);
@@ -262,6 +260,15 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 		gnome_app_error(GNOME_APP(window),
 			_("Couldn't understand geometry (position and size)\n"
 				" specified on command line"));
+	}
+}
+
+void 
+app_show (void)
+{
+	if (!GTK_WIDGET_MAPPED(window)) 
+	{
+		gtk_widget_show(window);
 	}
 }
 

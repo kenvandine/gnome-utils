@@ -42,7 +42,14 @@ typedef enum {
 GttErrCode gtt_err_get_code (void);
 
 void gtt_err_set_code (GttErrCode);
+
+
+/* The gtt_err_to_string() routine returns a handy-dandy human-readable
+ *    error message, suitable for framing.  Be sure to free the returned 
+ *    string using g_free when done.
+ */
 	
+const char * gtt_err_to_string (GttErrCode code, const char * filename);
  
 
 /* =========================== END OF FILE ======================== */

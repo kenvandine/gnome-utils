@@ -20,6 +20,7 @@
 #include <gnome.h>
 #include <string.h>
 
+#include "app.h"
 #include "ctree.h"
 #include "cur-proj.h"
 #include "dialog.h"
@@ -92,11 +93,11 @@ timer_func(gpointer data)
 
 	if (config_show_secs) 
 	{
-		ctree_update_label(cur_proj);
+		ctree_update_label(global_ptw, cur_proj);
 	} 
 	else if (0 == gtt_project_total_secs_day(cur_proj)) 
 	{
-		ctree_update_label(cur_proj);
+		ctree_update_label(global_ptw, cur_proj);
 	}
 
 	if (0 < config_idle_timeout) 

@@ -25,6 +25,8 @@ extern int config_show_secs;
 extern int config_show_statusbar;
 extern int config_show_clist_titles;
 extern int config_show_subprojects;
+extern int config_show_title_desc;
+extern int config_show_title_task;
 extern int config_show_tb_icons;
 extern int config_show_tb_texts;
 extern int config_show_tb_tips;
@@ -46,6 +48,7 @@ extern char *config_logfile_stop;
 extern int config_logfile_use;
 extern int config_logfile_min_secs;
 
+extern char *config_data_url;
 
 /* pop up a dialog box for setting user preferences */
 void prefs_dialog_show (void);

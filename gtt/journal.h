@@ -25,4 +25,6 @@ void edit_invoice(GtkWidget *, gpointer);
 void edit_primer(GtkWidget *, gpointer);
 void invoke_report(GtkWidget *, gpointer);
 
+void change_task(GtkWidget *, gpointer);
+
 #endif /* __GTT_JOURNAL_H__ */

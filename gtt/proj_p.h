@@ -22,7 +22,6 @@
 #include "config.h"
 
 #include <glib.h>
-#include <gtk/gtkctree.h>
 
 #include "proj.h"
 #include "timer.h"
@@ -59,8 +58,8 @@ struct gtt_project_s
 	int frozen : 1 ;          /* defer recomputes of time totals */
 	int dirty_time : 1 ;      /* the time totals are wrong */
 
-        /* miscellaneous -- used bu GUI to display */
-        GtkCTreeNode *trow;
+        /* miscellaneous -- used by GUI to display */
+        gpointer *private_data;
 };
 
 

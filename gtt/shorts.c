@@ -24,6 +24,7 @@
 #include <config.h>
 #include <gnome.h>
 
+#include "app.h"
 #include "gtt.h"
 #include "menucmd.h"
 #include "shorts.h"

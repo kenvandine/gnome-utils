@@ -42,6 +42,7 @@ GList * plist = NULL;
 
 static void proj_refresh_time (GttProject *proj);
 static void proj_modified (GttProject *proj);
+static int task_suspend (GttTask *tsk);
 
 /* ============================================================= */
 
@@ -73,7 +74,7 @@ gtt_project_new(void)
 	proj->being_destroyed = FALSE;
 	proj->frozen = FALSE;
 	proj->dirty_time = FALSE;
-        proj->trow = NULL;
+        proj->private_data = NULL;
 
         proj->id = next_free_id;
 	next_free_id ++;
@@ -206,6 +207,7 @@ gtt_project_destroy(GttProject *proj)
 		}
 		if (proj->listeners) g_list_free (proj->listeners);
 	}
+	proj->private_data = NULL;
 	g_free(proj);
 }
 
@@ -403,6 +405,20 @@ gtt_project_get_auto_merge_gap (GttProject *proj)
 	return proj->auto_merge_gap;
 }
 
+void
+gtt_project_set_private_data (GttProject *proj, gpointer data)
+{
+	if (!proj) return;
+	proj->private_data = data; 
+}
+
+gpointer
+gtt_project_get_private_data (GttProject *proj)
+{
+	if (!proj) return NULL;
+	return proj->private_data;
+}
+
 /* =========================================================== */
 
 void
@@ -482,12 +498,12 @@ gtt_project_compat_set_secs (GttProject *proj, int sever, int sday, time_t last)
 		gtt_task_add_interval (tsk, ivl);
 	}
 
-	gtt_project_add_task (proj, tsk);
+	gtt_project_append_task (proj, tsk);
 
 	/* All new data will get its own task */
 	tsk = gtt_task_new ();
 	gtt_task_set_memo (tsk, _("New Task"));
-	gtt_project_add_task (proj, tsk);
+	gtt_project_append_task (proj, tsk);
 
 	proj_refresh_time (proj);
 }
@@ -627,7 +643,7 @@ gtt_project_insert_after(GttProject *p, GttProject *after_me)
 
 
 void 
-gtt_project_add_task (GttProject *proj, GttTask *task)
+gtt_project_append_task (GttProject *proj, GttTask *task)
 {
 	if (!proj || !task) return;
 
@@ -641,6 +657,34 @@ gtt_project_add_task (GttProject *proj, GttTask *task)
 
 	proj->task_list = g_list_append (proj->task_list, task);
 	task->parent = proj;
+	proj_refresh_time(proj);
+}
+
+void 
+gtt_project_prepend_task (GttProject *proj, GttTask *task)
+{
+	int is_running = FALSE;
+	if (!proj || !task) return;
+
+	/* if task has a different parent, then reparent */
+	if (task->parent)
+	{
+		task->parent->task_list =
+			g_list_remove (task->parent->task_list, task);
+		proj_refresh_time(task->parent);
+	}
+
+	/* avoid misplaced running intervals, stop the task */
+	if (proj->task_list)
+	{
+		GttTask *leadtask = proj->task_list->data;
+		is_running = task_suspend (leadtask);
+	}
+
+	proj->task_list = g_list_prepend (proj->task_list, task);
+	task->parent = proj;
+
+	if (is_running) gtt_project_timer_start (proj);
 	proj_refresh_time(proj);
 }
 
@@ -1192,7 +1236,7 @@ gtt_project_timer_start (GttProject *proj)
 	/* don't add the task until after we've done above */
 	if (NULL == proj->task_list)
 	{
-		gtt_project_add_task (proj, task);
+		gtt_project_append_task (proj, task);
 	}
 }
 

@@ -105,7 +105,7 @@ void msgbox_ok(const char *title, const char *text, const char *ok_text,
         s = g_strdup_printf(APP_NAME " - %s", title);
         mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_WARNING, ok_text, NULL, NULL);
 
-	gtk_signal_connect(GTK_OBJECT(mbox), "clicked", func, NULL);
+	if (func) gtk_signal_connect(GTK_OBJECT(mbox), "clicked", func, NULL);
         gtk_window_set_title(GTK_WINDOW(mbox), s);
 	gnome_dialog_set_parent(GNOME_DIALOG(mbox), GTK_WINDOW(window));
 	gtk_widget_show(mbox);
@@ -126,7 +126,7 @@ void msgbox_ok_cancel(const char *title, const char *text,
 
 	mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_QUESTION, ok_text, cancel_text, NULL);
 	gnome_dialog_set_default(GNOME_DIALOG(mbox), 1);
-	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
+	if (func) gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
 			   func, NULL);
         gtk_window_set_title(GTK_WINDOW(mbox), s);
 	gnome_dialog_set_parent(GNOME_DIALOG(mbox), GTK_WINDOW(window));

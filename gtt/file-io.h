@@ -36,7 +36,18 @@
 void gtt_save_config (const char *fname);
 void gtt_load_config (const char *fname);
 
+/* The gtt_post_data_config() routine should be called *after* the 
+ *    project data has been loaded. It performs some final configuration
+ *    and setup, such as setting the last (current) active project,
+ *    starting timers, etc.
+ */
 
+void gtt_post_data_config (void);
+
+/* returns the 'real path' to the config file that was/would be used */
+const char * gtt_get_config_filepath (void);
+
+/* ??? */
 gboolean project_list_export (const char *fname);
 
 

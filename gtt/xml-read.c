@@ -300,7 +300,7 @@ parse_project (xmlNodePtr project)
 			{
 				GttTask *tsk;
 				tsk = parse_task (tn);
-				gtt_project_add_task (prj, tsk);
+				gtt_project_append_task (prj, tsk);
 			}
 		} 
 		else

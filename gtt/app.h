@@ -16,34 +16,27 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef __GTT_H__
-#define __GTT_H__
-
+#ifndef __GTT_APP_H__
+#define __GTT_APP_H__
 
 #include <gnome.h>
+#include "ctree.h"
 
-#ifdef DEBUG
-#define APP_NAME "GTimeTracker DEBUG"
-#else
-#define APP_NAME "GTimeTracker"
-#endif
+extern ProjTreeWindow *global_ptw;
 
-#define XML_DATA_FILENAME "gtt-xml.gttml"
+extern GtkWidget *window;
+extern GtkWidget *glist;
+extern GtkWidget *status_bar;
 
-/* err.c */
+/* true if command line over-rides geometry */
+extern gboolean geom_size_override;
+extern gboolean geom_place_override;
 
-void err_init(void);
+void update_status_bar(void);
 
-/* main.c */
+void app_new(int argc, char *argv[], const char *geometry_string);
 
-/* The save_all() routine will write out all state to files.  
- *    If an error occurs, it returns an error message.
- */
-const char * save_all (void);
-void unlock_gtt(void);
-const char *gtt_gettext(const char *s);
-
-#define gtt_sure_string(x) ((x)?(x):"")
+void app_show(void);
 
 
-#endif /* __GTT_H__ */
+#endif /* __GTT_APP_H__ */

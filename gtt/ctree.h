@@ -23,19 +23,35 @@
 #include <gnome.h>
 #include "proj.h"
 
+typedef struct ProjTreeWindow_s ProjTreeWindow;
+
 extern int clist_header_width_set;
 
-GtkWidget *create_ctree(void);
-void setup_ctree(void);
-void ctree_add(GttProject *p, GtkCTreeNode *parent);
-void ctree_insert_before(GttProject *p, GttProject *insert_before_me);
-void ctree_insert_after(GttProject *p, GttProject *insert_after_me);
-void ctree_remove(GttProject *p);
-void ctree_update_label(GttProject *p);
-void ctree_update_title(GttProject *p);
-void ctree_update_desc(GttProject *p);
-void ctree_unselect(GttProject *p);
-void ctree_select(GttProject *p);
+/* create the window that shows the project tree */
+ProjTreeWindow * ctree_new(void);
+void ctree_setup(ProjTreeWindow *ptw);
+void ctree_destroy(ProjTreeWindow *ptw);
 
+/* The ctree_insert_before() routine inserts the new project p
+ *   before the project "before me" 
+ */
+void ctree_add(ProjTreeWindow *, GttProject *p, GtkCTreeNode *parent);
+void ctree_insert_before(ProjTreeWindow *, GttProject *p, GttProject *insert_before_me);
+void ctree_insert_after(ProjTreeWindow *, GttProject *p, GttProject *insert_after_me);
+
+void ctree_remove(ProjTreeWindow *, GttProject *p);
+void ctree_update_label(ProjTreeWindow *, GttProject *p);
+void ctree_update_title(ProjTreeWindow *, GttProject *p);
+void ctree_update_desc(ProjTreeWindow *, GttProject *p);
+void ctree_unselect(ProjTreeWindow *, GttProject *p);
+void ctree_select(ProjTreeWindow *, GttProject *p);
+
+void ctree_update_column_visibility (ProjTreeWindow *ptw);
+void ctree_titles_show (ProjTreeWindow *ptw);
+void ctree_titles_hide (ProjTreeWindow *ptw);
+void ctree_subproj_show (ProjTreeWindow *ptw);
+void ctree_subproj_hide (ProjTreeWindow *ptw);
+
+GtkWidget * ctree_get_widget(ProjTreeWindow *);
 
 #endif /* __GTT_CTREE_H__ */

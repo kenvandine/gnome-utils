@@ -20,36 +20,55 @@
 #include <config.h>
 #include <gnome.h>
 
+#include "app.h"
 #include "ctree.h"
 #include "cur-proj.h"
 #include "gtt.h"
 #include "menucmd.h"
 #include "menus.h"
 #include "prefs.h"
-#include "proj_p.h"
 #include "props-proj.h"
 #include "timer.h"
 #include "util.h"
 
 /* There is a bug in clist which makes all but the last column headers
  * 0 pixels wide. This hack fixes this. */
-#define CLIST_HEADER_HACK
-
-#define TOTAL_COL	0
-#define TIME_COL	1
-#define TITLE_COL	2
-#define DESC_COL	3
-
+// #define CLIST_HEADER_HACK 1
 int clist_header_width_set = 0;
 
-typedef struct PrjTreeNode_s
+/* column types */
+typedef enum {
+	NULL_COL = 0,
+	TIME_EVER_COL = 1,
+	TIME_TODAY_COL,
+	TITLE_COL,
+	DESC_COL,
+	TASK_COL,
+} ColType;
+
+#define NCOLS		5
+
+
+typedef struct ProjTreeNode_s
+{
+	ProjTreeWindow *ptw;
+	GtkCTreeNode *ctnode;
+	GttProject *prj;
+} ProjTreeNode;
+
+struct ProjTreeWindow_s 
 {
 	GtkCTree *ctree;
-	GtkCTreeNode *trow;
-	GttProject *prj;
-} PrjTreeNode;
+	ColType cols[NCOLS];
+	char * col_titles[NCOLS];
+	char * col_values[NCOLS];
+	GtkJustification col_justify[NCOLS];
+	int ncols;
+	char ever_timestr[24];
+	char day_timestr[24];
+};
 
-static void cupdate_label(GttProject *p, gboolean expand);
+static void cupdate_label(ProjTreeNode *ptn, gboolean expand);
 
 /* ============================================================== */
 
@@ -66,9 +85,9 @@ widget_key_event(GtkCTree *ctree, GdkEvent *event, gpointer data)
 			rownode = gtk_ctree_node_nth (ctree,  GTK_CLIST(ctree)->focus_row);
 			if (rownode)
 			{
-				GttProject *prj;
-				prj = gtk_ctree_node_get_row_data(ctree, rownode);
-				if ((prj == cur_proj) && timer_is_running())
+				ProjTreeNode *ptn;
+				ptn = gtk_ctree_node_get_row_data(ctree, rownode);
+				if ((ptn->prj == cur_proj) && timer_is_running())
 				{
 					gtk_ctree_unselect (ctree, rownode);
 					cur_proj_set (NULL);
@@ -76,7 +95,7 @@ widget_key_event(GtkCTree *ctree, GdkEvent *event, gpointer data)
 				else
 				{
 					gtk_ctree_select (ctree, rownode);
-					cur_proj_set (prj);
+					cur_proj_set (ptn->prj);
 				}
 			}
 			return TRUE;
@@ -138,7 +157,9 @@ widget_button_event(GtkCList *clist, GdkEvent *event, gpointer data)
 static void
 tree_select_row(GtkCTree *ctree, GtkCTreeNode* rownode, gint column)
 {
-	cur_proj_set(gtk_ctree_node_get_row_data(ctree, rownode));
+	ProjTreeNode *ptn;
+	ptn = gtk_ctree_node_get_row_data(ctree, rownode);
+	cur_proj_set(ptn->prj);
 }
 
 
@@ -146,7 +167,9 @@ tree_select_row(GtkCTree *ctree, GtkCTreeNode* rownode, gint column)
 static void
 tree_unselect_row(GtkCTree *ctree, GtkCTreeNode* rownode, gint column)
 {
-	if (gtk_ctree_node_get_row_data(ctree, rownode) != cur_proj) return;
+	ProjTreeNode *ptn;
+	ptn = gtk_ctree_node_get_row_data(ctree, rownode);
+	if (ptn->prj != cur_proj) return;
 	cur_proj_set(NULL);
 }
 
@@ -164,22 +187,39 @@ tree_collapse (GtkCTree *ctree, GtkCTreeNode *row)
 }
 
 static void
-click_column(GtkCList *clist, gint col)
+click_column(GtkCList *clist, gint col, gpointer data)
 {
-	if (col == TOTAL_COL)
-		project_list_sort_total_time();
-	else if (col == TIME_COL)
-		project_list_sort_time();
-	else if (col == TITLE_COL)
-		project_list_sort_title();
-	else if (col == DESC_COL)
-		project_list_sort_desc();
-	setup_ctree();
+	ProjTreeWindow *ptw = data;
+	ColType ct;
+
+	if ((0 > col) || (NCOLS <= col)) return;
+	ct = ptw->cols[col];
+	switch (ct)
+	{
+		case TIME_EVER_COL:
+			project_list_sort_total_time();
+			break;
+		case TIME_TODAY_COL:
+			project_list_sort_time();
+			break;
+		case TITLE_COL:
+			project_list_sort_title();
+			break;
+		case DESC_COL:
+			project_list_sort_desc();
+			break;
+		case TASK_COL:
+			break;
+		case NULL_COL:
+			break;
+	}
+	
+	ctree_setup(ptw);
 }
 
 #ifdef CLIST_HEADER_HACK
 static void
-clist_header_hack(GtkWidget *window, GtkWidget *w)
+clist_header_hack(GtkWidget *w)
 {
 	GtkStyle *style;
 	GdkGCValues vals;
@@ -217,15 +257,17 @@ static GtkCTreeNode *sibling_ctree_node = NULL;
 
 /* we need to drag context to flip the pixmaps */
 static void
-drag_begin (GtkWidget *widget, GdkDragContext *context)
+drag_begin (GtkWidget *widget, GdkDragContext *context, gpointer data)
 {
 	drag_context = context;
 }
 
 static void 
 drag_drop (GtkWidget *widget, GdkDragContext *context,
-           gint x, gint y, guint time)
+           gint x, gint y, guint time, gpointer data)
 {
+	ProjTreeWindow *ptw = data;
+	ProjTreeNode *ptn;
 	GttProject *src_prj, *par_prj=NULL, *sib_prj=NULL;
 	GttProject *old_parent=NULL;
 	GtkCTree *ctree = GTK_CTREE(widget);
@@ -234,13 +276,21 @@ drag_drop (GtkWidget *widget, GdkDragContext *context,
 
 	/* sanity check. We expect a source node, and either 
 	 * a parent, or a sibling */
-	src_prj = gtk_ctree_node_get_row_data(ctree, source_ctree_node);
+	ptn = gtk_ctree_node_get_row_data(ctree, source_ctree_node);
+	src_prj = ptn->prj;
 	if (!src_prj) return;
 
 	if (parent_ctree_node)
-		par_prj = gtk_ctree_node_get_row_data(ctree, parent_ctree_node);
+	{
+		ptn = gtk_ctree_node_get_row_data(ctree, parent_ctree_node);
+		par_prj = ptn->prj;
+	}
 	if (sibling_ctree_node)
-		sib_prj = gtk_ctree_node_get_row_data(ctree, sibling_ctree_node);
+	{
+		ptn = gtk_ctree_node_get_row_data(ctree, sibling_ctree_node);
+		sib_prj = ptn->prj;
+	}
+
 	if (!par_prj && !sib_prj) return;
 
 	old_parent = gtt_project_get_parent (src_prj);
@@ -250,22 +300,24 @@ drag_drop (GtkWidget *widget, GdkDragContext *context,
 		gtt_project_insert_before (src_prj, sib_prj);
 
 		/* if collapsed we need to update the time */
-		ctree_update_label (src_prj->parent);
+		ctree_update_label (ptw, gtt_project_get_parent(src_prj));
 	}
 	else if (par_prj)
 	{
 		gtt_project_append_project (par_prj, src_prj);
-		ctree_update_label (par_prj);
+		ctree_update_label (ptw, par_prj);
 	}
 
 	/* Make sure we update the timestamps for the old parent
 	 * from which we were cutted. */
-	ctree_update_label (old_parent);
+	ctree_update_label (ptw, old_parent);
 
 	source_ctree_node = NULL;
 	parent_ctree_node = NULL;
 	sibling_ctree_node = NULL;
 }
+
+/* ============================================================== */
 
 static gboolean 
 ctree_drag (GtkCTree *ctree, GtkCTreeNode *source_node, 
@@ -289,15 +341,15 @@ ctree_drag (GtkCTree *ctree, GtkCTreeNode *source_node,
 #if 0
 {
 printf ("draging %s\n", gtt_project_get_desc(
-	gtk_ctree_node_get_row_data(ctree, source_ctree_node)));
+	gtk_ctree_node_get_row_data(ctree, source_ctree_node)->prj));
 printf ("to parent %s\n", gtt_project_get_desc(
-	gtk_ctree_node_get_row_data(ctree, parent_ctree_node)));
+	gtk_ctree_node_get_row_data(ctree, parent_ctree_node)->prj));
 printf ("before sibl %s\n\n", gtt_project_get_desc(
-	gtk_ctree_node_get_row_data(ctree, sibling_ctree_node)));
+	gtk_ctree_node_get_row_data(ctree, sibling_ctree_node)->prj));
 }
 #endif
-	/* note, we must test for new sibling before new parent,
-	 * since tehre can eb a ibling *and* parent */
+	/* Note, we must test for new sibling before new parent,
+	 * since there can be a sibling *and* parent */
 	if (new_sibling) 
 	{
 		/* if we have a sibling and a parent, and the parent
@@ -328,45 +380,206 @@ printf ("before sibl %s\n\n", gtt_project_get_desc(
 }
 
 /* ============================================================== */
+/* note about column layout:
+ * We have two ways of doing this: create a column-cell object,
+ * and program in an object-oriented styles.  The othe way is to
+ * set a column type, and use a big switch statement.  Beacuse this
+ * is a small prioject, we'll just use a switch statement.  Seems
+ * easier.
+ *
+ * Note also we have implemented a general system here, that 
+ * allows us to show columns in any order, or the same column
+ * more than once.   However, we do not actually make use of
+ * this anywhere; at the moment, the column locatins are fixed.
+ */ 
+
+static void 
+ctree_init_cols (ProjTreeWindow *ptw)
+{
+	int i;
+
+	/* init column types */
+	i=0; ptw->cols[i] = TIME_EVER_COL;
+	i++; ptw->cols[i] = TIME_TODAY_COL;
+	i++; ptw->cols[i] = TITLE_COL;
+	i++; ptw->cols[i] = DESC_COL;
+	i++; ptw->cols[i] = TASK_COL;
+	i++; ptw->cols[i] = NULL_COL;
+	ptw->ncols = i;
+
+	/* set column titles */
+	for (i=0; NULL_COL != ptw->cols[i]; i++)
+	{
+		switch (ptw->cols[i])
+		{
+			case TIME_EVER_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
+				ptw->col_titles[i] =  _("Total");
+				break;
+			case TIME_TODAY_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
+				ptw->col_titles[i] =  _("Today");
+				break;
+			case TITLE_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
+				ptw->col_titles[i] =  _("Project Title");
+				break;
+			case DESC_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
+				ptw->col_titles[i] =  _("Description");
+				break;
+			case TASK_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
+				ptw->col_titles[i] =  _("Task");
+				break;
+			case NULL_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
+				ptw->col_titles[i] =  "";
+				break;
+		}
+	}
+}
+
+/* ============================================================== */
+
+void 
+ctree_update_column_visibility (ProjTreeWindow *ptw)
+{
+	int i;
+
+	/* set column visibility */
+	for (i=0; NULL_COL != ptw->cols[i]; i++)
+	{
+		switch (ptw->cols[i])
+		{
+		case TIME_EVER_COL:
+			break;
+		case TIME_TODAY_COL:
+			break;
+		case TITLE_COL:
+			break;
+		case DESC_COL:
+		gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+				config_show_title_desc);
+			break;
+		case TASK_COL:
+		gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+				config_show_title_task);
+			break;
+		case NULL_COL:
+			break;
+		}
+	}
+}
+
+/* ============================================================== */
+
+static void 
+ctree_col_values (ProjTreeWindow *ptw, GttProject *prj)
+{
+	int i;
+
+	/* set column values */
+	for (i=0; NULL_COL != ptw->cols[i]; i++)
+	{
+		switch (ptw->cols[i])
+		{
+			case TIME_EVER_COL:
+				ptw->col_values[i] =  ptw->ever_timestr;
+				print_hours_elapsed (ptw->ever_timestr, 24, 
+					gtt_project_total_secs_ever(prj), 
+					config_show_secs);
+				break;
+			case TIME_TODAY_COL:
+				ptw->col_values[i] =  ptw->day_timestr;
+				print_hours_elapsed (ptw->day_timestr, 24, 
+					gtt_project_total_secs_day(prj), 
+					config_show_secs);
+				break;
+			case TITLE_COL:
+				ptw->col_values[i] = 
+					(char *) gtt_project_get_title(prj);
+				break;
+			case DESC_COL:
+				ptw->col_values[i] = 
+					(char *) gtt_project_get_desc(prj);
+				break;
+			case TASK_COL:
+			{
+				GList *leadnode;
+				leadnode = gtt_project_get_tasks (prj);
+				if (leadnode)
+				{
+					ptw->col_values[i] =  
+					(char *) gtt_task_get_memo (leadnode->data);
+				}
+				else
+				{
+					ptw->col_values[i] = "";
+				}
+				break;
+			}
+			case NULL_COL:
+				ptw->col_values[i] =  "";
+				break;
+		}
+	}
+}
+
+/* ============================================================== */
 /* redraw handler */
 
 static void
 redraw (GttProject *prj, gpointer data)
 {
-	GtkCTreeNode *treenode = data;
-	gtk_ctree_node_set_text(GTK_CTREE(glist), treenode, TITLE_COL,
-			   gtt_project_get_title(prj));
-	gtk_ctree_node_set_text(GTK_CTREE(glist), treenode, DESC_COL,
-			   gtt_project_get_desc(prj));
+	ProjTreeNode *ptn = data;
+	ProjTreeWindow *ptw = ptn->ptw;
+	int i;
 
-	cupdate_label (prj, GTK_CTREE_ROW(treenode)->expanded);
+	ctree_col_values (ptw, prj);
+	for (i=0; i<ptw->ncols; i++)
+	{
+		gtk_ctree_node_set_text(ptw->ctree, ptn->ctnode, 
+			i, ptw->col_values[i]);
+	}
+
+	cupdate_label (ptn, GTK_CTREE_ROW(ptn->ctnode)->expanded);
 }
 
 /* ============================================================== */
 
 GtkWidget *
-create_ctree(void)
+ctree_get_widget (ProjTreeWindow *ptw)
 {
+	if (!ptw) return NULL;
+	return (GTK_WIDGET (ptw->ctree));
+}
+
+ProjTreeWindow *
+ctree_new(void)
+{
+	ProjTreeWindow *ptw;
 	GtkWidget *wimg;
 	GtkWidget *w, *sw;
-	char *titles[4] = {
-		N_("Total"),
-		N_("Today"),
-		N_("Project Title"),
-		N_("Description")
-	};
-	char *tmp[4];
+	int i;
 
-	tmp[TOTAL_COL] = _(titles[0]);
-	tmp[TIME_COL]  = _(titles[1]);
-	tmp[TITLE_COL] = _(titles[2]);
-	tmp[DESC_COL]  = _(titles[3]);
-	w = gtk_ctree_new_with_titles(4, 2, tmp);
+	ptw = g_new0 (ProjTreeWindow, 1);
 
-	gtk_clist_set_selection_mode(GTK_CLIST(w), GTK_SELECTION_SINGLE);
-	gtk_clist_set_column_justification(GTK_CLIST(w), TOTAL_COL, GTK_JUSTIFY_CENTER);
-	gtk_clist_set_column_justification(GTK_CLIST(w), TIME_COL,  GTK_JUSTIFY_CENTER);
+	ctree_init_cols (ptw);
+
+	w = gtk_ctree_new_with_titles(ptw->ncols, 2, ptw->col_titles);
+	ptw->ctree = GTK_CTREE(w);
+
+	for (i=0; i<ptw->ncols; i++)
+	{
+		gtk_clist_set_column_justification(GTK_CLIST(w), 
+			i, ptw->col_justify[i]);
+	}
 	gtk_clist_column_titles_active(GTK_CLIST(w));
+	gtk_clist_set_selection_mode(GTK_CLIST(w), GTK_SELECTION_SINGLE);
+
+	gtk_widget_set_usize(w, -1, 120);
+	ctree_update_column_visibility (ptw);
 
 	/* create the top-level window to hold the c-tree */
 	sw = gtk_scrolled_window_new (NULL, NULL);
@@ -383,7 +596,7 @@ create_ctree(void)
 	gtk_signal_connect(GTK_OBJECT(w), "tree_select_row",
 			   GTK_SIGNAL_FUNC(tree_select_row), NULL);
 	gtk_signal_connect(GTK_OBJECT(w), "click_column",
-			   GTK_SIGNAL_FUNC(click_column), NULL);
+			   GTK_SIGNAL_FUNC(click_column), ptw);
 	gtk_signal_connect(GTK_OBJECT(w), "tree_unselect_row",
 			   GTK_SIGNAL_FUNC(tree_unselect_row), NULL);
 	gtk_signal_connect(GTK_OBJECT(w), "tree_expand",
@@ -392,17 +605,17 @@ create_ctree(void)
 			   GTK_SIGNAL_FUNC(tree_collapse), NULL);
 
 	gtk_signal_connect(GTK_OBJECT(w), "drag_begin",
-			   GTK_SIGNAL_FUNC(drag_begin), NULL);
+			   GTK_SIGNAL_FUNC(drag_begin), ptw);
 
 	gtk_signal_connect(GTK_OBJECT(w), "drag_drop",
-			   GTK_SIGNAL_FUNC(drag_drop), NULL);
+			   GTK_SIGNAL_FUNC(drag_drop), ptw);
 
 	/* allow projects to be re-arranged by dragging */
 	gtk_clist_set_reorderable(GTK_CLIST(w), TRUE);
 	gtk_clist_set_use_drag_icons (GTK_CLIST(w), TRUE);
 	gtk_ctree_set_drag_compare_func (GTK_CTREE(w), ctree_drag);
 
-	/* desperate attempt to clue the user into how the 
+	/* Desperate attempt to clue the user into how the 
 	 * dragged project will be reparented. We show left or
 	 * down arrows, respecitvely.  If anyone can come up with
 	 * something more elegant, then please ...  */
@@ -424,16 +637,16 @@ create_ctree(void)
 		gtk_container_add (GTK_CONTAINER(sibling_pixmap), wimg);
 	}
 
-	return w;
+	return ptw;
 }
 
 
+/* ========================================================= */
 
-/* setup_ctree_w references no widget globals ... */
-
-static void
-setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
+void
+ctree_setup (ProjTreeWindow *ptw)
 {
+	GtkCTree *tree_w = ptw->ctree;
 	GList *node, *prjlist;
 	GttProject *running_project = cur_proj;
 
@@ -447,7 +660,7 @@ setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
 		for (node = prjlist; node; node = node->next) 
 		{
 			GttProject *prj = node->data;
-			ctree_add(prj, NULL);
+			ctree_add(ptw, prj, NULL);
 		}
 		gtk_clist_thaw(GTK_CLIST(tree_w));
 	} else {
@@ -460,21 +673,22 @@ setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
 	if (cur_proj) 
 	{
 		GttProject *parent;
-		gtk_ctree_select(tree_w, cur_proj->trow);
+		ProjTreeNode *ptn;
+
+		ptn = gtt_project_get_private_data (cur_proj);
+		gtk_ctree_select(tree_w, ptn->ctnode);
 		parent = gtt_project_get_parent (cur_proj);
 		while (parent) 
 		{
-			gtk_ctree_expand(tree_w, parent->trow);
+			ptn = gtt_project_get_private_data (parent);
+			gtk_ctree_expand(tree_w, ptn->ctnode);
 			parent = gtt_project_get_parent (parent);
 		}
 	}
 
-	if (!GTK_WIDGET_MAPPED(top_win)) {
-		gtk_widget_show(top_win);
 #ifdef CLIST_HEADER_HACK
-		clist_header_hack(top_win, GTK_WIDGET(tree_w));
+	clist_header_hack(GTK_WIDGET(tree_w));
 #endif /* CLIST_HEADER_HACK */
-	}
 
 	menu_set_states();
 
@@ -500,113 +714,126 @@ setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
 
 	if (cur_proj) 
 	{
-		gtk_ctree_node_moveto(tree_w, cur_proj->trow, -1,
+		ProjTreeNode *ptn;
+		ptn = gtt_project_get_private_data (cur_proj);
+		gtk_ctree_node_moveto(tree_w, ptn->ctnode, -1,
 				 0.5, 0.0);
 	}
 	gtk_widget_queue_draw(GTK_WIDGET(tree_w));
 }
 
+/* ========================================================= */
+
 void
-setup_ctree(void)
+ctree_destroy (ProjTreeWindow *ptw)
 {
-	/* suck in globals */
-	setup_ctree_w (window, GTK_CTREE(glist));
+
+	/* hack alert -- this function is not usable in its
+	 * current form */
+	g_warning ("incompletely implemented.  should probably "
+		"traverse and destroy ptn's\n");
+	// ctree_remove (ptw, ptn->prj);
+
+	gtk_widget_destroy (GTK_WIDGET(ptw->ctree));
+	ptw->ctree = NULL;
+	ptw->ncols = 0;
+	g_free (ptw);
 }
 
 /* ============================================================== */
 
 void
-ctree_add (GttProject *p, GtkCTreeNode *parent)
+ctree_add (ProjTreeWindow *ptw, GttProject *p, GtkCTreeNode *parent)
 {
-	char ever_timestr[24], day_timestr[24];
+	ProjTreeNode *ptn;
 	GList *n;
-	GtkCTreeNode *treenode;
-	char *tmp[4];
 
-	print_hours_elapsed (ever_timestr, 24, gtt_project_total_secs_ever(p), 
-			config_show_secs);
-	print_hours_elapsed (day_timestr, 24, gtt_project_total_secs_day(p), 
-			config_show_secs);
-	tmp[TOTAL_COL] = ever_timestr;
-	tmp[TIME_COL]  = day_timestr;
-	tmp[TITLE_COL] = (char *) gtt_project_get_title(p);
-	tmp[DESC_COL]  = (char *) gtt_project_get_desc(p);
+	ctree_col_values (ptw, p);
 
-	treenode = gtk_ctree_insert_node (GTK_CTREE(glist),  parent, NULL,
-                               tmp, 0, NULL, NULL, NULL, NULL,
+	ptn = gtt_project_get_private_data (p);
+	if (!ptn)
+	{
+		ptn = g_new0 (ProjTreeNode, 1);
+		ptn->ptw = ptw;
+		ptn->prj = p;
+		gtt_project_set_private_data (p, ptn);
+		gtt_project_add_notifier (p, redraw, ptn);
+	}
+	ptn->ctnode = gtk_ctree_insert_node (ptw->ctree,  parent, NULL,
+                               ptw->col_values, 0, NULL, NULL, NULL, NULL,
                                FALSE, FALSE);
 
-	gtk_ctree_node_set_row_data(GTK_CTREE(glist), treenode, p);
-	p->trow = treenode;
-
-	gtt_project_add_notifier (p, redraw, treenode);
+	gtk_ctree_node_set_row_data(ptw->ctree, ptn->ctnode, ptn);
 
 	/* make sure children get moved over also */
 	for (n=gtt_project_get_children(p); n; n=n->next)
 	{
 		GttProject *sub_prj = n->data;
-		ctree_add (sub_prj, treenode);
+		ctree_add (ptw, sub_prj, ptn->ctnode);
 	}
 }
 
-
+/* ============================================================== */
 
 void
-ctree_insert_before (GttProject *p, GttProject *sibling)
+ctree_insert_before (ProjTreeWindow *ptw, GttProject *p, GttProject *sibling)
 {
-	char ever_timestr[24], day_timestr[24];
-	GtkCTreeNode *treenode, *sibnode=NULL;
+	ProjTreeNode *ptn;
+	GtkCTreeNode *sibnode=NULL;
 	GtkCTreeNode *parentnode=NULL;
-	char *tmp[4];
 
-	print_hours_elapsed (ever_timestr, 24, gtt_project_total_secs_ever(p), 
-			config_show_secs);
-	print_hours_elapsed (day_timestr, 24, gtt_project_total_secs_day(p), 
-			config_show_secs);
-	tmp[TOTAL_COL] = ever_timestr;
-	tmp[TIME_COL]  = day_timestr;
-	tmp[TITLE_COL] = (char *) gtt_project_get_title(p);
-	tmp[DESC_COL]  = (char *) gtt_project_get_desc(p);
+	ctree_col_values (ptw, p);
 
 	if (sibling)
 	{
-		if (sibling->parent) parentnode = sibling->parent->trow;
-		sibnode = sibling->trow;
+		GttProject *parent = gtt_project_get_parent (sibling);
+		if (parent) 
+		{
+			ptn = gtt_project_get_private_data (parent);
+			parentnode = ptn->ctnode;
+		}
+		ptn = gtt_project_get_private_data (sibling);
+		sibnode = ptn->ctnode;
 	}
-	treenode = gtk_ctree_insert_node (GTK_CTREE(glist),  
+
+	ptn = gtt_project_get_private_data (p);
+	if (!ptn)
+	{
+		ptn = g_new0 (ProjTreeNode, 1);
+		ptn->ptw = ptw;
+		ptn->prj = p;
+		gtt_project_set_private_data (p, ptn);
+		gtt_project_add_notifier (p, redraw, ptn);
+	}
+	ptn->ctnode = gtk_ctree_insert_node (ptw->ctree,  
                                parentnode, sibnode,
-                               tmp, 0, NULL, NULL, NULL, NULL,
+                               ptw->col_values, 0, NULL, NULL, NULL, NULL,
                                FALSE, FALSE);
 
-	gtk_ctree_node_set_row_data(GTK_CTREE(glist), treenode, p);
-
-	p->trow = treenode;
-	gtt_project_add_notifier (p, redraw, treenode);
-
+	gtk_ctree_node_set_row_data(ptw->ctree, ptn->ctnode, ptn);
 }
 
+/* ============================================================== */
+
 void
-ctree_insert_after (GttProject *p, GttProject *sibling)
+ctree_insert_after (ProjTreeWindow *ptw, GttProject *p, GttProject *sibling)
 {
-	char ever_timestr[24], day_timestr[24];
-	GtkCTreeNode *treenode;
+	ProjTreeNode *ptn;
 	GtkCTreeNode *parentnode=NULL;
 	GtkCTreeNode *next_sibling=NULL;
-	char *tmp[4];
 
-	print_hours_elapsed (ever_timestr, 24, gtt_project_total_secs_ever(p), 
-			config_show_secs);
-	print_hours_elapsed (day_timestr, 24, gtt_project_total_secs_day(p), 
-			config_show_secs);
-	tmp[TOTAL_COL] = ever_timestr;
-	tmp[TIME_COL]  = day_timestr;
-	tmp[TITLE_COL] = (char *) gtt_project_get_title(p);
-	tmp[DESC_COL]  = (char *) gtt_project_get_desc(p);
+	ctree_col_values (ptw, p);
 
 	if (sibling)
 	{
-		if (sibling->parent) parentnode = sibling->parent->trow;
-		next_sibling = GTK_CTREE_NODE_NEXT(sibling->trow);
+		GttProject *parent = gtt_project_get_parent (sibling);
+		if (parent) 
+		{
+			ptn = gtt_project_get_private_data (parent);
+			parentnode = ptn->ctnode;
+		}
+		ptn = gtt_project_get_private_data (sibling);
+		next_sibling = GTK_CTREE_NODE_NEXT(ptn->ctnode);
 
 		/* weird math: if this is the last leaf on this
 		 * branch, then next_sibling must be null to become 
@@ -615,35 +842,55 @@ ctree_insert_after (GttProject *p, GttProject *sibling)
 		if (next_sibling &&  
 		   (GTK_CTREE_ROW(next_sibling)->parent != parentnode)) next_sibling = NULL;
 	}
-	treenode = gtk_ctree_insert_node (GTK_CTREE(glist),  
+
+	ptn = gtt_project_get_private_data (p);
+	if (!ptn)
+	{
+		ptn = g_new0 (ProjTreeNode, 1);
+		ptn->ptw = ptw;
+		ptn->prj = p;
+		gtt_project_set_private_data (p, ptn);
+		gtt_project_add_notifier (p, redraw, ptn);
+	}
+	ptn->ctnode = gtk_ctree_insert_node (ptw->ctree,  
                                parentnode, next_sibling,
-                               tmp, 0, NULL, NULL, NULL, NULL,
+                               ptw->col_values, 0, NULL, NULL, NULL, NULL,
                                FALSE, FALSE);
 
-	gtk_ctree_node_set_row_data(GTK_CTREE(glist), treenode, p);
-
-	p->trow = treenode;
-	gtt_project_add_notifier (p, redraw, treenode);
-
+	gtk_ctree_node_set_row_data(ptw->ctree, ptn->ctnode, ptn);
 }
 
-
+/* ============================================================== */
 
 void
-ctree_remove(GttProject *p)
+ctree_remove(ProjTreeWindow *ptw, GttProject *p)
 {
-	gtt_project_remove_notifier (p, redraw, p->trow);
-	gtk_ctree_remove_node(GTK_CTREE(glist), p->trow);
-	p->trow = NULL;
+	ProjTreeNode *ptn;
+	if (!ptw || !p) return;
+
+	ptn = gtt_project_get_private_data (p);
+	g_return_if_fail (NULL != ptn);
+	gtt_project_remove_notifier (p, redraw, ptn);
+	gtk_ctree_node_set_row_data(ptw->ctree, ptn->ctnode, NULL);
+	gtk_ctree_remove_node(ptw->ctree, ptn->ctnode);
+	ptn->prj = NULL;
+	ptn->ctnode = NULL;
+	ptn->ptw = NULL;
+	g_free (ptn);
+	gtt_project_set_private_data (p, NULL);
 }
 
 
+/* ============================================================== */
 
 static void
-cupdate_label(GttProject *p, gboolean expand)
+cupdate_label(ProjTreeNode *ptn, gboolean expand)
 {
+	GttProject *p = ptn->prj;
 	int secs_ever, secs_day;
 	char ever_timestr[24], day_timestr[24];
+	int ever_col=-1, day_col=-1;
+	int i;
 
 	if (expand)
 	{
@@ -659,34 +906,87 @@ cupdate_label(GttProject *p, gboolean expand)
 	print_hours_elapsed (ever_timestr, 24, secs_ever, config_show_secs);
 	print_hours_elapsed (day_timestr, 24, secs_day, config_show_secs);
 
-	gtk_ctree_node_set_text(GTK_CTREE(glist), p->trow, TOTAL_COL,
+	for (i=0; i<ptn->ptw->ncols; i++)
+	{
+		if (TIME_EVER_COL == ptn->ptw->cols[i]) ever_col = i;
+		if (TIME_TODAY_COL == ptn->ptw->cols[i]) day_col = i;
+	}
+
+	gtk_ctree_node_set_text(ptn->ptw->ctree, ptn->ctnode, ever_col,
 			   ever_timestr);
-	gtk_ctree_node_set_text(GTK_CTREE(glist), p->trow, TIME_COL,
+	gtk_ctree_node_set_text(ptn->ptw->ctree, ptn->ctnode, day_col,
 			   day_timestr);
 	update_status_bar();
 }
 
+/* ============================================================== */
 
 void
-ctree_update_label(GttProject *p)
+ctree_update_label(ProjTreeWindow *ptw, GttProject *p)
 {
-	if (!p || !p->trow) return;
-	cupdate_label (p, GTK_CTREE_ROW(p->trow)->expanded);
+	ProjTreeNode *ptn;
+	if (!ptw || !p) return;
+	ptn = gtt_project_get_private_data (p);
+	g_return_if_fail (NULL != ptn);
+	cupdate_label (ptn, GTK_CTREE_ROW(ptn->ctnode)->expanded);
 }
 
+/* ============================================================== */
 
 void 
-ctree_unselect (GttProject *p)
+ctree_unselect (ProjTreeWindow *ptw, GttProject *p)
 {
-	if (!p || !p->trow) return;
-	gtk_ctree_unselect(GTK_CTREE(glist), p->trow);
+	ProjTreeNode *ptn;
+	if (!ptw || !p) return;
+	ptn = gtt_project_get_private_data (p);
+	if (!ptn) return;
+
+	gtk_ctree_unselect(ptw->ctree, ptn->ctnode);
 }
 
 void 
-ctree_select (GttProject *p)
+ctree_select (ProjTreeWindow *ptw, GttProject *p)
 {
-	if (!p || !p->trow) return;
-	gtk_ctree_select(GTK_CTREE(glist), p->trow);
+	ProjTreeNode *ptn;
+	if (!ptw || !p) return;
+	ptn = gtt_project_get_private_data (p);
+	if (!ptn) return;
+
+	gtk_ctree_select(ptw->ctree, ptn->ctnode);
+}
+
+/* ============================================================== */
+
+void 
+ctree_titles_show (ProjTreeWindow *ptw)
+{
+	if (!ptw) return;
+	gtk_clist_column_titles_show(GTK_CLIST(ptw->ctree));
+}
+
+void 
+ctree_titles_hide (ProjTreeWindow *ptw)
+{
+	if (!ptw) return;
+	gtk_clist_column_titles_hide(GTK_CLIST(ptw->ctree));
+}
+
+void
+ctree_subproj_show (ProjTreeWindow *ptw)
+{
+	if (!ptw) return;
+	gtk_ctree_set_show_stub(ptw->ctree, FALSE);
+	gtk_ctree_set_line_style(ptw->ctree, GTK_CTREE_LINES_SOLID);
+	gtk_ctree_set_expander_style(ptw->ctree,GTK_CTREE_EXPANDER_SQUARE);
+}
+
+void
+ctree_subproj_hide (ProjTreeWindow *ptw)
+{
+	if (!ptw) return;
+	gtk_ctree_set_show_stub(ptw->ctree, FALSE);
+	gtk_ctree_set_line_style(ptw->ctree, GTK_CTREE_LINES_NONE);
+	gtk_ctree_set_expander_style(ptw->ctree,GTK_CTREE_EXPANDER_NONE);
 }
 
 /* ===================== END OF FILE ==============================  */
