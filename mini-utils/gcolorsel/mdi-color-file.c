@@ -2,9 +2,18 @@
 #include "mdi-color-generic.h"
 
 #include <gnome.h>
+#include <glade/glade.h>
 
-static void       mdi_color_file_class_init      (MDIColorFileClass *class);
-static void       mdi_color_file_init            (MDIColorFile *mcf);
+static void       mdi_color_file_class_init  (MDIColorFileClass *class);
+static void       mdi_color_file_init        (MDIColorFile *mcf);
+
+static gpointer   
+mdi_color_generic_get_control (MDIColorGeneric *vcg, GtkVBox *box,
+			       void (*changed_cb)(gpointer data), 
+			       gpointer change_data);
+static void mdi_color_generic_apply (MDIColorGeneric *mcg, gpointer data);
+static void mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data);
+static void mdi_color_generic_sync  (MDIColorGeneric *mcg, gpointer data);
 
 static MDIColorGenericClass *parent_class = NULL;
 
@@ -34,12 +43,19 @@ mdi_color_file_get_type()
 static void 
 mdi_color_file_class_init (MDIColorFileClass *class)
 {
-  GnomeMDIChildClass *mdi_child_class;
-  GtkObjectClass     *object_class;
+  GnomeMDIChildClass   *mdi_child_class;
+  GtkObjectClass       *object_class;
+  MDIColorGenericClass *mcg_class;
   
   object_class    = GTK_OBJECT_CLASS (class);
   mdi_child_class = GNOME_MDI_CHILD_CLASS (class);
   parent_class    = gtk_type_class(mdi_color_generic_get_type());
+  mcg_class       = (MDIColorGenericClass *)class;
+
+  mcg_class->get_control = mdi_color_generic_get_control;
+  mcg_class->apply       = mdi_color_generic_apply;
+  mcg_class->close       = mdi_color_generic_close;
+  mcg_class->sync        = mdi_color_generic_sync;
 }
 
 static void
@@ -94,4 +110,88 @@ mdi_color_file_load (MDIColorFile *mcf)
   mdi_color_generic_thaw (MDI_COLOR_GENERIC (mcf));
 
   return TRUE;
+}
+
+/************************* PROPERTIES ************************************/
+
+typedef struct prop_t {
+  GladeXML *gui;
+
+  gpointer parent_data;
+
+  void (*changed_cb)(gpointer data);
+  gpointer change_data;
+
+  GtkWidget *entry_file;
+  GtkWidget *text_comments;
+} prop_t;
+
+static gpointer
+mdi_color_generic_get_control (MDIColorGeneric *mcg, GtkVBox *box,
+			       void (*changed_cb)(gpointer data), 
+			       gpointer change_data)
+{
+  GtkWidget *frame;
+  prop_t *prop = g_new0 (prop_t, 1);
+  
+  prop->parent_data = parent_class->get_control (mcg, box, 
+						 changed_cb, change_data);
+
+  prop->changed_cb   = changed_cb;
+  prop->change_data = change_data;
+
+  prop->gui = glade_xml_new (GCOLORSEL_GLADEDIR "mdi-color-file-properties.glade", "frame");
+  if (!prop->gui) {
+    printf ("Could not find mdi-color-file-properties.glade\n");
+    return NULL;
+  }
+
+  frame = glade_xml_get_widget (prop->gui, "frame");
+  if (!frame) {
+    printf ("Corrupt file mdi-color-file-properties.glade");
+    return NULL;
+  }
+
+  gtk_box_pack_start_defaults (GTK_BOX (box), frame);
+
+  prop->entry_file = glade_xml_get_widget (prop->gui, "entry-file");
+  prop->text_comments = glade_xml_get_widget (prop->gui, "text-comments");
+
+  return prop;
+}
+
+static void
+mdi_color_generic_sync (MDIColorGeneric *mcg, gpointer data)
+{
+  prop_t *prop = data;
+
+  printf ("MDI File :: sync\n");
+
+  gtk_entry_set_text (GTK_ENTRY (prop->entry_file), 
+		      MDI_COLOR_FILE (mcg)->filename);
+
+  parent_class->sync (mcg, prop->parent_data);
+}
+
+static void
+mdi_color_generic_apply (MDIColorGeneric *mcg, gpointer data)
+{
+  prop_t *prop = data;  
+
+  printf ("MDI File :: apply\n");
+
+  parent_class->apply (mcg, prop->parent_data);
+}
+
+static void
+mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data)
+{
+  prop_t *prop = data;
+
+  printf ("MDI File :: close\n");
+
+  parent_class->close (mcg, prop->parent_data);
+
+  gtk_object_unref (GTK_OBJECT (prop->gui));
+  g_free (prop);
 }

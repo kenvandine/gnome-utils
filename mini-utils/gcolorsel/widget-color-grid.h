@@ -1,8 +1,6 @@
 #ifndef WIDGET_COLOR_GRID_H
 #define WIDGET_COLOR_GRID_H
 
-#include "mdi-color-generic.h"
-
 #include <gdk/gdk.h>
 #include <libgnomeui/gnome-canvas.h>
 #include <gtk/gtktooltips.h>
@@ -26,7 +24,7 @@ struct _ColorGridCol {
   ColorGrid *cg;
   GnomeCanvasItem *item;
 
-  MDIColorGenericCol *col;
+  gpointer data;
 
   gboolean selected;
 };
@@ -34,6 +32,13 @@ struct _ColorGridCol {
 struct _ColorGrid {
   GnomeCanvas canvas;
 
+  GCompareFunc compare_func;
+
+  int freeze;
+
+  gboolean can_move;
+
+  int count;
   int nb_col;
   int col_width;
   int col_height;
@@ -46,18 +51,32 @@ struct _ColorGrid {
   GList *col;
   GList *selected;
 
-  ColorGridCol *last_clicked;
+  ColorGridCol *last_clicked; /* Used for SHIFT + CLICK */
+  ColorGridCol *last_focus; 
 };
 
 struct _ColorGridClass {
   GnomeCanvasClass parent_class;  
 
-  void (*data_changed) (ColorGrid *cg, gpointer data);
+  void (*move_item) (ColorGrid *cg, int old_pos, int new_pos, gpointer data);
 };
 
 GtkType color_grid_get_type (void);
 
-GtkWidget *color_grid_new (void);
+GtkWidget *color_grid_new (GCompareFunc compare_func);
+
+int color_grid_append  (ColorGrid *cg, int r, int g, int b, gpointer data);
+void color_grid_remove (ColorGrid *cg, int pos);
+void color_grid_clear  (ColorGrid *cg);
+
+void color_grid_freeze (ColorGrid *cg);
+void color_grid_thaw   (ColorGrid *cg);
+
+void color_grid_sort   (ColorGrid *cg);
+
+void color_grid_can_move (ColorGrid *cg, gboolean value);
+
+void color_grid_set_col_width_height (ColorGrid *cg, int width, int height);
 
 END_GNOME_DECLS
 

@@ -11,6 +11,7 @@ BEGIN_GNOME_DECLS
 #define MDI_COLOR_GENERIC(obj)          GTK_CHECK_CAST (obj, mdi_color_generic_get_type (), MDIColorGeneric)
 #define MDI_COLOR_GENERIC_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, mdi_color_generic_get_type (), MDIColorGenericClass)
 #define IS_MDI_COLOR_GENERIC(obj)       GTK_CHECK_TYPE (obj, mdi_color_generic_get_type ())
+#define MDI_COLOR_GENERIC_GET_CLASS(obj)  (MDI_COLOR_GENERIC_CLASS (GTK_OBJECT (obj)->klass))
 
 typedef struct _MDIColorGenericCol    MDIColorGenericCol;
 typedef struct _MDIColorGeneric       MDIColorGeneric;
@@ -76,7 +77,13 @@ struct _MDIColorGeneric {
 struct _MDIColorGenericClass {
   GnomeMDIChildClass parent_class;
 
-  void (*document_changed) (MDIColorGeneric *mcg, gpointer data);
+  void     (*document_changed) (MDIColorGeneric *mcg, gpointer data);
+  gpointer (*get_control)      (MDIColorGeneric *cg, GtkVBox *box,
+				void (*changed_cb)(gpointer data), 
+				gpointer change_data);
+  void     (*apply)            (MDIColorGeneric *mcg, gpointer data);
+  void     (*close)            (MDIColorGeneric *mcg, gpointer data);
+  void     (*sync)             (MDIColorGeneric *mcg, gpointer data);
 };
 
 guint mdi_color_generic_get_type (void);

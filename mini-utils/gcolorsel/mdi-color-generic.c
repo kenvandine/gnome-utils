@@ -1,9 +1,11 @@
 #include "mdi-color-generic.h"
-#include "widget-color-list.h"
-#include "widget-color-grid.h"
+#include "view-color-generic.h"
+#include "view-color-list.h"
+#include "view-color-grid.h"
 #include "menus.h"
 
 #include <gnome.h>
+#include <glade/glade.h>
 
 static void mdi_color_generic_class_init       (MDIColorGenericClass *class);
 static void mdi_color_generic_init             (MDIColorGeneric *mcg);
@@ -16,9 +18,15 @@ mdi_color_generic_create_view                  (MDIColorGeneric *child);
 static gint mdi_color_generic_get_append_pos   (MDIColorGeneric *mcg, 
 						MDIColorGenericCol *col);
 static void mdi_color_generic_free_col         (MDIColorGenericCol *col);
+static GList *mdi_color_generic_find_col       (MDIColorGeneric *mcg, int pos);
 
-static GList *              
-mdi_color_generic_find_col                     (MDIColorGeneric *mcg, int pos);
+static gpointer
+mdi_color_generic_get_control       (MDIColorGeneric *vcg, GtkVBox *box,
+				     void (*changed_cb)(gpointer data), 
+				     gpointer change_data);
+static void mdi_color_generic_apply (MDIColorGeneric *mcg, gpointer data);
+static void mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data);
+static void mdi_color_generic_sync  (MDIColorGeneric *mcg, gpointer data);
 
 enum {
   DOCUMENT_CHANGED,
@@ -77,6 +85,10 @@ mdi_color_generic_class_init (MDIColorGenericClass *class)
   mdi_child_class->create_view = (GnomeMDIChildViewCreator)mdi_color_generic_create_view;
 
   class->document_changed = mdi_color_generic_document_changed;
+  class->get_control      = mdi_color_generic_get_control;
+  class->apply            = mdi_color_generic_apply;
+  class->close            = mdi_color_generic_close;
+  class->sync             = mdi_color_generic_sync;
 }
 
 static void
@@ -96,7 +108,7 @@ mdi_color_generic_init (MDIColorGeneric *mcg)
   mcg->flags = CHANGE_APPEND | CHANGE_REMOVE | CHANGE_NAME | CHANGE_POS
                      | CHANGE_RGB | CHANGE_CLEAR;
   
-  mcg->next_view_type = color_list_get_type ();
+  mcg->next_view_type = view_color_list_get_type ();
 
   gnome_mdi_child_set_menu_template (GNOME_MDI_CHILD (mcg), mdi_menu);
 }
@@ -116,7 +128,7 @@ mdi_color_generic_create_view (MDIColorGeneric *child)
   GtkWidget *vbox;
   GtkWidget *control = NULL;
   GtkWidget *sw;
-  GtkWidget *view = NULL;
+  GtkObject *view = NULL;
   int type;
 
   vbox = gtk_vbox_new (FALSE, 0);
@@ -132,7 +144,7 @@ mdi_color_generic_create_view (MDIColorGeneric *child)
   sw = gtk_scrolled_window_new (NULL, NULL);  
   gtk_box_pack_start (GTK_BOX (vbox), sw, TRUE, TRUE, 0);
 
-  if (child->next_view_type == TYPE_COLOR_LIST)
+  if (child->next_view_type == TYPE_VIEW_COLOR_LIST)
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
 				    GTK_POLICY_AUTOMATIC,
 				    GTK_POLICY_ALWAYS);
@@ -141,20 +153,21 @@ mdi_color_generic_create_view (MDIColorGeneric *child)
 				    GTK_POLICY_NEVER,
 				    GTK_POLICY_AUTOMATIC);
   
-  if (child->next_view_type == TYPE_COLOR_LIST)  
-    view = color_list_new (); 
+  if (child->next_view_type == TYPE_VIEW_COLOR_LIST)  
+    view = view_color_list_new (child); 
   else
-    if (child->next_view_type == TYPE_COLOR_GRID) {
-      view = color_grid_new (); 
+    if (child->next_view_type == TYPE_VIEW_COLOR_GRID) {
+      view = view_color_grid_new (child); 
     } else 
       g_assert_not_reached ();
+
+  gtk_container_add (GTK_CONTAINER (sw), VIEW_COLOR_GENERIC (view)->widget);
+
+  gtk_object_set_data (GTK_OBJECT (vbox), "view_object", view);
+
+  VIEW_COLOR_GENERIC (view)->control = control ? CONTROL_GENERIC (control) : NULL;
+  VIEW_COLOR_GENERIC (view)->show_control = control ? TRUE : FALSE;
   
-  gtk_container_add (GTK_CONTAINER (sw), view);
-
-  gtk_object_set_data (GTK_OBJECT (vbox), "data_widget", view);
-  gtk_object_set_data (GTK_OBJECT (vbox), "data_control", control);
-
-  gtk_object_set_data (GTK_OBJECT (view), "color_generic", child);
 
   gtk_widget_show_all (vbox);
 
@@ -267,25 +280,24 @@ void
 mdi_color_generic_dispatch_changes (MDIColorGeneric *mcg)
 {
   MDIColorGenericCol *col;
-  GtkWidget *widget;
+  ViewColorGeneric *view;
   GList *list;
 
   if (!mcg->changes) return;
 
   list = GNOME_MDI_CHILD (mcg)->views;
   while (list) {
-    widget = gtk_object_get_data (GTK_OBJECT (list->data), "data_widget");
-    if (widget) 
-      gtk_signal_emit_by_name (GTK_OBJECT (widget), "data_changed", 
-			       mcg->changes);
-    
+    view = gtk_object_get_data (GTK_OBJECT (list->data), "view_object");
+    if (view) 
+      view_color_generic_data_changed (view, mcg->changes);
+
     list = g_list_next (list);
   }
 
   list = mcg->other_views;
   while (list) {
-      gtk_signal_emit_by_name (GTK_OBJECT (list->data), "document_changed", 
-			       mcg->changes);
+    gtk_signal_emit_by_name (GTK_OBJECT (list->data), "document_changed", 
+			     mcg->changes);
 
     list = g_list_next (list);
   }
@@ -538,14 +550,13 @@ void
 mdi_color_generic_sync_control (MDIColorGeneric *mcg)
 {
   GList *list;
-  ControlGeneric *control;
+  ViewColorGeneric *view;
 
   list = GNOME_MDI_CHILD (mcg)->views;
   while (list) {
-    control = gtk_object_get_data (GTK_OBJECT (list->data), 
-					  "data_control");
-    if (control)					  
-      control_generic_sync (control);
+    view = gtk_object_get_data (GTK_OBJECT (list->data), "view_object");
+    if (view->control)					  
+      control_generic_sync (view->control);
 
     list = g_list_next (list);
   }
@@ -555,4 +566,88 @@ void
 mdi_color_generic_next_view_type (MDIColorGeneric *mcg, GtkType type)
 {
   mcg->next_view_type = type;
+}
+
+/******************************* PROPERTIES ********************************/
+
+typedef struct prop_t {
+  GladeXML *gui;
+
+  GtkWidget *entry_name;
+
+  void (*changed_cb)(gpointer data);
+  gpointer change_data;
+} prop_t;
+
+static void
+entry_changed_cb (GtkWidget *widget, prop_t *prop)
+{
+  prop->changed_cb (prop->change_data);
+}
+
+static gpointer
+mdi_color_generic_get_control (MDIColorGeneric *vcg, GtkVBox *box,
+				void (*changed_cb)(gpointer data), 
+			       gpointer change_data)
+{
+  GtkWidget *frame;
+  prop_t *prop = g_new0 (prop_t, 1);
+
+  prop->changed_cb   = changed_cb;
+  prop->change_data = change_data;
+
+  prop->gui = glade_xml_new (GCOLORSEL_GLADEDIR "mdi-color-generic-properties.glade", "frame");
+  if (!prop->gui) {
+    printf ("Could not find mdi-color-generic-properties.glade\n");
+    return NULL;
+  }
+
+  frame = glade_xml_get_widget (prop->gui, "frame");
+  if (!frame) {
+    printf ("Corrupt file mdi-color-generic-properties.glade");
+    return NULL;
+  }
+
+  gtk_box_pack_start_defaults (GTK_BOX (box), frame);
+
+  prop->entry_name = glade_xml_get_widget (prop->gui, "entry-name");  
+  gtk_signal_connect (GTK_OBJECT (prop->entry_name), "changed", 
+		      GTK_SIGNAL_FUNC (entry_changed_cb), prop);
+
+  return prop;
+}
+
+static void
+mdi_color_generic_sync (MDIColorGeneric *mcg, gpointer data)
+{
+  prop_t *prop = data;
+
+  printf ("MDI :: sync\n");
+
+  gtk_signal_handler_block_by_data (GTK_OBJECT (prop->entry_name), prop);
+  gtk_entry_set_text (GTK_ENTRY (prop->entry_name), 
+		      GNOME_MDI_CHILD (mcg)->name);
+  gtk_signal_handler_unblock_by_data (GTK_OBJECT (prop->entry_name), prop);
+}
+
+static void
+mdi_color_generic_apply (MDIColorGeneric *mcg, gpointer data)
+{
+  prop_t *prop = data;  
+
+  printf ("MDI :: apply\n");
+
+  gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), 
+			    gtk_entry_get_text (GTK_ENTRY (prop->entry_name)));
+}
+
+static void
+mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data)
+{
+  prop_t *prop = data;
+
+  printf ("MDI :: close\n");
+
+  gtk_object_unref (GTK_OBJECT (prop->gui));
+  g_free (prop);
 }

@@ -1,33 +1,69 @@
-[KILLED] - Make the entry box change when format style is changed. 
-[DONE]   - Grab an arbitrary pixel color from the screen.
-[DONE]   - Sort
-[DONE]   - Search
-[KILLED] - Close button
++ Properties :
 
-[DONE]   - Save as.
-[DONE]   - Save 'Search tab' name.
+[DONE] * ColorList : width - height - show number
+[DONE] + All : show / hide control.
+ + ColorGrid : Order ?
+[DONE] + Show info on a document (file loaded ...).
 
-Change notebook tab position. (cvs/gnumeric do that).
-Find a way to reorder color in CList -> in file. 
++ Save session on exit
 
-[DONE]   - Insert To / New.
-[DONE]   - Popup menu for ColorSearch. (Insert To).
++ Intl
 
-Gimp Palette File have comment. gcolorsel does not restore them when saving.
++ New color
++ Edit color
++ Save / Save as
++ Last version
 
-[DONE]   - Progress bar. 
-Display warning in status bar.
++ Create view.
 
-Preferences dialog.
+  + With druid widget ?
 
-Notebook tab popup menu -> show file name.
++ ColorGrid : 
 
-Progress bar is too big. I want 3/4 for status and 1/4 for progress bar.
+  * Scroll when drag / key.
+  + Cancel drag
 
-Perhaps :
++ Grab a color :
+  
+  * ? Display a dialog with 'Append Color in ...' and 'Search Color in ...'
 
-Display notebook tab menu in File menu, too. (?)
-      
-Use gnome-vfs, when it will be stable. 
++ Click on preview : 
 
-And ... work on gsearchtool ;-)
+  * 'Append Color in ...' and 'Search Color in ...' (? Same that  Grab a color ???)
+
++ Edit menu : 
+
+  + 'Append color to ...' and 'Search Color in ...' (? Same that ... ???)
+
++ For gimp palette : 
+
+  * Load signature
+  * Save signature
+  * Create a control that modify signature
+[UPDATE] we can use document properties instead of a control.
+[UPDATE] text widget exists, but do noting
+
++ Progress bar :
+
+  + When loading / saving.
+  + Perhaps : in operation ???
+
++ Print ?
+
++ Bonobo ???
+
+  + See a palette in nautilus ;-)
+
++ Icon bar.
+
+  + With some shortcut to properties ?
+
++ Speed
++ Bugs fix
++ Help
+
+
+************************ BUGS ***********************
+
+- Bad icon when dragging a color from ColorList
+- Need to delete GnomePropertyBox when closing a view/document ...

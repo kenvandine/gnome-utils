@@ -1,6 +1,94 @@
-2000-03-26  Karl EICHWALDER  <ke@suse.de>
+2000-04-12 Eric Brayeur <eb2@ibelgique.com>
 
-	* gcolorsel.c (file_selection_save_as_ok_cb): Typo.
+	* widget-color-grid.c : bug in allocate
+
+	* view-color-list.[ch] : replace hardcoded value for pixmap size
+          with col_width and col_height. (for properties).
+          Plus draw_numbers.
+
+	* view-color-list.c : properties (width/height and draw_numbers)
+	  (view-color-list-redraw-all) : new function.
+	  (view-color-list-data-changed) : update pixmap on change_pos only
+	  if draw_numbers.
+
+	* menu.c : keep a list of GnomePropertyBox, and keep them in sync
+	  each other.
+
+	* glade/view-color-generic.glade : (check-show-control) new widget.
+
+	* view-color-list.c : show control properties
+
+	* glade/mdi-color-file.glade : new file.
+	* mdi-color-file.c : properties ; filename (not editable).
+
+2000-04-11 Eric Brayeur <eb2@ibelgique.com>
+
+	* Makefile.am, gcolorsel.c : add libglade
+	* glade/ : new directory.
+
+	* view-*, mdi-* : get_control : new function that construct 
+	  properties widget. (uses libglade)
+
+	* glade/* new files for properties
+
+	* mdi-color-generic.c : implement change name
+	* view-color-grid.c   : implement color width/height properties
+
+2000-04-10 Eric Brayeur <eb2@ibelgique.com>
+
+	* view-color-generic.[ch] : new files; base class for views.
+	* widget-color-list.[ch] : removed.
+	* view-color-list.[ch] : ColorList is no longer a widget.
+
+	* widget-color-grid.c : Removed MDI stuff, implement set/get data
+	  for each color. Works like GtkCList now.
+	* view-color-grid.[ch] : Use ColorGrid widget.
+
+2000-04-06 Eric Brayeur <eb2@ibelgique.com>
+
+ 	* menus.[ch] (menu_view_do_popup) : new function. 
+	* widget-color-list.[ch], widget-color-grid.[ch] : enable popup menu.
+
+	* widget-color-grid.c (color_grid_item_event) : fix a bug with
+          SHIFT + BUTTON. (crash if no item selected)
+
+	* menus.c : Add new color, edit color and properties item to edit menu.
+
+	* widget-color-grid.c (color_grid_get_col_at) new function, return
+          the color situated on (top, right, left, bottom) of an other
+          color.
+          (color_grid_key_press_event) : new function; Move selected
+          color with keys.
+	 
+2000-04-05 Eric Brayeur <eb2@ibelgique.com>
+
+	* TODO : updated
+
+2000-04-04 Eric Brayeur <eb2@ibelgique.com>
+
+	* widget-control-virtual: Synchronization of Ranges works ...
+	  (J'en ai vraiment vu de toutes les couleurs avec ce truc ;-))
+
+	* menus.c (about_cb) : add my email.
+
+2000-04-03 Eric Brayeur <eb2@ibelgique.com>
+
+	* widget-color-grid: Selection; Works like GtkCList.
+			     Drag a color to move it.
+
+	* menus.c (remove_cb) : Delete ColorGrid selected items.
+
+	* mdi-color-generic.c : free MDIColorGenericCol.
+
+	* widget-control-virtual.c (preview_size_allocate_cb) : new
+          function, redraw color preview on resize.
+
+2000-04-02 Eric Brayeur <eb2@ibelgique.com>
+
+	Yeah, I think that it's now time to start a real ChangeLog ...
+
+	Again, lots of change; gcolorsel uses now GnomeMDI, and is 
+	fully based on document/view model.
 
 2000-03-12 Eric Brayeur <eb2@ibelgique.com>
 

@@ -1,13 +1,14 @@
-#include "menu.h"
+#include "menus.h"
 #include "gcolorsel.h"
 #include "mdi-color-generic.h"
 #include "mdi-color-file.h"
-#include "widget-color-list.h"
-#include "widget-color-grid.h"
+#include "view-color-generic.h"
 #include "gcolorsel.h"
 
 #include "config.h"
 #include "gnome.h"
+
+static GList *prop_list = NULL;  /* List of GnomePropertyBox */
 
 static void open_cb    (GtkWidget *widget);
 static void save_cb    (GtkWidget *widget);
@@ -165,13 +166,23 @@ about_cb (GtkWidget *widget)
   gtk_widget_show(about);
 }
 
-/*********************************************************/
+/****************** Edit Menu ***************************************/
 
-static void remove_cb  (GtkWidget *widget, gpointer data);
+static void remove_cb     (GtkWidget *widget, gpointer data);
+static void properties_cb (GtkWidget *widget, gpointer data);
 
 GnomeUIInfo edit_menu[] = {
-  GNOMEUIINFO_ITEM_STOCK (N_("Remove"), NULL, 
+  GNOMEUIINFO_ITEM_STOCK (N_("New color"), NULL,
+			  NULL, GNOME_STOCK_PIXMAP_ADD),
+  GNOMEUIINFO_ITEM_STOCK (N_("Remove selected colors"), NULL, 
 			  remove_cb, GNOME_STOCK_PIXMAP_REMOVE),
+  GNOMEUIINFO_ITEM_NONE (N_("Edit selected color..."), NULL, NULL),
+  
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_MENU_PROPERTIES_ITEM (properties_cb, NULL),
+			 
+			     
   GNOMEUIINFO_END
 };
 
@@ -180,60 +191,161 @@ GnomeUIInfo mdi_menu[] = {
   GNOMEUIINFO_END
 };
 
-static void remove_cb (GtkWidget *widget, gpointer data)
+static void 
+remove_cb (GtkWidget *widget, gpointer data)
 {
-  MDIColorGenericCol *col;
-  GList *list, *freezed = NULL;
-  GtkWidget *view;
+  ViewColorGeneric *view;
 
-  view = gtk_object_get_data (GTK_OBJECT (mdi->active_view), "data_widget");
+  view = gtk_object_get_data (GTK_OBJECT (mdi->active_view), "view_object");
 
-  if (GTK_IS_CLIST (view)) {
-    GtkCList *clist = GTK_CLIST (view);
-    list = clist->selection;
+  view_color_generic_remove_selected (view);
+}
 
-    while (list) {  
-      col = gtk_clist_get_row_data (clist, GPOINTER_TO_INT (list->data));
-      
-      col = mdi_color_generic_get_owner (col);
-      
-      mdi_color_generic_freeze (col->owner);
-      mdi_color_generic_remove (col->owner, col);
-      
-      freezed = g_list_append (freezed, col->owner);
-      
-      list = g_list_next (list);
-    }   
-  } 
+/******* Properties ********/
 
-  else
+static void
+properties_apply_cb (GtkWidget *widget, int page, gpointer data)
+{
+  ViewColorGeneric *view = NULL, *view2;
+  MDIColorGeneric *mcg = NULL, *mcg2;
+  gpointer view_data, mcg_data, view2_data, mcg2_data;
+  GList *list;
+  GtkWidget *widget2;
 
-    if (IS_COLOR_GRID (view)) {      
-      ColorGrid *cg = COLOR_GRID (view);
-      ColorGridCol *c;
-      list = cg->selected;
+  switch (page) {
+  case 0 : 
+    view      = gtk_object_get_data (GTK_OBJECT (widget), "prop-view");
+    view_data = gtk_object_get_data (GTK_OBJECT (widget), "prop-view-data");
+    VIEW_COLOR_GENERIC_GET_CLASS (view)->apply (view, view_data);
+    break;
 
-      while (list) {
-	c = list->data;
-	col = mdi_color_generic_get_owner (c->col);
+  case 1:        
+    mcg       = gtk_object_get_data (GTK_OBJECT (widget), "prop-document");
+    mcg_data  = gtk_object_get_data (GTK_OBJECT (widget), "prop-document-data");
+    MDI_COLOR_GENERIC_GET_CLASS  (mcg)->apply  (mcg, mcg_data);
+    break;
 
-	mdi_color_generic_freeze (col->owner);
-	mdi_color_generic_remove (col->owner, col);
-      
-	freezed = g_list_append (freezed, col->owner);
+  default:
+    return;
+  }
 
-	list = g_list_next (list);
-      }
-    }
-
-    else      
-      g_assert_not_reached ();
-
-  list = freezed;
+  /* sync other properties */
+  
+  list = prop_list;
   while (list) {
-    mdi_color_generic_thaw (freezed->data);
-    list = g_list_next (list);
-  }    
+    widget2 = list->data;
 
-  g_list_free (freezed);
+    if (widget2 != widget) {
+
+      view2 = gtk_object_get_data (GTK_OBJECT (widget2), "prop-view");
+      if (view2 == view) {
+	view2_data = gtk_object_get_data (GTK_OBJECT (widget2), "prop-view-data");
+	VIEW_COLOR_GENERIC_GET_CLASS (view2)->sync (view2, view2_data);
+      }
+      
+      mcg2 = gtk_object_get_data (GTK_OBJECT (widget2), "prop-document");
+      if (mcg2 == mcg) {
+	mcg2_data = gtk_object_get_data (GTK_OBJECT (widget2), "prop-document-data");
+	MDI_COLOR_GENERIC_GET_CLASS (mcg2)->sync (mcg2, mcg2_data);
+      }
+
+      /* Bugs ... when when view modified and doc sync ... */
+      gnome_property_box_set_modified (GNOME_PROPERTY_BOX (widget2), FALSE);
+    }      
+
+    list = g_list_next (list);
+  }
+}
+
+static void
+properties_destroy_cb (GtkWidget *widget, gpointer data)
+{
+  ViewColorGeneric *view;
+  MDIColorGeneric *mcg;
+  gpointer view_data, mcg_data;
+
+  printf ("Destroy\n");
+
+  view      = gtk_object_get_data (GTK_OBJECT (widget), "prop-view");
+  view_data = gtk_object_get_data (GTK_OBJECT (widget), "prop-view-data");
+  mcg       = gtk_object_get_data (GTK_OBJECT (widget), "prop-document");
+  mcg_data  = gtk_object_get_data (GTK_OBJECT (widget), "prop-document-data");
+
+  VIEW_COLOR_GENERIC_GET_CLASS (view)->close (view, view_data);  
+  MDI_COLOR_GENERIC_GET_CLASS  (mcg)->close  (mcg, mcg_data);
+
+  prop_list = g_list_remove (prop_list, widget);
+}
+
+static void
+properties_changed_cb (gpointer data)
+{ 
+  gnome_property_box_changed (GNOME_PROPERTY_BOX (data));
+}
+
+static void
+properties_cb (GtkWidget *widget, gpointer data)
+{
+  GtkWidget *property;
+  ViewColorGeneric *view;
+  GtkWidget *vbox;
+  MDIColorGeneric *mcg;
+  gpointer view_data, mcg_data;
+  
+  view = gtk_object_get_data (GTK_OBJECT (mdi->active_view), "view_object");
+  mcg = VIEW_COLOR_GENERIC (view)->mcg;
+
+  property = gnome_property_box_new ();
+
+  gtk_signal_connect (GTK_OBJECT (property), "apply",
+		      GTK_SIGNAL_FUNC (properties_apply_cb), NULL); 
+  gtk_signal_connect (GTK_OBJECT (property), "destroy",
+		      GTK_SIGNAL_FUNC (properties_destroy_cb), NULL);
+
+  /* view properties */
+
+  vbox = gtk_vbox_new (FALSE, GNOME_PAD);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD);
+
+  view_data = VIEW_COLOR_GENERIC_GET_CLASS (view)->get_control (view, 
+		    GTK_VBOX (vbox), properties_changed_cb, property);
+
+  gnome_property_box_append_page (GNOME_PROPERTY_BOX (property), 
+				  vbox, gtk_label_new ("View properties"));
+
+  /* document properties */
+
+  vbox = gtk_vbox_new (FALSE, GNOME_PAD);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD);
+
+  mcg_data = MDI_COLOR_GENERIC_GET_CLASS (mcg)->get_control (mcg,
+		    GTK_VBOX (vbox), properties_changed_cb, property);
+
+  gnome_property_box_append_page (GNOME_PROPERTY_BOX (property), 
+				  vbox, gtk_label_new ("Document properties"));
+
+  gtk_object_set_data (GTK_OBJECT (property), "prop-view", view);
+  gtk_object_set_data (GTK_OBJECT (property), "prop-view-data", view_data);
+  gtk_object_set_data (GTK_OBJECT (property), "prop-document", mcg);
+  gtk_object_set_data (GTK_OBJECT (property), "prop-document-data", mcg_data);
+
+  VIEW_COLOR_GENERIC_GET_CLASS (view)->sync (view, view_data);
+  MDI_COLOR_GENERIC_GET_CLASS  (mcg)->sync  (mcg, mcg_data);
+
+  prop_list = g_list_append (prop_list, property);
+
+  gtk_widget_show_all (property);
+}
+
+/*********************** View Popup Menu *******************************/
+
+void
+menu_view_do_popup (GdkEventButton *event)
+{
+  static GtkWidget *popup = NULL;
+
+  if (!popup) 
+    popup = gnome_popup_menu_new (edit_menu);
+
+  gnome_popup_menu_do_popup (popup, NULL, NULL, event, edit_menu);
 }
