@@ -47,8 +47,13 @@
 (define session-id #f)
 
 ;; Client object
-(define client #f)
-
+(define client (gnome-client-new-default))
+(gtk-signal-connect client "save_yourself" 
+		    (lambda (phase 
+			     save-style shutdown? interact-style fast?)
+		      (notepad-save-for-session client phase save-style 
+						shutdown? interact-style fast?)
+		      ))
 
 ;;;
 ;;; Generic code.
@@ -375,33 +380,18 @@
 
 
 ;; Parse command line options.
-(define (notepad-parse-options argv)
-  (get-option argv '() '(#:file #:sm-client-id)
-	      (lambda (type argument new-argv)
-		(cond
-		 ((eq? type #:file)
-		  (set! file-name argument))
-
-		 ((eq? type #:sm-client-id)
-		  #t)
-
-		 ;; FIXME: error handling.
-		 )
-
-		(and type
-		     (notepad-parse-options new-argv)))))
-
-(notepad-parse-options (cdr (program-arguments)))
-
-(set! client (gnome-client-new (program-arguments)))
-(gtk-signal-connect client "save_yourself" 
-		    (lambda (phase 
-			     save-style shutdown? interact-style fast?)
-		      (notepad-save-for-session client phase save-style 
-						shutdown? interact-style fast?)
-		      ))
+(define (notepad-parse-options option arg)
+  (if (equal? option "file")
+      (begin
+	(set! file-name arg)
+	#t)
+      #f))
 
 (gnome-client-set-current-directory client (getcwd))
+(gnome-init-hack "notepad" notepad-parse-options
+		 (list (list "file"
+			     (gettext "File to open")
+			     (gettext "FILE"))))
 
 (set! main-window (notepad))
 
