@@ -144,6 +144,20 @@ static void get_linux_info()
       info[si_distribution_version] = g_strdup(buf);
       fclose(f);
     }
+  } else if (g_file_exists("/etc/redhat-release")) {
+    FILE *f;
+    gchar buf[80];
+
+    info[si_distribution] = g_strdup(REDHAT_STRING);
+    f = fopen("/etc/redhat-release", "r");
+    if (f) {
+      fgets(buf, 79, f);
+      if (strchr(buf, ' '))
+        info[si_distribution_version] = g_strdup(strchr(buf, ' ')+1);
+      else
+        info[si_distribution_version] = g_strdup(buf);
+      fclose(f);
+    }
   }
   /* OK, people using other dists will need to add theirs, I have
      no idea how to identify a Red Hat system. */
