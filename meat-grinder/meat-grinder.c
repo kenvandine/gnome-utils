@@ -255,6 +255,7 @@ handle_io (GIOChannel *ioc, GIOCondition condition, gpointer data)
 	g_hash_table_foreach (file_ht, whack_links_fe, argv_adder.link_dir);
 
 	/* FIXME: handle errors */
+	g_io_channel_close(ioc);
 	rmdir (argv_adder.link_dir);
 	g_free (argv_adder.link_dir);
 	g_free (argv_adder.argv);
