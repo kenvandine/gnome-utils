@@ -137,8 +137,7 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 		GtkWidget *w = gnome_dialog_new(title,
 					GNOME_STOCK_BUTTON_OK,
 					GNOME_STOCK_BUTTON_CANCEL, NULL);
-		GtkWidget *hbox;
-		GtkWidget *vbox;
+		GtkWidget *hbox, *vbox, *sw;
 
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
@@ -148,7 +147,10 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 
 		label_autowrap(vbox, prompt, width);
 
+		sw=gtk_scrolled_window_new (NULL, NULL);
 		cl=GTK_CLIST(gtk_clist_new(2));
+		gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (cl));
+		
 		if(flag!=FLAG_CHECK)
 		{
 			format=0;
@@ -159,7 +161,9 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 			format=1;
 			gtk_clist_set_selection_mode(cl, GTK_SELECTION_MULTIPLE);
 		}
-		gtk_clist_set_policy(cl, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+		gtk_scrolled_window_set_policy (
+			GTK_SCROLLED_WINDOW (sw),
+			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 		gtk_clist_freeze(cl);
 		gtk_clist_set_border(cl, GTK_SHADOW_IN);		
 				
@@ -178,7 +182,7 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 		gtk_clist_thaw(cl);
 		gtk_widget_set_usize(GTK_WIDGET(cl), lwidth+rwidth+30, 8*list_height+40);
 
-		gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(cl), TRUE, TRUE, 0);
+		gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(sw), TRUE, TRUE, 0);
 		gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
 
 		gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox),
