@@ -19,6 +19,7 @@
 #include "config.h"
 
 #include <errno.h>
+#include <gconf/gconf.h>
 #include <gnome.h>
 #include <libgnomeui/gnome-window-icon.h>
 #include <signal.h>

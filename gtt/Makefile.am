@@ -1,9 +1,4 @@
-SUBDIRS = doc glade
-
-INCLUDES = 			\
-	-I$(includedir)		\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	$(GNOME_INCLUDEDIR)
+SUBDIRS = doc glade phtml
 
 bin_PROGRAMS = gtt
 
@@ -48,6 +43,15 @@ noinst_HEADERS = 	\
 	xml-gtt.h
 	
 
+CFLAGS = @CFLAGS@ \
+	${GTKHTML_CFLAGS} \
+	${GLADE_CFLAGS} 
+
+INCLUDES = 			\
+	-I$(includedir)		\
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
+	$(GNOME_INCLUDEDIR)
+						 
 gtt_LDADD = \
 	$(GLADE_LIBS)           \
 	$(GNOME_LIBDIR)         \
