@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.2.1\n"
-"POT-Creation-Date: 2001-02-26 13:57+0100\n"
+"POT-Creation-Date: 2001-02-27 03:36-0800\n"
 "PO-Revision-Date: 2001-02-26 11:09:15+0100\n"
 "Last-Translator: Gergely Nagy <greg@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
@@ -79,8 +79,7 @@ msgid "Text to copy:"
 msgstr "Másolandó szöveg:"
 
 #: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
-#: gstripchart/gstripchart.c:1798 mini-utils/gcolorsel/menus.c:921
-#: stripchart/chart-app.c:253
+#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:253
 msgid "Exit"
 msgstr "Kilép"
 
@@ -90,7 +89,6 @@ msgid "Copy"
 msgstr "Másolás"
 
 #: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
-#: gstripchart/gstripchart.c:1786 gstripchart/gstripchart.c:2070
 #: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
 #: stripchart/chart-app.c:227 stripchart/params.c:1008
 #: stripchart/stripchart-applet.c:89
@@ -98,8 +96,7 @@ msgid "About"
 msgstr "Névjegy"
 
 #: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
-#: gdictsrc/gdict-applet.c:284 gstripchart/gstripchart.c:1780
-#: gstripchart/gstripchart.c:2067 stripchart/chart-app.c:222
+#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:222
 #: stripchart/params.c:1043 stripchart/params.c:1046
 #: stripchart/stripchart-applet.c:86
 msgid "Help"
@@ -644,312 +641,6 @@ msgstr "Parancs elferdítve"
 msgid "No command for this mime type"
 msgstr "Nincs parancs a mime típushoz"
 
-#: gstripchart/gstripchart.c:441
-msgid "rparen expected"
-msgstr "rparen hiba"
-
-#: gstripchart/gstripchart.c:458 stripchart/eval.c:269
-#, c-format
-msgid "no such field: %d"
-msgstr "nincs ilyen mezõ: %d"
-
-#: gstripchart/gstripchart.c:486 stripchart/eval.c:285
-msgid "missing variable identifer"
-msgstr "hiányzó változó azonosító"
-
-#: gstripchart/gstripchart.c:488 stripchart/eval.c:287
-#, c-format
-msgid "invalid variable identifer: %s"
-msgstr "rossz változó azonosító: %s"
-
-#: gstripchart/gstripchart.c:492 stripchart/eval.c:291
-msgid "number expected"
-msgstr "szám hiba"
-
-#: gstripchart/gstripchart.c:570
-#, c-format
-msgid "extra gunk at end: \"%s\""
-msgstr "szemét a fájl végén: '%s'"
-
-#: gstripchart/gstripchart.c:652
-#, c-format
-msgid "%s, line %d: "
-msgstr "%s, %d. sor: "
-
-#: gstripchart/gstripchart.c:733
-#, c-format
-msgid "can't open config file \"%s\""
-msgstr "nem tudom megnyitni '%s' konfigurációs fájlt"
-
-#: gstripchart/gstripchart.c:760
-#, c-format
-msgid ""
-"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
-"nem tudom megnyitni './gstripchart.conf'-t, \"%s\"-t, \"%s\"-t, vagy \"%s\"-t"
-
-#: gstripchart/gstripchart.c:765
-#, c-format
-msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr "nem tudom megnyitni \"./gstripchart.conf\"-t, \"%s\"-t, vagy \"%s\"-t"
-
-#: gstripchart/gstripchart.c:843
-msgid "identifier or begin must be first"
-msgstr "azonosító vagy begin kell hogy az elsõ legyen"
-
-#: gstripchart/gstripchart.c:851 gstripchart/gstripchart.c:868
-#, c-format
-msgid "unrecognized color: %s"
-msgstr "ismeretlen szín: %s"
-
-#: gstripchart/gstripchart.c:883
-msgid "scale must be either \"log\" or \"linear\""
-msgstr "a skála érték 'log' vagy 'linear' lehet"
-
-#: gstripchart/gstripchart.c:898
-msgid "no equation found"
-msgstr "nem találtam egyenletet"
-
-#: gstripchart/gstripchart.c:915
-#, c-format
-msgid "invalid option: \"%s\""
-msgstr "rossz paraméter: '%s'"
-
-#: gstripchart/gstripchart.c:1498
-msgid "E_xit"
-msgstr "_Kilép"
-
-#: gstripchart/gstripchart.c:1498
-msgid "Terminate the stripchart program"
-msgstr "A függvényrajzoló program megáll"
-
-#: gstripchart/gstripchart.c:1514
-msgid "Copyright 1998,99 John Kodis"
-msgstr "Copyright 1998,99 John Kodis"
-
-#: gstripchart/gstripchart.c:1516 stripchart/chart-app.c:195
-msgid ""
-"The GNOME stripchart program plots various user-specified parameters as a "
-"function of time.  Its main use is to chart system performance parameters "
-"such as CPU load, CPU utilization, network traffic levels, and the like.  "
-"Other more ingenious uses are left as an exercise for the interested user."
-msgstr ""
-"A GNOME függvényrajzoló program változatos felhasználó által definiált "
-"paramétereket tud megjeleníteni az idõ függvényében. A program a rendszer "
-"minõségi paramétereinek ábrázolására van használva, mint a CPU load, a CPU "
-"kihasználtság, hálózati forgalom, és egyéb hasonló dolgokra. Egyéb "
-"felhasználási területek csak a felhasználó tapasztalatától függnek."
-
-#: gstripchart/gstripchart.c:1601 gstripchart/gstripchart.c:1740
-#: stripchart/chart-app.c:157
-msgid "Param"
-msgstr "Param"
-
-#: gstripchart/gstripchart.c:1601 mini-utils/gcolorsel/view-color-list.c:197
-#: mini-utils/guname/moreinfo.c:227
-msgid "Value"
-msgstr "Érték"
-
-#: gstripchart/gstripchart.c:1605
-msgid "Identifier"
-msgstr "Azonosító"
-
-#: gstripchart/gstripchart.c:1607 mini-utils/gcolorsel/view-color-list.c:196
-#: stripchart/params.c:815
-msgid "Color"
-msgstr "Szín"
-
-#: gstripchart/gstripchart.c:1609 stripchart/params.c:670
-msgid "Filename"
-msgstr "Fájlnév"
-
-#: gstripchart/gstripchart.c:1611 stripchart/params.c:681
-msgid "Pattern"
-msgstr "Minta"
-
-#: gstripchart/gstripchart.c:1613 stripchart/params.c:659
-msgid "Equation"
-msgstr "Egyenlet"
-
-#: gstripchart/gstripchart.c:1615
-msgid "Expected range"
-msgstr "Hibás tartomány"
-
-#: gstripchart/gstripchart.c:1619
-msgid "Displayed range"
-msgstr "Mutatott tartomány"
-
-#: gstripchart/gstripchart.c:1623
-msgid "Current value"
-msgstr "Aktuális érték"
-
-#: gstripchart/gstripchart.c:1630
-msgid "Active"
-msgstr "Aktív"
-
-#: gstripchart/gstripchart.c:1647
-msgid "Stripchart Parameters"
-msgstr "Függvényrajzoló paraméterek"
-
-#: gstripchart/gstripchart.c:1741 stripchart/chart-app.c:158
-msgid "Current"
-msgstr "Jelenlegi"
-
-#: gstripchart/gstripchart.c:1742 stripchart/chart-app.c:159
-#: stripchart/params.c:692
-msgid "Top"
-msgstr "Csúcs"
-
-#: gstripchart/gstripchart.c:1743 stripchart/chart-app.c:160
-#: stripchart/params.c:748
-msgid "Scale"
-msgstr "Skála"
-
-#: gstripchart/gstripchart.c:1792
-msgid "Params"
-msgstr "Paraméterek"
-
-#. Create a top-level application window. Set minimum size (_usize),
-#. initial size (_default_size), and establish delete and destroy
-#. event handlers.
-#: gstripchart/gstripchart.c:1904
-msgid "gstripchart"
-msgstr "gstripchart"
-
-#: gstripchart/gstripchart.c:1904
-msgid "Stripchart Viewer"
-msgstr "Stripchart Nézegetõ"
-
-#: gstripchart/gstripchart.c:2073 stripchart/stripchart-applet.c:98
-msgid "Params..."
-msgstr "Paraméterek..."
-
-#: gstripchart/gstripchart.c:2118
-#, c-format
-msgid "invalid display type: %s\n"
-msgstr "rossz képernyõ típus: %s\n"
-
-#: gstripchart/gstripchart.c:2143 stripchart/stripchart-applet.c:44
-#: stripchart/stripchart.c:66
-msgid "Geometry string: WxH+X+Y"
-msgstr "Geometria: WxH+X+Y"
-
-#: gstripchart/gstripchart.c:2143 stripchart/stripchart-applet.c:44
-#: stripchart/stripchart.c:66
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:2145 stripchart/stripchart-applet.c:46
-#: stripchart/stripchart.c:68
-msgid "Configuration file name"
-msgstr "Konfigurációs fájl neve"
-
-#: gstripchart/gstripchart.c:2145 stripchart/stripchart-applet.c:46
-#: stripchart/stripchart.c:68
-msgid "FILE"
-msgstr "FILE"
-
-#: gstripchart/gstripchart.c:2147
-msgid "Chart update interval"
-msgstr "A chart frissítési intervallum"
-
-#: gstripchart/gstripchart.c:2147 gstripchart/gstripchart.c:2149
-#: gstripchart/gstripchart.c:2151 gstripchart/gstripchart.c:2153
-msgid "SECS"
-msgstr "SECS"
-
-#: gstripchart/gstripchart.c:2149
-msgid "Chart low-pass filter time constant"
-msgstr "A Chart"
-
-#: gstripchart/gstripchart.c:2151
-msgid "Slider update interval"
-msgstr "A görgetõsáv frissítési intervalluma"
-
-#: gstripchart/gstripchart.c:2153
-msgid "Slider low-pass filter time constant"
-msgstr "A görgetõsáv alulátereszõ szûrõjének idõkonstansa"
-
-#: gstripchart/gstripchart.c:2155
-msgid "Adds a menubar to the main window"
-msgstr "Menü megjelenítése a fõablakon"
-
-#: gstripchart/gstripchart.c:2157
-msgid "Omits slider window"
-msgstr "Görgetõablakot rak ki"
-
-#: gstripchart/gstripchart.c:2160
-msgid "TYPE is one of gtk, applet, text, or none"
-msgstr "TYPE lehet gtk, applet, text vagy none"
-
-#: gstripchart/gstripchart.c:2160 gstripchart/gstripchart.c:2162
-msgid "TYPE"
-msgstr "TYPE"
-
-#: gstripchart/gstripchart.c:2162
-msgid "TYPE is one of gtk, text, or none"
-msgstr "TYPE lehet gtk, text vagy none"
-
-#: gstripchart/gstripchart.c:2314
-msgid "white"
-msgstr "fehér"
-
-#: gstripchart/gstripchart.c:2314
-msgid "black"
-msgstr "fekete"
-
-#: gstripchart/gstripchart.c:2314
-msgid "red"
-msgstr "vörös"
-
-#: gstripchart/gstripchart.c:2314
-msgid "yellow"
-msgstr "sárga"
-
-#: gstripchart/gstripchart.c:2315
-msgid "blue"
-msgstr "kék"
-
-#: gstripchart/gstripchart.c:2315
-msgid "green"
-msgstr "zöld"
-
-#: gstripchart/gstripchart.c:2315
-msgid "cyan"
-msgstr "cián"
-
-#: gstripchart/gstripchart.c:2315
-msgid "magenta"
-msgstr "lila"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Busy"
-msgstr "Foglalt"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Load"
-msgstr "Load"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Swap"
-msgstr "Swap"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Battery"
-msgstr "Telep"
-
-#: gstripchart/gstripchart.c:2317
-msgid "Net In"
-msgstr "Háló be"
-
-#: gstripchart/gstripchart.c:2317
-msgid "Net Out"
-msgstr "Háló ki"
-
-#: gstripchart/gstripchart.c:2317
-msgid "ppp"
-msgstr "ppp"
-
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
 msgstr "nincs projekt kiválasztva"
@@ -1315,11 +1006,11 @@ msgstr "Kilép"
 msgid "Quit GTimeTracker"
 msgstr "GTimeTracker-bõl való kilépés"
 
-#: logview/about.c:46
+#: logview/about.c:44
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
-#: logview/about.c:47
+#: logview/about.c:45
 msgid ""
 "This  program  is  part of  the  GNOME  project for Linux. Logview comes "
 "with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
@@ -1331,11 +1022,11 @@ msgstr ""
 "szerint. A napló ikon Tuomas Kuosmanen (a.k.a tigert) munkája."
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
-#: logview/about.c:60
+#: logview/about.c:58
 msgid "Logview"
 msgstr "Naplónézõ"
 
-#: logview/about.c:61
+#: logview/about.c:59
 msgid "Copyright (C) 1998"
 msgstr "Copyright (C) 1998"
 
@@ -1424,13 +1115,9 @@ msgstr ""
 "akció: [%s]\n"
 
 # logview/calendar.c:118
-#: logview/calendar.c:117
+#: logview/calendar.c:115
 msgid "Calendar"
 msgstr "Naptár"
-
-#: logview/calendar.c:138
-msgid "Hide calendar"
-msgstr "Naptár elrejtése"
 
 #: logview/info.c:80
 msgid "Log stats"
@@ -1553,7 +1240,7 @@ msgstr "%s-t nem tudom megnyitni."
 msgid "%s not a log file."
 msgstr "%s nem naplófájl."
 
-#: logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
+#: logview/logrtns.c:634 logview/logrtns.c:665 logview/logrtns.c:796
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: elfogyott a memória"
 
@@ -2400,6 +2087,14 @@ msgstr "Hexa 16 bit"
 #: mini-utils/gcolorsel/view-color-generic.c:20
 msgid "Float"
 msgstr "Lebegõpontos"
+
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:815
+msgid "Color"
+msgstr "Szín"
+
+#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:227
+msgid "Value"
+msgstr "Érték"
 
 #. Create everything.
 #: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
@@ -3435,6 +3130,22 @@ msgstr "A floppy formázása megszakítva."
 msgid "Format progress."
 msgstr "Formázás állása."
 
+#: stripchart/chart-app.c:157
+msgid "Param"
+msgstr "Param"
+
+#: stripchart/chart-app.c:158
+msgid "Current"
+msgstr "Jelenlegi"
+
+#: stripchart/chart-app.c:159 stripchart/params.c:692
+msgid "Top"
+msgstr "Csúcs"
+
+#: stripchart/chart-app.c:160 stripchart/params.c:748
+msgid "Scale"
+msgstr "Skála"
+
 #: stripchart/chart-app.c:192 stripchart/stripchart-applet.c:69
 #: stripchart/stripchart.c:92 stripchart/stripchart.c:97
 msgid "Stripchart"
@@ -3443,6 +3154,19 @@ msgstr "Stripchart"
 #: stripchart/chart-app.c:193
 msgid "Copyright 2000 John Kodis"
 msgstr "Copyright 2000 John Kodis"
+
+#: stripchart/chart-app.c:195
+msgid ""
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
+msgstr ""
+"A GNOME függvényrajzoló program változatos felhasználó által definiált "
+"paramétereket tud megjeleníteni az idõ függvényében. A program a rendszer "
+"minõségi paramétereinek ábrázolására van használva, mint a CPU load, a CPU "
+"kihasználtság, hálózati forgalom, és egyéb hasonló dolgokra. Egyéb "
+"felhasználási területek csak a felhasználó tapasztalatától függnek."
 
 #: stripchart/chart-app.c:234
 msgid "Show values"
@@ -3460,6 +3184,24 @@ msgstr "Paraméterek szerkesztése..."
 msgid "closing parenthesis expected"
 msgstr "záró zárójelet vártam"
 
+#: stripchart/eval.c:269
+#, c-format
+msgid "no such field: %d"
+msgstr "nincs ilyen mezõ: %d"
+
+#: stripchart/eval.c:285
+msgid "missing variable identifer"
+msgstr "hiányzó változó azonosító"
+
+#: stripchart/eval.c:287
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr "rossz változó azonosító: %s"
+
+#: stripchart/eval.c:291
+msgid "number expected"
+msgstr "szám hiba"
+
 #: stripchart/eval.c:362
 #, c-format
 msgid "extra junk at end: \"%s\""
@@ -3468,6 +3210,18 @@ msgstr "szemét a fájl végén: \"%s\""
 #: stripchart/params.c:621
 msgid "Parameter"
 msgstr "Paraméter"
+
+#: stripchart/params.c:659
+msgid "Equation"
+msgstr "Egyenlet"
+
+#: stripchart/params.c:670
+msgid "Filename"
+msgstr "Fájlnév"
+
+#: stripchart/params.c:681
+msgid "Pattern"
+msgstr "Minta"
 
 #: stripchart/params.c:702 stripchart/params.c:730
 msgid "Min"
@@ -3577,6 +3331,22 @@ msgstr "Egységek"
 msgid "Pen"
 msgstr "Toll"
 
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "Geometry string: WxH+X+Y"
+msgstr "Geometria: WxH+X+Y"
+
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "GEO"
+msgstr "GEO"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "Configuration file name"
+msgstr "Konfigurációs fájl neve"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "FILE"
+msgstr "FILE"
+
 #: stripchart/stripchart-applet.c:92
 msgid "Values"
 msgstr "Értékek"
@@ -3584,3 +3354,178 @@ msgstr "Értékek"
 #: stripchart/stripchart-applet.c:95
 msgid "Prefs..."
 msgstr "Tulajdonságok..."
+
+#: stripchart/stripchart-applet.c:98
+msgid "Params..."
+msgstr "Paraméterek..."
+
+#~ msgid "rparen expected"
+#~ msgstr "rparen hiba"
+
+#~ msgid "extra gunk at end: \"%s\""
+#~ msgstr "szemét a fájl végén: '%s'"
+
+#~ msgid "%s, line %d: "
+#~ msgstr "%s, %d. sor: "
+
+#~ msgid "can't open config file \"%s\""
+#~ msgstr "nem tudom megnyitni '%s' konfigurációs fájlt"
+
+#~ msgid ""
+#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "nem tudom megnyitni './gstripchart.conf'-t, \"%s\"-t, \"%s\"-t, vagy \"%s\"-t"
+
+#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "nem tudom megnyitni \"./gstripchart.conf\"-t, \"%s\"-t, vagy \"%s\"-t"
+
+#~ msgid "identifier or begin must be first"
+#~ msgstr "azonosító vagy begin kell hogy az elsõ legyen"
+
+#~ msgid "unrecognized color: %s"
+#~ msgstr "ismeretlen szín: %s"
+
+#~ msgid "scale must be either \"log\" or \"linear\""
+#~ msgstr "a skála érték 'log' vagy 'linear' lehet"
+
+#~ msgid "no equation found"
+#~ msgstr "nem találtam egyenletet"
+
+#~ msgid "invalid option: \"%s\""
+#~ msgstr "rossz paraméter: '%s'"
+
+#~ msgid "E_xit"
+#~ msgstr "_Kilép"
+
+#~ msgid "Terminate the stripchart program"
+#~ msgstr "A függvényrajzoló program megáll"
+
+#~ msgid "Copyright 1998,99 John Kodis"
+#~ msgstr "Copyright 1998,99 John Kodis"
+
+#~ msgid "Identifier"
+#~ msgstr "Azonosító"
+
+#~ msgid "Expected range"
+#~ msgstr "Hibás tartomány"
+
+#~ msgid "Displayed range"
+#~ msgstr "Mutatott tartomány"
+
+#~ msgid "Current value"
+#~ msgstr "Aktuális érték"
+
+#~ msgid "Active"
+#~ msgstr "Aktív"
+
+#~ msgid "Stripchart Parameters"
+#~ msgstr "Függvényrajzoló paraméterek"
+
+#~ msgid "Params"
+#~ msgstr "Paraméterek"
+
+#~ msgid "gstripchart"
+#~ msgstr "gstripchart"
+
+#~ msgid "Stripchart Viewer"
+#~ msgstr "Stripchart Nézegetõ"
+
+#~ msgid "invalid display type: %s\n"
+#~ msgstr "rossz képernyõ típus: %s\n"
+
+#~ msgid "Chart update interval"
+#~ msgstr "A chart frissítési intervallum"
+
+#~ msgid "SECS"
+#~ msgstr "SECS"
+
+#~ msgid "Chart low-pass filter time constant"
+#~ msgstr "A Chart"
+
+#~ msgid "Slider update interval"
+#~ msgstr "A görgetõsáv frissítési intervalluma"
+
+#~ msgid "Slider low-pass filter time constant"
+#~ msgstr "A görgetõsáv alulátereszõ szûrõjének idõkonstansa"
+
+#~ msgid "Adds a menubar to the main window"
+#~ msgstr "Menü megjelenítése a fõablakon"
+
+#~ msgid "Omits slider window"
+#~ msgstr "Görgetõablakot rak ki"
+
+#~ msgid "TYPE is one of gtk, applet, text, or none"
+#~ msgstr "TYPE lehet gtk, applet, text vagy none"
+
+#~ msgid "TYPE"
+#~ msgstr "TYPE"
+
+#~ msgid "TYPE is one of gtk, text, or none"
+#~ msgstr "TYPE lehet gtk, text vagy none"
+
+#~ msgid "white"
+#~ msgstr "fehér"
+
+#~ msgid "black"
+#~ msgstr "fekete"
+
+#~ msgid "red"
+#~ msgstr "vörös"
+
+#~ msgid "yellow"
+#~ msgstr "sárga"
+
+#~ msgid "blue"
+#~ msgstr "kék"
+
+#~ msgid "green"
+#~ msgstr "zöld"
+
+#~ msgid "cyan"
+#~ msgstr "cián"
+
+#~ msgid "magenta"
+#~ msgstr "lila"
+
+#~ msgid "Busy"
+#~ msgstr "Foglalt"
+
+#~ msgid "Load"
+#~ msgstr "Load"
+
+#~ msgid "Swap"
+#~ msgstr "Swap"
+
+#~ msgid "Battery"
+#~ msgstr "Telep"
+
+#~ msgid "Net In"
+#~ msgstr "Háló be"
+
+#~ msgid "Net Out"
+#~ msgstr "Háló ki"
+
+#~ msgid "ppp"
+#~ msgstr "ppp"
+
+#~ msgid "Hide calendar"
+#~ msgstr "Naptár elrejtése"
+
+#~ msgid ""
+#~ "Linux Native (ext2)\n"
+#~ "Dos (FAT)\n"
+#~ msgstr ""
+#~ "Linux Native (ext2)\n"
+#~ "Dos (FAT)\n"
+
+#~ msgid ""
+#~ "High Density 3.5\" (1.44 MB)\n"
+#~ "High Density 5.25\" (1.2 MB)\n"
+#~ "Double Density 3.5\" (720 KB)\n"
+#~ "Double Density 5.25\" (360 KB)\n"
+#~ msgstr ""
+#~ "High Density 3.5\" (1.44 MB)\n"
+#~ "High Density 5.25\" (1.2 MB)\n"
+#~ "Double Density 3.5\" (720 KB)\n"
+#~ "Double Density 5.25\" (360 KB)\n"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.2.0\n"
-"POT-Creation-Date: 2000-06-09 09:56+0200\n"
+"POT-Creation-Date: 2001-02-27 03:36-0800\n"
 "PO-Revision-Date: 2000-06-09 09:57+0200\n"
 "Last-Translator: Fatih Demir <kabalak@gmx.net>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -25,114 +25,196 @@ msgstr "Ufak tefek xcalc'e benzer hesap makinasý"
 msgid "Gnome Calculator"
 msgstr "Gnome Hesap Makinasý"
 
-#: gcharmap/src/asciiselect.c:42 gcharmap/src/interface.c:38
-msgid "Insert ASCII character"
+#: gcharmap/src/asciiselect.c:117
+#, fuzzy
+msgid "Select ASCII Character"
 msgstr "ASCII harfýný içer"
 
-#: gcharmap/src/interface.c:38
-msgid "Insert ASCII character..."
-msgstr "ASCII harfýný içer ..."
+#: gcharmap/src/asciiselect.c:118 gcharmap/src/menus.c:95
+#, fuzzy
+msgid "Insert"
+msgstr "Renk içer"
 
-#: gcharmap/src/interface.c:44
-msgid "_Toolbar"
-msgstr "_Araç çubuðu"
+#: gcharmap/src/asciiselect.c:124
+msgid "ASCII code:"
+msgstr ""
 
-#: gcharmap/src/interface.c:44
-msgid "View or hide the toolbar"
-msgstr "Araç çubuðunu göster/gizle"
+#: gcharmap/src/asciiselect.c:134
+#, fuzzy
+msgid "Character:"
+msgstr "Gnome harf haritasý"
 
-#: gcharmap/src/interface.c:46
-msgid "_Statusbar"
-msgstr "_Durum"
+#: gcharmap/src/callbacks.c:42 gcharmap/src/interface.c:130
+msgid "Gnome Character Map"
+msgstr "Gnome harf haritasý"
 
-#: gcharmap/src/interface.c:46
-msgid "View or hide the statusbar"
-msgstr "Durum çubuðunu göster yada gizle"
+#: gcharmap/src/callbacks.c:46
+#, fuzzy
+msgid ""
+"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"contain bad English."
+msgstr ""
+"Microsoft Windows'un Harf Harita uygulamasýna benzer bir uygulama.\n"
+"http://users.telekabel.nl/hongli/"
 
-#: gcharmap/src/interface.c:66 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Kes"
+#: gcharmap/src/callbacks.c:76
+#, fuzzy, c-format
+msgid "%s: ASCII code %d"
+msgstr "%s : ASCII harfý %d"
 
-#: gcharmap/src/interface.c:66
-msgid "Cut the text to clipboard"
-msgstr "Metni arabelleðe kes"
+#: gcharmap/src/callbacks.c:103
+msgid "Text copied to clipboard..."
+msgstr "Metin arabelleðe kopyalandý ..."
 
-#: gcharmap/src/interface.c:68 gcharmap/src/interface.c:191
+#: gcharmap/src/callbacks.c:115
+msgid "Text cut to clipboard..."
+msgstr "Metin arabelleðe kesildi ..."
+
+#: gcharmap/src/callbacks.c:168
+msgid "Text pasted from clipboard..."
+msgstr "Metin arabellekten alýndý ..."
+
+#: gcharmap/src/interface.c:159
+#, fuzzy
+msgid "Action Toolbar"
+msgstr "Araç çubuðu"
+
+#: gcharmap/src/interface.c:178
+#, fuzzy
+msgid "Text to copy:"
+msgstr "Kopyalanacak metin :"
+
+#: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
+#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:253
+msgid "Exit"
+msgstr "Çýk"
+
+#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:100
 #: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopyala"
 
-#: gcharmap/src/interface.c:68
-msgid "Copy the text to clipboard."
-msgstr "Metni arabelleðe kopyala."
-
-#: gcharmap/src/interface.c:70 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Yapýþtýr"
-
-#: gcharmap/src/interface.c:70
-msgid "Paste the text from clipboard."
-msgstr "Metni arabellekten al."
-
-#: gcharmap/src/interface.c:73 gnome-find/gnome-find.c:49
-#: gstripchart/gstripchart.c:1802 mini-utils/gcolorsel/menus.c:950
-msgid "Exit"
-msgstr "Çýk"
-
-#: gcharmap/src/interface.c:73
-msgid "Exit the application"
-msgstr "Uygulamadan çýk"
-
-#: gcharmap/src/interface.c:100 gcharmap/src/interface.c:355
-msgid "Gnome Character Map"
-msgstr "Gnome harf haritasý"
-
-#: gcharmap/src/interface.c:146
-msgid "Text to Copy:"
-msgstr "Kopyalanacak metin :"
-
-#: gcharmap/src/interface.c:185 mini-utils/gcolorsel/menus.c:93
-#: mini-utils/gcolorsel/menus.c:954 mini-utils/gshutdown/gshutdown.c:153
-#: mini-utils/gshutdown/gshutdown.c:594
-msgid "Close"
-msgstr "Kapat"
-
-#: gcharmap/src/interface.c:197 gstripchart/gstripchart.c:1790
-#: gstripchart/gstripchart.c:2074 mini-utils/gcolorsel/menus.c:960
-#: mini-utils/gshutdown/gshutdown.c:319
+#: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
+#: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
+#: stripchart/chart-app.c:227 stripchart/params.c:1008
+#: stripchart/stripchart-applet.c:89
 msgid "About"
 msgstr "Bilgi"
 
-#: gcharmap/src/interface.c:203 gnome-find/gnome-find.c:89
-#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:2071
+#: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
+#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:222
+#: stripchart/params.c:1043 stripchart/params.c:1046
+#: stripchart/stripchart-applet.c:86
 msgid "Help"
 msgstr "Yardým"
 
-#: gcharmap/src/interface.c:303
-#, c-format
-msgid "%s: ASCII character %d"
-msgstr "%s : ASCII harfý %d"
+#: gcharmap/src/menus.c:47
+#, fuzzy
+msgid "Insert Character..."
+msgstr "ASCII harfýný içer ..."
 
-#: gcharmap/src/interface.c:320
-msgid "Text cut to clipboard..."
-msgstr "Metin arabelleðe kesildi ..."
-
-#: gcharmap/src/interface.c:329
-msgid "Text copied to clipboard..."
-msgstr "Metin arabelleðe kopyalandý ..."
-
-#: gcharmap/src/interface.c:338
-msgid "Text pasted from clipboard..."
-msgstr "Metin arabellekten alýndý ..."
-
-#: gcharmap/src/interface.c:356
-msgid ""
-"The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
-"contain bad English.\n"
-"http://users.telekabel.nl/hongli/"
+#: gcharmap/src/menus.c:48
+msgid "Insert character(s) by choosing ASCII codes."
 msgstr ""
-"Microsoft Windows'un Harf Harita uygulamasýna benzer bir uygulama.\n"
-"http://users.telekabel.nl/hongli/"
+
+#: gcharmap/src/menus.c:55
+#, fuzzy
+msgid "_Action Toolbar"
+msgstr "_Araç çubuðu"
+
+#: gcharmap/src/menus.c:55
+#, fuzzy
+msgid "View or hide the action toolbar"
+msgstr "Araç çubuðunu göster/gizle"
+
+#: gcharmap/src/menus.c:57
+#, fuzzy
+msgid "_Text Toolbar"
+msgstr "_Araç çubuðu"
+
+#: gcharmap/src/menus.c:57
+#, fuzzy
+msgid "View or hide the text toolbar"
+msgstr "Araç çubuðunu göster/gizle"
+
+#: gcharmap/src/menus.c:59
+msgid "_Statusbar"
+msgstr "_Durum"
+
+#: gcharmap/src/menus.c:59
+msgid "View or hide the statusbar"
+msgstr "Durum çubuðunu göster yada gizle"
+
+#: gcharmap/src/menus.c:66
+msgid "Character Table's Font..."
+msgstr ""
+
+#: gcharmap/src/menus.c:66
+msgid "Set the character table's font."
+msgstr ""
+
+#: gcharmap/src/menus.c:69
+msgid "_Insert at end"
+msgstr ""
+
+#: gcharmap/src/menus.c:69
+msgid "Insert every selected character at the end of the text entry"
+msgstr ""
+
+#: gcharmap/src/menus.c:71
+msgid "_Focusable Buttons"
+msgstr ""
+
+#: gcharmap/src/menus.c:71
+msgid "Set the buttons to be focusable or not"
+msgstr ""
+
+#: gcharmap/src/menus.c:95
+msgid "Insert character(s) by choosing ASCII codes"
+msgstr ""
+
+#: gcharmap/src/menus.c:98 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Kes"
+
+#: gcharmap/src/menus.c:98
+#, fuzzy
+msgid "Cut the selection"
+msgstr "Uygulamadan çýk"
+
+#: gcharmap/src/menus.c:100
+msgid "Copy the selection"
+msgstr ""
+
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Yapýþtýr"
+
+#: gcharmap/src/menus.c:102
+#, fuzzy
+msgid "Paste the clipboard"
+msgstr "Metni arabellekten al."
+
+#: gcharmap/src/menus.c:105
+#, fuzzy
+msgid "Show Gnome Character Map's manual"
+msgstr "Gnome harf haritasý"
+
+#: gcharmap/src/menus.c:107 mini-utils/gcolorsel/menus.c:919
+msgid "About this application"
+msgstr "Bu uygulama hakkýnda bilgi"
+
+#: gcharmap/src/menus.c:110 mini-utils/gcolorsel/menus.c:921
+msgid "Exit the program"
+msgstr "Uygulamadan çýk"
+
+#. Could not look up search strategies, so just display a
+#. * label; FIXME: Memory leak
+#.
+#: gdictsrc/dict.c:635 gdictsrc/gdict-pref-dialog.c:498
+#: gdictsrc/gdict-pref-dialog.c:542 gdictsrc/gdict-speller.c:393
+msgid "Cannot connect to server"
+msgstr "Sunucuya baðlanamadým"
 
 #: gdictsrc/gdict-about.c:40
 msgid ""
@@ -183,7 +265,7 @@ msgstr ""
 "yenidn dene ."
 
 #: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
-#: gdictsrc/gdict-applet.c:153
+#: gdictsrc/gdict-applet.c:313
 msgid "Lookup"
 msgstr "Arama"
 
@@ -223,25 +305,25 @@ msgstr "Kullanýlacak sunucu, önayarlý arama taktiði, yazý tipleri"
 msgid "Word definition"
 msgstr "Kelime tanýmlatmacýsý"
 
-#: gdictsrc/gdict-applet.c:120
-msgid "Cannot create applet!\n"
-msgstr "Uygulaðý yaratamadým !\n"
-
-#: gdictsrc/gdict-applet.c:130 mini-utils/gcolorsel/menus.c:1098
+#: gdictsrc/gdict-applet.c:280
 msgid "About..."
 msgstr "Bilgi ..."
 
-#: gdictsrc/gdict-applet.c:134 gnome-find/gnome-find.c:55
+#: gdictsrc/gdict-applet.c:289
 msgid "Preferences..."
 msgstr "Ayarlar ..."
 
-#: gdictsrc/gdict-applet.c:138
+#: gdictsrc/gdict-applet.c:293
 msgid "Show/Hide Definition Window..."
 msgstr "Tanýmlama penceresini göster/gizle ..."
 
-#: gdictsrc/gdict-applet.c:142
+#: gdictsrc/gdict-applet.c:297
 msgid "Spell Check..."
 msgstr "Imla kontrolü ..."
+
+#: gdictsrc/gdict-applet.c:309
+msgid "Cannot create applet!\n"
+msgstr "Uygulaðý yaratamadým !\n"
 
 #: gdictsrc/gdict-pref-dialog.c:38
 msgid "Headword:"
@@ -276,8 +358,8 @@ msgid "Cross-reference:"
 msgstr "Referans :"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:495
-#: mini-utils/gcolorsel/menus.c:1109 mini-utils/gshutdown/gshutdown.c:314
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
+#: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:194
 msgid "Preferences"
 msgstr "Ayarlar"
 
@@ -325,19 +407,11 @@ msgstr ""
 msgid "Applet"
 msgstr "Uygulak"
 
-#. Could not look up search strategies, so just display a
-#. * label; FIXME: Memory leak
-#.
-#: gdictsrc/gdict-pref-dialog.c:498 gdictsrc/gdict-pref-dialog.c:542
-#: gdictsrc/gdict-speller.c:386
-msgid "Cannot connect to server"
-msgstr "Sunucuya baðlanamadým"
-
-#: gdictsrc/gdict-pref-dialog.c:577
+#: gdictsrc/gdict-pref-dialog.c:581
 msgid "The server you specified could not be found."
 msgstr "Belirttiðin sunucu bulunamadý ."
 
-#: gdiskfree/gdiskfree_app.c:53 gdiskfree/gdiskfree_menus.c:110
+#: gdiskfree/gdiskfree_app.c:53 gdiskfree/gdiskfree_menus.c:108
 msgid "GDiskFree"
 msgstr "GDiskFree"
 
@@ -346,250 +420,135 @@ msgstr "GDiskFree"
 msgid "Unable to parse the geometry string '%s'"
 msgstr "Yer verisi olan `%s''yi tarayamadým"
 
-#: gdiskfree/gdiskfree.c:58
+#: gdiskfree/gdiskfree.c:59
 msgid "Specify the geometry of the window."
 msgstr "Pencerenin yerini belirler ."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:207 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:60 gtt/main.c:207 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRY"
 
-#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:160
-msgid "Properties"
-msgstr "Ayarlar"
-
-#: gdiskfree/gdiskfree_menus.c:46
-msgid "This sets the overall application settings."
-msgstr "Bu genel uygulama ayarlarýný belirler ."
-
-#: gdiskfree/gdiskfree_menus.c:113
+#: gdiskfree/gdiskfree_menus.c:111
 msgid "GDiskFree is a GNOME implementation of the shell utility 'df'."
 msgstr "GDiskFree 'df' komuta uygulamasýnýn GNOME teþkili ."
 
-#: gdiskfree/gdiskfree_options.c:191
+#: gdiskfree/gdiskfree_options.c:206
 msgid "GDiskFree Properties"
 msgstr "GDiskFree Ayarlarý"
 
-#: gdiskfree/gdiskfree_options.c:196
+#: gdiskfree/gdiskfree_options.c:211
 msgid "Invoke sync before getting usage info"
 msgstr "Kullaným bilgilerini almadan önce eþleþtirme ( sync ) yap"
 
-#: gdiskfree/gdiskfree_options.c:207
+#: gdiskfree/gdiskfree_options.c:223
 msgid "Show drive mount points"
 msgstr "Sürücülerin baðlama noktalarýný göster"
 
-#: gdiskfree/gdiskfree_options.c:216
+#: gdiskfree/gdiskfree_options.c:234
+#, fuzzy
+msgid "Show drive size"
+msgstr "Sürücülerin baðlama noktalarýný göster"
+
+#: gdiskfree/gdiskfree_options.c:244
 msgid "Dial Orientation"
 msgstr "Arama taraflamasý"
 
-#: gdiskfree/gdiskfree_options.c:221
+#: gdiskfree/gdiskfree_options.c:249
 msgid "Vertical"
 msgstr "Dikey"
 
-#: gdiskfree/gdiskfree_options.c:234
+#: gdiskfree/gdiskfree_options.c:262
 msgid "Horizontal"
 msgstr "Ufki"
 
-#: gdiskfree/gdiskfree_options.c:253
+#: gdiskfree/gdiskfree_options.c:281
 msgid "Update interval (ms)"
 msgstr "Yenileme arasý ( milisan. )"
 
-#: gdiskfree/gdiskfree_options.c:264
+#: gdiskfree/gdiskfree_options.c:292
 msgid "General Settings"
 msgstr "Genel ayarlar"
 
-#: gnome-find/gnome-find.c:42
-msgid "New search"
-msgstr "Yeni arama"
-
-#: gnome-find/gnome-find.c:43
-msgid "Open search spec"
-msgstr "Arama özelliklerini aç"
-
-#: gnome-find/gnome-find.c:44
-msgid "Save search spec"
-msgstr "Arama özelliklerini kaydet"
-
-#: gnome-find/gnome-find.c:45
-msgid "Save search spec as..."
-msgstr "Arama özelliklerini farklý kaydet ..."
-
-#: gnome-find/gnome-find.c:61
-msgid "Add condition"
-msgstr "Þart ekle"
-
-#: gnome-find/gnome-find.c:61 gnome-find/gnome-find.c:100
-msgid "Add a search condition"
-msgstr "Bir arama þartýný ekle"
-
-#: gnome-find/gnome-find.c:62
-msgid "Remove condition"
-msgstr "Þartý sil"
-
-#: gnome-find/gnome-find.c:62 gnome-find/gnome-find.c:102
-msgid "Remove last search condition"
-msgstr "Son arama þartlarýný sil"
-
-#: gnome-find/gnome-find.c:64 gnome-find/gnome-find.c:65
-#: gnome-find/gnome-find.c:103
-msgid "Show advanced options"
-msgstr "Geliþmiþ seçenekleri göster"
-
-#: gnome-find/gnome-find.c:70
-msgid "Start search"
-msgstr "Aramaya baþla"
-
-#: gnome-find/gnome-find.c:77
-msgid "About Gnome Find..."
-msgstr "Gnome Find hakkýnda ..."
-
-#: gnome-find/gnome-find.c:86 mini-utils/gcolorsel/gcolorsel.c:44
-msgid "File"
-msgstr "Dosya"
-
-#: gnome-find/gnome-find.c:87 mini-utils/gcolorsel/gcolorsel.c:36
-#: mini-utils/gcolorsel/menus.c:588 mini-utils/gcolorsel/menus.c:691
-msgid "Edit"
-msgstr "Deðiþtir"
-
-#: gnome-find/gnome-find.c:88 gnome-find/gnome-find.c:109
-#: mini-utils/gcolorsel/session.c:437
-msgid "Search"
-msgstr "Ara"
-
-#: gnome-find/gnome-find.c:95
-msgid "New"
-msgstr "Yeni"
-
-#: gnome-find/gnome-find.c:95
-msgid "Clear the search window"
-msgstr "Arama penceresini temizle"
-
-#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:610
-#: mini-utils/gw/gw.c:508
-msgid "Add"
-msgstr "Ekle"
-
-#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:536
-#: logview/actions.c:127
-msgid "Remove"
-msgstr "Sil"
-
-#: gnome-find/gnome-find.c:103 mini-utils/gshutdown/gshutdown.c:209
-#: mini-utils/gshutdown/gshutdown.c:210
-msgid "Advanced"
-msgstr "Geliþmiþ"
-
-#: gnome-find/gnome-find.c:109
-msgid "Start the current search"
-msgstr "Geçerli aramayý baþlat"
-
-#: gnome-find/gnome-find.c:180
-msgid "Find Files"
-msgstr "Dosya bul"
-
-#: gnome-find/gnome-find.c:182
-msgid "Directory:"
-msgstr "Dizin :"
-
-#: gnome-find/gnome-find.c:184
-msgid "Directory to Search"
-msgstr "Aranacak dizin"
-
-#: gnome-find/gnome-find.c:426
-msgid "GNOME Find"
-msgstr "GNOME Find"
-
-#. copyright notice
-#: gnome-find/gnome-find.c:428
-msgid "(C) 1998 the Free Software Foundation"
-msgstr "Tel'if hakký (C) 1998 the Free Software Foundation"
-
-#. another comments
-#: gnome-find/gnome-find.c:431
-msgid "GNOME Find is a fast, flexible file search tool."
-msgstr "GNOME Find hýzle ve geliþmiþ bir dosya arama uygulamasýdýr ."
-
-#: gsearchtool/gsearchtool.c:27
+#: gsearchtool/gsearchtool.c:33
 msgid "File name"
 msgstr "Dosya adý"
 
-#: gsearchtool/gsearchtool.c:29
+#: gsearchtool/gsearchtool.c:35
 msgid "Don't search subdirectories"
 msgstr "Altdizinleri arama"
 
-#: gsearchtool/gsearchtool.c:30
+#: gsearchtool/gsearchtool.c:36
 msgid "File owner"
 msgstr "Dosya iyesi"
 
-#: gsearchtool/gsearchtool.c:31
+#: gsearchtool/gsearchtool.c:37
 msgid "File owner group"
 msgstr "Dosya iye kitlesi"
 
-#: gsearchtool/gsearchtool.c:32
+#: gsearchtool/gsearchtool.c:38
 msgid "Last modification time"
 msgstr "Son deðiþim zamaný"
 
-#: gsearchtool/gsearchtool.c:34
+#: gsearchtool/gsearchtool.c:40
 msgid "Don't search mounted filesystems"
 msgstr "Sonradan yüklenmiþ dosya sistemlerinde arama"
 
-#: gsearchtool/gsearchtool.c:35
+#: gsearchtool/gsearchtool.c:41
 msgid "Empty file"
 msgstr "Boþ dosya"
 
-#: gsearchtool/gsearchtool.c:37
+#: gsearchtool/gsearchtool.c:43
 msgid "Invalid user or group"
 msgstr "Geçersiz kullanýcý yada kitle"
 
-#: gsearchtool/gsearchtool.c:38
+#: gsearchtool/gsearchtool.c:44
 msgid "Filenames except"
 msgstr "Dosya adlarý böyle olmasýn "
 
-#: gsearchtool/gsearchtool.c:39
+#: gsearchtool/gsearchtool.c:45
 msgid "Follow symbolic links"
 msgstr "Yumþak baðlarý takip et"
 
-#: gsearchtool/gsearchtool.c:40
+#: gsearchtool/gsearchtool.c:46
 msgid "Simple substring search"
 msgstr "Normal metinsel arama"
 
-#: gsearchtool/gsearchtool.c:41
+#: gsearchtool/gsearchtool.c:47
 msgid "Regular expression search"
 msgstr "\"Erkan-ý tabir\"'e göre arama"
 
-#: gsearchtool/gsearchtool.c:43
+#: gsearchtool/gsearchtool.c:49
 msgid "Extended regular expression search"
 msgstr "Geliþmiþ \"erkan-ý tabir\"'e göre arama"
 
-#: gsearchtool/gsearchtool.c:145
+#: gsearchtool/gsearchtool.c:151
 msgid "grep options found in find list bad bad!"
 msgstr "bulma listesinde bulunan grep seçenekleri iyi ve doðru deðildir !"
 
-#: gsearchtool/gsearchtool.c:159
+#: gsearchtool/gsearchtool.c:165
 msgid "non-grep option found in grep list, bad bad!"
 msgstr "grep listesinde grep'e ait olmayan seçenekler bulundu , nah !"
 
-#: gsearchtool/gsearchtool.c:196
+#: gsearchtool/gsearchtool.c:201
 msgid "Search already running on another page"
 msgstr "Arama baþka bir sayfada zaten çalýþýyor"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
-#: gsearchtool/gsearchtool.c:208
+#: gsearchtool/gsearchtool.c:211
 msgid "Search Results"
 msgstr "Arama sonuçlarý"
 
-#: gsearchtool/gsearchtool.c:329 gsearchtool/gsearchtool.c:360
+#: gsearchtool/gsearchtool.c:338 gsearchtool/gsearchtool.c:369
 msgid "Start directory does not exist"
 msgstr "Baþlama dizini yok"
 
-#: gsearchtool/gsearchtool.c:369
+#: gsearchtool/gsearchtool.c:378
 msgid "Search command line"
 msgstr "Arama komutasý"
 
-#: gsearchtool/gsearchtool.c:375
+#: gsearchtool/gsearchtool.c:384
 msgid ""
 "This is the command line that can be used to execute this search from the "
 "console:\n"
@@ -600,39 +559,47 @@ msgstr ""
 "( Not : satýr satýr yazdýrmak için alta bunlarý ekle :\n"
 "\"|tr '\\000' '\\n'\" )"
 
-#: gsearchtool/gsearchtool.c:462
+#: gsearchtool/gsearchtool.c:471
 msgid "Entry changed called for a non entry option!"
 msgstr "Birim deðiþti sinyali birim olmayan bir se#_ecenek çin verildi !"
 
-#: gsearchtool/gsearchtool.c:528
+#: gsearchtool/gsearchtool.c:537
 msgid "Enable"
 msgstr "Aç"
 
-#: gsearchtool/gsearchtool.c:588
+#: gsearchtool/gsearchtool.c:545 logview/actions.c:127
+msgid "Remove"
+msgstr "Sil"
+
+#: gsearchtool/gsearchtool.c:597
 msgid "Start in directory:"
 msgstr "Bu dizinde baþla :"
 
-#: gsearchtool/gsearchtool.c:590
+#: gsearchtool/gsearchtool.c:599
 msgid "Browse"
 msgstr "Gez"
 
-#: gsearchtool/gsearchtool.c:621
+#: gsearchtool/gsearchtool.c:619 mini-utils/gw/gw.c:505
+msgid "Add"
+msgstr "Ekle"
+
+#: gsearchtool/gsearchtool.c:630
 msgid "Show Command"
 msgstr "Komutalarý göster"
 
-#: gsearchtool/gsearchtool.c:626 gsearchtool/gsearchtool.c:709
+#: gsearchtool/gsearchtool.c:635 gsearchtool/gsearchtool.c:718
 msgid "Start"
 msgstr "Baþla"
 
-#: gsearchtool/gsearchtool.c:627 gsearchtool/gsearchtool.c:710
+#: gsearchtool/gsearchtool.c:636 gsearchtool/gsearchtool.c:719
 msgid "Stop"
 msgstr "Dur"
 
-#: gsearchtool/gsearchtool.c:660
+#: gsearchtool/gsearchtool.c:669
 msgid "Nothing to locate"
 msgstr "Bulunacak bir þey yok"
 
-#: gsearchtool/gsearchtool.c:688
+#: gsearchtool/gsearchtool.c:697
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -643,31 +610,31 @@ msgstr ""
 "amma XYZ'li bir metin aratýrsan o zaman sadece tam dizinlemeleriyle eþ gelen "
 "dosyalar gösterilecektir ."
 
-#: gsearchtool/gsearchtool.c:697
+#: gsearchtool/gsearchtool.c:706
 msgid "Locate file: "
 msgstr "Dosyayý bul :"
 
-#: gsearchtool/gsearchtool.c:731
+#: gsearchtool/gsearchtool.c:740
 msgid "Full find (find)"
 msgstr "Tam bulma ( 'find )"
 
-#: gsearchtool/gsearchtool.c:733
+#: gsearchtool/gsearchtool.c:742
 msgid "Quick find (locate)"
 msgstr "Çabuk bulma ( 'locate )"
 
-#: gsearchtool/gsearchtool.c:754
+#: gsearchtool/gsearchtool.c:763
 msgid "The Gnome Search Tool"
 msgstr "Gnome Arama uygulamasý"
 
-#: gsearchtool/gsearchtool.c:755
+#: gsearchtool/gsearchtool.c:764
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "Tel'if hakký (C) 1998,2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:766
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Unix'in find/grep/locate uygulamalarý için bir kullanýcý yüzeyi"
 
-#: gsearchtool/gsearchtool.c:815
+#: gsearchtool/gsearchtool.c:824
 msgid "Gnome Search Tool"
 msgstr "Gnome arama uygulamasý"
 
@@ -682,320 +649,6 @@ msgstr "Komuta karýþtý"
 #: gsearchtool/outdlg.c:159
 msgid "No command for this mime type"
 msgstr "Bu MIME türü için baðlý bir komuta yok"
-
-#: gstripchart/gstripchart.c:441
-msgid "rparen expected"
-msgstr "sað parantez beklenirdi"
-
-#: gstripchart/gstripchart.c:458
-#, c-format
-msgid "no such field: %d"
-msgstr "böyle bir birim yok : %d"
-
-#: gstripchart/gstripchart.c:486
-msgid "missing variable identifer"
-msgstr "geçerli verim tanýtýcýsý eksik"
-
-#: gstripchart/gstripchart.c:488
-#, c-format
-msgid "invalid variable identifer: %s"
-msgstr "geçersiz verim tanýtýcýsý : %s"
-
-#: gstripchart/gstripchart.c:492
-msgid "number expected"
-msgstr "sayý beklenirdi"
-
-#: gstripchart/gstripchart.c:570
-#, c-format
-msgid "extra gunk at end: \"%s\""
-msgstr "\"%s\"'de fazlasiyle bi' þey var"
-
-#: gstripchart/gstripchart.c:652
-#, c-format
-msgid "%s, line %d: "
-msgstr "%s, satýr %d : "
-
-#: gstripchart/gstripchart.c:733
-#, c-format
-msgid "can't open config file \"%s\""
-msgstr "\"%s\" ayar dosyasýný açamadým"
-
-#: gstripchart/gstripchart.c:760
-#, c-format
-msgid ""
-"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
-"\"./gstripchart.conf\" ayar dosyasýný açamadým, \"%s\", \"%s\" yada \"%s\""
-
-#: gstripchart/gstripchart.c:765
-#, c-format
-msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr "\"./gstripchart.conf\" ayar dosyasýný açamadým, \"%s\" yada \"%s\""
-
-#: gstripchart/gstripchart.c:843
-msgid "identifier or begin must be first"
-msgstr "tanýmlayýcý yada baþý önceden gelmesi lazým"
-
-#: gstripchart/gstripchart.c:851 gstripchart/gstripchart.c:868
-#, c-format
-msgid "unrecognized color: %s"
-msgstr "tanýnamayan renk : %s"
-
-#: gstripchart/gstripchart.c:883
-msgid "scale must be either \"log\" or \"linear\""
-msgstr "boyutlama ya \"log\" yada \"linyar\" olmak zorunda"
-
-#: gstripchart/gstripchart.c:898
-msgid "no equation found"
-msgstr "eþleþim bulunamadý"
-
-#: gstripchart/gstripchart.c:915
-#, c-format
-msgid "invalid option: \"%s\""
-msgstr "geçersiz seçenek : \"%s\""
-
-#: gstripchart/gstripchart.c:1498
-msgid "E_xit"
-msgstr "Çý_k"
-
-#: gstripchart/gstripchart.c:1498
-msgid "Terminate the stripchart program"
-msgstr "Stripchart uygulamasýný bitir"
-
-#: gstripchart/gstripchart.c:1514
-msgid "Copyright 1998,99 John Kodis"
-msgstr "Tel'if hakký (C) 1998,99 John Kodis"
-
-#: gstripchart/gstripchart.c:1516
-msgid ""
-"The GNOME stripchart program plots various user-specified parameters as a "
-"function of time.  Its main use is to chart system performance parameters "
-"such as CPU load, CPU utilization, network traffic levels, and the like.  "
-"Other more ingenious uses are left as an exercise for the interested user."
-msgstr ""
-"GNOME stripchart uygulamasý kullanýcý tarafýndan belirlenen "
-"deðiþikbelirtileri bir iþlev olarak çizer . Bu uygulamanýn en çok "
-"becerdiðiiþ iþlemci yükünü, iþlemci kullanýmýný, að trafiðini ve buna benzer "
-"deðiþikbelirtileri göstermektir. Ilgilenen kullanýcý bu deðerleri deðiþtirip "
-"özelleþtirebilir."
-
-#: gstripchart/gstripchart.c:1529
-msgid "_About"
-msgstr "_Bilgi"
-
-#: gstripchart/gstripchart.c:1529
-msgid "Info about the striphart program"
-msgstr "stripchart uygulamasý hakkýnda bilgi"
-
-#: gstripchart/gstripchart.c:1540
-msgid "_File"
-msgstr "_Dosya"
-
-#: gstripchart/gstripchart.c:1541
-msgid "_Help"
-msgstr "_Yardým"
-
-#: gstripchart/gstripchart.c:1605 gstripchart/gstripchart.c:1744
-msgid "Param"
-msgstr "Veri"
-
-#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:197
-#: mini-utils/guname/moreinfo.c:227
-msgid "Value"
-msgstr "Deðer"
-
-#: gstripchart/gstripchart.c:1609
-msgid "Identifier"
-msgstr "Tanýmlatýcý"
-
-#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:196
-msgid "Color"
-msgstr "Renk"
-
-#: gstripchart/gstripchart.c:1613
-msgid "Filename"
-msgstr "Dosya adý"
-
-#: gstripchart/gstripchart.c:1615
-msgid "Pattern"
-msgstr "Tipleme"
-
-#: gstripchart/gstripchart.c:1617
-msgid "Equation"
-msgstr "Eþleþim"
-
-#: gstripchart/gstripchart.c:1619
-msgid "Expected range"
-msgstr "Beklenen sýnýrlama"
-
-#: gstripchart/gstripchart.c:1623
-msgid "Displayed range"
-msgstr "Gösterilen sýnýrlama"
-
-#: gstripchart/gstripchart.c:1627
-msgid "Current value"
-msgstr "Geçerli deðer"
-
-#: gstripchart/gstripchart.c:1634
-msgid "Active"
-msgstr "Fail"
-
-#: gstripchart/gstripchart.c:1651
-msgid "Stripchart Parameters"
-msgstr "Stripchart verileri"
-
-#: gstripchart/gstripchart.c:1745
-msgid "Current"
-msgstr "Geçerli"
-
-#: gstripchart/gstripchart.c:1746
-msgid "Top"
-msgstr "Üst"
-
-#: gstripchart/gstripchart.c:1747
-msgid "Scale"
-msgstr "Boyutla"
-
-#: gstripchart/gstripchart.c:1796
-msgid "Params"
-msgstr "Veriler"
-
-#. Create a top-level application window. Set minimum size (_usize),
-#. initial size (_default_size), and establish delete and destroy
-#. event handlers.
-#: gstripchart/gstripchart.c:1908
-msgid "gstripchart"
-msgstr "gstripchart"
-
-#: gstripchart/gstripchart.c:1908
-msgid "Stripchart Viewer"
-msgstr "Stripchart göstergesi"
-
-#: gstripchart/gstripchart.c:2077
-msgid "Params..."
-msgstr "Veriler ..."
-
-#: gstripchart/gstripchart.c:2122
-#, c-format
-msgid "invalid display type: %s\n"
-msgstr "geçersiz gösterim tipi : %s\n"
-
-#: gstripchart/gstripchart.c:2147
-msgid "Geometry string: WxH+X+Y"
-msgstr "Yerleþim metni : ENxYÜKSEKLIK+X+Y"
-
-#: gstripchart/gstripchart.c:2147
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:2149
-msgid "Configuration file name"
-msgstr "Ayarlama dosyasý adý"
-
-#: gstripchart/gstripchart.c:2149
-msgid "FILE"
-msgstr "FILE"
-
-#: gstripchart/gstripchart.c:2151
-msgid "Chart update interval"
-msgstr "Çizilmenin yenileme arasý"
-
-#: gstripchart/gstripchart.c:2151 gstripchart/gstripchart.c:2153
-#: gstripchart/gstripchart.c:2155 gstripchart/gstripchart.c:2157
-msgid "SECS"
-msgstr "SECS"
-
-#: gstripchart/gstripchart.c:2153
-msgid "Chart low-pass filter time constant"
-msgstr "Iþlev alçak-sýnýr filtra verisi"
-
-#: gstripchart/gstripchart.c:2155
-msgid "Slider update interval"
-msgstr "Kaydýrgaç yenileme zamaný"
-
-#: gstripchart/gstripchart.c:2157
-msgid "Slider low-pass filter time constant"
-msgstr "Kaydýrgaçýn alçak-sýnýr filtra verisi"
-
-#: gstripchart/gstripchart.c:2159
-msgid "Adds a menubar to the main window"
-msgstr "Ana pencereye mönü çubuðunu ekler"
-
-#: gstripchart/gstripchart.c:2161
-msgid "Omits slider window"
-msgstr "Kaydýrgaç penceresini gösterme"
-
-#: gstripchart/gstripchart.c:2164
-msgid "TYPE is one of gtk, applet, text, or none"
-msgstr "TYPE gtk,uygulak, metin yada hiçbirisi olabilir"
-
-#: gstripchart/gstripchart.c:2164 gstripchart/gstripchart.c:2166
-msgid "TYPE"
-msgstr "TYPE"
-
-#: gstripchart/gstripchart.c:2166
-msgid "TYPE is one of gtk, text, or none"
-msgstr "TYPE gtk, metin yada hiçbirisi olabilir"
-
-#: gstripchart/gstripchart.c:2318
-msgid "white"
-msgstr "beyaz"
-
-#: gstripchart/gstripchart.c:2318
-msgid "black"
-msgstr "siyah"
-
-#: gstripchart/gstripchart.c:2318
-msgid "red"
-msgstr "kýrmýzý"
-
-#: gstripchart/gstripchart.c:2318
-msgid "yellow"
-msgstr "sarý"
-
-#: gstripchart/gstripchart.c:2319
-msgid "blue"
-msgstr "mavi"
-
-#: gstripchart/gstripchart.c:2319
-msgid "green"
-msgstr "yeþil"
-
-#: gstripchart/gstripchart.c:2319
-msgid "cyan"
-msgstr "firuze"
-
-#: gstripchart/gstripchart.c:2319
-msgid "magenta"
-msgstr "pembe"
-
-#: gstripchart/gstripchart.c:2320
-msgid "Busy"
-msgstr "Iþliyor"
-
-#: gstripchart/gstripchart.c:2320
-msgid "Load"
-msgstr "Yük"
-
-#: gstripchart/gstripchart.c:2320
-msgid "Swap"
-msgstr "Takas alaný"
-
-#: gstripchart/gstripchart.c:2320
-msgid "Battery"
-msgstr "Pil"
-
-#: gstripchart/gstripchart.c:2321
-msgid "Net In"
-msgstr "Að giriþi"
-
-#: gstripchart/gstripchart.c:2321
-msgid "Net Out"
-msgstr "Að çýkýþý"
-
-#: gstripchart/gstripchart.c:2321
-msgid "ppp"
-msgstr "ppp"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -1021,11 +674,11 @@ msgstr "Toplam"
 msgid "Today"
 msgstr "Bugün"
 
-#: gtt/clist.c:171
+#: gtt/clist.c:171 gtt/menucmd.c:117
 msgid "Project Title"
 msgstr "Proje ismi"
 
-#: gtt/clist.c:172
+#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:642
 msgid "Description"
 msgstr "Anlatým"
 
@@ -1074,35 +727,31 @@ msgstr "Baþlarken bir projeyi seç"
 msgid "PROJECT"
 msgstr "PROJECT"
 
-#: gtt/menucmd.c:31 gtt/menucmd.c:129 gtt/menucmd.c:161
+#: gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
 msgid "Warning"
 msgstr "Ikaz"
 
-#: gtt/menucmd.c:32 gtt/menucmd.c:163
+#: gtt/menucmd.c:34 gtt/menucmd.c:195
 msgid "I could not write the configuration file!"
 msgstr "Ayarlama dosyasýný yazamadým !"
 
-#: gtt/menucmd.c:63
+#: gtt/menucmd.c:65
 msgid "Time tracking tool for GNOME"
 msgstr "GNOME için zaman takip uygulamasý"
 
-#: gtt/menucmd.c:93 gtt/toolbar.c:142
+#: gtt/menucmd.c:111 gtt/toolbar.c:142
 msgid "New Project..."
 msgstr "Yeni proje ..."
 
-#: gtt/menucmd.c:97
-msgid "Please enter the name of the new project:"
-msgstr "Yeni projenin ismini ver : "
-
-#: gtt/menucmd.c:131
+#: gtt/menucmd.c:163
 msgid "I could not read the configuration file"
 msgstr "Ayarlama dosyasýný okuyamadým"
 
-#: gtt/menucmd.c:145 gtt/toolbar.c:149
+#: gtt/menucmd.c:177 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Ayarlama dosyasýný yeniden yükle"
 
-#: gtt/menucmd.c:146
+#: gtt/menucmd.c:178
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1142,155 +791,159 @@ msgstr "Saat ça_lýþýyor"
 msgid "_Timer"
 msgstr "S_aat"
 
-#: gtt/options.c:186
+#: gtt/options.c:189
 msgid "Display"
 msgstr "Gösterim"
 
-#: gtt/options.c:194
+#: gtt/options.c:197
 msgid "Show Seconds"
 msgstr "Saniyeleri göster"
 
-#: gtt/options.c:200
+#: gtt/options.c:203
 msgid "Show Status Bar"
 msgstr "Durum çubuðunu göster"
 
-#: gtt/options.c:206
+#: gtt/options.c:209
 msgid "Show Table Header"
 msgstr "Çizgiye baþlýðýný göster"
 
-#: gtt/options.c:220 gtt/options.c:514
+#: gtt/options.c:223 gtt/options.c:537
 msgid "Toolbar"
 msgstr "Araç çubuðu"
 
-#: gtt/options.c:228
+#: gtt/options.c:231
 msgid "Show Toolbar Icons"
 msgstr "Araç çubuðu'nda ikonalarý göster"
 
-#: gtt/options.c:234
+#: gtt/options.c:237
 msgid "Show Toolbar Texts"
 msgstr "Araç çubuðu'nda metinleri göster"
 
-#: gtt/options.c:240
+#: gtt/options.c:243
 msgid "Show Tooltips"
 msgstr "Balon yardýmlarýný göster"
 
-#: gtt/options.c:246
+#: gtt/options.c:249
 msgid "Toolbar Segments"
 msgstr "Araç çubuðu bölümleri"
 
-#: gtt/options.c:254
+#: gtt/options.c:257
 msgid "Show `New'"
 msgstr "`Yeni''yi göster"
 
-#: gtt/options.c:260
+#: gtt/options.c:263
 msgid "Show `Save', `Reload'"
 msgstr "'Kaydet' ve 'Yeniden yükle''yi göster"
 
-#: gtt/options.c:266
+#: gtt/options.c:269
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "`Kes','Kopyala' ve 'Yapýþtýr''ý göster"
 
-#: gtt/options.c:272
+#: gtt/options.c:275
 msgid "Show `Properties'"
 msgstr "'Özellikleri''i göster"
 
-#: gtt/options.c:278
+#: gtt/options.c:281
 msgid "Show `Timer'"
 msgstr "'Saat''ý göster"
 
-#: gtt/options.c:284
+#: gtt/options.c:287
 msgid "Show `Preferences'"
 msgstr "'Ayarlar''ý göster"
 
-#: gtt/options.c:290
+#: gtt/options.c:293
 msgid "Show `Help'"
 msgstr "'Yardým''ý göster"
 
-#: gtt/options.c:296
+#: gtt/options.c:299
 msgid "Show `Quit'"
 msgstr "'Çýk''ý göster"
 
-#: gtt/options.c:310
+#: gtt/options.c:313
 msgid "Shell Commands"
 msgstr "Komutalýklar"
 
-#: gtt/options.c:318
+#: gtt/options.c:321
 msgid "Switch Project Command:"
 msgstr "Proje komutasýný deðiþtir : "
 
-#: gtt/options.c:329
+#: gtt/options.c:333
 msgid "No Project Command:"
 msgstr "Proje komutasý yok : "
 
-#: gtt/options.c:363
+#: gtt/options.c:368
 msgid "Logfile"
 msgstr "Kayýt dosyasý"
 
-#: gtt/options.c:371
+#: gtt/options.c:376
 msgid "Use Logfile"
 msgstr "Kayýt dosyasýný kullan"
 
-#: gtt/options.c:380
+#: gtt/options.c:385
 msgid "Filename:"
 msgstr "Dosya adý : "
 
-#: gtt/options.c:394
+#: gtt/options.c:399
 msgid "Entry Start:"
 msgstr "Baþlama birimi : "
 
-#: gtt/options.c:408
+#: gtt/options.c:413
 msgid "Entry Stop:"
 msgstr "Bitiþ birimi : "
 
-#: gtt/options.c:422
+#: gtt/options.c:427
 msgid "Timeout in secs:"
 msgstr "Zaman arasý ( san. ) : "
 
-#: gtt/options.c:501
+#: gtt/options.c:524
 msgid "Misc"
 msgstr "Karýþýk"
 
-#: gtt/proj.c:461
+#: gtt/proj.c:463
 msgid "project %t started"
 msgstr "proje %t baþlatýldý"
 
-#: gtt/proj.c:464
+#: gtt/proj.c:466
 msgid "stopped project %t"
 msgstr "proje %t bitirildi"
 
-#: gtt/prop.c:55
+#: gtt/prop.c:59
 msgid "empty"
 msgstr "boþ"
 
 #: gtt/prop.c:167
+msgid "Properties"
+msgstr "Ayarlar"
+
+#: gtt/prop.c:174
 msgid "Project"
 msgstr "Proje"
 
-#: gtt/prop.c:186
+#: gtt/prop.c:193
 msgid "Project Title:"
 msgstr "Proje ismi : "
 
-#: gtt/prop.c:198
+#: gtt/prop.c:206
 msgid "Project Description:"
 msgstr "Proje anlatýmý : "
 
-#: gtt/prop.c:210
+#: gtt/prop.c:219
 msgid "Project Time today:"
 msgstr "Bugünkü proje zamaný : "
 
-#: gtt/prop.c:226 gtt/prop.c:264
+#: gtt/prop.c:235 gtt/prop.c:273
 msgid "hours"
 msgstr "saat"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:246 gtt/prop.c:284
 msgid "mins"
 msgstr "dakika"
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:257 gtt/prop.c:295
 msgid "secs"
 msgstr "saniye"
 
-#: gtt/prop.c:252
+#: gtt/prop.c:261
 msgid "Project Time ever:"
 msgstr "Toplam proje zamaný : "
 
@@ -1303,7 +956,7 @@ msgstr "Yeni"
 msgid "Reload"
 msgstr "Yeniden yükle"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:152 stripchart/params.c:934
 msgid "Save"
 msgstr "Kaydet"
 
@@ -1363,11 +1016,11 @@ msgstr "Çýk"
 msgid "Quit GTimeTracker"
 msgstr "GTimeTracker'den çýk"
 
-#: logview/about.c:40
+#: logview/about.c:44
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel ( miquel@df.uba.ar )"
 
-#: logview/about.c:41
+#: logview/about.c:45
 msgid ""
 "This  program  is  part of  the  GNOME  project for Linux. Logview comes "
 "with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
@@ -1380,11 +1033,11 @@ msgstr ""
 "Kuosmanen ( nam-ý diðer tigert ) 'in bir eseridir."
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
-#: logview/about.c:48
+#: logview/about.c:58
 msgid "Logview"
 msgstr "Logview"
 
-#: logview/about.c:49
+#: logview/about.c:59
 msgid "Copyright (C) 1998"
 msgstr "Tel'if hakký (C) 1998"
 
@@ -1404,56 +1057,56 @@ msgstr "Ekle ..."
 msgid "Edit..."
 msgstr "Deðiþtir ..."
 
-#: logview/actions.c:141 logview/actions.c:662
+#: logview/actions.c:141 logview/actions.c:663
 msgid "Cancel"
 msgstr "Iptal"
 
-#: logview/actions.c:146 logview/actions.c:667
+#: logview/actions.c:146 logview/actions.c:668
 msgid "OK"
 msgstr "Oldu"
 
-#: logview/actions.c:281 logview/actions.c:294 logview/actions.c:305
-#: logview/actions.c:316 logview/actions.c:327 logview/actions.c:338
+#: logview/actions.c:282 logview/actions.c:295 logview/actions.c:306
+#: logview/actions.c:317 logview/actions.c:328 logview/actions.c:339
 msgid "Error parsing actions data base"
 msgstr "Eylem bilgi tabanýný okurken bir hata oluþtu"
 
-#: logview/actions.c:370
+#: logview/actions.c:371
 msgid "Can't write to actions database!"
 msgstr "Eylemler bilgi tabanýna yazamadým !"
 
-#: logview/actions.c:476
+#: logview/actions.c:477
 msgid "<empty>"
 msgstr "<boþ>"
 
-#: logview/actions.c:477
+#: logview/actions.c:478
 msgid "log. name regexp"
 msgstr "kayýt \"erkan-ý deyim\"'i"
 
-#: logview/actions.c:478
+#: logview/actions.c:479
 msgid "process regexp"
 msgstr "iþlem \"erkan-ý deyim\"'i"
 
-#: logview/actions.c:479
+#: logview/actions.c:480
 msgid "message regexp"
 msgstr "ileti \"erkan-ý deyim\"'i"
 
-#: logview/actions.c:480
+#: logview/actions.c:481
 msgid "action to execute when regexps are TRUE"
 msgstr "\"erkan-ý deyim\" tutarsa çalýþtýralacak eylem"
 
-#: logview/actions.c:481
+#: logview/actions.c:482
 msgid "description"
 msgstr "anlatým"
 
-#: logview/actions.c:638
+#: logview/actions.c:639
 msgid "description:"
 msgstr "anlatým :"
 
-#: logview/actions.c:647
+#: logview/actions.c:648
 msgid "Description of this entry."
 msgstr "Bunun anlatýmý ."
 
-#: logview/actions.c:709
+#: logview/actions.c:710
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1470,13 +1123,9 @@ msgstr ""
 "Anlatým : [%s]\n"
 "eylem : [%s]\n"
 
-#: logview/calendar.c:118
+#: logview/calendar.c:115
 msgid "Calendar"
 msgstr "Takvim"
-
-#: logview/calendar.c:139
-msgid "Hide calendar"
-msgstr "Takvimi gizle"
 
 #: logview/info.c:80
 msgid "Log stats"
@@ -1515,51 +1164,51 @@ msgstr "Satýr sayýsý :"
 msgid "%ld bytes"
 msgstr "%ld bayt"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "January"
 msgstr "Ocak"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "February"
 msgstr "Þubat"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "March"
 msgstr "Mart"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "April"
 msgstr "Nisan"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "May"
 msgstr "Mayýs"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "June"
 msgstr "Haziran"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "July"
 msgstr "Temmuz"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "August"
 msgstr "Aðustos"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "September"
 msgstr "Eylül"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "October"
 msgstr "Ekim"
 
-#: logview/log_repaint.c:89
+#: logview/log_repaint.c:90
 msgid "November"
 msgstr "Kasým"
 
-#: logview/log_repaint.c:89
+#: logview/log_repaint.c:90
 msgid "December"
 msgstr "Aralýk"
 
@@ -1600,137 +1249,143 @@ msgstr "%s açýlanamadý ."
 msgid "%s not a log file."
 msgstr "%s bir kayýt dosyasý deðildir ."
 
-#: logview/logrtns.c:614 logview/logrtns.c:645 logview/logrtns.c:776
+#: logview/logrtns.c:634 logview/logrtns.c:665 logview/logrtns.c:796
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats : bellek yetmiyor"
 
-#: logview/logview.c:84
+#: logview/logview.c:86
 msgid "Open log...            "
 msgstr "Kaydý aç ...       "
 
-#: logview/logview.c:85
+#: logview/logview.c:87
 msgid "Open log"
 msgstr "Kaydý aç"
 
-#: logview/logview.c:87
+#: logview/logview.c:89
 msgid "Export log...          "
 msgstr "Kaydý ithal et ...   "
 
-#: logview/logview.c:88
+#: logview/logview.c:90
 msgid "Export log"
 msgstr "Kaydý ithal et"
 
-#: logview/logview.c:90
+#: logview/logview.c:92
 msgid "Close log              "
 msgstr "Kaydý kapat          "
 
-#: logview/logview.c:91
+#: logview/logview.c:93
 msgid "Close log"
 msgstr "Kaydý kapat"
 
-#: logview/logview.c:93
+#: logview/logview.c:95
 msgid "Switch log             "
 msgstr "Kaydý deðiþtir       "
 
-#: logview/logview.c:94
+#: logview/logview.c:96
 msgid "Switch log"
 msgstr "KAydý deðiþtir"
 
-#: logview/logview.c:96
+#: logview/logview.c:98
 msgid "Monitor..              "
 msgstr "Gözetle ...            "
 
-#: logview/logview.c:97
+#: logview/logview.c:99
 msgid "Monitor log"
 msgstr "Kaydý gözetle"
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 msgid "Exit                   "
 msgstr "Çýk                "
 
-#: logview/logview.c:100
+#: logview/logview.c:102
 msgid "Exit program"
 msgstr "Uygulamadan çýk"
 
-#: logview/logview.c:106
+#: logview/logview.c:108
 msgid "Calendar                "
 msgstr "Takvim                  "
 
-#: logview/logview.c:107
+#: logview/logview.c:109
 msgid "Show calendar log"
 msgstr "Takvim kaydýný göster"
 
-#: logview/logview.c:109
+#: logview/logview.c:111
 msgid "Log stats               "
 msgstr "Kayýt istatistikleri  "
 
-#: logview/logview.c:110
+#: logview/logview.c:112
 msgid "Show log stats"
 msgstr "Kayýt istatistiklerini göster"
 
-#: logview/logview.c:112
+#: logview/logview.c:114
 msgid "Zoom                    "
 msgstr "Büyült                  "
 
-#: logview/logview.c:113
+#: logview/logview.c:115
 msgid "Show line info"
 msgstr "Satýr bilgisini göster"
 
-#: logview/logview.c:119
+#: logview/logview.c:117
+#, fuzzy
+msgid "Preferences...          "
+msgstr "Ayarlar ..."
+
+#: logview/logview.c:118
+#, fuzzy
+msgid "Show user preferences"
+msgstr "'Ayarlar''ý göster"
+
+#: logview/logview.c:125
 msgid "Select...               "
 msgstr "Seç ...               "
 
-#: logview/logview.c:120
+#: logview/logview.c:126
 msgid "Select log events"
 msgstr "Kayýt eylemlerini seç"
 
-#: logview/logview.c:122
+#: logview/logview.c:128
 msgid "Filter..                "
 msgstr "Filtra ..               "
 
-#: logview/logview.c:123
+#: logview/logview.c:129
 msgid "Filter log events"
 msgstr "Kayýt eylemlerini filtra et"
 
-#: logview/logview.c:129
+#: logview/logview.c:136
 msgid "About..                "
 msgstr "Bilgi ...              "
 
-#: logview/logview.c:130
+#: logview/logview.c:137
 msgid "Info about logview"
 msgstr "logview hakkýnda bilgi"
 
-#: logview/logview.c:139
-msgid "F_ilter"
-msgstr "_Filtra"
-
-#: logview/logview.c:230
+#: logview/logview.c:241
 msgid "No log files to open"
 msgstr "Açýlacak kayýt dosyasý yok"
 
 #. Create App
-#: logview/logview.c:259
+#: logview/logview.c:264
 msgid "System Log Viewer"
 msgstr "Sistem kaydý göstericisi"
 
-#: logview/logview.c:360
+#: logview/logview.c:366
 msgid "Filename: "
 msgstr "Dosya adý : "
 
-#: logview/logview.c:376
+#: logview/logview.c:382
 msgid "Date: "
 msgstr "Tarih : "
 
-#: logview/logview.c:611
+#: logview/logview.c:605
 msgid "Too many open logs. Close one and try again"
 msgstr ""
 "Çok fazla kayýt dosyasý açýk. Lütfen bir tanesini kapat ve yeniden dene"
 
-#: logview/logview.c:664
+#: logview/logview.c:661
 msgid "Open new logfile"
 msgstr "Yeni bir kayýt dosyasýný aç"
 
-#: logview/misc.c:78
+#: logview/misc.c:93
 #, c-format
 msgid "Error: [%s]\n"
 msgstr "Hata : [%s]\n"
@@ -1760,32 +1415,41 @@ msgstr "Kayýtlarý gözetliyorum ..."
 msgid "TOUCHED!!\n"
 msgstr "DEÐiÞTI !!\n"
 
-#: logview/zoom.c:77
+#: logview/userprefsdialog.c:65
+msgid "hostname column width ( 0 to hide this column ): "
+msgstr ""
+
+#: logview/userprefsdialog.c:66
+#, fuzzy
+msgid "Columns"
+msgstr "Komutalar"
+
+#: logview/zoom.c:78
 msgid "Zoom view"
 msgstr "Büyültme bakýþý"
 
-#: logview/zoom.c:151
+#: logview/zoom.c:152
 #, c-format
 msgid "Log line detail for %s"
 msgstr "%s için kayýt dosya satrý bilgileri"
 
-#: logview/zoom.c:153
+#: logview/zoom.c:154
 msgid "Log line detail for <No log loaded>"
 msgstr "<Kayýt dosyasý yüklenmedi> için kayýt dosya satrý bilgileri"
 
-#: logview/zoom.c:176
+#: logview/zoom.c:177
 msgid "Date:"
 msgstr "Tarih :"
 
-#: logview/zoom.c:178
+#: logview/zoom.c:179
 msgid "Process:"
 msgstr "Iþlem :"
 
-#: logview/zoom.c:180
+#: logview/zoom.c:181
 msgid "Message:"
 msgstr "Ileti :"
 
-#: logview/zoom.c:182
+#: logview/zoom.c:183
 msgid "Description:"
 msgstr "Anlatým :"
 
@@ -1806,40 +1470,51 @@ msgid "Edit it"
 msgstr "Deðiþtir"
 
 #. First view is considered as the default view ...
-#: mini-utils/gcolorsel/gcolorsel.c:28
+#: mini-utils/gcolorsel/gcolorsel.c:24
 msgid "List"
 msgstr "Liste"
 
-#: mini-utils/gcolorsel/gcolorsel.c:32
+#: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "Grid"
 msgstr "Að"
 
-#: mini-utils/gcolorsel/gcolorsel.c:46
+#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1036
+#: stripchart/params.c:1039
+msgid "Edit"
+msgstr "Deðiþtir"
+
+#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1029
+#: stripchart/params.c:1032
+msgid "File"
+msgstr "Dosya"
+
+#: mini-utils/gcolorsel/gcolorsel.c:42
 msgid "Search RGB"
 msgstr "KYM aramasý"
 
-#: mini-utils/gcolorsel/gcolorsel.c:48
+#: mini-utils/gcolorsel/gcolorsel.c:44
 msgid "Monitor"
 msgstr "Göster"
 
-#: mini-utils/gcolorsel/gcolorsel.c:50
+#: mini-utils/gcolorsel/gcolorsel.c:46
 msgid "Concat"
 msgstr "Baðla"
 
-#: mini-utils/gcolorsel/gcolorsel.c:100
+#: mini-utils/gcolorsel/gcolorsel.c:96
 #, c-format
 msgid "'%s' document has been modified; do you wish to save it ?"
 msgstr "'%s' dokümaný deðiþtirildi; o'nu kaydetmek istiyormusun ?"
 
-#: mini-utils/gcolorsel/gcolorsel.c:210
+#: mini-utils/gcolorsel/gcolorsel.c:206
 msgid "GColorsel was unable to paste colors from the clipboard."
 msgstr "GColorsel renkleri arabellekten alamadý ."
 
-#: mini-utils/gcolorsel/gcolorsel.c:224
+#: mini-utils/gcolorsel/gcolorsel.c:220
 msgid "Please select a file document before."
 msgstr "Lütfen önceden bir dokümaný aç ."
 
-#: mini-utils/gcolorsel/gcolorsel.c:396
+#: mini-utils/gcolorsel/gcolorsel.c:392
 msgid ""
 "I can't execute this action. Check that :\n"
 "\n"
@@ -1857,30 +1532,25 @@ msgstr ""
 "\n"
 "Bunlarý \"Deðýþtýr\" mönüsündeki ayarlar bölümüyle yapabilirsin ."
 
-#: mini-utils/gcolorsel/gcolorsel.c:586 mini-utils/gcolorsel/session.c:429
-msgid "User Colors"
-msgstr "Kullanýcý renkleri"
-
 #. Init GnomeMDI
-#: mini-utils/gcolorsel/gcolorsel.c:717
+#: mini-utils/gcolorsel/gcolorsel.c:500
 msgid "GColorsel"
 msgstr "GColorsel"
 
 #.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
 #.
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:8
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:7
 msgid "Create a document"
 msgstr "Bir doküman yarat"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:9
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:8
 msgid "Select type"
 msgstr "Tipi seç"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:10
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:9
 msgid ""
 "Please, select the type of document to create.\n"
 "You can choose a short name, do not confuse it with the file name."
@@ -1888,23 +1558,19 @@ msgstr ""
 "Lütfen yaratýlanacak doküman tipini seç .\n"
 "Kýsa bir ad seçebilirsin, amma dosya adýyla karýþtýrma ."
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:12
-msgid "label2"
-msgstr "yafta 2"
-
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:13
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:11
 msgid "Description :"
 msgstr "Anlatým :"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:14
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:12
 msgid "Short name : "
 msgstr "Kýsa ad :"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:15
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:13
 msgid "Select source document"
 msgstr "Kaynak dokümaný seç"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:16
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:14
 msgid ""
 "This document read document from one or more other document. Please, choose "
 "these documents."
@@ -1912,48 +1578,40 @@ msgstr ""
 "Bu doküman baþka dokümanlardan bilgilerini okuyor. Lütfen önceden bu "
 "dokümanlarý kapat ."
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:17
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:15
 msgid "Available documents"
 msgstr "Eriþilir dokümanlar"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:18
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:16
 msgid "Connect to"
 msgstr "Baðlan :"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:19
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:29
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:17
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:25
 msgid "Add ->"
 msgstr "Ekle ->"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:20
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:30
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:18
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:26
 msgid "<- Remove"
 msgstr "<- Sil"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:21
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:31
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:19
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:27
 msgid "Add all ->"
 msgstr "Hepsini ekle ->"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:22
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:32
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:20
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:28
 msgid "<- Remove all"
 msgstr "<- Hepsini sil"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:23
-msgid "label13"
-msgstr "yafta 13"
-
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:21
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:24
-msgid "label14"
-msgstr "yafta 14"
-
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:25
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:28
 msgid "Create views"
 msgstr "Bakýþlarý yarat"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:26
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:22
 msgid ""
 "You can create one or more views for this document. Note that you have to "
 "create at least one view."
@@ -1961,35 +1619,22 @@ msgstr ""
 "Bu doküman için bir yada daha fazla bakýþ seçebilirsin. Fakat en azýndan bir "
 "bakýþý yaratmak zorunda olduðunu unutma ."
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:27
+#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:23
 msgid "Available views"
 msgstr "Eriþilir bakýþlar"
 
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:33
-msgid "label15"
-msgstr "yafta 15"
-
-#: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:34
-msgid "label16"
-msgstr "yafta 16"
-
 #.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
 #.
-#: mini-utils/gcolorsel/glade/dialog-new-view.glade.h:8
+#: mini-utils/gcolorsel/glade/dialog-new-view.glade.h:7
 msgid "Create a new view"
 msgstr "Yeni bir bakýþý yarat"
 
-#: mini-utils/gcolorsel/glade/dialog-new-view.glade.h:9
+#: mini-utils/gcolorsel/glade/dialog-new-view.glade.h:8
 msgid "Please, select the type of view you want to create."
 msgstr "Lütfen yaratmak istediðin bakýþ tipini seç ."
-
-#: mini-utils/gcolorsel/glade/dialog-new-view.glade.h:10
-msgid "label4"
-msgstr "yafta 4"
 
 #.
 #. * Chaînes de caractères à traduire générées par
@@ -2006,7 +1651,7 @@ msgid "Save session on exit."
 msgstr "Oturumu çýkýþta kaydet ."
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:10
-#: mini-utils/gshutdown/gshutdown.c:396
+#: mini-utils/gshutdown/gshutdown.c:398
 msgid "General"
 msgstr "Genel"
 
@@ -2170,79 +1815,85 @@ msgstr "Renk yüksekliði :"
 msgid "Draw numbers"
 msgstr "Sayýlarý boya"
 
-#: mini-utils/gcolorsel/menus.c:56
+#: mini-utils/gcolorsel/menus.c:52
 msgid "New Document"
 msgstr "Yeni doküman"
 
-#: mini-utils/gcolorsel/menus.c:57
+#: mini-utils/gcolorsel/menus.c:53
 msgid "Create a new document"
 msgstr "Yeni bir doküman yarat"
 
-#: mini-utils/gcolorsel/menus.c:59
+#: mini-utils/gcolorsel/menus.c:55
 msgid "New View"
 msgstr "Yeni bakýþ"
 
-#: mini-utils/gcolorsel/menus.c:60
+#: mini-utils/gcolorsel/menus.c:56
 msgid "Create a new view for a document"
 msgstr "Bir doküman için yeni bir bakýþ yarat"
 
-#: mini-utils/gcolorsel/menus.c:66
+#: mini-utils/gcolorsel/menus.c:62
 msgid "Close document"
 msgstr "Dokümaný kapat"
 
-#: mini-utils/gcolorsel/menus.c:67
+#: mini-utils/gcolorsel/menus.c:63
 msgid "Close the current document"
 msgstr "Geçerli dokümaný kapat"
 
-#: mini-utils/gcolorsel/menus.c:69
+#: mini-utils/gcolorsel/menus.c:65
 msgid "Close view"
 msgstr "Bakýþý kapat"
 
-#: mini-utils/gcolorsel/menus.c:70 mini-utils/gcolorsel/menus.c:954
+#: mini-utils/gcolorsel/menus.c:66 mini-utils/gcolorsel/menus.c:913
 msgid "Close the current view"
 msgstr "Geçerli bakýþý kapat"
 
-#: mini-utils/gcolorsel/menus.c:80
+#: mini-utils/gcolorsel/menus.c:76
 msgid "_Open palette..."
 msgstr "Paleti _aç ..."
 
-#: mini-utils/gcolorsel/menus.c:81
+#: mini-utils/gcolorsel/menus.c:77
 msgid "Load a palette"
 msgstr "Paleti yükle"
 
-#: mini-utils/gcolorsel/menus.c:83
+#: mini-utils/gcolorsel/menus.c:79
 msgid "_Save palette"
 msgstr "Paleti _kaydet"
 
-#: mini-utils/gcolorsel/menus.c:84
+#: mini-utils/gcolorsel/menus.c:80
 msgid "Save the current palette in a file"
 msgstr "Geçerli paleti dosyaya kaydet"
 
-#: mini-utils/gcolorsel/menus.c:86
+#: mini-utils/gcolorsel/menus.c:82
 msgid "Save palette _As..."
 msgstr "Paleti _farklý kaydet ..."
 
-#: mini-utils/gcolorsel/menus.c:87
+#: mini-utils/gcolorsel/menus.c:83
 msgid "Save the current palette with a different name"
 msgstr "Geçerli paleti farklý bir adla kaydet"
 
-#: mini-utils/gcolorsel/menus.c:109
+#: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
+#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:595
+#: stripchart/params.c:948
+msgid "Close"
+msgstr "Kapat"
+
+#: mini-utils/gcolorsel/menus.c:105
 msgid "Insert color"
 msgstr "Renk içer"
 
-#: mini-utils/gcolorsel/menus.c:111
+#: mini-utils/gcolorsel/menus.c:107
 msgid "Remove selected colors"
 msgstr "Seçili renkleri sil"
 
-#: mini-utils/gcolorsel/menus.c:113
+#: mini-utils/gcolorsel/menus.c:109
 msgid "Edit selected colors ..."
 msgstr "Seçili renkleri deðiþtir ..."
 
-#: mini-utils/gcolorsel/menus.c:117 mini-utils/gcolorsel/menus.c:1103
+#: mini-utils/gcolorsel/menus.c:113
 msgid "Document/View properties"
 msgstr "Doküman/Bakýþ özellikleri"
 
-#: mini-utils/gcolorsel/menus.c:183
+#: mini-utils/gcolorsel/menus.c:179
 #, c-format
 msgid ""
 "GColorsel was unable to save the file :\n"
@@ -2263,7 +1914,7 @@ msgstr ""
 "\n"
 "Yeniden denemek istiyormusun ?"
 
-#: mini-utils/gcolorsel/menus.c:202
+#: mini-utils/gcolorsel/menus.c:198
 #, c-format
 msgid ""
 "GColorsel was unable to load the file:\n"
@@ -2280,27 +1931,27 @@ msgstr ""
 "Lütfen verdiðin dizinlemenin varolduðunu temin et,\n"
 "ve o dosyayý açmaya gerekli eriþim haklarýna sahip olduðunu temin et."
 
-#: mini-utils/gcolorsel/menus.c:221
+#: mini-utils/gcolorsel/menus.c:217
 msgid "Open Palette"
 msgstr "Paleti aç"
 
-#: mini-utils/gcolorsel/menus.c:246
+#: mini-utils/gcolorsel/menus.c:242
 msgid "Loading file, please wait ..."
 msgstr "Dosyayý yükliyorum, lütfen bekle ..."
 
-#: mini-utils/gcolorsel/menus.c:277
+#: mini-utils/gcolorsel/menus.c:273
 msgid "Save Palette as"
 msgstr "Paleti farklý kaydet"
 
-#: mini-utils/gcolorsel/menus.c:324
+#: mini-utils/gcolorsel/menus.c:320
 msgid "File not saved ..."
 msgstr "Dosya kaydedilmedi ..."
 
-#: mini-utils/gcolorsel/menus.c:334
+#: mini-utils/gcolorsel/menus.c:330
 msgid "File saved ..."
 msgstr "Dosya kaydedildi ..."
 
-#: mini-utils/gcolorsel/menus.c:412
+#: mini-utils/gcolorsel/menus.c:408
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -2315,7 +1966,7 @@ msgstr ""
 "\n"
 "Lütfen %d sanal dokümanýn bu dokümanýn bilgilerini kullandýðýný unutma."
 
-#: mini-utils/gcolorsel/menus.c:414
+#: mini-utils/gcolorsel/menus.c:410
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -2326,7 +1977,7 @@ msgstr ""
 "\n"
 "O zaman du doküman da kapatýlanacaktýr; devam edeyim mi ?"
 
-#: mini-utils/gcolorsel/menus.c:450
+#: mini-utils/gcolorsel/menus.c:444
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -2343,7 +1994,7 @@ msgstr ""
 "\n"
 "Devam edeyim mi ?"
 
-#: mini-utils/gcolorsel/menus.c:452
+#: mini-utils/gcolorsel/menus.c:446
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -2358,49 +2009,41 @@ msgstr ""
 "\n"
 "Devam edeyim mi ?"
 
-#: mini-utils/gcolorsel/menus.c:500
+#: mini-utils/gcolorsel/menus.c:493
 msgid "Gnome Color Browser"
 msgstr "Gnome Renk Gezgini"
 
-#: mini-utils/gcolorsel/menus.c:506
+#: mini-utils/gcolorsel/menus.c:496
 msgid "Small utility to browse available X11 colors."
 msgstr "Geçerli X11 renklerini gezmek için bir uygulama ."
 
-#: mini-utils/gcolorsel/menus.c:626
+#: mini-utils/gcolorsel/menus.c:606
 msgid "New Color"
 msgstr "Yeni renk"
 
-#: mini-utils/gcolorsel/menus.c:902
+#: mini-utils/gcolorsel/menus.c:863
 msgid "View properties"
 msgstr "Bakýþ özellikleri"
 
-#: mini-utils/gcolorsel/menus.c:917
+#: mini-utils/gcolorsel/menus.c:878
 msgid "Document properties"
 msgstr "Doküman özellikleri"
 
-#: mini-utils/gcolorsel/menus.c:950
-msgid "Exit the program"
-msgstr "Uygulamadan çýk"
-
-#: mini-utils/gcolorsel/menus.c:952
+#: mini-utils/gcolorsel/menus.c:911
 msgid "Open"
 msgstr "Aç"
 
-#: mini-utils/gcolorsel/menus.c:952
+#: mini-utils/gcolorsel/menus.c:911
 msgid "Open a palette"
 msgstr "Bir paleti aç"
 
-#: mini-utils/gcolorsel/menus.c:957
+#: mini-utils/gcolorsel/menus.c:916
 msgid "Grab"
 msgstr "Yakala"
 
-#: mini-utils/gcolorsel/menus.c:957
+#: mini-utils/gcolorsel/menus.c:916
 msgid "Grab a color on the screen"
 msgstr "Ekrandaki bir rengi yakala"
-
-#: mini-utils/gcolorsel/menus.c:960
-msgid "About this application"
-msgstr "Bu uygulama hakkýnda bilgi"
 
 #: mini-utils/gcolorsel/session.c:304
 msgid ""
@@ -2426,6 +2069,14 @@ msgstr ""
 msgid "System Colors"
 msgstr "Sistem renkleri"
 
+#: mini-utils/gcolorsel/session.c:429
+msgid "User Colors"
+msgstr "Kullanýcý renkleri"
+
+#: mini-utils/gcolorsel/session.c:437
+msgid "Search"
+msgstr "Ara"
+
 #: mini-utils/gcolorsel/view-color-generic.c:16
 msgid "Decimal 8 bits"
 msgstr "Onlu ( 8bit )"
@@ -2446,9 +2097,17 @@ msgstr "Onaltýlý ( 16bit )"
 msgid "Float"
 msgstr "Kaygan"
 
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:815
+msgid "Color"
+msgstr "Renk"
+
+#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:227
+msgid "Value"
+msgstr "Deðer"
+
 #. Create everything.
 #: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
-#: mini-utils/gw/gw.c:504 mini-utils/gw/gw.c:574
+#: mini-utils/gw/gw.c:501 mini-utils/gw/gw.c:571
 msgid "Name"
 msgstr "Isim"
 
@@ -2663,20 +2322,24 @@ msgstr "Çalýþma seviyesi 4'e geçemek istedidinden emin misin ?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Bilgisayarý yeniden baþlatmaktan emin misin ?"
 
-#: mini-utils/gshutdown/gshutdown.c:151 mini-utils/gshutdown/gshutdown.c:591
+#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:592
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr "Bilgisayarý kaypatmak yada yeniden baþlatmak için 'root' olman lazým ."
 
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:187
+#: mini-utils/gshutdown/gshutdown.c:189
 msgid "Shutdown or Reboot"
 msgstr "Kapat yada yeniden baþlat"
 
-#: mini-utils/gshutdown/gshutdown.c:204 mini-utils/gshutdown/gshutdown.c:205
+#: mini-utils/gshutdown/gshutdown.c:206 mini-utils/gshutdown/gshutdown.c:207
 msgid "Easy"
 msgstr "Vasat"
 
-#: mini-utils/gshutdown/gshutdown.c:242
+#: mini-utils/gshutdown/gshutdown.c:211 mini-utils/gshutdown/gshutdown.c:212
+msgid "Advanced"
+msgstr "Geliþmiþ"
+
+#: mini-utils/gshutdown/gshutdown.c:244
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
@@ -2685,19 +2348,19 @@ msgstr ""
 "Yekin açik uygulamalardaki bilgileri kaybedeceksin ."
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:369
+#: mini-utils/gshutdown/gshutdown.c:371
 msgid "Revert to Defaults"
 msgstr "Önyarlý deðerlere geri dön"
 
-#: mini-utils/gshutdown/gshutdown.c:379
+#: mini-utils/gshutdown/gshutdown.c:381
 msgid "Commands"
 msgstr "Komutalar"
 
-#: mini-utils/gshutdown/gshutdown.c:384
+#: mini-utils/gshutdown/gshutdown.c:386
 msgid "Confirm before shutdown?"
 msgstr "Kapatmadan önce sorgulama yapýlsýn mý ?"
 
-#: mini-utils/gshutdown/gshutdown.c:449
+#: mini-utils/gshutdown/gshutdown.c:451
 #, c-format
 msgid ""
 "%s\n"
@@ -2706,73 +2369,73 @@ msgstr ""
 "%s\n"
 "Yekin kaydedilmemiþ bilgilerini kaybedeceksin ."
 
-#: mini-utils/gshutdown/gshutdown.c:459
+#: mini-utils/gshutdown/gshutdown.c:461
 msgid "Don't ask next time."
 msgstr "Gelecekte sorma ."
 
-#: mini-utils/gshutdown/gshutdown.c:689
+#: mini-utils/gshutdown/gshutdown.c:685
 msgid "Command execution failed: fork failed"
 msgstr "Komuta baþarýsýz oldu ; çatallama becerilenemedi"
 
-#: mini-utils/guname/guname.c:52
+#: mini-utils/guname/guname.c:53
 msgid "Make guname act as a control center applet"
 msgstr "guname'i bir Ayarlar Merkezi uygulaðý gibi hareket ettir"
 
-#: mini-utils/guname/guname.c:118
+#: mini-utils/guname/guname.c:119
 msgid "an initialization error occurred while starting 'guname-capplet'."
 msgstr "'guname-capplet''i baþlatýrken bir aðýr hata oldu ."
 
-#: mini-utils/guname/guname.c:445
+#: mini-utils/guname/guname.c:446
 msgid "System Information"
 msgstr "Sistem bilgileri"
 
-#: mini-utils/guname/guname.c:532
+#: mini-utils/guname/guname.c:536
 msgid "Logo file not found"
 msgstr "Logo dosyasý bulunamadý"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:536
+#: mini-utils/guname/guname.c:540
 msgid "GNOME contributors:"
 msgstr "GNOME destekçileri : "
 
 #. fontset used by guname; adapt it if your language requires it
-#: mini-utils/guname/guname.c:540
+#: mini-utils/guname/guname.c:544
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-9"
 
-#: mini-utils/guname/guname.c:551
+#: mini-utils/guname/guname.c:555
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME : The GNU Network Object Model Environment'i"
 
-#: mini-utils/guname/guname.c:575
+#: mini-utils/guname/guname.c:579
 msgid "Email Information..."
 msgstr "Bilgileri ePostala ..."
 
-#: mini-utils/guname/guname.c:588
+#: mini-utils/guname/guname.c:592
 msgid "Save Information to File..."
 msgstr "Bilgileri dosyaya kaydet ..."
 
-#: mini-utils/guname/guname.c:600 mini-utils/guname/guname.c:670
+#: mini-utils/guname/guname.c:604 mini-utils/guname/guname.c:674
 msgid "Detailed Information..."
 msgstr "Geliþmiþ bilgiler ..."
 
-#: mini-utils/guname/guname.c:615
+#: mini-utils/guname/guname.c:619
 msgid "Category"
 msgstr "Tür"
 
-#: mini-utils/guname/guname.c:615
+#: mini-utils/guname/guname.c:619
 msgid "Your System"
 msgstr "Sistemin"
 
-#: mini-utils/guname/guname.c:656
+#: mini-utils/guname/guname.c:660 stripchart/params.c:941
 msgid "Save As..."
 msgstr "Farklý kaydet ..."
 
-#: mini-utils/guname/guname.c:662
+#: mini-utils/guname/guname.c:666
 msgid "Mail To..."
 msgstr "ePostala ..."
 
-#: mini-utils/guname/guname.c:710
+#: mini-utils/guname/guname.c:714
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -2783,27 +2446,27 @@ msgstr ""
 "%s\n"
 "Bazý yada yekin bilgiler yazýlmamýþ olabilir ."
 
-#: mini-utils/guname/guname.c:722
+#: mini-utils/guname/guname.c:726
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "`%s' dosyasýný açamadým : %s"
 
-#: mini-utils/guname/guname.c:744
+#: mini-utils/guname/guname.c:748
 msgid "Save System Information As..."
 msgstr "Sistem bilgilerini farklý kaydet ..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:793
+#: mini-utils/guname/guname.c:805
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "Komuta baþarýsýz oldu : `%s' : %s"
 
-#: mini-utils/guname/guname.c:801
+#: mini-utils/guname/guname.c:813
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "Komutayý çalýþtýramadým : `%s' : %s"
 
-#: mini-utils/guname/guname.c:825
+#: mini-utils/guname/guname.c:837
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -2812,11 +2475,11 @@ msgstr ""
 "Bu ePosta iletisi %s'ye gönderilecektir .\n"
 " Bu bilgilerinin ePostalanmasýný istiyor musun ?"
 
-#: mini-utils/guname/guname.c:836
+#: mini-utils/guname/guname.c:848
 msgid "Are you sure?"
 msgstr "Emin misin ? "
 
-#: mini-utils/guname/guname.c:878
+#: mini-utils/guname/guname.c:890
 msgid "Address to mail to:"
 msgstr "ePostalanacak adres : "
 
@@ -2910,7 +2573,7 @@ msgstr "Yükleme noktasý"
 
 #. This is about the only case where we'll put Unknown instead
 #. of simply not showing the info.
-#: mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:26
+#: mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:25
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
@@ -3004,27 +2667,27 @@ msgstr "Geçerli kullanýcýlar listesi"
 msgid "Update Information"
 msgstr "Bilgileri yenile"
 
-#: mini-utils/gw/gw.c:476
+#: mini-utils/gw/gw.c:473
 msgid "Save not implemented yet\n"
 msgstr "Kaydetme iþlemi daha yazýlmadý\n"
 
-#: mini-utils/gw/gw.c:505
+#: mini-utils/gw/gw.c:502
 msgid "Command Line"
 msgstr "Komuta"
 
-#: mini-utils/gw/gw.c:507
+#: mini-utils/gw/gw.c:504
 msgid "Add some defaults"
 msgstr "Bazý önayarlý deðerleri ekle"
 
-#: mini-utils/gw/gw.c:509
+#: mini-utils/gw/gw.c:506
 msgid "Delete"
 msgstr "Sil"
 
-#: mini-utils/gw/gw.c:527
+#: mini-utils/gw/gw.c:524
 msgid "Command Editor"
 msgstr "Komuta editörü"
 
-#: mini-utils/gw/gw.c:537
+#: mini-utils/gw/gw.c:534
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -3038,7 +2701,7 @@ msgstr ""
 "Komutada seçili kullanýcý ismi yerine \"%u\" kullanabilirsin \n"
 "ve geçerli tty için %t kullanabilirsin ."
 
-#: mini-utils/gw/gw.c:544
+#: mini-utils/gw/gw.c:541
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -3046,172 +2709,934 @@ msgstr ""
 "Bu basmayla bazý\n"
 "örnek komutalarý ekleyebilirsin ."
 
-#: mini-utils/gw/gw.c:552
+#: mini-utils/gw/gw.c:549
 msgid "Menu items"
 msgstr "Mönü birimleri"
 
-#: mini-utils/gw/gw.c:580
+#: mini-utils/gw/gw.c:577
 msgid "Command"
 msgstr "Komuta"
 
-#: mini-utils/gw/gw.c:970
+#: mini-utils/gw/gw.c:967
 #, c-format
 msgid "Running: %s\n"
 msgstr "çalýþtýrýlýyor : %s\n"
 
-#: mini-utils/idetool/idetool.c:19 mini-utils/idetool/idetool.c:142
-#: mini-utils/idetool/idetool.c:327
-msgid "Default"
-msgstr "Önayarlý"
+#: mini-utils/idetool/idetool.c:19
+#, fuzzy
+msgid "Default 16-bit"
+msgstr "Onlu ( 16bit )"
 
 #: mini-utils/idetool/idetool.c:20
-msgid "16-bit"
-msgstr "16 bit"
-
-#: mini-utils/idetool/idetool.c:21
 msgid "32-bit"
 msgstr "32 bit"
 
-#: mini-utils/idetool/idetool.c:22
+#: mini-utils/idetool/idetool.c:21
 msgid "32-bit w/sync"
 msgstr "32 bit, eþitlemeli"
 
-#: mini-utils/idetool/idetool.c:27
+#: mini-utils/idetool/idetool.c:26
 msgid "Sleeping"
 msgstr "Uyuyor"
 
-#: mini-utils/idetool/idetool.c:28
+#: mini-utils/idetool/idetool.c:27
 msgid "Active/Idle"
 msgstr "Iþlek/boþda duruyor"
 
-#: mini-utils/idetool/idetool.c:29
+#: mini-utils/idetool/idetool.c:28
 msgid "Standby"
 msgstr "Kapalý"
 
-#: mini-utils/idetool/idetool.c:42
+#: mini-utils/idetool/idetool.c:41
 msgid "Unable to access the drive."
 msgstr "Sürücü'ya eriþemedim ."
 
-#: mini-utils/idetool/idetool.c:59 mini-utils/idetool/idetool.c:71
+#: mini-utils/idetool/idetool.c:58 mini-utils/idetool/idetool.c:70
 msgid "The DMA setting for this drive cannot be changed."
 msgstr "Bu sürücünün DMA ayarlarý deðiþtirilemiyor ."
 
-#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
 msgid "Enabled"
 msgstr "Açýk"
 
-#: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
-#: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
+#: mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+#: mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
 msgid "Disabled"
 msgstr "Kapalý"
 
-#: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
+#: mini-utils/idetool/idetool.c:90 mini-utils/idetool/idetool.c:102
 msgid "The IRQ unmask setting for this drive cannot be changed."
 msgstr "Bu sürücünün IRQ itkinmesi deðiþtirilemiyor ."
 
-#: mini-utils/idetool/idetool.c:122 mini-utils/idetool/idetool.c:134
+#: mini-utils/idetool/idetool.c:121 mini-utils/idetool/idetool.c:133
 msgid "The drive refused to keep its settings."
 msgstr "Sürücü ayarlarýný muhafaza etmeyi kabul etmiyor ."
 
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
+#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:322
 msgid "Keep settings"
 msgstr "Ayarlarý koru"
 
-#: mini-utils/idetool/idetool.c:207
+#: mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:322
+msgid "Default"
+msgstr "Önayarlý"
+
+#: mini-utils/idetool/idetool.c:202
 msgid "None"
 msgstr "Yok"
 
-#: mini-utils/idetool/idetool.c:211
+#: mini-utils/idetool/idetool.c:206
 msgid "(1 Sector)"
 msgstr "( 1 sektör )"
 
-#: mini-utils/idetool/idetool.c:213
+#: mini-utils/idetool/idetool.c:208
 msgid "(Dual Port)"
 msgstr "( Çift giriþ )"
 
-#: mini-utils/idetool/idetool.c:215
+#: mini-utils/idetool/idetool.c:210
 msgid "(Dual Port Cache)"
 msgstr "( Arabellekli çift giriþ )"
 
-#: mini-utils/idetool/idetool.c:243
+#: mini-utils/idetool/idetool.c:238
 msgid "No"
 msgstr "Hayýr"
 
-#: mini-utils/idetool/idetool.c:245
+#: mini-utils/idetool/idetool.c:240
 #, c-format
 msgid "Yes (%d sector)"
 msgstr "Evet ( %d sektör )"
 
-#: mini-utils/idetool/idetool.c:247
+#: mini-utils/idetool/idetool.c:242
 #, c-format
 msgid "Yes (%d sectors)"
 msgstr "Evet ( %d sektör )"
 
-#: mini-utils/idetool/idetool.c:310 mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:305 mini-utils/idetool/idetool.c:315
 msgid "Model"
 msgstr "Model"
 
-#: mini-utils/idetool/idetool.c:311
+#: mini-utils/idetool/idetool.c:306
 msgid "Firmware"
 msgstr "Iþleme uygulamasý"
 
-#: mini-utils/idetool/idetool.c:312
+#: mini-utils/idetool/idetool.c:307
 msgid "Serial No."
 msgstr "Seri no."
 
 #. do config here
-#: mini-utils/idetool/idetool.c:314
+#: mini-utils/idetool/idetool.c:309
 msgid "Geometry"
 msgstr "Yapý"
 
-#: mini-utils/idetool/idetool.c:315
+#: mini-utils/idetool/idetool.c:310
 msgid "Cache"
 msgstr "Arabellek"
 
-#: mini-utils/idetool/idetool.c:316
+#: mini-utils/idetool/idetool.c:311
 msgid "Status"
 msgstr "Durum"
 
-#: mini-utils/idetool/idetool.c:320
+#: mini-utils/idetool/idetool.c:315
 msgid "Legacy MFM/RLL drive"
 msgstr "MFM/RLL sürücüsü"
 
-#: mini-utils/idetool/idetool.c:323
+#: mini-utils/idetool/idetool.c:318
 msgid "DMA Mode"
 msgstr "DMA türü"
 
-#: mini-utils/idetool/idetool.c:324
+#: mini-utils/idetool/idetool.c:319
 msgid "IO Mode"
 msgstr "D/V türü"
 
-#: mini-utils/idetool/idetool.c:325
+#: mini-utils/idetool/idetool.c:320
 msgid "IRQ Unmask"
 msgstr "IRQ itkinmesi"
 
-#: mini-utils/idetool/idetool.c:326
+#: mini-utils/idetool/idetool.c:321
 msgid "Multisector"
 msgstr "Çok sektörlü"
 
-#: mini-utils/idetool/idetool.c:327
+#: mini-utils/idetool/idetool.c:322
 msgid "On Reset"
 msgstr "Yenileme"
 
 #.
 #. *	Set up the outer display first
 #.
-#: mini-utils/idetool/idetool.c:367
+#: mini-utils/idetool/idetool.c:362
 msgid "IDE Status"
 msgstr "IDE durumu"
 
-#: mini-utils/idetool/idetool.c:389
+#: mini-utils/idetool/idetool.c:384
 msgid "Disk Logo Not Found"
 msgstr "Disk resmini bulamadým"
 
-#: mini-utils/idetool/idetool.c:440
+#: mini-utils/idetool/idetool.c:435
 msgid "Only the superuser can use this tool"
 msgstr "Sadece 'root' bu uygulamayý kullanabilir"
 
-#: mini-utils/idetool/idetool.c:451
+#: mini-utils/idetool/idetool.c:446
 msgid "You appear to have no IDE drives"
 msgstr "IDE aygýtýn yok gibi"
+
+#: gfloppy/src/badblocks.c:102
+msgid "MInternal Error: Unable to seek to the correct location."
+msgstr ""
+
+#: gfloppy/src/badblocks.c:111
+#, c-format
+msgid "MInternal Error: Weird value (%ld) in do_test\n"
+msgstr ""
+
+#: gfloppy/src/badblocks.c:166
+#, c-format
+msgid "EBad block at block %lu"
+msgstr ""
+
+#. while (!i)
+#. ;
+#: gfloppy/src/badblocks.c:260
+msgid "MChecking for bad blocks..."
+msgstr ""
+
+#: gfloppy/src/badblocks.c:272
+#, c-format
+msgid "MFailed to open device %s for badblock checking\n"
+msgstr ""
+
+#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:215
+msgid "MChecking for bad blocks... Done"
+msgstr ""
+
+#: gfloppy/src/fdformat.c:44
+msgid "MFormatting the disk..."
+msgstr "MDiski formatlýyorum..."
+
+#: gfloppy/src/fdformat.c:46
+msgid "EI don't know what this is, but it's very wrong."
+msgstr "EBir yerde hata var, ama nerede, bunu bana sorma."
+
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
+#, c-format
+msgid "EError formatting track #%d"
+msgstr "E#%d parçasý formatlanýrken hata oldu"
+
+#: gfloppy/src/fdformat.c:74
+msgid "EError during completion of formatting"
+msgstr "EFormat tamamlanýrken hata oldu"
+
+#. XXXX - need to tell parent we're finished
+#: gfloppy/src/fdformat.c:78
+msgid "MFormatting the disk... Done"
+msgstr "MDiski formatlýyorum ... Bitti"
+
+#. XXXX - tell parent we're starting verify stage
+#: gfloppy/src/fdformat.c:94
+msgid "MVerifying the format..."
+msgstr "MFormat'ý kontrol ediyorum ..."
+
+#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
+msgid ""
+"EUnable to write to the floppy.\n"
+"\n"
+"Please confirm that it is not write-protected."
+msgstr ""
+"EDiskete yazamadým.\n"
+"\n"
+"Lütfen disketin yazma-korumalý olup olmadýðýný kontrol edin."
+
+#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
+#, c-format
+msgid "EInsufficient permissions to open floppy device %s."
+msgstr "EDisket sürücü %s'yi açmak için yeterli eriþim haklarýn yok."
+
+#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
+msgid ""
+"EUnable to access the floppy disk.\n"
+"\n"
+"Please confirm that it is in the drive\n"
+"with the drive door shut."
+msgstr ""
+"EDiskete eriþemedim.\n"
+"\n"
+"Lütfen disketin sürücünün içinde ve sürücünün kapýsýný kapalý\n"
+"olduðunu kontrol edin."
+
+#: gfloppy/src/fdformat.c:109
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s:%d"
+msgstr ""
+"EGenel eriþim hatasý (disket sürücüsü %s).\n"
+"\n"
+"Hata kodu %s:%d"
+
+#: gfloppy/src/fdformat.c:129
+#, c-format
+msgid ""
+"ERead Error:\n"
+"Problem reading cylinder %d, expected %d, read %d"
+msgstr ""
+"EOkuma hatasý :\n"
+"Silindir %d'yi okurken hata oldu, %d beklerken, %d okudum"
+
+#: gfloppy/src/fdformat.c:132
+#, c-format
+msgid "EProblem reading cylinder %d, expected %d, read %d"
+msgstr "ESilindir %d'yi okurken hata oldu, %d beklerken, %d okudum"
+
+#: gfloppy/src/fdformat.c:141
+#, c-format
+msgid "MBad data in cyl %d.  Continuing... "
+msgstr "MSilindir %d'de bozukluklar var. Devam ediyorum ..."
+
+#: gfloppy/src/fdformat.c:148
+#, c-format
+msgid "EError closing device %s"
+msgstr "E%s aygýtýný kapatýrken hata oldu"
+
+#: gfloppy/src/fdformat.c:153
+msgid "MVerifying the format... Done"
+msgstr "MFormat'ý kontrol ediyorum ... Bitti"
+
+#: gfloppy/src/fdformat.c:165
+#, c-format
+msgid "EUnable to write to device %s"
+msgstr "%s aygýtýna yazamýyorum"
+
+#: gfloppy/src/fdformat.c:184
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s"
+msgstr ""
+"EDisket sürücüsü %s'de genel bir eriþim hatasý var.\n"
+"\n"
+"Hata kodu %s"
+
+#: gfloppy/src/fdformat.c:194
+msgid "ECould not determine current format type"
+msgstr "EGeçerli olan format tipini tanýyamadým"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gfloppy/src/gfloppy-i18n.h:7
+msgid "Format a floppy"
+msgstr "Disketi formatla"
+
+#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
+msgid "Linux Native (ext2)"
+msgstr "Linux (ext2)"
+
+#: gfloppy/src/gfloppy-i18n.h:9
+msgid "Dos (FAT)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:11
+msgid "Formatting /dev/floppy"
+msgstr "/dev/floppy formatlanýyor"
+
+#: gfloppy/src/gfloppy-i18n.h:12
+msgid "Floppy Density:"
+msgstr "Disket sýðasý: "
+
+#: gfloppy/src/gfloppy-i18n.h:13
+msgid "File system type:"
+msgstr "Dosya yönetim sistemi: "
+
+#: gfloppy/src/gfloppy-i18n.h:14
+msgid "High Density 3.5\" (1.44 MB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:15
+msgid "High Density 5.25\" (1.2 MB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:16
+msgid "Double Density 3.5\" (720 KB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:17
+msgid "Double Density 5.25\" (360 KB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:18
+msgid "Quick format"
+msgstr "Hýzlý format"
+
+#: gfloppy/src/gfloppy.c:166 gfloppy/src/gfloppy.c:199
+#, fuzzy
+msgid "MMaking filesystem on disk..."
+msgstr "MDiski formatlýyorum..."
+
+#: gfloppy/src/gfloppy.c:169
+#, fuzzy
+msgid "EUnable to create filesystem correctly."
+msgstr "Sürücü'ya eriþemedim ."
+
+#: gfloppy/src/gfloppy.c:173 gfloppy/src/gfloppy.c:205
+#, fuzzy
+msgid "MMaking filesystem on disk... Done"
+msgstr "MDiski formatlýyorum ... Bitti"
+
+#: gfloppy/src/gfloppy.c:202 gfloppy/src/gfloppy.c:217
+#, fuzzy
+msgid "EUnable to create filesystem."
+msgstr "Sürücü'ya eriþemedim ."
+
+#: gfloppy/src/gfloppy.c:211
+msgid "MChecking for bad blocks... (this might take a while)"
+msgstr ""
+
+#: gfloppy/src/main.c:179
+msgid "The device to format"
+msgstr "Formatlanacak aygýt"
+
+#: gfloppy/src/main.c:180
+msgid "DEVICE"
+msgstr "AYGIT"
+
+#. We do this to get around a bug in libglade.  Ideally we won't need
+#. * to do this in the future.
+#: gfloppy/src/main.c:207
+msgid "Format"
+msgstr "Formatla"
+
+#. initialize our widgets
+#: gfloppy/src/main.c:212
+#, c-format
+msgid "Formatting %s"
+msgstr "%s formatlanýyor"
+
+#: gfloppy/src/main.c:254
+msgid "Format another floppy?"
+msgstr "Baþka bir disket daha formatlamak istiyor musunuz?"
+
+#: gfloppy/src/progress.c:117
+msgid "Floppy formatted successfully."
+msgstr "Disket baþarýla formatlandý"
+
+#: gfloppy/src/progress.c:121
+msgid "Floppy formatting cancelled."
+msgstr "Disketin formatlanmasý iptal edildi."
+
+#: gfloppy/src/progress.c:176
+msgid "Format progress."
+msgstr "Format durumu."
+
+#: stripchart/chart-app.c:157
+msgid "Param"
+msgstr "Veri"
+
+#: stripchart/chart-app.c:158
+msgid "Current"
+msgstr "Geçerli"
+
+#: stripchart/chart-app.c:159 stripchart/params.c:692
+msgid "Top"
+msgstr "Üst"
+
+#: stripchart/chart-app.c:160 stripchart/params.c:748
+msgid "Scale"
+msgstr "Boyutla"
+
+#: stripchart/chart-app.c:192 stripchart/stripchart-applet.c:69
+#: stripchart/stripchart.c:92 stripchart/stripchart.c:97
+#, fuzzy
+msgid "Stripchart"
+msgstr "gstripchart"
+
+#: stripchart/chart-app.c:193
+#, fuzzy
+msgid "Copyright 2000 John Kodis"
+msgstr "Tel'if hakký (C) 1998,99 John Kodis"
+
+#: stripchart/chart-app.c:195
+msgid ""
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
+msgstr ""
+"GNOME stripchart uygulamasý kullanýcý tarafýndan belirlenen "
+"deðiþikbelirtileri bir iþlev olarak çizer . Bu uygulamanýn en çok "
+"becerdiðiiþ iþlemci yükünü, iþlemci kullanýmýný, að trafiðini ve buna benzer "
+"deðiþikbelirtileri göstermektir. Ilgilenen kullanýcý bu deðerleri deðiþtirip "
+"özelleþtirebilir."
+
+#: stripchart/chart-app.c:234
+#, fuzzy
+msgid "Show values"
+msgstr "Durum çubuðunu göster"
+
+#: stripchart/chart-app.c:241
+#, fuzzy
+msgid "Edit Prefs..."
+msgstr "Ayarlarý deðiþtir ..."
+
+#: stripchart/chart-app.c:246
+#, fuzzy
+msgid "Edit Params..."
+msgstr "Veriler ..."
+
+#: stripchart/eval.c:252
+#, fuzzy
+msgid "closing parenthesis expected"
+msgstr "sað parantez beklenirdi"
+
+#: stripchart/eval.c:269
+#, c-format
+msgid "no such field: %d"
+msgstr "böyle bir birim yok : %d"
+
+#: stripchart/eval.c:285
+msgid "missing variable identifer"
+msgstr "geçerli verim tanýtýcýsý eksik"
+
+#: stripchart/eval.c:287
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr "geçersiz verim tanýtýcýsý : %s"
+
+#: stripchart/eval.c:291
+msgid "number expected"
+msgstr "sayý beklenirdi"
+
+#: stripchart/eval.c:362
+#, fuzzy, c-format
+msgid "extra junk at end: \"%s\""
+msgstr "\"%s\"'de fazlasiyle bi' þey var"
+
+#: stripchart/params.c:621
+#, fuzzy
+msgid "Parameter"
+msgstr "Veri"
+
+#: stripchart/params.c:659
+msgid "Equation"
+msgstr "Eþleþim"
+
+#: stripchart/params.c:670
+msgid "Filename"
+msgstr "Dosya adý"
+
+#: stripchart/params.c:681
+msgid "Pattern"
+msgstr "Tipleme"
+
+#: stripchart/params.c:702 stripchart/params.c:730
+msgid "Min"
+msgstr ""
+
+#: stripchart/params.c:711 stripchart/params.c:739
+#, fuzzy
+msgid "Max"
+msgstr "Mayýs"
+
+#: stripchart/params.c:720
+msgid "Bottom"
+msgstr ""
+
+#: stripchart/params.c:759
+msgid "Linear"
+msgstr ""
+
+#: stripchart/params.c:767
+msgid "Logarithmic"
+msgstr ""
+
+#: stripchart/params.c:772
+msgid "Type"
+msgstr ""
+
+#: stripchart/params.c:783
+#, fuzzy
+msgid "Indicator"
+msgstr "Göster"
+
+#: stripchart/params.c:790
+msgid "Line"
+msgstr ""
+
+#: stripchart/params.c:797
+#, fuzzy
+msgid "Point"
+msgstr "Kapý :"
+
+#: stripchart/params.c:804
+msgid "Solid"
+msgstr ""
+
+#: stripchart/params.c:960
+msgid "Add Parameter Before"
+msgstr ""
+
+#: stripchart/params.c:967
+msgid "Add Parameter After"
+msgstr ""
+
+#: stripchart/params.c:974
+msgid "Apply Parameter Changes"
+msgstr ""
+
+#: stripchart/params.c:981
+msgid "Delete Parameter"
+msgstr ""
+
+#: stripchart/params.c:989
+#, fuzzy
+msgid "Add Color"
+msgstr "Renk"
+
+#: stripchart/params.c:996
+#, fuzzy
+msgid "Delete Color"
+msgstr "Yeni renk"
+
+#: stripchart/params.c:1015
+msgid "Info"
+msgstr ""
+
+#: stripchart/params.c:1086
+msgid "Parameter Editor"
+msgstr ""
+
+#: stripchart/params.c:1095
+#, fuzzy
+msgid "Parameters"
+msgstr "Veriler"
+
+#: stripchart/prefs.c:205
+#, fuzzy
+msgid "Chart"
+msgstr "Baþla"
+
+#: stripchart/prefs.c:215 stripchart/prefs.c:274
+#, fuzzy
+msgid "enabled"
+msgstr "Açýk"
+
+#: stripchart/prefs.c:222
+#, fuzzy
+msgid "minor"
+msgstr "dakika"
+
+#: stripchart/prefs.c:228
+msgid "major"
+msgstr ""
+
+#: stripchart/prefs.c:241 stripchart/prefs.c:259
+msgid "Update"
+msgstr ""
+
+#: stripchart/prefs.c:244 stripchart/prefs.c:267
+msgid "Smooth"
+msgstr ""
+
+#: stripchart/prefs.c:247
+msgid "Ticks"
+msgstr ""
+
+#: stripchart/prefs.c:252
+#, fuzzy
+msgid "Pen"
+msgstr "Tipleme"
+
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "Geometry string: WxH+X+Y"
+msgstr "Yerleþim metni : ENxYÜKSEKLIK+X+Y"
+
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "GEO"
+msgstr "GEO"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "Configuration file name"
+msgstr "Ayarlama dosyasý adý"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "FILE"
+msgstr "FILE"
+
+#: stripchart/stripchart-applet.c:92
+#, fuzzy
+msgid "Values"
+msgstr "Deðer"
+
+#: stripchart/stripchart-applet.c:95
+#, fuzzy
+msgid "Prefs..."
+msgstr "Ayarlar"
+
+#: stripchart/stripchart-applet.c:98
+msgid "Params..."
+msgstr "Veriler ..."
+
+#~ msgid "Cut the text to clipboard"
+#~ msgstr "Metni arabelleðe kes"
+
+#~ msgid "Copy the text to clipboard."
+#~ msgstr "Metni arabelleðe kopyala."
+
+#~ msgid "This sets the overall application settings."
+#~ msgstr "Bu genel uygulama ayarlarýný belirler ."
+
+#~ msgid "New search"
+#~ msgstr "Yeni arama"
+
+#~ msgid "Open search spec"
+#~ msgstr "Arama özelliklerini aç"
+
+#~ msgid "Save search spec"
+#~ msgstr "Arama özelliklerini kaydet"
+
+#~ msgid "Save search spec as..."
+#~ msgstr "Arama özelliklerini farklý kaydet ..."
+
+#~ msgid "Add condition"
+#~ msgstr "Þart ekle"
+
+#~ msgid "Add a search condition"
+#~ msgstr "Bir arama þartýný ekle"
+
+#~ msgid "Remove condition"
+#~ msgstr "Þartý sil"
+
+#~ msgid "Remove last search condition"
+#~ msgstr "Son arama þartlarýný sil"
+
+#~ msgid "Show advanced options"
+#~ msgstr "Geliþmiþ seçenekleri göster"
+
+#~ msgid "Start search"
+#~ msgstr "Aramaya baþla"
+
+#~ msgid "About Gnome Find..."
+#~ msgstr "Gnome Find hakkýnda ..."
+
+#~ msgid "New"
+#~ msgstr "Yeni"
+
+#~ msgid "Clear the search window"
+#~ msgstr "Arama penceresini temizle"
+
+#~ msgid "Start the current search"
+#~ msgstr "Geçerli aramayý baþlat"
+
+#~ msgid "Find Files"
+#~ msgstr "Dosya bul"
+
+#~ msgid "Directory:"
+#~ msgstr "Dizin :"
+
+#~ msgid "Directory to Search"
+#~ msgstr "Aranacak dizin"
+
+#~ msgid "GNOME Find"
+#~ msgstr "GNOME Find"
+
+#~ msgid "(C) 1998 the Free Software Foundation"
+#~ msgstr "Tel'if hakký (C) 1998 the Free Software Foundation"
+
+#~ msgid "GNOME Find is a fast, flexible file search tool."
+#~ msgstr "GNOME Find hýzle ve geliþmiþ bir dosya arama uygulamasýdýr ."
+
+#~ msgid "%s, line %d: "
+#~ msgstr "%s, satýr %d : "
+
+#~ msgid "can't open config file \"%s\""
+#~ msgstr "\"%s\" ayar dosyasýný açamadým"
+
+#~ msgid ""
+#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "\"./gstripchart.conf\" ayar dosyasýný açamadým, \"%s\", \"%s\" yada \"%s\""
+
+#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
+#~ msgstr "\"./gstripchart.conf\" ayar dosyasýný açamadým, \"%s\" yada \"%s\""
+
+#~ msgid "identifier or begin must be first"
+#~ msgstr "tanýmlayýcý yada baþý önceden gelmesi lazým"
+
+#~ msgid "unrecognized color: %s"
+#~ msgstr "tanýnamayan renk : %s"
+
+#~ msgid "scale must be either \"log\" or \"linear\""
+#~ msgstr "boyutlama ya \"log\" yada \"linyar\" olmak zorunda"
+
+#~ msgid "no equation found"
+#~ msgstr "eþleþim bulunamadý"
+
+#~ msgid "invalid option: \"%s\""
+#~ msgstr "geçersiz seçenek : \"%s\""
+
+#~ msgid "E_xit"
+#~ msgstr "Çý_k"
+
+#~ msgid "Terminate the stripchart program"
+#~ msgstr "Stripchart uygulamasýný bitir"
+
+#~ msgid "_About"
+#~ msgstr "_Bilgi"
+
+#~ msgid "Info about the striphart program"
+#~ msgstr "stripchart uygulamasý hakkýnda bilgi"
+
+#~ msgid "_File"
+#~ msgstr "_Dosya"
+
+#~ msgid "_Help"
+#~ msgstr "_Yardým"
+
+#~ msgid "Identifier"
+#~ msgstr "Tanýmlatýcý"
+
+#~ msgid "Expected range"
+#~ msgstr "Beklenen sýnýrlama"
+
+#~ msgid "Displayed range"
+#~ msgstr "Gösterilen sýnýrlama"
+
+#~ msgid "Current value"
+#~ msgstr "Geçerli deðer"
+
+#~ msgid "Active"
+#~ msgstr "Fail"
+
+#~ msgid "Stripchart Parameters"
+#~ msgstr "Stripchart verileri"
+
+#~ msgid "Stripchart Viewer"
+#~ msgstr "Stripchart göstergesi"
+
+#~ msgid "invalid display type: %s\n"
+#~ msgstr "geçersiz gösterim tipi : %s\n"
+
+#~ msgid "Chart update interval"
+#~ msgstr "Çizilmenin yenileme arasý"
+
+#~ msgid "SECS"
+#~ msgstr "SECS"
+
+#~ msgid "Chart low-pass filter time constant"
+#~ msgstr "Iþlev alçak-sýnýr filtra verisi"
+
+#~ msgid "Slider update interval"
+#~ msgstr "Kaydýrgaç yenileme zamaný"
+
+#~ msgid "Slider low-pass filter time constant"
+#~ msgstr "Kaydýrgaçýn alçak-sýnýr filtra verisi"
+
+#~ msgid "Adds a menubar to the main window"
+#~ msgstr "Ana pencereye mönü çubuðunu ekler"
+
+#~ msgid "Omits slider window"
+#~ msgstr "Kaydýrgaç penceresini gösterme"
+
+#~ msgid "TYPE is one of gtk, applet, text, or none"
+#~ msgstr "TYPE gtk,uygulak, metin yada hiçbirisi olabilir"
+
+#~ msgid "TYPE"
+#~ msgstr "TYPE"
+
+#~ msgid "TYPE is one of gtk, text, or none"
+#~ msgstr "TYPE gtk, metin yada hiçbirisi olabilir"
+
+#~ msgid "white"
+#~ msgstr "beyaz"
+
+#~ msgid "black"
+#~ msgstr "siyah"
+
+#~ msgid "red"
+#~ msgstr "kýrmýzý"
+
+#~ msgid "yellow"
+#~ msgstr "sarý"
+
+#~ msgid "blue"
+#~ msgstr "mavi"
+
+#~ msgid "green"
+#~ msgstr "yeþil"
+
+#~ msgid "cyan"
+#~ msgstr "firuze"
+
+#~ msgid "magenta"
+#~ msgstr "pembe"
+
+#~ msgid "Busy"
+#~ msgstr "Iþliyor"
+
+#~ msgid "Load"
+#~ msgstr "Yük"
+
+#~ msgid "Swap"
+#~ msgstr "Takas alaný"
+
+#~ msgid "Battery"
+#~ msgstr "Pil"
+
+#~ msgid "Net In"
+#~ msgstr "Að giriþi"
+
+#~ msgid "Net Out"
+#~ msgstr "Að çýkýþý"
+
+#~ msgid "ppp"
+#~ msgstr "ppp"
+
+#~ msgid "Please enter the name of the new project:"
+#~ msgstr "Yeni projenin ismini ver : "
+
+#~ msgid "Hide calendar"
+#~ msgstr "Takvimi gizle"
+
+#~ msgid "F_ilter"
+#~ msgstr "_Filtra"
+
+#~ msgid "label2"
+#~ msgstr "yafta 2"
+
+#~ msgid "label13"
+#~ msgstr "yafta 13"
+
+#~ msgid "label14"
+#~ msgstr "yafta 14"
+
+#~ msgid "label15"
+#~ msgstr "yafta 15"
+
+#~ msgid "label16"
+#~ msgstr "yafta 16"
+
+#~ msgid "label4"
+#~ msgstr "yafta 4"
+
+#~ msgid "16-bit"
+#~ msgstr "16 bit"
+
+#~ msgid ""
+#~ "Linux Native (ext2)\n"
+#~ "Dos (FAT)\n"
+#~ msgstr ""
+#~ "Linux (ext2)\n"
+#~ "Dos (FAT)\n"
+
+#~ msgid ""
+#~ "High Density 3.5\" (1.44 MB)\n"
+#~ "High Density 5.25\" (1.2 MB)\n"
+#~ "Double Density 3.5\" (720 KB)\n"
+#~ "Double Density 5.25\" (360 KB)\n"
+#~ msgstr ""
+#~ "Yüksek sýða 3.5\" (1.44 MB)\n"
+#~ "Yüksek sýða 5.25\" (1.2 MB)\n"
+#~ "Çift sýða 3.5\" (720 KB)\n"
+#~ "Çift sýða 5.25\" (360 KB)\n"

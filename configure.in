@@ -7,7 +7,7 @@ AC_INIT(gtt)
 AM_CONFIG_HEADER(config.h)
 AC_CANONICAL_SYSTEM
 
-AM_INIT_AUTOMAKE(gnome-utils, 1.3.1)
+AM_INIT_AUTOMAKE(gnome-utils, 1.3.2)
 
 dnl 
 dnl only useful for maintainers
@@ -76,7 +76,7 @@ AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname)
 dnl *******************************
 dnl Internationalization
 dnl ******************************* 
-ALL_LINGUAS="az ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt nl no pl pt pt_BR ro ru sk sl sv tr uk wa zh_TW.Big5 zh_CN.GB2312"
+ALL_LINGUAS="az ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt nl no pl pt pt_BR ro ru sk sl sv ta tr uk wa zh_TW.Big5 zh_CN.GB2312"
 AM_GNOME_GETTEXT
 
 dnl *******************************
@@ -115,11 +115,11 @@ dnl ********************
 dnl gfloppy
 dnl ********************
 build_gfloppy=true
-AC_CHECK_HEADER(linux/fd.h, ,
+AC_CHECK_HEADER(linux/fd.h, AC_DEFINE(HAVE_LINUX_FD_H),
 		build_gfloppy=false
                 AC_MSG_WARN([*** gfloppy will not be built.]))
 # Check for the ext2fs library
-AC_CHECK_LIB(ext2fs, ext2fs_mkdir, ,
+AC_CHECK_LIB(ext2fs, ext2fs_mkdir, x_libs="-lext2fs",
   build_gfloppy=false
   AC_MSG_WARN([
 *** libext2fs not found. You need e2fsprogs and e2fsprogs-devel installed to build gfloppy.]))
@@ -128,13 +128,6 @@ AC_CHECK_HEADER(ext2fs/ext2_io.h, ,
   build_gfloppy=false
   AC_MSG_WARN([
 *** ext2fs/ext2_io.h not found.  You need e2fsprogs-devel installed.]))
-dnl
-dnl  Some serious autoconf cracksmoking
-dnl
-if test "$build_gfloppy" = true; then
-  gfloppy=gfloppy
-  AC_CONFIG_SUBDIRS($gfloppy)
-fi
 AM_CONDITIONAL(BUILD_GFLOPPY, test "$build_gfloppy" = true)
 
 dnl ********************
@@ -321,6 +314,11 @@ mini-utils/gcolorsel/Makefile
 mini-utils/gcolorsel/glade/Makefile
 mini-utils/gcolorsel/doc/Makefile
 mini-utils/gcolorsel/doc/C/Makefile
+gfloppy/Makefile
+gfloppy/doc/Makefile
+gfloppy/doc/C/Makefile
+gfloppy/doc/az/Makefile
+gfloppy/src/Makefile
 omf-install/Makefile])
 
 #mini-utils/gsu/Makefile

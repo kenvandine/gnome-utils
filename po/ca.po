@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.2.1\n"
-"POT-Creation-Date: 2000-12-25 19:15+0100\n"
+"POT-Creation-Date: 2001-02-27 03:36-0800\n"
 "PO-Revision-Date: 2000-12-26 17:18+0100\n"
 "Last-Translator: Quico Llach <tradgnome@softcatala.org>\n"
 "Language-Team: Catalan <linux@softcatala.org>\n"
@@ -30,7 +30,7 @@ msgstr "Calculadora de GNOME"
 msgid "Select ASCII Character"
 msgstr "Seleccioneu un caràcter ASCII"
 
-#: gcharmap/src/asciiselect.c:118
+#: gcharmap/src/asciiselect.c:118 gcharmap/src/menus.c:95
 msgid "Insert"
 msgstr "Insereix"
 
@@ -42,37 +42,373 @@ msgstr "Codi ASCII:"
 msgid "Character:"
 msgstr "Caràcter:"
 
-#: gcharmap/src/interface.c:130
+#: gcharmap/src/callbacks.c:42 gcharmap/src/interface.c:130
 msgid "Gnome Character Map"
 msgstr "Mapa de caràcters del GNOME"
+
+#: gcharmap/src/callbacks.c:46
+#, fuzzy
+msgid ""
+"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"contain bad English."
+msgstr ""
+"L'equivalent de Gnome al Mapa de caràcters de Microsoft Windows. Avís: pot "
+"contenir anglès incorrecte.\n"
+"http://users.telekabel.nl/hongli/"
+
+#: gcharmap/src/callbacks.c:76
+#, fuzzy, c-format
+msgid "%s: ASCII code %d"
+msgstr "Codi ASCII:"
+
+#: gcharmap/src/callbacks.c:103
+msgid "Text copied to clipboard..."
+msgstr "El text s'ha copiat al porta-retalls..."
+
+#: gcharmap/src/callbacks.c:115
+msgid "Text cut to clipboard..."
+msgstr "El text s'ha retallat i s'ha posat al porta-retalls..."
+
+#: gcharmap/src/callbacks.c:168
+msgid "Text pasted from clipboard..."
+msgstr "El text s'ha enganxat des del porta-retalls..."
 
 #: gcharmap/src/interface.c:159
 msgid "Action Toolbar"
 msgstr "Barra d'eines d'accions"
 
-#: gcharmap/src/interface.c:176
+#: gcharmap/src/interface.c:178
 msgid "Text to copy:"
 msgstr "Text per copiar:"
 
-#: gcharmap/src/interface.c:220 gstripchart/gstripchart.c:1798
-#: mini-utils/gcolorsel/menus.c:921
+#: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
+#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:253
 msgid "Exit"
 msgstr "Surt"
 
-#: gcharmap/src/interface.c:221 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:100
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Copiar"
 
-#: gcharmap/src/interface.c:225 gstripchart/gstripchart.c:1786
-#: gstripchart/gstripchart.c:2070 mini-utils/gcolorsel/menus.c:919
-#: mini-utils/gshutdown/gshutdown.c:319
+#: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
+#: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
+#: stripchart/chart-app.c:227 stripchart/params.c:1008
+#: stripchart/stripchart-applet.c:89
 msgid "About"
 msgstr "A propòsit de..."
 
-#: gcharmap/src/interface.c:227 gstripchart/gstripchart.c:1780
-#: gstripchart/gstripchart.c:2067
+#: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
+#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:222
+#: stripchart/params.c:1043 stripchart/params.c:1046
+#: stripchart/stripchart-applet.c:86
 msgid "Help"
 msgstr "Ajuda"
+
+#: gcharmap/src/menus.c:47
+#, fuzzy
+msgid "Insert Character..."
+msgstr "Insereix un caràcter"
+
+#: gcharmap/src/menus.c:48
+msgid "Insert character(s) by choosing ASCII codes."
+msgstr ""
+
+#: gcharmap/src/menus.c:55
+#, fuzzy
+msgid "_Action Toolbar"
+msgstr "Barra d'eines d'accions"
+
+#: gcharmap/src/menus.c:55
+#, fuzzy
+msgid "View or hide the action toolbar"
+msgstr "Mostra o amaga la barra d'eines"
+
+#: gcharmap/src/menus.c:57
+#, fuzzy
+msgid "_Text Toolbar"
+msgstr "_Barra d'eines"
+
+#: gcharmap/src/menus.c:57
+#, fuzzy
+msgid "View or hide the text toolbar"
+msgstr "Mostra o amaga la barra d'eines"
+
+#: gcharmap/src/menus.c:59
+msgid "_Statusbar"
+msgstr "_Barra d'estat"
+
+#: gcharmap/src/menus.c:59
+msgid "View or hide the statusbar"
+msgstr "Mostra o amaga la barra d'estat"
+
+#: gcharmap/src/menus.c:66
+msgid "Character Table's Font..."
+msgstr ""
+
+#: gcharmap/src/menus.c:66
+msgid "Set the character table's font."
+msgstr ""
+
+#: gcharmap/src/menus.c:69
+#, fuzzy
+msgid "_Insert at end"
+msgstr "Insereix un caràcter"
+
+#: gcharmap/src/menus.c:69
+msgid "Insert every selected character at the end of the text entry"
+msgstr ""
+
+#: gcharmap/src/menus.c:71
+msgid "_Focusable Buttons"
+msgstr ""
+
+#: gcharmap/src/menus.c:71
+msgid "Set the buttons to be focusable or not"
+msgstr ""
+
+#: gcharmap/src/menus.c:95
+msgid "Insert character(s) by choosing ASCII codes"
+msgstr ""
+
+#: gcharmap/src/menus.c:98 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Tallar"
+
+#: gcharmap/src/menus.c:98
+#, fuzzy
+msgid "Cut the selection"
+msgstr "Surt de l'aplicació"
+
+#: gcharmap/src/menus.c:100
+msgid "Copy the selection"
+msgstr ""
+
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Apegar"
+
+#: gcharmap/src/menus.c:102
+#, fuzzy
+msgid "Paste the clipboard"
+msgstr "Enganxa el text des del porta-retalls"
+
+#: gcharmap/src/menus.c:105
+#, fuzzy
+msgid "Show Gnome Character Map's manual"
+msgstr "Mapa de caràcters del GNOME"
+
+#: gcharmap/src/menus.c:107 mini-utils/gcolorsel/menus.c:919
+msgid "About this application"
+msgstr "Quant a aquesta aplicació"
+
+#: gcharmap/src/menus.c:110 mini-utils/gcolorsel/menus.c:921
+msgid "Exit the program"
+msgstr "Surt del programa"
+
+#. Could not look up search strategies, so just display a
+#. * label; FIXME: Memory leak
+#.
+#: gdictsrc/dict.c:635 gdictsrc/gdict-pref-dialog.c:498
+#: gdictsrc/gdict-pref-dialog.c:542 gdictsrc/gdict-speller.c:393
+msgid "Cannot connect to server"
+msgstr "No es pot connectar amb el servidor"
+
+#: gdictsrc/gdict-about.c:40
+msgid ""
+"Client for MIT dictionary server.\n"
+"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+msgstr ""
+"Client per al servidor de diccionaris del MIT.\n"
+"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+
+#: gdictsrc/gdict-app.c:117
+msgid "Spell-checking..."
+msgstr "S'està comprovant l'ortografia..."
+
+#: gdictsrc/gdict-app.c:125
+msgid "Spell check done"
+msgstr "S'ha dut a terme la comprovació ortogràfica"
+
+#: gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
+msgid "No matches found"
+msgstr "No s'ha trobat cap coincidència"
+
+#: gdictsrc/gdict-app.c:250
+msgid "Looking up word..."
+msgstr "S'està cercant la paraula..."
+
+#: gdictsrc/gdict-app.c:258
+msgid "Lookup done"
+msgstr "S'ha dut a terme la cerca"
+
+#: gdictsrc/gdict-app.c:278
+msgid "String not found"
+msgstr "No s'ha trobat la cadena"
+
+#: gdictsrc/gdict-app.c:381
+msgid "Find:"
+msgstr "Cerca:"
+
+#: gdictsrc/gdict-app.c:414
+msgid ""
+"Unable to perform requested operation, either because the server\n"
+"you are using is down or because you are not connected to the\n"
+"Internet. If you are not already connected to the Internet, please\n"
+"do so and try again."
+msgstr ""
+"No es pot realitzar l'operació sol·licitada, ja sigui perquè el servidor\n"
+"que esteu utilitzant està inactiu o perquè no esteu connectat a Internet\n"
+"Si encara no esteu connectat a Internet, connecteu-vos-hi i torneu-ho a\n"
+"intentar."
+
+#: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
+#: gdictsrc/gdict-applet.c:313
+msgid "Lookup"
+msgstr "Cerca"
+
+#: gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
+msgid "Lookup word in dictionary"
+msgstr "Cerca la paraula al diccionari"
+
+#: gdictsrc/gdict-app.c:456 gdictsrc/gdict-app.c:513
+msgid "Spell"
+msgstr "Comprovació ortogràfica"
+
+#: gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
+msgid "Check word spelling"
+msgstr "Comprova la ortografia de la paraula"
+
+#: gdictsrc/gdict-app.c:518
+msgid "Cut to Clipboard"
+msgstr "Retalla i posa al porta-retalls"
+
+#: gdictsrc/gdict-app.c:521
+msgid "Copy to Clipboard"
+msgstr "Copia al porta-retalls"
+
+#: gdictsrc/gdict-app.c:524
+msgid "Paste Clipboard Contents"
+msgstr "Enganxa el contingut del porta-retalls"
+
+#: gdictsrc/gdict-app.c:527
+msgid "Settings"
+msgstr "Paràmetres"
+
+#: gdictsrc/gdict-app.c:528
+msgid "Server to use, default search strategy, fonts"
+msgstr ""
+"Servidor per utilitzar, tècnica de cerca predeterminada, tipus de lletra"
+
+#: gdictsrc/gdict-app.c:589
+msgid "Word definition"
+msgstr "Definició del mot"
+
+#: gdictsrc/gdict-applet.c:280
+msgid "About..."
+msgstr "Quant a..."
+
+#: gdictsrc/gdict-applet.c:289
+msgid "Preferences..."
+msgstr "Preferències..."
+
+#: gdictsrc/gdict-applet.c:293
+msgid "Show/Hide Definition Window..."
+msgstr "Mostra/Amaga la finestra de definició..."
+
+#: gdictsrc/gdict-applet.c:297
+msgid "Spell Check..."
+msgstr "Comprova l'ortografia..."
+
+#: gdictsrc/gdict-applet.c:309
+msgid "Cannot create applet!\n"
+msgstr "No es pot crear la minaplicació!\n"
+
+#: gdictsrc/gdict-pref-dialog.c:38
+msgid "Headword:"
+msgstr "Paraula clau:"
+
+#: gdictsrc/gdict-pref-dialog.c:39
+msgid "Pronunciation:"
+msgstr "Pronunciació:"
+
+#: gdictsrc/gdict-pref-dialog.c:40
+msgid "Etymology:"
+msgstr "Etimologia:"
+
+#: gdictsrc/gdict-pref-dialog.c:41
+msgid "Example:"
+msgstr "Exemple:"
+
+#: gdictsrc/gdict-pref-dialog.c:42
+msgid "Main body:"
+msgstr "Cos principal:"
+
+#: gdictsrc/gdict-pref-dialog.c:43
+msgid "Sub-number:"
+msgstr "Sub-número:"
+
+#: gdictsrc/gdict-pref-dialog.c:44
+msgid "Part of speech:"
+msgstr "Element gramatical:"
+
+#: gdictsrc/gdict-pref-dialog.c:45
+msgid "Cross-reference:"
+msgstr "Referència creuada:"
+
+#. Fixme these should be stock buttons
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
+#: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:194
+msgid "Preferences"
+msgstr "Preferències"
+
+#: gdictsrc/gdict-pref-dialog.c:147
+msgid "Smart lookup"
+msgstr "Cerca intel·ligent"
+
+#: gdictsrc/gdict-pref-dialog.c:156
+msgid "Server:"
+msgstr "Servidor:"
+
+#: gdictsrc/gdict-pref-dialog.c:161
+msgid "Port:"
+msgstr "Port:"
+
+#: gdictsrc/gdict-pref-dialog.c:171
+msgid "Database:"
+msgstr "Base de dades:"
+
+#: gdictsrc/gdict-pref-dialog.c:178
+msgid "Default strategy:"
+msgstr "Tècnica predeterminada:"
+
+#: gdictsrc/gdict-pref-dialog.c:185
+msgid "Server"
+msgstr "Servidor"
+
+#: gdictsrc/gdict-pref-dialog.c:235
+msgid "Fonts"
+msgstr "Tipus de lletra"
+
+#: gdictsrc/gdict-pref-dialog.c:251
+msgid "Display handle bar"
+msgstr "Visualitza la barra de maneig"
+
+#: gdictsrc/gdict-pref-dialog.c:255
+msgid ""
+"You have to restart GDict for these\n"
+"settings to become active."
+msgstr ""
+"Heu de reiniciar el GDict per tal\n"
+"d'activar aquests paràmetres."
+
+#: gdictsrc/gdict-pref-dialog.c:262
+msgid "Applet"
+msgstr "Miniaplicació"
+
+#: gdictsrc/gdict-pref-dialog.c:581
+msgid "The server you specified could not be found."
+msgstr "No s'ha pogut trobar el servidor que heu indicat."
 
 #: gdiskfree/gdiskfree_app.c:53 gdiskfree/gdiskfree_menus.c:108
 msgid "GDiskFree"
@@ -131,105 +467,6 @@ msgstr "Interval d'actualització (ms)"
 #: gdiskfree/gdiskfree_options.c:292
 msgid "General Settings"
 msgstr "Paràmetres generals"
-
-#: gnome-find/gnome-find.c:40
-msgid "New search"
-msgstr "Nova cerca"
-
-#: gnome-find/gnome-find.c:41
-msgid "Open search spec"
-msgstr "Obre els detalls de la cerca"
-
-#: gnome-find/gnome-find.c:42
-msgid "Save search spec"
-msgstr "Desa els detalls de la cerca"
-
-#: gnome-find/gnome-find.c:43
-msgid "Save search spec as..."
-msgstr "Desa els detalls de la cerca com a..."
-
-#: gnome-find/gnome-find.c:58
-msgid "Add condition"
-msgstr "Afegeix una condició"
-
-#: gnome-find/gnome-find.c:58 gnome-find/gnome-find.c:96
-msgid "Add a search condition"
-msgstr "Afegeix una condició de cerca"
-
-#: gnome-find/gnome-find.c:59
-msgid "Remove condition"
-msgstr "Elimina la condició"
-
-#: gnome-find/gnome-find.c:59 gnome-find/gnome-find.c:98
-msgid "Remove last search condition"
-msgstr "Elimina la darrera condició de cerca"
-
-#: gnome-find/gnome-find.c:61 gnome-find/gnome-find.c:62
-#: gnome-find/gnome-find.c:99
-msgid "Show advanced options"
-msgstr "Mostra les opcions avançades"
-
-#: gnome-find/gnome-find.c:67
-msgid "Start search"
-msgstr "Inicia la cerca"
-
-#: gnome-find/gnome-find.c:83 gnome-find/gnome-find.c:105
-#: mini-utils/gcolorsel/session.c:437
-msgid "Search"
-msgstr "S'està cercant"
-
-#: gnome-find/gnome-find.c:91
-msgid "New"
-msgstr "Nou"
-
-#: gnome-find/gnome-find.c:91
-msgid "Clear the search window"
-msgstr "Buida la finestra de cerca"
-
-#: gnome-find/gnome-find.c:96 gsearchtool/gsearchtool.c:619
-#: mini-utils/gw/gw.c:505
-msgid "Add"
-msgstr "Afegir"
-
-#: gnome-find/gnome-find.c:98 gsearchtool/gsearchtool.c:545
-#: logview/actions.c:127
-msgid "Remove"
-msgstr "Eliminar"
-
-#: gnome-find/gnome-find.c:99 mini-utils/gshutdown/gshutdown.c:209
-#: mini-utils/gshutdown/gshutdown.c:210
-msgid "Advanced"
-msgstr "Avançat"
-
-#: gnome-find/gnome-find.c:105
-msgid "Start the current search"
-msgstr "Inicia la cerca actual"
-
-#: gnome-find/gnome-find.c:176
-msgid "Find Files"
-msgstr "Cerca fitxers"
-
-#: gnome-find/gnome-find.c:178
-msgid "Directory:"
-msgstr "Directori:"
-
-#: gnome-find/gnome-find.c:180
-msgid "Directory to Search"
-msgstr "Directori per cercar"
-
-#: gnome-find/gnome-find.c:422
-msgid "GNOME Find"
-msgstr "Find del GNOME"
-
-#. copyright notice
-#: gnome-find/gnome-find.c:424
-msgid "(C) 1998 the Free Software Foundation"
-msgstr "(C) 1998 la Free Software Foundation"
-
-#. another comments
-#: gnome-find/gnome-find.c:427
-msgid "GNOME Find is a fast, flexible file search tool."
-msgstr "El Find del GNOME és una eina de cerca de fitxers ràpida i flexible."
 
 #: gsearchtool/gsearchtool.c:33
 msgid "File name"
@@ -317,8 +554,8 @@ msgid ""
 "(Note: to print one file per line rather then null separated,\n"
 "append \"| tr '\\000' '\\n'\" to the line below)"
 msgstr ""
-"La línia d'ordres que es pot utilitzar per executar aquesta cerca des de "
-"la consola és:\n"
+"La línia d'ordres que es pot utilitzar per executar aquesta cerca des de la "
+"consola és:\n"
 "(Nota: per imprimir un fitxer per línia en comptes de separar-los amb nuls,\n"
 "afegiu \"| tr '\\000' '\\n'\" a la línia de sota)"
 
@@ -330,6 +567,10 @@ msgstr "L'entrada ha canviat cridada per una opció no d'entrada!"
 msgid "Enable"
 msgstr "Habilita"
 
+#: gsearchtool/gsearchtool.c:545 logview/actions.c:127
+msgid "Remove"
+msgstr "Eliminar"
+
 #: gsearchtool/gsearchtool.c:597
 msgid "Start in directory:"
 msgstr "Comença al directori:"
@@ -337,6 +578,10 @@ msgstr "Comença al directori:"
 #: gsearchtool/gsearchtool.c:599
 msgid "Browse"
 msgstr "Navega"
+
+#: gsearchtool/gsearchtool.c:619 mini-utils/gw/gw.c:505
+msgid "Add"
+msgstr "Afegir"
 
 #: gsearchtool/gsearchtool.c:630
 msgid "Show Command"
@@ -404,309 +649,6 @@ msgstr "Ordre alterada"
 msgid "No command for this mime type"
 msgstr "No hi ha cap ordre per a aquest tipus de MIME"
 
-#: gstripchart/gstripchart.c:441
-msgid "rparen expected"
-msgstr "s'esperava parèntesi dret"
-
-#: gstripchart/gstripchart.c:458
-#, c-format
-msgid "no such field: %d"
-msgstr "el camp no existeix: %d"
-
-#: gstripchart/gstripchart.c:486
-msgid "missing variable identifer"
-msgstr "manca l'identificador de variable"
-
-#: gstripchart/gstripchart.c:488
-#, c-format
-msgid "invalid variable identifer: %s"
-msgstr "l'identificador de variable no és vàlid: %s"
-
-#: gstripchart/gstripchart.c:492
-msgid "number expected"
-msgstr "s'esperava un número"
-
-#: gstripchart/gstripchart.c:570
-#, c-format
-msgid "extra gunk at end: \"%s\""
-msgstr "hi ha fem al final: «%s»"
-
-#: gstripchart/gstripchart.c:652
-#, c-format
-msgid "%s, line %d: "
-msgstr "%s, línia %d: "
-
-#: gstripchart/gstripchart.c:733
-#, c-format
-msgid "can't open config file \"%s\""
-msgstr "no es pot obrir el fitxer de configuració «%s»"
-
-#: gstripchart/gstripchart.c:760
-#, c-format
-msgid ""
-"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
-"no es pot obrir el fitxer de configuració «./gstripchart.conf», «%s», «%s» o "
-"«%s»"
-
-#: gstripchart/gstripchart.c:765
-#, c-format
-msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr ""
-"no es pot obrir el fitxer de configuració «./gstripchart.conf», «%s» o «%s»"
-
-#: gstripchart/gstripchart.c:843
-msgid "identifier or begin must be first"
-msgstr "primer ha d'haver «begin» o un identificador"
-
-#: gstripchart/gstripchart.c:851 gstripchart/gstripchart.c:868
-#, c-format
-msgid "unrecognized color: %s"
-msgstr "el color no és reconegut: %s"
-
-#: gstripchart/gstripchart.c:883
-msgid "scale must be either \"log\" or \"linear\""
-msgstr "«scale» ha de ser «log» o «linear»"
-
-#: gstripchart/gstripchart.c:898
-msgid "no equation found"
-msgstr "no s'ha trobat cap equació"
-
-#: gstripchart/gstripchart.c:915
-#, c-format
-msgid "invalid option: \"%s\""
-msgstr "l'opció no és vàlida: «%s»"
-
-#: gstripchart/gstripchart.c:1498
-msgid "E_xit"
-msgstr "Ei_xir"
-
-#: gstripchart/gstripchart.c:1498
-msgid "Terminate the stripchart program"
-msgstr "Abandona el programa stripchart"
-
-#: gstripchart/gstripchart.c:1514
-msgid "Copyright 1998,99 John Kodis"
-msgstr "Copyright 1998,99 John Kodis"
-
-#: gstripchart/gstripchart.c:1516
-msgid ""
-"The GNOME stripchart program plots various user-specified parameters as a "
-"function of time.  Its main use is to chart system performance parameters "
-"such as CPU load, CPU utilization, network traffic levels, and the like.  "
-"Other more ingenious uses are left as an exercise for the interested user."
-msgstr ""
-"El programa GNOME stripchart dibuixa diversos paràmetres especificats per "
-"l'usuari o usuària en funció del temps.  La seua utilitat principal és fer "
-"gràfiques de les prestacions del sistema, com ara càrrega de CPU, ús de CPU, "
-"tràfic de xarxa, etc.  Altres usos més enginyosos queden com a exercici per "
-"l'usuari o usuària interessada."
-
-#: gstripchart/gstripchart.c:1601 gstripchart/gstripchart.c:1740
-msgid "Param"
-msgstr "Paràmetres"
-
-#: gstripchart/gstripchart.c:1601 mini-utils/gcolorsel/view-color-list.c:197
-#: mini-utils/guname/moreinfo.c:227
-msgid "Value"
-msgstr "Valor"
-
-#: gstripchart/gstripchart.c:1605
-msgid "Identifier"
-msgstr "Identificador"
-
-#: gstripchart/gstripchart.c:1607 mini-utils/gcolorsel/view-color-list.c:196
-msgid "Color"
-msgstr "Color"
-
-#: gstripchart/gstripchart.c:1609
-msgid "Filename"
-msgstr "Nom del fitxer"
-
-#: gstripchart/gstripchart.c:1611
-msgid "Pattern"
-msgstr "Patró"
-
-#: gstripchart/gstripchart.c:1613
-msgid "Equation"
-msgstr "Equació"
-
-#: gstripchart/gstripchart.c:1615
-msgid "Expected range"
-msgstr "Rang esperat"
-
-#: gstripchart/gstripchart.c:1619
-msgid "Displayed range"
-msgstr "Rang mostrat"
-
-#: gstripchart/gstripchart.c:1623
-msgid "Current value"
-msgstr "Valor actual"
-
-#: gstripchart/gstripchart.c:1630
-msgid "Active"
-msgstr "Actiu"
-
-#: gstripchart/gstripchart.c:1647
-msgid "Stripchart Parameters"
-msgstr "Paràmetres de les gràfiques"
-
-#: gstripchart/gstripchart.c:1741
-msgid "Current"
-msgstr "Actual"
-
-#: gstripchart/gstripchart.c:1742
-msgid "Top"
-msgstr "Màxim"
-
-#: gstripchart/gstripchart.c:1743
-msgid "Scale"
-msgstr "Escala"
-
-#: gstripchart/gstripchart.c:1792
-msgid "Params"
-msgstr "Paràmetres"
-
-#. Create a top-level application window. Set minimum size (_usize),
-#. initial size (_default_size), and establish delete and destroy
-#. event handlers.
-#: gstripchart/gstripchart.c:1904
-msgid "gstripchart"
-msgstr "gstripchart"
-
-#: gstripchart/gstripchart.c:1904
-msgid "Stripchart Viewer"
-msgstr "Visor de gràfiques"
-
-#: gstripchart/gstripchart.c:2073
-msgid "Params..."
-msgstr "Paràmetres..."
-
-#: gstripchart/gstripchart.c:2118
-#, c-format
-msgid "invalid display type: %s\n"
-msgstr "el tipus de pantalla no és vàlid: %s\n"
-
-#: gstripchart/gstripchart.c:2143
-msgid "Geometry string: WxH+X+Y"
-msgstr "Especifica la geometria: WxH+X+Y"
-
-# Ací s'han armat un cacau...  proveu --help amb diferents LANGUAGEs  iv
-# Supose que ho arreglaran...
-# FIXME: keywords and descriptions are swapped here!  iv
-#: gstripchart/gstripchart.c:2143
-msgid "GEO"
-msgstr "GEOMETRIA"
-
-#: gstripchart/gstripchart.c:2145
-msgid "Configuration file name"
-msgstr "Nom del fitxer de configuració"
-
-#: gstripchart/gstripchart.c:2145
-msgid "FILE"
-msgstr "FITXER"
-
-#: gstripchart/gstripchart.c:2147
-msgid "Chart update interval"
-msgstr "Interval d'actualització del gràfic"
-
-#: gstripchart/gstripchart.c:2147 gstripchart/gstripchart.c:2149
-#: gstripchart/gstripchart.c:2151 gstripchart/gstripchart.c:2153
-msgid "SECS"
-msgstr "SEGONS"
-
-#: gstripchart/gstripchart.c:2149
-msgid "Chart low-pass filter time constant"
-msgstr "Ctt. temps fitre passa-baixa del gràfic"
-
-#: gstripchart/gstripchart.c:2151
-msgid "Slider update interval"
-msgstr "Interval d'actualització de l'agulla"
-
-#: gstripchart/gstripchart.c:2153
-msgid "Slider low-pass filter time constant"
-msgstr "Ctt. temps filtre passa-baixa de l'agulla"
-
-#: gstripchart/gstripchart.c:2155
-msgid "Adds a menubar to the main window"
-msgstr "Afig una barra de menús a la finestra principal"
-
-#: gstripchart/gstripchart.c:2157
-msgid "Omits slider window"
-msgstr "Amaga l'agulla lateral"
-
-#: gstripchart/gstripchart.c:2160
-msgid "TYPE is one of gtk, applet, text, or none"
-msgstr "Tipus de gràfic: gtk, applet, text o none"
-
-#: gstripchart/gstripchart.c:2160 gstripchart/gstripchart.c:2162
-msgid "TYPE"
-msgstr "TIPUS"
-
-#: gstripchart/gstripchart.c:2162
-msgid "TYPE is one of gtk, text, or none"
-msgstr "Tipus de gràfic: gtk, text o none"
-
-#: gstripchart/gstripchart.c:2314
-msgid "white"
-msgstr "blanc"
-
-#: gstripchart/gstripchart.c:2314
-msgid "black"
-msgstr "negre"
-
-#: gstripchart/gstripchart.c:2314
-msgid "red"
-msgstr "roig"
-
-#: gstripchart/gstripchart.c:2314
-msgid "yellow"
-msgstr "groc"
-
-#: gstripchart/gstripchart.c:2315
-msgid "blue"
-msgstr "blau"
-
-#: gstripchart/gstripchart.c:2315
-msgid "green"
-msgstr "verd"
-
-#: gstripchart/gstripchart.c:2315
-msgid "cyan"
-msgstr "cian"
-
-#: gstripchart/gstripchart.c:2315
-msgid "magenta"
-msgstr "magenta"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Busy"
-msgstr "Ocupat"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Load"
-msgstr "Càrrega"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Swap"
-msgstr "Intercanvi"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Battery"
-msgstr "Bateria"
-
-#: gstripchart/gstripchart.c:2317
-msgid "Net In"
-msgstr "Entrada xarxa"
-
-#: gstripchart/gstripchart.c:2317
-msgid "Net Out"
-msgstr "Eixida xarxa"
-
-#: gstripchart/gstripchart.c:2317
-msgid "ppp"
-msgstr "PPP"
-
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
 msgstr "no s'ha seleccionat cap projecte"
@@ -735,7 +677,7 @@ msgstr "Avui"
 msgid "Project Title"
 msgstr "Títol del projecte"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118
+#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:642
 msgid "Description"
 msgstr "Descripció"
 
@@ -952,11 +894,6 @@ msgstr "Finalització de l'entrada:"
 msgid "Timeout in secs:"
 msgstr "Expiració en segons:"
 
-#. Fixme these should be stock buttons
-#: gtt/options.c:518 mini-utils/gshutdown/gshutdown.c:314
-msgid "Preferences"
-msgstr "Preferències"
-
 #: gtt/options.c:524
 msgid "Misc"
 msgstr "Miscel·lània"
@@ -1018,17 +955,13 @@ msgstr "Nou"
 msgid "Reload"
 msgstr "Rellegir"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:152 stripchart/params.c:934
 msgid "Save"
 msgstr "Guardar"
 
 #: gtt/toolbar.c:153
 msgid "Save Configuration File"
 msgstr "Guarda el fitxer de configuració"
-
-#: gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Tallar"
 
 #: gtt/toolbar.c:160
 msgid "Cut Selected Project"
@@ -1037,10 +970,6 @@ msgstr "Talla el projecte seleccionat"
 #: gtt/toolbar.c:164
 msgid "Copy Selected Project"
 msgstr "Còpia el projecte seleccionat"
-
-#: gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Apegar"
 
 #: gtt/toolbar.c:168
 msgid "Paste Project"
@@ -1103,11 +1032,11 @@ msgstr ""
 "del logotip és cortesia de Tuomas Kuosmanen (àlias tigert)."
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
-#: logview/about.c:52
+#: logview/about.c:58
 msgid "Logview"
 msgstr "Logview"
 
-#: logview/about.c:53
+#: logview/about.c:59
 msgid "Copyright (C) 1998"
 msgstr "Copyright (C) 1998"
 
@@ -1115,7 +1044,7 @@ msgstr "Copyright (C) 1998"
 msgid "Action database"
 msgstr "Base de dades d'accions"
 
-#: logview/actions.c:61 logview/monitor.c:115
+#: logview/actions.c:61 logview/monitor.c:114
 msgid "Monitor options"
 msgstr "Opcions del monitor"
 
@@ -1193,13 +1122,9 @@ msgstr ""
 "descripció: [%s]\n"
 "acció: [%s]\n"
 
-#: logview/calendar.c:118
+#: logview/calendar.c:115
 msgid "Calendar"
 msgstr "Calendari"
-
-#: logview/calendar.c:139
-msgid "Hide calendar"
-msgstr "Amaga el calendari"
 
 #: logview/info.c:80
 msgid "Log stats"
@@ -1323,111 +1248,111 @@ msgstr "No s'ha pogut obrir %s."
 msgid "%s not a log file."
 msgstr "%s no és un fitxer de registre."
 
-#: logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
+#: logview/logrtns.c:634 logview/logrtns.c:665 logview/logrtns.c:796
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: s'ha esgotat la memòria"
 
-#: logview/logview.c:87
+#: logview/logview.c:86
 msgid "Open log...            "
 msgstr "Obre el regsitre...            "
 
-#: logview/logview.c:88
+#: logview/logview.c:87
 msgid "Open log"
 msgstr "Obre el registre"
 
-#: logview/logview.c:90
+#: logview/logview.c:89
 msgid "Export log...          "
 msgstr "Exporta el registre...          "
 
-#: logview/logview.c:91
+#: logview/logview.c:90
 msgid "Export log"
 msgstr "Exporta el registre"
 
-#: logview/logview.c:93
+#: logview/logview.c:92
 msgid "Close log              "
 msgstr "Tanca el registre              "
 
-#: logview/logview.c:94
+#: logview/logview.c:93
 msgid "Close log"
 msgstr "Tanca el registre"
 
-#: logview/logview.c:96
+#: logview/logview.c:95
 msgid "Switch log             "
 msgstr "Commuta el registre             "
 
-#: logview/logview.c:97
+#: logview/logview.c:96
 msgid "Switch log"
 msgstr "Commuta el registre"
 
-#: logview/logview.c:99
+#: logview/logview.c:98
 msgid "Monitor..              "
 msgstr "Monitoritza...              "
 
-#: logview/logview.c:100
+#: logview/logview.c:99
 msgid "Monitor log"
 msgstr "Monitoritza el registre"
 
-#: logview/logview.c:102
+#: logview/logview.c:101
 msgid "Exit                   "
 msgstr "Surt                   "
 
-#: logview/logview.c:103
+#: logview/logview.c:102
 msgid "Exit program"
 msgstr "Surt del programa"
 
-#: logview/logview.c:109
+#: logview/logview.c:108
 msgid "Calendar                "
 msgstr "Calendari                "
 
-#: logview/logview.c:110
+#: logview/logview.c:109
 msgid "Show calendar log"
 msgstr "Mostra el regsitre del calendari"
 
-#: logview/logview.c:112
+#: logview/logview.c:111
 msgid "Log stats               "
 msgstr "Estadístiques del registre               "
 
-#: logview/logview.c:113
+#: logview/logview.c:112
 msgid "Show log stats"
 msgstr "Mostra les estadístiques del registre"
 
-#: logview/logview.c:115
+#: logview/logview.c:114
 msgid "Zoom                    "
 msgstr "Zoom                    "
 
-#: logview/logview.c:116
+#: logview/logview.c:115
 msgid "Show line info"
 msgstr "Mostra la informació de la línia"
 
-#: logview/logview.c:118
+#: logview/logview.c:117
 msgid "Preferences...          "
 msgstr "Preferències...           "
 
-#: logview/logview.c:119
+#: logview/logview.c:118
 msgid "Show user preferences"
 msgstr "Mostra les preferències de l'usuari"
 
-#: logview/logview.c:126
+#: logview/logview.c:125
 msgid "Select...               "
 msgstr "Selecciona...               "
 
-#: logview/logview.c:127
+#: logview/logview.c:126
 msgid "Select log events"
 msgstr "Seleccioneu els esdeveniments del registre"
 
-#: logview/logview.c:129
+#: logview/logview.c:128
 msgid "Filter..                "
 msgstr "Filtra..                "
 
-#: logview/logview.c:130
+#: logview/logview.c:129
 msgid "Filter log events"
 msgstr "Filtra els esdeveniments del registre"
 
-#: logview/logview.c:137
+#: logview/logview.c:136
 msgid "About..                "
 msgstr "Quant a...                "
 
-#: logview/logview.c:138
+#: logview/logview.c:137
 msgid "Info about logview"
 msgstr "Informació sobre el logview"
 
@@ -1436,59 +1361,61 @@ msgid "No log files to open"
 msgstr "No hi ha cap fitxer de registre per obrir "
 
 #. Create App
-#: logview/logview.c:268
+#: logview/logview.c:264
 msgid "System Log Viewer"
 msgstr "Visualitzador de registres del sistema"
 
-#: logview/logview.c:370
+#: logview/logview.c:366
 msgid "Filename: "
 msgstr "Nom del fitxer: "
 
-#: logview/logview.c:386
+#: logview/logview.c:382
 msgid "Date: "
 msgstr "Data: "
 
-#: logview/logview.c:621
+#: logview/logview.c:605
 msgid "Too many open logs. Close one and try again"
 msgstr "Hi ha massa registres oberts. Tanqueu-ne un i torneu-ho a provar"
 
-#: logview/logview.c:674
+#: logview/logview.c:661
 msgid "Open new logfile"
 msgstr "Obre un nou fitxer de registre"
 
-#: logview/misc.c:78
+#: logview/misc.c:93
 #, c-format
 msgid "Error: [%s]\n"
 msgstr "Error: [%s]\n"
 
-#: logview/monitor.c:132
+#: logview/monitor.c:131
 msgid "Choose logs to monitor"
 msgstr "Escolliu els registres per monitoritzar"
 
 #. Check boxes
-#: logview/monitor.c:211
+#: logview/monitor.c:210
 msgid "Hide app"
 msgstr "Amaga l'aplicació"
 
-#: logview/monitor.c:219
+#: logview/monitor.c:218
 msgid "Exec actions"
 msgstr "Executa les accions"
 
-#: logview/monitor.c:283 logview/monitor.c:330
+#: logview/monitor.c:282 logview/monitor.c:329
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list és NUL\n"
 
-#: logview/monitor.c:457
+#: logview/monitor.c:456
 msgid "Monitoring logs.."
 msgstr "S'estan monitoritzant els registres..."
 
-#: logview/monitor.c:635
+#: logview/monitor.c:634
 msgid "TOUCHED!!\n"
 msgstr "TOCAT!!\n"
 
 #: logview/userprefsdialog.c:65
 msgid "hostname column width ( 0 to hide this column ): "
-msgstr "amplada de la columna de l'ordinador central ( 0 per amagar aquesta columna ):"
+msgstr ""
+"amplada de la columna de l'ordinador central ( 0 per amagar aquesta columna "
+"):"
 
 #: logview/userprefsdialog.c:66
 msgid "Columns"
@@ -1549,11 +1476,13 @@ msgid "Grid"
 msgstr "Quadrícula"
 
 #: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1036
+#: stripchart/params.c:1039
 msgid "Edit"
 msgstr "Edita"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40
+#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1029
+#: stripchart/params.c:1032
 msgid "File"
 msgstr "Fitxer"
 
@@ -1719,7 +1648,7 @@ msgid "Save session on exit."
 msgstr "Desa la sessió en sortir."
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:10
-#: mini-utils/gshutdown/gshutdown.c:396
+#: mini-utils/gshutdown/gshutdown.c:398
 msgid "General"
 msgstr "General"
 
@@ -1940,8 +1869,8 @@ msgid "Save the current palette with a different name"
 msgstr "Desa la paleta actual amb un altre nom"
 
 #: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
-#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
-#: mini-utils/gsu/gsu-gui-api.c:39
+#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:595
+#: stripchart/params.c:948
 msgid "Close"
 msgstr "Tancar"
 
@@ -2113,14 +2042,6 @@ msgstr "Agafa"
 msgid "Grab a color on the screen"
 msgstr "Agafa un color dde la pantalla"
 
-#: mini-utils/gcolorsel/menus.c:919
-msgid "About this application"
-msgstr "Quant a aquesta aplicació"
-
-#: mini-utils/gcolorsel/menus.c:921
-msgid "Exit the program"
-msgstr "Surt del programa"
-
 #: mini-utils/gcolorsel/session.c:304
 msgid ""
 "Your config file is corrupted.\n"
@@ -2149,6 +2070,10 @@ msgstr "Colors del sistema"
 msgid "User Colors"
 msgstr "Colors de l'usuari"
 
+#: mini-utils/gcolorsel/session.c:437
+msgid "Search"
+msgstr "S'està cercant"
+
 #: mini-utils/gcolorsel/view-color-generic.c:16
 msgid "Decimal 8 bits"
 msgstr "Decimal de 8 bits"
@@ -2168,6 +2093,14 @@ msgstr "Hexadecimal de 16 bits"
 #: mini-utils/gcolorsel/view-color-generic.c:20
 msgid "Float"
 msgstr "Coma flotant"
+
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:815
+msgid "Color"
+msgstr "Color"
+
+#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:227
+msgid "Value"
+msgstr "Valor"
 
 #. Create everything.
 #: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
@@ -2330,11 +2263,6 @@ msgstr "Cercant..."
 msgid "No search string was specified!"
 msgstr "No s'ha especificat cap cadena de recerca!"
 
-#: mini-utils/gpenguin/gpenguin.c:56
-#, c-format
-msgid "%s: unable to load the penguin.\n"
-msgstr "%s: no es pot carregar el pingüí.\n"
-
 #: mini-utils/gshutdown/gshutdown.c:87
 msgid "Shut Down"
 msgstr "Tancar el sistema"
@@ -2391,21 +2319,25 @@ msgstr "Voleu realment passar al nivell d'execució 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Voleu realment reiniciar el sistema?"
 
-#: mini-utils/gshutdown/gshutdown.c:151 mini-utils/gshutdown/gshutdown.c:591
+#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:592
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Cal que sigueu el superusuari (root) per apagar o reiniciar l'ordinador."
 
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:187
+#: mini-utils/gshutdown/gshutdown.c:189
 msgid "Shutdown or Reboot"
 msgstr "Apagar o Reiniciar"
 
-#: mini-utils/gshutdown/gshutdown.c:204 mini-utils/gshutdown/gshutdown.c:205
+#: mini-utils/gshutdown/gshutdown.c:206 mini-utils/gshutdown/gshutdown.c:207
 msgid "Easy"
 msgstr "Fàcil"
 
-#: mini-utils/gshutdown/gshutdown.c:242
+#: mini-utils/gshutdown/gshutdown.c:211 mini-utils/gshutdown/gshutdown.c:212
+msgid "Advanced"
+msgstr "Avançat"
+
+#: mini-utils/gshutdown/gshutdown.c:244
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
@@ -2415,19 +2347,19 @@ msgstr ""
 "les aplicacions que estiguin obertes."
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:369
+#: mini-utils/gshutdown/gshutdown.c:371
 msgid "Revert to Defaults"
 msgstr "Valors per defecte"
 
-#: mini-utils/gshutdown/gshutdown.c:379
+#: mini-utils/gshutdown/gshutdown.c:381
 msgid "Commands"
 msgstr "Ordres"
 
-#: mini-utils/gshutdown/gshutdown.c:384
+#: mini-utils/gshutdown/gshutdown.c:386
 msgid "Confirm before shutdown?"
 msgstr "Voleu confirmació abans d'apagar?"
 
-#: mini-utils/gshutdown/gshutdown.c:449
+#: mini-utils/gshutdown/gshutdown.c:451
 #, c-format
 msgid ""
 "%s\n"
@@ -2436,56 +2368,13 @@ msgstr ""
 "%s\n"
 "Ara perdreu el treball que no hagueu desat."
 
-#: mini-utils/gshutdown/gshutdown.c:459
+#: mini-utils/gshutdown/gshutdown.c:461
 msgid "Don't ask next time."
 msgstr "No preguntar a la pròxima volta."
 
-#: mini-utils/gshutdown/gshutdown.c:689
+#: mini-utils/gshutdown/gshutdown.c:685
 msgid "Command execution failed: fork failed"
 msgstr "Ha fallat l'execució de la comanda: ha fallat fork()"
-
-#: mini-utils/gsu/gsu-impl.c:153
-msgid ""
-"You are trying to do something which requires\n"
-"root (system administrator) privileges.\n"
-"To do this, you must give the root password.\n"
-"Please enter the root password now, or choose\n"
-"Cancel if you do not know it."
-msgstr ""
-"Esteu intentant fer alguna cosa que requereix\n"
-"privilegis de superusuari (administrador del sistema).\n"
-"Per fer-ho, heu d'indicar la contrasenya de superusuari.\n"
-"Si us plau, introduïu-la ara, o seleccioneu\n"
-"Cancel·la si no la sabeu."
-
-#: mini-utils/gsu/gsu-impl.c:160
-#, c-format
-msgid ""
-"You are trying to change your user identity.\n"
-"Please enter the password for user `%s'."
-msgstr ""
-"Esteu intentant canviar la vostra identitat d'usuari.\n"
-"Si us plau, introduïu la contrasenya de l'usuari `%s'."
-
-#: mini-utils/gsu/gsu-main.c:62
-msgid "Command to be run as another user"
-msgstr "Ordre que s'ha d'executar com a un altre usuari"
-
-#: mini-utils/gsu/gsu-main.c:64
-msgid "User name to run command as"
-msgstr "Nom d'usuari amb què executar l'ordre"
-
-#: mini-utils/gsu/gsu-main.c:66
-msgid "File containing interface description"
-msgstr "Fitxer que conté la descripció de la interfície"
-
-#: mini-utils/gsu/gsu-test-server.c:8
-msgid "Target User"
-msgstr "Usuari objectiu"
-
-#: mini-utils/gsu/gsu-test-server.c:8
-msgid "USER"
-msgstr "USUARI"
 
 #: mini-utils/guname/guname.c:53
 msgid "Make guname act as a control center applet"
@@ -2499,53 +2388,53 @@ msgstr "error d'inicialització en executar «guname-capplet»."
 msgid "System Information"
 msgstr "Informació del Sistema"
 
-#: mini-utils/guname/guname.c:533
+#: mini-utils/guname/guname.c:536
 msgid "Logo file not found"
 msgstr "No s'ha trobat el fitxer logotip"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:537
+#: mini-utils/guname/guname.c:540
 msgid "GNOME contributors:"
 msgstr "Contribuïdors de GNOME:"
 
 #. fontset used by guname; adapt it if your language requires it
-#: mini-utils/guname/guname.c:541
+#: mini-utils/guname/guname.c:544
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
-#: mini-utils/guname/guname.c:552
+#: mini-utils/guname/guname.c:555
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: Entorn del Model d'Objectes en Xarxa de GNU"
 
-#: mini-utils/guname/guname.c:576
+#: mini-utils/guname/guname.c:579
 msgid "Email Information..."
 msgstr "Enviar informació per correu..."
 
-#: mini-utils/guname/guname.c:589
+#: mini-utils/guname/guname.c:592
 msgid "Save Information to File..."
 msgstr "Guardar informació en un fitxer..."
 
-#: mini-utils/guname/guname.c:601 mini-utils/guname/guname.c:671
+#: mini-utils/guname/guname.c:604 mini-utils/guname/guname.c:674
 msgid "Detailed Information..."
 msgstr "Informació detallada..."
 
-#: mini-utils/guname/guname.c:616
+#: mini-utils/guname/guname.c:619
 msgid "Category"
 msgstr "Categoria"
 
-#: mini-utils/guname/guname.c:616
+#: mini-utils/guname/guname.c:619
 msgid "Your System"
 msgstr "El vostre sistema"
 
-#: mini-utils/guname/guname.c:657
+#: mini-utils/guname/guname.c:660 stripchart/params.c:941
 msgid "Save As..."
 msgstr "Guardar com a..."
 
-#: mini-utils/guname/guname.c:663
+#: mini-utils/guname/guname.c:666
 msgid "Mail To..."
 msgstr "Enviar a..."
 
-#: mini-utils/guname/guname.c:711
+#: mini-utils/guname/guname.c:714
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -2556,27 +2445,27 @@ msgstr ""
 "%s\n"
 "Potser algunes o totes les dades no han estat escrites."
 
-#: mini-utils/guname/guname.c:723
+#: mini-utils/guname/guname.c:726
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "No s'ha pogut obrir el fitxer «%s»: %s"
 
-#: mini-utils/guname/guname.c:745
+#: mini-utils/guname/guname.c:748
 msgid "Save System Information As..."
 msgstr "Guardar informació del sistema com a..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:802
+#: mini-utils/guname/guname.c:805
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "Ha fallat la comanda « %s »: %s"
 
-#: mini-utils/guname/guname.c:810
+#: mini-utils/guname/guname.c:813
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "No s'ha pogut executar la comanda « %s »: %s"
 
-#: mini-utils/guname/guname.c:834
+#: mini-utils/guname/guname.c:837
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -2585,11 +2474,11 @@ msgstr ""
 "El correu següent serà enviat a %s.\n"
 "Realment voleu enviar aquesta informació?"
 
-#: mini-utils/guname/guname.c:845
+#: mini-utils/guname/guname.c:848
 msgid "Are you sure?"
 msgstr "Esteu segur?"
 
-#: mini-utils/guname/guname.c:887
+#: mini-utils/guname/guname.c:890
 msgid "Address to mail to:"
 msgstr "Adreçar el correu a:"
 
@@ -2989,503 +2878,1067 @@ msgstr "Només el superusuari pot usar aquesta ferramenta"
 msgid "You appear to have no IDE drives"
 msgstr "Sembla que no teniu unitats IDE"
 
-msgid "Insert character"
-msgstr "Insereix un caràcter"
+#: gfloppy/src/badblocks.c:102
+msgid "MInternal Error: Unable to seek to the correct location."
+msgstr ""
 
-msgid "_Toolbar"
-msgstr "_Barra d'eines"
+#: gfloppy/src/badblocks.c:111
+#, c-format
+msgid "MInternal Error: Weird value (%ld) in do_test\n"
+msgstr ""
 
-msgid "View or hide the toolbar"
-msgstr "Mostra o amaga la barra d'eines"
+#: gfloppy/src/badblocks.c:166
+#, c-format
+msgid "EBad block at block %lu"
+msgstr ""
 
-msgid "_Statusbar"
-msgstr "_Barra d'estat"
+#. while (!i)
+#. ;
+#: gfloppy/src/badblocks.c:260
+msgid "MChecking for bad blocks..."
+msgstr ""
 
-msgid "View or hide the statusbar"
-msgstr "Mostra o amaga la barra d'estat"
+#: gfloppy/src/badblocks.c:272
+#, c-format
+msgid "MFailed to open device %s for badblock checking\n"
+msgstr ""
 
-msgid "Cut the text to clipboard"
-msgstr "Retalla el text i posa'l al porta-retalls"
+#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:215
+msgid "MChecking for bad blocks... Done"
+msgstr ""
 
-msgid "Copy the text to clipboard."
-msgstr "Copia el text al porta-retalls."
+#: gfloppy/src/fdformat.c:44
+msgid "MFormatting the disk..."
+msgstr "MS'està formatant el disc..."
 
-msgid "Paste the text from clipboard."
-msgstr "Enganxa el text des del porta-retalls"
+#: gfloppy/src/fdformat.c:46
+msgid "EI don't know what this is, but it's very wrong."
+msgstr "ENo sé què és, però està molt malament."
 
-msgid "Exit the application"
-msgstr "Surt de l'aplicació"
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
+#, c-format
+msgid "EError formatting track #%d"
+msgstr "EError en formatar la pista #%d"
 
-msgid "Text cut to clipboard..."
-msgstr "El text s'ha retallat i s'ha posat al porta-retalls..."
+#: gfloppy/src/fdformat.c:74
+msgid "EError during completion of formatting"
+msgstr "EError en completar el formatatge"
 
-msgid "Text copied to clipboard..."
-msgstr "El text s'ha copiat al porta-retalls..."
+#. XXXX - need to tell parent we're finished
+#: gfloppy/src/fdformat.c:78
+msgid "MFormatting the disk... Done"
+msgstr "MS'està formatant el disc... fet"
 
-msgid "Text pasted from clipboard..."
-msgstr "El text s'ha enganxat des del porta-retalls..."
+#. XXXX - tell parent we're starting verify stage
+#: gfloppy/src/fdformat.c:94
+msgid "MVerifying the format..."
+msgstr "MS'està verificant el formatatge..."
 
+#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
 msgid ""
-"The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
-"contain bad English.\n"
-"http://users.telekabel.nl/hongli/"
+"EUnable to write to the floppy.\n"
+"\n"
+"Please confirm that it is not write-protected."
 msgstr ""
-"L'equivalent de Gnome al Mapa de caràcters de Microsoft Windows. Avís: pot "
-"contenir anglès incorrecte.\n"
-"http://users.telekabel.nl/hongli/"
+"ENo es pot escriure al disquet.\n"
+"\n"
+"Si us plau, assegureu-vos que no estigui protegit contra escriptura."
 
-msgid "This sets the overall application settings."
-msgstr "Això defineix els paràmetres de tota l'aplicació."
+#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
+#, c-format
+msgid "EInsufficient permissions to open floppy device %s."
+msgstr "EPermisos insuficients per obrir el dispositiu de disquet %s."
 
-msgid "Preferences..."
-msgstr "Preferències..."
-
-msgid "About Gnome Find..."
-msgstr "Quant al Find del Gnome..."
-
-msgid "_About"
-msgstr "A _propòsit de..."
-
-msgid "Info about the striphart program"
-msgstr "Informació sobre el programa stripchart"
-
-msgid "_File"
-msgstr "_Fitxer"
-
-msgid "_Help"
-msgstr "_Ajuda"
-
-msgid "About..."
-msgstr "Quant a..."
-
+#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
 msgid ""
-"Client for MIT dictionary server.\n"
-"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+"EUnable to access the floppy disk.\n"
+"\n"
+"Please confirm that it is in the drive\n"
+"with the drive door shut."
 msgstr ""
-"Client per al servidor de diccionaris del MIT.\n"
-"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+"ENo es pot accedir al disquet.\n"
+"\n"
+"Si us plau, assegureu-vos que és a la unitat\n"
+"i que la porta de la unitat és tancada."
 
-msgid "Spell-checking..."
-msgstr "S'està comprovant l'ortografia..."
-
-msgid "Spell check done"
-msgstr "S'ha dut a terme la comprovació ortogràfica"
-
-msgid "No matches found"
-msgstr "No s'ha trobat cap coincidència"
-
-msgid "Looking up word..."
-msgstr "S'està cercant la paraula..."
-
-msgid "Lookup done"
-msgstr "S'ha dut a terme la cerca"
-
-msgid "String not found"
-msgstr "No s'ha trobat la cadena"
-
-msgid "Find:"
-msgstr "Cerca:"
-
+#: gfloppy/src/fdformat.c:109
+#, c-format
 msgid ""
-"Unable to perform requested operation, either because the server\n"
-"you are using is down or because you are not connected to the\n"
-"Internet. If you are not already connected to the Internet, please\n"
-"do so and try again."
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s:%d"
 msgstr ""
-"No es pot realitzar l'operació sol·licitada, ja sigui perquè el servidor\n"
-"que esteu utilitzant està inactiu o perquè no esteu connectat a Internet\n"
-"Si encara no esteu connectat a Internet, connecteu-vos-hi i torneu-ho a\n"
-"intentar."
+"EError general en accedir al dispositiu de disquet %s.\n"
+"\n"
+"Codi d'error %s:%d"
 
-msgid "Lookup"
-msgstr "Cerca"
-
-msgid "Lookup word in dictionary"
-msgstr "Cerca la paraula al diccionari"
-
-msgid "Spell"
-msgstr "Comprovació ortogràfica"
-
-msgid "Check word spelling"
-msgstr "Comprova la ortografia de la paraula"
-
-msgid "Cut to Clipboard"
-msgstr "Retalla i posa al porta-retalls"
-
-msgid "Copy to Clipboard"
-msgstr "Copia al porta-retalls"
-
-msgid "Paste Clipboard Contents"
-msgstr "Enganxa el contingut del porta-retalls"
-
-msgid "Settings"
-msgstr "Paràmetres"
-
-msgid "Server to use, default search strategy, fonts"
-msgstr ""
-"Servidor per utilitzar, tècnica de cerca predeterminada, tipus de lletra"
-
-msgid "Word definition"
-msgstr "Definició del mot"
-
-msgid "Cannot create applet!\n"
-msgstr "No es pot crear la minaplicació!\n"
-
-msgid "Show/Hide Definition Window..."
-msgstr "Mostra/Amaga la finestra de definició..."
-
-msgid "Spell Check..."
-msgstr "Comprova l'ortografia..."
-
-msgid "Headword:"
-msgstr "Paraula clau:"
-
-msgid "Pronunciation:"
-msgstr "Pronunciació:"
-
-msgid "Etymology:"
-msgstr "Etimologia:"
-
-msgid "Example:"
-msgstr "Exemple:"
-
-msgid "Main body:"
-msgstr "Cos principal:"
-
-msgid "Sub-number:"
-msgstr "Sub-número:"
-
-msgid "Part of speech:"
-msgstr "Element gramatical:"
-
-msgid "Cross-reference:"
-msgstr "Referència creuada:"
-
-msgid "Smart lookup"
-msgstr "Cerca intel·ligent"
-
-msgid "Server:"
-msgstr "Servidor:"
-
-msgid "Port:"
-msgstr "Port:"
-
-msgid "Database:"
-msgstr "Base de dades:"
-
-msgid "Default strategy:"
-msgstr "Tècnica predeterminada:"
-
-msgid "Server"
-msgstr "Servidor"
-
-msgid "Fonts"
-msgstr "Tipus de lletra"
-
-msgid "Display handle bar"
-msgstr "Visualitza la barra de maneig"
-
+#: gfloppy/src/fdformat.c:129
+#, c-format
 msgid ""
-"You have to restart GDict for these\n"
-"settings to become active."
+"ERead Error:\n"
+"Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
-"Heu de reiniciar el GDict per tal\n"
-"d'activar aquests paràmetres."
+"EError de lectura:\n"
+"S'ha produït un problema en llegir el cilindre %d; s'esperava %d i s'ha "
+"llegit %d"
 
-msgid "Applet"
-msgstr "Miniaplicació"
+#: gfloppy/src/fdformat.c:132
+#, c-format
+msgid "EProblem reading cylinder %d, expected %d, read %d"
+msgstr ""
+"ES'ha produït un problema en llegir el cilindre %d; s'esperava %d i s'ha "
+"llegit %d"
 
-msgid "Cannot connect to server"
-msgstr "No es pot connectar amb el servidor"
+#: gfloppy/src/fdformat.c:141
+#, c-format
+msgid "MBad data in cyl %d.  Continuing... "
+msgstr "MDades incorrectes al cil. %d. Continua el procés..."
 
-msgid "The server you specified could not be found."
-msgstr "No s'ha pogut trobar el servidor que heu indicat."
+#: gfloppy/src/fdformat.c:148
+#, c-format
+msgid "EError closing device %s"
+msgstr "EError en tancar el dispositiu %s"
 
-msgid "Please enter the name of the new project:"
-msgstr "Per favor, entreu el nom del nou projecte:"
+#: gfloppy/src/fdformat.c:153
+msgid "MVerifying the format... Done"
+msgstr "MS'està verificant el formatatge.... fet"
 
-msgid "F_ilter"
-msgstr "F_iltre"
+#: gfloppy/src/fdformat.c:165
+#, c-format
+msgid "EUnable to write to device %s"
+msgstr "ENo es pot escriure al dispositiu %s"
 
-msgid "16-bit"
-msgstr "16 bits"
+#: gfloppy/src/fdformat.c:184
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s"
+msgstr ""
+"EError general en accedir al dispositiu de disquet %s.\n"
+"\n"
+"Codi d'error %s"
 
-msgid "GOMETRY"
-msgstr "GEOMETRIA"
+#: gfloppy/src/fdformat.c:194
+msgid "ECould not determine current format type"
+msgstr "ENo s'ha pogut determinar el tipus de formatatge actual"
 
-msgid "Delayed"
-msgstr "Ajornat"
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gfloppy/src/gfloppy-i18n.h:7
+msgid "Format a floppy"
+msgstr "formata un disquet"
 
-msgid "Simple"
-msgstr "Senzill"
+#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
+msgid "Linux Native (ext2)"
+msgstr "Linux Native (ext2)"
 
+#: gfloppy/src/gfloppy-i18n.h:9
+msgid "Dos (FAT)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:11
+msgid "Formatting /dev/floppy"
+msgstr "S'està formatant /dev/floppy"
+
+#: gfloppy/src/gfloppy-i18n.h:12
+msgid "Floppy Density:"
+msgstr "Densitat del disquet:"
+
+#: gfloppy/src/gfloppy-i18n.h:13
+msgid "File system type:"
+msgstr "Tipus del sistema de fitxers:"
+
+#: gfloppy/src/gfloppy-i18n.h:14
+msgid "High Density 3.5\" (1.44 MB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:15
+msgid "High Density 5.25\" (1.2 MB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:16
+msgid "Double Density 3.5\" (720 KB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:17
+msgid "Double Density 5.25\" (360 KB)"
+msgstr ""
+
+#: gfloppy/src/gfloppy-i18n.h:18
+msgid "Quick format"
+msgstr "Formatatge ràpid"
+
+#: gfloppy/src/gfloppy.c:166 gfloppy/src/gfloppy.c:199
+#, fuzzy
+msgid "MMaking filesystem on disk..."
+msgstr "MS'està formatant el disc..."
+
+#: gfloppy/src/gfloppy.c:169
+#, fuzzy
+msgid "EUnable to create filesystem correctly."
+msgstr "No es pot accedir a la unitat."
+
+#: gfloppy/src/gfloppy.c:173 gfloppy/src/gfloppy.c:205
+#, fuzzy
+msgid "MMaking filesystem on disk... Done"
+msgstr "MS'està formatant el disc... fet"
+
+#: gfloppy/src/gfloppy.c:202 gfloppy/src/gfloppy.c:217
+#, fuzzy
+msgid "EUnable to create filesystem."
+msgstr "No es pot accedir a la unitat."
+
+#: gfloppy/src/gfloppy.c:211
+msgid "MChecking for bad blocks... (this might take a while)"
+msgstr ""
+
+#: gfloppy/src/main.c:179
+msgid "The device to format"
+msgstr "El dispositiu per formatar"
+
+#: gfloppy/src/main.c:180
+msgid "DEVICE"
+msgstr "DISPOSITIU"
+
+#. We do this to get around a bug in libglade.  Ideally we won't need
+#. * to do this in the future.
+#: gfloppy/src/main.c:207
 msgid "Format"
 msgstr "Format"
 
-msgid "Search in"
-msgstr "Cerca a"
+#. initialize our widgets
+#: gfloppy/src/main.c:212
+#, c-format
+msgid "Formatting %s"
+msgstr "S'està formatant %s"
 
-msgid "Add to favorites"
-msgstr "Afegeix als preferits"
+#: gfloppy/src/main.c:254
+msgid "Format another floppy?"
+msgstr "Voleu formatar un altre disquet?"
 
-msgid "Rename"
-msgstr "Reanomena"
+#: gfloppy/src/progress.c:117
+msgid "Floppy formatted successfully."
+msgstr "El disquet s'ha formatat amb èxit."
 
-msgid "Parsing Colors"
-msgstr "Interpretant colors"
+#: gfloppy/src/progress.c:121
+msgid "Floppy formatting cancelled."
+msgstr "S'ha cancel·lat el formatatge del disquet."
 
-msgid "Error, cannot find the file 'rgb.txt' on your system!"
-msgstr "Error, no es troba el fitxer «rgb.txt» al vostre sistema!"
+#: gfloppy/src/progress.c:176
+msgid "Format progress."
+msgstr "Procés del formatatge."
 
-msgid "No Name"
-msgstr "Cap nom"
+#: stripchart/chart-app.c:157
+msgid "Param"
+msgstr "Paràmetres"
 
+#: stripchart/chart-app.c:158
+msgid "Current"
+msgstr "Actual"
+
+#: stripchart/chart-app.c:159 stripchart/params.c:692
+msgid "Top"
+msgstr "Màxim"
+
+#: stripchart/chart-app.c:160 stripchart/params.c:748
+msgid "Scale"
+msgstr "Escala"
+
+#: stripchart/chart-app.c:192 stripchart/stripchart-applet.c:69
+#: stripchart/stripchart.c:92 stripchart/stripchart.c:97
+#, fuzzy
+msgid "Stripchart"
+msgstr "gstripchart"
+
+#: stripchart/chart-app.c:193
+#, fuzzy
+msgid "Copyright 2000 John Kodis"
+msgstr "Copyright 1998,99 John Kodis"
+
+#: stripchart/chart-app.c:195
 msgid ""
-"Failed to execute command:\n"
-"%s\n"
-"%s"
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
 msgstr ""
-"Ha fallat l'execució de la comanda:\n"
-"%s\n"
-"%s"
+"El programa GNOME stripchart dibuixa diversos paràmetres especificats per "
+"l'usuari o usuària en funció del temps.  La seua utilitat principal és fer "
+"gràfiques de les prestacions del sistema, com ara càrrega de CPU, ús de CPU, "
+"tràfic de xarxa, etc.  Altres usos més enginyosos queden com a exercici per "
+"l'usuari o usuària interessada."
 
-msgid "Run"
-msgstr "Executar"
+#: stripchart/chart-app.c:234
+#, fuzzy
+msgid "Show values"
+msgstr "Mostra la mida de la unitat"
 
-msgid "Select a program to run"
-msgstr "Seleccioneu un programa a executar"
+#: stripchart/chart-app.c:241
+#, fuzzy
+msgid "Edit Prefs..."
+msgstr "Editar les preferències..."
 
-msgid ""
-"A quick hack to show the amount of space free on mounted file systems "
-"uitilizing a dial."
+#: stripchart/chart-app.c:246
+#, fuzzy
+msgid "Edit Params..."
+msgstr "Paràmetres..."
+
+#: stripchart/eval.c:252
+#, fuzzy
+msgid "closing parenthesis expected"
+msgstr "s'esperava parèntesi dret"
+
+#: stripchart/eval.c:269
+#, c-format
+msgid "no such field: %d"
+msgstr "el camp no existeix: %d"
+
+#: stripchart/eval.c:285
+msgid "missing variable identifer"
+msgstr "manca l'identificador de variable"
+
+#: stripchart/eval.c:287
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr "l'identificador de variable no és vàlid: %s"
+
+#: stripchart/eval.c:291
+msgid "number expected"
+msgstr "s'esperava un número"
+
+#: stripchart/eval.c:362
+#, fuzzy, c-format
+msgid "extra junk at end: \"%s\""
+msgstr "hi ha fem al final: «%s»"
+
+#: stripchart/params.c:621
+#, fuzzy
+msgid "Parameter"
+msgstr "Paràmetres"
+
+#: stripchart/params.c:659
+msgid "Equation"
+msgstr "Equació"
+
+#: stripchart/params.c:670
+msgid "Filename"
+msgstr "Nom del fitxer"
+
+#: stripchart/params.c:681
+msgid "Pattern"
+msgstr "Patró"
+
+#: stripchart/params.c:702 stripchart/params.c:730
+msgid "Min"
 msgstr ""
-"Un enginy ràpid per mostrar la quantitat d'espai lliure als sistemes de "
-"fitxers muntats, usant una esfera."
 
-msgid "GHex: Converter"
-msgstr "GHex: Conversor"
+#: stripchart/params.c:711 stripchart/params.c:739
+#, fuzzy
+msgid "Max"
+msgstr "Maig"
 
-msgid "Binary"
+#: stripchart/params.c:720
+msgid "Bottom"
+msgstr ""
+
+#: stripchart/params.c:759
+#, fuzzy
+msgid "Linear"
 msgstr "Binari"
 
-msgid "Decimal"
-msgstr "Decimal"
-
-msgid "Hex"
-msgstr "Hexadecimal"
-
-msgid "ASCII"
-msgstr "ASCII"
-
-msgid "Get cursor value"
-msgstr "Obtenir el valor del cursor"
-
-msgid "ERROR"
-msgstr "ERROR"
-
-msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): Cercar dades"
-
-msgid "Search for %s"
-msgstr "Cercar %s"
-
-msgid "Find Previous"
-msgstr "Trobar previ"
-
-msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): Cercar i substituir dades"
-
-msgid "Replace %s"
-msgstr "Substituir %s"
-
-msgid "Find next"
-msgstr "Trobar següent"
-
-msgid "Replace"
-msgstr "Substituir"
-
-msgid "Replace All"
-msgstr "Substituir tots"
-
-msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Saltar a posició"
-
-msgid "There is no active buffer to search!"
-msgstr "No hi ha cap tampó actiu per cercar-hi!"
-
-msgid "There seems to be no string to search for!"
-msgstr "Sembla que no hi ha cap cadena per cercar!"
-
-msgid "End Of File reached"
-msgstr "S'ha arribat al final del fitxer"
-
-msgid "Beginning Of File reached"
-msgstr "S'ha arribat a l'inici del fitxer"
-
-msgid "There is no active buffer to move the cursor in!"
-msgstr "No hi ha cap tampó actiu per moure-hi el cursor!"
-
-msgid "No offset has been specified!"
-msgstr "No s'ha especificat un desplaçament!"
-
-msgid "The offset must be a positive integer value!"
-msgstr "El desplaçament ha de ser un enter positiu!"
-
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "No es pot posicionar el cursor enllà del final del fitxer!"
-
-msgid "There is no active buffer to replace data in!"
-msgstr "No hi ha cap tampó actiu per substituir-hi dades!"
-
-msgid "Strange find or replace string!"
-msgstr "La cadena a cercar/reemplaçar és estranya!"
-
-msgid "Both strings must be of the same length!"
-msgstr "Ambdues cadenes han de ser igual de llargues!"
-
-msgid "End Of File reached!"
-msgstr "S'ha arribat al final del fitxer!"
-
-msgid "Replaced %d occurencies."
-msgstr "S'ha substituït %d ocurrències."
-
-msgid "_Bytes"
-msgstr "_Octets"
-
-msgid "Group data by 8 bits"
-msgstr "Agrupa les dades cada 8 bits"
-
-msgid "_Words"
-msgstr "_Paraules"
-
-msgid "Group data by 16 bits"
-msgstr "Agrupa les dades cada 16 bits"
-
-msgid "_Longwords"
-msgstr "Paraules _llargues"
-
-msgid "Group data by 32 bits"
-msgstr "Agrupa les dades cada 32 bits"
-
-msgid "Jump to a certain position"
-msgstr "Salta a una posició determinada"
-
-msgid "_Goto Byte..."
-msgstr "_Anar a l'octet..."
-
-msgid "_Group Data As"
-msgstr "A_grupar dades per"
-
-msgid "_Add view"
-msgstr "_Afegir vista"
-
-msgid "Add a new view of the buffer"
-msgstr "Afig una nova vista del tampó"
-
-msgid "_Remove view"
-msgstr "_Eliminar vista"
-
-msgid ""
-"File %s has changed since last save.\n"
-"Do you want to save changes?"
+#: stripchart/params.c:767
+msgid "Logarithmic"
 msgstr ""
-"El fitxer %s ha canviat des que es guardà.\n"
-"Voleu guardar els canvis?"
 
-msgid "Offset: %s"
-msgstr "Desplaçament: %s"
+#: stripchart/params.c:772
+msgid "Type"
+msgstr ""
 
-msgid "Notebook"
-msgstr "Bloc de notes"
+#: stripchart/params.c:783
+#, fuzzy
+msgid "Indicator"
+msgstr "Monitoritza"
 
-msgid "Toplevel"
-msgstr "Primer pla"
+#: stripchart/params.c:790
+msgid "Line"
+msgstr ""
 
-msgid "Modal"
-msgstr "Modal"
+#: stripchart/params.c:797
+#, fuzzy
+msgid "Point"
+msgstr "Port:"
 
-msgid "Maximum number of undo levels"
-msgstr "Màxim nombre d'accions a desfer"
+#: stripchart/params.c:804
+msgid "Solid"
+msgstr ""
 
-msgid "Show cursor offset in statusbar as"
-msgstr "Veure desplaçament del cursor en barra d'estat com a"
+#: stripchart/params.c:960
+msgid "Add Parameter Before"
+msgstr ""
 
-msgid "Hexadecimal"
-msgstr "Hexadecimal"
+#: stripchart/params.c:967
+msgid "Add Parameter After"
+msgstr ""
 
-msgid "Custom"
-msgstr "Personalitzat"
+#: stripchart/params.c:974
+msgid "Apply Parameter Changes"
+msgstr ""
 
-msgid "Show offsets column"
-msgstr "Mostrar columna de desplaçaments"
+#: stripchart/params.c:981
+msgid "Delete Parameter"
+msgstr ""
 
-msgid "Editing"
-msgstr "Edició"
+#: stripchart/params.c:989
+#, fuzzy
+msgid "Add Color"
+msgstr "Color"
 
-msgid "Default Group Type"
-msgstr "Agrupament per defecte"
+#: stripchart/params.c:996
+#, fuzzy
+msgid "Delete Color"
+msgstr "Color nou"
 
-msgid "MDI Mode"
-msgstr "Mode MDI"
+#: stripchart/params.c:1015
+msgid "Info"
+msgstr ""
 
-msgid "MDI"
-msgstr "MDI"
+#: stripchart/params.c:1086
+msgid "Parameter Editor"
+msgstr ""
 
-msgid "Can not open desired font!"
-msgstr "No es pot obrir la font desijada!"
+#: stripchart/params.c:1095
+#, fuzzy
+msgid "Parameters"
+msgstr "Paràmetres"
 
-msgid "Open Con_verter..."
-msgstr "Obrir con_versor..."
+#: stripchart/prefs.c:205
+#, fuzzy
+msgid "Chart"
+msgstr "Caràcter:"
 
-msgid "Open base conversion dialog"
-msgstr "Obri el diàleg de conversió de bases"
+#: stripchart/prefs.c:215 stripchart/prefs.c:274
+#, fuzzy
+msgid "enabled"
+msgstr "Habilitat"
 
-msgid "Bytes"
-msgstr "Octets"
+#: stripchart/prefs.c:222
+#, fuzzy
+msgid "minor"
+msgstr "minuts"
 
-msgid "Words"
-msgstr "Paraules"
+#: stripchart/prefs.c:228
+msgid "major"
+msgstr ""
 
-msgid "Longwords"
-msgstr "Paraules llargues"
+#: stripchart/prefs.c:241 stripchart/prefs.c:259
+msgid "Update"
+msgstr ""
 
-msgid "hex data"
-msgstr "hexadecimal"
+#: stripchart/prefs.c:244 stripchart/prefs.c:267
+msgid "Smooth"
+msgstr ""
 
-msgid "ASCII data"
-msgstr "ASCII"
+#: stripchart/prefs.c:247
+msgid "Ticks"
+msgstr ""
+
+#: stripchart/prefs.c:252
+#, fuzzy
+msgid "Pen"
+msgstr "Patró"
+
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "Geometry string: WxH+X+Y"
+msgstr "Especifica la geometria: WxH+X+Y"
+
+# Ací s'han armat un cacau...  proveu --help amb diferents LANGUAGEs  iv
+# Supose que ho arreglaran...
+# FIXME: keywords and descriptions are swapped here!  iv
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "GEO"
+msgstr "GEOMETRIA"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "Configuration file name"
+msgstr "Nom del fitxer de configuració"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "FILE"
+msgstr "FITXER"
+
+#: stripchart/stripchart-applet.c:92
+#, fuzzy
+msgid "Values"
+msgstr "Valor"
+
+#: stripchart/stripchart-applet.c:95
+#, fuzzy
+msgid "Prefs..."
+msgstr "Preferències"
+
+#: stripchart/stripchart-applet.c:98
+msgid "Params..."
+msgstr "Paràmetres..."
+
+#~ msgid "New search"
+#~ msgstr "Nova cerca"
+
+#~ msgid "Open search spec"
+#~ msgstr "Obre els detalls de la cerca"
+
+#~ msgid "Save search spec"
+#~ msgstr "Desa els detalls de la cerca"
+
+#~ msgid "Save search spec as..."
+#~ msgstr "Desa els detalls de la cerca com a..."
+
+#~ msgid "Add condition"
+#~ msgstr "Afegeix una condició"
+
+#~ msgid "Add a search condition"
+#~ msgstr "Afegeix una condició de cerca"
+
+#~ msgid "Remove condition"
+#~ msgstr "Elimina la condició"
+
+#~ msgid "Remove last search condition"
+#~ msgstr "Elimina la darrera condició de cerca"
+
+#~ msgid "Show advanced options"
+#~ msgstr "Mostra les opcions avançades"
+
+#~ msgid "Start search"
+#~ msgstr "Inicia la cerca"
+
+#~ msgid "New"
+#~ msgstr "Nou"
+
+#~ msgid "Clear the search window"
+#~ msgstr "Buida la finestra de cerca"
+
+#~ msgid "Start the current search"
+#~ msgstr "Inicia la cerca actual"
+
+#~ msgid "Find Files"
+#~ msgstr "Cerca fitxers"
+
+#~ msgid "Directory:"
+#~ msgstr "Directori:"
+
+#~ msgid "Directory to Search"
+#~ msgstr "Directori per cercar"
+
+#~ msgid "GNOME Find"
+#~ msgstr "Find del GNOME"
+
+#~ msgid "(C) 1998 the Free Software Foundation"
+#~ msgstr "(C) 1998 la Free Software Foundation"
+
+#~ msgid "GNOME Find is a fast, flexible file search tool."
+#~ msgstr ""
+#~ "El Find del GNOME és una eina de cerca de fitxers ràpida i flexible."
+
+#~ msgid "%s, line %d: "
+#~ msgstr "%s, línia %d: "
+
+#~ msgid "can't open config file \"%s\""
+#~ msgstr "no es pot obrir el fitxer de configuració «%s»"
+
+#~ msgid ""
+#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "no es pot obrir el fitxer de configuració «./gstripchart.conf», «%s», «%s» o "
+#~ "«%s»"
+
+#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "no es pot obrir el fitxer de configuració «./gstripchart.conf», «%s» o «%s»"
+
+#~ msgid "identifier or begin must be first"
+#~ msgstr "primer ha d'haver «begin» o un identificador"
+
+#~ msgid "unrecognized color: %s"
+#~ msgstr "el color no és reconegut: %s"
+
+#~ msgid "scale must be either \"log\" or \"linear\""
+#~ msgstr "«scale» ha de ser «log» o «linear»"
+
+#~ msgid "no equation found"
+#~ msgstr "no s'ha trobat cap equació"
+
+#~ msgid "invalid option: \"%s\""
+#~ msgstr "l'opció no és vàlida: «%s»"
+
+#~ msgid "E_xit"
+#~ msgstr "Ei_xir"
+
+#~ msgid "Terminate the stripchart program"
+#~ msgstr "Abandona el programa stripchart"
+
+#~ msgid "Identifier"
+#~ msgstr "Identificador"
+
+#~ msgid "Expected range"
+#~ msgstr "Rang esperat"
+
+#~ msgid "Displayed range"
+#~ msgstr "Rang mostrat"
+
+#~ msgid "Current value"
+#~ msgstr "Valor actual"
+
+#~ msgid "Active"
+#~ msgstr "Actiu"
+
+#~ msgid "Stripchart Parameters"
+#~ msgstr "Paràmetres de les gràfiques"
+
+#~ msgid "Stripchart Viewer"
+#~ msgstr "Visor de gràfiques"
+
+#~ msgid "invalid display type: %s\n"
+#~ msgstr "el tipus de pantalla no és vàlid: %s\n"
+
+#~ msgid "Chart update interval"
+#~ msgstr "Interval d'actualització del gràfic"
+
+#~ msgid "SECS"
+#~ msgstr "SEGONS"
+
+#~ msgid "Chart low-pass filter time constant"
+#~ msgstr "Ctt. temps fitre passa-baixa del gràfic"
+
+#~ msgid "Slider update interval"
+#~ msgstr "Interval d'actualització de l'agulla"
+
+#~ msgid "Slider low-pass filter time constant"
+#~ msgstr "Ctt. temps filtre passa-baixa de l'agulla"
+
+#~ msgid "Adds a menubar to the main window"
+#~ msgstr "Afig una barra de menús a la finestra principal"
+
+#~ msgid "Omits slider window"
+#~ msgstr "Amaga l'agulla lateral"
+
+#~ msgid "TYPE is one of gtk, applet, text, or none"
+#~ msgstr "Tipus de gràfic: gtk, applet, text o none"
+
+#~ msgid "TYPE"
+#~ msgstr "TIPUS"
+
+#~ msgid "TYPE is one of gtk, text, or none"
+#~ msgstr "Tipus de gràfic: gtk, text o none"
+
+#~ msgid "white"
+#~ msgstr "blanc"
+
+#~ msgid "black"
+#~ msgstr "negre"
+
+#~ msgid "red"
+#~ msgstr "roig"
+
+#~ msgid "yellow"
+#~ msgstr "groc"
+
+#~ msgid "blue"
+#~ msgstr "blau"
+
+#~ msgid "green"
+#~ msgstr "verd"
+
+#~ msgid "cyan"
+#~ msgstr "cian"
+
+#~ msgid "magenta"
+#~ msgstr "magenta"
+
+#~ msgid "Busy"
+#~ msgstr "Ocupat"
+
+#~ msgid "Load"
+#~ msgstr "Càrrega"
+
+#~ msgid "Swap"
+#~ msgstr "Intercanvi"
+
+#~ msgid "Battery"
+#~ msgstr "Bateria"
+
+#~ msgid "Net In"
+#~ msgstr "Entrada xarxa"
+
+#~ msgid "Net Out"
+#~ msgstr "Eixida xarxa"
+
+#~ msgid "ppp"
+#~ msgstr "PPP"
+
+#~ msgid "Hide calendar"
+#~ msgstr "Amaga el calendari"
+
+#~ msgid "%s: unable to load the penguin.\n"
+#~ msgstr "%s: no es pot carregar el pingüí.\n"
+
+#~ msgid ""
+#~ "You are trying to do something which requires\n"
+#~ "root (system administrator) privileges.\n"
+#~ "To do this, you must give the root password.\n"
+#~ "Please enter the root password now, or choose\n"
+#~ "Cancel if you do not know it."
+#~ msgstr ""
+#~ "Esteu intentant fer alguna cosa que requereix\n"
+#~ "privilegis de superusuari (administrador del sistema).\n"
+#~ "Per fer-ho, heu d'indicar la contrasenya de superusuari.\n"
+#~ "Si us plau, introduïu-la ara, o seleccioneu\n"
+#~ "Cancel·la si no la sabeu."
+
+#~ msgid ""
+#~ "You are trying to change your user identity.\n"
+#~ "Please enter the password for user `%s'."
+#~ msgstr ""
+#~ "Esteu intentant canviar la vostra identitat d'usuari.\n"
+#~ "Si us plau, introduïu la contrasenya de l'usuari `%s'."
+
+#~ msgid "Command to be run as another user"
+#~ msgstr "Ordre que s'ha d'executar com a un altre usuari"
+
+#~ msgid "User name to run command as"
+#~ msgstr "Nom d'usuari amb què executar l'ordre"
+
+#~ msgid "File containing interface description"
+#~ msgstr "Fitxer que conté la descripció de la interfície"
+
+#~ msgid "Target User"
+#~ msgstr "Usuari objectiu"
+
+#~ msgid "USER"
+#~ msgstr "USUARI"
+
+#~ msgid "Cut the text to clipboard"
+#~ msgstr "Retalla el text i posa'l al porta-retalls"
+
+#~ msgid "Copy the text to clipboard."
+#~ msgstr "Copia el text al porta-retalls."
+
+#~ msgid "This sets the overall application settings."
+#~ msgstr "Això defineix els paràmetres de tota l'aplicació."
+
+#~ msgid "About Gnome Find..."
+#~ msgstr "Quant al Find del Gnome..."
+
+#~ msgid "_About"
+#~ msgstr "A _propòsit de..."
+
+#~ msgid "Info about the striphart program"
+#~ msgstr "Informació sobre el programa stripchart"
+
+#~ msgid "_File"
+#~ msgstr "_Fitxer"
+
+#~ msgid "_Help"
+#~ msgstr "_Ajuda"
+
+#~ msgid "Please enter the name of the new project:"
+#~ msgstr "Per favor, entreu el nom del nou projecte:"
+
+#~ msgid "F_ilter"
+#~ msgstr "F_iltre"
+
+#~ msgid "16-bit"
+#~ msgstr "16 bits"
+
+#~ msgid "GOMETRY"
+#~ msgstr "GEOMETRIA"
+
+#~ msgid "Delayed"
+#~ msgstr "Ajornat"
+
+#~ msgid "Simple"
+#~ msgstr "Senzill"
+
+#~ msgid "Search in"
+#~ msgstr "Cerca a"
+
+#~ msgid "Add to favorites"
+#~ msgstr "Afegeix als preferits"
+
+#~ msgid "Rename"
+#~ msgstr "Reanomena"
+
+#~ msgid "Parsing Colors"
+#~ msgstr "Interpretant colors"
+
+#~ msgid "Error, cannot find the file 'rgb.txt' on your system!"
+#~ msgstr "Error, no es troba el fitxer «rgb.txt» al vostre sistema!"
+
+#~ msgid "No Name"
+#~ msgstr "Cap nom"
+
+#~ msgid ""
+#~ "Failed to execute command:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ha fallat l'execució de la comanda:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid "Run"
+#~ msgstr "Executar"
+
+#~ msgid "Select a program to run"
+#~ msgstr "Seleccioneu un programa a executar"
+
+#~ msgid ""
+#~ "A quick hack to show the amount of space free on mounted file systems "
+#~ "uitilizing a dial."
+#~ msgstr ""
+#~ "Un enginy ràpid per mostrar la quantitat d'espai lliure als sistemes de "
+#~ "fitxers muntats, usant una esfera."
+
+#~ msgid "GHex: Converter"
+#~ msgstr "GHex: Conversor"
+
+#~ msgid "Decimal"
+#~ msgstr "Decimal"
+
+#~ msgid "Hex"
+#~ msgstr "Hexadecimal"
+
+#~ msgid "ASCII"
+#~ msgstr "ASCII"
+
+#~ msgid "Get cursor value"
+#~ msgstr "Obtenir el valor del cursor"
+
+#~ msgid "ERROR"
+#~ msgstr "ERROR"
+
+#~ msgid "GHex (%s): Find Data"
+#~ msgstr "GHex (%s): Cercar dades"
+
+#~ msgid "Search for %s"
+#~ msgstr "Cercar %s"
+
+#~ msgid "Find Previous"
+#~ msgstr "Trobar previ"
+
+#~ msgid "GHex (%s): Find & Replace Data"
+#~ msgstr "GHex (%s): Cercar i substituir dades"
+
+#~ msgid "Replace %s"
+#~ msgstr "Substituir %s"
+
+#~ msgid "Find next"
+#~ msgstr "Trobar següent"
+
+#~ msgid "Replace"
+#~ msgstr "Substituir"
+
+#~ msgid "Replace All"
+#~ msgstr "Substituir tots"
+
+#~ msgid "GHex (%s): Jump To Byte"
+#~ msgstr "GHex (%s): Saltar a posició"
+
+#~ msgid "There is no active buffer to search!"
+#~ msgstr "No hi ha cap tampó actiu per cercar-hi!"
+
+#~ msgid "There seems to be no string to search for!"
+#~ msgstr "Sembla que no hi ha cap cadena per cercar!"
+
+#~ msgid "End Of File reached"
+#~ msgstr "S'ha arribat al final del fitxer"
+
+#~ msgid "Beginning Of File reached"
+#~ msgstr "S'ha arribat a l'inici del fitxer"
+
+#~ msgid "There is no active buffer to move the cursor in!"
+#~ msgstr "No hi ha cap tampó actiu per moure-hi el cursor!"
+
+#~ msgid "No offset has been specified!"
+#~ msgstr "No s'ha especificat un desplaçament!"
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "El desplaçament ha de ser un enter positiu!"
+
+#~ msgid "Can not position cursor beyond the End Of File!"
+#~ msgstr "No es pot posicionar el cursor enllà del final del fitxer!"
+
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "No hi ha cap tampó actiu per substituir-hi dades!"
+
+#~ msgid "Strange find or replace string!"
+#~ msgstr "La cadena a cercar/reemplaçar és estranya!"
+
+#~ msgid "Both strings must be of the same length!"
+#~ msgstr "Ambdues cadenes han de ser igual de llargues!"
+
+#~ msgid "End Of File reached!"
+#~ msgstr "S'ha arribat al final del fitxer!"
+
+#~ msgid "Replaced %d occurencies."
+#~ msgstr "S'ha substituït %d ocurrències."
+
+#~ msgid "_Bytes"
+#~ msgstr "_Octets"
+
+#~ msgid "Group data by 8 bits"
+#~ msgstr "Agrupa les dades cada 8 bits"
+
+#~ msgid "_Words"
+#~ msgstr "_Paraules"
+
+#~ msgid "Group data by 16 bits"
+#~ msgstr "Agrupa les dades cada 16 bits"
+
+#~ msgid "_Longwords"
+#~ msgstr "Paraules _llargues"
+
+#~ msgid "Group data by 32 bits"
+#~ msgstr "Agrupa les dades cada 32 bits"
+
+#~ msgid "Jump to a certain position"
+#~ msgstr "Salta a una posició determinada"
+
+#~ msgid "_Goto Byte..."
+#~ msgstr "_Anar a l'octet..."
+
+#~ msgid "_Group Data As"
+#~ msgstr "A_grupar dades per"
+
+#~ msgid "_Add view"
+#~ msgstr "_Afegir vista"
+
+#~ msgid "Add a new view of the buffer"
+#~ msgstr "Afig una nova vista del tampó"
+
+#~ msgid "_Remove view"
+#~ msgstr "_Eliminar vista"
+
+#~ msgid ""
+#~ "File %s has changed since last save.\n"
+#~ "Do you want to save changes?"
+#~ msgstr ""
+#~ "El fitxer %s ha canviat des que es guardà.\n"
+#~ "Voleu guardar els canvis?"
+
+#~ msgid "Offset: %s"
+#~ msgstr "Desplaçament: %s"
+
+#~ msgid "Notebook"
+#~ msgstr "Bloc de notes"
+
+#~ msgid "Toplevel"
+#~ msgstr "Primer pla"
+
+#~ msgid "Modal"
+#~ msgstr "Modal"
+
+#~ msgid "Maximum number of undo levels"
+#~ msgstr "Màxim nombre d'accions a desfer"
+
+#~ msgid "Show cursor offset in statusbar as"
+#~ msgstr "Veure desplaçament del cursor en barra d'estat com a"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Hexadecimal"
+
+#~ msgid "Custom"
+#~ msgstr "Personalitzat"
+
+#~ msgid "Show offsets column"
+#~ msgstr "Mostrar columna de desplaçaments"
+
+#~ msgid "Editing"
+#~ msgstr "Edició"
+
+#~ msgid "Default Group Type"
+#~ msgstr "Agrupament per defecte"
+
+#~ msgid "MDI Mode"
+#~ msgstr "Mode MDI"
+
+#~ msgid "MDI"
+#~ msgstr "MDI"
+
+#~ msgid "Can not open desired font!"
+#~ msgstr "No es pot obrir la font desijada!"
+
+#~ msgid "Open Con_verter..."
+#~ msgstr "Obrir con_versor..."
+
+#~ msgid "Open base conversion dialog"
+#~ msgstr "Obri el diàleg de conversió de bases"
+
+#~ msgid "Bytes"
+#~ msgstr "Octets"
+
+#~ msgid "Words"
+#~ msgstr "Paraules"
+
+#~ msgid "Longwords"
+#~ msgstr "Paraules llargues"
+
+#~ msgid "hex data"
+#~ msgstr "hexadecimal"
+
+#~ msgid "ASCII data"
+#~ msgstr "ASCII"
 
 # Els fitxers són el que són, el binari és l'editor!  iv
-msgid "GHex, a binary file editor"
-msgstr "GHex, un editor binari de fitxers"
+#~ msgid "GHex, a binary file editor"
+#~ msgstr "GHex, un editor binari de fitxers"
 
-msgid "Released under the terms of GNU Public License"
-msgstr "Lliurat sota els termes de la Llicència Pública General GNU."
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Lliurat sota els termes de la Llicència Pública General GNU."
 
-msgid "Error saving file!"
-msgstr "Error en guardar el fitxer!"
+#~ msgid "Error saving file!"
+#~ msgstr "Error en guardar el fitxer!"
 
-msgid "Saved buffer to file %s"
-msgstr "S'ha guardat el tampó al fitxer %s"
+#~ msgid "Saved buffer to file %s"
+#~ msgstr "S'ha guardat el tampó al fitxer %s"
 
-msgid "Select a file to save buffer as"
-msgstr "Seleccioneu un fitxer on guardar el tampó"
+#~ msgid "Select a file to save buffer as"
+#~ msgstr "Seleccioneu un fitxer on guardar el tampó"
 
-msgid "Really revert file %s?"
-msgstr "Voleu realment revertir el fitxer %s?"
+#~ msgid "Really revert file %s?"
+#~ msgstr "Voleu realment revertir el fitxer %s?"
 
-msgid "Reverted buffer from file %s"
-msgstr "S'ha revertit el tampó des del fitxer %s"
+#~ msgid "Reverted buffer from file %s"
+#~ msgstr "S'ha revertit el tampó des del fitxer %s"
 
-msgid "Can't open file for writing!"
-msgstr "No es pot obrir el fitxer per escriure!"
+#~ msgid "Can't open file for writing!"
+#~ msgstr "No es pot obrir el fitxer per escriure!"
 
-msgid "This is not yet implemented"
-msgstr "Açò encara no s'ha implementat"
+#~ msgid "This is not yet implemented"
+#~ msgstr "Açò encara no s'ha implementat"
 
-msgid "Format Style:"
-msgstr "Estil del format:"
+#~ msgid "Format Style:"
+#~ msgstr "Estil del format:"
 
-msgid "Color Values:"
-msgstr "Valors del color:"
+#~ msgid "Color Values:"
+#~ msgstr "Valors del color:"
 
+#~ msgid ""
+#~ "Linux Native (ext2)\n"
+#~ "Dos (FAT)\n"
+#~ msgstr ""
+#~ "Linux Native (ext2)\n"
+#~ "Dos (FAT)\n"
+
+#~ msgid ""
+#~ "High Density 3.5\" (1.44 MB)\n"
+#~ "High Density 5.25\" (1.2 MB)\n"
+#~ "Double Density 3.5\" (720 KB)\n"
+#~ "Double Density 5.25\" (360 KB)\n"
+#~ msgstr ""
+#~ "Alta densitat 3.5\" (1.44 MB)\n"
+#~ "Alta densitat 5.25\" (1.2 MB)\n"
+#~ "Doble densitat 3.5\" (720 KB)\n"
+#~ "Doble densitat 5.25\" (360 KB)\n"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.2.1\n"
-"POT-Creation-Date: 2000-12-18 03:34+0100\n"
+"POT-Creation-Date: 2001-02-27 03:36-0800\n"
 "PO-Revision-Date: 2000-09-19 04:44+02:00\n"
 "Last-Translator: Giovanni Bortolozzo <borto@pluto.linux.it>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Calcolatrice di Gnome"
 msgid "Select ASCII Character"
 msgstr "Seleziona carattere ASCII"
 
-#: gcharmap/src/asciiselect.c:118
+#: gcharmap/src/asciiselect.c:118 gcharmap/src/menus.c:95
 msgid "Insert"
 msgstr "Inserisci"
 
@@ -40,42 +40,174 @@ msgstr "codice ASCII:"
 msgid "Character:"
 msgstr "Carattere:"
 
-#: gcharmap/src/interface.c:130
+#: gcharmap/src/callbacks.c:42 gcharmap/src/interface.c:130
 msgid "Gnome Character Map"
 msgstr "Mappa Caratteri di GNOME"
+
+#: gcharmap/src/callbacks.c:46
+#, fuzzy
+msgid ""
+"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"contain bad English."
+msgstr ""
+"L'equivalente della Mappa di Caratteri di Windows per GNOME. Attenzione: può "
+"contenere un pessimo inglese.\n"
+"http://users.telekabel.nl/hongli/"
+
+#: gcharmap/src/callbacks.c:76
+#, fuzzy, c-format
+msgid "%s: ASCII code %d"
+msgstr "codice ASCII:"
+
+#: gcharmap/src/callbacks.c:103
+msgid "Text copied to clipboard..."
+msgstr "Testo copiato negli appunti..."
+
+#: gcharmap/src/callbacks.c:115
+msgid "Text cut to clipboard..."
+msgstr "Testo tagliato negli appunti..."
+
+#: gcharmap/src/callbacks.c:168
+msgid "Text pasted from clipboard..."
+msgstr "Testo incollato dagli appunto..."
 
 #: gcharmap/src/interface.c:159
 msgid "Action Toolbar"
 msgstr "Barra strumenti"
 
-#: gcharmap/src/interface.c:176
+#: gcharmap/src/interface.c:178
 msgid "Text to copy:"
 msgstr "Testo da copiare:"
 
-#: gcharmap/src/interface.c:220 gstripchart/gstripchart.c:1798
-#: mini-utils/gcolorsel/menus.c:921
+#: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
+#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:253
 msgid "Exit"
 msgstr "Esci"
 
-#: gcharmap/src/interface.c:221 gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:100
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Copia"
 
-#: gcharmap/src/interface.c:225 gstripchart/gstripchart.c:1786
-#: gstripchart/gstripchart.c:2070 mini-utils/gcolorsel/menus.c:919
-#: mini-utils/gshutdown/gshutdown.c:319
+#: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
+#: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
+#: stripchart/chart-app.c:227 stripchart/params.c:1008
+#: stripchart/stripchart-applet.c:89
 msgid "About"
 msgstr "Informazioni"
 
-#: gcharmap/src/interface.c:227 gdictsrc/gdict-applet.c:142
-#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:2067
+#: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
+#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:222
+#: stripchart/params.c:1043 stripchart/params.c:1046
+#: stripchart/stripchart-applet.c:86
 msgid "Help"
 msgstr "Aiuto"
+
+#: gcharmap/src/menus.c:47
+#, fuzzy
+msgid "Insert Character..."
+msgstr "Inserisci carattere..."
+
+#: gcharmap/src/menus.c:48
+msgid "Insert character(s) by choosing ASCII codes."
+msgstr ""
+
+#: gcharmap/src/menus.c:55
+#, fuzzy
+msgid "_Action Toolbar"
+msgstr "Barra strumenti"
+
+#: gcharmap/src/menus.c:55
+#, fuzzy
+msgid "View or hide the action toolbar"
+msgstr "Mostra o nascondi la barra degli strumenti"
+
+#: gcharmap/src/menus.c:57
+#, fuzzy
+msgid "_Text Toolbar"
+msgstr "_Barra strumenti"
+
+#: gcharmap/src/menus.c:57
+#, fuzzy
+msgid "View or hide the text toolbar"
+msgstr "Mostra o nascondi la barra degli strumenti"
+
+#: gcharmap/src/menus.c:59
+msgid "_Statusbar"
+msgstr "Barra di _Stato"
+
+#: gcharmap/src/menus.c:59
+msgid "View or hide the statusbar"
+msgstr "Mostra o nascondi la barra di stato"
+
+#: gcharmap/src/menus.c:66
+msgid "Character Table's Font..."
+msgstr ""
+
+#: gcharmap/src/menus.c:66
+msgid "Set the character table's font."
+msgstr ""
+
+#: gcharmap/src/menus.c:69
+#, fuzzy
+msgid "_Insert at end"
+msgstr "Inserisci carattere"
+
+#: gcharmap/src/menus.c:69
+msgid "Insert every selected character at the end of the text entry"
+msgstr ""
+
+#: gcharmap/src/menus.c:71
+msgid "_Focusable Buttons"
+msgstr ""
+
+#: gcharmap/src/menus.c:71
+msgid "Set the buttons to be focusable or not"
+msgstr ""
+
+#: gcharmap/src/menus.c:95
+msgid "Insert character(s) by choosing ASCII codes"
+msgstr ""
+
+#: gcharmap/src/menus.c:98 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Taglia"
+
+#: gcharmap/src/menus.c:98
+#, fuzzy
+msgid "Cut the selection"
+msgstr "Termina l'applicazione"
+
+#: gcharmap/src/menus.c:100
+msgid "Copy the selection"
+msgstr ""
+
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Incolla"
+
+#: gcharmap/src/menus.c:102
+#, fuzzy
+msgid "Paste the clipboard"
+msgstr "Incolla il testo dagli appunti"
+
+#: gcharmap/src/menus.c:105
+#, fuzzy
+msgid "Show Gnome Character Map's manual"
+msgstr "Mappa Caratteri di GNOME"
+
+#: gcharmap/src/menus.c:107 mini-utils/gcolorsel/menus.c:919
+msgid "About this application"
+msgstr "Informazioni su questa applicazione"
+
+#: gcharmap/src/menus.c:110 mini-utils/gcolorsel/menus.c:921
+msgid "Exit the program"
+msgstr "Esci dal programma"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:623 gdictsrc/gdict-pref-dialog.c:498
+#: gdictsrc/dict.c:635 gdictsrc/gdict-pref-dialog.c:498
 #: gdictsrc/gdict-pref-dialog.c:542 gdictsrc/gdict-speller.c:393
 msgid "Cannot connect to server"
 msgstr "Impossibile connettersi al server"
@@ -128,7 +260,7 @@ msgstr ""
 "collegatevi adesso."
 
 #: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
-#: gdictsrc/gdict-applet.c:166
+#: gdictsrc/gdict-applet.c:313
 msgid "Lookup"
 msgstr "Cerca"
 
@@ -144,10 +276,6 @@ msgstr "Ortografia"
 msgid "Check word spelling"
 msgstr "Controlla ortografia della parola"
 
-#: gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Taglia"
-
 #: gdictsrc/gdict-app.c:518
 msgid "Cut to Clipboard"
 msgstr "Taglia negli Appunti"
@@ -155,10 +283,6 @@ msgstr "Taglia negli Appunti"
 #: gdictsrc/gdict-app.c:521
 msgid "Copy to Clipboard"
 msgstr "Copia negli Appunti"
-
-#: gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Incolla"
 
 #: gdictsrc/gdict-app.c:524
 msgid "Paste Clipboard Contents"
@@ -176,25 +300,25 @@ msgstr "Server da utilizzare, tipologia di ricerca predefinita, caratteri"
 msgid "Word definition"
 msgstr "Definizione di parola"
 
-#: gdictsrc/gdict-applet.c:128
-msgid "Cannot create applet!\n"
-msgstr "Impossibile creare l'applet!\n"
-
-#: gdictsrc/gdict-applet.c:138
+#: gdictsrc/gdict-applet.c:280
 msgid "About..."
 msgstr "Informazioni su..."
 
-#: gdictsrc/gdict-applet.c:147
+#: gdictsrc/gdict-applet.c:289
 msgid "Preferences..."
 msgstr "Preferenze..."
 
-#: gdictsrc/gdict-applet.c:151
+#: gdictsrc/gdict-applet.c:293
 msgid "Show/Hide Definition Window..."
 msgstr "Mostra/Nascondi finestra delle definizioni..."
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:297
 msgid "Spell Check..."
 msgstr "Controllo ortografico..."
+
+#: gdictsrc/gdict-applet.c:309
+msgid "Cannot create applet!\n"
+msgstr "Impossibile creare l'applet!\n"
 
 #: gdictsrc/gdict-pref-dialog.c:38
 msgid "Headword:"
@@ -230,7 +354,7 @@ msgstr "Riferimento incrociato:"
 
 #. Fixme these should be stock buttons
 #: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
-#: mini-utils/gshutdown/gshutdown.c:314
+#: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:194
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -278,7 +402,7 @@ msgstr ""
 msgid "Applet"
 msgstr "Applet"
 
-#: gdictsrc/gdict-pref-dialog.c:577
+#: gdictsrc/gdict-pref-dialog.c:581
 msgid "The server you specified could not be found."
 msgstr "Il server specificato non è stato trovato."
 
@@ -339,106 +463,6 @@ msgstr "Intervallo di aggiornamento (ms)"
 #: gdiskfree/gdiskfree_options.c:292
 msgid "General Settings"
 msgstr "Impostazioni generali"
-
-#: gnome-find/gnome-find.c:40
-msgid "New search"
-msgstr "Nuova ricerca"
-
-#: gnome-find/gnome-find.c:41
-msgid "Open search spec"
-msgstr "Apri specifiche della ricerca"
-
-#: gnome-find/gnome-find.c:42
-msgid "Save search spec"
-msgstr "Salva le specifiche della ricerca"
-
-#: gnome-find/gnome-find.c:43
-msgid "Save search spec as..."
-msgstr "Salve le specifiche delle ricerca come..."
-
-#: gnome-find/gnome-find.c:58
-msgid "Add condition"
-msgstr "Aggiungi condizione"
-
-#: gnome-find/gnome-find.c:58 gnome-find/gnome-find.c:96
-msgid "Add a search condition"
-msgstr "Aggiunge un condizione alla ricerca"
-
-#: gnome-find/gnome-find.c:59
-msgid "Remove condition"
-msgstr "Rimuovi condizione"
-
-#: gnome-find/gnome-find.c:59 gnome-find/gnome-find.c:98
-msgid "Remove last search condition"
-msgstr "Rimuove l'ultima condizione della ricerca"
-
-#: gnome-find/gnome-find.c:61 gnome-find/gnome-find.c:62
-#: gnome-find/gnome-find.c:99
-msgid "Show advanced options"
-msgstr "Mostra opzioni avanzate"
-
-#: gnome-find/gnome-find.c:67
-msgid "Start search"
-msgstr "Inizia la ricerca"
-
-#: gnome-find/gnome-find.c:83 gnome-find/gnome-find.c:105
-#: mini-utils/gcolorsel/session.c:437
-msgid "Search"
-msgstr "Cerca"
-
-#: gnome-find/gnome-find.c:91
-msgid "New"
-msgstr "Nuovo"
-
-#: gnome-find/gnome-find.c:91
-msgid "Clear the search window"
-msgstr "Cancella la finestre della ricerca"
-
-#: gnome-find/gnome-find.c:96 gsearchtool/gsearchtool.c:619
-#: mini-utils/gw/gw.c:505
-msgid "Add"
-msgstr "Aggiungi"
-
-#: gnome-find/gnome-find.c:98 gsearchtool/gsearchtool.c:545
-#: logview/actions.c:127
-msgid "Remove"
-msgstr "Rimuovi"
-
-#: gnome-find/gnome-find.c:99 mini-utils/gshutdown/gshutdown.c:209
-#: mini-utils/gshutdown/gshutdown.c:210
-msgid "Advanced"
-msgstr "Avanzato"
-
-#: gnome-find/gnome-find.c:105
-msgid "Start the current search"
-msgstr "Avvia la ricerca corrente"
-
-#: gnome-find/gnome-find.c:176
-msgid "Find Files"
-msgstr "Trova file"
-
-#: gnome-find/gnome-find.c:178
-msgid "Directory:"
-msgstr "Directory:"
-
-#: gnome-find/gnome-find.c:180
-msgid "Directory to Search"
-msgstr "Directory in cui cercare"
-
-#: gnome-find/gnome-find.c:422
-msgid "GNOME Find"
-msgstr "GNOME Find"
-
-#. copyright notice
-#: gnome-find/gnome-find.c:424
-msgid "(C) 1998 the Free Software Foundation"
-msgstr "(C) 1998 Free Software Foundation"
-
-#. another comments
-#: gnome-find/gnome-find.c:427
-msgid "GNOME Find is a fast, flexible file search tool."
-msgstr ""
-"GNOME Find è uno strumento veloce e flessibile per la ricerca dei file."
 
 #: gsearchtool/gsearchtool.c:33
 msgid "File name"
@@ -539,6 +563,10 @@ msgstr "Il cambiamento della voce ha chiamato una opzione non valida!"
 msgid "Enable"
 msgstr "Abilita"
 
+#: gsearchtool/gsearchtool.c:545 logview/actions.c:127
+msgid "Remove"
+msgstr "Rimuovi"
+
 #: gsearchtool/gsearchtool.c:597
 msgid "Start in directory:"
 msgstr "Comincia nella directory:"
@@ -546,6 +574,10 @@ msgstr "Comincia nella directory:"
 #: gsearchtool/gsearchtool.c:599
 msgid "Browse"
 msgstr "Sfoglia"
+
+#: gsearchtool/gsearchtool.c:619 mini-utils/gw/gw.c:505
+msgid "Add"
+msgstr "Aggiungi"
 
 #: gsearchtool/gsearchtool.c:630
 msgid "Show Command"
@@ -615,307 +647,6 @@ msgstr "Comando mangled"
 msgid "No command for this mime type"
 msgstr "Nessun comando associato a questo tipo mime"
 
-#: gstripchart/gstripchart.c:441
-msgid "rparen expected"
-msgstr "atteso rparen"
-
-#: gstripchart/gstripchart.c:458
-#, c-format
-msgid "no such field: %d"
-msgstr "nessun campo: %d"
-
-#: gstripchart/gstripchart.c:486
-msgid "missing variable identifer"
-msgstr "identificatore della variabile mancante"
-
-#: gstripchart/gstripchart.c:488
-#, c-format
-msgid "invalid variable identifer: %s"
-msgstr "identificatore della variabile non valido: %s"
-
-#: gstripchart/gstripchart.c:492
-msgid "number expected"
-msgstr "atteso un numero"
-
-#: gstripchart/gstripchart.c:570
-#, c-format
-msgid "extra gunk at end: \"%s\""
-msgstr "\"gunk\" extra alla fine: \"%s\""
-
-#: gstripchart/gstripchart.c:652
-#, c-format
-msgid "%s, line %d: "
-msgstr "%s, linea %d: "
-
-#: gstripchart/gstripchart.c:733
-#, c-format
-msgid "can't open config file \"%s\""
-msgstr "impossibile aprire il file di configurazione \"%s\""
-
-#: gstripchart/gstripchart.c:760
-#, c-format
-msgid ""
-"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
-"impossibile aprire il file di configurazione \"./gstripchart.conf\", \"%s\", "
-"\"%s\", oppure \"%s\""
-
-#: gstripchart/gstripchart.c:765
-#, c-format
-msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr ""
-"impossibile aprire il file di configurazione \"./gstripchart.conf\", \"%s\" "
-"oppure \"%s\""
-
-#: gstripchart/gstripchart.c:843
-msgid "identifier or begin must be first"
-msgstr "un identificatore o un inizio devono essere primi"
-
-#: gstripchart/gstripchart.c:851 gstripchart/gstripchart.c:868
-#, c-format
-msgid "unrecognized color: %s"
-msgstr "colore non riconosciuto: %s"
-
-#: gstripchart/gstripchart.c:883
-msgid "scale must be either \"log\" or \"linear\""
-msgstr "la scala deve essere logaritmica oppure lineare"
-
-#: gstripchart/gstripchart.c:898
-msgid "no equation found"
-msgstr "nessuna equazione trovata"
-
-#: gstripchart/gstripchart.c:915
-#, c-format
-msgid "invalid option: \"%s\""
-msgstr "opzione non valida: \"%s\""
-
-#: gstripchart/gstripchart.c:1498
-msgid "E_xit"
-msgstr "E_sci"
-
-#: gstripchart/gstripchart.c:1498
-msgid "Terminate the stripchart program"
-msgstr "Termina il programma stripchart"
-
-#: gstripchart/gstripchart.c:1514
-msgid "Copyright 1998,99 John Kodis"
-msgstr "Copyright 1998,99 John Kodis"
-
-#: gstripchart/gstripchart.c:1516
-msgid ""
-"The GNOME stripchart program plots various user-specified parameters as a "
-"function of time.  Its main use is to chart system performance parameters "
-"such as CPU load, CPU utilization, network traffic levels, and the like.  "
-"Other more ingenious uses are left as an exercise for the interested user."
-msgstr ""
-"Il programma GNOME stripchart disegna vari parametri specificati dall'utente "
-"come una funzione di tempo. Il suo principale scopo è quello di disegnare un "
-"grafico delle proprietà del sistema, come il carico sulla CPU, l'uso della "
-"CPU, il traffico di rete, e altri. Altri scopi ingegnosi sono lasciati alla "
-"fantasia dell'utente."
-
-#: gstripchart/gstripchart.c:1601 gstripchart/gstripchart.c:1740
-msgid "Param"
-msgstr "Parametri"
-
-#: gstripchart/gstripchart.c:1601 mini-utils/gcolorsel/view-color-list.c:197
-#: mini-utils/guname/moreinfo.c:227
-msgid "Value"
-msgstr "Valore"
-
-#: gstripchart/gstripchart.c:1605
-msgid "Identifier"
-msgstr "Identificatore"
-
-#: gstripchart/gstripchart.c:1607 mini-utils/gcolorsel/view-color-list.c:196
-msgid "Color"
-msgstr "Colore"
-
-#: gstripchart/gstripchart.c:1609
-msgid "Filename"
-msgstr "Nome file"
-
-#: gstripchart/gstripchart.c:1611
-msgid "Pattern"
-msgstr "Pattern"
-
-#: gstripchart/gstripchart.c:1613
-msgid "Equation"
-msgstr "Equazione"
-
-#: gstripchart/gstripchart.c:1615
-msgid "Expected range"
-msgstr "Intervallo atteso"
-
-#: gstripchart/gstripchart.c:1619
-msgid "Displayed range"
-msgstr "Intervallo visualizzato"
-
-#: gstripchart/gstripchart.c:1623
-msgid "Current value"
-msgstr "Valore corrente"
-
-#: gstripchart/gstripchart.c:1630
-msgid "Active"
-msgstr "Attivo"
-
-#: gstripchart/gstripchart.c:1647
-msgid "Stripchart Parameters"
-msgstr "Parametri stripchart"
-
-#: gstripchart/gstripchart.c:1741
-msgid "Current"
-msgstr "Corrente"
-
-#: gstripchart/gstripchart.c:1742
-msgid "Top"
-msgstr "Massimo"
-
-#: gstripchart/gstripchart.c:1743
-msgid "Scale"
-msgstr "Scala"
-
-#: gstripchart/gstripchart.c:1792
-msgid "Params"
-msgstr "Parametri"
-
-#. Create a top-level application window. Set minimum size (_usize),
-#. initial size (_default_size), and establish delete and destroy
-#. event handlers.
-#: gstripchart/gstripchart.c:1904
-msgid "gstripchart"
-msgstr "gstripchart"
-
-#: gstripchart/gstripchart.c:1904
-msgid "Stripchart Viewer"
-msgstr "Visualizzatore di grafici"
-
-#: gstripchart/gstripchart.c:2073
-msgid "Params..."
-msgstr "Parametri..."
-
-#: gstripchart/gstripchart.c:2118
-#, c-format
-msgid "invalid display type: %s\n"
-msgstr "tipo display non valido: %s\n"
-
-#: gstripchart/gstripchart.c:2143
-msgid "Geometry string: WxH+X+Y"
-msgstr "Stringa geometria: WxH+X+Y"
-
-#: gstripchart/gstripchart.c:2143
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:2145
-msgid "Configuration file name"
-msgstr "Nome file di configurazione"
-
-#: gstripchart/gstripchart.c:2145
-msgid "FILE"
-msgstr "FILE"
-
-#: gstripchart/gstripchart.c:2147
-msgid "Chart update interval"
-msgstr "intervallo di aggiornamento del grafico"
-
-#: gstripchart/gstripchart.c:2147 gstripchart/gstripchart.c:2149
-#: gstripchart/gstripchart.c:2151 gstripchart/gstripchart.c:2153
-msgid "SECS"
-msgstr "SECS"
-
-#: gstripchart/gstripchart.c:2149
-msgid "Chart low-pass filter time constant"
-msgstr "Grafico con filtro tempo costante"
-
-#: gstripchart/gstripchart.c:2151
-msgid "Slider update interval"
-msgstr "intervallo di aggiornamento dello slider"
-
-#: gstripchart/gstripchart.c:2153
-msgid "Slider low-pass filter time constant"
-msgstr "Slider con filtro tempo costante"
-
-#: gstripchart/gstripchart.c:2155
-msgid "Adds a menubar to the main window"
-msgstr "Aggiungi barra del menu alla finestra principale"
-
-#: gstripchart/gstripchart.c:2157
-msgid "Omits slider window"
-msgstr "Omette la finestra dello slider"
-
-#: gstripchart/gstripchart.c:2160
-msgid "TYPE is one of gtk, applet, text, or none"
-msgstr "TYPE deve essere uno di gtk, applet, testo o niente"
-
-#: gstripchart/gstripchart.c:2160 gstripchart/gstripchart.c:2162
-msgid "TYPE"
-msgstr "TYPE"
-
-#: gstripchart/gstripchart.c:2162
-msgid "TYPE is one of gtk, text, or none"
-msgstr "TYPE deve essere uno di gtk, testo o niente"
-
-#: gstripchart/gstripchart.c:2314
-msgid "white"
-msgstr "bianco"
-
-#: gstripchart/gstripchart.c:2314
-msgid "black"
-msgstr "naro"
-
-#: gstripchart/gstripchart.c:2314
-msgid "red"
-msgstr "rosso"
-
-#: gstripchart/gstripchart.c:2314
-msgid "yellow"
-msgstr "giallo"
-
-#: gstripchart/gstripchart.c:2315
-msgid "blue"
-msgstr "blu"
-
-#: gstripchart/gstripchart.c:2315
-msgid "green"
-msgstr "verde"
-
-#: gstripchart/gstripchart.c:2315
-msgid "cyan"
-msgstr "ciano"
-
-#: gstripchart/gstripchart.c:2315
-msgid "magenta"
-msgstr "magenta"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Busy"
-msgstr "Occupato"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Load"
-msgstr "Carica"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Swap"
-msgstr "Swap"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Battery"
-msgstr "Batteria"
-
-#: gstripchart/gstripchart.c:2317
-msgid "Net In"
-msgstr "Rete in"
-
-#: gstripchart/gstripchart.c:2317
-msgid "Net Out"
-msgstr "Rete out"
-
-#: gstripchart/gstripchart.c:2317
-msgid "ppp"
-msgstr "ppp"
-
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
 msgstr "nessun progetto selezionato"
@@ -944,7 +675,7 @@ msgstr "Oggi"
 msgid "Project Title"
 msgstr "Titolo progetto"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118
+#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:642
 msgid "Description"
 msgstr "Descrizione"
 
@@ -1222,7 +953,7 @@ msgstr "Nuovo"
 msgid "Reload"
 msgstr "Ricarica"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:152 stripchart/params.c:934
 msgid "Save"
 msgstr "Salva"
 
@@ -1295,11 +1026,11 @@ msgid ""
 msgstr "Questo programma fa parte del progetto GNOME. Logview"
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
-#: logview/about.c:52
+#: logview/about.c:58
 msgid "Logview"
 msgstr "Vista log"
 
-#: logview/about.c:53
+#: logview/about.c:59
 msgid "Copyright (C) 1998"
 msgstr "Copyright 1998"
 
@@ -1307,7 +1038,7 @@ msgstr "Copyright 1998"
 msgid "Action database"
 msgstr "Database azioni"
 
-#: logview/actions.c:61 logview/monitor.c:115
+#: logview/actions.c:61 logview/monitor.c:114
 msgid "Monitor options"
 msgstr "Opzioni monitoraggio"
 
@@ -1385,13 +1116,9 @@ msgstr ""
 "descrizione: [%s]\n"
 "azione: [%s]\n"
 
-#: logview/calendar.c:118
+#: logview/calendar.c:115
 msgid "Calendar"
 msgstr "Calendario"
-
-#: logview/calendar.c:139
-msgid "Hide calendar"
-msgstr "Nascondi calendario"
 
 #: logview/info.c:80
 msgid "Log stats"
@@ -1515,111 +1242,111 @@ msgstr "%s non può essere aperto."
 msgid "%s not a log file."
 msgstr "%s non è un file di log."
 
-#: logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
+#: logview/logrtns.c:634 logview/logrtns.c:665 logview/logrtns.c:796
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memoria esaurita"
 
-#: logview/logview.c:87
+#: logview/logview.c:86
 msgid "Open log...            "
 msgstr "Apri log..."
 
-#: logview/logview.c:88
+#: logview/logview.c:87
 msgid "Open log"
 msgstr "Apri log"
 
-#: logview/logview.c:90
+#: logview/logview.c:89
 msgid "Export log...          "
 msgstr "Esporta log..."
 
-#: logview/logview.c:91
+#: logview/logview.c:90
 msgid "Export log"
 msgstr "Esporta log..."
 
-#: logview/logview.c:93
+#: logview/logview.c:92
 msgid "Close log              "
 msgstr "Chiudi il log          "
 
-#: logview/logview.c:94
+#: logview/logview.c:93
 msgid "Close log"
 msgstr "Chiudi log"
 
-#: logview/logview.c:96
+#: logview/logview.c:95
 msgid "Switch log             "
 msgstr "Cambia log             "
 
-#: logview/logview.c:97
+#: logview/logview.c:96
 msgid "Switch log"
 msgstr "Cambia log"
 
-#: logview/logview.c:99
+#: logview/logview.c:98
 msgid "Monitor..              "
 msgstr "Controlla..            "
 
-#: logview/logview.c:100
+#: logview/logview.c:99
 msgid "Monitor log"
 msgstr "Controlla il logFont da caricare"
 
-#: logview/logview.c:102
+#: logview/logview.c:101
 msgid "Exit                   "
 msgstr "Esci                   "
 
-#: logview/logview.c:103
+#: logview/logview.c:102
 msgid "Exit program"
 msgstr "Esci dal programma"
 
-#: logview/logview.c:109
+#: logview/logview.c:108
 msgid "Calendar                "
 msgstr "Calendario              "
 
-#: logview/logview.c:110
+#: logview/logview.c:109
 msgid "Show calendar log"
 msgstr "Mostra il calendario dei log"
 
-#: logview/logview.c:112
+#: logview/logview.c:111
 msgid "Log stats               "
 msgstr "Statistiche log         "
 
-#: logview/logview.c:113
+#: logview/logview.c:112
 msgid "Show log stats"
 msgstr "Mostra statistiche del log"
 
-#: logview/logview.c:115
+#: logview/logview.c:114
 msgid "Zoom                    "
 msgstr "Ingrandisci             "
 
-#: logview/logview.c:116
+#: logview/logview.c:115
 msgid "Show line info"
 msgstr "Mostra informazioni sulla linea"
 
-#: logview/logview.c:118
+#: logview/logview.c:117
 msgid "Preferences...          "
 msgstr "Preferenze...           "
 
-#: logview/logview.c:119
+#: logview/logview.c:118
 msgid "Show user preferences"
 msgstr "Mostra preferenze dell'utente"
 
-#: logview/logview.c:126
+#: logview/logview.c:125
 msgid "Select...               "
 msgstr "Seleziona...            "
 
-#: logview/logview.c:127
+#: logview/logview.c:126
 msgid "Select log events"
 msgstr "Seleziona eventi"
 
-#: logview/logview.c:129
+#: logview/logview.c:128
 msgid "Filter..                "
 msgstr "Filtro..                "
 
-#: logview/logview.c:130
+#: logview/logview.c:129
 msgid "Filter log events"
 msgstr "Filtra eventi del log"
 
-#: logview/logview.c:137
+#: logview/logview.c:136
 msgid "About..                "
 msgstr "Informazioni su..      "
 
-#: logview/logview.c:138
+#: logview/logview.c:137
 msgid "Info about logview"
 msgstr "Informazioni sul visualizzatore di log"
 
@@ -1628,53 +1355,53 @@ msgid "No log files to open"
 msgstr "Nessun file da aprire"
 
 #. Create App
-#: logview/logview.c:268
+#: logview/logview.c:264
 msgid "System Log Viewer"
 msgstr "Visualizzatore Log di Sistema"
 
-#: logview/logview.c:370
+#: logview/logview.c:366
 msgid "Filename: "
 msgstr "Nome file: "
 
-#: logview/logview.c:386
+#: logview/logview.c:382
 msgid "Date: "
 msgstr "Data: "
 
-#: logview/logview.c:621
+#: logview/logview.c:605
 msgid "Too many open logs. Close one and try again"
 msgstr "Troppi log aperti. Chiuderne uno e riprovare"
 
-#: logview/logview.c:674
+#: logview/logview.c:661
 msgid "Open new logfile"
 msgstr "Apri nuovo file di log"
 
-#: logview/misc.c:78
+#: logview/misc.c:93
 #, c-format
 msgid "Error: [%s]\n"
 msgstr "Errore: [%s]\n"
 
-#: logview/monitor.c:132
+#: logview/monitor.c:131
 msgid "Choose logs to monitor"
 msgstr "Scegli file da monitorare"
 
 #. Check boxes
-#: logview/monitor.c:211
+#: logview/monitor.c:210
 msgid "Hide app"
 msgstr "Nascondi applicazione"
 
-#: logview/monitor.c:219
+#: logview/monitor.c:218
 msgid "Exec actions"
 msgstr "Esegui azione"
 
-#: logview/monitor.c:283 logview/monitor.c:330
+#: logview/monitor.c:282 logview/monitor.c:329
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list è NULL\n"
 
-#: logview/monitor.c:457
+#: logview/monitor.c:456
 msgid "Monitoring logs.."
 msgstr "Monitoraggio log.."
 
-#: logview/monitor.c:635
+#: logview/monitor.c:634
 msgid "TOUCHED!!\n"
 msgstr "CAMBIATO!!\n"
 
@@ -1741,11 +1468,13 @@ msgid "Grid"
 msgstr "Griglia"
 
 #: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1036
+#: stripchart/params.c:1039
 msgid "Edit"
 msgstr "Modifica"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40
+#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1029
+#: stripchart/params.c:1032
 msgid "File"
 msgstr "File"
 
@@ -1910,7 +1639,7 @@ msgid "Save session on exit."
 msgstr "Salva la sessione in uscita."
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:10
-#: mini-utils/gshutdown/gshutdown.c:396
+#: mini-utils/gshutdown/gshutdown.c:398
 msgid "General"
 msgstr "Generali"
 
@@ -2131,8 +1860,8 @@ msgid "Save the current palette with a different name"
 msgstr "Salva la tavolozza corrente con un nome differente"
 
 #: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
-#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
-#: mini-utils/gsu/gsu-gui-api.c:39
+#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:595
+#: stripchart/params.c:948
 msgid "Close"
 msgstr "Chiudi"
 
@@ -2304,14 +2033,6 @@ msgstr "Cattura"
 msgid "Grab a color on the screen"
 msgstr "Cattura un colore dallo schermo"
 
-#: mini-utils/gcolorsel/menus.c:919
-msgid "About this application"
-msgstr "Informazioni su questa applicazione"
-
-#: mini-utils/gcolorsel/menus.c:921
-msgid "Exit the program"
-msgstr "Esci dal programma"
-
 #: mini-utils/gcolorsel/session.c:304
 msgid ""
 "Your config file is corrupted.\n"
@@ -2340,6 +2061,10 @@ msgstr "Colori di sistema"
 msgid "User Colors"
 msgstr "Colori dell'utente"
 
+#: mini-utils/gcolorsel/session.c:437
+msgid "Search"
+msgstr "Cerca"
+
 #: mini-utils/gcolorsel/view-color-generic.c:16
 msgid "Decimal 8 bits"
 msgstr "Decimale 8 bit"
@@ -2359,6 +2084,14 @@ msgstr "Esadecimale 16 bit"
 #: mini-utils/gcolorsel/view-color-generic.c:20
 msgid "Float"
 msgstr "Virgola mobile"
+
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:815
+msgid "Color"
+msgstr "Colore"
+
+#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:227
+msgid "Value"
+msgstr "Valore"
 
 #. Create everything.
 #: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
@@ -2522,11 +2255,6 @@ msgstr "Ricerca in corso..."
 msgid "No search string was specified!"
 msgstr "Nessuna stringa di ricerca è stata specificata"
 
-#: mini-utils/gpenguin/gpenguin.c:56
-#, c-format
-msgid "%s: unable to load the penguin.\n"
-msgstr "%s: impossibile caricare il pinguino.\n"
-
 #: mini-utils/gshutdown/gshutdown.c:87
 msgid "Shut Down"
 msgstr "Spegni"
@@ -2583,20 +2311,24 @@ msgstr "Si desidera davvero porsi al livello di esecuzione 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Si desidera davvero riavviare il sistema?"
 
-#: mini-utils/gshutdown/gshutdown.c:151 mini-utils/gshutdown/gshutdown.c:591
+#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:592
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr "Bisogna essere super-user (root) per spegnere o riavviare il computer."
 
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:187
+#: mini-utils/gshutdown/gshutdown.c:189
 msgid "Shutdown or Reboot"
 msgstr "Spegni o riavvia"
 
-#: mini-utils/gshutdown/gshutdown.c:204 mini-utils/gshutdown/gshutdown.c:205
+#: mini-utils/gshutdown/gshutdown.c:206 mini-utils/gshutdown/gshutdown.c:207
 msgid "Easy"
 msgstr "Facile"
 
-#: mini-utils/gshutdown/gshutdown.c:242
+#: mini-utils/gshutdown/gshutdown.c:211 mini-utils/gshutdown/gshutdown.c:212
+msgid "Advanced"
+msgstr "Avanzato"
+
+#: mini-utils/gshutdown/gshutdown.c:244
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
@@ -2605,19 +2337,19 @@ msgstr ""
 "tutte le informazioni non salvate nelle applicazioni attive."
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:369
+#: mini-utils/gshutdown/gshutdown.c:371
 msgid "Revert to Defaults"
 msgstr "Reimposta i valori di default"
 
-#: mini-utils/gshutdown/gshutdown.c:379
+#: mini-utils/gshutdown/gshutdown.c:381
 msgid "Commands"
 msgstr "Comandi"
 
-#: mini-utils/gshutdown/gshutdown.c:384
+#: mini-utils/gshutdown/gshutdown.c:386
 msgid "Confirm before shutdown?"
 msgstr "Confermare prima di spegnere?"
 
-#: mini-utils/gshutdown/gshutdown.c:449
+#: mini-utils/gshutdown/gshutdown.c:451
 #, c-format
 msgid ""
 "%s\n"
@@ -2626,56 +2358,13 @@ msgstr ""
 "%s\n"
 "Tutti i dati non salvati verrano persi."
 
-#: mini-utils/gshutdown/gshutdown.c:459
+#: mini-utils/gshutdown/gshutdown.c:461
 msgid "Don't ask next time."
 msgstr "Non chiedre conferma la prossima volta."
 
-#: mini-utils/gshutdown/gshutdown.c:689
+#: mini-utils/gshutdown/gshutdown.c:685
 msgid "Command execution failed: fork failed"
 msgstr "Fallita esecuzione del comando: fork fallito."
-
-#: mini-utils/gsu/gsu-impl.c:153
-msgid ""
-"You are trying to do something which requires\n"
-"root (system administrator) privileges.\n"
-"To do this, you must give the root password.\n"
-"Please enter the root password now, or choose\n"
-"Cancel if you do not know it."
-msgstr ""
-"State tentando di fare qualcosa che richiede\n"
-"i privilegi di root, l'amministratore di sistema.\n"
-"Per fare questo, è necessario inserire la password \n"
-"dell'utente root. Inserite adesso questa password, \n"
-"oppure selezionate Annulla se non ne siete a conoscienza."
-
-#: mini-utils/gsu/gsu-impl.c:160
-#, c-format
-msgid ""
-"You are trying to change your user identity.\n"
-"Please enter the password for user `%s'."
-msgstr ""
-"State tentando di cambiare l'identità del vostro utente.\n"
-"Inserite la password per l'utente `%s'."
-
-#: mini-utils/gsu/gsu-main.c:62
-msgid "Command to be run as another user"
-msgstr "Comando da eseguire come altro utente"
-
-#: mini-utils/gsu/gsu-main.c:64
-msgid "User name to run command as"
-msgstr "Utente con cui eseguire il comando"
-
-#: mini-utils/gsu/gsu-main.c:66
-msgid "File containing interface description"
-msgstr "File contenente la descrizione dell'interfaccia"
-
-#: mini-utils/gsu/gsu-test-server.c:8
-msgid "Target User"
-msgstr "Utente finale"
-
-#: mini-utils/gsu/gsu-test-server.c:8
-msgid "USER"
-msgstr "UTENTE"
 
 #: mini-utils/guname/guname.c:53
 msgid "Make guname act as a control center applet"
@@ -2689,53 +2378,53 @@ msgstr "Errore di inizializzazione durante l'avvio della applet 'guname'."
 msgid "System Information"
 msgstr "Informazioni sul sistema"
 
-#: mini-utils/guname/guname.c:533
+#: mini-utils/guname/guname.c:536
 msgid "Logo file not found"
 msgstr "File contenente il logo non trovato"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:537
+#: mini-utils/guname/guname.c:540
 msgid "GNOME contributors:"
 msgstr "Collaboratori a GNOME:"
 
 #. fontset used by guname; adapt it if your language requires it
-#: mini-utils/guname/guname.c:541
+#: mini-utils/guname/guname.c:544
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
-#: mini-utils/guname/guname.c:552
+#: mini-utils/guname/guname.c:555
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: il GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:576
+#: mini-utils/guname/guname.c:579
 msgid "Email Information..."
 msgstr "Invia le informazioni via email..."
 
-#: mini-utils/guname/guname.c:589
+#: mini-utils/guname/guname.c:592
 msgid "Save Information to File..."
 msgstr "Salva le informazioni in un file..."
 
-#: mini-utils/guname/guname.c:601 mini-utils/guname/guname.c:671
+#: mini-utils/guname/guname.c:604 mini-utils/guname/guname.c:674
 msgid "Detailed Information..."
 msgstr "Informazioni dettagliate..."
 
-#: mini-utils/guname/guname.c:616
+#: mini-utils/guname/guname.c:619
 msgid "Category"
 msgstr "Categoria"
 
-#: mini-utils/guname/guname.c:616
+#: mini-utils/guname/guname.c:619
 msgid "Your System"
 msgstr "Valore nel sistema"
 
-#: mini-utils/guname/guname.c:657
+#: mini-utils/guname/guname.c:660 stripchart/params.c:941
 msgid "Save As..."
 msgstr "Salva come..."
 
-#: mini-utils/guname/guname.c:663
+#: mini-utils/guname/guname.c:666
 msgid "Mail To..."
 msgstr "Invia per email a..."
 
-#: mini-utils/guname/guname.c:711
+#: mini-utils/guname/guname.c:714
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -2746,27 +2435,27 @@ msgstr ""
 "%s\n"
 "Tutti oppure alcuni dei dati non sono stati salvati."
 
-#: mini-utils/guname/guname.c:723
+#: mini-utils/guname/guname.c:726
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "Impossibile aprire il file `%s': %s"
 
-#: mini-utils/guname/guname.c:745
+#: mini-utils/guname/guname.c:748
 msgid "Save System Information As..."
 msgstr "Salva le informazioni di sistema come..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:802
+#: mini-utils/guname/guname.c:805
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "Comando fallito ` %s ' : %s "
 
-#: mini-utils/guname/guname.c:810
+#: mini-utils/guname/guname.c:813
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "Impossibile eseguire il comando ` %s ' : %s "
 
-#: mini-utils/guname/guname.c:834
+#: mini-utils/guname/guname.c:837
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -2775,11 +2464,11 @@ msgstr ""
 "Il seguente messaggio di posta verrà spedito a %s.\n"
 "Sei sicuro di voler inviare queste informazioni?"
 
-#: mini-utils/guname/guname.c:845
+#: mini-utils/guname/guname.c:848
 msgid "Are you sure?"
 msgstr "Sei sicuro?"
 
-#: mini-utils/guname/guname.c:887
+#: mini-utils/guname/guname.c:890
 msgid "Address to mail to:"
 msgstr "Indirizzo email di destinazione:"
 
@@ -3180,56 +2869,745 @@ msgstr "Solo il superuser può usare questo programma"
 msgid "You appear to have no IDE drives"
 msgstr "Sembra che non ci siano drive IDE nel sistema"
 
-#~ msgid "Insert character"
-#~ msgstr "Inserisci carattere"
+#: gfloppy/src/badblocks.c:102
+msgid "MInternal Error: Unable to seek to the correct location."
+msgstr "MErrore Interno: Impossibile trovare la posizione corrente."
+
+#: gfloppy/src/badblocks.c:111
+#, c-format
+msgid "MInternal Error: Weird value (%ld) in do_test\n"
+msgstr "MErrore interno: valore strano (%ld) in do_test\n"
+
+#: gfloppy/src/badblocks.c:166
+#, c-format
+msgid "EBad block at block %lu"
+msgstr "EBlocco corrotto al blocco %lu"
+
+#. while (!i)
+#. ;
+#: gfloppy/src/badblocks.c:260
+msgid "MChecking for bad blocks..."
+msgstr "MControllo di blocchi corrotti..."
+
+#: gfloppy/src/badblocks.c:272
+#, c-format
+msgid "MFailed to open device %s for badblock checking\n"
+msgstr "MImpossibile aprire la periferica %s per il controllo di errore\n"
+
+#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:215
+msgid "MChecking for bad blocks... Done"
+msgstr "MControllo di blocchi corrotti... Fatto"
+
+#: gfloppy/src/fdformat.c:44
+msgid "MFormatting the disk..."
+msgstr "MFormattazione in corso..."
+
+#: gfloppy/src/fdformat.c:46
+msgid "EI don't know what this is, but it's very wrong."
+msgstr "ENon so cos'è, ma è molto sbagliato"
+
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
+#, c-format
+msgid "EError formatting track #%d"
+msgstr "EErrore formattando la traccia #%d"
+
+#: gfloppy/src/fdformat.c:74
+msgid "EError during completion of formatting"
+msgstr "EErrore durante il completamento della formattazione"
+
+#. XXXX - need to tell parent we're finished
+#: gfloppy/src/fdformat.c:78
+msgid "MFormatting the disk... Done"
+msgstr "MFormattazione in corso... Fatto"
+
+#. XXXX - tell parent we're starting verify stage
+#: gfloppy/src/fdformat.c:94
+msgid "MVerifying the format..."
+msgstr "MVerifica in corso..."
+
+#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
+msgid ""
+"EUnable to write to the floppy.\n"
+"\n"
+"Please confirm that it is not write-protected."
+msgstr ""
+"Impossibile scrivere sul floppy.\n"
+"\n"
+"Confermare che non sia protetto da scrittura."
+
+#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
+#, c-format
+msgid "EInsufficient permissions to open floppy device %s."
+msgstr "EImpossibile aprire l'unità floppy %s"
+
+#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
+msgid ""
+"EUnable to access the floppy disk.\n"
+"\n"
+"Please confirm that it is in the drive\n"
+"with the drive door shut."
+msgstr ""
+"Impossibile accedere al floppy.\n"
+"\n"
+"Confermare che si trova nel lettore\n"
+"con la porta di questo chiusa."
+
+#: gfloppy/src/fdformat.c:109
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s:%d"
+msgstr ""
+"EErrore generico durante l'accesso alla periferica floppy %s.\n"
+"\n"
+"Codice errore %s:%d"
+
+#: gfloppy/src/fdformat.c:129
+#, c-format
+msgid ""
+"ERead Error:\n"
+"Problem reading cylinder %d, expected %d, read %d"
+msgstr ""
+"EErrore in lettura:\n"
+"Problema nella lettura del cilindro %d, atteso %d, letto %d"
+
+#: gfloppy/src/fdformat.c:132
+#, c-format
+msgid "EProblem reading cylinder %d, expected %d, read %d"
+msgstr "EProblema nella lettura del cilindro %d, atteso %d, letto %d"
+
+#: gfloppy/src/fdformat.c:141
+#, c-format
+msgid "MBad data in cyl %d.  Continuing... "
+msgstr "MDati danneggiati al cilindor %d. Continuo... "
+
+#: gfloppy/src/fdformat.c:148
+#, c-format
+msgid "EError closing device %s"
+msgstr "EErrore nella chiusura dell'unità %s"
+
+#: gfloppy/src/fdformat.c:153
+msgid "MVerifying the format... Done"
+msgstr "MVerifica in corso... Fatto"
+
+#: gfloppy/src/fdformat.c:165
+#, c-format
+msgid "EUnable to write to device %s"
+msgstr "EImpossibile scrivere sull'unità %s"
+
+#: gfloppy/src/fdformat.c:184
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s"
+msgstr ""
+"EErrore generico durante l'accesso alla periferica floppy %s.\n"
+"\n"
+"Codice errore %s"
+
+#: gfloppy/src/fdformat.c:194
+msgid "ECould not determine current format type"
+msgstr "EImpossibile determinare il tipo di formato corrente"
+
+#.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: gfloppy/src/gfloppy-i18n.h:7
+msgid "Format a floppy"
+msgstr "Formattazione dischetti"
+
+#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
+msgid "Linux Native (ext2)"
+msgstr "Linux Nativo (ext2)"
+
+#: gfloppy/src/gfloppy-i18n.h:9
+msgid "Dos (FAT)"
+msgstr "Dos (FAT)"
+
+#: gfloppy/src/gfloppy-i18n.h:11
+msgid "Formatting /dev/floppy"
+msgstr "Formattazione di /dev/floppy"
+
+#: gfloppy/src/gfloppy-i18n.h:12
+msgid "Floppy Density:"
+msgstr "Densità del Disco:"
+
+#: gfloppy/src/gfloppy-i18n.h:13
+msgid "File system type:"
+msgstr "Tipo di sistema:"
+
+#: gfloppy/src/gfloppy-i18n.h:14
+msgid "High Density 3.5\" (1.44 MB)"
+msgstr "Alta Densità 3.5\" (1.44 MB)"
+
+#: gfloppy/src/gfloppy-i18n.h:15
+msgid "High Density 5.25\" (1.2 MB)"
+msgstr "Alta Densità 5.25\" (1.2 MB)"
+
+#: gfloppy/src/gfloppy-i18n.h:16
+msgid "Double Density 3.5\" (720 KB)"
+msgstr "Doppia Densità 3.5\" (720 KB)"
+
+#: gfloppy/src/gfloppy-i18n.h:17
+msgid "Double Density 5.25\" (360 KB)"
+msgstr "Doppia Densità 5.25\" (360 KB)"
+
+#: gfloppy/src/gfloppy-i18n.h:18
+msgid "Quick format"
+msgstr "Formattazione veloce"
+
+#: gfloppy/src/gfloppy.c:166 gfloppy/src/gfloppy.c:199
+msgid "MMaking filesystem on disk..."
+msgstr "MFormattazione in corso..."
+
+#: gfloppy/src/gfloppy.c:169
+msgid "EUnable to create filesystem correctly."
+msgstr "EImpossibile creare correttamente il filesystem."
+
+#: gfloppy/src/gfloppy.c:173 gfloppy/src/gfloppy.c:205
+msgid "MMaking filesystem on disk... Done"
+msgstr "MFormattazione in corso... Fatto"
+
+#: gfloppy/src/gfloppy.c:202 gfloppy/src/gfloppy.c:217
+msgid "EUnable to create filesystem."
+msgstr "EImpossibile scrivere il filesystem."
+
+#: gfloppy/src/gfloppy.c:211
+msgid "MChecking for bad blocks... (this might take a while)"
+msgstr "MControllo di blocchi corrotti... (puó durare qualche minuto)"
+
+#: gfloppy/src/main.c:179
+msgid "The device to format"
+msgstr "L'unità da formattare"
+
+#: gfloppy/src/main.c:180
+msgid "DEVICE"
+msgstr "DEVICE"
+
+#. We do this to get around a bug in libglade.  Ideally we won't need
+#. * to do this in the future.
+#: gfloppy/src/main.c:207
+msgid "Format"
+msgstr "Formato"
+
+#. initialize our widgets
+#: gfloppy/src/main.c:212
+#, c-format
+msgid "Formatting %s"
+msgstr "Formattazione di %s in corso"
+
+#: gfloppy/src/main.c:254
+msgid "Format another floppy?"
+msgstr "Formattare un altro disco?"
+
+#: gfloppy/src/progress.c:117
+msgid "Floppy formatted successfully."
+msgstr "Disco formattato con successo"
+
+#: gfloppy/src/progress.c:121
+msgid "Floppy formatting cancelled."
+msgstr "Formattazione del disco annullata"
+
+#: gfloppy/src/progress.c:176
+msgid "Format progress."
+msgstr "Progresso della formattazione."
+
+#: stripchart/chart-app.c:157
+msgid "Param"
+msgstr "Parametri"
+
+#: stripchart/chart-app.c:158
+msgid "Current"
+msgstr "Corrente"
+
+#: stripchart/chart-app.c:159 stripchart/params.c:692
+msgid "Top"
+msgstr "Massimo"
+
+#: stripchart/chart-app.c:160 stripchart/params.c:748
+msgid "Scale"
+msgstr "Scala"
+
+#: stripchart/chart-app.c:192 stripchart/stripchart-applet.c:69
+#: stripchart/stripchart.c:92 stripchart/stripchart.c:97
+#, fuzzy
+msgid "Stripchart"
+msgstr "gstripchart"
+
+#: stripchart/chart-app.c:193
+#, fuzzy
+msgid "Copyright 2000 John Kodis"
+msgstr "Copyright 1998,99 John Kodis"
+
+#: stripchart/chart-app.c:195
+msgid ""
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
+msgstr ""
+"Il programma GNOME stripchart disegna vari parametri specificati dall'utente "
+"come una funzione di tempo. Il suo principale scopo è quello di disegnare un "
+"grafico delle proprietà del sistema, come il carico sulla CPU, l'uso della "
+"CPU, il traffico di rete, e altri. Altri scopi ingegnosi sono lasciati alla "
+"fantasia dell'utente."
+
+#: stripchart/chart-app.c:234
+#, fuzzy
+msgid "Show values"
+msgstr "Mostra la dimensione dei dischi"
+
+#: stripchart/chart-app.c:241
+#, fuzzy
+msgid "Edit Prefs..."
+msgstr "Modifica preferenze..."
+
+#: stripchart/chart-app.c:246
+#, fuzzy
+msgid "Edit Params..."
+msgstr "Parametri..."
+
+#: stripchart/eval.c:252
+#, fuzzy
+msgid "closing parenthesis expected"
+msgstr "atteso rparen"
+
+#: stripchart/eval.c:269
+#, c-format
+msgid "no such field: %d"
+msgstr "nessun campo: %d"
+
+#: stripchart/eval.c:285
+msgid "missing variable identifer"
+msgstr "identificatore della variabile mancante"
+
+#: stripchart/eval.c:287
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr "identificatore della variabile non valido: %s"
+
+#: stripchart/eval.c:291
+msgid "number expected"
+msgstr "atteso un numero"
+
+#: stripchart/eval.c:362
+#, fuzzy, c-format
+msgid "extra junk at end: \"%s\""
+msgstr "\"gunk\" extra alla fine: \"%s\""
+
+#: stripchart/params.c:621
+#, fuzzy
+msgid "Parameter"
+msgstr "Parametri"
+
+#: stripchart/params.c:659
+msgid "Equation"
+msgstr "Equazione"
+
+#: stripchart/params.c:670
+msgid "Filename"
+msgstr "Nome file"
+
+#: stripchart/params.c:681
+msgid "Pattern"
+msgstr "Pattern"
+
+#: stripchart/params.c:702 stripchart/params.c:730
+msgid "Min"
+msgstr ""
+
+#: stripchart/params.c:711 stripchart/params.c:739
+#, fuzzy
+msgid "Max"
+msgstr "Maggio"
+
+#: stripchart/params.c:720
+msgid "Bottom"
+msgstr ""
+
+#: stripchart/params.c:759
+msgid "Linear"
+msgstr ""
+
+#: stripchart/params.c:767
+msgid "Logarithmic"
+msgstr ""
+
+#: stripchart/params.c:772
+msgid "Type"
+msgstr ""
+
+#: stripchart/params.c:783
+#, fuzzy
+msgid "Indicator"
+msgstr "Monitor"
+
+#: stripchart/params.c:790
+msgid "Line"
+msgstr ""
+
+#: stripchart/params.c:797
+#, fuzzy
+msgid "Point"
+msgstr "Porta:"
+
+#: stripchart/params.c:804
+msgid "Solid"
+msgstr ""
+
+#: stripchart/params.c:960
+msgid "Add Parameter Before"
+msgstr ""
+
+#: stripchart/params.c:967
+msgid "Add Parameter After"
+msgstr ""
+
+#: stripchart/params.c:974
+msgid "Apply Parameter Changes"
+msgstr ""
+
+#: stripchart/params.c:981
+msgid "Delete Parameter"
+msgstr ""
+
+#: stripchart/params.c:989
+#, fuzzy
+msgid "Add Color"
+msgstr "Colore"
+
+#: stripchart/params.c:996
+#, fuzzy
+msgid "Delete Color"
+msgstr "Nuovo colore"
+
+#: stripchart/params.c:1015
+msgid "Info"
+msgstr ""
+
+#: stripchart/params.c:1086
+msgid "Parameter Editor"
+msgstr ""
+
+#: stripchart/params.c:1095
+#, fuzzy
+msgid "Parameters"
+msgstr "Parametri"
+
+#: stripchart/prefs.c:205
+#, fuzzy
+msgid "Chart"
+msgstr "Carattere:"
+
+#: stripchart/prefs.c:215 stripchart/prefs.c:274
+#, fuzzy
+msgid "enabled"
+msgstr "Abilitato"
+
+#: stripchart/prefs.c:222
+#, fuzzy
+msgid "minor"
+msgstr "minuti"
+
+#: stripchart/prefs.c:228
+msgid "major"
+msgstr ""
+
+#: stripchart/prefs.c:241 stripchart/prefs.c:259
+msgid "Update"
+msgstr ""
+
+#: stripchart/prefs.c:244 stripchart/prefs.c:267
+msgid "Smooth"
+msgstr ""
+
+#: stripchart/prefs.c:247
+msgid "Ticks"
+msgstr ""
+
+#: stripchart/prefs.c:252
+#, fuzzy
+msgid "Pen"
+msgstr "Pattern"
+
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "Geometry string: WxH+X+Y"
+msgstr "Stringa geometria: WxH+X+Y"
+
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "GEO"
+msgstr "GEO"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "Configuration file name"
+msgstr "Nome file di configurazione"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "FILE"
+msgstr "FILE"
+
+#: stripchart/stripchart-applet.c:92
+#, fuzzy
+msgid "Values"
+msgstr "Valore"
+
+#: stripchart/stripchart-applet.c:95
+#, fuzzy
+msgid "Prefs..."
+msgstr "Preferenze"
+
+#: stripchart/stripchart-applet.c:98
+msgid "Params..."
+msgstr "Parametri..."
+
+#~ msgid "New search"
+#~ msgstr "Nuova ricerca"
+
+#~ msgid "Open search spec"
+#~ msgstr "Apri specifiche della ricerca"
+
+#~ msgid "Save search spec"
+#~ msgstr "Salva le specifiche della ricerca"
+
+#~ msgid "Save search spec as..."
+#~ msgstr "Salve le specifiche delle ricerca come..."
+
+#~ msgid "Add condition"
+#~ msgstr "Aggiungi condizione"
+
+#~ msgid "Add a search condition"
+#~ msgstr "Aggiunge un condizione alla ricerca"
+
+#~ msgid "Remove condition"
+#~ msgstr "Rimuovi condizione"
+
+#~ msgid "Remove last search condition"
+#~ msgstr "Rimuove l'ultima condizione della ricerca"
+
+#~ msgid "Show advanced options"
+#~ msgstr "Mostra opzioni avanzate"
+
+#~ msgid "Start search"
+#~ msgstr "Inizia la ricerca"
+
+#~ msgid "New"
+#~ msgstr "Nuovo"
+
+#~ msgid "Clear the search window"
+#~ msgstr "Cancella la finestre della ricerca"
+
+#~ msgid "Start the current search"
+#~ msgstr "Avvia la ricerca corrente"
+
+#~ msgid "Find Files"
+#~ msgstr "Trova file"
+
+#~ msgid "Directory:"
+#~ msgstr "Directory:"
+
+#~ msgid "Directory to Search"
+#~ msgstr "Directory in cui cercare"
+
+#~ msgid "GNOME Find"
+#~ msgstr "GNOME Find"
+
+#~ msgid "(C) 1998 the Free Software Foundation"
+#~ msgstr "(C) 1998 Free Software Foundation"
+
+#~ msgid "GNOME Find is a fast, flexible file search tool."
+#~ msgstr ""
+#~ "GNOME Find è uno strumento veloce e flessibile per la ricerca dei file."
+
+#~ msgid "%s, line %d: "
+#~ msgstr "%s, linea %d: "
+
+#~ msgid "can't open config file \"%s\""
+#~ msgstr "impossibile aprire il file di configurazione \"%s\""
+
+#~ msgid ""
+#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "impossibile aprire il file di configurazione \"./gstripchart.conf\", \"%s\", "
+#~ "\"%s\", oppure \"%s\""
+
+#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "impossibile aprire il file di configurazione \"./gstripchart.conf\", \"%s\" "
+#~ "oppure \"%s\""
+
+#~ msgid "identifier or begin must be first"
+#~ msgstr "un identificatore o un inizio devono essere primi"
+
+#~ msgid "unrecognized color: %s"
+#~ msgstr "colore non riconosciuto: %s"
+
+#~ msgid "scale must be either \"log\" or \"linear\""
+#~ msgstr "la scala deve essere logaritmica oppure lineare"
+
+#~ msgid "no equation found"
+#~ msgstr "nessuna equazione trovata"
+
+#~ msgid "invalid option: \"%s\""
+#~ msgstr "opzione non valida: \"%s\""
+
+#~ msgid "E_xit"
+#~ msgstr "E_sci"
+
+#~ msgid "Terminate the stripchart program"
+#~ msgstr "Termina il programma stripchart"
+
+#~ msgid "Identifier"
+#~ msgstr "Identificatore"
+
+#~ msgid "Expected range"
+#~ msgstr "Intervallo atteso"
+
+#~ msgid "Displayed range"
+#~ msgstr "Intervallo visualizzato"
+
+#~ msgid "Current value"
+#~ msgstr "Valore corrente"
+
+#~ msgid "Active"
+#~ msgstr "Attivo"
+
+#~ msgid "Stripchart Parameters"
+#~ msgstr "Parametri stripchart"
+
+#~ msgid "Stripchart Viewer"
+#~ msgstr "Visualizzatore di grafici"
+
+#~ msgid "invalid display type: %s\n"
+#~ msgstr "tipo display non valido: %s\n"
+
+#~ msgid "Chart update interval"
+#~ msgstr "intervallo di aggiornamento del grafico"
+
+#~ msgid "SECS"
+#~ msgstr "SECS"
+
+#~ msgid "Chart low-pass filter time constant"
+#~ msgstr "Grafico con filtro tempo costante"
+
+#~ msgid "Slider update interval"
+#~ msgstr "intervallo di aggiornamento dello slider"
+
+#~ msgid "Slider low-pass filter time constant"
+#~ msgstr "Slider con filtro tempo costante"
+
+#~ msgid "Adds a menubar to the main window"
+#~ msgstr "Aggiungi barra del menu alla finestra principale"
+
+#~ msgid "Omits slider window"
+#~ msgstr "Omette la finestra dello slider"
+
+#~ msgid "TYPE is one of gtk, applet, text, or none"
+#~ msgstr "TYPE deve essere uno di gtk, applet, testo o niente"
+
+#~ msgid "TYPE"
+#~ msgstr "TYPE"
+
+#~ msgid "TYPE is one of gtk, text, or none"
+#~ msgstr "TYPE deve essere uno di gtk, testo o niente"
+
+#~ msgid "white"
+#~ msgstr "bianco"
+
+#~ msgid "black"
+#~ msgstr "naro"
+
+#~ msgid "red"
+#~ msgstr "rosso"
+
+#~ msgid "yellow"
+#~ msgstr "giallo"
+
+#~ msgid "blue"
+#~ msgstr "blu"
+
+#~ msgid "green"
+#~ msgstr "verde"
+
+#~ msgid "cyan"
+#~ msgstr "ciano"
+
+#~ msgid "magenta"
+#~ msgstr "magenta"
+
+#~ msgid "Busy"
+#~ msgstr "Occupato"
+
+#~ msgid "Load"
+#~ msgstr "Carica"
+
+#~ msgid "Swap"
+#~ msgstr "Swap"
+
+#~ msgid "Battery"
+#~ msgstr "Batteria"
+
+#~ msgid "Net In"
+#~ msgstr "Rete in"
+
+#~ msgid "Net Out"
+#~ msgstr "Rete out"
+
+#~ msgid "ppp"
+#~ msgstr "ppp"
+
+#~ msgid "Hide calendar"
+#~ msgstr "Nascondi calendario"
+
+#~ msgid "%s: unable to load the penguin.\n"
+#~ msgstr "%s: impossibile caricare il pinguino.\n"
+
+#~ msgid ""
+#~ "You are trying to do something which requires\n"
+#~ "root (system administrator) privileges.\n"
+#~ "To do this, you must give the root password.\n"
+#~ "Please enter the root password now, or choose\n"
+#~ "Cancel if you do not know it."
+#~ msgstr ""
+#~ "State tentando di fare qualcosa che richiede\n"
+#~ "i privilegi di root, l'amministratore di sistema.\n"
+#~ "Per fare questo, è necessario inserire la password \n"
+#~ "dell'utente root. Inserite adesso questa password, \n"
+#~ "oppure selezionate Annulla se non ne siete a conoscienza."
+
+#~ msgid ""
+#~ "You are trying to change your user identity.\n"
+#~ "Please enter the password for user `%s'."
+#~ msgstr ""
+#~ "State tentando di cambiare l'identità del vostro utente.\n"
+#~ "Inserite la password per l'utente `%s'."
+
+#~ msgid "Command to be run as another user"
+#~ msgstr "Comando da eseguire come altro utente"
+
+#~ msgid "User name to run command as"
+#~ msgstr "Utente con cui eseguire il comando"
+
+#~ msgid "File containing interface description"
+#~ msgstr "File contenente la descrizione dell'interfaccia"
+
+#~ msgid "Target User"
+#~ msgstr "Utente finale"
+
+#~ msgid "USER"
+#~ msgstr "UTENTE"
 
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-
-#~ msgid "Insert character..."
-#~ msgstr "Inserisci carattere..."
-
-#~ msgid "_Toolbar"
-#~ msgstr "_Barra strumenti"
-
-#~ msgid "View or hide the toolbar"
-#~ msgstr "Mostra o nascondi la barra degli strumenti"
-
-#~ msgid "_Statusbar"
-#~ msgstr "Barra di _Stato"
-
-#~ msgid "View or hide the statusbar"
-#~ msgstr "Mostra o nascondi la barra di stato"
 
 #~ msgid "Cut the text to clipboard"
 #~ msgstr "Taglia il testo negli appunti"
 
 #~ msgid "Copy the text to clipboard."
 #~ msgstr "Copia il testo negli Appunti"
-
-#~ msgid "Paste the text from clipboard."
-#~ msgstr "Incolla il testo dagli appunti"
-
-#~ msgid "Exit the application"
-#~ msgstr "Termina l'applicazione"
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "Testo tagliato negli appunti..."
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "Testo copiato negli appunti..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "Testo incollato dagli appunto..."
-
-#~ msgid ""
-#~ "The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
-#~ "contain bad English.\n"
-#~ "http://users.telekabel.nl/hongli/"
-#~ msgstr ""
-#~ "L'equivalente della Mappa di Caratteri di Windows per GNOME. Attenzione: può "
-#~ "contenere un pessimo inglese.\n"
-#~ "http://users.telekabel.nl/hongli/"
 
 #~ msgid "This sets the overall application settings."
 #~ msgstr "Questo imposta le impostazioni generali dell'applicazione."
@@ -3296,9 +3674,6 @@ msgstr "Sembra che non ci siano drive IDE nel sistema"
 
 #~ msgid "Add it to favorites"
 #~ msgstr "Aggiungi ai preferiti"
-
-#~ msgid "Format"
-#~ msgstr "Formato"
 
 #~ msgid "On drop"
 #~ msgstr "Al rilascio"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.3.0\n"
-"POT-Creation-Date: 2001-02-19 15:49+0900\n"
+"POT-Creation-Date: 2001-02-27 03:36-0800\n"
 "PO-Revision-Date: 2001-02-19 16:06+0900\n"
 "Last-Translator: Young-Ho, Cha <ganadist@chollian.net>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -79,8 +79,7 @@ msgid "Text to copy:"
 msgstr "복사할 문자:"
 
 #: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
-#: gstripchart/gstripchart.c:1798 mini-utils/gcolorsel/menus.c:921
-#: stripchart/chart-app.c:253
+#: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:253
 msgid "Exit"
 msgstr "끝내기"
 
@@ -90,7 +89,6 @@ msgid "Copy"
 msgstr "복사"
 
 #: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
-#: gstripchart/gstripchart.c:1786 gstripchart/gstripchart.c:2070
 #: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
 #: stripchart/chart-app.c:227 stripchart/params.c:1008
 #: stripchart/stripchart-applet.c:89
@@ -98,8 +96,7 @@ msgid "About"
 msgstr "이 프로그램은"
 
 #: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
-#: gdictsrc/gdict-applet.c:286 gstripchart/gstripchart.c:1780
-#: gstripchart/gstripchart.c:2067 stripchart/chart-app.c:222
+#: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:222
 #: stripchart/params.c:1043 stripchart/params.c:1046
 #: stripchart/stripchart-applet.c:86
 msgid "Help"
@@ -200,7 +197,7 @@ msgstr "프로그램 종료"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:623 gdictsrc/gdict-pref-dialog.c:498
+#: gdictsrc/dict.c:635 gdictsrc/gdict-pref-dialog.c:498
 #: gdictsrc/gdict-pref-dialog.c:542 gdictsrc/gdict-speller.c:393
 msgid "Cannot connect to server"
 msgstr "서버로 접속할수 없습니다."
@@ -254,7 +251,7 @@ msgstr ""
 " "
 
 #: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
-#: gdictsrc/gdict-applet.c:315
+#: gdictsrc/gdict-applet.c:313
 msgid "Lookup"
 msgstr "찾기"
 
@@ -294,23 +291,23 @@ msgstr "사용할 서버, 기본 찾기 방법, 글꼴"
 msgid "Word definition"
 msgstr "단어 정의"
 
-#: gdictsrc/gdict-applet.c:282
+#: gdictsrc/gdict-applet.c:280
 msgid "About..."
 msgstr "이 프로그램은"
 
-#: gdictsrc/gdict-applet.c:291
+#: gdictsrc/gdict-applet.c:289
 msgid "Preferences..."
 msgstr "설정"
 
-#: gdictsrc/gdict-applet.c:295
+#: gdictsrc/gdict-applet.c:293
 msgid "Show/Hide Definition Window..."
 msgstr "정의 창 보이거나 닫기"
 
-#: gdictsrc/gdict-applet.c:299
+#: gdictsrc/gdict-applet.c:297
 msgid "Spell Check..."
 msgstr "철자 검사..."
 
-#: gdictsrc/gdict-applet.c:311
+#: gdictsrc/gdict-applet.c:309
 msgid "Cannot create applet!\n"
 msgstr "애플릿을 생성할수 없습니다!\n"
 
@@ -633,319 +630,6 @@ msgstr "명령 인식 불가"
 #: gsearchtool/outdlg.c:159
 msgid "No command for this mime type"
 msgstr "이 형식에 대한 명령이 없습니다"
-
-#: gstripchart/gstripchart.c:441
-msgid "rparen expected"
-msgstr "오른쪽 괄호가 있어야 합니다"
-
-#: gstripchart/gstripchart.c:458 stripchart/eval.c:269
-#, c-format
-msgid "no such field: %d"
-msgstr "그런 필드가 없습니다: %d"
-
-#: gstripchart/gstripchart.c:486 stripchart/eval.c:285
-msgid "missing variable identifer"
-msgstr "변수명이 없습니다"
-
-#: gstripchart/gstripchart.c:488 stripchart/eval.c:287
-#, c-format
-msgid "invalid variable identifer: %s"
-msgstr "변수명이 잘못되었습니다: %s"
-
-#: gstripchart/gstripchart.c:492 stripchart/eval.c:291
-msgid "number expected"
-msgstr "숫자가 와야 합니다"
-
-#: gstripchart/gstripchart.c:570
-#, c-format
-msgid "extra gunk at end: \"%s\""
-msgstr "끝에 쓸데 없는 것이 붙어 있습니다: \"%s\""
-
-#: gstripchart/gstripchart.c:652
-#, c-format
-msgid "%s, line %d: "
-msgstr "%s, %d번째 줄: "
-
-#: gstripchart/gstripchart.c:733
-#, c-format
-msgid "can't open config file \"%s\""
-msgstr "설정 파일 \"%s\"을(를) 열 수 없습니다"
-
-#: gstripchart/gstripchart.c:760
-#, c-format
-msgid ""
-"can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-msgstr ""
-"설정 파일을 열 수 없습니다: \"./gstripchart.conf\", \"%s\", \"%s\", 혹은 "
-"\"%s\""
-
-#: gstripchart/gstripchart.c:765
-#, c-format
-msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-msgstr "설정 파일을 열 수 없습니다: \"./gstripchart.conf\", \"%s\", or \"%s\""
-
-#: gstripchart/gstripchart.c:843
-msgid "identifier or begin must be first"
-msgstr "변수명 혹은 begin은 첫번째로 와야 합니다"
-
-#: gstripchart/gstripchart.c:851 gstripchart/gstripchart.c:868
-#, c-format
-msgid "unrecognized color: %s"
-msgstr "알 수 없는 색깔: %s"
-
-# "scale"의 번역은 다른 entry의 "Scale"과 동일해야 함
-#: gstripchart/gstripchart.c:883
-msgid "scale must be either \"log\" or \"linear\""
-msgstr "비율은 \\\"log\\\"나 \\\"linear\\\"중의 하나이어야 합니다."
-
-#: gstripchart/gstripchart.c:898
-msgid "no equation found"
-msgstr "식이 없습니다"
-
-#: gstripchart/gstripchart.c:915
-#, c-format
-msgid "invalid option: \"%s\""
-msgstr "잘못된 옵션: \"%s\""
-
-#: gstripchart/gstripchart.c:1498
-msgid "E_xit"
-msgstr "끝내기(_X)"
-
-#: gstripchart/gstripchart.c:1498
-msgid "Terminate the stripchart program"
-msgstr "스트립차트 프로그램 끝내기"
-
-#: gstripchart/gstripchart.c:1514
-msgid "Copyright 1998,99 John Kodis"
-msgstr "Copyright 1998,99 John Kodis"
-
-#: gstripchart/gstripchart.c:1516 stripchart/chart-app.c:195
-msgid ""
-"The GNOME stripchart program plots various user-specified parameters as a "
-"function of time.  Its main use is to chart system performance parameters "
-"such as CPU load, CPU utilization, network traffic levels, and the like.  "
-"Other more ingenious uses are left as an exercise for the interested user."
-msgstr ""
-"그놈 스트립차트 프로그램은 사용자가 지정한 여러가지 매개 변수들의 변화를 "
-"시간에 대한 함수로 그래프를 그립니다.  주된 용도는 CPU 사용량, CPU 사용도, "
-"네트워크 트래픽 정도와 같은 시스템 효율에 관한 변수를 그래프로 그리는 "
-"것입니다.  그 외에 재치 있게 사용하는 방법은 관심있는 사용자에게 연습 문제로 "
-"남겨 둡니다."
-
-#: gstripchart/gstripchart.c:1601 gstripchart/gstripchart.c:1740
-#: stripchart/chart-app.c:157
-msgid "Param"
-msgstr "변수"
-
-#: gstripchart/gstripchart.c:1601 mini-utils/gcolorsel/view-color-list.c:197
-#: mini-utils/guname/moreinfo.c:227
-msgid "Value"
-msgstr "값"
-
-#: gstripchart/gstripchart.c:1605
-msgid "Identifier"
-msgstr "변수명"
-
-#: gstripchart/gstripchart.c:1607 mini-utils/gcolorsel/view-color-list.c:196
-#: stripchart/params.c:815
-msgid "Color"
-msgstr "색상"
-
-#: gstripchart/gstripchart.c:1609 stripchart/params.c:670
-msgid "Filename"
-msgstr "파일 이름"
-
-#: gstripchart/gstripchart.c:1611 stripchart/params.c:681
-msgid "Pattern"
-msgstr "패턴"
-
-#: gstripchart/gstripchart.c:1613 stripchart/params.c:659
-msgid "Equation"
-msgstr "수식"
-
-#: gstripchart/gstripchart.c:1615
-msgid "Expected range"
-msgstr "예상 범위"
-
-#: gstripchart/gstripchart.c:1619
-msgid "Displayed range"
-msgstr "표시 범위:"
-
-#: gstripchart/gstripchart.c:1623
-msgid "Current value"
-msgstr "현재 값"
-
-#: gstripchart/gstripchart.c:1630
-msgid "Active"
-msgstr "동작"
-
-#: gstripchart/gstripchart.c:1647
-msgid "Stripchart Parameters"
-msgstr "스트립차트 매개 변수"
-
-#: gstripchart/gstripchart.c:1741 stripchart/chart-app.c:158
-msgid "Current"
-msgstr "현재"
-
-#: gstripchart/gstripchart.c:1742 stripchart/chart-app.c:159
-#: stripchart/params.c:692
-msgid "Top"
-msgstr "최고"
-
-#: gstripchart/gstripchart.c:1743 stripchart/chart-app.c:160
-#: stripchart/params.c:748
-msgid "Scale"
-msgstr "비율"
-
-#: gstripchart/gstripchart.c:1792
-msgid "Params"
-msgstr "파라미터"
-
-#. Create a top-level application window. Set minimum size (_usize),
-#. initial size (_default_size), and establish delete and destroy
-#. event handlers.
-#: gstripchart/gstripchart.c:1904
-msgid "gstripchart"
-msgstr "스트립차트"
-
-#: gstripchart/gstripchart.c:1904
-msgid "Stripchart Viewer"
-msgstr "스트립차트 보기 프로그램"
-
-#: gstripchart/gstripchart.c:2073 stripchart/stripchart-applet.c:98
-msgid "Params..."
-msgstr "매개 변수..."
-
-#: gstripchart/gstripchart.c:2118
-#, c-format
-msgid "invalid display type: %s\n"
-msgstr "표시 타입이 틀렸습니다: %s\n"
-
-#: gstripchart/gstripchart.c:2143 stripchart/stripchart-applet.c:44
-#: stripchart/stripchart.c:66
-msgid "Geometry string: WxH+X+Y"
-msgstr "위치 및 크기 문자열: WxH+X+Y"
-
-#: gstripchart/gstripchart.c:2143 stripchart/stripchart-applet.c:44
-#: stripchart/stripchart.c:66
-msgid "GEO"
-msgstr "위치"
-
-#: gstripchart/gstripchart.c:2145 stripchart/stripchart-applet.c:46
-#: stripchart/stripchart.c:68
-msgid "Configuration file name"
-msgstr "설정 파일 이름"
-
-#: gstripchart/gstripchart.c:2145 stripchart/stripchart-applet.c:46
-#: stripchart/stripchart.c:68
-msgid "FILE"
-msgstr "파일"
-
-#: gstripchart/gstripchart.c:2147
-msgid "Chart update interval"
-msgstr "차트 갱신 간격"
-
-#: gstripchart/gstripchart.c:2147 gstripchart/gstripchart.c:2149
-#: gstripchart/gstripchart.c:2151 gstripchart/gstripchart.c:2153
-msgid "SECS"
-msgstr "<초>"
-
-# low-pass filter?
-#
-#: gstripchart/gstripchart.c:2149
-msgid "Chart low-pass filter time constant"
-msgstr "차트 low-pass 필터 시간 상수"
-
-#: gstripchart/gstripchart.c:2151
-msgid "Slider update interval"
-msgstr "슬라이더 갱신 간격"
-
-# low-pass filter?
-#
-#: gstripchart/gstripchart.c:2153
-msgid "Slider low-pass filter time constant"
-msgstr "슬라이더 low-pass 필터 시간 상수"
-
-#: gstripchart/gstripchart.c:2155
-msgid "Adds a menubar to the main window"
-msgstr "메인 창에 메뉴 막대 추가"
-
-#: gstripchart/gstripchart.c:2157
-msgid "Omits slider window"
-msgstr "슬라이더 창 생략"
-
-#: gstripchart/gstripchart.c:2160
-msgid "TYPE is one of gtk, applet, text, or none"
-msgstr "형식 은 gtk, text, graph, none중의 하나입니다"
-
-#: gstripchart/gstripchart.c:2160 gstripchart/gstripchart.c:2162
-msgid "TYPE"
-msgstr "형식"
-
-#: gstripchart/gstripchart.c:2162
-msgid "TYPE is one of gtk, text, or none"
-msgstr "<타입>은 gtk, text, graph, none중의 하나입니다"
-
-#: gstripchart/gstripchart.c:2314
-msgid "white"
-msgstr "흰색"
-
-#: gstripchart/gstripchart.c:2314
-msgid "black"
-msgstr "검정"
-
-#: gstripchart/gstripchart.c:2314
-msgid "red"
-msgstr "빨강"
-
-#: gstripchart/gstripchart.c:2314
-msgid "yellow"
-msgstr "노랑"
-
-#: gstripchart/gstripchart.c:2315
-msgid "blue"
-msgstr "파랑"
-
-#: gstripchart/gstripchart.c:2315
-msgid "green"
-msgstr "초록"
-
-#: gstripchart/gstripchart.c:2315
-msgid "cyan"
-msgstr "청록"
-
-#: gstripchart/gstripchart.c:2315
-msgid "magenta"
-msgstr "보라"
-
-# (FIXME)
-#: gstripchart/gstripchart.c:2316
-msgid "Busy"
-msgstr "바쁨"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Load"
-msgstr "읽기"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Swap"
-msgstr "바꾸기"
-
-#: gstripchart/gstripchart.c:2316
-msgid "Battery"
-msgstr "전지"
-
-#: gstripchart/gstripchart.c:2317
-msgid "Net In"
-msgstr "네트워크 수신량"
-
-#: gstripchart/gstripchart.c:2317
-msgid "Net Out"
-msgstr "네트워크 전송량"
-
-#: gstripchart/gstripchart.c:2317
-msgid "ppp"
-msgstr "ppp"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -1313,11 +997,11 @@ msgstr "종료"
 msgid "Quit GTimeTracker"
 msgstr "GTimeTracker 종료"
 
-#: logview/about.c:46
+#: logview/about.c:44
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr ""
 
-#: logview/about.c:47
+#: logview/about.c:45
 msgid ""
 "This  program  is  part of  the  GNOME  project for Linux. Logview comes "
 "with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
@@ -1326,11 +1010,11 @@ msgid ""
 msgstr ""
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
-#: logview/about.c:60
+#: logview/about.c:58
 msgid "Logview"
 msgstr "기록 보기"
 
-#: logview/about.c:61
+#: logview/about.c:59
 msgid "Copyright (C) 1998"
 msgstr ""
 
@@ -1410,13 +1094,9 @@ msgid ""
 "action: [%s]\n"
 msgstr ""
 
-#: logview/calendar.c:117
+#: logview/calendar.c:115
 msgid "Calendar"
 msgstr "달력"
-
-#: logview/calendar.c:138
-msgid "Hide calendar"
-msgstr "달력 숨김"
 
 #: logview/info.c:80
 msgid "Log stats"
@@ -1537,7 +1217,7 @@ msgstr "%s를 열수 없습니다."
 msgid "%s not a log file."
 msgstr "%s 는 로그파일이 아닙니다."
 
-#: logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
+#: logview/logrtns.c:634 logview/logrtns.c:665 logview/logrtns.c:796
 msgid "ReadLogStats: out of memory"
 msgstr ""
 
@@ -2319,6 +1999,14 @@ msgstr "십육진 (16 비트)"
 msgid "Float"
 msgstr "부동소수점"
 
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:815
+msgid "Color"
+msgstr "색상"
+
+#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:227
+msgid "Value"
+msgstr "값"
+
 #. Create everything.
 #: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:501 mini-utils/gw/gw.c:571
@@ -2603,55 +2291,55 @@ msgstr "'guname-capplet'을 시작할 때 초기화 문제 발생"
 msgid "System Information"
 msgstr "시스템 정보"
 
-#: mini-utils/guname/guname.c:533
+#: mini-utils/guname/guname.c:536
 msgid "Logo file not found"
 msgstr "로고파일을 찾을 수 없습니다"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:537
+#: mini-utils/guname/guname.c:540
 msgid "GNOME contributors:"
 msgstr "그놈에 기여한 사람들:"
 
 # Nonsense..  It should not be in a PO file.
 #
 #. fontset used by guname; adapt it if your language requires it
-#: mini-utils/guname/guname.c:541
+#: mini-utils/guname/guname.c:544
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr ""
 
-#: mini-utils/guname/guname.c:552
+#: mini-utils/guname/guname.c:555
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "그놈(GNOME): The GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:576
+#: mini-utils/guname/guname.c:579
 msgid "Email Information..."
 msgstr "정보를 메일로 보내기..."
 
-#: mini-utils/guname/guname.c:589
+#: mini-utils/guname/guname.c:592
 msgid "Save Information to File..."
 msgstr "정보를 파일에 저장..."
 
-#: mini-utils/guname/guname.c:601 mini-utils/guname/guname.c:671
+#: mini-utils/guname/guname.c:604 mini-utils/guname/guname.c:674
 msgid "Detailed Information..."
 msgstr "상세한 정보..."
 
-#: mini-utils/guname/guname.c:616
+#: mini-utils/guname/guname.c:619
 msgid "Category"
 msgstr "구분"
 
-#: mini-utils/guname/guname.c:616
+#: mini-utils/guname/guname.c:619
 msgid "Your System"
 msgstr "당신의 시스템"
 
-#: mini-utils/guname/guname.c:657 stripchart/params.c:941
+#: mini-utils/guname/guname.c:660 stripchart/params.c:941
 msgid "Save As..."
 msgstr "다른 이름으로 저장..."
 
-#: mini-utils/guname/guname.c:663
+#: mini-utils/guname/guname.c:666
 msgid "Mail To..."
 msgstr "전자우편 보내기..."
 
-#: mini-utils/guname/guname.c:711
+#: mini-utils/guname/guname.c:714
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -2662,27 +2350,27 @@ msgstr ""
 "%s\n"
 "몇몇 혹은 모든 자료가 저장되지 않았습니다."
 
-#: mini-utils/guname/guname.c:723
+#: mini-utils/guname/guname.c:726
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "`%s' 파일을 열지 못함: %s"
 
-#: mini-utils/guname/guname.c:745
+#: mini-utils/guname/guname.c:748
 msgid "Save System Information As..."
 msgstr "시스템 정보를 다른 이름으로 저장..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:802
+#: mini-utils/guname/guname.c:805
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "명령어 실패 ` %s ': %s"
 
-#: mini-utils/guname/guname.c:810
+#: mini-utils/guname/guname.c:813
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "명령어를 실행할 수 없음 ` %s ' : %s"
 
-#: mini-utils/guname/guname.c:834
+#: mini-utils/guname/guname.c:837
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -2691,11 +2379,11 @@ msgstr ""
 "다음 편지를 %s에 보냅니다.\n"
 " 정말로 이 정보를 전자우편으로 보낼까요?"
 
-#: mini-utils/guname/guname.c:845
+#: mini-utils/guname/guname.c:848
 msgid "Are you sure?"
 msgstr "확실합니까?"
 
-#: mini-utils/guname/guname.c:887
+#: mini-utils/guname/guname.c:890
 msgid "Address to mail to:"
 msgstr "전자우편 보낼 주소:"
 
@@ -3330,6 +3018,22 @@ msgstr "플로피디스크의 포맷이 취소되었습니다."
 msgid "Format progress."
 msgstr "포맷 진행"
 
+#: stripchart/chart-app.c:157
+msgid "Param"
+msgstr "변수"
+
+#: stripchart/chart-app.c:158
+msgid "Current"
+msgstr "현재"
+
+#: stripchart/chart-app.c:159 stripchart/params.c:692
+msgid "Top"
+msgstr "최고"
+
+#: stripchart/chart-app.c:160 stripchart/params.c:748
+msgid "Scale"
+msgstr "비율"
+
 #: stripchart/chart-app.c:192 stripchart/stripchart-applet.c:69
 #: stripchart/stripchart.c:92 stripchart/stripchart.c:97
 msgid "Stripchart"
@@ -3338,6 +3042,19 @@ msgstr "스트립차트"
 #: stripchart/chart-app.c:193
 msgid "Copyright 2000 John Kodis"
 msgstr ""
+
+#: stripchart/chart-app.c:195
+msgid ""
+"The GNOME stripchart program plots various user-specified parameters as a "
+"function of time.  Its main use is to chart system performance parameters "
+"such as CPU load, CPU utilization, network traffic levels, and the like.  "
+"Other more ingenious uses are left as an exercise for the interested user."
+msgstr ""
+"그놈 스트립차트 프로그램은 사용자가 지정한 여러가지 매개 변수들의 변화를 "
+"시간에 대한 함수로 그래프를 그립니다.  주된 용도는 CPU 사용량, CPU 사용도, "
+"네트워크 트래픽 정도와 같은 시스템 효율에 관한 변수를 그래프로 그리는 "
+"것입니다.  그 외에 재치 있게 사용하는 방법은 관심있는 사용자에게 연습 문제로 "
+"남겨 둡니다."
 
 #: stripchart/chart-app.c:234
 msgid "Show values"
@@ -3357,6 +3074,24 @@ msgstr "매개 변수..."
 msgid "closing parenthesis expected"
 msgstr "오른쪽 괄호가 있어야 합니다"
 
+#: stripchart/eval.c:269
+#, c-format
+msgid "no such field: %d"
+msgstr "그런 필드가 없습니다: %d"
+
+#: stripchart/eval.c:285
+msgid "missing variable identifer"
+msgstr "변수명이 없습니다"
+
+#: stripchart/eval.c:287
+#, c-format
+msgid "invalid variable identifer: %s"
+msgstr "변수명이 잘못되었습니다: %s"
+
+#: stripchart/eval.c:291
+msgid "number expected"
+msgstr "숫자가 와야 합니다"
+
 #: stripchart/eval.c:362
 #, fuzzy, c-format
 msgid "extra junk at end: \"%s\""
@@ -3366,6 +3101,18 @@ msgstr "끝에 쓸데 없는 것이 붙어 있습니다: \"%s\""
 #, fuzzy
 msgid "Parameter"
 msgstr "변수"
+
+#: stripchart/params.c:659
+msgid "Equation"
+msgstr "수식"
+
+#: stripchart/params.c:670
+msgid "Filename"
+msgstr "파일 이름"
+
+#: stripchart/params.c:681
+msgid "Pattern"
+msgstr "패턴"
 
 #: stripchart/params.c:702 stripchart/params.c:730
 msgid "Min"
@@ -3478,6 +3225,22 @@ msgstr ""
 msgid "Pen"
 msgstr ""
 
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "Geometry string: WxH+X+Y"
+msgstr "위치 및 크기 문자열: WxH+X+Y"
+
+#: stripchart/stripchart-applet.c:44 stripchart/stripchart.c:66
+msgid "GEO"
+msgstr "위치"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "Configuration file name"
+msgstr "설정 파일 이름"
+
+#: stripchart/stripchart-applet.c:46 stripchart/stripchart.c:68
+msgid "FILE"
+msgstr "파일"
+
 #: stripchart/stripchart-applet.c:92
 msgid "Values"
 msgstr "값"
@@ -3486,3 +3249,184 @@ msgstr "값"
 msgid "Prefs..."
 msgstr "세부사항..."
 
+#: stripchart/stripchart-applet.c:98
+msgid "Params..."
+msgstr "매개 변수..."
+
+#~ msgid "rparen expected"
+#~ msgstr "오른쪽 괄호가 있어야 합니다"
+
+#~ msgid "extra gunk at end: \"%s\""
+#~ msgstr "끝에 쓸데 없는 것이 붙어 있습니다: \"%s\""
+
+#~ msgid "%s, line %d: "
+#~ msgstr "%s, %d번째 줄: "
+
+#~ msgid "can't open config file \"%s\""
+#~ msgstr "설정 파일 \"%s\"을(를) 열 수 없습니다"
+
+#~ msgid ""
+#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "설정 파일을 열 수 없습니다: \"./gstripchart.conf\", \"%s\", \"%s\", 혹은 "
+#~ "\"%s\""
+
+#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
+#~ msgstr ""
+#~ "설정 파일을 열 수 없습니다: \"./gstripchart.conf\", \"%s\", or \"%s\""
+
+#~ msgid "identifier or begin must be first"
+#~ msgstr "변수명 혹은 begin은 첫번째로 와야 합니다"
+
+#~ msgid "unrecognized color: %s"
+#~ msgstr "알 수 없는 색깔: %s"
+
+# "scale"의 번역은 다른 entry의 "Scale"과 동일해야 함
+#~ msgid "scale must be either \"log\" or \"linear\""
+#~ msgstr "비율은 \\\"log\\\"나 \\\"linear\\\"중의 하나이어야 합니다."
+
+#~ msgid "no equation found"
+#~ msgstr "식이 없습니다"
+
+#~ msgid "invalid option: \"%s\""
+#~ msgstr "잘못된 옵션: \"%s\""
+
+#~ msgid "E_xit"
+#~ msgstr "끝내기(_X)"
+
+#~ msgid "Terminate the stripchart program"
+#~ msgstr "스트립차트 프로그램 끝내기"
+
+#~ msgid "Copyright 1998,99 John Kodis"
+#~ msgstr "Copyright 1998,99 John Kodis"
+
+#~ msgid "Identifier"
+#~ msgstr "변수명"
+
+#~ msgid "Expected range"
+#~ msgstr "예상 범위"
+
+#~ msgid "Displayed range"
+#~ msgstr "표시 범위:"
+
+#~ msgid "Current value"
+#~ msgstr "현재 값"
+
+#~ msgid "Active"
+#~ msgstr "동작"
+
+#~ msgid "Stripchart Parameters"
+#~ msgstr "스트립차트 매개 변수"
+
+#~ msgid "Params"
+#~ msgstr "파라미터"
+
+#~ msgid "gstripchart"
+#~ msgstr "스트립차트"
+
+#~ msgid "Stripchart Viewer"
+#~ msgstr "스트립차트 보기 프로그램"
+
+#~ msgid "invalid display type: %s\n"
+#~ msgstr "표시 타입이 틀렸습니다: %s\n"
+
+#~ msgid "Chart update interval"
+#~ msgstr "차트 갱신 간격"
+
+#~ msgid "SECS"
+#~ msgstr "<초>"
+
+# low-pass filter?
+#
+#~ msgid "Chart low-pass filter time constant"
+#~ msgstr "차트 low-pass 필터 시간 상수"
+
+#~ msgid "Slider update interval"
+#~ msgstr "슬라이더 갱신 간격"
+
+# low-pass filter?
+#
+#~ msgid "Slider low-pass filter time constant"
+#~ msgstr "슬라이더 low-pass 필터 시간 상수"
+
+#~ msgid "Adds a menubar to the main window"
+#~ msgstr "메인 창에 메뉴 막대 추가"
+
+#~ msgid "Omits slider window"
+#~ msgstr "슬라이더 창 생략"
+
+#~ msgid "TYPE is one of gtk, applet, text, or none"
+#~ msgstr "형식 은 gtk, text, graph, none중의 하나입니다"
+
+#~ msgid "TYPE"
+#~ msgstr "형식"
+
+#~ msgid "TYPE is one of gtk, text, or none"
+#~ msgstr "<타입>은 gtk, text, graph, none중의 하나입니다"
+
+#~ msgid "white"
+#~ msgstr "흰색"
+
+#~ msgid "black"
+#~ msgstr "검정"
+
+#~ msgid "red"
+#~ msgstr "빨강"
+
+#~ msgid "yellow"
+#~ msgstr "노랑"
+
+#~ msgid "blue"
+#~ msgstr "파랑"
+
+#~ msgid "green"
+#~ msgstr "초록"
+
+#~ msgid "cyan"
+#~ msgstr "청록"
+
+#~ msgid "magenta"
+#~ msgstr "보라"
+
+# (FIXME)
+#~ msgid "Busy"
+#~ msgstr "바쁨"
+
+#~ msgid "Load"
+#~ msgstr "읽기"
+
+#~ msgid "Swap"
+#~ msgstr "바꾸기"
+
+#~ msgid "Battery"
+#~ msgstr "전지"
+
+#~ msgid "Net In"
+#~ msgstr "네트워크 수신량"
+
+#~ msgid "Net Out"
+#~ msgstr "네트워크 전송량"
+
+#~ msgid "ppp"
+#~ msgstr "ppp"
+
+#~ msgid "Hide calendar"
+#~ msgstr "달력 숨김"
+
+#~ msgid ""
+#~ "Linux Native (ext2)\n"
+#~ "Dos (FAT)\n"
+#~ msgstr ""
+#~ "리눅스 기본 (ext2)\n"
+#~ "도스 (FAT)\n"
+
+#~ msgid ""
+#~ "High Density 3.5\" (1.44 MB)\n"
+#~ "High Density 5.25\" (1.2 MB)\n"
+#~ "Double Density 3.5\" (720 KB)\n"
+#~ "Double Density 5.25\" (360 KB)\n"
+#~ msgstr ""
+#~ "고 밀도 3.5\" (1.44MB)\n"
+#~ "고 밀도 5.25\" (1.2 MB)\n"
+#~ "Double Density 3.5\" (720 KB)\n"
+#~ "Double Density 5.25\" (360 KB)\n"
