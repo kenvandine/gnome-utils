@@ -116,9 +116,11 @@ GnomeUIInfo view_menu[] = {
         {GNOME_APP_UI_ITEM, N_("Zoom"), 
 	 N_("Show line info"), create_zoom_view, NULL, NULL,
          GNOME_APP_PIXMAP_NONE, NULL, 'Z', GDK_CONTROL_MASK, NULL},
-        {GNOME_APP_UI_ITEM, N_("Preferences..."), 
+       /* {GNOME_APP_UI_ITEM, N_("Preferences..."), 
 	 N_("Show user preferences"), UserPrefsDialog, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 'P', GDK_CONTROL_MASK, NULL},
+         GNOME_APP_PIXMAP_NONE, NULL, 'P', GDK_CONTROL_MASK, NULL},*/
+	/* As of now  user preference dialog does nothing except 
+        the hostname width adjustment in displaying */
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
 };
 
