@@ -173,11 +173,13 @@ void app_new(int argc, char *argv[], char *geometry_string)
 {
 	GtkWidget *vbox;
 	GtkWidget *widget;
-	gboolean geometry_error = FALSE;
+	gint x, y, w, h;
 
 	window = gnome_app_new("gtt", APP_NAME " " VERSION);
         gtk_window_set_wmclass(GTK_WINDOW(window),
                                "gtt", "GTimeTracker");
+	/* 320 x 220 seems to be a good size to default to */
+	gtk_window_set_default_size(GTK_WINDOW(window), 320, 220);
 	gtk_window_set_policy(GTK_WINDOW(window), TRUE, TRUE, FALSE);
 	menus_create(GNOME_APP(window));
 	widget = build_toolbar();
@@ -219,24 +221,17 @@ void app_new(int argc, char *argv[], char *geometry_string)
 	gtk_widget_show(vbox);
 	gnome_app_set_contents(GNOME_APP(window), vbox);
 
-	if (geometry_string) {
-		gint x, y, w, h;
-		if (gnome_parse_geometry(geometry_string,
-					&x, &y, &w, &h)) {
-			if ((x != -1) && (y != -1))
-				gtk_widget_set_uposition(GTK_WIDGET(window),
-						x, y);
-			if ((w != -1) && (h != -1))
-				gtk_widget_set_usize(GTK_WIDGET(window), w, h);
-		} else {
-			geometry_error = TRUE;
-		}
+	if (!geometry_string) {
+		return;
 	}
-	gtk_widget_realize(window);
-
-	if (geometry_error) {
+	if (gnome_parse_geometry(geometry_string, &x, &y, &w, &h)) {
+		if ((x != -1) && (y != -1))
+			gtk_widget_set_uposition(GTK_WIDGET(window), x, y);
+		if ((w != -1) && (h != -1))
+			gtk_window_set_default_size(GTK_WINDOW(window), w, h);
+	} else {
 		gnome_app_error(GNOME_APP(window),
 			_("Couldn't understand geometry (position and size)\n"
 				" specified on command line"));
-        }
+	}
 }
