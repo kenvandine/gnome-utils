@@ -3,10 +3,13 @@
 # P�teris Kri�j�nis <peterisk@apollo.lv>, 2000.
 # Artis Trops <hornet@navigators.lv>, 2000.
 #. Translator credits
+#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
+#: gsearchtool/gsearchtool.c:1001 logview/about.c:52
+#: meat-grinder/meat-grinder.c:380
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2002-01-16 07:30-0500\n"
+"POT-Creation-Date: 2002-01-29 22:10-0500\n"
 "PO-Revision-Date: 2002-01-19 14:01+0200\n"
 "Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <hornet@navigators.lv>\n"
@@ -33,8 +36,7 @@ msgstr "Palaist analogajā (slīdošā mēra) režīmā"
 msgid "GNOME Calculator"
 msgstr "GNOME Kalkulators"
 
-#: gcalc/gnome-calc.c:433
-#: gcalc/gnome-calc.c:1076
+#: gcalc/gnome-calc.c:433 gcalc/gnome-calc.c:1076
 msgid "DEG"
 msgstr "DEG"
 
@@ -91,8 +93,7 @@ msgstr "AC"
 msgid "Reset"
 msgstr "Pārstatīt"
 
-#: gcalc/gnome-calc.c:1072
-#: gcalc/gnome-calc.c:1127
+#: gcalc/gnome-calc.c:1072 gcalc/gnome-calc.c:1127
 msgid "INV"
 msgstr "INV"
 
@@ -136,6 +137,11 @@ msgstr "Pārslēgt grādus / radiānus / gradiānus"
 #: gcalc/gnome-calc.c:1078
 msgid "e"
 msgstr "e"
+
+#: gcalc/gnome-calc.c:1078
+#, fuzzy
+msgid "Base of Natural Logarithm"
+msgstr "Parastais Logaritms"
 
 #: gcalc/gnome-calc.c:1079
 msgid "EE"
@@ -274,17 +280,14 @@ msgid "Sum"
 msgstr "SSummēt"
 
 #: gcalc/gnome-calc.c:1103
-#: gtt/src/ctree.c:961
 msgid "1"
 msgstr "1"
 
 #: gcalc/gnome-calc.c:1104
-#: gtt/src/ctree.c:960
 msgid "2"
 msgstr "2"
 
 #: gcalc/gnome-calc.c:1105
-#: gtt/src/ctree.c:959
 msgid "3"
 msgstr "3"
 
@@ -295,7 +298,6 @@ msgstr "+"
 # gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:619
 # mini-utils/gw/gw.c:505
 #: gcalc/gnome-calc.c:1106
-#: gsearchtool/gsearchtool.c:650
 msgid "Add"
 msgstr "Pievienot"
 
@@ -337,96 +339,102 @@ msgstr "="
 msgid "Calculate"
 msgstr "Kalkulēt"
 
-#: gcharmap/src/asciiselect.c:102
+#: gcharmap/src/asciiselect.c:100
 msgid "Select Character"
 msgstr "Izvēlēties Rakstzīmi"
 
 # gcharmap/src/interface.c:67
 #: gcharmap/src/asciiselect.c:103
-#: gcharmap/src/menus.c:96
-msgid "Insert"
+#, fuzzy
+msgid "_Insert"
 msgstr "Ievietot"
 
 # gcharmap/src/interface.c:103 gcharmap/src/interface.c:361
-#: gcharmap/src/asciiselect.c:111
+#: gcharmap/src/asciiselect.c:107
 msgid "Character code:"
 msgstr "Rakstzīmes kods:"
 
 # gcharmap/src/interface.c:103 gcharmap/src/interface.c:361
-#: gcharmap/src/asciiselect.c:121
+#: gcharmap/src/asciiselect.c:117
 msgid "Character:"
 msgstr "Rakstzīme"
 
 # mini-utils/guname/guname.c:541
-#: gcharmap/src/asciiselect.c:129
+#: gcharmap/src/asciiselect.c:125
 msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
 # gcharmap/src/interface.c:103 gcharmap/src/interface.c:361
-#: gcharmap/src/callbacks.c:57
-#: gcharmap/src/interface.c:139
+#: gcharmap/src/callbacks.c:57 gcharmap/src/interface.c:139
 msgid "Gnome Character Map"
 msgstr "Gnome Simbolu Karte"
 
 # gcharmap/src/interface.c:362
 #: gcharmap/src/callbacks.c:60
-msgid "The Gnome equalivant of Microsoft Windows' Character Map. Warning: might contain bad English."
-msgstr "Gnomes ekvivalents Microsoft Windows Simbolu Kartei (Character Map). Brīdinājums: var saturēt sliktu angļu valodu."
+msgid ""
+"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"contain bad English."
+msgstr ""
+"Gnomes ekvivalents Microsoft Windows Simbolu Kartei (Character Map). "
+"Brīdinājums: var saturēt sliktu angļu valodu."
 
 # mini-utils/idetool/idetool.c:305 mini-utils/idetool/idetool.c:315
-#: gcharmap/src/callbacks.c:79
-#: gcharmap/src/callbacks.c:119
+#: gcharmap/src/callbacks.c:85 gcharmap/src/callbacks.c:125
 msgid "del"
 msgstr "del"
 
 # gcharmap/src/interface.c:307
-#: gcharmap/src/callbacks.c:125
+#: gcharmap/src/callbacks.c:131
 #, c-format
 msgid " %s: Character code %d"
 msgstr "%s: Rakstzīmes kods %d"
 
 # gcharmap/src/interface.c:335
-#: gcharmap/src/callbacks.c:152
+#: gcharmap/src/callbacks.c:162
 msgid "Text copied to clipboard..."
 msgstr "Nokopētais teksts..."
 
 # gcharmap/src/interface.c:326
-#: gcharmap/src/callbacks.c:164
+#: gcharmap/src/callbacks.c:174
 msgid "Text cut to clipboard..."
 msgstr "Izgrieztais teksts..."
 
 # gcharmap/src/interface.c:344
-#: gcharmap/src/callbacks.c:217
+#: gcharmap/src/callbacks.c:225
 msgid "Text pasted from clipboard..."
 msgstr "Ielīmētais teksts..."
 
 # gcharmap/src/interface.c:45
-#: gcharmap/src/interface.c:169
+#: gcharmap/src/interface.c:170
 msgid "Action Toolbar"
 msgstr "D_arbību Rīkjosla"
 
 # gcharmap/src/interface.c:149
-#: gcharmap/src/interface.c:188
+#: gcharmap/src/interface.c:189
 msgid "Text to copy:"
 msgstr "Kopēt Tekstu:"
 
+# gcharmap/src/interface.c:71 gcharmap/src/interface.c:196
+# gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:195
+#, fuzzy
+msgid "_Copy"
+msgstr "Kopēt"
+
 # mini-utils/guname/guname.c:541
-#: gcharmap/src/interface.c:212
+#: gcharmap/src/interface.c:219
 msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 
 # gcharmap/src/interface.c:76 gnome-find/gnome-find.c:49
 # gstripchart/gstripchart.c:1802 mini-utils/gcolorsel/menus.c:950
-#: gcharmap/src/interface.c:235
-#: gcharmap/src/menus.c:111
-#: logview/logview.c:102
+#: gcharmap/src/interface.c:243 logview/logview.c:102
 msgid "Exit"
 msgstr "Iziet"
 
 # gcharmap/src/interface.c:71 gcharmap/src/interface.c:196
 # gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
-#: gcharmap/src/interface.c:236
-#: gcharmap/src/menus.c:101
+#: gcharmap/src/interface.c:244 gcharmap/src/menus.c:101
 #: gdictsrc/gdict-app.c:556
 msgid "Copy"
 msgstr "Kopēt"
@@ -434,26 +442,25 @@ msgstr "Kopēt"
 # gcharmap/src/interface.c:202 gstripchart/gstripchart.c:1790
 # gstripchart/gstripchart.c:2074 mini-utils/gcolorsel/menus.c:960
 # mini-utils/gshutdown/gshutdown.c:319
-#: gcharmap/src/interface.c:240
-#: gcharmap/src/menus.c:108
+#: gcharmap/src/interface.c:248
 msgid "About"
 msgstr "Par"
 
 # gcharmap/src/interface.c:208 gnome-find/gnome-find.c:89
 # gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:2071
-#: gcharmap/src/interface.c:242
-#: gcharmap/src/menus.c:106
+#: gcharmap/src/interface.c:250
 msgid "Help"
 msgstr "Palīdzība"
 
 # mini-utils/guname/guname.c:541
-#: gcharmap/src/interface.c:261
+#: gcharmap/src/interface.c:269
 msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
 # gcharmap/src/interface.c:39
 #: gcharmap/src/menus.c:48
-msgid "Insert Character..."
+#, fuzzy
+msgid "Browse Characters..."
 msgstr "Ievietot Rakstzīmi..."
 
 #: gcharmap/src/menus.c:49
@@ -490,16 +497,11 @@ msgstr "_Statusjosla"
 msgid "View or hide the statusbar"
 msgstr "Parādīt vai slēpt statusjoslu"
 
-#: gcharmap/src/menus.c:67
-msgid "Character Table's Font..."
-msgstr "Rakstzīmju Tabulas Fonts..."
-
-#: gcharmap/src/menus.c:67
-msgid "Set the character table's font."
-msgstr "Iestatīt rakstzīmju tabulas fontu."
-
 # gcharmap/src/asciiselect.c:43 gcharmap/src/interface.c:39
 # gcharmap/src/interface.c:67
+#. GNOMEUIINFO_ITEM_STOCK(N_("Character Table's Font..."), N_("Set the character "
+#. "table's font."), cb_set_chartable_font, GNOME_STOCK_MENU_FONT),
+#. GNOMEUIINFO_SEPARATOR,
 #: gcharmap/src/menus.c:70
 msgid "_Insert at end"
 msgstr "Ievietot beigās"
@@ -516,13 +518,11 @@ msgstr "_Fokusējamas Pogas"
 msgid "Set the buttons to be focusable or not"
 msgstr "Iestatīt, lai pogas būtu vai nebūtu fokusējamas"
 
-#: gcharmap/src/menus.c:96
-msgid "Insert character(s) by choosing character codes"
-msgstr "Ievietot rakstzīmi(es) izvēloties rakstzīmju kodus"
-
 # gcharmap/src/interface.c:69 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
-#: gcharmap/src/menus.c:99
-#: gdictsrc/gdict-app.c:553
+#. GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
+#. cb_insert_char_click, NULL),
+#. GNOMEUIINFO_SEPARATOR,
+#: gcharmap/src/menus.c:99 gdictsrc/gdict-app.c:553
 msgid "Cut"
 msgstr "Izgriezt"
 
@@ -536,8 +536,7 @@ msgid "Copy the selection"
 msgstr "Kopēt izvēlēto"
 
 # gcharmap/src/interface.c:73 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
-#: gcharmap/src/menus.c:103
-#: gdictsrc/gdict-app.c:559
+#: gcharmap/src/menus.c:103 gdictsrc/gdict-app.c:559
 msgid "Paste"
 msgstr "Ielīmēt"
 
@@ -545,21 +544,6 @@ msgstr "Ielīmēt"
 #: gcharmap/src/menus.c:103
 msgid "Paste the clipboard"
 msgstr "Ievietot no starpliktuves."
-
-# gcharmap/src/interface.c:103 gcharmap/src/interface.c:361
-#: gcharmap/src/menus.c:106
-msgid "Show Gnome Character Map's manual"
-msgstr "Gnome Simbolu Rakstzīmju Kartes rokasgrāmatu"
-
-# mini-utils/gcolorsel/menus.c:960
-#: gcharmap/src/menus.c:108
-msgid "About this application"
-msgstr "Par šo aplikāciju"
-
-# mini-utils/gcolorsel/menus.c:950
-#: gcharmap/src/menus.c:111
-msgid "Exit the program"
-msgstr "Iziet no programmas"
 
 #: gdictsrc/main.c:89
 msgid ""
@@ -574,10 +558,8 @@ msgstr ""
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:637
-#: gdictsrc/gdict-pref-dialog.c:418
-#: gdictsrc/gdict-pref-dialog.c:462
-#: gdictsrc/gdict-speller.c:411
+#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:418
+#: gdictsrc/gdict-pref-dialog.c:462 gdictsrc/gdict-speller.c:411
 msgid "Cannot connect to server"
 msgstr "Nevar savienoties ar serveri"
 
@@ -601,8 +583,7 @@ msgid "Spell check done"
 msgstr "Pareizrakstības parbaude veikta"
 
 # gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
-#: gdictsrc/gdict-app.c:135
-#: gdictsrc/gdict-app.c:273
+#: gdictsrc/gdict-app.c:135 gdictsrc/gdict-app.c:273
 msgid "No matches found"
 msgstr "Nav nevienas sakrišanas"
 
@@ -639,26 +620,22 @@ msgstr ""
 
 # gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
 # gdictsrc/gdict-applet.c:153
-#: gdictsrc/gdict-app.c:489
-#: gdictsrc/gdict-app.c:546
+#: gdictsrc/gdict-app.c:489 gdictsrc/gdict-app.c:546
 msgid "Lookup"
 msgstr "Sameklēt"
 
 # gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
-#: gdictsrc/gdict-app.c:490
-#: gdictsrc/gdict-app.c:547
+#: gdictsrc/gdict-app.c:490 gdictsrc/gdict-app.c:547
 msgid "Lookup word in dictionary"
 msgstr "Sameklēt vārdu vārdnīcā"
 
 # gdictsrc/gdict-app.c:456 gdictsrc/gdict-app.c:513
-#: gdictsrc/gdict-app.c:492
-#: gdictsrc/gdict-app.c:549
+#: gdictsrc/gdict-app.c:492 gdictsrc/gdict-app.c:549
 msgid "Spell"
 msgstr "Pareizrakstība"
 
 # gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
-#: gdictsrc/gdict-app.c:493
-#: gdictsrc/gdict-app.c:550
+#: gdictsrc/gdict-app.c:493 gdictsrc/gdict-app.c:550
 msgid "Check word spelling"
 msgstr "Pārbaudīt vārda pareizrakstību"
 
@@ -698,8 +675,7 @@ msgid "Press button to look up any highlighted text in a dictionary"
 msgstr "Piespied pogu, lai lūkotos pēc jebkura iezīmētā eksta vārdnīcā"
 
 # mini-utils/gless/gless.c:548
-#: gdictsrc/gdict-defbox.c:633
-#: gdictsrc/gdict-speller.c:436
+#: gdictsrc/gdict-defbox.c:633 gdictsrc/gdict-speller.c:436
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Kļūda izpildot pieprasījumu: %s"
@@ -821,94 +797,77 @@ msgid "Spell checker"
 msgstr "Pareizrakstības parbaude"
 
 # gsearchtool/gsearchtool.c:33
-#: gsearchtool/gsearchtool.c:33
-msgid "File name"
+#: gsearchtool/gsearchtool.c:43
+#, fuzzy
+msgid "File name is"
 msgstr "Faila nosaukums"
 
-# gsearchtool/gsearchtool.c:35
-#: gsearchtool/gsearchtool.c:35
-msgid "Don't search subdirectories"
-msgstr "Nemeklēt pa apakšdirektorijām"
-
-# gsearchtool/gsearchtool.c:36
-#: gsearchtool/gsearchtool.c:36
-msgid "File owner"
-msgstr "Dantes īpašnieks"
-
-# gsearchtool/gsearchtool.c:37
-#: gsearchtool/gsearchtool.c:37
-msgid "File owner group"
-msgstr "Faila īpašnieka grupa"
-
-# gsearchtool/gsearchtool.c:38
-#: gsearchtool/gsearchtool.c:38
-msgid "Last modification time"
-msgstr "Pēdējais modificēšanas laiks"
+# gsearchtool/gsearchtool.c:33
+#: gsearchtool/gsearchtool.c:44
+#, fuzzy
+msgid "File name is not"
+msgstr "Faila nosaukums"
 
 # gsearchtool/gsearchtool.c:40
-#: gsearchtool/gsearchtool.c:40
+#: gsearchtool/gsearchtool.c:46
 msgid "Don't search mounted filesystems"
 msgstr "Nemeklēt montētajās failsistēmās"
 
-# gsearchtool/gsearchtool.c:41
-#: gsearchtool/gsearchtool.c:41
-msgid "Empty file"
-msgstr "Tukša dante"
-
-# gsearchtool/gsearchtool.c:43
-#: gsearchtool/gsearchtool.c:43
-msgid "Invalid user or group"
-msgstr "Nepareizs lietotājs vai grupa"
-
-# gsearchtool/gsearchtool.c:44
-#: gsearchtool/gsearchtool.c:44
-msgid "Filenames except"
-msgstr "Failu nosaukumi, izņemot"
-
 # gsearchtool/gsearchtool.c:45
-#: gsearchtool/gsearchtool.c:45
+#: gsearchtool/gsearchtool.c:48
 msgid "Follow symbolic links"
 msgstr "Sekot simbolsaitēm"
 
-# gsearchtool/gsearchtool.c:46
-#: gsearchtool/gsearchtool.c:46
-msgid "Simple substring search"
-msgstr "Vienkārša apakšvirnes meklēšana"
+# gsearchtool/gsearchtool.c:338 gsearchtool/gsearchtool.c:369
+#: gsearchtool/gsearchtool.c:49
+#, fuzzy
+msgid "Process directory contents depth first"
+msgstr "Sākuma direktorija neeksistē"
 
-# gsearchtool/gsearchtool.c:47
-#: gsearchtool/gsearchtool.c:47
-msgid "Regular expression search"
-msgstr "Regulāra izteiciena meklēšana"
+# gsearchtool/gsearchtool.c:35
+#: gsearchtool/gsearchtool.c:50
+msgid "Don't search subdirectories"
+msgstr "Nemeklēt pa apakšdirektorijām"
+
+#: gsearchtool/gsearchtool.c:51
+msgid "Owned by user"
+msgstr ""
+
+# gsearchtool/gsearchtool.c:37
+#: gsearchtool/gsearchtool.c:52
+#, fuzzy
+msgid "Owned by group"
+msgstr "Faila īpašnieka grupa"
+
+# gsearchtool/gsearchtool.c:43
+#: gsearchtool/gsearchtool.c:53
+msgid "Invalid user or group"
+msgstr "Nepareizs lietotājs vai grupa"
+
+# gsearchtool/gsearchtool.c:38
+#: gsearchtool/gsearchtool.c:54
+#, fuzzy
+msgid "Last time modified"
+msgstr "Pēdējais modificēšanas laiks"
+
+#: gsearchtool/gsearchtool.c:55
+#, fuzzy
+msgid "File is empty"
+msgstr "Fails `%s' ir tukšs"
 
 # gsearchtool/gsearchtool.c:49
-#: gsearchtool/gsearchtool.c:49
-msgid "Extended regular expression search"
+#: gsearchtool/gsearchtool.c:56
+#, fuzzy
+msgid "Matches regular expression"
 msgstr "Paplašināta regulāra izteciena meklēšana"
 
-# gsearchtool/gsearchtool.c:151
-#: gsearchtool/gsearchtool.c:151
-msgid "grep options found in find list bad bad!"
-msgstr "grep atrastās meklēšanas saraksta opcijas slikti slikti!"
+#: gsearchtool/gsearchtool.c:240
+msgid ""
+"A search is already running.  Please wait for that search to complete or "
+"cancel it."
+msgstr ""
 
-# gsearchtool/gsearchtool.c:165
-#: gsearchtool/gsearchtool.c:165
-msgid "non-grep option found in grep list, bad bad!"
-msgstr "ne-grep atrastās meklēšanas saraksta opcijas slikti slikti!"
-
-# gsearchtool/gsearchtool.c:201
-#: gsearchtool/gsearchtool.c:219
-msgid "Search already running on another page"
-msgstr "Meklēšana jau norit citā lapā"
-
-# gsearchtool/gsearchtool.c:211
-#. create the results box
-#. FIXME: add an option to autoclear result box and pass TRUE in that
-#. case
-#: gsearchtool/gsearchtool.c:229
-msgid "Search Results"
-msgstr "Meklēšanas Rezultāti"
-
-#: gsearchtool/gsearchtool.c:336
+#: gsearchtool/gsearchtool.c:357
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -917,150 +876,138 @@ msgstr ""
 "... Pārāk daudz kļūdu uz ekrāna ..."
 
 # gsearchtool/gsearchtool.c:338 gsearchtool/gsearchtool.c:369
-#: gsearchtool/gsearchtool.c:369
-#: gsearchtool/gsearchtool.c:400
+#: gsearchtool/gsearchtool.c:390
+#, fuzzy
+msgid "Start directory does not exist."
+msgstr "Sākuma direktorija neeksistē"
+
+#: gsearchtool/gsearchtool.c:401 gsearchtool/gsearchtool.c:875
+msgid "Cannot perform the search. Please specify a search criteria."
+msgstr ""
+
+# gsearchtool/gsearchtool.c:338 gsearchtool/gsearchtool.c:369
+#: gsearchtool/gsearchtool.c:427
 msgid "Start directory does not exist"
 msgstr "Sākuma direktorija neeksistē"
 
+#: gsearchtool/gsearchtool.c:442
+msgid "Cannot show the search command line. Please specify a search criteria."
+msgstr ""
+
 # gsearchtool/gsearchtool.c:378
-#: gsearchtool/gsearchtool.c:409
-msgid "Search command line"
+#: gsearchtool/gsearchtool.c:446
+#, fuzzy
+msgid "Search Command Line"
 msgstr "Meklēt komandrindā"
 
 # gsearchtool/gsearchtool.c:384
-#: gsearchtool/gsearchtool.c:415
+#: gsearchtool/gsearchtool.c:461
+#, fuzzy
 msgid ""
-"This is the command line that can be used to execute this search from the console:\n"
-"(Note: to print one file per line rather then null separated,\n"
-"append \"| tr '\\000' '\\n"
-"'\" to the line below)"
+"This is the command line that can be used to execute this search from the "
+"console.\n"
+"(Note: To print one file per line rather then null separated, append \"| tr "
+"'\\000' '\\n'\" to the line below.)\n"
+"\n"
+"Command:"
 msgstr ""
-"Šī ir komandrinda, kura var tikt lietota, lai palaistu šadu meklēšanu no konsoles:\n"
+"Šī ir komandrinda, kura var tikt lietota, lai palaistu šadu meklēšanu "
+"no konsoles:\n"
 "(Piezīme: lai parādītu nevis neatdalītu, bet vienā rinā vienu failu,\n"
-"pievieno \"| tr '\\000' '\\n"
-"'\" lejējai rindai beigās)"
+"pievieno \"| tr '\\000' '\\n'\" lejējai rindai beigās)"
+
+# gsearchtool/outdlg.c:159
+#: gsearchtool/gsearchtool.c:571
+#, fuzzy
+msgid "No viewer available for this mime type."
+msgstr "Nav komandas šadam mime tipam"
 
 # gsearchtool/gsearchtool.c:471
-#: gsearchtool/gsearchtool.c:502
+#: gsearchtool/gsearchtool.c:656
 msgid "Entry changed called for a non entry option!"
 msgstr "Ieraksta maiņu izsauca ne-ieraksta opcija!"
 
 # gsearchtool/gsearchtool.c:537
-#: gsearchtool/gsearchtool.c:568
-msgid "Enable"
+#: gsearchtool/gsearchtool.c:720
+#, fuzzy
+msgid "Enabled"
 msgstr "Aktivizēt"
 
-# gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:545
-# logview/actions.c:127
-#: gsearchtool/gsearchtool.c:576
-#: logview/actions.c:163
-#: meat-grinder/meat-grinder.c:718
-msgid "Remove"
-msgstr "Izņemt"
-
 # gsearchtool/gsearchtool.c:597
-#: gsearchtool/gsearchtool.c:628
-msgid "Start in directory:"
+#: gsearchtool/gsearchtool.c:777
+#, fuzzy
+msgid "Start in directory "
 msgstr "Sākt direktorijā:"
 
 # gsearchtool/gsearchtool.c:599
-#: gsearchtool/gsearchtool.c:630
+#: gsearchtool/gsearchtool.c:779
 msgid "Browse"
 msgstr "Apskatīt"
 
-# gsearchtool/gsearchtool.c:630
-#: gsearchtool/gsearchtool.c:661
-msgid "Show Command"
-msgstr "Parādīt Komandu"
+# gsearchtool/gsearchtool.c:824
+#: gsearchtool/gsearchtool.c:912
+#, fuzzy
+msgid "Search For "
+msgstr "Meklēšanas Rīks"
 
-# gsearchtool/gsearchtool.c:635 gsearchtool/gsearchtool.c:718
-#: gsearchtool/gsearchtool.c:666
-#: gsearchtool/gsearchtool.c:759
-#: gtt/src/ctree.c:582
-#: gtt/src/ghtml.c:95
-#: gtt/src/ghtml.c:267
-msgid "Start"
-msgstr "Sākt"
+# mini-utils/guname/info.c:61
+#: gsearchtool/gsearchtool.c:981
+#, fuzzy
+msgid "Simple"
+msgstr "Sīnuss"
 
-# gsearchtool/gsearchtool.c:636 gsearchtool/gsearchtool.c:719
-#: gsearchtool/gsearchtool.c:667
-#: gsearchtool/gsearchtool.c:760
-#: gtt/src/ghtml.c:95
-#: gtt/src/ghtml.c:270
-msgid "Stop"
-msgstr "Stop"
-
-# gsearchtool/gsearchtool.c:669
-#: gsearchtool/gsearchtool.c:700
-msgid "Nothing to locate"
-msgstr "Nav ko atrast"
-
-# gsearchtool/gsearchtool.c:697
-#: gsearchtool/gsearchtool.c:735
-msgid ""
-"This is an interface to locate.  If you type in a simple string it\n"
-"will be matched as a subset of the full path, and if you type\n"
-"in a string with wildcards, it will have to match the full path."
+#: gsearchtool/gsearchtool.c:984
+msgid "Advanced"
 msgstr ""
-"Šī ir locate saskarne. Ja tu ierakstīsi vienkāršu rindiņu, tā\n"
-"tiks attiecināta kā pilna ceļa daļa, un ja tu ierakstīsi\n"
-"rindiņu ar aizstājējzīmēm, tai ir jāatbilst pilnam ceļam."
-
-# gsearchtool/gsearchtool.c:706
-#: gsearchtool/gsearchtool.c:744
-msgid "Locate file: "
-msgstr "Norādīt failu: "
-
-# gsearchtool/gsearchtool.c:740
-#: gsearchtool/gsearchtool.c:781
-msgid "Full find (find)"
-msgstr "Pilnā meklēšana (meklēt)"
-
-# gsearchtool/gsearchtool.c:742
-#: gsearchtool/gsearchtool.c:783
-msgid "Quick find (locate)"
-msgstr "Ātrā meklēšana (atrast)"
 
 # gsearchtool/gsearchtool.c:763
-#: gsearchtool/gsearchtool.c:809
+#: gsearchtool/gsearchtool.c:1010
 msgid "The Gnome Search Tool"
 msgstr "GNOME Meklēšanas Darbarīks"
 
 # gsearchtool/gsearchtool.c:764
-#: gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:1011
 msgid "(C) 1998,2000 the Free Software Foundation"
-msgstr "(C) 1998,2000 Brīvās Programmatūras Fonds (Free Software Foundation)"
+msgstr ""
+"(C) 1998,2000 Brīvās Programmatūras Fonds (Free Software Foundation)"
 
 # gsearchtool/gsearchtool.c:766
-#: gsearchtool/gsearchtool.c:811
-msgid "Frontend to the unix find/grep/locate commands"
+#: gsearchtool/gsearchtool.c:1012
+#, fuzzy
+msgid "Frontend to the unix find/locate commands"
 msgstr "Priekšpuse unix find/grep/locate komandām"
 
-# gsearchtool/gsearchtool.c:824
-#: gsearchtool/gsearchtool.c:873
-msgid "Gnome Search Tool"
-msgstr "Gnome Meklēšanas Darbarīks"
-
 # gdictsrc/gdict-applet.c:120
-#: gsearchtool/outdlg.c:53
-msgid "Cannot save file"
+#: gsearchtool/gsearchtool.c:1057
+#, fuzzy
+msgid "Cannot save the results file."
 msgstr "Nevaru saglabāt failu"
 
 # gsearchtool/outdlg.c:69
-#: gsearchtool/outdlg.c:71
-#: meat-grinder/meat-grinder.c:492
+#: gsearchtool/gsearchtool.c:1064 meat-grinder/meat-grinder.c:492
 msgid "Save Results"
 msgstr "Saglabāt Rezultātus"
 
-# gsearchtool/outdlg.c:130
-#: gsearchtool/outdlg.c:137
-msgid "Command mangled"
-msgstr "Izkropļota komanda"
+# gsearchtool/gsearchtool.c:630
+#: gsearchtool/gsearchtool.c:1099
+#, fuzzy
+msgid "S_how Command"
+msgstr "Parādīt Komandu"
 
-# gsearchtool/outdlg.c:159
-#: gsearchtool/outdlg.c:166
-msgid "No command for this mime type"
-msgstr "Nav komandas šadam mime tipam"
+# gsearchtool/outdlg.c:69
+#: gsearchtool/gsearchtool.c:1100
+#, fuzzy
+msgid "Save Results _As..."
+msgstr "Saglabāt Rezultātus"
+
+#: gsearchtool/gsearchtool.c:1133
+msgid "Cannot initialize bonobo."
+msgstr ""
+
+# gsearchtool/gsearchtool.c:824
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1137
+msgid "Search Tool"
+msgstr "Meklēšanas Rīks"
 
 # logview/about.c:44
 #: logview/about.c:42
@@ -1069,8 +1016,17 @@ msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 # logview/about.c:45
 #: logview/about.c:43
-msgid "This  program  is  part of  the  GNOME  project for Linux. Logview comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under the conditions of the GNU General Public Licence. The log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-msgstr "Šī programma ir daļa no GNOMEs Linux projekta. Sistēmas Žurnālu Skatītājs NEGARANTĒ PILNĪGI NEKO. Šī ir brīvā prgrammatūra, un tu esi laipni aicināts to izplatīt saskaņā ar GNU Vispārējās Publiskās Licences nosacījumiem. Sistēmas Žurnālu Skatītāja ikona ir Tuomas Kuosmanen (pazīstams arī  kā tigert) laipni dāvāta."
+msgid ""
+"This  program  is  part of  the  GNOME  project for Linux. Logview comes "
+"with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
+"redistribute it under the conditions of the GNU General Public Licence. The "
+"log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+msgstr ""
+"Šī programma ir daļa no GNOMEs Linux projekta. Sistēmas Žurnālu "
+"Skatītājs NEGARANTĒ PILNĪGI NEKO. Šī ir brīvā prgrammatūra, un tu "
+"esi laipni aicināts to izplatīt saskaņā ar GNU Vispārējās Publiskās "
+"Licences nosacījumiem. Sistēmas Žurnālu Skatītāja ikona ir Tuomas "
+"Kuosmanen (pazīstams arī  kā tigert) laipni dāvāta."
 
 # logview/about.c:52
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
@@ -1089,8 +1045,7 @@ msgid "Action database"
 msgstr "Darbību datubāze"
 
 # logview/actions.c:61 logview/monitor.c:115
-#: logview/actions.c:97
-#: logview/monitor.c:110
+#: logview/actions.c:97 logview/monitor.c:110
 msgid "Monitor options"
 msgstr "Monitringa opcijas"
 
@@ -1104,6 +1059,12 @@ msgstr "Pievienot.."
 msgid "Edit..."
 msgstr "Rediģēt"
 
+# gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:545
+# logview/actions.c:127
+#: logview/actions.c:163 meat-grinder/meat-grinder.c:718
+msgid "Remove"
+msgstr "Izņemt"
+
 #: logview/actions.c:278
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
@@ -1111,12 +1072,8 @@ msgstr "Nevar atvērt darbību datu bāzi <%s>! Atvēršana neizdevās."
 
 # logview/actions.c:282 logview/actions.c:295 logview/actions.c:306
 # logview/actions.c:317 logview/actions.c:328 logview/actions.c:339
-#: logview/actions.c:313
-#: logview/actions.c:326
-#: logview/actions.c:337
-#: logview/actions.c:348
-#: logview/actions.c:359
-#: logview/actions.c:370
+#: logview/actions.c:313 logview/actions.c:326 logview/actions.c:337
+#: logview/actions.c:348 logview/actions.c:359 logview/actions.c:370
 msgid "Error parsing actions data base"
 msgstr "Kļūda analizējot darbību datubāzi"
 
@@ -1175,7 +1132,6 @@ msgid ""
 "message: [%s]\n"
 "description: [%s]\n"
 "action: [%s]\n"
-""
 msgstr ""
 "tag: [%s]\n"
 "log_vārds: [%s]\n"
@@ -1183,18 +1139,14 @@ msgstr ""
 "ziņa: [%s]\n"
 "apraksts: [%s]\n"
 "darbība: [%s]\n"
-""
 
 # logview/calendar.c:118
-#: gtt/src/toolbar.c:241
-#: logview/calendar.c:112
-#: logview/logview.c:109
+#: logview/calendar.c:112 logview/logview.c:109
 msgid "Calendar"
 msgstr "Kalendārs"
 
 # logview/info.c:80
-#: logview/info.c:79
-#: logview/logview.c:112
+#: logview/info.c:79 logview/logview.c:112
 msgid "Log stats"
 msgstr "Žurnāla statistika"
 
@@ -1320,30 +1272,18 @@ msgstr "%B %e"
 
 # logview/logrtns.c:96
 #: logview/logrtns.c:199
-msgid ""
-"Not enough memory!\n"
-""
-msgstr ""
-"Par maz atmiņas!\n"
-""
+msgid "Not enough memory!\n"
+msgstr "Par maz atmiņas!\n"
 
 # logview/logrtns.c:104
 #: logview/logrtns.c:207
-msgid ""
-"Out of memory!\n"
-""
-msgstr ""
-"Nav vairs atmiņas!\n"
-""
+msgid "Out of memory!\n"
+msgstr "Nav vairs atmiņas!\n"
 
 # logview/logrtns.c:129
 #: logview/logrtns.c:233
-msgid ""
-"Unable to open logfile!\n"
-""
-msgstr ""
-"Nevar atvērt žurnālfailu!\n"
-""
+msgid "Unable to open logfile!\n"
+msgstr "Nevar atvērt žurnālfailu!\n"
 
 # logview/logrtns.c:183
 #: logview/logrtns.c:288
@@ -1354,8 +1294,12 @@ msgstr "%s nav parasts fails."
 # logview/logrtns.c:190
 #: logview/logrtns.c:296
 #, c-format
-msgid "%s is not user readable. Either run the program as root or ask the sysadmin to change the permissions on the file."
-msgstr "%s nav lietotājam nolasāms. Vai nu palaid programmu kā root, vai arī palūdz sistēmas administratoam nomainīt šī faila atļaujas."
+msgid ""
+"%s is not user readable. Either run the program as root or ask the sysadmin "
+"to change the permissions on the file."
+msgstr ""
+"%s nav lietotājam nolasāms. Vai nu palaid programmu kā root, vai arī "
+"palūdz sistēmas administratoam nomainīt šī faila atļaujas."
 
 # logview/logrtns.c:202
 #: logview/logrtns.c:309
@@ -1370,9 +1314,7 @@ msgid "%s not a log file."
 msgstr "%s nav žurnālfails."
 
 # logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
-#: logview/logrtns.c:756
-#: logview/logrtns.c:787
-#: logview/logrtns.c:918
+#: logview/logrtns.c:756 logview/logrtns.c:787 logview/logrtns.c:918
 msgid "ReadLogStats: out of memory"
 msgstr "Lasīt Žurnāla Statistiku: nav vairs atmiņas"
 
@@ -1397,14 +1339,12 @@ msgid "Export log"
 msgstr "Eksportēt žurnālu"
 
 # logview/logview.c:94
-#: logview/logview.c:93
-#: logview/logview.c:94
+#: logview/logview.c:93 logview/logview.c:94
 msgid "Close log"
 msgstr "Aizvērt žurnālu"
 
 # logview/logview.c:97
-#: logview/logview.c:96
-#: logview/logview.c:97
+#: logview/logview.c:96 logview/logview.c:97
 msgid "Switch log"
 msgstr "Parslēgties uz žurnālu"
 
@@ -1517,12 +1457,8 @@ msgstr "Atvērt jaunu žurnālfailu"
 # logview/misc.c:78
 #: logview/misc.c:55
 #, c-format
-msgid ""
-"Error: [%s]\n"
-""
-msgstr ""
-"Kļūda: [%s]\n"
-""
+msgid "Error: [%s]\n"
+msgstr "Kļūda: [%s]\n"
 
 # logview/monitor.c:132
 #: logview/monitor.c:124
@@ -1561,14 +1497,9 @@ msgid "Actions..."
 msgstr "Darbības..."
 
 # logview/monitor.c:283 logview/monitor.c:330
-#: logview/monitor.c:282
-#: logview/monitor.c:329
-msgid ""
-"tmp_list is NULL\n"
-""
-msgstr ""
-"tmp_list ir NULL\n"
-""
+#: logview/monitor.c:282 logview/monitor.c:329
+msgid "tmp_list is NULL\n"
+msgstr "tmp_list ir NULL\n"
 
 # logview/monitor.c:457
 #: logview/monitor.c:456
@@ -1577,12 +1508,8 @@ msgstr "Novērojam žurnālus..."
 
 # logview/monitor.c:635
 #: logview/monitor.c:638
-msgid ""
-"TOUCHED!!\n"
-""
-msgstr ""
-"AIZTIKTS!!\n"
-""
+msgid "TOUCHED!!\n"
+msgstr "AIZTIKTS!!\n"
 
 # logview/userprefsdialog.c:65
 #: logview/userprefsdialog.c:65
@@ -1635,59 +1562,6 @@ msgstr "Apraksts:"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-# mini-utils/guname/guname.c:541
-#.
-#. * 	-------------------
-#. * 	     Defines
-#. * 	-------------------
-#.
-#: logview/config.c:34
-msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:35
-msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-# mini-utils/guname/guname.c:541
-#: logview/config.c:36
-msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:37
-msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-
-# mini-utils/guname/guname.c:541
-#: logview/config.c:39
-msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-
-# mini-utils/guname/guname.c:541
-#: logview/config.c:40
-msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-
-# mini-utils/guname/guname.c:541
-#: logview/config.c:41
-msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-# mini-utils/guname/guname.c:541
-#: logview/config.c:42
-msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-# mini-utils/guname/guname.c:541
-#: logview/config.c:43
-msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-
-# mini-utils/guname/guname.c:541
-#: logview/config.c:44
-msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -1704,12 +1578,8 @@ msgstr "MIekšējā Kļūda: Nevareja sameklēt līdz pareizai vietai."
 
 #: gfloppy/src/badblocks.c:111
 #, c-format
-msgid ""
-"MInternal Error: Weird value (%ld) in do_test\n"
-""
-msgstr ""
-"MIekšējā Kļūda: Savāda vērtība (%ld) iekš do_test\n"
-""
+msgid "MInternal Error: Weird value (%ld) in do_test\n"
+msgstr "MIekšējā Kļūda: Savāda vērtība (%ld) iekš do_test\n"
 
 #: gfloppy/src/badblocks.c:166
 #, c-format
@@ -1724,15 +1594,11 @@ msgstr "MSlikto sektoru pārbaude..."
 
 #: gfloppy/src/badblocks.c:272
 #, c-format
-msgid ""
-"MFailed to open device %s for badblock checking\n"
-""
+msgid "MFailed to open device %s for badblock checking\n"
 msgstr ""
 "MNevarēja atvērt iekārtu %s, lai varētu pārbaudīt sliktos sektorus\n"
-""
 
-#: gfloppy/src/badblocks.c:291
-#: gfloppy/src/gfloppy.c:213
+#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:213
 msgid "MChecking for bad blocks... Done"
 msgstr "MSlikto sektoru pārbaude... Izdarīts"
 
@@ -1744,8 +1610,7 @@ msgstr "MFormatēju disku..."
 msgid "EI don't know what this is, but it's very wrong."
 msgstr "EEs nezinu, kas tas ir, bet tas ir ļoti nepareizi."
 
-#: gfloppy/src/fdformat.c:54
-#: gfloppy/src/fdformat.c:66
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
 #, c-format
 msgid "EError formatting track #%d"
 msgstr "EKļūda formatējot celiņu #%d"
@@ -1764,8 +1629,7 @@ msgstr "MFormatēju disku... Izdarīts"
 msgid "MVerifying the format..."
 msgstr "MPārbaudu formātu"
 
-#: gfloppy/src/fdformat.c:99
-#: gfloppy/src/fdformat.c:174
+#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
 msgid ""
 "EUnable to write to the floppy.\n"
 "\n"
@@ -1775,14 +1639,12 @@ msgstr ""
 "\n"
 "Lūdzu pārliecinies, vai tā nav aizsargāta pret rakstīšanu."
 
-#: gfloppy/src/fdformat.c:102
-#: gfloppy/src/fdformat.c:177
+#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
 #, c-format
 msgid "EInsufficient permissions to open floppy device %s."
 msgstr "ENepietiekamas atļaujas, lai avērtu disketes iekārtu %s."
 
-#: gfloppy/src/fdformat.c:106
-#: gfloppy/src/fdformat.c:181
+#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
 msgid ""
 "EUnable to access the floppy disk.\n"
 "\n"
@@ -1855,8 +1717,7 @@ msgstr ""
 msgid "ECould not determine current format type"
 msgstr "ENevarēja noteikt pašreizējā formāta tipu"
 
-#: gfloppy/src/gfloppy.c:164
-#: gfloppy/src/gfloppy.c:197
+#: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
 msgid "MMaking filesystem on disk..."
 msgstr "MVeidoju failsistēmu uz diska..."
 
@@ -1865,14 +1726,12 @@ msgstr "MVeidoju failsistēmu uz diska..."
 msgid "EUnable to create filesystem correctly."
 msgstr "ENevarēja pareizi izveidot failsistēmu."
 
-#: gfloppy/src/gfloppy.c:171
-#: gfloppy/src/gfloppy.c:203
+#: gfloppy/src/gfloppy.c:171 gfloppy/src/gfloppy.c:203
 msgid "MMaking filesystem on disk... Done"
 msgstr "MVeidoju failsistēmu uz diska... Izdarīts"
 
 # mini-utils/idetool/idetool.c:41
-#: gfloppy/src/gfloppy.c:200
-#: gfloppy/src/gfloppy.c:215
+#: gfloppy/src/gfloppy.c:200 gfloppy/src/gfloppy.c:215
 msgid "EUnable to create filesystem."
 msgstr "ENevar izveidot failsistēmu."
 
@@ -1880,14 +1739,12 @@ msgstr "ENevar izveidot failsistēmu."
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "MPārbadu sliktos sektorus... (tas var aizņemt kādu laiku)"
 
-#: gfloppy/src/main.c:126
-#: gfloppy/src/main.c:169
+#: gfloppy/src/main.c:126 gfloppy/src/main.c:169
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Nevarēja atvērt iekārtu %s, formatēšana nevar turpināties."
 
-#: gfloppy/src/main.c:129
-#: gfloppy/src/main.c:172
+#: gfloppy/src/main.c:129 gfloppy/src/main.c:172
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -1896,14 +1753,15 @@ msgstr ""
 "Iekārta %s ir atslēgta.\n"
 "Lūdzu pievieno iekārtu, lai turpinātu."
 
-#: gfloppy/src/main.c:132
-#: gfloppy/src/main.c:175
+#: gfloppy/src/main.c:132 gfloppy/src/main.c:175
 #, c-format
 msgid ""
-"You do not have the proper permissions to write to %s, formatting will not be possible.\n"
+"You do not have the proper permissions to write to %s, formatting will not "
+"be possible.\n"
 "Contact your system administrator about getting write permissions."
 msgstr ""
-"Tev nav pietiekamas atļaujas, lai rakstītu uz %s, formatēšana nebūs iespējama.\n"
+"Tev nav pietiekamas atļaujas, lai rakstītu uz %s, formatēšana nebūs "
+"iespējama.\n"
 "Sazinies ar sistēmadministrātoru, lai dabūtu rakstīšanas atļaujas."
 
 #: gfloppy/src/main.c:287
@@ -1939,8 +1797,7 @@ msgstr "Formatēšanas progress."
 msgid "Format a floppy"
 msgstr "Formatēt disketi"
 
-#: gfloppy/src/gfloppy-i18n.h:8
-#: gfloppy/src/gfloppy-i18n.h:10
+#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
 msgid "Linux Native (ext2)"
 msgstr "Linux Native (ext2)"
 
@@ -1985,11 +1842,13 @@ msgstr "Disketes Iekārta:"
 #: exe-handler/gnome-exe-handler.c:76
 #, c-format
 msgid ""
-"Executing arbitrary programs that you downloaded from the network might be dangerous.\n"
+"Executing arbitrary programs that you downloaded from the network might be "
+"dangerous.\n"
 "\n"
 "Are you sure you want to run `%s'?"
 msgstr ""
-"Patvaļīgu programmu palaišana, kuras tu nolādēji no tīkla var būt bīstama.\n"
+"Patvaļīgu programmu palaišana, kuras tu nolādēji no tīkla var būt "
+"bīstama.\n"
 "\n"
 "Vai esat pārliecināts, ka vēlaties palaist `%s'?"
 
@@ -2031,14 +1890,17 @@ msgstr "Šī ir bibliotēka un nevar tikt palaista"
 msgid "The file is a core file and can not be executed"
 msgstr "Šis fails ir core fails un nevar tikt palaists"
 
-#: exe-handler/gnome-exe-handler.c:162
-#: exe-handler/gnome-exe-handler.c:196
+#: exe-handler/gnome-exe-handler.c:162 exe-handler/gnome-exe-handler.c:196
 msgid "This is an unknown kind of executable"
 msgstr "Šī ir nezināma veida izpildāmā fails"
 
 #: exe-handler/gnome-exe-handler.c:192
-msgid "The executable is for a different platform and can not be executed on this system"
-msgstr "Izpildāmais fails ir citai platformai un nevar tikt palaists uz šīs sistēmas"
+msgid ""
+"The executable is for a different platform and can not be executed on this "
+"system"
+msgstr ""
+"Izpildāmais fails ir citai platformai un nevar tikt palaists uz šīs "
+"sistēmas"
 
 #: meat-grinder/meat-grinder.c:109
 #, c-format
@@ -2057,8 +1919,7 @@ msgstr ""
 "Nav failu vai direktoriju, augstāk sametiet failus\n"
 "vai direktorijus, lai pievienotu tos arhīvam"
 
-#: meat-grinder/meat-grinder.c:220
-#: meat-grinder/meat-grinder.c:223
+#: meat-grinder/meat-grinder.c:220 meat-grinder/meat-grinder.c:223
 msgid "Cannot start the archive (tar) program"
 msgstr "Nevar palaist arhīva (tar) programmu"
 
@@ -2079,8 +1940,7 @@ msgid "Drag files in to make archives"
 msgstr "Savelc iekšā failus, lai izveidotu arhīvus"
 
 # gtt/app.c:117 gtt/app.c:223
-#: meat-grinder/meat-grinder.c:460
-#: meat-grinder/meat-grinder.c:618
+#: meat-grinder/meat-grinder.c:460 meat-grinder/meat-grinder.c:618
 msgid "No filename selected"
 msgstr "Neviens faila vārds nav izvēlēts"
 
@@ -2139,8 +1999,12 @@ msgid "Archive"
 msgstr "Arhīvs"
 
 #: meat-grinder/meat-grinder.c:806
-msgid "Drag this button to the destination where you want the archive to be created or press it to pop up a file selection dialog."
-msgstr "Velc šo pogu uz turieni, kur tu vēlies, lai arhīvs tiktu izveidots, vai arī piespied to, lai dabūtu failu izvēles dialogu."
+msgid ""
+"Drag this button to the destination where you want the archive to be created "
+"or press it to pop up a file selection dialog."
+msgstr ""
+"Velc šo pogu uz turieni, kur tu vēlies, lai arhīvs tiktu izveidots, vai "
+"arī piespied to, lai dabūtu failu izvēles dialogu."
 
 #: meat-grinder/meat-grinder.c:900
 msgid "Cannot find proper icons anywhere!"
@@ -2155,883 +2019,59 @@ msgstr ""
 "Šo programmu lieto arhīvu izveidē."
 
 #: gfloppy/gfloppy.desktop.in.h:1
+#, fuzzy
+msgid "Floppy Formatter"
+msgstr "Disketes formatēšana atcelta."
+
+#: gfloppy/gfloppy.desktop.in.h:2
 msgid "Format Floppy Disks"
 msgstr "Formatēt Disketi"
 
-#: gfloppy/gfloppy.desktop.in.h:2
-msgid "gfloppy"
-msgstr "gfloppy"
-
-#: gdictsrc/GDict.desktop.in.h:1
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Vārdnīca"
 
 # gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
-#: gdictsrc/GDict.desktop.in.h:2
+#: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Lūkoties pēc vārda tiešsaites vārdnīcā"
 
-#: meat-grinder/meat-grinder.desktop.in.h:1
+#: meat-grinder/archive-generator.desktop.in.h:1
 msgid "Archive Generator"
 msgstr "Arhīvu Ģenerātors"
 
-#: meat-grinder/meat-grinder.desktop.in.h:2
+#: meat-grinder/archive-generator.desktop.in.h:2
 msgid "Create compressed archives containing many files"
 msgstr "Izveidot kompresētu arhīvu, kas satur vairākus failus"
 
-#: logview/logview.desktop.in.h:1
-msgid "SysLog tool"
-msgstr "SysLog rīks"
-
-# logview/monitor.c:132
-#: logview/logview.desktop.in.h:2
-msgid "System log monitor"
-msgstr "Sistēmas žurnālu novērotājs"
-
-# gsearchtool/gsearchtool.c:824
-#: gsearchtool/gsearchtool.desktop.in.h:1
-msgid "Search Tool"
-msgstr "Meklēšanas Rīks"
-
-#: gsearchtool/gsearchtool.desktop.in.h:2
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search your disk for files"
 msgstr "Meklēt failus savā diskā"
 
 # gcharmap/src/interface.c:103 gcharmap/src/interface.c:361
-#: gcharmap/gcharmap.desktop.in.h:1
+#: gcharmap/gnome-character-map.desktop.in.h:1
 msgid "Character Map"
 msgstr "Simbolu Karte"
 
-#: gcharmap/gcharmap.desktop.in.h:2
+#: gcharmap/gnome-character-map.desktop.in.h:2
 msgid "Insert special characters into documents"
 msgstr "Ievietot īpašas rakstzīmes dokumentos"
 
 # gcalc/gcalc.c:133
-#: gcalc/gcalc.desktop.in.h:1
+#: gcalc/gnome-calculator.desktop.in.h:1
 msgid "Calculator"
 msgstr "Kalkulators"
 
 # gcalc/gcalc.c:133
-#: gcalc/gcalc.desktop.in.h:2
+#: gcalc/gnome-calculator.desktop.in.h:2
 msgid "Perform simple calculations"
 msgstr "Izdarīt vienkāršas kalkulācijas"
-
-# gtt/app.c:117 gtt/app.c:223
-#: gtt/src/app.c:116
-#: gtt/src/app.c:228
-msgid "no project selected"
-msgstr "neviens projekts nav izvēlēts"
-
-# gtt/app.c:212
-#: gtt/src/app.c:218
-msgid "00:00"
-msgstr "00:00"
-
-# gtt/app.c:251 mini-utils/gless/gless.c:423
-#: gtt/src/app.c:260
-msgid ""
-"Couldn't understand geometry (position and size)\n"
-" specified on command line"
-msgstr ""
-"Nevarēja saprast komandrindā noteikto\n"
-"ģeometriju (vietu un izmēru)"
-
-# gtt/clist.c:169
-#: gtt/src/ctree.c:517
-msgid "Total"
-msgstr "Kopā"
-
-#: gtt/src/ctree.c:519
-msgid "Total time spent on this project."
-msgstr "Kopējais pavadītais laiks pie šī projekta."
-
-# gtt/options.c:413
-#: gtt/src/ctree.c:524
-msgid "Entry"
-msgstr "Ieraksts"
-
-#: gtt/src/ctree.c:526
-msgid "Time spent under the current diary entry."
-msgstr "Pavadītais laiks pie pašreizējā Dienasgrāmatas ieraksta."
-
-# gtt/clist.c:170
-#: gtt/src/ctree.c:532
-msgid "Today"
-msgstr "Šodien"
-
-#: gtt/src/ctree.c:534
-msgid "Time spent on this project today."
-msgstr "Šodien pavadītais laiks pie šī projekta"
-
-#: gtt/src/ctree.c:539
-msgid "Week"
-msgstr "Nedēļa"
-
-#: gtt/src/ctree.c:541
-msgid "Time spent on this project this week."
-msgstr "Šonedēļ šim projektam veltītais laiks."
-
-# mini-utils/gcolorsel/gcolorsel.c:48
-#: gtt/src/ctree.c:547
-msgid "Month"
-msgstr "Mēnesis"
-
-#: gtt/src/ctree.c:549
-msgid "Time spent on this project this month."
-msgstr "Šomēnes šim projektam veltītais laiks."
-
-#: gtt/src/ctree.c:555
-msgid "Year"
-msgstr "Gads"
-
-#: gtt/src/ctree.c:557
-msgid "Time spent on this project this year."
-msgstr "Šogad šim projektam veltītais laiks."
-
-# gnome-find/gnome-find.c:86 mini-utils/gcolorsel/gcolorsel.c:44
-#: gtt/src/ctree.c:563
-msgid "Title"
-msgstr "Nosaukums"
-
-# gtt/clist.c:171 gtt/menucmd.c:117
-#: gtt/src/ctree.c:564
-#: gtt/src/menucmd.c:155
-msgid "Project Title"
-msgstr "Projekta Nosaukums"
-
-# gtt/clist.c:172 gtt/menucmd.c:118
-#: gtt/src/ctree.c:569
-#: gtt/src/ctree.c:570
-#: gtt/src/menucmd.c:156
-msgid "Description"
-msgstr "Apraksts"
-
-#: gtt/src/ctree.c:575
-#: gtt/src/ghtml.c:95
-#: gtt/src/ghtml.c:220
-msgid "Diary Entry"
-msgstr "Dienasgrāmatas Ieraksts"
-
-# mini-utils/gcolorsel/menus.c:67
-#: gtt/src/ctree.c:577
-msgid "The current diary entry"
-msgstr "Pašreizējais dienasgrāmatas ieraksts"
-
-#: gtt/src/ctree.c:584
-msgid "Estimated Project Start Date"
-msgstr "Atlikušais Projekta Sākuma Termiņš"
-
-# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
-# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
-#: gtt/src/ctree.c:589
-msgid "End"
-msgstr "Beigas"
-
-#: gtt/src/ctree.c:591
-msgid "Estimated Project Completion Date"
-msgstr "Atlikušais Projekta Pabeigšanas Termiņš"
-
-#: gtt/src/ctree.c:596
-msgid "Due"
-msgstr "Līdz"
-
-#: gtt/src/ctree.c:598
-msgid "Due Date: the date by which the project absolutely must be completed by."
-msgstr "Beigu Termiņš: datums, līdz kuram projektam noteikti ir jābūt pabeigtam."
-
-# mini-utils/guname/info.c:61
-#: gtt/src/ctree.c:605
-msgid "Size"
-msgstr "Lielums"
-
-#: gtt/src/ctree.c:607
-msgid "Sizing: How much work it will take to finish this project."
-msgstr "Apjoms: Cik daudz darba prasīs, lai pabeigtu šo projektu."
-
-# mini-utils/idetool/idetool.c:202
-#: gtt/src/ctree.c:613
-msgid "Done"
-msgstr "Darīts"
-
-#: gtt/src/ctree.c:615
-msgid "Percent Complete: How much of this project has been finished till now."
-msgstr "Izpildījums Procentos: Cik daudz no šī projekta šobrīd ir pageigts."
-
-#: gtt/src/ctree.c:622
-msgid "U"
-msgstr "U"
-
-#: gtt/src/ctree.c:624
-msgid "Urgency: Does this project need to be done soon, done quickly?"
-msgstr "Steidzamība: Vai šim projektam jābūt pabeigtam drīz, izdarītam ātri?"
-
-#: gtt/src/ctree.c:630
-msgid "Imp"
-msgstr "Imp"
-
-#: gtt/src/ctree.c:632
-msgid "Importance: How important is this project?"
-msgstr "Svarīgums: Ciks svarīgs ir šis projekts?"
-
-# mini-utils/idetool/idetool.c:311
-#: gtt/src/ctree.c:638
-msgid "Status"
-msgstr "Statuss"
-
-#: gtt/src/ctree.c:640
-msgid "The current status of this project."
-msgstr "Projekta pašreizējais statuss."
-
-# logview/about.c:52
-#: gtt/src/ctree.c:971
-msgid "Low"
-msgstr "Zems"
-
-# gstripchart/gstripchart.c:2318
-#: gtt/src/ctree.c:972
-msgid "Med"
-msgstr "Vidējs"
-
-#: gtt/src/ctree.c:973
-msgid "High"
-msgstr "Augsts"
-
-# gsearchtool/gsearchtool.c:635 gsearchtool/gsearchtool.c:718
-#: gtt/src/ctree.c:982
-msgid "Not Started"
-msgstr "Nesākts"
-
-# logview/logview.c:103
-#: gtt/src/ctree.c:983
-msgid "In Progress"
-msgstr "Procesā"
-
-#: gtt/src/ctree.c:984
-msgid "On Hold"
-msgstr "Pieturēt"
-
-# logview/actions.c:141 logview/actions.c:663
-#: gtt/src/ctree.c:985
-msgid "Cancelled"
-msgstr "Atcelts"
-
-#: gtt/src/ctree.c:986
-msgid "Completed"
-msgstr "Izpildīts"
-
-# gtt/main.c:124
-#: gtt/src/err-throw.c:61
-msgid "No Error"
-msgstr "Nav Kļūda"
-
-#: gtt/src/err-throw.c:65
-#, c-format
-msgid ""
-"Cannot open the project data file\n"
-"\t%s\n"
-""
-msgstr ""
-"Nevar atvērt projekta datu failu\n"
-"\t%s\n"
-""
-
-#: gtt/src/err-throw.c:70
-#, c-format
-msgid ""
-"Cannot write the project data file\n"
-"\t%s\n"
-""
-msgstr ""
-"Nevar ierakstīt projekta datu failu\n"
-"\t%s\n"
-""
-
-#: gtt/src/err-throw.c:75
-#, c-format
-msgid ""
-"The file\n"
-"\t%s\n"
-"doesn't seem to be a GTT project data file\n"
-""
-msgstr ""
-"Fails\n"
-"\t%s\n"
-"neizskatās pēc GTT projekta datu faila\n"
-""
-
-#: gtt/src/err-throw.c:81
-#, c-format
-msgid ""
-"The file\n"
-"\t%s\n"
-"seems to be corrupt\n"
-""
-msgstr ""
-"Fails\n"
-"\t%s\n"
-"izskatās, ka ir sabeigts\n"
-""
-
-#: gtt/src/err-throw.c:87
-#, c-format
-msgid ""
-"An unknown token was found during the parsing of\n"
-"\t%s\n"
-""
-msgstr ""
-"Tika atrasta nezināma pazīme, analizējot\n"
-"\t%s\n"
-""
-
-#: gtt/src/err-throw.c:92
-#, c-format
-msgid ""
-"An unknown value was found during the parsing of\n"
-"\t%s\n"
-""
-msgstr ""
-"Tika atrasta nezināma vērtība, analizējot\n"
-"\t%s\n"
-""
-
-# gdictsrc/gdict-applet.c:120
-#: gtt/src/err-throw.c:97
-#, c-format
-msgid ""
-"Cannot write the config file\n"
-"\t%s\n"
-""
-msgstr ""
-"Nevar ierakstīt konfurācijas failu\n"
-"\t%s\n"
-""
-
-# gtt/proj.c:463
-#: gtt/src/file-io.c:376
-msgid "project %t started"
-msgstr "projekts %t palaists"
-
-# gtt/proj.c:466
-#: gtt/src/file-io.c:379
-msgid "stopped project %t"
-msgstr "projekts %t apstādināts"
-
-#. Translators: This is a "time format", that is
-#. * format on how to print the elapsed time with
-#. * hours:minutes:seconds.
-#: gtt/src/file-io.c:677
-#, c-format
-msgid "%d:%02d:%02d"
-msgstr "%d:%02d:%02d"
-
-#: gtt/src/ghtml.c:95
-#: gtt/src/ghtml.c:273
-msgid "Elapsed"
-msgstr "Pagājušais"
-
-# gtt/prop.c:59
-#: gtt/src/ghtml.c:113
-#: gtt/src/ghtml.c:369
-#: gtt/src/ghtml.c:378
-msgid "(empty)"
-msgstr "(tukšs)"
-
-#: gtt/src/ghtml.c:225
-msgid "Notes"
-msgstr "Piezīmes"
-
-#: gtt/src/ghtml.c:229
-msgid "Task Time"
-msgstr "Uzdevuma Laiks"
-
-# mini-utils/idetool/idetool.c:311
-#: gtt/src/ghtml.c:233
-msgid "Bill Status"
-msgstr "Aprēķina Statuss"
-
-# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
-# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
-#: gtt/src/ghtml.c:237
-#: gtt/src/ghtml.c:408
-msgid "Billable"
-msgstr "Iekļaut Aprēķinā"
-
-# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
-# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
-#: gtt/src/ghtml.c:241
-msgid "Bill Rate"
-msgstr "Aprēķina Likme"
-
-# gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:197
-# mini-utils/guname/moreinfo.c:227
-#: gtt/src/ghtml.c:245
-msgid "Value"
-msgstr "Vērtība"
-
-# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
-# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
-#: gtt/src/ghtml.c:249
-msgid "Billable Value"
-msgstr "Aprēķina Vērtība"
-
-# mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:322
-#: gtt/src/ghtml.c:253
-#: gtt/src/ghtml.c:279
-msgid "No Default Value"
-msgstr "Nav Noklusētās Vērtības"
-
-# gsearchtool/gsearchtool.c:635 gsearchtool/gsearchtool.c:718
-#: gtt/src/ghtml.c:276
-msgid "Start Time Fuzziness"
-msgstr "Sākt Laika Neskaidrību"
-
-#: gtt/src/ghtml.c:392
-msgid "Hold"
-msgstr "Aizturēt"
-
-# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
-# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
-#: gtt/src/ghtml.c:395
-msgid "Bill"
-msgstr "Aprēķināt"
-
-#: gtt/src/ghtml.c:398
-msgid "Paid"
-msgstr "Samaksāts"
-
-#: gtt/src/ghtml.c:411
-msgid "Not Billable"
-msgstr "Neiekļaut Aprēķinā"
-
-#: gtt/src/ghtml.c:414
-msgid "No Charge"
-msgstr "Bezmaksas"
-
-# gtt/toolbar.c:148
-#: gtt/src/ghtml.c:424
-msgid "Regular"
-msgstr "Regulārs"
-
-#: gtt/src/ghtml.c:427
-msgid "Overtime"
-msgstr "Ārpuslaika"
-
-#: gtt/src/ghtml.c:430
-msgid "Double Overtime"
-msgstr "Dubukt Ārpuslaika"
-
-# mini-utils/gcolorsel/view-color-generic.c:20
-#: gtt/src/ghtml.c:433
-msgid "Flat Fee"
-msgstr "Cietā Maksa"
-
-# mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:25
-#: gtt/src/ghtml.c:453
-msgid "Error - Unknown"
-msgstr "Kļūda - Nezināma"
-
-#: gtt/src/ghtml.c:703
-msgid "unknown token: >>>>"
-msgstr "nezināma zīme: >>>>"
-
-#: gtt/src/journal.c:107
-msgid "Error 404 Not Found"
-msgstr "Kļūda 404 NAv Atrasta"
-
-# mini-utils/guname/guname.c:533
-#: gtt/src/journal.c:109
-#, c-format
-msgid "The file %s was not found."
-msgstr "Fails %s nav atrasts."
-
-#: gtt/src/journal.c:110
-msgid "(null)"
-msgstr "(nulle)"
-
-# mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:25
-#: gtt/src/journal.c:119
-msgid "Unkown Error"
-msgstr "Nezināma Kļūda"
-
-# logview/logrtns.c:129
-#: gtt/src/journal.c:168
-#: gtt/src/plug-in.c:90
-#, c-format
-msgid ""
-"Unable to open the file %s\n"
-"%s"
-msgstr ""
-"Nevar atvērt failu %s\n"
-"%s"
-
-#: gtt/src/journal.c:259
-#: gtt/src/proj.c:716
-#: gtt/src/proj.c:1539
-#: gtt/src/proj.c:1667
-#: gtt/src/proj.c:1807
-msgid "New Diary Entry"
-msgstr "Jauns Dienasgrāmatas Ieraksts"
-
-# mini-utils/gcolorsel/menus.c:83
-#: gtt/src/journal.c:447
-msgid "Save HTML To File"
-msgstr "Saglabāt HTML Failā"
-
-# logview/logview.c:241
-#: gtt/src/log.c:55
-#, c-format
-msgid "Cannot open logfile %s for append"
-msgstr "Nevar atvērt append žurnālfailu %s"
-
-#. Translators: Format to use in the gtt logfile
-#: gtt/src/log.c:64
-msgid "%b %d %H:%M:%S"
-msgstr "%b %d %H:%M:%S"
-
-# gtt/log.c:82
-#: gtt/src/log.c:102
-msgid "no description"
-msgstr "nav apraksta"
-
-# gtt/log.c:64 gtt/log.c:216
-#: gtt/src/log.c:167
-#: gtt/src/log.c:258
-msgid "program started"
-msgstr "programma sākta"
-
-# gtt/log.c:208
-#. log_if_equal
-#: gtt/src/log.c:250
-msgid "program exited"
-msgstr "programma izbeidzās"
-
-# gtt/main.c:80
-#: gtt/src/main.c:114
-msgid ""
-"There seems to be another GTimeTracker running.\n"
-"Press OK to start GTimeTracker anyway, or press Cancel to quit."
-msgstr ""
-"Izskatās, ka ir jau palaists viens cits GLaika Uzraudzītājs.\n"
-"Nospied OK, lai tik un tā palaistu GLaika Uzraudzītāju,\n"
-"vai arī nospied Atcelt, lai beigu."
-
-# gdictsrc/gdict-applet.c:120
-#: gtt/src/main.c:126
-msgid "Cannot create pid-file!"
-msgstr "Nevar izveidot pid-failu!"
-
-#: gtt/src/main.c:219
-msgid "Do you want to continue?"
-msgstr "Vai vēlies turpināt?"
-
-# gtt/main.c:124
-#: gtt/src/main.c:222
-#: gtt/src/main.c:275
-msgid "Error"
-msgstr "Kļūda"
-
-#: gtt/src/main.c:272
-msgid "Shall I setup a new configuration?"
-msgstr "Vai uzstādīt jaunu konfigurāciju?"
-
-# gtt/main.c:207
-#: gtt/src/main.c:440
-msgid "Specify geometry"
-msgstr "Uzstādīt ģeometriju"
-
-# gdiskfree/gdiskfree.c:60 gtt/main.c:207 mini-utils/gless/gless.c:130
-#: gtt/src/main.c:440
-msgid "GEOMETRY"
-msgstr "Ģeometrija"
-
-# gtt/main.c:209
-#: gtt/src/main.c:442
-msgid "Select a project on startup"
-msgstr "Izvēlies projektu pie sāknēšanas"
-
-# gtt/main.c:209
-#: gtt/src/main.c:442
-msgid "PROJECT"
-msgstr "PROJEKTS"
-
-# gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
-#: gtt/src/main.c:483
-#: gtt/src/menucmd.c:48
-#: gtt/src/menucmd.c:211
-#: gtt/src/menucmd.c:247
-msgid "Warning"
-msgstr "Brīdinājums"
-
-#: gtt/src/menucmd.c:89
-msgid "GTimeTracker is a combination stop-watch, diary, consultant billing system and project manager.  You can measure the amount of time you spend on a task, associate a memo with it, set a billing rate, print an invoice, as well as track that status of other projects."
-msgstr "GLaika Pieskatītājs ir hronometra, dienasgrāmatas, konsultējošas rēķinu sistēmas un projektu pārvaldnieka apvienojums. Jūs varat izmērīt laika daudzumu, kuru pavadi pie uzdevuma izpildes, pievienot tam piezīmi, iestādīt maksājuma taksi, izdrukāt rēķinu, tāpat arī sekot citu projektu stāvoklim."
-
-# gtt/menucmd.c:111 gtt/toolbar.c:142
-#: gtt/src/menucmd.c:149
-msgid "New Project..."
-msgstr "Jauns Projekts..."
-
-# gtt/menucmd.c:177 gtt/toolbar.c:149
-#: gtt/src/menucmd.c:231
-#: gtt/src/toolbar.c:179
-msgid "Reload Configuration File"
-msgstr "Pārlādēt Konfigurācijas Failu"
-
-# gtt/menucmd.c:163
-#: gtt/src/menucmd.c:232
-msgid "Do you really want to reload the configuration file?"
-msgstr "Vai patiešām vēlies pārlādēt konfigurācijas failu?"
-
-#: gtt/src/menucmd.c:267
-#, c-format
-msgid "File %s exists, overwrite?"
-msgstr "Fails %s eksistē, pārrakstīt?"
-
-#: gtt/src/menucmd.c:278
-msgid "File cannot be written"
-msgstr "Fails nevar tikt ierakstīts"
-
-# gstripchart/gstripchart.c:1627
-#: gtt/src/menucmd.c:298
-msgid "Export Current State"
-msgstr "Eksportēt Pašreizējo Statusu"
-
-# gtt/menus.c:27
-#: gtt/src/menus.c:33
-msgid "_New Project..."
-msgstr "_Jauns Projekts..."
-
-# gtt/menus.c:30
-#: gtt/src/menus.c:36
-msgid "_Reload Configuration File"
-msgstr "_Pārlādēt Konfigurācijas Failu"
-
-# gtt/menus.c:34
-#: gtt/src/menus.c:40
-msgid "_Save Configuration File"
-msgstr "_Saglabāt Konfigurācijas Failu"
-
-#: gtt/src/menus.c:44
-msgid "_Export Current State"
-msgstr "_Eksportēt Pašreizējo Stāvokli"
-
-# gtt/menus.c:59 gtt/menus.c:115
-#: gtt/src/menus.c:63
-#: gtt/src/menus.c:173
-msgid "Clear _Daily Counter"
-msgstr "Attī_rīt Dienas Pulksteni"
-
-#: gtt/src/menus.c:64
-#: gtt/src/menus.c:174
-msgid "Zero out todays timer by deleting todays time logs"
-msgstr "Iestatīt uz nulli šodienas taimeri, izdzēšot šodienas laika ierakstus"
-
-#: gtt/src/menus.c:68
-#: gtt/src/menus.c:87
-#: gtt/src/menus.c:156
-msgid "_Journal..."
-msgstr "Ž_urunāls..."
-
-#: gtt/src/menus.c:69
-#: gtt/src/menus.c:88
-#: gtt/src/menus.c:157
-msgid "Show the timesheet journal for this project"
-msgstr "Parādīt laika kontrolsarakstu šim projektam"
-
-#: gtt/src/menus.c:72
-#: gtt/src/menus.c:160
-msgid "New Diary _Entry"
-msgstr "Jauns Dienasgrāmatas Ie_raksts"
-
-#: gtt/src/menus.c:73
-#: gtt/src/menus.c:161
-msgid "Change the current task for this project"
-msgstr "Mainīt šī projekta pašreizējo uzdevumu"
-
-#: gtt/src/menus.c:91
-msgid "_All Journal..."
-msgstr "_Pievienot Žurnālu..."
-
-#: gtt/src/menus.c:92
-msgid "Show the verbose timesheet journal for this project"
-msgstr "Parādīt vārdisku laika kontrolsarakstu šim projektam"
-
-# mini-utils/gw/gw.c:176
-#: gtt/src/menus.c:95
-msgid "_Invoice..."
-msgstr "_Rēķins..."
-
-#: gtt/src/menus.c:96
-msgid "Show a sample invoice for this project"
-msgstr "Parādīt parauga rēķinu šim projektam"
-
-# gdictsrc/gdict-applet.c:134 gnome-find/gnome-find.c:55
-#: gtt/src/menus.c:99
-msgid "_Primer..."
-msgstr "Ā_bece..."
-
-#: gtt/src/menus.c:100
-msgid "Show a sample introductory primer for designing custom reports"
-msgstr "Parādīt vienkāršu paraugpiemēru, lai izveidotu savas atskaites"
-
-# gtt/menus.c:27
-#: gtt/src/menus.c:103
-msgid "_New Report..."
-msgstr "_Jauns Pārskats..."
-
-#: gtt/src/menus.c:104
-msgid "Define a path to a new GTT phtml report file"
-msgstr "Definēt ceļu uz jauno GTT phtml pārskata failu"
-
-# gtt/menus.c:71
-#: gtt/src/menus.c:115
-msgid "St_art"
-msgstr "Star_tēt"
-
-#: gtt/src/menus.c:116
-msgid "Start the timer running"
-msgstr "Palaist taimeri"
-
-# gtt/menus.c:75
-#: gtt/src/menus.c:121
-msgid "Sto_p"
-msgstr "I_zbeigt"
-
-# logview/log_repaint.c:89
-#: gtt/src/menus.c:122
-msgid "Stop the timer"
-msgstr "Apstādināt pulksteni"
-
-# gtt/menus.c:80
-#: gtt/src/menus.c:127
-msgid "_Timer Running"
-msgstr "Pu_lkstenis Palaists"
-
-#: gtt/src/menus.c:146
-msgid "_Reports"
-msgstr "_Pārskati"
-
-# gtt/menus.c:99
-#: gtt/src/menus.c:147
-msgid "_Timer"
-msgstr "P_ulkstenis"
-
-# mini-utils/gshutdown/gshutdown.c:93
-#. deal with the i18n menu path ...
-#. (is this right ??? or is this pre-i18n ???)
-#: gtt/src/menus.c:244
-msgid "Reports"
-msgstr "Pārskati"
-
-#: gtt/src/plug-in.c:121
-msgid "Reports/<Separator>"
-msgstr "Pārskati/<Atdalītājs>"
-
-#: gtt/src/proj.c:697
-msgid "Old GTT Tasks"
-msgstr "Vecie GTT Uzdevumi"
-
-# gtt/prop.c:59
-#: gtt/src/props-proj.c:94
-#: gtt/src/props-proj.c:95
-#: gtt/src/props-task.c:75
-#: gtt/src/props-task.c:76
-msgid "empty"
-msgstr "tukšs"
-
-#: gtt/src/timer.c:117
-#, c-format
-msgid ""
-"The keyboard and mouse have been idle\n"
-"for %d minutes.  The currently running\n"
-"project (%s - %s)\n"
-"has been stopped.\n"
-"Do you want to restart it?"
-msgstr ""
-"Klaviatūra un pele ir bijusi neaktīva\n"
-"%d minūtes. Pašreizējais\n"
-"projekts (%s - %s)\n"
-"tika apstādināts.\n"
-"Vēlies to pārstartēt?"
-
-# mini-utils/gcolorsel/session.c:408
-#: gtt/src/timer.c:125
-msgid "System Idle"
-msgstr "Sistēma Dīkstāvē"
-
-# gtt/menucmd.c:111 gtt/toolbar.c:142
-#: gtt/src/toolbar.c:169
-msgid "Create a New Project..."
-msgstr "Izveidot Jaunu Projektu..."
-
-# gtt/toolbar.c:153
-#: gtt/src/toolbar.c:184
-msgid "Save Configuration File"
-msgstr "Saglabāt Konfigurācijas Failu"
-
-# gtt/toolbar.c:160
-#: gtt/src/toolbar.c:194
-msgid "Cut Selected Project"
-msgstr "Izgriezt Izvēlēto Projektu"
-
-# gtt/toolbar.c:164
-#: gtt/src/toolbar.c:199
-msgid "Copy Selected Project"
-msgstr "Kopēt Izvēlēto Projektu"
-
-# gtt/toolbar.c:168
-#: gtt/src/toolbar.c:204
-msgid "Paste Project"
-msgstr "Ivietot Projektu"
-
-#: gtt/src/toolbar.c:213
-msgid "Journal"
-msgstr "Žurnāls"
-
-#: gtt/src/toolbar.c:214
-msgid "View and Edit Timestamp Logs"
-msgstr "Skatīt un Rediģēt Laika Kontrolsarakstu"
-
-# gtt/toolbar.c:175
-#: gtt/src/toolbar.c:223
-msgid "Edit Project Properties..."
-msgstr "Rediģēt Projekta Rekvizītus..."
-
-# gtt/toolbar.c:179
-#: gtt/src/toolbar.c:230
-msgid "Timer"
-msgstr "Pulkstenis"
-
-# gtt/toolbar.c:180
-#: gtt/src/toolbar.c:231
-msgid "Start/Stop Timer"
-msgstr "Startēt/Apstādināt Pulksteni"
-
-# logview/calendar.c:139
-#: gtt/src/toolbar.c:242
-msgid "View Calendar"
-msgstr "Apskatīt Kalendāru"
-
-# gtt/toolbar.c:190
-#: gtt/src/toolbar.c:262
-msgid "Edit Preferences..."
-msgstr "Rediģēt Uzstādījumus..."
-
-#: gtt/src/toolbar.c:270
-msgid "User's Guide and Manual"
-msgstr "Lietotāja Pamācība un Rokasgrāmata"
-
-# gtt/toolbar.c:199
-#: gtt/src/toolbar.c:278
-msgid "Quit Gnome TimeTracker"
-msgstr "Iziet no Gnomes Laika Uzraudzītāja"
 
 #: vicious-extensions/glade-helper.c:72
 msgid "(memory buffer)"
 msgstr "(atmiņas buferis)"
 
-#: vicious-extensions/glade-helper.c:104
-#: vicious-extensions/glade-helper.c:126
+#: vicious-extensions/glade-helper.c:104 vicious-extensions/glade-helper.c:126
 #: vicious-extensions/glade-helper.c:146
 msgid "(memory buffer"
 msgstr "(atmiņas buferis"
@@ -3106,3 +2146,757 @@ msgstr ""
 msgid "No interface could be loaded, BAD! (file: %s)"
 msgstr "Neviena saaskarne nevar tikt ielādēta, SLIKTI! (fails: %s)"
 
+#~ msgid "Character Table's Font..."
+#~ msgstr "Rakstzīmju Tabulas Fonts..."
+
+#~ msgid "Set the character table's font."
+#~ msgstr "Iestatīt rakstzīmju tabulas fontu."
+
+#~ msgid "Insert character(s) by choosing character codes"
+#~ msgstr "Ievietot rakstzīmi(es) izvēloties rakstzīmju kodus"
+
+# gcharmap/src/interface.c:103 gcharmap/src/interface.c:361
+#~ msgid "Show Gnome Character Map's manual"
+#~ msgstr "Gnome Simbolu Rakstzīmju Kartes rokasgrāmatu"
+
+# mini-utils/gcolorsel/menus.c:960
+#~ msgid "About this application"
+#~ msgstr "Par šo aplikāciju"
+
+# mini-utils/gcolorsel/menus.c:950
+#~ msgid "Exit the program"
+#~ msgstr "Iziet no programmas"
+
+# gsearchtool/gsearchtool.c:36
+#~ msgid "File owner"
+#~ msgstr "Dantes īpašnieks"
+
+# gsearchtool/gsearchtool.c:41
+#~ msgid "Empty file"
+#~ msgstr "Tukša dante"
+
+# gsearchtool/gsearchtool.c:44
+#~ msgid "Filenames except"
+#~ msgstr "Failu nosaukumi, izņemot"
+
+# gsearchtool/gsearchtool.c:46
+#~ msgid "Simple substring search"
+#~ msgstr "Vienkārša apakšvirnes meklēšana"
+
+# gsearchtool/gsearchtool.c:47
+#~ msgid "Regular expression search"
+#~ msgstr "Regulāra izteiciena meklēšana"
+
+# gsearchtool/gsearchtool.c:151
+#~ msgid "grep options found in find list bad bad!"
+#~ msgstr "grep atrastās meklēšanas saraksta opcijas slikti slikti!"
+
+# gsearchtool/gsearchtool.c:165
+#~ msgid "non-grep option found in grep list, bad bad!"
+#~ msgstr "ne-grep atrastās meklēšanas saraksta opcijas slikti slikti!"
+
+# gsearchtool/gsearchtool.c:201
+#~ msgid "Search already running on another page"
+#~ msgstr "Meklēšana jau norit citā lapā"
+
+# gsearchtool/gsearchtool.c:211
+#~ msgid "Search Results"
+#~ msgstr "Meklēšanas Rezultāti"
+
+# gsearchtool/gsearchtool.c:635 gsearchtool/gsearchtool.c:718
+#~ msgid "Start"
+#~ msgstr "Sākt"
+
+# gsearchtool/gsearchtool.c:636 gsearchtool/gsearchtool.c:719
+#~ msgid "Stop"
+#~ msgstr "Stop"
+
+# gsearchtool/gsearchtool.c:669
+#~ msgid "Nothing to locate"
+#~ msgstr "Nav ko atrast"
+
+# gsearchtool/gsearchtool.c:697
+#~ msgid ""
+#~ "This is an interface to locate.  If you type in a simple string it\n"
+#~ "will be matched as a subset of the full path, and if you type\n"
+#~ "in a string with wildcards, it will have to match the full path."
+#~ msgstr ""
+#~ "Šī ir locate saskarne. Ja tu ierakstīsi vienkāršu rindiņu, tā\n"
+#~ "tiks attiecināta kā pilna ceļa daļa, un ja tu ierakstīsi\n"
+#~ "rindiņu ar aizstājējzīmēm, tai ir jāatbilst pilnam ceļam."
+
+# gsearchtool/gsearchtool.c:706
+#~ msgid "Locate file: "
+#~ msgstr "Norādīt failu: "
+
+# gsearchtool/gsearchtool.c:740
+#~ msgid "Full find (find)"
+#~ msgstr "Pilnā meklēšana (meklēt)"
+
+# gsearchtool/gsearchtool.c:742
+#~ msgid "Quick find (locate)"
+#~ msgstr "Ātrā meklēšana (atrast)"
+
+# gsearchtool/gsearchtool.c:824
+#~ msgid "Gnome Search Tool"
+#~ msgstr "Gnome Meklēšanas Darbarīks"
+
+# gsearchtool/outdlg.c:130
+#~ msgid "Command mangled"
+#~ msgstr "Izkropļota komanda"
+
+# mini-utils/guname/guname.c:541
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+# mini-utils/guname/guname.c:541
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+
+# mini-utils/guname/guname.c:541
+#~ msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+
+# mini-utils/guname/guname.c:541
+#~ msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+
+# mini-utils/guname/guname.c:541
+#~ msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+# mini-utils/guname/guname.c:541
+#~ msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+# mini-utils/guname/guname.c:541
+#~ msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+
+# mini-utils/guname/guname.c:541
+#~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+
+#~ msgid "gfloppy"
+#~ msgstr "gfloppy"
+
+#~ msgid "SysLog tool"
+#~ msgstr "SysLog rīks"
+
+# logview/monitor.c:132
+#~ msgid "System log monitor"
+#~ msgstr "Sistēmas žurnālu novērotājs"
+
+# gtt/app.c:117 gtt/app.c:223
+#~ msgid "no project selected"
+#~ msgstr "neviens projekts nav izvēlēts"
+
+# gtt/app.c:212
+#~ msgid "00:00"
+#~ msgstr "00:00"
+
+# gtt/app.c:251 mini-utils/gless/gless.c:423
+#~ msgid ""
+#~ "Couldn't understand geometry (position and size)\n"
+#~ " specified on command line"
+#~ msgstr ""
+#~ "Nevarēja saprast komandrindā noteikto\n"
+#~ "ģeometriju (vietu un izmēru)"
+
+# gtt/clist.c:169
+#~ msgid "Total"
+#~ msgstr "Kopā"
+
+#~ msgid "Total time spent on this project."
+#~ msgstr "Kopējais pavadītais laiks pie šī projekta."
+
+# gtt/options.c:413
+#~ msgid "Entry"
+#~ msgstr "Ieraksts"
+
+#~ msgid "Time spent under the current diary entry."
+#~ msgstr "Pavadītais laiks pie pašreizējā Dienasgrāmatas ieraksta."
+
+# gtt/clist.c:170
+#~ msgid "Today"
+#~ msgstr "Šodien"
+
+#~ msgid "Time spent on this project today."
+#~ msgstr "Šodien pavadītais laiks pie šī projekta"
+
+#~ msgid "Week"
+#~ msgstr "Nedēļa"
+
+#~ msgid "Time spent on this project this week."
+#~ msgstr "Šonedēļ šim projektam veltītais laiks."
+
+# mini-utils/gcolorsel/gcolorsel.c:48
+#~ msgid "Month"
+#~ msgstr "Mēnesis"
+
+#~ msgid "Time spent on this project this month."
+#~ msgstr "Šomēnes šim projektam veltītais laiks."
+
+#~ msgid "Year"
+#~ msgstr "Gads"
+
+#~ msgid "Time spent on this project this year."
+#~ msgstr "Šogad šim projektam veltītais laiks."
+
+# gnome-find/gnome-find.c:86 mini-utils/gcolorsel/gcolorsel.c:44
+#~ msgid "Title"
+#~ msgstr "Nosaukums"
+
+# gtt/clist.c:171 gtt/menucmd.c:117
+#~ msgid "Project Title"
+#~ msgstr "Projekta Nosaukums"
+
+# gtt/clist.c:172 gtt/menucmd.c:118
+#~ msgid "Description"
+#~ msgstr "Apraksts"
+
+#~ msgid "Diary Entry"
+#~ msgstr "Dienasgrāmatas Ieraksts"
+
+# mini-utils/gcolorsel/menus.c:67
+#~ msgid "The current diary entry"
+#~ msgstr "Pašreizējais dienasgrāmatas ieraksts"
+
+#~ msgid "Estimated Project Start Date"
+#~ msgstr "Atlikušais Projekta Sākuma Termiņš"
+
+# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#~ msgid "End"
+#~ msgstr "Beigas"
+
+#~ msgid "Estimated Project Completion Date"
+#~ msgstr "Atlikušais Projekta Pabeigšanas Termiņš"
+
+#~ msgid "Due"
+#~ msgstr "Līdz"
+
+#~ msgid ""
+#~ "Due Date: the date by which the project absolutely must be completed by."
+#~ msgstr ""
+#~ "Beigu Termiņš: datums, līdz kuram projektam noteikti ir jābūt pabeigtam."
+
+# mini-utils/guname/info.c:61
+#~ msgid "Size"
+#~ msgstr "Lielums"
+
+#~ msgid "Sizing: How much work it will take to finish this project."
+#~ msgstr "Apjoms: Cik daudz darba prasīs, lai pabeigtu šo projektu."
+
+# mini-utils/idetool/idetool.c:202
+#~ msgid "Done"
+#~ msgstr "Darīts"
+
+#~ msgid ""
+#~ "Percent Complete: How much of this project has been finished till now."
+#~ msgstr ""
+#~ "Izpildījums Procentos: Cik daudz no šī projekta šobrīd ir pageigts."
+
+#~ msgid "U"
+#~ msgstr "U"
+
+#~ msgid "Urgency: Does this project need to be done soon, done quickly?"
+#~ msgstr ""
+#~ "Steidzamība: Vai šim projektam jābūt pabeigtam drīz, izdarītam ātri?"
+
+#~ msgid "Imp"
+#~ msgstr "Imp"
+
+#~ msgid "Importance: How important is this project?"
+#~ msgstr "Svarīgums: Ciks svarīgs ir šis projekts?"
+
+# mini-utils/idetool/idetool.c:311
+#~ msgid "Status"
+#~ msgstr "Statuss"
+
+#~ msgid "The current status of this project."
+#~ msgstr "Projekta pašreizējais statuss."
+
+# logview/about.c:52
+#~ msgid "Low"
+#~ msgstr "Zems"
+
+# gstripchart/gstripchart.c:2318
+#~ msgid "Med"
+#~ msgstr "Vidējs"
+
+#~ msgid "High"
+#~ msgstr "Augsts"
+
+# gsearchtool/gsearchtool.c:635 gsearchtool/gsearchtool.c:718
+#~ msgid "Not Started"
+#~ msgstr "Nesākts"
+
+# logview/logview.c:103
+#~ msgid "In Progress"
+#~ msgstr "Procesā"
+
+#~ msgid "On Hold"
+#~ msgstr "Pieturēt"
+
+# logview/actions.c:141 logview/actions.c:663
+#~ msgid "Cancelled"
+#~ msgstr "Atcelts"
+
+#~ msgid "Completed"
+#~ msgstr "Izpildīts"
+
+# gtt/main.c:124
+#~ msgid "No Error"
+#~ msgstr "Nav Kļūda"
+
+#~ msgid ""
+#~ "Cannot open the project data file\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Nevar atvērt projekta datu failu\n"
+#~ "\t%s\n"
+
+#~ msgid ""
+#~ "Cannot write the project data file\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Nevar ierakstīt projekta datu failu\n"
+#~ "\t%s\n"
+
+#~ msgid ""
+#~ "The file\n"
+#~ "\t%s\n"
+#~ "doesn't seem to be a GTT project data file\n"
+#~ msgstr ""
+#~ "Fails\n"
+#~ "\t%s\n"
+#~ "neizskatās pēc GTT projekta datu faila\n"
+
+#~ msgid ""
+#~ "The file\n"
+#~ "\t%s\n"
+#~ "seems to be corrupt\n"
+#~ msgstr ""
+#~ "Fails\n"
+#~ "\t%s\n"
+#~ "izskatās, ka ir sabeigts\n"
+
+#~ msgid ""
+#~ "An unknown token was found during the parsing of\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Tika atrasta nezināma pazīme, analizējot\n"
+#~ "\t%s\n"
+
+#~ msgid ""
+#~ "An unknown value was found during the parsing of\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Tika atrasta nezināma vērtība, analizējot\n"
+#~ "\t%s\n"
+
+# gdictsrc/gdict-applet.c:120
+#~ msgid ""
+#~ "Cannot write the config file\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Nevar ierakstīt konfurācijas failu\n"
+#~ "\t%s\n"
+
+# gtt/proj.c:463
+#~ msgid "project %t started"
+#~ msgstr "projekts %t palaists"
+
+# gtt/proj.c:466
+#~ msgid "stopped project %t"
+#~ msgstr "projekts %t apstādināts"
+
+#~ msgid "%d:%02d:%02d"
+#~ msgstr "%d:%02d:%02d"
+
+#~ msgid "Elapsed"
+#~ msgstr "Pagājušais"
+
+# gtt/prop.c:59
+#~ msgid "(empty)"
+#~ msgstr "(tukšs)"
+
+#~ msgid "Notes"
+#~ msgstr "Piezīmes"
+
+#~ msgid "Task Time"
+#~ msgstr "Uzdevuma Laiks"
+
+# mini-utils/idetool/idetool.c:311
+#~ msgid "Bill Status"
+#~ msgstr "Aprēķina Statuss"
+
+# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#~ msgid "Billable"
+#~ msgstr "Iekļaut Aprēķinā"
+
+# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#~ msgid "Bill Rate"
+#~ msgstr "Aprēķina Likme"
+
+# gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:197
+# mini-utils/guname/moreinfo.c:227
+#~ msgid "Value"
+#~ msgstr "Vērtība"
+
+# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#~ msgid "Billable Value"
+#~ msgstr "Aprēķina Vērtība"
+
+# mini-utils/idetool/idetool.c:141 mini-utils/idetool/idetool.c:322
+#~ msgid "No Default Value"
+#~ msgstr "Nav Noklusētās Vērtības"
+
+# gsearchtool/gsearchtool.c:635 gsearchtool/gsearchtool.c:718
+#~ msgid "Start Time Fuzziness"
+#~ msgstr "Sākt Laika Neskaidrību"
+
+#~ msgid "Hold"
+#~ msgstr "Aizturēt"
+
+# mini-utils/idetool/idetool.c:78 mini-utils/idetool/idetool.c:110
+# mini-utils/idetool/idetool.c:318 mini-utils/idetool/idetool.c:320
+#~ msgid "Bill"
+#~ msgstr "Aprēķināt"
+
+#~ msgid "Paid"
+#~ msgstr "Samaksāts"
+
+#~ msgid "Not Billable"
+#~ msgstr "Neiekļaut Aprēķinā"
+
+#~ msgid "No Charge"
+#~ msgstr "Bezmaksas"
+
+# gtt/toolbar.c:148
+#~ msgid "Regular"
+#~ msgstr "Regulārs"
+
+#~ msgid "Overtime"
+#~ msgstr "Ārpuslaika"
+
+#~ msgid "Double Overtime"
+#~ msgstr "Dubukt Ārpuslaika"
+
+# mini-utils/gcolorsel/view-color-generic.c:20
+#~ msgid "Flat Fee"
+#~ msgstr "Cietā Maksa"
+
+# mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:25
+#~ msgid "Error - Unknown"
+#~ msgstr "Kļūda - Nezināma"
+
+#~ msgid "unknown token: >>>>"
+#~ msgstr "nezināma zīme: >>>>"
+
+#~ msgid "Error 404 Not Found"
+#~ msgstr "Kļūda 404 NAv Atrasta"
+
+# mini-utils/guname/guname.c:533
+#~ msgid "The file %s was not found."
+#~ msgstr "Fails %s nav atrasts."
+
+#~ msgid "(null)"
+#~ msgstr "(nulle)"
+
+# mini-utils/guname/info.c:207 mini-utils/idetool/idetool.c:25
+#~ msgid "Unkown Error"
+#~ msgstr "Nezināma Kļūda"
+
+# logview/logrtns.c:129
+#~ msgid ""
+#~ "Unable to open the file %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Nevar atvērt failu %s\n"
+#~ "%s"
+
+#~ msgid "New Diary Entry"
+#~ msgstr "Jauns Dienasgrāmatas Ieraksts"
+
+# mini-utils/gcolorsel/menus.c:83
+#~ msgid "Save HTML To File"
+#~ msgstr "Saglabāt HTML Failā"
+
+# logview/logview.c:241
+#~ msgid "Cannot open logfile %s for append"
+#~ msgstr "Nevar atvērt append žurnālfailu %s"
+
+#~ msgid "%b %d %H:%M:%S"
+#~ msgstr "%b %d %H:%M:%S"
+
+# gtt/log.c:82
+#~ msgid "no description"
+#~ msgstr "nav apraksta"
+
+# gtt/log.c:64 gtt/log.c:216
+#~ msgid "program started"
+#~ msgstr "programma sākta"
+
+# gtt/log.c:208
+#~ msgid "program exited"
+#~ msgstr "programma izbeidzās"
+
+# gtt/main.c:80
+#~ msgid ""
+#~ "There seems to be another GTimeTracker running.\n"
+#~ "Press OK to start GTimeTracker anyway, or press Cancel to quit."
+#~ msgstr ""
+#~ "Izskatās, ka ir jau palaists viens cits GLaika Uzraudzītājs.\n"
+#~ "Nospied OK, lai tik un tā palaistu GLaika Uzraudzītāju,\n"
+#~ "vai arī nospied Atcelt, lai beigu."
+
+# gdictsrc/gdict-applet.c:120
+#~ msgid "Cannot create pid-file!"
+#~ msgstr "Nevar izveidot pid-failu!"
+
+#~ msgid "Do you want to continue?"
+#~ msgstr "Vai vēlies turpināt?"
+
+# gtt/main.c:124
+#~ msgid "Error"
+#~ msgstr "Kļūda"
+
+#~ msgid "Shall I setup a new configuration?"
+#~ msgstr "Vai uzstādīt jaunu konfigurāciju?"
+
+# gtt/main.c:207
+#~ msgid "Specify geometry"
+#~ msgstr "Uzstādīt ģeometriju"
+
+# gdiskfree/gdiskfree.c:60 gtt/main.c:207 mini-utils/gless/gless.c:130
+#~ msgid "GEOMETRY"
+#~ msgstr "Ģeometrija"
+
+# gtt/main.c:209
+#~ msgid "Select a project on startup"
+#~ msgstr "Izvēlies projektu pie sāknēšanas"
+
+# gtt/main.c:209
+#~ msgid "PROJECT"
+#~ msgstr "PROJEKTS"
+
+# gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
+#~ msgid "Warning"
+#~ msgstr "Brīdinājums"
+
+#~ msgid ""
+#~ "GTimeTracker is a combination stop-watch, diary, consultant billing system "
+#~ "and project manager.  You can measure the amount of time you spend on a "
+#~ "task, associate a memo with it, set a billing rate, print an invoice, as "
+#~ "well as track that status of other projects."
+#~ msgstr ""
+#~ "GLaika Pieskatītājs ir hronometra, dienasgrāmatas, konsultējošas "
+#~ "rēķinu sistēmas un projektu pārvaldnieka apvienojums. Jūs varat "
+#~ "izmērīt laika daudzumu, kuru pavadi pie uzdevuma izpildes, pievienot tam "
+#~ "piezīmi, iestādīt maksājuma taksi, izdrukāt rēķinu, tāpat arī sekot "
+#~ "citu projektu stāvoklim."
+
+# gtt/menucmd.c:111 gtt/toolbar.c:142
+#~ msgid "New Project..."
+#~ msgstr "Jauns Projekts..."
+
+# gtt/menucmd.c:177 gtt/toolbar.c:149
+#~ msgid "Reload Configuration File"
+#~ msgstr "Pārlādēt Konfigurācijas Failu"
+
+# gtt/menucmd.c:163
+#~ msgid "Do you really want to reload the configuration file?"
+#~ msgstr "Vai patiešām vēlies pārlādēt konfigurācijas failu?"
+
+#~ msgid "File %s exists, overwrite?"
+#~ msgstr "Fails %s eksistē, pārrakstīt?"
+
+#~ msgid "File cannot be written"
+#~ msgstr "Fails nevar tikt ierakstīts"
+
+# gstripchart/gstripchart.c:1627
+#~ msgid "Export Current State"
+#~ msgstr "Eksportēt Pašreizējo Statusu"
+
+# gtt/menus.c:27
+#~ msgid "_New Project..."
+#~ msgstr "_Jauns Projekts..."
+
+# gtt/menus.c:30
+#~ msgid "_Reload Configuration File"
+#~ msgstr "_Pārlādēt Konfigurācijas Failu"
+
+# gtt/menus.c:34
+#~ msgid "_Save Configuration File"
+#~ msgstr "_Saglabāt Konfigurācijas Failu"
+
+#~ msgid "_Export Current State"
+#~ msgstr "_Eksportēt Pašreizējo Stāvokli"
+
+# gtt/menus.c:59 gtt/menus.c:115
+#~ msgid "Clear _Daily Counter"
+#~ msgstr "Attī_rīt Dienas Pulksteni"
+
+#~ msgid "Zero out todays timer by deleting todays time logs"
+#~ msgstr ""
+#~ "Iestatīt uz nulli šodienas taimeri, izdzēšot šodienas laika ierakstus"
+
+#~ msgid "_Journal..."
+#~ msgstr "Ž_urunāls..."
+
+#~ msgid "Show the timesheet journal for this project"
+#~ msgstr "Parādīt laika kontrolsarakstu šim projektam"
+
+#~ msgid "New Diary _Entry"
+#~ msgstr "Jauns Dienasgrāmatas Ie_raksts"
+
+#~ msgid "Change the current task for this project"
+#~ msgstr "Mainīt šī projekta pašreizējo uzdevumu"
+
+#~ msgid "_All Journal..."
+#~ msgstr "_Pievienot Žurnālu..."
+
+#~ msgid "Show the verbose timesheet journal for this project"
+#~ msgstr "Parādīt vārdisku laika kontrolsarakstu šim projektam"
+
+# mini-utils/gw/gw.c:176
+#~ msgid "_Invoice..."
+#~ msgstr "_Rēķins..."
+
+#~ msgid "Show a sample invoice for this project"
+#~ msgstr "Parādīt parauga rēķinu šim projektam"
+
+# gdictsrc/gdict-applet.c:134 gnome-find/gnome-find.c:55
+#~ msgid "_Primer..."
+#~ msgstr "Ā_bece..."
+
+#~ msgid "Show a sample introductory primer for designing custom reports"
+#~ msgstr "Parādīt vienkāršu paraugpiemēru, lai izveidotu savas atskaites"
+
+# gtt/menus.c:27
+#~ msgid "_New Report..."
+#~ msgstr "_Jauns Pārskats..."
+
+#~ msgid "Define a path to a new GTT phtml report file"
+#~ msgstr "Definēt ceļu uz jauno GTT phtml pārskata failu"
+
+# gtt/menus.c:71
+#~ msgid "St_art"
+#~ msgstr "Star_tēt"
+
+#~ msgid "Start the timer running"
+#~ msgstr "Palaist taimeri"
+
+# gtt/menus.c:75
+#~ msgid "Sto_p"
+#~ msgstr "I_zbeigt"
+
+# logview/log_repaint.c:89
+#~ msgid "Stop the timer"
+#~ msgstr "Apstādināt pulksteni"
+
+# gtt/menus.c:80
+#~ msgid "_Timer Running"
+#~ msgstr "Pu_lkstenis Palaists"
+
+#~ msgid "_Reports"
+#~ msgstr "_Pārskati"
+
+# gtt/menus.c:99
+#~ msgid "_Timer"
+#~ msgstr "P_ulkstenis"
+
+# mini-utils/gshutdown/gshutdown.c:93
+#~ msgid "Reports"
+#~ msgstr "Pārskati"
+
+#~ msgid "Reports/<Separator>"
+#~ msgstr "Pārskati/<Atdalītājs>"
+
+#~ msgid "Old GTT Tasks"
+#~ msgstr "Vecie GTT Uzdevumi"
+
+# gtt/prop.c:59
+#~ msgid "empty"
+#~ msgstr "tukšs"
+
+#~ msgid ""
+#~ "The keyboard and mouse have been idle\n"
+#~ "for %d minutes.  The currently running\n"
+#~ "project (%s - %s)\n"
+#~ "has been stopped.\n"
+#~ "Do you want to restart it?"
+#~ msgstr ""
+#~ "Klaviatūra un pele ir bijusi neaktīva\n"
+#~ "%d minūtes. Pašreizējais\n"
+#~ "projekts (%s - %s)\n"
+#~ "tika apstādināts.\n"
+#~ "Vēlies to pārstartēt?"
+
+# mini-utils/gcolorsel/session.c:408
+#~ msgid "System Idle"
+#~ msgstr "Sistēma Dīkstāvē"
+
+# gtt/menucmd.c:111 gtt/toolbar.c:142
+#~ msgid "Create a New Project..."
+#~ msgstr "Izveidot Jaunu Projektu..."
+
+# gtt/toolbar.c:153
+#~ msgid "Save Configuration File"
+#~ msgstr "Saglabāt Konfigurācijas Failu"
+
+# gtt/toolbar.c:160
+#~ msgid "Cut Selected Project"
+#~ msgstr "Izgriezt Izvēlēto Projektu"
+
+# gtt/toolbar.c:164
+#~ msgid "Copy Selected Project"
+#~ msgstr "Kopēt Izvēlēto Projektu"
+
+# gtt/toolbar.c:168
+#~ msgid "Paste Project"
+#~ msgstr "Ivietot Projektu"
+
+#~ msgid "Journal"
+#~ msgstr "Žurnāls"
+
+#~ msgid "View and Edit Timestamp Logs"
+#~ msgstr "Skatīt un Rediģēt Laika Kontrolsarakstu"
+
+# gtt/toolbar.c:175
+#~ msgid "Edit Project Properties..."
+#~ msgstr "Rediģēt Projekta Rekvizītus..."
+
+# gtt/toolbar.c:179
+#~ msgid "Timer"
+#~ msgstr "Pulkstenis"
+
+# gtt/toolbar.c:180
+#~ msgid "Start/Stop Timer"
+#~ msgstr "Startēt/Apstādināt Pulksteni"
+
+# logview/calendar.c:139
+#~ msgid "View Calendar"
+#~ msgstr "Apskatīt Kalendāru"
+
+# gtt/toolbar.c:190
+#~ msgid "Edit Preferences..."
+#~ msgstr "Rediģēt Uzstādījumus..."
+
+#~ msgid "User's Guide and Manual"
+#~ msgstr "Lietotāja Pamācība un Rokasgrāmata"
+
+# gtt/toolbar.c:199
+#~ msgid "Quit Gnome TimeTracker"
+#~ msgstr "Iziet no Gnomes Laika Uzraudzītāja"

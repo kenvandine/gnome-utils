@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2002-01-30 00:54+0100\n"
+"POT-Creation-Date: 2002-01-29 22:10-0500\n"
 "PO-Revision-Date: 2002-01-30 00:54+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -266,15 +266,15 @@ msgstr "SUM"
 msgid "Sum"
 msgstr "Summera"
 
-#: gcalc/gnome-calc.c:1103 gtt/src/ctree.c:961
+#: gcalc/gnome-calc.c:1103
 msgid "1"
 msgstr "1"
 
-#: gcalc/gnome-calc.c:1104 gtt/src/ctree.c:960
+#: gcalc/gnome-calc.c:1104
 msgid "2"
 msgstr "2"
 
-#: gcalc/gnome-calc.c:1105 gtt/src/ctree.c:959
+#: gcalc/gnome-calc.c:1105
 msgid "3"
 msgstr "3"
 
@@ -322,23 +322,24 @@ msgstr "="
 msgid "Calculate"
 msgstr "Beräkna"
 
-#: gcharmap/src/asciiselect.c:102
+#: gcharmap/src/asciiselect.c:100
 msgid "Select Character"
 msgstr "Välj tecken"
 
-#: gcharmap/src/asciiselect.c:103 gcharmap/src/menus.c:96
-msgid "Insert"
+#: gcharmap/src/asciiselect.c:103
+#, fuzzy
+msgid "_Insert"
 msgstr "Infoga"
 
-#: gcharmap/src/asciiselect.c:111
+#: gcharmap/src/asciiselect.c:107
 msgid "Character code:"
 msgstr "Teckenkod:"
 
-#: gcharmap/src/asciiselect.c:121
+#: gcharmap/src/asciiselect.c:117
 msgid "Character:"
 msgstr "Tecken:"
 
-#: gcharmap/src/asciiselect.c:129
+#: gcharmap/src/asciiselect.c:125
 msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
@@ -352,62 +353,68 @@ msgid ""
 "contain bad English."
 msgstr "Gnomes motsvarighet till Microsoft Windows teckenkarta."
 
-#: gcharmap/src/callbacks.c:79 gcharmap/src/callbacks.c:119
+#: gcharmap/src/callbacks.c:85 gcharmap/src/callbacks.c:125
 msgid "del"
 msgstr "ta bort"
 
-#: gcharmap/src/callbacks.c:125
+#: gcharmap/src/callbacks.c:131
 #, c-format
 msgid " %s: Character code %d"
 msgstr " %s: Teckenkod %d"
 
-#: gcharmap/src/callbacks.c:152
+#: gcharmap/src/callbacks.c:162
 msgid "Text copied to clipboard..."
 msgstr "Text kopierad till urklipp..."
 
-#: gcharmap/src/callbacks.c:164
+#: gcharmap/src/callbacks.c:174
 msgid "Text cut to clipboard..."
 msgstr "Text urklippt till urklipp..."
 
-#: gcharmap/src/callbacks.c:217
+#: gcharmap/src/callbacks.c:225
 msgid "Text pasted from clipboard..."
 msgstr "Text inklistrad från urklipp..."
 
-#: gcharmap/src/interface.c:169
+#: gcharmap/src/interface.c:170
 msgid "Action Toolbar"
 msgstr "Åtgärdsverktygsrad"
 
-#: gcharmap/src/interface.c:188
+#: gcharmap/src/interface.c:189
 msgid "Text to copy:"
 msgstr "Text att kopiera:"
 
-#: gcharmap/src/interface.c:212
+#: gcharmap/src/interface.c:195
+#, fuzzy
+msgid "_Copy"
+msgstr "Kopiera"
+
+#: gcharmap/src/interface.c:219
 msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 
-#: gcharmap/src/interface.c:235 gcharmap/src/menus.c:111 logview/logview.c:102
+#: gcharmap/src/interface.c:243 logview/logview.c:102
 msgid "Exit"
 msgstr "Avsluta"
 
-#: gcharmap/src/interface.c:236 gcharmap/src/menus.c:101
+#: gcharmap/src/interface.c:244 gcharmap/src/menus.c:101
 #: gdictsrc/gdict-app.c:556
 msgid "Copy"
 msgstr "Kopiera"
 
-#: gcharmap/src/interface.c:240 gcharmap/src/menus.c:108
+#: gcharmap/src/interface.c:248
 msgid "About"
 msgstr "Om"
 
-#: gcharmap/src/interface.c:242 gcharmap/src/menus.c:106
+#: gcharmap/src/interface.c:250
 msgid "Help"
 msgstr "Hjälp"
 
-#: gcharmap/src/interface.c:261
+#: gcharmap/src/interface.c:269
 msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
 #: gcharmap/src/menus.c:48
-msgid "Insert Character..."
+#, fuzzy
+msgid "Browse Characters..."
 msgstr "Infoga tecken..."
 
 #: gcharmap/src/menus.c:49
@@ -438,14 +445,9 @@ msgstr "_Statusrad"
 msgid "View or hide the statusbar"
 msgstr "Visa eller göm statusraden"
 
-#: gcharmap/src/menus.c:67
-msgid "Character Table's Font..."
-msgstr "Teckentabellens typsnitt..."
-
-#: gcharmap/src/menus.c:67
-msgid "Set the character table's font."
-msgstr "Ange typsnitt för teckentabellen."
-
+#. GNOMEUIINFO_ITEM_STOCK(N_("Character Table's Font..."), N_("Set the character "
+#. "table's font."), cb_set_chartable_font, GNOME_STOCK_MENU_FONT),
+#. GNOMEUIINFO_SEPARATOR,
 #: gcharmap/src/menus.c:70
 msgid "_Insert at end"
 msgstr "_Infoga i slutet"
@@ -462,10 +464,9 @@ msgstr "_Fokuserbara knappar"
 msgid "Set the buttons to be focusable or not"
 msgstr "Ange om knapparna ska vara fokuserbara"
 
-#: gcharmap/src/menus.c:96
-msgid "Insert character(s) by choosing character codes"
-msgstr "Infoga tecken genom att välja teckenkoder"
-
+#. GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
+#. cb_insert_char_click, NULL),
+#. GNOMEUIINFO_SEPARATOR,
 #: gcharmap/src/menus.c:99 gdictsrc/gdict-app.c:553
 msgid "Cut"
 msgstr "Klipp ut"
@@ -485,18 +486,6 @@ msgstr "Klistra in"
 #: gcharmap/src/menus.c:103
 msgid "Paste the clipboard"
 msgstr "Klistra in urklippet"
-
-#: gcharmap/src/menus.c:106
-msgid "Show Gnome Character Map's manual"
-msgstr "Visa bruksanvisning för Gnome-teckenkarta"
-
-#: gcharmap/src/menus.c:108
-msgid "About this application"
-msgstr "Om detta program"
-
-#: gcharmap/src/menus.c:111
-msgid "Exit the program"
-msgstr "Avsluta programmet"
 
 #: gdictsrc/main.c:89
 msgid ""
@@ -755,8 +744,8 @@ msgid ""
 "A search is already running.  Please wait for that search to complete or "
 "cancel it."
 msgstr ""
-"En sökning pågår redan. Vänta på att den sökningen blir färdig, eller avbryt "
-"den."
+"En sökning pågår redan. Vänta på att den sökningen blir färdig, eller "
+"avbryt den."
 
 #: gsearchtool/gsearchtool.c:357
 msgid ""
@@ -795,10 +784,10 @@ msgid ""
 "\n"
 "Command:"
 msgstr ""
-"Detta är kommandoraden som kan användas till att köra denna sökning från "
-"konsollen.\n"
-"(Observera: för att skriva ut en fil per rad i stället för en null-sepererad "
-"rad lägger du till \"| tr '\\000' '\\n'\" till raden nedan.)"
+"Detta är kommandoraden som kan användas till att köra denna sökning "
+"från konsollen.\n"
+"(Observera: för att skriva ut en fil per rad i stället för en "
+"null-sepererad rad lägger du till \"| tr '\\000' '\\n'\" till raden nedan.)"
 
 #: gsearchtool/gsearchtool.c:571
 msgid "No viewer available for this mime type."
@@ -976,7 +965,7 @@ msgstr ""
 "beskrivning: [%s]\n"
 "åtgärd: [%s]\n"
 
-#: gtt/src/toolbar.c:241 logview/calendar.c:112 logview/logview.c:109
+#: logview/calendar.c:112 logview/logview.c:109
 msgid "Calendar"
 msgstr "Kalender"
 
@@ -1320,56 +1309,12 @@ msgstr "Beskrivning:"
 msgid "%B %e %X"
 msgstr "%e %B %X"
 
-#.
-#. * 	-------------------
-#. * 	     Defines
-#. * 	-------------------
-#.
-#: logview/config.c:34
-msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:35
-msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:36
-msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:37
-msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:39
-msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-
-#: logview/config.c:40
-msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-
-#: logview/config.c:41
-msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:42
-msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:43
-msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:44
-msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr ""
-"Kan inte öppna databasen med reguljära uttryck, <%s>! Öppnande misslyckades."
+"Kan inte öppna databasen med reguljära uttryck, <%s>! Öppnande "
+"misslyckades."
 
 #: logview/desc_db.c:147
 #, c-format
@@ -1644,7 +1589,8 @@ msgid ""
 "\n"
 "Are you sure you want to run `%s'?"
 msgstr ""
-"Att köra godtyckliga program som du har hämtat från nätet kan vara farligt.\n"
+"Att köra godtyckliga program som du har hämtat från nätet kan vara "
+"farligt.\n"
 "\n"
 "Är du säker på att du vill köra \"%s\"?"
 
@@ -1655,7 +1601,8 @@ msgstr "Kunde inte få tag i filrättigheter"
 #: exe-handler/gnome-exe-handler.c:88
 #, c-format
 msgid "Could not execute the file `%s' due to a permission problem"
-msgstr "Kunde inte köra filen \"%s\" på grund av ett problem med rättigheter"
+msgstr ""
+"Kunde inte köra filen \"%s\" på grund av ett problem med rättigheter"
 
 #: exe-handler/gnome-exe-handler.c:104
 #, c-format
@@ -1850,702 +1797,6 @@ msgstr "Miniräknare"
 msgid "Perform simple calculations"
 msgstr "Utför enkla beräkningar"
 
-#: gtt/src/app.c:116 gtt/src/app.c:228
-msgid "no project selected"
-msgstr "inget projekt valt"
-
-#: gtt/src/app.c:218
-msgid "00:00"
-msgstr "00.00"
-
-#: gtt/src/app.c:270
-msgid ""
-"Couldn't understand geometry (position and size)\n"
-" specified on command line"
-msgstr ""
-"Förstod inte geometrin (position och storlek)\n"
-" som angavs på kommandoraden"
-
-#: gtt/src/ctree.c:517
-msgid "Total"
-msgstr "Totalt"
-
-#: gtt/src/ctree.c:519
-msgid "Total time spent on this project."
-msgstr "Total tid spenderad på detta projekt."
-
-#: gtt/src/ctree.c:524
-msgid "Entry"
-msgstr "Post"
-
-#: gtt/src/ctree.c:526
-msgid "Time spent under the current diary entry."
-msgstr "Tid spenderad under den aktuella dagboksposten."
-
-#: gtt/src/ctree.c:532
-msgid "Today"
-msgstr "Idag"
-
-#: gtt/src/ctree.c:534
-msgid "Time spent on this project today."
-msgstr "Tid spenderad på detta projekt idag."
-
-#: gtt/src/ctree.c:539
-msgid "Week"
-msgstr "Vecka"
-
-#: gtt/src/ctree.c:541
-msgid "Time spent on this project this week."
-msgstr "Tid spenderad på detta projekt denna vecka."
-
-#: gtt/src/ctree.c:547
-msgid "Month"
-msgstr "Månad"
-
-#: gtt/src/ctree.c:549
-msgid "Time spent on this project this month."
-msgstr "Tid spenderad på detta projekt denna månad."
-
-#: gtt/src/ctree.c:555
-msgid "Year"
-msgstr "År"
-
-#: gtt/src/ctree.c:557
-msgid "Time spent on this project this year."
-msgstr "Tid spenderad på detta projekt detta år."
-
-#: gtt/src/ctree.c:563
-msgid "Title"
-msgstr "Titel"
-
-#: gtt/src/ctree.c:564 gtt/src/menucmd.c:155
-msgid "Project Title"
-msgstr "Projekttitel"
-
-#: gtt/src/ctree.c:569 gtt/src/ctree.c:570 gtt/src/menucmd.c:156
-msgid "Description"
-msgstr "Beskrivning"
-
-#: gtt/src/ctree.c:575 gtt/src/ghtml.c:95 gtt/src/ghtml.c:220
-msgid "Diary Entry"
-msgstr "Dagbokspost"
-
-#: gtt/src/ctree.c:577
-msgid "The current diary entry"
-msgstr "Den aktuella dagboksposten"
-
-#: gtt/src/ctree.c:582 gtt/src/ghtml.c:95 gtt/src/ghtml.c:267
-msgid "Start"
-msgstr "Starta"
-
-#: gtt/src/ctree.c:584
-msgid "Estimated Project Start Date"
-msgstr "Uppskattat startdatum för projektet"
-
-#: gtt/src/ctree.c:589
-msgid "End"
-msgstr "Slut"
-
-#: gtt/src/ctree.c:591
-msgid "Estimated Project Completion Date"
-msgstr "Uppskattat färdigställningsdatum för projektet"
-
-#: gtt/src/ctree.c:596
-msgid "Due"
-msgstr "Färdigt den"
-
-#: gtt/src/ctree.c:598
-msgid ""
-"Due Date: the date by which the project absolutely must be completed by."
-msgstr "Färdigtdatum: det datum då projektet absolut måste vara färdigt."
-
-#: gtt/src/ctree.c:605
-msgid "Size"
-msgstr "Storlek"
-
-#: gtt/src/ctree.c:607
-msgid "Sizing: How much work it will take to finish this project."
-msgstr ""
-"Projektstorlek: Hur mycket arbete det kommer att ta att färdigställa detta "
-"projekt."
-
-#: gtt/src/ctree.c:613
-msgid "Done"
-msgstr "Klart"
-
-#: gtt/src/ctree.c:615
-msgid "Percent Complete: How much of this project has been finished till now."
-msgstr "Procent färdigt: Hur mycket av detta projekt som är färdigt just nu."
-
-#: gtt/src/ctree.c:622
-msgid "U"
-msgstr "A"
-
-#: gtt/src/ctree.c:624
-msgid "Urgency: Does this project need to be done soon, done quickly?"
-msgstr ""
-"Angelägenhet: Måste detta projekt bli färdigt snart, och väldigt snabbt?"
-
-#: gtt/src/ctree.c:630
-msgid "Imp"
-msgstr "Vikt"
-
-#: gtt/src/ctree.c:632
-msgid "Importance: How important is this project?"
-msgstr "Viktighet: Hur viktigt är detta projekt?"
-
-#: gtt/src/ctree.c:638
-msgid "Status"
-msgstr "Status"
-
-#: gtt/src/ctree.c:640
-msgid "The current status of this project."
-msgstr "Den aktuella statusen för detta projekt."
-
-#: gtt/src/ctree.c:971
-msgid "Low"
-msgstr "Låg"
-
-#: gtt/src/ctree.c:972
-msgid "Med"
-msgstr "Mellan"
-
-#: gtt/src/ctree.c:973
-msgid "High"
-msgstr "Hög"
-
-#: gtt/src/ctree.c:982
-msgid "Not Started"
-msgstr "Inte påbörjad"
-
-#: gtt/src/ctree.c:983
-msgid "In Progress"
-msgstr "Pågår"
-
-#: gtt/src/ctree.c:984
-msgid "On Hold"
-msgstr "Vilande"
-
-#: gtt/src/ctree.c:985
-msgid "Cancelled"
-msgstr "Avbrutet"
-
-#: gtt/src/ctree.c:986
-msgid "Completed"
-msgstr "Färdigställd"
-
-#: gtt/src/err-throw.c:61
-msgid "No Error"
-msgstr "Inget fel"
-
-#: gtt/src/err-throw.c:65
-#, c-format
-msgid ""
-"Cannot open the project data file\n"
-"\t%s\n"
-msgstr ""
-"Kan inte öppna projektdatafilen\n"
-"\t%s\n"
-
-#: gtt/src/err-throw.c:70
-#, c-format
-msgid ""
-"Cannot write the project data file\n"
-"\t%s\n"
-msgstr ""
-"Kan inte skriva projektdatafilen\n"
-"\t%s\n"
-
-#: gtt/src/err-throw.c:75
-#, c-format
-msgid ""
-"The file\n"
-"\t%s\n"
-"doesn't seem to be a GTT project data file\n"
-msgstr ""
-"Filen\n"
-"\t%s\n"
-"verkar inte vara en GTT-projektdatafil\n"
-
-#: gtt/src/err-throw.c:81
-#, c-format
-msgid ""
-"The file\n"
-"\t%s\n"
-"seems to be corrupt\n"
-msgstr ""
-"Filen\n"
-"\t%s\n"
-"verkar vara trasig\n"
-
-#: gtt/src/err-throw.c:87
-#, c-format
-msgid ""
-"An unknown token was found during the parsing of\n"
-"\t%s\n"
-msgstr ""
-"Ett okänt element hittades vid tolkningen av\n"
-"\t%s\n"
-
-#: gtt/src/err-throw.c:92
-#, c-format
-msgid ""
-"An unknown value was found during the parsing of\n"
-"\t%s\n"
-msgstr ""
-"Ett okänt värde hittades vid tolkningen av\n"
-"\t%s\n"
-
-#: gtt/src/err-throw.c:97
-#, c-format
-msgid ""
-"Cannot write the config file\n"
-"\t%s\n"
-msgstr ""
-"Kan inte skriva konfigurationsfile\n"
-"\t%s\n"
-
-#: gtt/src/file-io.c:376
-msgid "project %t started"
-msgstr "projektet %t startade"
-
-#: gtt/src/file-io.c:379
-msgid "stopped project %t"
-msgstr "stoppade projektet %t"
-
-#. Translators: This is a "time format", that is
-#. * format on how to print the elapsed time with
-#. * hours:minutes:seconds.
-#: gtt/src/file-io.c:677
-#, c-format
-msgid "%d:%02d:%02d"
-msgstr "%d.%02d.%02d"
-
-#: gtt/src/ghtml.c:95 gtt/src/ghtml.c:270
-msgid "Stop"
-msgstr "Stopp"
-
-#: gtt/src/ghtml.c:95 gtt/src/ghtml.c:273
-msgid "Elapsed"
-msgstr "Förlupen"
-
-#: gtt/src/ghtml.c:113 gtt/src/ghtml.c:369 gtt/src/ghtml.c:378
-msgid "(empty)"
-msgstr "(tom)"
-
-#: gtt/src/ghtml.c:225
-msgid "Notes"
-msgstr "Anteckningar"
-
-#: gtt/src/ghtml.c:229
-msgid "Task Time"
-msgstr "Uppgiftstid"
-
-#: gtt/src/ghtml.c:233
-msgid "Bill Status"
-msgstr "Debiteringsstatus"
-
-#: gtt/src/ghtml.c:237 gtt/src/ghtml.c:408
-msgid "Billable"
-msgstr "Debiterbart"
-
-#: gtt/src/ghtml.c:241
-msgid "Bill Rate"
-msgstr "Debiteringsavgift"
-
-#: gtt/src/ghtml.c:245
-msgid "Value"
-msgstr "Värde"
-
-#: gtt/src/ghtml.c:249
-msgid "Billable Value"
-msgstr "Debiterbart värde"
-
-#: gtt/src/ghtml.c:253 gtt/src/ghtml.c:279
-msgid "No Default Value"
-msgstr "Inget standardvärde"
-
-#: gtt/src/ghtml.c:276
-msgid "Start Time Fuzziness"
-msgstr "Starttidsosäkerhet"
-
-#: gtt/src/ghtml.c:392
-msgid "Hold"
-msgstr "Vänta"
-
-#: gtt/src/ghtml.c:395
-msgid "Bill"
-msgstr "Räkning"
-
-#: gtt/src/ghtml.c:398
-msgid "Paid"
-msgstr "Betalat"
-
-#: gtt/src/ghtml.c:411
-msgid "Not Billable"
-msgstr "Inte debiterbart"
-
-#: gtt/src/ghtml.c:414
-msgid "No Charge"
-msgstr "Ingen avgift"
-
-#: gtt/src/ghtml.c:424
-msgid "Regular"
-msgstr "Vanlig"
-
-#: gtt/src/ghtml.c:427
-msgid "Overtime"
-msgstr "Övertid"
-
-#: gtt/src/ghtml.c:430
-msgid "Double Overtime"
-msgstr "Kvalificerad övertid"
-
-#: gtt/src/ghtml.c:433
-msgid "Flat Fee"
-msgstr "Fast avgift"
-
-#: gtt/src/ghtml.c:453
-msgid "Error - Unknown"
-msgstr "Fel - Okänt"
-
-#: gtt/src/ghtml.c:703
-msgid "unknown token: >>>>"
-msgstr "okänd teckensekvens: >>>>"
-
-#: gtt/src/journal.c:111
-msgid "Error 404 Not Found"
-msgstr "Fel 404 Inte hittad"
-
-#: gtt/src/journal.c:113
-#, c-format
-msgid "The file %s was not found."
-msgstr "Filen %s hittades inte."
-
-#: gtt/src/journal.c:114
-msgid "(null)"
-msgstr "(null)"
-
-#: gtt/src/journal.c:124
-msgid "Unkown Error"
-msgstr "Okänt fel"
-
-#: gtt/src/journal.c:175 gtt/src/plug-in.c:90
-#, c-format
-msgid ""
-"Unable to open the file %s\n"
-"%s"
-msgstr ""
-"Kunde inte öppna filen %s\n"
-"%s"
-
-#: gtt/src/journal.c:267 gtt/src/proj.c:716 gtt/src/proj.c:1539
-#: gtt/src/proj.c:1667 gtt/src/proj.c:1807
-msgid "New Diary Entry"
-msgstr "Ny dagbokspost"
-
-#: gtt/src/journal.c:455
-msgid "Save HTML To File"
-msgstr "Spara HTML till fil"
-
-#: gtt/src/log.c:55
-#, c-format
-msgid "Cannot open logfile %s for append"
-msgstr "Kan inte öppna loggfilen %s för tillägg"
-
-#. Translators: Format to use in the gtt logfile
-#: gtt/src/log.c:64
-msgid "%b %d %H:%M:%S"
-msgstr "%d %b %H.%M.%S"
-
-#: gtt/src/log.c:102
-msgid "no description"
-msgstr "ingen beskrivning"
-
-#: gtt/src/log.c:167 gtt/src/log.c:258
-msgid "program started"
-msgstr "programmet startades"
-
-#. log_if_equal
-#: gtt/src/log.c:250
-msgid "program exited"
-msgstr "programmet avslutades"
-
-#: gtt/src/main.c:114
-msgid ""
-"There seems to be another GTimeTracker running.\n"
-"Press OK to start GTimeTracker anyway, or press Cancel to quit."
-msgstr ""
-"Du verkar redan köra en GTimeTracker.\n"
-"Klicka på OK för att starta ändå eller tryck Avbryt för att hoppa ur."
-
-#: gtt/src/main.c:126
-msgid "Cannot create pid-file!"
-msgstr "Kan inte skapa pid-fil!"
-
-#: gtt/src/main.c:219
-msgid "Do you want to continue?"
-msgstr "Vill du fortsätta?"
-
-#: gtt/src/main.c:222 gtt/src/main.c:275
-msgid "Error"
-msgstr "Fel"
-
-#: gtt/src/main.c:272
-msgid "Shall I setup a new configuration?"
-msgstr "Ska jag ställa in en ny konfiguration?"
-
-#: gtt/src/main.c:440
-msgid "Specify geometry"
-msgstr "Ange geometri"
-
-#: gtt/src/main.c:440
-msgid "GEOMETRY"
-msgstr "GEOMETRI"
-
-#: gtt/src/main.c:442
-msgid "Select a project on startup"
-msgstr "Välj ett projekt vid uppstart"
-
-#: gtt/src/main.c:442
-msgid "PROJECT"
-msgstr "PROJEKT"
-
-#: gtt/src/main.c:483 gtt/src/menucmd.c:48 gtt/src/menucmd.c:211
-#: gtt/src/menucmd.c:247
-msgid "Warning"
-msgstr "Varning"
-
-#: gtt/src/menucmd.c:89
-msgid ""
-"GTimeTracker is a combination stop-watch, diary, consultant billing system "
-"and project manager.  You can measure the amount of time you spend on a "
-"task, associate a memo with it, set a billing rate, print an invoice, as "
-"well as track that status of other projects."
-msgstr ""
-"GTimeTracker är ett kombinerat stoppur, dagbok, konsultdebiteringssystem och "
-"projekthanterare. Du kan mäta mängden tid du spenderar på en uppgift, "
-"associera en minnesanteckning med den, ställa in en debiteringstaxa, skriva "
-"ut en räkning, och även spåra statusen på andra projekt."
-
-#: gtt/src/menucmd.c:149
-msgid "New Project..."
-msgstr "Nytt projekt..."
-
-#: gtt/src/menucmd.c:231 gtt/src/toolbar.c:179
-msgid "Reload Configuration File"
-msgstr "Läs om konfigurationsfilen"
-
-#: gtt/src/menucmd.c:232
-msgid "Do you really want to reload the configuration file?"
-msgstr "Vill du verkligen läsa om konfigurationsfilen?"
-
-#: gtt/src/menucmd.c:267
-#, c-format
-msgid "File %s exists, overwrite?"
-msgstr "Filen %s finns redan, skriva över?"
-
-#: gtt/src/menucmd.c:278
-msgid "File cannot be written"
-msgstr "Filen kan inte skrivas"
-
-#: gtt/src/menucmd.c:298
-msgid "Export Current State"
-msgstr "Exportera aktuellt tillstånd"
-
-#: gtt/src/menus.c:33
-msgid "_New Project..."
-msgstr "_Nytt projekt..."
-
-#: gtt/src/menus.c:36
-msgid "_Reload Configuration File"
-msgstr "Läs _om konfigurationsfilen"
-
-#: gtt/src/menus.c:40
-msgid "_Save Configuration File"
-msgstr "_Spara konfigurationsfilen"
-
-#: gtt/src/menus.c:44
-msgid "_Export Current State"
-msgstr "_Exportera aktuellt tillstånd"
-
-#: gtt/src/menus.c:63 gtt/src/menus.c:173
-msgid "Clear _Daily Counter"
-msgstr "Töm _dagliga räknaren"
-
-#: gtt/src/menus.c:64 gtt/src/menus.c:174
-msgid "Zero out todays timer by deleting todays time logs"
-msgstr "Nollställ dagens klocka genom att ta bort tidsloggarna för idag"
-
-#: gtt/src/menus.c:68 gtt/src/menus.c:87 gtt/src/menus.c:156
-msgid "_Journal..."
-msgstr "_Dagbok..."
-
-#: gtt/src/menus.c:69 gtt/src/menus.c:88 gtt/src/menus.c:157
-msgid "Show the timesheet journal for this project"
-msgstr "Visa tidsdagbok för detta projekt"
-
-#: gtt/src/menus.c:72 gtt/src/menus.c:160
-msgid "New Diary _Entry"
-msgstr "Ny dagboks_post"
-
-#: gtt/src/menus.c:73 gtt/src/menus.c:161
-msgid "Change the current task for this project"
-msgstr "Ändra aktuell uppgift för detta projekt"
-
-#: gtt/src/menus.c:91
-msgid "_All Journal..."
-msgstr "_Komplett dagbok..."
-
-#: gtt/src/menus.c:92
-msgid "Show the verbose timesheet journal for this project"
-msgstr "Visa den utförliga tidsdagboken för detta projekt"
-
-#: gtt/src/menus.c:95
-msgid "_Invoice..."
-msgstr "R_äkning..."
-
-#: gtt/src/menus.c:96
-msgid "Show a sample invoice for this project"
-msgstr "Visa en exempelräkning för detta projekt"
-
-#: gtt/src/menus.c:99
-msgid "_Primer..."
-msgstr "_Förstagångshandbok..."
-
-#: gtt/src/menus.c:100
-msgid "Show a sample introductory primer for designing custom reports"
-msgstr "Visa en introduktionshandbok för skapande av anpassade rapporter"
-
-#: gtt/src/menus.c:103
-msgid "_New Report..."
-msgstr "_Ny rapport..."
-
-#: gtt/src/menus.c:104
-msgid "Define a path to a new GTT phtml report file"
-msgstr "Ange en sökväg till en ny GTT phtml-rapportfil"
-
-#: gtt/src/menus.c:115
-msgid "St_art"
-msgstr "St_arta"
-
-#: gtt/src/menus.c:116
-msgid "Start the timer running"
-msgstr "Starta klockan"
-
-#: gtt/src/menus.c:121
-msgid "Sto_p"
-msgstr "Sto_ppa"
-
-#: gtt/src/menus.c:122
-msgid "Stop the timer"
-msgstr "Stoppa klockan"
-
-#: gtt/src/menus.c:127
-msgid "_Timer Running"
-msgstr "_Klocka aktiverad"
-
-#: gtt/src/menus.c:146
-msgid "_Reports"
-msgstr "_Rapporter"
-
-#: gtt/src/menus.c:147
-msgid "_Timer"
-msgstr "_Klocka"
-
-#. deal with the i18n menu path ...
-#. (is this right ??? or is this pre-i18n ???)
-#: gtt/src/menus.c:244
-msgid "Reports"
-msgstr "Rapporter"
-
-#: gtt/src/plug-in.c:121
-msgid "Reports/<Separator>"
-msgstr "Rapporter/<Avskiljare>"
-
-#: gtt/src/proj.c:697
-msgid "Old GTT Tasks"
-msgstr "Gammal GTT-uppgift"
-
-#: gtt/src/props-proj.c:94 gtt/src/props-proj.c:95 gtt/src/props-task.c:75
-#: gtt/src/props-task.c:76
-msgid "empty"
-msgstr "tom"
-
-#: gtt/src/timer.c:117
-#, c-format
-msgid ""
-"The keyboard and mouse have been idle\n"
-"for %d minutes.  The currently running\n"
-"project (%s - %s)\n"
-"has been stopped.\n"
-"Do you want to restart it?"
-msgstr ""
-"Tangentbordet och musen har inte använts\n"
-"på %d minuter. Det pågående projektet\n"
-"(%s - %s) har stoppats.\n"
-"Vill du starta om det?"
-
-#: gtt/src/timer.c:125
-msgid "System Idle"
-msgstr "Systemet oanvänt"
-
-#: gtt/src/toolbar.c:169
-msgid "Create a New Project..."
-msgstr "Skapa ett nytt projekt..."
-
-#: gtt/src/toolbar.c:184
-msgid "Save Configuration File"
-msgstr "Spara konfigurationsfil"
-
-#: gtt/src/toolbar.c:194
-msgid "Cut Selected Project"
-msgstr "Klipp ut markerat projekt"
-
-#: gtt/src/toolbar.c:199
-msgid "Copy Selected Project"
-msgstr "Kopiera markerat projekt"
-
-#: gtt/src/toolbar.c:204
-msgid "Paste Project"
-msgstr "Klistra in projekt"
-
-#: gtt/src/toolbar.c:213
-msgid "Journal"
-msgstr "Dagbok"
-
-#: gtt/src/toolbar.c:214
-msgid "View and Edit Timestamp Logs"
-msgstr "Visa och redigera tidsstämplingsloggar"
-
-#: gtt/src/toolbar.c:223
-msgid "Edit Project Properties..."
-msgstr "Redigera projektegenskaper..."
-
-#: gtt/src/toolbar.c:230
-msgid "Timer"
-msgstr "Klocka"
-
-#: gtt/src/toolbar.c:231
-msgid "Start/Stop Timer"
-msgstr "Starta/stoppa klocka"
-
-#: gtt/src/toolbar.c:242
-msgid "View Calendar"
-msgstr "Visa kalender"
-
-#: gtt/src/toolbar.c:262
-msgid "Edit Preferences..."
-msgstr "Redigera inställningar..."
-
-#: gtt/src/toolbar.c:270
-msgid "User's Guide and Manual"
-msgstr "Användarguide och -manual"
-
-#: gtt/src/toolbar.c:278
-msgid "Quit Gnome TimeTracker"
-msgstr "Avsluta Gnome TimeTracker"
-
 #: vicious-extensions/glade-helper.c:72
 msgid "(memory buffer)"
 msgstr "(minnesbuffert)"
@@ -2577,7 +1828,8 @@ msgid ""
 "Glade file is on crack! Make sure the correct file is installed!\n"
 "file: %s widget: %s"
 msgstr ""
-"Glade-filen är helt åt skogen! Försäkra dig om att rätt fil är installerad!\n"
+"Glade-filen är helt åt skogen! Försäkra dig om att rätt fil är "
+"installerad!\n"
 "fil: %s widget: %s"
 
 #: vicious-extensions/glade-helper.c:223
@@ -2604,7 +1856,8 @@ msgid ""
 "Glade file is on crack! Make sure the correct file is installed!\n"
 "file: %s widget: %s expected clist columns: %d"
 msgstr ""
-"Glade-filen är helt åt skogen! Försäkra dig om att rätt fil är installerad!\n"
+"Glade-filen är helt åt skogen! Försäkra dig om att rätt fil är "
+"installerad!\n"
 "fil: %s widget: %s förväntade clist-kolumner: %d"
 
 #: vicious-extensions/glade-helper.c:258
@@ -2628,6 +1881,578 @@ msgstr ""
 #, c-format
 msgid "No interface could be loaded, BAD! (file: %s)"
 msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
+
+#~ msgid "Character Table's Font..."
+#~ msgstr "Teckentabellens typsnitt..."
+
+#~ msgid "Set the character table's font."
+#~ msgstr "Ange typsnitt för teckentabellen."
+
+#~ msgid "Insert character(s) by choosing character codes"
+#~ msgstr "Infoga tecken genom att välja teckenkoder"
+
+#~ msgid "Show Gnome Character Map's manual"
+#~ msgstr "Visa bruksanvisning för Gnome-teckenkarta"
+
+#~ msgid "About this application"
+#~ msgstr "Om detta program"
+
+#~ msgid "Exit the program"
+#~ msgstr "Avsluta programmet"
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+
+#~ msgid "no project selected"
+#~ msgstr "inget projekt valt"
+
+#~ msgid "00:00"
+#~ msgstr "00.00"
+
+#~ msgid ""
+#~ "Couldn't understand geometry (position and size)\n"
+#~ " specified on command line"
+#~ msgstr ""
+#~ "Förstod inte geometrin (position och storlek)\n"
+#~ " som angavs på kommandoraden"
+
+#~ msgid "Total"
+#~ msgstr "Totalt"
+
+#~ msgid "Total time spent on this project."
+#~ msgstr "Total tid spenderad på detta projekt."
+
+#~ msgid "Entry"
+#~ msgstr "Post"
+
+#~ msgid "Time spent under the current diary entry."
+#~ msgstr "Tid spenderad under den aktuella dagboksposten."
+
+#~ msgid "Today"
+#~ msgstr "Idag"
+
+#~ msgid "Time spent on this project today."
+#~ msgstr "Tid spenderad på detta projekt idag."
+
+#~ msgid "Week"
+#~ msgstr "Vecka"
+
+#~ msgid "Time spent on this project this week."
+#~ msgstr "Tid spenderad på detta projekt denna vecka."
+
+#~ msgid "Month"
+#~ msgstr "Månad"
+
+#~ msgid "Time spent on this project this month."
+#~ msgstr "Tid spenderad på detta projekt denna månad."
+
+#~ msgid "Year"
+#~ msgstr "År"
+
+#~ msgid "Time spent on this project this year."
+#~ msgstr "Tid spenderad på detta projekt detta år."
+
+#~ msgid "Title"
+#~ msgstr "Titel"
+
+#~ msgid "Project Title"
+#~ msgstr "Projekttitel"
+
+#~ msgid "Description"
+#~ msgstr "Beskrivning"
+
+#~ msgid "Diary Entry"
+#~ msgstr "Dagbokspost"
+
+#~ msgid "The current diary entry"
+#~ msgstr "Den aktuella dagboksposten"
+
+#~ msgid "Start"
+#~ msgstr "Starta"
+
+#~ msgid "Estimated Project Start Date"
+#~ msgstr "Uppskattat startdatum för projektet"
+
+#~ msgid "End"
+#~ msgstr "Slut"
+
+#~ msgid "Estimated Project Completion Date"
+#~ msgstr "Uppskattat färdigställningsdatum för projektet"
+
+#~ msgid "Due"
+#~ msgstr "Färdigt den"
+
+#~ msgid ""
+#~ "Due Date: the date by which the project absolutely must be completed by."
+#~ msgstr ""
+#~ "Färdigtdatum: det datum då projektet absolut måste vara färdigt."
+
+#~ msgid "Size"
+#~ msgstr "Storlek"
+
+#~ msgid "Sizing: How much work it will take to finish this project."
+#~ msgstr ""
+#~ "Projektstorlek: Hur mycket arbete det kommer att ta att färdigställa detta "
+#~ "projekt."
+
+#~ msgid "Done"
+#~ msgstr "Klart"
+
+#~ msgid ""
+#~ "Percent Complete: How much of this project has been finished till now."
+#~ msgstr ""
+#~ "Procent färdigt: Hur mycket av detta projekt som är färdigt just nu."
+
+#~ msgid "U"
+#~ msgstr "A"
+
+#~ msgid "Urgency: Does this project need to be done soon, done quickly?"
+#~ msgstr ""
+#~ "Angelägenhet: Måste detta projekt bli färdigt snart, och väldigt snabbt?"
+
+#~ msgid "Imp"
+#~ msgstr "Vikt"
+
+#~ msgid "Importance: How important is this project?"
+#~ msgstr "Viktighet: Hur viktigt är detta projekt?"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "The current status of this project."
+#~ msgstr "Den aktuella statusen för detta projekt."
+
+#~ msgid "Low"
+#~ msgstr "Låg"
+
+#~ msgid "Med"
+#~ msgstr "Mellan"
+
+#~ msgid "High"
+#~ msgstr "Hög"
+
+#~ msgid "Not Started"
+#~ msgstr "Inte påbörjad"
+
+#~ msgid "In Progress"
+#~ msgstr "Pågår"
+
+#~ msgid "On Hold"
+#~ msgstr "Vilande"
+
+#~ msgid "Cancelled"
+#~ msgstr "Avbrutet"
+
+#~ msgid "Completed"
+#~ msgstr "Färdigställd"
+
+#~ msgid "No Error"
+#~ msgstr "Inget fel"
+
+#~ msgid ""
+#~ "Cannot open the project data file\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Kan inte öppna projektdatafilen\n"
+#~ "\t%s\n"
+
+#~ msgid ""
+#~ "Cannot write the project data file\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Kan inte skriva projektdatafilen\n"
+#~ "\t%s\n"
+
+#~ msgid ""
+#~ "The file\n"
+#~ "\t%s\n"
+#~ "doesn't seem to be a GTT project data file\n"
+#~ msgstr ""
+#~ "Filen\n"
+#~ "\t%s\n"
+#~ "verkar inte vara en GTT-projektdatafil\n"
+
+#~ msgid ""
+#~ "The file\n"
+#~ "\t%s\n"
+#~ "seems to be corrupt\n"
+#~ msgstr ""
+#~ "Filen\n"
+#~ "\t%s\n"
+#~ "verkar vara trasig\n"
+
+#~ msgid ""
+#~ "An unknown token was found during the parsing of\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Ett okänt element hittades vid tolkningen av\n"
+#~ "\t%s\n"
+
+#~ msgid ""
+#~ "An unknown value was found during the parsing of\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Ett okänt värde hittades vid tolkningen av\n"
+#~ "\t%s\n"
+
+#~ msgid ""
+#~ "Cannot write the config file\n"
+#~ "\t%s\n"
+#~ msgstr ""
+#~ "Kan inte skriva konfigurationsfile\n"
+#~ "\t%s\n"
+
+#~ msgid "project %t started"
+#~ msgstr "projektet %t startade"
+
+#~ msgid "stopped project %t"
+#~ msgstr "stoppade projektet %t"
+
+#~ msgid "%d:%02d:%02d"
+#~ msgstr "%d.%02d.%02d"
+
+#~ msgid "Stop"
+#~ msgstr "Stopp"
+
+#~ msgid "Elapsed"
+#~ msgstr "Förlupen"
+
+#~ msgid "(empty)"
+#~ msgstr "(tom)"
+
+#~ msgid "Notes"
+#~ msgstr "Anteckningar"
+
+#~ msgid "Task Time"
+#~ msgstr "Uppgiftstid"
+
+#~ msgid "Bill Status"
+#~ msgstr "Debiteringsstatus"
+
+#~ msgid "Billable"
+#~ msgstr "Debiterbart"
+
+#~ msgid "Bill Rate"
+#~ msgstr "Debiteringsavgift"
+
+#~ msgid "Value"
+#~ msgstr "Värde"
+
+#~ msgid "Billable Value"
+#~ msgstr "Debiterbart värde"
+
+#~ msgid "No Default Value"
+#~ msgstr "Inget standardvärde"
+
+#~ msgid "Start Time Fuzziness"
+#~ msgstr "Starttidsosäkerhet"
+
+#~ msgid "Hold"
+#~ msgstr "Vänta"
+
+#~ msgid "Bill"
+#~ msgstr "Räkning"
+
+#~ msgid "Paid"
+#~ msgstr "Betalat"
+
+#~ msgid "Not Billable"
+#~ msgstr "Inte debiterbart"
+
+#~ msgid "No Charge"
+#~ msgstr "Ingen avgift"
+
+#~ msgid "Regular"
+#~ msgstr "Vanlig"
+
+#~ msgid "Overtime"
+#~ msgstr "Övertid"
+
+#~ msgid "Double Overtime"
+#~ msgstr "Kvalificerad övertid"
+
+#~ msgid "Flat Fee"
+#~ msgstr "Fast avgift"
+
+#~ msgid "Error - Unknown"
+#~ msgstr "Fel - Okänt"
+
+#~ msgid "unknown token: >>>>"
+#~ msgstr "okänd teckensekvens: >>>>"
+
+#~ msgid "Error 404 Not Found"
+#~ msgstr "Fel 404 Inte hittad"
+
+#~ msgid "The file %s was not found."
+#~ msgstr "Filen %s hittades inte."
+
+#~ msgid "(null)"
+#~ msgstr "(null)"
+
+#~ msgid "Unkown Error"
+#~ msgstr "Okänt fel"
+
+#~ msgid ""
+#~ "Unable to open the file %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Kunde inte öppna filen %s\n"
+#~ "%s"
+
+#~ msgid "New Diary Entry"
+#~ msgstr "Ny dagbokspost"
+
+#~ msgid "Save HTML To File"
+#~ msgstr "Spara HTML till fil"
+
+#~ msgid "Cannot open logfile %s for append"
+#~ msgstr "Kan inte öppna loggfilen %s för tillägg"
+
+#~ msgid "%b %d %H:%M:%S"
+#~ msgstr "%d %b %H.%M.%S"
+
+#~ msgid "no description"
+#~ msgstr "ingen beskrivning"
+
+#~ msgid "program started"
+#~ msgstr "programmet startades"
+
+#~ msgid "program exited"
+#~ msgstr "programmet avslutades"
+
+#~ msgid ""
+#~ "There seems to be another GTimeTracker running.\n"
+#~ "Press OK to start GTimeTracker anyway, or press Cancel to quit."
+#~ msgstr ""
+#~ "Du verkar redan köra en GTimeTracker.\n"
+#~ "Klicka på OK för att starta ändå eller tryck Avbryt för att hoppa ur."
+
+#~ msgid "Cannot create pid-file!"
+#~ msgstr "Kan inte skapa pid-fil!"
+
+#~ msgid "Do you want to continue?"
+#~ msgstr "Vill du fortsätta?"
+
+#~ msgid "Error"
+#~ msgstr "Fel"
+
+#~ msgid "Shall I setup a new configuration?"
+#~ msgstr "Ska jag ställa in en ny konfiguration?"
+
+#~ msgid "Specify geometry"
+#~ msgstr "Ange geometri"
+
+#~ msgid "GEOMETRY"
+#~ msgstr "GEOMETRI"
+
+#~ msgid "Select a project on startup"
+#~ msgstr "Välj ett projekt vid uppstart"
+
+#~ msgid "PROJECT"
+#~ msgstr "PROJEKT"
+
+#~ msgid "Warning"
+#~ msgstr "Varning"
+
+#~ msgid ""
+#~ "GTimeTracker is a combination stop-watch, diary, consultant billing system "
+#~ "and project manager.  You can measure the amount of time you spend on a "
+#~ "task, associate a memo with it, set a billing rate, print an invoice, as "
+#~ "well as track that status of other projects."
+#~ msgstr ""
+#~ "GTimeTracker är ett kombinerat stoppur, dagbok, konsultdebiteringssystem "
+#~ "och projekthanterare. Du kan mäta mängden tid du spenderar på en uppgift, "
+#~ "associera en minnesanteckning med den, ställa in en debiteringstaxa, skriva "
+#~ "ut en räkning, och även spåra statusen på andra projekt."
+
+#~ msgid "New Project..."
+#~ msgstr "Nytt projekt..."
+
+#~ msgid "Reload Configuration File"
+#~ msgstr "Läs om konfigurationsfilen"
+
+#~ msgid "Do you really want to reload the configuration file?"
+#~ msgstr "Vill du verkligen läsa om konfigurationsfilen?"
+
+#~ msgid "File %s exists, overwrite?"
+#~ msgstr "Filen %s finns redan, skriva över?"
+
+#~ msgid "File cannot be written"
+#~ msgstr "Filen kan inte skrivas"
+
+#~ msgid "Export Current State"
+#~ msgstr "Exportera aktuellt tillstånd"
+
+#~ msgid "_New Project..."
+#~ msgstr "_Nytt projekt..."
+
+#~ msgid "_Reload Configuration File"
+#~ msgstr "Läs _om konfigurationsfilen"
+
+#~ msgid "_Save Configuration File"
+#~ msgstr "_Spara konfigurationsfilen"
+
+#~ msgid "_Export Current State"
+#~ msgstr "_Exportera aktuellt tillstånd"
+
+#~ msgid "Clear _Daily Counter"
+#~ msgstr "Töm _dagliga räknaren"
+
+#~ msgid "Zero out todays timer by deleting todays time logs"
+#~ msgstr "Nollställ dagens klocka genom att ta bort tidsloggarna för idag"
+
+#~ msgid "_Journal..."
+#~ msgstr "_Dagbok..."
+
+#~ msgid "Show the timesheet journal for this project"
+#~ msgstr "Visa tidsdagbok för detta projekt"
+
+#~ msgid "New Diary _Entry"
+#~ msgstr "Ny dagboks_post"
+
+#~ msgid "Change the current task for this project"
+#~ msgstr "Ändra aktuell uppgift för detta projekt"
+
+#~ msgid "_All Journal..."
+#~ msgstr "_Komplett dagbok..."
+
+#~ msgid "Show the verbose timesheet journal for this project"
+#~ msgstr "Visa den utförliga tidsdagboken för detta projekt"
+
+#~ msgid "_Invoice..."
+#~ msgstr "R_äkning..."
+
+#~ msgid "Show a sample invoice for this project"
+#~ msgstr "Visa en exempelräkning för detta projekt"
+
+#~ msgid "_Primer..."
+#~ msgstr "_Förstagångshandbok..."
+
+#~ msgid "Show a sample introductory primer for designing custom reports"
+#~ msgstr "Visa en introduktionshandbok för skapande av anpassade rapporter"
+
+#~ msgid "_New Report..."
+#~ msgstr "_Ny rapport..."
+
+#~ msgid "Define a path to a new GTT phtml report file"
+#~ msgstr "Ange en sökväg till en ny GTT phtml-rapportfil"
+
+#~ msgid "St_art"
+#~ msgstr "St_arta"
+
+#~ msgid "Start the timer running"
+#~ msgstr "Starta klockan"
+
+#~ msgid "Sto_p"
+#~ msgstr "Sto_ppa"
+
+#~ msgid "Stop the timer"
+#~ msgstr "Stoppa klockan"
+
+#~ msgid "_Timer Running"
+#~ msgstr "_Klocka aktiverad"
+
+#~ msgid "_Reports"
+#~ msgstr "_Rapporter"
+
+#~ msgid "_Timer"
+#~ msgstr "_Klocka"
+
+#~ msgid "Reports"
+#~ msgstr "Rapporter"
+
+#~ msgid "Reports/<Separator>"
+#~ msgstr "Rapporter/<Avskiljare>"
+
+#~ msgid "Old GTT Tasks"
+#~ msgstr "Gammal GTT-uppgift"
+
+#~ msgid "empty"
+#~ msgstr "tom"
+
+#~ msgid ""
+#~ "The keyboard and mouse have been idle\n"
+#~ "for %d minutes.  The currently running\n"
+#~ "project (%s - %s)\n"
+#~ "has been stopped.\n"
+#~ "Do you want to restart it?"
+#~ msgstr ""
+#~ "Tangentbordet och musen har inte använts\n"
+#~ "på %d minuter. Det pågående projektet\n"
+#~ "(%s - %s) har stoppats.\n"
+#~ "Vill du starta om det?"
+
+#~ msgid "System Idle"
+#~ msgstr "Systemet oanvänt"
+
+#~ msgid "Create a New Project..."
+#~ msgstr "Skapa ett nytt projekt..."
+
+#~ msgid "Save Configuration File"
+#~ msgstr "Spara konfigurationsfil"
+
+#~ msgid "Cut Selected Project"
+#~ msgstr "Klipp ut markerat projekt"
+
+#~ msgid "Copy Selected Project"
+#~ msgstr "Kopiera markerat projekt"
+
+#~ msgid "Paste Project"
+#~ msgstr "Klistra in projekt"
+
+#~ msgid "Journal"
+#~ msgstr "Dagbok"
+
+#~ msgid "View and Edit Timestamp Logs"
+#~ msgstr "Visa och redigera tidsstämplingsloggar"
+
+#~ msgid "Edit Project Properties..."
+#~ msgstr "Redigera projektegenskaper..."
+
+#~ msgid "Timer"
+#~ msgstr "Klocka"
+
+#~ msgid "Start/Stop Timer"
+#~ msgstr "Starta/stoppa klocka"
+
+#~ msgid "View Calendar"
+#~ msgstr "Visa kalender"
+
+#~ msgid "Edit Preferences..."
+#~ msgstr "Redigera inställningar..."
+
+#~ msgid "User's Guide and Manual"
+#~ msgstr "Användarguide och -manual"
+
+#~ msgid "Quit Gnome TimeTracker"
+#~ msgstr "Avsluta Gnome TimeTracker"
 
 #~ msgid "gfloppy"
 #~ msgstr "Diskettformaterare"
@@ -2702,8 +2527,8 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 #~ msgstr "calculator-font.png"
 
 #~ msgid ""
-#~ "Couldn't start the dictionary; most likely, http://www.dict.org could not "
-#~ "be contacted."
+#~ "Couldn't start the dictionary; most likely, http://www.dict.org could not be "
+#~ "contacted."
 #~ msgstr ""
 #~ "Kunde inte starta ordboken. Troligtvis kunde inte http://www.dict.org "
 #~ "kontaktas."
@@ -2857,8 +2682,7 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 
 #~ msgid ""
 #~ "Entry that will be logged when the project stops.  Use %t for the porject "
-#~ "title, %d for the project description, etc. See the manual for more "
-#~ "options."
+#~ "title, %d for the project description, etc. See the manual for more options."
 #~ msgstr ""
 #~ "Post som kommer att loggas då projektet stoppas. Använd %t för "
 #~ "projekttiteln, %d för projektbeskrivningen, osv. Se manualen för fler "
@@ -2995,8 +2819,8 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 #~ msgstr "Visa \"Klocka\""
 
 #~ msgid ""
-#~ "Show the 'szing', that is, the estimated amount of work that it will take "
-#~ "to perform this project."
+#~ "Show the 'szing', that is, the estimated amount of work that it will take to "
+#~ "perform this project."
 #~ msgstr ""
 #~ "Visa \"storleken\", dvs den uppskattade mängden arbete som det kommer att "
 #~ "ta att slutföra detta projekt."
@@ -3013,8 +2837,7 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 
 #~ msgid ""
 #~ "The current active project will be made inactive after there has been no "
-#~ "keyboard/mouse activity after this number of seconds.  Set to -1 to "
-#~ "disable."
+#~ "keyboard/mouse activity after this number of seconds.  Set to -1 to disable."
 #~ msgstr ""
 #~ "Det för tillfället aktiva projektet kommer att göras inaktivt efter det "
 #~ "att det inte har varit någon tangentbords-/musaktivitet efter detta antal "
@@ -3054,9 +2877,9 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 #~ msgstr "Intervall för automatisk sammanslagning:"
 
 #~ msgid ""
-#~ "Does this item need immediate attention? Note that some urgent tasks "
-#~ "might not be important.  For example, Bill may want you to answer his "
-#~ "email today, but you may have better things to do today."
+#~ "Does this item need immediate attention? Note that some urgent tasks might "
+#~ "not be important.  For example, Bill may want you to answer his email today, "
+#~ "but you may have better things to do today."
 #~ msgstr ""
 #~ "Kräver detta objekt omedelbar uppmärksamhet? Observera att en del "
 #~ "angelägna uppgifter inte behöver vara viktiga. Nisse vill kanske att du "
@@ -3076,8 +2899,8 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 
 #~ msgid ""
 #~ "How important is it to perform this task?  Not everything important is "
-#~ "urgent.  For example, it is important to file a tax return every year, "
-#~ "but you have a lot of time to get ready to do this."
+#~ "urgent.  For example, it is important to file a tax return every year, but "
+#~ "you have a lot of time to get ready to do this."
 #~ msgstr ""
 #~ "Hur viktigt är det att denna uppgift utförs? Inte allt som är viktigt är "
 #~ "brådskande. Det är till exempel viktigt att deklarera varje år, men det "
@@ -3091,8 +2914,8 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 #~ "slås samman."
 
 #~ msgid ""
-#~ "If this project is billed for one price no matter how long it takes, "
-#~ "enter the fee here."
+#~ "If this project is billed for one price no matter how long it takes, enter "
+#~ "the fee here."
 #~ msgstr ""
 #~ "Om detta projekt kommer att kosta en viss avgift oavsett hur lång tid det "
 #~ "tar kan du ange avgiften här."
@@ -3238,10 +3061,10 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 #~ msgstr "Avgift att debiteras denna uppgift."
 
 #~ msgid ""
-#~ "How should this task be billed?  \"Billable\" means bill to the customer "
-#~ "in the normal fashion.   \"Not Billable\" means we can't ask for money "
-#~ "for this, don't print on the invoice.   \"No Charge\" means print on the "
-#~ "invoice as 'free/no-charge'."
+#~ "How should this task be billed?  \"Billable\" means bill to the customer in "
+#~ "the normal fashion.   \"Not Billable\" means we can't ask for money for "
+#~ "this, don't print on the invoice.   \"No Charge\" means print on the invoice "
+#~ "as 'free/no-charge'."
 #~ msgstr ""
 #~ "Kan denna uppgift debiteras? \"Debiterbar\" betyder debitera kunden på "
 #~ "normalt vis. \"Inte debiterbart\" betyder att vi inte kan ta betalt för "
@@ -3249,10 +3072,9 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 #~ "ut det på räkningen som \"utan kostnad\"."
 
 #~ msgid ""
-#~ "Is this task ready to be billed to the customer? \"Hold\" means maybe, "
-#~ "but not yet, needs review.   \"Bill\" means print this on the next "
-#~ "invoice.   \"Paid\" means that it should no longer be included on "
-#~ "invoices."
+#~ "Is this task ready to be billed to the customer? \"Hold\" means maybe, but "
+#~ "not yet, needs review.   \"Bill\" means print this on the next invoice.   "
+#~ "\"Paid\" means that it should no longer be included on invoices."
 #~ msgstr ""
 #~ "Är denna uppgift redo att debiteras kunden? \"Vänta\" betyder kanske men "
 #~ "inte än, kräver granskning. \"Räkning\" betyder skriv detta på nästa "
@@ -3263,11 +3085,10 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 #~ msgstr "Överövertid"
 
 #~ msgid ""
-#~ "The billed unit of time will be rounded to an integer multiple of this "
-#~ "time."
+#~ "The billed unit of time will be rounded to an integer multiple of this time."
 #~ msgstr ""
-#~ "Den debiterade tidsenheten kommer att rundas av till en heltalsmultipel "
-#~ "av denna tid."
+#~ "Den debiterade tidsenheten kommer att rundas av till en heltalsmultipel av "
+#~ "denna tid."
 
 #~ msgid "minutes"
 #~ msgstr "minuter"
@@ -3378,8 +3199,8 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 #~ msgstr "Kort namn: "
 
 #~ msgid ""
-#~ "This document read document from one or more other document. Please, "
-#~ "choose these documents."
+#~ "This document read document from one or more other document. Please, choose "
+#~ "these documents."
 #~ msgstr ""
 #~ "Detta dokumentet läser dokument från en eller flera andra dokument. Välj "
 #~ "dessa dokument."
@@ -4694,16 +4515,15 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 
 #~ msgid ""
 #~ "Entry that will be logged when the project stops.  Use %t for the project "
-#~ "title, %d for the project description, etc. See the manual for more "
-#~ "options."
+#~ "title, %d for the project description, etc. See the manual for more options."
 #~ msgstr ""
 #~ "Post som kommer att loggas då projektet stoppas. Använd %t för "
 #~ "projekttiteln, %d för projektbeskrivningen, osv. Se manualen för fler "
 #~ "alternativ."
 
 #~ msgid ""
-#~ "Show the 'sizing', that is, the estimated amount of work that it will "
-#~ "take to perform this project."
+#~ "Show the 'sizing', that is, the estimated amount of work that it will take "
+#~ "to perform this project."
 #~ msgstr ""
 #~ "Visa \"storleken\", dvs den uppskattade mängden arbete som det kommer att "
 #~ "ta att slutföra detta projekt."
@@ -4772,10 +4592,10 @@ msgstr "Inget gränssnitt kunde läsas in, ILLA! (fil: %s)"
 #~ msgid ""
 #~ "This  program  is  part of  the  GNOME  project. Logview comes with "
 #~ "ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
-#~ "redistribute it under the conditions of the GNU General Public Licence. "
-#~ "The log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+#~ "redistribute it under the conditions of the GNU General Public Licence. The "
+#~ "log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 #~ msgstr ""
 #~ "Detta program är en del av GNOME-projektet. Logview kommer med INGEN SOM "
 #~ "HELST GARANTI. Detta är fri programvara, och du får gärna distribuera det "
-#~ "under villkoren i GNU General Public Licence. Loggikonen är gjord av "
-#~ "Tuomas Kuosmanen (också känd som tigert)."
+#~ "under villkoren i GNU General Public Licence. Loggikonen är gjord av Tuomas "
+#~ "Kuosmanen (också känd som tigert)."
