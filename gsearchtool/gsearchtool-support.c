@@ -763,7 +763,9 @@ open_file_with_application (const gchar *filename)
 		gchar **argv;
 		gchar *command_line;
 		
-		command_line = g_strdup_printf("%s %s", mimeApp->command, filename);
+		command_line = g_strdup_printf("%s '%s'", mimeApp->command, 
+			escape_single_quotes (filename));
+		
 		g_shell_parse_argv (command_line, &argc, &argv, NULL); 
 			
 		if (mimeApp->requires_terminal) {
