@@ -1783,6 +1783,7 @@ create_additional_constraint_section (void)
 	g_object_unref (model);
 
 	gtk_label_set_mnemonic_widget (GTK_LABEL(interface.constraint_menu_label), GTK_WIDGET(interface.constraint_menu));
+	gtk_combo_box_set_active (GTK_COMBO_BOX (interface.constraint_menu), 0);
 	gtk_box_pack_start (GTK_BOX(hbox), interface.constraint_menu, TRUE, TRUE, 0);
 
 	renderer = gtk_cell_renderer_text_new ();
