@@ -344,7 +344,7 @@ build_search_command (void)
 			search_command.quick_mode = TRUE;
 		} 
 		else {
-			g_string_append_printf (command, "find \"%s\" '!' -type p %s '%s' -xdev -print", 
+			g_string_append_printf (command, "find \"%s\" %s '%s' -xdev -print", 
 						look_in_folder_locale, 
 						find_command_default_name_option, 
 						file_is_named_escaped);
@@ -360,7 +360,7 @@ build_search_command (void)
 		file_is_named_escaped = escape_single_quotes (file_is_named_backslashed);
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
-		g_string_append_printf (command, "find \"%s\" '!' -type p  %s", 
+		g_string_append_printf (command, "find \"%s\" %s", 
 					look_in_folder_locale,
 					setup_find_name_options (file_is_named_escaped));
 	
