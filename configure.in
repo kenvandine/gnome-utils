@@ -115,6 +115,12 @@ PKG_CHECK_MODULES(LIBBONOBOUI, libbonoboui-2.0 >= $LIBBONOBOUI_REQUIRED)
 AC_SUBST(LIBBONOBOUI_CFLAGS)
 AC_SUBST(LIBBONOBOUI_LIBS)
 
+dnl *********************************************
+dnl for anything which calls gconftool-2 correctly
+dnl *********************************************
+
+AM_GCONF_SOURCE_2
+
 dnl Putting the code check below so we don't forget it's there
 
 dnl If the Gnome applet libraries are available, define HAVE_GNOME_APPLET.
