@@ -575,6 +575,10 @@ add_no_files_found_message (GtkListStore 	*store,
 	/* When the list is empty append a 'No Files Found.' message. */
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), FALSE);
 	gtk_tree_view_columns_autosize (GTK_TREE_VIEW(interface.tree));
+	g_object_set (interface.name_column_renderer,
+	              "underline", PANGO_UNDERLINE_NONE,
+	              "underline-set", FALSE,
+	              NULL);
 	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
 	gtk_list_store_set (GTK_LIST_STORE(store), iter,
 		    	    COLUMN_ICON, NULL, 
