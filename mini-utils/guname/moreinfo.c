@@ -209,6 +209,7 @@ static void fill_cpuinfo_page(GtkWidget * box)
   GtkWidget * clist;
   GtkWidget * scrolled_win;
   int i;
+  gint width, height;
 
   for (i = 0; i < sysinfo->ncpu; i++) {
     gchar buffer [BUFSIZ], *titles [2];
@@ -222,13 +223,18 @@ static void fill_cpuinfo_page(GtkWidget * box)
 
     clist = create_clist((const gchar **)titles);
     gtk_clist_freeze(GTK_CLIST(clist));
-    fill_clist_from_glibtop_entry(GTK_CLIST(clist), &sysinfo->cpuinfo [i]);
+    fill_clist_from_glibtop_entry(GTK_CLIST(clist), &sysinfo->cpuinfo [i],
+                                  &width, &height);
+    
     gtk_clist_thaw(GTK_CLIST(clist));
 
     scrolled_win = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
                                     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     gtk_container_add (GTK_CONTAINER (scrolled_win), clist);
+
+    gtk_widget_set_usize(GTK_WIDGET(scrolled_win), width, height);
+    
     gtk_box_pack_start(GTK_BOX(box), scrolled_win, TRUE, TRUE, 0);
   }
 }

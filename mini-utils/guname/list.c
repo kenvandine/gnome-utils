@@ -82,12 +82,14 @@ void fill_clist(GtkCList * list,
 #ifdef HAVE_LIBGTOP_SYSINFO
 
 void fill_clist_from_glibtop_entry (GtkCList * list,
-                                    glibtop_entry * entry)
+                                    glibtop_entry * entry,
+                                    gint * width, gint * height)
 {
   const gchar * row[2];
   int i;
   gint col_zero_width, col_one_width;
   GdkFont * font;
+  GtkRequisition req;
 
   font = gtk_widget_get_style(GTK_WIDGET(list))->font;
 

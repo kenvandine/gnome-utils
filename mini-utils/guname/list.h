@@ -27,7 +27,8 @@
 #include <glibtop/sysinfo.h>
 
 void fill_clist_from_glibtop_entry (GtkCList * list,
-                                    glibtop_entry * entry);
+                                    glibtop_entry * entry,
+                                    gint * width, gint * height);
 
 #endif
 
