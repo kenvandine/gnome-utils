@@ -12,9 +12,11 @@ INCLUDES = \
 bin_PROGRAMS = gcalc 
 
 gcalc_SOURCES = \
-	gcalc.c \
-	gnome-calc.c \
-	gnome-calc.h
+	gcalc.c		\
+	gnome-calc.c	\
+	gnome-calc.h	\
+	sr.h		\
+	sr.c
 
 gcalc_LDADD = \
 	$(GNOME_LIBDIR) \
