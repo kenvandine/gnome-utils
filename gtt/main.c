@@ -356,7 +356,8 @@ main(int argc, char *argv[])
 		"unrecoverable.  There may be incompatible file format\n"
 		"changes in the near future. Use at own risk!\n"
 		"\n"
-		"The last stable, working version can be obtained with\n"
+		"The last stable, working version can be obtained from\n"
+		"version 1.4.0.2 of gnome-utils or from cvs with\n"
 		"cvs checkout -D \"Aug 27 2001\" gnome-utils/gtt\n",
 	     "Continue", "Exit", 
 		GTK_SIGNAL_FUNC(beta_run_or_abort));
