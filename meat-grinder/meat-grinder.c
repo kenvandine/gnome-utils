@@ -181,7 +181,7 @@ setup_busy (GtkWidget *w, gboolean busy)
 		/* Change cursor to busy */
 		cursor = gdk_cursor_new (GDK_WATCH);
 		gdk_window_set_cursor (w->window, cursor);
-		gdk_cursor_destroy (cursor);
+		gdk_cursor_unref (cursor);
 	} else {
 		gdk_window_set_cursor (w->window, NULL);
 	}
