@@ -756,7 +756,7 @@ open_databases (void)
 	found = FALSE;
 	if (cfg->regexp_db_path != NULL) {
 		g_snprintf (full_name, sizeof (full_name),
-			    "%s/logview-regexp.db", cfg->regexp_db_path);
+			    "%s/gnome-system-log-regexp.db", cfg->regexp_db_path);
 		DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->regexp_db_path));
 		if (access (full_name, R_OK) == 0)  {
 			found = TRUE;
@@ -766,7 +766,7 @@ open_databases (void)
 
 	if ( ! found) {
 		g_snprintf (full_name, sizeof (full_name),
-			    "%s/share/logview/logview-regexp.db", LOGVIEWINSTALLPREFIX);
+			    "%s/share/gnome-system-log/gnome-system-log-regexp.db", LOGVIEWINSTALLPREFIX);
 		if (access (full_name, R_OK) == 0) {
 			found = TRUE;
 			g_free (cfg->regexp_db_path);
@@ -779,7 +779,7 @@ open_databases (void)
 	found = FALSE;
 	if (cfg->descript_db_path != NULL) {
 		g_snprintf (full_name, sizeof (full_name),
-			    "%s/logview-descript.db", cfg->descript_db_path);
+			    "%s/gnome-system-log-descript.db", cfg->descript_db_path);
 		DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->descript_db_path));
 		if (access (full_name, R_OK) == 0) {
 			read_descript_db (full_name, &descript_db);
@@ -789,7 +789,7 @@ open_databases (void)
 
 	if ( ! found) {
 		g_snprintf (full_name, sizeof (full_name),
-			    "%s/share/logview/logview-descript.db", LOGVIEWINSTALLPREFIX);
+			    "%s/share/gnome-system-log/gnome-system-log-descript.db", LOGVIEWINSTALLPREFIX);
 		if (access (full_name, R_OK) == 0) {
 			found = TRUE;
 			g_free (cfg->descript_db_path);
@@ -802,7 +802,7 @@ open_databases (void)
 	/* Find action DB ------------------------------------------------  */
 	found = FALSE;
 	g_snprintf (full_name, sizeof (full_name),
-		    "%s/.gnome/logview-actions.db", g_get_home_dir ());
+		    "%s/.gnome/gnome-system-log-actions.db", g_get_home_dir ());
 	DB (fprintf (stderr, "Looking for database in [%s/.gnome]\n",
 		     g_get_home_dir ()));
 	if (access (full_name, R_OK) == 0) {
@@ -812,7 +812,7 @@ open_databases (void)
 
 	if ( ! found && cfg->action_db_path != NULL) {
 		g_snprintf (full_name, sizeof (full_name),
-			    "%s/logview-actions.db", cfg->action_db_path);
+			    "%s/gnome-system-log-actions.db", cfg->action_db_path);
 		DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->action_db_path));
 		if (access (full_name, R_OK) == 0) {
 			found = TRUE;
@@ -823,7 +823,7 @@ open_databases (void)
 
 	if ( ! found) {
 		g_snprintf (full_name, sizeof (full_name),
-			    "%s/share/logview/logview-actions.db", LOGVIEWINSTALLPREFIX);
+			    "%s/share/gnome-system-log/gnome-system-log-actions.db", LOGVIEWINSTALLPREFIX);
 		if (access (full_name, R_OK) == 0) {
 			found = TRUE;
 			g_free (cfg->action_db_path);

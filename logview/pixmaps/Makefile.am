@@ -1,6 +1,6 @@
 # Process this file with automake to produce Makefile.in
 
-pixmapsdir = $(datadir)/pixmaps/logview
+pixmapsdir = $(datadir)/pixmaps/gnome-system-log
 
 pixmaps_DATA = logview.xpm
 
