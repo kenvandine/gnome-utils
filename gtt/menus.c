@@ -42,10 +42,10 @@ static GnomeUIInfo menu_main_file[] = {
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF,
 		0, 0, NULL},
 	{GNOME_APP_UI_SEPARATOR},
-	{GNOME_APP_UI_ITEM, N_("_Quit"), NULL,
+	{GNOME_APP_UI_ITEM, N_("E_xit"), NULL,
 		quit_app, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_QUIT,
-		'Q', GDK_CONTROL_MASK, NULL},
+		'x', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
@@ -72,10 +72,10 @@ static GnomeUIInfo menu_main_edit[] = {
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_BLANK,
 		0, 0, NULL},
 #define MENU_EDIT_PROP_POS 5
-	{GNOME_APP_UI_ITEM, N_("Pr_operties..."), NULL,
+	{GNOME_APP_UI_ITEM, N_("P_roperties..."), NULL,
 		menu_properties, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP,
-		'E', GDK_CONTROL_MASK, NULL},
+		0, 0, NULL},
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
@@ -125,23 +125,23 @@ static GnomeUIInfo menu_main[] = {
 
 
 static GnomeUIInfo menu_popup[] = {
-	{GNOME_APP_UI_ITEM, N_("Properties..."), NULL,
+	{GNOME_APP_UI_ITEM, N_("P_roperties..."), NULL,
 		menu_properties, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_BLANK,
 		0, 0, NULL},
 	{GNOME_APP_UI_SEPARATOR},
 #define MENU_POPUP_CUT_POS 2
-	{GNOME_APP_UI_ITEM, N_("Cut"), NULL,
+	{GNOME_APP_UI_ITEM, N_("C_ut"), NULL,
 		cut_project, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CUT,
 		0, 0, NULL},
 #define MENU_POPUP_COPY_POS 3
-	{GNOME_APP_UI_ITEM, N_("Copy"), NULL,
+	{GNOME_APP_UI_ITEM, N_("_Copy"), NULL,
 		copy_project, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY,
 		0, 0, NULL},
 #define MENU_POPUP_PASTE_POS 4
-	{GNOME_APP_UI_ITEM, N_("Paste"), NULL,
+	{GNOME_APP_UI_ITEM, N_("_Paste"), NULL,
 		paste_project, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PASTE,
 		0, 0, NULL},

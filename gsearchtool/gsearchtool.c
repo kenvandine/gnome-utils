@@ -12,6 +12,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <fcntl.h>
+#include <math.h>
 
 #include "gsearchtool.h"
 #include "outdlg.h"
@@ -543,8 +544,10 @@ create_window(void)
 
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_find_page(),
 				 gtk_label_new(_("Full find (find)")));
+#ifdef QUICKFIND_IMPLEMENTED
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_locate_page(),
 				 gtk_label_new(_("Quick find (locate)")));
+#endif
 
 	return nbook;
 }
@@ -577,15 +580,15 @@ quit_cb (GtkWidget *widget, gpointer data)
 
 static GnomeUIInfo file_menu[] = {
 	{GNOME_APP_UI_ITEM, N_("E_xit"), NULL, quit_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'q', GDK_CONTROL_MASK, NULL},
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
 static GnomeUIInfo help_menu[] = {  
-	{ GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
+	{ GNOME_APP_UI_HELP, NULL, NULL, "gsearchtool", NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}, 
 	
-	{GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
+	{GNOME_APP_UI_ITEM, N_("_About..."), NULL, about_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
 	
 	{GNOME_APP_UI_ENDOFINFO}

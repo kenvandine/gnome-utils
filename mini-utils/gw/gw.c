@@ -168,7 +168,7 @@ int main ( int argc, char ** argv )
 
 static GnomeUIInfo help_menu[] = {
   GNOMEUIINFO_HELP(APPNAME),
-  {GNOME_APP_UI_ITEM, N_("About..."), 
+  {GNOME_APP_UI_ITEM, N_("_About..."), 
    N_("Tell about this application"), 
    about_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL },

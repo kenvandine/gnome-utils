@@ -1078,9 +1078,9 @@ GnomeUIInfo file_menu[] =
 {
   {
     GNOME_APP_UI_ITEM, 
-    N_("Exit"), N_("Terminate the stripchart program"), 
+    N_("E_xit"), N_("Terminate the stripchart program"), 
     exit_callback, NULL, NULL, 
-    GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_EXIT, 0, 0, NULL
+    GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_EXIT, 'x', GDK_CONTROL_MASK, NULL
   },
   GNOMEUIINFO_END
 };
@@ -1107,7 +1107,7 @@ GnomeUIInfo help_menu[] =
 {
   {
     GNOME_APP_UI_ITEM,
-    N_("About"), N_("Info about the striphart program"),
+    N_("_About"), N_("Info about the striphart program"),
     about_callback, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL
   },
@@ -1118,8 +1118,8 @@ GnomeUIInfo help_menu[] =
 
 GnomeUIInfo mainmenu[] =
 {
-  GNOMEUIINFO_SUBTREE(N_("File"), file_menu),
-  GNOMEUIINFO_SUBTREE(N_("Help"), help_menu),
+  GNOMEUIINFO_SUBTREE(N_("_File"), file_menu),
+  GNOMEUIINFO_SUBTREE(N_("_Help"), help_menu),
   GNOMEUIINFO_END
 };
 

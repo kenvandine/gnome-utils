@@ -275,7 +275,7 @@ int main ( int argc, char ** argv )
 
 static GnomeUIInfo help_menu[] = {
   GNOMEUIINFO_HELP(APPNAME),
-  {GNOME_APP_UI_ITEM, N_("About..."), 
+  {GNOME_APP_UI_ITEM, N_("_About..."), 
    N_("Tell about this application"), 
    about_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL },
@@ -284,36 +284,41 @@ static GnomeUIInfo help_menu[] = {
 
 static GnomeUIInfo file_menu[] = {
   {GNOME_APP_UI_ITEM, 
-   N_("New Window"), N_("New text viewer window"), 
+   N_("_New Window"), N_("New text viewer window"), 
    new_app_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'n', 
    GDK_CONTROL_MASK, NULL },
   {GNOME_APP_UI_ITEM, 
-   N_("Open..."), N_("Open a new file in this window"), 
+   N_("_Open..."), N_("Open a new file in this window"), 
    open_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN, 'o', 
    GDK_CONTROL_MASK, NULL },
   {GNOME_APP_UI_ITEM, 
-   N_("Save As..."), N_("Save file to disk"), 
+   N_("Save _As..."), N_("Save file to disk"), 
    save_as_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 's', 
    GDK_CONTROL_MASK, NULL },
-  {GNOME_APP_UI_ITEM, N_("Close"), 
+  {GNOME_APP_UI_ITEM, N_("_Close"), 
    N_("Close this window"),
    close_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'c', 
    GDK_CONTROL_MASK, NULL },
   GNOMEUIINFO_SEPARATOR,
-  {GNOME_APP_UI_ITEM, N_("Exit"), 
+  {GNOME_APP_UI_ITEM, N_("_Preferences..."), 
+   N_("Change application preferences"),
+   preferences_cb, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'p', 
+   GDK_CONTROL_MASK, NULL },
+  {GNOME_APP_UI_ITEM, N_("E_xit"), 
    N_("Quit the application"),
    exit_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'q', 
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x', 
    GDK_CONTROL_MASK, NULL },
   GNOMEUIINFO_END
 };
 
 static GnomeUIInfo view_menu[] = {
-  {GNOME_APP_UI_TOGGLEITEM, N_("Fixed Font"), 
+  {GNOME_APP_UI_TOGGLEITEM, N_("_Fixed Font"), 
    N_("Display text with a fixed font"),
    fixed_cb, NULL, NULL,
    0, 0, 'f', 
@@ -321,20 +326,10 @@ static GnomeUIInfo view_menu[] = {
   GNOMEUIINFO_END
 };
 
-static GnomeUIInfo prefs_menu[] = {
-  {GNOME_APP_UI_ITEM, N_("Preferences..."), 
-   N_("Change application preferences"),
-   preferences_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'p', 
-   GDK_CONTROL_MASK, NULL },
-  GNOMEUIINFO_END
-};
-
 static GnomeUIInfo main_menu[] = {
-  GNOMEUIINFO_SUBTREE (N_("File"), file_menu),
-  GNOMEUIINFO_SUBTREE (N_("View"), view_menu),
-  GNOMEUIINFO_SUBTREE (N_("Preferences"), prefs_menu),
-  GNOMEUIINFO_SUBTREE (N_("Help"), help_menu),
+  GNOMEUIINFO_SUBTREE (N_("_File"), file_menu),
+  GNOMEUIINFO_SUBTREE (N_("_View"), view_menu),
+  GNOMEUIINFO_SUBTREE (N_("_Help"), help_menu),
   GNOMEUIINFO_END
 };
 

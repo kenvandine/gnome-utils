@@ -125,25 +125,25 @@ static void      about_cb              (GtkWidget  *widget,
 /* GtkWidget   **t_dial; */
 
 static GnomeUIInfo file_menu[] = {
-  { GNOME_APP_UI_ITEM, N_("Exit"), NULL, exit_menu_cb,
+  { GNOME_APP_UI_ITEM, N_("E_xit"), NULL, exit_menu_cb,
     NULL, NULL, 
-    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL },
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x', GDK_CONTROL_MASK, NULL },
   { GNOME_APP_UI_ENDOFINFO },
 };
 
 static GnomeUIInfo help_menu[] = {
   GNOMEUIINFO_HELP ("help-browser"),
   GNOMEUIINFO_SEPARATOR,
-  { GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
-    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 'A', GDK_CONTROL_MASK,
+  { GNOME_APP_UI_ITEM, N_("_About..."), NULL, about_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0,
     NULL },
   { GNOME_APP_UI_ENDOFINFO }
 };
 
 static GnomeUIInfo app_menu[] = {
-  { GNOME_APP_UI_SUBTREE, N_("File"), NULL, file_menu, NULL, NULL, 
+  { GNOME_APP_UI_SUBTREE, N_("_File"), NULL, file_menu, NULL, NULL, 
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-  { GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
+  { GNOME_APP_UI_SUBTREE, N_("_Help"), NULL, help_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO },
 };

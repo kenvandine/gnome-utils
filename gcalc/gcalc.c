@@ -84,7 +84,7 @@ selection_handle (GtkWidget *widget,
 GnomeUIInfo gcalc_calculator_menu[] = {
 	{GNOME_APP_UI_ITEM, N_("E_xit"),  NULL, quit_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_QUIT,
-	 'X', GDK_CONTROL_MASK, NULL},
+	 'x', GDK_CONTROL_MASK, NULL},
 	GNOMEUIINFO_END
 };
 
@@ -96,7 +96,8 @@ GnomeUIInfo gcalc_help_menu[] = {
 
 GnomeUIInfo gcalc_edit_menu[] = {
 	{GNOME_APP_UI_ITEM, N_("_Copy"), NULL, copy_contents, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY},
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY,
+	'c', GDK_CONTROL_MASK, NULL},
 	GNOMEUIINFO_END
 };
 
