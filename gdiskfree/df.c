@@ -49,9 +49,6 @@ char *xgetcwd ();
    is the number of 1024-byte blocks, so we divide by 1024 * 1024.  */
 #define LONGEST_HUMAN_READABLE_1K_BYTE_BLOCKS 14
 
-/* Name this program was run with. */
-char *program_name;
-
 /* If nonzero, show inode information. */
 static int inode_format;
 
@@ -139,8 +136,8 @@ static GnomeUIInfo file_menu[] = {
 };
 
 static GnomeUIInfo help_menu[] = {
-  { GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  GNOMEUIINFO_HELP ("help-browser"),
+  GNOMEUIINFO_SEPARATOR,
   { GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
     GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 'A', GDK_CONTROL_MASK,
     NULL },
@@ -656,10 +653,6 @@ main (int argc, char **argv)
   struct stat *stats;
   glibtop_mountlist mountlist;
 
-  program_name = argv[0];
-#if 0
-  setlocale (LC_ALL, "");
-#endif
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
