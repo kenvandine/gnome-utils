@@ -75,6 +75,8 @@ GCONF_REQUIRED=1.1.2
 GTKHTML_REQUIRED=0.0.0
 GNOMEVFS_REQUIRED=1.9.3
 GNOMEVFSMODULE_REQUIRED=1.9.3
+LIBGTOP_REQUIRED=1.90.0
+LIBPANEL_APPLET_REQUIRED=1.5.2
 
 dnl *****************************************
 dnl libgnome, libgnomeui needed for all utils
@@ -166,6 +168,14 @@ dnl *******************************
 PKG_CHECK_MODULES(GTKHTML, gtkhtml >= $GTKHTML_REQUIRED)
 AC_SUBST(GTKHTML_LIBS)
 AC_SUBST(GTKHTML_CFLAGS)
+
+dnl *******************************
+dnl Applet checks
+dnl *******************************
+
+PKG_CHECK_MODULES(APPLET, libpanelapplet-2.0 >= $LIBPANEL_APPLET_REQUIRED)
+AC_SUBST(APPLET_LIBS)
+AC_SUBST(APPLET_CFLAGS)
 
 dnl *******************************
 dnl Guile checks -- guile is needed by gtt
@@ -434,7 +444,8 @@ dnl *******************************
 dnl Internationalization
 dnl ******************************* 
 
-ALL_LINGUAS="az ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt lv nl nn no pl pt pt_BR ro ru sk sl sv ta tr uk wa zh_TW zh_CN.GB2312"
+ALL_LINGUAS="az ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt lv nl nn no pl pt pt_BR ro ru sk sl sv ta tr uk wa zh_CN.GB2312"
+dnl FIXME: this causes errors for me: zh_TW 
 GETTEXT_PACKAGE=gnome-utils-2.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
@@ -451,7 +462,6 @@ Makefile
 gnome-utils.spec
 po/Makefile.in
 idl/Makefile
-cromagnon/Makefile
 gcalc/Makefile
 gcalc/doc/Makefile
 gcalc/doc/C/Makefile
@@ -471,22 +481,6 @@ gsearchtool/help/Makefile
 gsearchtool/help/C/Makefile
 gsearchtool/help/it/Makefile
 gsearchtool/help/es/Makefile
-stripchart/Makefile
-stripchart/doc/Makefile
-stripchart/doc/es/Makefile
-stripchart/doc/C/Makefile
-gtt/Makefile
-gtt/doc/Makefile
-gtt/doc/C/Makefile
-gtt/doc/es/Makefile
-gtt/glade/Makefile
-gtt/help/Makefile
-gtt/help/C/Makefile
-gtt/help/de/Makefile
-gtt/help/es/Makefile
-gtt/ghtml/Makefile
-gtt/ghtml/C/Makefile
-gtt/src/Makefile
 gdialog/Makefile
 gdialog/doc/Makefile
 gdialog/doc/C/Makefile
@@ -517,6 +511,22 @@ exe-handler/help/Makefile
 exe-handler/help/C/Makefile
 omf-install/Makefile])
 
+#gtt/Makefile
+#gtt/doc/C/Makefile
+#gtt/doc/es/Makefile
+#gtt/glade/Makefile
+#gtt/help/Makefile
+#gtt/help/C/Makefile
+#gtt/help/de/Makefile
+#gtt/help/es/Makefile
+#gtt/ghtml/Makefile
+#gtt/ghtml/C/Makefile
+#gtt/src/Makefile
+#stripchart/Makefile
+#stripchart/doc/Makefile
+#stripchart/doc/es/Makefile
+#stripchart/doc/C/Makefile
+#cromagnon/Makefile
 #mini-utils/gsu/Makefile
 #mini-utils/gpenguin/Makefile
 

@@ -2,15 +2,15 @@ if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
-if GUILE
-gtt = gtt
-endif
+#if GUILE
+#gtt = gtt
+#endif
 
 SUBDIRS = po idl $(gfloppy) logview gcharmap \
-	gcalc gsearchtool $(gtt) gdictsrc \
+	gcalc gsearchtool  gdictsrc \
 	mini-utils gdialog \
 	meat-grinder exe-handler omf-install
-#splash stripchart
+#splash stripchart $(gtt)
 
 EXTRA_DIST = autogen.sh gnome-utils.spec.in
 

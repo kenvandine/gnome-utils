@@ -3,9 +3,10 @@ Utilitiesdir = $(datadir)/applications
 SUBDIRS = doc
 
 INCLUDES = \
+	@GNOME_UTILS_CFLAGS@ \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	-I$(includedir) \
-	@GNOME_UTILS_CFLAGS@
+	-I$(includedir) 
+	
 
 bin_PROGRAMS = gcalc 
 

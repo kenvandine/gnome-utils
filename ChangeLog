@@ -1,3 +1,19 @@
+2001-12-06  Kevin Vandersloot <kfv101@psu.edu>
+
+	* configure.in: link to libpanel-applet-2 for gdict applet. 
+	Comment out gtt since I can't get it to compile for now :(
+	Comment out zh_TW po file since it gives me errors
+
+	* acinclude.m4: add the curses.m4 needed by gdialog
+
+	* logview/Makefile.am: change includes ordering so this will
+	compile on my machine
+	* gcalc/Makefile.am: ditto
+	* gsearchtool/Makefile.am: ditto
+	* gdialog/Makefile.am: ditto
+
+	* release 1.96.0
+
 2001-11-28  Gediminas Paulauskas <menesis@delfi.lt>
 
 	* Makefile.am: don't build stripchart nor splash.
