@@ -42,6 +42,8 @@ static void     gdiskfree_sync_option_changed       (GtkWidget        *widget,
 						     GnomePropertyBox *box);
 static void     gdiskfree_orientation_callback      (GtkWidget        *widget,
 						     GnomePropertyBox *box);
+static void     gdiskfree_update_interval_changed   (GtkWidget        *widget,
+						     GnomePropertyBox *box);
 
 /****************************************************************************
  * Callback functions
@@ -68,6 +70,7 @@ gdiskfree_option_dialog_apply (GnomePropertyBox *box, gint page_num,
       if (app)
 	gdiskfree_app_change_orient (app, current_options->orientation);
     }
+  current_options->update_interval = opt->update_interval;
   /* Save the options -- Structure free'd on window destruction.*/
   gdiskfree_option_save ();
 }
@@ -87,7 +90,15 @@ gdiskfree_orientation_callback (GtkWidget *widget, GnomePropertyBox *box)
       gnome_property_box_changed (GNOME_PROPERTY_BOX (box));
     }
 }
+static void
+gdiskfree_update_interval_changed (GtkWidget *widget, GnomePropertyBox *box)
+{
+  GtkAdjustment  *adjustment;
 
+  adjustment = GTK_ADJUSTMENT (widget);
+  working->update_interval = adjustment->value;
+  gnome_property_box_changed (GNOME_PROPERTY_BOX (box));
+}
 /****************************************************************************
  * Implementation 
  **/
@@ -189,10 +200,13 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   working->update_interval = current_options->update_interval;
   udp_adjust = gtk_adjustment_new ((gfloat)working->update_interval, 
 				   1, 20000, 1, 10, 0);
+  gtk_signal_connect (GTK_OBJECT (udp_adjust), "value_changed",
+		      (GtkSignalFunc) gdiskfree_update_interval_changed,
+		      propbox);
   label = gtk_label_new (_("Update interval (seconds)"));
   gtk_table_attach (GTK_TABLE (box), label, 0, 1, 2, 3,
 		    GTK_SHRINK | GTK_FILL, GTK_SHRINK, 3, 0);
-  checkbox = gtk_hscale_new (GTK_ADJUSTMENT (udp_adjust));
+  checkbox = gtk_hscale_new (GTK_ADJUSTMENT (udp_adjust));  
   gtk_range_set_update_policy (GTK_RANGE (checkbox), GTK_UPDATE_CONTINUOUS);
   gtk_scale_set_digits (GTK_SCALE (checkbox), 0);
   gtk_table_attach (GTK_TABLE (box), checkbox, 1, 3, 2, 3,
