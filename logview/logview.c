@@ -180,7 +180,7 @@ struct poptOption options[] = { {
 void
 destroy (GObject *object, gpointer data)
 {
-   LogviewWindow *window = LOGVIEW_WINDOW (data);
+   LogviewWindow *window = data;
    logview_windows = g_slist_remove (logview_windows, window);
    if (window->monitored)
 	   monitor_stop (window);
@@ -196,7 +196,7 @@ save_session (GnomeClient *gnome_client, gint phase,
 {
    gchar **argv;
    gint numlogs, i=0;
-   LogviewWindow *window = LOGVIEW_WINDOW (client_data);
+   LogviewWindow *window = client_data;
    GSList *list;
 
    numlogs = logview_count_logs ();
@@ -301,7 +301,7 @@ main (int argc, char *argv[])
    logview_menus_set_state (logviewwindow);
    gtk_widget_show (window);
 
-   log_repaint (LOGVIEW_WINDOW(window)); 
+   log_repaint (logviewwindow)); 
 
    gnome_client = gnome_master_client ();
 
@@ -958,9 +958,29 @@ static void
 logview_help (GtkAction *action, GtkWidget *callback_data)
 {
         GError *error = NULL;
+	LogviewWindow *window = LOGVIEW_WINDOW(callback_data);
                                                                                 
-        gnome_help_display_desktop (NULL, "gnome-system-log", "gnome-system-log", NULL, &error);
-                                                                                
+        gnome_help_display_desktop_on_screen (NULL, "gnome-system-log", "gnome-system-log", NULL,
+					      gtk_widget_get_screen (GTK_WIDGET(window)), &error);
+	if (error) {
+		GtkWidget *dialog;
+		dialog = gtk_message_dialog_new (NULL,
+						 GTK_DIALOG_MODAL,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_OK,
+						  _("There was an error displaying help: %s"),
+						 error->message);
+
+		g_signal_connect (G_OBJECT (dialog), "response",
+				  G_CALLBACK (gtk_widget_destroy),
+				  NULL);
+
+		gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+		gtk_window_set_screen (GTK_WINDOW (dialog),
+				       gtk_widget_get_screen (GTK_WIDGET(window)));
+		gtk_widget_show (dialog);
+		g_error_free (error);
+	}
 }
 
 void
