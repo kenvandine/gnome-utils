@@ -29,7 +29,7 @@ EXTRA_DIST = 						\
 	topic.dat
 
 Utilitiesdir =						\
-	$(datadir)/apps/Utilities
+	$(datadir)/gnome/apps/Utilities
 
 Utilities_DATA =					\
 	gstripchart.desktop

@@ -9,4 +9,4 @@ grun_SOURCES = \
 
 grun_LDADD = $(GTK_LIBS)
 
-Utilitiesdir = $(datadir)/apps/Utilities
+Utilitiesdir = $(datadir)/gnome/apps/Utilities

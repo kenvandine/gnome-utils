@@ -15,7 +15,7 @@ gnome_run_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
-Rootdir = $(datadir)/apps
+Rootdir = $(datadir)/gnome/apps
 Root_DATA = gnome-run.desktop
 
 EXTRA_DIST = gnome-run.desktop

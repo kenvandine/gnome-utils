@@ -36,7 +36,7 @@ gtt_LDADD = \
 EXTRA_DIST = \
 	gtt.desktop
 
-Productivitydir = $(datadir)/apps/Productivity
+Productivitydir = $(datadir)/gnome/apps/Productivity
 Productivity_DATA = gtt.desktop
 
 

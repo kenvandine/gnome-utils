@@ -10,7 +10,7 @@ notepad: notepad.scm Makefile
 
 EXTRA_DIST = notepad.scm Notepad.desktop
 
-Utilitiesdir = $(datadir)/apps/Utilities
+Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_DATA = Notepad.desktop
 
 MOSTLYCLEANFILES = notepad

@@ -15,7 +15,7 @@ gless_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
-Utilitiesdir = $(datadir)/apps/Utilities
+Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_DATA = gless.desktop
 
 EXTRA_DIST = gless.desktop

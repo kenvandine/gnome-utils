@@ -1,4 +1,4 @@
-dtdir=$(datadir)/apps/Utilities
+dtdir=$(datadir)/gnome/apps/Utilities
 
 INCLUDES = $(GNOME_INCLUDEDIR)
 

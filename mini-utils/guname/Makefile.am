@@ -29,7 +29,7 @@ guname_LDADD = \
 	$(LIBGTOP_NAMES_LIBS)	\
 	$(LIBGTOP_EXTRA_LIBS)
 
-Rootdir = $(datadir)/apps/Utilities
+Rootdir = $(datadir)/gnome/apps/Utilities
 Root_DATA = guname.desktop
 
 EXTRA_DIST = 		\
