@@ -22,6 +22,16 @@
 #include <glib.h>
 #include <gtk/gtktext.h>
 
+
+/* ------------------------------------------------------------------ */
+/* GNU portability utilities */
+
+#ifndef HAVE_STPCPY
+char *stpcpy(char *dest, const char *src);
+#endif
+
+/* ------------------------------------------------------------------ */
+/* date and time utilities */
 typedef enum
 {
   DATE_FORMAT_US,       /* United states: mm/dd/yyyy */
@@ -63,6 +73,7 @@ char * print_date_time (char * buff, size_t len, time_t secs);
 
 int is_same_day (time_t, time_t);
 
+/* ------------------------------------------------------------------ */
 /* some gtk-like utilities */
 void xxxgtk_text_set_text (GtkText *text, const char *str);
 const char * xxxgtk_text_get_text (GtkText *text);

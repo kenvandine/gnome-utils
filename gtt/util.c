@@ -50,6 +50,17 @@
 
 /* ============================================================== */
 
+#ifndef HAVE_STPCPY
+char *
+stpcpy(char *dest, const char *src)
+{
+	strcpy (dest, src);
+	return (dest + strlen(src));
+}
+#endif
+
+/* ============================================================== */
+
 char *
 print_hours_elapsed (char * buff, int len, int secs, gboolean show_secs)
 {
