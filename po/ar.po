@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2003-05-31 17:28-0700\n"
+"POT-Creation-Date: 2003-08-07 15:00+0100\n"
 "PO-Revision-Date: 2002-05-31 19:09-0300\n"
 "Last-Translator: Isam Bayazidi <bayazidi@arabeyes.org>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "إكسسوارات"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "بحث في المعجم"
 
@@ -54,8 +54,8 @@ msgstr "المعجم"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:510 gdictsrc/gdict-speller.c:459
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:459
 msgid "Cannot connect to server"
 msgstr "تعذر الاتصال بالخادم"
 
@@ -72,9 +72,9 @@ msgstr ""
 msgid "translator_credits"
 msgstr "تكريم للمترجمين"
 
-#: gdictsrc/gdict-about.c:56
-#, fuzzy
-msgid "GNOME Dictionary"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
 msgstr "معجم"
 
 #: gdictsrc/gdict-about.c:58
@@ -144,10 +144,6 @@ msgstr "افحص إملاء كلمة"
 msgid "_Dictionary"
 msgstr "المعجم"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "معجم"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "الكلمة:"
@@ -169,7 +165,7 @@ msgstr "أدخل كلمة أو اختر واحدة من القائمة السف�
 msgid "Look Up for a Word"
 msgstr "ابحث عن كلمة في المعجم"
 
-#: gdictsrc/gdict-applet.c:272
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "ابحث في المعجم"
 
@@ -186,77 +182,77 @@ msgstr "تفضيلات المعجم"
 msgid "Smart _lookup"
 msgstr "بحث حاذق"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "_Server:"
 msgstr "الخادم:"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:207
 #, fuzzy
 msgid "De_fault Server"
 msgstr "استراتيجية افتراضية"
 
-#: gdictsrc/gdict-pref-dialog.c:214
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset server to default"
 msgstr "اعادة تعيين الخادم للافتراضيات"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:224
 msgid "_Port:"
 msgstr "المنفذ:"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:240
 #, fuzzy
 msgid "Def_ault Port"
 msgstr "الافتراضيات"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:250
 msgid "Reset port to default"
 msgstr "اعادة تعيين المنفذ للافتراضيات"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Server"
 msgstr "خادم"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Server Entry"
 msgstr "خانة خادم"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Server Name"
 msgstr "أدخل اسم الخادم"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:255
 msgid "Port"
 msgstr "منفذ"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Port Entry"
 msgstr "خانة منفذ"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Enter the Port Number"
 msgstr "أدخل رقم المنفذ"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "_Database:"
 msgstr "قاعدة البيانات:"
 
-#: gdictsrc/gdict-pref-dialog.c:260
+#: gdictsrc/gdict-pref-dialog.c:274
 msgid "D_efault strategy:"
 msgstr "الاستراتيجية الافتراضية:"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:466
 msgid "Search all databases"
 msgstr "ابحث في كل قواعد البيانات"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database"
 msgstr "قاعدة بيانات"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database Name"
 msgstr "اسم قاعدة البيانات"
 
-#: gdictsrc/gdict-pref-dialog.c:628
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "استراتيجية افتراضية"
 
@@ -764,8 +760,8 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "ابحث عن ملفات"
 
@@ -835,7 +831,7 @@ msgstr "تتبع الوصلات الرمزية"
 msgid "Include other filesystems"
 msgstr "تعذر إنشاء نظام الملفات."
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "لم يتم العثور على ملفات"
 
@@ -881,26 +877,41 @@ msgstr ""
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+#, fuzzy
+msgid "No Files Found"
+msgstr "لم يتم العثور على ملفات."
+
+#: gsearchtool/gsearchtool.c:1242
 msgid "One file found"
 msgstr "تم العثور على ملف واحد"
 
 #: gsearchtool/gsearchtool.c:1243
+#, fuzzy
+msgid "One File Found"
+msgstr "تم العثور على ملف واحد"
+
+#: gsearchtool/gsearchtool.c:1246
 #, c-format
 msgid "%d files found"
 msgstr "تم العثور على %d ملفات"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, fuzzy, c-format
+msgid "%d Files Found"
+msgstr "تم العثور على %d ملفات"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -908,116 +919,116 @@ msgstr ""
 "\n"
 "... أخطاء كثيرة على العرض ..."
 
-#: gsearchtool/gsearchtool.c:1354
+#: gsearchtool/gsearchtool.c:1360
 #, fuzzy
 msgid "Error while searching for files"
 msgstr "فحص المربعات المعطوبة..."
 
-#: gsearchtool/gsearchtool.c:1393
+#: gsearchtool/gsearchtool.c:1399
 #, fuzzy
 msgid "Error parsing the search command"
 msgstr "فحص المربعات المعطوبة..."
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1419
 #, fuzzy
 msgid "Error running the search command"
 msgstr "فحص المربعات المعطوبة..."
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr "ابحث خانة قيمة القاعدة"
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "أدخل قيمة لقاعدة البحث"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "انقر لحذف القاعدة"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 #, fuzzy
 msgid "A_vailable options:"
 msgstr "خيارات الحدث"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "قائمة قواعد البحث"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "اختر قاعدة للبحث من القائمة"
 
-#: gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gsearchtool.c:1652
 #, fuzzy
 msgid "S_earch results:"
 msgstr "نتائج البحث"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "الاسم"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "المجلد"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "الحجم"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "النوع"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr "تاريخ التعديل"
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "أدخل اسم الملف الذي تريد العثور عليه"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "بدء في المجلد:"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr "استعراض"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 #, fuzzy
 msgid "Look in Folder Entry"
 msgstr "بدء في المجلد:"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr "أدخل اسم المجلد الذي تريد بدء البحث فيه"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1909
 #, fuzzy
 msgid "Show more _options"
 msgstr "أظهر خصائص السجل"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "انقر لتبدأ البحث"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "انقر لتوقف البحث"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr "تعذرت تهيئة بونوبو"
 
@@ -1154,8 +1165,8 @@ msgid "A system log viewer for GNOME."
 msgstr ""
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
-msgstr "معاين سجلات نظام جينوم"
+msgid "System Log Viewer"
+msgstr "معاين سجلات النظام"
 
 #: logview/actions.c:74
 #, fuzzy
@@ -1308,7 +1319,7 @@ msgstr "عدد اﻷسطر:"
 msgid "Log Information"
 msgstr "معلومات السجل"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr ""
 
@@ -1586,29 +1597,29 @@ msgstr "ملموس!!\n"
 msgid "Entry Detail"
 msgstr "تفاصيل الخانة"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "التاريخ:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "العملية:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "الرسالة:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "الوصف:"
 
-#: logview/zoom.c:130
+#: logview/zoom.c:129
 #, fuzzy
 msgid "Log Line Details"
 msgstr "تفاصيل سطر السجل لـ %s"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -1621,6 +1632,13 @@ msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
+
+#, fuzzy
+#~ msgid "GNOME Dictionary"
+#~ msgstr "معجم"
+
+#~ msgid "GNOME System Log Viewer"
+#~ msgstr "معاين سجلات نظام جينوم"
 
 #~ msgid "Gdialog progressbar"
 #~ msgstr "شريط تقدم Gdialog"
@@ -2201,9 +2219,6 @@ msgstr ""
 #~ msgid "symbolic link"
 #~ msgstr "وصلة رمزية"
 
-#~ msgid "No Files Found."
-#~ msgstr "لم يتم العثور على ملفات."
-
 #~ msgid ""
 #~ "Cannot perform the search.\n"
 #~ "The Bourne shell was not found\n"
@@ -2357,9 +2372,6 @@ msgstr ""
 
 #~ msgid "_Log"
 #~ msgstr "سجل"
-
-#~ msgid "System Log Viewer"
-#~ msgstr "معاين سجلات النظام"
 
 #~ msgid "Cannot load required fonts, cannot continue"
 #~ msgstr "تعذر تحميل الخطوط المطلوبة، لا أستطيع المتابعة"

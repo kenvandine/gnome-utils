@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.0\n"
-"POT-Creation-Date: 2003-05-31 17:28-0700\n"
+"POT-Creation-Date: 2003-08-07 15:00+0100\n"
 "PO-Revision-Date: 2003-01-03 18:29+0530\n"
 "Last-Translator: Bhopal team <anuragseetha@yahoo.com>\n"
 "Language-Team: Gnome Hindi Team <indlinux-hindi-gnome@lists.sourceforge."
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "अतिरिक्त सहायता सामान"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "डिक्शनरी देखें"
 
@@ -53,8 +53,8 @@ msgstr "शब्दकोष (_D)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:510 gdictsrc/gdict-speller.c:459
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:459
 msgid "Cannot connect to server"
 msgstr "सरवर से जुड़ नहीं पा रहा"
 
@@ -71,9 +71,10 @@ msgstr ""
 msgid "translator_credits"
 msgstr ""
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "गनोम शब्दकोष"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "शब्दकोष"
 
 #: gdictsrc/gdict-about.c:58
 #, fuzzy
@@ -143,10 +144,6 @@ msgstr "शब्द की मात्रा सही करें"
 msgid "_Dictionary"
 msgstr "शब्दकोष (_D)"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "शब्दकोष"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "शब्द (_W)"
@@ -168,7 +165,7 @@ msgstr "शब्द लिखो या नीचे सूची से चु
 msgid "Look Up for a Word"
 msgstr "शब्द को खोजें"
 
-#: gdictsrc/gdict-applet.c:272
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "खोजें (_L)"
 
@@ -185,77 +182,77 @@ msgstr "शब्दकोष की"
 msgid "Smart _lookup"
 msgstr "स्मार्ट लुकअप (_l)"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "_Server:"
 msgstr "सरवर (_S):"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:207
 #, fuzzy
 msgid "De_fault Server"
 msgstr "पूर्वनिर्धारित तरीका"
 
-#: gdictsrc/gdict-pref-dialog.c:214
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset server to default"
 msgstr "सरवर को पूर्वनिर्धारित तरीके से"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:224
 msgid "_Port:"
 msgstr "पोर्ट (_P):"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:240
 #, fuzzy
 msgid "Def_ault Port"
 msgstr "पूर्वनिर्धारित (_a)"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:250
 msgid "Reset port to default"
 msgstr "पोर्ट को पूर्वनिर्धारित"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Server"
 msgstr "सरवर"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Server Entry"
 msgstr "सरवर प्रविष्टि"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Server Name"
 msgstr "सरवर का नाम प्रविष्ट करें"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:255
 msgid "Port"
 msgstr "पोर्ट"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Port Entry"
 msgstr "पोर्ट प्रविष्टि"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Enter the Port Number"
 msgstr "पोर्ट का नम्बर लिखें"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "_Database:"
 msgstr "डाटाबेस (_D)"
 
-#: gdictsrc/gdict-pref-dialog.c:260
+#: gdictsrc/gdict-pref-dialog.c:274
 msgid "D_efault strategy:"
 msgstr "पूर्व निर्धारित सरीका (_e)"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:466
 msgid "Search all databases"
 msgstr "सभी डाटाबेसों में खोजें"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database"
 msgstr "डाटाबेस"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database Name"
 msgstr "डाटाबेस का नाम"
 
-#: gdictsrc/gdict-pref-dialog.c:628
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "पूर्वनिर्धारित तरीका"
 
@@ -741,8 +738,8 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "फाईल ढूँढो"
 
@@ -812,7 +809,7 @@ msgstr "सांकेतिक कड़ियों का अनुसरण
 msgid "Include other filesystems"
 msgstr "फाइल सिस्टम बनाने में असमर्थ"
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "कोई फाइल नहीं मिली"
 
@@ -858,26 +855,41 @@ msgstr ""
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+#, fuzzy
+msgid "No Files Found"
+msgstr "कोई फाइल नहीं मिली"
+
+#: gsearchtool/gsearchtool.c:1242
 msgid "One file found"
 msgstr "एक फाईल मिली"
 
 #: gsearchtool/gsearchtool.c:1243
+#, fuzzy
+msgid "One File Found"
+msgstr "एक फाईल मिली"
+
+#: gsearchtool/gsearchtool.c:1246
 #, c-format
 msgid "%d files found"
 msgstr "%d फाईलें मिलीं"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, fuzzy, c-format
+msgid "%d Files Found"
+msgstr "%d फाईलें मिलीं"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -885,116 +897,116 @@ msgstr ""
 "\n"
 ".....दिखाने के लिए बहुत अधिक गलतियां...."
 
-#: gsearchtool/gsearchtool.c:1354
+#: gsearchtool/gsearchtool.c:1360
 #, fuzzy
 msgid "Error while searching for files"
 msgstr "खराब ब्लाक का जांच करें"
 
-#: gsearchtool/gsearchtool.c:1393
+#: gsearchtool/gsearchtool.c:1399
 #, fuzzy
 msgid "Error parsing the search command"
 msgstr "खराब ब्लाक का जांच करें"
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1419
 #, fuzzy
 msgid "Error running the search command"
 msgstr "खराब ब्लाक का जांच करें"
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "निर्देश नियम के लिए"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "नियम हटाने के लिए दवाएं"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 #, fuzzy
 msgid "A_vailable options:"
 msgstr "कार्य के"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "नियम की तालिका ढूंढो"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "तालिका के लिए खोजने का नियम चुनो"
 
-#: gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gsearchtool.c:1652
 #, fuzzy
 msgid "S_earch results:"
 msgstr "खोज के परिणाम"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "नाम"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "फोल्डर"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "आकार"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "प्रकार"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "ढूंढने के लिए फाइल का नाम दो"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "शब्द खोजें (_L)"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 #, fuzzy
 msgid "Look in Folder Entry"
 msgstr "शब्द खोजें (_L)"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr "खोज शुरू करने के लिए फोल्डर का नाम दो"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1909
 #, fuzzy
 msgid "Show more _options"
 msgstr "कार्यपंजी की विशेषताएँ दिखाओ"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "खोज शुरू करने के लिए दबाएं"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "खोज बंद करने के लिए दबाएं"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -1130,7 +1142,8 @@ msgid "A system log viewer for GNOME."
 msgstr ""
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
+#, fuzzy
+msgid "System Log Viewer"
 msgstr "जीनोम सिस्टम लाग वीवर"
 
 #: logview/actions.c:74
@@ -1277,7 +1290,7 @@ msgstr ""
 msgid "Log Information"
 msgstr "जानकारी"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 #, fuzzy
 msgid "<No log loaded>"
 msgstr "कोई लाग नहीं डला के लिए लाग फाइल का विवरण"
@@ -1554,29 +1567,29 @@ msgstr ""
 msgid "Entry Detail"
 msgstr "प्रविष्टि विवरण (_E)"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "तारीख"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "क्रिया"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "संदेश"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "विवरण"
 
-#: logview/zoom.c:130
+#: logview/zoom.c:129
 #, fuzzy
 msgid "Log Line Details"
 msgstr "%s के लाग पंक्ति का विवरण"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -1590,6 +1603,9 @@ msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
+
+#~ msgid "GNOME Dictionary"
+#~ msgstr "गनोम शब्दकोष"
 
 #~ msgid "Gdialog progressbar"
 #~ msgstr "डायलाग प्रविष्टि"
@@ -2005,9 +2021,6 @@ msgstr ""
 
 #~ msgid "symbolic link"
 #~ msgstr "सांकेतिक कड़ी"
-
-#~ msgid "No Files Found."
-#~ msgstr "कोई फाइल नहीं मिली"
 
 #~ msgid ""
 #~ "Cannot perform the search.\n"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.1.3\n"
-"POT-Creation-Date: 2003-05-31 17:28-0700\n"
+"POT-Creation-Date: 2003-08-07 15:00+0100\n"
 "PO-Revision-Date: 2002-11-26 21:46+0200\n"
 "Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Tarvikud"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "Otsing sõnaraamatust"
 
@@ -53,8 +53,8 @@ msgstr "_Sõnaraamat"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:510 gdictsrc/gdict-speller.c:459
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:459
 msgid "Cannot connect to server"
 msgstr "Ei saa serveriga ühendust"
 
@@ -73,9 +73,10 @@ msgstr ""
 "Tõlge eesti keelde:\n"
 "       Tõivo Leedjärv <toivo@linux.ee>, 2002."
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "GNOME sõnaraamat"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Sõnaraamat"
 
 #: gdictsrc/gdict-about.c:58
 #, fuzzy
@@ -145,10 +146,6 @@ msgstr "Kontrolli sõna õigekirja"
 msgid "_Dictionary"
 msgstr "_Sõnaraamat"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Sõnaraamat"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Sõna:"
@@ -170,7 +167,7 @@ msgstr "Sisesta sõna või vali üks järgnevast nimekirjast"
 msgid "Look Up for a Word"
 msgstr "Otsi sõna"
 
-#: gdictsrc/gdict-applet.c:272
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "_Otsing"
 
@@ -187,75 +184,75 @@ msgstr "Sõnaraamatu häälestus"
 msgid "Smart _lookup"
 msgstr "Tark _otsing"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:207
 msgid "De_fault Server"
 msgstr "_Vaikeserver"
 
-#: gdictsrc/gdict-pref-dialog.c:214
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset server to default"
 msgstr "Taasta vaikeserver"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:224
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Def_ault Port"
 msgstr "V_aikeport"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:250
 msgid "Reset port to default"
 msgstr "Taasta vaikeport"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Server Entry"
 msgstr "Serveri sisestusväli"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Server Name"
 msgstr "Sisesta serveri nimi"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:255
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Port Entry"
 msgstr "Pordi sisestusväli"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Enter the Port Number"
 msgstr "Sisesta pordi number"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "_Database:"
 msgstr "_Andmebaas:"
 
-#: gdictsrc/gdict-pref-dialog.c:260
+#: gdictsrc/gdict-pref-dialog.c:274
 msgid "D_efault strategy:"
 msgstr "V_aikestrateegia:"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:466
 msgid "Search all databases"
 msgstr "Otsi kõikidest andmebaasidest"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database"
 msgstr "Andmebaas"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database Name"
 msgstr "Andmebaasi nimi"
 
-#: gdictsrc/gdict-pref-dialog.c:628
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "Vaikestrateegia"
 
@@ -744,8 +741,8 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 - linuxi failisüsteem, fat - DOSi failisüsteem."
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "Otsi faile"
 
@@ -818,7 +815,7 @@ msgstr ""
 msgid "Include other filesystems"
 msgstr "Kaasa teised failisüsteemid"
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "Ei leia ühtegi faili"
 
@@ -865,21 +862,36 @@ msgstr "Vali piirang 'fail on tühi'"
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+#, fuzzy
+msgid "No Files Found"
+msgstr "Ei leia ühtegi faili."
+
+#: gsearchtool/gsearchtool.c:1242
 #, fuzzy
 msgid "One file found"
 msgstr "Üks fail leitud %s"
 
 #: gsearchtool/gsearchtool.c:1243
+#, fuzzy
+msgid "One File Found"
+msgstr "Üks fail leitud %s"
+
+#: gsearchtool/gsearchtool.c:1246
 #, fuzzy, c-format
 msgid "%d files found"
 msgstr "%d faili leitud %s"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, fuzzy, c-format
+msgid "%d Files Found"
+msgstr "%d faili leitud %s"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -887,7 +899,7 @@ msgstr ""
 "Otsingu ajal tekkisid järgnevad vead.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -895,111 +907,111 @@ msgstr ""
 "\n"
 "... Liiga palju veateateid kuvamiseks ..."
 
-#: gsearchtool/gsearchtool.c:1354
+#: gsearchtool/gsearchtool.c:1360
 msgid "Error while searching for files"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1393
+#: gsearchtool/gsearchtool.c:1399
 msgid "Error parsing the search command"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1419
 msgid "Error running the search command"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr "Otsingureegli väärtuse sisestusväli"
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "Sisesta otsingureegli väärtus"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klõpsa reegli '%s' eemaldamiseks"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 msgid "A_vailable options:"
 msgstr "_Saadaval valikud:"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "Otsingu reeglite menüü"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "Vali otsingureegel menüüst"
 
-#: gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gsearchtool.c:1652
 #, fuzzy
 msgid "S_earch results:"
 msgstr "O_tsingu tulemused"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "Nimi"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "Kataloog"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "Suurus"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "Tüüp"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr "Viimase muutmise aeg"
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "Sisesta otsitava faili nimi"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 msgid "_Look in folder:"
 msgstr "_Alustada kataloogist:"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr "Vali"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 #, fuzzy
 msgid "Look in Folder Entry"
 msgstr "_Alustada kataloogist:"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr "Sisesta kataloogi, kust tahad otsingut alustada, nimi"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1909
 #, fuzzy
 msgid "Show more _options"
 msgstr "Näita logi omadusi"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "Klõpsa otsingu alustamiseks"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "Klõpsa otsingu peatamiseks"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -1135,8 +1147,8 @@ msgid "A system log viewer for GNOME."
 msgstr ""
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
-msgstr "GNOME Süsteemilogi näitaja"
+msgid "System Log Viewer"
+msgstr "Süsteemilogi näitaja"
 
 #: logview/actions.c:74
 #, fuzzy
@@ -1281,7 +1293,7 @@ msgstr "Ridade arv:"
 msgid "Log Information"
 msgstr "Logiraamatu info"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<Ühtegi logi ei ole laetud>"
 
@@ -1547,28 +1559,28 @@ msgstr ""
 msgid "Entry Detail"
 msgstr ""
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "Kuupäev:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "Protsess:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "Sõnum:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "Kirjeldus:"
 
-#: logview/zoom.c:130
+#: logview/zoom.c:129
 msgid "Log Line Details"
 msgstr ""
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr ""
 
@@ -1581,6 +1593,12 @@ msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
+
+#~ msgid "GNOME Dictionary"
+#~ msgstr "GNOME sõnaraamat"
+
+#~ msgid "GNOME System Log Viewer"
+#~ msgstr "GNOME Süsteemilogi näitaja"
 
 #~ msgid "GDialog Entry"
 #~ msgstr "GDialog sisestusväli"
@@ -2261,9 +2279,6 @@ msgstr ""
 #~ msgid "program"
 #~ msgstr "programm"
 
-#~ msgid "No Files Found."
-#~ msgstr "Ei leia ühtegi faili."
-
 #~ msgid ""
 #~ "Cannot perform the search.\n"
 #~ "The Bourne shell was not found\n"
@@ -2399,9 +2414,6 @@ msgstr ""
 
 #~ msgid "_Log"
 #~ msgstr "_Logi"
-
-#~ msgid "System Log Viewer"
-#~ msgstr "Süsteemilogi näitaja"
 
 #~ msgid "Add >>"
 #~ msgstr "Lisa >>"

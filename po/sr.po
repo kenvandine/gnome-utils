@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.2\n"
-"POT-Creation-Date: 2003-05-31 17:28-0700\n"
+"POT-Creation-Date: 2003-08-07 15:00+0100\n"
 "PO-Revision-Date: 2003-04-29 13:24+0100\n"
 "Last-Translator: Sasha Maric <sasha_maric@yahoo.com>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nognu.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Помоћни алати"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "Претрага Речника"
 
@@ -55,8 +55,8 @@ msgstr "_Речник"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:510 gdictsrc/gdict-speller.c:459
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:459
 msgid "Cannot connect to server"
 msgstr "Не могу да се повежем на сервер"
 
@@ -73,9 +73,10 @@ msgstr ""
 msgid "translator_credits"
 msgstr "Саша Марић <Sasha_Maric@yahoo.com>"
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "GNOME Речник"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Речник"
 
 #: gdictsrc/gdict-about.c:58
 #, fuzzy
@@ -145,10 +146,6 @@ msgstr "Провери да ли су речи добро написане"
 msgid "_Dictionary"
 msgstr "_Речник"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Речник"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Реч: "
@@ -170,7 +167,7 @@ msgstr "Унесите реч или изаберите једну из доње
 msgid "Look Up for a Word"
 msgstr "Потражи Реч"
 
-#: gdictsrc/gdict-applet.c:272
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "_Претрага"
 
@@ -187,75 +184,75 @@ msgstr "Приоритети Речника"
 msgid "Smart _lookup"
 msgstr "Паметна пр_етрага"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "_Server:"
 msgstr "_Сервер:"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:207
 msgid "De_fault Server"
 msgstr "Подра_зумевани Сервер"
 
-#: gdictsrc/gdict-pref-dialog.c:214
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset server to default"
 msgstr "Врати сервер на подразумевани"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:224
 msgid "_Port:"
 msgstr "_Порт:"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Def_ault Port"
 msgstr "Подр_азумевани Порт"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:250
 msgid "Reset port to default"
 msgstr "Врати порт на подразумевани"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Server"
 msgstr "Сервер"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Server Entry"
 msgstr "Унос Сервера"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Server Name"
 msgstr "Унесите Име Сервера"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:255
 msgid "Port"
 msgstr "Порт"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Port Entry"
 msgstr "Унос Порта"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Enter the Port Number"
 msgstr "Унесите Број Порта"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "_Database:"
 msgstr "_База Података:"
 
-#: gdictsrc/gdict-pref-dialog.c:260
+#: gdictsrc/gdict-pref-dialog.c:274
 msgid "D_efault strategy:"
 msgstr "П_одразумевана стратегија:"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:466
 msgid "Search all databases"
 msgstr "Прeтражи све базе података"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database"
 msgstr "База Података"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database Name"
 msgstr "Име Базе Података"
 
-#: gdictsrc/gdict-pref-dialog.c:628
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "Подразумевана Стратегија"
 
@@ -781,8 +778,8 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 за линукс базни систем датотека или fat за DOS систем датотека."
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "Потражи датотеке"
 
@@ -854,7 +851,7 @@ msgstr "Пратите симболичке везе"
 msgid "Include other filesystems"
 msgstr "Укључите остале системе датотека"
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "Ниједна датотека није нађена"
 
@@ -904,20 +901,35 @@ msgstr "Изабери '%s' ограничење"
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Неважећа опција предата sortby аргументу командне линије."
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+#, fuzzy
+msgid "No Files Found"
+msgstr "Ниједна датотека није нађена"
+
+#: gsearchtool/gsearchtool.c:1242
 msgid "One file found"
 msgstr "Једна датотека нађена"
 
 #: gsearchtool/gsearchtool.c:1243
+#, fuzzy
+msgid "One File Found"
+msgstr "Једна датотека нађена"
+
+#: gsearchtool/gsearchtool.c:1246
 #, c-format
 msgid "%d files found"
 msgstr "нађено %d датотека"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, fuzzy, c-format
+msgid "%d Files Found"
+msgstr "нађено %d датотека"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -925,7 +937,7 @@ msgstr ""
 "За време претраге, пријављене су следеће грешке.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -933,114 +945,114 @@ msgstr ""
 "\n"
 "... Превише грешака за приказ ..."
 
-#: gsearchtool/gsearchtool.c:1354
+#: gsearchtool/gsearchtool.c:1360
 #, fuzzy
 msgid "Error while searching for files"
 msgstr "EГрешка приликом испитивања лоших блокова."
 
-#: gsearchtool/gsearchtool.c:1393
+#: gsearchtool/gsearchtool.c:1399
 #, fuzzy
 msgid "Error parsing the search command"
 msgstr "EГрешка приликом изазивања (%s) наредбе: %s."
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1419
 #, fuzzy
 msgid "Error running the search command"
 msgstr "EГрешка приликом изазивања (%s) наредбе: %s."
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr "Правило Претраге вредност уноса"
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "Унесите вредност за правило претраге"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Клините да уклоните правило '%s'"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 msgid "A_vailable options:"
 msgstr "Доступне _опције:"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "Мени правила претраге"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "Изаберите правило претраге из менија"
 
-#: gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gsearchtool.c:1652
 #, fuzzy
 msgid "S_earch results:"
 msgstr "Р_езултати претраге"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "Име"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "Директоријум"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "Величина"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "Тип"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr "Датум и време измене"
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "Унесите име датотеке коју желите пронаћи"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 msgid "_Look in folder:"
 msgstr "_Тражите у директоријуму:"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr "Претражи"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 #, fuzzy
 msgid "Look in Folder Entry"
 msgstr "_Тражите у директоријуму:"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr "Унесите име директоријума од којег желите почети претрагу"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1909
 #, fuzzy
 msgid "Show more _options"
 msgstr "Прикажи Особине Записа"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "Кликните за Почетак претраге"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "Кликните за Крај претраге"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr "Не могу да иницијализујем bonobo."
 
@@ -1178,7 +1190,8 @@ msgid "A system log viewer for GNOME."
 msgstr ""
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
+#, fuzzy
+msgid "System Log Viewer"
 msgstr "GNOME Приказивач системског записа"
 
 #: logview/actions.c:74
@@ -1324,7 +1337,7 @@ msgstr "Број линија:"
 msgid "Log Information"
 msgstr "Информација о запису"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<ниједан запис није напуњен>"
 
@@ -1592,29 +1605,29 @@ msgstr "ДОДИРНУТ!!\n"
 msgid "Entry Detail"
 msgstr "_Детаљ Уписа"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "Датум:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "Процес:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "Порука:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "Опис:"
 
-#: logview/zoom.c:130
+#: logview/zoom.c:129
 #, fuzzy
 msgid "Log Line Details"
 msgstr "Детаљ линије записа за"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -1631,6 +1644,9 @@ msgstr ""
 "Одређује датотеку записа која се отвара приликом старта система. "
 "Подразумевано је /var/adm/messages или /var/log/messages, зависно од "
 "дистрибуције."
+
+#~ msgid "GNOME Dictionary"
+#~ msgstr "GNOME Речник"
 
 #~ msgid "Gdialog progressbar"
 #~ msgstr "Индикатор напретка Gdialog-а"

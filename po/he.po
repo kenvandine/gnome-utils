@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.he\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-27 04:45+0200\n"
+"POT-Creation-Date: 2003-08-07 15:00+0100\n"
 "PO-Revision-Date: 2003-06-27 23:53+0300\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.1\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
@@ -53,8 +53,8 @@ msgstr "ה_צג מילון"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:510 gdictsrc/gdict-speller.c:459
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:459
 msgid "Cannot connect to server"
 msgstr "לא ניתן להתחבר לשרת"
 
@@ -186,75 +186,75 @@ msgstr "העדפות המילון"
 msgid "Smart _lookup"
 msgstr "_חיפוש חכם"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "_Server:"
 msgstr "_שרת:"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:207
 msgid "De_fault Server"
 msgstr "שרת _ברירת מחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:214
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset server to default"
 msgstr "קבע מחדש לברירת המחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:224
 msgid "_Port:"
 msgstr "_פתחה:"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Def_ault Port"
 msgstr "פתחה ב_רירת מחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:250
 msgid "Reset port to default"
 msgstr "קבע מחדש לפתה ברירת המחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Server"
 msgstr "שרת"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Server Entry"
 msgstr "ערך שרת"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Server Name"
 msgstr "הכנס את שם השרת"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:255
 msgid "Port"
 msgstr "פתחה"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Port Entry"
 msgstr "ערך פתחה"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Enter the Port Number"
 msgstr "הכנס את מספר הפתחה"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "_Database:"
 msgstr "_מסד נתונים:"
 
-#: gdictsrc/gdict-pref-dialog.c:260
+#: gdictsrc/gdict-pref-dialog.c:274
 msgid "D_efault strategy:"
 msgstr "אסטרטגיית בר_ירת מחדל:"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:466
 msgid "Search all databases"
 msgstr "חפש בכל מסדי הנתונים"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database"
 msgstr "מסד נתונים"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database Name"
 msgstr "שם מסד הנתונים"
 
-#: gdictsrc/gdict-pref-dialog.c:628
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "אסטרטגיית ברירת מחדל"
 
@@ -295,8 +295,8 @@ msgid ""
 "Specify whether to use smart lookup. This key is dependant on whether the "
 "dictionary server supports this option. The default is TRUE"
 msgstr ""
-"ציין האם להשתמש בחיפוש חכם. המפתח תלוי בכך ששרת המילון "
-"תומך באפשרות זו. ברירת המחדל היא אמת"
+"ציין האם להשתמש בחיפוש חכם. המפתח תלוי בכך ששרת המילון תומך באפשרות זו. "
+"ברירת המחדל היא אמת"
 
 #: gdictsrc/gdict.schemas.in.h:4
 msgid "The database to use in the dictionary server."
@@ -332,9 +332,8 @@ msgid ""
 "the dictionary server supports. The default strategy is 'lev' - Match words "
 "within Levenshtein distance one"
 msgstr ""
-"אסטרטגיית החיפוש לשימוש. זה תלוי באסטרטגיית החיפוש בה שרת "
-"המילון תומך. אסטרטגיית החיפוש ברירת המחדל היא 'lev' - התאמת מילים "
-"בתוך מרחב לבינשטיין אחד"
+"אסטרטגיית החיפוש לשימוש. זה תלוי באסטרטגיית החיפוש בה שרת המילון תומך. "
+"אסטרטגיית החיפוש ברירת המחדל היא 'lev' - התאמת מילים בתוך מרחב לבינשטיין אחד"
 
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
@@ -570,8 +569,9 @@ msgid ""
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
-"<small><i><b>הערה</b>: תוכנית השירות mbadblocks אינה מותקנת במערכת זו.  תוכנית שירות זו חייבת להיות מותקנת "
-"כדי לעשות אתחול DOS (fat) יסודי.</i></small>"
+"<small><i><b>הערה</b>: תוכנית השירות mbadblocks אינה מותקנת במערכת זו.  "
+"תוכנית שירות זו חייבת להיות מותקנת כדי לעשות אתחול DOS (fat) יסודי.</i></"
+"small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
@@ -738,8 +738,8 @@ msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
 msgstr ""
-"אמת כדי לקבוע את mkdosfs כיישום הקצה המועדף לאתחול FAT או שקר כדי לקבוע "
-"את mtools כיישום הקצה המועדף לאתחול FAT."
+"אמת כדי לקבוע את mkdosfs כיישום הקצה המועדף לאתחול FAT או שקר כדי לקבוע את "
+"mtools כיישום הקצה המועדף לאתחול FAT."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
@@ -1073,9 +1073,7 @@ msgstr "לא ניתן לשמור את המסמך \"\" ל %s"
 msgid ""
 "You did not select a document name or the name selected was a folder.  The "
 "document is not saved."
-msgstr ""
-"לא בחרת שם למסמך או שהשם שבחרת היה תיקייה. המסמך "
-"לא נשמר."
+msgstr "לא בחרת שם למסמך או שהשם שבחרת היה תיקייה. המסמך לא נשמר."
 
 #: gsearchtool/gsearchtool-callbacks.c:903
 #, c-format
@@ -1576,8 +1574,8 @@ msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
-"מציין את קובץ הדו\"ח לפתיחה בהפעלה. ברירת המחדל היא או הודעות /var/adm/messages "
-"או /var/log/messages, תלוי במערכת ההפעלה שלך."
+"מציין את קובץ הדו\"ח לפתיחה בהפעלה. ברירת המחדל היא או הודעות /var/adm/"
+"messages או /var/log/messages, תלוי במערכת ההפעלה שלך."
 
 #~ msgid "GNOME Dictionary"
 #~ msgstr "מילון GNOME"
@@ -2109,4 +2107,3 @@ msgstr ""
 
 #~ msgid "File is _named:"
 #~ msgstr "הקובץ _נקרא:"
-
