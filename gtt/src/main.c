@@ -114,8 +114,8 @@ static void lock_gtt(void)
 			_("There seems to be another GTimeTracker running.\n"
 			  "Press OK to start GTimeTracker anyway, or press Cancel to quit."),
 			GNOME_MESSAGE_BOX_WARNING,
-			GNOME_STOCK_BUTTON_OK,
-			GNOME_STOCK_BUTTON_CANCEL,
+			GTK_STOCK_OK,
+			GTK_STOCK_CANCEL,
 			NULL);
 		if(gnome_dialog_run_and_close(GNOME_DIALOG(warning))!=0)
 		{
@@ -221,8 +221,8 @@ read_data(void)
 
 		msgbox_ok_cancel(_("Error"),
 			 qmsg,
-			 GNOME_STOCK_BUTTON_YES, 
-			 GNOME_STOCK_BUTTON_NO,
+			 GTK_STOCK_YES, 
+			 GTK_STOCK_NO,
 			 GTK_SIGNAL_FUNC(read_data_err_run_or_abort));
 		g_free ((gchar *) qmsg); 
 		g_free ((gchar *) errmsg);
@@ -274,8 +274,8 @@ read_config(void)
 
 		msgbox_ok_cancel(_("Error"),
 			 qmsg,
-			 GNOME_STOCK_BUTTON_YES, 
-			 GNOME_STOCK_BUTTON_NO,
+			 GTK_STOCK_YES, 
+			 GTK_STOCK_NO,
 			 GTK_SIGNAL_FUNC(read_config_err_run_or_abort));
 		g_free ((gchar *) qmsg); 
 		g_free ((gchar *) errmsg);

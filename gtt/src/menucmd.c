@@ -47,7 +47,7 @@ quit_app(GtkWidget *w, gpointer data)
 	{
 		msgbox_ok(_("Warning"),
 		     errmsg,
-		     GNOME_STOCK_BUTTON_OK,
+		     GTK_STOCK_OK,
 		     GTK_SIGNAL_FUNC(gtk_main_quit));
 		g_free ((gchar *) errmsg);
 		return;
@@ -61,14 +61,19 @@ quit_app(GtkWidget *w, gpointer data)
 void
 about_box(GtkWidget *w, gpointer data)
 {
-	 static GtkWidget *about = NULL;
-	 gchar *authors[] = {
+	static GtkWidget *about = NULL;
+	const gchar *authors[] = {
 		  "Eckehard Berns\n<eb@berns.i-s-o.net>",
 		  "George Lebl\n<jirka@5z.com>",
 		  "Linas Vepstas\n<linas@linas.org>",
-		  "and dozens of bug-fixers and translators",
+		  "and dozens of bug-fixers",
 		  NULL
-	 };
+	};
+	const gchar *documentors[] = {
+		"many documentors...",
+		  NULL
+	};
+
 	if (about != NULL)
 	{
 		gdk_window_show(about->window);
@@ -78,7 +83,6 @@ about_box(GtkWidget *w, gpointer data)
 	about = gnome_about_new(APP_NAME,
 				    VERSION,
 				    "Copyright (C) 1997,98 Eckehard Berns and others",
-				    (const gchar **)authors,
 #ifdef DEBUG
 				    __DATE__ ", " __TIME__,
 #else
@@ -88,6 +92,9 @@ about_box(GtkWidget *w, gpointer data)
    "an invoice, as well as track that status of other projects."),
 
 #endif
+				    authors,
+				    documentors,
+				    "many translators",
 				    NULL);
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",
 		GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
@@ -101,7 +108,7 @@ about_box(GtkWidget *w, gpointer data)
 static void
 project_name_desc(GtkWidget *w, GtkEntry **entries)
 {
-	char *name, *desc;
+	const char *name, *desc;
 	GttProject *proj;
 	GttProject *sib_prj;
 	
@@ -140,10 +147,10 @@ new_project(GtkWidget *widget, gpointer data)
 	entries[1] = gnome_entry_gtk_entry(GNOME_ENTRY(desc));
 
 	new_dialog_ok_cancel(_("New Project..."), &dlg, &vbox,
-			     GNOME_STOCK_BUTTON_OK,
+			     GTK_STOCK_OK,
 			     GTK_SIGNAL_FUNC(project_name_desc),
 				 entries,
-			     GNOME_STOCK_BUTTON_CANCEL, NULL, NULL);
+			     GTK_STOCK_CANCEL, NULL, NULL);
 
 	t = gtk_label_new(_("Project Title"));
 	d = gtk_label_new(_("Description"));
@@ -202,7 +209,7 @@ init_project_list_2(GtkWidget *widget, int button)
 		fp = gtt_get_config_filepath();
 		errmsg = gtt_err_to_string (conf_errcode, fp);
 		msgbox_ok(_("Warning"),
-			errmsg, GNOME_STOCK_BUTTON_OK, NULL);
+			errmsg, GTK_STOCK_OK, NULL);
 
 		g_free ((gchar *) errmsg);
 	}
@@ -223,7 +230,7 @@ init_project_list(GtkWidget *widget, gpointer data)
 {
 	msgbox_ok_cancel(_("Reload Configuration File"),
 			 _("Do you really want to reload the configuration file?"),
-			 GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
+			 GTK_STOCK_YES, GTK_STOCK_NO,
 			 GTK_SIGNAL_FUNC(init_project_list_2));
 }
 
@@ -239,7 +246,7 @@ save_project_list(GtkWidget *widget, gpointer data)
 	{
 		msgbox_ok(_("Warning"),
 		     errmsg,
-		     GNOME_STOCK_BUTTON_OK,
+		     GTK_STOCK_OK,
 		     NULL);
 		g_free ((gchar *) errmsg);
 	}
@@ -249,7 +256,7 @@ static void
 export_current_state_really (GtkWidget *widget, gpointer data)
 {
 	GtkFileSelection *fsel = data;
-	char *filename;
+	const char *filename;
 
 	filename = gtk_file_selection_get_filename (fsel);
 

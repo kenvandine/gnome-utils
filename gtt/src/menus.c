@@ -35,15 +35,15 @@ static GnomeUIInfo menu_main_file[] = {
 	GNOMEUIINFO_SEPARATOR,
 	{GNOME_APP_UI_ITEM, N_("_Reload Configuration File"), NULL,
 		init_project_list, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN,
+		GNOME_APP_PIXMAP_STOCK, GTK_STOCK_OPEN,
 		'L', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_ITEM, N_("_Save Configuration File"), NULL,
 		save_project_list, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE,
+		GNOME_APP_PIXMAP_STOCK, GTK_STOCK_SAVE,
 		'S', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_ITEM, N_("_Export Current State"), NULL,
 		export_current_state, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE,
+		GNOME_APP_PIXMAP_STOCK, GTK_STOCK_SAVE,
 		'E', GDK_CONTROL_MASK, NULL},
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app,NULL),
@@ -63,16 +63,16 @@ static GnomeUIInfo menu_main_edit[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("Clear _Daily Counter"), 
 		N_("Zero out todays timer by deleting todays time logs"),
 			       menu_clear_daily_counter,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 #define MENU_EDIT_JNL_POS 5
 	GNOMEUIINFO_ITEM_STOCK(N_("_Journal..."), 
 		N_("Show the timesheet journal for this project"),
 			       edit_journal,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 	GNOMEUIINFO_ITEM_STOCK(N_("New _Task..."),
 		N_("Change the current task for this project"),
 			       change_task,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 #define MENU_EDIT_PROP_POS 7
 	GNOMEUIINFO_MENU_PROPERTIES_ITEM(menu_properties,NULL),
 	GNOMEUIINFO_END
@@ -87,23 +87,23 @@ static GnomeUIInfo menu_main_reports[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("_Journal..."), 
 		N_("Show the timesheet journal for this project"),
 			       edit_journal,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 	GNOMEUIINFO_ITEM_STOCK(N_("_All Journal..."), 
 		N_("Show the verbose timesheet journal for this project"),
 			       edit_alldata,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 	GNOMEUIINFO_ITEM_STOCK(N_("_Invoice..."), 
 		N_("Show a sample invoice for this project"),
 			       edit_invoice,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 	GNOMEUIINFO_ITEM_STOCK(N_("_Primer..."), 
 		N_("Show a sample introductory primer for designing custom reports"),
 			       edit_primer,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 	GNOMEUIINFO_ITEM_STOCK(N_("_New Report..."), 
 		N_("Define a path to a new GTT phtml report file"),
 			       new_report,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_END
 };
@@ -115,13 +115,13 @@ static GnomeUIInfo menu_main_timer[] = {
 	{GNOME_APP_UI_ITEM, N_("St_art"), 
 		N_("Start the timer running"),
 		menu_start_timer, NULL,
-		NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_TIMER,
+		NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_TIMER,
 		'A', GDK_CONTROL_MASK, NULL},
 #define MENU_TIMER_STOP_POS 1
 	{GNOME_APP_UI_ITEM, N_("Sto_p"), 
 		N_("Stop the timer"),
 		menu_stop_timer, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_TIMER_STOP,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_TIMER_STOP,
 		'Z', GDK_CONTROL_MASK, NULL},
 #define MENU_TIMER_TOGGLE_POS 2
 	{GNOME_APP_UI_TOGGLEITEM, N_("_Timer Running"), NULL,
@@ -156,11 +156,11 @@ static GnomeUIInfo menu_popup[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("_Journal..."), 
 		N_("Show the timesheet journal for this project"),
 			       edit_journal,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 	GNOMEUIINFO_ITEM_STOCK(N_("New _Task..."),
 		N_("Change the current task for this project"),
 			       change_task,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 	GNOMEUIINFO_SEPARATOR,
 #define MENU_POPUP_CUT_POS 3
 	GNOMEUIINFO_MENU_CUT_ITEM(cut_project,NULL),
@@ -173,7 +173,7 @@ static GnomeUIInfo menu_popup[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("Clear _Daily Counter"),
 		N_("Zero out todays timer by deleting todays time logs"),
 			       menu_clear_daily_counter,
-			       GNOME_STOCK_MENU_BLANK),
+			       GNOME_STOCK_BLANK),
 #define MENU_POPUP_PROP_POS 8
 	GNOMEUIINFO_MENU_PROPERTIES_ITEM(menu_properties,NULL),
 	GNOMEUIINFO_END
@@ -231,7 +231,7 @@ menus_add_plugins (GnomeApp *app)
 		plugins[i].user_data = plg->path;
 		plugins[i].unused_data = NULL;
 		plugins[i].pixmap_type = GNOME_APP_PIXMAP_STOCK;
-		plugins[i].pixmap_info = GNOME_STOCK_MENU_BLANK;
+		plugins[i].pixmap_info = GNOME_STOCK_BLANK;
 		plugins[i].accelerator_key = 0;
 		plugins[i].ac_mods = (GdkModifierType) 0;
 

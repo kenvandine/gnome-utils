@@ -75,7 +75,7 @@ static void
 prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 {
 	int ivl;
-	gchar *str;
+	const gchar *str;
 	double rate;
 	time_t tval;
 
@@ -268,14 +268,6 @@ do_set_project(GttProject *proj, PropDlg *dlg)
 #define DATED(NAME) ({						\
 	GtkWidget *widget;					\
 	widget = glade_xml_get_widget (gtxml, NAME);		\
-	gtk_signal_connect_object(GTK_OBJECT(			\
-		GNOME_DATE_EDIT(widget)->date_entry), "changed",\
-		GTK_SIGNAL_FUNC(gnome_property_box_changed), 	\
-		GTK_OBJECT(dlg->dlg));				\
-	gtk_signal_connect_object(GTK_OBJECT(			\
-		GNOME_DATE_EDIT(widget)->time_entry), "changed",\
-		GTK_SIGNAL_FUNC(gnome_property_box_changed), 	\
-		GTK_OBJECT(dlg->dlg));				\
 	gtk_signal_connect_object(GTK_OBJECT(widget), "date_changed",\
 		GTK_SIGNAL_FUNC(gnome_property_box_changed), 	\
 		GTK_OBJECT(dlg->dlg));				\
@@ -311,7 +303,7 @@ prop_dialog_new (void)
 {
         PropDlg *dlg;
 	GladeXML *gtxml;
-        static GnomeHelpMenuEntry help_entry = { NULL, "index.html#PROP" };
+        // static GnomeHelpMenuEntry help_entry = { NULL, "index.html#PROP" };
 
 	dlg = g_malloc(sizeof(PropDlg));
 
@@ -320,10 +312,12 @@ prop_dialog_new (void)
 
 	dlg->dlg = GNOME_PROPERTY_BOX (glade_xml_get_widget (gtxml,  "Project Properties"));
 
+#ifdef GNOME_20_HAS_INCOMPATIBLE_HELP_SYSTEM
 	help_entry.name = gnome_app_id;
 	gtk_signal_connect(GTK_OBJECT(dlg->dlg), "help",
 			   GTK_SIGNAL_FUNC(gnome_help_pbox_display),
 			   &help_entry);
+#endif
 
 	gtk_signal_connect(GTK_OBJECT(dlg->dlg), "apply",
 			   GTK_SIGNAL_FUNC(prop_set), dlg);

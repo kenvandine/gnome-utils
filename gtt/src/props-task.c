@@ -58,7 +58,7 @@ task_prop_set(GnomePropertyBox * pb, gint page, PropTaskDlg *dlg)
 	GttBillable able;
 	GttBillRate rate;
 	int ivl;
-	gchar *str;
+	const gchar *str;
 
 	if (!dlg->task) return;
 
@@ -180,7 +180,7 @@ prop_task_dialog_new (void)
 {
 	PropTaskDlg *dlg = NULL;
 	GladeXML *gtxml;
-	static GnomeHelpMenuEntry help_entry = { NULL, "index.html#TASK" };
+	// static GnomeHelpMenuEntry help_entry = { NULL, "index.html#TASK" };
 
 	dlg = g_malloc(sizeof(PropTaskDlg));
 
@@ -189,10 +189,12 @@ prop_task_dialog_new (void)
 
 	dlg->dlg = GNOME_PROPERTY_BOX (glade_xml_get_widget (gtxml,  "Task Properties"));
 
+#ifdef GNOME_20_HELP_IS_DIFFERENT_AND_NEEDS_PORTING
 	help_entry.name = gnome_app_id;
 	gtk_signal_connect(GTK_OBJECT(dlg->dlg), "help",
 			   GTK_SIGNAL_FUNC(gnome_help_pbox_display),
 			   &help_entry);
+#endif
 
 	gtk_signal_connect(GTK_OBJECT(dlg->dlg), "apply",
 			   GTK_SIGNAL_FUNC(task_prop_set), dlg);

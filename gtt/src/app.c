@@ -228,7 +228,7 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 	gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_project),
 			   TRUE, TRUE, 1);
 	status_timer = gnome_stock_pixmap_widget_at_size(GTK_WIDGET(status_bar),
-							 GNOME_STOCK_PIXMAP_TIMER,
+							 GNOME_STOCK_TIMER,
 							 16, 16);
 	gtk_widget_show(status_timer);
 	gtk_box_pack_end(GTK_BOX(status_bar), GTK_WIDGET(status_timer),

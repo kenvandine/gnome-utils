@@ -123,8 +123,8 @@ timer_func(gpointer data)
 				gtt_project_get_title(prj),
 				gtt_project_get_desc(prj));
 			qbox_ok_cancel (_("System Idle"), msg,
-				GNOME_STOCK_BUTTON_YES, restart_proj, prj, 
-				GNOME_STOCK_BUTTON_NO, NULL, NULL);
+				GTK_STOCK_YES, restart_proj, prj, 
+				GTK_STOCK_NO, NULL, NULL);
 			return 1;
 		}
 	}

@@ -71,7 +71,7 @@ new_plugin_create_cb (GtkWidget * w, gpointer data)
 {
 	FILE *fh;
 	GnomeUIInfo entry[2];
-	char *title, *path, *tip;
+	const char *title, *path, *tip;
 	NewPluginDialog *dlg = data;
 	GttPlugin *plg;
 
@@ -91,7 +91,7 @@ new_plugin_create_cb (GtkWidget * w, gpointer data)
 			path, strerror (nerr)); 
 		mb = gnome_message_box_new (msg,
 			GNOME_MESSAGE_BOX_ERROR, 
-			GNOME_STOCK_BUTTON_CLOSE,
+			GTK_STOCK_CLOSE,
 			NULL);
 		gtk_widget_show (mb);
 		// g_free (msg);

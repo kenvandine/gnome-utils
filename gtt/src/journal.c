@@ -155,7 +155,7 @@ filesel_ok_clicked_cb (GtkWidget *w, gpointer data)
 {
 	Wiggy *wig = (Wiggy *) data;
 	FILE *fh;
-	char * filename;
+	const char * filename;
 
 	filename = gtk_file_selection_get_filename (wig->filesel);
 
@@ -169,7 +169,7 @@ filesel_ok_clicked_cb (GtkWidget *w, gpointer data)
 			filename, strerror (nerr)); 
 		mb = gnome_message_box_new (msg,
 			GNOME_MESSAGE_BOX_ERROR, 
-			GNOME_STOCK_BUTTON_CLOSE,
+			GTK_STOCK_CLOSE,
 			NULL);
 		gtk_widget_show (mb);
 		// g_free (msg);

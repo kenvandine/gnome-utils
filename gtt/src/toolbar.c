@@ -36,13 +36,12 @@ typedef struct _MyToolbar MyToolbar;
 
 struct _MyToolbar {
 	GtkToolbar *tbar;
-	GtkTooltips *tt;
 	GtkWidget *cut, *copy, *paste; /* to make them sensible
 					  as needed */
 	GtkWidget *journal_w;
 	GtkWidget *prop_w;
 	GtkWidget *timer_w;
-	GnomeStock *timer;
+	// GnomeStock *timer;  broken by gnome-2.0 ....
 	GtkWidget *calendar_w;
 };
 
@@ -56,24 +55,32 @@ add_stock_button(GtkToolbar *tbar, const char *text, const char *tt_text,
 {
 	GtkWidget *w, *pixmap;
 
-	pixmap = gnome_stock_pixmap_widget((GtkWidget *)window, icon);
+	pixmap = gtk_image_new_from_stock (icon, GTK_ICON_SIZE_LARGE_TOOLBAR);
 	w = gtk_toolbar_append_item(tbar, text, tt_text, NULL, pixmap,
 				    sigfunc, NULL);
 	return w;
 }
 
 
+#ifdef GNOME_20_BROKEN_NEEDS_FIXING
 static GnomeStock *
 add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
 		 char *icon, GtkSignalFunc sigfunc, GtkWidget **wptr)
 {
 	GtkWidget *w;
 
+/* i think I'm supposed to use 
+ * w = gtk_image_new_from_stock (icon, GTK_ICON_SIZE_LARGE_TOOLBAR);
+ *
+ * and later use gtk_image_set_from_stock()
+ * to toggle the thing ...
+ */
 	w = gnome_stock_pixmap_widget((GtkWidget *)window, icon);
 	(*wptr) = gtk_toolbar_append_item(tbar, text, tt_text, NULL, w,
 					  sigfunc, NULL);
 	return GNOME_STOCK(w);
 }
+#endif
 
 
 
@@ -87,11 +94,11 @@ toolbar_set_states(void)
 	g_return_if_fail(mytbar->tbar != NULL);
 	g_return_if_fail(GTK_IS_TOOLBAR(mytbar->tbar));
 
-	if (mytbar->tt) {
+	if (mytbar->tbar && mytbar->tbar->tooltips) {
 		if (config_show_tb_tips)
-			gtk_tooltips_enable(mytbar->tt);
+			gtk_tooltips_enable(mytbar->tbar->tooltips);
 		else
-			gtk_tooltips_disable(mytbar->tt);
+			gtk_tooltips_disable(mytbar->tbar->tooltips);
 	}
 #if 0
 /* not done any more, use the focus project instead */
@@ -110,11 +117,14 @@ toolbar_set_states(void)
 	if (mytbar->journal_w)
 		gtk_widget_set_sensitive(mytbar->journal_w, (cur_proj != NULL));
 #endif
+#ifdef GNOME_20_BROKEN_NEEDS_FIXING
 	if (mytbar->timer)
 		gnome_stock_set_icon(mytbar->timer,
 				     (timer_is_running()) ?
-				     GNOME_STOCK_PIXMAP_TIMER_STOP :
-				     GNOME_STOCK_PIXMAP_TIMER);
+				     GNOME_STOCK_TIMER_STOP :
+				     GNOME_STOCK_TIMER);
+#endif
+
 #if 0
 /* not done any more, use the focus project */
 	if (mytbar->timer_w)
@@ -137,9 +147,8 @@ toolbar_set_states(void)
 static void
 toolbar_help(GtkWidget *widget, gpointer data)
 {
-
-	GnomeHelpMenuEntry ref = {"gtt", "index.html"};
-	gnome_help_display (NULL, &ref);
+	GError *err;
+	gnome_help_display ("index.html", "gtt", &err);
 }
 
 
@@ -148,43 +157,45 @@ toolbar_help(GtkWidget *widget, gpointer data)
 GtkWidget *
 build_toolbar(void)
 {
+	int position = 0;
 	if (mytbar) return GTK_WIDGET(mytbar->tbar);
 	mytbar = g_malloc0(sizeof(MyToolbar));
-	mytbar->tbar = GTK_TOOLBAR(gtk_toolbar_new(GTK_ORIENTATION_HORIZONTAL,
-						   GTK_TOOLBAR_ICONS));
-	mytbar->tt = mytbar->tbar->tooltips;
+	mytbar->tbar = GTK_TOOLBAR(gtk_toolbar_new());
 
 	if (config_show_tb_new) {
-		/* Note to translators: just skip the `[GTT]' */
-		add_stock_button(mytbar->tbar, gtt_gettext(_("[GTT]New")),
-				 _("Create a New Project..."),
-				 GNOME_STOCK_PIXMAP_NEW,
-				 (GtkSignalFunc)new_project);
+		gtk_toolbar_insert_stock (mytbar->tbar, 
+			GTK_STOCK_NEW,
+			_("Create a New Project..."),
+			NULL,
+			(GtkSignalFunc)new_project,
+			NULL,
+			position++);
 		gtk_toolbar_append_space(mytbar->tbar);
+		position ++;
 	}
 	if (config_show_tb_file) {
 		add_stock_button(mytbar->tbar, _("Reload"),
 				 _("Reload Configuration File"),
-				 GNOME_STOCK_PIXMAP_OPEN,
+				 GTK_STOCK_OPEN,
 				 (GtkSignalFunc)init_project_list);
 		add_stock_button(mytbar->tbar, _("Save"),
 				 _("Save Configuration File"),
-				 GNOME_STOCK_PIXMAP_SAVE,
+				 GTK_STOCK_SAVE,
 				 (GtkSignalFunc)save_project_list);
 		gtk_toolbar_append_space(mytbar->tbar);
 	}
 	if (config_show_tb_ccp) {
 		mytbar->cut = add_stock_button(mytbar->tbar, _("Cut"),
 					       _("Cut Selected Project"),
-					       GNOME_STOCK_PIXMAP_CUT,
+					       GTK_STOCK_CUT,
 					       (GtkSignalFunc)cut_project);
 		mytbar->copy = add_stock_button(mytbar->tbar, _("Copy"),
 						_("Copy Selected Project"),
-						GNOME_STOCK_PIXMAP_COPY,
+						GTK_STOCK_COPY,
 						(GtkSignalFunc)copy_project);
 		mytbar->paste = add_stock_button(mytbar->tbar, _("Paste"),
 						 _("Paste Project"),
-						 GNOME_STOCK_PIXMAP_PASTE,
+						 GTK_STOCK_PASTE,
 						 (GtkSignalFunc)paste_project);
 		gtk_toolbar_append_space(mytbar->tbar);
 	}
@@ -192,25 +203,29 @@ build_toolbar(void)
 		mytbar->journal_w = add_stock_button(mytbar->tbar, 
 				 _("Journal"),
 				 _("View and Edit Timestamp Logs"),
-				 GNOME_STOCK_PIXMAP_BOOK_OPEN,
+				 GNOME_STOCK_BOOK_OPEN,
 				 (GtkSignalFunc)edit_journal);
 	}
-	if (config_show_tb_prop)
+	if (config_show_tb_prop) {
 		mytbar->prop_w = add_stock_button(mytbar->tbar, _("Props"),
 				  _("Edit Project Properties..."),
-				  GNOME_STOCK_PIXMAP_PROPERTIES,
+				  GTK_STOCK_PROPERTIES,
 				  (GtkSignalFunc)menu_properties);
-	if (config_show_tb_timer)
+	}
+	if (config_show_tb_timer) {
+#ifdef GNOME_20_BROKEN_NEEDS_FIXING
 		mytbar->timer = add_toggle_button(mytbar->tbar, _("Timer"),
 				  _("Start/Stop Timer"),
-				  GNOME_STOCK_PIXMAP_TIMER,
+				  GNOME_STOCK_TIMER,
 				  (GtkSignalFunc)menu_toggle_timer,
 				  &(mytbar->timer_w));
+#endif
+	}
 	if (config_show_tb_calendar) {
 		mytbar->calendar_w = add_stock_button(mytbar->tbar, 
 				 _("Calendar"),
 				 _("View Calendar"),
-				 GNOME_STOCK_PIXMAP_TEXT_BULLETED_LIST,
+				 GNOME_STOCK_TEXT_BULLETED_LIST,
 				 (GtkSignalFunc)edit_calendar);
 	}
 	if (((config_show_tb_timer)    || 
@@ -224,17 +239,17 @@ build_toolbar(void)
 	if (config_show_tb_pref)
 		add_stock_button(mytbar->tbar, _("Prefs"),
 				 _("Edit Preferences..."),
-				 GNOME_STOCK_PIXMAP_PREFERENCES,
+				 GTK_STOCK_PREFERENCES,
 				 (GtkSignalFunc)menu_options);
 	if (config_show_tb_help) {
 		add_stock_button(mytbar->tbar, _("Manual"), 
 				 _("User's Guide and Manual"),
-				 GNOME_STOCK_PIXMAP_HELP,
+				 GTK_STOCK_HELP,
 				 (GtkSignalFunc)toolbar_help);
 	}
 	if (config_show_tb_exit) {
 		add_stock_button(mytbar->tbar, _("Quit"), _("Quit GTimeTracker"),
-				 GNOME_STOCK_PIXMAP_QUIT,
+				 GTK_STOCK_QUIT,
 				 (GtkSignalFunc)quit_app);
 	}
 

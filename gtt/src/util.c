@@ -255,11 +255,11 @@ gtt_glade_xml_new (const char *filename, const char *widget)
 	g_return_val_if_fail (filename != NULL, NULL);
 
 	if (g_file_exists (filename))
-		xml = glade_xml_new (filename, widget);
+		xml = glade_xml_new (filename, widget, NULL);
 
 	if (xml == NULL) {
 		char *file = g_concat_dir_and_file (GTTGLADEDIR, filename);
-		xml = glade_xml_new (file, widget);
+		xml = glade_xml_new (file, widget, NULL);
 		g_free (file);
 	}
 	return xml;

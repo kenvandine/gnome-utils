@@ -137,7 +137,7 @@ typedef struct _PrefsDialog
 /* ============================================================== */
 
 #define ENTRY_TO_CHAR(a, b) { 			\
-	char *s = gtk_entry_get_text(a); 	\
+	const char *s = gtk_entry_get_text(a); 	\
 	if (s[0]) {				\
 		if (b) g_free(b); 		\
 		b = g_strdup(s); 		\
@@ -532,7 +532,7 @@ prefs_dialog_new (void)
 {
 	PrefsDialog *dlg;
 	GladeXML *gtxml;
-	static GnomeHelpMenuEntry help_entry = { NULL, "preferences.html#PREF" };
+	// static GnomeHelpMenuEntry help_entry = { NULL, "preferences.html#PREF" };
 
 	dlg = g_malloc(sizeof(PrefsDialog));
 
@@ -541,10 +541,12 @@ prefs_dialog_new (void)
 
 	dlg->dlg = GNOME_PROPERTY_BOX (glade_xml_get_widget (gtxml,  "Global Preferences"));
 
+#if GNOME_20_HELP_IS_DIFFERENT
 	help_entry.name = gnome_app_id;
 	gtk_signal_connect(GTK_OBJECT(dlg->dlg), "help",
 			   GTK_SIGNAL_FUNC(gnome_help_pbox_display),
 			   &help_entry);
+#endif
 
 	gtk_signal_connect(GTK_OBJECT(dlg->dlg), "apply",
 			   GTK_SIGNAL_FUNC(prefs_set), dlg);
