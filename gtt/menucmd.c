@@ -217,7 +217,7 @@ init_project_list_2(GtkWidget *widget, int button)
 	/* Read the data file first, and the config later. 
 	 * The config file contains stuff like the 'current project',
 	 * which is undefined until the projects are read. */
-        xml_filepath = gnome_config_get_real_path ("gtt.xml");
+        xml_filepath = gnome_config_get_real_path (XML_DATA_FILENAME);
         gtt_xml_read_file (xml_filepath);
 	
 	gtt_load_config (NULL);

@@ -46,8 +46,11 @@ extern GList * plist;
 /* ============================================================= */
 /* file I/O routines */
 
+/* RC_NAME is old depricated */
+#define RC_NAME ".gtimetrackerrc"
+
 static const char *
-build_rc_name(void)
+build_rc_name_old(void)
 {
 	static char *buf = NULL;
 
@@ -63,7 +66,7 @@ build_rc_name(void)
 
 
 static void
-read_tb_sects(char *s)
+read_tb_sects_old(char *s)
 {
         if (s[2] == 'n') {
                 config_show_tb_new = (s[5] == 'n');
@@ -104,7 +107,7 @@ project_list_load_old(const char *fname)
 	}
 	else
 	{
-		realname = build_rc_name();
+		realname = build_rc_name_old();
 	}
 
 	if (NULL == (f = fopen(realname, "rt"))) 
@@ -166,7 +169,7 @@ project_list_load_old(const char *fname)
                                         config_show_statusbar = 0;
 				}
                         } else if (s[1] == '_') {
-                                read_tb_sects(s);
+                                read_tb_sects_old(s);
 			}
 		} else if (s[0] == 'c') {
 			/* switch project command */

@@ -37,12 +37,11 @@
 
 #ifdef DEBUG
 #define APP_NAME "GTimeTracker DEBUG"
-#define RC_NAME ".gtimetrackerrc-" VERSION
 #else
 #define APP_NAME "GTimeTracker"
-#define RC_NAME ".gtimetrackerrc"
 #endif
 
+#define XML_DATA_FILENAME "gtt-xml.gttml"
 
 /* menus.h */
 

@@ -151,7 +151,7 @@ init_list(void)
 	 * The config cile contains things like the 'current project',
 	 * which is undefined until the proejcts have been read in.
 	 */
-	xml_filepath = gnome_config_get_real_path ("gtt.xml");
+	xml_filepath = gnome_config_get_real_path (XML_DATA_FILENAME);
         gtt_err_set_code (GTT_NO_ERR);
         gtt_xml_read_file (xml_filepath);
 
@@ -199,7 +199,7 @@ void
 save_all (void)
 {
 	const char * xml_filepath;
-	xml_filepath = gnome_config_get_real_path ("gtt.xml");
+	xml_filepath = gnome_config_get_real_path (XML_DATA_FILENAME);
 
 	gtt_save_config (NULL);
 
