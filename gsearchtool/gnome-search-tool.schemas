@@ -239,5 +239,22 @@ To change the gconftool target use the - -config-source=blah option to gconftool
         </long>
       </locale>
     </schema>
+    <schema>
+      <applyto>/apps/gnome-search-tool/force_quick_search</applyto>
+      <key>/schemas/apps/gnome-search-tool/force_quick_search</key>
+      <owner>gnome-search-tool</owner>
+      <type>bool</type>
+      <default>FALSE</default>
+      <locale name="C">
+        <short>Always Use Quick Search for Simple Searches</short>
+        <long>
+	  This key determines if the search tool uses the locate command for 
+	  all simple file name searches.  By default, the search tool uses 
+	  the find command when searching /mnt, /proc, /dev, /var, /tmp, or 
+	  a user's home folder.  This feature is unavailable if 
+	  disable_quick_search is enabled.
+        </long>
+      </locale>
+    </schema>
   </schemalist>
 </gconfschemafile>

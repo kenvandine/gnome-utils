@@ -329,6 +329,7 @@ build_search_command (void)
 	
 		gchar *locate;
 		gboolean disable_quick_search;
+		gboolean force_quick_search;
 		
 		locate = g_find_program_in_path ("locate");
 		file_is_named_backslashed = backslash_special_characters (file_is_named_locale);
@@ -336,20 +337,29 @@ build_search_command (void)
 
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		disable_quick_search = gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search");
+		force_quick_search = gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/force_quick_search");
 		
-		if ((disable_quick_search != TRUE) && (locate != NULL) 
-		    && (is_path_in_home_folder (look_in_folder_locale) != TRUE) 
-		    && (is_path_in_mount_folder (look_in_folder_locale) != TRUE)
-		    && (is_path_in_proc_folder (look_in_folder_locale) != TRUE) 
-		    && (is_path_in_dev_folder (look_in_folder_locale) != TRUE)
-		    && (is_path_in_var_folder (look_in_folder_locale) != TRUE)
-		    && (is_path_in_tmp_folder (look_in_folder_locale) != TRUE)) {	
-			g_string_append_printf (command, "%s %s '%s*%s'", 
-						locate,
-						locate_command_default_options,
-						look_in_folder_locale,
-						file_is_named_escaped);
-			search_command.quick_mode = TRUE;
+		if ((disable_quick_search != TRUE) && (locate != NULL)) {
+		    	if ((force_quick_search == TRUE) || 
+			    ((is_path_in_home_folder (look_in_folder_locale) != TRUE) 
+			     && (is_path_in_mount_folder (look_in_folder_locale) != TRUE)
+			     && (is_path_in_proc_folder (look_in_folder_locale) != TRUE) 
+			     && (is_path_in_dev_folder (look_in_folder_locale) != TRUE)
+			     && (is_path_in_var_folder (look_in_folder_locale) != TRUE)
+			     && (is_path_in_tmp_folder (look_in_folder_locale) != TRUE))) {	
+				g_string_append_printf (command, "%s %s '%s*%s'", 
+							locate,
+							locate_command_default_options,
+							look_in_folder_locale,
+							file_is_named_escaped);
+				search_command.quick_mode = TRUE;
+		 	}
+			else {
+				g_string_append_printf (command, "find \"%s\" %s '%s' -xdev -print", 
+							look_in_folder_locale, 
+							find_command_default_name_option, 
+							file_is_named_escaped);
+			}
 		} 
 		else {
 			g_string_append_printf (command, "find \"%s\" %s '%s' -xdev -print", 
