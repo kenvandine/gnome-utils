@@ -1,3 +1,4 @@
+# Process this file with automake to produce Makefile.am
 
 INCLUDES = 			\
 	-I$(includedir)		\
@@ -14,8 +15,8 @@ gw_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
-Utilitiesdir = $(datadir)/gnome/apps/Utilities
-Utilities_DATA = gw.desktop
+Systemdir = $(datadir)/gnome/apps/System
+System_DATA = gw.desktop
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-who.png

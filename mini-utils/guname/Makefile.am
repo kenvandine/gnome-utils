@@ -1,3 +1,4 @@
+# Process this file with automake to produce Makefile.in
 
 if GUNAME_CAPPLET
 GUNAME_CAPPLET_LIBS=-lcapplet -lgnorba
@@ -36,8 +37,8 @@ guname_LDADD = \
 	$(LIBGTOP_EXTRA_LIBS)	\
 	$(GUNAME_CAPPLET_LIBS)
 
-Rootdir = $(datadir)/gnome/apps/Utilities
-Root_DATA = guname.desktop
+Systemdir = $(datadir)/gnome/apps/System
+System_DATA = guname.desktop
 
 if GUNAME_CAPPLET
 install-data-local:
