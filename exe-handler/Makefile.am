@@ -26,4 +26,4 @@ Mime_DATA = $(Mime_in_files:.keys.in=.keys)
 Appregdir = $(datadir)/application-registry
 Appreg_DATA = gnome-exe.applications
 
-EXTRA_DIST = gnome-exe-handler.1 $(Mime_DATA) $(Appreg_DATA)
+EXTRA_DIST = gnome-exe-handler.1 $(Mime_in_files) $(Appreg_DATA)
