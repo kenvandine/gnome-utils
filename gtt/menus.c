@@ -24,25 +24,25 @@
 
 
 static GnomeUIInfo menu_main_file[] = {
-	{GNOME_APP_UI_ITEM, N_("New Project..."), NULL, new_project, NULL,
+	{GNOME_APP_UI_ITEM, N_("_New Project..."), NULL, new_project, NULL,
 		NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW,
 		'N', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_SEPARATOR},
-	{GNOME_APP_UI_ITEM, N_("Reload Configuration File"), NULL,
+	{GNOME_APP_UI_ITEM, N_("_Reload Configuration File"), NULL,
 		init_project_list, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN,
 		'R', GDK_CONTROL_MASK, NULL},
-	{GNOME_APP_UI_ITEM, N_("Save Configuration File"), NULL,
+	{GNOME_APP_UI_ITEM, N_("_Save Configuration File"), NULL,
 		save_project_list, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE,
 		'S', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_SEPARATOR},
-	{GNOME_APP_UI_ITEM, N_("Preferences..."), NULL,
+	{GNOME_APP_UI_ITEM, N_("_Preferences..."), NULL,
 		menu_options, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF,
 		0, 0, NULL},
 	{GNOME_APP_UI_SEPARATOR},
-	{GNOME_APP_UI_ITEM, N_("Quit"), NULL,
+	{GNOME_APP_UI_ITEM, N_("_Quit"), NULL,
 		quit_app, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_QUIT,
 		'Q', GDK_CONTROL_MASK, NULL},
@@ -52,27 +52,27 @@ static GnomeUIInfo menu_main_file[] = {
 
 static GnomeUIInfo menu_main_edit[] = {
 #define MENU_EDIT_CUT_POS 0
-	{GNOME_APP_UI_ITEM, N_("Cut"), NULL, cut_project, NULL,
+	{GNOME_APP_UI_ITEM, N_("C_ut"), NULL, cut_project, NULL,
 		NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CUT,
 		'X', GDK_CONTROL_MASK, NULL},
 #define MENU_EDIT_COPY_POS 1
-	{GNOME_APP_UI_ITEM, N_("Copy"), NULL,
+	{GNOME_APP_UI_ITEM, N_("_Copy"), NULL,
 		copy_project, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY,
 		'C', GDK_CONTROL_MASK, NULL},
 #define MENU_EDIT_PASTE_POS 2
-	{GNOME_APP_UI_ITEM, N_("Paste"), NULL,
+	{GNOME_APP_UI_ITEM, N_("_Paste"), NULL,
 		paste_project, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PASTE,
 		'V', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_SEPARATOR},
 #define MENU_EDIT_CDC_POS 4
-	{GNOME_APP_UI_ITEM, N_("Clear Daily Counter"), NULL,
+	{GNOME_APP_UI_ITEM, N_("Clear _Daily Counter"), NULL,
 		menu_clear_daily_counter, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_BLANK,
 		0, 0, NULL},
 #define MENU_EDIT_PROP_POS 5
-	{GNOME_APP_UI_ITEM, N_("Properties..."), NULL,
+	{GNOME_APP_UI_ITEM, N_("Pr_operties..."), NULL,
 		menu_properties, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP,
 		'E', GDK_CONTROL_MASK, NULL},
@@ -82,16 +82,16 @@ static GnomeUIInfo menu_main_edit[] = {
 
 static GnomeUIInfo menu_main_timer[] = {
 #define MENU_TIMER_START_POS 0
-	{GNOME_APP_UI_ITEM, N_("Start"), NULL, menu_start_timer, NULL,
-		NULL, GNOME_APP_PIXMAP_NONE, NULL,
+	{GNOME_APP_UI_ITEM, N_("St_art"), NULL, menu_start_timer, NULL,
+		NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_TIMER,
 		'A', GDK_CONTROL_MASK, NULL},
 #define MENU_TIMER_STOP_POS 1
-	{GNOME_APP_UI_ITEM, N_("Stop"), NULL,
+	{GNOME_APP_UI_ITEM, N_("Sto_p"), NULL,
 		menu_stop_timer, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_TIMER_STOP,
 		'P', GDK_CONTROL_MASK, NULL},
 #define MENU_TIMER_TOGGLE_POS 2
-	{GNOME_APP_UI_TOGGLEITEM, N_("Timer Running"), NULL,
+	{GNOME_APP_UI_TOGGLEITEM, N_("_Timer Running"), NULL,
 		menu_toggle_timer, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL,
 		'T', GDK_CONTROL_MASK, NULL},
@@ -100,7 +100,7 @@ static GnomeUIInfo menu_main_timer[] = {
 
 
 static GnomeUIInfo menu_main_help[] = {
-	{GNOME_APP_UI_ITEM, N_("About..."), NULL, about_box, NULL,
+	{GNOME_APP_UI_ITEM, N_("_About..."), NULL, about_box, NULL,
 		NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT,
 		0, 0, NULL},
 	{GNOME_APP_UI_SEPARATOR},
@@ -110,14 +110,14 @@ static GnomeUIInfo menu_main_help[] = {
 
 
 static GnomeUIInfo menu_main[] = {
-	{GNOME_APP_UI_SUBTREE, N_("File"), NULL, menu_main_file, NULL, NULL,
+	{GNOME_APP_UI_SUBTREE, N_("_File"), NULL, menu_main_file, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-	{GNOME_APP_UI_SUBTREE, N_("Edit"), NULL, menu_main_edit, NULL, NULL,
+	{GNOME_APP_UI_SUBTREE, N_("_Edit"), NULL, menu_main_edit, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-	{GNOME_APP_UI_SUBTREE, N_("Timer"), NULL, menu_main_timer, NULL, NULL,
+	{GNOME_APP_UI_SUBTREE, N_("_Timer"), NULL, menu_main_timer, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 #define MENU_HELP_POS 3
-	{GNOME_APP_UI_SUBTREE, N_("Help"), NULL, menu_main_help, NULL, NULL,
+	{GNOME_APP_UI_SUBTREE, N_("_Help"), NULL, menu_main_help, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	{GNOME_APP_UI_ENDOFINFO}
 };

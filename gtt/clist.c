@@ -199,6 +199,7 @@ setup_clist(void)
 		gtk_clist_moveto(GTK_CLIST(glist), cur_proj->row, -1,
 				 0.5, 0.0);
 	}
+	gtk_widget_queue_draw(GTK_WIDGET(glist));
 }
 
 
