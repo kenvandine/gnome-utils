@@ -20,6 +20,7 @@
 #include "strip.h"
 
 #include <sys/stat.h>
+#include <sys/time.h>
 
 /*
  * digit_shift -- a hi_lo_fmt helper function.
