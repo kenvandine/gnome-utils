@@ -402,7 +402,7 @@ create_option_box(FindOption *opt)
 						templates[opt->templ].desc);
 		gtk_signal_connect(GTK_OBJECT(option),"toggled",
 				   GTK_SIGNAL_FUNC(bool_changed),opt);
-		gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(option),TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(option),TRUE);
 		break;
 	case FIND_OPTION_CHECKBOX_FALSE:
 		option = gtk_check_button_new_with_label(
@@ -430,7 +430,7 @@ create_option_box(FindOption *opt)
 	gtk_object_set_user_data(GTK_OBJECT(w),frame);
 	gtk_signal_connect(GTK_OBJECT(w),"toggled",
 			   GTK_SIGNAL_FUNC(enable_option),opt);
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(w),TRUE);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w),TRUE);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 
 	w = gtk_button_new_with_label("Remove");

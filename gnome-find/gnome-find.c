@@ -191,17 +191,17 @@ initialize_app(char *start_dir)
 
   search_subdir_check = gtk_check_button_new_with_label
     ("Search subdirectories");
-  gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(search_subdir_check), 
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(search_subdir_check), 
 			      TRUE);
 
   follow_links_check = gtk_check_button_new_with_label("Follow links");
-  gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(follow_links_check), 
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(follow_links_check), 
 			      FALSE);
 
   follow_mountpoints_check = gtk_check_button_new_with_label
     ("Follow mountpoints");
   
-  gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(follow_mountpoints_check), 
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(follow_mountpoints_check), 
 			      FALSE);
 
   check_table = gtk_table_new(2, 2, FALSE);
@@ -382,7 +382,7 @@ toggle_advanced_cb (GtkWidget *widget, void *data)
 	(GTK_CHECK_MENU_ITEM(search_menu[2].widget),
 	 advanced_state);
     } else {
-      gtk_toggle_button_set_state
+      gtk_toggle_button_set_active
 	(GTK_TOGGLE_BUTTON(main_toolbar[4].widget), 
 	 advanced_state);
     }

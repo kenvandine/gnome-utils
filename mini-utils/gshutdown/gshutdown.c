@@ -232,7 +232,7 @@ static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
 
   button = gtk_radio_button_new_with_label(NULL, human_readable[Reboot]);
 
-  gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (button), TRUE);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), TRUE);
   requested_runlevel = Reboot;
 
   gtk_box_pack_start (GTK_BOX (vbox), 
@@ -369,7 +369,7 @@ static void popup_preferences()
 
   button = gtk_check_button_new_with_label(_("Confirm before shutdown?"));
   confirm_button_state = confirm;
-  gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(button), confirm_button_state);
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), confirm_button_state);
   gtk_signal_connect(GTK_OBJECT(button), "clicked",
                      GTK_SIGNAL_FUNC(toggle_confirm_cb), NULL);
   gtk_signal_connect_object( GTK_OBJECT(button), "clicked",
@@ -443,7 +443,7 @@ static void popup_confirm(void)
 
   button = gtk_check_button_new_with_label(_("Don't ask next time."));
   confirm_button_state = !confirm; /* Will always be true */
-  gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(button), confirm_button_state);
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), confirm_button_state);
   gtk_signal_connect(GTK_OBJECT(button), "clicked",
                      GTK_SIGNAL_FUNC(toggle_confirm_cb), NULL);
   gtk_widget_show(button);

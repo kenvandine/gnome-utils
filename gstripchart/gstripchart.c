@@ -1358,7 +1358,7 @@ prefs_callback(GtkWidget *chart, gpointer unused)
       gtk_widget_show(clist);
 
       param_active[p] = active = gtk_check_button_new_with_label("Active");
-      gtk_toggle_button_set_state(
+      gtk_toggle_button_set_active(
 	GTK_TOGGLE_BUTTON(active), chart_glob.parray[p]->active);
       gtk_widget_show(active);
 

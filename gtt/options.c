@@ -446,21 +446,21 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 static void options_dialog_set(OptionsDlg *odlg)
 {
 	char s[20];
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_secs), config_show_secs);
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_status_bar),
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_secs), config_show_secs);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_status_bar),
 				    config_show_statusbar);
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_clist_titles),
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_clist_titles),
 				    config_show_clist_titles);
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_icons),
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_icons),
 				    config_show_tb_icons);
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_texts),
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_texts),
 				    config_show_tb_texts);
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_tips),
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_tips),
 				    config_show_tb_tips);
 
 	if (config_command) gtk_entry_set_text(odlg->command, config_command);
 	if (config_command_null) gtk_entry_set_text(odlg->command_null, config_command_null);
-	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->logfileuse), config_logfile_use);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->logfileuse), config_logfile_use);
 	if (config_logfile_name) gtk_entry_set_text(GTK_ENTRY(gnome_file_entry_gtk_entry(odlg->logfilename)), config_logfile_name);
 	if (config_logfile_str) gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestr)), config_logfile_str);
 	if (config_logfile_stop) gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestop)), config_logfile_stop);
@@ -468,21 +468,21 @@ static void options_dialog_set(OptionsDlg *odlg)
 	gtk_entry_set_text(odlg->logfileminsecs, s);
 
         /* toolbar sections */
-        gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_new),
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_new),
                                     config_show_tb_new);
-        gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_file),
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_file),
                                     config_show_tb_file);
-        gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_ccp),
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_ccp),
                                     config_show_tb_ccp);
-        gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_prop),
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_prop),
                                     config_show_tb_prop);
-        gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_timer),
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_timer),
                                     config_show_tb_timer);
-        gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_pref),
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_pref),
                                     config_show_tb_pref);
-        gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_help),
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_help),
                                     config_show_tb_help);
-        gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_exit),
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_exit),
                                     config_show_tb_exit);
 
 	logfile_sigfunc(NULL, odlg);
