@@ -30,7 +30,7 @@ FindOptionTemplate templates[] = {
 				"Empty file" },
 	{ FIND_OPTION_CHECKBOX_TRUE, "-nouser -o -nogroup",
 				"Invalid user or group" },
-	{ FIND_OPTION_TEXT, "\! -name '%s'", "Filenames except" },
+	{ FIND_OPTION_TEXT, "\\! -name '%s'", "Filenames except" },
 	{ FIND_OPTION_GREP, "fgrep -l '%s'", "Simple substring search" },
 	{ FIND_OPTION_GREP, "grep -l '%s'", "Regular expression search" },
 	{ FIND_OPTION_GREP, "egrep -l '%s'",
@@ -39,7 +39,7 @@ FindOptionTemplate templates[] = {
 };
 
 /*this will not include the directories in search*/
-char defoptions[]="\! -type d";
+char defoptions[]="\\! -type d";
 /*this should be done if the above is made optional*/
 /*char defoptions[]="-mindepth 0";*/
 
