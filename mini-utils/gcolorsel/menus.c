@@ -649,7 +649,7 @@ edit_cb (GtkWidget *widget)
   if (!list) return;
 
   monitor = mdi_color_virtual_monitor_new ();
-  mdi_color_generic_set_name (MDI_COLOR_GENERIC (monitor), "Edit");
+  mdi_color_generic_set_name (MDI_COLOR_GENERIC (monitor), _("Edit"));
   mdi_color_generic_set_temp (MDI_COLOR_GENERIC (monitor), TRUE);
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (monitor));
 
