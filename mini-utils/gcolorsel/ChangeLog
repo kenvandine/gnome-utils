@@ -1,3 +1,38 @@
+2000-03-12 Eric Brayeur <eb2@ibelgique.com>
+
+	* Lots of change, cleanup and reorganization ...
+
+	New widgets :
+
+	  ColorList, derived from CList.
+	  ColorSearch, contains a ColorList, preview, etc ...
+
+	You can now load/edit/save/create palette file.
+	(works with gimp palette).
+
+	Kill a bug that causes X to eat a lot of memory. (unref GdkPixmap).
+
+	It's possible to edit the name of each notebook tab, by dblclick on
+	it. (I have imported widget-editable-label.[ch] from gnumeric).
+
+	Lot's of question/warning/error dialogs.
+
+	Right click on notebook tab/color list display a popup menu. 
+	
+	gcolorsel saves the list of open file, position of each tab in 
+	notebook, symbolic name, ... in config.
+
+	Searching is now a bit faster.
+	
+	Draw a number in each pixmap that represent the position of color
+	in pixmap.
+	This is very useful in search case, instead of display relevant
+	information in an another column.
+
+	gcolorsel have now a statusbar with progress. 
+
+	* TODO: updated
+
 Thu Mar 02 20:57:56 2000  George Lebl <jirka@5z.com>
 
 	* gcolorsel.c: apply patch from Eric Brayeur <eb2@ibelgique.com>
