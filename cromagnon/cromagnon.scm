@@ -5,6 +5,8 @@
 ;; Cromagnon: GNOME crontab manager
 ;; by Aldy Hernandez (aldy@uaa.edu)
 
+(use-modules (gnome gnome) (gtk gtk))
+
 (define-macro (gnome-pixmap pm)
   `(gnome-unconditional-pixmap-file ,pm))
 
@@ -44,7 +46,7 @@
 (define (nil-proc) #t)
 
 (define (cm-internal-close-window x)
-  #t)
+  #f)
 
 
 ;; toolbar routines
@@ -89,7 +91,7 @@
       (let ((m-icons (or (eq? mode 'icons) (eq? mode 'text-and-icons)))
 	    (m-text  (or (eq? mode 'text) (eq? mode 'text-and-icons))))
 	(if (and (car toolbar) ;; destroy old toolbar so we can redraw it
-		 (not (gtk-destroyed? (car toolbar))))
+		 (not (gtk-object-destroyed (car toolbar))))
 	    (gtk-widget-destroy (car toolbar)))
 	(if (not (eq? mode 'nothing))
 	    (begin
@@ -341,8 +343,7 @@
     (gtk-widget-show-multi w vbox frame ok cancel hbox toolbar-frame)
     (gtk-grab-add w)
     (gtk-main)
-    (if (not (gtk-destroyed? w))
-	(gtk-grab-remove w))))
+    (gtk-grab-remove w)))
 
 (define (cm-are-you-sure mesg yes-function)
   (let ((w (gtk-dialog-new))
