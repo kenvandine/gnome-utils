@@ -13,7 +13,9 @@ INCLUDES = 	\
 bin_PROGRAMS = gnome-search-tool
 
 schemadir = $(GCONF_SCHEMA_FILE_DIR)
-schema_DATA = gnome-search-tool.schemas
+schema_in_file = gnome-search-tool.schemas.in
+schema_DATA = $(schema_in_file:.schemas.in=.schemas)
+@INTLTOOL_SCHEMAS_RULE@
 
 gnome_search_tool_SOURCES =	\
 	gsearchtool-alert-dialog.c \
@@ -37,10 +39,11 @@ man_MANS = gnome-search-tool.1
 Utilities_in_files = gnome-search-tool.desktop.in 
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
-	
+
 EXTRA_DIST = \
 	$(Utilities_in_files) \
 	$(Utilities_DATA) \
+	$(schema_in_file) \
 	$(schema_DATA) \
 	$(man_MANS)
 
@@ -55,7 +58,9 @@ else
 install-data-local:
 endif
 
-CLEANFILES = gnome-search-tool.desktop
+CLEANFILES = 				\
+	gnome-search-tool.desktop	\
+	gnome-search-tool.schemas
 
 disthook:
 	cd $(distdir) ; rm -f $(CLEANFILES)

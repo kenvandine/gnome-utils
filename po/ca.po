@@ -7,34 +7,30 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.6.0\n"
-"POT-Creation-Date: 2004-10-12 12:03+1300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-30 17:35-0300\n"
 "PO-Revision-Date: 2004-09-07 19:54+0200\n"
 "Last-Translator: Softcatalà <tradgnome@softcatala.org>\n"
 "Language-Team: Jordi Mallach <jordi@sindominio.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
-msgid "Accessories"
-msgstr "Accessoris"
-
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:144
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:169
 msgid "Dictionary Lookup"
 msgstr "Cerca al diccionari"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:160
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:185
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Cercar paraules a un diccionari on-line"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:101
 msgid "_About"
 msgstr "_Quant a"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:82
 msgid "_Help"
 msgstr "A_juda"
 
@@ -68,7 +64,7 @@ msgstr ""
 "port 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:49
+#: gdictsrc/gdict-about.c:43 logview/about.c:44
 msgid "translator-credits"
 msgstr ""
 "Softcatalà <info@softcatala.org>\n"
@@ -115,7 +111,7 @@ msgstr "Cerca"
 msgid "_Search for:"
 msgstr "_Cerca:"
 
-#: gdictsrc/gdict-app.c:492
+#: gdictsrc/gdict-app.c:492 logview/logview.c:93
 msgid "_Find"
 msgstr "_Cerca"
 
@@ -171,11 +167,11 @@ msgstr "Inseriu una paraula o seleccioneu una de la llista de sota"
 msgid "Look Up for a Word"
 msgstr "S'està cercant una paraula"
 
-#: gdictsrc/gdict-applet.c:137
+#: gdictsrc/gdict-applet.c:161
 msgid "_Lookup"
 msgstr "_Cerca"
 
-#: gdictsrc/gdict-applet.c:148
+#: gdictsrc/gdict-applet.c:173
 msgid "Dictionary word entry"
 msgstr "Entrada de paraula del diccionari"
 
@@ -417,7 +413,7 @@ msgstr "S'estan cercant blocs amb errors..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "No s'ha pogut obrir el dispositiu %s per a cercar blocs amb errors\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
 msgid "Checking for bad blocks... Done"
 msgstr "S'estan cercant blocs amb errors... fet"
 
@@ -534,26 +530,26 @@ msgstr ""
 msgid "Could not determine current floppy geometry."
 msgstr "No s'ha pogut determinat la geometria del disquet actual."
 
-#: gfloppy/src/gfloppy.c:222
+#: gfloppy/src/gfloppy.c:225
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "Error en crear un nom de fitxer únic per al fitxer amb la llista de blocs "
 "amb errors."
 
-#: gfloppy/src/gfloppy.c:242
+#: gfloppy/src/gfloppy.c:245
 msgid "Error while filling the bad blocks list file."
 msgstr "Error en plenar el fitxer amb la llista de blocs amb errors."
 
-#: gfloppy/src/gfloppy.c:305
+#: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Error en invocar l'ordre (%s): %s."
 
-#: gfloppy/src/gfloppy.c:331
+#: gfloppy/src/gfloppy.c:334
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Signatura d'inici de mke2fs desconeguda, s'està cancel·lant."
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:348
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -565,16 +561,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:365
 msgid "Abnormal child process termination."
 msgstr "Terminació del procés fill anormal."
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:390
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Error en invocar l'ordre mbadblocks: %s."
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:402
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -584,28 +580,28 @@ msgstr ""
 "següents errors:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:445
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Terminació anormal del procés fill mbadblocks."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:468 gfloppy/src/gfloppy.c:508
+#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
 msgid "Making filesystem on disk..."
 msgstr "S'està creant el sistema de fitxers en el disquet..."
 
-#: gfloppy/src/gfloppy.c:476
+#: gfloppy/src/gfloppy.c:479
 msgid "Unable to create filesystem correctly."
 msgstr "No s'ha pogut crear el sistema de fitxers correctament."
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:520
+#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
 msgid "Making filesystem on disk... Done"
 msgstr "S'està creant el sistema de fitxers en el disquet... fet"
 
-#: gfloppy/src/gfloppy.c:525
+#: gfloppy/src/gfloppy.c:528
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "S'estan cercant blocs amb errors... (açò pot trigar un poc)"
 
-#: gfloppy/src/gfloppy.c:530
+#: gfloppy/src/gfloppy.c:533
 msgid "Error while checking the bad blocks."
 msgstr "S'ha produït un error en comprovar els blocs amb errors."
 
@@ -696,7 +692,7 @@ msgstr "_Ràpid (només crea el sistema de fitxers)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Estàndard (afegeix un format de baix nivell al mode ràpid)"
 
-#: gfloppy/src/main.c:140
+#: gfloppy/src/main.c:215
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -704,12 +700,12 @@ msgstr ""
 "Cap de les aplicacions mke2fs o mkdosfs/mformat estan instal·lades. No podeu "
 "formatar un disquet sense una d'elles."
 
-#: gfloppy/src/main.c:164
+#: gfloppy/src/main.c:239
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "No es pot obrir el dispositiu %s, el format no pot continuar."
 
-#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
+#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -718,7 +714,7 @@ msgstr ""
 "El dispositiu %s està desconnectat.\n"
 "Connecteu el dispositiu per a continuar."
 
-#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -730,15 +726,15 @@ msgstr ""
 "Contacteu amb l'administrador del sistema per a obtindre permissos "
 "d'escriptura."
 
-#: gfloppy/src/main.c:216
+#: gfloppy/src/main.c:310
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "No es pot obrir cap dispositiu, el format no pot continuar."
 
-#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 o /dev/fd0"
 
-#: gfloppy/src/main.c:394
+#: gfloppy/src/main.c:489
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -747,15 +743,15 @@ msgstr ""
 "No s'ha pogut mostrar l'ajuda per al formatador de disquets.\n"
 "%s"
 
-#: gfloppy/src/main.c:427
+#: gfloppy/src/main.c:522
 msgid "The volume name can't contain any blank space."
 msgstr "El nom del volum no pot contindre cap espai en blanc."
 
-#: gfloppy/src/main.c:477
+#: gfloppy/src/main.c:576
 msgid "The device to format"
 msgstr "El dispositiu a formatar"
 
-#: gfloppy/src/main.c:478
+#: gfloppy/src/main.c:577
 msgid "DEVICE"
 msgstr "DISPOSITIU"
 
@@ -790,9 +786,9 @@ msgstr "Progrés del format"
 msgid "Find files, folders, and documents on your computer"
 msgstr "Cerca fitxers, carpetes i documents al vostre ordinador"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
-#: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
-#: gsearchtool/gsearchtool.c:2288 gsearchtool/gsearchtool.c:2313
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
+#: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
+#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
 msgid "Search for Files"
 msgstr "Cerca fitxers"
 
@@ -984,23 +980,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:511
+#: gsearchtool/gsearchtool-support.c:620
 msgid "today at %-I:%M %p"
 msgstr "avuí a les %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:513
+#: gsearchtool/gsearchtool-support.c:622
 msgid "yesterday at %-I:%M %p"
 msgstr "ahir a les %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:515 gsearchtool/gsearchtool-support.c:517
+#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %B %-d %Y a les %-I:%M:%S %p"
 
-#: gsearchtool/gsearchtool-support.c:688
+#: gsearchtool/gsearchtool-support.c:797
 msgid "link (broken)"
 msgstr "enllaç (trencat)"
 
-#: gsearchtool/gsearchtool-support.c:693
+#: gsearchtool/gsearchtool-support.c:802
 #, c-format
 msgid "link to %s"
 msgstr "enllaç a %s"
@@ -1069,71 +1065,71 @@ msgstr "Segueix enllaços simbòlics"
 msgid "Include other filesystems"
 msgstr "Inclou altres sistemes de fitxers"
 
-#: gsearchtool/gsearchtool.c:547 gsearchtool/gsearchtool.c:575
+#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
 msgid "No files found"
 msgstr "No s'ha trobat cap fitxer"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:602
 msgid "(stopped)"
 msgstr "(parat)"
 
-#: gsearchtool/gsearchtool.c:574
+#: gsearchtool/gsearchtool.c:608
 msgid "No Files Found"
 msgstr "No s'ha trobat cap fitxer"
 
-#: gsearchtool/gsearchtool.c:579
+#: gsearchtool/gsearchtool.c:613
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "S'ha trobat %d fitxer"
 msgstr[1] "S'han trobat %d fitxers"
 
-#: gsearchtool/gsearchtool.c:583
+#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "S'ha trobat %d fitxer"
 msgstr[1] "S'han trobat %d fitxers"
 
-#: gsearchtool/gsearchtool.c:689
+#: gsearchtool/gsearchtool.c:743
 msgid "Entry changed called for a non entry option!"
 msgstr "S'ha demanat un canvi per a una entrada sense opcions!"
 
-#: gsearchtool/gsearchtool.c:942
+#: gsearchtool/gsearchtool.c:998
 msgid "Searching..."
 msgstr "S'està cercant..."
 
-#: gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1020
 msgid "Set the text of 'Name contains'"
 msgstr "Estableix el text d'«el fitxer conté»"
 
-#: gsearchtool/gsearchtool.c:964
+#: gsearchtool/gsearchtool.c:1021
 msgid "Set the text of 'Look in folder'"
 msgstr "Estableix el text de «cerca a la carpeta»"
 
-#: gsearchtool/gsearchtool.c:965
+#: gsearchtool/gsearchtool.c:1022
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Ordena els fitxers per un dels següents: nom, carpeta, mida, tipus o data"
 
-#: gsearchtool/gsearchtool.c:966
+#: gsearchtool/gsearchtool.c:1023
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Estableix l'ordre del resultat a descendent, per defecte és ascendent"
 
-#: gsearchtool/gsearchtool.c:967
+#: gsearchtool/gsearchtool.c:1024
 msgid "Automatically start a search"
 msgstr "Comença una cerca automàticament"
 
-#: gsearchtool/gsearchtool.c:972
+#: gsearchtool/gsearchtool.c:1029
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Selecciona la condició «%s»"
 
-#: gsearchtool/gsearchtool.c:1078
+#: gsearchtool/gsearchtool.c:1135
 msgid "Invalid option passed to sortby command line argument."
 msgstr "S'ha passat una opció no vàlida a la línia d'ordres de sortby."
 
-#: gsearchtool/gsearchtool.c:1350
+#: gsearchtool/gsearchtool.c:1434
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1141,7 +1137,7 @@ msgstr ""
 "\n"
 "... Massa errors a mostrar ..."
 
-#: gsearchtool/gsearchtool.c:1359
+#: gsearchtool/gsearchtool.c:1443
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1149,7 +1145,7 @@ msgstr ""
 "El resultat de la cerca pot ser invàlid. Ha hagut errors mentre es duia a "
 "terme aquesta cerca."
 
-#: gsearchtool/gsearchtool.c:1380
+#: gsearchtool/gsearchtool.c:1464
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1157,249 +1153,242 @@ msgstr ""
 "El resultat de la cerca pot ser invàlid. Voleu inhabilitar la funcionalitat "
 "de cerca ràpida?"
 
-#: gsearchtool/gsearchtool.c:1388
+#: gsearchtool/gsearchtool.c:1472
 msgid "Disable _Quick Search"
 msgstr "Inhabilita la cerca _ràpida"
 
-#: gsearchtool/gsearchtool.c:1432
+#: gsearchtool/gsearchtool.c:1516
 msgid "Error parsing the search command."
 msgstr "S'ha produït un error en analitzar l'ordre de cerca."
 
-#: gsearchtool/gsearchtool.c:1461
+#: gsearchtool/gsearchtool.c:1545
 msgid "Error running the search command."
 msgstr "S'ha produït un error en executar l'ordre de cerca."
 
-#: gsearchtool/gsearchtool.c:1572
+#: gsearchtool/gsearchtool.c:1659
 #, c-format
 msgid "'%s' entry"
 msgstr "entrada «%s»"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1660
 msgid "Enter a value for search rule"
 msgstr "Inseriu un valor per a la regla de cerca"
 
-#: gsearchtool/gsearchtool.c:1620
+#: gsearchtool/gsearchtool.c:1707
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Feu clic per a eliminar la regla «%s»"
 
-#: gsearchtool/gsearchtool.c:1675
+#: gsearchtool/gsearchtool.c:1762
 msgid "A_vailable options:"
 msgstr "Opcions _disponibles:"
 
-#: gsearchtool/gsearchtool.c:1688
+#: gsearchtool/gsearchtool.c:1775
 msgid "Search Rules Menu"
 msgstr "Menú de regles de cerca"
 
-#: gsearchtool/gsearchtool.c:1689
+#: gsearchtool/gsearchtool.c:1776
 msgid "Select a search rule from the menu"
 msgstr "Seleccioneu una regla de cerca del menú"
 
-#: gsearchtool/gsearchtool.c:1720
+#: gsearchtool/gsearchtool.c:1807
 msgid "S_earch results:"
 msgstr "Resultats de la c_erca:"
 
-#: gsearchtool/gsearchtool.c:1800
+#: gsearchtool/gsearchtool.c:1887
 msgid "Name"
 msgstr "Nom"
 
-#: gsearchtool/gsearchtool.c:1820
+#: gsearchtool/gsearchtool.c:1907
 msgid "Folder"
 msgstr "Carpeta"
 
-#: gsearchtool/gsearchtool.c:1831
+#: gsearchtool/gsearchtool.c:1918
 msgid "Size"
 msgstr "Mida"
 
-#: gsearchtool/gsearchtool.c:1841
+#: gsearchtool/gsearchtool.c:1928
 msgid "Type"
 msgstr "Tipus"
 
-#: gsearchtool/gsearchtool.c:1851
+#: gsearchtool/gsearchtool.c:1938
 msgid "Date Modified"
 msgstr "Data de modificació"
 
-#: gsearchtool/gsearchtool.c:1909
+#: gsearchtool/gsearchtool.c:1995
 msgid "_Name contains:"
 msgstr "El _nom conté:"
 
-#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
-msgid "Enter the file name you want to search"
+#: gsearchtool/gsearchtool.c:2010 gsearchtool/gsearchtool.c:2011
+#, fuzzy
+msgid "Enter the file name you want to search."
 msgstr "Inseriu el nom de fitxer que voleu cercar"
 
-#: gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:2011
 msgid "Name Contains Entry"
 msgstr "Entrada nom conté"
 
-#: gsearchtool/gsearchtool.c:1936
+#: gsearchtool/gsearchtool.c:2022
 msgid "_Look in folder:"
 msgstr "_Cerca a la carpeta:"
 
-#: gsearchtool/gsearchtool.c:1942
+#: gsearchtool/gsearchtool.c:2028
 msgid "Browse"
 msgstr "Vés a"
 
-#: gsearchtool/gsearchtool.c:1953 gsearchtool/gsearchtool.c:1954
-msgid "Enter the folder name where you want to start the search"
+#: gsearchtool/gsearchtool.c:2035
+#, fuzzy
+msgid "Select the folder where you want to start the search."
 msgstr "Inseriu el nom de la carpeta en la que voleu començar la cerca"
 
-#: gsearchtool/gsearchtool.c:1954
-msgid "Look in Folder Entry"
-msgstr "Cerca en la entrada de carpeta"
-
-#: gsearchtool/gsearchtool.c:1972
+#: gsearchtool/gsearchtool.c:2049
 msgid "Show more _options"
 msgstr "Mostra més _opcions"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:2059
 msgid "Show more options"
 msgstr "Mostra més opcions"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:2059
 msgid "Expands or collapses a list of search options."
 msgstr "Expandeix o colapsa una llista d'opcions de cerca."
 
-#: gsearchtool/gsearchtool.c:2029
+#: gsearchtool/gsearchtool.c:2106
 msgid "Click to Start the search"
 msgstr "Feu clic per a començar la cerca"
 
-#: gsearchtool/gsearchtool.c:2030
+#: gsearchtool/gsearchtool.c:2107
 msgid "Click to Stop the search"
 msgstr "Feu clic per a parar la cerca"
 
-#: gsearchtool/gsearchtool.c:2309
+#: gsearchtool/gsearchtool.c:2386
 msgid "Cannot initialize bonobo."
 msgstr "No es pot inicialitzar bonobo."
 
-#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
-#: logview/about.c:43
-msgid "Cesar Miquel (miquel@df.uba.ar)"
-msgstr "César Miquel (miquel@df.uba.ar)"
-
-#: logview/about.c:44
-msgid "A system log viewer for GNOME."
-msgstr "Un visor de registres del sistema per al GNOME."
-
-#: logview/about.c:58
+#: logview/about.c:48
 msgid "System Log Viewer"
 msgstr "Visualitzador de registres del sistema"
 
-#: logview/actions.c:74
+#: logview/about.c:51
+msgid "A system log viewer for GNOME."
+msgstr "Un visor de registres del sistema per al GNOME."
+
+#: logview/actions.c:73
 msgid "Action Database"
 msgstr "Base de dades d'accions"
 
-#: logview/actions.c:85
+#: logview/actions.c:84
 msgid "Actions"
 msgstr "Accions"
 
-#: logview/actions.c:157
+#: logview/actions.c:156
 msgid "_Add"
 msgstr "_Afegeix"
 
-#: logview/actions.c:162
+#: logview/actions.c:161
 msgid "Add an action"
 msgstr "Afegeix una acció"
 
-#: logview/actions.c:164
+#: logview/actions.c:163 logview/logview.c:80
 msgid "_Edit"
 msgstr "_Edita"
 
-#: logview/actions.c:169
+#: logview/actions.c:168
 msgid "Edit an action"
 msgstr "Edita una acció"
 
-#: logview/actions.c:171
+#: logview/actions.c:170
 msgid "_Remove"
 msgstr "E_limina"
 
-#: logview/actions.c:176
+#: logview/actions.c:175
 msgid "Remove an action"
 msgstr "Suprimeix una acció"
 
-#: logview/actions.c:263
+#: logview/actions.c:262
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "No es pot obrir la base de dades d'accions «%s»! No s'ha pogut obrir."
 
-#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
-#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
+#: logview/actions.c:297 logview/actions.c:310 logview/actions.c:321
+#: logview/actions.c:332 logview/actions.c:343 logview/actions.c:354
 msgid "Error parsing actions data base"
 msgstr "Error en l'anàlisi sintàctic de la base de dades d'accions"
 
-#: logview/actions.c:389
+#: logview/actions.c:388
 msgid "Can't write to actions database!"
 msgstr "No es pot escriure en la base de dades d'accions!"
 
-#: logview/actions.c:487
+#: logview/actions.c:486
 #, c-format
 msgid "Error while executing specified action: %s"
 msgstr "S'ha produït un error en executar l'acció especificada: %s"
 
-#: logview/actions.c:510
+#: logview/actions.c:509
 msgid "<empty>"
 msgstr "<buit>"
 
-#: logview/actions.c:511
+#: logview/actions.c:510
 msgid "log name regexp"
 msgstr "expreg del nom del registre"
 
-#: logview/actions.c:512
+#: logview/actions.c:511
 msgid "process regexp"
 msgstr "expreg del procés"
 
-#: logview/actions.c:513
+#: logview/actions.c:512
 msgid "message regexp"
 msgstr "expreg del missatge"
 
-#: logview/actions.c:514
+#: logview/actions.c:513
 msgid "action to execute when regexps are TRUE"
 msgstr "acció a executar quan lex expregs són VERITAT"
 
-#: logview/actions.c:515
+#: logview/actions.c:514
 msgid "description"
 msgstr "descripció"
 
-#: logview/actions.c:651
+#: logview/actions.c:650
 msgid "Edit Action"
 msgstr "Edita l'acció"
 
-#: logview/actions.c:687
+#: logview/actions.c:686
 msgid "_Tag:"
 msgstr "E_tiqueta:"
 
-#: logview/actions.c:696
+#: logview/actions.c:695
 msgid "Tag that identifies the log file."
 msgstr "Etiqueta que identifica el fitxer de registre."
 
-#: logview/actions.c:705
+#: logview/actions.c:704
 msgid "_Log name:"
 msgstr "_Nom del registre:"
 
-#: logview/actions.c:714
+#: logview/actions.c:713
 msgid "Regular expression that will match the log name."
 msgstr "Expressió regular que coincidirà amb el nom del registre."
 
-#: logview/actions.c:724
+#: logview/actions.c:723
 msgid "_Process:"
 msgstr "_Procés:"
 
-#: logview/actions.c:733
+#: logview/actions.c:732
 msgid "Regular expression that will match process part of message."
 msgstr "Expressió regular que coincidirà amb la part del procés del missatge."
 
-#: logview/actions.c:743
+#: logview/actions.c:742
 msgid "_Message:"
 msgstr "_Missatge:"
 
-#: logview/actions.c:752
+#: logview/actions.c:751
 msgid "Regular expression that will match the message."
 msgstr "Expressió regular que coincidirà amb el missatge."
 
-#: logview/actions.c:762
+#: logview/actions.c:761
 msgid "_Action:"
 msgstr "_Acció:"
 
-#: logview/actions.c:771
+#: logview/actions.c:770
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
@@ -1407,15 +1396,15 @@ msgstr ""
 "Acció que s'executarà si totes les expressions regulars anteriors "
 "coincideixen. Això és executat per una ordre del sistema: system (acció)."
 
-#: logview/actions.c:781
+#: logview/actions.c:780
 msgid "_Description:"
 msgstr "_Descripció:"
 
-#: logview/actions.c:790
+#: logview/actions.c:789
 msgid "Description of this entry."
 msgstr "Descripció d'aquesta entrada."
 
-#: logview/actions.c:814
+#: logview/actions.c:813
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1432,27 +1421,40 @@ msgstr ""
 "descripció: [%s]\n"
 "acció: [%s]\n"
 
-#: logview/calendar.c:110
+#: logview/calendar.c:73
 msgid "Calendar"
 msgstr "Calendari"
 
-#: logview/desc_db.c:37
+#: logview/desc_db.c:34
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr ""
 "No es pot obrir la base de dades de expressions regulars «%s»! L'apertura ha "
 "fallat."
 
-#: logview/desc_db.c:147
+#: logview/desc_db.c:144
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr ""
 "No es pot obrir la base de dades de descripcions «%s»! L'apertura ha fallat."
 
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
+#: logview/gedit-output-window.c:350
+msgid "Close the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:388
+#, fuzzy
+msgid "Copy selected lines"
+msgstr "Copia la selecció"
+
+#: logview/gedit-output-window.c:408
+msgid "Clear the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:448
+msgid "Output Lines"
+msgstr ""
+
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "Registre del sistema"
@@ -1461,125 +1463,129 @@ msgstr "Registre del sistema"
 msgid "View the system log file"
 msgstr "Visualitza el fitxer de registre del sistema"
 
-#: logview/info.c:62
+#: logview/info.c:50
 msgid "Properties"
 msgstr "Propietats"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Size:"
 msgstr "Mida:"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Modified:"
 msgstr "Modificat:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Start Date:"
 msgstr "Data d'inici:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Last Date:"
 msgstr "Data final:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Number of Lines:"
 msgstr "Número de línies:"
 
-#: logview/info.c:134
+#: logview/info.c:121
 msgid "Log Information"
 msgstr "Informació del registre"
 
-#: logview/info.c:160 logview/zoom.c:155
+#: logview/info.c:147 logview/zoom.c:163
 msgid "<No log loaded>"
 msgstr "<No s'ha carregat cap registre>"
 
-#: logview/info.c:183
+#: logview/info.c:170
 #, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld octet"
 msgstr[1] "%ld octets"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "January"
 msgstr "Gener"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "February"
 msgstr "Febrer"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "March"
 msgstr "Març"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "April"
 msgstr "Abril"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "May"
 msgstr "Maig"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "June"
 msgstr "Juny"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "July"
 msgstr "Juliol"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "August"
 msgstr "Agost"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "September"
 msgstr "Setembre"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "October"
 msgstr "Octubre"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "November"
 msgstr "Novembre"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "December"
 msgstr "Desembre"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:394
+#: logview/log_repaint.c:279
 #, c-format
 msgid "%x"
 msgstr "%x"
 
+#: logview/log_repaint.c:298
+msgid "Last Modified: "
+msgstr "Última modificació: "
+
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:449
+#: logview/log_repaint.c:327
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:521
+#: logview/log_repaint.c:399
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:193
+#: logview/logrtns.c:192
 msgid "Not enough memory!\n"
 msgstr "No hi ha memòria suficient!\n"
 
-#: logview/logrtns.c:204
+#: logview/logrtns.c:203
 msgid "Unable to open logfile!\n"
 msgstr "No s'ha pogut obrir el fitxer de registre!\n"
 
-#: logview/logrtns.c:265
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s no és un fitxer regular."
 
-#: logview/logrtns.c:273
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1588,111 +1594,168 @@ msgstr ""
 "%s no és llegible per a usuaris. Podeu executar el programa com a root o "
 "demanar-li al administrador del sistema que canvie els permissos del fitxer."
 
-#: logview/logrtns.c:290
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "No s'ha pogut obrir %s."
 
-#: logview/logrtns.c:320 logview/logrtns.c:329
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "%s no és un fitxer de registre."
 
-#: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: s'ha exhaurit la memòria"
 
-#: logview/logview.c:100
-msgid "S_witch Log"
-msgstr "Can_via de registre"
+#: logview/logview-findbar.c:252
+#, fuzzy
+msgid "Fin_d : "
+msgstr "Cerca"
 
-#: logview/logview.c:101
-msgid "Switch between already opened logs"
-msgstr "Canvia entre registres ja oberts"
+#: logview/logview-findbar.c:270
+#, fuzzy
+msgid "Find Next"
+msgstr "Cerca"
 
-#: logview/logview.c:107
-msgid "_Monitor..."
-msgstr "_Monitoritza..."
+#: logview/logview-findbar.c:280
+msgid "Find Previous"
+msgstr ""
 
-#: logview/logview.c:108
-msgid "Monitor Logs"
-msgstr "Monitoritza registres"
+#: logview/logview.c:79
+msgid "_Log"
+msgstr "_Registre"
 
-#: logview/logview.c:116
+#: logview/logview.c:81
+msgid "_View"
+msgstr ""
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "_Open..."
+msgstr "_Obre"
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "Open a log from file"
+msgstr "Obre un nou fitxer de registre"
+
+#: logview/logview.c:86
 msgid "_Properties"
 msgstr "_Propietats"
 
-#: logview/logview.c:117
+#: logview/logview.c:86
 msgid "Show Log Properties"
 msgstr "Mostra les propietats del registre"
 
-#: logview/logview.c:125
-msgid "Clos_e All"
-msgstr "Ta_nca tots"
+#: logview/logview.c:88
+#, fuzzy
+msgid "Close"
+msgstr "Cosinus"
 
-#: logview/logview.c:126
-msgid "Close all Log files"
-msgstr "Tanca tots els fitxers de registre"
+#: logview/logview.c:88
+msgid "Close this log"
+msgstr ""
 
-#: logview/logview.c:138
-msgid "_Calendar"
-msgstr "_Calendari"
+#: logview/logview.c:90
+msgid "_Quit"
+msgstr "_Treure"
 
-#: logview/logview.c:139
-msgid "Show Calendar Log"
-msgstr "Mostra el registre del calendari"
+#: logview/logview.c:90
+#, fuzzy
+msgid "Quit the log viewer"
+msgstr "Visualitzador de registres del sistema"
 
-#: logview/logview.c:145
-msgid "_Entry Detail"
-msgstr "Detalls de la _entrada"
+#: logview/logview.c:93
+msgid "Find pattern in logs"
+msgstr ""
 
-#: logview/logview.c:146
-msgid "Show Entry Detail"
-msgstr "Mostra detalls de la entrada"
-
-#: logview/logview.c:152
-msgid "_Collapse All"
+#: logview/logview.c:96
+#, fuzzy
+msgid "Collapse _All"
 msgstr "_Colapsa totes"
 
-#: logview/logview.c:153
+#: logview/logview.c:96
 msgid "Collapse all the rows"
 msgstr "Colapsa totes les files"
 
-#: logview/logview.c:370
+#: logview/logview.c:99
+msgid "_Contents"
+msgstr ""
+
+#: logview/logview.c:99
+msgid "Open the help contents for the log viewer"
+msgstr ""
+
+#: logview/logview.c:101
+msgid "Show the about dialog for the gconf editor"
+msgstr ""
+
+#: logview/logview.c:107
+#, fuzzy
+msgid "_Monitor"
+msgstr "_Monitoritza..."
+
+#: logview/logview.c:107
+#, fuzzy
+msgid "Monitor Current Log"
+msgstr "Monitoritza registres"
+
+#: logview/logview.c:109
+msgid "_Calendar"
+msgstr "_Calendari"
+
+#: logview/logview.c:109
+msgid "Show Calendar Log"
+msgstr "Mostra el registre del calendari"
+
+#: logview/logview.c:111
+msgid "_Entry Detail"
+msgstr "Detalls de la _entrada"
+
+#: logview/logview.c:111
+msgid "Show Entry Detail"
+msgstr "Mostra detalls de la entrada"
+
+#: logview/logview.c:166
+msgid "Open the specified log."
+msgstr ""
+
+#: logview/logview.c:298
 msgid "No log files to open"
 msgstr "No hi ha fitxers de registre per a obrir"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Date"
 msgstr "Data"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Host Name"
 msgstr "Nom de la màquina"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Process"
 msgstr "Procés"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Message"
 msgstr "Missatge"
 
-#: logview/logview.c:474
-msgid "Last Modified: "
-msgstr "Última modificació: "
-
-#: logview/logview.c:573 logview/logview.c:648
-msgid "Too many open logs. Close one and try again"
-msgstr "Massa registres oberts. Tanqueu un i torneu a provar"
-
-#: logview/logview.c:585
-msgid "File already opened"
-msgstr "El fitxer ja està obert"
-
-#: logview/logview.c:661
+#: logview/logview.c:581
 msgid "Open new logfile"
 msgstr "Obre un nou fitxer de registre"
+
+#: logview/logview.c:922
+#, fuzzy, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+"S'ha produït un error en mostrar l'ajuda:\n"
+"%s"
+
+#: logview/logview.c:934
+#, c-format
+msgid "%s - %s (monitored)"
+msgstr ""
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -1706,88 +1769,100 @@ msgstr ""
 "Especifica el fitxer de registre a obrir en iniciar. Per defecte, és /var/"
 "adm/messages o /var/log/messages, depenent del vostre sistema operatiu."
 
-#: logview/misc.c:56
-#, c-format
-msgid "Error: [%s]\n"
-msgstr "Error: [%s]\n"
-
-#: logview/monitor.c:111
-msgid "Monitor Options"
-msgstr "Opcions de monitorització"
-
-#: logview/monitor.c:114
-msgid "Ac_tions..."
-msgstr "Acc_ions..."
-
-#: logview/monitor.c:140
-msgid "_Select logs to monitor:"
-msgstr "_Seleccioneu els registres a monitoritzar:"
-
-#: logview/monitor.c:145
-msgid "Currently _monitored logs:"
-msgstr "Registres _monitoritzats actualment:"
-
-#: logview/monitor.c:193
-msgid "Add logs to monitor"
-msgstr "Afegiu els registres a monitoritzar"
-
-#: logview/monitor.c:202
-msgid "Remove logs from monitor"
-msgstr "Elimineu registres de la monitorització"
-
-#. Check boxes
-#: logview/monitor.c:249
-msgid "_Hide application"
-msgstr "A_maga l'aplicació"
-
-#: logview/monitor.c:257
-msgid "_Execute actions"
-msgstr "_Executa les accions"
-
-#: logview/monitor.c:293
-msgid "Too many logs to monitor. Remove one and try again"
-msgstr "Hi ha massa fitxers per a monitoritzar. Elimineu un i proveu de nou"
-
-#: logview/monitor.c:301 logview/monitor.c:338
-msgid "tmp_list is NULL\n"
-msgstr "tmp_list és NUL\n"
-
-#: logview/monitor.c:475
-msgid "Monitoring Logs..."
-msgstr "S'estan monitoritzant els registres..."
-
-#: logview/monitor.c:667
-msgid "TOUCHED!!\n"
-msgstr "TOCAT!!\n"
-
-#: logview/zoom.c:63
+#: logview/zoom.c:65
 msgid "Entry Detail"
 msgstr "Detalls de la entrada"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Date:"
 msgstr "Data:"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Process:"
 msgstr "Procés:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Message:"
 msgstr "Missatge:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Description:"
 msgstr "Descripció:"
 
-#: logview/zoom.c:129
+#: logview/zoom.c:133
 msgid "Log Line Details"
 msgstr "Detalls d'una línia de registre"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:187
+#: logview/zoom.c:195
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Accessories"
+#~ msgstr "Accessoris"
+
+#~ msgid "Look in Folder Entry"
+#~ msgstr "Cerca en la entrada de carpeta"
+
+#~ msgid "Cesar Miquel (miquel@df.uba.ar)"
+#~ msgstr "César Miquel (miquel@df.uba.ar)"
+
+#~ msgid "S_witch Log"
+#~ msgstr "Can_via de registre"
+
+#~ msgid "Switch between already opened logs"
+#~ msgstr "Canvia entre registres ja oberts"
+
+#~ msgid "Clos_e All"
+#~ msgstr "Ta_nca tots"
+
+#~ msgid "Close all Log files"
+#~ msgstr "Tanca tots els fitxers de registre"
+
+#~ msgid "Too many open logs. Close one and try again"
+#~ msgstr "Massa registres oberts. Tanqueu un i torneu a provar"
+
+#~ msgid "File already opened"
+#~ msgstr "El fitxer ja està obert"
+
+#~ msgid "Error: [%s]\n"
+#~ msgstr "Error: [%s]\n"
+
+#~ msgid "Monitor Options"
+#~ msgstr "Opcions de monitorització"
+
+#~ msgid "Ac_tions..."
+#~ msgstr "Acc_ions..."
+
+#~ msgid "_Select logs to monitor:"
+#~ msgstr "_Seleccioneu els registres a monitoritzar:"
+
+#~ msgid "Currently _monitored logs:"
+#~ msgstr "Registres _monitoritzats actualment:"
+
+#~ msgid "Add logs to monitor"
+#~ msgstr "Afegiu els registres a monitoritzar"
+
+#~ msgid "Remove logs from monitor"
+#~ msgstr "Elimineu registres de la monitorització"
+
+#~ msgid "_Hide application"
+#~ msgstr "A_maga l'aplicació"
+
+#~ msgid "_Execute actions"
+#~ msgstr "_Executa les accions"
+
+#~ msgid "Too many logs to monitor. Remove one and try again"
+#~ msgstr "Hi ha massa fitxers per a monitoritzar. Elimineu un i proveu de nou"
+
+#~ msgid "tmp_list is NULL\n"
+#~ msgstr "tmp_list és NUL\n"
+
+#~ msgid "Monitoring Logs..."
+#~ msgstr "S'estan monitoritzant els registres..."
+
+#~ msgid "TOUCHED!!\n"
+#~ msgstr "TOCAT!!\n"
 
 #~ msgid "_About..."
 #~ msgstr "_Quant a..."
@@ -1970,9 +2045,6 @@ msgstr "%B %e %X"
 
 #~ msgid "cos"
 #~ msgstr "cos"
-
-#~ msgid "Cosine"
-#~ msgstr "Cosinus"
 
 #~ msgid "tan"
 #~ msgstr "tan"
@@ -2241,9 +2313,6 @@ msgstr "%B %e %X"
 
 #~ msgid "Cut the selection"
 #~ msgstr "Talla la selecció"
-
-#~ msgid "Copy the selection"
-#~ msgstr "Copia la selecció"
 
 #~ msgid "Paste"
 #~ msgstr "Enganxa"
@@ -2688,9 +2757,6 @@ msgstr "%B %e %X"
 #~ msgid "Info about logview"
 #~ msgstr "Informació sobre logview"
 
-#~ msgid "_Log"
-#~ msgstr "_Registre"
-
 #~ msgid "Cannot load required fonts, cannot continue"
 #~ msgstr "No es pot carregar les fonts requerides, no es pot continuar"
 
@@ -2801,9 +2867,6 @@ msgstr "%B %e %X"
 
 #~ msgid "_Spell"
 #~ msgstr "_Escriure"
-
-#~ msgid "_Quit"
-#~ msgstr "_Treure"
 
 #~ msgid "Quit dictionary"
 #~ msgstr "Treure diccionari"

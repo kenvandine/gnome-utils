@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-23 04:50+0200\n"
+"POT-Creation-Date: 2004-10-30 17:35-0300\n"
 "PO-Revision-Date: 2004-10-23 12:44+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -16,24 +16,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
-msgid "Accessories"
-msgstr "Aksesorë"
-
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:169
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:169
 msgid "Dictionary Lookup"
 msgstr "Kërkim në fjalor"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:185
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:185
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Kërko fjalët tek një fjalor online"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:101
 msgid "_About"
 msgstr "_Informacione"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:82
 msgid "_Help"
 msgstr "_Ndihmë"
 
@@ -66,7 +62,7 @@ msgstr ""
 "referim  serveri i prezgjedhur është dict.org dhe porta 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:49
+#: gdictsrc/gdict-about.c:43 logview/about.c:44
 msgid "translator-credits"
 msgstr "Laurent Dhima <laurenti@alblinux.net>"
 
@@ -111,7 +107,7 @@ msgstr "Gjej"
 msgid "_Search for:"
 msgstr "_Kërko për:"
 
-#: gdictsrc/gdict-app.c:492
+#: gdictsrc/gdict-app.c:492 logview/logview.c:93
 msgid "_Find"
 msgstr "_Gjej"
 
@@ -371,7 +367,8 @@ msgstr ""
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
-msgstr "VETËM PËR PËRDORUESIT EKSPERTË - backend i prezgjedhur për formatimin FAT"
+msgstr ""
+"VETËM PËR PËRDORUESIT EKSPERTË - backend i prezgjedhur për formatimin FAT"
 
 #: gfloppy/gfloppy.schemas.in.h:3
 msgid "Default filesystem type"
@@ -413,7 +410,7 @@ msgstr "Duke kontrolluar për blloqe të dëmtuar..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Hapja e dispozitivit %s për kërkimin e blloqeve të dëmtuar dështoi\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
 msgid "Checking for bad blocks... Done"
 msgstr "Duke kërkuar për blloqe të dëmtuar... Përfundoi"
 
@@ -529,26 +526,26 @@ msgstr ""
 msgid "Could not determine current floppy geometry."
 msgstr "I pamundur përcaktimi i gjeometrisë së disketës aktuale. "
 
-#: gfloppy/src/gfloppy.c:222
+#: gfloppy/src/gfloppy.c:225
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "Gabim gjatë krijimit të një emri të vetëm për file e listës së blloqeve të "
 "dëmtuar."
 
-#: gfloppy/src/gfloppy.c:242
+#: gfloppy/src/gfloppy.c:245
 msgid "Error while filling the bad blocks list file."
 msgstr "Gabim gjatë mbushjes së file të listës së blloqeve të dëmtuar."
 
-#: gfloppy/src/gfloppy.c:305
+#: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Gabim gjatë rigjenerimit të komandës «%s»: %s"
 
-#: gfloppy/src/gfloppy.c:331
+#: gfloppy/src/gfloppy.c:334
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Firmë fillestare e mke2fs e panjohur; operacioni u anullua."
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:348
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -560,16 +557,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:365
 msgid "Abnormal child process termination."
 msgstr "Përfundim jo normal i proçesit bir."
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:390
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Gabim gjatë rigjenerimit të komandës «mbadblocks»: %s."
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:402
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -579,28 +576,28 @@ msgstr ""
 "në vazhdim:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:445
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Përfundim jo normal i proçesit bir \"mbadblocks\"."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:468 gfloppy/src/gfloppy.c:508
+#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
 msgid "Making filesystem on disk..."
 msgstr "Duke krijuar file e sistemit në disk..."
 
-#: gfloppy/src/gfloppy.c:476
+#: gfloppy/src/gfloppy.c:479
 msgid "Unable to create filesystem correctly."
 msgstr "I pamundur krijimi korrekt i file të sistemit."
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:520
+#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
 msgid "Making filesystem on disk... Done"
 msgstr "Duke krijuar file e sistemit në disk... Përfundoi"
 
-#: gfloppy/src/gfloppy.c:525
+#: gfloppy/src/gfloppy.c:528
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Duke kontrolluar për blloqe të dëmtuar... (mund të zgjasë pak)"
 
-#: gfloppy/src/gfloppy.c:530
+#: gfloppy/src/gfloppy.c:533
 msgid "Error while checking the bad blocks."
 msgstr "Gabim gjatë kontrollit për blloqe të dëmtuar."
 
@@ -690,7 +687,7 @@ msgstr "_I shpejtë (krijon vetëm filesystem)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standart (formaton në nivel të ulët përtej mënyrës «I shpejtë»)"
 
-#: gfloppy/src/main.c:209
+#: gfloppy/src/main.c:215
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -698,12 +695,12 @@ msgstr ""
 "Nuk rezultojnë të instaluar as «mke2fs», e as «mkdosfs» apo «mformat». Për "
 "formatimin e një diskete kërkohet të paktën njëri nga këta instrumentë."
 
-#: gfloppy/src/main.c:233
+#: gfloppy/src/main.c:239
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "E pamundur hapja e dispozitivit %s, formatimi nuk mund të vazhdojë."
 
-#: gfloppy/src/main.c:236 gfloppy/src/main.c:310
+#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -712,7 +709,7 @@ msgstr ""
 "Dispozitivi %s është i shkëputur.\n"
 "Ju lutem, montoni këtë dispozitiv që të vazhdojmë."
 
-#: gfloppy/src/main.c:239 gfloppy/src/main.c:313
+#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -723,15 +720,16 @@ msgstr ""
 "Vihu në kontakt me administratorin e sistemit për të marrë të drejtën e "
 "shkrimit."
 
-#: gfloppy/src/main.c:307
+#: gfloppy/src/main.c:310
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "E pamundur hapja e çfarëdo dispozitivi, formatimi nuk mund të vazhdojë."
+msgstr ""
+"E pamundur hapja e çfarëdo dispozitivi, formatimi nuk mund të vazhdojë."
 
-#: gfloppy/src/main.c:310 gfloppy/src/main.c:313
+#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 ose /dev/fd0"
 
-#: gfloppy/src/main.c:486
+#: gfloppy/src/main.c:489
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -740,15 +738,15 @@ msgstr ""
 "E pamundur shfaqja e ndihmës për formatuesin e disketave.\n"
 "%s"
 
-#: gfloppy/src/main.c:519
+#: gfloppy/src/main.c:522
 msgid "The volume name can't contain any blank space."
 msgstr "Emri i volumit nuk mund të përmbajë asnjë hapësirë boshe."
 
-#: gfloppy/src/main.c:573
+#: gfloppy/src/main.c:576
 msgid "The device to format"
 msgstr "Dispozitivi që duhet formatuar"
 
-#: gfloppy/src/main.c:574
+#: gfloppy/src/main.c:577
 msgid "DEVICE"
 msgstr "DISPOZITIVI"
 
@@ -783,9 +781,9 @@ msgstr "Progresi i formatimit"
 msgid "Find files, folders, and documents on your computer"
 msgstr "Gjej files, kartela, dhe dokumentë në kompjuterin tuaj"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:627
-#: gsearchtool/gsearchtool.c:885 gsearchtool/gsearchtool.c:969
-#: gsearchtool/gsearchtool.c:2305 gsearchtool/gsearchtool.c:2330
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
+#: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
+#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
 msgid "Search for Files"
 msgstr "Kërko për files"
 
@@ -871,7 +869,8 @@ msgstr "Dokumenti nuk ekziston."
 #: gsearchtool/gsearchtool-callbacks.c:421
 #: gsearchtool/gsearchtool-callbacks.c:1004
 msgid "There is no installed viewer capable of displaying the document."
-msgstr "Asnjë shikues i instaluar aktualisht është në gjendje të shfaqë dokumentin."
+msgstr ""
+"Asnjë shikues i instaluar aktualisht është në gjendje të shfaqë dokumentin."
 
 #: gsearchtool/gsearchtool-callbacks.c:472
 #, c-format
@@ -953,7 +952,8 @@ msgstr "Dokumenti \"%s\" ekziston.  Dëshironi t'a zevëndësoni?"
 
 #: gsearchtool/gsearchtool-callbacks.c:1306
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr "Nëse zevëndësoni një file ekzistues, përmbajtja e tij do të mbishkruhet."
+msgstr ""
+"Nëse zevëndësoni një file ekzistues, përmbajtja e tij do të mbishkruhet."
 
 #: gsearchtool/gsearchtool-callbacks.c:1317
 msgid "_Replace"
@@ -977,23 +977,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:515
+#: gsearchtool/gsearchtool-support.c:620
 msgid "today at %-I:%M %p"
 msgstr "sot më %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:517
+#: gsearchtool/gsearchtool-support.c:622
 msgid "yesterday at %-I:%M %p"
 msgstr "dje më %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:519 gsearchtool/gsearchtool-support.c:521
+#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %B %-d %Y më %-I:%M:%S %p"
 
-#: gsearchtool/gsearchtool-support.c:692
+#: gsearchtool/gsearchtool-support.c:797
 msgid "link (broken)"
 msgstr "lidhje (e shkëputur)"
 
-#: gsearchtool/gsearchtool-support.c:697
+#: gsearchtool/gsearchtool-support.c:802
 #, c-format
 msgid "link to %s"
 msgstr "lidhje me %s"
@@ -1062,72 +1062,73 @@ msgstr "Ndiq lidhjet simbolike"
 msgid "Include other filesystems"
 msgstr "Përfshi file sistemi të tjerë"
 
-#: gsearchtool/gsearchtool.c:574 gsearchtool/gsearchtool.c:602
+#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
 msgid "No files found"
 msgstr "Nuk u gjet asnjë file"
 
-#: gsearchtool/gsearchtool.c:595
+#: gsearchtool/gsearchtool.c:602
 msgid "(stopped)"
 msgstr "(u ndalua)"
 
-#: gsearchtool/gsearchtool.c:601
+#: gsearchtool/gsearchtool.c:608
 msgid "No Files Found"
 msgstr "Nuk u gjet asnjë file"
 
-#: gsearchtool/gsearchtool.c:606
+#: gsearchtool/gsearchtool.c:613
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "U gjet %d File"
 msgstr[1] "U gjetën %d Files"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "U gjet %d file"
 msgstr[1] "U gjetën %d files"
 
-#: gsearchtool/gsearchtool.c:716
+#: gsearchtool/gsearchtool.c:743
 msgid "Entry changed called for a non entry option!"
 msgstr "Ndryshimi i zërit të thirrur për një objekt që nuk është një zë!"
 
-#: gsearchtool/gsearchtool.c:969
+#: gsearchtool/gsearchtool.c:998
 msgid "Searching..."
 msgstr "Duke kërkuar..."
 
-#: gsearchtool/gsearchtool.c:990
+#: gsearchtool/gsearchtool.c:1020
 msgid "Set the text of 'Name contains'"
 msgstr "Shkruaj tekstin për «Emri përmban»"
 
-#: gsearchtool/gsearchtool.c:991
+#: gsearchtool/gsearchtool.c:1021
 msgid "Set the text of 'Look in folder'"
 msgstr "Shkruaj tekstin për «Kërko në kartela»"
 
-#: gsearchtool/gsearchtool.c:992
+#: gsearchtool/gsearchtool.c:1022
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Rendit files sipas njërit prej kriterëve në vazhdim: emri, kartela, "
 "madhësia, lloji ose data"
 
-#: gsearchtool/gsearchtool.c:993
+#: gsearchtool/gsearchtool.c:1023
 msgid "Set sort order to descending, the default is ascending"
-msgstr "Vendos drejtimin e renditjes në zbritje, i prezgjedhur është në ngjitje"
+msgstr ""
+"Vendos drejtimin e renditjes në zbritje, i prezgjedhur është në ngjitje"
 
-#: gsearchtool/gsearchtool.c:994
+#: gsearchtool/gsearchtool.c:1024
 msgid "Automatically start a search"
 msgstr "Fillo automatikisht kërkimin"
 
-#: gsearchtool/gsearchtool.c:999
+#: gsearchtool/gsearchtool.c:1029
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Zgjidh kushtin '%s'"
 
-#: gsearchtool/gsearchtool.c:1105
+#: gsearchtool/gsearchtool.c:1135
 msgid "Invalid option passed to sortby command line argument."
 msgstr "I është kaluar një parametër i gabuar \"sortby\""
 
-#: gsearchtool/gsearchtool.c:1377
+#: gsearchtool/gsearchtool.c:1434
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1135,7 +1136,7 @@ msgstr ""
 "\n"
 "... Tepër gabime, nuk mund të shfaqen ..."
 
-#: gsearchtool/gsearchtool.c:1386
+#: gsearchtool/gsearchtool.c:1443
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1143,7 +1144,7 @@ msgstr ""
 "Rezultatet e kërkimit mund të jenë të pavlefshëm.  Ndeshëm në gabime gjatë "
 "kryerjes së këtij kërkimi."
 
-#: gsearchtool/gsearchtool.c:1407
+#: gsearchtool/gsearchtool.c:1464
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1151,245 +1152,240 @@ msgstr ""
 "Rezultatet e kërkimit mund të jenë të pavlefshëm. Dëshironi të ç'aktivoni "
 "kërkimin e shpejtë?"
 
-#: gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1472
 msgid "Disable _Quick Search"
 msgstr "Ç'aktivo Kërkimin e _Shpejtë"
 
-#: gsearchtool/gsearchtool.c:1459
+#: gsearchtool/gsearchtool.c:1516
 msgid "Error parsing the search command."
 msgstr "Gabim gjatë analizimit të komandës së kërkimit."
 
-#: gsearchtool/gsearchtool.c:1488
+#: gsearchtool/gsearchtool.c:1545
 msgid "Error running the search command."
 msgstr "Gabim gjatë ekzekutimit të komandës së kërkimit."
 
-#: gsearchtool/gsearchtool.c:1599
+#: gsearchtool/gsearchtool.c:1659
 #, c-format
 msgid "'%s' entry"
 msgstr "zëri '%s'"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1660
 msgid "Enter a value for search rule"
 msgstr "Shkruaj një vlerë për rregullin e kërkimit"
 
-#: gsearchtool/gsearchtool.c:1647
+#: gsearchtool/gsearchtool.c:1707
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Kliko për të fshirë rregullin '%s'"
 
-#: gsearchtool/gsearchtool.c:1702
+#: gsearchtool/gsearchtool.c:1762
 msgid "A_vailable options:"
 msgstr "Opcionet në d_ispozicion:"
 
-#: gsearchtool/gsearchtool.c:1715
+#: gsearchtool/gsearchtool.c:1775
 msgid "Search Rules Menu"
 msgstr "Menuja e rregullave të kërkimit"
 
-#: gsearchtool/gsearchtool.c:1716
+#: gsearchtool/gsearchtool.c:1776
 msgid "Select a search rule from the menu"
 msgstr "Zgjidh një rregull kërkimi nga menuja"
 
-#: gsearchtool/gsearchtool.c:1747
+#: gsearchtool/gsearchtool.c:1807
 msgid "S_earch results:"
 msgstr "R_ezultatet e kërkimit:"
 
-#: gsearchtool/gsearchtool.c:1827
+#: gsearchtool/gsearchtool.c:1887
 msgid "Name"
 msgstr "Emri"
 
-#: gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1907
 msgid "Folder"
 msgstr "Kartelë"
 
-#: gsearchtool/gsearchtool.c:1858
+#: gsearchtool/gsearchtool.c:1918
 msgid "Size"
 msgstr "Madhësia"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1928
 msgid "Type"
 msgstr "Lloji"
 
-#: gsearchtool/gsearchtool.c:1878
+#: gsearchtool/gsearchtool.c:1938
 msgid "Date Modified"
 msgstr "Ndryshimi i fundit"
 
-#: gsearchtool/gsearchtool.c:1935
+#: gsearchtool/gsearchtool.c:1995
 msgid "_Name contains:"
 msgstr "_Emri përmban:"
 
-#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:2010 gsearchtool/gsearchtool.c:2011
 msgid "Enter the file name you want to search."
 msgstr "Shkruaj emrin e file që dëshironi të kërkoni."
 
-#: gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:2011
 msgid "Name Contains Entry"
 msgstr "Zëri \"emri përmban\""
 
-#: gsearchtool/gsearchtool.c:1962
+#: gsearchtool/gsearchtool.c:2022
 msgid "_Look in folder:"
 msgstr "_Kërko tek:"
 
-#: gsearchtool/gsearchtool.c:1968
+#: gsearchtool/gsearchtool.c:2028
 msgid "Browse"
 msgstr "Shfleto"
 
-#: gsearchtool/gsearchtool.c:1975
+#: gsearchtool/gsearchtool.c:2035
 msgid "Select the folder where you want to start the search."
 msgstr "Zgjidh kartelën nga ku dëshiron të fillosh kërkimin."
 
-#: gsearchtool/gsearchtool.c:1989
+#: gsearchtool/gsearchtool.c:2049
 msgid "Show more _options"
 msgstr "Shfaq _opcionet e tjera"
 
-#: gsearchtool/gsearchtool.c:1999
+#: gsearchtool/gsearchtool.c:2059
 msgid "Show more options"
 msgstr "Shfaq opcionet e tjera"
 
-#: gsearchtool/gsearchtool.c:1999
+#: gsearchtool/gsearchtool.c:2059
 msgid "Expands or collapses a list of search options."
 msgstr "Shpalos ose mbledh listën me opcionet e kërkimit."
 
-#: gsearchtool/gsearchtool.c:2046
+#: gsearchtool/gsearchtool.c:2106
 msgid "Click to Start the search"
 msgstr "Kliko për të filluar kërkimin"
 
-#: gsearchtool/gsearchtool.c:2047
+#: gsearchtool/gsearchtool.c:2107
 msgid "Click to Stop the search"
 msgstr "Kliko për të ndaluar kërkimin"
 
-#: gsearchtool/gsearchtool.c:2326
+#: gsearchtool/gsearchtool.c:2386
 msgid "Cannot initialize bonobo."
 msgstr "I pamundur fillimi i bonobo."
 
-#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
-#: logview/about.c:43
-msgid "Cesar Miquel (miquel@df.uba.ar)"
-msgstr "Cesar Miquel (miquel@df.uba.ar)"
-
-#: logview/about.c:44
-msgid "A system log viewer for GNOME."
-msgstr "Një shikues i log të sistemit për GNOME."
-
-#: logview/about.c:58
+#: logview/about.c:48
 msgid "System Log Viewer"
 msgstr "Shikuesi i log të sistemit"
 
-#: logview/actions.c:74
+#: logview/about.c:51
+msgid "A system log viewer for GNOME."
+msgstr "Një shikues i log të sistemit për GNOME."
+
+#: logview/actions.c:73
 msgid "Action Database"
 msgstr "Databaza e veprimeve"
 
-#: logview/actions.c:85
+#: logview/actions.c:84
 msgid "Actions"
 msgstr "Veprimet"
 
-#: logview/actions.c:157
+#: logview/actions.c:156
 msgid "_Add"
 msgstr "_Shto"
 
-#: logview/actions.c:162
+#: logview/actions.c:161
 msgid "Add an action"
 msgstr "Shto një veprim"
 
-#: logview/actions.c:164
+#: logview/actions.c:163 logview/logview.c:80
 msgid "_Edit"
 msgstr "_Ndrysho"
 
-#: logview/actions.c:169
+#: logview/actions.c:168
 msgid "Edit an action"
 msgstr "Ndrysho një veprim"
 
-#: logview/actions.c:171
+#: logview/actions.c:170
 msgid "_Remove"
 msgstr "_Hiq"
 
-#: logview/actions.c:176
+#: logview/actions.c:175
 msgid "Remove an action"
 msgstr "Elemino një veprim"
 
-#: logview/actions.c:263
+#: logview/actions.c:262
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "E pamundur hapja e databazës së veprimeve <%s>! Gabim në hapje."
 
-#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
-#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
+#: logview/actions.c:297 logview/actions.c:310 logview/actions.c:321
+#: logview/actions.c:332 logview/actions.c:343 logview/actions.c:354
 msgid "Error parsing actions data base"
 msgstr "Gabim gjatë analizimit të databazës së veprimeve"
 
-#: logview/actions.c:389
+#: logview/actions.c:388
 msgid "Can't write to actions database!"
 msgstr "I pamundur shkrimi tek databazë e veprimeve!"
 
-#: logview/actions.c:487
+#: logview/actions.c:486
 #, c-format
 msgid "Error while executing specified action: %s"
 msgstr "Gabim gjatë ekzekutimit të veprimit të specifikuar: %s"
 
-#: logview/actions.c:510
+#: logview/actions.c:509
 msgid "<empty>"
 msgstr "<bosh>"
 
-#: logview/actions.c:511
+#: logview/actions.c:510
 msgid "log name regexp"
 msgstr "regexp emri i log"
 
-#: logview/actions.c:512
+#: logview/actions.c:511
 msgid "process regexp"
 msgstr "regexp procesit"
 
-#: logview/actions.c:513
+#: logview/actions.c:512
 msgid "message regexp"
 msgstr "regexp masazhin"
 
-#: logview/actions.c:514
+#: logview/actions.c:513
 msgid "action to execute when regexps are TRUE"
 msgstr "veprimi që duhet ndërmarrë kur regexps është TRUE"
 
-#: logview/actions.c:515
+#: logview/actions.c:514
 msgid "description"
 msgstr "përshkrimi"
 
-#: logview/actions.c:651
+#: logview/actions.c:650
 msgid "Edit Action"
 msgstr "Ndrysho veprimin"
 
-#: logview/actions.c:687
+#: logview/actions.c:686
 msgid "_Tag:"
 msgstr "_Tag:"
 
-#: logview/actions.c:696
+#: logview/actions.c:695
 msgid "Tag that identifies the log file."
 msgstr "Tag që identifikon file e log."
 
-#: logview/actions.c:705
+#: logview/actions.c:704
 msgid "_Log name:"
 msgstr "_Emri i log:"
 
-#: logview/actions.c:714
+#: logview/actions.c:713
 msgid "Regular expression that will match the log name."
 msgstr "Ekspresioni i rregullt që përputhet me emrin e log."
 
-#: logview/actions.c:724
+#: logview/actions.c:723
 msgid "_Process:"
 msgstr "_Proçesi:"
 
-#: logview/actions.c:733
+#: logview/actions.c:732
 msgid "Regular expression that will match process part of message."
 msgstr "Ekspresioni i rregullt që përputhet me një pjesë të mesazhit."
 
-#: logview/actions.c:743
+#: logview/actions.c:742
 msgid "_Message:"
 msgstr "_Mesazhi:"
 
-#: logview/actions.c:752
+#: logview/actions.c:751
 msgid "Regular expression that will match the message."
 msgstr "Ekspresioni i rregullt që do të përputhet me mesazhin."
 
-#: logview/actions.c:762
+#: logview/actions.c:761
 msgid "_Action:"
 msgstr "_Veprimi:"
 
-#: logview/actions.c:771
+#: logview/actions.c:770
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
@@ -1397,15 +1393,15 @@ msgstr ""
 "Veprimi që do të ekzekutohet nëse të gjitha regexps. përputhen. Do të "
 "zbatohet nga një komandë e sistemit: system (veprimi)."
 
-#: logview/actions.c:781
+#: logview/actions.c:780
 msgid "_Description:"
 msgstr "_Përshkrimi:"
 
-#: logview/actions.c:790
+#: logview/actions.c:789
 msgid "Description of this entry."
 msgstr "Përshkrimi për këtë zë."
 
-#: logview/actions.c:814
+#: logview/actions.c:813
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1422,24 +1418,36 @@ msgstr ""
 "përshkrimi: [%s]\n"
 "veprimi: [%s]\n"
 
-#: logview/calendar.c:110
+#: logview/calendar.c:73
 msgid "Calendar"
 msgstr "Kalendari"
 
-#: logview/desc_db.c:37
+#: logview/desc_db.c:34
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr "E pamundur hapja e databazës së regexp <%s>! Gabim në hapje."
 
-#: logview/desc_db.c:147
+#: logview/desc_db.c:144
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "E pamundur hapja e databazës së përshkrimeve <%s>! Gabim në hapje."
 
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
+#: logview/gedit-output-window.c:350
+msgid "Close the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:388
+msgid "Copy selected lines"
+msgstr ""
+
+#: logview/gedit-output-window.c:408
+msgid "Clear the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:448
+msgid "Output Lines"
+msgstr ""
+
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "Log i sistemit"
@@ -1448,129 +1456,129 @@ msgstr "Log i sistemit"
 msgid "View the system log file"
 msgstr "Shiko file e log të sistemit"
 
-#: logview/info.c:62
+#: logview/info.c:50
 msgid "Properties"
 msgstr "Pronësitë"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Size:"
 msgstr "Madhësia:"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Modified:"
 msgstr "Ndryshimi i fundit:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Start Date:"
 msgstr "Data e fillimit:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Last Date:"
 msgstr "Data e fundit:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Number of Lines:"
 msgstr "Numri i rreshtave:"
 
-#: logview/info.c:134
+#: logview/info.c:121
 msgid "Log Information"
 msgstr "Informacione mbi log"
 
-#: logview/info.c:160 logview/zoom.c:155
+#: logview/info.c:147 logview/zoom.c:163
 msgid "<No log loaded>"
 msgstr "<Asnjë log i ngarkuar>"
 
-#: logview/info.c:183
+#: logview/info.c:170
 #, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld byte"
 msgstr[1] "%ld bytes"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "January"
 msgstr "Janar"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "February"
 msgstr "Shkurt"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "March"
 msgstr "Mars"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "April"
 msgstr "Prill"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "May"
 msgstr "Maj"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "June"
 msgstr "Qershor"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "July"
 msgstr "Korrik"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "August"
 msgstr "Gusht"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "September"
 msgstr "Shtator"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "October"
 msgstr "Tetor"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "November"
 msgstr "Nëntor"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "December"
 msgstr "Dhjetor"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:395
+#: logview/log_repaint.c:279
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:419
+#: logview/log_repaint.c:298
 msgid "Last Modified: "
 msgstr "Ndryshimi i fundit: "
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:448
+#: logview/log_repaint.c:327
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:520
+#: logview/log_repaint.c:399
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:193
+#: logview/logrtns.c:192
 msgid "Not enough memory!\n"
 msgstr "Kujtesë e pamjaftueshme!\n"
 
-#: logview/logrtns.c:204
+#: logview/logrtns.c:203
 msgid "Unable to open logfile!\n"
 msgstr "E pamundur hapja e file të log!\n"
 
-#: logview/logrtns.c:265
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s nuk është një file i rregullt."
 
-#: logview/logrtns.c:273
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1580,107 +1588,169 @@ msgstr ""
 "leximit. Provono të nisni programin si root ose vihuni në kontakt me "
 "administratorin e sistemit për të ndryshuar të drejtat mbi file."
 
-#: logview/logrtns.c:290
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s nuk mund të hapet."
 
-#: logview/logrtns.c:320 logview/logrtns.c:329
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "%s nuk është një file log."
 
-#: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memorja u konsumua"
 
-#: logview/logview.c:101
-msgid "S_witch Log"
-msgstr "N_drysho log"
+#: logview/logview-findbar.c:252
+#, fuzzy
+msgid "Fin_d : "
+msgstr "Gjej"
 
-#: logview/logview.c:102
-msgid "Switch between already opened logs"
-msgstr "Kalo tek një log tjetër i hapur"
+#: logview/logview-findbar.c:270
+#, fuzzy
+msgid "Find Next"
+msgstr "Gjej"
 
-#: logview/logview.c:108
-msgid "_Monitor..."
-msgstr "_Monitoro..."
+#: logview/logview-findbar.c:280
+msgid "Find Previous"
+msgstr ""
 
-#: logview/logview.c:109
-msgid "Monitor Logs"
-msgstr "Monitoro logs"
+#: logview/logview.c:79
+msgid "_Log"
+msgstr ""
 
-#: logview/logview.c:116
+#: logview/logview.c:81
+msgid "_View"
+msgstr ""
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "_Open..."
+msgstr "_Hap"
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "Open a log from file"
+msgstr "Hap një file log të ri"
+
+#: logview/logview.c:86
 msgid "_Properties"
 msgstr "_Pronësitë"
 
-#: logview/logview.c:117
+#: logview/logview.c:86
 msgid "Show Log Properties"
 msgstr "Shfaq pronësitë e logs"
 
-#: logview/logview.c:125
-msgid "Clos_e All"
+#: logview/logview.c:88
+#, fuzzy
+msgid "Close"
 msgstr "Mby_lli të gjithë"
 
-#: logview/logview.c:126
-msgid "Close all Log files"
-msgstr "Mbyll të gjithë files e log"
+#: logview/logview.c:88
+msgid "Close this log"
+msgstr ""
 
-#: logview/logview.c:138
-msgid "_Calendar"
-msgstr "_Kalendari"
+#: logview/logview.c:90
+#, fuzzy
+msgid "_Quit"
+msgstr "_Ndrysho"
 
-#: logview/logview.c:139
-msgid "Show Calendar Log"
-msgstr "Shfaq kalendarin e log"
+#: logview/logview.c:90
+#, fuzzy
+msgid "Quit the log viewer"
+msgstr "Shikuesi i log të sistemit"
 
-#: logview/logview.c:145
-msgid "_Entry Detail"
-msgstr "Hollësi për _elementin"
+#: logview/logview.c:93
+msgid "Find pattern in logs"
+msgstr ""
 
-#: logview/logview.c:146
-msgid "Show Entry Detail"
-msgstr "Shfaq detajet e elementit"
-
-#: logview/logview.c:152
-msgid "_Collapse All"
+#: logview/logview.c:96
+#, fuzzy
+msgid "Collapse _All"
 msgstr "_Ngjishi të gjithë"
 
-#: logview/logview.c:153
+#: logview/logview.c:96
 msgid "Collapse all the rows"
 msgstr "Ngjish të gjithë rreshtat"
 
-#: logview/logview.c:370
+#: logview/logview.c:99
+msgid "_Contents"
+msgstr ""
+
+#: logview/logview.c:99
+msgid "Open the help contents for the log viewer"
+msgstr ""
+
+#: logview/logview.c:101
+msgid "Show the about dialog for the gconf editor"
+msgstr ""
+
+#: logview/logview.c:107
+#, fuzzy
+msgid "_Monitor"
+msgstr "_Monitoro..."
+
+#: logview/logview.c:107
+#, fuzzy
+msgid "Monitor Current Log"
+msgstr "Monitoro logs"
+
+#: logview/logview.c:109
+msgid "_Calendar"
+msgstr "_Kalendari"
+
+#: logview/logview.c:109
+msgid "Show Calendar Log"
+msgstr "Shfaq kalendarin e log"
+
+#: logview/logview.c:111
+msgid "_Entry Detail"
+msgstr "Hollësi për _elementin"
+
+#: logview/logview.c:111
+msgid "Show Entry Detail"
+msgstr "Shfaq detajet e elementit"
+
+#: logview/logview.c:166
+msgid "Open the specified log."
+msgstr ""
+
+#: logview/logview.c:298
 msgid "No log files to open"
 msgstr "Asnjë file log për t'u hapur"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Date"
 msgstr "Data"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Host Name"
 msgstr "Emri i host"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Process"
 msgstr "Proçesi"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Message"
 msgstr "Mesazh"
 
-#: logview/logview.c:541 logview/logview.c:604
-msgid "Too many open logs. Close one and try again"
-msgstr "Tepër logs të hapur. Mbyll ndonjërin dhe provo përsëri"
-
-#: logview/logview.c:553
-msgid "File already opened"
-msgstr "File është i hapur"
-
-#: logview/logview.c:616
+#: logview/logview.c:581
 msgid "Open new logfile"
 msgstr "Hap një file log të ri"
+
+#: logview/logview.c:922
+#, fuzzy, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+"Gabim gjatë shfaqjes së ndihmës: \n"
+"%s"
+
+#: logview/logview.c:934
+#, c-format
+msgid "%s - %s (monitored)"
+msgstr ""
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -1694,88 +1764,92 @@ msgstr ""
 "Specifiko file e log që duhet hapur në nisje. Vendosja e prezgjedhur mund të "
 "jetë /var/log/messages ose /var/adm/messages, sipas sistemit operativ."
 
-#: logview/misc.c:56
-#, c-format
-msgid "Error: [%s]\n"
-msgstr "Gabim: [%s]\n"
-
-#: logview/monitor.c:111
-msgid "Monitor Options"
-msgstr "Opcionet e monitorimit"
-
-#: logview/monitor.c:114
-msgid "Ac_tions..."
-msgstr "Veprime_t..."
-
-#: logview/monitor.c:140
-msgid "_Select logs to monitor:"
-msgstr "_Zgjidh logs për t'u monitoruar:"
-
-#: logview/monitor.c:145
-msgid "Currently _monitored logs:"
-msgstr "Logs aktualë duke u _monitoruar:"
-
-#: logview/monitor.c:193
-msgid "Add logs to monitor"
-msgstr "Shto logs për monitorim"
-
-#: logview/monitor.c:202
-msgid "Remove logs from monitor"
-msgstr "Hiq logs nga monitorimi"
-
-#. Check boxes
-#: logview/monitor.c:249
-msgid "_Hide application"
-msgstr "_Fshih programin"
-
-#: logview/monitor.c:257
-msgid "_Execute actions"
-msgstr "_Ekzekuto veprimet"
-
-#: logview/monitor.c:293
-msgid "Too many logs to monitor. Remove one and try again"
-msgstr "Tepër logs për t'u mbajtur nën vëzhgim. Hiq ndonjërin dhe provo përsëri"
-
-#: logview/monitor.c:301 logview/monitor.c:338
-#, c-format
-msgid "tmp_list is NULL\n"
-msgstr "tmp_list është NULL\n"
-
-#: logview/monitor.c:475
-msgid "Monitoring Logs..."
-msgstr "Duke monitoruar logs..."
-
-#: logview/monitor.c:667
-#, c-format
-msgid "TOUCHED!!\n"
-msgstr "NDRYSHUAR!!\n"
-
-#: logview/zoom.c:63
+#: logview/zoom.c:65
 msgid "Entry Detail"
 msgstr "Hollësi mbi elementin"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Date:"
 msgstr "Data:"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Process:"
 msgstr "Proçesi:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Message:"
 msgstr "Mesazhi:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Description:"
 msgstr "Përshkrimi:"
 
-#: logview/zoom.c:129
+#: logview/zoom.c:133
 msgid "Log Line Details"
 msgstr "Hollësi mbi rreshtin e log"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:187
+#: logview/zoom.c:195
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
+#~ msgid "Accessories"
+#~ msgstr "Aksesorë"
+
+#~ msgid "Cesar Miquel (miquel@df.uba.ar)"
+#~ msgstr "Cesar Miquel (miquel@df.uba.ar)"
+
+#~ msgid "S_witch Log"
+#~ msgstr "N_drysho log"
+
+#~ msgid "Switch between already opened logs"
+#~ msgstr "Kalo tek një log tjetër i hapur"
+
+#~ msgid "Close all Log files"
+#~ msgstr "Mbyll të gjithë files e log"
+
+#~ msgid "Too many open logs. Close one and try again"
+#~ msgstr "Tepër logs të hapur. Mbyll ndonjërin dhe provo përsëri"
+
+#~ msgid "File already opened"
+#~ msgstr "File është i hapur"
+
+#~ msgid "Error: [%s]\n"
+#~ msgstr "Gabim: [%s]\n"
+
+#~ msgid "Monitor Options"
+#~ msgstr "Opcionet e monitorimit"
+
+#~ msgid "Ac_tions..."
+#~ msgstr "Veprime_t..."
+
+#~ msgid "_Select logs to monitor:"
+#~ msgstr "_Zgjidh logs për t'u monitoruar:"
+
+#~ msgid "Currently _monitored logs:"
+#~ msgstr "Logs aktualë duke u _monitoruar:"
+
+#~ msgid "Add logs to monitor"
+#~ msgstr "Shto logs për monitorim"
+
+#~ msgid "Remove logs from monitor"
+#~ msgstr "Hiq logs nga monitorimi"
+
+#~ msgid "_Hide application"
+#~ msgstr "_Fshih programin"
+
+#~ msgid "_Execute actions"
+#~ msgstr "_Ekzekuto veprimet"
+
+#~ msgid "Too many logs to monitor. Remove one and try again"
+#~ msgstr ""
+#~ "Tepër logs për t'u mbajtur nën vëzhgim. Hiq ndonjërin dhe provo përsëri"
+
+#~ msgid "tmp_list is NULL\n"
+#~ msgstr "tmp_list është NULL\n"
+
+#~ msgid "Monitoring Logs..."
+#~ msgstr "Duke monitoruar logs..."
+
+#~ msgid "TOUCHED!!\n"
+#~ msgstr "NDRYSHUAR!!\n"

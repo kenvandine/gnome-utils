@@ -7,7 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.hi\n"
-"POT-Creation-Date: 2004-10-12 12:03+1300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-30 17:35-0300\n"
 "PO-Revision-Date: 2004-07-18 14:21+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -16,24 +17,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
-msgid "Accessories"
-msgstr "सहायक प्रोग्राम"
-
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:144
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:169
 msgid "Dictionary Lookup"
 msgstr "शब्दकोश देखें"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:160
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:185
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "ऑन लाइन शब्दकोश में शब्द देखें"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:101
 msgid "_About"
 msgstr "के बारे में (_A)"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:82
 msgid "_Help"
 msgstr "मदद (_H)"
 
@@ -69,7 +66,7 @@ msgstr ""
 
 #  Translator credits
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:49
+#: gdictsrc/gdict-about.c:43 logview/about.c:44
 #, fuzzy
 msgid "translator-credits"
 msgstr ""
@@ -117,7 +114,7 @@ msgstr "ढूंढें"
 msgid "_Search for:"
 msgstr "इस हेतु ढूंढें: (_S)"
 
-#: gdictsrc/gdict-app.c:492
+#: gdictsrc/gdict-app.c:492 logview/logview.c:93
 msgid "_Find"
 msgstr "ढूंढें (_F)"
 
@@ -173,11 +170,11 @@ msgstr "शब्द लिखें या नीचे दी गई सूच
 msgid "Look Up for a Word"
 msgstr "शब्द हेतु देखें"
 
-#: gdictsrc/gdict-applet.c:137
+#: gdictsrc/gdict-applet.c:161
 msgid "_Lookup"
 msgstr "देखें (_L)"
 
-#: gdictsrc/gdict-applet.c:148
+#: gdictsrc/gdict-applet.c:173
 msgid "Dictionary word entry"
 msgstr "शब्दकोश में शब्द प्रविष्टि"
 
@@ -410,7 +407,7 @@ msgstr "खराब ब्लॉक हेतु जांच रहे..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "उपकरण %s को खराब ब्लॉक की जांच हेतु खोलने में असफल\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
 msgid "Checking for bad blocks... Done"
 msgstr "खराब ब्लॉक्स की जांच कर रहे... सम्पन्न "
 
@@ -529,24 +526,24 @@ msgstr ""
 msgid "Could not determine current floppy geometry."
 msgstr "वर्तमान फ्लॉपी ज्यामिती निर्धारित नहीं कर पाया."
 
-#: gfloppy/src/gfloppy.c:222
+#: gfloppy/src/gfloppy.c:225
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr "खराब ब्लॉक्स सूची फ़ाइल हेतु बेजोड़ फ़ाइलनाम बनाने के दौरान त्रुटि."
 
-#: gfloppy/src/gfloppy.c:242
+#: gfloppy/src/gfloppy.c:245
 msgid "Error while filling the bad blocks list file."
 msgstr "खराब ब्लॉक्स सूची फ़ाइल भरने में त्रुटि हुई."
 
-#: gfloppy/src/gfloppy.c:305
+#: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "कमांड (%s) स्पॉन करने के दौरान त्रुटि: %s."
 
-#: gfloppy/src/gfloppy.c:331
+#: gfloppy/src/gfloppy.c:334
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "अज्ञात mke2fs प्रारंभ करने का हस्ताक्षर, रद्द कर रहे."
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:348
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -557,16 +554,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:365
 msgid "Abnormal child process termination."
 msgstr "शिशु प्रक्रिया असामान्य समाप्त."
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:390
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "एम-बेड-ब्लॉक्स कमांड स्पॉन करने के दौरान त्रुटि: %s."
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:402
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -575,29 +572,29 @@ msgstr ""
 "खराब ब्लॉक्स जाँचने की यूटिलिटी (एम-बेड-ब्लॉक्स) ने निम्न त्रुटि प्रतिवेदित किया:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:445
 msgid "Abnormal mbadblocks child process termination."
 msgstr "एम-बेड-ब्लॉक्स शिशु प्रक्रिया असामान्य ढंग से समाप्त."
 
 #  make the filesystem
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:468 gfloppy/src/gfloppy.c:508
+#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
 msgid "Making filesystem on disk..."
 msgstr "डिस्क पर फ़ाइल सिस्टम बना रहे..."
 
-#: gfloppy/src/gfloppy.c:476
+#: gfloppy/src/gfloppy.c:479
 msgid "Unable to create filesystem correctly."
 msgstr "सही फ़ाइल सिस्टम बनाने में अक्षम रहा."
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:520
+#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
 msgid "Making filesystem on disk... Done"
 msgstr "डिस्क पर फ़ाइल सिस्टम बना रहे... सम्पन्न"
 
-#: gfloppy/src/gfloppy.c:525
+#: gfloppy/src/gfloppy.c:528
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "खराब ब्लॉक्स की जांच कर रहे... (इसमें कुछ समय लग सकता है)"
 
-#: gfloppy/src/gfloppy.c:530
+#: gfloppy/src/gfloppy.c:533
 msgid "Error while checking the bad blocks."
 msgstr "खराब ब्लॉक्स की जांच करते समय त्रुटि हुई."
 
@@ -686,18 +683,18 @@ msgstr "ज़ल्दी (सिर्फ फ़ाइल सिस्टम �
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "मानक (तेज़ मोड में लो-लेवल फ़ॉर्मेट जोड़ता है) (_S)"
 
-#: gfloppy/src/main.c:140
+#: gfloppy/src/main.c:215
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
 
-#: gfloppy/src/main.c:164
+#: gfloppy/src/main.c:239
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "%s उपकरण को खोलने में अक्षम, फॉर्मेटिंग जारी नहीं रख सकता."
 
-#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
+#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -706,7 +703,7 @@ msgstr ""
 "उपकरण %s डिस्कनेक्टेड है.\n"
 "कृपया जारी रखने हेतु उपकरण जोड़ें."
 
-#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -714,15 +711,15 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 
-#: gfloppy/src/main.c:216
+#: gfloppy/src/main.c:310
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "कोई भी उपकरण खोलने में अक्षम, फ़ॉर्मेटिंग जारी नहीं रख सकता."
 
-#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 या /dev/fd0"
 
-#: gfloppy/src/main.c:394
+#: gfloppy/src/main.c:489
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -731,15 +728,15 @@ msgstr ""
 "फ्लॉपी फ़ॉर्मेटर हेतु मदद नहीं दिखा सकता\n"
 "%s"
 
-#: gfloppy/src/main.c:427
+#: gfloppy/src/main.c:522
 msgid "The volume name can't contain any blank space."
 msgstr "वाल्यूम नाम में रिक्त स्थान सम्मिलित नहीं किया जा सकता."
 
-#: gfloppy/src/main.c:477
+#: gfloppy/src/main.c:576
 msgid "The device to format"
 msgstr "उपकरण जिसे फ़ॉर्मेट करना है"
 
-#: gfloppy/src/main.c:478
+#: gfloppy/src/main.c:577
 msgid "DEVICE"
 msgstr "उपकरण"
 
@@ -770,9 +767,9 @@ msgstr "फ़ॉर्मेट की प्रगति"
 msgid "Find files, folders, and documents on your computer"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
-#: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
-#: gsearchtool/gsearchtool.c:2288 gsearchtool/gsearchtool.c:2313
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
+#: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
+#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
 msgid "Search for Files"
 msgstr "फ़ाइलें ढूंढें"
 
@@ -968,24 +965,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:511
+#: gsearchtool/gsearchtool-support.c:620
 msgid "today at %-I:%M %p"
 msgstr "आज %-I:%M %p पर"
 
-#: gsearchtool/gsearchtool-support.c:513
+#: gsearchtool/gsearchtool-support.c:622
 msgid "yesterday at %-I:%M %p"
 msgstr "कल %-I:%M %p पर"
 
-#: gsearchtool/gsearchtool-support.c:515 gsearchtool/gsearchtool-support.c:517
+#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
 #, fuzzy
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:688
+#: gsearchtool/gsearchtool-support.c:797
 msgid "link (broken)"
 msgstr "लिंक (टूटा)"
 
-#: gsearchtool/gsearchtool-support.c:693
+#: gsearchtool/gsearchtool-support.c:802
 #, c-format
 msgid "link to %s"
 msgstr "%s से लिंक है"
@@ -1058,71 +1055,71 @@ msgstr "सिंबालिक लिंक्स का अनुसरण �
 msgid "Include other filesystems"
 msgstr "अन्य फ़ाइल-सिस्टम्स भी सम्मिलित करें"
 
-#: gsearchtool/gsearchtool.c:547 gsearchtool/gsearchtool.c:575
+#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
 msgid "No files found"
 msgstr "कोई फ़ाइलें नहीं मिलीं"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:602
 msgid "(stopped)"
 msgstr "(रुका)"
 
-#: gsearchtool/gsearchtool.c:574
+#: gsearchtool/gsearchtool.c:608
 msgid "No Files Found"
 msgstr "कोई फ़ाइलें नहीं मिलीं"
 
-#: gsearchtool/gsearchtool.c:579
+#: gsearchtool/gsearchtool.c:613
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "कोई फ़ाइलें नहीं मिलीं"
 msgstr[1] "कोई फ़ाइलें नहीं मिलीं"
 
-#: gsearchtool/gsearchtool.c:583
+#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "कोई फ़ाइलें नहीं मिलीं"
 msgstr[1] "कोई फ़ाइलें नहीं मिलीं"
 
-#: gsearchtool/gsearchtool.c:689
+#: gsearchtool/gsearchtool.c:743
 msgid "Entry changed called for a non entry option!"
 msgstr "प्रविष्टि नहीं विकल्प हेतु प्रविष्टि परिवर्तन बुलाया गया!"
 
-#: gsearchtool/gsearchtool.c:942
+#: gsearchtool/gsearchtool.c:998
 msgid "Searching..."
 msgstr "ढूंढ रहे..."
 
-#: gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1020
 msgid "Set the text of 'Name contains'"
 msgstr "'नाम में सम्मिलित हैं' का पाठ नियत करें"
 
-#: gsearchtool/gsearchtool.c:964
+#: gsearchtool/gsearchtool.c:1021
 msgid "Set the text of 'Look in folder'"
 msgstr "'फ़ोल्डर में देखें' का पाठ नियत करें"
 
-#: gsearchtool/gsearchtool.c:965
+#: gsearchtool/gsearchtool.c:1022
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "फ़ाइलों को निम्न में से किसी एक आधार पर क्रमबद्ध करें: नाम, फ़ोल्डर, आकार, प्रकार तथा तिथि"
 
-#: gsearchtool/gsearchtool.c:966
+#: gsearchtool/gsearchtool.c:1023
 msgid "Set sort order to descending, the default is ascending"
 msgstr "क्रमबद्ध करना अवरोहण क्रम में नियत करें, डिफ़ॉल्ट है आरोहण"
 
-#: gsearchtool/gsearchtool.c:967
+#: gsearchtool/gsearchtool.c:1024
 msgid "Automatically start a search"
 msgstr "ढूंढना स्वचालित प्रारंभ करें"
 
-#: gsearchtool/gsearchtool.c:972
+#: gsearchtool/gsearchtool.c:1029
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "चुनें '%s' प्रतिबंध"
 
-#: gsearchtool/gsearchtool.c:1078
+#: gsearchtool/gsearchtool.c:1135
 msgid "Invalid option passed to sortby command line argument."
 msgstr "कमांड लाइन आर्गुमेंट से क्रमबद्ध करने हेतु अवैध विकल्प पास किया गया."
 
-#: gsearchtool/gsearchtool.c:1350
+#: gsearchtool/gsearchtool.c:1434
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1130,93 +1127,94 @@ msgstr ""
 "\n"
 "... प्रदर्शन हेतु अत्यधिक त्रुटियाँ ..."
 
-#: gsearchtool/gsearchtool.c:1359
+#: gsearchtool/gsearchtool.c:1443
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1380
+#: gsearchtool/gsearchtool.c:1464
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1388
+#: gsearchtool/gsearchtool.c:1472
 msgid "Disable _Quick Search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1432
+#: gsearchtool/gsearchtool.c:1516
 msgid "Error parsing the search command."
 msgstr "ढूंढने के कमांड पार्से करने में त्रुटि."
 
-#: gsearchtool/gsearchtool.c:1461
+#: gsearchtool/gsearchtool.c:1545
 msgid "Error running the search command."
 msgstr "ढूंढने के कमांड चलाने में त्रुटि."
 
-#: gsearchtool/gsearchtool.c:1572
+#: gsearchtool/gsearchtool.c:1659
 #, c-format
 msgid "'%s' entry"
 msgstr "प्रविष्टि '%s'"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1660
 msgid "Enter a value for search rule"
 msgstr "ढूंढने के नियम हेतु मूल्य भरें"
 
-#: gsearchtool/gsearchtool.c:1620
+#: gsearchtool/gsearchtool.c:1707
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "नियम '%s' को मिटाने हेतु क्लिक करें"
 
-#: gsearchtool/gsearchtool.c:1675
+#: gsearchtool/gsearchtool.c:1762
 msgid "A_vailable options:"
 msgstr "उपलब्ध विकल्प (_v):"
 
-#: gsearchtool/gsearchtool.c:1688
+#: gsearchtool/gsearchtool.c:1775
 msgid "Search Rules Menu"
 msgstr "ढूंढने के नियम मेनू"
 
-#: gsearchtool/gsearchtool.c:1689
+#: gsearchtool/gsearchtool.c:1776
 msgid "Select a search rule from the menu"
 msgstr "मेनू में से ढूंढने के नियम चुनें"
 
-#: gsearchtool/gsearchtool.c:1720
+#: gsearchtool/gsearchtool.c:1807
 msgid "S_earch results:"
 msgstr "ढूंढने के परिणाम (_e):"
 
-#: gsearchtool/gsearchtool.c:1800
+#: gsearchtool/gsearchtool.c:1887
 msgid "Name"
 msgstr "नाम"
 
-#: gsearchtool/gsearchtool.c:1820
+#: gsearchtool/gsearchtool.c:1907
 msgid "Folder"
 msgstr "फ़ोल्डर"
 
-#: gsearchtool/gsearchtool.c:1831
+#: gsearchtool/gsearchtool.c:1918
 msgid "Size"
 msgstr "आकार"
 
-#: gsearchtool/gsearchtool.c:1841
+#: gsearchtool/gsearchtool.c:1928
 msgid "Type"
 msgstr "प्रकार"
 
-#: gsearchtool/gsearchtool.c:1851
+#: gsearchtool/gsearchtool.c:1938
 msgid "Date Modified"
 msgstr "तिथि परिवर्धित"
 
-#: gsearchtool/gsearchtool.c:1909
+#: gsearchtool/gsearchtool.c:1995
 msgid "_Name contains:"
 msgstr "नाम में सम्मिलित है (_N):"
 
-#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
-msgid "Enter the file name you want to search"
+#: gsearchtool/gsearchtool.c:2010 gsearchtool/gsearchtool.c:2011
+#, fuzzy
+msgid "Enter the file name you want to search."
 msgstr "जिसे आप ढूंढना चाहते हैं वह फ़ाइल नाम भरें"
 
-#: gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:2011
 msgid "Name Contains Entry"
 msgstr "नाम में प्रविष्टि है"
 
-#: gsearchtool/gsearchtool.c:1936
+#: gsearchtool/gsearchtool.c:2022
 msgid "_Look in folder:"
 msgstr "फ़ोल्डर में देखें (_L):"
 
@@ -1224,186 +1222,177 @@ msgstr "फ़ोल्डर में देखें (_L):"
 # libgnome-desktop/gnome-ditem-edit.c:381
 # #-#-#-#-#  libgnomeui.HEAD.hi.po (libgnomeui-2.0.hi)  #-#-#-#-#
 # libgnomeui/gnome-icon-entry.c:930
-#: gsearchtool/gsearchtool.c:1942
+#: gsearchtool/gsearchtool.c:2028
 msgid "Browse"
 msgstr "ब्राउज़"
 
-#: gsearchtool/gsearchtool.c:1953 gsearchtool/gsearchtool.c:1954
-msgid "Enter the folder name where you want to start the search"
+#: gsearchtool/gsearchtool.c:2035
+#, fuzzy
+msgid "Select the folder where you want to start the search."
 msgstr "फ़ोल्डर का नाम भरें जहाँ आप ढूंढना प्रारंभ करना चाहते हैं"
 
-#: gsearchtool/gsearchtool.c:1954
-msgid "Look in Folder Entry"
-msgstr "फ़ोल्डर प्रविष्टि में देखें"
-
-#: gsearchtool/gsearchtool.c:1972
+#: gsearchtool/gsearchtool.c:2049
 msgid "Show more _options"
 msgstr "अधिक विकल्प दिखाएँ (_o)"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:2059
 msgid "Show more options"
 msgstr "अधिक विकल्प दिखाएँ"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:2059
 msgid "Expands or collapses a list of search options."
 msgstr "ढूंढने के विकल्पों को विस्तारित या कोलेप्स करता है."
 
-#: gsearchtool/gsearchtool.c:2029
+#: gsearchtool/gsearchtool.c:2106
 msgid "Click to Start the search"
 msgstr "ढूंढना प्रारंभ करने हेतु क्लिक करें"
 
-#: gsearchtool/gsearchtool.c:2030
+#: gsearchtool/gsearchtool.c:2107
 msgid "Click to Stop the search"
 msgstr "ढूंढना बंद करने हेतु क्लिक करें"
 
-#: gsearchtool/gsearchtool.c:2309
+#: gsearchtool/gsearchtool.c:2386
 msgid "Cannot initialize bonobo."
 msgstr "बोनोबो प्रारंभ नही कर सका."
 
-#  Author needs some sort of dash over the 'e' in Cesar  - U-00E9
-#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
-#: logview/about.c:43
-msgid "Cesar Miquel (miquel@df.uba.ar)"
-msgstr "सेसार माइकेल (miquel@df.uba.ar)"
-
-#: logview/about.c:44
-msgid "A system log viewer for GNOME."
-msgstr "गनोम हेतु तंत्र लॉग प्रदर्शक."
-
-#: logview/about.c:58
+#: logview/about.c:48
 msgid "System Log Viewer"
 msgstr "तंत्र लॉग प्रदर्शक"
 
-#: logview/actions.c:74
+#: logview/about.c:51
+msgid "A system log viewer for GNOME."
+msgstr "गनोम हेतु तंत्र लॉग प्रदर्शक."
+
+#: logview/actions.c:73
 msgid "Action Database"
 msgstr "क्रिया डेटाबेस"
 
-#: logview/actions.c:85
+#: logview/actions.c:84
 msgid "Actions"
 msgstr "क्रियाएँ"
 
-#: logview/actions.c:157
+#: logview/actions.c:156
 msgid "_Add"
 msgstr "जोड़ें (_A)"
 
-#: logview/actions.c:162
+#: logview/actions.c:161
 msgid "Add an action"
 msgstr "क्रिया जोड़ें"
 
-#: logview/actions.c:164
+#: logview/actions.c:163 logview/logview.c:80
 msgid "_Edit"
 msgstr "संपादन (_E)"
 
-#: logview/actions.c:169
+#: logview/actions.c:168
 msgid "Edit an action"
 msgstr "क्रिया संपादित करें"
 
-#: logview/actions.c:171
+#: logview/actions.c:170
 msgid "_Remove"
 msgstr "मिटाएँ (_R)"
 
-#: logview/actions.c:176
+#: logview/actions.c:175
 msgid "Remove an action"
 msgstr "क्रिया मिटाएँ"
 
-#: logview/actions.c:263
+#: logview/actions.c:262
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "डेटाबेस <%s> खोल नहीं सका! खोलना असफल."
 
-#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
-#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
+#: logview/actions.c:297 logview/actions.c:310 logview/actions.c:321
+#: logview/actions.c:332 logview/actions.c:343 logview/actions.c:354
 msgid "Error parsing actions data base"
 msgstr "क्रिया डेटाबेस पार्सिंग करने में त्रुटि"
 
-#: logview/actions.c:389
+#: logview/actions.c:388
 msgid "Can't write to actions database!"
 msgstr "क्रिया डेटाबेस में लिख नहीं सका!"
 
-#: logview/actions.c:487
+#: logview/actions.c:486
 #, fuzzy, c-format
 msgid "Error while executing specified action: %s"
 msgstr "निर्दिष्ट क्रिया चलाने के दौरान त्रुटि"
 
-#: logview/actions.c:510
+#: logview/actions.c:509
 msgid "<empty>"
 msgstr "<खाली>"
 
-#: logview/actions.c:511
+#: logview/actions.c:510
 msgid "log name regexp"
 msgstr "लॉग नाम रेगएक्सपी"
 
-#: logview/actions.c:512
+#: logview/actions.c:511
 msgid "process regexp"
 msgstr "प्रक्रिया रेगएक्सपी"
 
-#: logview/actions.c:513
+#: logview/actions.c:512
 msgid "message regexp"
 msgstr "संदेश रेगएक्सपी"
 
-#: logview/actions.c:514
+#: logview/actions.c:513
 msgid "action to execute when regexps are TRUE"
 msgstr "जब रेगएक्सपी सत्य हो तो की जाने वाली क्रिया"
 
-#: logview/actions.c:515
+#: logview/actions.c:514
 msgid "description"
 msgstr "वर्णन"
 
-#: logview/actions.c:651
+#: logview/actions.c:650
 msgid "Edit Action"
 msgstr "क्रिया संपादित करें"
 
-#: logview/actions.c:687
+#: logview/actions.c:686
 msgid "_Tag:"
 msgstr "टैगः (_T)"
 
-#: logview/actions.c:696
+#: logview/actions.c:695
 msgid "Tag that identifies the log file."
 msgstr "टैग जो लॉग फ़ाइल को पहचान योग्य बनाता है."
 
-#: logview/actions.c:705
+#: logview/actions.c:704
 msgid "_Log name:"
 msgstr "लॉग नाम: (_L)"
 
-#: logview/actions.c:714
+#: logview/actions.c:713
 msgid "Regular expression that will match the log name."
 msgstr "लॉग नाम से मेल खाता नियमित एक्सप्रेशन."
 
-#: logview/actions.c:724
+#: logview/actions.c:723
 msgid "_Process:"
 msgstr "प्रक्रिया: (_P)"
 
-#: logview/actions.c:733
+#: logview/actions.c:732
 msgid "Regular expression that will match process part of message."
 msgstr "संदेश की प्रक्रिया भाग से मेल खाता नियमित एक्सप्रेशन."
 
-#: logview/actions.c:743
+#: logview/actions.c:742
 msgid "_Message:"
 msgstr "संदेश (_M):"
 
-#: logview/actions.c:752
+#: logview/actions.c:751
 msgid "Regular expression that will match the message."
 msgstr "रेगुलर एक्सप्रेशन जो संदेश से मेल खाए"
 
-#: logview/actions.c:762
+#: logview/actions.c:761
 msgid "_Action:"
 msgstr "क्रिया: (_A)"
 
-#: logview/actions.c:771
+#: logview/actions.c:770
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
 
-#: logview/actions.c:781
+#: logview/actions.c:780
 msgid "_Description:"
 msgstr "वर्णन (_D):"
 
-#: logview/actions.c:790
+#: logview/actions.c:789
 msgid "Description of this entry."
 msgstr "इस प्रविष्टि का विवरण."
 
-#: logview/actions.c:814
+#: logview/actions.c:813
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1421,28 +1410,40 @@ msgstr ""
 "क्रिया: [%s]\n"
 
 # libgnomeui/gnome-dateedit.c:745
-#: logview/calendar.c:110
+#: logview/calendar.c:73
 msgid "Calendar"
 msgstr "तिथिपत्री"
 
-#: logview/desc_db.c:37
+#: logview/desc_db.c:34
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr "रेगएक्सपी डेटाबेस <%s> खोल नहीं सका! खोलना असफल."
 
-#: logview/desc_db.c:147
+#: logview/desc_db.c:144
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "विवरण डेटाबेस <%s> खोल नहीं सकता! खोलना असफल."
+
+#: logview/gedit-output-window.c:350
+msgid "Close the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:388
+msgid "Copy selected lines"
+msgstr ""
+
+#: logview/gedit-output-window.c:408
+msgid "Clear the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:448
+msgid "Output Lines"
+msgstr ""
 
 #  ----------------------------------------------------------------------
 #  NAME:
 #  DESCRIPTION:
 #  ----------------------------------------------------------------------
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "तंत्र लॉग"
@@ -1451,129 +1452,133 @@ msgstr "तंत्र लॉग"
 msgid "View the system log file"
 msgstr "तंत्र लॉग फ़ाइल दिखाएँ"
 
-#: logview/info.c:62
+#: logview/info.c:50
 msgid "Properties"
 msgstr "गुण"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Size:"
 msgstr "आकार:"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Modified:"
 msgstr "परिवर्धितः"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Start Date:"
 msgstr "प्रारंभिक तिथि:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Last Date:"
 msgstr "अंतिम तिथि:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Number of Lines:"
 msgstr "पंक्तियों की संख्या:"
 
-#: logview/info.c:134
+#: logview/info.c:121
 msgid "Log Information"
 msgstr "लॉग जानकारी"
 
-#: logview/info.c:160 logview/zoom.c:155
+#: logview/info.c:147 logview/zoom.c:163
 msgid "<No log loaded>"
 msgstr "<कोई लॉग लोडेड नहीं>"
 
-#: logview/info.c:183
+#: logview/info.c:170
 #, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "January"
 msgstr "जनवरी"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "February"
 msgstr "फ़रवरी"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "March"
 msgstr "मार्च"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "April"
 msgstr "अप्रैल"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "May"
 msgstr "मई"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "June"
 msgstr "जून"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "July"
 msgstr "जुलाई"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "August"
 msgstr "अगस्त"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "September"
 msgstr "सितम्बर"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "October"
 msgstr "अक्टूबर"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "November"
 msgstr "नवम्बर"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "December"
 msgstr "दिसम्बर"
 
 #  Translators: Date only format, %x should well do really
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:394
+#: logview/log_repaint.c:279
 #, c-format
 msgid "%x"
 msgstr "%x"
+
+#: logview/log_repaint.c:298
+msgid "Last Modified: "
+msgstr "अंतिम बार परिवर्धितः"
 
 #  Translators: Make sure this is only Month and Day format, year
 #  * will be bogus here
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:449
+#: logview/log_repaint.c:327
 msgid "%B %e"
 msgstr "%B %e"
 
 #  Translators: should be only the time, date could be bogus
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:521
+#: logview/log_repaint.c:399
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:193
+#: logview/logrtns.c:192
 msgid "Not enough memory!\n"
 msgstr "पर्याप्त मेमोरी नहीं है!\n"
 
-#: logview/logrtns.c:204
+#: logview/logrtns.c:203
 msgid "Unable to open logfile!\n"
 msgstr "लॉग फ़ाइल खोलने में अक्षम!\n"
 
-#: logview/logrtns.c:265
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s नियमित फ़ाइल नहीं है."
 
-#: logview/logrtns.c:273
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1582,111 +1587,169 @@ msgstr ""
 "%s उपयोगकर्ता के पढ़ने योग्य नहीं है.या तो प्रोग्राम को रूट के रूप में चलाएँ या तंत्र-प्रशासक "
 "से फ़ाइल की अनुमति बदलने हेतु कहें."
 
-#: logview/logrtns.c:290
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s खोला नहीं जा सकता."
 
-#: logview/logrtns.c:320 logview/logrtns.c:329
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "%s लॉग फ़ाइल नहीं है."
 
-#: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "रीड-लॉग-स्टेट्स: मेमोरी खत्म"
 
-#: logview/logview.c:100
-msgid "S_witch Log"
-msgstr "लॉग बदलें (_w)"
+#: logview/logview-findbar.c:252
+#, fuzzy
+msgid "Fin_d : "
+msgstr "ढूंढें"
 
-#: logview/logview.c:101
-msgid "Switch between already opened logs"
-msgstr "पहले से खुले लॉग के बीच स्विच करें"
+#: logview/logview-findbar.c:270
+#, fuzzy
+msgid "Find Next"
+msgstr "ढूंढें"
 
-#: logview/logview.c:107
-msgid "_Monitor..."
-msgstr "मॉनीटर... (_M)"
+#: logview/logview-findbar.c:280
+msgid "Find Previous"
+msgstr ""
 
-#: logview/logview.c:108
-msgid "Monitor Logs"
-msgstr "लॉग मॉनीटर करें"
+#: logview/logview.c:79
+msgid "_Log"
+msgstr ""
 
-#: logview/logview.c:116
+#: logview/logview.c:81
+msgid "_View"
+msgstr ""
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "_Open..."
+msgstr "खोलें (_O)"
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "Open a log from file"
+msgstr "नई लॉग फ़ाइल खोलें"
+
+#: logview/logview.c:86
 msgid "_Properties"
 msgstr "गुण (_P)"
 
-#: logview/logview.c:117
+#: logview/logview.c:86
 msgid "Show Log Properties"
 msgstr "लॉग गुण दिखाएँ"
 
-#: logview/logview.c:125
-msgid "Clos_e All"
+#: logview/logview.c:88
+#, fuzzy
+msgid "Close"
 msgstr "सभी बंद करें (_e)"
 
-#: logview/logview.c:126
-msgid "Close all Log files"
-msgstr "सभी लॉग फ़ाइलें बंद करें"
+#: logview/logview.c:88
+msgid "Close this log"
+msgstr ""
 
-#: logview/logview.c:138
-msgid "_Calendar"
-msgstr "तिथि पत्री (_C)"
+#: logview/logview.c:90
+#, fuzzy
+msgid "_Quit"
+msgstr "संपादन (_E)"
 
-#: logview/logview.c:139
-msgid "Show Calendar Log"
-msgstr "तिथि पत्री लॉग दिखाएँ"
+#: logview/logview.c:90
+#, fuzzy
+msgid "Quit the log viewer"
+msgstr "तंत्र लॉग प्रदर्शक"
 
-#: logview/logview.c:145
-msgid "_Entry Detail"
-msgstr "प्रविष्टि विवरण (_E)"
+#: logview/logview.c:93
+msgid "Find pattern in logs"
+msgstr ""
 
-#: logview/logview.c:146
-msgid "Show Entry Detail"
-msgstr "प्रविष्टि विवरण दिखाएँ"
-
-#: logview/logview.c:152
-msgid "_Collapse All"
+#: logview/logview.c:96
+#, fuzzy
+msgid "Collapse _All"
 msgstr "सभी कोलैप्स करें (_C)"
 
-#: logview/logview.c:153
+#: logview/logview.c:96
 msgid "Collapse all the rows"
 msgstr "सभी पंक्तियाँ कोलेप्स करें"
 
-#: logview/logview.c:370
+#: logview/logview.c:99
+msgid "_Contents"
+msgstr ""
+
+#: logview/logview.c:99
+msgid "Open the help contents for the log viewer"
+msgstr ""
+
+#: logview/logview.c:101
+msgid "Show the about dialog for the gconf editor"
+msgstr ""
+
+#: logview/logview.c:107
+#, fuzzy
+msgid "_Monitor"
+msgstr "मॉनीटर... (_M)"
+
+#: logview/logview.c:107
+#, fuzzy
+msgid "Monitor Current Log"
+msgstr "लॉग मॉनीटर करें"
+
+#: logview/logview.c:109
+msgid "_Calendar"
+msgstr "तिथि पत्री (_C)"
+
+#: logview/logview.c:109
+msgid "Show Calendar Log"
+msgstr "तिथि पत्री लॉग दिखाएँ"
+
+#: logview/logview.c:111
+msgid "_Entry Detail"
+msgstr "प्रविष्टि विवरण (_E)"
+
+#: logview/logview.c:111
+msgid "Show Entry Detail"
+msgstr "प्रविष्टि विवरण दिखाएँ"
+
+#: logview/logview.c:166
+msgid "Open the specified log."
+msgstr ""
+
+#: logview/logview.c:298
 msgid "No log files to open"
 msgstr "खोलने हेतु कोई लॉग फ़ाइलें नहीं हैं"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Date"
 msgstr "तिथि"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Host Name"
 msgstr "होस्ट नाम"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Process"
 msgstr "प्रक्रिया"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Message"
 msgstr "संदेश"
 
-#: logview/logview.c:474
-msgid "Last Modified: "
-msgstr "अंतिम बार परिवर्धितः"
-
-#: logview/logview.c:573 logview/logview.c:648
-msgid "Too many open logs. Close one and try again"
-msgstr "बहुत सारे लॉग्स खुले हैं. एक को बंद कर फिर कोशिश करें"
-
-#: logview/logview.c:585
-msgid "File already opened"
-msgstr "फ़ाइलें पहले से ही खुली हैं"
-
-#: logview/logview.c:661
+#: logview/logview.c:581
 msgid "Open new logfile"
 msgstr "नई लॉग फ़ाइल खोलें"
+
+#: logview/logview.c:922
+#, fuzzy, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+"मदद दर्शाने में त्रुटि हुई:\n"
+"%s"
+
+#: logview/logview.c:934
+#, c-format
+msgid "%s - %s (monitored)"
+msgstr ""
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -1700,90 +1763,100 @@ msgstr ""
 "प्रारंभ में खोलने हेतु लॉग फ़ाइल निर्दिष्ट करता है. डिफ़ॉल्ट या तो है  /var/adm/messages  "
 "या /var/log/messages, जो  आपके ऑपरेटिंग सिस्टम पर निर्भर करता है."
 
-#: logview/misc.c:56
-#, c-format
-msgid "Error: [%s]\n"
-msgstr "त्रुटि: [%s]\n"
-
-#: logview/monitor.c:111
-msgid "Monitor Options"
-msgstr "मॉनीटर विकल्प"
-
-#: logview/monitor.c:114
-msgid "Ac_tions..."
-msgstr "क्रियाएँ (_t)..."
-
-#: logview/monitor.c:140
-msgid "_Select logs to monitor:"
-msgstr "मॉनीटर करने हेतु लॉग चुनें: (_S)"
-
-#: logview/monitor.c:145
-msgid "Currently _monitored logs:"
-msgstr "वर्तमान में मॉनीटर्ड लॉग (_m):"
-
-#: logview/monitor.c:193
-msgid "Add logs to monitor"
-msgstr "मॉनीटर करने हेतु लॉग जोडें"
-
-#: logview/monitor.c:202
-msgid "Remove logs from monitor"
-msgstr "मॉनीटर से लॉग मिटाएँ"
-
-#  Check boxes
-#. Check boxes
-#: logview/monitor.c:249
-msgid "_Hide application"
-msgstr "अनुप्रयोग छुपाएँ (_H)"
-
-#: logview/monitor.c:257
-msgid "_Execute actions"
-msgstr "क्रिया चलाएँ (_E)"
-
-#: logview/monitor.c:293
-msgid "Too many logs to monitor. Remove one and try again"
-msgstr "मॉनीटर करने हेतु बहुत से लॉग हैं. एक मिटाकर पुनः कोशिश करें"
-
-#: logview/monitor.c:301 logview/monitor.c:338
-msgid "tmp_list is NULL\n"
-msgstr "tmp_list खाली है\n"
-
-#: logview/monitor.c:475
-msgid "Monitoring Logs..."
-msgstr "लॉग मॉनीटर कर रहे..."
-
-#: logview/monitor.c:667
-msgid "TOUCHED!!\n"
-msgstr "प्रभावित!!\n"
-
-#: logview/zoom.c:63
+#: logview/zoom.c:65
 msgid "Entry Detail"
 msgstr "प्रविष्टि विवरण"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Date:"
 msgstr "तिथिः"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Process:"
 msgstr "प्रक्रियाः"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Message:"
 msgstr "संदेशः"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Description:"
 msgstr "वर्णनः"
 
-#: logview/zoom.c:129
+#: logview/zoom.c:133
 msgid "Log Line Details"
 msgstr "लॉग पंक्ति विवरण"
 
 #  Translators: do not include year, it would be bogus
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:187
+#: logview/zoom.c:195
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Accessories"
+#~ msgstr "सहायक प्रोग्राम"
+
+#~ msgid "Look in Folder Entry"
+#~ msgstr "फ़ोल्डर प्रविष्टि में देखें"
+
+#  Author needs some sort of dash over the 'e' in Cesar  - U-00E9
+#~ msgid "Cesar Miquel (miquel@df.uba.ar)"
+#~ msgstr "सेसार माइकेल (miquel@df.uba.ar)"
+
+#~ msgid "S_witch Log"
+#~ msgstr "लॉग बदलें (_w)"
+
+#~ msgid "Switch between already opened logs"
+#~ msgstr "पहले से खुले लॉग के बीच स्विच करें"
+
+#~ msgid "Close all Log files"
+#~ msgstr "सभी लॉग फ़ाइलें बंद करें"
+
+#~ msgid "Too many open logs. Close one and try again"
+#~ msgstr "बहुत सारे लॉग्स खुले हैं. एक को बंद कर फिर कोशिश करें"
+
+#~ msgid "File already opened"
+#~ msgstr "फ़ाइलें पहले से ही खुली हैं"
+
+#~ msgid "Error: [%s]\n"
+#~ msgstr "त्रुटि: [%s]\n"
+
+#~ msgid "Monitor Options"
+#~ msgstr "मॉनीटर विकल्प"
+
+#~ msgid "Ac_tions..."
+#~ msgstr "क्रियाएँ (_t)..."
+
+#~ msgid "_Select logs to monitor:"
+#~ msgstr "मॉनीटर करने हेतु लॉग चुनें: (_S)"
+
+#~ msgid "Currently _monitored logs:"
+#~ msgstr "वर्तमान में मॉनीटर्ड लॉग (_m):"
+
+#~ msgid "Add logs to monitor"
+#~ msgstr "मॉनीटर करने हेतु लॉग जोडें"
+
+#~ msgid "Remove logs from monitor"
+#~ msgstr "मॉनीटर से लॉग मिटाएँ"
+
+#  Check boxes
+#~ msgid "_Hide application"
+#~ msgstr "अनुप्रयोग छुपाएँ (_H)"
+
+#~ msgid "_Execute actions"
+#~ msgstr "क्रिया चलाएँ (_E)"
+
+#~ msgid "Too many logs to monitor. Remove one and try again"
+#~ msgstr "मॉनीटर करने हेतु बहुत से लॉग हैं. एक मिटाकर पुनः कोशिश करें"
+
+#~ msgid "tmp_list is NULL\n"
+#~ msgstr "tmp_list खाली है\n"
+
+#~ msgid "Monitoring Logs..."
+#~ msgstr "लॉग मॉनीटर कर रहे..."
+
+#~ msgid "TOUCHED!!\n"
+#~ msgstr "प्रभावित!!\n"
 
 #~ msgid "Search your disk for files"
 #~ msgstr "फ़ाइलों को अपनी डिस्क में ढूँढें"

@@ -6,34 +6,30 @@
 msgid ""
 msgstr ""
 "Project-Id-Version:gnome-utils.HEAD\n"
-"POT-Creation-Date: 2004-10-12 12:03+1300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-30 17:35-0300\n"
 "PO-Revision-Date: 2003-07-05 10:29+0530\n"
 "Last-Translator: FSF-India <locale@gnu.org.in>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
-msgid "Accessories"
-msgstr "സഹപ്രയോഗങ്ങള്"
-
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:144
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:169
 msgid "Dictionary Lookup"
 msgstr "നിഘണ്ടു നോക്കുക"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:160
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:185
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr ""
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:101
 #, fuzzy
 msgid "_About"
 msgstr "കുറിപ്പ്..."
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:82
 msgid "_Help"
 msgstr "സഹായം"
 
@@ -65,7 +61,7 @@ msgid ""
 msgstr ""
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:49
+#: gdictsrc/gdict-about.c:43 logview/about.c:44
 #, fuzzy
 msgid "translator-credits"
 msgstr "എഫ്.എസ്.എഫ് - ഇന്ത്യ <gnu@gnu.org.in>"
@@ -112,7 +108,7 @@ msgstr "കണ്ടെത്തുക"
 msgid "_Search for:"
 msgstr "രചനകള് തെരയുക"
 
-#: gdictsrc/gdict-app.c:492
+#: gdictsrc/gdict-app.c:492 logview/logview.c:93
 msgid "_Find"
 msgstr "അന്വേഷിക്കുക"
 
@@ -165,11 +161,11 @@ msgstr ""
 msgid "Look Up for a Word"
 msgstr "വാക്കിനുവേണ്ടി നോക്കുക"
 
-#: gdictsrc/gdict-applet.c:137
+#: gdictsrc/gdict-applet.c:161
 msgid "_Lookup"
 msgstr "നോക്കൂ"
 
-#: gdictsrc/gdict-applet.c:148
+#: gdictsrc/gdict-applet.c:173
 #, fuzzy
 msgid "Dictionary word entry"
 msgstr "നിഘണ്ടു സ‌ര്‌വ‌ര്"
@@ -396,7 +392,7 @@ msgstr ""
 msgid "Failed to open device %s for badblock checking\n"
 msgstr ""
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
 msgid "Checking for bad blocks... Done"
 msgstr ""
 
@@ -498,24 +494,24 @@ msgstr ""
 msgid "Could not determine current floppy geometry."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:222
+#: gfloppy/src/gfloppy.c:225
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:242
+#: gfloppy/src/gfloppy.c:245
 msgid "Error while filling the bad blocks list file."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:305
+#: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:331
+#: gfloppy/src/gfloppy.c:334
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:348
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -523,44 +519,44 @@ msgid ""
 "%s (%d)"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:365
 msgid "Abnormal child process termination."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:390
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:402
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:445
 msgid "Abnormal mbadblocks child process termination."
 msgstr ""
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:468 gfloppy/src/gfloppy.c:508
+#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
 msgid "Making filesystem on disk..."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:476
+#: gfloppy/src/gfloppy.c:479
 msgid "Unable to create filesystem correctly."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:520
+#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
 msgid "Making filesystem on disk... Done"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:525
+#: gfloppy/src/gfloppy.c:528
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:530
+#: gfloppy/src/gfloppy.c:533
 msgid "Error while checking the bad blocks."
 msgstr ""
 
@@ -647,25 +643,25 @@ msgstr ""
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
 
-#: gfloppy/src/main.c:140
+#: gfloppy/src/main.c:215
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
 
-#: gfloppy/src/main.c:164
+#: gfloppy/src/main.c:239
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr ""
 
-#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
+#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
 msgstr ""
 
-#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -673,30 +669,30 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 
-#: gfloppy/src/main.c:216
+#: gfloppy/src/main.c:310
 msgid "Unable to open any device, formatting cannot continue."
 msgstr ""
 
-#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr ""
 
-#: gfloppy/src/main.c:394
+#: gfloppy/src/main.c:489
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
 "%s"
 msgstr ""
 
-#: gfloppy/src/main.c:427
+#: gfloppy/src/main.c:522
 msgid "The volume name can't contain any blank space."
 msgstr ""
 
-#: gfloppy/src/main.c:477
+#: gfloppy/src/main.c:576
 msgid "The device to format"
 msgstr "ക്രമീകരിക്കേണ്ട ഉപകരണം"
 
-#: gfloppy/src/main.c:478
+#: gfloppy/src/main.c:577
 msgid "DEVICE"
 msgstr ""
 
@@ -727,9 +723,9 @@ msgstr ""
 msgid "Find files, folders, and documents on your computer"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
-#: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
-#: gsearchtool/gsearchtool.c:2288 gsearchtool/gsearchtool.c:2313
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
+#: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
+#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
 msgid "Search for Files"
 msgstr "രചനകള് തെരയുക"
 
@@ -922,24 +918,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:511
+#: gsearchtool/gsearchtool-support.c:620
 msgid "today at %-I:%M %p"
 msgstr "ഇന്ന് %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:513
+#: gsearchtool/gsearchtool-support.c:622
 msgid "yesterday at %-I:%M %p"
 msgstr "ഇന്നലെ %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:515 gsearchtool/gsearchtool-support.c:517
+#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
 #, fuzzy
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:688
+#: gsearchtool/gsearchtool-support.c:797
 msgid "link (broken)"
 msgstr "ബന്ധം (പൊട്ടിയ)"
 
-#: gsearchtool/gsearchtool-support.c:693
+#: gsearchtool/gsearchtool-support.c:802
 #, c-format
 msgid "link to %s"
 msgstr "%s ല്‌ ബന്ധിപ്പിക്കുക"
@@ -1010,352 +1006,345 @@ msgstr ""
 msgid "Include other filesystems"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:547 gsearchtool/gsearchtool.c:575
+#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
 msgid "No files found"
 msgstr "രചനയൊന്നും കണ്ടില്ല"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:602
 msgid "(stopped)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:574
+#: gsearchtool/gsearchtool.c:608
 #, fuzzy
 msgid "No Files Found"
 msgstr "രചനയൊന്നും കണ്ടില്ല"
 
-#: gsearchtool/gsearchtool.c:579
+#: gsearchtool/gsearchtool.c:613
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d രചനകള് കണ്ടെത്തി"
 msgstr[1] "%d രചനകള് കണ്ടെത്തി"
 
-#: gsearchtool/gsearchtool.c:583
+#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d രചനകള് കണ്ടെത്തി"
 msgstr[1] "%d രചനകള് കണ്ടെത്തി"
 
-#: gsearchtool/gsearchtool.c:689
+#: gsearchtool/gsearchtool.c:743
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:942
+#: gsearchtool/gsearchtool.c:998
 msgid "Searching..."
 msgstr "തെരയുന്നു..."
 
-#: gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1020
 msgid "Set the text of 'Name contains'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:964
+#: gsearchtool/gsearchtool.c:1021
 msgid "Set the text of 'Look in folder'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:965
+#: gsearchtool/gsearchtool.c:1022
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:966
+#: gsearchtool/gsearchtool.c:1023
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:967
+#: gsearchtool/gsearchtool.c:1024
 msgid "Automatically start a search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:972
+#: gsearchtool/gsearchtool.c:1029
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1078
+#: gsearchtool/gsearchtool.c:1135
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1350
+#: gsearchtool/gsearchtool.c:1434
 msgid ""
 "\n"
 "... Too many errors to display ..."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1359
+#: gsearchtool/gsearchtool.c:1443
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1380
+#: gsearchtool/gsearchtool.c:1464
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1388
+#: gsearchtool/gsearchtool.c:1472
 msgid "Disable _Quick Search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1432
+#: gsearchtool/gsearchtool.c:1516
 msgid "Error parsing the search command."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1461
+#: gsearchtool/gsearchtool.c:1545
 msgid "Error running the search command."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1572
+#: gsearchtool/gsearchtool.c:1659
 #, c-format
 msgid "'%s' entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1660
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1620
+#: gsearchtool/gsearchtool.c:1707
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1675
+#: gsearchtool/gsearchtool.c:1762
 msgid "A_vailable options:"
 msgstr "ലഭ്യമായ ബദലുകള്:"
 
-#: gsearchtool/gsearchtool.c:1688
+#: gsearchtool/gsearchtool.c:1775
 msgid "Search Rules Menu"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1689
+#: gsearchtool/gsearchtool.c:1776
 msgid "Select a search rule from the menu"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1720
+#: gsearchtool/gsearchtool.c:1807
 msgid "S_earch results:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1800
+#: gsearchtool/gsearchtool.c:1887
 msgid "Name"
 msgstr "പേര‍്"
 
-#: gsearchtool/gsearchtool.c:1820
+#: gsearchtool/gsearchtool.c:1907
 msgid "Folder"
 msgstr "കൂട്"
 
-#: gsearchtool/gsearchtool.c:1831
+#: gsearchtool/gsearchtool.c:1918
 msgid "Size"
 msgstr "വലിപ്പം"
 
-#: gsearchtool/gsearchtool.c:1841
+#: gsearchtool/gsearchtool.c:1928
 msgid "Type"
 msgstr "തരം"
 
-#: gsearchtool/gsearchtool.c:1851
+#: gsearchtool/gsearchtool.c:1938
 msgid "Date Modified"
 msgstr "തീയതി പരിഷ്കരിച്ചു"
 
-#: gsearchtool/gsearchtool.c:1909
+#: gsearchtool/gsearchtool.c:1995
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
-msgid "Enter the file name you want to search"
+#: gsearchtool/gsearchtool.c:2010 gsearchtool/gsearchtool.c:2011
+#, fuzzy
+msgid "Enter the file name you want to search."
 msgstr "തെരയേണ്ട രചനയുടെ പേര‌്"
 
-#: gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:2011
 msgid "Name Contains Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1936
+#: gsearchtool/gsearchtool.c:2022
 msgid "_Look in folder:"
 msgstr "കൂടില് നോക്കുക:"
 
-#: gsearchtool/gsearchtool.c:1942
+#: gsearchtool/gsearchtool.c:2028
 msgid "Browse"
 msgstr "അന്വോഷണം"
 
-#: gsearchtool/gsearchtool.c:1953 gsearchtool/gsearchtool.c:1954
-msgid "Enter the folder name where you want to start the search"
-msgstr ""
+#: gsearchtool/gsearchtool.c:2035
+#, fuzzy
+msgid "Select the folder where you want to start the search."
+msgstr "തെരയേണ്ട രചനയുടെ പേര‌്"
 
-#: gsearchtool/gsearchtool.c:1954
-msgid "Look in Folder Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1972
+#: gsearchtool/gsearchtool.c:2049
 msgid "Show more _options"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:2059
 #, fuzzy
 msgid "Show more options"
 msgstr "ലോഗ് ഗുണഗണങ്ങള് കാണിക്കുക"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:2059
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2029
+#: gsearchtool/gsearchtool.c:2106
 msgid "Click to Start the search"
 msgstr "തെരച്ചില് തുടങ്ങാന് ക്ളിക്ക് ചെയ്യ‍ുക"
 
-#: gsearchtool/gsearchtool.c:2030
+#: gsearchtool/gsearchtool.c:2107
 msgid "Click to Stop the search"
 msgstr "തെരച്ചില് നിര്ത്താന് ക്ളിക്ക് ചെയ്യ‍ുക"
 
-#: gsearchtool/gsearchtool.c:2309
+#: gsearchtool/gsearchtool.c:2386
 msgid "Cannot initialize bonobo."
 msgstr ""
 
-#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
-#: logview/about.c:43
-msgid "Cesar Miquel (miquel@df.uba.ar)"
-msgstr ""
-
-#: logview/about.c:44
-msgid "A system log viewer for GNOME."
-msgstr ""
-
-#: logview/about.c:58
+#: logview/about.c:48
 msgid "System Log Viewer"
 msgstr ""
 
-#: logview/actions.c:74
+#: logview/about.c:51
+msgid "A system log viewer for GNOME."
+msgstr ""
+
+#: logview/actions.c:73
 msgid "Action Database"
 msgstr ""
 
-#: logview/actions.c:85
+#: logview/actions.c:84
 msgid "Actions"
 msgstr "പ്ര‌വ‍ര്ത്തനം"
 
-#: logview/actions.c:157
+#: logview/actions.c:156
 msgid "_Add"
 msgstr "ചേര്ക്കുക"
 
-#: logview/actions.c:162
+#: logview/actions.c:161
 #, fuzzy
 msgid "Add an action"
 msgstr "പ്ര‌വ‍ര്ത്തനം"
 
-#: logview/actions.c:164
+#: logview/actions.c:163 logview/logview.c:80
 msgid "_Edit"
 msgstr "ചിട്ട"
 
-#: logview/actions.c:169
+#: logview/actions.c:168
 msgid "Edit an action"
 msgstr ""
 
-#: logview/actions.c:171
+#: logview/actions.c:170
 msgid "_Remove"
 msgstr "നീക്കുക"
 
-#: logview/actions.c:176
+#: logview/actions.c:175
 msgid "Remove an action"
 msgstr ""
 
-#: logview/actions.c:263
+#: logview/actions.c:262
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr ""
 
-#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
-#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
+#: logview/actions.c:297 logview/actions.c:310 logview/actions.c:321
+#: logview/actions.c:332 logview/actions.c:343 logview/actions.c:354
 msgid "Error parsing actions data base"
 msgstr ""
 
-#: logview/actions.c:389
+#: logview/actions.c:388
 msgid "Can't write to actions database!"
 msgstr ""
 
-#: logview/actions.c:487
+#: logview/actions.c:486
 #, c-format
 msgid "Error while executing specified action: %s"
 msgstr ""
 
-#: logview/actions.c:510
+#: logview/actions.c:509
 msgid "<empty>"
 msgstr "<ശൂന്യം>"
 
-#: logview/actions.c:511
+#: logview/actions.c:510
 msgid "log name regexp"
 msgstr ""
 
-#: logview/actions.c:512
+#: logview/actions.c:511
 msgid "process regexp"
 msgstr ""
 
-#: logview/actions.c:513
+#: logview/actions.c:512
 msgid "message regexp"
 msgstr ""
 
-#: logview/actions.c:514
+#: logview/actions.c:513
 msgid "action to execute when regexps are TRUE"
 msgstr ""
 
-#: logview/actions.c:515
+#: logview/actions.c:514
 msgid "description"
 msgstr "വിവരണം"
 
-#: logview/actions.c:651
+#: logview/actions.c:650
 #, fuzzy
 msgid "Edit Action"
 msgstr "പ്ര‌വ‍ര്ത്തനം"
 
-#: logview/actions.c:687
+#: logview/actions.c:686
 msgid "_Tag:"
 msgstr ""
 
-#: logview/actions.c:696
+#: logview/actions.c:695
 msgid "Tag that identifies the log file."
 msgstr ""
 
-#: logview/actions.c:705
+#: logview/actions.c:704
 #, fuzzy
 msgid "_Log name:"
 msgstr "വാല്യ നാമം:"
 
-#: logview/actions.c:714
+#: logview/actions.c:713
 msgid "Regular expression that will match the log name."
 msgstr ""
 
-#: logview/actions.c:724
+#: logview/actions.c:723
 #, fuzzy
 msgid "_Process:"
 msgstr "പ്രക്രിയ:"
 
-#: logview/actions.c:733
+#: logview/actions.c:732
 msgid "Regular expression that will match process part of message."
 msgstr ""
 
-#: logview/actions.c:743
+#: logview/actions.c:742
 #, fuzzy
 msgid "_Message:"
 msgstr "സന്ദേശം:"
 
-#: logview/actions.c:752
+#: logview/actions.c:751
 msgid "Regular expression that will match the message."
 msgstr ""
 
-#: logview/actions.c:762
+#: logview/actions.c:761
 #, fuzzy
 msgid "_Action:"
 msgstr "പ്ര‌വ‍ര്ത്തനം"
 
-#: logview/actions.c:771
+#: logview/actions.c:770
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
 
-#: logview/actions.c:781
+#: logview/actions.c:780
 msgid "_Description:"
 msgstr "വിവരണം:"
 
-#: logview/actions.c:790
+#: logview/actions.c:789
 msgid "Description of this entry."
 msgstr "ഇതിന്റെ വിവരണം."
 
-#: logview/actions.c:814
+#: logview/actions.c:813
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1366,24 +1355,36 @@ msgid ""
 "action: [%s]\n"
 msgstr ""
 
-#: logview/calendar.c:110
+#: logview/calendar.c:73
 msgid "Calendar"
 msgstr "കലണ്ടര്"
 
-#: logview/desc_db.c:37
+#: logview/desc_db.c:34
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr ""
 
-#: logview/desc_db.c:147
+#: logview/desc_db.c:144
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr ""
 
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
+#: logview/gedit-output-window.c:350
+msgid "Close the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:388
+msgid "Copy selected lines"
+msgstr ""
+
+#: logview/gedit-output-window.c:408
+msgid "Clear the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:448
+msgid "Output Lines"
+msgstr ""
+
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr ""
@@ -1392,236 +1393,294 @@ msgstr ""
 msgid "View the system log file"
 msgstr ""
 
-#: logview/info.c:62
+#: logview/info.c:50
 msgid "Properties"
 msgstr "ഗുണഗണങ്ങള്‌"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Size:"
 msgstr "വലിപ്പം:"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Modified:"
 msgstr "പരിഷ്കരിച്ചത്:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Start Date:"
 msgstr "ആരഭ ദിനം:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Last Date:"
 msgstr "അവസാന ദിനം:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Number of Lines:"
 msgstr "വരികളുടെ എണ്ണം"
 
-#: logview/info.c:134
+#: logview/info.c:121
 msgid "Log Information"
 msgstr ""
 
-#: logview/info.c:160 logview/zoom.c:155
+#: logview/info.c:147 logview/zoom.c:163
 msgid "<No log loaded>"
 msgstr ""
 
-#: logview/info.c:183
+#: logview/info.c:170
 #, fuzzy, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld ബൈറ്റ്സ്"
 msgstr[1] "%ld ബൈറ്റ്സ്"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "January"
 msgstr "ജനുവരി"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "February"
 msgstr "ഫെബ്രുവരി"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "March"
 msgstr "മാ‌ര്ച്ച്"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "April"
 msgstr "ഏപ്രില്"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "May"
 msgstr "മെയ്"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "June"
 msgstr "ജൂണ്"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "July"
 msgstr "ജൂലൈ"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "August"
 msgstr "ആഗസ്ത്"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "September"
 msgstr "സെപ്തംബ‌ര്"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "October"
 msgstr "ഒക്‌ടോബ‌ര്"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "November"
 msgstr "നവംബ‌ര്‌"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "December"
 msgstr "ഡിസംബ‌ര്"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:394
+#: logview/log_repaint.c:279
 #, c-format
 msgid "%x"
 msgstr "%x"
 
+#: logview/log_repaint.c:298
+msgid "Last Modified: "
+msgstr "അവസാനം പരിഷ്ക്കരിച്ച:"
+
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:449
+#: logview/log_repaint.c:327
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:521
+#: logview/log_repaint.c:399
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:193
+#: logview/logrtns.c:192
 msgid "Not enough memory!\n"
 msgstr "ഓര്മ്മയില്‌ ആവശ്യമായ സ്ഥലമില്ല!\n"
 
-#: logview/logrtns.c:204
+#: logview/logrtns.c:203
 msgid "Unable to open logfile!\n"
 msgstr "താല്ക്കാലിക log രചന തുറക്കാന്‌ കഴിയുന്നില്ല!\n"
 
-#: logview/logrtns.c:265
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s ഒരു സാധാരണ രചന അല്ല."
 
-#: logview/logrtns.c:273
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
 
-#: logview/logrtns.c:290
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s തുറക്കാന് കഴിഞ്ഞില്ല"
 
-#: logview/logrtns.c:320 logview/logrtns.c:329
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "%s ഒരു ലോഗ് രചന അല്ല."
 
-#: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: ഓര്മ്മയില്‌ സ്ഥലമില്ല"
 
-#: logview/logview.c:100
-msgid "S_witch Log"
-msgstr "സ്വിച്ച് ലോഗ്"
+#: logview/logview-findbar.c:252
+#, fuzzy
+msgid "Fin_d : "
+msgstr "കണ്ടെത്തുക"
 
-#: logview/logview.c:101
-msgid "Switch between already opened logs"
-msgstr "തുറന്ന ലോഗോകളില് മാറി മാറി കടക്കുക"
+#: logview/logview-findbar.c:270
+#, fuzzy
+msgid "Find Next"
+msgstr "കണ്ടെത്തുക"
 
-#: logview/logview.c:107
-msgid "_Monitor..."
-msgstr "മോണിറ്റര്‌..."
-
-#: logview/logview.c:108
-msgid "Monitor Logs"
+#: logview/logview-findbar.c:280
+msgid "Find Previous"
 msgstr ""
 
-#: logview/logview.c:116
+#: logview/logview.c:79
+msgid "_Log"
+msgstr ""
+
+#: logview/logview.c:81
+msgid "_View"
+msgstr ""
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "_Open..."
+msgstr "തുറക്കുക"
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "Open a log from file"
+msgstr "പുതിയ ലോഗ് രചന തുറക്കുക"
+
+#: logview/logview.c:86
 msgid "_Properties"
 msgstr "ഗുണഗണങ്ങള്‌"
 
-#: logview/logview.c:117
+#: logview/logview.c:86
 msgid "Show Log Properties"
 msgstr "ലോഗ് ഗുണഗണങ്ങള് കാണിക്കുക"
 
-#: logview/logview.c:125
-msgid "Clos_e All"
+#: logview/logview.c:88
+#, fuzzy
+msgid "Close"
 msgstr "എല്ലാം അടയ്‍ക്കുക"
 
-#: logview/logview.c:126
-msgid "Close all Log files"
-msgstr "തുറന്ന എല്ലാ ലോഗ് രചനകളും അടയ്‍ക്കുക"
+#: logview/logview.c:88
+msgid "Close this log"
+msgstr ""
 
-#: logview/logview.c:138
-msgid "_Calendar"
-msgstr "കലണ്ടര്"
+#: logview/logview.c:90
+#, fuzzy
+msgid "_Quit"
+msgstr "ചിട്ട"
 
-#: logview/logview.c:139
-msgid "Show Calendar Log"
-msgstr "കലണ്ടര്‌ ലോഗ് കാണിക്കുക"
+#: logview/logview.c:90
+msgid "Quit the log viewer"
+msgstr ""
 
-#: logview/logview.c:145
-msgid "_Entry Detail"
-msgstr "പ്രവേശന വിശദാംശങ്ങള്"
+#: logview/logview.c:93
+msgid "Find pattern in logs"
+msgstr ""
 
-#: logview/logview.c:146
-msgid "Show Entry Detail"
-msgstr "പ്രവേശന വിശദാംശങ്ങള് കാണിക്കുക"
-
-#: logview/logview.c:152
-msgid "_Collapse All"
+#: logview/logview.c:96
+#, fuzzy
+msgid "Collapse _All"
 msgstr "എല്ലാം കൂട്ടിച്ചേ‌ര്‍ക്കുക"
 
-#: logview/logview.c:153
+#: logview/logview.c:96
 msgid "Collapse all the rows"
 msgstr "എല്ലാ വരികളും കൂട്ടിച്ചേ‌ര്‍ക്കുക"
 
-#: logview/logview.c:370
+#: logview/logview.c:99
+msgid "_Contents"
+msgstr ""
+
+#: logview/logview.c:99
+msgid "Open the help contents for the log viewer"
+msgstr ""
+
+#: logview/logview.c:101
+msgid "Show the about dialog for the gconf editor"
+msgstr ""
+
+#: logview/logview.c:107
+#, fuzzy
+msgid "_Monitor"
+msgstr "മോണിറ്റര്‌..."
+
+#: logview/logview.c:107
+msgid "Monitor Current Log"
+msgstr ""
+
+#: logview/logview.c:109
+msgid "_Calendar"
+msgstr "കലണ്ടര്"
+
+#: logview/logview.c:109
+msgid "Show Calendar Log"
+msgstr "കലണ്ടര്‌ ലോഗ് കാണിക്കുക"
+
+#: logview/logview.c:111
+msgid "_Entry Detail"
+msgstr "പ്രവേശന വിശദാംശങ്ങള്"
+
+#: logview/logview.c:111
+msgid "Show Entry Detail"
+msgstr "പ്രവേശന വിശദാംശങ്ങള് കാണിക്കുക"
+
+#: logview/logview.c:166
+msgid "Open the specified log."
+msgstr ""
+
+#: logview/logview.c:298
 msgid "No log files to open"
 msgstr "താരതമ്യം ചെയ്യ‍ുന്നതിന് ആദ്യ ശേഖരം തെരഞ്ഞെടുക്കുക"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Date"
 msgstr "തിയ്യതി"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Host Name"
 msgstr "തലവന്റെ പേര‍‌്"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Process"
 msgstr "പൂരോഗതി‌"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Message"
 msgstr "സന്ദേശം"
 
-#: logview/logview.c:474
-msgid "Last Modified: "
-msgstr "അവസാനം പരിഷ്ക്കരിച്ച:"
-
-#: logview/logview.c:573 logview/logview.c:648
-msgid "Too many open logs. Close one and try again"
-msgstr ""
-
-#: logview/logview.c:585
-msgid "File already opened"
-msgstr "രചന ഇപ്പോള് തന്നെ തുറന്ന് വച്ചിട്ടുണ്ട്"
-
-#: logview/logview.c:661
+#: logview/logview.c:581
 msgid "Open new logfile"
 msgstr "പുതിയ ലോഗ് രചന തുറക്കുക"
+
+#: logview/logview.c:922
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+
+#: logview/logview.c:934
+#, c-format
+msgid "%s - %s (monitored)"
+msgstr ""
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -1633,88 +1692,58 @@ msgid ""
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
 
-#: logview/misc.c:56
-#, c-format
-msgid "Error: [%s]\n"
-msgstr "തകരാറ്: [%s]\n"
-
-#: logview/monitor.c:111
-msgid "Monitor Options"
-msgstr "മോണിറ്റര് ബദലുകള്‌‌"
-
-#: logview/monitor.c:114
-msgid "Ac_tions..."
-msgstr ""
-
-#: logview/monitor.c:140
-msgid "_Select logs to monitor:"
-msgstr ""
-
-#: logview/monitor.c:145
-msgid "Currently _monitored logs:"
-msgstr ""
-
-#: logview/monitor.c:193
-msgid "Add logs to monitor"
-msgstr ""
-
-#: logview/monitor.c:202
-msgid "Remove logs from monitor"
-msgstr "പട്ടികയില്‌ നിന്നും നീക്കംചെയ്യ‍ുക"
-
-#. Check boxes
-#: logview/monitor.c:249
-msgid "_Hide application"
-msgstr ""
-
-#: logview/monitor.c:257
-msgid "_Execute actions"
-msgstr ""
-
-#: logview/monitor.c:293
-msgid "Too many logs to monitor. Remove one and try again"
-msgstr ""
-
-#: logview/monitor.c:301 logview/monitor.c:338
-msgid "tmp_list is NULL\n"
-msgstr ""
-
-#: logview/monitor.c:475
-msgid "Monitoring Logs..."
-msgstr ""
-
-#: logview/monitor.c:667
-msgid "TOUCHED!!\n"
-msgstr ""
-
-#: logview/zoom.c:63
+#: logview/zoom.c:65
 msgid "Entry Detail"
 msgstr ""
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Date:"
 msgstr "തിയ്യതി:"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Process:"
 msgstr "പ്രക്രിയ:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Message:"
 msgstr "സന്ദേശം:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Description:"
 msgstr "വിവരണം"
 
-#: logview/zoom.c:129
+#: logview/zoom.c:133
 msgid "Log Line Details"
 msgstr ""
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:187
+#: logview/zoom.c:195
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Accessories"
+#~ msgstr "സഹപ്രയോഗങ്ങള്"
+
+#~ msgid "S_witch Log"
+#~ msgstr "സ്വിച്ച് ലോഗ്"
+
+#~ msgid "Switch between already opened logs"
+#~ msgstr "തുറന്ന ലോഗോകളില് മാറി മാറി കടക്കുക"
+
+#~ msgid "Close all Log files"
+#~ msgstr "തുറന്ന എല്ലാ ലോഗ് രചനകളും അടയ്‍ക്കുക"
+
+#~ msgid "File already opened"
+#~ msgstr "രചന ഇപ്പോള് തന്നെ തുറന്ന് വച്ചിട്ടുണ്ട്"
+
+#~ msgid "Error: [%s]\n"
+#~ msgstr "തകരാറ്: [%s]\n"
+
+#~ msgid "Monitor Options"
+#~ msgstr "മോണിറ്റര് ബദലുകള്‌‌"
+
+#~ msgid "Remove logs from monitor"
+#~ msgstr "പട്ടികയില്‌ നിന്നും നീക്കംചെയ്യ‍ുക"
 
 #~ msgid "Search your disk for files"
 #~ msgstr "നിങ്ങളുടെ വിവരത്തട്ടില് രചനകള് തെരയുക"

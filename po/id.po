@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 10:36+0700\n"
+"POT-Creation-Date: 2004-10-30 17:35-0300\n"
 "PO-Revision-Date: 2004-10-27 04:41+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesian <sukarelawan@gnome.linux.or.id>\n"
@@ -21,11 +21,11 @@ msgstr "Cari di Kamus"
 msgid "Lookup words in an online dictionary"
 msgstr "Cari kata di dalam kamus online"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:107
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:101
 msgid "_About"
 msgstr "_Keterangan Program"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:82
 msgid "_Help"
 msgstr "Ba_ntuan"
 
@@ -58,7 +58,7 @@ msgstr ""
 "Biasanya server kamus adalah dict.org dengan port 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:41
+#: gdictsrc/gdict-about.c:43 logview/about.c:44
 msgid "translator-credits"
 msgstr "Mohammad DAMT <mdamt@bisnisweb.com>"
 
@@ -103,7 +103,7 @@ msgstr "Cari"
 msgid "_Search for:"
 msgstr "_Cari:"
 
-#: gdictsrc/gdict-app.c:492 logview/logview.c:99
+#: gdictsrc/gdict-app.c:492 logview/logview.c:93
 msgid "_Find"
 msgstr "_Cari"
 
@@ -1238,18 +1238,13 @@ msgstr "Klik untuk menghentikan Pencarian"
 msgid "Cannot initialize bonobo."
 msgstr "Tidak dapat inisialisasi bonobo"
 
-#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
-#: logview/about.c:35
-msgid "Cesar Miquel (miquel@df.uba.ar)"
-msgstr "Cesar Miquel (miquel@df.uba.ar)"
-
-#: logview/about.c:36
-msgid "A system log viewer for GNOME."
-msgstr "Penampil log untuk GNOME."
-
-#: logview/about.c:51
+#: logview/about.c:48
 msgid "System Log Viewer"
 msgstr "Penampil Log Sistem"
+
+#: logview/about.c:51
+msgid "A system log viewer for GNOME."
+msgstr "Penampil log untuk GNOME."
 
 #: logview/actions.c:73
 msgid "Action Database"
@@ -1267,7 +1262,7 @@ msgstr "T_ambah"
 msgid "Add an action"
 msgstr "Tambah kegiatan"
 
-#: logview/actions.c:163 logview/logview.c:86
+#: logview/actions.c:163 logview/logview.c:80
 msgid "_Edit"
 msgstr "_Ubah"
 
@@ -1413,10 +1408,22 @@ msgstr "Pembukaan gagal karena tidak dapat membuka database regexp <%s>"
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "Pembukaan gagal karena tidak dapat membuka database deskripsi <%s>"
 
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
+#: logview/gedit-output-window.c:350
+msgid "Close the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:388
+msgid "Copy selected lines"
+msgstr ""
+
+#: logview/gedit-output-window.c:408
+msgid "Clear the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:448
+msgid "Output Lines"
+msgstr ""
+
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "Log Sistem"
@@ -1425,119 +1432,119 @@ msgstr "Log Sistem"
 msgid "View the system log file"
 msgstr "Lihat berkas log sistem"
 
-#: logview/info.c:54
+#: logview/info.c:50
 msgid "Properties"
 msgstr "Informasi"
 
-#: logview/info.c:98
+#: logview/info.c:94
 msgid "Size:"
 msgstr "Ukuran:"
 
-#: logview/info.c:98
+#: logview/info.c:94
 msgid "Modified:"
 msgstr "Dimodifikasi:"
 
-#: logview/info.c:99
+#: logview/info.c:95
 msgid "Start Date:"
 msgstr "Tanggal Mulai:"
 
-#: logview/info.c:99
+#: logview/info.c:95
 msgid "Last Date:"
 msgstr "Tanggal Terakhir:"
 
-#: logview/info.c:99
+#: logview/info.c:95
 msgid "Number of Lines:"
 msgstr "Jumlah Baris:"
 
-#: logview/info.c:125
+#: logview/info.c:121
 msgid "Log Information"
 msgstr "Informasi Log"
 
-#: logview/info.c:151 logview/zoom.c:163
+#: logview/info.c:147 logview/zoom.c:163
 msgid "<No log loaded>"
 msgstr "<tidak ada log dibuka>"
 
-#: logview/info.c:174
+#: logview/info.c:170
 #, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld byte"
 
-#: logview/log_repaint.c:52
+#: logview/log_repaint.c:46
 msgid "January"
 msgstr "Januari"
 
-#: logview/log_repaint.c:52
+#: logview/log_repaint.c:46
 msgid "February"
 msgstr "Pebruari"
 
-#: logview/log_repaint.c:52
+#: logview/log_repaint.c:46
 msgid "March"
 msgstr "Maret"
 
-#: logview/log_repaint.c:52
+#: logview/log_repaint.c:46
 msgid "April"
 msgstr "April"
 
-#: logview/log_repaint.c:52
+#: logview/log_repaint.c:46
 msgid "May"
 msgstr "Mei"
 
-#: logview/log_repaint.c:53
+#: logview/log_repaint.c:47
 msgid "June"
 msgstr "Juni"
 
-#: logview/log_repaint.c:53
+#: logview/log_repaint.c:47
 msgid "July"
 msgstr "Juli"
 
-#: logview/log_repaint.c:53
+#: logview/log_repaint.c:47
 msgid "August"
 msgstr "Agustus"
 
-#: logview/log_repaint.c:53
+#: logview/log_repaint.c:47
 msgid "September"
 msgstr "September"
 
-#: logview/log_repaint.c:53
+#: logview/log_repaint.c:47
 msgid "October"
 msgstr "Oktober"
 
-#: logview/log_repaint.c:54
+#: logview/log_repaint.c:48
 msgid "November"
 msgstr "Nopember"
 
-#: logview/log_repaint.c:54
+#: logview/log_repaint.c:48
 msgid "December"
 msgstr "Desember"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:284
+#: logview/log_repaint.c:279
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:304
+#: logview/log_repaint.c:298
 msgid "Last Modified: "
 msgstr "Terakhir dimodifikasi:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:333
+#: logview/log_repaint.c:327
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:405
+#: logview/log_repaint.c:399
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:193
+#: logview/logrtns.c:192
 msgid "Not enough memory!\n"
 msgstr "Memori tidak cukup\n"
 
-#: logview/logrtns.c:204
+#: logview/logrtns.c:203
 msgid "Unable to open logfile!\n"
 msgstr "Tidak dapat membuka berkas log\n"
 
@@ -1569,119 +1576,144 @@ msgstr "%s bukan berkas log."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memori tidak tersedia"
 
-#: logview/logview.c:85
+#: logview/logview-findbar.c:252
+#, fuzzy
+msgid "Fin_d : "
+msgstr "Cari"
+
+#: logview/logview-findbar.c:270
+#, fuzzy
+msgid "Find Next"
+msgstr "Cari"
+
+#: logview/logview-findbar.c:280
+msgid "Find Previous"
+msgstr ""
+
+#: logview/logview.c:79
 msgid "_Log"
 msgstr "_Log"
 
-#: logview/logview.c:87
+#: logview/logview.c:81
 msgid "_View"
 msgstr "_Tampilan"
 
-#: logview/logview.c:90
+#: logview/logview.c:84
 msgid "_Open..."
 msgstr "B_uka..."
 
-#: logview/logview.c:90
+#: logview/logview.c:84
 msgid "Open a log from file"
 msgstr "Buka log dari sebuah berkas"
 
-#: logview/logview.c:92
+#: logview/logview.c:86
 msgid "_Properties"
 msgstr "_Informasi"
 
-#: logview/logview.c:92
+#: logview/logview.c:86
 msgid "Show Log Properties"
 msgstr "Pengaturan Tampilan Log"
 
-#: logview/logview.c:94
+#: logview/logview.c:88
 msgid "Close"
 msgstr "Tutup"
 
-#: logview/logview.c:94
+#: logview/logview.c:88
 msgid "Close this log"
 msgstr "Tutup log ini"
 
-#: logview/logview.c:96
+#: logview/logview.c:90
 msgid "_Quit"
 msgstr "_Keluar"
 
-#: logview/logview.c:96
+#: logview/logview.c:90
 msgid "Quit the log viewer"
 msgstr "Keluar dari penampil log ini"
 
-#: logview/logview.c:99
+#: logview/logview.c:93
 msgid "Find pattern in logs"
 msgstr "Cari pola dalam log"
 
-#: logview/logview.c:102
+#: logview/logview.c:96
 msgid "Collapse _All"
 msgstr "Tutup Semu_a"
 
-#: logview/logview.c:102
+#: logview/logview.c:96
 msgid "Collapse all the rows"
 msgstr "Tutup semua baris"
 
-#: logview/logview.c:105
+#: logview/logview.c:99
 msgid "_Contents"
 msgstr "Daftar _Isi"
 
-#: logview/logview.c:105
+#: logview/logview.c:99
 msgid "Open the help contents for the log viewer"
 msgstr "Buka daftar isi bantuan"
 
-#: logview/logview.c:107
+#: logview/logview.c:101
 msgid "Show the about dialog for the gconf editor"
 msgstr "Tampilkan dialog tentang aplikasi penyunting gconf"
 
-#: logview/logview.c:113
+#: logview/logview.c:107
 msgid "_Monitor"
 msgstr "_Pantau"
 
-#: logview/logview.c:113
+#: logview/logview.c:107
 msgid "Monitor Current Log"
 msgstr "Pantau Log yang Aktif"
 
-#: logview/logview.c:115
+#: logview/logview.c:109
 msgid "_Calendar"
 msgstr "_Kalender"
 
-#: logview/logview.c:115
+#: logview/logview.c:109
 msgid "Show Calendar Log"
 msgstr "Tampilkan Log Kalender"
 
-#: logview/logview.c:117
+#: logview/logview.c:111
 msgid "_Entry Detail"
 msgstr "Rincian _Entri"
 
-#: logview/logview.c:117
+#: logview/logview.c:111
 msgid "Show Entry Detail"
 msgstr "Tampilkan Rincian Entri"
 
-#: logview/logview.c:303
+#: logview/logview.c:166
+msgid "Open the specified log."
+msgstr ""
+
+#: logview/logview.c:298
 msgid "No log files to open"
 msgstr "Tidak ada berkas log yang dibuka"
 
-#: logview/logview.c:387
+#: logview/logview.c:376
 msgid "Date"
 msgstr "Tanggal"
 
-#: logview/logview.c:387
+#: logview/logview.c:376
 msgid "Host Name"
 msgstr "Nama Host"
 
-#: logview/logview.c:388
+#: logview/logview.c:377
 msgid "Process"
 msgstr "Proses"
 
-#: logview/logview.c:388
+#: logview/logview.c:377
 msgid "Message"
 msgstr "Pesan"
 
-#: logview/logview.c:599
+#: logview/logview.c:581
 msgid "Open new logfile"
 msgstr "Buka berkas log baru"
 
-#: logview/logview.c:976
+#: logview/logview.c:922
+#, fuzzy, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+"Ada error saat menampilkan layar bantu:\n"
+"%s"
+
+#: logview/logview.c:934
 #, c-format
 msgid "%s - %s (monitored)"
 msgstr "%s - %s (dipantau)"
@@ -1727,6 +1759,9 @@ msgstr "Detil Baris Log"
 #: logview/zoom.c:195
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Cesar Miquel (miquel@df.uba.ar)"
+#~ msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #~ msgid "Accessories"
 #~ msgstr "Aksesoris"

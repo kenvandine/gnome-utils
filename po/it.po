@@ -8,34 +8,30 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2004-10-12 12:03+1300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-30 17:35-0300\n"
 "PO-Revision-Date: 2004-10-09 18:49+0200\n"
 "Last-Translator: Luca Ferretti <elle.uca@infinito.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
-msgid "Accessories"
-msgstr "Accessori"
-
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:144
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:169
 msgid "Dictionary Lookup"
 msgstr "Ricerca sul dizionario"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:160
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:185
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Cerca parole su un dizionario online"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:101
 msgid "_About"
 msgstr "I_nformazioni"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:82
 msgid "_Help"
 msgstr "_Sommario"
 
@@ -69,7 +65,7 @@ msgstr ""
 "server dict.org sulla porta 2628."
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:49
+#: gdictsrc/gdict-about.c:43 logview/about.c:44
 msgid "translator-credits"
 msgstr ""
 "Alessio Frusciante <algol@firenze.linux.it>\n"
@@ -117,7 +113,7 @@ msgstr "Trova"
 msgid "_Search for:"
 msgstr "C_erca:"
 
-#: gdictsrc/gdict-app.c:492
+#: gdictsrc/gdict-app.c:492 logview/logview.c:93
 msgid "_Find"
 msgstr "_Trova"
 
@@ -173,11 +169,11 @@ msgstr "Inserire una parola o sceglierne una dalla lista sottostante"
 msgid "Look Up for a Word"
 msgstr "Cerca una parola"
 
-#: gdictsrc/gdict-applet.c:137
+#: gdictsrc/gdict-applet.c:161
 msgid "_Lookup"
 msgstr "C_erca"
 
-#: gdictsrc/gdict-applet.c:148
+#: gdictsrc/gdict-applet.c:173
 msgid "Dictionary word entry"
 msgstr "Campo voce dizionario"
 
@@ -422,7 +418,7 @@ msgid "Failed to open device %s for badblock checking\n"
 msgstr ""
 "Apertura del device %s per la ricerca dei blocchi danneggiati fallita\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
 msgid "Checking for bad blocks... Done"
 msgstr "Verifica di blocchi danneggiati... Fatto"
 
@@ -542,28 +538,28 @@ msgstr ""
 msgid "Could not determine current floppy geometry."
 msgstr "Impossibile determinare la geometria del floppy corrente."
 
-#: gfloppy/src/gfloppy.c:222
+#: gfloppy/src/gfloppy.c:225
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "Errore durante la creazione di un nome unico per il file della lista dei "
 "blocchi danneggiati."
 
-#: gfloppy/src/gfloppy.c:242
+#: gfloppy/src/gfloppy.c:245
 msgid "Error while filling the bad blocks list file."
 msgstr "Errore nel riempire il file della lista dei blocchi danneggiati."
 
 # uhm è questo il senso?
-#: gfloppy/src/gfloppy.c:305
+#: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Errore durante l'esecuzione del comando «%s»: %s"
 
 # aiuto
-#: gfloppy/src/gfloppy.c:331
+#: gfloppy/src/gfloppy.c:334
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Firma iniziale di mke2fs sconosciuta; operazione annullata."
 
-#: gfloppy/src/gfloppy.c:345
+#: gfloppy/src/gfloppy.c:348
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -574,16 +570,16 @@ msgstr ""
 "errori:\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:362
+#: gfloppy/src/gfloppy.c:365
 msgid "Abnormal child process termination."
 msgstr "Il processo figlio è terminato in modo anomalo."
 
-#: gfloppy/src/gfloppy.c:387
+#: gfloppy/src/gfloppy.c:390
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Errore durante la rigenerazione del comando «mbadblocks»: %s."
 
-#: gfloppy/src/gfloppy.c:399
+#: gfloppy/src/gfloppy.c:402
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -593,28 +589,28 @@ msgstr ""
 "i seguenti errori:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:442
+#: gfloppy/src/gfloppy.c:445
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Il processo figlio «mbadblocks» è terminato in modo anomalo"
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:468 gfloppy/src/gfloppy.c:508
+#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
 msgid "Making filesystem on disk..."
 msgstr "Creazione del file system sul disco..."
 
-#: gfloppy/src/gfloppy.c:476
+#: gfloppy/src/gfloppy.c:479
 msgid "Unable to create filesystem correctly."
 msgstr "Impossibile creare correttamente il file system."
 
-#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:520
+#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
 msgid "Making filesystem on disk... Done"
 msgstr "Creazione del file system sul disco... Fatto"
 
-#: gfloppy/src/gfloppy.c:525
+#: gfloppy/src/gfloppy.c:528
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Verifica di blocchi danneggiati... (può durare un po' di tempo)"
 
-#: gfloppy/src/gfloppy.c:530
+#: gfloppy/src/gfloppy.c:533
 msgid "Error while checking the bad blocks."
 msgstr "Errore durante la verifica dei blocchi danneggiati."
 
@@ -705,7 +701,7 @@ msgstr "_Veloce (crea solo il file system)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standard (formatta a basso livello oltre al modo «Veloce»)"
 
-#: gfloppy/src/main.c:140
+#: gfloppy/src/main.c:215
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -713,12 +709,12 @@ msgstr ""
 "Non risultano installati né «mke2fs», né «mkdosfs» o «mformat». Per la "
 "formattazione di un floppy è necessaria almeno una di queste utilità."
 
-#: gfloppy/src/main.c:164
+#: gfloppy/src/main.c:239
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Impossibile aprire il device %s; la formattazione non può continuare"
 
-#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
+#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -727,7 +723,7 @@ msgstr ""
 "Il device %s è scollegato.\n"
 "Attaccare il device per continuare."
 
-#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -737,15 +733,15 @@ msgstr ""
 "Non si hanno i permessi per scrivere su %s; la formattazione è impossibile.\n"
 "Contattare l'amministratore di sistema per ottenere i permessi di scrittura."
 
-#: gfloppy/src/main.c:216
+#: gfloppy/src/main.c:310
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Impossibile aprire il device, la formattazione non può continuare"
 
-#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 o /dev/fd0"
 
-#: gfloppy/src/main.c:394
+#: gfloppy/src/main.c:489
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -754,15 +750,15 @@ msgstr ""
 "Impossibile mostrare la guida per la formattazione floppy.\n"
 "%s"
 
-#: gfloppy/src/main.c:427
+#: gfloppy/src/main.c:522
 msgid "The volume name can't contain any blank space."
 msgstr "Il nome del volume non può contenere spazi."
 
-#: gfloppy/src/main.c:477
+#: gfloppy/src/main.c:576
 msgid "The device to format"
 msgstr "Il device da formattare"
 
-#: gfloppy/src/main.c:478
+#: gfloppy/src/main.c:577
 msgid "DEVICE"
 msgstr "DEVICE"
 
@@ -797,9 +793,9 @@ msgstr "Avanzamento della formattazione"
 msgid "Find files, folders, and documents on your computer"
 msgstr "Trova file, cartelle e documenti nel computer"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
-#: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
-#: gsearchtool/gsearchtool.c:2288 gsearchtool/gsearchtool.c:2313
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
+#: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
+#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
 msgid "Search for Files"
 msgstr "Cerca file"
 
@@ -992,23 +988,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:511
+#: gsearchtool/gsearchtool-support.c:620
 msgid "today at %-I:%M %p"
 msgstr "oggi alle %-H.%M"
 
-#: gsearchtool/gsearchtool-support.c:513
+#: gsearchtool/gsearchtool-support.c:622
 msgid "yesterday at %-I:%M %p"
 msgstr "ieri alle %-H.%M"
 
-#: gsearchtool/gsearchtool-support.c:515 gsearchtool/gsearchtool-support.c:517
+#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %d/%m/%Y, %-H.%M"
 
-#: gsearchtool/gsearchtool-support.c:688
+#: gsearchtool/gsearchtool-support.c:797
 msgid "link (broken)"
 msgstr "collegamento (interrotto)"
 
-#: gsearchtool/gsearchtool-support.c:693
+#: gsearchtool/gsearchtool-support.c:802
 #, c-format
 msgid "link to %s"
 msgstr "collegamento a %s"
@@ -1081,72 +1077,72 @@ msgstr "Seguire i collegamenti simbolici"
 msgid "Include other filesystems"
 msgstr "Includere altri file system"
 
-#: gsearchtool/gsearchtool.c:547 gsearchtool/gsearchtool.c:575
+#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
 msgid "No files found"
 msgstr "Nessun file trovato"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:602
 msgid "(stopped)"
 msgstr "(fermato)"
 
-#: gsearchtool/gsearchtool.c:574
+#: gsearchtool/gsearchtool.c:608
 msgid "No Files Found"
 msgstr "Nessun file trovato"
 
-#: gsearchtool/gsearchtool.c:579
+#: gsearchtool/gsearchtool.c:613
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "Trovato %d file"
 msgstr[1] "Trovati %d file"
 
-#: gsearchtool/gsearchtool.c:583
+#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "Trovato %d file"
 msgstr[1] "Trovati %d file"
 
-#: gsearchtool/gsearchtool.c:689
+#: gsearchtool/gsearchtool.c:743
 msgid "Entry changed called for a non entry option!"
 msgstr "Cambiamento della voce chiamato per un oggetto che non è una voce."
 
-#: gsearchtool/gsearchtool.c:942
+#: gsearchtool/gsearchtool.c:998
 msgid "Searching..."
 msgstr "Ricerca in corso..."
 
-#: gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1020
 msgid "Set the text of 'Name contains'"
 msgstr "Imposta il testo di «Il nome contiene»"
 
-#: gsearchtool/gsearchtool.c:964
+#: gsearchtool/gsearchtool.c:1021
 msgid "Set the text of 'Look in folder'"
 msgstr "Imposta il testo di «Cerca in»"
 
-#: gsearchtool/gsearchtool.c:965
+#: gsearchtool/gsearchtool.c:1022
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Ordina i file per uno dei seguenti criteri: nome, cartella, dimensioni, tipo "
 "o data"
 
-#: gsearchtool/gsearchtool.c:966
+#: gsearchtool/gsearchtool.c:1023
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Imposta l'ordine a decrescente, il valore predefinito è crescente"
 
-#: gsearchtool/gsearchtool.c:967
+#: gsearchtool/gsearchtool.c:1024
 msgid "Automatically start a search"
 msgstr "Inizia la ricerca automaticamente"
 
-#: gsearchtool/gsearchtool.c:972
+#: gsearchtool/gsearchtool.c:1029
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Seleziona il vincolo «%s»"
 
-#: gsearchtool/gsearchtool.c:1078
+#: gsearchtool/gsearchtool.c:1135
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Parametro errato passato a \"sortby\""
 
-#: gsearchtool/gsearchtool.c:1350
+#: gsearchtool/gsearchtool.c:1434
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1154,7 +1150,7 @@ msgstr ""
 "\n"
 "... Troppi errori da visualizzare ..."
 
-#: gsearchtool/gsearchtool.c:1359
+#: gsearchtool/gsearchtool.c:1443
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1162,7 +1158,7 @@ msgstr ""
 "Il risultato della ricerca potrebbe non essere valido. Si sono verificati "
 "alcuni errori durante la ricerca."
 
-#: gsearchtool/gsearchtool.c:1380
+#: gsearchtool/gsearchtool.c:1464
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1170,251 +1166,244 @@ msgstr ""
 "I risultati della ricerca potrebbero essere non validi. Disabilitare la "
 "funzionalità di riceca veloce?"
 
-#: gsearchtool/gsearchtool.c:1388
+#: gsearchtool/gsearchtool.c:1472
 msgid "Disable _Quick Search"
 msgstr "Disabilita ricerca _veloce"
 
-#: gsearchtool/gsearchtool.c:1432
+#: gsearchtool/gsearchtool.c:1516
 msgid "Error parsing the search command."
 msgstr "Errore nell'analizzare il comando di ricerca."
 
-#: gsearchtool/gsearchtool.c:1461
+#: gsearchtool/gsearchtool.c:1545
 msgid "Error running the search command."
 msgstr "Errore nell'eseguire il comando di ricerca."
 
-#: gsearchtool/gsearchtool.c:1572
+#: gsearchtool/gsearchtool.c:1659
 #, c-format
 msgid "'%s' entry"
 msgstr "Campo «%s»"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1660
 msgid "Enter a value for search rule"
 msgstr "Inserire un valore per la regola di ricerca"
 
-#: gsearchtool/gsearchtool.c:1620
+#: gsearchtool/gsearchtool.c:1707
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Fare clic per rimuovere la regola «%s»"
 
-#: gsearchtool/gsearchtool.c:1675
+#: gsearchtool/gsearchtool.c:1762
 msgid "A_vailable options:"
 msgstr "Op_zioni disponibili:"
 
-#: gsearchtool/gsearchtool.c:1688
+#: gsearchtool/gsearchtool.c:1775
 msgid "Search Rules Menu"
 msgstr "Menù regole di ricerca"
 
-#: gsearchtool/gsearchtool.c:1689
+#: gsearchtool/gsearchtool.c:1776
 msgid "Select a search rule from the menu"
 msgstr "Selezionare una regola di ricerca dal menù"
 
-#: gsearchtool/gsearchtool.c:1720
+#: gsearchtool/gsearchtool.c:1807
 msgid "S_earch results:"
 msgstr "Ri_sultati della ricerca:"
 
-#: gsearchtool/gsearchtool.c:1800
+#: gsearchtool/gsearchtool.c:1887
 msgid "Name"
 msgstr "Nome"
 
-#: gsearchtool/gsearchtool.c:1820
+#: gsearchtool/gsearchtool.c:1907
 msgid "Folder"
 msgstr "Cartella"
 
-#: gsearchtool/gsearchtool.c:1831
+#: gsearchtool/gsearchtool.c:1918
 msgid "Size"
 msgstr "Dimensione"
 
-#: gsearchtool/gsearchtool.c:1841
+#: gsearchtool/gsearchtool.c:1928
 msgid "Type"
 msgstr "Tipo"
 
-#: gsearchtool/gsearchtool.c:1851
+#: gsearchtool/gsearchtool.c:1938
 msgid "Date Modified"
 msgstr "Data di modifica"
 
-#: gsearchtool/gsearchtool.c:1909
+#: gsearchtool/gsearchtool.c:1995
 msgid "_Name contains:"
 msgstr "Il _nome contiene:"
 
-#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
-msgid "Enter the file name you want to search"
+#: gsearchtool/gsearchtool.c:2010 gsearchtool/gsearchtool.c:2011
+#, fuzzy
+msgid "Enter the file name you want to search."
 msgstr "Inserire il nome del file da cercare"
 
-#: gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:2011
 msgid "Name Contains Entry"
 msgstr "Campo \"il nome contiene\""
 
-#: gsearchtool/gsearchtool.c:1936
+#: gsearchtool/gsearchtool.c:2022
 msgid "_Look in folder:"
 msgstr "C_erca nella cartella:"
 
-#: gsearchtool/gsearchtool.c:1942
+#: gsearchtool/gsearchtool.c:2028
 msgid "Browse"
 msgstr "Sfoglia"
 
-#: gsearchtool/gsearchtool.c:1953 gsearchtool/gsearchtool.c:1954
-msgid "Enter the folder name where you want to start the search"
+#: gsearchtool/gsearchtool.c:2035
+#, fuzzy
+msgid "Select the folder where you want to start the search."
 msgstr "Inserire il nome della cartella dalla quale iniziare la ricerca"
 
-#: gsearchtool/gsearchtool.c:1954
-msgid "Look in Folder Entry"
-msgstr "Campo \"Cerca nella cartella\""
-
-#: gsearchtool/gsearchtool.c:1972
+#: gsearchtool/gsearchtool.c:2049
 msgid "Show more _options"
 msgstr "Mostra a_ltre opzioni"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:2059
 msgid "Show more options"
 msgstr "Mostra altre opzioni"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:2059
 msgid "Expands or collapses a list of search options."
 msgstr "Espande o contrae una lista di opzioni di ricerca."
 
-#: gsearchtool/gsearchtool.c:2029
+#: gsearchtool/gsearchtool.c:2106
 msgid "Click to Start the search"
 msgstr "Fare clic per iniziare la ricerca"
 
-#: gsearchtool/gsearchtool.c:2030
+#: gsearchtool/gsearchtool.c:2107
 msgid "Click to Stop the search"
 msgstr "Fare clic per fermare la ricerca"
 
-#: gsearchtool/gsearchtool.c:2309
+#: gsearchtool/gsearchtool.c:2386
 msgid "Cannot initialize bonobo."
 msgstr "Impossibile inizializzare bonobo."
 
-#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
-#: logview/about.c:43
-msgid "Cesar Miquel (miquel@df.uba.ar)"
-msgstr "César Miquel (miquel@df.uba.ar)"
-
-#: logview/about.c:44
-msgid "A system log viewer for GNOME."
-msgstr "Un visualizzatore di log di sistema per GNOME."
-
-#: logview/about.c:58
+#: logview/about.c:48
 msgid "System Log Viewer"
 msgstr "Visualizzatore log di sistema"
 
-#: logview/actions.c:74
+#: logview/about.c:51
+msgid "A system log viewer for GNOME."
+msgstr "Un visualizzatore di log di sistema per GNOME."
+
+#: logview/actions.c:73
 msgid "Action Database"
 msgstr "Database azioni"
 
-#: logview/actions.c:85
+#: logview/actions.c:84
 msgid "Actions"
 msgstr "Azioni"
 
-#: logview/actions.c:157
+#: logview/actions.c:156
 msgid "_Add"
 msgstr "A_ggiungi"
 
-#: logview/actions.c:162
+#: logview/actions.c:161
 msgid "Add an action"
 msgstr "Aggiunge un'azione"
 
-#: logview/actions.c:164
+#: logview/actions.c:163 logview/logview.c:80
 msgid "_Edit"
 msgstr "_Modifica"
 
-#: logview/actions.c:169
+#: logview/actions.c:168
 msgid "Edit an action"
 msgstr "Modifica un'azione"
 
-#: logview/actions.c:171
+#: logview/actions.c:170
 msgid "_Remove"
 msgstr "_Rimuovi"
 
-#: logview/actions.c:176
+#: logview/actions.c:175
 msgid "Remove an action"
 msgstr "Rimuove un'azione"
 
-#: logview/actions.c:263
+#: logview/actions.c:262
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "Impossibile aprire il database delle azioni <%s>! Apertura fallita."
 
-#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
-#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
+#: logview/actions.c:297 logview/actions.c:310 logview/actions.c:321
+#: logview/actions.c:332 logview/actions.c:343 logview/actions.c:354
 msgid "Error parsing actions data base"
 msgstr "Errore nell'analizzare il database delle azioni"
 
-#: logview/actions.c:389
+#: logview/actions.c:388
 msgid "Can't write to actions database!"
 msgstr "Impossibile scrivere nel database delle azioni!"
 
-#: logview/actions.c:487
+#: logview/actions.c:486
 #, c-format
 msgid "Error while executing specified action: %s"
 msgstr "Errore durante l'esecuzione dell'azione specificata: %s"
 
-#: logview/actions.c:510
+#: logview/actions.c:509
 msgid "<empty>"
 msgstr "<vuoto>"
 
-#: logview/actions.c:511
+#: logview/actions.c:510
 msgid "log name regexp"
 msgstr "regexp nome log"
 
-#: logview/actions.c:512
+#: logview/actions.c:511
 msgid "process regexp"
 msgstr "process regexp"
 
-#: logview/actions.c:513
+#: logview/actions.c:512
 msgid "message regexp"
 msgstr "regexp messaggio"
 
-#: logview/actions.c:514
+#: logview/actions.c:513
 msgid "action to execute when regexps are TRUE"
 msgstr "azione da eseguire quando le regexp sono TRUE"
 
-#: logview/actions.c:515
+#: logview/actions.c:514
 msgid "description"
 msgstr "descrizione"
 
-#: logview/actions.c:651
+#: logview/actions.c:650
 msgid "Edit Action"
 msgstr "Modifica azione"
 
-#: logview/actions.c:687
+#: logview/actions.c:686
 msgid "_Tag:"
 msgstr "_Tag:"
 
-#: logview/actions.c:696
+#: logview/actions.c:695
 msgid "Tag that identifies the log file."
 msgstr "Tag che identifica il file di log."
 
-#: logview/actions.c:705
+#: logview/actions.c:704
 msgid "_Log name:"
 msgstr "Nome del _log:"
 
-#: logview/actions.c:714
+#: logview/actions.c:713
 msgid "Regular expression that will match the log name."
 msgstr "Espressione regolare che ha corrispondenza col nome del log."
 
-#: logview/actions.c:724
+#: logview/actions.c:723
 msgid "_Process:"
 msgstr "_Processo:"
 
-#: logview/actions.c:733
+#: logview/actions.c:732
 msgid "Regular expression that will match process part of message."
 msgstr ""
 "Espressione regolare che ha corrispondeza con la parte processo del "
 "messaggio."
 
-#: logview/actions.c:743
+#: logview/actions.c:742
 msgid "_Message:"
 msgstr "_Messaggio:"
 
-#: logview/actions.c:752
+#: logview/actions.c:751
 msgid "Regular expression that will match the message."
 msgstr "Espressione regolare che ha corripondenza col messaggio."
 
-#: logview/actions.c:762
+#: logview/actions.c:761
 msgid "_Action:"
 msgstr "_Azione:"
 
-#: logview/actions.c:771
+#: logview/actions.c:770
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
@@ -1423,15 +1412,15 @@ msgstr ""
 "trovano corrispondenza. Verrà eseguito da un comando di sistema: system "
 "(azione)."
 
-#: logview/actions.c:781
+#: logview/actions.c:780
 msgid "_Description:"
 msgstr "_Descrizione:"
 
-#: logview/actions.c:790
+#: logview/actions.c:789
 msgid "Description of this entry."
 msgstr "Descrizione di questa voce."
 
-#: logview/actions.c:814
+#: logview/actions.c:813
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1448,27 +1437,39 @@ msgstr ""
 "descrizione: [%s]\n"
 "azione: [%s]\n"
 
-#: logview/calendar.c:110
+#: logview/calendar.c:73
 msgid "Calendar"
 msgstr "Calendario"
 
-#: logview/desc_db.c:37
+#: logview/desc_db.c:34
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr ""
 "Impossibile aprire il database delle espressioni regolari <%s>! Apertura "
 "fallita."
 
-#: logview/desc_db.c:147
+#: logview/desc_db.c:144
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr ""
 "Impossibile aprire il database delle descrizioni <%s>; errore nell'apertura."
 
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
+#: logview/gedit-output-window.c:350
+msgid "Close the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:388
+msgid "Copy selected lines"
+msgstr ""
+
+#: logview/gedit-output-window.c:408
+msgid "Clear the output window"
+msgstr ""
+
+#: logview/gedit-output-window.c:448
+msgid "Output Lines"
+msgstr ""
+
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "Log di sistema"
@@ -1477,127 +1478,131 @@ msgstr "Log di sistema"
 msgid "View the system log file"
 msgstr "Visualizza il file di log di sistema"
 
-#: logview/info.c:62
+#: logview/info.c:50
 msgid "Properties"
 msgstr "Proprietà"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Size:"
 msgstr "Dimensione:"
 
-#: logview/info.c:108
+#: logview/info.c:94
 msgid "Modified:"
 msgstr "Modificato:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Start Date:"
 msgstr "Prima data presente:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Last Date:"
 msgstr "Ultima data presente:"
 
-#: logview/info.c:109
+#: logview/info.c:95
 msgid "Number of Lines:"
 msgstr "Numero di righe:"
 
-#: logview/info.c:134
+#: logview/info.c:121
 msgid "Log Information"
 msgstr "Informazioni sul log"
 
-#: logview/info.c:160 logview/zoom.c:155
+#: logview/info.c:147 logview/zoom.c:163
 msgid "<No log loaded>"
 msgstr "<Nessun log caricato>"
 
-#: logview/info.c:183
+#: logview/info.c:170
 #, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld byte"
 msgstr[1] "%ld byte"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "January"
 msgstr "Gennaio"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "February"
 msgstr "Febbraio"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "March"
 msgstr "Marzo"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "April"
 msgstr "Aprile"
 
-#: logview/log_repaint.c:59
+#: logview/log_repaint.c:46
 msgid "May"
 msgstr "Maggio"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "June"
 msgstr "Giugno"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "July"
 msgstr "Luglio"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "August"
 msgstr "Agosto"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "September"
 msgstr "Settembre"
 
-#: logview/log_repaint.c:60
+#: logview/log_repaint.c:47
 msgid "October"
 msgstr "Ottobre"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "November"
 msgstr "Novembre"
 
-#: logview/log_repaint.c:61
+#: logview/log_repaint.c:48
 msgid "December"
 msgstr "Dicembre"
 
 # AAHHHHH! il c-format non ci dovrebbe essere altrimenti non si puù scrivere la data come ti pare...
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:394
+#: logview/log_repaint.c:279
 #, c-format
 msgid "%x"
 msgstr "%x"
 
+#: logview/log_repaint.c:298
+msgid "Last Modified: "
+msgstr "Ultima modifica: "
+
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:449
+#: logview/log_repaint.c:327
 msgid "%B %e"
 msgstr "%e %B"
 
 #  vedi sopra...
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:521
+#: logview/log_repaint.c:399
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:193
+#: logview/logrtns.c:192
 msgid "Not enough memory!\n"
 msgstr "Memoria insufficiente!\n"
 
-#: logview/logrtns.c:204
+#: logview/logrtns.c:203
 msgid "Unable to open logfile!\n"
 msgstr "Impossibile aprire il file di log!\n"
 
-#: logview/logrtns.c:265
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s non è un file regolare."
 
-#: logview/logrtns.c:273
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1607,111 +1612,169 @@ msgstr ""
 "di lettura. Provare a lanciare il programma come root o contattare "
 "l'amministratore di sistema per cambiare i permessi sul file."
 
-#: logview/logrtns.c:290
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s non può essere aperto."
 
-#: logview/logrtns.c:320 logview/logrtns.c:329
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "%s non è un file di log."
 
-#: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memoria esaurita"
 
-#: logview/logview.c:100
-msgid "S_witch Log"
-msgstr "Cam_bia log"
+#: logview/logview-findbar.c:252
+#, fuzzy
+msgid "Fin_d : "
+msgstr "Trova"
 
-#: logview/logview.c:101
-msgid "Switch between already opened logs"
-msgstr "Passa ad un altro log aperto"
+#: logview/logview-findbar.c:270
+#, fuzzy
+msgid "Find Next"
+msgstr "Trova"
 
-#: logview/logview.c:107
-msgid "_Monitor..."
-msgstr "_Monitoraggio..."
+#: logview/logview-findbar.c:280
+msgid "Find Previous"
+msgstr ""
 
-#: logview/logview.c:108
-msgid "Monitor Logs"
-msgstr "Monitoraggio dei log"
+#: logview/logview.c:79
+msgid "_Log"
+msgstr ""
 
-#: logview/logview.c:116
+#: logview/logview.c:81
+msgid "_View"
+msgstr ""
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "_Open..."
+msgstr "_Apri"
+
+#: logview/logview.c:84
+#, fuzzy
+msgid "Open a log from file"
+msgstr "Apre un nuovo file di log"
+
+#: logview/logview.c:86
 msgid "_Properties"
 msgstr "_Proprietà"
 
-#: logview/logview.c:117
+#: logview/logview.c:86
 msgid "Show Log Properties"
 msgstr "Mostra le proprietà del log"
 
-#: logview/logview.c:125
-msgid "Clos_e All"
+#: logview/logview.c:88
+#, fuzzy
+msgid "Close"
 msgstr "Chiudi _tutti"
 
-#: logview/logview.c:126
-msgid "Close all Log files"
-msgstr "Chiude tutti i file di log"
+#: logview/logview.c:88
+msgid "Close this log"
+msgstr ""
 
-#: logview/logview.c:138
-msgid "_Calendar"
-msgstr "_Calendario"
+#: logview/logview.c:90
+#, fuzzy
+msgid "_Quit"
+msgstr "_Modifica"
 
-#: logview/logview.c:139
-msgid "Show Calendar Log"
-msgstr "Mostra il calendario dei log"
+#: logview/logview.c:90
+#, fuzzy
+msgid "Quit the log viewer"
+msgstr "Visualizzatore log di sistema"
 
-#: logview/logview.c:145
-msgid "_Entry Detail"
-msgstr "Dettagli _voce"
+#: logview/logview.c:93
+msgid "Find pattern in logs"
+msgstr ""
 
-#: logview/logview.c:146
-msgid "Show Entry Detail"
-msgstr "Mostra i dettagli della voce selezionata"
-
-#: logview/logview.c:152
-msgid "_Collapse All"
+#: logview/logview.c:96
+#, fuzzy
+msgid "Collapse _All"
 msgstr "Contrai _tutti"
 
-#: logview/logview.c:153
+#: logview/logview.c:96
 msgid "Collapse all the rows"
 msgstr "Contrae tutte le righe"
 
-#: logview/logview.c:370
+#: logview/logview.c:99
+msgid "_Contents"
+msgstr ""
+
+#: logview/logview.c:99
+msgid "Open the help contents for the log viewer"
+msgstr ""
+
+#: logview/logview.c:101
+msgid "Show the about dialog for the gconf editor"
+msgstr ""
+
+#: logview/logview.c:107
+#, fuzzy
+msgid "_Monitor"
+msgstr "_Monitoraggio..."
+
+#: logview/logview.c:107
+#, fuzzy
+msgid "Monitor Current Log"
+msgstr "Monitoraggio dei log"
+
+#: logview/logview.c:109
+msgid "_Calendar"
+msgstr "_Calendario"
+
+#: logview/logview.c:109
+msgid "Show Calendar Log"
+msgstr "Mostra il calendario dei log"
+
+#: logview/logview.c:111
+msgid "_Entry Detail"
+msgstr "Dettagli _voce"
+
+#: logview/logview.c:111
+msgid "Show Entry Detail"
+msgstr "Mostra i dettagli della voce selezionata"
+
+#: logview/logview.c:166
+msgid "Open the specified log."
+msgstr ""
+
+#: logview/logview.c:298
 msgid "No log files to open"
 msgstr "Nessun file da aprire"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Date"
 msgstr "Data"
 
-#: logview/logview.c:392
+#: logview/logview.c:376
 msgid "Host Name"
 msgstr "Nome host"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Process"
 msgstr "Processo"
 
-#: logview/logview.c:393
+#: logview/logview.c:377
 msgid "Message"
 msgstr "Messaggio"
 
-#: logview/logview.c:474
-msgid "Last Modified: "
-msgstr "Ultima modifica: "
-
-#: logview/logview.c:573 logview/logview.c:648
-msgid "Too many open logs. Close one and try again"
-msgstr "Troppi log aperti. Chiuderne uno e riprovare"
-
-#: logview/logview.c:585
-msgid "File already opened"
-msgstr "File già aperto"
-
-#: logview/logview.c:661
+#: logview/logview.c:581
 msgid "Open new logfile"
 msgstr "Apre un nuovo file di log"
+
+#: logview/logview.c:922
+#, fuzzy, c-format
+msgid "There was an error displaying help: %s"
+msgstr ""
+"Si è verificato un errore nel mostrare l'aiuto: \n"
+"%s"
+
+#: logview/logview.c:934
+#, c-format
+msgid "%s - %s (monitored)"
+msgstr ""
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -1728,86 +1791,95 @@ msgstr ""
 "può essere /var/log/messages o /var/adm/messages, a secondo del sistema "
 "operativo."
 
-#: logview/misc.c:56
-#, c-format
-msgid "Error: [%s]\n"
-msgstr "Errore: [%s]\n"
-
-#: logview/monitor.c:111
-msgid "Monitor Options"
-msgstr "Opzioni monitoraggio"
-
-#: logview/monitor.c:114
-msgid "Ac_tions..."
-msgstr "A_zioni..."
-
-#: logview/monitor.c:140
-msgid "_Select logs to monitor:"
-msgstr "_Selezione log da monitorare:"
-
-#: logview/monitor.c:145
-msgid "Currently _monitored logs:"
-msgstr "Log _monitorati attualmente:"
-
-#: logview/monitor.c:193
-msgid "Add logs to monitor"
-msgstr "Aggiunge il log al monitoraggio"
-
-#: logview/monitor.c:202
-msgid "Remove logs from monitor"
-msgstr "Rimove il log dal monitoraggio"
-
-# credo sia: nascondi finestra principale dell'applicazione mentre effettui monitoraggio
-#. Check boxes
-#: logview/monitor.c:249
-msgid "_Hide application"
-msgstr "_Nascondi applicazione"
-
-#: logview/monitor.c:257
-msgid "_Execute actions"
-msgstr "_Esegui azioni"
-
-#: logview/monitor.c:293
-msgid "Too many logs to monitor. Remove one and try again"
-msgstr "Troppi log da monitorare. Toglierne uno e riprovare"
-
-#: logview/monitor.c:301 logview/monitor.c:338
-msgid "tmp_list is NULL\n"
-msgstr "tmp_list è NULL\n"
-
-#: logview/monitor.c:475
-msgid "Monitoring Logs..."
-msgstr "Monitoraggio log..."
-
-#: logview/monitor.c:667
-msgid "TOUCHED!!\n"
-msgstr "CAMBIATO\n"
-
-#: logview/zoom.c:63
+#: logview/zoom.c:65
 msgid "Entry Detail"
 msgstr "Dettagli voce"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Date:"
 msgstr "Data:"
 
-#: logview/zoom.c:101
+#: logview/zoom.c:102
 msgid "Process:"
 msgstr "Processo:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Message:"
 msgstr "Messaggio:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:103
 msgid "Description:"
 msgstr "Descrizione:"
 
-#: logview/zoom.c:129
+#: logview/zoom.c:133
 msgid "Log Line Details"
 msgstr "Dettagli per la riga del log"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:187
+#: logview/zoom.c:195
 msgid "%B %e %X"
 msgstr "%e %B, %H.%M.%S"
+
+#~ msgid "Accessories"
+#~ msgstr "Accessori"
+
+#~ msgid "Look in Folder Entry"
+#~ msgstr "Campo \"Cerca nella cartella\""
+
+#~ msgid "Cesar Miquel (miquel@df.uba.ar)"
+#~ msgstr "César Miquel (miquel@df.uba.ar)"
+
+#~ msgid "S_witch Log"
+#~ msgstr "Cam_bia log"
+
+#~ msgid "Switch between already opened logs"
+#~ msgstr "Passa ad un altro log aperto"
+
+#~ msgid "Close all Log files"
+#~ msgstr "Chiude tutti i file di log"
+
+#~ msgid "Too many open logs. Close one and try again"
+#~ msgstr "Troppi log aperti. Chiuderne uno e riprovare"
+
+#~ msgid "File already opened"
+#~ msgstr "File già aperto"
+
+#~ msgid "Error: [%s]\n"
+#~ msgstr "Errore: [%s]\n"
+
+#~ msgid "Monitor Options"
+#~ msgstr "Opzioni monitoraggio"
+
+#~ msgid "Ac_tions..."
+#~ msgstr "A_zioni..."
+
+#~ msgid "_Select logs to monitor:"
+#~ msgstr "_Selezione log da monitorare:"
+
+#~ msgid "Currently _monitored logs:"
+#~ msgstr "Log _monitorati attualmente:"
+
+#~ msgid "Add logs to monitor"
+#~ msgstr "Aggiunge il log al monitoraggio"
+
+#~ msgid "Remove logs from monitor"
+#~ msgstr "Rimove il log dal monitoraggio"
+
+# credo sia: nascondi finestra principale dell'applicazione mentre effettui monitoraggio
+#~ msgid "_Hide application"
+#~ msgstr "_Nascondi applicazione"
+
+#~ msgid "_Execute actions"
+#~ msgstr "_Esegui azioni"
+
+#~ msgid "Too many logs to monitor. Remove one and try again"
+#~ msgstr "Troppi log da monitorare. Toglierne uno e riprovare"
+
+#~ msgid "tmp_list is NULL\n"
+#~ msgstr "tmp_list è NULL\n"
+
+#~ msgid "Monitoring Logs..."
+#~ msgstr "Monitoraggio log..."
+
+#~ msgid "TOUCHED!!\n"
+#~ msgstr "CAMBIATO\n"

@@ -15,22 +15,31 @@ INCLUDES = \
 bin_PROGRAMS = gnome-system-log
 
 gnome_system_log_SOURCES = 	\
-	about.c		\
-	actions.c	\
-	calendar.c	\
-	config.c	\
-	desc_db.c       \
-	info.c		\
-	log_repaint.c	\
-	logrtns.c	\
-	logrtns.h	\
-	logview.c	\
-	logview.h	\
-	misc.c		\
-	monitor.c       \
+	about.c			\
+	about.h			\
+	actions.c		\
+	calendar.c		\
+	calendar.h		\
+	config.c		\
+	desc_db.c       	\
+	desc_db.h		\
+	info.c			\
+	info.h			\
+	log_repaint.c		\
+	log_repaint.h		\
+	logrtns.c		\
+	logrtns.h		\
+	logview.c		\
+	logview.h		\
+	misc.c			\
+	misc.h			\
+	monitor.c       	\
+	monitor.h		\
 	userprefsdialog.c       \
-	zoom.c \
-	logview-findbar.c
+	zoom.c 			\
+	zoom.h			\
+	logview-findbar.c	\
+	logview-findbar.h
 
 gnome_system_log_LDADD = \
 	$(GNOME_UTILS_LIBS)
@@ -80,7 +89,9 @@ if CONSOLE_HELPER
 	$(LN_S) @CONSOLE_HELPER@ $(DESTDIR)$(bindir)/gnome-system-log
 endif
 
-CLEANFILES = gnome-system-log.desktop
+CLEANFILES = 				\
+	gnome-system-log.desktop	\
+	logview.schemas
 
 dist-hook:
 	cd $(distdir) ; rm -f $(CLEANFILES)
