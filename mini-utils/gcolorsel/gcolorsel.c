@@ -362,21 +362,18 @@ void about_cb(GtkWidget *widget, void *data)
  
 /* Menus */
 static GnomeUIInfo help_menu[] = {
-    GNOMEUIINFO_ITEM_STOCK(N_("_About"), NULL, about_cb,
-                           GNOME_STOCK_MENU_ABOUT),
-    GNOMEUIINFO_END
+	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
+	GNOMEUIINFO_END
 };
   
 static GnomeUIInfo program_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("E_xit"), NULL, delete_event, NULL, NULL,
-         GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x',
-	 GDK_CONTROL_MASK, NULL},
-    GNOMEUIINFO_END
+	GNOMEUIINFO_MENU_EXIT_ITEM(delete_event,NULL),
+	GNOMEUIINFO_END
 };      
 
 static GnomeUIInfo main_menu[] = {
-        GNOMEUIINFO_SUBTREE(N_("_Program"), &program_menu),
-        GNOMEUIINFO_SUBTREE(N_("_Help"), &help_menu),
+	GNOMEUIINFO_MENU_FILE_TREE(program_menu),
+	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
         GNOMEUIINFO_END
 };
 /* End of menus */
