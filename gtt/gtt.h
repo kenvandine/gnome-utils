@@ -167,6 +167,7 @@ void clist_insert(project *p, gint pos);
 void clist_remove(project *p);
 void clist_update_label(project *p);
 void clist_update_title(project *p);
+void clist_update_desc(project *p);
 
 
 /* main.c */

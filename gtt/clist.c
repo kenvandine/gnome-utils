@@ -33,20 +33,20 @@
 static void
 select_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 {
-        GtkWidget *menu;
+	GtkWidget *menu;
 
-        if (!event) return;
-        if (event->button != 3) {
-                cur_proj_set(gtk_clist_get_row_data(clist, row));
-                return;
-        }
+	if (!event) return;
+	if (event->button != 3) {
+		cur_proj_set(gtk_clist_get_row_data(clist, row));
+		return;
+	}
 	/* TODO: workaround -- should be removed when the bug in clist is fixed.
 	 * possibly unselect cur_proj */
 	if ((gtk_clist_get_row_data(clist, row) != cur_proj) && (cur_proj))
 		gtk_clist_unselect_row(GTK_CLIST(glist), cur_proj->row, column);
-        cur_proj_set(gtk_clist_get_row_data(clist, row));
-        menu = menus_get_popup();
-        gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, 0);
+	cur_proj_set(gtk_clist_get_row_data(clist, row));
+	menu = menus_get_popup();
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, 0);
 }
 
 
@@ -75,12 +75,12 @@ click_column(GtkCList *clist, gint col)
 	if (col == TOTAL_COL)
 		project_list_sort_total_time();
 	else if (col == TIME_COL)
-                project_list_sort_time();
+		project_list_sort_time();
 	else if (col == TITLE_COL)
-                project_list_sort_title();
+		project_list_sort_title();
 	else if (col == DESC_COL)
 		project_list_sort_desc();
-        setup_clist();
+	setup_clist();
 }
 
 
@@ -88,7 +88,7 @@ click_column(GtkCList *clist, gint col)
 GtkWidget *
 create_clist(void)
 {
-        GtkWidget *w;
+	GtkWidget *w;
 #ifdef CLIST_HEADER_HACK
 	GtkStyle *style;
 	GdkGCValues vals;
@@ -98,7 +98,7 @@ create_clist(void)
 		N_("Today"),
 		N_("Project Title"),
 		N_("Description")
-        };
+	};
 	char *tmp[4];
 
 	tmp[TOTAL_COL] = _(titles[0]);
@@ -114,23 +114,23 @@ create_clist(void)
 	    int wid = gdk_string_width(vals.font, "00:00:00");
 
 	    gtk_clist_set_column_width(GTK_CLIST(w), TOTAL_COL, wid);
-	    gtk_clist_set_column_width(GTK_CLIST(w), TIME_COL,  wid);
+	    gtk_clist_set_column_width(GTK_CLIST(w), TIME_COL,	wid);
 	}
 	gtk_clist_set_column_width(GTK_CLIST(w), TITLE_COL, 120);
 #endif
 	gtk_clist_set_selection_mode(GTK_CLIST(w), GTK_SELECTION_SINGLE);
 	gtk_clist_set_column_justification(GTK_CLIST(w), TOTAL_COL, GTK_JUSTIFY_CENTER);
 	gtk_clist_set_column_justification(GTK_CLIST(w), TIME_COL,  GTK_JUSTIFY_CENTER);
-        gtk_clist_column_titles_active(GTK_CLIST(w));
-        gtk_clist_set_policy(GTK_CLIST(w),
-                             GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-        gtk_signal_connect(GTK_OBJECT(w), "select_row",
-                           GTK_SIGNAL_FUNC(select_row), NULL);
-        gtk_signal_connect(GTK_OBJECT(w), "click_column",
-                           GTK_SIGNAL_FUNC(click_column), NULL);
-        gtk_signal_connect(GTK_OBJECT(w), "unselect_row",
-                           GTK_SIGNAL_FUNC(unselect_row), NULL);
-        return w;
+	gtk_clist_column_titles_active(GTK_CLIST(w));
+	gtk_clist_set_policy(GTK_CLIST(w),
+			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_signal_connect(GTK_OBJECT(w), "select_row",
+			   GTK_SIGNAL_FUNC(select_row), NULL);
+	gtk_signal_connect(GTK_OBJECT(w), "click_column",
+			   GTK_SIGNAL_FUNC(click_column), NULL);
+	gtk_signal_connect(GTK_OBJECT(w), "unselect_row",
+			   GTK_SIGNAL_FUNC(unselect_row), NULL);
+	return w;
 }
 
 
@@ -143,32 +143,30 @@ setup_clist(void)
 
 	timer_running = (main_timer != 0);
 	stop_timer();
-        gtk_clist_freeze(GTK_CLIST(glist));
-        gtk_clist_clear(GTK_CLIST(glist));
-	if (!plist) {
-		/* define one empty project on the first start */
-		project_list_add(project_new_title(_("empty")));
+	if (plist) {
+		gtk_clist_freeze(GTK_CLIST(glist));
+		gtk_clist_clear(GTK_CLIST(glist));
+		for (pl = plist; pl; pl = pl->next) {
+			clist_add(pl->proj);
+			if (pl->proj == cur_proj) cp_found = 1;
+		}
+		gtk_clist_thaw(GTK_CLIST(glist));
+	} else {
+		gtk_clist_clear(GTK_CLIST(glist));
 	}
-
-	for (pl = plist; pl; pl = pl->next) {
-		clist_add(pl->proj);
-		if (pl->proj == cur_proj) cp_found = 1;
-	}
-
-        gtk_clist_thaw(GTK_CLIST(glist));
 	if (!cp_found) {
-                cur_proj_set(NULL);
-        } else if (cur_proj) {
-                gtk_clist_select_row(GTK_CLIST(glist), cur_proj->row, 0);
-        }
+		cur_proj_set(NULL);
+	} else if (cur_proj) {
+		gtk_clist_select_row(GTK_CLIST(glist), cur_proj->row, 0);
+	}
 	err_init();
 	gtk_widget_show(window);
 	if (timer_running) start_timer();
 	menu_set_states();
-        if (config_show_clist_titles)
-                gtk_clist_column_titles_show(GTK_CLIST(glist));
-        else
-                gtk_clist_column_titles_hide(GTK_CLIST(glist));
+	if (config_show_clist_titles)
+		gtk_clist_column_titles_show(GTK_CLIST(glist));
+	else
+		gtk_clist_column_titles_hide(GTK_CLIST(glist));
 }
 
 
@@ -182,8 +180,8 @@ clist_add(project *p)
 	tmp[TIME_COL]  = project_get_timestr(p, config_show_secs);
 	tmp[TITLE_COL] = p->title;
 	tmp[DESC_COL]  = p->desc;
-        p->row = gtk_clist_append(GTK_CLIST(glist), tmp);
-        gtk_clist_set_row_data(GTK_CLIST(glist), p->row, p);
+	p->row = gtk_clist_append(GTK_CLIST(glist), tmp);
+	gtk_clist_set_row_data(GTK_CLIST(glist), p->row, p);
 }
 
 
@@ -191,20 +189,20 @@ clist_add(project *p)
 void
 clist_insert(project *p, gint pos)
 {
-        project_list *pl;
+	project_list *pl;
 	char *tmp[4];
 
 	tmp[TOTAL_COL] = project_get_total_timestr(p, config_show_secs);
 	tmp[TIME_COL]  = project_get_timestr(p, config_show_secs);
 	tmp[TITLE_COL] = p->title;
 	tmp[DESC_COL]  = p->desc;
-        gtk_clist_insert(GTK_CLIST(glist), pos, tmp);
-        gtk_clist_set_row_data(GTK_CLIST(glist), pos, p);
-        for (pl = plist; pl; pl = pl->next) {
-                if (pl->proj->row >= pos)
-                        pl->proj->row++;
-        }
-        p->row = pos;
+	gtk_clist_insert(GTK_CLIST(glist), pos, tmp);
+	gtk_clist_set_row_data(GTK_CLIST(glist), pos, p);
+	for (pl = plist; pl; pl = pl->next) {
+		if (pl->proj->row >= pos)
+			pl->proj->row++;
+	}
+	p->row = pos;
 }
 
 
@@ -212,14 +210,14 @@ clist_insert(project *p, gint pos)
 void
 clist_remove(project *p)
 {
-        project_list *pl;
+	project_list *pl;
 
-        gtk_clist_remove(GTK_CLIST(glist), p->row);
-        for (pl = plist; pl; pl = pl->next) {
-                if (pl->proj->row >= p->row)
-                        pl->proj->row--;
-        }
-        p->row = -1;
+	gtk_clist_remove(GTK_CLIST(glist), p->row);
+	for (pl = plist; pl; pl = pl->next) {
+		if (pl->proj->row >= p->row)
+			pl->proj->row--;
+	}
+	p->row = -1;
 }
 
 
@@ -227,12 +225,12 @@ clist_remove(project *p)
 void
 clist_update_label(project *p)
 {
-        g_return_if_fail(p->row != -1);
+	g_return_if_fail(p->row != -1);
 	gtk_clist_set_text(GTK_CLIST(glist), p->row, TOTAL_COL,
 			   project_get_total_timestr(p, config_show_secs));
 	gtk_clist_set_text(GTK_CLIST(glist), p->row, TIME_COL,
-                           project_get_timestr(p, config_show_secs));
-        update_status_bar();
+			   project_get_timestr(p, config_show_secs));
+	update_status_bar();
 }
 
 
@@ -240,9 +238,9 @@ clist_update_label(project *p)
 void
 clist_update_title(project *p)
 {
-        g_return_if_fail(p->row != -1);
+	g_return_if_fail(p->row != -1);
 	gtk_clist_set_text(GTK_CLIST(glist), p->row, TITLE_COL,
-                           p->title);
+			   p->title);
 }
 
 
