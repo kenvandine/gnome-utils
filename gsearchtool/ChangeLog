@@ -1,5 +1,10 @@
 2002-12-06  Dennis Cranston <dennis_cranston@yahoo.com>
 
+	* gsearchtool-callbacks.c:  (size_allocate_cb) Call function
+	gtk_widget_set_usize() instead of gtk_widget_set_size_request().
+
+2002-12-06  Dennis Cranston <dennis_cranston@yahoo.com>
+
 	* gsearchtool.c:  Connect the "size_allocate" signal of
 	the find button to size_allocate_cb().
 	
