@@ -1,3 +1,12 @@
+2002-12-16  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-support.c:  Apply disclosure widget changes
+	from Arvind Samptur <arvind.samptur@wipro.com> provided
+	in bugzilla report 100992.
+	(class_init) Attached a destroy handler.
+	(cddb_disclosure_destroy) Removed the timer on a destroy.
+	(do_animation) Replaced gtk_timeout_remove() with g_source_remove().
+	
 2002-12-15  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c: Left indent the options contained in 

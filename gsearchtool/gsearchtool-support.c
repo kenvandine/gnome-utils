@@ -88,6 +88,15 @@ finalize (GObject *object)
 }
 
 static void
+cddb_disclosure_destroy(GtkObject *obj)
+{
+	CDDBDisclosure *disclosure = CDDB_DISCLOSURE (obj);
+
+	if (disclosure->priv->expand_id)
+		g_source_remove (disclosure->priv->expand_id);
+}
+
+static void
 get_x_y (CDDBDisclosure *disclosure,
 	 int *x,
 	 int *y,
@@ -207,7 +216,7 @@ do_animation (CDDBDisclosure *disclosure,
 	      gboolean opening)
 {
 	if (disclosure->priv->expand_id > 0) {
-		gtk_timeout_remove (disclosure->priv->expand_id);
+		g_source_remove (disclosure->priv->expand_id);
 	}
 
 	disclosure->priv->direction = opening ? 1 : -1;
@@ -250,6 +259,7 @@ draw_indicator (GtkCheckButton *check,
 static void
 class_init (CDDBDisclosureClass *klass)
 {
+	GtkObjectClass *gtk_object_class = (GtkObjectClass *) klass;
 	GObjectClass *object_class;
 	GtkWidgetClass *widget_class;
 	GtkCheckButtonClass *button_class;
@@ -264,6 +274,8 @@ class_init (CDDBDisclosureClass *klass)
 	button_class->draw_indicator = draw_indicator;
 
 	object_class->finalize = finalize;
+
+	gtk_object_class->destroy = cddb_disclosure_destroy;
 
 	parent_class = g_type_class_peek_parent (klass);
 
