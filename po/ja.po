@@ -11,14 +11,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-02 13:26+0900\n"
+"POT-Creation-Date: 2004-01-13 13:40+1300\n"
 "PO-Revision-Date: 2004-01-02 13:26+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -405,7 +405,7 @@ msgstr "不正なブロックの検証中..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "不正なブロックのチェックの際にデバイス %s をオープンできませんでした\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
 msgid "Checking for bad blocks... Done"
 msgstr "不正なブロックの検証中... 完了"
 
@@ -531,16 +531,16 @@ msgstr "不正ブロック一覧ファイルのファイル名の生成中にエ
 msgid "Error while filling the bad blocks list file."
 msgstr "不正ブロック一覧ファイルの作成中にエラーが発生しました。"
 
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:304
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "(%s) コマンド: %s の生成中にエラーが発生しました。"
 
-#: gfloppy/src/gfloppy.c:322
+#: gfloppy/src/gfloppy.c:330
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "mke2fs 開始シグネチャが不明なため取り消します。"
 
-#: gfloppy/src/gfloppy.c:336
+#: gfloppy/src/gfloppy.c:344
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -551,16 +551,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:353
+#: gfloppy/src/gfloppy.c:361
 msgid "Abnormal child process termination."
 msgstr "子プロセスが異常なため停止します。"
 
-#: gfloppy/src/gfloppy.c:378
+#: gfloppy/src/gfloppy.c:386
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "mbadblocks コマンド: %s のプロセス作成時にエラーが発生しました。"
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:398
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -569,28 +569,28 @@ msgstr ""
 "不正ブロック・チェック・ツール (mbadblocks) から次のエラー報告がありました:\n"
 "%s"
 
-#: gfloppy/src/gfloppy.c:433
+#: gfloppy/src/gfloppy.c:441
 msgid "Abnormal mbadblocks child process termination."
 msgstr "mbadblocks の子プロセスが異常なため停止します。"
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
+#: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
 msgid "Making filesystem on disk..."
 msgstr "ファイルシステムの生成中..."
 
-#: gfloppy/src/gfloppy.c:467
+#: gfloppy/src/gfloppy.c:475
 msgid "Unable to create filesystem correctly."
 msgstr "ファイルシステムを正しく作成できません.."
 
-#: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
 msgid "Making filesystem on disk... Done"
 msgstr "ファイルシステムの生成中...完了"
 
-#: gfloppy/src/gfloppy.c:516
+#: gfloppy/src/gfloppy.c:524
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "不正ブロックのチェック中... (少々お待ち下さい)"
 
-#: gfloppy/src/gfloppy.c:521
+#: gfloppy/src/gfloppy.c:529
 msgid "Error while checking the bad blocks."
 msgstr "不正ブロックのチェック中にエラーが発生しました。"
 
@@ -680,7 +680,7 @@ msgstr "高速(_Q) (ファイルシステムの生成のみ)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "標準(_S) (高速モード + 低レベル・フォーマット)"
 
-#: gfloppy/src/main.c:134
+#: gfloppy/src/main.c:140
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -688,12 +688,12 @@ msgstr ""
 "mke2fs または mkdosfs/mformat コマンドがインストールされていません。これらの"
 "ツールがなければ、フロッピーをフォーマットできません。"
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
+#: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "デバイス %s を開けません。フォーマットを続行できません。"
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
+#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -702,7 +702,7 @@ msgstr ""
 "デバイス %s が接続されていません。\n"
 "続行するにはデバイスを接続して下さい。"
 
-#: gfloppy/src/main.c:164 gfloppy/src/main.c:208
+#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -712,7 +712,16 @@ msgstr ""
 "%s へ書き込む権限がないので、フォーマットできません。\n"
 "システム管理者に連絡し、書き込み権限を設定してもらって下さい。"
 
-#: gfloppy/src/main.c:402
+#: gfloppy/src/main.c:216
+#, fuzzy
+msgid "Unable to open any device, formatting cannot continue."
+msgstr "デバイス %s を開けません。フォーマットを続行できません。"
+
+#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+msgid "/dev/floppy/0 or /dev/fd0"
+msgstr ""
+
+#: gfloppy/src/main.c:394
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -721,15 +730,15 @@ msgstr ""
 "フロッピー初期化ツールのヘルプを表示できませんでした。\n"
 "%s"
 
-#: gfloppy/src/main.c:435
+#: gfloppy/src/main.c:427
 msgid "The volume name can't contain any blank space."
 msgstr "ボリューム名をブロック・スペースに書き込めません。"
 
-#: gfloppy/src/main.c:484
+#: gfloppy/src/main.c:477
 msgid "The device to format"
 msgstr "フォーマットするデバイス"
 
-#: gfloppy/src/main.c:485
+#: gfloppy/src/main.c:478
 msgid "DEVICE"
 msgstr "DEVICE"
 
@@ -760,9 +769,9 @@ msgstr "フォーマットは中断されました."
 msgid "Format Progress"
 msgstr "フォーマットの進行状況"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:591
-#: gsearchtool/gsearchtool.c:845 gsearchtool/gsearchtool.c:992
-#: gsearchtool/gsearchtool.c:2288 gsearchtool/gsearchtool.c:2312
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
+#: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
+#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
 msgid "Search for Files"
 msgstr "ファイルの検索"
 
@@ -899,42 +908,42 @@ msgstr "\"%s\" の削除に失敗しました: %s 。"
 msgid "Save Search Results As..."
 msgstr "検索結果に名前を付けて保存..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1185
+#: gsearchtool/gsearchtool-callbacks.c:1184
 msgid "Could not save document."
 msgstr "ドキュメントを保存できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1186
 msgid "You did not select a document name."
 msgstr "ドキュメントの名前を選択していません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1213
-#: gsearchtool/gsearchtool-callbacks.c:1308
+#: gsearchtool/gsearchtool-callbacks.c:1212
+#: gsearchtool/gsearchtool-callbacks.c:1307
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "ドキュメント \"%s\" を %s へ保存できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
 msgstr "指定したドキュメントはフォルダです。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1246
+#: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "ドキュメント \"%s\" は既に存在します。置き換えてもよろしいですか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "既存のファイルを置き換えると、その内容は上書きされます。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1261
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
 msgstr "置き換える(_R)"
 
-#: gsearchtool/gsearchtool-callbacks.c:1311
+#: gsearchtool/gsearchtool-callbacks.c:1310
 msgid "You may not have write permissions to the document."
 msgstr "そのドキュメントに対する書き込み権限がないようです。"
 
-#: gsearchtool/gsearchtool-support.c:58
+#: gsearchtool/gsearchtool-support.c:63
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -948,154 +957,149 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:325
+#: gsearchtool/gsearchtool-support.c:348
 msgid "today at %-I:%M %p"
 msgstr "今日の %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:327
+#: gsearchtool/gsearchtool-support.c:350
 msgid "yesterday at %-I:%M %p"
 msgstr "昨日の %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:329 gsearchtool/gsearchtool-support.c:331
+#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:456
+#: gsearchtool/gsearchtool-support.c:487
 msgid "link (broken)"
 msgstr "リンク (リンク切れ)"
 
-#: gsearchtool/gsearchtool-support.c:461
+#: gsearchtool/gsearchtool-support.c:492
 #, c-format
 msgid "link to %s"
 msgstr "%s へのリンク"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:70
 msgid "Contains the _text"
 msgstr "次のテキストを含む(_T)"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:72
 msgid "_Date modified less than (days)"
 msgstr "ファイルが変更されている (何日以下)(_D)"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:73
 msgid "Date modified more than (da_ys)"
 msgstr "ファイルが変更されている (何日以上)(_Y)"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:75
 msgid "S_ize at least (kilobytes)"
 msgstr "最小サイズの指定 (Kバイト)(_I)"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:76
 msgid "Si_ze at most (kilobytes)"
 msgstr "最大サイズの指定 (Kバイト)(_Z)"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:77
 msgid "File is empty"
 msgstr "ファイルが空である"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:79
 msgid "Owned by _user"
 msgstr "ユーザが所有している(_U)"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:80
 msgid "Owned by _group"
 msgstr "グループが所有している(_G)"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:81
 msgid "Owner is unrecognized"
 msgstr "所有者が不明である"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:83
 msgid "Na_me does not contain"
 msgstr "名前を含まない(_M)"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:84
 msgid "Name matches regular e_xpression"
 msgstr "正規表現で検索する(_X)"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:86
 msgid "Show hidden and backup files"
 msgstr "隠しファイルと隠しフォルダを表示する"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
 msgstr "シンボリック・リンクを追跡する"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:88
 msgid "Include other filesystems"
 msgstr "他のファイルシステムにある"
 
-#: gsearchtool/gsearchtool.c:538 gsearchtool/gsearchtool.c:566
+#: gsearchtool/gsearchtool.c:509 gsearchtool/gsearchtool.c:537
 msgid "No files found"
 msgstr "ファイルが見つかりません"
 
-#: gsearchtool/gsearchtool.c:559
+#: gsearchtool/gsearchtool.c:530
 msgid "(stopped)"
 msgstr "(停止中)"
 
-#: gsearchtool/gsearchtool.c:565
+#: gsearchtool/gsearchtool.c:536
 msgid "No Files Found"
 msgstr "ファイルが見つかりません"
 
-#: gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:541
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d 個のファイルが見つかりました"
 msgstr[1] "%d 個のファイルが見つかりました"
 
-#: gsearchtool/gsearchtool.c:574
+#: gsearchtool/gsearchtool.c:545
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d 個のファイルが見つかりました"
 msgstr[1] "%d 個のファイルが見つかりました"
 
-#: gsearchtool/gsearchtool.c:680
+#: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
 msgstr "エントリオプションのないエントリに変更されました！"
 
-#: gsearchtool/gsearchtool.c:937
-#, c-format
-msgid "The animation file is missing or invalid: %s"
-msgstr "アニメーション・ファイルが見つからない、またはおかしいです: %s"
-
-#: gsearchtool/gsearchtool.c:992
+#: gsearchtool/gsearchtool.c:900
 msgid "Searching..."
 msgstr "検索中..."
 
-#: gsearchtool/gsearchtool.c:1038
+#: gsearchtool/gsearchtool.c:921
 msgid "Set the text of 'Name contains'"
 msgstr "'名前を含む' のテキストを入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1039
+#: gsearchtool/gsearchtool.c:922
 msgid "Set the text of 'Look in folder'"
 msgstr "'検索するフォルダ' 名を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1040
+#: gsearchtool/gsearchtool.c:923
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "次のエントリから一つ選んでファイルの並べ替えます: 名前、フォルダ、サイズ、種"
 "類、日付"
 
-#: gsearchtool/gsearchtool.c:1041
+#: gsearchtool/gsearchtool.c:924
 msgid "Set sort order to descending, the default is ascending"
 msgstr "降順に並べ替えます。デフォルトは昇順です"
 
-#: gsearchtool/gsearchtool.c:1042
+#: gsearchtool/gsearchtool.c:925
 msgid "Automatically start a search"
 msgstr "自動的に検索を開始します"
 
-#: gsearchtool/gsearchtool.c:1047
+#: gsearchtool/gsearchtool.c:930
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "条件 '%s' の選択"
 
-#: gsearchtool/gsearchtool.c:1153
+#: gsearchtool/gsearchtool.c:1036
 msgid "Invalid option passed to sortby command line argument."
 msgstr "コマンドライン引数に不正なオプションが引き渡されました。"
 
-#: gsearchtool/gsearchtool.c:1404
+#: gsearchtool/gsearchtool.c:1301
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1103,7 +1107,7 @@ msgstr ""
 "検索中に次のエラーが報告されました。\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1408
+#: gsearchtool/gsearchtool.c:1305
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1111,116 +1115,116 @@ msgstr ""
 "\n"
 "...エラーが多すぎて表示でません..."
 
-#: gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1312
 msgid "Error while searching for files."
 msgstr "ファイルを検索する際にエラーが発生しました。"
 
-#: gsearchtool/gsearchtool.c:1456
+#: gsearchtool/gsearchtool.c:1353
 msgid "Error parsing the search command."
 msgstr "検索コマンドを解析する際にエラーが発生しました。"
 
-#: gsearchtool/gsearchtool.c:1479
+#: gsearchtool/gsearchtool.c:1376
 msgid "Error running the search command."
 msgstr "検索コマンドを実行する際にエラーが発生しました。"
 
-#: gsearchtool/gsearchtool.c:1574
+#: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
 msgstr "検索規則値を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1575
+#: gsearchtool/gsearchtool.c:1473
 msgid "Enter a value for search rule"
 msgstr "検索規則用の値を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1511
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "削除する条件 '%s' をクリックして下さい"
 
-#: gsearchtool/gsearchtool.c:1669
+#: gsearchtool/gsearchtool.c:1567
 msgid "A_vailable options:"
 msgstr "適用する検索条件:"
 
-#: gsearchtool/gsearchtool.c:1682
+#: gsearchtool/gsearchtool.c:1580
 msgid "Search Rules Menu"
 msgstr "検索規則メニュー"
 
-#: gsearchtool/gsearchtool.c:1683
+#: gsearchtool/gsearchtool.c:1581
 msgid "Select a search rule from the menu"
 msgstr "検索条件をメニューから選択して下さい"
 
-#: gsearchtool/gsearchtool.c:1715
+#: gsearchtool/gsearchtool.c:1613
 msgid "S_earch results:"
 msgstr "検索結果(_E):"
 
-#: gsearchtool/gsearchtool.c:1795
+#: gsearchtool/gsearchtool.c:1693
 msgid "Name"
 msgstr "名前"
 
-#: gsearchtool/gsearchtool.c:1815
+#: gsearchtool/gsearchtool.c:1713
 msgid "Folder"
 msgstr "フォルダ"
 
-#: gsearchtool/gsearchtool.c:1826
+#: gsearchtool/gsearchtool.c:1724
 msgid "Size"
 msgstr "サイズ"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1734
 msgid "Type"
 msgstr "種類"
 
-#: gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1744
 msgid "Date Modified"
 msgstr "変更日時"
 
-#: gsearchtool/gsearchtool.c:1909
+#: gsearchtool/gsearchtool.c:1802
 msgid "_Name contains:"
 msgstr "含める名前(_N):"
 
-#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Name Contains Entry"
 msgstr "エントリを含む名前です"
 
-#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Enter the file name you want to search"
 msgstr "検索したいファイル名を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1937
+#: gsearchtool/gsearchtool.c:1830
 msgid "_Look in folder:"
 msgstr "検索対象フォルダ(_L):"
 
-#: gsearchtool/gsearchtool.c:1943
+#: gsearchtool/gsearchtool.c:1836
 msgid "Browse"
 msgstr "参照"
 
-#: gsearchtool/gsearchtool.c:1952 gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Look in Folder Entry"
 msgstr "検索対象のフォルダです"
 
-#: gsearchtool/gsearchtool.c:1952 gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Enter the folder name where you want to start the search"
 msgstr "検索を開始したいフォルダの名前を入力"
 
-#: gsearchtool/gsearchtool.c:1972
+#: gsearchtool/gsearchtool.c:1865
 msgid "Show more _options"
 msgstr "追加オプションの表示(_O)"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:1875
 msgid "Show more options"
 msgstr "もっとたくさんのオプションを表示します"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:1875
 msgid "Expands or collapses a list of search options."
 msgstr "検索オプションの一覧を展開するまたは畳みます"
 
-#: gsearchtool/gsearchtool.c:2029
+#: gsearchtool/gsearchtool.c:1922
 msgid "Click to Start the search"
 msgstr "クリックすると検索を開始します"
 
-#: gsearchtool/gsearchtool.c:2030
+#: gsearchtool/gsearchtool.c:1923
 msgid "Click to Stop the search"
 msgstr "クリックすると検索を停止します"
 
-#: gsearchtool/gsearchtool.c:2308
+#: gsearchtool/gsearchtool.c:2202
 msgid "Cannot initialize bonobo."
 msgstr "Bonobo を初期化できません。"
 
@@ -1639,7 +1643,6 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "監視するログが多すぎます。一つ削除してから、やり直してください。"
 
 #: logview/monitor.c:298 logview/monitor.c:335
-#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list は NULLです\n"
 
@@ -1648,7 +1651,6 @@ msgid "Monitoring Logs..."
 msgstr "ログの監視中..."
 
 #: logview/monitor.c:643
-#, c-format
 msgid "TOUCHED!!\n"
 msgstr "TOUCHED!!\n"
 
@@ -1680,3 +1682,6 @@ msgstr "ログの詳細"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "The animation file is missing or invalid: %s"
+#~ msgstr "アニメーション・ファイルが見つからない、またはおかしいです: %s"

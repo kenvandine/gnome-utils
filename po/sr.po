@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-05 22:19+0100\n"
+"POT-Creation-Date: 2004-01-13 13:40+1300\n"
 "PO-Revision-Date: 2004-01-05 22:20+0100\n"
 "Last-Translator: Sasha Maric <sasha_maric@yahoo.com>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nognu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
@@ -401,7 +401,7 @@ msgstr "Проверава лоше блокове..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Неуспех при отварању уређаја %s за проверу лоших блокова\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
 msgid "Checking for bad blocks... Done"
 msgstr "Проверавам лоше блокове...Готово"
 
@@ -528,16 +528,16 @@ msgstr ""
 msgid "Error while filling the bad blocks list file."
 msgstr "Грешка приликом писања датотеке са листом лоших блокова."
 
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:304
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Грешка приликом покретања (%s) наредбе: %s."
 
-#: gfloppy/src/gfloppy.c:322
+#: gfloppy/src/gfloppy.c:330
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Непознат mke2fs почетни потпис, прекидам."
 
-#: gfloppy/src/gfloppy.c:336
+#: gfloppy/src/gfloppy.c:344
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -548,16 +548,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:353
+#: gfloppy/src/gfloppy.c:361
 msgid "Abnormal child process termination."
 msgstr "Ненормалан завршетак позваног процеса."
 
-#: gfloppy/src/gfloppy.c:378
+#: gfloppy/src/gfloppy.c:386
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Грешка приликом покретања mbadblocks наредбе: %s."
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:398
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -566,28 +566,28 @@ msgstr ""
 "Алат за проверу лоших блокова (mbadblocks) је пријавио следеће грешке:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:433
+#: gfloppy/src/gfloppy.c:441
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Ненормалан завршетак mbadblocks позваног процеса."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
+#: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
 msgid "Making filesystem on disk..."
 msgstr "Правим систем датотека на диску..."
 
-#: gfloppy/src/gfloppy.c:467
+#: gfloppy/src/gfloppy.c:475
 msgid "Unable to create filesystem correctly."
 msgstr "Не може да исправно образује систем датотека."
 
-#: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
 msgid "Making filesystem on disk... Done"
 msgstr "Прави систем датотека на диску... Готово"
 
-#: gfloppy/src/gfloppy.c:516
+#: gfloppy/src/gfloppy.c:524
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Испитује лоше блокове... (ово може да потраје)"
 
-#: gfloppy/src/gfloppy.c:521
+#: gfloppy/src/gfloppy.c:529
 msgid "Error while checking the bad blocks."
 msgstr "Грешка приликом испитивања лоших блокова."
 
@@ -711,7 +711,8 @@ msgstr ""
 
 #: gfloppy/src/main.c:216
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "Не могу да отворим ниједан уређај, форматизовање не може да се настави."
+msgstr ""
+"Не могу да отворим ниједан уређај, форматизовање не може да се настави."
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
@@ -730,11 +731,11 @@ msgstr ""
 msgid "The volume name can't contain any blank space."
 msgstr "Име диска не сме да садржи размаке."
 
-#: gfloppy/src/main.c:474
+#: gfloppy/src/main.c:477
 msgid "The device to format"
 msgstr "Уређај који се форматизује"
 
-#: gfloppy/src/main.c:475
+#: gfloppy/src/main.c:478
 msgid "DEVICE"
 msgstr "DEVICE"
 
@@ -766,9 +767,9 @@ msgstr "Форматизовање дискете отказано."
 msgid "Format Progress"
 msgstr "Ток форматизовања"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:591
-#: gsearchtool/gsearchtool.c:845 gsearchtool/gsearchtool.c:992
-#: gsearchtool/gsearchtool.c:2288 gsearchtool/gsearchtool.c:2312
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
+#: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
+#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
 msgid "Search for Files"
 msgstr "Потражи датотеке"
 
@@ -908,42 +909,42 @@ msgstr "Неуспешно брисање „%s“: %s."
 msgid "Save Search Results As..."
 msgstr "Сачувај резултате претраге као..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1185
+#: gsearchtool/gsearchtool-callbacks.c:1184
 msgid "Could not save document."
 msgstr "Не могу да сачувам документ."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1186
 msgid "You did not select a document name."
 msgstr "Не могу да изаберем име документа."
 
-#: gsearchtool/gsearchtool-callbacks.c:1213
-#: gsearchtool/gsearchtool-callbacks.c:1308
+#: gsearchtool/gsearchtool-callbacks.c:1212
+#: gsearchtool/gsearchtool-callbacks.c:1307
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Не могу да сачувам документ „%s“ у „%s“."
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
 msgstr "Име документа који сте изабрали представља директоријум."
 
-#: gsearchtool/gsearchtool-callbacks.c:1246
+#: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Документ „%s“ већ постоји.  Желите ли да га замените?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Уколико замените постојећу датотеку, њен садржај ће бити преснимљен."
 
-#: gsearchtool/gsearchtool-callbacks.c:1261
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
 msgstr "_Замени"
 
-#: gsearchtool/gsearchtool-callbacks.c:1311
+#: gsearchtool/gsearchtool-callbacks.c:1310
 msgid "You may not have write permissions to the document."
 msgstr "Можда немате овлашћења за писање документа."
 
-#: gsearchtool/gsearchtool-support.c:58
+#: gsearchtool/gsearchtool-support.c:63
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -957,96 +958,96 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:325
+#: gsearchtool/gsearchtool-support.c:348
 msgid "today at %-I:%M %p"
 msgstr "данас у %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:327
+#: gsearchtool/gsearchtool-support.c:350
 msgid "yesterday at %-I:%M %p"
 msgstr "јуче у %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:329 gsearchtool/gsearchtool-support.c:331
+#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%d.%m.%y. %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:456
+#: gsearchtool/gsearchtool-support.c:487
 msgid "link (broken)"
 msgstr "веза (неисправна)"
 
-#: gsearchtool/gsearchtool-support.c:461
+#: gsearchtool/gsearchtool-support.c:492
 #, c-format
 msgid "link to %s"
 msgstr "веза на %s"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:70
 msgid "Contains the _text"
 msgstr "Садржи _текст"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:72
 msgid "_Date modified less than (days)"
 msgstr "Промењено пре мање о_д (дана)"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:73
 msgid "Date modified more than (da_ys)"
 msgstr "Промењено пре _више од (дана)"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:75
 msgid "S_ize at least (kilobytes)"
 msgstr "Величина нај_мање (килобајта)"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:76
 msgid "Si_ze at most (kilobytes)"
 msgstr "Величина на_јвише (килобајта)"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:77
 msgid "File is empty"
 msgstr "Датотека је празна"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:79
 msgid "Owned by _user"
 msgstr "Власништво _корисника"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:80
 msgid "Owned by _group"
 msgstr "Власништво _групе"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:81
 msgid "Owner is unrecognized"
 msgstr "Власник је непрепознатљив"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:83
 msgid "Na_me does not contain"
 msgstr "И_ме не садржи"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:84
 msgid "Name matches regular e_xpression"
 msgstr "Име одговара регуларном и_зразу"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:86
 msgid "Show hidden and backup files"
 msgstr "Прикажи сакривене и резервне датотеке"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
 msgstr "Пратите симболичке везе"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:88
 msgid "Include other filesystems"
 msgstr "Укључите остале системе датотека"
 
-#: gsearchtool/gsearchtool.c:538 gsearchtool/gsearchtool.c:566
+#: gsearchtool/gsearchtool.c:509 gsearchtool/gsearchtool.c:537
 msgid "No files found"
 msgstr "Ниједна датотека није нађена"
 
-#: gsearchtool/gsearchtool.c:559
+#: gsearchtool/gsearchtool.c:530
 msgid "(stopped)"
 msgstr "(заустављен)"
 
-#: gsearchtool/gsearchtool.c:565
+#: gsearchtool/gsearchtool.c:536
 msgid "No Files Found"
 msgstr "Ниједна датотека није нађена"
 
-#: gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:541
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
@@ -1054,7 +1055,7 @@ msgstr[0] "Нађена је %d датотека"
 msgstr[1] "Нађене су %d датотеке"
 msgstr[2] "Нађено је %d датотека"
 
-#: gsearchtool/gsearchtool.c:574
+#: gsearchtool/gsearchtool.c:545
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
@@ -1062,51 +1063,46 @@ msgstr[0] "Нађена је %d датотека"
 msgstr[1] "Нађене су %d датотеке"
 msgstr[2] "Нађено је %d датотека"
 
-#: gsearchtool/gsearchtool.c:680
+#: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
 msgstr "Промењени унос је позван за неодговарајућу могућност!"
 
-#: gsearchtool/gsearchtool.c:937
-#, c-format
-msgid "The animation file is missing or invalid: %s"
-msgstr "Датотека са анимацијом недостаје или је неисправна: %s"
-
-#: gsearchtool/gsearchtool.c:992
+#: gsearchtool/gsearchtool.c:900
 msgid "Searching..."
 msgstr "Тражим..."
 
-#: gsearchtool/gsearchtool.c:1038
+#: gsearchtool/gsearchtool.c:921
 msgid "Set the text of 'Name contains'"
 msgstr "Постави текст за „име садржи“"
 
-#: gsearchtool/gsearchtool.c:1039
+#: gsearchtool/gsearchtool.c:922
 msgid "Set the text of 'Look in folder'"
 msgstr "Одреди текст за „тражи у директоријуму“"
 
-#: gsearchtool/gsearchtool.c:1040
+#: gsearchtool/gsearchtool.c:923
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Уреди датотеке по једном од следећих критеријума: име, директоријум, "
 "величина, врста, или датум"
 
-#: gsearchtool/gsearchtool.c:1041
+#: gsearchtool/gsearchtool.c:924
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Подеси уређење да буде опадајуће, уобичајено је растуће"
 
-#: gsearchtool/gsearchtool.c:1042
+#: gsearchtool/gsearchtool.c:925
 msgid "Automatically start a search"
 msgstr "Аутоматски започни претрагу"
 
-#: gsearchtool/gsearchtool.c:1047
+#: gsearchtool/gsearchtool.c:930
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Изабери ограничење „%s“"
 
-#: gsearchtool/gsearchtool.c:1153
+#: gsearchtool/gsearchtool.c:1036
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Неважећа опција предата sortby аргументу наредбе."
 
-#: gsearchtool/gsearchtool.c:1404
+#: gsearchtool/gsearchtool.c:1301
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1114,7 +1110,7 @@ msgstr ""
 "За време претраге, пријављене су следеће грешке.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1408
+#: gsearchtool/gsearchtool.c:1305
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1122,116 +1118,116 @@ msgstr ""
 "\n"
 "... Превише грешака за приказ ..."
 
-#: gsearchtool/gsearchtool.c:1415
+#: gsearchtool/gsearchtool.c:1312
 msgid "Error while searching for files."
 msgstr "Грешка приликом тражења датотека."
 
-#: gsearchtool/gsearchtool.c:1456
+#: gsearchtool/gsearchtool.c:1353
 msgid "Error parsing the search command."
 msgstr "Грешка приликом обраде наредбе за претрагу."
 
-#: gsearchtool/gsearchtool.c:1479
+#: gsearchtool/gsearchtool.c:1376
 msgid "Error running the search command."
 msgstr "Грешка приликом покретања наредбе за претрагу."
 
-#: gsearchtool/gsearchtool.c:1574
+#: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
 msgstr "Унос вредности за правило претраге"
 
-#: gsearchtool/gsearchtool.c:1575
+#: gsearchtool/gsearchtool.c:1473
 msgid "Enter a value for search rule"
 msgstr "Унесите вредност за правило претраге"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1511
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Клинките да уклоните правило „%s“"
 
-#: gsearchtool/gsearchtool.c:1669
+#: gsearchtool/gsearchtool.c:1567
 msgid "A_vailable options:"
 msgstr "Доступне _опције:"
 
-#: gsearchtool/gsearchtool.c:1682
+#: gsearchtool/gsearchtool.c:1580
 msgid "Search Rules Menu"
 msgstr "Мени правила претраге"
 
-#: gsearchtool/gsearchtool.c:1683
+#: gsearchtool/gsearchtool.c:1581
 msgid "Select a search rule from the menu"
 msgstr "Изаберите правило претраге из менија"
 
-#: gsearchtool/gsearchtool.c:1715
+#: gsearchtool/gsearchtool.c:1613
 msgid "S_earch results:"
 msgstr "Р_езултати претраге:"
 
-#: gsearchtool/gsearchtool.c:1795
+#: gsearchtool/gsearchtool.c:1693
 msgid "Name"
 msgstr "Име"
 
-#: gsearchtool/gsearchtool.c:1815
+#: gsearchtool/gsearchtool.c:1713
 msgid "Folder"
 msgstr "Директоријум"
 
-#: gsearchtool/gsearchtool.c:1826
+#: gsearchtool/gsearchtool.c:1724
 msgid "Size"
 msgstr "Величина"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1734
 msgid "Type"
 msgstr "Тип"
 
-#: gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1744
 msgid "Date Modified"
 msgstr "Датум и време измене"
 
-#: gsearchtool/gsearchtool.c:1909
+#: gsearchtool/gsearchtool.c:1802
 msgid "_Name contains:"
 msgstr "_Име садржи:"
 
-#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Name Contains Entry"
 msgstr "Име садржи унос"
 
-#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Enter the file name you want to search"
 msgstr "Унесите име датотеке коју желите пронаћи"
 
-#: gsearchtool/gsearchtool.c:1937
+#: gsearchtool/gsearchtool.c:1830
 msgid "_Look in folder:"
 msgstr "_Тражите у директоријуму:"
 
-#: gsearchtool/gsearchtool.c:1943
+#: gsearchtool/gsearchtool.c:1836
 msgid "Browse"
 msgstr "Претражи"
 
-#: gsearchtool/gsearchtool.c:1952 gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Look in Folder Entry"
 msgstr "Тражите у уносу директоријума"
 
-#: gsearchtool/gsearchtool.c:1952 gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Enter the folder name where you want to start the search"
 msgstr "Унесите име директоријума од којег желите почети претрагу"
 
-#: gsearchtool/gsearchtool.c:1972
+#: gsearchtool/gsearchtool.c:1865
 msgid "Show more _options"
 msgstr "Прикажи додатне _опције"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:1875
 msgid "Show more options"
 msgstr "Прикажи још опција"
 
-#: gsearchtool/gsearchtool.c:1982
+#: gsearchtool/gsearchtool.c:1875
 msgid "Expands or collapses a list of search options."
 msgstr "Разгранава или скупља списак опција претраге."
 
-#: gsearchtool/gsearchtool.c:2029
+#: gsearchtool/gsearchtool.c:1922
 msgid "Click to Start the search"
 msgstr "Кликните да започнете претрагу"
 
-#: gsearchtool/gsearchtool.c:2030
+#: gsearchtool/gsearchtool.c:1923
 msgid "Click to Stop the search"
 msgstr "Кликните да зауставите претрагу"
 
-#: gsearchtool/gsearchtool.c:2308
+#: gsearchtool/gsearchtool.c:2202
 msgid "Cannot initialize bonobo."
 msgstr "Не могу да покренем бонобо."
 
@@ -1692,6 +1688,9 @@ msgstr "Детаљи линије дневника"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%e. %B, %X"
+
+#~ msgid "The animation file is missing or invalid: %s"
+#~ msgstr "Датотека са анимацијом недостаје или је неисправна: %s"
 
 # bug: plural-forms
 #~ msgid "One File Found"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.1\n"
-"POT-Creation-Date: 2003-12-31 12:02+1300\n"
+"POT-Creation-Date: 2004-01-13 13:40+1300\n"
 "PO-Revision-Date: 2003-08-31 18:01+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -392,7 +392,7 @@ msgstr "Sjekker etter dårlige blokker..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Feil under åpning av enhet %s for sjekking av dårlige blokker\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
 msgid "Checking for bad blocks... Done"
 msgstr "Sjekker etter dårlige blokker... Ferdig"
 
@@ -518,16 +518,16 @@ msgstr ""
 msgid "Error while filling the bad blocks list file."
 msgstr "Feil under utfylling av listen over dårlige blokker."
 
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:304
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Feil under start av kommando (%s): %s."
 
-#: gfloppy/src/gfloppy.c:322
+#: gfloppy/src/gfloppy.c:330
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Ukjent mke2fs startsignatur. Avbryter."
 
-#: gfloppy/src/gfloppy.c:336
+#: gfloppy/src/gfloppy.c:344
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -538,16 +538,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:353
+#: gfloppy/src/gfloppy.c:361
 msgid "Abnormal child process termination."
 msgstr "Unormal terminering av underprosess."
 
-#: gfloppy/src/gfloppy.c:378
+#: gfloppy/src/gfloppy.c:386
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Feil under start av mbadblocks-kommando: %s."
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:398
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -557,28 +557,28 @@ msgstr ""
 "feil:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:433
+#: gfloppy/src/gfloppy.c:441
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Unormal terminering av underprosess av mbadblocks."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
+#: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
 msgid "Making filesystem on disk..."
 msgstr "Lager filsystem på disken..."
 
-#: gfloppy/src/gfloppy.c:467
+#: gfloppy/src/gfloppy.c:475
 msgid "Unable to create filesystem correctly."
 msgstr "Kunne ikke opprette filsystem."
 
-#: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
 msgid "Making filesystem on disk... Done"
 msgstr "Oppretter filsystem på disken... Ferdig"
 
-#: gfloppy/src/gfloppy.c:516
+#: gfloppy/src/gfloppy.c:524
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Sjekker etter dårlige blokker... (dette kan ta litt tid)"
 
-#: gfloppy/src/gfloppy.c:521
+#: gfloppy/src/gfloppy.c:529
 msgid "Error while checking the bad blocks."
 msgstr "Feil under sjekk etter dårlige blokker."
 
@@ -668,7 +668,7 @@ msgstr "_Rask (oppretter kun filsystemet)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standard (utfører en lavnivåformatering)"
 
-#: gfloppy/src/main.c:134
+#: gfloppy/src/main.c:140
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -676,12 +676,12 @@ msgstr ""
 "Verken mke2fs eller mkdosfs/mformat er installert. Du kan ikke formatere en "
 "diskett uten en av disse."
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
+#: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Kan ikke åpne enhet %s, formatering kan ikke fortsette."
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
+#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -690,7 +690,7 @@ msgstr ""
 "Enhet %s er koblet fra.\n"
 "Vennligst koble til enheten for å fortsette."
 
-#: gfloppy/src/main.c:164 gfloppy/src/main.c:208
+#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -701,7 +701,16 @@ msgstr ""
 "mulig.\n"
 "Kontakt din systemadministrator for å få skrivetilgang."
 
-#: gfloppy/src/main.c:402
+#: gfloppy/src/main.c:216
+#, fuzzy
+msgid "Unable to open any device, formatting cannot continue."
+msgstr "Kan ikke åpne enhet %s, formatering kan ikke fortsette."
+
+#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+msgid "/dev/floppy/0 or /dev/fd0"
+msgstr ""
+
+#: gfloppy/src/main.c:394
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -710,15 +719,15 @@ msgstr ""
 "Kunne ikke vise hjelp for diskettformaterer.\n"
 "%s"
 
-#: gfloppy/src/main.c:435
+#: gfloppy/src/main.c:427
 msgid "The volume name can't contain any blank space."
 msgstr "Volumnavnet kan ikke inneholde mellomrom."
 
-#: gfloppy/src/main.c:484
+#: gfloppy/src/main.c:477
 msgid "The device to format"
 msgstr "Enheten som skal formateres"
 
-#: gfloppy/src/main.c:485
+#: gfloppy/src/main.c:478
 msgid "DEVICE"
 msgstr "ENHET"
 
@@ -749,9 +758,9 @@ msgstr "Formatering av diskett avbrutt."
 msgid "Format Progress"
 msgstr "Fremgang for formatering"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:589
-#: gsearchtool/gsearchtool.c:843 gsearchtool/gsearchtool.c:990
-#: gsearchtool/gsearchtool.c:2285 gsearchtool/gsearchtool.c:2305
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
+#: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
+#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
 msgid "Search for Files"
 msgstr "Søk etter filer"
 
@@ -891,46 +900,46 @@ msgstr ""
 msgid "Save Search Results As..."
 msgstr "Lagre søkeresultater som..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1185
+#: gsearchtool/gsearchtool-callbacks.c:1184
 #, fuzzy
 msgid "Could not save document."
 msgstr "Kunne ikke lagre dokument «» til %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1186
 #, fuzzy
 msgid "You did not select a document name."
 msgstr "Kunne ikke åpne dokumentet «%s»"
 
-#: gsearchtool/gsearchtool-callbacks.c:1213
-#: gsearchtool/gsearchtool-callbacks.c:1308
+#: gsearchtool/gsearchtool-callbacks.c:1212
+#: gsearchtool/gsearchtool-callbacks.c:1307
 #, fuzzy, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Kunne ikke lagre dokument «» til %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1246
+#: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1261
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1311
+#: gsearchtool/gsearchtool-callbacks.c:1310
 #, fuzzy
 msgid "You may not have write permissions to the document."
 msgstr ""
 "Du har ikke skriverettigheter til dokumentet. Dokumentet er ikke lagret."
 
-#: gsearchtool/gsearchtool-support.c:58
+#: gsearchtool/gsearchtool-support.c:63
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -944,155 +953,150 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:325
+#: gsearchtool/gsearchtool-support.c:348
 msgid "today at %-I:%M %p"
 msgstr "i dag %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:327
+#: gsearchtool/gsearchtool-support.c:350
 msgid "yesterday at %-I:%M %p"
 msgstr "i går %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:329 gsearchtool/gsearchtool-support.c:331
+#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%-d/%m/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:456
+#: gsearchtool/gsearchtool-support.c:487
 msgid "link (broken)"
 msgstr "lenke (ødelagt)"
 
-#: gsearchtool/gsearchtool-support.c:461
+#: gsearchtool/gsearchtool-support.c:492
 #, c-format
 msgid "link to %s"
 msgstr "lenke til %s"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:70
 msgid "Contains the _text"
 msgstr "Innholder _teksten"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:72
 msgid "_Date modified less than (days)"
 msgstr "_Endringsdato mindre enn (dager)"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:73
 msgid "Date modified more than (da_ys)"
 msgstr "Endringsdato mer enn (da_ger)"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:75
 msgid "S_ize at least (kilobytes)"
 msgstr "_Ikke mindre enn (kilobyte)"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:76
 msgid "Si_ze at most (kilobytes)"
 msgstr "Ikke s_tørre enn (kilobyte)"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:77
 msgid "File is empty"
 msgstr "Filen er tomt"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:79
 msgid "Owned by _user"
 msgstr "Eies av br_uker"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:80
 msgid "Owned by _group"
 msgstr "Eies av _gruppe"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:81
 msgid "Owner is unrecognized"
 msgstr "Eier gjenkjennes ikke"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:83
 msgid "Na_me does not contain"
 msgstr "Na_vn inneholder ikke"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:84
 msgid "Name matches regular e_xpression"
 msgstr "Navn har tre_ff på vanlig uttrykk"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:86
 #, fuzzy
 msgid "Show hidden and backup files"
 msgstr "Vis skjulte filer og mapper"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
 msgstr "Følg symbolske lenker"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:88
 msgid "Include other filesystems"
 msgstr "Ta med andre filsystemer"
 
-#: gsearchtool/gsearchtool.c:538 gsearchtool/gsearchtool.c:566
+#: gsearchtool/gsearchtool.c:509 gsearchtool/gsearchtool.c:537
 msgid "No files found"
 msgstr "Ingen filer funnet"
 
-#: gsearchtool/gsearchtool.c:559
+#: gsearchtool/gsearchtool.c:530
 msgid "(stopped)"
 msgstr "(stoppet)"
 
-#: gsearchtool/gsearchtool.c:565
+#: gsearchtool/gsearchtool.c:536
 msgid "No Files Found"
 msgstr "Ingen filer funnet"
 
-#: gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:541
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d filer funnet"
 msgstr[1] "%d filer funnet"
 
-#: gsearchtool/gsearchtool.c:573
+#: gsearchtool/gsearchtool.c:545
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d filer funnet"
 msgstr[1] "%d filer funnet"
 
-#: gsearchtool/gsearchtool.c:678
+#: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 "Oppføring endret ble kalt for et alternativ som ikke gjaldt oppføringen!"
 
-#: gsearchtool/gsearchtool.c:935
-#, c-format
-msgid "The animation file is missing or invalid: %s"
-msgstr "Animasjonsfilen mangler eller er ugyldig: %s"
-
-#: gsearchtool/gsearchtool.c:990
+#: gsearchtool/gsearchtool.c:900
 msgid "Searching..."
 msgstr "Søker..."
 
-#: gsearchtool/gsearchtool.c:1036
+#: gsearchtool/gsearchtool.c:921
 msgid "Set the text of 'Name contains'"
 msgstr "Sett teksten for «Navnet inneholder»"
 
-#: gsearchtool/gsearchtool.c:1037
+#: gsearchtool/gsearchtool.c:922
 msgid "Set the text of 'Look in folder'"
 msgstr "Sett teksten for «Se i mappe»"
 
-#: gsearchtool/gsearchtool.c:1038
+#: gsearchtool/gsearchtool.c:923
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sorter filer på en av førlgende: navn, mappe, størrelse, type eller dato"
 
-#: gsearchtool/gsearchtool.c:1039
+#: gsearchtool/gsearchtool.c:924
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Sett sorteringsrekkefølgen til synkende. Forvalg er stigende"
 
-#: gsearchtool/gsearchtool.c:1040
+#: gsearchtool/gsearchtool.c:925
 msgid "Automatically start a search"
 msgstr "Start et søk automatisk"
 
-#: gsearchtool/gsearchtool.c:1045
+#: gsearchtool/gsearchtool.c:930
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Velg begrensningen «%s»"
 
-#: gsearchtool/gsearchtool.c:1151
+#: gsearchtool/gsearchtool.c:1036
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ugyldig flagg gitt til flagget --sortby"
 
-#: gsearchtool/gsearchtool.c:1402
+#: gsearchtool/gsearchtool.c:1301
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1100,7 +1104,7 @@ msgstr ""
 "Følgende feil ble rapportert under søk.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1406
+#: gsearchtool/gsearchtool.c:1305
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1108,120 +1112,120 @@ msgstr ""
 "\n"
 "... For mange feil å vise..."
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1312
 #, fuzzy
 msgid "Error while searching for files."
 msgstr "Feil under sjekk etter dårlige blokker."
 
-#: gsearchtool/gsearchtool.c:1454
+#: gsearchtool/gsearchtool.c:1353
 #, fuzzy
 msgid "Error parsing the search command."
 msgstr "Feil under lesing av søkekommandoen"
 
-#: gsearchtool/gsearchtool.c:1477
+#: gsearchtool/gsearchtool.c:1376
 #, fuzzy
 msgid "Error running the search command."
 msgstr "Feil under kjøring av søkekommandoen"
 
-#: gsearchtool/gsearchtool.c:1572
+#: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
 msgstr "Verdi for oppføring for søkeregel"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1473
 msgid "Enter a value for search rule"
 msgstr "Oppgi en verdi for søkeregel"
 
-#: gsearchtool/gsearchtool.c:1611
+#: gsearchtool/gsearchtool.c:1511
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klikk for å fjerne regelen «%s»"
 
-#: gsearchtool/gsearchtool.c:1667
+#: gsearchtool/gsearchtool.c:1567
 msgid "A_vailable options:"
 msgstr "Til_gjengelige alternativer:"
 
-#: gsearchtool/gsearchtool.c:1680
+#: gsearchtool/gsearchtool.c:1580
 msgid "Search Rules Menu"
 msgstr "Meny for søkeregler"
 
-#: gsearchtool/gsearchtool.c:1681
+#: gsearchtool/gsearchtool.c:1581
 msgid "Select a search rule from the menu"
 msgstr "Velg en søkeregel fra menyen"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1613
 msgid "S_earch results:"
 msgstr "Søk_eresultater:"
 
-#: gsearchtool/gsearchtool.c:1793
+#: gsearchtool/gsearchtool.c:1693
 msgid "Name"
 msgstr "Navn"
 
-#: gsearchtool/gsearchtool.c:1813
+#: gsearchtool/gsearchtool.c:1713
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1824
+#: gsearchtool/gsearchtool.c:1724
 msgid "Size"
 msgstr "Størrelse"
 
-#: gsearchtool/gsearchtool.c:1834
+#: gsearchtool/gsearchtool.c:1734
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1844
+#: gsearchtool/gsearchtool.c:1744
 msgid "Date Modified"
 msgstr "Dato endret"
 
-#: gsearchtool/gsearchtool.c:1907
+#: gsearchtool/gsearchtool.c:1802
 msgid "_Name contains:"
 msgstr "_Navnet inneholder:"
 
-#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Name Contains Entry"
 msgstr "Oppføring for Navn inneholder"
 
-#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Enter the file name you want to search"
 msgstr "Skriv inn filnavnet du ønsker å søke etter"
 
-#: gsearchtool/gsearchtool.c:1935
+#: gsearchtool/gsearchtool.c:1830
 msgid "_Look in folder:"
 msgstr "_Se i mappe:"
 
-#: gsearchtool/gsearchtool.c:1941
+#: gsearchtool/gsearchtool.c:1836
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Look in Folder Entry"
 msgstr "Se i mappeoppføring"
 
-#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Enter the folder name where you want to start the search"
 msgstr "Skriv inn navnet på mappen du vil starte søket i"
 
-#: gsearchtool/gsearchtool.c:1970
+#: gsearchtool/gsearchtool.c:1865
 msgid "Show more _options"
 msgstr "Vis flere _alternativer"
 
-#: gsearchtool/gsearchtool.c:1980
+#: gsearchtool/gsearchtool.c:1875
 #, fuzzy
 msgid "Show more options"
 msgstr "Vis flere _alternativer"
 
-#: gsearchtool/gsearchtool.c:1980
+#: gsearchtool/gsearchtool.c:1875
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2027
+#: gsearchtool/gsearchtool.c:1922
 msgid "Click to Start the search"
 msgstr "Klikk for å starte søket"
 
-#: gsearchtool/gsearchtool.c:2028
+#: gsearchtool/gsearchtool.c:1923
 msgid "Click to Stop the search"
 msgstr "Klikk for å stoppe søket"
 
-#: gsearchtool/gsearchtool.c:2301
+#: gsearchtool/gsearchtool.c:2202
 msgid "Cannot initialize bonobo."
 msgstr "Kan ikke initiere bonobo."
 
@@ -1549,39 +1553,39 @@ msgstr "_Slå sammen alle"
 msgid "Collapse all the rows"
 msgstr "Slå sammen alle radene"
 
-#: logview/logview.c:362
+#: logview/logview.c:367
 msgid "No log files to open"
 msgstr "Ingen loggfile å åpne"
 
-#: logview/logview.c:384
+#: logview/logview.c:389
 msgid "Date"
 msgstr "Dato"
 
-#: logview/logview.c:384
+#: logview/logview.c:389
 msgid "Host Name"
 msgstr "Vertsnavn"
 
-#: logview/logview.c:385
+#: logview/logview.c:390
 msgid "Process"
 msgstr "Prosess"
 
-#: logview/logview.c:385
+#: logview/logview.c:390
 msgid "Message"
 msgstr "Melding"
 
-#: logview/logview.c:466
+#: logview/logview.c:471
 msgid "Last Modified: "
 msgstr "Sist endret: "
 
-#: logview/logview.c:565 logview/logview.c:640
+#: logview/logview.c:570 logview/logview.c:645
 msgid "Too many open logs. Close one and try again"
 msgstr "For mange åpne logger. Lukk en og prøv på nytt"
 
-#: logview/logview.c:577
+#: logview/logview.c:582
 msgid "File already opened"
 msgstr "Filen er allerede åpnet"
 
-#: logview/logview.c:653
+#: logview/logview.c:658
 msgid "Open new logfile"
 msgstr "Åpne ny loggfil"
 
@@ -1679,6 +1683,9 @@ msgstr "Detaljer i logglinje"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "The animation file is missing or invalid: %s"
+#~ msgstr "Animasjonsfilen mangler eller er ugyldig: %s"
 
 #~ msgid "One File Found"
 #~ msgstr "En fil funnet"

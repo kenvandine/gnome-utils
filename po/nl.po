@@ -15,15 +15,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-07 04:20+0100\n"
+"POT-Creation-Date: 2004-01-13 13:40+1300\n"
 "PO-Revision-Date: 2004-01-07 15:32+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);"
+"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -423,7 +423,7 @@ msgid "Failed to open device %s for badblock checking\n"
 msgstr ""
 "Openen van apparaat %s voor het controleren op foutieve blokken is mislukt\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
 msgid "Checking for bad blocks... Done"
 msgstr "Controleren op foute blokken...Klaar"
 
@@ -564,16 +564,16 @@ msgstr ""
 "Er is een fout opgetreden bij het vullen van de lijst van onbetrouwbare "
 "blokken."
 
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:304
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Er is een fout opgetreden bij het uitvoeren van de (%s) opdracht: %s"
 
-#: gfloppy/src/gfloppy.c:322
+#: gfloppy/src/gfloppy.c:330
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Onbekend mke2fs startkenmerk, annuleren."
 
-#: gfloppy/src/gfloppy.c:336
+#: gfloppy/src/gfloppy.c:344
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -585,17 +585,17 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:353
+#: gfloppy/src/gfloppy.c:361
 msgid "Abnormal child process termination."
 msgstr "Dochterproces op abnormale wijze afgebroken."
 
-#: gfloppy/src/gfloppy.c:378
+#: gfloppy/src/gfloppy.c:386
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr ""
 "Er is een fout opgetreden bij het uitvoeren van de opdracht mbadblocks: %s"
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:398
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -605,29 +605,29 @@ msgstr ""
 "meldde de volgende fouten:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:433
+#: gfloppy/src/gfloppy.c:441
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Dochterproces van mbadblocks op abnormale wijze afgebroken."
 
 # aanmaken ipv maken (maken kan ook repareren betekenen)
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
+#: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
 msgid "Making filesystem on disk..."
 msgstr "Bezig met aanmaken van bestandssysteem op diskette..."
 
-#: gfloppy/src/gfloppy.c:467
+#: gfloppy/src/gfloppy.c:475
 msgid "Unable to create filesystem correctly."
 msgstr "Kan bestandssysteem niet correct aanmaken."
 
-#: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
 msgid "Making filesystem on disk... Done"
 msgstr "Bezig met aanmaken van bestandssysteem op diskette... Klaar"
 
-#: gfloppy/src/gfloppy.c:516
+#: gfloppy/src/gfloppy.c:524
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Bezig met controleren op slechte blokken... (dit kan enige tijd duren)"
 
-#: gfloppy/src/gfloppy.c:521
+#: gfloppy/src/gfloppy.c:529
 msgid "Error while checking the bad blocks."
 msgstr ""
 "Er is een fout opgetreden tijdens het controleren op onbetrouwbare blokken."
@@ -775,11 +775,11 @@ msgstr ""
 msgid "The volume name can't contain any blank space."
 msgstr "De volumenaam kan geen lege spatie bevatten."
 
-#: gfloppy/src/main.c:474
+#: gfloppy/src/main.c:477
 msgid "The device to format"
 msgstr "Het apparaat om te formatteren"
 
-#: gfloppy/src/main.c:475
+#: gfloppy/src/main.c:478
 msgid "DEVICE"
 msgstr "APPARAAT"
 
@@ -791,8 +791,12 @@ msgid ""
 msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr[0] "De diskette is geformatteerd, maar er is <b>%d onbetrouwbaar blok</b> (uit %d) gevonden en gemarkeerd."
-msgstr[1] "De diskette is geformatteerd, maar er zijn <b>%d onbetrouwbare blokken</b> (uit %d) gevonden en gemarkeerd."
+msgstr[0] ""
+"De diskette is geformatteerd, maar er is <b>%d onbetrouwbaar blok</b> (uit %"
+"d) gevonden en gemarkeerd."
+msgstr[1] ""
+"De diskette is geformatteerd, maar er zijn <b>%d onbetrouwbare blokken</b> "
+"(uit %d) gevonden en gemarkeerd."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -806,9 +810,9 @@ msgstr "Formatteren van diskette afgebroken."
 msgid "Format Progress"
 msgstr "Voortgang formatteren"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:594
-#: gsearchtool/gsearchtool.c:848 gsearchtool/gsearchtool.c:995
-#: gsearchtool/gsearchtool.c:2291 gsearchtool/gsearchtool.c:2315
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
+#: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
+#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
 msgid "Search for Files"
 msgstr "Naar bestanden zoeken"
 
@@ -822,7 +826,9 @@ msgstr "Afbeelding/label rand"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Width of border around the label and image in the alert dialog"
-msgstr "Breedte van de rand rond het label en de afbeelding in het attentie-dialoogvenster"
+msgstr ""
+"Breedte van de rand rond het label en de afbeelding in het attentie-"
+"dialoogvenster"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
 msgid "Alert Type"
@@ -948,42 +954,43 @@ msgstr "Verwijderen van \"%s\" mislukt: %s."
 msgid "Save Search Results As..."
 msgstr "Zoekresultaten opslaan als..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1185
+#: gsearchtool/gsearchtool-callbacks.c:1184
 msgid "Could not save document."
 msgstr "Kon document niet opslaan."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1186
 msgid "You did not select a document name."
 msgstr "U heeft geen documentnaam gegeven."
 
-#: gsearchtool/gsearchtool-callbacks.c:1213
-#: gsearchtool/gsearchtool-callbacks.c:1308
+#: gsearchtool/gsearchtool-callbacks.c:1212
+#: gsearchtool/gsearchtool-callbacks.c:1307
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Kon document \"%s\" niet opslaan als \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
 msgstr "De documentnaam die u gaf is een map."
 
-#: gsearchtool/gsearchtool-callbacks.c:1246
+#: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Het document \"%s\" bestaat reeds.  Wilt u het vervangen?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr "Als u een bestaand bestand vervangt, zal de inhoud overschreven worden."
+msgstr ""
+"Als u een bestaand bestand vervangt, zal de inhoud overschreven worden."
 
-#: gsearchtool/gsearchtool-callbacks.c:1261
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
 msgstr "_Vervangen"
 
-#: gsearchtool/gsearchtool-callbacks.c:1311
+#: gsearchtool/gsearchtool-callbacks.c:1310
 msgid "You may not have write permissions to the document."
 msgstr "U heeft mogelijk geen schrijftoegang tot het document."
 
-#: gsearchtool/gsearchtool-support.c:61
+#: gsearchtool/gsearchtool-support.c:63
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -997,28 +1004,28 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:346
+#: gsearchtool/gsearchtool-support.c:348
 msgid "today at %-I:%M %p"
 msgstr "vandaag om %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:348
+#: gsearchtool/gsearchtool-support.c:350
 msgid "yesterday at %-I:%M %p"
 msgstr "gisteren om %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:350 gsearchtool/gsearchtool-support.c:352
+#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:477
+#: gsearchtool/gsearchtool-support.c:487
 msgid "link (broken)"
 msgstr "koppeling (verbroken)"
 
-#: gsearchtool/gsearchtool-support.c:482
+#: gsearchtool/gsearchtool-support.c:492
 #, c-format
 msgid "link to %s"
 msgstr "verwijzing naar %s"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:70
 msgid "Contains the _text"
 msgstr "Bevat de _tekst"
 
@@ -1028,255 +1035,252 @@ msgstr "Bevat de _tekst"
 # Gewijzigd minder dan (dagen) geleden
 # In de laatste (dagen) gewijzigd
 # Wijzigingsdatum minder dan (dagen) geleden
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:72
 msgid "_Date modified less than (days)"
 msgstr "Mi_nder dan (dagen) geleden gewijzigd"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:73
 msgid "Date modified more than (da_ys)"
 msgstr "M_eer dan (dagen) geleden gewijzigd"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:75
 msgid "S_ize at least (kilobytes)"
 msgstr "Grootte _tenminste (kilobytes)"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:76
 msgid "Si_ze at most (kilobytes)"
 msgstr "Grootte _hoogstens (kilobytes)"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:77
 msgid "File is empty"
 msgstr "Bestand is leeg"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:79
 msgid "Owned by _user"
 msgstr "Eigendom van gebr_uiker"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:80
 msgid "Owned by _group"
 msgstr "Eigendom van _groep"
 
 # bekend klinkt beter dan herkend, komt op hetzelfde neer?
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:81
 msgid "Owner is unrecognized"
 msgstr "Eigenaar is niet bekend"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:83
 msgid "Na_me does not contain"
 msgstr "N_aam bevat niet"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:84
 msgid "Name matches regular e_xpression"
 msgstr "Bestand komt overeen met reguliere e_xpressie"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:86
 msgid "Show hidden and backup files"
 msgstr "Verborgen bestanden backupbestanden tonen"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
 msgstr "Volg symbolische verwijzingen"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:88
 msgid "Include other filesystems"
 msgstr "Andere bestandssystemen meenemen"
 
-#: gsearchtool/gsearchtool.c:541 gsearchtool/gsearchtool.c:569
+#: gsearchtool/gsearchtool.c:509 gsearchtool/gsearchtool.c:537
 msgid "No files found"
 msgstr "Geen bestanden gevonden"
 
 # we weten niet wat de reden is (afgebroken, voltooid, fout)
-#: gsearchtool/gsearchtool.c:562
+#: gsearchtool/gsearchtool.c:530
 msgid "(stopped)"
 msgstr "(gestopt)"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:536
 msgid "No Files Found"
 msgstr "Geen bestanden gevonden"
 
-#: gsearchtool/gsearchtool.c:573
+#: gsearchtool/gsearchtool.c:541
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d bestand gevonden"
 msgstr[1] "%d bestanden gevonden"
 
-#: gsearchtool/gsearchtool.c:577
+#: gsearchtool/gsearchtool.c:545
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d bestand gevonden"
 msgstr[1] "%d bestanden gevonden"
 
-#: gsearchtool/gsearchtool.c:683
+#: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
 msgstr "Veranderde invoer riep een niet-invoeroptie aan!"
 
-#: gsearchtool/gsearchtool.c:940
-#, c-format
-msgid "The animation file is missing or invalid: %s"
-msgstr "Het filmbestand ontbreekt of is ongeldig: %s"
-
-#: gsearchtool/gsearchtool.c:995
+#: gsearchtool/gsearchtool.c:900
 msgid "Searching..."
 msgstr "Bezig met zoeken..."
 
-#: gsearchtool/gsearchtool.c:1041
+#: gsearchtool/gsearchtool.c:921
 msgid "Set the text of 'Name contains'"
 msgstr "De tekst voor 'Naam bevat' invoeren"
 
 # dit zijn de tooltips?
-#: gsearchtool/gsearchtool.c:1042
+#: gsearchtool/gsearchtool.c:922
 msgid "Set the text of 'Look in folder'"
 msgstr "De tekst voor 'Beginnen in map' invoeren"
 
-#: gsearchtool/gsearchtool.c:1043
+#: gsearchtool/gsearchtool.c:923
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Bestanden sorteren op één van de volgende: naam, map, grootte, type of datum"
 
-#: gsearchtool/gsearchtool.c:1044
+#: gsearchtool/gsearchtool.c:924
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Sorteervolgorde instellen op aflopend, oplopend is standaard"
 
-#: gsearchtool/gsearchtool.c:1045
+#: gsearchtool/gsearchtool.c:925
 msgid "Automatically start a search"
 msgstr "Zoekoperatie automatisch starten"
 
-#: gsearchtool/gsearchtool.c:1050
+#: gsearchtool/gsearchtool.c:930
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Selecteer de '%s'-voorwaarde"
 
-#: gsearchtool/gsearchtool.c:1156
+#: gsearchtool/gsearchtool.c:1036
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ongeldige optie meegegeven aan 'sortby'-opdrachtregelargument"
 
-#: gsearchtool/gsearchtool.c:1407
+#: gsearchtool/gsearchtool.c:1301
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr "Tijdens de zoekactie werden de volgende fouten gemeld.\n"
 
-#: gsearchtool/gsearchtool.c:1411
+#: gsearchtool/gsearchtool.c:1305
 msgid ""
 "\n"
 "... Too many errors to display ..."
-msgstr "\n... Teveel fouten om weer te geven ..."
+msgstr ""
+"\n"
+"... Teveel fouten om weer te geven ..."
 
-#: gsearchtool/gsearchtool.c:1418
+#: gsearchtool/gsearchtool.c:1312
 msgid "Error while searching for files."
 msgstr "Er is een fout opgetreden tijdens het zoeken naar bestanden."
 
 # Fout bij verwerken van zoekopdracht
-#: gsearchtool/gsearchtool.c:1459
+#: gsearchtool/gsearchtool.c:1353
 msgid "Error parsing the search command."
 msgstr "Er is een fout opgetreden bij het verwerken van de zoekopdracht."
 
 # Fout bij uitvoeren van zoekopdracht
-#: gsearchtool/gsearchtool.c:1482
+#: gsearchtool/gsearchtool.c:1376
 msgid "Error running the search command."
 msgstr "Er is een fout opgetreden bij het uitvoeren van de zoekopdracht."
 
 # zoekvoorschrift ipv zoek-regel?
-#: gsearchtool/gsearchtool.c:1577
+#: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
 msgstr "Zoekregel waarde-invoer"
 
-#: gsearchtool/gsearchtool.c:1578
+#: gsearchtool/gsearchtool.c:1473
 msgid "Enter a value for search rule"
 msgstr "Voer een waarde in voor de zoek-regel"
 
-#: gsearchtool/gsearchtool.c:1616
+#: gsearchtool/gsearchtool.c:1511
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klik om de '%s'-regel te verwijderen."
 
-#: gsearchtool/gsearchtool.c:1672
+#: gsearchtool/gsearchtool.c:1567
 msgid "A_vailable options:"
 msgstr "_Beschikbare opties:"
 
-#: gsearchtool/gsearchtool.c:1685
+#: gsearchtool/gsearchtool.c:1580
 msgid "Search Rules Menu"
 msgstr "Zoekregels-menu"
 
-#: gsearchtool/gsearchtool.c:1686
+#: gsearchtool/gsearchtool.c:1581
 msgid "Select a search rule from the menu"
 msgstr "Selecteer een zoek-regel uit het menu"
 
-#: gsearchtool/gsearchtool.c:1718
+#: gsearchtool/gsearchtool.c:1613
 msgid "S_earch results:"
 msgstr "Z_oekresultaten:"
 
-#: gsearchtool/gsearchtool.c:1798
+#: gsearchtool/gsearchtool.c:1693
 msgid "Name"
 msgstr "Naam"
 
-#: gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1713
 msgid "Folder"
 msgstr "Map"
 
-#: gsearchtool/gsearchtool.c:1829
+#: gsearchtool/gsearchtool.c:1724
 msgid "Size"
 msgstr "Grootte"
 
-#: gsearchtool/gsearchtool.c:1839
+#: gsearchtool/gsearchtool.c:1734
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1849
+#: gsearchtool/gsearchtool.c:1744
 msgid "Date Modified"
 msgstr "Wijzigingsdatum"
 
-#: gsearchtool/gsearchtool.c:1912
+#: gsearchtool/gsearchtool.c:1802
 msgid "_Name contains:"
 msgstr "_Naam bevat:"
 
-#: gsearchtool/gsearchtool.c:1927 gsearchtool/gsearchtool.c:1928
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Name Contains Entry"
 msgstr "Naam bevat"
 
-#: gsearchtool/gsearchtool.c:1927 gsearchtool/gsearchtool.c:1928
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Enter the file name you want to search"
 msgstr "Voer de bestandsnaam in die u wilt zoeken"
 
-#: gsearchtool/gsearchtool.c:1940
+#: gsearchtool/gsearchtool.c:1830
 msgid "_Look in folder:"
 msgstr "_Beginnen in map:"
 
-#: gsearchtool/gsearchtool.c:1946
+#: gsearchtool/gsearchtool.c:1836
 msgid "Browse"
 msgstr "Bladeren"
 
-#: gsearchtool/gsearchtool.c:1955 gsearchtool/gsearchtool.c:1956
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Look in Folder Entry"
 msgstr "Beginnen in map"
 
-#: gsearchtool/gsearchtool.c:1955 gsearchtool/gsearchtool.c:1956
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Enter the folder name where you want to start the search"
 msgstr "De mapnaam vanwaar u wilt beginnen met zoeken invoeren"
 
-#: gsearchtool/gsearchtool.c:1975
+#: gsearchtool/gsearchtool.c:1865
 msgid "Show more _options"
 msgstr "Meer _opties tonen"
 
-#: gsearchtool/gsearchtool.c:1985
+#: gsearchtool/gsearchtool.c:1875
 msgid "Show more options"
 msgstr "Meer opties tonen"
 
-#: gsearchtool/gsearchtool.c:1985
+#: gsearchtool/gsearchtool.c:1875
 msgid "Expands or collapses a list of search options."
 msgstr "Toont of verbergt een lijst met zoekmogelijkheden."
 
-#: gsearchtool/gsearchtool.c:2032
+#: gsearchtool/gsearchtool.c:1922
 msgid "Click to Start the search"
 msgstr "Klik om te beginnen met zoeken"
 
-#: gsearchtool/gsearchtool.c:2033
+#: gsearchtool/gsearchtool.c:1923
 msgid "Click to Stop the search"
 msgstr "Klik om het zoeken te stoppen"
 
-#: gsearchtool/gsearchtool.c:2311
+#: gsearchtool/gsearchtool.c:2202
 msgid "Cannot initialize bonobo."
 msgstr "Can bonobo niet initialiseren."
 
@@ -1735,6 +1739,9 @@ msgstr "Details logboekregel"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "The animation file is missing or invalid: %s"
+#~ msgstr "Het filmbestand ontbreekt of is ongeldig: %s"
 
 #~ msgid "One File Found"
 #~ msgstr "Eén bestand gevonden"

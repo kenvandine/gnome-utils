@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2003-12-31 12:02+1300\n"
+"POT-Creation-Date: 2004-01-13 13:40+1300\n"
 "PO-Revision-Date: 2003-08-05 22:25+0800\n"
 "Last-Translator: Wang Li <charles@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -417,7 +417,7 @@ msgstr "正在检查坏块..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "为执行坏块检查打开设备 %s 失败\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
 msgid "Checking for bad blocks... Done"
 msgstr "正在检查坏块... 完成"
 
@@ -542,16 +542,16 @@ msgstr "为坏块列表文件创建唯一的文件名时发生错误。"
 msgid "Error while filling the bad blocks list file."
 msgstr "填充坏块列表文件时发生错误。"
 
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:304
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "执行(%s)命令时发生错误：%s"
 
-#: gfloppy/src/gfloppy.c:322
+#: gfloppy/src/gfloppy.c:330
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "未知的 mke2fs 起始签名，正在取消。"
 
-#: gfloppy/src/gfloppy.c:336
+#: gfloppy/src/gfloppy.c:344
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -562,16 +562,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:353
+#: gfloppy/src/gfloppy.c:361
 msgid "Abnormal child process termination."
 msgstr "子进程异常终止。"
 
-#: gfloppy/src/gfloppy.c:378
+#: gfloppy/src/gfloppy.c:386
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "执行 mbadblocks 命令时发生错误：%s。"
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:398
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -580,29 +580,29 @@ msgstr ""
 "坏块检查工具(mbadblocks)报告如下错误：\n"
 "%s。"
 
-#: gfloppy/src/gfloppy.c:433
+#: gfloppy/src/gfloppy.c:441
 msgid "Abnormal mbadblocks child process termination."
 msgstr "mbadblocks 子进程异常终止。"
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
+#: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
 msgid "Making filesystem on disk..."
 msgstr "正在制作磁盘上的文件系统..."
 
 # mini-utils/idetool/idetool.c:42
-#: gfloppy/src/gfloppy.c:467
+#: gfloppy/src/gfloppy.c:475
 msgid "Unable to create filesystem correctly."
 msgstr "无法正确创建文件系统。"
 
-#: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
 msgid "Making filesystem on disk... Done"
 msgstr "正在制作磁盘上的文件系统... 完成"
 
-#: gfloppy/src/gfloppy.c:516
+#: gfloppy/src/gfloppy.c:524
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "正在检查坏块... (这将花些时间)"
 
-#: gfloppy/src/gfloppy.c:521
+#: gfloppy/src/gfloppy.c:529
 msgid "Error while checking the bad blocks."
 msgstr "检查坏块时发生错误。"
 
@@ -693,19 +693,19 @@ msgstr "快速(仅创建文件系统)(_Q)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "标准(在快速方式前增加低级格式化)(_S)"
 
-#: gfloppy/src/main.c:134
+#: gfloppy/src/main.c:140
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
 "mke2fs 和 mkdosfs/mformat 应用程序一个都没有安装。没有它们无法格式化软盘。"
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
+#: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "无法打开设备 %s，无法继续格式化。"
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
+#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -714,7 +714,7 @@ msgstr ""
 "设备 %s 已断开。\n"
 "请连接设备并继续。"
 
-#: gfloppy/src/main.c:164 gfloppy/src/main.c:208
+#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -724,7 +724,16 @@ msgstr ""
 "您没有适当的权限写入 %s，格式化是不可能的。\n"
 "与您的系统管理员交涉以获得写权限。"
 
-#: gfloppy/src/main.c:402
+#: gfloppy/src/main.c:216
+#, fuzzy
+msgid "Unable to open any device, formatting cannot continue."
+msgstr "无法打开设备 %s，无法继续格式化。"
+
+#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+msgid "/dev/floppy/0 or /dev/fd0"
+msgstr ""
+
+#: gfloppy/src/main.c:394
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -733,15 +742,15 @@ msgstr ""
 "无法显示软盘格式化器的帮助信息。\n"
 "%s"
 
-#: gfloppy/src/main.c:435
+#: gfloppy/src/main.c:427
 msgid "The volume name can't contain any blank space."
 msgstr "卷标名不能含有任何空白。"
 
-#: gfloppy/src/main.c:484
+#: gfloppy/src/main.c:477
 msgid "The device to format"
 msgstr "要格式化的设备"
 
-#: gfloppy/src/main.c:485
+#: gfloppy/src/main.c:478
 msgid "DEVICE"
 msgstr "设备"
 
@@ -771,9 +780,9 @@ msgid "Format Progress"
 msgstr "格式化进度"
 
 # gsearchtool/gsearchtool.c:610
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:589
-#: gsearchtool/gsearchtool.c:843 gsearchtool/gsearchtool.c:990
-#: gsearchtool/gsearchtool.c:2285 gsearchtool/gsearchtool.c:2305
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
+#: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
+#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
 msgid "Search for Files"
 msgstr "搜索文件"
 
@@ -919,46 +928,46 @@ msgstr ""
 msgid "Save Search Results As..."
 msgstr "搜索结果另存为..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1185
+#: gsearchtool/gsearchtool-callbacks.c:1184
 #, fuzzy
 msgid "Could not save document."
 msgstr "无法将文档“”保存到 %s"
 
 # mini-utils/guname/guname.c:692
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1186
 #, fuzzy
 msgid "You did not select a document name."
 msgstr "无法打开文档“%s”"
 
-#: gsearchtool/gsearchtool-callbacks.c:1213
-#: gsearchtool/gsearchtool-callbacks.c:1308
+#: gsearchtool/gsearchtool-callbacks.c:1212
+#: gsearchtool/gsearchtool-callbacks.c:1307
 #, fuzzy, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "无法将文档“”保存到 %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1246
+#: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1261
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1311
+#: gsearchtool/gsearchtool-callbacks.c:1310
 #, fuzzy
 msgid "You may not have write permissions to the document."
 msgstr "您可能没有对文档的写权限。文档未保存。"
 
-#: gsearchtool/gsearchtool-support.c:58
+#: gsearchtool/gsearchtool-support.c:63
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -972,157 +981,152 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:325
+#: gsearchtool/gsearchtool-support.c:348
 msgid "today at %-I:%M %p"
 msgstr "今天 %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:327
+#: gsearchtool/gsearchtool-support.c:350
 msgid "yesterday at %-I:%M %p"
 msgstr "昨天 %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:329 gsearchtool/gsearchtool-support.c:331
+#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%Y-%m-%d，%-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:456
+#: gsearchtool/gsearchtool-support.c:487
 msgid "link (broken)"
 msgstr "链接(已断开)"
 
-#: gsearchtool/gsearchtool-support.c:461
+#: gsearchtool/gsearchtool-support.c:492
 #, c-format
 msgid "link to %s"
 msgstr "链接到 %s"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:70
 msgid "Contains the _text"
 msgstr "含有文本(_T)"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:72
 msgid "_Date modified less than (days)"
 msgstr "修改日期至今少于(天数)(_D)"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:73
 msgid "Date modified more than (da_ys)"
 msgstr "修改日期至今超过(天数)(_Y)"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:75
 msgid "S_ize at least (kilobytes)"
 msgstr "大小最少为(KB)(_I)"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:76
 msgid "Si_ze at most (kilobytes)"
 msgstr "大小最多为(KB)(_Z)"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:77
 msgid "File is empty"
 msgstr "文件为空"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:79
 msgid "Owned by _user"
 msgstr "文件所属用户(_U)"
 
 # gsearchtool/gsearchtool.c:25
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:80
 msgid "Owned by _group"
 msgstr "文件所属组(_G)"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:81
 msgid "Owner is unrecognized"
 msgstr "未知的所属用户"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:83
 msgid "Na_me does not contain"
 msgstr "名称不包含(_M)"
 
 # gsearchtool/gsearchtool.c:37
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:84
 msgid "Name matches regular e_xpression"
 msgstr "名城匹配正则表达式(_X)"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:86
 #, fuzzy
 msgid "Show hidden and backup files"
 msgstr "显示隐藏文件和文件夹"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
 msgstr "跟随符号连接"
 
 # mini-utils/idetool/idetool.c:42
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:88
 msgid "Include other filesystems"
 msgstr "包括其它文件系统"
 
-#: gsearchtool/gsearchtool.c:538 gsearchtool/gsearchtool.c:566
+#: gsearchtool/gsearchtool.c:509 gsearchtool/gsearchtool.c:537
 msgid "No files found"
 msgstr "未找到文件"
 
-#: gsearchtool/gsearchtool.c:559
+#: gsearchtool/gsearchtool.c:530
 msgid "(stopped)"
 msgstr "(已停止)"
 
-#: gsearchtool/gsearchtool.c:565
+#: gsearchtool/gsearchtool.c:536
 msgid "No Files Found"
 msgstr "未找到文件"
 
-#: gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:541
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "找到了 %d 个文件"
 msgstr[1] "找到了 %d 个文件"
 
-#: gsearchtool/gsearchtool.c:573
+#: gsearchtool/gsearchtool.c:545
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "找到了 %d 个文件"
 msgstr[1] "找到了 %d 个文件"
 
-#: gsearchtool/gsearchtool.c:678
+#: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
 msgstr "已改变的条目调用非条目选项！"
 
-#: gsearchtool/gsearchtool.c:935
-#, c-format
-msgid "The animation file is missing or invalid: %s"
-msgstr "动画文件丢失或者无效：%s"
-
 # mini-utils/gless/gless.c:851
-#: gsearchtool/gsearchtool.c:990
+#: gsearchtool/gsearchtool.c:900
 msgid "Searching..."
 msgstr "正在搜索..."
 
-#: gsearchtool/gsearchtool.c:1036
+#: gsearchtool/gsearchtool.c:921
 msgid "Set the text of 'Name contains'"
 msgstr "设置“名称包含”的文字"
 
-#: gsearchtool/gsearchtool.c:1037
+#: gsearchtool/gsearchtool.c:922
 msgid "Set the text of 'Look in folder'"
 msgstr "设置“搜索文件夹”的文字"
 
-#: gsearchtool/gsearchtool.c:1038
+#: gsearchtool/gsearchtool.c:923
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "按下列属性之一排序文件：名称、文件夹、大小、类型或日期"
 
-#: gsearchtool/gsearchtool.c:1039
+#: gsearchtool/gsearchtool.c:924
 msgid "Set sort order to descending, the default is ascending"
 msgstr "设置为降序排序，默认值为升序排序"
 
-#: gsearchtool/gsearchtool.c:1040
+#: gsearchtool/gsearchtool.c:925
 msgid "Automatically start a search"
 msgstr "自动开始搜索"
 
-#: gsearchtool/gsearchtool.c:1045
+#: gsearchtool/gsearchtool.c:930
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "选择“%s”约束条件"
 
-#: gsearchtool/gsearchtool.c:1151
+#: gsearchtool/gsearchtool.c:1036
 msgid "Invalid option passed to sortby command line argument."
 msgstr "传递给命令行参数 sortby 的选项无效。"
 
-#: gsearchtool/gsearchtool.c:1402
+#: gsearchtool/gsearchtool.c:1301
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1130,7 +1134,7 @@ msgstr ""
 "搜索时报告如下的错误。\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1406
+#: gsearchtool/gsearchtool.c:1305
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1139,140 +1143,140 @@ msgstr ""
 "... 错误太多无法完全显示 ..."
 
 # ghex/ui.c:193 ghex/ui.c:344
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1312
 #, fuzzy
 msgid "Error while searching for files."
 msgstr "搜索文件时出错"
 
-#: gsearchtool/gsearchtool.c:1454
+#: gsearchtool/gsearchtool.c:1353
 #, fuzzy
 msgid "Error parsing the search command."
 msgstr "处理搜索命令时出错"
 
-#: gsearchtool/gsearchtool.c:1477
+#: gsearchtool/gsearchtool.c:1376
 #, fuzzy
 msgid "Error running the search command."
 msgstr "运行搜索命令时出错"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1572
+#: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
 msgstr "搜索规则值条目"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1473
 msgid "Enter a value for search rule"
 msgstr "输入搜索规则的值"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1611
+#: gsearchtool/gsearchtool.c:1511
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "单击以删除“%s”规则"
 
 # mini-utils/guname/info.c:64
-#: gsearchtool/gsearchtool.c:1667
+#: gsearchtool/gsearchtool.c:1567
 msgid "A_vailable options:"
 msgstr "可用选项(_V)："
 
 # gsearchtool/gsearchtool.c:203
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1680
+#: gsearchtool/gsearchtool.c:1580
 msgid "Search Rules Menu"
 msgstr "搜索规则菜单"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1681
+#: gsearchtool/gsearchtool.c:1581
 msgid "Select a search rule from the menu"
 msgstr "从菜单中选择搜索规则"
 
 # gsearchtool/gsearchtool.c:203
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1613
 msgid "S_earch results:"
 msgstr "搜索结果(_E)："
 
 # mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:217
 # mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
-#: gsearchtool/gsearchtool.c:1793
+#: gsearchtool/gsearchtool.c:1693
 msgid "Name"
 msgstr "名称"
 
-#: gsearchtool/gsearchtool.c:1813
+#: gsearchtool/gsearchtool.c:1713
 msgid "Folder"
 msgstr "文件夹"
 
 # mini-utils/guname/info.c:60
-#: gsearchtool/gsearchtool.c:1824
+#: gsearchtool/gsearchtool.c:1724
 msgid "Size"
 msgstr "大小"
 
-#: gsearchtool/gsearchtool.c:1834
+#: gsearchtool/gsearchtool.c:1734
 msgid "Type"
 msgstr "类型"
 
-#: gsearchtool/gsearchtool.c:1844
+#: gsearchtool/gsearchtool.c:1744
 msgid "Date Modified"
 msgstr "修改时间"
 
-#: gsearchtool/gsearchtool.c:1907
+#: gsearchtool/gsearchtool.c:1802
 msgid "_Name contains:"
 msgstr "名称包含(_N)："
 
-#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Name Contains Entry"
 msgstr "名称包含项"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Enter the file name you want to search"
 msgstr "输入要搜索的文件名"
 
 # mini-utils/guname/guname.c:506
-#: gsearchtool/gsearchtool.c:1935
+#: gsearchtool/gsearchtool.c:1830
 msgid "_Look in folder:"
 msgstr "搜索文件夹(_L)："
 
 # ghex/preferences.c:159
-#: gsearchtool/gsearchtool.c:1941
+#: gsearchtool/gsearchtool.c:1836
 msgid "Browse"
 msgstr "浏览"
 
 # mini-utils/guname/guname.c:506
-#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Look in Folder Entry"
 msgstr "在文件夹项中查找"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Enter the folder name where you want to start the search"
 msgstr "输入开始进行搜索的文件夹名称"
 
 # gtt/options.c:272
-#: gsearchtool/gsearchtool.c:1970
+#: gsearchtool/gsearchtool.c:1865
 msgid "Show more _options"
 msgstr "显示更多选项(_O)"
 
 # gtt/options.c:272
-#: gsearchtool/gsearchtool.c:1980
+#: gsearchtool/gsearchtool.c:1875
 #, fuzzy
 msgid "Show more options"
 msgstr "显示更多选项(_O)"
 
-#: gsearchtool/gsearchtool.c:1980
+#: gsearchtool/gsearchtool.c:1875
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:2027
+#: gsearchtool/gsearchtool.c:1922
 msgid "Click to Start the search"
 msgstr "单击开始搜索"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:2028
+#: gsearchtool/gsearchtool.c:1923
 msgid "Click to Stop the search"
 msgstr "单击停止搜索"
 
-#: gsearchtool/gsearchtool.c:2301
+#: gsearchtool/gsearchtool.c:2202
 msgid "Cannot initialize bonobo."
 msgstr "无法初始化 bonobo。"
 
@@ -1625,43 +1629,43 @@ msgid "Collapse all the rows"
 msgstr "折叠所有的行"
 
 # ghex/ui.c:206
-#: logview/logview.c:362
+#: logview/logview.c:367
 msgid "No log files to open"
 msgstr "没有要打开的日志文件"
 
 # gtt/toolbar.c:171
-#: logview/logview.c:384
+#: logview/logview.c:389
 msgid "Date"
 msgstr "日期"
 
 # mini-utils/guname/info.c:46
-#: logview/logview.c:384
+#: logview/logview.c:389
 msgid "Host Name"
 msgstr "主机名"
 
 # mini-utils/guname/info.c:44
-#: logview/logview.c:385
+#: logview/logview.c:390
 msgid "Process"
 msgstr "进程"
 
-#: logview/logview.c:385
+#: logview/logview.c:390
 msgid "Message"
 msgstr "消息"
 
-#: logview/logview.c:466
+#: logview/logview.c:471
 msgid "Last Modified: "
 msgstr "最后修改时间："
 
-#: logview/logview.c:565 logview/logview.c:640
+#: logview/logview.c:570 logview/logview.c:645
 msgid "Too many open logs. Close one and try again"
 msgstr "打开的日志太多。关闭一个并重试"
 
-#: logview/logview.c:577
+#: logview/logview.c:582
 msgid "File already opened"
 msgstr "文件已经打开"
 
 # mini-utils/gless/gless.c:700
-#: logview/logview.c:653
+#: logview/logview.c:658
 msgid "Open new logfile"
 msgstr "打开新的日志文件"
 
@@ -1768,6 +1772,9 @@ msgstr "日志行细节"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%m-%d %X"
+
+#~ msgid "The animation file is missing or invalid: %s"
+#~ msgstr "动画文件丢失或者无效：%s"
 
 #~ msgid "One File Found"
 #~ msgstr "找到了 1 个文件"

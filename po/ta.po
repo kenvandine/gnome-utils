@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tamil-gnome-utils 1.4.1\n"
-"POT-Creation-Date: 2003-12-31 12:02+1300\n"
+"POT-Creation-Date: 2004-01-13 13:40+1300\n"
 "PO-Revision-Date: 2001-06-14 20:38-0500\n"
 "Last-Translator: Dinesh Nadarajah <n_dinesh@yahoo.com>\n"
 "Language-Team: Tamil\n"
@@ -409,7 +409,7 @@ msgstr ""
 msgid "Failed to open device %s for badblock checking\n"
 msgstr ""
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
 msgid "Checking for bad blocks... Done"
 msgstr ""
 
@@ -543,16 +543,16 @@ msgstr ""
 msgid "Error while filling the bad blocks list file."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:304
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:322
+#: gfloppy/src/gfloppy.c:330
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:336
+#: gfloppy/src/gfloppy.c:344
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -560,46 +560,46 @@ msgid ""
 "%s (%d)"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:353
+#: gfloppy/src/gfloppy.c:361
 msgid "Abnormal child process termination."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:378
+#: gfloppy/src/gfloppy.c:386
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:398
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:433
+#: gfloppy/src/gfloppy.c:441
 msgid "Abnormal mbadblocks child process termination."
 msgstr ""
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
+#: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
 #, fuzzy
 msgid "Making filesystem on disk..."
 msgstr "Mடிஸ்கை ஃபார்மாட் செய்துகொண்டிருக்கிறது..."
 
-#: gfloppy/src/gfloppy.c:467
+#: gfloppy/src/gfloppy.c:475
 msgid "Unable to create filesystem correctly."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
 #, fuzzy
 msgid "Making filesystem on disk... Done"
 msgstr "Mடிஸ்கை ஃபார்மாட் செய்துகொண்டிருக்கிறது... முடிந்தது"
 
-#: gfloppy/src/gfloppy.c:516
+#: gfloppy/src/gfloppy.c:524
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:521
+#: gfloppy/src/gfloppy.c:529
 msgid "Error while checking the bad blocks."
 msgstr ""
 
@@ -690,25 +690,25 @@ msgstr ""
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
 
-#: gfloppy/src/main.c:134
+#: gfloppy/src/main.c:140
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
+#: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr ""
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
+#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
 msgstr ""
 
-#: gfloppy/src/main.c:164 gfloppy/src/main.c:208
+#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -716,22 +716,30 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 
-#: gfloppy/src/main.c:402
+#: gfloppy/src/main.c:216
+msgid "Unable to open any device, formatting cannot continue."
+msgstr ""
+
+#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+msgid "/dev/floppy/0 or /dev/fd0"
+msgstr ""
+
+#: gfloppy/src/main.c:394
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
 "%s"
 msgstr ""
 
-#: gfloppy/src/main.c:435
+#: gfloppy/src/main.c:427
 msgid "The volume name can't contain any blank space."
 msgstr ""
 
-#: gfloppy/src/main.c:484
+#: gfloppy/src/main.c:477
 msgid "The device to format"
 msgstr "ஃபார்மாட் செய்ய வேண்டிய சாதனம்"
 
-#: gfloppy/src/main.c:485
+#: gfloppy/src/main.c:478
 msgid "DEVICE"
 msgstr "சாதனம்"
 
@@ -759,9 +767,9 @@ msgstr "ஃபிளாப்பி ஃபார்மாட்டிங் க�
 msgid "Format Progress"
 msgstr "ஃபார்மாட்டிங் நடந்து கொண்டிருக்கிறது."
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:589
-#: gsearchtool/gsearchtool.c:843 gsearchtool/gsearchtool.c:990
-#: gsearchtool/gsearchtool.c:2285 gsearchtool/gsearchtool.c:2305
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
+#: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
+#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
 #, fuzzy
 msgid "Search for Files"
 msgstr "தேடு"
@@ -904,42 +912,42 @@ msgstr ""
 msgid "Save Search Results As..."
 msgstr "தேடு"
 
-#: gsearchtool/gsearchtool-callbacks.c:1185
+#: gsearchtool/gsearchtool-callbacks.c:1184
 msgid "Could not save document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1186
 msgid "You did not select a document name."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1213
-#: gsearchtool/gsearchtool-callbacks.c:1308
+#: gsearchtool/gsearchtool-callbacks.c:1212
+#: gsearchtool/gsearchtool-callbacks.c:1307
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1246
+#: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1261
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1311
+#: gsearchtool/gsearchtool-callbacks.c:1310
 msgid "You may not have write permissions to the document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:58
+#: gsearchtool/gsearchtool-support.c:63
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -951,294 +959,289 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:325
+#: gsearchtool/gsearchtool-support.c:348
 msgid "today at %-I:%M %p"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:327
+#: gsearchtool/gsearchtool-support.c:350
 msgid "yesterday at %-I:%M %p"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:329 gsearchtool/gsearchtool-support.c:331
+#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:456
+#: gsearchtool/gsearchtool-support.c:487
 msgid "link (broken)"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:461
+#: gsearchtool/gsearchtool-support.c:492
 #, c-format
 msgid "link to %s"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:70
 #, fuzzy
 msgid "Contains the _text"
 msgstr "தேர்வு செய்ததை நகல்"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:72
 #, fuzzy
 msgid "_Date modified less than (days)"
 msgstr "மாற்றப்பட்டது:"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:73
 #, fuzzy
 msgid "Date modified more than (da_ys)"
 msgstr "மாற்றப்பட்டது:"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:75
 #, fuzzy
 msgid "S_ize at least (kilobytes)"
 msgstr "குறியீட்டு இணைப்புகளை பின்தொடர்"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:76
 #, fuzzy
 msgid "Si_ze at most (kilobytes)"
 msgstr "குறியீட்டு இணைப்புகளை பின்தொடர்"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:77
 #, fuzzy
 msgid "File is empty"
 msgstr "கோப்பு அமைப்பு வகை:"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:79
 #, fuzzy
 msgid "Owned by _user"
 msgstr "கோப்பு சொந்தக்காரத் தொகுதி"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:80
 #, fuzzy
 msgid "Owned by _group"
 msgstr "கோப்பு சொந்தக்காரத் தொகுதி"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:81
 msgid "Owner is unrecognized"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:83
 msgid "Na_me does not contain"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:84
 msgid "Name matches regular e_xpression"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:86
 msgid "Show hidden and backup files"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
 msgstr "குறியீட்டு இணைப்புகளை பின்தொடர்"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:88
 #, fuzzy
 msgid "Include other filesystems"
 msgstr "ஏற்றப்பட்ட கோப்பு-அமைவுகளில் தேட வேண்டாம்"
 
-#: gsearchtool/gsearchtool.c:538 gsearchtool/gsearchtool.c:566
+#: gsearchtool/gsearchtool.c:509 gsearchtool/gsearchtool.c:537
 #, fuzzy
 msgid "No files found"
 msgstr "பொருத்தமானவை கிடைக்கவில்லை"
 
-#: gsearchtool/gsearchtool.c:559
+#: gsearchtool/gsearchtool.c:530
 msgid "(stopped)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:565
+#: gsearchtool/gsearchtool.c:536
 #, fuzzy
 msgid "No Files Found"
 msgstr "பொருத்தமானவை கிடைக்கவில்லை"
 
-#: gsearchtool/gsearchtool.c:570
+#: gsearchtool/gsearchtool.c:541
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "பொருத்தமானவை கிடைக்கவில்லை"
 msgstr[1] "பொருத்தமானவை கிடைக்கவில்லை"
 
-#: gsearchtool/gsearchtool.c:573
+#: gsearchtool/gsearchtool.c:545
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "பொருத்தமானவை கிடைக்கவில்லை"
 msgstr[1] "பொருத்தமானவை கிடைக்கவில்லை"
 
-#: gsearchtool/gsearchtool.c:678
+#: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:935
-#, c-format
-msgid "The animation file is missing or invalid: %s"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:990
+#: gsearchtool/gsearchtool.c:900
 #, fuzzy
 msgid "Searching..."
 msgstr "எழுத்துகளை சாிபார்க்கின்றது..."
 
-#: gsearchtool/gsearchtool.c:1036
+#: gsearchtool/gsearchtool.c:921
 msgid "Set the text of 'Name contains'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1037
+#: gsearchtool/gsearchtool.c:922
 msgid "Set the text of 'Look in folder'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1038
+#: gsearchtool/gsearchtool.c:923
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1039
+#: gsearchtool/gsearchtool.c:924
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1040
+#: gsearchtool/gsearchtool.c:925
 msgid "Automatically start a search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1045
+#: gsearchtool/gsearchtool.c:930
 #, fuzzy, c-format
 msgid "Select the '%s' constraint"
 msgstr "குறியீட்டு இணைப்புகளை பின்தொடர்"
 
-#: gsearchtool/gsearchtool.c:1151
+#: gsearchtool/gsearchtool.c:1036
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1402
+#: gsearchtool/gsearchtool.c:1301
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1406
+#: gsearchtool/gsearchtool.c:1305
 msgid ""
 "\n"
 "... Too many errors to display ..."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1312
 msgid "Error while searching for files."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1454
+#: gsearchtool/gsearchtool.c:1353
 msgid "Error parsing the search command."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1477
+#: gsearchtool/gsearchtool.c:1376
 msgid "Error running the search command."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1572
+#: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1473
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1611
+#: gsearchtool/gsearchtool.c:1511
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1667
+#: gsearchtool/gsearchtool.c:1567
 msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1680
+#: gsearchtool/gsearchtool.c:1580
 #, fuzzy
 msgid "Search Rules Menu"
 msgstr "தேடு"
 
-#: gsearchtool/gsearchtool.c:1681
+#: gsearchtool/gsearchtool.c:1581
 msgid "Select a search rule from the menu"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1613
 #, fuzzy
 msgid "S_earch results:"
 msgstr "தேடு"
 
-#: gsearchtool/gsearchtool.c:1793
+#: gsearchtool/gsearchtool.c:1693
 msgid "Name"
 msgstr "பெயர்"
 
-#: gsearchtool/gsearchtool.c:1813
+#: gsearchtool/gsearchtool.c:1713
 #, fuzzy
 msgid "Folder"
 msgstr "திண்ம"
 
-#: gsearchtool/gsearchtool.c:1824
+#: gsearchtool/gsearchtool.c:1724
 #, fuzzy
 msgid "Size"
 msgstr "அளவு:"
 
-#: gsearchtool/gsearchtool.c:1834
+#: gsearchtool/gsearchtool.c:1734
 msgid "Type"
 msgstr "வகை"
 
-#: gsearchtool/gsearchtool.c:1844
+#: gsearchtool/gsearchtool.c:1744
 #, fuzzy
 msgid "Date Modified"
 msgstr "மாற்றப்பட்டது:"
 
-#: gsearchtool/gsearchtool.c:1907
+#: gsearchtool/gsearchtool.c:1802
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Name Contains Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1922 gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Enter the file name you want to search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1935
+#: gsearchtool/gsearchtool.c:1830
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "சரம் கிடைக்கவில்லை"
 
-#: gsearchtool/gsearchtool.c:1941
+#: gsearchtool/gsearchtool.c:1836
 msgid "Browse"
 msgstr "கோப்பு..."
 
-#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 #, fuzzy
 msgid "Look in Folder Entry"
 msgstr "சரம் கிடைக்கவில்லை"
 
-#: gsearchtool/gsearchtool.c:1950 gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Enter the folder name where you want to start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1970
+#: gsearchtool/gsearchtool.c:1865
 #, fuzzy
 msgid "Show more _options"
 msgstr "பண்புகள்"
 
-#: gsearchtool/gsearchtool.c:1980
+#: gsearchtool/gsearchtool.c:1875
 #, fuzzy
 msgid "Show more options"
 msgstr "பண்புகள்"
 
-#: gsearchtool/gsearchtool.c:1980
+#: gsearchtool/gsearchtool.c:1875
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2027
+#: gsearchtool/gsearchtool.c:1922
 msgid "Click to Start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2028
+#: gsearchtool/gsearchtool.c:1923
 msgid "Click to Stop the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2301
+#: gsearchtool/gsearchtool.c:2202
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -1571,42 +1574,42 @@ msgstr ""
 msgid "Collapse all the rows"
 msgstr ""
 
-#: logview/logview.c:362
+#: logview/logview.c:367
 msgid "No log files to open"
 msgstr ""
 
-#: logview/logview.c:384
+#: logview/logview.c:389
 #, fuzzy
 msgid "Date"
 msgstr "திகதி"
 
-#: logview/logview.c:384
+#: logview/logview.c:389
 #, fuzzy
 msgid "Host Name"
 msgstr "பெயர்"
 
-#: logview/logview.c:385
+#: logview/logview.c:390
 msgid "Process"
 msgstr ""
 
-#: logview/logview.c:385
+#: logview/logview.c:390
 msgid "Message"
 msgstr ""
 
-#: logview/logview.c:466
+#: logview/logview.c:471
 #, fuzzy
 msgid "Last Modified: "
 msgstr "மாற்றப்பட்டது:"
 
-#: logview/logview.c:565 logview/logview.c:640
+#: logview/logview.c:570 logview/logview.c:645
 msgid "Too many open logs. Close one and try again"
 msgstr ""
 
-#: logview/logview.c:577
+#: logview/logview.c:582
 msgid "File already opened"
 msgstr ""
 
-#: logview/logview.c:653
+#: logview/logview.c:658
 msgid "Open new logfile"
 msgstr ""
 
