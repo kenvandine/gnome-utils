@@ -217,19 +217,13 @@ handle_signal (int sig)
 	exit (EXIT_SUCCESS);
 }
 
-static
-error_t parse_an_arg (int key, char *arg, struct argp_state *state)
+static void
+parse_an_arg(poptContext ctx, const struct poptOption *opt,
+	     const char *arg, void *data)
 {
-	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) state->input;
+	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) data;
 
-	switch (key) {
-	case ARGP_KEY_INIT:
-		cfg->font_load = NULL;
-		cfg->print_on_exit = FALSE;
-		cfg->remember_font = TRUE;
-		cfg->load_last = TRUE;
-		break;
-
+	switch (opt->val) {
 #define FONT_KEY			'f'
 	case FONT_KEY:
 		cfg->font_load = g_strdup (arg);
@@ -249,35 +243,16 @@ error_t parse_an_arg (int key, char *arg, struct argp_state *state)
 	case NO_LOAD_LAST_FONT_KEY:
 		cfg->load_last = FALSE;
 		break;
-
-	default:
-		return ARGP_ERR_UNKNOWN;
 	}
-
-	return 0;
 }
 
-static struct argp_option options[] =
-{
-	{"font", FONT_KEY, "fontspec", 0,
-	 N_("font to load"), 1},
-
-	{"print", PRINT_KEY, NULL, 0,
-	 N_("print selected font name on exit"), 1},
-
-	{"noremember", NO_REMEMBER_FONT_KEY, NULL, 0,
-	 N_("inhibit remembering selected font for next run"), 1},
-
-	{"nolast", NO_LOAD_LAST_FONT_KEY, NULL, 0,
-	 N_("inhibit loading of last font"), 1},
-
-	{NULL, 0, NULL, 0, NULL, 0}
-};
-
-static struct argp parser =
-{ 
-	options,
-	parse_an_arg
+static struct poptOption options[] = {
+  {NULL, '\0', POPT_ARG_CALLBACK, &parse_an_arg, 0, NULL, NULL},
+  {"font", 'f', POPT_ARG_STRING, NULL, FONT_KEY, N_("Font to load"), N_("FONTSPEC")},
+  {"print", 'p', POPT_ARG_NONE, NULL, PRINT_KEY, N_("Print selected font name on exit"), NULL},
+  {"noremember", '\0', POPT_ARG_NONE, NULL, NO_REMEMBER_FONT_KEY, N_("Inhibit remembering selected font for next run"), NULL},
+  {"nolast", '\0', POPT_ARG_NONE, NULL, NO_LOAD_LAST_FONT_KEY, N_("Inhibit loading of last font"), NULL},
+  {NULL, '\0', 0, NULL, 0}
 };
 
 int
@@ -285,10 +260,18 @@ main (int argc, char *argv[])
 {
 	static gfontsel_cfg_t cfg;
 
+	cfg.font_load = NULL;
+	cfg.print_on_exit = FALSE;
+	cfg.remember_font = TRUE;
+	cfg.load_last = TRUE;
+
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 
-	gnome_init_with_data ("gfontsel", &parser, argc, argv, 0, NULL, &cfg);
+	options[0].descrip = &cfg;
+
+	gnome_init_with_popt_table("gfontsel", VERSION, argc, argv,
+				   options, 0, NULL);
 
 	signal (SIGHUP, handle_signal);
 	signal (SIGINT, handle_signal);

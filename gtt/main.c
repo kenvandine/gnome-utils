@@ -20,6 +20,7 @@
 #include <gnome.h>
 #include <string.h>
 #include <signal.h>
+#include <errno.h>
 
 #include "gtt.h"
 
@@ -190,83 +191,74 @@ session_die(GnomeClient *client)
  */
 
 static int w_x = 0, w_y = 0, w_w = 0, w_h = 0, w_xyset = 0, w_sx = 0, w_sy = 0;
+static char *geometry_string;
 
-static error_t
-argp_parser(int key, char *arg, struct argp_state *state)
+static void
+parse_geometry(void)
 {
-	char *p, *p0;
-	char c;
+  char *arg = geometry_string;
 
-	if (key == 's') {
-		first_proj_title = g_strdup(arg);
-		return 0;
-	}
-	if (key != 'g') return ARGP_ERR_UNKNOWN;
-	p = arg;
-	if ((*p >= '0') && (*p <= '9')) {
-		p0 = p;
-		for (; (*p >= '0') && (*p <= '9'); p++) ;
-		if (*p != 'x') {
-			g_print(_("error in geometry string \"%s\"\n"), arg);
-			return 0;
-		}
-		*p = 0;
-		w_w = atoi(p0);
-		*p = 'x';
-		p0 = ++p;
-		for (; (*p >= '0') && (*p <= '9'); p++) ;
-		c = *p;
-		*p = 0;
-		w_h = atoi(p0);
-		*p = c;
-	}
-	if (*p == 0) return 0;
-	if ((*p != '-') && (*p != '+')) {
-		g_print(_("error in geometry string \"%s\"\n"), arg);
-		return 0;
-	}
-	p0 = p;
-	for (p++; (*p >= '0') && (*p <= '9'); p++) ;
-	c = *p;
-	*p = 0;
-	w_sx = (*p0 != '-');
-	w_x = atoi(p0);
-	*p = c;
-	if ((*p != '-') && (*p != '+')) {
-		g_print(_("error in geometry string \"%s\"\n"), arg);
-		return 0;
-	}
-	p0 = p;
-	for (p++; (*p >= '0') && (*p <= '9'); p++) ;
-	if (*p != 0) {
-		g_print(_("error in geometry string \"%s\"\n"), arg);
-		return 0;
-	}
-	w_sy = (*p0 != '-');
-	w_y = atoi(p0);
-	w_xyset++;
-	return 0;
+  char *p, *p0;
+  char c;
+
+  p = arg;
+  if ((*p >= '0') && (*p <= '9')) {
+    p0 = p;
+    for (; (*p >= '0') && (*p <= '9'); p++) ;
+    if (*p != 'x') {
+      g_print(_("error in geometry string \"%s\"\n"), arg);
+      return;
+    }
+    *p = 0;
+    w_w = atoi(p0);
+    *p = 'x';
+    p0 = ++p;
+    for (; (*p >= '0') && (*p <= '9'); p++) ;
+    c = *p;
+    *p = 0;
+    w_h = atoi(p0);
+    *p = c;
+  }
+  if (*p == 0) return;
+  if ((*p != '-') && (*p != '+')) {
+    g_print(_("error in geometry string \"%s\"\n"), arg);
+    return;
+  }
+  p0 = p;
+  for (p++; (*p >= '0') && (*p <= '9'); p++) ;
+  c = *p;
+  *p = 0;
+  w_sx = (*p0 != '-');
+  w_x = atoi(p0);
+  *p = c;
+  if ((*p != '-') && (*p != '+')) {
+    g_print(_("error in geometry string \"%s\"\n"), arg);
+    return;
+  }
+  p0 = p;
+  for (p++; (*p >= '0') && (*p <= '9'); p++) ;
+  if (*p != 0) {
+    g_print(_("error in geometry string \"%s\"\n"), arg);
+    return;
+  }
+  w_sy = (*p0 != '-');
+  w_y = atoi(p0);
+  w_xyset++;
 }
-
-
 
 int main(int argc, char *argv[])
 {
 #ifdef USE_SM
 	GnomeClient *client;
 #endif
-	struct argp_option geo_options[] = {
-		{"geometry", 'g', "GEOM", 0, N_("specify geometry"), 0},
-		{"select-project", 's', "PROJECT", 0,
-			N_("select a project on startup"), 0},
-		{NULL, 0, NULL, 0, NULL, 0}
-	};
-	struct argp args = {
-		geo_options,
-		argp_parser, NULL, NULL, NULL, NULL, NULL
+	static const struct poptOption geo_options[] = {
+	  {"geometry", 'g', POPT_ARG_STRING, &geometry_string, 0, N_("Specify geometry"), N_("GEOMETRY")},
+	  {"select-project", 's', POPT_ARG_STRING, &first_proj_title, 0, N_("Select a project on startup"), N_("PROJECT")},
+	  {NULL, '\0', 0, NULL, 0}
 	};
 
-	gnome_init("gtt", &args, argc, argv, 0, NULL);
+	gnome_init_with_popt_table("gtt", VERSION, argc, argv, geo_options, 0, NULL);
+	parse_geometry();
 
 #ifdef USE_SM
 	client = gnome_master_client();

@@ -208,7 +208,7 @@ static void fill_cpuinfo_page(GtkWidget * box)
   gtk_container_add(GTK_CONTAINER(box), vbox);
 
   for (i = 0; i < sysinfo->ncpu; i++) {
-    const gchar buffer [BUFSIZ], *titles [2];
+    gchar buffer [BUFSIZ], *titles [2];
     
     if (sysinfo->ncpu > 1) {
       sprintf (buffer, _("CPU %d"), i);

@@ -553,7 +553,7 @@ static void
 about_cb (GtkWidget *widget, gpointer data)
 {
 	GtkWidget *about;
-	gchar *authors[] = {
+	static const char *authors[] = {
 		"George Lebl",
 		NULL
 	};
@@ -608,13 +608,11 @@ main(int argc, char *argv[])
 	GtkWidget *app;
 	GtkWidget *search;
 
-	argp_program_version = VERSION;
-
 	/* Initialize the i18n stuff */
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 
-	gnome_init ("gsearchtool", NULL, argc, argv, 0, NULL);
+	gnome_init ("gsearchtool", VERSION, argc, argv);
 	
         app=gnome_app_new("gsearchtool", _("Gnome Search Tool"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gsearchtool", "gsearchtool");

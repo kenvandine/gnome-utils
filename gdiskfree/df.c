@@ -208,7 +208,7 @@ static void
 about_cb (GtkWidget *widget, gpointer data)
 {
   GtkWidget     *about;
-  gchar         *authors[] = {
+  static const char         *authors[] = {
     "Gregory McLean <gregm@comstar.net>",
     NULL
   };
@@ -680,7 +680,7 @@ main (int argc, char **argv)
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init ("gdiskfree", 0, argc, argv, 0, 0);
+  gnome_init ("gdiskfree", VERSION, argc, argv);
 
   fs_select_list = NULL;
   fs_exclude_list = NULL;

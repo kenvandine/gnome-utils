@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	{
 		gtk_init(&argc, &argv);
 		gdk_imlib_init();
-		gnomelib_init(argv[0]);
+		gnomelib_init(argv[0], VERSION);
 		gnome_mode=1;
 	}
 	

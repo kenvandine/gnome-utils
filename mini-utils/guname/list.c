@@ -135,7 +135,7 @@ GtkWidget * create_clist(const gchar * titles[])
 {
   GtkCList * list;
 
-  list = GTK_CLIST(gtk_clist_new_with_titles(2, titles));
+  list = GTK_CLIST(gtk_clist_new_with_titles(2, (char **)titles));
 
   gtk_clist_set_border(list, GTK_SHADOW_OUT);
 

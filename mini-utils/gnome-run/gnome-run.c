@@ -22,6 +22,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <errno.h>
 
 #define APPNAME "grun"
 
@@ -45,13 +46,12 @@ static void string_callback(gchar * s, gpointer data)
 int main (int argc, char ** argv)
 {
   GtkWidget * dialog;
-  argp_program_version = VERSION;
 
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init (APPNAME, 0, argc, argv, 0, 0);
+  gnome_init (APPNAME, VERSION, argc, argv);
 
   dialog = gnome_request_string_dialog(_("Enter a command to execute:"),
                                        string_callback, NULL);

@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include <string.h> /* memset */
 #include <sys/utsname.h>
-
+#include <errno.h>
 
 #define DEBIAN_STRING "Debian GNU/Linux"
 #define REDHAT_STRING "Red Hat Linux"

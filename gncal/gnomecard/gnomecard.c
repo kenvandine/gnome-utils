@@ -779,7 +779,7 @@ void gnomecard_init(void)
 int main (int argc, char *argv[])
 {
 	textdomain(PACKAGE);
-	gnome_init("GnomeCard", NULL, argc, argv, 0, NULL);
+	gnome_init("GnomeCard", VERSION, argc, argv);
 	gnomecard_init();
 
 	gtk_main();

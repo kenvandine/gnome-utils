@@ -135,13 +135,11 @@ int main ( int argc, char ** argv )
   int i;
   gchar * config_string;
 
-  argp_program_version = VERSION;
-
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init (APPNAME, 0, argc, argv, 0, 0);
+  gnome_init (APPNAME, VERSION, argc, argv);
 
   i = 0;
   while (i < 7) {
@@ -416,8 +414,8 @@ static void popup_not_in_path(const gchar * command)
 static void popup_about()
 {
   GtkWidget * ga;
-  gchar * authors[] = { "Havoc Pennington <hp@pobox.com>",
-                        NULL };
+  static const char * authors[] = { "Havoc Pennington <hp@pobox.com>",
+                                    NULL };
 
   ga = gnome_about_new (APPNAME,
                         VERSION, 

@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <asm/types.h>
 #include <linux/hdreg.h>
+#include <errno.h>
 
 #define APPNAME "idetool"
 #define COPYRIGHT_NOTICE _("Copyright 1998, under the GNU General Public License.")
@@ -400,13 +401,11 @@ static int ide_parser(void)
 
 int main(int argc, char *argv[])
 {
-	argp_program_version = VERSION;
-
 	/* Initialize the i18n stuff */
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 
-	gnome_init (APPNAME, 0, argc, argv, 0, 0);
+	gnome_init (APPNAME, VERSION, argc, argv);
 
 	if(geteuid())
 	{

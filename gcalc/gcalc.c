@@ -77,13 +77,11 @@ main(int argc, char *argv[])
 	GtkWidget *app;
 	GtkWidget *calc;
 
-	argp_program_version = VERSION;
-	
 	/* Initialize the i18n stuff */
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
 
-	gnome_init ("gcalc", NULL, argc, argv, 0, NULL);
+	gnome_init ("gcalc", VERSION, argc, argv);
 	
         app=gnome_app_new("gcalc", _("Gnome Calculator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gcalc", "gcalc");

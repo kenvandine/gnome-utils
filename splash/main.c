@@ -278,7 +278,7 @@ static void splash_message(gpointer data, gint fd, GdkInputCondition fred)
 	}
 }			
 			
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	int pipeline[2];
 	int errline[2];
@@ -365,4 +365,6 @@ void main(int argc, char *argv[])
 			perror(argv[2]);
 			_exit(1);
 	}
+
+	return 0;
 }

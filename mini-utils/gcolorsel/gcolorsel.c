@@ -51,7 +51,7 @@ int main(int argc, char **argv)
         textdomain(PACKAGE);
 #endif
       
-        gnome_init("gcolorsel", NULL, argc, argv, 0, NULL);
+        gnome_init("gcolorsel", VERSION, argc, argv);
         window = gnome_app_new(N_("Gnome Color Browser"), "0.0");
 	gtk_widget_set_usize(window, 300, 328);
         gtk_window_set_title(GTK_WINDOW(window), N_("Gnome Color Browser"));

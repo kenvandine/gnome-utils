@@ -21,6 +21,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <errno.h>
 
 #include <string.h>
 
@@ -79,7 +80,7 @@ static void fixed_cb(GtkWidget * w, gpointer data);
 
 GList * apps = NULL;
 
-GList * start_files = NULL;
+char ** start_files = NULL;
 GList * start_geometries = NULL;
 gboolean ignore_stdin = FALSE;
 
@@ -92,30 +93,12 @@ enum {
   NOSTDIN_KEY  = -2
 };
 
-static struct argp_option argp_options [] = {
-  { 
-    "geometry",     /* name */
-    GEOMETRY_KEY,   /* key  */
-    N_("GEOMETRY"), /* name of argument to option */
-    0,              /* flags */
-    N_("Where to put the window, and its size"), /* docs */
-    1               /* option group for help message sorting */
-  },
-  { 
-    "nostdin",     /* name */
-    NOSTDIN_KEY,   /* key  */
-    NULL,           /* name of argument to option */
-    0,              /* flags */
-    N_("Ignore standard input; may be needed in some cases."), /* docs */
-    1               /* option group for help message sorting */
-  },
-  { NULL, 0, NULL, 0, NULL, 0 },
-};
-
-static error_t
-parse_an_arg (int key, char *arg, struct argp_state *state)
+static void
+parse_an_arg (poptContext ctx,
+              const struct poptOption *opt,
+              const char *arg, void *data)
 {
-  switch (key){
+  switch (opt->val){
     
   case GEOMETRY_KEY:
     start_geometries = g_list_append (start_geometries, arg);
@@ -124,25 +107,15 @@ parse_an_arg (int key, char *arg, struct argp_state *state)
   case NOSTDIN_KEY:
     ignore_stdin = TRUE;
     break;
-
-  case ARGP_KEY_ARG:
-    start_files = g_list_append (start_files, arg);
-
-  case ARGP_KEY_END:
-    break;
-    
-  default:
-    return ARGP_ERR_UNKNOWN;
   }
-
-  return 0;
 }
 
-static struct argp parser =
-{
-  argp_options, parse_an_arg, NULL, NULL, NULL, NULL, NULL
+static const struct poptOption options[] = {
+  {NULL, '\0', POPT_ARG_CALLBACK, &parse_an_arg, 0, NULL, NULL},
+  {"geometry", '\0', POPT_ARG_STRING, NULL, GEOMETRY_KEY, N_("Where to put the window, and its size"), N_("GEOMETRY")},
+  {"nostdin", '\0', POPT_ARG_NONE, NULL, NOSTDIN_KEY, N_("Ignore standard input; may be needed in some cases."), NULL},
+  {NULL, '\0', 0, NULL, 0}
 };
-
 
 static void
 session_die (void)
@@ -226,15 +199,16 @@ int main ( int argc, char ** argv )
 {
   GnomeClient * client;
   GList * tmp1 = NULL, * tmp2 = NULL;
-
-  argp_program_version = VERSION;
+  poptContext ctx;
+  int i;
 
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
+  gnome_init_with_popt_table(APPNAME, VERSION, argc, argv, options, 0, &ctx);
 
-  gnome_init (APPNAME, &parser, argc, argv, 0, 0);
+  start_files = poptGetArgs(ctx);
 
   client = gnome_master_client ();
   if (client){
@@ -249,15 +223,16 @@ int main ( int argc, char ** argv )
   tmp2 = start_geometries;
 
   /* Start by putting up windows for any files on the command line. */
-  while ( start_files ) {
+  for(i = 0; start_files[i]; i++) {
     gchar * geometry = NULL;
     if ( start_geometries ) {
       geometry = start_geometries->data;
       start_geometries = g_list_next(start_geometries);
     }
-    gless_new_app(start_files->data, geometry, INVALID_FD);
-    start_files = g_list_next(start_files);
+    gless_new_app(start_files[i], geometry, INVALID_FD);
   }
+
+  poptFreeContext(ctx);
 
   /* Next case is just a geometry on the command line - we want
      it to apply if reading from stdin. */
@@ -447,7 +422,7 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
 static void popup_about()
 {
   GtkWidget * ga;
-  gchar * authors[] = { "Havoc Pennington <hp@pobox.com>",
+  static const char * authors[] = { "Havoc Pennington <hp@pobox.com>",
                         NULL };
 
   ga = gnome_about_new (APPNAME,

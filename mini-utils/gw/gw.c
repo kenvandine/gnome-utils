@@ -131,13 +131,11 @@ static gint num_defaults = sizeof(default_actions)/sizeof(Action);
 
 int main ( int argc, char ** argv )
 {
-  argp_program_version = VERSION;
-
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init (APPNAME, 0, argc, argv, 0, 0);
+  gnome_init (APPNAME, VERSION, argc, argv);
 
   w_command = gnome_is_program_in_path("w");
   if (w_command == NULL) {
@@ -268,8 +266,8 @@ static void prepare_app()
 static void popup_about()
 {
   GtkWidget * ga;
-  gchar * authors[] = { "Havoc Pennington <hp@pobox.com>",
-                        NULL };
+  static const char * authors[] = { "Havoc Pennington <hp@pobox.com>",
+                                    NULL };
 
   ga = gnome_about_new (APPNAME,
                         VERSION, 
