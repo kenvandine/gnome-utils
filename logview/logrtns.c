@@ -42,7 +42,7 @@ void UpdateLastPage (Log *log);
 
 extern GList *regexp_db;
 extern GList *actions_db;
-const char *error_main = N_("Cannot open file.");
+const char *error_main = N_("This file cannot be opened");
 
 /*
  * -------------------
