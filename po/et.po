@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gnome-utils 2.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-08-06 11:51+0200\n"
-"PO-Revision-Date: 2005-01-20 15:15+0200\n"
+"PO-Revision-Date: 2005-01-20 19:16+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -443,7 +443,7 @@ msgid ""
 "\n"
 "Please confirm that it is not write-protected."
 msgstr ""
-"Disketile ei saa kirjutada.\n"
+"Kettale ei saa kirjutada.\n"
 "\n"
 "Palun kontrolli, et kirjutuskaitset ei oleks peal."
 
@@ -459,9 +459,9 @@ msgid ""
 "Please confirm that it is in the drive\n"
 "with the drive door shut."
 msgstr ""
-"Disketile ei saa kirjutada.\n"
+"Kettale ei saa kirjutada.\n"
 "\n"
-"Palun kontrolli, et diskett oleks\n"
+"Palun kontrolli, et ketas oleks\n"
 "seadmes ja seadmeluuk oleks suletud."
 
 #: gfloppy/src/fdformat.c:117
@@ -515,7 +515,7 @@ msgstr ""
 
 #: gfloppy/src/fdformat.c:214
 msgid "Could not determine current floppy geometry."
-msgstr "Käesoleva disketi geomeetriat ei õnnestu tuvastada."
+msgstr "Käesoleva ketta geomeetriat ei õnnestu tuvastada."
 
 #: gfloppy/src/gfloppy.c:222
 msgid "Error while creating a unique filename for the bad blocks list file."
@@ -541,6 +541,9 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
+"Failisüsteemi loomise utiliit (%s) tagastas järgneva vea:\n"
+"\n"
+"%s (%d)"
 
 #: gfloppy/src/gfloppy.c:362
 msgid "Abnormal child process termination."
@@ -628,11 +631,11 @@ msgstr "Failisüsteemi _tüüp:"
 
 #: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy _density:"
-msgstr "Disketi t_ihedus:"
+msgstr "Ketta t_ihedus:"
 
 #: gfloppy/src/gfloppy2.glade.h:13
 msgid "Floppy de_vice:"
-msgstr "Disketi_seade:"
+msgstr "Ketta_seade:"
 
 #: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 3.5\" (1.44MB)"
@@ -675,7 +678,7 @@ msgstr ""
 #: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "Ei saa avada seadet %s, ei saa vormindamist jätkata."
+msgstr "Seadet %s ei saa avada, vormindamist ei saa jätkata."
 
 #: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
@@ -700,7 +703,7 @@ msgstr "Ühtegi seadet ei saa avada, vormindamist ei saa jätkata."
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 või /dev/fd0"
 
 #: gfloppy/src/main.c:394
 #, c-format
@@ -708,7 +711,7 @@ msgid ""
 "Could not display help for the floppy formatter.\n"
 "%s"
 msgstr ""
-"Ei saa diskettide vormindaja abiinfot kuvada.\n"
+"Kettavormindaja abiinfot ei saa kuvada.\n"
 "%s"
 
 #: gfloppy/src/main.c:427
@@ -721,7 +724,7 @@ msgstr "Vormindatav seade"
 
 #: gfloppy/src/main.c:478
 msgid "DEVICE"
-msgstr "DEVICE"
+msgstr "SEADE"
 
 #: gfloppy/src/progress.c:123
 #, c-format
@@ -736,15 +739,15 @@ msgstr[1] ""
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
-msgstr "Diskett edukalt vormindatud."
+msgstr "Ketas edukalt vormindatud."
 
 #: gfloppy/src/progress.c:132
 msgid "Floppy formatting cancelled."
-msgstr "Disketi vormindamine katkestatud."
+msgstr "Ketta vormindamine katkestatud."
 
 #: gfloppy/src/progress.c:175
 msgid "Format Progress"
-msgstr "Vormindamise kulg"
+msgstr "Vormindamise edenemine"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
@@ -867,7 +870,7 @@ msgstr ""
 #: gsearchtool/gsearchtool-callbacks.c:683
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr ""
+msgstr "Tõrge \"%s\" ümbertõstmisel: %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:713
 #, c-format
@@ -882,12 +885,12 @@ msgstr ""
 #: gsearchtool/gsearchtool-callbacks.c:758
 #, c-format
 msgid "Could not delete \"%s\"."
-msgstr ""
+msgstr "\"%s\" ei saa kustutada."
 
 #: gsearchtool/gsearchtool-callbacks.c:761
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr ""
+msgstr "Tõrge \"%s\" kustutamisel: %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:1189
 msgid "Save Search Results As..."
@@ -895,11 +898,11 @@ msgstr "Salvesta tulemused _kui..."
 
 #: gsearchtool/gsearchtool-callbacks.c:1241
 msgid "Could not save document."
-msgstr ""
+msgstr "Dokumenti ei saa salvestada."
 
 #: gsearchtool/gsearchtool-callbacks.c:1243
 msgid "You did not select a document name."
-msgstr ""
+msgstr "Sa ei valinud dokumendi nime."
 
 #: gsearchtool/gsearchtool-callbacks.c:1269
 #: gsearchtool/gsearchtool-callbacks.c:1364
@@ -914,7 +917,7 @@ msgstr ""
 #: gsearchtool/gsearchtool-callbacks.c:1302
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "Dokument \"%s\" on juba olemas.  Kas sa soovid seda üle kirjutada?"
 
 #: gsearchtool/gsearchtool-callbacks.c:1306
 msgid "If you replace an existing file, its contents will be overwritten."
@@ -922,11 +925,11 @@ msgstr ""
 
 #: gsearchtool/gsearchtool-callbacks.c:1317
 msgid "_Replace"
-msgstr ""
+msgstr "_Kirjuta üle"
 
 #: gsearchtool/gsearchtool-callbacks.c:1367
 msgid "You may not have write permissions to the document."
-msgstr ""
+msgstr "Sul puudub selle dokumendi kirjutamisõigus."
 
 #: gsearchtool/gsearchtool-support.c:68
 #, c-format
@@ -934,6 +937,8 @@ msgid ""
 "GConf error:\n"
 "  %s"
 msgstr ""
+"GConf viga:\n"
+"  %s"
 
 #. Translators:  Below are the strings displayed in the 'Date Modified'
 #. column of the list view.  The format of this string can vary depending
@@ -954,12 +959,12 @@ msgstr "%A, %-d. %B %Y kell %-I:%M:%S %p"
 
 #: gsearchtool/gsearchtool-support.c:687
 msgid "link (broken)"
-msgstr ""
+msgstr "viide (katki)"
 
 #: gsearchtool/gsearchtool-support.c:692
 #, c-format
 msgid "link to %s"
-msgstr ""
+msgstr "viide -> %s"
 
 #: gsearchtool/gsearchtool.c:74
 msgid "Contains the _text"
@@ -1077,7 +1082,7 @@ msgstr ""
 
 #: gsearchtool/gsearchtool.c:967
 msgid "Automatically start a search"
-msgstr ""
+msgstr "Otsingu automaatne alustamine"
 
 #: gsearchtool/gsearchtool.c:972
 #, c-format
@@ -1111,7 +1116,7 @@ msgstr ""
 
 #: gsearchtool/gsearchtool.c:1388
 msgid "Disable _Quick Search"
-msgstr ""
+msgstr "Keela _kiirotsing"
 
 #: gsearchtool/gsearchtool.c:1432
 msgid "Error parsing the search command."
@@ -1119,7 +1124,7 @@ msgstr "Viga otsingukäsu analüüsimisel"
 
 #: gsearchtool/gsearchtool.c:1461
 msgid "Error running the search command."
-msgstr ""
+msgstr "Viga otsingukäsu täitmisel."
 
 #: gsearchtool/gsearchtool.c:1572
 #, c-format
@@ -1271,21 +1276,21 @@ msgstr "Tegevuse eemaldamine"
 #: logview/actions.c:263
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
-msgstr ""
+msgstr "Tegevuste andmebaasi <%s> ei saa avada! Tõrge avamisel."
 
 #: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
 #: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
 msgid "Error parsing actions data base"
-msgstr ""
+msgstr "Viga tegevuste andmebaasi analüüsl"
 
 #: logview/actions.c:389
 msgid "Can't write to actions database!"
-msgstr ""
+msgstr "Tegevuste andmebaasi ei saa kirjutada!"
 
 #: logview/actions.c:487
 #, c-format
 msgid "Error while executing specified action: %s"
-msgstr ""
+msgstr "Viga määratud tegevuse käivitamisel: %s"
 
 #: logview/actions.c:510
 msgid "<empty>"
@@ -1440,7 +1445,7 @@ msgstr "Logiraamatu info"
 
 #: logview/info.c:160 logview/zoom.c:155
 msgid "<No log loaded>"
-msgstr ""
+msgstr "<Logi pole laetud>"
 
 #: logview/info.c:183
 #, c-format
@@ -1538,16 +1543,16 @@ msgstr ""
 #: logview/logrtns.c:290
 #, c-format
 msgid "%s could not be opened."
-msgstr ""
+msgstr "%s ei saa avada."
 
 #: logview/logrtns.c:320 logview/logrtns.c:329
 #, c-format
 msgid "%s not a log file."
-msgstr ""
+msgstr "%s ei ole logifail."
 
 #: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
 msgid "ReadLogStats: out of memory"
-msgstr ""
+msgstr "ReadLogStats: mälu lõppes"
 
 #: logview/logview.c:100
 msgid "S_witch Log"
@@ -1734,5 +1739,5 @@ msgstr "Logirea üksikasjad"
 #. Translators: do not include year, it would be bogus
 #: logview/zoom.c:187
 msgid "%B %e %X"
-msgstr ""
+msgstr "%B %e %X"
 
