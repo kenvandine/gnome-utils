@@ -1,4 +1,3 @@
-"Daniel Veillard",
 "Eckehard Berns",
 "Elliot Lee",
 "Federico Mena",

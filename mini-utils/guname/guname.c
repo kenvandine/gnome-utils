@@ -141,7 +141,7 @@ static void do_logo_box(GtkWidget * box)
   contrib_label = gtk_label_new(_("GNOME contributors:"));
 
   style = gtk_style_new ();
-  font = gdk_font_load ("-Adobe-Helvetica-Medium-R-Normal--*-160-*-*-*-*-*-*");
+  font = gdk_font_load ("-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*");
 
   if (font) {
     gdk_font_unref (style->font);
@@ -157,6 +157,11 @@ static void do_logo_box(GtkWidget * box)
   gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, GNOME_PAD);
   gtk_box_pack_start(GTK_BOX(box), pixmap, TRUE, TRUE, GNOME_PAD);
 
+  if (style->font) {
+    gtk_widget_pop_style();
+  }
+  else gtk_style_unref(style);
+
   marquee_frame = gtk_frame_new(NULL);
   gtk_frame_set_shadow_type(GTK_FRAME(marquee_frame), GTK_SHADOW_IN);
   do_marquee(marquee_frame);
@@ -166,10 +171,6 @@ static void do_logo_box(GtkWidget * box)
   gtk_box_pack_start(GTK_BOX(box), contrib_label, FALSE, FALSE, 0);
   gtk_box_pack_start(GTK_BOX(box), align, FALSE, FALSE, 0);
 
-  if (style->font) {
-    gtk_widget_pop_style();
-  }
-  else gtk_style_unref(style);
 }
 
 static void do_list_box(GtkWidget * box)
