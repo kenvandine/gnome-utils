@@ -181,6 +181,23 @@ makecmd(char *start_dir)
 	}
 }
 
+static gboolean
+kill_after_nth_nl (GString *str, int n)
+{
+	int i;
+	int count = 0;
+	for (i = 0; str->str[i] != '\0'; i++) {
+		if (str->str[i] == '\n') {
+			count++;
+			if (count == n) {
+				g_string_truncate (str, i);
+				return TRUE;
+			}
+		}
+	}
+	return FALSE;
+}
+
 static void
 really_run_command(char *cmd, RunLevel *running)
 {
@@ -193,6 +210,7 @@ really_run_command(char *cmd, RunLevel *running)
 	int i,n;
 	int pid;
 	GString *errors = NULL;
+	gboolean add_to_errors = TRUE;
 
 	if( ! lock) {
 		lock = TRUE;
@@ -255,11 +273,15 @@ really_run_command(char *cmd, RunLevel *running)
 		n = read (fderr[0], ret, PIPE_READ_BUFFER-1);
 		if (n > 0) {
 			ret[n] = '\0';
-			if(!errors)
-				errors = g_string_new(ret);
-			else
-				errors = g_string_append(errors, ret);
-			fprintf(stderr, "%s", ret);
+			if (add_to_errors) {
+				if (errors == NULL)
+					errors = g_string_new (ret);
+				else
+					errors = g_string_append (errors, ret);
+				add_to_errors =
+					! kill_after_nth_nl (errors, 20);
+			}
+			fprintf (stderr, "%s", ret);
 		}
 		
 		if (waitpid (-1, NULL, WNOHANG) != 0)
@@ -287,11 +309,15 @@ really_run_command(char *cmd, RunLevel *running)
 	}
 	while((n = read(fderr[0], ret, PIPE_READ_BUFFER-1)) > 0) {
 		ret[n]='\0';
-		if(errors == NULL)
-			errors = g_string_new(ret);
-		else
-			errors = g_string_append(errors, ret);
-		fprintf(stderr, "%s", ret);
+		if (add_to_errors) {
+			if (errors == NULL)
+				errors = g_string_new (ret);
+			else
+				errors = g_string_append (errors, ret);
+			add_to_errors =
+				! kill_after_nth_nl (errors, 20);
+		}
+		fprintf (stderr, "%s", ret);
 	}
 
 	close(fd[0]);
@@ -304,10 +330,15 @@ really_run_command(char *cmd, RunLevel *running)
 	
 	/* if any errors occured */
 	if(errors) {
+		if ( ! add_to_errors) {
+			errors = g_string_append
+				(errors,
+				 _("\n... Too many errors to display ..."));
+		}
 		/* make an error message */
-		gnome_app_error(GNOME_APP(app), errors->str);
+		gnome_app_error (GNOME_APP (app), errors->str);
 		/* freeing allocated memory */
-		g_string_free(errors, TRUE);
+		g_string_free (errors, TRUE);
 	}
 
 	g_string_free (string, TRUE);
