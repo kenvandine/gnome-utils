@@ -3,7 +3,7 @@
 man_MANS = gtt.1
 
 EXTRA_DIST = gtt-db.sgml \
-             gtt.1
+             gtt.1	 \
              index.html  \
 	     topic.dat
 
