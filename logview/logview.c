@@ -951,9 +951,9 @@ char * parse_syslog(gchar * syslog_file) {
  
 void SaveUserPrefs(UserPrefsStruct *prefs)
 {
-    if (gconf_client_key_is_writable (client, "/apps/logview/logfile", NULL) &&
+    if (gconf_client_key_is_writable (client, "/apps/gnome-system-log/logfile", NULL) &&
 	prefs->logfile != NULL)
-	    gconf_client_set_string (client, "/apps/logview/logfile", prefs->logfile, NULL);
+	    gconf_client_set_string (client, "/apps/gnome-system-log/logfile", prefs->logfile, NULL);
 }
 
 static void 
