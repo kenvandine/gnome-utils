@@ -138,7 +138,7 @@ static GtkWidget *create_clist(void)
     GdkColormap *colormap;
         
     clist = gtk_clist_new(3);
-    gtk_clist_set_border(GTK_CLIST(clist), GTK_SHADOW_IN);
+    gtk_clist_set_shadow_type(GTK_CLIST(clist), GTK_SHADOW_IN);
 
     gtk_clist_set_row_height(GTK_CLIST(clist), 18);
 
@@ -362,7 +362,7 @@ void about_cb(GtkWidget *widget, void *data)
  
 /* Menus */
 static GnomeUIInfo help_menu[] = {
-    GNOMEUIINFO_ITEM_STOCK(N_("_About..."), NULL, about_cb,
+    GNOMEUIINFO_ITEM_STOCK(N_("_About"), NULL, about_cb,
                            GNOME_STOCK_MENU_ABOUT),
     GNOMEUIINFO_END
 };
