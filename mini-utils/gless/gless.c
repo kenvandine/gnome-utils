@@ -304,11 +304,13 @@ static GnomeUIInfo file_menu[] = {
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'c', 
    GDK_CONTROL_MASK, NULL },
   GNOMEUIINFO_SEPARATOR,
+#if 0
   {GNOME_APP_UI_ITEM, N_("_Preferences..."), 
    N_("Change application preferences"),
    preferences_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'p', 
    GDK_CONTROL_MASK, NULL },
+#endif
   {GNOME_APP_UI_ITEM, N_("E_xit"), 
    N_("Quit the application"),
    exit_cb, NULL, NULL,
