@@ -135,7 +135,6 @@ void update_status_bar(void)
 void cur_proj_set(project *proj)
 {
 	pid_t fork(void);
-	void execlp(const char *file, const char *arg, ...);
 
 	pid_t pid;
 	char *cmd, *p;
