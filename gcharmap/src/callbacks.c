@@ -22,11 +22,12 @@
 #ifndef _CALLBACKS_C_
 #define _CALLBACKS_C_
 
-#include <callbacks.h>
-#include <interface.h>
-#include <asciiselect.h>
 #include <config.h>
+#include "callbacks.h"
 #include <unistd.h>
+
+#include "interface.h"
+#include "asciiselect.h"
 
 void
 cb_about_click (GtkWidget *widget, gpointer user_data)
@@ -142,7 +143,7 @@ cb_help_click (GtkWidget *widget, gpointer user_data)
     GnomeHelpMenuEntry *ref;
 
     ref = (GnomeHelpMenuEntry *) g_new0 (GnomeHelpMenuEntry, 1);
-    ref->name = PACKAGE;
+    ref->name = "gcharmap";
     ref->path = "index.html";
     gnome_help_display (NULL, ref);
     g_free (ref);

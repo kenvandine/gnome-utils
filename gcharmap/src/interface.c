@@ -22,11 +22,13 @@
 #ifndef _INTERFACE_C_
 #define _INTERFACE_C_
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <interface.h>
 #include <menus.h>
 #include <callbacks.h>
-#include <config.h>
-
 MainApp *mainapp;
 
 

@@ -22,10 +22,14 @@
 #ifndef _MENUS_C_
 #define _MENUS_C_
 
-#include <menus.h>
-#include <callbacks.h>
-#include <gcharmap-map-24.xpm>
-#include <gcharmap-map-16.xpm>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include "menus.h"
+#include "callbacks.h"
+#include "gcharmap-map-24.xpm"
+#include "gcharmap-map-16.xpm"
 
 
 GnomeUIInfo file_menu[] =

@@ -22,9 +22,15 @@
 #ifndef _ASCII_SELECT_C_
 #define _ASCII_SELECT_C_
 
-#include <asciiselect.h>
-#include <interface.h>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include "asciiselect.h"
+
 #include <gnome.h>
+#include "interface.h"
+
 
 static gboolean updating = FALSE;
 

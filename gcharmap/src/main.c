@@ -24,7 +24,7 @@
 
 #include <config.h>
 #include <gnome.h>
-#include <interface.h>
+#include "interface.h"
 
 int
 main (int argc, char *argv[])
