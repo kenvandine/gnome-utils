@@ -5,4 +5,4 @@ endif
 gsu = gsu gpenguin
 
 SUBDIRS = gshutdown guname gw gless $(idetool) \
-	gfontsel gcolorsel
+	gfontsel  # gcolorsel -- Its b0rked. greg
