@@ -20,11 +20,7 @@
 #define __TOOLBAR_H__
 
 
+GtkWidget *build_toolbar(void);
 void toolbar_set_states(void);
-GtkWidget *build_toolbar(GtkWidget *window, GtkTooltips **tips);
-
-#ifdef GNOME_USE_APP
-void toolbar_create(GtkWidget *gnome_app);
-#endif
 
 #endif

@@ -408,7 +408,7 @@ char *project_get_timestr(project *proj)
 	} else {
 		t = proj->day_secs;
 	}
-	sprintf(s, "%02d:%02d", (t / 3600), (t % 3600) / 60);
+	sprintf(s, "%02d:%02d", (int)(t / 3600), (int)((t % 3600) / 60));
 	return s;
 }
 

@@ -40,7 +40,15 @@
  * 
  * This is still experimental.
  */
-#undef USE_GTT_HELP
+#define USE_GTT_HELP
+
+
+/*
+ * GTK_USE_DIALOG
+ * If defines, all my dialogs will use GtkDialog instead of creating it's own
+ * window and that stuff.
+ */
+#define GTK_USE_DIALOG
 
 
 /*
@@ -95,3 +103,4 @@
 
 
 #endif
+

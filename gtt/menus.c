@@ -72,7 +72,7 @@ static GtkMenuEntry *build_menu_items(int *ret_num)
 	set_menu_item(menu_items, i, _("<Main>/File/Reload Configuration File"), _("<control>R"), init_project_list, NULL); i++;
 	set_menu_item(menu_items, i, _("<Main>/File/Save Configuration File"), _("<control>S"), save_project_list, NULL); i++;
 	set_menu_item(menu_items, i, _("<Main>/File/<separator>"), NULL, NULL, NULL); i++;
-	set_menu_item(menu_items, i, _("<Main>/File/Quit"), _("<control>Q"), quit_app, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/File/Exit"), _("<control>Q"), quit_app, NULL); i++;
 	set_menu_item(menu_items, i, _("<Main>/Edit/Cut"), _("<control>X"), cut_project, NULL); i++;
 	set_menu_item(menu_items, i, _("<Main>/Edit/Copy"), _("<control>C"), copy_project, NULL); i++;
 	set_menu_item(menu_items, i, _("<Main>/Edit/Paste"), _("<control>V"), paste_project, NULL); i++;

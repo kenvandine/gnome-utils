@@ -94,10 +94,10 @@ static void help_contents(GtkWidget *w, gpointer *data)
 #endif /* defined(USE_HELP_MENU) || defined(USE_HELP_TOOLBAR) */
 
 
-#ifdef USE_HELP_TOOLBAR
+#if defined USE_HELP_TOOLBAR && 0
 static GnomeToolbarInfo tb_info[] = {
 };
-#endif
+#endif /* USE_HELP_TOOLBAR */
 
 static void gtt_help_init(GttHelp *help)
 {
@@ -177,7 +177,7 @@ guint gtt_help_get_type(void)
 			(GtkClassInitFunc) gtt_help_class_init,
 			(GtkObjectInitFunc) gtt_help_init,
 			(GtkArgSetFunc) NULL,
-			(GtkArgGetFunc) NULL,
+			(GtkArgGetFunc) NULL
 		};
 		GttHelp_type = gtk_type_unique(gnome_app_get_type(), &GttHelp_info);
 		parent_class = gtk_type_class(gnome_app_get_type());
@@ -194,7 +194,7 @@ GtkWidget *gtt_help_new(char *title, char *filename)
 
 	w = gtk_type_new(gtt_help_get_type());
 	help = GTT_HELP(w);
-	if (title)
+ 	if (title)
 		gtk_window_set_title(GTK_WINDOW(w), title);
 	if (filename) {
 		gtt_help_goto(help, filename);

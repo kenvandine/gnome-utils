@@ -31,9 +31,8 @@ typedef struct _OptionsDlg {
 	GtkDialog *dlg;
 	GtkCheckButton *show_secs;
 	GtkCheckButton *show_status_bar;
-#ifdef GNOME_USE_APP
 	GtkCheckButton *show_tb_icons, *show_tb_texts;
-#endif 
+
 	GtkEntry *command;
 	GtkEntry *command_null;
 	GtkEntry *logfilename;
@@ -63,11 +62,9 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 	} else {
 		gtk_widget_hide(status_bar);
 	}
-#ifdef GNOME_USE_APP
 	config_show_tb_icons = GTK_TOGGLE_BUTTON(odlg->show_tb_icons)->active;
 	config_show_tb_texts = GTK_TOGGLE_BUTTON(odlg->show_tb_texts)->active;
 	toolbar_set_states();
-#endif
 
 	/* shell command options */
 	ENTRY_TO_CHAR(odlg->command, config_command);
@@ -82,6 +79,15 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 	if (w == odlg->ok) {
 		gtk_widget_hide(GTK_WIDGET(odlg->dlg));
 	}
+}
+
+
+
+static void options_help(GtkWidget *w, gpointer *data)
+{
+#ifdef USE_GTT_HELP
+        help_goto("ch-dialogs.html#s-pref");
+#endif /* USE_GTT_HELP */
 }
 
 
@@ -111,6 +117,13 @@ static void buttons(OptionsDlg *odlg, GtkBox *aa)
 				  GTK_SIGNAL_FUNC(gtk_widget_hide),
 				  GTK_OBJECT(odlg->dlg));
 	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
+
+	w = gtk_button_new_with_label(_("Help"));
+	gtk_widget_show(w);
+	gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
+				  GTK_SIGNAL_FUNC(options_help),
+				  NULL);
+	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 }
 
 
@@ -133,7 +146,6 @@ static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_secs = GTK_CHECK_BUTTON(w);
 	
-#ifdef GNOME_USE_APP
 	w = gtk_check_button_new_with_label(_("Show Toolbar Icons"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
@@ -143,7 +155,7 @@ static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_texts = GTK_CHECK_BUTTON(w);
-#endif
+
 	w = gtk_check_button_new_with_label(_("Show Status Bar"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
@@ -256,12 +268,12 @@ static void options_dialog_set(OptionsDlg *odlg)
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_secs), config_show_secs);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_status_bar),
 				    GTK_WIDGET_VISIBLE(status_bar));
-#ifdef GNOME_USE_APP
+
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_icons),
 				    config_show_tb_icons);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_texts),
 				    config_show_tb_texts);
-#endif 
+
 	if (config_command) gtk_entry_set_text(odlg->command, config_command);
 	if (config_command_null) gtk_entry_set_text(odlg->command_null, config_command_null);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->logfileuse), config_logfile_use);

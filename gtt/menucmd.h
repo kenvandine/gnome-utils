@@ -44,6 +44,7 @@ void menu_properties(GtkWidget *w, gpointer data);
 void menu_clear_daily_counter(GtkWidget *w, gpointer data);
 
 #ifdef USE_GTT_HELP
+void help_goto(char *helppos);
 void menu_help_contents(GtkWidget *w, gpointer data);
 #endif
 

@@ -286,7 +286,7 @@ static void init_list_2(GtkWidget *w, gint butnum)
 static void init_list(void)
 {
 	if (!project_list_load(NULL)) {
-		msgbox_ok_cancel(_("Confirmation request"),
+		msgbox_ok_cancel(_("Error"),
 				 _("I could not read the init file.\n"
 				   "Shall I install a new init file?"),
 				 _("Yes"), _("No, just quit!"),
@@ -342,10 +342,10 @@ void app_new(int argc, char *argv[])
 	char *p, *p0, c;
 	int i;
 	int x, y, w, h, xy_set;
-#ifndef USE_GNOME_APP
 	GtkWidget *widget;
+#ifndef GNOME_USE_APP
 	GtkAcceleratorTable *accel;
-#endif /* USE_GNOME_APP */
+#endif /* GNOME_USE_APP */
 
 	w = 0; h = 0; xy_set = 0;
 	x = 0; y = 0; /* keep the compiler happy */
@@ -402,9 +402,11 @@ void app_new(int argc, char *argv[])
 #ifdef GNOME_USE_APP
 	window = gnome_app_new("gtt", APP_NAME " " VERSION);
 	menu_create(window);
-	toolbar_create(window);
+	widget = build_toolbar();
+        gtk_widget_show(widget);
+        gnome_app_set_toolbar(GNOME_APP(window), GTK_TOOLBAR(widget));
 	vbox = gtk_vbox_new(FALSE, 0);
-#else /* GNOME_USE_APP */ 
+#else /* not GNOME_USE_APP */ 
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), APP_NAME " " VERSION);
 
@@ -421,10 +423,10 @@ void app_new(int argc, char *argv[])
 	gtk_window_add_accelerator_table(GTK_WINDOW(window), accel);
 	gtk_box_pack_start(GTK_BOX(vbox), widget, FALSE, FALSE, 0);
 	
-	widget = build_toolbar(window, NULL);
+	widget = build_toolbar();
 	gtk_widget_show(widget);
 	gtk_box_pack_start(GTK_BOX(vbox), widget, FALSE, FALSE, 0);
-#endif /* GNOME_USE_APP */ 
+#endif /* not GNOME_USE_APP */ 
 
 	status_bar = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(status_bar);

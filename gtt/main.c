@@ -33,8 +33,9 @@
 #undef gettext
 #undef dgettext
 #undef fcgettext
+#undef _
 #include <libintl.h>
-
+#define _(String) gettext(String)
 
 
 static char *build_lock_fname()
@@ -56,6 +57,7 @@ static char *build_lock_fname()
 }
 
 
+
 static void lock_gtt()
 {
 	FILE *f;
@@ -65,12 +67,18 @@ static void lock_gtt()
 	fname = build_lock_fname();
 	if (NULL != (f = fopen(fname, "rt"))) {
 		fclose(f);
-		msgbox_ok("Error", "There seems to be another " APP_NAME " running.\n"
-			  "Please remove the pid file, if that is not correct.",
-			  "Oops",
+#ifdef DEBUG
+                msgbox_ok("Error", "PID file panic! :-)\nBut I will continue",
+                          "Continue",
+                          GTK_SIGNAL_FUNC(gtk_true));
+#else /* not DEBUG */
+		msgbox_ok(_("Error"), _("There seems to be another GTimeTracker running.\n"
+			  "Please remove the pid file, if that is not correct."),
+			  _("Oops"),
 			  GTK_SIGNAL_FUNC(gtk_main_quit));
 		gtk_main();
 		exit(0);
+#endif /* not DEBUG */
 	}
 	if (NULL == (f = fopen(fname, "wt"))) {
 		g_error("Cannot create pid-file!");

@@ -149,6 +149,16 @@ void prop_dialog_set_project(project *proj)
 
 
 
+static void
+prop_help(GtkWidget *w, gpointer *data)
+{
+#ifdef USE_GTT_HELP
+        help_goto("ch-dialogs.html#s-prop");
+#endif /* USE_GTT_HELP */
+}
+
+
+
 void prop_dialog(project *proj)
 {
 	GtkWidget *w;
@@ -185,6 +195,12 @@ void prop_dialog(project *proj)
 		gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
 					  GTK_SIGNAL_FUNC(gtk_widget_hide),
 					  GTK_OBJECT(dlg->dlg));
+		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
+		w = gtk_button_new_with_label(_("Help"));
+		gtk_widget_show(w);
+		gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
+					  GTK_SIGNAL_FUNC(prop_help),
+					  NULL);
 		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 
 		table = GTK_TABLE(gtk_table_new(4, 7, FALSE));

@@ -62,8 +62,8 @@ void about_box(GtkWidget *w, gpointer data)
 	GtkBox *vbox;
 	char s[128];
 
-	sprintf(s, "%s - %s", APP_NAME, gettext("About"));
-	new_dialog_ok(s, &dlg, &vbox, gettext("Close"), NULL, NULL);
+	new_dialog_ok(gettext("About"), &dlg, &vbox,
+                      gettext("Close"), NULL, NULL);
 
 	t = gtk_label_new(APP_NAME);
 	gtk_widget_show(t);
@@ -112,7 +112,7 @@ void new_project(GtkWidget *widget, gpointer data)
 	GtkBox *vbox;
 
 	text = gtk_entry_new();
-	new_dialog_ok_cancel(APP_NAME " - MessageBox", &dlg, &vbox,
+	new_dialog_ok_cancel(gettext("New Project..."), &dlg, &vbox,
 			     gettext("OK"),
 			     GTK_SIGNAL_FUNC(project_name), (gpointer *)text,
 			     gettext("Cancel"), NULL, NULL);
@@ -158,29 +158,11 @@ static void init_project_list_2(GtkWidget *widget, int button)
 
 void init_project_list(GtkWidget *widget, gpointer data)
 {
-	/*
-	GtkWidget *dlg, *t;
-	GtkBox *vbox;
-	 */
-	
-	msgbox_ok_cancel(gettext("Confirmation Request"),
+	msgbox_ok_cancel(gettext("Reload Configuration File"),
 			 _("This will overwrite your current set of projects.\n"
 			   "Do you really want to reload the configuration file?"),
 			 gettext("Yes"), gettext("No"),
 			 GTK_SIGNAL_FUNC(init_project_list_2));
-	/*
-	new_dialog_ok_cancel("Configmation Request", &dlg, &vbox,
-			     gettext("OK"),
-			     GTK_SIGNAL_FUNC(init_project_list_2), NULL,
-			     gettext("Cancel"), NULL, NULL);
-	t = gtk_label_new(_("This will overwrite your current set of projects."));
-	gtk_widget_show(t);
-	gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
-	t = gtk_label_new("Do you really want to reload the init file?");
-	gtk_widget_show(t);
-	gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
-	gtk_widget_show(dlg);
-	 */
 }
 
 
@@ -203,7 +185,7 @@ void save_project_list(GtkWidget *widget, gpointer data)
 
 
 
-static project *cutted_project = NULL;
+project *cutted_project = NULL;
 
 void cut_project(GtkWidget *w, gpointer data)
 {
@@ -316,6 +298,23 @@ static void help_destroy(GtkWidget *w, gpointer *data)
 {
 	help = NULL;
 }
+
+
+void help_goto(char *helppos)
+{
+        char s[1024];
+
+	if (!help) {
+		help = gtt_help_new(APP_NAME " - Help", HELP_PATH "/index.html");
+		gtk_signal_connect(GTK_OBJECT(help), "destroy",
+				   GTK_SIGNAL_FUNC(help_destroy), NULL);
+	}
+        sprintf(s, HELP_PATH "/%s", helppos);
+        gtt_help_goto(GTT_HELP(help), s);
+	gtk_widget_show(help);
+}
+
+
 
 void menu_help_contents(GtkWidget *w, gpointer data)
 {
