@@ -43,6 +43,13 @@ typedef struct
 	char *str;
 } CardStrProperty;
 
+typedef struct
+{
+	CardProperty prop;
+	
+	GList *l;
+} CardList;
+
 
 /* IDENTIFICATION PROPERTIES */
 
@@ -179,16 +186,18 @@ typedef struct
 
 typedef struct _Card
 {
+	CardProperty prop;
+	
 	CardStrProperty fname;
 	CardName        name;
 	CardPhoto       photo;
 	CardBDay        bday;
 	
-	GList          *deladdr;
-	GList          *dellabel;
+	CardList        deladdr;
+	CardList        dellabel;
 	
-	GList          *phone;
-	GList          *email;
+	CardList        phone;
+	CardList        email;
 	CardStrProperty mailer;
 	
 	CardTimeZone    timezn;
@@ -207,7 +216,6 @@ typedef struct _Card
 	CardStrProperty uid;
 	CardKey         key;
 	
-	void *user_data;
 	int flag;
 } Card;
 

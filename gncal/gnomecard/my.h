@@ -11,8 +11,8 @@
 #define MY_STRDUP(x) (*x?g_strdup(x):NULL)
 
 extern GtkCTreeNode *
-my_gtk_ctree_insert(GtkCTree *ctree, GtkCTreeNode *parent,
-		    GtkCTreeNode *sibling, char **text, pix *p);
+my_gtk_ctree_insert(GtkCTreeNode *parent, GtkCTreeNode *sibling, 
+		    char **text, pix *p, gpointer data);
 extern GtkWidget *my_gtk_entry_new(gint len, char *init);
 extern GtkWidget *my_hbox_entry(GtkWidget *parent, char *label, char *init);
 extern GtkWidget *my_gtk_spin_button_new(GtkAdjustment *adj, gint width);

@@ -12,6 +12,7 @@ extern void gnomecard_about(GtkWidget *widget, gpointer data);
 
 extern void gnomecard_edit(GList *node);
 extern void gnomecard_edit_card(GtkWidget *widget, gpointer data);
+extern void gnomecard_append(GtkWidget *widget, gpointer data);
 extern void gnomecard_open(GtkWidget *widget, gpointer data);
 extern gboolean gnomecard_open_file(char *fname);
 extern void gnomecard_save(void);

@@ -70,17 +70,17 @@ card_new(void)
 	Card *c;
 	
 	c = malloc(sizeof(Card));
-
+	
 	c->name.family = c->name.given  = c->name.additional = NULL;
 	c->name.prefix = c->name.suffix = NULL;
 	c->photo.type = PHOTO_JPEG;
 	c->photo.size = 0;
 	c->photo.data = NULL;
 	c->bday.year = c->bday.month = c->bday.day = 0;
-	c->deladdr  = NULL;
-	c->dellabel = NULL;
-	c->phone    = NULL;
-	c->email    = NULL;
+	c->deladdr.l  = NULL;
+	c->dellabel.l = NULL;
+	c->phone.l    = NULL;
+	c->email.l    = NULL;
 	c->timezn.sign  = 1;
 	c->timezn.hours = c->timezn.mins = 0;
 	c->geopos.lon   = c->geopos.lat  = 0;
@@ -102,14 +102,20 @@ card_new(void)
 	
 	c->comment.prop.encod = ENC_QUOTED_PRINTABLE;
 	
-	c->name.prop    = c->photo.prop    = c->bday.prop   = c->timezn.prop = 
-	c->geopos.prop  = c->logo.prop     = c->org.prop    = c->rev.prop    =
-	c->sound.prop   = c->key.prop = empty_CardProperty();
+	c->name.prop   = c->photo.prop = c->bday.prop    = c->timezn.prop   = 
+	c->geopos.prop = c->logo.prop  = c->org.prop     = c->rev.prop      =
+	c->sound.prop  = c->key.prop   = c->deladdr.prop = c->dellabel.prop = 
+	c->phone.prop  = c->email.prop = c->prop = empty_CardProperty();
 	
+	c->prop.type = PROP_CARD;
 	c->fname.prop.type = PROP_FNAME;
 	c->name.prop.type = PROP_NAME;
 	c->photo.prop.type = PROP_PHOTO;
 	c->bday.prop.type = PROP_BDAY;
+	c->deladdr.prop.type = PROP_DELADDR_LIST;
+	c->dellabel.prop.type = PROP_DELLABEL_LIST;
+	c->phone.prop.type = PROP_PHONE_LIST;
+	c->email.prop.type = PROP_EMAIL_LIST;
 	c->mailer.prop.type = PROP_MAILER;
 	c->timezn.prop.type = PROP_TIMEZN;
 	c->geopos.prop.type = PROP_GEOPOS;
@@ -125,7 +131,6 @@ card_new(void)
 	c->key.prop.type = PROP_KEY;
 	
 	c->flag = 0;
-	c->user_data = NULL;
 	
 	return c;
 }
@@ -855,20 +860,36 @@ card_create_from_vobject (VObject *vcrd)
 			free(the_str);
 			break;
 		 case PROP_DELADDR:
-			crd->deladdr = g_list_append(crd->deladdr,
-						     get_CardDelAddr(o));
+			{
+				CardDelAddr *c;
+				c = get_CardDelAddr(o);
+				prop = &c->prop;
+				crd->deladdr.l = g_list_append(crd->deladdr.l, c);
+			}
 			break;
 		 case PROP_DELLABEL:
-			crd->dellabel = g_list_append(crd->dellabel,
-						     get_CardDelLabel(o));
+			{
+				CardDelLabel *c;
+				c = get_CardDelLabel(o);
+				prop = &c->prop;
+				crd->dellabel.l = g_list_append(crd->dellabel.l, c);
+			}
 			break;
 		 case PROP_PHONE:
-			crd->phone = g_list_append(crd->phone,
-						   get_CardPhone(o));
+			{
+				CardPhone *c;
+				c = get_CardPhone(o);
+				prop = &c->prop;
+				crd->phone.l = g_list_append(crd->phone.l, c);
+			}
 			break;
 		 case PROP_EMAIL:
-			crd->email = g_list_append(crd->email,
-						   get_CardEMail(o));
+			{
+				CardEMail *c;
+				c = get_CardEMail(o);
+				prop = &c->prop;
+				crd->email.l = g_list_append(crd->email.l, c);
+			}
 			break;
 		 case PROP_MAILER:
 			prop = &crd->mailer.prop;
@@ -949,8 +970,8 @@ card_create_from_vobject (VObject *vcrd)
 		}
 		
 		if (prop) {
+			*prop = get_CardProperty(o);
 			prop->type = propid;
-		  *prop = get_CardProperty(o);
 		}
 	}
 	
@@ -972,7 +993,7 @@ card_load (GList *crdlist, char *fname)
 	while (vobj) {
 		const char *n = vObjectName(vobj);
 		
-		if (strcmp(n,VCCardProp) == 0) {
+		if (strcmp(n, VCCardProp) == 0) {
 			crdlist = g_list_append(crdlist, (gpointer)
 					    card_create_from_vobject (vobj));
 		}
@@ -1199,10 +1220,10 @@ card_convert_to_vobject(Card *crd)
 		free(date_str);
 		add_CardProperty(vprop, &crd->bday.prop);
 	}
-	if (crd->deladdr) {
+	if (crd->deladdr.l) {
 		GList *node;
 		
-		for (node = crd->deladdr; node; node = node->next) {
+		for (node = crd->deladdr.l; node; node = node->next) {
 			CardDelAddr *deladdr = (CardDelAddr *) node->data;
 			
 			vprop = addProp(vobj, VCAdrProp);
@@ -1217,10 +1238,10 @@ card_convert_to_vobject(Card *crd)
 			add_CardProperty(vprop, &deladdr->prop);
 		}
 	}
-	if (crd->dellabel) {
+	if (crd->dellabel.l) {
 		GList *node;
 		
-		for (node = crd->dellabel; node; node = node->next) {
+		for (node = crd->dellabel.l; node; node = node->next) {
 			CardDelLabel *dellabel = (CardDelLabel *) node->data;
 			
 			vprop = add_strProp(vobj, VCDeliveryLabelProp, 
@@ -1229,10 +1250,10 @@ card_convert_to_vobject(Card *crd)
 			add_CardProperty(vprop, &dellabel->prop);
 		}
 	}
-	if (crd->phone) {
+	if (crd->phone.l) {
 		GList *node;
 		
-		for (node = crd->phone; node; node = node->next) {
+		for (node = crd->phone.l; node; node = node->next) {
 			CardPhone *phone = (CardPhone *) node->data;
 			
 			vprop = add_strProp(vobj, VCTelephoneProp, 
@@ -1241,10 +1262,10 @@ card_convert_to_vobject(Card *crd)
 			add_CardProperty(vprop, &phone->prop);
 		}
 	}
-	if (crd->email) {
+	if (crd->email.l) {
 		GList *node;
 		
-		for (node = crd->email; node; node = node->next) {
+		for (node = crd->email.l; node; node = node->next) {
 			CardEMail *email = (CardEMail *) node->data;
 			
 			vprop = add_strProp(vobj, VCEmailAddressProp, 

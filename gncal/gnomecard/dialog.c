@@ -89,7 +89,7 @@ typedef struct
 	GtkWidget *entry, *sens, *back;
 } GnomeCardFind;
 
-void gnomecard_prop_apply(GtkWidget *widget, int page)
+static void gnomecard_prop_apply(GtkWidget *widget, int page)
 {
 	GnomeCardEditor *ce;
 	Card *crd;
@@ -250,19 +250,19 @@ extern void gnomecard_edit(GList *node)
 	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
 	table = my_gtk_table_new(6, 2);
 	gtk_container_add(GTK_CONTAINER(frame), table);
-	label = gtk_label_new(_("Given:"));
+	label = gtk_label_new(_("First:"));
 	ce->given = entry = my_gtk_entry_new(12, crd->name.given);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
 	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1, 0, 0, 0, 0);
-	label = gtk_label_new(_("Additional:"));
+	label = gtk_label_new(_("Middle:"));
 	ce->add = entry = my_gtk_entry_new(12, crd->name.additional);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
 	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
 	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1, 0, 0, 0, 0);
-	label = gtk_label_new(_("Family:"));
+	label = gtk_label_new(_("Last:"));
 	ce->fam = entry = my_gtk_entry_new(15, crd->name.family);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
 	gtk_table_attach(GTK_TABLE(table), label, 4, 5, 0, 1,
@@ -336,15 +336,15 @@ extern void gnomecard_edit(GList *node)
 	adj = gtk_adjustment_new(crd->timezn.prop.used? 
 				 crd->timezn.sign * crd->timezn.hours : 0,
 				 -12, 12, 1, 1, 3);
-	my_connect(adj, "value_changed", box, &crd->timezn.prop, PROP_TIMEZN);
 	ce->tzh = entry = my_gtk_spin_button_new(GTK_ADJUSTMENT(adj), 3);
+	my_connect(adj, "value_changed", box, &crd->timezn.prop, PROP_TIMEZN);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 	label = gtk_label_new(_("mins."));
 	adj = gtk_adjustment_new(crd->timezn.prop.used? crd->timezn.mins : 0,
 				 0, 59, 1, 1, 10);
-	my_connect(adj, "value_changed", box, &crd->timezn.prop, PROP_TIMEZN);
 	ce->tzm = entry = my_gtk_spin_button_new(GTK_ADJUSTMENT(adj), 2);
+	my_connect(adj, "value_changed", box, &crd->timezn.prop, PROP_TIMEZN);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 		
@@ -593,11 +593,12 @@ void gnomecard_add_email(GtkWidget *widget, gpointer data)
 	
 	email = g_malloc(sizeof(CardEMail));
 	email->data = g_strdup(text);
-  email->prop = empty_CardProperty();
+	email->prop = empty_CardProperty();
 	email->prop.used = TRUE;
+	email->prop.type = PROP_EMAIL;
 	email->type = (int) gtk_object_get_user_data(GTK_OBJECT(gtk_menu_get_active(GTK_MENU(e->type))));
 	
-	((Card *) e->l->data)->email = g_list_append(((Card *) e->l->data)->email, email);
+	((Card *) e->l->data)->email.l = g_list_append(((Card *) e->l->data)->email.l, email);
 	gnomecard_update_tree(e->l->data);
 	
 	gtk_editable_delete_text(GTK_EDITABLE(e->data), 0, strlen(text));
@@ -676,7 +677,7 @@ void gnomecard_add_phone(GtkWidget *widget, gpointer data)
 		if (GTK_TOGGLE_BUTTON(p->type[i])->active)
 			phone->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
 	
-	((Card *) p->l->data)->phone = g_list_append(((Card *) p->l->data)->phone, phone);
+	((Card *) p->l->data)->phone.l = g_list_append(((Card *) p->l->data)->phone.l, phone);
 	gnomecard_update_tree(p->l->data);
 	
 	gtk_editable_delete_text(GTK_EDITABLE(p->data), 0, strlen(text));
@@ -769,7 +770,7 @@ void gnomecard_add_deladdr(GtkWidget *widget, gpointer data)
 		if (GTK_TOGGLE_BUTTON(p->type[i])->active)
 			addr->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
 	
-	((Card *) p->l->data)->deladdr = g_list_append(((Card *) p->l->data)->deladdr, addr);
+	((Card *) p->l->data)->deladdr.l = g_list_append(((Card *) p->l->data)->deladdr.l, addr);
 	gnomecard_update_tree(p->l->data);
 
 	for (i = 0; i < DELADDR_MAX; i++)
@@ -891,7 +892,7 @@ void gnomecard_add_dellabel(GtkWidget *widget, gpointer data)
 	  if (GTK_TOGGLE_BUTTON(p->type[i])->active)
 	    addr->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
 	
-	((Card *) p->l->data)->dellabel = g_list_append(((Card *) p->l->data)->dellabel, addr);
+	((Card *) p->l->data)->dellabel.l = g_list_append(((Card *) p->l->data)->dellabel.l, addr);
 	gnomecard_update_tree(p->l->data);
 
 	gtk_editable_delete_text(GTK_EDITABLE(p->data), 0, strlen(text));
@@ -908,15 +909,12 @@ extern void gnomecard_edit_card(GtkWidget *widget, gpointer data)
 	  gnomecard_edit(gnomecard_curr_crd);
 }
 
-extern gboolean gnomecard_open_file(char *fname)
+static gboolean gnomecard_append_file(char *fname)
 {
 	GtkWidget *w;
-	GList *c;
+	GList *c, *crds;
 
-	if (! gnomecard_destroy_cards())
-	  return FALSE;
-	
-	if (!(gnomecard_crds = card_load(NULL, fname))) {
+	if (!(crds = card_load(gnomecard_crds, fname))) {
 		char *tmp;
 		
 		tmp = g_malloc(strlen(_("Wrong file format.")) + strlen(fname) + 3);
@@ -931,8 +929,10 @@ extern gboolean gnomecard_open_file(char *fname)
 		return FALSE;
 	}
 	
+	gnomecard_crds = crds;
 	gnomecard_sort_card_list(gnomecard_sort_criteria);
 	gtk_clist_freeze(GTK_CLIST(gnomecard_tree));
+	gtk_ctree_remove_node(gnomecard_tree, NULL);
 	for (c = gnomecard_crds; c; c = c->next)
 	  gnomecard_add_card_to_tree((Card *) c->data);
 	gtk_clist_thaw(GTK_CLIST(gnomecard_tree));
@@ -942,7 +942,40 @@ extern gboolean gnomecard_open_file(char *fname)
 	return TRUE;
 }
 
-void gnomecard_open_call(GtkWidget *widget, gpointer data)
+static void gnomecard_append_call(GtkWidget *widget, gpointer data)
+{
+	char *fname;
+	
+	fname = gtk_file_selection_get_filename(GTK_FILE_SELECTION(widget));
+	
+	if (gnomecard_append_file(fname))
+		gtk_widget_destroy(widget);
+}
+
+extern void gnomecard_append(GtkWidget *widget, gpointer data)
+{
+	GtkWidget *fsel;
+	
+	fsel = gtk_file_selection_new(_("Append GnomeCard File"));
+	gtk_file_selection_hide_fileop_buttons(GTK_FILE_SELECTION(fsel));
+	gtk_signal_connect_object(GTK_OBJECT(GTK_FILE_SELECTION(fsel)->ok_button),
+			   "clicked", GTK_SIGNAL_FUNC(gnomecard_append_call),
+			   GTK_OBJECT(fsel));
+	gtk_signal_connect_object(GTK_OBJECT(GTK_FILE_SELECTION(fsel)->cancel_button),
+			   "clicked", GTK_SIGNAL_FUNC(gnomecard_cancel),
+			   GTK_OBJECT(fsel));
+	gtk_widget_show(fsel);
+}
+
+extern gboolean gnomecard_open_file(char *fname)
+{
+	if (! gnomecard_destroy_cards())
+	  return FALSE;
+	
+	return gnomecard_append_file(fname);
+}
+
+static void gnomecard_open_call(GtkWidget *widget, gpointer data)
 {
 	char *fname;
 	
@@ -956,7 +989,7 @@ void gnomecard_open_call(GtkWidget *widget, gpointer data)
 	}
 }
 
-void gnomecard_open(GtkWidget *widget, gpointer data)
+extern void gnomecard_open(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *fsel;
 	
@@ -1091,22 +1124,22 @@ void gnomecard_find_card(GtkWidget *w, gpointer data)
 				if (gnomecard_match_pattern(pattern, crd_text[i], sens))
 					found = 1;
 
-			for (k = crd->phone; k && !found; k = k->next)
+			for (k = crd->phone.l; k && !found; k = k->next)
 				if (gnomecard_match_pattern(pattern, 
 																		((CardPhone *) k->data)->data, sens))
 					found = 1;
 			
-			for (k = crd->email; k && !found; k = k->next)
+			for (k = crd->email.l; k && !found; k = k->next)
 				if (gnomecard_match_pattern(pattern, 
 																		((CardEMail *) k->data)->data, sens))
 						found = 1;
 
-			for (k = crd->dellabel; k && !found; k = k->next)
+			for (k = crd->dellabel.l; k && !found; k = k->next)
 				if (gnomecard_match_pattern(pattern, 
 																		((CardDelLabel *) k->data)->data, sens))
 					found = 1;
 
-			for (k = crd->deladdr; k && !found; k = k->next)
+			for (k = crd->deladdr.l; k && !found; k = k->next)
 				for (i = 0; i < DELADDR_MAX; i++)
 					if (gnomecard_match_pattern(pattern, 
 																			((CardDelAddr *) k->data)->data[i], sens))

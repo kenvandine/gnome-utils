@@ -1,3 +1,24 @@
+1998-10-23  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* card.c: Modified structures to allow identification of every card
+	property through piggybacking. Modifications all over the code to
+	adapt to this.
+	* del.c: Now you can delete individual e-mail entries. Eventualy, it
+	should be possible to delete any item in any card.
+
+1998-10-15  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* gnomecard.c: (sortmenu) Changed GNOME_APP_UI_RADIOITEMS for
+	GNOME_APP_UI_ITEM. This fixes the sort menu not showing.
+		(helpmenu) Eliminated invalid entry.
+	* dialog.c: Various gnomecard_append_file bug fixes. It should work
+	right now.
+
+1998-10-14  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* dialog.c: (gnomecard_edit) Fixed timezone marked as "used"
+	when editting a card.
+
 1998-09-26  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
 
 	The code of GnomeCard gets split (finally)!

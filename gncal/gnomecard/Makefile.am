@@ -16,6 +16,8 @@ gnomecard_SOURCES =	\
 	cardtypes.h	\
 	canvas.c	\
 	canvas.h	\
+	del.c		\
+	del.h		\
 	dialog.c        \
 	dialog.h        \
 	gnomecard.c	\

@@ -46,7 +46,7 @@ static void gnomecard_do_sort_cards(sort_func criteria)
 	for (l = gnomecard_crds; l; l = l->next) {
 		if (curr == l->data)
 			gnomecard_curr_crd = l;
-		gtk_ctree_move(gnomecard_tree, ((Card *) l->data)->user_data, 
+		gtk_ctree_move(gnomecard_tree, ((Card *) l->data)->prop.user_data,
 			       NULL, NULL);
 	}
 	gtk_clist_thaw(GTK_CLIST(gnomecard_tree));
@@ -72,7 +72,7 @@ extern GtkCTreeNode *gnomecard_search_sorted_pos(Card *crd)
 	
 	for (l = gnomecard_crds; l; l = l->next)
 	  if ((*gnomecard_sort_criteria) (& (l->data), &crd) > 0)
-	    return ((Card *) l->data)->user_data;
+	    return ((Card *) l->data)->prop.user_data;
 	
 	return NULL;
 }
@@ -127,15 +127,15 @@ extern int gnomecard_cmp_emails(const void *crd1, const void *crd2)
 	card1 = (* (Card **) crd1);
 	card2 = (* (Card **) crd2);
 	
-	if (! card1->email && !card2->email)
+	if (! card1->email.l && !card2->email.l)
 	  return gnomecard_cmp_fnames(crd1, crd2);
-	if (! card1->email)
+	if (! card1->email.l)
 	  return 1;
-	if (! card2->email)
+	if (! card2->email.l)
 	  return -1;
 	
-	email1 = g_strdup(((CardEMail *) (card1->email->data))->data);
-	email2 = g_strdup(((CardEMail *) (card2->email->data))->data);
+	email1 = g_strdup(((CardEMail *) (card1->email.l->data))->data);
+	email2 = g_strdup(((CardEMail *) (card2->email.l->data))->data);
 	
 	if ((host1 = strchr(email1, '@'))) {
 		*host1++ = 0;

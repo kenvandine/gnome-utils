@@ -16,11 +16,11 @@ extern void gnomecard_update_tree(Card *crd)
 	GtkCTreeNode *node, *tmp;
 	
 	gnomecard_tree_set_node_info(crd);
-	gtk_ctree_collapse_recursive(gnomecard_tree, crd->user_data);
+	gtk_ctree_collapse_recursive(gnomecard_tree, crd->prop.user_data);
 	
 	/* FIXME: the gtkctree API is broken. This is a workaround.
 	 * GTK_CTREE_NODE_CHILDREN should exist. */
-	node = GTK_CTREE_ROW(&GTK_CTREE_NODE(crd->user_data)->list)->children;
+	node = GTK_CTREE_ROW(&GTK_CTREE_NODE(crd->prop.user_data)->list)->children;
 	while (node) {
 		tmp = GTK_CTREE_NODE_NEXT (node);
 		gtk_ctree_remove_node(gnomecard_tree, node);
@@ -35,7 +35,7 @@ extern void gnomecard_scroll_tree(GList *node)
 {
 	GtkCTreeNode *tree_node;
 	
-	tree_node = ((Card *) node->data)->user_data;
+	tree_node = ((Card *) node->data)->prop.user_data;
 
 	gtk_ctree_node_moveto(gnomecard_tree, tree_node, 0, 0, 0);
 	gtk_ctree_select(gnomecard_tree, tree_node);
@@ -65,7 +65,7 @@ extern void gnomecard_tree_set_node_info(Card *crd)
 	if ((text = crd->fname.str) == NULL)
 	  text = _("No Card Name for this card.");
 	
-	gtk_ctree_set_node_info(gnomecard_tree, crd->user_data, text,
+	gtk_ctree_set_node_info(gnomecard_tree, crd->prop.user_data, text,
 				TREE_SPACING, crd_pix->pixmap,
 				crd_pix->mask, crd_pix->pixmap,
 				crd_pix->mask, FALSE, FALSE);
@@ -73,20 +73,20 @@ extern void gnomecard_tree_set_node_info(Card *crd)
 	text = malloc(1);
 	*text = 0;
 	len = 1;
-	if (crd->phone && (gnomecard_def_data & PHONE)) {
-	  tmp = gnomecard_first_phone_str(crd->phone);
+	if (crd->phone.l && (gnomecard_def_data & PHONE)) {
+	  tmp = gnomecard_first_phone_str(crd->phone.l);
 		len += strlen(tmp) + 1;
 		text = realloc(text, len);
 		snprintf(text, len, "%s %s", text, tmp);
 	}
-	if (crd->email && (gnomecard_def_data & EMAIL)) {
-		tmp = ((CardEMail *) (crd->email->data))->data;
+	if (crd->email.l && (gnomecard_def_data & EMAIL)) {
+		tmp = ((CardEMail *) (crd->email.l->data))->data;
 		len += strlen(tmp) + 1;
 		text = realloc(text, len);
 		snprintf(text, len, "%s %s", text, tmp);
 	}
 
-	gtk_ctree_node_set_text(gnomecard_tree, crd->user_data, 1, text);
+	gtk_ctree_node_set_text(gnomecard_tree, crd->prop.user_data, 1, text);
 	
 	g_free(text);
 }
@@ -107,7 +107,7 @@ extern void gnomecard_add_card_sections_to_tree(Card *crd)
 	char *text[2];
 	GtkCTreeNode *parent, *child;
 	
-	parent = crd->user_data;
+	parent = crd->prop.user_data;
 	child = parent;
 	
 	text[0] = _("Name");
@@ -115,39 +115,39 @@ extern void gnomecard_add_card_sections_to_tree(Card *crd)
 				      crd->name.additional, crd->name.family, 
 				      crd->name.suffix);
 	if (*text[1])
-		my_gtk_ctree_insert(gnomecard_tree, child, NULL, text, ident_pix);
+		my_gtk_ctree_insert(child, NULL, text, ident_pix, &crd->name);
 	g_free(text[1]);
 	
 	if (crd->bday.prop.used) {
 		text[0] = _("Birth Date");
 		text[1] = card_bday_str(crd->bday);
-		my_gtk_ctree_insert(gnomecard_tree, child, NULL, text, ident_pix);
+		my_gtk_ctree_insert(child, NULL, text, ident_pix, &crd->bday);
 		free(text[1]);
 	}
 	
 	if (crd->timezn.prop.used) {
 		text[0] = _("Time Zone");
 		text[1] = card_timezn_str(crd->timezn);
-		my_gtk_ctree_insert(gnomecard_tree, child, NULL, text, geo_pix);
+		my_gtk_ctree_insert(child, NULL, text, geo_pix, &crd->timezn);
 		free(text[1]);
 		}
 
 	if (crd->geopos.prop.used) {
 		text[0] = _("Geo. Position");
 		text[1] = card_geopos_str(crd->geopos);
-		my_gtk_ctree_insert(gnomecard_tree, child, NULL, text, geo_pix);
+		my_gtk_ctree_insert(child, NULL, text, geo_pix, &crd->geopos);
 		free(text[1]);
 	}
 	
 	if (crd->title.prop.used) {
 		text[0] = _("Title");
 		text[1] = crd->title.str;
-		my_gtk_ctree_insert(gnomecard_tree, child, NULL, text, org_pix);
+		my_gtk_ctree_insert(child, NULL, text, org_pix, &crd->title);
 	}
 	if (crd->role.prop.used) {
 		text[0] = _("Role");
 		text[1] = crd->role.str;
-		my_gtk_ctree_insert(gnomecard_tree, child, NULL, text, org_pix);
+		my_gtk_ctree_insert(child, NULL, text, org_pix, &crd->role);
 	}
 	
 	if (crd->org.prop.used) {
@@ -159,77 +159,83 @@ extern void gnomecard_add_card_sections_to_tree(Card *crd)
 		else
 			text[1] = "";
 		
-		org = my_gtk_ctree_insert(gnomecard_tree, child, NULL, text, org_pix);
+		org = my_gtk_ctree_insert(child, NULL, text, org_pix, &crd->org);
 		
 		if (crd->org.unit1) {
 			text[0] = _("Unit 1");
 			text[1] = crd->org.unit1;
-			my_gtk_ctree_insert(gnomecard_tree, org, NULL, text, null_pix);
+			my_gtk_ctree_insert(org, NULL, text, null_pix, &crd->org);
 		}
 		
 		if (crd->org.unit2) {
 			text[0] = _("Unit 2");
 			text[1] = crd->org.unit2;
-			my_gtk_ctree_insert(gnomecard_tree, org, NULL, text, null_pix);
+			my_gtk_ctree_insert(org, NULL, text, null_pix, &crd->org);
 	}
 		
 		if (crd->org.unit3) {
 			text[0] = _("Unit 3");
 			text[1] = crd->org.unit3;
-			my_gtk_ctree_insert(gnomecard_tree, org, NULL, text, null_pix);
+			my_gtk_ctree_insert(org, NULL, text, null_pix, &crd->org);
 		}
 		
 		if (crd->org.unit4) {
 			text[0] = _("Unit 4");
 			text[1] = crd->org.unit4;
-			my_gtk_ctree_insert(gnomecard_tree, org, NULL, text, null_pix);
+			my_gtk_ctree_insert(org, NULL, text, null_pix, &crd->org);
 		}
 	}
 	
 	if (crd->comment.prop.used) {
 		char *rem, *c;
-		GtkCTreeNode *comment;
+		GtkCTreeNode *comment = NULL;
 		
 		text[0] = _("Comment");
-		text[1] = "";
-		comment = my_gtk_ctree_insert(gnomecard_tree, child, NULL, text, expl_pix);
 		
-		text[0] = "";
 		c = rem = text[1] = g_strdup(crd->comment.str);
 		while ((c = strchr(text[1], '\n')) != NULL) {
 			*c = 0;
-			my_gtk_ctree_insert(gnomecard_tree, comment, NULL, text, null_pix);
+			if (! comment) {
+				comment = my_gtk_ctree_insert(child, NULL, text, expl_pix, &crd->comment);
+				text[0] = "";
+			} else
+			  my_gtk_ctree_insert(comment, NULL, text, null_pix, &crd->comment);
 			text[1] = c + 1;
 		}
 		
 		if (*text[1])
-			my_gtk_ctree_insert(gnomecard_tree, comment, NULL, text, null_pix);
+		  if (! comment) {
+			  comment = my_gtk_ctree_insert(child, NULL, text, expl_pix, &crd->comment);
+			  text[0] = "";
+		  } else
+		    my_gtk_ctree_insert(comment, NULL, text, null_pix, &crd->comment);
 	}
+	
 	if (crd->url.prop.used) {
 		text[0] = _("URL");
 		text[1] = crd->url.str;
-		my_gtk_ctree_insert(gnomecard_tree, child, NULL, text, null_pix);
+		my_gtk_ctree_insert(child, NULL, text, expl_pix, &crd->url);
 	}
 
 	if (crd->key.prop.used) {
 		text[0] = _("Security");
 		text[1] = "";
-		my_gtk_ctree_insert(gnomecard_tree, parent, NULL, text, sec_pix);
+		my_gtk_ctree_insert(parent, NULL, text, sec_pix, &crd->key);
 	}
 	
-	if (crd->phone) {
+	if (crd->phone.l) {
 		GtkCTreeNode *phone, *phone2;
 		GList *l;
 		int i, len;
 		
 		text[0] = _("Telephone Numbers");
-		text[1] = gnomecard_first_phone_str(crd->phone);
-		if (! crd->phone->next)
+		text[1] = gnomecard_first_phone_str(crd->phone.l);
+		if (! crd->phone.l->next)
 			phone = parent;
 		else
-			phone = my_gtk_ctree_insert(gnomecard_tree, parent, NULL, text, phone_pix);
+			phone = my_gtk_ctree_insert(parent, NULL, text, phone_pix, &crd->phone);
 		
-		for (l = crd->phone; l; l = l->next) {
+		for (l = crd->phone.l; l; l = l->next) {
 			text[0] = ((CardPhone *)l->data)->data;
 			text[1] = malloc(1);
 			*text[1] = 0;
@@ -241,47 +247,51 @@ extern void gnomecard_add_card_sections_to_tree(Card *crd)
 				  snprintf(text[1], len, "%s %s", text[1], 
 					   phone_type_name[i]);
 			  }
-			
-			phone2 = my_gtk_ctree_insert(gnomecard_tree, phone, NULL, text, phone_pix);
+
+			phone2 = my_gtk_ctree_insert(phone, NULL, text, phone_pix, l->data);
+
 			free(text[1]);
 		}
 	}
 	
-	if (crd->email) {
-		GtkCTreeNode *email;
+	if (crd->email.l) {
+		GtkCTreeNode *email, *node;
 		GList *l;
 		
 		text[0] = _("E-mail Addresses");
 		text[1] = "";
 		
-		if (! crd->email->next)
+		if (! crd->email.l->next)
 			email = parent;
 		else
-			email = my_gtk_ctree_insert(gnomecard_tree, parent, NULL, text, email_pix);
+			email = my_gtk_ctree_insert(parent, NULL, text, email_pix, &crd->email);
 		
-		for (l = crd->email; l; l = l->next) {
+		crd->email.prop.user_data = email;
+		
+		for (l = crd->email.l; l; l = l->next) {
 			text[0] = email_type_name[((CardEMail *)l->data)->type];
 			text[1] = ((CardEMail *)l->data)->data;
-			my_gtk_ctree_insert(gnomecard_tree, email, NULL, text, email_pix);
+			node = my_gtk_ctree_insert(email, NULL, text, email_pix, l->data);
+			((CardEMail *) l->data)->prop.user_data = node;
 		}
 	}
 	
-	if (crd->deladdr || crd->dellabel) {
+	if (crd->deladdr.l || crd->dellabel.l) {
 		GtkCTreeNode *addr, *addr2;
 		GList *l;
-		int i, j, k;
+		int i, j, k = 0;
 		
 		text[0] = _("Delivery Addresses");
 		text[1] = "";
 		
 		/* fixme: not handling dellabel case. */
 		
-		if (! crd->deladdr->next)
+		if (! crd->deladdr.l->next)
 			addr = parent;
 		else
-			addr = my_gtk_ctree_insert(gnomecard_tree, parent, NULL, text, addr_pix);
+			addr = my_gtk_ctree_insert(parent, NULL, text, addr_pix, &crd->deladdr);
 		
-		for (l = crd->deladdr; l; l = l->next) {
+		for (l = crd->deladdr.l; l; l = l->next) {
 			CardDelAddr *deladdr;
 			
 			text[0] = "";
@@ -301,7 +311,7 @@ extern void gnomecard_add_card_sections_to_tree(Card *crd)
 				} else
 					text[0] = "";
 				
-				addr2 = my_gtk_ctree_insert(gnomecard_tree, addr, NULL, text, addr_pix);
+				addr2 = my_gtk_ctree_insert(addr, NULL, text, addr_pix, l->data);
 				
 				for (i = 0; i < DELADDR_MAX; i++)
 					if (deladdr->data[i] && text[1] != deladdr->data[i]) {
@@ -313,7 +323,7 @@ extern void gnomecard_add_card_sections_to_tree(Card *crd)
 							text[0] = "";
 						
 						text[1] = deladdr->data[i];
-						my_gtk_ctree_insert(gnomecard_tree, addr2, NULL, text, null_pix);
+						my_gtk_ctree_insert(addr2, NULL, text, null_pix, l->data);
 					}
 			}
 		}
@@ -326,15 +336,13 @@ extern void gnomecard_add_card_to_tree(Card *crd)
 	
 	text[0] = text[1] = "";
 	
-	crd->user_data = gtk_ctree_insert_node(gnomecard_tree, NULL, NULL, text,
-																		0, NULL, NULL, NULL, NULL, FALSE, FALSE);
-	
+	crd->prop.user_data = my_gtk_ctree_insert(NULL, NULL, text, null_pix, crd);
 	gnomecard_tree_set_node_info(crd);
 	gnomecard_add_card_sections_to_tree(crd);
 }
 
 extern void gnomecard_tree_set_sorted_pos(Card *crd)
 {
-	gtk_ctree_move(gnomecard_tree, crd->user_data,
+	gtk_ctree_move(gnomecard_tree, crd->prop.user_data,
 		       NULL, gnomecard_search_sorted_pos(crd));
 }

@@ -9,6 +9,7 @@
 #include "../versit/vcc.h"
 #include "card.h"
 #include "canvas.h"
+#include "del.h"
 #include "dialog.h"
 #include "gnomecard.h"
 #include "init.h"
@@ -30,6 +31,8 @@
 #define SEC 4
 
 GtkWidget *gnomecard_window;
+
+GtkCTreeNode *gnomecard_selected_node;
 GtkCTree  *gnomecard_tree;
 GdkGCValues crd_tree_values;
 GdkColor *crd_tree_sel_col;
@@ -134,7 +137,7 @@ extern void gnomecard_set_edit_del(gboolean state)
 	gtk_widget_set_sensitive(menu_find, state);
 }
 
-void gnomecard_set_curr(GList *node)
+extern void gnomecard_set_curr(GList *node)
 {
 	gnomecard_curr_crd = node;
 	
@@ -184,13 +187,15 @@ void gnomecard_tree_selected(GtkCTree *tree, GtkCTreeNode *row, gint column)
 {
 	GList *i;
 	
+	gnomecard_selected_node = row;
+	
 	gtk_ctree_post_recursive(tree, row,
-													 GTK_CTREE_FUNC(gnomecard_set_bg),
-													 crd_tree_sel_col);
+				 GTK_CTREE_FUNC(gnomecard_set_bg),
+				 crd_tree_sel_col);
 	
 	gnomecard_found = FALSE;
 	for (i = gnomecard_crds; i; i = i->next) {
-		gtk_ctree_post_recursive(tree, ((Card *) i->data)->user_data,
+		gtk_ctree_post_recursive(tree, ((Card *) i->data)->prop.user_data,
 					 GTK_CTREE_FUNC(gnomecard_cmp_nodes), 
 					 row);
 		if (gnomecard_found)
@@ -284,7 +289,7 @@ extern int gnomecard_destroy_cards(void)
 	for (l = gnomecard_crds; l; l = l->next)
 	  card_free (l->data);
 	
-	gtk_ctree_remove_node(gnomecard_tree,NULL);
+	gtk_ctree_remove_node(gnomecard_tree, NULL);
 	g_list_free(gnomecard_crds);
 	gnomecard_crds = NULL;
 	
@@ -306,28 +311,6 @@ void gnomecard_new_card(GtkWidget *widget, gpointer data)
 	last = g_list_last(gnomecard_crds);
 	gnomecard_edit(last);
 	gnomecard_scroll_tree(last);
-	
-	gnomecard_set_changed(TRUE);
-}
-
-void gnomecard_del_card(GtkWidget *widget, gpointer data)
-{
-	GList *tmp;
-	
-	if (gnomecard_curr_crd->next)
-	  tmp = gnomecard_curr_crd->next;
-	else
-	  tmp = gnomecard_curr_crd->prev;
-	
-	card_free(gnomecard_curr_crd->data);
-	gnomecard_crds = g_list_remove_link(gnomecard_crds, gnomecard_curr_crd);
-	gtk_ctree_remove_node(gnomecard_tree, ((Card *) gnomecard_curr_crd->data)->user_data);
-	g_list_free(gnomecard_curr_crd);
-	
-	if (tmp)
-	  gnomecard_scroll_tree(tmp);
-	else
-	  gnomecard_set_curr(NULL);
 	
 	gnomecard_set_changed(TRUE);
 }
@@ -408,6 +391,10 @@ GnomeUIInfo filemenu[] = {
 		gnomecard_open, NULL, NULL,
 	GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN, 0, 0, NULL},
 
+	{GNOME_APP_UI_ITEM, N_("Append..."), N_("Add the contents of another Card File."),
+		gnomecard_append, NULL, NULL,
+	GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN, 0, 0, NULL},
+
 	{GNOME_APP_UI_ITEM, N_("Save"), N_("Save current changes."), 
 		gnomecard_save, NULL, NULL,
 	GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 0, 0, NULL},
@@ -449,15 +436,16 @@ GnomeUIInfo gomenu[] = {
 };
 	
 GnomeUIInfo sortradios[] = {
-	{GNOME_APP_UI_RADIOITEMS, N_("By Card Name"), "",
+	
+	{GNOME_APP_UI_ITEM, N_("By Card Name"), "",
 	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_fnames, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
-	{GNOME_APP_UI_RADIOITEMS, N_("By Name"), "",
+	{GNOME_APP_UI_ITEM, N_("By Name"), "",
 	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_names, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
-	{GNOME_APP_UI_RADIOITEMS, N_("By E-mail"), "",
+	{GNOME_APP_UI_ITEM, N_("By E-mail"), "",
 	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_emails, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
@@ -466,9 +454,8 @@ GnomeUIInfo sortradios[] = {
 
 GnomeUIInfo sortmenu[] = {
 	
-	{GNOME_APP_UI_RADIOITEMS, N_("Sort"), N_("Set sort criteria"),
-	 sortradios, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-	
+	GNOMEUIINFO_RADIOLIST(sortradios),
+
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
@@ -478,7 +465,7 @@ GnomeUIInfo editmenu[] = {
 	GNOME_APP_PIXMAP_STOCK, "GnomeCardEditMenu", 0, 0, NULL},
 	
 	{GNOME_APP_UI_ITEM, N_("Delete"), N_("Delete element"),
-	 gnomecard_del_card, NULL, NULL,
+	 gnomecard_del, NULL, NULL,
 	GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 0, 0, NULL},
 	
 	{GNOME_APP_UI_SEPARATOR},
@@ -537,9 +524,6 @@ GnomeUIInfo viewmenu[] = {
 };
 
 GnomeUIInfo helpmenu[] = {
-	{GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
-	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-
 	{GNOME_APP_UI_ITEM, N_("About..."), N_("Version, credits, etc."), 
 		gnomecard_about, NULL, NULL,
 	GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
@@ -592,7 +576,7 @@ GnomeUIInfo toolbar[] = {
 	GNOME_APP_PIXMAP_STOCK, "GnomeCardEdit", 0, 0, NULL},
 	
 	{GNOME_APP_UI_ITEM, N_("Del"), N_("Delete card"),
-	 gnomecard_del_card, NULL, NULL,
+	 gnomecard_del, NULL, NULL,
 	GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_CLOSE, 0, 0, NULL},
 	
 	{GNOME_APP_UI_SEPARATOR},
@@ -726,7 +710,7 @@ void gnomecard_init(void)
 	tb_last = toolbar[11].widget;
 	tb_find = toolbar[13].widget;
 	
-	menu_save = filemenu[4].widget;
+	menu_save = filemenu[5].widget;
 	menu_edit = editmenu[0].widget;
 	menu_del  = editmenu[1].widget;
 	menu_find = editmenu[5].widget;

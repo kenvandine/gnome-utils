@@ -5,12 +5,17 @@
 #include "my.h"
 
 extern GtkCTreeNode *
-my_gtk_ctree_insert(GtkCTree *ctree, GtkCTreeNode *parent,
-		    GtkCTreeNode *sibling, char **text, pix *p)
+my_gtk_ctree_insert(GtkCTreeNode *parent, GtkCTreeNode *sibling, 
+		    char **text, pix *p, gpointer data)
 {
-	return gtk_ctree_insert_node(ctree, parent, sibling, text, TREE_SPACING,
-				     p->pixmap, p->mask, p->pixmap, p->mask, 
-				     FALSE, FALSE);
+	GtkCTreeNode *node;
+	
+	node =  gtk_ctree_insert_node(gnomecard_tree, parent, sibling, text, TREE_SPACING,
+				      p->pixmap, p->mask, p->pixmap, p->mask, 
+				      FALSE, FALSE);
+	gtk_ctree_node_set_row_data(gnomecard_tree, node, data);
+	
+	return node;
 }
 
 extern GtkWidget *my_gtk_entry_new(gint len, char *init)
