@@ -1,3 +1,13 @@
+1998-02-15  Raja R Harinath  <harinath@cs.umn.edu>
+
+	* Makefile.am (SUBDIRS): Add `macros'.
+	(macros/macros.dep): Maintainer rule to auto-regenerate
+	aclocal.m4.
+	* configure.in (GNOME_X_CHECKS): New check.
+	(AC_OUTPUT): Also generate `macros/Makefile'.
+	* acconfig.h (HAVE_LIBSM): New tag.
+	* autogen.sh: Use `macros/autogen.sh'.
+
 1998-02-12  Federico Mena Quintero  <federico@nuclecu.unam.mx>
 
 	* configure.in: Added intl/Makefile to the AC_OUTPUT list.

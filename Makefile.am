@@ -2,4 +2,11 @@ if GUILE
 guile_DIRS = cromagnon find-file notepad
 endif
 
-SUBDIRS = @PROGRAMS_GENIUS@ gncal @PROGRAMS_GTOP@ gtt $(guile_DIRS) po intl
+SUBDIRS = po intl macros \
+	 @PROGRAMS_GENIUS@ gncal @PROGRAMS_GTOP@ gtt $(guile_DIRS)
+
+## to automatically rebuild aclocal.m4 if any of the macros in
+## `macros/' change
+@MAINT@include macros/macros.dep
+@MAINT@macros/macros.dep: macros/Makefile.am
+@MAINT@	cd macros && $(MAKE) macros.dep
