@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
-"PO-Revision-Date: 2004-12-18 18:08+0200\n"
+"POT-Creation-Date: 2005-01-19 19:02+0200\n"
+"PO-Revision-Date: 2005-01-19 19:01+0200\n"
 "Last-Translator: Vladimir Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "Търсене в речник"
 
@@ -27,7 +27,7 @@ msgstr "Търсене в речник"
 msgid "Lookup words in an online dictionary"
 msgstr "Търсене на думи в интернет речник"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:665
 #: logview/logview.c:111
 msgid "_About"
 msgstr "_Относно"
@@ -76,33 +76,21 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "Клиент за речниковия сървър на MIT."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Речник"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "Проверка на правописа..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "Проверката на правописа завърши"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "Не са намерени съвпадения"
-
-#: gdictsrc/gdict-app.c:164
-#, fuzzy
+#: gdictsrc/gdict-app.c:87
 msgid "Connection error"
-msgstr "Грешка на връзката"
+msgstr "Грешка при връзката"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr "Неуспех при изпълнението на изисканата операция."
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -110,176 +98,179 @@ msgstr ""
 "Или сървъра, който използвате не е наличен \n"
 "или не сте свързани с интернет."
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "Търсене за дума..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "Търсенето завърши"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "Низът не е намерен"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:316
 msgid "Print Word Definition"
 msgstr "Показване на дефиницията на думата"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:431
 msgid "Find"
 msgstr "Търсене"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:441
 msgid "_Search for:"
 msgstr "_Търсене за:"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:511 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "Документът за помощта не може да бъде отворен"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:647 gdictsrc/gdict-app.c:778
 msgid "_Look Up Word"
 msgstr "_Търсене за дума"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:648
 msgid "Lookup word in dictionary"
 msgstr "Търсене за дума в речник"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:649
 msgid "_Print"
 msgstr "_Разпечатване"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:650
 msgid "Print the current definition"
 msgstr "Показване на текущата дефиниция"
 
+#: gdictsrc/gdict-app.c:651
+msgid "_Close"
+msgstr "_Затваряне"
+
+#: gdictsrc/gdict-app.c:652
+msgid "Close the application"
+msgstr "Спиране на програмата"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:655 logview/logview.c:103
 msgid "_Find..."
 msgstr "_Търсене..."
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:656
 msgid "Find a word in the text"
 msgstr "Намиране на дума в текст"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:657
 msgid "Find Ne_xt"
 msgstr "_Следващо търсене"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:658
 msgid "Find next occurrence of the word"
 msgstr "Откриване на следващата поява на дума"
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:659
 msgid "P_references"
 msgstr "Н_астройки"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:660
 msgid "Configure the application"
 msgstr "Настройване на програмата"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:663 logview/logview.c:109
 msgid "_Contents"
 msgstr "_Потребителско ръководство"
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:664
 msgid "View help for this application"
 msgstr "Преглед на помощта за тази програма"
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:666
 msgid "About this application"
 msgstr "Относно тази програма"
 
-#: gdictsrc/gdict-app.c:919
-msgid "_Close"
-msgstr "_Затваряне"
-
-#: gdictsrc/gdict-app.c:920
-msgid "Close the application"
-msgstr "Спиране на програмата"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:672
 msgid "On a Dictionary Server"
 msgstr "В сървърен речник"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:674
 msgid "On a Web Site"
 msgstr "На уеб сайт"
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:680
 msgid "Cu_t"
 msgstr "О_трязване"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:681
 msgid "Cut the selection"
 msgstr "Отрязва избраното"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:682
 msgid "_Copy"
 msgstr "_Копиране"
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:683 logview/logview.c:99
 msgid "Copy the selection"
 msgstr "Копиране на избраното"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:684
 msgid "_Paste"
 msgstr "_Поставяне"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:685
 msgid "Paste clipboard"
 msgstr "Поставяне съдържанието на буфера за обмен"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:686
 msgid "Select _All"
 msgstr "Избор на _всички"
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:687
 msgid "Select everything"
 msgstr "Избиране на всичко"
 
-#: gdictsrc/gdict-app.c:945
-#, fuzzy
+#: gdictsrc/gdict-app.c:692
 msgid "_Spellings"
-msgstr "Про_верка на правописа"
+msgstr "Проверка на правопи_са"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:693
 msgid "View alternate spellings"
 msgstr "Преглед на алтернативните изписвания"
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:775
 msgid "_Word:"
 msgstr "_Дума:"
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:803
 msgid "Word"
 msgstr "Дума"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:804 gdictsrc/gdict-app.c:806
 msgid "Word Entry"
 msgstr "Запис на дума"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:805
 msgid "Enter a Word or select one from the list below"
 msgstr "Въведете дума или изберете една от списъка по-долу"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:809
 msgid "Look Up for a Word"
 msgstr "Търсене за дума"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr "Дума в речника"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "Търсене за дума..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "Търсенето завърши"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "Не са намерени съвпадения"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "Низът не е намерен"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr "Преглед на дефиницията"
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:881 gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
 msgstr "Грешка при изпълнение на заявката"
 
@@ -340,9 +331,8 @@ msgid "Strat_egy:"
 msgstr "С_тратегия:"
 
 #: gdictsrc/gdict-pref-dialog.c:342
-#, fuzzy
 msgid "Web Site"
-msgstr "Уеб сайтове"
+msgstr "Интернет страница"
 
 #: gdictsrc/gdict-pref-dialog.c:342
 msgid "Search Address"
@@ -353,9 +343,8 @@ msgid "Dictionary Preferences"
 msgstr "Настройки на речника"
 
 #: gdictsrc/gdict-pref-dialog.c:474
-#, fuzzy
 msgid "Web Sites"
-msgstr "Уеб сайтове"
+msgstr "Интернет страници"
 
 #: gdictsrc/gdict-pref-dialog.c:656
 msgid "Search all databases"
@@ -372,6 +361,14 @@ msgstr "Име на базата данни"
 #: gdictsrc/gdict-pref-dialog.c:834
 msgid "Default Strategy"
 msgstr "Подразбираща се стратегия"
+
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "Проверка на правописа..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "Проверката на правописа завърши"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -859,8 +856,8 @@ msgstr[0] ""
 "Дискетата е форматирана, но беше открит и маркиран <b>%d лош сектор</b> (от "
 "общо %d)."
 msgstr[1] ""
-"Дискетата е форматирана, но <b>%d лоши сектора</b> (от %d) бяха намерени и "
-"маркирани."
+"Дискетата е форматирана, но бяха открити и маркирани <b>%d лоши сектора</b> "
+"(от общо %d)."
 
 #: gfloppy/src/progress.c:125
 msgid "Floppy formatted successfully."
@@ -952,11 +949,11 @@ msgstr "Какъв ефект да се добави към рамката на 
 
 #: gnome-screenshot/gnome-panel-screenshot.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Опции</b>"
 
 #: gnome-screenshot/gnome-panel-screenshot.glade.h:3
 msgid "<b>Preview</b>"
-msgstr ""
+msgstr "<b>Предварителен преглед</b>"
 
 #: gnome-screenshot/gnome-panel-screenshot.glade.h:4
 #: gnome-screenshot/gnome-screenshot.glade.h:2
@@ -991,7 +988,7 @@ msgstr "Включване на рамка"
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:5
 msgid "Include the window manager border along with the screenshot"
-msgstr ""
+msgstr "Включване на рамката на прозореца в снимката на екрана"
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:6
 msgid "Web directory"
@@ -1020,7 +1017,7 @@ msgstr ""
 
 #: gnome-screenshot/screenshot-save.c:188
 msgid "Unknown error saving screenshot to disk"
-msgstr ""
+msgstr "Записването на екранната снимка е неуспешно, поради неизвестна грешка"
 
 #: gnome-screenshot/screenshot-utils.c:611
 msgid "Untitled Window"
@@ -1047,17 +1044,15 @@ msgstr "_Замяна"
 #: gnome-screenshot/screenshot-xfer.c:230
 #, c-format
 msgid "Unknown GnomeVFSXferProgressStatus %d"
-msgstr ""
+msgstr "Неизвестен GnomeVFSXferProgressStatus %d"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
 msgstr "Намиране на файлове, папки и документи на вашия компютър"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
-msgid "Search for Files"
-msgstr "Търсене за файлове"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+msgid "Search for Files..."
+msgstr "Търсене за файлове..."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
 msgid "Disable Quick Search"
@@ -1078,93 +1073,83 @@ msgstr "Пътища, прескачани на втория пас при бъ�
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:7
-#, fuzzy
 msgid "Select the search option \"Contains the text\""
-msgstr "Избраното съдържа текста"
+msgstr "Избор на опцията за търсене \"Избраното съдържа текста\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:10
-#, fuzzy
 msgid "Select the search option \"Date modified less than\""
-msgstr "_Датата на промяна е по-малко от (дни)"
+msgstr "Избор на опцията за търсене \"Датата на промяна е по-малка от\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:13
-#, fuzzy
 msgid "Select the search option \"Date modified more than\""
-msgstr "Датата на промяна е повече от (дни)"
+msgstr "Избор на опцията за търсене \"Датата на промяна е повече от\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:16
-#, fuzzy
 msgid "Select the search option \"File is empty\""
-msgstr "Избраният файл е празен"
+msgstr "Избор на опцията за търсене \"Избраният файл е празен\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:19
-#, fuzzy
 msgid "Select the search option \"Follow symbolic links\""
-msgstr "Следване на символните връзки"
+msgstr "Избор на опцията за търсене \"Следване на символните връзки\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:22
-#, fuzzy
 msgid "Select the search option \"Include other filesystems\""
-msgstr "Добавяне на други файлови системи"
+msgstr "Избор на опцията за търсене \"Включване на други файлови системи\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:25
-#, fuzzy
 msgid "Select the search option \"Name does not contain\""
-msgstr "И_мето не съдържа"
+msgstr "Избор на опцията за търсене \"Името не съдържа\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:28
-#, fuzzy
 msgid "Select the search option \"Name matches regular expression\""
-msgstr "Съвпадение на регулярни изрази на името"
+msgstr ""
+"Избор на опцията за търсене \"Съвпадение на регулярни изрази на името\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:31
-#, fuzzy
 msgid "Select the search option \"Owned by group\""
-msgstr "Собственост на _група"
+msgstr "Избор на опцията за търсене \"Собственост на група\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:34
-#, fuzzy
 msgid "Select the search option \"Owned by user\""
-msgstr "Собственост на потребител"
+msgstr "Избор на опцията за търсене \"Собственост на потребител\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:37
-#, fuzzy
 msgid "Select the search option \"Owner is unrecognized\""
-msgstr "Собственикът не е разпознат"
+msgstr "Избор на опцията за търсене \"Собственикът не е разпознат\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:40
-#, fuzzy
 msgid "Select the search option \"Show hidden files and folders\""
-msgstr "При избирането да се показват скритите файлове и папки"
+msgstr ""
+"Избор на опцията за търсене \"При избирането да се показват скритите файлове "
+"и папки\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:43
-#, fuzzy
 msgid "Select the search option \"Size at least\""
-msgstr "Размер поне"
+msgstr "Избор на опцията за търсене \"Размер поне\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
@@ -1550,6 +1535,11 @@ msgid_plural "%d files found"
 msgstr[0] "%d файл е намерен"
 msgstr[1] "%d файла са намерени"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+msgid "Search for Files"
+msgstr "Търсене за файлове"
+
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr "Извиканото значение за записа не е опция за записа!"
@@ -1559,12 +1549,10 @@ msgid "Searching..."
 msgstr "Търсене..."
 
 #: gsearchtool/gsearchtool.c:1071
-#, fuzzy
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Задаване на текст за \"Името съдържа\""
 
 #: gsearchtool/gsearchtool.c:1072
-#, fuzzy
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Задаване на текст за \"Гледане в папка\""
 
@@ -1581,14 +1569,14 @@ msgid "Automatically start a search"
 msgstr "Автоматично стартиране на търсенето"
 
 #: gsearchtool/gsearchtool.c:1081
-#, fuzzy, c-format
+#, c-format
 msgid "Select the \"%s\" search option"
-msgstr "Избиране на ограничението \"%s\""
+msgstr "Избиране на \"%s\" като опция за търсене"
 
 #: gsearchtool/gsearchtool.c:1084
-#, fuzzy, c-format
+#, c-format
 msgid "Select and set the \"%s\" search option"
-msgstr "Съвпадение на регулярни изрази на името"
+msgstr "Избиране и задаване опцията за търсене \"%s\""
 
 #: gsearchtool/gsearchtool.c:1191
 msgid "Invalid option passed to sortby command line argument."
@@ -1629,7 +1617,7 @@ msgstr "Спиране на _бързо търсене"
 #: gsearchtool/gsearchtool.c:1589
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
-msgstr ""
+msgstr "Неуспех при задаването на група процес на детински процес %d: %s.\n"
 
 #: gsearchtool/gsearchtool.c:1616
 msgid "Error parsing the search command."
@@ -1927,16 +1915,16 @@ msgid "Properties"
 msgstr "Н_астройки"
 
 #: logview/info.c:95
-#, fuzzy, c-format
+#, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld байт"
-msgstr[1] "%ld байт"
+msgstr[1] "%ld байта"
 
 #: logview/info.c:97
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Size</b>: %s"
-msgstr "<b>Размер</b>: %ld байта"
+msgstr "<b>Размер</b>: %s"
 
 #: logview/info.c:102
 #, c-format
@@ -2013,9 +2001,8 @@ msgid "%x"
 msgstr "%x"
 
 #: logview/log_repaint.c:297
-#, fuzzy
 msgid "Last Modified:"
-msgstr "Последна промяна: "
+msgstr "Последна промяна:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
@@ -2070,9 +2057,8 @@ msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: недостатъчно памет"
 
 #: logview/logview-findbar.c:265
-#, fuzzy
 msgid "Fin_d:"
-msgstr "_Търсене: "
+msgstr "_Търсене:"
 
 #: logview/logview-findbar.c:283
 msgid "Find Next"
@@ -2151,9 +2137,10 @@ msgid "Open the help contents for the log viewer"
 msgstr "Отваряне на съдържанието на помощта за разглеждането на дневници"
 
 #: logview/logview.c:111
-#, fuzzy
 msgid "Show the about dialog for the log viewer"
-msgstr "Показване на диалога относно за редактора на насртройки gconf"
+msgstr ""
+"Показване на диалоговия прозорец относно програмата за преглед на систмените "
+"дневници"
 
 #: logview/logview.c:117
 msgid "_Monitor"
@@ -2229,1076 +2216,3 @@ msgstr "Подробно за елемент"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B %e %X"
-
-#~ msgid "Website"
-#~ msgstr "Уебсайт"
-
-#~ msgid "Select Size At Most"
-#~ msgstr "Ра_змер най-много"
-
-#~ msgid "Image/label border"
-#~ msgstr "Граница на изображение/етикет"
-
-#~ msgid "Width of border around the label and image in the alert dialog"
-#~ msgstr ""
-#~ "Ширина на границата около етикета и изображението в прозореца за сигнал"
-
-#~ msgid "Alert Type"
-#~ msgstr "Вид сигнал"
-
-#~ msgid "The type of alert"
-#~ msgstr "Видът на сигнала"
-
-#~ msgid "Alert Buttons"
-#~ msgstr "Бутони за сигнал"
-
-#~ msgid "The buttons shown in the alert dialog"
-#~ msgstr "Бутоните показани в прозореца за сигнала"
-
-#~ msgid "_Show Dictionary"
-#~ msgstr "_Показване на речник"
-
-#~ msgid "Could not move \"%s\" to the trash."
-#~ msgstr "Документът \"%s\" не може да бъде преместен в Кошчето."
-
-#~ msgid "Check word spelling"
-#~ msgstr "Проверка за правописа на дума"
-
-#, fuzzy
-#~ msgid "Quit the application"
-#~ msgstr "_Скриване на програмата"
-
-#~ msgid "Smart _lookup"
-#~ msgstr "Умно _търсене"
-
-#~ msgid "D_efault strategy:"
-#~ msgstr "Под_разбираща се стратегия:"
-
-#~ msgid "Enter a word to know the spelling"
-#~ msgstr "Въведете думата, за която искате да научите правописа"
-
-#~ msgid "Click to do the spell check"
-#~ msgstr "Натиснете тук за проверка на правописа"
-
-#~ msgid "Check Spelling"
-#~ msgstr "Проверка на правописа"
-
-#~ msgid "Search Strategy"
-#~ msgstr "Стратегия за търсене"
-
-#~ msgid "_Dictionary"
-#~ msgstr "_Речник"
-
-#~ msgid "_Lookup"
-#~ msgstr "_Търсене"
-
-#~ msgid ""
-#~ "There was an error displaying help: \n"
-#~ "%s"
-#~ msgstr ""
-#~ "Имаше грешка при показване на помощта: \n"
-#~ "%s"
-
-#, fuzzy
-#~ msgid "Copy selected lines"
-#~ msgstr "Копира избраното"
-
-#~ msgid "Size:"
-#~ msgstr "Размер:"
-
-#~ msgid "Log Information"
-#~ msgstr "Информация"
-
-#~ msgid "<No log loaded>"
-#~ msgstr "<Дневникът не е зареден>"
-
-#~ msgid "%s is not a regular file."
-#~ msgstr "%s не е обикновен файл."
-
-#~ msgid "_Calendar"
-#~ msgstr "_Календар"
-
-#~ msgid "No log files to open"
-#~ msgstr "Няма дневник за отваряне"
-
-#~ msgid "Date:"
-#~ msgstr "Дата:"
-
-#~ msgid "Process:"
-#~ msgstr "Процес:"
-
-#~ msgid "Message:"
-#~ msgstr "Съобщение:"
-
-#~ msgid "Description:"
-#~ msgstr "Описание:"
-
-#~ msgid "Log Line Details"
-#~ msgstr "Подробност за ред от дневника"
-
-#~ msgid "Accessories"
-#~ msgstr "Помощни програми"
-
-#~ msgid "Look in Folder Entry"
-#~ msgstr "Търсене в папка:"
-
-#~ msgid "Cesar Miquel (miquel@df.uba.ar)"
-#~ msgstr "Cesar Miquel (miquel@df.uba.ar)"
-
-#~ msgid "S_witch Log"
-#~ msgstr "П_ревключване на дневника"
-
-#~ msgid "Switch between already opened logs"
-#~ msgstr "Превключване между вече е отворените файлове"
-
-#~ msgid "Close all Log files"
-#~ msgstr "Затваряне на всички дневници"
-
-#~ msgid "Too many open logs. Close one and try again"
-#~ msgstr "Твърде много отворени файлове. Затворете един и опитайте отново"
-
-#~ msgid "Error: [%s]\n"
-#~ msgstr "Грешка: [%s]\n"
-
-#~ msgid "Monitor Options"
-#~ msgstr "Опции на наблюдение"
-
-#~ msgid "Ac_tions..."
-#~ msgstr "Действия..."
-
-#~ msgid "_Select logs to monitor:"
-#~ msgstr "Избор на журнал за наблюдение:"
-
-#~ msgid "Currently _monitored logs:"
-#~ msgstr "Текущи дневници, които се следят:"
-
-#~ msgid "Add logs to monitor"
-#~ msgstr "Избор на дневник за наблюдение"
-
-#~ msgid "Remove logs from monitor"
-#~ msgstr "Премахване на дневникът за наблюдение"
-
-#~ msgid "_Execute actions"
-#~ msgstr "Изпълняване на д_ействия"
-
-#~ msgid "Too many logs to monitor. Remove one and try again"
-#~ msgstr ""
-#~ "Твърде много дневници за наблюдение. Премахнете един и опитайте отново"
-
-#~ msgid "tmp_list is NULL\n"
-#~ msgstr "tmp_list е NULL\n"
-
-#~ msgid "Monitoring Logs..."
-#~ msgstr "Наблюдаване на дневници..."
-
-#~ msgid "TOUCHED!!\n"
-#~ msgstr "ПРОМЕНЕНО!!\n"
-
-#~ msgid "Search your disk for files"
-#~ msgstr "Търсене за файлове във вашият диск."
-
-#~ msgid ""
-#~ "While searching the following errors were reported.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "При търсенето са докладвани следните грешки.\n"
-#~ "\n"
-
-#~ msgid "Error while searching for files."
-#~ msgstr "Грешка при търсенето на файлове."
-
-#~ msgid "Search Rule Value Entry"
-#~ msgstr "Низ за Стойностите на Правилата за Търсне"
-
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "Файла с анимацията липсва или не е валиден: %s"
-
-#~ msgid "One file found"
-#~ msgstr "Намерен е един файл"
-
-#~ msgid "One File Found"
-#~ msgstr "Намерен е Един Файл"
-
-#~ msgid "Open %d documents?"
-#~ msgstr "Да отворя %d документи?"
-
-#~ msgid ""
-#~ "This will open %d separate documents. Are you sure you want to do this?"
-#~ msgstr ""
-#~ "Това ще отвори %d отделни документа. Сигурен ли сте че искате да "
-#~ "направите това?"
-
-#~ msgid "Open %d folders?"
-#~ msgstr "Отваря %d папка?"
-
-#~ msgid ""
-#~ "You did not select a document name or the name selected was a folder.  "
-#~ "The document is not saved."
-#~ msgstr ""
-#~ "Не сте избрали име на документа или избраното име е име на папка. "
-#~ "Документътне беше запазен."
-
-#~ msgid "The contents of the file \"%s\" will be lost."
-#~ msgstr "Съдържанието на файла %s\" ще бъде загубено."
-
-#~ msgid "Overwrite an existing file?"
-#~ msgstr "Да презапиша ли съществуващия файл?"
-
-#, fuzzy
-#~ msgid "GNOME Dictionary"
-#~ msgstr "Речник"
-
-#~ msgid "GNOME System Log Viewer"
-#~ msgstr "Програма на ГНОМЕ за Преглед на Системни Журнали"
-
-#~ msgid "Gdialog progressbar"
-#~ msgstr "Лента за прогрес на Gdialog "
-
-#~ msgid "Indicates the percentage specified at the standard input"
-#~ msgstr "Показва процент за зададен стандартен вход"
-
-#~ msgid "GDialog Entry"
-#~ msgstr "Елемент GDialog "
-
-#~ msgid "Enter the text"
-#~ msgstr "Въвеждане на текст"
-
-#~ msgid "_Word: "
-#~ msgstr "_Дума:"
-
-#~ msgid "Headword:"
-#~ msgstr "Заглавна дума:"
-
-#~ msgid "Sub-number:"
-#~ msgstr "Допълнителен номер:"
-
-#~ msgid "Pronunciation:"
-#~ msgstr "Произношение:"
-
-#~ msgid "Etymology:"
-#~ msgstr "Етимология:"
-
-#~ msgid "Part of speech:"
-#~ msgstr "Част на речта:"
-
-#~ msgid "Example:"
-#~ msgstr "Пример:"
-
-#~ msgid "Main body:"
-#~ msgstr "Основно тяло:"
-
-#~ msgid "Cross-reference:"
-#~ msgstr "Препратки:"
-
-#~ msgid "Search _Results"
-#~ msgstr "Резултати от Търсене"
-
-#, fuzzy
-#~ msgid "Floppy formatter"
-#~ msgstr "Програма за Форматиране на Флопи"
-
-#, fuzzy
-#~ msgid "Search for Files Error"
-#~ msgstr "Търсене за Файлове"
-
-#~ msgid "File Name Entry"
-#~ msgstr "Име на Файл"
-
-#~ msgid "Starting folder entry"
-#~ msgstr "Започва от папка"
-
-#, fuzzy
-#~ msgid ""
-#~ "Cannot save search results.\n"
-#~ "\"%s\" is a folder."
-#~ msgstr "Не мога да запазя файла с резултата."
-
-#, fuzzy
-#~ msgid "File \"%s\" already exists. Overwrite?"
-#~ msgstr "Файла %s вече съществува. Да го презапиша?"
-
-#, fuzzy
-#~ msgid "Cannot save search results to the file \"%s\"."
-#~ msgstr "Не мога да запазя файла с резултата."
-
-#~ msgid "%Y%m%d%H%M%S"
-#~ msgstr "%Y%m%d%H%M%S"
-
-#, fuzzy
-#~ msgid ""
-#~ "This program is part of the GNOME project. Logview comes with ABSOLUTELY "
-#~ "NO WARRANTY. This is free software, and you are welcome to redistribute "
-#~ "it under the conditions of the GNU General Public Licence. The log icon "
-#~ "is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-#~ msgstr ""
-#~ "Тази програма е част от проекта ГНОМЕ за Linux. Тя се доставя БЕЗ "
-#~ "ГАРАНЦИИ. Това е свободен софтуер и вие може да го разпостранявате при "
-#~ "условията на 'GNU General Public Licence'. Иконата е създадена от Tuomas "
-#~ "Kuosmanen (a.k.a tigert)."
-
-#~ msgid "Copyright (C) 1998"
-#~ msgstr "Аворски права (C) 1998"
-
-#~ msgid "Log stats"
-#~ msgstr "Статистика на журнал"
-
-#~ msgid "Zoom view"
-#~ msgstr "Мащаб на преглед"
-
-#~ msgid "_Show/Hide Definition Window..."
-#~ msgstr "_Показва/Скрива прозорец за определение..."
-
-#~ msgid "GNOME Calculator"
-#~ msgstr "Калкулатор на ГНОМЕ"
-
-#, fuzzy
-#~ msgid "(C) 1998 Free Software Foundation, Inc."
-#~ msgstr "(C) 1998,2002 Фондация за Свободен Софтуер"
-
-#, fuzzy
-#~ msgid "Simple double precision calculator similar to xcalc"
-#~ msgstr "Прост калкулатор с двойна точност подобен на xcalc"
-
-#~ msgid "_Calculator"
-#~ msgstr "_Калкулатор"
-
-#~ msgid "Calculator"
-#~ msgstr "Калкулатор"
-
-#~ msgid "inf"
-#~ msgstr "инф"
-
-#~ msgid "DEG"
-#~ msgstr "ГР"
-
-#~ msgid "RAD"
-#~ msgstr "РАД"
-
-#~ msgid "GRAD"
-#~ msgstr "ГРАД"
-
-#~ msgid "1/x"
-#~ msgstr "1/x"
-
-#~ msgid "Inverse"
-#~ msgstr "Обърнат"
-
-#~ msgid "Square"
-#~ msgstr "На 2-ра степен"
-
-#~ msgid "SQRT"
-#~ msgstr "Корен Кв."
-
-#~ msgid "Square root"
-#~ msgstr "Извличане на корен квадратен"
-
-#~ msgid "CE/C"
-#~ msgstr "CE/C"
-
-#~ msgid "Clear"
-#~ msgstr "Изчиства"
-
-#~ msgid "AC"
-#~ msgstr "AC"
-
-#~ msgid "Reset"
-#~ msgstr "Нулира"
-
-#~ msgid "INV"
-#~ msgstr "INV"
-
-#~ msgid "Inverse trigonometry/log function"
-#~ msgstr "Инвертира тригонометрични/логаритмични функции"
-
-#~ msgid "sin"
-#~ msgstr "sin"
-
-#~ msgid "Sine"
-#~ msgstr "Изчислява синус"
-
-#~ msgid "cos"
-#~ msgstr "cos"
-
-#~ msgid "tan"
-#~ msgstr "tan"
-
-#~ msgid "Tangent"
-#~ msgstr "Изчислява тангенс"
-
-#~ msgid " DEG  "
-#~ msgstr " ГР "
-
-#~ msgid "Switch degrees / radians / grad"
-#~ msgstr "Превключва грдуси / радиани / град"
-
-#~ msgid "e"
-#~ msgstr "e"
-
-#~ msgid "Base of Natural Logarithm"
-#~ msgstr "Основа на Натурален Логаритъм"
-
-#~ msgid "EE"
-#~ msgstr "EE"
-
-#~ msgid "Add digit"
-#~ msgstr "Добавя цифра"
-
-#~ msgid "log"
-#~ msgstr "log"
-
-#~ msgid "Base 10 Logarithm"
-#~ msgstr "Получаване на Десетичен Логаритъм"
-
-#~ msgid "ln"
-#~ msgstr "ln"
-
-#~ msgid "Natural Logarithm"
-#~ msgstr "Получаване на Натурален Логаритм"
-
-#~ msgid "Power"
-#~ msgstr "Извежда в степен"
-
-#~ msgid "PI"
-#~ msgstr "PI"
-
-#~ msgid "x!"
-#~ msgstr "x!"
-
-#~ msgid "Factorial"
-#~ msgstr "Фактуриел"
-
-#~ msgid "("
-#~ msgstr "("
-
-#~ msgid "Opening Parenthesis"
-#~ msgstr "Отварящи скоби"
-
-#~ msgid ")"
-#~ msgstr ")"
-
-#~ msgid "Closing Parenthesis"
-#~ msgstr "Затварящи скоби"
-
-#~ msgid "/"
-#~ msgstr "/"
-
-#~ msgid "Divide by"
-#~ msgstr "Делеа на"
-
-#~ msgid "STO"
-#~ msgstr "STO"
-
-#~ msgid ""
-#~ "Store the value in the\n"
-#~ "display field in memory"
-#~ msgstr ""
-#~ "Запаза стойноста на\n"
-#~ "дисплея в паметта"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "Multiply by"
-#~ msgstr "Умножение на"
-
-#~ msgid "RCL"
-#~ msgstr "RCL"
-
-#~ msgid ""
-#~ "Display the value in memory\n"
-#~ "in the display field"
-#~ msgstr ""
-#~ "Показва значението в\n"
-#~ "паметта на дисплея"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "Subtract"
-#~ msgstr "Изваждане"
-
-#~ msgid "SUM"
-#~ msgstr "SUM"
-
-#~ msgid ""
-#~ "Add the value in the display\n"
-#~ "field to the value in memory"
-#~ msgstr ""
-#~ "Добавя стойността на дисплея\n"
-#~ "с тази в паметта"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "+"
-#~ msgstr "+"
-
-#~ msgid "Add"
-#~ msgstr "Добавя"
-
-#~ msgid "EXC"
-#~ msgstr "EXC"
-
-#~ msgid ""
-#~ "Exchange the values in the\n"
-#~ "display field and memory"
-#~ msgstr ""
-#~ "Размяна стойностите на\n"
-#~ "дисплея и паметта"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "."
-#~ msgstr "."
-
-#~ msgid "Decimal Point"
-#~ msgstr "Десетична Точка"
-
-#~ msgid "+/-"
-#~ msgstr "+/-"
-
-#~ msgid "Change sign"
-#~ msgstr "Промяна на знак"
-
-#~ msgid "="
-#~ msgstr "="
-
-#~ msgid "Calculate"
-#~ msgstr "Изчисли"
-
-#~ msgid "Perform simple calculations"
-#~ msgstr "Позволява прости изчисления"
-
-#~ msgid "Character Map"
-#~ msgstr "Таблица на символи"
-
-#~ msgid "Insert special characters into documents"
-#~ msgstr "Вмъква специални символи в документи"
-
-#~ msgid "Select Character"
-#~ msgstr "Избор на Символ"
-
-#~ msgid "_Insert"
-#~ msgstr "_Вмъква"
-
-#, fuzzy
-#~ msgid "Character c_ode:"
-#~ msgstr "Код на Символ:"
-
-#, fuzzy
-#~ msgid "Ch_aracter:"
-#~ msgstr "Символ:"
-
-#~ msgid "Character Code"
-#~ msgstr "Код на Символ"
-
-#~ msgid "Select character code"
-#~ msgstr "Избор код на символ"
-
-#~ msgid "Character"
-#~ msgstr "Символ"
-
-#~ msgid "Character to insert"
-#~ msgstr "Символ за вмъкване"
-
-#~ msgid "GNOME Character Map"
-#~ msgstr "Таблица на символите в ГНОМЕ"
-
-#~ msgid ""
-#~ "Select, copy and paste characters from your font into other applications"
-#~ msgstr "Избира, копира и поставя символи от шрифта в други приложения"
-
-#, fuzzy
-#~ msgid "Character code: (Unicode) U+%04lX"
-#~ msgstr "Код на Символ:"
-
-#, fuzzy
-#~ msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
-#~ msgstr "Код на Символ:"
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "Текст копиран в буфера за обмен...."
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "Отрязан текст в буфера за обмен"
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "Текст поставен от буфера за обмен..."
-
-#~ msgid "Action Toolbar"
-#~ msgstr "Панел за Действия"
-
-#, fuzzy
-#~ msgid "_Font:"
-#~ msgstr "_Порт:"
-
-#~ msgid "_Text to copy:"
-#~ msgstr "_Текст за копиране:"
-
-#~ msgid "Entry"
-#~ msgstr "Елемент"
-
-#~ msgid "Copy the text"
-#~ msgstr "Копира текст"
-
-#~ msgid "_Browse..."
-#~ msgstr "_Преглед..."
-
-#~ msgid "Insert character(s) by choosing character codes."
-#~ msgstr "Вмъква символ(и) чрез избор кодове на символи."
-
-#, fuzzy
-#~ msgid "Ch_aracters"
-#~ msgstr "_Символи"
-
-#~ msgid "GNOME Search Tool"
-#~ msgstr "Инструмент за Търсене в ГНОМЕ"
-
-#~ msgid ""
-#~ "Executing arbitrary programs that you downloaded from the network might "
-#~ "be dangerous.\n"
-#~ "\n"
-#~ "Are you sure you want to run `%s'?"
-#~ msgstr ""
-#~ "Изпълнението на случайни програми свалени по мрежата може да бъде "
-#~ "опасно.\n"
-#~ "\n"
-#~ "Сигурни ли сте, че искате изпълнение на `%s'?"
-
-#~ msgid "Could not access file permissions"
-#~ msgstr "Няма достъп до правата на файл"
-
-#~ msgid "Could not execute the file `%s' due to a permission problem"
-#~ msgstr "Не мога да изпълня файла `%s' заради проблем с правата"
-
-#~ msgid "Failure at executing `%s'"
-#~ msgstr "Неуспех при изпълнение на `%s'"
-
-#~ msgid "It was not possible to open the file `%s'"
-#~ msgstr "Не е възможно да отворя файла `%s'"
-
-#~ msgid "The file `%s' is empty"
-#~ msgstr "Файла `%s' е празен"
-
-#~ msgid "This is a library and can not be executed"
-#~ msgstr "Това е библиотека и не може да бъде изпълнена"
-
-#~ msgid "The file is a core file and can not be executed"
-#~ msgstr "Файла е 'core' и не е изпълним"
-
-#~ msgid "This is an unknown kind of executable"
-#~ msgstr "Това е неизвестен тип изпълним файл"
-
-#~ msgid ""
-#~ "The executable is for a different platform and can not be executed on "
-#~ "this system"
-#~ msgstr ""
-#~ "Изпълнимият файл е за друга платформа и не може да бъде изпълнен на тази "
-#~ "система"
-
-#, fuzzy
-#~ msgid "File is not named"
-#~ msgstr "Името на файла не е"
-
-#, fuzzy
-#~ msgid "File is _named:"
-#~ msgstr "Намерени _имена на файлове:"
-
-#, fuzzy
-#~ msgid "Select the 'Date modified less than (days)' constraint"
-#~ msgstr "Следва символичните указатели"
-
-#, fuzzy
-#~ msgid "Select the 'Date modified more than (days)' constraint"
-#~ msgstr "Следва символичните указатели"
-
-#, fuzzy
-#~ msgid "Select the 'File matches regular expression' constraint"
-#~ msgstr "Съвпадение на регулярни изрази"
-
-#, fuzzy
-#~ msgid "Select the 'Include other filesystems' constraint"
-#~ msgstr "Съвпадение на регулярни изрази"
-
-#, fuzzy
-#~ msgid "No files found %s"
-#~ msgstr "Не са намерени файлове"
-
-#~ msgid ""
-#~ "Client for MIT dictionary server.\n"
-#~ "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
-#~ msgstr ""
-#~ "Клиент за сървър на MIT .\n"
-#~ "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
-
-#~ msgid "Archive Generator"
-#~ msgstr "Генератор на Архив"
-
-#~ msgid "Create compressed archives containing many files"
-#~ msgstr "Създава компресиран архив съдържащ много файлове"
-
-#~ msgid ""
-#~ "Number of files: %d\n"
-#~ "Number of folders: %d"
-#~ msgstr ""
-#~ "Брой на файлове: %d\n"
-#~ "Брой на папки: %d"
-
-#~ msgid ""
-#~ "No files or folders, drop files or folders\n"
-#~ "above to add them to the archive"
-#~ msgstr ""
-#~ "Няма файлове или папки, пуснете файловете или папките\n"
-#~ "отгоре за да ги добавите в архива"
-
-#~ msgid "%s removed"
-#~ msgstr "%s премахнат"
-
-#~ msgid "Failed to create %s"
-#~ msgstr "Грешка при създаване на %s"
-
-#~ msgid "Archive.tar.gz"
-#~ msgstr "Archive.tar.gz"
-
-#~ msgid "GNOME Archive Generator"
-#~ msgstr "Генератор на Архиви в ГНОМЕ"
-
-#~ msgid "Drag files in to make archives"
-#~ msgstr "Извлачва файла за да го архивира"
-
-#~ msgid "All files selected"
-#~ msgstr "Всички избрани файлове"
-
-#~ msgid "All files removed"
-#~ msgstr "Всички премахнати файлове"
-
-#~ msgid "No filename selected"
-#~ msgstr "Не е избрано име на файл"
-
-#~ msgid "File exists, overwrite?"
-#~ msgstr "Файла съществува, да го презапиша?"
-
-#~ msgid "%s created"
-#~ msgstr "%s създаден"
-
-#~ msgid "No items to archive"
-#~ msgstr "Няма обект за архивиране"
-
-#~ msgid "Save Results"
-#~ msgstr "Запазва Резултата"
-
-#~ msgid "%s added"
-#~ msgstr "%s добавен"
-
-#~ msgid "File does not exists"
-#~ msgstr "Файла не съществува"
-
-#~ msgid "_Add file or folder..."
-#~ msgstr "_Добавя файл или папка..."
-
-#~ msgid "Add a file or folder to archive"
-#~ msgstr "Добавя файл или папка за архивиране"
-
-#~ msgid "_Create archive..."
-#~ msgstr "_Създава архив..."
-
-#~ msgid "Create a new archive from the items"
-#~ msgstr "Създава нов архив от обектите"
-
-#~ msgid "Remove the selected item"
-#~ msgstr "Премахва избраните обекти"
-
-#~ msgid "R_emove All"
-#~ msgstr "П_ремахва Всички"
-
-#~ msgid "Drop files here to add them to the archive."
-#~ msgstr "Пуска файловете тук за да ги добави към архива."
-
-#~ msgid "_Create Archive"
-#~ msgstr "_Създава Архив"
-
-#~ msgid ""
-#~ "Drag this button to the destination where you want the archive to be "
-#~ "created or press it to pop up a file selection dialog."
-#~ msgstr ""
-#~ "Извлачете този бутон на мястото където искате да създадете архив или го "
-#~ "натиснете за да се появи диалог за избор на файл."
-
-#~ msgid "Cannot find proper icons anywhere!"
-#~ msgstr "Не мога да намеря подходяща икона!"
-
-#~ msgid ""
-#~ "Cannot find the archive (tar) program!\n"
-#~ "This is the program used for creating archives."
-#~ msgstr ""
-#~ "Не мога да намеря архивната (tar) програма!\n"
-#~ "Това е програмата използвана за създаване на архиви."
-
-#~ msgid "EUnable to create filesystem."
-#~ msgstr "Не мога да създам файлова система."
-
-#, fuzzy
-#~ msgid "Filesystem settings"
-#~ msgstr "Т_ип на файлова система:"
-
-#, fuzzy
-#~ msgid "Formatting mode"
-#~ msgstr "Форматиране на диск..."
-
-#, fuzzy
-#~ msgid ""
-#~ "Sorry, could not start the search.\n"
-#~ "%s\n"
-#~ msgstr "Кликнете за да Започне търсене"
-
-#~ msgid "x^2"
-#~ msgstr "x^2"
-
-#~ msgid "x^y"
-#~ msgstr "x^y"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-
-#~ msgid "del"
-#~ msgstr "del"
-
-#~ msgid " %s: Character code %d"
-#~ msgstr " %s: Код на символ %d"
-
-#~ msgid "Gnome Character Map"
-#~ msgstr "Таблица на символите в ГНОМЕ"
-
-#~ msgid "De_fault"
-#~ msgstr "_По подразбиране"
-
-#~ msgid "Default database. ! indicates all databases"
-#~ msgstr "Подразбираща се база данни. ! указва всички бази данни"
-
-#~ msgid "Default strategy"
-#~ msgstr "Подразбираща се стратегия"
-
-#~ msgid "EBad block at block %lu"
-#~ msgstr "Лош блок в %lu"
-
-#~ msgid "Format a Floppy"
-#~ msgstr "Формат на Флопи"
-
-#~ msgid "_Quick format"
-#~ msgstr "_Бърз формат"
-
-#~ msgid "Format another floppy?"
-#~ msgstr "Да форматирам друго флопи?"
-
-#~ msgid "File name is"
-#~ msgstr "Името на файла е"
-
-#~ msgid "Process folder contents depth first"
-#~ msgstr "Обработва съдържанието на директорията първо в дълбочина"
-
-#~ msgid "Invalid user or group"
-#~ msgstr "Грешна група или потребител"
-
-#~ msgid "Last time modified"
-#~ msgstr "Последно време на обновление"
-
-#~ msgid "folder"
-#~ msgstr "папка"
-
-#~ msgid "program"
-#~ msgstr "програма"
-
-#~ msgid "symbolic link"
-#~ msgstr "символен указател"
-
-#~ msgid ""
-#~ "Cannot perform the search.\n"
-#~ "The Bourne shell was not found\n"
-#~ "It is typically installed as /bin/sh or /usr/bin/sh."
-#~ msgstr ""
-#~ "Не мога да изпълня търсенето.\n"
-#~ "Bourne shell не е намерен\n"
-#~ "Той обикновенно е в /bin/sh или /usr/bin/sh."
-
-#~ msgid "Cannot perform the search. Please specify a search criteria."
-#~ msgstr "Не мога да изпълня търсенето. Моля задайте критерии за търсене."
-
-#~ msgid ""
-#~ "A search is already running.  Please wait for the search to complete or "
-#~ "cancel it."
-#~ msgstr ""
-#~ "Търсенето вече е започнало. Моля изчакайте да завърши или го прекъснете."
-
-#~ msgid "Start folder does not exist"
-#~ msgstr "Началната папка не съществува"
-
-#~ msgid ""
-#~ "Cannot show the search command line. Please specify a search criteria."
-#~ msgstr ""
-#~ "Не мога да покажа камандния ред за търсене. Моля задайте критерии за "
-#~ "търсене."
-
-#~ msgid "Search Command Line"
-#~ msgstr "Команден Ред за Търсене"
-
-#~ msgid ""
-#~ "This is the command line that can be used to execute this search\n"
-#~ "from the console.\n"
-#~ "\n"
-#~ "C_ommand:"
-#~ msgstr ""
-#~ "Това е командния ред за търсене който може да бъде използван за търсене\n"
-#~ "от конзолата.\n"
-#~ "\n"
-#~ "_Команда:"
-
-#~ msgid "Command"
-#~ msgstr "Команда"
-
-#~ msgid "Command Line Entry"
-#~ msgstr "Команден ред"
-
-#~ msgid "Use this command line to execute the search from console"
-#~ msgstr "Използвайте този команден ред за изпълнение на търсене от конзола"
-
-#~ msgid "No viewer available for this mime type."
-#~ msgstr "Няма програма за преглед на този тип mime."
-
-#~ msgid "Enabled"
-#~ msgstr "Включено"
-
-#~ msgid "Toggle On/Off to enable/disable the rule"
-#~ msgstr "Превключва Разрешава/Забранява използването на правила"
-
-#~ msgid "Rules:"
-#~ msgstr "Правила:"
-
-#~ msgid "A_dd Rule:"
-#~ msgstr "_Добавя Правило:"
-
-#~ msgid "Click to Add a Rule"
-#~ msgstr "Кликнете за Добавяне на Правило"
-
-#~ msgid "Click to Start the Search"
-#~ msgstr "Кликнете за Начало на Търсене"
-
-#~ msgid "Click to Stop the Search"
-#~ msgstr "Кликнете за Спиране на Търсене"
-
-#~ msgid "Simple"
-#~ msgstr "Просто"
-
-#~ msgid "Advanced"
-#~ msgstr "Допълнитено"
-
-#~ msgid "Frontend to the unix find/locate commands"
-#~ msgstr "Shell за командите на unix find/locate"
-
-#~ msgid "S_how Command..."
-#~ msgstr "_Показва Команда..."
-
-#~ msgid "Show the command used to perform the search"
-#~ msgstr "Показва командата използвана за изпълнение на търсенето"
-
-#~ msgid "Save the search results"
-#~ msgstr "Запазва резултата от търсенето"
-
-#~ msgid "Sear_ch"
-#~ msgstr "Т_ърси"
-
-#~ msgid "Search Tool"
-#~ msgstr "Инструмент за Търсене"
-
-#~ msgid "Add..."
-#~ msgstr "Добавя..."
-
-#~ msgid "Remove"
-#~ msgstr "Премахва"
-
-#~ msgid "description:"
-#~ msgstr "описание:"
-
-#~ msgid "fixed 12"
-#~ msgstr "фиксиран 12"
-
-#~ msgid "fixed Bold 12"
-#~ msgstr "фиксиран Удебелен 12"
-
-#~ msgid "fixed 10"
-#~ msgstr "фиксиран 10"
-
-#~ msgid "fixed Bold 8"
-#~ msgstr "фиксиран Удебелен 8"
-
-#~ msgid "Helvetica 14"
-#~ msgstr "Helvetica 14"
-
-#~ msgid "Helvetica Bold 14"
-#~ msgstr "Helvetica Bold 14"
-
-#~ msgid "Helvetica 12"
-#~ msgstr "Helvetica 12"
-
-#~ msgid "Helvetica Bold 12"
-#~ msgstr "Helvetica Bold 12"
-
-#~ msgid "Helvetica 10"
-#~ msgstr "Helvetica 10"
-
-#~ msgid "Helvetica Bold 10"
-#~ msgstr "Helvetica Bold 10"
-
-#~ msgid "Log:"
-#~ msgstr "Журнал:"
-
-#~ msgid "Out of memory!\n"
-#~ msgstr "Недостига памет!\n"
-
-#~ msgid "Switch log"
-#~ msgstr "Превключва журнал"
-
-#~ msgid "About..."
-#~ msgstr "Относно програма..."
-
-#~ msgid "Info about logview"
-#~ msgstr "Информация относно преглед на журнал"
-
-#~ msgid "Cannot load required fonts, cannot continue"
-#~ msgstr "Не мога да заредя заявеният шрифт, не мога да продължа"
-
-#~ msgid "Add >>"
-#~ msgstr "Добавя >>"
-
-#~ msgid "Remove <<"
-#~ msgstr "Премахва <<"
-
-#~ msgid "hostname column width ( 0 to hide this column ): "
-#~ msgstr "ширина на колоната за име на хост (0 за скриване на колоната ):"
-
-#~ msgid "Columns"
-#~ msgstr "Колони"
-
-#~ msgid "Log line detail for <No log loaded>"
-#~ msgstr "Подробен ред на журнала за <Няма зареден журнал>"
