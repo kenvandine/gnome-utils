@@ -192,7 +192,7 @@ void gnomecard_scroll_tree(GList *node)
 	
 	tree_node = ((Card *) node->data)->user_data;
 
-	gtk_ctree_moveto(crd_tree, tree_node, 0, 0, 0);
+	gtk_ctree_node_moveto(crd_tree, tree_node, 0, 0, 0);
 	gtk_ctree_select(crd_tree, tree_node);
 }
 
@@ -270,7 +270,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	    crd->bday.prop.used) {
 		text[0] = _("Identity");
 		text[1] = "";
-		child = gtk_ctree_insert(crd_tree, parent, NULL, text,
+		child = gtk_ctree_insert_node(crd_tree, parent, NULL, text,
 					 TREE_SPACING, ident_pix->pixmap,
 					 ident_pix->mask, ident_pix->pixmap,
 					 ident_pix->mask, FALSE, FALSE);
@@ -280,14 +280,14 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 				    crd->name.additional, crd->name.family, 
 				    crd->name.suffix);
 		if (*text[1])
-			gtk_ctree_insert(crd_tree, child, NULL, text, TREE_SPACING, 
+			gtk_ctree_insert_node(crd_tree, child, NULL, text, TREE_SPACING, 
 											 NULL, NULL, NULL, NULL, FALSE, FALSE);
 		g_free(text[1]);
 		
 		if (crd->bday.prop.used) {
 			text[0] = _("Birth Date");
 			text[1] = card_bday_str(crd->bday);
-			gtk_ctree_insert(crd_tree, child, NULL, text, TREE_SPACING, 
+			gtk_ctree_insert_node(crd_tree, child, NULL, text, TREE_SPACING, 
 											 NULL, NULL, NULL, NULL, FALSE, FALSE);
 			free(text[1]);
 		}
@@ -296,21 +296,21 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	if (crd->timezn.prop.used || crd->geopos.prop.used) {
 		text[0] = _("Geographical");
 		text[1] = "";
-		child = gtk_ctree_insert(crd_tree, parent, NULL, text,
+		child = gtk_ctree_insert_node(crd_tree, parent, NULL, text,
 					 TREE_SPACING, geo_pix->pixmap,
 					 geo_pix->mask, geo_pix->pixmap,
 					 geo_pix->mask, FALSE, FALSE);
 		if (crd->timezn.prop.used) {
 			text[0] = _("Time Zone");
 			text[1] = card_timezn_str(crd->timezn);
-			gtk_ctree_insert(crd_tree, child, NULL, text, TREE_SPACING, 
+			gtk_ctree_insert_node(crd_tree, child, NULL, text, TREE_SPACING, 
 											 NULL, NULL, NULL, NULL, FALSE, FALSE);
 			free(text[1]);
 		}
 		if (crd->geopos.prop.used) {
 			text[0] = _("Geo. Position");
 			text[1] = card_geopos_str(crd->geopos);
-			gtk_ctree_insert(crd_tree, child, NULL, text, TREE_SPACING, 
+			gtk_ctree_insert_node(crd_tree, child, NULL, text, TREE_SPACING, 
 											 NULL, NULL, NULL, NULL, FALSE, FALSE);
 			free(text[1]);
 		}
@@ -320,20 +320,20 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	    crd->logo.prop.used || crd->agent || crd->org.prop.used) {
 		text[0] = _("Organizational");
 		text[1] = "";
-		child = gtk_ctree_insert(crd_tree, parent, NULL, text,
+		child = gtk_ctree_insert_node(crd_tree, parent, NULL, text,
 				 TREE_SPACING, org_pix->pixmap,
 				 org_pix->mask, org_pix->pixmap,
 				 org_pix->mask, FALSE, FALSE);
 		if (crd->title.prop.used) {
 			text[0] = _("Title");
 			text[1] = crd->title.str;
-			gtk_ctree_insert(crd_tree, child, NULL, text, TREE_SPACING, 
+			gtk_ctree_insert_node(crd_tree, child, NULL, text, TREE_SPACING, 
 											 NULL, NULL, NULL, NULL, FALSE, FALSE);
 		}
 		if (crd->role.prop.used) {
 			text[0] = _("Role");
 			text[1] = crd->role.str;
-			gtk_ctree_insert(crd_tree, child, NULL, text, TREE_SPACING, 
+			gtk_ctree_insert_node(crd_tree, child, NULL, text, TREE_SPACING, 
 											 NULL, NULL, NULL, NULL, FALSE, FALSE);
 		}
 		if (crd->org.prop.used) {
@@ -341,39 +341,39 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 			
 			text[0] = _("Organization");
 			text[1] = "";
-			org = gtk_ctree_insert(crd_tree, child, NULL, text,
+			org = gtk_ctree_insert_node(crd_tree, child, NULL, text,
 					       TREE_SPACING, org_pix->pixmap,
 					       org_pix->mask, org_pix->pixmap,
 					       org_pix->mask, FALSE, FALSE);
 			if (crd->org.name) {
 				text[0] = _("Name");
 				text[1] = crd->org.name;
-				gtk_ctree_insert(crd_tree, org, NULL, text, TREE_SPACING,
+				gtk_ctree_insert_node(crd_tree, org, NULL, text, TREE_SPACING,
 												 NULL, NULL, NULL, NULL, FALSE, FALSE);
 			}
 			if (crd->org.unit1) {
 				text[0] = _("Unit 1");
 				text[1] = crd->org.unit1;
-				gtk_ctree_insert(crd_tree, org, NULL, text, TREE_SPACING, 
+				gtk_ctree_insert_node(crd_tree, org, NULL, text, TREE_SPACING, 
 												 NULL, NULL, NULL, NULL, FALSE, FALSE);
 			}
 			if (crd->org.unit2) {
 				text[0] = _("Unit 2");
 				text[1] = crd->org.unit2;
-				gtk_ctree_insert(crd_tree, org, NULL, text,
+				gtk_ctree_insert_node(crd_tree, org, NULL, text,
 						 TREE_SPACING, NULL, NULL, NULL, NULL,
 						 FALSE, FALSE);
 			}
 			if (crd->org.unit3) {
 				text[0] = _("Unit 3");
 				text[1] = crd->org.unit3;
-				gtk_ctree_insert(crd_tree, org, NULL, text, TREE_SPACING, 
+				gtk_ctree_insert_node(crd_tree, org, NULL, text, TREE_SPACING, 
 												 NULL, NULL, NULL, NULL, FALSE, FALSE);
 			}
 			if (crd->org.unit4) {
 				text[0] = _("Unit 4");
 				text[1] = crd->org.unit4;
-				gtk_ctree_insert(crd_tree, org, NULL, text, TREE_SPACING, 
+				gtk_ctree_insert_node(crd_tree, org, NULL, text, TREE_SPACING, 
 												 NULL, NULL, NULL, NULL, FALSE, FALSE);
 			}
 				
@@ -386,7 +386,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 		
 		text[0] = _("Explanatory");
 		text[1] = "";
-		expl = gtk_ctree_insert(crd_tree, parent, NULL, text,
+		expl = gtk_ctree_insert_node(crd_tree, parent, NULL, text,
 					TREE_SPACING, expl_pix->pixmap,
 					expl_pix->mask, expl_pix->pixmap,
 					expl_pix->mask, FALSE, FALSE);
@@ -396,7 +396,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 			
 			text[0] = _("Comment");
 			text[1] = "";
-			comment = gtk_ctree_insert(crd_tree, expl, NULL, text, TREE_SPACING, 
+			comment = gtk_ctree_insert_node(crd_tree, expl, NULL, text, TREE_SPACING, 
 						   expl_pix->pixmap,	expl_pix->mask, 
 						   expl_pix->pixmap, expl_pix->mask, FALSE, FALSE);
 			
@@ -404,18 +404,18 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 			c = rem = text[1] = g_strdup(crd->comment.str);
 			while ((c = strchr(text[1], '\n')) != NULL) {
 				*c = 0;
-				gtk_ctree_insert(crd_tree, comment, NULL, text, TREE_SPACING, 
+				gtk_ctree_insert_node(crd_tree, comment, NULL, text, TREE_SPACING, 
 												 NULL, NULL, NULL, NULL, FALSE, FALSE);
 				text[1] = c + 1;
 			}
 			if (*text[1])
-				gtk_ctree_insert(crd_tree, comment, NULL, text, TREE_SPACING, 
+				gtk_ctree_insert_node(crd_tree, comment, NULL, text, TREE_SPACING, 
 												 NULL, NULL, NULL, NULL, FALSE, FALSE);
 		}
 		if (crd->url.prop.used) {
 			text[0] = _("URL");
 			text[1] = crd->url.str;
-			gtk_ctree_insert(crd_tree, expl, NULL, text, TREE_SPACING, 
+			gtk_ctree_insert_node(crd_tree, expl, NULL, text, TREE_SPACING, 
 											 NULL, NULL, NULL, NULL, FALSE, FALSE);
 		}
 			
@@ -424,7 +424,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	if (crd->key.prop.used) {
 		text[0] = _("Security");
 		text[1] = "";
-		gtk_ctree_insert(crd_tree, parent, NULL, text,
+		gtk_ctree_insert_node(crd_tree, parent, NULL, text,
 				 TREE_SPACING, sec_pix->pixmap,
 				 sec_pix->mask, sec_pix->pixmap,
 				 sec_pix->mask, FALSE, FALSE);
@@ -440,7 +440,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 		if (! crd->phone->next)
 			phone = parent;
 		else
-			phone = gtk_ctree_insert(crd_tree, parent, NULL, text,
+			phone = gtk_ctree_insert_node(crd_tree, parent, NULL, text,
 															 TREE_SPACING, phone_pix->pixmap,
 															 phone_pix->mask, phone_pix->pixmap,
 															 phone_pix->mask, FALSE, FALSE);
@@ -458,7 +458,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 					   phone_type_name[i]);
 			  }
 			
-			phone2 = gtk_ctree_insert(crd_tree, phone, NULL, text, TREE_SPACING,
+			phone2 = gtk_ctree_insert_node(crd_tree, phone, NULL, text, TREE_SPACING,
 						  phone_pix->pixmap, phone_pix->mask, 
 						  phone_pix->pixmap, phone_pix->mask,
 						  FALSE, FALSE);
@@ -476,7 +476,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 		if (! crd->email->next)
 			email = parent;
 		else
-			email = gtk_ctree_insert(crd_tree, parent, NULL, text,
+			email = gtk_ctree_insert_node(crd_tree, parent, NULL, text,
 															 TREE_SPACING, email_pix->pixmap,
 															 email_pix->mask, email_pix->pixmap,
 															 email_pix->mask, FALSE, FALSE);
@@ -484,7 +484,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 		for (l = crd->email; l; l = l->next) {
 			text[0] = email_type_name[((CardEMail *)l->data)->type];
 			text[1] = ((CardEMail *)l->data)->data;
-			gtk_ctree_insert(crd_tree, email, NULL, text,
+			gtk_ctree_insert_node(crd_tree, email, NULL, text,
 											 TREE_SPACING, email_pix->pixmap,
 											 email_pix->mask, email_pix->pixmap,
 											 email_pix->mask, FALSE, FALSE);
@@ -504,7 +504,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 		if (! crd->deladdr->next)
 			addr = parent;
 		else
-			addr = gtk_ctree_insert(crd_tree, parent, NULL, text, TREE_SPACING, 
+			addr = gtk_ctree_insert_node(crd_tree, parent, NULL, text, TREE_SPACING, 
 															addr_pix->pixmap, addr_pix->mask, 
 															addr_pix->pixmap, addr_pix->mask, FALSE, FALSE);
 		
@@ -522,7 +522,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 				}
 			
 			if (text[1]) {
-				addr2 = gtk_ctree_insert(crd_tree, addr, NULL, text, TREE_SPACING,
+				addr2 = gtk_ctree_insert_node(crd_tree, addr, NULL, text, TREE_SPACING,
 																 addr_pix->pixmap, addr_pix->mask, 
 																 addr_pix->pixmap, addr_pix->mask, 
 																 FALSE, FALSE);
@@ -531,7 +531,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 				for (i = 0; i < DELADDR_MAX; i++)
 					if (deladdr->data[i] && text[1] != deladdr->data[i]) {
 						text[1] = deladdr->data[i];
-						gtk_ctree_insert(crd_tree, addr2, NULL, text, TREE_SPACING,
+						gtk_ctree_insert_node(crd_tree, addr2, NULL, text, TREE_SPACING,
 														 NULL, NULL, NULL, NULL, FALSE, FALSE);
 					}
 				
@@ -539,7 +539,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 				for (i = 0; i < 6; i++)
 					if (((CardDelAddr *)l->data)->type & (1 << i)) {
 						text[0] = addr_type_name[i];
-						gtk_ctree_insert(crd_tree, addr2, NULL, text, TREE_SPACING, 
+						gtk_ctree_insert_node(crd_tree, addr2, NULL, text, TREE_SPACING, 
 														 NULL, NULL, NULL, NULL, FALSE, FALSE);
 				}
 			}
@@ -576,7 +576,7 @@ void gnomecard_set_node_info(Card *crd)
 		snprintf(text, len, "%s %s", text, tmp);
 	}
 
-	gtk_ctree_set_text(crd_tree, crd->user_data, 1, text);
+	gtk_ctree_node_set_text(crd_tree, crd->user_data, 1, text);
 	
 	g_free(text);
 }
@@ -587,7 +587,7 @@ void gnomecard_add_card_to_tree(Card *crd)
 	
 	text[0] = text[1] = "";
 	
-	crd->user_data = gtk_ctree_insert(crd_tree, NULL, NULL, text,
+	crd->user_data = gtk_ctree_insert_node(crd_tree, NULL, NULL, text,
 																		0, NULL, NULL, NULL, NULL, FALSE, FALSE);
 	
 	gnomecard_set_node_info(crd);
@@ -704,7 +704,7 @@ void gnomecard_update_tree(Card *crd)
 	node = GTK_CTREE_ROW(&GTK_CTREE_NODE(crd->user_data)->list)->children;
 	while (node) {
 		tmp = GTK_CTREE_NODE_NEXT (node);
-		gtk_ctree_remove(crd_tree, node);
+		gtk_ctree_remove_node(crd_tree, node);
 		node = tmp;
 	}
 	
@@ -1317,7 +1317,7 @@ gnomecard_destroy_cards(void)
 	for (l = crds; l; l = l->next)
 	  card_free (l->data);
 	
-	gtk_ctree_remove(crd_tree,NULL);
+	gtk_ctree_remove_node(crd_tree,NULL);
 	g_list_free(crds);
 	crds = NULL;
 	
@@ -1355,7 +1355,7 @@ void gnomecard_del_card(GtkWidget *widget, gpointer data)
 	
 	card_free(curr_crd->data);
 	crds = g_list_remove_link(crds, curr_crd);
-	gtk_ctree_remove(crd_tree, ((Card *) curr_crd->data)->user_data);
+	gtk_ctree_remove_node(crd_tree, ((Card *) curr_crd->data)->user_data);
 	g_list_free(curr_crd);
 	
 	if (tmp)
