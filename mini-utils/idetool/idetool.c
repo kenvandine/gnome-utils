@@ -335,6 +335,20 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	gtk_widget_show(vbox);
 }
 
+static void
+close_cb (GtkWidget * widget, gpointer user_data)
+{
+        gtk_widget_destroy (widget);
+        gtk_main_quit ();
+}
+
+static void
+help_cb (GtkWidget * widget, gpointer user_data)
+{
+    GnomeHelpMenuEntry ref = {"idetool", "index.html"};
+                        gnome_help_display (NULL, &ref);
+}
+
 static int ide_parser(void)
 {
 	char i;
@@ -351,8 +365,17 @@ static int ide_parser(void)
 	
 	
 	toplevel = gnome_dialog_new(_("IDE Status"), 
-			GNOME_STOCK_BUTTON_OK, NULL);
-	gnome_dialog_set_close(GNOME_DIALOG(toplevel), TRUE);
+			GNOME_STOCK_BUTTON_OK,
+			GNOME_STOCK_BUTTON_HELP,
+			NULL);
+
+	gtk_signal_connect (GTK_OBJECT (toplevel), "close",
+                            GTK_SIGNAL_FUNC (close_cb), &toplevel);
+        gnome_dialog_button_connect (GNOME_DIALOG (toplevel), 0,
+                                     GTK_SIGNAL_FUNC (close_cb), &toplevel);
+        gnome_dialog_button_connect (GNOME_DIALOG (toplevel), 1,
+                                     GTK_SIGNAL_FUNC (help_cb), &toplevel);
+        gnome_dialog_set_default (GNOME_DIALOG (toplevel), 0);
 	
 	tbox=gtk_hbox_new(TRUE, GNOME_PAD);
 	
