@@ -16,10 +16,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-23 15:21+0100\n"
-"PO-Revision-Date: 2005-02-23 17:17+0200\n"
-"Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
-"Language-Team: Dutch <vertaling@nl.linux.org>\n"
+"POT-Creation-Date: 2005-03-04 22:00+0100\n"
+"PO-Revision-Date: 2005-03-05 03:53+0100\n"
+"Last-Translator:  Tino Meinen <a.t.meinen@chello.nl\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -130,10 +130,15 @@ msgstr "Zoeken"
 msgid "_Search for:"
 msgstr "_Zoeken naar:"
 
-#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:313
+#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
 #: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "Kan hulptekst niet weergeven"
+
+#. Top
+#: gdictsrc/gdict-app.c:626
+msgid "_Dictionary"
+msgstr "Woorden_boek"
 
 #. Dictionary menu
 #: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
@@ -1027,7 +1032,7 @@ msgstr "Map waar het schermafdrukprogramma het laatst in heeft opgeslagen"
 msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"black-line\"."
-msgstr ""
+msgstr "Effect dat aan de rand wordt gegeven. Mogelijke waarden zijn \"shadow\", \"schaduw\", en \"black-line\"."
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -1046,6 +1051,8 @@ msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-panel"
 msgstr ""
+"Het glade-bestand voor het schermafdruk-programma ontbreekt.\n"
+"Controleer uw installatie van gnome-panel"
 
 #: gnome-screenshot/screenshot-dialog.c:213
 msgid "Select a directory"
@@ -1064,7 +1071,7 @@ msgstr ""
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
-msgstr ""
+msgstr "Het dochterproces waarmee het opslaan werd uitgevoerd is onverwacht afgebroken.  Het is niet mogelijk om de schermafdruk op de schijf op te slaan."
 
 #: gnome-screenshot/screenshot-save.c:188
 msgid "Unknown error saving screenshot to disk"
@@ -1115,11 +1122,11 @@ msgstr "Tweede scan bij snelzoeken uitschakelen"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:3
 msgid "Quick Search Excluded Paths"
-msgstr ""
+msgstr "Snelzoeken uitzonderingspaden"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:4
 msgid "Quick Search Second Scan Excluded Paths"
-msgstr ""
+msgstr "Snelzeken tweede scan uitzonderingspaden"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
@@ -1136,105 +1143,93 @@ msgstr "Selecteer de zoekoptie \"Bevat de tekst\""
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:10
-#, fuzzy
 msgid "Select the search option \"Date modified less than\""
-msgstr "Mi_nder dan (dagen) geleden gewijzigd"
+msgstr "Selecteer de zoekoptie \"Minder dan (dagen) geleden gewijzigd\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:13
-#, fuzzy
 msgid "Select the search option \"Date modified more than\""
-msgstr "M_eer dan (dagen) geleden gewijzigd"
+msgstr "Selecteer de zoekoptie \"Meer dan (dagen) geleden gewijzigd\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:16
-#, fuzzy
 msgid "Select the search option \"File is empty\""
-msgstr "Bestand is leeg"
+msgstr "Selecteer de zoekoptie \"Bestand is leeg\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:19
-#, fuzzy
 msgid "Select the search option \"Follow symbolic links\""
-msgstr "Selecteer de 'Volg symbolische verwijzingen'-voorwaarde"
+msgstr "Selecteer de zoekoptie \"Volg symbolische verwijzingen\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:22
-#, fuzzy
 msgid "Select the search option \"Include other filesystems\""
-msgstr "Andere bestandssystemen meenemen"
+msgstr "Selecteer de zoekoptie \"Andere bestandssystemen meenemen\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:25
-#, fuzzy
 msgid "Select the search option \"Name does not contain\""
-msgstr "N_aam bevat niet"
+msgstr "Selecteer de zoekoptie \"Naam bevat niet\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:28
-#, fuzzy
 msgid "Select the search option \"Name matches regular expression\""
-msgstr "Bestand komt overeen met reguliere e_xpressie"
+msgstr "Selecteer de zoekoptie \"Naam komt overeen met reguliere expressie\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:31
-#, fuzzy
 msgid "Select the search option \"Owned by group\""
-msgstr "Eigendom van _groep"
+msgstr "Selecteer de zoekoptie \"Eigendom van groep\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:34
-#, fuzzy
 msgid "Select the search option \"Owned by user\""
-msgstr "Eigendom van gebr_uiker"
+msgstr "Selecteer de zoekoptie \"Eigendom van gebruiker\""
 
 # bekend klinkt beter dan herkend, komt op hetzelfde neer?
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:37
-#, fuzzy
 msgid "Select the search option \"Owner is unrecognized\""
-msgstr "Eigenaar is niet bekend"
+msgstr "Selecteer de zoekoptie \"Eigenaar is niet bekend\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:40
 msgid "Select the search option \"Show hidden files and folders\""
-msgstr ""
+msgstr "Selecteer de zoekoptie \"Verborgen bestanden en mappen tonen\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:43
-#, fuzzy
 msgid "Select the search option \"Size at least\""
-msgstr "Grootte _tenminste (kilobyte)"
+msgstr "Selecteer de zoekoptie \"Grootte minstens\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:46
 msgid "Select the search option \"Size at most\""
-msgstr ""
+msgstr "Selecteer de zoekoptie \"Grootte ten hoogste\""
 
 #
 #: gsearchtool/gnome-search-tool.schemas.in.h:47
-#, fuzzy
 msgid "Show Additional Options"
-msgstr "Toegevoegde opties"
+msgstr "Extra opties tonen"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:48
 msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
-msgstr ""
+msgstr "Deze sleutel bepaalt de paden die bij snelzoeken worden overgeslagen. De wildcards '*' en '?' mogen gebruikt worden. De standaardwaarden zijn /mnt/*, /media/*, /dev/*, /tmp/*, /proc/* en /var/*."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:49
 msgid ""
@@ -1243,79 +1238,79 @@ msgid ""
 "search for files. The purpose of the second scan is to find files that have "
 "not been indexed. The wildcards '*' and '?' are supported. The default value "
 "is /."
-msgstr ""
+msgstr "Deze sleutel bepaalt de paden die bij snelzoeken voor een tweede scan worden overgeslagen. De tweede scan gebruikt de het programma 'find' om bestanden te zoeken. Het doel van de tweede scan is om bestanden te vinden die nog niet zijn geïndexeerd. De wildcards '*' en '?' mogen gebruikt worden. De standaardwaarde is /."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
 "This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Bevat de tekst\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Minder dan (dagen) geleden gewijzigd\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
 "This key determines if the \"Date modified more than\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Meer dan (dagen) geleden gewijzigd\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:53
 msgid ""
 "This key determines if the \"File is empty\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Bestand is leeg\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:54
 msgid ""
 "This key determines if the \"Follow symbolic links\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Volg symbolische verwijzingen\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:55
 msgid ""
 "This key determines if the \"Include other filesystems\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Andere bestandssystemen meenemen\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
 "This key determines if the \"Name does not contain\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Naam bevat niet\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Naam komt overeen met reguliere expressie\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:58
 msgid ""
 "This key determines if the \"Owned by group\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Eigendom van groep\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:59
 msgid ""
 "This key determines if the \"Owned by user\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Eigendom van gebruiker\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:60
 msgid ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Eigenaar is niet bekend\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:61
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Verborgen bestanden en mappen tonen\" geselecteerd is bij het opstarten."
 
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
@@ -1323,31 +1318,31 @@ msgstr ""
 msgid ""
 "This key determines if the \"Show more options\" section is expanded when "
 "the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of het onderdeel \"Meer opties tonen\" uitgevouwen is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Grootte minstens\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:66
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "Deze sleutel bepaalt of de zoekoptie \"Grootte ten hoogste\" geselecteerd is bij het opstarten."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
-msgstr ""
+msgstr "Deze sleutel bepaalt of het zoekprogramma het gebruik van de opdracht 'find' weigert na het uitvoeren van een snelzoekactie."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
-msgstr ""
+msgstr "Deze sleutel bepaalt of het zoekprogramma het gebruik van de opdracth 'locate' weigert na het uitvoeren van eenvoudige bestandsnaam-zoekopdrachten."
 
 #: gsearchtool/gsearchtool-callbacks.c:163
 msgid "Could not open help document."
@@ -1559,11 +1554,11 @@ msgstr "N_aam bevat niet"
 
 #: gsearchtool/gsearchtool.c:95
 msgid "Name matches regular e_xpression"
-msgstr "Bestand komt overeen met reguliere e_xpressie"
+msgstr "Naam komt overeen met reguliere e_xpressie"
 
 #: gsearchtool/gsearchtool.c:97
 msgid "Show hidden and backup files"
-msgstr "Verborgen bestanden backupbestanden tonen"
+msgstr "Verborgen bestanden en backupbestanden tonen"
 
 #: gsearchtool/gsearchtool.c:98
 msgid "Follow symbolic links"
@@ -1589,94 +1584,92 @@ msgstr "Naar pr_ullenbak verplaatsen"
 msgid "_Save Results As..."
 msgstr "Resultaten opslaan _als..."
 
-#: gsearchtool/gsearchtool.c:245 gsearchtool/gsearchtool.c:262
+#: gsearchtool/gsearchtool.c:249 gsearchtool/gsearchtool.c:266
 msgid "A locate database has probably not been created."
-msgstr ""
+msgstr "Er is waarschijnlijk nog geen zoekdatabase aangemaakt."
 
-#: gsearchtool/gsearchtool.c:358
+#: gsearchtool/gsearchtool.c:369
 #, c-format
 msgid "Character set conversion failed for \"%s\""
-msgstr ""
+msgstr "Tekenset-conversie mislukt voor \"%s\""
 
-#: gsearchtool/gsearchtool.c:724 gsearchtool/gsearchtool.c:753
+#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
 msgid "No files found"
 msgstr "Geen bestanden gevonden"
 
 # we weten niet wat de reden is (afgebroken, voltooid, fout)
-#: gsearchtool/gsearchtool.c:746
+#: gsearchtool/gsearchtool.c:757
 msgid "(stopped)"
 msgstr "(gestopt)"
 
-#: gsearchtool/gsearchtool.c:752
+#: gsearchtool/gsearchtool.c:763
 msgid "No Files Found"
 msgstr "Geen bestanden gevonden"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:768
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d bestand gevonden"
 msgstr[1] "%d bestanden gevonden"
 
-#: gsearchtool/gsearchtool.c:761 gsearchtool/gsearchtool.c:799
+#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d bestand gevonden"
 msgstr[1] "%d bestanden gevonden"
 
-#: gsearchtool/gsearchtool.c:778 gsearchtool/gsearchtool.c:1037
-#: gsearchtool/gsearchtool.c:1123 gsearchtool/gsearchtool.c:2793
+#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
+#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
 msgid "Search for Files"
 msgstr "Naar bestanden zoeken"
 
-#: gsearchtool/gsearchtool.c:871
+#: gsearchtool/gsearchtool.c:882
 msgid "Entry changed called for a non entry option!"
 msgstr "Veranderde invoer riep een niet-invoeroptie aan!"
 
-#: gsearchtool/gsearchtool.c:1123
+#: gsearchtool/gsearchtool.c:1134
 msgid "Searching..."
 msgstr "Bezig met zoeken..."
 
-#: gsearchtool/gsearchtool.c:1146
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1157
 msgid "Set the text of \"Name contains\" search option"
-msgstr "De tekst voor 'Naam bevat' invoeren"
+msgstr "De tekst voor de zoekoptie \"Naam bevat\" invoeren"
 
 # dit zijn de tooltips?
-#: gsearchtool/gsearchtool.c:1147
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1158
 msgid "Set the text of \"Look in folder\" search option"
-msgstr "De tekst voor 'Beginnen in map' invoeren"
+msgstr "De tekst voor de zoekoptie \"Beginnen in map\" invoeren"
 
-#: gsearchtool/gsearchtool.c:1148
+#: gsearchtool/gsearchtool.c:1159
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Bestanden sorteren op één van de volgende: naam, map, grootte, type of datum"
 
-#: gsearchtool/gsearchtool.c:1149
+#: gsearchtool/gsearchtool.c:1160
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Sorteervolgorde instellen op aflopend, oplopend is standaard"
 
-#: gsearchtool/gsearchtool.c:1150
+#: gsearchtool/gsearchtool.c:1161
 msgid "Automatically start a search"
 msgstr "Zoekoperatie automatisch starten"
 
-#: gsearchtool/gsearchtool.c:1156
-#, fuzzy, c-format
+#: gsearchtool/gsearchtool.c:1167
+#, c-format
 msgid "Select the \"%s\" search option"
-msgstr "Selecteer de '%s'-voorwaarde"
+msgstr "De zoekoptie \"%s\" selecteren"
 
-#: gsearchtool/gsearchtool.c:1159
-#, fuzzy, c-format
+#: gsearchtool/gsearchtool.c:1170
+#, c-format
 msgid "Select and set the \"%s\" search option"
-msgstr "Bestand komt overeen met reguliere e_xpressie"
+msgstr "De zoekoptie \"%s\" selecteren en instellen"
 
-#: gsearchtool/gsearchtool.c:1266
+#: gsearchtool/gsearchtool.c:1277
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ongeldige optie meegegeven aan 'sortby'-opdrachtregelargument"
 
-#: gsearchtool/gsearchtool.c:1562
+#: gsearchtool/gsearchtool.c:1573
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1684,7 +1677,7 @@ msgstr ""
 "\n"
 "... Teveel fouten om weer te geven ..."
 
-#: gsearchtool/gsearchtool.c:1576
+#: gsearchtool/gsearchtool.c:1587
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1692,169 +1685,170 @@ msgstr ""
 "De zoekresultaten zijn mogelijk onjuist.  Er waren fouten bij het uitvoeren "
 "van de zoekopdracht."
 
-#: gsearchtool/gsearchtool.c:1588 gsearchtool/gsearchtool.c:1628
+#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
 msgid "Show more _details"
 msgstr "Meer _details tonen"
 
-#: gsearchtool/gsearchtool.c:1616
+#: gsearchtool/gsearchtool.c:1627
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 "De zoekresultaten zijn mogelijk onjuist.  Wilt u 'snel zoeken' uitschakelen?"
 
-#: gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1650
 msgid "Disable _Quick Search"
 msgstr "_Snel zoeken uitschakelen"
 
-#: gsearchtool/gsearchtool.c:1666
+#: gsearchtool/gsearchtool.c:1677
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
-msgstr ""
+msgstr "Instellen van process-group id van dochter %d is mislukt: %s.\n"
 
 # Fout bij verwerken van zoekopdracht
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1704
 msgid "Error parsing the search command."
 msgstr "Er is een fout opgetreden bij het verwerken van de zoekopdracht."
 
 # Fout bij uitvoeren van zoekopdracht
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1737
 msgid "Error running the search command."
 msgstr "Er is een fout opgetreden bij het uitvoeren van de zoekopdracht."
 
-#: gsearchtool/gsearchtool.c:1873
-#, fuzzy, c-format
+#: gsearchtool/gsearchtool.c:1884
+#, c-format
 msgid "Enter a text value for the \"%s\" search option."
-msgstr "Bestand komt overeen met reguliere e_xpressie"
+msgstr "Een tekstwaarde invoeren voor de zoekoptie \"%s\"."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1878
+#: gsearchtool/gsearchtool.c:1889
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" in %s"
 
-#: gsearchtool/gsearchtool.c:1880
-#, fuzzy, c-format
+#: gsearchtool/gsearchtool.c:1891
+#, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
-msgstr "Bestand komt overeen met reguliere e_xpressie"
+msgstr "Een waarde invoeren in %s voor de zoekoptie \"%s\""
 
-#: gsearchtool/gsearchtool.c:1939
+#: gsearchtool/gsearchtool.c:1950
 #, c-format
 msgid "Remove \"%s\""
 msgstr "\"%s\" verwijderen"
 
-#: gsearchtool/gsearchtool.c:1940
-#, fuzzy, c-format
+#: gsearchtool/gsearchtool.c:1951
+#, c-format
 msgid "Click to remove the \"%s\" search option."
-msgstr "Selecteer de '%s'-voorwaarde"
+msgstr "Klik op de zoekoptie \"%s\" te verwijderen."
 
-#: gsearchtool/gsearchtool.c:2033
+#: gsearchtool/gsearchtool.c:2044
 msgid "A_vailable options:"
 msgstr "_Beschikbare opties:"
 
-#: gsearchtool/gsearchtool.c:2062
+#: gsearchtool/gsearchtool.c:2073
 msgid "Available options"
 msgstr "Beschikbare opties"
 
-#: gsearchtool/gsearchtool.c:2063
-#, fuzzy
+# drop-down vertalen? vallijst/expansielijst?
+#: gsearchtool/gsearchtool.c:2074
 msgid "Select a search option from the drop-down list."
-msgstr "Selecteer een zoek-regel uit het menu"
+msgstr "Selecteer een zoekoptie uit de lijst."
 
-#: gsearchtool/gsearchtool.c:2075
+#: gsearchtool/gsearchtool.c:2086
 msgid "Add search option"
 msgstr "Zoekoptie toevoegen"
 
-#: gsearchtool/gsearchtool.c:2076
+# beschikbare niet meevertaald
+#: gsearchtool/gsearchtool.c:2087
 msgid "Click to add the selected available search option."
-msgstr ""
+msgstr "Klik om de geselecteerde zoekoptie toe te voegen."
 
-#: gsearchtool/gsearchtool.c:2097
+#: gsearchtool/gsearchtool.c:2108
 msgid "S_earch results:"
 msgstr "Z_oekresultaten:"
 
-#: gsearchtool/gsearchtool.c:2133
+#: gsearchtool/gsearchtool.c:2144
 msgid "List View"
 msgstr "Lijstweergave"
 
-#: gsearchtool/gsearchtool.c:2183
+#: gsearchtool/gsearchtool.c:2194
 msgid "Name"
 msgstr "Naam"
 
-#: gsearchtool/gsearchtool.c:2203
+#: gsearchtool/gsearchtool.c:2214
 msgid "Folder"
 msgstr "Map"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2225
 msgid "Size"
 msgstr "Grootte"
 
-#: gsearchtool/gsearchtool.c:2224
+#: gsearchtool/gsearchtool.c:2235
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:2234
+#: gsearchtool/gsearchtool.c:2245
 msgid "Date Modified"
 msgstr "Wijzigingsdatum"
 
-#: gsearchtool/gsearchtool.c:2602
+#: gsearchtool/gsearchtool.c:2613
 msgid "_Name contains:"
 msgstr "_Naam bevat:"
 
-#: gsearchtool/gsearchtool.c:2616 gsearchtool/gsearchtool.c:2617
+#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "Voer een (gedeeltelijke) bestandsnaam in, met of zonder jokers."
 
-#: gsearchtool/gsearchtool.c:2617
+#: gsearchtool/gsearchtool.c:2628
 msgid "Name contains"
 msgstr "Naam bevat"
 
-#: gsearchtool/gsearchtool.c:2623
+#: gsearchtool/gsearchtool.c:2634
 msgid "_Look in folder:"
 msgstr "_Beginnen in map:"
 
-#: gsearchtool/gsearchtool.c:2629
+#: gsearchtool/gsearchtool.c:2640
 msgid "Browse"
 msgstr "Bladeren"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2645
 msgid "Look in folder"
 msgstr "Zoeken in map"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2645
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Selecteer de map of het apparaat vanwaar u wilt beginnen met zoeken."
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2656
 msgid "Show more _options"
 msgstr "Meer _opties tonen"
 
-#: gsearchtool/gsearchtool.c:2654
+#: gsearchtool/gsearchtool.c:2665
 msgid "Show more options"
 msgstr "Meer opties tonen"
 
-#: gsearchtool/gsearchtool.c:2654
+#: gsearchtool/gsearchtool.c:2665
 msgid "Click to expand or collapse the list of available options."
 msgstr "Toont of verbergt een lijst met beschikbare opties."
 
-#: gsearchtool/gsearchtool.c:2678
+#: gsearchtool/gsearchtool.c:2689
 msgid "Click to display the help manual."
 msgstr "Klik om de handleiding weer te geven."
 
-#: gsearchtool/gsearchtool.c:2686
+#: gsearchtool/gsearchtool.c:2697
 msgid "Click to close \"Search for Files\"."
 msgstr "Klik om \"Bestanden zoeken\" te sluiten."
 
-#: gsearchtool/gsearchtool.c:2712
+#: gsearchtool/gsearchtool.c:2723
 msgid "Click to perform a search."
 msgstr "Klik om een zoekactie te starten."
 
-#: gsearchtool/gsearchtool.c:2713
+#: gsearchtool/gsearchtool.c:2724
 msgid "Click to stop a search."
 msgstr "Klik om een zoekactie te stoppen."
 
-#: gsearchtool/gsearchtool.c:2813
+#: gsearchtool/gsearchtool.c:2824
 msgid "Cannot initialize bonobo."
 msgstr "Can bonobo niet initialiseren."
 
@@ -2056,29 +2050,29 @@ msgstr[0] "%ld byte"
 msgstr[1] "%ld byte"
 
 #: logview/info.c:97
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Size</b>: %s"
-msgstr "Gewijzigd:"
+msgstr "<b>Grootte</b>: %s"
 
 #: logview/info.c:102
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Modified</b>: %s"
-msgstr "Gewijzigd:"
+msgstr "<b>Gewijzigd</b>: %s"
 
 #: logview/info.c:106
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Start Date</b>: %s"
-msgstr "Startdatum:"
+msgstr "<b>Startdatum</b>: %s"
 
 #: logview/info.c:110
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Last Date</b>: %s"
-msgstr "Laatste datum:"
+msgstr "<b>Laatste datum</b>: %s"
 
 #: logview/info.c:114
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Number of Lines</b>: %ld"
-msgstr "Aantal regels:"
+msgstr "<b>Aantal regels</b>: %ld"
 
 #: logview/log_repaint.c:36
 msgid "January"
@@ -2135,7 +2129,6 @@ msgid "%x"
 msgstr "%x"
 
 #: logview/log_repaint.c:297
-#, fuzzy
 msgid "Last Modified:"
 msgstr "Laatst gewijzigd:"
 
@@ -2152,9 +2145,8 @@ msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
-#, fuzzy
 msgid "The file could not be opened"
-msgstr "%s kan niet worden geopend."
+msgstr "Het bestand kon niet worden geopend"
 
 #: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
@@ -2164,7 +2156,7 @@ msgstr "Kan logboek-bestand niet openen!\n"
 msgid "Not enough memory!\n"
 msgstr "Niet genoeg geheugen!\n"
 
-#: logview/logrtns.c:275
+#: logview/logrtns.c:276
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2173,22 +2165,22 @@ msgstr ""
 "%s is niet te lezen door de gebruiker. Start het programma als root of vraag "
 "de systeembeheerder om de rechten te veranderen."
 
-#: logview/logrtns.c:280
+#: logview/logrtns.c:281
 #, c-format
 msgid "%s is too big."
-msgstr ""
+msgstr "%s is te groot."
 
-#: logview/logrtns.c:284
+#: logview/logrtns.c:285
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s kan niet worden geopend."
 
-#: logview/logrtns.c:325 logview/logrtns.c:336
+#: logview/logrtns.c:326 logview/logrtns.c:337
 #, c-format
 msgid "%s not a log file."
 msgstr "%s is geen logboek-bestand."
 
-#: logview/logrtns.c:587 logview/logrtns.c:611
+#: logview/logrtns.c:588 logview/logrtns.c:612
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: Geen geheugen meer!"
 
@@ -2217,9 +2209,8 @@ msgid "_Open..."
 msgstr "_Openen..."
 
 #: logview/logview.c:90
-#, fuzzy
 msgid "Open a log from file"
-msgstr "Nieuw logboekbestand openen"
+msgstr "Een logboek openen uit een bestand"
 
 #: logview/logview.c:92
 msgid "_Properties"
@@ -2230,27 +2221,24 @@ msgid "Show Log Properties"
 msgstr "Logboekeigenschappen tonen"
 
 #: logview/logview.c:94
-#, fuzzy
 msgid "Close"
-msgstr "Cosinus"
+msgstr "Sluiten"
 
 #: logview/logview.c:94
 msgid "Close this log"
-msgstr ""
+msgstr "Dit logboek sluiten"
 
 #: logview/logview.c:96
-#, fuzzy
 msgid "_Quit"
-msgstr "Be_werken"
+msgstr "A_fsluiten"
 
 #: logview/logview.c:96
-#, fuzzy
 msgid "Quit the log viewer"
-msgstr "Systeemlogboeken"
+msgstr "Logboekviewer afsluiten"
 
 #: logview/logview.c:99
 msgid "Copy"
-msgstr ""
+msgstr "Kopiëren"
 
 #: logview/logview.c:101
 msgid "Select All"
@@ -2258,11 +2246,11 @@ msgstr "Alles selecteren"
 
 #: logview/logview.c:101
 msgid "Select the entire log"
-msgstr ""
+msgstr "De gehele logtekst selecteren"
 
 #: logview/logview.c:103
 msgid "Find pattern in logs"
-msgstr ""
+msgstr "Zoek patroon in logboeken"
 
 #: logview/logview.c:106
 msgid "Collapse _All"
@@ -2274,11 +2262,11 @@ msgstr "Alle rijen inklappen"
 
 #: logview/logview.c:109
 msgid "Open the help contents for the log viewer"
-msgstr ""
+msgstr "Open de hulp voor de logboekviewer"
 
 #: logview/logview.c:111
 msgid "Show the about dialog for the log viewer"
-msgstr ""
+msgstr "Toon het info-dialoog voor de logboekvieuwer"
 
 #: logview/logview.c:117
 msgid "_Monitor"
@@ -2288,6 +2276,7 @@ msgstr "_Bewaken"
 msgid "Monitor Current Log"
 msgstr "Huidige logboek bewaken"
 
+# agenda?
 #: logview/logview.c:119
 msgid "Ca_lendar"
 msgstr "_Kalender"
@@ -2325,16 +2314,13 @@ msgid "Open new logfile"
 msgstr "Nieuw logboekbestand openen"
 
 #: logview/logview.c:876
-#, fuzzy
 msgid "There was an error displaying help."
-msgstr ""
-"Er is een fout opgetreden bij het bekijken van help: \n"
-"%s"
+msgstr "Er is een fout opgetreden bij het weergeven van de hulp."
 
 #: logview/logview.c:894
 #, c-format
 msgid "%s (monitored) - %s"
-msgstr ""
+msgstr "%s (bewaakt) - %s"
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -2452,9 +2438,6 @@ msgstr "%B %e %X"
 
 #~ msgid "Could not move \"%s\" to the trash."
 #~ msgstr "Kon \"%s\" niet naar de prullenbak verplaatsen"
-
-#~ msgid "_Dictionary"
-#~ msgstr "Woorden_boek"
 
 #~ msgid "_Lookup"
 #~ msgstr "_Opzoeken"
