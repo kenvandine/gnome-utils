@@ -711,6 +711,10 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			}
 			
 			locale = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
+			if (locale == NULL) {
+				continue;
+			}
+			
 			filename = g_path_get_basename (locale);
 			
 			if (g_pattern_match_string (pattern, filename)) {
