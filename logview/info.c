@@ -214,7 +214,7 @@ RepaintLogInfo (LogviewWindow *window)
 void
 CloseLogInfo (GtkWidget *widget, int arg, gpointer data)
 {
-   LogviewWindow *window = LOGVIEW_WINDOW (data);
+   LogviewWindow *window = data;
    if (window->loginfovisible)
       gtk_widget_hide (widget);
    window->info_dialog = NULL;
@@ -225,7 +225,7 @@ CloseLogInfo (GtkWidget *widget, int arg, gpointer data)
 
 void QuitLogInfo (GtkWidget *widget, gpointer data)
 {
-   LogviewWindow *window = LOGVIEW_WINDOW (data);
+   LogviewWindow *window = data;
    scrolled_window = NULL;
    gtk_widget_destroy (GTK_WIDGET (window->info_dialog));
 }

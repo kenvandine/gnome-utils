@@ -208,7 +208,7 @@ mon_format_line (char *buffer, int bufsize, LogLine *line)
 gboolean
 mon_check_logs (gpointer data)
 {
-	LogviewWindow *window = LOGVIEW_WINDOW (data);
+	LogviewWindow *window = data;
 	g_return_if_fail (window->curlog);
 
 	if (!window->monitored)
