@@ -135,7 +135,8 @@ AC_TYPE_SIGNAL
 AC_FUNC_STRFTIME
 AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname)
 
-dnl Allow users to run logview using the console helper PAM stuff.
+dnl Allow users to run logview and gshutdown using the console helper 
+dnl PAM stuff.
 if test "x$enable_console_helper" = "xyes"; then
   AM_CONDITIONAL(CONSOLE_HELPER, true)
 else
@@ -243,6 +244,20 @@ else
 fi
 EXPANDED_LOGVIEWDIR=`eval echo $LOGVIEWDIR_TMP`
 AC_SUBST(EXPANDED_LOGVIEWDIR)
+
+dnl ********************
+dnl gshutdown
+dnl ********************
+
+dnl This is where the binary actually resides,
+dnl not the console helper link
+if test "x$enable_console_helper" = "xyes"; then
+	GSHUTDOWNDIR_TMP="$sbindir"
+else
+	GSHUTDOWNDIR_TMP="$bindir"
+fi
+EXPANDED_GSHUTDOWNDIR=`eval echo $GSHUTDOWNDIR_TMP`
+AC_SUBST(EXPANDED_GSHUTDOWNDIR)
 
 dnl ******************** 
 dnl gsu
@@ -383,6 +398,7 @@ mini-utils/gless/Makefile
 mini-utils/gless/doc/Makefile
 mini-utils/gless/doc/C/Makefile
 mini-utils/gshutdown/Makefile
+mini-utils/gshutdown/gshutdown-security
 mini-utils/gshutdown/doc/Makefile
 mini-utils/gshutdown/doc/C/Makefile
 mini-utils/guname/Makefile
