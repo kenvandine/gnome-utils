@@ -1160,7 +1160,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		GdkRectangle prior_rect;
 		GdkRectangle after_rect;
 		gint	     look_in_folder_string_length;
-		gint         item_count = 1;
+		gint         item_count = 0;
 		
 		string = g_string_new (NULL);
 		look_in_folder_string_length = strlen (search_data->look_in_folder);
@@ -1250,7 +1250,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			
 			gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &prior_rect);
 			
-			if (item_count++ > GNOME_SEARCH_TOOL_ITEM_REFRESH_LIMIT) {
+			if (item_count == 0 || item_count++ > GNOME_SEARCH_TOOL_ITEM_REFRESH_LIMIT) {
 				item_count = 1;
 				while (gtk_events_pending ()) {
 					if (search_data->running == MAKE_IT_QUIT) {
