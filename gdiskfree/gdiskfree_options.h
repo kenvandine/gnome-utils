@@ -29,12 +29,17 @@
 typedef struct _GDiskFreeOptions          GDiskFreeOptions;
 typedef struct _Disk                      Disk;
 struct _GDiskFreeOptions {
-  gint             update_interval;
-  gboolean         sync_required;
-  gboolean         show_mount;
-  gboolean         show_size;
-  GtkOrientation   orientation;
-
+  gint             update_interval;    /* How often to poll */
+  /* FIXME:
+   * These should be collaped down to a bitfield, for easier addtions and
+   * cleaner code to parse around em.
+   */
+  gboolean         sync_required;      /* Invoke sync before gathering stats */
+  gboolean         show_mount;         /* Show mountpoints */
+  gboolean         show_size;          /* Show total size of device*/
+  gboolean         show_remain;        /* Show remainging space on device */
+  GtkOrientation   orientation;        /* Horizontal/Vertical */
+  GList            *excluded;          /* Exclude these devices */
 };
 /****************************************************************************
  * Functions

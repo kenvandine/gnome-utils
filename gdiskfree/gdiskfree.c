@@ -32,7 +32,6 @@
  * Global config ICKY!!
  **/
 GDiskFreeOptions     *current_options = NULL;
-GList                *excluded = NULL;
 guint                timeout_id;
 
 /****************************************************************************
@@ -66,9 +65,9 @@ excluded_fstype (const char *fstype)
 {
   GList   *gl;
   gchar   *type;
-  if (excluded == NULL)
+  if (current_options->excluded == NULL)
     return 0;
-  gl = excluded;
+  gl = current_options->excluded;
   while (gl)
     {
       type = (gchar *)gl->data;
@@ -130,11 +129,6 @@ main (int argc, gchar *argv[])
 
   app = gdiskfree_app_new (geometry);
   mount_list = glibtop_get_mountlist (&mountlist, 0);
-  excluded = g_list_append (excluded, "proc");
-  excluded = g_list_append (excluded, "devpts");
-  excluded = g_list_append (excluded, "shm");
-  excluded = g_list_append (excluded, "usbfs");
-  excluded = g_list_append (excluded, "usbdevfs");
   for (i = 0; i < mountlist.number; i++)
     {
       glibtop_fsusage    fsusage;

@@ -168,6 +168,15 @@ gdiskfree_option_init (void)
     ("/GDiskFree/properties/show_mount=TRUE");
   current_options->show_size = gnome_config_get_bool
     ("/GDiskFree/properties/show_size=TRUE");
+  /*
+   * How to store a list of things with the gnome_config_XXXX stuff?
+   */
+  current_options->excluded = g_list_append (current_options->excluded, "proc");
+  current_options->excluded = g_list_append (current_options->excluded, "devpts");
+  current_options->excluded = g_list_append (current_options->excluded, "shm");
+  current_options->excluded = g_list_append (current_options->excluded, "usbfs");
+  current_options->excluded = g_list_append (current_options->excluded, "usbdevfs");
+  
 }
 /**
  * gdiskfree_option_save:
