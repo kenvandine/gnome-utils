@@ -26,11 +26,7 @@ Utilities_in_files = gcalc.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-pixmapsdir = $(datadir)/pixmaps
-pixmaps_DATA = calculator-font.png
-
 EXTRA_DIST = \
 	$(man_MANS) \
 	$(Utilities_in_files) \
-	$(Utilities_DATA) \
-	$(pixmaps_DATA)
+	$(Utilities_DATA)
