@@ -116,7 +116,6 @@
 "David Mosberger",
 "Thomas Muldowney",
 "Sung-Hyun Nam",
-"Jordan Nelson",
 "Karl Nelson",
 "Eric Nielson",
 "Eskil Olsen",
