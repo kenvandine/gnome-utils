@@ -266,15 +266,15 @@ int main(int argc, char *argv[])
 		argp_parser, NULL, NULL, NULL, NULL, NULL
 	};
 
+	gnome_init("gtt", &args, argc, argv, 0, NULL);
+
 #ifdef USE_SM
-	client = gnome_client_new_default();
+	client = gnome_master_client();
 	gtk_signal_connect(GTK_OBJECT(client), "save_yourself",
 			   GTK_SIGNAL_FUNC(save_state), (gpointer)argv[0]);
 	gtk_signal_connect(GTK_OBJECT(client), "die",
 			   GTK_SIGNAL_FUNC(session_die), NULL);
 #endif /* USE_SM */
-
-	gnome_init("gtt", &args, argc, argv, 0, NULL);
 
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
