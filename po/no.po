@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.1\n"
-"POT-Creation-Date: 2002-11-25 14:29+0000\n"
-"PO-Revision-Date: 2002-11-15 23:19+0100\n"
+"POT-Creation-Date: 2002-12-07 21:54+0100\n"
+"PO-Revision-Date: 2002-12-07 22:25+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr ""
 
 #. Translator credits
 #: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:46 gdictsrc/gdict-about.c:43
-#: logview/about.c:52 meat-grinder/meat-grinder.c:475
+#: logview/about.c:52
 msgid "translator_credits"
 msgstr "Kjartan Maraas"
 
@@ -633,12 +633,8 @@ msgid "Copyright 1999 by Mike Hughes"
 msgstr "Opphavsrett 1999, Mike Hughes"
 
 #: gdictsrc/gdict-about.c:58
-msgid ""
-"Client for MIT dictionary server.\n"
-"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
-msgstr ""
-"Klient for MIT ordboktjener.\n"
-"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+msgid "Client for MIT dictionary server.\n"
+msgstr "Klient for MIT ordboktjener.\n"
 
 #: gdictsrc/gdict-app.c:128
 msgid "Spell-checking..."
@@ -1073,20 +1069,20 @@ msgstr "EKunne ikke bestemme nåværende geometri for diskett."
 
 #: gfloppy/src/gfloppy.c:229
 msgid "EError while creating a unique filename for the bad blocks list file."
-msgstr ""
+msgstr "EFeil under oppretting av unikt filnavn for listen over dårlige blokker."
 
 #: gfloppy/src/gfloppy.c:249
 msgid "EError while filling the bad blocks list file."
-msgstr ""
+msgstr "EFeil under utfylling av listen over dårlige blokker."
 
 #: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "EError while spawning the (%s) command: %s."
-msgstr ""
+msgstr "EFeil under start av (%s) kommandoen: %s."
 
 #: gfloppy/src/gfloppy.c:332
 msgid "EUnknown mke2fs starting signature, cancelling."
-msgstr ""
+msgstr "EUkjent mke2fs startsignatur. Avbryter."
 
 #: gfloppy/src/gfloppy.c:346
 #, c-format
@@ -1095,15 +1091,18 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
+"EVerktøyet for å opprette filsystemer (%s) rapporterte følgende feil:\n"
+"\n"
+"%s (%d)"
 
 #: gfloppy/src/gfloppy.c:363
 msgid "EAbnormal child process termination."
-msgstr ""
+msgstr "EAbnormal terminering av underprosess."
 
 #: gfloppy/src/gfloppy.c:388
 #, c-format
 msgid "EError while spawning the mbadblocks command: %s."
-msgstr ""
+msgstr "EFeil under start av mbadblocks-kommando: %s."
 
 #: gfloppy/src/gfloppy.c:400
 #, c-format
@@ -1112,10 +1111,12 @@ msgid ""
 "errors:\n"
 "%s."
 msgstr ""
+"EVerktøyet som ser etter dårlige blokker (mbadblocks) rapporterte følgende feil:\n"
+"%s."
 
 #: gfloppy/src/gfloppy.c:443
 msgid "EAbnormal mbadblocks child process termination."
-msgstr ""
+msgstr "EUventet terminering av underprosess av mbadblocks."
 
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:470 gfloppy/src/gfloppy.c:510
@@ -1146,19 +1147,19 @@ msgstr "    "
 msgid ""
 "<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
 "be installed in order to make a thorough DOS (fat) formatting."
-msgstr ""
+msgstr "<b>Merk</b>: Verktøyet mbadblocks er ikke installert på dette systemet. Det må vøre installert for å kunne utføre en grundig DOS formatering (fat)."
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem settings</span>"
-msgstr ""
+msgstr "span weight=\"bold\">Innstillinger for filsystem</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
 msgid "<span weight=\"bold\">Formatting mode</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Formateringsmodus</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
 msgid "<span weight=\"bold\">Physical settings</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Fysiske innstillinger</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
@@ -1202,7 +1203,7 @@ msgstr "Linux Native (ext2)"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
-msgstr ""
+msgstr "_Grundig (utfører sjekk etter dårlige blokker)"
 
 #: gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
@@ -1224,7 +1225,7 @@ msgstr "_Standard (utfører en lavnivåformatering)"
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
-msgstr ""
+msgstr "Verken mke2fs eller mkdosfs/mformat er installert. Du kan ikke formatere en diskett uten en av disse."
 
 #: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, c-format
@@ -1277,7 +1278,7 @@ msgstr "ENHET"
 msgid ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr ""
+msgstr "Disketten er formatert, men <b>%d dårlige blokker</b> (av %d) ble funnet og merket."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -1295,11 +1296,11 @@ msgstr "Fremgang for formatering"
 msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
-msgstr ""
+msgstr "0 for hurtigformatering, 1 for standard formatering (lavnivåformat) og 2 for grundig formatering (sjekk etter dårlige blokker)."
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
-msgstr ""
+msgstr "KUN AVANSERTE BRUKERE - Forvalgt system for FAT-formatering"
 
 #: gfloppy/gfloppy.schemas.in.h:3
 msgid "Default filesystem type"
@@ -1313,13 +1314,13 @@ msgstr "Forvalgt formateringsmodus"
 msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
-msgstr ""
+msgstr "SANN for å sette mkdosfs som foretrukket system for formatering av FAT eller USANN for å bruke mtools."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr ""
+msgstr "ext2 for linux' eget filsystem eller fat for DOS-filsystemet."
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1518
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1558
 msgid "Search for Files"
 msgstr "Søk etter filer"
 
@@ -1327,177 +1328,169 @@ msgstr "Søk etter filer"
 msgid "Search your disk for files"
 msgstr "Søk etter filer på din disk"
 
-#: gsearchtool/gsearchtool.c:60
+#: gsearchtool/gsearchtool.c:62
 msgid "Contains the text"
 msgstr "Innholder teksten"
 
-#: gsearchtool/gsearchtool.c:62
+#: gsearchtool/gsearchtool.c:64
 msgid "Date modified less than (days)"
 msgstr "Dato endret mindre enn (dager)"
 
-#: gsearchtool/gsearchtool.c:63
+#: gsearchtool/gsearchtool.c:65
 msgid "Date modified more than (days)"
 msgstr "Dato endret mer enn (dager)"
 
-#: gsearchtool/gsearchtool.c:65
+#: gsearchtool/gsearchtool.c:67
 msgid "Size at least (kilobytes)"
 msgstr "Ikke mindre enn (kilobyte)"
 
-#: gsearchtool/gsearchtool.c:66
+#: gsearchtool/gsearchtool.c:68
 msgid "Size at most (kilobytes)"
 msgstr "Ikke større enn (kilobyte)"
 
-#: gsearchtool/gsearchtool.c:67
+#: gsearchtool/gsearchtool.c:69
 msgid "File is empty"
 msgstr "Filen er tomt"
 
-#: gsearchtool/gsearchtool.c:69
+#: gsearchtool/gsearchtool.c:71
 msgid "Owned by user"
 msgstr "Eid av bruker"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:72
 msgid "Owned by group"
 msgstr "Eid av gruppe"
 
-#: gsearchtool/gsearchtool.c:71
+#: gsearchtool/gsearchtool.c:73
 msgid "Owner is unrecognized"
 msgstr "Eier gjenkjennes ikke"
 
-#: gsearchtool/gsearchtool.c:73
+#: gsearchtool/gsearchtool.c:75
 msgid "File is not named"
 msgstr "Filen har ikke fått navn"
 
-#: gsearchtool/gsearchtool.c:74
-#, fuzzy
-msgid "File matches regular expression"
-msgstr "Treff på vanlig uttrykk"
-
 #: gsearchtool/gsearchtool.c:76
+msgid "File matches regular expression"
+msgstr "Filen har treff på vanlig uttrykk"
+
+#: gsearchtool/gsearchtool.c:78
 msgid "Follow symbolic links"
 msgstr "Følg symbolske lenker"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:79
 msgid "Include other filesystems"
 msgstr "Ta med andre filsystemer"
 
-#: gsearchtool/gsearchtool.c:133
-msgid "Set the text of 'file is named'"
-msgstr ""
-
 #: gsearchtool/gsearchtool.c:135
-msgid "Set the text of 'look in folder'"
-msgstr ""
+msgid "Set the text of 'file is named'"
+msgstr "Sett teksten «fil med navn»"
 
 #: gsearchtool/gsearchtool.c:137
-msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr ""
+msgid "Set the text of 'look in folder'"
+msgstr "Sett teksten i «se i mappe»"
 
 #: gsearchtool/gsearchtool.c:139
-msgid "Set sort order to descending, the default is ascending"
-msgstr ""
+msgid "Sort files by one of the following: name, folder, size, type, or date"
+msgstr "Sorter filer på en av førlgende: navn, mappe, størrelse, type eller dato"
 
 #: gsearchtool/gsearchtool.c:141
+msgid "Set sort order to descending, the default is ascending"
+msgstr "Sett sorteringsrekkefølgen til synkende. Forvalg er stigende"
+
+#: gsearchtool/gsearchtool.c:143
 msgid "Automatically start a search"
 msgstr "Start et søk automatisk"
 
-#: gsearchtool/gsearchtool.c:143
-msgid "Select the 'Contains the text' constraint"
-msgstr ""
-
 #: gsearchtool/gsearchtool.c:145
-#, fuzzy
-msgid "Select the 'Date modified less than (days)' constraint"
-msgstr "Følg symbolske lenker"
+msgid "Select the 'Contains the text' constraint"
+msgstr "Velg begrensningen «Inneholder teksten»"
 
 #: gsearchtool/gsearchtool.c:147
-#, fuzzy
-msgid "Select the 'Date modified more than (days)' constraint"
-msgstr "Følg symbolske lenker"
+msgid "Select the 'Date modified less than (days)' constraint"
+msgstr "Velg begrensningen «Endringsdato mindre enn (dager)»"
 
 #: gsearchtool/gsearchtool.c:149
-#, fuzzy
-msgid "Select the 'Size at most (kilobytes)' constraint"
-msgstr "Treff på vanlig uttrykk"
+msgid "Select the 'Date modified more than (days)' constraint"
+msgstr "Velg begrensningen «Endringsdato mer enn (dager)»"
 
 #: gsearchtool/gsearchtool.c:151
-#, fuzzy
-msgid "Select the 'Size at least (kilobytes)' constraint"
-msgstr "Treff på vanlig uttrykk"
+msgid "Select the 'Size at most (kilobytes)' constraint"
+msgstr "Velg begrensningen «Ikke større enn (kilobyte)"
 
 #: gsearchtool/gsearchtool.c:153
-msgid "Select the 'File is empty' constraint"
-msgstr ""
+msgid "Select the 'Size at least (kilobytes)' constraint"
+msgstr "Velg begrensningen «Ikke mindre enn (kilobyte)"
 
 #: gsearchtool/gsearchtool.c:155
-msgid "Select the 'Owned by user' constraint"
-msgstr ""
+msgid "Select the 'File is empty' constraint"
+msgstr "Velg begrensningen «Filen er tom»"
 
 #: gsearchtool/gsearchtool.c:157
-msgid "Select the 'Owned by group' constraint"
-msgstr ""
+msgid "Select the 'Owned by user' constraint"
+msgstr "Velg begrensningen «Eid av bruker»"
 
 #: gsearchtool/gsearchtool.c:159
-msgid "Select the 'Owner is unrecognized' constraint"
-msgstr ""
+msgid "Select the 'Owned by group' constraint"
+msgstr "Velg begrensningen «Eid av gruppe»"
 
 #: gsearchtool/gsearchtool.c:161
-msgid "Select the 'File is not named' constraint"
-msgstr ""
+msgid "Select the 'Owner is unrecognized' constraint"
+msgstr "Velg begrensningen «Eier ble ikke gjenkjent»"
 
 #: gsearchtool/gsearchtool.c:163
-#, fuzzy
-msgid "Select the 'File matches regular expression' constraint"
-msgstr "Treff på vanlig uttrykk"
+msgid "Select the 'File is not named' constraint"
+msgstr "Velg begrensningen «Filnavn er ikke»"
 
 #: gsearchtool/gsearchtool.c:165
-#, fuzzy
-msgid "Select the 'Follow symbolic links' constraint"
-msgstr "Følg symbolske lenker"
+msgid "Select the 'File matches regular expression' constraint"
+msgstr "Velg begrensningen «Fil har treff på vanlig uttrykk»"
 
 #: gsearchtool/gsearchtool.c:167
-#, fuzzy
-msgid "Select the 'Include other filesystems' constraint"
-msgstr "Treff på vanlig uttrykk"
+msgid "Select the 'Follow symbolic links' constraint"
+msgstr "Velg begrensningen «Følg symbolske lenker»"
 
-#: gsearchtool/gsearchtool.c:412
+#: gsearchtool/gsearchtool.c:169
+msgid "Select the 'Include other filesystems' constraint"
+msgstr "Velg begrensningen «Inkluder andre filsystemer»"
+
+#: gsearchtool/gsearchtool.c:414
 msgid "No files found"
 msgstr "Ingen filer funnet"
 
-#: gsearchtool/gsearchtool.c:497
+#: gsearchtool/gsearchtool.c:499
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 "Oppføring endret ble kalt for et alternativ som ikke gjaldt oppføringen!"
 
-#: gsearchtool/gsearchtool.c:681
+#: gsearchtool/gsearchtool.c:683
 msgid "Invalid option passed to sortby command line argument."
-msgstr ""
+msgstr "Ugyldig flagg gitt til flagget --sortby"
 
-#: gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:812
 msgid "(aborted)"
 msgstr "(avbrutt)"
 
-#: gsearchtool/gsearchtool.c:819
+#: gsearchtool/gsearchtool.c:821
 #, c-format
 msgid "No files found %s"
 msgstr "Ingen filer funnet %s"
 
-#: gsearchtool/gsearchtool.c:824
+#: gsearchtool/gsearchtool.c:826
 #, c-format
 msgid "One file found %s"
 msgstr "En fil funnet %s"
 
-#: gsearchtool/gsearchtool.c:828
+#: gsearchtool/gsearchtool.c:830
 #, c-format
 msgid "%d files found %s"
 msgstr "%d filer funnet %s"
 
-#: gsearchtool/gsearchtool.c:921
+#: gsearchtool/gsearchtool.c:923
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
-msgstr ""
+msgstr "Følgende feil ble rapportert under søk.\n\n"
 
-#: gsearchtool/gsearchtool.c:925
+#: gsearchtool/gsearchtool.c:927
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1505,106 +1498,226 @@ msgstr ""
 "\n"
 "... For mange feil å vise..."
 
-#: gsearchtool/gsearchtool.c:938
+#: gsearchtool/gsearchtool.c:940
 msgid "Search Errors"
 msgstr "Feil under søk"
 
-#: gsearchtool/gsearchtool.c:976 gsearchtool/gsearchtool.c:1000
+#: gsearchtool/gsearchtool.c:978 gsearchtool/gsearchtool.c:1002
 msgid "Search for Files Error"
 msgstr "Feil under søk etter filer"
 
-#: gsearchtool/gsearchtool.c:1081
+#: gsearchtool/gsearchtool.c:1083
 msgid "Search Rule Value Entry"
 msgstr "Verdi for oppføring for søkeregel"
 
-#: gsearchtool/gsearchtool.c:1082
+#: gsearchtool/gsearchtool.c:1084
 msgid "Enter a value for search rule"
 msgstr "Oppgi en verdi for søkeregel"
 
-#: gsearchtool/gsearchtool.c:1116
+#: gsearchtool/gsearchtool.c:1118
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klikk for å fjerne regelen «%s»"
 
-#: gsearchtool/gsearchtool.c:1170
+#: gsearchtool/gsearchtool.c:1172
 msgid "A_vailable options:"
 msgstr "Til_gjengelige alternativer:"
 
-#: gsearchtool/gsearchtool.c:1180
+#: gsearchtool/gsearchtool.c:1182
 msgid "Search Rules Menu"
 msgstr "Meny for søkeregler"
 
-#: gsearchtool/gsearchtool.c:1181
+#: gsearchtool/gsearchtool.c:1183
 msgid "Select a search rule from the menu"
 msgstr "Velg en søkeregel fra menyen"
 
-#: gsearchtool/gsearchtool.c:1213
+#: gsearchtool/gsearchtool.c:1214
 msgid "S_earch Results"
 msgstr "Søk_eresultater"
 
-#: gsearchtool/gsearchtool.c:1286
+#: gsearchtool/gsearchtool.c:1287
 msgid "Name"
 msgstr "Navn"
 
-#: gsearchtool/gsearchtool.c:1306
+#: gsearchtool/gsearchtool.c:1307
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1317
+#: gsearchtool/gsearchtool.c:1318
 msgid "Size"
 msgstr "Størrelse"
 
-#: gsearchtool/gsearchtool.c:1327
+#: gsearchtool/gsearchtool.c:1328
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1337
+#: gsearchtool/gsearchtool.c:1338
 msgid "Date Modified"
 msgstr "Dato endret"
 
-#: gsearchtool/gsearchtool.c:1376
+#: gsearchtool/gsearchtool.c:1377
 msgid "File is _named:"
 msgstr "Fil med _navn:"
 
-#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
+#: gsearchtool/gsearchtool.c:1392 gsearchtool/gsearchtool.c:1393
 msgid "File Name Entry"
 msgstr "Filnavnoppføring"
 
-#: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
+#: gsearchtool/gsearchtool.c:1392 gsearchtool/gsearchtool.c:1393
 msgid "Enter the file name you want to search"
 msgstr "Skriv inn filnavnet du ønsker å søke etter"
 
-#: gsearchtool/gsearchtool.c:1404
+#: gsearchtool/gsearchtool.c:1405
 msgid "_Look in folder:"
 msgstr "_Se i mappe:"
 
-#: gsearchtool/gsearchtool.c:1410
+#: gsearchtool/gsearchtool.c:1411
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
+#: gsearchtool/gsearchtool.c:1420 gsearchtool/gsearchtool.c:1421
 msgid "Starting folder entry"
 msgstr "Første mappeoppføring"
 
-#: gsearchtool/gsearchtool.c:1419 gsearchtool/gsearchtool.c:1420
+#: gsearchtool/gsearchtool.c:1420 gsearchtool/gsearchtool.c:1421
 msgid "Enter the folder name where you want to start the search"
 msgstr "Skriv inn navnet på mappen du vil starte søket i"
 
-#: gsearchtool/gsearchtool.c:1436 gsearchtool/gsearchtool.c:1437
+#: gsearchtool/gsearchtool.c:1437 gsearchtool/gsearchtool.c:1438
 msgid "Additional Options"
 msgstr "Flere alternativer"
 
-#: gsearchtool/gsearchtool.c:1479
+#: gsearchtool/gsearchtool.c:1482
 msgid "Click to Start the search"
 msgstr "Klikk for å starte søket"
 
-#: gsearchtool/gsearchtool.c:1480
+#: gsearchtool/gsearchtool.c:1483
 msgid "Click to Stop the search"
 msgstr "Klikk for å stoppe søket"
 
-#: gsearchtool/gsearchtool.c:1514
+#: gsearchtool/gsearchtool.c:1554
 msgid "Cannot initialize bonobo."
 msgstr "Kan ikke initiere bonobo."
+
+#: gsearchtool/gsearchtool-callbacks.c:45
+msgid "_Open"
+msgstr "_Åpne"
+
+#: gsearchtool/gsearchtool-callbacks.c:49
+msgid "O_pen Folder"
+msgstr "Å_pne mappe"
+
+#: gsearchtool/gsearchtool-callbacks.c:54
+msgid "_Save Results As..."
+msgstr "Lagre re_sultater som..."
+
+#: gsearchtool/gsearchtool-callbacks.c:107
+msgid "Can't Display Help"
+msgstr "Kan ikke vise hjelp"
+
+#: gsearchtool/gsearchtool-callbacks.c:128
+msgid "Searching..."
+msgstr "Søker..."
+
+#: gsearchtool/gsearchtool-callbacks.c:299
+#, c-format
+msgid "This will open %d separate files. Are you sure you want to do this?"
+msgstr "Dette vil åpne %d separate filer. Er du sikker på at du vil gjøre dette?"
+
+#: gsearchtool/gsearchtool-callbacks.c:302
+#, c-format
+msgid "Open %d Files?"
+msgstr "Åpne %d filer?"
+
+#: gsearchtool/gsearchtool-callbacks.c:359
+#: gsearchtool/gsearchtool-callbacks.c:620
+#, c-format
+msgid "There is no installed viewer capable of displaying \"%s\"."
+msgstr "Du har ikke installert visningsprogram som kan vise «%s»"
+
+#: gsearchtool/gsearchtool-callbacks.c:366
+#: gsearchtool/gsearchtool-callbacks.c:627
+msgid "Can't Display Location"
+msgstr "Kan ikke vise URL"
+
+#: gsearchtool/gsearchtool-callbacks.c:404
+#, c-format
+msgid "This will open %d separate folders. Are you sure you want to do this?"
+msgstr "Dette vil åpne %d separate mapper. Er du sikker på at du vil gjøre dette?"
+
+#: gsearchtool/gsearchtool-callbacks.c:407
+#, c-format
+msgid "Open %d Folders?"
+msgstr "Åpne %d mapper?"
+
+#: gsearchtool/gsearchtool-callbacks.c:446
+msgid "The nautilus file manager is not running."
+msgstr "Filhåndtereren Nautilus kjører ikke."
+
+#: gsearchtool/gsearchtool-callbacks.c:729
+msgid "Save Search Results As..."
+msgstr "Lagre søkeresultater som..."
+
+#: gsearchtool/gsearchtool-callbacks.c:772
+#, c-format
+msgid ""
+"Cannot save search results.\n"
+"\"%s\" is a folder."
+msgstr ""
+"Kan ikke lagre søkeresultater.\n"
+"«%s» er en mappe."
+
+#: gsearchtool/gsearchtool-callbacks.c:800
+#, c-format
+msgid "File \"%s\" already exists. Overwrite?"
+msgstr "Filen «%s» eksisterer allerede. Overskriv?"
+
+#: gsearchtool/gsearchtool-callbacks.c:837
+#, c-format
+msgid "Cannot save search results to the file \"%s\"."
+msgstr "Kan ikke lagre søkeresultater til filen «%s»."
+
+#: gsearchtool/gsearchtool-support.c:272
+msgid "Expander Size"
+msgstr "Utviderstørrelse"
+
+#: gsearchtool/gsearchtool-support.c:273
+msgid "Size of the expander arrow"
+msgstr "Størrelse på utvidelsespilen"
+
+#: gsearchtool/gsearchtool-support.c:334
+#, c-format
+msgid ""
+"GConf error:\n"
+"  %s"
+msgstr ""
+"GConf-feil:\n"
+"  %s"
+
+#: gsearchtool/gsearchtool-support.c:489
+msgid "%Y%m%d%H%M%S"
+msgstr "%d%m%Y%H%M%S"
+
+#: gsearchtool/gsearchtool-support.c:520
+msgid "today at %-I:%M %p"
+msgstr "i dag %-I:%M %p"
+
+#: gsearchtool/gsearchtool-support.c:522
+msgid "yesterday at %-I:%M %p"
+msgstr "i går %-I:%M %p"
+
+#: gsearchtool/gsearchtool-support.c:524 gsearchtool/gsearchtool-support.c:526
+msgid "%m/%-d/%y, %-I:%M %p"
+msgstr "%-d/%m/%y, %-I:%M %p"
+
+#: gsearchtool/gsearchtool-support.c:651
+msgid "link (broken)"
+msgstr "lenke (ødelagt)"
+
+#: gsearchtool/gsearchtool-support.c:656
+#, c-format
+msgid "link to %s"
+msgstr "lenke til %s"
 
 #: gsearchtool/help/es/gsearchtool.desktop.in.h:1
 msgid "GNOME Search Tool"
@@ -1615,17 +1728,12 @@ msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:43
-#, fuzzy
 msgid ""
 "This  program  is  part of  the  GNOME  project.Logview comes with "
 "ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
 "redistribute it under the conditions of the GNU General Public Licence. The "
 "log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-msgstr ""
-"Dette programmet er en del av GNOME prosjektet. Loggvisning kommer uten NOEN "
-"SOM HELST GARANTI. Dette er fri programvare, og du står fritt til å "
-"redistribuere den under betingelsene gitt i GNU General Public Licence. "
-"Loggikonet er gjort av Tuomas Kuosmanen (alias tigert)."
+msgstr "Dette programmet er en del av GNOME prosjektet. Loggvisning kommer uten NOEN SOM HELST GARANTI. Dette er fri programvare, og du står fritt til å redistribuere den under betingelsene gitt i GNU General Public Licence. Loggikonet er gjort av Tuomas Kuosmanen (alias tigert)."
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
 #: logview/about.c:72
@@ -1652,7 +1760,7 @@ msgstr "_Legg til"
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: logview/actions.c:166 meat-grinder/meat-grinder.c:941
+#: logview/actions.c:166
 msgid "_Remove"
 msgstr "Fje_rn"
 
@@ -1900,18 +2008,16 @@ msgid "S_witch Log"
 msgstr "B_ytt logg"
 
 #: logview/logview.c:100
-#, fuzzy
 msgid "Switch between already opened logs"
-msgstr "Filen er allerede åpnet"
+msgstr "Bytt mellom allerede åpnede logger"
 
 #: logview/logview.c:106
 msgid "_Monitor..."
 msgstr "_Overvåk..."
 
 #: logview/logview.c:107
-#, fuzzy
 msgid "Monitor Logs"
-msgstr "Overvåk logg"
+msgstr "Overvåk logger"
 
 #: logview/logview.c:115
 msgid "_Properties"
@@ -1922,14 +2028,12 @@ msgid "Show Log Properties"
 msgstr "Vis egenskaper for logg"
 
 #: logview/logview.c:124
-#, fuzzy
 msgid "Clos_e All"
-msgstr "Lukk logg"
+msgstr "Lukk all_e"
 
 #: logview/logview.c:125
-#, fuzzy
 msgid "Close all Log files"
-msgstr "Bruk loggfil"
+msgstr "Lukk alle loggfiler"
 
 #: logview/logview.c:137
 msgid "_Calendar"
@@ -2062,9 +2166,8 @@ msgid "Description:"
 msgstr "Beskrivelse:"
 
 #: logview/zoom.c:131
-#, fuzzy
 msgid "Log line detail for"
-msgstr "Detaljer i logglinje for %s"
+msgstr "Detaljer i logglinje for"
 
 #. Translators: do not include year, it would be bogus
 #: logview/zoom.c:185
@@ -2079,153 +2182,123 @@ msgstr "Loggfil som skal åpnes ved oppstart"
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your distribution."
-msgstr ""
+msgstr "Spesifiserer loggfilen som skal åpnes ved oppstart. Forvalg er enten /var/adm/messages eller /var/log/messages avhengig av din distribusjon."
 
-#: meat-grinder/archive-generator.desktop.in.h:1
-msgid "Archive Generator"
-msgstr "Arkivgenerator"
+#~ msgid ""
+#~ "Client for MIT dictionary server.\n"
+#~ "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+#~ msgstr ""
+#~ "Klient for MIT ordboktjener.\n"
+#~ "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
 
-#: meat-grinder/archive-generator.desktop.in.h:2
-msgid "Create compressed archives containing many files"
-msgstr "Opprett komprimerte arkiv som inneholder mange filer"
+#~ msgid "Archive Generator"
+#~ msgstr "Arkivgenerator"
 
-#: meat-grinder/meat-grinder.c:137
-#, c-format
-msgid ""
-"Number of files: %d\n"
-"Number of folders: %d"
-msgstr ""
-"Antall filer: %d\n"
-"Antall mapper: %d"
+#~ msgid "Create compressed archives containing many files"
+#~ msgstr "Opprett komprimerte arkiv som inneholder mange filer"
 
-#: meat-grinder/meat-grinder.c:143
-msgid ""
-"No files or folders, drop files or folders\n"
-"above to add them to the archive"
-msgstr ""
-"Ingen filer eller mapper, slipp filer eller mapper\n"
-"over for å legge dem til i arkivet"
+#~ msgid ""
+#~ "Number of files: %d\n"
+#~ "Number of folders: %d"
+#~ msgstr ""
+#~ "Antall filer: %d\n"
+#~ "Antall mapper: %d"
 
-#: meat-grinder/meat-grinder.c:166
-#, c-format
-msgid "%s removed"
-msgstr "%s fjernet"
+#~ msgid ""
+#~ "No files or folders, drop files or folders\n"
+#~ "above to add them to the archive"
+#~ msgstr ""
+#~ "Ingen filer eller mapper, slipp filer eller mapper\n"
+#~ "over for å legge dem til i arkivet"
 
-#: meat-grinder/meat-grinder.c:328 meat-grinder/meat-grinder.c:333
-#, c-format
-msgid "Failed to create %s"
-msgstr "Feil under oppretting av %s"
+#~ msgid "%s removed"
+#~ msgstr "%s fjernet"
 
-#: meat-grinder/meat-grinder.c:373
-msgid "Archive.tar.gz"
-msgstr "Arkiv.tar.gz"
+#~ msgid "Failed to create %s"
+#~ msgstr "Feil under oppretting av %s"
 
-#: meat-grinder/meat-grinder.c:493 meat-grinder/meat-grinder.c:977
-msgid "GNOME Archive Generator"
-msgstr "GNOME arkivgenerator"
+#~ msgid "Archive.tar.gz"
+#~ msgstr "Arkiv.tar.gz"
 
-#: meat-grinder/meat-grinder.c:495
-msgid "Drag files in to make archives"
-msgstr "Dra filer hit for å lage arkiv"
+#~ msgid "GNOME Archive Generator"
+#~ msgstr "GNOME arkivgenerator"
 
-#: meat-grinder/meat-grinder.c:528
-msgid "All files selected"
-msgstr "Alle filer valgt"
+#~ msgid "Drag files in to make archives"
+#~ msgstr "Dra filer hit for å lage arkiv"
 
-#: meat-grinder/meat-grinder.c:547
-msgid "All files removed"
-msgstr "Alle filer fjernet"
+#~ msgid "All files selected"
+#~ msgstr "Alle filer valgt"
 
-#: meat-grinder/meat-grinder.c:609 meat-grinder/meat-grinder.c:793
-msgid "No filename selected"
-msgstr "Ingen filnavn valgt"
+#~ msgid "All files removed"
+#~ msgstr "Alle filer fjernet"
 
-#: meat-grinder/meat-grinder.c:613
-msgid "File exists, overwrite?"
-msgstr "Filen eksisterer, overskriv?"
+#~ msgid "No filename selected"
+#~ msgstr "Ingen filnavn valgt"
 
-#: meat-grinder/meat-grinder.c:636
-#, c-format
-msgid "%s created"
-msgstr "%s opprettet"
+#~ msgid "File exists, overwrite?"
+#~ msgstr "Filen eksisterer, overskriv?"
 
-#: meat-grinder/meat-grinder.c:650
-msgid "No items to archive"
-msgstr "Ingen oppføringer å arkivere"
+#~ msgid "%s created"
+#~ msgstr "%s opprettet"
 
-#: meat-grinder/meat-grinder.c:654
-msgid "Save Results"
-msgstr "Lagre resultater"
+#~ msgid "No items to archive"
+#~ msgstr "Ingen oppføringer å arkivere"
 
-#: meat-grinder/meat-grinder.c:777
-#, c-format
-msgid "%s added"
-msgstr "%s lagt til"
+#~ msgid "Save Results"
+#~ msgstr "Lagre resultater"
 
-#: meat-grinder/meat-grinder.c:796
-msgid "File does not exists"
-msgstr "Filen eksisterer ikke"
+#~ msgid "%s added"
+#~ msgstr "%s lagt til"
 
-#: meat-grinder/meat-grinder.c:810
-msgid "Add file or folder"
-msgstr "Legg til fil eller mappe"
+#~ msgid "File does not exists"
+#~ msgstr "Filen eksisterer ikke"
 
-#: meat-grinder/meat-grinder.c:927
-msgid "_Add file or folder..."
-msgstr "_Legg til fil eller mappe..."
+#~ msgid "Add file or folder"
+#~ msgstr "Legg til fil eller mappe"
 
-#: meat-grinder/meat-grinder.c:928
-msgid "Add a file or folder to archive"
-msgstr "Legg til en fil eller en mappe i arkivet"
+#~ msgid "_Add file or folder..."
+#~ msgstr "_Legg til fil eller mappe..."
 
-#: meat-grinder/meat-grinder.c:931
-msgid "_Create archive..."
-msgstr "_Opprett arkiv..."
+#~ msgid "Add a file or folder to archive"
+#~ msgstr "Legg til en fil eller en mappe i arkivet"
 
-#: meat-grinder/meat-grinder.c:931
-msgid "Create a new archive from the items"
-msgstr "Opprett et nytt arkiv fra oppføringene"
+#~ msgid "_Create archive..."
+#~ msgstr "_Opprett arkiv..."
 
-#: meat-grinder/meat-grinder.c:942
-msgid "Remove the selected item"
-msgstr "Fjern valgt oppføring"
+#~ msgid "Create a new archive from the items"
+#~ msgstr "Opprett et nytt arkiv fra oppføringene"
 
-#: meat-grinder/meat-grinder.c:944
-msgid "R_emove All"
-msgstr "Fj_ern alle"
+#~ msgid "Remove the selected item"
+#~ msgstr "Fjern valgt oppføring"
 
-#: meat-grinder/meat-grinder.c:945
-msgid "Remove all items"
-msgstr "Fjern alle oppføringer"
+#~ msgid "R_emove All"
+#~ msgstr "Fj_ern alle"
 
-#: meat-grinder/meat-grinder.c:1016
-msgid "Drop files here to add them to the archive."
-msgstr "Slipp filer her for å legge dem til i arkivet."
+#~ msgid "Remove all items"
+#~ msgstr "Fjern alle oppføringer"
 
-#. tarball icon
-#: meat-grinder/meat-grinder.c:1028
-msgid "_Create Archive"
-msgstr "_Opprett arkiv"
+#~ msgid "Drop files here to add them to the archive."
+#~ msgstr "Slipp filer her for å legge dem til i arkivet."
 
-#: meat-grinder/meat-grinder.c:1036
-msgid ""
-"Drag this button to the destination where you want the archive to be created "
-"or press it to pop up a file selection dialog."
-msgstr ""
-"Dra denne knappen til målet hvor du ønsker at arkivet skal opprettes eller "
-"trykk på den for å få opp en filvalg-dialog."
+#~ msgid "_Create Archive"
+#~ msgstr "_Opprett arkiv"
 
-#: meat-grinder/meat-grinder.c:1174
-msgid "Cannot find proper icons anywhere!"
-msgstr "Kan ikke finne riktige ikoner noe sted!"
+#~ msgid ""
+#~ "Drag this button to the destination where you want the archive to be "
+#~ "created or press it to pop up a file selection dialog."
+#~ msgstr ""
+#~ "Dra denne knappen til målet hvor du ønsker at arkivet skal opprettes "
+#~ "eller trykk på den for å få opp en filvalg-dialog."
 
-#: meat-grinder/meat-grinder.c:1182
-msgid ""
-"Cannot find the archive (tar) program!\n"
-"This is the program used for creating archives."
-msgstr ""
-"Kan ikke finne arkivprogrammet (tar)!\n"
-"Dette er programmet som brukes for å lage arkiv."
+#~ msgid "Cannot find proper icons anywhere!"
+#~ msgstr "Kan ikke finne riktige ikoner noe sted!"
+
+#~ msgid ""
+#~ "Cannot find the archive (tar) program!\n"
+#~ "This is the program used for creating archives."
+#~ msgstr ""
+#~ "Kan ikke finne arkivprogrammet (tar)!\n"
+#~ "Dette er programmet som brukes for å lage arkiv."
 
 #~ msgid "EUnable to create filesystem."
 #~ msgstr "EKunne ikke opprette filsystem."
@@ -2290,18 +2363,6 @@ msgstr ""
 #~ msgid "Start folder does not exist."
 #~ msgstr "Startmappen eksisterer ikke."
 
-#~ msgid "today at %-I:%M %p"
-#~ msgstr "i dag %-I:%M %p"
-
-#~ msgid "yesterday at %-I:%M %p"
-#~ msgstr "i går %-I:%M %p"
-
-#~ msgid "%m/%-d/%y, %-I:%M %p"
-#~ msgstr "%-d/%m/%y, %-I:%M %p"
-
-#~ msgid "%Y%m%d%H%M%S"
-#~ msgstr "%d%m%Y%H%M%S"
-
 #~ msgid "folder"
 #~ msgstr "mappe"
 
@@ -2322,9 +2383,6 @@ msgstr ""
 #~ "Kan ikke utføre søket.\n"
 #~ "Bourne shell ble ikke funnet\n"
 #~ "Dette er typisk installert som /bin/sh eller /usr/bin/sh."
-
-#~ msgid "Searching..."
-#~ msgstr "Søker..."
 
 #~ msgid "Cannot perform the search. Please specify a search criteria."
 #~ msgstr "Kan ikke utføre søket. Vennligst spesifiser et søkekriterie."
@@ -2404,20 +2462,11 @@ msgstr ""
 #~ msgid "Frontend to the unix find/locate commands"
 #~ msgstr "Grensesnitt mot UNIXs find/locate kommandoer"
 
-#~ msgid "File %s already exists. Overwrite?"
-#~ msgstr "Filen %s eksisterer allerede. Overskriv?"
-
-#~ msgid "Cannot save the results file."
-#~ msgstr "Kan ikke lagre resultatfil."
-
 #~ msgid "S_how Command..."
 #~ msgstr "_Vis kommando..."
 
 #~ msgid "Show the command used to perform the search"
 #~ msgstr "Vis kommandoen som brukes til å utføre søket"
-
-#~ msgid "Save Results _As..."
-#~ msgstr "Lagre resultater _som..."
 
 #~ msgid "Save the search results"
 #~ msgstr "Lagre søkeresultatene"
@@ -3596,9 +3645,6 @@ msgstr ""
 #~ msgid "New File"
 #~ msgstr "Ny fil"
 
-#~ msgid "Open File"
-#~ msgstr "Åpne fil"
-
 #~ msgid "Print"
 #~ msgstr "Skriv ut"
 
@@ -4420,9 +4466,6 @@ msgstr ""
 #~ msgid "Document properties"
 #~ msgstr "Egenskaper for dokument"
 
-#~ msgid "Open"
-#~ msgstr "Åpne"
-
 #~ msgid "Open a palette"
 #~ msgstr "Åpne en palett"
 
@@ -4713,13 +4756,6 @@ msgstr ""
 #~ msgid "Couldn't run command ` %s ': %s"
 #~ msgstr "Kunne ikke kjøre kommandoen ` %s ': %s "
 
-#~ msgid ""
-#~ "The following mail will be sent to %s.\n"
-#~ " Are you sure you want to mail this information?"
-#~ msgstr ""
-#~ "Den følgende meldingen vil bli sendt til %s.\n"
-#~ " Er du sikker på at du vil sende denne informasjonen?"
-
 #~ msgid "Are you sure?"
 #~ msgstr "Er du sikker?"
 
@@ -4752,9 +4788,6 @@ msgstr ""
 
 #~ msgid "User Name:"
 #~ msgstr "Brukernavn:"
-
-#~ msgid "X Display Name:"
-#~ msgstr "X Skjermnavn:"
 
 #~ msgid "System Status:"
 #~ msgstr "Systemstatus:"
