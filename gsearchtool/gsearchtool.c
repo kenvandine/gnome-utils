@@ -1964,14 +1964,16 @@ create_main_window (void)
 	gtk_box_pack_start (GTK_BOX(window), interface.expander, FALSE, FALSE, 0);
 	g_signal_connect (G_OBJECT (interface.expander),"notify::expanded",
 			  G_CALLBACK (click_expander_cb), NULL);
-			  
-	if (interface.is_gail_loaded)
-	{ 
-		add_atk_namedesc (GTK_WIDGET (interface.expander), _("Show more options"), _("Expands or collapses a list of search options."));
-	}
 	
 	interface.additional_constraints = create_additional_constraint_section ();
 	gtk_box_pack_start (GTK_BOX(window), GTK_WIDGET(interface.additional_constraints), FALSE, FALSE, 0);
+	
+	if (interface.is_gail_loaded)
+	{ 
+		add_atk_namedesc (GTK_WIDGET (interface.expander), _("Show more options"), _("Expands or collapses a list of search options."));
+		add_atk_relation (GTK_WIDGET (interface.additional_constraints), GTK_WIDGET (interface.expander), ATK_RELATION_CONTROLLED_BY);
+		add_atk_relation (GTK_WIDGET (interface.expander), GTK_WIDGET (interface.additional_constraints), ATK_RELATION_CONTROLLER_FOR);
+	}
 	
 	vbox = gtk_vbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (window), vbox, TRUE, TRUE, 0);
