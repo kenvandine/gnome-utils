@@ -1,0 +1,21 @@
+module gnome_PIM {
+  
+  /* Exceptions */
+  exception PIM_busy{
+  };
+  
+  /* Types */
+  struct Vcard {
+  
+    string ID;
+  };
+  typedef sequence<Vcard> Vcard_seq;
+  
+  interface Vcard_server {
+     Vcard_seq get_records ();
+    
+     Vcard get_record (in string ID);
+     void set_record (in string ID, Vcard record);
+  }
+}
+  
