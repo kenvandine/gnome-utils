@@ -86,6 +86,7 @@
 #include <grp.h>
 /* #include "system.h" */ /* shared header for GNU shellutils, not in Gnome */
 #include <gnome.h>
+#include <errno.h>
 
 /* Fixme many of these conditionals don't actually exist in the 
    Gnome configure script. */
