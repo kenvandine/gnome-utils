@@ -19,11 +19,7 @@
     ---------------------------------------------------------------------- */
 
 
-#include <config.h>
-#include <gnome.h>
-#include <unistd.h>
-#include <time.h>
-#include <sys/stat.h>
+#include <glib/gi18n.h>
 #include "logview.h"
 #include "info.h"
 #include "misc.h"
