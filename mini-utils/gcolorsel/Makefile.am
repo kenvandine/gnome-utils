@@ -15,7 +15,7 @@ gcolorsel_LDADD = \
 	$(GNOMEUI_LIBS) \
 	$(INTLLIBS)
 
-EXTRA_DIST = gcolorsel.desktop
+EXTRA_DIST = gcolorsel.desktop gnome-color-browser.png
 
 Utilities_DATA = gcolorsel.desktop
 
