@@ -1214,7 +1214,7 @@ spawn_search_command (gchar *command)
 	}	
 
 	if (!g_spawn_async_with_pipes (g_get_home_dir (), argv, NULL, 
-				       (G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD),
+				       G_SPAWN_SEARCH_PATH,
 				       NULL, NULL, &search_command.pid, NULL, &child_stdout, 
 				       &child_stderr, &error)) {
 		GtkWidget *dialog;
