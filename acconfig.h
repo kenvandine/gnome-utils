@@ -13,6 +13,7 @@
 #undef HAVE_GLIBTOP_MACHINE_H
 #undef HAVE_LIBGTOP
 #undef NEED_LIBGTOP
+#undef HAVE_GUILE
 
 
 
