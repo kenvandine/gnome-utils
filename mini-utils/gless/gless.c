@@ -849,6 +849,12 @@ static void find_again_cb(GtkWidget * w, gpointer data)
     len = gtk_text_get_length(t);
     text = gtk_editable_get_chars(GTK_EDITABLE(t), 0, len);
 
+    if(!pattern) {
+	gnome_appbar_pop(app->appbar);
+	gnome_app_flash(app->app, _("No search string was specified!"));
+        return;
+    }
+
     result = string_search(pattern, text + app->search_position);
 
     if (result != -1) {
