@@ -1119,6 +1119,7 @@ gtt_project_timer_start (GttProject *proj)
 	ival->stop = ival->start;
 	ival->running = TRUE;
 	task->interval_list = g_list_prepend (task->interval_list, ival);
+	ival->parent = task;
 }
 
 void 
