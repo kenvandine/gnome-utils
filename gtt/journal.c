@@ -18,6 +18,7 @@
 
 #include "config.h"
 
+#include <errno.h>
 #include <glade/glade.h>
 #include <gnome.h>
 #include <gtkhtml/gtkhtml.h>
@@ -40,6 +41,7 @@ typedef struct wiggy_s {
 	GtkHTMLStream *handle;
 	GtkWidget *top;
 	GtkWidget *interval_popup;
+	GtkFileSelection *filesel;
 	EditIntervalDialog *edit_ivl;
 	GttInterval * interval;
 	GttProject *prj;
@@ -119,22 +121,89 @@ redraw (GttProject * prj, gpointer data)
 }
 
 /* ============================================================== */
+/* file selection callbacks */
+
+static gboolean
+raw_html_receiver (gpointer     engine,
+                   const gchar *data,
+                   guint        len,
+                   gpointer     user_data) 
+{
+	FILE *fh = (FILE *) user_data;
+	fwrite (data, len, 1, fh);
+	return TRUE;
+}
+
+static void 
+filesel_ok_clicked_cb (GtkWidget *w, gpointer data)
+{
+	Wiggy *wig = (Wiggy *) data;
+	FILE *fh;
+	char * filename;
+
+	filename = gtk_file_selection_get_filename (wig->filesel);
+
+	fh = fopen (filename, "w");
+	if (!fh) 
+	{
+		gchar *msg;
+		GtkWidget *mb;
+		int nerr = errno;
+		msg = g_strdup_printf (_("Unable to open the file %s\n%s"),
+			filename, strerror (nerr)); 
+		mb = gnome_message_box_new (msg,
+			GNOME_MESSAGE_BOX_ERROR, 
+			GNOME_STOCK_BUTTON_CLOSE,
+			NULL);
+		gtk_widget_show (mb);
+		// g_free (msg);
+	}
+	else
+	{
+		gtk_html_save (wig->htmlw, raw_html_receiver, fh);
+		fclose (fh);
+	}
+
+	gtk_widget_destroy (GTK_WIDGET(wig->filesel));
+	wig->filesel = NULL;
+}
+
+static void 
+filesel_cancel_clicked_cb (GtkWidget *w, gpointer data)
+{
+	Wiggy *wig = (Wiggy *) data;
+	gtk_widget_destroy (GTK_WIDGET(wig->filesel));
+	wig->filesel = NULL;
+}
+
+/* ============================================================== */
 
 static void 
 on_print_clicked_cb (GtkWidget *w, gpointer data)
 {
 	GladeXML  *glxml;
-	printf ("duude print!!\n");
 	glxml = glade_xml_new ("glade/not-implemented.glade", "Not Implemented");
-
 }
 
 static void 
 on_save_clicked_cb (GtkWidget *w, gpointer data)
 {
-	GladeXML  *glxml;
-	printf ("duude save!!\n");
-	glxml = glade_xml_new ("glade/not-implemented.glade", "Not Implemented");
+	GtkWidget *fselw;
+	Wiggy *wig = (Wiggy *) data;
+
+	/* don't show dialog more than once */
+	if (wig->filesel) return;
+
+	fselw = gtk_file_selection_new (_("Save HTML To File"));
+	wig->filesel = GTK_FILE_SELECTION(fselw);
+
+	gtk_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fselw)->ok_button), 
+		"clicked", GTK_SIGNAL_FUNC(filesel_ok_clicked_cb), wig);
+
+	gtk_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fselw)->cancel_button), 
+		"clicked", GTK_SIGNAL_FUNC(filesel_cancel_clicked_cb), wig);
+
+	gtk_widget_show (fselw);
 }
 
 static void 
@@ -256,20 +325,8 @@ edit_journal(GtkWidget *widget, gpointer data)
 	jnl_top = glade_xml_get_widget (glxml, "Journal Window");
 	jnl_viewport = glade_xml_get_widget (glxml, "Journal ScrollWin");
 
-	/* ---------------------------------------------------- */
 	/* create browser, plug it into the viewport */
 	jnl_browser = gtk_html_new();
-
-
-	/* FIXME hack alert -- scroled window add causes a hard crash
-	 * #0  0x40260ea5 in gtk_layout_get_type () from /usr/lib/libgtk-1.2.so.0
-	 * #1  0x40574a62 in html_alignment_to_paragraph () from /usr/lib/libgtkhtml.so.14
-	* but a simple container-add works fine ... */
-
-	/*
-	gtk_scrolled_window_add_with_viewport
-		(GTK_SCROLLED_WINDOW(jnl_viewport), jnl_browser);
-	*/
 	gtk_container_add(GTK_CONTAINER(jnl_viewport), jnl_browser);
 
 	/* ---------------------------------------------------- */
@@ -277,6 +334,7 @@ edit_journal(GtkWidget *widget, gpointer data)
 
 	wig = g_new0 (Wiggy, 1);
 	wig->edit_ivl = NULL;
+	wig->filesel = NULL;
 
 	wig->top = jnl_top;
 	wig->htmlw = GTK_HTML(jnl_browser);
