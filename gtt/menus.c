@@ -20,6 +20,7 @@
 #include <gnome.h>
 #include <string.h>
 
+#include "journal.h"
 #include "gtt.h"
 #include "menucmd.h"
 #include "toolbar.h"
@@ -66,7 +67,12 @@ static GnomeUIInfo menu_main_edit[] = {
 			       menu_clear_daily_counter,
 			       GNOME_STOCK_MENU_BLANK),
 	GNOMEUIINFO_SEPARATOR,
-#define MENU_EDIT_PROP_POS 6
+#define MENU_EDIT_JNL_POS 6
+	GNOMEUIINFO_ITEM_STOCK(N_("_Journal..."), NULL,
+			       edit_journal,
+			       GNOME_STOCK_MENU_BLANK),
+	GNOMEUIINFO_SEPARATOR,
+#define MENU_EDIT_PROP_POS 8
 	GNOMEUIINFO_MENU_PROPERTIES_ITEM(menu_properties,NULL),
 	GNOMEUIINFO_END
 };
@@ -183,6 +189,8 @@ menu_set_states(void)
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_PASTE_POS].widget,
 				 (cutted_project) ? 1 : 0);
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_CDC_POS].widget,
+				 (cur_proj) ? 1 : 0);
+	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_JNL_POS].widget,
 				 (cur_proj) ? 1 : 0);
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_PROP_POS].widget,
 				 (cur_proj) ? 1 : 0);

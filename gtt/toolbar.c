@@ -22,6 +22,7 @@
 #include <string.h>
 
 #include "gtt.h"
+#include "journal.h"
 #include "menucmd.h"
 #include "toolbar.h"
 
@@ -35,6 +36,7 @@ struct _MyToolbar {
         GtkTooltips *tt;
         GtkWidget *cut, *copy, *paste; /* to make them sensible
                                           as needed */
+        GtkWidget *journal_w;
         GtkWidget *prop_w;
 	GtkWidget *timer_w;
 	GnomeStock *timer;
@@ -140,7 +142,7 @@ build_toolbar(void)
         if (config_show_tb_new) {
                 /* Note to translators: just skip the `[GTT]' */
                 add_stock_button(mytbar->tbar, gtt_gettext(_("[GTT]New")),
-                                 _("New Project..."),
+                                 _("Create a New Project..."),
                                  GNOME_STOCK_PIXMAP_NEW,
                                  (GtkSignalFunc)new_project);
                 gtk_toolbar_append_space(mytbar->tbar);
@@ -171,19 +173,32 @@ build_toolbar(void)
                                                  (GtkSignalFunc)paste_project);
                 gtk_toolbar_append_space(mytbar->tbar);
         }
+        if (config_show_tb_journal) {
+		/* hack alert -- FIXME - xxx -- the redo icon is
+		 * inapropriate, but the open icon would be worse, 
+		 * and nothing else fits. */
+                mytbar->journal_w = add_stock_button(mytbar->tbar, 
+                                 _("Journal"),
+                                 _("View and Edit Timestamp Logs"),
+                                 GNOME_STOCK_PIXMAP_REDO,
+                                 (GtkSignalFunc)edit_journal);
+        }
         if (config_show_tb_prop)
                 mytbar->prop_w = add_stock_button(mytbar->tbar, _("Props"),
-                                                  _("Edit Properties..."),
-                                                  GNOME_STOCK_PIXMAP_PROPERTIES,
-						  (GtkSignalFunc)menu_properties);
+                                  _("Edit Project Properties..."),
+                                  GNOME_STOCK_PIXMAP_PROPERTIES,
+				  (GtkSignalFunc)menu_properties);
         if (config_show_tb_timer)
 		mytbar->timer = add_toggle_button(mytbar->tbar, _("Timer"),
-						  _("Start/Stop Timer"),
-						  GNOME_STOCK_PIXMAP_TIMER,
-						  (GtkSignalFunc)menu_toggle_timer,
-						  &(mytbar->timer_w));
-        if (((config_show_tb_timer) || (config_show_tb_prop)) &&
-            ((config_show_tb_pref) || (config_show_tb_help) ||
+			          _("Start/Stop Timer"),
+				  GNOME_STOCK_PIXMAP_TIMER,
+				  (GtkSignalFunc)menu_toggle_timer,
+				  &(mytbar->timer_w));
+        if (((config_show_tb_timer)    || 
+	     (config_show_tb_journal)  ||    
+	     (config_show_tb_prop)     ) &&
+            ((config_show_tb_pref) || 
+	     (config_show_tb_help) ||
              (config_show_tb_exit)))
                 gtk_toolbar_append_space(mytbar->tbar);
         if (config_show_tb_pref)
@@ -192,7 +207,8 @@ build_toolbar(void)
 				 GNOME_STOCK_PIXMAP_PREFERENCES,
 				 (GtkSignalFunc)menu_options);
         if (config_show_tb_help) {
-		add_stock_button(mytbar->tbar, _("Manual"), _("Manual..."),
+		add_stock_button(mytbar->tbar, _("Manual"), 
+                                 _("User's Guide and Manual"),
 				 GNOME_STOCK_PIXMAP_HELP,
 				 (GtkSignalFunc)toolbar_help);
         }

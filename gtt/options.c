@@ -74,6 +74,7 @@ int config_show_tb_timer = 1;
 int config_show_tb_pref = 1;
 int config_show_tb_help = 1;
 int config_show_tb_exit = 1;
+int config_show_tb_journal = 1;
 
 char *config_logfile_name = NULL;
 char *config_logfile_str = NULL;

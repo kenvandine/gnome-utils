@@ -89,6 +89,9 @@ about_box(GtkWidget *w, gpointer data)
         static GtkWidget *about = NULL;
         gchar *authors[] = {
                 "Eckehard Berns\n<eb@berns.i-s-o.net>",
+                "George Lebl\n<jirka@5z.com>",
+                "Linas Vepstas\n<linas@linas.org>",
+                "and dozens of bug-fixers and translators",
                 NULL
         };
 	if (about != NULL)
@@ -99,7 +102,7 @@ about_box(GtkWidget *w, gpointer data)
 	}
         about = gnome_about_new(APP_NAME,
                                 VERSION,
-                                "Copyright (C) 1997,98 Eckehard Berns",
+                                "Copyright (C) 1997,98 Eckehard Berns and others",
                                 (const gchar **)authors,
 #ifdef DEBUG
                                 __DATE__ ", " __TIME__,

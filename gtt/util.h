@@ -21,7 +21,32 @@
 
 #include <glib.h>
 
-void print_time (char * buff, int len, int secs, gboolean show_secs);
+typedef enum
+{
+  DATE_FORMAT_US,       /* United states: mm/dd/yyyy */
+  DATE_FORMAT_UK,       /* Britain: dd/mm/yyyy */
+  DATE_FORMAT_CE,       /* Continental Europe: dd.mm.yyyy */
+  DATE_FORMAT_ISO,      /* ISO: yyyy-mm-dd */
+  DATE_FORMAT_LOCALE    /* Take from locale information */
+} DateFormat;
 
+/* The print_time() routine will print the time as HH:MM, and will 
+ *    print the seconds if show_secs is true.  In analogy to the gnu 
+ *    stpcpy, returns a pointer to the trailing null
+ */
+char * print_time (char * buff, int len, int secs, gboolean show_secs);
+
+/* The set_date_format() routine sets date format to one of 
+ *    US, UK, CE, OR ISO.  Checks to make sure it's a legal value.
+ *    Args: DateFormat: enumeration indicating preferred format
+ *
+ * The print_date() routine converts a date into a localized string
+ *    representation.  Returns a pointer to the terminating null byte.
+ */
+
+void set_date_format (DateFormat df);
+char * print_date (char * buff, size_t len, time_t secs);
+	
+char * print_date_time (char * buff, size_t len, time_t secs);
 
 #endif /* __GTT_UTIL_H__ */

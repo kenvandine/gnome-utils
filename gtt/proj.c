@@ -47,6 +47,8 @@ gtt_project_new(void)
 	proj = g_new0(GttProject, 1);
 	proj->title = NULL;
 	proj->desc = NULL;
+	proj->min_interval = 3;
+	proj->auto_merge_interval = 60;
 	proj->secs_ever = 0;
 	proj->secs_day = 0;
 	proj->rate = 1.0;
@@ -84,6 +86,8 @@ gtt_project_dup(GttProject *proj)
 
 	if (!proj) return NULL;
 	p = gtt_project_new();
+	p->min_interval = proj->min_interval;
+	p->auto_merge_interval = proj->auto_merge_interval;
 	p->secs_ever = proj->secs_ever;
 	p->secs_day = proj->secs_day;
 	if (proj->title)
@@ -283,6 +287,8 @@ gtt_project_compat_set_secs (GttProject *proj, int sever, int sday, time_t last)
 	/* get the midnight of the last update */
 	midnight = get_midnight (last);
 
+	/* old GTT data will just be one big interval 
+	 * lumped under one task */
 	tsk = gtt_task_new ();
 	gtt_task_set_memo (tsk, _("Old GTT Tasks"));
 
@@ -301,6 +307,10 @@ gtt_project_compat_set_secs (GttProject *proj, int sever, int sday, time_t last)
 
 	gtt_project_add_task (proj, tsk);
 
+	/* All new data will get its own task */
+	tsk = gtt_task_new ();
+	gtt_task_set_memo (tsk, _("New Task"));
+	gtt_project_add_task (proj, tsk);
 }
 
 /* =========================================================== */
@@ -563,7 +573,28 @@ gtt_project_get_secs_ever (GttProject *proj)
 
 
 /* =========================================================== */
-/* recomputed cached data */
+/* Recomputed cached data.  Scrub it while we're at it. */
+
+static void
+scrub_intervals (GttTask *tsk, GttProject *prj)
+{
+	GList *node;
+	int not_done = TRUE;
+	while (not_done)
+	{
+		not_done = FALSE;
+		for (node = tsk->interval_list; node; node=node->next)
+		{
+			GttInterval *ivl = node->data;
+			if ((ivl->stop - ivl->start) <= prj->min_interval)
+			{
+				tsk->interval_list = g_list_remove (tsk->interval_list, ivl);
+				not_done = TRUE;
+				break;
+			}
+		}
+	}
+}
 
 void
 gtt_project_compute_secs (GttProject *proj)
@@ -579,6 +610,7 @@ gtt_project_compute_secs (GttProject *proj)
 	for (tsk_node= proj->task_list; tsk_node; tsk_node=tsk_node->next)
 	{
 		GttTask * task = tsk_node->data;
+		scrub_intervals (task, proj);
 		for (ivl_node= task->interval_list; ivl_node; ivl_node=ivl_node->next)
 		{
 			GttInterval *ivl = ivl_node->data;
@@ -673,10 +705,11 @@ gtt_project_timer_start (GttProject *proj)
 	{
 		task = gtt_task_new();
 		proj->task_list = g_list_prepend (NULL, task);
+		task->memo = g_strdup (_("New Task"));
 	}
 
-	/* by definition, the current task is the one at the head 
-	 * of the list, and the current interval is  at the ehad 
+	/* By definition, the current task is the one at the head 
+	 * of the list, and the current interval is  at the head 
 	 * of the task */
 	task = proj->task_list->data;
 	g_return_if_fail (task);
@@ -747,6 +780,13 @@ gtt_project_timer_stop (GttProject *proj)
 	g_return_if_fail (ival);
 
 	ival->running = FALSE;
+
+	/* do not record zero-length or very short intervals */
+	if (proj->min_interval >= (ival->start - ival->stop))
+	{
+		task->interval_list = g_list_remove (task->interval_list, ival);
+		g_free (ival);
+	}
 }
 
 /* =========================================================== */

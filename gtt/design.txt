@@ -1,0 +1,17 @@
+
+Design Quickie Overview
+-----------------------
+
+Project data is pretty-much isolated from the rest of the 
+code, in the proj.c file.  The structures are not visible,
+and are kept private, in proj_p.h.  This should allow the
+project data to be more easily interfaced to things like SQL
+databases.  The structures are also GUI (gtk/gnome) independent,
+which should also allow them to be used inside of e.g. cgi-bins.
+
+Project data is saved in an XML file format: see
+xml-read.c and xml-write.c
+
+Journals are displayed as html by the gtkhtml widget.  The
+generation of the html output has been abstracted so that
+it could be piped to anything (e.g. to a cgi-bin).

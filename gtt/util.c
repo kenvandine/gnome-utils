@@ -1,4 +1,4 @@
-/*   utilities for GTimeTracker - a time tracker
+/*   Utilities for GTimeTracker - a time tracker
  *   Copyright (C) 2001 Linas Vepstas
  *
  *   This program is free software; you can redistribute it and/or modify
@@ -16,27 +16,50 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+
+#define _GNU_SOURCE
+#define __EXTENSIONS__
+
 #include "config.h"
+
+#include <ctype.h>
 #include <glib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#ifdef HAVE_LANGINFO_D_FMT
+#include <langinfo.h>
+#endif
 
 #include "util.h"
 
+
+#ifdef HAVE_LANGINFO_D_FMT
+#  define GNC_D_FMT (nl_langinfo (D_FMT))
+#else
+#  define GNC_D_FMT "%Y-%m-%d"
+#  define GNC_DT_FMT "%Y-%m-%d %r"
+#endif
+
 /* ============================================================== */
 
-void 
+char *
 print_time (char * buff, int len, int secs, gboolean show_secs)
 {
+	size_t flen;
 	if (0 <= secs)
 	{
 		if (show_secs)
 		{
-			g_snprintf(buff, len,
+			flen = g_snprintf(buff, len,
 			   "%02d:%02d:%02d", (int)(secs / 3600),
 			   (int)((secs % 3600) / 60), (int)(secs % 60));
 		}
 		else
 		{
-			g_snprintf(buff, len, 
+			flen = g_snprintf(buff, len, 
 			   "%02d:%02d", (int)(secs / 3600),
 			   (int)((secs % 3600) / 60));
 		}
@@ -45,19 +68,127 @@ print_time (char * buff, int len, int secs, gboolean show_secs)
 	{
 		if (show_secs)
 		{
-			g_snprintf(buff, len,
+			flen = g_snprintf(buff, len,
 			   "-%02d:%02d:%02d", (int)(-secs / 3600),
 			   (int)((-secs % 3600) / 60), (int)(-secs % 60));
 		}
 		else
 		{
-			g_snprintf(buff, len,
+			flen = g_snprintf(buff, len,
 			   "-%02d:%02d", (int)(-secs / 3600),
 			   (int)((-secs % 3600) / 60));
 		}
 	}
+	return buff+flen;
 }
 
 /* ============================================================== */
+/* The following code baldly stolen fron GnuCash */
+
+static DateFormat dateFormat = DATE_FORMAT_LOCALE;
+
+void 
+set_date_format(DateFormat df)
+{
+  dateFormat = df;
+}
+
+char * 
+print_date (char * buff, size_t len, time_t secs)
+{
+  int flen;
+  int day, month, year;
+  struct tm ltm;
+  
+  if (!buff) return buff;
+
+  /* Note that when printing year, we use %-4d in format string;
+   * this causes a one, two or three-digit year to be left-adjusted
+   * when printed (i.e. padded with blanks on the right).  This is 
+   * important while the user is editing the year, since erasing a 
+   * digit can temporarily cause a three-digit year, and having the 
+   * blank on the left is a real pain for the user.  So pad on the 
+   * right.
+   */
+  ltm = *localtime (&secs);
+  day = ltm.tm_mday;
+  month = ltm.tm_mon +1;
+  year = ltm.tm_year +1900;
+  
+  switch(dateFormat)
+  {
+    case DATE_FORMAT_UK:
+      flen = g_snprintf (buff, len, "%2d/%2d/%-4d", day, month, year);
+      break;
+    case DATE_FORMAT_CE:
+      flen = g_snprintf (buff, len, "%2d.%2d.%-4d", day, month, year);
+      break;
+    case DATE_FORMAT_ISO:
+      flen = g_snprintf (buff, len, "%04d-%02d-%02d", year, month, day);
+      break;
+    case DATE_FORMAT_LOCALE:
+      {
+        flen = strftime (buff, len, GNC_D_FMT, &ltm);
+      }
+      break;
+
+    case DATE_FORMAT_US:
+    default:
+      flen = g_snprintf (buff, len, "%2d/%2d/%-4d", month, day, year);
+      break;
+  }
+  return buff + flen;
+}
+
+char * 
+print_date_time (char * buff, size_t len, time_t secs)
+{
+  int flen;
+  int day, month, year, hour, min, sec;
+  struct tm ltm;
+  
+  if (!buff) return buff;
+
+  /* Note that when printing year, we use %-4d in format string;
+   * this causes a one, two or three-digit year to be left-adjusted
+   * when printed (i.e. padded with blanks on the right).  This is 
+   * important while the user is editing the year, since erasing a 
+   * digit can temporarily cause a three-digit year, and having the 
+   * blank on the left is a real pain for the user.  So pad on the 
+   * right.
+   */
+  ltm = *localtime (&secs);
+  day = ltm.tm_mday;
+  month = ltm.tm_mon +1;
+  year = ltm.tm_year +1900;
+  hour = ltm.tm_hour;
+  min = ltm.tm_min;
+  sec = ltm.tm_sec;
+  
+  switch(dateFormat)
+  {
+    case DATE_FORMAT_UK:
+      flen = g_snprintf (buff, len, "%2d/%2d/%-4d %2d:%02d", day, month, year, hour, min);
+      break;
+    case DATE_FORMAT_CE:
+      flen = g_snprintf (buff, len, "%2d.%2d.%-4d %2d:%02d", day, month, year, hour, min);
+      break;
+    case DATE_FORMAT_ISO:
+      flen = g_snprintf (buff, len, "%04d-%02d-%02d %02d:%02d", year, month, day, hour, min);
+      break;
+    case DATE_FORMAT_LOCALE:
+      {
+        flen = strftime (buff, len, GNC_D_FMT, &ltm);
+      }
+      break;
+
+    case DATE_FORMAT_US:
+    default:
+      flen = g_snprintf (buff, len, "%2d/%2d/%-4d %2d:%02d", month, day, year, hour, min);
+      break;
+  }
+  return buff + flen;
+}
+
 /* ===================== END OF FILE ============================ */
 

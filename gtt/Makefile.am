@@ -1,4 +1,4 @@
-SUBDIRS = doc
+SUBDIRS = doc glade
 
 INCLUDES = 			\
 	-I$(includedir)		\
@@ -14,12 +14,14 @@ gtt_SOURCES = 		\
 	err.c		\
 	err-throw.c	\
 	file-io.c	\
+	journal.c	\
 	log.c		\
 	main.c		\
 	menucmd.c	\
 	menus.c		\
 	menus.h		\
 	options.c	\
+	phtml.c		\
 	proj.c		\
 	prop.c		\
 	shorts.c	\
@@ -35,7 +37,9 @@ noinst_HEADERS = 	\
 	err-throw.h	\
 	file-io.h	\
 	gtt.h		\
+	journal.h	\
 	menucmd.h	\
+	phtml.h		\
 	proj.h		\
 	proj_p.h	\
 	shorts.h	\
@@ -45,9 +49,10 @@ noinst_HEADERS = 	\
 	
 
 gtt_LDADD = \
+	$(GLADE_LIBS)           \
 	$(GNOME_LIBDIR)         \
 	$(GNOME_XML_LIB)        \
-	$(GTKXMHTML_LIBS)	\
+	$(GTKHTML_LIBS)		\
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 

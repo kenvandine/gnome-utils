@@ -334,6 +334,9 @@ main(int argc, char *argv[])
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
 			   GTK_SIGNAL_FUNC(quit_app), NULL);
 
+	/* gconf init is needed by gtkhtml */
+	gconf_init (argc, argv, NULL);
+
 	/*
 	 * Added by SMH 2000-03-22:
 	 * Connect short-cut keys. 

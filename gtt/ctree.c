@@ -290,6 +290,7 @@ create_ctree(void)
 	gtk_clist_set_column_justification(GTK_CLIST(w), TIME_COL,  GTK_JUSTIFY_CENTER);
 	gtk_clist_column_titles_active(GTK_CLIST(w));
 
+	/* create the top-level window to hold the c-tree */
 	sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_container_add (GTK_CONTAINER (sw), w);
 	gtk_scrolled_window_set_policy (
@@ -348,8 +349,10 @@ create_ctree(void)
 
 
 
-void
-setup_ctree(void)
+/* setup_ctree_w references no widget globals ... */
+
+static void
+setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
 {
 	GList *node, *prjlist;
 	int timer_running, cp_found = 0;
@@ -359,28 +362,28 @@ setup_ctree(void)
 
 	prjlist = gtt_get_project_list();
 	if (prjlist) {
-		gtk_clist_freeze(GTK_CLIST(glist));
-		gtk_clist_clear(GTK_CLIST(glist));
+		gtk_clist_freeze(GTK_CLIST(tree_w));
+		gtk_clist_clear(GTK_CLIST(tree_w));
 		for (node = prjlist; node; node = node->next) 
 		{
 			GttProject *prj = node->data;
 			ctree_add(prj, NULL);
 			if (prj == cur_proj) cp_found = 1;
 		}
-		gtk_clist_thaw(GTK_CLIST(glist));
+		gtk_clist_thaw(GTK_CLIST(tree_w));
 	} else {
-		gtk_clist_clear(GTK_CLIST(glist));
+		gtk_clist_clear(GTK_CLIST(tree_w));
 	}
 	if (!cp_found) {
 		cur_proj_set(NULL);
 	} else if (cur_proj) {
-		gtk_ctree_select(GTK_CTREE(glist), cur_proj->trow);
+		gtk_ctree_select(tree_w, cur_proj->trow);
 	}
 	err_init();
-	if (!GTK_WIDGET_MAPPED(window)) {
-		gtk_widget_show(window);
+	if (!GTK_WIDGET_MAPPED(top_win)) {
+		gtk_widget_show(top_win);
 #ifdef CLIST_HEADER_HACK
-		clist_header_hack(window, glist);
+		clist_header_hack(top_win, GTK_WIDGET(tree_w));
 #endif /* CLIST_HEADER_HACK */
 	}
 	if (timer_running) start_timer();
@@ -388,30 +391,37 @@ setup_ctree(void)
 
 	if (config_show_clist_titles)
 	{
-		gtk_clist_column_titles_show(GTK_CLIST(glist));
+		gtk_clist_column_titles_show(GTK_CLIST(tree_w));
 	}
 	else
 	{
-		gtk_clist_column_titles_hide(GTK_CLIST(glist));
+		gtk_clist_column_titles_hide(GTK_CLIST(tree_w));
 	}
 
 	if (config_show_subprojects)
 	{
-		gtk_ctree_set_line_style(GTK_CTREE(glist), GTK_CTREE_LINES_SOLID);
-		gtk_ctree_set_expander_style(GTK_CTREE(glist),GTK_CTREE_EXPANDER_SQUARE);
+		gtk_ctree_set_line_style(tree_w, GTK_CTREE_LINES_SOLID);
+		gtk_ctree_set_expander_style(tree_w, GTK_CTREE_EXPANDER_SQUARE);
 	}
 	else
 	{
-		gtk_ctree_set_line_style(GTK_CTREE(glist), GTK_CTREE_LINES_NONE);
-		gtk_ctree_set_expander_style(GTK_CTREE(glist),GTK_CTREE_EXPANDER_NONE);
+		gtk_ctree_set_line_style(tree_w, GTK_CTREE_LINES_NONE);
+		gtk_ctree_set_expander_style(tree_w, GTK_CTREE_EXPANDER_NONE);
 	}
 
 	if (cur_proj) 
 	{
-		gtk_ctree_node_moveto(GTK_CTREE(glist), cur_proj->trow, -1,
+		gtk_ctree_node_moveto(tree_w, cur_proj->trow, -1,
 				 0.5, 0.0);
 	}
-	gtk_widget_queue_draw(GTK_WIDGET(glist));
+	gtk_widget_queue_draw(GTK_WIDGET(tree_w));
+}
+
+void
+setup_ctree(void)
+{
+	/* suck in globals */
+	setup_ctree_w (window, GTK_CTREE(glist));
 }
 
 /* ============================================================== */
