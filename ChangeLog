@@ -1,5 +1,13 @@
 1998-08-23  Martin Baulig  <martin@home-of-linux.org>
 
+	* configure.in (FALSE): New automake conditional.
+
+	* Makefile.am (SUBDIRS): Include `gtop' in a `FALSE' automake
+	conditional. This way, it is included in the tarballs and we
+	don't need to list everything in `DIST_SUBDIRS'.
+
+1998-08-23  Martin Baulig  <martin@home-of-linux.org>
+
 	* Makefile.am (SUBDIRS): No longer building `gtop', this
 	has now become its own top-level module. Please make any
 	changes there.

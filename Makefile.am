@@ -14,8 +14,16 @@ if HAVE_LIBGTOP
 gdiskfree = gdiskfree
 endif
 
+# We include `gtop' in a `FALSE' automake conditional so it is
+# included in the tarballs and we don't need to list everything
+# in DIST_SUBDIRS.
+
+if FALSE
+gtop = gtop
+endif
+
 SUBDIRS = po intl macros \
-	gcalc gedit $(genius) ghex gsearchtool $(gdiskfree) gtt \
+	gcalc gedit $(genius) ghex gsearchtool gtop $(gdiskfree) gtt \
 	$(guile_DIRS) $(objc_DIRS) mini-utils gncal splash gdialog
 
 EXTRA_DIST = gnome-utils.spec
