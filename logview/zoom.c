@@ -150,6 +150,8 @@ repaint_zoom (LogviewWindow *window)
    if (match_line_in_db (line, regexp_db))
 	   if (find_tag_in_db (line, descript_db))
 		   description = LocaleToUTF8 (line->description->description);
+   if (description == NULL)
+	   description = g_strdup_printf("");
    
    label_text = g_strdup_printf ("<b>Date</b> : %s\n"
 				 "<b>Process</b> : %s\n"
@@ -159,8 +161,11 @@ repaint_zoom (LogviewWindow *window)
 				 LocaleToUTF8 (line->message),
 				 description);
 
-   gtk_label_set_text (GTK_LABEL(window->zoom_label), label_text);
-   gtk_label_set_use_markup (GTK_LABEL (window->zoom_label), TRUE);
+   gtk_label_set_markup (GTK_LABEL(window->zoom_label), label_text);
+
+   g_free (date_string);
+   g_free (description);
+   g_free (label_text);
 
    return TRUE;
 }

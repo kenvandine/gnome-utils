@@ -120,8 +120,7 @@ RepaintLogInfo (LogviewWindow *window, GtkWidget *label)
    g_free (last_date);
    g_free (num_lines);
 
-   gtk_label_set_text (GTK_LABEL (label), info_string);
-   gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
+   gtk_label_set_markup (GTK_LABEL (label), info_string);
 
    g_free (info_string);
 }
