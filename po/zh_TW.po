@@ -5,19 +5,78 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 1.102.0\n"
-"POT-Creation-Date: 2002-04-12 16:45+0800\n"
-"PO-Revision-Date: 2002-04-12 19:47+0800\n"
+"Project-Id-Version: gnome-utils 1.103.0\n"
+"POT-Creation-Date: 2002-04-26 04:05+0800\n"
+"PO-Revision-Date: 2002-04-26 04:35+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: exe-handler/gnome-exe-handler.c:76
+#, c-format
+msgid ""
+"Executing arbitrary programs that you downloaded from the network might be "
+"dangerous.\n"
+"\n"
+"Are you sure you want to run `%s'?"
+msgstr ""
+"在網上隨意下載和執行一些來歷不明的程式是很危險的。\n"
+"\n"
+"你是否確定要執行 `%s'？"
+
+#: exe-handler/gnome-exe-handler.c:83
+msgid "Could not access file permissions"
+msgstr "無法存取檔案權限"
+
+#: exe-handler/gnome-exe-handler.c:88
+#, c-format
+msgid "Could not execute the file `%s' due to a permission problem"
+msgstr "無法執行檔案 `%s' 因權限不足"
+
+#: exe-handler/gnome-exe-handler.c:104
+#, c-format
+msgid "Failure at executing `%s'"
+msgstr "執行 `%s' 失敗"
+
+#: exe-handler/gnome-exe-handler.c:123
+#, c-format
+msgid "It was not possible to open the file `%s'"
+msgstr "無法開啟檔案 `%s'"
+
+#: exe-handler/gnome-exe-handler.c:132
+#, c-format
+msgid "The file `%s' is empty"
+msgstr "檔案 `%s' 是空白的"
+
+#: exe-handler/gnome-exe-handler.c:137
+#, c-format
+msgid "There was an error. `%s' is empty"
+msgstr "發生錯誤。`%s' 是空白的"
+
+#: exe-handler/gnome-exe-handler.c:152
+msgid "This is a library and can not be executed"
+msgstr "這是一個函式庫，是不可執行的"
+
+#: exe-handler/gnome-exe-handler.c:158
+msgid "The file is a core file and can not be executed"
+msgstr "這是一個不可執行的 core 檔"
+
+#: exe-handler/gnome-exe-handler.c:162 exe-handler/gnome-exe-handler.c:196
+msgid "This is an unknown kind of executable"
+msgstr "這是一個類型不明的可執行檔"
+
+#: exe-handler/gnome-exe-handler.c:192
+msgid ""
+"The executable is for a different platform and can not be executed on this "
+"system"
+msgstr "此可執行檔是給其它平台用的，不能在此平台中執行"
+
 #. Translator credits
-#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
+#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:48 gdictsrc/gdict-about.c:39
 #: gsearchtool/gsearchtool.c:1711 logview/about.c:52
-#: meat-grinder/meat-grinder.c:410
+#: meat-grinder/meat-grinder.c:425
 msgid "translator_credits"
 msgstr "Abel Cheung <maddog@linux.org.hk>"
 
@@ -33,7 +92,7 @@ msgstr "一個類似 xcalc 的雙精準度計算機"
 msgid "Run in analog (slide rule) mode"
 msgstr "以計算尺模式執行"
 
-#: gcalc/gcalc.c:185
+#: gcalc/gcalc.c:186
 msgid "GNOME Calculator"
 msgstr "GNOME 計算機"
 
@@ -98,8 +157,8 @@ msgid "INV"
 msgstr "INV"
 
 #: gcalc/gnome-calc.c:1149
-msgid "Shift"
-msgstr "反函數"
+msgid "Inverse trigonometry/log function"
+msgstr "反三角/對數函數"
 
 #. inverse button
 #: gcalc/gnome-calc.c:1150
@@ -204,15 +263,17 @@ msgstr "÷"
 
 #: gcalc/gnome-calc.c:1165
 msgid "Divide by"
-msgstr "除以"
+msgstr "除"
 
 #: gcalc/gnome-calc.c:1167
 msgid "STO"
-msgstr "STO"
+msgstr "儲存"
 
 #: gcalc/gnome-calc.c:1167
-msgid "Store"
-msgstr "儲存數值"
+msgid ""
+"Store the value in the\n"
+"display field in memory"
+msgstr "將畫面的數字儲存進記憶內"
 
 #: gcalc/gnome-calc.c:1168
 msgid "7"
@@ -232,15 +293,17 @@ msgstr "×"
 
 #: gcalc/gnome-calc.c:1171
 msgid "Multiply by"
-msgstr "乘以"
+msgstr "乘"
 
 #: gcalc/gnome-calc.c:1173
 msgid "RCL"
-msgstr "RCL"
+msgstr "載入"
 
 #: gcalc/gnome-calc.c:1173
-msgid "Recall"
-msgstr "載入數值"
+msgid ""
+"Display the value in memory\n"
+"in the display field"
+msgstr "在畫面中顯示記憶裡的數值"
 
 #: gcalc/gnome-calc.c:1174
 msgid "4"
@@ -264,11 +327,13 @@ msgstr "減"
 
 #: gcalc/gnome-calc.c:1179
 msgid "SUM"
-msgstr "SUM"
+msgstr "總和"
 
 #: gcalc/gnome-calc.c:1179
-msgid "Sum"
-msgstr "總和"
+msgid ""
+"Add the value in the display\n"
+"field to the value in memory"
+msgstr "將記憶的數值加上畫面的數值"
 
 #: gcalc/gnome-calc.c:1180
 msgid "1"
@@ -292,11 +357,13 @@ msgstr "加"
 
 #: gcalc/gnome-calc.c:1185
 msgid "EXC"
-msgstr "EXC"
+msgstr "交換"
 
 #: gcalc/gnome-calc.c:1185
-msgid "Exchange"
-msgstr "交換"
+msgid ""
+"Exchange the values in the\n"
+"display field and memory"
+msgstr "將畫面的數值和記憶中的數值交換"
 
 #: gcalc/gnome-calc.c:1186
 msgid "0"
@@ -325,6 +392,22 @@ msgstr "＝"
 #: gcalc/gnome-calc.c:1189
 msgid "Calculate"
 msgstr "計算結果"
+
+#: gcalc/gnome-calculator.desktop.in.h:1
+msgid "Calculator"
+msgstr "計算機"
+
+#: gcalc/gnome-calculator.desktop.in.h:2
+msgid "Perform simple calculations"
+msgstr "可進行簡單的計算"
+
+#: gcharmap/gnome-character-map.desktop.in.h:1
+msgid "Character Map"
+msgstr "字元對應表"
+
+#: gcharmap/gnome-character-map.desktop.in.h:2
+msgid "Insert special characters into documents"
+msgstr "可在文字中加入特殊字元"
 
 #: gcharmap/src/asciiselect.c:126
 msgid "Select Character"
@@ -364,34 +447,34 @@ msgstr ""
 "-*-*-bold-r-normal-*-*-180-*-*-*-*-big5-0,-adobe-helvetica-bold-r-normal-*-*-"
 "180-*-*-p-*-*-*,*-r-*"
 
-#: gcharmap/src/callbacks.c:57 gcharmap/src/interface.c:193
+#: gcharmap/src/callbacks.c:61 gcharmap/src/interface.c:193
 msgid "Gnome Character Map"
 msgstr "Gnome 字元對應表"
 
-#: gcharmap/src/callbacks.c:60
+#: gcharmap/src/callbacks.c:64
 msgid ""
 "The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
 "contain bad English."
 msgstr "和微軟視窗的字元對應表同類的軟件。警告：可能會含有錯的英語。"
 
-#: gcharmap/src/callbacks.c:85 gcharmap/src/callbacks.c:131
+#: gcharmap/src/callbacks.c:89 gcharmap/src/callbacks.c:135
 msgid "del"
 msgstr "del"
 
-#: gcharmap/src/callbacks.c:137
+#: gcharmap/src/callbacks.c:141
 #, c-format
 msgid " %s: Character code %d"
 msgstr " %s：字元代碼 %d"
 
-#: gcharmap/src/callbacks.c:179
+#: gcharmap/src/callbacks.c:183
 msgid "Text copied to clipboard..."
 msgstr "已將文字複製到剪貼簿..."
 
-#: gcharmap/src/callbacks.c:201
+#: gcharmap/src/callbacks.c:205
 msgid "Text cut to clipboard..."
 msgstr "已將文字剪到剪貼簿..."
 
-#: gcharmap/src/callbacks.c:252
+#: gcharmap/src/callbacks.c:254
 msgid "Text pasted from clipboard..."
 msgstr "已由剪貼簿貼上文字..."
 
@@ -514,15 +597,55 @@ msgstr "貼上"
 msgid "Paste the clipboard"
 msgstr "貼上剪貼簿的內容"
 
+#: gcharmap/src/notifiers.c:94
+#, c-format
+msgid "There was an error loading config from %s. (%s)\n"
+msgstr "從 %s 載入設定時出現錯誤。(%s)\n"
+
+#: gcharmap/src/notifiers.c:108
+#, c-format
+msgid ""
+"There was an error subscribing to notification of statusbar visibility "
+"changes. (%s)\n"
+msgstr ""
+
+#: gcharmap/src/notifiers.c:121
+#, c-format
+msgid ""
+"There was an error subscribing to notification of textbar visibility "
+"changes. (%s)\n"
+msgstr ""
+
+#: gcharmap/src/notifiers.c:134
+#, c-format
+msgid ""
+"There was an error subscribing to notification of actionbar visibility "
+"changes. (%s)\n"
+msgstr ""
+
+#: gcharmap/src/notifiers.c:147
+#, c-format
+msgid ""
+"There was an error subscribing to notification of insertion behaviour "
+"changes. (%s)\n"
+msgstr ""
+
+#: gcharmap/src/notifiers.c:160
+#, c-format
+msgid ""
+"There was an error subscribing to notification of button focusability "
+"changes. (%s)\n"
+msgstr ""
+
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:450
-#: gdictsrc/gdict-pref-dialog.c:494 gdictsrc/gdict-speller.c:449
+#: gdictsrc/dict.c:646 gdictsrc/gdict-pref-dialog.c:461
+#: gdictsrc/gdict-pref-dialog.c:512 gdictsrc/gdict-speller.c:448
 msgid "Cannot connect to server"
 msgstr "無法連接伺服器"
 
-#: gdictsrc/dict.c:650
+#: gdictsrc/dict.c:659
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -538,35 +661,35 @@ msgstr ""
 "MIT 字典伺服器的用戶端程式。\n"
 "網站：http://gdict.dhs.org/，http://www.psilord.com/code/"
 
-#: gdictsrc/gdict-app.c:120
+#: gdictsrc/gdict-app.c:119
 msgid "Spell-checking..."
 msgstr "正在進行拼字檢查..."
 
-#: gdictsrc/gdict-app.c:128
+#: gdictsrc/gdict-app.c:127
 msgid "Spell check done"
 msgstr "拼字檢查完成"
 
-#: gdictsrc/gdict-app.c:136 gdictsrc/gdict-app.c:265
+#: gdictsrc/gdict-app.c:135 gdictsrc/gdict-app.c:264
 msgid "No matches found"
 msgstr "找不到符合的結果"
 
-#: gdictsrc/gdict-app.c:249
+#: gdictsrc/gdict-app.c:248
 msgid "Looking up word..."
 msgstr "正在檢索單字..."
 
-#: gdictsrc/gdict-app.c:257
+#: gdictsrc/gdict-app.c:256
 msgid "Lookup done"
 msgstr "完成檢索"
 
-#: gdictsrc/gdict-app.c:277
+#: gdictsrc/gdict-app.c:276
 msgid "String not found"
 msgstr "找不到字串"
 
-#: gdictsrc/gdict-app.c:419
+#: gdictsrc/gdict-app.c:418
 msgid "Find:"
 msgstr "搜尋："
 
-#: gdictsrc/gdict-app.c:444
+#: gdictsrc/gdict-app.c:443
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -576,39 +699,44 @@ msgstr ""
 "原因是無法連接所使用的伺服器，\n"
 "或是根本未接駁至互聯網。"
 
-#: gdictsrc/gdict-app.c:535
-msgid "Lookup"
-msgstr "檢索"
+#: gdictsrc/gdict-app.c:534
+msgid "_Lookup"
+msgstr "檢索(_L)"
 
-#: gdictsrc/gdict-app.c:536
+#: gdictsrc/gdict-app.c:535
 msgid "Lookup word in dictionary"
 msgstr "在字典中檢索單字"
 
-#: gdictsrc/gdict-app.c:538
-msgid "Spell"
-msgstr "拼字"
+#: gdictsrc/gdict-app.c:537 gdictsrc/gdict-speller.c:148
+msgid "_Spell"
+msgstr "拼字(_S)"
 
-#: gdictsrc/gdict-app.c:539
+#: gdictsrc/gdict-app.c:538
 msgid "Check word spelling"
 msgstr "校對拼字"
 
-#: gdictsrc/gdict-app.c:638 gdictsrc/gdict-speller.c:130
+#: gdictsrc/gdict-app.c:616 gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "字典"
+
+#: gdictsrc/gdict-app.c:637 gdictsrc/gdict-speller.c:129
 msgid "_Word : "
 msgstr "單字(_W)："
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:641
 msgid "_Look Up"
 msgstr "檢索(_L)"
 
-#: gdictsrc/gdict-app.c:670 gdictsrc/gdict-speller.c:143
+#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-speller.c:142
 msgid "Word"
 msgstr "單字"
 
-#: gdictsrc/gdict-app.c:671 gdictsrc/gdict-speller.c:144
+#: gdictsrc/gdict-app.c:670 gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-speller.c:143
 msgid "Word Entry"
 msgstr "單字輸入欄"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:670
 msgid "Enter a Word or select one from the list below"
 msgstr "請輸入單字或在下列的清單中選擇"
 
@@ -616,11 +744,15 @@ msgstr "請輸入單字或在下列的清單中選擇"
 msgid "Look Up for a Word"
 msgstr "檢索單字"
 
-#: gdictsrc/gdict-applet.c:275
+#: gdictsrc/gdict-applet.c:266
+msgid "Dictionary Applet"
+msgstr "字典面板程式"
+
+#: gdictsrc/gdict-applet.c:278
 msgid "Press button to look up any highlighted text in a dictionary"
 msgstr "按下此按鈕會在字典中搜尋已選取的文字"
 
-#: gdictsrc/gdict-defbox.c:633 gdictsrc/gdict-speller.c:474
+#: gdictsrc/gdict-defbox.c:632 gdictsrc/gdict-speller.c:473
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "詢問時出現錯誤：%s"
@@ -657,117 +789,118 @@ msgstr "正文："
 msgid "Cross-reference:"
 msgstr "參考："
 
-#: gdictsrc/gdict-pref-dialog.c:180
+#: gdictsrc/gdict-pref-dialog.c:185
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: gdictsrc/gdict-pref-dialog.c:192
+#: gdictsrc/gdict-pref-dialog.c:197
 msgid "Smart _lookup"
 msgstr "智慧型檢索(_L)"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:210
 msgid "_Server:"
 msgstr "伺服器(_S)："
 
-#: gdictsrc/gdict-pref-dialog.c:212
+#: gdictsrc/gdict-pref-dialog.c:217
 msgid "De_fault"
 msgstr "預設值(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:223
 msgid "Reset server to default"
 msgstr "將伺服器恢復成預設值"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:225
 msgid "_Port:"
 msgstr "連接埠(_P)："
 
-#: gdictsrc/gdict-pref-dialog.c:234
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Def_ault"
 msgstr "預設值(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:241
+#: gdictsrc/gdict-pref-dialog.c:246
 msgid "Reset port to default"
 msgstr "將連接埠號碼恢復成預設值"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:247
 msgid "Server"
 msgstr "伺服器"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Server Entry"
 msgstr "伺服器輸入欄"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Enter the Server Name"
 msgstr "請輸入伺服器名稱"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Port"
 msgstr "連接埠"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Port Entry"
 msgstr "連接埠輸入欄"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Port Number"
 msgstr "請輸入連接埠號碼"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:257
 msgid "_Database:"
 msgstr "資料庫(_D)："
 
-#: gdictsrc/gdict-pref-dialog.c:261
+#: gdictsrc/gdict-pref-dialog.c:264
 msgid "D_efault strategy:"
 msgstr "預設搜尋方式(_E)："
 
-#: gdictsrc/gdict-pref-dialog.c:442
+#: gdictsrc/gdict-pref-dialog.c:453
 msgid "Search all databases"
 msgstr "搜尋所有資料庫"
 
-#: gdictsrc/gdict-pref-dialog.c:601
+#: gdictsrc/gdict-pref-dialog.c:618
 msgid "Database"
 msgstr "資料庫"
 
-#: gdictsrc/gdict-pref-dialog.c:601
+#: gdictsrc/gdict-pref-dialog.c:618
 msgid "Database Name"
 msgstr "資料庫名稱"
 
-#: gdictsrc/gdict-pref-dialog.c:614
+#: gdictsrc/gdict-pref-dialog.c:630
 msgid "Default Strategy"
 msgstr "預設搜尋方式"
 
-#: gdictsrc/gdict-speller.c:144
+#: gdictsrc/gdict-speller.c:143
 msgid "Enter a word to know the spelling"
 msgstr "請輸入單字來尋找它的正確拼字方式"
 
-#: gdictsrc/gdict-speller.c:149
-msgid "_Spell"
-msgstr "拼字(_S)"
-
-#: gdictsrc/gdict-speller.c:158
+#: gdictsrc/gdict-speller.c:157
 msgid "Click to do the spell check"
 msgstr "按下此按鈕會校對拼字"
 
-#: gdictsrc/gdict-speller.c:164
+#: gdictsrc/gdict-speller.c:163
 msgid "Search S_trategy:"
 msgstr "搜尋方法(_T)："
 
-#: gdictsrc/gdict-speller.c:176
+#: gdictsrc/gdict-speller.c:175
 msgid "Search Results"
 msgstr "搜尋結果"
 
-#: gdictsrc/gdict-speller.c:214
+#: gdictsrc/gdict-speller.c:213
 msgid "_Look Up Word"
 msgstr "檢索單字(_L)"
 
-#: gdictsrc/gdict-speller.c:222
+#: gdictsrc/gdict-speller.c:221
 msgid "Spell checker"
 msgstr "拼字校對程式"
 
-#: gdictsrc/gdict-speller.c:631
+#: gdictsrc/gdict-speller.c:630
 msgid "Search Strategy"
 msgstr "搜尋方法"
+
+#: gdictsrc/gnome-dictionary.desktop.in.h:2
+#: gdictsrc/GNOME_GDictApplet.server.in.h:3
+msgid "Lookup words in an online dictionary"
+msgstr "在線上字典中檢索單字"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.h:1
 msgid "Accessories"
@@ -777,12 +910,7 @@ msgstr "附屬應用程式"
 msgid "Dictionary Lookup"
 msgstr "字典"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.h:3
-#: gdictsrc/gnome-dictionary.desktop.in.h:2
-msgid "Lookup words in an online dictionary"
-msgstr "在線上字典中檢索單字"
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:140
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:141
 msgid "About..."
 msgstr "關於..."
 
@@ -793,6 +921,276 @@ msgstr "偏好設定..."
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
 msgid "Show/Hide Definition Window..."
 msgstr "顯示或隱藏定義視窗"
+
+#: gfloppy/gfloppy.desktop.in.h:1
+msgid "Floppy Formatter"
+msgstr "軟碟格式化程式"
+
+#: gfloppy/gfloppy.desktop.in.h:2
+msgid "Format Floppy Disks"
+msgstr "將軟碟片格式化"
+
+#: gfloppy/src/badblocks.c:102
+msgid "MInternal Error: Unable to seek to the correct location."
+msgstr "M內部錯誤：無法搜尋正確的位置。"
+
+#: gfloppy/src/badblocks.c:111
+#, c-format
+msgid "MInternal Error: Weird value (%ld) in do_test\n"
+msgstr "M內部錯誤：do_test 中的值 (%ld) 有誤\n"
+
+#: gfloppy/src/badblocks.c:166
+#, c-format
+msgid "EBad block at block %lu"
+msgstr "E區域 %lu 已損毀"
+
+#. while (!i)
+#. ;
+#: gfloppy/src/badblocks.c:260
+msgid "MChecking for bad blocks..."
+msgstr "M檢查壞磁區..."
+
+#: gfloppy/src/badblocks.c:272
+#, c-format
+msgid "MFailed to open device %s for badblock checking\n"
+msgstr "M開啟裝置 %s 失敗，無法檢查壞磁區\n"
+
+#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:213
+msgid "MChecking for bad blocks... Done"
+msgstr "M檢查壞磁區...完成"
+
+#: gfloppy/src/fdformat.c:44
+msgid "MFormatting the disk..."
+msgstr "M格式化碟片..."
+
+#: gfloppy/src/fdformat.c:46
+msgid "EI don't know what this is, but it's very wrong."
+msgstr "E我不知道這是什麼狀況，不過看來不妙。"
+
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
+#, c-format
+msgid "EError formatting track #%d"
+msgstr "E格式化磁軌 #%d 時發生錯誤"
+
+#: gfloppy/src/fdformat.c:74
+msgid "EError during completion of formatting"
+msgstr "E格式化完成時發生錯誤"
+
+#. XXXX - need to tell parent we're finished
+#: gfloppy/src/fdformat.c:78
+msgid "MFormatting the disk... Done"
+msgstr "M格式化磁片...完成"
+
+#. XXXX - tell parent we're starting verify stage
+#: gfloppy/src/fdformat.c:94
+msgid "MVerifying the format..."
+msgstr "M正在檢驗格式..."
+
+#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
+msgid ""
+"EUnable to write to the floppy.\n"
+"\n"
+"Please confirm that it is not write-protected."
+msgstr ""
+"E無法寫入磁碟片。\n"
+"\n"
+"請確認碟片沒有防寫保護。"
+
+#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
+#, c-format
+msgid "EInsufficient permissions to open floppy device %s."
+msgstr "E你沒有足夠權限使用軟碟裝置 %s"
+
+#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
+msgid ""
+"EUnable to access the floppy disk.\n"
+"\n"
+"Please confirm that it is in the drive\n"
+"with the drive door shut."
+msgstr ""
+"E無法存取磁碟片。\n"
+"\n"
+"請確認磁碟片已放進磁碟機中\n"
+"而且開關處已卡緊。"
+
+#: gfloppy/src/fdformat.c:109
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s:%d"
+msgstr ""
+"E在存取軟碟裝置 %s 時發生一般性錯誤。\n"
+"\n"
+"錯誤碼 %s:%d"
+
+#: gfloppy/src/fdformat.c:129
+#, c-format
+msgid ""
+"ERead Error:\n"
+"Problem reading cylinder %d, expected %d, read %d"
+msgstr ""
+"E讀取錯誤：\n"
+"問題發生在磁區 %d，預期資料為 %d，讀取資料為 %d"
+
+#: gfloppy/src/fdformat.c:132
+#, c-format
+msgid "EProblem reading cylinder %d, expected %d, read %d"
+msgstr "E問題發生在磁區 %d，預期資料為 %d，讀取資料為 %d"
+
+#: gfloppy/src/fdformat.c:141
+#, c-format
+msgid "MBad data in cyl %d.  Continuing... "
+msgstr "M磁區 %d 有壞磁軌。繼續格式化..."
+
+#: gfloppy/src/fdformat.c:148
+#, c-format
+msgid "EError closing device %s"
+msgstr "E關閉裝置 %s 時發生錯誤"
+
+#: gfloppy/src/fdformat.c:153
+msgid "MVerifying the format... Done"
+msgstr "M檢驗格式...完成"
+
+#: gfloppy/src/fdformat.c:165
+#, c-format
+msgid "EUnable to write to device %s"
+msgstr "E無法寫入裝置 %s"
+
+#: gfloppy/src/fdformat.c:184
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s"
+msgstr ""
+"E存取軟碟裝置 %s 時發生一般性錯誤。\n"
+"\n"
+"錯誤代碼 %s"
+
+#: gfloppy/src/fdformat.c:194
+msgid "ECould not determine current format type"
+msgstr "E無法決定目前磁片格式的類型"
+
+#: gfloppy/src/gfloppy2.glade.h:1
+msgid "DOS (fat)"
+msgstr "DOS (fat)"
+
+#: gfloppy/src/gfloppy2.glade.h:2
+msgid "Double Density 3.5\" (720 KB)"
+msgstr "倍密度 3.5\" (720 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:3
+msgid "Double Density 5.25\" (360 KB)"
+msgstr "倍密度 5.25\" (360 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:4
+msgid "File system _type:"
+msgstr "檔案系統類型(_T)："
+
+#: gfloppy/src/gfloppy2.glade.h:5
+msgid "Floppy _Density:"
+msgstr "軟碟片密度(_D)："
+
+#: gfloppy/src/gfloppy2.glade.h:6
+msgid "Format a floppy"
+msgstr "格式化磁片"
+
+#: gfloppy/src/gfloppy2.glade.h:7
+msgid "High Density 3.5\" (1.44 MB)"
+msgstr "高密度 3.5\" (1.44 MB)"
+
+#: gfloppy/src/gfloppy2.glade.h:8
+msgid "High Density 5.25\" (1.2 MB)"
+msgstr "高密度 5.25\" (1.2 MB)"
+
+#: gfloppy/src/gfloppy2.glade.h:9
+msgid "Linux Native (ext2)"
+msgstr "Linux Native (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:10
+msgid "_Floppy Device:"
+msgstr "軟碟片裝置(_F)："
+
+#: gfloppy/src/gfloppy2.glade.h:11
+msgid "_Quick format"
+msgstr "快速格式化(_Q)"
+
+#: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
+msgid "MMaking filesystem on disk..."
+msgstr "M在碟片中建立檔案系統..."
+
+#: gfloppy/src/gfloppy.c:167
+msgid "EUnable to create filesystem correctly."
+msgstr "E無法正確地建立檔案系統。"
+
+#: gfloppy/src/gfloppy.c:171 gfloppy/src/gfloppy.c:203
+msgid "MMaking filesystem on disk... Done"
+msgstr "M在碟片中建立檔案系統...完成"
+
+#: gfloppy/src/gfloppy.c:200 gfloppy/src/gfloppy.c:215
+msgid "EUnable to create filesystem."
+msgstr "E無法建立檔案系統。"
+
+#: gfloppy/src/gfloppy.c:209
+msgid "MChecking for bad blocks... (this might take a while)"
+msgstr "M正在檢查壞磁區...（可能需要一段時間）"
+
+#: gfloppy/src/main.c:126 gfloppy/src/main.c:169
+#, c-format
+msgid "Unable to open the device %s, formatting cannot continue."
+msgstr "無法開啟裝置 %s，不能繼續格式化。"
+
+#: gfloppy/src/main.c:129 gfloppy/src/main.c:172
+#, c-format
+msgid ""
+"The device %s is disconnected.\n"
+"Please attach device to continue."
+msgstr ""
+"裝置 %s 並未連接。\n"
+"請接上裝置並繼續。"
+
+#: gfloppy/src/main.c:132 gfloppy/src/main.c:175
+#, c-format
+msgid ""
+"You do not have the proper permissions to write to %s, formatting will not "
+"be possible.\n"
+"Contact your system administrator about getting write permissions."
+msgstr ""
+"你沒有足夠的權限寫入 %s，不可能格式化。\n"
+"若想得到寫入的權限，請聯絡系統管理員。"
+
+#: gfloppy/src/main.c:287
+msgid "The device to format"
+msgstr "要格式化的裝置"
+
+#: gfloppy/src/main.c:288
+msgid "DEVICE"
+msgstr "裝置"
+
+#: gfloppy/src/main.c:365
+msgid "Format another floppy?"
+msgstr "要繼續格式化軟碟片？"
+
+#: gfloppy/src/progress.c:115
+msgid "Floppy formatted successfully."
+msgstr "軟碟片格式化成功。"
+
+#: gfloppy/src/progress.c:119
+msgid "Floppy formatting cancelled."
+msgstr "取消格式化軟碟片的動作。"
+
+#: gfloppy/src/progress.c:160
+msgid "Format progress."
+msgstr "格式化進度"
+
+#: gsearchtool/gnome-search-tool.desktop.in.h:1
+msgid "Search for Files"
+msgstr "搜尋檔案"
+
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+msgid "Search your disk for files"
+msgstr "在磁碟中搜尋檔案"
 
 #: gsearchtool/gsearchtool.c:64
 msgid "File name is"
@@ -1078,7 +1476,7 @@ msgstr "檔案 %s 已存在，是否覆寫？"
 msgid "Cannot save the results file."
 msgstr "無法儲存搜尋結果。"
 
-#: gsearchtool/gsearchtool.c:1797 meat-grinder/meat-grinder.c:523
+#: gsearchtool/gsearchtool.c:1797 meat-grinder/meat-grinder.c:564
 msgid "Save Results"
 msgstr "儲存搜尋結果"
 
@@ -1097,6 +1495,10 @@ msgstr "無法初始化 bonobo。"
 #: gsearchtool/gsearchtool.c:1893
 msgid "Search Tool"
 msgstr "搜尋工具"
+
+#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
+msgid "GNOME Search Tool"
+msgstr "GNOME 搜尋工具"
 
 #: logview/about.c:42
 msgid "Cesar Miquel (miquel@df.uba.ar)"
@@ -1138,7 +1540,7 @@ msgstr "新增..."
 msgid "Edit..."
 msgstr "編輯..."
 
-#: logview/actions.c:151 meat-grinder/meat-grinder.c:750
+#: logview/actions.c:151
 msgid "Remove"
 msgstr "移除"
 
@@ -1209,99 +1611,166 @@ msgstr ""
 msgid "Calendar"
 msgstr "日曆"
 
-#: logview/info.c:79 logview/logview.c:113
+#.
+#. * 	-------------------
+#. * 	     Defines
+#. * 	-------------------
+#.
+#: logview/config.c:34
+msgid "fixed 12"
+msgstr "fixed 12"
+
+#: logview/config.c:35
+msgid "fixed Bold 12"
+msgstr "fixed Bold 12"
+
+#: logview/config.c:36
+msgid "fixed 10"
+msgstr "fixed 10"
+
+#: logview/config.c:37
+msgid "fixed Bold 8"
+msgstr "fixed Bold 8"
+
+#: logview/config.c:39
+msgid "Helvetica 14"
+msgstr "Helvetica 14"
+
+#: logview/config.c:40
+msgid "Helvetica Bold 14"
+msgstr "Helvetica Bold 14"
+
+#: logview/config.c:41
+msgid "Helvetica 12"
+msgstr "Helvetica 12"
+
+#: logview/config.c:42
+msgid "Helvetica Bold 12"
+msgstr "Helvetica Bold 12"
+
+#: logview/config.c:43
+msgid "Helvetica 10"
+msgstr "Helvetica 10"
+
+#: logview/config.c:44
+msgid "Helvetica Bold 10"
+msgstr "Helvetica Bold 10"
+
+#: logview/desc_db.c:37
+#, c-format
+msgid "Cannot open regexp data base <%s>! Open failed."
+msgstr "無法開啟正規表示式資料庫 <%s>！開啟失敗。"
+
+#: logview/desc_db.c:147
+#, c-format
+msgid "Cannot open description data base <%s>! Open failed."
+msgstr "無法開啟描述資料庫 <%s>！開啟失敗。"
+
+#. ----------------------------------------------------------------------
+#. NAME:
+#. DESCRIPTION:
+#. ----------------------------------------------------------------------
+#: logview/gnome-system-log.desktop.in.h:1
+msgid "System Log"
+msgstr "系統紀錄檔檢視程式"
+
+#: logview/gnome-system-log.desktop.in.h:2
+msgid "View the system log file"
+msgstr "檢視系統紀錄檔"
+
+#: logview/info.c:83 logview/logview.c:113
 msgid "Log stats"
 msgstr "紀錄檔統計"
 
-#: logview/info.c:139
+#: logview/info.c:176
 msgid "Log information"
 msgstr "紀錄檔資料"
 
-#: logview/info.c:156
+#: logview/info.c:204
 msgid "Log:"
 msgstr "紀錄："
 
-#: logview/info.c:158
+#: logview/info.c:207
 msgid "Size:"
 msgstr "大小："
 
-#: logview/info.c:160
+#: logview/info.c:210
 msgid "Modified:"
 msgstr "最後修改時間："
 
-#: logview/info.c:162
+#: logview/info.c:213
 msgid "Start date:"
 msgstr "開始時間："
 
-#: logview/info.c:164
+#: logview/info.c:216
 msgid "Last date:"
 msgstr "結束時間："
 
-#: logview/info.c:166
+#: logview/info.c:219
 msgid "Num. lines:"
 msgstr "行數："
 
-#: logview/info.c:183
+#: logview/info.c:237
 #, c-format
 msgid "%ld bytes"
 msgstr "%ld 位元組"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "January"
 msgstr "一月"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "February"
 msgstr "二月"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "March"
 msgstr "三月"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "April"
 msgstr "四月"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "May"
 msgstr "五月"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "June"
 msgstr "六月"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "July"
 msgstr "七月"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "August"
 msgstr "八月"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "September"
 msgstr "九月"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "October"
 msgstr "十月"
 
-#: logview/log_repaint.c:85
+#: logview/log_repaint.c:86
 msgid "November"
 msgstr "十一月"
 
-#: logview/log_repaint.c:85
+#: logview/log_repaint.c:86
 msgid "December"
 msgstr "十二月"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:497
+#: logview/log_repaint.c:510
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:611
+#: logview/log_repaint.c:628
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1309,7 +1778,7 @@ msgstr "%X"
 #. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:695
+#: logview/log_repaint.c:738
 msgid "%B %e"
 msgstr "%B %e"
 
@@ -1421,32 +1890,32 @@ msgstr "過濾..                "
 msgid "Filter log events"
 msgstr "過濾紀錄事項"
 
-#: logview/logview.c:141
+#: logview/logview.c:142
 msgid "Info about logview"
 msgstr "關於紀錄檔檢視程式的資訊"
 
-#: logview/logview.c:344
+#: logview/logview.c:347
 msgid "No log files to open"
-msgstr "沒有紀錄檔要開啟"
+msgstr "沒有紀錄檔可開啟"
 
 #. Create App
-#: logview/logview.c:367
+#: logview/logview.c:370
 msgid "System Log Viewer"
 msgstr "系統紀錄檔檢視程式"
 
-#: logview/logview.c:478
+#: logview/logview.c:481
 msgid "Filename: "
 msgstr "檔名："
 
-#: logview/logview.c:494
+#: logview/logview.c:497
 msgid "Date: "
 msgstr "日期："
 
-#: logview/logview.c:746 logview/logview.c:801
+#: logview/logview.c:749 logview/logview.c:804
 msgid "Too many open logs. Close one and try again"
 msgstr "開啟太多紀錄檔了，請關閉一些並再嘗試"
 
-#: logview/logview.c:814
+#: logview/logview.c:817
 msgid "Open new logfile"
 msgstr "開啟新紀錄檔"
 
@@ -1507,575 +1976,39 @@ msgstr "主機名稱欄位的寬度（0 表示隱藏此欄）："
 msgid "Columns"
 msgstr "欄位"
 
-#: logview/zoom.c:78
+#: logview/zoom.c:82
 msgid "Zoom view"
 msgstr "詳細資料"
 
-#: logview/zoom.c:154
+#: logview/zoom.c:190
 #, c-format
 msgid "Log line detail for %s"
 msgstr "紀錄檔 %s 每行的詳細資料"
 
-#: logview/zoom.c:157
+#: logview/zoom.c:193
 msgid "Log line detail for <No log loaded>"
 msgstr "紀錄檔每行的詳細資料 <未載入任何紀錄檔>"
 
-#: logview/zoom.c:180
+#: logview/zoom.c:227
 msgid "Date:"
 msgstr "日期："
 
-#: logview/zoom.c:182
+#: logview/zoom.c:231
 msgid "Process:"
 msgstr "程序："
 
-#: logview/zoom.c:184
+#: logview/zoom.c:234
 msgid "Message:"
 msgstr "訊息："
 
-#: logview/zoom.c:186
+#: logview/zoom.c:237
 msgid "Description:"
 msgstr "描述："
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:212
+#: logview/zoom.c:262
 msgid "%B %e %X"
 msgstr "%B %e %X"
-
-#.
-#. * 	-------------------
-#. * 	     Defines
-#. * 	-------------------
-#.
-#: logview/config.c:34
-msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-medium-r-normal-*-12-*-*-*-*-*-big5-0,-b&h-lucidatypewriter-medium-r-"
-"normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:35
-msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-medium-r-normal-*-12-*-*-*-*-*-big5-0,-b&h-lucidatypewriter-bold-r-"
-"normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:36
-msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-medium-r-normal-*-10-*-*-*-*-*-big5-0,-b&h-lucidatypewriter-medium-r-"
-"normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:37
-msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-bold-r-normal-*-10-*-*-*-*-*-big5-0,-b&h-lucidatypewriter-bold-r-normal-"
-"sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:39
-msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-medium-r-normal-*-14-*-*-*-*-*-big5-0,-adobe-helvetica-medium-r-normal-"
-"*-14-*-*-*-*-*-*-*"
-
-#: logview/config.c:40
-msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-bold-r-normal-*-14-*-*-*-*-*-big5-0,-adobe-helvetica-bold-r-normal-*-14-"
-"*-*-*-*-*-*-*"
-
-#: logview/config.c:41
-msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-medium-r-normal-*-12-*-*-*-*-*-big5-0,-adobe-helvetica-medium-r-normal-"
-"*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:42
-msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-bold-r-normal-*-12-*-*-*-*-*-big5-0,-adobe-helvetica-bold-r-normal-*-12-"
-"*-*-*-*-*-*-*"
-
-#: logview/config.c:43
-msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-medium-r-normal-*-10-*-*-*-*-*-big5-0,-adobe-helvetica-medium-r-normal-"
-"*-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:44
-msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr ""
-"-*-*-bold-r-normal-*-10-*-*-*-*-*-big5-0,-adobe-helvetica-bold-r-normal-*-10-"
-"*-*-*-*-*-*-*"
-
-#: logview/desc_db.c:37
-#, c-format
-msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "無法開啟正規表示式資料庫 <%s>！開啟失敗。"
-
-#: logview/desc_db.c:147
-#, c-format
-msgid "Cannot open description data base <%s>! Open failed."
-msgstr "無法開啟描述資料庫 <%s>！開啟失敗。"
-
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
-#: gfloppy/src/gfloppy2.glade.h:1
-msgid "DOS (fat)"
-msgstr "DOS (fat)"
-
-#: gfloppy/src/gfloppy2.glade.h:2 gfloppy/src/gfloppy-i18n.h:15
-msgid "Double Density 3.5\" (720 KB)"
-msgstr "倍密度 3.5\" (720 KB)"
-
-#: gfloppy/src/gfloppy2.glade.h:3 gfloppy/src/gfloppy-i18n.h:16
-msgid "Double Density 5.25\" (360 KB)"
-msgstr "倍密度 5.25\" (360 KB)"
-
-#: gfloppy/src/gfloppy2.glade.h:4
-msgid "File system _type:"
-msgstr "檔案系統類型(_T)："
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "Floppy _Density:"
-msgstr "軟碟片密度(_D)："
-
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gfloppy/src/gfloppy2.glade.h:6 gfloppy/src/gfloppy-i18n.h:7
-msgid "Format a floppy"
-msgstr "格式化磁片"
-
-#: gfloppy/src/gfloppy2.glade.h:7 gfloppy/src/gfloppy-i18n.h:13
-msgid "High Density 3.5\" (1.44 MB)"
-msgstr "高密度 3.5\" (1.44 MB)"
-
-#: gfloppy/src/gfloppy2.glade.h:8 gfloppy/src/gfloppy-i18n.h:14
-msgid "High Density 5.25\" (1.2 MB)"
-msgstr "高密度 5.25\" (1.2 MB)"
-
-#: gfloppy/src/gfloppy2.glade.h:9 gfloppy/src/gfloppy-i18n.h:8
-#: gfloppy/src/gfloppy-i18n.h:10
-msgid "Linux Native (ext2)"
-msgstr "Linux Native (ext2)"
-
-#: gfloppy/src/gfloppy2.glade.h:10
-msgid "_Floppy Device:"
-msgstr "軟碟片裝置(_F)："
-
-#: gfloppy/src/gfloppy2.glade.h:11 gfloppy/src/gfloppy-i18n.h:17
-msgid "_Quick format"
-msgstr "快速格式化(_Q)"
-
-#: gfloppy/src/badblocks.c:102
-msgid "MInternal Error: Unable to seek to the correct location."
-msgstr "M內部錯誤：無法搜尋正確的位置。"
-
-#: gfloppy/src/badblocks.c:111
-#, c-format
-msgid "MInternal Error: Weird value (%ld) in do_test\n"
-msgstr "M內部錯誤：do_test 中的值 (%ld) 有誤\n"
-
-#: gfloppy/src/badblocks.c:166
-#, c-format
-msgid "EBad block at block %lu"
-msgstr "E區域 %lu 已損毀"
-
-#. while (!i)
-#. ;
-#: gfloppy/src/badblocks.c:260
-msgid "MChecking for bad blocks..."
-msgstr "M檢查壞磁區..."
-
-#: gfloppy/src/badblocks.c:272
-#, c-format
-msgid "MFailed to open device %s for badblock checking\n"
-msgstr "M開啟裝置 %s 失敗，無法檢查壞磁區\n"
-
-#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:213
-msgid "MChecking for bad blocks... Done"
-msgstr "M檢查壞磁區...完成"
-
-#: gfloppy/src/fdformat.c:44
-msgid "MFormatting the disk..."
-msgstr "M格式化碟片..."
-
-#: gfloppy/src/fdformat.c:46
-msgid "EI don't know what this is, but it's very wrong."
-msgstr "E我不知道這是什麼狀況，不過看來不妙。"
-
-#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
-#, c-format
-msgid "EError formatting track #%d"
-msgstr "E格式化磁軌 #%d 時發生錯誤"
-
-#: gfloppy/src/fdformat.c:74
-msgid "EError during completion of formatting"
-msgstr "E格式化完成時發生錯誤"
-
-#. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:78
-msgid "MFormatting the disk... Done"
-msgstr "M格式化磁片...完成"
-
-#. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:94
-msgid "MVerifying the format..."
-msgstr "M正在檢驗格式..."
-
-#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
-msgid ""
-"EUnable to write to the floppy.\n"
-"\n"
-"Please confirm that it is not write-protected."
-msgstr ""
-"E無法寫入磁碟片。\n"
-"\n"
-"請確認碟片沒有防寫保護。"
-
-#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
-#, c-format
-msgid "EInsufficient permissions to open floppy device %s."
-msgstr "E你沒有足夠權限使用軟碟裝置 %s"
-
-#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
-msgid ""
-"EUnable to access the floppy disk.\n"
-"\n"
-"Please confirm that it is in the drive\n"
-"with the drive door shut."
-msgstr ""
-"E無法存取磁碟片。\n"
-"\n"
-"請確認磁碟片已放進磁碟機中\n"
-"而且開關處已卡緊。"
-
-#: gfloppy/src/fdformat.c:109
-#, c-format
-msgid ""
-"EGeneric error accessing floppy device %s.\n"
-"\n"
-"Error code %s:%d"
-msgstr ""
-"E在存取軟碟裝置 %s 時發生一般性錯誤。\n"
-"\n"
-"錯誤碼 %s:%d"
-
-#: gfloppy/src/fdformat.c:129
-#, c-format
-msgid ""
-"ERead Error:\n"
-"Problem reading cylinder %d, expected %d, read %d"
-msgstr ""
-"E讀取錯誤：\n"
-"問題發生在磁區 %d，預期資料為 %d，讀取資料為 %d"
-
-#: gfloppy/src/fdformat.c:132
-#, c-format
-msgid "EProblem reading cylinder %d, expected %d, read %d"
-msgstr "E問題發生在磁區 %d，預期資料為 %d，讀取資料為 %d"
-
-#: gfloppy/src/fdformat.c:141
-#, c-format
-msgid "MBad data in cyl %d.  Continuing... "
-msgstr "M磁區 %d 有壞磁軌。繼續格式化..."
-
-#: gfloppy/src/fdformat.c:148
-#, c-format
-msgid "EError closing device %s"
-msgstr "E關閉裝置 %s 時發生錯誤"
-
-#: gfloppy/src/fdformat.c:153
-msgid "MVerifying the format... Done"
-msgstr "M檢驗格式...完成"
-
-#: gfloppy/src/fdformat.c:165
-#, c-format
-msgid "EUnable to write to device %s"
-msgstr "E無法寫入裝置 %s"
-
-#: gfloppy/src/fdformat.c:184
-#, c-format
-msgid ""
-"EGeneric error accessing floppy device %s.\n"
-"\n"
-"Error code %s"
-msgstr ""
-"E存取軟碟裝置 %s 時發生一般性錯誤。\n"
-"\n"
-"錯誤代碼 %s"
-
-#: gfloppy/src/fdformat.c:194
-msgid "ECould not determine current format type"
-msgstr "E無法決定目前磁片格式的類型"
-
-#: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
-msgid "MMaking filesystem on disk..."
-msgstr "M在碟片中建立檔案系統..."
-
-#: gfloppy/src/gfloppy.c:167
-msgid "EUnable to create filesystem correctly."
-msgstr "E無法正確地建立檔案系統。"
-
-#: gfloppy/src/gfloppy.c:171 gfloppy/src/gfloppy.c:203
-msgid "MMaking filesystem on disk... Done"
-msgstr "M在碟片中建立檔案系統...完成"
-
-#: gfloppy/src/gfloppy.c:200 gfloppy/src/gfloppy.c:215
-msgid "EUnable to create filesystem."
-msgstr "E無法建立檔案系統。"
-
-#: gfloppy/src/gfloppy.c:209
-msgid "MChecking for bad blocks... (this might take a while)"
-msgstr "M正在檢查壞磁區...（可能需要一段時間）"
-
-#: gfloppy/src/main.c:126 gfloppy/src/main.c:169
-#, c-format
-msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "無法開啟裝置 %s，不能繼續格式化。"
-
-#: gfloppy/src/main.c:129 gfloppy/src/main.c:172
-#, c-format
-msgid ""
-"The device %s is disconnected.\n"
-"Please attach device to continue."
-msgstr ""
-"裝置 %s 並未連接。\n"
-"請接上裝置並繼續。"
-
-#: gfloppy/src/main.c:132 gfloppy/src/main.c:175
-#, c-format
-msgid ""
-"You do not have the proper permissions to write to %s, formatting will not "
-"be possible.\n"
-"Contact your system administrator about getting write permissions."
-msgstr ""
-"你沒有足夠的權限寫入 %s，不可能格式化。\n"
-"若想得到寫入的權限，請聯絡系統管理員。"
-
-#: gfloppy/src/main.c:287
-msgid "The device to format"
-msgstr "要格式化的裝置"
-
-#: gfloppy/src/main.c:288
-msgid "DEVICE"
-msgstr "裝置"
-
-#: gfloppy/src/main.c:366
-msgid "Format another floppy?"
-msgstr "要繼續格式化軟碟片？"
-
-#: gfloppy/src/progress.c:115
-msgid "Floppy formatted successfully."
-msgstr "軟碟片格式化成功。"
-
-#: gfloppy/src/progress.c:119
-msgid "Floppy formatting cancelled."
-msgstr "取消格式化軟碟片的動作。"
-
-#: gfloppy/src/progress.c:160
-msgid "Format progress."
-msgstr "格式化進度"
-
-#: gfloppy/src/gfloppy-i18n.h:9
-msgid "Dos (FAT)"
-msgstr "Dos (FAT)"
-
-#: gfloppy/src/gfloppy-i18n.h:11
-msgid "Floppy Density:"
-msgstr "軟碟片密度："
-
-#: gfloppy/src/gfloppy-i18n.h:12
-msgid "File system type:"
-msgstr "檔案系統類型："
-
-#: gfloppy/src/gfloppy-i18n.h:18
-msgid "Floppy Device:"
-msgstr "軟碟片裝置："
-
-#: exe-handler/gnome-exe-handler.c:76
-#, c-format
-msgid ""
-"Executing arbitrary programs that you downloaded from the network might be "
-"dangerous.\n"
-"\n"
-"Are you sure you want to run `%s'?"
-msgstr ""
-"在網上隨意下載和執行一些來歷不明的程式是很危險的。\n"
-"\n"
-"你是否確定要執行 `%s'？"
-
-#: exe-handler/gnome-exe-handler.c:83
-msgid "Could not access file permissions"
-msgstr "無法存取檔案權限"
-
-#: exe-handler/gnome-exe-handler.c:88
-#, c-format
-msgid "Could not execute the file `%s' due to a permission problem"
-msgstr "無法執行檔案 `%s' 因權限不足"
-
-#: exe-handler/gnome-exe-handler.c:104
-#, c-format
-msgid "Failure at executing `%s'"
-msgstr "執行 `%s' 失敗"
-
-#: exe-handler/gnome-exe-handler.c:123
-#, c-format
-msgid "It was not possible to open the file `%s'"
-msgstr "無法開啟檔案 `%s'"
-
-#: exe-handler/gnome-exe-handler.c:132
-#, c-format
-msgid "The file `%s' is empty"
-msgstr "檔案 `%s' 是空白的"
-
-#: exe-handler/gnome-exe-handler.c:137
-#, c-format
-msgid "There was an error. `%s' is empty"
-msgstr "發生錯誤。`%s' 是空白的"
-
-#: exe-handler/gnome-exe-handler.c:152
-msgid "This is a library and can not be executed"
-msgstr "這是一個函式庫，是不可執行的"
-
-#: exe-handler/gnome-exe-handler.c:158
-msgid "The file is a core file and can not be executed"
-msgstr "這是一個不可執行的 core 檔"
-
-#: exe-handler/gnome-exe-handler.c:162 exe-handler/gnome-exe-handler.c:196
-msgid "This is an unknown kind of executable"
-msgstr "這是一個類型不明的可執行檔"
-
-#: exe-handler/gnome-exe-handler.c:192
-msgid ""
-"The executable is for a different platform and can not be executed on this "
-"system"
-msgstr "此可執行檔是給其它平台用的，不能在此平台中執行"
-
-#: meat-grinder/meat-grinder.c:130
-#, c-format
-msgid ""
-"Number of files: %d\n"
-"Number of folders: %d"
-msgstr ""
-"檔案總數：%d\n"
-"資料夾總數：%d"
-
-#: meat-grinder/meat-grinder.c:136
-msgid ""
-"No files or folders, drop files or folders\n"
-"above to add them to the archive"
-msgstr ""
-"沒有任何檔案或資料夾，請將檔案\n"
-"或資料夾放到這裡來將它們加入保存檔"
-
-#: meat-grinder/meat-grinder.c:249 meat-grinder/meat-grinder.c:252
-msgid "Cannot start the archive (tar) program"
-msgstr "無法啟動保存檔案（tar）程式"
-
-#: meat-grinder/meat-grinder.c:260
-msgid "Cannot run tar/gtar"
-msgstr "不能執行 tar/gtar"
-
-#: meat-grinder/meat-grinder.c:312
-msgid "Archive.tar.gz"
-msgstr "Archive.tar.gz"
-
-#: meat-grinder/meat-grinder.c:417
-msgid "The GNOME Archive Generator"
-msgstr "GNOME 保存檔建立程式"
-
-#: meat-grinder/meat-grinder.c:419
-msgid "Drag files in to make archives"
-msgstr "拖曳檔案到此程式來建立保存檔"
-
-#: meat-grinder/meat-grinder.c:491 meat-grinder/meat-grinder.c:650
-msgid "No filename selected"
-msgstr "沒有選擇任何檔案"
-
-#: meat-grinder/meat-grinder.c:495
-msgid "File exists, overwrite?"
-msgstr "檔案已存在。要覆寫？"
-
-#: meat-grinder/meat-grinder.c:519
-msgid "No items to archive"
-msgstr "沒有項目可供放入保存檔"
-
-#: meat-grinder/meat-grinder.c:653
-msgid "File does not exists"
-msgstr "檔案不存在"
-
-#: meat-grinder/meat-grinder.c:667
-msgid "Add file or folder"
-msgstr "增加檔案或資料夾"
-
-#: meat-grinder/meat-grinder.c:737
-msgid "Add file or folder..."
-msgstr "增加檔案或資料夾..."
-
-#: meat-grinder/meat-grinder.c:738
-msgid "Add a file or folder to the archive"
-msgstr "將檔案或資料夾加入到保存檔"
-
-#: meat-grinder/meat-grinder.c:741
-msgid "Create archive..."
-msgstr "建立保存檔..."
-
-#: meat-grinder/meat-grinder.c:742
-msgid "Create a new archive from the items"
-msgstr "由所選項目建立保存檔"
-
-#: meat-grinder/meat-grinder.c:751
-msgid "Remove the selected item(s)"
-msgstr "移除所選擇的項目"
-
-#: meat-grinder/meat-grinder.c:783
-msgid "GNOME Archive Generator"
-msgstr "GNOME 保存檔建立程式"
-
-#: meat-grinder/meat-grinder.c:813
-msgid "Drop files here to add them to the archive."
-msgstr "拖曳檔案到這裡來加入保存檔。"
-
-#: meat-grinder/meat-grinder.c:831
-msgid "Archive"
-msgstr "保存檔"
-
-#: meat-grinder/meat-grinder.c:838
-msgid ""
-"Drag this button to the destination where you want the archive to be created "
-"or press it to pop up a file selection dialog."
-msgstr ""
-"將此按鈕拖曳到想建立的\n"
-"保存檔目的地或按下按鈕\n"
-"來顯示選擇檔案的對話窗。"
-
-#: meat-grinder/meat-grinder.c:963
-msgid "Cannot find proper icons anywhere!"
-msgstr "找不到正確的圖示可供使用！"
-
-#: meat-grinder/meat-grinder.c:971
-msgid ""
-"Cannot find the archive (tar) program!\n"
-"This is the program used for creating archives."
-msgstr ""
-"找不到保存檔案（tar）程式！\n"
-"它是建立保存檔用的必要程式。"
-
-#: gfloppy/gfloppy.desktop.in.h:1
-msgid "Floppy Formatter"
-msgstr "軟碟格式化程式"
-
-#: gfloppy/gfloppy.desktop.in.h:2
-msgid "Format Floppy Disks"
-msgstr "將軟碟片格式化"
-
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "字典"
 
 #: meat-grinder/archive-generator.desktop.in.h:1
 msgid "Archive Generator"
@@ -2085,41 +2018,202 @@ msgstr "保存檔建立程式"
 msgid "Create compressed archives containing many files"
 msgstr "建立內含許多檔案而且壓縮過的保存檔"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1
-msgid "Search for Files"
-msgstr "搜尋檔案"
+#: meat-grinder/meat-grinder.c:132
+#, c-format
+msgid ""
+"Number of files: %d\n"
+"Number of folders: %d"
+msgstr ""
+"檔案總數：%d\n"
+"資料夾總數：%d"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2
-msgid "Search your disk for files"
-msgstr "在磁碟中搜尋檔案"
+#: meat-grinder/meat-grinder.c:138
+msgid ""
+"No files or folders, drop files or folders\n"
+"above to add them to the archive"
+msgstr ""
+"沒有任何檔案或資料夾，請將檔案\n"
+"或資料夾放到這裡來將它們加入保存檔"
 
-#: gcharmap/gnome-character-map.desktop.in.h:1
-msgid "Character Map"
-msgstr "字元對應表"
+#: meat-grinder/meat-grinder.c:264 meat-grinder/meat-grinder.c:267
+msgid "Cannot start the archive (tar) program"
+msgstr "無法啟動保存檔案（tar）程式"
 
-#: gcharmap/gnome-character-map.desktop.in.h:2
-msgid "Insert special characters into documents"
-msgstr "可在文字中加入特殊字元"
+#: meat-grinder/meat-grinder.c:275
+msgid "Cannot run tar/gtar"
+msgstr "不能執行 tar/gtar"
 
-#: gcalc/gnome-calculator.desktop.in.h:1
-msgid "Calculator"
-msgstr "計算機"
+#: meat-grinder/meat-grinder.c:327
+msgid "Archive.tar.gz"
+msgstr "Archive.tar.gz"
 
-#: gcalc/gnome-calculator.desktop.in.h:2
-msgid "Perform simple calculations"
-msgstr "可進行簡單的計算"
+#: meat-grinder/meat-grinder.c:432
+msgid "The GNOME Archive Generator"
+msgstr "GNOME 保存檔建立程式"
 
-#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
-msgid "GNOME Search Tool"
-msgstr "GNOME 搜尋工具"
+#: meat-grinder/meat-grinder.c:434
+msgid "Drag files in to make archives"
+msgstr "拖曳檔案到此程式來建立保存檔"
 
-#: logview/gnome-system-log.desktop.in.h:1
-msgid "System Log"
-msgstr "系統紀錄檔檢視程式"
+#: meat-grinder/meat-grinder.c:532 meat-grinder/meat-grinder.c:692
+msgid "No filename selected"
+msgstr "沒有選擇任何檔案"
 
-#: logview/gnome-system-log.desktop.in.h:2
-msgid "View the system log file"
-msgstr "檢視系統紀錄檔"
+#: meat-grinder/meat-grinder.c:536
+msgid "File exists, overwrite?"
+msgstr "檔案已存在。要覆寫？"
+
+#: meat-grinder/meat-grinder.c:560
+msgid "No items to archive"
+msgstr "沒有項目可供放入保存檔"
+
+#: meat-grinder/meat-grinder.c:695
+msgid "File does not exists"
+msgstr "檔案不存在"
+
+#: meat-grinder/meat-grinder.c:709
+msgid "Add file or folder"
+msgstr "增加檔案或資料夾"
+
+#: meat-grinder/meat-grinder.c:779
+msgid "_Add file or folder..."
+msgstr "加入檔案或資料夾(_A)..."
+
+#: meat-grinder/meat-grinder.c:780
+msgid "Add a file or folder to the archive"
+msgstr "將檔案或資料夾加入到保存檔"
+
+#: meat-grinder/meat-grinder.c:783
+msgid "_Create archive..."
+msgstr "建立保存檔(_C)..."
+
+#: meat-grinder/meat-grinder.c:784
+msgid "Create a new archive from the items"
+msgstr "由所選項目建立保存檔"
+
+#: meat-grinder/meat-grinder.c:792
+msgid "_Remove"
+msgstr "移除(_R)"
+
+#: meat-grinder/meat-grinder.c:793
+msgid "Remove the selected item(s)"
+msgstr "移除所選擇的項目"
+
+#: meat-grinder/meat-grinder.c:825
+msgid "GNOME Archive Generator"
+msgstr "GNOME 保存檔建立程式"
+
+#: meat-grinder/meat-grinder.c:862
+msgid "Drop files here to add them to the archive."
+msgstr "拖曳檔案到這裡來加入保存檔。"
+
+#: meat-grinder/meat-grinder.c:880
+msgid "Archive"
+msgstr "建立保存檔"
+
+#: meat-grinder/meat-grinder.c:887
+msgid ""
+"Drag this button to the destination where you want the archive to be created "
+"or press it to pop up a file selection dialog."
+msgstr ""
+"將此按鈕拖曳到想建立的\n"
+"保存檔目的地或按下按鈕\n"
+"來顯示選擇檔案的對話窗。"
+
+#: meat-grinder/meat-grinder.c:1014
+msgid "Cannot find proper icons anywhere!"
+msgstr "找不到正確的圖示可供使用！"
+
+#: meat-grinder/meat-grinder.c:1022
+msgid ""
+"Cannot find the archive (tar) program!\n"
+"This is the program used for creating archives."
+msgstr ""
+"找不到保存檔案（tar）程式！\n"
+"它是建立保存檔用的必要程式。"
+
+#~ msgid "Lookup"
+#~ msgstr "檢索"
+
+#~ msgid "Spell"
+#~ msgstr "拼字"
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-medium-r-normal-*-12-*-*-*-*-*-big5-0,-b&h-lucidatypewriter-medium-r-"
+#~ "normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-medium-r-normal-*-12-*-*-*-*-*-big5-0,-b&h-lucidatypewriter-bold-r-"
+#~ "normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-medium-r-normal-*-10-*-*-*-*-*-big5-0,-b&h-lucidatypewriter-medium-r-"
+#~ "normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-bold-r-normal-*-10-*-*-*-*-*-big5-0,-b&h-lucidatypewriter-bold-r-"
+#~ "normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-medium-r-normal-*-14-*-*-*-*-*-big5-0,-adobe-helvetica-medium-r-"
+#~ "normal-*-14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-bold-r-normal-*-14-*-*-*-*-*-big5-0,-adobe-helvetica-bold-r-normal-*-"
+#~ "14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-medium-r-normal-*-12-*-*-*-*-*-big5-0,-adobe-helvetica-medium-r-"
+#~ "normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-bold-r-normal-*-12-*-*-*-*-*-big5-0,-adobe-helvetica-bold-r-normal-*-"
+#~ "12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-medium-r-normal-*-10-*-*-*-*-*-big5-0,-adobe-helvetica-medium-r-"
+#~ "normal-*-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr ""
+#~ "-*-*-bold-r-normal-*-10-*-*-*-*-*-big5-0,-adobe-helvetica-bold-r-normal-*-"
+#~ "10-*-*-*-*-*-*-*"
+
+#~ msgid "Shift"
+#~ msgstr "反函數"
+
+#~ msgid "Store"
+#~ msgstr "將數值放入儲存器"
+
+#~ msgid "Recall"
+#~ msgstr "載入儲存器中的數值"
+
+#~ msgid "Sum"
+#~ msgstr "將目前數值及儲存器數值的總和放入儲存器"
+
+#~ msgid "Exchange"
+#~ msgstr "交換儲存器中的數值和目前的數值"
+
+#~ msgid "Dos (FAT)"
+#~ msgstr "Dos (FAT)"
+
+#~ msgid "Floppy Density:"
+#~ msgstr "軟碟片密度："
+
+#~ msgid "File system type:"
+#~ msgstr "檔案系統類型："
+
+#~ msgid "Floppy Device:"
+#~ msgstr "軟碟片裝置："
 
 #~ msgid "Show user preferences"
 #~ msgstr "顯示「偏好設定」"
@@ -2167,9 +2261,6 @@ msgstr "檢視系統紀錄檔"
 
 #~ msgid "Server to use, default search strategy, fonts"
 #~ msgstr "使用的伺服器、預設搜尋方法、字型"
-
-#~ msgid "_Lookup"
-#~ msgstr "檢索(_L)"
 
 #~ msgid "Spell Check..."
 #~ msgstr "校對拼字..."
