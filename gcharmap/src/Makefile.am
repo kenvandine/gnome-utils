@@ -1,4 +1,4 @@
-bin_PROGRAMS = gcharmap
+bin_PROGRAMS = gnome-character-map
 
 INCLUDES =\
 	-DG_LOG_DOMAIN=\"gcharmap\"\
@@ -7,15 +7,15 @@ INCLUDES =\
 	$(LIBBONOBOUI_CFLAGS) \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
-gcharmap_SOURCES = \
+gnome_character_map_SOURCES = \
         main.c\
         interface.c interface.h\
         menus.c menus.h\
         callbacks.c callbacks.h\
         asciiselect.c asciiselect.h
 
-gcharmap_LDADD = $(GNOME_UTILS_LIBS) $(LIBBONOBOUI_LIBS) $(INTLLIBS)
+gnome_character_map_LDADD = $(GNOME_UTILS_LIBS) $(LIBBONOBOUI_LIBS) $(INTLLIBS)
 
-man_MANS = gcharmap.1
+man_MANS = gnome-character-map.1
 
-EXTRA_DIST = $(gcharmap_SOURCES) gcharmap.1
+EXTRA_DIST = $(gcharmap_SOURCES) gnome-character-map.1
