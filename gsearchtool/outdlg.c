@@ -34,7 +34,7 @@ outdlg_closedlg(GtkWidget * widget, gpointer data)
 int
 outdlg_makedlg(char name[], int clear)
 {
-	GtkWidget *widget;
+	GtkWidget *w;
 
 	/*we already have a dialog!!!*/
 	if(outdlg!=NULL) {
@@ -56,14 +56,11 @@ outdlg_makedlg(char name[], int clear)
 	gtk_signal_connect(GTK_OBJECT(outdlg), "clicked",
 			   GTK_SIGNAL_FUNC(outdlg_clicked), NULL);
 
-	/*widget=gtk_label_new("Files Found:");
-	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(outdlg)->vbox),widget,
-			   FALSE,FALSE,5);*/
-
+	w = gtk_scrolled_window_new(NULL,NULL);
+	gtk_widget_set_usize(w,200,350);
+	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(outdlg)->vbox),w,TRUE,TRUE,0);
 	outlist = gtk_clist_new(1);
-	gtk_widget_set_usize(outlist,200,350);
-	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(outdlg)->vbox),outlist,
-			   TRUE,TRUE,0);
+	gtk_container_add(GTK_CONTAINER(w),outlist);
 
 	return TRUE;
 }

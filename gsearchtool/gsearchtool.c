@@ -554,7 +554,7 @@ about_cb (GtkWidget *widget, gpointer data)
 {
 	GtkWidget *about;
 	static const char *authors[] = {
-		"George Lebl",
+		"George Lebl <jirka@5z.com>",
 		NULL
 	};
 
