@@ -112,3 +112,37 @@ Implement Bonobo::PersistFile: since we can save data to file
 Implement Bonobo::PersistStream: at least in theory, we can pipe the 
 xml data format to a stream.
 IDL:GNOME/EmbeddablePrint:1.0
+
+More enhancements:
+------------------
+Display sub-projects in journal as well
+>>  If you have hierarchical projects, not only the invoice but also the
+>>  journal only shows the 'current' project.  For example, if you have
+>>  a project tree that looks like:
+>>  
+>>    foo
+>>    +- foo1
+>>    +- foo2
+>>  
+>>  And you have the following tasks in your Journal:
+>>  
+>>          foo:
+>>                  task1
+>>                  task2
+>>          foo1:
+>>                  bartask
+>>          foo2:
+>>                  baztask
+>>                  quuxtask
+>>  
+>>  If you view the 'foo' journal you only see 'task1' and 'task2'.
+>>  However the times associated with bartask, baztask, and quuxtask are
+>>  all still listed in the 'foo' line.  Even if you 'clear' the 'foo'
+>>  times it wont clear the 'foo1' and 'foo2' timers.  This is true even
+>>  if 'foo' is collasped such that you cannot see that there are 'foo1'
+>>  and 'foo2'.
+>>  
+>>  This is completely non-intuitive.  If I'm acting on a parent it should
+>>  _always_ include all children.  At least I should be able to set a
+>>  preference for whether to include children or not.
+>>  
