@@ -1,3 +1,4 @@
+SUBDIRS = doc
 
 INCLUDES = 			\
 	-I$(includedir)		\
