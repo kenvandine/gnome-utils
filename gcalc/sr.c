@@ -346,6 +346,7 @@ do_sr(int argc, char **argv, char *geom, int border)
         default:
            /* printf("event type=%ld\n",(long)event.type); */
 /*           XSRError("Unexpected X_Event"); */
+	    break;
 
         }  /* end of switch */
     }  /* end main loop */
