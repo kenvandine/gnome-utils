@@ -480,7 +480,6 @@ file_button_release_event_cb (GtkWidget 	*widget,
 		      	      gpointer 		data)
 {
 	gboolean no_files_found = FALSE;	
-	GtkTreeSelection *selection;
 	GtkTreeIter iter;
 
 	if (event->window != gtk_tree_view_get_bin_window (GTK_TREE_VIEW(interface.tree))) {
@@ -555,7 +554,6 @@ file_event_after_cb  (GtkWidget 	*widget,
 		      GdkEventButton 	*event, 
 		      gpointer 		data)
 {	
-	GtkTreeSelection *selection;
 	GtkTreeIter 	 iter;
 
 	if (event->window != gtk_tree_view_get_bin_window (GTK_TREE_VIEW(interface.tree))) {
@@ -852,20 +850,24 @@ key_press_cb (GtkWidget    	*widget,
 	}
 	else if (event->keyval == GDK_F10) {
 		if (event->state & GDK_SHIFT_MASK) {
-			GtkWidget *popup;
-			gchar *utf8_name = NULL;
-			gchar *utf8_path = NULL;
 			gboolean no_files_found = FALSE;
+			GtkWidget *popup;
 			GtkTreeIter iter;
+			GList *list;
+			
+			if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
+				return FALSE;
+			}
 		
-			if (!gtk_tree_selection_get_selected (interface.selection, NULL, &iter))
-    				return FALSE;
+			list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION(interface.selection),
+						     (GtkTreeModel **)&interface.model);
+			
+			gtk_tree_model_get_iter (GTK_TREE_MODEL(interface.model), &iter, 
+						 g_list_first(list)->data);
 		
 			gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
-					    COLUMN_NAME, &utf8_name,
-					    COLUMN_PATH, &utf8_path,
-				    	COLUMN_NO_FILES_FOUND, &no_files_found,
-				    	-1);
+					    COLUMN_NO_FILES_FOUND, &no_files_found,
+				    	    -1);
 				    
 			if (!no_files_found) {
 				popup = gnome_popup_menu_new (popup_menu);
