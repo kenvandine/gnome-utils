@@ -22,6 +22,7 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <X11/Xlib.h>
 
 typedef struct IdleTimeout IdleTimeout;
 typedef struct pref_s IdleTimeoutPrefs;
@@ -29,9 +30,13 @@ typedef struct IdleTimeoutScreen IdleTimeoutScreen;
 
 struct pref_s
 {
-	Time timeout;
-	Time pointer_timeout;
-	Time notice_events_timeout;
+	/* in seconds */
+	int timeout;
+	int pointer_timeout;
+
+	/* notice_events_timeout is how often we re-walk the 
+	 * the window tree, looking for new windows */
+	int notice_events_timeout;
 };
 
 

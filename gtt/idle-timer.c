@@ -70,10 +70,12 @@ idle_timeout_new (void)
   si->screens->global = si;
   si->screens->screen = DefaultScreenOfDisplay (si->dpy);
 
-  /* bogus preferences */
+  /* bogus preferences  */
   si->prefs.timeout = 5;
   si->prefs.pointer_timeout = 5;
-  si->prefs.notice_events_timeout = 5;
+
+  /* how often we recheck the main window tree */
+  si->prefs.notice_events_timeout = 60;
 
   return si;
 }
@@ -108,10 +110,10 @@ idle_timer (gpointer closure)
 
 
 static void
-schedule_wakeup_event (IdleTimeout *si, Time when)
+schedule_wakeup_event (IdleTimeout *si, int when)
 {
   /* Wake up periodically to ask the server if we are idle. */
-  si->timer_id = gtk_timeout_add (when, idle_timer,
+  si->timer_id = gtk_timeout_add (when*1000, idle_timer,
                                   (gpointer) si);
 }
 
@@ -128,10 +130,10 @@ notice_events (IdleTimeout *si, Window window, Bool top_p)
   if (gwin)
   {
     /* If it's one of ours, don't mess up its event mask. */
-printf ("duuuude our window g=%p xw=0x%x\n",gwin, (int) window);
+printf ("duuuude notice events our window g=%p xw=0x%x\n",gwin, (int) window);
     return;
   }
-printf ("duuuude not**** our window g=%p xw=0x%x\n",gwin, (int) window);
+printf ("duuuude notice events not**** our window g=%p xw=0x%x\n",gwin, (int) window);
 
   if (!XQueryTree (si->dpy, window, &root, &parent, &kids, &nkids))
     return;
@@ -233,14 +235,14 @@ notice_events_timer (gpointer closure)
 
 
 static void
-start_notice_events_timer (IdleTimeout *si, Window w, Bool verbose_p)
+start_notice_events_timer (IdleTimeout *si, Window w)
 {
   IdleTimeoutPrefs *p = &si->prefs;
   struct notice_events_timer_arg *arg =
     (struct notice_events_timer_arg *) malloc(sizeof(*arg));
   arg->si = si;
   arg->w = w;
-  gtk_timeout_add (p->notice_events_timeout, notice_events_timer,
+  gtk_timeout_add (p->notice_events_timeout *1000, notice_events_timer,
 		   (gpointer) arg);
 
 }
@@ -282,9 +284,9 @@ check_pointer_timer (gpointer closure)
 {
   int i;
   IdleTimeout *si = (IdleTimeout *) closure;
-  IdleTimeoutPrefs *p = &si->prefs;
   Bool active_p = False;
 
+printf ("duuude check_pointer_timer now\n");
   if (!si->using_proc_interrupts &&
       (si->using_xidle_extension ||
        si->using_mit_saver_extension ||
@@ -293,10 +295,6 @@ check_pointer_timer (gpointer closure)
        Unless we're also checking /proc/interrupts, in which case, we should.
      */
     abort ();
-
-  si->check_pointer_timer_id =
-    gtk_timeout_add ( p->pointer_timeout, check_pointer_timer,
-		     (gpointer) si);
 
   for (i = 0; i < si->nscreens; i++)
     {
@@ -321,15 +319,14 @@ check_pointer_timer (gpointer closure)
 	if (root_x == ssi->poll_mouse_last_root_x &&
 	    root_y == ssi->poll_mouse_last_root_y &&
 	    child  == ssi->poll_mouse_last_child)
-	  fprintf (stderr, "%s: modifiers changed at %s on screen %d.\n",
-		   blurb(), timestring(), i);
+	  fprintf (stderr, "modifiers changed at %s on screen %d.\n",
+		   timestring(), i);
 	else
-	  fprintf (stderr, "%s: pointer moved at %s on screen %d.\n",
-		   blurb(), timestring(), i);
+	  fprintf (stderr, "pointer moved at %s on screen %d.\n",
+		   timestring(), i);
 
 # if 0
-      fprintf (stderr, "%s: old: %d %d 0x%x ; new: %d %d 0x%x\n",
-               blurb(), 
+      fprintf (stderr, "old: %d %d 0x%x ; new: %d %d 0x%x\n",
                ssi->poll_mouse_last_root_x,
                ssi->poll_mouse_last_root_y,
                (unsigned int) ssi->poll_mouse_last_child,
@@ -352,19 +349,17 @@ check_pointer_timer (gpointer closure)
     {
 # ifdef DEBUG_TIMERS
       if (p->verbose_p)
-        fprintf (stderr, "%s: /proc/interrupts activity at %s.\n",
-                 blurb(), timestring());
+        fprintf (stderr, "/proc/interrupts activity at %s.\n",
+                 timestring());
 # endif /* DEBUG_TIMERS */
       active_p = True;
     }
 #endif /* HAVE_PROC_INTERRUPTS */
 
-
-  if (active_p)
-    reset_timers (si);
+  if (active_p) reset_timers (si);
 
   check_for_clock_skew (si);
-  return 0;
+  return 1;
 }
 
 
@@ -388,16 +383,17 @@ check_for_clock_skew (IdleTimeout *si)
   long shift = now - si->last_wall_clock_time;
 
 #ifdef DEBUG_TIMERS
-  if (p->verbose_p)
-    fprintf (stderr, "%s: checking wall clock (%d).\n", blurb(),
+    fprintf (stderr, "checking wall clock (%d).\n", 
              (si->last_wall_clock_time == 0 ? 0 : shift));
 #endif /* DEBUG_TIMERS */
 
   if (si->last_wall_clock_time != 0 &&
       shift > (p->timeout / 1000))
     {
+#ifdef DEBUG_TIMERS
         fprintf (stderr, "wall clock has jumped by %ld:%02ld:%02ld!\n",
                  (shift / (60 * 60)), ((shift / 60) % 60), (shift % 60));
+#endif /* DEBUG_TIMERS */
 
       idle_timer ((gpointer) si);
     }
@@ -451,21 +447,26 @@ printf ("duude event predicate\n");
 int
 poll_idle_time (IdleTimeout *si, Bool until_idle_p)
 {
-  IdleTimeoutPrefs *p = &si->prefs;
+  IdleTimeoutPrefs *p;
   XEvent event;
+  Bool scanning_all_windows;
+  Bool polling_for_idleness;
+  Bool polling_mouse_position;
+
+  if (!si) return 0;
 
   /* We need to select events on all windows if we're not using any extensions.
      Otherwise, we don't need to. */
-  Bool scanning_all_windows = !(si->using_xidle_extension ||
-                                si->using_mit_saver_extension ||
-                                si->using_sgi_saver_extension);
+  scanning_all_windows = !(si->using_xidle_extension ||
+                           si->using_mit_saver_extension ||
+                           si->using_sgi_saver_extension);
 
   /* We need to periodically wake up and check for idleness if we're not using
      any extensions, or if we're using the XIDLE extension.  The other two
      extensions explicitly deliver events when we go idle/non-idle, so we
      don't need to poll. */
-  Bool polling_for_idleness = !(si->using_mit_saver_extension ||
-                                si->using_sgi_saver_extension);
+  polling_for_idleness = !(si->using_mit_saver_extension ||
+                           si->using_sgi_saver_extension);
 
   /* Whether we need to periodically wake up and check to see if the mouse has
      moved.  We only need to do this when not using any extensions.  The reason
@@ -476,10 +477,12 @@ poll_idle_time (IdleTimeout *si, Bool until_idle_p)
      and query the server with that extension.  For our purposes, polling
      /proc/interrupts is just like polling the mouse position.  It has to
      happen on the same kind of schedule. */
-  Bool polling_mouse_position = (si->using_proc_interrupts ||
-                                 !(si->using_xidle_extension ||
-                                   si->using_mit_saver_extension ||
-                                   si->using_sgi_saver_extension));
+  polling_mouse_position = (si->using_proc_interrupts ||
+                           !(si->using_xidle_extension ||
+                             si->using_mit_saver_extension ||
+                             si->using_sgi_saver_extension));
+
+  p = &si->prefs;
 
   if (until_idle_p)
     {
@@ -492,19 +495,28 @@ poll_idle_time (IdleTimeout *si, Bool until_idle_p)
         schedule_wakeup_event (si, p->timeout);
 
       if (polling_mouse_position)
+      {
         /* Check to see if the mouse has moved, and set up a repeating timer
            to do so periodically (typically, every 5 seconds.) */
-	check_pointer_timer ((gpointer) si);
+        if (0 == si->check_pointer_timer_id)
+	{
+          si->check_pointer_timer_id = gtk_timeout_add (p->pointer_timeout *1000, 
+                  check_pointer_timer, (gpointer) si);
+	  check_pointer_timer ((gpointer) si);
+        }
+      }
     }
 
   while (1)
     {
 
+#if 0
       if (FALSE == gdk_events_pending())
       {
 printf ("duuuude no events pending\n");
 return 99;
       }
+#endif
 
 if (False == XCheckIfEvent (si->dpy, &event, if_event_predicate, (XPointer) si))
 {
@@ -600,11 +612,7 @@ printf ("duuude match \n");
 	if (scanning_all_windows)
 	  {
             Window w = event.xcreatewindow.window;
-#ifdef DEBUG_TIMERS
-	    start_notice_events_timer (si, w, p->verbose_p);
-#else  /* !DEBUG_TIMERS */
-	    start_notice_events_timer (si, w, False);
-#endif /* !DEBUG_TIMERS */
+	    start_notice_events_timer (si, w);
 	  }
 	break;
 
