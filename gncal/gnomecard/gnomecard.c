@@ -23,7 +23,7 @@
 #define PHONE_COL_WIDTH 100
 #define EMAIL_COL_WIDTH 100
 
-#define LIST_WIDTH 400
+#define LIST_WIDTH 450
 #define LIST_HEIGHT 320
 
 #define NONE  0
@@ -671,7 +671,7 @@ void gnomecard_sort_by_fname(GtkWidget *w, gpointer data)
 void gnomecard_init(void)
 {
 	char *titles[] = { "Name", "Organization", "Phone #", "Email"};
-	GtkWidget *canvas, *align, *hpaned;
+	GtkWidget *canvas, *align, *hbox, *hbox1, *hbox2;
 	GtkWidget *scrollwin;
 	/*, *omenu, *menu, *item;
 	int i;*/
@@ -687,17 +687,15 @@ void gnomecard_init(void)
 	gtk_signal_connect(GTK_OBJECT(gnomecard_window), "delete_event",
 			   GTK_SIGNAL_FUNC(gnomecard_delete), NULL);
 	
-	hpaned = gtk_hpaned_new();
-	gtk_paned_handle_size(GTK_PANED(hpaned), GNOME_PAD_SMALL * 2);
-	gtk_paned_gutter_size(GTK_PANED(hpaned), GNOME_PAD_SMALL * 2 + GNOME_PAD_SMALL);
-	
-	gnome_app_set_contents(GNOME_APP(gnomecard_window), hpaned);
+	hbox = gtk_hbox_new(FALSE, 0);
+	gnome_app_set_contents(GNOME_APP(gnomecard_window), hbox);
+
 	gnome_app_create_menus(GNOME_APP(gnomecard_window), mainmenu);
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
 	scrollwin = gtk_scrolled_window_new(NULL, NULL);
 	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(4, titles));
-	gtk_paned_add1(GTK_PANED(hpaned), scrollwin);
+	gtk_box_pack_start(GTK_BOX(hbox), scrollwin, TRUE, TRUE, 0);
 	gtk_container_add(GTK_CONTAINER(scrollwin), GTK_WIDGET(gnomecard_list));
 /* 	gtk_widget_realize(GTK_WIDGET(gnomecard_list)); */
 /*
@@ -764,7 +762,7 @@ void gnomecard_init(void)
 	gtk_widget_show(scrollwin);
 
 	align = gtk_alignment_new(0.5, 0.5, 0.5, 0.5);
-	gtk_paned_add2(GTK_PANED(hpaned), align);
+	gtk_box_pack_start(GTK_BOX(hbox), align, FALSE, FALSE, 0);
 	gtk_widget_show(align);
 
 	gtk_widget_push_visual(gdk_imlib_get_visual());
