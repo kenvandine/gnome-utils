@@ -132,6 +132,8 @@ enum {
 
 static gint gnome_calc_signals[LAST_SIGNAL];
 
+static gboolean cmd_saved = FALSE;
+
 GNOME_CLASS_BOILERPLATE (GnomeCalc, gnome_calc,
 			 GtkVBox, GTK_TYPE_VBOX)
 
@@ -497,6 +499,9 @@ convert_num(gdouble num, GnomeCalcMode from, GnomeCalcMode to)
 static void
 no_func(GtkWidget *w, gpointer data)
 {
+	GList *list;
+	static CalculatorStack saved_func, saved_num;
+	CalculatorStack *stack1, *stack2, *add_func, *add_num;
 	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
@@ -518,6 +523,50 @@ no_func(GtkWidget *w, gpointer data)
 		gc->_priv->error = FALSE;
 		return;
 	}
+
+	/* = after <math_func>=  eg: 3+== */
+	if (cmd_saved == TRUE) {
+		add_func = g_new(CalculatorStack, 1);
+		add_func->type = saved_func.type;
+		add_func->d = saved_func.d;
+		gc->_priv->stack = g_list_prepend(gc->_priv->stack, add_func);
+
+		add_num = g_new(CalculatorStack, 1);
+		add_num->type = saved_num.type;
+		add_num->d = saved_num.d;
+		gc->_priv->stack = g_list_prepend(gc->_priv->stack, add_num);
+		gc->_priv->add_digit = FALSE;
+
+		reduce_stack(gc);
+	} else {
+		if(gc->_priv->stack == NULL)
+			return;
+		stack1 = gc->_priv->stack->data;
+
+		list=g_list_next(gc->_priv->stack);
+		if(list) {
+			stack2 = list->data;
+
+			if( stack1->type == CALCULATOR_FUNCTION && 
+		    		stack2->type == CALCULATOR_NUMBER) {
+				saved_func.type = CALCULATOR_FUNCTION;
+				saved_func.d = stack1->d;
+
+				saved_num.type = CALCULATOR_NUMBER;
+				saved_num.d = stack2->d;
+
+				add_num = g_new(CalculatorStack,1);
+				add_num->type = saved_num.type;
+				add_num->d = saved_num.d;
+				gc->_priv->stack = g_list_prepend(gc->_priv->stack, add_num);
+				gc->_priv->add_digit = FALSE;
+
+				reduce_stack(gc);
+				cmd_saved = TRUE;
+			}
+		}
+	}
+
 	set_result(gc);
 
 	unselect_invert(gc);
@@ -534,6 +583,8 @@ simple_func(GtkWidget *w, gpointer data)
 
 	g_return_if_fail(func!=NULL);
 	g_return_if_fail(gc!=NULL);
+
+	cmd_saved = FALSE;
 
 	if(gc->_priv->error)
 		return;
@@ -605,6 +656,8 @@ math_func(GtkWidget *w, gpointer data)
 	g_return_if_fail(func!=NULL);
 	g_return_if_fail(gc!=NULL);
 
+	cmd_saved = FALSE;
+
 	if(gc->_priv->error)
 		return;
 
@@ -654,6 +707,8 @@ reset_calc(GtkWidget *w, gpointer data)
 
 	g_return_if_fail(gc!=NULL);
 
+	cmd_saved = FALSE;
+
 	while(gc->_priv->stack)
 		stack_pop(&gc->_priv->stack);
 
@@ -678,6 +733,8 @@ clear_calc(GtkWidget *w, gpointer data)
 	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
+
+	cmd_saved = FALSE;
 
 	/* if in add digit mode, just clear the number, otherwise clear
 	 * state as well */
@@ -724,6 +781,8 @@ add_digit (GtkWidget *w, gpointer data)
 	GnomeCalc *gc = g_object_get_data (G_OBJECT (w), "set_data");
 	CalculatorButton *but = data;
 	gchar *digit = but->name;
+
+	cmd_saved = FALSE;
 
 	if(gc->_priv->error)
 		return;
@@ -793,6 +852,8 @@ negate_val(GtkWidget *w, gpointer data)
 	char *p;
 
 	g_return_if_fail(gc!=NULL);
+
+	cmd_saved = FALSE;
 
 	if(gc->_priv->error)
 		return;
@@ -1070,6 +1131,8 @@ add_parenth(GtkWidget *w, gpointer data)
 
 	g_return_if_fail(gc!=NULL);
 
+	cmd_saved = FALSE;
+
 	if(gc->_priv->error)
 		return;
 
@@ -1092,6 +1155,8 @@ sub_parenth(GtkWidget *w, gpointer data)
 {
 	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 	g_return_if_fail(gc!=NULL);
+
+	cmd_saved = FALSE;
 
 	if(gc->_priv->error)
 		return;
