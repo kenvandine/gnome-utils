@@ -86,5 +86,6 @@ gtt_LDADD = \
 EXTRA_DIST = 			\
 	down.xpm		\
 	left.xpm		\
-	design.txt		\
+	design.txt
+
 
