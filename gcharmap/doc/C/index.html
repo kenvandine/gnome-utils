@@ -1,55 +1,257 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<HTML>
-<HEAD>
-  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
-  <META NAME="Author" CONTENT="Hongli Lai <hongli@telekabel.nl>">
-  <META NAME="Generator" CONTENT="Bluefish 0.3.6 (GNU/RedHat/Linux 2.2.14)">
-  <TITLE>Gnome Character Map Documentation</TITLE>
-</HEAD>
-
-<BODY>
-
-<H1>Gnome Character Map Documentation</H1>
-<H3>Hongli Lai <A HREF="mailto:hongli@telekabel.nl">&lt;hongli@telekabel.nl&gt;</A></H3>
-<P><A HREF="legal.htm">Legal Notice</A></P>
-
-<TABLE BORDER="0" ALIGN="Left">
-<TR><TD COLSPAN="2">
-<B>Table of Contents</B>
-</TD></TR>
-
-<TR><TD COLSPAN="2">
-1. <A HREF="intro.htm">Introduction</A>
-</TD></TR><TR><TD WIDTH=35>&nbsp;</TD><TD>
-<A HREF="intro.htm#1">What is it?</A><BR>
-<A HREF="intro.htm#2">Why did it wrote it?</A>
-</TD></TR>
-
-<TR><TD COLSPAN="2">
-2. <A HREF="tutor.htm">Tutorial</A>
-</TD></TR><TR><TD WIDTH=35>&nbsp;</TD><TD>
-<A HREF="tutor.htm#1">Getting started</A><BR>
-<A HREF="tutor.htm#2">Select characters</A><BR>
-<A HREF="tutor.htm#3">Select more characters</A><BR>
-<A HREF="tutor.htm#4">Copy or cut to clipboard</A><BR>
-<A HREF="tutor.htm#5">Paste from clipboard</A><BR>
-<A HREF="tutor.htm#6">Why doesn't the text get pasted?</A>
-</TD></TR>
-
-<TR><TD COLSPAN="2">
-3. <A HREF="usage.htm">Program Usage</A>
-</TD></TR><TR><TD WIDTH=35>&nbsp;</TD><TD>
-<A HREF="usage.htm#1">How to select characters</A><BR>
-<A HREF="usage.htm#2">Select more characters</A><BR>
-<A HREF="usage.htm#3">Cut, Copy and Paste</A>
-</TD></TR>
-
-<TR><TD COLSPAN="2">
-4. <A HREF="author.htm">About the author</A>
-</TD></TR>
-</TABLE>
-
-</BODY>
-
-</HTML>
+<HTML
+><HEAD
+><TITLE
+>GNOME Character Map</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.54"><LINK
+REL="NEXT"
+TITLE="Using GNOME Character Map"
+HREF="usage.html"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>GNOME Character Map</A
+></H1
+><P
+CLASS="COPYRIGHT"
+><A
+HREF="ln7.html"
+>Copyright</A
+> &copy; 2000 by <SPAN
+CLASS="HOLDER"
+>Hongli Lai</SPAN
+></P
+><HR
+WIDTH="75%"
+ALIGN="CENTER"
+COLOR="#000000"
+SIZE="1"></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="index.html#INTRO"
+>Introduction</A
+></DT
+><DT
+><A
+HREF="usage.html"
+>Using GNOME Character Map</A
+></DT
+><DT
+><A
+HREF="bugs.html"
+>Known Bugs and Limitations</A
+></DT
+><DT
+><A
+HREF="authors.html"
+>Authors</A
+></DT
+><DT
+><A
+HREF="license.html"
+>License</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="INTRO"
+>Introduction</A
+></H1
+><P
+>   <TT
+CLASS="APPLICATION"
+>GNOME Character Map</TT
+> is a program that
+   allows you to select ASCII characters. With <TT
+CLASS="APPLICATION"
+>GNOME
+   Character Map</TT
+>, you can also use high ASCII characters
+   that you cannot type with your keybord. It's similar to Microsoft
+   Windows' <TT
+CLASS="APPLICATION"
+>Character Map</TT
+>. The difference
+   is that <TT
+CLASS="APPLICATION"
+>Gnome Character Map</TT
+> is better
+   ;-)  
+  </P
+><P
+>   Why did I write <TT
+CLASS="APPLICATION"
+>GNOME Character Map</TT
+>?
+   Because there wasn't such a program available for Linux, until 
+   now. When I write documents, sometimes I want to use special
+   characters like an E-circumflex. To do that, I have to write a
+   program that prints all ASCII characters to stdout and copy the
+   character to clipboard. I like the Windows' <TT
+CLASS="APPLICATION"
+>Character
+   Map</TT
+>, because it's easy and fast to use. So I wrote
+   one myself for Linux.
+  </P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TH
+ALIGN="LEFT"
+VALIGN="CENTER"
+><B
+>Cross-Platform Support</B
+></TH
+></TR
+><TR
+><TD
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>     <TT
+CLASS="APPLICATION"
+>GNOME Character Map</TT
+> will also
+     work in other Unix platforms like FreeBSD, Solaris, etc. because
+     <TT
+CLASS="APPLICATION"
+>GNOME Character Map</TT
+>'s source code is
+     completely ANSI and POSIX compliant. It should be possible to
+     compile it on Win32 without any changes, but I'm not sure.
+    </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>   To run <TT
+CLASS="APPLICATION"
+>GNOME Character Map</TT
+>, select
+   <B
+CLASS="GUIMENUITEM"
+>GNOME Character Map</B
+> from the
+   <B
+CLASS="GUISUBMENU"
+>Utilities</B
+> submenu of the <B
+CLASS="GUIMENU"
+>Main
+   Menu</B
+>, or type <B
+CLASS="COMMAND"
+>gcharmap</B
+> on the
+   command line. 
+  </P
+><P
+>   <TT
+CLASS="APPLICATION"
+>GNOME Character Map</TT
+> is included in the
+   <TT
+CLASS="FILENAME"
+>gnome-utils</TT
+> package, which is part of the
+   GNOME desktop environment. This document describes version
+   1.1.0 of <TT
+CLASS="APPLICATION"
+>GNOME Character Map</TT
+>.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="usage.html"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using GNOME Character Map</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
