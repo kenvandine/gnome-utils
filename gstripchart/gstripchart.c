@@ -77,6 +77,7 @@ static int slider_width = 10;
 static int geometry_w = 200, geometry_h = 50;
 static int geometry_x, geometry_y;
 static int root_width = 1, root_height;
+static int graphic_display = 1;
 static int update_count = 0;
 static int update_chart = 0;
 
@@ -197,16 +198,22 @@ Expr;
 static void
 eval_error(Expr *e, char *msg, ...)
 {
+  int len = 0;
+  char str[1000];
   va_list args;
   e->val = 0.0;
   if (update_chart)
     longjmp(e->err_jmp, 1);
   fflush(stdout);
   va_start(args, msg);
-  fprintf(stderr, "%s: %s: ", prog_name, e->eqn_src? e->eqn_src: "");
-  vfprintf(stderr, msg, args);
-  fprintf(stderr, "\n");
+  len = sprintf(str, "%s: %s: ", prog_name, e->eqn_src? e->eqn_src: "");
+  len += vsprintf(str + len, msg, args);
+  fprintf(stderr, "%s\n", str);
   va_end(args);
+
+  if (graphic_display)
+    gnome_dialog_run(GNOME_DIALOG(gnome_error_dialog(str)));
+
   exit(EXIT_FAILURE);
 }
 
@@ -547,7 +554,6 @@ static double eval(
   e.gtp_now = gtp_now;
   e.gtp_last = gtp_last;
 #endif
-
   if (setjmp(e.err_jmp))
     return e.val;
 
@@ -629,15 +635,21 @@ static void (*display)(void) = gnome_graph;
 static void
 defns_error(char *fn, int ln, char *fmt, ...)
 {
+  int len = 0;
+  char msg[1000];
   va_list args;
   fflush(stdout);
   va_start(args, fmt);
-  fprintf(stderr, "%s: ", prog_name);
+  len = sprintf(msg, "%s: ", prog_name);
   if (fn)
-    fprintf(stderr, _("%s, line %d: "), fn, ln);
-  vfprintf(stderr, fmt, args);
-  fprintf(stderr, "\n");
+    len += sprintf(msg + len, _("%s, line %d: "), fn, ln);
+  vsprintf(msg + len, fmt, args);
+  fprintf(stderr, "%s\n", msg);
   va_end(args);
+
+  if (graphic_display)
+    gnome_dialog_run(GNOME_DIALOG(gnome_error_dialog(msg)));
+
   exit(EXIT_FAILURE);
 }
 
@@ -827,7 +839,7 @@ read_param_defns(Param_glob *pgp)
 	      else if (streq(key, "color"))
 		{
 		  p[params-1]->color_name = strdup(val);
-		  if (display == applet || display == gnome_graph)
+		  if (graphic_display)
 		    if (!gdk_color_parse(val, &p[params-1]->gdk_color))
 		      defns_error(fn,lineno, _("unrecognized color: %s"), val);
 		}
@@ -842,7 +854,7 @@ read_param_defns(Param_glob *pgp)
 		      trimtb(cname);
 		      pp->led_color = realloc(
 			pp->led_color, (n+1) * sizeof(*pp->led_color));
-		      if (display == applet || display == gnome_graph)
+		      if (graphic_display)
 			if (!gdk_color_parse(cname, &pp->led_color[n]))
 			  {
 			    defns_error(
@@ -855,9 +867,9 @@ read_param_defns(Param_glob *pgp)
 		}
 	      else if (streq(key, "scale"))
 		{
-		  if (streq(val, "linear"))
+		  if (val && streq(val, "linear"))
 		    p[params-1]->scale = scale_linear;
-		  else if (streq(val, "log"))
+		  else if (val && streq(val, "log"))
 		    p[params-1]->scale = scale_log;
 		  else
 		    defns_error(fn, lineno,
@@ -873,10 +885,20 @@ read_param_defns(Param_glob *pgp)
 		p[params-1]->vars = atoi(val);
 	      else if (streq(key, "equation"))
 		{
-		  char src[FILENAME_MAX+20];
+		  char *cp = val, src[FILENAME_MAX+20];
 		  sprintf(src, "%s, line %d", fn, lineno);
+		  if (!val)
+		    defns_error(fn, lineno, _("no equation found"));
 		  p[params-1]->eqn_src = strdup(src);
 		  p[params-1]->eqn = strdup(val);
+		  /* If the number of fields to extract from the data
+                     file has not been specified, use the largest int
+                     following a "$" or "~". */
+		  if (p[params-1]->vars == 0)
+		    while (*(cp += strcspn(cp, "$~")))
+		      if (isdigit(*++cp))
+			if (p[params-1]->vars < atoi(cp))
+			  p[params-1]->vars = atoi(cp);
 		}
 	      else if (streq(key, "maximum"))
 		p[params-1]->hi = p[params-1]->top = atof(val);
@@ -2052,6 +2074,7 @@ proc_arg(int opt, const char *arg)
       else
 	{
 	  gnome_client_disable_master_connection();
+	  graphic_display = 0;
 	  if (streq("none", arg))
 	    display = no_display;
 	  else if (streq("text", arg))
@@ -2160,7 +2183,7 @@ main(int argc, char **argv)
   /* In either of the graphical modes, we get the width of the root
      window, and use this as the number of samples to be kept in the
      value history. */
-  if (display == applet || display == gnome_graph)
+  if (graphic_display)
     gdk_window_get_geometry(
       NULL, NULL, NULL, &root_width, &root_height, NULL);
 
@@ -2186,7 +2209,7 @@ main(int argc, char **argv)
 
   /* Clone chart_param into a new slider_param array, then override
      the next, last, and val arrays and associated sizing values. */
-  if (include_slider && (display==gnome_graph || display==applet))
+  if (include_slider && graphic_display)
     {
       int p;
       slider_glob = chart_glob;

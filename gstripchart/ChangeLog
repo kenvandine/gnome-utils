@@ -1,3 +1,16 @@
+1999-12-01  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (read_param_defns): If the number of fields to
+	extract from the data file has not been specified, use the largest
+	int following a "$" or "~".
+
+1999-11-30  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (defns_error): In either of the graphics modes,
+	pop up an error dialog box for any errors encountered while
+	reading the configuration file...
+	(eval_error): ...or when evaluation the parameter expressions.
+
 1999-11-26  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (text_popup): Show the text_popup toplevel frame
