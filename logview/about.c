@@ -46,7 +46,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 	  NULL
   };
   /* Translator credits */
-  gchar *translator_credits = _("translator_credits");
+  gchar *translator_credits = _("translator-credits");
 
   if (about_window != NULL) {
 	  gtk_widget_show_now (about_window);
