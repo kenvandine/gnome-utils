@@ -1,3 +1,25 @@
+Thu Aug 21 17:03:22 2003  George Lebl <jirka@5z.com>
+
+	* gsearchtool.[ch]: the 'pixmap' field is not used anymore
+	  and was just causing trouble.  Fix the width being too large
+	  for drawing and so the icon is now back and no more
+	  runtime warnings.  Also don't screw up in case the icon
+	  with the animation is not found, handle pixbuf == NULL
+	  case.  Also set the interface structure to all 0 with
+	  memset just for anality
+
+	* gsearchtool.c: fix shell escaping, use g_shell_quote
+	  and not g_strescape which is not correct and could lead
+	  to errors and fix a leak when eascaping
+
+	* gsearchtool.c, gsearchtool-callbacks.c, gsearchtool-support.c:
+	  Never, ever under any circumstances do if (foo == TRUE), since
+	  foo could be something other then '1' (which is the value of
+	  the TRUE define) and still TRUE.  This leads to VERY subtle
+	  errors that are hard to catch.  foo == FALSE is fine since there
+	  is only one FALSE value (0).  foo != FALSE could be used but
+	  that adds more confusion then clarity.
+
 2003-06-18  Dennis Cranston <dennis_cranston at yahoo com>
 
 	* gsearchtool.c: According to the HIG use header capitalization 

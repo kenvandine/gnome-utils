@@ -267,7 +267,7 @@ remove_mnemonic_character (const gchar *string)
 	
 	gs = g_string_new ("");
 	for(; *string; string++) {
-		if ((first_mnemonic == TRUE) && (*string == '_')) {
+		if ((first_mnemonic) && (*string == '_')) {
 			first_mnemonic = FALSE;
 			continue;
 		}
@@ -434,7 +434,7 @@ get_file_type_with_mime_type (const gchar *filename,
 		return (gchar *)gnome_vfs_mime_get_description (GNOME_VFS_MIME_TYPE_UNKNOWN);
 	}
 
-	if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK) == TRUE) {
+	if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK)) {
 		if (g_ascii_strcasecmp (mimetype, GNOME_VFS_MIME_TYPE_UNKNOWN) == 0) {
 			GnomeVFSFileInfo *file_info;
 		
@@ -467,7 +467,7 @@ get_file_icon_with_mime_type (const gchar *filename,
 	if (filename == NULL || mimetype == NULL) {
 		icon_name = g_strdup (ICON_THEME_REGULAR_ICON);
 	}
-	else if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE) == TRUE) &&
+	else if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE)) &&
 	         (g_ascii_strcasecmp (mimetype, "application/x-executable-binary") == 0)) {
 		icon_name = g_strdup (ICON_THEME_EXECUTABLE_ICON);
 	}
@@ -569,7 +569,7 @@ launch_file (const gchar *filename)
 	gchar *mime_type = gnome_vfs_get_mime_type (filename);	
 	gboolean result = FALSE;
 	
-	if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE) == TRUE) &&
+	if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE)) &&
 	    (g_ascii_strcasecmp (mime_type, BINARY_EXEC_MIME_TYPE) == 0)) { 
 		result = g_spawn_command_line_async (filename, NULL);
 	}

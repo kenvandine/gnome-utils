@@ -115,7 +115,7 @@ void
 click_check_button_cb (GtkWidget	*widget, 
 	       	       gpointer 	data)
 {
-	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)) == TRUE) {
+	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget))) {
 		gtk_widget_show (interface.additional_constraints);
 		gtk_window_set_geometry_hints (GTK_WINDOW (interface.main_window), 
 		                               GTK_WIDGET (interface.main_window),
@@ -142,7 +142,7 @@ click_find_cb (GtkWidget	*widget,
 {
 	gchar *command;
 
-	if (search_command.not_running_timeout == TRUE) {
+	if (search_command.not_running_timeout) {
 		return;
 	}
 
@@ -196,7 +196,7 @@ add_constraint_cb (GtkWidget 	*widget,
 	menu = gtk_option_menu_get_menu (GTK_OPTION_MENU(interface.constraint_menu));
 	item = gtk_menu_get_active (GTK_MENU(menu));
 	
-	if (GTK_WIDGET_SENSITIVE(item) == TRUE) {
+	if (GTK_WIDGET_SENSITIVE(item)) {
 		add_constraint (interface.selected_constraint, NULL, FALSE);
 	}
 }
@@ -226,8 +226,8 @@ void
 constraint_activate_cb (GtkWidget 	*widget, 
 			gpointer 	data)
 {
-	if ((GTK_WIDGET_VISIBLE (interface.find_button) == TRUE) && 
-	    (GTK_WIDGET_SENSITIVE (interface.find_button) == TRUE)) {
+	if ((GTK_WIDGET_VISIBLE (interface.find_button)) && 
+	    (GTK_WIDGET_SENSITIVE (interface.find_button))) {
 		click_find_cb (interface.find_button, NULL);
 	}	 
 }
@@ -277,8 +277,8 @@ void
 file_is_named_activate_cb (GtkWidget 	*widget, 
 			   gpointer 	data)
 {
-	if ((GTK_WIDGET_VISIBLE (interface.find_button) == TRUE) && 
-	    (GTK_WIDGET_SENSITIVE (interface.find_button) == TRUE)) {
+	if ((GTK_WIDGET_VISIBLE (interface.find_button)) && 
+	    (GTK_WIDGET_SENSITIVE (interface.find_button))) {
 		click_find_cb (interface.find_button, NULL);
 	}
 }
@@ -539,7 +539,7 @@ file_button_release_event_cb (GtkWidget 	*widget,
 		if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW(interface.tree), event->x, event->y,
 			&path, NULL, NULL, NULL)) {
 			if ((event->state & GDK_SHIFT_MASK) || (event->state & GDK_CONTROL_MASK)) {
-				if (row_selected_by_button_press_event == TRUE) {
+				if (row_selected_by_button_press_event) {
 					gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)), path);
 				}
 				else {
@@ -867,9 +867,9 @@ save_results_cb (GtkFileSelection *selector,
 	
 	interface.save_results_file = (gchar *)gtk_file_selection_get_filename(GTK_FILE_SELECTION(interface.file_selector));
 	
-	if (g_file_test (interface.save_results_file, G_FILE_TEST_EXISTS) == TRUE) {
+	if (g_file_test (interface.save_results_file, G_FILE_TEST_EXISTS)) {
 		
-		if (g_file_test (interface.save_results_file, G_FILE_TEST_IS_DIR) == TRUE) {
+		if (g_file_test (interface.save_results_file, G_FILE_TEST_IS_DIR)) {
 			GtkWidget *dialog;
 			gchar *title_msg;
 			gchar *error_msg;
@@ -1045,8 +1045,8 @@ look_in_folder_key_press_cb (GtkWidget    	*widget,
 
 	if (event->keyval == GDK_Return)
 	{
-		if ((GTK_WIDGET_VISIBLE (interface.find_button) == TRUE) && 
-		    (GTK_WIDGET_SENSITIVE (interface.find_button) == TRUE)) {
+		if ((GTK_WIDGET_VISIBLE (interface.find_button)) && 
+		    (GTK_WIDGET_SENSITIVE (interface.find_button))) {
 			click_find_cb (interface.find_button, NULL);
 		}
 	}

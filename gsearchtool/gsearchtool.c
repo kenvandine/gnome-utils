@@ -565,11 +565,11 @@ make_list_of_templates (void)
 			g_free (text);
 		}
 		
-		if (templates[i].is_selected == TRUE) {
+		if (templates[i].is_selected) {
 			gtk_widget_set_sensitive (menuitem, FALSE);
 		}
 		else {
-			if (ACTIVATE_MENU_OPTION == TRUE) {
+			if (ACTIVATE_MENU_OPTION) {
 				ACTIVATE_MENU_OPTION = FALSE;
 				g_signal_emit_by_name (G_OBJECT(menuitem), "activate", NULL);
 			}
@@ -793,7 +793,7 @@ get_desktop_item_name (void)
 	g_string_append (gs, g_strdup_printf ("&path=%s", look_in_folder_locale));
 	g_free (look_in_folder_locale); 
 
-	if (GTK_WIDGET_VISIBLE(interface.additional_constraints) == TRUE) {
+	if (GTK_WIDGET_VISIBLE(interface.additional_constraints)) {
 		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
 			SearchConstraint *constraint = list->data;
 			gchar *locale = NULL;
@@ -862,7 +862,7 @@ setup_animation_image (void)
 	gint	   width  = 0;
 	gint	   height = 0;
 	GError     *error = NULL;
-			
+
 	interface.current_animation_frame = DEFAULT_ANIMATION_FRAME - 1;
 
 	interface.pixbuf = gdk_pixbuf_new_from_file (GNOME_ICONDIR"/gnome-search-tool/gnome-search-tool-animation.png",
@@ -879,7 +879,6 @@ setup_animation_image (void)
 	height = gdk_pixbuf_get_height (interface.pixbuf); 
 
 	gtk_drawing_area_size (GTK_DRAWING_AREA (interface.drawing_area), width / TOTAL_ANIMATION_FRAMES, height);
-	interface.pixmap = gdk_pixmap_new (interface.drawing_area->window, width, height, -1);
 	gtk_widget_queue_draw (interface.drawing_area); 
 
 	return TRUE;
@@ -893,7 +892,7 @@ animation_expose_event_cb (GtkWidget       *widget,
 	gint width  = 0;
 	gint height = 0;
 
-	if (GDK_IS_DRAWABLE (interface.pixmap) == FALSE) {
+	if (interface.pixbuf == NULL) {
 		return FALSE;
 	}
 
@@ -903,13 +902,14 @@ animation_expose_event_cb (GtkWidget       *widget,
 
 	gdk_gc_set_clip_rectangle (widget->style->fg_gc[widget->state], &event->area); 
 
-	gdk_drawable_get_size (interface.pixmap, &width, &height);
+	width  = gdk_pixbuf_get_width (interface.pixbuf); 
+	height = gdk_pixbuf_get_height (interface.pixbuf); 
 
 	gdk_pixbuf_render_to_drawable_alpha (interface.pixbuf,
 	                                     GDK_DRAWABLE (widget->window),
 	                                     (width * interface.current_animation_frame) / TOTAL_ANIMATION_FRAMES, 0, 
 	                                     0, 0,
-	                                     width, height,
+	                                     width / TOTAL_ANIMATION_FRAMES, height,
 	                                     GDK_PIXBUF_ALPHA_FULL, 255,
 	                                     GDK_RGB_DITHER_MAX,
 	                                     0, 0);
@@ -946,7 +946,7 @@ update_animation_timeout_cb (gpointer data)
 {
 	static gboolean in_forward_progress = TRUE;
 	
-	if (in_forward_progress == TRUE) {
+	if (in_forward_progress) {
 		interface.current_animation_frame++;
 		if (interface.current_animation_frame >= (TOTAL_ANIMATION_FRAMES - 1)) {
 			in_forward_progress = !in_forward_progress;
@@ -1026,7 +1026,7 @@ handle_popt_args (void)
 		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
 				PoptArgument.sizeless, TRUE);
 	}
-	if (PoptArgument.empty == TRUE) {
+	if (PoptArgument.empty) {
 		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL, TRUE);
 	}
@@ -1040,7 +1040,7 @@ handle_popt_args (void)
 		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_GROUP, 
 				PoptArgument.group, TRUE);
 	}
-	if (PoptArgument.nouser == TRUE) {
+	if (PoptArgument.nouser) {
 		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED, NULL, TRUE); 
 	}
@@ -1054,15 +1054,15 @@ handle_popt_args (void)
 		add_constraint (SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION, 
 				PoptArgument.regex, TRUE);
 	}
-	if (PoptArgument.hidden == TRUE) {
+	if (PoptArgument.hidden) {
 		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS, NULL, TRUE);
 	}
-	if (PoptArgument.follow == TRUE) {
+	if (PoptArgument.follow) {
 		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS, NULL, TRUE); 
 	}
-	if (PoptArgument.allmounts == TRUE) {
+	if (PoptArgument.allmounts) {
 		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS, NULL, TRUE);
 	}
@@ -1089,7 +1089,7 @@ handle_popt_args (void)
 			sort_by = COLUMN_NAME;
 		}
 			
-		if (PoptArgument.descending == TRUE) {
+		if (PoptArgument.descending) {
 			gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (interface.model), sort_by,
 							      GTK_SORT_DESCENDING);
 		} 
@@ -1098,7 +1098,7 @@ handle_popt_args (void)
 							      GTK_SORT_ASCENDING);
 		}
 	}
-	if (PoptArgument.start == TRUE) {
+	if (PoptArgument.start) {
 		popt_args_found = TRUE;
 		click_find_cb (interface.find_button, NULL);
 	}
@@ -1171,11 +1171,11 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 					filename = g_path_get_basename (utf8);
 			
 					if (fnmatch (search_data->file_is_named_pattern, filename, FNM_NOESCAPE | FNM_CASEFOLD ) != FNM_NOMATCH) {
-						if (search_data->show_hidden_files == TRUE) {
+						if (search_data->show_hidden_files) {
 							if (search_data->regex_matching_enabled == FALSE) {
 								add_file_to_search_results (string->str, interface.model, &interface.iter);
 							} 
-							else if (compare_regex (search_data->regex_string, filename) == TRUE) {
+							else if (compare_regex (search_data->regex_string, filename)) {
 								add_file_to_search_results (string->str, interface.model, &interface.iter);
 							}
 						}
@@ -1183,7 +1183,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 							if (search_data->regex_matching_enabled == FALSE) {
 								add_file_to_search_results (string->str, interface.model, &interface.iter);
 							} 
-							else if (compare_regex (search_data->regex_string, filename) == TRUE) {
+							else if (compare_regex (search_data->regex_string, filename)) {
 								add_file_to_search_results (string->str, interface.model, &interface.iter);
 							}
 						}
@@ -1349,7 +1349,7 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 				error_msgs = g_string_prepend (error_msgs, 
 				     _("While searching the following errors were reported.\n\n"));
 				
-				if (truncate_error_msgs == TRUE) {
+				if (truncate_error_msgs) {
 					error_msgs = g_string_append (error_msgs, 
 				     		_("\n... Too many errors to display ..."));
 				}
@@ -1561,7 +1561,7 @@ add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 	SearchConstraint *constraint = g_new(SearchConstraint,1);
 	GtkWidget *widget;
 
-	if (show_constraint == TRUE) {
+	if (show_constraint) {
 		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
 			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "clicked", 0);
 			gtk_widget_show (interface.additional_constraints);
@@ -1570,7 +1570,7 @@ add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 	
 	interface.geometry.min_height += 35;
 	
-	if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == TRUE) {
+	if (GTK_WIDGET_VISIBLE (interface.additional_constraints)) {
 		gtk_window_set_geometry_hints (GTK_WINDOW (interface.main_window), 
 		                               GTK_WIDGET (interface.main_window),
 		                               &interface.geometry, 
@@ -2008,6 +2008,7 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data, gboolean e
 	gchar *file_is_named_locale;
 	gchar *look_in_folder_utf8;
 	gchar *look_in_folder_locale;
+	gchar *tmp;
 	GList *list;
 	gint  i = 0;
 
@@ -2018,20 +2019,26 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data, gboolean e
 	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))));
 	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8 != NULL ? file_is_named_utf8 : "" , 
 	                                           -1, NULL, NULL, NULL);
-	argv[i++] = (escape_values == TRUE) ? 
-	            g_strdup_printf ("--named=\"%s\"", g_strescape (file_is_named_locale, NULL)) : 
-		    g_strdup_printf ("--named=%s", file_is_named_locale);	
+	if (escape_values)
+		tmp = g_shell_quote (file_is_named_locale);
+	else
+		tmp = g_strdup (file_is_named_locale);
+	argv[i++] = g_strdup_printf ("--named=%s", tmp);	
+	g_free (tmp);
 	g_free (file_is_named_locale);
 
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
 	                                            -1, NULL, NULL, NULL);
-	argv[i++] = (escape_values == TRUE) ? 
-	            g_strdup_printf ("--path=\"%s\"", g_strescape (look_in_folder_locale, NULL)) : 
-		    g_strdup_printf ("--path=%s", look_in_folder_locale);
+	if (escape_values)
+		tmp = g_shell_quote (look_in_folder_locale);
+	else
+		tmp = g_strdup (look_in_folder_locale);
+	argv[i++] = g_strdup_printf ("--path=%s", tmp);
+	g_free (tmp);
 	g_free (look_in_folder_locale);
 
-	if (GTK_WIDGET_VISIBLE(interface.additional_constraints) == TRUE) {
+	if (GTK_WIDGET_VISIBLE(interface.additional_constraints)) {
 		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
 			SearchConstraint *constraint = list->data;
 			gchar *locale = NULL;
@@ -2039,9 +2046,12 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data, gboolean e
 			switch (constraint->constraint_id) {
 			case SEARCH_CONSTRAINT_CONTAINS_THE_TEXT:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = (escape_values == TRUE) ? 
-				            g_strdup_printf ("--contains=\"%s\"", g_strescape (locale, NULL)) : 
-					    g_strdup_printf ("--contains=%s", locale);
+				if (escape_values)
+					tmp = g_shell_quote (locale);
+				else
+					tmp = g_strdup (locale);
+				argv[i++] = g_strdup_printf ("--contains=%s", tmp);
+				g_free (tmp);
 				break;
 			case SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE:
 				argv[i++] = g_strdup_printf ("--mtimeless=%d", constraint->data.time);
@@ -2060,30 +2070,42 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data, gboolean e
 				break;
 			case SEARCH_CONSTRAINT_OWNED_BY_USER:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = (escape_values == TRUE) ? 
-				            g_strdup_printf ("--user=\"%s\"", g_strescape (locale, NULL)) : 
-					    g_strdup_printf ("--user=%s", locale);
+				if (escape_values)
+					tmp = g_shell_quote (locale);
+				else
+					tmp = g_strdup (locale);
+				argv[i++] = g_strdup_printf ("--user=%s", tmp);
+				g_free (tmp);
 				break;
 			case SEARCH_CONSTRAINT_OWNED_BY_GROUP:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = (escape_values == TRUE) ? 
-				            g_strdup_printf ("--group=\"%s\"", g_strescape (locale, NULL)) : 
-					    g_strdup_printf ("--group=%s", locale);
+				if (escape_values)
+					tmp = g_shell_quote (locale);
+				else
+					tmp = g_strdup (locale);
+				argv[i++] = g_strdup_printf ("--group=%s", tmp);
+				g_free (tmp);
 				break;
 			case SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED:
 				argv[i++] = g_strdup ("--nouser");
 				break;
 			case SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = (escape_values == TRUE) ? 
-				            g_strdup_printf ("--notnamed=\"%s\"", g_strescape (locale, NULL)) : 
-					    g_strdup_printf ("--notnamed=%s", locale);
+				if (escape_values)
+					tmp = g_shell_quote (locale);
+				else
+					tmp = g_strdup (locale);
+				argv[i++] = g_strdup_printf ("--notnamed=%s", tmp);
+				g_free (tmp);
 				break;
 			case SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				argv[i++] = (escape_values == TRUE) ? 
-				            g_strdup_printf ("--regex=\"%s\"", g_strescape (locale, NULL)) : 
-					    g_strdup_printf ("--regex=%s", locale);
+				if (escape_values)
+					tmp = g_shell_quote (locale);
+				else
+					tmp = g_strdup (locale);
+				argv[i++] = g_strdup_printf ("--regex=%s", tmp);
+				g_free (tmp);
 				break;
 			case SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS:
 				argv[i++] = g_strdup ("--hidden");
@@ -2097,7 +2119,7 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data, gboolean e
 			default:
 				break;
 			}
-		g_free (locale);
+			g_free (locale);
 		}		
 	}
 	*argvp = argv;
@@ -2107,66 +2129,66 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data, gboolean e
 void
 handle_gconf_settings (void)
 {
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_additional_options") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_additional_options")) {
 		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
 			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "clicked", 0);
 			gtk_widget_show (interface.additional_constraints);
 		}
 	}
 		      
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/contains_the_text") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/contains_the_text")) {
 		add_constraint (SEARCH_CONSTRAINT_CONTAINS_THE_TEXT, "", FALSE); 
 	}
 		
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/date_modified_less_than") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/date_modified_less_than")) {
 		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/date_modified_more_than") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/date_modified_more_than")) {
 		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/size_at_least") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/size_at_least")) {
 		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/size_at_most") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/size_at_most")) {
 		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/file_is_empty") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/file_is_empty")) {
 		add_constraint (SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL, FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owned_by_user") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owned_by_user")) {
 		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_USER, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owned_by_group") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owned_by_group")) {
 		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_GROUP, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owner_is_unrecognized") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owner_is_unrecognized")) {
 		add_constraint (SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED, NULL, FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/name_does_not_contain") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/name_does_not_contain")) {
 		add_constraint (SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/name_matches_regular_expression") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/name_matches_regular_expression")) {
 		add_constraint (SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_hidden_files_and_folders") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_hidden_files_and_folders")) {
 		add_constraint (SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS, NULL, FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/follow_symbolic_links") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/follow_symbolic_links")) {
 		add_constraint (SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS, NULL, FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/include_other_filesystems") == TRUE) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/include_other_filesystems")) {
 		add_constraint (SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS, NULL, FALSE); 
 	}
 }
@@ -2178,6 +2200,8 @@ main (int 	argc,
 	GnomeProgram *gsearchtool;
 	GnomeClient  *client;
 	GtkWidget    *window;
+
+	memset (&interface, 0, sizeof (interface));
 
 	global_gconf_client = NULL;
 	interface.geometry.min_height = MINIMUM_WINDOW_HEIGHT;

@@ -99,7 +99,6 @@ struct _InterfaceStruct {
 	GtkWidget 		*save_button;
 	GtkWidget 		*main_window;	
 	GtkWidget		*drawing_area;
-	GdkPixmap		*pixmap;
 	GdkPixbuf		*pixbuf;	
 	GtkWidget		*table;	
 	GtkWidget 		*file_selector;
