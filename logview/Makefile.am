@@ -1,6 +1,6 @@
 # Process this file with automake to produce Makefile.in
 
-SUBDIRS = pixmaps
+SUBDIRS = pixmaps help
 
 Utilitiesdir = $(datadir)/applications
 additionaldir  = $(datadir)/gnome-system-log
