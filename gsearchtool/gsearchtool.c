@@ -1870,7 +1870,7 @@ static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("S_how Command"), "", run_cmd_dialog,GTK_STOCK_NEW),
 	GNOMEUIINFO_ITEM_STOCK(N_("Save Results _As..."), "",show_file_selector,GTK_STOCK_SAVE_AS),
 	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb,NULL),
+	GNOMEUIINFO_MENU_QUIT_ITEM(quit_cb,NULL),
 	GNOMEUIINFO_END
 };
 
