@@ -8,6 +8,7 @@
 #include "widget-color-grid.h"
 #include "menus.h"
 #include "utils.h"
+#include "gcolorsel.h"
 
 static ViewColorGenericClass *parent_class = NULL;
 
@@ -141,7 +142,7 @@ view_color_grid_button_press (GtkWidget *widget,
 
     if (event->type == GDK_2BUTTON_PRESS) {
       if (cg->last_clicked)
-	menu_edit (MDI_COLOR (cg->last_clicked->data));
+	actions_views (MDI_COLOR (cg->last_clicked->data));
     }
   
   return TRUE;

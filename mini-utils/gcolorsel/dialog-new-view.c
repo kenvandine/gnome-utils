@@ -91,14 +91,12 @@ dialog_new_view (MDIColorGeneric *mcg_connect)
 
   gtk_object_unref (GTK_OBJECT (gui));
 
-  dialog_fill_clist_view (clist_view);
-
   gtk_signal_connect (GTK_OBJECT (clist_view), "select_row",
 		      GTK_SIGNAL_FUNC (clist_select), NULL);
   gtk_signal_connect (GTK_OBJECT (clist_view), "unselect_row",
 		      GTK_SIGNAL_FUNC (clist_select), NULL);
 
-  gnome_dialog_set_sensitive (GNOME_DIALOG (dia), 0, FALSE);
+  dialog_fill_clist_view (clist_view);
 
   while (1) {
     result = gnome_dialog_run (GNOME_DIALOG (dia));

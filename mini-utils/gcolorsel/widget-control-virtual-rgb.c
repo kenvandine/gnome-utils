@@ -1,6 +1,7 @@
 #include "widget-control-virtual-rgb.h"
 #include "mdi-color-virtual-rgb.h"
 #include "utils.h"
+#include "gcolorsel.h"
 
 #include <gnome.h>
 
@@ -9,6 +10,8 @@ static void control_virtual_rgb_init       (ControlVirtualRGB *cl);
 
 static void preview_size_allocate_cb   (GtkWidget *widget, 
 					GtkAllocation *allocation,
+					GtkWidget *cs);
+static void preview_button_press_cb    (GtkWidget *widget, GdkEventButton *event,
 					GtkWidget *cs);
 static void preview_drag_begin_cb      (GtkWidget *widget, 
 					GdkDragContext *context, 
@@ -124,6 +127,9 @@ control_virtual_rgb_init (ControlVirtualRGB *cs)
   gtk_signal_connect (GTK_OBJECT (cs->preview), "size_allocate",
 		      GTK_SIGNAL_FUNC (preview_size_allocate_cb), cs);
 
+  gtk_signal_connect (GTK_OBJECT (cs->preview), "button_press_event",
+		      GTK_SIGNAL_FUNC (preview_button_press_cb), cs);
+
   gtk_signal_connect (GTK_OBJECT (cs->preview), "drag_data_get",
 		      GTK_SIGNAL_FUNC (preview_drag_data_get_cb), cs);
   
@@ -202,6 +208,16 @@ preview_drag_begin_cb (GtkWidget *widget,
     
   gtk_drag_set_icon_widget (context, 
 			    drag_window_create (cv->r, cv->g, cv->b), -2, -2);
+}
+
+static void
+preview_button_press_cb (GtkWidget *widget, GdkEventButton *event,
+			 GtkWidget *cs)
+{
+  ControlVirtualRGB *cv = CONTROL_VIRTUAL_RGB (cs);
+  
+  if (event->type == GDK_2BUTTON_PRESS) 
+    actions_previews (cv->r, cv->g, cv->b);
 }
 
 static void 

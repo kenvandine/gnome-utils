@@ -7,6 +7,7 @@
 #include "mdi-color-generic.h"
 #include "menus.h"
 #include "utils.h"
+#include "gcolorsel.h"
 
 static ViewColorGenericClass *parent_class = NULL;
 
@@ -27,6 +28,10 @@ static void view_color_edit_close (ViewColorGeneric *vcg,
 				   gpointer data);
 static void view_color_edit_sync  (ViewColorGeneric *vcg,
 				   gpointer data);
+
+static const GtkTargetEntry preview_drag_targets[] = {
+  { "application/x-color", 0 }
+};
 
 GtkType 
 view_color_edit_get_type (void)
@@ -178,6 +183,44 @@ preview_size_allocate_cb (GtkWidget *widget,
 }
 
 static void
+preview_button_press_cb (GtkWidget *widget, GdkEventButton *event,
+			 ViewColorEdit *vce)
+{
+  if (event->type == GDK_2BUTTON_PRESS) 
+    actions_previews (vce->editing->r, vce->editing->g,
+		      vce->editing->b);
+}
+
+static void 
+preview_drag_begin_cb (GtkWidget *widget, GdkDragContext *context, 
+		       ViewColorEdit *vce)
+{
+  gtk_drag_set_icon_widget (context, 
+			    drag_window_create (vce->editing->r, 
+						vce->editing->g, 
+						vce->editing->b), -2, -2);
+}
+
+static void 
+preview_drag_data_get_cb (GtkWidget *widget, 
+			  GdkDragContext *context, 
+			  GtkSelectionData *selection_data, 
+			  guint info,
+			  guint time, ViewColorEdit *vce)
+{
+  guint16 vals[4];
+
+  vals[0] = (vce->editing->r / 255.0) * 0xffff;
+  vals[1] = (vce->editing->g / 255.0) * 0xffff;
+  vals[2] = (vce->editing->b / 255.0) * 0xffff;
+  vals[3] = 0xffff;
+    
+  gtk_selection_data_set (selection_data, 
+			  gdk_atom_intern ("application/x-color", FALSE),
+			  16, (guchar *)vals, 8);
+}
+
+static void
 button_prev_clicked_cb (GtkWidget *widget, ViewColorEdit *vce)
 {
   GList *l;
@@ -213,6 +256,7 @@ view_color_edit_new (MDIColorGeneric *mcg)
   GtkObject *object;
   ViewColorEdit *view;
   GladeXML *gui;
+  GtkWidget *eventbox;
 
   object = gtk_type_new (TYPE_VIEW_COLOR_EDIT);
   view = VIEW_COLOR_EDIT (object);
@@ -237,14 +281,26 @@ view_color_edit_new (MDIColorGeneric *mcg)
   /* Preview */
 
   view->preview = glade_xml_get_widget (gui, "preview");
+  eventbox = glade_xml_get_widget (gui, "eventbox");
+
+  gtk_drag_source_set (view->preview, GDK_BUTTON1_MASK,
+		       preview_drag_targets, 1, 
+		       GDK_ACTION_COPY);
+
   gtk_signal_connect (GTK_OBJECT (view->preview), "size_allocate",
-		      preview_size_allocate_cb, object);
+		      GTK_SIGNAL_FUNC (preview_size_allocate_cb), object);
+  gtk_signal_connect (GTK_OBJECT (eventbox), "button_press_event",
+		      GTK_SIGNAL_FUNC (preview_button_press_cb), object);
+  gtk_signal_connect (GTK_OBJECT (view->preview), "drag_data_get",
+		      GTK_SIGNAL_FUNC (preview_drag_data_get_cb), object);
+    gtk_signal_connect (GTK_OBJECT (view->preview), "drag_begin",
+		      GTK_SIGNAL_FUNC (preview_drag_begin_cb), object);
 
   /* entry Name */
 
   view->entry_name = glade_xml_get_widget (gui, "entry-name");
   gtk_signal_connect (GTK_OBJECT (view->entry_name), "changed",
-		      entry_changed_cb, object);
+		      GTK_SIGNAL_FUNC (entry_changed_cb), object);
 
   /* spin RGB */
 

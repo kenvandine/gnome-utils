@@ -1,3 +1,34 @@
+2000-05-10  Eric Brayeur  <eb2@ibelgique.com>
+
+	* view-color-list.c (view_color_list_idle): 
+	(view_color_list_render_pixmap): fallback to GDK_ROOT_PARENT if
+	widget->window == NULL (in mdi modal mode).
+
+2000-05-09  Eric Brayeur  <eb2@ibelgique.com>
+
+	* menus.c : grab a color on the screen; 
+	
+2000-05-08  Eric Brayeur  <eb2@ibelgique.com>
+
+	* glade/dialog-prefs.glade : new file.
+
+	* dialog-prefs.c : new file; properties for : save /session ;
+	  MDI ; and configure events (double click, drop a color, etc ...).	
+
+	* gcolorsel.c : execute action : append / search /edit.
+	  show a warning if fail.
+
+	* view-color-edit.c : implement dnd for preview.
+
+	* gcolorsel.c : implement drop.
+	
+2000-05-07  Eric Brayeur  <eb2@ibelgique.com>
+
+	* menus.c, gcolorsel.c : support cut and paste; now you can paste 
+	  gcolorsel colors in gnumeric !
+
+	* mdi-color-generic (mdi_color_generic_append) : set col->owner.
+
 2000-05-06 Eric Brayeur <eb2@ibelgique.com>
 
 	* glade/dialog-new-view.glade : show only view type.

@@ -2,12 +2,15 @@
 #include <gnome.h>
 #include <glade/glade.h>
 
+#include <gdk/gdkx.h>
+
 #include "view-color-generic.h"
 #include "view-color-list.h"
 #include "mdi-color-generic.h"
 #include "menus.h"
 #include "utils.h"
 #include "idle.h"
+#include "gcolorsel.h"
 
 static ViewColorGenericClass *parent_class = NULL;
 
@@ -404,7 +407,7 @@ view_color_list_button_press (GtkCList *clist, GdkEventButton *event,
       
       if (event->type == GDK_2BUTTON_PRESS) {
 	if(gtk_clist_get_selection_info(clist, event->x, event->y, &row, &col))
-	  menu_edit (gtk_clist_get_row_data (clist, row));
+	  actions_views (gtk_clist_get_row_data (clist, row));
       }
 
   return TRUE;
@@ -502,10 +505,16 @@ view_color_list_idle (gpointer data)
     
     row = gtk_clist_find_row_from_data (clist, col);
     
-    pixmap = gdk_pixmap_new (VIEW_COLOR_GENERIC (vcl)->widget->window, 
-			     vcl->col_width,
-			     vcl->col_height, 
-			     -1);
+    if (VIEW_COLOR_GENERIC (vcl)->widget->window)
+      pixmap = gdk_pixmap_new (VIEW_COLOR_GENERIC (vcl)->widget->window, 
+			       vcl->col_width,
+			       vcl->col_height, 
+			       -1);
+    else
+      pixmap = gdk_pixmap_new (GDK_ROOT_PARENT (),
+			       vcl->col_width,
+			       vcl->col_height,
+			       -1);
     
     view_color_list_render_pixmap (vcl, pixmap, col);
     
@@ -564,8 +573,12 @@ view_color_list_render_pixmap (ViewColorList *vcl, GdkPixmap *pixmap,
   
   gdk_color_alloc (gtk_widget_get_default_colormap (), &color);
 
-  if (vcl->gc == NULL) 
-    vcl->gc = gdk_gc_new (VIEW_COLOR_GENERIC (vcl)->widget->window);
+  if (vcl->gc == NULL) {
+    if (VIEW_COLOR_GENERIC (vcl)->widget->window)
+      vcl->gc = gdk_gc_new (VIEW_COLOR_GENERIC (vcl)->widget->window);
+    else
+      vcl->gc = gdk_gc_new (GDK_ROOT_PARENT ());
+  }
 
   /* Border */
   gdk_gc_set_foreground (vcl->gc, &vcl->color_black);

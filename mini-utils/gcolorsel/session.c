@@ -113,10 +113,9 @@ session_save (GnomeMDI *mdi)
   save_config (mdi);
   gnome_mdi_save_state (mdi, "/gcolorsel/mdi");  
 
-  gnome_config_push_prefix ("/gcolorsel/gcolorsel/");
+  gnome_config_push_prefix ("/gcolorsel/session/");
   gnome_config_set_bool ("FirstTime", FALSE);
   gnome_config_set_int  ("Key", get_config_key_pos ());
-  gnome_config_set_int  ("TabPos", mdi->tab_pos);
   gnome_config_pop_prefix ();
 
   gnome_config_sync ();
@@ -311,8 +310,7 @@ session_load (GnomeMDI *mdi)
 {
   corrupted = FALSE;
 
-  if (! gnome_config_get_bool ("/gcolorsel/gcolorsel/FirstTime=TRUE")) {
-    mdi->tab_pos = gnome_config_get_int ("/gcolorsel/gcolorsel/TabPos");
+  if (! gnome_config_get_bool ("/gcolorsel/session/FirstTime=TRUE")) {
 
     gnome_mdi_restore_state (mdi, "/gcolorsel/mdi", child_create);
 
@@ -326,7 +324,7 @@ session_load (GnomeMDI *mdi)
 
     session_delete_temp (mdi);
 
-    set_config_key_pos (gnome_config_get_int ("/gcolorsel/gcolorsel/Key"));
+    set_config_key_pos (gnome_config_get_int ("/gcolorsel/session/Key"));
 
     return TRUE;
   } 
@@ -394,15 +392,11 @@ session_load_data (GnomeMDI *mdi)
 /******************************* Create ***********************************/
 
 void
-session_create (GnomeMDI *mdi)
+session_create (GnomeMDI *mdi, gboolean init_actions)
 {
   GtkWidget *first;
   MDIColorFile *file;
   MDIColorVirtualRGB *virtual;
-
-  /* Configure MDI */
-  mdi->tab_pos = GTK_POS_TOP;
-  gnome_mdi_set_mode (mdi, GNOME_MDI_NOTEBOOK);
 
   /* Create a file document */
   file = mdi_color_file_new ();
@@ -442,4 +436,19 @@ session_create (GnomeMDI *mdi)
  
   /* Tell the MDI to display ColorList for the file document */
   gnome_mdi_set_active_view (mdi, first);
+  
+  if (init_actions) {
+    int key = MDI_COLOR_GENERIC (virtual)->key;
+
+    prefs.on_drop  = ACTIONS_SEARCH;
+    prefs.on_drop2 = key;
+
+    prefs.on_grab  = ACTIONS_SEARCH;
+    prefs.on_grab2 = key;
+
+    prefs.on_views = ACTIONS_EDIT;
+
+    prefs.on_previews  = ACTIONS_SEARCH;
+    prefs.on_previews2 = key;
+  }
 }

@@ -87,7 +87,8 @@ entry_set_text (GtkEntry *entry, char *str, gpointer data)
 }
 
 void 
-spin_connect_value_changed (GtkSpinButton *spin, GtkSignalFunc cb, gpointer data)
+spin_connect_value_changed (GtkSpinButton *spin, 
+			    GtkSignalFunc cb, gpointer data)
 {
   GtkAdjustment *adj;
 
@@ -263,3 +264,54 @@ clist_get_data_selected (GtkCList *clist)
   else
     return NULL;
 }
+
+gint
+option_menu_get_active (GtkOptionMenu *omenu)
+{
+  GtkMenu *menu = GTK_MENU (gtk_option_menu_get_menu (omenu));
+  int i = 0;
+  GtkWidget *active;
+  GList *list;
+
+  active = gtk_menu_get_active (menu);
+
+  list = GTK_MENU_SHELL (menu)->children;
+  while (list) {
+    if (list->data == active)
+      return i;
+    
+    i++;
+
+    list = g_list_next (list);
+  }
+
+  return 0;
+}
+
+void
+option_menu_connect_changed (GtkOptionMenu *omenu, 
+			     GtkSignalFunc cb, gpointer data)
+{
+  GtkMenu *menu = GTK_MENU (gtk_option_menu_get_menu (omenu));
+
+  gtk_signal_connect (GTK_OBJECT (GTK_MENU_SHELL (menu)), "selection-done",
+		      cb, data);
+}
+
+void 
+mdi_set_tab_pos (GnomeMDI *mdi, int tab_pos)
+{
+  GList *list = mdi->windows;
+  GtkWidget *nb;
+
+  while (list) {
+    nb = GNOME_APP (list->data)->contents;
+
+    if (GTK_IS_NOTEBOOK (nb))
+      gtk_notebook_set_tab_pos (GTK_NOTEBOOK (nb), tab_pos);
+    
+    list = g_list_next (list);
+  }
+
+}
+

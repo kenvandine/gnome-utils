@@ -17,6 +17,7 @@ bin_PROGRAMS = gcolorsel
 
 gcolorsel_SOURCES = 	dialog-new-doc.c		\
 			dialog-new-view.c		\
+			dialog-prefs.c			\
 			dialogs.h			\
 			gcolorsel.c			\
 			gcolorsel.h			\

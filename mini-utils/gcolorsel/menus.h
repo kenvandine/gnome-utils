@@ -5,6 +5,7 @@
 #include "mdi-color-file.h"
 
 extern GnomeUIInfo main_menu [];
+extern GnomeUIInfo main_menu_with_doc[];
 extern GnomeUIInfo toolbar [];
 
 void menu_view_do_popup (GdkEventButton *event);

@@ -334,10 +334,8 @@
 	</child>
 
 	<widget>
-	  <class>GtkFrame</class>
-	  <name>frame1</name>
-	  <label_xalign>0</label_xalign>
-	  <shadow_type>GTK_SHADOW_IN</shadow_type>
+	  <class>GtkEventBox</class>
+	  <name>eventbox</name>
 	  <child>
 	    <padding>10</padding>
 	    <expand>True</expand>
@@ -345,10 +343,17 @@
 	  </child>
 
 	  <widget>
-	    <class>GtkPreview</class>
-	    <name>preview</name>
-	    <type>True</type>
-	    <expand>True</expand>
+	    <class>GtkFrame</class>
+	    <name>frame1</name>
+	    <label_xalign>0</label_xalign>
+	    <shadow_type>GTK_SHADOW_IN</shadow_type>
+
+	    <widget>
+	      <class>GtkPreview</class>
+	      <name>preview</name>
+	      <type>True</type>
+	      <expand>True</expand>
+	    </widget>
 	  </widget>
 	</widget>
 

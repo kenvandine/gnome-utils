@@ -440,7 +440,6 @@ mdi_color_generic_append_new (MDIColorGeneric *mcg,
   col->b      = b;
   col->name   = g_strdup (name);
   col->change = 0;
-  col->owner  = mcg;
   col->change_phase = 0;
 
   mdi_color_generic_append (mcg, col);
@@ -467,6 +466,7 @@ mdi_color_generic_append (MDIColorGeneric *mcg, MDIColor *col)
   GList *pos;
 
   mcg->last++;
+  col->owner = mcg;
   
   if (! mcg->col) { /* Empty */
     col->list = mcg->col = mcg->last_col = g_list_append (NULL, col);

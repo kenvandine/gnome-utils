@@ -14,6 +14,7 @@
 #include "dialogs.h"
 
 #include "gnome.h"
+#include <gdk/gdkx.h>
 
 static GList *prop_list = NULL;  /* List of GnomePropertyBox */
 
@@ -33,9 +34,12 @@ static void revert_cb  (GtkWidget *widget);
 static void exit_cb    (GtkWidget *widget);
 
 /* edit */
+static void copy_cb    (GtkWidget *widget);
+static void paste_cb    (GtkWidget *widget);
 static void insert_color_cb  (GtkWidget *widget);
 static void remove_cb     (GtkWidget *widget);
 static void edit_cb       (GtkWidget *widget);
+static void preferences_cb (GtkWidget *widget);
 static void properties_cb (GtkWidget *widget);
 
 /* Help */
@@ -87,6 +91,11 @@ GnomeUIInfo file_menu[] = {
 };
 
 GnomeUIInfo edit_menu[] = {
+  GNOMEUIINFO_MENU_COPY_ITEM (copy_cb, NULL),
+  GNOMEUIINFO_MENU_PASTE_ITEM (paste_cb, NULL),
+
+  GNOMEUIINFO_SEPARATOR,
+
   GNOMEUIINFO_ITEM_STOCK (N_("Insert color"), NULL,
 			  insert_color_cb, GNOME_STOCK_PIXMAP_ADD),
   GNOMEUIINFO_ITEM_STOCK (N_("Remove selected colors"), NULL, 
@@ -96,7 +105,7 @@ GnomeUIInfo edit_menu[] = {
   GNOMEUIINFO_SEPARATOR,
 
   GNOMEUIINFO_MENU_PROPERTIES_ITEM (properties_cb, NULL),
-			 
+  GNOMEUIINFO_MENU_PREFERENCES_ITEM (preferences_cb, NULL),
 			     
   GNOMEUIINFO_END
 };
@@ -110,6 +119,18 @@ GnomeUIInfo help_menu[] = {
 GnomeUIInfo main_menu[] = {
   GNOMEUIINFO_MENU_FILE_TREE    (file_menu),
   GNOMEUIINFO_MENU_EDIT_TREE    (edit_menu),
+  GNOMEUIINFO_MENU_HELP_TREE    (help_menu),
+  GNOMEUIINFO_END
+};
+
+GnomeUIInfo docs_menu[] = {
+  GNOMEUIINFO_END
+};
+
+GnomeUIInfo main_menu_with_doc[] = {
+  GNOMEUIINFO_MENU_FILE_TREE    (file_menu),
+  GNOMEUIINFO_MENU_EDIT_TREE    (edit_menu),
+  GNOMEUIINFO_MENU_FILES_TREE   (docs_menu),
   GNOMEUIINFO_MENU_HELP_TREE    (help_menu),
   GNOMEUIINFO_END
 };
@@ -433,9 +454,12 @@ close_doc_cb (GtkWidget *widget)
 static void 
 exit_cb (GtkWidget *widget)
 {  
-  /* Save layout before ... */
-  
-  session_save (mdi);
+  /* Save prefs */
+  prefs_save ();
+
+  /* Save session */ 
+  if (prefs.save_session) 
+    session_save (mdi);
 
   if (gnome_mdi_remove_all (mdi, FALSE))
     gtk_object_destroy (GTK_OBJECT (mdi));
@@ -473,6 +497,63 @@ about_cb (GtkWidget *widget)
 }
 
 /****************** Edit Menu ***************************************/
+
+static void 
+copy_cb (GtkWidget *widget)
+{
+  GtkWidget *w;
+  GList *l, *list;
+  MDIColor *col;
+  gint have_selection;
+  ViewColorGeneric *view;
+  GString *str;
+  char *tmp;
+  gboolean first = TRUE;
+
+  w = gnome_mdi_get_active_view (mdi);
+  if (! w) return;
+
+  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+  l = list = VIEW_COLOR_GENERIC_GET_CLASS (view)->get_selected (view);
+  if (!list) return;
+
+  str = g_string_new (NULL);
+
+  while (l) {
+    col = l->data;
+    col = mdi_color_generic_get_owner (col);
+
+    if (!first) 
+      g_string_append_c (str, '\n');
+    else 
+      first = FALSE;
+
+    g_string_sprintfa (str, "%d %d %d\t\t%s", 
+		       col->r, col->g, col->b, col->name);
+
+    l = g_list_next (l);
+  }
+
+  g_list_free (list);
+
+  tmp = gtk_object_get_data (GTK_OBJECT (event_widget), "col");
+  if (tmp) g_free (tmp);
+
+  have_selection = gtk_selection_owner_set (event_widget,
+					    GDK_SELECTION_PRIMARY,
+					    GDK_CURRENT_TIME);
+
+
+  gtk_object_set_data (GTK_OBJECT (event_widget), "col", str->str);
+  g_string_free (str, FALSE);
+}
+
+static void 
+paste_cb (GtkWidget *widget)
+{
+  gtk_selection_convert (event_widget, GDK_SELECTION_PRIMARY, 
+			 GDK_SELECTION_TYPE_STRING, GDK_CURRENT_TIME);
+}
 
 void
 menu_edit (MDIColor *col)
@@ -602,7 +683,15 @@ edit_cb (GtkWidget *widget)
   g_list_free (list);
 }
 
-/******* Properties ********/
+/******* gcolorsel properties *********/
+
+static void
+preferences_cb (GtkWidget *widget)
+{
+  dialog_prefs ();
+}
+
+/******* Doc view / Properties ********/
 
 static void
 properties_apply_cb (GtkWidget *widget, int page, gpointer data)
@@ -809,12 +898,6 @@ menu_view_do_popup (GdkEventButton *event)
 
 /************************* ToolBar *************************************/
 
-static void 
-grab_cb (GtkWidget *widget)
-{
-  display_todo ();
-}
-
 GnomeUIInfo toolbar [] = {
   GNOMEUIINFO_ITEM_STOCK (N_("Exit"), N_("Exit the program"),
 			  exit_cb, GNOME_STOCK_PIXMAP_EXIT),
@@ -830,3 +913,128 @@ GnomeUIInfo toolbar [] = {
 			  about_cb, GNOME_STOCK_PIXMAP_ABOUT),
   GNOMEUIINFO_END
 };
+
+/************************* Grab *******************************/
+
+/* Mostly recopied from gnome-colorsel module */
+
+static char dropper_bits[] = {
+  0xff, 0x8f, 0x01, 0xff, 0x77, 0x01, 0xff, 0xfb, 0x00, 0xff, 0xf8, 0x00,
+  0x7f, 0xff, 0x00, 0xff, 0x7e, 0x01, 0xff, 0x9d, 0x01, 0xff, 0xd8, 0x01,
+  0x7f, 0xd4, 0x01, 0x3f, 0xee, 0x01, 0x1f, 0xff, 0x01, 0x8f, 0xff, 0x01,
+  0xc7, 0xff, 0x01, 0xe3, 0xff, 0x01, 0xf3, 0xff, 0x01, 0xfd, 0xff, 0x01,
+  0xff, 0xff, 0x01, };
+
+static char dropper_mask[] = {
+  0x00, 0x70, 0x00, 0x00, 0xf8, 0x00, 0x00, 0xfc, 0x01, 0x00, 0xff, 0x01,
+  0x80, 0xff, 0x01, 0x00, 0xff, 0x00, 0x00, 0x7f, 0x00, 0x80, 0x3f, 0x00,
+  0xc0, 0x3f, 0x00, 0xe0, 0x13, 0x00, 0xf0, 0x01, 0x00, 0xf8, 0x00, 0x00,
+  0x7c, 0x00, 0x00, 0x3e, 0x00, 0x00, 0x1e, 0x00, 0x00, 0x0d, 0x00, 0x00,
+  0x02, 0x00, 0x00, };
+
+#define DROPPER_WIDTH 17
+#define DROPPER_HEIGHT 17
+#define DROPPER_X_HOT 2
+#define DROPPER_Y_HOT 16
+
+static GdkCursor *picker_cursor = NULL;
+
+static void grab_mouse_clicked_release (GtkWidget *widget, 
+					GdkEventButton *event, gpointer data);
+
+static void
+initialize_cursor ()
+{
+  GdkColor fg, bg;
+
+  GdkPixmap *pixmap =
+    gdk_bitmap_create_from_data (NULL,
+				 dropper_bits,
+				 DROPPER_WIDTH, DROPPER_HEIGHT);
+  GdkPixmap *mask =
+    gdk_bitmap_create_from_data (NULL,
+				 dropper_mask,
+				 DROPPER_WIDTH, DROPPER_HEIGHT);
+
+  gdk_color_white (gdk_colormap_get_system (), &bg);
+  gdk_color_black (gdk_colormap_get_system (), &fg);
+
+  picker_cursor = gdk_cursor_new_from_pixmap (pixmap, mask, &fg, &bg, 
+					      DROPPER_X_HOT ,DROPPER_Y_HOT);
+
+  gdk_pixmap_unref (pixmap);
+  gdk_pixmap_unref (mask);
+}
+
+static void
+grab_mouse_clicked_release (GtkWidget *widget, GdkEventButton *event, 
+			    gpointer data)
+{
+  GdkImage *image;
+  guint32 pixel;
+  GdkVisual *visual;
+  GdkColormap *colormap = gdk_colormap_get_system ();
+  XColor xcolor;
+  double r = 0, g = 0, b = 0;
+
+  image = gdk_image_get (GDK_ROOT_PARENT (),event->x_root, event->y_root, 1, 1);
+  pixel = gdk_image_get_pixel (image, 0, 0);
+  visual = gdk_colormap_get_visual (colormap);
+
+  switch (visual->type) {
+  case GDK_VISUAL_DIRECT_COLOR:
+  case GDK_VISUAL_TRUE_COLOR:
+    r = (double)((pixel & visual->red_mask)>>visual->red_shift)/
+		  ((1<<visual->red_prec) - 1);
+    g = (double)((pixel & visual->green_mask)>>visual->green_shift)/
+                  ((1<<visual->green_prec) - 1);
+    b = (double)((pixel & visual->blue_mask)>>visual->blue_shift)/
+                  ((1<<visual->blue_prec) - 1);
+    break;
+  case GDK_VISUAL_STATIC_GRAY:
+  case GDK_VISUAL_GRAYSCALE:
+    r = (double)pixel/((1<<visual->depth) - 1);
+    g = (double)pixel/((1<<visual->depth) - 1);
+    b = (double)pixel/((1<<visual->depth) - 1);
+    break;
+  case GDK_VISUAL_STATIC_COLOR:
+    xcolor.pixel = pixel;
+    XQueryColor (GDK_DISPLAY (), GDK_COLORMAP_XCOLORMAP (colormap), &xcolor);
+    r = xcolor.red/65535.0;
+    g = xcolor.green/65535.0;
+    b = xcolor.blue/65535.0;
+    break;
+  case GDK_VISUAL_PSEUDO_COLOR:
+    r = colormap->colors[pixel].red/(double)0xffffff;
+    g = colormap->colors[pixel].green/(double)0xffffff;
+    b = colormap->colors[pixel].blue/(double)0xffffff;
+    break;
+  default:
+    g_assert_not_reached ();
+    break;
+  }
+
+  gtk_signal_disconnect_by_func (GTK_OBJECT (widget), 
+				 grab_mouse_clicked_release, data);
+
+  gdk_pointer_ungrab (0);
+
+  actions_grab (r * 255, g * 255, b * 255);
+}
+
+static void 
+grab_cb (GtkWidget *widget)
+{
+  gtk_signal_connect (GTK_OBJECT (widget), "button_release_event", 
+		      grab_mouse_clicked_release, NULL);
+
+  if (picker_cursor == NULL)
+    initialize_cursor ();
+
+  gdk_pointer_grab (widget->window,
+		    FALSE,
+		    GDK_BUTTON_RELEASE_MASK | GDK_POINTER_MOTION_MASK,
+		    NULL,
+		    picker_cursor,
+		    0);
+}

@@ -42,6 +42,12 @@ void progress_set (GnomeMDI *mdi, float val);
 
 gpointer clist_get_data_selected (GtkCList *clist);
 
+gint option_menu_get_active (GtkOptionMenu *omenu);
+void option_menu_connect_changed (GtkOptionMenu *omenu, GtkSignalFunc cb,
+				  gpointer data);
 
+void mdi_set_tab_pos (GnomeMDI *mdi, int tab_pos);
+void mdi_realize (GnomeMDI *mdi);
+     
 #endif
 

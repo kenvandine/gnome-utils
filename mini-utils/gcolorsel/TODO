@@ -1,4 +1,4 @@
-(UPDATE ON 2000-05-01)
+(UPDATE ON 2000-05-09)
 
 Liable to change :
 
@@ -6,18 +6,11 @@ Liable to change :
 
 Next works :
 
-[X] Save / Save as / Save fail dialogs
-[X] Show a warning if session can load a file
-[X] Split virtual.
-[X] New color
-[X] Don't ask confirmation when closing an edit document.
-[X] Double click to edit color
-[X] Create a tab with all document type / name / ... 
-[X] Create 'new document' dialog.
-[ ] Finish Load / Save comment / header.
-[X] Mark document modified if header / comment changed.
-
-[X] New color
+[X] Finish Load / Save header.
+[ ] Finish Load / Save header.
+[X] Mark document modified if header changed.
+[ ] Mark document modified if comment changed.
+[ ] Test - bug fix
 
 + Properties :
 
@@ -33,7 +26,7 @@ Next works :
 
 * File :
 
-[ ] + Create document (With druid ?)
+[X] + Create document (With druid ?)
 [X] + Display a warning when closing a window (when we have more than 2 windows)
       "Closing this windows will destroy xx views, etc ..."
 [X] + Create view
@@ -45,10 +38,10 @@ Next works :
 
 [X] + Edit color
 [X] + New color (Create a new color + switch to a new mdi-edit-view)
-[ ] + Grab a color (? and after ...)
-[ ] + Put selected colors in ...
-[ ] + Search selected colors in ...
-[ ] + Add/Search preview colors in ...
+[X] + Grab a color (? and after ...)
+[X] + Put selected colors in ... (replaced with copy / paste).
+[X] + Search selected colors in ... (replaced with actions)
+[X] + Add/Search preview colors in ... (replaced with actions)
 
 + ColorGrid : 
 
@@ -59,7 +52,7 @@ Next works :
 
 + ViewColorEdit :
 
-[ ] + DnD for preview
+[X] + DnD for preview
 [ ] * Maybe sort color in GtkList. (order by pos / name)
 [ ] + Color format.
 
@@ -121,8 +114,10 @@ Next works :
 [X] - view_color_list_button_press never called.
 [X] - click_column and drag_begin never, too ... ?!?
 [X] - Bug when editing document name.
+[ ] - SHIFT + CLICK don't work ... well in GTKCLIST.
 [ ] - Create concat document / connect to a file document and a search RGB
       document / colors are append when search is modified (change RGB),
       but never remove colors. (so, new document grows ...).
 [ ] - Quit / file ... saved ? Yes / Give filename ... that filename is not
       saved.
+[ ] - Start gcolorsel in MDI modal mode - give warning in g_strconcat.
