@@ -153,20 +153,29 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 
 	crd->title.str = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->title)));
 	crd->org.name  = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->orgn)));
-
-/*	crd->role.str  = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->role)));
+#if 0
+	/* NOT USED */
+	crd->role.str  = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->role)));
 	crd->org.unit1 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org1)));
 	crd->org.unit2 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org2)));
 	crd->org.unit3 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org3)));
 	crd->org.unit4 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org4)));
-*/	
+#else
+	crd->role.str  = MY_STRDUP("");
+	crd->org.unit1 = MY_STRDUP("");
+        crd->org.unit2 = MY_STRDUP("");
+        crd->org.unit3 = MY_STRDUP("");
+        crd->org.unit4 = MY_STRDUP("");
+#endif	
 	MY_FREE(crd->comment.str);
 	MY_FREE(crd->url.str);
+	MY_FREE(crd->email.address);
 	
 	crd->comment.str = gtk_editable_get_chars(GTK_EDITABLE(ce->comment), 
-						      0, gtk_text_get_length(GTK_TEXT(ce->comment)));
+			 0, gtk_text_get_length(GTK_TEXT(ce->comment)));
 	crd->url.str     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->url)));
-	
+	crd->email.address   = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->email)));
+
         MY_FREE(crd->key.data);
 	
 	crd->key.data = gtk_editable_get_chars(GTK_EDITABLE(ce->key), 
