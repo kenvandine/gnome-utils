@@ -152,6 +152,12 @@ set_constraint_gconf_boolean 	(gint 		constraint_id,
 gboolean
 update_progress_bar 		(gpointer data);
 
+void
+set_clone_command		(gint *argcp,
+				 gchar ***argvp,
+				 gpointer client_data);
+
+
 #ifdef __cplusplus
 }
 #endif
