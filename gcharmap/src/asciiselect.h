@@ -15,8 +15,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef _ASCIISELECT_C_
-#define _ASCIISELECT_C_
+#ifndef _ASCIISELECT_H_
+#define _ASCIISELECT_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,4 +30,4 @@ gboolean InsertCharacterClick (GtkWidget *widget, gpointer gdata);
 }
 #endif /* __cplusplus */
 
-#endif ASCIISELECT
+#endif /* _ASCIISELECT_H_ */

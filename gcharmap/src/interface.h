@@ -27,9 +27,9 @@ extern "C" {
 
 /* The functions */
 
-void main_new ();
-void main_controls_new ();
-void main_charmap_new ();
+void main_new (void);
+void main_controls_new (void);
+void main_charmap_new (void);
 gboolean ButtonClick (GtkWidget *widget, gpointer gdata);
 gboolean ButtonEnter (GtkWidget *widget, gpointer gdata);
 gboolean ButtonLeave (GtkWidget *widget, gpointer gdata);
@@ -45,7 +45,6 @@ gboolean ToolbarToggle (GtkCheckMenuItem *checkmenuitem,
   gpointer user_data);
 gboolean StatusbarToggle (GtkCheckMenuItem *checkmenuitem,
   gpointer user_data);
-gboolean InsertCharacterClick (GtkWidget *widget, gpointer gdata);
 void PopupMenuDetach (GtkWidget *attach_widget, GtkMenu *Menu);
 gboolean main_close (GtkWidget *widget, gpointer gdata);
 
@@ -79,4 +78,4 @@ GtkTooltips *tooltips;
 }
 #endif /* __cplusplus */
 
-#endif _INTERFACE_H_
+#endif /* _INTERFACE_H_ */

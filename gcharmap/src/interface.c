@@ -15,21 +15,12 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef _INTERFACE_C_
-#define _INTERFACE_C_
-
 #include <config.h>
 
 #include "interface.h"
 #include "asciiselect.h"
 #include <gnome-character-map.xpm>
 #include <charmap_24.xpm>
-
-/* Prototypes */
-
-void main_new (void);
-void main_controls_new (void);
-void main_charmap_new (void);
 
 /* The menus */
 
@@ -101,7 +92,7 @@ static GnomeUIInfo PopupMenu_menu[] =
 /* The functions */
 
 void
-main_new ()
+main_new (void)
 {
   GdkPixmap *Pixmap;
   GdkBitmap *Mask;
@@ -128,7 +119,7 @@ main_new ()
 }
 
 void
-main_controls_new ()
+main_controls_new (void)
 {
   guint8 i;
   GdkColor white = {0, 0xffff, 0xffff, 0xffff};
@@ -162,6 +153,8 @@ main_controls_new ()
   gtk_box_pack_start (GTK_BOX (hbox1), Edit, TRUE, TRUE, 0);
   gtk_signal_connect (GTK_OBJECT (Edit), "button-press-event",
     GTK_SIGNAL_FUNC (EditMouseDown), NULL);
+  gtk_signal_connect_object (GTK_OBJECT (Edit), "activate",
+    GTK_SIGNAL_FUNC (gtk_window_activate_default), GTK_OBJECT (mainf));
 
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), vbox2, FALSE, TRUE, 0);
@@ -188,7 +181,7 @@ main_controls_new ()
   PreviewStyle = gtk_style_copy (gtk_widget_get_style (Preview));
   for (i = 0; i <= 5; i++) PreviewStyle->bg[i] = black;
   for (i = 0; i <= 5; i++) PreviewStyle->fg[i] = white;
-  PreviewStyle->font = gdk_font_load ("-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-iso8859-1");
+  PreviewStyle->font = gdk_fontset_load (_("-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"));
   gtk_widget_set_style (Preview, PreviewStyle);
   gtk_widget_set_style (Preview, PreviewStyle);
   gtk_widget_push_style (PreviewStyle);
@@ -230,7 +223,7 @@ main_controls_new ()
 }
 
 void
-main_charmap_new ()
+main_charmap_new (void)
 {
   guint8 v; /* Columns */
   guint8 h; /* Rows */
@@ -307,12 +300,13 @@ ButtonClick (GtkWidget *widget, gpointer gdata)
 gboolean
 ButtonEnter (GtkWidget *widget, gpointer gdata)
 {
-  gchar *text;
+  gchar *text, *s;
   GtkLabel *label = GTK_LABEL (GTK_BIN (widget)->child);
   gtk_label_get (label, &text);
   gtk_label_set_text (GTK_LABEL (Preview), text);
-  gnome_appbar_set_status (GNOME_APPBAR (Status),
-    g_strdup_printf (_("%s: ASCII code %d"), text, (unsigned char) text[0]));
+  s = g_strdup_printf (_("%s: ASCII code %d"), text, (unsigned char) text[0]);
+  gnome_appbar_set_status (GNOME_APPBAR (Status), s);
+  g_free (s);
   return FALSE;
 }
 
@@ -416,5 +410,3 @@ main_close (GtkWidget *widget, gpointer gdata)
   gtk_main_quit ();
   return FALSE;
 }
-
-#endif _INTERFACE_C_

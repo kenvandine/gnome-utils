@@ -1,3 +1,15 @@
+Tue Sep 05 23:33:21 2000  George Lebl <jirka@5z.com>
+
+	* src/interface.[ch], src/main.c, src/asciiselect.[ch]:  Removed
+	  redundant prototypes, make prototypes include (void), removed
+	  #ifdef guards in .c files, removed extra arguments to #endif,
+	  fixup some errors in #ifdef .h guards.  actually use the includes
+	  in main.c.  In asciiselect.c made the spin button update all the
+	  time and react to enter by clicking on the default button.  Fix
+	  a couple of memleaks.  Made translation of fonts possible and use
+	  gdk_fontset_load, and don't hardcode to iso8859-1.  On main page
+	  bind activate on the entry to the default button (copy).
+
 2000-08-10  Hongli Lai <hongli@telekabel.nl>
 
 	* src/*.c, src/*.h: Some minor cleanups and fixes.

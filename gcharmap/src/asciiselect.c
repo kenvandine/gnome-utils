@@ -15,17 +15,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef _ASCIISELECT_C_
-#define _ASCIISELECT_C_
-
 #include <config.h>
 #include "interface.h"
 #include "asciiselect.h"
 
-gboolean EntryDialog_OkClick (GtkWidget *widget, gpointer gdata);
-gboolean EntryDialog_ApplyClick (GtkWidget *widget, gpointer gdata);
-gboolean EntryDialog_CancelClick (GtkWidget *widget, gpointer gdata);
-void SpinEditChanged (GtkEditable *editable, gpointer user_data);
+static gboolean EntryDialog_OkClick (GtkWidget *widget, gpointer gdata);
+static gboolean EntryDialog_ApplyClick (GtkWidget *widget, gpointer gdata);
+static gboolean EntryDialog_CancelClick (GtkWidget *widget, gpointer gdata);
+static void SpinEditChanged (GtkEditable *editable, gpointer user_data);
 
 GtkWidget *EntryDialog;
 GtkWidget *SpinEdit;
@@ -60,6 +57,8 @@ InsertCharacterClick (GtkWidget *widget, gpointer gdata)
     FALSE, TRUE, 0);
   gtk_signal_connect (GTK_OBJECT (SpinEdit), "changed",
     GTK_SIGNAL_FUNC (SpinEditChanged), NULL);
+  gtk_signal_connect_object (GTK_OBJECT (SpinEdit), "activate",
+    GTK_SIGNAL_FUNC (gtk_window_activate_default), GTK_OBJECT (EntryDialog));
 
   DViewport = gtk_viewport_new (NULL, NULL);
   gtk_viewport_set_shadow_type (GTK_VIEWPORT (DViewport),
@@ -80,7 +79,7 @@ InsertCharacterClick (GtkWidget *widget, gpointer gdata)
   DStyle = gtk_style_copy (gtk_widget_get_style (DLabel));
   for (i = 0; i <= 5; i++) DStyle->bg[i] = black;
   for (i = 0; i <= 5; i++) DStyle->fg[i] = white;
-  DStyle->font = gdk_font_load ("-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-iso8859-1");
+  DStyle->font = gdk_fontset_load (_("-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"));
   gtk_widget_set_style (DLabel, DStyle);
   gtk_widget_set_style (DLabel, DStyle);
   gtk_widget_push_style (DStyle);
@@ -106,6 +105,7 @@ EntryDialog_ApplyClick (GtkWidget *widget, gpointer gdata)
   gint8 i = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (SpinEdit));
   gchar *text = g_strdup_printf ("%c", i);
   gtk_entry_append_text (GTK_ENTRY (Edit), text);
+  g_free (text);
   return FALSE;
 }
 
@@ -119,9 +119,15 @@ EntryDialog_CancelClick (GtkWidget *widget, gpointer gdata)
 void
 SpinEditChanged (GtkEditable *editable, gpointer user_data)
 {
-  gint8 i = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (SpinEdit));
-  gchar *text = g_strdup_printf ("%c", i);
-  gtk_label_set_text (GTK_LABEL (DLabel), text);
-}
+  gint8 i;
+  gchar *text;
 
-#endif _ASCIISELECT_C_
+  gtk_spin_button_update (GTK_SPIN_BUTTON (SpinEdit));
+
+  i = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (SpinEdit));
+  text = g_strdup_printf ("%c", i);
+
+  gtk_label_set_text (GTK_LABEL (DLabel), text);
+
+  g_free (text);
+}

@@ -15,13 +15,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef _MAIN_C_
-#define _MAIN_C_
-
 #include <config.h>
 #include <gnome.h>
 
-extern void main_new ();
+#include "interface.h"
 
 int 
 main (int argc, char *argv[]) 
@@ -34,5 +31,3 @@ main (int argc, char *argv[])
   gtk_main ();
   return 0;
 }
-
-#endif _MAIN_C_
