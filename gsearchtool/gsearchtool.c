@@ -13,6 +13,7 @@
 #include <config.h>
 #include <gnome.h>
 #include <string.h>
+#include <regex.h>
 
 #include <bonobo-activation/bonobo-activation.h>
 #include <libgnomeui/gnome-window-icon.h>
@@ -119,8 +120,10 @@ struct search_struct {
 	gint		  pid;
 	gint 	          timeout;
 	gchar            *string;
+	gchar 	  	 *regex_string;
 	gboolean          lock;	
 	gboolean	  show_hidden_files;
+	gboolean	  regex_matching_enabled;
 	RunLevel          running;
 	GtkWidget        *tree;
 	GtkWidget        *results;
@@ -171,6 +174,7 @@ make_find_cmd (const char *start_dir)
 	if (criteria_find==NULL) return NULL;
 
 	cmdbuf = g_string_new ("");
+	find.regex_matching_enabled = FALSE;
 
 	if(start_dir) {
 		escape_dir = g_strescape(start_dir, NULL);
@@ -188,8 +192,13 @@ make_find_cmd (const char *start_dir)
 						  templates[opt->templ].option);
 				break;
 			case FIND_OPTION_TEXT:
-				if (!strcmp(templates[opt->templ].option,"-regex '%s'"))
-					regex=quote_quote_string(opt->data.text);
+				if (!strcmp (templates[opt->templ].option, "-regex '%s'")) {
+					regex = quote_quote_string (opt->data.text);
+					if (regex != NULL) {	
+						find.regex_matching_enabled = TRUE;
+						find.regex_string = g_locale_from_utf8 (regex, -1, NULL, NULL, NULL);
+					}
+				} 
 				else {
 					gchar *locale_s = NULL;
 					s = quote_quote_string(opt->data.text);
@@ -227,17 +236,22 @@ make_find_cmd (const char *start_dir)
 		}
 	}
 	g_string_append (cmdbuf, "-print ");
-
-	if(regex!=NULL) 
-	{	
-		gchar *locale_regex = NULL;
-		locale_regex = g_locale_from_utf8 (regex, -1, NULL, NULL, NULL);
-		g_string_append_printf (cmdbuf, " |egrep '%s'", locale_regex);
-		g_free (locale_regex);
-	}
 	g_free(escape_dir);
 
 	return g_string_free(cmdbuf, FALSE);
+}
+
+static gboolean
+regexec_compare (gchar *string, gchar *filename)
+{
+	regex_t regexec_pattern;
+	
+	regcomp (&regexec_pattern, string, REG_NOSUB);
+	
+	if (regexec (&regexec_pattern, filename, 0, 0, 0) != REG_NOMATCH) {
+		return TRUE;
+	}
+	return FALSE;
 }
 
 static gboolean 
@@ -713,12 +727,22 @@ handle_search_command_stdout_io (GIOChannel *ioc, GIOCondition condition, gpoint
 
 			if (g_pattern_match_string (pattern, filename)) {
 				if (search_data->show_hidden_files == TRUE) {
-					add_file_to_list_store (string->str, search_data->model, &search_data->iter);
+					if (search_data->regex_matching_enabled == FALSE) {
+						add_file_to_list_store (string->str, search_data->model, &search_data->iter);
+					} 
+					else if (regexec_compare (search_data->regex_string, filename) == TRUE) {
+						add_file_to_list_store (string->str, search_data->model, &search_data->iter);
+					}
 				}
 				else if (is_hidden_path (string->str) == FALSE) {
-					add_file_to_list_store (string->str, search_data->model, &search_data->iter);
-				}	
-			}
+					if (search_data->regex_matching_enabled == FALSE) {
+						add_file_to_list_store (string->str, search_data->model, &search_data->iter);
+					} 
+					else if (regexec_compare (search_data->regex_string, filename) == TRUE) {
+						add_file_to_list_store (string->str, search_data->model, &search_data->iter);
+					}
+				}
+			}	
 				
 			while (gtk_events_pending ()) {
 				if (search_data->running == MAKE_IT_QUIT) {

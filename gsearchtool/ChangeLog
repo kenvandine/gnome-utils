@@ -1,4 +1,10 @@
 2002-08-10  Dennis M. Cranston <dennis_cranston@yahoo.com>
+	
+	* gsearchtool.c:  Fix the 'Matches regular expression' 
+	advanced rule.  Use regcomp() & regexec() calls, since
+	the previous logic was not g_spawn_* compatible. 
+
+2002-08-10  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c:  Add more appropriate accessibility
 	descriptions for both the 'enabled' check buttons and 
