@@ -5,18 +5,80 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.1\n"
-"POT-Creation-Date: 2002-04-15 13:55+0200\n"
-"PO-Revision-Date: 2002-04-15 13:58+0200\n"
+"POT-Creation-Date: 2002-04-23 21:12+0200\n"
+"PO-Revision-Date: 2002-04-23 21:16+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
+#: exe-handler/gnome-exe-handler.c:76
+#, c-format
+msgid ""
+"Executing arbitrary programs that you downloaded from the network might be "
+"dangerous.\n"
+"\n"
+"Are you sure you want to run `%s'?"
+msgstr ""
+"Køring av tilfeldige programmer du har lastet ned fra nettet kan være "
+"farlig.\n"
+"\n"
+"Er du sikker på at du vil kjøre `%s'?"
+
+#: exe-handler/gnome-exe-handler.c:83
+msgid "Could not access file permissions"
+msgstr "Kunne ikke se på filrettigheter"
+
+#: exe-handler/gnome-exe-handler.c:88
+#, c-format
+msgid "Could not execute the file `%s' due to a permission problem"
+msgstr "Kunne ikke kjøre filen `%s' pga problemer med rettigheter"
+
+#: exe-handler/gnome-exe-handler.c:104
+#, c-format
+msgid "Failure at executing `%s'"
+msgstr "Feil ved kjøring `%s'"
+
+#: exe-handler/gnome-exe-handler.c:123
+#, c-format
+msgid "It was not possible to open the file `%s'"
+msgstr "Det var ikke mulig å åpne filen `%s'"
+
+#: exe-handler/gnome-exe-handler.c:132
+#, c-format
+msgid "The file `%s' is empty"
+msgstr "Filen `%s' er tomt"
+
+#: exe-handler/gnome-exe-handler.c:137
+#, c-format
+msgid "There was an error. `%s' is empty"
+msgstr "En feil oppsto. `%s' er tom"
+
+#: exe-handler/gnome-exe-handler.c:152
+msgid "This is a library and can not be executed"
+msgstr "Dette er et bibliotek og kan ikke kjøres"
+
+#: exe-handler/gnome-exe-handler.c:158
+msgid "The file is a core file and can not be executed"
+msgstr "Filen er et minnedump og kan ikke kjøres"
+
+#: exe-handler/gnome-exe-handler.c:162 exe-handler/gnome-exe-handler.c:196
+msgid "This is an unknown kind of executable"
+msgstr "Dette er en ukjent kjørbar fil"
+
+#: exe-handler/gnome-exe-handler.c:192
+msgid ""
+"The executable is for a different platform and can not be executed on this "
+"system"
+msgstr ""
+"Den kjørbare filen er for en annen plattform og kan ikke kjøres på dette "
+"systemet"
+
 #. Translator credits
-#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
+#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:48 gdictsrc/gdict-about.c:39
 #: gsearchtool/gsearchtool.c:1711 logview/about.c:52
-#: meat-grinder/meat-grinder.c:410
+#: meat-grinder/meat-grinder.c:422
 msgid "translator_credits"
 msgstr "oversetter_kreditt"
 
@@ -32,7 +94,7 @@ msgstr "Enkel dobbeltpresisjonskalkulator lik xcalc"
 msgid "Run in analog (slide rule) mode"
 msgstr "Kjør i analog (skyvelær) modus"
 
-#: gcalc/gcalc.c:185
+#: gcalc/gcalc.c:186
 msgid "GNOME Calculator"
 msgstr "GNOME kalkulator"
 
@@ -325,6 +387,22 @@ msgstr "="
 msgid "Calculate"
 msgstr "Beregn"
 
+#: gcalc/gnome-calculator.desktop.in.h:1
+msgid "Calculator"
+msgstr "Kalkulator"
+
+#: gcalc/gnome-calculator.desktop.in.h:2
+msgid "Perform simple calculations"
+msgstr "Utfør enkle beregninger"
+
+#: gcharmap/gnome-character-map.desktop.in.h:1
+msgid "Character Map"
+msgstr "Tegnkart"
+
+#: gcharmap/gnome-character-map.desktop.in.h:2
+msgid "Insert special characters into documents"
+msgstr "Sett inn spesielle tegn i dokumenter"
+
 #: gcharmap/src/asciiselect.c:126
 msgid "Select Character"
 msgstr "Velg tegn"
@@ -361,11 +439,11 @@ msgstr "Tegn som skal settes inn"
 msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
-#: gcharmap/src/callbacks.c:57 gcharmap/src/interface.c:193
+#: gcharmap/src/callbacks.c:61 gcharmap/src/interface.c:193
 msgid "Gnome Character Map"
 msgstr "Gnome tegnkart"
 
-#: gcharmap/src/callbacks.c:60
+#: gcharmap/src/callbacks.c:64
 msgid ""
 "The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
 "contain bad English."
@@ -373,24 +451,24 @@ msgstr ""
 "GNOME versjonen av Microsoft Windows' tegnkart. Advarsel: kan inneholde "
 "dårlig engelsk."
 
-#: gcharmap/src/callbacks.c:85 gcharmap/src/callbacks.c:131
+#: gcharmap/src/callbacks.c:89 gcharmap/src/callbacks.c:135
 msgid "del"
 msgstr "del"
 
-#: gcharmap/src/callbacks.c:137
+#: gcharmap/src/callbacks.c:141
 #, c-format
 msgid " %s: Character code %d"
 msgstr "%s: Tegnkode %d"
 
-#: gcharmap/src/callbacks.c:179
+#: gcharmap/src/callbacks.c:183
 msgid "Text copied to clipboard..."
 msgstr "Tekst kopiert til utklippstavlen..."
 
-#: gcharmap/src/callbacks.c:201
+#: gcharmap/src/callbacks.c:205
 msgid "Text cut to clipboard..."
 msgstr "Tekst klippet ut til utklippstavle..."
 
-#: gcharmap/src/callbacks.c:252
+#: gcharmap/src/callbacks.c:254
 msgid "Text pasted from clipboard..."
 msgstr "Tekst limt inn fra utklippstavlen..."
 
@@ -509,15 +587,55 @@ msgstr "Lim inn"
 msgid "Paste the clipboard"
 msgstr "Lim inn utklippstavlen"
 
+#: gcharmap/src/notifiers.c:94
+#, c-format
+msgid "There was an error loading config from %s. (%s)\n"
+msgstr "Det oppsto en feil under lasting av konfigurasjon fra %s. (%s)\n"
+
+#: gcharmap/src/notifiers.c:108
+#, c-format
+msgid ""
+"There was an error subscribing to notification of statusbar visibility "
+"changes. (%s)\n"
+msgstr "Det oppsto en feil under abonnering på endringsinformasjon for endringer i synlighet av statuslinjen. (%s)\n"
+
+#: gcharmap/src/notifiers.c:121
+#, c-format
+msgid ""
+"There was an error subscribing to notification of textbar visibility "
+"changes. (%s)\n"
+msgstr "Det oppsto en feil under abonnering på endringsinformasjon for synlighet for tekstlinjen. (%s)\n"
+
+#: gcharmap/src/notifiers.c:134
+#, c-format
+msgid ""
+"There was an error subscribing to notification of actionbar visibility "
+"changes. (%s)\n"
+msgstr "Det oppsto en feil under abonnering på endringsinformasjon for synlighet av handlingslinjen. (%s)\n"
+
+#: gcharmap/src/notifiers.c:147
+#, c-format
+msgid ""
+"There was an error subscribing to notification of insertion behaviour "
+"changes. (%s)\n"
+msgstr "Det oppsto en feil under abonnering på endringsinformasjon for innsettingsoppførsel. (%s)\n"
+
+#: gcharmap/src/notifiers.c:160
+#, c-format
+msgid ""
+"There was an error subscribing to notification of button focusability "
+"changes. (%s)\n"
+msgstr "Det oppsto en feil under abonnering på endringsinformasjon for knappefokus. (%s)\n"
+
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:450
-#: gdictsrc/gdict-pref-dialog.c:494 gdictsrc/gdict-speller.c:449
+#: gdictsrc/dict.c:646 gdictsrc/gdict-pref-dialog.c:463
+#: gdictsrc/gdict-pref-dialog.c:514 gdictsrc/gdict-speller.c:449
 msgid "Cannot connect to server"
 msgstr "Kan ikke koble til tjener"
 
-#: gdictsrc/dict.c:650
+#: gdictsrc/dict.c:659
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -615,7 +733,7 @@ msgstr "Skriv inn et ord eller velg et fra listen under"
 msgid "Look Up for a Word"
 msgstr "Slå opp et ord"
 
-#: gdictsrc/gdict-applet.c:275
+#: gdictsrc/gdict-applet.c:276
 msgid "Press button to look up any highlighted text in a dictionary"
 msgstr "Trykk på knappen for å slå opp markert tekst i en ordbok"
 
@@ -656,83 +774,83 @@ msgstr "Hovedkropp:"
 msgid "Cross-reference:"
 msgstr "Kryssreferanse:"
 
-#: gdictsrc/gdict-pref-dialog.c:180
+#: gdictsrc/gdict-pref-dialog.c:185
 msgid "Preferences"
 msgstr "Innstillinger"
 
-#: gdictsrc/gdict-pref-dialog.c:192
+#: gdictsrc/gdict-pref-dialog.c:197
 msgid "Smart _lookup"
 msgstr "Smart opps_lag"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:210
 msgid "_Server:"
 msgstr "_Tjener:"
 
-#: gdictsrc/gdict-pref-dialog.c:212
+#: gdictsrc/gdict-pref-dialog.c:217
 msgid "De_fault"
 msgstr "_Forvalgt"
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:223
 msgid "Reset server to default"
 msgstr "Sett tjener til forvalgt verdi"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:225
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:234
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Def_ault"
 msgstr "Forv_algt"
 
-#: gdictsrc/gdict-pref-dialog.c:241
+#: gdictsrc/gdict-pref-dialog.c:246
 msgid "Reset port to default"
 msgstr "Sett port til forvalgt verdi"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:247
 msgid "Server"
 msgstr "Tjener"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Server Entry"
 msgstr "Tjeneroppføring"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Enter the Server Name"
 msgstr "Skriv inn navn på tjeneren"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:253
 msgid "Port Entry"
 msgstr "Portoppføring"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:253
 msgid "Enter the Port Number"
 msgstr "Skriv inn portnummeret"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "_Database:"
 msgstr "_Database:"
 
-#: gdictsrc/gdict-pref-dialog.c:261
+#: gdictsrc/gdict-pref-dialog.c:266
 msgid "D_efault strategy:"
 msgstr "Forvalgt strat_egi:"
 
-#: gdictsrc/gdict-pref-dialog.c:442
+#: gdictsrc/gdict-pref-dialog.c:455
 msgid "Search all databases"
 msgstr "Søk i alle databaser"
 
-#: gdictsrc/gdict-pref-dialog.c:601
+#: gdictsrc/gdict-pref-dialog.c:620
 msgid "Database"
 msgstr "Database"
 
-#: gdictsrc/gdict-pref-dialog.c:601
+#: gdictsrc/gdict-pref-dialog.c:620
 msgid "Database Name"
 msgstr "Databasenavn"
 
-#: gdictsrc/gdict-pref-dialog.c:614
+#: gdictsrc/gdict-pref-dialog.c:633
 msgid "Default Strategy"
 msgstr "Forvalgt strategi"
 
@@ -768,6 +886,11 @@ msgstr "Stavekontroll"
 msgid "Search Strategy"
 msgstr "Søkestrategi"
 
+#: gdictsrc/GNOME_GDictApplet.server.in.h:3
+#: gdictsrc/gnome-dictionary.desktop.in.h:2
+msgid "Lookup words in an online dictionary"
+msgstr "Slå opp ord i en ordbok på nett"
+
 #: gdictsrc/GNOME_GDictApplet.server.in.h:1
 msgid "Accessories"
 msgstr "Tilbehør"
@@ -776,12 +899,7 @@ msgstr "Tilbehør"
 msgid "Dictionary Lookup"
 msgstr "Oppslag i ordbok"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.h:3
-#: gdictsrc/gnome-dictionary.desktop.in.h:2
-msgid "Lookup words in an online dictionary"
-msgstr "Slå opp ord i en ordbok på nett"
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:140
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:141
 msgid "About..."
 msgstr "Om..."
 
@@ -792,6 +910,277 @@ msgstr "Brukervalg..."
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
 msgid "Show/Hide Definition Window..."
 msgstr "Vis/skjul definisjonsvindu..."
+
+#: gfloppy/gfloppy.desktop.in.h:1
+msgid "Floppy Formatter"
+msgstr "Formatering av diskett"
+
+#: gfloppy/gfloppy.desktop.in.h:2
+msgid "Format Floppy Disks"
+msgstr "Formater disketter"
+
+#: gfloppy/src/badblocks.c:102
+msgid "MInternal Error: Unable to seek to the correct location."
+msgstr "MIntern feil: Kan ikke søke til korrekt plassering."
+
+#: gfloppy/src/badblocks.c:111
+#, c-format
+msgid "MInternal Error: Weird value (%ld) in do_test\n"
+msgstr "MIntern feil: Uforståelig verdi (%ld) i do_test\n"
+
+#: gfloppy/src/badblocks.c:166
+#, c-format
+msgid "EBad block at block %lu"
+msgstr "EUgyldig blokk ved blokk %lu"
+
+#. while (!i)
+#. ;
+#: gfloppy/src/badblocks.c:260
+msgid "MChecking for bad blocks..."
+msgstr "MSjekker etter dårlige blokker..."
+
+#: gfloppy/src/badblocks.c:272
+#, c-format
+msgid "MFailed to open device %s for badblock checking\n"
+msgstr "MFeil under åpning av enhet %s for sjekking av dårlige blokker\n"
+
+#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:213
+msgid "MChecking for bad blocks... Done"
+msgstr "MSjekker etter dårlige blokker... Ferdig"
+
+#: gfloppy/src/fdformat.c:44
+msgid "MFormatting the disk..."
+msgstr "Formaterer disketten..."
+
+#: gfloppy/src/fdformat.c:46
+msgid "EI don't know what this is, but it's very wrong."
+msgstr "EI vet ikke hva dette er, men det er veldig feil."
+
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
+#, c-format
+msgid "EError formatting track #%d"
+msgstr "EError under formatering av spor #%d"
+
+#: gfloppy/src/fdformat.c:74
+msgid "EError during completion of formatting"
+msgstr "EError under fullføring av formatering"
+
+#. XXXX - need to tell parent we're finished
+#: gfloppy/src/fdformat.c:78
+msgid "MFormatting the disk... Done"
+msgstr "MFormaterer disken... Ferdig"
+
+#. XXXX - tell parent we're starting verify stage
+#: gfloppy/src/fdformat.c:94
+msgid "MVerifying the format..."
+msgstr "MVerifiserer formatet..."
+
+#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
+msgid ""
+"EUnable to write to the floppy.\n"
+"\n"
+"Please confirm that it is not write-protected."
+msgstr ""
+"EKunne ikke skrive til disketten.\n"
+"\n"
+"Vennligst forsikre deg om at den ikke er skrivebeskyttet."
+
+#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
+#, c-format
+msgid "EInsufficient permissions to open floppy device %s."
+msgstr "EIkke tilstrekkelige rettigheter til å åpne diskettenheten %s."
+
+#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
+msgid ""
+"EUnable to access the floppy disk.\n"
+"\n"
+"Please confirm that it is in the drive\n"
+"with the drive door shut."
+msgstr ""
+"Kunne ikke aksessere disketten.\n"
+"\n"
+"Vennligst sjekk at den står i stasjonen\n"
+"og at døren er lukket."
+
+#: gfloppy/src/fdformat.c:109
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s:%d"
+msgstr ""
+"EVanlig feil under aksessering av diskettenhet %s.\n"
+"\n"
+"Feilkode %s:%d"
+
+#: gfloppy/src/fdformat.c:129
+#, c-format
+msgid ""
+"ERead Error:\n"
+"Problem reading cylinder %d, expected %d, read %d"
+msgstr ""
+"ELesefeil:\n"
+"Problem under lesing av sylinder %d, forventet %d, leste %d"
+
+#: gfloppy/src/fdformat.c:132
+#, c-format
+msgid "EProblem reading cylinder %d, expected %d, read %d"
+msgstr "EProblem under lesing av sylinder %d, forventet %d, leste %d"
+
+#: gfloppy/src/fdformat.c:141
+#, c-format
+msgid "MBad data in cyl %d.  Continuing... "
+msgstr "MUgyldig data i syl %d. Fortsetter..."
+
+#: gfloppy/src/fdformat.c:148
+#, c-format
+msgid "EError closing device %s"
+msgstr "EFeil ved lukking av enhet %s"
+
+#: gfloppy/src/fdformat.c:153
+msgid "MVerifying the format... Done"
+msgstr "MVerifiserer formatet... Ferdig"
+
+#: gfloppy/src/fdformat.c:165
+#, c-format
+msgid "EUnable to write to device %s"
+msgstr "EKunne ikke skrive til enhet %s"
+
+#: gfloppy/src/fdformat.c:184
+#, c-format
+msgid ""
+"EGeneric error accessing floppy device %s.\n"
+"\n"
+"Error code %s"
+msgstr ""
+"EVanlig feil under aksessering av diskettenhet %s.\n"
+"\n"
+"Feilkode %s"
+
+#: gfloppy/src/fdformat.c:194
+msgid "ECould not determine current format type"
+msgstr "EKunne ikke bestemme nåværende formats type"
+
+#: gfloppy/src/gfloppy2.glade.h:1
+msgid "DOS (fat)"
+msgstr "DOS (fat)"
+
+#: gfloppy/src/gfloppy2.glade.h:2
+msgid "Double Density 3.5\" (720 KB)"
+msgstr "Dobbel tetthet 3.5\" (720 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:3
+msgid "Double Density 5.25\" (360 KB)"
+msgstr "Dobbel tetthet 5.25\" (360 KB)"
+
+#: gfloppy/src/gfloppy2.glade.h:4
+msgid "File system _type:"
+msgstr "_Type filsystem:"
+
+#: gfloppy/src/gfloppy2.glade.h:5
+msgid "Floppy _Density:"
+msgstr "_Diskettens tetthet:"
+
+#: gfloppy/src/gfloppy2.glade.h:6
+msgid "Format a floppy"
+msgstr "Formatere en diskett"
+
+#: gfloppy/src/gfloppy2.glade.h:7
+msgid "High Density 3.5\" (1.44 MB)"
+msgstr "Høy tetthet 3.5\" (1.44 MB)"
+
+#: gfloppy/src/gfloppy2.glade.h:8
+msgid "High Density 5.25\" (1.2 MB)"
+msgstr "Høy tetthet 5.25\" (1.2 MB)"
+
+#: gfloppy/src/gfloppy2.glade.h:9
+msgid "Linux Native (ext2)"
+msgstr "Linux Native (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:10
+msgid "_Floppy Device:"
+msgstr "D_iskettenhet:"
+
+#: gfloppy/src/gfloppy2.glade.h:11
+msgid "_Quick format"
+msgstr "H_urtigformatering"
+
+#: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
+msgid "MMaking filesystem on disk..."
+msgstr "MLager filsystem på disketten..."
+
+#: gfloppy/src/gfloppy.c:167
+msgid "EUnable to create filesystem correctly."
+msgstr "EKunne ikke opprette filsystem."
+
+#: gfloppy/src/gfloppy.c:171 gfloppy/src/gfloppy.c:203
+msgid "MMaking filesystem on disk... Done"
+msgstr "MOppretter filsystem på disken... Ferdig"
+
+#: gfloppy/src/gfloppy.c:200 gfloppy/src/gfloppy.c:215
+msgid "EUnable to create filesystem."
+msgstr "EKunne ikke opprette filsystem."
+
+#: gfloppy/src/gfloppy.c:209
+msgid "MChecking for bad blocks... (this might take a while)"
+msgstr "MSjekker etter dårlige blokker... (dette kan ta litt tid)"
+
+#: gfloppy/src/main.c:126 gfloppy/src/main.c:169
+#, c-format
+msgid "Unable to open the device %s, formatting cannot continue."
+msgstr "Kan ikke åpne enhet %s, formatering kan ikke fortsette."
+
+#: gfloppy/src/main.c:129 gfloppy/src/main.c:172
+#, c-format
+msgid ""
+"The device %s is disconnected.\n"
+"Please attach device to continue."
+msgstr ""
+"Enhet %s er koblet fra.\n"
+"Vennligst koble til enheten for å fortsette."
+
+#: gfloppy/src/main.c:132 gfloppy/src/main.c:175
+#, c-format
+msgid ""
+"You do not have the proper permissions to write to %s, formatting will not "
+"be possible.\n"
+"Contact your system administrator about getting write permissions."
+msgstr ""
+"Du har ikke rettigheter til å skrive til %s. Formatering er derfor ikke "
+"mulig.\n"
+"Kontakt din systemadministrator for å få skrivetilgang."
+
+#: gfloppy/src/main.c:287
+msgid "The device to format"
+msgstr "Enheten som skal formateres"
+
+#: gfloppy/src/main.c:288
+msgid "DEVICE"
+msgstr "ENHET"
+
+#: gfloppy/src/main.c:365
+msgid "Format another floppy?"
+msgstr "Formatere enda en diskett?"
+
+#: gfloppy/src/progress.c:115
+msgid "Floppy formatted successfully."
+msgstr "Disketten formatert."
+
+#: gfloppy/src/progress.c:119
+msgid "Floppy formatting cancelled."
+msgstr "Formatering av diskett avbrutt."
+
+#: gfloppy/src/progress.c:160
+msgid "Format progress."
+msgstr "Fremgang i formateringen."
+
+#: gsearchtool/gnome-search-tool.desktop.in.h:1
+msgid "Search for Files"
+msgstr "Søk etter filer"
+
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+msgid "Search your disk for files"
+msgstr "Søk etter filer på din disk"
 
 #: gsearchtool/gsearchtool.c:64
 msgid "File name is"
@@ -1082,7 +1471,7 @@ msgstr "Filen %s eksisterer allerede. Overskriv?"
 msgid "Cannot save the results file."
 msgstr "Kan ikke lagre resultatfil."
 
-#: gsearchtool/gsearchtool.c:1797 meat-grinder/meat-grinder.c:523
+#: gsearchtool/gsearchtool.c:1797 meat-grinder/meat-grinder.c:535
 msgid "Save Results"
 msgstr "Lagre resultater"
 
@@ -1101,6 +1490,10 @@ msgstr "Kan ikke initiere bonobo."
 #: gsearchtool/gsearchtool.c:1893
 msgid "Search Tool"
 msgstr "Søkeverktøy"
+
+#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
+msgid "GNOME Search Tool"
+msgstr "GNOME søkeverktøy"
 
 #: logview/about.c:42
 msgid "Cesar Miquel (miquel@df.uba.ar)"
@@ -1143,7 +1536,7 @@ msgstr "Legg til..."
 msgid "Edit..."
 msgstr "Rediger..."
 
-#: logview/actions.c:151 meat-grinder/meat-grinder.c:750
+#: logview/actions.c:151 meat-grinder/meat-grinder.c:762
 msgid "Remove"
 msgstr "Fjern"
 
@@ -1213,6 +1606,73 @@ msgstr ""
 #: logview/calendar.c:112 logview/logview.c:110
 msgid "Calendar"
 msgstr "Kalender"
+
+#.
+#. * 	-------------------
+#. * 	     Defines
+#. * 	-------------------
+#.
+#: logview/config.c:34
+msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:35
+msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:36
+msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#: logview/config.c:37
+msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#: logview/config.c:39
+msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+
+#: logview/config.c:40
+msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+
+#: logview/config.c:41
+msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:42
+msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:43
+msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+
+#: logview/config.c:44
+msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+
+#: logview/desc_db.c:37
+#, c-format
+msgid "Cannot open regexp data base <%s>! Open failed."
+msgstr "Kan ikke åpne database over vanlige uttrykk <%s>! Feil under åpning."
+
+#: logview/desc_db.c:147
+#, c-format
+msgid "Cannot open description data base <%s>! Open failed."
+msgstr "Kan ikke åpne beskrivelsesdatabase <%s>! Feil under åpning."
+
+#. ----------------------------------------------------------------------
+#. NAME:
+#. DESCRIPTION:
+#. ----------------------------------------------------------------------
+#: logview/gnome-system-log.desktop.in.h:1
+msgid "System Log"
+msgstr "Systemlogg"
+
+#: logview/gnome-system-log.desktop.in.h:2
+msgid "View the system log file"
+msgstr "Vis systemets loggfiler"
 
 #: logview/info.c:79 logview/logview.c:113
 msgid "Log stats"
@@ -1427,32 +1887,32 @@ msgstr "Filtrer..               "
 msgid "Filter log events"
 msgstr "Filtrer logghendelser"
 
-#: logview/logview.c:141
+#: logview/logview.c:142
 msgid "Info about logview"
 msgstr "Informasjon om loggvisning"
 
-#: logview/logview.c:344
+#: logview/logview.c:346
 msgid "No log files to open"
 msgstr "Ingen loggfile å åpne"
 
 #. Create App
-#: logview/logview.c:367
+#: logview/logview.c:369
 msgid "System Log Viewer"
 msgstr "Visning av systemlogg"
 
-#: logview/logview.c:478
+#: logview/logview.c:480
 msgid "Filename: "
 msgstr "Filnavn: "
 
-#: logview/logview.c:494
+#: logview/logview.c:496
 msgid "Date: "
 msgstr "Dato: "
 
-#: logview/logview.c:746 logview/logview.c:801
+#: logview/logview.c:748 logview/logview.c:803
 msgid "Too many open logs. Close one and try again"
 msgstr "For mange åpne logger. Lukk en og prøv på nytt"
 
-#: logview/logview.c:814
+#: logview/logview.c:816
 msgid "Open new logfile"
 msgstr "Åpne ny loggfil"
 
@@ -1547,403 +2007,13 @@ msgstr "Beskrivelse:"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#.
-#. * 	-------------------
-#. * 	     Defines
-#. * 	-------------------
-#.
-#: logview/config.c:34
-msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:35
-msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:36
-msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:37
-msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:39
-msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-
-#: logview/config.c:40
-msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-
-#: logview/config.c:41
-msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:42
-msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#: logview/config.c:43
-msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-
-#: logview/config.c:44
-msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-
-#: logview/desc_db.c:37
-#, c-format
-msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "Kan ikke åpne database over vanlige uttrykk <%s>! Feil under åpning."
-
-#: logview/desc_db.c:147
-#, c-format
-msgid "Cannot open description data base <%s>! Open failed."
-msgstr "Kan ikke åpne beskrivelsesdatabase <%s>! Feil under åpning."
-
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
-#: gfloppy/src/gfloppy2.glade.h:1
-msgid "DOS (fat)"
-msgstr "DOS (fat)"
-
-#: gfloppy/src/gfloppy-i18n.h:15 gfloppy/src/gfloppy2.glade.h:2
-msgid "Double Density 3.5\" (720 KB)"
-msgstr "Dobbel tetthet 3.5\" (720 KB)"
-
-#: gfloppy/src/gfloppy-i18n.h:16 gfloppy/src/gfloppy2.glade.h:3
-msgid "Double Density 5.25\" (360 KB)"
-msgstr "Dobbel tetthet 5.25\" (360 KB)"
-
-#: gfloppy/src/gfloppy2.glade.h:4
-msgid "File system _type:"
-msgstr "_Type filsystem:"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "Floppy _Density:"
-msgstr "_Diskettens tetthet:"
-
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gfloppy/src/gfloppy-i18n.h:7 gfloppy/src/gfloppy2.glade.h:6
-msgid "Format a floppy"
-msgstr "Formatere en diskett"
-
-#: gfloppy/src/gfloppy-i18n.h:13 gfloppy/src/gfloppy2.glade.h:7
-msgid "High Density 3.5\" (1.44 MB)"
-msgstr "Høy tetthet 3.5\" (1.44 MB)"
-
-#: gfloppy/src/gfloppy-i18n.h:14 gfloppy/src/gfloppy2.glade.h:8
-msgid "High Density 5.25\" (1.2 MB)"
-msgstr "Høy tetthet 5.25\" (1.2 MB)"
-
-#: gfloppy/src/gfloppy-i18n.h:8 gfloppy/src/gfloppy-i18n.h:10
-#: gfloppy/src/gfloppy2.glade.h:9
-msgid "Linux Native (ext2)"
-msgstr "Linux Native (ext2)"
-
-#: gfloppy/src/gfloppy2.glade.h:10
-msgid "_Floppy Device:"
-msgstr "D_iskettenhet:"
-
-#: gfloppy/src/gfloppy-i18n.h:17 gfloppy/src/gfloppy2.glade.h:11
-msgid "_Quick format"
-msgstr "H_urtigformatering"
-
-#: gfloppy/src/badblocks.c:102
-msgid "MInternal Error: Unable to seek to the correct location."
-msgstr "MIntern feil: Kan ikke søke til korrekt plassering."
-
-#: gfloppy/src/badblocks.c:111
-#, c-format
-msgid "MInternal Error: Weird value (%ld) in do_test\n"
-msgstr "MIntern feil: Uforståelig verdi (%ld) i do_test\n"
-
-#: gfloppy/src/badblocks.c:166
-#, c-format
-msgid "EBad block at block %lu"
-msgstr "EUgyldig blokk ved blokk %lu"
-
-#. while (!i)
-#. ;
-#: gfloppy/src/badblocks.c:260
-msgid "MChecking for bad blocks..."
-msgstr "MSjekker etter dårlige blokker..."
-
-#: gfloppy/src/badblocks.c:272
-#, c-format
-msgid "MFailed to open device %s for badblock checking\n"
-msgstr "MFeil under åpning av enhet %s for sjekking av dårlige blokker\n"
-
-#: gfloppy/src/badblocks.c:291 gfloppy/src/gfloppy.c:213
-msgid "MChecking for bad blocks... Done"
-msgstr "MSjekker etter dårlige blokker... Ferdig"
-
-#: gfloppy/src/fdformat.c:44
-msgid "MFormatting the disk..."
-msgstr "Formaterer disketten..."
-
-#: gfloppy/src/fdformat.c:46
-msgid "EI don't know what this is, but it's very wrong."
-msgstr "EI vet ikke hva dette er, men det er veldig feil."
-
-#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:66
-#, c-format
-msgid "EError formatting track #%d"
-msgstr "EError under formatering av spor #%d"
-
-#: gfloppy/src/fdformat.c:74
-msgid "EError during completion of formatting"
-msgstr "EError under fullføring av formatering"
-
-#. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:78
-msgid "MFormatting the disk... Done"
-msgstr "MFormaterer disken... Ferdig"
-
-#. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:94
-msgid "MVerifying the format..."
-msgstr "MVerifiserer formatet..."
-
-#: gfloppy/src/fdformat.c:99 gfloppy/src/fdformat.c:174
-msgid ""
-"EUnable to write to the floppy.\n"
-"\n"
-"Please confirm that it is not write-protected."
-msgstr ""
-"EKunne ikke skrive til disketten.\n"
-"\n"
-"Vennligst forsikre deg om at den ikke er skrivebeskyttet."
-
-#: gfloppy/src/fdformat.c:102 gfloppy/src/fdformat.c:177
-#, c-format
-msgid "EInsufficient permissions to open floppy device %s."
-msgstr "EIkke tilstrekkelige rettigheter til å åpne diskettenheten %s."
-
-#: gfloppy/src/fdformat.c:106 gfloppy/src/fdformat.c:181
-msgid ""
-"EUnable to access the floppy disk.\n"
-"\n"
-"Please confirm that it is in the drive\n"
-"with the drive door shut."
-msgstr ""
-"Kunne ikke aksessere disketten.\n"
-"\n"
-"Vennligst sjekk at den står i stasjonen\n"
-"og at døren er lukket."
-
-#: gfloppy/src/fdformat.c:109
-#, c-format
-msgid ""
-"EGeneric error accessing floppy device %s.\n"
-"\n"
-"Error code %s:%d"
-msgstr ""
-"EVanlig feil under aksessering av diskettenhet %s.\n"
-"\n"
-"Feilkode %s:%d"
-
-#: gfloppy/src/fdformat.c:129
-#, c-format
-msgid ""
-"ERead Error:\n"
-"Problem reading cylinder %d, expected %d, read %d"
-msgstr ""
-"ELesefeil:\n"
-"Problem under lesing av sylinder %d, forventet %d, leste %d"
-
-#: gfloppy/src/fdformat.c:132
-#, c-format
-msgid "EProblem reading cylinder %d, expected %d, read %d"
-msgstr "EProblem under lesing av sylinder %d, forventet %d, leste %d"
-
-#: gfloppy/src/fdformat.c:141
-#, c-format
-msgid "MBad data in cyl %d.  Continuing... "
-msgstr "MUgyldig data i syl %d. Fortsetter..."
-
-#: gfloppy/src/fdformat.c:148
-#, c-format
-msgid "EError closing device %s"
-msgstr "EFeil ved lukking av enhet %s"
-
-#: gfloppy/src/fdformat.c:153
-msgid "MVerifying the format... Done"
-msgstr "MVerifiserer formatet... Ferdig"
-
-#: gfloppy/src/fdformat.c:165
-#, c-format
-msgid "EUnable to write to device %s"
-msgstr "EKunne ikke skrive til enhet %s"
-
-#: gfloppy/src/fdformat.c:184
-#, c-format
-msgid ""
-"EGeneric error accessing floppy device %s.\n"
-"\n"
-"Error code %s"
-msgstr ""
-"EVanlig feil under aksessering av diskettenhet %s.\n"
-"\n"
-"Feilkode %s"
-
-#: gfloppy/src/fdformat.c:194
-msgid "ECould not determine current format type"
-msgstr "EKunne ikke bestemme nåværende formats type"
-
-#: gfloppy/src/gfloppy.c:164 gfloppy/src/gfloppy.c:197
-msgid "MMaking filesystem on disk..."
-msgstr "MLager filsystem på disketten..."
-
-#: gfloppy/src/gfloppy.c:167
-msgid "EUnable to create filesystem correctly."
-msgstr "EKunne ikke opprette filsystem."
-
-#: gfloppy/src/gfloppy.c:171 gfloppy/src/gfloppy.c:203
-msgid "MMaking filesystem on disk... Done"
-msgstr "MOppretter filsystem på disken... Ferdig"
-
-#: gfloppy/src/gfloppy.c:200 gfloppy/src/gfloppy.c:215
-msgid "EUnable to create filesystem."
-msgstr "EKunne ikke opprette filsystem."
-
-#: gfloppy/src/gfloppy.c:209
-msgid "MChecking for bad blocks... (this might take a while)"
-msgstr "MSjekker etter dårlige blokker... (dette kan ta litt tid)"
-
-#: gfloppy/src/main.c:126 gfloppy/src/main.c:169
-#, c-format
-msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "Kan ikke åpne enhet %s, formatering kan ikke fortsette."
-
-#: gfloppy/src/main.c:129 gfloppy/src/main.c:172
-#, c-format
-msgid ""
-"The device %s is disconnected.\n"
-"Please attach device to continue."
-msgstr ""
-"Enhet %s er koblet fra.\n"
-"Vennligst koble til enheten for å fortsette."
-
-#: gfloppy/src/main.c:132 gfloppy/src/main.c:175
-#, c-format
-msgid ""
-"You do not have the proper permissions to write to %s, formatting will not "
-"be possible.\n"
-"Contact your system administrator about getting write permissions."
-msgstr ""
-"Du har ikke rettigheter til å skrive til %s. Formatering er derfor ikke "
-"mulig.\n"
-"Kontakt din systemadministrator for å få skrivetilgang."
-
-#: gfloppy/src/main.c:287
-msgid "The device to format"
-msgstr "Enheten som skal formateres"
-
-#: gfloppy/src/main.c:288
-msgid "DEVICE"
-msgstr "ENHET"
-
-#: gfloppy/src/main.c:366
-msgid "Format another floppy?"
-msgstr "Formatere enda en diskett?"
-
-#: gfloppy/src/progress.c:115
-msgid "Floppy formatted successfully."
-msgstr "Disketten formatert."
-
-#: gfloppy/src/progress.c:119
-msgid "Floppy formatting cancelled."
-msgstr "Formatering av diskett avbrutt."
-
-#: gfloppy/src/progress.c:160
-msgid "Format progress."
-msgstr "Fremgang i formateringen."
-
-#: gfloppy/src/gfloppy-i18n.h:9
-msgid "Dos (FAT)"
-msgstr "DOS (FAT)"
-
-#: gfloppy/src/gfloppy-i18n.h:11
-msgid "Floppy Density:"
-msgstr "Diskettens tetthet:"
-
-#: gfloppy/src/gfloppy-i18n.h:12
-msgid "File system type:"
-msgstr "Type filsystem:"
-
-#: gfloppy/src/gfloppy-i18n.h:18
-msgid "Floppy Device:"
-msgstr "Diskettenhet:"
-
-#: exe-handler/gnome-exe-handler.c:76
-#, c-format
-msgid ""
-"Executing arbitrary programs that you downloaded from the network might be "
-"dangerous.\n"
-"\n"
-"Are you sure you want to run `%s'?"
-msgstr ""
-"Køring av tilfeldige programmer du har lastet ned fra nettet kan være "
-"farlig.\n"
-"\n"
-"Er du sikker på at du vil kjøre `%s'?"
-
-#: exe-handler/gnome-exe-handler.c:83
-msgid "Could not access file permissions"
-msgstr "Kunne ikke se på filrettigheter"
-
-#: exe-handler/gnome-exe-handler.c:88
-#, c-format
-msgid "Could not execute the file `%s' due to a permission problem"
-msgstr "Kunne ikke kjøre filen `%s' pga problemer med rettigheter"
-
-#: exe-handler/gnome-exe-handler.c:104
-#, c-format
-msgid "Failure at executing `%s'"
-msgstr "Feil ved kjøring `%s'"
-
-#: exe-handler/gnome-exe-handler.c:123
-#, c-format
-msgid "It was not possible to open the file `%s'"
-msgstr "Det var ikke mulig å åpne filen `%s'"
-
-#: exe-handler/gnome-exe-handler.c:132
-#, c-format
-msgid "The file `%s' is empty"
-msgstr "Filen `%s' er tomt"
-
-#: exe-handler/gnome-exe-handler.c:137
-#, c-format
-msgid "There was an error. `%s' is empty"
-msgstr "En feil oppsto. `%s' er tom"
-
-#: exe-handler/gnome-exe-handler.c:152
-msgid "This is a library and can not be executed"
-msgstr "Dette er et bibliotek og kan ikke kjøres"
-
-#: exe-handler/gnome-exe-handler.c:158
-msgid "The file is a core file and can not be executed"
-msgstr "Filen er et minnedump og kan ikke kjøres"
-
-#: exe-handler/gnome-exe-handler.c:162 exe-handler/gnome-exe-handler.c:196
-msgid "This is an unknown kind of executable"
-msgstr "Dette er en ukjent kjørbar fil"
-
-#: exe-handler/gnome-exe-handler.c:192
-msgid ""
-"The executable is for a different platform and can not be executed on this "
-"system"
-msgstr ""
-"Den kjørbare filen er for en annen plattform og kan ikke kjøres på dette "
-"systemet"
+#: meat-grinder/archive-generator.desktop.in.h:1
+msgid "Archive Generator"
+msgstr "Arkivgenerator"
+
+#: meat-grinder/archive-generator.desktop.in.h:2
+msgid "Create compressed archives containing many files"
+msgstr "Opprett komprimerte arkiv som inneholder mange filer"
 
 #: meat-grinder/meat-grinder.c:130
 #, c-format
@@ -1962,79 +2032,79 @@ msgstr ""
 "Ingen filer eller mapper, slipp filer eller mapper\n"
 "over for å legge dem til i arkivet"
 
-#: meat-grinder/meat-grinder.c:249 meat-grinder/meat-grinder.c:252
+#: meat-grinder/meat-grinder.c:261 meat-grinder/meat-grinder.c:264
 msgid "Cannot start the archive (tar) program"
 msgstr "Kan ikke starte arkivprogrammet (tar)"
 
-#: meat-grinder/meat-grinder.c:260
+#: meat-grinder/meat-grinder.c:272
 msgid "Cannot run tar/gtar"
 msgstr "Kan ikke kjøre tar/gtar"
 
-#: meat-grinder/meat-grinder.c:312
+#: meat-grinder/meat-grinder.c:324
 msgid "Archive.tar.gz"
 msgstr "Arkiv.tar.gz"
 
-#: meat-grinder/meat-grinder.c:417
+#: meat-grinder/meat-grinder.c:429
 msgid "The GNOME Archive Generator"
 msgstr "GNOME arkivgenerator"
 
-#: meat-grinder/meat-grinder.c:419
+#: meat-grinder/meat-grinder.c:431
 msgid "Drag files in to make archives"
 msgstr "Dra filer hit for å lage arkiv"
 
-#: meat-grinder/meat-grinder.c:491 meat-grinder/meat-grinder.c:650
+#: meat-grinder/meat-grinder.c:503 meat-grinder/meat-grinder.c:662
 msgid "No filename selected"
 msgstr "Ingen filnavn valgt"
 
-#: meat-grinder/meat-grinder.c:495
+#: meat-grinder/meat-grinder.c:507
 msgid "File exists, overwrite?"
 msgstr "Filen eksisterer, overskriv?"
 
-#: meat-grinder/meat-grinder.c:519
+#: meat-grinder/meat-grinder.c:531
 msgid "No items to archive"
 msgstr "Ingen oppføringer å arkivere"
 
-#: meat-grinder/meat-grinder.c:653
+#: meat-grinder/meat-grinder.c:665
 msgid "File does not exists"
 msgstr "Filen eksisterer ikke"
 
-#: meat-grinder/meat-grinder.c:667
+#: meat-grinder/meat-grinder.c:679
 msgid "Add file or folder"
 msgstr "Legg til fil eller mappe"
 
-#: meat-grinder/meat-grinder.c:737
+#: meat-grinder/meat-grinder.c:749
 msgid "Add file or folder..."
 msgstr "Legg til fil eller mappe..."
 
-#: meat-grinder/meat-grinder.c:738
+#: meat-grinder/meat-grinder.c:750
 msgid "Add a file or folder to the archive"
 msgstr "Legg til en fil eller en mappe i arkivet"
 
-#: meat-grinder/meat-grinder.c:741
+#: meat-grinder/meat-grinder.c:753
 msgid "Create archive..."
 msgstr "Opprett arkiv..."
 
-#: meat-grinder/meat-grinder.c:742
+#: meat-grinder/meat-grinder.c:754
 msgid "Create a new archive from the items"
 msgstr "Opprett et nytt arkiv fra oppføringene"
 
-#: meat-grinder/meat-grinder.c:751
+#: meat-grinder/meat-grinder.c:763
 msgid "Remove the selected item(s)"
 msgstr "Fjern valgt(e) oppføring(er)"
 
-#: meat-grinder/meat-grinder.c:783
+#: meat-grinder/meat-grinder.c:795
 msgid "GNOME Archive Generator"
 msgstr "GNOME arkivgenerator"
 
-#: meat-grinder/meat-grinder.c:813
+#: meat-grinder/meat-grinder.c:825
 msgid "Drop files here to add them to the archive."
 msgstr "Slipp filer her for å legge dem til i arkivet."
 
-#: meat-grinder/meat-grinder.c:831
+#: meat-grinder/meat-grinder.c:843
 msgid "Archive"
 msgstr "Arkiv"
 
-#: meat-grinder/meat-grinder.c:838
+#: meat-grinder/meat-grinder.c:850
 msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
@@ -2042,11 +2112,11 @@ msgstr ""
 "Dra denne knappen til målet hvor du ønsker at arkivet skal opprettes eller "
 "trykk på den for å få opp en filvalg-dialog."
 
-#: meat-grinder/meat-grinder.c:963
+#: meat-grinder/meat-grinder.c:975
 msgid "Cannot find proper icons anywhere!"
 msgstr "Kan ikke finne riktige ikoner noe sted!"
 
-#: meat-grinder/meat-grinder.c:971
+#: meat-grinder/meat-grinder.c:983
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
@@ -2054,57 +2124,17 @@ msgstr ""
 "Kan ikke finne arkivprogrammet (tar)!\n"
 "Dette er programmet som brukes for å lage arkiv."
 
-#: gfloppy/gfloppy.desktop.in.h:1
-msgid "Floppy Formatter"
-msgstr "Formatering av diskett"
+#~ msgid "Dos (FAT)"
+#~ msgstr "DOS (FAT)"
 
-#: gfloppy/gfloppy.desktop.in.h:2
-msgid "Format Floppy Disks"
-msgstr "Formater disketter"
+#~ msgid "Floppy Density:"
+#~ msgstr "Diskettens tetthet:"
 
-#: meat-grinder/archive-generator.desktop.in.h:1
-msgid "Archive Generator"
-msgstr "Arkivgenerator"
+#~ msgid "File system type:"
+#~ msgstr "Type filsystem:"
 
-#: meat-grinder/archive-generator.desktop.in.h:2
-msgid "Create compressed archives containing many files"
-msgstr "Opprett komprimerte arkiv som inneholder mange filer"
-
-#: gsearchtool/gnome-search-tool.desktop.in.h:1
-msgid "Search for Files"
-msgstr "Søk etter filer"
-
-#: gsearchtool/gnome-search-tool.desktop.in.h:2
-msgid "Search your disk for files"
-msgstr "Søk etter filer på din disk"
-
-#: gcharmap/gnome-character-map.desktop.in.h:1
-msgid "Character Map"
-msgstr "Tegnkart"
-
-#: gcharmap/gnome-character-map.desktop.in.h:2
-msgid "Insert special characters into documents"
-msgstr "Sett inn spesielle tegn i dokumenter"
-
-#: gcalc/gnome-calculator.desktop.in.h:1
-msgid "Calculator"
-msgstr "Kalkulator"
-
-#: gcalc/gnome-calculator.desktop.in.h:2
-msgid "Perform simple calculations"
-msgstr "Utfør enkle beregninger"
-
-#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
-msgid "GNOME Search Tool"
-msgstr "GNOME søkeverktøy"
-
-#: logview/gnome-system-log.desktop.in.h:1
-msgid "System Log"
-msgstr "Systemlogg"
-
-#: logview/gnome-system-log.desktop.in.h:2
-msgid "View the system log file"
-msgstr "Vis systemets loggfiler"
+#~ msgid "Floppy Device:"
+#~ msgstr "Diskettenhet:"
 
 #~ msgid "Don't search subdirectories"
 #~ msgstr "Ikke søk i underkataloger"
