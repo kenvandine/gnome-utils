@@ -211,8 +211,8 @@ void app_new(int argc, char *argv[])
                            TRUE, TRUE, 1);
 
         glist = create_clist();
-	gtk_box_pack_end(GTK_BOX(vbox), glist, TRUE, TRUE, 0);
-	gtk_widget_show(glist);
+	gtk_box_pack_end(GTK_BOX(vbox), glist->parent, TRUE, TRUE, 0);
+	gtk_widget_show_all(glist->parent);
 
 	gtk_widget_show(vbox);
 	gnome_app_set_contents(GNOME_APP(window), vbox);

@@ -32,14 +32,48 @@
 
 int clist_header_width_set = 0;
 
+static int
+clist_event(GtkCList *clist, GdkEvent *event, gpointer data)
+{
+	int row,column;
+	GdkEventButton *bevent = (GdkEventButton *)event;
+	GtkWidget *menu;
+	
+	if (!((event->type == GDK_2BUTTON_PRESS && bevent->button==1) ||
+	      (event->type == GDK_BUTTON_PRESS && bevent->button==3)))
+		return FALSE;
+
+	gtk_clist_get_selection_info(clist,bevent->x,bevent->y,&row,&column);
+	if(row<0)
+		return FALSE;
+	
+	gtk_clist_select_row(clist,row,column);
+	if(!cur_proj)
+		return FALSE;
+
+	if (event->type == GDK_2BUTTON_PRESS) {
+		prop_dialog(cur_proj);
+		/*hmmm so that the event selects it ... weird*/
+		gtk_clist_unselect_row(clist,row,column);
+	} else {
+		menu = menus_get_popup();
+		gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, bevent->time);
+	}
+	return TRUE;
+}
+	
+
 static void
 select_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 {
+#if 0
 	GtkWidget *menu;
 
 	if (!event) return;
 	if (event->button != 3) {
+#endif
 		cur_proj_set(gtk_clist_get_row_data(clist, row));
+#if 0
 		if ((event->type == GDK_2BUTTON_PRESS) &&
 		    (cur_proj)) {
 			prop_dialog(cur_proj);
@@ -54,6 +88,7 @@ select_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 	cur_proj_set(gtk_clist_get_row_data(clist, row));
 	menu = menus_get_popup();
 	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, event->time);
+#endif
 }
 
 
@@ -156,6 +191,8 @@ create_clist(void)
 		GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_widget_show_all (sw);
 
+	gtk_signal_connect(GTK_OBJECT(w), "event",
+			   GTK_SIGNAL_FUNC(clist_event), NULL);
 	gtk_signal_connect(GTK_OBJECT(w), "select_row",
 			   GTK_SIGNAL_FUNC(select_row), NULL);
 	gtk_signal_connect(GTK_OBJECT(w), "click_column",

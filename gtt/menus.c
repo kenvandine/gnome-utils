@@ -36,11 +36,15 @@ static GnomeUIInfo menu_main_file[] = {
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE,
 		'S', GDK_CONTROL_MASK, NULL},
 	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_PREFERENCES_ITEM(menu_options,NULL),
-	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_app,NULL),
 	GNOMEUIINFO_END
 };
+
+static GnomeUIInfo menu_main_settings[] = {
+	GNOMEUIINFO_MENU_PREFERENCES_ITEM(menu_options,NULL),
+	GNOMEUIINFO_END
+};
+
 
 
 static GnomeUIInfo menu_main_edit[] = {
@@ -91,6 +95,7 @@ static GnomeUIInfo menu_main_help[] = {
 static GnomeUIInfo menu_main[] = {
 	GNOMEUIINFO_MENU_FILE_TREE(menu_main_file),
 	GNOMEUIINFO_MENU_EDIT_TREE(menu_main_edit),
+	GNOMEUIINFO_MENU_SETTINGS_TREE(menu_main_settings),
 	GNOMEUIINFO_SUBTREE(N_("_Timer"), menu_main_timer),
 	GNOMEUIINFO_MENU_HELP_TREE(menu_main_help),
 	GNOMEUIINFO_END
@@ -123,27 +128,9 @@ GtkWidget *
 menus_get_popup(void)
 {
 	static GtkWidget *menu = NULL;
-	GtkWidget *w;
-	GnomeUIInfo *p;
 
 	if (menu) return menu;
-	menu = gtk_menu_new();
-	for (p = menu_popup; p->type != GNOME_APP_UI_ENDOFINFO; p++) {
-		if (p->type == GNOME_APP_UI_SEPARATOR) {
-			w = gtk_menu_item_new();
-			gtk_widget_show(w);
-			gtk_menu_append(GTK_MENU(menu), w);
-		} else {
-			w = gtk_menu_item_new_with_label(p->label);
-			p->widget = w;
-			gtk_widget_show(w);
-			if (p->moreinfo)
-				gtk_signal_connect(GTK_OBJECT(w), "activate",
-						   (GtkSignalFunc)p->moreinfo,
-						   NULL);
-			gtk_menu_append(GTK_MENU(menu), w);
-		}
-	}
+	menu = gnome_popup_menu_new(menu_popup);
 	return menu;
 }
 

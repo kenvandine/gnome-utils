@@ -68,16 +68,20 @@ static void lock_gtt()
 	
 	fname = build_lock_fname();
 	if (NULL != (f = fopen(fname, "rt"))) {
+		GtkWidget *warning;
 		fclose(f);
+		
 #ifdef DEBUG
                 g_warning("GTT PID file exists");
 #else /* not DEBUG */
-		msgbox_ok(_("Error"), _("There seems to be another GTimeTracker running.\n"
-			  "Please remove the pid file, if that is not correct."),
-			  GNOME_STOCK_BUTTON_OK,
-			  GTK_SIGNAL_FUNC(gtk_main_quit));
-		gtk_main();
-		exit(0);
+		warning = gnome_message_box_new(_("There seems to be another GTimeTracker running.\n"
+						  "Press OK to start GTimeTracker anyway, or press Cancel to quit."),
+						GNOME_MESSAGE_BOX_WARNING,
+						GNOME_STOCK_BUTTON_OK,
+						GNOME_STOCK_BUTTON_CANCEL,
+						NULL);
+		if(gnome_dialog_run_and_close(GNOME_DIALOG(warning))!=0)
+			exit(0);
 #endif /* not DEBUG */
 	}
 	if (NULL == (f = fopen(fname, "wt"))) {
