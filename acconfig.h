@@ -16,6 +16,9 @@
 #undef HAVE_GUILE
 #undef HAVE_LINUX_TABLE
 
+/* Define if LibGTop has support for multiple processors. */
+#undef HAVE_LIBGTOP_SMP
+
 /* Define if you want to build against development gtk */
 #undef HAVE_DEVGTK
 
