@@ -434,6 +434,7 @@ CreateMainWin (LogviewWindow *window)
    /* Add Tree View Columns */
    for (i = 0; column_titles[i]; i++) {
         renderer = gtk_cell_renderer_text_new ();
+	gtk_cell_renderer_text_set_fixed_height_from_font (renderer, 1);
         column = gtk_tree_view_column_new_with_attributes (_(column_titles[i]),
                     renderer, "text", i, NULL);
         gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE); 
