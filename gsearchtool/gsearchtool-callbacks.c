@@ -138,12 +138,7 @@ click_find_cb (GtkWidget	*widget,
 
 	command = build_search_command ();
 	
-	if (search_command.lock == FALSE) {	
-		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
-		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), 
-				   _("Searching..."));
-		search_command.timeout = g_timeout_add (100, update_progress_bar, 
-						  	NULL); 
+	if (search_command.lock == FALSE) {
 		spawn_search_command (command);
 	}
 	

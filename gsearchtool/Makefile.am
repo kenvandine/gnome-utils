@@ -35,7 +35,11 @@ Utilities_in_files = gnome-search-tool.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+animationdir = $(datadir)/pixmaps/gnome-search-tool
+animation_DATA = gnome-search-tool-animation.png
+	
 EXTRA_DIST = \
+	$(animation_DATA) \
 	$(pixmap_DATA) \
 	$(Utilities_in_files) \
 	$(Utilities_DATA) \

@@ -30,6 +30,11 @@
 #define GNOME_SEARCH_TOOL_STOCK "panel-searchtool"
 #define LEFT_LABEL_SPACING "     "
 
+#define DEFAULT_ANIMATION_WIDTH   48
+#define DEFAULT_ANIMATION_HEIGHT  48
+#define DEFAULT_ANIMATION_FRAME    2
+#define TOTAL_ANIMATION_FRAMES     3
+
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
@@ -702,24 +707,6 @@ set_constraint_gconf_boolean (gint constraint_id, gboolean flag)
 	}
 }
 
-static void
-setup_app_progress_bar (void)
-{
-	interface.status_bar = gnome_appbar_new (TRUE, TRUE, GNOME_PREFERENCES_NEVER);
-	gnome_app_set_statusbar (GNOME_APP(interface.main_window), interface.status_bar);
-	interface.progress_bar = GTK_WIDGET(gnome_appbar_get_progress (GNOME_APPBAR(interface.status_bar)));
-	g_object_set (G_OBJECT(interface.progress_bar), "pulse_step", 0.1, NULL);
-}
-
-gboolean
-update_progress_bar (gpointer data)
-{
-	if (GTK_IS_PROGRESS_BAR(interface.progress_bar) == TRUE) {
-		gtk_progress_bar_pulse (GTK_PROGRESS_BAR (interface.progress_bar));
-	}
-	return TRUE;
-}
-
 /*
  * add_atk_namedesc
  * @widget    : The Gtk Widget for which @name and @desc are added.
@@ -776,6 +763,116 @@ add_atk_relation (GtkWidget 		*obj1,
 	atk_relation_set_add(relation_set, relation);
 	g_object_unref(G_OBJECT (relation));
 	
+}
+
+static gboolean
+setup_animation_image (void)
+{
+	gint	   width  = 0;
+	gint	   height = 0;
+	GError     *error = NULL;
+			
+	interface.current_animation_frame = DEFAULT_ANIMATION_FRAME - 1;
+
+	interface.pixbuf = gdk_pixbuf_new_from_file (GNOME_ICONDIR"/gnome-search-tool/gnome-search-tool-animation.png",
+	                                             &error);
+	
+	if (error) {
+		g_warning (_("The animation file is missing or invalid: %s"), error->message);		
+		g_error_free (error);
+		gtk_drawing_area_size (GTK_DRAWING_AREA (interface.drawing_area), 0, 0);
+		return FALSE;
+	}
+
+	width  = gdk_pixbuf_get_width (interface.pixbuf); 
+	height = gdk_pixbuf_get_height (interface.pixbuf); 
+
+	gtk_drawing_area_size (GTK_DRAWING_AREA (interface.drawing_area), width / TOTAL_ANIMATION_FRAMES, height);
+	interface.pixmap = gdk_pixmap_new (interface.drawing_area->window, width, height, -1);
+	gtk_widget_queue_draw (interface.drawing_area); 
+
+	return TRUE;
+}
+
+static gboolean
+animation_expose_event_cb (GtkWidget       *widget,
+                           GdkEventExpose  *event,
+                           gpointer        *data)
+{
+	gint width  = 0;
+	gint height = 0;
+
+	if (GDK_IS_DRAWABLE (interface.pixmap) == FALSE) {
+		return FALSE;
+	}
+
+	gdk_window_clear_area (widget->window,
+	                       event->area.x, event->area.y,
+	                       event->area.width, event->area.height);
+
+	gdk_gc_set_clip_rectangle (widget->style->fg_gc[widget->state], &event->area); 
+
+	gdk_drawable_get_size (interface.pixmap, &width, &height);
+
+	gdk_pixbuf_render_to_drawable_alpha (interface.pixbuf,
+	                                     GDK_DRAWABLE (widget->window),
+	                                     (width * interface.current_animation_frame) / TOTAL_ANIMATION_FRAMES, 0, 
+	                                     0, 0,
+	                                     width, height,
+	                                     GDK_PIXBUF_ALPHA_FULL, 255,
+	                                     GDK_RGB_DITHER_MAX,
+	                                     0, 0);
+
+	gdk_gc_set_clip_rectangle (widget->style->fg_gc[widget->state], NULL);
+
+        return FALSE;
+}
+
+static void
+start_animation (void)
+{
+	gchar *title = NULL;
+	
+	title = g_strconcat (_("Searching..."), " - ", _("Search for Files"), NULL);
+	gtk_window_set_title (GTK_WINDOW (interface.main_window), title);
+	
+	gtk_label_set_text (GTK_LABEL (interface.results_label), "");
+	search_command.animation_timeout = g_timeout_add (250, update_animation_timeout_cb, NULL);
+	
+	g_free (title);
+} 
+
+static void
+stop_animation (void)
+{
+	interface.current_animation_frame = DEFAULT_ANIMATION_FRAME - 1;
+	g_source_remove (search_command.animation_timeout);
+	gtk_widget_queue_draw (interface.drawing_area);
+} 
+
+gboolean
+update_animation_timeout_cb (gpointer data)
+{
+	static gboolean in_forward_progress = TRUE;
+	
+	if (in_forward_progress == TRUE) {
+		interface.current_animation_frame++;
+		if (interface.current_animation_frame >= TOTAL_ANIMATION_FRAMES) {
+			in_forward_progress = !in_forward_progress;
+			interface.current_animation_frame = TOTAL_ANIMATION_FRAMES - 1;
+		}
+	}
+	else {
+		interface.current_animation_frame--;
+		if (interface.current_animation_frame < 0) {
+			in_forward_progress = !in_forward_progress;
+			interface.current_animation_frame = 0;
+		}
+	}
+		      
+	gtk_widget_queue_draw (interface.drawing_area);
+
+	return TRUE;
 }
 
 void
@@ -1035,7 +1132,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		gchar *search_status = g_strdup ("");
 		
 		if (search_data->running == MAKE_IT_STOP) {
-			search_status = g_strdup (_("(aborted)"));
+			search_status = g_strdup (_("(stopped)"));
 		}
 		
 		search_data->lock = FALSE;
@@ -1056,12 +1153,16 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		else {
 			status_bar_string = g_strdup_printf (_("%d files found"), total_files);
 		}
-		status_bar_string = g_strconcat (status_bar_string, " ", search_status, NULL);
+		
+		if (strlen(search_status) > 0) {
+			status_bar_string = g_strconcat (status_bar_string, " ", search_status, NULL);
+		}
+		gtk_label_set_text (GTK_LABEL (interface.results_label), status_bar_string);
+		
+		status_bar_string = g_strconcat (status_bar_string, " - ", _("Search for Files"), NULL);
+		gtk_window_set_title (GTK_WINDOW (interface.main_window), status_bar_string);
 
-		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
-		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (interface.progress_bar), 0.0);
-		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), status_bar_string);
-		g_source_remove (search_data->timeout);
+		stop_animation ();
 
 		gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.find_button);
 		gtk_widget_set_sensitive (interface.additional_constraints, TRUE);
@@ -1192,13 +1293,12 @@ spawn_search_command (gchar *command)
 	gint        child_stdout;
 	gint        child_stderr;
 	
+	start_animation ();
+	
 	if (!g_shell_parse_argv (command, NULL, &argv, &error)) {
 		GtkWidget *dialog;
 
-		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
-		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (interface.progress_bar), 0.0);
-		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), "");
-		g_source_remove (search_command.timeout);
+		stop_animation ();
 		
 		dialog = gtk_message_dialog_new(GTK_WINDOW (interface.main_window), 
 						GTK_DIALOG_DESTROY_WITH_PARENT, 
@@ -1219,10 +1319,7 @@ spawn_search_command (gchar *command)
 				       &child_stderr, &error)) {
 		GtkWidget *dialog;
 		
-		gnome_appbar_pop (GNOME_APPBAR (interface.status_bar));
-		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (interface.progress_bar), 0.0);
-		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), "");
-		g_source_remove (search_command.timeout);
+		stop_animation ();
 		
 		dialog = gtk_message_dialog_new(GTK_WINDOW (interface.main_window), 
 						GTK_DIALOG_DESTROY_WITH_PARENT, 
@@ -1447,15 +1544,23 @@ create_search_results_section (void)
 {
 	GtkWidget 	  *label;
 	GtkWidget 	  *vbox;
+	GtkWidget	  *hbox;
 	GtkWidget	  *window;	
 	GtkTreeViewColumn *column;	
 	GtkCellRenderer   *renderer;
 	
 	vbox = gtk_vbox_new (FALSE, 6);	
 	
+	hbox = gtk_hbox_new (FALSE, 12);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
+	
 	label = gtk_label_new_with_mnemonic (_("_Search results:"));
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
-	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
+	
+	interface.results_label = gtk_label_new (NULL);
+	g_object_set (G_OBJECT (interface.results_label), "xalign", 1.0, NULL);
+	gtk_box_pack_start (GTK_BOX (hbox), interface.results_label, FALSE, FALSE, 0);
 	
 	window = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_NONE);	
@@ -1603,7 +1708,6 @@ create_main_window (void)
 	GtkWidget 	*folder_entry;
 	GtkWidget 	*button;
 	GtkWidget 	*window;
-	GtkWidget	*image;
 
 	window = gtk_vbox_new (FALSE, 6);	
 	gtk_container_set_border_width (GTK_CONTAINER(window), 12);
@@ -1611,8 +1715,18 @@ create_main_window (void)
 	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX(window), hbox, FALSE, FALSE, 0);
 	
-	image = gtk_image_new_from_stock (GNOME_SEARCH_TOOL_STOCK, gsearchtool_icon_size);
-	gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
+	vbox = gtk_vbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
+
+	interface.drawing_area = gtk_drawing_area_new ();
+	gtk_box_pack_start (GTK_BOX (vbox), interface.drawing_area, TRUE, FALSE, 0);
+
+	gtk_drawing_area_size (GTK_DRAWING_AREA (interface.drawing_area),
+	                       DEFAULT_ANIMATION_WIDTH,
+			       DEFAULT_ANIMATION_HEIGHT);
+
+	g_signal_connect (interface.drawing_area, "expose-event",
+			  G_CALLBACK (animation_expose_event_cb), NULL);
 	
 	interface.table = gtk_table_new (2, 2, FALSE);
 	gtk_table_set_row_spacings (GTK_TABLE(interface.table), 6);
@@ -1987,8 +2101,6 @@ main (int 	argc,
 	window = create_main_window ();
 	gnome_app_set_contents (GNOME_APP(interface.main_window), window);
 
-	setup_app_progress_bar ();
-
 	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), GTK_WIDGET(interface.main_window),
 				       &interface.geometry, GDK_HINT_MIN_SIZE);
 
@@ -2008,6 +2120,8 @@ main (int 	argc,
 	gtk_widget_show (interface.main_window);
 	
 	interface.icon_theme = gnome_icon_theme_new ();
+
+	setup_animation_image ();
 	
 	if (handle_popt_args () == FALSE) {
 		handle_gconf_settings (); 

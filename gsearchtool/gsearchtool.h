@@ -76,6 +76,7 @@ typedef enum {
 struct _SearchStruct {
 	gint			pid;
 	gint 	        	timeout;
+	gint			animation_timeout;
 	gchar			*look_in_folder;
 	gchar           	*file_is_named_pattern;
 	gchar 	  		*regex_string;
@@ -93,15 +94,17 @@ struct _InterfaceStruct {
 	GtkWidget		*stop_button;
 	GtkWidget 		*save_button;
 	GtkWidget 		*main_window;	
+	GtkWidget		*drawing_area;
+	GdkPixmap		*pixmap;
+	GdkPixbuf		*pixbuf;	
 	GtkWidget		*table;	
 	GtkWidget 		*file_selector;
-	GtkWidget 		*status_bar;
-	GtkWidget   		*progress_bar;
 	GtkWidget		*checkbutton;
 	GtkWidget		*add_button;
 	GtkWidget 		*additional_constraints;
 	GtkWidget		*constraint_menu;
 	GtkWidget 		*constraint;
+	GtkWidget		*results_label;
 	GtkWidget       	*results;
 	GtkWidget        	*tree;
 	GtkListStore     	*model;	
@@ -112,6 +115,7 @@ struct _InterfaceStruct {
 	GList 			*selected_constraints;
 	gchar 		 	*save_results_file;	
 	gint 		  	selected_constraint;
+	gint			current_animation_frame;
 	GnomeIconTheme	 	*icon_theme;
 	gboolean  	  	is_gail_loaded;
 } interface;
@@ -151,6 +155,9 @@ set_constraint_gconf_boolean 	(gint 		constraint_id,
 				 gboolean 	flag);
 gboolean
 update_progress_bar 		(gpointer data);
+
+gboolean
+update_animation_timeout_cb 	(gpointer data);
 
 void
 set_clone_command		(gint *argcp,
