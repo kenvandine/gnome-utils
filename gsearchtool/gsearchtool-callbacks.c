@@ -1207,7 +1207,7 @@ save_results_cb (GtkWidget       *chooser,
 		                           g_path_get_basename (utf8), 
 					   g_path_get_dirname (utf8));
 		
-		secondary = g_strdup (_("You cannot select a document name of an existing folder."));
+		secondary = g_strdup (_("The document name you selected is a folder."));
 
 		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
 		                                   GTK_DIALOG_DESTROY_WITH_PARENT,
