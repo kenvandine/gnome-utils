@@ -4,7 +4,7 @@ dnl
 
 AC_INIT(gcalc)
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-utils, 1.96.0)
+AM_INIT_AUTOMAKE(gnome-utils, 1.96.1)
 
 AM_MAINTAINER_MODE
 
@@ -65,12 +65,11 @@ dnl *****************************************
 dnl pkg-config check time
 dnl *****************************************
 
-LIBGNOME_REQUIRED=1.96.0
-LIBGNOMEUI_REQUIRED=1.96.0
+LIBGNOME_REQUIRED=1.107.0
+LIBGNOMEUI_REQUIRED=1.107.0
 LIBGLADE_REQUIRED=1.99.2
 LIBBONOBOUI_REQUIRED=1.103.0
 LIBXML_REQUIRED=2.2.8
-LIBPANELAPPLET_REQUIRED=
 GCONF_REQUIRED=1.1.2
 GTKHTML_REQUIRED=0.0.0
 GNOMEVFS_REQUIRED=1.9.3
@@ -119,14 +118,6 @@ AC_SUBST(LIBXML_CFLAGS)
 AC_SUBST(LIBXML_LIBS)
 AM_CONDITIONAL(HAVE_LIBXML, test "x$build_xml" = "xyes")
 
-dnl *********************************************
-dnl libpanelapplet - temporarily dnl'd while panel
-dnl is undergoing porting
-dnl *********************************************
-
-dnl PKG_CHECK_MODULES(LIBPANELAPPLET, libpanel_applet >= $LIBPANELAPPLET_REQUIRED)
-dnl AC_SUBST(LIBPANELAPPLET_CFLAGS)
-dnl AC_SUBST(LIBPANELAPPLET_LIBS)
 
 dnl Putting the code check below so we don't forget it's there
 

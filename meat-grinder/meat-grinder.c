@@ -768,7 +768,7 @@ init_gui (void)
 	gtk_widget_show (sw);
 	gtk_box_pack_start (GTK_BOX (vbox), sw, TRUE, TRUE, 0);
 
-	icon_list = gnome_icon_list_new (/*evil*/66, 0);
+	icon_list = gnome_icon_list_new (/*evil*/66, NULL, 0);
 	gnome_icon_list_set_selection_mode  (GNOME_ICON_LIST (icon_list),
 					     GTK_SELECTION_MULTIPLE);
 	gtk_widget_show (icon_list);
