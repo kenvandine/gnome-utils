@@ -29,6 +29,11 @@ static void okayed(GtkWidget *w, int i)
   exit(i);
 }
 
+void cancel_callback (GtkWidget *widget, gpointer data)
+{
+	gtk_exit (-2);
+}
+
 static int menu_width, tag_x, item_x;
 
 /*
@@ -80,6 +85,8 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
+		gnome_dialog_button_connect (GNOME_DIALOG (w), 0, 
+																 GTK_SIGNAL_FUNC(cancel_callback), NULL);
 		
 		hbox = gtk_hbox_new(FALSE, 0);
 		vbox = gtk_vbox_new(FALSE, 0);
