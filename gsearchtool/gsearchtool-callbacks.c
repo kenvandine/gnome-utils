@@ -405,8 +405,9 @@ open_file_cb (GtkWidget 	*widget,
 				
 				if (launch_file (locale_file) == FALSE) {
 					
-					if (is_component_action_type (locale_file) 
-			    	    	    && is_nautilus_running ()) {
+					if ((is_nautilus_running ()) &&
+					    ((g_file_test (locale_file, G_FILE_TEST_IS_DIR)) ||
+					     (is_component_action_type (locale_file)))) {
 						open_file_with_nautilus (locale_file);
 					}
 					else {
@@ -987,8 +988,9 @@ file_event_after_cb  (GtkWidget 	*widget,
 				
 				if (launch_file (locale_file) == FALSE) {
 				
-					if (is_component_action_type (locale_file) 
-					    && is_nautilus_running ()) {
+					if ((is_nautilus_running ()) &&
+					    ((g_file_test (locale_file, G_FILE_TEST_IS_DIR)) ||
+					     (is_component_action_type (locale_file)))) {
 						open_file_with_nautilus (locale_file);
 					}
 					else {
