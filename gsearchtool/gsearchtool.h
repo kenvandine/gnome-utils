@@ -39,6 +39,11 @@ extern "C" {
 #pragma }
 #endif
 
+#include <gconf/gconf.h>
+#include <gconf/gconf-client.h>
+
+GConfClient * global_gconf_client;
+
 typedef enum {
 	SEARCH_CONSTRAINT_END, 
 	SEARCH_CONSTRAINT_BOOL, 
@@ -129,7 +134,8 @@ spawn_search_command 		(gchar *command);
 
 void  		
 add_constraint 			(gint constraint_id,
-				 gchar *value);
+				 gchar *value,
+				 gboolean show_constraint);
 
 void  		
 remove_constraint 		(gint constraint_id);
@@ -140,6 +146,9 @@ update_constraint_info 		(SearchConstraint *constraint,
 void
 set_constraint_selected_state	(gint		constraint_id, 
 				 gboolean	state);
+void
+set_constraint_gconf_boolean 	(gint 		constraint_id, 
+				 gboolean 	flag);
 gboolean
 update_progress_bar 		(gpointer data);
 

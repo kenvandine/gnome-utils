@@ -32,8 +32,6 @@
 #include <gnome.h>
 
 #include <regex.h>
-#include <gconf/gconf.h>
-#include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
 #include <libgnomevfs/gnome-vfs-ops.h> 
 #include <bonobo-activation/bonobo-activation.h>
@@ -231,6 +229,10 @@ toggled (GtkToggleButton *tb)
 	disclosure = CDDB_DISCLOSURE (tb);
 	do_animation (disclosure, gtk_toggle_button_get_active (tb));
 
+	gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/show_additional_options",
+		       	       	       disclosure->priv->style == GTK_EXPANDER_COLLAPSED 
+				       ? TRUE : FALSE);
+
 	if (disclosure->priv->container == NULL) {
 		return;
 	}
@@ -335,8 +337,6 @@ cddb_disclosure_set_container (CDDBDisclosure *disclosure,
 
 /* START OF THE GCONF FUNCTIONS */
 
-static GConfClient *global_gconf_client = NULL;
-
 gboolean
 gsearchtool_gconf_handle_error (GError **error)
 {
@@ -392,6 +392,43 @@ gsearchtool_gconf_get_string (const gchar *key)
 	}
 	
 	return result;
+}
+
+gboolean 
+gsearchtool_gconf_get_boolean (const gchar *key)
+{
+	gboolean result;
+	GConfClient *client;
+	GError *error = NULL;
+	
+	g_return_val_if_fail (key != NULL, FALSE);
+	
+	client = gsearchtool_gconf_client_get_global ();
+	g_return_val_if_fail (client != NULL, FALSE);
+	
+	result = gconf_client_get_bool (client, key, &error);
+	
+	if (gsearchtool_gconf_handle_error (&error)) {
+		result = FALSE;
+	}
+	
+	return result;
+}
+
+void
+gsearchtool_gconf_set_boolean (const gchar *key, const gboolean flag)
+{
+	GConfClient *client;
+	GError *error = NULL;
+	
+	g_return_if_fail (key != NULL);
+	
+	client = gsearchtool_gconf_client_get_global ();
+	g_return_if_fail (client != NULL);
+	
+	gconf_client_set_bool (client, key, flag, &error);
+	
+	gsearchtool_gconf_handle_error (&error);
 }
 
 /* START OF GENERIC GNOME-SEARCH-TOOL FUNCTIONS */

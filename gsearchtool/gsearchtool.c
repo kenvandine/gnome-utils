@@ -320,13 +320,16 @@ build_search_command (void)
 					string = escape_single_quotes (constraint->data.text);
 					locale = g_locale_from_utf8 (string, -1, NULL, NULL, NULL);
 					
-					g_string_append_printf (command,
-						  	        templates[constraint->constraint_id].option,
-						  	        locale);
-					g_free(string);
-					g_free(locale);
+					if (strlen (locale) != 0) { 
+						g_string_append_printf (command,
+							  	        templates[constraint->constraint_id].option,
+						  		        locale);
 
-					g_string_append_c (command, ' ');
+						g_string_append_c (command, ' ');
+					}
+					
+					g_free(string);
+					g_free(locale);					
 				}
 				break;
 			case SEARCH_CONSTRAINT_NUMBER:
@@ -568,6 +571,69 @@ set_constraint_selected_state (gint 		constraint_id,
 	gtk_widget_set_sensitive (interface.add_button, FALSE);
 }
 
+void
+set_constraint_gconf_boolean (gint constraint_id, gboolean flag)
+{
+	switch (constraint_id) {
+	
+		case SEARCH_CONSTRAINT_CONTAINS_THE_TEXT:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/contains_the_text",
+	   		       	       	       	       flag);
+			break;
+		case SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/date_modified_less_than",
+	   		       	       	       	       flag);
+			break;
+		case SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/date_modified_more_than",
+	   		       	       	       	       flag);
+			break;
+		case SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/size_at_least",
+	   		       	       		       flag);
+			break;
+		case SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/size_at_most",
+	   		       	       	  	       flag);
+			break;
+		case SEARCH_CONSTRAINT_FILE_IS_EMPTY:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/file_is_empty",
+	   		       	       	               flag);
+			break;
+		case SEARCH_CONSTRAINT_OWNED_BY_USER:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/owned_by_user",
+	   		       	       	               flag);
+			break;
+		case SEARCH_CONSTRAINT_OWNED_BY_GROUP:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/owned_by_group",
+	   		       	       	               flag);
+			break;
+		case SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/owner_is_unrecognized",
+	   		       	       	               flag);
+			break;
+		case SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/name_does_not_contain",
+	   		       	       	               flag);
+			break;
+		case SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/name_matches_regular_expression",
+	   		       	       	               flag);
+			break;
+		case SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/follow_symbolic_links",
+	   		       	       	               flag);
+			break;
+		case SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS:
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/include_other_filesystems",
+	   		       	       	               flag);
+			break;
+		
+		default:
+			break;
+	}
+}
+
 static void
 setup_app_progress_bar (void)
 {
@@ -665,69 +731,86 @@ define_popt_descriptions (void)
 	}
 }
 
-void 
+static gboolean
 handle_popt_args (void)
 {
+	gboolean popt_args_found = FALSE;
 	gint sort_by;
 
 	if (PoptArgument.name != NULL) {
+		popt_args_found = TRUE;
 		gtk_entry_set_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))),
 				    g_locale_to_utf8 (PoptArgument.name, -1, NULL, NULL, NULL));
 	}
 	if (PoptArgument.path != NULL) {
+		popt_args_found = TRUE;
 		gtk_entry_set_text (GTK_ENTRY(gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))),
 				    g_locale_to_utf8 (PoptArgument.path, -1, NULL, NULL, NULL));
 	}	
 	if (PoptArgument.contains != NULL) {
+		popt_args_found = TRUE;	
 		add_constraint (SEARCH_CONSTRAINT_CONTAINS_THE_TEXT, 
-				PoptArgument.contains); 
+				PoptArgument.contains, TRUE); 	
 	}
 	if (PoptArgument.user != NULL) {
+		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_USER, 
-				PoptArgument.user); 
+				PoptArgument.user, TRUE); 
 	}
 	if (PoptArgument.group != NULL) {
+		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_GROUP, 
-				PoptArgument.group); 
+				PoptArgument.group, TRUE);
 	}
 	if (PoptArgument.nouser == TRUE) {
-		add_constraint (SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED, NULL); 
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED, NULL, TRUE); 
 	}
 	if (PoptArgument.mtimeless != NULL) {
+		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE, 
-				PoptArgument.mtimeless); 
+				PoptArgument.mtimeless, TRUE);		
 	}
 	if (PoptArgument.mtimemore != NULL) {
+		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER, 
-				PoptArgument.mtimemore); 
+				PoptArgument.mtimemore, TRUE);
 	}
 	if (PoptArgument.sizeless != NULL) {
+		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
-				PoptArgument.sizeless);
+				PoptArgument.sizeless, TRUE);
 	}
 	if (PoptArgument.sizemore != NULL) {
+		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN,
-				PoptArgument.sizemore);
+				PoptArgument.sizemore, TRUE);
 	}
 	if (PoptArgument.empty == TRUE) {
-		add_constraint (SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL);
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL, TRUE);
 	}
 	if (PoptArgument.notnamed != NULL) {
+		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED, 
-				PoptArgument.notnamed); 
+				PoptArgument.notnamed, TRUE);
 	}
 	if (PoptArgument.regex != NULL) {
+		popt_args_found = TRUE;
 		add_constraint (SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION, 
-				PoptArgument.regex); 
+				PoptArgument.regex, TRUE);
 	}
 	if (PoptArgument.follow == TRUE) {
-		add_constraint (SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS, NULL); 
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS, NULL, TRUE); 
 	}
 	if (PoptArgument.allmounts == TRUE) {
-		add_constraint (SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS, NULL); 
+		popt_args_found = TRUE;
+		add_constraint (SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS, NULL, TRUE);
 	}
 	if (PoptArgument.sortby != NULL) {
 	
+		popt_args_found = TRUE;
 		if (strcmp (PoptArgument.sortby, "name") == 0) {
 			sort_by = COLUMN_NAME;
 		}
@@ -758,8 +841,10 @@ handle_popt_args (void)
 		}
 	}
 	if (PoptArgument.start == TRUE) {
+		popt_args_found = TRUE;
 		click_find_cb (interface.find_button, NULL);
 	}
+	return popt_args_found;
 }
 
 static gboolean
@@ -1205,15 +1290,17 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 }
 
 void
-add_constraint (gint constraint_id, gchar *value)
+add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 {
 	SearchConstraint *constraint = g_new(SearchConstraint,1);
 	GtkWidget *widget;
 	
-	if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
-		g_signal_emit_by_name (G_OBJECT(interface.disclosure), "clicked", 0);
-		gtk_widget_show (interface.additional_constraints);
-	}
+	if (show_constraint == TRUE) {
+		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
+			g_signal_emit_by_name (G_OBJECT(interface.disclosure), "clicked", 0);
+			gtk_widget_show (interface.additional_constraints);
+		}
+	} 
 	
 	interface.geometry.min_height += 30; 
 	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), 
@@ -1222,6 +1309,7 @@ add_constraint (gint constraint_id, gchar *value)
 	
 	constraint->constraint_id = constraint_id;
 	set_constraint_info_defaults (constraint);
+	set_constraint_gconf_boolean (constraint->constraint_id, TRUE);
 	
 	widget = create_constraint_box (constraint, value);
 	gtk_box_pack_start (GTK_BOX(interface.constraint), widget, FALSE, FALSE, 0);
@@ -1274,7 +1362,7 @@ create_additional_constraint_section (void)
 	gtk_size_group_add_widget (interface.constraint_size_group, interface.add_button);
 	
 	g_signal_connect (G_OBJECT(interface.add_button),"clicked",
-			  G_CALLBACK(add_constraint_cb),NULL);
+			  G_CALLBACK(add_constraint_cb), NULL);
 	
 	gtk_box_pack_end (GTK_BOX(hbox), interface.add_button, FALSE, FALSE, 0); 
 		
@@ -1610,6 +1698,69 @@ gsearchtool_init_stock_icons ()
 	g_object_unref (factory);
 }
 
+void
+handle_gconf_settings (void)
+{
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_additional_options") == TRUE) {
+		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
+			g_signal_emit_by_name (G_OBJECT(interface.disclosure), "clicked", 0);
+			gtk_widget_show (interface.additional_constraints);
+		}
+	}
+		      
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/contains_the_text") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_CONTAINS_THE_TEXT, "", FALSE); 
+	}
+		
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/date_modified_less_than") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE, "", FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/date_modified_more_than") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER, "", FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/size_at_least") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN, "", FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/size_at_most") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN, "", FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/file_is_empty") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL, FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owned_by_user") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_USER, "", FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owned_by_group") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_GROUP, "", FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owner_is_unrecognized") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED, NULL, FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/name_does_not_contain") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED, "", FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/name_matches_regular_expression") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION, "", FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/follow_symbolic_links") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS, NULL, FALSE); 
+	}
+	
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/include_other_filesystems") == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS, NULL, FALSE); 
+	}
+}
+
 int
 main (int 	argc, 
       char 	*argv[])
@@ -1618,6 +1769,7 @@ main (int 	argc,
 	GnomeClient  *client;
 	GtkWidget    *window;
 
+	global_gconf_client = NULL;
 	interface.geometry.min_height = 310;
 	interface.geometry.min_width  = 422;
 
@@ -1683,8 +1835,10 @@ main (int 	argc,
 	
 	interface.icon_theme = gnome_icon_theme_new ();
 	
-	handle_popt_args ();
-		
+	if (handle_popt_args () == FALSE) {
+		handle_gconf_settings (); 
+	}	
+		 
 	gtk_main ();
 
 	return 0;

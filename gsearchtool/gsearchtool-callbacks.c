@@ -175,7 +175,7 @@ add_constraint_cb (GtkWidget 	*widget,
 	item = gtk_menu_get_active (GTK_MENU(menu));
 	
 	if (GTK_WIDGET_SENSITIVE(item) == TRUE) {
-		add_constraint (interface.selected_constraint, NULL);
+		add_constraint (interface.selected_constraint, NULL, FALSE);
 	}
 }
 
@@ -197,6 +197,7 @@ remove_constraint_cb (GtkWidget 	*widget,
 		g_list_remove(interface.selected_constraints, constraint);
 	
 	set_constraint_selected_state (constraint->constraint_id, FALSE);	
+	set_constraint_gconf_boolean (constraint->constraint_id, FALSE);	
 }
 
 void

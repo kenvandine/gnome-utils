@@ -121,6 +121,13 @@ open_file_with_application 	(const gchar *filename);
 gboolean
 launch_file 			(const gchar *filename);
 
+gboolean 
+gsearchtool_gconf_get_boolean 	(const gchar *key);
+
+void
+gsearchtool_gconf_set_boolean 	(const gchar *key, 
+				 const gboolean flag);
+
 #ifdef __cplusplus
 }
 #endif

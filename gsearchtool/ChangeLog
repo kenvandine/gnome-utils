@@ -1,3 +1,22 @@
+2003-03-14  Dennis M. Cranston <dennis_cranston at yahoo.com>
+
+	Fix for bug report #107245, "gsearchtool does not retain
+	additional constraints".
+
+	* gnome-search-tool.schemas:  New schemas file.
+
+	* Makefile.am:  Added the schemas file.
+  
+	* gsearchtool.[ch]:  Added set_constraint_gconf_boolean()
+	and handle_gconf_settings().
+	
+	* gsearchtool-callbacks.c:  When removing an option set 
+	its gconf key to false.  Added gsearchtool_gconf_get_boolean() 
+	and gsearchtool_gconf_set_boolean().
+	
+	* gsearchtool-support.[ch]:  When toggling the disclosure
+	widget set its gconf key accordingly.
+	   
 2003-03-05  Dennis M. Cranston <dennis_cranston at yahoo.com>
 
 	* gsearchtool.c:  Connected the key press event to 

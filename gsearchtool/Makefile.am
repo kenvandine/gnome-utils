@@ -11,6 +11,9 @@ INCLUDES = 	\
 
 bin_PROGRAMS = gnome-search-tool
 
+schemadir = $(sysconfdir)/gconf/schemas
+schema_DATA = gnome-search-tool.schemas
+
 gnome_search_tool_SOURCES =	\
 	gsearchtool-support.c   \
 	gsearchtool-support.h   \
@@ -36,4 +39,8 @@ EXTRA_DIST = \
 	$(pixmap_DATA) \
 	$(Utilities_in_files) \
 	$(Utilities_DATA) \
+	$(schema_DATA) \
 	$(man_MANS)
+
+install-data-local:
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
