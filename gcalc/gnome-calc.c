@@ -1153,7 +1153,7 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 	}
 
 	if (but->tooltip != NULL) {
-		gtk_tooltips_set_tip(GTK_TOOLTIPS(gc->_priv->tooltips), w, but->tooltip, but->tooltip_private);
+		gtk_tooltips_set_tip(GTK_TOOLTIPS(gc->_priv->tooltips), w, _(but->tooltip), but->tooltip_private);
 	}
 
 	gtk_object_set_user_data(GTK_OBJECT(w),gc);
