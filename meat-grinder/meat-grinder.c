@@ -32,6 +32,7 @@ static gchar *filename = NULL;
 static pid_t temporary_pid = 0;
 static gchar *temporary_file = NULL;
 struct poptOption options;
+struct argv_adder argv_adder;
 
 static GtkWidget *create_archive_widget=NULL;
 static GtkWidget *remove_widget=NULL;
@@ -183,15 +184,15 @@ struct argv_adder {
 	gint pos;
 };
 
+
 static void
 make_argv_fe (gpointer key, gpointer value, gpointer user_data)
 {
 	File *f = value;
-	struct argv_adder *argv_adder = user_data;
-	gchar *file = g_build_filename ((argv_adder->link_dir), (f->base_name), NULL);
-
-	argv_adder->argv[argv_adder->pos ++] = g_strconcat ("\"", f->base_name, "\"", NULL);
-
+	gchar *file;
+	struct argv_adder *argv_adding = user_data;
+	file = g_build_filename ((argv_adding->link_dir), (f->base_name), NULL);
+	argv_adding->argv[argv_adding->pos ++] = f->base_name;
 	/* FIXME: catch errors */
 	symlink (f->name, file);
 }
@@ -214,21 +215,32 @@ update_progress_bar (gpointer p)
 
         return TRUE;
 }
+
+static void
+start_progress_bar (gboolean flag)
+{
+	static gint timeout;
+
+	if (flag)
+		timeout = gtk_timeout_add (100, update_progress_bar, NULL);
+	else {
+		gtk_timeout_remove (timeout);
+        	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (progress_bar), 0.0);
+	}
+}
+
 static void
 setup_busy (GtkWidget *w, gboolean busy)
 {
 	GdkCursor *cursor;
-	gint timeout;
+	static gint timeout;
 
 	if (busy) {
 		/* Change cursor to busy */
-        	timeout = gtk_timeout_add (100, update_progress_bar, NULL);	
 		cursor = gdk_cursor_new (GDK_WATCH);
 		gdk_window_set_cursor (w->window, cursor);
 		gdk_cursor_unref (cursor);
 	} else {
-        	gtk_timeout_remove (timeout);
-        	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (progress_bar), 0.0);
 		gdk_window_set_cursor (w->window, NULL);
 	}
 
@@ -236,14 +248,37 @@ setup_busy (GtkWidget *w, gboolean busy)
 }
 
 static gboolean
-create_archive (const gchar *fname,
+handle_io (GIOChannel *ioc, GIOCondition condition, gpointer data) 
+{
+	start_progress_bar (FALSE);
+
+	g_hash_table_foreach (file_ht, whack_links_fe, argv_adder.link_dir);
+
+	/* FIXME: handle errors */
+	rmdir (argv_adder.link_dir);
+	g_free (argv_adder.link_dir);
+	g_free (argv_adder.argv);
+	cleanup_tmpstr ();
+}
+
+
+static gboolean
+create_archive (GtkWidget *fsel,
+		 const gchar *fname,
 		const gchar *dir,
 		gboolean gui_errors)
 {
+	GIOChannel *ioc;
 	gboolean status = TRUE;
-	struct argv_adder argv_adder;
 	gchar *tmpfname = NULL;
-	gchar *command;
+	gint child_pid;
+	gint child_fd;
+
+	
+	if (fsel) {
+		setup_busy (fsel, FALSE);
+		gtk_widget_destroy (fsel);
+	} 
 
 	if (dir == NULL)
 		argv_adder.link_dir = make_temp_dir ();
@@ -272,17 +307,20 @@ create_archive (const gchar *fname,
 	filestr = g_strjoinv(" ", argv_adder.argv);
 	gzipstr = g_strconcat(" | ", gzip_prog, " - > ", (gchar *)fname, NULL);
 
+	filestr = g_strescape (filestr, NULL);
+
 	argv_adder.argv[0] = sh_prog;
 	argv_adder.argv[1] = "-c";
 	argv_adder.argv[2] = g_strconcat(tarstr, filestr, gzipstr, NULL);	
 	argv_adder.argv[3] = NULL;
 
-	
 	/* FIXME: get error output, check for errors, etc... */
 
-	command = g_strjoinv (" ", argv_adder.argv);
-
-	if (!g_spawn_command_line_async (command, NULL)) {
+	/* setup_busy (app, TRUE); */
+	start_progress_bar (TRUE);
+	if (!g_spawn_async_with_pipes (argv_adder.link_dir, argv_adder.argv, 
+				       NULL, (G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD),
+		                       NULL, NULL, &child_pid, NULL, &child_fd, NULL, NULL)) {
 		status = FALSE;
 		if (gui_errors) {
 			gchar *tmp = NULL;
@@ -293,19 +331,12 @@ create_archive (const gchar *fname,
 		else
 			fprintf (stderr, _("Failed to create %s"), filestr);
 	}
+	ioc = g_io_channel_unix_new (child_fd);
+        g_io_add_watch (ioc, G_IO_HUP,
+                        handle_io, NULL);
+        g_io_channel_unref (ioc);
+/*	setup_busy (app, FALSE);  */
 
-	/* FIXME: handle errors */
-	g_hash_table_foreach (file_ht, whack_links_fe, argv_adder.link_dir);
-
-	if (dir == NULL) {
-		/* FIXME: handle errors */
-		rmdir (argv_adder.link_dir);
-		g_free (argv_adder.link_dir);
-	}
-
-	g_free (argv_adder.argv);
-	g_free (command);
-	cleanup_tmpstr ();
 	return status;
 }
 
@@ -343,7 +374,7 @@ start_temporary (void)
 	temporary_pid = fork ();
 
 	if (temporary_pid == 0) {
-		if ( ! create_archive (file, dir, FALSE /* gui_errors */)) {
+		if ( ! create_archive (NULL, file, dir, FALSE /* gui_errors */)) {
 			_exit (1);
 		} else {
 			_exit (0);
@@ -353,7 +384,7 @@ start_temporary (void)
 	/* can't fork? don't dispair, do synchroniously */
 	if (temporary_pid < 0) {
 		setup_busy (app, TRUE);
-		if ( ! create_archive (file, dir, TRUE /* gui_errors */)) {
+		if ( ! create_archive (NULL, file, dir, TRUE /* gui_errors */)) {
 			setup_busy (app, FALSE);
 			g_free (file);
 			g_free (dir);
@@ -580,15 +611,14 @@ save_ok (GtkWidget *widget, GtkFileSelection *fsel)
 		   ! query_dialog (_("File exists, overwrite?"))) {
 		setup_busy (GTK_WIDGET (fsel), FALSE);
 		return;
-	} else if ( ! create_archive (fname,
+	} else if ( ! create_archive (GTK_WIDGET (fsel),
+				      fname,
 				      NULL /*dir*/,
 				      TRUE /* gui_errors */)) {
 		/* the above should do error dialog itself */
-		setup_busy (GTK_WIDGET (fsel), FALSE);
 		return;
 	}
 
-	setup_busy (GTK_WIDGET (fsel), FALSE);
 
 	/* Added code for appending .tar.gz to archive file */
 	tmpfname = g_strstr_len ((gchar *)fname, strlen((gchar *)fname), ".tar.gz");
