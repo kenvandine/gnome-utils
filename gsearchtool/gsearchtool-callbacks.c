@@ -773,7 +773,7 @@ drag_data_animation_cb (GtkWidget          *widget,
 	
 	for (i = 0; i < argc; i++) {
 		command = g_string_append (command, argv[i]);
-		if ((i - 1) < argc) {
+		if ((i + 1) < argc) {
 			command = g_string_append_c (command, ' '); 
 		}
 	}
