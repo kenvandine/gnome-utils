@@ -162,6 +162,9 @@ static void fill_mem_page(GtkWidget * box)
   gint len;
   static const gchar * format = N_("%ld%% %s used.");
 
+  titles [0] = _("Memory");
+  titles [1] = _("Kilobytes");
+
   vbox = gtk_vbox_new(FALSE, GNOME_PAD);
   gtk_container_add(GTK_CONTAINER(box), vbox);
 
@@ -172,9 +175,9 @@ static void fill_mem_page(GtkWidget * box)
              (const char **)memory, end_memory_info);
   gtk_clist_thaw(GTK_CLIST(clist));
 
-  len = strlen(format) + MAX_ITOA_LEN + strlen("memory");
+  len = strlen(_(format)) + MAX_ITOA_LEN + strlen(_("memory"));
   s = g_malloc(len);
-  g_snprintf(s, len, format, 
+  g_snprintf(s, len, _(format), 
              (guint)(memory_percent_full * 100),
              _("memory"));
   hbox = gtk_hbox_new(FALSE, GNOME_PAD);
@@ -186,9 +189,9 @@ static void fill_mem_page(GtkWidget * box)
   gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
   gtk_box_pack_start (GTK_BOX(vbox), hbox,  FALSE, FALSE, GNOME_PAD);
 
-  len = strlen(format) + MAX_ITOA_LEN + strlen("swap");
+  len = strlen(_(format)) + MAX_ITOA_LEN + strlen(_("swap"));
   s = g_malloc(len);
-  g_snprintf(s, len, format, 
+  g_snprintf(s, len, _(format), 
              (guint)(swap_percent_full * 100),
              _("swap"));
   hbox = gtk_hbox_new(FALSE, GNOME_PAD);
@@ -216,8 +219,8 @@ static void fill_cpuinfo_page(GtkWidget * box)
       sprintf (buffer, _("CPU %d"), i);
       titles [0] = buffer;
     } else
-      titles [0] = N_("Name");
-    titles [1] = N_("Value");
+      titles [0] = _("Name");
+    titles [1] = _("Value");
 
     clist = create_clist((const gchar **)titles);
     gtk_clist_freeze(GTK_CLIST(clist));

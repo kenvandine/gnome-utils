@@ -749,7 +749,7 @@ static void write_to_filestream(FILE * f)
       ;
     }
     else {
-      fprintf (f, "%-30s %s\n", descriptions[i], info[i]);
+      fprintf (f, "%-30s %s\n", _(descriptions[i]), info[i]);
     }
     ++i;
   }  
@@ -767,7 +767,7 @@ static gchar* write_to_string()
     }
     else {
       gchar buf[200];
-      g_snprintf (buf, 200, "%-30s %s\n", descriptions[i], info[i]);
+      g_snprintf (buf, 200, "%-30s %s\n", _(descriptions[i]), info[i]);
       tmp = g_strconcat(final ? final : "", buf, NULL);
       g_free(final);
       final = tmp;

@@ -342,7 +342,7 @@ static GtkWidget *create_menu(void)
         
     while(menu_options[i])
     {
-	menuitem = gtk_menu_item_new_with_label(menu_options[i]);  
+	menuitem = gtk_menu_item_new_with_label(_(menu_options[i]));  
 	gtk_menu_append(GTK_MENU(menu), menuitem);                 
 	gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
 			   GTK_SIGNAL_FUNC(menu_item_cb),

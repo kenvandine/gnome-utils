@@ -18,23 +18,23 @@
 #include "outdlg.h"
 
 FindOptionTemplate templates[] = {
-	{ FIND_OPTION_TEXT, "-name '%s'", "File name" },
+	{ FIND_OPTION_TEXT, "-name '%s'", N_("File name") },
 	{ FIND_OPTION_CHECKBOX_TRUE, "-maxdepth 1",
-				"Don't search subdirectories" },
-	{ FIND_OPTION_TEXT, "-user '%s'", "File owner" },
-	{ FIND_OPTION_TEXT, "-group '%s'", "File owner group" },
-	{ FIND_OPTION_TIME, "-mtime '%s'", "Last modification time" },
+				N_("Don't search subdirectories") },
+	{ FIND_OPTION_TEXT, "-user '%s'", N_("File owner") },
+	{ FIND_OPTION_TEXT, "-group '%s'", N_("File owner group") },
+	{ FIND_OPTION_TIME, "-mtime '%s'", N_("Last modification time") },
 	{ FIND_OPTION_CHECKBOX_TRUE, "-mount",
-				"Don't search mounted filesystems" },
+				N_("Don't search mounted filesystems") },
 	{ FIND_OPTION_CHECKBOX_TRUE, "-empty",
-				"Empty file" },
+				N_("Empty file") },
 	{ FIND_OPTION_CHECKBOX_TRUE, "-nouser -o -nogroup",
-				"Invalid user or group" },
-	{ FIND_OPTION_TEXT, "\\! -name '%s'", "Filenames except" },
-	{ FIND_OPTION_GREP, "fgrep -l '%s'", "Simple substring search" },
-	{ FIND_OPTION_GREP, "grep -l '%s'", "Regular expression search" },
+				N_("Invalid user or group") },
+	{ FIND_OPTION_TEXT, "\\! -name '%s'", N_("Filenames except") },
+	{ FIND_OPTION_GREP, "fgrep -l '%s'", N_("Simple substring search") },
+	{ FIND_OPTION_GREP, "grep -l '%s'", N_("Regular expression search") },
 	{ FIND_OPTION_GREP, "egrep -l '%s'",
-				"Extended regular expression search" },
+				N_("Extended regular expression search") },
 	{ FIND_OPTION_END, NULL,NULL}
 };
 
@@ -91,7 +91,7 @@ makecmd(void)
 				len+=strlen(opt->data.time)+1;
 				break;
 			case FIND_OPTION_GREP:
-				g_warning("grep options found in find list bad bad!");
+				g_warning(_("grep options found in find list bad bad!"));
 				break;
 			default:
 			}
@@ -146,7 +146,7 @@ makecmd(void)
 				strcat(p++," ");
 				break;
 			case FIND_OPTION_GREP:
-				g_warning("grep options found in find list bad bad!");
+				g_warning(_("grep options found in find list bad bad!"));
 				break;
 			default:
 			}
@@ -160,7 +160,7 @@ makecmd(void)
 		if(opt->enabled) {
 			p+=sprintf(p,"| xargs ");
 			if(templates[opt->templ].type!=FIND_OPTION_GREP)
-				g_warning("non-grep option found in grep list, bad bad!");
+				g_warning(_("non-grep option found in grep list, bad bad!"));
 			else
 				p+=sprintf(p,templates[opt->templ].option,
 					   opt->data.text);
@@ -206,7 +206,7 @@ run_command(GtkWidget *w, gpointer data)
 	gtk_grab_add(stopbutton);
 	
 	cmd = makecmd();
-	puts("Using command:");
+	puts(_("Using command:"));
 	puts(cmd);
 
 	pipe(fd);
@@ -289,7 +289,7 @@ make_list_of_templates(void)
 
 	for(i=0;templates[i].type!=FIND_OPTION_END;i++) {
 		menuitem=gtk_radio_menu_item_new_with_label(group,
-							    templates[i].desc);
+							    _(templates[i].desc));
 		gtk_signal_connect(GTK_OBJECT(menuitem),"toggled",
 				   GTK_SIGNAL_FUNC(menu_toggled),
 				   (gpointer)(long)i);
@@ -399,14 +399,14 @@ create_option_box(FindOption *opt)
 	switch(templates[opt->templ].type) {
 	case FIND_OPTION_CHECKBOX_TRUE:
 		option = gtk_check_button_new_with_label(
-						templates[opt->templ].desc);
+						_(templates[opt->templ].desc));
 		gtk_signal_connect(GTK_OBJECT(option),"toggled",
 				   GTK_SIGNAL_FUNC(bool_changed),opt);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(option),TRUE);
 		break;
 	case FIND_OPTION_CHECKBOX_FALSE:
 		option = gtk_check_button_new_with_label(
-						templates[opt->templ].desc);
+						_(templates[opt->templ].desc));
 		gtk_signal_connect(GTK_OBJECT(option),"toggled",
 				   GTK_SIGNAL_FUNC(bool_changed),opt);
 		break;
@@ -415,7 +415,7 @@ create_option_box(FindOption *opt)
 	case FIND_OPTION_TIME:
 	case FIND_OPTION_GREP:
 		option = gtk_hbox_new(FALSE,5);
-		w = gtk_label_new(templates[opt->templ].desc);
+		w = gtk_label_new(_(templates[opt->templ].desc));
 		gtk_box_pack_start(GTK_BOX(option),w,FALSE,FALSE,0);
 		w = gtk_entry_new();
 		gtk_signal_connect(GTK_OBJECT(w),"changed",
@@ -426,14 +426,14 @@ create_option_box(FindOption *opt)
 	}
 	gtk_container_add(GTK_CONTAINER(frame),option);
 
-	w = gtk_check_button_new_with_label("Enable");
+	w = gtk_check_button_new_with_label(_("Enable"));
 	gtk_object_set_user_data(GTK_OBJECT(w),frame);
 	gtk_signal_connect(GTK_OBJECT(w),"toggled",
 			   GTK_SIGNAL_FUNC(enable_option),opt);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w),TRUE);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 
-	w = gtk_button_new_with_label("Remove");
+	w = gtk_button_new_with_label(_("Remove"));
 	gtk_signal_connect(GTK_OBJECT(w),"clicked",
 			   GTK_SIGNAL_FUNC(remove_option),opt);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
@@ -565,7 +565,7 @@ about_cb (GtkWidget *widget, gpointer data)
 	};
 
 	about = gnome_about_new(_("The Gnome Search Tool"), VERSION,
-				"(C) 1998 the Free Software Foundation",
+				_("(C) 1998 the Free Software Foundation"),
 				authors,
 				_("Frontend to the unix find/grep/locate "
 				  "commands"),

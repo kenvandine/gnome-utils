@@ -19,7 +19,7 @@
  * USA
  */
 
-
+#include <config.h>
 #include <gnome.h>
 
 #include "list.h"
@@ -55,8 +55,8 @@ void fill_clist(GtkCList * list,
       continue; 
     }
 
-    row[0] = col1_items[i];
-    row[1] = col2_items[i];
+    row[0] = _(col1_items[i]);
+    row[1] = _(col2_items[i]);
     gtk_clist_append(list, (gchar **)row);
 
     /* If the string is longer than any previous ones,
