@@ -70,6 +70,7 @@ INCLUDES = 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-DGTTGLADEDIR=\""$(datadir)/gtt"\" \
+	-DGTTDATADIR=\""$(datadir)/gtt"\" \
 	${GNOME_INCLUDEDIR}	\
 	${GUILE_INCS}
 						 
