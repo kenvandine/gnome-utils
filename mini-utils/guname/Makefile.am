@@ -11,7 +11,6 @@ guname_SOURCES = \
 
 guname_LDADD = \
 	$(GNOME_LIBDIR)         \
-	$(GTKXMHTML_LIBS)	\
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 

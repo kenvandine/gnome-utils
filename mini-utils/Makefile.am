@@ -1,2 +1,2 @@
 
-SUBDIRS = gshutdown gsu guname gw
+SUBDIRS = gshutdown gsu guname gw grun
