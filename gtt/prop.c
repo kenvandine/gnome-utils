@@ -141,17 +141,6 @@ void prop_dialog_set_project(project *proj)
 	sprintf(s, "%d", proj->secs % 60);
 	gtk_entry_set_text(dlg->ever.s, s);
 
-	/* The problem here is that all the set_text's above are 
-	   calling gnome_property_box_changed, and sensitizing the 
-	   OK/Apply buttons. This is bad. So we just desensitize them.
-	   This is lame as the PropertyBox internally thinks an apply
-	   is pending, and you call the changed function all those 
-	   times.
-
-	   The real solution probably involves changing GnomePropertyBox. */
-
-	gnome_dialog_set_sensitive(GNOME_DIALOG(dlg->dlg), 0, FALSE);
-	gnome_dialog_set_sensitive(GNOME_DIALOG(dlg->dlg), 1, FALSE);
 }
 
 

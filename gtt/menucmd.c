@@ -60,7 +60,7 @@ about_box(GtkWidget *w, gpointer data)
 #ifdef DEBUG
                                 __DATE__ ", " __TIME__,
 #else
-                                NULL,
+				_("Time tracking tool for GNOME"),
 #endif
                                 NULL);
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",

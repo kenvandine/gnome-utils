@@ -477,10 +477,6 @@ static void options_dialog_set(OptionsDlg *odlg)
                                     config_show_tb_exit);
 
 	logfile_sigfunc(NULL, odlg);
-
-	/* Full explanation of this is in prop.c */
-	gnome_dialog_set_sensitive(GNOME_DIALOG(odlg->dlg), 0, FALSE);
-	gnome_dialog_set_sensitive(GNOME_DIALOG(odlg->dlg), 1, FALSE);
 }
 
 
