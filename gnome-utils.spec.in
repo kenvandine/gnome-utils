@@ -1,5 +1,5 @@
 # Note that this is NOT a relocatable package
-%define ver      0.99.1
+%define ver      @VERSION@
 %define rel      SNAP
 %define prefix   /usr
 
@@ -14,7 +14,7 @@ BuildRoot: /var/tmp/gnome-utils-root
 Obsoletes: gnome
 Packager: Marc Ewing <marc@redhat.com>
 URL: http://www.gnome.org
-Requires: gnome-libs >= 0.99.1
+Requires: gnome-libs >= @VERSION@
 Docdir: %{prefix}/doc
 
 %description
@@ -67,9 +67,6 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/bin/*
 %{prefix}/man/*/*
 
-%{prefix}/lib/*
-
 %{prefix}/share/locale/*/*/*
 %{prefix}/share/apps
-#%{prefix}/share/gtoprc
 %{prefix}/share/gnome/help/*

@@ -2,7 +2,7 @@
 AC_INIT(gtt)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-utils, 0.99.6)
+AM_INIT_AUTOMAKE(gnome-utils, 0.99.8)
 
 AM_MAINTAINER_MODE
 
@@ -55,7 +55,7 @@ AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname)
 GNOME_CHECK_GUILE
 
 ALL_LINGUAS="de es fi fr it ko cs no ga pt sv ja"
-AM_GNU_GETTEXT
+AM_GNOME_GETTEXT
 
 dnl gsu
 AC_CHECK_LIB(pam, pam_authenticate, [
@@ -107,19 +107,20 @@ AC_SUBST(LDFLAGS)
 
 AC_OUTPUT([
 Makefile
+gnome-utils.spec
 po/Makefile.in
 intl/Makefile
 macros/Makefile
-cromagnon/Makefile
-find-file/Makefile
+dnl cromagnon/Makefile
+dnl find-file/Makefile
 gcalc/Makefile
 gdiskfree/Makefile
 ghex/Makefile
 ghex/help/Makefile
 ghex/help/C/Makefile
 ghex/help/es/Makefile
-gnome-find/Makefile
-gpostit/Makefile
+dnl gnome-find/Makefile
+dnl gpostit/Makefile
 gsearchtool/Makefile
 gstripchart/Makefile
 gtt/Makefile
@@ -137,7 +138,7 @@ mini-utils/gshutdown/Makefile
 mini-utils/gshutdown/help/Makefile
 mini-utils/gshutdown/help/C/Makefile
 mini-utils/gshutdown/help/es/Makefile
-mini-utils/gsu/Makefile
+dnl mini-utils/gsu/Makefile
 mini-utils/guname/Makefile
 mini-utils/gw/Makefile
 mini-utils/idetool/Makefile
