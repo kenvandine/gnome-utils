@@ -4,6 +4,7 @@
 # Khunti Yeesoon <sc445138@bucc3.buu.ac.th>, 2003.
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2004.
 # Supranee Thirawatthanasuk <supranee@opentle.org>, 2004.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005.
 #
 #
 msgid ""
@@ -11,8 +12,8 @@ msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-02-05 23:56+0700\n"
-"PO-Revision-Date: 2005-02-06 10:12+0700\n"
-"Last-Translator: Paisa Seeluangsawat <paisa@users.sf.net>\n"
+"PO-Revision-Date: 2005-02-06 13:42+0700\n"
+"Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,6 +73,7 @@ msgid "translator-credits"
 msgstr ""
 "Khunti Yeesoon\n"
 "ไพศาข์ สีเหลืองสวัสดิ์\n"
+"เทพพิทักษ์ การุญบุญญานันท์\n"
 "\n"
 "ถ้ามีเวลาโปรดมาช่วยกันแปล :-)\n"
 "http://gnome-th.sf.net"
@@ -629,7 +631,7 @@ msgstr "เกิดข้อผิดพลาดขณะเรียกคำ
 
 #: ../gfloppy/src/gfloppy.c:324
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr ""
+msgstr "ผลลัพธ์ของคำสั่ง mke2fs ไม่อยู่ในรูปปกติที่รู้จัก ขอยกเลิกปฏิบัติการ"
 
 #: ../gfloppy/src/gfloppy.c:338
 #, c-format
@@ -650,7 +652,7 @@ msgstr "โปรแกรมลูกหยุดทำงานอย่าง
 #: ../gfloppy/src/gfloppy.c:380
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
-msgstr ""
+msgstr "เกิดข้อผิดพลาดระหว่างเรียกคำสั่ง mbadblocks: %s"
 
 #: ../gfloppy/src/gfloppy.c:392
 #, c-format
@@ -724,9 +726,8 @@ msgid "File system _type:"
 msgstr "ช_นิดระบบแฟ้ม:"
 
 #: ../gfloppy/src/gfloppy2.glade.h:8
-#, fuzzy
 msgid "Filesystem Settings"
-msgstr "ช_นิดระบบแฟ้ม:"
+msgstr "ระบบแฟ้ม"
 
 #: ../gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
@@ -737,9 +738,8 @@ msgid "Floppy de_vice:"
 msgstr "อุ_ปกรณ์ฟลอปปี้:"
 
 #: ../gfloppy/src/gfloppy2.glade.h:12
-#, fuzzy
 msgid "Formatting Mode"
-msgstr "โหมดการฟอร์แมตปริยาย"
+msgstr "วิธีฟอร์แมต"
 
 # The disk has DD, HD sign on it, so leaving this in English might be better.
 #: ../gfloppy/src/gfloppy2.glade.h:13
@@ -757,11 +757,11 @@ msgstr "Linux Native (ext2)"
 
 #: ../gfloppy/src/gfloppy2.glade.h:16
 msgid "Physical Settings"
-msgstr ""
+msgstr "อุปกรณ์"
 
 #: ../gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
-msgstr "แบบห_มดจด (เพิ่มการตรวจบล็อกเสียไปยังโหมดมาตรฐาน)"
+msgstr "แบบห_มดจด (เพิ่มการตรวจบล็อกเสียจากแบบมาตรฐาน)"
 
 #: ../gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
@@ -777,12 +777,11 @@ msgstr "แบบ_รวดเร็ว (สร้างระบบแฟ้ม
 
 #: ../gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
-msgstr "แบบมาตร_ฐาน (เพิ่มฟอร์แมตระดับต่ำไปยังโหมดแบบรวดเร็ว)"
+msgstr "แบบมาตร_ฐาน (เพิ่มการฟอร์แมตระดับต่ำจากแบบรวดเร็ว)"
 
 #: ../gfloppy/src/main.c:224
-#, fuzzy
 msgid "Cannot Format"
-msgstr "_ฟอร์แมต"
+msgstr "ไม่สามารถฟอร์แมตได้"
 
 #: ../gfloppy/src/main.c:225
 msgid ""
@@ -818,11 +817,11 @@ msgstr ""
 
 #: ../gfloppy/src/main.c:258 ../gfloppy/src/main.c:322
 msgid "Cannot initialize device"
-msgstr ""
+msgstr "เตรียมอุปกรณ์ไม่สำเร็จ"
 
 #: ../gfloppy/src/main.c:308
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "ไม่สามารถเปิดเขียนอุปกรณ์ได้สักอุปกรณ์ ดำเนินการฟอร์แมตต่อไม่ได้"
+msgstr "ไม่สามารถเปิดเขียนอุปกรณ์ได้สักชิ้น ดำเนินการฟอร์แมตต่อไม่ได้"
 
 #: ../gfloppy/src/main.c:311 ../gfloppy/src/main.c:314
 msgid "/dev/floppy/0 or /dev/fd0"
@@ -834,7 +833,7 @@ msgstr "ไม่สามารถแสดงคำแนะนำวิธี
 
 #: ../gfloppy/src/main.c:494
 msgid "Incorrect volume name"
-msgstr ""
+msgstr "ชื่อโวลุมไม่ถูกต้อง"
 
 #: ../gfloppy/src/main.c:495
 msgid "The volume name can't contain any blank space."
@@ -1851,7 +1850,7 @@ msgstr "ไม่สามารถเปิดฐานข้อมูลกา
 #: ../logview/actions.c:310 ../logview/actions.c:323 ../logview/actions.c:334
 #: ../logview/actions.c:345 ../logview/actions.c:356 ../logview/actions.c:367
 msgid "Error parsing actions data base"
-msgstr ""
+msgstr "แจงฐานข้อมูลปฏิบัติการไม่สำเร็จ"
 
 #: ../logview/actions.c:401
 msgid "Can't write to actions database!"
@@ -1998,29 +1997,29 @@ msgstr[0] "%ld ไบต์"
 msgstr[1] "%ld ไบต์"
 
 #: ../logview/info.c:97
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Size</b>: %s"
-msgstr "แก้ไขเมื่อ:"
+msgstr "<b>ขนาด</b>: %s"
 
 #: ../logview/info.c:102
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Modified</b>: %s"
-msgstr "แก้ไขเมื่อ:"
+msgstr "<b>เปลี่ยนแปลงเมื่อ</b>: %s"
 
 #: ../logview/info.c:106
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Start Date</b>: %s"
-msgstr "เริ่มต้นวันที่:"
+msgstr "<b>เริ่มต้นวันที่</b>: %s"
 
 #: ../logview/info.c:110
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Last Date</b>: %s"
-msgstr "วันสุดท้าย:"
+msgstr "<b>วันสุดท้าย</b>: %s"
 
 #: ../logview/info.c:114
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Number of Lines</b>: %ld"
-msgstr "จำนวนบรรทัด:"
+msgstr "<b>จำนวนบรรทัด</b>: %ld"
 
 #: ../logview/log_repaint.c:36
 msgid "January"
@@ -2077,9 +2076,8 @@ msgid "%x"
 msgstr "%x"
 
 #: ../logview/log_repaint.c:297
-#, fuzzy
 msgid "Last Modified:"
-msgstr "แก้ไขครั้งสุดท้ายเมื่อ: "
+msgstr "เปลี่ยนแปลงล่าสุด: "
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
@@ -2094,9 +2092,8 @@ msgid "%X"
 msgstr "%X น."
 
 #: ../logview/logrtns.c:50
-#, fuzzy
 msgid "The file could not be opened"
-msgstr "ไม่สามารถเปิด %s"
+msgstr "ไม่สามารถเปิดแฟ้มได้"
 
 #: ../logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
@@ -2117,7 +2114,7 @@ msgstr ""
 #: ../logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
-msgstr ""
+msgstr "แฟ้ม %s ใหญ่เกินไป"
 
 #: ../logview/logrtns.c:284
 #, c-format
@@ -2134,36 +2131,32 @@ msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: หน่วยความจำไม่พอ"
 
 #: ../logview/logview-findbar.c:265
-#, fuzzy
 msgid "Fin_d:"
-msgstr "หา"
+msgstr "_หา:"
 
 #: ../logview/logview-findbar.c:283
-#, fuzzy
 msgid "Find Next"
-msgstr "หา"
+msgstr "หาต่อไป"
 
 #: ../logview/logview-findbar.c:293
 msgid "Find Previous"
-msgstr ""
+msgstr "หาก่อนหน้า"
 
 #: ../logview/logview.c:85
 msgid "_Log"
-msgstr ""
+msgstr "_บันทึกระบบ"
 
 #: ../logview/logview.c:87
 msgid "_View"
 msgstr "_มุมมอง"
 
 #: ../logview/logview.c:90
-#, fuzzy
 msgid "_Open..."
-msgstr "_เปิด"
+msgstr "_เปิด..."
 
 #: ../logview/logview.c:90
-#, fuzzy
 msgid "Open a log from file"
-msgstr "เปิดแฟ้มบันทึกปฏิบัติการใหม่"
+msgstr "เปิดแฟ้มบันทึกปฏิบัติการ"
 
 #: ../logview/logview.c:92
 msgid "_Properties"
@@ -2174,42 +2167,38 @@ msgid "Show Log Properties"
 msgstr "แสดงคุณสมบัติของบันทึก"
 
 #: ../logview/logview.c:94
-#, fuzzy
 msgid "Close"
-msgstr "ปิด_ทั้งหมด"
+msgstr "ปิ_ด"
 
 #: ../logview/logview.c:94
 msgid "Close this log"
-msgstr ""
+msgstr "ปิดบันทึกระบบนี้"
 
 #: ../logview/logview.c:96
-#, fuzzy
 msgid "_Quit"
-msgstr "แ_ก้ไข"
+msgstr "_ออก"
 
 #: ../logview/logview.c:96
-#, fuzzy
 msgid "Quit the log viewer"
-msgstr "ตัวอ่านบันทึกระบบ"
+msgstr "ออกจากตัวอ่านบันทึกระบบ"
 
 #: ../logview/logview.c:99
 msgid "Copy"
-msgstr ""
+msgstr "_คัดลอก"
 
 #: ../logview/logview.c:101
 msgid "Select All"
-msgstr ""
+msgstr "เลือกทั้ง_หมด"
 
 #: ../logview/logview.c:101
 msgid "Select the entire log"
-msgstr ""
+msgstr "เลือกเนื้อหาทั้งหมดของบันทึกระบบ"
 
 #: ../logview/logview.c:103
 msgid "Find pattern in logs"
-msgstr ""
+msgstr "ค้นหารูปแบบข้อความในบันทึกระบบ"
 
 #: ../logview/logview.c:106
-#, fuzzy
 msgid "Collapse _All"
 msgstr "_พับเก็บทั้งหมด"
 
@@ -2219,26 +2208,23 @@ msgstr "_พับเก็บแถวทุกแถว"
 
 #: ../logview/logview.c:109
 msgid "Open the help contents for the log viewer"
-msgstr ""
+msgstr "เปิดสารบัญเอกสารแนะนำวิธีใช้ตัวอ่านบันทึกระบบ"
 
 #: ../logview/logview.c:111
 msgid "Show the about dialog for the log viewer"
-msgstr ""
+msgstr "แสดงข้อมูลเกี่ยวกับโปรแกรมอ่านบันทึกระบบ"
 
 #: ../logview/logview.c:117
-#, fuzzy
 msgid "_Monitor"
-msgstr "_ติดตาม..."
+msgstr "_ติดตาม"
 
 #: ../logview/logview.c:117
-#, fuzzy
 msgid "Monitor Current Log"
-msgstr "ติดตามบันทึกระบบปฏิบัติการ"
+msgstr "ติดตามบันทึกระบบปฏิบัติการปัจจุบัน"
 
 #: ../logview/logview.c:119
-#, fuzzy
 msgid "Ca_lendar"
-msgstr "ปฏิทิน"
+msgstr "_ปฏิทิน"
 
 # The user clicks on the calendar to display log entries on that date.
 #: ../logview/logview.c:119
@@ -2281,7 +2267,7 @@ msgstr "เกิดข้อผิดพลาดขณะแสดงคำแ
 #: ../logview/logview.c:894
 #, c-format
 msgid "%s (monitored) - %s"
-msgstr ""
+msgstr "%s (ติดตามอยู่) - %s"
 
 #: ../logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
