@@ -77,6 +77,7 @@ void CloseAllLogs (void);
 static void toggle_calendar (void);
 static void toggle_zoom (void);
 static void toggle_collapse_rows (void);
+static void logview_menus_set_state (int numlogs);
 
 /*
  *    ,-------.
@@ -111,7 +112,6 @@ GnomeUIInfo log_menu[] = {
 			 NULL,
 			 GNOME_APP_PIXMAP_NONE, NULL,
 			 'M', GDK_CONTROL_MASK, NULL },
- 
 	GNOMEUIINFO_SEPARATOR,
     { GNOME_APP_UI_ITEM, N_("_Properties"), 
 				N_("Show Log Properties"), 
@@ -402,10 +402,6 @@ CreateMainWin ()
    g_free (window_title);
 
    gtk_window_set_default_size ( GTK_WINDOW (app), LOG_CANVAS_W, LOG_CANVAS_H);
-   req_size.x = req_size.y = 0;
-   req_size.width = 400;
-   req_size.height = 400;
-   gtk_widget_size_allocate ( GTK_WIDGET (app), &req_size );
    gtk_signal_connect (GTK_OBJECT (app), "destroy",
 		       GTK_SIGNAL_FUNC (destroy), NULL);
 
@@ -415,8 +411,7 @@ CreateMainWin ()
    vbox = gtk_vbox_new (FALSE, 6);
    gnome_app_set_contents (GNOME_APP (app), vbox);
 
-   if (numlogs < 2)
-     gtk_widget_set_state (log_menu[MENU_SWITCH_LOG].widget, GTK_STATE_INSENSITIVE);
+   logview_menus_set_state (numlogs);
 
    /* Create scrolled window and tree view */
    scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -484,6 +479,9 @@ CloseLogMenu (GtkWidget *widget, gpointer user_data)
    CloseLog (curlog);
 
    numlogs--;
+
+   logview_menus_set_state (numlogs);
+
    if (numlogs == 0)
    {
       curlog = NULL;
@@ -492,12 +490,6 @@ CloseLogMenu (GtkWidget *widget, gpointer user_data)
       log_repaint ();
       if (loginfovisible)
 	      RepaintLogInfo ();
-      gtk_widget_set_sensitive (log_menu[MENU_PROPERTIES].widget, FALSE); 
-      gtk_widget_set_sensitive (log_menu[MENU_CLOSE].widget, FALSE); 
-      gtk_widget_set_sensitive (log_menu[MENU_CLOSE_ALL].widget, FALSE); 
-      gtk_widget_set_sensitive (log_menu[MENU_MONITOR].widget, FALSE); 
-      for ( i = 0; i < 3; i++) 
-         gtk_widget_set_sensitive (view_menu[i].widget, FALSE); 
       return;
    }
    for (i = curlognum; i < numlogs; i++)
@@ -511,10 +503,6 @@ CloseLogMenu (GtkWidget *widget, gpointer user_data)
 
    if (loginfovisible)
       RepaintLogInfo ();
-
-   /* Change menu entry if there is only one log */
-   if (numlogs < 2)
-     gtk_widget_set_state (log_menu[MENU_SWITCH_LOG].widget, GTK_STATE_INSENSITIVE);
 
 }
 
@@ -575,36 +563,24 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
                        sizeof(curlog->expand_paths));
                save_rows_to_expand (curlog); 
            }
-           if (!numlogs) 
-               gtk_widget_set_sensitive (log_menu[MENU_CLOSE].widget, TRUE); 
            
-	       curlog = tl;
-	       curlog->first_time = TRUE; 
-	       curlog->mon_on = FALSE;
-		   loglist[numlogs] = tl;
-		   numlogs++;
-		   curlognum = numlogs - 1;
+	   curlog = tl;
+	   curlog->first_time = TRUE; 
+	   curlog->mon_on = FALSE;
+	   loglist[numlogs] = tl;
+	   numlogs++;
+	   curlognum = numlogs - 1;
 
-		   /* Clear window */
-		   log_repaint ();
-		   if (loginfovisible)
-			   RepaintLogInfo ();
-		   if (calendarvisible)
-			   init_calendar_data();
-
-	       UpdateStatusArea();
-
-		   if (numlogs) {
-			   int i;
-			   if (numlogs >= 2)
-			       gtk_widget_set_sensitive (log_menu[MENU_SWITCH_LOG].widget, TRUE);
-
-			   gtk_widget_set_sensitive (log_menu[MENU_CLOSE_ALL].widget, TRUE);
-			   gtk_widget_set_sensitive (log_menu[MENU_PROPERTIES].widget, TRUE);
-			   gtk_widget_set_sensitive (log_menu[MENU_MONITOR].widget, TRUE);
-			   for (i = 0; i < 3; ++i) 
-			       gtk_widget_set_sensitive (view_menu[i].widget, TRUE);
-		   } 
+	   /* Clear window */
+	   log_repaint ();
+	   if (loginfovisible)
+		   RepaintLogInfo ();
+	   if (calendarvisible)
+		   init_calendar_data();
+	   
+	   UpdateStatusArea();
+	   logview_menus_set_state (numlogs);
+	   
        }
    }
 
@@ -636,7 +612,6 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
 	   gdk_window_raise (open_file_dialog->window);
 	   return;
    }
-
 
    chooser = gtk_file_chooser_dialog_new (_("Open new logfile"),
 					  GTK_WINDOW (app),
@@ -705,14 +680,7 @@ CloseAllLogs (void)
    if (loginfovisible)
 	  RepaintLogInfo ();
 
-   gtk_widget_set_sensitive (log_menu[MENU_MONITOR].widget, FALSE); 
-   gtk_widget_set_sensitive (log_menu[MENU_PROPERTIES].widget, FALSE); 
-   gtk_widget_set_sensitive (log_menu[MENU_CLOSE].widget, FALSE); 
-   gtk_widget_set_sensitive (log_menu[MENU_CLOSE_ALL].widget, FALSE); 
-   for ( i = 0; i < 3; i++) 
-       gtk_widget_set_sensitive (view_menu[i].widget, FALSE); 
-
-   gtk_widget_set_state (log_menu[MENU_SWITCH_LOG].widget, GTK_STATE_INSENSITIVE); 
+   logview_menus_set_state (numlogs);
 
 }
 
@@ -962,4 +930,19 @@ static void
 toggle_collapse_rows (void)
 {
     gtk_tree_view_collapse_all (GTK_TREE_VIEW (view));
+}
+
+static void
+logview_menus_set_state (int numlogs)
+{
+	int i;
+	gtk_widget_set_sensitive (log_menu[MENU_PROPERTIES].widget, (numlogs > 0)); 
+	gtk_widget_set_sensitive (log_menu[MENU_CLOSE].widget, (numlogs > 0)); 
+	gtk_widget_set_sensitive (log_menu[MENU_CLOSE_ALL].widget, (numlogs > 0)); 
+	gtk_widget_set_sensitive (log_menu[MENU_MONITOR].widget, (numlogs > 0)); 
+	for ( i = 0; i < 3; i++) 
+		gtk_widget_set_sensitive (view_menu[i].widget, (numlogs > 0)); 
+
+	gtk_widget_set_sensitive (log_menu[MENU_SWITCH_LOG].widget, (numlogs > 1));
+
 }
