@@ -237,7 +237,6 @@ logview_create_window_open_file (gchar *file)
 			logview->curlog = log;
 			logview->monitored = FALSE;
 			logview_menus_set_state (logview);
-			gtk_widget_show (window);
 			log_repaint (logview);
 			gtk_widget_show (window);
 		}

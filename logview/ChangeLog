@@ -2,6 +2,7 @@
 
 	* logview.c (logview_create_window): Use g_signal_connect instead
 	of gtk_signal_connect.
+	(logview_create_window_open_file): Show the window when the log is loaded.
 
 	* info.c (LogInfo): Huge simplification. No more gtktreeview, just
 	display the properties in a textview.
