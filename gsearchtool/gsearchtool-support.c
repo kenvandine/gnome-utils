@@ -116,6 +116,27 @@ gsearchtool_gconf_get_string (const gchar *key)
 	return result;
 }
 
+GSList * 
+gsearchtool_gconf_get_list (const gchar *key)
+{
+	GSList *result;
+	GConfClient *client;
+	GError *error = NULL;
+	
+	g_return_val_if_fail (key != NULL, FALSE);
+	
+	client = gsearchtool_gconf_client_get_global ();
+	g_return_val_if_fail (client != NULL, FALSE);
+	
+	result = gconf_client_get_list (client, key, GCONF_VALUE_STRING, &error);
+	
+	if (gsearchtool_gconf_handle_error (&error)) {
+		result = NULL;
+	}
+	
+	return result;
+}
+
 gboolean 
 gsearchtool_gconf_get_boolean (const gchar *key)
 {
@@ -275,68 +296,152 @@ is_path_hidden (const gchar *path)
 	return results;
 }
 
-gboolean 
-is_path_in_home_folder (const gchar *path)
+gboolean  	
+is_quick_search_excluded_path (const gchar *path)
 {
-	if (g_strstr_len (path, strlen (g_get_home_dir ()), g_get_home_dir ()) != NULL) {
+	GSList     *exclude_path_list;
+	GSList     *tmp_list;
+	gchar      *dir;
+	
+	dir = g_strdup (path);
+	
+	/* Remove trailing G_DIR_SEPARATOR. */
+	if ((strlen (dir) > 1) && (g_str_has_suffix (dir, G_DIR_SEPARATOR_S) == TRUE)) {
+		dir[strlen (dir) - 1] = '\0'; 
+	}
+	
+	/* Always exclude a path that is symbolic link. */
+	if (g_file_test (dir, G_FILE_TEST_IS_SYMLINK)) {
+		g_free (dir);
+		
 		return TRUE;
 	}
-
-	/* See bugzilla report #137404 */
-	if (g_file_test (g_get_home_dir(), G_FILE_TEST_IS_SYMLINK)) {
-
-		GnomeVFSResult res;
-		gchar *uri;
+	g_free (dir);
 	
-		res = uri_resolve_all_symlinks (g_get_home_dir (), &uri);
+	/* Check path against the Quick-Search-Excluded-Paths list. */
+	exclude_path_list = gsearchtool_gconf_get_list ("/apps/gnome-search-tool/quick_search_excluded_paths");
 
-		if (res == GNOME_VFS_OK) {
+	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
 	
-			gchar *target;
-			gboolean value;
+		gchar *dir;
 		
-			target = (gchar *) gnome_vfs_get_local_path_from_uri (uri);
-			value = (g_strstr_len (path, strlen (target), target) != NULL);
+		dir = g_strdup (tmp_list->data);
 		
-			g_free (target);
-			g_free (uri);
-		
-			return value;
+		/* Skip empty or null values. */
+		if ((dir == NULL) || (strlen (dir) == 0)) {
+			continue;
 		}
-		g_free (uri);
-	}		
+			
+		/* Wild-card comparisons. */		
+		if (g_strstr_len (dir, strlen (dir), "*") != NULL) { 
+		
+			if (g_pattern_match_simple (dir, path) == TRUE) {
+
+				g_slist_free (exclude_path_list);
+				g_free (dir);			
+
+				return TRUE;
+			}
+		} 
+		/* Non-wild-card comparisons. */
+		else {
+			/* Add a trailing G_DIR_SEPARATOR. */
+			if (g_str_has_suffix (dir, G_DIR_SEPARATOR_S) == FALSE) {
+			 
+				gchar *tmp;
+			
+				tmp = dir;
+				dir = g_strconcat (dir, G_DIR_SEPARATOR_S, NULL);
+				g_free (tmp);
+			}
+			
+			if (strcmp (path, dir) == 0) {
+				
+				g_slist_free (exclude_path_list);
+				g_free (dir);
+				
+				return TRUE;
+			}
+		}
+		g_free (dir);
+	}
+	g_slist_free (exclude_path_list);
+	
 	return FALSE;
 }
 
-gboolean 
-is_path_in_mount_folder (const gchar *path)
+gboolean  	
+is_second_scan_excluded_path (const gchar *path)
 {
-	return ((g_strstr_len (path, strlen ("/mnt/"), "/mnt/") != NULL) ||
-	        (g_strstr_len (path, strlen ("/media/"), "/media/") != NULL));
-}
+	GSList     *exclude_path_list;
+	GSList     *tmp_list;
+	gchar      *dir;
+	
+	dir = g_strdup (path);
+	
+	/* Remove trailing G_DIR_SEPARATOR. */
+	if ((strlen (dir) > 1) && (g_str_has_suffix (dir, G_DIR_SEPARATOR_S) == TRUE)) {
+		dir[strlen (dir) - 1] = '\0'; 
+	}
+	
+	/* Always exclude a path that is symbolic link. */
+	if (g_file_test (dir, G_FILE_TEST_IS_SYMLINK)) {
+		g_free (dir);
+		
+		return TRUE;
+	}
+	g_free (dir);
+	
+	/* Check path against the Quick-Search-Excluded-Paths list. */
+	exclude_path_list = gsearchtool_gconf_get_list ("/apps/gnome-search-tool/quick_search_second_scan_excluded_paths");
 
-gboolean 
-is_path_in_proc_folder (const gchar *path)
-{
-	return (g_strstr_len (path, strlen ("/proc/"), "/proc/") != NULL);
-}
+	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
+	
+		gchar *dir;
+		
+		dir = g_strdup (tmp_list->data);
+		
+		/* Skip empty or null values. */
+		if ((dir == NULL) || (strlen (dir) == 0)) {
+			continue;
+		}
+			
+		/* Wild-card comparisons. */		
+		if (g_strstr_len (dir, strlen (dir), "*") != NULL) { 
+		
+			if (g_pattern_match_simple (dir, path) == TRUE) {
 
-gboolean 
-is_path_in_dev_folder (const gchar *path)
-{
-	return (g_strstr_len (path, strlen ("/dev/"), "/dev/") != NULL);
-}
+				g_slist_free (exclude_path_list);
+				g_free (dir);			
 
-gboolean 
-is_path_in_var_folder (const gchar *path)
-{
-	return (g_strstr_len (path, strlen ("/var/"), "/var/") != NULL);
-}
-
-gboolean 
-is_path_in_tmp_folder (const gchar *path)
-{
-	return (g_strstr_len (path, strlen ("/tmp/"), "/tmp/") != NULL);
+				return TRUE;
+			}
+		} 
+		/* Non-wild-card comparisons. */
+		else {
+			/* Add a trailing G_DIR_SEPARATOR. */
+			if (g_str_has_suffix (dir, G_DIR_SEPARATOR_S) == FALSE) {
+			 
+				gchar *tmp;
+			
+				tmp = dir;
+				dir = g_strconcat (dir, G_DIR_SEPARATOR_S, NULL);
+				g_free (tmp);
+			}
+			
+			if (strcmp (path, dir) == 0) {
+				
+				g_slist_free (exclude_path_list);
+				g_free (dir);
+				
+				return TRUE;
+			}
+		}
+		g_free (dir);
+	}
+	g_slist_free (exclude_path_list);
+	
+	return FALSE;
 }
 
 gboolean
@@ -870,7 +975,7 @@ gsearchtool_unique_filename (const gchar *dir,
 					    suffix);
 
 		g_free (retval);
-		retval = g_strconcat (dir, "/", filename, NULL);
+		retval = g_strconcat (dir, G_DIR_SEPARATOR_S, filename, NULL);
 		exists = g_file_test (retval, G_FILE_TEST_EXISTS);
 		g_free (filename);
 	}

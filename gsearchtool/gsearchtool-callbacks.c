@@ -159,7 +159,7 @@ click_find_cb (GtkWidget	*widget,
 	gtk_widget_set_sensitive (interface.stop_button, FALSE);
 	gtk_widget_set_sensitive (interface.find_button, FALSE);
 
-	command = build_search_command ();
+	command = build_search_command (TRUE);
 	
 	if (search_command.lock == FALSE) {
 		spawn_search_command (command);

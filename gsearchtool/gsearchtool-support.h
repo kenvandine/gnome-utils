@@ -39,22 +39,10 @@ gboolean
 is_path_hidden 			(const gchar *path);
 
 gboolean  	
-is_path_in_home_folder 		(const gchar *path);
+is_quick_search_excluded_path	(const gchar *path);
 
 gboolean  	
-is_path_in_mount_folder		(const gchar *path);
-
-gboolean  	
-is_path_in_proc_folder		(const gchar *path);
-
-gboolean  	
-is_path_in_dev_folder		(const gchar *path);
-
-gboolean  	
-is_path_in_var_folder		(const gchar *path);
-
-gboolean  	
-is_path_in_tmp_folder		(const gchar *path);
+is_second_scan_excluded_path	(const gchar *path);
 
 gboolean
 file_extension_is 		(const char *filename, 
@@ -113,6 +101,9 @@ gsearchtool_gconf_set_boolean 	(const gchar *key,
 
 char *
 gsearchtool_gconf_get_string 	(const gchar *key);
+
+GSList * 
+gsearchtool_gconf_get_list 	(const gchar *key);
 
 gchar *
 gsearchtool_unique_filename 	(const gchar *dir,

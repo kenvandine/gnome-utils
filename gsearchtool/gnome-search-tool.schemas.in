@@ -240,19 +240,50 @@ To change the gconftool target use the - -config-source=blah option to gconftool
       </locale>
     </schema>
     <schema>
-      <applyto>/apps/gnome-search-tool/force_quick_search</applyto>
-      <key>/schemas/apps/gnome-search-tool/force_quick_search</key>
+      <applyto>/apps/gnome-search-tool/quick_search_excluded_paths</applyto>
+      <key>/schemas/apps/gnome-search-tool/quick_search_excluded_paths</key>
+      <owner>gnome-search-tool</owner>
+      <type>list</type>
+      <list_type>string</list_type>
+      <default>[/mnt/*,/media/*,/dev/*,/tmp/*,/proc/*,/var/*]</default>
+      <locale name="C">
+        <short>Quick Search Excluded Paths</short>
+        <long>
+	  This key defines the paths the search tool will exclude from a 
+	  quick search.  The wildcards '*' and '?' are supported.  The default 
+	  values are /mnt/*, /media/*, /dev/*, /tmp/*, /proc/*, and /var/*.
+        </long>
+      </locale>
+    </schema>
+    <schema>
+      <applyto>/apps/gnome-search-tool/disable_quick_search_second_scan</applyto>
+      <key>/schemas/apps/gnome-search-tool/disable_quick_search_second_scan</key>
       <owner>gnome-search-tool</owner>
       <type>bool</type>
       <default>FALSE</default>
       <locale name="C">
-        <short>Always Use Quick Search for Simple Searches</short>
+        <short>Disable Quick Search Second Scan</short>
         <long>
-	  This key determines if the search tool uses the locate command for 
-	  all simple file name searches.  By default, the search tool uses 
-	  the find command when searching /mnt, /proc, /dev, /var, /tmp, or 
-	  a user's home folder.  This feature is unavailable if 
-	  disable_quick_search is enabled.
+          This key determines if the search tool disables the use of the 
+          find command after performing a quick search.
+        </long>
+      </locale>
+    </schema>
+    <schema>
+      <applyto>/apps/gnome-search-tool/quick_search_second_scan_excluded_paths</applyto>
+      <key>/schemas/apps/gnome-search-tool/quick_search_second_scan_excluded_paths</key>
+      <owner>gnome-search-tool</owner>
+      <type>list</type>
+      <list_type>string</list_type>
+      <default>[/]</default>
+      <locale name="C">
+        <short>Quick Search Second Scan Excluded Paths</short>
+        <long>
+	  This key defines the paths the search tool will exclude from a 
+	  second scan when performing a quick search.  The second scan
+	  uses the find command to search for files.  The purpose of the 
+	  second scan is to find files that have not been indexed.  
+	  The wildcards '*' and '?' are supported.  The default value is /.
         </long>
       </locale>
     </schema>

@@ -85,8 +85,11 @@ extern struct _SearchStruct {
 	gboolean		not_running_timeout;
 	gboolean		aborted;
 	gboolean		quick_mode;
+	gboolean		first_pass;
+	gboolean		disable_second_pass;
 	RunStatus        	running;
 	GHashTable              *pixbuf_hash;
+	GHashTable		*file_hash;
 } search_command;
 
 extern struct _InterfaceStruct {
@@ -131,7 +134,7 @@ struct _SearchConstraint {
 };
 
 gchar *
-build_search_command 		(void);
+build_search_command 		(gboolean first_pass);
 
 void
 spawn_search_command 		(gchar *command);

@@ -1,3 +1,39 @@
+2004-10-26  Dennis Cranston <dennis_cranston at yahoo com>
+
+	Fix bug #153563:  Add internal logic to perform a two scan search 
+	for simple filename searches.  A quick search will consist of an 
+	indexed search that uses the locate command followed by a thorough 
+	search that uses the find command.  The quick search and second 
+	scan logic can be disabled with gconf keys.  Advanced users can 
+	fine tune the quick search and second scan logic by adjusting the 
+	new excluded path gconf keys.  By default, a quick search is not 
+	performed for the paths: /mnt/*, /media/*, /dev/*, /tmp/*, /proc/*, 
+	and /var/*.  By default, a second scan is not performed for the 
+	path: /.
+	
+	* gsearchtool.[ch]:  Add first pass, disable second pass, and a 
+	file hash to the search_command structure;  build_search_command(),
+	handle_search_command_stdout_io(): add first pass logic handling;  
+	add_file_to_search_results():  do not add duplicate files in the 
+	search results.
+	
+	* gsearchtool-support.[ch]:  Add the function 
+	is_quick_search_excluded_path(), is_second_scan_excluded_path()
+	and gsearchtool_gconf_get_list().
+	
+	* gsearchtool-callbacks.c:  Pass a boolean for the first pass to
+	build_search_command().
+	
+	* gnome-search-tool.schemas:  Deprecate the force_quick_search key.
+	Add three new keys: quick_search_second_scan_exclude_path, 
+	quick_search_exclude_path and disable_quick_search_second_scan.
+	
+	* help/C/gnome-search-tool.xml:  Remove section 3.7.  Add a new 
+	section 4.  Document the various gconf keys in the new section.
+	
+	* help/C/figures/gnome-search-tool_window.png:  Update for newest
+	gtk+ 2.5 file chooser button widget changes.
+	
 2004-10-24  Dennis Cranston <dennis_cranston at yahoo com>
 
 	* gsearchtool.c: Add new function intermediate_file_count_update()
