@@ -1,0 +1,654 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY legal SYSTEM "legal.xml">
+<!ENTITY version "2.2">
+<!ENTITY app "<application>gdialog</application>">
+]>
+
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 1.0.3
+  Template last modified: Nov 16, 2000
+-->
+
+
+<!-- =============Document Header ============================= -->
+
+<article id="index" lang="ja">
+  <!-- please do not change the id -->
+
+  <articleinfo>
+    <title>gdialogマニュアル</title>
+    <copyright>
+      <year>2001</year>
+      <holder>Patanjali Somayaji</holder>
+    </copyright>
+    <copyright>
+      <year>2002, 2003</year>
+      <holder>John Fleck</holder>
+    </copyright>
+    <copyright>
+      <year>2003</year>
+      <holder>鎌ヶ迫正俊 (日本語訳)</holder>
+    </copyright>
+
+    <publisher>
+      <publishername>
+        GNOMEドキュメンテーションプロジェクト
+      </publishername>
+    </publisher>
+
+    &legal;
+
+    <!-- This is the manual version, not application version. --> 
+    <releaseinfo>
+      これはgdialog第2.0版のマニュアルです。
+    </releaseinfo>
+
+    <legalnotice id="feedback">
+      <title>フィードバック情報</title>
+      <para>
+        このアプリケーションもしくはドキュメントに関するバグレポートや
+        提案をするには
+        <ulink type="help" url="ghelp:gnome-feedback">
+          GNOMEフィードバックページ
+        </ulink>
+        を参照してください。
+      </para>
+    </legalnotice>
+
+    <authorgroup>
+      <author>
+        <firstname>Patanjali </firstname>
+        <surname> Somayaji</surname>
+        <affiliation>
+          <orgname>GNOMEドキュメンテーションプロジェクト</orgname>
+        </affiliation>
+      </author>
+      <author>
+        <firstname>John </firstname>
+        <surname> Fleck</surname>
+        <affiliation>
+          <orgname>GNOMEドキュメンテーションプロジェクト</orgname>
+        </affiliation>
+      </author>
+      <othercredit role="translator">
+        <firstname>Masatoshi</firstname>
+        <surname>KAMAGASAKO</surname>
+        <affiliation>
+          <orgname>日本GNOMEユーザ会 翻訳チーム</orgname>
+          <address><email>emerald@gnome.gr.jp</email></address>
+        </affiliation>
+        <contrib>日本語訳</contrib>
+      </othercredit>
+    </authorgroup>
+
+    <revhistory>
+      <revision>
+        <revnumber>1.0</revnumber>
+        <date>2001年8月25日</date> <!-- or use &date; -->
+        <revdescription>
+          <para role="author">Patanjali Somayaji</para>
+          <para role="publisher">GNOMEドキュメンテーションプロジェクト</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>2.0</revnumber>
+        <date>2002年4月7日</date>
+        <revdescription>
+          <para role="author">
+            John Fleck
+            <email>jfleck@inkstain.net</email>
+          </para>
+          <para role="publisher">
+            GNOMEドキュメンテーションプロジェクト
+          </para>
+          <para>GNOME 2版</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>2.2</revnumber>
+        <date>2003年1月14日</date>
+        <revdescription>
+          <para role="author">
+            John Fleck
+            <email>jfleck@inkstain.net</email>
+          </para>
+          <para role="publisher">
+            GNOMEドキュメンテーションプロジェクト
+          </para>
+          <para>GNOME 2版</para>
+        </revdescription>
+      </revision>
+    </revhistory>
+  </articleinfo>
+
+  <!-- ============= Document Body ============================= -->
+
+  <!-- ============= Introduction ============================== -->
+  <sect1 id="intro">
+    <title>はじめに</title>
+
+    <para>
+      &app;はコマンドラインまたはシェルスクリプトからGNOMEダイアログを
+      表示します。
+    </para>
+
+    <para>
+      &app;は<filename>gnome-utils</filename>パッケージに含まれていま
+      す。これはGNOMEデスクトップ環境の一部です。このドキュメントは
+      <application>gdialog</application>の第&version;版について説明し
+      ています。
+    </para>
+
+    <para>
+      (訳者注)
+      以下、入出力のエンコーディングには UTF-8 を利用しています。
+    </para>
+  </sect1>
+
+ <!-- ================ Usage ================================ -->
+  <sect1 id="usage">
+    <title>gdialogを使う</title>
+
+    <!-- ========= Basic Usage =========================== -->
+    <sect2 id="mainwin">
+      <title>基本的な使い方</title>
+      <para>
+        <command>gdialog</command>コントロールダイアログを生成するため
+        には、一続きのコマンドラインオプションを後に付加して起動します。
+        例えば、
+        <programlisting>
+          <command>
+            gdialog --msgbox "テストメッセージ" 200 150 
+          </command>
+        </programlisting>
+        というコマンドでは、<xref linkend="example-dialog" />で示され
+        るようなダイアログを生成し表示します。
+        <command>--msgbox</command>オプションは、生成されるダイアログ
+        のタイプを示します。<command>"テストメッセージ"</command>は表
+        示されるメッセージです。続く数字はダイアログの幅と高さを指定し
+        ています。
+        
+        <!-- ==== Figure ==== -->
+        <figure  id="example-dialog">
+          <title>gdialogの例</title>
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/example-dialog.png" format="PNG"/>
+              </imageobject>
+              <imageobject>
+                <imagedata fileref="figures/example-dialog.eps" format="EPS"/>
+              </imageobject>
+              <textobject>
+                <phrase>gdialogメッセージボックスの例</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+        <!-- ==== End of Figure ==== -->
+      </para> 
+
+      <para>
+        コマンドラインオプションの完全なリストを以下に示します:
+      </para>
+      <para> 
+        <command>
+          gdialog
+          [--title <replaceable>タイトル</replaceable>]
+          [--separate-output] 
+          [--backtitle <replaceable>バックタイトル</replaceable>]
+          [--clear]
+          <replaceable>ボックスオプション</replaceable>
+        </command>
+      </para>
+      <para>        
+        <command>タイトル</command>はダイアログのタイトルを指定します。
+      </para>
+      <para>
+        "ボックスオプション" は以下のいずれか一つを指定できます。
+        <itemizedlist>
+          <listitem>
+            <para>
+              <command>
+                [--defaultno]
+                --yesno 
+                <replaceable>テキスト</replaceable>
+                <replaceable>高さ</replaceable>
+                <replaceable>幅</replaceable>
+              </command>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <command>
+                --msgbox
+                <replaceable>テキスト</replaceable>
+                <replaceable>高さ</replaceable>
+                <replaceable>幅</replaceable>
+              </command>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <command>
+                --infobox
+                <replaceable>テキスト</replaceable>
+                <replaceable>高さ</replaceable>
+                <replaceable>幅</replaceable>
+              </command>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <command>
+                --inputbox
+                <replaceable>テキスト</replaceable>
+                <replaceable>高さ</replaceable>
+                <replaceable>幅</replaceable>
+                [<replaceable>初期文字列</replaceable>]
+              </command>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <command>
+                --textbox
+                <replaceable>ファイル</replaceable> 
+                <replaceable>高さ</replaceable>
+                <replaceable>幅</replaceable>
+              </command>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <command>
+                --menu   
+                <replaceable>テキスト</replaceable>
+                <replaceable>高さ</replaceable>
+                <replaceable>幅</replaceable> 
+                <replaceable>メニューの高さ</replaceable>
+                <replaceable>タグ1</replaceable>
+                <replaceable>項目1</replaceable>
+                ...
+              </command>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <command>
+                --checklist  
+                <replaceable>テキスト</replaceable>
+                <replaceable>高さ</replaceable>
+                <replaceable>幅</replaceable>
+                <replaceable>リストの高さ</replaceable>
+                <replaceable>タグ1</replaceable>
+                <replaceable>項目1</replaceable>
+                <replaceable>ステータス1</replaceable>
+                ...
+              </command>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <command>
+                --radiolist    
+                <replaceable>テキスト</replaceable>
+                <replaceable>高さ</replaceable>
+                <replaceable>幅</replaceable>
+                <replaceable>リストの高さ</replaceable>
+                <replaceable>タグ1</replaceable>
+                <replaceable>項目1</replaceable>
+                <replaceable>ステータス1</replaceable>
+                ...
+              </command>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <command>
+                --gauge
+                <replaceable>テキスト</replaceable>
+                <replaceable>高さ</replaceable>
+                <replaceable>幅</replaceable>
+                <replaceable>パーセンテージ</replaceable>
+              </command>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <note>
+        <para>
+          現時点での&app;の実装では、<replaceable>高さ</replaceable>と
+          <replaceable>幅</replaceable>は指定しなければなりません。し
+          かし、これらの値は何の効果も示しません。これは既知のバグです。
+        </para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="dialogs">
+    <title>様々なダイアログボックスを利用する</title>
+    <sect2 id="yesnobox">
+      <title>確認ダイアログ &mdash; はい/いいえ ボックス</title>
+      <para>
+        質問と"はい" "いいえ"ボタンを表示するダイアログボックスを生成
+        するには、<command>--yesno</command>オプションを利用します。"
+        マイ ダイアログ"のようなタイトルを付け、"終了しますか?" という
+        質問の表示されたダイアログボックスを生成するには以下のコマンド
+        を実行します:
+        <programlisting>
+          <command>
+            gdialog --title "My Dialog" --yesno "Should I exit ?" 250 150
+          </command>
+        </programlisting>
+      </para>
+      <para>
+        上のコマンドを実行すると、<xref linkend="gdialog-yesno" />のよ
+        うなダイアログボックスが表示されます。
+        <xref linkend="gdialog-yesno" />. 
+        <figure id="gdialog-yesno">
+          <title>確認ボックスの例</title>
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/gdialog-yesno.png" format="PNG"/>
+              </imageobject>
+              <imageobject>
+                <imagedata fileref="figures/gdialog-yesno.eps" format="EPS"/>
+              </imageobject>
+              <textobject>
+                <phrase>gdialog確認ボックスの例</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+         
+      </para>                
+      <para>
+        次のスクリプトを実行すると、"はい/いいえ" ダイアログを表示し、
+        入力値に応じたレスポンスを返します:
+        <programlisting>
+          #!/bin/sh
+          if gdialog --title "はい/いいえ テスト" --yesno "はい/いいえ テスト" 300 300
+          then echo "はい をクリックしました。"
+          else echo "いいえ をクリックしました。"
+          fi
+        </programlisting>
+        
+      </para>
+      <para>
+        ダイアログが表示された時点では "はい" ボタンがハイライトされて
+        います。デフォルトで"いいえ"にハイライトを当てるには、次のよう
+        に<command>--defaultno</command>オプションを加えます:
+        <programlisting>
+          gdialog --title "テスト" --yesno "テスト" 1 1 --defaultno
+        </programlisting>
+      </para>        
+    </sect2>
+    
+    <sect2 id="messagebox">
+      <title>メッセージボックス</title>
+      <para>
+        <command>--msgbox</command>オプションを付けると、メッセージを
+        表示したダイアログボックスを生成します:
+        <programlisting>
+          <command>
+            gdialog --title "マイ ダイアログ" --msgbox "これがメッセージです" 250 150
+          </command>
+        </programlisting>
+      </para>
+      <para>
+        このコマンドで<xref linkend="gdialog-msgbox" />に示されるダイ
+        アログボックスが表示されます。
+        <figure id="gdialog-msgbox">
+          <title>メッセージボックスの例</title>
+          <screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/gdialog-msgbox.png" format="PNG"/>
+              </imageobject>
+              <imageobject>
+          <imagedata fileref="figures/gdialog-msgbox.eps" format="EPS"/>
+      </imageobject>
+        <textobject>
+          <phrase>gdialogメッセージボックスの例</phrase>
+        </textobject>
+      </mediaobject>
+          </screenshot>
+        </figure>
+         
+        </para>                
+        </sect2>
+
+    <sect2 id="gdialoginfobox">
+      <title>情報ボックス</title>
+      <para>
+        <command>--infobox</command>オプションで生成されるダイアログボッ
+        クスは<command>--msgbox</command>と同等のものですが、閉じる前
+        に一時的にスクリーン上に表示されるだけです。
+      </para>
+    </sect2>
+
+    <sect2 id="gdialoginputbox">
+      <title>テキストを入力する &mdash; 入力ボックス</title>
+      <para>
+        <command>--inputbox</command>オプションを指定すると、テキスト
+        入力ボックスが表示されます。次のスクリプトで入力したテキストを
+        表示させることができます。<guibutton>キャンセル</guibutton>ボ
+        タンがクリックされるとエラーを返します:
+        <programlisting>
+          #!/bin/sh
+
+          if gdialog --title "入力ボックス" \
+                     --inputbox "メッセージを受け付けます" 20 20
+          then echo $?
+          else echo "何も入力されませんでした。"
+          fi
+        </programlisting>
+      </para>
+    </sect2>    
+    
+    <sect2 id="gdialogtextbox">
+      <title>テキストボックス</title>
+      <para>
+        &app;は<command>--textbox</command>を使うことでテキストファイ
+        ルをウィンドウに表示することができます:
+        <programlisting>
+          gdialog --title "テキストボックス" --textbox "gdialog.xml" 30 50
+        </programlisting>
+      </para>
+      <para>
+        ファイルを無事表示できると、&app;はシェルスクリプトに
+        <constant>TRUE</constant>値を返します。ファイルが存在しない場
+        合、&app;はエラーダイアログを表示して、シェルスクリプトに<constant>FALSE</constant>値を返します。
+      </para>
+    </sect2>
+    
+    <sect2 id="gdialogmenu">
+      <title>メニュー</title>
+      <para>
+        <command>--menu</command>オプションでメニューを生成し、ユーザが選択した値を取得することができます。それぞれのメニューオプションには二つの値があり、一つは<varname>タグ</varname>、もう一つは<varname>項目</varname>です。次のスクリプトで示されるように、&app;は選択された<varname>タグ</varname>の値を返します:
+        <programlisting>
+          #!/bin/sh
+
+          if gdialog --title "A Menu" \
+                     --menu "メニューのオプションです" 100 200 1 \
+                     "One" "一番目の項目" \
+                     "Two" "二番目の項目" \
+                     "Three" "三番目の項目" \
+                     "Four" "四番目の項目" \
+                     "Five" "五番目の項目"
+          then echo $?
+          else echo "何も選択されていません"
+          fi
+        </programlisting>
+        メニュー項目が選択されると、&app;は<constant>TRUE</constant>値
+        を返します。<guibutton>キャンセル</guibutton>ボタンがクリック
+        されると<constant>FALSE</constant>値が返されます。
+      </para>
+      <para>
+        FIXME - the height and width bits seem to do nothing here
+      </para>
+    </sect2>  
+
+    <sect2 id="gdialogchecklist">
+      <title>チェックリスト</title>
+      <para>
+        <command>--checklist</command>オプションはチェックリストを生成し、選択した値を返します。チェックリストの各オプションには３つの値を指定します:
+        <itemizedlist>
+          <listitem>
+            <para>
+              <varname>タグ</varname>;
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              ダイアログに表示する説明的な<varname>項目</varname>;
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <constant>on</constant>か<constant>off</constant>のいず
+              れかで指定される<varname>ステータス</varname>。これは<guibutton>チェックボックス</guibutton>がデフォルトでチェックされているか否かを指定します。
+            </para>
+          </listitem>
+        </itemizedlist>
+        以下のスクリプトで示すように、選択された全ての<varname>タグ
+        </varname>の値が返されます:
+        <programlisting>
+          #!/bin/sh
+
+          if gdialog --title "チェックリスト" \
+                     --checklist "チェックリストのオプションです" 300 300 100 \
+                     "One" "一番目の項目" off \
+                     "Two" "二番目の項目" on \
+                     "Three" "三番目の項目" on \
+                     "Four" "四番目の項目" on \
+                     "Five" "五番目の項目" on
+          then echo $@
+          else echo "何も選択されませんでした"
+          fi
+        </programlisting>
+      </para>
+    </sect2> 
+
+    <sect2 id="gdialogradiolist">
+      <title>ラジオリスト</title>
+      <para>
+        <command>--radiolist</command>オプションはリストを生成しますが、
+        一つの項目しか選択することができません。
+        <command>--radiolist</command>は<command>--checklist</command>
+        と同じオプション指定をできますが、デフォルトの<varname>ステー
+        タス</varname>に<constant>on</constant>を指定できるのがただ一
+        つの項目だけである点が異なります。複数の項目に対して
+        <constant>on</constant>が指定された場合、&app;は最後の項目のみ
+        をデフォルトで選択します。
+      </para>
+    </sect2> 
+
+    <sect2 id="gdialogauge">
+      <title>ゲージ</title>
+      <para>
+	<command>--gauge</command>オプションを指定すると、プログレスバー
+	が生成されます。高さと幅といった共通のパラメータに加え、最後の
+	パラメータで表示される進捗のパーセンテージを指定します。例えば
+	以下のように実行します:
+        <programlisting>
+          gdialog --title "Gauge" --gauge "This is a gauge" 100 100 20
+        </programlisting>        
+      </para>
+      <para>
+	プログレスバーの値を変更するには、以下のようにSTDINから&app;に
+	値を渡します:
+        <programlisting>
+          #!/bin/sh
+
+          (
+              echo "10" ; sleep 1
+              echo "20" ; sleep 1
+              echo "50" ; sleep 1
+              echo "75" ; sleep 1
+              echo "100" ; sleep 1
+          ) |
+          gdialog --title "ゲージ" --gauge "ゲージウィジェットです" 10 10 0
+        </programlisting>
+      </para>
+    </sect2> 
+
+</sect1>
+
+  <!-- ============= Authors ================================ -->
+
+  <sect1 id="authors">
+    <title>作者</title>
+    <para>
+      <application>gdialog</application>はSavio Lam
+      (<email>lam836@cs.cuhk.hk</email>)とStuart Herbert
+      (<email>S.Herbert@shef.ac.uk</email>)によって書かれました。コメ
+      ント、提案、バグレポートは全て<ulink
+      url="http://bugzilla.gnome.org" type="http">GNOMEバグ追跡データ
+      ベース</ulink>に送ってください。<guimenu>メインメニュー
+      </guimenu>の<guisubmenu>ユーティリティ</guisubmenu>サブメニュー
+      にある<application>バグ報告ツール</application>
+      (<command>bug-buddy</command>)もバグレポートに利用できます。
+    </para>
+
+    <para>
+      このマニュアルはPatanjali Somayaji
+      (<email>patanjali@morelinux.com</email>) とohn Fleck
+      (<email>jfleck@inkstain.net</email>)によって書かれました。このマ
+      ニュアルに関するコメントや提案は全て<ulink type="http"
+      url="http://developer.gnome.org/projects/gdp">GNOMEドキュメンテー
+      ションプロジェクト</ulink>へ<email>docs@gnome.org</email>にメー
+      ルで送付してください。
+    </para>
+
+    <para>
+      日本語訳は鎌ヶ迫正俊 (<email>emerald@gnome.gr.jp</email>)による
+      ものです。日本語訳に関するコメントや提案は全て
+      <email>gnome-translation@gnome.gr.jp</email>もしくは
+      <email>emerald@gnome.gr.jp</email>にメールで送付してください。
+    </para>
+  </sect1>
+
+  <!-- ============= Application License ============================= -->
+
+  <sect1 id="license">
+    <title>ライセンス</title>
+    <para>
+      このプログラムはフリーソフトウェアです。フリーソフトウェア財団発
+      行の<ulink type="help" url="gnome-help:gpl"><citetitle>GNU 一般
+      公有使用許諾契約書</citetitle></ulink>第二版あるいは(あなたの選
+      択で)後の版の下おいて再配布や改変することができます。
+    </para>
+
+    <para>
+      このプログラムは有用であることを期待して配布していますが、無保証
+      です。商業目的や特定の目的に適合した場合の暗黙の保証すら含まれて
+      おりません。詳細は<citetitle>GNU 一般公有使用許諾契約書
+      </citetitle>をご覧ください。
+    </para>
+
+    <para>
+      <citetitle>GNU 一般公有使用許諾契約書</citetitle>の複写は
+        <citetitle>GNOMEユーザーズガイド</citetitle>の付録として収録さ
+        れています。<citetitle>GNU 一般公有使用許諾契約書</citetitle>
+        の複写はフリーソフトウェア財団から、<ulink type="http"
+        url="http://www.fsf.org">彼らのウェブサイト</ulink>を訪れるこ
+        とにより、また、以下の住所に手紙を書くことによっても入手するこ
+        とも可能です。
+      <address>
+        Free Software Foundation, Inc.
+        <street>59 Temple Place</street> - Suite 330
+        <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
+        <country>USA</country>
+      </address>
+    </para>
+  </sect1>
+</article>
