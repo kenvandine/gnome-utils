@@ -16,6 +16,7 @@
 #include "my.h"
 #include "sort.h"
 #include "list.h"
+#include <orb/orbit.h>
 
 #include "columnhdrs.h" /* only used because I'm hardcoding col hdrs 4 now */
 
@@ -63,6 +64,25 @@ static void gnomecard_set_next(gboolean state);
 static void gnomecard_set_prev(gboolean state);
 static gboolean gnomecard_cards_blocked(void);
 static void gnomecard_new_card(GtkWidget *widget, gpointer data);
+void Exception (CORBA_Environment * ev);
+void
+Exception (CORBA_Environment * ev)
+{
+  switch (ev->_major)
+    {
+    case CORBA_SYSTEM_EXCEPTION:
+      g_log ("Gnome Card Server", G_LOG_LEVEL_DEBUG, "CORBA system exception %s.\n",
+	     CORBA_exception_id (ev));
+      exit (1);
+    case CORBA_USER_EXCEPTION:
+      g_log ("Gnome Card Server", G_LOG_LEVEL_DEBUG, "CORBA user exception: %s.\n",
+	     CORBA_exception_id (ev));
+      exit (1);
+    default:
+      break;
+    }
+}
+
 
 
 gchar
@@ -663,10 +683,42 @@ void gnomecard_init(void)
 
 int main (int argc, char *argv[])
 {
+	CORBA_ORB orb;
+	CORBA_Environment ev;
+	CORBA_Object server;
+	CORBA_Object name_server;
+	PortableServer_POA poa;
+	PortableServer_POAManager pm;
+	gchar *ior;
 	textdomain(PACKAGE);
-	gnome_init("GnomeCard", VERSION, argc, argv);
-	gnomecard_init();
+	CORBA_exception_init(&ev);
+	orb = gnome_CORBA_init("GnomeCard", VERSION, &argc, argv, &ev);
+	Exception (&ev);
 
+	poa = CORBA_ORB_resolve_initial_references(orb, "RootPOA", &ev);
+	Exception (&ev);
+
+	server = impl_gnome_PIM_vCard_server__create(poa, &ev);
+	Exception (&ev);
+
+	pm = PortableServer_POA__get_the_POAManager (poa, &ev);
+	Exception (&ev);
+
+	PortableServer_POAManager_activate (pm, &ev);
+	Exception (&ev);
+
+	ior = CORBA_ORB_object_to_string(orb, server, &ev);
+	g_print ("%s\n", ior);
+
+	/*	name_server = gnome_name_service_get ();
+		gnome_register_corba_server (name_server,
+                                     server,
+                                     "Gnome Card",
+                                     "Cnome Card:1.0",
+				     &ev);*/
+  
+
+	gnomecard_init();
 	gtk_main();
 	return 0;
 }

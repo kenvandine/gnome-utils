@@ -11,6 +11,7 @@ INCLUDES = 			\
 bin_PROGRAMS = gnomecard
 
 gnomecard_SOURCES =	\
+        $(CORBA_SRCLIST) \
 	addresslist.c   \
 	addresslist.h   \
 	card.c		\
@@ -46,12 +47,25 @@ gnomecard_SOURCES =	\
 #	tree.c          \
 #	tree.h
 
+CORBA_SRCLIST = gnome-pim-common.c\
+	gnome-pim-skels.c	\
+	gnome-pim-stubs.c	\
+	gnome-pim-impl.c	\
+	gnome-pim.h
+
+CLEANFILES += $(CORBA_SRCLIST)
+
+$(CORBA_SRCLIST): $(top_srcdir)/idl/gnome-pim.idl $(ORBIT_IDL)
+	orbit-idl $(top_srcdir)/idl/gnome-pim.idl
+
 LINK_FLAGS = \
-	$(GNOME_LIBDIR) \
-	$(GNOMEUI_LIBS) \
 	$(INTLLIBS) ../versit/libversit.a
 
-gnomecard_LDADD = $(LINK_FLAGS)
+gnomecard_LDADD = $(LINK_FLAGS)\
+	$(GNOME_LIBDIR) \
+	$(ORB_LIBS) \
+	 -lgnorba \
+	$(GNOMEUI_LIBS)
 
 EXTRA_DIST =		\
 	addr.xpm	\
