@@ -9,6 +9,7 @@ INCLUDES = 						\
 bin_PROGRAMS = gcolorsel
 
 gcolorsel_SOURCES = gcolorsel.c			        \
+		    gcolorsel.h				\
 		    utils.c				\
 		    utils.h				\
 		    menus.c				\
