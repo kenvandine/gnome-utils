@@ -206,9 +206,6 @@ run_command(GtkWidget *w, gpointer data)
 	gtk_grab_add(stopbutton);
 	
 	cmd = makecmd();
-	puts(_("Using command:"));
-	puts(cmd);
-
 	pipe(fd);
 	
 	if((pid=fork())==0) {
