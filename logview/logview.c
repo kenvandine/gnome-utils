@@ -165,7 +165,7 @@ GList *regexp_db, *descript_db, *actions_db;
 UserPrefsStruct *user_prefs;
 UserPrefsStruct user_prefs_struct;
 ConfigData *cfg;
-int open_log_visible;
+GtkWidget *open_file_dialog = NULL;
 
 extern GdkGC *gc;
 extern Log *curlog, *loglist[];
@@ -589,18 +589,6 @@ change_log_menu (GtkWidget * widget, gpointer user_data)
 }
 
 /* ----------------------------------------------------------------------
-   NAME:          FileSelectCancel
-   DESCRIPTION:   User selected a file.
-   ---------------------------------------------------------------------- */
-
-void
-FileSelectCancel (GtkWidget * w, GtkFileSelection * fs)
-{
-   gtk_widget_destroy (GTK_WIDGET (fs));
-   open_log_visible = FALSE;
-}
-
-/* ----------------------------------------------------------------------
    NAME:          FileSelectOk
    DESCRIPTION:   User selected a file.
    ---------------------------------------------------------------------- */
@@ -621,7 +609,6 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
    f = g_strdup (gtk_file_selection_get_filename (GTK_FILE_SELECTION (fs)));
    gtk_widget_destroy (GTK_WIDGET (fs));
 
-   open_log_visible = FALSE;
    if (f != NULL) {
       if ((tl = OpenLogFile (f)) != NULL)
       {
@@ -664,8 +651,11 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
    
    /*  Cannot have more than one fileselect window */
    /*  at one time. */
-   if (open_log_visible)
-     return;
+   if (open_file_dialog != NULL) {
+	   gtk_widget_show_now (open_file_dialog);
+	   gdk_window_raise (open_file_dialog->window);
+	   return;
+   }
 
 
    filesel = gtk_file_selection_new (_("Open new logfile"));
@@ -682,12 +672,16 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
 		       "clicked", (GtkSignalFunc) FileSelectOk,
 		       filesel);
    gtk_signal_connect_object (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->cancel_button),
-			      "clicked", (GtkSignalFunc) FileSelectCancel,
+			      "clicked", (GtkSignalFunc) gtk_widget_destroy,
 			      GTK_OBJECT (filesel));
+
+   gtk_signal_connect (GTK_OBJECT (filesel),
+		       "destroy", (GtkSignalFunc) gtk_widget_destroy,
+		       &open_file_dialog);
 
    gtk_widget_show (filesel);
 
-   open_log_visible = TRUE;
+   open_file_dialog = filesel;
 }
 
 
