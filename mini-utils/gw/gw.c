@@ -86,6 +86,7 @@ static void clist_unselected_cb(GtkCList * clist, gint row,
 static void name_changed_cb(GtkEntry * entry, GtkCList * clist);
 static void command_changed_cb(GtkEntry * entry, GtkCList * clist);
 static void apply_prefs_cb(GnomePropertyBox * pb, gint page, GtkCList * data);
+static void help_prefs_cb(GnomePropertyBox * pb, gint page);
 static void add_defaults_cb(GtkButton * button, GtkCList * clist);
 
 static void load_actions(void); 
@@ -626,6 +627,9 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   gtk_signal_connect(GTK_OBJECT(pb), "destroy",
 		     GTK_SIGNAL_FUNC(gtk_widget_destroyed), &pb);
 
+  gtk_signal_connect(GTK_OBJECT(pb), "help",
+		     GTK_SIGNAL_FUNC(help_prefs_cb), &pb);
+
   gtk_signal_connect_object(GTK_OBJECT(name_entry), "changed",
                             GTK_SIGNAL_FUNC(gnome_property_box_changed),
                             GTK_OBJECT(pb));
@@ -806,6 +810,13 @@ static void apply_prefs_cb(GnomePropertyBox * pb, gint page, GtkCList * clist)
   save_actions();
   make_actions_popup();
 }
+
+void
+help_prefs_cb (GnomePropertyBox *property_box, gint page_num)
+{
+  GnomeHelpMenuEntry help_entry_prefs = { "gw", "prefs.html" };
+  gnome_help_display ( NULL, &help_entry_prefs);
+}      
 
 /*********************************************
   Non-GUI
