@@ -55,7 +55,6 @@ struct _Action {
                        %t     tty   */
 };
 
-
 /****************************
   Function prototypes
   ******************************/
@@ -70,6 +69,7 @@ static void save_cb(GtkWidget * w, gpointer data);
 static void preferences_cb(GtkWidget *w, gpointer data);
 
 static void reset_list(GtkCList * list);
+static gint list_clicked_cb(GtkCList * list, GdkEventButton * e);
 
 
 static void new_action_in_prefs(GtkCList * list, gchar * name, 
@@ -89,6 +89,9 @@ static void load_actions();
 static void clear_actions();
 static void save_actions(); 
 static void prepend_action(const gchar * key, const gchar * format);
+static void make_actions_popup();
+static void do_action_cb(GtkWidget * menuitem, Action * a);
+static void run_command(gchar * command);
 
 /***********************************
   Globals
@@ -101,8 +104,14 @@ static void prepend_action(const gchar * key, const gchar * format);
 static gint num_columns = 7;
 
 static GtkWidget * app;
+static GtkCList * main_clist;
 
 static GList * actions = NULL;
+
+static GtkMenu * actions_popup = NULL;
+
+static gint popup_x, popup_y;
+static gint tty_column, name_column;
 
 /*******************************
   Main
@@ -202,6 +211,10 @@ static void prepare_app()
                      FALSE, FALSE, GNOME_PAD_SMALL);
 
   clist = gtk_clist_new(num_columns);
+  main_clist = GTK_CLIST(clist);
+
+  gtk_widget_set_events(clist, GDK_BUTTON_PRESS_MASK);
+
   gtk_clist_set_border(GTK_CLIST(clist), GTK_SHADOW_OUT);
   gtk_clist_set_selection_mode(GTK_CLIST(clist), GTK_SELECTION_BROWSE);
   gtk_clist_set_policy(GTK_CLIST(clist), GTK_POLICY_AUTOMATIC,
@@ -215,7 +228,11 @@ static void prepare_app()
   gtk_signal_connect_object(GTK_OBJECT(reset_button), "clicked",
                             GTK_SIGNAL_FUNC(reset_list), GTK_OBJECT(clist));
 
+  gtk_signal_connect(GTK_OBJECT(clist), "button_press_event",
+                     GTK_SIGNAL_FUNC(list_clicked_cb), NULL);
+
   reset_list(GTK_CLIST(clist));
+  make_actions_popup();
 
   gtk_widget_show_all(app);
 }
@@ -271,6 +288,9 @@ static void reset_list(GtkCList * list)
   col = 0; 
   while ( col < num_columns ) { col_widths[col] = 0; ++col; }
 
+  /* Put in invalid values, so we know if they aren't found. */
+  tty_column = -1; name_column = -1;
+
   /* Start getting "w" information */
   memset(buffer, '\0', sizeof(buffer));
 
@@ -293,6 +313,16 @@ static void reset_list(GtkCList * list)
     token = strtok(buffer, WHITESPACE);
     while ( token ) {
       gtk_clist_set_column_title(list, col, token);
+      
+      /* See if this is the username or tty column.
+         Again, maybe not portable.*/
+      if ( strcasecmp(token, "user") == 0 ) {
+        name_column = col;
+      }
+      else if ( strcasecmp(token, "tty") == 0 ) {
+        tty_column = col;
+      }
+
       ++col;
       token = strtok(NULL, WHITESPACE);
     }
@@ -302,6 +332,7 @@ static void reset_list(GtkCList * list)
     /* Now parse each line of w's output and put each line in a row. */
     returned = fgets(buffer, bufsize, f);
     while ( returned != NULL ) {
+
       /* Have a line, parse it. */
       col = 0;
       token = strtok(buffer, WHITESPACE);
@@ -344,9 +375,28 @@ static void reset_list(GtkCList * list)
   gtk_clist_thaw(list);
 }
 
+
 /************************************
   Callbacks 
   *********************************/
+
+static gint list_clicked_cb(GtkCList * list, GdkEventButton * e)
+{
+  if (e->button == 1) {
+    /* Ignore button 1 */
+    return TRUE; 
+  }
+
+  /* don't change the CList selection. */
+  gtk_signal_emit_stop_by_name (GTK_OBJECT (list), "button_press_event");
+
+  popup_x = e->x; popup_y = e->y; /* gdouble to gint; ? */
+
+  gtk_menu_popup(actions_popup, NULL, NULL, NULL,
+                 NULL, e->button, time(NULL));
+  return TRUE; 
+}
+
 static gint delete_event_cb(GtkWidget * w, gpointer data)
 {
   gtk_main_quit();
@@ -584,6 +634,10 @@ static void clist_selected_cb(GtkCList * clist, gint row,
 
   gtk_widget_set_sensitive(GTK_WIDGET(name_entry), TRUE);
   gtk_widget_set_sensitive(GTK_WIDGET(command_entry), TRUE);
+
+  if ( ! gtk_clist_row_is_visible(clist, row) ) {
+    gtk_clist_moveto(clist, row, -1, 1.0, 0.0);
+  }
 }
 
 static void name_changed_cb(GtkEntry * entry, GtkCList * clist)
@@ -646,6 +700,7 @@ static void apply_prefs_cb(GnomePropertyBox * pb, gint page, GtkCList * clist)
   }
 
   save_actions();
+  make_actions_popup();
 }
 
 /*********************************************
@@ -718,8 +773,141 @@ static void save_actions()
   gnome_config_pop_prefix();
 }
 
+static void make_actions_popup()
+{
+  GtkWidget * mi;
+  GList * tmp;
+  Action * a;
+
+  if (actions_popup) {
+    gtk_widget_destroy(GTK_WIDGET(actions_popup));
+    actions_popup = NULL;
+  }
+  
+  if ( actions == NULL ) {
+    return; /* Don't make a menu, no actions */
+  }
+
+  actions_popup = GTK_MENU(gtk_menu_new());
+
+  tmp = actions;
+
+  while (tmp) {
+    a = (Action *)tmp->data;
+    
+    mi = gtk_menu_item_new_with_label(a->key);
+    gtk_signal_connect(GTK_OBJECT(mi), "activate",
+                       GTK_SIGNAL_FUNC(do_action_cb), a);
+    gtk_menu_append(actions_popup, mi);
+    gtk_widget_show(mi);
+ 
+    tmp = tmp->next;
+  }
+}
+
+static void do_action(gchar * format, gchar * name, gchar * tty)
+{
+  gchar * i = g_strdup(format);
+  gchar * sn_format;
+  gchar * strings[2]; /* Stuff to go in the format */
+  gint current_string = 0;
+  gchar * full_command;
+  gint command_length;
+
+  strings[0] = NULL; strings[1] = NULL;
+  sn_format = i;
+
+  while (*i) {
+    if ( *i == '%' ) {
+      if ( (*(i - 1)) == '\\' ) {
+        ++i;
+        continue; /* escaped, ignore it. */
+      }
+      ++i;
+      if ( *i == 'u' ) {
+        /* Username */
+        *i = 's'; /* sprintf format */
+        strings[current_string] = name;
+        ++current_string;
+      }
+      else if ( *i == 't' ) {
+        /* tty */
+        *i = 's'; 
+        strings[current_string] = tty;
+        ++current_string;
+      }
+    } /* if *i == '%' */
+    ++i;
+  }
+
+  command_length = strlen(format) + ( strings[0] ? strlen(strings[0]) : 0 )
+    + ( strings[1] ? strlen(strings[1]) : 0 ) + 5;
+
+  full_command = g_malloc(command_length);
+
+  if ( strings[0] && strings[1] ) {
+    g_snprintf(full_command, command_length, sn_format, 
+               strings[0], strings[1]);
+  }
+  else if ( strings[0] ) {
+    g_snprintf(full_command, command_length, sn_format, strings[0]);
+  }
+  else {
+    strncpy(full_command, sn_format, command_length);
+  }
+
+  g_free(sn_format);
+
+  g_print("Running: %s\n",full_command);
+  run_command(full_command);
+}
+
+static void do_action_cb(GtkWidget * menuitem, Action * a)
+{
+  gint row, col; /* col isn't actually used for now */
+  gchar * name = NULL;
+  gchar * tty = NULL;
+
+  gtk_clist_get_selection_info(main_clist,
+                               popup_x,
+                               popup_y,
+                               &row, &col);
+
+  if (name_column != -1) {
+    gtk_clist_get_text(main_clist, row, name_column, &name);
+  }
+  if (tty_column != -1) {
+    gtk_clist_get_text(main_clist, row, tty_column, &tty);
+  }
+
+  do_action(a->format, name, tty);
+}
 
 
+/******************************** 
+  Cut and pasted from gshutdown - arrgh. someone Unixy write the
+  gnome-util version, that forks and execs correctly or whatever
+  is supposed to happen!
+  *******************************/
 
+#include <unistd.h>
+#include <sys/types.h>
+#include <stdlib.h>
 
+static void run_command(gchar * command)
+{
+  pid_t new_pid;
+  
+  new_pid = fork();
 
+  switch (new_pid) {
+  case -1 :
+    g_warning("Command execution failed: fork failed");
+    break;
+  case 0 : 
+    _exit(system(command));
+    break;
+  default:
+    break;
+  }
+}

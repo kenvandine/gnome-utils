@@ -1,3 +1,10 @@
+Sun Apr 26 02:31:39 1998  Havoc Pennington  <hp@pobox.com>
+
+	* gw.c: OK, the configurable popup menus now work for me. You can
+	define a command with %u (user) and %t (tty) escape sequences,
+	then right-click on the user in the list to run the command with
+	their username and tty substituted. e.g. "xterm -e write %u %t".
+
 Sat Apr 25 17:51:43 1998  Havoc Pennington  <hp@pobox.com>
 
 	* gw.c: Added preferences/config for a feature which allows
