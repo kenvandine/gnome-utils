@@ -862,10 +862,12 @@ save_results_cb (GtkFileSelection *selector,
 	GtkListStore *store;
 	GtkTreeIter iter;
 	gint n_children, i;
+	gchar *utf8;
 	
 	store = interface.model;
 	
-	interface.save_results_file = (gchar *)gtk_file_selection_get_filename(GTK_FILE_SELECTION(interface.file_selector));
+	interface.save_results_file = (gchar *)gtk_file_selection_get_filename (GTK_FILE_SELECTION (interface.file_selector));
+	utf8 = g_filename_to_utf8 (interface.save_results_file, -1, NULL, NULL, NULL);
 	
 	if (g_file_test (interface.save_results_file, G_FILE_TEST_EXISTS)) {
 		
@@ -900,8 +902,7 @@ save_results_cb (GtkFileSelection *selector,
 			gchar     *text;
 			gint      response;
 				 
-			text = g_strdup_printf (_("The contents of the file \"%s\" will be lost."), 
-			                        interface.save_results_file);
+			text = g_strdup_printf (_("The contents of the file \"%s\" will be lost."), utf8);
 			
 			dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
 			                                     0 /* flags */,
@@ -950,8 +951,7 @@ save_results_cb (GtkFileSelection *selector,
 		gchar *error_msg;
 		
 		title_msg = g_strdup_printf (_("Could not save document \"%s\" to %s"), 
-		                             g_path_get_basename (interface.save_results_file),
-					     g_path_get_dirname (interface.save_results_file));
+		                             g_path_get_basename (utf8), g_path_get_dirname (utf8));
 					     
 		error_msg = g_strdup_printf ("%s",
 		_("You may not have write permissions to the document.  The document is not saved."));
@@ -970,6 +970,7 @@ save_results_cb (GtkFileSelection *selector,
 		g_free (title_msg);
 		g_free (error_msg);
 	}
+	g_free (utf8);
 }
 
 void
