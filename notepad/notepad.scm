@@ -178,7 +178,8 @@
 	  (set! about-widget (gnome-about (gettext "Gnome Notepad")
 					  "0.0"	; FIXME
 					  (gettext "Copyright (C) 1998 Free Software Foundation")
-					  "" ""
+					  (gettext "Gnome Notepad is a program for simple text editing")
+					  "" ; No pixmap for now.
 					  "Tom Tromey")))
       (gtk-widget-show about-widget))))
 
@@ -288,7 +289,7 @@
 
 (define (help-menu)
   (let ((menu (gtk-menu-new)))
-    (add-menu-item menu (gettext "About Gnome Notepad") about-box)
+    (add-menu-item menu (gettext "About") about-box)
     menu))
 
 (define (add-menu menu-bar menu label)
