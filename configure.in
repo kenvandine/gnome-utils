@@ -66,10 +66,10 @@ if test x$withval != x; then
 fi])
 if test x$withval != x; then
 	PAM_PREFIX_UNEXPANDED="$withval"
+	PAM_PREFIX=`eval echo $PAM_PREFIX_UNEXPANDED`
 else
-	PAM_PREFIX_UNEXPANDED="$sysconfdir"
+	PAM_PREFIX="\$(sysconfdir)"
 fi
-PAM_PREFIX=`eval echo $PAM_PREFIX_UNEXPANDED`
 AC_SUBST(PAM_PREFIX)
     
 AC_PATH_PROG(CONSOLE_HELPER,consolehelper,no)
