@@ -34,7 +34,7 @@ static int open_drive(int info)
 	char buf[64];
 	int fd;
 	
-	sprintf(buf,"/dev/hd%c", (info>>8)&0xFF);
+	g_snprintf(buf, sizeof (buf), "/dev/hd%c", (info>>8)&0xFF);
 	fd=open(buf, O_RDONLY);
 	if(fd==-1)
 	{
@@ -209,14 +209,15 @@ static char *make_buffers(struct hd_driveid *hd)
 		case 3:
 			n=_("(Dual Port Cache)");break;
 	}
-	sprintf(buf, "%dKb %s\n", hd->buf_size/2, n);
+	g_snprintf(buf, sizeof (buf), "%dKb %s\n", hd->buf_size/2, n);
 	return buf;
 }
 
 static char *make_geom(struct hd_driveid *hd)
 {
 	static char buf[256];
-	sprintf(buf,"%d/%d/%d", hd->cyls, hd->heads, hd->sectors);
+	g_snprintf(buf, sizeof (buf), "%d/%d/%d",
+		   hd->cyls, hd->heads, hd->sectors);
 	return buf;
 }
 
@@ -229,17 +230,18 @@ static void clist_add(GtkCList *cl, char *a, char *b, int blen)
 	ptr[0]=a;
 	ptr[1]=buf;
 	gtk_clist_append(cl, (gchar **)ptr);
+	g_print ("'%s' '%s'\n", a, buf);
 }
 
 static char *make_multi(int n)
 {
 	static char buf[128];
         if (n == 0)
-		sprintf(buf, _("No"));
+		g_snprintf(buf, sizeof (buf), _("No"));
         else if (n == 1)
-		sprintf(buf, _("Yes (%d sector)"), n);
+		g_snprintf(buf, sizeof (buf), _("Yes (%d sector)"), n);
         else
-		sprintf(buf, _("Yes (%d sectors)"), n);
+		g_snprintf(buf, sizeof (buf), _("Yes (%d sectors)"), n);
 	return buf;
 }
 
@@ -288,14 +290,16 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	gtk_widget_show(vbox);
 	gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD);
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook), vbox, gtk_label_new(drive));
-	cl=GTK_CLIST(gtk_clist_new(2));
+	cl=GTK_CLIST(gtk_clist_new (2));
+	gtk_clist_set_column_auto_resize (cl, 0, TRUE);
+	gtk_clist_set_column_auto_resize (cl, 1, TRUE);
+	gtk_clist_column_titles_hide (cl);
 	sw=gtk_scrolled_window_new (NULL, NULL);
 	gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (cl));
 	gtk_clist_set_selection_mode(cl, GTK_SELECTION_BROWSE);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (sw),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_clist_column_titles_passive(cl);
-	gtk_clist_set_column_width(cl, 0, 70);
 	gtk_clist_freeze(cl);
 	gtk_widget_set_usize(GTK_WIDGET(cl), -1, 200);
 	gtk_clist_set_shadow_type(cl, GTK_SHADOW_IN);
@@ -308,7 +312,10 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 		/* do config here */
 		clist_add(cl,_("Geometry"), make_geom(&hd), 255);
 		clist_add(cl,_("Cache"), make_buffers(&hd),255);
-		clist_add(cl,_("Status"), _(power_names[pmode]),255);
+		if (pmode >= 0 && pmode < sizeof (power_names) / sizeof (char *))
+			clist_add(cl,_("Status"), _(power_names[pmode]),255);
+		else
+			clist_add(cl,_("Status"), _("Unknown"),255);
 	}
 	else
 	{
@@ -316,7 +323,10 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	}
 	
 	clist_add(cl,_("DMA Mode"), dma?_("Enabled"):_("Disabled"),255);
-	clist_add(cl,_("IO Mode"), _(bit32_names[bits32]), 255);
+	if (bits32 >= 0 && bits32 < sizeof (bit32_names) / sizeof (char *))
+		clist_add(cl,_("IO Mode"), _(bit32_names[bits32]), 255);
+	else
+		clist_add(cl,_("IO Mode"), _("Unknown"), 255);
 	clist_add(cl,_("IRQ Unmask"), mask?_("Enabled"):_("Disabled"), 255);
 	clist_add(cl,_("Multisector"), make_multi(multi),255);
 	clist_add(cl,_("On Reset"), keepsetting?_("Keep settings"):_("Default"),255);
@@ -402,7 +412,7 @@ static int ide_parser(void)
 		char buf[128];
 		int fd;
 		
-		sprintf(buf, "/dev/hd%c", i);
+		g_snprintf(buf, sizeof (buf), "/dev/hd%c", i);
 		fd=open(buf,O_RDONLY);
 		if(fd==-1)
 		{

@@ -1,3 +1,11 @@
+Fri Jun 29 21:24:48 2001  George Lebl <jirka@5z.com>
+
+	* idetool.c: replace all sprintfs with snprintfs just because I'm a
+	  paranoid wanker, also put in some buffer size checking for values
+	  that are read in.  In addition fix #9756 with the horizontal size
+	  being weird.  Basically we use the autosize flag on both columns
+	  instead of a set size.
+
 2000-11-19 John Fleck <jfleck@inkstain.net>
 	
 	* updated doc/C/Makefile.am to install sgml in help directory
