@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: iPACKAGE VERSION\n"
-"POT-Creation-Date: 2002-05-14 02:37+0100\n"
+"POT-Creation-Date: 2002-05-20 10:28+0100\n"
 "PO-Revision-Date: 2002-02-25 01:08+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -75,7 +75,7 @@ msgstr ""
 
 #. Translator credits
 #: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:47 gdictsrc/gdict-about.c:43
-#: gsearchtool/gsearchtool.c:1953 logview/about.c:52
+#: gsearchtool/gsearchtool.c:1995 logview/about.c:52
 #: meat-grinder/meat-grinder.c:474
 msgid "translator_credits"
 msgstr ""
@@ -575,7 +575,7 @@ msgstr "Masukkan Nombor Liang"
 msgid "Accessories"
 msgstr "Aksesori"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.h:2
+#: gdictsrc/GNOME_GDictApplet.server.in.h:2 gdictsrc/gdict-applet.c:247
 msgid "Dictionary Lookup"
 msgstr "Carian Kamus"
 
@@ -661,8 +661,8 @@ msgstr "Rentetan tidak dijumpai"
 msgid "Find"
 msgstr "Car_i"
 
-#: gdictsrc/gdict-app.c:476 gsearchtool/gsearchtool.c:1458
-#: gsearchtool/gsearchtool.c:1791
+#: gdictsrc/gdict-app.c:476 gsearchtool/gsearchtool.c:1500
+#: gsearchtool/gsearchtool.c:1833
 msgid "_Find"
 msgstr "_Cari"
 
@@ -722,14 +722,10 @@ msgstr "Masukkan Perkataan atau pilih satu dari senarai dibawah"
 msgid "Look Up for a Word"
 msgstr "Cari Perkataan"
 
-#: gdictsrc/gdict-applet.c:239
+#: gdictsrc/gdict-applet.c:240
 #, fuzzy
 msgid "_Lookup"
 msgstr "Cari"
-
-#: gdictsrc/gdict-applet.c:245
-msgid "Dictionary Applet"
-msgstr "Aplet Kamus"
 
 #: gdictsrc/gdict-defbox.c:643 gdictsrc/gdict-speller.c:488
 #, c-format
@@ -1192,43 +1188,43 @@ msgstr "Fail adalah kosong"
 msgid "Matches regular expression"
 msgstr "Padankan penyataan regular (regexp)"
 
-#: gsearchtool/gsearchtool.c:260 gsearchtool/gsearchtool.c:906
+#: gsearchtool/gsearchtool.c:273 gsearchtool/gsearchtool.c:942
 msgid "Start folder does not exist."
 msgstr "Folder permulaan tidak wujud."
 
-#: gsearchtool/gsearchtool.c:477
+#: gsearchtool/gsearchtool.c:498
 msgid "today at %-I:%M %p"
 msgstr "hari ini pada %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:479
+#: gsearchtool/gsearchtool.c:500
 msgid "yesterday at %-I:%M %p"
 msgstr "semalam pada %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:481 gsearchtool/gsearchtool.c:483
+#: gsearchtool/gsearchtool.c:502 gsearchtool/gsearchtool.c:504
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:496
+#: gsearchtool/gsearchtool.c:517
 msgid "%Y%m%d%H%M%S"
 msgstr "%Y%m%d%H%M%S"
 
-#: gsearchtool/gsearchtool.c:511
+#: gsearchtool/gsearchtool.c:532
 msgid "folder"
 msgstr "folder"
 
-#: gsearchtool/gsearchtool.c:513
+#: gsearchtool/gsearchtool.c:534
 msgid "program"
 msgstr "program"
 
-#: gsearchtool/gsearchtool.c:515
+#: gsearchtool/gsearchtool.c:536
 msgid "symbolic link"
 msgstr "pautan simbolik"
 
-#: gsearchtool/gsearchtool.c:641
+#: gsearchtool/gsearchtool.c:662
 msgid "No Files Found."
 msgstr "Tiada Fail Dijumpai."
 
-#: gsearchtool/gsearchtool.c:719
+#: gsearchtool/gsearchtool.c:741
 msgid ""
 "Cannot perform the search.\n"
 "The Bourne shell was not found\n"
@@ -1238,12 +1234,12 @@ msgstr ""
 " Bash tidak dijumpai\n"
 "Ianya biasanya dipasang sebagai /bin/sh atau /usr/bin/sh."
 
-#: gsearchtool/gsearchtool.c:734
+#: gsearchtool/gsearchtool.c:756
 #, fuzzy
 msgid "Searching..."
 msgstr "Menyemak ejaan..."
 
-#: gsearchtool/gsearchtool.c:834
+#: gsearchtool/gsearchtool.c:870
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1251,26 +1247,26 @@ msgstr ""
 "\n"
 "... Terlalu banyak ralat untuk dipaparkan ..."
 
-#: gsearchtool/gsearchtool.c:845
+#: gsearchtool/gsearchtool.c:881
 #, fuzzy
 msgid "No files found"
 msgstr "Tiada Fail Dijumpai."
 
-#: gsearchtool/gsearchtool.c:848
+#: gsearchtool/gsearchtool.c:884
 #, fuzzy
 msgid "One file found"
 msgstr "Tiada Fail Dijumpai."
 
-#: gsearchtool/gsearchtool.c:850
+#: gsearchtool/gsearchtool.c:886
 #, fuzzy, c-format
 msgid "%d files found"
 msgstr "Tiada Fail Dijumpai."
 
-#: gsearchtool/gsearchtool.c:917 gsearchtool/gsearchtool.c:1622
+#: gsearchtool/gsearchtool.c:953 gsearchtool/gsearchtool.c:1664
 msgid "Cannot perform the search. Please specify a search criteria."
 msgstr "Tak dapat melakukan pencarian. Sila nyatakan kriteris pencarian."
 
-#: gsearchtool/gsearchtool.c:934 gsearchtool/gsearchtool.c:1643
+#: gsearchtool/gsearchtool.c:970 gsearchtool/gsearchtool.c:1685
 msgid ""
 "A search is already running.  Please wait for the search to complete or "
 "cancel it."
@@ -1278,20 +1274,20 @@ msgstr ""
 "Pencarian sudah terlaksana. Sila tunggu hingga pencarian selesai atau "
 "batalkan ia."
 
-#: gsearchtool/gsearchtool.c:967
+#: gsearchtool/gsearchtool.c:1004
 msgid "Start folder does not exist"
 msgstr "Folder permulaan tidak wujud"
 
-#: gsearchtool/gsearchtool.c:982
+#: gsearchtool/gsearchtool.c:1019
 msgid "Cannot show the search command line. Please specify a search criteria."
 msgstr ""
 "Tak dapat memapar arahan baris pencarian. Sila nyatakan kriteria pencarian."
 
-#: gsearchtool/gsearchtool.c:986
+#: gsearchtool/gsearchtool.c:1023
 msgid "Search Command Line"
 msgstr "Arahan Baris Pencarian"
 
-#: gsearchtool/gsearchtool.c:1004
+#: gsearchtool/gsearchtool.c:1041
 msgid ""
 "This is the command line that can be used to execute this search\n"
 "from the console.\n"
@@ -1303,196 +1299,196 @@ msgstr ""
 "\n"
 "_Arahan:"
 
-#: gsearchtool/gsearchtool.c:1024
+#: gsearchtool/gsearchtool.c:1062
 msgid "Command"
 msgstr "Arahan"
 
-#: gsearchtool/gsearchtool.c:1025
+#: gsearchtool/gsearchtool.c:1063
 msgid "Command Line Entry"
 msgstr "Kemasukan Arahan Baris"
 
-#: gsearchtool/gsearchtool.c:1025
+#: gsearchtool/gsearchtool.c:1063
 msgid "Use this command line to execute the search from console"
 msgstr "Guna arahan baris ini  untuk melaksanakan pencarian daripada konsol"
 
-#: gsearchtool/gsearchtool.c:1130
+#: gsearchtool/gsearchtool.c:1171
 msgid "No viewer available for this mime type."
 msgstr "Tiada pelihat yang ada untuk jenis mime ini"
 
-#: gsearchtool/gsearchtool.c:1220
+#: gsearchtool/gsearchtool.c:1262
 msgid "Entry changed called for a non entry option!"
 msgstr "Kemasukkan diubah dipanggil untuk opsyen bukan kemasukkan!"
 
-#: gsearchtool/gsearchtool.c:1290
+#: gsearchtool/gsearchtool.c:1332
 msgid "Search Rule Value Entry"
 msgstr "Kemasukan Nilai Tatacara Pencarian"
 
-#: gsearchtool/gsearchtool.c:1290
+#: gsearchtool/gsearchtool.c:1332
 msgid "Enter a value for search rule"
 msgstr "Masukkan nilai bagi tatacara pencarian"
 
-#: gsearchtool/gsearchtool.c:1305
+#: gsearchtool/gsearchtool.c:1347
 msgid "Enabled"
 msgstr "Dihidupkan"
 
-#: gsearchtool/gsearchtool.c:1313
+#: gsearchtool/gsearchtool.c:1355
 msgid "Toggle On/Off to enable/disable the rule"
 msgstr "Toggle On/Off untuk menghidup/matikan tatacara"
 
-#: gsearchtool/gsearchtool.c:1321
+#: gsearchtool/gsearchtool.c:1363
 msgid "Click to Remove the Rule"
 msgstr "Klik untuk membuang Tatacara"
 
-#: gsearchtool/gsearchtool.c:1367 gsearchtool/gsearchtool.c:1745
+#: gsearchtool/gsearchtool.c:1409 gsearchtool/gsearchtool.c:1787
 msgid "S_tarting in folder:"
 msgstr "Ber_mula pada folder"
 
-#: gsearchtool/gsearchtool.c:1371 gsearchtool/gsearchtool.c:1751
+#: gsearchtool/gsearchtool.c:1413 gsearchtool/gsearchtool.c:1793
 msgid "Browse"
 msgstr "Lungsur"
 
-#: gsearchtool/gsearchtool.c:1379 gsearchtool/gsearchtool.c:1380
-#: gsearchtool/gsearchtool.c:1760 gsearchtool/gsearchtool.c:1761
+#: gsearchtool/gsearchtool.c:1421 gsearchtool/gsearchtool.c:1422
+#: gsearchtool/gsearchtool.c:1802 gsearchtool/gsearchtool.c:1803
 msgid "Starting folder entry"
 msgstr "Kemasukan folder permulaan"
 
-#: gsearchtool/gsearchtool.c:1379 gsearchtool/gsearchtool.c:1380
-#: gsearchtool/gsearchtool.c:1760 gsearchtool/gsearchtool.c:1761
+#: gsearchtool/gsearchtool.c:1421 gsearchtool/gsearchtool.c:1422
+#: gsearchtool/gsearchtool.c:1802 gsearchtool/gsearchtool.c:1803
 msgid "Enter the folder name where you want to start the search"
 msgstr "Masukkan nama folder di mana anda ingin memulakan pencarian"
 
-#: gsearchtool/gsearchtool.c:1401
+#: gsearchtool/gsearchtool.c:1443
 msgid "Rules:"
 msgstr "Tatacara:"
 
-#: gsearchtool/gsearchtool.c:1421
+#: gsearchtool/gsearchtool.c:1463
 msgid "A_dd Rule:"
 msgstr "_Tambah Tatacara:"
 
-#: gsearchtool/gsearchtool.c:1430
+#: gsearchtool/gsearchtool.c:1472
 msgid "Search Rules Menu"
 msgstr "Menu Tatacara Pencarian"
 
-#: gsearchtool/gsearchtool.c:1430
+#: gsearchtool/gsearchtool.c:1472
 msgid "Select a search rule from the menu"
 msgstr "Pilih tatacara pencarian dari menu"
 
-#: gsearchtool/gsearchtool.c:1473
+#: gsearchtool/gsearchtool.c:1515
 msgid "Click to Add a Rule"
 msgstr "Klik untuk Menambah Tatacara"
 
-#: gsearchtool/gsearchtool.c:1474
+#: gsearchtool/gsearchtool.c:1516
 msgid "Click to Start the Search"
 msgstr "Klik untuk mula mencari"
 
-#: gsearchtool/gsearchtool.c:1475
+#: gsearchtool/gsearchtool.c:1517
 msgid "Click to Stop the Search"
 msgstr "Klik untuk hentikan pencarian"
 
-#: gsearchtool/gsearchtool.c:1480 gsearchtool/gsearchtool.c:1812
+#: gsearchtool/gsearchtool.c:1522 gsearchtool/gsearchtool.c:1854
 msgid "S_earch Results"
 msgstr "_Hasil Pencarian"
 
-#: gsearchtool/gsearchtool.c:1520 gsearchtool/gsearchtool.c:1852
+#: gsearchtool/gsearchtool.c:1562 gsearchtool/gsearchtool.c:1894
 msgid "Name"
 msgstr "Nama"
 
-#: gsearchtool/gsearchtool.c:1542 gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1584 gsearchtool/gsearchtool.c:1916
 msgid "Folder"
 msgstr "Folder"
 
-#: gsearchtool/gsearchtool.c:1554 gsearchtool/gsearchtool.c:1886
+#: gsearchtool/gsearchtool.c:1596 gsearchtool/gsearchtool.c:1928
 msgid "Size"
 msgstr "Saiz"
 
-#: gsearchtool/gsearchtool.c:1566 gsearchtool/gsearchtool.c:1898
+#: gsearchtool/gsearchtool.c:1608 gsearchtool/gsearchtool.c:1940
 msgid "Type"
 msgstr "Jenis"
 
-#: gsearchtool/gsearchtool.c:1577 gsearchtool/gsearchtool.c:1909
+#: gsearchtool/gsearchtool.c:1619 gsearchtool/gsearchtool.c:1951
 msgid "Date Modified"
 msgstr "Tarikh Diubahsuai"
 
-#: gsearchtool/gsearchtool.c:1721
+#: gsearchtool/gsearchtool.c:1763
 msgid "Find files _named:"
 msgstr "Cari _nama fail:"
 
-#: gsearchtool/gsearchtool.c:1736 gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1778 gsearchtool/gsearchtool.c:1779
 msgid "File Name Entry"
 msgstr "Kemasukan Nama Fail"
 
-#: gsearchtool/gsearchtool.c:1736 gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1778 gsearchtool/gsearchtool.c:1779
 msgid "Enter the file name you want to search"
 msgstr "Masukkan nama fail untuk dicari"
 
-#: gsearchtool/gsearchtool.c:1806
+#: gsearchtool/gsearchtool.c:1848
 msgid "Click to Start the search"
 msgstr "Klik untuk memulakan pencarian"
 
-#: gsearchtool/gsearchtool.c:1807
+#: gsearchtool/gsearchtool.c:1849
 msgid "Click to Stop the search"
 msgstr "Klik untuk hentikan pencarian"
 
-#: gsearchtool/gsearchtool.c:1929
+#: gsearchtool/gsearchtool.c:1971
 msgid "Si_mple"
 msgstr "_Mudah"
 
-#: gsearchtool/gsearchtool.c:1931
+#: gsearchtool/gsearchtool.c:1973
 msgid "Ad_vanced"
 msgstr "_Lanjutan"
 
-#: gsearchtool/gsearchtool.c:1969
+#: gsearchtool/gsearchtool.c:2011
 #: gsearchtool/help/es/gsearchtool.desktop.in.h:1
 msgid "GNOME Search Tool"
 msgstr "Radas pencarian GNOME"
 
-#: gsearchtool/gsearchtool.c:1970
+#: gsearchtool/gsearchtool.c:2012
 msgid "(C) 1998,2002 the Free Software Foundation"
 msgstr "(C) 1998,2002 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:1971
+#: gsearchtool/gsearchtool.c:2013
 msgid "Frontend to the unix find/locate commands"
 msgstr "Antaramuka untuk arahan unix find/locate"
 
-#: gsearchtool/gsearchtool.c:2010
+#: gsearchtool/gsearchtool.c:2052
 #, c-format
 msgid "File %s already exists. Overwrite?"
 msgstr "Fail %s tersedia ada. Tindih?"
 
-#: gsearchtool/gsearchtool.c:2045
+#: gsearchtool/gsearchtool.c:2087
 msgid "Cannot save the results file."
 msgstr "Tak dapat menyimpan fail hasil."
 
-#: gsearchtool/gsearchtool.c:2052 meat-grinder/meat-grinder.c:652
+#: gsearchtool/gsearchtool.c:2094 meat-grinder/meat-grinder.c:652
 msgid "Save Results"
 msgstr "Simpan Hasil"
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2150
 msgid "S_how Command..."
 msgstr "Papar Ara_han..."
 
-#: gsearchtool/gsearchtool.c:2109
+#: gsearchtool/gsearchtool.c:2151
 msgid "Show the command used to perform the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2112
+#: gsearchtool/gsearchtool.c:2154
 msgid "Save Results _As..."
 msgstr "Simpan Hasil Seb_agai..."
 
-#: gsearchtool/gsearchtool.c:2113
+#: gsearchtool/gsearchtool.c:2155
 #, fuzzy
 msgid "Save the search results"
 msgstr "_Hasil Pencarian"
 
-#: gsearchtool/gsearchtool.c:2128
+#: gsearchtool/gsearchtool.c:2170
 msgid "Sear_ch"
 msgstr "_Cari"
 
-#: gsearchtool/gsearchtool.c:2150
+#: gsearchtool/gsearchtool.c:2192
 msgid "Cannot initialize bonobo."
 msgstr "Gagal menginitialisasikan Bonobo."
 
-#: gsearchtool/gsearchtool.c:2154
+#: gsearchtool/gsearchtool.c:2196
 msgid "Search Tool"
 msgstr "Radas pencarian"
 
@@ -1619,39 +1615,44 @@ msgstr "Takwim"
 msgid "fixed 12"
 msgstr "fixed 12"
 
-#: logview/config.c:35
+#. Translators: It seems for asian languages the Bold seems not to work
+#: logview/config.c:36
 msgid "fixed Bold 12"
 msgstr "fixed Bold 12"
 
-#: logview/config.c:36
+#: logview/config.c:37
 msgid "fixed 10"
 msgstr "fixed 10"
 
-#: logview/config.c:37
+#. Translators: It seems for asian languages the Bold seems not to work
+#: logview/config.c:39
 msgid "fixed Bold 8"
 msgstr "fixed Bold 8"
 
-#: logview/config.c:39
+#. Translators: translate to fonts that appear well in the log viewer,
+#. * for example for asian languages, helvetica seems not to work
+#. * well for those
+#: logview/config.c:44
 msgid "Helvetica 14"
 msgstr "Helvetica 14"
 
-#: logview/config.c:40
+#: logview/config.c:45
 msgid "Helvetica Bold 14"
 msgstr "Helvetica Bold 14"
 
-#: logview/config.c:41
+#: logview/config.c:46
 msgid "Helvetica 12"
 msgstr "Helvetica 12"
 
-#: logview/config.c:42
+#: logview/config.c:47
 msgid "Helvetica Bold 12"
 msgstr "Helvetica Bold 12"
 
-#: logview/config.c:43
+#: logview/config.c:48
 msgid "Helvetica 10"
 msgstr "Helvetica 10"
 
-#: logview/config.c:44
+#: logview/config.c:49
 msgid "Helvetica Bold 10"
 msgstr "Helvetica Bold 10"
 
@@ -1677,39 +1678,47 @@ msgstr "Log Sistem"
 msgid "View the system log file"
 msgstr "Lihat fail log sistem"
 
-#: logview/info.c:83
+#: logview/info.c:80
 msgid "Log stats"
 msgstr "Stat log"
 
-#: logview/info.c:176
+#. Note: we use a real translated string that will appear below to gather
+#. * the length, that way we'll get semi correct results with a lot more
+#. * fonts
+#: logview/info.c:193 logview/info.c:195 logview/zoom.c:220 logview/zoom.c:223
+#: logview/zoom.c:271
+msgid "Date:"
+msgstr "Tarikh:"
+
+#: logview/info.c:204
 msgid "Log information"
 msgstr "Maklumat Log"
 
-#: logview/info.c:204
+#: logview/info.c:232
 msgid "Log:"
 msgstr "Log:"
 
-#: logview/info.c:207
+#: logview/info.c:235
 msgid "Size:"
 msgstr "Saiz:"
 
-#: logview/info.c:210
+#: logview/info.c:238
 msgid "Modified:"
 msgstr "Diubahsuai:"
 
-#: logview/info.c:213
+#: logview/info.c:241
 msgid "Start date:"
 msgstr "Tarikh mula:"
 
-#: logview/info.c:216
+#: logview/info.c:244
 msgid "Last date:"
 msgstr "Tarikh akhir:"
 
-#: logview/info.c:219
+#: logview/info.c:247
 msgid "Num. lines:"
 msgstr "Bil. Baris:"
 
-#: logview/info.c:237
+#: logview/info.c:265
 #, c-format
 msgid "%ld bytes"
 msgstr "%ld byte"
@@ -1763,42 +1772,41 @@ msgid "December"
 msgstr "Disember"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:510
+#: logview/log_repaint.c:511
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:631
+#: logview/log_repaint.c:638
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:741
+#: logview/log_repaint.c:760
 msgid "%B %e"
 msgstr "%B %e"
 
-#: logview/logrtns.c:200
+#: logview/logrtns.c:206
 msgid "Not enough memory!\n"
 msgstr "Tak cukup memori!\n"
 
-#: logview/logrtns.c:208
+#: logview/logrtns.c:214
 msgid "Out of memory!\n"
 msgstr "Kehabisan memori!\n"
 
-#: logview/logrtns.c:234
+#: logview/logrtns.c:240
 msgid "Unable to open logfile!\n"
 msgstr "Tak dapat membuka faillog!\n"
 
-#: logview/logrtns.c:289
+#: logview/logrtns.c:295
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s bukanlah fail biasa."
 
-#: logview/logrtns.c:297
+#: logview/logrtns.c:303
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1807,17 +1815,17 @@ msgstr ""
 "%s tak boleh dibaca oleh pengguna. Samada laksanakan program sebagai root "
 "atau tanya pent. sistem untuk menukar keizinan pada fail itu."
 
-#: logview/logrtns.c:314
+#: logview/logrtns.c:320
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s tak dapat dibuka."
 
-#: logview/logrtns.c:344 logview/logrtns.c:353
+#: logview/logrtns.c:350 logview/logrtns.c:359
 #, c-format
 msgid "%s not a log file."
 msgstr "%s bukanlah fail log."
 
-#: logview/logrtns.c:779 logview/logrtns.c:810 logview/logrtns.c:941
+#: logview/logrtns.c:787 logview/logrtns.c:818 logview/logrtns.c:949
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: kehabisan memori"
 
@@ -1880,7 +1888,7 @@ msgstr "Maklumat perihal logview"
 msgid "_Log"
 msgstr "Log:"
 
-#: logview/logview.c:331
+#: logview/logview.c:334
 msgid "No log files to open"
 msgstr "Tiada fail log untuk dibuka"
 
@@ -1889,23 +1897,27 @@ msgstr "Tiada fail log untuk dibuka"
 msgid "System Log Viewer"
 msgstr "Pelihat Log Sistem"
 
-#: logview/logview.c:454
+#: logview/logview.c:452
 msgid "Filename: "
 msgstr "Namafail: "
 
-#: logview/logview.c:475
+#: logview/logview.c:473
 msgid "Last Modified: "
 msgstr "Tarikh Diubahsuai: "
 
-#: logview/logview.c:723 logview/logview.c:778
+#: logview/logview.c:721 logview/logview.c:776
 msgid "Too many open logs. Close one and try again"
 msgstr "Terlalu banyak log dibuka. Tutup satu dan cuba lagi"
 
-#: logview/logview.c:791
+#: logview/logview.c:789
 msgid "Open new logfile"
 msgstr "Buka faillog baru"
 
-#: logview/misc.c:55
+#: logview/misc.c:56
+msgid "Cannot load required fonts, cannot continue"
+msgstr ""
+
+#: logview/misc.c:91
 #, c-format
 msgid "Error: [%s]\n"
 msgstr "Ralat: [%s]\n"
@@ -1970,33 +1982,29 @@ msgstr "Kolum"
 msgid "Zoom view"
 msgstr "Paparan Zoom"
 
-#: logview/zoom.c:205
+#: logview/zoom.c:233
 #, c-format
 msgid "Log line detail for %s"
 msgstr "Huraian baris log untuk %s"
 
-#: logview/zoom.c:208
+#: logview/zoom.c:236
 msgid "Log line detail for <No log loaded>"
 msgstr "Huraian baris log untuk <tiada log dimuatkan>"
 
-#: logview/zoom.c:243
-msgid "Date:"
-msgstr "Tarikh:"
-
-#: logview/zoom.c:247
+#: logview/zoom.c:275
 msgid "Process:"
 msgstr "Proses:"
 
-#: logview/zoom.c:250
+#: logview/zoom.c:278
 msgid "Message:"
 msgstr "Mesej:"
 
-#: logview/zoom.c:253
+#: logview/zoom.c:281
 msgid "Description:"
 msgstr "Penerangan:"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:278
+#: logview/zoom.c:306
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -2146,6 +2154,9 @@ msgid ""
 msgstr ""
 "Tak dapat menjumpai program arkib (tar)!\n"
 " Program ini digunakan untuk mencipta arkib."
+
+#~ msgid "Dictionary Applet"
+#~ msgstr "Aplet Kamus"
 
 #~ msgid "Find:"
 #~ msgstr "Cari:"

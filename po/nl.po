@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2002-05-14 02:37+0100\n"
+"POT-Creation-Date: 2002-05-20 10:28+0100\n"
 "PO-Revision-Date: 2002-05-03 09:35-0000\n"
 "Last-Translator: Huib Kleinhout <huib@stack.nl>\n"
 "Language-Team: Dutch <NL@li.org>\n"
@@ -85,7 +85,7 @@ msgstr ""
 
 #. Translator credits
 #: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:47 gdictsrc/gdict-about.c:43
-#: gsearchtool/gsearchtool.c:1953 logview/about.c:52
+#: gsearchtool/gsearchtool.c:1995 logview/about.c:52
 #: meat-grinder/meat-grinder.c:474
 msgid "translator_credits"
 msgstr ""
@@ -605,7 +605,7 @@ msgid "Accessories"
 msgstr "Accessoires"
 
 #
-#: gdictsrc/GNOME_GDictApplet.server.in.h:2
+#: gdictsrc/GNOME_GDictApplet.server.in.h:2 gdictsrc/gdict-applet.c:247
 msgid "Dictionary Lookup"
 msgstr "Zoekopdracht woordenboek"
 
@@ -692,8 +692,8 @@ msgstr "Tekst niet gevonden"
 msgid "Find"
 msgstr "Zoek"
 
-#: gdictsrc/gdict-app.c:476 gsearchtool/gsearchtool.c:1458
-#: gsearchtool/gsearchtool.c:1791
+#: gdictsrc/gdict-app.c:476 gsearchtool/gsearchtool.c:1500
+#: gsearchtool/gsearchtool.c:1833
 #, fuzzy
 msgid "_Find"
 msgstr "Zoek:"
@@ -757,15 +757,10 @@ msgstr "Voer een Woord in of selecteer het van de onderstaande lijst"
 msgid "Look Up for a Word"
 msgstr "Zoek een Woord op"
 
-#: gdictsrc/gdict-applet.c:239
+#: gdictsrc/gdict-applet.c:240
 #, fuzzy
 msgid "_Lookup"
 msgstr "Zoekopdracht voltooid"
-
-#
-#: gdictsrc/gdict-applet.c:245
-msgid "Dictionary Applet"
-msgstr "Woordenboek Applet"
 
 #: gdictsrc/gdict-defbox.c:643 gdictsrc/gdict-speller.c:488
 #, c-format
@@ -1231,44 +1226,44 @@ msgstr "Bestand is leeg"
 msgid "Matches regular expression"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:260 gsearchtool/gsearchtool.c:906
+#: gsearchtool/gsearchtool.c:273 gsearchtool/gsearchtool.c:942
 #, fuzzy
 msgid "Start folder does not exist."
 msgstr "Beginmap bestaat niet."
 
-#: gsearchtool/gsearchtool.c:477
+#: gsearchtool/gsearchtool.c:498
 msgid "today at %-I:%M %p"
 msgstr "vandaag om %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:479
+#: gsearchtool/gsearchtool.c:500
 msgid "yesterday at %-I:%M %p"
 msgstr "gisteren om %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:481 gsearchtool/gsearchtool.c:483
+#: gsearchtool/gsearchtool.c:502 gsearchtool/gsearchtool.c:504
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:496
+#: gsearchtool/gsearchtool.c:517
 msgid "%Y%m%d%H%M%S"
 msgstr "%Y%m%d%H%M%S"
 
-#: gsearchtool/gsearchtool.c:511
+#: gsearchtool/gsearchtool.c:532
 msgid "folder"
 msgstr "map"
 
-#: gsearchtool/gsearchtool.c:513
+#: gsearchtool/gsearchtool.c:534
 msgid "program"
 msgstr "programma"
 
-#: gsearchtool/gsearchtool.c:515
+#: gsearchtool/gsearchtool.c:536
 msgid "symbolic link"
 msgstr "symbolische verwijzingen"
 
-#: gsearchtool/gsearchtool.c:641
+#: gsearchtool/gsearchtool.c:662
 msgid "No Files Found."
 msgstr "Geen Bestanden Gevonden."
 
-#: gsearchtool/gsearchtool.c:719
+#: gsearchtool/gsearchtool.c:741
 msgid ""
 "Cannot perform the search.\n"
 "The Bourne shell was not found\n"
@@ -1278,12 +1273,12 @@ msgstr ""
 "De Bourne shell werd niet gevonden\n"
 "Deze staat normaal geinstalleerd in /bin/sh of /usr/bin/sh."
 
-#: gsearchtool/gsearchtool.c:734
+#: gsearchtool/gsearchtool.c:756
 #, fuzzy
 msgid "Searching..."
 msgstr "Spellingscontrole..."
 
-#: gsearchtool/gsearchtool.c:834
+#: gsearchtool/gsearchtool.c:870
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1291,47 +1286,47 @@ msgstr ""
 "\n"
 "... Te veel fouten om weer te geven ..."
 
-#: gsearchtool/gsearchtool.c:845
+#: gsearchtool/gsearchtool.c:881
 #, fuzzy
 msgid "No files found"
 msgstr "Geen Bestanden Gevonden."
 
-#: gsearchtool/gsearchtool.c:848
+#: gsearchtool/gsearchtool.c:884
 #, fuzzy
 msgid "One file found"
 msgstr "Geen Bestanden Gevonden."
 
-#: gsearchtool/gsearchtool.c:850
+#: gsearchtool/gsearchtool.c:886
 #, fuzzy, c-format
 msgid "%d files found"
 msgstr "Geen Bestanden Gevonden."
 
-#: gsearchtool/gsearchtool.c:917 gsearchtool/gsearchtool.c:1622
+#: gsearchtool/gsearchtool.c:953 gsearchtool/gsearchtool.c:1664
 msgid "Cannot perform the search. Please specify a search criteria."
 msgstr "Kan zoekopdracht niet uitvoeren. Geef aub een zoek criteria op."
 
-#: gsearchtool/gsearchtool.c:934 gsearchtool/gsearchtool.c:1643
+#: gsearchtool/gsearchtool.c:970 gsearchtool/gsearchtool.c:1685
 msgid ""
 "A search is already running.  Please wait for the search to complete or "
 "cancel it."
 msgstr ""
 "Er is al een zoekopdracht bezig. Wacht to deze is voltooid of annuleer deze."
 
-#: gsearchtool/gsearchtool.c:967
+#: gsearchtool/gsearchtool.c:1004
 #, fuzzy
 msgid "Start folder does not exist"
 msgstr "Beginmap bestaat niet"
 
-#: gsearchtool/gsearchtool.c:982
+#: gsearchtool/gsearchtool.c:1019
 msgid "Cannot show the search command line. Please specify a search criteria."
 msgstr "Kan de zoek opdrachtregel niet tonen. Geef aub een zoekcriteria op."
 
 #
-#: gsearchtool/gsearchtool.c:986
+#: gsearchtool/gsearchtool.c:1023
 msgid "Search Command Line"
 msgstr "Zoek opdrachtregel"
 
-#: gsearchtool/gsearchtool.c:1004
+#: gsearchtool/gsearchtool.c:1041
 #, fuzzy
 msgid ""
 "This is the command line that can be used to execute this search\n"
@@ -1344,208 +1339,208 @@ msgstr ""
 "\n"
 "Opdracht:"
 
-#: gsearchtool/gsearchtool.c:1024
+#: gsearchtool/gsearchtool.c:1062
 msgid "Command"
 msgstr "Opdracht"
 
-#: gsearchtool/gsearchtool.c:1025
+#: gsearchtool/gsearchtool.c:1063
 msgid "Command Line Entry"
 msgstr "Opdracht Regel Invoerveld"
 
-#: gsearchtool/gsearchtool.c:1025
+#: gsearchtool/gsearchtool.c:1063
 msgid "Use this command line to execute the search from console"
 msgstr ""
 "Gebruik deze opdrachtregel om de zoekactie vanaf het console uit te voeren"
 
 #
-#: gsearchtool/gsearchtool.c:1130
+#: gsearchtool/gsearchtool.c:1171
 msgid "No viewer available for this mime type."
 msgstr "Geen commando voor dit mime-type"
 
-#: gsearchtool/gsearchtool.c:1220
+#: gsearchtool/gsearchtool.c:1262
 msgid "Entry changed called for a non entry option!"
 msgstr "Entry changed called for a non entry option!"
 
-#: gsearchtool/gsearchtool.c:1290
+#: gsearchtool/gsearchtool.c:1332
 msgid "Search Rule Value Entry"
 msgstr "Zoek Regel Waarde Invoer"
 
-#: gsearchtool/gsearchtool.c:1290
+#: gsearchtool/gsearchtool.c:1332
 msgid "Enter a value for search rule"
 msgstr "Voer een waarde in voor de zoek-regel"
 
-#: gsearchtool/gsearchtool.c:1305
+#: gsearchtool/gsearchtool.c:1347
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
-#: gsearchtool/gsearchtool.c:1313
+#: gsearchtool/gsearchtool.c:1355
 msgid "Toggle On/Off to enable/disable the rule"
 msgstr "Schakel aan/uit in om de regel wel of niet in werking te laten treden"
 
-#: gsearchtool/gsearchtool.c:1321
+#: gsearchtool/gsearchtool.c:1363
 msgid "Click to Remove the Rule"
 msgstr "Klik om de Regel te Verwijderen."
 
-#: gsearchtool/gsearchtool.c:1367 gsearchtool/gsearchtool.c:1745
+#: gsearchtool/gsearchtool.c:1409 gsearchtool/gsearchtool.c:1787
 msgid "S_tarting in folder:"
 msgstr "Begin in map:"
 
-#: gsearchtool/gsearchtool.c:1371 gsearchtool/gsearchtool.c:1751
+#: gsearchtool/gsearchtool.c:1413 gsearchtool/gsearchtool.c:1793
 msgid "Browse"
 msgstr "Blader"
 
-#: gsearchtool/gsearchtool.c:1379 gsearchtool/gsearchtool.c:1380
-#: gsearchtool/gsearchtool.c:1760 gsearchtool/gsearchtool.c:1761
+#: gsearchtool/gsearchtool.c:1421 gsearchtool/gsearchtool.c:1422
+#: gsearchtool/gsearchtool.c:1802 gsearchtool/gsearchtool.c:1803
 msgid "Starting folder entry"
 msgstr "Beginmap invoer"
 
-#: gsearchtool/gsearchtool.c:1379 gsearchtool/gsearchtool.c:1380
-#: gsearchtool/gsearchtool.c:1760 gsearchtool/gsearchtool.c:1761
+#: gsearchtool/gsearchtool.c:1421 gsearchtool/gsearchtool.c:1422
+#: gsearchtool/gsearchtool.c:1802 gsearchtool/gsearchtool.c:1803
 msgid "Enter the folder name where you want to start the search"
 msgstr "Voer de mapnaam in waar je het zoeken wil laten beginnen"
 
-#: gsearchtool/gsearchtool.c:1401
+#: gsearchtool/gsearchtool.c:1443
 msgid "Rules:"
 msgstr "Regels:"
 
-#: gsearchtool/gsearchtool.c:1421
+#: gsearchtool/gsearchtool.c:1463
 msgid "A_dd Rule:"
 msgstr "Voeg regel toe:"
 
-#: gsearchtool/gsearchtool.c:1430
+#: gsearchtool/gsearchtool.c:1472
 msgid "Search Rules Menu"
 msgstr "Zoek Regels Menu"
 
-#: gsearchtool/gsearchtool.c:1430
+#: gsearchtool/gsearchtool.c:1472
 msgid "Select a search rule from the menu"
 msgstr "Selecteer een zoek-regel van het menu"
 
-#: gsearchtool/gsearchtool.c:1473
+#: gsearchtool/gsearchtool.c:1515
 msgid "Click to Add a Rule"
 msgstr "Klik om een Regel Toe te Voegen"
 
-#: gsearchtool/gsearchtool.c:1474
+#: gsearchtool/gsearchtool.c:1516
 msgid "Click to Start the Search"
 msgstr "Klik om te Beginnen met Zoeken"
 
-#: gsearchtool/gsearchtool.c:1475
+#: gsearchtool/gsearchtool.c:1517
 msgid "Click to Stop the Search"
 msgstr "Klik om het zoeken te Stoppen"
 
-#: gsearchtool/gsearchtool.c:1480 gsearchtool/gsearchtool.c:1812
+#: gsearchtool/gsearchtool.c:1522 gsearchtool/gsearchtool.c:1854
 #, fuzzy
 msgid "S_earch Results"
 msgstr "Zoek _Resultaten"
 
-#: gsearchtool/gsearchtool.c:1520 gsearchtool/gsearchtool.c:1852
+#: gsearchtool/gsearchtool.c:1562 gsearchtool/gsearchtool.c:1894
 msgid "Name"
 msgstr "Naam"
 
 #
-#: gsearchtool/gsearchtool.c:1542 gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1584 gsearchtool/gsearchtool.c:1916
 msgid "Folder"
 msgstr "Map"
 
 #
-#: gsearchtool/gsearchtool.c:1554 gsearchtool/gsearchtool.c:1886
+#: gsearchtool/gsearchtool.c:1596 gsearchtool/gsearchtool.c:1928
 msgid "Size"
 msgstr "Grootte"
 
-#: gsearchtool/gsearchtool.c:1566 gsearchtool/gsearchtool.c:1898
+#: gsearchtool/gsearchtool.c:1608 gsearchtool/gsearchtool.c:1940
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1577 gsearchtool/gsearchtool.c:1909
+#: gsearchtool/gsearchtool.c:1619 gsearchtool/gsearchtool.c:1951
 msgid "Date Modified"
 msgstr "Datum Veranderd"
 
-#: gsearchtool/gsearchtool.c:1721
+#: gsearchtool/gsearchtool.c:1763
 msgid "Find files _named:"
 msgstr "Vind bestanden genaamd:"
 
-#: gsearchtool/gsearchtool.c:1736 gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1778 gsearchtool/gsearchtool.c:1779
 msgid "File Name Entry"
 msgstr "Bestandsnaam Invoer"
 
-#: gsearchtool/gsearchtool.c:1736 gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1778 gsearchtool/gsearchtool.c:1779
 msgid "Enter the file name you want to search"
 msgstr "Voer de bestandsnaam in die je wilt zoeken"
 
-#: gsearchtool/gsearchtool.c:1806
+#: gsearchtool/gsearchtool.c:1848
 msgid "Click to Start the search"
 msgstr "Klik om te Beginnen met zoeken"
 
-#: gsearchtool/gsearchtool.c:1807
+#: gsearchtool/gsearchtool.c:1849
 msgid "Click to Stop the search"
 msgstr "Klik om het zoeken te Stoppen"
 
 #
-#: gsearchtool/gsearchtool.c:1929
+#: gsearchtool/gsearchtool.c:1971
 msgid "Si_mple"
 msgstr "Si_mpel"
 
-#: gsearchtool/gsearchtool.c:1931
+#: gsearchtool/gsearchtool.c:1973
 msgid "Ad_vanced"
 msgstr "Uitgebreid"
 
-#: gsearchtool/gsearchtool.c:1969
+#: gsearchtool/gsearchtool.c:2011
 #: gsearchtool/help/es/gsearchtool.desktop.in.h:1
 msgid "GNOME Search Tool"
 msgstr "Gnome Zoekhulpmiddel"
 
-#: gsearchtool/gsearchtool.c:1970
+#: gsearchtool/gsearchtool.c:2012
 #, fuzzy
 msgid "(C) 1998,2002 the Free Software Foundation"
 msgstr "(C) 1998, 2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:1971
+#: gsearchtool/gsearchtool.c:2013
 msgid "Frontend to the unix find/locate commands"
 msgstr "Frontend voor de Unix find/grep/locate opdrachten"
 
-#: gsearchtool/gsearchtool.c:2010
+#: gsearchtool/gsearchtool.c:2052
 #, c-format
 msgid "File %s already exists. Overwrite?"
 msgstr "Bestand met naam %s bestaat al. Overschrijven?"
 
-#: gsearchtool/gsearchtool.c:2045
+#: gsearchtool/gsearchtool.c:2087
 msgid "Cannot save the results file."
 msgstr "Kan resultaten bestand niet bewaren"
 
 #
-#: gsearchtool/gsearchtool.c:2052 meat-grinder/meat-grinder.c:652
+#: gsearchtool/gsearchtool.c:2094 meat-grinder/meat-grinder.c:652
 msgid "Save Results"
 msgstr "Bewaar Resultaten"
 
 #
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2150
 #, fuzzy
 msgid "S_how Command..."
 msgstr "Toon commando"
 
-#: gsearchtool/gsearchtool.c:2109
+#: gsearchtool/gsearchtool.c:2151
 msgid "Show the command used to perform the search"
 msgstr ""
 
 #
-#: gsearchtool/gsearchtool.c:2112
+#: gsearchtool/gsearchtool.c:2154
 msgid "Save Results _As..."
 msgstr "Bewaar Resultaten als..."
 
-#: gsearchtool/gsearchtool.c:2113
+#: gsearchtool/gsearchtool.c:2155
 #, fuzzy
 msgid "Save the search results"
 msgstr "Zoek _Resultaten"
 
-#: gsearchtool/gsearchtool.c:2128
+#: gsearchtool/gsearchtool.c:2170
 #, fuzzy
 msgid "Sear_ch"
 msgstr "Gnome Zoekhulpmiddel"
 
-#: gsearchtool/gsearchtool.c:2150
+#: gsearchtool/gsearchtool.c:2192
 msgid "Cannot initialize bonobo."
 msgstr "Can bonobo niet initialiseren."
 
-#: gsearchtool/gsearchtool.c:2154
+#: gsearchtool/gsearchtool.c:2196
 msgid "Search Tool"
 msgstr "Gnome Zoekhulpmiddel"
 
@@ -1678,39 +1673,44 @@ msgstr "Kalender"
 msgid "fixed 12"
 msgstr "fixed 12"
 
-#: logview/config.c:35
+#. Translators: It seems for asian languages the Bold seems not to work
+#: logview/config.c:36
 msgid "fixed Bold 12"
 msgstr "fixed Vetgedrukt 12"
 
-#: logview/config.c:36
+#: logview/config.c:37
 msgid "fixed 10"
 msgstr "fixed 10"
 
-#: logview/config.c:37
+#. Translators: It seems for asian languages the Bold seems not to work
+#: logview/config.c:39
 msgid "fixed Bold 8"
 msgstr "fixed Vetgedrukt 8"
 
-#: logview/config.c:39
+#. Translators: translate to fonts that appear well in the log viewer,
+#. * for example for asian languages, helvetica seems not to work
+#. * well for those
+#: logview/config.c:44
 msgid "Helvetica 14"
 msgstr "Helvetica 14"
 
-#: logview/config.c:40
+#: logview/config.c:45
 msgid "Helvetica Bold 14"
 msgstr "Helvetica Vetgedrukt 14"
 
-#: logview/config.c:41
+#: logview/config.c:46
 msgid "Helvetica 12"
 msgstr "Helvetica 12"
 
-#: logview/config.c:42
+#: logview/config.c:47
 msgid "Helvetica Bold 12"
 msgstr "Helvetica Vetgedrukt 12"
 
-#: logview/config.c:43
+#: logview/config.c:48
 msgid "Helvetica 10"
 msgstr "Helvetica 10"
 
-#: logview/config.c:44
+#: logview/config.c:49
 msgid "Helvetica Bold 10"
 msgstr "Helvetica Vetgedrukt 10"
 
@@ -1736,43 +1736,52 @@ msgstr "Systeemlog"
 msgid "View the system log file"
 msgstr "Bekijk systeem log"
 
-#: logview/info.c:83
+#: logview/info.c:80
 msgid "Log stats"
 msgstr "Log statistieken"
 
 #
-#: logview/info.c:176
+#. Note: we use a real translated string that will appear below to gather
+#. * the length, that way we'll get semi correct results with a lot more
+#. * fonts
+#: logview/info.c:193 logview/info.c:195 logview/zoom.c:220 logview/zoom.c:223
+#: logview/zoom.c:271
+msgid "Date:"
+msgstr "Datum:"
+
+#
+#: logview/info.c:204
 msgid "Log information"
 msgstr "Log informatie"
 
-#: logview/info.c:204
+#: logview/info.c:232
 msgid "Log:"
 msgstr "Log:"
 
 #
-#: logview/info.c:207
+#: logview/info.c:235
 msgid "Size:"
 msgstr "Grootte:"
 
-#: logview/info.c:210
+#: logview/info.c:238
 msgid "Modified:"
 msgstr "Veranderd:"
 
 #
-#: logview/info.c:213
+#: logview/info.c:241
 msgid "Start date:"
 msgstr "Start datum:"
 
 #
-#: logview/info.c:216
+#: logview/info.c:244
 msgid "Last date:"
 msgstr "Laatste datum:"
 
-#: logview/info.c:219
+#: logview/info.c:247
 msgid "Num. lines:"
 msgstr "Regelnummers:"
 
-#: logview/info.c:237
+#: logview/info.c:265
 #, c-format
 msgid "%ld bytes"
 msgstr "%ld bytes"
@@ -1828,43 +1837,42 @@ msgid "December"
 msgstr "December"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:510
+#: logview/log_repaint.c:511
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:631
+#: logview/log_repaint.c:638
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:741
+#: logview/log_repaint.c:760
 msgid "%B %e"
 msgstr "%B %e"
 
-#: logview/logrtns.c:200
+#: logview/logrtns.c:206
 msgid "Not enough memory!\n"
 msgstr "Niet genoeg geheugen!\n"
 
-#: logview/logrtns.c:208
+#: logview/logrtns.c:214
 msgid "Out of memory!\n"
 msgstr "Geen geheugen meer over!\n"
 
 #
-#: logview/logrtns.c:234
+#: logview/logrtns.c:240
 msgid "Unable to open logfile!\n"
 msgstr "Kan logfile bestand niet openen!\n"
 
-#: logview/logrtns.c:289
+#: logview/logrtns.c:295
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s is geen normaal bestand."
 
-#: logview/logrtns.c:297
+#: logview/logrtns.c:303
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1873,17 +1881,17 @@ msgstr ""
 "%s is niet te lezen voor de gebruiker. Draai het programma als root of vraag "
 "de beheerder om de rechten te veranderen."
 
-#: logview/logrtns.c:314
+#: logview/logrtns.c:320
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s kan niet worden geopend"
 
-#: logview/logrtns.c:344 logview/logrtns.c:353
+#: logview/logrtns.c:350 logview/logrtns.c:359
 #, c-format
 msgid "%s not a log file."
 msgstr "%s is geen logfile"
 
-#: logview/logrtns.c:779 logview/logrtns.c:810 logview/logrtns.c:941
+#: logview/logrtns.c:787 logview/logrtns.c:818 logview/logrtns.c:949
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: Geen geheugen meer over!"
 
@@ -1949,7 +1957,7 @@ msgid "_Log"
 msgstr "Log:"
 
 #
-#: logview/logview.c:331
+#: logview/logview.c:334
 msgid "No log files to open"
 msgstr "Geen open logbestanden"
 
@@ -1959,25 +1967,29 @@ msgid "System Log Viewer"
 msgstr "Systeem Log Bekijker"
 
 #
-#: logview/logview.c:454
+#: logview/logview.c:452
 msgid "Filename: "
 msgstr "Bestandsnaam:"
 
-#: logview/logview.c:475
+#: logview/logview.c:473
 #, fuzzy
 msgid "Last Modified: "
 msgstr "Datum Veranderd"
 
-#: logview/logview.c:723 logview/logview.c:778
+#: logview/logview.c:721 logview/logview.c:776
 msgid "Too many open logs. Close one and try again"
 msgstr "Teveel open logfiles.... Sluit er 1 en probeer het opnieuw"
 
 #
-#: logview/logview.c:791
+#: logview/logview.c:789
 msgid "Open new logfile"
 msgstr "Open nieuw logbestand"
 
-#: logview/misc.c:55
+#: logview/misc.c:56
+msgid "Cannot load required fonts, cannot continue"
+msgstr ""
+
+#: logview/misc.c:91
 #, c-format
 msgid "Error: [%s]\n"
 msgstr "Fout: [%s]\n"
@@ -2046,36 +2058,31 @@ msgstr "Kolommen"
 msgid "Zoom view"
 msgstr "In/Uit Zoomen"
 
-#: logview/zoom.c:205
+#: logview/zoom.c:233
 #, c-format
 msgid "Log line detail for %s"
 msgstr "Log lijn details voor %s"
 
-#: logview/zoom.c:208
+#: logview/zoom.c:236
 msgid "Log line detail for <No log loaded>"
 msgstr "Log lijn details voor <geen logfile geladen>"
 
 #
-#: logview/zoom.c:243
-msgid "Date:"
-msgstr "Datum:"
-
-#
-#: logview/zoom.c:247
+#: logview/zoom.c:275
 msgid "Process:"
 msgstr "Process:"
 
-#: logview/zoom.c:250
+#: logview/zoom.c:278
 msgid "Message:"
 msgstr "Boodschap:"
 
 #
-#: logview/zoom.c:253
+#: logview/zoom.c:281
 msgid "Description:"
 msgstr "Beschrijving:"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:278
+#: logview/zoom.c:306
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -2230,6 +2237,10 @@ msgid ""
 msgstr ""
 "Kan archiveer programma (tar) niet vinden!\n"
 "Dit is het programma dat gebruikt wordt om archieven te maken."
+
+#
+#~ msgid "Dictionary Applet"
+#~ msgstr "Woordenboek Applet"
 
 #~ msgid "Find:"
 #~ msgstr "Zoek:"
