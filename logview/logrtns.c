@@ -240,8 +240,8 @@ isLogFile (char *filename)
    if ((fstatus.st_mode & S_IRUSR) == 0)
    {
       g_snprintf (buff, sizeof (buff),
-		  _("%s is not user readable. Probably has read-only "
-      "permission. Either run the program as root or ask the sysadmin to "
+		  _("%s is not user readable. "
+      "Either run the program as root or ask the sysadmin to "
       "change the permissions on the file."), filename);
       ShowErrMessage (buff);
       return FALSE;
