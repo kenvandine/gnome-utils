@@ -1,15 +1,75 @@
-Gnome-Utils
------------
+GNOME Utilities - 
+=================
+Version: 1.104.0
 
-    For trouble free building, please ensure that the following list
-of requirements is met on your machine before attempting to build.
-    Requirements:
-    -------------
-    gnome-libs    >= 1.0.59
-    libglade      >= 0.11
-    libgtop       >= 1.0
+GNOME Utilities for the GNOME 2.0 desktop contains the following -
 
-    To ensure things work properly if you are on a FSST system (redhat)
-then ./configure --prefix=/usr --sysconfdir=/etc
+	gnome-system-log	[logview]
+	gnome-character-map	[gcharmap]
+	gnome-calculator	[gcalc]
+	gnome-search-tool	[gseachtool]
+	gnome-dictionary	[gdictsrc]
+	archive-generator	[meatgrinder]
+	gfloppy			[gfloppy]
+	gdialog			[gdialog]	
+
+Requirements -
+
+	libgnome	>= 1.116.0
+	libgnomeui	>= 1.116.1
+	libglade	>= 1.99.2
+	libbonoboui	>= 1.116.0
+	libgnomevfs	>= 1.9.3
+	libpanel-applet >= 1.5.8
+
+	
+The following configure flags can be used -
+
+	--enable-gdialog=no/yes		Builds gdialog [default=no]
+	--enable-console-helper=no/yes  Enable PAM console helper [default=no]
+
+Installation -
+
+See the file 'INSTALL'
+
+How to report bugs -
+
+Bugs should be reported to the GNOME bug tracking system under the product
+gnome-utils. It is available at http://bugzilla.gnome.org. 
+
+In the report please include the following information -
+
+	Operating system and version
+	For Linux, version of the C library
+	How to reproduce the bug if possible
+	If the bug was a crash, include the exact text that was printed out
+	A stacktrace where possible [see below]
+
+How to get a stack trace -
+
+If the crash is reproducible, it is possible to get a stack trace and 
+attach it to the bug report. The following steps are used to obtain a 
+stack trace -
+	
+	Run the program in gdb [the GNU debugger] or any other debugger
+		ie. gdb gnome-calculator
+	Start the program
+		ie. (gdb) run
+	Reproduce the crash and the program will exit to the gdb prompt
+	Get the back trace
+		ie. (gdb) bt
+
+Once you have the backtrace, copy and paste this either into the 
+'Comments' field or attach a file with it included.
 
 
+Patches -
+
+Patches should be submitted to bugzilla.gnome.org or emailed to one of
+the people listed in the MAINTAINERS file. If using bugzilla, attach
+the patch to a new bug report [or preferably, check to see if there is
+already a bug report that corresponds to your patch]. Bug reports 
+containing patches should include the 'PATCH' keyword.
+
+Patches should be created using the unified diff form.
+	ie. cvs diff -u file-to-be-patched.c > patch.diff

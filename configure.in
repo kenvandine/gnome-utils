@@ -99,13 +99,13 @@ dnl Check to see if the user wants gdialog. Turn it off by default
 dnl due to lack of maintainance and somewhat bad documentation
 
 AC_ARG_ENABLE(gdialog, 
-  [  --enable-gdialog			Build gdialog [default=no]],
+  [  --enable-gdialog=[no/yes]		Build gdialog [ default=no ]],
    enable_gdialog="$enableval", enable_gdialog=no)
 
 AM_CONDITIONAL(BUILD_GDIALOG, test "$enable_gdialog" = yes)
 
 AC_ARG_ENABLE(console-helper,
-  [  --enable-console-helper=[no/yes]  	Enable PAM console helper [default =no]],,
+  [  --enable-console-helper=[no/yes]  	Enable PAM console helper [ default=no ]],,
   enable_console_helper=no)
 
 dnl ***********
