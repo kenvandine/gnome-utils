@@ -29,6 +29,7 @@ gtt_SOURCES = \
 	clist.c
 
 gtt_LDADD = \
+	$(GNOME_LIBDIR)         \
 	$(GTKXMHTML_LIBS)	\
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
