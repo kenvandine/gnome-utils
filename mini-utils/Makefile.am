@@ -1,2 +1,2 @@
 
-SUBDIRS = gshutdown gsu guname gw grun
+SUBDIRS = gshutdown guname gw grun grun-minimalist

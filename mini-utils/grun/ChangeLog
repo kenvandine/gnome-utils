@@ -1,0 +1,23 @@
+Wed May 13 00:47:35 1998  Havoc Pennington  <hp@pobox.com>
+
+	* grun.c: Total rewrite, history lost due to grun-minimalist
+	move-around. gnome-dialog close signal turns out to be broken
+	still. Dammit.
+
+Thu Apr 30 23:57:05 1998  Havoc Pennington  <hp@pobox.com>
+
+	* grun.c: Took out all the key press handling, since 
+	GnomeDialog now does this correctly.
+
+Thu Apr 30 03:13:39 1998  Havoc Pennington  <hp@pobox.com>
+
+	* grun.c: Connect signal *after* creating widget. Init i18n.
+	#include <config.h>
+
+Thu Apr 30 03:03:58 1998  Havoc Pennington  <hp@pobox.com>
+
+	* grun.c: Gnomified, uses a whole dialog instead of just an entry.
+	Took out broken accelerator table stuff. Once GnomeDialog's
+	accelerators are fixed the key_press_event stuff can also come
+	out.
+
