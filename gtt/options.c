@@ -42,7 +42,7 @@ typedef struct _OptionsDlg {
 
 	GtkEntry *command;
 	GtkEntry *command_null;
-	GtkEntry *logfilename;
+	GnomeFileEntry *logfilename;
 	GtkWidget *logfilename_l;
 	GtkCheckButton *logfileuse;
 	GtkEntry *logfileminsecs;
@@ -85,7 +85,8 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 
 	/* log file options */
 	config_logfile_use = GTK_TOGGLE_BUTTON(odlg->logfileuse)->active;
-	ENTRY_TO_CHAR(odlg->logfilename, config_logfile_name);
+	ENTRY_TO_CHAR(GTK_ENTRY(gnome_file_entry_gtk_entry(odlg->logfilename)),
+		      config_logfile_name);
 	config_logfile_min_secs = atoi(gtk_entry_get_text(odlg->logfileminsecs));
 
         /* toolbar */
@@ -290,7 +291,7 @@ static void toolbar_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_help = GTK_CHECK_BUTTON(w);
 
-	w = gtk_check_button_new_with_label(_("Show `Exit'"));
+	w = gtk_check_button_new_with_label(_("Show `Quit'"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_exit = GTK_CHECK_BUTTON(w);
@@ -374,10 +375,10 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_start(hbox, w, FALSE, FALSE, 0);
 	odlg->logfilename_l = w;
-	w = gtk_entry_new();
+	w = gnome_file_entry_new("logfilename", "Logfile");
 	gtk_widget_show(w);
 	gtk_box_pack_end(hbox, w, FALSE, FALSE, 0);
-	odlg->logfilename = GTK_ENTRY(w);
+	odlg->logfilename = GNOME_FILE_ENTRY(w);
 
 	hbox = GTK_BOX(gtk_hbox_new(FALSE, 5));
 	gtk_widget_show(GTK_WIDGET(hbox));
@@ -414,7 +415,7 @@ static void options_dialog_set(OptionsDlg *odlg)
 	if (config_command) gtk_entry_set_text(odlg->command, config_command);
 	if (config_command_null) gtk_entry_set_text(odlg->command_null, config_command_null);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->logfileuse), config_logfile_use);
-	if (config_logfile_name) gtk_entry_set_text(odlg->logfilename, config_logfile_name);
+	if (config_logfile_name) gtk_entry_set_text(GTK_ENTRY(gnome_file_entry_gtk_entry(odlg->logfilename)), config_logfile_name);
 	sprintf(s, "%d", config_logfile_min_secs);
 	gtk_entry_set_text(odlg->logfileminsecs, s);
 

@@ -273,15 +273,3 @@ menu_clear_daily_counter(GtkWidget *w, gpointer data)
         clist_update_label(cur_proj);
 }
 
-
-
-
-#ifdef DEBUG
-void
-menu_test(GtkWidget *w, gpointer data)
-{
-        void toolbar_test(void);
-
-        toolbar_test();
-}
-#endif /* DEBUG */

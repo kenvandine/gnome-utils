@@ -24,23 +24,10 @@
 #include "gtt.h"
 
 
-#include "tb_timer.xpm"
-#include "tb_timer_stopped.xpm"
-
-/* #include "tb_preferences-2.xpm" */
-#include "tb_unknown.xpm"
-#include "tb_exit.xpm"
-
 
 
 typedef struct _MyToggle MyToggle;
 typedef struct _MyToolbar MyToolbar;
-
-struct _MyToggle {
-        GtkWidget *button;
-        GnomePixmap *pmap1, *pmap2, *cur_pmap;
-        GtkBox *vbox;
-};
 
 struct _MyToolbar {
         GtkToolbar *tbar;
@@ -48,26 +35,10 @@ struct _MyToolbar {
         GtkWidget *cut, *copy, *paste; /* to make them sensible
                                           as needed */
         GtkWidget *prop_w;
-        MyToggle *timer;
+	GnomeStockPixmapWidget *timer;
 };
 
 MyToolbar *mytbar = NULL;
-
-
-
-static GtkWidget *
-add_button(GtkToolbar *tbar, char *text, char *tt_text,
-           gchar **pmap_data, GtkSignalFunc sigfunc)
-{
-	GtkWidget *w, *pixmap;
-
-	pixmap = gnome_pixmap_new_from_xpm_d(pmap_data);
-
-        w = gtk_toolbar_append_item(tbar, text, tt_text, NULL, pixmap,
-                                    sigfunc, NULL);
-
-	return w;
-}
 
 
 
@@ -84,42 +55,16 @@ add_stock_button(GtkToolbar *tbar, char *text, char *tt_text,
 }
 
 
-static MyToggle *
+static GnomeStockPixmapWidget *
 add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
-                  gchar **pmap1, gchar **pmap2, GtkSignalFunc sigfunc)
+                 char *icon, GtkSignalFunc sigfunc)
 {
-	MyToggle *w;
+	GtkWidget *w;
 
-        w = g_malloc(sizeof(MyToggle));
-
-	w->pmap1 = GNOME_PIXMAP(gnome_pixmap_new_from_xpm_d(pmap1));
-	gtk_widget_ref(GTK_WIDGET(w->pmap1));
-	w->pmap2 = GNOME_PIXMAP(gnome_pixmap_new_from_xpm_d(pmap2));
-	gtk_widget_ref(GTK_WIDGET(w->pmap2));
-
-        gtk_widget_show(GTK_WIDGET(w->pmap1));
-        gtk_widget_show(GTK_WIDGET(w->pmap2));
-        w->vbox = (GtkBox *)gtk_vbox_new(FALSE, 0);
-        gtk_widget_show((GtkWidget *)(w->vbox));
-        gtk_box_pack_start(w->vbox, GTK_WIDGET(w->pmap1), FALSE, FALSE, 0);
-        w->button = gtk_toolbar_append_item(tbar, text, tt_text, NULL,
-                                            GTK_WIDGET(w->vbox),
-                                            sigfunc, NULL);
-        w->cur_pmap = w->pmap1;
-
-	return w;
-}
-
-
-
-static void
-my_set_icon(GtkToolbar *toolbar, MyToggle *toggle, GnomePixmap *pmap)
-{
-        if (toggle->cur_pmap == pmap) return;
-
-        gtk_container_remove(GTK_CONTAINER(toggle->vbox), GTK_WIDGET(toggle->cur_pmap));
-        gtk_box_pack_start(toggle->vbox, GTK_WIDGET(pmap), FALSE, FALSE, 0);
-        toggle->cur_pmap = pmap;
+	w = gnome_stock_pixmap_widget((GtkWidget *)window, icon);
+	gtk_toolbar_append_item(tbar, text, tt_text, NULL, w,
+				sigfunc, NULL);
+	return GNOME_STOCK_PIXMAP_WIDGET(w);
 }
 
 
@@ -150,10 +95,10 @@ toolbar_set_states(void)
         if (mytbar->prop_w)
                 gtk_widget_set_sensitive(mytbar->prop_w, (cur_proj != NULL));
         if (mytbar->timer)
-                my_set_icon(mytbar->tbar, mytbar->timer,
-                            (main_timer != 0) ?
-                            mytbar->timer->pmap1 :
-                            mytbar->timer->pmap2);
+		gnome_stock_pixmap_widget_set_icon(mytbar->timer,
+						   (main_timer != 0) ?
+						   GNOME_STOCK_PIXMAP_TIMER :
+						   GNOME_STOCK_PIXMAP_TIMER_STOP);
 
 	if ((config_show_tb_icons) && (config_show_tb_texts)) {
 		tb_style = GTK_TOOLBAR_BOTH;
@@ -231,11 +176,10 @@ build_toolbar(void)
                                                   GNOME_STOCK_PIXMAP_PROPERTIES,
 						  (GtkSignalFunc)menu_properties);
         if (config_show_tb_timer)
-                mytbar->timer = add_toggle_button(mytbar->tbar, _("Timer"),
-                                                  _("Start/Stop Timer"),
-                                                  tb_timer_xpm,
-                                                  tb_timer_stopped_xpm,
-                                                  (GtkSignalFunc)menu_toggle_timer);
+		mytbar->timer = add_toggle_button(mytbar->tbar, _("Timer"),
+						  _("Start/Stop Timer"),
+						  GNOME_STOCK_PIXMAP_TIMER,
+						  (GtkSignalFunc)menu_toggle_timer);
         if (((config_show_tb_timer) || (config_show_tb_prop)) &&
             ((config_show_tb_pref) || (config_show_tb_help) ||
              (config_show_tb_exit)))
@@ -246,14 +190,14 @@ build_toolbar(void)
 				 GNOME_STOCK_PIXMAP_PREFERENCES,
 				 (GtkSignalFunc)menu_options);
         if (config_show_tb_help) {
-		add_button(mytbar->tbar, _("Manual"), _("Manual..."),
-			   tb_unknown_xpm,
-			   (GtkSignalFunc)toolbar_help);
+		add_stock_button(mytbar->tbar, _("Manual"), _("Manual..."),
+				 GNOME_STOCK_PIXMAP_HELP,
+				 (GtkSignalFunc)toolbar_help);
         }
         if (config_show_tb_exit) {
-                add_button(mytbar->tbar, _("Exit"), _("Exit GTimeTracker"),
-                           tb_exit_xpm,
-                           (GtkSignalFunc)quit_app);
+                add_stock_button(mytbar->tbar, _("Quit"), _("Quit GTimeTracker"),
+				 GNOME_STOCK_PIXMAP_QUIT,
+				 (GtkSignalFunc)quit_app);
         }
 	return GTK_WIDGET(mytbar->tbar);
 }
@@ -285,23 +229,3 @@ update_toolbar_sections(void)
 }
 
 
-
-#ifdef DEBUG
-void
-toolbar_test(void)
-{
-#ifdef WANT_STOCK
-        static shown = 1;
-
-        if (!mytbar) return;
-        if (!mytbar->prop_w) return;
-        if (shown) {
-                gtk_widget_hide(mytbar->prop_w);
-                shown = 0;
-        } else {
-                gtk_widget_show(mytbar->prop_w);
-                shown = 1;
-        }
-#endif
-}
-#endif /* DEBUG */
