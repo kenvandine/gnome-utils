@@ -35,7 +35,7 @@ static int log_write(time_t t, char *s)
 	FILE *f;
 	char date[20];
 
-	g_return_val_if_fail(config_logfile_name != NULL, 0);
+	if (!config_logfile_name) return 1;
 	g_return_val_if_fail(s != NULL, 0);
 	f = fopen(config_logfile_name, "at");
 	g_return_val_if_fail(f != NULL, 0);

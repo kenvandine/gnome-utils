@@ -417,9 +417,10 @@ project_list_load(char *fname)
         int i, num;
         project *proj;
         int _n, _f, _c, _p, _t, _o, _h, _e;
+	gboolean got_default;
 
-        gnome_config_get_int_with_default(GTT"Misc/NumProjects=0", &i);
-        if (i) {
+        gnome_config_get_int_with_default(GTT"Misc/NumProjects=0", &got_default);
+        if (got_default) {
                 return project_list_load_old(fname);
         }
         project_list_destroy();

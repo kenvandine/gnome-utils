@@ -30,40 +30,35 @@ select_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 
         if (!event) return;
         if (event->button != 3) {
-                if (cur_proj) {
-                        if (cur_proj->row == row) {
-                                cur_proj_set(NULL);
-                                return;
-                        }
-                }
                 cur_proj_set(gtk_clist_get_row_data(clist, row));
                 return;
         }
-        /* make sure, project keeps selection */
-        if (gtk_clist_get_row_data(clist, row) == cur_proj)
-                gtk_clist_select_row(GTK_CLIST(glist), row, column);
+	/* TODO: workaround -- should be removed when the bug in clist is fixed.
+	 * possibly unselect cur_proj */
+	if ((gtk_clist_get_row_data(clist, row) != cur_proj) && (cur_proj))
+		gtk_clist_unselect_row(GTK_CLIST(glist), cur_proj->row, column);
         cur_proj_set(gtk_clist_get_row_data(clist, row));
         menu = menus_get_popup();
         gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, 0);
 }
 
 
-/* TODO: maybe I can skip this alltogether - have to test it a bit */
-#undef NEED_UNSEL
 
-#ifdef NEED_UNSEL
 static void
 unselect_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 {
-#if 0
-        g_print("unselect_row: row=%d, col=%d, button=%d\n",
-                row, column, (event)?event->button:-1);
-#endif
-        if (gtk_clist_get_row_data(clist, row) != cur_proj) return;
-        /* g_return_if_fail(cur_proj == NULL); */
-        cur_proj_set(NULL);
+	GtkWidget *menu;
+
+	if (gtk_clist_get_row_data(clist, row) != cur_proj) return;
+	if ((!event) || (event->button != 3)) {
+		cur_proj_set(NULL);
+		return;
+	}
+	/* make sure the project keeps selection */
+	gtk_clist_select_row(GTK_CLIST(glist), row, column);
+	menu = menus_get_popup();
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, 0);
 }
-#endif /* NEED_UNSEL */
 
 
 
@@ -107,10 +102,8 @@ create_clist(void)
                            GTK_SIGNAL_FUNC(select_row), NULL);
         gtk_signal_connect(GTK_OBJECT(w), "click_column",
                            GTK_SIGNAL_FUNC(click_column), NULL);
-#ifdef NEED_UNSEL
         gtk_signal_connect(GTK_OBJECT(w), "unselect_row",
                            GTK_SIGNAL_FUNC(unselect_row), NULL);
-#endif /* NEED_UNSEL */
         return w;
 }
 

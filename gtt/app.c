@@ -43,7 +43,7 @@
 /* Due to the same problems I define this, if I want to include the
    gtk_widget_show for the frame and the label of the statusbar */
 #ifdef GTK_USE_STATUSBAR
-#define SB_USE_HACK
+#undef SB_USE_HACK
 #endif
 
 
@@ -57,7 +57,7 @@ GtkWidget *status_bar;
 #ifdef GTK_USE_STATUSBAR
 static GtkStatusbar *status_project = NULL;
 static GtkStatusbar *status_day_time = NULL;
-static gint status_project_id, status_day_time_id;
+static gint status_project_id = 1, status_day_time_id = 2;
 #else /* GTK_USE_STATUSBAR */
 static GtkLabel *status_project = NULL;
 static GtkLabel *status_day_time = NULL;
@@ -102,8 +102,8 @@ void update_status_bar(void)
         s = g_strdup(project_get_timestr(NULL, 0));
         if (0 != strcmp(s, old_day_time)) {
 #ifdef GTK_USE_STATUSBAR
-                gtk_statusbar_pop(status_day_time, status_day_time_id);
-                gtk_statusbar_push(status_day_time, status_day_time_id, s);
+                gtk_statusbar_remove(status_day_time, 2, status_day_time_id);
+                status_day_time_id = gtk_statusbar_push(status_day_time, 2, s);
 #else /* not GTK_USE_STATUSBAR */
                 gtk_label_set(status_day_time, s);
 #endif /* not GTK_USE_STATUSBAR */
@@ -119,8 +119,8 @@ void update_status_bar(void)
         }
         if (0 != strcmp(s, old_project)) {
 #ifdef GTK_USE_STATUSBAR
-                gtk_statusbar_pop(status_project, status_day_time_id);
-                gtk_statusbar_push(status_project, status_day_time_id, s);
+                gtk_statusbar_remove(status_project, 1, status_project_id);
+                status_project_id = gtk_statusbar_push(status_project, 1, s);
 #else /* not GTK_USE_STATUSBAR */
                 gtk_label_set(status_project, s);
 #endif /* not GTK_USE_STATUSBAR */
@@ -299,8 +299,8 @@ void app_new(int argc, char *argv[])
 #endif /* SB_USE_HACK */
         gtk_widget_show(GTK_WIDGET(status_day_time));
         status_day_time_id = gtk_statusbar_push(status_day_time,
-						status_day_time_id,
-                                                _("00:00"));
+						2,
+						_("00:00"));
         gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_day_time),
                            FALSE, FALSE, 1);
         status_project = GTK_STATUSBAR(gtk_statusbar_new());
@@ -310,8 +310,8 @@ void app_new(int argc, char *argv[])
 #endif /* SB_USE_HACK */
         gtk_widget_show(GTK_WIDGET(status_project));
         status_project_id = gtk_statusbar_push(status_project,
-					       status_project_id,
-                                               _("no project selected"));
+					       1,
+					       _("no project selected"));
         gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_project),
                            TRUE, TRUE, 1);
 
@@ -328,6 +328,9 @@ void app_new(int argc, char *argv[])
 	gtk_widget_show(vbox);
 	gnome_app_set_contents(GNOME_APP(window), vbox);
 
+	if (!w) {
+		gtk_widget_set_usize(glist, -1, 120);
+	}
 	gtk_widget_size_request(window, &window->requisition);
 	if (w != 0) {
 		if (window->requisition.width > w) w = window->requisition.width;
