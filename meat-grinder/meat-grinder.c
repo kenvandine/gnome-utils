@@ -391,9 +391,9 @@ about_cb (GtkWidget *widget, gpointer data)
 				 (const gchar **)documenters,
 				 strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 				 NULL);
-	g_signal_connect (GTK_OBJECT (about), "destroy",
-			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
-			    &about);
+	g_signal_connect (G_OBJECT (about), "destroy",
+			  G_CALLBACK (gtk_widget_destroyed),
+			  &about);
 	gtk_widget_show (about);
 }
 
@@ -493,12 +493,12 @@ archive_cb (GtkWidget *w, gpointer data)
 	if (filename != NULL)
 		gtk_file_selection_set_filename (fsel, filename);
 
-	g_signal_connect (GTK_OBJECT (fsel->ok_button), "clicked",
-			    GTK_SIGNAL_FUNC (save_ok), fsel);
-	gtk_signal_connect_full
-		(GTK_OBJECT (fsel->cancel_button), "clicked",
-		 GTK_SIGNAL_FUNC (gtk_widget_destroy), 
-		 GTK_OBJECT (fsel));
+	g_signal_connect (G_OBJECT (fsel->ok_button), "clicked",
+			  G_CALLBACK (save_ok), fsel);
+	g_signal_connect_swapped
+		(G_OBJECT (fsel->cancel_button), "clicked",
+		 G_CALLBACK (gtk_widget_destroy), 
+		 fsel);
 
 	gtk_window_set_position (GTK_WINDOW (fsel), GTK_WIN_POS_MOUSE);
 
@@ -636,12 +636,12 @@ add_cb (GtkWidget *w, gpointer data)
 	if (filename != NULL)
 		gtk_file_selection_set_filename (fsel, filename);
 
-	g_signal_connect (GTK_OBJECT (fsel->ok_button), "clicked",
-			    GTK_SIGNAL_FUNC (add_ok), fsel);
-	gtk_signal_connect_full
-		(GTK_OBJECT (fsel->cancel_button), "clicked",
-		 GTK_SIGNAL_FUNC (gtk_widget_destroy), 
-		 GTK_OBJECT (fsel));
+	g_signal_connect (G_OBJECT (fsel->ok_button), "clicked",
+			  G_CALLBACK (add_ok), fsel);
+	g_signal_connect_swapped
+		(G_OBJECT (fsel->cancel_button), "clicked",
+		 G_CALLBACK (gtk_widget_destroy), 
+		 fsel);
 
 	gtk_window_set_position (GTK_WINDOW (fsel), GTK_WIN_POS_MOUSE);
 
@@ -754,8 +754,8 @@ init_gui (void)
 				"meat-grinder");
 	gtk_window_set_policy (GTK_WINDOW (app), FALSE, TRUE, FALSE);
 
-        g_signal_connect (GTK_OBJECT (app), "destroy",
-			    GTK_SIGNAL_FUNC (quit_cb), NULL);
+        g_signal_connect (G_OBJECT (app), "delete_event",
+			  G_CALLBACK (quit_cb), NULL);
 
 	/*set up the menu*/
         gnome_app_create_menus (GNOME_APP (app), grinder_menu);
@@ -800,8 +800,8 @@ init_gui (void)
 	gtk_widget_show (w);
 	gtk_container_add (GTK_CONTAINER (compress_button), w);
 	gtk_box_pack_start (GTK_BOX (hbox), compress_button, FALSE, FALSE, 0);
-	g_signal_connect (GTK_OBJECT (compress_button), "clicked",
-			    GTK_SIGNAL_FUNC (archive_cb), NULL);
+	g_signal_connect (G_OBJECT (compress_button), "clicked",
+			  G_CALLBACK (archive_cb), NULL);
 	gtk_tooltips_set_tip (tips, compress_button,
 			      _("Drag this button to the destination where you "
 				"want the archive to be created or press it to "
@@ -816,11 +816,10 @@ init_gui (void)
 			     drag_targets, n_drag_targets,
 			     GDK_ACTION_COPY);
 	/* just in case some wanker like nautilus took our image */
-	g_signal_connect (GTK_OBJECT (compress_button), "drag_begin",
-			    GTK_SIGNAL_FUNC (start_temporary), NULL);
-	g_signal_connect (GTK_OBJECT (compress_button), "drag_data_get",
-			    GTK_SIGNAL_FUNC (drag_data_get), NULL);
-
+	g_signal_connect (G_OBJECT (compress_button), "drag_begin",
+			  G_CALLBACK (start_temporary), NULL);
+	g_signal_connect (G_OBJECT (compress_button), "drag_data_get",
+			  G_CALLBACK (drag_data_get), NULL);
 
 	status_label = gtk_label_new ("");
 	gtk_label_set_justify (GTK_LABEL (status_label), GTK_JUSTIFY_LEFT);
@@ -835,8 +834,8 @@ init_gui (void)
 			   GTK_DEST_DEFAULT_ALL,
 			   drop_targets, n_drop_targets,
 			   GDK_ACTION_LINK);
-	g_signal_connect (GTK_OBJECT (app), "drag_data_received",
-			    GTK_SIGNAL_FUNC (drag_data_received), NULL);
+	g_signal_connect (G_OBJECT (app), "drag_data_received",
+			  G_CALLBACK (drag_data_received), NULL);
 
 	gnome_app_set_contents (GNOME_APP (app), vbox);
 
