@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-05-20 02:32+0200\n"
+"POT-Creation-Date: 2000-05-21 14:23+0200\n"
 "PO-Revision-Date: 2000-05-19 14:30+02:00\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
@@ -418,6 +418,7 @@ msgid "Edit"
 msgstr "Ændre"
 
 #: gnome-find/gnome-find.c:88 gnome-find/gnome-find.c:109
+#: mini-utils/gcolorsel/session.c:424
 msgid "Search"
 msgstr "Søg"
 
@@ -603,7 +604,7 @@ msgstr "Hurtig søgning (locate)"
 
 #: gsearchtool/gsearchtool.c:704
 msgid "The Gnome Search Tool"
-msgstr "GNOME filsøgningsværktøjet"
+msgstr "Gnome søgeværktøjet"
 
 #: gsearchtool/gsearchtool.c:705
 msgid "(C) 1998,2000 the Free Software Foundation"
@@ -744,7 +745,7 @@ msgstr "_Hjælp"
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:196
+#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:197
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Værdi"
@@ -753,7 +754,7 @@ msgstr "Værdi"
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:195
+#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:196
 msgid "Color"
 msgstr "Farve"
 
@@ -869,7 +870,7 @@ msgstr "Glider low-pass filtertidskonstant"
 
 #: gstripchart/gstripchart.c:2159
 msgid "Adds a menubar to the main window"
-msgstr "Tilføj en menulinie til hovedvinduet"
+msgstr "Tilføj en menulinje til hovedvinduet"
 
 #: gstripchart/gstripchart.c:2161
 msgid "Omits slider window"
@@ -1113,11 +1114,11 @@ msgstr "Værktøjslinie"
 
 #: gtt/options.c:228
 msgid "Show Toolbar Icons"
-msgstr "Vis ikoner på værktøjslinien"
+msgstr "Vis ikoner på værktøjslinjen"
 
 #: gtt/options.c:234
 msgid "Show Toolbar Texts"
-msgstr "Vis tekst på værktøjslinien"
+msgstr "Vis tekst på værktøjslinjen"
 
 #: gtt/options.c:240
 msgid "Show Tooltips"
@@ -1125,7 +1126,7 @@ msgstr "Vis hjælpetekster"
 
 #: gtt/options.c:246
 msgid "Toolbar Segments"
-msgstr "Værktøjsliniesegmenter"
+msgstr "Værktøjslinjesegmenter"
 
 #: gtt/options.c:254
 msgid "Show `New'"
@@ -1736,19 +1737,19 @@ msgstr "Besked:"
 msgid "Description:"
 msgstr "Beskrivelse:"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:116
+#: mini-utils/gcolorsel/dialog-prefs.c:117
 msgid "Do nothing"
 msgstr "Gør ingenting"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:121
+#: mini-utils/gcolorsel/dialog-prefs.c:122
 msgid "Append it to ->"
-msgstr ""
+msgstr "Legg den til ->"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:126
+#: mini-utils/gcolorsel/dialog-prefs.c:127
 msgid "Search it in ->"
-msgstr ""
+msgstr "Søk etter den i ->"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:132
+#: mini-utils/gcolorsel/dialog-prefs.c:133
 msgid "Edit it"
 msgstr "Ændr det"
 
@@ -1828,6 +1829,8 @@ msgid ""
 "Please, select the type of document to create.\n"
 "You can choose a short name, do not confuse it with the file name."
 msgstr ""
+"Vennligst velg typen dokument du skal opprette.\n"
+"Du kan velge et kort navn, dette er ikke det samme som filnavnet."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:12
 msgid "label2"
@@ -1850,15 +1853,16 @@ msgid ""
 "This document read document from one or more other document. Please, choose "
 "these documents."
 msgstr ""
+"Dette dokumentet leser dokumenter fra ett eller flere andre dokumenter. Vær "
+"vennlig og velg disse dokumentene."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:17
 msgid "Available documents"
 msgstr "tilgængelige dokumenter"
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:18
-#, fuzzy
 msgid "Connect to"
-msgstr "Sammenføj"
+msgstr "Forbind til"
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:19
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:29
@@ -1898,6 +1902,8 @@ msgid ""
 "You can create one or more views for this document. Note that you have to "
 "create at least one view."
 msgstr ""
+"Du kan lave et eller flere visninger for dette dokument. Bemærk at du skal "
+"have mindst en visning."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:27
 msgid "Available views"
@@ -1922,9 +1928,8 @@ msgid "Create a new view"
 msgstr "Opretter nyt dokument"
 
 #: mini-utils/gcolorsel/glade/dialog-new-view.glade.h:9
-#, fuzzy
 msgid "Please, select the type of view you want to create."
-msgstr "Venligst vælg et fildokument først."
+msgstr "Vælg venligst hvilken visningstype til vil oprette."
 
 #: mini-utils/gcolorsel/glade/dialog-new-view.glade.h:10
 msgid "label4"
@@ -1938,11 +1943,11 @@ msgstr "mærkat4"
 #.
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:8
 msgid "Session"
-msgstr ""
+msgstr "Session"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:9
 msgid "Save session on exit."
-msgstr ""
+msgstr "Gem session ved afslutning."
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:10
 #: mini-utils/gshutdown/gshutdown.c:396
@@ -1955,7 +1960,7 @@ msgstr "Multidokument"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:12
 msgid "Notebook Tab position:"
-msgstr ""
+msgstr "Notesbog fane position:"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:13
 msgid "Mode:"
@@ -1968,6 +1973,10 @@ msgid ""
 "Modal\n"
 "Default\n"
 msgstr ""
+"Notesbog\n"
+"Topniveau\n"
+"Modal\n"
+"Standard\n"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:19
 msgid ""
@@ -1976,11 +1985,14 @@ msgid ""
 "Top\n"
 "Bottom\n"
 msgstr ""
+"Venstre\n"
+"Højre\n"
+"Top\n"
+"Bund\n"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:24
-#, fuzzy
 msgid "Display documents menu (restart required)."
-msgstr "Vis dokumentkontrol (hvis tilgængelig)"
+msgstr "Vis dokumentmenu (kræver genstart)"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:25
 msgid "Documents"
@@ -1988,15 +2000,15 @@ msgstr "Dokumenter"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:26
 msgid "On ... execute ..."
-msgstr ""
+msgstr "Ved ... køring ..."
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:27
 msgid "DoubleClick in previews:"
-msgstr ""
+msgstr "Dobbelklik i forhåndsvisninger:"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:28
 msgid "DoubleClick in views:"
-msgstr ""
+msgstr "Dobbelklik i visninger:"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:29
 msgid "Grab:"
@@ -2041,7 +2053,7 @@ msgid ""
 "Comments :"
 msgstr ""
 "Slut\n"
-"Kommentarer :"
+"kommentarer :"
 
 #: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:13
 msgid ""
@@ -2066,17 +2078,17 @@ msgid "Name :"
 msgstr "Navn :"
 
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:9
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:97
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:98
 msgid "Red :"
 msgstr "Rød :"
 
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:10
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:101
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:102
 msgid "Green :"
 msgstr "Grøn :"
 
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:11
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:105
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:106
 msgid "Blue :"
 msgstr "Blå :"
 
@@ -2308,7 +2320,7 @@ msgstr "Fang en farve på skærmen"
 msgid "About this application"
 msgstr "Om dette program"
 
-#: mini-utils/gcolorsel/session.c:303
+#: mini-utils/gcolorsel/session.c:304
 msgid ""
 "Your config file is corrupted.\n"
 "Do you want to create a new session ?"
@@ -2316,11 +2328,11 @@ msgstr ""
 "Din konfigurationsfil er korrupt.\n"
 "Vil du lave en ny session?"
 
-#: mini-utils/gcolorsel/session.c:356
+#: mini-utils/gcolorsel/session.c:357
 msgid "Loading files, please wait ..."
 msgstr "Indlæser filer, vent venligst..."
 
-#: mini-utils/gcolorsel/session.c:381
+#: mini-utils/gcolorsel/session.c:382
 msgid ""
 "One or more files can not be restored :\n"
 "\n"
@@ -2328,33 +2340,37 @@ msgstr ""
 "En eller flere filer kan ikke genoprettes:\n"
 "\n"
 
-#: mini-utils/gcolorsel/view-color-generic.c:15
+#: mini-utils/gcolorsel/session.c:407
+msgid "System"
+msgstr "System"
+
+#: mini-utils/gcolorsel/view-color-generic.c:16
 msgid "Decimal 8 bits"
 msgstr "Decimal 8 bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:16
+#: mini-utils/gcolorsel/view-color-generic.c:17
 msgid "Decimal 16 bits"
 msgstr "Decimal 16 bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:17
+#: mini-utils/gcolorsel/view-color-generic.c:18
 msgid "Hex 8 bits"
 msgstr "Hex 8 bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:18
+#: mini-utils/gcolorsel/view-color-generic.c:19
 msgid "Hex 16 bits"
 msgstr "Hex 16 bit"
 
-#: mini-utils/gcolorsel/view-color-generic.c:19
+#: mini-utils/gcolorsel/view-color-generic.c:20
 msgid "Float"
 msgstr "Flydendetal"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:504 mini-utils/gw/gw.c:574
 msgid "Name"
 msgstr "Navn"
 
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:109
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:110
 msgid "Tolerance :"
 msgstr "Tolerance:"
 
@@ -2637,7 +2653,7 @@ msgstr "Logofilen blev ikke fundet"
 #. Up here so it uses the default font
 #: mini-utils/guname/guname.c:536
 msgid "GNOME contributors:"
-msgstr "GNOME bidragsydere:"
+msgstr "Gnome bidragsydere:"
 
 #. fontset used by guname; adapt it if your language requires it
 #: mini-utils/guname/guname.c:540
@@ -2646,7 +2662,7 @@ msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
 #: mini-utils/guname/guname.c:551
 msgid "GNOME: The GNU Network Object Model Environment"
-msgstr "GNOME: GNU NetværksObjektModelMiljøet"
+msgstr "Gnome: GNU NetværksObjektModelMiljøet"
 
 #: mini-utils/guname/guname.c:575
 msgid "Email Information..."
@@ -2861,7 +2877,7 @@ msgstr "Hukommelsesinformation"
 
 #: mini-utils/guname/moreinfo.c:294
 msgid "CPU Information"
-msgstr "CPU-information"
+msgstr "Processor-information"
 
 #: mini-utils/guname/moreinfo.c:326
 msgid "Mount Point: "
@@ -2914,7 +2930,7 @@ msgstr "Gem er ikke implementeret endnu\n"
 
 #: mini-utils/gw/gw.c:505
 msgid "Command Line"
-msgstr "Kommandolinie"
+msgstr "Kommandolinje"
 
 #: mini-utils/gw/gw.c:507
 msgid "Add some defaults"
