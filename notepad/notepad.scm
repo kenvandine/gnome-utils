@@ -116,10 +116,7 @@
     (lambda (title text)
       ;; Default is cancel.
       (set! result 'cancel)
-      (if dialog
-	  (begin
-	    (gtk-window-set-title dialog title)
-	    (gtk-label-set label-widget text))
+      (if (not dialog)
 	  (begin
 	    (set! dialog (gtk-dialog-new))
 	    (gtk-signal-connect dialog "destroy" destroyer)
@@ -130,9 +127,9 @@
 				#f #t 0)
 	    (gtk-widget-show label-widget)
 
-	    (let ((yes (gtk-button-new-with-label (gettext "Yes")))
-		  (no (gtk-button-new-with-label (gettext "No")))
-		  (cancel (gtk-button-new-with-label (gettext "Cancel"))))
+	    (let ((yes (gnome-stock-button 'yes))
+		  (no (gnome-stock-button 'no))
+		  (cancel (gnome-stock-button 'cancel)))
 	      (gtk-signal-connect yes "clicked"
 				  (lambda ()
 				    (closer 'yes)))
@@ -147,6 +144,8 @@
 	      (gtk-box-pack-start (gtk-dialog-action-area dialog) no)
 	      (gtk-box-pack-start (gtk-dialog-action-area dialog) cancel)
 	      (gtk-widget-show-multi yes no cancel))))
+      (gtk-window-set-title dialog title)
+      (gtk-label-set label-widget text)
       (gtk-widget-show dialog)
       (gtk-grab-add dialog)
       (set! done #f)
@@ -176,17 +175,14 @@
 ;;; Fluff.
 ;;;
 
-(define about-box
-  (let ((about-widget #f))
-    (lambda ()
-      (or about-widget
-	  (set! about-widget (gnome-about (gettext "Gnome Notepad")
-					  "0.0"	; FIXME
-					  (gettext "Copyright (C) 1998 Free Software Foundation")
-					  (gettext "Gnome Notepad is a program for simple text editing")
-					  "" ; No pixmap for now.
-					  "Tom Tromey")))
-      (gtk-widget-show about-widget))))
+;; FIXME: if about box already up, don't show it again.
+(define (about-box)
+  (gtk-widget-show (gnome-about (gettext "Gnome Notepad")
+				"0.0"	; FIXME
+				(gettext "Copyright (C) 1998 Free Software Foundation")
+				(gettext "Gnome Notepad is a program for simple text editing")
+				"" ; No pixmap for now.
+				"Tom Tromey")))
 
 ;;;
 ;;; Notepad code.
@@ -265,7 +261,14 @@
   #f)
 
 (define (add-menu-item menu label command)
-  (let ((item (gtk-menu-item-new-with-label label)))
+  (let ((item (gnome-stock-menu-item 'blank label)))
+    (gtk-signal-connect item "activate" command)
+    (gtk-menu-append menu item)
+    (gtk-widget-show item)
+    item))
+
+(define (add-stock-menu-item menu type label command)
+  (let ((item (gnome-stock-menu-item type label)))
     (gtk-signal-connect item "activate" command)
     (gtk-menu-append menu item)
     (gtk-widget-show item)
@@ -273,28 +276,31 @@
 
 (define (file-menu)
   (let ((menu (gtk-menu-new)))
-    (add-menu-item menu (gettext "Open...") notepad-open)
+    (add-stock-menu-item menu 'open (gettext "Open...") notepad-open)
+    ;; FIXME: should be stock.
     (add-menu-item menu (gettext "Close") notepad-close)
-    (set! save-menu-item (add-menu-item menu (gettext "Save") notepad-save))
+    (set! save-menu-item (add-stock-menu-item menu 'save (gettext "Save")
+					      notepad-save))
     (add-menu-item menu (gettext "Save As...") notepad-save-as)
     ;; This is just for debugging; we'll remove it later.
     (add-menu-item menu "Save session (debugging only)"
 		   (lambda ()
 		     (gnome-client-request-save client 'both #f 'any #f #t)))
-    (add-menu-item menu (gettext "Exit") confirm-exit)
+    (add-stock-menu-item menu 'exit (gettext "Exit") confirm-exit)
     menu))
 
 (define (edit-menu)
   (let ((menu (gtk-menu-new)))
+    ;; FIXME: should be stock.
     (add-menu-item menu (gettext "Undo") FIXME)
-    (add-menu-item menu (gettext "Copy") FIXME)
-    (add-menu-item menu (gettext "Cut") FIXME)
-    (add-menu-item menu (gettext "Paste") FIXME)
+    (add-stock-menu-item menu 'copy (gettext "Copy") FIXME)
+    (add-stock-menu-item menu 'cut (gettext "Cut") FIXME)
+    (add-stock-menu-item menu 'paste (gettext "Paste") FIXME)
     menu))
 
 (define (help-menu)
   (let ((menu (gtk-menu-new)))
-    (add-menu-item menu (gettext "About") about-box)
+    (add-stock-menu-item menu 'about (gettext "About Notepad") about-box)
     menu))
 
 (define (add-menu menu-bar menu label)
@@ -329,9 +335,8 @@
     (gtk-widget-show text)
     (gtk-text-thaw text)
     ;; FIXME: connect to all signals required to handle Undo.
-    ;; FIXME: this signal doesn't exist yet.
-    ;; (gtk-signal-connect text "changed" set-dirty)
-    ;; (gtk-text-set-editable text #t)
+    (gtk-signal-connect text "changed" set-dirty)
+    (gtk-text-set-editable text #t)
     table))
 
 (define (notepad)

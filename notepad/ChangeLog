@@ -1,3 +1,15 @@
+Sun Mar 15 16:25:04 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* notepad.scm (scrolled-text): Connect to "changed" signal.  Make
+	text editable.
+	(about-box): make new about box each time.
+	(yes-no-cancel-message-box): Unconditionally set dialog title and
+	label widget text.  Use stock buttons.
+	(add-stock-menu-item): New function.
+	(file-menu): Use stock menu items.
+	(edit-menu): Likewise.
+	(help-menu): Likewise.
+
 Sat Mar 14 03:07:42 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* notepad.scm (client): Use default client.
