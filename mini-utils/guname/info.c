@@ -122,9 +122,9 @@ static void get_portable_info()
   info[si_host] = g_strdup(buf.nodename);
   /*  info[si_domain] = g_strdup(buf.domainname); */ /* man page wrong? */
 
-  info[si_user] = g_strdup(getlogin());
+  info[si_user] = g_strdup(g_get_user_name());
 
-  info[si_display] = g_strdup(getenv("DISPLAY")); /* hmm */
+  info[si_display] = g_strdup(gdk_get_display());
 
   get_uptime();
   
