@@ -299,7 +299,7 @@ isLogFile (char *filename, gboolean show_error)
 			       _("%s is not a regular file."), filename);
 		   ShowErrMessage (NULL, error_main, buff);
 	   }
-      return FALSE;
+	   return FALSE;
    }
 
    /* File unreadable                     */
@@ -311,32 +311,31 @@ isLogFile (char *filename, gboolean show_error)
 				 "change the permissions on the file."), filename);
 		   ShowErrMessage (NULL, error_main, buff);
 	   }
-      return FALSE;
+	   return FALSE;
    }
 
    /* Read first line and check that it has the format
     * of a log file: Date ...    */
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
 
-   if (result != GNOME_VFS_OK)
-   {
-      /* FIXME: this error message is really quite poor
-       * we should state why the open failed
-       * ie. file too large etc etc..
-       */
+   if (result != GNOME_VFS_OK) {
+	   /* FIXME: this error message is really quite poor
+	    * we should state why the open failed
+	    * ie. file too large etc etc..
+	    */
 	   if (show_error) {
 		   g_snprintf (buff, sizeof (buff),
 			       _("%s could not be opened."), filename);
 		   ShowErrMessage (NULL, error_main, buff);
 	   }
-      return FALSE;
+	   return FALSE;
    }
 
    result = gnome_vfs_read (handle, buff, sizeof(buff), &size);
    gnome_vfs_close (handle);
    if (result != GNOME_VFS_OK)
 	   return FALSE;
-
+   
    found_space = g_strstr_len (buff, 1024, " ");
    if (found_space == NULL) {
 	   if (show_error) {
@@ -387,7 +386,7 @@ gchar **ReadNewLines (Log *log)
 {
 	GnomeVFSFileSize newsize, bytes_read;
 	GnomeVFSResult result;
-	gchar *buffer, **buffer_lines;
+	gchar *buffer;
 	
 	g_return_val_if_fail (log, NULL);
 	g_return_val_if_fail (log->mon_file_handle, NULL);
@@ -585,8 +584,6 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    struct tm *tmptm, footm;
    GnomeVFSResult result;
    GnomeVFSFileInfo info;
-   GnomeVFSFileOffset pos;
-   GnomeVFSFileSize size;
 
    /* Clear struct.      */
    log->lstats.startdate = 0;
