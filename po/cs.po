@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-27 12:00+0200\n"
-"PO-Revision-Date: 2004-10-27 13:45+0200\n"
+"POT-Creation-Date: 2004-10-28 11:59+0200\n"
+"PO-Revision-Date: 2004-10-28 17:16+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Vyhledání ve slovníku"
 msgid "Lookup words in an online dictionary"
 msgstr "Vyhledávání slov v on-line slovníku"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:113
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:107
 msgid "_About"
 msgstr "O _aplikaci"
 
@@ -116,7 +116,7 @@ msgstr "Hledat"
 msgid "_Search for:"
 msgstr "_Hledat:"
 
-#: gdictsrc/gdict-app.c:492 logview/logview.c:105
+#: gdictsrc/gdict-app.c:492 logview/logview.c:99
 msgid "_Find"
 msgstr "_Hledat"
 
@@ -1428,7 +1428,7 @@ msgstr ""
 "popis: [%s]\n"
 "akce: [%s]\n"
 
-#: logview/calendar.c:77
+#: logview/calendar.c:73
 msgid "Calendar"
 msgstr "Kalendář"
 
@@ -1482,7 +1482,7 @@ msgstr "Počet řádků:"
 msgid "Log Information"
 msgstr "Informace o záznamech"
 
-#: logview/info.c:151 logview/zoom.c:161
+#: logview/info.c:151 logview/zoom.c:163
 msgid "<No log loaded>"
 msgstr "<Není načten záznam>"
 
@@ -1494,72 +1494,72 @@ msgstr[0] "%ld bajt"
 msgstr[1] "%ld bajty"
 msgstr[2] "%ld bajtů"
 
-#: logview/log_repaint.c:55
+#: logview/log_repaint.c:52
 msgid "January"
 msgstr "Leden"
 
-#: logview/log_repaint.c:55
+#: logview/log_repaint.c:52
 msgid "February"
 msgstr "Únor"
 
-#: logview/log_repaint.c:55
+#: logview/log_repaint.c:52
 msgid "March"
 msgstr "Březen"
 
-#: logview/log_repaint.c:55
+#: logview/log_repaint.c:52
 msgid "April"
 msgstr "Duben"
 
-#: logview/log_repaint.c:55
+#: logview/log_repaint.c:52
 msgid "May"
 msgstr "Květen"
 
-#: logview/log_repaint.c:56
+#: logview/log_repaint.c:53
 msgid "June"
 msgstr "Červen"
 
-#: logview/log_repaint.c:56
+#: logview/log_repaint.c:53
 msgid "July"
 msgstr "Červenec"
 
-#: logview/log_repaint.c:56
+#: logview/log_repaint.c:53
 msgid "August"
 msgstr "Srpen"
 
-#: logview/log_repaint.c:56
+#: logview/log_repaint.c:53
 msgid "September"
 msgstr "Září"
 
-#: logview/log_repaint.c:56
+#: logview/log_repaint.c:53
 msgid "October"
 msgstr "Říjen"
 
-#: logview/log_repaint.c:57
+#: logview/log_repaint.c:54
 msgid "November"
 msgstr "Listopad"
 
-#: logview/log_repaint.c:57
+#: logview/log_repaint.c:54
 msgid "December"
 msgstr "Prosinec"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:353
+#: logview/log_repaint.c:284
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:373
+#: logview/log_repaint.c:304
 msgid "Last Modified: "
 msgstr "Poslední změna: "
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:402
+#: logview/log_repaint.c:333
 msgid "%B %e"
 msgstr "%e. %B"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:474
+#: logview/log_repaint.c:405
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1572,12 +1572,12 @@ msgstr "Nedostatek paměti!\n"
 msgid "Unable to open logfile!\n"
 msgstr "Nemohu otevřít soubor záznamů!\n"
 
-#: logview/logrtns.c:265
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s není normální soubor."
 
-#: logview/logrtns.c:273
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1587,155 +1587,136 @@ msgstr ""
 "uživatel root, nebo požádejte správce systému, aby změnil přístupová práva k "
 "tomuto souboru."
 
-#: logview/logrtns.c:290
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "Nemohu otevřít %s."
 
-#: logview/logrtns.c:320 logview/logrtns.c:329
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "Soubor %s není souborem záznamů."
 
-#: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: nedostatek paměti"
 
 #: logview/logview.c:85
-msgid "_File"
-msgstr "_Soubor"
+msgid "_Log"
+msgstr "_Záznam"
 
 #: logview/logview.c:87
 msgid "_View"
 msgstr "_Zobrazit"
 
 #: logview/logview.c:90
-msgid "Open Log..."
-msgstr "Otevřít záznam..."
+msgid "_Open..."
+msgstr "_Otevřít..."
 
 #: logview/logview.c:90
 msgid "Open a log from file"
 msgstr "Otevřít záznam ze souboru"
 
 #: logview/logview.c:92
-msgid "S_witch Log"
-msgstr "_Přepnout soubor záznamů"
-
-#: logview/logview.c:92
-msgid "Switch between already opened logs"
-msgstr "Přepínat mezi již otevřenými záznamy"
-
-#: logview/logview.c:94
-msgid "_Monitor..."
-msgstr "_Sledovat..."
-
-#: logview/logview.c:94
-msgid "Monitor Logs"
-msgstr "Sledovat soubory záznamů"
-
-#: logview/logview.c:96
 msgid "_Properties"
 msgstr "_Vlastnosti"
 
-#: logview/logview.c:96
+#: logview/logview.c:92
 msgid "Show Log Properties"
 msgstr "Zobrazit vlastnosti záznamu"
 
-#: logview/logview.c:98
-msgid "Close Log"
-msgstr "Zavřít záznam"
+#: logview/logview.c:94
+msgid "Close"
+msgstr "Zavřít"
 
-#: logview/logview.c:98
+#: logview/logview.c:94
 msgid "Close this log"
 msgstr "Zavřít tento záznam"
 
-#: logview/logview.c:100
-msgid "Clos_e All"
-msgstr "Zavřít vš_e"
-
-#: logview/logview.c:100
-msgid "Close all Log files"
-msgstr "Zavřít všechny soubory se záznamy"
-
-#: logview/logview.c:102
+#: logview/logview.c:96
 msgid "_Quit"
 msgstr "U_končit"
 
-#: logview/logview.c:102
+#: logview/logview.c:96
 msgid "Quit the log viewer"
 msgstr "Ukončit prohlížeč záznamů"
 
-#: logview/logview.c:105
+#: logview/logview.c:99
 msgid "Find pattern in logs"
 msgstr "Hledat v záznamech vzorek"
 
-#: logview/logview.c:108
+#: logview/logview.c:102
 msgid "Collapse _All"
 msgstr "S_balit vše"
 
-#: logview/logview.c:108
+#: logview/logview.c:102
 msgid "Collapse all the rows"
 msgstr "Sbalí všechny řádky"
 
-#: logview/logview.c:111
+#: logview/logview.c:105
 msgid "_Contents"
 msgstr "_Obsah"
 
-#: logview/logview.c:111
+#: logview/logview.c:105
 msgid "Open the help contents for the log viewer"
 msgstr "Otevřít obsah nápovědy prohlížeče záznamů"
 
-#: logview/logview.c:113
+#: logview/logview.c:107
 msgid "Show the about dialog for the gconf editor"
 msgstr "Zobrazit dialog o editoru gconf"
 
-#: logview/logview.c:119
+#: logview/logview.c:113
+msgid "_Monitor"
+msgstr "_Sledovat"
+
+#: logview/logview.c:113
+msgid "Monitor Current Log"
+msgstr "Sledovat aktuální záznam"
+
+#: logview/logview.c:115
 msgid "_Calendar"
 msgstr "_Kalendář"
 
-#: logview/logview.c:119
+#: logview/logview.c:115
 msgid "Show Calendar Log"
 msgstr "Zobrazit záznamy z kalendáře"
 
-#: logview/logview.c:121
+#: logview/logview.c:117
 msgid "_Entry Detail"
 msgstr "D_etaily položky"
 
-#: logview/logview.c:121
+#: logview/logview.c:117
 msgid "Show Entry Detail"
 msgstr "Zobrazit podrobnosti položky"
 
-#: logview/logview.c:361
+#: logview/logview.c:303
 msgid "No log files to open"
 msgstr "K otevření nebyly určeny soubory se záznamy"
 
-#: logview/logview.c:385
+#: logview/logview.c:387
 msgid "Date"
 msgstr "Datum"
 
-#: logview/logview.c:385
+#: logview/logview.c:387
 msgid "Host Name"
 msgstr "Název počítače"
 
-#: logview/logview.c:386
+#: logview/logview.c:388
 msgid "Process"
 msgstr "Proces"
 
-#: logview/logview.c:386
+#: logview/logview.c:388
 msgid "Message"
 msgstr "Zpráva"
 
-#: logview/logview.c:559 logview/logview.c:623
-msgid "Too many open logs. Close one and try again"
-msgstr "Příliš mnoho otevřených záznamů. Zavřete nějaký a zkuste to znovu."
-
-#: logview/logview.c:571
-msgid "File already opened"
-msgstr "Soubor je již otevřen"
-
-#: logview/logview.c:635
+#: logview/logview.c:599
 msgid "Open new logfile"
 msgstr "Otevřít nový soubor"
+
+#: logview/logview.c:976
+#, c-format
+msgid "%s - %s (monitored)"
+msgstr "%s - %s (sledován)"
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -1749,80 +1730,93 @@ msgstr ""
 "Udává soubor se záznamy, který otevřít při startu. Implicitní je buď /var/"
 "adm/messages nebo /var/log/messages, podle vašeho operačního systému."
 
-#: logview/monitor.c:82
-msgid "Monitor Options"
-msgstr "Možnosti sledování"
-
-#: logview/monitor.c:85
-msgid "Ac_tions..."
-msgstr "A_kce..."
-
-#: logview/monitor.c:111
-msgid "_Select logs to monitor:"
-msgstr "_Vyberte záznamy ke sledování:"
-
-#: logview/monitor.c:116
-msgid "Currently _monitored logs:"
-msgstr "Právě _sledované záznamy:"
-
-#: logview/monitor.c:164
-msgid "Add logs to monitor"
-msgstr "Přidat záznamy ke sledovaným"
-
-#: logview/monitor.c:173
-msgid "Remove logs from monitor"
-msgstr "Odstranit záznamy ze sledovaných"
-
-#. Check boxes
-#: logview/monitor.c:220
-msgid "_Hide application"
-msgstr "Skrýt _aplikaci"
-
-#: logview/monitor.c:228
-msgid "_Execute actions"
-msgstr "Spustit akc_e"
-
-#: logview/monitor.c:264
-msgid "Too many logs to monitor. Remove one and try again"
-msgstr "Příliš mnoho záznamů ke sledování. Odeberte prosím nějaký a zkuste to znovu."
-
-#: logview/monitor.c:272 logview/monitor.c:309
-#, c-format
-msgid "tmp_list is NULL\n"
-msgstr "tmp_list je NULL\n"
-
-#: logview/monitor.c:438
-msgid "Monitoring Logs..."
-msgstr "Sleduji záznamy..."
-
-#: logview/zoom.c:66
+#: logview/zoom.c:65
 msgid "Entry Detail"
 msgstr "Detaily položky"
 
-#: logview/zoom.c:106
+#: logview/zoom.c:102
 msgid "Date:"
 msgstr "Datum:"
 
-#: logview/zoom.c:106
+#: logview/zoom.c:102
 msgid "Process:"
 msgstr "Proces:"
 
-#: logview/zoom.c:107
+#: logview/zoom.c:103
 msgid "Message:"
 msgstr "Zpráva:"
 
-#: logview/zoom.c:107
+#: logview/zoom.c:103
 msgid "Description:"
 msgstr "Popis:"
 
-#: logview/zoom.c:135
+#: logview/zoom.c:133
 msgid "Log Line Details"
 msgstr "Podrobnosti řádku záznamu"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:193
+#: logview/zoom.c:195
 msgid "%B %e %X"
 msgstr "%e. %B %X"
+
+#~ msgid "_File"
+#~ msgstr "_Soubor"
+
+#~ msgid "Open Log..."
+#~ msgstr "Otevřít záznam..."
+
+#~ msgid "S_witch Log"
+#~ msgstr "_Přepnout soubor záznamů"
+
+#~ msgid "Switch between already opened logs"
+#~ msgstr "Přepínat mezi již otevřenými záznamy"
+
+#~ msgid "Clos_e All"
+#~ msgstr "Zavřít vš_e"
+
+#~ msgid "Close all Log files"
+#~ msgstr "Zavřít všechny soubory se záznamy"
+
+#~ msgid "Too many open logs. Close one and try again"
+#~ msgstr "Příliš mnoho otevřených záznamů. Zavřete nějaký a zkuste to znovu."
+
+#~ msgid "File already opened"
+#~ msgstr "Soubor je již otevřen"
+
+#~ msgid "Monitor Options"
+#~ msgstr "Možnosti sledování"
+
+#~ msgid "Ac_tions..."
+#~ msgstr "A_kce..."
+
+#~ msgid "_Select logs to monitor:"
+#~ msgstr "_Vyberte záznamy ke sledování:"
+
+#~ msgid "Currently _monitored logs:"
+#~ msgstr "Právě _sledované záznamy:"
+
+#~ msgid "Add logs to monitor"
+#~ msgstr "Přidat záznamy ke sledovaným"
+
+#~ msgid "Remove logs from monitor"
+#~ msgstr "Odstranit záznamy ze sledovaných"
+
+#~ msgid "_Hide application"
+#~ msgstr "Skrýt _aplikaci"
+
+#~ msgid "_Execute actions"
+#~ msgstr "Spustit akc_e"
+
+#~ msgid "Too many logs to monitor. Remove one and try again"
+#~ msgstr ""
+#~ "Příliš mnoho záznamů ke sledování. Odeberte prosím nějaký a zkuste to "
+#~ "znovu."
+
+#~ msgid "tmp_list is NULL\n"
+#~ msgstr "tmp_list je NULL\n"
+
+#~ msgid "Monitoring Logs..."
+#~ msgstr "Sleduji záznamy..."
 
 #~ msgid "Accessories"
 #~ msgstr "Příslušenství"
