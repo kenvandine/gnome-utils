@@ -48,11 +48,7 @@
  *       ----------------
  */
 
-extern ConfigData *cfg;
-extern GdkGC *gc;
-extern Log *loglist[];
 extern char *month[12];
-GtkWidget *CalendarWidget;
 
 /* ----------------------------------------------------------------------
    NAME:          CalendarMenu
@@ -69,7 +65,7 @@ CalendarMenu (LogviewWindow *window)
    if (window->calendar_dialog == NULL)
    {
       GtkCalendar *calendar;
-      GtkWidget *CalendarDialog;
+      GtkWidget *CalendarDialog, *CalendarWidget;
       GtkWidget *vbox;
 
       CalendarDialog = gtk_dialog_new ();
@@ -116,9 +112,10 @@ CalendarMenu (LogviewWindow *window)
       gtk_widget_show (vbox);
       
       CalendarWidget = GTK_WIDGET (calendar);
-      init_calendar_data (window);
 
       window->calendar_dialog = CalendarDialog;
+      window->calendar = CalendarWidget;
+      init_calendar_data (window);
    }
 
    window->calendar_visible = TRUE;
@@ -133,14 +130,14 @@ CalendarMenu (LogviewWindow *window)
    ---------------------------------------------------------------------- */
 
 void
-read_marked_dates (CalendarData *data)
+read_marked_dates (CalendarData *data, LogviewWindow *window)
 {
   GtkCalendar *calendar;
   DateMark *mark;
   gint day, month, year;
 
   g_return_if_fail (data);
-  calendar = GTK_CALENDAR (CalendarWidget);
+  calendar = GTK_CALENDAR (window->calendar);
   g_return_if_fail (calendar);
 
   gtk_calendar_clear_marks (calendar);
@@ -190,7 +187,7 @@ init_calendar_data (LogviewWindow *window)
 #endif
        
        /* signal a redraw event */
-       gtk_signal_emit_by_name (GTK_OBJECT (CalendarWidget), "month_changed");
+       gtk_signal_emit_by_name (GTK_OBJECT (window->calendar), "month_changed");
        
      }
 
@@ -210,7 +207,7 @@ calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
   DateMark *mark;
   gint day, month, year;
 
-  calendar = GTK_CALENDAR (CalendarWidget);
+  calendar = GTK_CALENDAR (window->calendar);
   g_return_if_fail (calendar);
 
   data = window->curlog->caldata;
@@ -225,7 +222,7 @@ calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
   mark = get_mark_from_month (data, month, year);
   if (mark)
     data->curmonthmark = mark;
-  read_marked_dates (data);
+  read_marked_dates (data, window);
 }
 
 
@@ -241,7 +238,7 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
   gint day, month, year;
   GtkTreePath *path;
 
-  gtk_calendar_get_date (GTK_CALENDAR (CalendarWidget), &year, &month, &day);
+  gtk_calendar_get_date (GTK_CALENDAR (window->calendar), &year, &month, &day);
 
   path = g_hash_table_lookup (window->curlog->date_headers,
                 DATEHASH (month, day));
