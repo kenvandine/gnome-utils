@@ -59,17 +59,15 @@ EXTRA_DIST = \
 	$(man_MANS)
 
 if GCONF_SCHEMAS_INSTALL
-install-data-local:
+install-gconf-schemas:
 	if test -z "$(DESTDIR)" ; then \
 		GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(schema_source_data) ; \
 	fi
-	gnome-system-log-security
 else
-install-data-local:
-	gnome-system-log-security
+install-gconf-schemas:
 endif
 
-install-data-local: gnome-system-log-security
+install-data-local: gnome-system-log-security install-gconf-schemas
 	
 if CONSOLE_HELPER
 	$(INSTALL_DATA) -D gnome-system-log-pam $(DESTDIR)$(PAM_PREFIX)/pam.d/gnome-system-log
