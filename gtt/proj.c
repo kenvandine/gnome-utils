@@ -265,6 +265,13 @@ int project_list_load(char *fname)
 			} else if (s[1] == 't') {
 				/* show text in the toolbar */
 				config_show_tb_texts = (s[4] == 'n');
+			} else if (s[1] == 's') {
+				/* show status bar */
+				if (s[4] == 'n') {
+					gtk_widget_show(status_bar);
+				} else {
+					gtk_widget_hide(status_bar);
+				}
 			}
 		} else if (s[0] == 'c') {
 			/* switch project command */
@@ -355,6 +362,7 @@ int project_list_save(char *fname)
 	fprintf(f, "s %s\n", (config_show_secs) ? "on" : "off");
 	fprintf(f, "bi %s\n", (config_show_tb_icons) ? "on" : "off");
 	fprintf(f, "bt %s\n", (config_show_tb_texts) ? "on" : "off");
+	fprintf(f, "bs %s\n", (GTK_WIDGET_VISIBLE(status_bar)) ? "on" : "off");
 	if (config_command)
 		fprintf(f, "c %s\n", config_command);
 	if (config_command_null)

@@ -25,6 +25,7 @@
 typedef struct _OptionsDlg {
 	GtkDialog *dlg;
 	GtkCheckButton *show_secs;
+	GtkCheckButton *show_status_bar;
 #ifdef GNOME_USE_APP
 	GtkCheckButton *show_tb_icons, *show_tb_texts;
 #endif 
@@ -51,6 +52,11 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 	if (state != config_show_secs) {
 		config_show_secs = state;
 		setup_list();
+	}
+	if (GTK_TOGGLE_BUTTON(odlg->show_status_bar)->active) {
+		gtk_widget_show(status_bar);
+	} else {
+		gtk_widget_hide(status_bar);
 	}
 #ifdef GNOME_USE_APP
 	config_show_tb_icons = GTK_TOGGLE_BUTTON(odlg->show_tb_icons)->active;
@@ -132,7 +138,11 @@ static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_texts = GTK_CHECK_BUTTON(w);
-#endif 
+#endif
+	w = gtk_check_button_new_with_label("Show Status Bar");
+	gtk_widget_show(w);
+	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
+	odlg->show_status_bar = GTK_CHECK_BUTTON(w);
 }
 
 
@@ -239,6 +249,8 @@ static void options_dialog_set(OptionsDlg *odlg)
 {
 	char s[20];
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_secs), config_show_secs);
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_status_bar),
+				    GTK_WIDGET_VISIBLE(status_bar));
 #ifdef GNOME_USE_APP
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_icons),
 				    config_show_tb_icons);

@@ -214,6 +214,7 @@ void copy_project(GtkWidget *w, gpointer data)
 	if (cutted_project)
 		project_destroy(cutted_project);
 	cutted_project = project_dup(cur_proj);
+	menu_set_states(); /* to enable paste */
 }
 
 
@@ -263,6 +264,16 @@ void menu_properties(GtkWidget *w, gpointer data)
 	if (cur_proj) {
 		prop_dialog(cur_proj);
 	}
+}
+
+
+
+void menu_clear_daily_counter(GtkWidget *w, gpointer data)
+{
+	g_return_if_fail(cur_proj != NULL);
+
+	cur_proj->day_secs = 0;
+	update_label(cur_proj);
 }
 
 
@@ -398,6 +409,7 @@ void menu_set_states(void)
 	menus_set_sensitive("<Main>/Edit/Cut", (cur_proj) ? 1 : 0);
 	menus_set_sensitive("<Main>/Edit/Copy", (cur_proj) ? 1 : 0);
 	menus_set_sensitive("<Main>/Edit/Paste", (cutted_project) ? 1 : 0);
+	menus_set_sensitive("<Popup>/Paste", (cutted_project) ? 1 : 0);
 	menus_set_sensitive("<Main>/Edit/Properties...", (cur_proj) ? 1 : 0);
 #endif /* GNOME_USE_MENU_INFO */
 	toolbar_set_states();

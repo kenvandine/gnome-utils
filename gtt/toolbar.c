@@ -125,7 +125,6 @@ static void sigfunc_toggle(GtkWidget *w,
 	if (!data) return;
 	if (!data->path) return;
 	menus_activate(data->path);
-	set_toggle_state(data);
 }
 
 

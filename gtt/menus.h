@@ -23,6 +23,7 @@
 
 enum {
 	MENU_MAIN,
+	MENU_POPUP,
 	MENU_NUM
 };
 

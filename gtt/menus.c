@@ -56,6 +56,13 @@ static GtkMenuEntry menu_items[] =
 	{"<Main>/Timer/Stop", "<control>P", menu_stop_timer, NULL},
 	{"<Main>/Timer/<check>Timer running", "<control>T", menu_toggle_timer, NULL},
 	{"<Main>/Help/About...", "<alt>H", about_box, NULL},
+	{"<Popup>/Properties...", NULL, menu_properties, NULL},
+	{"<Popup>/<separator>", NULL, NULL, NULL},
+	{"<Popup>/Cut", NULL, cut_project, NULL},
+	{"<Popup>/Copy", NULL, copy_project, NULL},
+	{"<Popup>/Paste", NULL, paste_project, NULL},
+	{"<Popup>/<separator>", NULL, NULL, NULL},
+	{"<Popup>/Clear daily counter", NULL, menu_clear_daily_counter, NULL},
 };
 static int nmenu_items = sizeof (menu_items) / sizeof (menu_items[0]);
 
@@ -261,6 +268,9 @@ menus_init ()
 
       subfactories[0] = gtk_menu_factory_new (GTK_MENU_FACTORY_MENU_BAR);
       gtk_menu_factory_add_subfactory (factory, subfactories[0], "<Main>");
+
+      subfactories[1] = gtk_menu_factory_new (GTK_MENU_FACTORY_MENU);
+      gtk_menu_factory_add_subfactory (factory, subfactories[1], "<Popup>");
 
       menus_create (menu_items, nmenu_items);
     }

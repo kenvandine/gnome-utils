@@ -36,7 +36,7 @@
 
 
 project *cur_proj = NULL;
-GtkWidget *glist, *window;
+GtkWidget *glist, *window, *status_bar;
 
 #ifdef DEBUG
 int config_show_secs = 1;
@@ -52,6 +52,10 @@ int config_logfile_use = 0;
 int config_logfile_min_secs = 0;
 
 
+
+#define NO_PROJECT_SELECTED "no project selected"
+static GtkWidget *status_project = NULL;
+
 void cur_proj_set(project *proj)
 {
 	pid_t fork(void);
@@ -62,10 +66,19 @@ void cur_proj_set(project *proj)
 	static char s[1024];
 	int i;
 
+	if (cur_proj == proj) return;
+
 	cur_proj = proj;
 	log_proj(proj);
 	prop_dialog_set_project(proj);
 	menu_set_states();
+	if (status_project) {
+		if (cur_proj) {
+			gtk_label_set(GTK_LABEL(status_project), cur_proj->title);
+		} else {
+			gtk_label_set(GTK_LABEL(status_project), NO_PROJECT_SELECTED);
+		}
+	}
 	cmd = (proj) ? config_command : config_command_null;
 	if (!cmd) return;
 	i = 0;
@@ -94,12 +107,25 @@ void cur_proj_set(project *proj)
 
 
 
+/*
+ * TODO: can this be done in a better way?
+ * I don't want to create a new widget based on GtkList just to prevent the
+ * 3rd mouse button to emit a select_child. So I have to tell the signal_func
+ * by other means, when a real selection occures. When a popup menu is to be
+ * drawn I set for_popup to non-zero, select a new child if the selection
+ * state does not look like it should (I need the item, the mouse click
+ * occured on), I can do select_child without GTT logging project changes and
+ * such.
+ */
+static int for_popup = 0;
+
 static void select_item(GtkList *glist, GtkWidget *w)
 {
 	GtkWidget *li;
-	
+
 	if (!GTK_LIST(glist)->selection) {
-		cur_proj_set(NULL);
+		if (!for_popup)
+			cur_proj_set(NULL);
 		return;
 	}
 	li = GTK_LIST(glist)->selection->data;
@@ -255,6 +281,44 @@ static void init_list(void)
 
 
 
+static gint list_button_press(GtkWidget *widget,
+			      GdkEventButton *event)
+{
+	GtkList *list;
+	GtkWidget *item;
+
+	g_return_val_if_fail (widget != NULL, FALSE);
+	g_return_val_if_fail (GTK_IS_LIST (widget), FALSE);
+	g_return_val_if_fail (event != NULL, FALSE);
+
+	list = GTK_LIST (widget);
+	item = gtk_get_event_widget ((GdkEvent*) event);
+
+	while (!gtk_type_is_a (GTK_WIDGET_TYPE (item), gtk_list_item_get_type ()))
+		item = item->parent;
+
+	if (event->button == 3) {
+		GtkWidget *menu;
+		
+		/* TODO: see declaration of for_popup above */
+		for_popup = 1;
+
+		/* make sure, the item, the mouse was clickt on, is selected */
+		if (list->selection != NULL)
+			if (list->selection->data == item)
+				gtk_list_select_child (list, item);
+
+		/* popup menu */
+		get_menubar(&menu, NULL, MENU_POPUP);
+		gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, 0);
+		for_popup = 0;
+	}
+
+	return TRUE;
+}
+
+
+
 void app_new(int argc, char *argv[])
 {
 	GtkWidget *swin, *vbox;
@@ -345,16 +409,26 @@ void app_new(int argc, char *argv[])
 	gtk_box_pack_start(GTK_BOX(vbox), widget, FALSE, FALSE, 0);
 #endif /* WANT_GNOME */ 
 
+	status_bar = gtk_hbox_new(FALSE, 0);
+	gtk_widget_show(status_bar);
+	gtk_box_pack_end(GTK_BOX(vbox), status_bar, FALSE, FALSE, 2);
+	status_project = gtk_label_new(NO_PROJECT_SELECTED);
+	gtk_widget_show(status_project);
+	gtk_box_pack_start(GTK_BOX(status_bar), status_project, FALSE, FALSE, 3);
+
 	swin = gtk_scrolled_window_new(NULL, NULL);
 	/* TODO: remove hard coded pixel values...? */
-	gtk_widget_set_usize(swin, -1, 170);
-	gtk_box_pack_end(GTK_BOX(vbox), swin, TRUE, TRUE, 2);
+	gtk_widget_set_usize(swin, 200, 170);
+	gtk_box_pack_end(GTK_BOX(vbox), swin, TRUE, TRUE, 0);
 	gtk_widget_show(swin);
 	glist = gtk_list_new();
 	gtk_list_set_selection_mode(GTK_LIST(glist), GTK_SELECTION_SINGLE);
-	gtk_container_add(GTK_CONTAINER(swin), glist);
 	gtk_signal_connect(GTK_OBJECT(glist), "select_child",
 			   GTK_SIGNAL_FUNC(select_item), NULL);
+	gtk_signal_connect(GTK_OBJECT(glist), "button_press_event",
+			   GTK_SIGNAL_FUNC(list_button_press), NULL);
+	gtk_widget_set_events(glist, GDK_BUTTON_PRESS_MASK);
+	gtk_container_add(GTK_CONTAINER(swin), glist);
 	/* start timer before the state of the menu items is set */
 	start_timer();
 	init_list();
