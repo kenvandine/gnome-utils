@@ -1,0 +1,360 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "2.1">
+  <!ENTITY manrevision "2.3">
+  <!ENTITY date "September 2002">
+  <!ENTITY app "Search for Files">
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp 
+  Template version: 2.0 beta
+  Template last modified Apr 11, 2002  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="zh_tw">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+    <title>&app; 手冊 V&manrevision;</title>
+
+    <copyright> 
+      <year>2002</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>2000</year> 
+      <holder>Alexander Kirillov</holder> 
+    </copyright>
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+    <publisher> 
+      <publishername> GNOME 文件專案 </publishername> 
+    </publisher> 
+
+   &legal;
+
+    <authorgroup>
+      <author> 
+	<firstname>Sun</firstname> <surname>GNOME 文件小組</surname> 
+	<affiliation> 
+	  <orgname>Sun Microsystems</orgname> 
+	  <address> <email>gdocteam@sun.com</email> </address>
+	</affiliation>
+      </author>
+      <author> 
+	<firstname>Alexander</firstname> 	<surname>Kirillov</surname> 
+	<affiliation> 
+	  <orgname>GNOME 文件專案</orgname> 
+	  <address> <email>kirillov@math.sunysb.edu</email> </address>
+	</affiliation>
+      </author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+
+ <revhistory>
+ <revision> 
+	<revnumber>&app; 手冊 V&manrevision;</revnumber> 
+	<date>&date;</date> 
+	<revdescription> 
+	  <para role="author">Sun GNOME 文件小組 <email>gdocteam@sun.com</email>
+	  </para>
+	  <para role="publisher">GNOME 文件專案</para>
+	</revdescription>
+ </revision>
+ <revision> 
+			<revnumber>搜尋工具手冊 V2.2</revnumber> <date>2002 年 8 月</date> <revdescription> 
+	  		<para role="author">Sun GNOME 文件小組 <email>gdocteam@sun.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME 文件專案</para>
+			</revdescription>
+ </revision>
+ <revision> 
+			<revnumber>搜尋工具手冊 V2.1</revnumber> <date>2002 年 7 月</date> <revdescription> 
+	  		<para role="author">Sun GNOME 文件小組
+	    		<email>gdocteam@sun.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME 文件專案</para>
+			</revdescription>
+ </revision>
+ <revision> 
+			<revnumber>搜尋工具手冊 V2.0</revnumber> <date>2002 年 5 月</date> <revdescription> 
+	  		<para role="author">Sun GNOME 文件小組 <email>gdocteam@sun.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME 文件專案</para>
+			</revdescription>
+ </revision>
+ <revision> 
+	<revnumber>GNOME 搜尋工具手冊</revnumber> <date>2000</date> <revdescription> 
+	  <para role="author">Alexander Kirillov <email>kirillov@math.sunysb.edu</email>
+	  </para>
+	  <para role="publisher">GNOME 文件專案</para>
+	</revdescription>
+ </revision>
+ </revhistory>
+
+    <releaseinfo>本手冊的內容是說明 &appversion; 版的 &app;。
+    </releaseinfo>
+    <legalnotice> 
+      <title>回饋</title>
+      <para>關於本 &app; 應用程式或手冊，如果要報告錯誤或提出建議，請遵照 <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink> 的指示。 
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+  </articleinfo>
+
+  <indexterm> 
+    <primary>搜尋工具</primary> 
+  </indexterm> 
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+
+  <sect1 id="gsearchtool-introduction"> 
+    <title>介紹</title>
+    <para><application>&app;</application> 應用程式可以讓您在系統上搜尋檔案。
+    如果要執行基本的搜尋，您可以鍵入完整的檔案名稱，也可以鍵入具有通配符號的部份檔案名稱。 
+    如果要縮小搜尋範圍，您可以選取其他所需的搜尋限制，讓 
+    <application>&app;</application> 套用於搜尋中。</para>
+    <para><application>&app;</application> 使用了<command>find</command>、<command>grep</command> 和 <command>locate</command> 等 UNIX 指令。</para>
+  </sect1>
+
+  <sect1 id="gsearchtool-getting-started">
+   <title>入門</title>
+
+    <para>您可以使用下列方式啟動 <application>&app;</application>：
+    </para>
+    <variablelist>
+    	<varlistentry>
+    		<term><guimenu>動作</guimenu>功能表</term>
+    		<listitem>
+    		<para>選擇<guimenuitem>搜尋檔案</guimenuitem></para>
+    		</listitem>
+    	</varlistentry>
+    	<varlistentry>
+    		<term>指令行</term>
+    		<listitem>
+    		<para>鍵入 <command>gnome-search-tool</command>，然後按一下 <keycap>Return</keycap>。</para>
+    		<para>		 
+    		</para>
+    		</listitem>
+    	</varlistentry>
+    </variablelist>
+
+    <para>當您啟動 <application>&app;</application> 時，會顯示下面的視窗。</para>
+
+    <!-- ==== Figure ==== -->
+      <figure id="mainwindow-fig"> 
+	<title>&app; 視窗</title>
+	<screenshot>
+	  <mediaobject>
+	    <imageobject><imagedata 		fileref="figures/gnome-search-tool_window.png" format="PNG"/> 
+	    </imageobject>
+	    <textobject>
+	      <phrase>顯示 &app; 主要視窗。包含標題列、功能表列、簡單和進階標籤區段。</phrase>
+	    </textobject>
+	  </mediaobject>
+	</screenshot>
+      </figure>
+    <!-- ==== End of Figure ==== -->
+
+  </sect1>
+
+<!-- ================ Usage ================================ -->
+
+  <sect1 id="gsearchtool-usage"> 
+    <title>使用</title>
+
+    <sect2 id="gsearchtool-simple">
+    <title>執行基本搜尋</title>
+    
+    <para>如果要在系統上執行基本的檔案搜尋，請執行下列步驟：</para>
+    <orderedlist>
+    <listitem><para>在<guilabel>檔案名稱</guilabel>欄位中，輸入下列任一個字串：</para>
+    		<itemizedlist>
+    			<listitem><para>完整的檔名，例如 <userinput>myfile.txt</userinput>。<application>&app;</application> 會在系統上，搜尋所有名為 <userinput>myfile.txt</userinput> 的檔案。</para></listitem>
+    			<listitem><para>帶有通配符號 (*) 的部份檔案名稱，例如 <userinput>*.txt</userinput>。 
+    			<application>&app;</application> 會在檔案系統中，搜尋所有副檔名為 <userinput>.txt</userinput> 的檔案。</para></listitem>
+    		</itemizedlist>
+    		<para></para>
+     </listitem>
+     <listitem><para>在<guilabel>查看資料夾</guilabel>欄位中，輸入您想要 <application>&app;</application>
+     開始搜尋的目錄路徑。 <application>&app;</application> 會在您所指定的目錄以及該目錄的子目錄中搜尋。</para></listitem>
+     <listitem><para>按一下<guibutton>尋找</guibutton>執行搜尋。
+     <application>&app;</application> 會將搜尋的結果，顯示在 <guilabel>搜尋結果</guilabel>清單方塊中。 
+     如果 <application>&app;</application> 找不到任何符合搜尋條件的檔案，應用程式就會在 <guilabel>搜尋結果</guilabel>清單方塊中，顯示「找不到檔案」訊息。 </para>
+     </listitem>
+     </orderedlist>
+     </sect2>
+    
+    <sect2 id="gsearchtool-advanced">
+    <title>加入搜尋限制</title>
+    
+    <para>在系統中搜尋檔案時，如果要加入搜尋限制，請執行下列步驟：</para>
+  	<orderedlist>
+    		<listitem><para>按一下<guilabel>其他限制</guilabel>。</para></listitem>
+    		<listitem><para>按一下<guilabel>可用的搜尋限制</guilabel>下拉式清單方塊。</para></listitem>
+    		<listitem><para>選取您想套用的搜尋限制。</para></listitem>
+    		<listitem><para>按一下<guibutton>加入</guibutton>，將搜尋限制加入其他限制的清單中。</para></listitem>
+    		<listitem><para>請指定搜尋規則所需的搜尋資訊，如需詳細資訊，請參閱<xref linkend="tbl-search-rules"/>。</para></listitem>
+    		<listitem><para>針對所有您想要套用的搜尋限制，重複執行上述步驟。</para></listitem>
+    	</orderedlist>	
+    	<para>如果要從 <guilabel>其他限制</guilabel> 清單中移除搜尋限制，請按一下該限制旁邊的<guibutton>移除</guibutton>按鈕。 </para>
+    	
+    
+    <table id="tbl-search-rules" frame="topbot">
+    <title>搜尋規則</title>
+		  <tgroup cols="2" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/>
+			 <colspec colname="COLSPEC1" colwidth="33*"/>
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>規則名稱</para></entry>
+				  <entry>
+					 <para>說明</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>內含文字</para></entry>
+				  <entry>
+					 <para>根據檔案名稱搜尋檔案。在提供的欄位中，輸入完整的檔案名稱，或是含有通配符號的部分檔名。
+					 請使用 * 代表字元序列。使用 ? 代表單一字元。本搜尋會區分大小寫。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>為使用者所擁有</para></entry>
+				  <entry>
+					 <para>搜尋為指定之使用者所擁有的檔案。在提供的文字方塊中，鍵入使用者的名稱</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>為群組所擁有</para></entry>
+				  <entry>
+					 <para>搜尋為指定之群組所擁有的檔案。在提供的文字方塊中，鍵入群組的名稱。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>無法識別所有者</para></entry>
+				  <entry>
+					 <para>搜尋為系統未知之使用者或群組所擁有的檔案。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>之前修改日期 (以天數計)</para></entry>
+				  <entry>
+					 <para>搜尋在少於指定天數期間內做過修改的檔案。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>之後修改日期 (以天數計)</para></entry>
+				  <entry>
+					 <para>搜尋在超過指定天數期間內做過修改的檔案。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>大小上限 (千位元組)</para></entry>
+				  <entry>
+					 <para>搜尋小於指定大小的檔案。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>大小下限 (千位元組)</para></entry>
+				  <entry>
+					 <para>搜尋大於指定大小的檔案。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>檔案是空白的</para></entry>
+				  <entry>
+					 <para>搜尋空白的檔案。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>檔案未命名</para></entry>
+				  <entry>
+					 <para>搜尋不符合您所輸入檔名的檔案。在提供的欄位中，輸入完整的檔案名稱，或含有通配符號的部分檔名。 請使用 * 代表字元序列。使用 ? 代表單一字元。搜尋時會區分大小寫。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>檔案符合正規表示式</para></entry>
+				  <entry>
+					 <para>搜尋在目錄路徑或檔案名稱中，含有指定之正規表示式的檔案。在提供的文字方塊中，鍵入正規表示式。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>跟隨象徵性連結</para></entry>
+				  <entry>
+					 <para>搜尋檔案時跟隨象徵性連結。</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>搜尋其他檔案系統</para></entry>
+				  <entry>
+					 <para>將和開始目錄不在同一個檔案系統中的目錄，也包括在搜尋中。</para></entry>
+				</row>
+				 				
+			 </tbody>
+		  </tgroup>
+		</table>
+    
+    </sect2>
+
+    <sect2 id="gsearchtool-stop">
+    <title>停止搜尋</title>
+    <para>按一下<guibutton>停止</guibutton>，可以在 <application>&app;</application> 完成搜尋前，停止搜尋。</para>
+    </sect2>
+    
+    <sect2 id="gsearchtool-view">
+    <title>開啟找到的檔案</title>
+    <para>如果要開啟<guilabel>搜尋結果</guilabel> 清單方塊中所顯示的檔案，請執行下列任一個步驟：</para>
+    <itemizedlist>
+    <listitem><para>在檔案上按滑鼠右鍵，然後選擇 <guimenuitem>開啟</guimenuitem>。 </para></listitem>
+     <listitem><para>按兩下檔案。 </para></listitem>
+    </itemizedlist>
+    <para>如果要在 <guilabel>搜尋結果</guilabel>清單方塊中，開啟顯示之檔案所在的資料夾，請在檔案上按滑鼠右鍵，然後選擇<guimenuitem>開啟資料夾</guimenuitem>。</para>
+    <para>如果要將<guilabel>搜尋結果</guilabel>清單方塊中所顯示的檔案，複製到桌面中的另一個區域，請將檔案拖曳到該區域。</para>
+    </sect2>
+    
+    <!--
+    <sect2 id="gsearchtool-search-command">
+    <title>To View the Search Command Used by &app;</title>
+    <para>To view the command that <application>&app;</application> used to perform the previous search, choose 
+    <menuchoice>
+    <guimenu>Search</guimenu>
+    <guimenuitem>Show Command</guimenuitem>
+    </menuchoice>. The <guilabel>Search Command Line</guilabel> displays the command. </para>
+    </sect2>
+    -->
+    
+    <sect2 id="gsearchtool-savetofile">
+    <title>儲存搜尋結果</title>
+    <para>如果要儲存 <application>&app;</application> 最近一次的搜尋結果，請在<guilabel>搜尋結果</guilabel>清單中按滑鼠右鍵，然後選擇 <guimenuitem>儲存結果</guimenuitem>。輸入儲存結果的檔案名稱，然後按一下確定。</para>
+    </sect2>
+
+ 
+  </sect1>
+
+
+</article>

@@ -1,0 +1,236 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+ "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY date "August 2002">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY app "Character Map">
+  <!ENTITY legal SYSTEM "legal.xml">
+]>
+<!-- (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Jan 2, 2002   
+ 
+  -->
+<article id="index" lang="zh_tw">
+<!-- Please do not change the id; for translations, 
+change lang to appropriate code -->
+  <articleinfo>
+	 <title>&app; 手冊 V&manrevision;</title>
+	 <copyright>
+		<year>2002</year>
+		<holder>Sun Microsystems</holder>
+	 </copyright>
+	 <copyright>
+		<year>2000</year>
+		<holder>Hongli Lai</holder>
+	 </copyright> 
+     <!-- Translators: uncomment this:
+     <copyright>
+        <year>2000</year>
+        <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+     </copyright>
+     -->
+	 <publisher>
+		<publishername>GNOME 文件專案</publishername>
+	 </publisher> &legal;
+
+     <!-- This file  contains link to license for the documentation (GNU
+               FDL), and other
+               legal stuff such as "NO WARRANTY" statement. Please do
+               not change any of this.--> 
+	 <legalnotice id="feedback">
+		<para>關於本應用程式或
+		  本手冊，如果要報告錯誤或提出建議，請遵照 <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink> 的指示。 </para>
+	 </legalnotice>
+	 <authorgroup>
+		<author>
+		  <firstname>Sun</firstname>
+		  <surname>GNOME 文件小組</surname>
+		  <affiliation>
+			 <orgname>Sun Microsystems</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Hongli</firstname>
+		  <surname>Lai</surname>
+		  <affiliation>
+			 <orgname>GNOME 文件專案</orgname>
+		  </affiliation>
+		</author>
+	 </authorgroup>
+	 <revhistory>
+		<revision>
+		  <revnumber>&app; 手冊 V&manrevision;</revnumber>
+		  <date>&date;</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME 文件小組 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME 文件專案</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME 字元對映手冊 V2.1</revnumber>
+		  <date>2002 年 7 月</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME 文件小組 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME 文件專案</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME 字元對映手冊 V2.0</revnumber>
+		  <date>2002 年 3 月</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME 文件小組 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME 文件專案</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME 字元對映手冊</revnumber>
+		  <date>2000</date>
+		  <revdescription>
+			 <para role="author">
+			       Hongli Lai、Dan Mueth
+				   <email>hongli@telekabel.nl</email>、<email>d-mueth@uchicago.edu</email></para>
+			 <para role="publisher">
+			       GNOME 文件專案</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>本手冊的內容是說明 &appversion; 版的 &app;。
+		</releaseinfo>
+  </articleinfo>
+  <indexterm><primary>字元對映</primary></indexterm>
+  <!-- ============= Document Body ============================= --><!-- ============= Introduction ============================== --> <sect1 id="gcharmap-introduction"><title>介紹</title>
+	 <para>您可以使用<application>&app;</application><indexterm><primary>字元對映應用程式</primary></indexterm>，從字元表中選取字元，然後將這些字元與標準字元結合為文字字串。
+		您可以將您所建立的文字字串，插入應用程式中，例如文字編輯器文件。 </para>
+	 <para><application>&app;</application> 主要是使用	ISO-8859-1 Latin 1 字元集。 本應用程式也提供了一些選項，讓您可以使用非 Latin 字元集，例如 Cryllic。本應用程式也提供了重音字元、數學符號、特殊符號以及標點符號。
+		其中有許多字元在標準鍵盤上是找不到的。</para>
+	 	
+  </sect1>
+  
+  <sect1 id="gcharmap-get-started"><title>入門</title>
+     <para>下列章節會說明如何開始使用 <application>&app;</application>。
+     </para>
+     <sect2 id="gcharmap-to-start"><title>啟動 &app;</title>
+        <para>您可以使用下列方式，啟動 <application>&app;</application>：
+        </para>
+        <variablelist>
+          <varlistentry><term>應用程式功能表</term> 
+             <listitem>
+                <para>請選取<menuchoice><guimenu>周邊裝置</guimenu><guimenuitem>字元對映</guimenuitem></menuchoice>。
+                </para>
+             </listitem>
+          </varlistentry>
+          <varlistentry><term>指令行</term><listitem>
+                <para>請鍵入 <command>gnome-character-map</command>， 然後按一下 <keycap>Return</keycap> 鍵。
+                </para>
+             </listitem>
+          </varlistentry>
+        </variablelist>
+     </sect2>
+     <sect2 id="gcharmap-first-start"><title>當您啟動 &app;</title>
+        <para>當您啟動 <application>&app;</application>，會顯示下列視窗：
+        </para>
+        <figure id="gcharmap-mainwindow-fig"><title>&app; 視窗</title>
+			<screenshot>
+			<mediaobject>
+			<imageobject><imagedata fileref="figures/gnome-character-map.png" 			format="PNG"/>
+			</imageobject>
+			<textobject>
+			<phrase>顯示字元對映主視窗。 顯示功能表列、要複製的文字欄位，以及字元按鈕。</phrase>
+			</textobject>
+			</mediaobject>
+			</screenshot>
+		</figure>
+		
+		<para><application>&app;</application> 視窗中包含下列元素：</para>
+	 	<itemizedlist>
+		<listitem>
+		  <para>功能表列</para>
+		  <para>功能表列包含了標準 GNOME 視窗功能表。</para>
+		</listitem>
+		<listitem>
+		  <para>文字工具列</para>
+		  <para>文字工具列包括了<guilabel>要複製的文字</guilabel>欄位，與<guilabel>複製</guilabel> 按鈕。請使用<guilabel>要複製的文字</guilabel> 欄位，建立文字字串，以便複製到另一種應用程式中。
+			 您可以使用<guilabel>複製</guilabel>  按鈕，將完整的文字字串，從<guilabel>要複製的文字</guilabel>欄位複製到緩衝區中。
+			 您可以使用鍵盤或是字元表，將字元輸入<guilabel>要複製的文字</guilabel>欄位中。
+			   </para>
+		</listitem>
+		<listitem>
+		  <para>字元表</para>
+		  <para>字元表中有 ISO-8859-1 字元集的按鈕。預設的字型設定值為 Helvetica 12 點。</para>
+		</listitem>
+		<listitem>
+		  <para>狀態列</para>
+		  <para>狀態列位在視窗的下方邊緣。這個狀態列所顯示的，是具有焦點之字元表中，字元的 ASCII 碼。</para>
+		</listitem>
+	 	</itemizedlist>
+     </sect2>	
+ 
+  </sect1>
+
+  <!-- ================ Usage ================================ -->
+
+  <sect1 id="gcharmap-usage"><title>使用</title>
+
+	 <sect2 id="gcharmap-create-textstring"><title>建立文字字串</title>
+		<para>如果要在<guilabel>要複製的文字</guilabel>欄位中建立文字字串，您可以使用下列方式插入字元：   </para>
+		<itemizedlist>
+		  <listitem>
+			 <para>請按一下字元表中的字元按鈕，將字元插入<guilabel>要複製的文字</guilabel>欄位中。</para>
+		  </listitem>
+		  <listitem>
+			 <para>請按一下<guilabel>要複製的文字</guilabel>欄位，將焦點傳給欄位。
+				如果欄位中已經有文字字串，請在您想要插入字元的地方，按一下文字字串。按鍵盤上的字元鍵，將該字元插入欄位中。</para>
+		  </listitem>
+		  <listitem>
+			 <para>請選擇<menuchoice><guimenu>字元</guimenu><guimenuitem>瀏覽</guimenuitem></menuchoice>，開啟<guilabel>選取字元</guilabel>對話方塊。
+				請使用對話方塊中的旋轉方塊，指定範圍為 0 到 255 的 ASCII 字元。這個範圍包括了在字元表看不見的字元。
+				請按一下<guibutton>插入</guibutton>，將字元加入<guilabel>要複製的文字</guilabel>欄位中。</para>
+		  </listitem>
+		</itemizedlist>
+
+	 </sect2>
+<!-- =============== To Copy and Paste a Text String ====================== -->
+	 
+	 <sect2 id="gcharmap-copy-textstring"><title>將文字字串複製並貼入應用程式</title>
+		<para>如果要將您在<guilabel>要複製的文字</guilabel>欄位中建立的文字字串，複製並貼入應用程式，請執行下列步驟：   </para>
+		<orderedlist>
+		  <listitem>
+			 <para>拖曳指標來選取<guilabel>要複製的文字</guilabel>欄位中的文字字串，或是按一下<guibutton>複製</guibutton>。選取的文字字串會呈反白狀態。</para>
+		  </listitem>
+		  <listitem>
+			 <para>將指標指向應用程式中，您想要放置文字字串的位置，然後按滑鼠中鍵，插入文字字串。如果貼上功能為可使用，您也可以將文字字串貼上至應用程式中。在選取文字	字串後，您可以隨意地重複插入動作。
+				按一下<guilabel>要複製的文字</guilabel>欄位，可以取消選取文字字串。</para>
+		  </listitem>
+		</orderedlist>
+		<para>當您將<guilabel>要複製的文字</guilabel>欄位的內容貼上至其他應用程式時，該文字字串就會出現在應用程式目前的字元集中。
+		</para>
+		<para>如果您的文字字串含有看不見的字元，就只能將文字字串插入支援該完整字元集的應用程式中。
+		  </para>
+		<para>如果您還未將文字字串貼上至應用程式時，就先離開了 <application>&app;</application>，您的文字字串就會遺失。</para>
+	 </sect2>
+<!-- =============== To Change the Input Mode  ========================= -->
+	 
+	 <sect2 id="gcharmap-clear-field"><title>清除要複製的文字欄位</title>
+		<para>如果要清除<guilabel>要複製的文字</guilabel>欄位，請選擇<menuchoice><guimenu>編輯</guimenu><guimenuitem>清除</guimenuitem></menuchoice>。</para>
+	 </sect2>
+	 
+	 <sect2 id="gcharmap-change-charset"><title>變更輸入模式</title>
+		<para>如果要變更輸入模式，請在<guilabel>要複製的文字</guilabel>欄位上按滑鼠右鍵，然後選取<guimenuitem>輸入方法</guimenuitem>。<guimenuitem>插入 Unicode 控制字元</guimenuitem>功能表中的項目，提供了字元版面配置選項，這對於使用非 Latin 字元集十分有用。
+		</para>
+
+	 </sect2>
+  </sect1>
+
+</article>

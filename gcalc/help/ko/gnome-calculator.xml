@@ -1,0 +1,649 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY date "August 2002">
+  <!ENTITY app "Calculator">
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="ko">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+	 <title>&app; 설명서 V&manrevision;</title>
+	 <copyright> 
+		<year>2002</year> 
+		<holder>Sun Microsystems</holder> 
+	 </copyright> 
+	 <copyright> 
+		<year>2002</year> 
+		<holder>Gregory Leblanc</holder> 
+	 </copyright>
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+	 <publisher> 
+		<publishername>그놈 문서 프로젝트</publishername> 
+	 </publisher> &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+	 <authorgroup>
+		<author> 
+		  <firstname>Sun</firstname> 
+		  <surname>그놈 문서 팀</surname> 
+		  <affiliation> 
+			 <orgname>Sun Microsystems</orgname> 
+			 <address> <email>gdocteam@sun.com</email> </address>
+		  </affiliation>
+		</author>
+		<author> 
+		  <firstname>Gregory</firstname> 
+		  <surname>Leblanc</surname> 
+		  <affiliation> 
+			 <orgname>그놈 문서 프로젝트</orgname> 
+			 <address> <email>gleblanc@cu-portland.edu</email> </address>
+		  </affiliation>
+		</author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+	 </authorgroup>
+	 <revhistory>
+		<revision> 
+		  <revnumber>&app; 설명서 V&manrevision;</revnumber> 
+		  <date>&date;</date> 
+		  <revdescription> 
+			 <para role="author">Sun 그놈 문서 팀
+
+<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">그놈 문서 프로젝트</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>그놈 계산기 설명서 V2.1</revnumber> 
+		  <date>2002년 6월</date> 
+		  <revdescription> 
+			 <para role="author">Sun 그놈 문서 팀
+
+<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">그놈 문서 프로젝트</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>그놈 계산기 설명서 V2.0</revnumber> 
+		  <date>2002년 3월</date> 
+		  <revdescription> 
+			 <para role="author">Sun 그놈 문서 팀
+
+<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">그놈 문서 프로젝트</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>그놈 계산기 설명서
+</revnumber> 
+		  <date>2000년</date> 
+		  <revdescription> 
+			 <para role="author">Gregory Leblanc
+
+<email>gleblanc@cu-portland.edu</email> </para>
+			 <para role="publisher">그놈 문서 프로젝트</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>이 설명서에서는 &app;의 버전 &appversion;에 대해 설명합니다.
+		</releaseinfo>
+	 <legalnotice> 
+		<title>피드백</title>
+		<para>&app; 응용프로그램 또는 이 설명서에 대한 버그를 
+보고하거나
+		  의견을 제시하려면
+		  <ulink url="ghelp:gnome-feedback" type="help">그놈 피드백
+			 페이지</ulink>에 있는 지시 사항을 따르십시오. </para>
+<!-- Translators may also add here feedback address for translations -->
+	 </legalnotice>
+  </articleinfo>
+  <indexterm> 
+	 <primary>그놈 계산기</primary> 
+  </indexterm> 
+
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+  <sect1 id="gcalc-introduction"> 
+	 <title>소개</title>
+	 <para><application>그놈 계산기</application>는 산술, 삼각 및 로그 함수를 포함하는 간단한 수학 및 과학용 계산기입니다.</para>	 
+  </sect1>
+  
+  <sect1 id="gcalc-getting-started">
+    <title>시작하기</title>
+  <para>다음과 같은 방법으로 <application>&app;</application>을(를) 시작할 수 있습니다.</para>
+		<variablelist>
+			<varlistentry>
+			<term><guimenu>응용프로그램</guimenu> 메뉴</term>
+			<listitem>
+			<para><menuchoice>
+			<guisubmenu>액세서리</guisubmenu>
+			<guimenuitem>계산기</guimenuitem>
+			</menuchoice>를 선택합니다. </para>
+			</listitem>
+			</varlistentry>
+			<varlistentry>
+			<term>명령줄</term>
+			<listitem>
+			<para><command>gnome-calculator</command>를 입력하고 <keycap>Return</keycap> 키를 누릅니다.</para>
+			</listitem>
+			</varlistentry>
+		</variablelist>
+ 
+	 <para><application>&app;</application>을(를) 시작하면
+		 <application>&app;</application> 창이 표시됩니다.</para>
+         <!-- ==== Figure ==== -->
+	 <figure id="gcalc_window"> 
+		<title>&app; 창</title>
+		<screenshot>
+		  <mediaobject>
+			 <imageobject>
+				<imagedata fileref="figures/gcalc_window.png" format="PNG"/> 
+			 </imageobject>
+			 <textobject>
+				<phrase>계산기 창을 표시합니다.</phrase>
+			 </textobject>
+		  </mediaobject>
+		</screenshot>
+	 </figure>
+<!-- ==== End of Figure ==== -->
+  </sect1>
+  
+<!-- ============= Usage ============================= -->
+  <sect1 id="gcalc-usage"> 
+	 <title>사용</title>
+	 
+	 <sect2 id="gcalc-basic-functions"> 
+		<title>기본 계산기 기능을 사용하려면</title>
+		<para>기본 계산을 수행하려면 다음 방법 중 하나를 사용합니다.</para>
+		<itemizedlist>
+		  <listitem>
+			 <para>계산기 버튼을 클릭하여 숫자와 수학적 함수를 입력합니다.</para>
+		  </listitem>
+		  <listitem>
+			 <para><application>&app;</application>에 초점을 맞춘 후 숫자 키 패드를 사용하여 수행할 수학적 계산을 지정합니다.</para>
+		  </listitem>
+		</itemizedlist>
+		<para>입력한 숫자와 계산 결과가 표시 필드에 나타납니다. 숫자를 잘못 입력한 경우에는 
+		  <guibutton>C/CE</guibutton>를 클릭하여 숫자를 삭제한 다음 올바른 숫자를 다시 입력합니다.</para>
+		<para>계산 결과를 복사하려면 
+		  <menuchoice> 
+			 <guimenu>편집</guimenu> 
+			 <guimenuitem>복사</guimenuitem>
+		  </menuchoice>를 선택합니다. 값을 다른 응용프로그램에 붙여 넣을 수 있습니다.</para>
+		
+		<para>계산 결과를 지우려면 다음 작업 중 하나를 수행합니다. </para>
+		<itemizedlist>
+		  <listitem>
+			 <para><guibutton>AC</guibutton>를 클릭하여 메모리 버퍼와 표시 필드에서 계산 결과를 지웁니다.</para>
+		  </listitem>
+		  <listitem>
+			 <para><guibutton>C/CE</guibutton>를 클릭하여 표시 필드에서 계산 결과를 지웁니다.</para>
+		  </listitem>
+		</itemizedlist>
+		<para><application>&app;</application>은(는) 자동으로 큰 정수와 작은 소수를 지수로  표시합니다. 예를 들어, 
+<application>&app;</application>을(를) 사용하여 1200000x100000을 계산하면 계산기에는 1.2e+11이라는 결과가 표시됩니다. 이 결과는 1.2를 10의 11승과 곱한 것을 의미합니다. 0.00001을 입력하면 계산기에는 1e-05라는 숫자가 표시되는데, 이는 1 을 10의 -5승과 곱한 것을 의미합니다. 숫자를 지수 형식으로 입력하는 방법에 대한 내용은
+		  <xref linkend="gcalc-exp-numbers"/>을(를) 참조하십시오. </para>
+	 </sect2>
+	 <sect2 id="gcalc-arithmetic-funcs"> 
+		<title>산술 계산을 수행하려면</title>
+		<para>산술 계산을 수행하려면 다음 표에 나와 있는 버튼을 사용합니다.</para>
+		<informaltable frame="all">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="50*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="50*"/>
+			 <colspec colname="COLSPEC3" colwidth="50*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>기능</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para>버튼</para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>예</para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>결과</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>부호 변경</para></entry>
+				  <entry>
+					 <para> <guibutton>+/-</guibutton></para></entry>
+				  <entry>
+					 <para>8, <guibutton>+/-</guibutton></para></entry>
+				  <entry>
+					 <para>-8</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>역수</para></entry>
+				  <entry>
+					 <para> <guibutton>1/x</guibutton></para></entry>
+				  <entry>
+					 <para>4, <guibutton>1/x</guibutton></para></entry>
+				  <entry>
+					 <para>0.25</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>제곱</para></entry>
+				  <entry>
+					 <para> <guibutton>x^2</guibutton></para></entry>
+				  <entry>
+					 <para>3, <guibutton>x^2</guibutton></para></entry>
+				  <entry>
+					 <para>9</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>제곱근</para></entry>
+				  <entry>
+					 <para> <guibutton>SQRT</guibutton></para></entry>
+				  <entry>
+					 <para>9, <guibutton>SQRT</guibutton></para></entry>
+				  <entry>
+					 <para>3</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>거듭제곱</para></entry>
+				  <entry>
+					 <para> <guibutton>x^y</guibutton></para></entry>
+				  <entry>
+					 <para>2, <guibutton>x^y</guibutton>, 4, <guibutton> =
+						  </guibutton></para></entry>
+				  <entry>
+					 <para>16</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>계승</para></entry>
+				  <entry>
+					 <para><guibutton>x!</guibutton></para></entry>
+				  <entry>
+					 <para>4, <guibutton>x!</guibutton></para></entry>
+				  <entry>
+					 <para>24</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-trig-funcs"> 
+		<title>삼각 함수 값을 계산하려면</title>
+		<para>삼각 함수 값을 계산하려면 다음 표에 나와 있는 버튼을 사용합니다.</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="21.00*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="39.00*"/>
+			 <colspec colname="COLSPEC3" colwidth="39.00*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>기능</para></entry>
+				  <entry>
+					 <para>버튼</para></entry>
+				  <entry>
+					 <para>예</para></entry>
+				  <entry>
+					 <para>결과</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>사인</para></entry>
+				  <entry>
+					 <para> <guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>90, <guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>역사인</para></entry>
+				  <entry>
+					 <para> <guibutton>INV</guibutton> 및 
+						<guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>1, <guibutton>INV</guibutton>, 
+						<guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>90</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>코사인</para></entry>
+				  <entry>
+					 <para> <guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>60, <guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>0.5</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>역코사인</para></entry>
+				  <entry>
+					 <para> <guibutton>INV</guibutton> 및 
+						<guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>0.5, <guibutton>INV</guibutton>, 
+						<guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>60</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>탄젠트</para></entry>
+				  <entry>
+					 <para> <guibutton>tan</guibutton></para></entry>
+				  <entry>
+					 <para>45, <guibutton>tan</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>역탄젠트</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>INV</guibutton> 및 
+						<guibutton>tan</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>1, <guibutton>INV</guibutton>, 
+						<guibutton>tan</guibutton></para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>45</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+		<para>기본적으로 각도 측정 단위는 DEG(도)입니다. 측정 단위를 변경하려면 <guibutton>DEG</guibutton> 버튼을 클릭합니다.
+		 <guibutton>DEG</guibutton>를 클릭하면 버튼과 측정 단위가
+		   <guibutton>RAD</guibutton>(라디안)로 변경됩니다. 
+		  <guibutton>RAD</guibutton>를 클릭하면 버튼과 측정 단위가
+		   <guibutton>GRAD</guibutton>(그라디언트)로 변경됩니다. <guibutton>GRAD</guibutton>를 클릭하면 측정 단위가 다시 DEG로 변경됩니다.</para>
+	 </sect2>
+	 <sect2 id="gcalc-log-funcs"> 
+		<title>로그 함수를 계산하려면</title>
+		<para>로그 함수를 계산하려면 다음 표에 나와 있는 버튼을 사용합니다.</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="33*"/>
+			 <colspec colname="COLSPEC3" colwidth="33*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>기능</para></entry>
+				  <entry>
+					 <para>버튼</para></entry>
+				  <entry>
+					 <para>예</para></entry>
+				  <entry>
+					 <para>결과</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>일반 로그</para></entry>
+				  <entry>
+					 <para><guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>10, <guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>일반 역로그</para></entry>
+				  <entry>
+					 <para><guibutton>INV</guibutton> 및 
+						<guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>1, <guibutton>INV</guibutton>, 
+						<guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>10</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>자연 로그</para></entry>
+				  <entry>
+					 <para><guibutton>ln</guibutton></para></entry>
+				  <entry>
+					 <para>10, <guibutton>ln</guibutton></para></entry>
+				  <entry>
+					 <para>2.302585093</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>자연 역로그</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>INV</guibutton> 및 
+						<guibutton>ln</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>2.302585093, <guibutton>INV</guibutton>, 
+						<guibutton>ln</guibutton></para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>10</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-exp-numbers"> 
+		<title>지수를 입력하려면</title>
+		<para><guibutton>EE</guibutton> 버튼은 사용자가 입력한 다음 숫자만큼 10을 거듭제곱합니다. <guibutton>EE</guibutton>를 클릭하면 계산기의 표시 필드에는 e+가 표시되며  사용자가 입력한 그 다음 숫자만큼 10을 거듭제곱합니다. 예를 들어, 5, 
+		  <guibutton>EE</guibutton>, 2, <guibutton>=</guibutton>를 입력하면 계산기에는 500이 표시됩니다.</para>
+		<para>숫자를 지수 형식으로 입력하려면 다음 표에 있는 지침을 따릅니다.</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="3" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/>
+			 <colspec colname="COLSPEC1" colwidth="33*"/>
+			 <colspec colname="COLSPEC2" colwidth="33*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>숫자</para></entry>
+				  <entry>
+					 <para>입력</para></entry>
+				  <entry>
+					 <para>표시되는 숫자</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>1200000000</para></entry>
+				  <entry>
+					 <para>12, <guibutton>EE</guibutton>, 8, 
+						<guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>1200000000</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>-1200000000</para></entry>
+				  <entry>
+					 <para>12, <guibutton>+/-</guibutton>, 
+						<guibutton>EE</guibutton>, 8, <guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>-1200000000</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>0.00000012</para></entry>
+				  <entry>
+					 <para>12, <guibutton>EE</guibutton>, 8, 
+						<guibutton>+/-</guibutton>, <guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>1.2e-07</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>-0.00000012</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para>12, <guibutton>+/-</guibutton>, 
+						<guibutton>EE</guibutton>, 8, <guibutton>+/-</guibutton>, 
+						<guibutton>=</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>-1.2e-07</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-pi-e-values"> 
+		<title>파이 및 e 값을 사용하려면</title>
+		<para><application>&app;</application>은(는) 다음 버튼을 제공하여 일반 상수 값을 계산에 포함할 수  있도록 합니다.</para>
+		<itemizedlist>
+		  <listitem>
+			 <para><guibutton>PI</guibutton>를 클릭하여 파이 값을 입력할 수 있습니다.</para>
+		  </listitem>
+		  <listitem>
+			 <para><guibutton>e</guibutton>를 클릭하여 e 값을 입력할 수 있습니다.</para>
+		  </listitem>
+		</itemizedlist>
+	 </sect2>
+	 <sect2 id="gcalc-memory-funcs"> 
+		<title>계산기 메모리를 사용하려면</title>
+		<para><application>그놈 계산기</application> 메모리에 값을 저장할 수 있습니다. 다음 표에서는 사용 가능한 메모리 기능을 설명합니다. </para>
+		<informaltable frame="topbot">
+		  <tgroup cols="2" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="66.89*"/>
+			 <colspec colname="COLSPEC1" colwidth="33.11*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>기능</para></entry>
+				  <entry>
+					 <para>버튼</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>표시 필드의 값을 메모리에 저장합니다.</para></entry>
+				  <entry>
+					 <para> <guibutton>STO</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>메모리에 있는 값을 표시 필드에 표시합니다.</para></entry>
+				  <entry>
+					 <para> <guibutton>RCL</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>표시 필드의 값을 메모리 값에 추가합니다.</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>SUM</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>표시 필드와 메모리의 값을 교환합니다.</para></entry>
+				  <entry>
+					 <para> <guibutton>EXC</guibutton></para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+		<para>메모리에 0 이외의 값이 들어 있으면 계산기의 표시 필드 왼쪽에 m이 표시됩니다. 메모리를 지우려면 
+		  <guibutton>AC</guibutton>를 클릭합니다. </para>
+	 </sect2>
+  </sect1>
+<!-- ============= Technical Information ============================= -->
+  <sect1 id="gcalc-tech-info"> 
+	 <title>기술 정보</title>
+	 <sect2 id="gcalc-manage-order"> 
+		<title>연산 순서</title>
+		<para><application>&app;</application>은(는) 다음 순서대로 계산을 수행합니다.</para>
+		<orderedlist>
+		  <listitem>
+			 <para>괄호로 묶인 내용 계산</para>
+		  </listitem>
+		  <listitem>
+			 <para>단일 값을 사용하는 함수(예: +/-, log, x!, SQRT) </para>
+		  </listitem>
+		  <listitem>
+			 <para>x^y</para>
+		  </listitem>
+		  <listitem>
+			 <para>*, /</para>
+		  </listitem>
+		  <listitem>
+			 <para>+, -</para>
+		  </listitem>
+		</orderedlist>
+		<para>다음 예제에서는 계산기가 계산을 수행하는 순서를 보여줍니다.</para>
+		<itemizedlist>
+		  <listitem>
+			 <para> <guibutton>(</guibutton>10 <guibutton>+</guibutton> 20 
+				<guibutton>)</guibutton> <guibutton>*</guibutton> 6 <guibutton>=</guibutton>
+				180</para>
+		  </listitem>
+		  <listitem>
+			 <para>10 <guibutton>+</guibutton> 20 <guibutton>*</guibutton> 6 
+				<guibutton>=</guibutton> 130</para>
+		  </listitem>
+		  <listitem>
+			 <para>2 <guibutton>x^y</guibutton> 3 <guibutton>+</guibutton> 2 
+				<guibutton>=</guibutton> 10</para>
+		  </listitem>
+		  <listitem>
+			 <para>2 <guibutton>x^y</guibutton> <guibutton>(</guibutton>3 
+				<guibutton>+</guibutton> 2 <guibutton>)</guibutton> <guibutton>=</guibutton>
+				32</para>
+		  </listitem>
+		</itemizedlist>
+	 </sect2>
+	 <sect2 id="gcalc-precision"> 
+		<title>내부 정밀도</title>
+		<para><application>&app;</application>은(는) 부동소수점 배정밀도를 사용합니다.</para>
+	 </sect2>
+	 <sect2 id="gcalc-recognize-error"> 
+		<title>오류 상태</title>
+		<para>잘못된 계산을 수행하면 계산기의 표시 필드에 e 기호가 나타나서 오류가 발생했음을 알려 줍니다. 예를 들어, 음수에 대한 로그를 계산하려고 하면 계산기에 e 기호가 표시됩니다.
+		  오류를 지우려면 <guibutton>C/CE</guibutton> 또는 
+		  <guibutton>AC</guibutton>를 클릭합니다.</para>
+	 </sect2>
+  </sect1>
+</article>

@@ -1,0 +1,642 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY date "August 2002">
+  <!ENTITY app "Calculator">
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="de">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+	 <title>&app; Handbuch V&manrevision;</title>
+	 <copyright> 
+		<year>2003</year> 
+		<holder>Sun Microsystems</holder> 
+	 </copyright> 
+	 <copyright> 
+		<year>2000</year> 
+		<holder>Gregory Leblanc</holder> 
+	 </copyright>
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+	 <publisher> 
+		<publishername>GNOME-Dokumentationsprojekt</publishername> 
+	 </publisher> &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+	 <authorgroup>
+		<author> 
+		  <firstname>Sun</firstname> 
+		  <surname>GNOME-Dokumentationsteam</surname> 
+		  <affiliation> 
+			 <orgname>Sun Microsystems</orgname> 
+			 <address> <email>gdocteam@sun.com</email> </address>
+		  </affiliation>
+		</author>
+		<author> 
+		  <firstname>Gregory</firstname> 
+		  <surname>Leblanc</surname> 
+		  <affiliation> 
+			 <orgname>GNOME-Dokumentationsprojekt</orgname> 
+			 <address> <email>gleblanc@cu-portland.edu</email> </address>
+		  </affiliation>
+		</author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+	 </authorgroup>
+	 <revhistory>
+		<revision> 
+		  <revnumber>&app; Handbuch V&manrevision;</revnumber> 
+		  <date>&date;</date> 
+		  <revdescription> 
+			 <para role="author">Sun GNOME-Dokumentationsteam
+				<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">GNOME-Dokumentationsprojekt</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>GNOME-Taschenrechner-Handbuch V2.1</revnumber> 
+		  <date>Juni 2002</date> 
+		  <revdescription> 
+			 <para role="author">Sun GNOME-Dokumentationsteam
+				<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">GNOME-Dokumentationsprojekt</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>GNOME-Taschenrechner-Handbuch Version 2.0</revnumber> 
+		  <date>M&auml;rz 2002</date> 
+		  <revdescription> 
+			 <para role="author">Sun GNOME-Dokumentationsteam
+				<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">GNOME-Dokumentationsprojekt</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>GNOME-Taschenrechner-Handbuch</revnumber> 
+		  <date>2000</date> 
+		  <revdescription> 
+			 <para role="author">Gregory Leblanc
+				<email>gleblanc@cu-portland.edu</email> </para>
+			 <para role="publisher">GNOME-Dokumentationsprojekt</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>In diesem Handbuch wird Version &appversion; von &app; beschrieben.
+		</releaseinfo>
+	 <legalnotice> 
+		<title>Feedback</title>
+		<para>Wenn Sie einen Programmfehler melden m&ouml;chten oder Verbesserungsvorschl&auml;ge f&uuml;r die Anwendung &app;
+		  oder das Handbuch haben, befolgen Sie die Anweisungen auf der 
+		  <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback
+			 Page</ulink>. </para>
+<!-- Translators may also add here feedback address for translations -->
+	 </legalnotice>
+  </articleinfo>
+  <indexterm> 
+	 <primary>GNOME-Taschenrechner</primary> 
+  </indexterm> 
+
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+  <sect1 id="gcalc-introduction"> 
+	 <title>Einf&uuml;hrung</title>
+	 <para>Der <application>GNOME-Taschenrechner</application> ist ein einfacher mathematischer und wissenschaftlicher Rechner mit arithmetischen, trigonometrischen und logarithmischen Funktionen.</para>	 
+  </sect1>
+  
+  <sect1 id="gcalc-getting-started">
+  <title>Erste Schritte</title>
+  <para>Sie k&ouml;nnen die <application>&app;</application>-Anwendung auf eine der folgenden Arten starten:</para>
+		<variablelist>
+			<varlistentry>
+			<term>Men&uuml; <guimenu>Anwendungen</guimenu></term>
+			<listitem>
+			<para>W&auml;hlen Sie 
+			<menuchoice>
+			<guisubmenu>Zubeh&ouml;r</guisubmenu>
+			<guimenuitem>Rechner</guimenuitem>
+			</menuchoice>. </para>
+			</listitem>
+			</varlistentry>
+			<varlistentry>
+			<term>Befehlszeile</term>
+			<listitem>
+			<para>Geben Sie <command>gnome-calculator</command> ein, und dr&uuml;cken Sie die <keycap>Eingabetaste</keycap>.</para>
+			</listitem>
+			</varlistentry>
+		</variablelist>
+ 
+	 <para>Wenn Sie <application>&app;</application> starten, wird das <application>&app;</application>-Fenster angezeigt.</para>
+         <!-- ==== Figure ==== -->
+	 <figure id="gcalc_window"> 
+		<title>Fenster &app;</title>
+		<screenshot>
+		  <mediaobject>
+			 <imageobject>
+				<imagedata fileref="figures/gcalc_window.png" format="PNG"/> 
+			 </imageobject>
+			 <textobject>
+				<phrase>Zeigt das Taschenrechner-Fenster.</phrase>
+			 </textobject>
+		  </mediaobject>
+		</screenshot>
+	 </figure>
+<!-- ==== End of Figure ==== -->
+  </sect1>
+  
+<!-- ============= Usage ============================= -->
+  <sect1 id="gcalc-usage"> 
+	 <title>Verwendung</title>
+	 
+	 <sect2 id="gcalc-basic-functions"> 
+		<title>So verwenden Sie die Grundfunktionen des Taschenrechners</title>
+		<para>Verwenden Sie eines der folgenden Verfahren, um eine einfache Berechnung auszuf&uuml;hren:</para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Klicken Sie auf die Schaltfl&auml;chen des Taschenrechners, um Zahlen und mathematische Funktionen einzugeben.</para>
+		  </listitem>
+		  <listitem>
+			 <para>Aktivieren Sie den <application>&app;</application>, und geben Sie anschlie&szlig;end &uuml;ber die Zifferntastatur die gew&uuml;nschte mathematische Berechnung ein.</para>
+		  </listitem>
+		</itemizedlist>
+		<para>Die eingegebenen Zahlen und das Ergebnis der Berechnung erscheinen im Anzeigefeld. Wenn Sie eine falsche Zahl eingeben, klicken Sie auf 
+		  <guibutton>C/CE</guibutton>, um die Zahl zu l&ouml;schen. Geben Sie danach die richtige Zahl ein.</para>
+		<para>Um das Ergebnis einer Berechnung zu kopieren, w&auml;hlen Sie 
+		  <menuchoice> 
+			 <guimenu>Bearbeiten</guimenu> 
+			 <guimenuitem>Kopieren</guimenuitem> 
+		  </menuchoice>. Sie k&ouml;nnen den Wert in eine andere Anwendung einf&uuml;gen.</para>
+		
+		<para>Um das Ergebnis einer Berechnung zu l&ouml;schen, f&uuml;hren Sie einen der folgenden Schritte aus: </para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Klicken Sie auf <guibutton>AC</guibutton>, um das Ergebnis einer Berechnung aus dem Speicher und aus dem Anzeigefeld zu l&ouml;schen.</para>
+		  </listitem>
+		  <listitem>
+			 <para>Klicken Sie auf <guibutton>C/CE</guibutton>, um das Ergebnis einer Berechnung aus dem Anzeigefeld zu l&ouml;schen.</para>
+		  </listitem>
+		</itemizedlist>
+		<para><application>&app;</application> zeigt gro&szlig;e Ganzzahlen und kleine Dezimalzahlen automatisch als Exponentialzahlen an. Wenn Sie mit dem <application>&app;</application> z. B. 1200000 mit 100000 multiplizieren, wird das Ergebnis auf dem Taschenrechner als 1,2e+11 dargestellt. Dieses Ergebnis bedeutet, dass 1,2 mit 10 hoch 11 multipliziert wird. Wenn Sie die Zahl 0,00001 eingeben, wird sie im Taschenrechner als 1e-05 dargestellt, also als 1 multipliziert mit 10 hoch -5. Informationen zur Eingabe einer Zahl im Exponentialformat finden Sie unter <xref linkend="gcalc-exp-numbers"/>. </para>
+	 </sect2>
+	 <sect2 id="gcalc-arithmetic-funcs"> 
+		<title>So f&uuml;hren Sie arithmetische Berechnungen aus</title>
+		<para>Verwenden Sie f&uuml;r arithmetische Berechnungen die in der folgenden Tabelle beschriebenen Schaltfl&auml;chen.</para>
+		<informaltable frame="all">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="50*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="50*"/>
+			 <colspec colname="COLSPEC3" colwidth="50*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>Funktion</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para>Schaltfl&auml;che</para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>Beispiel </para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>Ergebnis</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>Vorzeichen &auml;ndern</para></entry>
+				  <entry>
+					 <para> <guibutton>+/-</guibutton></para></entry>
+				  <entry>
+					 <para>8, <guibutton>+/-</guibutton></para></entry>
+				  <entry>
+					 <para>-8</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Kehrwerte</para></entry>
+				  <entry>
+					 <para> <guibutton>1/x</guibutton></para></entry>
+				  <entry>
+					 <para>4, <guibutton>1/x</guibutton></para></entry>
+				  <entry>
+					 <para>0,25</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Quadrat</para></entry>
+				  <entry>
+					 <para> <guibutton>x^2</guibutton></para></entry>
+				  <entry>
+					 <para>3, <guibutton>x^2</guibutton></para></entry>
+				  <entry>
+					 <para>9</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Quadratwurzel</para></entry>
+				  <entry>
+					 <para> <guibutton>SQRT</guibutton></para></entry>
+				  <entry>
+					 <para>9, <guibutton>SQRT</guibutton></para></entry>
+				  <entry>
+					 <para>3</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Potenz</para></entry>
+				  <entry>
+					 <para> <guibutton>x^y</guibutton></para></entry>
+				  <entry>
+					 <para>2, <guibutton>x^y</guibutton>, 4, <guibutton> =
+						  </guibutton></para></entry>
+				  <entry>
+					 <para>16</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Faktoriell</para></entry>
+				  <entry>
+					 <para><guibutton>x!</guibutton></para></entry>
+				  <entry>
+					 <para>4, <guibutton>x!</guibutton></para></entry>
+				  <entry>
+					 <para>24</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-trig-funcs"> 
+		<title>So berechnen Sie trigonometrische Werte</title>
+		<para>Berechnen Sie trigonometrische Werte mit den in der folgenden Tabelle beschriebenen Schaltfl&auml;chen.</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="21.00*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="39.00*"/>
+			 <colspec colname="COLSPEC3" colwidth="39.00*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>Funktion</para></entry>
+				  <entry>
+					 <para>Schaltfl&auml;che</para></entry>
+				  <entry>
+					 <para>Beispiel </para></entry>
+				  <entry>
+					 <para>Ergebnis</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>Sinus</para></entry>
+				  <entry>
+					 <para> <guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>90, <guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Arkussinus</para></entry>
+				  <entry>
+					 <para> <guibutton>INV</guibutton> und 
+						<guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>1, <guibutton>INV</guibutton>, 
+						<guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>90</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Kosinus</para></entry>
+				  <entry>
+					 <para> <guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>60, <guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>0,5</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Inverse cosine</para></entry>
+				  <entry>
+					 <para> <guibutton>INV</guibutton> und 
+						<guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>0,5, <guibutton>INV</guibutton>, 
+						<guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>60</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Tangens</para></entry>
+				  <entry>
+					 <para> <guibutton>tan</guibutton></para></entry>
+				  <entry>
+					 <para>45, <guibutton>tan</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>Arkustangens</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>INV</guibutton> und 
+						<guibutton>tan</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>1, <guibutton>INV</guibutton>, 
+						<guibutton>tan</guibutton></para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>45</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+		<para>Die Ma&szlig;einheit f&uuml;r Winkel lautet standardm&auml;&szlig;ig DEG (Grad). Um
+		  die Ma&szlig;einheit zu &auml;ndern, klicken Sie auf die Schaltfl&auml;che <guibutton>DEG</guibutton>.
+		  Wenn Sie auf <guibutton>DEG</guibutton> klicken, wird auf der Schaltfl&auml;che die Ma&szlig;einheit <guibutton>RAD</guibutton> (Radians) angezeigt. Klicken Sie auf 
+		  <guibutton>RAD</guibutton>, um die auf der Schaltfl&auml;che angezeigte Ma&szlig;einheit in  
+		  <guibutton>GRAD</guibutton> (Gradient) zu &auml;ndern. Klicken Sie auf <guibutton> GRAD</guibutton>, um die Ma&szlig;einheit wieder in DEG zu &auml;ndern.</para>
+	 </sect2>
+	 <sect2 id="gcalc-log-funcs"> 
+		<title>So berechnen Sie Logarithmen</title>
+		<para>Berechnen Sie Logarithmen mit den in der folgenden Tabelle beschriebenen Schaltfl&auml;chen.</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="33*"/>
+			 <colspec colname="COLSPEC3" colwidth="33*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>Funktion</para></entry>
+				  <entry>
+					 <para>Schaltfl&auml;che</para></entry>
+				  <entry>
+					 <para>Beispiel </para></entry>
+				  <entry>
+					 <para>Ergebnis</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>Gew&ouml;hnlicher Logarithmus</para></entry>
+				  <entry>
+					 <para><guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>10, <guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Gew&ouml;hnlicher Antilogarithmus</para></entry>
+				  <entry>
+					 <para><guibutton>INV</guibutton> und 
+						<guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>1, <guibutton>INV</guibutton>, 
+						<guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>10</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Nat&uuml;rlicher Logarithmus</para></entry>
+				  <entry>
+					 <para><guibutton>ln</guibutton></para></entry>
+				  <entry>
+					 <para>10, <guibutton>ln</guibutton></para></entry>
+				  <entry>
+					 <para>2,302585093</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>Nat&uuml;rlicher Antilogarithmus</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>INV</guibutton> und 
+						<guibutton>ln</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>2,302585093, <guibutton>INV</guibutton>, 
+						<guibutton>ln</guibutton></para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>10</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-exp-numbers"> 
+		<title>So geben Sie Exponentialzahlen ein</title>
+		<para>Die Schaltfl&auml;che <guibutton>EE</guibutton> steht f&uuml;r eine Potenz von 10, die Sie mit der n&auml;chsten Zahl angeben. Wenn Sie auf <guibutton>EE</guibutton> klicken,
+		  wird im Anzeigefeld des Taschenrechners e+ angezeigt, so dass Sie mit der n&auml;chsten Zahl die Potenz von 10 angeben k&ouml;nnen. Wenn Sie z. B. 5, 
+		  <guibutton>EE</guibutton>, 2, <guibutton>=</guibutton> eingeben, wird im Taschenrechner 500 angezeigt.</para>
+		<para>Um eine Zahl im Exponentialformat einzugeben, folgen Sie den Anweisungen in der folgenden Tabelle.</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="3" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/>
+			 <colspec colname="COLSPEC1" colwidth="33*"/>
+			 <colspec colname="COLSPEC2" colwidth="33*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>Zahl</para></entry>
+				  <entry>
+					 <para>Eingabe</para></entry>
+				  <entry>
+					 <para>Angezeigte Zahl</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>1200000000</para></entry>
+				  <entry>
+					 <para>12, <guibutton>EE</guibutton>, 8, 
+						<guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>1200000000</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>-1200000000</para></entry>
+				  <entry>
+					 <para>12, <guibutton>+/-</guibutton>, 
+						<guibutton>EE</guibutton>, 8, <guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>-1200000000</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>0,00000012</para></entry>
+				  <entry>
+					 <para>12, <guibutton>EE</guibutton>, 8, 
+						<guibutton>+/-</guibutton>, <guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>1,2e-07</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>-0,00000012</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para>12, <guibutton>+/-</guibutton>, 
+						<guibutton>EE</guibutton>, 8, <guibutton>+/-</guibutton>, 
+						<guibutton>=</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>-1,2e-07</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-pi-e-values"> 
+		<title>So verwenden Sie Pi und e-Werte</title>
+		<para><application>&app;</application> enth&auml;lt die folgenden Schaltfl&auml;chen, mit denen Sie universelle, konstante Werte in Berechnungen einf&uuml;gen k&ouml;nnen:</para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Klicken Sie auf <guibutton>PI</guibutton>, um den Wert Pi einzugeben.</para>
+		  </listitem>
+		  <listitem>
+			 <para>Klicken Sie auf <guibutton>e</guibutton>, um den Wert e einzugeben.</para>
+		  </listitem>
+		</itemizedlist>
+	 </sect2>
+	 <sect2 id="gcalc-memory-funcs"> 
+		<title>So verwenden Sie den Speicher des Taschenrechners</title>
+		<para>Sie k&ouml;nnen Werte im Speicher des <application>GNOME-Taschenrechners</application> ablegen. In der folgenden Tabelle werden die verf&uuml;gbaren Speicherfunktionen beschrieben. </para>
+		<informaltable frame="topbot">
+		  <tgroup cols="2" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="66.89*"/>
+			 <colspec colname="COLSPEC1" colwidth="33.11*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>Funktion</para></entry>
+				  <entry>
+					 <para>Schaltfl&auml;che</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>Wert im Anzeigefeld im Speicher ablegen</para></entry>
+				  <entry>
+					 <para> <guibutton>STO</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Wert im Speicher im Anzeigefeld anzeigen</para></entry>
+				  <entry>
+					 <para> <guibutton>RCL</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>Wert im Anzeigefeld zum Wert im Speicher addieren</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>SUM</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Werte im Anzeigefeld und im Speicher austauschen</para></entry>
+				  <entry>
+					 <para> <guibutton>EXC</guibutton></para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+		<para>Wenn der Speicher einen Nicht-Null-Wert enth&auml;lt, wird links neben dem Anzeigefeld "m" angezeigt. Um den Speicher zu l&ouml;schen, klicken Sie auf 
+		  <guibutton>AC</guibutton>. </para>
+	 </sect2>
+  </sect1>
+<!-- ============= Technical Information ============================= -->
+  <sect1 id="gcalc-tech-info"> 
+	 <title>Technische Informationen</title>
+	 <sect2 id="gcalc-manage-order"> 
+		<title>Reihenfolge der Operationen</title>
+		<para><application>&app;</application> f&uuml;hrt Berechnungen in der folgenden Reihenfolge aus:</para>
+		<orderedlist>
+		  <listitem>
+			 <para>Berechnungen in Klammern.</para>
+		  </listitem>
+		  <listitem>
+			 <para>Funktionen, die einen einzelnen Wert annehmen, z. B. +/-, log, x! oder SQRT. </para>
+		  </listitem>
+		  <listitem>
+			 <para>x^y</para>
+		  </listitem>
+		  <listitem>
+			 <para>*, /</para>
+		  </listitem>
+		  <listitem>
+			 <para>+, -</para>
+		  </listitem>
+		</orderedlist>
+		<para>Die folgenden Beispiele veranschaulichen die Reihenfolge, in der die Berechnungen vom Taschenrechner ausgef&uuml;hrt werden:</para>
+		<itemizedlist>
+		  <listitem>
+			 <para> <guibutton>(</guibutton>10 <guibutton>+</guibutton> 20 
+				<guibutton>)</guibutton> <guibutton>*</guibutton> 6 <guibutton>=</guibutton>
+				180</para>
+		  </listitem>
+		  <listitem>
+			 <para>10 <guibutton>+</guibutton> 20 <guibutton>*</guibutton> 6 
+				<guibutton>=</guibutton> 130</para>
+		  </listitem>
+		  <listitem>
+			 <para>2 <guibutton>x^y</guibutton> 3 <guibutton>+</guibutton> 2 
+				<guibutton>=</guibutton> 10</para>
+		  </listitem>
+		  <listitem>
+			 <para>2 <guibutton>x^y</guibutton> <guibutton>(</guibutton>3 
+				<guibutton>+</guibutton> 2 <guibutton>)</guibutton> <guibutton>=</guibutton>
+				32</para>
+		  </listitem>
+		</itemizedlist>
+	 </sect2>
+	 <sect2 id="gcalc-precision"> 
+		<title>Interne Genauigkeit</title>
+		<para><application>&app;</application> arbeitet mit einer Genauigkeit von zwei Dezimalstellen.</para>
+	 </sect2>
+	 <sect2 id="gcalc-recognize-error"> 
+		<title>Fehlerbedingungen</title>
+		<para>Wenn Sie eine ung&uuml;ltige Berechnung ausf&uuml;hren, erscheint im Anzeigefeld ein "e", um einen Fehler anzuzeigen. Wenn Sie z. B. versuchen, den Logarithmus einer negativen Zahl zu berechnen, zeigt der Taschenrechner das Symbol "e" an.
+		  Um den Fehler zu l&ouml;schen, klicken Sie auf  <guibutton>C/CE</guibutton> oder 
+		  <guibutton>AC</guibutton>.</para>
+	 </sect2>
+  </sect1>
+</article>

@@ -1,0 +1,627 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY date "August 2002">
+  <!ENTITY app "Calculator">
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="fr">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+	 <title>Manuel &app;  V&manrevision;</title>
+	 <copyright> 
+		<year>2003</year> 
+		<holder>Sun Microsystems</holder> 
+	 </copyright> 
+	 <copyright> 
+		<year>2000</year> 
+		<holder>Gregory Leblanc</holder> 
+	 </copyright>
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+	 <publisher> 
+		<publishername>Projet de documentation GNOME</publishername> 
+	 </publisher> &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+	 <authorgroup>
+		<author> 
+		  <firstname>Sun</firstname> 
+		  <surname>&Eacute;quipe de documentation GNOME</surname> 
+		  <affiliation> 
+			 <orgname>Sun Microsystems</orgname> 
+			 <address> <email>gdocteam@sun.com</email> </address>
+		  </affiliation>
+		</author>
+		<author> 
+		  <firstname>Gregory</firstname> 
+		  <surname>Leblanc</surname> 
+		  <affiliation> 
+			 <orgname>Projet de documentation GNOME</orgname> 
+			 <address> <email>gleblanc@cu-portland.edu</email> </address>
+		  </affiliation>
+		</author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+	 </authorgroup>
+	 <revhistory>
+		<revision> 
+			<revnumber>Manuel &app; V&manrevision;</revnumber> 
+			<date>&date;</date> 
+			<revdescription> 
+	  			 <para role="author">&Eacute;quipe de documentation Sun GNOME
+				<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">Projet de documentation GNOME</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>Manuel de la calculatrice GNOME V2.1</revnumber> 
+		  <date>Juin 2002</date> 
+		  <revdescription> 
+			 <para role="author">&Eacute;quipe de documentation Sun GNOME
+				<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">Projet de documentation GNOME</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>Manuel de la calculatrice GNOME V2.0</revnumber> 
+		  <date>Mars 2002</date> 
+		  <revdescription> 
+			 <para role="author">&Eacute;quipe de documentation Sun GNOME
+				<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">Projet de documentation GNOME</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>Manuel de la calculatrice GNOME</revnumber> 
+		  <date>2001</date> 
+		  <revdescription> 
+			 <para role="author">Gregory Leblanc
+				<email>gleblanc@cu-portland.edu</email> </para>
+			 <para role="publisher">Projet de documentation GNOME</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>Le pr&eacute;sent manuel d&eacute;crit la version &appversion; de &app;.
+		</releaseinfo>
+	 <legalnotice> 
+		<title>Votre avis</title>
+		<para>Pour signaler un probl&egrave;me ou faire une suggestion concernant l'application &app; ou le pr&eacute;sent manuel, proc&eacute;dez comme indiqu&eacute; &agrave; la <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>. </para>
+<!-- Translators may also add here feedback address for translations -->
+	 </legalnotice>
+  </articleinfo>
+  <indexterm> 
+	 <primary>Calculatrice GNOME</primary> 
+  </indexterm> 
+
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+  <sect1 id="gcalc-introduction"> 
+	 <title>Introduction</title>
+	 <para>La <application>Calculatrice GNOME</application> est une calculatrice simple et scientifique proposant des fonctions arithm&eacute;tiques, trigonom&eacute;triques et logarithmiques.</para>	 
+  </sect1>
+  
+  <sect1 id="gcalc-getting-started"> 
+     <title>D&eacute;marrage</title>
+  <para>Vous pouvez d&eacute;marrer <application>&app;</application> en recourant &agrave; l'une des m&eacute;thodes suivantes :</para>
+		<variablelist>
+			<varlistentry>
+			<term>Menu <guimenu>Applications</guimenu></term>
+			<listitem>
+			<para>S&eacute;lectionnez
+			<menuchoice>
+			<guisubmenu>Accessoires</guisubmenu>
+			<guimenuitem>Calculatrice</guimenuitem>
+			</menuchoice>. </para>
+			</listitem>
+			</varlistentry>
+			<varlistentry>
+			<term>Ligne de commande</term>
+			<listitem>
+			<para>Entrez <command>gnome-calculator</command>, puis appuyez sur <keycap>Entr&eacute;e</keycap>.</para>
+			</listitem>
+			</varlistentry>
+		</variablelist>
+ 
+	 <para>Lorsque vous lancez <application>&app;</application>,  la fen&ecirc;tre <application>&app;</application> s'ouvre.</para>
+         <!-- ==== Figure ==== -->
+	 <figure id="gcalc_window"> 
+	<title>Fen&ecirc;tre &app;</title>
+		<screenshot>
+		  <mediaobject>
+			 <imageobject>
+				<imagedata fileref="figures/gcalc_window.png" format="PNG"/> 
+			 </imageobject>
+			 <textobject>
+				<phrase>Affiche la fen&ecirc;tre de la calculatrice.</phrase>
+			 </textobject>
+		  </mediaobject>
+		</screenshot>
+	 </figure>
+<!-- ==== End of Figure ==== -->
+  </sect1>
+  
+<!-- ============= Usage ============================= -->
+  <sect1 id="gcalc-usage"> 
+	 <title>Utilisation</title>
+	 
+	 <sect2 id="gcalc-basic-functions"> 
+		<title>Utilisation des fonctions de base de la calculatrice</title>
+		<para>Pour ex&eacute;cuter un calcul de base, utilisez l'une des m&eacute;thodes suivantes :</para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Cliquez sur les boutons de la calculatrice pour entrer des nombres et des fonctions math&eacute;matiques.</para>
+		  </listitem>
+		  <listitem>
+			 <para>Activez <application>&app;</application>, puis utilisez le pav&eacute; num&eacute;rique pour sp&eacute;cifier les op&eacute;rations math&eacute;matiques &agrave; ex&eacute;cuter.</para>
+		  </listitem>
+		</itemizedlist>
+		<para>Les nombres saisis et les r&eacute;sultats de calcul apparaissent dans le champ d'affichage. Si vous saisissez un nombre erron&eacute;, cliquez sur le bouton <guibutton>C/CE</guibutton> pour le supprimer, puis recommencez.</para>
+		<para>Pour copier le r&eacute;sultat d'un calcul, s&eacute;lectionnez <menuchoice>  <guimenu>&Eacute;dition</guimenu> <guimenuitem>Copier</guimenuitem></menuchoice>. Vous pouvez coller la valeur dans une autre application.</para>
+		
+		<para>Pour effacer le r&eacute;sultat d'un calcul, utilisez l'une des m&eacute;thodes suivantes  : </para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Cliquez sur le bouton <guibutton>AC</guibutton> pour effacer le r&eacute;sultat d'un calcul de la m&eacute;moire-tampon et du champ d'affichage.</para>
+		  </listitem>
+		  <listitem>
+			 <para>Le bouton <guibutton>C/CE</guibutton> vous permet d'effacer le r&eacute;sultat d'un calcul du champ d'affichage.</para>
+		  </listitem>
+		</itemizedlist>
+		<para><application>&app;</application> affiche automatiquement les grands nombres entiers et et les petits nombres d&eacute;cimaux sous la forme d'exposants. Par exemple, si vous utilisez <application>&app;</application> pour multiplier 1 200 000 par 100 000, la calculatrice affiche le r&eacute;sultat sous la forme de 1,2e+11. Ce r&eacute;sultat signifie 1,2 multipli&eacute; par 10 &agrave; la puissance 11. Si vous entrez le nombre 0,00001, la calculatrice l'affiche sous la forme de 1e-05, ce qui signifie 1 multipli&eacute; par 10 &agrave; la puissance -5. Pour plus d'informations sur la mani&egrave;re d'entrer un nombre au format exponentiel, consultez <xref linkend="gcalc-exp-numbers"/>. </para>
+	 </sect2>
+	 <sect2 id="gcalc-arithmetic-funcs"><title>Ex&eacute;cution de calculs arithm&eacute;tiques</title>
+		<para>Pour ex&eacute;cuter des calculs arithm&eacute;tiques, utilisez les boutons d&eacute;crits dans le tableau suivant.</para>
+		<informaltable frame="all">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="50*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="50*"/>
+			 <colspec colname="COLSPEC3" colwidth="50*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>Fonction</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para>Bouton</para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>Exemple</para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>R&eacute;sultat</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>Modifier le signe</para></entry>
+				  <entry>
+					 <para> <guibutton>+/-</guibutton></para></entry>
+				  <entry>
+					 <para>8, <guibutton>+/-</guibutton></para></entry>
+				  <entry>
+					 <para>-8</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Inverse</para></entry>
+				  <entry>
+					 <para> <guibutton>1/x</guibutton></para></entry>
+				  <entry>
+					 <para>4, <guibutton>1/x</guibutton></para></entry>
+				  <entry>
+					 <para>0,25</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Carr&eacute;</para></entry>
+				  <entry>
+					 <para> <guibutton>x^2</guibutton></para></entry>
+				  <entry>
+					 <para>3, <guibutton>x^2</guibutton></para></entry>
+				  <entry>
+					 <para>9</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Racine carr&eacute;e</para></entry>
+				  <entry>
+					 <para> <guibutton>SQRT</guibutton></para></entry>
+				  <entry>
+					 <para>9, <guibutton>SQRT</guibutton></para></entry>
+				  <entry>
+					 <para>3</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Puissance</para></entry>
+				  <entry>
+					 <para> <guibutton>x^y</guibutton></para></entry>
+				  <entry>
+					 <para>2, <guibutton>x^y</guibutton>, 4, <guibutton> =
+						  </guibutton></para></entry>
+				  <entry>
+					 <para>16</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Factorielle</para></entry>
+				  <entry>
+					 <para><guibutton>x!</guibutton></para></entry>
+				  <entry>
+					 <para>4, <guibutton>x!</guibutton></para></entry>
+				  <entry>
+					 <para>24</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-trig-funcs"> 
+		<title>Calcul de valeurs trigonom&eacute;triques</title>
+		<para>Pour calculer des valeurs trigonom&eacute;triques, utilisez les boutons d&eacute;crits dans le tableau suivant.</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="21.00*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="39.00*"/>
+			 <colspec colname="COLSPEC3" colwidth="39.00*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>Fonction</para></entry>
+				  <entry>
+					 <para>Bouton</para></entry>
+				  <entry>
+					 <para>Exemple</para></entry>
+				  <entry>
+					 <para>R&eacute;sultat</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>Sinus</para></entry>
+				  <entry>
+					 <para> <guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>90, <guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Arc sinus</para></entry>
+				  <entry>
+					 <para> <guibutton>INV</guibutton> et 
+						<guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>1, <guibutton>INV</guibutton>, 
+						<guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>90</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Cosinus</para></entry>
+				  <entry>
+					 <para> <guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>60, <guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>0,5</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Arc cosinus</para></entry>
+				  <entry>
+					 <para> <guibutton>INV</guibutton> et 
+						<guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>0,5, <guibutton>INV</guibutton>, 
+						<guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>60</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Tangente</para></entry>
+				  <entry>
+					 <para> <guibutton>tan</guibutton></para></entry>
+				  <entry>
+					 <para>45, <guibutton>tan</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>Arc tangente</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>INV</guibutton> et 
+						<guibutton>tan</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>1, <guibutton>INV</guibutton>, 
+						<guibutton>tan</guibutton></para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>45</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+		<para>Par d&eacute;faut, l'unit&eacute; de mesure des angles est DEG (degr&eacute;s). Pour modifier l'unit&eacute; de mesure, cliquez sur le bouton <guibutton>DEG</guibutton>.
+		Lorsque vous s&eacute;lectionnez <guibutton>DEG</guibutton>, le bouton et l'unit&eacute; de mesure deviennent <guibutton>RAD</guibutton> (radians). Cliquez sur <guibutton>RAD</guibutton> pour passer &agrave; <guibutton>GRAD</guibutton> (gradients). Cliquez sur <guibutton> GRAD</guibutton> pour revenir &agrave; DEG.</para>
+	 </sect2>
+	 <sect2 id="gcalc-log-funcs"> 
+		<title>Calcul des logarithmes</title>
+		<para>Pour calculer des logarithmes, utilisez les boutons d&eacute;crits dans le tableau suivant :</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="33*"/>
+			 <colspec colname="COLSPEC3" colwidth="33*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>Fonction</para></entry>
+				  <entry>
+					 <para>Bouton</para></entry>
+				  <entry>
+					 <para>Exemple</para></entry>
+				  <entry>
+					 <para>R&eacute;sultat</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>Logarithme d&eacute;cimal</para></entry>
+				  <entry>
+					 <para><guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>10, <guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Antilogarithme d&eacute;cimal</para></entry>
+				  <entry>
+					 <para><guibutton>INV</guibutton> et 
+						<guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>1, <guibutton>INV</guibutton>, 
+						<guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>10</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Logarithme n&eacute;p&eacute;rien</para></entry>
+				  <entry>
+					 <para><guibutton>ln</guibutton></para></entry>
+				  <entry>
+					 <para>10, <guibutton>ln</guibutton></para></entry>
+				  <entry>
+					 <para>2,302585093</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>Antilogarithme n&eacute;p&eacute;rien</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>INV</guibutton> et 
+						<guibutton>ln</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>2.302585093, <guibutton>INV</guibutton>, 
+						<guibutton>ln</guibutton></para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>10</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-exp-numbers"> 
+		<title>Saisie de nombres exponentiels</title>
+		<para>Le bouton <guibutton>EE</guibutton> repr&eacute;sente 10 &agrave; la puissance du nombre suivant entr&eacute;. Lorsque vous cliquez sur <guibutton>EE</guibutton>, la calculatrice affiche e+ dans le champ d'affichage pour repr&eacute;senter 10 &agrave; la puissance du nombre suivant saisi. Par exemple, si vous saisissez 5 <guibutton>EE</guibutton>, 2, <guibutton>=</guibutton>, la calculatrice affiche 500.</para>
+		<para>Pour entrer un nombre au format exponentiel, suivez les indications du tableau suivant.</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="3" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/>
+			 <colspec colname="COLSPEC1" colwidth="33*"/>
+			 <colspec colname="COLSPEC2" colwidth="33*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>Nombre</para></entry>
+				  <entry>
+					 <para>Entr&eacute;e</para></entry>
+				  <entry>
+					 <para>Nombre affich&eacute;</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>1 200 000 000</para></entry>
+				  <entry>
+					 <para>12, <guibutton>EE</guibutton>, 8, 
+						<guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>1 200 000 000</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>- 1 200 000 000</para></entry>
+				  <entry>
+					 <para>12, <guibutton>+/-</guibutton>, 
+						<guibutton>EE</guibutton>, 8, <guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>- 1 200 000 000</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>0,00000012</para></entry>
+				  <entry>
+					 <para>12, <guibutton>EE</guibutton>, 8, 
+						<guibutton>+/-</guibutton>, <guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>1,2e-07</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>-0,00000012</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para>12, <guibutton>+/-</guibutton>, 
+						<guibutton>EE</guibutton>, 8, <guibutton>+/-</guibutton>, 
+						<guibutton>=</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>-1,2e-07</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-pi-e-values"> 
+		<title>Utilisation des valeurs Pi et e</title>
+		<para><application>&app;</application> vous propose les boutons suivants pour inclure les constantes universelles dans vos calculs :</para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Cliquez sur <guibutton>PI</guibutton> pour entrer la valeur de Pi.</para>
+		  </listitem>
+		  <listitem>
+			 <para>Cliquez sur <guibutton>e</guibutton> pour entrer la valeur de e.</para>
+		  </listitem>
+		</itemizedlist>
+	 </sect2>
+	 <sect2 id="gcalc-memory-funcs"> 
+		<title>Utilisation de la m&eacute;moire de la calculatrice</title>
+		<para>Vous pouvez enregistrer des valeurs dans la m&eacute;moire de la <application>Calculatrice GNOME</application>. Le tableau suivant d&eacute;crit les fonctions de m&eacute;moire disponibles. </para>
+		<informaltable frame="topbot">
+		  <tgroup cols="2" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="66.89*"/>
+			 <colspec colname="COLSPEC1" colwidth="33.11*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>Fonction</para></entry>
+				  <entry>
+					 <para>Bouton</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>Enregistre la valeur du champ d'affichage dans la m&eacute;moire.</para></entry>
+				  <entry>
+					 <para> <guibutton>STO</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Affiche la valeur de la m&eacute;moire dans le champ d'affichage.</para></entry>
+				  <entry>
+					 <para> <guibutton>RCL</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>Ajoute la valeur du champ d'affichage &agrave; la valeur de la m&eacute;moire.</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>SUM</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Echange les valeurs du champ d'affichage et de la m&eacute;moire.</para></entry>
+				  <entry>
+					 <para> <guibutton>EXC</guibutton></para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+		<para>Lorsque la m&eacute;moire contient une valeur diff&eacute;rente de z&eacute;ro, la calculatrice affiche un m &agrave; gauche du champ d'affichage. Pour effacer la m&eacute;moire, cliquez sur <guibutton>AC</guibutton>. </para>
+	 </sect2>
+  </sect1>
+<!-- ============= Technical Information ============================= -->
+  <sect1 id="gcalc-tech-info"> 
+	 <title>Informations techniques</title>
+	 <sect2 id="gcalc-manage-order"> 
+		<title>Ordre des op&eacute;rations</title>
+		<para><application>&app;</application> ex&eacute;cute les calculs dans l'ordre suivant :</para>
+		<orderedlist>
+		  <listitem>
+			 <para>calculs entre parenth&egrave;ses ;</para>
+		  </listitem>
+		  <listitem>
+			 <para>Fonctions qui concernent une seule valeur, par exemple +/-, log, x! ou SQRT.</para>
+		  </listitem>
+		  <listitem>
+			 <para>x^y ;</para>
+		  </listitem>
+		  <listitem>
+			 <para>*, / ;</para>
+		  </listitem>
+		  <listitem>
+			 <para>+, -.</para>
+		  </listitem>
+		</orderedlist>
+		<para>Les exemples suivants illustrent l'ordre dans lequel la calculatrice effectue les calculs :</para>
+		<itemizedlist>
+		  <listitem>
+			 <para> <guibutton>(</guibutton>10 <guibutton>+</guibutton> 20 
+				<guibutton>)</guibutton> <guibutton>*</guibutton> 6 <guibutton>=</guibutton>
+				180</para>
+		  </listitem>
+		  <listitem>
+			 <para>10 <guibutton>+</guibutton> 20 <guibutton>*</guibutton> 6 
+				<guibutton>=</guibutton> 130</para>
+		  </listitem>
+		  <listitem>
+			 <para>2 <guibutton>x^y</guibutton> 3 <guibutton>+</guibutton> 2 
+				<guibutton>=</guibutton> 10</para>
+		  </listitem>
+		  <listitem>
+			 <para>2 <guibutton>x^y</guibutton> <guibutton>(</guibutton>3 
+				<guibutton>+</guibutton> 2 <guibutton>)</guibutton> <guibutton>=</guibutton>
+				32</para>
+		  </listitem>
+		</itemizedlist>
+	 </sect2>
+	 <sect2 id="gcalc-precision"> 
+		<title>Pr&eacute;cision interne</title>
+		<para><application>&app;</application> utilise la pr&eacute;cision des doubles virgules flottantes.</para>
+	 </sect2>
+	 <sect2 id="gcalc-recognize-error"> 
+		<title>Erreurs</title>
+		<para>Si vous ex&eacute;cutez un calcul non valide, la calculatrice affiche un symbole e dans le champ d'affichage pour indiquer une erreur. Par exemple, si vous tentez de calculer le logarithme d'un nombre n&eacute;gatif, la calculatrice affiche le symbole e.
+		Pour effacer l'erreur, cliquez sur <guibutton>C/CE</guibutton> ou <guibutton>AC</guibutton>.</para>
+	 </sect2>
+  </sect1>
+</article>
+

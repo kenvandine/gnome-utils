@@ -1,0 +1,257 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "2.0.0">
+  <!ENTITY manrevision "2.3">
+  <!ENTITY date "October 2002">
+  <!ENTITY app "System Log Viewer">
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Apr 11, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="zh_tw">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+    <title>&app; 手冊 V&manrevision;</title>
+
+    <copyright> 
+      <year>2002</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>2000</year> 
+      <holder>Judith Samson</holder> 
+    </copyright> 
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+    <publisher> 
+      <publishername> GNOME 文件專案 </publishername> 
+    </publisher> 
+
+   &legal;
+
+   <authorgroup>
+   <author> 
+		<firstname>Sun</firstname> 
+		<surname>GNOME 文件小組 </surname> 
+		<affiliation> 
+	  	<orgname>Sun Microsystems</orgname> 
+	  	<address> <email>gdocteam@sun.com</email> </address>
+		</affiliation>
+   </author>
+
+   <author> 
+		<firstname>Judith</firstname> <surname>Samson</surname> 
+		<affiliation> 
+	  <orgname>GNOME 文件專案</orgname> 
+	  	<address> <email>judith@samsonsource.com</email> </address>
+		</affiliation>
+   </author>
+      
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+   <othercredit role="translator">
+		<firstname>Latin</firstname> 
+		<surname>Translator 1</surname> 
+		<affiliation> 
+	  	<orgname>Latin Translation Team</orgname> 
+	  	<address> <email>translator@gnome.org</email> </address> 
+		</affiliation>
+		<contrib>Latin translation</contrib>
+   </othercredit>
+-->
+    </authorgroup>
+
+    <revhistory>
+      <revision> 
+		<revnumber>&app; 手冊 V&manrevision;</revnumber> 
+		<date>&date;</date> 
+		<revdescription> 
+	  		<para role="author">Sun GNOME 文件小組 <email>gdocteam@sun.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME 文件專案</para>
+		</revdescription>
+      </revision>
+      <revision> 
+		<revnumber>系統記錄檢視器手冊 V2.2</revnumber> <date>2002 年 8 月</date> <revdescription> 
+	  		<para role="author">Sun GNOME 文件小組 <email>gdocteam@sun.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME 文件專案</para>
+		</revdescription>
+      </revision>
+      <revision> 
+		<revnumber>系統記錄檢視器手冊 V2.1</revnumber> <date>2002 年 7 月</date> <revdescription> 
+	  		<para role="author">Sun GNOME 文件小組 <email>gdocteam@sun.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME 文件專案</para>
+		</revdescription>
+      </revision>
+      <revision> 
+		<revnumber>系統記錄檢視器手冊 V2.0</revnumber> <date>2002 年 5 月</date> <revdescription> 
+	  		<para role="author">Sun GNOME 文件小組 <email>gdocteam@sun.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME 文件專案</para>
+		</revdescription>
+      </revision>
+      <revision> 
+		<revnumber>Logview 手冊</revnumber> <date>2000</date> <revdescription> 
+	  		<para role="author">Judith Samson <email>judith@samsonsource.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME 文件專案</para>
+			</revdescription>
+      </revision>
+    </revhistory>
+
+    <releaseinfo>本手冊的內容是說明 &appversion; 版的 &app;。
+    </releaseinfo>
+    <legalnotice> 
+      <title>回饋</title>
+      <para>關於本 &app; 應用程式或手冊， 如果要報告錯誤或提出建議，請遵照 <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink> 的指示。 
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+  </articleinfo>
+
+  <indexterm> 
+    <primary>系統記錄檢視器</primary> 
+  </indexterm> 
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+
+  <sect1 id="syslog-introduction"> 
+    <title>介紹</title>
+    <para>您可以使用 <application>&app;</application> 應用程式，監控及檢視系統日誌檔案。如果要檢視系統日誌檔案，您可能需要以 root 登入。</para>
+  </sect1>
+
+  <sect1 id="syslog-getting-started">
+   <title>入門</title>
+
+    <para>您可以使用下列方式啟動 <application>&app;</application>：
+    </para>
+    <variablelist>
+    	<varlistentry>
+    		<term><guimenu>應用程式</guimenu> 功能表</term>
+    		<listitem>
+    		<para>請選擇<menuchoice><guisubmenu>系統工具 </guisubmenu><guimenuitem>系統日誌 </guimenuitem></menuchoice>。</para>
+    		</listitem>
+    	</varlistentry>
+    	<varlistentry>
+    		<term>指令行</term>
+    		<listitem>
+    		<para>請輸入 <command>gnome-system-log</command>，然後按一下 <keycap>Return</keycap>。</para>
+    		<para>		 
+    		</para>
+    		</listitem>
+    	</varlistentry>
+    </variablelist>
+
+    <para>當您啟動 <application>&app;</application> 時，會顯示下面的視窗。</para>
+
+    <!-- ==== Figure ==== -->
+      <figure id="syslog-fig"> 
+	<title>&app; 視窗</title>
+	<screenshot>
+	  <mediaobject>
+	    <imageobject>
+	    <imagedata fileref="figures/syslog_window.png" format="PNG"/> 
+	    </imageobject>
+	    <textobject>
+	      <phrase>顯示 &app; 主要視窗。包含功能表列、顯示區域、捲動軸及狀態列。 </phrase>
+	    </textobject>
+	  </mediaobject>
+	</screenshot>
+      </figure>
+    <!-- ==== End of Figure ==== -->
+    <para>啟動 <application>&app;</application> 時，本應用程式依預設值會顯示 <filename>/var/adm/messages</filename> 日誌檔案。</para>
+
+  </sect1>
+
+<!-- ================ Usage ================================ -->
+
+  <sect1 id="syslog-usage"> 
+    <title>使用</title>
+
+    <sect2 id="syslog-open">
+    	<title>檢視日誌檔案</title>
+    	<para>如果要檢視日誌檔案，請選擇 <menuchoice><guimenu>檔案</guimenu><guimenuitem>開啟 </guimenuitem></menuchoice>。 
+    	在<guilabel>開啟新的日誌檔案</guilabel>對話方塊中，輸入想要開啟的日誌檔案名稱，然後按一下 <guibutton>確定</guibutton>。 請使用捲動軸捲動日誌檔案。</para>
+    	<para>只要您想，您要開啟多少日誌檔案都可以。 在 <application>&app;</application> 的<guilabel>系統記錄檢視器</guilabel>視窗中，一次只會顯示一個日誌檔案。 如果要在 <application>&app;</application> 中，顯示另一個已經開啟的日誌檔案，請選擇<menuchoice><guimenu>日誌</guimenu><guimenuitem>切換日誌</guimenuitem></menuchoice>。
+    	如果要繼續在已開啟的日誌檔案間移動，請選擇<menuchoice><guimenu>檔案</guimenu><guimenuitem>切換日誌</guimenuitem></menuchoice>。</para>
+    </sect2>
+    
+    <sect2 id="syslog-details">
+    	<title>檢視更多關於日誌檔案項目的資訊</title>
+    	<para>如果要檢視更多關於日誌檔案項目的詳細資訊，請在顯示區域中選取項目，然後選擇 <menuchoice><guimenu>檢視</guimenu><guimenuitem>詳細登錄資訊</guimenuitem></menuchoice>。 <application>&app;</application> 會在<guilabel>縮放檢視</guilabel> 視窗中，顯示下列資訊：</para>
+    	<itemizedlist>
+    		<listitem><para>日誌登錄的日期。</para>
+    		</listitem>
+    		<listitem><para>產生日誌登錄的程序名稱。</para>
+    		</listitem>
+    		<listitem><para>日誌訊息。</para>
+    		</listitem>
+    		<listitem><para>日誌訊息的說明 (如果有的話)。</para>
+    		</listitem>
+    	</itemizedlist>
+    </sect2>
+    
+    <sect2 id="syslog-monitor">
+    	<title>監控日誌檔案</title>
+    	<para>您可以使用 <application>&app;</application>，監視所選取的日誌檔案。 當您要選取日誌檔案以便監控時， <application>&app;</application> 會在另外的視窗中，顯示該日誌檔案最近幾次的登錄。 
+    	<application>&app;</application> 會更新 <guilabel>Monitoring logs</guilabel> 視窗，以便在新增日誌後，顯示它們的新登錄。 
+    	</para>
+    	<para>如果要監視日誌檔案，請執行下列步驟：</para>
+    	<orderedlist>
+    		<listitem><para>請選擇 <menuchoice><guimenu>檔案 </guimenu><guimenuitem>監視 </guimenuitem></menuchoice>。</para></listitem>
+    		<listitem><para>請在 <guilabel>監視選項</guilabel> 對話方塊左邊的窗格中，選取您要監視的日誌檔案。 </para></listitem>
+    		<listitem><para>請按一下<guibutton>新增</guibutton>。 </para></listitem>
+    		<listitem><para>如果要在監視日誌檔案之時，隱藏 <application>&app;</application> 的主視窗， 請選取<guilabel>隱藏應用程式</guilabel>核取方塊。 </para></listitem>
+    	</orderedlist>	
+    	<para><application>&app;</application> 會在<guilabel>監視日誌</guilabel>視窗中，顯示日誌檔案。 
+    	<application>&app;</application> 可以同時監視數個日誌檔案，但是在 <guilabel>監視日誌</guilabel>視窗中，應用程式只能一次顯示一個檔案。 <application>&app;</application> 會為正在監視的各個日誌檔案，分別新增標籤。</para>
+    </sect2>
+    
+    <sect2 id="syslog-calendar">
+    	<title>檢視日曆</title>
+    	<para>如果要檢視日曆，請選擇<menuchoice><guimenu>檢視</guimenu><guimenuitem>日曆</guimenuitem></menuchoice>。 日誌檔案存在的日期會以粗體字顯示。 如果要檢視特定日期的日誌檔案，請在日曆中選擇日期。</para>
+    </sect2>
+    
+    <sect2 id="syslog-stats">
+    	<title>檢視日誌檔案屬性</title>
+    	<para>如果要檢視日誌檔案的屬性，請選擇 <menuchoice><guimenu>檔案</guimenu><guimenuitem>屬性</guimenuitem></menuchoice>。
+    	 在<guilabel>日誌統計</guilabel>對話方塊中，會顯示下列有關檔案的資訊：</para>
+    	<itemizedlist>
+    		<listitem><para>檔案的大小，以位元組為單位。</para>
+    		</listitem>
+    		<listitem><para>上次修改檔案的日期。</para>
+    		</listitem>
+    		<listitem><para>檔案建立的日期。</para>
+    		</listitem>
+    		<listitem><para>最近的日誌登錄日期。</para>
+    		</listitem>
+    		<listitem><para>檔案中的行數。</para>
+    		</listitem>
+    	</itemizedlist>
+    </sect2>
+    
+    <sect2 id="syslog-close">
+    	<title>關閉日誌檔案</title>
+    	<para>如果要關閉日誌檔案，請選擇 <menuchoice><guimenu>檔案</guimenu><guimenuitem>關閉 </guimenuitem></menuchoice>。如果您關閉最後一個已開啟的日誌檔案，本應用程式就會結束。</para>
+    </sect2>
+ 
+  </sect1>
+
+</article>

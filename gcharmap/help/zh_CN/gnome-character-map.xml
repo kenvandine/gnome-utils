@@ -1,0 +1,253 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+ "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY date "August 2002">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY app "Character Map">
+  <!ENTITY legal SYSTEM "legal.xml">
+]>
+<!-- (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Jan 2, 2002   
+ 
+  -->
+<article id="index" lang="zh_cn">
+<!-- Please do not change the id; for translations, 
+change lang to appropriate code -->
+  <articleinfo>
+	 <title>&app; 手册 V&manrevision;</title>
+	 <copyright>
+		<year>2002</year>
+		<holder>Sun Microsystems</holder>
+	 </copyright>
+	 <copyright>
+		<year>2000</year>
+		<holder>Hongli Lai</holder>
+	 </copyright> 
+     <!-- Translators: uncomment this:
+     <copyright>
+        <year>2000</year>
+        <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+     </copyright>
+     -->
+	 <publisher>
+		<publishername>GNOME Documentation Project</publishername>
+	 </publisher> &legal;
+
+     <!-- This file  contains link to license for the documentation (GNU
+               FDL), and other
+               legal stuff such as "NO WARRANTY" statement. Please do
+               not change any of this.--> 
+	 <legalnotice id="feedback">
+		<para>要报告关于此应用程序或者本手册的错误或者提出建议，请遵循 <ulink url="ghelp:gnome-feedback" type="help">GNOME 反馈页</ulink>中的指导。</para>
+	 </legalnotice>
+	 <authorgroup>
+		<author>
+		  <firstname>Sun</firstname>
+		  <surname>GNOME Documentation Team</surname>
+		  <affiliation>
+			 <orgname>Sun Microsystems</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Hongli</firstname>
+		  <surname>Lai</surname>
+		  <affiliation>
+			 <orgname>GNOME Documentation Project</orgname>
+		  </affiliation>
+		</author>
+	 </authorgroup>
+	 <revhistory>
+		<revision>
+		  <revnumber>&app; 手册 V&manrevision;</revnumber>
+		  <date>&date;</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME Documentation Team 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME 字符映射手册 V2.1</revnumber>
+		  <date>2002 年 7 月</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME Documentation Team 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME 字符映射手册 V2.0</revnumber>
+		  <date>2002 年 3 月</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME Documentation Team 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME 字符映射手册</revnumber>
+		  <date>2000</date>
+		  <revdescription>
+			 <para role="author">
+			       Hongli Lai、Dan Mueth
+				   <email>hongli@telekabel.nl</email>、<email>d-mueth@uchicago.edu</email></para>
+			 <para role="publisher">
+			       GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>本手册介绍  &app; &appversion; 版。
+		</releaseinfo>
+  </articleinfo>
+  <indexterm>
+	 <primary>字符映射</primary>
+  </indexterm> 
+  
+  <!-- ============= Document Body ============================= -->
+  <!-- ============= Introduction ============================== --> 
+  <sect1 id="gcharmap-introduction">
+	 <title>简介</title>
+	 <para><application>&app;</application><indexterm><primary>字符映射应用程序</primary></indexterm> 应用程序使您可以从字符表中选择字符，然后与标准的字符组成文本字符串。
+		您可以将您创建的文本字符串插入应用程序，例如文本编辑器文档中。</para>
+	 <para><application>&app;</application> 主要使用 ISO-8859-1 Latin 1 字符集。该应用程序还提供一些选项用于处理某些非拉丁字符集，例如 Cryllic。该应用程序提供重音字符、数学符号、特殊符号和标点符号。
+		这些字符中有很多都不存在于标准键盘上。</para>
+	 	
+  </sect1>
+  
+  <sect1 id="gcharmap-get-started"> 
+     <title>入门</title>
+     <para>下面的部分介绍如何开始使用 <application>&app;</application>。 
+     </para>
+     <sect2 id="gcharmap-to-start"> 
+        <title>启动 &app;</title>
+        <para>可以通过以下方法启动 <application>&app;</application>：
+        </para>
+        <variablelist>
+          <varlistentry> 
+             <term>"应用程序"菜单</term> 
+             <listitem>
+                <para>选择<menuchoice><guimenu>"附件"</guimenu><guimenuitem>"字符映射"</guimenuitem></menuchoice>。
+                </para>
+             </listitem>
+          </varlistentry>
+          <varlistentry> 
+             <term>命令行</term> 
+             <listitem>
+                <para>键入 <command>gnome-character-map</command>，然后按下<keycap>回车</keycap>键。
+                </para>
+             </listitem>
+          </varlistentry>
+        </variablelist>
+     </sect2>
+     <sect2 id="gcharmap-first-start"> 
+        <title>在启动 &app; 时</title>
+        <para>在启动 <application>&app;</application> 时，系统会显示下面的窗口。
+        </para>
+        <figure id="gcharmap-mainwindow-fig">
+			<title>&app; 窗口</title>
+			<screenshot>
+			<mediaobject>
+			<imageobject><imagedata fileref="figures/gnome-character-map.png" 			format="PNG"/>
+			</imageobject>
+			<textobject>
+			<phrase>显示"字符映射"主窗口。显示菜单栏、"要复制的文本"字段和字符按钮。</phrase>
+			</textobject>
+			</mediaobject>
+			</screenshot>
+		</figure>
+		
+		<para><application>&app;</application> 窗口包含如下元素：</para>
+	 	<itemizedlist>
+		<listitem>
+		  <para>菜单栏</para>
+		  <para>菜单栏包含标准的 GNOME 窗口菜单。</para>
+		</listitem>
+		<listitem>
+		  <para>文本工具栏</para>
+		  <para>文本工具栏包含<guilabel>"要复制的文本"</guilabel>字段和<guilabel>"复制"</guilabel>按钮。您可以使用<guilabel>"要复制的文本"</guilabel>字段来创建您要复制到其它应用程序中的文本字符串。
+			您可以使用<guilabel>"复制"</guilabel>按钮将<guilabel>"要复制的文本"</guilabel>字段中的所有文本字符串复制到缓冲区中。
+			您可以通过键盘或者字符表将字符输入到<guilabel>"要复制的文本"</guilabel>字段中。
+			  </para>
+		</listitem>
+		<listitem>
+		  <para>字符表</para>
+		  <para>字符表包含对应于 ISO-8859-1 字符集的按钮。默认字体设置为 Helvetica 12 点。</para>
+		</listitem>
+		<listitem>
+		  <para>状态栏</para>
+		  <para>状态栏位于窗口的底部边缘。状态栏会显示字符表中具有焦点的字符的 ASCII 码。</para>
+		</listitem>
+	 	</itemizedlist>
+     </sect2>	
+ 
+  </sect1>
+
+  <!-- ================ Usage ================================ -->
+
+  <sect1 id="gcharmap-usage">
+	 <title>用法</title>
+
+	 <sect2 id="gcharmap-create-textstring">
+		<title>创建文本字符串</title>
+		<para>要在<guilabel>"要复制的文本"</guilabel>字段中创建文本字符，您可以通过以下几种方法插入字符：  </para>
+		<itemizedlist>
+		  <listitem>
+			 <para>单击字符表中的字符按钮，将字符插入到<guilabel>"要复制的文本"</guilabel>字段中。</para>
+		  </listitem>
+		  <listitem>
+			 <para>单击<guilabel>"要复制的文本"</guilabel>字段，聚焦该字段。
+				如果该字段中已经存在文本字符串，请单击该文本字符串中您要插入字符的位置。按下键盘上的字符键，将该字符插入到该字段中。</para>
+		  </listitem>
+		  <listitem>
+			 <para>选择<menuchoice><guimenu>"字符"</guimenu><guimenuitem>"浏览"</guimenuitem></menuchoice>，打开<guilabel>"选择字符"</guilabel>对话框。
+				使用该对话框中的旋转框可以指定一个 0 到 255 之间的 ASCII 字符。该范围包含字符表中没有的不可见字符。
+				单击<guibutton>"插入"</guibutton>，将该字符添加到<guilabel>"要复制的文本"</guilabel>字段中。</para>
+		  </listitem>
+		</itemizedlist>
+
+	 </sect2>
+<!-- =============== To Copy and Paste a Text String ====================== -->
+	 
+	 <sect2 id="gcharmap-copy-textstring">
+		<title>复制文本字符串并将其粘贴到应用程序中</title>
+		<para>要复制您在<guilabel>"要复制的文本"</guilabel>字段中创建的文本字符串，然后将其粘贴到应用程序中，请执行以下步骤：  </para>
+		<orderedlist>
+		  <listitem>
+			 <para>拖动指针，选择<guilabel>"要复制的文本"</guilabel>字段中的文本字符串，或者单击<guibutton>"复制"</guibutton>。选定的文本字符串就会突出显示。</para>
+		  </listitem>
+		  <listitem>
+			 <para>指向应用程序中要插入该文本字符串的位置，然后单击鼠标中键，即可插入该文本字符串。如果有粘贴工具，您也可以将文本字符串粘贴到该应用程序中。当该文本字符串处于选中状态时，您可以重复执行任意次的插入操作。
+				单击<guilabel>"要复制的文本"</guilabel>字段，可以取消选择该文本字符串。</para>
+		  </listitem>
+		</orderedlist>
+		<para>如果将<guilabel>"要复制的文本"</guilabel>字段中的内容粘贴到其它应用程序中，该文本字符串会出现在该应用程序的当前字符集中。
+		</para>
+		<para>如果文本字符串包含不可见字符，那么您就只能将该文本字符串插入到支持完整字符集的应用程序中。
+		  </para>
+		<para>如果您在将该文本字符串粘贴到应用程序之前退出 <application>&app;</application>，那么您的文本字符串就会丢失。</para>
+	 </sect2>
+<!-- =============== To Change the Input Mode  ========================= -->
+	 
+	 <sect2 id="gcharmap-clear-field">
+		<title>清除"要复制的文本"字段</title>
+		<para>要清除<guilabel>"要复制的文本"</guilabel>字段，请选择<menuchoice><guimenu>"编辑"</guimenu><guimenuitem>"清除"</guimenuitem></menuchoice>。</para>
+	 </sect2>
+	 
+	 <sect2 id="gcharmap-change-charset">
+		<title>更改输入模式</title>
+		<para>要更改输入模式，请右击<guilabel>"要复制的文本"</guilabel>字段，然后选择<guimenuitem>"输入方法"</guimenuitem>。<guimenuitem>"插入 Unicode 控制字符"</guimenuitem>菜单项可以提供字符布局选项，这些选项对使用非拉丁字符集很有用。
+		</para>
+
+	 </sect2>
+  </sect1>
+
+</article>

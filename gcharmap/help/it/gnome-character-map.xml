@@ -1,0 +1,275 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+ "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY date "Agosto 2002">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY app "Mappa caratteri">
+  <!ENTITY legal SYSTEM "legal.xml">
+]>
+<!-- (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Jan 2, 2002   
+ 
+  -->
+<article id="index" lang="it">
+<!-- Please do not change the id; for translations, 
+change lang to appropriate code -->
+  <articleinfo>
+	<title>Manuale di &app; V&manrevision;</title>
+	 <copyright>
+		<year>2003</year>
+		<holder>Sun Microsystems</holder>
+	 </copyright>
+	 <copyright>
+		<year>2000</year>
+		<holder>Hongli Lai</holder>
+	 </copyright> 
+     <!-- Translators: uncomment this:
+     <copyright>
+        <year>2000</year>
+        <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+     </copyright>
+     -->
+	 <publisher>
+		<publishername>GNOME Documentation Project</publishername>
+	 </publisher> &legal;
+
+     <!-- This file  contains link to license for the documentation (GNU
+               FDL), and other
+               legal stuff such as "NO WARRANTY" statement. Please do
+               not change any of this.--> 
+	 <legalnotice id="feedback">
+		<para> Per segnalare un problema o inviare suggerimenti sull'applicazione o sul manuale, seguire le istruzioni presenti alla <ulink url="ghelp:gnome-feedback" type="help">Pagina di commenti su GNOME</ulink>. </para>
+	 </legalnotice>
+	 <authorgroup>
+		<author>
+		  <firstname>Sun</firstname>
+		  <surname>GNOME Documentation Team</surname>
+		  <affiliation>
+			 <orgname>Sun Microsystems</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Hongli</firstname>
+		  <surname>Lai</surname>
+		  <affiliation>
+			 <orgname>GNOME Documentation Project</orgname>
+		  </affiliation>
+		</author>
+	 </authorgroup>
+	 <revhistory>
+		<revision> 
+		  <revnumber>Manuale di &app; V&manrevision;</revnumber>
+		  <date>&date;</date> 
+		  <revdescription> 
+			 <para role="author">
+			       Sun GNOME Documentation Team 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>Manuale della Mappa caratteri di GNOME V2.1</revnumber>
+		  <date>Luglio 2002</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME Documentation Team 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>Manuale della Mappa caratteri di GNOME V2.0</revnumber>
+		  <date>Marzo 2002</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME Documentation Team 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>Manuale della Mappa caratteri di GNOME</revnumber>
+		  <date>2000</date>
+		  <revdescription>
+			 <para role="author">
+			       Hongli Lai, Dan Mueth
+				   <email>hongli@telekabel.nl</email>, <email>d-mueth@uchicago.edu</email></para>
+			 <para role="publisher">
+			       GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>Questo manuale descrive la versione &appversion; di &app;.
+		</releaseinfo>
+  </articleinfo>
+  <indexterm>
+	 <primary>Mappa caratteri</primary>
+  </indexterm> 
+  
+  <!-- ============= Document Body ============================= -->
+  <!-- ============= Introduction ============================== --> 
+  <sect1 id="gcharmap-introduction">  
+	 <title>Introduzione</title>
+	 <para>L'applicazione <application>&app;</application>
+		<indexterm>
+		  <primary>Mappa caratteri, applicazione</primary>
+		</indexterm> consente di selezionare i caratteri da una tabella e di combinarli in una stringa di testo con i caratteri standard.
+		&Egrave; possibile inserire la stringa di testo creata in questo modo in una diversa applicazione, ad esempio un editor di testo. </para>
+	 <para>La <application>&app;</application> opera principalmente con i set di caratteri ISO-8859-1 Latin 1. Ma comprende anche alcune opzioni per operare con set di caratteri non latini, come il cirillico. L'applicazione presenta i caratteri accentati, i simboli matematici, alcuni simboli speciali e i segni di punteggiatura. 
+		Molti di questi caratteri non sono disponibili sulle tastiere standard. </para>
+	 	
+  </sect1>
+  
+  <sect1 id="gcharmap-get-started"> 
+     <title>Per iniziare</title>
+     <para>
+       Le sezioni seguenti forniscono un'introduzione all'utilizzo della <application>&app;</application>. 
+     </para>
+     <sect2 id="gcharmap-to-start"> 
+        <title>Avviare la &app;</title>
+        <para>
+          Sono disponibili i seguenti metodi per avviare la <application>&app;</application>:
+        </para>
+        <variablelist>
+          <varlistentry> 
+             <term>Menu Programmi</term> 
+             <listitem>
+                <para>
+                  Scegliere 
+                  <menuchoice> 
+                     <guimenu>Accessori</guimenu> 
+                     <guimenuitem>Mappa caratteri</guimenuitem> 
+                  </menuchoice>. 
+                </para>
+             </listitem>
+          </varlistentry>
+          <varlistentry> 
+             <term>Riga di comando</term> 
+             <listitem>
+                <para>
+                  Digitare 
+                  <command>gnome-character-map</command> e quindi premere
+                  <keycap>Return</keycap>. 
+                </para>
+             </listitem>
+          </varlistentry>
+        </variablelist>
+     </sect2>
+     <sect2 id="gcharmap-first-start"> 
+        <title>Primo avvio della &app;</title>
+        <para>All'avvio della <application>&app;</application> viene visualizzata la finestra seguente. 
+        </para>
+        <figure id="gcharmap-mainwindow-fig"> 
+	<title>Finestra della &app;</title>
+			<screenshot>
+			<mediaobject>
+			<imageobject><imagedata fileref="figures/gnome-character-map.png" 			format="PNG"/>
+			</imageobject>
+			<textobject>
+			<phrase>Mostra la finestra principale della &app;. Mostra la barra dei menu, il campo <guilabel>Testo da copiare</guilabel> e i pulsanti dei caratteri.</phrase>
+			</textobject>
+			</mediaobject>
+			</screenshot>
+		</figure>
+		
+		<para>La finestra della <application>&app;</application> contiene i seguenti elementi:</para>
+	 	<itemizedlist>
+		<listitem>
+		  <para>Barra dei menu </para>
+		  <para>La barra dei menu contiene i menu standard di GNOME. </para>
+		</listitem>
+		<listitem>
+		  <para>Barra degli strumenti di testo. </para>
+		  <para>La barra degli strumenti di testo contiene il campo <guilabel>Testo da copiare</guilabel> e il pulsante <guilabel>Copia</guilabel>. Il campo <guilabel>Testo da copiare</guilabel> pu&ograve; essere utilizzato per creare la stringa di testo da copiare nell'applicazione. 
+			Il pulsante <guilabel>Copia</guilabel>pu&ograve; essere utilizzato per creare l'intera stringa dal campo <guilabel>Testo da copiare</guilabel> in un buffer. 
+			I caratteri possono essere inseriti nel campo <guilabel>Testo da copiare</guilabel> sia direttamente dalla tastiera che dalla tabella dei caratteri. 
+			 </para>
+		</listitem>
+		<listitem>
+		  <para>Tabella dei caratteri. </para>
+		  <para>La tabella dei caratteri contiene una serie di pulsanti che indicano i caratteri del set ISO-8869-1. L'impostazione predefinita dei caratteri &egrave; Helvetica, 12 punti.</para>
+		</listitem>
+		<listitem>
+		  <para>Barra di stato </para>
+		  <para>La barra di stato si trova nella parte inferiore della finestra. La barra di stato visualizza il codice ASCII del carattere attivo della tabella.</para>
+		</listitem>
+	 	</itemizedlist>
+     </sect2>	
+ 
+  </sect1>
+
+  <!-- ================ Usage ================================ -->
+
+  <sect1 id="gcharmap-usage"> 
+	 <title>Utilizzo</title>
+
+	 <sect2 id="gcharmap-create-textstring">
+<title>Creare una stringa di testo</title>
+		<para>Procedere come segue per inserire i caratteri nel campo <guilabel>Testo da copiare</guilabel> e creare una stringa di testo: </para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Fare clic sul pulsante di un carattere nella tabella dei caratteri per inserirlo nel campo <guilabel>Testo da copiare</guilabel>. </para>
+		  </listitem>
+		  <listitem>
+			 <para>Fare clic sul campo <guilabel>Testo da copiare</guilabel> per attivarlo. 
+				Se il campo contiene gi&agrave; una stringa di testo, spostarsi nel punto in cui va inserito il nuovo carattere. Premere un tasto della tastiera per inserire il carattere nel campo. </para>
+		  </listitem>
+		  <listitem>
+			 <para>Scegliere 
+			 <menuchoice>
+			 <guimenu>Caratteri</guimenu>
+			 <guimenuitem>Sfoglia</guimenuitem>
+			 </menuchoice>  
+			per aprire la finestra di dialogo <guilabel>Seleziona carattere</guilabel>. 
+				Usare la casella di selezione nella finestra di dialogo per specificare un carattere ASCII compreso tra 0 e 255. Questo ambito di caratteri include alcuni caratteri invisibili non disponibili nella tabella dei caratteri. 
+				Fare clic su <guibutton>Inserisci</guibutton> per aggiungere i caratteri al campo <guilabel>Testo da copiare</guilabel>. </para>
+		  </listitem>
+		</itemizedlist>
+
+	 </sect2>
+<!-- =============== To Copy and Paste a Text String ====================== -->
+	 
+	 <sect2 id="gcharmap-copy-textstring">
+<title>Copiare e incollare la stringa di testo in un'applicazione</title>
+		<para>Per copiare e incollare la stringa di testo che &egrave; stata creata nel campo <guilabel>Testo da copiare</guilabel> in una applicazione, procedere come segue: </para>
+		<orderedlist>
+		  <listitem>
+			 <para>Trascinare il puntatore per selezionare la stringa di testo nel campo <guilabel>Testo da copiare</guilabel>, o fare clic su <guibutton>Copia</guibutton>. La stringa di testo selezionata viene evidenziata. </para>
+		  </listitem>
+		  <listitem>
+			 <para>Spostare il puntatore nel punto in cui va inserita la stringa di testo e fare clic con il pulsante centrale del mouse per inserirla. &Egrave; anche possibile incollare la stringa nell'applicazione se &egrave; disponibile una funzione Incolla. Mentre la stringa &egrave; selezionata, l'inserimento pu&ograve; essere ripetuto per il numero di volte desiderato. 
+				Fare clic sul campo <guilabel>Testo da copiare</guilabel> per deselezionare la stringa di testo. </para>
+		  </listitem>
+		</orderedlist>
+		<para>Quando si incolla il contenuto del campo <guilabel>Testo da copiare</guilabel> in una diversa applicazione, la stringa di testo appare nel set di caratteri corrente dell'applicazione. 
+		</para>
+		<para>Se la stringa di testo contiene caratteri non visibili, pu&ograve; essere inserita solo nelle applicazioni che supportano il set di caratteri completo. 
+		  </para>
+		<para>Uscendo dalla <application>&app;</application> prima di avere incollato la stringa di testo in una applicazione, la stringa viene persa. </para>
+	 </sect2>
+<!-- =============== To Change the Input Mode  ========================= -->
+	 
+	 <sect2 id="gcharmap-clear-field">
+		<title>Cancellare il campo Testo da copiare</title>
+		<para>Per cancellare il campo <guilabel>Testo da copiare</guilabel>, scegliere
+		<menuchoice> 
+		<guimenu>Modifica</guimenu>
+		<guimenuitem>Cancella</guimenuitem> 
+		</menuchoice>.</para>
+	 </sect2>
+	 
+	 <sect2 id="gcharmap-change-charset">
+		<title>Modificare il metodo di input</title>
+		<para>Per modificare il metodo di input, fare clic con il pulsante destro del mouse nel campo <guilabel>Testo da copiare</guilabel>, quindi selezionare <guimenuitem>Metodi di input</guimenuitem>. La voce di menu <guimenuitem>Inserisci carattere di controllo Unicode</guimenuitem> contiene alcune opzioni di layout utili per operare con i set di caratteri non latini. 
+		</para>
+
+	 </sect2>
+  </sect1>
+
+</article>

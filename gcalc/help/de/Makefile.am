@@ -1,8 +1,7 @@
-figs = \
-	figures/gcalc-main.png
-docname = gcalc
+figdir = figures
+docname = gnome-calculator
 lang = de
-omffile = gcalc-de.omf
-sgml_ents =
-include $(top_srcdir)/sgmldocs.make
+omffile = gnome-calculator-de.omf
+entities = legal.xml
+include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook

@@ -1,0 +1,578 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY date "August 2002">
+  <!ENTITY app "Calculator">
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+  
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="zh_tw">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo>
+	 <title>&app; 手冊 V&manrevision;</title>
+	 <copyright> 
+		<year>2002</year> 
+		<holder>Sun Microsystems</holder> 
+	 </copyright> 
+	 <copyright> 
+		<year>2000</year> 
+		<holder>Gregory Leblanc</holder> 
+	 </copyright>
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+	 <publisher> 
+		<publishername>GNOME 文件專案</publishername> 
+	 </publisher> &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+	 <authorgroup>
+		<author> 
+		  <firstname>Sun</firstname> 
+		  <surname>GNOME 文件小組</surname> 
+		  <affiliation> 
+			 <orgname>Sun Microsystems</orgname> 
+			 <address> <email>gdocteam@sun.com</email> </address>
+		  </affiliation>
+		</author>
+		<author> 
+		  <firstname>Gregory</firstname> 
+		  <surname>Leblanc</surname> 
+		  <affiliation> 
+			 <orgname>GNOME 文件專案</orgname> 
+			 <address> <email>gleblanc@cu-portland.edu</email> </address>
+		  </affiliation>
+		</author>
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+	 </authorgroup>
+	 <revhistory>
+		<revision> 
+		  <revnumber>&app; 手冊 V&manrevision;</revnumber> 
+		  <date>&date;</date> 
+		  <revdescription> 
+			 <para role="author">Sun GNOME 文件小組
+				<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">GNOME 文件專案</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>GNOME 計算機手冊 V2.1</revnumber> 
+		  <date>2002 年 6 月</date> 
+		  <revdescription> 
+			 <para role="author">Sun GNOME 文件小組
+				<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">GNOME 文件專案</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>GNOME 計算機手冊 V2.0</revnumber> 
+		  <date>2002 年 3 月</date> 
+		  <revdescription> 
+			 <para role="author">Sun GNOME 文件小組
+				<email>gdocteam@sun.com</email> </para>
+			 <para role="publisher">GNOME 文件專案</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>GNOME 計算機手冊</revnumber> 
+		  <date>2000</date> 
+		  <revdescription> 
+			 <para role="author">Gregory Leblanc
+				<email>gleblanc@cu-portland.edu</email> </para>
+			 <para role="publisher">GNOME 文件專案</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>本手冊的內容是說明 &appversion; 版的 &app;。
+		</releaseinfo>
+	 <legalnotice><title>回饋</title>
+		<para>關於 &app; 應用程式或手冊，如果要報告錯誤或提除建議，請遵照 <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>的指示。</para>
+<!-- Translators may also add here feedback address for translations -->
+	 </legalnotice>
+  </articleinfo>
+  <indexterm><primary>GNOME 計算機</primary></indexterm><!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== --><sect1 id="gcalc-introduction"><title>介紹</title>
+	 <para><application>GNOME 計算機</application> 是一個簡單的數學與科學計算機，包括了運算、三角以及對數運算功能。</para>	 
+  </sect1>
+  
+  <sect1 id="gcalc-getting-started"><title>入門</title>
+  <para>您可以使用下列方式啟動 <application>&app;</application>：</para>
+		<variablelist>
+			<varlistentry><term><guimenu>應用程式</guimenu>功能表</term><listitem>
+			<para>請選擇<menuchoice><guisubmenu>周邊裝置</guisubmenu><guimenuitem>計算機</guimenuitem>
+</menuchoice>。</para>
+			</listitem>
+			</varlistentry>
+			<varlistentry><term>指令行</term><listitem>
+			<para>鍵入 <command>gnome-calculator</command>，然後按一下  <keycap>Return</keycap> 鍵。</para>
+			</listitem>
+			</varlistentry>
+		</variablelist>
+ 
+	 <para>當您啟動 <application>&app;</application> 時，會顯示 <application>&app;</application> 視窗。</para>
+         <!-- ==== Figure ==== -->
+	 <figure id="gcalc_window"><title>&app; 視窗</title>
+		<screenshot>
+		  <mediaobject>
+			 <imageobject>
+				<imagedata fileref="figures/gcalc_window.png" format="PNG"/> 
+			 </imageobject>
+			 <textobject>
+				<phrase>顯示計算機視窗。</phrase>
+			 </textobject>
+		  </mediaobject>
+		</screenshot>
+	 </figure>
+<!-- ==== End of Figure ==== -->
+  </sect1>
+  
+<!-- ============= Usage ============================= -->
+  <sect1 id="gcalc-usage"><title>使用</title>
+	 
+	 <sect2 id="gcalc-basic-functions"><title>使用基本的計算機功能</title>
+		<para>如果要執行基本運算，請使用下列任一種方式。</para>
+		<itemizedlist>
+		  <listitem>
+			 <para>按一下計算機按鈕，進入數字與運算功能。</para>
+		  </listitem>
+		  <listitem>
+			 <para>給 <application>&app;</application> 焦點，然後使用數字小鍵盤指定您要執行的數學運算。</para>
+		  </listitem>
+		</itemizedlist>
+		<para>輸入的數字與計算結果會顯示在顯示欄位。如果您輸入了不正確的數字，按一下  <guibutton>C/CE</guibutton> 刪除數字，然後重新輸入正確的數字。</para>
+		<para>如果要複製計算的結果，選取<menuchoice><guimenu>編輯</guimenu><guimenuitem>複製</guimenuitem> </menuchoice>。您可以將數值貼上到另一個應用程式。</para>
+		
+		<para>如果要清除計算結果，請執行下列任一種動作：   </para>
+		<itemizedlist>
+		  <listitem>
+			 <para>按一下 <guibutton>AC</guibutton> 從記憶體緩衝區與顯示欄位中清除計算結果。</para>
+		  </listitem>
+		  <listitem>
+			 <para>按一下 <guibutton>C/CE</guibutton> 從顯示欄位中清除計算結果。</para>
+		  </listitem>
+		</itemizedlist>
+		<para><application>&app;</application> 會自動將大的整數與小的小數點以指數的方式顯示。例如，如果您使用 <application>&app;</application> 來計算 1200000 乘以 100000，計算機顯示的結果會是 1.2e+11。這個結果表示 1.2 乘以 10 的 11 次方。如果您輸入數字為 0.00001，計算機顯示的數字會是 1e-05，表示為 1 乘以 10 的 -5 次方。有關如何以指數格式輸入數字，相關資訊請參閱<xref linkend="gcalc-exp-numbers"/>。</para>
+	 </sect2>
+	 <sect2 id="gcalc-arithmetic-funcs"><title>執行算數運算</title>
+		<para>如果要執行算數計算，請使用下列表格所說明的按鈕。</para>
+		<informaltable frame="all">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="50*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="50*"/>
+			 <colspec colname="COLSPEC3" colwidth="50*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>功能</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para>按鈕</para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>範例</para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>結果</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>變更符號</para></entry>
+				  <entry>
+					 <para><guibutton>+/-</guibutton></para></entry>
+				  <entry>
+					 <para>8，<guibutton>+/-</guibutton></para></entry>
+				  <entry>
+					 <para>-8</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>倒數</para></entry>
+				  <entry>
+					 <para><guibutton>1/x</guibutton></para></entry>
+				  <entry>
+					 <para>4，<guibutton>1/x</guibutton></para></entry>
+				  <entry>
+					 <para>0.25</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>平方</para></entry>
+				  <entry>
+					 <para><guibutton>x^2</guibutton></para></entry>
+				  <entry>
+					 <para>3，<guibutton>x^2</guibutton></para></entry>
+				  <entry>
+					 <para>9  </para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>平方根</para></entry>
+				  <entry>
+					 <para><guibutton>SQRT</guibutton></para></entry>
+				  <entry>
+					 <para>9，<guibutton>SQRT</guibutton></para></entry>
+				  <entry>
+					 <para>3</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>次方</para></entry>
+				  <entry>
+					 <para><guibutton>x^y</guibutton></para></entry>
+				  <entry>
+					 <para>2, <guibutton>x^y</guibutton>, 4, <guibutton> =
+						  </guibutton></para></entry>
+				  <entry>
+					 <para>16</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>階乘</para></entry>
+				  <entry>
+					 <para><guibutton>x!</guibutton></para></entry>
+				  <entry>
+					 <para>4，<guibutton>x!</guibutton></para></entry>
+				  <entry>
+					 <para>24</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-trig-funcs"><title>計算三角函數值</title>
+		<para>如果要計算三角函數值，請使用下列表格所說明的按鈕。</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="21.00*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="39.00*"/>
+			 <colspec colname="COLSPEC3" colwidth="39.00*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>功能</para></entry>
+				  <entry>
+					 <para>按鈕</para></entry>
+				  <entry>
+					 <para>範例</para></entry>
+				  <entry>
+					 <para>結果</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>正弦</para></entry>
+				  <entry>
+					 <para><guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>90，<guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>反正弦</para></entry>
+				  <entry>
+					 <para><guibutton>INV</guibutton> 與 <guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>1，<guibutton>INV</guibutton>，<guibutton>sin</guibutton></para></entry>
+				  <entry>
+					 <para>90</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>餘弦</para></entry>
+				  <entry>
+					 <para><guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>60，<guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>0.5</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>反餘弦</para></entry>
+				  <entry>
+					 <para><guibutton>INV</guibutton> 與 <guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>0.5，<guibutton>INV</guibutton>，<guibutton>cos</guibutton></para></entry>
+				  <entry>
+					 <para>60</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>正切</para></entry>
+				  <entry>
+					 <para><guibutton>tan</guibutton></para></entry>
+				  <entry>
+					 <para>45，<guibutton>tan</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>反正切</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para><guibutton>INV</guibutton> 與 <guibutton>tan</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>1，<guibutton>INV</guibutton>，<guibutton>tan</guibutton></para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>45</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+		<para>依預設值，角度的度量單位為 DEG (度)。 如果要變更度量單位，請按一下 <guibutton>DEG</guibutton> 按鈕。
+		按下 <guibutton>DEG</guibutton> 後，按鈕與度量單位會變更為 <guibutton>RAD</guibutton> (弧度)。 按一下 <guibutton>RAD</guibutton>，可以將按鈕與度量單位變更為 <guibutton>GRAD</guibutton> (梯度)。按一下 <guibutton> GRAD</guibutton>，可以將度量單位再次更改回復為 DEG。</para>
+	 </sect2>
+	 <sect2 id="gcalc-log-funcs"><title>計算對數</title>
+		<para>如果要計算對數，請使用下列表格所說明的按鈕。</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="4" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/> 
+			 <colspec colname="COLSPEC1"/>
+			 <colspec colname="COLSPEC2" colwidth="33*"/>
+			 <colspec colname="COLSPEC3" colwidth="33*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>功能</para></entry>
+				  <entry>
+					 <para>按鈕</para></entry>
+				  <entry>
+					 <para>範例</para></entry>
+				  <entry>
+					 <para>結果</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>一般對數</para></entry>
+				  <entry>
+					 <para><guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>10，<guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>1</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>一般反對數</para></entry>
+				  <entry>
+					 <para><guibutton>INV</guibutton> 與 <guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>1，<guibutton>INV</guibutton>，<guibutton>log</guibutton></para></entry>
+				  <entry>
+					 <para>10</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>自然對數</para></entry>
+				  <entry>
+					 <para><guibutton>ln</guibutton></para></entry>
+				  <entry>
+					 <para>10，<guibutton>ln</guibutton></para></entry>
+				  <entry>
+					 <para>2.302585093</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>自然反對數</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para> <guibutton>INV</guibutton> 與 <guibutton>ln</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>2.302585093，<guibutton>INV</guibutton>，<guibutton>ln</guibutton></para></entry>
+				  <entry colname="COLSPEC3">
+					 <para>10</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-exp-numbers"><title>輸入指數</title>
+		<para><guibutton>EE</guibutton> 按鈕代表 10 乘上您所輸入數字的次方。按下 <guibutton>EE</guibutton> 後，計算機會在顯示欄位中顯示 e+，代表 10 乘以所輸入數字的次方。例如，如果您輸入了 5，<guibutton>EE</guibutton>，2，<guibutton>=</guibutton>，則計算機會顯示 500。</para>
+		<para>如果要以指數格式輸入數字，請按照下列表格的指示。</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="3" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/>
+			 <colspec colname="COLSPEC1" colwidth="33*"/>
+			 <colspec colname="COLSPEC2" colwidth="33*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>數字</para></entry>
+				  <entry>
+					 <para>輸入</para></entry>
+				  <entry>
+					 <para>顯示的數字</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>1200000000</para></entry>
+				  <entry>
+					 <para>12，<guibutton>EE</guibutton>，8，<guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>1200000000</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>-1200000000</para></entry>
+				  <entry>
+					 <para>12，<guibutton>+/-</guibutton>，		<guibutton>EE</guibutton>，8，<guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>-1200000000</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>0.00000012</para></entry>
+				  <entry>
+					 <para>12，<guibutton>EE</guibutton>，8，<guibutton>+/-</guibutton>，<guibutton>=</guibutton></para></entry>
+				  <entry>
+					 <para>1.2e-07</para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>-0.00000012</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para>12，<guibutton>+/-</guibutton>，<guibutton>EE</guibutton>，8，<guibutton>+/-</guibutton>，<guibutton>=</guibutton></para></entry>
+				  <entry colname="COLSPEC2">
+					 <para>-1.2e-07</para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+	 </sect2>
+	 <sect2 id="gcalc-pi-e-values"><title>使用 Pi 與 e 值</title>
+		<para><application>&app;</application> 提供了下列的按鈕，可以讓您在計算中，使用常數：</para>
+		<itemizedlist>
+		  <listitem>
+			 <para>按一下 <guibutton>PI</guibutton> ，輸入 Pi 的值。</para>
+		  </listitem>
+		  <listitem>
+			 <para>按一下 <guibutton>e</guibutton>，輸入 e 的值。</para>
+		  </listitem>
+		</itemizedlist>
+	 </sect2>
+	 <sect2 id="gcalc-memory-funcs"><title>使用計算機記憶體</title>
+		<para>您可以將數值儲存於 <application>GNOME 計算機</application> 的記憶體中。下表說明的便是可用的記憶體功能。</para>
+		<informaltable frame="topbot">
+		  <tgroup cols="2" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="66.89*"/>
+			 <colspec colname="COLSPEC1" colwidth="33.11*"/> 
+			 <thead>
+				<row valign="top">
+				  <entry>
+					 <para>功能</para></entry>
+				  <entry>
+					 <para>按鈕</para></entry>
+				</row>
+			 </thead>
+			 <tbody>
+				<row valign="top">
+				  <entry>
+					 <para>將顯示欄位的數值儲存於記憶體。</para></entry>
+				  <entry>
+					 <para><guibutton>STO</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>將記憶體中的數值顯示於顯示欄位中。</para></entry>
+				  <entry>
+					 <para><guibutton>RCL</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry colname="COLSPEC0">
+					 <para>將顯示欄位的數值與記憶體中的數值相加。</para></entry>
+				  <entry colname="COLSPEC1">
+					 <para><guibutton>SUM</guibutton></para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>將顯示欄位的數值與記憶體中的數值互換。</para></entry>
+				  <entry>
+					 <para><guibutton>EXC</guibutton></para></entry>
+				</row>
+			 </tbody>
+		  </tgroup>
+		</informaltable>
+		<para>當記憶體中含有不是零的數值時，計算機會在顯示欄位的左邊，顯示一個 m 符號。如果要清除記憶體，請按一下 <guibutton>AC</guibutton>。</para>
+	 </sect2>
+  </sect1>
+<!-- ============= Technical Information ============================= -->
+  <sect1 id="gcalc-tech-info"><title>技術資訊</title>
+	 <sect2 id="gcalc-manage-order"><title>運算次序</title>
+		<para><application>&app;</application> 執行計算的優先次序如下：</para>
+		<orderedlist>
+		  <listitem>
+			 <para>括號內的計算。</para>
+		  </listitem>
+		  <listitem>
+			 <para>計算單一數值的運算功能，例如， +/-、log、x!、或 SQRT 。</para>
+		  </listitem>
+		  <listitem>
+			 <para>x^y</para>
+		  </listitem>
+		  <listitem>
+			 <para>*，/</para>
+		  </listitem>
+		  <listitem>
+			 <para>+，-</para>
+		  </listitem>
+		</orderedlist>
+		<para>以下範例，說明了計算機執行運算時的次序：</para>
+		<itemizedlist>
+		  <listitem>
+			 <para> <guibutton>(</guibutton>10 <guibutton>+</guibutton> 20 <guibutton>)</guibutton> <guibutton>*</guibutton> 6 <guibutton>=</guibutton> 180</para>
+		  </listitem>
+		  <listitem>
+			 <para>10 <guibutton>+</guibutton> 20 <guibutton>*</guibutton> 6 <guibutton>=</guibutton> 130</para>
+		  </listitem>
+		  <listitem>
+			 <para>2 <guibutton>x^y</guibutton> 3 <guibutton>+</guibutton> 2 
+<guibutton>=</guibutton> 10</para>
+		  </listitem>
+		  <listitem>
+			 <para>2 <guibutton>x^y</guibutton> <guibutton>(</guibutton>3 <guibutton>+</guibutton> 2 <guibutton>)</guibutton> <guibutton>=</guibutton> 32</para>
+		  </listitem>
+		</itemizedlist>
+	 </sect2>
+	 <sect2 id="gcalc-precision"><title>內部精確度</title>
+		<para><application>&app;</application> 使用雙重浮點精確度。</para>
+	 </sect2>
+	 <sect2 id="gcalc-recognize-error"><title>錯誤狀況</title>
+		<para>如果您執行的運算是無效計算，計算機會在顯示欄位中，顯示一個表示錯誤的符號 e。例如，如果嘗試計算負數的對數，計算機即會顯示一個符號 e。
+		如果要清除錯誤，請按一下 <guibutton>C/CE</guibutton> 或 <guibutton>AC</guibutton>。</para>
+	 </sect2>
+  </sect1>
+</article>

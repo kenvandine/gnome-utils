@@ -1,0 +1,323 @@
+﻿<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+ "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY date "August 2002">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY app "Character Map">
+  <!ENTITY legal SYSTEM "legal.xml">
+]>
+<!-- (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Jan 2, 2002   
+ 
+  -->
+<article id="index" lang="de">
+<!-- Please do not change the id; for translations, 
+change lang to appropriate code -->
+  <articleinfo>
+	 <title>&app; Handbuch V&manrevision;</title>
+	 <copyright>
+		<year>2003</year>
+		<holder>Sun Microsystems</holder>
+	 </copyright>
+	 <copyright>
+		<year>2000</year>
+		<holder>Hongli Lai</holder>
+	 </copyright> 
+     <!-- Translators: uncomment this:
+     <copyright>
+        <year>2000</year>
+        <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+     </copyright>
+     -->
+	 <publisher>
+		<publishername>GNOME-Dokumentationsprojekt</publishername>
+	 </publisher> &legal;
+
+     <!-- This file  contains link to license for the documentation (GNU
+               FDL), and other
+               legal stuff such as "NO WARRANTY" statement. Please do
+               not change any of this.--> 
+	 <legalnotice id="feedback">
+		<para>Wenn Sie einen Programmfehler melden m&ouml;chten oder Vorschl&auml;ge zur Anwendung oder zu diesem Handbuch haben,
+		  folgen Sie den Anleitungen auf der 
+		  <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback
+			 Page</ulink>. </para>
+	 </legalnotice>
+	 <authorgroup>
+		<author>
+		  <firstname>Sun</firstname>
+		  <surname>GNOME-Dokumentationsteam</surname>
+		  <affiliation>
+			 <orgname>Sun Microsystems</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Hongli</firstname>
+		  <surname>Lai</surname>
+		  <affiliation>
+			 <orgname>GNOME-Dokumentationsprojekt</orgname>
+		  </affiliation>
+		</author>
+	 </authorgroup>
+	 <revhistory>
+		<revision>
+		  <revnumber>&app; Handbuch V&manrevision;</revnumber>
+		  <date>&date;</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME-Dokumentationsteam 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME-Dokumentationsprojekt</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME Zeichentabellen-Handbuch V2.1</revnumber>
+		  <date>Juli 2002</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME-Dokumentationsteam 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			       GNOME-Dokumentationsprojekt</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME Zeichentabellen-Handbuch V2.0</revnumber>
+		  <date>M&auml;rz 2002</date>
+		  <revdescription>
+			 <para role="author">
+			       Sun GNOME-Dokumentationsteam 
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">
+			    GNOME   Dokumentationsprojekt</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>GNOME Zeichentabellen-Handbuch</revnumber>
+		  <date>2000</date>
+		  <revdescription>
+			 <para role="author">
+			       Hongli Lai, Dan Mueth
+				   <email>hongli@telekabel.nl</email>, <email>d-mueth@uchicago.edu</email></para>
+			 <para role="publisher">
+			   GNOME     Dokumentationsprojekt</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>In diesem Handbuch wird Version &appversion; von &app; beschrieben.
+		</releaseinfo>
+  </articleinfo>
+  <indexterm>
+	 <primary>Zeichensatz</primary>
+  </indexterm> 
+  
+  <!-- ============= Document Body ============================= -->
+  <!-- ============= Introduction ============================== --> 
+  <sect1 id="gcharmap-introduction">
+	 <title>Einf&uuml;hrung</title>
+	 <para>Mit der Anwendung <application>&app;</application>
+		<indexterm>
+		  <primary>Zeichentabelle</primary>
+		</indexterm> k&ouml;nnen Sie Zeichen aus einer Zeichentabelle ausw&auml;hlen und diese anschlie&szlig;end zu einer Textfolge mit Standardzeichen zusammenstellen.
+		Die so erstellte Textfolge k&ouml;nnen Sie in Anwendungen, wie z. B. Texteditor-Dokumenten, einf&uuml;gen. </para>
+	 <para><application>&app;</application> arbeitet vornehmlich mit dem Zeichensatz ISO-8859-1 Latein 1. Die Anwendung bietet auch Optionen zur Arbeit mit einigen nicht-lateinischen Zeichens&auml;tzen, wie z. B. Kyrillisch. Das Programm bietet Akzentzeichen, 
+		mathematische Symbole sowie Sonder- und Satzzeichen. 
+		Viele der Zeichen 
+	stehen auf der Standardtastatur nicht zur Verf&uuml;gung. </para>
+	 	
+  </sect1>
+  
+  <sect1 id="gcharmap-get-started"> 
+     <title>Erste Schritte</title>
+     <para>
+        In den folgenden Abschnitten werden die ersten Arbeitsschritte mit <application>&app;</application> dargestellt. 
+     </para>
+     <sect2 id="gcharmap-to-start"> 
+        <title>So starten Sie die Anwendung&app;</title>
+        <para>
+          Sie k&ouml;nnen <application>&app;</application> auf eine der folgenden Arten starten:
+        </para>
+        <variablelist>
+          <varlistentry> 
+             <term>Anwendungsmen&uuml;</term> 
+             <listitem>
+                <para>
+                  W&auml;hlen Sie 
+                    <menuchoice> 
+                     <guimenu>Zubeh&ouml;r</guimenu> 
+                     <guimenuitem>Zeichentabelle</guimenuitem> 
+                  </menuchoice>. 
+                </para>
+             </listitem>
+          </varlistentry>
+          <varlistentry> 
+             <term>Befehlszeile</term> 
+             <listitem>
+                <para>
+                  Geben Sie <command>gnome-character-map</command> ein, und dr&uuml;cken Sie die
+	 <keycap>Eingabetaste</keycap>. 
+                </para>
+             </listitem>
+          </varlistentry>
+        </variablelist>
+     </sect2>
+     <sect2 id="gcharmap-first-start"> 
+        <title>Beim Starten&app;</title>
+        <para>
+          Beim Start von <application>&app;</application> wird folgendes Fenster angezeigt. 
+        </para>
+        <figure id="gcharmap-mainwindow-fig">
+			<title>&app; Fenster</title>
+			<screenshot>
+			<mediaobject>
+			<imageobject><imagedata fileref="figures/gnome-character-map.png" 			format="PNG"/>
+			</imageobject>
+			<textobject>
+			<phrase>Zeigt das Hauptfenster der 
+			Anwendung Zeichentabelle an. Zeigt Men&uuml;leiste, Feld "Zu kopierender Text" und 		Zeichenschaltfl&auml;chen an.</phrase>
+			</textobject>
+			</mediaobject>
+			</screenshot>
+		</figure>
+		
+		<para>Das Fenster <application>&app;</application> enth&auml;lt folgende Elemente:</para>
+	 	<itemizedlist>
+		<listitem>
+		  <para>Men&uuml;leiste </para>
+		  <para>Die Men&uuml;leiste enth&auml;lt die GNOME-Standard-Fenstermen&uuml;s. </para>
+		</listitem>
+		<listitem>
+		  <para>Text-Symbolleiste </para>
+		  <para>Die Text-Symbolleiste enth&auml;lt das Feld
+		 <guilabel>Zu kopierender Text</guilabel> und die Schaltfl&auml;che 
+
+<guilabel>Kopieren</guilabel>. Im Feld 
+		<guilabel>Zu kopierender Text</guilabel> erstellen Sie die Textfolge,
+			 die in eine andere Anwendung kopiert werden soll. 
+			 Mit der Schaltfl&auml;che 
+			 <guilabel>Kopieren</guilabel> kopieren Sie die Volltextfolge aus dem Feld 
+			 <guilabel>Zu kopierender Text</guilabel> in einen Puffer. 
+			Sie k&ouml;nnen Zeichen in das 
+		Feld <guilabel>Zu kopierender Text</guilabel> entweder mit der Tastatur oder von der 		Zeichentabelle aus einf&uuml;gen. 
+			 </para>
+		</listitem>
+		<listitem>
+		  <para>Zeichentabelle </para>
+		  <para>Die Zeichentabelle enth&auml;lt Schaltfl&auml;chen f&uuml;r den Zeichensatz ISO-8859-1. Die Standardschriftart ist Helvetica 12 pt.</para>
+		</listitem>
+		<listitem>
+		  <para>Statusleiste </para>
+		  <para>Die Statusleiste befindet sich am unteren Rand des Fensters. In der 
+			Statusleiste wird der ASCII-Code des Zeichens angezeigt, das in der Zeichentabelle 
+			markiert ist.</para>
+		</listitem>
+	 	</itemizedlist>
+     </sect2>	
+ 
+  </sect1>
+
+  <!-- ================ Usage ================================ -->
+
+  <sect1 id="gcharmap-usage">
+	 <title>Verwendung</title>
+
+	 <sect2 id="gcharmap-create-textstring">
+		<title>So erstellen Sie eine Textfolge</title>
+		<para>Sie k&ouml;nnen auf eine der folgenden Weisen Zeichen in das Feld <guilabel>Zu kopierender Text</guilabel> einf&uuml;gen, 
+		um eine Textfolge zu erstellen: </para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Klicken Sie in der Zeichentabelle auf eine Zeichenschaltfl&auml;che,
+				 um das entsprechende Zeichen in das
+
+Feld <guilabel>Zu kopierender Text</guilabel> einzuf&uuml;gen. </para>
+		  </listitem>
+		  <listitem>
+			 <para>Klicken Sie auf das Feld 
+
+<guilabel>Zu kopierender Text</guilabel>, um dieses zu markieren.
+				Wenn bereits eine Textfolge im Feld angezeigt wird, klicken Sie auf die Stelle,
+				 an der Sie ein Zeichen einf&uuml;gen m&ouml;chten. Dr&uuml;cken Sie eine Taste auf der Tastatur, 
+				um das entsprechende Zeichen in das Feld einzuf&uuml;gen. </para>
+		  </listitem>
+		  <listitem>
+			 <para>W&auml;hlen Sie 
+			 <menuchoice>
+			 <guimenu>Zeichen</guimenu>
+			 <guimenuitem>Durchsuchen</guimenuitem>
+			 </menuchoice>
+			, um das Dialogfeld <guilabel>Zeichen ausw&auml;hlen</guilabel> aufzurufen. 
+				Verwenden Sie das Drehfeld
+				 im Dialogfeld, um ein ASCII-Zeichen im Bereich zwischen 0 und 255 einzuf&uuml;gen. Dieser Bereich 
+				umfasst auch nicht sichtbare Zeichen, die in der Zeichentabelle nicht zur Verf&uuml;gung stehen.
+				Klicken Sie auf
+
+ <guibutton>Einf&uuml;gen</guibutton>, um das Zeichen
+zum
+
+Feld <guilabel>Zu kopierender Text</guilabel> hinzuzuf&uuml;gen. </para>
+		  </listitem>
+		</itemizedlist>
+
+	 </sect2>
+<!-- =============== To Copy and Paste a Text String ====================== -->
+	 
+	 <sect2 id="gcharmap-copy-textstring">
+		<title>So kopieren Sie eine Textfolge und f&uuml;gen sie in eine Anwendung ein</title>
+		<para>F&uuml;hren Sie die folgenden Schritte aus, um die im Feld 		<guilabel>Zu kopierender Text</guilabel> erstellte Textfolge in eine Anwendung zu kopieren: </para>
+		<orderedlist>
+		  <listitem>
+			 <para>Markieren Sie die Textfolge im Feld 
+
+<guilabel>Zu kopierender Text</guilabel> mithilfe des Mauszeigers, oder klicken Sie auf 
+
+<guibutton>Kopieren</guibutton>. Die gew&auml;hlte Textfolge wird 
+
+markiert. </para>
+		  </listitem>
+		  <listitem>
+			 <para>F&uuml;hren Sie den Mauszeiger zu der Stelle in einer Anwendung,
+		 an der Sie die Textfolge einf&uuml;gen m&ouml;chten, und klicken Sie auf die mittlere Maustaste, um die Textfolge einzuf&uuml;gen. Sie k&ouml;nnen die Textfolge auch in die Anwendung einf&uuml;gen, wenn die Funktion "Einf&uuml;gen" verf&uuml;gbar ist. Sie k&ouml;nnen diesen Vorgang wiederholen, so oft Sie m&ouml;chten, solange die Textfolge markiert ist.
+				Klicken Sie auf das Feld
+
+<guilabel>Zu kopierender Text</guilabel>, um die Markierung der Textfolge
+			 aufzuheben. </para>
+		  </listitem>
+		</orderedlist>
+		<para>Wenn Sie den Inhalt des Feldes 
+		<guilabel>Zu kopierender Text</guilabel> in andere Anwendungen einf&uuml;gen, wird 			die Textfolge im aktuellen Zeichensatz der Anwendung angezeigt.  
+		</para>
+		<para>Wenn die Textfolge nicht sichtbare Zeichen enth&auml;lt, kann diese nur 
+		in Anwendungen eingef&uuml;gt werden, die den gesamten Zeichensatz unterst&uuml;tzen.
+		  </para>
+		<para>Wenn Sie <application>&app;</application> vor dem Einf&uuml;gen 
+			der Textfolge in eine Anwendung schlie&szlig;en, geht die Textfolge verloren. </para>
+	 </sect2>
+<!-- =============== To Change the Input Mode  ========================= -->
+	 
+	 <sect2 id="gcharmap-clear-field">
+		<title>So leeren Sie das Feld "Zu kopierender Text"</title>
+		<para>W&auml;hlen Sie zum Leeren des Feldes <guilabel>Zu kopierender Text</guilabel> 
+		<menuchoice> 
+		<guimenu>Bearbeiten</guimenu>
+		<guimenuitem>L&ouml;schen</guimenuitem> 
+		</menuchoice>.</para>
+	 </sect2>
+	 
+	 <sect2 id="gcharmap-change-charset">
+		<title>So &auml;ndern Sie den Eingabemodus</title>
+		<para>Klicken Sie zum &Auml;ndern des Eingabemodus mit der rechten Maustaste auf das Feld
+		 <guilabel>Zu kopierender Text</guilabel>, und w&auml;hlen Sie <guimenuitem>Eingabemethoden</guimenuitem>. Das Men&uuml;
+	<guimenuitem>Unicode-Kontrollzeichen einf&uuml;gen</guimenuitem> bietet Optionen f&uuml;r die Zeichendarstellung,
+			 die beim Arbeiten mit nicht-lateinischen Zeichens&auml;tzen sinnvoll sind. 
+		</para>
+
+	 </sect2>
+  </sect1>
+
+</article>
+

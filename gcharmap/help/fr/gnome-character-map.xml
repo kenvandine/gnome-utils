@@ -1,0 +1,265 @@
+<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+ "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY date "August 2002">
+  <!ENTITY appversion "1.107.0">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY app "Character Map">
+  <!ENTITY legal SYSTEM "legal.xml">
+]>
+<!-- (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Jan 2, 2002   
+ 
+  -->
+<article id="index" lang="fr">
+<!-- Please do not change the id; for translations, 
+change lang to appropriate code -->
+  <articleinfo>
+	 <title>Manuel &app;  V&manrevision;</title>
+	 <copyright>
+		<year>2003</year>
+		<holder>Sun Microsystems</holder>
+	 </copyright>
+	 <copyright>
+		<year>2000</year>
+		<holder>Hongli Lai</holder>
+	 </copyright> 
+     <!-- Translators: uncomment this:
+     <copyright>
+        <year>2000</year>
+        <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+     </copyright>
+     -->
+	 <publisher>
+		<publishername>Projet de documentation GNOME</publishername>
+	 </publisher> &legal;
+
+     <!-- This file  contains link to license for the documentation (GNU
+               FDL), and other
+               legal stuff such as "NO WARRANTY" statement. Please do
+               not change any of this.--> 
+	 <legalnotice id="feedback">
+		<para>Pour signaler un probl&egrave;me ou faire une suggestion concernant cette application ou le pr&eacute;sent manuel, proc&eacute;dez comme indiqu&eacute; &agrave; la <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>. </para>
+	 </legalnotice>
+	 <authorgroup>
+		<author>
+		  <firstname>Sun</firstname>
+		  <surname>Équipe de documentation GNOME</surname>
+		  <affiliation>
+			 <orgname>Sun Microsystems</orgname>
+		  </affiliation>
+		</author>
+		<author>
+		  <firstname>Hongli</firstname>
+		  <surname>Lai</surname>
+		  <affiliation>
+			 <orgname>Projet de documentation GNOME</orgname>
+		  </affiliation>
+		</author>
+	 </authorgroup>
+	 <revhistory>
+		<revision>
+		  <revnumber>Manuel &app;  V&manrevision;</revnumber>
+		  <date>&date;</date>
+		  <revdescription>
+			 <para role="author">Équipe de documentation Sun GNOME
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">Projet de documentation GNOME</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>Manuel de la table de caract&egrave;res V2.1</revnumber> 
+		  <date>Juillet 2002</date> 
+		  <revdescription> 
+			 <para role="author">Équipe de documentation Sun GNOME
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">Projet de documentation GNOME</para>
+		  </revdescription>
+		</revision>
+		<revision> 
+		  <revnumber>Manuel de la table de caract&egrave;res V2.0</revnumber> 
+		  <date>Mars 2002</date> 
+		  <revdescription> 
+			 <para role="author">Équipe de documentation Sun GNOME
+			       <email>gdocteam@sun.com</email></para>
+			 <para role="publisher">Projet de documentation GNOME</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>Manuel de la table de caract&egrave;res GNOME</revnumber>
+		  <date>2000</date>
+		  <revdescription>
+			 <para role="author">
+			       Hongli Lai, Dan Mueth
+				   <email>hongli@telekabel.nl</email>, <email>d-mueth@uchicago.edu</email></para>
+			 <para role="publisher">Projet de documentation GNOME</para>
+		  </revdescription>
+		</revision>
+	 </revhistory>
+	 <releaseinfo>Le pr&eacute;sent manuel d&eacute;crit la version &appversion; de &app;.
+		</releaseinfo>
+  </articleinfo>
+  <indexterm>
+	 <primary>Table de caract&egrave;res</primary>
+  </indexterm> 
+  
+  <!-- ============= Document Body ============================= -->
+  <!-- ============= Introduction ============================== --> 
+  <sect1 id="gcharmap-introduction">
+	 <title>Introduction</title>
+	 <para>L'application <application>&app;</application>
+		<indexterm>
+		  <primary>Table de caract&egrave;res</primary>
+		</indexterm> vous permet de s&eacute;lectionner des caract&egrave;res dans une table de caract&egrave;res, avant de les combiner pour en faire des cha&icirc;nes de texte avec des caract&egrave;res standard.
+		Vous pouvez ins&eacute;rer la cha&icirc;ne de texte ainsi cr&eacute;&eacute;e dans des applications telles que des documents d'&eacute;diteur de texte. </para>
+	 <para><application>&app;</application> fonctionne principalement avec le jeu de caract&egrave;res ISO-8859-1 Latin 1. Elle propose &eacute;galement des options permettant de travailler avec certains jeux de caract&egrave;res non-latin, tels que le cyrillique. Des caract&egrave;res accentu&eacute;s, des symboles math&eacute;matiques, des caract&egrave;res sp&eacute;ciaux et des signes de ponctuation sont &eacute;galement disponibles. 
+		Beaucoup de ces caract&egrave;res ne sont pas propos&eacute;s sur un clavier standard. </para>
+	 	
+  </sect1>
+  
+  <sect1 id="gcharmap-get-started"> 
+     <title>Introduction</title>
+     <para>Les sections suivantes expliquent comment utiliser <application>&app;</application>. 
+     </para>
+     <sect2 id="gcharmap-to-start"> 
+        <title>D&eacute;marrage de &app;</title>
+        <para>Vous pouvez d&eacute;marrer <application>&app;</application> en recourant &agrave; l'une des m&eacute;thodes suivantes :
+        </para>
+        <variablelist>
+          <varlistentry> 
+             <term>Menu Applications</term> 
+             <listitem>
+                <para>
+                  S&eacute;lectionnez 
+               <menuchoice> 
+                     <guimenu>Accessoires</guimenu> 
+                     <guimenuitem>Table de caractères</guimenuitem> 
+                  </menuchoice>. 
+                </para>
+             </listitem>
+          </varlistentry>
+          <varlistentry> 
+             <term>Ligne de commande</term> 
+             <listitem>
+                <para>
+                  Entrez 
+                  <command>gnome-character-map</command>, puis appuyez sur <keycap>Entr&eacute;e</keycap>. 
+                </para>
+             </listitem>
+          </varlistentry>
+        </variablelist>
+     </sect2>
+     <sect2 id="gcharmap-first-start"> 
+        <title>Lancement de &app;</title>
+        <para>Lorsque vous lancez <application>&app;</application>, la fen&ecirc;tre suivante s'affiche. 
+        </para>
+        <figure id="gcharmap-mainwindow-fig">
+	<title>Fen&ecirc;tre &app; </title>
+			<screenshot>
+			<mediaobject>
+			<imageobject><imagedata fileref="figures/gnome-character-map.png" 			format="PNG"/>
+			</imageobject>
+			<textobject>
+			<phrase>Affiche la fen&ecirc;tre principale de la Table de caract&egrave;res. Affiche la barre de menus, la zone de saisie Texte à copier et les boutons des caract&egrave;res.</phrase>
+			</textobject>
+			</mediaobject>
+			</screenshot>
+		</figure>
+		
+		<para>La fen&ecirc;tre <application>&app;</application> contient les &eacute;l&eacute;ments suivants :</para>
+	 	<itemizedlist>
+		<listitem>
+		  <para>Barre de menus
+ </para>
+		  <para>La barre de menus contient les menus GNOME standard. </para>
+		</listitem>
+		<listitem>
+		  <para>Barre d'outils de texte </para>
+		  <para>La barre d'outils de texte contient le champ <guilabel>Texte à copier</guilabel> et le bouton <guilabel>Copier</guilabel>. Le champ <guilabel>Texte à copier</guilabel> permet de cr&eacute;er la cha&icirc;ne de texte &agrave; copier dans une autre application. 
+			Le bouton <guilabel>Copier</guilabel> permet de copier la cha&icirc;ne de texte cr&eacute;&eacute;e dans ce champ dans un tampon. 
+			Vous pouvez entrer des caract&egrave;res dans le champ <guilabel>Texte à copier</guilabel> depuis le clavier ou depuis la table de caract&egrave;res. 
+			 </para>
+		</listitem>
+		<listitem>
+		  <para>Table de caract&egrave;res </para>
+		  <para>La table de caract&egrave;res contient les boutons du jeu de caract&egrave;res ISO-8859-1. La police par d&eacute;faut est Helvetica 12 point.</para>
+		</listitem>
+		<listitem>
+		  <para>Barre d'&eacute;tat </para>
+		  <para>La barre d'&eacute;tat est situ&eacute;e le long du bord inf&eacute;rieur de la fen&ecirc;tre. Elle affiche le code ASCII du caract&egrave;re de la table s&eacute;lectionn&eacute;.</para>
+		</listitem>
+	 	</itemizedlist>
+     </sect2>	
+ 
+  </sect1>
+
+  <!-- ================ Usage ================================ -->
+
+  <sect1 id="gcharmap-usage"> 
+	 <title>Utilisation</title>
+
+	 <sect2 id="gcharmap-create-textstring">
+		<title>Cr&eacute;ation d'une cha&icirc;ne de texte</title>
+		<para>Pour cr&eacute;er une cha&icirc;ne de texte dans le champ <guilabel>Texte à copier</guilabel>, vous pouvez ins&eacute;rer des caract&egrave;res en recourant &agrave; l'une des m&eacute;thodes suivantes : </para>
+		<itemizedlist>
+		  <listitem>
+			 <para>Cliquez sur un caract&egrave;re de la table pour l'ins&eacute;rer dans le champ <guilabel>Texte à copier</guilabel>. </para>
+		  </listitem>
+		  <listitem>
+			 <para>Cliquez sur le champ <guilabel>Texte à copier</guilabel> pour l'activer.
+				Si une cha&icirc;ne de texte se trouve d&eacute;j&agrave; dans ce champ, cliquez sur celle-ci &agrave; l'endroit o&ugrave; le caract&egrave;re doit &ecirc;tre ins&eacute;r&eacute;. Appuyez sur un caract&egrave;re de votre clavier pour l'ins&eacute;rer dans le champ. </para>
+		  </listitem>
+		  <listitem>
+			 <para>S&eacute;lectionnez 
+			 <menuchoice>
+			 <guimenu>Caractères</guimenu>
+			 <guimenuitem>Parcourir</guimenuitem>
+			 </menuchoice>  
+			pour ouvrir la bo&icirc;te de dialogue <guilabel>Sélectionnez un caractère</guilabel>. 
+				La zone de s&eacute;lection num&eacute;rique de la bo&icirc;te de dialogue permet de d&eacute;finir un caract&egrave;re ASCII dans la plage 0 &agrave; 255. Cette fourchette contient des caract&egrave;res invisibles qui ne sont pas disponibles dans la table de caract&egrave;res.
+				Cliquez sur <guibutton>Insérer</guibutton> pour ajouter le caract&egrave;re au champ <guilabel>Texte à copier</guilabel>. </para>
+		  </listitem>
+		</itemizedlist>
+
+	 </sect2>
+<!-- =============== To Copy and Paste a Text String ====================== -->
+	 
+	 <sect2 id="gcharmap-copy-textstring"><title>Copie d'une cha&icirc;ne de texte dans une application</title>
+		<para>Pour copier et coller la cha&icirc;ne de texte cr&eacute;&eacute;e dans le champ <guilabel>Texte à copier</guilabel> dans une application, proc&eacute;dez comme suit : </para>
+		<orderedlist>
+		  <listitem>
+			 <para>Faites glisser le pointeur de la souris pour s&eacute;lectionner la cha&icirc;ne de texte du champ <guilabel>Texte à copier</guilabel> ou cliquez sur <guibutton>Copier</guibutton>. La cha&icirc;ne de texte s&eacute;lectionn&eacute;e appara&icirc;t en surbrillance. </para>
+		  </listitem>
+		  <listitem>
+			 <para>Dans l'application, pointez sur l'emplacement o&ugrave; la cha&icirc;ne de texte doit &ecirc;tre ins&eacute;r&eacute;e et cliquez sur le bouton du milieu pour l'y placer. Vous pouvez &eacute;galement la coller si une option correspondante est disponible. Vous pouvez r&eacute;p&eacute;ter l'insertion &agrave; l'infini tant que la cha&icirc;ne de texte est s&eacute;lectionn&eacute;e.
+				Cliquez sur le champ <guilabel>Texte à copier</guilabel> pour d&eacute;s&eacute;lectionner la cha&icirc;ne de texte. </para>
+		  </listitem>
+		</orderedlist>
+		<para>Lorsque vous collez le contenu du champ <guilabel>Texte à copier</guilabel> dans d'autres applications, la cha&icirc;ne de texte appara&icirc;t dans le jeu de caract&egrave;res courant dans l'application concern&eacute;e. 
+		</para>
+		<para>Si votre cha&icirc;ne de texte contient des caract&egrave;res invisibles, vous ne pouvez l'ins&eacute;rer que dans les applications qui prennent en charge l'ensemble du jeu de caract&egrave;res.
+		  </para>
+		<para>Si vous quittez <application>&app;</application> avant d'avoir coll&eacute; la cha&icirc;ne de texte dans une application, celle-ci est perdue. </para>
+	 </sect2>
+<!-- =============== To Change the Input Mode  ========================= -->
+	 
+	 <sect2 id="gcharmap-clear-field">
+		<title>Effacement du champ Texte à copier</title>
+		<para>Pour effacer le champ <guilabel>Texte à copier</guilabel>, s&eacute;lectionnez
+		<menuchoice> 
+		<guimenu>Édition</guimenu>
+		<guimenuitem>Effacer</guimenuitem> 
+		</menuchoice></para>
+	 </sect2>
+	 
+	 <sect2 id="gcharmap-change-charset"><title>Modification du mode de saisie</title>
+		<para>Pour modifier le mode de saisie, cliquez avec le bouton droit sur le champ <guilabel>Texte à copier</guilabel> et s&eacute;lectionnez <guimenuitem>Méthodes d'entrée</guimenuitem>. L'&eacute;lement de menu <guimenuitem>Insérer un caractère de contrôle Unicode</guimenuitem> propose des options de configuration des caract&egrave;res utiles lorsque vous travaillez avec des jeux de caract&egrave;res non latins. 
+		</para>
+
+	 </sect2>
+  </sect1>
+
+</article>
+
