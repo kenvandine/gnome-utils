@@ -37,14 +37,13 @@ void on_about_menu(void);
 
 typedef struct
 {
-  GList *plist;
   struct _Prefs_edit *prefs;
   struct _Param_group *strip_param_group, *pen_param_group;
 
   char *config_fn, *params_fn;
   GtkWidget *frame, *hbox, *strip, *pen_sep, *pen;
-  GtkWidget *text_window, *text_clist, *file_sel;
-  GtkWidget *editor, *notebook;
+  GtkWidget *text_window, *text_clist, *file_sel, *editor;
+  GtkNotebook *notebook;
 }
 Chart_app;
 

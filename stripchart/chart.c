@@ -291,7 +291,7 @@ chart_set_interval(Chart *chart, guint msec)
 ChartDatum *
 chart_parameter_add(Chart *chart,
   gdouble (*user_func)(), gpointer user_data,
-  gchar *color_names, GtkAdjustment *adj)
+  gchar *color_names, GtkAdjustment *adj, int pageno)
 {
   ChartDatum *datum = g_malloc(sizeof(*datum));
 
@@ -316,7 +316,7 @@ chart_parameter_add(Chart *chart,
   datum->color_names = g_strdup(color_names);
   datum->gdk_gc = NULL;
   datum->gdk_color = NULL;
-  chart->param = g_slist_prepend(chart->param, datum);
+  chart->param = g_slist_insert(chart->param, datum, pageno);
 
   datum->plot_style = chart->default_plot_style;
   datum->scale_style = chart->default_scale_style;

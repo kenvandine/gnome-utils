@@ -1,5 +1,13 @@
 2001-07-11  John Kodis  <kodis@jagunet.com>
 
+	* chart.c (chart_parameter_add): Insert new parameters
+	corresponding to the location of the page in the parameter
+	notebook.
+
+	* chart-app.h (struct): Remove plist; adjust code to get parameter
+	pages by iterating through notebook pages and getting the
+	user_data associated with each.
+
 	* utils.c: Fix a compilation problem under Solaris 2.6 reported by
 	Frederic Devernay <Frederic.Devernay@sophia.inria.fr>, by
 	including chart-app.h, and thus config.h, before any other header

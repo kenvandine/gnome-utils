@@ -535,7 +535,8 @@ free_expr(Expr *expr)
 
 ChartDatum *
 chart_equation_add(Chart *chart,
-  Param_group *group, Param_desc *desc, GtkAdjustment *adj, int rescale)
+  Param_group *group, Param_desc *desc, GtkAdjustment *adj,
+  int pageno, int rescale)
 {
   char *s;
   ChartDatum *datum;
@@ -576,7 +577,7 @@ chart_equation_add(Chart *chart,
     }
 
   datum = chart_parameter_add(chart,
-    evaluate_equation, expr, desc->color_names, adj);
+    evaluate_equation, expr, desc->color_names, adj, pageno);
 
   if (rescale)
     chart_set_autorange(datum, chart_rescale_by_decade, NULL);

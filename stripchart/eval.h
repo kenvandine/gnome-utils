@@ -21,6 +21,7 @@
 void chart_start(GtkWidget *chart, Param_group *pg);
 
 ChartDatum *chart_equation_add(Chart *chart,
-  Param_group *pg, Param_desc *desc, GtkAdjustment *adj, int rescale);
+  Param_group *pg, Param_desc *desc, GtkAdjustment *adj,
+  int pageno, int rescale);
 
 #endif /* EVAL_H */

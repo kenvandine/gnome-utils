@@ -99,16 +99,18 @@ param_type_str(Param_page *page)
 static void
 text_load_clist(Chart_app *app)
 {
-  int p = 0;
-  GList *list;
+  int p = 0, row = 0;
+  GtkWidget *nb_page;
+
   gtk_clist_freeze(GTK_CLIST(app->text_clist));
   gtk_clist_clear(GTK_CLIST(app->text_clist));
-  for (list = app->plist; list != NULL; list = g_list_next(list))
+
+  while ((nb_page = gtk_notebook_get_nth_page(app->notebook, p)) != NULL)
     {
       double top, val;
       char *row_strs[4];
       char val_str[100], top_str[100];
-      Param_page *page = list->data;
+      Param_page *page = gtk_object_get_user_data(GTK_OBJECT(nb_page));
       ChartDatum *datum = page->strip_data;
 
       if (datum && datum->active)
@@ -123,11 +125,12 @@ text_load_clist(Chart_app *app)
 	  hi_lo_fmt(top, top_str, val, val_str);
 	  gtk_clist_append(GTK_CLIST(app->text_clist), row_strs);
 	  gtk_clist_set_foreground(GTK_CLIST(app->text_clist),
-	    p, &page->strip_data->gdk_color[0]);
+	    row, &page->strip_data->gdk_color[0]);
 	  gtk_clist_set_background(GTK_CLIST(app->text_clist),
-	    p, &app->text_window->style->bg[0]);
-	  p++;
+	    row, &app->text_window->style->bg[0]);
+	  row++;
 	}
+      p++;
     }
   gtk_clist_columns_autosize(GTK_CLIST(app->text_clist));
   gtk_clist_thaw(GTK_CLIST(app->text_clist));
@@ -393,18 +396,17 @@ chart_app_new(void)
     app->params_fn = "stripchart.params";
   create_editor(app);
 
-  app->plist = NULL;
   if (param_desc != NULL)
     for (p = 0; param_desc[p]; p++)
       {
 	Param_page *page = add_page_before(app, p, param_desc[p]);
 
 	page->strip_data = chart_equation_add(CHART(app->strip),
-	  app->strip_param_group, param_desc[p], NULL,
+	  app->strip_param_group, param_desc[p], NULL, 0,
 	  str_to_plot_style(param_desc[p]->plot) != chart_plot_indicator);
 
 	page->pen_data = chart_equation_add(CHART(app->pen),
-	  app->pen_param_group, param_desc[p], page->strip_data->adj, FALSE);
+	  app->pen_param_group, param_desc[p], page->strip_data->adj, 0,FALSE);
       }
 
   return app;
