@@ -53,7 +53,9 @@ pix *crd_pix, *ident_pix, *geo_pix, *org_pix, *exp_pix, *sec_pix;
 pix *phone_pix, *email_pix, *addr_pix, *expl_pix, *org_pix;
 
 char *gnomecard_fname;
-char *gnomecard_search_str;
+char *gnomecard_find_str;
+gboolean gnomecard_find_sens;
+gboolean gnomecard_find_back;
 gint gnomecard_def_data;
 gboolean gnomecard_changed;
 gboolean gnomecard_found;                 /* yeah... pretty messy. (fixme) */
@@ -169,6 +171,9 @@ void gnomecard_init_pixes(void)
 void gnomecard_init_defaults(void)
 {
 	gnomecard_def_data = gnome_config_get_int("/gnomecard/layout/def_data=0");
+	gnomecard_find_sens = gnome_config_get_bool("/gnomecard/find/sens=False");
+	gnomecard_find_back = gnome_config_get_bool("/gnomecard/find/back=False");
+	gnomecard_find_str = gnome_config_get_string("/gnomecard/find/str=");
 }
 
 void gnomecard_toggle_card_view(GtkWidget *w, gpointer data)
@@ -1350,19 +1355,19 @@ void gnomecard_find_card(GtkWidget *w, gpointer data)
 	wrapped = 0;
 
 	if (GTK_TOGGLE_BUTTON(p->back)->active)
-		back = 1;
+		gnomecard_find_back = back = 1;
 	else
-		back = 0;
+		gnomecard_find_back = back = 0;
 	
-	MY_FREE(gnomecard_search_str);
-	gnomecard_search_str = g_strdup(gtk_entry_get_text(GTK_ENTRY(p->entry)));
-	pattern = g_malloc(strlen(gtk_entry_get_text(GTK_ENTRY(p->entry))) + 3);
-	sprintf(pattern, "*%s*", gtk_entry_get_text(GTK_ENTRY(p->entry)));
+	MY_FREE(gnomecard_find_str);
+	gnomecard_find_str = g_strdup(gtk_entry_get_text(GTK_ENTRY(p->entry)));
+	pattern = g_malloc(strlen(gnomecard_find_str) + 3);
+	sprintf(pattern, "*%s*", gnomecard_find_str);
 
 	if (GTK_TOGGLE_BUTTON(p->sens)->active)
-		sens = 1;
+		gnomecard_find_sens = sens = 1;
 	else {
-		sens = 0;
+		gnomecard_find_sens = sens = 0;
 		g_strup(pattern);
 	}
 	
@@ -1462,6 +1467,10 @@ void gnomecard_find_card(GtkWidget *w, gpointer data)
 	}
 
 	g_free(pattern);
+	
+	gnome_config_set_bool("/gnomecard/find/sens",  gnomecard_find_sens);
+	gnome_config_set_bool("/gnomecard/find/back",  gnomecard_find_back);
+	gnome_config_set_string("/gnomecard/find/str",  gnomecard_find_str);
 }
 
 void gnomecard_find_card_call(GtkWidget *widget, gpointer data)
@@ -1479,12 +1488,14 @@ void gnomecard_find_card_call(GtkWidget *widget, gpointer data)
 																		 GTK_SIGNAL_FUNC(gnomecard_cancel),
 																		 GTK_OBJECT(w));	
 																		 
-	p->entry = my_hbox_entry(GNOME_DIALOG(w)->vbox, "Find:", gnomecard_search_str);
+	p->entry = my_hbox_entry(GNOME_DIALOG(w)->vbox, "Find:", gnomecard_find_str);
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), hbox, FALSE, FALSE, 0);
 	p->sens = check = gtk_check_button_new_with_label("Case Sensitive");
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_find_sens);
 	gtk_box_pack_start(GTK_BOX(hbox), check, FALSE, FALSE, 0);
 	p->back = check = gtk_check_button_new_with_label("Find Backwards");
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_find_back);
 	gtk_box_pack_end(GTK_BOX(hbox), check, FALSE, FALSE, 0);
 	
 	gtk_widget_show_all(GNOME_DIALOG(w)->vbox);
@@ -2299,7 +2310,6 @@ void gnomecard_init(void)
 
 	add_menu = addmenu;
 	gnomecard_def_data = PHONE;
-	gnomecard_search_str = NULL;
 	gnomecard_fname = g_strdup("untitled.gcrd");
 	
 	gnomecard_init_defaults();
