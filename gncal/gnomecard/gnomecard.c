@@ -708,7 +708,7 @@ void gnomecard_init(void)
 	gtk_object_set_data(GTK_OBJECT(gnomecard_list), "ColumnHeaders",
 			    cols);
 
-WORK HERE ON ADDING CODE TO BUILD COLUMN HEADHINGS FROM cols 
+/*WORK HERE ON ADDING CODE TO BUILD COLUMN HEADHINGS FROM cols */
 
 
 	gtk_box_pack_start(GTK_BOX(hbox), scrollwin, TRUE, TRUE, 0);
