@@ -366,13 +366,13 @@ static GnomeUIInfo help_menu[] = {
 	GNOMEUIINFO_END
 };
   
-static GnomeUIInfo program_menu[] = {
+static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_MENU_EXIT_ITEM(delete_event,NULL),
 	GNOMEUIINFO_END
 };      
 
 static GnomeUIInfo main_menu[] = {
-	GNOMEUIINFO_MENU_FILE_TREE(program_menu),
+	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
         GNOMEUIINFO_END
 };
