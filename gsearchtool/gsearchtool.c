@@ -566,15 +566,15 @@ update_search_counts (void)
 		message_string = g_strdup (_("No files found"));
 		add_no_files_found_message (interface.model, &interface.iter);
 	}
-	else if (total_files == 1) {
-		title_bar_string = g_strdup (_("One File Found"));
-		message_string = g_strdup (_("One file found"));
-	}
 	else {
-		title_bar_string = g_strdup_printf (_("%d Files Found"), total_files);
-		message_string = g_strdup_printf (_("%d files found"), total_files);
+		title_bar_string = ngettext ("%d File Found",
+					     "%d Files Found",
+					     total_files);
+		message_string = ngettext ("%d file found",
+					   "%d files found",
+					   total_files);
 	}
-		
+
 	if (strlen (stopped_string) > 0) {
 		tmp = message_string;
 		message_string = g_strconcat (message_string, " ", stopped_string, NULL);

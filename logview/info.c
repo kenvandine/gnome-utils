@@ -180,7 +180,9 @@ RepaintLogInfo (void)
    if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
     
        g_snprintf (buffer, sizeof (buffer),
-                   _("%ld bytes"), (long) curlog->lstats.size);
+                   ngettext ("%ld byte", "%ld bytes",
+                            (long) curlog->lstats.size),
+                   (long) curlog->lstats.size);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);

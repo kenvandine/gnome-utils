@@ -309,17 +309,20 @@ open_file_cb (GtkWidget 	*widget,
 						     (GtkTreeModel **)&interface.model);
 	
 	if (g_list_length (list) > SILENT_WINDOW_OPEN_LIMIT) {
-	
 		GtkWidget *dialog;
 		GtkWidget *button;
 		gchar     *primary;
 		gchar     *secondary;
 		gint      response;
 
-		primary = g_strdup_printf (_("Are you sure you want to open %d documents?"), 
+		primary = g_strdup_printf (ngettext ("Are you sure you want to open %d document?",
+						     "Are you sure you want to open %d documents?",
+						      g_list_length (list)),
 		                           g_list_length (list));
 		
-		secondary = g_strdup_printf (_("This will open %d separate windows."), 
+		secondary = g_strdup_printf (ngettext ("This will open %d separate window.",
+						       "This will open %d separate windows.",
+						       g_list_length (list)),
 		                             g_list_length (list));
 		
 		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
@@ -438,10 +441,14 @@ open_folder_cb (GtkWidget 	*widget,
 		gchar     *secondary;
 		gint      response;
 
-		primary = g_strdup_printf (_("Are you sure you want to open %d folders?"), 
+		primary = g_strdup_printf (ngettext ("Are you sure you want to open %d folder?",
+						     "Are you sure you want to open %d folders?",
+						      g_list_length (list)),
 		                           g_list_length (list));
 		
-		secondary = g_strdup_printf (_("This will open %d separate windows."),
+		secondary = g_strdup_printf (ngettext ("This will open %d separate window.",
+						       "This will open %d separate windows."
+						       g_list_length (list)),
 		                             g_list_length (list));
 								  
 		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
