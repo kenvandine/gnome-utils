@@ -45,4 +45,15 @@ EXTRA_DIST = \
 	logview.desktop		\
 	logview-descript.db	\
 	logview-regexp.db	\
-	logview-actions.db
+	logview-actions.db	\
+	logview-pam		\
+	logview-security.in
+
+install-data-local: logview-security
+if CONSOLE_HELPER
+	$(INSTALL_DATA) -D logview-pam @PAM_PREFIX@/pam.d/logview
+	$(INSTALL_DATA) -D logview-security @PAM_PREFIX@/security/console.apps/logview
+	$(INSTALL_DATA) -m 755 -d $(sbindir)
+	mv $(bindir)/logview $(sbindir)
+	$(LN_S) @CONSOLE_HELPER@ $(bindir)/logview
+endif

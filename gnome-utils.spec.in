@@ -36,7 +36,8 @@ MYARCH_FLAGS=--host=alpha-redhat-linux
 
 CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} \
     --sysconfdir=%{_sysconfdir} --datadir=%{_datadir} \
-    --bindir=%{_bindir} $MYARCH_FLAGS 
+    --bindir=%{_bindir} $MYARCH_FLAGS --enable-console-helper \
+    --with-pam-prefix=/etc
 
 if [ "$SMP" != "" ]; then
   make MAKE="make -j$SMP"
@@ -56,8 +57,11 @@ make prefix=$RPM_BUILD_ROOT%{_prefix} \
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
 
 %files
+%config /etc/pam.d/*
+%config /etc/security/*
 %{_bindir}/*
-%{_sysconfdir}/*
+%{_sbindir}/*
+%{_sysconfdir}/CORBA/servers/*
 %{_datadir}/*
 
 %doc AUTHORS COPYING ChangeLog NEWS README THANKS
