@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-07 20:17+0900\n"
-"PO-Revision-Date: 2004-02-07 20:21+0900\n"
+"POT-Creation-Date: 2004-02-25 00:49+0900\n"
+"PO-Revision-Date: 2004-02-25 00:50+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "보조프로그램"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "사전 찾기"
 
@@ -51,8 +51,8 @@ msgstr "사전 보이기(_S)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "서버로 접속할 수 없습니다."
 
@@ -107,6 +107,10 @@ msgstr "문자열을 찾을 수 없습니다"
 #: gdictsrc/gdict-app.c:469
 msgid "Find"
 msgstr "찾기"
+
+#: gdictsrc/gdict-app.c:477
+msgid "_Search for:"
+msgstr "찾을 단어(_S):"
 
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
@@ -164,7 +168,7 @@ msgstr "단어를 입력하거나 다음 목록에서 선택하십시오"
 msgid "Look Up for a Word"
 msgstr "단어 찾아 보기"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "찾기(_L)"
 
@@ -173,85 +177,94 @@ msgstr "찾기(_L)"
 msgid "Error invoking query: %s"
 msgstr "질의를 실행하는 데 오류: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "사전 기본 설정"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "똑똑한 찾기(_L)"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "서버(_S):"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "기본 서버(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "서버를 기본값으로 합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "포트(_P):"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "기본 포트(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "포트 번호를 기본값으로 합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "서버"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "서버 입력란"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "서버 이름을 입력합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "포트"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "포트 입력란"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "포트 번호를 입력합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "데이터베이스(_D):"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "기본 전략(_E):"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "모든 데이터베이스 찾기"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "데이터베이스"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "데이터베이스 이름"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "기본 전략"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"도움말을 표시하는 데 오류가 발생했습니다: \n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -953,12 +966,12 @@ msgstr "%y/%m/%-d, %p %-I:%M"
 
 #: gsearchtool/gsearchtool-support.c:487
 msgid "link (broken)"
-msgstr "바로가기 (깨짐)"
+msgstr "바로 가기 (깨짐)"
 
 #: gsearchtool/gsearchtool-support.c:492
 #, c-format
 msgid "link to %s"
-msgstr "%s에 바로가기"
+msgstr "%s에 바로 가기"
 
 #: gsearchtool/gsearchtool.c:70
 msgid "Contains the _text"
@@ -1113,74 +1126,74 @@ msgstr "찾기 규칙 값 입력란"
 msgid "Enter a value for search rule"
 msgstr "찾기 규칙에 대한 값을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "'%s' 규칙을 지우려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "사용 가능한 옵션(_V):"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "찾기 규칙 메뉴"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "메뉴에서 찾기 규칙을 선택합니다"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "찾은 결과(_E):"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "이름"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "폴더"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "크기"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "종류"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "고친 날짜"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "이름에 포함(_N):"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr "이름에 포함 입력란"
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "찾을 파일 이름을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr "이름에 포함 입력란"
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "폴더 안에 찾기(_L):"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "찾아보기"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "폴더 안에 찾기 입력란"
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1846 gsearchtool/gsearchtool.c:1847
 msgid "Enter the folder name where you want to start the search"
 msgstr "찾기를 시작할 폴더 이름을 입력하십시오"
+
+#: gsearchtool/gsearchtool.c:1847
+msgid "Look in Folder Entry"
+msgstr "폴더 안에 찾기 입력란"
 
 #: gsearchtool/gsearchtool.c:1865
 msgid "Show more _options"
@@ -1337,7 +1350,9 @@ msgstr "동작(_A):"
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
-msgstr "앞의 모든 정규식에 해당하는 경우에 실행할 동작. 시스템 명령으로 실행합니다: system (동작)."
+msgstr ""
+"앞의 모든 정규식에 해당하는 경우에 실행할 동작. 시스템 명령으로 실행합니다: "
+"system (동작)."
 
 #: logview/actions.c:781
 msgid "_Description:"
