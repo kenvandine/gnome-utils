@@ -22,6 +22,18 @@
 
 #include <glib.h>
 
+
+#ifdef TIME_WITH_SYS_TIME
+#include <sys/time.h>
+#include <time.h>
+#else
+#ifdef TM_IN_SYS_TIME
+#include <sys/time.h>
+#endif /* TM_IN_SYS_TIME */
+#include <time.h>
+#endif /* TIME_WITH_SYS_TIME */
+
+
 typedef enum 
 {
 	GTT_HOLD = 0,	    /* will not appear on invoice */
