@@ -72,6 +72,7 @@ LIBBONOBOUI_REQUIRED=1.103.0
 LIBXML_REQUIRED=2.2.8
 LIBPANELAPPLET_REQUIRED=
 GCONF_REQUIRED=1.1.2
+GTKHTML_REQUIRED=0.0.0
 
 dnl *****************************************
 dnl libgnome, libgnomeui needed for all utils
@@ -151,17 +152,8 @@ dnl *******************************
 dnl gtkhtml
 dnl gtkhtml is needed to build gtt
 dnl *******************************
-GTKHTML_LIBS=`$GNOME_CONFIG --libs gtkhtml`
-GTKHTML_CFLAGS=`$GNOME_CONFIG --cflags gtkhtml`
 
-# check for gtkhtml and enable it via HAVE_LIBGTKHTML
-# if found
-AC_CHECK_LIB(gtkhtml, gtk_html_new,
-             GNOMEBUILDLIBS="${GNOMEBUILDLIBS} gtkhtml"
-             AC_DEFINE(HAVE_LIBGTKHTML),
-             AC_MSG_ERROR([Cannot find gtkhtml. See config.log for more info.]),
-             $GTKHTML_LIBS)
-
+PKG_CHECK_MODULES(GTKHTML, gtkhtml >= $GTKHTML_REQUIRED)
 AC_SUBST(GTKHTML_LIBS)
 AC_SUBST(GTKHTML_CFLAGS)
 
