@@ -603,6 +603,7 @@ static void
 add_no_files_found_message (GSearchWindow * gsearch)
 {
 	/* When the list is empty append a 'No Files Found.' message. */
+	gtk_widget_set_sensitive (GTK_WIDGET (gsearch->search_results_tree_view), FALSE);
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(gsearch->search_results_tree_view), FALSE);
 	gtk_tree_view_columns_autosize (GTK_TREE_VIEW(gsearch->search_results_tree_view));
 	g_object_set (gsearch->search_results_name_cell_renderer,
@@ -1616,6 +1617,7 @@ spawn_search_command (GSearchWindow * gsearch,
 		gtk_widget_hide (gsearch->find_button);
 		gtk_widget_set_sensitive (gsearch->find_button, FALSE);
 		gtk_widget_set_sensitive (gsearch->search_results_vbox, TRUE);
+		gtk_widget_set_sensitive (GTK_WIDGET (gsearch->search_results_tree_view), TRUE);
 		gtk_widget_set_sensitive (gsearch->available_options_vbox, FALSE);
 		gtk_widget_set_sensitive (gsearch->show_more_options_expander, FALSE);
 		gtk_widget_set_sensitive (gsearch->name_and_folder_table, FALSE);
