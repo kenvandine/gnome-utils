@@ -1,3 +1,19 @@
+2000-05-18  Bradford Hovinen  <hovinen@udel.edu>
+
+	* gdictsrc/TODO: Removed items for adding applet menu items, since 
+	they are now implemented
+
+	* gdictsrc/gdict-app.c (gdict_spell): Make non-static
+	(gdict_app_do_lookup): Show defbox widget on lookup
+	Set EXIT_FILE_MENU_ITEM differently depending on whether printing
+	support is enabled.
+
+	* gdictsrc/gdict-applet.c (applet_show_hide_defbox_cb): 
+	(applet_spell_cb): Define
+	(gdict_applet_create): New callbacks above for new menu items
+
+	* gdictsrc/gdict-app.c (gdict_open_speller): Define
+
 2000-05-17  Bradford Hovinen  <hovinen@udel.edu>
 
 	* gdictsrc/gdict-app.c (gdict_not_online): Cleaned up dialog
