@@ -56,30 +56,7 @@ static Bool proc_interrupts_activity_p (IdleTimeout *si);
 static void check_for_clock_skew (IdleTimeout *si);
 
 
-IdleTimeout *
-idle_timeout_new (void)
-{
-  IdleTimeout *si;
-
-  si = g_new0 (IdleTimeout, 1);
-  si->dpy = GDK_DISPLAY();
-
-  /* hack alert xxx we should grep all screens */
-  si->nscreens = 1;
-  si->screens = g_new0 (IdleTimeoutScreen, 1);
-  si->screens->global = si;
-  si->screens->screen = DefaultScreenOfDisplay (si->dpy);
-
-  /* bogus preferences  */
-  si->prefs.timeout = 5;
-  si->prefs.pointer_timeout = 5;
-
-  /* how often we recheck the main window tree */
-  si->prefs.notice_events_timeout = 60;
-
-  return si;
-}
-
+/* ===================================================================== */
 
 static gint
 idle_timer (gpointer closure)
@@ -108,6 +85,7 @@ idle_timer (gpointer closure)
   return 0;
 }
 
+/* ===================================================================== */
 
 static void
 schedule_wakeup_event (IdleTimeout *si, int when)
@@ -116,6 +94,8 @@ schedule_wakeup_event (IdleTimeout *si, int when)
   si->timer_id = gtk_timeout_add (when*1000, idle_timer,
                                   (gpointer) si);
 }
+
+/* ===================================================================== */
 
 static void
 notice_events (IdleTimeout *si, Window window, Bool top_p)
@@ -127,18 +107,20 @@ notice_events (IdleTimeout *si, Window window, Bool top_p)
   GdkWindow *gwin;
 
   gwin = gdk_window_lookup (window);
-  if (gwin)
+  if (gwin && (window != DefaultRootWindow (si->dpy)))
   {
     /* If it's one of ours, don't mess up its event mask. */
-printf ("duuuude notice events our window g=%p xw=0x%x\n",gwin, (int) window);
+printf ("duuuude notice events our window g=%p xw=0x%x root=0x%x\n",gwin, (int) window, DefaultRootWindow (si->dpy));
     return;
   }
 printf ("duuuude notice events not**** our window g=%p xw=0x%x\n",gwin, (int) window);
 
   if (!XQueryTree (si->dpy, window, &root, &parent, &kids, &nkids))
+  {
+printf ("duude no tree  !!\n");
     return;
-  if (window == root)
-    top_p = False;
+  }
+  if (window == root) top_p = False;
 
   XGetWindowAttributes (si->dpy, window, &attrs);
   events = ((attrs.all_event_masks | attrs.do_not_propagate_mask)
@@ -170,11 +152,14 @@ printf ("duuuude notice events not**** our window g=%p xw=0x%x\n",gwin, (int) wi
   if (kids)
     {
       while (nkids)
+      {
 	notice_events (si, kids [--nkids], top_p);
+      }
       XFree ((char *) kids);
     }
 }
 
+/* ===================================================================== */
 static int
 saver_ehandler (Display *dpy, XErrorEvent *error)
 {
@@ -197,11 +182,6 @@ saver_ehandler (Display *dpy, XErrorEvent *error)
 static int
 BadWindow_ehandler (Display *dpy, XErrorEvent *error)
 {
-  /* When we notice a window being created, we spawn a timer that waits
-     30 seconds or so, and then selects events on that window.  This error
-     handler is used so that we can cope with the fact that the window
-     may have been destroyed <30 seconds after it was created.
-   */
   if (error->error_code == BadWindow ||
       error->error_code == BadMatch ||
       error->error_code == BadDrawable)
@@ -220,16 +200,25 @@ notice_events_timer (gpointer closure)
 {
   struct notice_events_timer_arg *arg =
     (struct notice_events_timer_arg *) closure;
-
-  XErrorHandler old_handler = XSetErrorHandler (BadWindow_ehandler);
-
+  XErrorHandler old_handler;
   IdleTimeout *si = arg->si;
   Window window = arg->w;
 
-  free(arg);
+  g_free(arg);
+
+printf ("duuude notice events timer popeed\n");
+  /* When we notice a window being created, we spawn a timer that waits
+     30 seconds or so, and then selects events on that window.  This error
+     handler is used so that we can cope with the fact that the window
+     may have been destroyed <30 seconds after it was created.
+   */
+  old_handler = XSetErrorHandler (BadWindow_ehandler);
+
   notice_events (si, window, True);
   XSync (si->dpy, False);
   XSetErrorHandler (old_handler);
+
+  /* we pop once, and we don't pop again */
   return 0;
 }
 
@@ -238,8 +227,8 @@ static void
 start_notice_events_timer (IdleTimeout *si, Window w)
 {
   IdleTimeoutPrefs *p = &si->prefs;
-  struct notice_events_timer_arg *arg =
-    (struct notice_events_timer_arg *) malloc(sizeof(*arg));
+  struct notice_events_timer_arg *arg = g_new(struct notice_events_timer_arg, 1);
+
   arg->si = si;
   arg->w = w;
   gtk_timeout_add (p->notice_events_timeout *1000, notice_events_timer,
@@ -248,6 +237,7 @@ start_notice_events_timer (IdleTimeout *si, Window w)
 }
 
 
+/* ===================================================================== */
 
 /* Call this when user activity (or "simulated" activity) has been noticed.
  */
@@ -274,6 +264,7 @@ reset_timers (IdleTimeout *si)
 }
 
 
+/* ===================================================================== */
 
 /* When we aren't using a server extension, this timer is used to periodically
    wake up and poll the mouse position, which is possibly more reliable than
@@ -356,13 +347,18 @@ printf ("duuude check_pointer_timer now\n");
     }
 #endif /* HAVE_PROC_INTERRUPTS */
 
-  if (active_p) reset_timers (si);
+  if (active_p) 
+  {
+printf ("duuude saw pointer activity !!! \n");
+    reset_timers (si);
+  }
 
   check_for_clock_skew (si);
   return 1;
 }
 
 
+/* ===================================================================== */
 /* An unfortunate situation is this: the
    user has been typing.  The machine is a laptop.  The user closes the lid
    and suspends it.  The CPU halts.  Some hours later, the user opens the
@@ -409,17 +405,40 @@ dispatch_event (IdleTimeout *si, XEvent *event)
   /* XtDispatchEvent (event); */
 }
 
+/* ===================================================================== */
 
 static Bool
 if_event_predicate (Display *dpy, XEvent *ev, XPointer arg)
 {
-
 printf ("duude event predicate\n");
+  switch (ev->xany.type) 
+  {
+    case 0:		/* our synthetic "timeout" event has been signalled */
+printf ("duude synthetic\n");
+      break;
+
+    case CreateNotify:
+printf ("duude create notif\n");
+      break;
+
+    case KeyPress:
+    case KeyRelease:
+    case ButtonPress:
+    case ButtonRelease:
+    case MotionNotify:
+printf ("duude button/key/motion\n");
+      break;
+
+    default:
+printf ("duude unk type %d\n", ev->xany.type);
+      break;
+  }
 
   return False;
 }
 
 
+/* ===================================================================== */
 
 /* methods of detecting idleness:
 
@@ -510,14 +529,6 @@ poll_idle_time (IdleTimeout *si, Bool until_idle_p)
   while (1)
     {
 
-#if 0
-      if (FALSE == gdk_events_pending())
-      {
-printf ("duuuude no events pending\n");
-return 99;
-      }
-#endif
-
 if (False == XCheckIfEvent (si->dpy, &event, if_event_predicate, (XPointer) si))
 {
 printf ("duuuude no events match\n");
@@ -601,9 +612,6 @@ printf ("duuude match \n");
                   schedule_wakeup_event (si, p->timeout - idle);
               }
 	  }
-	break;
-
-      case ClientMessage:
 	break;
 
       case CreateNotify:
@@ -758,6 +766,7 @@ printf ("duuude match \n");
 
 
 
+/* ===================================================================== */
 /* Some crap for dealing with /proc/interrupts.
 
    On Linux systems, it's possible to see the hardware interrupt count
@@ -858,6 +867,7 @@ query_proc_interrupts_available (IdleTimeout *si, const char **why)
 }
 
 
+/* ===================================================================== */
 static Bool
 proc_interrupts_activity_p (IdleTimeout *si)
 {
@@ -961,3 +971,32 @@ proc_interrupts_activity_p (IdleTimeout *si)
 
 #endif /* HAVE_PROC_INTERRUPTS */
 
+/* ===================================================================== */
+
+IdleTimeout *
+idle_timeout_new (void)
+{
+  IdleTimeout *si;
+
+  si = g_new0 (IdleTimeout, 1);
+  si->dpy = GDK_DISPLAY();
+
+  /* hack alert xxx we should grep all screens */
+  si->nscreens = 1;
+  si->screens = g_new0 (IdleTimeoutScreen, 1);
+  si->screens->global = si;
+  si->screens->screen = DefaultScreenOfDisplay (si->dpy);
+
+  /* bogus preferences  */
+  si->prefs.timeout = 5;
+  si->prefs.pointer_timeout = 5;
+
+  /* how often we recheck the main window tree */
+  si->prefs.notice_events_timeout = 7;
+
+/* hack alert don't run this unless other extensions ... yadda */
+  notice_events (si, DefaultRootWindow(si->dpy), True);
+  return si;
+}
+
+/* =================== END OF FILE ===================================== */
