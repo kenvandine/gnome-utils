@@ -32,6 +32,8 @@ static gchar *temporary_file = NULL;
 struct poptOption options;
 
 static GtkWidget *create_archive_widget=NULL;
+static GtkWidget *remove_widget=NULL;
+static GtkWidget *clear_widget=NULL;
 
 #define ERRDLG(error) gtk_message_dialog_new (GTK_WINDOW(app), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, error);
 #define ERRDLGP(error,parent) gtk_message_dialog_new (GTK_WINDOW(parent), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, error);
@@ -159,6 +161,7 @@ remove_pos (gint pos)
 	if (number_of_files + number_of_dirs <= 0) {
 		gtk_widget_set_sensitive (compress_button, FALSE);
 		gtk_widget_set_sensitive (create_archive_widget, FALSE);
+		gtk_widget_set_sensitive (clear_widget, FALSE);
 	}
 
 	update_status ();
@@ -472,7 +475,27 @@ clear_cb (GtkWidget *w, gpointer data)
 	gnome_icon_list_clear (GNOME_ICON_LIST (icon_list));
 	gtk_widget_set_sensitive (compress_button, FALSE);
 	gtk_widget_set_sensitive (create_archive_widget, FALSE);
+	gtk_widget_set_sensitive (remove_widget, FALSE);
+	gtk_widget_set_sensitive (clear_widget, FALSE);
 	update_status ();
+}
+
+static void
+icon_select_cb (GnomeIconList *iconlist,
+		gint arg1,
+		GdkEvent *event,
+		gpointer user_data)
+{
+	gtk_widget_set_sensitive (remove_widget, TRUE);
+}
+
+static void
+icon_unselect_cb (GnomeIconList *iconlist,
+		  gint arg1,
+		  GdkEvent *event,
+		  gpointer user_data) 
+{
+	gtk_widget_set_sensitive (remove_widget, FALSE);
 }
 
 static void
@@ -486,6 +509,12 @@ remove_cb (GtkWidget *w, gpointer data)
 		remove_pos (pos);
 		list = gnome_icon_list_get_selection
 			(GNOME_ICON_LIST (icon_list));
+	}
+
+	if (number_of_files + number_of_dirs <= 0) {
+		gtk_widget_set_sensitive (compress_button, FALSE);
+		gtk_widget_set_sensitive (create_archive_widget, FALSE);
+		gtk_widget_set_sensitive (clear_widget, FALSE);
 	}
 }
 
@@ -624,6 +653,7 @@ add_file (const gchar *file)
 
 	gtk_widget_set_sensitive (compress_button, TRUE);
 	gtk_widget_set_sensitive (create_archive_widget, TRUE);
+	gtk_widget_set_sensitive (clear_widget, TRUE);
 
 	f = g_new0 (File, 1);
 	f->type = type;
@@ -818,6 +848,13 @@ init_gui (void)
 	icon_list = gnome_icon_list_new (/*evil*/66, NULL, 0);
 	gnome_icon_list_set_selection_mode  (GNOME_ICON_LIST (icon_list),
 					     GTK_SELECTION_MULTIPLE);
+
+	g_signal_connect (G_OBJECT (icon_list), "select_icon",
+			  G_CALLBACK (icon_select_cb), NULL);	
+
+	g_signal_connect (G_OBJECT (icon_list), "unselect_icon",
+			  G_CALLBACK (icon_unselect_cb), NULL);	
+
 	gtk_widget_show (icon_list);
 	gtk_container_add (GTK_CONTAINER (sw), icon_list);
 
@@ -854,6 +891,8 @@ init_gui (void)
 
 	gtk_widget_set_sensitive (compress_button, FALSE);
 	gtk_widget_set_sensitive (file_menu[1].widget, FALSE);
+	gtk_widget_set_sensitive (edit_menu[0].widget, FALSE);
+	gtk_widget_set_sensitive (edit_menu[1].widget, FALSE);
 
 	/* setup dnd */
 	gtk_drag_source_set (compress_button,
@@ -1004,6 +1043,8 @@ main (gint argc, gchar *argv [])
 	init_gui ();
 
 	create_archive_widget = file_menu[1].widget;
+	remove_widget = edit_menu[0].widget;
+	clear_widget = edit_menu[1].widget;
 
 	file_ht = g_hash_table_new (g_str_hash, g_str_equal);
 
