@@ -1233,12 +1233,15 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 			entry = gtk_entry_new();
 			if (value != NULL) {
 				gtk_entry_set_text (GTK_ENTRY(entry), value);
+				opt->data.text = g_strdup (value);
 			}
 		}
 		else {
 			entry = gtk_spin_button_new_with_range (0, 999999999, 1);
 			if (value != NULL) {
 				gtk_spin_button_set_value (GTK_SPIN_BUTTON(entry), atoi(value));
+				opt->data.time = atoi(value);
+				opt->data.number = atoi(value);
 			}
 		}
 		
