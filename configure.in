@@ -1,6 +1,6 @@
 AC_INIT(gcalc)
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-utils, 1.103.0)
+AM_INIT_AUTOMAKE(gnome-utils, 1.104.0)
 
 AM_MAINTAINER_MODE
 
@@ -15,13 +15,6 @@ AC_PROG_YACC
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
-
-dnl AC_CANONICAL_SYSTEM
-dnl AC_ARG_PROGRAM
-dnl AM_PROG_LIBTOOL
-dnl AM_PROG_LEX
-dnl AC_DECL_YYTEXT
-dnl GNOME_X_CHECKS
 
 GNOME_COMPILE_WARNINGS
 
@@ -74,7 +67,7 @@ AC_SUBST(LIBGLADE_CFLAGS)
 AC_SUBST(LIBGLADE_LIBS)
 
 dnl *********************************************
-dnl libbonobui is needed for FIXME
+dnl libbonobui is needed for gcharmap
 dnl *********************************************
 
 PKG_CHECK_MODULES(LIBBONOBOUI, libbonoboui-2.0 >= $LIBBONOBOUI_REQUIRED)
