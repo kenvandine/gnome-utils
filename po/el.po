@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.0.4\n"
-"POT-Creation-Date: 2003-05-19 12:18+0100\n"
+"POT-Creation-Date: 2003-05-31 17:28-0700\n"
 "PO-Revision-Date: 2003-01-07 17:43+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -29,27 +29,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
 
-#: gdialog/guage.c:78
-msgid "Gdialog progressbar"
-msgstr "Μπάρα προόδου Gdialog"
-
-#: gdialog/guage.c:78
-msgid "Indicates the percentage specified at the standard input"
-msgstr "Αναγράφει το καθορισμένο ποσοστό στην κανονική είδοδο"
-
-#: gdialog/inputbox.c:84
-msgid "GDialog Entry"
-msgstr "Καταχώρηση GDialog"
-
-#: gdialog/inputbox.c:84
-msgid "Enter the text"
-msgstr "Εισάγετε το κείμενο"
-
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
 msgstr "Βοηθήματα"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:296
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
 msgid "Dictionary Lookup"
 msgstr "Αναζήτηση Λεξικού"
 
@@ -84,8 +68,8 @@ msgstr "_Λεξικό"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:479
-#: gdictsrc/gdict-pref-dialog.c:530 gdictsrc/gdict-speller.c:463
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
+#: gdictsrc/gdict-pref-dialog.c:510 gdictsrc/gdict-speller.c:459
 msgid "Cannot connect to server"
 msgstr "Αδύνατη η σύνδεση στον εξυπηρετητή"
 
@@ -98,7 +82,7 @@ msgstr ""
 "Για αναφορά ο εξ ορισμού εξυπηρετητής είναι dict.org και η θύρα 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:53
+#: gdictsrc/gdict-about.c:43 logview/about.c:49
 msgid "translator_credits"
 msgstr ""
 "Σπύρος Παπαδημητρίου <spapadim+@cs.cmu.edu>\n"
@@ -109,47 +93,44 @@ msgstr ""
 msgid "GNOME Dictionary"
 msgstr "Λεξικό GNOME"
 
-#: gdictsrc/gdict-about.c:57
-msgid "Copyright 1999 by Mike Hughes"
-msgstr "Πνευματικά Δικαιώματα 1999 από τον Μάικ Χιους"
-
 #: gdictsrc/gdict-about.c:58
-msgid "Client for MIT dictionary server.\n"
+#, fuzzy
+msgid "A client for the MIT dictionary server."
 msgstr "Πελάτης για τον εξυπηρετητή λεξικού του MIT.\n"
 
-#: gdictsrc/gdict-app.c:132
+#: gdictsrc/gdict-app.c:125
 msgid "Spell-checking..."
 msgstr "Έλεγχος ορθογραφίας..."
 
-#: gdictsrc/gdict-app.c:140
+#: gdictsrc/gdict-app.c:133
 msgid "Spell check done"
 msgstr "Ο έλεγχος ορθογραφίας ολοκληρώθηκε"
 
-#: gdictsrc/gdict-app.c:148 gdictsrc/gdict-app.c:292
+#: gdictsrc/gdict-app.c:141 gdictsrc/gdict-app.c:285
 msgid "No matches found"
 msgstr "Δε βρέθηκαν ταιριάσματα"
 
-#: gdictsrc/gdict-app.c:275
+#: gdictsrc/gdict-app.c:268
 msgid "Looking up word..."
 msgstr "Ανατρέξιμο λέξης..."
 
-#: gdictsrc/gdict-app.c:283
+#: gdictsrc/gdict-app.c:276
 msgid "Lookup done"
 msgstr "Η εύρεση του λήμματος ολοκληρώθηκε"
 
-#: gdictsrc/gdict-app.c:305
+#: gdictsrc/gdict-app.c:298
 msgid "String not found"
 msgstr "Το αλφαριθμητικό δε βρέθηκε"
 
-#: gdictsrc/gdict-app.c:473
+#: gdictsrc/gdict-app.c:466
 msgid "Find"
 msgstr "Εύρεση"
 
-#: gdictsrc/gdict-app.c:494
+#: gdictsrc/gdict-app.c:487
 msgid "_Find"
 msgstr "_Εύρεση:"
 
-#: gdictsrc/gdict-app.c:544
+#: gdictsrc/gdict-app.c:529
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -159,198 +140,164 @@ msgstr ""
 "Είτε επειδή ο εξυπηρετητής είναι ανενεργός \n"
 "είτε δεν είστε συνδεδεμένος στο Διαδίκτυο."
 
-#: gdictsrc/gdict-app.c:705 gdictsrc/gdict-app.c:816
-#: gdictsrc/gdict-speller.c:221
+#: gdictsrc/gdict-app.c:690 gdictsrc/gdict-app.c:800
+#: gdictsrc/gdict-speller.c:215
 msgid "_Look Up Word"
 msgstr "_Αναζήτηση Λέξης"
 
-#: gdictsrc/gdict-app.c:706
+#: gdictsrc/gdict-app.c:691
 msgid "Lookup word in dictionary"
 msgstr "Ανατρέξιμο λέξης στο λεξικό"
 
-#: gdictsrc/gdict-app.c:708 gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-app.c:693 gdictsrc/gdict-speller.c:161
 msgid "Check _Spelling"
 msgstr "Έλεγχος _Ορθογραφίας"
 
-#: gdictsrc/gdict-app.c:709
+#: gdictsrc/gdict-app.c:694
 msgid "Check word spelling"
 msgstr "Έλεγχος ορθογραφίας λέξης"
 
-#: gdictsrc/gdict-app.c:753
+#: gdictsrc/gdict-app.c:738
 msgid "_Dictionary"
 msgstr "_Λεξικό"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Λεξικό"
 
-#: gdictsrc/gdict-app.c:812
-msgid "_Word: "
-msgstr "_Λέξη: "
+#: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
+msgid "_Word:"
+msgstr "_Λέξη:"
 
-#: gdictsrc/gdict-app.c:840 gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:824 gdictsrc/gdict-speller.c:146
 msgid "Word"
 msgstr "Λέξη"
 
-#: gdictsrc/gdict-app.c:841 gdictsrc/gdict-app.c:842
-#: gdictsrc/gdict-speller.c:148
+#: gdictsrc/gdict-app.c:825 gdictsrc/gdict-app.c:826
+#: gdictsrc/gdict-speller.c:147
 msgid "Word Entry"
 msgstr "Καταχώρηση Λέξης"
 
-#: gdictsrc/gdict-app.c:841
+#: gdictsrc/gdict-app.c:825
 msgid "Enter a Word or select one from the list below"
 msgstr "Εισάγετε μια λέξη ή επιλέξτε μια από την παρακάτω λίστα"
 
-#: gdictsrc/gdict-app.c:844
+#: gdictsrc/gdict-app.c:828
 msgid "Look Up for a Word"
 msgstr "Αναζήτηση για Λέξη"
 
-#: gdictsrc/gdict-applet.c:289
+#: gdictsrc/gdict-applet.c:272
 msgid "_Lookup"
 msgstr "_Αναζήτηση"
 
-#: gdictsrc/gdict-defbox.c:643 gdictsrc/gdict-speller.c:488
+#: gdictsrc/gdict-defbox.c:639 gdictsrc/gdict-speller.c:484
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Σφάλμα εκτέλεσης ερωτήματος: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:37
-msgid "Headword:"
-msgstr "Λήμμα:"
-
-#: gdictsrc/gdict-pref-dialog.c:38
-msgid "Sub-number:"
-msgstr "Υπό-αριθμός:"
-
-#: gdictsrc/gdict-pref-dialog.c:39
-msgid "Pronunciation:"
-msgstr "Προφορά:"
-
-#: gdictsrc/gdict-pref-dialog.c:40
-msgid "Etymology:"
-msgstr "Ετυμολογία:"
-
-#: gdictsrc/gdict-pref-dialog.c:41
-msgid "Part of speech:"
-msgstr "Μέρος του λόγου:"
-
-#: gdictsrc/gdict-pref-dialog.c:42
-msgid "Example:"
-msgstr "Παράδειγμα:"
-
-#: gdictsrc/gdict-pref-dialog.c:43
-msgid "Main body:"
-msgstr "Κυρίως μέρος:"
-
-#: gdictsrc/gdict-pref-dialog.c:44
-msgid "Cross-reference:"
-msgstr "Αντιπαραπομπή:"
-
-#: gdictsrc/gdict-pref-dialog.c:186
+#: gdictsrc/gdict-pref-dialog.c:169
 msgid "Dictionary Preferences"
 msgstr "Προτιμήσεις Λεξικού"
 
-#: gdictsrc/gdict-pref-dialog.c:199
+#: gdictsrc/gdict-pref-dialog.c:182
 msgid "Smart _lookup"
 msgstr "Έξυπνη _αναζήτηση"
 
-#: gdictsrc/gdict-pref-dialog.c:215
+#: gdictsrc/gdict-pref-dialog.c:198
 msgid "_Server:"
 msgstr "_Εξυπηρετητής:"
 
-#: gdictsrc/gdict-pref-dialog.c:222
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "De_fault Server"
 msgstr "Εξ ορισμού Εξυπηρετητής"
 
-#: gdictsrc/gdict-pref-dialog.c:231
+#: gdictsrc/gdict-pref-dialog.c:214
 msgid "Reset server to default"
 msgstr "Επαναφορά εξυπηρετητή στις εξ ορισμού ρυθμίσεις"
 
-#: gdictsrc/gdict-pref-dialog.c:233
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "_Port:"
 msgstr "_Θύρα:"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:232
 msgid "Def_ault Port"
 msgstr "Εξ ο_ρισμού θύρα"
 
-#: gdictsrc/gdict-pref-dialog.c:259
+#: gdictsrc/gdict-pref-dialog.c:242
 msgid "Reset port to default"
 msgstr "Επαναφορά θύρας στις εξ ορισμού ρυθμίσεις"
 
-#: gdictsrc/gdict-pref-dialog.c:260
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Server"
 msgstr "Εξυπηρετητής"
 
-#: gdictsrc/gdict-pref-dialog.c:261
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Server Entry"
 msgstr "Καταχώρηση Εξυπηρετητή"
 
-#: gdictsrc/gdict-pref-dialog.c:261
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Server Name"
 msgstr "Καταχωρήστε το Όνομα Εξυπηρετητή"
 
-#: gdictsrc/gdict-pref-dialog.c:264
+#: gdictsrc/gdict-pref-dialog.c:247
 msgid "Port"
 msgstr "Θύρα"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Port Entry"
 msgstr "Καταχώρηση Θύρας"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:248
 msgid "Enter the Port Number"
 msgstr "Εισάγετε τον Αριθμό Θύρας"
 
-#: gdictsrc/gdict-pref-dialog.c:270
+#: gdictsrc/gdict-pref-dialog.c:253
 msgid "_Database:"
 msgstr "_Βάση δεδομένων:"
 
-#: gdictsrc/gdict-pref-dialog.c:277
+#: gdictsrc/gdict-pref-dialog.c:260
 msgid "D_efault strategy:"
 msgstr "Εξ _ορισμού στρατηγική:"
 
-#: gdictsrc/gdict-pref-dialog.c:471
+#: gdictsrc/gdict-pref-dialog.c:452
 msgid "Search all databases"
 msgstr "Αναζήτηση όλων των βάσεων δεδομένων"
 
-#: gdictsrc/gdict-pref-dialog.c:636
+#: gdictsrc/gdict-pref-dialog.c:616
 msgid "Database"
 msgstr "Βάση δεδομένων"
 
-#: gdictsrc/gdict-pref-dialog.c:636
+#: gdictsrc/gdict-pref-dialog.c:616
 msgid "Database Name"
 msgstr "Όνομα Βάσης Δεδομένων"
 
-#: gdictsrc/gdict-pref-dialog.c:648
+#: gdictsrc/gdict-pref-dialog.c:628
 msgid "Default Strategy"
 msgstr "Εξ ορισμού Στρατηγική"
 
-#: gdictsrc/gdict-speller.c:135
-msgid "_Word:"
-msgstr "_Λέξη:"
-
-#: gdictsrc/gdict-speller.c:148
+#: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
 msgstr "Εισάγετε μια λέξη για να μάθετε την ορθογραφία"
 
-#: gdictsrc/gdict-speller.c:153
+#: gdictsrc/gdict-speller.c:154
+#, fuzzy
+msgid "Search s_trategy:"
+msgstr "Σ_τρατηγική αναζήτησης:"
+
+#: gdictsrc/gdict-speller.c:166
 msgid "Click to do the spell check"
 msgstr "Πατήστε εδώ για έλεγχο αλληλογραφίας"
 
-#: gdictsrc/gdict-speller.c:158
-msgid "Search S_trategy:"
-msgstr "Σ_τρατηγική αναζήτησης:"
+#: gdictsrc/gdict-speller.c:170
+#, fuzzy
+msgid "Search _results:"
+msgstr "Απο_τελέσματα Αναζήτησης"
 
-#: gdictsrc/gdict-speller.c:174
-msgid "Search _Results"
-msgstr "Αποτελέσματα _Αναζήτησης"
-
-#: gdictsrc/gdict-speller.c:236
+#: gdictsrc/gdict-speller.c:230
 msgid "Check Spelling"
 msgstr "Έλεγχος Ορθογραφίας"
 
-#: gdictsrc/gdict-speller.c:654
+#: gdictsrc/gdict-speller.c:650
 msgid "Search Strategy"
 msgstr "Στρατηγική Αναζήτησης"
 
@@ -414,7 +361,7 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Χρήση έξυπνης αναζήτησης"
 
-#: gfloppy/gfloppy.desktop.in.h:1
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy Formatter"
 msgstr "Μορφοποιητής Δισκέτας"
 
@@ -444,7 +391,7 @@ msgstr "MΈλεγχος για ακατάλληλα μπλοκ..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "MΑποτυχία ανοίγματος της συσκευής %s για έλεγχο ακατάλληλων μπλοκ\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:529
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
 #, fuzzy
 msgid "Checking for bad blocks... Done"
 msgstr "MΈλεγχος για ακατάλληλα μπλοκ... Έγινε"
@@ -583,17 +530,17 @@ msgstr ""
 msgid "Error while filling the bad blocks list file."
 msgstr "EΣφάλμα κατά την συμπλήρωση του αρχείου λίστας εσφαλμένων τομέων."
 
-#: gfloppy/src/gfloppy.c:300
+#: gfloppy/src/gfloppy.c:298
 #, fuzzy, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "EΣφάλμα κατά την εκτέλεση της (%s) εντολής:%s."
 
-#: gfloppy/src/gfloppy.c:324
+#: gfloppy/src/gfloppy.c:322
 #, fuzzy
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "EΆγνωστη αρχική υπογραφή mke2fs, ακύρωση."
 
-#: gfloppy/src/gfloppy.c:338
+#: gfloppy/src/gfloppy.c:336
 #, fuzzy, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -605,17 +552,17 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:355
+#: gfloppy/src/gfloppy.c:353
 #, fuzzy
 msgid "Abnormal child process termination."
 msgstr "ΕΑφύσικος τερματισμός θυγατρικής διεργασίας."
 
-#: gfloppy/src/gfloppy.c:380
+#: gfloppy/src/gfloppy.c:378
 #, fuzzy, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "EError while spawning the mbadblocks command: %s."
 
-#: gfloppy/src/gfloppy.c:392
+#: gfloppy/src/gfloppy.c:390
 #, fuzzy, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -625,33 +572,33 @@ msgstr ""
 "σφάλματα:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:435
+#: gfloppy/src/gfloppy.c:433
 #, fuzzy
 msgid "Abnormal mbadblocks child process termination."
 msgstr "ΕΑφύσικος τερματισμός θυγατρικής διεργασίας mbadblocks."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:462 gfloppy/src/gfloppy.c:503
+#: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
 #, fuzzy
 msgid "Making filesystem on disk..."
 msgstr "MΔημιουργία συστήματος αρχείων στη δισκέτα..."
 
-#: gfloppy/src/gfloppy.c:470
+#: gfloppy/src/gfloppy.c:467
 #, fuzzy
 msgid "Unable to create filesystem correctly."
 msgstr "EΑδύνατη η ορθή δημιουργία συστήματος αρχείων."
 
-#: gfloppy/src/gfloppy.c:475 gfloppy/src/gfloppy.c:515
+#: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
 #, fuzzy
 msgid "Making filesystem on disk... Done"
 msgstr "MΔημιουργία συστήματος αρχείων στη δισκέτα... Ολοκληρώθηκε"
 
-#: gfloppy/src/gfloppy.c:520
+#: gfloppy/src/gfloppy.c:516
 #, fuzzy
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "MΈλεγχος για ακατάλληλα μπλοκ... (μπορεί να διαρκέσει λίγο)"
 
-#: gfloppy/src/gfloppy.c:525
+#: gfloppy/src/gfloppy.c:521
 #, fuzzy
 msgid "Error while checking the bad blocks."
 msgstr "EΣφάλμα κατά τον έλεγχο για ακατάλληλους τομείς."
@@ -665,24 +612,29 @@ msgid "*"
 msgstr "*"
 
 #: gfloppy/src/gfloppy2.glade.h:3
+#, fuzzy
 msgid ""
-"<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
-"be installed in order to make a thorough DOS (fat) formatting."
+"<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
+"system.  It must be installed in order to perform a thorough DOS (fat) "
+"formatting.</i></small>"
 msgstr ""
 "<b>Σημείωση</b>: Η εφαρμογή mbadblocksδεν έχει εγκατασταθεί σε αυτό το "
 "σύστημα. Θα πρέπει να εγκατασταθεί για να γίνει μια πλήρης μορφοποίηση DOS "
 "(fat)."
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem settings</span>"
+#, fuzzy
+msgid "<span weight=\"bold\">Filesystem Settings</span>"
 msgstr "<span weight=\"bold\">Ρυθμίσεις συστήματος αρχείων</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting mode</span>"
+#, fuzzy
+msgid "<span weight=\"bold\">Formatting Mode</span>"
 msgstr "<span weight=\"bold\">Λειτουργία μορφοποίησης</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical settings</span>"
+#, fuzzy
+msgid "<span weight=\"bold\">Physical Settings</span>"
 msgstr "<span weight=\"bold\">Φυσικές ρυθμίσεις</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:7
@@ -701,17 +653,13 @@ msgstr "Διπλής Πυκνότητας 5.25\" (360KB)"
 msgid "File system _type:"
 msgstr "Τύπος _συστήματος αρχείων:"
 
-#: gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy _density:"
 msgstr "Πυκνότητα _δισκέτας:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "Floppy de_vice:"
 msgstr "Συσκ_ευή  δισκέτας:"
-
-#: gfloppy/src/gfloppy2.glade.h:13
-msgid "Floppy formatter"
-msgstr "Μορφοποίηση δισκέτας"
 
 #: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 3.5\" (1.44MB)"
@@ -746,7 +694,7 @@ msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
 "_Κανονική (προσθέτει μια μορφοποίηση χαηλού επιπέδου στην γρήγορη λειτουργία)"
 
-#: gfloppy/src/main.c:132
+#: gfloppy/src/main.c:134
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -754,13 +702,13 @@ msgstr ""
 "Ούτε οι εφαρμογές mke2fs ή mkdosfs/mformat είναι εγκαταστημένες. Δεν "
 "μπορείτε να μορφοποίησετε μια δισκέτα χωρίς μια από αυτές."
 
-#: gfloppy/src/main.c:155 gfloppy/src/main.c:199
+#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr ""
 "Αποτυχία ανοίγματος της συσκευής %s η μορφοποίηση δε μπορεί να συνεχισθεί."
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
+#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -769,7 +717,7 @@ msgstr ""
 "Η συσκευή %s είναι αποσυνδεδεμένη.\n"
 "Παρακαλώ συνδέστε τη συσκευή για συνέχεια."
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
+#: gfloppy/src/main.c:164 gfloppy/src/main.c:208
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -781,7 +729,7 @@ msgstr ""
 "Επικοινωνήστε με το διαχειριστή του συστήματος για τη λήψη αυτών των "
 "δικαιωμάτων."
 
-#: gfloppy/src/main.c:391
+#: gfloppy/src/main.c:400
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -790,15 +738,15 @@ msgstr ""
 "Δεν είναι δυνατή η προβολή βοήθειας για το μορφοποιητή δισκέτας.\n"
 "%s"
 
-#: gfloppy/src/main.c:425
+#: gfloppy/src/main.c:433
 msgid "The volume name can't contain any blank space."
 msgstr "Το όνομα τόμου δεν μπορεί να περιέχει κανένα κενό διάστημα."
 
-#: gfloppy/src/main.c:474
+#: gfloppy/src/main.c:482
 msgid "The device to format"
 msgstr "Η συσκευή για μορφοποίηση"
 
-#: gfloppy/src/main.c:475
+#: gfloppy/src/main.c:483
 msgid "DEVICE"
 msgstr "ΣΥΣΚΕΥΉ"
 
@@ -819,8 +767,9 @@ msgstr "Η δισκέτα μορφοποιήθηκε επιτυχώς."
 msgid "Floppy formatting cancelled."
 msgstr "Η μορφοποίηση δισκέτας ακυρώθηκε."
 
-#: gfloppy/src/progress.c:172
-msgid "Format progress"
+#: gfloppy/src/progress.c:175
+#, fuzzy
+msgid "Format Progress"
 msgstr "Πρόοδος μορφοποίησης"
 
 #: gfloppy/gfloppy.schemas.in.h:1
@@ -857,8 +806,9 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 για το σύστημα αρχείων linux ή fat για το σύστημα αρχείων DOS."
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1950
-#: gsearchtool/gsearchtool.c:1970
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
+#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
 msgid "Search for Files"
 msgstr "Αναζήτηση για Αρχεία"
 
@@ -866,126 +816,135 @@ msgstr "Αναζήτηση για Αρχεία"
 msgid "Search your disk for files"
 msgstr "Αναζήτηση στο δίσκο σας για αρχεία"
 
-#: gsearchtool/gsearchtool.c:68
+#: gsearchtool/gsearchtool.c:73
 #, fuzzy
-msgid "C_ontains the text"
+msgid "Contains the _text"
 msgstr "Περιέχει το κείμενο"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:75
 #, fuzzy
 msgid "_Date modified less than (days)"
 msgstr "Ημερομηνία τροποποίησης μικρότερη από (μέρες)"
 
-#: gsearchtool/gsearchtool.c:71
+#: gsearchtool/gsearchtool.c:76
 #, fuzzy
-msgid "Da_te modified more than (days)"
+msgid "Date modified more than (da_ys)"
 msgstr "Ημερομηνία τροποποίησης μεγαλύτερη από (μέρες)"
 
-#: gsearchtool/gsearchtool.c:73
+#: gsearchtool/gsearchtool.c:78
 #, fuzzy
-msgid "_Size at least (kilobytes)"
+msgid "S_ize at least (kilobytes)"
 msgstr "Μέγεθος τουλάχιστον (kilobytes)"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:79
 #, fuzzy
 msgid "Si_ze at most (kilobytes)"
 msgstr "Μέγεθος το μέγιστο (kilobytes)"
 
-#: gsearchtool/gsearchtool.c:75
+#: gsearchtool/gsearchtool.c:80
 msgid "File is empty"
 msgstr "Το αρχείο είναι κενό"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:82
 #, fuzzy
 msgid "Owned by _user"
 msgstr "Ανήκει σε χρήστη"
 
-#: gsearchtool/gsearchtool.c:78
+#: gsearchtool/gsearchtool.c:83
 #, fuzzy
 msgid "Owned by _group"
 msgstr "Ανήκει σε ομάδα"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:84
 msgid "Owner is unrecognized"
 msgstr "Μή αναγνωρίσιμος ιδιοκτήτης"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:86
 msgid "Na_me does not contain"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:82
+#: gsearchtool/gsearchtool.c:87
 #, fuzzy
 msgid "Name matches regular e_xpression"
 msgstr "Ταίριασμα κανονικής έκφρασης"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:89
 #, fuzzy
 msgid "Show hidden files and folders"
 msgstr "Προσθήκη αρχείου ή φακέλου"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:90
 msgid "Follow symbolic links"
 msgstr "Ακολούθηση συμβολικών συνδέσμων"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:91
 msgid "Include other filesystems"
 msgstr "Συμπεριλαμβάνει και άλλα συστήματα αρχείων."
 
-#: gsearchtool/gsearchtool.c:517 gsearchtool/gsearchtool.c:1050
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
 msgid "No files found"
 msgstr "Δε βρέθηκαν αρχεία"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:616
 msgid "Entry changed called for a non entry option!"
 msgstr "Η αλλαγή εισαγωγής καλέστηκε για επιλογή που δεν επιτρέπει εισαγωγή!"
 
-#: gsearchtool/gsearchtool.c:787
+#: gsearchtool/gsearchtool.c:872
+#, c-format
+msgid "The animation file is missing or invalid: %s"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:927
+msgid "Searching..."
+msgstr "Αναζήτηση..."
+
+#: gsearchtool/gsearchtool.c:973
 #, fuzzy
 msgid "Set the text of 'Name contains'"
 msgstr "Ορισμός του κειμένου 'αρχείο ονομάζεται'"
 
-#: gsearchtool/gsearchtool.c:788
+#: gsearchtool/gsearchtool.c:974
 #, fuzzy
 msgid "Set the text of 'Look in folder'"
 msgstr "Καθορίστε το κείμενο στο 'αναζήτηση στο φάκελο'"
 
-#: gsearchtool/gsearchtool.c:789
+#: gsearchtool/gsearchtool.c:975
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Ταξινόμηση αρχείων σύμφωνα με τα ακόλουθα: όνομα, φάκελος. μέγεθος, τύπος, ή "
 "ημερομηνία"
 
-#: gsearchtool/gsearchtool.c:790
+#: gsearchtool/gsearchtool.c:976
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Καθορισμός σειράς ταξινόμησης σε φθίνουσα, η εξ ορισμού είναι αύξουσα"
 
-#: gsearchtool/gsearchtool.c:791
+#: gsearchtool/gsearchtool.c:977
 msgid "Automatically start a search"
 msgstr "Αυτόματη έναρξη μιας αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:796
+#: gsearchtool/gsearchtool.c:982
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Επιλογή του περιορισμού  '%s' "
 
-#: gsearchtool/gsearchtool.c:902
+#: gsearchtool/gsearchtool.c:1088
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Πέρασε μή έγκυρη επιλογή στην εντολή ταξινόμησης κατά."
 
-#: gsearchtool/gsearchtool.c:1038
-msgid "(aborted)"
-msgstr "(ακυρώθηκε)"
+#: gsearchtool/gsearchtool.c:1224
+msgid "(stopped)"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1054
+#: gsearchtool/gsearchtool.c:1240
 msgid "One file found"
 msgstr "Βρέθηκε ένα αρχείο"
 
-#: gsearchtool/gsearchtool.c:1057
+#: gsearchtool/gsearchtool.c:1243
 #, c-format
 msgid "%d files found"
 msgstr "βρέθηκαν %d αρχεία"
 
-#: gsearchtool/gsearchtool.c:1154
+#: gsearchtool/gsearchtool.c:1344
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -993,7 +952,7 @@ msgstr ""
 "Κατά την αναζήτηση αναφέρθηκαν τα ακόλουθα σφάλματα.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1348
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1001,197 +960,213 @@ msgstr ""
 "\n"
 "...Πάρα πολλά λόθη για εμφάνιση..."
 
-#: gsearchtool/gsearchtool.c:1171
-msgid "Search Errors"
-msgstr "Σφάλματα κατά την αναζήτηση"
+#: gsearchtool/gsearchtool.c:1354
+#, fuzzy
+msgid "Error while searching for files"
+msgstr "EΣφάλμα κατά τον έλεγχο για ακατάλληλους τομείς."
 
-#: gsearchtool/gsearchtool.c:1209 gsearchtool/gsearchtool.c:1233
-msgid "Search for Files Error"
-msgstr "Σφάλμα αναζήτησης αρχείων"
+#: gsearchtool/gsearchtool.c:1393
+#, fuzzy
+msgid "Error parsing the search command"
+msgstr "EΣφάλμα κατά την εκτέλεση της (%s) εντολής:%s."
 
-#: gsearchtool/gsearchtool.c:1323
+#: gsearchtool/gsearchtool.c:1413
+#, fuzzy
+msgid "Error running the search command"
+msgstr "EΣφάλμα κατά την εκτέλεση της (%s) εντολής:%s."
+
+#: gsearchtool/gsearchtool.c:1505
 msgid "Search Rule Value Entry"
 msgstr "Καταχώρηση Τιμής Κανόνα Αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:1324
+#: gsearchtool/gsearchtool.c:1506
 msgid "Enter a value for search rule"
 msgstr "Εισάγετε μια τιμή για τον κανόνα αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:1362
+#: gsearchtool/gsearchtool.c:1544
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Πατήστε για να Διαγράψετε τον '%s' Κανόνα"
 
-#: gsearchtool/gsearchtool.c:1414
+#: gsearchtool/gsearchtool.c:1600
 msgid "A_vailable options:"
 msgstr "Δια_θέσιμες επιλογές:"
 
-#: gsearchtool/gsearchtool.c:1427
+#: gsearchtool/gsearchtool.c:1613
 msgid "Search Rules Menu"
 msgstr "Μενού Κανόνων Αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:1428
+#: gsearchtool/gsearchtool.c:1614
 msgid "Select a search rule from the menu"
 msgstr "Επιλέξτε ένα κανόνα αναζήτησης από το μενού"
 
-#: gsearchtool/gsearchtool.c:1456
+#: gsearchtool/gsearchtool.c:1646
 #, fuzzy
 msgid "S_earch results:"
 msgstr "Απο_τελέσματα Αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:1532
+#: gsearchtool/gsearchtool.c:1726
 msgid "Name"
 msgstr "Όνομα"
 
-#: gsearchtool/gsearchtool.c:1552
+#: gsearchtool/gsearchtool.c:1746
 msgid "Folder"
 msgstr "Φάκελος"
 
-#: gsearchtool/gsearchtool.c:1563
+#: gsearchtool/gsearchtool.c:1757
 msgid "Size"
 msgstr "Μέγεθος"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1767
 msgid "Type"
 msgstr "Είδος"
 
-#: gsearchtool/gsearchtool.c:1583
+#: gsearchtool/gsearchtool.c:1777
 msgid "Date Modified"
 msgstr "Ημερομηνία Τροποποίησης"
 
-#: gsearchtool/gsearchtool.c:1621
+#: gsearchtool/gsearchtool.c:1840
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1636 gsearchtool/gsearchtool.c:1637
-msgid "File Name Entry"
-msgstr "Καταχώρηση Ονόματος Αρχείου"
+#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+msgid "Name Contains Entry"
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1636 gsearchtool/gsearchtool.c:1637
+#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
 msgid "Enter the file name you want to search"
 msgstr "Εισάγετε το όνομα αρχείου που θέλετε να αναζητήσετε"
 
-#: gsearchtool/gsearchtool.c:1649
+#: gsearchtool/gsearchtool.c:1868
 msgid "_Look in folder:"
 msgstr "_Αναζήτηση στο φάκελο:"
 
-#: gsearchtool/gsearchtool.c:1655
+#: gsearchtool/gsearchtool.c:1874
 msgid "Browse"
 msgstr "Εξερεύνηση"
 
-#: gsearchtool/gsearchtool.c:1664 gsearchtool/gsearchtool.c:1665
-msgid "Starting folder entry"
-msgstr "Καταχώρηση φάκελου έναρξης"
+#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#, fuzzy
+msgid "Look in Folder Entry"
+msgstr "_Αναζήτηση στο φάκελο:"
 
-#: gsearchtool/gsearchtool.c:1664 gsearchtool/gsearchtool.c:1665
+#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
 msgid "Enter the folder name where you want to start the search"
 msgstr "Εισάγετε το όνομα του φακέλου από όπου θέλετε να ξεκινήσει η αναζήτηση"
 
-#: gsearchtool/gsearchtool.c:1684 gsearchtool/gsearchtool.c:1685
-msgid "Additional Options"
-msgstr "Πρόσθετες Επιλογές"
+#: gsearchtool/gsearchtool.c:1903
+#, fuzzy
+msgid "Show more _options"
+msgstr "Ιδιότητες Εμφάνισης Καταγραφών"
 
-#: gsearchtool/gsearchtool.c:1732
+#: gsearchtool/gsearchtool.c:1953
 msgid "Click to Start the search"
 msgstr "Πατήστε για να Ξεκινήσετε την αναζήτηση"
 
-#: gsearchtool/gsearchtool.c:1733
+#: gsearchtool/gsearchtool.c:1954
 msgid "Click to Stop the search"
 msgstr "Πατήστε για να Διακόψετε την αναζήτηση"
 
-#: gsearchtool/gsearchtool.c:1966
+#: gsearchtool/gsearchtool.c:2201
 msgid "Cannot initialize bonobo."
 msgstr "Αδυναμία αρχικοποίησης bonobo."
 
-#: gsearchtool/gsearchtool-callbacks.c:45
+#: gsearchtool/gsearchtool-callbacks.c:47
 msgid "_Open"
 msgstr "_Άνοιγμα"
 
-#: gsearchtool/gsearchtool-callbacks.c:49
+#: gsearchtool/gsearchtool-callbacks.c:51
 msgid "O_pen Folder"
 msgstr "Ά_νοιγμα Φακέλου "
 
-#: gsearchtool/gsearchtool-callbacks.c:54
+#: gsearchtool/gsearchtool-callbacks.c:56
 msgid "_Save Results As..."
 msgstr "Αποθήκευ_ση Αποτελεσμάτων Ως..."
 
-#: gsearchtool/gsearchtool-callbacks.c:107
-msgid "Can't Display Help"
-msgstr "Αδύνατη η Εμφάνιση της Βοήθειας"
+#: gsearchtool/gsearchtool-callbacks.c:102
+msgid "Could not open help document"
+msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:132
-msgid "Searching..."
-msgstr "Αναζήτηση..."
+#: gsearchtool/gsearchtool-callbacks.c:307
+#, fuzzy, c-format
+msgid "Open %d documents?"
+msgstr "Άνοιγμα %d Φακέλων?"
 
-#: gsearchtool/gsearchtool-callbacks.c:290
+#: gsearchtool/gsearchtool-callbacks.c:308
+#, fuzzy, c-format
+msgid "This will open %d separate documents. Are you sure you want to do this?"
+msgstr ""
+"Αυτό θα ανοίξει %d διαφορετικούς φάκελους. Πράγματι θέλετε να το κάνετε;"
+
+#: gsearchtool/gsearchtool-callbacks.c:363
+#: gsearchtool/gsearchtool-callbacks.c:648
 #, c-format
-msgid "This will open %d separate files. Are you sure you want to do this?"
-msgstr "Αυτό θα ανοίξει %d διαφορετικά αρχεία. Πράγματι θέλετε να το κάνετε;"
+msgid "Could not open document \"%s\""
+msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:293
-#, c-format
-msgid "Open %d Files?"
-msgstr "Άνοιγμα %d Αρχείων?"
-
-#: gsearchtool/gsearchtool-callbacks.c:350
-#: gsearchtool/gsearchtool-callbacks.c:623
-#, c-format
-msgid "There is no installed viewer capable of displaying \"%s\"."
+#: gsearchtool/gsearchtool-callbacks.c:365
+#: gsearchtool/gsearchtool-callbacks.c:649
+#, fuzzy
+msgid "There is no installed viewer capable of displaying the document."
 msgstr ""
 "Δεν υπάρχει εγκατεστημένο πρόγραμμα παρουσίασης για την εμφάνιση του \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:357
-#: gsearchtool/gsearchtool-callbacks.c:630
-msgid "Can't Display Location"
-msgstr "Αδύνατη η Εμφάνιση της Τοποθεσίας"
+#: gsearchtool/gsearchtool-callbacks.c:411
+#, fuzzy, c-format
+msgid "Open %d folders?"
+msgstr "Άνοιγμα %d Φακέλων?"
 
-#: gsearchtool/gsearchtool-callbacks.c:395
+#: gsearchtool/gsearchtool-callbacks.c:412
 #, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr ""
 "Αυτό θα ανοίξει %d διαφορετικούς φάκελους. Πράγματι θέλετε να το κάνετε;"
 
-#: gsearchtool/gsearchtool-callbacks.c:398
+#: gsearchtool/gsearchtool-callbacks.c:453
 #, c-format
-msgid "Open %d Folders?"
-msgstr "Άνοιγμα %d Φακέλων?"
+msgid "Could not open folder \"%s\""
+msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:437
+#: gsearchtool/gsearchtool-callbacks.c:459
 msgid "The nautilus file manager is not running."
 msgstr "Ο διαχειριστής αρχείων του Ναυτίλου δεν εκτελείται."
 
-#: gsearchtool/gsearchtool-callbacks.c:732
+#: gsearchtool/gsearchtool-callbacks.c:831
 msgid "Save Search Results As..."
 msgstr "Αποθήκευση Αποτελεσμάτων Αναζήτησης Ως..."
 
-#: gsearchtool/gsearchtool-callbacks.c:775
+#: gsearchtool/gsearchtool-callbacks.c:877
 #, c-format
-msgid ""
-"Cannot save search results.\n"
-"\"%s\" is a folder."
+msgid "Could not save document \"\" to %s"
 msgstr ""
-"Αδυναμία αποθήκευσης αποτελεσμάτων αναζήτησης.\n"
-"\"%s\" είναι ένας φάκελος."
 
-#: gsearchtool/gsearchtool-callbacks.c:803
+#: gsearchtool/gsearchtool-callbacks.c:880
+msgid ""
+"You did not select a document name or the name selected was a folder.  The "
+"document is not saved."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:903
 #, c-format
-msgid "File \"%s\" already exists. Overwrite?"
-msgstr "Το αρχείο %s υπάρχει ήδη. Να αντικατασταθεί;"
+msgid "The contents of the file \"%s\" will be lost."
+msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:840
+#: gsearchtool/gsearchtool-callbacks.c:909
+msgid "Overwrite an existing file?"
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:952
 #, c-format
-msgid "Cannot save search results to the file \"%s\"."
-msgstr "Αδυναμία αποθήκευσης αποτελεσμάτων αναζήτησης στο αρχείο \"%s\". "
+msgid "Could not save document \"%s\" to %s"
+msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:290
-msgid "Expander Size"
-msgstr "Μέγεθος Expander"
+#: gsearchtool/gsearchtool-callbacks.c:957
+msgid ""
+"You may not have write permissions to the document.  The document is not "
+"saved."
+msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:291
-msgid "Size of the expander arrow"
-msgstr "Μέγεθος του βέλους expander"
-
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:58
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1200,27 +1175,23 @@ msgstr ""
 "Σφάλμα GConf:\n"
 "  %s"
 
-#: gsearchtool/gsearchtool-support.c:586
-msgid "%Y%m%d%H%M%S"
-msgstr "%Y%m%d%H%M%S"
-
-#: gsearchtool/gsearchtool-support.c:617
+#: gsearchtool/gsearchtool-support.c:315
 msgid "today at %-I:%M %p"
 msgstr "σήμερα στις %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:619
+#: gsearchtool/gsearchtool-support.c:317
 msgid "yesterday at %-I:%M %p"
 msgstr "χθες στις %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:621 gsearchtool/gsearchtool-support.c:623
+#: gsearchtool/gsearchtool-support.c:319 gsearchtool/gsearchtool-support.c:321
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:748
+#: gsearchtool/gsearchtool-support.c:446
 msgid "link (broken)"
 msgstr "σύνδεσμος (σπασμένος)"
 
-#: gsearchtool/gsearchtool-support.c:753
+#: gsearchtool/gsearchtool-support.c:451
 #, c-format
 msgid "link to %s"
 msgstr "σύνδεσμος στο %s"
@@ -1231,98 +1202,86 @@ msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Σέζαρ Μιγκέλ (miquel@df.uba.ar)"
 
 #: logview/about.c:44
-msgid ""
-"This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
-"WARRANTY. This is free software, and you are welcome to redistribute it "
-"under the conditions of the GNU General Public Licence. The log icon is a "
-"courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+msgid "A system log viewer for GNOME."
 msgstr ""
-"Αυτό το πρόγραμμα είναι μέρος του Έργου GNOME για το Linux. Το Logview δεν "
-"παρέχει ΚΑΜΙΑ ΑΠΟΛΥΤΩΣ ΕΓΓΥΗΣΗ. Αυτό είναι ελεύθερο λογισμικό και έχετε την "
-"ελευθερία να το επαναδιανείμετε κάτω από τις συνθήκες της Δημόσιας Γενικής "
-"Άδειας Λογισμικού GNU. Το εικονίδιο του λογοτύπου είναι προσφορά του Tuomas "
-"Kuosmanen (γνωστός και σαν tigert)."
 
-#: logview/about.c:62
+#: logview/about.c:58
 msgid "GNOME System Log Viewer"
 msgstr "Παρακολουθηση Καταγραφών Συστήματος GNOME"
 
-#: logview/about.c:63
-msgid "Copyright (C) 1998"
-msgstr "Πνευματικά δικαιώματα (C) 1998"
-
 #: logview/actions.c:74
-msgid "Action database"
+#, fuzzy
+msgid "Action Database"
 msgstr "Βάση ενεργειών"
 
 # FIX? drop (see also "On Drop" above)
-#: logview/actions.c:84
+#: logview/actions.c:85
 msgid "Actions"
 msgstr "Ενέργειες"
 
-#: logview/actions.c:152
+#: logview/actions.c:157
 msgid "_Add"
 msgstr "_Προσθήκη"
 
-#: logview/actions.c:159
+#: logview/actions.c:164
 msgid "_Edit"
 msgstr "_Επεξεργασία"
 
-#: logview/actions.c:166
+#: logview/actions.c:171
 msgid "_Remove"
 msgstr "_Διαγραφή"
 
-#: logview/actions.c:259
+#: logview/actions.c:263
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "Αδυναμία ανοίγματος action data base <%s>! Αποτυχία ανοίγματος."
 
-#: logview/actions.c:294 logview/actions.c:307 logview/actions.c:318
-#: logview/actions.c:329 logview/actions.c:340 logview/actions.c:351
+#: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
+#: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
 msgid "Error parsing actions data base"
 msgstr "Σφάλμα στην ανάλυση της βάση ενεργειών"
 
-#: logview/actions.c:385
+#: logview/actions.c:389
 msgid "Can't write to actions database!"
 msgstr "Αδύνατη η εγγραφή στη βάση ενεργειών!"
 
-#: logview/actions.c:485
+#: logview/actions.c:489
 msgid "Error while executing specified action"
 msgstr "Σφάλμα κατα την εκτέλεσης της καθορισμένης ενέργειας"
 
-#: logview/actions.c:506
+#: logview/actions.c:510
 msgid "<empty>"
 msgstr "<κενό>"
 
-#: logview/actions.c:507
+#: logview/actions.c:511
 msgid "log name regexp"
 msgstr "κανονική έκφραση ονόματος καταγραφής"
 
-#: logview/actions.c:508
+#: logview/actions.c:512
 msgid "process regexp"
 msgstr "κανονική έκφραση διεργασίας"
 
-#: logview/actions.c:509
+#: logview/actions.c:513
 msgid "message regexp"
 msgstr "κανονική έκφραση μηνύματος"
 
-#: logview/actions.c:510
+#: logview/actions.c:514
 msgid "action to execute when regexps are TRUE"
 msgstr "ενέργεια προς εκτέλεση όταν η κανονική έκφραση είναι ΑΛΗΘΉΣ"
 
-#: logview/actions.c:511
+#: logview/actions.c:515
 msgid "description"
 msgstr "περιγραφή"
 
-#: logview/actions.c:771
+#: logview/actions.c:781
 msgid "_Description:"
 msgstr "_Περιγραφή:"
 
-#: logview/actions.c:780
+#: logview/actions.c:790
 msgid "Description of this entry."
 msgstr "Περιγραφή αυτής της εγγραφής."
 
-#: logview/actions.c:804
+#: logview/actions.c:814
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1339,7 +1298,7 @@ msgstr ""
 "περιγραφή: [%s]\n"
 "ενέργεια: [%s]\n"
 
-#: logview/calendar.c:112
+#: logview/calendar.c:111
 msgid "Calendar"
 msgstr "Ημερολόγιο"
 
@@ -1369,26 +1328,27 @@ msgid "View the system log file"
 msgstr "Εμφάνιση του αρχείου καταγραφών συστήματος"
 
 #: logview/info.c:65
-msgid "Log stats"
-msgstr "Στατιστικά καταγραφών"
+#, fuzzy
+msgid "Properties"
+msgstr "_Ιδιότητες"
 
-#: logview/info.c:110
+#: logview/info.c:111
 msgid "Size:"
 msgstr "Μέγεθος:"
 
-#: logview/info.c:110
+#: logview/info.c:111
 msgid "Modified:"
 msgstr "Τροποποιημένο:"
 
-#: logview/info.c:111
+#: logview/info.c:112
 msgid "Start Date:"
 msgstr "Ημερομηνία έναρξης:"
 
-#: logview/info.c:111
+#: logview/info.c:112
 msgid "Last Date:"
 msgstr "Τελευταία ημερομηνία:"
 
-#: logview/info.c:111
+#: logview/info.c:112
 msgid "Number of Lines:"
 msgstr "Αριθμός γραμμών:"
 
@@ -1396,7 +1356,7 @@ msgstr "Αριθμός γραμμών:"
 msgid "Log Information"
 msgstr "Πληροφορίες καταγραφής"
 
-#: logview/info.c:163 logview/zoom.c:157
+#: logview/info.c:163 logview/zoom.c:156
 msgid "<No log loaded>"
 msgstr "<δεν φορτώθηκε καταγραφή>"
 
@@ -1455,37 +1415,37 @@ msgid "December"
 msgstr "Δεκέμβριος"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:398
+#: logview/log_repaint.c:397
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:453
+#: logview/log_repaint.c:452
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:519
+#: logview/log_repaint.c:518
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:194
+#: logview/logrtns.c:193
 msgid "Not enough memory!\n"
 msgstr "Δεν υπάρχει αρκετή μνήμη!\n"
 
-#: logview/logrtns.c:205
+#: logview/logrtns.c:204
 msgid "Unable to open logfile!\n"
 msgstr "Αδύνατο το άνοιγμα αρχείου καταγραφών!\n"
 
-#: logview/logrtns.c:263
+#: logview/logrtns.c:262
 #, c-format
 msgid "%s is not a regular file."
 msgstr "Το %s δεν είναι κανονικό αρχείο."
 
-#: logview/logrtns.c:271
+#: logview/logrtns.c:270
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1495,17 +1455,17 @@ msgstr ""
 "διαχειριστής ή ζητήστε από το διαχειριστή να αλλάξει τα δικαιώματα του "
 "αρχείου."
 
-#: logview/logrtns.c:288
+#: logview/logrtns.c:287
 #, c-format
 msgid "%s could not be opened."
 msgstr "Το %s δε μπόρεσε να ανοιχτεί."
 
-#: logview/logrtns.c:318 logview/logrtns.c:327
+#: logview/logrtns.c:317 logview/logrtns.c:326
 #, c-format
 msgid "%s not a log file."
 msgstr "To %s δεν είναι αρχείο καταγραφών."
 
-#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
+#: logview/logrtns.c:724 logview/logrtns.c:755 logview/logrtns.c:886
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: η μνήμη εξαντλήθηκε"
 
@@ -1565,39 +1525,39 @@ msgstr "_Ανάπτυξη όλων"
 msgid "Collapse all the rows"
 msgstr "Ανάπτυξη όλων των βελών"
 
-#: logview/logview.c:365
+#: logview/logview.c:364
 msgid "No log files to open"
 msgstr "Δεν υπάρχουν αρχεία καταγραφών προς ανάγνωση"
 
-#: logview/logview.c:389
+#: logview/logview.c:386
 msgid "Date"
 msgstr "Ημερομηνία"
 
-#: logview/logview.c:389
+#: logview/logview.c:386
 msgid "Host Name"
 msgstr "Όνομα συστήματος"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 msgid "Process"
 msgstr "Διεργασία"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 msgid "Message"
 msgstr "Μήνυμα"
 
-#: logview/logview.c:474
+#: logview/logview.c:468
 msgid "Last Modified: "
 msgstr "Τελευταία Τροποποίηση: "
 
-#: logview/logview.c:568 logview/logview.c:643
+#: logview/logview.c:562 logview/logview.c:637
 msgid "Too many open logs. Close one and try again"
 msgstr "Πάρα πολλά ανοιχτά αρχεία καταγραφών. Κλείστε ένα και δοκιμάστε ξανά"
 
-#: logview/logview.c:580
+#: logview/logview.c:574
 msgid "File already opened"
 msgstr "Το αρχείο έχει ήδη ανοιχθεί"
 
-#: logview/logview.c:656
+#: logview/logview.c:650
 msgid "Open new logfile"
 msgstr "Άνοιγμα νέου αρχείου καταγραφών"
 
@@ -1606,60 +1566,66 @@ msgstr "Άνοιγμα νέου αρχείου καταγραφών"
 msgid "Error: [%s]\n"
 msgstr "Σφάλμα: [%s]\n"
 
-#: logview/monitor.c:109
+#: logview/monitor.c:108
 msgid "Monitor Options"
 msgstr "Επιλογες παρακολούθησης"
 
 # FIX? drop (see also "On Drop" above)
-#: logview/monitor.c:112
+#: logview/monitor.c:111
 #, fuzzy
-msgid "Ac_tions"
-msgstr "Ενέργειες"
+msgid "Ac_tions..."
+msgstr "Ενέργειες..."
 
-#: logview/monitor.c:135
-msgid "Choose logs to monitor:"
+#: logview/monitor.c:137
+#, fuzzy
+msgid "_Select logs to monitor:"
 msgstr "Επιλογή καταγραφών για παρακολούθηση"
 
-#: logview/monitor.c:140
-msgid "Currently monitored logs:"
+#: logview/monitor.c:142
+#, fuzzy
+msgid "Currently _monitored logs:"
 msgstr "Τρέχουσες παρακολουθούμενες καταγραφές:"
 
-#: logview/monitor.c:188
+#: logview/monitor.c:190
 msgid "Add logs to monitor"
 msgstr "Προσθήκη καταγραφών για παρακολούθηση"
 
-#: logview/monitor.c:197
+#: logview/monitor.c:199
 msgid "Remove logs from monitor"
 msgstr "Απομάκρυνση καταγραφών από την παρακολούθηση"
 
 #. Check boxes
-#: logview/monitor.c:244
-msgid "_Hide Application"
+#: logview/monitor.c:246
+#, fuzzy
+msgid "_Hide application"
 msgstr "Απόκρυ_ψη εφαρμογής"
 
-#: logview/monitor.c:252
-msgid "_Execute Actions"
+#: logview/monitor.c:254
+#, fuzzy
+msgid "_Execute actions"
 msgstr "_Εκτέλεση ενεργειών"
 
-#: logview/monitor.c:289
+#: logview/monitor.c:290
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Πάρα πολλά ανοιχτά αρχεία καταγραφών. Κλείστε ένα και δοκιμάστε ξανά"
 
-#: logview/monitor.c:297 logview/monitor.c:335
+#: logview/monitor.c:298 logview/monitor.c:335
 msgid "tmp_list is NULL\n"
 msgstr "Το tmp_list είναι NULL\n"
 
 #: logview/monitor.c:457
-msgid "Monitoring logs..."
+#, fuzzy
+msgid "Monitoring Logs..."
 msgstr "Παρακολούθηση καταγραφών..."
 
-#: logview/monitor.c:644
+#: logview/monitor.c:643
 msgid "TOUCHED!!\n"
 msgstr "ΑΚΟΥΜΠΗΘΗΚΕ!!!\n"
 
 #: logview/zoom.c:63
-msgid "Zoom view"
-msgstr "Απεικόνιση μεγένθυνσης"
+#, fuzzy
+msgid "Entry Detail"
+msgstr "_Λεπτομέρεια Καταχώρησης"
 
 #: logview/zoom.c:102
 msgid "Date:"
@@ -1677,12 +1643,13 @@ msgstr "Μήνυμα:"
 msgid "Description:"
 msgstr "Περιγραφή:"
 
-#: logview/zoom.c:131
-msgid "Log line detail for"
+#: logview/zoom.c:130
+#, fuzzy
+msgid "Log Line Details"
 msgstr "Λεπτομέρεια γραμμής καταγραφής για"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:185
+#: logview/zoom.c:184
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -1699,6 +1666,133 @@ msgstr ""
 "Καθορίζει το αρχείο καταγραφής που θα ανοίγει κατά την εκκίνηση. Το εξ "
 "ορισμού είναι είτε μηνύματα /var/adm/ ή μηνύματα  /var/log/, ανάλογα με την "
 "διανομή σας."
+
+#~ msgid "Gdialog progressbar"
+#~ msgstr "Μπάρα προόδου Gdialog"
+
+#~ msgid "Indicates the percentage specified at the standard input"
+#~ msgstr "Αναγράφει το καθορισμένο ποσοστό στην κανονική είδοδο"
+
+#~ msgid "GDialog Entry"
+#~ msgstr "Καταχώρηση GDialog"
+
+#~ msgid "Enter the text"
+#~ msgstr "Εισάγετε το κείμενο"
+
+#~ msgid "Copyright 1999 by Mike Hughes"
+#~ msgstr "Πνευματικά Δικαιώματα 1999 από τον Μάικ Χιους"
+
+#~ msgid "_Word: "
+#~ msgstr "_Λέξη: "
+
+#~ msgid "Headword:"
+#~ msgstr "Λήμμα:"
+
+#~ msgid "Sub-number:"
+#~ msgstr "Υπό-αριθμός:"
+
+#~ msgid "Pronunciation:"
+#~ msgstr "Προφορά:"
+
+#~ msgid "Etymology:"
+#~ msgstr "Ετυμολογία:"
+
+#~ msgid "Part of speech:"
+#~ msgstr "Μέρος του λόγου:"
+
+#~ msgid "Example:"
+#~ msgstr "Παράδειγμα:"
+
+#~ msgid "Main body:"
+#~ msgstr "Κυρίως μέρος:"
+
+#~ msgid "Cross-reference:"
+#~ msgstr "Αντιπαραπομπή:"
+
+#~ msgid "Search _Results"
+#~ msgstr "Αποτελέσματα _Αναζήτησης"
+
+#~ msgid "Floppy formatter"
+#~ msgstr "Μορφοποίηση δισκέτας"
+
+#~ msgid "(aborted)"
+#~ msgstr "(ακυρώθηκε)"
+
+#~ msgid "Search Errors"
+#~ msgstr "Σφάλματα κατά την αναζήτηση"
+
+#~ msgid "Search for Files Error"
+#~ msgstr "Σφάλμα αναζήτησης αρχείων"
+
+#~ msgid "File Name Entry"
+#~ msgstr "Καταχώρηση Ονόματος Αρχείου"
+
+#~ msgid "Starting folder entry"
+#~ msgstr "Καταχώρηση φάκελου έναρξης"
+
+#~ msgid "Additional Options"
+#~ msgstr "Πρόσθετες Επιλογές"
+
+#~ msgid "Can't Display Help"
+#~ msgstr "Αδύνατη η Εμφάνιση της Βοήθειας"
+
+#~ msgid "This will open %d separate files. Are you sure you want to do this?"
+#~ msgstr ""
+#~ "Αυτό θα ανοίξει %d διαφορετικά αρχεία. Πράγματι θέλετε να το κάνετε;"
+
+#~ msgid "Open %d Files?"
+#~ msgstr "Άνοιγμα %d Αρχείων?"
+
+#~ msgid "Can't Display Location"
+#~ msgstr "Αδύνατη η Εμφάνιση της Τοποθεσίας"
+
+#~ msgid ""
+#~ "Cannot save search results.\n"
+#~ "\"%s\" is a folder."
+#~ msgstr ""
+#~ "Αδυναμία αποθήκευσης αποτελεσμάτων αναζήτησης.\n"
+#~ "\"%s\" είναι ένας φάκελος."
+
+#~ msgid "File \"%s\" already exists. Overwrite?"
+#~ msgstr "Το αρχείο %s υπάρχει ήδη. Να αντικατασταθεί;"
+
+#~ msgid "Cannot save search results to the file \"%s\"."
+#~ msgstr "Αδυναμία αποθήκευσης αποτελεσμάτων αναζήτησης στο αρχείο \"%s\". "
+
+#~ msgid "Expander Size"
+#~ msgstr "Μέγεθος Expander"
+
+#~ msgid "Size of the expander arrow"
+#~ msgstr "Μέγεθος του βέλους expander"
+
+#~ msgid "%Y%m%d%H%M%S"
+#~ msgstr "%Y%m%d%H%M%S"
+
+#~ msgid ""
+#~ "This program is part of the GNOME project. Logview comes with ABSOLUTELY "
+#~ "NO WARRANTY. This is free software, and you are welcome to redistribute "
+#~ "it under the conditions of the GNU General Public Licence. The log icon "
+#~ "is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+#~ msgstr ""
+#~ "Αυτό το πρόγραμμα είναι μέρος του Έργου GNOME για το Linux. Το Logview "
+#~ "δεν παρέχει ΚΑΜΙΑ ΑΠΟΛΥΤΩΣ ΕΓΓΥΗΣΗ. Αυτό είναι ελεύθερο λογισμικό και "
+#~ "έχετε την ελευθερία να το επαναδιανείμετε κάτω από τις συνθήκες της "
+#~ "Δημόσιας Γενικής Άδειας Λογισμικού GNU. Το εικονίδιο του λογοτύπου είναι "
+#~ "προσφορά του Tuomas Kuosmanen (γνωστός και σαν tigert)."
+
+#~ msgid "Copyright (C) 1998"
+#~ msgstr "Πνευματικά δικαιώματα (C) 1998"
+
+#~ msgid "Log stats"
+#~ msgstr "Στατιστικά καταγραφών"
+
+# FIX? drop (see also "On Drop" above)
+#, fuzzy
+#~ msgid "Ac_tions"
+#~ msgstr "Ενέργειες"
+
+#~ msgid "Zoom view"
+#~ msgstr "Απεικόνιση μεγένθυνσης"
 
 #~ msgid "_Show/Hide Definition Window..."
 #~ msgstr "_Εμφάνιση/Απόκρυψη Παραθύρου Ορισμού..."
@@ -2390,10 +2484,6 @@ msgstr ""
 
 #~ msgid "Hide app"
 #~ msgstr "Απόκρυψη εφαρμογής"
-
-# FIX? drop (see also "On Drop" above)
-#~ msgid "Actions..."
-#~ msgstr "Ενέργειες..."
 
 #~ msgid "hostname column width ( 0 to hide this column ): "
 #~ msgstr "πλάτος στήλης ονόματος συστήματος (0 για να αποκρύψετε τη στήλη): "
