@@ -170,10 +170,11 @@ void gnomecard_init_pixes(void)
 	
 void gnomecard_init_defaults(void)
 {
-	gnomecard_def_data = gnome_config_get_int("/gnomecard/layout/def_data=0");
-	gnomecard_find_sens = gnome_config_get_bool("/gnomecard/find/sens=False");
-	gnomecard_find_back = gnome_config_get_bool("/gnomecard/find/back=False");
-	gnomecard_find_str = gnome_config_get_string("/gnomecard/find/str=");
+	gnomecard_def_data = gnome_config_get_int("/GnomeCard/layout/def_data=0");
+	gnomecard_find_sens = gnome_config_get_bool("/GnomeCard/find/sens=False");
+	gnomecard_find_back = gnome_config_get_bool("/GnomeCard/find/back=False");
+	gnomecard_find_str = gnome_config_get_string("/GnomeCard/find/str=");
+	gnomecard_fname = gnome_config_get_string("/GnomeCard/file/open=");
 }
 
 void gnomecard_toggle_card_view(GtkWidget *w, gpointer data)
@@ -551,7 +552,7 @@ GtkWidget *my_hbox_entry(GtkWidget *parent, char *label, char *init)
 	w = gtk_label_new(label);
 	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE, FALSE, 0);
 	w = my_gtk_entry_new(0, init);
-	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox), w, TRUE, TRUE, 0);
 	
 	return w;
 }
@@ -567,7 +568,6 @@ GtkWidget *my_gtk_spin_button_new(GtkAdjustment *adj, gint width)
 			      
 	return spin;
 }
-
 
 GtkWidget *my_gtk_vbox_new(void)
 {
@@ -875,7 +875,7 @@ void gnomecard_edit(GList *node, int section)
 	
 	box = GNOME_PROPERTY_BOX(gnome_property_box_new());
 	gtk_object_set_user_data(GTK_OBJECT(box), ce);
-	gtk_window_set_wmclass(GTK_WINDOW(box), "gnomecard",
+	gtk_window_set_wmclass(GTK_WINDOW(box), "GnomeCard",
 			       "GnomeCard");
 	gtk_signal_connect(GTK_OBJECT(box), "apply",
 			   (GtkSignalFunc)gnomecard_prop_apply, NULL);
@@ -1468,9 +1468,9 @@ void gnomecard_find_card(GtkWidget *w, gpointer data)
 
 	g_free(pattern);
 	
-	gnome_config_set_bool("/gnomecard/find/sens",  gnomecard_find_sens);
-	gnome_config_set_bool("/gnomecard/find/back",  gnomecard_find_back);
-	gnome_config_set_string("/gnomecard/find/str",  gnomecard_find_str);
+	gnome_config_set_bool("/GnomeCard/find/sens",  gnomecard_find_sens);
+	gnome_config_set_bool("/GnomeCard/find/back",  gnomecard_find_back);
+	gnome_config_set_string("/GnomeCard/find/str",  gnomecard_find_str);
 }
 
 void gnomecard_find_card_call(GtkWidget *widget, gpointer data)
@@ -1479,7 +1479,7 @@ void gnomecard_find_card_call(GtkWidget *widget, gpointer data)
 	GnomeCardFind *p;
 
 	p = g_malloc(sizeof(GnomeCardPhone));
-	w = gnome_dialog_new(_("Find Card"), "Find", 
+	w = gnome_dialog_new(_("Find Card"), _("Find"),
 											 GNOME_STOCK_BUTTON_CLOSE, NULL);
 	gtk_object_set_user_data(GTK_OBJECT(w), p);
 	gnome_dialog_button_connect(GNOME_DIALOG(w), 0,
@@ -1488,13 +1488,13 @@ void gnomecard_find_card_call(GtkWidget *widget, gpointer data)
 																		 GTK_SIGNAL_FUNC(gnomecard_cancel),
 																		 GTK_OBJECT(w));	
 																		 
-	p->entry = my_hbox_entry(GNOME_DIALOG(w)->vbox, "Find:", gnomecard_find_str);
+	p->entry = my_hbox_entry(GNOME_DIALOG(w)->vbox, _("Find:"), gnomecard_find_str);
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), hbox, FALSE, FALSE, 0);
-	p->sens = check = gtk_check_button_new_with_label("Case Sensitive");
+	p->sens = check = gtk_check_button_new_with_label(_("Case Sensitive"));
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_find_sens);
 	gtk_box_pack_start(GTK_BOX(hbox), check, FALSE, FALSE, 0);
-	p->back = check = gtk_check_button_new_with_label("Find Backwards");
+	p->back = check = gtk_check_button_new_with_label(_("Find Backwards"));
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_find_back);
 	gtk_box_pack_end(GTK_BOX(hbox), check, FALSE, FALSE, 0);
 	
@@ -1853,34 +1853,49 @@ void gnomecard_last_card(GtkWidget *widget, gpointer data)
 	gnomecard_scroll_tree(g_list_last(crds));
 }
 
-void gnomecard_open_call(GtkWidget *widget, gpointer data)
+gboolean gnomecard_open_file(char *fname)
 {
-	char *fname;
 	GtkWidget *w;
 	GList *c;
-	
-	fname = gtk_file_selection_get_filename(GTK_FILE_SELECTION(widget));
-	
+
 	if (!(c = card_load(NULL, fname))) {
-		w = gnome_message_box_new(_("Wrong file format."),
+		char *tmp;
+		
+		tmp = g_malloc(strlen(_("Wrong file format.")) + strlen(fname) + 3);
+		sprintf(tmp, "%s: %s", fname, _("Wrong file format."));
+		w = gnome_message_box_new(tmp,
 					  GNOME_MESSAGE_BOX_ERROR,
 					  GNOME_STOCK_BUTTON_OK, NULL);
 		GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
 		gtk_widget_show(w);
-	} else {
-		if (gnomecard_destroy_cards()) {
-			crds = c;
-			
-			gtk_clist_freeze(GTK_CLIST(crd_tree));
-			for (c = crds; c; c = c->next)
-			  gnomecard_add_card_to_tree((Card *) c->data);
-			gtk_clist_thaw(GTK_CLIST(crd_tree));
-			
-			g_free(gnomecard_fname);
-			gnomecard_fname = g_strdup(fname);
-			gnomecard_scroll_tree(g_list_first(crds));
-			gtk_widget_destroy(widget);
-		}
+		g_free(tmp);
+		
+		return FALSE;
+	} else if (gnomecard_destroy_cards()) {
+		crds = c;
+		
+		gtk_clist_freeze(GTK_CLIST(crd_tree));
+		for (c = crds; c; c = c->next)
+			gnomecard_add_card_to_tree((Card *) c->data);
+		gtk_clist_thaw(GTK_CLIST(crd_tree));
+		
+		gnomecard_scroll_tree(g_list_first(crds));
+	}
+	
+	return TRUE;
+}
+
+void gnomecard_open_call(GtkWidget *widget, gpointer data)
+{
+	char *fname;
+	
+	fname = gtk_file_selection_get_filename(GTK_FILE_SELECTION(widget));
+	
+	if (gnomecard_open_file(fname)) {
+		g_free(gnomecard_fname);
+		gnomecard_fname = g_strdup(fname);
+		gtk_widget_destroy(widget);
+		gnome_config_set_string("/GnomeCard/file/open",  gnomecard_fname);
 	}
 }
 
@@ -1923,7 +1938,7 @@ void gnomecard_setup_apply(GtkWidget *widget, int page)
 		for (i = crds; i; i = i->next)
 			gnomecard_set_node_info((Card *) i->data);
 
-	gnome_config_set_int("/gnomecard/layout/def_data",  gnomecard_def_data);
+	gnome_config_set_int("/GnomeCard/layout/def_data",  gnomecard_def_data);
 }
 			
 void gnomecard_setup(GtkWidget *widget, gpointer data)
@@ -1936,7 +1951,7 @@ void gnomecard_setup(GtkWidget *widget, gpointer data)
 	setup = g_malloc(sizeof(GnomeCardSetup));
 	box = GNOME_PROPERTY_BOX(gnome_property_box_new());
 	gtk_object_set_user_data(GTK_OBJECT(box), setup);
-	gtk_window_set_wmclass(GTK_WINDOW(box), "gnomecard",
+	gtk_window_set_wmclass(GTK_WINDOW(box), "GnomeCard",
 			       "GnomeCard");
 	gtk_signal_connect(GTK_OBJECT(box), "apply",
 			   (GtkSignalFunc)gnomecard_setup_apply, NULL);
@@ -1989,13 +2004,13 @@ void gnomecard_spawn_new(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *w;
 	int pid;
-	char *text[] = { "gnomecard", NULL };
+	char *text[] = { "GnomeCard", NULL };
 	
 	pid = fork();
 	if (pid == 0) { /* child */
 /* gnomecard: error in loading shared libraries
  * /gnome/lib/libgnome.so.0: undefined symbol: stat */
-		if (execvp("gnomecard", text) == -1) { 
+		if (execvp("GnomeCard", text) == -1) { 
 			w = gnome_message_box_new(_("A new Gnomecard could not be spawned. Maybe it is not in your path."),
 																GNOME_MESSAGE_BOX_ERROR,
 																GNOME_STOCK_BUTTON_OK, NULL);
@@ -2009,15 +2024,15 @@ void gnomecard_spawn_new(GtkWidget *widget, gpointer data)
 void
 gnomecard_about(GtkWidget *widget, gpointer data)
 {
-        GtkWidget *about;
+	GtkWidget *about;
 	const gchar *authors[] = { "arturo@nuclecu.unam.mx", NULL };
-
-        about = gnome_about_new (_("GnomeCard"), NULL,
-				 "(C) 1997-1998 the Free Software Fundation",
-				 authors,
-				 _("Electronic Business Card Manager"),
-				 NULL);
-        gtk_widget_show (about);
+	
+	about = gnome_about_new (_("GnomeCard"), NULL,
+													 "(C) 1997-1998 the Free Software Fundation",
+													 authors,
+													 _("Electronic Business Card Manager"),
+													 NULL);
+	gtk_widget_show (about);
 }
 
 GnomeUIInfo filemenu[] = {
@@ -2223,7 +2238,7 @@ void gnomecard_init(void)
 	gnomecard_init_pixes();
 	
 	gnomecard_window = gnome_app_new("GnomeCard", "GnomeCard");
-	gtk_window_set_wmclass(GTK_WINDOW(gnomecard_window), "gnomecard",
+	gtk_window_set_wmclass(GTK_WINDOW(gnomecard_window), "GnomeCard",
 			       "GnomeCard");
 
 	gtk_widget_show(gnomecard_window);
@@ -2310,17 +2325,20 @@ void gnomecard_init(void)
 
 	add_menu = addmenu;
 	gnomecard_def_data = PHONE;
-	gnomecard_fname = g_strdup("untitled.gcrd");
 	
 	gnomecard_init_defaults();
 	gnomecard_set_changed(FALSE);
-	gnomecard_set_curr(NULL);
+	
+	if (*gnomecard_fname)
+		gnomecard_open_file(gnomecard_fname);
+	else
+		gnomecard_set_curr(NULL);
 }
 
 int main (int argc, char *argv[])
 {
 	textdomain(PACKAGE);
-	gnome_init("gnomecard", NULL, argc, argv, 0, NULL);
+	gnome_init("GnomeCard", NULL, argc, argv, 0, NULL);
 	gnomecard_init();
 
 	gtk_main();
