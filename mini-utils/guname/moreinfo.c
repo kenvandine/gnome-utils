@@ -21,10 +21,16 @@
 
 
 #include <gnome.h>
+#include "config.h"
 #include "info.h"
 #include "mountlist.h"
 #include "fsusage.h"
 #include "moreinfo.h"
+#include "list.h"
+#include <glibtop.h>
+#define GLIBTOP_NAMES 1 /* hmm, no, this is wrong. hmm. */
+#include <glibtop/mem.h>
+#include <glibtop/swap.h>
 
 /* From the comp.lang.c FAQ */
 #define MAX_ITOA_LEN ((sizeof(long) * CHAR_BIT + 2) / 3 + 1)  /* +1 for '-' */
@@ -33,22 +39,20 @@
 #define BLOCKS_TO_MB(blocks) ( blocks / 2048 )
 
 GList * filesystems = NULL;
+gchar ** memory = NULL;
+gchar ** memory_descriptions = NULL;
 
-/* External code can pretend this struct 
-   is an array of strings, I hope. */
-struct fs_information {
-  gchar * array_part[end_filesystem_info];
-  gdouble percent_full;
-};
+gdouble filesystem_percent_full;
+gdouble memory_percent_full;
+gdouble swap_percent_full;
 
-static GtkWidget * create_disk_box(const struct fs_information * fsi)
+static GtkWidget * create_disk_box(const gchar ** fs_info)
 {
   GtkWidget * label;
   GtkWidget * vbox;
   GtkWidget * hbox;
   GtkWidget * bar;
   GtkWidget * frame;
-  gchar ** fs_info = fsi->array_part;
 
   frame = gtk_frame_new(NULL);
   vbox = gtk_vbox_new(FALSE, GNOME_PAD);
@@ -81,7 +85,7 @@ static GtkWidget * create_disk_box(const struct fs_information * fsi)
     bar = gtk_progress_bar_new();
     gtk_box_pack_end(GTK_BOX(hbox), bar, TRUE, TRUE, GNOME_PAD);
     
-    gtk_progress_bar_update(GTK_PROGRESS_BAR(bar), fsi->percent_full);
+    gtk_progress_bar_update(GTK_PROGRESS_BAR(bar), filesystem_percent_full);
   }
   else {
     hbox = gtk_label_new(_("No information for this filesystem."));
@@ -100,7 +104,6 @@ static void fill_disk_page(GtkWidget * box)
   GList * tmp;
   
   frame = gtk_frame_new(_("Mounted filesystems"));
-  gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD);
 
   scrolled_win = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
@@ -117,7 +120,7 @@ static void fill_disk_page(GtkWidget * box)
   
   tmp = filesystems;
   while ( tmp ) {
-    disk_box = create_disk_box((struct fs_information *)(tmp->data));
+    disk_box = create_disk_box((const gchar**)(tmp->data));
 
     gtk_container_border_width(GTK_CONTAINER(disk_box), GNOME_PAD_SMALL);
     gtk_box_pack_start(GTK_BOX(scrolled_box), disk_box, FALSE, FALSE, 0);
@@ -126,12 +129,75 @@ static void fill_disk_page(GtkWidget * box)
   }
 }
 
+static void fill_mem_page(GtkWidget * box)
+{
+  GtkWidget * clist;
+  GtkWidget * vbox;
+  GtkWidget * hbox;
+  GtkWidget * bar;
+  GtkWidget * label;
+  const gchar * titles[] = { _("Memory"), _("Megabytes") };
+  gchar * s;
+  gint len;
+  static const gchar * format = _("%ld%% %s used.");
+
+  vbox = gtk_vbox_new(FALSE, GNOME_PAD);
+  gtk_container_add(GTK_CONTAINER(box), vbox);
+
+  clist = create_clist(titles);
+  gtk_box_pack_start(GTK_BOX(vbox), clist, TRUE, TRUE, GNOME_PAD);
+  gtk_clist_freeze(GTK_CLIST(clist));
+  fill_clist(GTK_CLIST(clist), memory_descriptions, 
+             memory, end_memory_info);
+  gtk_clist_thaw(GTK_CLIST(clist));
+
+  len = strlen(format) + MAX_ITOA_LEN + strlen("memory");
+  s = g_malloc(len);
+  g_snprintf(s, len, format, 
+             (guint)(memory_percent_full * 100),
+             _("memory"));
+  hbox = gtk_hbox_new(FALSE, GNOME_PAD);
+  label = gtk_label_new(s);
+  g_free(s);
+  bar = gtk_progress_bar_new();
+  gtk_progress_bar_update(GTK_PROGRESS_BAR(bar), memory_percent_full);
+  gtk_box_pack_start (GTK_BOX(hbox), bar,   FALSE, FALSE, GNOME_PAD);
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
+  gtk_box_pack_start (GTK_BOX(vbox), hbox,  FALSE, FALSE, GNOME_PAD);
+
+  len = strlen(format) + MAX_ITOA_LEN + strlen("swap");
+  s = g_malloc(len);
+  g_snprintf(s, len, format, 
+             (guint)(swap_percent_full * 100),
+             _("swap"));
+  hbox = gtk_hbox_new(FALSE, GNOME_PAD);
+  label = gtk_label_new(s);
+  g_free(s);
+  bar = gtk_progress_bar_new();
+  gtk_progress_bar_update(GTK_PROGRESS_BAR(bar), swap_percent_full);
+  gtk_box_pack_start (GTK_BOX(hbox), bar,   FALSE, FALSE, GNOME_PAD);
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
+  gtk_box_pack_start (GTK_BOX(vbox), hbox,  FALSE, FALSE, GNOME_PAD);
+}
+
+static void create_page(GtkWidget * notebook, 
+                        void (* fill_func)(GtkWidget *),
+                        const gchar * label)
+{
+  GtkWidget * vbox;
+
+  vbox = gtk_vbox_new(FALSE, GNOME_PAD);
+  gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD);
+  (*fill_func)(vbox);
+  
+  gtk_notebook_append_page(GTK_NOTEBOOK(notebook), vbox,
+                           gtk_label_new(label));
+}
+
 void display_moreinfo()
 {
   static GtkWidget * dialog = NULL;
   GtkWidget * notebook;
-  GtkWidget * clist;
-  GtkWidget * vbox;
 
   if ( dialog == NULL ) {
     dialog = gnome_dialog_new(_("Detailed System Information"),
@@ -146,13 +212,11 @@ void display_moreinfo()
     gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(dialog)->vbox),
                        notebook, TRUE, TRUE, GNOME_PAD);
 
-    vbox = gtk_vbox_new(FALSE, GNOME_PAD);
-    
-    fill_disk_page(vbox);
-    
-    gtk_notebook_append_page(GTK_NOTEBOOK(notebook), vbox,
-                             gtk_label_new(_("Disk Information")));
-    
+    if (filesystems) 
+      create_page(notebook, fill_disk_page, _("Disk Information"));
+    if (memory)
+      create_page(notebook, fill_mem_page, _("Memory Information"));
+
     gtk_widget_show_all(dialog);
   }
   else {
@@ -166,12 +230,11 @@ void display_moreinfo()
 
 void load_fsinfo()
 {
-  struct fs_information * fsi;
   gchar ** fs_info;
   struct mount_entry * me, * tmp;
   const gchar * percent_full_format = _("%2d%% full ");
   const gchar * device_info_format = 
-    _("%ld total megabytes, %ld (%ld superuser) free, %ld total inodes, %ld free inodes.");
+    _("%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free.");
   gchar * s;
   gint    percent;
   gint    len;
@@ -180,15 +243,13 @@ void load_fsinfo()
   me = read_filesystem_list(TRUE, TRUE);
   
   while ( me ) {
-    fsi = g_new(struct fs_information, 1);
-    filesystems = g_list_append(filesystems, fsi);
-
-    fs_info = fsi->array_part;
+    fs_info = g_malloc(sizeof(gchar *) * end_filesystem_info);
+    filesystems = g_list_append(filesystems, fs_info);
 
     fs_info[fs_description] = 
       g_copy_strings(_("Mount Point: "), me->me_mountdir, 
-                     _("  Device: "), me->me_devname,
-                     _("  Filesystem Type: "), me->me_type,
+                     _("    Device: "), me->me_devname,
+                     _("    Filesystem Type: "), me->me_type,
                        NULL);
   
     if ( get_fs_usage(me->me_mountdir, me->me_devname, &fu) == 0 ) {
@@ -208,10 +269,10 @@ void load_fsinfo()
                    fu.fsu_ffree);
         fs_info[fs_numbers] = s;
 
-        fsi->percent_full =
+        filesystem_percent_full =
           1.0 - ((gdouble)fu.fsu_bavail)/((gdouble)fu.fsu_blocks);
 
-        percent = (gint)(fsi->percent_full * 100);
+        percent = (gint)(filesystem_percent_full * 100);
         
         len = strlen(percent_full_format); /* The format makes it big enough */
         s = g_malloc(len);
@@ -234,8 +295,73 @@ void load_fsinfo()
   }
 }
 
+static gchar *
+memsize_string(unsigned long kb)
+{
+  unsigned long mb = kb/1024;
+  gchar * s;
+
+  s = g_malloc(MAX_ITOA_LEN + 1);
+  g_snprintf(s, MAX_ITOA_LEN, "%ld", mb);
+  return s;
+}
+
+static void 
+add_memory_info(unsigned long glibtop_value, 
+                gint glibtop_define,
+                memory_info mi)
+{
+  memory[mi] = memsize_string(glibtop_value);
+  memory_descriptions[mi] = 
+    g_strdup(glibtop_labels_mem[glibtop_define]);
+  /*        glibtop_descriptions_mem[glibtop_define] */
+}
+
+static void
+add_swap_info(unsigned long glibtop_value, 
+              gint glibtop_define,
+              memory_info mi)
+{
+  memory[mi] = memsize_string(glibtop_value);
+  memory_descriptions[mi] = 
+    g_strdup(glibtop_labels_swap[glibtop_define]);
+  /*                     glibtop_descriptions_swap[glibtop_define]) */
+}
+
+void load_meminfo()
+{
+#ifdef HAVE_LIBGTOP
+  glibtop_mem membuf;
+  glibtop_swap swapbuf;
+
+  memory              = g_malloc(sizeof(gchar *) * end_memory_info);
+  memory_descriptions = g_malloc(sizeof(gchar *) * end_memory_info);
+
+  glibtop_get_mem(&membuf);
+  glibtop_get_swap(&swapbuf);
+
+  memory_percent_full = ((gdouble)membuf.used)/((gdouble)membuf.total);
+  swap_percent_full = ((gdouble)swapbuf.used)/((gdouble)swapbuf.total);
+
+  /* It just doesn't quite work as a loop. Sigh. 
+     Maybe with pointer math over the membuf... nah. */
+  add_memory_info(membuf.total, GLIBTOP_MEM_TOTAL, mem_total);
+  add_memory_info(membuf.used,  GLIBTOP_MEM_USED,  mem_used);
+  add_memory_info(membuf.free,  GLIBTOP_MEM_FREE,  mem_free);
+  add_memory_info(membuf.shared, GLIBTOP_MEM_SHARED, mem_shared);
+  add_memory_info(membuf.buffer, GLIBTOP_MEM_BUFFER, mem_buffer);
+  add_memory_info(membuf.cached, GLIBTOP_MEM_CACHED, mem_cached);
+  add_memory_info(membuf.user,   GLIBTOP_MEM_USER,   mem_user);
+
+  add_swap_info(swapbuf.total, GLIBTOP_SWAP_TOTAL,   mem_swap_total);
+  add_swap_info(swapbuf.used,  GLIBTOP_SWAP_USED,    mem_swap_used);
+  add_swap_info(swapbuf.free,  GLIBTOP_SWAP_FREE,    mem_swap_free);
+
+#endif
+}
 
 void load_moreinfo()
 {
   load_fsinfo();
+  load_meminfo();
 }

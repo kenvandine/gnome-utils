@@ -33,6 +33,25 @@ typedef enum {
 /* List of arrays of filesystem info (well, a white lie; see .c) */
 extern GList * filesystems;
 
+typedef enum {
+  mem_total,
+  mem_used,
+  mem_free,
+  mem_shared,
+  mem_buffer,
+  mem_cached,
+  mem_user,
+  
+  mem_swap_total,
+  mem_swap_used,
+  mem_swap_free,
+
+  end_memory_info
+} memory_info;
+
+extern gchar ** memory;
+extern gchar ** memory_descriptions;
+
 void load_moreinfo();
 
 void display_moreinfo();

@@ -25,5 +25,6 @@ noinst_HEADERS = \
 guname_LDADD = \
 	$(GNOME_LIBDIR)         \
 	$(GNOMEUI_LIBS) 	\
-	$(INTLLIBS)
+	$(INTLLIBS)		\
+	$(LIBGTOP_LIBS)
 

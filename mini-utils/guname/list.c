@@ -48,7 +48,8 @@ void fill_clist(GtkCList * list,
 
   while ( i < numitems ) {
 
-    if ( col2_items[i] == NULL ) {
+    /* No info is more likely than no description, but be paranoid. */
+    if ( (col2_items[i] == NULL) || (col1_items[i] == NULL) ) {
       /* Don't have this information. */
       ++i;
       continue; 

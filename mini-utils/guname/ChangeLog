@@ -1,3 +1,12 @@
+Wed May 27 01:26:11 1998  Havoc Pennington  <hp@pobox.com>
+
+	* moreinfo.c: Added memory information checks using libgtop, ifdef
+ 	HAVE_LIBGTOP. Replaced silly struct/array with a plain array and
+ 	global variables. Duh.	
+	* list.c: Check for NULL in both arrays before filling in row.
+	* moreinfo.h: Memory stuff.
+	* Makefile.am: added libgtop to libraries.
+
 Tue May 26 00:50:26 1998  Havoc Pennington  <hp@pobox.com>
 
 	* Makefile.am: Add new files.
