@@ -60,18 +60,16 @@ enum {
 };
 
 const FindOptionTemplate templates[] = {
-	{ FIND_OPTION_TEXT, "-iname '%s'", N_("File name is") },
-	{ FIND_OPTION_TEXT, "'!' -iname '%s'", N_("File name is not") }, 
+	{ FIND_OPTION_TEXT, "-name '%s'", N_("File name is") },
+	{ FIND_OPTION_TEXT, "'!' -name '%s'", N_("File name is not") }, 
 	{ FIND_OPTION_BOOL, "-mount", N_("Don't search mounted filesystems") },
 	{ FIND_OPTION_BOOL, "-follow", N_("Follow symbolic links") },	
 	{ FIND_OPTION_BOOL, "-depth", N_("Process directory contents depth first") },
-	{ FIND_OPTION_BOOL, "-maxdepth 1", N_("Don't search subdirectories") },
 	{ FIND_OPTION_TEXT, "-user '%s'", N_("Owned by user") },
 	{ FIND_OPTION_TEXT, "-group '%s'", N_("Owned by group") },
-	{ FIND_OPTION_BOOL, "-nouser -o -nogroup", N_("Invalid user or group") },
+	{ FIND_OPTION_BOOL, "\\( -nouser -o -nogroup \\)", N_("Invalid user or group") },
 	{ FIND_OPTION_TIME, "-mtime '%s'", N_("Last time modified") },
-	{ FIND_OPTION_BOOL, "-empty", N_("File is empty") },
-	{ FIND_OPTION_TEXT, "-regex '%s'", N_("Matches regular expression") },
+	{ FIND_OPTION_BOOL, "-size 0c \\( -type f -o -type d \\)", N_("File is empty") },
 	{ FIND_OPTION_END, NULL,NULL}
 };
 
