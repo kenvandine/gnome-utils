@@ -8,7 +8,7 @@ Overall Structure
 GTT four basic parts:
 1) the 'engine', a set of C objects that encapsulate 
    project, task and time interval data with a set of 
-   GUI-independent prgramming API's.  The API is in proj.h,
+   GUI-independent programming API's.  The API is in proj.h,
    the code in proj.c and the private data structs in 
    proj_p.h.  The goal of splitting out the data this way is
    to make it easier to write an SQL back-end for storage,
@@ -26,7 +26,7 @@ GTT four basic parts:
    in apache).
 
 4) The Gnome GUI.  This is most of the rest of the files,
-   including the parts of teh GUI done up with glade.
+   including the parts of the GUI done up with glade.
 
 
 Projects, Sub-projects, Tasks and Intervals
@@ -48,7 +48,7 @@ restarted: that is what a sub-projects are supposed to be.
 
 All About Billing
 -----------------
-There are four supported billing rates: rgular, overtime,
+There are four supported billing rates: regular, overtime,
 double-overtime and flat-rate.  The dollar values for these are stored
 in the project structure.   Which of these to use is an enum associated
 with a task.   'flat_rate' is what it sounds like: the amount to bill
@@ -67,9 +67,9 @@ totals less than this are rounded up to a bill unit.
 
 Interval Fuzz
 -------------
-If users ned to hand-enter ex-post-facto hours into gtt, they may not 
+If users need to hand-enter ex-post-facto hours into gtt, they may not 
 exactly remember the exact start time, down to the exact second.  
-Thier memory is fuzzy.  The interval 'fuzz' is used to indicate
+Their memory is fuzzy.  The interval 'fuzz' is used to indicate
 how uncertain the start time is.  Typically, its 0, 300, 900 or 3600
 seconds.  If set to 12*3600, it just means "I did this work sometime
 today", but is otherwise vague about when.  (So, for example, in this
