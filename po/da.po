@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-05-21 14:23+0200\n"
+"POT-Creation-Date: 2000-05-22 01:56+0200\n"
 "PO-Revision-Date: 2000-05-19 14:30+02:00\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
@@ -16,9 +16,29 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: gcalc/gcalc.c:37
+msgid "The Gnome Calculator"
+msgstr "Gnome lommeregneren"
+
+#: gcalc/gcalc.c:40
+msgid "Simple double precision calculator similiar to xcalc"
+msgstr "Enkel dobbelpræcisions lommeregner lignende xcalc"
+
+#: gcalc/gcalc.c:133
+msgid "Gnome Calculator"
+msgstr "Gnome lommeregner"
+
+#: gcharmap/src/asciiselect.c:42 gcharmap/src/interface.c:38
+msgid "Insert ASCII character"
+msgstr "Indsæt ASCII tegn"
+
+#: gcharmap/src/interface.c:38
+msgid "Insert ASCII character..."
+msgstr "Indsæt ASCII tegn..."
+
 #: gcharmap/src/interface.c:44
 msgid "_Toolbar"
-msgstr "_Værktøjslinie"
+msgstr "_Værktøjslinje"
 
 #: gcharmap/src/interface.c:44
 msgid "View or hide the toolbar"
@@ -40,7 +60,8 @@ msgstr "Klip"
 msgid "Cut the text to clipboard"
 msgstr "Klip teksten ud til klippebord"
 
-#: gcharmap/src/interface.c:68 gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:68 gcharmap/src/interface.c:191
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopiér"
 
@@ -72,6 +93,23 @@ msgstr "Gnome tegntabel"
 #: gcharmap/src/interface.c:146
 msgid "Text to Copy:"
 msgstr "Tekst at kopiere"
+
+#: gcharmap/src/interface.c:185 mini-utils/gcolorsel/menus.c:83
+#: mini-utils/gcolorsel/menus.c:906 mini-utils/gshutdown/gshutdown.c:153
+#: mini-utils/gshutdown/gshutdown.c:594
+msgid "Close"
+msgstr "Luk"
+
+#: gcharmap/src/interface.c:197 gstripchart/gstripchart.c:1790
+#: gstripchart/gstripchart.c:2074 mini-utils/gcolorsel/menus.c:912
+#: mini-utils/gshutdown/gshutdown.c:319
+msgid "About"
+msgstr "Om..."
+
+#: gcharmap/src/interface.c:203 gnome-find/gnome-find.c:89
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:2071
+msgid "Help"
+msgstr "Hjælp"
 
 #: gcharmap/src/interface.c:303
 #, c-format
@@ -421,11 +459,6 @@ msgstr "Ændre"
 #: mini-utils/gcolorsel/session.c:424
 msgid "Search"
 msgstr "Søg"
-
-#: gnome-find/gnome-find.c:89 gstripchart/gstripchart.c:1784
-#: gstripchart/gstripchart.c:2071
-msgid "Help"
-msgstr "Hjælp"
 
 #: gnome-find/gnome-find.c:95
 msgid "New"
@@ -802,11 +835,6 @@ msgstr "Top"
 msgid "Scale"
 msgstr "Skalér"
 
-#: gstripchart/gstripchart.c:1790 gstripchart/gstripchart.c:2074
-#: mini-utils/gcolorsel/menus.c:912 mini-utils/gshutdown/gshutdown.c:319
-msgid "About"
-msgstr "Om..."
-
 #: gstripchart/gstripchart.c:1796
 msgid "Params"
 msgstr "Parametre"
@@ -962,7 +990,7 @@ msgid ""
 " specified on command line"
 msgstr ""
 "Kunne ikke forstå geometrien (placering eller størrelse)\n"
-" der blev angivet på kommandolinien"
+" der blev angivet på kommandolinjen"
 
 #: gtt/clist.c:169
 msgid "Total"
@@ -1102,7 +1130,7 @@ msgstr "Vis sekunder"
 
 #: gtt/options.c:200
 msgid "Show Status Bar"
-msgstr "Vis statuslinie"
+msgstr "Vis statuslinje"
 
 #: gtt/options.c:206
 msgid "Show Table Header"
@@ -1110,7 +1138,7 @@ msgstr "Vis tabelhoved"
 
 #: gtt/options.c:220 gtt/options.c:514
 msgid "Toolbar"
-msgstr "Værktøjslinie"
+msgstr "Værktøjslinje"
 
 #: gtt/options.c:228
 msgid "Show Toolbar Icons"
@@ -1457,7 +1485,7 @@ msgstr "Sidste dato:"
 
 #: logview/info.c:167
 msgid "Num. lines:"
-msgstr "Nr. linier:"
+msgstr "Nr. linjer:"
 
 #: logview/info.c:183
 #, c-format
@@ -1623,7 +1651,7 @@ msgstr "Zoom                    "
 
 #: logview/logview.c:113
 msgid "Show line info"
-msgstr "Vis linie info"
+msgstr "Vis linjeinfo"
 
 #: logview/logview.c:119
 msgid "Select...               "
@@ -1715,11 +1743,11 @@ msgstr "Zoom visning"
 #: logview/zoom.c:151
 #, c-format
 msgid "Log line detail for %s"
-msgstr "Log linie detaljer for %s"
+msgstr "Log linjedetaljer for %s"
 
 #: logview/zoom.c:153
 msgid "Log line detail for <No log loaded>"
-msgstr "Log linie detaljer for <Ingen log indlæst>"
+msgstr "Log linjedetaljer for <Ingen log indlæst>"
 
 #: logview/zoom.c:176
 msgid "Date:"
@@ -2146,11 +2174,6 @@ msgstr "Luk visning"
 msgid "Close the current view"
 msgstr "Luk nuværende visning"
 
-#: mini-utils/gcolorsel/menus.c:83 mini-utils/gcolorsel/menus.c:906
-#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
-msgid "Close"
-msgstr "Luk"
-
 #: mini-utils/gcolorsel/menus.c:99
 msgid "Insert color"
 msgstr "Indsæt farve"
@@ -2559,7 +2582,7 @@ msgstr "Er du sikker på at du vil lukke computeren ned?"
 
 #: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to switch to single user mode?"
-msgstr "Er du sikker på at du vil skifte til enkeltbrugermodus?"
+msgstr "Er du sikker på at du vil skifte til enkeltbruger-tilstand?"
 
 #: mini-utils/gshutdown/gshutdown.c:101
 msgid "Are you sure you want to switch to runlevel 2?"
