@@ -157,6 +157,13 @@ int main(int argc, char *argv[])
 	if ((argc - offset) % modePtr->argmod)
 		Usage(argv[0]);
 
+/*
+ * Check to avoid Alphabets & Negative Values for height & width
+ */
+	if ((atoi(argv[offset+3]) <= 0) || (atoi(argv[offset+4]) <= 0)) {
+		fprintf(stderr, "\nError, can not take alphabets or negative values for height & width. \n");
+		exit(-1);
+	}
 	init_dialog();
 	retval = (*(modePtr->jumper)) (title, argc - offset, (const char * const *)argv + offset);
 
