@@ -68,7 +68,9 @@ CLEANFILES += $(CORBA_SRCLIST)
 
 EXTRA_DIST = gsu.gnorba
 
-$(CORBA_SRCLIST): $(top_srcdir)/idl/gsu.idl $(ORBIT_IDL)
+$(CORBA_SRCLIST): my_gsu_idl
+
+my_gsu_idl: $(top_srcdir)/idl/gsu.idl $(ORBIT_IDL)
 	orbit-idl $(top_srcdir)/idl/gsu.idl
 
 install-data-local:
