@@ -142,7 +142,7 @@ redraw (GttProject * prj, gpointer data)
 static gboolean
 raw_html_receiver (gpointer     engine,
                    const gchar *data,
-                   guint        len,
+                   size_t       len,
                    gpointer     user_data) 
 {
 	FILE *fh = (FILE *) user_data;

@@ -698,7 +698,7 @@ static SCM
 decode_scm_col_list (GttGhtml *ghtml, SCM col_list)
 {
 	SCM col_name;
-	size_t len;
+	int len;
 	char * tok = NULL;
 
 	/* reset the parser */
@@ -752,7 +752,7 @@ show_invoice (SCM col_list)
 static SCM
 do_show_scm (GttGhtml *ghtml, SCM node)
 {
-	size_t len;
+	int len;
 	char * str = NULL;
 
 	/* either a 'symbol or a "quoted string" */

@@ -31,6 +31,7 @@ gtt_SOURCES = 		\
 	xml-write.c
 
 noinst_HEADERS = 	\
+	app.h		\
 	ctree.h		\
 	cur-proj.h	\
 	dialog.h	\
@@ -43,6 +44,7 @@ noinst_HEADERS = 	\
 	log.h		\
 	menucmd.h	\
 	menus.h		\
+	myoaf.h		\
 	plug-in.h	\
 	prefs.h		\
 	proj.h		\
@@ -51,6 +53,7 @@ noinst_HEADERS = 	\
 	props-proj.h	\
 	props-task.h	\
 	shorts.h	\
+	timer.h		\
 	toolbar.h	\
 	util.h		\
 	xml-gtt.h

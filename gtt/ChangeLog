@@ -1,3 +1,12 @@
+Thu Oct 04 21:37:11 2001  George Lebl <jirka@5z.com>
+
+	* ghtml.c: more 64bit fixes.  Guile uses int and not size_t for the
+	  sizes of strings apparently.  It's kind of evil.
+
+	* Makefile.am: fix make dist
+
+	* journal.c: fix 64bit issue with saving
+
 Wed Sep 26 18:45:32 CDT 2001  Linas Vepstas <linas@linas.org>
 
 	* proj.[ch], proj-props.c, xml-read.c xml-write.c:
