@@ -114,7 +114,7 @@ mdi_color_file_load (MDIColorFile *mcf)
     if ((tmp[0] == '!') || (tmp[0] == '#')) continue;
 
     name[0] = 0;
-    if (sscanf(tmp, "%d %d %d\t\t%[a-zA-Z0-9 ]\n", &r, &g, &b, name) < 3) 
+    if (sscanf(tmp, "%d %d %d\t\t%[a-zA-Z0-9 -]\n", &r, &g, &b, name) < 3) 
       return FALSE;
 
     mdi_color_generic_append_new (MDI_COLOR_GENERIC (mcf), 
