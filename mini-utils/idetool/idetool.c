@@ -354,7 +354,7 @@ static int ide_parser(void)
 	char i;
 	GtkWidget *toplevel;
 	GtkWidget *tbox;
-	GtkWidget *pixmap;
+	GtkWidget *pixmap = NULL;
 	GtkWidget *notebook;
 	unsigned char *pic;
 	int drives=0;
