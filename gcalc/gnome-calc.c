@@ -860,7 +860,7 @@ negate_val(GtkWidget *w, gpointer data)
 
 	unselect_invert(gc);
 
-	if(!gc->_priv->add_digit) {
+	if(!gc->_priv->add_digit && gc->_priv->result != 0) {
 		simple_func(w,data);
 		return;
 	}
@@ -873,9 +873,9 @@ negate_val(GtkWidget *w, gpointer data)
 			*p='-';
 	} else {
 		if(gc->_priv->result_string[0]=='-' || 
-		   gc->_priv->result == 0)
+		   gc->_priv->result == 0) 
 			gc->_priv->result_string[0]=' ';
-		else
+		else 
 			gc->_priv->result_string[0]='-';
 	}
 

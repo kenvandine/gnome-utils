@@ -48,7 +48,7 @@ about_cb (GtkWidget *widget, gpointer data)
 		return;
 	}
 	
-	file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-calc2.png", FALSE, NULL);
+	file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-calc3.png", FALSE, NULL);
 	pixbuf = gdk_pixbuf_new_from_file (file, &error);
 	
 	if (error) {
@@ -185,7 +185,7 @@ main(int argc, char *argv[])
 
 	gnome_program_init ("gnome-calculator", VERSION, LIBGNOMEUI_MODULE,
 			argc, argv, GNOME_PARAM_APP_DATADIR,DATADIR, NULL);
-	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-calc2.png");
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-calc3.png");
 
         app = gnome_app_new("gnome-calculator", _("GNOME Calculator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gnome-calculator", "gnome-calculator");
