@@ -1,19 +1,21 @@
 # Ukrainian translation of the gnome-utils module.
 # Copyright (C) 1999 Free Software Foundation, Inc.
 # Yuri Syrota <rasta@renome.rovno.ua>, 1999.
-# Maxim Dzumanenko <mvd@mylinux.com.ua>, 2002
+# Maxim Dziumanenko <mvd@mylinux.com.ua>, 2002-2004
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 2.2.0.3\n"
+"Project-Id-Version: gnome-utils 2.4.1\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-01-13 13:40+1300\n"
-"PO-Revision-Date: 2003-02-12 03:20--500\n"
-"Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
+"PO-Revision-Date: 2004-02-04 20:20+0200\n"
+"Last-Translator: Maxim Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -26,7 +28,7 @@ msgstr "Пошук в словнику"
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:3
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
-msgstr "Пошук слова в словнику"
+msgstr "Пошук слів в словнику"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1
 msgid "_About..."
@@ -37,19 +39,16 @@ msgid "_Help"
 msgstr "_Довідка"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:3
-#, fuzzy
 msgid "_Look Up Selected Text"
-msgstr "Шукати виділений текст..."
+msgstr "_Шукати виділений текст"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-#, fuzzy
 msgid "_Preferences..."
-msgstr "Вп_одобання"
+msgstr "_Вподобання..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-#, fuzzy
 msgid "_Show Dictionary"
-msgstr "_Словник"
+msgstr "_Показувати вікно словника"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
@@ -80,13 +79,12 @@ msgid "Dictionary"
 msgstr "Словник"
 
 #: gdictsrc/gdict-about.c:58
-#, fuzzy
 msgid "A client for the MIT dictionary server."
-msgstr "Клієнт до словникового сервера MIT.\n"
+msgstr "Клієнт до словникового сервера MIT."
 
 #: gdictsrc/gdict-app.c:125
 msgid "Spell-checking..."
-msgstr "Перевірка орфоргафії..."
+msgstr "Перевірка орфографії..."
 
 #: gdictsrc/gdict-app.c:133
 msgid "Spell check done"
@@ -175,7 +173,7 @@ msgstr "_Шукати"
 #: gdictsrc/gdict-defbox.c:639 gdictsrc/gdict-speller.c:478
 #, c-format
 msgid "Error invoking query: %s"
-msgstr "Помилка виклику запиту: %s"
+msgstr "Помилка виконання запиту: %s"
 
 #: gdictsrc/gdict-pref-dialog.c:169
 msgid "Dictionary Preferences"
@@ -191,7 +189,7 @@ msgstr "_Сервер:"
 
 #: gdictsrc/gdict-pref-dialog.c:207
 msgid "De_fault Server"
-msgstr "Типовий с_ервер:"
+msgstr "Типовий с_ервер"
 
 #: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset server to default"
@@ -259,10 +257,9 @@ msgstr "Типова стратегія:"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
-msgstr "Введіть слово, для якого треба знайти правопис"
+msgstr "Введіть слово, правопис якого треба знайти"
 
 #: gdictsrc/gdict-speller.c:154
-#, fuzzy
 msgid "Search s_trategy:"
 msgstr "Стратегія _пошуку:"
 
@@ -271,9 +268,8 @@ msgid "Click to do the spell check"
 msgstr "Клацніть, щоб виконати перевірку орфографії"
 
 #: gdictsrc/gdict-speller.c:170
-#, fuzzy
 msgid "Search _results:"
-msgstr "_Результати пошуку"
+msgstr "_Результати пошуку:"
 
 #: gdictsrc/gdict-speller.c:230
 msgid "Check Spelling"
@@ -317,7 +313,7 @@ msgid ""
 "specifies that gnome-dictionary should search all databases in a given server"
 msgstr ""
 "Назва окремої бази даних на словниковому сервері. ! вказує, що словник Gnome "
-"повинен шукати у всіх базах даних сервера"
+"повинен шукати в усіх базах даних сервера"
 
 #: gdictsrc/gdict.schemas.in.h:7
 msgid "The port number to connect to. The default port is 2628."
@@ -384,236 +380,213 @@ msgstr ""
 "\"ext2\" - рідна файлова система linux або \"fat\" - файлова система DOS."
 
 #: gfloppy/src/badblocks.c:94
-#, fuzzy
 msgid "Internal Error: Unable to seek to the correct location."
-msgstr "MВнутрішня помилка: Не вдалося спозиціонуватись у потрібне місце."
+msgstr "Внутрішня помилка: Не вдалося перейти у потрібне місце."
 
 #: gfloppy/src/badblocks.c:103
-#, fuzzy, c-format
+#, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
-msgstr "MВнутрішня помилка: Дивне значення (%ld) в do_test\n"
+msgstr "Внутрішня помилка: дивне значення (%ld) у функції do_test\n"
 
 #. while (!i)
 #. ;
 #: gfloppy/src/badblocks.c:261
-#, fuzzy
 msgid "Checking for bad blocks..."
-msgstr "MПеревірка на дефектні блоки..."
+msgstr "Перевірка на дефектні блоки..."
 
 #: gfloppy/src/badblocks.c:273
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr "MНе вдалося відкрити пристрій %s для перевірки на дефектні блоки\n"
+msgstr "Не вдалося відкрити пристрій %s для перевірки на дефектні блоки\n"
 
 #: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
-#, fuzzy
 msgid "Checking for bad blocks... Done"
-msgstr "MПеревірка на дефектні блоки... Завершено"
+msgstr "Перевірка на дефектні блоки... Завершено"
 
 #: gfloppy/src/fdformat.c:49
-#, fuzzy
 msgid "Formatting the disk..."
-msgstr "MФорматування диску..."
+msgstr "Форматування диску..."
 
 #: gfloppy/src/fdformat.c:52
-#, fuzzy
 msgid "I don't know what this is, but it's very wrong."
-msgstr "EНе відомо, що це таке, але це дуже погано."
+msgstr "Не відомо, що відбувається, але це дуже погано."
 
 #: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
-#, fuzzy, c-format
+#, c-format
 msgid "Error formatting track #%d"
-msgstr "EПомилка форматування доріжки #%d"
+msgstr "Помилка форматування доріжки #%d"
 
 #: gfloppy/src/fdformat.c:82
-#, fuzzy
 msgid "Error during completion of formatting"
-msgstr "EПомилка під час завершення форматування"
+msgstr "Помилка під час завершення форматування"
 
 #. XXXX - need to tell parent we're finished
 #: gfloppy/src/fdformat.c:86
-#, fuzzy
 msgid "Formatting the disk... Done"
-msgstr "MФорматування дискети... Завершено"
+msgstr "Форматування дискети... Завершено"
 
 #. XXXX - tell parent we're starting verify stage
 #: gfloppy/src/fdformat.c:102
-#, fuzzy
 msgid "Verifying the format..."
-msgstr "MПеревірка форматування..."
+msgstr "Перевірка форматування..."
 
 #: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
-#, fuzzy
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
 "Please confirm that it is not write-protected."
 msgstr ""
-"EНе вдалося записати на дискету.\n"
+"Помилка запису на дискету.\n"
 "\n"
 "Будь ласка, переконайтесь, що дискета не захищена від запису."
 
 #: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
-#, fuzzy, c-format
+#, c-format
 msgid "Insufficient permissions to open floppy device %s."
-msgstr "EНе вистачає прав доступу для відкривання пристрою дисковода %s."
+msgstr "Не вистачає прав доступу для відкривання пристрою дисковода %s."
 
 #: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
-#, fuzzy
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
 "Please confirm that it is in the drive\n"
 "with the drive door shut."
 msgstr ""
-"EНе вдалося отримати доступ до дискети.\n"
+"Неможливо отримати доступ до дискети.\n"
 "\n"
 "Будь ласка, переконайтесь, що дискета в дисководі."
 
 #: gfloppy/src/fdformat.c:117
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s:%d"
 msgstr ""
-"EЗагальна помилка доступу до пристрою дисковода %s.\n"
+"Загальна помилка доступу до пристрою дисковода %s.\n"
 "\n"
 "Код помилки %s:%d"
 
 #: gfloppy/src/fdformat.c:140
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Read Error:\n"
 "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
-"EПомилка зчитування:\n"
-"Проблема із зчитуванням циліндра %d, очікувалось %d, зчитано %d"
+"Помилка зчитування:\n"
+"Проблема із зчитуванням циліндра %d, очікувалось %d, прочитано %d"
 
 #: gfloppy/src/fdformat.c:143
-#, fuzzy, c-format
+#, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
-msgstr "EПроблема із зчитуванням циліндра %d, очікувалось %d, зчитано %d"
+msgstr "Проблема із зчитуванням циліндра %d, очікувалось %d, прочитано %d"
 
 #: gfloppy/src/fdformat.c:154
-#, fuzzy, c-format
+#, c-format
 msgid "Bad data in cyl %d.  Continuing... "
-msgstr "MПогані дані в циліндрі %d.  Продовження... "
+msgstr "Пошкоджені дані в циліндрі %d.  Продовження... "
 
 #: gfloppy/src/fdformat.c:163
-#, fuzzy, c-format
+#, c-format
 msgid "Error closing device %s"
-msgstr "EПомилка закривання пристрою %s"
+msgstr "Помилка закривання пристрою %s"
 
 #: gfloppy/src/fdformat.c:170
-#, fuzzy
 msgid "Verifying the format... Done"
-msgstr "MПеревірка форматування... Завершено"
+msgstr "Перевірка форматування... Завершено"
 
 #: gfloppy/src/fdformat.c:182
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write to device %s"
-msgstr "EНе вдалося записати у пристрій %s"
+msgstr "Помилка запису у пристрій %s"
 
 #: gfloppy/src/fdformat.c:202
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s"
 msgstr ""
-"EЗагальна помилка доступу до пристрою дисковода %s.\n"
+"Загальна помилка доступу до пристрою дисковода %s.\n"
 "\n"
 "Код помилки: %s"
 
 #: gfloppy/src/fdformat.c:214
-#, fuzzy
 msgid "Could not determine current floppy geometry."
-msgstr "EНе вдалося визначити поточну геометрію дискети."
+msgstr "Неможливо визначити поточну геометрію дискети."
 
 #: gfloppy/src/gfloppy.c:221
-#, fuzzy
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
-"EПомилка під час створення унікальної назви файла з переліком дефектних "
-"блоків."
+"Помилка при створенні унікальної назви файла з переліком дефектних блоків."
 
 #: gfloppy/src/gfloppy.c:241
-#, fuzzy
 msgid "Error while filling the bad blocks list file."
-msgstr "EПомилка під час заповнення файла з переліком дефектних блоків."
+msgstr "Помилка при заповненні файла з переліком дефектних блоків."
 
 #: gfloppy/src/gfloppy.c:304
-#, fuzzy, c-format
+#, c-format
 msgid "Error while spawning the (%s) command: %s."
-msgstr "EПомилка при виконанні (%s) команди: %s "
+msgstr "Помилка при виконанні (%s) команди: %s "
 
 #: gfloppy/src/gfloppy.c:330
-#, fuzzy
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr "EНевідома початкова сигнатура mke2fs, відмінено."
+msgstr "Невідома початкова сигнатура mke2fs, відмінено."
 
 #: gfloppy/src/gfloppy.c:344
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
 "\n"
 "%s (%d)"
 msgstr ""
-"EПрограма створення файлових систем (%s) повідомлає про такі помилки:\n"
+"Програма створення файлових систем (%s) повідомляє про такі помилки:\n"
 "\n"
 "%s (%d)"
 
 #: gfloppy/src/gfloppy.c:361
-#, fuzzy
 msgid "Abnormal child process termination."
-msgstr "EАварійне завершення породженого процесу."
+msgstr "Аварійне завершення породженого процесу."
 
 #: gfloppy/src/gfloppy.c:386
-#, fuzzy, c-format
+#, c-format
 msgid "Error while spawning the mbadblocks command: %s."
-msgstr "EПомилка виконання команди mbadblocks: %s."
+msgstr "Помилка виконання команди mbadblocks: %s."
 
 #: gfloppy/src/gfloppy.c:398
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
-"EПрограма перевірки дефектних блоків (mbadblocks) повідомляє про такі "
+"Програма перевірки дефектних блоків (mbadblocks) повідомляє про такі "
 "помилки:\n"
 "%s."
 
 #: gfloppy/src/gfloppy.c:441
-#, fuzzy
 msgid "Abnormal mbadblocks child process termination."
-msgstr "EАварійне завершення породженого процесу mbadblocks."
+msgstr "Аварійне завершення породженого процесу mbadblocks."
 
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
-#, fuzzy
 msgid "Making filesystem on disk..."
-msgstr "MСтворення файлової системи на диску..."
+msgstr "Створення файлової системи на диску..."
 
 #: gfloppy/src/gfloppy.c:475
-#, fuzzy
 msgid "Unable to create filesystem correctly."
-msgstr "EНе вдалося створити файлову систему коректно."
+msgstr "Не вдалось коректно створити файлову систему."
 
 #: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
-#, fuzzy
 msgid "Making filesystem on disk... Done"
-msgstr "MСтворення файлової системи на диску... Завершено"
+msgstr "Створення файлової системи на диску... Завершено"
 
 #: gfloppy/src/gfloppy.c:524
-#, fuzzy
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr "MПеревірка на дефектні блоки... (це може зайняти певний час)"
+msgstr "Перевірка наявності дефектних блоків... (може зайняти певний час)"
 
 #: gfloppy/src/gfloppy.c:529
-#, fuzzy
 msgid "Error while checking the bad blocks."
-msgstr "EПомилка при перевірці на дефектні блоки."
+msgstr "Помилка при перевірці на дефектні блоки."
 
 #: gfloppy/src/gfloppy2.glade.h:1
 msgid "    "
@@ -624,27 +597,23 @@ msgid "*"
 msgstr "*"
 
 #: gfloppy/src/gfloppy2.glade.h:3
-#, fuzzy
 msgid ""
 "<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
-"<b>Увага</b>: У вашій системі не встановлено програму mbadblocks. Її "
-"необхідно встановити, для повного DOS (fat) форматування."
+"<small><i><b>Увага</b>: У вашій системі не встановлено програму mbadblocks. "
+"Її необхідно встановити, для повного DOS (fat) форматування.</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-#, fuzzy
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
 msgstr "<span weight=\"bold\">Параметри файлової системи</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
-#, fuzzy
 msgid "<span weight=\"bold\">Formatting Mode</span>"
 msgstr "<span weight=\"bold\">Режим форматування</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
-#, fuzzy
 msgid "<span weight=\"bold\">Physical Settings</span>"
 msgstr "<span weight=\"bold\">Фізичні параметри</span>"
 
@@ -686,11 +655,11 @@ msgstr "Рідна Linux (ext2)"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
-msgstr "П_овний (як і стандартний але з первіркою дефектних блоків)"
+msgstr "П_овний (як і стандартний але з перевіркою дефектних блоків)"
 
 #: gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
-msgstr "_Назва тома:"
+msgstr "_Назва тому:"
 
 #: gfloppy/src/gfloppy2.glade.h:19
 msgid "_Format"
@@ -698,7 +667,7 @@ msgstr "_Форматувати"
 
 #: gfloppy/src/gfloppy2.glade.h:20
 msgid "_Quick (only creates the filesystem)"
-msgstr "_Швидкий (лише створення файлової системи."
+msgstr "_Швидкий (лише створення файлової системи)"
 
 #: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
@@ -715,7 +684,7 @@ msgstr ""
 #: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "MНе вдалося відкрити пристрій %s, продовжити форматування неможливо."
+msgstr "Не вдалося відкрити пристрій %s, продовжити форматування неможливо."
 
 #: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
@@ -734,16 +703,15 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 "Ви не маєте належних прав для запису в %s, форматування неможливе.\n"
-"Щоб отримати права зв'яжіться з системним адміністратором."
+"Щоб отримати права зверніться до системного адміністратора."
 
 #: gfloppy/src/main.c:216
-#, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "MНе вдалося відкрити пристрій %s, продовжити форматування неможливо."
+msgstr "Не вдається відкрити жоден пристрій, продовжити форматування неможливо."
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 або /dev/fd0"
 
 #: gfloppy/src/main.c:394
 #, c-format
@@ -767,7 +735,7 @@ msgid "DEVICE"
 msgstr "ПРИСТРІЙ"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
@@ -775,9 +743,12 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
-"Дискету було відформатовано, але було знайдено та відмічено <b>%d дефектних "
-"блоків</b> ( з %d)."
+"Дискету було відформатовано, але було знайдено та відмічено <b>%d дефектний "
+"блок</b> ( з %d)."
 msgstr[1] ""
+"Дискету було відформатовано, але було знайдено та відмічено <b>%d дефектних "
+"блоки</b> ( з %d)."
+msgstr[2] ""
 "Дискету було відформатовано, але було знайдено та відмічено <b>%d дефектних "
 "блоків</b> ( з %d)."
 
@@ -790,9 +761,8 @@ msgid "Floppy formatting cancelled."
 msgstr "Форматування дискети відмінено."
 
 #: gfloppy/src/progress.c:175
-#, fuzzy
 msgid "Format Progress"
-msgstr "Поступ форматування"
+msgstr "Прогрес форматування"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
@@ -806,27 +776,27 @@ msgstr "Шукати файли на дисках"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:99
 msgid "Image/label border"
-msgstr ""
+msgstr "Рамка зображення/позначки"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Width of border around the label and image in the alert dialog"
-msgstr ""
+msgstr "Ширина рамки навколо позначки та зображення у діалоговому вікні застереження"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
 msgid "Alert Type"
-msgstr ""
+msgstr "Тип застереження"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "The type of alert"
-msgstr ""
+msgstr "Тип застереження"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:118
 msgid "Alert Buttons"
-msgstr ""
+msgstr "Кнопки застереження"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "The buttons shown in the alert dialog"
-msgstr ""
+msgstr "Кнопки, що показуються у діалоговому вікні застереження"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -838,57 +808,56 @@ msgstr "Від_крити теку"
 
 #: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
-msgstr ""
+msgstr "Пере_містити у смітник"
 
 #: gsearchtool/gsearchtool-callbacks.c:64
 msgid "_Save Results As..."
 msgstr "З_берегти результати як..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
-#, fuzzy
 msgid "Could not open help document."
-msgstr "%s не може бути відкритим."
+msgstr "Неможливо відкрити вміст довідки."
 
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Бажаєте відкрити %d документ?"
+msgstr[1] "Бажаєте відкрити %d документа?"
+msgstr[2] "Бажаєте відкрити %d документів?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] ""
-"Буде відкрито %d окремих файлів. Чи ви впевнені що хочете це зробити?"
-msgstr[1] ""
-"Буде відкрито %d окремих файлів. Чи ви впевнені що хочете це зробити?"
+msgstr[0] "Буде відкрито %d окреме вікно."
+msgstr[1] "Буде відкрито %d окремих вікна."
+msgstr[2] "Буде відкрито %d окремих вікон."
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
 #, c-format
 msgid "Could not open document \"%s\"."
-msgstr ""
+msgstr "Неможливо відкрити документ \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:393
 #: gsearchtool/gsearchtool-callbacks.c:947
-#, fuzzy
 msgid "There is no installed viewer capable of displaying the document."
-msgstr "Немає програми відображення здатної відкрити \"%s\"."
+msgstr "Немає програми відображення здатної відобразити документ."
 
 #: gsearchtool/gsearchtool-callbacks.c:444
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Бажаєте відкрити %d теку?"
+msgstr[1] "Бажаєте відкрити %d теки?"
+msgstr[2] "Бажаєте відкрити %d тек?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
-msgstr "%s не може бути відкритим."
+msgstr "Неможливо відкрити теку \"%s\""
 
 #: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
@@ -897,81 +866,80 @@ msgstr "Менеджер файлів Наутілус не запущений."
 #: gsearchtool/gsearchtool-callbacks.c:612
 #, c-format
 msgid "Could not move \"%s\" to trash."
-msgstr ""
+msgstr "Неможливо перемістити документ \"%s\" у смітник."
 
 #: gsearchtool/gsearchtool-callbacks.c:615
 msgid "The document does not exist."
-msgstr ""
+msgstr "Документ не існує."
 
 #: gsearchtool/gsearchtool-callbacks.c:652
 #, c-format
 msgid "Could not move \"%s\" to the trash."
-msgstr ""
+msgstr "Неможливо перемістити документ \"%s\" у смітник."
 
 #: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr ""
+msgstr "Помилка переміщення \"%s\": %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
-msgstr ""
+msgstr "Бажаєте остаточно видалити \"%s\"?"
 
 #: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr ""
+msgstr "Смітник відсутній. Неможливо перемістить \"%s\" у смітник."
 
 #: gsearchtool/gsearchtool-callbacks.c:730
 #, c-format
 msgid "Could not delete \"%s\"."
-msgstr ""
+msgstr "Неможливо видалити \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:733
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr ""
+msgstr "Помилка видалення \"%s\": %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:1132
 msgid "Save Search Results As..."
 msgstr "Зберегти результати пошуку як..."
 
 #: gsearchtool/gsearchtool-callbacks.c:1184
-#, fuzzy
 msgid "Could not save document."
-msgstr "%s не може бути відкритим."
+msgstr "Неможливо зберегти документ."
 
 #: gsearchtool/gsearchtool-callbacks.c:1186
 msgid "You did not select a document name."
-msgstr ""
+msgstr "Ви не вибрали назву документа."
 
 #: gsearchtool/gsearchtool-callbacks.c:1212
 #: gsearchtool/gsearchtool-callbacks.c:1307
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
-msgstr ""
+msgstr "Неможливо зберегти документ \"%s\" у \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
-msgstr ""
+msgstr "Вибраний вами документ є текою."
 
 #: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "Документ \"%s\" вже існує. Бажаєте його замінити?"
 
 #: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr ""
+msgstr "Якщо ви заміните існуючий файл, його вміст буде втрачено."
 
 #: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
-msgstr ""
+msgstr "_Замінити"
 
 #: gsearchtool/gsearchtool-callbacks.c:1310
 msgid "You may not have write permissions to the document."
-msgstr ""
+msgstr "Не вистачає прав для запису документу."
 
 #: gsearchtool/gsearchtool-support.c:63
 #, c-format
@@ -989,15 +957,15 @@ msgstr ""
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
 #: gsearchtool/gsearchtool-support.c:348
 msgid "today at %-I:%M %p"
-msgstr "сьогодні о %-I:%M %p"
+msgstr "сьогодні о %-H:%M"
 
 #: gsearchtool/gsearchtool-support.c:350
 msgid "yesterday at %-I:%M %p"
-msgstr "вчора о %-I:%M %p"
+msgstr "вчора о %-H:%M"
 
 #: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
 msgid "%m/%-d/%y, %-I:%M %p"
-msgstr "%d.%-m.%y, %-I:%M %p"
+msgstr "%d-%-m-%Y, %-H:%M"
 
 #: gsearchtool/gsearchtool-support.c:487
 msgid "link (broken)"
@@ -1009,7 +977,6 @@ msgid "link to %s"
 msgstr "посилання на %s"
 
 #: gsearchtool/gsearchtool.c:70
-#, fuzzy
 msgid "Contains the _text"
 msgstr "Містить _текст"
 
@@ -1018,12 +985,10 @@ msgid "_Date modified less than (days)"
 msgstr "_Дата останньої зміни менша за (діб)"
 
 #: gsearchtool/gsearchtool.c:73
-#, fuzzy
 msgid "Date modified more than (da_ys)"
 msgstr "Да_та останньої зміни більша за (діб)"
 
 #: gsearchtool/gsearchtool.c:75
-#, fuzzy
 msgid "S_ize at least (kilobytes)"
 msgstr "_Розмір принаймні (кілобайт)"
 
@@ -1049,7 +1014,7 @@ msgstr "Власник невідомий"
 
 #: gsearchtool/gsearchtool.c:83
 msgid "Na_me does not contain"
-msgstr "На_ва не містить"
+msgstr "На_зва не містить"
 
 #: gsearchtool/gsearchtool.c:84
 msgid "Name matches regular e_xpression"
@@ -1057,11 +1022,11 @@ msgstr "Назва відповідає регулярному виразу"
 
 #: gsearchtool/gsearchtool.c:86
 msgid "Show hidden and backup files"
-msgstr ""
+msgstr "Показувати приховані файли та резервні копії файлів"
 
 #: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
-msgstr "Дотримуватись символьних посилань"
+msgstr "Переходити за символьними посиланнями"
 
 #: gsearchtool/gsearchtool.c:88
 msgid "Include other filesystems"
@@ -1073,26 +1038,27 @@ msgstr "Файлів не знайдено"
 
 #: gsearchtool/gsearchtool.c:530
 msgid "(stopped)"
-msgstr ""
+msgstr "(зупинено)"
 
 #: gsearchtool/gsearchtool.c:536
-#, fuzzy
 msgid "No Files Found"
 msgstr "Файлів не знайдено"
 
 #: gsearchtool/gsearchtool.c:541
-#, fuzzy, c-format
+#, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
-msgstr[0] "Знайдено %d файлів"
-msgstr[1] "Знайдено %d файлів"
+msgstr[0] "Знайдено %d файл"
+msgstr[1] "Знайдено %d файли"
+msgstr[2] "Знайдено %d файлів"
 
 #: gsearchtool/gsearchtool.c:545
-#, fuzzy, c-format
+#, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
-msgstr[0] "Знайдено %d файлів"
-msgstr[1] "Знайдено %d файлів"
+msgstr[0] "Знайдено %d файл"
+msgstr[1] "Знайдено %d файли"
+msgstr[2] "Знайдено %d файлів"
 
 #: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
@@ -1100,7 +1066,7 @@ msgstr "Викликано зміну запису для параметру, щ
 
 #: gsearchtool/gsearchtool.c:900
 msgid "Searching..."
-msgstr "Пошук..."
+msgstr "Триває пошук..."
 
 #: gsearchtool/gsearchtool.c:921
 msgid "Set the text of 'Name contains'"
@@ -1149,19 +1115,16 @@ msgstr ""
 "... Надто багато помилок ..."
 
 #: gsearchtool/gsearchtool.c:1312
-#, fuzzy
 msgid "Error while searching for files."
-msgstr "EПомилка при перевірці на дефектні блоки."
+msgstr "Помилка при пошуку файлів."
 
 #: gsearchtool/gsearchtool.c:1353
-#, fuzzy
 msgid "Error parsing the search command."
-msgstr "EПомилка при виконанні (%s) команди: %s "
+msgstr "Помилка граматичного аналізу команди пошуку."
 
 #: gsearchtool/gsearchtool.c:1376
-#, fuzzy
 msgid "Error running the search command."
-msgstr "EПомилка при виконанні (%s) команди: %s "
+msgstr "Помилка запуску команди пошуку."
 
 #: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
@@ -1172,7 +1135,6 @@ msgid "Enter a value for search rule"
 msgstr "Введіть значення для правила пошуку"
 
 #: gsearchtool/gsearchtool.c:1511
-#, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Клацніть, щоб видалити \"%s\" правило"
 
@@ -1189,9 +1151,8 @@ msgid "Select a search rule from the menu"
 msgstr "Створити новий вигляд документу"
 
 #: gsearchtool/gsearchtool.c:1613
-#, fuzzy
 msgid "S_earch results:"
-msgstr "_Результати пошуку"
+msgstr "_Результати пошуку:"
 
 #: gsearchtool/gsearchtool.c:1693
 msgid "Name"
@@ -1218,9 +1179,8 @@ msgid "_Name contains:"
 msgstr "_Назва містить:"
 
 #: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-#, fuzzy
 msgid "Name Contains Entry"
-msgstr "_Назва містить:"
+msgstr "Назва містить елемент"
 
 #: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Enter the file name you want to search"
@@ -1228,34 +1188,31 @@ msgstr "Введіть назву файла, що ви хочете знайт�
 
 #: gsearchtool/gsearchtool.c:1830
 msgid "_Look in folder:"
-msgstr "_Шукати у теках:"
+msgstr "_Шукати у теці:"
 
 #: gsearchtool/gsearchtool.c:1836
 msgid "Browse"
 msgstr "Переглянути"
 
 #: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-#, fuzzy
 msgid "Look in Folder Entry"
-msgstr "_Шукати у теках:"
+msgstr "Шукати у вказаній теці"
 
 #: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Enter the folder name where you want to start the search"
 msgstr "Введіть назву теки, з якої ви хочете розпочати пошук"
 
 #: gsearchtool/gsearchtool.c:1865
-#, fuzzy
 msgid "Show more _options"
-msgstr "Показати інформацію про журнал"
+msgstr "Показати додаткові _параметри"
 
 #: gsearchtool/gsearchtool.c:1875
-#, fuzzy
 msgid "Show more options"
-msgstr "Показати інформацію про журнал"
+msgstr "Показати додаткові параметри"
 
 #: gsearchtool/gsearchtool.c:1875
 msgid "Expands or collapses a list of search options."
-msgstr ""
+msgstr "Розгортає чи згортає перелік параметрів пошуку."
 
 #: gsearchtool/gsearchtool.c:1922
 msgid "Click to Start the search"
@@ -1276,17 +1233,15 @@ msgstr "Чезар Міґель (miquel@df.uba.ar)"
 
 #: logview/about.c:44
 msgid "A system log viewer for GNOME."
-msgstr ""
+msgstr "Перегляд системних журналів для GNOME."
 
 #: logview/about.c:58
-#, fuzzy
 msgid "System Log Viewer"
 msgstr "Переглядач системних журналів"
 
 #: logview/actions.c:74
-#, fuzzy
 msgid "Action Database"
-msgstr "База подій"
+msgstr "База даних подій"
 
 #: logview/actions.c:85
 msgid "Actions"
@@ -1399,9 +1354,8 @@ msgid "View the system log file"
 msgstr "Перегляд системних журналів"
 
 #: logview/info.c:62
-#, fuzzy
 msgid "Properties"
-msgstr "В_ластивості"
+msgstr "Властивості"
 
 #: logview/info.c:108
 msgid "Size:"
@@ -1417,7 +1371,7 @@ msgstr "Початкова дата:"
 
 #: logview/info.c:109
 msgid "Last Date:"
-msgstr "Остання дата:"
+msgstr "Остання зміна:"
 
 #: logview/info.c:109
 msgid "Number of Lines:"
@@ -1432,11 +1386,12 @@ msgid "<No log loaded>"
 msgstr "<Журналу не завантажено>"
 
 #: logview/info.c:183
-#, fuzzy, c-format
+#, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
-msgstr[0] "байтів: %ld"
-msgstr[1] "байтів: %ld"
+msgstr[0] "%ld байт"
+msgstr[1] "%ld байти"
+msgstr[2] "%ld байтів"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1496,7 +1451,7 @@ msgstr "%x"
 #. * will be bogus here
 #: logview/log_repaint.c:452
 msgid "%B %e"
-msgstr "%B %e"
+msgstr "%e %B"
 
 #. Translators: should be only the time, date could be bogus
 #: logview/log_repaint.c:524
@@ -1523,7 +1478,7 @@ msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
-"%s не може бути прочитаним. Або запустіть програму як root, або попросіть "
+"%s не може бути прочитаний. Або запустіть програму як root, або попросіть "
 "системного адміністратора змінити права доступу до файла."
 
 #: logview/logrtns.c:290
@@ -1630,14 +1585,13 @@ msgstr "Файл вже відкрито"
 
 #: logview/logview.c:658
 msgid "Open new logfile"
-msgstr "Відкрити новий журнал"
+msgstr "Відкривання нового журналу"
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
 msgstr "Файл журналу, що відкриватиметься на початку"
 
 #: logview/logview.schemas.in.h:2
-#, fuzzy
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
@@ -1655,19 +1609,16 @@ msgid "Monitor Options"
 msgstr "Параметри контролю"
 
 #: logview/monitor.c:111
-#, fuzzy
 msgid "Ac_tions..."
-msgstr "_Дії"
+msgstr "_Дії..."
 
 #: logview/monitor.c:137
-#, fuzzy
 msgid "_Select logs to monitor:"
-msgstr "Виберіть журнал для контролю:"
+msgstr "_Виберіть журнал для контролю:"
 
 #: logview/monitor.c:142
-#, fuzzy
 msgid "Currently _monitored logs:"
-msgstr "Журнали, що вже контролюються:"
+msgstr "Журнали, що вже _контролюються:"
 
 #: logview/monitor.c:190
 msgid "Add logs to monitor"
@@ -1679,12 +1630,10 @@ msgstr "Видалити журнал зі списку контрольован
 
 #. Check boxes
 #: logview/monitor.c:246
-#, fuzzy
 msgid "_Hide application"
 msgstr "_Приховати програму"
 
 #: logview/monitor.c:254
-#, fuzzy
 msgid "_Execute actions"
 msgstr "Ви_конати дії"
 
@@ -1698,7 +1647,6 @@ msgid "tmp_list is NULL\n"
 msgstr "tmp_list -- NULL\n"
 
 #: logview/monitor.c:457
-#, fuzzy
 msgid "Monitoring Logs..."
 msgstr "Контроль журналів..."
 
@@ -1707,9 +1655,8 @@ msgid "TOUCHED!!\n"
 msgstr "ЗМІНЕНО!!\n"
 
 #: logview/zoom.c:63
-#, fuzzy
 msgid "Entry Detail"
-msgstr "Подробиці про е_лемент"
+msgstr "Подробиці про елемент"
 
 #: logview/zoom.c:101
 msgid "Date:"
@@ -1728,7 +1675,6 @@ msgid "Description:"
 msgstr "Опис:"
 
 #: logview/zoom.c:129
-#, fuzzy
 msgid "Log Line Details"
 msgstr "Подробиці про рядок"
 
@@ -1736,509 +1682,3 @@ msgstr "Подробиці про рядок"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
-
-#, fuzzy
-#~ msgid "One File Found"
-#~ msgstr "Знайдено один файл"
-
-#~ msgid "One file found"
-#~ msgstr "Знайдено один файл"
-
-#, fuzzy
-#~ msgid "Open %d documents?"
-#~ msgstr "Відкрити %d тек?"
-
-#, fuzzy
-#~ msgid ""
-#~ "This will open %d separate documents. Are you sure you want to do this?"
-#~ msgstr "Буде відкрити %d окремих тек. Чи ви впевнені що хочете це зробити?"
-
-#, fuzzy
-#~ msgid "Open %d folders?"
-#~ msgstr "Відкрити %d тек?"
-
-#~ msgid ""
-#~ "This will open %d separate folders. Are you sure you want to do this?"
-#~ msgstr "Буде відкрити %d окремих тек. Чи ви впевнені що хочете це зробити?"
-
-#~ msgid "GNOME Dictionary"
-#~ msgstr "Словник GNOME"
-
-#~ msgid "Gdialog progressbar"
-#~ msgstr "Індикатор Gdialog"
-
-#~ msgid "Indicates the percentage specified at the standard input"
-#~ msgstr "Показує відсоток, що вказується у стандартному вводі "
-
-#~ msgid "GDialog Entry"
-#~ msgstr "Елемент GDialog"
-
-#~ msgid "Enter the text"
-#~ msgstr "Введіть текст"
-
-#~ msgid "Copyright 1999 by Mike Hughes"
-#~ msgstr "Copyright 1999 by Mike Hughes"
-
-#~ msgid "_Word: "
-#~ msgstr "С_лово:"
-
-#~ msgid "Headword:"
-#~ msgstr "Слово-заголовок:"
-
-#~ msgid "Sub-number:"
-#~ msgstr "Додатковий номер:"
-
-#~ msgid "Pronunciation:"
-#~ msgstr "Вимова:"
-
-#~ msgid "Etymology:"
-#~ msgstr "Етимологія:"
-
-#~ msgid "Part of speech:"
-#~ msgstr "Частина мови:"
-
-#~ msgid "Example:"
-#~ msgstr "Приклад:"
-
-#~ msgid "Main body:"
-#~ msgstr "Словарна стаття:"
-
-#~ msgid "Cross-reference:"
-#~ msgstr "Посилання:"
-
-#~ msgid "Search _Results"
-#~ msgstr "_Результати пошуку"
-
-#~ msgid "Floppy formatter"
-#~ msgstr "Форматування дискет"
-
-#~ msgid "(aborted)"
-#~ msgstr "(перервано)"
-
-#~ msgid "Search Errors"
-#~ msgstr "Помилки пошуку"
-
-#~ msgid "Search for Files Error"
-#~ msgstr "Помилки пошуку файлів"
-
-#~ msgid "File Name Entry"
-#~ msgstr "Назва файла"
-
-#~ msgid "Starting folder entry"
-#~ msgstr "Починати з теки"
-
-#~ msgid "Additional Options"
-#~ msgstr "Додаткові параметри"
-
-#~ msgid "Can't Display Help"
-#~ msgstr "Неможливо відобразити довідку"
-
-#~ msgid "Open %d Files?"
-#~ msgstr "Відкрити %d файлів?"
-
-#~ msgid "Can't Display Location"
-#~ msgstr "Неможливо відобразити розташування"
-
-#~ msgid ""
-#~ "Cannot save search results.\n"
-#~ "\"%s\" is a folder."
-#~ msgstr ""
-#~ "Неможливо зберегти файл результатів.\n"
-#~ "\"%s\" є текою."
-
-#~ msgid "File \"%s\" already exists. Overwrite?"
-#~ msgstr "Файл \"%s\" вже існує. Переписати?"
-
-#~ msgid "Cannot save search results to the file \"%s\"."
-#~ msgstr "Неможливо зберегти файл результатів у файл \"%s\"."
-
-#~ msgid "Expander Size"
-#~ msgstr "Розмір розширювача"
-
-#~ msgid "Size of the expander arrow"
-#~ msgstr "Розмір стрілки розширювача"
-
-#~ msgid "%Y%m%d%H%M%S"
-#~ msgstr "%Y%m%d%H%M%S"
-
-#~ msgid ""
-#~ "This program is part of the GNOME project. Logview comes with ABSOLUTELY "
-#~ "NO WARRANTY. This is free software, and you are welcome to redistribute "
-#~ "it under the conditions of the GNU General Public Licence. The log icon "
-#~ "is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-#~ msgstr ""
-#~ "Ця програма - частина проекту GHOME для Linux. Вона надається БЕЗ "
-#~ "УСІЛЯКИХ ГАРАНТІЙ. Це вільне програмне забезпечення і ви можете "
-#~ "розповсюджувати його на умовах GNU GPL. Піктограму зроблено Tuomas "
-#~ "Kuosmanen (ще відомий як tigert)."
-
-#~ msgid "Copyright (C) 1998"
-#~ msgstr "Copyright (С) 1998"
-
-#~ msgid "Log stats"
-#~ msgstr "Інформація про журнал"
-
-#~ msgid "Zoom view"
-#~ msgstr "Подробиці"
-
-#~ msgid "_Show/Hide Definition Window..."
-#~ msgstr "По_казати/прибрати вікно визначення..."
-
-#~ msgid "GNOME Calculator"
-#~ msgstr "Калькулятор GNOME"
-
-#~ msgid "(C) 1998 Free Software Foundation, Inc."
-#~ msgstr "© 1998 Фундація вільного програмного забезпечення"
-
-#~ msgid "Simple double precision calculator similar to xcalc"
-#~ msgstr "Простий калькулятор подібний до xcalc"
-
-#~ msgid "_Calculator"
-#~ msgstr "_Калькулятор"
-
-#~ msgid "Calculator"
-#~ msgstr "Калькулятор"
-
-#~ msgid "inf"
-#~ msgstr "інф"
-
-#~ msgid "DEG"
-#~ msgstr "ГР"
-
-#~ msgid "RAD"
-#~ msgstr "РАД"
-
-#~ msgid "GRAD"
-#~ msgstr "ГРАД"
-
-#~ msgid "1/x"
-#~ msgstr "1/x"
-
-#~ msgid "Inverse"
-#~ msgstr "Інвертувати"
-
-#~ msgid "x<sup>2</sup>"
-#~ msgstr "x<sup>2</sup>"
-
-#~ msgid "Square"
-#~ msgstr "Квадрат"
-
-#~ msgid "SQRT"
-#~ msgstr "КВ.КОР"
-
-#~ msgid "Square root"
-#~ msgstr "Корінь квадратний"
-
-#~ msgid "CE/C"
-#~ msgstr "CE/C"
-
-#~ msgid "Clear"
-#~ msgstr "Очистити"
-
-#~ msgid "AC"
-#~ msgstr "AC"
-
-#~ msgid "Reset"
-#~ msgstr "Скинути"
-
-#~ msgid "INV"
-#~ msgstr "ІНВ"
-
-#~ msgid "Inverse trigonometry/log function"
-#~ msgstr "Інвертувати тригонометричну функцію/логарифм"
-
-#~ msgid "sin"
-#~ msgstr "sin"
-
-#~ msgid "Sine"
-#~ msgstr "Синус"
-
-#~ msgid "cos"
-#~ msgstr "cos"
-
-#~ msgid "Cosine"
-#~ msgstr "Косинус"
-
-#~ msgid "tan"
-#~ msgstr "tan"
-
-#~ msgid "Tangent"
-#~ msgstr "Тангенс"
-
-#~ msgid " DEG  "
-#~ msgstr "  ГР  "
-
-#~ msgid "Switch degrees / radians / grad"
-#~ msgstr "Перемикнути градуси / радіани / ґради"
-
-#~ msgid "e"
-#~ msgstr "e"
-
-#~ msgid "Base of Natural Logarithm"
-#~ msgstr "Основа натурального логарифма"
-
-#~ msgid "EE"
-#~ msgstr "EE"
-
-#~ msgid "Add digit"
-#~ msgstr "Додати цифру"
-
-#~ msgid "log"
-#~ msgstr "log"
-
-#~ msgid "Base 10 Logarithm"
-#~ msgstr "Логарифм з основою 10"
-
-#~ msgid "ln"
-#~ msgstr "ln"
-
-#~ msgid "Natural Logarithm"
-#~ msgstr "Натуральний логарифм"
-
-#~ msgid "x<sup>y</sup>"
-#~ msgstr "x<sup>y</sup>"
-
-#~ msgid "Power"
-#~ msgstr "Степінь"
-
-#~ msgid "PI"
-#~ msgstr "Пі"
-
-#~ msgid "x!"
-#~ msgstr "x!"
-
-#~ msgid "Factorial"
-#~ msgstr "Факторіал"
-
-#~ msgid "("
-#~ msgstr "("
-
-#~ msgid "Opening Parenthesis"
-#~ msgstr "Відкривна дужка"
-
-#~ msgid ")"
-#~ msgstr ")"
-
-#~ msgid "Closing Parenthesis"
-#~ msgstr "Закривна дужка"
-
-#~ msgid "/"
-#~ msgstr "/"
-
-#~ msgid "Divide by"
-#~ msgstr "Поділити"
-
-#~ msgid "STO"
-#~ msgstr "ЗАП"
-
-#~ msgid ""
-#~ "Store the value in the\n"
-#~ "display field in memory"
-#~ msgstr ""
-#~ "Запам'ятати значення\n"
-#~ "дисплея у пам'яті"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "Multiply by"
-#~ msgstr "Помножити"
-
-#~ msgid "RCL"
-#~ msgstr "ВИК"
-
-#~ msgid ""
-#~ "Display the value in memory\n"
-#~ "in the display field"
-#~ msgstr ""
-#~ "Викликати значення з\n"
-#~ "пам'яті на дисплей"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "Subtract"
-#~ msgstr "Відняти"
-
-#~ msgid "SUM"
-#~ msgstr "СУМ"
-
-#~ msgid ""
-#~ "Add the value in the display\n"
-#~ "field to the value in memory"
-#~ msgstr ""
-#~ "Додати значення дисплея\n"
-#~ "до значення у пам'яті"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "+"
-#~ msgstr "+"
-
-#~ msgid "Add"
-#~ msgstr "Додати"
-
-#~ msgid "EXC"
-#~ msgstr "ОБМ"
-
-#~ msgid ""
-#~ "Exchange the values in the\n"
-#~ "display field and memory"
-#~ msgstr ""
-#~ "Обміняти значення дисплея\n"
-#~ "та у пам'яті"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "."
-#~ msgstr "."
-
-#~ msgid "Decimal Point"
-#~ msgstr "Десяткова кома"
-
-#~ msgid "+/-"
-#~ msgstr "+/-"
-
-#~ msgid "Change sign"
-#~ msgstr "Змінити знак"
-
-#~ msgid "="
-#~ msgstr "="
-
-#~ msgid "Calculate"
-#~ msgstr "Обрахувати"
-
-#~ msgid "Perform simple calculations"
-#~ msgstr "Здійснення простих обрахунків"
-
-#~ msgid "Character Map"
-#~ msgstr "Мапа символів"
-
-#~ msgid "Insert special characters into documents"
-#~ msgstr "Вставити спеціальний символ у документ"
-
-#~ msgid "Select Character"
-#~ msgstr "Вибрати символ"
-
-#~ msgid "_Insert"
-#~ msgstr "_Вставити"
-
-#~ msgid "Character c_ode:"
-#~ msgstr "_Код символу:"
-
-#~ msgid "Ch_aracter:"
-#~ msgstr "Си_мвол:"
-
-#~ msgid "Character Code"
-#~ msgstr "Код символу"
-
-#~ msgid "Select character code"
-#~ msgstr "Вибрати код символу"
-
-#~ msgid "Character"
-#~ msgstr "Символ"
-
-#~ msgid "Character to insert"
-#~ msgstr "Символ:"
-
-#~ msgid "GNOME Character Map"
-#~ msgstr "Мапа символів"
-
-#~ msgid ""
-#~ "Select, copy and paste characters from your font into other applications"
-#~ msgstr ""
-#~ "Вибирання, копіювання та вставляння символів з шрифту у інші програми"
-
-#, fuzzy
-#~ msgid "Character code: (Unicode) U+%04lX"
-#~ msgstr "Код символу: (Юнікод) U%04lX"
-
-#, fuzzy
-#~ msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
-#~ msgstr "Код символу: (Юнікод)  U%04lX, (%s) 0x%s"
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "Текст скопійовано у кишеню..."
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "Текст вирізано у кишеню..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "Текст вставлений з кишені..."
-
-#~ msgid "Action Toolbar"
-#~ msgstr "Панель дій"
-
-#~ msgid "_Font:"
-#~ msgstr "_Шрифт:"
-
-#~ msgid "_Page:"
-#~ msgstr "_Сторінка:"
-
-#~ msgid "_Text to copy:"
-#~ msgstr "_Текст для копіювання:"
-
-#~ msgid "_Copy"
-#~ msgstr "С_копіювати"
-
-#~ msgid "Text to copy"
-#~ msgstr "Текст для копіювання"
-
-#~ msgid "Entry"
-#~ msgstr "Елемент"
-
-#~ msgid "Copy"
-#~ msgstr "Копіювати"
-
-#~ msgid "Copy the text"
-#~ msgstr "Скопіювати текст"
-
-#~ msgid "_Browse..."
-#~ msgstr "_Вибрати..."
-
-#~ msgid "Insert character(s) by choosing character codes."
-#~ msgstr "Вставити символи вибираючи їхні коди."
-
-#~ msgid "Ch_aracters"
-#~ msgstr "Си_мволи"
-
-#~ msgid "Cut"
-#~ msgstr "Вирізати"
-
-#~ msgid "Cut the selection"
-#~ msgstr "Вирізати вибране"
-
-#~ msgid "Copy the selection"
-#~ msgstr "Скопіювати вибране"
-
-#~ msgid "Paste"
-#~ msgstr "Вставити"
-
-#~ msgid "Paste the clipboard"
-#~ msgstr "Вставити вміст кишені"
-
-#~ msgid "GNOME Search Tool"
-#~ msgstr "Пошук файлів"
