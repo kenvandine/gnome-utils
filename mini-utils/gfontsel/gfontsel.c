@@ -27,7 +27,7 @@ typedef struct {
 	GtkWidget *entry;
 	gchar *prev_fontname;
 
-	gchar *font_pattern;
+	gchar *font_load;
 	gboolean print_on_exit;
 	gboolean remember_font;
 	gboolean load_last;
@@ -168,8 +168,8 @@ gfontsel_create_dialog (gfontsel_cfg_t * cfg)
 	gtk_container_add (GTK_CONTAINER (
 		GNOME_DIALOG (cfg->dialog)->vbox), cfg->fontsel);
 
-	if (cfg->font_pattern)
-		on_load_font = cfg->font_pattern;
+	if (cfg->font_load)
+		on_load_font = cfg->font_load;
 	else if (cfg->load_last)
 		on_load_font = gnome_config_get_string (CONFIG_LASTFONT);
 
@@ -199,15 +199,15 @@ error_t parse_an_arg (int key, char *arg, struct argp_state *state)
 
 	switch (key) {
 	case ARGP_KEY_INIT:
-		cfg->font_pattern = NULL;
+		cfg->font_load = NULL;
 		cfg->print_on_exit = FALSE;
 		cfg->remember_font = TRUE;
 		cfg->load_last = TRUE;
 		break;
 
-#define PATTERN_KEY			'f'
-	case PATTERN_KEY:
-		cfg->font_pattern = g_strdup (arg);
+#define FONT_KEY			'f'
+	case FONT_KEY:
+		cfg->font_load = g_strdup (arg);
 		break;
 
 #define PRINT_KEY			'p'
@@ -231,8 +231,8 @@ error_t parse_an_arg (int key, char *arg, struct argp_state *state)
 
 static struct argp_option options[] =
 {
-	{"pattern", PATTERN_KEY, "pattern", 0,
-	 N_("font pattern"), 1},
+	{"font", FONT_KEY, "fontspec", 0,
+	 N_("font to load"), 1},
 
 	{"print", PRINT_KEY, NULL, 0,
 	 N_("print selected font name on exit"), 1},
