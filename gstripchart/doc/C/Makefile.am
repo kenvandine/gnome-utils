@@ -1,8 +1,8 @@
 figs = \
-	main.png  \
-	menu.png  \
-	param.png  \
-	text.png
+	figures/main.png  \
+	figures/menu.png  \
+	figures/param.png  \
+	figures/text.png
 
 app = gstripchart
 lang = C
