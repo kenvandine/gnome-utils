@@ -382,7 +382,7 @@ static void do_logo_box(GtkWidget * box)
     
 	im = gdk_imlib_load_image (s);
 
-    gnome_canvas_set_size (GNOME_CANVAS (pixmap), im->rgb_width, im->rgb_height);
+    gtk_widget_set_usize (pixmap, im->rgb_width, im->rgb_height);
     gnome_canvas_set_scroll_region (GNOME_CANVAS (pixmap), 0, 0, 
                                     im->rgb_width, im->rgb_height);
 
