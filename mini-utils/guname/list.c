@@ -77,6 +77,59 @@ void fill_clist(GtkCList * list,
                        200);
 }
 
+#ifdef HAVE_LIBGTOP_SYSINFO
+
+void fill_clist_from_glibtop_entry (GtkCList * list,
+                                    glibtop_entry * entry)
+{
+  const gchar * row[2];
+  int i;
+  gint col_zero_width, col_one_width;
+  GdkFont * font;
+
+  font = gtk_widget_get_style(GTK_WIDGET(list))->font;
+
+  i = 0; col_zero_width = 0; col_one_width = 0;
+
+  while ( i < entry->labels->len ) {
+
+    const gchar * value = NULL, * description = NULL;
+
+    value = g_hash_table_lookup
+      (entry->values, entry->labels->pdata [i]);
+
+    if (entry->descriptions)
+      description = g_hash_table_lookup
+        (entry->descriptions, entry->labels->pdata [i]);
+
+    if (value == NULL) {
+      ++i;
+      continue;
+    }
+
+    row[0] = entry->labels->pdata [i];
+    row[1] = description ? description : value;
+    gtk_clist_append(list, (gchar **)row);
+
+    /* If the string is longer than any previous ones,
+       increase the column width */
+    
+    col_zero_width = max ( gdk_string_width(font, row[0]), col_zero_width );
+    col_one_width =  max ( gdk_string_width(font, row[1]), col_one_width );
+
+    ++i;
+  }
+
+  /* The first column is a little wider than the largest string, so 
+     it's not too close to the second column. */
+  gtk_clist_set_column_width(list, 0, col_zero_width + 10);
+  gtk_clist_set_column_width(list, 1, col_one_width);
+  
+  gtk_widget_set_usize(GTK_WIDGET(list), col_zero_width+col_one_width + 30, 
+                       200);
+}
+
+#endif
 
 GtkWidget * create_clist(const gchar * titles[])
 {

@@ -22,6 +22,15 @@
 #ifndef LIST_H
 #define LIST_H
 
+#ifdef HAVE_LIBGTOP_SYSINFO
+
+#include <glibtop/sysinfo.h>
+
+void fill_clist_from_glibtop_entry (GtkCList * list,
+                                    glibtop_entry * entry);
+
+#endif
+
 void fill_clist(GtkCList * clist,
                 const gchar ** col1, const gchar ** col2, 
                 gint numitems);

@@ -25,6 +25,10 @@
 #include <glibtop/mem.h>
 #include <glibtop/swap.h>
 
+#ifdef HAVE_LIBGTOP_SYSINFO
+#include <glibtop/sysinfo.h>
+#endif
+
 #include <glibtop/fsusage.h>
 #include <glibtop/mountlist.h>
 
@@ -46,6 +50,10 @@ GList * filesystems = NULL;
 GList * filesystems_percent_full = NULL;
 gchar ** memory = NULL;
 gchar ** memory_descriptions = NULL;
+
+#ifdef HAVE_LIBGTOP_SYSINFO
+glibtop_sysinfo *sysinfo;
+#endif
 
 gdouble memory_percent_full;
 gdouble swap_percent_full;
@@ -188,6 +196,37 @@ static void fill_mem_page(GtkWidget * box)
   gtk_box_pack_start (GTK_BOX(vbox), hbox,  FALSE, FALSE, GNOME_PAD);
 }
 
+#ifdef HAVE_LIBGTOP_SYSINFO
+
+static void fill_cpuinfo_page(GtkWidget * box)
+{
+  GtkWidget * clist;
+  GtkWidget * vbox;
+  int i;
+
+  vbox = gtk_vbox_new(FALSE, GNOME_PAD);
+  gtk_container_add(GTK_CONTAINER(box), vbox);
+
+  for (i = 0; i < sysinfo->ncpu; i++) {
+    const gchar buffer [BUFSIZ], *titles [2];
+    
+    if (sysinfo->ncpu > 1) {
+      sprintf (buffer, _("CPU %d"), i);
+      titles [0] = buffer;
+    } else
+      titles [0] = N_("Name");
+    titles [1] = N_("Value");
+
+    clist = create_clist(titles);
+    gtk_box_pack_start(GTK_BOX(vbox), clist, TRUE, TRUE, GNOME_PAD);
+    gtk_clist_freeze(GTK_CLIST(clist));
+    fill_clist_from_glibtop_entry(GTK_CLIST(clist), &sysinfo->cpuinfo [i]);
+    gtk_clist_thaw(GTK_CLIST(clist));
+  }
+}
+
+#endif /* HAVE_LIBGTOP_CPUINFO */
+
 static void fill_status_page(GtkWidget * box)
 {
 
@@ -229,6 +268,10 @@ void display_moreinfo()
       create_page(notebook, fill_disk_page, _("Disk Information"));
     if (memory)
       create_page(notebook, fill_mem_page, _("Memory Information"));
+#ifdef HAVE_LIBGTOP_SYSINFO
+    if (sysinfo->flags & (1 << GLIBTOP_SYSINFO_CPUINFO))
+      create_page(notebook, fill_cpuinfo_page, _("CPU Information"));
+#endif
 
     gtk_widget_show_all(dialog);
   }
@@ -379,5 +422,8 @@ void load_moreinfo()
 {
   load_fsinfo();
   load_meminfo();
+#ifdef HAVE_LIBGTOP_SYSINFO
+  sysinfo = glibtop_get_sysinfo ();
+#endif
 }
 

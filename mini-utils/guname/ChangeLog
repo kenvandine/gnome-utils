@@ -1,5 +1,12 @@
 1998-09-12  Martin Baulig  <martin@home-of-linux.org>
 
+	* list.c (fill_clist_from_libgtop_entry): New function. Only
+	defined if we `HAVE_LIBGTOP_SYSINFO'.
+
+	* moreinfo.c: Display CPU Information if we `HAVE_LIBGTOP_SYSINFO'.
+	This is basically everything Linux has in /proc/cpuinfo, but it
+	uses LibGTop to be protable.
+
 	* info.c (get_linux_info): Added code to get RedHat release.
 
 1998-09-07  Havoc Pennington  <hp@pobox.com>
