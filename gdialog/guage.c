@@ -42,13 +42,28 @@ dialog_guage (const char *title, const char *prompt, int height,
     x = (COLS - width) / 2;
     y = (LINES - height) / 2;
 
+    if(gnome_mode)
+      {
+	GtkWidget *w = gnome_dialog_new(title, NULL, NULL);
+	GtkWidget *p = gtk_progress_bar_new();
+	GtkWidget *vbox = gtk_vbox_new(FALSE, 0);
+	
+	label_autowrap(vbox, prompt, width);
+	gtk_progress_bar_update( GTK_PROGRESS_BAR( p ), .34 );
+	gtk_box_pack_start(GTK_BOX(vbox), p, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), vbox,
+			   TRUE, TRUE, GNOME_PAD);
+	gtk_window_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
+	gtk_widget_show_all(w);
+	gtk_main();
+	exit( 0 );
+      }
 #ifndef NO_COLOR_CURSES
     if (use_shadow)
-	draw_shadow (stdscr, y, x, height, width);
+      draw_shadow (stdscr, y, x, height, width);
 #endif
     dialog = newwin (height, width, y, x);
     keypad (dialog, TRUE);
-
     do {
 	werase (dialog);
 	draw_box (dialog, 0, 0, height, width, dialog_attr, border_attr);

@@ -20,6 +20,15 @@
 
 #include "dialog.h"
 
+static const char* const *the_items;
+
+static void okayed(GtkWidget *w, int i)
+{
+  write(2, the_items[2*i], strlen(the_items[2*i]));
+  write(2, "\n", 1);
+  exit(i);
+}
+
 static int menu_width, tag_x, item_x;
 
 /*
@@ -68,6 +77,8 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		GtkWidget *butframe;
 		GtkWidget *butbox;
 		
+		the_items = items;
+
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
 		
@@ -93,6 +104,8 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 			but=gtk_button_new_with_label(p);
 			g_free(p);
 			gtk_box_pack_start(GTK_BOX(butbox), but, TRUE, TRUE, 0);
+			gtk_signal_connect(GTK_OBJECT(but), "clicked",
+			GTK_SIGNAL_FUNC(okayed), GUINT_TO_POINTER(i));
 		}
 		
 		gtk_container_add(GTK_CONTAINER(butframe), butbox);

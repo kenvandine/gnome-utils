@@ -49,9 +49,7 @@ static struct Mode modes[] =
 	{"--checklist", 9, 0, 3, j_checklist},
 	{"--radiolist", 9, 0, 3, j_radiolist},
 	{"--inputbox", 5, 6, 1, j_inputbox},
-#ifdef HAVE_GUAGE
 	{"--guage", 6, 6, 1, j_guage},
-#endif
 	{NULL, 0, 0, 0, NULL}
 };
 
@@ -257,13 +255,11 @@ int j_inputbox(const char *t, int ac, const char *const *av)
 	return ret;
 }
 
-#ifdef HAVE_GUAGE
 int j_guage(const char *t, int ac, const char *const *av)
 {
 	return dialog_guage(t, av[2], atoi(av[3]), atoi(av[4]),
 			    atoi(av[5]));
 }
-#endif
 
 #ifdef WITH_GNOME
 
