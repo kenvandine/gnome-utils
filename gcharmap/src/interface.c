@@ -138,10 +138,11 @@ main_app_create_ui (MainApp *app)
 
         app->window = gnome_app_new (_(PACKAGE), _("Gnome Character Map"));
         gtk_widget_set_name (app->window, "mainapp");
+        
         gtk_signal_connect_object (GTK_OBJECT (app->window), "destroy",
-          GTK_SIGNAL_FUNC (main_app_destroy), GTK_OBJECT (app));
+          GTK_SIGNAL_FUNC (main_app_destroy), G_OBJECT (app));
         gtk_widget_realize (app->window);
-
+	
         appbar = gnome_appbar_new (FALSE, TRUE, GNOME_PREFERENCES_USER);
         gnome_app_set_statusbar (GNOME_APP (app->window), appbar);
         gtk_widget_show (appbar);
@@ -180,7 +181,7 @@ main_app_create_ui (MainApp *app)
         gtk_box_pack_start (GTK_BOX (hbox), app->fontpicker, FALSE, TRUE, 0);
         gtk_signal_connect (GTK_OBJECT (app->fontpicker), "font_set",
           GTK_SIGNAL_FUNC (cb_fontpicker_font_set), NULL);
-
+	
         vsep = gtk_vseparator_new ();
         gtk_box_pack_start (GTK_BOX (hbox), vsep, FALSE, FALSE, 0);
 
@@ -189,8 +190,6 @@ main_app_create_ui (MainApp *app)
 
         app->entry = gtk_entry_new ();
         gtk_box_pack_start (GTK_BOX (hbox), app->entry, TRUE, TRUE, 0);
-        gnome_popup_menu_attach (gnome_popup_menu_new (edit_menu),
-          app->entry, NULL);
 
         gtk_widget_show_all (hbox);
         item = g_list_nth_data (GNOME_APP (app->window)->layout->items, 0);
@@ -292,24 +291,34 @@ main_app_init (MainApp *obj)
     main_app_create_ui (obj);
 }
 
+static void
+main_app_class_init (MainAppClass *klass)
+{
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    
+}
 
-guint
+GType
 main_app_get_type (void)
 {
-    static guint ga_type = 0;
+    static GType ga_type = 0;
 
+    g_type_init ();
+    
     if (!ga_type) {
-        GtkTypeInfo ga_info = {
-          "MainApp",
-          sizeof (MainApp),
+        static const GTypeInfo ga_info = {
           sizeof (MainAppClass),
-          (GtkClassInitFunc) NULL,
-          (GtkObjectInitFunc) main_app_init,
+          (GBaseInitFunc) NULL,
+          (GBaseFinalizeFunc) NULL,
+          (GClassInitFunc) main_app_class_init,
           NULL,
           NULL,
-          (GtkClassInitFunc) NULL
+          sizeof (MainApp),
+          0,
+          (GInstanceInitFunc) main_app_init,
         };
-        ga_type = gtk_type_unique (gtk_object_get_type (), &ga_info);
+        ga_type = g_type_register_static (G_TYPE_OBJECT, "MainApp",
+        				  &ga_info, 0);
     }
     return ga_type;
 }
@@ -318,7 +327,7 @@ main_app_get_type (void)
 MainApp *
 main_app_new (void)
 {
-    return MAIN_APP (gtk_type_new ((GtkType) MAIN_APP_TYPE));
+    return MAIN_APP (g_object_new (MAIN_APP_TYPE, NULL));
 }
 
 
@@ -328,9 +337,6 @@ main_app_destroy (MainApp *obj)
     g_return_if_fail (obj != NULL);
     g_return_if_fail (MAIN_IS_APP (obj) == TRUE);
 
-    if (obj->window != NULL) gtk_widget_destroy (obj->window);
-    if (obj->btnstyle != NULL) g_free (obj->btnstyle);
-    gtk_object_destroy (GTK_OBJECT (obj));
     gtk_main_quit ();
 }
 
