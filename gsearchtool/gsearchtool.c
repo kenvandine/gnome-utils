@@ -1706,12 +1706,28 @@ void
 set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data)
 {
 	gchar **argv;
+	gchar *file_is_named_utf8;
+	gchar *file_is_named_locale;
+	gchar *look_in_folder_utf8;
+	gchar *look_in_folder_locale;
 	GList *list;
 	gint  i = 0;
 
 	argv = g_new0 (gchar*, SEARCH_CONSTRAINT_MAXIMUM_POSSIBLE);
 
 	argv[i++] = (gchar *) client_data;
+
+	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))));
+	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8 != NULL ? file_is_named_utf8 : "" , 
+	                                           -1, NULL, NULL, NULL);
+	argv[i++] = g_strdup_printf ("--named=%s", file_is_named_locale);
+	g_free (file_is_named_locale);
+
+	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
+	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
+	                                            -1, NULL, NULL, NULL);
+	argv[i++] = g_strdup_printf ("--path=%s", look_in_folder_locale);
+	g_free (look_in_folder_locale);
 
 	if (GTK_WIDGET_VISIBLE(interface.additional_constraints) == TRUE) {
 		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
