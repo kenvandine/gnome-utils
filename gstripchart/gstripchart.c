@@ -1451,9 +1451,23 @@ prefs_callback(GtkWidget *chart, gpointer unused)
 
       clist = gtk_clist_new_with_titles(NELS(ttls), ttls);
 
-      row[0] = _("Identifier"); row[1] = chart_glob.parray[p]->ident;
+      row[0] = _("Identifier"); row[1] = _(chart_glob.parray[p]->ident);
       gtk_clist_append(GTK_CLIST(clist), row);
-      row[0] = _("Color"); row[1] = chart_glob.parray[p]->color_name;
+#if 0
+/* FIXME: this should be elsewhere; but I have no idea where the color
+   name come from... here are some values.
+   FIXME: and where those Busy, Load etc come from ?
+   PS: keep the #if 0, this code must never be compiled; it is just for
+   gettext to find the strings; until somebody move it to the proper
+   place.
+*/
+   { char place_holder[]={
+   N_("yellow"),N_("blue"),N_("red"),N_("green"),N_("white"),
+   N_("Busy"),N_("Load"),N_("PPP In"),N_("PPP Out"),N_("Swap")
+   };}
+
+#endif
+      row[0] = _("Color"); row[1] = _( chart_glob.parray[p]->color_name );
       gtk_clist_append(GTK_CLIST(clist), row);
       row[0] = _("Filename"); row[1] = chart_glob.parray[p]->filename;
       gtk_clist_append(GTK_CLIST(clist), row);
@@ -1476,7 +1490,7 @@ prefs_callback(GtkWidget *chart, gpointer unused)
       gtk_clist_columns_autosize(GTK_CLIST(clist));
       gtk_widget_show(clist);
 
-      param_active[p] = active = gtk_check_button_new_with_label("Active");
+      param_active[p] = active = gtk_check_button_new_with_label(_("Active"));
       gtk_toggle_button_set_active(
 	GTK_TOGGLE_BUTTON(active), chart_glob.parray[p]->active);
       gtk_widget_show(active);
@@ -1486,7 +1500,7 @@ prefs_callback(GtkWidget *chart, gpointer unused)
       gtk_box_pack_start(GTK_BOX(vbox), active, TRUE, TRUE, 0);
       gtk_widget_show(vbox);
 
-      label = gtk_label_new(chart_glob.parray[p]->ident);
+      label = gtk_label_new(_(chart_glob.parray[p]->ident));
       gtk_widget_show(label);
       gtk_notebook_append_page(GTK_NOTEBOOK(notebook), vbox, label);
     }
@@ -1523,7 +1537,7 @@ text_load_clist(GtkWidget *txt, GtkWidget *box)
     {
       Param *p = chart_glob.parray[n];
       char val_str[100], top_str[100];
-      char *row_strs[] = { p->ident, val_str, top_str };
+      char *row_strs[] = { _(p->ident), val_str, top_str };
       hi_lo_fmt(p->top, top_str, p->val[chart_glob.new_val], val_str);
       gtk_clist_append(GTK_CLIST(txt), row_strs);
       gtk_clist_set_foreground(GTK_CLIST(txt), n, &p->gdk_color);
