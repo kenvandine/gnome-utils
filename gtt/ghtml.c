@@ -693,6 +693,46 @@ show_invoice (SCM col_list)
 
 /* ============================================================== */
 
+static SCM
+do_show_scm_list (GttGhtml *ghtml, SCM node_list)
+{
+	SCM node;
+	size_t len;
+	char * str = NULL;
+
+	while (FALSE == SCM_NULLP(node_list))
+	{
+		node = gh_car (node_list);
+
+		/* either a 'symbol or a "quoted string" */
+		if (SCM_SYMBOLP(node) || SCM_STRINGP (node))
+		{
+			str = gh_scm2newstr (node, &len);
+			(ghtml->write_stream) (ghtml, str, strlen(str), ghtml->user_data);
+			(ghtml->write_stream) (ghtml, " ", 1, ghtml->user_data);
+			free (str);
+		}
+		else
+		if (SCM_CONSP(node))
+		{
+			do_show_scm_list (ghtml, node);
+		}
+		node_list = gh_cdr (node_list);
+	}
+
+	return SCM_UNSPECIFIED;
+}
+
+static SCM
+show_scm_list (SCM node_list)
+{
+	GttGhtml *ghtml = ghtml_global_hack;
+	SCM_ASSERT ( SCM_CONSP (node_list), node_list, SCM_ARG1, "gtt-show-list");
+	return do_show_scm_list (ghtml, node_list);
+}
+
+/* ============================================================== */
+
 void
 gtt_ghtml_display (GttGhtml *ghtml, const char *filepath,
                    GttProject *prj)
@@ -811,6 +851,7 @@ register_procs (void)
 	gh_new_procedure("gtt-show-basic-journal",   show_journal,   0, 0, 0);
 	gh_new_procedure("gtt-show-table",   show_table,   1, 0, 0);
 	gh_new_procedure("gtt-show-invoice",   show_invoice,   1, 0, 0);
+	gh_new_procedure("gtt-show-list",   show_scm_list,   1, 0, 0);
 }
 
 
