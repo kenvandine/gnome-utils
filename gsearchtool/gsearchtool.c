@@ -28,7 +28,7 @@
 #define ICON_SIZE 24.0
 #define GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE 48
 #define GNOME_SEARCH_TOOL_STOCK "panel-searchtool"
-#define LEFT_LABEL_SPACING "   "
+#define LEFT_LABEL_SPACING "     "
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
