@@ -125,7 +125,7 @@ struct _PoptArgument {
 	gboolean	allmounts;
 	gchar 		*sortby;
 	gboolean 	descending;
-	gboolean 	autostart;
+	gboolean 	start;
 } PoptArgument;
 
 struct poptOption options[] = { 
@@ -137,7 +137,7 @@ struct poptOption options[] = {
 	  N_("Sort files by one of the following: name, folder, size, type, or date"), NULL},
   	{ "descending", '\0', POPT_ARG_NONE, &PoptArgument.descending, 0, 
 	  N_("Set sort order to descending, the default is ascending"), NULL},
-  	{ "autostart", '\0', POPT_ARG_NONE, &PoptArgument.autostart, 0, 
+  	{ "start", '\0', POPT_ARG_NONE, &PoptArgument.start, 0, 
 	  N_("Automatically start a search"), NULL},
   	{ "contains", '\0', POPT_ARG_STRING, &PoptArgument.contains, 0, 
 	  N_("Select the 'Contains the text' constraint"), NULL},
@@ -677,7 +677,7 @@ handle_popt_args (void)
 							      GTK_SORT_ASCENDING);
 		}
 	}
-	if (PoptArgument.autostart == TRUE) {
+	if (PoptArgument.start == TRUE) {
 		click_find_cb (interface.find_button, NULL);
 	}
 }
