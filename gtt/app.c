@@ -144,15 +144,11 @@ void cur_proj_set(GttProject *proj)
 	if (cur_proj == proj) return;
 
 	log_proj(NULL);
-	if (proj)
+	stop_timer();
+	cur_proj = proj;
+	if (proj) 
 	{
-		cur_proj = proj;
-		start_timer();
-	}
-	else
-	{
-		stop_timer();
-		cur_proj = proj;
+		start_timer(); 
 	}
 	log_proj(proj);
 	menu_set_states();
