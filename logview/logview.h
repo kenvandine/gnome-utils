@@ -184,6 +184,11 @@ typedef struct
 	int process_column_width;
 	int hostname_column_width;
 	int message_column_width;
+	/* FIXME: This should perhaps be a glist of logfiles to
+	** open on startup. Also one should be able to set the value in
+	** the prefs dialog
+	*/
+	gchar *logfile;
 } UserPrefsStruct;
 
 typedef struct

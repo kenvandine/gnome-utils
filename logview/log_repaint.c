@@ -79,14 +79,12 @@ int numlogs, curlognum;
 int log_line_sep;
 int cursor_visible;
 int canvas_width, canvas_height;
-char *deflognames[] =
-{PATH_MESSAGES};
-
 char *month[12] =
 {N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
  N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),
  N_("November"), N_("December")};
 extern GtkWidget *main_win_scrollbar;
+extern 
 
 /*
  * -------------------
@@ -761,7 +759,7 @@ InitPages ()
    numlogs = 0;
    for (i = 0; i < DEF_NUM_LOGS; i++)
      {
-       curlog = OpenLogFile (deflognames[i]);
+       curlog = OpenLogFile (user_prefs->logfile);
        if (curlog == NULL)
 	 continue;
        loglist[numlogs] = curlog;

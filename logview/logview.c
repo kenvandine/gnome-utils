@@ -24,6 +24,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <gconf/gconf-client.h>
 #include <unistd.h>
 #include <time.h>
 #include <sys/stat.h>
@@ -73,6 +74,7 @@ void print_db (GList *gb);
 Log *OpenLogFile (char *);
 GtkWidget *new_pixmap_from_data (char  **, GdkWindow *, GdkColor *);
 GtkWidget *create_menu (char *item[], int n);
+void SaveUserPrefs(UserPrefsStruct *prefs);
 
 /*
  *    ,-------.
@@ -166,6 +168,8 @@ UserPrefsStruct user_prefs_struct = {0};
 ConfigData *cfg = NULL;
 GtkWidget *open_file_dialog = NULL;
 
+GConfClient *client;
+
 extern GdkGC *gc;
 extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
@@ -202,6 +206,9 @@ main (int argc, char *argv[])
 
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-log.png");
   
+  gconf_init (argc, argv, NULL);
+  client = gconf_client_get_default ();
+  
   /*  Load graphics config */
   cfg = CreateConfig();
   
@@ -215,6 +222,8 @@ main (int argc, char *argv[])
    
   /*  Loop application */
   gtk_main ();
+  
+  SaveUserPrefs(user_prefs);
 
   return 0;
 }
@@ -681,7 +690,8 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
    gtk_window_set_modal (GTK_WINDOW (filesel), TRUE);
 
    gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), 
-   				    PATH_MESSAGES);
+   				    user_prefs->logfile);
+
    gtk_window_set_position (GTK_WINDOW (filesel), GTK_WIN_POS_MOUSE);
    gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->ok_button),
 		       "clicked", (GtkSignalFunc) FileSelectOk,
@@ -726,8 +736,8 @@ CloseApp (void)
 
    for (i = 0; i < numlogs; i++)
       CloseLog (loglist[i]);
-
-   gtk_exit (0);
+      
+   gtk_main_quit ();   
 }
 
 /* ----------------------------------------------------------------------
@@ -843,8 +853,41 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs)
 {
 	/* Make defaults configurable later */
 	/* Will have to save prefs. eventually too*/
-
+	gchar *logfile = NULL;
+	struct stat filestat;
+	
+	/* FIXME: load saved values. Should install gconf schemas file for
+	** defaults 
+	*/
 	prefs->process_column_width = 12;
 	prefs->hostname_column_width = 15;
 	prefs->message_column_width = 24;
+	
+	logfile = gconf_client_get_string (client, "/apps/logview/logfile", NULL);
+	if (logfile != NULL) {
+		prefs->logfile = g_strdup (logfile);
+		g_free (logfile);
+	}
+	else {
+		/* First time running logview. Try to find the logfile */
+		if (lstat("/var/adm/messages", &filestat)) 
+			prefs->logfile = g_strdup ("/var/log/messages");
+		else if (lstat("/var/log/messages", &filestat)) 
+			prefs->logfile = g_strdup ("/var/log/messages");
+		else
+			prefs->logfile = NULL;
+	}
+	
+}
+
+void SaveUserPrefs(UserPrefsStruct *prefs)
+{
+    gconf_client_set_string (client, "/apps/logview/logfile", prefs->logfile, NULL);
+    gconf_client_set_int (client, "/apps/logview/process_column_width",
+    			  prefs->process_column_width, NULL);
+    gconf_client_set_int (client, "/apps/logview/hostname_column_width",
+    			  prefs->hostname_column_width, NULL);
+    gconf_client_set_int (client, "/apps/logview/message_column_width",
+    			  prefs->message_column_width, NULL);
+
 }
