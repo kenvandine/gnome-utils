@@ -128,122 +128,6 @@ static char *filename = NULL;
 
 static GtkWidget *save_widget = NULL;
 
-/* memrchr is gnu specific */
-static const void *
-my_memrchr (const void *mem, int c, size_t n)
-{
-	const char *s = mem;
-	while (n >= 0) {
-		if (s[n] == c)
-			return &s[n];
-		n--;
-	}
-	return NULL;
-}
-
-static gchar *
-get_file_base_name (char const *file)
-{
-  	/* based on code from basename.c of sh-utils */
-  	char const *base = file;
-  	int all_slashes = 1;
-  	char const *p;
-
-  	for (p = file; *p; p++)
-    	{
-      		if (ISSLASH (*p))
-			base = p + 1;
-      		else
-			all_slashes = 0;
-    	}
-
-  	/* If NAME is all slashes, arrange to return `/'.  */
-  	if (*base == '\0' && ISSLASH (*file) && all_slashes)
-    		--base;
-
-  	/* Make sure the last byte is not a slash.  */
-  	if (!(all_slashes || !ISSLASH (*(p - 1)))) 
-  		return (char *) file;
-  	else
-  		return (char *) base;
-}
-
-static size_t
-dir_name_r (const char *path, const char **result)
-{
-  	const char *slash;
-  	int length;	/* Length of result, not including NULL. */
-
-  	slash = strrchr (path, '/');
-  	if (BACKSLASH_IS_PATH_SEPARATOR)
-    	{
-      		char *b = strrchr (path, '\\');
-      		if (b && slash < b)
-			slash = b;
-    	}
-
-  	if (slash && slash[1] == 0)
-    	{
-      		while (path < slash && ISSLASH (slash[-1]))
-		{
-	  		--slash;
-		}
-
-      		if (path < slash)
-		{
-	  	slash = my_memrchr (path, '/', slash - path);
-	  		if (BACKSLASH_IS_PATH_SEPARATOR)
-	    		{
-	      			const char *b = my_memrchr (path, '\\', slash - path);
-	      			if (b && slash < b)
-				slash = b;
-	    		}
-		}
-    	}
-
-  	if (slash == 0)
-    	{
-      		path = ".";
-      		length = 1;
-    	}
-  	else
-    	{
-      		if (BACKSLASH_IS_PATH_SEPARATOR)
-		{
-	  		const char *lim = ((path[0] >= 'A' && path[0] <= 'z'
-					      && path[1] == ':')
-			 		      ? path + 2 : path);
-
-	  		while (slash > lim && ISSLASH (*slash))
-	    		--slash;
-		}
-      		else
-		{
-	  		while (slash > path && ISSLASH (*slash))
-	    		--slash;
-		}
-
-      		length = slash - path + 1;
-    	}
-
-  	*result = path;
-  	return length;
-}
-
-static gchar *
-get_file_dir_name (const char *file)
-{
-	/* based on code from dirname.c of sh-utils */
-  	const char *result;
-  	size_t length = dir_name_r (file, &result);
-	char *newpath = (char *) malloc (length + 1);
-	if (newpath == 0)
-		return 0;
-	strncpy (newpath, result, length);
-  	newpath[length] = 0;
-  	return newpath;
-} 
-
 static int
 count_char (const char *s, char p)
 {
@@ -622,9 +506,9 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
 	readable_date = get_readable_date (vfs_file_info->mtime);
 	date = get_basic_date (vfs_file_info->mtime);
-	utf8_base_name = g_locale_to_utf8 (get_file_base_name(file), -1, NULL, 
+	utf8_base_name = g_locale_to_utf8 (g_path_get_basename(file), -1, NULL, 
 					   NULL, NULL);
-	utf8_dir_name = g_locale_to_utf8 (get_file_dir_name(file), -1, NULL, 
+	utf8_dir_name = g_locale_to_utf8 (g_path_get_dirname(file), -1, NULL, 
 					  NULL, NULL);
 
 	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
@@ -1058,25 +942,6 @@ launch_nautilus (char *file)
 	g_free(argv);
 }
 
-static gchar*
-get_file_full_path_name(gchar *utf8_path, gchar *utf8_name)
-{
-	static gchar *full_name;
-	gchar *path, *name;
-	
-	name = g_locale_from_utf8 (utf8_name, -1, NULL, NULL, NULL);
-	path = g_locale_from_utf8 (utf8_path, -1, NULL, NULL, NULL); 
-
-	if (path[strlen(path) - 1] == '/')
-		full_name = g_strconcat (path, name, NULL);
-	else
-		full_name = g_strconcat (path, "/", name, NULL);
-
-	g_free(path);
-	g_free(name);
-	return full_name;
-}
-
 static gboolean
 launch_file (GtkWidget *w, GdkEventButton *event, gpointer data)
 {
@@ -1104,7 +969,7 @@ launch_file (GtkWidget *w, GdkEventButton *event, gpointer data)
 		gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
 							       COLUMN_PATH, &utf8_path,
 								-1);
-		file = get_file_full_path_name (utf8_path, utf8_name);
+		file = g_build_filename (utf8_path, utf8_name, NULL);
 		
 		if (nautilus_is_running ()) {
 			launch_nautilus (file);
@@ -1911,7 +1776,7 @@ save_results(GtkFileSelection *selector, gpointer user_data)
 				gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, COLUMN_NAME, &utf8_name, -1);
 				gtk_tree_model_iter_next(GTK_TREE_MODEL(store), &iter);	
 				
-				file = get_file_full_path_name (utf8_path, utf8_name);					    
+				file = g_build_filename (utf8_path, utf8_name, NULL);					    
 				fprintf(fp, "%s\n", file);
 				
 				g_free(utf8_path);
