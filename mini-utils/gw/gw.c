@@ -264,7 +264,7 @@ static void popup_about()
                         COPYRIGHT_NOTICE,
                         authors,
                         "",
-                        "" );
+                        NULL);
   
   gtk_widget_show(ga);
 }
