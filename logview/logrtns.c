@@ -106,22 +106,24 @@ get_month (const char *str)
 
 	for (i = 0; i < 12; i++) {
 		if (monthname[i] == NULL) {
-			GDate *date;
+			struct tm tm = {0};
 			char buf[256];
 
-			date = g_date_new_dmy (1, i+1, 2000 /* bogus */);
+			tm.tm_mday = 1;
+			tm.tm_year = 2000 /* bogus */;
+			tm.tm_mon = i;
 
-			if (g_date_strftime (buf, sizeof (buf), "%b", date) <= 0) {
+			/* Note: we don't want utf-8 here, we WANT the
+			 * current locale! */
+			if (strftime (buf, sizeof (buf), "%b", &tm) <= 0) {
 				/* eek, just use C locale cuz we're screwed */
 				monthname[i] = g_strndup (C_monthname[i], 3);
 			} else {
 				monthname[i] = g_strdup (buf);
 			}
-
-			g_date_free (date);
 		}
 
-		if (g_strcasecmp (str, monthname[i]) == 0) {
+		if (g_ascii_strcasecmp (str, monthname[i]) == 0) {
 			return i;
 		}
 	}
@@ -144,11 +146,15 @@ get_month (const char *str)
 				if (setlocale (LC_TIME, locales[j]) == NULL) {
 					strcpy (buf, "");
 				} else {
-					GDate *date;
+					struct tm tm = {0};
 
-					date = g_date_new_dmy (1, i+1, 2000 /* bogus */);
+					tm.tm_mday = 1;
+					tm.tm_year = 2000 /* bogus */;
+					tm.tm_mon = i;
 
-					if (g_date_strftime (buf, sizeof (buf), "%b", date) <= 0) {
+
+					if (strftime (buf, sizeof (buf), "%b",
+						      &tm) <= 0) {
 						strcpy (buf, "");
 					}
 
@@ -165,7 +171,7 @@ get_month (const char *str)
 
 			if (name != NULL &&
 			    name[0] != '\0' &&
-			    g_strcasecmp (str, name) == 0) {
+			    g_ascii_strcasecmp (str, name) == 0) {
 				return i;
 			}
 		}
@@ -580,6 +586,10 @@ ParseLine (char *buff, LogLine * line)
    char scratch[1024];
    int i;
 
+   /* just copy as a whole line to be the default */
+   strncpy (line->message, buff, MAX_WIDTH);
+   line->message[MAX_WIDTH-1] = '\0';
+
    token = strtok (buff, " ");
    if (token == NULL) return;
    /* This is not a good assumption I don't think, especially
@@ -602,8 +612,6 @@ ParseLine (char *buff, LogLine * line)
 
    if (i == 12)
    {
-      strncpy (line->message, buff, MAX_WIDTH);
-      line->message[MAX_WIDTH-1] = '\0';
       line->month = -1;
       line->date = -1;
       line->hour = -1;

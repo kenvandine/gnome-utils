@@ -427,7 +427,7 @@ log_repaint (GtkWidget * win, GdkEventExpose * event)
       log_layout = gtk_widget_create_pango_layout (main_win_scrollbar, "");
       context = gdk_pango_context_get ();
       pango_context_set_language (context, gtk_get_default_language ());
-      font = pango_context_load_font (context, cfg->fixedb);
+      font = LoadFont (context, cfg->fixedb);
       metrics = pango_font_get_metrics
                 (font, pango_context_get_language (context));
       canvas = win->window;
@@ -721,7 +721,8 @@ DrawLogLine (LogLine *line, int y)
 void
 DrawMonthHeader (LogLine * line, int y)
 {
-   char buf[100];
+   char buf[256];
+   char *utf8;
    int  h, centery, skip;
    GdkColor color[3];
    PangoContext *context;
@@ -734,12 +735,12 @@ DrawMonthHeader (LogLine * line, int y)
 
    context = gdk_pango_context_get ();
    pango_context_set_language (context, gtk_get_default_language ());
-   font = pango_context_load_font (context, cfg->headingb);
+   font = LoadFont (context, cfg->headingb);
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    h = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics)) -
        PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
-   font = pango_context_load_font (context, cfg->fixed);	
+   font = LoadFont (context, cfg->fixed);	
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    skip = (log_line_sep - PANGO_PIXELS (pango_font_metrics_get_ascent (metrics))
@@ -749,24 +750,31 @@ DrawMonthHeader (LogLine * line, int y)
 
    gdk_gc_set_foreground (gc, &cfg->black);
    if (line->month >= 0 && line->month < 12) {
-	   GDate *date = g_date_new_dmy (line->date, line->month+1, 2000 /* bogus */);
+	   struct tm tm = {0};
+
+	   tm.tm_mday = line->date;
+	   tm.tm_year = 2000 /* bogus */;
+	   tm.tm_mon = line->month;
 	   /* Translators: Make sure this is only Month and Day format, year
 	    * will be bogus here */
-	   if (g_date_strftime (buf, sizeof (buf), _("%B %e"), date) <= 0) {
+	   if (strftime (buf, sizeof (buf), _("%B %e"), &tm) <= 0) {
 		   /* If we fail just use the US format */
-		   g_snprintf (buf, sizeof (buf), "%s %d", _(month[(int) line->month]), line->date);
+		   utf8 = g_strdup_printf ("%s %d", _(month[(int) line->month]), line->date);
+	   } else {
+		   utf8 = g_locale_to_utf8 (buf, -1, NULL, NULL, NULL);
 	   }
-	   g_date_free (date);
    } else {
-	   g_snprintf (buf, sizeof (buf), "?%d? %d", (int) line->month, line->date);
+	   utf8 = g_strdup_printf ("?%d? %d", (int) line->month, line->date);
    }
-   pango_layout_set_text (log_layout, buf, -1);
+   pango_layout_set_text (log_layout, utf8, -1);
    pango_layout_set_font_description (log_layout, cfg->headingb);
    gdk_draw_layout (canvas, gc, LOG_COL1 - 1, centery + 1 - 12, log_layout);
    gdk_gc_set_foreground (gc, &cfg->white);
-   pango_layout_set_text (log_layout, buf, -1);
+   pango_layout_set_text (log_layout, utf8, -1);
    pango_layout_set_font_description (log_layout, cfg->headingb);
    gdk_draw_layout (canvas, gc, LOG_COL1, centery -12, log_layout);
+
+   g_free (utf8);
 
    g_object_unref (G_OBJECT (font));
    pango_font_metrics_unref (metrics);

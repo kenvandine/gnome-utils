@@ -241,6 +241,8 @@ int IsLeapYear (int year);
 void SetDefaultUserPrefs(UserPrefsStruct *prefs);
 int exec_action_in_db (Log *log, LogLine *line, GList *db);
 
+PangoFont * LoadFont (PangoContext *context, PangoFontDescription *fontd);
+
 #define sure_string ((x)?(x):"")
 
 #endif /* __LOGVIEW_H__ */

@@ -120,12 +120,12 @@ create_zoom_view (GtkWidget *widget, gpointer data)
    	context = gdk_pango_context_get ();
    	pango_context_set_language (context, gtk_get_default_language ()); 
 
-   	font = pango_context_load_font (context, cfg->headingb);
+   	font = LoadFont (context, cfg->headingb);
    	metrics = pango_font_get_metrics (font, pango_context_get_language (context));
    	h1 = PANGO_PIXELS (pango_font_metrics_get_descent (metrics)) +
 	     PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
 
-   	font = pango_context_load_font (context, cfg->fixedb);
+   	font = LoadFont (context, cfg->fixedb);
    	metrics = pango_font_get_metrics (font, pango_context_get_language (context));
    	h2 = PANGO_PIXELS (pango_font_metrics_get_descent (metrics)) +
 	     PANGO_PIXELS (pango_font_metrics_get_ascent (metrics))+2;
@@ -186,7 +186,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    /* Draw title */
    context = gdk_pango_context_get ();
    pango_context_set_language (context, gtk_get_default_language ());
-   font = pango_context_load_font (context, cfg->headingb);
+   font = LoadFont (context, cfg->headingb);
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    ah = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
@@ -210,7 +210,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    pango_layout_set_text (zoom_layout, buffer, -1);
    pango_layout_set_font_description (zoom_layout, cfg->headingb);
    gdk_draw_layout (canvas, gc, x, y-12, zoom_layout);
-   font = pango_context_load_font (context, cfg->fixedb);
+   font = LoadFont (context, cfg->fixedb);
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    afdb = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
@@ -224,7 +224,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    h = dfdb + afdb+2;
 
    /* Draw bg. rectangles */
-   font = pango_context_load_font (context, cfg->fixed);
+   font = LoadFont (context, cfg->fixed);
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    af = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
@@ -338,7 +338,7 @@ draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,
 
    context = gdk_pango_context_get ();
    pango_context_set_language (context, gtk_get_default_language ());
-   pfont = pango_context_load_font (context, font);
+   pfont = LoadFont (context, font);
    metrics = pango_font_get_metrics
 	     (pfont, pango_context_get_language (context));
    pango_layout_set_font_description (zoom_layout, font);
@@ -356,7 +356,7 @@ draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,
        while ( logical_rect.width < width && c != 0)
          {
 	   *p1 = c;
-	   p1++;
+	   p1 = g_utf8_next_char (p1);
 	   c = *p1;
 	   *p1 = 0;
 	   pango_layout_set_text (zoom_layout, p2, -1);
@@ -365,7 +365,7 @@ draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,
        switch (c)
          {
          case ' ':
-	   p1++;
+	   p1 = g_utf8_next_char (p1);
 	   pango_layout_set_text (zoom_layout, p2, -1);
 	   gdk_draw_layout (win, gc, x, ypos, zoom_layout);
 	   break;
@@ -377,7 +377,7 @@ draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,
          default:
 	   p3 = p1;
 	   while (*p1 != ' ' && p1 > p2)
-	     p1--;
+	     p1 = g_utf8_prev_char (p1);
 	   if (p1 == p2)
 	     {
 	       pango_layout_set_text (zoom_layout, p2, -1);
@@ -390,7 +390,7 @@ draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,
 	     {
                *p3 = c;
                *p1 = 0;
-               p1++;
+	       p1 = g_utf8_next_char (p1);
 	       pango_layout_set_text (zoom_layout, p2, -1);
 	       gdk_draw_layout (win, gc, x, ypos, zoom_layout);
 	     }

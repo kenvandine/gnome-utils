@@ -104,12 +104,12 @@ LogInfo (GtkWidget * widget, gpointer user_data)
    stat_layout = gtk_widget_create_pango_layout (widget, "");
    context = gdk_pango_context_get ();
    pango_context_set_language (context, gtk_get_default_language ());
-   font = pango_context_load_font (context, cfg->headingb);
+   font = LoadFont (context, cfg->headingb);
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    h1 = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics)) +
 	PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
-   font = pango_context_load_font (context, cfg->fixedb);
+   font = LoadFont (context, cfg->fixedb);
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    h2 = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics)) +
@@ -141,6 +141,7 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
 {
    static GdkDrawable *canvas;
    char buffer[1024];
+   char *utf8;
    int x, y, h, w;
    int ah, dh, afdb, dfdb, df, af;
    int win_width, win_height;
@@ -155,7 +156,7 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
 
    context = gdk_pango_context_get ();
    pango_context_set_language (context, gtk_get_default_language ());
-   font = pango_context_load_font (context, cfg->headingb);
+   font = LoadFont (context, cfg->headingb);
    metrics = pango_font_get_metrics
              (font, pango_context_get_language (context));
 
@@ -175,7 +176,7 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
    pango_layout_set_font_description (stat_layout, cfg->headingb);
    pango_layout_set_text (stat_layout, _("Log information"), -1);
    gdk_draw_layout (canvas, gc, x+3, y-12, stat_layout);
-   font = pango_context_load_font (context, cfg->fixedb);
+   font = LoadFont (context, cfg->fixedb);
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    afdb = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
@@ -185,7 +186,7 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
    /* Draw rectangle */
    h = dfdb + afdb+2;
    gdk_gc_set_foreground (gc, &cfg->blue3);
-   font = pango_context_load_font (context, cfg->fixed);
+   font = LoadFont (context, cfg->fixed);
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    af = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
@@ -239,16 +240,22 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
    gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.mtime));
-   pango_layout_set_text (stat_layout, buffer, -1);
+   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
+   pango_layout_set_text (stat_layout, utf8, -1);
+   g_free (utf8);
    gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ",
 	      ctime (&curlog->lstats.startdate));
-   pango_layout_set_text (stat_layout, buffer, -1);
+   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
+   pango_layout_set_text (stat_layout, utf8, -1);
+   g_free (utf8);
    gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.enddate));
-   pango_layout_set_text (stat_layout, buffer, -1);
+   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
+   pango_layout_set_text (stat_layout, utf8, -1);
+   g_free (utf8);
    gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%ld ", curlog->lstats.numlines);

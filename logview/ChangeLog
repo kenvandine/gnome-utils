@@ -1,3 +1,12 @@
+Thu May 16 18:19:59 2002  George Lebl <jirka@5z.com>
+
+	* info.c, log_repaint.c, logrtns.c, logview.h, misc.c, zoom.c:
+	  Some i18n fixage, especially with getting utf8 vs locale
+	  encoding straight.  It is quite ugly, though now we again read
+	  localized logs and don't spew out tons of warnings.  I can't make
+	  sure that the problem for Chinese is gone since I think I don't
+	  have the right fonts for this.  So I'll mark #81252 as fixed.
+
 Thu May 16 15:20:35 2002  George Lebl <jirka@5z.com>
 
 	* logview.c: make the window and make sure it's shown before opening
