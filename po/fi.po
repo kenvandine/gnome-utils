@@ -9,21 +9,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
-"PO-Revision-Date: 2003-09-08 18:32+0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-28 18:59+0200\n"
+"PO-Revision-Date: 2004-02-28 19:49+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
-"Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists."
-"sourceforge.net>\n"
+"Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
 msgstr "Apu"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "Sanakirjahaku"
 
@@ -55,8 +55,8 @@ msgstr "Näytä _sanakirja"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "Palvelimeen ei saada yhteyttä"
 
@@ -116,6 +116,10 @@ msgstr "Merkkijonoa ei löydy"
 msgid "Find"
 msgstr "Etsi"
 
+#: gdictsrc/gdict-app.c:477
+msgid "_Search for:"
+msgstr "E_tsi:"
+
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
 msgstr "_Etsi"
@@ -171,7 +175,7 @@ msgstr "Syötä sana tai valitse alla olevasta luettelosta"
 msgid "Look Up for a Word"
 msgstr "Etsi sanaa"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "_Etsi"
 
@@ -180,85 +184,94 @@ msgstr "_Etsi"
 msgid "Error invoking query: %s"
 msgstr "Virhe kyselyn lähettämisessä: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "Sanakirjan asetukset"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "Älykäs _haku"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "_Palvelin:"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "Oletusp_alvelin"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "Aseta palvelimen nimi oletusarvoon"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "Po_rtti:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "O_letusportti"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "Aseta portti oletusarvoon"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "Palvelin"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "Palvelinkenttä"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "Syötä palvelimen nimi"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "Portti"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "Porttikenttä"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "Syötä portin numero"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "_Tietokanta:"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "Ol_etusstrategia:"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "Hae kaikista tietokannoista"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "Tietokanta"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "Tietokannan nimi"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "Oletusstrategia"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Ohjeen näyttämisessä tapahtui virhe: \n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -713,13 +726,12 @@ msgstr ""
 "Ota yhteyttä järjestelmäsi ylläpitäjään tarvittavien oikeuksien saamiseksi."
 
 #: gfloppy/src/main.c:216
-#, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "Aseman %s avaaminen epäonnistui, alustamista ei voi jatkaa."
+msgstr "Minkään laitteen avaaminen ei onnistunut, joten alustamista ei voi jatkaa."
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 tai /dev/fd0"
 
 #: gfloppy/src/main.c:394
 #, c-format
@@ -743,16 +755,14 @@ msgid "DEVICE"
 msgstr "ASEMA"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
 msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr[0] ""
-"Levyke on alustettu, mutta <b>%d viallista lohkoa</b> löydettiin ja "
-"merkittiin (kokonaismäärä %d)."
+msgstr[0] "Levyke on alustettu, mutta <b>%d viallinen lohko</b> löydettiin ja merkittiin (kokonaismäärä %d)."
 msgstr[1] ""
 "Levyke on alustettu, mutta <b>%d viallista lohkoa</b> löydettiin ja "
 "merkittiin (kokonaismäärä %d)."
@@ -771,7 +781,7 @@ msgstr "Alustuksen edistyminen"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "Etsi tiedostoja"
 
@@ -781,27 +791,27 @@ msgstr "Etsii tiedostoja levyltä"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:99
 msgid "Image/label border"
-msgstr ""
+msgstr "Kuvan/nimiön reuna"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Width of border around the label and image in the alert dialog"
-msgstr ""
+msgstr "Nimiötä ja kuvaa ilmoitusikkunassa ympäröivän reunuksen leveys"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
 msgid "Alert Type"
-msgstr ""
+msgstr "Ilmoitustyyppi"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "The type of alert"
-msgstr ""
+msgstr "Ilmoituksen tyyppi"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:118
 msgid "Alert Buttons"
-msgstr ""
+msgstr "Ilmoituspainikkeet"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "The buttons shown in the alert dialog"
-msgstr ""
+msgstr "Ilmoitusikkunassa näkyvät painikkeet"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -813,14 +823,13 @@ msgstr "Avaa _hakemisto"
 
 #: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
-msgstr ""
+msgstr "_Siirrä roskakoriin"
 
 #: gsearchtool/gsearchtool-callbacks.c:64
 msgid "_Save Results As..."
 msgstr "_Tallenna tulokset nimellä..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
-#, fuzzy
 msgid "Could not open help document."
 msgstr "Ohjeen avaaminen ei onnistunut"
 
@@ -828,22 +837,22 @@ msgstr "Ohjeen avaaminen ei onnistunut"
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Haluatko varmasti avata yhden asiakirjan?"
+msgstr[1] "Haluatko varmasti avata %d asiakirjaa?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] "Tämä avaa %d erillistä hakemistoa. Haluatko varmasti tehdä näin?"
-msgstr[1] "Tämä avaa %d erillistä hakemistoa. Haluatko varmasti tehdä näin?"
+msgstr[0] "Tämä avaa yhden ikkunan."
+msgstr[1] "Tämä avaa %d erillistä ikkunaa."
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open document \"%s\"."
-msgstr "Asiakirjan \"%s\" avaaminen ei onnistunut"
+msgstr "Asiakirjan \"%s\" avaaminen ei onnistunut."
 
 #: gsearchtool/gsearchtool-callbacks.c:393
 #: gsearchtool/gsearchtool-callbacks.c:947
@@ -854,98 +863,95 @@ msgstr "Ei löydy ohjelmaa, joka voisi näyttää asiakirjan."
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Haluatko varmasti avata yhden hakemiston?"
+msgstr[1] "Haluatko varmasti avata %d hakemistoa?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
-msgstr "Hakemiston \"%s\" avaaminen epäonnistui"
+msgstr "Hakemiston \"%s\" avaaminen epäonnistui."
 
 #: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
 msgstr "Nautilus-tiedostonhallinta ei ole käynnissä."
 
 #: gsearchtool/gsearchtool-callbacks.c:612
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to trash."
-msgstr "Asiakirjan \"%s\" tallentaminen hakemistoon %s epäonnistui"
+msgstr "Kohteen \"%s\" siirtäminen roskakoriin epäonnistui."
 
 #: gsearchtool/gsearchtool-callbacks.c:615
 msgid "The document does not exist."
-msgstr ""
+msgstr "Asiakirja ei ole olemassa."
 
 #: gsearchtool/gsearchtool-callbacks.c:652
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to the trash."
-msgstr "Asiakirjan \"%s\" tallentaminen hakemistoon %s epäonnistui"
+msgstr "Kohteen \"%s\" siirtäminen roskakoriin epäonnistui."
 
 #: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr ""
+msgstr "Kohteen \"%s\" siirtäminen epäonnistui: %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
-msgstr ""
+msgstr "Haluatko poistaa kohteen \"%s\" pysyvästi?"
 
 #: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr ""
+msgstr "Roskakori ei ole saatavilla. Kohteen \"%s\" siirtäminen sinne ei onnistunut."
 
 #: gsearchtool/gsearchtool-callbacks.c:730
-#, fuzzy, c-format
+#, c-format
 msgid "Could not delete \"%s\"."
-msgstr "Hakemiston \"%s\" avaaminen epäonnistui"
+msgstr "Kohteen \"%s\" poistaminen epäonnistui."
 
 #: gsearchtool/gsearchtool-callbacks.c:733
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr ""
+msgstr "Kohteen \"%s\" poistaminen epäonnistui: %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:1132
 msgid "Save Search Results As..."
 msgstr "Tallenna hakutulokset nimellä..."
 
 #: gsearchtool/gsearchtool-callbacks.c:1184
-#, fuzzy
 msgid "Could not save document."
-msgstr "Asiakirjan \"\" tallentaminen hakemistoon %s ei onnistunut"
+msgstr "Asiakirjan tallentaminen ei onnistunut."
 
 #: gsearchtool/gsearchtool-callbacks.c:1186
-#, fuzzy
 msgid "You did not select a document name."
-msgstr "Asiakirjan \"%s\" avaaminen ei onnistunut"
+msgstr "Asiakirjan nimeä ei annettu."
 
 #: gsearchtool/gsearchtool-callbacks.c:1212
 #: gsearchtool/gsearchtool-callbacks.c:1307
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
-msgstr "Asiakirjan \"\" tallentaminen hakemistoon %s ei onnistunut"
+msgstr "Asiakirjan \"%s\" tallentaminen hakemistoon \"%s\" ei onnistunut."
 
 #: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
-msgstr ""
+msgstr "Antamasi asiakirjan nimi vastaa hakemistoa."
 
 #: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "Asiakirja \"%s\" on jo olemassa. Haluatko korvata sen?"
 
 #: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr ""
+msgstr "Olemassa olevan tiedoston korvaaminen ylikirjoittaa nykyisen sisällön."
 
 #: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
-msgstr ""
+msgstr "_Korvaa"
 
 #: gsearchtool/gsearchtool-callbacks.c:1310
-#, fuzzy
 msgid "You may not have write permissions to the document."
-msgstr "Tähän asiakirjaan ei ole lupaa kirjoittaa. Asiakirja ei tallentunut."
+msgstr "Tähän asiakirjaan ei ole lupaa kirjoittaa."
 
 #: gsearchtool/gsearchtool-support.c:63
 #, c-format
@@ -1027,9 +1033,8 @@ msgid "Name matches regular e_xpression"
 msgstr "Nimi täsmää säännölliseen l_ausekkeeseen"
 
 #: gsearchtool/gsearchtool.c:86
-#, fuzzy
 msgid "Show hidden and backup files"
-msgstr "Näytä piilotiedostot ja -hakemistot"
+msgstr "Näytä piilo- ja varmuuskopiotiedostot"
 
 #: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
@@ -1052,18 +1057,18 @@ msgid "No Files Found"
 msgstr "Tiedostoja ei löytynyt"
 
 #: gsearchtool/gsearchtool.c:541
-#, fuzzy, c-format
+#, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
-msgstr[0] "Löytyi %d tiedostoa"
-msgstr[1] "Löytyi %d tiedostoa"
+msgstr[0] "%d tiedosto löytyi"
+msgstr[1] "%d tiedostoa löytyi"
 
 #: gsearchtool/gsearchtool.c:545
-#, fuzzy, c-format
+#, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
-msgstr[0] "Löytyi %d tiedostoa"
-msgstr[1] "Löytyi %d tiedostoa"
+msgstr[0] "%d tiedosto löytyi"
+msgstr[1] "%d tiedostoa löytyi"
 
 #: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
@@ -1120,19 +1125,16 @@ msgstr ""
 "... Liian monta virhettä näytettäväksi ..."
 
 #: gsearchtool/gsearchtool.c:1312
-#, fuzzy
 msgid "Error while searching for files."
-msgstr "Virhe tiedostojen etsimisessä"
+msgstr "Virhe tiedostojen etsimisessä."
 
 #: gsearchtool/gsearchtool.c:1353
-#, fuzzy
 msgid "Error parsing the search command."
-msgstr "Virhe etsintäkomennon jäsentämisessä"
+msgstr "Virhe etsintäkomennon jäsentämisessä."
 
 #: gsearchtool/gsearchtool.c:1376
-#, fuzzy
 msgid "Error running the search command."
-msgstr "Virhe etsintäkomennon suorittamisessa"
+msgstr "Virhe etsintäkomennon suorittamisessa."
 
 #: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
@@ -1142,97 +1144,96 @@ msgstr "Etsi säännön arvo -kenttä"
 msgid "Enter a value for search rule"
 msgstr "Syötä arvo hakusäännölle"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Napsauta poistaaksesi säännön \"%s\""
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "Käytettä_vissä olevat valinnat:"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "Hakusääntövalikko"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "Valitse hakusääntö valikosta"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "Haku_tulokset:"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "Nimi"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "Hakemisto"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "Koko"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "Tyyppi"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "Muutosaika"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "_Nimi sisältää:"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr "Nimi sisältää -kenttä"
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "Syötä etsittävä tiedostonimi"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr "Nimi sisältää -kenttä"
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "Etsi _hakemistosta:"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "Selaa"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "Etsi hakemistosta -kenttä"
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
 msgid "Enter the folder name where you want to start the search"
 msgstr "Syötä hakemiston nimi, josta haluat aloittaa etsimisen"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1844
+msgid "Look in Folder Entry"
+msgstr "Etsi hakemistosta -kenttä"
+
+#: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
 msgstr "N_äytä lisää valintoja"
 
-#: gsearchtool/gsearchtool.c:1875
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1872
 msgid "Show more options"
-msgstr "N_äytä lisää valintoja"
+msgstr "Näytä lisää valintoja"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
-msgstr ""
+msgstr "Laajentaa tai kutistaa etsintäasetusten luettelon."
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "Napsauta haun aloittamiseksi"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "Napsauta haun pysäyttämiseksi"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr "Ohjelman bonobo aloitus ei onnistu."
 
@@ -1261,13 +1262,25 @@ msgstr "Toiminnot"
 msgid "_Add"
 msgstr "_Lisää"
 
+#: logview/actions.c:162
+msgid "Add an action"
+msgstr "Lisää toiminto"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "_Muokkaa"
 
+#: logview/actions.c:169
+msgid "Edit an action"
+msgstr "Muokkaa toimintoa"
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "_Poista"
+
+#: logview/actions.c:176
+msgid "Remove an action"
+msgstr "Poista toiminto"
 
 #: logview/actions.c:263
 #, c-format
@@ -1310,6 +1323,52 @@ msgstr "toimenpide, joka suoritetaan jos säännölliset ilmaukset ovat TOSIa"
 #: logview/actions.c:515
 msgid "description"
 msgstr "kuvaus"
+
+#: logview/actions.c:651
+msgid "Edit Action"
+msgstr "Muokkaa toimintoa"
+
+#: logview/actions.c:687
+msgid "_Tag:"
+msgstr "_Tunniste:"
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr "Lokitiedoston tunniste."
+
+#: logview/actions.c:705
+msgid "_Log name:"
+msgstr "_Lokin nimi:"
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr "Säännöllinen lauseke, joka täsmää lokitiedoston nimeen."
+
+#: logview/actions.c:724
+msgid "_Process:"
+msgstr "_Prosessi:"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr "Säännöllinen lauseke, joka täsmää viestin prosessiosaan."
+
+#: logview/actions.c:743
+msgid "_Message:"
+msgstr "_Viesti:"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr "Säännöllinen lauseke, joka täsmää viestiin."
+
+#: logview/actions.c:762
+msgid "_Action:"
+msgstr "_Toiminto:"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr "Toiminto joka käynnistyy kun kaikki ylläolevat säännölliset lausekkeet täsmäävät. Sen käynnistää järjestelmäkomento: system (toiminto)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1397,10 +1456,10 @@ msgid "<No log loaded>"
 msgstr "<Ei lokia ladattuna>"
 
 #: logview/info.c:183
-#, fuzzy, c-format
+#, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
-msgstr[0] "%ld tavua"
+msgstr[0] "%ld tavu"
 msgstr[1] "%ld tavua"
 
 #: logview/log_repaint.c:59
@@ -1652,6 +1711,7 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Liikaa valvottavia lokeja. Sulje yksi ja kokeile uudestaan."
 
 #: logview/monitor.c:298 logview/monitor.c:335
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list on NULL\n"
 
@@ -1660,6 +1720,7 @@ msgid "Monitoring Logs..."
 msgstr "Valvotaan lokeja..."
 
 #: logview/monitor.c:643
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr "MUUTETTU!!\n"
 
