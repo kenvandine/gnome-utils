@@ -490,6 +490,8 @@ void app_new(int argc, char *argv[])
 
 #ifdef GNOME_USE_APP
 	window = gnome_app_new("gtt", APP_NAME " " VERSION);
+        gtk_window_set_wmclass(GTK_WINDOW(window),
+                               "gtt", "GTimeTracker");
 	menu_create(window);
 	widget = build_toolbar();
         gtk_widget_show(widget);
@@ -497,6 +499,8 @@ void app_new(int argc, char *argv[])
 	vbox = gtk_vbox_new(FALSE, 0);
 #else /* not GNOME_USE_APP */ 
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+        gtk_window_set_wmclass(GTK_WINDOW(window),
+                               "gtt", "GTimeTracker");
 	gtk_window_set_title(GTK_WINDOW(window), APP_NAME " " VERSION);
 	gtk_container_border_width(GTK_CONTAINER(window), 1);
 
