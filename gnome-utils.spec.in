@@ -51,7 +51,10 @@ fi
 make prefix=$RPM_BUILD_ROOT%{_prefix} \
     sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} \
     bindir=$RPM_BUILD_ROOT%{_bindir} \
-    datadir=$RPM_BUILD_ROOT%{_datadir} install
+    sbindir=$RPM_BUILD_ROOT%{_sbindir} \
+    datadir=$RPM_BUILD_ROOT%{_datadir} \
+    PAM_PREFIX=$RPM_BUILD_ROOT/etc \
+    install
 
 %clean
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
