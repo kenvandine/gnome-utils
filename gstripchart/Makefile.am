@@ -31,6 +31,12 @@ pixmapdir =						\
 pixmap_DATA =						\
 	gnome-stripchart.png
 
+confdir =						\
+	$(datadir)/gstripchart
+
+conf_DATA =						\
+	gstripchart.conf
+
 Utilitiesdir =						\
 	$(datadir)/gnome/apps/Utilities
 
