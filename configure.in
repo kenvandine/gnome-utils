@@ -62,14 +62,6 @@ AC_SUBST(GNOMEVFS_CFLAGS)
 AC_SUBST(GNOMEVFS_LIBS)
 
 dnl *********************************************
-dnl libbonobui is needed for gcharmap
-dnl *********************************************
-
-PKG_CHECK_MODULES(LIBBONOBOUI, libbonoboui-2.0 >= $LIBBONOBOUI_REQUIRED)
-AC_SUBST(LIBBONOBOUI_CFLAGS)
-AC_SUBST(LIBBONOBOUI_LIBS)
-
-dnl *********************************************
 dnl for anything which calls gconftool-2 correctly
 dnl *********************************************
 
@@ -309,20 +301,6 @@ logview/help/ja/Makefile
 logview/help/ko/Makefile
 logview/help/zh_CN/Makefile
 logview/help/zh_TW/Makefile
-gcharmap/Makefile
-gcharmap/src/Makefile
-gcharmap/pixmaps/Makefile
-gcharmap/help/Makefile
-gcharmap/help/C/Makefile
-gcharmap/help/de/Makefile
-gcharmap/help/es/Makefile
-gcharmap/help/fr/Makefile
-gcharmap/help/it/Makefile
-gcharmap/help/sv/Makefile
-gcharmap/help/ja/Makefile
-gcharmap/help/ko/Makefile
-gcharmap/help/zh_CN/Makefile
-gcharmap/help/zh_TW/Makefile
 gsearchtool/Makefile
 gsearchtool/help/Makefile
 gsearchtool/help/C/Makefile
