@@ -300,7 +300,7 @@ parse_rc (void)
 {
     int i, l = 1, parse, fg, bg, hl;
     char str[MAX_LEN + 1], *var, *value, *tempptr;
-    FILE *rc_file;
+    FILE *rc_file = NULL;
 
     /*
 
@@ -316,7 +316,8 @@ parse_rc (void)
      *
      */
 
-    if ((tempptr = getenv ("DIALOGRC")) != NULL)
+    tempptr = getenv ("DIALOGRC");
+    if (tempptr != NULL)
 	rc_file = fopen (tempptr, "rt");
 
     if (tempptr == NULL || rc_file == NULL) {	/* step (a) failed? */

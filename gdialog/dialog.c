@@ -72,6 +72,8 @@ int main(int argc, char *argv[])
 
 #ifdef LOCALE
 	(void) setlocale(LC_ALL, "");
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain (PACKAGE);
 #endif
 
 	if (argc < 2) {
