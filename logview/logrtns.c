@@ -611,7 +611,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
 	   curmark->ln = nl;
 	   curdate = newdate;
    }
-
+   log->lstats.numlines = i;
    log->lstats.enddate = curdate;
 
    /* Correct years now. We assume that the last date on the log
@@ -673,7 +673,6 @@ ReadLogStats (Log *log, gchar **buffer_lines)
 #else
    log->lstats.startdate += correction - timezone;
 #endif
-   log->lstats.numlines = nl;
 
    return;
 }
