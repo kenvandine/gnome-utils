@@ -276,7 +276,7 @@ static char *
 helper_read_password (void)
 {
   char password [BUFSIZ], *text;
-  int len;
+  size_t len;
 
   if (read (passwd_fd, &len, sizeof (len)) != sizeof (len))
     helper_io_error ("read (passwd_fd)");
