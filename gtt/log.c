@@ -64,7 +64,7 @@ static void log_last(time_t t, project *proj)
 	if ((!last_logged_msg) || (0 != strcmp(s, last_logged_msg))) {
 		if (!log_write(last_time, s)) {
 			g_warning("couldn't write to logfile `%s'.\n",
-				  config_logfile_name);
+				  config_logfile_name?config_logfile_name:"");
 		}
 	}
 	if (last_logged_msg) g_free(last_logged_msg);
