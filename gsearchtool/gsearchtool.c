@@ -515,9 +515,11 @@ set_constraint_selected_state (gint 		constraint_id,
 		if (templates[index].is_selected == FALSE) {
 			gtk_option_menu_set_history (GTK_OPTION_MENU(interface.constraint_menu), index);
 			interface.selected_constraint = (long)index;
-			break;
+			gtk_widget_set_sensitive (interface.add_button, TRUE);
+			return;
 		}
 	}
+	gtk_widget_set_sensitive (interface.add_button, FALSE);
 }
 
 static void
@@ -1155,7 +1157,6 @@ create_additional_constraint_section (void)
 	GtkWidget *vbox1; 
 	GtkWidget *vbox2;
 	GtkWidget *label;
-	GtkWidget *button;
 
 	vbox1 = gtk_vbox_new (FALSE, 0);
 	gtk_container_set_border_width (GTK_CONTAINER(vbox1), 0);
@@ -1181,15 +1182,15 @@ create_additional_constraint_section (void)
 		add_atk_relation (interface.constraint_menu, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY);
 	}
 
-	button = gtk_button_new_from_stock (GTK_STOCK_ADD);
+	interface.add_button = gtk_button_new_from_stock (GTK_STOCK_ADD);
 	interface.constraint_size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-	gtk_size_group_add_widget (interface.constraint_size_group, button);
+	gtk_size_group_add_widget (interface.constraint_size_group, interface.add_button);
 	gtk_size_group_add_widget (interface.constraint_size_group, gtk_button_new_from_stock (GTK_STOCK_REMOVE));
 	
-	g_signal_connect (G_OBJECT(button),"clicked",
+	g_signal_connect (G_OBJECT(interface.add_button),"clicked",
 			  G_CALLBACK(add_constraint_cb),NULL);
 	
-	gtk_box_pack_end (GTK_BOX(hbox), button, FALSE, FALSE, 0); 
+	gtk_box_pack_end (GTK_BOX(hbox), interface.add_button, FALSE, FALSE, 0); 
 		
 	gtk_box_pack_start (GTK_BOX(vbox1), interface.constraint, TRUE, TRUE, GNOME_PAD_SMALL);
 	
