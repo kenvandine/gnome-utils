@@ -211,6 +211,7 @@ static void prepare_app()
 {
   GtkWidget * app_box;
   GtkWidget * clist;
+  GtkWidget * sw;
   GtkWidget * reset_button;
 
   app = gnome_app_new( APPNAME, _("User Listing") ); 
@@ -237,17 +238,20 @@ static void prepare_app()
                      FALSE, FALSE, GNOME_PAD_SMALL);
 
   clist = gtk_clist_new(num_columns);
+  sw = gtk_scrolled_window_new (NULL, NULL);
+  gtk_container_add (GTK_CONTAINER (sw), clist);
   main_clist = GTK_CLIST(clist);
 
   gtk_widget_set_events(clist, GDK_BUTTON_PRESS_MASK);
 
   gtk_clist_set_border(GTK_CLIST(clist), GTK_SHADOW_OUT);
   gtk_clist_set_selection_mode(GTK_CLIST(clist), GTK_SELECTION_BROWSE);
-  gtk_clist_set_policy(GTK_CLIST(clist), GTK_POLICY_AUTOMATIC,
-                       GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
+                                 GTK_POLICY_AUTOMATIC,
+                                 GTK_POLICY_AUTOMATIC);
   gtk_clist_column_titles_show(GTK_CLIST(clist));
 
-  gtk_box_pack_start(GTK_BOX(app_box), clist, 
+  gtk_box_pack_start(GTK_BOX(app_box), sw, 
                      TRUE, TRUE, GNOME_PAD);
 
 
@@ -298,7 +302,7 @@ static void reset_list(GtkCList * list)
 {
   gchar * token;
   gint col;
-  gchar * row_text[num_columns];
+  const gchar * row_text[num_columns];
   static const gint bufsize = 255;
   gchar buffer[bufsize+1]; /* For a single line */
   FILE * f;
@@ -443,7 +447,7 @@ static void save_cb(GtkWidget * w, gpointer data)
 
 static void preferences_cb(GtkWidget *w, gpointer data)
 {
-  GtkWidget * pb;
+  GtkWidget * pb, *sw;
   GtkWidget * frame, * frame_vbox, * page_vbox, 
     * bottom_hbox, * entry_hbox, * button_shrink_vbox;
   GtkWidget * defaults_button, * add_button, * delete_button;
@@ -451,7 +455,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   GtkWidget * command_entry;
   GtkWidget * list;
   GtkWidget * explanation_label, * defaults_label;
-  gchar * titles[] = { _("Name"), _("Command Line") }; 
+  const gchar * titles[] = { _("Name"), _("Command Line") }; 
   GList * tmp; 
   Action * a;
   gchar * text[2];
@@ -467,10 +471,13 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   command_entry = gtk_entry_new();
 
   list = gtk_clist_new_with_titles(2, titles);
+  sw = gtk_scrolled_window_new (NULL, NULL);
+  gtk_container_add (GTK_CONTAINER (sw), list);
   gtk_clist_set_border(GTK_CLIST(list), GTK_SHADOW_OUT);
   gtk_clist_set_selection_mode(GTK_CLIST(list), GTK_SELECTION_BROWSE);
-  gtk_clist_set_policy(GTK_CLIST(list), GTK_POLICY_AUTOMATIC,
-                       GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (sw),
+                                 GTK_POLICY_AUTOMATIC,
+                                 GTK_POLICY_AUTOMATIC);
   gtk_clist_set_column_width(GTK_CLIST(list), 0, 130); /* Otherwise it's 0 */
   gtk_clist_column_titles_show(GTK_CLIST(list));
   gtk_clist_column_titles_passive(GTK_CLIST(list));
@@ -520,7 +527,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   gtk_container_border_width(GTK_CONTAINER(frame_vbox), GNOME_PAD);
 
   gtk_box_pack_start(GTK_BOX(frame_vbox), entry_hbox, TRUE, TRUE, GNOME_PAD_SMALL);
-  gtk_box_pack_start(GTK_BOX(frame_vbox), list, TRUE, TRUE, GNOME_PAD_SMALL);
+  gtk_box_pack_start(GTK_BOX(frame_vbox), sw, TRUE, TRUE, GNOME_PAD_SMALL);
 
 
   gtk_box_pack_start(GTK_BOX(entry_hbox), gtk_label_new(_("Name")),
@@ -599,7 +606,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
 
 static void new_action_in_prefs(GtkCList * list, gchar * name, gchar * command)
 {
-  gchar * text[2];
+  const gchar * text[2];
   gint new_row;
   GnomePropertyBox * pb;
 
