@@ -98,6 +98,10 @@ static GtkWidget *nbook = NULL;
 
 static GtkWidget *app = NULL; 
 
+static GtkWidget *status_bar = NULL;
+
+static GtkWidget *progress_bar = NULL;
+
 static GtkWidget *file_selector = NULL;
 
 static GtkWidget *locate_results = NULL;
@@ -628,35 +632,42 @@ add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType rel_type)
 
 
 static void
-add_message_to_list_store(GtkListStore *store, GtkTreeIter *iter)
+add_no_files_found_to_list_store(GtkListStore *store, GtkTreeIter *iter)
 {
 	/* when the list is empty append a 'No Files Found.' message */
-	if (gtk_tree_model_iter_n_children(GTK_TREE_MODEL(store),NULL) == 0) {
-		
-		gtk_list_store_append (GTK_LIST_STORE(store), iter); 
-		gtk_list_store_set (GTK_LIST_STORE(store), iter,
-			    		COLUMN_ICON, NULL, 
-		    			COLUMN_NAME, _("No Files Found."),
-		    			COLUMN_PATH, "",
-			    		COLUMN_READABLE_SIZE, "",
-			    		COLUMN_SIZE, (gdouble) 0,
-			    		COLUMN_TYPE, "",
-		    			COLUMN_READABLE_DATE, "",
-		    			COLUMN_DATE, 0,
-					COLUMN_NO_FILES_FOUND, TRUE,
-		    			-1);
-	}
+	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
+	gtk_list_store_set (GTK_LIST_STORE(store), iter,
+		    		COLUMN_ICON, NULL, 
+				COLUMN_NAME, _("No Files Found."),
+		    		COLUMN_PATH, "",
+			    	COLUMN_READABLE_SIZE, "",
+			    	COLUMN_SIZE, (gdouble) 0,
+			    	COLUMN_TYPE, "",
+		    		COLUMN_READABLE_DATE, "",
+		    		COLUMN_DATE, 0,
+				COLUMN_NO_FILES_FOUND, TRUE,
+		    		-1);
+}
+
+static gint
+update_progress_bar (gpointer p)
+{
+	gtk_progress_bar_pulse (GTK_PROGRESS_BAR (progress_bar));
+	
+	return TRUE;
 }
 
 static void
 really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *running, GtkWidget *tree, GtkListStore *store, GtkTreeIter *iter)
 {
-	int idle;
+	int timeout;
 	GString *string;
 	char ret[PIPE_READ_BUFFER];
 	int fd[2], fderr[2];
 	int i,n;
 	int pid;
+	int files_found;
+	char* str;
 	GPatternSpec *pattern;
 	gchar *base_name = NULL;
 	GString *errors = NULL;
@@ -719,8 +730,10 @@ really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *runnin
 	close(fd[1]);
 	close(fderr[1]);
 
-	idle = gtk_idle_add((GtkFunction)gtk_true,NULL);
-
+	gnome_appbar_pop (GNOME_APPBAR (status_bar));
+	gnome_appbar_push (GNOME_APPBAR (status_bar), _("Searching..."));
+	timeout = gtk_timeout_add (100, update_progress_bar, NULL);
+		
 	fcntl(fd[0], F_SETFL, O_NONBLOCK);
 	fcntl(fderr[0], F_SETFL, O_NONBLOCK);
 
@@ -808,9 +821,11 @@ really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *runnin
 
 	close(fd[0]);
 	close(fderr[0]);
-
-	gtk_idle_remove(idle);
 	
+	gtk_timeout_remove (timeout);
+	gnome_appbar_pop (GNOME_APPBAR (status_bar));
+	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (progress_bar), 0.0);
+		
 	/* if any errors occured */
 	if(errors) {
 		if ( ! add_to_errors) {
@@ -824,8 +839,22 @@ really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *runnin
 		g_string_free (errors, TRUE);
 	}
 
-	add_message_to_list_store (store, iter);
+	files_found = gtk_tree_model_iter_n_children (GTK_TREE_MODEL(store), NULL);
 
+	if (files_found == 0)
+		str = g_strdup (_("No files found"));
+	else
+		if (files_found == 1)
+			str = g_strdup (_("One file found"));
+		else
+			str = g_strdup_printf (_("%d files found"), files_found);
+	
+	gnome_appbar_push (GNOME_APPBAR (status_bar), str);
+
+	if (files_found == 0)
+		add_no_files_found_to_list_store (store, iter);
+	
+	g_free (str);
 	g_string_free (string, TRUE);
 	g_free (base_name);
 	g_free (utf8_locate_string);
@@ -846,6 +875,18 @@ run_command(GtkWidget *w, gpointer data)
 	char *start_dir;
 
 	gtk_widget_set_sensitive(save_widget, FALSE);
+
+	if (buttons == find_buttons)
+	{
+		gtk_widget_set_sensitive (locate_buttons[0], FALSE);
+		gtk_widget_set_sensitive (locate_buttons[1], FALSE);
+	}
+	else
+	{
+		gtk_widget_set_sensitive (find_buttons[0], FALSE);
+		gtk_widget_set_sensitive (find_buttons[1], FALSE);
+	}
+	
 	if (buttons[0] == w) { /*we are in the stop button*/
 		if(find_running == RUNNING) {
 			find_running = MAKE_IT_STOP;
@@ -854,7 +895,8 @@ run_command(GtkWidget *w, gpointer data)
 			gtk_widget_hide(buttons[0]);
 			gtk_widget_show(buttons[1]);
 		}
-		return;
+
+		goto out;
 	}
 
 	if(start_dir_e) {
@@ -862,7 +904,7 @@ run_command(GtkWidget *w, gpointer data)
 		if(!start_dir) {
 			gnome_app_error (GNOME_APP(app),
 					 _("Start folder does not exist."));
-			return;
+			goto out;
 		}
 	} else
 		start_dir = NULL;
@@ -873,7 +915,7 @@ run_command(GtkWidget *w, gpointer data)
 	if (cmd == NULL) {
 		gnome_app_error (GNOME_APP(app),
 				 _("Cannot perform the search. Please specify a search criteria."));
-		return;
+		goto out;
 	}
 
 	if (!lock) {
@@ -894,6 +936,19 @@ run_command(GtkWidget *w, gpointer data)
 	}
 	gtk_widget_set_sensitive(save_widget, TRUE);
 	g_free(cmd);
+
+out:
+	if (buttons == find_buttons)
+	{
+		gtk_widget_set_sensitive (locate_buttons[0], TRUE);
+		gtk_widget_set_sensitive (locate_buttons[1], TRUE);
+	}
+	else
+	{
+		gtk_widget_set_sensitive (find_buttons[0], TRUE);
+		gtk_widget_set_sensitive (find_buttons[1], TRUE);
+	}
+
 }
 
 static void
@@ -1310,6 +1365,8 @@ create_find_page(void)
 	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,GNOME_PAD_SMALL);
 	label = gtk_label_new_with_mnemonic(_("S_tarting in folder:"));
+	gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 	start_dir_e = gnome_file_entry_new("directory", _("Browse"));
 	gnome_file_entry_set_directory_entry(GNOME_FILE_ENTRY(start_dir_e), TRUE);
@@ -1536,6 +1593,18 @@ run_locate_command(GtkWidget *w, gpointer data)
 	GtkWidget **buttons = data;
 
         gtk_widget_set_sensitive(save_widget, FALSE);
+
+	if (buttons == find_buttons)
+	{
+		gtk_widget_set_sensitive (locate_buttons[0], FALSE);
+		gtk_widget_set_sensitive (locate_buttons[1], FALSE);
+	}
+	else
+	{
+		gtk_widget_set_sensitive (find_buttons[0], FALSE);
+		gtk_widget_set_sensitive (find_buttons[1], FALSE);
+	}
+
 	if (buttons[0] == w) { /*we are in the stop button*/
 		if(locate_running == RUNNING)
 			locate_running = MAKE_IT_STOP;
@@ -1543,7 +1612,7 @@ run_locate_command(GtkWidget *w, gpointer data)
 			gtk_widget_show(buttons[1]);
 			gtk_widget_set_sensitive(buttons[1], FALSE);
 			gtk_widget_set_sensitive(save_widget, TRUE);
-		return;
+		goto out;
 	}
 
 	cmd = make_locate_cmd();
@@ -1552,7 +1621,7 @@ run_locate_command(GtkWidget *w, gpointer data)
 		gnome_app_error (GNOME_APP(app),
 				 _("Cannot perform the search. "
 				   "Please specify a search criteria."));
-		return;
+		goto out;
 	}
 	
 	if (!lock) {	
@@ -1574,8 +1643,24 @@ run_locate_command(GtkWidget *w, gpointer data)
 				_("A search is already running.  Please wait for the search "
 				  "to complete or cancel it."));
 	}
+	
 	gtk_widget_set_sensitive(save_widget, TRUE);
+	
 	g_free(cmd);
+
+out:
+	if (buttons == find_buttons)
+	{
+		gtk_widget_set_sensitive (locate_buttons[0], TRUE);
+		gtk_widget_set_sensitive (locate_buttons[1], TRUE);
+	}
+	else
+	{
+		gtk_widget_set_sensitive (find_buttons[0], TRUE);
+		gtk_widget_set_sensitive (find_buttons[1], TRUE);
+	}
+
+
 }
 
 static void
@@ -1634,6 +1719,9 @@ create_locate_page(void)
 	gtk_container_add (GTK_CONTAINER (hbox), table);
 	
 	w = gtk_label_new_with_mnemonic(_("Find files _named:"));
+	gtk_label_set_justify (GTK_LABEL (w), GTK_JUSTIFY_LEFT);
+	g_object_set (G_OBJECT (w), "xalign", 0.0, NULL);
+	
 	gtk_table_attach(GTK_TABLE(table), w, 0, 1, 0, 1, GTK_FILL, 0, 0, 1);
 
 	locate_entry = gnome_entry_new(history);
@@ -1655,6 +1743,9 @@ create_locate_page(void)
 			  locate_buttons);
 			  
 	label = gtk_label_new_with_mnemonic(_("S_tarting in folder:"));
+	gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
+	
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
 	
 	locate_path_entry = gnome_file_entry_new("directory", _("Browse"));
@@ -2014,22 +2105,28 @@ die (GnomeClient *client, gpointer client_data)
 }
 
 static GnomeUIInfo search_menu[] = {
-	GNOMEUIINFO_ITEM_STOCK(N_("S_how Command..."), "", run_cmd_dialog,GTK_STOCK_NEW),
-	GNOMEUIINFO_ITEM_STOCK(N_("Save Results _As..."), "",show_file_selector,GTK_STOCK_SAVE_AS),
+	GNOMEUIINFO_ITEM_STOCK (N_("S_how Command..."), 
+				N_("Show the command used to perform the search"), 
+				run_cmd_dialog,
+				GTK_STOCK_NEW),
+	GNOMEUIINFO_ITEM_STOCK (N_("Save Results _As..."), 
+			        N_("Save the search results"), 
+				show_file_selector,
+				GTK_STOCK_SAVE_AS),
 	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_QUIT_ITEM(quit_cb,NULL),
+	GNOMEUIINFO_MENU_QUIT_ITEM (quit_cb,NULL),
 	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo help_menu[] = {  
-	GNOMEUIINFO_HELP("gnome-search-tool"),
-	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
+	GNOMEUIINFO_HELP ("gnome-search-tool"),
+	GNOMEUIINFO_MENU_ABOUT_ITEM (about_cb, NULL),
 	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo gsearch_menu[] = {
 	GNOMEUIINFO_SUBTREE (N_("Sear_ch"), search_menu),
-	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
+	GNOMEUIINFO_MENU_HELP_TREE (help_menu),
         GNOMEUIINFO_END
 };
 
@@ -2072,10 +2169,20 @@ main(int argc, char *argv[])
 	g_signal_connect (client, "save_yourself",
 			  G_CALLBACK (save_session), (gpointer)argv[0]);
 
-	g_signal_connect (client, "die", G_CALLBACK (die), NULL);		 
-			 
+	g_signal_connect (client, "die", G_CALLBACK (die), NULL);
+		
+	/* set up status bar */
+	status_bar = gnome_appbar_new (TRUE, TRUE, GNOME_PREFERENCES_NEVER);
+	gnome_app_set_statusbar (GNOME_APP (app), status_bar);
+	progress_bar = GTK_WIDGET (gnome_appbar_get_progress (
+				GNOME_APPBAR (status_bar)));
+	g_object_set (G_OBJECT (progress_bar), 
+		      "pulse_step", 0.1,
+		      NULL);
+				      
 	/*set up the menu*/
-        gnome_app_create_menus(GNOME_APP(app), gsearch_menu);
+        gnome_app_create_menus (GNOME_APP (app), gsearch_menu);
+	gnome_app_install_menu_hints (GNOME_APP (app), gsearch_menu);
 
 	search = create_window();
 	gtk_widget_show_all(search);
