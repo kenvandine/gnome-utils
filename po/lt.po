@@ -5,23 +5,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.1.0\n"
-"POT-Creation-Date: 2000-05-02 19:01+0300\n"
-"PO-Revision-Date: 2000-05-02 21:05+0100\n"
+"POT-Creation-Date: 2000-05-14 03:00+0300\n"
+"PO-Revision-Date: 2000-05-14 03:11+0300\n"
 "Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-13\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gcalc/gcalc.c:36
+#: gcalc/gcalc.c:37
 msgid "The Gnome Calculator"
 msgstr "GNOME skaièiuotuvas"
 
-#: gcalc/gcalc.c:39
+#: gcalc/gcalc.c:40
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Paprastas dvigubo tikslumo skaièiuotuvas, panaðus á xcalc"
 
-#: gcalc/gcalc.c:132
+#: gcalc/gcalc.c:133
 msgid "Gnome Calculator"
 msgstr "GNOME skaièiuotuvas"
 
@@ -82,7 +82,7 @@ msgstr "Raðyba"
 msgid "Check word spelling"
 msgstr "Tikrinti þodþio raðybà"
 
-#: gdictsrc/gdict-app.c:443 gtt/toolbar.c:159
+#: gcharmap/src/interface.c:66 gdictsrc/gdict-app.c:443 gtt/toolbar.c:159
 msgid "Cut"
 msgstr "Iðkirpti"
 
@@ -90,7 +90,7 @@ msgstr "Iðkirpti"
 msgid "Cut to Clipboard"
 msgstr "Iðkirpti á krepðá"
 
-#: gdictsrc/gdict-app.c:444 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:68 gdictsrc/gdict-app.c:444 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopijuoti"
 
@@ -98,7 +98,7 @@ msgstr "Kopijuoti"
 msgid "Copy to Clipboard"
 msgstr "Kopijuoti á krepðá"
 
-#: gdictsrc/gdict-app.c:445 gtt/toolbar.c:167
+#: gcharmap/src/interface.c:70 gdictsrc/gdict-app.c:445 gtt/toolbar.c:167
 msgid "Paste"
 msgstr "Ádëti"
 
@@ -111,8 +111,8 @@ msgid "Settings"
 msgstr "Nustatymai"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-app.c:447 gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:499
-#: mini-utils/gshutdown/gshutdown.c:313
+#: gdictsrc/gdict-app.c:447 gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:495
+#: mini-utils/gshutdown/gshutdown.c:314
 msgid "Preferences"
 msgstr "Nustatymai"
 
@@ -208,11 +208,86 @@ msgstr ""
 msgid "Applet"
 msgstr "Priedas"
 
-#: gdiskfree/gdiskfree.c:57
+#: gcharmap/src/interface.c:44
+msgid "_Toolbar"
+msgstr "_Árankiø juosta"
+
+#: gcharmap/src/interface.c:44
+msgid "View or hide the toolbar"
+msgstr "Rodyti ar paslëpti árankiø juostà"
+
+#: gcharmap/src/interface.c:46
+msgid "_Statusbar"
+msgstr "_Bûsenos juosta"
+
+#: gcharmap/src/interface.c:46
+msgid "View or hide the statusbar"
+msgstr "Rodyti ar paslëpti bûsenos juostà"
+
+#: gcharmap/src/interface.c:66
+msgid "Cut the text to clipboard"
+msgstr "Iðkirpti tekstà á krepðá."
+
+#: gcharmap/src/interface.c:68
+msgid "Copy the text to clipboard."
+msgstr "Kopijuoti tekstà á krepðá."
+
+#: gcharmap/src/interface.c:70
+msgid "Paste the text from clipboard."
+msgstr "Ádëti tekstà ið krepðio."
+
+#: gcharmap/src/interface.c:73 gstripchart/gstripchart.c:1802
+#: mini-utils/gcolorsel/menus.c:902
+msgid "Exit"
+msgstr "Iðeiti"
+
+#: gcharmap/src/interface.c:73
+msgid "Exit the application"
+msgstr "Iðeiti ið programos"
+
+#: gcharmap/src/interface.c:100 gcharmap/src/interface.c:355
+msgid "Gnome Character Map"
+msgstr "Gnome simboliø rinkinys"
+
+#: gcharmap/src/interface.c:146
+msgid "Text to Copy:"
+msgstr "Tekstas:"
+
+#: gcharmap/src/interface.c:303
+#, c-format
+msgid "%s: ASCII character %d"
+msgstr "%s: ASCII simbolis %d"
+
+#: gcharmap/src/interface.c:320
+msgid "Text cut to clipboard..."
+msgstr "Tekstas iðkirptas á krepðá..."
+
+#: gcharmap/src/interface.c:329
+msgid "Text copied to clipboard..."
+msgstr "Tekstas nukopijuotas á krepðá"
+
+#: gcharmap/src/interface.c:338
+msgid "Text pasted from clipboard..."
+msgstr "Tekstas ádëtas ið krepðio..."
+
+#: gcharmap/src/interface.c:356
+msgid ""
+"The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
+"contain bad English.\n"
+"http://users.telekabel.nl/hongli/"
+msgstr ""
+"Gnome ekvivalentas Microsoft Windows Character Map'ui.\n"
+"http://users.telekabel.nl/hongli/"
+
+#: gcharmap/src/interface.c:371
+msgid "There's no documentation available yet."
+msgstr "Kol kas nëra jokios dokumentacijos."
+
+#: gdiskfree/gdiskfree.c:58
 msgid "Specify the geometry of the window."
 msgstr "Nurodyti lango geometrijà."
 
-#: gdiskfree/gdiskfree.c:58 gtt/main.c:206 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:207 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRIJA"
 
@@ -225,7 +300,7 @@ msgstr "GDiskFree"
 msgid "Unable to parse the geometry string '%s'"
 msgstr "Negaliu iðsiaiðkinti geometrijos eilutës ¥%s´"
 
-#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:171
+#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:159
 msgid "Properties"
 msgstr "Savybës"
 
@@ -269,114 +344,114 @@ msgstr "Atnaujinimo intervalas (ms)"
 msgid "General Settings"
 msgstr "Bendrieji nustatymai"
 
-#: gsearchtool/gsearchtool.c:26
+#: gsearchtool/gsearchtool.c:27
 msgid "File name"
 msgstr "Bylos vardas"
 
-#: gsearchtool/gsearchtool.c:28
+#: gsearchtool/gsearchtool.c:29
 msgid "Don't search subdirectories"
 msgstr "Neieðkoti pakatalogiuose"
 
-#: gsearchtool/gsearchtool.c:29
+#: gsearchtool/gsearchtool.c:30
 msgid "File owner"
 msgstr "Bylos savininkas"
 
-#: gsearchtool/gsearchtool.c:30
+#: gsearchtool/gsearchtool.c:31
 msgid "File owner group"
 msgstr "Bylos savininko grupë"
 
-#: gsearchtool/gsearchtool.c:31
+#: gsearchtool/gsearchtool.c:32
 msgid "Last modification time"
 msgstr "Paskutinio pakeitimo data"
 
-#: gsearchtool/gsearchtool.c:33
+#: gsearchtool/gsearchtool.c:34
 msgid "Don't search mounted filesystems"
 msgstr "Neieðkoti primontuotose bylø sistemose"
 
-#: gsearchtool/gsearchtool.c:34
+#: gsearchtool/gsearchtool.c:35
 msgid "Empty file"
 msgstr "Tuðèia byla"
 
-#: gsearchtool/gsearchtool.c:36
+#: gsearchtool/gsearchtool.c:37
 msgid "Invalid user or group"
 msgstr "Nesantis savininkas ar grupë"
 
-#: gsearchtool/gsearchtool.c:37
+#: gsearchtool/gsearchtool.c:38
 msgid "Filenames except"
 msgstr "Bylø vardai iðskyrus"
 
-#: gsearchtool/gsearchtool.c:38
+#: gsearchtool/gsearchtool.c:39
 msgid "Follow symbolic links"
 msgstr "Sekti simboliniais linkais"
 
-#: gsearchtool/gsearchtool.c:39
+#: gsearchtool/gsearchtool.c:40
 msgid "Simple substring search"
 msgstr "Paprasta eilutës dalies paieðka"
 
-#: gsearchtool/gsearchtool.c:40
+#: gsearchtool/gsearchtool.c:41
 msgid "Regular expression search"
 msgstr "RegExp paieðka"
 
-#: gsearchtool/gsearchtool.c:42
+#: gsearchtool/gsearchtool.c:43
 msgid "Extended regular expression search"
 msgstr "Iðplëstinë RegExp paieðka"
 
-#: gsearchtool/gsearchtool.c:144
+#: gsearchtool/gsearchtool.c:145
 msgid "grep options found in find list bad bad!"
 msgstr "grep pasirinktys rastos paieðkos sàraðe, blogai!"
 
-#: gsearchtool/gsearchtool.c:158
+#: gsearchtool/gsearchtool.c:159
 msgid "non-grep option found in grep list, bad bad!"
 msgstr "ne-grep pasirinktis rasta grep sàraðe, blogai!"
 
-#: gsearchtool/gsearchtool.c:195
+#: gsearchtool/gsearchtool.c:196
 msgid "Search already running on another page"
 msgstr "Paieðka jau vykdoma kitame puslapyje"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
-#: gsearchtool/gsearchtool.c:207
+#: gsearchtool/gsearchtool.c:208
 msgid "Search Results"
 msgstr "Paieðkos rezultatai"
 
-#: gsearchtool/gsearchtool.c:328
+#: gsearchtool/gsearchtool.c:329
 msgid "Start directory does not exist"
 msgstr "Pradinis katalogas neegzistuoja"
 
-#: gsearchtool/gsearchtool.c:482
+#: gsearchtool/gsearchtool.c:483
 msgid "Enable"
 msgstr "Leisti"
 
-#: gsearchtool/gsearchtool.c:490 logview/actions.c:127
+#: gsearchtool/gsearchtool.c:491 logview/actions.c:127
 msgid "Remove"
 msgstr "Paðalinti"
 
-#: gsearchtool/gsearchtool.c:542
+#: gsearchtool/gsearchtool.c:543
 msgid "Start in directory:"
 msgstr "Pradëti kataloge:"
 
-#: gsearchtool/gsearchtool.c:544
+#: gsearchtool/gsearchtool.c:545
 msgid "Browse"
 msgstr "Narðyti"
 
-#: gsearchtool/gsearchtool.c:564 mini-utils/gw/gw.c:506
+#: gsearchtool/gsearchtool.c:565 mini-utils/gw/gw.c:508
 msgid "Add"
 msgstr "Pridëti"
 
-#: gsearchtool/gsearchtool.c:575 gsearchtool/gsearchtool.c:658
+#: gsearchtool/gsearchtool.c:576 gsearchtool/gsearchtool.c:659
 msgid "Start"
 msgstr "Pradëti"
 
-#: gsearchtool/gsearchtool.c:576 gsearchtool/gsearchtool.c:659
+#: gsearchtool/gsearchtool.c:577 gsearchtool/gsearchtool.c:660
 msgid "Stop"
 msgstr "Sustabdyti"
 
-#: gsearchtool/gsearchtool.c:609
+#: gsearchtool/gsearchtool.c:610
 msgid "Nothing to locate"
 msgstr "Nëra ko ieðkoti"
 
-#: gsearchtool/gsearchtool.c:637
+#: gsearchtool/gsearchtool.c:638
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -386,355 +461,356 @@ msgstr ""
 "kaip pilno kelio dalis, o jei ávesi eilutæ su pakaitos simboliais\n"
 "(wildcards), ji turës atitikti pilnà kelià."
 
-#: gsearchtool/gsearchtool.c:646
+#: gsearchtool/gsearchtool.c:647
 msgid "Locate file: "
 msgstr "Rasti bylà: "
 
-#: gsearchtool/gsearchtool.c:680
+#: gsearchtool/gsearchtool.c:681
 msgid "Full find (find)"
 msgstr "Pilna paieðka (find)"
 
-#: gsearchtool/gsearchtool.c:682
+#: gsearchtool/gsearchtool.c:683
 msgid "Quick find (locate)"
 msgstr "Greita paieðka (locate)"
 
-#: gsearchtool/gsearchtool.c:703
+#: gsearchtool/gsearchtool.c:704
 msgid "The Gnome Search Tool"
 msgstr "GNOME Paieðkos árankis"
 
-#: gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:705
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998,2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:706
+#: gsearchtool/gsearchtool.c:707
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Grafinis apvalkalas unix find/grep/locate komandoms"
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:765
 msgid "Gnome Search Tool"
 msgstr "GNOME Paieðkos árankis"
 
-#: gstripchart/gstripchart.c:440
+#: gstripchart/gstripchart.c:441
 msgid "rparen expected"
 msgstr "tikëtasi deðinio skliausto"
 
-#: gstripchart/gstripchart.c:457
+#: gstripchart/gstripchart.c:458
 #, c-format
 msgid "no such field: %d"
 msgstr "nëra tokio lauko: %d"
 
-#: gstripchart/gstripchart.c:485
+#: gstripchart/gstripchart.c:486
 msgid "missing variable identifer"
 msgstr "trûksta kintamojo vardo"
 
-#: gstripchart/gstripchart.c:487
+#: gstripchart/gstripchart.c:488
 #, c-format
 msgid "invalid variable identifer: %s"
 msgstr "netinkamas kintamojo vardas: %s"
 
-#: gstripchart/gstripchart.c:491
+#: gstripchart/gstripchart.c:492
 msgid "number expected"
 msgstr "tikëtasi skaièiaus"
 
-#: gstripchart/gstripchart.c:569
+#: gstripchart/gstripchart.c:570
 #, c-format
 msgid "extra gunk at end: \"%s\""
-msgstr ""
+msgstr "papildomas þenklas gale: ¥%s´"
 
-#: gstripchart/gstripchart.c:651
+#: gstripchart/gstripchart.c:652
 #, c-format
 msgid "%s, line %d: "
 msgstr "%s, eilutë %d: "
 
-#: gstripchart/gstripchart.c:732
+#: gstripchart/gstripchart.c:733
 #, c-format
 msgid "can't open config file \"%s\""
 msgstr "negaliu atidaryti nustat. bylos ¥%s´"
 
-#: gstripchart/gstripchart.c:759
+#: gstripchart/gstripchart.c:760
 #, c-format
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 msgstr ""
 "negaliu atidaryti nustat. bylos ¥./gstripchart.conf´, ¥%s´, ¥%s´ arba ¥%s´"
 
-#: gstripchart/gstripchart.c:764
+#: gstripchart/gstripchart.c:765
 #, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
 msgstr "negaliu atidaryti nustat. bylos ¥./gstripchart.conf´, ¥%s´ arba ¥%s´"
 
-#: gstripchart/gstripchart.c:842
+#: gstripchart/gstripchart.c:843
 msgid "identifier or begin must be first"
 msgstr "vardas arba begin turi bûti pirmiausia"
 
-#: gstripchart/gstripchart.c:850 gstripchart/gstripchart.c:867
+#: gstripchart/gstripchart.c:851 gstripchart/gstripchart.c:868
 #, c-format
 msgid "unrecognized color: %s"
 msgstr "nepaþinta spalva: %s"
 
-#: gstripchart/gstripchart.c:882
+#: gstripchart/gstripchart.c:883
 msgid "scale must be either \"log\" or \"linear\""
 msgstr "skalë turi bûti ¥log´ arba ¥linear´"
 
-#: gstripchart/gstripchart.c:897
+#: gstripchart/gstripchart.c:898
 msgid "no equation found"
 msgstr "nerasta jokios lygybës"
 
-#: gstripchart/gstripchart.c:914
+#: gstripchart/gstripchart.c:915
 #, c-format
 msgid "invalid option: \"%s\""
 msgstr "negaliojanti pasirinktis: ¥%s´"
 
-#: gstripchart/gstripchart.c:1477
+#: gstripchart/gstripchart.c:1498
 msgid "E_xit"
 msgstr "I_ðeiti"
 
-#: gstripchart/gstripchart.c:1477
+#: gstripchart/gstripchart.c:1498
 msgid "Terminate the stripchart program"
 msgstr "Iðeiti ið stripchart programos"
 
-#: gstripchart/gstripchart.c:1493
+#: gstripchart/gstripchart.c:1514
 msgid "Copyright 1998,99 John Kodis"
 msgstr "Copyright 1998,99 John Kodis"
 
-#: gstripchart/gstripchart.c:1495
+#: gstripchart/gstripchart.c:1516
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
 "such as CPU load, CPU utilization, network traffic levels, and the like.  "
 "Other more ingenious uses are left as an exercise for the interested user."
 msgstr ""
+"GNOME stripchart programa braiþo ávairiø vartotojo nurodytø parametrø "
+"diagramas, lyg laiko funkcijas. Jos pagrindinë paskirtis yra uþraðyti "
+"sistemos veiklumo parametrus, tokius kaip CPU apkrovimas, CPU panaudojimas, "
+"tinklo eismo lygis, ir pan. Kitokie iðradingesni panaudojimo bûdai palikti "
+"kaip uþduotis susidomëjusiems vartotojams."
 
-#: gstripchart/gstripchart.c:1508
+#: gstripchart/gstripchart.c:1529
 msgid "_About"
 msgstr "_Apie"
 
-#: gstripchart/gstripchart.c:1508
+#: gstripchart/gstripchart.c:1529
 msgid "Info about the striphart program"
 msgstr "Info apie stripchart programà"
 
-#: gstripchart/gstripchart.c:1519
+#: gstripchart/gstripchart.c:1540
 msgid "_File"
 msgstr "_Byla"
 
-#: gstripchart/gstripchart.c:1520
+#: gstripchart/gstripchart.c:1541
 msgid "_Help"
 msgstr "_Pagalba"
 
-#: gstripchart/gstripchart.c:1584 gstripchart/gstripchart.c:1722
+#: gstripchart/gstripchart.c:1605 gstripchart/gstripchart.c:1744
 msgid "Param"
-msgstr "Param"
+msgstr "Parametras"
 
-#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/view-color-list.c:193
+#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:196
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Reikðmë"
 
-#: gstripchart/gstripchart.c:1588
+#: gstripchart/gstripchart.c:1609
 msgid "Identifier"
 msgstr "Vardas"
 
-#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/view-color-list.c:192
+#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:195
 msgid "Color"
 msgstr "Spalva"
 
-#: gstripchart/gstripchart.c:1592
+#: gstripchart/gstripchart.c:1613
 msgid "Filename"
 msgstr "Bylos vardas"
 
-#: gstripchart/gstripchart.c:1594
+#: gstripchart/gstripchart.c:1615
 msgid "Pattern"
-msgstr ""
+msgstr "Pattern'as"
 
-#: gstripchart/gstripchart.c:1596
+#: gstripchart/gstripchart.c:1617
 msgid "Equation"
-msgstr ""
+msgstr "Lygtis"
 
-#: gstripchart/gstripchart.c:1598
+#: gstripchart/gstripchart.c:1619
 msgid "Expected range"
-msgstr ""
+msgstr "Tikimos ribos"
 
-#: gstripchart/gstripchart.c:1602
+#: gstripchart/gstripchart.c:1623
 msgid "Displayed range"
-msgstr ""
+msgstr "Rodomos ribos"
 
-#: gstripchart/gstripchart.c:1606
+#: gstripchart/gstripchart.c:1627
 msgid "Current value"
 msgstr "Esamoji reikðmë"
 
-#: gstripchart/gstripchart.c:1613
+#: gstripchart/gstripchart.c:1634
 msgid "Active"
-msgstr ""
+msgstr "Aktyvus"
 
-#: gstripchart/gstripchart.c:1629
+#: gstripchart/gstripchart.c:1651
 msgid "Stripchart Parameters"
-msgstr ""
+msgstr "Stripchart parametrai"
 
-#: gstripchart/gstripchart.c:1723
+#: gstripchart/gstripchart.c:1745
 msgid "Current"
-msgstr ""
+msgstr "Esama"
 
-#: gstripchart/gstripchart.c:1724
+#: gstripchart/gstripchart.c:1746
 msgid "Top"
-msgstr ""
+msgstr "Aukðèiausia"
 
-#: gstripchart/gstripchart.c:1725
+#: gstripchart/gstripchart.c:1747
 msgid "Scale"
-msgstr ""
+msgstr "Mastelis"
 
-#: gstripchart/gstripchart.c:1762 gstripchart/gstripchart.c:2049
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:2071
 msgid "Help"
 msgstr "Pagalba"
 
-#: gstripchart/gstripchart.c:1768 gstripchart/gstripchart.c:2052
-#: mini-utils/gcolorsel/menus.c:843 mini-utils/gshutdown/gshutdown.c:318
+#: gstripchart/gstripchart.c:1790 gstripchart/gstripchart.c:2074
+#: mini-utils/gcolorsel/menus.c:912 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "Apie"
 
-#: gstripchart/gstripchart.c:1774
+#: gstripchart/gstripchart.c:1796
 msgid "Params"
-msgstr ""
-
-#: gstripchart/gstripchart.c:1780 mini-utils/gcolorsel/menus.c:833
-msgid "Exit"
-msgstr "Iðeiti"
+msgstr "Parametrai"
 
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1886
+#: gstripchart/gstripchart.c:1908
 msgid "gstripchart"
 msgstr "gstripchart"
 
-#: gstripchart/gstripchart.c:1886
+#: gstripchart/gstripchart.c:1908
 msgid "Stripchart Viewer"
-msgstr ""
+msgstr "Stripcahrt þiûriklis"
 
-#: gstripchart/gstripchart.c:2055
+#: gstripchart/gstripchart.c:2077
 msgid "Params..."
-msgstr ""
+msgstr "Parametrai..."
 
-#: gstripchart/gstripchart.c:2100
+#: gstripchart/gstripchart.c:2122
 #, c-format
 msgid "invalid display type: %s\n"
-msgstr ""
+msgstr "negalimas ekrano tipas: %s\n"
 
-#: gstripchart/gstripchart.c:2125
+#: gstripchart/gstripchart.c:2147
 msgid "Geometry string: WxH+X+Y"
 msgstr "Geometrijos eilutë: PLxAU+X+Y"
 
-#: gstripchart/gstripchart.c:2125
+#: gstripchart/gstripchart.c:2147
 msgid "GEO"
 msgstr "GEO"
 
-#: gstripchart/gstripchart.c:2127
+#: gstripchart/gstripchart.c:2149
 msgid "Configuration file name"
 msgstr "Nustatymø bylos vardas"
 
-#: gstripchart/gstripchart.c:2127
+#: gstripchart/gstripchart.c:2149
 msgid "FILE"
 msgstr "BYLA"
 
-#: gstripchart/gstripchart.c:2129
+#: gstripchart/gstripchart.c:2151
 msgid "Chart update interval"
-msgstr ""
+msgstr "Diagramos atnaujinimo tarpas"
 
-#: gstripchart/gstripchart.c:2129 gstripchart/gstripchart.c:2131
-#: gstripchart/gstripchart.c:2133 gstripchart/gstripchart.c:2135
+#: gstripchart/gstripchart.c:2151 gstripchart/gstripchart.c:2153
+#: gstripchart/gstripchart.c:2155 gstripchart/gstripchart.c:2157
 msgid "SECS"
-msgstr ""
+msgstr "SEK"
 
-#: gstripchart/gstripchart.c:2131
+#: gstripchart/gstripchart.c:2153
 msgid "Chart low-pass filter time constant"
-msgstr ""
+msgstr "Diagramos þemo praëjimo filtro laiko konstanta"
 
-#: gstripchart/gstripchart.c:2133
+#: gstripchart/gstripchart.c:2155
 msgid "Slider update interval"
-msgstr ""
+msgstr "Ðliauþiklio atnaujinimo tarpas"
 
-#: gstripchart/gstripchart.c:2135
+#: gstripchart/gstripchart.c:2157
 msgid "Slider low-pass filter time constant"
-msgstr ""
+msgstr "Ðliauþiklio þemo praëjimo filtro laiko konstanta"
 
-#: gstripchart/gstripchart.c:2137
+#: gstripchart/gstripchart.c:2159
 msgid "Adds a menubar to the main window"
-msgstr ""
+msgstr "Ádeda meniu á pagrindiná langà"
 
-#: gstripchart/gstripchart.c:2139
+#: gstripchart/gstripchart.c:2161
 msgid "Omits slider window"
-msgstr ""
+msgstr "Neátraukti ðliauþiklio lango"
 
-#: gstripchart/gstripchart.c:2142
+#: gstripchart/gstripchart.c:2164
 msgid "TYPE is one of gtk, applet, text, or none"
-msgstr ""
+msgstr "TIPAS yra vienas ið gtk, applet, text arba none"
 
-#: gstripchart/gstripchart.c:2142 gstripchart/gstripchart.c:2144
+#: gstripchart/gstripchart.c:2164 gstripchart/gstripchart.c:2166
 msgid "TYPE"
-msgstr ""
+msgstr "TIPAS"
 
-#: gstripchart/gstripchart.c:2144
+#: gstripchart/gstripchart.c:2166
 msgid "TYPE is one of gtk, text, or none"
-msgstr ""
+msgstr "TIPAS yra vienas ið gtk, text arba none"
 
-#: gstripchart/gstripchart.c:2295
+#: gstripchart/gstripchart.c:2318
 msgid "white"
-msgstr ""
+msgstr "balta"
 
-#: gstripchart/gstripchart.c:2295
+#: gstripchart/gstripchart.c:2318
 msgid "black"
-msgstr ""
+msgstr "juoda"
 
-#: gstripchart/gstripchart.c:2295
+#: gstripchart/gstripchart.c:2318
 msgid "red"
-msgstr ""
+msgstr "raudona"
 
-#: gstripchart/gstripchart.c:2295
+#: gstripchart/gstripchart.c:2318
 msgid "yellow"
-msgstr ""
+msgstr "geltona"
 
-#: gstripchart/gstripchart.c:2296
+#: gstripchart/gstripchart.c:2319
 msgid "blue"
-msgstr ""
+msgstr "mëlyna"
 
-#: gstripchart/gstripchart.c:2296
+#: gstripchart/gstripchart.c:2319
 msgid "green"
-msgstr ""
+msgstr "þalia"
 
-#: gstripchart/gstripchart.c:2296
+#: gstripchart/gstripchart.c:2319
 msgid "cyan"
-msgstr ""
+msgstr "þydra"
 
-#: gstripchart/gstripchart.c:2296
+#: gstripchart/gstripchart.c:2319
 msgid "magenta"
-msgstr ""
+msgstr "avietinë"
 
-#: gstripchart/gstripchart.c:2297
+#: gstripchart/gstripchart.c:2320
 msgid "Busy"
-msgstr ""
+msgstr "Uþimtumas"
 
-#: gstripchart/gstripchart.c:2297
+#: gstripchart/gstripchart.c:2320
 msgid "Load"
-msgstr ""
+msgstr "Apkrovimas"
 
-#: gstripchart/gstripchart.c:2297
+#: gstripchart/gstripchart.c:2320
 msgid "Swap"
-msgstr ""
+msgstr "Swapas"
 
-#: gstripchart/gstripchart.c:2297
+#: gstripchart/gstripchart.c:2320
 msgid "Battery"
-msgstr ""
+msgstr "Baterijos"
 
-#: gstripchart/gstripchart.c:2298
+#: gstripchart/gstripchart.c:2321
 msgid "Net In"
-msgstr ""
+msgstr "Tinklas á"
 
-#: gstripchart/gstripchart.c:2298
+#: gstripchart/gstripchart.c:2321
 msgid "Net Out"
-msgstr ""
+msgstr "Tinklas ið"
 
-#: gstripchart/gstripchart.c:2298
+#: gstripchart/gstripchart.c:2321
 msgid "ppp"
-msgstr ""
+msgstr "ppp"
 
 #: gtt/app.c:117 gtt/app.c:223
 msgid "no project selected"
@@ -780,7 +856,7 @@ msgstr "nëra apraðymo"
 msgid "program exited"
 msgstr "programa baigë darbà"
 
-#: gtt/main.c:79
+#: gtt/main.c:80
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -789,11 +865,11 @@ msgstr ""
 "Spausk Gerai, kad vis tiek paleistum GTimeTracker,\n"
 "arba spausk Atðaukti ðiai programai uþbaigti."
 
-#: gtt/main.c:123
+#: gtt/main.c:124
 msgid "Error"
 msgstr "Klaida"
 
-#: gtt/main.c:124
+#: gtt/main.c:125
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -801,15 +877,15 @@ msgstr ""
 "Ávyko klaida skaitant nustatymø bylà.\n"
 "Ar turiu sukurti naujus nustatymus?"
 
-#: gtt/main.c:206
+#: gtt/main.c:207
 msgid "Specify geometry"
 msgstr "Nurodyti geometrijà"
 
-#: gtt/main.c:208
+#: gtt/main.c:209
 msgid "Select a project on startup"
 msgstr "Pradþioje pasirinkti projektà"
 
-#: gtt/main.c:208
+#: gtt/main.c:209
 msgid "PROJECT"
 msgstr "PROJEKTAS"
 
@@ -820,6 +896,10 @@ msgstr "Dëmesio"
 #: gtt/menucmd.c:32 gtt/menucmd.c:163
 msgid "I could not write the configuration file!"
 msgstr "Negaliu áraðyti nustatymø bylos!"
+
+#: gtt/menucmd.c:63
+msgid "Time tracking tool for Gnome"
+msgstr "Gnome laiko sekimo árankis"
 
 #: gtt/menucmd.c:93 gtt/toolbar.c:142
 msgid "New Project..."
@@ -894,7 +974,7 @@ msgstr "Rodyti bûsenos juostà"
 msgid "Show Table Header"
 msgstr "Rodyti lentelës antraðtes"
 
-#: gtt/options.c:220 gtt/options.c:518
+#: gtt/options.c:220 gtt/options.c:514
 msgid "Toolbar"
 msgstr "Árankiø juosta"
 
@@ -982,7 +1062,7 @@ msgstr "Áraðo pabaiga:"
 msgid "Timeout in secs:"
 msgstr "Laukimas [sek.]"
 
-#: gtt/options.c:505
+#: gtt/options.c:501
 msgid "Misc"
 msgstr "Ávairûs"
 
@@ -998,35 +1078,35 @@ msgstr "projektas %t baigtas"
 msgid "empty"
 msgstr "tuðèia"
 
-#: gtt/prop.c:178
+#: gtt/prop.c:166
 msgid "Project"
 msgstr "Projektas"
 
-#: gtt/prop.c:197
+#: gtt/prop.c:185
 msgid "Project Title:"
 msgstr "Projekto vardas:"
 
-#: gtt/prop.c:209
+#: gtt/prop.c:197
 msgid "Project Description:"
 msgstr "Projekto apraðymas:"
 
-#: gtt/prop.c:221
+#: gtt/prop.c:209
 msgid "Project Time today:"
 msgstr "Projekto laikas ðiandien:"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:225 gtt/prop.c:263
 msgid "hours"
 msgstr "val."
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:236 gtt/prop.c:274
 msgid "mins"
 msgstr "min."
 
-#: gtt/prop.c:259 gtt/prop.c:297
+#: gtt/prop.c:247 gtt/prop.c:285
 msgid "secs"
 msgstr "sek."
 
-#: gtt/prop.c:263
+#: gtt/prop.c:251
 msgid "Project Time ever:"
 msgstr "Projekto visas laikas:"
 
@@ -1149,7 +1229,7 @@ msgstr "Gerai"
 #: logview/actions.c:281 logview/actions.c:294 logview/actions.c:305
 #: logview/actions.c:316 logview/actions.c:327 logview/actions.c:338
 msgid "Error parsing actions data base"
-msgstr ""
+msgstr "Klaida parsinant veiksmø duomenø bazæ"
 
 #: logview/actions.c:370
 msgid "Can't write to actions database!"
@@ -1338,128 +1418,128 @@ msgstr "%s nëra log byla."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: baigësi atmintis"
 
-#: logview/logview.c:83
+#: logview/logview.c:84
 msgid "Open log...            "
 msgstr "Atidaryti log'à...     "
 
-#: logview/logview.c:84
+#: logview/logview.c:85
 msgid "Open log"
 msgstr "Atidaryti log'à"
 
-#: logview/logview.c:86
+#: logview/logview.c:87
 msgid "Export log...          "
 msgstr "Eksportuoti log'à...   "
 
-#: logview/logview.c:87
+#: logview/logview.c:88
 msgid "Export log"
 msgstr "Eksportuoti log'à"
 
-#: logview/logview.c:89
+#: logview/logview.c:90
 msgid "Close log              "
 msgstr "Uþdaryti log'à         "
 
-#: logview/logview.c:90
+#: logview/logview.c:91
 msgid "Close log"
 msgstr "Uþdaryti log'à"
 
-#: logview/logview.c:92
+#: logview/logview.c:93
 msgid "Switch log             "
 msgstr "Perjungti log'à        "
 
-#: logview/logview.c:93
+#: logview/logview.c:94
 msgid "Switch log"
 msgstr "Perjungti kità atidarytà log'à"
 
-#: logview/logview.c:95
+#: logview/logview.c:96
 msgid "Monitor..              "
 msgstr "Stebëti...             "
 
-#: logview/logview.c:96
+#: logview/logview.c:97
 msgid "Monitor log"
 msgstr "Stebëti log'à"
 
-#: logview/logview.c:98
+#: logview/logview.c:99
 msgid "Exit                   "
 msgstr "Iðeiti                 "
 
-#: logview/logview.c:99
+#: logview/logview.c:100
 msgid "Exit program"
 msgstr "Iðeiti ið programos"
 
-#: logview/logview.c:105
+#: logview/logview.c:106
 msgid "Calendar                "
 msgstr "Kalendorius             "
 
-#: logview/logview.c:106
+#: logview/logview.c:107
 msgid "Show calendar log"
 msgstr "Rodyti kalendoriø"
 
-#: logview/logview.c:108
+#: logview/logview.c:109
 msgid "Log stats               "
 msgstr "Log statistika          "
 
-#: logview/logview.c:109
+#: logview/logview.c:110
 msgid "Show log stats"
 msgstr "Rodyti log'ø bûsenà"
 
-#: logview/logview.c:111
+#: logview/logview.c:112
 msgid "Zoom                    "
 msgstr "Plaèiau                 "
 
-#: logview/logview.c:112
+#: logview/logview.c:113
 msgid "Show line info"
 msgstr "Rodyti eilutës informacijà plaèiau"
 
-#: logview/logview.c:118
+#: logview/logview.c:119
 msgid "Select...               "
 msgstr "Parinkti...             "
 
-#: logview/logview.c:119
+#: logview/logview.c:120
 msgid "Select log events"
 msgstr "Parinkti log ávykius"
 
-#: logview/logview.c:121
+#: logview/logview.c:122
 msgid "Filter..                "
 msgstr "Filtrai...              "
 
-#: logview/logview.c:122
+#: logview/logview.c:123
 msgid "Filter log events"
 msgstr "Filtruoti log ávykius"
 
-#: logview/logview.c:128
+#: logview/logview.c:129
 msgid "About..                "
 msgstr "Apie...                "
 
-#: logview/logview.c:129
+#: logview/logview.c:130
 msgid "Info about logview"
 msgstr "Informacija apie logview"
 
-#: logview/logview.c:138
+#: logview/logview.c:139
 msgid "F_ilter"
 msgstr "_Filtras"
 
-#: logview/logview.c:227
+#: logview/logview.c:230
 msgid "No log files to open"
 msgstr "Nëra log bylø, kurias galima atidaryti"
 
 #. Create App
-#: logview/logview.c:256
+#: logview/logview.c:259
 msgid "System Log Viewer"
 msgstr "Systimos log'ø perþiûra"
 
-#: logview/logview.c:357
+#: logview/logview.c:360
 msgid "Filename: "
 msgstr "Bylos vardas: "
 
-#: logview/logview.c:373
+#: logview/logview.c:376
 msgid "Date: "
 msgstr "Data: "
 
-#: logview/logview.c:620
+#: logview/logview.c:611
 msgid "Too many open logs. Close one and try again"
 msgstr "Per daug atidarytø log'ø. Uþdaryk vienà ir bandyk vël"
 
-#: logview/logview.c:673
+#: logview/logview.c:664
 msgid "Open new logfile"
 msgstr "Atidaryti naujà log bylà"
 
@@ -1467,10 +1547,6 @@ msgstr "Atidaryti naujà log bylà"
 #, c-format
 msgid "Error: [%s]\n"
 msgstr "Klaida: [%s]\n"
-
-#: logview/misc.c:79
-msgid "Ok"
-msgstr "Gerai"
 
 #: logview/monitor.c:131
 msgid "Choose logs to monitor"
@@ -1527,238 +1603,277 @@ msgid "Description:"
 msgstr "Apraðymas:"
 
 #. First view is considered as the default view ...
-#: mini-utils/gcolorsel/gcolorsel.c:21
+#: mini-utils/gcolorsel/gcolorsel.c:24
 msgid "List"
 msgstr "Sàraðas"
 
-#: mini-utils/gcolorsel/gcolorsel.c:24
+#: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "Grid"
 msgstr "Tinklelis"
 
-#: mini-utils/gcolorsel/gcolorsel.c:27 mini-utils/gcolorsel/menus.c:499
+#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:566
 msgid "Edit"
 msgstr "Keisti"
 
-#: mini-utils/gcolorsel/gcolorsel.c:34
+#: mini-utils/gcolorsel/gcolorsel.c:40
 msgid "File"
 msgstr "Byla"
 
-#: mini-utils/gcolorsel/gcolorsel.c:35
+#: mini-utils/gcolorsel/gcolorsel.c:42
 msgid "Search RGB"
 msgstr "Ieðkoti RGB"
 
-#: mini-utils/gcolorsel/gcolorsel.c:36
+#: mini-utils/gcolorsel/gcolorsel.c:44
 msgid "Monitor"
 msgstr "Stebëti"
 
-#: mini-utils/gcolorsel/gcolorsel.c:37
-msgid "Concact"
+#: mini-utils/gcolorsel/gcolorsel.c:46
+msgid "Concat"
 msgstr "Sujungti"
 
-#: mini-utils/gcolorsel/gcolorsel.c:80
+#: mini-utils/gcolorsel/gcolorsel.c:94
 #, c-format
 msgid "'%s' document has been modified; do you wish to save it ?"
 msgstr "Dokumentas ¥%s´ buvo pakeistas; ar nori já iðsaugoti?"
 
+#: mini-utils/gcolorsel/gcolorsel.c:204
+msgid "GColorsel was unable to paste colors from the clipboard."
+msgstr "GColorsel negalëjo ádëti spalvø ið krepðio."
+
+#: mini-utils/gcolorsel/gcolorsel.c:218
+msgid "Please select a file document before."
+msgstr "Praðau, pirma pasirink dokumentà."
+
+#: mini-utils/gcolorsel/gcolorsel.c:390
+msgid ""
+"I can't execute this action. Check that :\n"
+"\n"
+"1. You have associated an action with this event.\n"
+"2. The associated document still exits.\n"
+"3. The type of the associated document.\n"
+"\n"
+"Go to preferences, in the edit menu."
+msgstr ""
+"Negaliu ávykdyti ðio veiksmo. Patikrink:\n"
+"\n"
+"1. Ar susiejai veiksmà su ðiuo ávykiu.\n"
+"2. Ar susietas dokumentas vis dar egzistuoja.\n"
+"3. Koks susieto dokumento tipas.\n"
+"\n"
+"Eik á nuostatas, ¥Keisti´ meniu."
+
 #. Init GnomeMDI
-#: mini-utils/gcolorsel/gcolorsel.c:129
+#: mini-utils/gcolorsel/gcolorsel.c:508
 msgid "GColorsel"
 msgstr "GColorsel"
 
-#: mini-utils/gcolorsel/menus.c:48
+#: mini-utils/gcolorsel/menus.c:52
 msgid "New Document"
 msgstr "Naujas dokumentas"
 
-#: mini-utils/gcolorsel/menus.c:49
+#: mini-utils/gcolorsel/menus.c:53
 msgid "Create a new document"
 msgstr "Sukurti naujà dokumentà"
 
-#: mini-utils/gcolorsel/menus.c:51
+#: mini-utils/gcolorsel/menus.c:55
 msgid "New View"
 msgstr "Naujas vaizdas"
 
-#: mini-utils/gcolorsel/menus.c:52
+#: mini-utils/gcolorsel/menus.c:56
 msgid "Create a new view for a document"
 msgstr "Sukurti naujà dokumento vaizdà"
 
-#: mini-utils/gcolorsel/menus.c:58
+#: mini-utils/gcolorsel/menus.c:62
 msgid "Close document"
 msgstr "Uþdaryti dokumentà"
 
-#: mini-utils/gcolorsel/menus.c:59
+#: mini-utils/gcolorsel/menus.c:63
 msgid "Close the current document"
 msgstr "Uþdaryti esamà dokumentà"
 
-#: mini-utils/gcolorsel/menus.c:61
+#: mini-utils/gcolorsel/menus.c:65
 msgid "Close view"
 msgstr "Uþdaryti vaizdà"
 
-#: mini-utils/gcolorsel/menus.c:62 mini-utils/gcolorsel/menus.c:837
+#: mini-utils/gcolorsel/menus.c:66 mini-utils/gcolorsel/menus.c:906
 msgid "Close the current view"
 msgstr "Uþdaryti esamà vaizdà"
 
-#: mini-utils/gcolorsel/menus.c:79 mini-utils/gcolorsel/menus.c:837
-#: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:593
+#: mini-utils/gcolorsel/menus.c:83 mini-utils/gcolorsel/menus.c:906
+#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
 msgid "Close"
 msgstr "Uþdaryti"
 
-#: mini-utils/gcolorsel/menus.c:90
+#: mini-utils/gcolorsel/menus.c:99
 msgid "Insert color"
 msgstr "Áterpti spalvà"
 
-#: mini-utils/gcolorsel/menus.c:92
+#: mini-utils/gcolorsel/menus.c:101
 msgid "Remove selected colors"
 msgstr "Paðalinti parinktas spalvas"
 
-#: mini-utils/gcolorsel/menus.c:94
+#: mini-utils/gcolorsel/menus.c:103
 msgid "Edit selected colors ..."
 msgstr "Keisti parinktas spalvas..."
 
-#: mini-utils/gcolorsel/menus.c:125
-msgid "New"
-msgstr "Naujas"
-
-#: mini-utils/gcolorsel/menus.c:130
-msgid "Document created ..."
-msgstr "Dokumentas sukurtas..."
-
-#: mini-utils/gcolorsel/menus.c:145
-msgid "GColorsel was unable to save the file :"
-msgstr "GColorsel negalëjo iðsaugoti bylos :"
-
-#: mini-utils/gcolorsel/menus.c:149
+#: mini-utils/gcolorsel/menus.c:172
+#, c-format
 msgid ""
-"Make sure that the path you provided exists,\n"
-"and that you have the appropriate write permissions."
+"GColorsel was unable to save the file :\n"
+"\n"
+"%s\n"
+"\n"
+"Make sure that the path you provided exits,\n"
+"and that you have the approprate write permissions.\n"
+"\n"
+"Do you want to retry ?"
 msgstr ""
+"GColorsel negalëjo iðsaugoti bylos:\n"
+"\n"
+"%s\n"
+"\n"
 "Ásitikink, kad tavo pateiktas kelias egzistuoja,\n"
-"ir kad turi reikalingas raðymo teises."
+"ir kad turi reikalingas raðymo teises.\n"
+"\n"
+"Ar nori bandyti ið naujo?"
 
-#: mini-utils/gcolorsel/menus.c:151
-msgid "Do you want to retry ?"
-msgstr "Ar nori bandyti dar?"
-
-#: mini-utils/gcolorsel/menus.c:170
-msgid "Gcolorsel was unable to load the file :"
-msgstr "GColorsel negalëjo atidaryti bylos :"
-
-#: mini-utils/gcolorsel/menus.c:174
+#: mini-utils/gcolorsel/menus.c:191
+#, c-format
 msgid ""
+"GColorsel was unable to load the file:\n"
+"\n"
+"%s\n"
+"\n"
 "Make sure that the path you provided exists,\n"
 "and that you have permissions for opening the file."
 msgstr ""
+"GColorsel negalëjo ákelti bylos:\n"
+"\n"
+"%s\n"
+"\n"
 "Ásitikink, kad tavo pateiktas kelias egzistuoja,\n"
 "ir kad turi reikalingas skaitymo teises."
 
-#: mini-utils/gcolorsel/menus.c:176
-msgid "May be this is not a palette file ..."
-msgstr "Galbût tai nëra paletës byla..."
-
-#: mini-utils/gcolorsel/menus.c:196
+#: mini-utils/gcolorsel/menus.c:210
 msgid "Open Palette"
 msgstr "Atidaryti paletæ"
 
-#: mini-utils/gcolorsel/menus.c:221
+#: mini-utils/gcolorsel/menus.c:235
 msgid "Loading file, please wait ..."
 msgstr "Ákeliama byla, praðau palaukti..."
 
-#: mini-utils/gcolorsel/menus.c:252
+#: mini-utils/gcolorsel/menus.c:266
 msgid "Save Palette as"
 msgstr "Iðsaugoti paletæ kaip"
 
-#: mini-utils/gcolorsel/menus.c:299
+#: mini-utils/gcolorsel/menus.c:313
 msgid "File not saved ..."
 msgstr "Byla neiðsaugota..."
 
-#: mini-utils/gcolorsel/menus.c:309
+#: mini-utils/gcolorsel/menus.c:323
 msgid "File saved ..."
 msgstr "Byla iðsaugota ..."
 
-#: mini-utils/gcolorsel/menus.c:378
+#: mini-utils/gcolorsel/menus.c:401
 #, c-format
 msgid ""
-"I'm going to close the last view of '%s' document.\n"
+"I'm going to close the last view of '%s'.\n"
 "\n"
-"Document will be closed too, continue ?"
-msgstr ""
-"Dabar ruoðiuosi uþdaryti paskutiná dokumento ¥%s´ vaizdà.\n"
-"\n"
-"Dokumentas taip pat bus uþdarytas, tæsti?"
-
-#: mini-utils/gcolorsel/menus.c:381
-#, c-format
-msgid ""
-"%s\n"
+"This document will be closed too, continue ?\n"
 "\n"
 "Please note that %d virtual document use data from this document."
 msgstr ""
-"%s\n"
+"Dabar ruoðiuosi uþdaryti paskutiná dokumento ¥%s´ vaizdà.\n"
 "\n"
-"Praðau prisiminti, kad virtualus dokumentas %d naudoja duomenis ið ðio "
+"Dokumentas taip pat bus uþdarytas, tæsti?\n"
+"\n"
+"Praðau pastebëti, kad %d menamas dokumentas naudoja duomenis ið ðio "
 "dokumento."
 
-#: mini-utils/gcolorsel/menus.c:413
-#, c-format
-msgid "I'm going to close the '%s' document."
-msgstr "Ruoðiuosi uþdaryti dokumentà ¥%s´."
-
-#: mini-utils/gcolorsel/menus.c:417
+#: mini-utils/gcolorsel/menus.c:403
 #, c-format
 msgid ""
-"%s\n"
+"I'm going to close the last view of '%s'.\n"
 "\n"
-"Please note that %d views will be destroyed"
+"This document will be closed too, continue ?"
 msgstr ""
-"%s\n"
+"Að ruoðiuosi uþdaryti paskutiná dokumento ¥%s´ vaizdà.\n"
 "\n"
-"Praðau pastebëti, kad %d vaizdai bus sunaikinti"
+"Dokumentas taip pat bus uþdarytas, tæsti?"
 
-#: mini-utils/gcolorsel/menus.c:422
+#: mini-utils/gcolorsel/menus.c:437
 #, c-format
 msgid ""
-"%s,\n"
-"and that %d virtual document use data from this document."
+"I'm going to close '%s'.\n"
+"\n"
+"Please note that %d views will be destroyed,\n"
+"and that %d virtual document use data from this document.\n"
+"\n"
+"Do you want to continue ?"
 msgstr ""
-"%s,\n"
-"ir kad %d virtualûs dokumentai naudoja duomenis ið ðio dokumento."
+"Að ruoðiuosi uþdaryti ¥%s´.\n"
+"\n"
+"Praðau pastebëti, kad %d menami vaizdai bus sunaikinti,\n"
+"ir kad %d menamas dokumentas naudoja duomenis ið ðio dokumento.\n"
+"\n"
+"Ar nori tæsti?"
 
-#: mini-utils/gcolorsel/menus.c:431
-msgid "Do you want to continue ?"
-msgstr "Ar nori tæsti?"
+#: mini-utils/gcolorsel/menus.c:439
+#, c-format
+msgid ""
+"I'm going to close '%s'.\n"
+"\n"
+"Please note that %d views will be destroyed.\n"
+"\n"
+"Do you want to continue ?"
+msgstr ""
+"Að ruoðiuosi uþdaryti ¥%s´.\n"
+"\n"
+"Praðau pastebëti, kad %d vaizdai bus sunaikinti.\n"
+"\n"
+"Ar nori tæsti?"
 
-#: mini-utils/gcolorsel/menus.c:477
+#: mini-utils/gcolorsel/menus.c:487
 msgid "Gnome Color Browser"
 msgstr "GNOME Spalvø Narðyklë"
 
-#: mini-utils/gcolorsel/menus.c:480
+#: mini-utils/gcolorsel/menus.c:490
 msgid "Small utility to browse available X11 colors."
 msgstr "Maþas árankis narðyti ámanomoms X11 spalvoms."
 
-#: mini-utils/gcolorsel/menus.c:532
+#: mini-utils/gcolorsel/menus.c:599
 msgid "New Color"
 msgstr "Nauja spalva"
 
-#: mini-utils/gcolorsel/menus.c:833
+#: mini-utils/gcolorsel/menus.c:854
+msgid "View properties"
+msgstr "Vaizdo savybës"
+
+#: mini-utils/gcolorsel/menus.c:869
+msgid "Document properties"
+msgstr "Dokumento savybës"
+
+#: mini-utils/gcolorsel/menus.c:902
 msgid "Exit the program"
 msgstr "Iðeiti ið programos"
 
-#: mini-utils/gcolorsel/menus.c:835
+#: mini-utils/gcolorsel/menus.c:904
 msgid "Open"
 msgstr "Atidaryti"
 
-#: mini-utils/gcolorsel/menus.c:835
+#: mini-utils/gcolorsel/menus.c:904
 msgid "Open a palette"
 msgstr "Atidaryti paletæ"
 
-#: mini-utils/gcolorsel/menus.c:840
+#: mini-utils/gcolorsel/menus.c:909
 msgid "Grab"
 msgstr "Griebti"
 
-#: mini-utils/gcolorsel/menus.c:840
+#: mini-utils/gcolorsel/menus.c:909
 msgid "Grab a color on the screen"
 msgstr "Griebti spalvà nuo ekrano"
 
-#: mini-utils/gcolorsel/menus.c:843
+#: mini-utils/gcolorsel/menus.c:912
 msgid "About this application"
 msgstr "Apie ðià programà"
 
@@ -1783,8 +1898,8 @@ msgid "Float"
 msgstr "Plaukiojanèio kablelio"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:194 mini-utils/guname/moreinfo.c:225
-#: mini-utils/gw/gw.c:502 mini-utils/gw/gw.c:572
+#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gw/gw.c:504 mini-utils/gw/gw.c:574
 msgid "Name"
 msgstr "Vardas"
 
@@ -1877,31 +1992,31 @@ msgstr "Spalvos aukðtis :"
 msgid "Draw numbers"
 msgstr "Pieðti skaièius"
 
-#: mini-utils/gfontsel/gfontsel.c:156
+#: mini-utils/gfontsel/gfontsel.c:157
 msgid "Font Selector"
 msgstr "Ðriftø parinkiklis"
 
-#: mini-utils/gfontsel/gfontsel.c:184
+#: mini-utils/gfontsel/gfontsel.c:185
 msgid "Selection:"
 msgstr "Pasirinkimas:"
 
-#: mini-utils/gfontsel/gfontsel.c:267
+#: mini-utils/gfontsel/gfontsel.c:268
 msgid "Font to load"
 msgstr "Ðriftas, kurá ákelti"
 
-#: mini-utils/gfontsel/gfontsel.c:267
+#: mini-utils/gfontsel/gfontsel.c:268
 msgid "FONTSPEC"
 msgstr "FONTSPEC"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:269
 msgid "Print selected font name on exit"
 msgstr "Atspausdinti pasirinkto ðrifto vardà ir iðeiti"
 
-#: mini-utils/gfontsel/gfontsel.c:269
+#: mini-utils/gfontsel/gfontsel.c:270
 msgid "Inhibit remembering selected font for next run"
 msgstr "Neásiminti pasirinkto ðrifto kitam paleidimui"
 
-#: mini-utils/gfontsel/gfontsel.c:270
+#: mini-utils/gfontsel/gfontsel.c:271
 msgid "Inhibit loading of last font"
 msgstr "Neákelti paskutiná kartà ásiminto ðrifto"
 
@@ -2028,81 +2143,81 @@ msgstr "Ieðkau..."
 msgid "No search string was specified!"
 msgstr "Nenurodyta ieðkoma eilutë!"
 
-#: mini-utils/gshutdown/gshutdown.c:86
+#: mini-utils/gshutdown/gshutdown.c:87
 msgid "Shut Down"
 msgstr "Iðjungti"
 
-#: mini-utils/gshutdown/gshutdown.c:87
+#: mini-utils/gshutdown/gshutdown.c:88
 msgid "Single User Mode"
 msgstr "Single User Mode"
 
-#: mini-utils/gshutdown/gshutdown.c:88
+#: mini-utils/gshutdown/gshutdown.c:89
 msgid "Runlevel 2"
 msgstr "Runlevel 2"
 
-#: mini-utils/gshutdown/gshutdown.c:89
+#: mini-utils/gshutdown/gshutdown.c:90
 msgid "Runlevel 3"
 msgstr "Runlevel 3"
 
-#: mini-utils/gshutdown/gshutdown.c:90
+#: mini-utils/gshutdown/gshutdown.c:91
 msgid "Runlevel 4"
 msgstr "Runlevel 4"
 
-#: mini-utils/gshutdown/gshutdown.c:91
+#: mini-utils/gshutdown/gshutdown.c:92
 msgid "Runlevel 5"
 msgstr "Runlevel 5"
 
-#: mini-utils/gshutdown/gshutdown.c:92
+#: mini-utils/gshutdown/gshutdown.c:93
 msgid "Reboot"
 msgstr "Perkrauti"
 
-#: mini-utils/gshutdown/gshutdown.c:98
+#: mini-utils/gshutdown/gshutdown.c:99
 msgid "Are you sure you want to shut down the computer?"
 msgstr "Ar esi tikras, kad nori iðjungti kompiuterá?"
 
-#: mini-utils/gshutdown/gshutdown.c:99
+#: mini-utils/gshutdown/gshutdown.c:100
 msgid "Are you sure you want to switch to single user mode?"
 msgstr "Ar esi tikras, kad nori persijungti á ¥single user mode´?"
 
-#: mini-utils/gshutdown/gshutdown.c:100
+#: mini-utils/gshutdown/gshutdown.c:101
 msgid "Are you sure you want to switch to runlevel 2?"
 msgstr "Ar esi tikras, kad nori persijungti á 2?"
 
-#: mini-utils/gshutdown/gshutdown.c:101
+#: mini-utils/gshutdown/gshutdown.c:102
 msgid "Are you sure you want to switch to runlevel 3?"
 msgstr "Ar esi tikras, kad nori persijungti á 3?"
 
-#: mini-utils/gshutdown/gshutdown.c:102
+#: mini-utils/gshutdown/gshutdown.c:103
 msgid "Are you sure you want to switch to runlevel 4?"
 msgstr "Ar esi tikras, kad nori persijungti á 4?"
 
-#: mini-utils/gshutdown/gshutdown.c:103
+#: mini-utils/gshutdown/gshutdown.c:104
 msgid "Are you sure you want to switch to runlevel 5?"
 msgstr "Ar esi tikras, kad nori persijungti á 5?"
 
-#: mini-utils/gshutdown/gshutdown.c:104
+#: mini-utils/gshutdown/gshutdown.c:105
 msgid "Are you sure you want to reboot the system?"
 msgstr "Ar esi tikras, kad nori perkrauti kompiuterá?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:590
+#: mini-utils/gshutdown/gshutdown.c:151 mini-utils/gshutdown/gshutdown.c:591
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Tu turi bûti super-user'is (root), kad iðjungtum ar perkrautum kompiuterá"
 
 #. notebook pages
-#: mini-utils/gshutdown/gshutdown.c:186
+#: mini-utils/gshutdown/gshutdown.c:187
 msgid "Shutdown or Reboot"
 msgstr "Iðjungti ar Perkrauti"
 
-#: mini-utils/gshutdown/gshutdown.c:203 mini-utils/gshutdown/gshutdown.c:204
+#: mini-utils/gshutdown/gshutdown.c:204 mini-utils/gshutdown/gshutdown.c:205
 msgid "Easy"
 msgstr "Lengva"
 
-#: mini-utils/gshutdown/gshutdown.c:208 mini-utils/gshutdown/gshutdown.c:209
+#: mini-utils/gshutdown/gshutdown.c:209 mini-utils/gshutdown/gshutdown.c:210
 msgid "Advanced"
 msgstr "Sudëtinga"
 
-#: mini-utils/gshutdown/gshutdown.c:241
+#: mini-utils/gshutdown/gshutdown.c:242
 msgid ""
 "Click OK to shutdown or reboot. You will lose\n"
 "any unsaved information in open applications."
@@ -2112,23 +2227,23 @@ msgstr ""
 "veikianèiose programose."
 
 #. Put in a "revert to defaults" button
-#: mini-utils/gshutdown/gshutdown.c:368
+#: mini-utils/gshutdown/gshutdown.c:369
 msgid "Revert to Defaults"
 msgstr "Sugráþti prie standartiniø"
 
-#: mini-utils/gshutdown/gshutdown.c:378
+#: mini-utils/gshutdown/gshutdown.c:379
 msgid "Commands"
 msgstr "Komandos"
 
-#: mini-utils/gshutdown/gshutdown.c:383
+#: mini-utils/gshutdown/gshutdown.c:384
 msgid "Confirm before shutdown?"
 msgstr "Patvirtinti prieð iðjungiant?"
 
-#: mini-utils/gshutdown/gshutdown.c:395
+#: mini-utils/gshutdown/gshutdown.c:396
 msgid "General"
 msgstr "Bendrai"
 
-#: mini-utils/gshutdown/gshutdown.c:448
+#: mini-utils/gshutdown/gshutdown.c:449
 #, c-format
 msgid ""
 "%s\n"
@@ -2137,73 +2252,73 @@ msgstr ""
 "%s\n"
 "Tu prarasi bet koká neiðsaugotà darbà."
 
-#: mini-utils/gshutdown/gshutdown.c:458
+#: mini-utils/gshutdown/gshutdown.c:459
 msgid "Don't ask next time."
 msgstr "Neklausti kità kartà."
 
-#: mini-utils/gshutdown/gshutdown.c:688
+#: mini-utils/gshutdown/gshutdown.c:689
 msgid "Command execution failed: fork failed"
 msgstr "Komandos vykdymas nepavyko: fork failed"
 
-#: mini-utils/guname/guname.c:51
+#: mini-utils/guname/guname.c:52
 msgid "Make guname act as a control center applet"
 msgstr "Padaryti, kad guname veiktø kaip control center priedas"
 
-#: mini-utils/guname/guname.c:117
+#: mini-utils/guname/guname.c:118
 msgid "an initialization error occurred while starting 'guname-capplet'."
 msgstr "ávyko inicializacijos klaida, paleidþiant 'guname-capplet'."
 
-#: mini-utils/guname/guname.c:442
+#: mini-utils/guname/guname.c:445
 msgid "System Information"
 msgstr "Sistemos informacija"
 
-#: mini-utils/guname/guname.c:529
+#: mini-utils/guname/guname.c:532
 msgid "Logo file not found"
 msgstr "Logo byla nerasta"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:533
+#: mini-utils/guname/guname.c:536
 msgid "GNOME contributors:"
 msgstr "GNOME bendraautoriai:"
 
 #. fontset used by guname; adapt it if your language requires it
-#: mini-utils/guname/guname.c:537
+#: mini-utils/guname/guname.c:540
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-ISO8859-13"
 
-#: mini-utils/guname/guname.c:548
+#: mini-utils/guname/guname.c:551
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: The GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:572
+#: mini-utils/guname/guname.c:575
 msgid "Email Information..."
 msgstr "Siøsti informacijà el. paðtu..."
 
-#: mini-utils/guname/guname.c:585
+#: mini-utils/guname/guname.c:588
 msgid "Save Information to File..."
 msgstr "Iðsaugoti informacijà á bylà..."
 
-#: mini-utils/guname/guname.c:597 mini-utils/guname/guname.c:667
+#: mini-utils/guname/guname.c:600 mini-utils/guname/guname.c:670
 msgid "Detailed Information..."
 msgstr "Detali informacija..."
 
-#: mini-utils/guname/guname.c:612
+#: mini-utils/guname/guname.c:615
 msgid "Category"
 msgstr "Kategorija"
 
-#: mini-utils/guname/guname.c:612
+#: mini-utils/guname/guname.c:615
 msgid "Your System"
 msgstr "Tavo sistema"
 
-#: mini-utils/guname/guname.c:653
+#: mini-utils/guname/guname.c:656
 msgid "Save As..."
 msgstr "Iðsaugoti kaip..."
 
-#: mini-utils/guname/guname.c:659
+#: mini-utils/guname/guname.c:662
 msgid "Mail To..."
 msgstr "Kam iðsiøsti..."
 
-#: mini-utils/guname/guname.c:707
+#: mini-utils/guname/guname.c:710
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -2214,27 +2329,27 @@ msgstr ""
 "%s\n"
 "Kai kurie arba visi duomenys galbût neiðsaugoti."
 
-#: mini-utils/guname/guname.c:719
+#: mini-utils/guname/guname.c:722
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "Negaliu atidaryti bylos ¥%s´: %s"
 
-#: mini-utils/guname/guname.c:741
+#: mini-utils/guname/guname.c:744
 msgid "Save System Information As..."
 msgstr "Iðsaugoti informacijà apie sistemà kaip..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:790
+#: mini-utils/guname/guname.c:793
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "Komanda nepavyko ¥ %s ´: %s"
 
-#: mini-utils/guname/guname.c:798
+#: mini-utils/guname/guname.c:801
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "Negaliu ávykdyti komandos ¥ %s ´: %s"
 
-#: mini-utils/guname/guname.c:822
+#: mini-utils/guname/guname.c:825
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -2243,11 +2358,11 @@ msgstr ""
 "Þemiau einantis laiðkas bus iðsiøstas á %s.\n"
 " Ar esi tikras, jog nori iðsiøsti ðià informacijà?"
 
-#: mini-utils/guname/guname.c:833
+#: mini-utils/guname/guname.c:836
 msgid "Are you sure?"
 msgstr "Ar esi tikras?"
 
-#: mini-utils/guname/guname.c:875
+#: mini-utils/guname/guname.c:878
 msgid "Address to mail to:"
 msgstr "Iðsiøsti adresu:"
 
@@ -2411,7 +2526,7 @@ msgstr "%ld megabaitai, %ld laisvø (%ld superuser); %ld inod'ø, %ld laisvø."
 msgid "%2d%% full "
 msgstr "%2d%% pilna "
 
-#: mini-utils/gw/gw.c:141
+#: mini-utils/gw/gw.c:143
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
@@ -2419,43 +2534,43 @@ msgstr ""
 "Negaliu rasti komandos ¥w´ tavo kelyje.\n"
 "Ði komanda reikalinga, kad programa veiktø."
 
-#: mini-utils/gw/gw.c:174
+#: mini-utils/gw/gw.c:176
 msgid "_Save..."
 msgstr "_Saugoti..."
 
-#: mini-utils/gw/gw.c:174
+#: mini-utils/gw/gw.c:176
 msgid "Write information to disk"
 msgstr "Áraðyti informacijà á diskà"
 
-#: mini-utils/gw/gw.c:202
+#: mini-utils/gw/gw.c:204
 msgid "Active User Listing"
 msgstr "Aktyviø vartotojø sàraðas"
 
-#: mini-utils/gw/gw.c:219
+#: mini-utils/gw/gw.c:221
 msgid "Update Information"
 msgstr "Atnaujinti informacijà"
 
-#: mini-utils/gw/gw.c:474
+#: mini-utils/gw/gw.c:476
 msgid "Save not implemented yet\n"
 msgstr "Saugojimas dar neágyvendintas\n"
 
-#: mini-utils/gw/gw.c:503
+#: mini-utils/gw/gw.c:505
 msgid "Command Line"
 msgstr "Komandinë eilutë"
 
-#: mini-utils/gw/gw.c:505
+#: mini-utils/gw/gw.c:507
 msgid "Add some defaults"
 msgstr "Pridëti keletà áprastiniø"
 
-#: mini-utils/gw/gw.c:507
+#: mini-utils/gw/gw.c:509
 msgid "Delete"
 msgstr "Iðmesti"
 
-#: mini-utils/gw/gw.c:525
+#: mini-utils/gw/gw.c:527
 msgid "Command Editor"
 msgstr "Komandø apibrëþimas"
 
-#: mini-utils/gw/gw.c:535
+#: mini-utils/gw/gw.c:537
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -2469,7 +2584,7 @@ msgstr ""
 "Komandoje gali naudoti %u, atstojantá paþymëto\n"
 "vartotojo vardà, ir %t - konsolës numerá (tty)."
 
-#: mini-utils/gw/gw.c:542
+#: mini-utils/gw/gw.c:544
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -2477,15 +2592,15 @@ msgstr ""
 "Paspausk ðá mygtukà, kad\n"
 "pridëtum kelis pavyzdþius."
 
-#: mini-utils/gw/gw.c:550
+#: mini-utils/gw/gw.c:552
 msgid "Menu items"
 msgstr "Meniu punktai"
 
-#: mini-utils/gw/gw.c:578
+#: mini-utils/gw/gw.c:580
 msgid "Command"
 msgstr "Komanda"
 
-#: mini-utils/gw/gw.c:968
+#: mini-utils/gw/gw.c:970
 #, c-format
 msgid "Running: %s\n"
 msgstr "Bëganti: %s\n"
@@ -2646,6 +2761,3 @@ msgstr "Tik superuser'is gali naudotis ðiuo árankiu"
 #: mini-utils/idetool/idetool.c:451
 msgid "You appear to have no IDE drives"
 msgstr "Atrodo, kad tu neturi jokiø IDE kaupikliø"
-
-#~ msgid "Tolerance :"
-#~ msgstr "Pakantumas :"
