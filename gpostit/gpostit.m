@@ -144,8 +144,6 @@ int main(int argc, char *argv[])
   txt_message = [[[[Gtk_Text new] set_editable:TRUE] set_point:0] show];
   [vbox add:txt_message];
 
-  [self add:vbox];
-
   [self connect:"delete_event"];
   
   return self;
@@ -192,15 +190,22 @@ int main(int argc, char *argv[])
 - saveToConfig:(char *) path
 {
   gint x, y;
+  gchar *savemsg;
 
   gdk_window_get_origin(gtkwidget->window, &x, &y);
 
   g_string_sprintf(tmpstr, "%s/title", path);
   gnome_config_set_string(tmpstr->str, [ent_title get_text]);
 
+  savemsg = g_malloc(GTK_TEXT([txt_message getGtkObject])->text_end -
+		     GTK_TEXT([txt_message getGtkObject])->gap_size + 2);
   g_string_sprintf(tmpstr, "%s/message", path);
+  sprintf(savemsg, "%.*s", GTK_TEXT([txt_message getGtkObject])->text_end -
+		     GTK_TEXT([txt_message getGtkObject])->gap_size,
+		     GTK_TEXT([txt_message getGtkObject])->text);
   gnome_config_set_string(tmpstr->str,
-			  GTK_TEXT([txt_message getGtkObject])->text);
+			  savemsg);
+  g_free(savemsg);
 
   g_string_sprintf(tmpstr, "%s/x", path);
   gnome_config_set_int(tmpstr->str, x);
