@@ -30,13 +30,13 @@ ${HTML_FILES} : $(SGML_FILES)
 dist-hook:
 	$(mkinstalldirs) $(distdir)/idetool 
 	$(mkinstalldirs) $(distdir)/idetool/stylesheet-images
-	$(mkinstalldirs) $(distdir)/idetool/images
+	$(mkinstalldirs) $(distdir)/images
 	-cp $(srcdir)/idetool/*.html idetool/*.css $(distdir)/idetool
 	-cp $(srcdir)/idetool/stylesheet-images/*.gif \
 	 $(distdir)/idetool/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
 	-cp $(srcdir)/images/*.png $(distdir)/idetool/images
-	-cp $(srcdir)/*.png $distdir/idetool/images
+	-cp $(srcdir)/*.png $distdir/images
 
 distclean-generic:
 	-rm -f Makefile
