@@ -47,4 +47,8 @@ install-data-local: index.html
 	-for file in $(srcdir)/images/*.png ; do \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gdiskfree_helpdir)/images;\
 	done
-
+	$(mkinstalldirs) $(DESTDIR)$(gdiskfree_helpdir)/stylesheet-images
+	-for file in $(srcdir)/gdiskfree/stylesheet-images/*.gif; do \
+	basefile=`basename $$file`; \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gdiskfree_helpdir)/stylesheet-images/$$basefile; \
+	done
