@@ -51,6 +51,7 @@ const gchar * descriptions[] = {
   N_("Free Memory:")
 };
 
+#if 0
 const gchar * disk_descriptions[] = {
   N_("Device"),
   N_("Size"),
@@ -59,9 +60,12 @@ const gchar * disk_descriptions[] = {
   N_("Percent free"),
   N_("Mount point")
 };
+#endif
 
 const gchar * info[end_system_info];
+#if 0
 GList * disks = NULL;
+#endif
 
 /****************
   Prototypes
@@ -79,9 +83,23 @@ static void get_linux_info();
 
 void load_system_info()
 {
-  /* Set all the pointers in the array to NULL */
-  memset(&info, '\0', sizeof(info));
-  
+  static gboolean first_time = TRUE;
+
+  if (first_time) {
+    /* Set all the pointers in the array to NULL */
+    memset(&info, '\0', sizeof(info));
+    first_time = FALSE;
+  }
+  else {
+    /* Clear out the array. */
+    int i = 0;
+    while ( i < end_system_info ) {
+      if (info[i] != NULL) g_free(info[i]);
+      info[i] = NULL;
+      ++i;
+    }
+  }
+
   get_portable_info();
 
   get_linux_info();

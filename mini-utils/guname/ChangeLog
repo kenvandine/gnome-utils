@@ -1,3 +1,18 @@
+1998-09-07  Havoc Pennington  <hp@pobox.com>
+
+	* guname.c: Added buttons to the main dialog. (for now in addition
+	to the popup menu, but really the popup menu can go away.) Added
+	confirmation dialog to the mail function, which shows you the
+	information about to be sent and asks if it's OK.
+	
+	* info.c (load_system_info): If the function is called a second
+	time, clear the array and refill it. This makes it easier to add
+	"refresh" to guname. But it's still annoying to implement in
+	moreinfo.c and I'm too lazy to do it now. Also #if 0'd some old
+	cruft.
+
+	* moreinfo.h: fix a comment.
+
 1998-09-06  Havoc Pennington  <hp@pobox.com>
 
 	* guname.c (do_logo_box): Use the big logo, not the little

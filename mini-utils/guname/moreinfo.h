@@ -30,7 +30,7 @@ typedef enum {
   end_filesystem_info
 } filesystem_info;
 
-/* List of arrays of filesystem info (well, a white lie; see .c) */
+/* List of arrays of filesystem info */
 extern GList * filesystems;
 
 typedef enum {

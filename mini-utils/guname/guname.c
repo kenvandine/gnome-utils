@@ -49,6 +49,7 @@ static void detailed_callback(GtkWidget * menuitem, gpointer data);
 static gint list_clicked_cb(GtkCList * list, GdkEventButton * e);
 
 static void write_to_filestream(FILE * f);
+static gchar* write_to_string();
 
 static void do_logo_box(GtkWidget * box);
 static void do_list_box(GtkWidget * box);
@@ -349,6 +350,9 @@ static void popup_main_dialog()
 
 static void do_logo_box(GtkWidget * box)
 {
+  GtkWidget * hbox;
+  GtkWidget * buttonbox;
+  GtkWidget * button;
   GtkWidget * label, *contrib_label;
   GtkWidget * pixmap = NULL;
   GtkStyle * style;
@@ -357,6 +361,10 @@ static void do_logo_box(GtkWidget * box)
   GtkWidget * marquee_frame, * align;
   GdkImlibImage *im;
   GnomeCanvasItem *image;
+
+  hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
+  buttonbox = gtk_vbox_new(FALSE,GNOME_PAD_SMALL);
+  gtk_container_border_width(GTK_CONTAINER(buttonbox), GNOME_PAD);
 
   s = gnome_pixmap_file ("gnome-logo-large.png");
 
@@ -422,7 +430,9 @@ static void do_logo_box(GtkWidget * box)
   label = gtk_label_new(_("GNOME: The GNU Network Object Model Environment"));
 
   gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, GNOME_PAD_SMALL/2);
-  gtk_box_pack_start(GTK_BOX(box), pixmap, TRUE, TRUE, GNOME_PAD_SMALL/2);
+  gtk_box_pack_start(GTK_BOX(box), hbox, TRUE, TRUE, GNOME_PAD_SMALL/2);
+  gtk_box_pack_start(GTK_BOX(hbox), pixmap, TRUE, TRUE, GNOME_PAD_SMALL/2);
+  gtk_box_pack_end(GTK_BOX(hbox), buttonbox, TRUE, TRUE, GNOME_PAD_SMALL/2);
 
   if (style->font) {
     gtk_widget_pop_style();
@@ -435,9 +445,44 @@ static void do_logo_box(GtkWidget * box)
   align = gtk_alignment_new(0.5, 0.5, 0.0, 0.0);
   gtk_container_add(GTK_CONTAINER(align), marquee_frame);
 
-  gtk_box_pack_start(GTK_BOX(box), contrib_label, FALSE, FALSE, 0);
-  gtk_box_pack_start(GTK_BOX(box), align, FALSE, FALSE, 0);
+  gtk_box_pack_start(GTK_BOX(buttonbox), contrib_label, FALSE, FALSE, 0);
+  gtk_box_pack_start(GTK_BOX(buttonbox), align, FALSE, FALSE, 0);
 
+  /* FIXME this is a lazy cut-and-paste fest should be a function */
+  button = gtk_button_new();
+  pixmap = gnome_stock_pixmap_widget(button,GNOME_STOCK_PIXMAP_MAIL_SND);
+  label = gtk_label_new(_("Email Information..."));
+  hbox  = gtk_hbox_new(FALSE, GNOME_PAD_SMALL/2);
+  gtk_box_pack_start(GTK_BOX(hbox),pixmap,FALSE,FALSE,0);
+  gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
+  gtk_container_add(GTK_CONTAINER(button),hbox);
+  gtk_box_pack_end(GTK_BOX(buttonbox), button, FALSE, FALSE, GNOME_PAD);
+  gtk_signal_connect(GTK_OBJECT(button), "clicked",
+                     GTK_SIGNAL_FUNC(mail_callback), NULL);
+
+  button = gtk_button_new();
+  pixmap = gnome_stock_pixmap_widget(button,GNOME_STOCK_PIXMAP_SAVE_AS);
+  label = gtk_label_new(_("Save Information to File..."));
+  hbox  = gtk_hbox_new(FALSE, GNOME_PAD_SMALL/2);
+  gtk_box_pack_start(GTK_BOX(hbox),pixmap,FALSE,FALSE,0);
+  gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
+  gtk_container_add(GTK_CONTAINER(button),hbox);
+  gtk_box_pack_end(GTK_BOX(buttonbox), button, FALSE, FALSE, GNOME_PAD);
+  gtk_signal_connect(GTK_OBJECT(button), "clicked",
+                     GTK_SIGNAL_FUNC(save_callback), NULL);
+
+#if HAVE_LIBGTOP
+  button = gtk_button_new();
+  pixmap = gnome_stock_pixmap_widget(button,GNOME_STOCK_PIXMAP_BOOK_OPEN);
+  label = gtk_label_new(_("Detailed Information..."));
+  hbox  = gtk_hbox_new(FALSE, GNOME_PAD_SMALL/2);
+  gtk_box_pack_start(GTK_BOX(hbox),pixmap,FALSE,FALSE,0);
+  gtk_box_pack_start(GTK_BOX(hbox),label,TRUE,TRUE,0);
+  gtk_container_add(GTK_CONTAINER(button),hbox);
+  gtk_box_pack_end(GTK_BOX(buttonbox), button, FALSE, FALSE, GNOME_PAD);
+  gtk_signal_connect(GTK_OBJECT(button), "clicked",
+                     GTK_SIGNAL_FUNC(detailed_callback), NULL);
+#endif
 }
 
 static void do_list_box(GtkWidget * box)
@@ -565,41 +610,111 @@ static void save_callback(GtkWidget * menuitem, gpointer data)
   gtk_widget_show(fs);
 }
 
-static void mailx_callback(gchar * string, gpointer data)
-{
-  FILE * p;
-  gchar * command;
-  gint failure;
-  if (string == NULL) return;
-  
-  /* This isn't translated; maybe good, since most tech support email should be
-     in English? don't know. */
-  command = g_copy_strings("mailx -s \"System Information for host ", 
-                           info[si_host] ? info[si_host] : "Unknown",
-                           "\" ", string, NULL);
-  
-  p = popen(command, "w");
+struct MailData {
+  gchar* to;
+  gchar* body;
+};
 
-  if (p) {
-    write_to_filestream(p);
-    failure = pclose(p);
-    if (failure) {
-      /* I don't think the error_string() will reliably mean anything. */
-      gchar * s = g_copy_strings(_("Command failed `"), command, "': ", 
-                                 g_unix_error_string(errno));
-      gnome_error_dialog(s);
-      g_free(s);
+static gint mail_closed_callback(GtkWidget* dialog,
+                                  struct MailData* data)
+{
+  g_free(data->to);
+  g_free(data->body);
+  g_free(data);
+  return FALSE;
+}
+
+static void mail_clicked_callback(GtkWidget* dialog, gint button,
+                                  struct MailData* data)
+{
+  if (button == GNOME_YES) {
+    FILE * p;
+    gchar * command;
+    gint failure;  
+    
+    /* This isn't translated; maybe good, since most tech support email should be
+       in English? don't know. */
+    command = g_copy_strings("mailx -s \"System Information for host ", 
+                             info[si_host] ? info[si_host] : "Unknown",
+                             "\" ", data->to, NULL);
+    
+    p = popen(command, "w");
+    
+    if (p) {
+      write_to_filestream(p);
+      failure = pclose(p);
+      if (failure) {
+        /* I don't think the error_string() will reliably mean anything. */
+        gchar * s = g_copy_strings(_("Command failed ` "), command, _(" ': "), 
+                                   g_unix_error_string(errno));
+        gnome_error_dialog(s);
+        g_free(s);
+      }
     }
+    else {
+      gchar * t = g_copy_strings(_("Couldn't run command ` "), command, _(" ': "), 
+                                 g_unix_error_string(errno));
+      gnome_error_dialog(t);
+      g_free(t);
+    }
+    g_free(command);
+  }
+  else if (button == GNOME_NO) {
+    ;
   }
   else {
-    gchar * t = g_copy_strings(_("Couldn't run command `"), command, "': ", 
-                               g_unix_error_string(errno));
-    gnome_error_dialog(t);
-    g_free(t);
+    g_assert_not_reached();
   }
+  /* Data is freed in the close callback */
+}
 
-  g_free(command);
-  g_free(string);
+static void confirm_mail(struct MailData* data)
+{
+  GtkWidget* dialog;
+  GtkWidget* less;
+  GtkWidget* label;
+  gchar* question;
+
+  question = g_copy_strings(_("The following mail will be sent to "),
+                            data->to, 
+                            _(".\n Are you sure you want to mail this information?"), NULL);
+
+  label = gtk_label_new(question);
+  less = gnome_less_new();
+  /* Stupid hack, set_usize. gnome_less needs fixing */
+  gtk_widget_set_usize(less,400,-1);
+  gnome_less_set_fixed_font(GNOME_LESS(less),TRUE);
+  gnome_less_show_string(GNOME_LESS(less),data->body);
+
+  dialog = gnome_dialog_new(_("Are you sure?"), GNOME_STOCK_BUTTON_YES,
+                            GNOME_STOCK_BUTTON_NO, NULL);
+  gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(dialog)->vbox), label,
+                     FALSE,FALSE,GNOME_PAD_SMALL);
+  gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(dialog)->vbox), less,
+                     TRUE,TRUE,GNOME_PAD_SMALL);
+  gnome_dialog_set_close(GNOME_DIALOG(dialog),TRUE);
+  gtk_window_set_policy(GTK_WINDOW(dialog),TRUE,TRUE,FALSE);
+
+  gtk_signal_connect(GTK_OBJECT(dialog),"clicked",
+                     GTK_SIGNAL_FUNC(mail_clicked_callback),
+                     data);
+  gtk_signal_connect(GTK_OBJECT(dialog), "close",
+                     GTK_SIGNAL_FUNC(mail_closed_callback),
+                     data);
+
+  gtk_widget_show_all(dialog);
+}
+
+static void mailx_callback(gchar * string, gpointer data)
+{
+  struct MailData* md;
+
+  if (string == NULL) return;
+
+  md = g_new(struct MailData, 1);
+  md->to = string;
+  md->body = write_to_string();
+  confirm_mail(md);
 }
 
 static void mail_callback(GtkWidget * menuitem, gpointer data)
@@ -631,6 +746,28 @@ static void write_to_filestream(FILE * f)
     }
     ++i;
   }  
+}
+
+static gchar* write_to_string()
+{
+  gchar* final = NULL;
+  gchar* tmp  = NULL;
+  gint i = 0;
+  while ( i < end_system_info ) {
+    if (info[i] == NULL) {
+      /* No information on this. */
+      ;
+    }
+    else {
+      gchar buf[200];
+      g_snprintf (buf, 200, "%-30s %s\n", descriptions[i], info[i]);
+      tmp = g_copy_strings(final ? final : "", buf, NULL);
+      g_free(final);
+      final = tmp;
+    }
+    ++i;
+  }  
+  return final;
 }
 
 /***************************** 
