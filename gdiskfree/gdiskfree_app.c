@@ -26,6 +26,7 @@
 #include <glibtop.h>
 #include <glibtop/fsusage.h>
 #include <glibtop/mountlist.h>
+#include <string.h>
 
 #include "gdiskfree_app.h"
 #include "gdiskfree_menus.h"
@@ -242,6 +243,7 @@ gdiskfree_update (GDiskFreeApp *app)
   while (gl)
     {
       disk = (GDiskFreeDisk *)gl->data;
+      memset(&fsu, 0, sizeof(fsu));
       glibtop_get_fsusage (&fsu, disk->mount_point);
       fsu.blocks /= 2*1024;
       fsu.bfree  /= 2*1024;
