@@ -29,16 +29,21 @@ static void cancelled(GtkWidget *w, gpointer *d)
 	exit(-1);
 }
 
-static void err_outputter(gpointer d, gpointer ud)
+static void err_outputter(gpointer d, GtkCList *cl)
 {
+	/*
 	GtkCListRow *r=(GtkCListRow *)d;
-	
+	*/
 	/*
 	 *	Should output the string, or the strings quoted ("")
 	 *	for choice
 	 */
-	 
+	char *p;
+	
+	gtk_clist_get_text(cl,(gint)d,0,&p);
+	/*
 	char *p=GTK_CELL_TEXT(r->cell[0])->text;
+	*/
 	write(2, p, strlen(p));
 	write(2, "\n", 1);
 }
@@ -48,7 +53,7 @@ static void okayed(GtkWidget *w, int button, gpointer *d)
 	if(button==0)
 	{
 		GList *l=GTK_CLIST(cl)->selection;
-		g_list_foreach(l, err_outputter, NULL);
+		g_list_foreach(l, err_outputter, GTK_CLIST(cl));
 	}
 	exit(button);
 }
