@@ -1162,7 +1162,7 @@ main (int 	argc,
 	GtkWidget    *window;
 
 	interface.geometry.min_height = 310;
-	interface.geometry.min_width  = 370;
+	interface.geometry.min_width  = 422;
 
 	/* initialize the i18n stuff */
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
