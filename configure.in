@@ -136,7 +136,7 @@ if test "x$GNOME_APPLETS_LIBS" != "x"; then
   enable_gcolorsel_applet="$enableval", enable_gcolorsel_applet=yes) 
 fi
 
-AM_CONDITIONAL(BUILD_GCOLORSEL_APPLET, test $enable_gcolorsel_applet = yes)
+AM_CONDITIONAL(BUILD_GCOLORSEL_APPLET, test "$enable_gcolorsel_applet" = yes)
 
 dnl *******************************
 dnl gnome-print checks FIXME
