@@ -1,3 +1,9 @@
+Thu May 16 15:20:35 2002  George Lebl <jirka@5z.com>
+
+	* logview.c: make the window and make sure it's shown before opening
+	  files since then we look like we are loading faster, especially if
+	  your logfile is very long.
+
 Thu May 16 15:09:19 2002  George Lebl <jirka@5z.com>
 
 	* log_repaint.c, zoom.c: partially fix #81252 by converting output

@@ -323,15 +323,15 @@ InitApp ()
   user_prefs = &user_prefs_struct;
   SetDefaultUserPrefs(user_prefs);
 
+  /*  Display main window */
+  CreateMainWin ();
+
   /* Read databases */
   open_databases ();
 
   /*  Read files and init data. */
   if (InitPages () < 0)
     ShowErrMessage (_("No log files to open"));
-
-  /*  Display main window */
-  CreateMainWin ();
 }
 
 /* ----------------------------------------------------------------------
@@ -483,7 +483,7 @@ CreateMainWin ()
    gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
    gtk_widget_show (vbox);
-   gtk_widget_show (app);
+   gtk_widget_show_now (app);
 
 }
 
