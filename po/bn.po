@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-Utils 2.2\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-15 15:08+0100\n"
+"POT-Creation-Date: 2004-03-23 06:50+1200\n"
 "PO-Revision-Date: 2004-03-16 23:41+0530\n"
 "Last-Translator: Runa Bhattacharjee <runa@bengalinux.org>\n"
 "Language-Team: BANGLA <gnome-translation@bengalinux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -62,8 +62,8 @@ msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
 msgstr ""
-"একটি সমস্যা দেখা দিয়েছে। দয়া করে সার্ভার এবং পোর্ট সঠিক কিনা পরীক্ষা "
-"করুন। নির্দেশিকার জন্য ডিফল্ট সার্ভার হল dict.org এবং পোর্ট সংখ্যা হল ২৬২৮"
+"একটি সমস্যা দেখা দিয়েছে। দয়া করে সার্ভার এবং পোর্ট সঠিক কিনা পরীক্ষা করুন। "
+"নির্দেশিকার জন্য ডিফল্ট সার্ভার হল dict.org এবং পোর্ট সংখ্যা হল ২৬২৮"
 
 #. Translator credits
 #: gdictsrc/gdict-about.c:43 logview/about.c:49
@@ -308,7 +308,8 @@ msgid ""
 "dictionary server supports this option. The default is TRUE"
 msgstr ""
 "বিশেষ অনুসন্ধান পদ্ধতি ব্যবহৃত হবে কিনা দয়া করে নির্দেশ করে দিন। অভিধানের সার্ভারে "
-"এর জন্য সমর্থন উপস্থিত থাকলে তবেই এই পদ্ধতি কার্যকরী করা সম্ভব। ডিফল্ট মান হল সত্য (TRUE)"
+"এর জন্য সমর্থন উপস্থিত থাকলে তবেই এই পদ্ধতি কার্যকরী করা সম্ভব। ডিফল্ট মান হল সত্য "
+"(TRUE)"
 
 #: gdictsrc/gdict.schemas.in.h:4
 msgid "The database to use in the dictionary server."
@@ -327,9 +328,8 @@ msgid ""
 "The name of the individual database to use in the dictionary server. ! "
 "specifies that gnome-dictionary should search all databases in a given server"
 msgstr ""
-"অভিধানের সার্ভারে যে ডাটাবেসটি ব্যবহৃত হবে, তার নাম। ! "
-"নির্ধারণ করে যে gnome-dictionary নির্দিষ্ট সার্ভারে উপস্থিত সকল ডাটাবেসে অনুসন্ধান করবে"
-
+"অভিধানের সার্ভারে যে ডাটাবেসটি ব্যবহৃত হবে, তার নাম। ! নির্ধারণ করে যে gnome-"
+"dictionary নির্দিষ্ট সার্ভারে উপস্থিত সকল ডাটাবেসে অনুসন্ধান করবে"
 
 #: gdictsrc/gdict.schemas.in.h:7
 msgid "The port number to connect to. The default port is 2628."
@@ -345,8 +345,8 @@ msgid ""
 "the dictionary server supports. The default strategy is 'lev' - Match words "
 "within Levenshtein distance one"
 msgstr ""
-"যে অনুসন্ধান নীতি ব্যবহৃত হবে। এটি নির্ভর করবে অভিধান সার্ভার অনুসন্ধানের জন্য "
-"কোন নীতি অবলম্বন করে তার ওপর। ডিফল্ট নীতি হল 'লেভ '-লেভেনস্টাইন ডিস্‌ট্যান্স্‌ ওয়ানের "
+"যে অনুসন্ধান নীতি ব্যবহৃত হবে। এটি নির্ভর করবে অভিধান সার্ভার অনুসন্ধানের জন্য কোন "
+"নীতি অবলম্বন করে তার ওপর। ডিফল্ট নীতি হল 'লেভ '-লেভেনস্টাইন ডিস্‌ট্যান্স্‌ ওয়ানের "
 "মধ্যে শব্দ মেলোনো হবে"
 
 #: gdictsrc/gdict.schemas.in.h:10
@@ -980,7 +980,8 @@ msgid "yesterday at %-I:%M %p"
 msgstr "%-H:%M  -এ গতকাল"
 
 #: gsearchtool/gsearchtool-support.c:353 gsearchtool/gsearchtool-support.c:355
-msgid "%m/%-d/%y, %-H:%M "
+#, fuzzy
+msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-H:%M "
 
 #: gsearchtool/gsearchtool-support.c:526
@@ -1374,8 +1375,8 @@ msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
-"পূর্ববর্তী সব regexps. মিলে গেলে যে কার্যটি নির্বাহিত হবে। এটি একটি "
-"সিস্টেম কমান্ডের দ্বারা চালানো হবে: সিস্টেম (কার্য)।"
+"পূর্ববর্তী সব regexps. মিলে গেলে যে কার্যটি নির্বাহিত হবে। এটি একটি সিস্টেম "
+"কমান্ডের দ্বারা চালানো হবে: সিস্টেম (কার্য)।"
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1396,8 +1397,8 @@ msgid ""
 "action: [%s]\n"
 msgstr ""
 "ট্যাগ: [%s]\n"
-"লগের নাম: [%s]\n ()"
-"প্রসেস: [%s]\n"
+"লগের নাম: [%s]\n"
+" ()প্রসেস: [%s]\n"
 "বার্তা: [%s]\n"
 "বিবরণ: [%s]\n"
 "কার্য: [%s]\n"
@@ -1716,7 +1717,6 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "মাত্রাধিক লগ পর্যবেক্ষণ করা সম্ভব নয়। একটি বন্ধ করে পুনরায় চেষ্টা করুণ"
 
 #: logview/monitor.c:298 logview/monitor.c:335
-#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list-এ কিছু লেখা হয়নি\n"
 
@@ -1725,7 +1725,6 @@ msgid "Monitoring Logs..."
 msgstr "লগ পর্যবেক্ষণ করা হচ্ছে..."
 
 #: logview/monitor.c:643
-#, c-format
 msgid "TOUCHED!!\n"
 msgstr "পরিবর্তন ঘটেছে!!\n"
 
