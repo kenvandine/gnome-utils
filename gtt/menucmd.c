@@ -202,6 +202,68 @@ save_project_list(GtkWidget *widget, gpointer data)
 	}
 }
 
+static void
+export_current_state_really (GtkWidget *widget, gpointer data)
+{
+	GtkFileSelection *fsel = data;
+	char *filename;
+
+	filename = gtk_file_selection_get_filename (fsel);
+
+	if (access (filename, F_OK) == 0) {
+		GtkWidget *w;
+		char *s;
+
+		s = g_strdup_printf (_("File %s exists, overwrite?"),
+				     filename);
+		w = gnome_question_dialog_parented (s, NULL, NULL,
+						    GTK_WINDOW (fsel));
+		g_free (s);
+
+		if (gnome_dialog_run (GNOME_DIALOG (w)) != 0)
+			return;
+	}
+
+	if ( ! project_list_export (filename)) {
+		GtkWidget *w = gnome_error_dialog (_("File cannot be written"));
+		gnome_dialog_set_parent (GNOME_DIALOG (w), GTK_WINDOW (fsel));
+		return;
+	}
+
+	gtk_widget_destroy (GTK_WIDGET (fsel));
+}
+
+void
+export_current_state (GtkWidget *widget, gpointer data)
+{
+	static GtkWidget *dialog = NULL;
+	GtkFileSelection *fsel;
+
+	if (dialog != NULL) {
+		gtk_widget_show_now (dialog);
+		gdk_window_raise (dialog->window);
+		return;
+	}
+
+	dialog = gtk_file_selection_new (_("Export Current State"));
+	gtk_window_set_transient_for (GTK_WINDOW (dialog),
+				      GTK_WINDOW (window));
+	fsel = GTK_FILE_SELECTION (dialog);
+
+	gtk_signal_connect (GTK_OBJECT (dialog), "destroy",
+			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
+			    &dialog);
+
+	gtk_signal_connect (GTK_OBJECT (fsel->ok_button), "clicked",
+			    GTK_SIGNAL_FUNC (export_current_state_really),
+			    fsel);
+
+	gtk_signal_connect_object (GTK_OBJECT (fsel->cancel_button), "clicked",
+				   GTK_SIGNAL_FUNC (gtk_widget_destroy),
+				   GTK_OBJECT (fsel));
+
+	gtk_widget_show (dialog);
+}
 
 
 project *cutted_project = NULL;

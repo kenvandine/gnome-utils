@@ -104,6 +104,7 @@ void project_list_destroy(void);
 void project_list_time_reset(void);
 int project_list_load(const char *fname);
 int project_list_save(const char *fname);
+gboolean project_list_export (const char *fname);
 void project_list_sort_time(void);
 void project_list_sort_total_time(void);
 void project_list_sort_title(void);
@@ -178,6 +179,8 @@ void clist_update_desc(project *p);
 
 void unlock_gtt(void);
 const char *gtt_gettext(const char *s);
+
+#define gtt_sure_string(x) ((x)?(x):"")
 
 
 #endif /* __GTT_H__ */

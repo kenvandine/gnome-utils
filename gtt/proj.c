@@ -596,6 +596,53 @@ project_list_save(const char *fname)
         return 1;
 }
 
+static char *
+get_time (int secs)
+{
+	/* Translators: This is a "time format", that is
+	 * format on how to print the elapsed time with
+	 * hours:minutes:seconds. */
+	return g_strdup_printf (_("%d:%02d:%02d"),
+				secs / (60*60),
+				(secs / 60) % 60,
+				secs % 60);
+}
+
+gboolean
+project_list_export (const char *fname)
+{
+	FILE *fp;
+        project_list *pl;
+
+	fp = fopen (fname, "w");
+	if (fp == NULL)
+		return FALSE;
+
+	/* Translators: this is the header of a table separated file,
+	 * it should really be all ASCII, or at least not multibyte,
+	 * I don't think most spreadsheets would handle that well. */
+	fprintf (fp, "Title\tDescription\tTotal time\tTime today\n");
+
+        for (pl = plist; pl; pl = pl->next) {
+		char *total_time, *time_today;
+                if (!pl->proj) continue;
+                if (!pl->proj->title) continue;
+		total_time = get_time (pl->proj->secs);
+		time_today = get_time (pl->proj->day_secs);
+		fprintf (fp, "%s\t%s\t%s\t%s\n",
+			 gtt_sure_string (pl->proj->title),
+			 gtt_sure_string (pl->proj->desc),
+			 total_time,
+			 time_today);
+		g_free (total_time);
+		g_free (time_today);
+        }
+
+	fclose (fp);
+
+        return TRUE;
+}
+
 
 
 char *project_get_timestr(project *proj, int show_secs)
