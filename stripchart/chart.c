@@ -402,10 +402,17 @@ chart_assign_color(Chart *chart, ChartDatum *datum)
   g_free(names);
 }
 
+/*
+ * val2y -- scales a parameter value into a y coordinate value.
+ */
 gint
 val2gdk(gdouble val, GtkAdjustment *adj, gint height, ChartScaleStyle scale)
 {
-  gdouble y, delta = adj->upper - adj->lower;;
+  gdouble y, delta = adj->upper - adj->lower;
+
+#ifndef HAVE_LOGF
+#define logf(x) ((float)log(x))
+#endif
 
   height--;
   if (scale == chart_scale_log)
