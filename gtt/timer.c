@@ -24,7 +24,7 @@
 #include "proj_p.h"
 
 
-gint main_timer = 0;
+static gint main_timer = 0;
 
 static gint 
 timer_func(gpointer data)
@@ -33,7 +33,6 @@ timer_func(gpointer data)
 	if (!cur_proj) return 1;
 
 	gtt_project_timer_update (cur_proj);
-
 	if (config_show_secs) {
 		if (cur_proj->row != -1) clist_update_label(cur_proj);
 	} else if (cur_proj->day_secs % 60 == 0) {
@@ -69,3 +68,8 @@ void stop_timer(void)
 	update_status_bar();
 }
 
+gboolean 
+timer_is_running (void)
+{
+	return (0 != main_timer);
+}

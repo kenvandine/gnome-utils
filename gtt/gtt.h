@@ -60,11 +60,9 @@ void err_init(void);
 
 
 /* timer.c */
-
-extern gint main_timer;
-
 void start_timer(void);
 void stop_timer(void);
+gboolean timer_is_running (void);
 
 
 /* prop.c */

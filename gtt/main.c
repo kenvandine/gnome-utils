@@ -267,7 +267,8 @@ main(int argc, char *argv[])
 	connect_short_cuts();
 
 	/* start timer before the state of the menu items is set */
-	start_timer();
+	/* why is this important to do ???? */
+	// start_timer();
 	init_list();
 	log_start();
 

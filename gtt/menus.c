@@ -169,13 +169,13 @@ menu_set_states(void)
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_TOGGLE_POS].widget,
 				 1);
 	mi = GTK_CHECK_MENU_ITEM(menu_main_timer[MENU_TIMER_TOGGLE_POS].widget);
-	mi->active = (main_timer != 0);
+	mi->active = timer_is_running();
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_TOGGLE_POS].widget,
 				 (cur_proj != NULL));
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_START_POS].widget,
-				 (main_timer == 0) && (cur_proj));
+				 (FALSE == timer_is_running()) && (cur_proj));
 	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_STOP_POS].widget,
-				 (main_timer != 0) && (cur_proj));
+				 (timer_is_running()) && (cur_proj));
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_CUT_POS].widget,
 				 (cur_proj) ? 1 : 0);
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_COPY_POS].widget,

@@ -212,7 +212,7 @@ setup_clist(void)
 	GList *node, *plist;
 	int timer_running, cp_found = 0;
 
-	timer_running = (main_timer != 0);
+	timer_running = timer_is_running();
 	stop_timer();
 
 	plist = gtt_get_project_list();

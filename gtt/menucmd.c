@@ -345,10 +345,10 @@ void
 menu_toggle_timer(GtkWidget *w, gpointer data)
 {
 	/* if (GTK_CHECK_MENU_ITEM(menus_get_toggle_timer())->active) { */
-	if (main_timer == 0) {
-		start_timer();
-	} else {
+	if (timer_is_running()) {
 		stop_timer();
+	} else {
+		start_timer();
 	}
 	menu_set_states();
 }

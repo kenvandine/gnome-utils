@@ -286,10 +286,10 @@ gtt_project_timer_update (GttProject *proj)
 	time_t prev_update, now, diff;
 
 	if (!proj) return;
-	if (!proj->task_list) return;
+	g_return_if_fail (proj->task_list);
 
 	/* by definition, the current task is the one at the head 
-	 * of the list, and the current interval is  at the ehad 
+	 * of the list, and the current interval is at the head 
 	 * of the task */
 	task = proj->task_list->data;
 	g_return_if_fail (task);
@@ -318,7 +318,7 @@ gtt_project_timer_update (GttProject *proj)
 	 */
 	if (FALSE == ival->running) 
 	{
-		printf ("error: update called while timer stopped!\n");
+		g_warning ("update called while timer stopped!\n");
 		return;
 	}
 
@@ -776,11 +776,12 @@ project_list_load(const char *fname)
 		zero_on_rollover (time(0), last_timer);
 	}
 	if (gnome_config_get_int(GTT"Misc/TimerRunning=1")) {
-		start_timer();
-printf ("duuude we started a timer running on startup but we don't know which task to time !!\n");
+// FIXME. Actually, we need to make a policy decision in order to fix this ...
+		 // start_timer();
+ // printf ("duuude we started a timer running on startup but we don't know which task to time !!\n");
 	} else {
-		stop_timer();
-printf ("duuude timer is stopped on startup\n");
+//		stop_timer();
+// printf ("duuude timer is stopped on startup\n");
 	}
         config_show_secs = gnome_config_get_bool(GTT"Display/ShowSecs=false");
         config_show_clist_titles = gnome_config_get_bool(GTT"Display/ShowTableHeader=false");
@@ -876,7 +877,7 @@ project_list_save(const char *fname)
         old_num = gnome_config_get_int(GTT"Misc/NumProjects=0");
         g_snprintf(s, sizeof (s), "%ld", time(0));
         gnome_config_set_string(GTT"Misc/LastTimer", s);
-        gnome_config_set_int(GTT"Misc/TimerRunning", (main_timer != 0));
+        gnome_config_set_int(GTT"Misc/TimerRunning", (timer_is_running()));
         gnome_config_set_bool(GTT"Display/ShowSecs", config_show_secs);
         gnome_config_set_bool(GTT"Display/ShowTableHeader", config_show_clist_titles);
         gnome_config_set_bool(GTT"Toolbar/ShowIcons", config_show_tb_icons);
@@ -1005,6 +1006,7 @@ project_get_timestr(GttProject *proj, int show_secs)
 	static char s[20];
 	time_t t;
 	
+	/* if NULL, then we total up over *all* projects */
 	if (proj == NULL) 
 	{
 		GList *node;

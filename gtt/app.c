@@ -93,7 +93,7 @@ void update_status_bar(void)
 
 	if (!status_bar) return;
 	if (status_timer) {
-		if (main_timer)
+		if (timer_is_running())
 			gtk_widget_show(status_timer);
 		else
 			gtk_widget_hide(status_timer);

@@ -98,7 +98,7 @@ toolbar_set_states(void)
                 gtk_widget_set_sensitive(mytbar->prop_w, (cur_proj != NULL));
         if (mytbar->timer)
 		gnome_stock_set_icon(mytbar->timer,
-				     (main_timer != 0) ?
+				     (timer_is_running()) ?
 				     GNOME_STOCK_PIXMAP_TIMER_STOP :
 				     GNOME_STOCK_PIXMAP_TIMER);
 	if (mytbar->timer_w)
