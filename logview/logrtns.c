@@ -356,6 +356,7 @@ gchar **ReadLastPage (Log *log)
 	if (bytes_read > 0) {
 		gchar **buffer_lines;
 		buffer_lines = g_strsplit (buffer, "\n", -1);
+		g_free (buffer);
 		return buffer_lines;
 	}
 	return NULL;
@@ -385,6 +386,7 @@ gchar **ReadNewLines (Log *log)
 	if (bytes_read > 0) {
 		gchar **buffer_lines;
 		buffer_lines = g_strsplit (buffer, "\n", -1);
+		g_free (buffer);
 		return buffer_lines;
 	}
 }
@@ -392,7 +394,7 @@ gchar **ReadNewLines (Log *log)
 /* ----------------------------------------------------------------------
    NAME:        ParseLine
    DESCRIPTION: Extract date and other info from the line. If any field 
-   seems to be missing fill the others with -1 and NULL.
+   seems to be missing fill the others with -1 and "".
    ---------------------------------------------------------------------- */
 
 void
@@ -915,10 +917,15 @@ WasModified (Log *log)
 		return FALSE;
 }
 
-
+/******************************************************************************/
 /* Unmaintained functions that may be deleted */
+/******************************************************************************/
 
 #ifdef FIXME
+
+#define LINES_P_PAGE             10
+#define NUM_PAGES                5 
+#define R_BUF_SIZE               1024	/* Size of read buffer */
 
 /* ----------------------------------------------------------------------
    NAME:        ReadNPagesUp

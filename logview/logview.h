@@ -27,14 +27,9 @@
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
 
-#define LINES_P_PAGE             10
-#define NUM_PAGES                5 
 #define MAX_WIDTH                240
 #define MAX_HOSTNAME_WIDTH       257	/* Need authoritative answer on this value. */
 #define MAX_PROC_WIDTH           60
-#define NUM_LOGS                 2
-#define R_BUF_SIZE               1024	/* Size of read buffer */
-#define MAX_NUM_LOGS             10
 
 #define LOG_CANVAS_H             400
 #define LOG_CANVAS_W             600
@@ -51,12 +46,6 @@
  *    | Typedefs |
  *    `----------'
  */
-
-/* for the search results */
-enum {
-	LOGVIEW_WINDOW_OUTPUT_WINDOW_NONE,
-	LOGVIEW_WINDOW_OUTPUT_WINDOW_SEARCH,
-};
 
 typedef struct
 {
@@ -197,8 +186,6 @@ struct _LogviewWindow {
 
 	GConfClient *client;
 
-	gchar *program_name;
-
 	GtkWidget *view;
 	GtkWidget *mon_list_view;
 	GtkWidget *main_view;
@@ -226,7 +213,6 @@ struct _LogviewWindow {
 	GtkToolItem *find_prev;
 	gchar *find_string;
 
-	int numlogs, curlognum;
 	Log *curlog;	
 
 	gboolean monitored;
