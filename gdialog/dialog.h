@@ -42,8 +42,17 @@
 #  if defined(USE_NCURSES) && !defined(RENAMED_NCURSES)
 #    include <ncurses.h>
 #  else
+#    ifndef _XOPEN_SOURCE_EXTENDED
+#        define hacked 1
+#        define _XOPEN_SOURCE_EXTENDED
+#        define _ACS_COMPAT_CODE
+#    endif
 #    include <curses.h>
-#endif
+#    ifdef hacked
+#        undef _XOPEN_SOURCE_EXTENDED
+#        undef _ACS_COMPAT_CODE
+#    endif
+#  endif
 #endif
 
 /*
