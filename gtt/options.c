@@ -37,7 +37,9 @@ typedef struct _OptionsDlg {
 	GtkDialog *dlg;
 	GtkCheckButton *show_secs;
 	GtkCheckButton *show_status_bar;
+	GtkCheckButton *show_clist_titles;
 	GtkCheckButton *show_tb_icons, *show_tb_texts;
+	GtkCheckButton *show_tb_tips;
         GtkCheckButton *show_tb_new, *show_tb_ccp, *show_tb_pref;
         GtkCheckButton *show_tb_timer, *show_tb_prop, *show_tb_file;
         GtkCheckButton *show_tb_help, *show_tb_exit;
@@ -64,7 +66,11 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 	state = GTK_TOGGLE_BUTTON(odlg->show_secs)->active;
 	if (state != config_show_secs) {
 		config_show_secs = state;
+#ifdef GTK_USE_CLIST
+                setup_clist();
+#else
 		setup_list();
+#endif
 	}
 	if (GTK_TOGGLE_BUTTON(odlg->show_status_bar)->active) {
 		gtk_widget_show(GTK_WIDGET(status_bar));
@@ -73,6 +79,16 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 		gtk_widget_hide(GTK_WIDGET(status_bar));
                 config_show_statusbar = 0;
 	}
+#ifdef GTK_USE_CLIST
+        if (GTK_TOGGLE_BUTTON(odlg->show_clist_titles)->active) {
+                gtk_clist_column_titles_show(GTK_CLIST(glist));
+                config_show_clist_titles = 1;
+        } else {
+                gtk_clist_column_titles_hide(GTK_CLIST(glist));
+                config_show_clist_titles = 0;
+        }
+#endif
+                
 
 	/* shell command options */
 	ENTRY_TO_CHAR(odlg->command, config_command);
@@ -86,6 +102,7 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
         /* toolbar */
 	config_show_tb_icons = GTK_TOGGLE_BUTTON(odlg->show_tb_icons)->active;
 	config_show_tb_texts = GTK_TOGGLE_BUTTON(odlg->show_tb_texts)->active;
+        config_show_tb_tips = GTK_TOGGLE_BUTTON(odlg->show_tb_tips)->active;
 
         /* toolbar sections */
         change = 0;
@@ -210,6 +227,13 @@ static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_status_bar = GTK_CHECK_BUTTON(w);
+
+#ifdef GTK_USE_CLIST
+	w = gtk_check_button_new_with_label(_("Show Table Header"));
+	gtk_widget_show(w);
+	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
+	odlg->show_clist_titles = GTK_CHECK_BUTTON(w);
+#endif
 }
 
 
@@ -236,6 +260,11 @@ static void toolbar_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_texts = GTK_CHECK_BUTTON(w);
+
+	w = gtk_check_button_new_with_label(_("Show Tooltips"));
+	gtk_widget_show(w);
+	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
+	odlg->show_tb_tips = GTK_CHECK_BUTTON(w);
 
 	frame = gtk_frame_new(_("Toolbar Segments"));
 	gtk_widget_show(frame);
@@ -392,11 +421,17 @@ static void options_dialog_set(OptionsDlg *odlg)
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_secs), config_show_secs);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_status_bar),
 				    config_show_statusbar);
+#ifdef GTK_USE_CLIST
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_clist_titles),
+				    config_show_clist_titles);
+#endif
 
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_icons),
 				    config_show_tb_icons);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_texts),
 				    config_show_tb_texts);
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_tips),
+				    config_show_tb_tips);
 
 	if (config_command) gtk_entry_set_text(odlg->command, config_command);
 	if (config_command_null) gtk_entry_set_text(odlg->command_null, config_command_null);

@@ -113,6 +113,12 @@ void unlock_gtt(void)
 
 int main(int argc, char *argv[])
 {
+#if HAS_GNOME
+	gnome_init(&argc, &argv);
+#else 
+	gtk_init(&argc, &argv);
+#endif 
+
 #if defined(DEBUG) && 0
 #define locale_debug(a,b) g_print((a),(b))
 #else
@@ -120,14 +126,10 @@ int main(int argc, char *argv[])
 #endif
 	locale_debug("%s\n", getenv("LANG"));
 	setlocale(LC_MESSAGES, "");
+#if defined(LOCALEDIR) && defined(STANDALONE)
 	locale_debug(LOCALEDIR " %s\n", bindtextdomain(PACKAGE, LOCALEDIR));
+#endif
 	locale_debug(PACKAGE " %s\n", textdomain(PACKAGE));
-
-#if HAS_GNOME
-	gnome_init(&argc, &argv);
-#else 
-	gtk_init(&argc, &argv);
-#endif 
 
 	lock_gtt();
 	app_new(argc, argv);

@@ -68,6 +68,13 @@
 
 
 /*
+ * GTK_USE_CLIST
+ * If defined, I will use GtkCList to display the project list.
+ */
+#define GTK_USE_CLIST
+
+
+/*
  * DIALOG_USE_ACCEL
  * If defined, my dialogs will install an accelerator table, using "ENTER"
  * for the "OK" button and "ESC" for "Cancel" (or "OK", if no cancel).

@@ -34,7 +34,8 @@
 
 
 #if 0 /* not needed */
-void not_implemented(GtkWidget *w, gpointer data)
+void
+not_implemented(GtkWidget *w, gpointer data)
 {
 	msgbox_ok(gettext("Notice"),
 		  gettext("Not implemented yet"),
@@ -43,7 +44,8 @@ void not_implemented(GtkWidget *w, gpointer data)
 #endif
 
 
-void quit_app(GtkWidget *w, gpointer data)
+void
+quit_app(GtkWidget *w, gpointer data)
 {
 	if (!project_list_save(NULL)) {
 		msgbox_ok(gettext("Warning"),
@@ -57,7 +59,8 @@ void quit_app(GtkWidget *w, gpointer data)
 
 
 
-void about_box(GtkWidget *w, gpointer data)
+void
+about_box(GtkWidget *w, gpointer data)
 {
 #ifdef STANDALONE
 	GtkWidget *dlg, *t;
@@ -110,7 +113,8 @@ void about_box(GtkWidget *w, gpointer data)
 
 
 
-static void project_name(GtkWidget *w, GtkEntry *gentry)
+static void
+project_name(GtkWidget *w, GtkEntry *gentry)
 {
 	char *s;
 	project *proj;
@@ -118,10 +122,15 @@ static void project_name(GtkWidget *w, GtkEntry *gentry)
 	if (!(s = gtk_entry_get_text(gentry))) return;
 	if (!s[0]) return;
 	project_list_add(proj = project_new_title(s));
+#ifdef GTK_USE_CLIST
+        clist_add(proj);
+#else /* not GTK_USE_CLIST */
 	add_item(glist, proj);
+#endif /* not GTK_USE_CLIST */
 }
 
-void new_project(GtkWidget *widget, gpointer data)
+void
+new_project(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *dlg, *t, *text;
 	GtkBox *vbox;
@@ -151,7 +160,8 @@ void new_project(GtkWidget *widget, gpointer data)
 
 
 
-static void init_project_list_2(GtkWidget *widget, int button)
+static void
+init_project_list_2(GtkWidget *widget, int button)
 {
 	GtkWidget *dlg, *t;
 	GtkBox *vbox;
@@ -165,13 +175,18 @@ static void init_project_list_2(GtkWidget *widget, int button)
 		gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
 		gtk_widget_show(dlg);
 	} else {
+#ifdef GTK_USE_CLIST
+                setup_clist();
+#else /* not GTK_USE_CLIST */
 		setup_list();
+#endif /* not GTK_USE_CLIST */
 	}
 }
 
 
 
-void init_project_list(GtkWidget *widget, gpointer data)
+void
+init_project_list(GtkWidget *widget, gpointer data)
 {
 	msgbox_ok_cancel(gettext("Reload Configuration File"),
 			 _("This will overwrite your current set of projects.\n"
@@ -182,7 +197,8 @@ void init_project_list(GtkWidget *widget, gpointer data)
 
 
 
-void save_project_list(GtkWidget *widget, gpointer data)
+void
+save_project_list(GtkWidget *widget, gpointer data)
 {
 	if (!project_list_save(NULL)) {
 		GtkWidget *dlg, *t;
@@ -202,7 +218,8 @@ void save_project_list(GtkWidget *widget, gpointer data)
 
 project *cutted_project = NULL;
 
-void cut_project(GtkWidget *w, gpointer data)
+void
+cut_project(GtkWidget *w, gpointer data)
 {
 	if (!cur_proj) return;
 	if (cutted_project)
@@ -211,12 +228,17 @@ void cut_project(GtkWidget *w, gpointer data)
 	prop_dialog_set_project(NULL);
 	project_list_remove(cur_proj);
 	cur_proj_set(NULL);
+#ifdef GTK_USE_CLIST
+        clist_remove(cutted_project);
+#else
 	gtk_container_remove(GTK_CONTAINER(glist), GTK_LIST(glist)->selection->data);
+#endif
 }
 
 
 
-void paste_project(GtkWidget *w, gpointer data)
+void
+paste_project(GtkWidget *w, gpointer data)
 {
 	int pos;
 	project *p;
@@ -224,18 +246,31 @@ void paste_project(GtkWidget *w, gpointer data)
 	if (!cutted_project) return;
 	p = project_dup(cutted_project);
 	if (!cur_proj) {
+#ifdef GTK_USE_CLIST
+                clist_add(p);
+#else
 		add_item(glist, p);
+#endif
 		project_list_add(p);
 		return;
 	}
+#ifdef GTK_USE_CLIST
+        pos = cur_proj->row;
+#else
 	pos = gtk_list_child_position(GTK_LIST(glist), GTK_LIST(glist)->selection->data);
+#endif
 	project_list_insert(p, pos);
+#ifdef GTK_USE_CLIST
+        clist_insert(p, pos);
+#else /* not GTK_USE_CLIST */
 	add_item_at(glist, p, pos);
+#endif /* not GTK_USE_CLIST */
 }
 
 
 
-void copy_project(GtkWidget *w, gpointer data)
+void
+copy_project(GtkWidget *w, gpointer data)
 {
 	if (!cur_proj) return;
 	if (cutted_project)
@@ -251,7 +286,8 @@ void copy_project(GtkWidget *w, gpointer data)
  * timer related menu functions
  */
 
-void menu_start_timer(GtkWidget *w, gpointer data)
+void
+menu_start_timer(GtkWidget *w, gpointer data)
 {
 	start_timer();
 	menu_set_states();
@@ -259,14 +295,16 @@ void menu_start_timer(GtkWidget *w, gpointer data)
 
 
 
-void menu_stop_timer(GtkWidget *w, gpointer data)
+void
+menu_stop_timer(GtkWidget *w, gpointer data)
 {
 	stop_timer();
 	menu_set_states();
 }
 
 
-void menu_toggle_timer(GtkWidget *w, gpointer data)
+void
+menu_toggle_timer(GtkWidget *w, gpointer data)
 {
 	g_return_if_fail(GTK_IS_CHECK_MENU_ITEM(w));
 
@@ -279,14 +317,16 @@ void menu_toggle_timer(GtkWidget *w, gpointer data)
 }
 
 
-void menu_options(GtkWidget *w, gpointer data)
+void
+menu_options(GtkWidget *w, gpointer data)
 {
 	options_dialog();
 }
 
 
 
-void menu_properties(GtkWidget *w, gpointer data)
+void
+menu_properties(GtkWidget *w, gpointer data)
 {
 	if (cur_proj) {
 		prop_dialog(cur_proj);
@@ -295,12 +335,17 @@ void menu_properties(GtkWidget *w, gpointer data)
 
 
 
-void menu_clear_daily_counter(GtkWidget *w, gpointer data)
+void
+menu_clear_daily_counter(GtkWidget *w, gpointer data)
 {
 	g_return_if_fail(cur_proj != NULL);
 
 	cur_proj->day_secs = 0;
+#ifdef GTK_USE_CLIST
+        clist_update_label(cur_proj);
+#else
 	update_label(cur_proj);
+#endif
 }
 
 
@@ -309,13 +354,15 @@ void menu_clear_daily_counter(GtkWidget *w, gpointer data)
 #include "gtthelp.h"
 static GtkWidget *help = NULL;
 
-static void help_destroy(GtkWidget *w, gpointer *data)
+static void
+help_destroy(GtkWidget *w, gpointer *data)
 {
 	help = NULL;
 }
 
 
-void help_goto(char *helppos)
+void
+help_goto(char *helppos)
 {
         char s[1024];
 
@@ -331,7 +378,8 @@ void help_goto(char *helppos)
 
 
 
-void menu_help_contents(GtkWidget *w, gpointer data)
+void
+menu_help_contents(GtkWidget *w, gpointer data)
 {
 	if (!help) {
 		help = gtt_help_new(APP_NAME " - Help", HELP_PATH "/index.html");
@@ -350,7 +398,8 @@ void menu_help_contents(GtkWidget *w, gpointer data)
 
 
 #ifdef GNOME_USE_APP
-void menu_create(GtkWidget *gnome_app)
+void
+menu_create(GtkWidget *gnome_app)
 {
 	GtkAcceleratorTable *accel;
 	GtkWidget *w;
@@ -364,7 +413,8 @@ void menu_create(GtkWidget *gnome_app)
 
 
 
-void menu_set_states(void)
+void
+menu_set_states(void)
 {
 	menus_set_state(_("<Main>/Timer/Timer running"), (main_timer == 0) ? 0 : 1);
 	menus_set_sensitive(_("<Main>/Timer/Start"), (main_timer == 0) ? 1 : 0);

@@ -42,7 +42,7 @@
 /* Due to the same problems I define this, if I want to include the
    gtk_widget_show for the frame and the label of the statusbar */
 #ifdef GTK_USE_STATUSBAR
-#define SB_USE_HACK
+#undef SB_USE_HACK
 #endif
 
 
@@ -68,8 +68,10 @@ int config_show_secs = 1;
 int config_show_secs = 0;
 #endif
 int config_show_statusbar = 1;
+int config_show_clist_titles = 1;
 int config_show_tb_icons = 1;
 int config_show_tb_texts = 1;
+int config_show_tb_tips = 1;
 int config_show_tb_new = 1;
 int config_show_tb_file = 0;
 int config_show_tb_ccp = 0;
@@ -96,7 +98,7 @@ void update_status_bar(void)
 	if (!status_bar) return;
         if (!old_day_time) old_day_time = g_strdup("");
         if (!old_project) old_project = g_strdup("");
-        s = g_strdup(project_get_timestr(NULL));
+        s = g_strdup(project_get_timestr(NULL, 0));
         if (0 != strcmp(s, old_day_time)) {
 #ifdef GTK_USE_STATUSBAR
                 gtk_statusbar_pop(status_day_time, status_day_time_id);
@@ -175,6 +177,7 @@ void cur_proj_set(project *proj)
 
 
 
+#ifndef GTK_USE_CLIST
 /*
  * TODO: can this be done in a better way?
  * I don't want to create a new widget based on GtkList just to prevent the
@@ -267,6 +270,8 @@ static GtkWidget *build_item(project *p)
 	return item;
 }
 
+
+
 void add_item(GtkWidget *glist, project *p)
 {
 	GtkWidget *item = build_item(p);
@@ -321,6 +326,7 @@ void setup_list(void)
 	if (timer_running) start_timer();
 	menu_set_states();
 }
+#endif /* not GTK_USE_CLIST */
 
 
 
@@ -335,7 +341,12 @@ static void unlock_quit(void)
 static void init_list_2(GtkWidget *w, gint butnum)
 {
 	if (butnum == 2) unlock_quit();
-	else setup_list();
+	else
+#ifdef GTK_USE_CLIST
+                setup_clist();
+#else
+                setup_list();
+#endif
 }
 
 static void init_list(void)
@@ -344,7 +355,11 @@ static void init_list(void)
 #ifdef ENOENT
                 if (errno == ENOENT) {
                         errno = 0;
+#ifdef GTK_USE_CLIST
+                        setup_clist();
+#else
                         setup_list();
+#endif
                         return;
                 }
 #else
@@ -357,12 +372,17 @@ static void init_list(void)
 				 _("Yes"), _("No"),
 				 GTK_SIGNAL_FUNC(init_list_2));
 	} else {
+#ifdef GTK_USE_CLIST
+                setup_clist();
+#else
 		setup_list();
+#endif
 	}
 }
 
 
 
+#ifndef GTK_USE_CLIST
 static gint list_button_press(GtkWidget *widget,
 			      GdkEventButton *event)
 {
@@ -398,12 +418,16 @@ static gint list_button_press(GtkWidget *widget,
 
 	return TRUE;
 }
+#endif /* not GTK_USE_CLIST */
 
 
 
 void app_new(int argc, char *argv[])
 {
-	GtkWidget *swin, *vbox;
+	GtkWidget *vbox;
+#ifndef GTK_USE_CLIST
+        GtkWidget *swin;
+#endif /* not GTK_USE_CLIST */
 	char *p, *p0, c;
 	int i;
 	int x, y, w, h, xy_set;
@@ -524,6 +548,13 @@ void app_new(int argc, char *argv[])
                            FALSE, FALSE, 3);
 #endif /* not GTK_USE_STATUSBAR */
 
+#ifdef GTK_USE_CLIST
+        glist = create_clist();
+	/* TODO: remove hard coded pixel values...? */
+	gtk_widget_set_usize(glist, 200, 170);
+	gtk_box_pack_end(GTK_BOX(vbox), glist, TRUE, TRUE, 0);
+	gtk_widget_show(glist);
+#else /* not GTK_USE_CLIST */
 	swin = gtk_scrolled_window_new(NULL, NULL);
 	/* TODO: remove hard coded pixel values...? */
 	gtk_widget_set_usize(swin, 200, 170);
@@ -537,6 +568,7 @@ void app_new(int argc, char *argv[])
 			   GTK_SIGNAL_FUNC(list_button_press), NULL);
 	gtk_widget_set_events(glist, GDK_BUTTON_PRESS_MASK);
 	gtk_container_add(GTK_CONTAINER(swin), glist);
+#endif /* not GTK_USE_CLIST */
 	/* start timer before the state of the menu items is set */
 	start_timer();
 	init_list();

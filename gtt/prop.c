@@ -90,7 +90,11 @@ static void prop_set(GtkButton *w, PropDlg *dlg)
 	secs += atoi(s);
 	if (secs != dlg->proj->day_secs) {
 		dlg->proj->day_secs = secs;
+#ifdef GTK_USE_CLIST
+                clist_update_label(dlg->proj);
+#else
 		update_label(dlg->proj);
+#endif
 	}
 
 	s = gtk_entry_get_text(dlg->ever.h);

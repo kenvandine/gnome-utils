@@ -1,7 +1,5 @@
-Utilitiesdir = $(datadir)/apps/Utilities
-GttHelpdir = $(datadir)/gtt
 
-# DEFS += -ggdb -Wall -DDEBUG
+GttHelpdir = $(datadir)/gtt
 
 INCLUDES = 			\
 	-I../.. 		\
@@ -9,8 +7,8 @@ INCLUDES = 			\
 	-I$(includedir)		\
 	-DHAS_GNOME=1		\
 	-DHELP_PATH=\"$(GttHelpdir)\" \
-	-DLOCALEDIR=\"$(datadir)/locale\" \
 	$(X_CFLAGS)
+
 
 bin_PROGRAMS = gtt
 
@@ -32,6 +30,7 @@ gtt_SOURCES = \
 	menucmd.h	\
 	app.c		\
 	log.c		\
+	clist.c		\
 	gtthelp.c	\
 	gtthelp.h	\
 	gtt-features.h
@@ -44,7 +43,6 @@ gtt_LDADD = \
         $(X_LIBS) $(x_libs) $(INTLLIBS)			\
 	$(XPM_LIBS) $(DL_LIB)
 
-Utilities_DATA = gtt.desktop
 
 GttHelp_DATA = \
 	index.html		\
@@ -76,6 +74,9 @@ EXTRA_DIST = \
 	gtt.sgml		\
 	gtt.text		\
 	gtt.desktop
+
+# Utilitiesdir = $(datadir)/apps/Utilities
+# Utilities_DATA = gtt.desktop
 
 #install-data-local:
 #	 $(mkinstalldirs) $(Utilitiesdir)

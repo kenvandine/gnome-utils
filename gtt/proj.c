@@ -48,8 +48,12 @@ project *project_new(void)
 	proj->title = NULL;
 	proj->desc = NULL;
 	proj->secs = proj->day_secs = 0;
+#ifdef GTK_USE_CLIST
+        proj->row = -1;
+#else /* not GTK_USE_CLIST */
 	proj->label = NULL;
 	proj->title_label = NULL;
+#endif /* not GTK_USE_CLIST */
 	return proj;
 }
 
@@ -108,8 +112,13 @@ void project_set_title(project *proj, char *t)
 		return;
 	}
 	proj->title = g_strdup(t);
+#ifdef GTK_USE_CLIST
+        if (proj->row != -1)
+                clist_update_title(proj);
+#else /* not GTK_USE_CLIST */
 	if (proj->title_label)
 		update_title_label(proj);
+#endif /* not GTK_USE_CLIST */
 }
 
 
@@ -217,7 +226,11 @@ void project_list_time_reset(void)
 	
 	for (t = plist; t; t = t->next) {
 		t->proj->day_secs = 0;
+#ifdef GTK_USE_CLIST
+		if (t->proj->row != -1) clist_update_label(t->proj);
+#else /* not GTK_USE_CLIST */
 		if (t->proj->label) update_label(t->proj);
+#endif /* not GTK_USE_CLIST */
 	}
 }
 
@@ -318,6 +331,12 @@ project_list_load_old(char *fname)
 			} else if (s[1] == 't') {
 				/* show text in the toolbar */
 				config_show_tb_texts = (s[4] == 'n');
+			} else if (s[1] == 'p') {
+				/* show tooltips */
+				config_show_tb_tips = (s[4] == 'n');
+			} else if (s[1] == 'h') {
+				/* show clist titles */
+				config_show_clist_titles = (s[4] == 'n');
 			} else if (s[1] == 's') {
 				/* show status bar */
 				if (s[4] == 'n') {
@@ -432,7 +451,9 @@ project_list_save_old(char *fname)
 	fprintf(f, "s %s\n", (config_show_secs) ? "on" : "off");
 	fprintf(f, "bi %s\n", (config_show_tb_icons) ? "on" : "off");
 	fprintf(f, "bt %s\n", (config_show_tb_texts) ? "on" : "off");
+	fprintf(f, "bp %s\n", (config_show_tb_tips) ? "on" : "off");
 	fprintf(f, "bs %s\n", (config_show_statusbar) ? "on" : "off");
+	fprintf(f, "bh %s\n", (config_show_clist_titles) ? "on" : "off");
         fprintf(f, "b_n %s\n", (config_show_tb_new) ? "on" : "off");
         fprintf(f, "b_f %s\n", (config_show_tb_file) ? "on" : "off");
         fprintf(f, "b_c %s\n", (config_show_tb_ccp) ? "on" : "off");
@@ -496,8 +517,10 @@ project_list_load(char *fname)
         _e = config_show_tb_exit;
         last_timer = atol(gnome_config_get_string(GTT"Misc/LastTimer=-1"));
         config_show_secs = gnome_config_get_bool(GTT"Display/ShowSecs=false");
+        config_show_clist_titles = gnome_config_get_bool(GTT"Display/ShowTableHeader=false");
         config_show_tb_icons = gnome_config_get_bool(GTT"Toolbar/ShowIcons=true");
         config_show_tb_texts = gnome_config_get_bool(GTT"Toolbar/ShowTexts=true");
+        config_show_tb_tips = gnome_config_get_bool(GTT"Toolbar/ShowTips=true");
         config_show_statusbar = gnome_config_get_bool(GTT"Display/ShowStatusbar=true");
         config_show_tb_new = gnome_config_get_bool(GTT"Toolbar/ShowNew=true");
         config_show_tb_file = gnome_config_get_bool(GTT"Toolbar/ShowFile=false");
@@ -556,8 +579,10 @@ project_list_save(char *fname)
         sprintf(s, "%ld", last_timer);
         gnome_config_set_string(GTT"Misc/LastTimer", s);
         gnome_config_set_bool(GTT"Display/ShowSecs", config_show_secs);
+        gnome_config_set_bool(GTT"Display/ShowTableHeader", config_show_clist_titles);
         gnome_config_set_bool(GTT"Toolbar/ShowIcons", config_show_tb_icons);
         gnome_config_set_bool(GTT"Toolbar/ShowTexts", config_show_tb_texts);
+        gnome_config_set_bool(GTT"Toolbar/ShowTips", config_show_tb_tips);
         gnome_config_set_bool(GTT"Display/ShowStatusbar", config_show_statusbar);
         gnome_config_set_bool(GTT"Toolbar/ShowNew", config_show_tb_new);
         gnome_config_set_bool(GTT"Toolbar/ShowFile", config_show_tb_file);
@@ -613,9 +638,9 @@ project_list_save(char *fname)
 
 
 
-char *project_get_timestr(project *proj)
+char *project_get_timestr(project *proj, int show_secs)
 {
-	static char s[10];
+	static char s[20];
 	time_t t;
 	
 	if (proj == NULL) {
@@ -626,8 +651,73 @@ char *project_get_timestr(project *proj)
 	} else {
 		t = proj->day_secs;
 	}
-	sprintf(s, "%02d:%02d", (int)(t / 3600), (int)((t % 3600) / 60));
+        if (show_secs)
+                sprintf(s, "%02d:%02d:%02d", (int)(t / 3600),
+                        (int)((t % 3600) / 60), (int)(t % 60));
+        else
+                sprintf(s, "%02d:%02d", (int)(t / 3600),
+                        (int)((t % 3600) / 60));
 	return s;
 }
 
 
+
+static void
+project_list_sort(int (cmp)(const void *, const void *))
+{
+        project_list *pl;
+        project_list **parray;
+        int i, num;
+
+        if (!plist) return;
+        for (i = 0, pl = plist; pl; pl = pl->next, i++) ;
+        parray = g_malloc(i * sizeof(project_list *));
+        for (i = 0, pl = plist; pl; pl = pl->next, i++)
+                parray[i] = pl;
+        qsort(parray, i, sizeof(project_list *), cmp);
+        num = i;
+        plist = parray[0];
+        pl = plist;
+        for (i = 1; i < num; i++) {
+                pl->next = parray[i];
+                pl = parray[i];
+        }
+        pl->next = NULL;
+        g_free(parray);
+}
+
+
+
+static int
+cmp_time(const void *aa, const void *bb)
+{
+        project_list *a = *(project_list **)aa;
+        project_list *b = *(project_list **)bb;
+        return (int)(b->proj->day_secs - a->proj->day_secs);
+}
+
+
+
+static int
+cmp_title(const void *aa, const void *bb)
+{
+        project_list *a = *(project_list **)aa;
+        project_list *b = *(project_list **)bb;
+        return strcmp(a->proj->title, b->proj->title);
+}
+
+
+
+void
+project_list_sort_time(void)
+{
+        project_list_sort(cmp_time);
+}
+
+
+
+void
+project_list_sort_title(void)
+{
+        project_list_sort(cmp_title);
+}

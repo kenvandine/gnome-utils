@@ -69,8 +69,12 @@ typedef struct _project {
 	char *title;
 	int secs, day_secs;
 	char *desc;
+#ifdef GTK_USE_CLIST
+        gint row;
+#else /* not GTK_USE_CLIST */
 	GtkLabel *label;
 	GtkLabel *title_label;
+#endif /* not GTK_USE_CLIST */
 } project;
 
 typedef struct _project_list {
@@ -95,8 +99,10 @@ void project_list_destroy(void);
 void project_list_time_reset(void);
 int project_list_load(char *fname);
 int project_list_save(char *fname);
+void project_list_sort_time(void);
+void project_list_sort_title(void);
 
-char *project_get_timestr(project *p);
+char *project_get_timestr(project *p, int show_secs);
 
 
 /* prop.c */
@@ -126,8 +132,10 @@ extern GtkBox *window_vbox;
 extern GtkWidget *status_bar;
 extern int config_show_secs;
 extern int config_show_statusbar;
+extern int config_show_clist_titles;
 extern int config_show_tb_icons;
 extern int config_show_tb_texts;
+extern int config_show_tb_tips;
 extern int config_show_tb_new;
 extern int config_show_tb_file;
 extern int config_show_tb_ccp;
@@ -141,13 +149,28 @@ extern int config_logfile_use, config_logfile_min_secs;
 
 void update_status_bar(void);
 void cur_proj_set(project *p);
+#ifndef GTK_USE_CLIST
 void update_title_label(project *p);
 void update_label(project *p);
 void add_item(GtkWidget *glist, project *p);
 void add_item_at(GtkWidget *glist, project *p, int pos);
 void setup_list(void);
+#endif
 
 void app_new(int argc, char *argv[]);
+
+
+/* clist.c */
+
+#ifdef GTK_USE_CLIST
+GtkWidget *create_clist(void);
+void setup_clist(void);
+void clist_add(project *p);
+void clist_insert(project *p, gint pos);
+void clist_remove(project *p);
+void clist_update_label(project *p);
+void clist_update_title(project *p);
+#endif GTK_USE_CLIST
 
 
 /* main.c */

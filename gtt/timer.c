@@ -30,7 +30,7 @@ time_t last_timer = -1;
 
 static gint timer_func(gpointer data)
 {
-	time_t t;
+	time_t t, diff_time;
 	struct tm t1, t0;
 
 	t = time(NULL);
@@ -42,16 +42,27 @@ static gint timer_func(gpointer data)
 			log_endofday();
 			project_list_time_reset();
 		}
-	}
+                diff_time = last_timer - t;
+	} else {
+                diff_time = 1;
+        }
 	last_timer = t;
 	if (!cur_proj) return 1;
-	cur_proj->secs++;
-	cur_proj->day_secs++;
+	cur_proj->secs += diff_time;
+	cur_proj->day_secs += diff_time;
+#ifdef GTK_USE_CLIST
+	if (config_show_secs) {
+		if (cur_proj->row != -1) clist_update_label(cur_proj);
+	} else if (cur_proj->day_secs % 60 == 0) {
+		if (cur_proj->row != -1) clist_update_label(cur_proj);
+	}
+#else /* not GTK_USE_CLIST */
 	if (config_show_secs) {
 		if (cur_proj->label) update_label(cur_proj);
 	} else if (cur_proj->day_secs % 60 == 0) {
 		if (cur_proj->label) update_label(cur_proj);
 	}
+#endif /* not GTK_USE_CLIST */
 	return 1;
 }
 

@@ -30,9 +30,10 @@
 
 #undef gettext
 #undef _
+#undef N_
 #include <libintl.h>
-#define gettext_noop(String) (String)
 #define _(String) gettext(String)
+#define N_(String) (String)
 
 
 
@@ -76,7 +77,7 @@ struct _MyToggle {
 
 struct _MyToolbar {
         GtkToolbar *tbar;
-
+        GtkTooltips *tt;
         GtkWidget *cut, *copy, *paste; /* to make them sensible
                                           as needed */
 #ifdef WANT_STOCK
@@ -243,6 +244,12 @@ toolbar_set_states(void)
         g_return_if_fail(mytbar->tbar != NULL);
         g_return_if_fail(GTK_IS_TOOLBAR(mytbar->tbar));
 
+        if (mytbar->tt) {
+                if (config_show_tb_tips)
+                        gtk_tooltips_enable(mytbar->tt);
+                else
+                        gtk_tooltips_disable(mytbar->tt);
+        }
         if (mytbar->cut)
                 gtk_widget_set_sensitive(mytbar->cut, (cur_proj != NULL));
         if (mytbar->copy)
@@ -292,6 +299,7 @@ build_toolbar(void)
         mytbar = g_malloc0(sizeof(MyToolbar));
         mytbar->tbar = GTK_TOOLBAR(gtk_toolbar_new(GTK_ORIENTATION_HORIZONTAL,
                                                    GTK_TOOLBAR_ICONS));
+        mytbar->tt = mytbar->tbar->tooltips;
 
 #ifdef WANT_STOCK
         if (config_show_tb_new) {
@@ -410,6 +418,8 @@ build_toolbar(void)
 
 
 
+/* TODO: I have to completely rebuild the toolbar, when I want to add or
+   remove items. Maybe I can find a better way... */
 void
 update_toolbar_sections(void)
 {
