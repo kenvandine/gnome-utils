@@ -67,6 +67,7 @@ CFLAGS = @CFLAGS@ 		\
 INCLUDES = 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
+	-DGTTGLADEDIR=\""$(datadir)/gtt"\" \
 	$(GNOME_INCLUDEDIR)	\
 	${GUILE_INCS}
 						 

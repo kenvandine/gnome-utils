@@ -28,6 +28,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <glade/glade.h>
+#include <gnome.h>
 
 /* hack alert --xxx fixme -- we need to configure.in for have_langinfo */
 #define HAVE_LANGINFO_D_FMT
@@ -251,6 +253,27 @@ const char *
 xxxgtk_text_get_text (GtkText *text)
 {
  	return gtk_editable_get_chars (GTK_EDITABLE(text), 0, -1);
+}
+
+/* ============================================================== */
+
+/* Glade loader, it will look in the right directories */
+GladeXML *
+gtt_glade_xml_new (const char *filename, const char *widget)
+{
+	GladeXML *xml = NULL;
+
+	g_return_val_if_fail (filename != NULL, NULL);
+
+	if (g_file_exists (filename))
+		xml = glade_xml_new (filename, widget);
+
+	if (xml == NULL) {
+		char *file = g_concat_dir_and_file (GTTGLADEDIR, filename);
+		xml = glade_xml_new (file, widget);
+		g_free (file);
+	}
+	return xml;
 }
 
 /* ===================== END OF FILE ============================ */

@@ -145,7 +145,7 @@ edit_interval_dialog_new (void)
 	dlg = g_malloc (sizeof(EditIntervalDialog));
 	dlg->interval = NULL;
 
-	glxml = glade_xml_new ("glade/interval_edit.glade", "Interval Edit");
+	glxml = gtt_glade_xml_new ("glade/interval_edit.glade", "Interval Edit");
 	dlg->gtxml = glxml;
 
 	dlg->interval_edit = glade_xml_get_widget (glxml, "Interval Edit");

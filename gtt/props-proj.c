@@ -307,7 +307,7 @@ prop_dialog_new (void)
 
 	dlg = g_malloc(sizeof(PropDlg));
 
-	gtxml = glade_xml_new ("glade/project_properties.glade", "Project Properties");
+	gtxml = gtt_glade_xml_new ("glade/project_properties.glade", "Project Properties");
 	dlg->gtxml = gtxml;
 
 	dlg->dlg = GNOME_PROPERTY_BOX (glade_xml_get_widget (gtxml,  "Project Properties"));

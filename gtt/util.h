@@ -21,6 +21,7 @@
 
 #include <glib.h>
 #include <gtk/gtktext.h>
+#include <glade/glade.h>
 
 
 /* ------------------------------------------------------------------ */
@@ -77,5 +78,8 @@ int is_same_day (time_t, time_t);
 /* some gtk-like utilities */
 void xxxgtk_text_set_text (GtkText *text, const char *str);
 const char * xxxgtk_text_get_text (GtkText *text);
+
+/* Glade loader, it will look in the right directories */
+GladeXML *gtt_glade_xml_new (const char *filename, const char *widget);
 
 #endif /* __GTT_UTIL_H__ */

@@ -536,7 +536,7 @@ prefs_dialog_new (void)
 
 	dlg = g_malloc(sizeof(PrefsDialog));
 
-	gtxml = glade_xml_new ("glade/prefs.glade", "Global Preferences");
+	gtxml = gtt_glade_xml_new ("glade/prefs.glade", "Global Preferences");
 	dlg->gtxml = gtxml;
 
 	dlg->dlg = GNOME_PROPERTY_BOX (glade_xml_get_widget (gtxml,  "Global Preferences"));

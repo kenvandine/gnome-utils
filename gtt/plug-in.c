@@ -148,7 +148,7 @@ new_plugin_dialog_new (void)
 	dlg = g_malloc(sizeof(NewPluginDialog));
 	dlg->app = GNOME_APP (window);
 
-	gtxml = glade_xml_new ("glade/plugin.glade", "Plugin New");
+	gtxml = gtt_glade_xml_new ("glade/plugin.glade", "Plugin New");
 	dlg->gtxml = gtxml;
 
 	dlg->dialog = GNOME_DIALOG (glade_xml_get_widget (gtxml,  "Plugin New"));

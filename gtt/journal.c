@@ -406,7 +406,7 @@ static void
 on_print_clicked_cb (GtkWidget *w, gpointer data)
 {
 	GladeXML  *glxml;
-	glxml = glade_xml_new ("glade/not-implemented.glade", "Not Implemented");
+	glxml = gtt_glade_xml_new ("glade/not-implemented.glade", "Not Implemented");
 }
 
 static void 
@@ -501,7 +501,7 @@ do_show_report (const char * report, GttProject *prj)
 	GladeXML  *glxml;
 	Wiggy *wig;
 
-	glxml = glade_xml_new ("glade/journal.glade", "Journal Window");
+	glxml = gtt_glade_xml_new ("glade/journal.glade", "Journal Window");
 
 	jnl_top = glade_xml_get_widget (glxml, "Journal Window");
 	jnl_viewport = glade_xml_get_widget (glxml, "Journal ScrollWin");
@@ -550,7 +550,7 @@ do_show_report (const char * report, GttProject *prj)
 	/* this is the popup menu that says 'edit/delete/merge' */
 	/* for intervals */
 
-	glxml = glade_xml_new ("glade/interval_popup.glade", "Interval Popup");
+	glxml = gtt_glade_xml_new ("glade/interval_popup.glade", "Interval Popup");
 	wig->interval_popup = glade_xml_get_widget (glxml, "Interval Popup");
 	wig->interval_paste = glade_xml_get_widget (glxml, "paste_memo");
 	wig->interval_merge_up = glade_xml_get_widget (glxml, "merge_up");
@@ -579,7 +579,7 @@ do_show_report (const char * report, GttProject *prj)
 	/* this is the popup menu that says 'edit/delete/merge' */
 	/* for tasks */
 
-	glxml = glade_xml_new ("glade/task_popup.glade", "Task Popup");
+	glxml = gtt_glade_xml_new ("glade/task_popup.glade", "Task Popup");
 	wig->task_popup = glade_xml_get_widget (glxml, "Task Popup");
 	wig->task_delete_memo = glade_xml_get_widget (glxml, "delete_memo");
 	wig->task_paste = glade_xml_get_widget (glxml, "paste");
