@@ -128,6 +128,8 @@ uid_t getuid ();
 #include <shadow.h>
 #endif
 
+#include <stdarg.h>
+
 #include "error.h"
 
 #ifdef HAVE_PATHS_H
@@ -196,6 +198,12 @@ static int simulate_login;
 /* If nonzero, change some environment vars to indicate the user su'd to.  */
 static int change_environment;
 
+/* File descriptor we read the password from. */
+static int passwd_fd;
+
+/* File descriptor we write status messages to. */
+static int message_fd;
+
 static struct option const longopts[] =
 {
   {"command", required_argument, 0, 'c'},
@@ -208,13 +216,91 @@ static struct option const longopts[] =
   {0, 0, 0, 0}
 };
 
+/* abort on fatal errors. */
+
+static void
+helper_abort (void)
+{
+  fprintf (stderr, _("This program should never be called directly.\n"));
+  exit (1);
+}
+
+/* abort on io errors. */
+
+static void
+helper_io_error (const char *message, ...)
+{
+  va_list args;
+
+  va_start (args, message);
+
+  vfprintf (stderr, message, args);
+  vfprintf (stderr, ": %s\n", strerror (errno));
+  exit (1);
+}
+
+/* write a message to gsu. */
+
+static void
+helper_error (int status, int errnum, const char *message, ...)
+{
+  char buffer [BUFSIZ+1], buffer2 [BUFSIZ+1];
+  va_list args;
+  int len;
+
+  va_start (args, message);
+
+  len = vsnprintf (buffer, BUFSIZ, message, args);
+  if (len < 0) helper_abort ();
+
+  if (errnum) {
+    len = snprintf (buffer2, BUFSIZ, "%s: %s", buffer, strerror (errnum));
+    if (len < 0) helper_abort ();
+  }
+
+  if (write (message_fd, &len, sizeof (len)) != sizeof (len))
+    helper_io_error ("write (message_fd)");
+
+  if (write (message_fd, errnum ? buffer2 : buffer, len) != len)
+    helper_io_error ("write (message_fd)");
+
+  va_end (args);
+
+  if (status)
+    exit (status);
+}
+
+/* read the password. */
+
+static char *
+helper_read_password (void)
+{
+  char password [BUFSIZ], *text;
+  int len;
+
+  if (read (passwd_fd, &len, sizeof (len)) != sizeof (len))
+    helper_io_error ("read (passwd_fd)");
+
+  if (len+1 > BUFSIZ)
+    helper_abort ();
+
+  if (read (passwd_fd, password, len) != len)
+    helper_io_error ("read (passwd_fd)");
+
+  password [len] = 0;
+
+  text = strdup (password);
+  _pam_overwrite (password);
+  return text;
+}
+
 /* Add VAL to the environment, checking for out of memory errors.  */
 
 static void
 xputenv (const char *val)
 {
   if (putenv (val))
-    error (1, 0, _("virtual memory exhausted"));
+    helper_error (1, 0, _("virtual memory exhausted"));
 }
 
 /* Return a newly-allocated string whose contents concatenate
@@ -378,6 +464,9 @@ static int
 correct_password (const struct passwd *pw)
 {
 #ifdef USE_PAM
+  int saved_stdin_fd;
+  int saved_stderr_fd;
+  int dev_null_fd;
 
   /* root always succeeds; this isn't an authentication question (no
    * extra privs are being granted) so it shouldn't authenticate with PAM.
@@ -387,8 +476,50 @@ correct_password (const struct passwd *pw)
   PAM_BAIL_P;
   if (getuid () == 0)
     return 1;
-  retval = pam_authenticate(pamh, 0);
+
+  /* temporarily redirect stderr to /dev/null. */
+
+  dev_null_fd = open ("/dev/null", O_RDONLY);
+  if (dev_null_fd < 0)
+    exit (2);
+
+  saved_stderr_fd = dup (2);
+  if (saved_stderr_fd < 0)
+    exit (2);
+
+  if (dup2 (dev_null_fd, 2) != 2)
+    exit (2);
+
+  /* temporarily redirect stdin from our password_fd. */
+
+  saved_stdin_fd = dup (0);
+  if (saved_stdin_fd < 0)
+    exit (2);
+
+  if (dup2 (passwd_fd, 0) != 0)
+    exit (2);
+
+  /* actually do the pam authentication. */
+
+  retval = pam_authenticate(pamh, PAM_SILENT);
+
+  /* restore stdin and stderr. */
+
+  if (dup2 (saved_stdin_fd, 0) != 0)
+    exit (2);
+  if (close (saved_stdin_fd))
+    exit (2);
+
+  if (dup2 (saved_stderr_fd, 2) != 2)
+    exit (2);
+  if (close (saved_stderr_fd))
+    exit (2);
+  if (close (dev_null_fd))
+    exit (2);
+
+  /* IMPORTANT! Check error condition from pam_authenticate () */
   PAM_BAIL_P;
+
   retval = pam_acct_mgmt(pamh, 0);
   if (retval == PAM_NEW_AUTHTOK_REQD) {
     /* password has expired.  Offer option to change it. */
@@ -414,10 +545,10 @@ correct_password (const struct passwd *pw)
   if (getuid () == 0 || correct == 0 || correct[0] == '\0')
     return 1;
 
-  unencrypted = getpass (_("Password:"));
+  unencrypted = helper_read_password ();
   if (unencrypted == NULL)
     {
-      error (0, 0, _("getpass: cannot open /dev/tty"));
+      helper_error (0, 0, _("getpass: cannot open /dev/tty"));
       return 0;
     }
   encrypted = crypt (unencrypted, correct);
@@ -475,18 +606,18 @@ change_identity (const struct passwd *pw)
 #ifdef HAVE_INITGROUPS
   errno = 0;
   if (initgroups (pw->pw_name, pw->pw_gid) == -1)
-    error (1, errno, _("cannot set groups"));
+    helper_error (1, errno, _("cannot set groups"));
   endgrent ();
 #endif
 #ifdef USE_PAM
   retval = pam_setcred(pamh, PAM_ESTABLISH_CRED);
   if (retval != PAM_SUCCESS)
-    error (1, 0, pam_strerror(pamh, retval));
+    helper_error (1, 0, pam_strerror(pamh, retval));
 #endif /* USE_PAM */
   if (setgid (pw->pw_gid))
-    error (1, errno, _("cannot set group id"));
+    helper_error (1, errno, _("cannot set group id"));
   if (setuid (pw->pw_uid))
-    error (1, errno, _("cannot set user id"));
+    helper_error (1, errno, _("cannot set user id"));
 }
 
 #ifdef USE_PAM
@@ -552,7 +683,7 @@ run_shell (const char *shell, const char *command, char **additional_args)
       args[argno++] = *additional_args;
   args[argno] = NULL;
   execv (shell, (char **) args);
-  error (1, errno, _("cannot run %s"), shell);
+  helper_error (1, errno, _("cannot run %s"), shell);
 #ifdef USE_PAM
   }
   /* parent only */
@@ -603,6 +734,7 @@ run_shell (const char *shell, const char *command, char **additional_args)
     kill(child, SIGKILL);
     fprintf(stderr, " ...killed.\n");
   }
+  helper_error (0, 0, _("OK"));
   exit (status);
 #endif /* USE_PAM */
 }
@@ -656,6 +788,44 @@ A mere - implies -l.   If USER not given, assume root.\n\
   exit (status);
 }
 
+static void
+helper_init (int *argc, char **argv)
+{
+  char *passwd_fd_arg, *message_fd_arg;
+  int len, i;
+
+  if (*argc < 3)
+    helper_abort ();
+
+  (*argc)--;
+  message_fd_arg = argv [*argc];
+  len = strlen (message_fd_arg);
+
+  if (len > 5)
+    helper_abort ();
+
+  for (i = 0; i < len; i++)
+    if (!isdigit (message_fd_arg [i]))
+      helper_abort ();
+
+  if (sscanf (message_fd_arg, "%d", &message_fd) != 1)
+    helper_abort ();
+
+  (*argc)--;
+  passwd_fd_arg = argv [*argc];
+  len = strlen (passwd_fd_arg);
+
+  if (len > 5)
+    helper_abort ();
+
+  for (i = 0; i < len; i++)
+    if (!isdigit (passwd_fd_arg [i]))
+      helper_abort ();
+
+  if (sscanf (passwd_fd_arg, "%d", &passwd_fd) != 1)
+    helper_abort ();
+}
+
 int
 main (int argc, char **argv)
 {
@@ -671,6 +841,8 @@ main (int argc, char **argv)
   setlocale (LC_ALL, "");
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
+
+  helper_init (&argc, argv);
 
   fast_startup = 0;
   simulate_login = 0;
@@ -731,7 +903,7 @@ main (int argc, char **argv)
 
   pw = getpwnam (new_user);
   if (pw == 0)
-    error (1, 0, _("user %s does not exist"), new_user);
+    helper_error (1, 0, _("user %s does not exist"), new_user);
   endpwent ();
 
   /* Make a copy of the password information and point pw at the local
@@ -748,7 +920,7 @@ main (int argc, char **argv)
 #ifdef SYSLOG_FAILURE
       log_su (pw, 0);
 #endif
-      error (1, 0, _("incorrect password"));
+      helper_error (1, 0, _("incorrect password"));
     }
 #ifdef SYSLOG_SUCCESS
   else
@@ -767,7 +939,7 @@ main (int argc, char **argv)
 	 probably a uucp account or has restricted access.  Don't
 	 compromise the account by allowing access with a standard
 	 shell.  */
-      error (0, 0, _("using restricted shell %s"), pw->pw_shell);
+      helper_error (0, 0, _("using restricted shell %s"), pw->pw_shell);
       shell = 0;
     }
   if (shell == 0)
@@ -778,7 +950,7 @@ main (int argc, char **argv)
 
   change_identity (pw);
   if (simulate_login && chdir (pw->pw_dir))
-    error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
+    helper_error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
 
   run_shell (shell, command, additional_args);
 }

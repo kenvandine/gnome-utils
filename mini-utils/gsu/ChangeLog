@@ -1,5 +1,19 @@
 1999-02-10  Martin Baulig  <martin@home-of-linux.org>
 
+	* gsu-helper.c (passwd_fd): This is the number of an open file
+	descriptor which we use to read the password from.
+	(message_fd): This is the number of an open file descriptor which
+	we use to pass a message to our parent.
+	(helper_abort): Abort on fatal errors.
+	(helper_io_error): Print an error message to stderr and abort.
+	(helper_error): This is a modified error () that passes the error
+ 	text to our parent.
+	(helper_read_password): If not using PAM, we use this function to
+	read the password.
+	(correct_password): Read the password from the password_fd.
+
+1999-02-10  Martin Baulig  <martin@home-of-linux.org>
+
 	* xmalloc.c, xstrdup.c: New files from sh-utils 1.16.
 
 1999-02-09  Martin Baulig  <martin@home-of-linux.org>
