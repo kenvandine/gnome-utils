@@ -1506,6 +1506,8 @@ main (int 	argc,
 	
 	gtk_widget_show (interface.main_window);
 	
+	interface.icon_theme = gnome_icon_theme_new ();
+	
 	handle_popt_args ();
 		
 	gtk_main ();

@@ -40,6 +40,7 @@ extern "C" {
 #define CDDB_DISCLOSURE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), CDDB_DISCLOSURE_TYPE, CDDBDisclosureClass))
 #define IS_CDDB_DISCLOSURE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CDDB_DISCLOSURE_TYPE))
 #define IS_CDDB_DISCLOSURE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CDDB_DISCLOSURE_TYPE))
+#define ICON_SIZE 24.0
 
 typedef struct _CDDBDisclosure CDDBDisclosure;
 typedef struct _CDDBDisclosureClass CDDBDisclosureClass;

@@ -1,5 +1,15 @@
 2002-10-06  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
+	* gsearchtool.[ch]:  Added icon theme structure to 
+	our interface structure and defined it in main().
+	
+	*gsearchtool-support.[ch]:  Removed get_mime_name().
+	Rewrote get_file_icon_with_mime_type() to use the
+	new icon theme lookup functions.  
+	<< REQUIRES LIBGNOMEUI CVS HEAD>>
+	  
+2002-10-06  Dennis M. Cranston <dennis_cranston@yahoo.com>
+
 	* gsearchtool.c, gsearchtool-support.c:  Improve 
 	file type recognition by replacing calls to the
 	function gnome_vfs_mime_type_from_name() with 

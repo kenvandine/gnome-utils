@@ -105,6 +105,7 @@ struct _InterfaceStruct {
 	GList 			*selected_constraints;
 	gchar 		 	*save_results_file;	
 	gint 		  	selected_constraint;
+	GnomeIconTheme	 	*icon_theme;
 	gboolean  	  	is_gail_loaded;
 } interface;
 

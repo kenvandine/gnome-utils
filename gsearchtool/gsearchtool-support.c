@@ -31,6 +31,7 @@
 
 #include "gsearchtool-support.h"
 #include "gsearchtool-callbacks.h"
+#include "gsearchtool.h"
 
 #include <regex.h>
 #include <gtk/gtkcheckbutton.h>
@@ -44,9 +45,10 @@
 #include <gconf/gconf-client.h>
 #include <gconf/gconf.h>
 
-#define PREF_DESKTOP_ICON_THEME "/desktop/gnome/file_views/icon_theme"
 #define C_STANDARD_STRFTIME_CHARACTERS "aAbBcdHIjmMpSUwWxXyYZ"
 #define C_STANDARD_NUMERIC_STRFTIME_CHARACTERS "dHIjmMSUwWyY"
+#define ICON_THEME_DIRECTORY_ICON  "gnome-fs-directory"
+#define ICON_THEME_EXECUTABLE_ICON "gnome-fs-executable"
 
 /* START OF THE CDDB FUNCTIONS */
 
@@ -646,126 +648,41 @@ get_file_type_with_mime_type (const gchar *filename,
 			      const gchar *mimetype)
 {
 	if (mimetype == NULL) {
-		return NULL;
+		return (gchar *)gnome_vfs_mime_get_description (GNOME_VFS_MIME_TYPE_UNKNOWN);
 	}
 
-	if (g_ascii_strcasecmp (mimetype, GNOME_VFS_MIME_TYPE_UNKNOWN) == 0) {
-		if (g_file_test (filename, G_FILE_TEST_IS_DIR))
-			return _("folder");
-		if (g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE))
-			return _("program");	
-		if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK))
+	if (g_ascii_strcasecmp (mimetype, GNOME_VFS_MIME_TYPE_UNKNOWN) == 0) {	
+		if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK)) {
 			return _("symbolic link");
+		}
 	}
 
 	return (gchar *)gnome_vfs_mime_get_description (mimetype);
 } 
 
-static gchar *
-get_mime_name (const gchar *mime_type, 
-	       gint         size)
-{
-	gchar *mime_type_modified;
-	gchar *first_slash;
-	gchar *mime_name;
-
-	mime_type_modified = g_strdup (mime_type);
-	first_slash = strchr (mime_type_modified, '/');
-	if (first_slash != NULL)
-		*first_slash = '-';
-
-	if (size > 0)
-		mime_name = g_strdup_printf ("gnome-%s-%d", 
-					     mime_type_modified, 
-					     size);
-	else
-		mime_name = g_strconcat ("gnome-",
-					 mime_type_modified,
-					 NULL);
-	g_free (mime_type_modified);
-
-	return mime_name;
-}
-
 gchar *
 get_file_icon_with_mime_type (const gchar *filename, 
 			      const gchar *mimetype) 
 {
-	const gchar *icon_name;
-	gchar *mime_name = NULL;	
+	const GnomeIconData *icon_data;
+	gchar *icon_name = NULL;	
 	gchar *icon_path = NULL;
-	gchar *name_with_ext;
-	gchar *tmp;
-	gchar *icon_theme = gsearchtool_gconf_get_string (PREF_DESKTOP_ICON_THEME);
-	
-	icon_name = gnome_vfs_mime_get_icon (mimetype);
-	
-	if (g_file_test ((filename), G_FILE_TEST_IS_DIR) == TRUE) {
-		icon_name = g_strdup ("i-directory");
-	}
-	
-	if (icon_name == NULL) {
-		mime_name = get_mime_name (mimetype, 0);
-		icon_name = mime_name;
-	}
+	int base_size;
 
-	if (!file_extension_is (icon_name, ".png")) {
-		name_with_ext = g_strconcat (icon_name, ".png", NULL);
+	if (g_file_test (filename, G_FILE_TEST_IS_DIR) == TRUE) {
+		icon_name = g_strdup (ICON_THEME_DIRECTORY_ICON);
+	} 
+	else if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE) == TRUE) &&
+		 (g_ascii_strcasecmp (mimetype, "application/x-executable-binary") == 0)) {
+		icon_name = g_strdup (ICON_THEME_EXECUTABLE_ICON);
 	}
 	else {
-		name_with_ext = g_strdup (icon_name);
-	}
-	
-        if (icon_path == NULL) {
-                tmp = g_strconcat ("nautilus/", 
-				   icon_theme, 
-				   "/", 
-				   name_with_ext, 
-				   NULL);
-		icon_path = gnome_vfs_icon_path_from_filename (tmp);
-		g_free (tmp);
-        }
-
-	if (icon_path == NULL) {
-                tmp = g_strconcat ("document-icons/", 
-				   name_with_ext, 
-				   NULL);
-                icon_path = gnome_vfs_icon_path_from_filename (tmp);
-                g_free (tmp);
+		icon_name = gnome_icon_lookup (interface.icon_theme, NULL, filename, NULL, 
+					       NULL, mimetype, 0, NULL);
 	}
 
-	if (icon_path == NULL) {
-		tmp = g_strconcat (g_get_home_dir (),
-				   "/.nautilus/themes/",
-				   icon_theme, 
-				   "/", 
-				   name_with_ext, 
-				   NULL);
-		icon_path = gnome_vfs_icon_path_from_filename (tmp);
-		g_free (tmp);
-	}
-
-        if (icon_path == NULL) {
-		tmp = g_strconcat ("nautilus/", 
-				   icon_theme, 
-				   "/", 
-				   "i-regular.png", 
-				   NULL);
-		icon_path = gnome_vfs_icon_path_from_filename (tmp);
-		g_free (tmp);
-	}
-	
-	if (icon_path == NULL) {
-		tmp = g_strconcat ("document-icons/",
-				   "i-regular.png", 
-				   NULL);
-		icon_path = gnome_vfs_icon_path_from_filename (tmp);
-		g_free (tmp);
-	}
-	
-	g_free (name_with_ext);
-	g_free (icon_theme);
-
+	icon_path = gnome_icon_theme_lookup_icon (interface.icon_theme, icon_name, ICON_SIZE, 
+						  &icon_data, &base_size);
 	return icon_path;	
 }
 
