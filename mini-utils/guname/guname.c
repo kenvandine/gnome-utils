@@ -27,6 +27,7 @@
 
 #include <sys/utsname.h>
 #include <unistd.h>
+#include <string.h> /* memset */
 
 #define APPNAME "guname"
 #define COPYRIGHT_NOTICE _("Copyright 1998, under the GNU General Public License.")
@@ -43,9 +44,15 @@
   ******************************/
 
 static void popup_main_dialog();
+static void save_callback(GtkWidget * menuitem, gpointer data);
+static void mail_callback(GtkWidget * menuitem, gpointer data);
+static gint list_clicked_cb(GtkCList * list, GdkEventButton * e);
+
+static void write_to_filestream(FILE * f);
 
 static void do_logo_box(GtkWidget * box);
 static void do_list_box(GtkWidget * box);
+static void do_popup(GtkWidget * clist);
 
 static void get_system_info();
 static void get_portable_info();
@@ -128,7 +135,8 @@ const gchar * disk_descriptions[] = {
 };
 
 const gchar * info[end_system_info];
-GList * disks;
+GList * disks = NULL;
+GtkWidget * popup = NULL;
 
 /*******************************
   Main
@@ -166,9 +174,9 @@ static void popup_main_dialog()
   d = gnome_dialog_new( _("System Information"), 
                         GNOME_STOCK_BUTTON_OK, NULL );
 
-  gnome_dialog_set_destroy(GNOME_DIALOG(d), TRUE);
+  gnome_dialog_set_close(GNOME_DIALOG(d), TRUE);
  
-  logo_box = gtk_hbox_new(FALSE, GNOME_PAD);
+  logo_box = gtk_vbox_new(FALSE, GNOME_PAD);
   do_logo_box(logo_box);
 
   list_box = gtk_vbox_new(TRUE, GNOME_PAD);
@@ -189,13 +197,25 @@ static void popup_main_dialog()
 static void do_logo_box(GtkWidget * box)
 {
   GtkWidget * label;
+  GtkWidget * pixmap;
+  gchar * s;
 
-  gtk_widget_set_usize(box, 450, 150);
+  /*  gtk_widget_set_usize(box, , 150); */
 
-  label = gtk_label_new("Once there's a Gnome logo, this should\n"
-                        "be something nice with it and the distribution\n"
-                        "logo, perhaps. Need an artist here.");
-  gtk_container_add(GTK_CONTAINER(box), label);
+  s = gnome_pixmap_file ("gnome-default.png");
+
+  if (s) {
+    pixmap = gnome_pixmap_new_from_file(s);
+    g_free(s);
+  }
+  if ( (s == NULL) || (pixmap == NULL) ) {
+    pixmap = gtk_label_new(_("Logo file not found"));
+  }
+
+  label = gtk_label_new(_("GNOME: The GNU Network Object Model Environment"));
+
+  gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, GNOME_PAD);
+  gtk_box_pack_start(GTK_BOX(box), pixmap, TRUE, TRUE, GNOME_PAD);
 }
 
 /* Want a function not a macro, so a and b are calculated only once */
@@ -226,6 +246,11 @@ static void do_list_box(GtkWidget * box)
   gtk_clist_set_policy(list, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
   gtk_clist_column_titles_passive(list);
+
+  do_popup(GTK_WIDGET(list));
+  gtk_widget_set_events(GTK_WIDGET(list), GDK_BUTTON_PRESS_MASK);
+  gtk_signal_connect(GTK_OBJECT(list), "button_press_event",
+                     GTK_SIGNAL_FUNC(list_clicked_cb), NULL);
 
   font = gtk_widget_get_style(GTK_WIDGET(list))->font;
 
@@ -264,10 +289,124 @@ static void do_list_box(GtkWidget * box)
   gtk_container_add(GTK_CONTAINER(box), GTK_WIDGET(list));
 }
 
+static void do_popup(GtkWidget * clist)
+{
+  GtkWidget * mi;
+
+  popup = gtk_menu_new();
+    
+  mi = gtk_menu_item_new_with_label(_("Save As..."));
+  gtk_signal_connect(GTK_OBJECT(mi), "activate",
+                     GTK_SIGNAL_FUNC(save_callback), NULL);
+  gtk_menu_append(GTK_MENU(popup), mi);
+  gtk_widget_show(mi);
+
+  mi = gtk_menu_item_new_with_label(_("Mail To..."));
+  gtk_signal_connect(GTK_OBJECT(mi), "activate",
+                     GTK_SIGNAL_FUNC(mail_callback), NULL);
+  gtk_menu_append(GTK_MENU(popup), mi);
+  gtk_widget_show(mi);  
+}
+
 /**********************************
   Callbacks
   *******************************/
+static gint list_clicked_cb(GtkCList * list, GdkEventButton * e)
+{
+  if (e->button == 1) {
+    /* Ignore button 1 */
+    return FALSE; 
+  }
 
+  /* don't change the CList selection. */
+  gtk_signal_emit_stop_by_name (GTK_OBJECT (list), "button_press_event");
+
+  gtk_menu_popup(GTK_MENU(popup), NULL, NULL, NULL,
+                 NULL, e->button, time(NULL));
+  return TRUE; 
+}
+
+static void file_selection_cb(GtkWidget * button, gpointer fs)
+{
+  gchar * fn;
+  FILE * f;
+
+  fn = gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs));
+  gtk_widget_hide(fs);
+
+  if (fn) {
+    f = fopen(fn, "w");
+    if (f) {
+      write_to_filestream(f);
+      fclose(f);
+    }
+    else {
+      gchar * s = g_copy_strings(_("Couldn't open file `"), fn, "': ", 
+                                 g_unix_error_string(errno));
+      gnome_error_dialog(s);
+      g_free(s);
+    }
+  }
+  /* I think this frees fn */
+  gtk_widget_destroy(fs);
+}
+
+static void save_callback(GtkWidget * menuitem, gpointer data)
+{
+  GtkWidget * fs;
+
+  fs = gtk_file_selection_new(_("Save System Information As..."));
+  
+  gtk_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button), "clicked",
+                     GTK_SIGNAL_FUNC(file_selection_cb), fs);
+
+  gtk_signal_connect_object(GTK_OBJECT(GTK_FILE_SELECTION(fs)->cancel_button), "clicked",
+                            GTK_SIGNAL_FUNC(gtk_widget_destroy), GTK_OBJECT(fs));
+  
+  gtk_widget_show(fs);
+}
+
+static void mailx_callback(gchar * string, gpointer data)
+{
+  FILE * p;
+  gchar * command;
+  gint failure;
+  if (string == NULL) return;
+  
+  /* This isn't translated; maybe good, since most tech support email should be
+     in English? don't know. */
+  command = g_copy_strings("mailx -s \"System Information for host ", 
+                           info[si_host] ? info[si_host] : "Unknown",
+                           "\" ", string, NULL);
+  
+  p = popen(command, "w");
+
+  if (p) {
+    write_to_filestream(p);
+    failure = pclose(p);
+    if (failure) {
+      /* I don't think the error_string() will reliably mean anything. */
+      gchar * s = g_copy_strings(_("Command failed `"), command, "': ", 
+                                 g_unix_error_string(errno));
+      gnome_error_dialog(s);
+      g_free(s);
+    }
+  }
+  else {
+    gchar * t = g_copy_strings(_("Couldn't run command `"), command, "': ", 
+                               g_unix_error_string(errno));
+    gnome_error_dialog(t);
+    g_free(t);
+  }
+
+  g_free(command);
+  g_free(string);
+}
+
+static void mail_callback(GtkWidget * menuitem, gpointer data)
+{
+  gnome_request_string_dialog(_("Address to mail to:"), mailx_callback, NULL);
+}
 
 /*********************************************
   Non-GUI
@@ -364,10 +503,17 @@ static void get_uptime()
   }
 }
 
-
-
-
-
-
-
-
+static void write_to_filestream(FILE * f)
+{
+  gint i = 0;
+  while ( i < end_system_info ) {
+    if (info[i] == NULL) {
+      /* No information on this. */
+      ;
+    }
+    else {
+      fprintf (f, "%-30s %s\n", descriptions[i], info[i]);
+    }
+    ++i;
+  }  
+}
