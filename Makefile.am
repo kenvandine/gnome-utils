@@ -2,8 +2,12 @@ if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
+if GUILE
+gtt = gtt
+endif
+
 SUBDIRS = po idl $(gfloppy) logview gcharmap \
-	gcalc gsearchtool gtt gdictsrc \
+	gcalc gsearchtool $(gtt) gdictsrc \
 	mini-utils splash gdialog \
 	meat-grinder exe-handler omf-install
 
