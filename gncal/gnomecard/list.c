@@ -16,7 +16,7 @@
 #include "columnhdrs.h"
 
 GList *
-gnomecardCreateColHeader(GList *cols)
+gnomecardCreateColTitles(GList *cols)
 {
 	gchar  *str;
 	GList  *l, *p;
@@ -36,7 +36,7 @@ gnomecardCreateColHeader(GList *cols)
 }
 
 void
-gnomecardFreeColHeader(GList *col)
+gnomecardFreeColTitles(GList *col)
 {
     g_list_free(col);
 }
@@ -50,7 +50,7 @@ gnomecardCreateColValues(Card *crd, GList *cols)
 	
 	l = NULL;
 	for (p=cols; p; p=p->next) {
-	    str = getValFromColumnHdr(crd, p->data);
+	    str = getValFromColumnHdr(crd, (ColumnHeader *)p->data);
 	    if (!str)
 		str = g_strdup("");
 	    l = g_list_append(l, str);
@@ -272,7 +272,7 @@ gnomecard_add_card_to_list(Card *crd)
 	row = gtk_clist_append(gnomecard_list, tmp);
 
 	rowtxt = gnomecardCreateColValues(crd, cols);
-	for (col=0, l=rowtxt; !l; l=l->next) {
+	for (col=0, l=rowtxt; l; l=l->next, col++) {
 	    g_message("gnomecard_add_card_to_list - col %d data is %s",
 		      col, (gchar *) l->data);
 	    gtk_clist_set_text(gnomecard_list, row, col, l->data);

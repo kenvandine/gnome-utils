@@ -670,17 +670,92 @@ void gnomecard_sort_by_fname(GtkWidget *w, gpointer data)
 				      TRUE);
 }
 
+void
+gnomecard_sort_by_col(GtkWidget *w, gint col, GtkWidget *list)
+{
+    GList *cols, *l;
+    ColumnHeader *hdr;
+    sort_func    func=NULL;
+
+    cols = gtk_object_get_data(GTK_OBJECT(list), "ColumnHeaders");
+    l = g_list_nth(cols, col);
+    hdr = (ColumnHeader *)l->data;
+    switch (hdr->coltype) {
+      case COLTYPE_FULLNAME:
+	func = gnomecard_cmp_names;
+	break;
+
+      case COLTYPE_CARDNAME:
+	func = gnomecard_cmp_fnames;
+	break;
+
+      case COLTYPE_FIRSTNAME:
+	func = NULL;
+	break;
+
+      case COLTYPE_MIDDLENAME:
+	func = NULL;
+	break;
+
+      case COLTYPE_LASTNAME:
+	func = NULL;
+	break;
+
+      case COLTYPE_PREFIX:
+	func = NULL;
+	break;
+
+      case COLTYPE_SUFFIX:
+	func = NULL;
+	break;
+
+      case COLTYPE_ORG:
+	func = gnomecard_cmp_org;
+	break;
+
+      case COLTYPE_TITLE:
+	func = NULL;
+	break;
+
+      case COLTYPE_EMAIL:
+	func = gnomecard_cmp_emails;
+	break;
+
+      case COLTYPE_WEBPAGE:
+	func = NULL;
+	break;
+
+      case COLTYPE_HOMEPHONE:
+	func = NULL;
+	break;
+
+      case COLTYPE_WORKPHONE:
+	func = NULL;
+	break;
+	
+      default:
+	break;
+    }
+
+    if (func) {
+	gnomecard_sort_card_list(func);
+
+	/* this is a hack - need function to just rebuid list    */
+	/* and maintain current selection in list w/o me knowing */
+	/* about it here                                         */
+	gnomecard_rebuild_list(NULL);
+    }
+
+}
+
 void gnomecard_init(void)
 {
-	char *titles[] = { "Name", "Organization", "Phone #", "Email"};
 	GtkWidget *canvas, *align, *hbox, *hbox1, *hbox2;
 	GtkWidget *scrollwin;
-	GList *cols;
+	GList *cols, *titles, *l;
+	gint  i;
 	ColumnType hdrs[] = {COLTYPE_CARDNAME, COLTYPE_EMAIL, COLTYPE_ORG, 
 			     COLTYPE_END};
-
-	/*, *omenu, *menu, *item;
-	int i;*/
 
 	gnomecard_init_stock();
 	gnomecard_init_pixes();
@@ -701,15 +776,26 @@ void gnomecard_init(void)
 
 	scrollwin = gtk_scrolled_window_new(NULL, NULL);
 /*	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(4, titles)); */
-	gnomecard_list = GTK_CLIST(gtk_clist_new(4));
 
 	/* Hard coding column types for now */
 	cols = buildColumnHeaders(hdrs);
+	gnomecard_list = GTK_CLIST(gtk_clist_new(numColumnHeaders(cols)));
 	gtk_object_set_data(GTK_OBJECT(gnomecard_list), "ColumnHeaders",
 			    cols);
 
-/*WORK HERE ON ADDING CODE TO BUILD COLUMN HEADHINGS FROM cols */
+	titles = gnomecardCreateColTitles(cols);
 
+	for (l=titles, i=0; l; l=l->next, i++) {
+	    g_message("setting col %d title to %s", i, (gchar *)l->data);
+	    gtk_clist_set_column_title( GTK_CLIST(gnomecard_list),
+					i, (gchar *)l->data);
+	    /* need to set widths based on user settings probably */
+	    gtk_clist_set_column_width( GTK_CLIST(gnomecard_list),
+					i, 100);
+	}
+
+	gtk_clist_column_titles_show(GTK_CLIST(gnomecard_list));
+	gnomecardFreeColTitles(titles);
 
 	gtk_box_pack_start(GTK_BOX(hbox), scrollwin, TRUE, TRUE, 0);
 	gtk_container_add(GTK_CONTAINER(scrollwin), GTK_WIDGET(gnomecard_list));
@@ -717,22 +803,24 @@ void gnomecard_init(void)
 /*
 	gdk_gc_get_values(gnomecard_tree->lines_gc, &crd_tree_values);
 */
+#if 0
 	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 0, NAME_COL_WIDTH);
 	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 1, ORG_COL_WIDTH);
 	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 2, PHONE_COL_WIDTH);
 	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 3, EMAIL_COL_WIDTH);
-
-	gtk_signal_connect(GTK_OBJECT(gnomecard_list), 
-			   "select_row",
+#endif
+	gtk_signal_connect(GTK_OBJECT(gnomecard_list), "select_row",
 			   GTK_SIGNAL_FUNC(gnomecard_list_selected), NULL);
 
+	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(gnomecard_list)),
+			   "click_column", 
+			   GTK_SIGNAL_FUNC(gnomecard_sort_by_col),
+			   (gpointer) gnomecard_list);
 /* NOT USED (yet)
 	gtk_signal_connect(GTK_OBJECT(gnomecard_list), 
 			   "unselect_row",
 			   GTK_SIGNAL_FUNC(gnomecard_list_unselected), NULL);
 */
-	gtk_widget_set_usize (GTK_WIDGET(gnomecard_list), LIST_WIDTH, LIST_HEIGHT);
-	gtk_clist_column_titles_active(gnomecard_list);
 
 /* NOT USED - will add when I finallize the column header code
 	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(gnomecard_tree)->column->button),
@@ -774,6 +862,9 @@ void gnomecard_init(void)
 */
 /* & (GTK_WIDGET(crd_tree)->style->fg[GTK_STATE_NORMAL]);*/
 	
+	gtk_widget_set_usize (GTK_WIDGET(gnomecard_list),
+			      LIST_WIDTH, LIST_HEIGHT);
+	gtk_clist_column_titles_active(gnomecard_list);
 	gtk_widget_show(GTK_WIDGET(gnomecard_list));
 	gtk_widget_show(scrollwin);
 

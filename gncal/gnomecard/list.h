@@ -11,4 +11,6 @@ void gnomecard_add_card_to_list(Card *crd);
 void gnomecard_add_card_sections_to_list(Card *crd);
 void gnomecard_list_set_sorted_pos(Card *crd);
 
+GList *gnomecardCreateColTitles(GList *col);
+void gnomecardFreeColTitles(GList *titles);
 #endif
