@@ -17,35 +17,43 @@
       ()
       (gtk-exit)))
 
-(define search-type-list
-  (list "Files named" "Files containing" "Files newer than" 
-	"Files older than" "Files owned by" "Files with group"))
+;; This maps search types (these are symbols) onto titles suitable for
+;; display to the user (these are strings).
+;; FIXME: this runs gettext at load time, not at display time.  This
+;; is arguably a bug.
+(define search-type-map
+  `((files-named . ,(gettext "Files named"))
+    (files-containing . ,(gettext "Files containing"))
+    (files-newer-than . ,(gettext "Files newer than"))
+    (files-older-than . ,(gettext "Files older than"))
+    (files-owned-by . ,(gettext "Files owned by"))
+    (files-with-group . ,(gettext "Files with group"))))
 
 (define search-handlers
-  `(("Files named" . ,(lambda (val)
-			(if (string=? val "")
-			    ""
-			    (string-append " -name "
-					   (shell-quote val)))))
-    ("Files containing" . ,(lambda (val)
-			     (if (string=? val "")
-				 ""
-				 (string-append 
-				  " -exec sh -c grep\\ "
-				  (shell-quote val)
-				  "\\ \\{\\}\\ \\>\\ /dev/null \\;"))))
-    ("Files newer than" . ,(lambda (val) ""))
-    ("Files older than" . ,(lambda (val) ""))
-    ("Files owned by" . ,(lambda (val)
+  `((files-named . ,(lambda (val)
+		      (if (string=? val "")
+			  ""
+			  (string-append " -name "
+					 (shell-quote val)))))
+    (files-containing . ,(lambda (val)
 			   (if (string=? val "")
 			       ""
-			       (string-append " -user "
-					      (shell-quote val)))))
-    ("Files with group" . ,(lambda (val)
-			     (if (string=? val "")
-				 ""
-				 (string-append " -group "
-						(shell-quote val)))))))
+			       (string-append 
+				" -exec sh -c grep\\ "
+				(shell-quote val)
+				"\\ \\{\\}\\ \\>\\ /dev/null \\;"))))
+    (files-newer-than . ,(lambda (val) ""))
+    (files-older-than . ,(lambda (val) ""))
+    (files-owned-by . ,(lambda (val)
+			 (if (string=? val "")
+			     ""
+			     (string-append " -user "
+					    (shell-quote val)))))
+    (files-with-group . ,(lambda (val)
+			   (if (string=? val "")
+			       ""
+			       (string-append " -group "
+					      (shell-quote val)))))))
 
 (define (make-top-search-window)
   (letrec ((window (gtk-window-new 'toplevel))
@@ -88,28 +96,28 @@
 			  (xdev . #t)
 			  (locate . #f)
 			  (max-depth . "Unlimited")))
-	 (directory-label (gtk-label-new "Search directory:"))
+	 (directory-label (gtk-label-new (gettext "Search directory:")))
 	 (directory-entry (gtk-entry-new))
 	 (directory-line  (gnome-make-filled-hbox 
 			   #f 6
 			   (gnome-boxed-widget directory-label)
 			   (gnome-boxed-widget #t #t 0 directory-entry)))
 	 (subdir-check-button 
-	  (gtk-check-button-new-with-label "Search subdirectories"))
+	  (gtk-check-button-new-with-label (gettext "Search subdirectories")))
 
 	 (advanced-options-expander (gnome-make-expander-button 
-				     "Advanced options" #f))
+				     (gettext "Advanced options") #f))
 
 	 (follow-check-button
-	  (gtk-check-button-new-with-label "Follow symbolic links"))
+	  (gtk-check-button-new-with-label (gettext "Follow symbolic links")))
 	 (xdev-check-button
-	  (gtk-check-button-new-with-label "Follow mount points"))
+	  (gtk-check-button-new-with-label (gettext "Follow mount points")))
 	 ;; should stat "/var/lib/locatedb" (or whatever) to
 	 ;; get the date and time here.
 	 (locate-check-button
 	  (gtk-check-button-new-with-label 
-	   "Use index created [date, time]"))
-	 (depth-label (gtk-label-new "Maximum search depth:"))
+	   (gettext "Use index created [date, time]")))
+	 (depth-label (gtk-label-new (gettext "Maximum search depth:")))
 	 (depth-entry (gtk-entry-new))
 	 (depth-line  (gnome-make-filled-hbox 
 		 #f 6
@@ -162,6 +170,9 @@
     (gtk-toggle-button-set-state xdev-check-button #t)
     (gtk-toggle-button-set-state locate-check-button #f)
 
+    ;; FIXME: "." isn't ideal, because we don't actually know where it
+    ;; is.
+    (gtk-entry-set-text directory-entry ".")
     (gtk-signal-connect directory-entry "changed"
 			(lambda ()
 			  (assq-set! location-spec 'directory
@@ -186,7 +197,9 @@
     location-panel))
 
 (define (make-search-panel notifier)
-  (let* ((search-specs (list '("Files named" . "")))
+  (let* ((search-specs
+	  ;; This is writable, so it can't be '(files-named . "").
+	  (list (cons 'files-named "")))
 	 (updater-proc (lambda (spec index)
 			 (list-set! search-specs index spec)
 			 (notifier search-specs)))
@@ -209,7 +222,7 @@
 						   #f #f 0)
 			      (gtk-widget-show new-line)
 			      (set! search-specs (append search-specs 
-							 (list '("Files named" 
+							 (list '(files-named
 								 .
 								 ""))))
 			      (set! counter (+ 1 counter)))))
@@ -224,7 +237,7 @@
 
 
 (define (make-search-panel-line notifier)
-  (let* ((spec (cons "Files named" ""))
+  (let* ((spec (cons 'files-named ""))
 	 (search-type (make-search-type-option-menu 
 		       (lambda (t) 
 			 (set-car! spec t)
@@ -245,15 +258,17 @@
   (let ((search-type-option-menu (gtk-option-menu-new))
 	(search-type-menu (gtk-menu-new)))
 
-    (for-each (lambda (item) 
-		(let ((menu-item (gtk-menu-item-new-with-label item)))
+    (for-each (lambda (pair)
+		(let* ((symbol (car pair))
+		       (label (cdr pair))
+		       (menu-item (gtk-menu-item-new-with-label label)))
 		  (gtk-menu-append search-type-menu menu-item)
 		  (gtk-widget-show menu-item)
 		  (gtk-signal-connect menu-item "activate" 
 				      (lambda ()
-					(select-action-proc item)
+					(select-action-proc symbol)
 					))))
-	      search-type-list)
+	      search-type-map)
     
     (gtk-option-menu-set-menu search-type-option-menu search-type-menu)
 
@@ -267,7 +282,7 @@
   (let* ((location-spec '())
 	 (search-spec '())
 	 (command-line-expander 
-	  (gnome-make-expander-button "Command line" #f))
+	  (gnome-make-expander-button (gettext "Command line") #f))
 	 (add-search (gtk-button-new-with-label 
 		      (gettext "Add search condition >>"))) 
 	 (search (gtk-button-new-with-label (gettext "Search")))
@@ -283,7 +298,7 @@
 		       (gnome-boxed-widget add-search)
 		       (gnome-boxed-widget command-line-expander)))
 
-	 (search-command "find . - print")
+	 (search-command "find . -print")
 
 	 (update (lambda ()
 		   (set! search-command 
