@@ -294,7 +294,7 @@ UpdateStatusArea (LogviewWindow *window)
        } else {
            utf8 = LocaleToUTF8 (status_text);
        }
-       statusbar_text = g_strconcat (_("Last Modified: "), utf8, NULL);
+       statusbar_text = g_strconcat (_("Last Modified:"), utf8, NULL);
        gtk_statusbar_pop (GTK_STATUSBAR(window->statusbar), 0);
        gtk_statusbar_push (GTK_STATUSBAR(window->statusbar), 0, statusbar_text);
        

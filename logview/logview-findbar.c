@@ -262,7 +262,7 @@ logview_findbar_populate (LogviewWindow *window, GtkWidget *find_bar)
 	
 	g_return_if_fail (GTK_IS_TOOLBAR (find_bar));
 	
-	label = gtk_label_new_with_mnemonic (_("Fin_d : "));
+	label = gtk_label_new_with_mnemonic (_("Fin_d:"));
 	item = gtk_tool_item_new ();
 	gtk_container_add (GTK_CONTAINER (item), label);
 	gtk_container_set_border_width (GTK_CONTAINER (item), 5);
