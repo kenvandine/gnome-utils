@@ -1,3 +1,10 @@
+2001-07-11  John Kodis  <kodis@jagunet.com>
+
+	* utils.c: Fix a compilation problem under Solaris 2.6 reported by
+	Frederic Devernay <Frederic.Devernay@sophia.inria.fr>, by
+	including chart-app.h, and thus config.h, before any other header
+	files.
+
 2001-06-27  John Kodis  <kodis@jagunet.com>
 
 	* prefs.c (prefs_apply): Add call to gtk_widget_queue_draw() after

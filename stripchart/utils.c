@@ -15,11 +15,9 @@
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include <ctype.h>
-#include <gnome.h>
-#include <string.h>
-
 #include "chart-app.h"
+#include <ctype.h>
+#include <string.h>
 
 /*
  * streq -- case-blind string comparison returning true on equality.
