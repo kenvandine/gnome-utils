@@ -514,7 +514,7 @@ static void do_list_box(GtkWidget * box)
 
   gtk_clist_thaw(list);
 
-  gtk_container_add(GTK_CONTAINER(box), GTK_WIDGET(list));
+  gtk_container_add(GTK_CONTAINER(box), GTK_WIDGET(sw));
 }
 
 static void do_popup(GtkWidget * clist)
