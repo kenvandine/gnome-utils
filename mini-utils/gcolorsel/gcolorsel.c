@@ -359,11 +359,18 @@ static GtkWidget *create_menu(void)
 
 void about_cb(GtkWidget *widget, void *data)
 {
-    GtkWidget *about;
+    static GtkWidget *about = NULL;
     gchar *authors[] = {
 	"Tim P. Gerla",
 	NULL
     };
+
+    if (about != NULL)
+    {
+	gdk_window_show(about->window);
+	gdk_window_raise(about->window);
+	return;
+    }
 		
     about = gnome_about_new (
 	_("Gnome Color Browser"),
@@ -372,6 +379,8 @@ void about_cb(GtkWidget *widget, void *data)
 	(const gchar**)authors,
 	_("Small utility to browse available X11 colors."),
 	NULL);                                
+    gtk_signal_connect (GTK_OBJECT (about), "destroy",
+		        GTK_SIGNAL_FUNC (gtk_widget_destroyed), &about);
     gtk_widget_show(about);
           
     return;

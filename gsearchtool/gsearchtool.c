@@ -685,11 +685,18 @@ create_window(void)
 static void
 about_cb (GtkWidget *widget, gpointer data)
 {
-	GtkWidget *about;
+	static GtkWidget *about = NULL;
 	static const char *authors[] = {
 		"George Lebl <jirka@5z.com>",
 		NULL
 	};
+
+	if (about != NULL)
+	{
+		gdk_window_show(about->window);
+		gdk_window_raise(about->window);
+		return;
+	}
 
 	about = gnome_about_new(_("The Gnome Search Tool"), VERSION,
 				_("(C) 1998,2000 the Free Software Foundation"),
@@ -697,6 +704,8 @@ about_cb (GtkWidget *widget, gpointer data)
 				_("Frontend to the unix find/grep/locate "
 				  "commands"),
 				NULL);
+	gtk_signal_connect (GTK_OBJECT (about), "destroy",
+			    GTK_SIGNAL_FUNC (gtk_widget_destroyed), &about);
 	gtk_widget_show (about);
 }
 
