@@ -649,7 +649,7 @@ add_message_to_list_store(GtkListStore *store, GtkTreeIter *iter)
 }
 
 static void
-really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, GtkListStore *store, GtkTreeIter *iter)
+really_run_command(char *cmd, char sepchar, gchar *pattern_str, RunLevel *running, GtkWidget *tree, GtkListStore *store, GtkTreeIter *iter)
 {
 	int idle;
 	GString *string;
@@ -666,7 +666,7 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, 
 	
 	lock = TRUE;
 
-	wildcarded_string = g_strdup_printf ("*%s*", locate_string);
+	wildcarded_string = g_strdup_printf ("*%s*", pattern_str);
 	utf8_locate_string = g_locale_to_utf8 (wildcarded_string, -1, NULL, NULL, NULL);
 	pattern = g_pattern_spec_new (utf8_locate_string);
 	/* reset scroll position and clear the tree view */
@@ -882,7 +882,7 @@ run_command(GtkWidget *w, gpointer data)
 		gtk_widget_show(buttons[0]);
 		gtk_widget_hide(buttons[1]);
 
-		really_run_command(cmd, '\n', &find_running, find_tree, find_model, &find_iter);
+		really_run_command(cmd, '\n', "*", &find_running, find_tree, find_model, &find_iter);
 		
 		gtk_widget_set_sensitive(buttons[1], TRUE);
 		gtk_widget_hide(buttons[0]);
@@ -1562,7 +1562,7 @@ run_locate_command(GtkWidget *w, gpointer data)
 		gtk_widget_set_sensitive(buttons[1], FALSE);
 		gtk_widget_set_sensitive(locate_results, TRUE);
 
-		really_run_command(cmd, '\n', &locate_running, locate_tree, locate_model, &locate_iter);
+		really_run_command(cmd, '\n', locate_string, &locate_running, locate_tree, locate_model, &locate_iter);
 			
 		gtk_widget_hide(buttons[0]);
 		gtk_widget_set_sensitive(buttons[0], FALSE);
