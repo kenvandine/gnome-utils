@@ -1263,7 +1263,7 @@ gboolean gnomecard_cards_blocked(void)
 	GList *l;
 
 	for (l = crds; l; l = l->next)
-	  if (((Card *) curr_crd->data)->flag)
+	  if (((Card *) l->data)->flag)
 	    return TRUE;
 	
 	return FALSE;
