@@ -63,11 +63,12 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
 		gtk_dialog_set_default_response (GTK_DIALOG (info_dialog),
 						 GTK_RESPONSE_CLOSE);
 		gtk_dialog_set_has_separator (GTK_DIALOG(info_dialog), FALSE);
-		gtk_container_set_border_width (GTK_CONTAINER (info_dialog), 5);
+		gtk_container_set_border_width (GTK_CONTAINER (info_dialog), 10);
 		
 		label = gtk_label_new (NULL);
+		gtk_label_set_selectable (GTK_LABEL (label), TRUE);
 		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (info_dialog)->vbox), 
-				    label, TRUE, TRUE, 5);
+				    label, TRUE, TRUE, 0);
 		gtk_window_set_resizable (GTK_WINDOW (info_dialog), FALSE);
 		
 	}
