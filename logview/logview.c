@@ -877,6 +877,8 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs)
 			prefs->logfile = g_strdup ("/var/adm/messages");
 		else if (lstat("/var/log/messages", &filestat) == 0) 
 			prefs->logfile = g_strdup ("/var/log/messages");
+		else if (lstat("/var/log/sys.log", &filestat) == 0) 
+			prefs->logfile = g_strdup ("/var/log/sys.log");
 		else
 			prefs->logfile = NULL;
 	}
