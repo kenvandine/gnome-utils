@@ -1,4 +1,4 @@
-(Updated on 2000-06-14)
+(Updated on 2000-06-17)
 
 + Properties :
 
@@ -12,8 +12,9 @@
 + Intl
 
 + New color
-+ Edit color
-[UPDATE] new/edit color is implemented in a view. But do nothing yet ...
+[UPDATE] Create a new color + switch to a new mdi-edit-view.
+[DONE] + Edit color
+[DONE [UPDATE] new/edit color is implemented in a view. But do nothing yet ...
 + Save / Save as
 + Last version
 
@@ -84,15 +85,20 @@
 
 + Speed
 
-  + Perhaps render pixmap in a timeout/pending, or when the GtkCList want to 
-    display them.
+[DONE]   + Perhaps render pixmap in a timeout/pending, or when the GtkCList want to 
+[DONE]     display them.
+[UPDATE] + Works well, now, do the same thing for ViewColorGrid ...
+
+  + I have to sort gtkclist after each data_changed; try to use 
+    autosort stuff. (I can't use it now because sort use the row data, 
+    and I can't set the row data before adding it :-( ).
 
 + Bugs fix / tests
 + Help
 
 ************************ BUGS ***********************
 
-- Bad icon when dragging a color from ColorList
+[FIXED] - Bad icon when dragging a color from ColorList
 - Need to delete GnomePropertyBox when closing a view/document ...
 [FIXED] - view_color_list_button_press never called.
 [FIXED] [UPDATE] : click_column and drag_begin never, too ... ?!?

@@ -21,11 +21,6 @@ typedef struct _ViewColorGridCol ViewColorGridCol;
 
 struct _ViewColorGrid {
   ViewColorGeneric vcl;
-
-  GdkGC *gc;  
-  GdkColor color_black;
-  GdkColor color_white;
-  GdkFont *pixmap_font;
 };
 
 struct _ViewColorGridClass {

@@ -22,11 +22,9 @@ static void color_grid_init          (ColorGrid *cl);
 
 static void color_grid_allocate      (GtkWidget *widget, 
 				      GtkAllocation *allocation);
+static void color_grid_destroy       (GtkObject *object);
 
-static void color_grid_item_pos      (ColorGrid *cg, GnomeCanvasItem *item,
-				      int column, int line);
-static void color_grid_item_border   (GnomeCanvasItem *item,
-				      char *color, float size, int to_top);
+static void color_grid_item_draw     (ColorGrid *cg, ColorGridCol *col);
 
 static void color_grid_set_scroll_region  (ColorGrid *cg, int nb);
 static gint color_grid_button_press_event (GtkWidget *widget, 
@@ -38,7 +36,11 @@ static ColorGridCol *color_grid_get_col_at (ColorGrid *cg,
 					    ColorGridCol *col, 
 					    GtkPositionType type);
 
+static void color_grig_for_idle (ColorGrid *cg, ColorGridCol *col);
+
 static void color_grid_reorganize (ColorGrid *cg);
+static gint color_grid_item_event (GnomeCanvasItem *item, 
+				   GdkEvent *event, gpointer data);
 
 static GnomeCanvasClass *parent_class = NULL;
 
@@ -91,6 +93,8 @@ color_grid_class_init (ColorGridClass *class)
 		    GTK_TYPE_UINT);
 
   gtk_object_class_add_signals (object_class, wcg_signals, LAST_SIGNAL);
+
+  object_class->destroy = color_grid_destroy;
 }
 
 static void
@@ -109,6 +113,18 @@ color_grid_init (ColorGrid *cg)
   cg->last_focus     = NULL;
   cg->count          = 0;
   cg->freeze         = 0;
+
+  cg->idle           = 0;
+  cg->idle_todo      = NULL;
+
+  gdk_color_parse ("black", &cg->color_black);
+  gdk_color_alloc (gtk_widget_get_default_colormap (), &cg->color_black);
+
+  gdk_color_parse ("white", &cg->color_white);
+  gdk_color_alloc (gtk_widget_get_default_colormap (), &cg->color_white);
+
+  gdk_color_parse ("red", &cg->color_red);
+  gdk_color_alloc (gtk_widget_get_default_colormap (), &cg->color_red);
 
   GTK_WIDGET_SET_FLAGS (canvas, GTK_CAN_FOCUS);
   GTK_WIDGET_SET_FLAGS (canvas, GTK_CAN_DEFAULT);
@@ -157,6 +173,55 @@ color_grid_allocate (GtkWidget *widget, GtkAllocation *allocation)
   color_grid_reorganize (cg);
 }
 
+static void 
+color_grid_destroy (GtkObject *object)
+{
+  ColorGrid *cg = COLOR_GRID (object);
+
+  if (cg->idle)
+    gtk_idle_remove (cg->idle);
+
+  if (cg->idle_todo)
+    g_list_free (cg->idle_todo);
+
+  color_grid_clear (cg);
+
+  if (GTK_OBJECT_CLASS (parent_class)->destroy)
+    GTK_OBJECT_CLASS (parent_class)->destroy (object);
+}
+
+static gint
+color_grid_idle (gpointer data)
+{
+  ColorGrid *cg = COLOR_GRID (data);
+  ColorGridCol *col;
+  int i;
+
+  for (i=0; i<cg->nb_col; i++) {
+
+    if (!cg->idle_todo) {
+      cg->idle = 0;
+      return FALSE;
+    }
+    
+    col = cg->idle_todo->data;
+    color_grid_item_draw (cg, col);
+    
+    cg->idle_todo = g_list_remove (cg->idle_todo, col);
+  }
+
+  return TRUE;
+}
+
+static void 
+color_grig_for_idle (ColorGrid *cg, ColorGridCol *col)
+{
+  cg->idle_todo = g_list_prepend (cg->idle_todo, col);
+
+  if (!cg->idle) 
+    cg->idle = gtk_idle_add (color_grid_idle, cg);
+}
+
 static void
 color_grid_reorganize (ColorGrid *cg)
 {
@@ -167,6 +232,9 @@ color_grid_reorganize (ColorGrid *cg)
 
   if (cg->freeze) return;
 
+  g_list_free (cg->idle_todo);
+  cg->idle_todo = NULL;
+
   list = cg->col;  
   while (list) {
     c = list->data;    
@@ -174,7 +242,10 @@ color_grid_reorganize (ColorGrid *cg)
     line = pos / cg->nb_col;
     column = pos - (line * cg->nb_col);
 
-    color_grid_item_pos (cg, c->item, column, line);
+    c->line = line;
+    c->column = column;
+
+    color_grig_for_idle (cg, c);
 
     pos++;
     list = g_list_next (list);
@@ -219,30 +290,64 @@ color_grid_get_col_at (ColorGrid *cg, ColorGridCol *col, GtkPositionType type)
 }
 
 static void
-color_grid_item_pos (ColorGrid *cg, GnomeCanvasItem *item,
-		     int column, int line)
+color_grid_item_draw (ColorGrid *cg, ColorGridCol *col)
 {
-  gnome_canvas_item_set (item, 
-			 "x1", (float) column * cg->col_width,
-			 "y1", (float) line * cg->col_height,
-			 "x2", (float) column * cg->col_width + cg->col_width,
-			 "y2", (float) line * cg->col_height + cg->col_height,
-			 NULL);
-}
+  GdkColor color;
+  GdkColor *outline_col;
+  gboolean raise = FALSE;
+  double width = 1;
+  
+  color.red   = col->r * 255; 
+  color.green = col->g * 255;
+  color.blue  = col->b * 255; 
+  gdk_color_alloc (gtk_widget_get_default_colormap (), &color);
 
-static void
-color_grid_item_border (GnomeCanvasItem *item,
-			char *color, float size, int to_top) 
-{
-  if (item) {
-    gnome_canvas_item_set (item,
-			   "outline_color", color,
-			   "width_units", size,
-			   NULL); 
+  if ((cg->drop)&&(cg->drop == col->item)) {
+    outline_col = &cg->color_red;
+    raise = TRUE;
+    width = 2;
+  } else
+    if (col->selected) {
+      outline_col = &cg->color_white;
+      raise = TRUE;
+      width = 2;
+    } else
+      outline_col = &cg->color_black;
 
-    if (to_top) 
-      gnome_canvas_item_raise_to_top (item);
+  if (col->item) {
+
+    gnome_canvas_item_set (col->item,
+      "x1", (float) col->column * cg->col_width,
+      "y1", (float) col->line   * cg->col_height,
+      "x2", (float) col->column * cg->col_width + cg->col_width,
+      "y2", (float) col->line   * cg->col_height+ cg->col_height,
+      "outline_color_gdk", outline_col,
+      "width_units",       width,
+      "fill_color_gdk",    &color,
+      NULL);			 
+
+  } else {
+      
+    col->item = gnome_canvas_item_new (gnome_canvas_root (GNOME_CANVAS (cg)),
+      GNOME_TYPE_CANVAS_RECT,
+      "x1", (float) col->column * cg->col_width,
+      "y1", (float) col->line   * cg->col_height,
+      "x2", (float) col->column * cg->col_width + cg->col_width,
+      "y2", (float) col->line   * cg->col_height+ cg->col_height,
+      "outline_color_gdk", outline_col,
+      "width_units",       width,
+      "fill_color_gdk",    &color,
+      NULL);
+
+    gtk_object_set_data (GTK_OBJECT (col->item), "col", col);
+
+    gtk_signal_connect (GTK_OBJECT (col->item), "event",
+			GTK_SIGNAL_FUNC (color_grid_item_event), NULL);
+    
   }
+
+  if (raise)
+    gnome_canvas_item_raise_to_top (col->item);
 }
 
 static void
@@ -250,11 +355,10 @@ color_grid_select (ColorGridCol *col, gboolean selected)
 {
   if (col->selected != selected) {
     col->selected = selected;
-    color_grid_item_border (col->item, selected ? "white" : "black",
-			    selected ? 2 : 1, selected);
-    
+    color_grig_for_idle (col->cg, col);
+   
     if (selected) 
-      col->cg->selected = g_list_append (col->cg->selected, col);
+      col->cg->selected = g_list_prepend (col->cg->selected, col);
     else
       col->cg->selected = g_list_remove (col->cg->selected, col);
   }
@@ -263,8 +367,20 @@ color_grid_select (ColorGridCol *col, gboolean selected)
 static void
 color_grid_deselect_all (ColorGrid *cg)
 {
-  while (cg->selected) 
-    color_grid_select (cg->selected->data, FALSE);
+  GList *list = cg->selected;
+  ColorGridCol *col;
+
+  while (list) {
+    col = list->data;
+
+    color_grig_for_idle (cg, col);
+    col->selected = FALSE;
+
+    list = g_list_next (list);
+  }
+
+  g_list_free (cg->selected);
+  cg->selected = NULL;
 }
 
 static gint
@@ -383,8 +499,8 @@ color_grid_item_event (GnomeCanvasItem *item, GdkEvent *event, gpointer data)
 				 g_list_index (cg->col, col), 
 				 g_list_index (cg->col, col_drop));
 
-	color_grid_item_border (cg->drop, "black", 1, FALSE);
-	gnome_canvas_item_raise_to_top (item);
+	color_grig_for_idle (cg, col_drop);
+	cg->drop = NULL;
       }
       
       break;
@@ -394,12 +510,13 @@ color_grid_item_event (GnomeCanvasItem *item, GdkEvent *event, gpointer data)
 				       event->motion.y);
 
       if (drop != cg->drop) {
-	color_grid_item_border (cg->drop, "black", 1, FALSE);
-	gnome_canvas_item_raise_to_top (item);	  	  
+	if (cg->drop)
+	  color_grig_for_idle (cg, 
+		 gtk_object_get_data (GTK_OBJECT (cg->drop), "col"));
 
 	if (item != drop) {
-	  color_grid_item_border (drop, "red", 2, TRUE);	  
-
+	  color_grig_for_idle (cg, 
+			gtk_object_get_data (GTK_OBJECT (drop), "col"));
 	  cg->drop = drop;
 	} else 
 	  cg->drop = NULL;
@@ -477,71 +594,57 @@ color_grid_item_event (GnomeCanvasItem *item, GdkEvent *event, gpointer data)
 }
 
 void
-color_grid_change_rgb (ColorGrid *cg, int pos, int r, int g, int b)
+color_grid_change_rgb (ColorGrid *cg, gpointer data, int r, int g, int b)
 {
-  ColorGridCol *col = g_list_nth (cg->col, pos)->data;  
-  GdkColor color;
-
-  color.red   = r * 255; 
-  color.green = g * 255;
-  color.blue  = b * 255; 
-  gdk_color_alloc (gtk_widget_get_default_colormap (), &color);
-      
-  gnome_canvas_item_set (col->item,
-			 "fill_color_gdk", &color,
-			 NULL);
+  ColorGridCol *col = color_grid_find_item_from_data (cg, data)->data;
+  
+  color_grig_for_idle (cg, col);
 }
 
 int
-color_grid_append (ColorGrid *cg, int r, int g, int b, gpointer data)
+color_grid_append (ColorGrid *cg, int r, int g, int b, 
+		   gpointer data, GtkDestroyNotify destroy)
 {
   ColorGridCol *c;
-  GdkColor color;
   int pos;
 
   c = g_new0 (ColorGridCol, 1);
   c->selected = FALSE;
   c->cg       = cg;
   c->data     = data;
+  c->destroy  = destroy;
+  c->item     = NULL;
+  c->r        = r;
+  c->g        = g;
+  c->b        = b;
 
   pos = cg->count++;
 
-  cg->col = g_list_append (cg->col, c);
+  cg->col = g_list_insert_sorted (cg->col, c, cg->compare_func);
+
+  color_grig_for_idle (cg, c);
   
-  color.red   = r * 255; 
-  color.green = g * 255;
-  color.blue  = b * 255; 
-  gdk_color_alloc (gtk_widget_get_default_colormap (), &color);
-      
-  c->item = gnome_canvas_item_new (gnome_canvas_root (GNOME_CANVAS (cg)),
-		     GNOME_TYPE_CANVAS_RECT,
-		     "x1", (float) 0,
-		     "y1", (float) 0,
-		     "x2", (float) cg->col_width,
-		     "y2", (float) cg->col_height,
-		     "outline_color", "black",
-		     "width_units", 1.0,
-		     "fill_color_gdk", &color,
-		     NULL);
-
-  gtk_object_set_data (GTK_OBJECT (c->item), "col", c);
-
-  gtk_signal_connect (GTK_OBJECT (c->item), "event",
-		      GTK_SIGNAL_FUNC (color_grid_item_event), NULL);
-
   color_grid_reorganize (cg);
   
   return pos;
 }
 
 void
-color_grid_remove (ColorGrid *cg, int pos)
+color_grid_remove (ColorGrid *cg, gpointer data)
 {
+  GList *list;
   ColorGridCol *col;
 
-  col = g_list_nth (cg->col, pos)->data;  
+  list = color_grid_find_item_from_data (cg, data);
+  col = list->data;
 
-  cg->col = g_list_remove (cg->col, col);
+  if (col->destroy) 
+    col->destroy (col->data);
+
+  if (list->prev)
+    g_list_remove (list, col);
+  else
+    cg->col = g_list_remove (list, col);
 
   gtk_object_destroy (GTK_OBJECT (col->item));  
 
@@ -560,22 +663,33 @@ void
 color_grid_clear (ColorGrid *cg)
 {
   ColorGridCol *col;
+  GList *list;
+
+  list = cg->col; 
   
-  while (cg->col) {
-    col = cg->col->data;
+  while (list) {
+    col = list->data;
 
-    gtk_object_destroy (GTK_OBJECT (col->item));
-    g_free (col);
+    if (col->destroy) 
+      col->destroy (col->data);
 
-    cg->col = g_list_remove (cg->col, col);
+    if (col->item)
+      gtk_object_destroy (GTK_OBJECT (col->item));
+
+    g_free (col);   
+    
+    list = g_list_next (list);
   }  
 
   g_list_free (cg->selected);
+  g_list_free (cg->col);
+  g_list_free (cg->idle_todo);
+
+  cg->col = NULL;
   cg->selected = NULL;
+  cg->idle_todo = NULL;
   cg->last_clicked = NULL;
   cg->last_focus = NULL;
-
-  color_grid_reorganize (cg);
 }
 
 void
@@ -619,22 +733,35 @@ color_grid_set_col_width_height (ColorGrid *cg, int width, int height)
   color_grid_reorganize (cg);
 }
 
-int
+GList *
 color_grid_find_item_from_data (ColorGrid *cg, gpointer data)
 {
   GList *list = cg->col;
   ColorGridCol *col;
-  int pos = 0;
 
   while (list) {
     col = list->data;
 
-    if (col->data == data) return pos;
+    if (col->data == data) return list;
 
     list = g_list_next (list);
-
-    pos++;
   }
 
-  return -1;
+  return NULL;
+}
+
+void 
+color_grid_change_pos (ColorGrid *cg, gpointer data)
+{
+  GList *list = color_grid_find_item_from_data (cg, data);
+  ColorGridCol *col = list->data;
+
+  if (list->prev)
+    g_list_remove (list, col);
+  else
+    cg->col = g_list_remove (list, col);
+
+  cg->col = g_list_insert_sorted (cg->col, col, cg->compare_func);
+
+  color_grid_reorganize (cg);
 }

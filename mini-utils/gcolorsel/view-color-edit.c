@@ -78,7 +78,7 @@ view_color_edit_init (ViewColorEdit *vcg)
 }
 
 static GList *
-list_search_list (GtkList *list, MDIColorGenericCol *col)
+list_search_list (GtkList *list, MDIColor *col)
 {
   GList *l = list->children;
 
@@ -91,13 +91,13 @@ list_search_list (GtkList *list, MDIColorGenericCol *col)
 }
 
 static GtkWidget *
-list_search (GtkList *list, MDIColorGenericCol *col)
+list_search (GtkList *list, MDIColor *col)
 {
   return list_search_list (list, col)->data;
 }
 
 static void
-spin_set_rgb (ViewColorEdit *vce, MDIColorGenericCol *col) 
+spin_set_rgb (ViewColorEdit *vce, MDIColor *col) 
 {
   spin_set_value (GTK_SPIN_BUTTON (vce->spin_red), col->r, vce);
   spin_set_value (GTK_SPIN_BUTTON (vce->spin_green), col->g, vce);
@@ -107,7 +107,7 @@ spin_set_rgb (ViewColorEdit *vce, MDIColorGenericCol *col)
 static void
 list_selection_changed_cb (GtkList *list, ViewColorEdit *vce)
 {
-  MDIColorGenericCol *col;
+  MDIColor *col;
   GtkWidget *widget;
 
   if (list->selection) {
@@ -146,7 +146,7 @@ list_selection_changed_cb (GtkList *list, ViewColorEdit *vce)
 static void
 spin_rgb_value_changed_cb (GtkWidget *widget, ViewColorEdit *vce)
 {
-  MDIColorGenericCol *col;
+  MDIColor *col;
 
   col = mdi_color_generic_get_owner (vce->editing);
 
@@ -159,7 +159,7 @@ spin_rgb_value_changed_cb (GtkWidget *widget, ViewColorEdit *vce)
 static void
 entry_changed_cb (GtkWidget *widget, ViewColorEdit *vce)
 {
-  MDIColorGenericCol *col;
+  MDIColor *col;
 
   col = mdi_color_generic_get_owner (vce->editing);
 
@@ -278,31 +278,47 @@ view_color_edit_new (MDIColorGeneric *mcg)
 }
 
 static void
+item_destroy_notify (GtkWidget *widget, gpointer data)
+{
+  gtk_object_unref (GTK_OBJECT (data));
+}
+
+static void
 view_color_edit_data_changed (ViewColorGeneric *vcg, gpointer data)
 {
   GList *list = data;
-  MDIColorGenericCol *col;
+  MDIColor *col;
   GtkWidget *item;
   GtkCombo *combo = GTK_COMBO (VIEW_COLOR_EDIT (vcg)->combo);
   GtkList *gtk_list = GTK_LIST (combo->list);
   ViewColorEdit *vce = VIEW_COLOR_EDIT (vcg);
+  int next_select = -1;
 
   while (list) {
     col = list->data;
 
     if (col->change & CHANGE_APPEND) {
+      gtk_object_ref (GTK_OBJECT (col));
+
       item = gtk_list_item_new_with_label (col->name);
       gtk_object_set_data (GTK_OBJECT (item), "col", col);
       gtk_widget_show (item);
       gtk_container_add (GTK_CONTAINER (gtk_list), item);
 
       gtk_widget_set_sensitive (vce->button_next, TRUE);
+
+      gtk_signal_connect (GTK_OBJECT (item), "destroy", 
+			  GTK_SIGNAL_FUNC (item_destroy_notify), col);
     } 
 
     else
       
       if (col->change & CHANGE_REMOVE) {
 	GList l; l.data = list_search (gtk_list, col); l.next = l.prev = NULL;
+	
+	next_select = gtk_list_child_position (gtk_list, l.data);
+	if (next_select) next_select--;
+
 	gtk_list_remove_items (gtk_list, &l);	
       }
 
@@ -341,6 +357,9 @@ view_color_edit_data_changed (ViewColorGeneric *vcg, gpointer data)
 
     list = g_list_next (list);
   }
+
+  if (next_select != -1)
+    gtk_list_select_item (gtk_list, next_select);
 }
 
 static void

@@ -3,6 +3,7 @@
 #include <glade/glade.h>
 
 #include "view-color-generic.h"
+#include "utils.h"
 
 enum {
   DATA_CHANGED,

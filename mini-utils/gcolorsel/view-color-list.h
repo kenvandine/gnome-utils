@@ -26,10 +26,13 @@ struct _ViewColorList {
   int col_height;
   gboolean draw_numbers;
 
-  GdkGC *gc;  
+  GdkGC *gc;
   GdkColor color_black;
   GdkColor color_white;
   GdkFont *pixmap_font;
+  
+  guint idle;
+  GList *idle_todo;
 };
 
 struct _ViewColorListClass {

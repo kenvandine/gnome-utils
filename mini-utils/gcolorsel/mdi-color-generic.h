@@ -13,43 +13,11 @@ BEGIN_GNOME_DECLS
 #define IS_MDI_COLOR_GENERIC(obj)       GTK_CHECK_TYPE (obj, mdi_color_generic_get_type ())
 #define MDI_COLOR_GENERIC_GET_CLASS(obj)  (MDI_COLOR_GENERIC_CLASS (GTK_OBJECT (obj)->klass))
 
-typedef struct _MDIColorGenericCol    MDIColorGenericCol;
 typedef struct _MDIColorGeneric       MDIColorGeneric;
 typedef struct _MDIColorGenericClass  MDIColorGenericClass;
 
+#include "mdi-color.h"
 #include "widget-control-generic.h"
-
-struct _MDIColorGenericCol {
-  int ref : 8;
-
-  MDIColorGeneric *owner; /* Never a MDIColorVirtual, ... */
-
-  guint pos;
-  guint r : 8;
-  guint g : 8;
-  guint b : 8;
-  char *name;
-
-  guint change : 8;
-
-  gpointer data; /* See mdi-color-virtual */
-};
-
-typedef enum {
-  /* Insert new */
-  CHANGE_APPEND = 1 << 0,
-
-  /* Edit existing */
-  CHANGE_NAME   = 1 << 1,
-  CHANGE_RGB    = 1 << 2,
-  CHANGE_POS    = 1 << 4,
-
-  /* Remove existing */
-  CHANGE_REMOVE = 1 << 5,
-
-  /* Remove all */
-  CHANGE_CLEAR  = 1 << 6
-} MDIColorGenericChangeType;
 
 struct _MDIColorGeneric {
   GnomeMDIChild mdi_child;
@@ -68,11 +36,13 @@ struct _MDIColorGeneric {
 
   GList *col;
   GList *last_col;
+
   GList *changes;
   GList *last_changes;
+  int changes_phase;
 
-  MDIColorGenericCol * (*get_owner) (MDIColorGenericCol *col);
-  GList * (*get_append_pos)     (MDIColorGeneric *mcg, MDIColorGenericCol *col);
+  MDIColor * (*get_owner) (MDIColor *col);
+  GList * (*get_append_pos)     (MDIColorGeneric *mcg, MDIColor *col);
   GtkType (*get_control_type) (MDIColorGeneric *mcg);
 };
 
@@ -90,38 +60,41 @@ struct _MDIColorGenericClass {
 
 guint mdi_color_generic_get_type (void);
 
-
 void mdi_color_generic_append           (MDIColorGeneric *mcg, 
-					 MDIColorGenericCol *col);
-MDIColorGenericCol *
+					 MDIColor *col);
+MDIColor *
 mdi_color_generic_append_new            (MDIColorGeneric *mcg,
-					 int r, int g, int b, char *name, 
-					 gpointer data);
+					 int r, int g, int b, char *name);
+MDIColor *
+mdi_color_generic_append_new_set_data   (MDIColorGeneric *mcg, 
+					 int r, int g, int b, char *name,
+					 char *str, gpointer data);
+
 void mdi_color_generic_remove           (MDIColorGeneric *mcg, 
-					 MDIColorGenericCol *col);
+					 MDIColor *col);
 void mdi_color_generic_change_rgb       (MDIColorGeneric *mcg, 
-					 MDIColorGenericCol *col,
+					 MDIColor *col,
 					 int r, int g, int b);
 void mdi_color_generic_change_name      (MDIColorGeneric *mcg, 
-					 MDIColorGenericCol *col,
+					 MDIColor *col,
 					 char *name);
 void mdi_color_generic_change_pos       (MDIColorGeneric *mcg,
-					 MDIColorGenericCol *col, int new_pos);
+					 MDIColor *col, int new_pos);
 void mdi_color_generic_clear            (MDIColorGeneric *mcg);
 
 void mdi_color_generic_freeze           (MDIColorGeneric *mcg);
 void mdi_color_generic_thaw             (MDIColorGeneric *mcg);
 
 void mdi_color_generic_post_change      (MDIColorGeneric *mcg, 
-					 MDIColorGenericCol *col,
-					 MDIColorGenericChangeType type);
+					 MDIColor *col,
+					 MDIColorChangeType type);
 void mdi_color_generic_dispatch_changes (MDIColorGeneric *mcg);
 
 gboolean mdi_color_generic_can_do       (MDIColorGeneric *mcg, 
-					 MDIColorGenericChangeType what);
+					 MDIColorChangeType what);
 
-MDIColorGenericCol *
-mdi_color_generic_search_by_data        (MDIColorGeneric *mcg,
+MDIColor *
+mdi_color_generic_search_by_data        (MDIColorGeneric *mcg, char *str,
 					 gpointer data);
 
 void mdi_color_generic_connect          (MDIColorGeneric *mcg,
@@ -130,8 +103,8 @@ void mdi_color_generic_connect          (MDIColorGeneric *mcg,
 void mdi_color_generic_disconnect       (MDIColorGeneric *mcg,
 					 MDIColorGeneric *to);
 
-MDIColorGenericCol *
-mdi_color_generic_get_owner             (MDIColorGenericCol *col);
+MDIColor *
+mdi_color_generic_get_owner             (MDIColor *col);
 
 GtkType mdi_color_generic_get_control_type (MDIColorGeneric *mcg);
 

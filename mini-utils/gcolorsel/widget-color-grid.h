@@ -25,16 +25,26 @@ struct _ColorGridCol {
   GnomeCanvasItem *item;
 
   gpointer data;
+  GtkDestroyNotify destroy;
 
   gboolean selected;
+
+  int line, column;
+  int r, g, b;
 };
 
 struct _ColorGrid {
   GnomeCanvas canvas;
 
+  GdkColor color_black;
+  GdkColor color_white;
+  GdkColor color_red;
+
   GCompareFunc compare_func;
 
   int freeze;
+  int reorganize_from;
+  int reorganize_to;
 
   gboolean can_move;
 
@@ -53,6 +63,9 @@ struct _ColorGrid {
 
   ColorGridCol *last_clicked; /* Used for SHIFT + CLICK */
   ColorGridCol *last_focus; 
+
+  int idle;
+  GList *idle_todo;
 };
 
 struct _ColorGridClass {
@@ -65,8 +78,9 @@ GtkType color_grid_get_type (void);
 
 GtkWidget *color_grid_new (GCompareFunc compare_func);
 
-int color_grid_append  (ColorGrid *cg, int r, int g, int b, gpointer data);
-void color_grid_remove (ColorGrid *cg, int pos);
+int color_grid_append  (ColorGrid *cg, int r, int g, int b, 
+			gpointer data, GtkDestroyNotify destroy);
+void color_grid_remove (ColorGrid *cg, gpointer data);
 void color_grid_clear  (ColorGrid *cg);
 
 void color_grid_freeze (ColorGrid *cg);
@@ -78,9 +92,12 @@ void color_grid_can_move (ColorGrid *cg, gboolean value);
 
 void color_grid_set_col_width_height (ColorGrid *cg, int width, int height);
 
-int  color_grid_find_item_from_data  (ColorGrid *cg, gpointer data);
+GList *color_grid_find_item_from_data  (ColorGrid *cg, gpointer data);
 
-void color_grid_change_rgb (ColorGrid *cg, int pos, int r, int g, int b);
+void color_grid_change_rgb (ColorGrid *cg, gpointer data,
+			    int r, int g, int b);
+
+void color_grid_change_pos (ColorGrid *cg, gpointer data);
 
 END_GNOME_DECLS
 

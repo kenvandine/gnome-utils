@@ -1,3 +1,76 @@
+2000-04-19 Eric Brayeur <eb2@ibelgique.com>
+
+	* mdi-color-generic.c, gcolorsel.c, menus.[ch] : don't use GnomeMDi
+  	  to set Edit menu.
+
+	* view-color-list.c : don't autosize pixmap column; set width
+	  manually.
+	  
+	* view-color-list.c : use idle to redraw pixmap in CHANGE_POS case.
+	  Faster on remove case !!! 
+	  (view_color_list_redraw_all) : use idle. (faster in pixmap
+	  change size);
+	  (view_color_list_destroy) : new function.
+
+	* widget-color-grid.c (color_grid_init) : alloc color black, 
+	  white and red; faster when selecting a lot of colors ...
+
+	* widget-color-grid.c : Use the idle system I used for ColorList;
+	  now this widget is faster than before.
+
+2000-04-18 Eric Brayeur <eb2@ibelgique.com>
+
+	* mdi-color-virtual.c (mdi_color_virtual_get_append_pos) 
+	  loop into the list from the first color OR from the last color.
+	  (2 x faster).
+
+2000-04-17 Eric Brayeur <eb2@ibelgique.com>
+
+	* mdi-color.[ch] : remove data member. 
+
+        * mdi-color-generic.[ch] (mdi_color_generic_append_new) : remove
+          data. (mdi_color_generic_append_new_set_data) : new function.
+
+        * mdi-color-virtual.c : remove MDIColor data usage.
+
+	* mdi-color.h : (phase_change) : new member.		
+	* mdi-color-generic.[ch] (phases_change) : new member. 
+	  (mdi_color_generic_post_change) : if phases_change equal to
+          MDIColor phase_change then color is already in the changes list. 
+	  Now, we don't have to loop to reset MDIColor.change
+
+	* widget-color-grid.[ch] (destroy) : new member for item; works like
+          GtkCList row destroy.
+
+	* mdi*, view* : use gtk_object_(un)ref on MDIColor.
+
+	* view-color-grid.c (color_grid_destroy) : new function, call
+          color_grid_clear on destroy.
+
+	* mdi-color-virtual.c (mdi_color_virtual_set) : fix a bug in
+          the decrease tolerance case.
+
+	* mdi-color.c (mdi_color_destroy) : new function, free name on
+	  destroy.
+
+	* mdi-color-virtual.c (mdi_color_virtual_changed) : always ref
+          the color even if we don't take it.
+
+	* view-color-edit.c : render pixmaps in an idle so search search
+	  is "faster".
+
+2000-04-16 Eric Brayeur <eb2@ibelgique.com>
+
+	* glade/Makefiles.am : add *.bak to CLEANFILES.
+
+	* view-color-generic.c : kill a warning.
+
+	* mdi-color.[ch] : new files, contains MDIColor, a GtkObject 
+	  derived version of MDIColorGenericCol. (now, it's easy to set
+	  data, destroy signal ...).
+	  *.[ch] : use MDIColor instead of MDIColorGenericCol, nothing more
+	  for now.
+
 2000-04-16  Jacob Berkman  <jacob@helixcode.com>
 
 	* glade/: remove Makefile(.in) and add to .cvsignore

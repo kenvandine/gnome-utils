@@ -50,13 +50,14 @@ static GtkWidget *create_column_widget     (GtkCList *clist,
 					    int num, char *text);
 
 static char *view_color_list_render_value  (ViewColorList *vcl, 
-					    MDIColorGenericCol *col);
+					    MDIColor *col);
 static void  view_color_list_render_pixmap (ViewColorList *cl, 
 					    GdkPixmap *pixmap,
-					    MDIColorGenericCol *col);
+					    MDIColor *col);
 static gint  view_color_list_append        (ViewColorList *vcl, 
-					    MDIColorGenericCol *col);
+					    MDIColor *col);
 
+static void view_color_list_destroy (GtkObject *object);
 void
 view_color_list_set_sort_column (ViewColorList *vcl, 
 				 gint column, GtkSortType type);
@@ -133,6 +134,8 @@ view_color_list_class_init (ViewColorListClass *class)
   vcg_class->close           = view_color_list_close;
   vcg_class->apply           = view_color_list_apply;
   vcg_class->sync            = view_color_list_sync;
+  
+  object_class->destroy = view_color_list_destroy;
 }
 
 static void
@@ -149,6 +152,9 @@ view_color_list_init (ViewColorList *vcg)
   gdk_color_alloc (gtk_widget_get_default_colormap (), &vcg->color_white);
 
   vcg->pixmap_font = gdk_font_load ("-bitstream-courier-medium-r-normal-*-12-*-*-*-*-*-*-*");
+
+  vcg->idle = 0;
+  vcg->idle_todo = NULL;
 }
 
 GtkObject *
@@ -156,6 +162,7 @@ view_color_list_new (MDIColorGeneric *mcg)
 {
   GtkObject *object;
   GtkCList *cl;
+  GtkWidget *col_pix;
 
   object = gtk_type_new (TYPE_VIEW_COLOR_LIST);
   
@@ -175,20 +182,22 @@ view_color_list_new (MDIColorGeneric *mcg)
   gtk_clist_set_selection_mode (cl, GTK_SELECTION_EXTENDED);
   gtk_clist_column_titles_show (cl);
 
-  create_column_widget (cl, COLUMN_PIXMAP, _("Color"));
+  col_pix = create_column_widget (cl, COLUMN_PIXMAP, _("Color"));
   create_column_widget (cl, COLUMN_VALUE, _("Value"));
   create_column_widget (cl, COLUMN_NAME, _("Name"));
 
-  gtk_clist_set_column_auto_resize (cl, COLUMN_PIXMAP, TRUE);
+  gtk_clist_set_column_width (cl, COLUMN_PIXMAP, 
+			      VIEW_COLOR_LIST (object)->col_width);
   gtk_clist_set_row_height (cl, VIEW_COLOR_LIST (object)->col_height);
 
   gtk_clist_set_column_width (cl, COLUMN_VALUE, 70);
   gtk_clist_set_column_resizeable (cl, COLUMN_PIXMAP, FALSE);
 
-  gtk_clist_set_auto_sort (cl, TRUE);
   gtk_clist_set_compare_func (cl, view_color_list_compare_rows);
   view_color_list_set_sort_column (VIEW_COLOR_LIST (object), COLUMN_PIXMAP,
 				   GTK_SORT_ASCENDING);
+
+//  gtk_clist_set_auto_sort (cl, TRUE);
 
   gtk_clist_column_titles_active (cl);
   gtk_clist_set_use_drag_icons (cl, 0);
@@ -198,8 +207,30 @@ view_color_list_new (MDIColorGeneric *mcg)
   gtk_signal_connect (GTK_OBJECT (cl), "button_press_event", 
 		      GTK_SIGNAL_FUNC (view_color_list_button_press), object);
 
-
+  /*  gtk_clist_set_column_min_width(cl, COLUMN_PIXMAP,
+      col_pix->requisition.width + 10);*/
+		      
   return object;
+}
+
+static void
+view_color_list_destroy (GtkObject *object)
+{
+  ViewColorList *vcl = VIEW_COLOR_LIST (object);
+
+  if (vcl->idle_todo)
+    g_list_free (vcl->idle_todo);
+
+  if (vcl->idle)
+    gtk_idle_remove (vcl->idle);
+
+  gdk_gc_unref (vcl->gc);
+  gdk_color_free (&vcl->color_black);
+  gdk_color_free (&vcl->color_white);
+  gdk_font_unref (vcl->pixmap_font);
+  
+  if (GTK_OBJECT_CLASS (parent_class)->destroy)
+    GTK_OBJECT_CLASS (parent_class)->destroy (object);
 }
 
 static GtkWidget *
@@ -237,19 +268,19 @@ view_color_list_compare_rows (GtkCList *clist,
 {
   GtkCListRow *row1;
   GtkCListRow *row2;
-  MDIColorGenericCol *c1;
-  MDIColorGenericCol *c2;
+  MDIColor *c1;
+  MDIColor *c2;
   int t1;
   int t2;
   
   row1 = (GtkCListRow *) ptr1;
   row2 = (GtkCListRow *) ptr2;
 
-  c1 = (MDIColorGenericCol *) row1->data;
-  c2 = (MDIColorGenericCol *) row2->data;
+  c1 = (MDIColor *) row1->data;
+  c2 = (MDIColor *) row2->data;
 
-  if (!c2) return (c1 != NULL);
-  if (!c1) return -1;
+/*  if (!c2) return (c1 != NULL);
+  if (!c1) return 0;*/
 
   switch (clist->sort_column) {
   case COLUMN_PIXMAP:
@@ -365,7 +396,7 @@ view_color_list_button_press (GtkCList *clist, GdkEventButton *event,
 static void
 view_color_list_drag_begin (GtkCList *clist, GdkDragContext *context)
 {
-  MDIColorGenericCol *col;
+  MDIColor *col;
   int row;
 
   if (clist->focus_row < 0) 
@@ -385,7 +416,7 @@ view_color_list_drag_data_get (GtkCList *clist, GdkDragContext *context,
 			  GtkSelectionData *selection_data, guint info,
 			  guint time)
 {
-  MDIColorGenericCol *col;
+  MDIColor *col;
   guint16 vals[4];
 
   col = gtk_clist_get_row_data (clist, clist->focus_row);
@@ -402,7 +433,7 @@ view_color_list_drag_data_get (GtkCList *clist, GdkDragContext *context,
 }	         
 
 static char *
-view_color_list_render_value (ViewColorList *vcl, MDIColorGenericCol *col)
+view_color_list_render_value (ViewColorList *vcl, MDIColor *col)
 {
   switch (VIEW_COLOR_GENERIC (vcl)->format) {
   case FORMAT_DEC_8:
@@ -426,42 +457,81 @@ view_color_list_render_value (ViewColorList *vcl, MDIColorGenericCol *col)
   return NULL;   
 }
 
-static gint
-view_color_list_append (ViewColorList *vcl, MDIColorGenericCol *col)
+static void
+row_destroy_notify (gpointer data)
 {
-  gchar *string[3];
-  gint row;
-  GdkPixmap *pixmap;
+  gtk_object_unref (GTK_OBJECT (data));
+}
+
+static gint
+view_color_list_idle (gpointer data)
+{
+  ViewColorList *vcl = VIEW_COLOR_LIST (data);
+  MDIColor *col;
+  GdkPixmap *pixmap;  
+  int row;
   GtkCList *clist = GTK_CLIST (VIEW_COLOR_GENERIC (vcl)->widget);
 
+  if (! vcl->idle_todo) {
+    vcl->idle = 0;
+    return FALSE;
+  }
+  
+  col = vcl->idle_todo->data;
+  vcl->idle_todo = g_list_remove (vcl->idle_todo, col);
+  
+  row = gtk_clist_find_row_from_data (clist, col);
+  
   pixmap = gdk_pixmap_new (VIEW_COLOR_GENERIC (vcl)->widget->window, 
 			   vcl->col_width,
-			  vcl->col_height, 
+			   vcl->col_height, 
 			   -1);
 
   view_color_list_render_pixmap (vcl, pixmap, col);
+
+  gtk_clist_set_pixmap (clist, row, 
+			COLUMN_PIXMAP, pixmap, NULL);
+
+  gdk_pixmap_unref (pixmap);
+  
+  return TRUE;
+}
+
+static void
+view_color_list_idle_append (ViewColorList *vcl, MDIColor *col)
+{
+  vcl->idle_todo = g_list_prepend (vcl->idle_todo, col);
+  
+  if (! vcl->idle) 
+    vcl->idle = gtk_idle_add (view_color_list_idle, vcl); 
+}
+
+static gint
+view_color_list_append (ViewColorList *vcl, MDIColor *col)
+{
+  gchar *string[3];
+  gint row;
+  GtkCList *clist = GTK_CLIST (VIEW_COLOR_GENERIC (vcl)->widget);
 
   string[COLUMN_PIXMAP] = NULL;
   string[COLUMN_VALUE]  = view_color_list_render_value (vcl, col);
   string[COLUMN_NAME]   = col->name;
   
-  row = gtk_clist_append (clist, string);
-  gtk_clist_set_pixmap (clist, row, 
-			COLUMN_PIXMAP, pixmap, NULL);
+  row = gtk_clist_prepend (clist, string);
 
   if (string[COLUMN_VALUE]) 
     g_free (string[COLUMN_VALUE]);
 
-  gtk_clist_set_row_data (clist, row, col);
+  gtk_clist_set_row_data_full (clist, row, col, row_destroy_notify);
 
-  gdk_pixmap_unref (pixmap);
+  view_color_list_idle_append (vcl, col);
     
   return row;
 }
 
 static void
 view_color_list_render_pixmap (ViewColorList *vcl, GdkPixmap *pixmap,
-			       MDIColorGenericCol *col)
+			       MDIColor *col)
 {
   GdkColor color;
   int h, w;
@@ -511,29 +581,22 @@ static void
 view_color_list_redraw_all (ViewColorList *vcl)
 {  
   GtkCList *clist = GTK_CLIST (VIEW_COLOR_GENERIC (vcl)->widget);
-  MDIColorGenericCol *col;
-  GdkPixmap *pixmap;
+  MDIColor *col;
   int i;
   char *str;
 
   for (i=0; i<clist->rows; i++) {
     col = gtk_clist_get_row_data (clist, i);
 
-    pixmap = gdk_pixmap_new (VIEW_COLOR_GENERIC (vcl)->widget->window, 
-			     vcl->col_width, vcl->col_height, -1);
-
-    view_color_list_render_pixmap (vcl, pixmap, col);
-    
-    gtk_clist_set_pixmap (clist, i, COLUMN_PIXMAP, pixmap, NULL);
+    view_color_list_idle_append (vcl, col);
 
     str = view_color_list_render_value (vcl, col);
     gtk_clist_set_text (clist, i, COLUMN_VALUE, str);
     g_free (str);
-
-    gdk_pixmap_unref (pixmap);
   }
 
   gtk_clist_set_row_height (clist, vcl->col_height);
+  gtk_clist_set_column_width (clist, COLUMN_PIXMAP, vcl->col_width);
 }
 
 /********************************* MDI **************************************/
@@ -543,9 +606,7 @@ view_color_list_data_changed (ViewColorGeneric *vcg, gpointer data)
 {
   ViewColorList *vcl = VIEW_COLOR_LIST (vcg);
   GList *list = data;
-  MDIColorGenericCol *col;
-  GdkPixmap *pixmap;
-  GdkBitmap *mask;
+  MDIColor *col;
   gint row;
   GtkCList *clist = GTK_CLIST (vcg->widget);
 
@@ -554,24 +615,34 @@ view_color_list_data_changed (ViewColorGeneric *vcg, gpointer data)
   while (list) {
     col = list->data;
 
-    if (col->change & CHANGE_CLEAR) gtk_clist_clear (clist); 
+    if (col->change & CHANGE_CLEAR) {
+      if (vcl->idle_todo) {
+	g_list_free (vcl->idle_todo);
+	vcl->idle_todo = NULL;	
+      }      
+      gtk_clist_clear (clist); 
+    }
 
     else
 
-      if (col->change & CHANGE_APPEND) view_color_list_append (vcl, col);
-    
-      else {
+      if (col->change & CHANGE_APPEND) {
+	gtk_object_ref (GTK_OBJECT (col));
+	view_color_list_append (vcl, col);    
+      } else {
 	row = gtk_clist_find_row_from_data (clist, col);
 
-	if (col->change & CHANGE_REMOVE) gtk_clist_remove (clist, row); 
+	if (col->change & CHANGE_REMOVE) {
+	  gtk_clist_remove (clist, row); 
+	  vcl->idle_todo = g_list_remove (vcl->idle_todo, col);
+	}
 
 	else {
 	  
 	  /* Redraw pixmap if CHANGE_RGB   OR  (CHANGE_POS and DRAW_NUMBERS) */
 	  if ((col->change & CHANGE_POS)||(col->change & CHANGE_RGB)) {
 	    if ((vcl->draw_numbers)||(col->change & CHANGE_RGB)) {
-	      gtk_clist_get_pixmap (clist, row, 0, &pixmap, &mask);
-	      view_color_list_render_pixmap (vcl, pixmap, col);
+	      vcl->idle_todo = g_list_remove (vcl->idle_todo, col);
+	      view_color_list_idle_append (vcl, col);
 
 	      if (col->change & CHANGE_RGB) {
 		char *str = view_color_list_render_value (vcl, col);
@@ -589,8 +660,9 @@ view_color_list_data_changed (ViewColorGeneric *vcg, gpointer data)
     list = g_list_next (list);
   }
 
-  gtk_clist_thaw (clist);
   gtk_clist_sort (clist); 
+  gtk_clist_thaw (clist);
+
 }
 
 static void
@@ -598,20 +670,19 @@ view_color_list_remove_selected (ViewColorGeneric *vcg)
 {
   GtkCList *clist = GTK_CLIST (vcg->widget);
   GList *list = clist->selection;
-  MDIColorGenericCol *col;
+  MDIColor *col;
   GList *freezed = NULL;
 
   while (list) {  
-    col = gtk_clist_get_row_data (clist, GPOINTER_TO_INT (list->data));
+    col = gtk_clist_get_row_data (clist, GPOINTER_TO_INT (list->data));   
+    list = g_list_next (list);
     
     col = mdi_color_generic_get_owner (col);
     
     mdi_color_generic_freeze (col->owner);
     mdi_color_generic_remove (col->owner, col);
     
-    freezed = g_list_append (freezed, col->owner);
-    
-    list = g_list_next (list);
+    freezed = g_list_prepend (freezed, col->owner);
   }   
 
   list = freezed;

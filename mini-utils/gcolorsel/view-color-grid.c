@@ -83,7 +83,7 @@ static gint
 view_color_grid_compare_func (gconstpointer ptr1, gconstpointer ptr2)
 {
   ColorGridCol *col1 = (ColorGridCol *)ptr1, *col2 = (ColorGridCol *)ptr2;
-  MDIColorGenericCol *c1 = col1->data, *c2 = col2->data;
+  MDIColor *c1 = col1->data, *c2 = col2->data;
 
   if (c1->pos < c2->pos) return -1;
   if (c1->pos > c2->pos) return 1;
@@ -114,48 +114,50 @@ view_color_grid_new (MDIColorGeneric *mcg)
 }
 
 static void
+item_destroy_notify (gpointer data)
+{
+  gtk_object_unref (GTK_OBJECT (data));
+}
+
+static void
 view_color_grid_data_changed (ViewColorGeneric *vcg, gpointer data)
 {
   GList *list = data;
-  MDIColorGenericCol *col;
+  MDIColor *col;
   ColorGrid *cg = COLOR_GRID (vcg->widget);
-  int pos;
 
   color_grid_freeze (cg);
 
   while (list) {
     col = list->data;
 
-    if (col->change & CHANGE_APPEND) 
-      color_grid_append (cg, col->r, col->g, col->b, col);
-    
-    else
+    if (col->change & CHANGE_APPEND) {
+      gtk_object_ref (GTK_OBJECT (col));
+      color_grid_append (cg, col->r, col->g, col->b, col, item_destroy_notify);    
+    } else
 
       if (col->change & CHANGE_CLEAR) color_grid_clear (cg);
     
       else {
 
-	pos = color_grid_find_item_from_data (cg, col);
-      
-	if (col->change & CHANGE_REMOVE) color_grid_remove (cg, pos);
+	if (col->change & CHANGE_REMOVE) 
+	  color_grid_remove (cg, col);
+	else {
 
-	else 
-
-	  if (col->change & CHANGE_RGB) {
-	    pos = color_grid_find_item_from_data (cg, col);
-
-	    color_grid_change_rgb (cg, pos, col->r, col->g, col->b);
-	  }
+	  if (col->change & CHANGE_RGB) 
+	    color_grid_change_rgb (cg, col, col->r, col->g, col->b);
 	
 	/* CHANGE_NAME, don't care */
-	/* CHAGE_POS, automatic see color_grid_sort */
+	
+	  if (col->change & CHANGE_POS) 
+	    color_grid_change_pos (cg, col);
+	}
       }
     
     list = g_list_next (list);
   }
 
   color_grid_thaw (cg);
-  color_grid_sort (cg);
 }
 
 static void
@@ -163,27 +165,28 @@ view_color_grid_remove_selected (ViewColorGeneric *vcg)
 {
   ColorGrid *cg = COLOR_GRID (vcg->widget);
   GList *list = cg->selected;
-  MDIColorGenericCol *col;
+  MDIColor *col;
   GList *freezed = NULL;
 
   while (list) {  
-    col = ((ColorGridCol *)list->data)->data;
+    col = ((ColorGridCol *)list->data)->data;    
+    list = g_list_next (list);
+
     col = mdi_color_generic_get_owner (col);
 
-    freezed = g_list_append (freezed, col->owner);
+    freezed = g_list_prepend (freezed, col->owner);
     
     mdi_color_generic_freeze (col->owner);
     mdi_color_generic_remove (col->owner, col);
-    
-    list = g_list_next (list);
   }   
 
   list = freezed;
   while (list) {
+    g_assert (IS_MDI_COLOR_GENERIC (freezed->data));
     mdi_color_generic_thaw (freezed->data);
     list = g_list_next (list);
   }    
-
+  
   g_list_free (freezed);
 }
 
@@ -193,7 +196,7 @@ view_color_grid_move_item (ColorGrid *cg, int old_pos,
 			   ViewColorGeneric *mvg)
 {
   ColorGridCol *col = g_list_nth (cg->col, old_pos)->data;
-  MDIColorGenericCol *c = col->data;
+  MDIColor *c = col->data;
 
   mdi_color_generic_freeze (mvg->mcg);
   mdi_color_generic_change_pos (mvg->mcg, c, new_pos);

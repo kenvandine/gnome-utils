@@ -22,7 +22,7 @@ typedef struct _ViewColorEditCol ViewColorEditCol;
 struct _ViewColorEdit {
   ViewColorGeneric vcg;
 
-  MDIColorGenericCol *editing;
+  MDIColor *editing;
 
   GtkWidget *spin_red;
   GtkWidget *spin_green;

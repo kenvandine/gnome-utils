@@ -11,6 +11,7 @@
 
 static GList *prop_list = NULL;  /* List of GnomePropertyBox */
 
+/* File */
 static void open_cb    (GtkWidget *widget);
 static void save_cb    (GtkWidget *widget);
 static void save_as_cb (GtkWidget *widget);
@@ -18,6 +19,13 @@ static void revert_cb  (GtkWidget *widget);
 static void close_cb   (GtkWidget *widget);
 static void exit_cb    (GtkWidget *widget);
 
+/* edit */
+static void remove_cb     (GtkWidget *widget, gpointer data);
+static void edit_cb       (GtkWidget *widget, gpointer data);
+static void properties_cb (GtkWidget *widget, gpointer data);
+
+
+/* Help */
 static void about_cb   (GtkWidget *widget);
 
 GnomeUIInfo file_menu[] = {
@@ -34,6 +42,21 @@ GnomeUIInfo file_menu[] = {
   GNOMEUIINFO_END
 };
 
+GnomeUIInfo edit_menu[] = {
+  GNOMEUIINFO_ITEM_STOCK (N_("New color"), NULL,
+			  NULL, GNOME_STOCK_PIXMAP_ADD),
+  GNOMEUIINFO_ITEM_STOCK (N_("Remove selected colors"), NULL, 
+			  remove_cb, GNOME_STOCK_PIXMAP_REMOVE),
+  GNOMEUIINFO_ITEM_NONE (N_("Edit selected color..."), NULL, edit_cb),
+  
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_MENU_PROPERTIES_ITEM (properties_cb, NULL),
+			 
+			     
+  GNOMEUIINFO_END
+};
+
 GnomeUIInfo help_menu[] = {
   GNOMEUIINFO_MENU_ABOUT_ITEM   (about_cb,   NULL),
   GNOMEUIINFO_END
@@ -41,6 +64,7 @@ GnomeUIInfo help_menu[] = {
 
 GnomeUIInfo main_menu[] = {
   GNOMEUIINFO_MENU_FILE_TREE    (file_menu),
+  GNOMEUIINFO_MENU_EDIT_TREE    (edit_menu),
   GNOMEUIINFO_MENU_HELP_TREE    (help_menu),
   GNOMEUIINFO_END
 };
@@ -168,30 +192,6 @@ about_cb (GtkWidget *widget)
 }
 
 /****************** Edit Menu ***************************************/
-
-static void remove_cb     (GtkWidget *widget, gpointer data);
-static void edit_cb       (GtkWidget *widget, gpointer data);
-static void properties_cb (GtkWidget *widget, gpointer data);
-
-GnomeUIInfo edit_menu[] = {
-  GNOMEUIINFO_ITEM_STOCK (N_("New color"), NULL,
-			  NULL, GNOME_STOCK_PIXMAP_ADD),
-  GNOMEUIINFO_ITEM_STOCK (N_("Remove selected colors"), NULL, 
-			  remove_cb, GNOME_STOCK_PIXMAP_REMOVE),
-  GNOMEUIINFO_ITEM_NONE (N_("Edit selected color..."), NULL, edit_cb),
-  
-  GNOMEUIINFO_SEPARATOR,
-
-  GNOMEUIINFO_MENU_PROPERTIES_ITEM (properties_cb, NULL),
-			 
-			     
-  GNOMEUIINFO_END
-};
-
-GnomeUIInfo mdi_menu[] = {
-  GNOMEUIINFO_MENU_EDIT_TREE    (edit_menu),
-  GNOMEUIINFO_END
-};
 
 static void 
 remove_cb (GtkWidget *widget, gpointer data)

@@ -9,3 +9,4 @@ glade_DATA = 	mdi-color-generic-properties.glade		\
 
 EXTRA_DIST = $(glade_DATA)
 
+CLEANFILES = *.bak

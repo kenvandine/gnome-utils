@@ -104,7 +104,7 @@ mdi_color_file_load (MDIColorFile *mcf)
       return FALSE;
 
     mdi_color_generic_append_new (MDI_COLOR_GENERIC (mcf), 
-				  r, g, b, name, NULL);
+				  r, g, b, name);
   }
 
   mdi_color_generic_thaw (MDI_COLOR_GENERIC (mcf));

@@ -20,6 +20,8 @@ gcolorsel_SOURCES = 	gcolorsel.c			\
 			menus.h				\
 			mdi-color-generic.c		\
 			mdi-color-generic.h		\
+			mdi-color.c			\
+			mdi-color.h			\
 			mdi-color-file.c		\
 			mdi-color-file.h		\
 			mdi-color-virtual.c		\
