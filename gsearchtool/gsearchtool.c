@@ -576,8 +576,8 @@ quit_cb (GtkWidget *widget, gpointer data)
 
 
 static GnomeUIInfo file_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("Exit"), NULL, quit_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'X', GDK_CONTROL_MASK, NULL},
+	{GNOME_APP_UI_ITEM, N_("E_xit"), NULL, quit_cb, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'q', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
@@ -592,10 +592,10 @@ static GnomeUIInfo help_menu[] = {
 };
 
 static GnomeUIInfo gsearch_menu[] = {
-	{GNOME_APP_UI_SUBTREE, N_("File"), NULL, file_menu, NULL, NULL,
+	{GNOME_APP_UI_SUBTREE, N_("_File"), NULL, file_menu, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
-	{GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
+	{GNOME_APP_UI_SUBTREE, N_("_Help"), NULL, help_menu, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
 	{GNOME_APP_UI_ENDOFINFO}
