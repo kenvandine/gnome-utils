@@ -309,13 +309,10 @@ add_file_to_search_results (const gchar 	*file,
 	gchar *readable_size, *readable_date, *date;
 	gchar *utf8_base_name, *utf8_dir_name;
 	gchar *base_name, *dir_name;
-	GdkRectangle vis_rect;
 	
 	if (gtk_tree_view_get_headers_visible (GTK_TREE_VIEW(interface.tree)) == FALSE) {
 		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), TRUE);
 	}
-	
-	gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &vis_rect);
 	
 	if (pixbuf != NULL) {
 		GdkPixbuf *scaled;
@@ -364,11 +361,6 @@ add_file_to_search_results (const gchar 	*file,
 			    COLUMN_NO_FILES_FOUND, FALSE,
 			    -1);
 
-	if (vis_rect.y == 0) {
-		/* we were at the top of the tree view, so stay at the top */ 
-		gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), -1, vis_rect.y);
-	}
-	
 	gnome_vfs_file_info_unref (vfs_file_info);
 	g_object_unref (G_OBJECT(pixbuf));
 	g_free (base_name);
@@ -668,6 +660,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 				 gpointer 	data) 
 {
 	struct _SearchStruct *search_data = data;
+	GdkRectangle vis_rect;
 
 	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
 	
@@ -717,7 +710,6 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			locale = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
 			filename = g_path_get_basename (locale);
 			
-			
 			if (g_pattern_match_string (pattern, filename)) {
 				if (search_data->show_hidden_files == TRUE) {
 					if (search_data->regex_matching_enabled == FALSE) {
@@ -735,9 +727,22 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 						add_file_to_search_results (string->str, interface.model, &interface.iter);
 					}
 				}
-			}	
+			}
 			g_free (locale);
 			g_free (filename);
+			
+			gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &vis_rect);
+			
+			while (gtk_events_pending ()) {
+				if (search_data->running == MAKE_IT_QUIT) {
+					return FALSE;
+				}
+				gtk_main_iteration (); 				
+			}
+			
+			if (vis_rect.y == 0) {
+				gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), -1, 0);
+			}	
 			
 		} while (g_io_channel_get_buffer_condition(ioc) == G_IO_IN);
 		
@@ -1079,7 +1084,6 @@ create_additional_constraint_section (void)
 	
 	return vbox1;
 }
-
 
 GtkWidget *
 create_search_results_section (void)
