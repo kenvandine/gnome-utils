@@ -827,8 +827,10 @@ file_key_press_event_cb  (GtkWidget 		*widget,
 		     	  gpointer 		data)
 {		
 	if (event->keyval == GDK_space || event->keyval == GDK_Return) {
-		open_file_cb (widget, data);
-		return TRUE;
+		if (event->state != GDK_CONTROL_MASK) {
+			open_file_cb (widget, data);
+			return TRUE;
+		}
 	}
 	else if (event->keyval == GDK_Delete) {
 		move_to_trash_cb (widget, data);
