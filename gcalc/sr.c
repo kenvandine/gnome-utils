@@ -344,7 +344,7 @@ do_sr(int argc, char **argv, char *geom, int border)
 	case NoExpose:
 	    break;
         default:
-           printf("event type=%ld\n",(long)event.type); 
+           /* printf("event type=%ld\n",(long)event.type); */
 /*           XSRError("Unexpected X_Event"); */
 
         }  /* end of switch */

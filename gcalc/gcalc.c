@@ -10,7 +10,6 @@
 #include <libgnomeui/gnome-window-icon.h>
 
 #include "gnome-calc.h"
-#include "sr.h"
 
 /* values for selection info */
 enum {
@@ -145,15 +144,6 @@ static GnomeUIInfo gcalc_menu[] = {
         GNOMEUIINFO_END
 };
 
-static gboolean analog = FALSE;
-
-struct poptOption options [] = {
-  { "analog", '\0', POPT_ARG_NONE|POPT_ARGFLAG_ONEDASH, &analog, 0,
-    N_("Run in analog (slide rule) mode"), NULL },
-  POPT_AUTOHELP
-  { NULL, 0, 0, NULL, 0}
-};
-
 static int save_session(GnomeClient        *client,
                         gint                phase,
                         GnomeRestartStyle   save_style,
@@ -194,14 +184,8 @@ main(int argc, char *argv[])
 	textdomain(GETTEXT_PACKAGE);
 
 	gnome_program_init ("gnome-calculator", VERSION, LIBGNOMEUI_MODULE,
-			argc, argv, GNOME_PARAM_POPT_TABLE, options, 
-			GNOME_PARAM_APP_DATADIR,DATADIR, NULL);
+			argc, argv, GNOME_PARAM_APP_DATADIR,DATADIR, NULL);
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-calc2.png");
-
-	if (analog) {
-		run_slide_rule ();
-		return 0;
-	}
 
         app = gnome_app_new("gnome-calculator", _("GNOME Calculator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gnome-calculator", "gnome-calculator");

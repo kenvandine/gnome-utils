@@ -51,6 +51,9 @@
 #include <libgnome/gnome-macros.h>
 
 #include "gnome-calc.h"
+#include "sr.h"
+
+#undef GNOME_CALC_DEBUG
 
 typedef void (*sighandler_t)(int);
 
@@ -157,7 +160,7 @@ gnome_calc_class_init (GnomeCalcClass *class)
 	class->result_changed = NULL;
 }
 
-#if 0 /*only used for debugging*/
+#ifdef GNOME_CALC_DEBUG 
 static void
 dump_stack(GnomeCalc *gc)
 {
@@ -1031,11 +1034,14 @@ set_pi(GtkWidget *w, gpointer data)
 }
 
 static void
-set_e(GtkWidget *w, gpointer data)
+set_e(GtkWidget *w, GdkEvent *event, gpointer data)
 {
 	GnomeCalc *gc = g_object_get_data(G_OBJECT(w), "set_data");
 
 	g_return_if_fail(gc!=NULL);
+	
+	if (event->type == GDK_3BUTTON_PRESS)
+		run_slide_rule ();
 
 	if(gc->_priv->error)
 		return;
@@ -1206,7 +1212,14 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 		gc->_priv->invert_button = w;
 		gtk_signal_connect (GTK_OBJECT (w), "toggled",
 				    GTK_SIGNAL_FUNC(invert_toggle), gc);
-	} else {
+	} 
+	else if (strcmp (but->name, "e") == 0) {
+		w = gtk_button_new_with_label (_(but->name));
+		gtk_signal_connect (GTK_OBJECT (w), "button_press_event",
+				    but->signal_func,
+				    (gpointer) but);
+	}
+	else {
 		w = gtk_button_new_with_label(_(but->name));
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",
 				   but->signal_func,
