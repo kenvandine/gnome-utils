@@ -943,7 +943,7 @@ static GnomeUIInfo edit_menu[] = {
 };
 
 static GnomeUIInfo help_menu[] = {
-	GNOMEUIINFO_HELP ("meat-grinder"),
+	GNOMEUIINFO_HELP ("archive-generator"),
 	GNOMEUIINFO_MENU_ABOUT_ITEM (about_cb, NULL),
 	GNOMEUIINFO_END
 };
