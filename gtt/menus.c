@@ -128,7 +128,6 @@ GtkWidget *
 menus_get_popup(void)
 {
 	static GtkWidget *menu = NULL;
-	GnomeUIInfo *p;
 
 	if (menu) return menu;
 

@@ -137,9 +137,10 @@ void cur_proj_set(project *proj)
 	if (cur_proj == proj) return;
 
 	cur_proj = proj;
+	start_timer();
 	log_proj(proj);
-	prop_dialog_set_project(proj);
 	menu_set_states();
+	prop_dialog_set_project(proj);
 	update_status_bar();
 	cmd = (proj) ? config_command : config_command_null;
 	if (!cmd) return;

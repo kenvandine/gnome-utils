@@ -72,6 +72,7 @@ void menu_timer_state(int);
 void start_timer(void)
 {
 	if (main_timer) return;
+	log_proj(cur_proj);
 	main_timer = gtk_timeout_add(1000, timer_func, NULL);
 }
 
@@ -80,6 +81,7 @@ void start_timer(void)
 void stop_timer(void)
 {
 	if (!main_timer) return;
+	log_proj(NULL);
 	gtk_timeout_remove(main_timer);
 	main_timer = 0;
         timer_stopped = 1;

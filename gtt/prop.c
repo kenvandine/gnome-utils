@@ -162,7 +162,6 @@ void prop_dialog(project *proj)
 	GtkWidget *w;
 	GtkBox *vbox;
 	GtkTable *table;
-	char *s1, *t;
 
 	if (!proj) return;
 	if (!dlg) {
