@@ -69,7 +69,7 @@ create_disk_box(const gchar ** fs_info, gdouble * percent_full)
 
   frame = gtk_frame_new(NULL);
   vbox = gtk_vbox_new(FALSE, GNOME_PAD);
-  gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD_SMALL);
+  gtk_container_set_border_width(GTK_CONTAINER(vbox), GNOME_PAD_SMALL);
   gtk_container_add(GTK_CONTAINER(frame), vbox);
 
   if (fs_info[fs_description]) {
