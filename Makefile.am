@@ -26,7 +26,8 @@ always_built_SUBDIRS = \
 	po 		\
 	logview 	\
 	gsearchtool	\
-	gdictsrc
+	gdictsrc	\
+	gnome-screenshot
 
 SUBDIRS = \
 	$(always_built_SUBDIRS)	\

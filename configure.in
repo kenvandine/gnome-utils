@@ -48,6 +48,16 @@ PKG_CHECK_MODULES(LIBGLADE, libglade-2.0 >= $LIBGLADE_REQUIRED)
 AC_SUBST(LIBGLADE_CFLAGS)
 AC_SUBST(LIBGLADE_LIBS)
 
+dnl *****************************************
+dnl screenshot modules
+dnl *****************************************
+AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
+AC_SUBST(XSHAPE_LIBS)
+
+PKG_CHECK_MODULES(SCREENSHOT, gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libglade-2.0 >= $LIBGLADE_REQUIRED)
+AC_SUBST(SCREENSHOT_CFLAGS)
+AC_SUBST(SCREENSHOT_LIBS)
+
 dnl ****************************************
 dnl HAL for floppy detection in gfloppy
 dnl ****************************************
@@ -372,6 +382,7 @@ gfloppy/doc/Makefile
 gfloppy/doc/C/Makefile
 gfloppy/doc/ja/Makefile
 gfloppy/src/Makefile
+gnome-screenshot/Makefile
 ])
 
 dnl <= Configuration summary =>
