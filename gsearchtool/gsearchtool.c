@@ -199,7 +199,7 @@ kill_after_nth_nl (GString *str, int n)
 }
 
 static void
-really_run_command(char *cmd, RunLevel *running)
+really_run_command(char *cmd, char sepchar, RunLevel *running)
 {
 	static gboolean lock = FALSE;
 	int idle;
@@ -262,7 +262,7 @@ really_run_command(char *cmd, RunLevel *running)
 	while (*running == RUNNING) {
 		n = read (fd[0], ret, PIPE_READ_BUFFER);
 		for (i = 0; i < n; i++) {
-			if(ret[i] == '\0') {
+			if(ret[i] == sepchar) {
 				outdlg_additem (string->str);
 				g_string_assign (string, "");
 			} else {
@@ -299,7 +299,7 @@ really_run_command(char *cmd, RunLevel *running)
 	/* now we got it all ... so finish reading from the pipe */
 	while ((n = read (fd[0], ret, PIPE_READ_BUFFER)) > 0) {
 		for (i = 0; i < n; i++) {
-			if (ret[i] == '\0') {
+			if (ret[i] == sepchar) {
 				outdlg_additem (string->str);
 				g_string_assign (string, "");
 			} else {
@@ -378,7 +378,7 @@ run_command(GtkWidget *w, gpointer data)
 	cmd = makecmd(start_dir);
 	g_free(start_dir);
 
-	really_run_command(cmd, &find_running);
+	really_run_command(cmd, '\0', &find_running);
 	g_free(cmd);
 
 	gtk_widget_set_sensitive(buttons[0], FALSE);
@@ -709,11 +709,18 @@ run_locate_command(GtkWidget *w, gpointer data)
 
 	g_free(locate_string);
 
-	really_run_command(cmd, &locate_running);
+	really_run_command(cmd, '\n', &locate_running);
 	g_free(cmd);
 
 	gtk_widget_set_sensitive(buttons[0], FALSE);
 	gtk_widget_set_sensitive(buttons[1], TRUE);
+}
+
+static void
+locate_activate (GtkWidget *entry, gpointer data)
+{
+	GtkWidget **buttons = data;
+	run_locate_command (buttons[1], buttons);
 }
 
 static GtkWidget *
@@ -739,6 +746,9 @@ create_locate_page(void)
 
 	locate_entry = gtk_entry_new();
 	gtk_box_pack_start(GTK_BOX(hbox), locate_entry, TRUE, TRUE, 0);
+	gtk_signal_connect (GTK_OBJECT (locate_entry), "activate",
+			    GTK_SIGNAL_FUNC (locate_activate),
+			    buttons);
 
 	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_end(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
