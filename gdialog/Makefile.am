@@ -1,3 +1,5 @@
+SUBDIRS = doc
+
 bin_PROGRAMS = gdialog
 
 gdialog_SOURCES =	\
