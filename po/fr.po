@@ -1,15 +1,15 @@
 # gnome-utils fr.po
-# Copyright (C) 1998,1999,2000 Free Software Foundation, Inc.
-# Vincent Renardias <vincent@ldsol.com>, 1998, 1999, 2000.
+# Copyright (C) 1998-200 Free Software Foundation, Inc.
+# Vincent Renardias <vincent@ldsol.com>, 1998-2000.
 # Thibaut Cousin <cousin@clermont.in2p3.fr>, 1999.
-# Christophe Merlet (RedFox) <christophe@merlet.net>, 2000.
+# Christophe Merlet (RedFox) <christophe@merlet.net>, 2000-2001.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.2.1\n"
-"POT-Creation-Date: 2000-12-25 19:14+0100\n"
-"PO-Revision-Date: 2000-10-20 16:43+0100\n"
-"Last-Translator: Christophe Merlet (RedFox) <christophe@merlet.net>\n"
+"POT-Creation-Date: 2001-01-10 15:27+0100\n"
+"PO-Revision-Date: 2001-01-10 16:43+0100\n"
+"Last-Translator: Christophe Merlet (RedFox) <redfox@eikonex.org>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -29,33 +29,29 @@ msgstr "Calculatrice GNOME"
 
 #: gcharmap/src/asciiselect.c:117
 msgid "Select ASCII Character"
-msgstr ""
+msgstr "Sélectionnez un caractère ASCII"
 
 #: gcharmap/src/asciiselect.c:118
 msgid "Insert"
 msgstr "Insérer"
 
 #: gcharmap/src/asciiselect.c:124
-#, fuzzy
 msgid "ASCII code:"
-msgstr "%s : code ASCII %d"
+msgstr "Code ASCII :"
 
 #: gcharmap/src/asciiselect.c:134
-#, fuzzy
 msgid "Character:"
-msgstr "Mappage caractère GNOME"
+msgstr "Caractère :"
 
 #: gcharmap/src/interface.c:130
 msgid "Gnome Character Map"
 msgstr "Mappage caractère GNOME"
 
 #: gcharmap/src/interface.c:159
-#, fuzzy
 msgid "Action Toolbar"
-msgstr "Barre d'outils"
+msgstr "Barre d'outils d'action"
 
 #: gcharmap/src/interface.c:176
-#, fuzzy
 msgid "Text to copy:"
 msgstr "Texte à copier :"
 
@@ -64,7 +60,7 @@ msgstr "Texte à copier :"
 msgid "Exit"
 msgstr "Quitter"
 
-#: gcharmap/src/interface.c:221 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:221 gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Copier"
 
@@ -74,10 +70,221 @@ msgstr "Copier"
 msgid "About"
 msgstr "À propos"
 
-#: gcharmap/src/interface.c:227 gstripchart/gstripchart.c:1780
-#: gstripchart/gstripchart.c:2067
+#: gcharmap/src/interface.c:227 gdictsrc/gdict-applet.c:286
+#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:2067
 msgid "Help"
 msgstr "Aide"
+
+#. Could not look up search strategies, so just display a
+#. * label; FIXME: Memory leak
+#.
+#: gdictsrc/dict.c:623 gdictsrc/gdict-pref-dialog.c:498
+#: gdictsrc/gdict-pref-dialog.c:542 gdictsrc/gdict-speller.c:393
+msgid "Cannot connect to server"
+msgstr "Ne peut se connecter au serveur"
+
+#: gdictsrc/gdict-about.c:40
+msgid ""
+"Client for MIT dictionary server.\n"
+"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+msgstr ""
+"Client pour le serveur de dictionnaire du MIT.\n"
+"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+
+#: gdictsrc/gdict-app.c:117
+msgid "Spell-checking..."
+msgstr "Vérification orthographique..."
+
+#: gdictsrc/gdict-app.c:125
+msgid "Spell check done"
+msgstr "Vérification orthographique effectuée"
+
+#: gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
+msgid "No matches found"
+msgstr "Aucune correspondances trouvées"
+
+#: gdictsrc/gdict-app.c:250
+msgid "Looking up word..."
+msgstr "Recherche du mot..."
+
+#: gdictsrc/gdict-app.c:258
+msgid "Lookup done"
+msgstr "Recherche effectuée"
+
+#: gdictsrc/gdict-app.c:278
+msgid "String not found"
+msgstr "Chaîne non trouvée"
+
+#: gdictsrc/gdict-app.c:381
+msgid "Find:"
+msgstr "Rechercher :"
+
+#: gdictsrc/gdict-app.c:414
+msgid ""
+"Unable to perform requested operation, either because the server\n"
+"you are using is down or because you are not connected to the\n"
+"Internet. If you are not already connected to the Internet, please\n"
+"do so and try again."
+msgstr ""
+"Incapable d'effectuer l'opération demandée, soit parce que le serveur\n"
+"que vous utilisez n'est pas disponible, soit parceque vous n'etes pas\n"
+"connecté sur Internet. Si vous n'etes pas déjà connecté sur Internet,\n"
+"veuillez vous connecter et recommencer."
+
+#: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
+#: gdictsrc/gdict-applet.c:315
+msgid "Lookup"
+msgstr "Recherche"
+
+#: gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
+msgid "Lookup word in dictionary"
+msgstr "Recherche du mot dans le dictionnaire"
+
+#: gdictsrc/gdict-app.c:456 gdictsrc/gdict-app.c:513
+msgid "Spell"
+msgstr "Orthographe"
+
+#: gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
+msgid "Check word spelling"
+msgstr "Vérifier l'orthographe du mot"
+
+#: gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Couper"
+
+#: gdictsrc/gdict-app.c:518
+msgid "Cut to Clipboard"
+msgstr "Couper vers le presse-papiers"
+
+#: gdictsrc/gdict-app.c:521
+msgid "Copy to Clipboard"
+msgstr "Copier vers le presse-papiers"
+
+#: gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Coller"
+
+#: gdictsrc/gdict-app.c:524
+msgid "Paste Clipboard Contents"
+msgstr "Coller le contenu du presse-papiers"
+
+#: gdictsrc/gdict-app.c:527
+msgid "Settings"
+msgstr "Paramètres"
+
+#: gdictsrc/gdict-app.c:528
+msgid "Server to use, default search strategy, fonts"
+msgstr "Serveur à utiliser, statégie de recherche par défaut, polices"
+
+#: gdictsrc/gdict-app.c:589
+msgid "Word definition"
+msgstr "Définition du mot"
+
+#: gdictsrc/gdict-applet.c:282
+msgid "About..."
+msgstr "À propos..."
+
+#: gdictsrc/gdict-applet.c:291
+msgid "Preferences..."
+msgstr "Préférences..."
+
+#: gdictsrc/gdict-applet.c:295
+msgid "Show/Hide Definition Window..."
+msgstr "Afficher/Cacher la fenêtre de définition..."
+
+#: gdictsrc/gdict-applet.c:299
+msgid "Spell Check..."
+msgstr "Vérification orthographique..."
+
+#: gdictsrc/gdict-applet.c:311
+msgid "Cannot create applet!\n"
+msgstr "Ne peut créer l'applet !\n"
+
+#: gdictsrc/gdict-pref-dialog.c:38
+msgid "Headword:"
+msgstr "Racine :"
+
+#: gdictsrc/gdict-pref-dialog.c:39
+msgid "Pronunciation:"
+msgstr "Prononciation :"
+
+#: gdictsrc/gdict-pref-dialog.c:40
+msgid "Etymology:"
+msgstr "Étymologie :"
+
+#: gdictsrc/gdict-pref-dialog.c:41
+msgid "Example:"
+msgstr "Exemple :"
+
+#: gdictsrc/gdict-pref-dialog.c:42
+msgid "Main body:"
+msgstr "Corps principal :"
+
+#: gdictsrc/gdict-pref-dialog.c:43
+msgid "Sub-number:"
+msgstr "Sous-nombre :"
+
+#: gdictsrc/gdict-pref-dialog.c:44
+msgid "Part of speech:"
+msgstr "Partie de l'articulation :"
+
+#: gdictsrc/gdict-pref-dialog.c:45
+msgid "Cross-reference:"
+msgstr "Référence croisée :"
+
+#. Fixme these should be stock buttons
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
+#: mini-utils/gshutdown/gshutdown.c:314
+msgid "Preferences"
+msgstr "Préférences"
+
+#: gdictsrc/gdict-pref-dialog.c:147
+msgid "Smart lookup"
+msgstr "Recherche intelligente"
+
+#: gdictsrc/gdict-pref-dialog.c:156
+msgid "Server:"
+msgstr "Serveur :"
+
+#: gdictsrc/gdict-pref-dialog.c:161
+msgid "Port:"
+msgstr "Port :"
+
+#: gdictsrc/gdict-pref-dialog.c:171
+msgid "Database:"
+msgstr "Base de données :"
+
+#: gdictsrc/gdict-pref-dialog.c:178
+msgid "Default strategy:"
+msgstr "Stratégie par défaut :"
+
+#: gdictsrc/gdict-pref-dialog.c:185
+msgid "Server"
+msgstr "Serveur"
+
+#: gdictsrc/gdict-pref-dialog.c:235
+msgid "Fonts"
+msgstr "Polices"
+
+#: gdictsrc/gdict-pref-dialog.c:251
+msgid "Display handle bar"
+msgstr "Afficher la poignée de barre"
+
+#: gdictsrc/gdict-pref-dialog.c:255
+msgid ""
+"You have to restart GDict for these\n"
+"settings to become active."
+msgstr ""
+"Vous devez redémarrer GDict afin que\n"
+"vos changements deviennent actifs."
+
+#: gdictsrc/gdict-pref-dialog.c:262
+msgid "Applet"
+msgstr "Applet"
+
+#: gdictsrc/gdict-pref-dialog.c:581
+msgid "The server you specified could not be found."
+msgstr "Le serveur que vous avez spécifié ne peut être trouvé."
 
 #: gdiskfree/gdiskfree_app.c:53 gdiskfree/gdiskfree_menus.c:108
 msgid "GDiskFree"
@@ -953,11 +1160,6 @@ msgstr "Fin de l'entrée:"
 msgid "Timeout in secs:"
 msgstr "Délai avant expiration en secondes :"
 
-#. Fixme these should be stock buttons
-#: gtt/options.c:518 mini-utils/gshutdown/gshutdown.c:314
-msgid "Preferences"
-msgstr "Préférences"
-
 #: gtt/options.c:524
 msgid "Misc"
 msgstr "Divers"
@@ -1027,10 +1229,6 @@ msgstr "Enregistrer"
 msgid "Save Configuration File"
 msgstr "Enregistrer le fichier de configuration"
 
-#: gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Couper"
-
 #: gtt/toolbar.c:160
 msgid "Cut Selected Project"
 msgstr "Couper le projet sélectionné"
@@ -1038,10 +1236,6 @@ msgstr "Couper le projet sélectionné"
 #: gtt/toolbar.c:164
 msgid "Copy Selected Project"
 msgstr "Copier le projet sélectionné"
-
-#: gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Coller"
 
 #: gtt/toolbar.c:168
 msgid "Paste Project"
@@ -2999,543 +3193,395 @@ msgstr "Seul le super-utilisateur (root) peut utiliser cet outil"
 msgid "You appear to have no IDE drives"
 msgstr "Il semble que vous n'ayez pas de disque IDE"
 
-msgid "Insert character"
-msgstr "Insère un caractère"
+#~ msgid "Insert character"
+#~ msgstr "Insère un caractère"
 
-msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+#~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
-msgid "Insert character..."
-msgstr "Insère un caractère..."
+#~ msgid "Insert character..."
+#~ msgstr "Insère un caractère..."
 
-msgid "_Toolbar"
-msgstr "_Barre d'outils"
+#~ msgid "_Toolbar"
+#~ msgstr "_Barre d'outils"
 
-msgid "View or hide the toolbar"
-msgstr "Afficher ou cacher la barre d'outils"
+#~ msgid "View or hide the toolbar"
+#~ msgstr "Afficher ou cacher la barre d'outils"
 
-msgid "_Statusbar"
-msgstr "Barre d'état"
+#~ msgid "_Statusbar"
+#~ msgstr "Barre d'état"
 
-msgid "View or hide the statusbar"
-msgstr "Afficher ou cacher la barre d'état"
+#~ msgid "View or hide the statusbar"
+#~ msgstr "Afficher ou cacher la barre d'état"
 
-msgid "Cut the text to clipboard"
-msgstr "Coupe le texte vers le persse-papiers"
+#~ msgid "Cut the text to clipboard"
+#~ msgstr "Coupe le texte vers le persse-papiers"
 
-msgid "Copy the text to clipboard."
-msgstr "Copie le texte vers le presse-papiers"
+#~ msgid "Copy the text to clipboard."
+#~ msgstr "Copie le texte vers le presse-papiers"
 
-msgid "Paste the text from clipboard."
-msgstr "Colle le texte du presse-papiers"
+#~ msgid "Paste the text from clipboard."
+#~ msgstr "Colle le texte du presse-papiers"
 
-msgid "Exit the application"
-msgstr "Quitte l'application"
+#~ msgid "Exit the application"
+#~ msgstr "Quitte l'application"
 
-msgid "Text cut to clipboard..."
-msgstr "Texte coupé dans le presse-papiers..."
+#~ msgid "Text cut to clipboard..."
+#~ msgstr "Texte coupé dans le presse-papiers..."
 
-msgid "Text copied to clipboard..."
-msgstr "Texte copié dans le presse-papiers..."
+#~ msgid "Text copied to clipboard..."
+#~ msgstr "Texte copié dans le presse-papiers..."
 
-msgid "Text pasted from clipboard..."
-msgstr "Texte collé du presse-papiers..."
+#~ msgid "Text pasted from clipboard..."
+#~ msgstr "Texte collé du presse-papiers..."
 
-msgid ""
-"The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
-"contain bad English.\n"
-"http://users.telekabel.nl/hongli/"
-msgstr ""
-"L'équivalent GNOME au Mappage caractère de Microsoft Windows. Attention : "
-"peut contenir du mauvais Anglais.\n"
-"http://users.telekabel.nl/hongli/"
+#~ msgid ""
+#~ "The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
+#~ "contain bad English.\n"
+#~ "http://users.telekabel.nl/hongli/"
+#~ msgstr ""
+#~ "L'équivalent GNOME au Mappage caractère de Microsoft Windows. Attention : "
+#~ "peut contenir du mauvais Anglais.\n"
+#~ "http://users.telekabel.nl/hongli/"
 
-msgid "Cannot connect to server"
-msgstr "Ne peut se connecter au serveur"
+#~ msgid "This sets the overall application settings."
+#~ msgstr "Ceci définit les paramètres globaux de l'application."
 
-msgid ""
-"Client for MIT dictionary server.\n"
-"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
-msgstr ""
-"Client pour le serveur de dictionnaire du MIT.\n"
-"Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
+#~ msgid "About Gnome Find..."
+#~ msgstr "À propos de Gnome Find..."
 
-msgid "Spell-checking..."
-msgstr "Vérification orthographique..."
+#~ msgid "_About"
+#~ msgstr "À _propos"
 
-msgid "Spell check done"
-msgstr "Vérification orthographique effectuée"
+#~ msgid "Info about the striphart program"
+#~ msgstr "Informations sur le programme gStripchart"
 
-msgid "No matches found"
-msgstr "Aucune correspondances trouvées"
+#~ msgid "_File"
+#~ msgstr "_Fichier"
 
-msgid "Looking up word..."
-msgstr "Recherche du mot..."
+#~ msgid "_Help"
+#~ msgstr "_Aide"
 
-msgid "Lookup done"
-msgstr "Recherche effectuée"
+#~ msgid "label2"
+#~ msgstr "label2"
 
-msgid "String not found"
-msgstr "Chaine non trouvée"
+#~ msgid "label13"
+#~ msgstr "label13"
 
-msgid "Find:"
-msgstr "Rechercher :"
+#~ msgid "label14"
+#~ msgstr "label14"
 
-msgid ""
-"Unable to perform requested operation, either because the server\n"
-"you are using is down or because you are not connected to the\n"
-"Internet. If you are not already connected to the Internet, please\n"
-"do so and try again."
-msgstr ""
-"Incapable d'effectuer l'opération demandée, soit parce que le serveur\n"
-"que vous utilisez n'est pas disponible, soit parceque vous n'etes pas\n"
-"connecté sur Internet. Si vous n'etes pas déjà connecté sur Internet,\n"
-"veuillez vous connecter et recommencer."
+#~ msgid "label15"
+#~ msgstr "label15"
 
-msgid "Lookup"
-msgstr "Recherche"
+#~ msgid "label16"
+#~ msgstr "label16"
 
-msgid "Lookup word in dictionary"
-msgstr "Recherche du mot dans le dictionnaire"
+#~ msgid "label4"
+#~ msgstr "label4"
 
-msgid "Spell"
-msgstr "Orthographe"
-
-msgid "Check word spelling"
-msgstr "Vérifier l'orthographe du mot"
-
-msgid "Cut to Clipboard"
-msgstr "Couper vers le presse-papiers"
-
-msgid "Copy to Clipboard"
-msgstr "Copier vers le presse-papiers"
-
-msgid "Paste Clipboard Contents"
-msgstr "Coller le contenu du presse-papiers"
-
-msgid "Settings"
-msgstr "Paramètres"
-
-msgid "Server to use, default search strategy, fonts"
-msgstr "Serveur à utiliser, statégie de recherche par défaut, polices"
-
-msgid "Word definition"
-msgstr "Définition du mot"
-
-msgid "Cannot create applet!\n"
-msgstr "Ne peut créer l'applet !\n"
-
-msgid "About..."
-msgstr "À propos..."
-
-msgid "Preferences..."
-msgstr "Préférences..."
-
-msgid "Show/Hide Definition Window..."
-msgstr "Afficher/Cacher la fenêtre de définition..."
-
-msgid "Spell Check..."
-msgstr "Vérification orthographique..."
-
-msgid "Headword:"
-msgstr "Racine :"
-
-msgid "Pronunciation:"
-msgstr "Prononciation :"
-
-msgid "Etymology:"
-msgstr "Étymologie :"
-
-msgid "Example:"
-msgstr "Exemple :"
-
-msgid "Main body:"
-msgstr "Corps principal :"
-
-msgid "Sub-number:"
-msgstr "Sous-nombre :"
-
-msgid "Part of speech:"
-msgstr "Partie de l'articulation :"
-
-msgid "Cross-reference:"
-msgstr "Référence croisée :"
-
-msgid "Smart lookup"
-msgstr "Recherche intelligente"
-
-msgid "Server:"
-msgstr "Serveur :"
-
-msgid "Port:"
-msgstr "Port :"
-
-msgid "Database:"
-msgstr "Base de données :"
-
-msgid "Default strategy:"
-msgstr "Stratégie par défaut :"
-
-msgid "Server"
-msgstr "Serveur"
-
-msgid "Fonts"
-msgstr "Polices"
-
-msgid "Display handle bar"
-msgstr "Afficher la poignée de barre"
-
-msgid ""
-"You have to restart GDict for these\n"
-"settings to become active."
-msgstr ""
-"Vous devez redémarrer GDict afin que\n"
-"vos changements deviennent actifs."
-
-msgid "Applet"
-msgstr "Applet"
-
-msgid "The server you specified could not be found."
-msgstr "Le serveur que vous avez spécifié ne peut être trouvé."
-
-msgid "This sets the overall application settings."
-msgstr "Ceci définit les paramètres globaux de l'application."
-
-msgid "About Gnome Find..."
-msgstr "À propos de Gnome Find..."
-
-msgid "_About"
-msgstr "À _propos"
-
-msgid "Info about the striphart program"
-msgstr "Informations sur le programme gStripchart"
-
-msgid "_File"
-msgstr "_Fichier"
-
-msgid "_Help"
-msgstr "_Aide"
-
-msgid "label2"
-msgstr "label2"
-
-msgid "label13"
-msgstr "label13"
-
-msgid "label14"
-msgstr "label14"
-
-msgid "label15"
-msgstr "label15"
-
-msgid "label16"
-msgstr "label16"
-
-msgid "label4"
-msgstr "label4"
-
-msgid "Please enter the name of the new project:"
-msgstr "Entrez le nom du nouveau projet :"
+#~ msgid "Please enter the name of the new project:"
+#~ msgstr "Entrez le nom du nouveau projet :"
 
 #, fuzzy
-msgid "F_ilter"
-msgstr "_Fichier"
+#~ msgid "F_ilter"
+#~ msgstr "_Fichier"
 
-msgid "16-bit"
-msgstr "16-bit"
-
-#, fuzzy
-msgid "GOMETRY"
-msgstr "GÉOMÉTRIE"
+#~ msgid "16-bit"
+#~ msgstr "16-bit"
 
 #, fuzzy
-msgid "Delayed"
-msgstr "Recharger"
+#~ msgid "GOMETRY"
+#~ msgstr "GÉOMÉTRIE"
 
 #, fuzzy
-msgid "Simple"
-msgstr "Taille"
+#~ msgid "Delayed"
+#~ msgstr "Recharger"
 
 #, fuzzy
-msgid "Format"
-msgstr "Flottant"
+#~ msgid "Simple"
+#~ msgstr "Taille"
 
 #, fuzzy
-msgid "Search in"
-msgstr "Recherche en cours..."
+#~ msgid "Format"
+#~ msgstr "Flottant"
 
 #, fuzzy
-msgid "Add to favorites"
-msgstr "Ajouter des exemples par défaut"
+#~ msgid "Search in"
+#~ msgstr "Recherche en cours..."
 
 #, fuzzy
-msgid "Rename"
-msgstr "Nom du fichier"
-
-msgid "Parsing Colors"
-msgstr "Analyse des couleurs"
-
-msgid "Error, cannot find the file 'rgb.txt' on your system!"
-msgstr ""
-"Erreur : impossible de trouver le fichier 'rgb.txt' dans votre système !"
+#~ msgid "Add to favorites"
+#~ msgstr "Ajouter des exemples par défaut"
 
 #, fuzzy
-msgid "No Name"
-msgstr "Nom"
+#~ msgid "Rename"
+#~ msgstr "Nom du fichier"
 
-msgid ""
-"Failed to execute command:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Échec de l'exécution de la commande :\n"
-"%s\n"
-"%s"
+#~ msgid "Parsing Colors"
+#~ msgstr "Analyse des couleurs"
 
-msgid "Run"
-msgstr "Exécuter"
+#~ msgid "Error, cannot find the file 'rgb.txt' on your system!"
+#~ msgstr ""
+#~ "Erreur : impossible de trouver le fichier 'rgb.txt' dans votre système !"
 
-msgid "Select a program to run"
-msgstr "Choisissez un programme à exécuter"
+#, fuzzy
+#~ msgid "No Name"
+#~ msgstr "Nom"
 
-msgid ""
-"A quick hack to show the amount of space free on mounted file systems "
-"uitilizing a dial."
-msgstr ""
-"Une bidouille rapide pour afficher l'espace libre sur les systèmes de "
-"fichiers montés en utilisant un cadran."
+#~ msgid ""
+#~ "Failed to execute command:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Échec de l'exécution de la commande :\n"
+#~ "%s\n"
+#~ "%s"
 
-msgid "GHex: Converter"
-msgstr "GHex : convertisseur"
+#~ msgid "Run"
+#~ msgstr "Exécuter"
 
-msgid "Binary"
-msgstr "Binaire"
+#~ msgid "Select a program to run"
+#~ msgstr "Choisissez un programme à exécuter"
 
-msgid "Decimal"
-msgstr "Décimal"
+#~ msgid ""
+#~ "A quick hack to show the amount of space free on mounted file systems "
+#~ "uitilizing a dial."
+#~ msgstr ""
+#~ "Une bidouille rapide pour afficher l'espace libre sur les systèmes de "
+#~ "fichiers montés en utilisant un cadran."
 
-msgid "Hex"
-msgstr "Hexa"
+#~ msgid "GHex: Converter"
+#~ msgstr "GHex : convertisseur"
 
-msgid "ASCII"
-msgstr "ASCII"
+#~ msgid "Binary"
+#~ msgstr "Binaire"
 
-msgid "Get cursor value"
-msgstr "Prendre la valeur sous le curseur"
+#~ msgid "Decimal"
+#~ msgstr "Décimal"
 
-msgid "ERROR"
-msgstr "ERREUR"
+#~ msgid "Hex"
+#~ msgstr "Hexa"
 
-msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): rechercher des données"
+#~ msgid "ASCII"
+#~ msgstr "ASCII"
 
-msgid "Search for %s"
-msgstr "Rechercher %s"
+#~ msgid "Get cursor value"
+#~ msgstr "Prendre la valeur sous le curseur"
 
-msgid "Find Previous"
-msgstr "Rechercher le précédent"
+#~ msgid "ERROR"
+#~ msgstr "ERREUR"
 
-msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): rechercher & remplacer des données"
+#~ msgid "GHex (%s): Find Data"
+#~ msgstr "GHex (%s): rechercher des données"
 
-msgid "Replace %s"
-msgstr "Remplacer %s"
+#~ msgid "Search for %s"
+#~ msgstr "Rechercher %s"
 
-msgid "Find next"
-msgstr "Rechercher le suivant"
+#~ msgid "Find Previous"
+#~ msgstr "Rechercher le précédent"
 
-msgid "Replace"
-msgstr "Remplacer"
+#~ msgid "GHex (%s): Find & Replace Data"
+#~ msgstr "GHex (%s): rechercher & remplacer des données"
 
-msgid "Replace All"
-msgstr "Remplacer tout"
+#~ msgid "Replace %s"
+#~ msgstr "Remplacer %s"
 
-msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): aller à l'octet"
+#~ msgid "Find next"
+#~ msgstr "Rechercher le suivant"
 
-msgid "There is no active buffer to search!"
-msgstr "Il n'y a pas de tampon actif dans lequel chercher !"
+#~ msgid "Replace"
+#~ msgstr "Remplacer"
 
-msgid "There seems to be no string to search for!"
-msgstr "Il semble qu'il n'y ait pas de chaîne à rechercher !"
+#~ msgid "Replace All"
+#~ msgstr "Remplacer tout"
 
-msgid "End Of File reached"
-msgstr "Fin du fichier atteinte"
+#~ msgid "GHex (%s): Jump To Byte"
+#~ msgstr "GHex (%s): aller à l'octet"
 
-msgid "Beginning Of File reached"
-msgstr "Début du fichier atteint"
+#~ msgid "There is no active buffer to search!"
+#~ msgstr "Il n'y a pas de tampon actif dans lequel chercher !"
 
-msgid "There is no active buffer to move the cursor in!"
-msgstr "Il n'y a pas de tampon actif pour y déplacer le curseur !"
+#~ msgid "There seems to be no string to search for!"
+#~ msgstr "Il semble qu'il n'y ait pas de chaîne à rechercher !"
 
-msgid "No offset has been specified!"
-msgstr "Le déplacement n'a pas été spécifié !"
+#~ msgid "End Of File reached"
+#~ msgstr "Fin du fichier atteinte"
 
-msgid "The offset must be a positive integer value!"
-msgstr "Le déplacement doit être une valeur positive et entière !"
+#~ msgid "Beginning Of File reached"
+#~ msgstr "Début du fichier atteint"
 
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "Impossible de positionner le curseur après la fin du fichier !"
+#~ msgid "There is no active buffer to move the cursor in!"
+#~ msgstr "Il n'y a pas de tampon actif pour y déplacer le curseur !"
 
-msgid "There is no active buffer to replace data in!"
-msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données !"
+#~ msgid "No offset has been specified!"
+#~ msgstr "Le déplacement n'a pas été spécifié !"
 
-msgid "Strange find or replace string!"
-msgstr "Chaîne recherchée bizarre !"
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "Le déplacement doit être une valeur positive et entière !"
 
-msgid "Both strings must be of the same length!"
-msgstr "Les deux chaînes doivent avoir la même longueur !"
+#~ msgid "Can not position cursor beyond the End Of File!"
+#~ msgstr "Impossible de positionner le curseur après la fin du fichier !"
 
-msgid "End Of File reached!"
-msgstr "Fin du fichier atteinte !"
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données !"
 
-msgid "Replaced %d occurencies."
-msgstr "%d occurences remplacées."
+#~ msgid "Strange find or replace string!"
+#~ msgstr "Chaîne recherchée bizarre !"
 
-msgid "_Bytes"
-msgstr "_Octets"
+#~ msgid "Both strings must be of the same length!"
+#~ msgstr "Les deux chaînes doivent avoir la même longueur !"
 
-msgid "Group data by 8 bits"
-msgstr "Grouper les données par 8 bits"
+#~ msgid "End Of File reached!"
+#~ msgstr "Fin du fichier atteinte !"
 
-msgid "_Words"
-msgstr "_Mots"
+#~ msgid "Replaced %d occurencies."
+#~ msgstr "%d occurences remplacées."
 
-msgid "Group data by 16 bits"
-msgstr "Grouper les données par 16 bits"
+#~ msgid "_Bytes"
+#~ msgstr "_Octets"
 
-msgid "_Longwords"
-msgstr "Mots _longs"
+#~ msgid "Group data by 8 bits"
+#~ msgstr "Grouper les données par 8 bits"
 
-msgid "Group data by 32 bits"
-msgstr "Grouper les données par 32 bits"
+#~ msgid "_Words"
+#~ msgstr "_Mots"
 
-msgid "_Goto Byte..."
-msgstr "Aller à l'_octet..."
+#~ msgid "Group data by 16 bits"
+#~ msgstr "Grouper les données par 16 bits"
 
-msgid "Jump to a certain position"
-msgstr "Aller à la position..."
+#~ msgid "_Longwords"
+#~ msgstr "Mots _longs"
 
-msgid "_Group Data As"
-msgstr "_Grouper les données par"
+#~ msgid "Group data by 32 bits"
+#~ msgstr "Grouper les données par 32 bits"
 
-msgid "_Add view"
-msgstr "_Ajouter une vue"
+#~ msgid "_Goto Byte..."
+#~ msgstr "Aller à l'_octet..."
 
-msgid "Add a new view of the buffer"
-msgstr "Ajouter une vue du tampon"
+#~ msgid "Jump to a certain position"
+#~ msgstr "Aller à la position..."
 
-msgid "_Remove view"
-msgstr "Enleve_r la vue"
+#~ msgid "_Group Data As"
+#~ msgstr "_Grouper les données par"
 
-msgid ""
-"File %s has changed since last save.\n"
-"Do you want to save changes?"
-msgstr ""
-"Le document %s a été modifié depuis son dernier enregistrement.\n"
-"Voulez-vous enregistrer les changements ?"
+#~ msgid "_Add view"
+#~ msgstr "_Ajouter une vue"
 
-msgid "Offset: %s"
-msgstr "Offset: %s"
+#~ msgid "Add a new view of the buffer"
+#~ msgstr "Ajouter une vue du tampon"
 
-msgid "Notebook"
-msgstr "Carnet"
+#~ msgid "_Remove view"
+#~ msgstr "Enleve_r la vue"
 
-msgid "Toplevel"
-msgstr "1er niveau"
+#~ msgid ""
+#~ "File %s has changed since last save.\n"
+#~ "Do you want to save changes?"
+#~ msgstr ""
+#~ "Le document %s a été modifié depuis son dernier enregistrement.\n"
+#~ "Voulez-vous enregistrer les changements ?"
 
-msgid "Modal"
-msgstr "Modal"
+#~ msgid "Offset: %s"
+#~ msgstr "Offset: %s"
 
-msgid "Maximum number of undo levels"
-msgstr "Nombre d'étapes en arrière mémorisées"
+#~ msgid "Notebook"
+#~ msgstr "Carnet"
 
-msgid "Show cursor offset in statusbar as"
-msgstr "Afficher la position du curseur dans la barre d'état comme"
+#~ msgid "Toplevel"
+#~ msgstr "1er niveau"
 
-msgid "Hexadecimal"
-msgstr "Hexadécimal"
+#~ msgid "Modal"
+#~ msgstr "Modal"
 
-msgid "Custom"
-msgstr "Personnalisé"
+#~ msgid "Maximum number of undo levels"
+#~ msgstr "Nombre d'étapes en arrière mémorisées"
 
-msgid "Show offsets column"
-msgstr "Montrer la colonne offset"
+#~ msgid "Show cursor offset in statusbar as"
+#~ msgstr "Afficher la position du curseur dans la barre d'état comme"
 
-msgid "Editing"
-msgstr "Edition en cours"
+#~ msgid "Hexadecimal"
+#~ msgstr "Hexadécimal"
 
-msgid "Browse..."
-msgstr "Naviguer..."
+#~ msgid "Custom"
+#~ msgstr "Personnalisé"
 
-msgid "Default Group Type"
-msgstr "Type du groupe par défaut"
+#~ msgid "Show offsets column"
+#~ msgstr "Montrer la colonne offset"
 
-msgid "MDI Mode"
-msgstr "Mode MDI"
+#~ msgid "Editing"
+#~ msgstr "Edition en cours"
 
-msgid "MDI"
-msgstr "MDI"
+#~ msgid "Browse..."
+#~ msgstr "Naviguer..."
 
-msgid "Can not open desired font!"
-msgstr "Impossible d'utiliser la police spécifiée !"
+#~ msgid "Default Group Type"
+#~ msgstr "Type du groupe par défaut"
 
-msgid "Open Con_verter..."
-msgstr "Ouvrir le con_vertisseur..."
+#~ msgid "MDI Mode"
+#~ msgstr "Mode MDI"
 
-msgid "Open base conversion dialog"
-msgstr "Faire des changements de base numérique"
+#~ msgid "MDI"
+#~ msgstr "MDI"
 
-msgid "Bytes"
-msgstr "Octets"
+#~ msgid "Can not open desired font!"
+#~ msgstr "Impossible d'utiliser la police spécifiée !"
 
-msgid "Words"
-msgstr "Mots"
+#~ msgid "Open Con_verter..."
+#~ msgstr "Ouvrir le con_vertisseur..."
 
-msgid "Longwords"
-msgstr "Mots longs"
+#~ msgid "Open base conversion dialog"
+#~ msgstr "Faire des changements de base numérique"
 
-msgid "hex data"
-msgstr "données hexa"
+#~ msgid "Bytes"
+#~ msgstr "Octets"
 
-msgid "ASCII data"
-msgstr "données ASCII"
+#~ msgid "Words"
+#~ msgstr "Mots"
 
-msgid "GHex, a binary file editor"
-msgstr "GHex, un éditeur de fichiers binaires"
+#~ msgid "Longwords"
+#~ msgstr "Mots longs"
 
-msgid "Released under the terms of GNU Public License"
-msgstr "Distribué sous les termes de la Licence Publique Générale GNU"
+#~ msgid "hex data"
+#~ msgstr "données hexa"
 
-msgid "Error saving file!"
-msgstr "Erreur lors de la sauvegarde du fichier !"
+#~ msgid "ASCII data"
+#~ msgstr "données ASCII"
 
-msgid "Saved buffer to file %s"
-msgstr "Enregistrer le tampon dans le fichier %s"
+#~ msgid "GHex, a binary file editor"
+#~ msgstr "GHex, un éditeur de fichiers binaires"
 
-msgid "Select a file to save buffer as"
-msgstr "Sélectionnez un fichier où sauver le tampon"
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Distribué sous les termes de la Licence Publique Générale GNU"
 
-msgid "Really revert file %s?"
-msgstr "Vraiment revenir à la version enregistrée du fichier %s ?"
+#~ msgid "Error saving file!"
+#~ msgstr "Erreur lors de la sauvegarde du fichier !"
 
-msgid "Reverted buffer from file %s"
-msgstr "Revenir à la version enregistrée %s"
+#~ msgid "Saved buffer to file %s"
+#~ msgstr "Enregistrer le tampon dans le fichier %s"
 
-msgid "Loaded file %s"
-msgstr "Fichier %s  chargé"
+#~ msgid "Select a file to save buffer as"
+#~ msgstr "Sélectionnez un fichier où sauver le tampon"
 
-msgid "Can't open file for writing!"
-msgstr "Impossible d'ouvrir le fichier en écriture !"
+#~ msgid "Really revert file %s?"
+#~ msgstr "Vraiment revenir à la version enregistrée du fichier %s ?"
 
-msgid "Format Style:"
-msgstr "Format :"
+#~ msgid "Reverted buffer from file %s"
+#~ msgstr "Revenir à la version enregistrée %s"
 
-msgid "Color Values:"
-msgstr "Attributs de la couleur :"
+#~ msgid "Loaded file %s"
+#~ msgstr "Fichier %s  chargé"
 
-msgid "This is not yet implemented"
-msgstr "Ceci n'est pas encore implémenté"
+#~ msgid "Can't open file for writing!"
+#~ msgstr "Impossible d'ouvrir le fichier en écriture !"
 
-msgid "invalid display type: %s"
-msgstr "Type d'affichage invalide : %s"
+#~ msgid "Format Style:"
+#~ msgstr "Format :"
+
+#~ msgid "Color Values:"
+#~ msgstr "Attributs de la couleur :"
+
+#~ msgid "This is not yet implemented"
+#~ msgstr "Ceci n'est pas encore implémenté"
+
+#~ msgid "invalid display type: %s"
+#~ msgstr "Type d'affichage invalide : %s"
