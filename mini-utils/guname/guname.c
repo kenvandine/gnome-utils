@@ -781,7 +781,7 @@ static gchar* write_to_string()
 
 static const gchar * scroll_text[] = {
 #include "AUTHORS.h"
-  "Wanda the GNOME Fish"
+  "Wanda the Benevolent Fish",
 };
 
 static int nscroll_texts = sizeof (scroll_text) / sizeof (scroll_text[0]);

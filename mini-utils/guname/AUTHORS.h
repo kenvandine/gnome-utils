@@ -108,4 +108,3 @@
 "Tristan Tarrant",
 "Tuomas Kuosmanen",
 "Will LaShell",
-"Wanda the Benevolent Fish",
