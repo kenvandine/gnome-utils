@@ -33,8 +33,7 @@ dist-hook:
 	mkdir $(distdir)/gtt
 	-cp $(srcdir)/gtt/*.html gtt/*.css $(distdir)/gtt
 	-cp $(srcdir)/*.html $(distdir)
-	mkdir $(distdir)/images
-	-cp $(srcdir)/images/*.png $(distdir)/images
+	-cp $(srcdir)/*.png $(distdir)
 
 install-data-local: index.html
 	$(mkinstalldirs) $(DESTDIR)$(gtt_helpdir)/images
@@ -42,7 +41,11 @@ install-data-local: index.html
 	basefile=`basename $$file`; \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gtt_helpdir)/$$basefile; \
 	done
-	-for file in $(srcdir)/images/*.png ; do \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gtt_helpdir)/images;\
+	-for file in $(srcdir)/*.png ; do \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gtt_helpdir);\
 	done
-
+	$(mkinstalldirs) $(DESTDIR)$(gtt_helpdir)/stylesheet-images
+	-for file in $(srcdir)/gtt/stylesheet-images/*.gif; do \
+	basefile=`basename $$file`; \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gtt_helpdir)/stylesheet-images/$$basefile; \
+	done

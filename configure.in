@@ -15,6 +15,7 @@ dnl
 AM_MAINTAINER_MODE
 
 AM_ACLOCAL_INCLUDE(macros)
+AC_CONFIG_SUBDIRS(gfloppy)
 
 GNOME_INIT(applets)
 
@@ -61,15 +62,6 @@ AC_TYPE_SIGNAL
 AC_FUNC_STRFTIME
 AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname)
 
-dnl ******************** 
-dnl Check for gfloppy building.
-dnl ******************** 
-AC_CHECK_HEADER(linux/fd.h, build_gfloppy=true, 
-                AC_MSG_WARN([*** gfloppy will not be built.]))
-if $build_gfloppy; then
-  AC_CONFIG_SUBDIRS(gfloppy)
-fi
-AM_CONDITIONAL(BUILD_GFLOPPY,test "$build_gfloppy" = true)
 dnl *******************************
 dnl Guile checks
 dnl *******************************
@@ -197,10 +189,8 @@ gstripchart/help/C/Makefile
 gstripchart/doc/Makefile
 gstripchart/doc/C/Makefile
 gtt/Makefile
-gtt/help/Makefile
-gtt/help/C/Makefile
-gtt/help/es/Makefile
-gtt/help/de/Makefile
+gtt/doc/Makefile
+gtt/doc/C/Makefile
 gdialog/Makefile
 splash/Makefile
 mini-utils/Makefile
