@@ -148,8 +148,10 @@ create_clist(void)
 	gtk_clist_set_column_justification(GTK_CLIST(w), TOTAL_COL, GTK_JUSTIFY_CENTER);
 	gtk_clist_set_column_justification(GTK_CLIST(w), TIME_COL,  GTK_JUSTIFY_CENTER);
 	gtk_clist_column_titles_active(GTK_CLIST(w));
+#if 0
 	gtk_clist_set_policy(GTK_CLIST(w),
 			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+#endif
 	gtk_signal_connect(GTK_OBJECT(w), "select_row",
 			   GTK_SIGNAL_FUNC(select_row), NULL);
 	gtk_signal_connect(GTK_OBJECT(w), "click_column",
