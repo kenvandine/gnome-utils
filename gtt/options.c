@@ -475,7 +475,7 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 	entry_changes_property_box(odlg,
 				   gnome_entry_gtk_entry(GNOME_ENTRY(w)));
 
-	w = gtk_label_new(_("Timeout in secs:"));
+	w = gtk_label_new(_("Min Log Time in secs:"));
 	gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 	gtk_widget_show(w);
 	gtk_table_attach(table, w, 0, 1, 4, 5, GTK_FILL,

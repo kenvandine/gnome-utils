@@ -14,12 +14,18 @@ August 2001
      yet finished).
   -- Infrastructure for storing price & billing information has been
      put into place.  This allows billing invoices to be generated.
-  -- The journal GUI is based on html-like pages.  This makes it relatively
-     easy to create new reports and modify the format of existing reports.
-     User-defined reports (contained in phtml files) can be added to the
+     (Fancier-looking invoices still needed).
+  -- The journal GUI is based on extended html pages.  If you know
+     html, then you can create customized report pages.
+     User-defined reports (contained in ghtml files) can be added to the
      menus by typing in the filename into the 'new report' GUI dialog.
      Typically, a 'user-defined report' is one with customized layout,
      maybe a logo added, all-spiffed up & such.
+  -- An inactivity timeout has been implemented. If the systems (X Server)
+     appears to be idle after some time, then the clock is stopped.
+     (Guts are there, GUI to set it is still missing).
+  -- Scheme (guile) is used as an extension language, although scheme
+     support is currently limited to report generation.
   -- The above features required an expanded way of storing data: and so
      there is now a new XML file format that stores both project and 
      journal data.
