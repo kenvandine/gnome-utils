@@ -119,7 +119,8 @@ void log_endofday(void);
 /* app.c */
 
 extern project *cur_proj;
-extern GtkWidget *glist, *window, *status_bar;
+extern GtkWidget *glist, *window;
+extern GtkWidget *status_bar;
 extern int config_show_secs;
 extern int config_show_tb_icons;
 extern int config_show_tb_texts;

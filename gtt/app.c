@@ -35,8 +35,29 @@
 #define _(String) gettext(String)
 
 
+/* I had some problems with the GtkStatusbar (frame and label didn't
+   get shown). So I defined this here */
+#define GTK_USE_STATUSBAR
+
+/* Due to the same problems I define this, if I want to include the
+   gtk_widget_show for the frame and the label of the statusbar */
+#ifdef GTK_USE_STATUSBAR
+#define SB_USE_HACK
+#endif
+
+
 project *cur_proj = NULL;
-GtkWidget *glist, *window, *status_bar;
+GtkWidget *glist, *window;
+
+GtkWidget *status_bar;
+#ifdef GTK_USE_STATUSBAR
+static GtkStatusbar *status_project = NULL;
+static GtkStatusbar *status_day_time = NULL;
+static gint status_project_id, status_day_time_id;
+#else /* GTK_USE_STATUSBAR */
+static GtkLabel *status_project = NULL;
+static GtkLabel *status_day_time = NULL;
+#endif /* GTK_USE_STATUSBAR */
 
 #ifdef DEBUG
 int config_show_secs = 1;
@@ -54,24 +75,45 @@ int config_logfile_min_secs = 0;
 
 
 
-static GtkWidget *status_project = NULL;
-
-
-
 void update_status_bar(void)
 {
-	static char old[512] = "00:00";
-	static char s[512];
+	static char *old_day_time = NULL;
+        static char *old_project = NULL;
+	char *s;
 
-	if (status_project) {
-		if (cur_proj) {
-			sprintf(s, "%s %s", project_get_timestr(NULL), cur_proj->title);
-		} else {
-			sprintf(s, "%s %s", project_get_timestr(NULL), _("no project selected"));
-		}
-		if (0 != strcmp(s, old))
-			gtk_label_set(GTK_LABEL(status_project), s);
-	}
+	if (!status_bar) return;
+        if (!old_day_time) old_day_time = g_strdup("");
+        if (!old_project) old_project = g_strdup("");
+        s = g_strdup(project_get_timestr(NULL));
+        if (0 != strcmp(s, old_day_time)) {
+#ifdef GTK_USE_STATUSBAR
+                gtk_statusbar_pop(status_day_time, status_day_time_id);
+                gtk_statusbar_push(status_day_time, s);
+#else /* not GTK_USE_STATUSBAR */
+                gtk_label_set(status_day_time, s);
+#endif /* not GTK_USE_STATUSBAR */
+                g_free(old_day_time);
+                old_day_time = s;
+        } else {
+                g_free(s);
+        }
+        if (cur_proj) {
+                s = g_strdup(cur_proj->title);
+        } else {
+                s = g_strdup(_("no project selected"));
+        }
+        if (0 != strcmp(s, old_project)) {
+#ifdef GTK_USE_STATUSBAR
+                gtk_statusbar_pop(status_project, status_day_time_id);
+                gtk_statusbar_push(status_project, s);
+#else /* not GTK_USE_STATUSBAR */
+                gtk_label_set(status_project, s);
+#endif /* not GTK_USE_STATUSBAR */
+                g_free(old_project);
+                old_project = s;
+        } else {
+                g_free(s);
+        }
 }
 
 
@@ -437,9 +479,37 @@ void app_new(int argc, char *argv[])
 	status_bar = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(status_bar);
 	gtk_box_pack_end(GTK_BOX(vbox), status_bar, FALSE, FALSE, 2);
-	status_project = gtk_label_new("00:00");
-	gtk_widget_show(status_project);
-	gtk_box_pack_start(GTK_BOX(status_bar), status_project, FALSE, FALSE, 3);
+#ifdef GTK_USE_STATUSBAR
+        status_day_time = GTK_STATUSBAR(gtk_statusbar_new());
+#ifdef SB_USE_HACK
+        gtk_widget_show(GTK_WIDGET(status_day_time->frame));
+        gtk_widget_show(GTK_WIDGET(status_day_time->label));
+#endif /* SB_USE_HACK */
+        gtk_widget_show(GTK_WIDGET(status_day_time));
+        status_day_time_id = gtk_statusbar_push(status_day_time,
+                                                _("00:00"));
+        gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_day_time),
+                           FALSE, FALSE, 1);
+        status_project = GTK_STATUSBAR(gtk_statusbar_new());
+#ifdef SB_USE_HACK
+        gtk_widget_show(GTK_WIDGET(status_project->frame));
+        gtk_widget_show(GTK_WIDGET(status_project->label));
+#endif /* SB_USE_HACK */
+        gtk_widget_show(GTK_WIDGET(status_project));
+        status_project_id = gtk_statusbar_push(status_project,
+                                               _("no project selected"));
+        gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_project),
+                           TRUE, TRUE, 1);
+#else /* not GTK_USE_STATUSBAR */
+	status_day_time = (GtkLabel *)gtk_label_new("00:00");
+	gtk_widget_show((GtkWidget *)status_day_time);
+	gtk_box_pack_start(GTK_BOX(status_bar), (GtkWidget *)status_day_time,
+                           FALSE, FALSE, 3);
+	status_project = (GtkLabel *)gtk_label_new(_("no project selected"));
+	gtk_widget_show((GtkWidget *)status_project);
+	gtk_box_pack_start(GTK_BOX(status_bar), (GtkWidget *)status_project,
+                           FALSE, FALSE, 3);
+#endif /* not GTK_USE_STATUSBAR */
 
 	swin = gtk_scrolled_window_new(NULL, NULL);
 	/* TODO: remove hard coded pixel values...? */

@@ -21,7 +21,6 @@
 
 #include "gtt.h"
 
-
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -52,6 +51,7 @@ static int log_write(time_t t, char *s)
 static void log_proj_intern(project *proj, int log_if_equal)
 {
 	static project *last_proj = NULL;
+	static project *last_real_proj = NULL;
 	static time_t last_time = -1;
 	time_t t;
 
@@ -69,12 +69,19 @@ static void log_proj_intern(project *proj, int log_if_equal)
 		return;
 	}
 	if (!last_proj) {
-		if (last_time != -1)
+		if (last_time != -1) {
 			if (!log_write(last_time, _("stopped project")))
 				g_warning("couldn't write to logfile \"%s\"\n",
 					  config_logfile_name);
-	} else 	if (!log_write(last_time, last_proj->title)) {
-		g_warning("couldn't write to logfile \"%s\"\n", config_logfile_name);
+                        else
+                                last_real_proj = NULL;
+                }
+	} else 	{
+                if (!log_write(last_time, last_proj->title)) {
+                        g_warning("couldn't write to logfile \"%s\"\n", config_logfile_name);
+                } else {
+                        last_real_proj = last_proj;
+                }
 	}
 	last_time = t;
 	last_proj = proj;

@@ -43,7 +43,7 @@ struct _GttHelp {
         char *history[GTT_HELP_MAX_HISTORY];
         GtkWidget *menu_contents, *menu_back, *menu_forward;
         GtkWidget *tbar_contents, *tbar_back, *tbar_forward;
-        GtkCheckMenuItem *tbar_icon, *tbar_text;
+        GtkCheckMenuItem *tbar_icon, *tbar_text, *tbar_tooltips;
         GtkToolbar *toolbar;
 	char document_path[1024];
 };

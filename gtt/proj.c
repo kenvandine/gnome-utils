@@ -275,9 +275,9 @@ int project_list_load(char *fname)
 			} else if (s[1] == 's') {
 				/* show status bar */
 				if (s[4] == 'n') {
-					gtk_widget_show(status_bar);
+					gtk_widget_show(GTK_WIDGET(status_bar));
 				} else {
-					gtk_widget_hide(status_bar);
+					gtk_widget_hide(GTK_WIDGET(status_bar));
 				}
 			}
 		} else if (s[0] == 'c') {

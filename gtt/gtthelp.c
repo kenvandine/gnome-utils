@@ -297,6 +297,14 @@ gtt_help_init_menu(GttHelp *help)
         help->tbar_text = GTK_CHECK_MENU_ITEM(w);
 	gtk_widget_show(w);
 	gtk_menu_append(GTK_MENU(menu), w);
+	w = gtk_check_menu_item_new_with_label("Show Tooltips");
+        gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(w), 1);
+	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
+				  GTK_SIGNAL_FUNC(gtt_help_update),
+				  GTK_OBJECT(help));
+        help->tbar_tooltips = GTK_CHECK_MENU_ITEM(w);
+	gtk_widget_show(w);
+	gtk_menu_append(GTK_MENU(menu), w);
 	w = gtk_menu_item_new_with_label("Options");
 	gtk_widget_show(w);
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
@@ -474,14 +482,19 @@ gtt_help_update(GttHelp *help)
         if (help->menu_forward)
                 gtk_widget_set_sensitive(help->menu_forward,
                                          gtt_help_history_is_next(help));
-        if ((help->tbar_icon->active) &&
-            (help->tbar_text->active)) {
-                gtk_toolbar_set_style(help->toolbar, GTK_TOOLBAR_BOTH);
-        } else if ((!help->tbar_icon->active) &&
-                   (help->tbar_text->active)) {
-                gtk_toolbar_set_style(help->toolbar, GTK_TOOLBAR_TEXT);
-        } else {
-                gtk_toolbar_set_style(help->toolbar, GTK_TOOLBAR_ICONS);
+        if ((help->tbar_icon) && (help->tbar_text)) {
+                if ((help->tbar_icon->active) &&
+                    (help->tbar_text->active)) {
+                        gtk_toolbar_set_style(help->toolbar,
+                                              GTK_TOOLBAR_BOTH);
+                } else if ((!help->tbar_icon->active) &&
+                           (help->tbar_text->active)) {
+                        gtk_toolbar_set_style(help->toolbar,
+                                              GTK_TOOLBAR_TEXT);
+                } else {
+                        gtk_toolbar_set_style(help->toolbar,
+                                              GTK_TOOLBAR_ICONS);
+                }
         }
         if (help->tbar_contents)
                 gtk_widget_set_sensitive(help->tbar_contents,
@@ -492,6 +505,9 @@ gtt_help_update(GttHelp *help)
         if (help->tbar_forward)
                 gtk_widget_set_sensitive(help->tbar_forward,
                                          gtt_help_history_is_next(help));
+        if (help->tbar_tooltips)
+                gtk_toolbar_set_tooltips(help->toolbar,
+                                         help->tbar_tooltips->active);
 }
 
 

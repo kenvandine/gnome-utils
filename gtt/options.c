@@ -59,9 +59,9 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 		setup_list();
 	}
 	if (GTK_TOGGLE_BUTTON(odlg->show_status_bar)->active) {
-		gtk_widget_show(status_bar);
+		gtk_widget_show(GTK_WIDGET(status_bar));
 	} else {
-		gtk_widget_hide(status_bar);
+		gtk_widget_hide(GTK_WIDGET(status_bar));
 	}
 	config_show_tb_icons = GTK_TOGGLE_BUTTON(odlg->show_tb_icons)->active;
 	config_show_tb_texts = GTK_TOGGLE_BUTTON(odlg->show_tb_texts)->active;
