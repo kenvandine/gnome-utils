@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.8\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-06 03:52+0200\n"
+"POT-Creation-Date: 2004-08-30 15:48+1200\n"
 "PO-Revision-Date: 2004-09-06 11:16+0300\n"
 "Last-Translator: Vladimir Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -69,7 +69,8 @@ msgstr ""
 #. Translator credits
 #: gdictsrc/gdict-about.c:43 logview/about.c:49
 msgid "translator-credits"
-msgstr "Борислав Александров\n"
+msgstr ""
+"Борислав Александров\n"
 "Петър \"Peshka\" Славов <pslavov@i-space.org>\n"
 "Владимир \"Kaladan\" Петков <vpetkov@i-space.org>"
 
@@ -349,7 +350,8 @@ msgid ""
 "within Levenshtein distance one"
 msgstr ""
 "Начина на търсене, който да се използва. Това зависи от начините на "
-"търсенекоито се поддържат от сървъра за речника. Стратегията по принцип е \"lev\" - Съвпадения на думи до разлика определена от закона на Левинщайн."
+"търсенекоито се поддържат от сървъра за речника. Стратегията по принцип е "
+"\"lev\" - Съвпадения на думи до разлика определена от закона на Левинщайн."
 
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
@@ -757,16 +759,20 @@ msgid "DEVICE"
 msgstr "УСТРОЙСТВО"
 
 #: gfloppy/src/progress.c:123
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
+msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr ""
+msgstr[0] ""
 "Дискетата е форматирана, но <b>%d лош сектор</b> (от %d) беше намерен и "
-"маркиран. "
-"Дискетата е форматирана, но <b>%d лоши сектора</b> (от %d) бяха "
+"маркиран. Дискетата е форматирана, но <b>%d лоши сектора</b> (от %d) бяха "
+"намерени и маркирани."
+msgstr[1] ""
+"Дискетата е форматирана, но <b>%d лош сектор</b> (от %d) беше намерен и "
+"маркиран. Дискетата е форматирана, но <b>%d лоши сектора</b> (от %d) бяха "
 "намерени и маркирани."
 
 #: gfloppy/src/progress.c:126
@@ -797,7 +803,8 @@ msgstr "Граница на изображение/етикет"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:101
 msgid "Width of border around the label and image in the alert dialog"
-msgstr "Ширина на границата около етикета и изображението в прозореца за сигнал"
+msgstr ""
+"Ширина на границата около етикета и изображението в прозореца за сигнал"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "Alert Type"
@@ -842,13 +849,17 @@ msgstr "Документът за помощта не може да бъде о�
 #: gsearchtool/gsearchtool-callbacks.c:319
 #, fuzzy, c-format
 msgid "Are you sure you want to open %d document?"
-msgstr "Сигурни ли сте, че искате да отворите документа %d?"
+msgid_plural "Are you sure you want to open %d documents?"
+msgstr[0] "Сигурни ли сте, че искате да отворите документа %d?"
+msgstr[1] "Сигурни ли сте, че искате да отворите документа %d?"
 
 #: gsearchtool/gsearchtool-callbacks.c:324
 #: gsearchtool/gsearchtool-callbacks.c:477
 #, fuzzy, c-format
 msgid "This will open %d separate window."
-msgstr "Това ще отвори %d отделен прозорец."
+msgid_plural "This will open %d separate windows."
+msgstr[0] "Това ще отвори %d отделен прозорец."
+msgstr[1] "Това ще отвори %d отделен прозорец."
 
 #: gsearchtool/gsearchtool-callbacks.c:384
 #: gsearchtool/gsearchtool-callbacks.c:418
@@ -872,7 +883,9 @@ msgstr "Няма инсталирана програма, която може д
 #: gsearchtool/gsearchtool-callbacks.c:472
 #, fuzzy, c-format
 msgid "Are you sure you want to open %d folder?"
-msgstr "Сигурни ли сте, че желаете да отворите папката %d?"
+msgid_plural "Are you sure you want to open %d folders?"
+msgstr[0] "Сигурни ли сте, че желаете да отворите папката %d?"
+msgstr[1] "Сигурни ли сте, че желаете да отворите папката %d?"
 
 #: gsearchtool/gsearchtool-callbacks.c:530
 #, c-format
@@ -1071,12 +1084,16 @@ msgstr "Не са намерени файлове"
 #: gsearchtool/gsearchtool.c:579
 #, fuzzy, c-format
 msgid "%d File Found"
-msgstr "%d Файл е Намерен"
+msgid_plural "%d Files Found"
+msgstr[0] "%d Файл е Намерен"
+msgstr[1] "%d Файл е Намерен"
 
 #: gsearchtool/gsearchtool.c:583
 #, fuzzy, c-format
 msgid "%d file found"
-msgstr "%d файл е намерен"
+msgid_plural "%d files found"
+msgstr[0] "%d файл е намерен"
+msgstr[1] "%d файл е намерен"
 
 #: gsearchtool/gsearchtool.c:689
 msgid "Entry changed called for a non entry option!"
@@ -1301,7 +1318,8 @@ msgstr "Премахване на действие"
 #: logview/actions.c:263
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
-msgstr "Базата данни с действия <%s> не може да бъде отворена! Неуспешно отваряне."
+msgstr ""
+"Базата данни с действия <%s> не може да бъде отворена! Неуспешно отваряне."
 
 #: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
 #: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
@@ -1421,7 +1439,8 @@ msgstr "Календар"
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "Не мога да отворя базата данни с регулярни изрази <%s>! Отварянето неуспешно."
+msgstr ""
+"Не мога да отворя базата данни с регулярни изрази <%s>! Отварянето неуспешно."
 
 #: logview/desc_db.c:147
 #, c-format
@@ -1475,7 +1494,9 @@ msgstr "<Дневникът не е зареден>"
 #: logview/info.c:183
 #, fuzzy, c-format
 msgid "%ld byte"
-msgstr "%ld байт"
+msgid_plural "%ld bytes"
+msgstr[0] "%ld байт"
+msgstr[1] "%ld байт"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1727,7 +1748,6 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Твърде много дневници за наблюдение. Премахнете един и опитайте отново"
 
 #: logview/monitor.c:301 logview/monitor.c:338
-#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list е NULL\n"
 
@@ -1736,7 +1756,6 @@ msgid "Monitoring Logs..."
 msgstr "Наблюдаване на дневници..."
 
 #: logview/monitor.c:667
-#, c-format
 msgid "TOUCHED!!\n"
 msgstr "ПРОМЕНЕНО!!\n"
 
