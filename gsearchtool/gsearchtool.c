@@ -133,7 +133,7 @@ struct poptOption options[] = {
 	{ "user", '\0', POPT_ARG_STRING, &PoptArgument.user, 0, 
 	  N_("Select the 'Owned by user' constraint"), NULL},
   	{ "group", '\0', POPT_ARG_STRING, &PoptArgument.group, 0, 
-	  N_("Select the 'Owned by group"), NULL},
+	  N_("Select the 'Owned by group' constraint"), NULL},
   	{ "nouser", '\0', POPT_ARG_NONE, &PoptArgument.nouser, 0, 
 	  N_("Select the 'Owner is unrecognized' constraint"), NULL},
   	{ "mtimeless", '\0', POPT_ARG_STRING, &PoptArgument.mtimeless, 0, 
