@@ -11,6 +11,13 @@
  * documentation.  No representations are made about the suitability of this
  * software for any purpose.  It is provided "as is" without express or 
  * implied warranty.
+ *
+ * This version is a major restructuring of Zawiski's code, for two reasons:
+ * 1) we want to poll how long system's been idle, (orig code blocked)
+ * 2) the gdk event loop gobbles events, so we had to tap in.
+ *
+ * NB the /proc/interrupts code is dead, but is being saved for 
+ * resurection on some rainy day.  Ditto the XIDLE extension code.
  */
 
 # include "config.h"
@@ -43,18 +50,9 @@
 #include <X11/extensions/xidle.h>
 #endif /* HAVE_XIDLE_EXTENSION */
 
-#ifdef HAVE_MIT_SAVER_EXTENSION
-#include <X11/extensions/scrnsaver.h>
-#endif /* HAVE_MIT_SAVER_EXTENSION */
-
-#ifdef HAVE_SGI_SAVER_EXTENSION
-#include <X11/extensions/XScreenSaver.h>
-#endif /* HAVE_SGI_SAVER_EXTENSION */
-
 #include "idle-timer.h"
 
 typedef struct IdleTimeoutScreen_s IdleTimeoutScreen;
-
 
 /* This structure holds all the data that applies to the program as a whole,
    or to the non-screen-specific parts of the display connection.
@@ -76,22 +74,10 @@ struct IdleTimeout_s
   Display *dpy;
 
   Bool using_xidle_extension;	   /* which extension is being used.         */
-  Bool using_mit_saver_extension;  /* Note that `p->use_*' is the *request*, */
-  Bool using_sgi_saver_extension;  /* and `si->using_*' is the *reality*.    */
   Bool using_proc_interrupts;
 
   Bool scanning_all_windows;
-  Bool polling_for_idleness;
   Bool polling_mouse_position;
-
-# ifdef HAVE_MIT_SAVER_EXTENSION
-  int mit_saver_ext_event_number;
-  int mit_saver_ext_error_number;
-# endif
-# ifdef HAVE_SGI_SAVER_EXTENSION
-  int sgi_saver_ext_event_number;
-  int sgi_saver_ext_error_number;
-# endif
 
   guint check_pointer_timer_id;	/* `prefs.pointer_timeout' */
 
@@ -294,9 +280,7 @@ check_pointer_timer (gpointer closure)
   Bool active_p = False;
 
   if (!si->using_proc_interrupts &&
-      (si->using_xidle_extension ||
-       si->using_mit_saver_extension ||
-       si->using_sgi_saver_extension))
+      (si->using_xidle_extension))
     /* If an extension is in use, we should not be polling the mouse.
        Unless we're also checking /proc/interrupts, in which case, we should.
      */
@@ -388,6 +372,8 @@ check_for_clock_skew (IdleTimeout *si)
 
       explicitly informed by SGI SCREEN_SAVER server event;
       explicitly informed by MIT-SCREEN-SAVER server event;
+      (but we can't use these here ... since we just want 
+      arbitrary timeout, not a screen-saving event)
       poll server idle time with XIDLE extension;
       select events on all windows, and note absence of recent events;
       note that /proc/interrupts has not changed in a while;
@@ -405,159 +391,24 @@ check_for_clock_skew (IdleTimeout *si)
    I trust that explains why this function is a big hairy mess.
  */
 
-/* ex-sleep_until_idle; now returns how long system as been idle */
-
 int
 poll_idle_time (IdleTimeout *si)
 {
-  XEvent event;
-
   if (!si) return 0;
-  return si->last_activity_time;
 
-  /* --------------------------------------- */
-  /* hack alert xxx fixme.   this code needs to find a new home
-   * somewhere in the if_event_predicate() routine.  */
-  {
-
-      switch (event.xany.type) {
-      case 0:		/* our synthetic "timeout" event has been signalled */
-	  {
-	    Time idle;
 #ifdef HAVE_XIDLE_EXTENSION
-	    if (si->using_xidle_extension)
-	      {
-                /* The XIDLE extension uses the synthetic event to prod us into
-                   re-asking the server how long the user has been idle. */
-		if (! XGetIdleTime (si->dpy, &idle))
-		  {
-		    fprintf (stderr, "XGetIdleTime() failed.\n");
-		    saver_exit (si, 1, 0);
-		  }
-	      }
-	    else
-#endif /* HAVE_XIDLE_EXTENSION */
-#ifdef HAVE_MIT_SAVER_EXTENSION
-	      if (si->using_mit_saver_extension)
-		{
-		  /* We don't need to do anything in this case - the synthetic
-		     event isn't necessary, as we get sent specific events
-		     to wake us up.  In fact, this event generally shouldn't
-                     be being delivered when the MIT extension is in use. */
-		  idle = 0;
-		}
-	    else
-#endif /* HAVE_MIT_SAVER_EXTENSION */
-#ifdef HAVE_SGI_SAVER_EXTENSION
-	      if (si->using_sgi_saver_extension)
-		{
-		  /* We don't need to do anything in this case - the synthetic
-		     event isn't necessary, as we get sent specific events
-		     to wake us up.  In fact, this event generally shouldn't
-                     be being delivered when the SGI extension is in use. */
-		  idle = 0;
-		}
-	    else
-#endif /* HAVE_SGI_SAVER_EXTENSION */
-	      {
-                /* Otherwise, no server extension is in use.  The synthetic
-                   event was to tell us to wake up and see if the user is now
-                   idle.  Compute the amount of idle time by comparing the
-                   `last_activity_time' to the wall clock.  The l_a_t was set
-                   by calling `reset_timers()', which is called only in only
-                   two situations: when polling the mouse position has revealed
-                   the the mouse has moved (user activity) or when we have read
-                   an event (again, user activity.)
-                 */
-		idle = 1000 * (si->last_activity_time - time ((time_t *) 0));
-	      }
-	  }
-	break;
-
-      default:
-
-#ifdef HAVE_MIT_SAVER_EXTENSION
-	if (event.type == si->mit_saver_ext_event_number)
-	  {
-            /* This event's number is that of the MIT-SCREEN-SAVER server
-               extension.  This extension has one event number, and the event
-               itself contains sub-codes that say what kind of event it was
-               (an "idle" or "not-idle" event.)
-             */
-	    XScreenSaverNotifyEvent *sevent =
-	      (XScreenSaverNotifyEvent *) &event;
-	    if (sevent->state == ScreenSaverOn)
-	      {
-		int i = 0;
-	        fprintf (stderr, "MIT ScreenSaverOn event received.\n");
-
-		if (sevent->kind != ScreenSaverExternal)
-		  {
-		    fprintf (stderr,
-			 "ScreenSaverOn event wasn't of type External!\n");
-		  }
-
-		if (until_idle_p)
-		  goto DONE;
-	      }
-	    else if (sevent->state == ScreenSaverOff)
-	      {
-		if (p->verbose_p)
-		  fprintf (stderr, "MIT ScreenSaverOff event received.\n");
-		if (!until_idle_p)
-		  goto DONE;
-	      }
-	    else
-	      fprintf (stderr,
-		       "unknown MIT-SCREEN-SAVER event %d received!\n");
-	  }
-	else
-
-#endif /* HAVE_MIT_SAVER_EXTENSION */
-
-
-#ifdef HAVE_SGI_SAVER_EXTENSION
-	if (event.type == (si->sgi_saver_ext_event_number + ScreenSaverStart))
-	  {
-            /* The SGI SCREEN_SAVER server extension has two event numbers,
-               and this event matches the "idle" event. */
-	    fprintf (stderr, "SGI ScreenSaverStart event received.\n");
-
-	    if (until_idle_p)
-	      goto DONE;
-	  }
-	else if (event.type == (si->sgi_saver_ext_event_number +
-				ScreenSaverEnd))
-	  {
-            /* The SGI SCREEN_SAVER server extension has two event numbers,
-               and this event matches the "idle" event. */
-	    fprintf (stderr, "SGI ScreenSaverEnd event received.\n");
-	    if (!until_idle_p)
-	      goto DONE;
-	  }
-	else
-#endif /* HAVE_SGI_SAVER_EXTENSION */
-
-      }
-    }
-
-  /* If we're using a server extension, and the user becomes active, we
-     get the extension event before the user event -- so the keypress or
-     motion or whatever is still on the queue.  (This problem
-     doesn't exhibit itself without an extension, because in that case,
-     there's only one event generated by user activity, not two.)
-   */
-   while (XCheckMaskEvent (si->dpy,
-                            (KeyPressMask|ButtonPressMask|PointerMotionMask),
-                     &event))
-      ;
-
-
-  if (si->check_pointer_timer_id)
+    if (si->using_xidle_extension)
     {
-      gtk_timeout_remove (si->check_pointer_timer_id);
-      si->check_pointer_timer_id = 0;
-    }
+      Time idle;
+      /* The XIDLE extension uses the synthetic event to prod us into
+         re-asking the server how long the user has been idle. */
+      if (! XGetIdleTime (si->dpy, &idle))
+      {
+         fprintf (stderr, "XGetIdleTime() failed.\n");
+      }
+/* hack alert fixme set the last activity time */
+   }
+#endif /* HAVE_XIDLE_EXTENSION */
 
   return si->last_activity_time;
 }
@@ -886,16 +737,7 @@ idle_timeout_new (void)
   /* ------------------------------------------------------------- */
   /* We need to select events on all windows if we're not using any extensions.
      Otherwise, we don't need to. */
-  si->scanning_all_windows = !(si->using_xidle_extension ||
-                               si->using_mit_saver_extension ||
-                               si->using_sgi_saver_extension);
-
-  /* We need to periodically wake up and check for idleness if we're not using
-     any extensions, or if we're using the XIDLE extension.  The other two
-     extensions explicitly deliver events when we go idle/non-idle, so we
-     don't need to poll. */
-  si->polling_for_idleness = !(si->using_mit_saver_extension ||
-                               si->using_sgi_saver_extension);
+  si->scanning_all_windows = !(si->using_xidle_extension);
 
   /* Whether we need to periodically wake up and check to see if the mouse has
      moved.  We only need to do this when not using any extensions.  The reason
@@ -907,9 +749,7 @@ idle_timeout_new (void)
      /proc/interrupts is just like polling the mouse position.  It has to
      happen on the same kind of schedule. */
   si->polling_mouse_position = (si->using_proc_interrupts ||
-                              !(si->using_xidle_extension ||
-                               si->using_mit_saver_extension ||
-                               si->using_sgi_saver_extension));
+                              !(si->using_xidle_extension));
 
   if (si->polling_mouse_position)
   {
