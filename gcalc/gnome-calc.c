@@ -1308,10 +1308,14 @@ display_expose (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 	char *text;
 	int x, i;
 
+	int win_width, win_height;
+
 	calc = GNOME_CALC (data);
 
 	window = calc->_priv->display->window;
 	gc = calc->_priv->display->style->black_gc;
+
+	gdk_window_get_size (window, &win_width, &win_height);
 
 	gdk_draw_rectangle (window, gc, TRUE, 0, 0, -1, -1);
 
@@ -1321,36 +1325,41 @@ display_expose (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 
 	if (calc->_priv->memory != 0)
 		gdk_draw_pixmap (window, gc, calc_font,
-				 13 * FONT_WIDTH, 0, 0, 0, FONT_WIDTH, FONT_HEIGHT);
+				 13 * FONT_WIDTH, 0, win_width, 0, FONT_WIDTH, FONT_HEIGHT);
 
 	text = calc->_priv->result_string;
 	i = strlen (text) - 1;
-	for (x = 12; i >= 0; x--, i--) {
-		if (text[i] >= '0' && text[i] <= '9')
+	for (x = 1; i >= 0; x++, i--) {
+		if (text[i] >= '0' && text[i] <= '9') {
 			gdk_draw_pixmap (window, gc, calc_font,
 					 (text[i] - '0') * FONT_WIDTH, 0,
-					 x * FONT_WIDTH, 0,
+					 win_width - x * FONT_WIDTH, 0,
 					 FONT_WIDTH, FONT_HEIGHT);
-		else if (text[i] == '.')
+		}
+		else if (text[i] == '.') {
 			gdk_draw_pixmap (window, gc, calc_font,
 					 10 * FONT_WIDTH, 0,
-					 x * FONT_WIDTH, 0,
+					 win_width - x * FONT_WIDTH, 0,
 					 FONT_WIDTH, FONT_HEIGHT);
-		else if (text[i] == '+')
+		}
+		else if (text[i] == '+') {
 			gdk_draw_pixmap (window, gc, calc_font,
 					 11 * FONT_WIDTH, 0,
-					 x * FONT_WIDTH, 0,
+					 win_width - x * FONT_WIDTH, 0,
 					 FONT_WIDTH, FONT_HEIGHT);
-		else if (text[i] == '-')
+		}
+		else if (text[i] == '-') {
 			gdk_draw_pixmap (window, gc, calc_font,
 					 12 * FONT_WIDTH, 0,
-					 x * FONT_WIDTH, 0,
+					 win_width - x * FONT_WIDTH, 0,
 					 FONT_WIDTH, FONT_HEIGHT);
-		else if (text[i] == 'e')
+		}
+		else if (text[i] == 'e') {
 			gdk_draw_pixmap (window, gc, calc_font,
 					 14 * FONT_WIDTH, 0,
-					 x * FONT_WIDTH, 0,
+					 win_width - x * FONT_WIDTH, 0,
 					 FONT_WIDTH, FONT_HEIGHT);
+		}
 	}
 
 	return TRUE;
@@ -1400,7 +1409,7 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 			 x, x+1, y, y+1,
 			 GTK_FILL | GTK_EXPAND |
 			 GTK_SHRINK,
-			 0, 2, 2);
+			 GTK_FILL | GTK_EXPAND | GTK_SHRINK, 2, 2);
 
 	/* if this is the DRG button, remember it's pointer */
 	if(but->signal_func == GTK_SIGNAL_FUNC(drg_toggle))
