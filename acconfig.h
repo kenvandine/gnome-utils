@@ -98,6 +98,6 @@
    SunOS 4.1.1 seems not to be affected.]  */
 #undef STATFS_TRUNCATES_BLOCK_COUNTS
 
-/* Define if there is no `u_int64_t' and `int64_t'.
+/* Define if there is no `u_int64_t' and `int64_t'. */
 #undef u_int64_t
 #undef int64_t

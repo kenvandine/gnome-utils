@@ -10,6 +10,3 @@ grun_SOURCES = \
 grun_LDADD = $(GTK_LIBS)
 
 Utilitiesdir = $(datadir)/apps/Utilities
-Utilities_DATA = grun.desktop
-
-EXTRA_DIST = grun.desktop
