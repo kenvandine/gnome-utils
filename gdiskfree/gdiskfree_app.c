@@ -225,7 +225,10 @@ gdiskfree_update (GDiskFreeApp *app)
       fsu.bfree  /= 2*1024;
       fsu.bavail /= 2*1024;
       used = fsu.blocks - fsu.bfree;
-      percent = (gdouble) (used * 100.0 / (used + fsu.bavail));
+      if(used + fsu.bavail != 0)
+        percent = (gdouble) (used * 100.0 / (used + fsu.bavail));
+      else
+        percent = 100.0;
       gtk_dial_set_percentage ( (GtkDial *)disk->dial, (percent / 100.0));
       gl = g_list_next (gl);
     }
