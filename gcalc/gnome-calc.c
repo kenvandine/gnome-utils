@@ -209,11 +209,28 @@ stack_pop(GList **stack)
 }
 
 static void
+set_display (GnomeCalc *gc)
+{
+	GtkWidget *label = gc->_priv->text_display;
+	gchar *string;
+
+	string = g_strconcat ("<span foreground=\"white\"  font_desc=\"Helvetica 24\">", gc->_priv->result_string, "</span>", NULL);
+	gtk_label_set_markup (GTK_LABEL (label), string);
+	g_free (string);
+}
+
+static void
 do_error(GnomeCalc *gc)
 {
 	gc->_priv->error = TRUE;
-	strcpy(gc->_priv->result_string,"e");
-	gtk_entry_set_text (GTK_ENTRY (gc->_priv->text_display), gc->_priv->result_string);
+	if (errno == ERANGE)
+		strcpy(gc->_priv->result_string,_("inf"));
+	else
+		strcpy(gc->_priv->result_string,"e");
+
+	set_display (gc);
+
+
 }
 
 /*we handle sigfpe's so that we can find all the errors*/
@@ -281,8 +298,8 @@ reduce_stack(GnomeCalc *gc)
 
 	if(errno>0 ||
 	   finite(stack->d.number)==0) {
-		errno = 0;
 		do_error(gc);
+		errno = 0;
 	}
 }
 
@@ -398,8 +415,7 @@ set_result(GnomeCalc *gc)
 	strncpy(gc->_priv->result_string,buf,12);
 	gc->_priv->result_string[12]='\0';
 
-	gtk_entry_set_text (GTK_ENTRY(gc->_priv->text_display), gc->_priv->result_string);
-
+	set_display (gc);
 	gtk_signal_emit(GTK_OBJECT(gc),
 			gnome_calc_signals[RESULT_CHANGED_SIGNAL],
 			gc->_priv->result);
@@ -733,8 +749,8 @@ add_digit (GtkWidget *w, gpointer data)
 
 	strcat (gc->_priv->result_string, digit);
 
-	gtk_entry_set_text (GTK_ENTRY (gc->_priv->text_display), gc->_priv->result_string);
-
+	set_display (gc);
+ 	
         /* make sure get values in a consistent manner */
 	gnome_i18n_push_c_numeric_locale ();
 	sscanf(gc->_priv->result_string, "%lf", &gc->_priv->result);
@@ -784,8 +800,8 @@ negate_val(GtkWidget *w, gpointer data)
 	gnome_i18n_pop_c_numeric_locale ();
 	sscanf(gc->_priv->result_string, "%lf", &gc->_priv->result);
 	gnome_i18n_push_c_numeric_locale ();
-	
-	gtk_entry_set_text (GTK_ENTRY (gc->_priv->text_display), gc->_priv->result_string);
+
+	set_display (gc);
 }
 
 static gdouble
@@ -877,7 +893,7 @@ static void
 store_m(GtkWidget *w, gpointer data)
 {
 	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
-
+	
 	g_return_if_fail(gc!=NULL);
 
 	if(gc->_priv->error)
@@ -887,8 +903,8 @@ store_m(GtkWidget *w, gpointer data)
 
 	gc->_priv->memory = gc->_priv->result;
 
-	gtk_entry_set_text (GTK_ENTRY (gc->_priv->text_display), gc->_priv->result_string);
-
+	set_display (gc);
+ 	
 	unselect_invert(gc);
 }
 
@@ -911,7 +927,7 @@ static void
 sum_m(GtkWidget *w, gpointer data)
 {
 	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
-
+	
 	g_return_if_fail(gc!=NULL);
 
 	if(gc->_priv->error)
@@ -921,8 +937,8 @@ sum_m(GtkWidget *w, gpointer data)
 
 	gc->_priv->memory += gc->_priv->result;
 
-	gtk_entry_set_text (GTK_ENTRY (gc->_priv->text_display), gc->_priv->result_string);
-
+	set_display (gc);
+ 	
 	unselect_invert(gc);
 }
 
@@ -1171,7 +1187,7 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 				   but->signal_func,
 				   (gpointer) but);
 	}
-
+	
 	for(i=0;but->keys[i]!=0;i++) {
 		gtk_widget_add_accelerator(w, "clicked",
 					   gc->_priv->accel,
@@ -1209,26 +1225,30 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 static void
 gnome_calc_instance_init (GnomeCalc *gc)
 {
+	GtkWidget *hbox, *event;
 	gint x,y;
 	GtkWidget *table;
-	PangoFontDescription *pdesc;
-
+	GdkColor color;
+	
 	gc->_priv = g_new0(GnomeCalcPrivate, 1);
-
-	gc->_priv->text_display = gtk_entry_new ();
-	gtk_editable_set_editable (GTK_EDITABLE (gc->_priv->text_display), FALSE);
-
-	gtk_box_pack_start (GTK_BOX (gc), gc->_priv->text_display, FALSE, FALSE, 0);
-	gtk_widget_set_direction (gc->_priv->text_display, GTK_TEXT_DIR_RTL);
-
-	pdesc = pango_font_description_from_string ("Helvetica 24");
-	if (pdesc != NULL) {
-		gtk_widget_modify_font (gc->_priv->text_display, pdesc);
-		pango_font_description_free (pdesc);
-	}
-
+	
+	event = gtk_event_box_new ();
+	gtk_widget_show (event);
+	gdk_color_parse ("#000000", &color);
+	gtk_widget_modify_bg (event, GTK_STATE_NORMAL, &color); 
+	gtk_box_pack_start (GTK_BOX (gc), event, FALSE, FALSE, 0);
+	gtk_container_set_border_width (GTK_CONTAINER (event), 1);
+	
+	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_widget_show (hbox);
+	gtk_container_add (GTK_CONTAINER (event), hbox);
+	
+	gc->_priv->text_display = gtk_label_new (NULL);
+	gtk_label_set_selectable (GTK_LABEL (gc->_priv->text_display), TRUE);
+	/*gtk_label_set_justify (GTK_LABEL (gc->_priv->text_display), GTK_JUSTIFY_RIGHT);*/
 	gtk_widget_show (gc->_priv->text_display);
-
+	gtk_box_pack_end (GTK_BOX (hbox), gc->_priv->text_display, FALSE, TRUE, 0);	
+	
 	gc->_priv->stack = NULL;
 	gc->_priv->result = 0;
 	strcpy(gc->_priv->result_string," 0");
@@ -1242,15 +1262,18 @@ gnome_calc_instance_init (GnomeCalc *gc)
 	table = gtk_table_new(8,5,TRUE);
 	gtk_widget_show(table);
 
-	gtk_box_pack_end(GTK_BOX(gc),table,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(gc),table,TRUE,TRUE,0);
 
 	for(x=0;x<5;x++) {
 		for(y=0;y<8;y++) {
 			create_button(gc, table, x, y);
 		}
-	}
+	}	
+	
 	gtk_tooltips_enable (gc->_priv->tooltips);
-	gtk_entry_set_text (GTK_ENTRY (gc->_priv->text_display), gc->_priv->result_string);
+
+        set_display (gc);
+	
 }
 
 
@@ -1417,9 +1440,9 @@ backspace_cb (GtkWidget *w, gpointer data)
 		if (stack->type == CALCULATOR_NUMBER)
 			stack->d.number = gc->_priv->result;
 	}
-	
-	gtk_entry_set_text (GTK_ENTRY (gc->_priv->text_display), gc->_priv->result_string);
 
+	set_display (gc);
+ 	
 	/* make sure get values in a consistent manner */
 	old_locale = g_strdup (setlocale (LC_NUMERIC, NULL));
 	setlocale (LC_NUMERIC, "C");
