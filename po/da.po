@@ -13,8 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.99\n"
-"POT-Creation-Date: 2003-05-31 17:28-0700\n"
-"PO-Revision-Date: 2003-05-19 21:34+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-29 17:33+0200\n"
+"PO-Revision-Date: 2003-06-29 17:33+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +26,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Tilbehør"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "Ordbogsopslag"
 
@@ -75,9 +76,10 @@ msgstr ""
 msgid "translator_credits"
 msgstr "Ole Laursen <olau@hardworking.dk>"
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "Ordbog til Gnome"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Ordbog"
 
 #: gdictsrc/gdict-about.c:58
 msgid "A client for the MIT dictionary server."
@@ -146,10 +148,6 @@ msgstr "Kontrollér ordets stavning"
 msgid "_Dictionary"
 msgstr "_Ordbog"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Ordbog"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Ord:"
@@ -171,7 +169,7 @@ msgstr "Indtast et ord eller vælg et fra listen nedenfor"
 msgid "Look Up for a Word"
 msgstr "Slå et ord op"
 
-#: gdictsrc/gdict-applet.c:272
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "_Slå op"
 
@@ -265,7 +263,6 @@ msgid "Enter a word to know the spelling"
 msgstr "Indtast et ord for at få oplyst stavningen"
 
 #: gdictsrc/gdict-speller.c:154
-#, fuzzy
 msgid "Search s_trategy:"
 msgstr "Søgningss_trategi:"
 
@@ -274,9 +271,8 @@ msgid "Click to do the spell check"
 msgstr "Klik for at foretage stavekontrol"
 
 #: gdictsrc/gdict-speller.c:170
-#, fuzzy
 msgid "Search _results:"
-msgstr "S_øgeresultater:"
+msgstr "Søge_resultater:"
 
 #: gdictsrc/gdict-speller.c:230
 msgid "Check Spelling"
@@ -572,27 +568,24 @@ msgid "*"
 msgstr "*"
 
 #: gfloppy/src/gfloppy2.glade.h:3
-#, fuzzy
 msgid ""
 "<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
-"<b>Bemærk</b>: Værktøjet mbadblocks er ikke installeret på systemet. Det "
-"skal være installeret for at kunne foretage en grundig DOS (FAT) formatering."
+"<small><i><b>Bemærk</b>: Værktøjet mbadblocks er ikke installeret på "
+"systemet. Det skal være installeret for at kunne foretage en grundig DOS "
+"(FAT) formatering.</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-#, fuzzy
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
 msgstr "<span weight=\"bold\">Indstillinger for filsystem</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
-#, fuzzy
 msgid "<span weight=\"bold\">Formatting Mode</span>"
 msgstr "<span weight=\"bold\">Formateringstype</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
-#, fuzzy
 msgid "<span weight=\"bold\">Physical Settings</span>"
 msgstr "<span weight=\"bold\">Fysiske indstillinger</span>"
 
@@ -727,7 +720,6 @@ msgid "Floppy formatting cancelled."
 msgstr "Disketteformatering afbrudt."
 
 #: gfloppy/src/progress.c:175
-#, fuzzy
 msgid "Format Progress"
 msgstr "Formateringsstatus"
 
@@ -765,8 +757,8 @@ msgstr ""
 "Angiv ext2 for det indføde Linux-filsystem eller FAT for filsystemet til DOS."
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "Søg efter filer"
 
@@ -776,21 +768,18 @@ msgstr "Søg efter filer på disken"
 
 # bemærk: denne og følgende skal synkroniseres med senere tekster
 #: gsearchtool/gsearchtool.c:73
-#, fuzzy
 msgid "Contains the _text"
-msgstr "_Indeholder teksten"
+msgstr "Indeholder _teksten"
 
 #: gsearchtool/gsearchtool.c:75
 msgid "_Date modified less than (days)"
 msgstr "_Ændret inden for (dage)"
 
 #: gsearchtool/gsearchtool.c:76
-#, fuzzy
 msgid "Date modified more than (da_ys)"
 msgstr "Ændret _længere tilbage end (dage)"
 
 #: gsearchtool/gsearchtool.c:78
-#, fuzzy
 msgid "S_ize at least (kilobytes)"
 msgstr "Størrelse _mindst (kilobyte)"
 
@@ -834,7 +823,7 @@ msgstr "Følg symbolske henvisninger"
 msgid "Include other filesystems"
 msgstr "Medtag andre filsystemer"
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "Ingen filer fundet"
 
@@ -845,7 +834,7 @@ msgstr "Det ændrede indtastningsfelt ønskede et ikke-indtastningsflag!"
 #: gsearchtool/gsearchtool.c:872
 #, c-format
 msgid "The animation file is missing or invalid: %s"
-msgstr ""
+msgstr "Animationsfilen mangler eller er ugyldig: %s"
 
 #: gsearchtool/gsearchtool.c:927
 msgid "Searching..."
@@ -883,20 +872,33 @@ msgstr "Vælg begrænsningen '%s'"
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ugyldigt parameter givet til kommandolinjeparameteren 'sortby'."
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
-msgstr ""
+msgstr "(stoppet)"
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+msgid "No Files Found"
+msgstr "Ingen filer fundet"
+
+#: gsearchtool/gsearchtool.c:1242
 msgid "One file found"
 msgstr "Én fil fundet"
 
 #: gsearchtool/gsearchtool.c:1243
+msgid "One File Found"
+msgstr "Én fil fundet"
+
+#: gsearchtool/gsearchtool.c:1246
 #, c-format
 msgid "%d files found"
 msgstr "%d filer fundet"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, c-format
+msgid "%d Files Found"
+msgstr "%d filer fundet"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -904,7 +906,7 @@ msgstr ""
 "Under søgningen bliv de følgende fejl rapporteret.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -912,114 +914,108 @@ msgstr ""
 "\n"
 "... For mange fejl til at vise ..."
 
-#: gsearchtool/gsearchtool.c:1354
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1360
 msgid "Error while searching for files"
-msgstr "Fejl under kontrol for ugyldige blokke..."
+msgstr "Fejl under søgning efter filer"
 
-#: gsearchtool/gsearchtool.c:1393
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1399
 msgid "Error parsing the search command"
-msgstr "Fejl ved kørsel af (%s) kommandoen: %s"
+msgstr "Fejl ved fortolkning af søgekommandoen"
 
-#: gsearchtool/gsearchtool.c:1413
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1419
 msgid "Error running the search command"
-msgstr "Fejl ved kørsel af (%s) kommandoen: %s"
+msgstr "Fejl ved kørsel af søgekommandoen"
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr "Søgeregelværdi"
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "Indtast en værdi for søgereglen"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klik for at fjerne reglen '%s'"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 msgid "A_vailable options:"
 msgstr "T_ilgængelige indstillinger:"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "Søgeregelmenu"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "Vælg en søgeregel fra menuen"
 
-#: gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gsearchtool.c:1652
 msgid "S_earch results:"
 msgstr "S_øgeresultater:"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "Navn"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "Størrelse"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr "Ændringstidspunkt"
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
 msgstr "_Navn indeholder:"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
-msgstr "_Navn indeholder:"
+msgstr "Navn indeholder-indtastning"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "Indtast det filnavn du ønsker at søge efter"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 msgid "_Look in folder:"
 msgstr "_Kig i mappen:"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr "Gennemse"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Look in Folder Entry"
-msgstr "_Kig i mappen:"
+msgstr "Kig i mappe-indtastning"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr "Indtast navnet på mappen hvor du ønsker at begynde søgningen"
 
-#: gsearchtool/gsearchtool.c:1903
-#, fuzzy
+#: gsearchtool/gsearchtool.c:1909
 msgid "Show more _options"
-msgstr "Vis logegenskaber"
+msgstr "Vis flere _indstillinger"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "Klik for at starte søgningen"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "Klik for stoppe søgningen"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr "Kan ikke klargøre Bonobo."
 
@@ -1036,35 +1032,33 @@ msgid "_Save Results As..."
 msgstr "_Gem resultater som..."
 
 #: gsearchtool/gsearchtool-callbacks.c:102
-#, fuzzy
 msgid "Could not open help document"
-msgstr "Luk dokument"
+msgstr "Kunne ikke åbne hjælpedokument"
 
 #: gsearchtool/gsearchtool-callbacks.c:307
-#, fuzzy, c-format
+#, c-format
 msgid "Open %d documents?"
-msgstr "Åbn %d mapper?"
+msgstr "Åbn %d dokumenter?"
 
 #: gsearchtool/gsearchtool-callbacks.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate documents. Are you sure you want to do this?"
 msgstr ""
-"Dette vil åbne %d forskellige mappe. Er du sikker på at du vil gøre det?"
+"Dette vil åbne %d forskellige dokumenter. Er du sikker på at du vil gøre det?"
 
 #: gsearchtool/gsearchtool-callbacks.c:363
 #: gsearchtool/gsearchtool-callbacks.c:648
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open document \"%s\""
-msgstr "Luk dokument"
+msgstr "Kunne ikke åbne dokument \"%s\""
 
 #: gsearchtool/gsearchtool-callbacks.c:365
 #: gsearchtool/gsearchtool-callbacks.c:649
-#, fuzzy
 msgid "There is no installed viewer capable of displaying the document."
-msgstr "Der er ikke installeret et fremviser der kan vise \"%s\"."
+msgstr "Der er ikke nogen installeret fremviser der kan vise dokumentet."
 
 #: gsearchtool/gsearchtool-callbacks.c:411
-#, fuzzy, c-format
+#, c-format
 msgid "Open %d folders?"
 msgstr "Åbn %d mapper?"
 
@@ -1072,12 +1066,12 @@ msgstr "Åbn %d mapper?"
 #, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr ""
-"Dette vil åbne %d forskellige mappe. Er du sikker på at du vil gøre det?"
+"Dette vil åbne %d forskellige mapper. Er du sikker på at du vil gøre det?"
 
 #: gsearchtool/gsearchtool-callbacks.c:453
 #, c-format
 msgid "Could not open folder \"%s\""
-msgstr ""
+msgstr "Kunne ikke åbne mappen \"%s\""
 
 #: gsearchtool/gsearchtool-callbacks.c:459
 msgid "The nautilus file manager is not running."
@@ -1088,35 +1082,39 @@ msgid "Save Search Results As..."
 msgstr "Gem søgeresultater som..."
 
 #: gsearchtool/gsearchtool-callbacks.c:877
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save document \"\" to %s"
-msgstr "Luk dokument"
+msgstr "Kunne ikke gemme dokumentet \"\" som %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:880
 msgid ""
 "You did not select a document name or the name selected was a folder.  The "
 "document is not saved."
 msgstr ""
+"Du valgte ikke et dokumentnavn eller det valgte navn var en mappe. "
+"Dokumentet er ikke gemt."
 
 #: gsearchtool/gsearchtool-callbacks.c:903
 #, c-format
 msgid "The contents of the file \"%s\" will be lost."
-msgstr ""
+msgstr "Indholdet af filen \"%s\" vil gå tabt."
 
 #: gsearchtool/gsearchtool-callbacks.c:909
 msgid "Overwrite an existing file?"
-msgstr ""
+msgstr "Overskriv en eksisterende fil?"
 
 #: gsearchtool/gsearchtool-callbacks.c:952
 #, c-format
 msgid "Could not save document \"%s\" to %s"
-msgstr ""
+msgstr "Kunne ikke gemme dokumentet \"%s\" som %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:957
 msgid ""
 "You may not have write permissions to the document.  The document is not "
 "saved."
 msgstr ""
+"Du har muligvis ikke skriverettigheder til dokumentet. Dokumentet er ikke "
+"gemt."
 
 #: gsearchtool/gsearchtool-support.c:58
 #, c-format
@@ -1158,11 +1156,10 @@ msgid "A system log viewer for GNOME."
 msgstr "En systemlog-fremviser til Gnome."
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
+msgid "System Log Viewer"
 msgstr "Systemlog-fremviser"
 
 #: logview/actions.c:74
-#, fuzzy
 msgid "Action Database"
 msgstr "Handlingsdatabase"
 
@@ -1276,9 +1273,8 @@ msgid "View the system log file"
 msgstr "Vis systemlogfilen"
 
 #: logview/info.c:65
-#, fuzzy
 msgid "Properties"
-msgstr "_Egenskaber"
+msgstr "Egenskaber"
 
 #: logview/info.c:111
 msgid "Size:"
@@ -1304,7 +1300,7 @@ msgstr "Antal linjer:"
 msgid "Log Information"
 msgstr "Log-information"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<Ingen log indlæst>"
 
@@ -1519,19 +1515,16 @@ msgid "Monitor Options"
 msgstr "Overvågningsindstillinger"
 
 #: logview/monitor.c:111
-#, fuzzy
 msgid "Ac_tions..."
-msgstr "Handlinger..."
+msgstr "_Handlinger..."
 
 #: logview/monitor.c:137
-#, fuzzy
 msgid "_Select logs to monitor:"
-msgstr "Vælg logfiler at overvåge:"
+msgstr "_Vælg logfiler at overvåge:"
 
 #: logview/monitor.c:142
-#, fuzzy
 msgid "Currently _monitored logs:"
-msgstr "Aktuelt overvågede logfiler:"
+msgstr "Aktuelt _overvågede logfiler:"
 
 #: logview/monitor.c:190
 msgid "Add logs to monitor"
@@ -1543,12 +1536,10 @@ msgstr "Fjern logfiler fra overvågning"
 
 #. Check boxes
 #: logview/monitor.c:246
-#, fuzzy
 msgid "_Hide application"
 msgstr "_Skjul program"
 
 #: logview/monitor.c:254
-#, fuzzy
 msgid "_Execute actions"
 msgstr "_Udfør handlinger"
 
@@ -1561,7 +1552,6 @@ msgid "tmp_list is NULL\n"
 msgstr "tmp_list er NULL\n"
 
 #: logview/monitor.c:457
-#, fuzzy
 msgid "Monitoring Logs..."
 msgstr "Overvåger logfiler..."
 
@@ -1569,35 +1559,32 @@ msgstr "Overvåger logfiler..."
 msgid "TOUCHED!!\n"
 msgstr "ÆNDRET!\n"
 
-# RETMIG: hvad i alverden er dette?
 #: logview/zoom.c:63
-#, fuzzy
 msgid "Entry Detail"
-msgstr "_Elementdetaljer"
+msgstr "Indtastningsdetalje"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "Dato:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "Proces:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "Besked:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "Beskrivelse:"
 
-#: logview/zoom.c:130
-#, fuzzy
+#: logview/zoom.c:129
 msgid "Log Line Details"
-msgstr "Loglinjedetalje for"
+msgstr "Loglinjedetaljer"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%e. %B %X"
 
@@ -1612,6 +1599,12 @@ msgid ""
 msgstr ""
 "Logfil der skal åbnes når programmet startes. Standard er enten /var/adm/"
 "messages eller /var/log/messages, afhængigt af din styresystem."
+
+#~ msgid "GNOME Dictionary"
+#~ msgstr "Ordbog til Gnome"
+
+#~ msgid "GNOME System Log Viewer"
+#~ msgstr "Systemlog-fremviser"
 
 #~ msgid "Gdialog progressbar"
 #~ msgstr "Fremgangslinje"
@@ -2302,9 +2295,6 @@ msgstr ""
 #~ msgid "symbolic link"
 #~ msgstr "symbolske henvisning"
 
-#~ msgid "No Files Found."
-#~ msgstr "Ingen filer fundet."
-
 #~ msgid ""
 #~ "Cannot perform the search.\n"
 #~ "The Bourne shell was not found\n"
@@ -2408,9 +2398,6 @@ msgstr ""
 
 #~ msgid "_Log"
 #~ msgstr "_Log"
-
-#~ msgid "System Log Viewer"
-#~ msgstr "Systemlog-fremviser"
 
 #~ msgid "Cannot load required fonts, cannot continue"
 #~ msgstr "Kan ikke indlæse påkrævne skrifttype, kan ikke fortsætte"
