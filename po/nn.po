@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
-"POT-Creation-Date: 2004-03-08 18:08-0800\n"
-"PO-Revision-Date: 2004-02-27 10:29+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-09 13:55+0100\n"
+"PO-Revision-Date: 2004-03-09 15:09+0100\n"
 "Last-Translator: Åsmund Skjæveland <aasmunds@fys.uio.no>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -347,6 +347,9 @@ msgid ""
 "the dictionary server supports. The default strategy is 'lev' - Match words "
 "within Levenshtein distance one"
 msgstr ""
+"Søkestrategien som skal brukast. Dette valet kjem an på kva slags søkestrategiar "
+"ordboktenaren støttar. Standard strategi er «lev»: Finn ord innanfor "
+"Levenshtein-avstand ein."
 
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
@@ -365,10 +368,12 @@ msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
 msgstr ""
+"0 for snøggformatering, 1 for ei standardformatering (gjer ei lågnivåformatering) "
+"og 2 for grundig formatering (legg til eit søk etter øydelagte blokker)."
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
-msgstr ""
+msgstr "BERRE FOR AVANSERTE BRUKARAR: Standard motor for FAT-formatering"
 
 #: gfloppy/gfloppy.schemas.in.h:3
 msgid "Default filesystem type"
@@ -383,10 +388,12 @@ msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
 msgstr ""
+"Sett til sann for å bruka mkdosfs som den foretrukne FAT-formateringsmotoren, "
+"eller til usann for å bruka mtools som den foretrukne FAT-formateringsmotoren."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr ""
+msgstr "«ext2» for vanleg Linux-filsystem, eller «fat» for DOS-filsystem."
 
 #: gfloppy/src/badblocks.c:94
 msgid "Internal Error: Unable to seek to the correct location."
@@ -527,21 +534,20 @@ msgstr "Klarte ikkje å avgjere noverande format på disketten"
 
 #: gfloppy/src/gfloppy.c:221
 msgid "Error while creating a unique filename for the bad blocks list file."
-msgstr ""
+msgstr "Feil under oppretting av unikt filnamn til lista over øydelagte blokker."
 
 #: gfloppy/src/gfloppy.c:241
-#, fuzzy
 msgid "Error while filling the bad blocks list file."
-msgstr "MSer etter dårlege blokker ..."
+msgstr "Feil medan lista over øydelagte blokker vart fylt ut."
 
 #: gfloppy/src/gfloppy.c:304
-#, fuzzy, c-format
+#, c-format
 msgid "Error while spawning the (%s) command: %s."
-msgstr "MSer etter dårlege blokker ..."
+msgstr "Feil under start av kommando (%s); %s."
 
 #: gfloppy/src/gfloppy.c:330
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr ""
+msgstr "Ukjend startsignatur frå mke2fs, avsluttar."
 
 #: gfloppy/src/gfloppy.c:344
 #, c-format
@@ -550,15 +556,18 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
+"Verktøyet for å laga filsystem (%s) meldte om følgjande feil:\n"
+"\n"
+"%s (%d)"
 
 #: gfloppy/src/gfloppy.c:361
 msgid "Abnormal child process termination."
-msgstr ""
+msgstr "Unormal avslutting av barneprosessen."
 
 #: gfloppy/src/gfloppy.c:386
-#, fuzzy, c-format
+#, c-format
 msgid "Error while spawning the mbadblocks command: %s."
-msgstr "MSer etter dårlege blokker ..."
+msgstr "Feil under oppstart av kommandoen mbadblocks: %s"
 
 #: gfloppy/src/gfloppy.c:398
 #, c-format
@@ -566,39 +575,35 @@ msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
+"Verktøyet som ser etter øydelagte blokker (mbadblocks) meldte om følgjande feil:\n"
+"%s"
 
 #: gfloppy/src/gfloppy.c:441
 msgid "Abnormal mbadblocks child process termination."
-msgstr ""
+msgstr "Unormal avslutting av barneprosessen mbadblocks."
 
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
-#, fuzzy
 msgid "Making filesystem on disk..."
-msgstr "MOpprettar filsystem på disken ..."
+msgstr "Lagar filsystem på disken ..."
 
 #: gfloppy/src/gfloppy.c:475
-#, fuzzy
 msgid "Unable to create filesystem correctly."
-msgstr "EIkkje i stand til å opprette filsystem."
+msgstr "Ikkje i stand til å oppretta filsystem."
 
 #: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
-#, fuzzy
 msgid "Making filesystem on disk... Done"
-msgstr "MLagar filsystem  på disken ...Ferdig"
+msgstr "Lagar filsystem på disken ... Ferdig"
 
 #: gfloppy/src/gfloppy.c:524
-#, fuzzy
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr "MLeitar etter dårlege blokker... (dette kan ta tid)"
+msgstr "Leitar etter øydelagte blokker ... (dette kan ta tid)"
 
 #: gfloppy/src/gfloppy.c:529
-#, fuzzy
 msgid "Error while checking the bad blocks."
-msgstr "MSer etter dårlege blokker ..."
+msgstr "Feil under søk etter øydelagte blokker."
 
 #: gfloppy/src/gfloppy2.glade.h:1
-#, fuzzy
 msgid "    "
 msgstr "    "
 
@@ -612,56 +617,51 @@ msgid ""
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
+"<small><i><b>Merk:</b>: Verktøyet «mbadblocks» er ikkje installert på "
+"dette systemet. Det må vera installert for å gjera ei grundig "
+"DOS (FAT)-formatering.</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Filsysteminnstillingar</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
 msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Formateringsmodus</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
 msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Fysiske innstillingar</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:7
-#, fuzzy
 msgid "DOS (FAT)"
-msgstr "Dos (FAT)"
+msgstr "DOS (FAT)"
 
 #: gfloppy/src/gfloppy2.glade.h:8
-#, fuzzy
 msgid "Double Density 3.5\" (720KB)"
 msgstr "Dobbel tettleik 3,5\" (720 kB)"
 
 #: gfloppy/src/gfloppy2.glade.h:9
-#, fuzzy
 msgid "Double Density 5.25\" (360KB)"
 msgstr "Dobbel tettleik 5,25\" (360 kB)"
 
 #: gfloppy/src/gfloppy2.glade.h:10
-#, fuzzy
 msgid "File system _type:"
-msgstr "Filsystemtype:"
+msgstr "Filsystem_type:"
 
 #: gfloppy/src/gfloppy2.glade.h:12
-#, fuzzy
 msgid "Floppy _density:"
-msgstr "Diskettettleik:"
+msgstr "_Diskettettleik:"
 
 #: gfloppy/src/gfloppy2.glade.h:13
-#, fuzzy
 msgid "Floppy de_vice:"
-msgstr "Diskettstasjon:"
+msgstr "Diskettstasjo_n:"
 
 #: gfloppy/src/gfloppy2.glade.h:14
-#, fuzzy
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Høg tettleik 3,5\" (1,44 MB)"
 
 #: gfloppy/src/gfloppy2.glade.h:15
-#, fuzzy
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Høg tettleik 5,25\" (1,2 MB)"
 
@@ -674,19 +674,17 @@ msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:18
-#, fuzzy
 msgid "Volume _name:"
-msgstr "Filnamn:"
+msgstr "_Namn på dataeining:"
 
 #: gfloppy/src/gfloppy2.glade.h:19
-#, fuzzy
 msgid "_Format"
 msgstr "_Formater"
 
 #: gfloppy/src/gfloppy2.glade.h:20
 #, fuzzy
 msgid "_Quick (only creates the filesystem)"
-msgstr "EIkkje i stand til å opprette filsystem."
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
@@ -697,6 +695,8 @@ msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
+"Ingen av verktøya «mke2fs» , «mkdosfs» eller «mformat» er installerte. "
+"Du kan ikkje formatera ein diskett utan eitt av dei."
 
 #: gfloppy/src/main.c:164
 #, c-format
@@ -724,13 +724,12 @@ msgstr ""
 "Kontakt din adminstrator for å få skriverettar."
 
 #: gfloppy/src/main.c:216
-#, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "Ikkje i stand til å opne eininga %s, formatering kan ikkje fortsetje."
+msgstr "Kan ikkje opna nokon einingar. Kan ikkje halda fram med formatering."
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 eller /dev/fd0"
 
 #: gfloppy/src/main.c:394
 #, c-format
@@ -738,10 +737,12 @@ msgid ""
 "Could not display help for the floppy formatter.\n"
 "%s"
 msgstr ""
+"Klarte ikkje visa hjelp for diskettformateringsprogrammet.\n"
+"%s"
 
 #: gfloppy/src/main.c:427
 msgid "The volume name can't contain any blank space."
-msgstr ""
+msgstr "Namnet på dataeininga kan ikkje innehalda blanke teikn."
 
 #: gfloppy/src/main.c:477
 msgid "The device to format"
@@ -749,7 +750,7 @@ msgstr "Eininga som skal formaterast"
 
 #: gfloppy/src/main.c:478
 msgid "DEVICE"
-msgstr "DEVICE"
+msgstr "EINING"
 
 #: gfloppy/src/progress.c:123
 #, c-format
@@ -775,14 +776,12 @@ msgid "Floppy formatting cancelled."
 msgstr "Formatering avbrote."
 
 #: gfloppy/src/progress.c:175
-#, fuzzy
 msgid "Format Progress"
-msgstr "Framgong i formatering."
+msgstr "Framdrift i formateringa"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
 #: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
-#, fuzzy
 msgid "Search for Files"
 msgstr "Søk etter filer"
 
@@ -791,59 +790,48 @@ msgid "Search your disk for files"
 msgstr "Søk på disken etter filer"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:99
-#, fuzzy
 msgid "Image/label border"
 msgstr "Kant rundt bilete/merkelapp"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
-#, fuzzy
 msgid "Width of border around the label and image in the alert dialog"
 msgstr "Breidda på ramma rundt merkelappen og biletet i varslingsdialogen"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
-#, fuzzy
 msgid "Alert Type"
-msgstr "Varlsingstype"
+msgstr "Varseltype"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
-#, fuzzy
 msgid "The type of alert"
-msgstr "Typen varsling"
+msgstr "Typen varsel"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:118
-#, fuzzy
 msgid "Alert Buttons"
-msgstr "Varslingsknappar"
+msgstr "Varselknappar"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
-#, fuzzy
 msgid "The buttons shown in the alert dialog"
-msgstr "Knappane viste i varslingsdialogen"
+msgstr "Knappane viste i varseldialogen"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
-#, fuzzy
 msgid "_Open"
 msgstr "_Opna"
 
 #: gsearchtool/gsearchtool-callbacks.c:54
-#, fuzzy
 msgid "O_pen Folder"
-msgstr "Opne fil"
+msgstr "O_pna mappe"
 
 #: gsearchtool/gsearchtool-callbacks.c:59
-#, fuzzy
 msgid "Mo_ve to Trash"
 msgstr "Fly_tt til papirkorga"
 
 #: gsearchtool/gsearchtool-callbacks.c:64
-#, fuzzy
 msgid "_Save Results As..."
-msgstr "L_agre resultat som ..."
+msgstr "L_agra resultat som ..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
-#, fuzzy
 msgid "Could not open help document."
-msgstr "Lukk dokument"
+msgstr "Klarte ikkje opna hjelpedokument."
 
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
@@ -862,26 +850,26 @@ msgstr[1] "Dette vil opna %d nye vindauge."
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open document \"%s\"."
-msgstr "Lukk dokument"
+msgstr "Klarte ikkje opna dokumentet «%s»."
 
 #: gsearchtool/gsearchtool-callbacks.c:393
 #: gsearchtool/gsearchtool-callbacks.c:947
 msgid "There is no installed viewer capable of displaying the document."
-msgstr ""
+msgstr "Det er ikkje installert nokon framvisarar som kan visa dette dokumentet."
 
 #: gsearchtool/gsearchtool-callbacks.c:444
 #, fuzzy, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] "Er du sikker på at du vil stenge ned datamaskina?"
+msgstr[0] "Er du sikker på at du vil opna %d mappe?"
 msgstr[1] "Er du sikker på at du vil stenge ned datamaskina?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
-msgstr "Kunne ikkje opna fila «%s»: %s"
+msgstr "Klarte ikkje opna mappa «%s»."
 
 #: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
@@ -1108,8 +1096,7 @@ msgstr[1] "Ingen treff"
 
 #: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
-msgstr ""
-"Oppføringa som vart endra, ville ha eit val som ikkje gjeld for oppføringar"
+msgstr "Oppføringa som vart endra, ville ha eit val som ikkje gjeld for oppføringar"
 
 #: gsearchtool/gsearchtool.c:900
 msgid "Searching..."
@@ -5331,3 +5318,4 @@ msgstr "%B %e %X"
 
 #~ msgid "Run"
 #~ msgstr "Køyr"
+
