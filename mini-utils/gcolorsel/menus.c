@@ -480,7 +480,6 @@ about_cb (GtkWidget *widget, gpointer data)
   static GtkWidget *about = NULL;
   
   gchar *authors[] = {
-    "Tim P. Gerla",
     "Eric Brayeur (eb2@ibelgique.com)",
     NULL
   };
