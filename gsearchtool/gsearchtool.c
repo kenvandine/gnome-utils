@@ -863,6 +863,7 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 	char *start_dir;
 	GtkWidget *dlg;
 	GtkWidget *w, *label;
+	GtkWidget *vbox;
 
 	if(start_dir_e) {
 		start_dir = gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(start_dir_e), TRUE);
@@ -889,7 +890,7 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 	
 	dlg = gtk_dialog_new_with_buttons(_("Search Command Line"), GTK_WINDOW(app),
 			       GTK_DIALOG_DESTROY_WITH_PARENT,
-			       GTK_STOCK_OK, GTK_RESPONSE_OK,
+			       GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 			       NULL);
 	
 	gtk_window_set_modal (GTK_WINDOW(dlg), TRUE);
@@ -899,18 +900,25 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 		      "allow_shrink", FALSE,
 		      "resizable", FALSE,
 		      NULL);
-		      
+	
+	vbox = gtk_vbox_new (FALSE, 4);
+    	g_object_set (G_OBJECT (vbox), "border_width", 6, NULL);
+	
 	gtk_dialog_set_default_response (GTK_DIALOG(dlg), GTK_RESPONSE_CLOSE); 
 
-	label = gtk_label_new(_("This is the command line that can be used to "
-			    "execute this search from the console."
-			    "\n\nCommand:"));
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), label, TRUE, TRUE, 0);
+	label = gtk_label_new_with_mnemonic (_("This is the command line that can be used to "
+			    "execute this search\nfrom the console."
+			    "\n\nC_ommand:"));
+	gtk_box_pack_start (GTK_BOX (vbox), label, TRUE, TRUE, 0);
 	
 	w = gtk_entry_new();
 	gtk_editable_set_editable(GTK_EDITABLE(w), FALSE);
 	gtk_entry_set_text(GTK_ENTRY(w), cmd);
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), w, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
+
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), w);
+
+	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dlg)->vbox), vbox);
 
 	g_signal_connect_swapped (GTK_OBJECT (dlg), 
                              	  "response", 
@@ -1252,7 +1260,7 @@ create_find_page(void)
 	gtk_container_set_border_width(GTK_CONTAINER(vbox),GNOME_PAD_SMALL);
 
 	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
+	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,GNOME_PAD_SMALL);
 	label = gtk_label_new_with_mnemonic(_("S_tarting in folder:"));
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 	start_dir_e = gnome_file_entry_new("directory", _("Browse"));
@@ -1342,7 +1350,7 @@ create_find_page(void)
 	image = gtk_image_new_from_stock("gtk-find", GTK_ICON_SIZE_BUTTON);
 	gtk_box_pack_start (GTK_BOX(hbox2), image, FALSE, FALSE, 0);
 	
-	label = gtk_label_new_with_mnemonic(_("F_ind"));
+	label = gtk_label_new_with_mnemonic(_("_Find"));
 	gtk_box_pack_start(GTK_BOX(hbox2), label, FALSE, FALSE, 0);
 	
 	find_buttons[0] = gtk_button_new_from_stock(GTK_STOCK_STOP);
@@ -1364,9 +1372,12 @@ create_find_page(void)
              
 	/* create search results section */
 	frame = gtk_frame_new(NULL);
+	label = gtk_label_new_with_mnemonic (_("S_earch Results"));
+	gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
+	gtk_frame_set_label_widget (GTK_FRAME (frame), label);
 	gtk_paned_pack2 (GTK_PANED (vpaned), frame, TRUE, FALSE);
 	gtk_widget_set_size_request (frame, -1, 90);
-	gtk_frame_set_label ( GTK_FRAME(frame), _("Results"));
 	find_results = gtk_scrolled_window_new(NULL,NULL);
 	gtk_widget_set_usize(find_results,600,90);
 	gtk_widget_set_sensitive(find_results, FALSE);
@@ -1392,6 +1403,8 @@ create_find_page(void)
 	
 	g_signal_connect(G_OBJECT(find_tree), "button_press_event",
 		         G_CALLBACK(launch_file),NULL);		   
+
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), find_tree);
 
 	gtk_container_add(GTK_CONTAINER(find_results),GTK_WIDGET(find_tree));
 	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(find_results));
@@ -1564,11 +1577,11 @@ create_locate_page(void)
 	gtk_container_set_border_width(GTK_CONTAINER(vbox), GNOME_PAD_SMALL);
 
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, GNOME_PAD_SMALL);
 	
 	table = gtk_table_new (2, 2, FALSE);
-	gtk_container_set_border_width (GTK_CONTAINER (table), 5);
-	gtk_table_set_row_spacings (GTK_TABLE (table), 5);
+	gtk_table_set_row_spacings (GTK_TABLE (table), GNOME_PAD_SMALL);
+	gtk_table_set_col_spacings (GTK_TABLE (table), GNOME_PAD_SMALL);
 	gtk_container_add (GTK_CONTAINER (hbox), table);
 	
 	w = gtk_label_new_with_mnemonic(_("Find files _named:"));
@@ -1635,7 +1648,7 @@ create_locate_page(void)
 	image = gtk_image_new_from_stock("gtk-find", GTK_ICON_SIZE_BUTTON);
 	gtk_box_pack_start (GTK_BOX(hbox2), image, FALSE, FALSE, 0);
 	
-	label = gtk_label_new_with_mnemonic(_("F_ind"));
+	label = gtk_label_new_with_mnemonic(_("_Find"));
 	gtk_box_pack_start(GTK_BOX(hbox2), label, FALSE, FALSE, 0);
 
 	locate_buttons[0] = gtk_button_new_from_stock(GTK_STOCK_STOP);
@@ -1656,8 +1669,11 @@ create_locate_page(void)
 
 	/* create search results section */
 	frame = gtk_frame_new(NULL);
+	label = gtk_label_new_with_mnemonic (_("S_earch Results"));
+	gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
+	gtk_frame_set_label_widget (GTK_FRAME (frame), label);
 	gtk_box_pack_start(GTK_BOX(vbox),frame,TRUE,TRUE,0);
-	gtk_frame_set_label ( GTK_FRAME(frame), _("Results"));
 	locate_results = gtk_scrolled_window_new(NULL,NULL);
 	gtk_widget_set_sensitive(GTK_WIDGET(locate_results), FALSE); 
 	gtk_container_set_border_width(GTK_CONTAINER(locate_results), GNOME_PAD_SMALL);
@@ -1684,6 +1700,8 @@ create_locate_page(void)
 	
 	g_signal_connect(G_OBJECT(locate_tree), "button_press_event",
 		         G_CALLBACK(launch_file),NULL);		   
+
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), locate_tree);
 	
 	gtk_container_add(GTK_CONTAINER(locate_results),GTK_WIDGET(locate_tree));
 	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(locate_results));
@@ -1808,7 +1826,7 @@ about_cb (GtkWidget *widget, gpointer data)
 	g_free (file);
 
 	about = gnome_about_new(_("GNOME Search Tool"), VERSION,
-				_("(C) 1998,2000 the Free Software Foundation"),
+				_("(C) 1998,2002 the Free Software Foundation"),
 				_("Frontend to the unix find/locate "
 				  "commands"),
 				authors,
@@ -1945,8 +1963,8 @@ die (GnomeClient *client, gpointer client_data)
 	gtk_main_quit ();
 }
 
-static GnomeUIInfo file_menu[] = {
-	GNOMEUIINFO_ITEM_STOCK(N_("S_how Command"), "", run_cmd_dialog,GTK_STOCK_NEW),
+static GnomeUIInfo search_menu[] = {
+	GNOMEUIINFO_ITEM_STOCK(N_("S_how Command..."), "", run_cmd_dialog,GTK_STOCK_NEW),
 	GNOMEUIINFO_ITEM_STOCK(N_("Save Results _As..."), "",show_file_selector,GTK_STOCK_SAVE_AS),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_QUIT_ITEM(quit_cb,NULL),
@@ -1960,7 +1978,7 @@ static GnomeUIInfo help_menu[] = {
 };
 
 static GnomeUIInfo gsearch_menu[] = {
-	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+	GNOMEUIINFO_SUBTREE (N_("_Search"), search_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
         GNOMEUIINFO_END
 };
@@ -2024,7 +2042,7 @@ main(int argc, char *argv[])
 	gtk_widget_show(app);
 
 	gtk_window_set_focus(GTK_WINDOW(app), GTK_WIDGET(gnome_entry_gtk_entry(GNOME_ENTRY(locate_entry))));
-        save_widget=file_menu[1].widget;
+        save_widget = search_menu[1].widget;
 
 	gtk_main ();
 
