@@ -857,16 +857,14 @@ update_animation_timeout_cb (gpointer data)
 	
 	if (in_forward_progress == TRUE) {
 		interface.current_animation_frame++;
-		if (interface.current_animation_frame >= TOTAL_ANIMATION_FRAMES) {
+		if (interface.current_animation_frame >= (TOTAL_ANIMATION_FRAMES - 1)) {
 			in_forward_progress = !in_forward_progress;
-			interface.current_animation_frame = TOTAL_ANIMATION_FRAMES - 1;
 		}
 	}
 	else {
 		interface.current_animation_frame--;
-		if (interface.current_animation_frame < 0) {
+		if (interface.current_animation_frame <= 0) {
 			in_forward_progress = !in_forward_progress;
-			interface.current_animation_frame = 0;
 		}
 	}
 		      
