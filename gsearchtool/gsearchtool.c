@@ -204,6 +204,7 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
 	static gboolean case_insensitive_arguments_initialized = FALSE;
 	gchar * cmd_stdout;
 	gchar * cmd_stderr;
+	gchar * locate;
 
 	if (case_insensitive_arguments_initialized == TRUE) {
 		return;
@@ -231,39 +232,49 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
 	}
 	g_free (cmd_stderr);
 
-	/* check locate command for -i argument compatibility */
-	g_spawn_command_line_sync ("locate -i /dev/null", &cmd_stdout, &cmd_stderr, NULL, NULL);
+	locate = g_find_program_in_path ("locate");
 
-	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
-		locate_command_default_options = g_strdup ("-i");
+	if (locate != NULL) {
+		/* check locate command for -i argument compatibility */
+		g_spawn_command_line_sync ("locate -i /dev/null", &cmd_stdout, &cmd_stderr, NULL, NULL);
 
-		/* check locate found /dev/null */
-		if (strstr (cmd_stdout, "/dev/null") != NULL) {
+		if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
+			locate_command_default_options = g_strdup ("-i");
+
+			/* check locate found /dev/null */
+			if (strstr (cmd_stdout, "/dev/null") != NULL) {
 			gsearch->is_locate_database_available = TRUE;
+			}
+			else {
+				g_warning (_("A locate database has probably not been created."));
+				gsearch->is_locate_database_available = FALSE;	
+			}
+			g_free (cmd_stdout);
+			g_free (cmd_stderr);
 		}
 		else {
-			g_warning (_("A locate database has probably not been created."));
-			gsearch->is_locate_database_available = FALSE;	
+			locate_command_default_options = g_strdup ("");
+			g_free (cmd_stdout);
+			g_free (cmd_stderr);
+
+			/* run locate again to check if it can find /dev/null */
+			g_spawn_command_line_sync ("locate /dev/null", &cmd_stdout, NULL, NULL, NULL);
+			if ((cmd_stdout != NULL) && (strstr (cmd_stdout, "/dev/null") != NULL)) {
+				gsearch->is_locate_database_available = TRUE;
+			}
+			else {
+				g_warning (_("A locate database has probably not been created."));
+				gsearch->is_locate_database_available = FALSE;
+			}
+			g_free (cmd_stdout);
 		}
-		g_free (cmd_stdout);
-		g_free (cmd_stderr);
 	}
 	else {
+		/* locate is not installed */
 		locate_command_default_options = g_strdup ("");
-		g_free (cmd_stdout);
-		g_free (cmd_stderr);
-
-		/* run locate again to check if it can find /dev/null */
-		g_spawn_command_line_sync ("locate /dev/null", &cmd_stdout, NULL, NULL, NULL);
-		if ((cmd_stdout != NULL) && (strstr (cmd_stdout, "/dev/null") != NULL)) {
-			gsearch->is_locate_database_available = TRUE;
-		}
-		else {
-			g_warning (_("A locate database has probably not been created."));
-			gsearch->is_locate_database_available = FALSE;
-		}
-		g_free (cmd_stdout);
+		gsearch->is_locate_database_available = FALSE;
 	}
+	g_free (locate);
 }
 
 static gchar *
