@@ -382,6 +382,7 @@ chart_app_new(void)
   if (config_path[p] == NULL)
     error("no config file found, proceeding anyway\n");
 
+  strip_set_default_history_size(STRIP(app->strip), gdk_screen_width());
   chart_set_interval(CHART(app->strip), app->strip_param_group->interval);
   chart_set_interval(CHART(app->pen), app->pen_param_group->interval);
 
@@ -402,8 +403,6 @@ chart_app_new(void)
 
 	page->pen_data = chart_equation_add(CHART(app->pen),
 	  app->pen_param_group, param_desc[p], page->strip_data->adj, FALSE);
-
-	strip_set_history_size(STRIP(app->strip), gdk_screen_width());
       }
 
   return app;

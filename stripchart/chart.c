@@ -147,9 +147,8 @@ chart_rescale_by_table(ChartDatum *datum, gdouble *table, gint nels, gint step)
     {
       datum->adj->upper = table[r->top_index];
       #ifdef DEBUG
-      printf("changed: %p=%2dx%d, %.0g..%.0g; %g..%g; %g(%d) -> %g(%d)\n",
-	datum, changed, step,
-	datum->top_min, datum->top_max, datum->min, datum->max, 
+      printf("changed: %p=%2dx%d, %g..%g; %g(%d) -> %g(%d)\n",
+	datum, changed, step, datum->min, datum->max, 
 	table[j], j, table[r->top_index], r->top_index);
       #endif
     }
@@ -423,7 +422,12 @@ val2gdk(gdouble val, GtkAdjustment *adj, gint height, ChartScaleStyle scale)
   else
     y = height - height * (val - adj->lower) / delta;
 
-  if (y < 0) y = 0; else if (height < y) y = height;
+  if (isnan(y))
+    y = height;
+  else if (y < 0)
+    y = 0;
+  else if (height < y)
+    y = height;
 
   return y + 0.5;
 }

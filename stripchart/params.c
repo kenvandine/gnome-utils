@@ -439,7 +439,6 @@ on_option(GtkMenuItem *menuitem, Param_name_page *po)
     {
       pen_datum = chart_equation_add(CHART(po->app->pen),
 	po->app->pen_param_group, po->desc, strip_datum->adj, FALSE);
-      strip_set_history_size(STRIP(po->app->strip), gdk_screen_width());
     }
 
   if (strip_datum && pen_datum)
@@ -898,7 +897,6 @@ on_apply(GtkMenuItem *menuitem, Chart_app *app)
 	    {
 	      pen_datum = chart_equation_add(CHART(app->pen),
 		app->pen_param_group, desc, strip_datum->adj, FALSE);
-	      strip_set_history_size(STRIP(app->strip), gdk_screen_width());
 	    }
 
 	  if (strip_datum && pen_datum)

@@ -46,6 +46,6 @@ guint strip_get_type(void);
 GtkWidget *strip_new(void);
 
 void strip_set_ticks(Strip *strip, gint show, gint major, gint minor);
-void strip_set_history_size(Strip *strip, gint size);
+void strip_set_default_history_size(Strip *strip, gint size);
 
 #endif /* STRIP_H */ 

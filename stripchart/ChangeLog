@@ -1,3 +1,18 @@
+2001-06-24  John Kodis  <kodis@jagunet.com>
+
+	* chart.c (val2gdk): If computing the vertical position of a value
+	results in not-a-number, return zero rather than -inf.  This
+	corrects the problem of data suddenly jumping to the top of the
+	strip when their values get very small.
+
+	* chart-app.c (chart_app_new): Replace multiple calls to
+	strip_set_history_size() to one call to
+	strip_set_default_history_size().  Locate this call so that it
+	works correctly.
+
+	* strip.c (strip_set_default_history_size): Renamed from
+	strip_set_history_size(), to better reflect what it actually does.
+
 Sun Jun 24 16:10:27 2001  George Lebl <jirka@5z.com>
 
 	* Makefile.am, stripchart-applet.gnorba:  Add a gnorba file so that

@@ -230,7 +230,7 @@ strip_set_ticks(Strip *strip, gint show, gint major, gint minor)
 }
 
 void
-strip_set_history_size(Strip *strip, gint size)
+strip_set_default_history_size(Strip *strip, gint size)
 {
   CHART(strip)->default_history_size = size;
 }
