@@ -85,7 +85,6 @@ static void toggle_zoom (void);
 
 GnomeUIInfo log_menu[] = {
 	GNOMEUIINFO_MENU_OPEN_ITEM(LoadLogMenu, NULL),
-	GNOMEUIINFO_MENU_SAVE_AS_ITEM(StubCall, NULL),
 	GNOMEUIINFO_SEPARATOR,
     { GNOME_APP_UI_ITEM, N_("S_witch Log"), 
 	  N_("Switch log"), change_log_menu, NULL, NULL,

@@ -59,14 +59,3 @@ GtkWidget
 
    return menu;
 }
-
-/* ----------------------------------------------------------------------
-   NAME:          StubCall
-   DESCRIPTION:   This is a stub routine for a menu item. It is used
-   as testing.
-   ---------------------------------------------------------------------- */
-
-void
-StubCall (GtkWidget * widget, gpointer user_data)
-{
-}

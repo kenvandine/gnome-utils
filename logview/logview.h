@@ -196,7 +196,6 @@ Log;
  *    `---------------------'
  */
 
-void StubCall (GtkWidget *, gpointer);
 void ShowErrMessage (const char *msg);
 void QueueErrMessages (gboolean do_queue);
 void ShowQueuedErrMessages (void);
