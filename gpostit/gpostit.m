@@ -45,14 +45,17 @@ int main(int argc, char *argv[])
 - initPostitApp:(int)argc
 	       :(char **)argv
 {
+  id vbox;
   self = [super initApp:"gpostit" :NULL :argc :argv :0 :NULL];
   notes = NULL;
   tmpstr = g_string_new(NULL);
-  btnwin = [[Gtk_Window alloc] initWithWindowType:GTK_WINDOW_DIALOG];
+  btnwin = [[Gtk_Window alloc] initWithWindowType:GTK_WINDOW_TOPLEVEL];
+  vbox = [[Gtk_VBox new] show];
   new_btn = [[[Gtk_Button alloc] initWithLabel:"New note..."] show];
   exit_btn = [[[Gtk_Button alloc] castGtkButton:GTK_BUTTON(gnome_stock_button(GNOME_STOCK_BUTTON_CLOSE))] show];
-  [btnwin add:new_btn];
-  [btnwin add:exit_btn];
+  [vbox add:new_btn];
+  [vbox add:exit_btn];
+  [btnwin add:vbox];
   [btnwin show];
   [btnwin connectObj:"delete_event" :self];
   [new_btn connectObj:"clicked" :self];
