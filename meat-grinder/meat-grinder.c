@@ -776,11 +776,11 @@ drag_data_get (GtkWidget          *widget,
 /* Menus */
 static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_ITEM_NONE
-		(N_("Add file or folder..."),
+		(N_("_Add file or folder..."),
 		 N_("Add a file or folder to the archive"),
 		 add_cb),
 	GNOMEUIINFO_ITEM_NONE
-		(N_("Create archive..."),
+		(N_("_Create archive..."),
 		 N_("Create a new archive from the items"),
 		 archive_cb),
 	GNOMEUIINFO_SEPARATOR,
@@ -789,7 +789,7 @@ static GnomeUIInfo file_menu[] = {
 };
 
 static GnomeUIInfo edit_menu[] = {
-	GNOMEUIINFO_ITEM_NONE (N_("Remove"),
+	GNOMEUIINFO_ITEM_NONE (N_("_Remove"),
 			       N_("Remove the selected item(s)"),
 			       remove_cb),
 	GNOMEUIINFO_MENU_CLEAR_ITEM (clear_cb, NULL),
