@@ -132,11 +132,10 @@ main(int argc, char *argv[])
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-calc2.png");
         app=gnome_app_new("gcalc", _("Gnome Calculator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gcalc", "gcalc");
-	gtk_window_set_policy (GTK_WINDOW (app), TRUE, FALSE, TRUE);
+	gtk_window_set_policy (GTK_WINDOW (app), FALSE, TRUE, FALSE);
 
         gtk_signal_connect(GTK_OBJECT(app), "delete_event",
 		GTK_SIGNAL_FUNC(quit_cb), NULL);
-        gtk_window_set_policy(GTK_WINDOW(app),1,1,0);
 
 	/*set up the menu*/
         gnome_app_create_menus(GNOME_APP(app), gcalc_menu);
