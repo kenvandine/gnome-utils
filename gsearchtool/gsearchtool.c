@@ -126,6 +126,8 @@ static int current_template = 0;
 
 static char *filename = NULL;
 
+static GtkWidget *save_widget = NULL;
+
 /* memrchr is gnu specific */
 static const void *
 my_memrchr (const void *mem, int c, size_t n)
@@ -802,10 +804,12 @@ run_command(GtkWidget *w, gpointer data)
 
 	char *start_dir;
 
+	gtk_widget_set_sensitive(save_widget, FALSE);
 	if (buttons[0] == w) { /*we are in the stop button*/
 		if(find_running == RUNNING) {
 			find_running = MAKE_IT_STOP;
 			gtk_widget_set_sensitive(buttons[1], FALSE);
+			gtk_widget_set_sensitive(save_widget, TRUE);
 			gtk_widget_hide(buttons[0]);
 			gtk_widget_show(buttons[1]);
 		}
@@ -847,6 +851,7 @@ run_command(GtkWidget *w, gpointer data)
 				_("A search is already running.  Please wait for the search "
 				  "to complete or cancel it."));
 	}
+	gtk_widget_set_sensitive(save_widget, TRUE);
 	g_free(cmd);
 }
 
@@ -1316,6 +1321,7 @@ create_find_page(void)
 	gtk_box_pack_end(GTK_BOX(hbox),find_buttons[0],FALSE,FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_end(GTK_BOX(hbox),find_buttons[1],FALSE,FALSE,GNOME_PAD_SMALL);
 	gtk_widget_set_sensitive(find_buttons[0],FALSE);
+
 	
 	/* create search results section */
 	frame = gtk_frame_new(NULL);
@@ -1428,12 +1434,14 @@ run_locate_command(GtkWidget *w, gpointer data)
 	gchar *cmd;
 	GtkWidget **buttons = data;
 
+        gtk_widget_set_sensitive(save_widget, FALSE);
 	if (buttons[0] == w) { /*we are in the stop button*/
 		if(locate_running == RUNNING)
 			locate_running = MAKE_IT_STOP;
 			gtk_widget_hide(buttons[0]);
 			gtk_widget_show(buttons[1]);
 			gtk_widget_set_sensitive(buttons[1], FALSE);
+			gtk_widget_set_sensitive(save_widget, TRUE);
 		return;
 	}
 
@@ -1459,11 +1467,13 @@ run_locate_command(GtkWidget *w, gpointer data)
 		gtk_widget_set_sensitive(buttons[0], FALSE);
 		gtk_widget_show(buttons[1]);
 		gtk_widget_set_sensitive(buttons[1], TRUE);
+
 	} else {
 		gnome_app_error(GNOME_APP(app),
 				_("A search is already running.  Please wait for the search "
 				  "to complete or cancel it."));
 	}
+	gtk_widget_set_sensitive(save_widget, TRUE);
 	g_free(cmd);
 }
 
@@ -1852,6 +1862,7 @@ main(int argc, char *argv[])
 	gtk_widget_show(app);
 
 	gtk_window_set_focus(GTK_WINDOW(app), GTK_WIDGET(gnome_entry_gtk_entry(GNOME_ENTRY(locate_entry))));
+        save_widget=file_menu[1].widget;
 
 	gtk_main ();
 
