@@ -301,7 +301,7 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	gtk_clist_set_column_width(cl, 0, 70);
 	gtk_clist_freeze(cl);
 	gtk_widget_set_usize(GTK_WIDGET(cl), -1, 200);
-	gtk_clist_set_border(cl, GTK_SHADOW_IN);
+	//	gtk_clist_set_border(cl, GTK_SHADOW_IN);
 	
 	if(id)
 	{
