@@ -91,6 +91,7 @@ ascii_select_init (AsciiSelect *obj)
     GtkWidget *entry;
     GtkStyle *style;
     GtkObject *adj;
+    GdkFont *font;
 
     obj->window = gnome_dialog_new (_("Select Character"),
 				    _("Insert"),
@@ -117,9 +118,12 @@ ascii_select_init (AsciiSelect *obj)
     gtk_entry_set_text (GTK_ENTRY (entry), "A");
     gtk_entry_set_max_length (GTK_ENTRY (entry), 1);
     style = gtk_style_copy (gtk_widget_get_style (entry));
-    style->font = gdk_fontset_load (
-      "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+
+    font = gdk_fontset_load (
+      _("-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*")
     );
+    if (font != NULL)
+	    style->font = font;
     gtk_widget_set_style (entry, style);
     gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (obj->window)->vbox),
       entry, TRUE, TRUE, 0);

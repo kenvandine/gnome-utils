@@ -206,13 +206,16 @@ main_app_create_ui (MainApp *app)
     /* The character table */
     {
         GtkWidget *tmp;
+	GdkFont *font;
 
         tmp = gtk_button_new ();
         gtk_widget_ensure_style(tmp);
         app->btnstyle = gtk_style_copy (gtk_widget_get_style (tmp));
-        app->btnstyle->font = gdk_fontset_load (
-          "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*"
+        font = gdk_fontset_load (
+          _("-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*")
         );
+	if (font != NULL)
+		app->btnstyle->font = font;
         gtk_widget_destroy (tmp);
 
         chartable = create_chartable ();
@@ -247,6 +250,7 @@ main_app_create_ui (MainApp *app)
         GtkStyle *style;
         GdkColor black = {0, 0, 0, 0};
         GdkColor white = {0, 0xFFFF, 0xFFFF, 0xFFFF};
+	GdkFont *font;
         guint8 i;
 
         viewport = gtk_viewport_new (NULL, NULL);
@@ -256,9 +260,11 @@ main_app_create_ui (MainApp *app)
         style = gtk_style_copy (gtk_widget_get_style (viewport));
         for (i = 0; i < 5; i++) style->fg[i] = white;
         for (i = 0; i < 5; i++) style->bg[i] = black;
-        style->font = gdk_fontset_load (
-          "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+        font = gdk_fontset_load (
+          _("-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*")
         );
+	if (font != NULL)
+		style->font = font;
 
         gtk_widget_set_style (viewport, style);
         gtk_box_pack_start (GTK_BOX (vbox2), viewport, FALSE, TRUE, 0);
