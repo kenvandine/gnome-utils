@@ -281,6 +281,7 @@ build_search_command (void)
 	file_is_named_utf8 = g_strdup ((gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry)))));
 
 	if (!file_is_named_utf8 || !*file_is_named_utf8) {
+		g_free (file_is_named_utf8);
 		file_is_named_utf8 = g_strdup ("*");
 	} 
 	else {
