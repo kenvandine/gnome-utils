@@ -35,9 +35,7 @@
 #include <gdk/gdk.h>
 #include <gtk/gtkvbox.h>
 
-#include <libgnome/gnome-defs.h>
-
-BEGIN_GNOME_DECLS
+G_BEGIN_DECLS
 
 
 #define GNOME_TYPE_CALC            (gnome_calc_get_type ())
@@ -88,6 +86,6 @@ const char	*gnome_calc_get_result_string (GnomeCalc *gc);
 void             gnome_calc_bind_extra_keys (GnomeCalc *gc,
 					     GtkWidget *widget);
 
-END_GNOME_DECLS
+G_END_DECLS
 
 #endif
