@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2001-01-21 02:14+0100\n"
+"POT-Creation-Date: 2001-01-25 02:20+0100\n"
 "PO-Revision-Date: 2000-05-07 01:59+0200\n"
 "Last-Translator: andraz.tori1@guest.arnes.si\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -29,7 +29,7 @@ msgstr "Gnome Kalkulator"
 msgid "Select ASCII Character"
 msgstr "Izberi ASCII znak"
 
-#: gcharmap/src/asciiselect.c:118
+#: gcharmap/src/asciiselect.c:118 gcharmap/src/menus.c:95
 msgid "Insert"
 msgstr "Vstavi"
 
@@ -41,37 +41,155 @@ msgstr "ASCII koda:"
 msgid "Character:"
 msgstr "Znak:"
 
-#: gcharmap/src/interface.c:130
+#: gcharmap/src/callbacks.c:42 gcharmap/src/interface.c:130
 msgid "Gnome Character Map"
 msgstr "Gnome Karta znakov"
+
+#: gcharmap/src/callbacks.c:46
+msgid ""
+"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"contain bad English."
+msgstr ""
+"Gnome ekvivalent karte znakov Microsoftih Oken. Opozorilo: lahko vsebuje slabe "
+"prevode."
+
+#: gcharmap/src/callbacks.c:76
+msgid "%s: ASCII code %d"
+msgstr "%s: ASCII koda %d"
+
+#: gcharmap/src/callbacks.c:103
+msgid "Text copied to clipboard..."
+msgstr "Besedilo skopirano na odlo¾i¹èe..."
+
+#: gcharmap/src/callbacks.c:115
+msgid "Text cut to clipboard..."
+msgstr "Besedilo izrezano na odlo¾i¹èe..."
+
+#: gcharmap/src/callbacks.c:168
+msgid "Text pasted from clipboard..."
+msgstr "Besedilo priepljeno iz odloæi¹èa..."
 
 #: gcharmap/src/interface.c:159
 msgid "Action Toolbar"
 msgstr "Orodjarna dejanj"
 
-#: gcharmap/src/interface.c:176
+#: gcharmap/src/interface.c:178
 msgid "Text to copy:"
 msgstr "Besedilo za kopiranje:"
 
-#: gcharmap/src/interface.c:220 gstripchart/gstripchart.c:1798
-#: mini-utils/gcolorsel/menus.c:921
+#: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
+#: gstripchart/gstripchart.c:1798 mini-utils/gcolorsel/menus.c:921
 msgid "Exit"
 msgstr "Izhod"
 
-#: gcharmap/src/interface.c:221 gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:100
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: gcharmap/src/interface.c:225 gstripchart/gstripchart.c:1786
-#: gstripchart/gstripchart.c:2070 mini-utils/gcolorsel/menus.c:919
-#: mini-utils/gshutdown/gshutdown.c:319
+#: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
+#: gstripchart/gstripchart.c:1786 gstripchart/gstripchart.c:2070
+#: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "O"
 
-#: gcharmap/src/interface.c:227 gdictsrc/gdict-applet.c:286
-#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:2067
+#: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
+#: gdictsrc/gdict-applet.c:286 gstripchart/gstripchart.c:1780
+#: gstripchart/gstripchart.c:2067
 msgid "Help"
 msgstr "Pomoè"
+
+#: gcharmap/src/menus.c:47
+msgid "Insert Character..."
+msgstr "Vstavi znak..."
+
+#: gcharmap/src/menus.c:48
+msgid "Insert character(s) by choosing ASCII codes."
+msgstr "Vstavi znak(e) z izbiro ASCII kod."
+
+#: gcharmap/src/menus.c:55
+msgid "_Action Toolbar"
+msgstr "_Orodna vrstica dejanj"
+
+#: gcharmap/src/menus.c:55
+msgid "View or hide the action toolbar"
+msgstr "Ka¾i ali skrij orodno vrstico dejanj"
+
+#: gcharmap/src/menus.c:57
+msgid "_Text Toolbar"
+msgstr "Orodna vrstica _besedila"
+
+#: gcharmap/src/menus.c:57
+msgid "View or hide the text toolbar"
+msgstr "Ka¾i ali skrij orodno vrstico besedila"
+
+#: gcharmap/src/menus.c:59
+msgid "_Statusbar"
+msgstr "_Vrstica stanja"
+
+#: gcharmap/src/menus.c:59
+msgid "View or hide the statusbar"
+msgstr "Ka¾i ali skrij vrstico stanja"
+
+#: gcharmap/src/menus.c:66
+msgid "Character Table's Font..."
+msgstr "Pisava karte znakov..."
+
+#: gcharmap/src/menus.c:66
+msgid "Set the character table's font."
+msgstr "Nastavi pisavo karte znakov."
+
+#: gcharmap/src/menus.c:69
+msgid "_Insert at end"
+msgstr "_Vstavi na koncu"
+
+#: gcharmap/src/menus.c:69
+msgid "Insert every selected character at the end of the text etry"
+msgstr "Vstavi vsak izbran znak na konec besedila"
+
+#: gcharmap/src/menus.c:71
+msgid "_Focusable Buttons"
+msgstr "Gumbi lahko dobijo _fokus"
+
+#: gcharmap/src/menus.c:71
+msgid "Set whenether the buttons are focusable or not"
+msgstr "Nastavi ali gumbi lahko dobijo fokus"
+
+#: gcharmap/src/menus.c:95
+msgid "Insert character(s) by choosing ASCII codes"
+msgstr "Vstavi znak(e) z izbiro ASCII kod."
+
+#: gcharmap/src/menus.c:98 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Izre¾i"
+
+#: gcharmap/src/menus.c:98
+msgid "Cut the selection"
+msgstr "Izre¾i izbiro"
+
+#: gcharmap/src/menus.c:100
+msgid "Copy the selection"
+msgstr "Kopiraj izbiro"
+
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Prilepi"
+
+#: gcharmap/src/menus.c:102
+msgid "Paste the clipboard"
+msgstr "Prilepi iz odlo¾i¹èe."
+
+#: gcharmap/src/menus.c:105
+msgid "Show Gnome Character Map's manual"
+msgstr "Ka¾i priroènik karte znakov Gnome"
+
+#: gcharmap/src/menus.c:107 mini-utils/gcolorsel/menus.c:919
+msgid "About this application"
+msgstr "O tem programu"
+
+#: gcharmap/src/menus.c:110 mini-utils/gcolorsel/menus.c:921
+msgid "Exit the program"
+msgstr "Izhod iz programa"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
@@ -99,7 +217,7 @@ msgstr "Preverjanje èrkovanja konèano"
 
 #: gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
 msgid "No matches found"
-msgstr "Ni najdenih zadetkov"
+msgstr "Ni zadetkov"
 
 #: gdictsrc/gdict-app.c:250
 msgid "Looking up word..."
@@ -146,10 +264,6 @@ msgstr "Èrkuj"
 msgid "Check word spelling"
 msgstr "Preveri èrkovanje besede"
 
-#: gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Izre¾i"
-
 #: gdictsrc/gdict-app.c:518
 msgid "Cut to Clipboard"
 msgstr "Izre¾i in postavi na odlo¾i¹èe"
@@ -157,10 +271,6 @@ msgstr "Izre¾i in postavi na odlo¾i¹èe"
 #: gdictsrc/gdict-app.c:521
 msgid "Copy to Clipboard"
 msgstr "Kopiraj na odlo¾i¹èe"
-
-#: gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Prilepi"
 
 #: gdictsrc/gdict-app.c:524
 msgid "Paste Clipboard Contents"
@@ -1954,7 +2064,7 @@ msgstr ""
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:24
 msgid "Display documents menu (restart required)."
-msgstr "Ka¾i menu dokumentov (potreben ponovni zagon)."
+msgstr "Ka¾i menu dokumentov (potreben je ponovni zagon)."
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:25
 msgid "Documents"
@@ -2306,14 +2416,6 @@ msgstr "Zgrabi"
 #: mini-utils/gcolorsel/menus.c:916
 msgid "Grab a color on the screen"
 msgstr "Zgrabi barvo na zaslonu"
-
-#: mini-utils/gcolorsel/menus.c:919
-msgid "About this application"
-msgstr "O tem programu"
-
-#: mini-utils/gcolorsel/menus.c:921
-msgid "Exit the program"
-msgstr "Izhod iz programa"
 
 #: mini-utils/gcolorsel/session.c:304
 msgid ""
@@ -3183,56 +3285,14 @@ msgstr "Samo superuporabnik (root) lahko uporablja to orodje"
 msgid "You appear to have no IDE drives"
 msgstr "Zdi se, da IDE pogonov ni"
 
-#~ msgid "Insert character"
-#~ msgstr "Vstavi znak"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-iso8859-2,*-r-*"
-
-#~ msgid "Insert character..."
-#~ msgstr "Vstavi znak..."
-
-#~ msgid "_Toolbar"
-#~ msgstr "_Orodjarna"
-
-#~ msgid "View or hide the toolbar"
-#~ msgstr "Ka¾i ali skrij orodjarno"
-
-#~ msgid "_Statusbar"
-#~ msgstr "_Vrstica stanja"
-
-#~ msgid "View or hide the statusbar"
-#~ msgstr "Ka¾i ali skrij vrstico stanja"
 
 #~ msgid "Cut the text to clipboard"
 #~ msgstr "Izre¾i besedilo na odlo¾i¹èe"
 
 #~ msgid "Copy the text to clipboard."
 #~ msgstr "Kopiraj besedilo na odlo¾i¹èe."
-
-#~ msgid "Paste the text from clipboard."
-#~ msgstr "Prilepi besedilo iz odlo¾i¹èe."
-
-#~ msgid "Exit the application"
-#~ msgstr "Izhod iz programa"
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "Besedilo izrezano na odlo¾i¹èe..."
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "Besedilo skopirano na odlo¾i¹èe..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "Besedilo priepljeno iz odloæi¹èa..."
-
-#~ msgid ""
-#~ "The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
-#~ "contain bad English.\n"
-#~ "http://users.telekabel.nl/hongli/"
-#~ msgstr ""
-#~ "Gnome ekvivalent karte znakov MS oken. Opozorilo: lahko vsebuje slabe "
-#~ "prevode.\n"
-#~ "http://users.telekabel.nl/hongli/"
 
 #~ msgid "This sets the overall application settings."
 #~ msgstr "To uveljavi nastavitve èez celoten program."
