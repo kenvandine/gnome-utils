@@ -1,4 +1,5 @@
-# Copyright (C) 1999-2002 Free Software Foundation, Inc.
+# translation of gnome-utils.HEAD.po to Russian
+# Copyright (C) 1999-2002, 2004 Free Software Foundation, Inc.
 # Valek Filppov <frob@df.ru>, 1999-2002.
 # Sergey Panov <sipan@mit.edu>, 1999,2000.
 # Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2003.
@@ -7,17 +8,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2004-08-03 17:30+1200\n"
-"PO-Revision-Date: 2004-03-20 20:34+0200\n"
+"Project-Id-Version: gnome-utils.HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-13 11:49+0200\n"
+"PO-Revision-Date: 2004-08-13 19:40+0300\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
-"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.3.1\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
@@ -34,7 +35,6 @@ msgid "Lookup words in an online dictionary"
 msgstr "Программа поиска слова в онлайновом словаре"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1
-#, fuzzy
 msgid "_About"
 msgstr "_О программе..."
 
@@ -47,9 +47,8 @@ msgid "_Look Up Selected Text"
 msgstr "Искать в_ыделенный текст..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-#, fuzzy
 msgid "_Preferences"
-msgstr "_Изменить настройки"
+msgstr "_Свойства"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
 msgid "_Show Dictionary"
@@ -73,12 +72,13 @@ msgstr ""
 
 #. Translator credits
 #: gdictsrc/gdict-about.c:43 logview/about.c:49
-msgid "translator_credits"
+msgid "translator-credits"
 msgstr ""
 "Валёк Филлипов\n"
 "Сергей Панов\n"
 "Дмитрий Мастрюков\n"
-"Андрей Носенко <awn@bcs.zp.ua>"
+"Андрей Носенко\n"
+"Леонид Кантер"
 
 #: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:925
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
@@ -182,9 +182,8 @@ msgid "_Lookup"
 msgstr "_Искать"
 
 #: gdictsrc/gdict-applet.c:148
-#, fuzzy
 msgid "Dictionary word entry"
-msgstr "Сервер словаря"
+msgstr "Словарная запись"
 
 #: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
 #, c-format
@@ -428,8 +427,7 @@ msgstr "Идёт проверка на плохие блоки..."
 #: gfloppy/src/badblocks.c:273
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr ""
-"Произошёл сбой при открытии устройства \"%s\" для проверки на плохие блоки\n"
+msgstr "Произошёл сбой при открытии устройства \"%s\" для проверки на плохие блоки\n"
 
 #: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
 msgid "Checking for bad blocks... Done"
@@ -563,8 +561,7 @@ msgstr "Произошла ошибка при выполнении команд
 
 #: gfloppy/src/gfloppy.c:331
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr ""
-"Обнаружена неизвестная начальная строка (сигнатура) mke2fs, отменяется."
+msgstr "Обнаружена неизвестная начальная строка (сигнатура) mke2fs, отменяется."
 
 #: gfloppy/src/gfloppy.c:345
 #, c-format
@@ -615,8 +612,7 @@ msgstr "Создание файловой системы на диске... Вы
 
 #: gfloppy/src/gfloppy.c:525
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr ""
-"Идёт проверка на наличие сбойных блоков... (может занять некоторое время)"
+msgstr "Идёт проверка на наличие сбойных блоков... (может занять некоторое время)"
 
 #: gfloppy/src/gfloppy.c:530
 msgid "Error while checking the bad blocks."
@@ -706,8 +702,7 @@ msgstr "_быстрый (только создаёт файловую систе
 
 #: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
-msgstr ""
-"ст_андартный (добавляет низкоуровневое форматирование к быстрому режиму)"
+msgstr "ст_андартный (добавляет низкоуровневое форматирование к быстрому режиму)"
 
 #: gfloppy/src/main.c:140
 msgid ""
@@ -720,8 +715,7 @@ msgstr ""
 #: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr ""
-"Не удалось открыть устройство \"%s\", невозможно продолжать форматирование."
+msgstr "Не удалось открыть устройство \"%s\", невозможно продолжать форматирование."
 
 #: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
@@ -804,7 +798,7 @@ msgstr "Состояние форматирования"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
-msgstr ""
+msgstr "Поиск файлов, папок и документов на вашем компьютере"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
 #: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
@@ -837,7 +831,6 @@ msgid "The buttons shown in the alert dialog"
 msgstr "Кнопки, отображаемые в диалоге предупреждения"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:172
-#, fuzzy
 msgid "Show more _details"
 msgstr "Показывать больше _параметров"
 
@@ -1011,9 +1004,8 @@ msgid "yesterday at %-I:%M %p"
 msgstr "вчера в %-H:%M"
 
 #: gsearchtool/gsearchtool-support.c:514 gsearchtool/gsearchtool-support.c:516
-#, fuzzy
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
-msgstr "%d-%-m-%Y, %-H:%M"
+msgstr "%A, %b %-d %Y в %-I:%M:%S %p"
 
 #: gsearchtool/gsearchtool-support.c:687
 msgid "link (broken)"
@@ -1029,32 +1021,28 @@ msgid "Contains the _text"
 msgstr "Содержит _текст"
 
 #: gsearchtool/gsearchtool.c:76
-#, fuzzy
 msgid "_Date modified less than"
-msgstr "Дата _модификации ближе, чем (дней)"
+msgstr "Дата _модификации меньше, чем"
 
 #: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
 msgid "days"
-msgstr ""
+msgstr "дней"
 
 #: gsearchtool/gsearchtool.c:77
-#, fuzzy
 msgid "Date modified more than"
-msgstr "Дата м_одификации дальше, чем (дней)"
+msgstr "Дата м_одификации больше, чем"
 
 #: gsearchtool/gsearchtool.c:79
-#, fuzzy
 msgid "S_ize at least"
-msgstr "_Размер минимум (килобайт)"
+msgstr "_Размер не меньше"
 
 #: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
 msgid "kilobytes"
-msgstr ""
+msgstr "килобайт"
 
 #: gsearchtool/gsearchtool.c:80
-#, fuzzy
 msgid "Si_ze at most"
-msgstr "Размер максимум (_килобайт)"
+msgstr "Ра_змер не больше"
 
 #: gsearchtool/gsearchtool.c:81
 msgid "File is empty"
@@ -1138,8 +1126,7 @@ msgstr "Установить текст для поля \"Искать в пап
 
 #: gsearchtool/gsearchtool.c:965
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr ""
-"Сортировать файлы по одному из критериев: имя, каталог, размер, тип, дата"
+msgstr "Сортировать файлы по одному из критериев: имя, каталог, размер, тип, дата"
 
 #: gsearchtool/gsearchtool.c:966
 msgid "Set sort order to descending, the default is ascending"
@@ -1170,17 +1157,17 @@ msgstr ""
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
-msgstr ""
+msgstr "Результаты поиска могут быть неверными. В процессе поиска происходили ошибки."
 
 #: gsearchtool/gsearchtool.c:1380
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
-msgstr ""
+msgstr "Результат поиска может быть неверным. Отключить функцию быстрого поиска?"
 
 #: gsearchtool/gsearchtool.c:1388
 msgid "Disable _Quick Search"
-msgstr ""
+msgstr "Отключить _Быстрый поиск"
 
 #: gsearchtool/gsearchtool.c:1432
 msgid "Error parsing the search command."
@@ -1193,7 +1180,7 @@ msgstr "Ошибка выполнения команда поиска."
 #: gsearchtool/gsearchtool.c:1572
 #, c-format
 msgid "'%s' entry"
-msgstr ""
+msgstr "запись '%s'"
 
 #: gsearchtool/gsearchtool.c:1573
 msgid "Enter a value for search rule"
@@ -1340,8 +1327,7 @@ msgstr "Удалить действие"
 #: logview/actions.c:263
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
-msgstr ""
-"Невозможно открыть базу данных действий <%s>! Произошёл сбой при открытии."
+msgstr "Невозможно открыть базу данных действий <%s>! Произошёл сбой при открытии."
 
 #: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
 #: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
@@ -1353,9 +1339,9 @@ msgid "Can't write to actions database!"
 msgstr "Невозможно записать в базу данных действий!"
 
 #: logview/actions.c:487
-#, fuzzy, c-format
+#, c-format
 msgid "Error while executing specified action: %s"
-msgstr "Произошла ошибка при выполнении указанного действия"
+msgstr "Ошибка при выполнении указанного действия: %s"
 
 #: logview/actions.c:510
 msgid "<empty>"
@@ -1468,8 +1454,7 @@ msgstr ""
 #: logview/desc_db.c:147
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
-msgstr ""
-"Невозможно открыть базу данных описаний <%s>! Произошёл сбой при открытии."
+msgstr "Невозможно открыть базу данных описаний <%s>! Произошёл сбой при открытии."
 
 #. ----------------------------------------------------------------------
 #. NAME:
@@ -1770,10 +1755,10 @@ msgstr "В_ыполнять действия"
 
 #: logview/monitor.c:293
 msgid "Too many logs to monitor. Remove one and try again"
-msgstr ""
-"Слишком много журналов в числе отслеживаемых. Уберите один и попробуйте снова"
+msgstr "Слишком много журналов в числе отслеживаемых. Уберите один и попробуйте снова"
 
 #: logview/monitor.c:301 logview/monitor.c:338
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list имеет значение NULL\n"
 
@@ -1782,6 +1767,7 @@ msgid "Monitoring Logs..."
 msgstr "Отслеживание журналов..."
 
 #: logview/monitor.c:667
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr "ИЗМЕНЕНО!\n"
 
@@ -1814,589 +1800,3 @@ msgstr "Детали длинной строки"
 msgid "%B %e %X"
 msgstr "%e %B %X"
 
-#~ msgid "Search your disk for files"
-#~ msgstr "Программа поиска файлов на дисках"
-
-#~ msgid ""
-#~ "While searching the following errors were reported.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Было сообщено о следующих ошибках при поиске.\n"
-#~ "\n"
-
-#~ msgid "Error while searching for files."
-#~ msgstr "Произошла ошибка при поиске файлов."
-
-#~ msgid "Search Rule Value Entry"
-#~ msgstr "Строка значения правила поиска"
-
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "Файл анимации отсутствует или неверен: %s"
-
-#, fuzzy
-#~ msgid "One File Found"
-#~ msgstr "Один файл найден"
-
-#~ msgid "One file found"
-#~ msgstr "Один файл найден"
-
-#~ msgid "Open %d documents?"
-#~ msgstr "Открыть %d документов?"
-
-#~ msgid ""
-#~ "This will open %d separate documents. Are you sure you want to do this?"
-#~ msgstr ""
-#~ "Команда откроет %d отдельных документов.  Вы уверены, что хотите сделать "
-#~ "это?"
-
-#~ msgid "Could not open document \"%s\""
-#~ msgstr "Не удалось открыть документ \"%s\""
-
-#~ msgid "Open %d folders?"
-#~ msgstr "Открыть %d папок?"
-
-#~ msgid ""
-#~ "This will open %d separate folders. Are you sure you want to do this?"
-#~ msgstr ""
-#~ "Команда откроет %d отдельных папок. Вы уверены, что хотите сделать это?"
-
-#~ msgid ""
-#~ "You did not select a document name or the name selected was a folder.  "
-#~ "The document is not saved."
-#~ msgstr ""
-#~ "Вы не выбрали имя для документа или выбранное имя было именем папки.  "
-#~ "Документ не сохранен."
-
-#~ msgid "The contents of the file \"%s\" will be lost."
-#~ msgstr "Содержимое файла \"%s\" будет потеряно."
-
-#~ msgid "Overwrite an existing file?"
-#~ msgstr "Перезаписать существующий файл?"
-
-#~ msgid "Could not save document \"%s\" to %s"
-#~ msgstr "Не удалось сохранить документ \"%s\" в %s"
-
-#~ msgid "GNOME Dictionary"
-#~ msgstr "Словарь для среды Гном"
-
-#~ msgid "Gdialog progressbar"
-#~ msgstr "Индиктор GDisalog"
-
-#~ msgid "Indicates the percentage specified at the standard input"
-#~ msgstr "Показывает процент, указываемый на стандартном вводе"
-
-#~ msgid "GDialog Entry"
-#~ msgstr "Элемент GDialog"
-
-#~ msgid "Enter the text"
-#~ msgstr "Введите текст"
-
-#~ msgid "Copyright 1999 by Mike Hughes"
-#~ msgstr "Авторские права 1999, Mike Hughes"
-
-#~ msgid "_Word: "
-#~ msgstr "Сло_во: "
-
-#~ msgid "Headword:"
-#~ msgstr "Заглавное слово:"
-
-#~ msgid "Sub-number:"
-#~ msgstr "Доп. номер:"
-
-#~ msgid "Pronunciation:"
-#~ msgstr "Произношение:"
-
-#~ msgid "Etymology:"
-#~ msgstr "Этимология:"
-
-#~ msgid "Part of speech:"
-#~ msgstr "Часть речи:"
-
-#~ msgid "Example:"
-#~ msgstr "Пример:"
-
-#~ msgid "Main body:"
-#~ msgstr "Словарная статья:"
-
-#~ msgid "Cross-reference:"
-#~ msgstr "Перекрёстные ссылки:"
-
-#~ msgid "Search _Results"
-#~ msgstr "_Результаты поиска"
-
-#~ msgid "Floppy formatter"
-#~ msgstr "Программа форматирования дискет"
-
-#~ msgid "(aborted)"
-#~ msgstr "(прерван)"
-
-#~ msgid "Search for Files Error"
-#~ msgstr "Ошибка поиска файлов"
-
-#~ msgid "File Name Entry"
-#~ msgstr "Имя файла"
-
-#~ msgid "Starting folder entry"
-#~ msgstr "Искать в папке"
-
-#~ msgid "Additional Options"
-#~ msgstr "Дополнительные параметры"
-
-#~ msgid "Can't Display Help"
-#~ msgstr "Невозможно отобразить справку"
-
-#~ msgid "Open %d Files?"
-#~ msgstr "Открыть %d файлов?"
-
-#~ msgid "Can't Display Location"
-#~ msgstr "Невозможно отобразить местоположение"
-
-#~ msgid ""
-#~ "Cannot save search results.\n"
-#~ "\"%s\" is a folder."
-#~ msgstr ""
-#~ "Невозможно сохранить результаты поиска.\n"
-#~ "\"%s\" является папкой."
-
-#~ msgid "File \"%s\" already exists. Overwrite?"
-#~ msgstr "Файл \"%s\" уже существует, перезаписать?"
-
-#~ msgid "Cannot save search results to the file \"%s\"."
-#~ msgstr "Невозможно сохранить результаты поиска в файл \"%s\"."
-
-#~ msgid "Expander Size"
-#~ msgstr "Размер расширителя"
-
-#~ msgid "Size of the expander arrow"
-#~ msgstr "Размер стрелки расширителя"
-
-#~ msgid "%Y%m%d%H%M%S"
-#~ msgstr "%d%m%Y%H%M%S"
-
-#~ msgid ""
-#~ "This program is part of the GNOME project. Logview comes with ABSOLUTELY "
-#~ "NO WARRANTY. This is free software, and you are welcome to redistribute "
-#~ "it under the conditions of the GNU General Public Licence. The log icon "
-#~ "is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-#~ msgstr ""
-#~ "Эта программа - часть проекта среды Гном. Она поставляется БЕЗ ВСЯКИХ "
-#~ "ГАРАНТИЙ. Это свободное программное обеспечение, и вы можете "
-#~ "распространять его на условиях лицензии GNU GPL. Значок нарисовал Tuomas "
-#~ "Kuosmanen (известный как tigert)."
-
-#~ msgid "Copyright (C) 1998"
-#~ msgstr "Авторское право © 1998"
-
-#~ msgid "Log stats"
-#~ msgstr "Статистика журнала"
-
-#~ msgid "Zoom view"
-#~ msgstr "Подробный просмотр"
-
-#~ msgid "_Show/Hide Definition Window..."
-#~ msgstr "_Показать/Скрыть окно определения..."
-
-#~ msgid "GNOME Calculator"
-#~ msgstr "Калькулятор среды Гном"
-
-#~ msgid "(C) 1998 Free Software Foundation, Inc."
-#~ msgstr "© 1998 Фонд Свободного программного обеспечения"
-
-#~ msgid "Simple double precision calculator similar to xcalc"
-#~ msgstr ""
-#~ "Простой калькулятор с двойной точностью, подобный калькулятору xcalc"
-
-#~ msgid "_Calculator"
-#~ msgstr "_Калькулятор"
-
-#~ msgid "Calculator"
-#~ msgstr "Калькулятор"
-
-#~ msgid "inf"
-#~ msgstr "инф"
-
-#~ msgid "DEG"
-#~ msgstr "ГР"
-
-#~ msgid "RAD"
-#~ msgstr "РАД"
-
-#~ msgid "GRAD"
-#~ msgstr "ГРАД"
-
-#~ msgid "1/x"
-#~ msgstr "1/x"
-
-#~ msgid "Inverse"
-#~ msgstr "Инвертировать"
-
-#~ msgid "x<sup>2</sup>"
-#~ msgstr "x<sup>2</sup>"
-
-#~ msgid "Square"
-#~ msgstr "Возвести в Квадрат"
-
-#~ msgid "SQRT"
-#~ msgstr "КВ.КОР"
-
-#~ msgid "Square root"
-#~ msgstr "Извлечь корень квадратный"
-
-#~ msgid "CE/C"
-#~ msgstr "CE/C"
-
-#~ msgid "Clear"
-#~ msgstr "Очистить"
-
-#~ msgid "AC"
-#~ msgstr "AC"
-
-#~ msgid "Reset"
-#~ msgstr "Сбросить"
-
-#~ msgid "INV"
-#~ msgstr "СДВ"
-
-#~ msgid "Inverse trigonometry/log function"
-#~ msgstr "Инвертировать тригонометрическую функцию или логарифм"
-
-#~ msgid "sin"
-#~ msgstr "sin"
-
-#~ msgid "Sine"
-#~ msgstr "Вычислить синус"
-
-#~ msgid "cos"
-#~ msgstr "cos"
-
-#~ msgid "Cosine"
-#~ msgstr "Вычислить косинус"
-
-#~ msgid "tan"
-#~ msgstr "tg"
-
-#~ msgid "Tangent"
-#~ msgstr "Вычислить тангенс"
-
-#~ msgid " DEG  "
-#~ msgstr "  ГР  "
-
-#~ msgid "Switch degrees / radians / grad"
-#~ msgstr "Переключить градусы / радианы / грады"
-
-#~ msgid "e"
-#~ msgstr "e"
-
-#~ msgid "Base of Natural Logarithm"
-#~ msgstr "Основание натуральных логарифмов"
-
-#~ msgid "EE"
-#~ msgstr "EE"
-
-#~ msgid "Add digit"
-#~ msgstr "Добавить цифру"
-
-#~ msgid "log"
-#~ msgstr "log"
-
-#~ msgid "Base 10 Logarithm"
-#~ msgstr "Взять десятичный логарифм"
-
-#~ msgid "ln"
-#~ msgstr "ln"
-
-#~ msgid "Natural Logarithm"
-#~ msgstr "Взять натуральный логарифм"
-
-#~ msgid "x<sup>y</sup>"
-#~ msgstr "x<sup>y</sup>"
-
-#~ msgid "Power"
-#~ msgstr "Возвести в степень"
-
-#~ msgid "PI"
-#~ msgstr "Пи"
-
-#~ msgid "x!"
-#~ msgstr "x!"
-
-#~ msgid "Factorial"
-#~ msgstr "Факториал"
-
-#~ msgid "("
-#~ msgstr "("
-
-#~ msgid "Opening Parenthesis"
-#~ msgstr "Открывающая скобка"
-
-#~ msgid ")"
-#~ msgstr ")"
-
-#~ msgid "Closing Parenthesis"
-#~ msgstr "Закрывающая скобка"
-
-#~ msgid "/"
-#~ msgstr "÷"
-
-#~ msgid "Divide by"
-#~ msgstr "Разделить на"
-
-#~ msgid "STO"
-#~ msgstr "ЗАП"
-
-#~ msgid ""
-#~ "Store the value in the\n"
-#~ "display field in memory"
-#~ msgstr ""
-#~ "Сохранить значение\n"
-#~ "на дисплее в памяти"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "Multiply by"
-#~ msgstr "Умножить на"
-
-#~ msgid "RCL"
-#~ msgstr "ВЫЗ"
-
-#~ msgid ""
-#~ "Display the value in memory\n"
-#~ "in the display field"
-#~ msgstr ""
-#~ "Вызвать значение\n"
-#~ "из памяти на дисплей"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "Subtract"
-#~ msgstr "Вычесть"
-
-#~ msgid "SUM"
-#~ msgstr "СУМ"
-
-#~ msgid ""
-#~ "Add the value in the display\n"
-#~ "field to the value in memory"
-#~ msgstr ""
-#~ "Добавить значение на дисплее\n"
-#~ "к сохранённому в памяти"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "+"
-#~ msgstr "+"
-
-#~ msgid "Add"
-#~ msgstr "Сложить"
-
-#~ msgid "EXC"
-#~ msgstr "ОБМ"
-
-#~ msgid ""
-#~ "Exchange the values in the\n"
-#~ "display field and memory"
-#~ msgstr ""
-#~ "Обменять значения\n"
-#~ "на дисплее и в памяти"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "."
-#~ msgstr ","
-
-#~ msgid "Decimal Point"
-#~ msgstr "Десятичная запятая"
-
-#~ msgid "+/-"
-#~ msgstr "+/-"
-
-#~ msgid "Change sign"
-#~ msgstr "Изменить знак"
-
-#~ msgid "="
-#~ msgstr "="
-
-#~ msgid "Calculate"
-#~ msgstr "Вычислить"
-
-#~ msgid "Perform simple calculations"
-#~ msgstr "Калькулятор для выполнения простых вычислений"
-
-#~ msgid "Character Map"
-#~ msgstr "Таблица символов"
-
-#~ msgid "Insert special characters into documents"
-#~ msgstr "Программа для вставки специальных символов в документы"
-
-#~ msgid "Select Character"
-#~ msgstr "Выберите символ"
-
-#~ msgid "_Insert"
-#~ msgstr "Вст_авить"
-
-#~ msgid "Character c_ode:"
-#~ msgstr "К_од символа:"
-
-#~ msgid "Ch_aracter:"
-#~ msgstr "Си_мвол:"
-
-#~ msgid "Character Code"
-#~ msgstr "Код символа"
-
-#~ msgid "Select character code"
-#~ msgstr "Выберите код символа"
-
-#~ msgid "Character"
-#~ msgstr "Символ"
-
-#~ msgid "Character to insert"
-#~ msgstr "Символ для вставки"
-
-#~ msgid "GNOME Character Map"
-#~ msgstr "Таблица символов для среды Гном"
-
-#~ msgid ""
-#~ "Select, copy and paste characters from your font into other applications"
-#~ msgstr ""
-#~ "Выбрать, скопировать и вставить символы из шрифта в другие приложения"
-
-#, fuzzy
-#~ msgid "Character code: (Unicode) U+%04lX"
-#~ msgstr "Код символа: (Юникод) U%04lX"
-
-#, fuzzy
-#~ msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
-#~ msgstr "Код символа: (Юникод) U%04lX, (%s) 0x%s"
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "Текст скопирован в буфер обмена..."
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "Текст вырезан в буфер обмена..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "Текст вставлен из буфера обмена..."
-
-#~ msgid "Action Toolbar"
-#~ msgstr "Панель действий"
-
-#~ msgid "_Font:"
-#~ msgstr "_Шрифт:"
-
-#~ msgid "_Text to copy:"
-#~ msgstr "_Текст для копирования:"
-
-#~ msgid "_Copy"
-#~ msgstr "С_копировать"
-
-#~ msgid "Text to copy"
-#~ msgstr "Текст для копирования"
-
-#~ msgid "Entry"
-#~ msgstr "Элемент"
-
-#~ msgid "Copy"
-#~ msgstr "Скопировать"
-
-#~ msgid "Copy the text"
-#~ msgstr "Скопировать текст"
-
-#~ msgid "_Browse..."
-#~ msgstr "П_росмотреть..."
-
-#~ msgid "Insert character(s) by choosing character codes."
-#~ msgstr "Вставить символ(ы), выбрав коды."
-
-#~ msgid "Ch_aracters"
-#~ msgstr "С_имволы"
-
-#~ msgid "Cut"
-#~ msgstr "Вырезать"
-
-#~ msgid "Cut the selection"
-#~ msgstr "Вырезать выделение"
-
-#~ msgid "Copy the selection"
-#~ msgstr "Скопировать выделение"
-
-#~ msgid "Paste"
-#~ msgstr "Вставить"
-
-#~ msgid "Paste the clipboard"
-#~ msgstr "Вставить из буфера обмена"
-
-#~ msgid "GNOME Search Tool"
-#~ msgstr "Средство поиска для среды Гном"
-
-#~ msgid ""
-#~ "Executing arbitrary programs that you downloaded from the network might "
-#~ "be dangerous.\n"
-#~ "\n"
-#~ "Are you sure you want to run `%s'?"
-#~ msgstr ""
-#~ "Выполнение обычных программ, которые вы выкачали из сети, может быть "
-#~ "опасным\n"
-#~ "\n"
-#~ "Вы уверены в том, что хотите запустить программу \"%s\"?"
-
-#~ msgid "Could not access file permissions"
-#~ msgstr "Не удалось получить права доступа файла"
-
-#~ msgid "Could not execute the file `%s' due to a permission problem"
-#~ msgstr "Не удалось выполнить файл \"%s\" из-за проблем с правами доступа"
-
-#~ msgid "Failure at executing `%s'"
-#~ msgstr "Произошёл сбой при выполнении программы \"%s\""
-
-#~ msgid "It was not possible to open the file `%s'"
-#~ msgstr "Невозможно открыть файл \"%s\""
-
-#~ msgid "The file `%s' is empty"
-#~ msgstr "Файл \"%s\" пуст"
-
-#~ msgid "This is a library and can not be executed"
-#~ msgstr "Это библиотека, она не может быть выполнена"
-
-#~ msgid "The file is a core file and can not be executed"
-#~ msgstr "Этот файл является файлом типа core и не может быть выполнен"
-
-#~ msgid "This is an unknown kind of executable"
-#~ msgstr "Тип исполняемого файла неизвестен"
-
-#~ msgid ""
-#~ "The executable is for a different platform and can not be executed on "
-#~ "this system"
-#~ msgstr ""
-#~ "Исполняемый файл предназначен для другой платформы и не может быть "
-#~ "выполнен на этой системе"
-
-#~ msgid "File is not named"
-#~ msgstr "имя файла не"
-
-#~ msgid "File is _named:"
-#~ msgstr "И_мя файла:"
