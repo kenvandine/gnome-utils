@@ -1,3 +1,12 @@
+1998-09-25  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* gnomecard.c: broke gnomecard_sort_cards into several functions.
+	(gnomecard_open_file): now sorts the file when loading.
+	(gnomecard_update_tree): now the card is relocated to its sorted 
+		position.
+	(gnomecard_cmp_names): new sorting function.	
+	(gnomecard_cmp_emails): new sorting function.
+
 1998-09-22  Federico Mena Quintero  <federico@nuclecu.unam.mx>
 
 	* Makefile.am (gnomecard_SOURCES): Added missing cardtypes.h.

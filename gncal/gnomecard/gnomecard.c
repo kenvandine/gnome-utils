@@ -37,6 +37,8 @@
 #define PHONE 1
 #define EMAIL 2
 
+typedef int (*sort_func) (const void *, const void *);
+
 GtkWidget *gnomecard_window;
 GtkWidget *crd_canvas;
 GnomeCanvasItem *test;
@@ -63,7 +65,7 @@ char *gnomecard_find_str;
 gboolean gnomecard_find_sens;
 gboolean gnomecard_find_back;
 gint gnomecard_def_data;
-gint gnomecard_sort_criteria;
+sort_func gnomecard_sort_criteria;
 
 gboolean gnomecard_changed;
 gboolean gnomecard_found;                 /* yeah... pretty messy. (fixme) */
@@ -209,14 +211,14 @@ pix *pix_new(char **xpm)
 	new_pix->pixmap = gdk_imlib_move_image (image);
 	new_pix->mask = gdk_imlib_move_mask (image);
 	gdk_imlib_destroy_image (image);
-	gdk_window_get_size(new_pix->pixmap, 
-											&(new_pix->width), &(new_pix->height));
+	gdk_window_get_size(new_pix->pixmap,
+			    &(new_pix->width), &(new_pix->height));
 	
 	return new_pix;
 }
 
 char *gnomecard_join_name (char *pre, char *given, char *add, 
-													 char *fam, char *suf)
+			   char *fam, char *suf)
 {
 	char *name;
 	
@@ -252,11 +254,14 @@ char *gnomecard_first_phone_str(GList *phone)
 {
 	char *ret;
 	
+	if (! phone)
+	  return NULL;
+	
 	ret = ((CardPhone *) phone->data)->data;
 	
-	for (phone = phone->next; phone; phone = phone->next)
-		if (((CardPhone *) phone->data)->type & PHONE_PREF)	
-			ret = ((CardPhone *) phone->data)->data;
+	for ( ; phone; phone = phone->next)
+	  if (((CardPhone *) phone->data)->type & PHONE_PREF)	
+	    ret = ((CardPhone *) phone->data)->data;
 	
 	return ret;
 }
@@ -308,34 +313,85 @@ void gnomecard_scroll_tree(GList *node)
 
 int gnomecard_cmp_fnames(const void *crd1, const void *crd2)
 {
-	return strcmp((* (Card **) crd1)->fname.str, (*(Card **) crd2)->fname.str);
+	char *fname1, *fname2;
+	
+	fname1 = (* (Card **) crd1)->fname.str;
+	fname2 = (* (Card **) crd2)->fname.str;
+	
+	if (fname1 == fname2)
+	  return 0;
+	if (!fname1)
+	  return 1;
+	if (!fname2)
+	  return -1;
+	
+	return strcmp(fname1, fname2);
 }
 
-void gnomecard_sort_cards(GtkWidget *w, gpointer data)
+int gnomecard_cmp_names(const void *crd1, const void *crd2)
 {
-	int (*compar)(const void *, const void *);
-	GList *l;
-	Card **array, *curr;
-	guint i, len, criteria;
+	char *name1, *name2;
+	Card *card1, *card2;
+	int ret;
 	
-	criteria = (guint) data;
-	if (gnomecard_sort_criteria == criteria)
-		return;
+	card1 = (* (Card **) crd1);
+	card2 = (* (Card **) crd2);
 	
-	gnomecard_sort_criteria = criteria;
-	curr = curr_crd->data;
+	name1 = gnomecard_join_name(card1->name.prefix, card1->name.given, 
+				    card1->name.additional, card1->name.family, 
+				    card1->name.suffix);
+	name2 = gnomecard_join_name(card2->name.prefix, card2->name.given, 
+				    card2->name.additional, card2->name.family, 
+				    card2->name.suffix);
 	
-	switch (criteria) {
-	 case PROP_FNAME:
-		compar = gnomecard_cmp_fnames;
-		break;
-	 case PROP_NONE:
-	 default:
-		return;
+	ret =  strcmp(name1, name2);
+	g_free(name1);
+	g_free(name2);
+	
+	return ret;
+}
+
+int gnomecard_cmp_emails(const void *crd1, const void *crd2)
+{
+	char *email1, *email2;
+	char *host1, *host2;
+	Card *card1, *card2;
+	int ret;
+	
+	card1 = (* (Card **) crd1);
+	card2 = (* (Card **) crd2);
+	
+	if (! card1->email && !card2->email)
+	  return gnomecard_cmp_fnames(crd1, crd2);
+	if (! card1->email)
+	  return 1;
+	if (! card2->email)
+	  return -1;
+	
+	email1 = g_strdup(((CardEMail *) (card1->email->data))->data);
+	email2 = g_strdup(((CardEMail *) (card2->email->data))->data);
+	
+	if ((host1 = strchr(email1, '@'))) {
+		*host1++ = 0;
+		if ((host2 = strchr(email2, '@'))) {
+			*host2++ = 0;
+			if ((ret = strcmp(host1, host2)))
+			  return ret;
+		}
 	}
+	
+	return strcmp(email1, email2);
+}
+
+void gnomecard_sort_card_list(sort_func compar)
+{
+	GList *l;
+	Card **array;
+	guint i, len;
 	
 	len = g_list_length(crds);
 	array = g_malloc(sizeof(Card *) * len);
+	
 	i = 0;
 	for (l = crds; l; l = l->next)
 		array[i++] = l->data;
@@ -343,22 +399,44 @@ void gnomecard_sort_cards(GtkWidget *w, gpointer data)
 	qsort(array, len, sizeof(Card *), compar);
 	
 	i = 0;
+	for (l = crds; l; l = l->next, i++)
+	  l->data = array[i];
+	
+	g_free(array);
+}
+
+void gnomecard_do_sort_cards(sort_func criteria)
+{
+	GList *l;
+	Card *curr;
+	
+	curr = curr_crd->data;
+	gnomecard_sort_card_list(criteria);
+	
 	gtk_clist_freeze(GTK_CLIST(crd_tree));
-	for (l = crds; l; l = l->next, i++) {
-		if (curr == array[i])
+	for (l = crds; l; l = l->next) {
+		if (curr == l->data)
 			curr_crd = l;
-		
-		l->data = array[i];
-		gtk_ctree_move(crd_tree, array[i]->user_data, NULL, NULL);
+		gtk_ctree_move(crd_tree, ((Card *) l->data)->user_data, 
+			       NULL, NULL);
 	}
 	gtk_clist_thaw(GTK_CLIST(crd_tree));
 	
 	gnomecard_scroll_tree(curr_crd);
 	gnomecard_set_changed(TRUE);
-	
-	g_free(array);
 }
 
+void gnomecard_sort_cards(GtkWidget *w, gpointer data)
+{
+	sort_func criteria;
+	
+	criteria = (sort_func) data;
+	if (gnomecard_sort_criteria != criteria) {
+		gnomecard_sort_criteria = criteria;
+		gnomecard_do_sort_cards(criteria);
+	}
+}
+	
 void gnomecard_toggle_card_view(GtkWidget *w, gpointer data)
 {
 	if (GTK_CHECK_MENU_ITEM(w)->active)
@@ -385,8 +463,8 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	
 	text[0] = _("Name");
 	text[1] = gnomecard_join_name(crd->name.prefix, crd->name.given, 
-																crd->name.additional, crd->name.family, 
-																crd->name.suffix);
+				      crd->name.additional, crd->name.family, 
+				      crd->name.suffix);
 	if (*text[1])
 		my_gtk_ctree_insert(crd_tree, child, NULL, text, ident_pix);
 	g_free(text[1]);
@@ -675,6 +753,23 @@ void gnomecard_set_edit_del(gboolean state)
 	gtk_widget_set_sensitive(menu_find, state);
 }
 
+GtkCTreeNode *gnomecard_search_sorted_tree_pos(Card *crd)
+{
+	GList *l;
+	
+	for (l = crds; l; l = l->next)
+	  if ((*gnomecard_sort_criteria) (& (l->data), &crd) > 0)
+	    return ((Card *) l->data)->user_data;
+	
+	return NULL;
+}
+	
+void gnomecard_tree_set_sorted_pos(Card *crd)
+{
+	gtk_ctree_move(crd_tree, crd->user_data,
+		       NULL, gnomecard_search_sorted_tree_pos(crd));
+}
+	
 /* I'm using collapse and expand to avoid ctree_remove SIGSEGV */
 void gnomecard_update_tree(Card *crd)
 {
@@ -693,6 +788,7 @@ void gnomecard_update_tree(Card *crd)
 	}
 	
 	gnomecard_add_card_sections_to_tree(crd);
+	gnomecard_tree_set_sorted_pos(crd);
 }
 
 void gnomecard_update_canvas(Card *crd) 
@@ -1345,7 +1441,6 @@ void gnomecard_new_card(GtkWidget *widget, gpointer data)
 	gnomecard_scroll_tree(last);
 	
 	gnomecard_set_changed(TRUE);
-	
 }
 
 void gnomecard_del_card(GtkWidget *widget, gpointer data)
@@ -1910,7 +2005,10 @@ gboolean gnomecard_open_file(char *fname)
 	GtkWidget *w;
 	GList *c;
 
-	if (!(c = card_load(NULL, fname))) {
+	if (! gnomecard_destroy_cards())
+	  return FALSE;
+	
+	if (!(crds = card_load(NULL, fname))) {
 		char *tmp;
 		
 		tmp = g_malloc(strlen(_("Wrong file format.")) + strlen(fname) + 3);
@@ -1923,16 +2021,15 @@ gboolean gnomecard_open_file(char *fname)
 		g_free(tmp);
 		
 		return FALSE;
-	} else if (gnomecard_destroy_cards()) {
-		crds = c;
-		
-		gtk_clist_freeze(GTK_CLIST(crd_tree));
-		for (c = crds; c; c = c->next)
-			gnomecard_add_card_to_tree((Card *) c->data);
-		gtk_clist_thaw(GTK_CLIST(crd_tree));
-		
-		gnomecard_scroll_tree(g_list_first(crds));
 	}
+	
+	gnomecard_sort_card_list(gnomecard_sort_criteria);
+	gtk_clist_freeze(GTK_CLIST(crd_tree));
+	for (c = crds; c; c = c->next)
+	  gnomecard_add_card_to_tree((Card *) c->data);
+	gtk_clist_thaw(GTK_CLIST(crd_tree));
+	
+	gnomecard_scroll_tree(crds);
 	
 	return TRUE;
 }
@@ -2144,15 +2241,15 @@ GnomeUIInfo gomenu[] = {
 	
 GnomeUIInfo sortradios[] = {
 	{GNOME_APP_UI_RADIOITEMS, N_("By Card Name"), "",
-	 gnomecard_sort_cards, (gpointer) PROP_FNAME, NULL,
+	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_fnames, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
 	{GNOME_APP_UI_RADIOITEMS, N_("By Name"), "",
-	 gnomecard_sort_cards, (gpointer) PROP_NAME, NULL,
+	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_names, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
 	{GNOME_APP_UI_RADIOITEMS, N_("By E-mail"), "",
-	 gnomecard_sort_cards, (gpointer) PROP_EMAIL, NULL,
+	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_emails, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
 	{GNOME_APP_UI_ENDOFINFO}
@@ -2360,8 +2457,8 @@ void gnomecard_init(void)
 	gtk_clist_column_titles_active(GTK_CLIST(crd_tree));
 	
 	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(crd_tree)->column->button),
-										 "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_cards),
-										 (gpointer) FNAME);
+			   "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_cards),
+			   (gpointer) gnomecard_cmp_fnames);
 	gtk_clist_set_policy(GTK_CLIST(crd_tree),
 			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
@@ -2382,13 +2479,13 @@ void gnomecard_init(void)
 	crd_tree_sel_col->red = crd_tree_sel_col->green = 
 		crd_tree_sel_col->blue = 50000;
 	gdk_color_alloc(gtk_widget_get_colormap (GTK_WIDGET (crd_tree)),
-									crd_tree_sel_col);
+			crd_tree_sel_col);
 
 	crd_tree_usel_col = g_new (GdkColor, 1);
 	crd_tree_usel_col->red = crd_tree_usel_col->green = 
 		crd_tree_usel_col->blue = 60000;
 	gdk_color_alloc(gtk_widget_get_colormap (GTK_WIDGET (crd_tree)),
-									crd_tree_usel_col);
+			crd_tree_usel_col);
 /* & (GTK_WIDGET(crd_tree)->style->fg[GTK_STATE_NORMAL]);*/
 	
 	gtk_widget_show(GTK_WIDGET(crd_tree));
@@ -2451,7 +2548,7 @@ void gnomecard_init(void)
 
 	add_menu = addmenu;
 	gnomecard_def_data = PHONE;
-	gnomecard_sort_criteria = PROP_FNAME;
+	gnomecard_sort_criteria = gnomecard_cmp_fnames;
 	
 	gnomecard_init_defaults();
 	gnomecard_set_changed(FALSE);
