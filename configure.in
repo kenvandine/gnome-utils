@@ -202,6 +202,7 @@ fi
 
 dnl *******************************
 dnl LibGlade
+dnl glade is needed to build gtt
 dnl *******************************
 AC_MSG_CHECKING(for Glade libraries >= 0.11)
 if gnome-config --libs libglade > /dev/null 2>&1; then
@@ -218,6 +219,34 @@ GLADE_LIBS=`gnome-config --libs libglade`
 GLADE_CFLAGS=`gnome-config --cflags libglade`
 AC_SUBST(GLADE_LIBS)
 AC_SUBST(GLADE_FGLAGS)
+
+dnl *******************************
+dnl gtkhtml
+dnl gtkhtml is needed to build gtt
+dnl *******************************
+GTKHTML_LIBS=`$GNOME_CONFIG --libs gtkhtml`
+GTKHTML_CFLAGS=`$GNOME_CONFIG --cflags gtkhtml`
+
+# check for gtkhtml and enable it via HAVE_LIBGTKHTML
+# if found
+AC_CHECK_LIB(gtkhtml, gtk_html_new,
+             GNOMEBUILDLIBS="${GNOMEBUILDLIBS} gtkhtml"
+             AC_DEFINE(HAVE_LIBGTKHTML),
+             AC_MSG_ERROR([Cannot find gtkhtml. See config.log for more info.]),
+             $GTKHTML_LIBS)
+
+AC_SUBST(GTKHTML_LIBS)
+AC_SUBST(GTKHTML_CFLAGS)
+
+dnl ******************** 
+dnl libxml
+dnl The gnome-xml library is required to build the stripchart and 
+dnl gtt programs.
+dnl ********************
+
+GNOME_XML_CHECK
+AM_CONDITIONAL(HAVE_LIBXML, test "x$GNOME_XML_LIB" != "x")
+AC_SUBST(HAVE_LIBXML)
 
 dnl ******************** 
 dnl gfloppy
@@ -347,12 +376,6 @@ AC_CHECK_CURSES
 
 dnl gdialog end
 
-dnl The gnome-xml library is required to build the stripchart and 
-dnl gtt programs.
-GNOME_XML_CHECK
-AM_CONDITIONAL(HAVE_LIBXML, test "x$GNOME_XML_LIB" != "x")
-AC_SUBST(HAVE_LIBXML)
-
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
@@ -423,6 +446,7 @@ gtt/Makefile
 gtt/doc/Makefile
 gtt/doc/C/Makefile
 gtt/doc/es/Makefile
+gtt/glade/Makefile
 gdialog/Makefile
 splash/Makefile
 stripchart/Makefile
