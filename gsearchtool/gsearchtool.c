@@ -526,7 +526,6 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			filename = g_path_get_basename (locale);
 			
 			if (string->len == 0) {
-				g_warning ("handle_search_command_stdout_io(): Unrecognized data");
 				continue;
 			}
 			
@@ -615,7 +614,8 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 	while (g_io_channel_read_line_string (ioc, string, NULL, &error) == G_IO_STATUS_NORMAL) {
 	
 		if (truncate_error_msgs == FALSE) {
-			if ((strstr (string->str, "ermission denied") == NULL) && 
+			if ((strstr (string->str, "ermission denied") == NULL) &&
+			    (strncmp (string->str, "grep: ", 6) != 0) &&
 			    (strcmp (string->str, "find: ") != 0)){
 				locale = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
 				error_msgs = g_string_append (error_msgs, locale); 
