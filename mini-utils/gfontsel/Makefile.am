@@ -1,6 +1,6 @@
 SUBDIRS = help
 
-Utilitiesdir = $(datadir)/gnome/apps/Utilities
+Utilitiesdir = $(datadir)/applications
 
 INCLUDES = 						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
