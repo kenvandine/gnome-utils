@@ -198,6 +198,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    metrics = pango_font_get_metrics
 	     (font, pango_context_get_language (context));
    afdb = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
+   dfdb = PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
    y += 9 + dh + afdb;
 
    /* Draw Info */
