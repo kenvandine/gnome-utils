@@ -765,23 +765,47 @@ save_results_cb (GtkFileSelection *selector,
 	
 	interface.save_results_file = (gchar *)gtk_file_selection_get_filename(GTK_FILE_SELECTION(interface.file_selector));
 	
-	if (access (interface.save_results_file, F_OK) == 0) {
-		GtkWidget *dialog;
-		gint response;
+	if (g_file_test (interface.save_results_file, G_FILE_TEST_EXISTS) == TRUE) {
 		
-		dialog = gtk_message_dialog_new
-			(GTK_WINDOW (interface.file_selector),
-			 0 /* flags */,
-			 GTK_MESSAGE_QUESTION,
-			 GTK_BUTTONS_YES_NO,
-			 _("File \"%s\" already exists. Overwrite?"),
-			 interface.save_results_file);
-		gtk_window_set_transient_for (GTK_WINDOW(dialog), GTK_WINDOW (interface.main_window));
-		response = gtk_dialog_run (GTK_DIALOG (dialog));
+		if (g_file_test (interface.save_results_file, G_FILE_TEST_IS_DIR) == TRUE) {
+			GtkWidget *dialog;
+			gchar *error_msg = g_strdup_printf (_("Cannot save search results.\n\"%s\" is a folder."),
+							      interface.save_results_file);
+
+			dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
+					GTK_DIALOG_DESTROY_WITH_PARENT,
+					GTK_MESSAGE_ERROR,
+					GTK_BUTTONS_OK,
+					error_msg);
+
+			g_signal_connect (G_OBJECT (dialog),
+					"response",
+					G_CALLBACK (gtk_widget_destroy), NULL);
+					
+			gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+			gtk_widget_show (dialog);
+			g_free (error_msg);
+			
+			return;	
+		}
+		else {
+			GtkWidget *dialog;
+			gint response;
 		
-		gtk_widget_destroy (GTK_WIDGET(dialog));
+			dialog = gtk_message_dialog_new
+				(GTK_WINDOW (interface.file_selector),
+				 0 /* flags */,
+				 GTK_MESSAGE_QUESTION,
+				 GTK_BUTTONS_YES_NO,
+				 _("File \"%s\" already exists. Overwrite?"),
+				 interface.save_results_file);
+			gtk_window_set_transient_for (GTK_WINDOW(dialog), GTK_WINDOW (interface.main_window));
+			response = gtk_dialog_run (GTK_DIALOG (dialog));
 		
-		if (response != GTK_RESPONSE_YES) return;
+			gtk_widget_destroy (GTK_WIDGET(dialog));
+		
+			if (response != GTK_RESPONSE_YES) return;
+		}
 	}
 	
 	if ((fp = fopen (interface.save_results_file, "w")) != NULL) {

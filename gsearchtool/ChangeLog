@@ -1,5 +1,12 @@
 2002-12-06  Dennis Cranston <dennis_cranston@yahoo.com>
 
+	* gsearchtool-callbacks.c:  (save_results_cb)  When the user 
+	fails to select a file name in the 'Save Search Results As...' 
+	dialog, don't ask to overwrite a folder.  Instead, display the 
+	appropriate error message.
+	
+2002-12-06  Dennis Cranston <dennis_cranston@yahoo.com>
+
 	* gsearchtool-callbacks.c:  (size_allocate_cb) Call function
 	gtk_widget_set_usize() instead of gtk_widget_set_size_request().
 
