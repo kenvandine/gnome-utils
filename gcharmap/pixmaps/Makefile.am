@@ -9,4 +9,3 @@ install-data-local:
 	$(INSTALL_DATA) gcharmap.xpm $(DESTDIR)$(gcharmap_sharedir)
 	$(INSTALL_DATA) Character_Map.xpm $(DESTDIR)$(gcharmap_sharedir)
 	$(INSTALL_DATA) logo.xpm $(DESTDIR)$(gcharmap_sharedir)
-	ln -s $(DESTDIR)$(gcharmap_sharedir)/"Character Map.xpm" $(DESTDIR)$(datadir)/pixmaps/
