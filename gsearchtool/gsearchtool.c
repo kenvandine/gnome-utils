@@ -636,7 +636,7 @@ create_locate_page(void)
 			    "a simple string it\nwill be matched as a subset "
 			    "of the full path, and if you type\nin a string "
 			    "with wildcards, it will have to match the full "
-			    "path"));
+			    "path."));
 	gtk_box_pack_start(GTK_BOX(vbox), w, FALSE, FALSE, 0);
 
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
