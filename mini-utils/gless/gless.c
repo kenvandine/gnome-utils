@@ -81,10 +81,10 @@ static void fixed_cb(GtkWidget * w, gpointer data);
 static void drop_file(GtkWidget *widget, GdkDragContext *context,
                       gint x, gint y, GtkSelectionData *selectionData,
                       guint info, guint time, GnomeLessApp *app );
-static void find_dialog();
+static void find_dialog(GtkWidget * w, gpointer data );
 static void find_destroy_cb(GtkWidget * w, GdkEventAny * e, gpointer data);
-static void find_cb();
-static void find_again_cb();
+static void find_cb(GtkWidget * w, gint button, gpointer data);
+static void find_again_cb(GtkWidget * w, gpointer data);
 static int string_search(gchar * pattern, gchar * text);
 
 /***********************************
@@ -93,7 +93,7 @@ static int string_search(gchar * pattern, gchar * text);
 
 GList * apps = NULL;
 
-char ** start_files = NULL;
+const char ** start_files = NULL;
 GList * start_geometries = NULL;
 gboolean ignore_stdin = FALSE;
 
