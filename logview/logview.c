@@ -162,14 +162,11 @@ struct poptOption options[] = {
 		'f',
 		POPT_ARG_STRING,
 		&(file_to_open),
-		1
-	},{
-		NULL,
-		0,
-		POPT_ARG_NONE,
-		NULL,
-		0
-	}
+		1,
+		N_("Open the specified log."),
+		NULL
+	},
+	POPT_TABLEEND
 };
 
 /* ----------------------------------------------------------------------
@@ -257,6 +254,7 @@ int
 main (int argc, char *argv[])
 {
    GnomeClient *gnome_client;
+   GnomeProgram *program;
 
    bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
@@ -265,8 +263,9 @@ main (int argc, char *argv[])
    QueueErrMessages (TRUE);
 
    /*  Initialize gnome & gtk */
-   gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
-			   GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
+   program = gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
+				 GNOME_PARAM_APP_DATADIR, DATADIR, 
+				 NULL);
 
    gconf_init (argc, argv, NULL);
    client = gconf_client_get_default ();
@@ -280,7 +279,7 @@ main (int argc, char *argv[])
    
    program_name = (gchar *) argv[0];
    poptCon = poptGetContext ("gnome-system-log", argc, (const gchar **) argv, 
-							 options, 0);  
+   							 options, 0);  
    /* Open a new window for each log passed as a parameter */
    while ((next_opt = poptGetNextOpt (poptCon)) > 0) {
 	   if ( next_opt == 1 ) {
