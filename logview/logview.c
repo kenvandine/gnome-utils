@@ -252,8 +252,8 @@ void
 CreateMainWin ()
 {
    GtkWidget *canvas;
-   GtkWidget *w, *box, *hbox, *hbox2;
-   GtkWidget *frame, *padding;
+   GtkWidget *w, *box, *table, *hbox2;
+   GtkWidget *padding;
    GtkLabel *label;
    GtkObject *adj;
    GtkAllocation req_size;
@@ -288,40 +288,44 @@ CreateMainWin ()
    gtk_widget_set_state (filter_menu[1].widget, GTK_STATE_INSENSITIVE);
 #endif
 
-   /* Create main canvas and scroll bar */
-   frame = gtk_frame_new (NULL);
-   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
-   gtk_container_set_border_width (GTK_CONTAINER (frame), 2);
-   gtk_box_pack_start (GTK_BOX (box), frame, TRUE, TRUE, 0);
-   gtk_widget_set_style (frame, cfg->main_style);
-   gtk_widget_show (frame);
+   /* Create main canvas and scroll bars */
+   table = gtk_table_new (2, 2, FALSE);
+   gtk_widget_show (table);
 
-
-   hbox = gtk_hbox_new (FALSE, 0);
-
-   w = gtk_scrolled_window_new (NULL, NULL);
-   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
-				   GTK_POLICY_AUTOMATIC, 
-				   GTK_POLICY_AUTOMATIC);
+   w = gtk_viewport_new (NULL, NULL);
+   gtk_widget_set_usize (w, LOG_CANVAS_W, 0); 
    gtk_widget_show (w);
                
    canvas = gtk_drawing_area_new ();
    /*gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W, LOG_CANVAS_H); */
-   gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W, 10); 
+   gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W,
+			  LOG_CANVAS_H); 
    /*gtk_widget_set_usize ( GTK_WIDGET (canvas), LOG_CANVAS_W, LOG_CANVAS_H);*/
-   gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (w), canvas);
-   gtk_box_pack_start (GTK_BOX(hbox), w, TRUE, TRUE, 0);
+   gtk_container_add (GTK_CONTAINER (w), canvas);
+   gtk_table_attach (GTK_TABLE (table), w, 0, 1, 0, 1,
+		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
+
+   adj = (GtkObject *)gtk_viewport_get_hadjustment (GTK_VIEWPORT (w));
+   w = gtk_hscrollbar_new (GTK_ADJUSTMENT (adj));
+   gtk_widget_show (w);
+   gtk_table_attach (GTK_TABLE (table), w, 0, 1, 1, 2,
+		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+		     (GtkAttachOptions) (0), 0, 0);
 
    if (curlog != NULL)
-     adj = gtk_adjustment_new ( curlog->ln, 0.0, curlog->lstats.numlines+LINES_P_PAGE, 
-				1.0, 10.0, (float) 1);
+     adj = gtk_adjustment_new ( curlog->ln, 0.0,
+				curlog->lstats.numlines,
+				1.0, 10.0, (float) LINES_P_PAGE);
    else
-     adj = gtk_adjustment_new (100.0, 0.0, 101.0, 1, 10, LINES_P_PAGE);
+     adj = gtk_adjustment_new (100.0, 0.0, 101.0, 1, 10, 101.0);
 
    main_win_scrollbar = (GtkWidget *)gtk_vscrollbar_new (GTK_ADJUSTMENT(adj));
    gtk_range_set_update_policy (GTK_RANGE (main_win_scrollbar), GTK_UPDATE_CONTINUOUS);
 
-   gtk_box_pack_start (GTK_BOX(hbox), main_win_scrollbar, FALSE, FALSE, 0);
+   gtk_table_attach (GTK_TABLE (table), main_win_scrollbar, 1, 2, 0, 1,
+		     (GtkAttachOptions) (0),
+		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
    gtk_signal_connect (GTK_OBJECT (adj), "value_changed",
 		       (GtkSignalFunc) MainWinScrolled,
 		       (gpointer) main_win_scrollbar);       
@@ -331,9 +335,7 @@ CreateMainWin ()
    gtk_widget_show (main_win_scrollbar);  
 
 
-   gtk_container_add (GTK_CONTAINER (frame), hbox);
-
-
+   gtk_box_pack_start (GTK_BOX (box), table, TRUE, TRUE, 0);
    
    /*  Install event handlers */
    gtk_signal_connect (GTK_OBJECT (canvas), "expose_event",
@@ -394,7 +396,6 @@ CreateMainWin ()
    gtk_box_pack_start (GTK_BOX (box), hbox2, FALSE, FALSE, 0);
 
    gtk_widget_show (box);
-   gtk_widget_show (hbox);
    gtk_widget_show (app);
 
 }
@@ -429,8 +430,12 @@ ScrollWin (GtkRange *range, gpointer event)
   newln = (int) range->adjustment->value;
   if (curlog == NULL ||
       newln >= curlog->lstats.numlines ||
-      newln == 0)
+      newln < 0)
     return FALSE;
+
+  /* evil, yes */
+  if (newln == 0)
+	  newln = 1;
   
   /* Goto mark */
   MoveToMark (curlog);
@@ -457,9 +462,13 @@ MainWinScrolled (GtkAdjustment *adjustment, GtkRange *range)
 
   newln = (int) range->adjustment->value;
 
- if (newln == 0 ||
+ if (newln < 0 ||
      curlog == NULL)
    return;
+
+ /* evil, yes */
+ if (newln == 0)
+	 newln = 1;
 
  if (newln >= curlog->lstats.numlines)
    newln = curlog->lstats.numlines - 1;
@@ -524,8 +533,10 @@ void set_scrollbar_size (int num_lines)
   GtkObject *adj;
 
   /*adj = gtk_adjustment_new ( curlog->ln, 0.0, num_lines+LINES_P_PAGE, 1.0, 10.0, (float) LINES_P_PAGE);*/
-  adj = gtk_adjustment_new ( curlog->ln, 0.0, num_lines+LINES_P_PAGE, 1.0, 10.0, (float) 1);
-  gtk_range_set_adjustment ( GTK_RANGE (main_win_scrollbar), GTK_ADJUSTMENT (adj) );
+  adj = gtk_adjustment_new (-1, 0.0, num_lines,
+			    1.0, 10.0, (float) LINES_P_PAGE);
+  gtk_range_set_adjustment (GTK_RANGE (main_win_scrollbar),
+			    GTK_ADJUSTMENT (adj));
   gtk_signal_connect (GTK_OBJECT (adj), "value_changed",
 		      (GtkSignalFunc) MainWinScrolled,
 		      (gpointer) main_win_scrollbar);       
@@ -618,8 +629,6 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 	 loglist[numlogs] = tl;
 	 numlogs++;
 	 curlognum = numlogs - 1;
-	 /* Set main scrollbar */
-	 set_scrollbar_size (curlog->lstats.numlines);
 
 	 /* Clear window */
 	 log_repaint (NULL, NULL);
@@ -628,7 +637,10 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 	 if (calendarvisible)
 	   init_calendar_data();
 	 UpdateStatusArea();
+
+	 /* Set main scrollbar */
 	 set_scrollbar_size (curlog->lstats.numlines);
+
 	 if (numlogs >= 2)
 	   gtk_widget_set_sensitive (file_menu[3].widget, TRUE);
       }

@@ -37,7 +37,10 @@
 
 #define LOG_LINESEP              15
 
-#define LINES_P_PAGE             140
+/* FIXME: this is wrong, this needs to be recalculated all the time
+ * based on the current page, all the math is utterly wrong here
+ * it just sucks.  This is bug #58435 */
+#define LINES_P_PAGE             10
 #define NUM_PAGES                5 
 #define MAX_WIDTH                240
 #define MAX_HOSTNAME_WIDTH       257	/* Need authoritative answer on this value. */
