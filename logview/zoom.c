@@ -18,14 +18,9 @@
 
     ---------------------------------------------------------------------- */
 
-
-#include <config.h>
-#include <gnome.h>
-#include <unistd.h>
-#include <time.h>
-#include <sys/stat.h>
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
 #include "logview.h"
-#include "gnome.h"
 #include "zoom.h"
 #include "misc.h"
 
@@ -39,7 +34,6 @@ extern char *month[12];
 extern GList *regexp_db, *descript_db;
 
 int match_line_in_db (LogLine *line, GList *db);
-
 
 void
 zoom_close_button (GtkWidget *zoom_dialog, int arg, gpointer data)

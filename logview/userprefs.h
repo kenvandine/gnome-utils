@@ -26,9 +26,9 @@ typedef struct
 	int width, height;
 } UserPrefsStruct;
 
-void prefs_save (GConfClient *client, LogviewWindow *window, UserPrefsStruct *prefs);
+void prefs_save (GConfClient *client, UserPrefsStruct *prefs);
 UserPrefsStruct *prefs_load (GConfClient *client);
-void prefs_store_size (LogviewWindow *window, UserPrefsStruct *prefs);
+void prefs_store_size (GtkWidget *window, UserPrefsStruct *prefs);
 
 #endif /* __LOG_PREFS_H__ */
 

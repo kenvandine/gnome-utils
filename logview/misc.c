@@ -1,4 +1,3 @@
-
 /*  ----------------------------------------------------------------------
 
     Copyright (C) 1998  Cesar Miquel  (miquel@df.uba.ar)
@@ -19,10 +18,7 @@
 
     ---------------------------------------------------------------------- */
 
-
-#include <config.h>
-#include <gtk/gtk.h>
-#include "logview.h"
+#include <gtk/gtkmessagedialog.h>
 
 static gboolean queue_err_messages = FALSE;
 static GList *msg_queue_main = NULL, *msg_queue_sec = NULL;

@@ -18,11 +18,12 @@
 
     ---------------------------------------------------------------------- */
 
+#include <libgnome/gnome-util.h>
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
 #include "logview.h"
 #include <string.h>
 #include <regex.h>
-#include <gnome.h>
-#include "monitor.h"
 #include "actions.h"
 
 #define MAX_NUM_MATCHES     10
@@ -41,15 +42,9 @@ static void add_actions_entry_cb (GtkWidget *widget, gpointer data);
 static void edit_action_entry (Action *action);
 static void set_atk_relation (GtkWidget *label, GtkWidget *widget);
 
-int exec_action_in_db (Log *log, LogLine *line, GList *db);
-int read_actions_db (char *filename, GList **db);
 int write_actions_db (char *filename, GList *db);
 
-
-
 extern GList *actions_db;
-
-
 static GList *local_actions_db = NULL;
 
 GtkWidget *actions_dialog = NULL;

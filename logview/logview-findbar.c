@@ -17,10 +17,10 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include "logview.h"
-#include "logview-findbar.h"
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+#include "logview.h"
+#include "logview-findbar.h"
 
 static
 gboolean

@@ -18,10 +18,7 @@
 
     ---------------------------------------------------------------------- */
 
-#include "config.h"
-#include <gnome.h>
-#include <gtk/gtk.h>
-#include "logview.h"
+#include "configdata.h"
 #include <stdlib.h>
 
 /* ----------------------------------------------------------------------

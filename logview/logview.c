@@ -34,12 +34,15 @@
 #include <popt.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include "userprefs.h"
+#include "configdata.h"
 
 static GObjectClass *parent_class;
 static GSList *logview_windows = NULL;
 static gchar *program_name = NULL;
 static GConfClient *client = NULL;
 static UserPrefsStruct *user_prefs;
+
+#define APP_NAME                 _("System Log Viewer")
 
 /*
  *    -------------------
@@ -181,7 +184,7 @@ destroy (GObject *object, gpointer data)
 		   user_prefs->logfile = window->curlog->name;
 	   else
 		   user_prefs->logfile = NULL;
-	   prefs_save (client, window, user_prefs);
+	   prefs_save (client, user_prefs);
 	   gtk_main_quit ();
    }
 }
@@ -882,6 +885,6 @@ window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event,
 {
 	LogviewWindow *window = data;
 
-	prefs_store_size (window, user_prefs);
+	prefs_store_size (GTK_WIDGET(window), user_prefs);
 	return FALSE;
 }

@@ -1,4 +1,3 @@
-
 /*  ----------------------------------------------------------------------
 
     Copyright (C) 1998  Cesar Miquel  (miquel@df.uba.ar)
@@ -23,14 +22,6 @@
 #define __LOGRTNS_H__
 
 #include "logview.h"
-
-#ifdef FIXME
-int ReadNPagesUp (Log * lg, Page * pg, int n);
-int ReadNPagesDown (Log * lg, Page * pg, int n);
-int ReadPageUp (Log * lg, Page * pg);
-int ReadPageDown (Log *log, LogLine ***inp_mon_lines, gboolean exec_actions);
-void MoveToMark ();
-#endif
 
 int isLogFile (char *filename, gboolean show_error);
 int isSameDay (time_t day1, time_t day2);

@@ -23,8 +23,6 @@
 #define __LOGVIEW_H__
 
 #include <time.h>
-#include "gtk/gtk.h"
-#include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
 
 #define MAX_WIDTH                240
@@ -46,13 +44,6 @@
  *    | Typedefs |
  *    `----------'
  */
-
-typedef struct
-{
-  /* Paths ----------------------------------------------------- */
-  char *regexp_db_path, *descript_db_path, *action_db_path;
-
-} ConfigData;
 
 struct __datemark
 {
@@ -133,7 +124,6 @@ Log;
  *    `---------------------'
  */
 
-ConfigData *CreateConfig(void);
 
 #define LOGVIEW_TYPE_WINDOW		  (logview_window_get_type ())
 #define LOGVIEW_WINDOW(obj)		  (GTK_CHECK_CAST ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindow))

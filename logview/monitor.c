@@ -19,7 +19,7 @@
     ---------------------------------------------------------------------- */
 
 
-#include <config.h>
+#include <gtk/gtk.h>
 #include "logview.h"
 #include "logrtns.h"
 #include "monitor.h"

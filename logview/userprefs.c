@@ -19,14 +19,13 @@
     ---------------------------------------------------------------------- */
 
 
-#include <config.h>
-#include <gnome.h>
-
-#include <unistd.h>
-#include <time.h>
-#include <sys/stat.h>
-#include "logview.h"
+#include <gtk/gtkwidget.h>
+#include <gtk/gtkwindow.h>
+#include <gconf/gconf-client.h>
 #include "userprefs.h"
+
+#define LOG_CANVAS_H             400
+#define LOG_CANVAS_W             600
 
 #define GCONF_WIDTH_KEY  "/apps/gnome-system-log/width"
 #define GCONF_HEIGHT_KEY "/apps/gnome-system-log/height"
@@ -75,7 +74,7 @@ prefs_load (GConfClient *client)
 }
 
 void
-prefs_save (GConfClient *client, LogviewWindow *window, UserPrefsStruct *prefs)
+prefs_save (GConfClient *client, UserPrefsStruct *prefs)
 {
 	if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL) &&
 	    prefs->logfile != NULL)
@@ -89,7 +88,7 @@ prefs_save (GConfClient *client, LogviewWindow *window, UserPrefsStruct *prefs)
 }
 
 void
-prefs_store_size (LogviewWindow *window, UserPrefsStruct *prefs)
+prefs_store_size (GtkWidget *window, UserPrefsStruct *prefs)
 {
 	int width, height;
 	gtk_window_get_size (GTK_WINDOW(window), &width, &height);
