@@ -25,9 +25,9 @@
  *
  */
 
-#define ICON_SIZE 24.0
 #define GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE 48
 #define GNOME_SEARCH_TOOL_STOCK "panel-searchtool"
+#define GNOME_SEARCH_TOOL_ITEM_REFRESH_LIMIT  35
 #define LEFT_LABEL_SPACING "     "
 
 #define DEFAULT_ANIMATION_WIDTH   48
@@ -1160,6 +1160,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		GdkRectangle prior_rect;
 		GdkRectangle after_rect;
 		gint	     look_in_folder_string_length;
+		gint         item_count = 1;
 		
 		string = g_string_new (NULL);
 		look_in_folder_string_length = strlen (search_data->look_in_folder);
@@ -1185,12 +1186,13 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 				if (status == G_IO_STATUS_EOF) {
 					broken_pipe = TRUE;
 				}
-				
-				while (gtk_events_pending ()) {
-					if (search_data->running == MAKE_IT_QUIT) {
-						return FALSE;
+				else if (status == G_IO_STATUS_AGAIN) {
+					while (gtk_events_pending ()) {
+						if (search_data->running == MAKE_IT_QUIT) {
+							return FALSE;
+						}
+						gtk_main_iteration (); 				
 					}
-					gtk_main_iteration (); 				
 				}
 				
 			} while (status == G_IO_STATUS_AGAIN && broken_pipe == FALSE);
@@ -1248,11 +1250,14 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			
 			gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &prior_rect);
 			
-			while (gtk_events_pending ()) {
-				if (search_data->running == MAKE_IT_QUIT) {
-					return FALSE;
+			if (item_count++ > GNOME_SEARCH_TOOL_ITEM_REFRESH_LIMIT) {
+				item_count = 1;
+				while (gtk_events_pending ()) {
+					if (search_data->running == MAKE_IT_QUIT) {
+						return FALSE;
+					}
+					gtk_main_iteration ();		
 				}
-				gtk_main_iteration (); 				
 			}
 			
 			if (prior_rect.y == 0) {
@@ -1329,14 +1334,15 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 				if (status == G_IO_STATUS_EOF) {
 					broken_pipe = TRUE;
 				}
-	
-				while (gtk_events_pending ()) {
-					if (search_data->running == MAKE_IT_QUIT) {
-						break;
+				else if (status == G_IO_STATUS_AGAIN) {
+					while (gtk_events_pending ()) {
+						if (search_data->running == MAKE_IT_QUIT) {
+							break;
+						}
+						gtk_main_iteration ();
 					}
-					gtk_main_iteration ();
 				}
-					
+				
 			} while (status == G_IO_STATUS_AGAIN && broken_pipe == FALSE);
 			
 			if (broken_pipe == TRUE) {
@@ -2275,7 +2281,8 @@ main (int 	argc,
 					  GNOME_PARAM_APP_DATADIR, DATADIR,  
 					  NULL);
 	gsearchtool_init_stock_icons ();				  
-	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (), GNOME_SEARCH_TOOL_ICON, 48, 0);
+	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (), GNOME_SEARCH_TOOL_ICON, 
+	                                        GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE, 0);
 	if (icon_info) {
 		gnome_window_icon_set_default_from_file (gtk_icon_info_get_filename (icon_info));
 		gtk_icon_info_free (icon_info);

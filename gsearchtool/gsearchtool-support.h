@@ -33,7 +33,7 @@ extern "C" {
 #pragma }
 #endif
 
-#define ICON_SIZE 24.0
+#define ICON_SIZE 24
 
 gboolean  	
 is_path_hidden 			(const gchar *path);
