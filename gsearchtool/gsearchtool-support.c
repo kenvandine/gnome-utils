@@ -29,6 +29,7 @@
 #  include <config.h>
 #endif
 
+#include <gdk/gdkx.h>
 #include <gnome.h>
 
 #include <regex.h>
@@ -892,6 +893,7 @@ open_file_with_nautilus (const gchar *filename)
 	argv[3] = "--no-default-window";
 	argv[4] = (gchar *)filename;
 	
+	gdk_x11_window_set_user_time (interface.main_window->window, 0);
 	gnome_execute_async(NULL, argc, argv);
 	g_free(argv);
 	
