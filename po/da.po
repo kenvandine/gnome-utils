@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-23 11:47+0100\n"
-"PO-Revision-Date: 2004-11-23 11:47+0100\n"
+"POT-Creation-Date: 2004-11-28 14:28+0100\n"
+"PO-Revision-Date: 2004-11-29 11:17+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -27,21 +27,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:125
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:122
 msgid "Dictionary Lookup"
 msgstr "Ordbogsopslag"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:31
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:28
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Slå ord op i en ordbog på internettet"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:584
-#: logview/logview.c:111
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:588
+#: logview/logview.c:113
 msgid "_About"
 msgstr "_Om"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:90
 msgid "_Help"
 msgstr "_Hjælp"
 
@@ -62,12 +62,16 @@ msgstr "_Vis ordbog"
 #.
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:430
-#: gdictsrc/gdict-pref-dialog.c:479 gdictsrc/gdict-speller.c:696
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:429
+#: gdictsrc/gdict-pref-dialog.c:478 gdictsrc/gdict-speller.c:690
 msgid "Cannot connect to server"
 msgstr "Kan ikke forbinde med server!"
 
 #: gdictsrc/dict.c:689
+msgid "Server Error"
+msgstr "Serverfejl"
+
+#: gdictsrc/dict.c:690
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -93,8 +97,8 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "En klient til MIT-ordbogsserveren."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:246
-#: gdictsrc/gdict-app.c:807 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:247
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Ordbog"
 
@@ -106,310 +110,294 @@ msgstr "Kontrollerer stavning..."
 msgid "Spell check done"
 msgstr "Stavekontrol fuldført"
 
-#: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:260
+#: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:263
 msgid "No matches found"
 msgstr "Ingen træf"
+
+#: gdictsrc/gdict-app.c:126
+msgid "Connexion error"
+msgstr "Forbindelsesfejl"
 
 #: gdictsrc/gdict-app.c:238
 msgid "Looking up word..."
 msgstr "Slår ord op..."
 
-#: gdictsrc/gdict-app.c:250
+#: gdictsrc/gdict-app.c:253
 msgid "Lookup done"
 msgstr "Opslag fuldført"
 
-#: gdictsrc/gdict-app.c:273
+#: gdictsrc/gdict-app.c:276
 msgid "String not found"
 msgstr "Tekst ikke fundet"
 
-#: gdictsrc/gdict-app.c:442
+#: gdictsrc/gdict-app.c:445
 msgid "Find"
-msgstr "Søg"
+msgstr "Find"
 
-#: gdictsrc/gdict-app.c:452
+#: gdictsrc/gdict-app.c:455
 msgid "_Search for:"
 msgstr "_Søg efter:"
 
-#: gdictsrc/gdict-app.c:501
+#: gdictsrc/gdict-app.c:505
+msgid "Unable to perform requested operation."
+msgstr "Kunne ikke udføre forespurgt handling."
+
+#: gdictsrc/gdict-app.c:506
 msgid ""
-"Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
-"Kunne ikke udføre forespurgt handling.\n"
 "Enten er serveren du bruger, ikke tilgængelig,\n"
 "eller du er ikke koblet til internettet."
 
-#: gdictsrc/gdict-app.c:539 gdictsrc/gdict-applet.c:354
-#, fuzzy, c-format
-msgid "Could not display help: %s"
-msgstr "Kunne ikke slette \"%s\""
+#: gdictsrc/gdict-app.c:543 gdictsrc/gdict-applet.c:350
+#: gdictsrc/gdict-pref-dialog.c:629
+msgid "Could not display help"
+msgstr "Kunne ikke vise hjælp \"%s\""
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:564 gdictsrc/gdict-app.c:854
-#: gdictsrc/gdict-speller.c:259
+#: gdictsrc/gdict-app.c:568 gdictsrc/gdict-app.c:864
+#: gdictsrc/gdict-speller.c:252
 msgid "_Look Up Word"
 msgstr "_Slå ord op"
 
-#: gdictsrc/gdict-app.c:565
+#: gdictsrc/gdict-app.c:569
 msgid "Lookup word in dictionary"
 msgstr "Slå ordet op i ordbog"
 
-#: gdictsrc/gdict-app.c:566 gdictsrc/gdict-speller.c:207
+#: gdictsrc/gdict-app.c:570 gdictsrc/gdict-speller.c:191
 msgid "Check _Spelling"
 msgstr "Kontrollér _stavning"
 
-#: gdictsrc/gdict-app.c:567
+#: gdictsrc/gdict-app.c:571
 msgid "Check word spelling"
 msgstr "Kontrollér ordets stavning"
 
-#: gdictsrc/gdict-app.c:569
-#, fuzzy
+#: gdictsrc/gdict-app.c:573
 msgid "_Print"
-msgstr "_Port:"
+msgstr "_Udskriv"
 
-#: gdictsrc/gdict-app.c:570
+#: gdictsrc/gdict-app.c:574
 msgid "Print the current definition"
-msgstr ""
+msgstr "Udskriv den nuværende definition"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:574 logview/logview.c:103
-#, fuzzy
+#: gdictsrc/gdict-app.c:578 logview/logview.c:105
 msgid "_Find..."
-msgstr "_Søg"
+msgstr "_Find..."
 
 # bemærk: denne og følgende skal synkroniseres med senere tekster
-#: gdictsrc/gdict-app.c:575
-#, fuzzy
+#: gdictsrc/gdict-app.c:579
 msgid "Find a word in the text"
-msgstr "Indeholder _teksten"
+msgstr "Find et ord i teksten"
 
-#: gdictsrc/gdict-app.c:576
-#, fuzzy
+#: gdictsrc/gdict-app.c:580
 msgid "Find Ne_xt"
-msgstr "Søg"
+msgstr "Find n_æste"
 
-#: gdictsrc/gdict-app.c:577
+#: gdictsrc/gdict-app.c:581
 msgid "Find next occurrence of the word"
-msgstr ""
+msgstr "Find næste forekomst af ordet"
 
-#: gdictsrc/gdict-app.c:578
-#, fuzzy
+#: gdictsrc/gdict-app.c:582
 msgid "P_references"
 msgstr "_Indstillinger"
 
-#: gdictsrc/gdict-app.c:579
-#, fuzzy
+#: gdictsrc/gdict-app.c:583
 msgid "Configure the application"
-msgstr "_Skjul program"
+msgstr "Konfigurér programmet"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:582 logview/logview.c:109
+#: gdictsrc/gdict-app.c:586 logview/logview.c:111
 msgid "_Contents"
-msgstr ""
+msgstr "_Indhold"
 
-#: gdictsrc/gdict-app.c:583
+#: gdictsrc/gdict-app.c:587
 msgid "View help for this application"
-msgstr ""
+msgstr "Vis hjælp for dette program"
 
-#: gdictsrc/gdict-app.c:585
-#, fuzzy
+#: gdictsrc/gdict-app.c:589
 msgid "About this application"
-msgstr "_Skjul program"
+msgstr "Om dette program"
 
-#: gdictsrc/gdict-app.c:592 logview/logview.c:96
-#, fuzzy
+#: gdictsrc/gdict-app.c:596 logview/logview.c:98
 msgid "_Quit"
-msgstr "_Redigér"
-
-#: gdictsrc/gdict-app.c:593
-#, fuzzy
-msgid "Quit the application"
-msgstr "_Skjul program"
+msgstr "_Afslut"
 
 #: gdictsrc/gdict-app.c:597
-#, fuzzy
+msgid "Quit the application"
+msgstr "Afslut programmet"
+
+#: gdictsrc/gdict-app.c:601
 msgid "_Close"
-msgstr "Lu_k alle"
+msgstr "_Luk"
 
-#: gdictsrc/gdict-app.c:598
-#, fuzzy
+#: gdictsrc/gdict-app.c:602
 msgid "Close the application"
-msgstr "_Skjul program"
-
-#: gdictsrc/gdict-app.c:603
-msgid "Cu_t"
-msgstr ""
-
-#: gdictsrc/gdict-app.c:604
-msgid "Cut the selection"
-msgstr ""
-
-#: gdictsrc/gdict-app.c:605
-msgid "_Copy"
-msgstr ""
-
-#: gdictsrc/gdict-app.c:606 logview/logview.c:99
-msgid "Copy the selection"
-msgstr ""
+msgstr "Luk programmet"
 
 #: gdictsrc/gdict-app.c:607
-#, fuzzy
-msgid "_Paste"
-msgstr "Dato"
+msgid "Cu_t"
+msgstr "Klip u_d"
 
 #: gdictsrc/gdict-app.c:608
-msgid "Paste clipboard"
-msgstr ""
+msgid "Cut the selection"
+msgstr "Klip markeringen ud"
 
 #: gdictsrc/gdict-app.c:609
+msgid "_Copy"
+msgstr "_Kopiér"
+
+#: gdictsrc/gdict-app.c:610 logview/logview.c:101
+msgid "Copy the selection"
+msgstr "Kopiér markeringen"
+
+#: gdictsrc/gdict-app.c:611
+msgid "_Paste"
+msgstr "_Indsæt"
+
+#: gdictsrc/gdict-app.c:612
+msgid "Paste clipboard"
+msgstr "Indsæt udklip"
+
+#: gdictsrc/gdict-app.c:613
 msgid "Select _All"
-msgstr ""
+msgstr "Markér _alt"
 
-#: gdictsrc/gdict-app.c:610
+#: gdictsrc/gdict-app.c:614
 msgid "Select everything"
-msgstr ""
+msgstr "Markér alt"
 
-#: gdictsrc/gdict-app.c:851 gdictsrc/gdict-speller.c:179
+#: gdictsrc/gdict-app.c:861 gdictsrc/gdict-speller.c:179
 msgid "_Word:"
 msgstr "_Ord:"
 
-#: gdictsrc/gdict-app.c:874 gdictsrc/gdict-speller.c:192
+#: gdictsrc/gdict-app.c:884 gdictsrc/gdict-speller.c:198
 msgid "Word"
 msgstr "Ord"
 
-#: gdictsrc/gdict-app.c:875 gdictsrc/gdict-app.c:877
-#: gdictsrc/gdict-speller.c:194
+#: gdictsrc/gdict-app.c:885 gdictsrc/gdict-app.c:887
+#: gdictsrc/gdict-speller.c:200
 msgid "Word Entry"
 msgstr "Ordindtastning"
 
-#: gdictsrc/gdict-app.c:876
+#: gdictsrc/gdict-app.c:886
 msgid "Enter a Word or select one from the list below"
 msgstr "Indtast et ord eller vælg et fra listen nedenfor"
 
-#: gdictsrc/gdict-app.c:880
+#: gdictsrc/gdict-app.c:890
 msgid "Look Up for a Word"
 msgstr "Slå et ord op"
 
-#: gdictsrc/gdict-applet.c:130
+#: gdictsrc/gdict-applet.c:127
 msgid "Dictionary word entry"
 msgstr "Opslag i ordbog"
 
-#: gdictsrc/gdict-defbox.c:664 gdictsrc/gdict-speller.c:373
-#, c-format
-msgid "Error invoking query: %s"
-msgstr "Fejl ved udførsel af forespørgsel: %s"
+#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:367
+msgid "Error invoking query"
+msgstr "Fejl ved udførsel af forespørgsel"
 
-#: gdictsrc/gdict-pref-dialog.c:137
+#: gdictsrc/gdict-pref-dialog.c:136
 msgid "Dictionary Preferences"
 msgstr "Indstillinger for ordbog"
 
-#: gdictsrc/gdict-pref-dialog.c:150
+#: gdictsrc/gdict-pref-dialog.c:149
 msgid "Smart _lookup"
 msgstr "Smart _opslag"
 
-#: gdictsrc/gdict-pref-dialog.c:168
-msgid "_Server:"
-msgstr "_Server:"
-
-#: gdictsrc/gdict-pref-dialog.c:175
+#: gdictsrc/gdict-pref-dialog.c:163
 msgid "De_fault Server"
 msgstr "For_valgt server"
 
-#: gdictsrc/gdict-pref-dialog.c:184
+#: gdictsrc/gdict-pref-dialog.c:174
+msgid "_Server:"
+msgstr "_Server:"
+
+#: gdictsrc/gdict-pref-dialog.c:183
 msgid "Reset server to default"
 msgstr "Nulstil servernavn til standardnavn"
 
-#: gdictsrc/gdict-pref-dialog.c:192
+#: gdictsrc/gdict-pref-dialog.c:191
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:208
+#: gdictsrc/gdict-pref-dialog.c:201
 msgid "Def_ault Port"
 msgstr "Forv_algt port"
 
-#: gdictsrc/gdict-pref-dialog.c:217
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset port to default"
 msgstr "Nulstil port til standardværdi"
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:217
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Server Entry"
 msgstr "Serverindtastning"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Enter the Server Name"
 msgstr "Indtast servernavnet"
 
-#: gdictsrc/gdict-pref-dialog.c:221
+#: gdictsrc/gdict-pref-dialog.c:220
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:223
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Port Entry"
 msgstr "Portindtastning"
 
-#: gdictsrc/gdict-pref-dialog.c:223
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Enter the Port Number"
 msgstr "Indtast portnummeret"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "_Database:"
 msgstr "_Database:"
 
-#: gdictsrc/gdict-pref-dialog.c:239
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "D_efault strategy:"
 msgstr "_Forvalgt strategi:"
 
-#: gdictsrc/gdict-pref-dialog.c:422
+#: gdictsrc/gdict-pref-dialog.c:421
 msgid "Search all databases"
 msgstr "Søg i alle databaser"
 
-#: gdictsrc/gdict-pref-dialog.c:583
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database"
 msgstr "Database"
 
-#: gdictsrc/gdict-pref-dialog.c:583
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database Name"
 msgstr "Databasenavn"
 
-#: gdictsrc/gdict-pref-dialog.c:601
+#: gdictsrc/gdict-pref-dialog.c:600
 msgid "Default Strategy"
 msgstr "Forvalgt strategi"
 
-#: gdictsrc/gdict-pref-dialog.c:628
-#, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr ""
-"Der opstod en fejl ved visning af hjælp: \n"
-"%s"
-
-#: gdictsrc/gdict-speller.c:194
+#: gdictsrc/gdict-speller.c:200
 msgid "Enter a word to know the spelling"
 msgstr "Indtast et ord for at få oplyst stavningen"
 
-#: gdictsrc/gdict-speller.c:200
+#: gdictsrc/gdict-speller.c:205
 msgid "Search s_trategy:"
 msgstr "Søgningss_trategi:"
+
+#: gdictsrc/gdict-speller.c:209 gsearchtool/gsearchtool.c:2049
+msgid "Show more _options"
+msgstr "Vis flere _indstillinger"
 
 #: gdictsrc/gdict-speller.c:215
 msgid "Click to do the spell check"
 msgstr "Klik for at foretage stavekontrol"
 
-#: gdictsrc/gdict-speller.c:219
-msgid "Search _results:"
-msgstr "Søge_resultater:"
-
-#: gdictsrc/gdict-speller.c:272
+#: gdictsrc/gdict-speller.c:265
 msgid "Check Spelling"
 msgstr "Tjek stavning"
 
-#: gdictsrc/gdict-speller.c:658
+#: gdictsrc/gdict-speller.c:652
 msgid "Search Strategy"
 msgstr "Søgningsstrategi"
 
@@ -472,7 +460,6 @@ msgid "Use smart lookup"
 msgstr "Benyt smarte opslag"
 
 #: gdictsrc/main.c:101
-#, fuzzy
 msgid "Gnome Dictionary"
 msgstr "Ordbog"
 
@@ -517,59 +504,59 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 "Angiv ext2 for det indføde Linux-filsystem eller FAT for filsystemet til DOS."
 
-#: gfloppy/src/badblocks.c:94
+#: gfloppy/src/badblocks.c:84
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "Intern fejl: Kunne ikke søge til den rigtige position."
 
-#: gfloppy/src/badblocks.c:103
+#: gfloppy/src/badblocks.c:93
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Intern fejl: Mærkelig værdi (%ld) i do_test\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:261
+#: gfloppy/src/badblocks.c:251
 msgid "Checking for bad blocks..."
 msgstr "Kontrollerer efter ugyldige blokke..."
 
-#: gfloppy/src/badblocks.c:273
+#: gfloppy/src/badblocks.c:263
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr ""
 "Det lykkedes ikke at åbne enheden %s til kontrol efter ugyldige blokke\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
+#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
 msgid "Checking for bad blocks... Done"
 msgstr "Kontrollerer efter ugyldige blokke... Færdig."
 
-#: gfloppy/src/fdformat.c:49
+#: gfloppy/src/fdformat.c:42
 msgid "Formatting the disk..."
 msgstr "Formaterer disketten..."
 
-#: gfloppy/src/fdformat.c:52
+#: gfloppy/src/fdformat.c:45
 msgid "I don't know what this is, but it's very wrong."
 msgstr "Aner ikke hvad dette er, men det er meget forkert."
 
-#: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
+#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "Fejl ved formatering af spor nr. %d"
 
-#: gfloppy/src/fdformat.c:82
+#: gfloppy/src/fdformat.c:75
 msgid "Error during completion of formatting"
 msgstr "Fejl ved fuldbyrdelse af formatering"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:86
+#: gfloppy/src/fdformat.c:79
 msgid "Formatting the disk... Done"
 msgstr "Formaterer disketten... Færdig."
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:102
+#: gfloppy/src/fdformat.c:95
 msgid "Verifying the format..."
 msgstr "Kontrollerer formatet..."
 
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -579,12 +566,12 @@ msgstr ""
 "\n"
 "Tjek at den ikke er skrivebeskyttet."
 
-#: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "Utilstrækkelige rettigheder til at åbne disketteenheden %s."
 
-#: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
+#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -596,7 +583,7 @@ msgstr ""
 "Tjek at den er i drevet med drevdøren\n"
 "lukket."
 
-#: gfloppy/src/fdformat.c:117
+#: gfloppy/src/fdformat.c:110
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -607,7 +594,7 @@ msgstr ""
 "\n"
 "Fejlkode %s:%d"
 
-#: gfloppy/src/fdformat.c:140
+#: gfloppy/src/fdformat.c:133
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -616,32 +603,32 @@ msgstr ""
 "Læsefejl:\n"
 "Der opstod et problem ved læsning af cylinder %d, forventede %d, læste %d"
 
-#: gfloppy/src/fdformat.c:143
+#: gfloppy/src/fdformat.c:136
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
 "Der opstod et problem ved læsning af cylinder %d, forventede %d, læste %d"
 
-#: gfloppy/src/fdformat.c:154
+#: gfloppy/src/fdformat.c:147
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "Ugyldige data i cylinder %d. Fortsætter..."
 
-#: gfloppy/src/fdformat.c:163
+#: gfloppy/src/fdformat.c:156
 #, c-format
 msgid "Error closing device %s"
 msgstr "Fejl ved lukning af enhed %s"
 
-#: gfloppy/src/fdformat.c:170
+#: gfloppy/src/fdformat.c:163
 msgid "Verifying the format... Done"
 msgstr "Kontrollerer formatet... Færdig."
 
-#: gfloppy/src/fdformat.c:182
+#: gfloppy/src/fdformat.c:175
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "Kunne ikke skrive til enheden %s"
 
-#: gfloppy/src/fdformat.c:202
+#: gfloppy/src/fdformat.c:195
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -652,28 +639,28 @@ msgstr ""
 "\n"
 "Fejlkode %s"
 
-#: gfloppy/src/fdformat.c:214
+#: gfloppy/src/fdformat.c:207
 msgid "Could not determine current floppy geometry."
 msgstr "Kunne ikke bestemme den aktuelle diskettegeometri."
 
-#: gfloppy/src/gfloppy.c:225
+#: gfloppy/src/gfloppy.c:215
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr "Fejl ved oprettelse af unikt filnavn til listen over ugyldige blokke."
 
-#: gfloppy/src/gfloppy.c:245
+#: gfloppy/src/gfloppy.c:235
 msgid "Error while filling the bad blocks list file."
 msgstr "Fejl ved udfyldning af listen over ugyldige blokke."
 
-#: gfloppy/src/gfloppy.c:308
+#: gfloppy/src/gfloppy.c:298
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Fejl ved kørsel af (%s) kommandoen: %s"
 
-#: gfloppy/src/gfloppy.c:334
+#: gfloppy/src/gfloppy.c:324
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Ukendt mke2fs-startsignatur, annullerer."
 
-#: gfloppy/src/gfloppy.c:348
+#: gfloppy/src/gfloppy.c:338
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -684,16 +671,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:365
+#: gfloppy/src/gfloppy.c:355
 msgid "Abnormal child process termination."
 msgstr "Unormal underprocesafslutning."
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:380
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Fejl ved kørsel af mbadblocks-kommandoen: %s."
 
-#: gfloppy/src/gfloppy.c:402
+#: gfloppy/src/gfloppy.c:392
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -703,28 +690,28 @@ msgstr ""
 "følgende fejl:\n"
 "%s"
 
-#: gfloppy/src/gfloppy.c:445
+#: gfloppy/src/gfloppy.c:435
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Unormal underprocesafslutning af mbadblocks."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
 msgid "Making filesystem on disk..."
 msgstr "Opretter filsystem på disketten..."
 
-#: gfloppy/src/gfloppy.c:479
+#: gfloppy/src/gfloppy.c:469
 msgid "Unable to create filesystem correctly."
 msgstr "Kunne ikke oprette filsystemet korrekt."
 
-#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
+#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
 msgid "Making filesystem on disk... Done"
 msgstr "Opretter filsystem på disketten... Færdig."
 
-#: gfloppy/src/gfloppy.c:528
+#: gfloppy/src/gfloppy.c:518
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Kontrollerer for ugyldige blokke... (dette kan tage et stykke tid)"
 
-#: gfloppy/src/gfloppy.c:533
+#: gfloppy/src/gfloppy.c:523
 msgid "Error while checking the bad blocks."
 msgstr "Fejl under kontrol for ugyldige blokke..."
 
@@ -752,7 +739,7 @@ msgstr "<span weight=\"bold\">Indstillinger for filsystem</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
 msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">Formateringstype</span>"
+msgstr "<span weight=\"bold\">Formateringsmåde</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
 msgid "<span weight=\"bold\">Physical Settings</span>"
@@ -764,11 +751,11 @@ msgstr "DOS (FAT)"
 
 #: gfloppy/src/gfloppy2.glade.h:8
 msgid "Double Density 3.5\" (720KB)"
-msgstr "Dobbeltdensitets 3.5\" (720 kb)"
+msgstr "Dobbelttæthed 3.5\" (720 kB)"
 
 #: gfloppy/src/gfloppy2.glade.h:9
 msgid "Double Density 5.25\" (360KB)"
-msgstr "Dobbeltdensitets 5.25\" (360 kb)"
+msgstr "Dobbelttæthed 5.25\" (360 kB)"
 
 #: gfloppy/src/gfloppy2.glade.h:10
 msgid "File system _type:"
@@ -776,7 +763,7 @@ msgstr "Filsystem_type:"
 
 #: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy _density:"
-msgstr "Diskette_densitet:"
+msgstr "Diskette_tæthed:"
 
 #: gfloppy/src/gfloppy2.glade.h:13
 msgid "Floppy de_vice:"
@@ -784,15 +771,15 @@ msgstr "Diskette_enhed:"
 
 #: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 3.5\" (1.44MB)"
-msgstr "Højdensitets 3.5\" (1.44 Mb)"
+msgstr "Højtæthed 3.5\" (1.44 MB)"
 
 #: gfloppy/src/gfloppy2.glade.h:15
 msgid "High Density 5.25\" (1.2MB)"
-msgstr "Højdensitets 5.25\" (1.2 Mb)"
+msgstr "Højtæthed 5.25\" (1.2 MB)"
 
 #: gfloppy/src/gfloppy2.glade.h:16
 msgid "Linux Native (ext2)"
-msgstr "Indfødt Linux (ext2)"
+msgstr "Linux (ext2)"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -815,7 +802,11 @@ msgstr "_Hurtig (overskriver blot filsystemet)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standard (foretager en egentlig formatering)"
 
-#: gfloppy/src/main.c:215
+#: gfloppy/src/main.c:224
+msgid "Cannot Format"
+msgstr "Kan ikke formatere"
+
+#: gfloppy/src/main.c:225
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -823,12 +814,12 @@ msgstr ""
 "Hverken programmet mke2fs eller mkdosfs/mformat er installeret. Du kan ikke "
 "formatere en diskette uden et af dem."
 
-#: gfloppy/src/main.c:239
+#: gfloppy/src/main.c:245
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Kan ikke åbne enheden %s, formatering kan ikke fortsætte."
 
-#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
+#: gfloppy/src/main.c:248 gfloppy/src/main.c:311
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -837,7 +828,7 @@ msgstr ""
 "Enheden %s er ikke forbundet.\n"
 "Tilkobl venligst enheden for at forsætte."
 
-#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:251 gfloppy/src/main.c:314
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -848,36 +839,39 @@ msgstr ""
 "udføres.\n"
 "Kontakt systemadministratoren for at få skriverettigheder."
 
-#: gfloppy/src/main.c:310
+#: gfloppy/src/main.c:258 gfloppy/src/main.c:322
+msgid "Cannot initialize device"
+msgstr "Kan ikke klargøre enheden"
+
+#: gfloppy/src/main.c:308
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Kan ikke nogen enhed, formatering kan ikke fortsætte."
 
-#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:311 gfloppy/src/main.c:314
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 eller /dev/fd0"
 
-#: gfloppy/src/main.c:489
-#, c-format
-msgid ""
-"Could not display help for the floppy formatter.\n"
-"%s"
-msgstr ""
-"Kunne ikke vise hjælpen til disketteformateringen.\n"
-"%s"
+#: gfloppy/src/main.c:475
+msgid "Could not display help for the floppy formatter."
+msgstr "Kunne ikke vise hjælpen til disketteformateringen."
 
-#: gfloppy/src/main.c:522
+#: gfloppy/src/main.c:494
+msgid "Incorrect volume name"
+msgstr "Ugyldigt delarkivnavn"
+
+#: gfloppy/src/main.c:495
 msgid "The volume name can't contain any blank space."
 msgstr "Diskettenavnet må ikke indeholde mellemrum."
 
-#: gfloppy/src/main.c:576
+#: gfloppy/src/main.c:543
 msgid "The device to format"
 msgstr "Den enhed der skal formatteres"
 
-#: gfloppy/src/main.c:577
+#: gfloppy/src/main.c:544
 msgid "DEVICE"
 msgstr "ENHED"
 
-#: gfloppy/src/progress.c:123
+#: gfloppy/src/progress.c:122
 #, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -894,15 +888,15 @@ msgstr[1] ""
 
 # "succesfully" er umuligt at oversætte meningsfyldt her, og er desuden
 # overflødigt
-#: gfloppy/src/progress.c:126
+#: gfloppy/src/progress.c:125
 msgid "Floppy formatted successfully."
 msgstr "Diskette formateret."
 
-#: gfloppy/src/progress.c:132
+#: gfloppy/src/progress.c:131
 msgid "Floppy formatting cancelled."
 msgstr "Disketteformatering afbrudt."
 
-#: gfloppy/src/progress.c:175
+#: gfloppy/src/progress.c:174
 msgid "Format Progress"
 msgstr "Formateringsstatus"
 
@@ -912,100 +906,84 @@ msgstr "Find filer, mapper og dokumenter på din maskine"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
 #: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
-#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
+#: gsearchtool/gsearchtool.c:2364 gsearchtool/gsearchtool.c:2385
 msgid "Search for Files"
 msgstr "Søg efter filer"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
-#, fuzzy
 msgid "Disable Quick Search"
-msgstr "Deaktivér _hurtigsøgning"
+msgstr "Deaktivér hurtigsøgning"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:2
-#, fuzzy
 msgid "Disable Quick Search Second Scan"
-msgstr "Deaktivér _hurtigsøgning"
+msgstr "Deaktivér anden skanning i hurtigsøgning"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:3
 msgid "Quick Search Excluded Paths"
-msgstr ""
+msgstr "Ekskluderede stier i hurtigsøgning"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:4
 msgid "Quick Search Second Scan Excluded Paths"
-msgstr ""
+msgstr "Ekskluderede stier for anden skanning i hurtigsøgning"
 
 # bemærk: denne og følgende skal synkroniseres med senere tekster
 #: gsearchtool/gnome-search-tool.schemas.in.h:5
-#, fuzzy
 msgid "Select Contains the Text"
-msgstr "Indeholder _teksten"
+msgstr "Udvælg indeholder teksten"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:6
-#, fuzzy
 msgid "Select Date Modified Less Than"
-msgstr "_Dato ændret inden for"
+msgstr "Udvælg dato ændret inden for"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:7
-#, fuzzy
 msgid "Select Date Modified More Than"
-msgstr "Dato ændret længere tilbage end"
+msgstr "Udvælg dato ændret længere tilbage end"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:8
-#, fuzzy
 msgid "Select File is Empty"
-msgstr "Fil er tom"
+msgstr "Udvælg fil er tom"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:9
-#, fuzzy
 msgid "Select Follow Symbolic Links"
-msgstr "Følg symbolske henvisninger"
+msgstr "Udvælg følg symbolske henvisninger"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:10
-#, fuzzy
 msgid "Select Include Other Filesystems"
-msgstr "Medtag andre filsystemer"
+msgstr "Udvælg medtag andre filsystemer"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:11
-#, fuzzy
 msgid "Select Name Matches Regular Expression"
-msgstr "Fil passer til _regulært udtryk"
+msgstr "Udvælg navn passer til regulært udtryk"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:12
-#, fuzzy
 msgid "Select Name does not Contain"
-msgstr "Na_vn indeholder ikke"
+msgstr "Udvælg navn indeholder ikke"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:13
-#, fuzzy
 msgid "Select Owned by Group"
-msgstr "Ejet af _gruppe"
+msgstr "Udvælg ejet af gruppe"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:14
-#, fuzzy
 msgid "Select Owned by User"
-msgstr "Ejet af _bruger"
+msgstr "Udvælg ejet af bruger"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:15
-#, fuzzy
 msgid "Select Owner is Unrecognized"
-msgstr "Ejer er ukendt"
+msgstr "Udvælg ejer er ukendt"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:16
 msgid "Select Show Hidden Files and Folders"
-msgstr ""
+msgstr "Udvælg vis skjulte filer og mapper"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:17
-#, fuzzy
 msgid "Select Size At Least"
-msgstr "Størrelse _mindst"
+msgstr "Udvælg størrelse mindst"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:18
-#, fuzzy
 msgid "Select Size At Most"
-msgstr "Størrelse _højst"
+msgstr "Udvælg størrelse højst"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:19
-#, fuzzy
 msgid "Show Additional Options"
 msgstr "Vis flere indstillinger"
 
@@ -1015,6 +993,9 @@ msgid ""
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
 msgstr ""
+"Denne nøgle definerer stierne som søgeværktøjet ekskluderer fra "
+"hurtigsøgningen. Jokerne \"*\" og \"?\" er understøttet. De forvalgte "
+"værdier er /mnt/*, /media/*, /dev/*, /tmp/*, /proc/* og /var/*."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:21
 msgid ""
@@ -1024,108 +1005,147 @@ msgid ""
 "not been indexed. The wildcards '*' and '?' are supported. The default value "
 "is /."
 msgstr ""
+"Denne nøgle definerer stierne som søgeværktøjet ekskluderer fra den anden "
+"skanning ved udførsel af en hurtigsøgning. Den anden skanning bruger "
+"find-kommandoen til at søge efter filer. Formåelt med denne anden skanning "
+"er at finde filer som ikke er blevet indekseret. Jokerne \"*\" og \"?\" er "
+"understøttet. Den forvalgte værdi er /."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:22
 msgid ""
 "This key determines if the Additional Options section is expanded when the "
 "search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om sektionen for yderligere valgmuligheder er foldet "
+"ud når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:23
 msgid ""
 "This key determines if the Contains the Text option is selected when the "
 "search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"indeholder teksten\" er udvalgt "
+"når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:24
 msgid ""
 "This key determines if the Date Modified Less Than option is selected when "
 "the search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"dato ændret inden for\" er udvalgt "
+"når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:25
 msgid ""
 "This key determines if the Date Modified More Than option is selected when "
 "the search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"dato ændret længere tilbage end\" "
+"er udvalgt når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:26
 msgid ""
 "This key determines if the File is Empty option is selected when the search "
 "tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"fil er tom\" er udvalgt "
+"når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:27
 msgid ""
 "This key determines if the Follow Symbolic Links option is selected when the "
 "search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"følg symbolske henvisninger\" er "
+"udvalgt når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:28
 msgid ""
 "This key determines if the Include Other Filesystems option is selected when "
 "the search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"medtag andre filsystemer\" er "
+"udvalgt når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:29
 msgid ""
 "This key determines if the Name Matches Regular Expression option is "
 "selected when the search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"navn passer til regulært udtryk\" "
+"er udvalgt når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:30
 msgid ""
 "This key determines if the Name does not Contain option is selected when the "
 "search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"navn indeholder ikke\" er udvalgt "
+"når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:31
 msgid ""
 "This key determines if the Owned by Group option is selected when the search "
 "tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"ejet af gruppe\" er udvalgt "
+"når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:32
 msgid ""
 "This key determines if the Owned by User option is selected when the search "
 "tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"ejet af bruger\" er udvalgt "
+"når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:33
 msgid ""
 "This key determines if the Owner is Unrecognized option is selected when the "
 "search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"ejer er ukendt\" er udvalgt "
+"når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:34
 msgid ""
 "This key determines if the Show Hidden Files and Folders option is selected "
 "when the search tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"vis skjulte filer og mapper\" er "
+"udvalgt når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:35
 msgid ""
 "This key determines if the Size At Least option is selected when the search "
 "tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"størrelse mindst\" er udvalgt "
+"når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:36
 msgid ""
 "This key determines if the Size At Most option is selected when the search "
 "tool is started."
 msgstr ""
+"Denne nøgle bestemmer om valgmuligheden \"størrelse højst\" er udvalgt "
+"når søgeværktøjet startes."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:37
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
 msgstr ""
+"Denne nøgle bestemmer om søgeværktøjet deaktiverer brugen af "
+"find-kommandoen efter udførsel af en hurtigsøgning."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:38
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
 msgstr ""
+"Denne nøgle bestemmer om søgeværktøjet deaktiverer brugen af "
+"locate-kommandoen ved udførsel af simple filnavnsøgninger."
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Image/label border"
@@ -1183,7 +1203,7 @@ msgstr[0] "Er du sikker på at du ønsker at åbne %d dokument?"
 msgstr[1] "Er du sikker på at du ønsker at åbne %d dokumenter?"
 
 #: gsearchtool/gsearchtool-callbacks.c:324
-#: gsearchtool/gsearchtool-callbacks.c:477
+#: gsearchtool/gsearchtool-callbacks.c:476
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -1191,114 +1211,114 @@ msgstr[0] "Dette vil åbne %d separat vindue."
 msgstr[1] "Dette vil åbne %d separate vinduer."
 
 #: gsearchtool/gsearchtool-callbacks.c:384
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:967
-#: gsearchtool/gsearchtool-callbacks.c:1001
+#: gsearchtool/gsearchtool-callbacks.c:417
+#: gsearchtool/gsearchtool-callbacks.c:966
+#: gsearchtool/gsearchtool-callbacks.c:999
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Kunne ikke åbne dokumentet \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:387
-#: gsearchtool/gsearchtool-callbacks.c:643
-#: gsearchtool/gsearchtool-callbacks.c:970
+#: gsearchtool/gsearchtool-callbacks.c:642
+#: gsearchtool/gsearchtool-callbacks.c:969
 msgid "The document does not exist."
-msgstr "Dokumentet eksisterer ikke."
+msgstr "Dokumentet findes ikke."
 
-#: gsearchtool/gsearchtool-callbacks.c:421
-#: gsearchtool/gsearchtool-callbacks.c:1004
+#: gsearchtool/gsearchtool-callbacks.c:420
+#: gsearchtool/gsearchtool-callbacks.c:1002
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Der er ikke nogen installeret fremviser der kan vise dokumentet."
 
-#: gsearchtool/gsearchtool-callbacks.c:472
+#: gsearchtool/gsearchtool-callbacks.c:471
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Er du sikker på du ønsker at åbne %d mappe?"
 msgstr[1] "Er du sikker på du ønsker at åbne %d mapper?"
 
-#: gsearchtool/gsearchtool-callbacks.c:530
+#: gsearchtool/gsearchtool-callbacks.c:529
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Kunne ikke åbne mappen \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:537
+#: gsearchtool/gsearchtool-callbacks.c:536
 msgid "The nautilus file manager is not running."
 msgstr "Filhåndteringen Nautilus kører ikke."
 
-#: gsearchtool/gsearchtool-callbacks.c:640
+#: gsearchtool/gsearchtool-callbacks.c:639
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Kunne ikke flytte \"%s\" til papirkurven."
 
-#: gsearchtool/gsearchtool-callbacks.c:680
+#: gsearchtool/gsearchtool-callbacks.c:679
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "Kunne ikke flytte \"%s\" til papirkurven."
 
-#: gsearchtool/gsearchtool-callbacks.c:683
+#: gsearchtool/gsearchtool-callbacks.c:682
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Flytning af \"%s\" mislykkedes: %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:713
+#: gsearchtool/gsearchtool-callbacks.c:712
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Ønsker du at slette \"%s\" permanent?"
 
-#: gsearchtool/gsearchtool-callbacks.c:716
+#: gsearchtool/gsearchtool-callbacks.c:715
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 "Papirkurven er ikke tilgængelig. Kunne ikke flytte \"%s\" til papirkurven."
 
-#: gsearchtool/gsearchtool-callbacks.c:758
+#: gsearchtool/gsearchtool-callbacks.c:757
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Kunne ikke slette \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:760
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Sletning af \"%s\" mislykkedes: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1189
+#: gsearchtool/gsearchtool-callbacks.c:1187
 msgid "Save Search Results As..."
 msgstr "Gem søgeresultater som..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1241
+#: gsearchtool/gsearchtool-callbacks.c:1239
 msgid "Could not save document."
 msgstr "Kunne ikke gemme dokument."
 
-#: gsearchtool/gsearchtool-callbacks.c:1243
+#: gsearchtool/gsearchtool-callbacks.c:1241
 msgid "You did not select a document name."
 msgstr "Du valgte ikke et dokumentnavn."
 
-#: gsearchtool/gsearchtool-callbacks.c:1269
-#: gsearchtool/gsearchtool-callbacks.c:1364
+#: gsearchtool/gsearchtool-callbacks.c:1267
+#: gsearchtool/gsearchtool-callbacks.c:1362
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Kunne ikke gemme dokumentet \"%s\" som %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1273
+#: gsearchtool/gsearchtool-callbacks.c:1271
 msgid "The document name you selected is a folder."
 msgstr "Det valgte dokumentnavn er en mappe."
 
-#: gsearchtool/gsearchtool-callbacks.c:1302
+#: gsearchtool/gsearchtool-callbacks.c:1300
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr "Dokumentet \"%s\" eksisterer allerede. Ønsker du at erstatte det?"
+msgstr "Dokumentet \"%s\" findes allerede. Ønsker du at erstatte det?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1306
+#: gsearchtool/gsearchtool-callbacks.c:1304
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 "Hvis du erstatter en eksisterende fil, vil filens indhold blive overskrevet."
 
-#: gsearchtool/gsearchtool-callbacks.c:1317
+#: gsearchtool/gsearchtool-callbacks.c:1315
 #: gnome-screenshot/screenshot-xfer.c:190
 msgid "_Replace"
 msgstr "_Erstat"
 
-#: gsearchtool/gsearchtool-callbacks.c:1367
+#: gsearchtool/gsearchtool-callbacks.c:1365
 msgid "You may not have write permissions to the document."
 msgstr "Du har muligvis ikke skriverettigheder til dokumentet."
 
@@ -1462,7 +1482,7 @@ msgstr "Start automatisk en søgning"
 #: gsearchtool/gsearchtool.c:1029
 #, c-format
 msgid "Select the '%s' constraint"
-msgstr "Vælg begrænsningen '%s'"
+msgstr "Udvælg begrænsningen '%s'"
 
 #: gsearchtool/gsearchtool.c:1135
 msgid "Invalid option passed to sortby command line argument."
@@ -1526,7 +1546,7 @@ msgstr "Søgeregelmenu"
 
 #: gsearchtool/gsearchtool.c:1776
 msgid "Select a search rule from the menu"
-msgstr "Vælg en søgeregel fra menuen"
+msgstr "Udvælg en søgeregel fra menuen"
 
 #: gsearchtool/gsearchtool.c:1807
 msgid "S_earch results:"
@@ -1574,11 +1594,7 @@ msgstr "Gennemse"
 
 #: gsearchtool/gsearchtool.c:2035
 msgid "Select the folder where you want to start the search."
-msgstr "Vælg mappen hvor du ønsker at begynde søgningen."
-
-#: gsearchtool/gsearchtool.c:2049
-msgid "Show more _options"
-msgstr "Vis flere _indstillinger"
+msgstr "Udvælg mappen hvor du ønsker at begynde søgningen."
 
 #: gsearchtool/gsearchtool.c:2059
 msgid "Show more options"
@@ -1596,11 +1612,11 @@ msgstr "Klik for at starte søgningen"
 msgid "Click to Stop the search"
 msgstr "Klik for stoppe søgningen"
 
-#: gsearchtool/gsearchtool.c:2386
+#: gsearchtool/gsearchtool.c:2381
 msgid "Cannot initialize bonobo."
 msgstr "Kan ikke klargøre Bonobo."
 
-#: logview/about.c:47 logview/logview.c:47
+#: logview/about.c:47 logview/logview.c:49
 msgid "System Log Viewer"
 msgstr "Systemlog-fremviser"
 
@@ -1624,7 +1640,7 @@ msgstr "_Tilføj"
 msgid "Add an action"
 msgstr "Tilføj en handling"
 
-#: logview/actions.c:176 logview/logview.c:86
+#: logview/actions.c:176 logview/logview.c:88
 msgid "_Edit"
 msgstr "_Redigér"
 
@@ -1789,76 +1805,75 @@ msgstr "Egenskaber"
 #: logview/info.c:95
 #, c-format
 msgid "<b>Size</b>: %ld bytes"
-msgstr ""
+msgstr "<b>Størrelse</b>: %ld byte"
 
 #: logview/info.c:99
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Modified</b>: %s"
-msgstr "Ændret:"
+msgstr "<b>Ændret</b>: %s"
 
 #: logview/info.c:103
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Start Date</b>: %s"
-msgstr "Startdato:"
+msgstr "<b>Startdato</b>: %s"
 
 #: logview/info.c:107
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Last Date</b>: %s"
-msgstr "Sidste dato:"
+msgstr "<b>Slutdato</b>: %s"
 
 #: logview/info.c:111
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Number of Lines</b>: %ld"
-msgstr "Antal linjer:"
+msgstr "<b>Antal linjer</b>: %ld"
 
-# RETMIG: skal disse være med stort eller lille?
 #: logview/log_repaint.c:36
 msgid "January"
-msgstr "Januar"
+msgstr "januar"
 
 #: logview/log_repaint.c:36
 msgid "February"
-msgstr "Februar"
+msgstr "februar"
 
 #: logview/log_repaint.c:36
 msgid "March"
-msgstr "Marts"
+msgstr "marts"
 
 #: logview/log_repaint.c:36
 msgid "April"
-msgstr "April"
+msgstr "april"
 
 #: logview/log_repaint.c:36
 msgid "May"
-msgstr "Maj"
+msgstr "maj"
 
 #: logview/log_repaint.c:37
 msgid "June"
-msgstr "Juni"
+msgstr "juni"
 
 #: logview/log_repaint.c:37
 msgid "July"
-msgstr "Juli"
+msgstr "juli"
 
 #: logview/log_repaint.c:37
 msgid "August"
-msgstr "August"
+msgstr "august"
 
 #: logview/log_repaint.c:37
 msgid "September"
-msgstr "September"
+msgstr "september"
 
 #: logview/log_repaint.c:37
 msgid "October"
-msgstr "Oktober"
+msgstr "oktober"
 
 #: logview/log_repaint.c:38
 msgid "November"
-msgstr "November"
+msgstr "november"
 
 #: logview/log_repaint.c:38
 msgid "December"
-msgstr "December"
+msgstr "december"
 
 #. Translators: Date only format, %x should well do really
 #: logview/log_repaint.c:278
@@ -1883,9 +1898,8 @@ msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:43
-#, fuzzy
 msgid "This file cannot be opened"
-msgstr "Kunne ikke åbne %s."
+msgstr "Denne fil kan ikke åbnes"
 
 #: logview/logrtns.c:206
 msgid "Unable to open logfile!\n"
@@ -1907,7 +1921,7 @@ msgstr ""
 #: logview/logrtns.c:282
 #, c-format
 msgid "%s is too big."
-msgstr ""
+msgstr "%s er for stor."
 
 #: logview/logrtns.c:286
 #, c-format
@@ -1924,154 +1938,141 @@ msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: løbet tør for hukommelse"
 
 #: logview/logview-findbar.c:265
-#, fuzzy
 msgid "Fin_d : "
-msgstr "Søg"
+msgstr "Fin_d : "
 
 #: logview/logview-findbar.c:283
-#, fuzzy
 msgid "Find Next"
-msgstr "Søg"
+msgstr "Find næste"
 
 #: logview/logview-findbar.c:293
 msgid "Find Previous"
-msgstr ""
-
-#: logview/logview.c:85
-msgid "_Log"
-msgstr ""
+msgstr "Find forrige"
 
 #: logview/logview.c:87
+msgid "_Log"
+msgstr "_Log"
+
+#: logview/logview.c:89
 msgid "_View"
-msgstr ""
-
-#: logview/logview.c:90
-#, fuzzy
-msgid "_Open..."
-msgstr "_Åbn"
-
-#: logview/logview.c:90
-#, fuzzy
-msgid "Open a log from file"
-msgstr "Åbn ny logfil"
+msgstr "_Vis"
 
 #: logview/logview.c:92
+msgid "_Open..."
+msgstr "_Åbn..."
+
+#: logview/logview.c:92
+msgid "Open a log from file"
+msgstr "Åbn en log fra fil"
+
+#: logview/logview.c:94
 msgid "_Properties"
 msgstr "_Egenskaber"
 
-#: logview/logview.c:92
+#: logview/logview.c:94
 msgid "Show Log Properties"
 msgstr "Vis logegenskaber"
 
-#: logview/logview.c:94
-#, fuzzy
+#: logview/logview.c:96
 msgid "Close"
-msgstr "Lu_k alle"
-
-#: logview/logview.c:94
-msgid "Close this log"
-msgstr ""
+msgstr "Luk"
 
 #: logview/logview.c:96
-#, fuzzy
+msgid "Close this log"
+msgstr "Luk denne log"
+
+#: logview/logview.c:98
 msgid "Quit the log viewer"
-msgstr "Systemlog-fremviser"
+msgstr "Afslut log-fremviseren"
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 msgid "Copy"
-msgstr ""
-
-#: logview/logview.c:101
-msgid "Select All"
-msgstr ""
-
-#: logview/logview.c:101
-msgid "Select the entire log"
-msgstr ""
+msgstr "Kopiér"
 
 #: logview/logview.c:103
+msgid "Select All"
+msgstr "Markér alt"
+
+#: logview/logview.c:103
+msgid "Select the entire log"
+msgstr "Markér hele loggen"
+
+#: logview/logview.c:105
 msgid "Find pattern in logs"
-msgstr ""
+msgstr "Find mønstre i loggene"
 
-#: logview/logview.c:106
-#, fuzzy
+#: logview/logview.c:108
 msgid "Collapse _All"
-msgstr "_Sammenfold alle"
+msgstr "Sammenfold _alle"
 
-#: logview/logview.c:106
+#: logview/logview.c:108
 msgid "Collapse all the rows"
 msgstr "Fold alle rækkerne sammen"
 
-#: logview/logview.c:109
-msgid "Open the help contents for the log viewer"
-msgstr ""
-
 #: logview/logview.c:111
+msgid "Open the help contents for the log viewer"
+msgstr "Åbn hjælp for log-fremviseren"
+
+#: logview/logview.c:113
 msgid "Show the about dialog for the gconf editor"
-msgstr ""
-
-#: logview/logview.c:117
-#, fuzzy
-msgid "_Monitor"
-msgstr "_Overvåg..."
-
-#: logview/logview.c:117
-#, fuzzy
-msgid "Monitor Current Log"
-msgstr "Overvåg logfiler"
+msgstr "Vis om-vinduet for gconf-redigeringen"
 
 #: logview/logview.c:119
+msgid "_Monitor"
+msgstr "_Overvåg"
+
+#: logview/logview.c:119
+msgid "Monitor Current Log"
+msgstr "Overvåg nuværende log"
+
+#: logview/logview.c:121
 msgid "_Calendar"
 msgstr "_Kalender"
 
-#: logview/logview.c:119
+#: logview/logview.c:121
 msgid "Show Calendar Log"
 msgstr "Vis kalenderlog"
 
-# RETMIG: hvad i alverden er dette?
-#: logview/logview.c:121
+#: logview/logview.c:123
 msgid "_Entry Detail"
-msgstr "_Elementdetaljer"
+msgstr "_Detaljer"
 
-#: logview/logview.c:121
+#: logview/logview.c:123
 msgid "Show Entry Detail"
-msgstr "Vis detaljer for element"
+msgstr "Vis detaljer"
 
-#: logview/logview.c:176
+#: logview/logview.c:178
 msgid "Open the specified log."
-msgstr ""
+msgstr "Åbn den anførte log."
 
-#: logview/logview.c:387
+#: logview/logview.c:389
 msgid "Date"
 msgstr "Dato"
 
-#: logview/logview.c:387
+#: logview/logview.c:389
 msgid "Host Name"
 msgstr "Værtsnavn"
 
-#: logview/logview.c:388
+#: logview/logview.c:390
 msgid "Process"
 msgstr "Proces"
 
-#: logview/logview.c:388
+#: logview/logview.c:390
 msgid "Message"
 msgstr "Besked"
 
-#: logview/logview.c:578
+#: logview/logview.c:583
 msgid "Open new logfile"
 msgstr "Åbn ny logfil"
 
-#: logview/logview.c:876
-#, fuzzy
+#: logview/logview.c:879
 msgid "There was an error displaying help."
-msgstr ""
-"Der opstod en fejl ved visning af hjælp: \n"
-"%s"
+msgstr "Der opstod en fejl ved visning af hjælp."
 
-#: logview/logview.c:894
+#: logview/logview.c:897
 #, c-format
 msgid "%s (monitored) - %s"
-msgstr ""
+msgstr "%s (overvåget) - %s"
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -2085,39 +2086,35 @@ msgstr ""
 "Logfil der skal åbnes når programmet startes. Standard er enten /var/adm/"
 "messages eller /var/log/messages, afhængigt af din styresystem."
 
-#: logview/zoom.c:75
+#: logview/zoom.c:71
 msgid "Entry Detail"
-msgstr "Indtastningsdetalje"
+msgstr "Detaljer"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:139
+#: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%e. %B %X"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:86
-#, fuzzy
 msgid "Error loading help"
-msgstr "Fejl ved lukning af enhed %s"
+msgstr "Fejl ved indlæsning af hjælp"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:87
-#, fuzzy
 msgid "There was an error displaying the help pages for this dialog:"
-msgstr ""
-"Der opstod en fejl ved visning af hjælp: \n"
-"%s"
+msgstr "Der opstod en fejl ved visning af hjælp for dette vindue:"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
 #: gnome-screenshot/gnome-panel-screenshot.c:111
 #, c-format
 msgid "Screenshot-%s.png"
-msgstr ""
+msgstr "Skærmbillede-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
 #: gnome-screenshot/gnome-panel-screenshot.c:117
 msgid "Screenshot.png"
-msgstr ""
+msgstr "Skærmbillede.png"
 
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
@@ -2125,7 +2122,7 @@ msgstr ""
 #: gnome-screenshot/gnome-panel-screenshot.c:155
 #, c-format
 msgid "Screenshot-%s-%d.png"
-msgstr ""
+msgstr "Skærmbillede-%s-%d.png"
 
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
@@ -2133,132 +2130,146 @@ msgstr ""
 #: gnome-screenshot/gnome-panel-screenshot.c:163
 #, c-format
 msgid "Screenshot-%d.png"
-msgstr ""
+msgstr "Skærmbillede-%d.png"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:338
 msgid "Unable to take a screenshot of the current desktop."
-msgstr ""
+msgstr "Kunne ikke tage et skærmbillede af det nuværende skrivebord."
 
 #: gnome-screenshot/gnome-panel-screenshot.c:409
 msgid "Grab a window instead of the entire screen"
-msgstr ""
+msgstr "Tag et billede af et vindue i stedet for af hele skærmen"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:410
 msgid "Include the window border with the screenshot"
-msgstr ""
+msgstr "Inkludér vinduesrammen i skærmbilledet"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:411
 msgid "Take screenshot after specified delay [in seconds]"
-msgstr ""
+msgstr "Tag skærmbillede efter en anført forsinkelse [i sekunder]"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:412
 msgid "Effect to add to the window border"
-msgstr ""
+msgstr "Effekt for vinduesrammen"
 
 #: gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr " (Ugyldig Unicode)"
 
 #: gnome-screenshot/gnome-egg-xfer-dialog.c:471
 #, c-format
 msgid "(%d:%02d:%d Remaining)"
-msgstr ""
+msgstr "(%d:%02d:%d tilbage)"
 
 #: gnome-screenshot/gnome-egg-xfer-dialog.c:476
 #, c-format
 msgid "(%d:%02d Remaining)"
-msgstr ""
+msgstr "(%d:%02d tilbage)"
 
 #: gnome-screenshot/gnome-egg-xfer-dialog.c:587
 #, c-format
 msgid "%ld of %ld"
-msgstr ""
+msgstr "%ld af %ld"
 
 #: gnome-screenshot/gnome-screenshot.glade.h:2
 msgid "Save Screenshot"
-msgstr ""
+msgstr "Gem skærmbillede"
 
 #: gnome-screenshot/gnome-screenshot.glade.h:3
-#, fuzzy
 msgid "Save in _folder:"
-msgstr "_Kig i mappen:"
+msgstr "Gem i _mappen:"
 
 #: gnome-screenshot/gnome-screenshot.glade.h:4
-#, fuzzy
 msgid "_Name:"
-msgstr "Navn"
+msgstr "_Navn:"
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:1
 msgid "Border Effect"
-msgstr ""
+msgstr "Effekt for ramme"
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:2
 msgid "Directory that the screenshooter last used to save in"
-msgstr ""
+msgstr "Mappen som skærmkameraet sidst benyttede til at gemme i"
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:3
 msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"black-line\"."
 msgstr ""
+"Effekt for ydersiden af en ramme. Mulige værdier er \"shadow\", "
+"\"none\" og \"black-line\"."
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
-msgstr ""
+msgstr "Inkludér ramme"
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:5
 msgid "Include the window manager border along with the screenshot"
-msgstr ""
+msgstr "Inkludér vindueshåndteringsrammen i skærmbilledet"
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:6
 msgid "Web directory"
-msgstr ""
+msgstr "Webkatalog"
 
 #: gnome-screenshot/screenshot-dialog.c:194
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-panel"
 msgstr ""
+"Skærmbillede-programmet mangler sin Glade-fil.\n"
+"Kontrollér venligst din installation af gnome-panelet"
 
 #: gnome-screenshot/screenshot-save.c:40
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to clear the temporary directory:\n"
 "%s"
-msgstr "Kunne ikke oprette filsystemet korrekt."
+msgstr ""
+"Kunne ikke rydde det midlertidige katalog:\n"
+"%s"
 
 #: gnome-screenshot/screenshot-save.c:78
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
 msgstr ""
+"Gemningen afsluttede uventet. Skærmbilledet kunne ikke skrives til disken."
 
 #: gnome-screenshot/screenshot-save.c:188
 msgid "Unknown error saving screenshot to disk"
-msgstr ""
+msgstr "Ukendt fejl ved gemning af skærmbilledet til disken"
 
 #: gnome-screenshot/screenshot-utils.c:611
 msgid "Untitled Window"
-msgstr ""
+msgstr "Vindue uden titel"
 
 #: gnome-screenshot/screenshot-xfer.c:103
 msgid "Preparing to copy"
-msgstr ""
+msgstr "Forbereder kopiering"
 
 #: gnome-screenshot/screenshot-xfer.c:181
-#, fuzzy
 msgid "File already exists"
-msgstr "Fil er allerede åbnet"
+msgstr "Filen findes allerede"
 
 #: gnome-screenshot/screenshot-xfer.c:184
-#, fuzzy, c-format
+#, c-format
 msgid "The file \"%s\" already exists.  Would you like to replace it?"
-msgstr "Dokumentet \"%s\" eksisterer allerede. Ønsker du at erstatte det?"
+msgstr "Filen \"%s\" findes allerede. Ønsker du at erstatte den?"
 
 #: gnome-screenshot/screenshot-xfer.c:230
 #, c-format
 msgid "Unknown GnomeVFSXferProgressStatus %d"
-msgstr ""
+msgstr "Ukendt GnomeVFSXferProgressStatus %d"
+
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr ""
+#~ "Der opstod en fejl ved visning af hjælp: \n"
+#~ "%s"
+
+#~ msgid "Search _results:"
+#~ msgstr "Søge_resultater:"
 
 #~ msgid "_Dictionary"
 #~ msgstr "_Ordbog"
@@ -2329,7 +2340,7 @@ msgstr ""
 #~ msgstr "_Handlinger..."
 
 #~ msgid "_Select logs to monitor:"
-#~ msgstr "_Vælg logfiler at overvåge:"
+#~ msgstr "_Udvælg logfiler at overvåge:"
 
 #~ msgid "Currently _monitored logs:"
 #~ msgstr "Aktuelt _overvågede logfiler:"
