@@ -68,7 +68,7 @@ int main(int argc, char **argv)
 
     /* Create menu */
     hbox = gtk_hbox_new(TRUE, 2);
-    label = gtk_label_new("Format Style:");
+    label = gtk_label_new(_("Format Style:"));
     menu = create_menu();
     dropdown = gtk_option_menu_new();
     gtk_option_menu_set_menu(GTK_OPTION_MENU(dropdown), menu);
