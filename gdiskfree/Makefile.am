@@ -14,8 +14,8 @@ gdiskfree_SOURCES =				\
 	save-cwd.h
 
 
-gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) 	\
-		  $(GNOMEUI_LIBS) $(INTLLIBS) 		\
+gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
+		  $(GNOMEUI_LIBS) $(INTLLIBS) \
 		  $(LIBGTOP_LIBS) $(LIBGTOP_EXTRA_LIBS)
 
 EXTRA_DIST = gdiskfree.desktop

@@ -683,9 +683,9 @@ char * gui_getpass(void)
 			     "Cancel if you do not know it.") );
   }
   else {
-     s = g_strconcat( _("You are trying to change your user identity.\n"
-			   "Please enter the password for user `"),
-			 new_user, "'.", NULL );
+     s = g_strdup_printf( _("You are trying to change your user identity.\n"
+			 "Please enter the password for user `%s'."),
+			 new_user );
      label = gtk_label_new(s);
      g_free(s);
   }

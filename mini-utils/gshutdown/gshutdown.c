@@ -310,12 +310,12 @@ static void prepare_advanced_vbox(GtkWidget * vbox)
 
   /* Fixme these should be stock buttons */
 
-  button = gnome_stock_or_ordinary_button("Preferences");
+  button = gnome_stock_or_ordinary_button(_("Preferences"));
   gtk_box_pack_end(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
   gtk_signal_connect(GTK_OBJECT(button), "clicked",
                      GTK_SIGNAL_FUNC(popup_preferences), NULL);
 
-  button = gnome_stock_or_ordinary_button("About");
+  button = gnome_stock_or_ordinary_button(_("About"));
   gtk_box_pack_end(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
   gtk_signal_connect(GTK_OBJECT(button), "clicked",
                      GTK_SIGNAL_FUNC(popup_about), NULL);
@@ -405,12 +405,12 @@ static void popup_not_in_path(const gchar * command)
   GtkWidget * dialog;
   gchar * message;
 
-  message = g_strconcat("The command \"", command, "\"\n" 
+  message = g_strdup_printf("The command \"%s\"\n" 
 			   "could not be found.\n\n" 
 			   "Most likely it's because you are "
 			   "not authorized to use it.\n"
 			   "This command is necessary to "
-			   "shutdown, reboot, or change runlevels.", NULL);
+			   "shutdown, reboot, or change runlevels.", command);
 
   dialog = gnome_message_box_new(message, GNOME_MESSAGE_BOX_ERROR, 
 				 GNOME_STOCK_BUTTON_OK, NULL);
@@ -445,8 +445,9 @@ static void popup_confirm(void)
   GtkWidget * d, * button;
   gchar * message;
   
-  message = g_strconcat(confirm_questions[requested_runlevel],
-                           "\nYou will lose any unsaved work.", NULL);
+  message = g_strdup_printf(_("%s"
+            "\nYou will lose any unsaved work."),
+            confirm_questions[requested_runlevel]);
 
   d = gnome_message_box_new(message, GNOME_MESSAGE_BOX_QUESTION, 
                             GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
@@ -681,7 +682,7 @@ static void run_command(gchar * command)
 
   switch (new_pid) {
   case -1 :
-    g_warning("Command execution failed: fork failed");
+    g_warning(_("Command execution failed: fork failed"));
     break;
   case 0 : 
     _exit(system(command));

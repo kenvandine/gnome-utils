@@ -463,7 +463,7 @@ static void about_cb(GtkWidget * w, gpointer data)
 
 static void save_cb(GtkWidget * w, gpointer data)
 {
-  g_warning("Save not implemented yet\n");
+  g_warning(_("Save not implemented yet\n"));
 }
 
 static void preferences_cb(GtkWidget *w, gpointer data)
@@ -944,7 +944,7 @@ static void do_action(gchar * format, gchar * name, gchar * tty)
   g_free(sn_format);
 
 #ifdef GNOME_ENABLE_DEBUG
-  g_print("Running: %s\n",full_command);
+  g_print(_("Running: %s\n"),full_command);
 #endif
   gnome_execute_shell(NULL, full_command);
 }

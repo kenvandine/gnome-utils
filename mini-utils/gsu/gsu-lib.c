@@ -88,10 +88,10 @@ gsu_getpass (const gchar *new_user)
 	       "Please enter the root password now, or choose\n"
 	       "Cancel if you do not know it."));
     else
-	prompt = g_strconcat
+	prompt = g_strdup_printf
 	    (_("You are trying to change your user identity.\n"
-	       "Please enter the password for user `"),
-	     new_user, "'.", NULL);
+	     "Please enter the password for user `%s'."),
+	     new_user);
 	
     dialog = gnome_request_dialog (TRUE, prompt, NULL, 32,
 				   dialog_callback, &password,

@@ -113,7 +113,7 @@ parse_an_arg (poptContext ctx,
               const struct poptOption *opt,
               const char *arg, void *data)
 {
-  g_print("Reason %d\n", reason);
+  g_print(_("Reason %d\n"), reason);
   switch (opt->val){
     
   case GEOMETRY_KEY:
@@ -499,9 +499,9 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
 
   if ( ! g_file_exists(filename) ) {
     gchar * s;
-    s = 
-      g_strconcat(_("No such file or directory:\n"),
-                     filename, NULL);
+    s = g_strdup_printf(_("No such file or directory:\n"
+                     "%s"),
+                     filename);
     gless_show_file_error(app, s);
     g_free(s);
     return FALSE;
@@ -517,8 +517,10 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
       g_free(s);
       if ( ! gnome_less_show_command(GNOME_LESS(app->less), c) ) {
         gchar * err = 
-          g_strconcat(_("Failed to decompress and display the file:\n"),
-                         filename, "\n", g_unix_error_string(errno), NULL);
+          g_strdup_printf(_("Failed to decompress and display the file:\n"
+                         "%s\n"
+                         "%s"),
+                         filename, g_unix_error_string(errno));
         gless_show_file_error(app, err);
         g_free(err);
         g_free(c);
@@ -536,8 +538,11 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
   else {
     if ( ! gnome_less_show_file(GNOME_LESS(app->less), filename) ) {
       gchar * err = 
-        g_strconcat(_("Error loading file:\n"), filename,
-                       "\n", g_unix_error_string(errno), NULL);
+        g_strdup_printf(_("Error loading file:\n"
+                          "%s\n"
+                          "%s"),
+                          filename,
+                          g_unix_error_string(errno));
       gless_show_file_error(app, err);
       g_free(err);
       return FALSE;
@@ -602,8 +607,11 @@ static gboolean gless_app_save(GnomeLessApp * app, const gchar * path)
 
   gnome_appbar_pop (app->appbar);
 
-  s = g_strconcat(_("Failed to write file:\n"), path, 
-                     "\n", g_unix_error_string(errno), NULL);
+  s = g_strdup_printf(_("Failed to write file:\n"
+                    "%s\n"
+                    "%s"),
+                    path, 
+                    g_unix_error_string(errno));
 
   gnome_app_error(GNOME_APP(app->app), s);
   
@@ -753,7 +761,7 @@ static void open_cb(GtkWidget * w, gpointer data)
 #ifdef NEED_UNUSED_FUNCTION
 static void preferences_cb(GtkWidget *w, gpointer data)
 {
-  gnome_ok_dialog("Sorry, no preferences yet.");
+  gnome_ok_dialog(_("Sorry, no preferences yet."));
 }
 #endif
 

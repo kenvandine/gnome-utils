@@ -160,11 +160,9 @@ static void fill_mem_page(GtkWidget * box)
   GtkWidget * label;
   const gchar * titles[] = { N_("Memory"), N_("Kilobytes") };
   gchar * s;
-  gint len;
-  static const gchar * format = N_("%ld%% %s used.");
 
-  titles [0] = _("Memory");
-  titles [1] = _("Kilobytes");
+  titles [0] = _(titles[0]);
+  titles [1] = _(titles[1]);
 
   vbox = gtk_vbox_new(FALSE, GNOME_PAD);
   gtk_container_add(GTK_CONTAINER(box), vbox);
@@ -180,11 +178,7 @@ static void fill_mem_page(GtkWidget * box)
              (const char **)memory, end_memory_info);
   gtk_clist_thaw(GTK_CLIST(clist));
 
-  len = strlen(_(format)) + MAX_ITOA_LEN + strlen(_("memory"));
-  s = g_malloc(len);
-  g_snprintf(s, len, _(format), 
-             (guint)(memory_percent_full * 100),
-             _("memory"));
+  s = g_strdup_printf("%ld%% memory used.", (guint)(memory_percent_full * 100));
   hbox = gtk_hbox_new(FALSE, GNOME_PAD);
   label = gtk_label_new(s);
   g_free(s);
@@ -194,11 +188,7 @@ static void fill_mem_page(GtkWidget * box)
   gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
   gtk_box_pack_start (GTK_BOX(vbox), hbox,  FALSE, FALSE, GNOME_PAD);
 
-  len = strlen(_(format)) + MAX_ITOA_LEN + strlen(_("swap"));
-  s = g_malloc(len);
-  g_snprintf(s, len, _(format), 
-             (guint)(swap_percent_full * 100),
-             _("swap"));
+  s = g_strdup_printf("%ld%% swap used.", (guint)(swap_percent_full * 100));
   hbox = gtk_hbox_new(FALSE, GNOME_PAD);
   label = gtk_label_new(s);
   g_free(s);
@@ -308,12 +298,7 @@ void load_fsinfo()
   glibtop_fsusage fsusage;
   glibtop_mountlist mountlist;
   glibtop_mountentry *mount_list;
-  const gchar * percent_full_format = _("%2d%% full ");
-  const gchar * device_info_format = 
-    _("%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free.");
-  gchar * s;
   gint    percent;
-  gint    len;
   int     i;
 
   mount_list = glibtop_get_mountlist (&mountlist, TRUE);
@@ -338,26 +323,20 @@ void load_fsinfo()
         fs_info[fs_percent_full] = NULL;
       }
       else {
-        len = strlen (device_info_format) + (MAX_ITOA_LEN * 5);
-        s = g_malloc(len);
-        g_snprintf(s, len, device_info_format, 
+        fs_info[fs_numbers] = g_strdup_printf(
+          _("%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free."),
                    (long) BLOCKS_TO_MB(fsusage.blocks),
                    (long) BLOCKS_TO_MB(fsusage.bavail), 
                    (long) BLOCKS_TO_MB(fsusage.bfree), 
                    (long) fsusage.files,
                    (long) fsusage.ffree);
-        fs_info[fs_numbers] = s;
 
         percent_full = g_malloc(sizeof(gdouble));
         *percent_full =
           1.0 - ((gdouble)fsusage.bavail)/((gdouble)fsusage.blocks);
         
         percent = (gint)((*percent_full) * 100);
-        
-        len = strlen(percent_full_format); /* The format makes it big enough */
-        s = g_malloc(len);
-        g_snprintf(s, len, percent_full_format, percent);
-        fs_info[fs_percent_full] = s;
+        fs_info[fs_percent_full] = g_strdup_printf("%2d%% full ", percent);
       }
     }
     else {

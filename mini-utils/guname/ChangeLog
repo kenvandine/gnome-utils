@@ -1,3 +1,11 @@
+1999-07-28  Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>
+
+	* guname.c : Mark strings for translations.
+	Use g_strdup_printf instead of g_strconcat for translatable strings
+	(makes it easier to translate).
+	* moreinfo.c : Replace strlen + g_malloc + g_snprintf with single
+	g_strdup_printf.
+
 1999-07-21  Nat Friedman  <nat@gnome-support.com>
 
 	* guname.c: If capplet support is enabled, include

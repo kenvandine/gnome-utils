@@ -16,17 +16,17 @@
 
 static char *bit32_names[]=
 {
-	"Default",
-	"16-bit",
-	"32-bit",
-	"32-bit w/sync"
+	N_("Default"),
+	N_("16-bit"),
+	N_("32-bit"),
+	N_("32-bit w/sync")
 };
 
 static char *power_names[]={
-	"Unknown",
-	"Sleeping",
-	"Active/Idle",
-	"Standby"
+	N_("Unknown"),
+	N_("Sleeping"),
+	N_("Active/Idle"),
+	N_("Standby")
 };
 
 
@@ -204,7 +204,7 @@ static char *make_buffers(struct hd_driveid *hd)
 	static char buf[256];
 	char *n="";
 	if(hd->buf_size==0)
-		return("None");
+		return(_("None"));
 	switch(hd->buf_type)
 	{
 		case 1:
@@ -240,9 +240,9 @@ static char *make_multi(int n)
 {
 	static char buf[128];
 	if(n)
-		sprintf(buf, "Yes (%d sector%s)", n, n==1?"":"s");
+		sprintf(buf, _("Yes (%d sector%s)"), n, n==1?"":"s");
 	else
-		sprintf(buf, "No");
+		sprintf(buf, _("No"));
 	return buf;
 }
 
@@ -311,7 +311,7 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 		/* do config here */
 		clist_add(cl,_("Geometry"), make_geom(&hd), 255);
 		clist_add(cl,_("Cache"), make_buffers(&hd),255);
-		clist_add(cl,_("Status"), power_names[pmode],255);
+		clist_add(cl,_("Status"), _(power_names[pmode]),255);
 	}
 	else
 	{
@@ -319,7 +319,7 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	}
 	
 	clist_add(cl,_("DMA Mode"), dma?_("Enabled"):_("Disabled"),255);
-	clist_add(cl,_("IO Mode"), bit32_names[bits32], 255);
+	clist_add(cl,_("IO Mode"), _(bit32_names[bits32]), 255);
 	clist_add(cl,_("IRQ Unmask"), mask?_("Enabled"):_("Disabled"), 255);
 	clist_add(cl,_("Multisector"), make_multi(multi),255);
 	clist_add(cl,_("On Reset"), keepsetting?_("Keep settings"):_("Default"),255);

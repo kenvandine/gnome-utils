@@ -53,7 +53,7 @@ static void produce_penguin(void)
 	g_free(filename);
 	if(pixmap == NULL)
 	{
-		fprintf(stderr,"%s: unable to load the penguin.\n", prog_name);
+		fprintf(stderr,_("%s: unable to load the penguin.\n"), prog_name);
 		exit(1);
 	}
 	

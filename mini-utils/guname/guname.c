@@ -111,8 +111,8 @@ main ( int argc, char ** argv )
     init_results = gnome_capplet_init ("guname-capplet", VERSION,
                                        argc, argv, guname_options, 0, NULL);
     if (init_results < 0)
-        g_error ("an initialization error occurred while "
-                 "starting 'guname-capplet'.");
+        g_error (_("an initialization error occurred while "
+                 "starting 'guname-capplet'."));
 
     client = gnome_master_client ();
 
@@ -510,7 +510,7 @@ static void do_logo_box(GtkWidget * box)
   contrib_label = gtk_label_new(_("GNOME contributors:"));
 
   style = gtk_style_new ();
-  font = gdk_font_load ("-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*");
+  font = gdk_font_load (_("-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"));
 
   if (font) {
     gdk_font_unref (style->font);
@@ -677,10 +677,11 @@ static void file_selection_cb(GtkWidget * button, gpointer fs)
       write_to_filestream(f);
       if ( fclose(f) != 0 ) {
         gchar * t = 
-          g_strconcat(_("Error closing file `"), fn,
-                         "': \n", g_unix_error_string(errno),
-                         _("\nSome or all data may not have been written."),
-                         NULL);
+          g_strdup_printf(_("Error closing file `%s': \n"
+                         "%s\n"
+                         "Some or all data may not have been written."),
+                         fn,
+                         g_unix_error_string(errno));
         gnome_error_dialog(t);
         g_free(t);
       }
@@ -688,8 +689,9 @@ static void file_selection_cb(GtkWidget * button, gpointer fs)
       return;
     }
     else {
-      gchar * s = g_strconcat(_("Couldn't open file `"), fn, "': ", 
-                                 g_unix_error_string(errno), NULL);
+      gchar * s = g_strdup_printf(_("Couldn't open file `%s': %s"),
+                                 fn,
+                                 g_unix_error_string(errno));
       gnome_error_dialog(s);
       g_free(s);
     }
@@ -748,14 +750,16 @@ static void mail_clicked_callback(GtkWidget* dialog, gint button,
       failure = pclose(p);
       if (failure) {
         /* I don't think the error_string() will reliably mean anything. */
-        gchar * s = g_strconcat(_("Command failed ` "), command, _(" ': "), 
+        gchar * s = g_strdup_printf(_("Command failed ` %s ': %s"),
+                                   command, 
                                    g_unix_error_string(errno));
         gnome_error_dialog(s);
         g_free(s);
       }
     }
     else {
-      gchar * t = g_strconcat(_("Couldn't run command ` "), command, _(" ': "), 
+      gchar * t = g_strdup_printf(_("Couldn't run command ` %s ': %s"), 
+                                 command,
                                  g_unix_error_string(errno));
       gnome_error_dialog(t);
       g_free(t);
@@ -778,9 +782,9 @@ static void confirm_mail(struct MailData* data)
   GtkWidget* label;
   gchar* question;
 
-  question = g_strconcat(_("The following mail will be sent to "),
-                            data->to, 
-                            _(".\n Are you sure you want to mail this information?"), NULL);
+  question = g_strdup_printf(_("The following mail will be sent to %s.\n"
+                            " Are you sure you want to mail this information?"),
+                            data->to);
 
   label = gtk_label_new(question);
   less = gnome_less_new();
