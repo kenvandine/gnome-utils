@@ -2,13 +2,10 @@
 GttHelpdir = $(datadir)/gtt
 
 INCLUDES = 			\
-	-I../.. 		\
-	-I$(srcdir)/../.. 	\
 	-I$(includedir)		\
 	-DHAS_GNOME=1		\
 	-DHELP_PATH=\"$(GttHelpdir)\" \
 	$(X_CFLAGS)
-
 
 bin_PROGRAMS = gtt
 
@@ -36,13 +33,8 @@ gtt_SOURCES = \
 	gtt-features.h
 
 gtt_LDADD = \
-	$(top_builddir)/libgnomeui/libgnomeui.la 	\
-	$(top_builddir)/libgnome/libgnome.la		\
-	$(top_builddir)/gtk-xmhtml/libgtkxmhtml.la	\
-	$(GTK_LIBS)					\
-        $(X_LIBS) $(x_libs) $(INTLLIBS)			\
-	$(XPM_LIBS) $(DL_LIB)
-
+	$(GTKXMHTML_LIBS)	\
+	$(GNOMEUI_LIBS)
 
 GttHelp_DATA = \
 	index.html		\
@@ -75,8 +67,8 @@ EXTRA_DIST = \
 	gtt.text		\
 	gtt.desktop
 
-Utilitiesdir = $(datadir)/apps/Utilities
-Utilities_DATA = gtt.desktop
+Productivitydir = $(datadir)/apps/Productivity
+Productivity_DATA = gtt.desktop
 
 #install-data-local:
 #	 $(mkinstalldirs) $(Utilitiesdir)

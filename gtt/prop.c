@@ -18,7 +18,6 @@
 
 #include <config.h>
 #if HAS_GNOME
-#include "../../libgnomeui/gnome-stock.h"
 #include <gnome.h>
 #else /* not HAS_GNOME */
 #include <gtk/gtk.h>
