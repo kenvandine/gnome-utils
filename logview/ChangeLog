@@ -1,5 +1,11 @@
 2004-11-02  Vincent Noel  <vnoel@cox.net>
 
+	* logview.c (logview_menus_set_state): Desensitize menu items when
+	monitoring.
+
+	* monitor.c (mon_check_logs): Be sure to stop the monitoring when
+	the file is closed.
+
 	* logrtns.c (ReadNewLines, ReadLastPage): Free a temp buffer.
 
 	* logview.h: Remove useless defines and stuff.

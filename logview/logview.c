@@ -485,19 +485,20 @@ CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 
    g_return_if_fail (window->curlog);
 
-   CloseLog (window->curlog);
-
+   if (window->monitored)
+	   gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
+					   (gtk_ui_manager_get_widget(window->ui_manager, "/LogviewMenu/FileMenu/MonitorLogs")),
+					   FALSE);
    gtk_widget_hide (window->find_bar);
+
+   CloseLog (window->curlog);
 
    window->curlog = NULL;
    logview_menus_set_state (window);
+   logview_set_window_title (window);
    log_repaint (window);
    if (window->loginfovisible)
 	   RepaintLogInfo (window);
-   if (window->monitored) {
-	   monitor_stop (window);
-	   window->monitored = FALSE;
-   }
 }
 
 /* ----------------------------------------------------------------------
@@ -862,6 +863,7 @@ toggle_monitor (GtkAction *action, GtkWidget *callback_data)
 	    window->monitored = TRUE;
     }
     logview_set_window_title (window);
+    logview_menus_set_state (window);
 }
 
 static void
@@ -885,13 +887,20 @@ logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean 
 static void
 logview_menus_set_state (LogviewWindow *window)
 {
-	logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/Properties", (window->curlog != NULL));
-	logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/CloseLog", (window->curlog != NULL));
-	logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", (window->curlog != NULL));
-	logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
-	logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", (window->curlog != NULL));
-	logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", (window->curlog != NULL));
-	logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", (window->curlog != NULL));
+	if (window->monitored) {
+		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", FALSE);
+		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
+		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", FALSE); 
+		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", FALSE);
+	} else {
+		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/Properties", (window->curlog != NULL));
+		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/CloseLog", (window->curlog != NULL));
+		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", (window->curlog != NULL));
+		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
+		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", (window->curlog != NULL));
+		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", (window->curlog != NULL));
+		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", (window->curlog != NULL));
+	}
 }
 
 static int

@@ -27,6 +27,8 @@
 void
 monitor_stop (LogviewWindow *window)
 {
+	if (!window)
+		return;
 	if (window->timer_tag > 0) {
 		GtkListStore *list;
 		list = (GtkListStore *) gtk_tree_view_get_model (GTK_TREE_VIEW(window->mon_list_view));
@@ -35,7 +37,6 @@ monitor_stop (LogviewWindow *window)
 		window->timer_tag = 0;
 		window->monitored = FALSE;
 		window->curlog->mon_offset = 0;
-		gtk_list_store_clear (list);
 	}
 }
 	
@@ -202,9 +203,8 @@ mon_check_logs (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
 gboolean mon_check_logs (gpointer data)
 {
 	LogviewWindow *window = data;
-	g_return_if_fail (window->curlog);
 
-	if (!window->monitored)
+	if (!window || !window->monitored)
 		return FALSE;
 
 	if (WasModified (window->curlog))
