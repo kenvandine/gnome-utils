@@ -165,7 +165,7 @@ static void modify_drive(GtkWidget *w, gint row, gint col, GdkEventButton *event
 			break;
 		case 7:		/* IO */
 
-//			modifier_range(pio_mode_set, _("PIO Mode"), 0, 5);
+/*			modifier_range(pio_mode_set, _("PIO Mode"), 0, 5); */
 			break;
 		case 8:		/* IRQ mask */
 			p=unmask_set(id);
@@ -301,7 +301,7 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	gtk_clist_set_column_width(cl, 0, 70);
 	gtk_clist_freeze(cl);
 	gtk_widget_set_usize(GTK_WIDGET(cl), -1, 200);
-	//	gtk_clist_set_border(cl, GTK_SHADOW_IN);
+	gtk_clist_set_shadow_type(cl, GTK_SHADOW_IN);
 	
 	if(id)
 	{

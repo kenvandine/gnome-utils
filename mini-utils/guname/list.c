@@ -137,7 +137,7 @@ GtkWidget * create_clist(const gchar * titles[])
 
   list = GTK_CLIST(gtk_clist_new_with_titles(2, (gchar **)titles));
 
-  //gtk_clist_set_border(list, GTK_SHADOW_OUT);
+  gtk_clist_set_shadow_type(list, GTK_SHADOW_OUT);
 
   /* Fixme, eventually you might could select an item 
      for cut and paste, or some other effect. */

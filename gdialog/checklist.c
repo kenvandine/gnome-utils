@@ -165,7 +165,7 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 			GTK_SCROLLED_WINDOW (sw),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 		gtk_clist_freeze(cl);
-		//gtk_clist_set_border(cl, GTK_SHADOW_IN);		
+		gtk_clist_set_shadow_type(cl, GTK_SHADOW_IN);		
 				
 		for (i = 0; i < item_no; i++) {
 			char *x = (char *)items[3 * i];
