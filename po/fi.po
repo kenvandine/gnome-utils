@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-02 14:40+0100\n"
-"PO-Revision-Date: 2003-09-07 22:35+0300\n"
+"POT-Creation-Date: 2003-09-08 20:50+0300\n"
+"PO-Revision-Date: 2003-09-08 18:32+0300\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists."
 "sourceforge.net>\n"
@@ -178,7 +178,7 @@ msgstr "_Etsi"
 #: gdictsrc/gdict-defbox.c:639 gdictsrc/gdict-speller.c:484
 #, c-format
 msgid "Error invoking query: %s"
-msgstr "Virhe lähettäessä kyselyä: %s"
+msgstr "Virhe kyselyn lähettämisessä: %s"
 
 #: gdictsrc/gdict-pref-dialog.c:169
 msgid "Dictionary Preferences"
@@ -345,7 +345,7 @@ msgstr "Käytä älykästä hakua"
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy Formatter"
-msgstr "Levykkeen alustaja"
+msgstr "Levykkeen alustin"
 
 #: gfloppy/gfloppy.desktop.in.h:2
 msgid "Format Floppy Disks"
@@ -369,7 +369,7 @@ msgstr "Etsitään viallisia lohkoja..."
 #: gfloppy/src/badblocks.c:273
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr "Laitteen %s avaaminen lohkotestiä varten epäonnistui\n"
+msgstr "Aseman %s avaaminen lohkotestiä varten epäonnistui\n"
 
 #: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:525
 msgid "Checking for bad blocks... Done"
@@ -381,16 +381,16 @@ msgstr "Alustetaan levykettä..."
 
 #: gfloppy/src/fdformat.c:52
 msgid "I don't know what this is, but it's very wrong."
-msgstr "En tiedä mikä tämä on, mutta se on erittäin väärin."
+msgstr "Ei tarkkaa tietoa kohteesta, mutta se on virheellinen."
 
 #: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
 #, c-format
 msgid "Error formatting track #%d"
-msgstr "Virhe alustaessa rataa #%d"
+msgstr "Virhe alustaessa uraa #%d"
 
 #: gfloppy/src/fdformat.c:82
 msgid "Error during completion of formatting"
-msgstr "Virhe alustuksen viimeistelyn aikana"
+msgstr "Virhe alustuksen viimeistelyssä"
 
 #. XXXX - need to tell parent we're finished
 #: gfloppy/src/fdformat.c:86
@@ -408,14 +408,14 @@ msgid ""
 "\n"
 "Please confirm that it is not write-protected."
 msgstr ""
-"Levylle ei voi kirjoittaa.\n"
+"Levykkeelle ei voi kirjoittaa.\n"
 "\n"
 "Varmista, ettei se ole kirjoitussuojattu."
 
 #: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
-msgstr "Riittämättömät oikeudet levylaitteen %s avaamiseen."
+msgstr "Oikeudet eivät riitä levyaseman %s avaamiseen."
 
 #: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
 msgid ""
@@ -426,7 +426,7 @@ msgid ""
 msgstr ""
 "Levykettä ei voi käsitellä.\n"
 "\n"
-"Varmista, että että se on asemassa kunnolla."
+"Varmista, että se on asemassa kunnolla."
 
 #: gfloppy/src/fdformat.c:117
 #, c-format
@@ -435,7 +435,7 @@ msgid ""
 "\n"
 "Error code %s:%d"
 msgstr ""
-"Yleinen virhe käsiteltäessä levyasemaa %s.\n"
+"Yleinen virhe levyaseman %s käsittelemisessä.\n"
 "\n"
 "Virhekoodi %s:%d"
 
@@ -446,12 +446,12 @@ msgid ""
 "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
 "Lukuvirhe:\n"
-"Ongelma luettaessa sylinteriä %d, odotettiin %d, luettiin %d"
+"Ongelma sylinterin %d lukemisessa (odotettiin %d, luettiin %d)"
 
 #: gfloppy/src/fdformat.c:143
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
-msgstr "Ongelma luettaessa sylinteriä %d, odotettiin %d, luettiin %d"
+msgstr "Ongelma sylinterin %d lukemisessa (odotettiin %d, luettiin %d)"
 
 #: gfloppy/src/fdformat.c:154
 #, c-format
@@ -461,7 +461,7 @@ msgstr "Viallista dataa sylinterissä %d. Jatketaan..."
 #: gfloppy/src/fdformat.c:163
 #, c-format
 msgid "Error closing device %s"
-msgstr "Virhe laitteen %s sulkemisessa"
+msgstr "Virhe aseman %s sulkemisessa"
 
 #: gfloppy/src/fdformat.c:170
 msgid "Verifying the format... Done"
@@ -470,7 +470,7 @@ msgstr "Varmistetaan alustus... Valmis"
 #: gfloppy/src/fdformat.c:182
 #, c-format
 msgid "Unable to write to device %s"
-msgstr "Laitteelle %s ei voi kirjoittaa"
+msgstr "Asemaan %s ei voi kirjoittaa"
 
 #: gfloppy/src/fdformat.c:202
 #, c-format
@@ -479,7 +479,7 @@ msgid ""
 "\n"
 "Error code %s"
 msgstr ""
-"Yleisvirhe käytettäessä levyasemaa %s.\n"
+"Yleinen virhe levyaseman %s käsittelemisessä.\n"
 "\n"
 "Virhekoodi %s"
 
@@ -490,21 +490,21 @@ msgstr "Tämänhetkistä levykkeen geometriaa ei voi määrittää."
 #: gfloppy/src/gfloppy.c:221
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
-"Virhe muodostettaessa ainutkertaista tiedostonimeä viallisten lohkojen "
-"luettelolle."
+"Virhe viallisten lohkojen luettelon ainutkertaisen tiedostonimen "
+"muodostamisessa."
 
 #: gfloppy/src/gfloppy.c:241
 msgid "Error while filling the bad blocks list file."
-msgstr "Virhe täytettäessä viallisten lohkojen luettelotiedostoa."
+msgstr "Virhe viallisten lohkojen luettelotiedoston täyttämisessä."
 
 #: gfloppy/src/gfloppy.c:298
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
-msgstr "Virhe käynnistettäessä komentoa (%s): %s."
+msgstr "Virhe komennon (%s) käynnistämisessä: %s."
 
 #: gfloppy/src/gfloppy.c:322
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr "Tuntematon mke2fs-aloitusallekirjoitus, perutaan."
+msgstr "Tuntematon mke2fs-alkuallekirjoitus, toiminto peruuntuu."
 
 #: gfloppy/src/gfloppy.c:336
 #, c-format
@@ -519,12 +519,12 @@ msgstr ""
 
 #: gfloppy/src/gfloppy.c:353
 msgid "Abnormal child process termination."
-msgstr "Epänormaali lapsiprosessin päättyminen."
+msgstr "Poikkeava lapsiprosessin päättyminen."
 
 #: gfloppy/src/gfloppy.c:378
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
-msgstr "Virhe käynnistettäessä komentoa mbadblocks: %s."
+msgstr "Virhe komennon mbadblocks käynnistämisessä: %s."
 
 #: gfloppy/src/gfloppy.c:390
 #, c-format
@@ -543,23 +543,23 @@ msgstr "Epänormaali ohjelman mbadblocks lapsiprosessin päättyminen."
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
 msgid "Making filesystem on disk..."
-msgstr "Tehdään tiedostojärjestelmää levylle..."
+msgstr "Luodaan tiedostojärjestelmä levykkeelle..."
 
 #: gfloppy/src/gfloppy.c:467
 msgid "Unable to create filesystem correctly."
-msgstr "Tiedostojärjestelmän luominen oikein ei onnistu."
+msgstr "Tiedostojärjestelmän luominen ei onnistunut virheittä."
 
 #: gfloppy/src/gfloppy.c:472 gfloppy/src/gfloppy.c:511
 msgid "Making filesystem on disk... Done"
-msgstr "Tehdään tiedostojärjestelmää levylle... Valmis"
+msgstr "Luodaan tiedostojärjestelmä levykkeelle... Valmis"
 
 #: gfloppy/src/gfloppy.c:516
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr "Etsitään viallisia lohkoja... (voi mennä hetki)"
+msgstr "Etsitään viallisia lohkoja... (odota hetki)"
 
 #: gfloppy/src/gfloppy.c:521
 msgid "Error while checking the bad blocks."
-msgstr "Virhe tarkistettaessa viallisia lohkoja."
+msgstr "Virhe viallisten lohkojen tarkistamisessa."
 
 #: gfloppy/src/gfloppy2.glade.h:1
 msgid "    "
@@ -609,7 +609,7 @@ msgstr "Tiedostojärjestelmän _tyyppi:"
 
 #: gfloppy/src/gfloppy2.glade.h:12
 msgid "Floppy _density:"
-msgstr "Levyn _tiheys:"
+msgstr "Levykkeen _tiheys:"
 
 #: gfloppy/src/gfloppy2.glade.h:13
 msgid "Floppy de_vice:"
@@ -633,7 +633,7 @@ msgstr "P_erinpohjainen (standardin lisäksi viallisten lohkojen etsintä)"
 
 #: gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
-msgstr "Levynimiö:"
+msgstr "Levyke_nimiö:"
 
 #: gfloppy/src/gfloppy2.glade.h:19
 msgid "_Format"
@@ -658,7 +658,7 @@ msgstr ""
 #: gfloppy/src/main.c:158 gfloppy/src/main.c:202
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "Laitteen %s avaaminen epäonnistui, alustamista ei voi jatkaa."
+msgstr "Aseman %s avaaminen epäonnistui, alustamista ei voi jatkaa."
 
 #: gfloppy/src/main.c:161 gfloppy/src/main.c:205
 #, c-format
@@ -666,8 +666,8 @@ msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
 msgstr ""
-"Laite %s on irti.\n"
-"Liitä laite jatkaaksesi."
+"Asema %s on irti.\n"
+"Kiinnitä asema jatkaaksesi."
 
 #: gfloppy/src/main.c:164 gfloppy/src/main.c:208
 #, c-format
@@ -686,20 +686,20 @@ msgid ""
 "Could not display help for the floppy formatter.\n"
 "%s"
 msgstr ""
-"Levykkeenalustajan ohjetta ei voi näyttää.\n"
+"Levykkeenalustimen ohjetta ei voi näyttää.\n"
 "%s"
 
 #: gfloppy/src/main.c:433
 msgid "The volume name can't contain any blank space."
-msgstr "Levynimiö ei voi sisältää välilyöntejä."
+msgstr "Levykenimiö ei voi sisältää välilyöntejä."
 
 #: gfloppy/src/main.c:482
 msgid "The device to format"
-msgstr "Alustettava laite"
+msgstr "Alustettava asema"
 
 #: gfloppy/src/main.c:483
 msgid "DEVICE"
-msgstr "LAITE"
+msgstr "ASEMA"
 
 #: gfloppy/src/progress.c:123
 #, c-format
@@ -707,8 +707,8 @@ msgid ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr ""
-"Levyke on alustettu, mutta löydettiin ja merkittiin <b>%d viallista lohkoa</"
-"b> (kokonaismäärä %d)."
+"Levyke on alustettu, mutta <b>%d viallista lohkoa</b> löydettiin ja "
+"merkittiin (kokonaismäärä %d)."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -839,11 +839,11 @@ msgstr "Etsitään..."
 
 #: gsearchtool/gsearchtool.c:974
 msgid "Set the text of 'Name contains'"
-msgstr "Aseta kentän \"tiedoston nimi sisältää\" teksti"
+msgstr "Kentän \"tiedoston nimi sisältää\" teksti"
 
 #: gsearchtool/gsearchtool.c:975
 msgid "Set the text of 'Look in folder'"
-msgstr "Aseta kentän \"etsi hakemistosta\" teksti"
+msgstr "Kentän \"etsi hakemistosta\" teksti"
 
 #: gsearchtool/gsearchtool.c:976
 msgid "Sort files by one of the following: name, folder, size, type, or date"
@@ -923,7 +923,7 @@ msgstr "Virhe etsintäkomennon suorittamisessa"
 
 #: gsearchtool/gsearchtool.c:1512
 msgid "Search Rule Value Entry"
-msgstr "Etsi säännön arvoa -kenttä"
+msgstr "Etsi säännön arvo -kenttä"
 
 #: gsearchtool/gsearchtool.c:1513
 msgid "Enter a value for search rule"
@@ -992,7 +992,7 @@ msgstr "Selaa"
 
 #: gsearchtool/gsearchtool.c:1890 gsearchtool/gsearchtool.c:1891
 msgid "Look in Folder Entry"
-msgstr "Etsi hakemistokohdasta"
+msgstr "Etsi hakemistosta -kenttä"
 
 #: gsearchtool/gsearchtool.c:1890 gsearchtool/gsearchtool.c:1891
 msgid "Enter the folder name where you want to start the search"
@@ -1028,7 +1028,7 @@ msgstr "_Tallenna tulokset nimellä..."
 
 #: gsearchtool/gsearchtool-callbacks.c:102
 msgid "Could not open help document"
-msgstr "Ohjeasiakirjan avaaminen ei onnistunut"
+msgstr "Ohjeen avaaminen ei onnistunut"
 
 #: gsearchtool/gsearchtool-callbacks.c:307
 #, c-format
@@ -1049,7 +1049,7 @@ msgstr "Asiakirjan \"%s\" avaaminen ei onnistunut"
 #: gsearchtool/gsearchtool-callbacks.c:365
 #: gsearchtool/gsearchtool-callbacks.c:649
 msgid "There is no installed viewer capable of displaying the document."
-msgstr "Asennettuna ei ole ohjelmaa, joka voisi näyttää asiakirjan."
+msgstr "Ei löydy ohjelmaa, joka voisi näyttää asiakirjan."
 
 #: gsearchtool/gsearchtool-callbacks.c:411
 #, c-format
@@ -1084,8 +1084,8 @@ msgid ""
 "You did not select a document name or the name selected was a folder.  The "
 "document is not saved."
 msgstr ""
-"Et valinnut asiakirjalle nimeä, tai valittu nimi olikin hakemisto. Asiakirja "
-"ei tallentunut."
+"Et antanut asiakirjalle nimeä, tai nimi viittasi hakemistoon. Asiakirja ei "
+"tallentunut."
 
 #: gsearchtool/gsearchtool-callbacks.c:903
 #, c-format
@@ -1144,11 +1144,11 @@ msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:44
 msgid "A system log viewer for GNOME."
-msgstr "Järjestelmän lokitiedostojen katseluohjelma Gnomelle."
+msgstr "Gnomen lokitiedostojen katseluohjelma."
 
 #: logview/about.c:58
 msgid "System Log Viewer"
-msgstr "Gnomen järjestelmälokikatselin"
+msgstr "Gnomen lokikatselin"
 
 #: logview/actions.c:74
 msgid "Action Database"
@@ -1186,7 +1186,7 @@ msgstr "Toimintotietokantaan kirjoittaminen ei onnistu!"
 
 #: logview/actions.c:489
 msgid "Error while executing specified action"
-msgstr "Virhe suoritettaessa annettua toimintoa"
+msgstr "Virhe annetun toiminnon suorittamisessa"
 
 #: logview/actions.c:510
 msgid "<empty>"
