@@ -453,3 +453,4 @@ menu_clear_daily_counter(GtkWidget *w, gpointer data)
         ctree_update_label(cur_proj);
 }
 
+/* ============================ END OF FILE ======================= */

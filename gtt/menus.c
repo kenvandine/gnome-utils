@@ -128,8 +128,12 @@ static GnomeUIInfo menu_popup[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("Clear _Daily Counter"), NULL,
 			       menu_clear_daily_counter,
 			       GNOME_STOCK_MENU_BLANK),
-#define MENU_POPUP_PROP_POS 5
+#define MENU_EDIT_JNL_POS 6
+	GNOMEUIINFO_ITEM_STOCK(N_("_Journal..."), NULL,
+			       edit_journal,
+			       GNOME_STOCK_MENU_BLANK),
 	GNOMEUIINFO_SEPARATOR,
+#define MENU_POPUP_PROP_POS 8
 	GNOMEUIINFO_MENU_PROPERTIES_ITEM(menu_properties,NULL),
 	GNOMEUIINFO_END
 };

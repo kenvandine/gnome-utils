@@ -787,6 +787,7 @@ scrub_intervals (GttTask *tsk)
 			    ((ivl->stop - ivl->start) <= mini))
 			{
 				tsk->interval_list = g_list_remove (tsk->interval_list, ivl);
+				g_free (ivl);
 				not_done = TRUE;
 				changed = TRUE;
 				break;
@@ -964,6 +965,7 @@ gtt_project_remove_notifier (GttProject *prj,
 	if (node)
 	{
 		prj->listeners = g_list_remove (prj->listeners, ntf);
+		g_free (ntf);
 	}
 }
 
@@ -1053,9 +1055,44 @@ proj_modified (GttProject *proj)
 void 
 gtt_clear_daily_counter (GttProject *proj)
 {
+	time_t midnight;
+	int not_done = TRUE;
+	GList *tsk_node, *in;
+
 	if (!proj) return;
-	proj->secs_day = 0;
-	proj_modified (proj);
+
+	gtt_project_timer_stop (proj);
+	gtt_project_freeze (proj);
+	midnight = get_midnight (-1);
+
+	/* loop over tasks */
+	for (tsk_node= proj->task_list; tsk_node; tsk_node=tsk_node->next)
+	{
+		GttTask * task = tsk_node->data;
+
+		not_done = TRUE;
+		while (not_done)
+		{
+			not_done = FALSE;
+			for (in= task->interval_list; in; in=in->next)
+			{
+				GttInterval *ivl = in->data;
+	
+				/* only nuke the ones that started after midnight.
+			 	 * The ones that started before midnight remain */
+				if (ivl->start >= midnight)
+				{
+					task->interval_list = 
+					     g_list_remove (task->interval_list, ivl);
+					g_free (ivl);
+					not_done = TRUE;
+					break;
+				}
+			}
+		}
+	}
+	gtt_project_thaw (proj);
+	gtt_project_timer_start (proj);
 }
 
 /* =========================================================== */
@@ -1146,15 +1183,12 @@ gtt_project_timer_update (GttProject *proj)
 	now = time(0);
 	zero_on_rollover (now);
 
-	/* if timer isn't running, do nothing.  Its arguabley
-	 * an error condition if this routine was called with the timer
-	 * stopped .... maybe we should printf a complaint ?
+	/* If timer isn't running, do nothing.  Normally,
+	 * this function should nbever be called when timer is running,
+	 * but there are a few rare cases (e.g. clear daily counter).
+	 * where it is.
 	 */
-	if (FALSE == ival->running) 
-	{
-		g_warning ("update called while timer stopped!\n");
-		return;
-	}
+	if (FALSE == ival->running) return;
 
 	prev_update = ival->stop;
 	ival->stop = now;

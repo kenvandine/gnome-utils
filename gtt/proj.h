@@ -190,7 +190,6 @@ int 		gtt_project_total_secs_ever (GttProject *proj);
 void gtt_project_compute_secs (GttProject *proj);
 void gtt_project_list_compute_secs (void);
 
-void gtt_clear_daily_counter (GttProject *proj);
 
 /* return a list of the children of this project */
 GList * 	gtt_project_get_children (GttProject *);
@@ -231,6 +230,15 @@ void	gtt_project_insert_before (GttProject *proj, GttProject *before_me);
 void	gtt_project_insert_after (GttProject *proj, GttProject *after_me);
 
 void	gtt_project_add_task (GttProject *, GttTask *);
+
+/* The gtt_clear_daily_counter() will delete all intervals from 
+ *    the project that started after midnight.  Typically, this 
+ *    will result in the daily counters being zero'ed out, although 
+ *    if a project started before midnight, some time may remain
+ *    on deck.
+ */
+
+void gtt_clear_daily_counter (GttProject *proj);
 
 /* -------------------------------------------------------- */
 /* master project list */
