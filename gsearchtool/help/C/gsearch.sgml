@@ -11,23 +11,17 @@
       <holder>Alexander Kirillov</holder>
     </copyright>
     <legalnotice>
-      <para>
-        Permission is granted to make and distribute verbatim copies of this
-        manual provided the copyright notice and this permission notice are
-        preserved on all copies.
+           <para>
+       Permission is granted to copy, distribute and/or modify this
+       document under the terms of the GNU Free Documentation License,
+       Version 1.1 or any later version published by the Free Software
+       Foundation; with no Invariant Sections, with no  Front-Cover
+       Texts, and with no Back-Cover Texts.  A copy of the license is
+       available from the Free Software Foundation and can be viewed <ulink
+       url="http://www.gnu.org/copyleft/fdl.html"
+       type="http">online</ulink>.
       </para>
-      <para>
-        Permission is granted to copy and distribute modified versions of
-        this manual under the conditions for verbatim copying, provided that
-        the entire resulting derived work is distributed under the terms of a
-        permission notice identical to this one.
-      </para>
-      <para>
-        Permission is granted to copy and distribute translations of this
-        manual into another language, under the above conditions for modified
-        versions, except that this permission notice may be stated in a
-        translation approved by the Free Software Foundation.
-      </para>
+
 
       <para> UNIX is a trade mark of X/Open Group.</para>
     </legalnotice>
@@ -43,7 +37,7 @@
        etc. It is included in the
        <filename>gnome-utils</filename> package, which is a part of
        the GNOME desktop environment. This document describes version
-       1.0.50 of <application>GNOME Search Tool</application>.
+       1.0.51 of <application>GNOME Search Tool</application>.
     </para>
 
     <para> The search tool can be started by selecting
@@ -366,9 +360,10 @@
 	you do not need to read it. 
       </para>
       <para>
-	On most systems, the database used for locate command (and
-	thus, for quick search mode of GNOME Search tool), is updated
-	daily, usually at nights. This is done as a
+	On most systems, the database used for
+	<command>locate</command> command (and thus, for quick search
+	mode of <application>GNOME Search tool</application>), is
+	updated daily, usually at nights. This is done as a
 	<command>cron</command> job &mdash; see the manual page for
 	<command>cron</command> if you are unfamiliar with this
 	utility. Note that if your computer is usually turned off at
@@ -376,10 +371,10 @@
 	you should change the default update time by either manully
 	editing <filename>/etc/crontab</filename> or using a graphical
 	tool such as <application>cromagnon</application>. This
-	requires system administrator (root) privileges. 
+	requires system administrator (root) privileges.
       </para>
 
-      <para>You can also issue the command "Update databse now" by
+      <para>You can also issue the command "Update database now" by
       running the command <command>updatedb</command>. Again, this
       requires system administrator (root) privileges. Without any
       options, it rebuilds the whole database, for all the files on
