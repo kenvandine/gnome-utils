@@ -160,6 +160,7 @@ static void fill_mem_page(GtkWidget * box)
   GtkWidget * label;
   const gchar * titles[] = { N_("Memory"), N_("Kilobytes") };
   gchar * s;
+  gint width, height;
 
   titles [0] = _(titles[0]);
   titles [1] = _(titles[1]);
@@ -175,8 +176,10 @@ static void fill_mem_page(GtkWidget * box)
   gtk_container_add(GTK_CONTAINER(sw),clist);
   gtk_clist_freeze(GTK_CLIST(clist));
   fill_clist(GTK_CLIST(clist), (const char **)memory_descriptions, 
-             (const char **)memory, end_memory_info);
+             (const char **)memory, end_memory_info, &width, &height);
   gtk_clist_thaw(GTK_CLIST(clist));
+
+  gtk_widget_set_usize(GTK_WIDGET(sw), width, height);
 
   s = g_strdup_printf("%ld%% memory used.", (guint)(memory_percent_full * 100));
   hbox = gtk_hbox_new(FALSE, GNOME_PAD);

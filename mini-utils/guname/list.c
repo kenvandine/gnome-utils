@@ -34,14 +34,15 @@ static gint max(gint a, gint b)
 }
 
 void fill_clist(GtkCList * list, 
-		const gchar ** col1_items, const gchar ** col2_items, 
-		gint numitems)
+                const gchar ** col1_items, const gchar ** col2_items, 
+                gint numitems,  gint * width, gint * height)
 {
   const gchar * row[2];
   int i;
   gint col_zero_width, col_one_width;
   GdkFont * font;
-
+  GtkRequisition req;
+  
   font = gtk_widget_get_style(GTK_WIDGET(list))->font;
 
   i = 0; col_zero_width = 0; col_one_width = 0;
@@ -73,8 +74,9 @@ void fill_clist(GtkCList * list,
   gtk_clist_set_column_width(list, 0, col_zero_width + 10);
   gtk_clist_set_column_width(list, 1, col_one_width);
   
-  gtk_widget_set_usize(GTK_WIDGET(list), col_zero_width+col_one_width + 30, 
-                       200);
+  *width = col_zero_width+col_one_width + 30;
+  gtk_widget_size_request(GTK_WIDGET(list), &req);
+  *height = req.height + 30;
 }
 
 #ifdef HAVE_LIBGTOP_SYSINFO
@@ -125,8 +127,9 @@ void fill_clist_from_glibtop_entry (GtkCList * list,
   gtk_clist_set_column_width(list, 0, col_zero_width + 10);
   gtk_clist_set_column_width(list, 1, col_one_width);
   
-  gtk_widget_set_usize(GTK_WIDGET(list), col_zero_width+col_one_width + 30, 
-                       200);
+  *width = col_zero_width+col_one_width + 30;
+  gtk_widget_size_request(GTK_WIDGET(list), &req);
+  *height = req.height + 30;
 }
 
 #endif

@@ -586,6 +586,7 @@ static void do_list_box(GtkWidget * box)
   GtkCList * list;
   GtkWidget *sw;
   const gchar * titles[] = { N_("Category"), N_("Your System") };
+  gint width, height;
 
   titles[0]=_(titles[0]);
   titles[1]=_(titles[1]);
@@ -610,9 +611,11 @@ static void do_list_box(GtkWidget * box)
   gtk_signal_connect(GTK_OBJECT(list), "button_press_event",
                      GTK_SIGNAL_FUNC(list_clicked_cb), NULL);
 
-  fill_clist(list, descriptions, info, end_system_info);
+  fill_clist(list, descriptions, info, end_system_info, &width, &height);
 
   gtk_clist_thaw(list);
+
+  gtk_widget_set_usize(GTK_WIDGET(sw), width, height);
 
   gtk_container_add(GTK_CONTAINER(box), GTK_WIDGET(sw));
 }
