@@ -1,6 +1,6 @@
 figs = \
-	gdiskfree-prefs.png  \
-	gdiskfree.png
+	figures/gcharmap.png  \
+	figures/gcharmap_insertascii.png
 
 app = gcharmap
 lang = C
