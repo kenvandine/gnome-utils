@@ -54,6 +54,8 @@ static GnomeUIInfo popup_menu[] = {
 	GNOMEUIINFO_END
 };
 
+gboolean row_selected_by_button_press_event;
+
 void
 die_cb (GnomeClient 	*client, 
 	gpointer 	data)
@@ -448,7 +450,7 @@ file_button_press_event_cb (GtkWidget 		*widget,
 			    gpointer 		data)
 {
 	GtkTreePath *path;
-	gboolean result = FALSE;
+	row_selected_by_button_press_event = TRUE;
 
 	if (event->window != gtk_tree_view_get_bin_window (GTK_TREE_VIEW(interface.tree))) {
 		return FALSE;
@@ -460,7 +462,7 @@ file_button_press_event_cb (GtkWidget 		*widget,
 		if ((event->button == 1 || event->button == 3)
 			&& gtk_tree_selection_path_is_selected (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)), path)) {
 			
-			result = TRUE;
+			row_selected_by_button_press_event = FALSE;
 		}
 		
 		gtk_tree_path_free (path);
@@ -469,7 +471,7 @@ file_button_press_event_cb (GtkWidget 		*widget,
 		gtk_tree_selection_unselect_all (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)));
 	}
 	
-	return result;
+	return !(row_selected_by_button_press_event);
 }
 
 gboolean
@@ -496,7 +498,12 @@ file_button_release_event_cb (GtkWidget 	*widget,
 		if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW(interface.tree), event->x, event->y,
 			&path, NULL, NULL, NULL)) {
 			if ((event->state & GDK_SHIFT_MASK) || (event->state & GDK_CONTROL_MASK)) {
-				gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)), path);
+				if (row_selected_by_button_press_event == TRUE) {
+					gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)), path);
+				}
+				else {
+					gtk_tree_selection_unselect_path (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)), path);
+				}
 			}
 			else {
 				gtk_tree_selection_unselect_all (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)));
