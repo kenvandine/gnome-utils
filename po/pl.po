@@ -9,14 +9,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2004-08-03 17:30+1200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-10 15:40+0200\n"
 "PO-Revision-Date: 2003-11-15 23:16+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
@@ -796,7 +796,7 @@ msgstr "Postęp formatowania"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
-msgstr ""
+msgstr "Wyszukuje pliki, foldery i dokumenty na komputerze"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
 #: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
@@ -829,7 +829,6 @@ msgid "The buttons shown in the alert dialog"
 msgstr "Przyciski wyświetlane w oknie alarmu"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:172
-#, fuzzy
 msgid "Show more _details"
 msgstr "Wyświetl więcej _opcji"
 
@@ -1005,9 +1004,8 @@ msgid "yesterday at %-I:%M %p"
 msgstr "wczoraj o %-H:%M"
 
 #: gsearchtool/gsearchtool-support.c:514 gsearchtool/gsearchtool-support.c:516
-#, fuzzy
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
-msgstr "%-d/%m/%y, %-H:%M"
+msgstr "%A, %-d %B %Y o %-H:%M:%S"
 
 #: gsearchtool/gsearchtool-support.c:687
 msgid "link (broken)"
@@ -1023,32 +1021,28 @@ msgid "Contains the _text"
 msgstr "Zawiera _napis"
 
 #: gsearchtool/gsearchtool.c:76
-#, fuzzy
 msgid "_Date modified less than"
-msgstr "_Czas od modyfikacji nie przekracza (dni)"
+msgstr "_Czas od modyfikacji nie przekracza"
 
 #: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
 msgid "days"
-msgstr ""
+msgstr "dni"
 
 #: gsearchtool/gsearchtool.c:77
-#, fuzzy
 msgid "Date modified more than"
-msgstr "Czas od m_odyfikacji przekracza (dni)"
+msgstr "Czas od modyfikacji przekracza"
 
 #: gsearchtool/gsearchtool.c:79
-#, fuzzy
 msgid "S_ize at least"
-msgstr "_Rozmiar przynajmniej (kilobajty)"
+msgstr "_Rozmiar przynajmniej"
 
 #: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
 msgid "kilobytes"
-msgstr ""
+msgstr "kilobajtów"
 
 #: gsearchtool/gsearchtool.c:80
-#, fuzzy
 msgid "Si_ze at most"
-msgstr "Ro_zmiar nie przekracza (kilobajty)"
+msgstr "Ro_zmiar nie przekracza"
 
 #: gsearchtool/gsearchtool.c:81
 msgid "File is empty"
@@ -1166,16 +1160,20 @@ msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
+"Wynik wyszukiwania może być niepoprawny. Wystąpiły błędy podczas "
+"wyszukiwania."
 
 #: gsearchtool/gsearchtool.c:1380
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
+"Wynik wyszukiwania może być niepoprawny. Czy wyłączyć funkcję szybkiego "
+"wyszukiwania?"
 
 #: gsearchtool/gsearchtool.c:1388
 msgid "Disable _Quick Search"
-msgstr ""
+msgstr "Wyłącz _szybkie wyszukiwanie"
 
 #: gsearchtool/gsearchtool.c:1432
 msgid "Error parsing the search command."
@@ -1348,9 +1346,9 @@ msgid "Can't write to actions database!"
 msgstr "Nie można zapisać bazy danych czynności!"
 
 #: logview/actions.c:487
-#, fuzzy, c-format
+#, c-format
 msgid "Error while executing specified action: %s"
-msgstr "Przy wykonywaniu zdefiniowanej operacji wystąpił błąd"
+msgstr "Wystąpił błąd przy wykonywaniu zdefiniowanej operacji: %s"
 
 #: logview/actions.c:510
 msgid "<empty>"
@@ -1772,6 +1770,7 @@ msgstr ""
 "nich."
 
 #: logview/monitor.c:301 logview/monitor.c:338
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list ma wartość NULL\n"
 
@@ -1780,6 +1779,7 @@ msgid "Monitoring Logs..."
 msgstr "Monitorowanie dzienników..."
 
 #: logview/monitor.c:667
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr "ZMIENIONY!\n"
 
