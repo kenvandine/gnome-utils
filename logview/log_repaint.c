@@ -96,22 +96,25 @@ extern GtkWidget *main_win_scrollbar;
  * -------------------
  */
 
-int InitPages ();
-int HandleLogEvents ();
+int InitPages (void);
+int HandleLogEvents (void);
 int GetLineAtCursor (int y);
+int NumTextLines (int l);
 int RepaintCalendar (GtkWidget * widget, GdkEventExpose * event);
 int RepaintLogInfo (GtkWidget *, GdkEventExpose *);
 int rapaint_zoom (GtkWidget * widget, GdkEventExpose * event);
+void HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key);
+void PointerMoved (GtkWidget * cv, GdkEventMotion * event);
 void log_repaint (GtkWidget * cv, GdkEventExpose * event);
 void log_redrawcursor (int ol, int nl, Page * np);
-void log_redrawdetail ();
+void log_redrawdetail (void);
 void DrawMonthHeader (LogLine * line, int y);
 void DrawLogLine (LogLine *line, int y);
 void DrawLogCursor (int y);
 void EraseLogCursor (int y);
 void Draw3DBox (GdkDrawable *win, GdkGC *gc, int x, int y, int w, int h, GdkColor color[3]);
-void CloseApp ();
-void UpdateStatusArea ();
+void CloseApp (void);
+void UpdateStatusArea (void);
 void change_log (int direction);
 void create_zoom_view (GtkWidget * widget, gpointer user_data);
 void close_zoom_view (GtkWidget * widget, GtkWindow ** window);

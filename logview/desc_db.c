@@ -227,8 +227,8 @@ int
 match_line_in_db (LogLine *line, GList *db)
 {
   GList *process, *item;
-  ProcessDB *cur_proc;
-  Description *cur_desc;
+  ProcessDB *cur_proc = NULL;
+  Description *cur_desc = NULL;
   regex_t preg;
   regmatch_t matches[MAX_NUM_MATCHES];
 
@@ -279,7 +279,7 @@ int
 find_tag_in_db (LogLine *line, GList *db)
 {
   GList *item;
-  DescriptionEntry *cur_desc;
+  DescriptionEntry *cur_desc = NULL;
 
   if (line->description == NULL)
     return FALSE;

@@ -422,7 +422,7 @@ int
 exec_action_in_db (Log *log, LogLine *line, GList *db)
 {
   GList *item;
-  Action *cur_action;
+  Action *cur_action = NULL;
   regex_t preg;
   regmatch_t matches[MAX_NUM_MATCHES];
   int doesnt_match;

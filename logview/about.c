@@ -24,9 +24,6 @@
 #include <config.h>
 #include <gnome.h>
 #include "logview.h"
-#include "log.xpm"
-#include "logview.xpm"
-
 
 extern ConfigData *cfg;
 extern GtkWidget *app;

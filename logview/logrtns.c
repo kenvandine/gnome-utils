@@ -56,6 +56,7 @@
 
 int IsLeapYear (int);
 int match_line_in_db (LogLine *line, GList *db);
+void UpdateLastPage (Log *log);
 
 extern GList *regexp_db;
 

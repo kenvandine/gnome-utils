@@ -49,7 +49,7 @@
    ---------------------------------------------------------------------- */
 
 ConfigData *
-CreateConfig()
+CreateConfig(void)
 {
   ConfigData *newcfg;
   GtkStyle  *cs;
