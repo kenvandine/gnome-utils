@@ -938,6 +938,13 @@ file_button_release_event_cb (GtkWidget * widget,
 		}
 		g_list_free (list);
 	}
+	else if (event->button == 1 || event->button == 2) {
+		if (gsearch->is_search_results_single_click_to_activate == TRUE) {
+			if (!(event->state & GDK_CONTROL_MASK) && !(event->state & GDK_SHIFT_MASK)) {
+			     	open_file_cb ((GtkAction *) NULL, data);
+			}
+		}
+	}
 	return FALSE;
 }
 
@@ -957,16 +964,11 @@ file_event_after_cb  (GtkWidget * widget,
 	}
 
 	if (!(event->state & GDK_CONTROL_MASK) && !(event->state & GDK_SHIFT_MASK)) {
-		if (gsearch->is_search_results_single_click_to_activate == TRUE) {
-			if ((event->type == GDK_BUTTON_PRESS)
-			     && (event->button == 1 || event->button == 2)) {
+		if (gsearch->is_search_results_single_click_to_activate == FALSE) {
+			if (event->type == GDK_2BUTTON_PRESS) {
 				open_file_cb ((GtkAction *) NULL, data);
 				return TRUE;
 			}
-		} 
-		else if (event->type == GDK_2BUTTON_PRESS) {
-			open_file_cb ((GtkAction *) NULL, data);
-			return TRUE;
 		}
 	}
 	return FALSE;
