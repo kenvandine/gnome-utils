@@ -23,6 +23,7 @@
 #include <gtk/gtkwindow.h>
 #include <gconf/gconf-client.h>
 #include "userprefs.h"
+#include <sys/stat.h>
 
 #define LOG_CANVAS_H             400
 #define LOG_CANVAS_W             600
@@ -31,16 +32,56 @@
 #define GCONF_HEIGHT_KEY "/apps/gnome-system-log/height"
 #define GCONF_LOGFILE "/apps/gnome-system-log/logfile"
 
+char * parse_syslog(gchar * syslog_file) {
+	/* Most of this stolen from sysklogd sources */
+	char * logfile = NULL;
+	char cbuf[BUFSIZ];
+	char *cline, *p;
+	FILE * cf;
+	if ((cf = fopen(syslog_file, "r")) == NULL) {
+		return NULL;
+	}
+	cline = cbuf;
+	while (fgets(cline, sizeof(cbuf) - (cline - cbuf), cf) != NULL) {
+		for (p = cline; isspace(*p); ++p);
+		if (*p == '\0' || *p == '#')
+			continue;
+		for (;*p && !strchr("\t ", *p); ++p);
+		while (*p == '\t' || *p == ' ')
+			p++;
+		if (*p == '-')
+			p++;
+		if (*p == '/') {
+			logfile = g_strdup (p);
+			/* remove trailing newline */
+			if (logfile[strlen(logfile)-1] == '\n')
+				logfile[strlen(logfile)-1] = '\0';
+			return logfile;
+		}
+	}
+	return logfile; 
+}
+
 void
 prefs_create_defaults (UserPrefsStruct *prefs)
 {
 	int i;
-	gchar *logfiles[] = {"/etc/syslog.conf", "/var/adm/messages",
-			     "/var/log/messages","/var/log/sys.log"};
+	gchar *logfiles[] = {"/var/adm/messages","/var/log/messages","/var/log/sys.log"};
+	struct stat filestat;
 
 	/* For first time running, try parsing various logfiles */
-
-	for (i=0; i<4; i++) {
+	/* Try to parse syslog.conf to get logfile names */
+	if (lstat("/etc/syslog.conf", &filestat) == 0) {
+		gchar *logfile;
+		logfile = parse_syslog ("/etc/syslog.conf");
+		if (logfile != NULL) {
+			prefs->logfile = g_strdup (logfile);
+			g_free (logfile);
+			return;
+		}
+	}
+		
+	for (i=0; i<3; i++) {
 		if (isLogFile (logfiles[i], FALSE)) {
 			prefs->logfile = g_strdup (logfiles[i]);
 			break;
