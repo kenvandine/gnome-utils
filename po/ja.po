@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
-"POT-Creation-Date: 2003-05-19 12:18+0100\n"
-"PO-Revision-Date: 2003-05-10 01:27+0900\n"
+"POT-Creation-Date: 2003-05-24 15:43+0900\n"
+"PO-Revision-Date: 2003-05-24 14:10+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -56,19 +56,16 @@ msgid "_Help"
 msgstr "ヘルプ(_H)"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:3
-#, fuzzy
 msgid "_Look Up Selected Text"
-msgstr "選択したテキストを検索..."
+msgstr "選択したテキストの検索(_L)"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-#, fuzzy
 msgid "_Preferences..."
-msgstr "設定(_P)"
+msgstr "設定(_P)..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-#, fuzzy
 msgid "_Show Dictionary"
-msgstr "辞書(_D)"
+msgstr "辞書の表示(_S)"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
@@ -87,7 +84,7 @@ msgstr ""
 "考のために、デフォルトのサーバは dict.org で、ポートは 2628 です。"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:53
+#: gdictsrc/gdict-about.c:43 logview/about.c:49
 msgid "translator_credits"
 msgstr ""
 "Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
@@ -101,13 +98,9 @@ msgstr ""
 msgid "GNOME Dictionary"
 msgstr "GNOME 辞書"
 
-#: gdictsrc/gdict-about.c:57
-msgid "Copyright 1999 by Mike Hughes"
-msgstr "Copyright 1999 by Mike Hughes"
-
 #: gdictsrc/gdict-about.c:58
-msgid "Client for MIT dictionary server.\n"
-msgstr "MIT 辞書サーバの GNOME クライアント\n"
+msgid "A client for the MIT dictionary server."
+msgstr "MIT 辞書サーバのクライアントです。"
 
 #: gdictsrc/gdict-app.c:132
 msgid "Spell-checking..."
@@ -816,8 +809,9 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 "Linux ネイティブ・ファイルシステム (ext2) または DOS ファイルシステム (FAT)"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1950
-#: gsearchtool/gsearchtool.c:1970
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:834
+#: gsearchtool/gsearchtool.c:1158 gsearchtool/gsearchtool.c:2063
+#: gsearchtool/gsearchtool.c:2083
 msgid "Search for Files"
 msgstr "ファイルの検索"
 
@@ -825,115 +819,124 @@ msgstr "ファイルの検索"
 msgid "Search your disk for files"
 msgstr "ローカルディスクの検索"
 
-#: gsearchtool/gsearchtool.c:68
-msgid "C_ontains the text"
-msgstr "次のテキストを含む(_O)"
+#: gsearchtool/gsearchtool.c:73
+msgid "Contains the _text"
+msgstr "次のテキストを含む(_T)"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:75
 msgid "_Date modified less than (days)"
 msgstr "ファイルが変更されている (何日以下)(_D)"
 
-#: gsearchtool/gsearchtool.c:71
-msgid "Da_te modified more than (days)"
-msgstr "ファイルが変更されている (何日以上)(_T)"
+#: gsearchtool/gsearchtool.c:76
+msgid "Date modified more than (da_ys)"
+msgstr "ファイルが変更されている (何日以上)(_Y)"
 
-#: gsearchtool/gsearchtool.c:73
-msgid "_Size at least (kilobytes)"
-msgstr "最小サイズの指定 (Kバイト)(_S)"
+#: gsearchtool/gsearchtool.c:78
+msgid "S_ize at least (kilobytes)"
+msgstr "最小サイズの指定 (Kバイト)(_I)"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:79
 msgid "Si_ze at most (kilobytes)"
 msgstr "最大サイズの指定 (Kバイト)(_Z)"
 
-#: gsearchtool/gsearchtool.c:75
+#: gsearchtool/gsearchtool.c:80
 msgid "File is empty"
 msgstr "ファイルが空である"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:82
 msgid "Owned by _user"
 msgstr "ユーザが所有している(_U)"
 
-#: gsearchtool/gsearchtool.c:78
+#: gsearchtool/gsearchtool.c:83
 msgid "Owned by _group"
 msgstr "グループが所有している(_G)"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:84
 msgid "Owner is unrecognized"
 msgstr "所有者が不明である"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:86
 msgid "Na_me does not contain"
 msgstr "名前を含まない(_M)"
 
-#: gsearchtool/gsearchtool.c:82
+#: gsearchtool/gsearchtool.c:87
 msgid "Name matches regular e_xpression"
 msgstr "正規表現で検索する(_X)"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:89
 msgid "Show hidden files and folders"
 msgstr "隠しファイルと隠しフォルダを対象にする"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:90
 msgid "Follow symbolic links"
 msgstr "シンボリック・リンクを追跡する"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:91
 msgid "Include other filesystems"
 msgstr "他のファイルシステムにある"
 
-#: gsearchtool/gsearchtool.c:517 gsearchtool/gsearchtool.c:1050
+#: gsearchtool/gsearchtool.c:520 gsearchtool/gsearchtool.c:1143
 msgid "No files found"
 msgstr "ファイルが見つかりません"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:613
 msgid "Entry changed called for a non entry option!"
 msgstr "エントリオプションのないエントリに変更されました！"
 
-#: gsearchtool/gsearchtool.c:787
+#: gsearchtool/gsearchtool.c:779
+#, c-format
+msgid "The animation file is missing or invalid: %s"
+msgstr "アニメーション・ファイルが見つからない、またはおかしいです: %s"
+
+#: gsearchtool/gsearchtool.c:834
+msgid "Searching..."
+msgstr "検索中..."
+
+#: gsearchtool/gsearchtool.c:880
 msgid "Set the text of 'Name contains'"
 msgstr "'名前を含む' のテキストを入力して下さい"
 
-#: gsearchtool/gsearchtool.c:788
+#: gsearchtool/gsearchtool.c:881
 msgid "Set the text of 'Look in folder'"
 msgstr "'検索するフォルダ' 名を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:789
+#: gsearchtool/gsearchtool.c:882
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "次のエントリから一つ選んでファイルの並べ替えます: 名前、フォルダ、サイズ、種"
 "類、日付"
 
-#: gsearchtool/gsearchtool.c:790
+#: gsearchtool/gsearchtool.c:883
 msgid "Set sort order to descending, the default is ascending"
 msgstr "降順に並べ替えます。デフォルトは昇順です"
 
-#: gsearchtool/gsearchtool.c:791
+#: gsearchtool/gsearchtool.c:884
 msgid "Automatically start a search"
 msgstr "自動的に検索を開始します"
 
-#: gsearchtool/gsearchtool.c:796
+#: gsearchtool/gsearchtool.c:889
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "条件 '%s' の選択"
 
-#: gsearchtool/gsearchtool.c:902
+#: gsearchtool/gsearchtool.c:995
 msgid "Invalid option passed to sortby command line argument."
 msgstr "コマンドライン引数に不正なオプションが引き渡されました。"
 
-#: gsearchtool/gsearchtool.c:1038
-msgid "(aborted)"
-msgstr "(検索を停止しました)"
+#: gsearchtool/gsearchtool.c:1131
+msgid "(stopped)"
+msgstr "(停止中)"
 
-#: gsearchtool/gsearchtool.c:1054
+#: gsearchtool/gsearchtool.c:1147
 msgid "One file found"
 msgstr "1 個のファイルが見つかりました"
 
-#: gsearchtool/gsearchtool.c:1057
+#: gsearchtool/gsearchtool.c:1150
 #, c-format
 msgid "%d files found"
 msgstr "%d 個のファイルが見つかりました"
 
-#: gsearchtool/gsearchtool.c:1154
+#: gsearchtool/gsearchtool.c:1251
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -941,7 +944,7 @@ msgstr ""
 "検索中に次のエラーが報告されました。\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1255
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -949,104 +952,104 @@ msgstr ""
 "\n"
 "...エラーが多すぎて表示でません..."
 
-#: gsearchtool/gsearchtool.c:1171
+#: gsearchtool/gsearchtool.c:1268
 msgid "Search Errors"
 msgstr "検索エラー"
 
-#: gsearchtool/gsearchtool.c:1209 gsearchtool/gsearchtool.c:1233
+#: gsearchtool/gsearchtool.c:1305 gsearchtool/gsearchtool.c:1326
 msgid "Search for Files Error"
 msgstr "ファイル検索エラー"
 
-#: gsearchtool/gsearchtool.c:1323
+#: gsearchtool/gsearchtool.c:1416
 msgid "Search Rule Value Entry"
 msgstr "検索規則値を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1324
+#: gsearchtool/gsearchtool.c:1417
 msgid "Enter a value for search rule"
 msgstr "検索規則用の値を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1362
+#: gsearchtool/gsearchtool.c:1455
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "削除する条件 '%s' をクリックして下さい"
 
-#: gsearchtool/gsearchtool.c:1414
+#: gsearchtool/gsearchtool.c:1507
 msgid "A_vailable options:"
 msgstr "適用する検索条件:"
 
-#: gsearchtool/gsearchtool.c:1427
+#: gsearchtool/gsearchtool.c:1520
 msgid "Search Rules Menu"
 msgstr "検索規則メニュー"
 
-#: gsearchtool/gsearchtool.c:1428
+#: gsearchtool/gsearchtool.c:1521
 msgid "Select a search rule from the menu"
 msgstr "検索条件をメニューから選択して下さい"
 
-#: gsearchtool/gsearchtool.c:1456
+#: gsearchtool/gsearchtool.c:1553
 msgid "S_earch results:"
 msgstr "検索結果(_E):"
 
-#: gsearchtool/gsearchtool.c:1532
+#: gsearchtool/gsearchtool.c:1633
 msgid "Name"
 msgstr "名前"
 
-#: gsearchtool/gsearchtool.c:1552
+#: gsearchtool/gsearchtool.c:1653
 msgid "Folder"
 msgstr "フォルダ"
 
-#: gsearchtool/gsearchtool.c:1563
+#: gsearchtool/gsearchtool.c:1664
 msgid "Size"
 msgstr "大きさ"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1674
 msgid "Type"
 msgstr "タイプ"
 
-#: gsearchtool/gsearchtool.c:1583
+#: gsearchtool/gsearchtool.c:1684
 msgid "Date Modified"
 msgstr "変更日"
 
-#: gsearchtool/gsearchtool.c:1621
+#: gsearchtool/gsearchtool.c:1732
 msgid "_Name contains:"
 msgstr "含める名前(_N):"
 
-#: gsearchtool/gsearchtool.c:1636 gsearchtool/gsearchtool.c:1637
+#: gsearchtool/gsearchtool.c:1747 gsearchtool/gsearchtool.c:1748
 msgid "File Name Entry"
 msgstr "ファイル名エントリ"
 
-#: gsearchtool/gsearchtool.c:1636 gsearchtool/gsearchtool.c:1637
+#: gsearchtool/gsearchtool.c:1747 gsearchtool/gsearchtool.c:1748
 msgid "Enter the file name you want to search"
 msgstr "検索したいファイル名を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1649
+#: gsearchtool/gsearchtool.c:1760
 msgid "_Look in folder:"
 msgstr "検索対象フォルダ(_L):"
 
-#: gsearchtool/gsearchtool.c:1655
+#: gsearchtool/gsearchtool.c:1766
 msgid "Browse"
 msgstr "参照"
 
-#: gsearchtool/gsearchtool.c:1664 gsearchtool/gsearchtool.c:1665
+#: gsearchtool/gsearchtool.c:1775 gsearchtool/gsearchtool.c:1776
 msgid "Starting folder entry"
 msgstr "開始フォルダを入力"
 
-#: gsearchtool/gsearchtool.c:1664 gsearchtool/gsearchtool.c:1665
+#: gsearchtool/gsearchtool.c:1775 gsearchtool/gsearchtool.c:1776
 msgid "Enter the folder name where you want to start the search"
 msgstr "検索を開始したいフォルダの名前を入力"
 
-#: gsearchtool/gsearchtool.c:1684 gsearchtool/gsearchtool.c:1685
-msgid "Additional Options"
-msgstr "追加オプション"
+#: gsearchtool/gsearchtool.c:1795
+msgid "Show more _options"
+msgstr "追加オプションの表示(_O)"
 
-#: gsearchtool/gsearchtool.c:1732
+#: gsearchtool/gsearchtool.c:1845
 msgid "Click to Start the search"
 msgstr "「検索を開始」をクリック"
 
-#: gsearchtool/gsearchtool.c:1733
+#: gsearchtool/gsearchtool.c:1846
 msgid "Click to Stop the search"
 msgstr "「検索を停止」をクリック"
 
-#: gsearchtool/gsearchtool.c:1966
+#: gsearchtool/gsearchtool.c:2079
 msgid "Cannot initialize bonobo."
 msgstr "Bonobo を初期化できません。"
 
@@ -1066,50 +1069,46 @@ msgstr "検索結果に名前を付けて保存(_S)"
 msgid "Can't Display Help"
 msgstr "ヘルプを表示できません"
 
-#: gsearchtool/gsearchtool-callbacks.c:132
-msgid "Searching..."
-msgstr "検索中..."
-
-#: gsearchtool/gsearchtool-callbacks.c:290
+#: gsearchtool/gsearchtool-callbacks.c:297
 #, c-format
 msgid "This will open %d separate files. Are you sure you want to do this?"
 msgstr "これは %d 個のファイルに分割して開きます。続行しても宜しいですか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:293
+#: gsearchtool/gsearchtool-callbacks.c:300
 #, c-format
 msgid "Open %d Files?"
 msgstr "%d 個のファイルを開きますか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:350
-#: gsearchtool/gsearchtool-callbacks.c:623
+#: gsearchtool/gsearchtool-callbacks.c:357
+#: gsearchtool/gsearchtool-callbacks.c:630
 #, c-format
 msgid "There is no installed viewer capable of displaying \"%s\"."
 msgstr "\"%s\" を表示するビュワーがインストールされていません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:357
-#: gsearchtool/gsearchtool-callbacks.c:630
+#: gsearchtool/gsearchtool-callbacks.c:364
+#: gsearchtool/gsearchtool-callbacks.c:637
 msgid "Can't Display Location"
 msgstr "場所を表示することができません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:395
+#: gsearchtool/gsearchtool-callbacks.c:402
 #, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr "これは %d 個の別のフォルダを開きます。続行しても宜しいですか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:398
+#: gsearchtool/gsearchtool-callbacks.c:405
 #, c-format
 msgid "Open %d Folders?"
 msgstr "%d 個のフォルダを開きますか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:437
+#: gsearchtool/gsearchtool-callbacks.c:444
 msgid "The nautilus file manager is not running."
 msgstr "Nautilus ファイル・マネージャが実行されていません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:732
+#: gsearchtool/gsearchtool-callbacks.c:739
 msgid "Save Search Results As..."
 msgstr "検索結果に名前を付けて保存..."
 
-#: gsearchtool/gsearchtool-callbacks.c:775
+#: gsearchtool/gsearchtool-callbacks.c:782
 #, c-format
 msgid ""
 "Cannot save search results.\n"
@@ -1118,25 +1117,17 @@ msgstr ""
 "検索結果を保存できません。\n"
 "\"%s\" はフォルダです。"
 
-#: gsearchtool/gsearchtool-callbacks.c:803
+#: gsearchtool/gsearchtool-callbacks.c:810
 #, c-format
 msgid "File \"%s\" already exists. Overwrite?"
 msgstr "ファイル \"%s\" が既に存在します。上書きしますか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:840
+#: gsearchtool/gsearchtool-callbacks.c:847
 #, c-format
 msgid "Cannot save search results to the file \"%s\"."
 msgstr "検索結果をファイル \"%s\" に保存できません。"
 
-#: gsearchtool/gsearchtool-support.c:290
-msgid "Expander Size"
-msgstr "サイズ超過"
-
-#: gsearchtool/gsearchtool-support.c:291
-msgid "Size of the expander arrow"
-msgstr "超過したサイズ"
-
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:58
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1145,27 +1136,23 @@ msgstr ""
 "GConf エラー:\n"
 "  %s"
 
-#: gsearchtool/gsearchtool-support.c:586
-msgid "%Y%m%d%H%M%S"
-msgstr "%Y%m%d%H%M%S"
-
-#: gsearchtool/gsearchtool-support.c:617
+#: gsearchtool/gsearchtool-support.c:315
 msgid "today at %-I:%M %p"
 msgstr "今日、%p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:619
+#: gsearchtool/gsearchtool-support.c:317
 msgid "yesterday at %-I:%M %p"
 msgstr "昨日、%p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:621 gsearchtool/gsearchtool-support.c:623
+#: gsearchtool/gsearchtool-support.c:319 gsearchtool/gsearchtool-support.c:321
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:748
+#: gsearchtool/gsearchtool-support.c:446
 msgid "link (broken)"
 msgstr "リンク (リンク切れ)"
 
-#: gsearchtool/gsearchtool-support.c:753
+#: gsearchtool/gsearchtool-support.c:451
 #, c-format
 msgid "link to %s"
 msgstr "%s へのリンク"
@@ -1176,23 +1163,12 @@ msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:44
-msgid ""
-"This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
-"WARRANTY. This is free software, and you are welcome to redistribute it "
-"under the conditions of the GNU General Public Licence. The log icon is a "
-"courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-msgstr ""
-"このプログラムは GNOME プロジェクトの一部です。 Logview は完全無保証です。こ"
-"れはフリーソフトウェアで、GNU一般公有使用許諾書にもとづいて再配布することがで"
-"きます。ログのアイコンは Tuomas Kuosmanen (tigert) 氏のご好意によるものです。"
+msgid "A system log viewer for GNOME."
+msgstr "GNOME 向けのシステム・ログ・ビューアです。"
 
-#: logview/about.c:62
+#: logview/about.c:58
 msgid "GNOME System Log Viewer"
 msgstr "GNOME システム・ログ・ビューア"
-
-#: logview/about.c:63
-msgid "Copyright (C) 1998"
-msgstr "Copyright (C) 1998"
 
 #: logview/actions.c:74
 msgid "Action database"
@@ -1626,367 +1602,10 @@ msgid "Log file to open up on startup"
 msgstr "起動時に開くログ・ファイル"
 
 #: logview/logview.schemas.in.h:2
-#, fuzzy
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "起動時に開くログ・ファイルを指定して下さい。デフォルトは /var/adm/message ま"
-"たは /var/log/message のどちらかで、ご使用のディストリビューションに依存しま"
-"す。"
-
-#~ msgid "_Show/Hide Definition Window..."
-#~ msgstr "定義ウィンドウの表示／非表示(_S)..."
-
-#~ msgid "GNOME Calculator"
-#~ msgstr "GNOME 電卓"
-
-#~ msgid "(C) 1998 Free Software Foundation, Inc."
-#~ msgstr "(C) 1998 Free Software Foundation, Inc."
-
-#~ msgid "Simple double precision calculator similar to xcalc"
-#~ msgstr "xcalc に似たシンプルな倍精度計算機"
-
-#~ msgid "_Calculator"
-#~ msgstr "GNOME 電卓(_C)"
-
-#~ msgid "Calculator"
-#~ msgstr "GNOME 電卓"
-
-#~ msgid "inf"
-#~ msgstr "inf"
-
-#~ msgid "DEG"
-#~ msgstr "DEG"
-
-#~ msgid "RAD"
-#~ msgstr "RAD"
-
-#~ msgid "GRAD"
-#~ msgstr "GRAD"
-
-#~ msgid "1/x"
-#~ msgstr "1/x"
-
-#~ msgid "Inverse"
-#~ msgstr "逆数"
-
-#~ msgid "x<sup>2</sup>"
-#~ msgstr "x<sup>2</sup>"
-
-#~ msgid "Square"
-#~ msgstr "自乗"
-
-#~ msgid "SQRT"
-#~ msgstr "√"
-
-#~ msgid "Square root"
-#~ msgstr "平方根"
-
-#~ msgid "CE/C"
-#~ msgstr "CE/C"
-
-#~ msgid "Clear"
-#~ msgstr "消去"
-
-#~ msgid "AC"
-#~ msgstr "AC"
-
-#~ msgid "Reset"
-#~ msgstr "リセット"
-
-#~ msgid "INV"
-#~ msgstr "INV"
-
-#~ msgid "Inverse trigonometry/log function"
-#~ msgstr "逆三角関数演算/対数演算"
-
-#~ msgid "sin"
-#~ msgstr "sin"
-
-#~ msgid "Sine"
-#~ msgstr "正弦 (サイン)"
-
-#~ msgid "cos"
-#~ msgstr "cos"
-
-#~ msgid "Cosine"
-#~ msgstr "余弦 (コサイン)"
-
-#~ msgid "tan"
-#~ msgstr "tan"
-
-#~ msgid "Tangent"
-#~ msgstr "正接 (タンジェント)"
-
-#~ msgid " DEG  "
-#~ msgstr "度"
-
-#~ msgid "Switch degrees / radians / grad"
-#~ msgstr "度/ラジアン/勾配の切り換え"
-
-#~ msgid "e"
-#~ msgstr "e"
-
-#~ msgid "Base of Natural Logarithm"
-#~ msgstr "自然対数の底"
-
-#~ msgid "EE"
-#~ msgstr "EE"
-
-#~ msgid "Add digit"
-#~ msgstr "桁の追加"
-
-#~ msgid "log"
-#~ msgstr "対数"
-
-#~ msgid "Base 10 Logarithm"
-#~ msgstr "10 の対数"
-
-#~ msgid "ln"
-#~ msgstr "ln"
-
-#~ msgid "Natural Logarithm"
-#~ msgstr "自然対数"
-
-#~ msgid "x<sup>y</sup>"
-#~ msgstr "x<sup>y</sup>"
-
-#~ msgid "Power"
-#~ msgstr "べき乗"
-
-#~ msgid "PI"
-#~ msgstr "π"
-
-#~ msgid "x!"
-#~ msgstr "x!"
-
-#~ msgid "Factorial"
-#~ msgstr "階乗"
-
-#~ msgid "("
-#~ msgstr "("
-
-#~ msgid "Opening Parenthesis"
-#~ msgstr "開き括弧"
-
-#~ msgid ")"
-#~ msgstr ")"
-
-#~ msgid "Closing Parenthesis"
-#~ msgstr "閉じ括弧"
-
-#~ msgid "/"
-#~ msgstr "÷"
-
-#~ msgid "Divide by"
-#~ msgstr "除算"
-
-#~ msgid "STO"
-#~ msgstr "STO"
-
-#~ msgid ""
-#~ "Store the value in the\n"
-#~ "display field in memory"
-#~ msgstr ""
-#~ "表示されている\n"
-#~ "値をメモリに格納"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "Multiply by"
-#~ msgstr "乗算"
-
-#~ msgid "RCL"
-#~ msgstr "RCL"
-
-#~ msgid ""
-#~ "Display the value in memory\n"
-#~ "in the display field"
-#~ msgstr ""
-#~ "メモリに格納されて\n"
-#~ "いる値を表示"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "Subtract"
-#~ msgstr "差"
-
-#~ msgid "SUM"
-#~ msgstr "SUM"
-
-#~ msgid ""
-#~ "Add the value in the display\n"
-#~ "field to the value in memory"
-#~ msgstr ""
-#~ "表示されている値を\n"
-#~ "メモリ中の値に加算"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "+"
-#~ msgstr "+"
-
-#~ msgid "Add"
-#~ msgstr "追加"
-
-#~ msgid "EXC"
-#~ msgstr "EXC"
-
-#~ msgid ""
-#~ "Exchange the values in the\n"
-#~ "display field and memory"
-#~ msgstr ""
-#~ "表示されている値と\n"
-#~ "メモリ内の値を交換"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "."
-#~ msgstr "."
-
-#~ msgid "Decimal Point"
-#~ msgstr "小数点"
-
-#~ msgid "+/-"
-#~ msgstr "±"
-
-#~ msgid "Change sign"
-#~ msgstr "符号反転"
-
-#~ msgid "="
-#~ msgstr "="
-
-#~ msgid "Calculate"
-#~ msgstr "計算"
-
-#~ msgid "Perform simple calculations"
-#~ msgstr "単純な計算をします"
-
-#~ msgid "Character Map"
-#~ msgstr "GNOME 文字選択"
-
-#~ msgid "Insert special characters into documents"
-#~ msgstr "文書に特別な文字を挿入"
-
-#~ msgid "Select Character"
-#~ msgstr "文字を選択"
-
-#~ msgid "_Insert"
-#~ msgstr "挿入(_I)"
-
-#~ msgid "Character c_ode:"
-#~ msgstr "文字コード(_O):"
-
-#~ msgid "Ch_aracter:"
-#~ msgstr "文字(_A):"
-
-#~ msgid "Character Code"
-#~ msgstr "文字コード"
-
-#~ msgid "Select character code"
-#~ msgstr "文字コードの選択"
-
-#~ msgid "Character"
-#~ msgstr "文字"
-
-#~ msgid "Character to insert"
-#~ msgstr "挿入する文字"
-
-#~ msgid "GNOME Character Map"
-#~ msgstr "GNOME 文字マップ"
-
-#~ msgid ""
-#~ "Select, copy and paste characters from your font into other applications"
-#~ msgstr "文字を選択しコピーして、他のアプリに貼り付けるツール"
-
-#~ msgid "Character code: (Unicode) U+%04lX"
-#~ msgstr "文字コード: (Unicode) U+%04lX"
-
-#~ msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
-#~ msgstr "文字コード: (Unicode) U+%04lX, (%s) 0x%s"
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "テキストをクリップボードにコピーしました..."
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "テキストを切り取ってクリップボードにコピーしました..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "テキストをクリップボードから貼り付けました..."
-
-#~ msgid "Action Toolbar"
-#~ msgstr "アクション・ツールバー"
-
-#~ msgid "_Font:"
-#~ msgstr "フォント(_F):"
-
-#~ msgid "_Page:"
-#~ msgstr "ページ(_P):"
-
-#~ msgid "_Text to copy:"
-#~ msgstr "コピーするテキスト(_T):"
-
-#~ msgid "_Copy"
-#~ msgstr "コピー(_C)"
-
-#~ msgid "Text to copy"
-#~ msgstr "コピーするテキスト"
-
-#~ msgid "Entry"
-#~ msgstr "エントリ"
-
-#~ msgid "Copy"
-#~ msgstr "コピー"
-
-#~ msgid "Copy the text"
-#~ msgstr "テキストのコピー"
-
-#~ msgid "_Browse..."
-#~ msgstr "参照(_B)..."
-
-#~ msgid "Insert character(s) by choosing character codes."
-#~ msgstr "文字コードを選択することで文字を挿入します"
-
-#~ msgid "Ch_aracters"
-#~ msgstr "文字(_A)"
-
-#~ msgid "Cut"
-#~ msgstr "切り取り"
-
-#~ msgid "Cut the selection"
-#~ msgstr "選択範囲を切り取ります"
-
-#~ msgid "Copy the selection"
-#~ msgstr "選択範囲をコピーします"
-
-#~ msgid "Paste"
-#~ msgstr "貼り付け"
-
-#~ msgid "Paste the clipboard"
-#~ msgstr "クリップボードから貼り付けます"
+"たは /var/log/message のどちらかで、ご利用のオペレーティング・システムに依存"
+"します。"
