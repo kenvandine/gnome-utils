@@ -56,6 +56,7 @@ task_prop_set(GnomePropertyBox * pb, gint page, PropTaskDlg *dlg)
 
 	if (0 == page)
 	{
+		gtt_task_freeze (dlg->task);
 		str = gtk_entry_get_text(dlg->memo);
 		if (str && str[0]) 
 		{
@@ -83,7 +84,7 @@ task_prop_set(GnomePropertyBox * pb, gint page, PropTaskDlg *dlg)
         	rate = (GttBillRate) (gtk_object_get_data(
 			GTK_OBJECT(menu_item), "billrate"));
 		gtt_task_set_billrate (dlg->task, rate);
-
+		gtt_task_thaw (dlg->task);
 	}
 }
 

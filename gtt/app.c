@@ -25,6 +25,7 @@
 #include <string.h>
 
 #include "ctree.h"
+#include "cur-proj.h"
 #include "gtt.h"
 #include "menucmd.h"
 #include "props-proj.h"

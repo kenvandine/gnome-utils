@@ -60,6 +60,7 @@ prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 
 	if (0 == page)
 	{
+		gtt_project_freeze (dlg->proj);
 		str = gtk_entry_get_text(dlg->title);
 		if (str && str[0]) 
 		{
@@ -73,10 +74,12 @@ prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 	
 		gtt_project_set_desc(dlg->proj, gtk_entry_get_text(dlg->desc));
 		gtt_project_set_notes(dlg->proj, xxxgtk_text_get_text(dlg->notes));
+		gtt_project_thaw (dlg->proj);
 	}
 
 	if (1 == page)
 	{
+		gtt_project_freeze (dlg->proj);
 		rate = atof (gtk_entry_get_text(dlg->regular));
 		gtt_project_set_billrate (dlg->proj, rate);
 		rate = atof (gtk_entry_get_text(dlg->overtime));
@@ -85,16 +88,19 @@ prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 		gtt_project_set_overover_rate (dlg->proj, rate);
 		rate = atof (gtk_entry_get_text(dlg->flatfee));
 		gtt_project_set_flat_fee (dlg->proj, rate);
+		gtt_project_thaw (dlg->proj);
 	}
 	
 	if (2 == page)
 	{
+		gtt_project_freeze (dlg->proj);
 		ivl = atoi (gtk_entry_get_text(dlg->minvl));
 		gtt_project_set_min_interval (dlg->proj, ivl);
 		ivl = atoi (gtk_entry_get_text(dlg->ivl));
 		gtt_project_set_auto_merge_interval (dlg->proj, ivl);
 		ivl = atoi (gtk_entry_get_text(dlg->gap));
 		gtt_project_set_auto_merge_gap (dlg->proj, ivl);
+		gtt_project_thaw (dlg->proj);
 	}
 }
 

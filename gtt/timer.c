@@ -21,6 +21,7 @@
 #include <string.h>
 
 #include "ctree.h"
+#include "cur-proj.h"
 #include "gtt.h"
 #include "proj.h"
 

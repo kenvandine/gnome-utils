@@ -51,17 +51,17 @@ interval_edit_apply_cb(GtkWidget * w, gpointer data)
 	start = gnome_date_edit_get_date(GNOME_DATE_EDIT(dlg->start_widget));
 	stop = gnome_date_edit_get_date(GNOME_DATE_EDIT(dlg->stop_widget));
 
+	gtt_interval_freeze (dlg->interval);
 	gtt_interval_set_start (dlg->interval, start);
 	gtt_interval_set_stop (dlg->interval, stop);
 
-// gtt_project_compute_secs
-/* hack alert XXX fixme need to recalulate ttal-secs-for-day, and redisply */
 	menu = gtk_option_menu_get_menu (GTK_OPTION_MENU(dlg->fuzz_widget));
 	menu_item = gtk_menu_get_active(GTK_MENU(menu));
 	fuzz = GPOINTER_TO_INT(gtk_object_get_data(GTK_OBJECT(menu_item),
                                              "fuzz_factor"));
 
 	gtt_interval_set_fuzz (dlg->interval, fuzz);
+	gtt_interval_thaw (dlg->interval);
 }
 
 static void

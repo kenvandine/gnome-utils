@@ -44,6 +44,8 @@ typedef struct gtt_project_s GttProject;
 typedef struct gtt_task_s GttTask;
 typedef struct gtt_interval_s GttInterval;
 
+typedef void (*GttProjectChanged) (GttProject *, gpointer);
+
 /* -------------------------------------------------------- */
 /* project data */
 
@@ -83,7 +85,7 @@ const char * 	gtt_project_get_custid (GttProject *);
  *    backwards-compatible routine for setting the total amount of
  *    time spent on a project.  It does this by creating a new task,
  *    labelling it as 'old gtt data', and putting the time info
- *    into that task.
+ *    into that task.  Depricated. Don't use in new code.
  */
 void		gtt_project_compat_set_secs (GttProject *proj, 
 			int secs_ever, int secs_day, time_t last_update);
@@ -126,6 +128,28 @@ int  		gtt_project_get_id (GttProject *);
 
 /* return a project, given only its id; NULL if not found */
 GttProject * 	gtt_project_locate_from_id (int prj_id);
+
+/* The gtt_project_add_notifier() routine allows anoter component
+ *    (e.g. a GUI) to add a signal that will be called whenever the 
+ *    time associated with a project changes. (except timers ???)
+ *
+ * The gtt_project_freeze() routine prevents notifiers from being
+ *    invoked.
+ *
+ * The gtt_project_thaw() routine causes notifiers to be sent.
+ */ 
+
+void		gtt_project_freeze (GttProject *prj);
+void		gtt_project_thaw (GttProject *prj);
+void		gtt_task_freeze (GttTask *tsk);
+void		gtt_task_thaw (GttTask *tsk);
+void		gtt_interval_freeze (GttInterval *ivl);
+void		gtt_interval_thaw (GttInterval *ivl);
+
+void		gtt_project_add_notifier (GttProject *,
+			GttProjectChanged, gpointer);
+void		gtt_project_remove_notifier (GttProject *,
+			GttProjectChanged, gpointer);
 
 /* -------------------------------------------------------- */
 /* project manipulation */

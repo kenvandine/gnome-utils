@@ -164,7 +164,8 @@ dispatch_phtml (GttPhtml *phtml, char *tok, GttProject*prj)
 /* ============================================================== */
 
 void
-gtt_phtml_display (GttPhtml *phtml, const char *path_fragment)
+gtt_phtml_display (GttPhtml *phtml, const char *path_fragment,
+                   GttProject *prj)
 {
 	FILE *ph;
 	char * fullpath;
@@ -235,7 +236,7 @@ gtt_phtml_display (GttPhtml *phtml, const char *path_fragment)
 			if (tok)
 			{
 				tok = strchr (tok, '$');
-				dispatch_phtml (phtml, tok, cur_proj);
+				dispatch_phtml (phtml, tok, prj);
 			}
 			start = end;
 		}

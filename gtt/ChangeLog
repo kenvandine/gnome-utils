@@ -11,6 +11,12 @@ Sun Sep  2 13:27:18 CDT 2001  Linas Vepstas <linas@linas.org>
 
 	* props-invl.c: add interval edit dialog
 
+	* ctree.*, journal.*, proj.*: add event notification, so that
+	  any/all relevent windows are redrawn when data changes.
+
+	* cur-proj.h: start isolating cur-proj, since this global
+	  prevents us from having multiple cur projects.
+
 Sat Sep  1 15:51:53 CDT 2001  Linas Vepstas <linas@linas.org>
 
 	* props-task.c: add task properties GUI dialog

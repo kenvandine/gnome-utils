@@ -45,7 +45,7 @@ struct gtt_phtml_s
 /* The gtt_phtml_display() routine will parse the indicated gtt file, 
  * and output standard HTML to the indicated stream
  */
-void gtt_phtml_display (GttPhtml *, const char *path_frag);
+void gtt_phtml_display (GttPhtml *, const char *path_frag, GttProject *prj);
 
 #endif /* __GTT_PHTML_H__ */
 

@@ -95,7 +95,6 @@ void log_endofday(void);
 
 /* app.c */
 
-extern GttProject *cur_proj;
 extern GtkWidget *glist, *window;
 extern GtkWidget *status_bar;
 
@@ -109,7 +108,6 @@ extern gboolean geom_place_override;
 extern char *first_proj_title;	/* command line flag */
 
 void update_status_bar(void);
-void cur_proj_set(GttProject *p);
 
 void app_new(int argc, char *argv[], const char *geometry_string);
 

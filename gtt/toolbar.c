@@ -21,6 +21,7 @@
 #include <libgnome/gnome-help.h>
 #include <string.h>
 
+#include "cur-proj.h"
 #include "gtt.h"
 #include "journal.h"
 #include "menucmd.h"

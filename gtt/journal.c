@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "gtt.h"
+#include "cur-proj.h"
 #include "journal.h"
 #include "phtml.h"
 #include "proj.h"
@@ -43,6 +43,7 @@ typedef struct wiggy_s {
 	EditIntervalDialog *edit_ivl;
 	GttInterval * interval;
 	GttTask *task;
+	GttProject *prj;
 } Wiggy;
 
 /* ============================================================== */
@@ -109,6 +110,16 @@ wiggy_error (GttPhtml *pl, int err, const char * msg)
 }
 
 /* ============================================================== */
+/* engine callbacks */
+
+static void 
+redraw (GttProject * prj, gpointer data)
+{
+	Wiggy *wig = (Wiggy *) data;
+	gtt_phtml_display (&(wig->ph), "journal.phtml", wig->prj);
+}
+
+/* ============================================================== */
 
 static void 
 on_print_clicked_cb (GtkWidget *w, gpointer data)
@@ -133,6 +144,7 @@ on_close_clicked_cb (GtkWidget *w, gpointer data)
 	Wiggy *wig = (Wiggy *) data;
 
 	/* close the main journal window ... everything */
+	gtt_project_remove_notifier (wig->prj, redraw, wig);
 	edit_interval_dialog_destroy (wig->edit_ivl);
 	gtk_widget_destroy (wig->top);
 	g_free (wig);
@@ -157,7 +169,7 @@ interval_delete_clicked_cb(GtkWidget * w, gpointer data)
 	Wiggy *wig = (Wiggy *) data;
 	gtt_interval_destroy (wig->interval);
 	wig->interval = NULL;
-	gtt_phtml_display (&(wig->ph), "journal.phtml");
+	gtt_phtml_display (&(wig->ph), "journal.phtml", wig->prj);
 }
 
 static void
@@ -166,7 +178,7 @@ interval_merge_up_clicked_cb(GtkWidget * w, gpointer data)
 	Wiggy *wig = (Wiggy *) data;
 	gtt_interval_merge_up (wig->interval);
 	wig->interval = NULL;
-	gtt_phtml_display (&(wig->ph), "journal.phtml");
+	gtt_phtml_display (&(wig->ph), "journal.phtml", wig->prj);
 }
 
 static void
@@ -175,7 +187,7 @@ interval_merge_down_clicked_cb(GtkWidget * w, gpointer data)
 	Wiggy *wig = (Wiggy *) data;
 	gtt_interval_merge_down (wig->interval);
 	wig->interval = NULL;
-	gtt_phtml_display (&(wig->ph), "journal.phtml");
+	gtt_phtml_display (&(wig->ph), "journal.phtml", wig->prj);
 }
 
 static void
@@ -212,11 +224,10 @@ html_link_clicked_cb(GtkHTML * html, const gchar * url, gpointer data)
 	{
 		wig->task = addr;
 		prop_task_dialog_show (wig->task);
-// hack alert xxx fixme -- we need to redraw the journal display after editing !!!
 	}
 	else
 	{
-		printf ("clicked on link duude=%s\n", url);
+		g_warning ("clicked on unknown link duude=%s\n", url);
 	}
 }
 
@@ -314,11 +325,15 @@ edit_journal(GtkWidget *widget, gpointer data)
 
 	if (!cur_proj)
 	{
-		gtt_phtml_display (&(wig->ph), "noproject.phtml");
+		wig->prj = cur_proj;
+		gtt_phtml_display (&(wig->ph), "noproject.phtml", NULL);
 	} 
 	else 
 	{
-		gtt_phtml_display (&(wig->ph), "journal.phtml");
+
+		gtt_project_add_notifier (cur_proj, redraw, wig);
+		wig->prj = cur_proj;
+		gtt_phtml_display (&(wig->ph), "journal.phtml", cur_proj);
 	}
 }
 

@@ -21,13 +21,13 @@
 #include <string.h>
 
 #include "ctree.h"
+#include "cur-proj.h"
 #include "dialog.h"
 #include "err-throw.h"
 #include "file-io.h"
 #include "gtt.h"
 #include "menucmd.h"
 #include "proj.h"
-#include "proj_p.h"
 #include "props-proj.h"
 #include "xml-gtt.h"
 

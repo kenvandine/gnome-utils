@@ -200,6 +200,7 @@ parse_project (xmlNodePtr project)
 		gtt_err_set_code (GTT_FILE_CORRUPT); return prj; }
 
 	prj = gtt_project_new ();
+	gtt_project_freeze (prj);
 	for (node=project->childs; node; node=node->next)
 	{
 		if (0 == strcmp ("title", node->name))
@@ -317,6 +318,7 @@ parse_project (xmlNodePtr project)
 			gtt_err_set_code (GTT_FILE_CORRUPT);
 		}
 	}
+	gtt_project_thaw (prj);
 	return prj;
 }
 

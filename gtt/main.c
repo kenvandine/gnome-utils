@@ -28,6 +28,7 @@
 #include <unistd.h>
 
 #include "ctree.h"
+#include "cur-proj.h"
 #include "dialog.h"
 #include "err-throw.h"
 #include "file-io.h"

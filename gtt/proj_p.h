@@ -60,7 +60,12 @@ struct gtt_project_s
 	GList *sub_projects;   /* sub-projects */
 	GttProject *parent;    /* back pointer to parent project */
 
+	GList *listeners;      /* listeners for change events */
+
 	int id;		/* simple id number */
+	int being_destroyed : 1;  /* project is being destroyed */
+	int frozen : 1 ;          /* defer recomputes of time totals */
+	int dirty_time : 1 ;      /* the time totals are wrong */
 
         /* miscellaneous -- used bu GUI to display */
         GtkCTreeNode *trow;
@@ -73,6 +78,7 @@ struct gtt_project_s
  */
 struct gtt_task_s 
 {
+	GttProject *parent;     /* parent project */
 	char * memo;            /* invoiceable memo (customer sees this) */
 	char * notes;           /* internal notes (office private) */
 	GttBillable  billable;  /* if fees can be collected for this task */
@@ -90,7 +96,7 @@ struct gtt_interval_s
 				 * if running, then the most recent log point */
 	int	fuzz;           /* how fuzzy the start time is.  In
 	                         * seconds, typically 300, 3600 or 1/2 day */
-	short	running;	/* boolean: is the timer running? */
+	int	running : 1;	/* boolean: is the timer running? */
 };
 
 
