@@ -57,13 +57,23 @@ make prefix=$RPM_BUILD_ROOT%{_prefix} \
 
 %files
 %{_prefix}/*
-%{_datadir}/applets/*
-%{_datadir}/gfloppy/*
-%{_datadir}/gnome/apps/*
-%{_datadir}/gnome/help/*
-%{_datadir}/gstripchart/*
-%{_datadir}/locale/*
+%{_sysconfdir}/CORBA/servers/*
+%{_bindir}/*
+%{_datadir}/applets/*/*
+%{_datadir}/gcolorsel/*/*
+%{_datadir}/gnome/apps/*/*
+%{_datadir}/gnome/help/*/*/*
+%{_datadir}/gnome/help/*/*/*/*
+%{_datadir}/gnome-utils/glade/*
+%{_datadir}/idl/*
+%{_datadir}/locale/*/*/*
+%{_datadir}/logview/*
+%{_datadir}/mime-info/*
+%{_datadir}/omf/gnome-utils/*
 %{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*/*
+%{_datadir}/stripchart/*
+
 %doc AUTHORS COPYING ChangeLog NEWS README THANKS
 
 
