@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-24 23:18+0200\n"
+"POT-Creation-Date: 2003-09-02 14:40+0100\n"
 "PO-Revision-Date: 2000-05-07 01:59+0200\n"
 "Last-Translator: andraz.tori1@guest.arnes.si\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -345,6 +345,7 @@ msgid "Internal Error: Unable to seek to the correct location."
 msgstr "Notranja napaka: Nisem mogel nastaviti (seek) pravilnega mesta."
 
 #: gfloppy/src/badblocks.c:103
+#, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Notranja napaka: Čudna vrednost (%ld) v do_test\n"
 
@@ -355,6 +356,7 @@ msgid "Checking for bad blocks..."
 msgstr "Preverjam in iščem slabe bloke..."
 
 #: gfloppy/src/badblocks.c:273
+#, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Nisem uspel odpreti naprave %s za preverjanje slabih blokov\n"
 
@@ -371,6 +373,7 @@ msgid "I don't know what this is, but it's very wrong."
 msgstr "Sicer ne wem kaj to je, je pa zelo narobe."
 
 #: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
+#, c-format
 msgid "Error formatting track #%d"
 msgstr "Napaka pri formatiranju sledi #%d"
 
@@ -399,6 +402,7 @@ msgstr ""
 "Prosim preverite, da ni zaščitena proti pisanju."
 
 #: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
+#, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "Nimate dovljenja za oprtje naprave (disketnika) %s."
 
@@ -415,6 +419,7 @@ msgstr ""
 "in, da so vratca disketnika zaprta."
 
 #: gfloppy/src/fdformat.c:117
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
@@ -425,6 +430,7 @@ msgstr ""
 "Koda napke: %s:%d"
 
 #: gfloppy/src/fdformat.c:140
+#, c-format
 msgid ""
 "Read Error:\n"
 "Problem reading cylinder %d, expected %d, read %d"
@@ -433,14 +439,17 @@ msgstr ""
 "Problem ob branju cilindra %d, pričakovano %d, prebrano %d"
 
 #: gfloppy/src/fdformat.c:143
+#, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "Problem ob branju cilindra %d, pričakovano %d, prebrano %d"
 
 #: gfloppy/src/fdformat.c:154
+#, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "Slabi podatki v cilindru %d. Nadaljujem..."
 
 #: gfloppy/src/fdformat.c:163
+#, c-format
 msgid "Error closing device %s"
 msgstr "Napaka pri zapiranju naprave %s"
 
@@ -449,10 +458,12 @@ msgid "Verifying the format... Done"
 msgstr "Preverjam formatiranje... Opravljeno"
 
 #: gfloppy/src/fdformat.c:182
+#, c-format
 msgid "Unable to write to device %s"
 msgstr "Ne morem pisati na napravo %s"
 
 #: gfloppy/src/fdformat.c:202
+#, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
@@ -475,6 +486,7 @@ msgid "Error while filling the bad blocks list file."
 msgstr "Napaka ob polnjenju datoteke s slabimi bloki."
 
 #: gfloppy/src/gfloppy.c:298
+#, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Napaka ob izvajanju (%s) ukaz: %s."
 
@@ -499,10 +511,12 @@ msgid "Abnormal child process termination."
 msgstr "Nenormalen zaključek procesa otroka."
 
 #: gfloppy/src/gfloppy.c:378
+#, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Napaka ob izvajanju ukaza mbadblocks: %s."
 
 #: gfloppy/src/gfloppy.c:390
+#, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
@@ -550,8 +564,8 @@ msgid ""
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
-"<small><i><b>Opomba</b>: Pripomoček mbadblocks na tem sistemu ni nameščen. Za celovito "
-"DOS (fat) formatiranje mora biti nameščen.</i></small>"
+"<small><i><b>Opomba</b>: Pripomoček mbadblocks na tem sistemu ni nameščen. "
+"Za celovito DOS (fat) formatiranje mora biti nameščen.</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
@@ -863,6 +877,7 @@ msgid "%d files found"
 msgstr "%d najdenih datotek"
 
 #: gsearchtool/gsearchtool.c:1248
+#, c-format
 msgid "%d Files Found"
 msgstr "%d najdenih datotek"
 
@@ -1004,15 +1019,19 @@ msgid "Could not open help document"
 msgstr "Nisem mogel odpreti dokumenta pomoči"
 
 #: gsearchtool/gsearchtool-callbacks.c:307
+#, c-format
 msgid "Open %d documents?"
 msgstr "Odpri %d dokumentov?"
 
 #: gsearchtool/gsearchtool-callbacks.c:308
+#, c-format
 msgid "This will open %d separate documents. Are you sure you want to do this?"
-msgstr "To bo odprlo %d ločenih dokumentov. Ste prepričani, da to želite storiti?"
+msgstr ""
+"To bo odprlo %d ločenih dokumentov. Ste prepričani, da to želite storiti?"
 
 #: gsearchtool/gsearchtool-callbacks.c:363
 #: gsearchtool/gsearchtool-callbacks.c:648
+#, c-format
 msgid "Could not open document \"%s\""
 msgstr "Nisem mogel odpreti dokumenta \"%s\""
 
@@ -1022,6 +1041,7 @@ msgid "There is no installed viewer capable of displaying the document."
 msgstr "Za prikaz dokumenta ni nameščen noben pregledovalnik."
 
 #: gsearchtool/gsearchtool-callbacks.c:411
+#, c-format
 msgid "Open %d folders?"
 msgstr "Odpri %d map?"
 
@@ -1031,6 +1051,7 @@ msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr "To bo odprlo %d ločenih map. Ste prepričani, da to želite storiti?"
 
 #: gsearchtool/gsearchtool-callbacks.c:453
+#, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Nisem mogel odpreti mape \"%s\""
 
@@ -1043,6 +1064,7 @@ msgid "Save Search Results As..."
 msgstr "Shrani izide iskanja kot..."
 
 #: gsearchtool/gsearchtool-callbacks.c:877
+#, c-format
 msgid "Could not save document \"\" to %s"
 msgstr "Nisem mogel shraniti dokumenta \"\" v %s"
 
@@ -1051,7 +1073,8 @@ msgid ""
 "You did not select a document name or the name selected was a folder.  The "
 "document is not saved."
 msgstr ""
-"Niste izbraili imena dokumenta ali pa je bilo izbrano ime mapa.  Dokument ni shranjen."
+"Niste izbraili imena dokumenta ali pa je bilo izbrano ime mapa.  Dokument ni "
+"shranjen."
 
 #: gsearchtool/gsearchtool-callbacks.c:903
 #, c-format
@@ -1071,8 +1094,7 @@ msgstr "Ne morem shraniti dokumenta \"%s\" v %s"
 msgid ""
 "You may not have write permissions to the document.  The document is not "
 "saved."
-msgstr ""
-"Morda nimate dovoljenj za zapis dokumenta.  Dokument ni shranjen."
+msgstr "Morda nimate dovoljenj za zapis dokumenta.  Dokument ni shranjen."
 
 #: gsearchtool/gsearchtool-support.c:58
 #, c-format
@@ -1204,7 +1226,7 @@ msgstr ""
 "opis: [%s]\n"
 "dejanje: [%s]\n"
 
-#: logview/calendar.c:111
+#: logview/calendar.c:110
 msgid "Calendar"
 msgstr "Koledar"
 
@@ -1230,39 +1252,39 @@ msgstr "Sistemski dnevnik"
 msgid "View the system log file"
 msgstr "Kaži datoteko sistemskega dnevnika"
 
-#: logview/info.c:65
+#: logview/info.c:62
 msgid "Properties"
 msgstr "Lastnosti"
 
-#: logview/info.c:111
+#: logview/info.c:108
 msgid "Size:"
 msgstr "Velikost:"
 
-#: logview/info.c:111
+#: logview/info.c:108
 msgid "Modified:"
 msgstr "Spremenjeno:"
 
-#: logview/info.c:112
+#: logview/info.c:109
 msgid "Start Date:"
 msgstr "Začetni datum:"
 
-#: logview/info.c:112
+#: logview/info.c:109
 msgid "Last Date:"
 msgstr "Končni datum:"
 
-#: logview/info.c:112
+#: logview/info.c:109
 msgid "Number of Lines:"
 msgstr "Število vrstic:"
 
-#: logview/info.c:137
+#: logview/info.c:134
 msgid "Log Information"
 msgstr "Podatki o dnevniku"
 
-#: logview/info.c:163 logview/zoom.c:155
+#: logview/info.c:160 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<Dnevnik ni naložen>"
 
-#: logview/info.c:186
+#: logview/info.c:183
 #, c-format
 msgid "%ld bytes"
 msgstr "%ld bytov"
@@ -1369,95 +1391,95 @@ msgstr "%s ni dnevniška datoteka."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: zmanjkalo je pomnilnika"
 
-#: logview/logview.c:99
+#: logview/logview.c:98
 msgid "S_witch Log"
 msgstr "_Zamenjaj dnevnik"
 
-#: logview/logview.c:100
+#: logview/logview.c:99
 msgid "Switch between already opened logs"
 msgstr "Preklopi med že odprtimi dnevniki"
 
-#: logview/logview.c:106
+#: logview/logview.c:105
 msgid "_Monitor..."
 msgstr "_Nadzoruj..."
 
-#: logview/logview.c:107
+#: logview/logview.c:106
 msgid "Monitor Logs"
 msgstr "Nadzoruj dnevnike"
 
-#: logview/logview.c:115
+#: logview/logview.c:114
 msgid "_Properties"
 msgstr "_Lastnosti"
 
-#: logview/logview.c:116
+#: logview/logview.c:115
 msgid "Show Log Properties"
 msgstr "Kaži lastnosti dnevnika"
 
-#: logview/logview.c:124
+#: logview/logview.c:123
 msgid "Clos_e All"
 msgstr "Zapri _vse"
 
-#: logview/logview.c:125
+#: logview/logview.c:124
 msgid "Close all Log files"
 msgstr "Zapri vse dnevniške datoteke"
 
-#: logview/logview.c:137
+#: logview/logview.c:136
 msgid "_Calendar"
 msgstr "_Koledar"
 
-#: logview/logview.c:138
+#: logview/logview.c:137
 msgid "Show Calendar Log"
 msgstr "Kaži koledarski dnevnik"
 
-#: logview/logview.c:144
+#: logview/logview.c:143
 msgid "_Entry Detail"
 msgstr "_Podrobnosti vnosa"
 
-#: logview/logview.c:145
+#: logview/logview.c:144
 msgid "Show Entry Detail"
 msgstr "Kaži podrobnosti vnosa"
 
-#: logview/logview.c:151
+#: logview/logview.c:150
 msgid "_Collapse All"
 msgstr "_Skrči vse"
 
-#: logview/logview.c:152
+#: logview/logview.c:151
 msgid "Collapse all the rows"
 msgstr "Skrči vse vrstice"
 
-#: logview/logview.c:364
+#: logview/logview.c:363
 msgid "No log files to open"
 msgstr "Ni dnevniških datotek za odprtje"
 
-#: logview/logview.c:386
+#: logview/logview.c:385
 msgid "Date"
 msgstr "Datum"
 
-#: logview/logview.c:386
+#: logview/logview.c:385
 msgid "Host Name"
 msgstr "Ime računalnika"
 
-#: logview/logview.c:387
+#: logview/logview.c:386
 msgid "Process"
 msgstr "Posel"
 
-#: logview/logview.c:387
+#: logview/logview.c:386
 msgid "Message"
 msgstr "Sporočilo"
 
-#: logview/logview.c:468
+#: logview/logview.c:467
 msgid "Last Modified: "
 msgstr "Zadnja sprememba: "
 
-#: logview/logview.c:562 logview/logview.c:637
+#: logview/logview.c:561 logview/logview.c:636
 msgid "Too many open logs. Close one and try again"
 msgstr "Preveč odprtih dnevnikov. Zaprite enega in poskusite znova"
 
-#: logview/logview.c:574
+#: logview/logview.c:573
 msgid "File already opened"
 msgstr "Datotela je že odprta"
 
-#: logview/logview.c:650
+#: logview/logview.c:649
 msgid "Open new logfile"
 msgstr "Odpri novo dnevniško datoteko"
 
