@@ -469,16 +469,37 @@ void gnomecard_scroll_tree(GList *node)
 	gtk_ctree_select(crd_tree, tree_node);
 }
 
+void gnomecard_update_tree(Card *crd)
+{
+	GList *node, *tmp;
+	
+	gtk_ctree_set_node_info(crd_tree, 
+				crd->user_data,	crd->fname.str, TREE_SPACING, 
+				crd_pix->pixmap, crd_pix->mask, 
+				crd_pix->pixmap, crd_pix->mask, FALSE, FALSE);
+
+	node = GTK_CTREE_ROW((GList *) crd->user_data)->children;
+	while (node) {
+		tmp = node->next;
+		gtk_ctree_remove(crd_tree, node);
+		node = tmp;
+	}
+}
+
+void gnomecard_update_canvas(Card *crd) {
+	
+	if (crd->fname.str)
+	  canvas_text_item_set(test, crd->fname.str);
+	else
+	  canvas_text_item_set(test, "No fname for this card.");
+}
+
 void gnomecard_set_curr(GList *node)
 {
 	curr_crd = node;
 	
 	if (curr_crd) {
-		if (((Card *) curr_crd->data)->fname.str)
-		  canvas_text_item_set(test, 
-				       ((Card *) curr_crd->data)->fname.str);
-		else
-		  canvas_text_item_set(test, "No fname for this card.");
+		gnomecard_update_canvas(curr_crd->data);
 		
 		if (!((Card *) curr_crd->data)->flag)
 		  gnomecard_set_edit_del(TRUE);
@@ -545,23 +566,6 @@ void my_connect(gpointer widget, char *sig, gpointer box, CardProperty *prop)
 	gtk_signal_connect(GTK_OBJECT(widget), sig,
 			   GTK_SIGNAL_FUNC(gnomecard_property_used),
 			   prop);
-}
-
-void gnomecard_update_tree(Card *crd)
-{
-	GList *node, *tmp;
-	
-	gtk_ctree_set_node_info(crd_tree, 
-				crd->user_data,	crd->fname.str, TREE_SPACING, 
-				crd_pix->pixmap, crd_pix->mask, 
-				crd_pix->pixmap, crd_pix->mask, FALSE, FALSE);
-
-	node = GTK_CTREE_ROW((GList *) crd->user_data)->children;
-	while (node) {
-		tmp = node->next;
-		gtk_ctree_remove(crd_tree, node);
-		node = tmp;
-	}
 }
 
 void gnomecard_prop_apply(GtkWidget *widget, int page)
@@ -637,8 +641,8 @@ void gnomecard_prop_apply(GtkWidget *widget, int page)
 	else
 	  crd->key.type = KEY_X509;
 
-
 	gnomecard_update_tree(crd);
+	gnomecard_update_canvas(crd);
 	gnomecard_scroll_tree(ce->l);
 	gnomecard_set_changed(TRUE);
 }
@@ -1017,10 +1021,33 @@ void gnomecard_save_as(GtkWidget *widget, gpointer data)
 	gtk_widget_show(fsel);
 }
 
+gboolean gnomecard_cards_blocked(void)
+{
+	GList *l;
+
+	for (l = crds; l; l = l->next)
+	  if (((Card *) curr_crd->data)->flag)
+	    return TRUE;
+	
+	return FALSE;
+}
+
 /* Returns TRUE if the cards were destroyed. FALSE if canceled */
 int gnomecard_destroy_cards(void)
 {
 	GList *l;
+
+	if (gnomecard_cards_blocked()) {
+		GtkWidget *w;
+		
+		w = gnome_message_box_new("There are cards which are currently being modified.\nFinish any pending modifications and try again.",
+					  GNOME_MESSAGE_BOX_ERROR,
+					  GNOME_STOCK_BUTTON_OK, NULL);
+		GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
+		gtk_widget_show(w);
+		
+		return FALSE;
+	}
 	
 	if (gnomecard_changed) {
 		GtkWidget *w;
