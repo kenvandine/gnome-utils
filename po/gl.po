@@ -11,9 +11,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 1.1.0\n"
-"POT-Creation-Date: 2000-05-07 18:15+0200\n"
-"PO-Revision-Date: 2000-05-07 18:15+0200\n"
+"Project-Id-Version: gnome-utils 1.1.1\n"
+"POT-Creation-Date: 2000-05-14 04:03+0200\n"
+"PO-Revision-Date: 2000-05-14 04:28+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -89,29 +89,29 @@ msgstr "Corrixir"
 msgid "Check word spelling"
 msgstr "Comproba-la ortografía da palabra"
 
-#: gdictsrc/gdict-app.c:443 gtt/toolbar.c:159
+#: gcharmap/src/interface.c:66 gdictsrc/gdict-app.c:443 gtt/toolbar.c:159
 msgid "Cut"
 msgstr "Cortar"
 
 #: gdictsrc/gdict-app.c:443
 msgid "Cut to Clipboard"
-msgstr "Cortar ó Portapapeis"
+msgstr "Cortar ó Cartafol"
 
-#: gdictsrc/gdict-app.c:444 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:68 gdictsrc/gdict-app.c:444 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Copiar"
 
 #: gdictsrc/gdict-app.c:444
 msgid "Copy to Clipboard"
-msgstr "Copiar ó Portapapeis"
+msgstr "Copiar ó Cartafol"
 
-#: gdictsrc/gdict-app.c:445 gtt/toolbar.c:167
+#: gcharmap/src/interface.c:70 gdictsrc/gdict-app.c:445 gtt/toolbar.c:167
 msgid "Paste"
 msgstr "Pegar"
 
 #: gdictsrc/gdict-app.c:445
 msgid "Paste Clipboard Contents"
-msgstr "Pegar os Contidos do Portapapeis"
+msgstr "Pegar os Contidos do Cartafol"
 
 #: gdictsrc/gdict-app.c:447
 msgid "Settings"
@@ -214,6 +214,81 @@ msgstr ""
 #: gdictsrc/gdict-pref-dialog.c:259
 msgid "Applet"
 msgstr "Applet"
+
+#: gcharmap/src/interface.c:44
+msgid "_Toolbar"
+msgstr "Barra de _Ferramentas"
+
+#: gcharmap/src/interface.c:44
+msgid "View or hide the toolbar"
+msgstr "Amosar ou agochar a barra de ferramentas"
+
+#: gcharmap/src/interface.c:46
+msgid "_Statusbar"
+msgstr "Barra de _Estado"
+
+#: gcharmap/src/interface.c:46
+msgid "View or hide the statusbar"
+msgstr "Amosar ou agocha-la barra de estado"
+
+#: gcharmap/src/interface.c:66
+msgid "Cut the text to clipboard"
+msgstr "Corta-lo texto ó cartafol"
+
+#: gcharmap/src/interface.c:68
+msgid "Copy the text to clipboard."
+msgstr "Copia-lo texto ó cartafol."
+
+#: gcharmap/src/interface.c:70
+msgid "Paste the text from clipboard."
+msgstr "Pega-lo texto do cartafol."
+
+#: gcharmap/src/interface.c:73 gstripchart/gstripchart.c:1802
+#: mini-utils/gcolorsel/menus.c:902
+msgid "Exit"
+msgstr "Saír"
+
+#: gcharmap/src/interface.c:73
+msgid "Exit the application"
+msgstr "Saír da aplicación"
+
+#: gcharmap/src/interface.c:100 gcharmap/src/interface.c:355
+msgid "Gnome Character Map"
+msgstr "Mapa de Caracteres de Gnome"
+
+#: gcharmap/src/interface.c:146
+msgid "Text to Copy:"
+msgstr "Testo a Copiar:"
+
+#: gcharmap/src/interface.c:303
+#, c-format
+msgid "%s: ASCII character %d"
+msgstr "%s: Carácter ASCII %d"
+
+#: gcharmap/src/interface.c:320
+msgid "Text cut to clipboard..."
+msgstr "Texto cortado ó cartafol..."
+
+#: gcharmap/src/interface.c:329
+msgid "Text copied to clipboard..."
+msgstr "Texto copiado ó cartafol..."
+
+#: gcharmap/src/interface.c:338
+msgid "Text pasted from clipboard..."
+msgstr "Texto pegado do cartafol..."
+
+#: gcharmap/src/interface.c:356
+msgid ""
+"The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
+"contain bad English.\n"
+"http://users.telekabel.nl/hongli/"
+msgstr ""
+"O equivalente de Gnome ó Mapa de Caracteres de Microsoft Windows.\n"
+"http://users.telekabel.nl/hongli/"
+
+#: gcharmap/src/interface.c:371
+msgid "There's no documentation available yet."
+msgstr "Aínda non hai documentación dispoñible."
 
 #: gdiskfree/gdiskfree.c:58
 msgid "Specify the geometry of the window."
@@ -536,11 +611,11 @@ msgstr "_Ficheiro"
 msgid "_Help"
 msgstr "_Axuda"
 
-#: gstripchart/gstripchart.c:1605 gstripchart/gstripchart.c:1743
+#: gstripchart/gstripchart.c:1605 gstripchart/gstripchart.c:1744
 msgid "Param"
 msgstr "Parám"
 
-#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:193
+#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:196
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Valor"
@@ -549,7 +624,7 @@ msgstr "Valor"
 msgid "Identifier"
 msgstr "Identificador"
 
-#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:192
+#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:195
 msgid "Color"
 msgstr "Cor"
 
@@ -581,173 +656,169 @@ msgstr "Valor actual"
 msgid "Active"
 msgstr "Activo"
 
-#: gstripchart/gstripchart.c:1650
+#: gstripchart/gstripchart.c:1651
 msgid "Stripchart Parameters"
 msgstr "Parámetros do Stripchart"
 
-#: gstripchart/gstripchart.c:1744
+#: gstripchart/gstripchart.c:1745
 msgid "Current"
 msgstr "Actual"
 
-#: gstripchart/gstripchart.c:1745
+#: gstripchart/gstripchart.c:1746
 msgid "Top"
 msgstr "Máximo"
 
-#: gstripchart/gstripchart.c:1746
+#: gstripchart/gstripchart.c:1747
 msgid "Scale"
 msgstr "Escala"
 
-#: gstripchart/gstripchart.c:1783 gstripchart/gstripchart.c:2070
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:2071
 msgid "Help"
 msgstr "Axuda"
 
-#: gstripchart/gstripchart.c:1789 gstripchart/gstripchart.c:2073
-#: mini-utils/gcolorsel/menus.c:829 mini-utils/gshutdown/gshutdown.c:319
+#: gstripchart/gstripchart.c:1790 gstripchart/gstripchart.c:2074
+#: mini-utils/gcolorsel/menus.c:912 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "Acerca de"
 
-#: gstripchart/gstripchart.c:1795
+#: gstripchart/gstripchart.c:1796
 msgid "Params"
 msgstr "Parámetros"
-
-#: gstripchart/gstripchart.c:1801 mini-utils/gcolorsel/menus.c:819
-msgid "Exit"
-msgstr "Saír"
 
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1907
+#: gstripchart/gstripchart.c:1908
 msgid "gstripchart"
 msgstr "gstripchart"
 
-#: gstripchart/gstripchart.c:1907
+#: gstripchart/gstripchart.c:1908
 msgid "Stripchart Viewer"
 msgstr "Visualizador Stripchart"
 
-#: gstripchart/gstripchart.c:2076
+#: gstripchart/gstripchart.c:2077
 msgid "Params..."
 msgstr "Parámetros..."
 
-#: gstripchart/gstripchart.c:2121
+#: gstripchart/gstripchart.c:2122
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "tipo de visualización non válida: %s\n"
 
-#: gstripchart/gstripchart.c:2146
+#: gstripchart/gstripchart.c:2147
 msgid "Geometry string: WxH+X+Y"
 msgstr "Cadea de xeometría: LxA+X+Y"
 
-#: gstripchart/gstripchart.c:2146
+#: gstripchart/gstripchart.c:2147
 msgid "GEO"
 msgstr "XEO"
 
-#: gstripchart/gstripchart.c:2148
+#: gstripchart/gstripchart.c:2149
 msgid "Configuration file name"
 msgstr "Nome do ficheiro de configuración"
 
-#: gstripchart/gstripchart.c:2148
+#: gstripchart/gstripchart.c:2149
 msgid "FILE"
 msgstr "FICHEIRO"
 
-#: gstripchart/gstripchart.c:2150
+#: gstripchart/gstripchart.c:2151
 msgid "Chart update interval"
 msgstr "Intervalo de actualización da traza"
 
-#: gstripchart/gstripchart.c:2150 gstripchart/gstripchart.c:2152
-#: gstripchart/gstripchart.c:2154 gstripchart/gstripchart.c:2156
+#: gstripchart/gstripchart.c:2151 gstripchart/gstripchart.c:2153
+#: gstripchart/gstripchart.c:2155 gstripchart/gstripchart.c:2157
 msgid "SECS"
 msgstr "SEGS"
 
-#: gstripchart/gstripchart.c:2152
+#: gstripchart/gstripchart.c:2153
 msgid "Chart low-pass filter time constant"
 msgstr "Constante de tempo do filtro paso-baixo"
 
-#: gstripchart/gstripchart.c:2154
+#: gstripchart/gstripchart.c:2155
 msgid "Slider update interval"
 msgstr "Intervalo de actualización da agulla"
 
-#: gstripchart/gstripchart.c:2156
+#: gstripchart/gstripchart.c:2157
 msgid "Slider low-pass filter time constant"
 msgstr "Constante de tempo do filtro paso-baixo da agulla"
 
-#: gstripchart/gstripchart.c:2158
+#: gstripchart/gstripchart.c:2159
 msgid "Adds a menubar to the main window"
 msgstr "Engade unha barra de menú á fiestra principal"
 
-#: gstripchart/gstripchart.c:2160
+#: gstripchart/gstripchart.c:2161
 msgid "Omits slider window"
 msgstr "Omite a fiestra da agulla"
 
-#: gstripchart/gstripchart.c:2163
+#: gstripchart/gstripchart.c:2164
 msgid "TYPE is one of gtk, applet, text, or none"
 msgstr "TIPO é gtk, applet, text (texto) ou none (nada)"
 
-#: gstripchart/gstripchart.c:2163 gstripchart/gstripchart.c:2165
+#: gstripchart/gstripchart.c:2164 gstripchart/gstripchart.c:2166
 msgid "TYPE"
 msgstr "TIPO"
 
-#: gstripchart/gstripchart.c:2165
+#: gstripchart/gstripchart.c:2166
 msgid "TYPE is one of gtk, text, or none"
 msgstr "TIPO é gtk, text (texto) ou none (nada)"
 
-#: gstripchart/gstripchart.c:2317
+#: gstripchart/gstripchart.c:2318
 msgid "white"
 msgstr "branco"
 
-#: gstripchart/gstripchart.c:2317
+#: gstripchart/gstripchart.c:2318
 msgid "black"
 msgstr "negro"
 
-#: gstripchart/gstripchart.c:2317
+#: gstripchart/gstripchart.c:2318
 msgid "red"
 msgstr "vermello"
 
-#: gstripchart/gstripchart.c:2317
+#: gstripchart/gstripchart.c:2318
 msgid "yellow"
 msgstr "amarelo"
 
-#: gstripchart/gstripchart.c:2318
+#: gstripchart/gstripchart.c:2319
 msgid "blue"
 msgstr "azul"
 
-#: gstripchart/gstripchart.c:2318
+#: gstripchart/gstripchart.c:2319
 msgid "green"
 msgstr "verde"
 
-#: gstripchart/gstripchart.c:2318
+#: gstripchart/gstripchart.c:2319
 msgid "cyan"
 msgstr "ciano"
 
-#: gstripchart/gstripchart.c:2318
+#: gstripchart/gstripchart.c:2319
 msgid "magenta"
 msgstr "maxenta"
 
-#: gstripchart/gstripchart.c:2319
+#: gstripchart/gstripchart.c:2320
 msgid "Busy"
 msgstr "Actividade"
 
-#: gstripchart/gstripchart.c:2319
+#: gstripchart/gstripchart.c:2320
 msgid "Load"
 msgstr "Carga"
 
-#: gstripchart/gstripchart.c:2319
+#: gstripchart/gstripchart.c:2320
 msgid "Swap"
 msgstr "Intercambio"
 
-#: gstripchart/gstripchart.c:2319
+#: gstripchart/gstripchart.c:2320
 msgid "Battery"
 msgstr "Batería"
 
-#: gstripchart/gstripchart.c:2320
+#: gstripchart/gstripchart.c:2321
 msgid "Net In"
 msgstr "Rede Entrante"
 
-#: gstripchart/gstripchart.c:2320
+#: gstripchart/gstripchart.c:2321
 msgid "Net Out"
 msgstr "Rede Saínte"
 
-#: gstripchart/gstripchart.c:2320
+#: gstripchart/gstripchart.c:2321
 msgid "ppp"
 msgstr "ppp"
 
@@ -909,15 +980,15 @@ msgstr "Amosar Cabeceira da Táboa"
 
 #: gtt/options.c:220 gtt/options.c:518
 msgid "Toolbar"
-msgstr "Barra de Utilidades"
+msgstr "Barra de Ferramentas"
 
 #: gtt/options.c:228
 msgid "Show Toolbar Icons"
-msgstr "Amosar Iconos da Barra de Utilidades"
+msgstr "Amosar Iconos da Barra de Ferramentas"
 
 #: gtt/options.c:234
 msgid "Show Toolbar Texts"
-msgstr "Amosar Textos da Barra de Utilidades"
+msgstr "Amosar Textos da Barra de Ferramentas"
 
 #: gtt/options.c:240
 msgid "Show Tooltips"
@@ -925,7 +996,7 @@ msgstr "Amosar Axudiñas"
 
 #: gtt/options.c:246
 msgid "Toolbar Segments"
-msgstr "Segmentos da Barra de Utilidades"
+msgstr "Segmentos da Barra de Ferramentas"
 
 #: gtt/options.c:254
 msgid "Show `New'"
@@ -1538,94 +1609,141 @@ msgid "Description:"
 msgstr "Descripción:"
 
 #. First view is considered as the default view ...
-#: mini-utils/gcolorsel/gcolorsel.c:22
+#: mini-utils/gcolorsel/gcolorsel.c:24
 msgid "List"
 msgstr "Lista"
 
-#: mini-utils/gcolorsel/gcolorsel.c:26
+#: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "Grid"
 msgstr "Enreixado"
 
-#: mini-utils/gcolorsel/gcolorsel.c:30 mini-utils/gcolorsel/menus.c:485
+#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:566
 msgid "Edit"
 msgstr "Editar"
 
-#: mini-utils/gcolorsel/gcolorsel.c:38
+#: mini-utils/gcolorsel/gcolorsel.c:40
 msgid "File"
 msgstr "Ficheiro"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40
+#: mini-utils/gcolorsel/gcolorsel.c:42
 msgid "Search RGB"
 msgstr "Busca RGB"
 
-#: mini-utils/gcolorsel/gcolorsel.c:42
+#: mini-utils/gcolorsel/gcolorsel.c:44
 msgid "Monitor"
 msgstr "Monitorizar"
 
-#: mini-utils/gcolorsel/gcolorsel.c:44
+#: mini-utils/gcolorsel/gcolorsel.c:46
 msgid "Concat"
 msgstr "Concatenar"
 
-#: mini-utils/gcolorsel/gcolorsel.c:88
+#: mini-utils/gcolorsel/gcolorsel.c:94
 #, c-format
 msgid "'%s' document has been modified; do you wish to save it ?"
 msgstr "O documento '%s' modificouse; ¿ quere gardalo ?"
 
+#: mini-utils/gcolorsel/gcolorsel.c:204
+msgid "GColorsel was unable to paste colors from the clipboard."
+msgstr "GColorsel non puido pegar as cores do cartafol."
+
+#: mini-utils/gcolorsel/gcolorsel.c:218
+msgid "Please select a file document before."
+msgstr "Seleccione antes un documento."
+
+#: mini-utils/gcolorsel/gcolorsel.c:390
+msgid ""
+"I can't execute this action. Check that :\n"
+"\n"
+"1. You have associated an action with this event.\n"
+"2. The associated document still exits.\n"
+"3. The type of the associated document.\n"
+"\n"
+"Go to preferences, in the edit menu."
+msgstr ""
+"Non se pode executar esta acción. Comprobe que:\n"
+"\n"
+"1. Asociou unha acción con este evento.\n"
+"2. O documento asociado aínda existe.\n"
+"3. O tipo do documento asociado.\n"
+"\n"
+"Vaia ás preferencias, no menú Editar."
+
 #. Init GnomeMDI
-#: mini-utils/gcolorsel/gcolorsel.c:148
+#: mini-utils/gcolorsel/gcolorsel.c:508
 msgid "GColorsel"
 msgstr "GColorsel"
 
-#: mini-utils/gcolorsel/menus.c:48
+#: mini-utils/gcolorsel/menus.c:52
 msgid "New Document"
 msgstr "Novo Documento"
 
-#: mini-utils/gcolorsel/menus.c:49
+#: mini-utils/gcolorsel/menus.c:53
 msgid "Create a new document"
 msgstr "Crear un documento novo"
 
-#: mini-utils/gcolorsel/menus.c:51
+#: mini-utils/gcolorsel/menus.c:55
 msgid "New View"
 msgstr "Nova Vista"
 
-#: mini-utils/gcolorsel/menus.c:52
+#: mini-utils/gcolorsel/menus.c:56
 msgid "Create a new view for a document"
 msgstr "Crear unha nova vista para un documento"
 
-#: mini-utils/gcolorsel/menus.c:58
+#: mini-utils/gcolorsel/menus.c:62
 msgid "Close document"
 msgstr "Pechar documento"
 
-#: mini-utils/gcolorsel/menus.c:59
+#: mini-utils/gcolorsel/menus.c:63
 msgid "Close the current document"
 msgstr "Pecha-lo documento actual"
 
-#: mini-utils/gcolorsel/menus.c:61
+#: mini-utils/gcolorsel/menus.c:65
 msgid "Close view"
 msgstr "Pechar vista"
 
-#: mini-utils/gcolorsel/menus.c:62 mini-utils/gcolorsel/menus.c:823
+#: mini-utils/gcolorsel/menus.c:66 mini-utils/gcolorsel/menus.c:906
 msgid "Close the current view"
 msgstr "Pecha-la vista actual"
 
-#: mini-utils/gcolorsel/menus.c:79 mini-utils/gcolorsel/menus.c:823
+#: mini-utils/gcolorsel/menus.c:83 mini-utils/gcolorsel/menus.c:906
 #: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
 msgid "Close"
 msgstr "Pechar"
 
-#: mini-utils/gcolorsel/menus.c:90
+#: mini-utils/gcolorsel/menus.c:99
 msgid "Insert color"
 msgstr "Inserir cor"
 
-#: mini-utils/gcolorsel/menus.c:92
+#: mini-utils/gcolorsel/menus.c:101
 msgid "Remove selected colors"
 msgstr "Quitar cores seleccionadas"
 
-#: mini-utils/gcolorsel/menus.c:94
+#: mini-utils/gcolorsel/menus.c:103
 msgid "Edit selected colors ..."
 msgstr "Editar cores seleccionadas ..."
 
-#: mini-utils/gcolorsel/menus.c:170
+#: mini-utils/gcolorsel/menus.c:172
+#, c-format
+msgid ""
+"GColorsel was unable to save the file :\n"
+"\n"
+"%s\n"
+"\n"
+"Make sure that the path you provided exits,\n"
+"and that you have the approprate write permissions.\n"
+"\n"
+"Do you want to retry ?"
+msgstr ""
+"GColorsel non puido garda-lo ficheiro:\n"
+"\n"
+"%s\n"
+"\n"
+"Asegúrese de que o camiño que indicou existe,\n"
+"e que ten os permisos para abri-lo ficheiro."
+"\n"
+"¿Quere volver a tentalo?"
+
+#: mini-utils/gcolorsel/menus.c:191
 #, c-format
 msgid ""
 "GColorsel was unable to load the file:\n"
@@ -1642,27 +1760,27 @@ msgstr ""
 "Asegúrese de que o camiño que indicou existe,\n"
 "e que ten os permisos para abri-lo ficheiro."
 
-#: mini-utils/gcolorsel/menus.c:189
+#: mini-utils/gcolorsel/menus.c:210
 msgid "Open Palette"
 msgstr "Abrir Paleta"
 
-#: mini-utils/gcolorsel/menus.c:214
+#: mini-utils/gcolorsel/menus.c:235
 msgid "Loading file, please wait ..."
 msgstr "Cargando ficheiro, por favor agarde ..."
 
-#: mini-utils/gcolorsel/menus.c:245
+#: mini-utils/gcolorsel/menus.c:266
 msgid "Save Palette as"
 msgstr "Gardar Paleta como"
 
-#: mini-utils/gcolorsel/menus.c:292
+#: mini-utils/gcolorsel/menus.c:313
 msgid "File not saved ..."
 msgstr "Ficheiro non gardado ..."
 
-#: mini-utils/gcolorsel/menus.c:302
+#: mini-utils/gcolorsel/menus.c:323
 msgid "File saved ..."
 msgstr "Ficheiro gardado ..."
 
-#: mini-utils/gcolorsel/menus.c:380
+#: mini-utils/gcolorsel/menus.c:401
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -1677,7 +1795,7 @@ msgstr ""
 "\n"
 "Teña en conta que %d documento(s) virtual(is) usan datos deste documento."
 
-#: mini-utils/gcolorsel/menus.c:382
+#: mini-utils/gcolorsel/menus.c:403
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -1688,7 +1806,7 @@ msgstr ""
 "\n"
 "Este documento tamén será pechado, ¿continuar?"
 
-#: mini-utils/gcolorsel/menus.c:416
+#: mini-utils/gcolorsel/menus.c:437
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -1705,7 +1823,7 @@ msgstr ""
 "\n"
 "¿Quere continuar?"
 
-#: mini-utils/gcolorsel/menus.c:418
+#: mini-utils/gcolorsel/menus.c:439
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -1720,39 +1838,47 @@ msgstr ""
 "\n"
 "¿Quere continuar?"
 
-#: mini-utils/gcolorsel/menus.c:463
+#: mini-utils/gcolorsel/menus.c:487
 msgid "Gnome Color Browser"
 msgstr "Ollador de Cores de Gnome"
 
-#: mini-utils/gcolorsel/menus.c:466
+#: mini-utils/gcolorsel/menus.c:490
 msgid "Small utility to browse available X11 colors."
 msgstr "Pequena utilidade para olla-las cores de X11 dispoñibles."
 
-#: mini-utils/gcolorsel/menus.c:518
+#: mini-utils/gcolorsel/menus.c:599
 msgid "New Color"
 msgstr "Nova Cor"
 
-#: mini-utils/gcolorsel/menus.c:819
+#: mini-utils/gcolorsel/menus.c:854
+msgid "View properties"
+msgstr "Propiedades da vista"
+
+#: mini-utils/gcolorsel/menus.c:869
+msgid "Document properties"
+msgstr "Propiedades do documento"
+
+#: mini-utils/gcolorsel/menus.c:902
 msgid "Exit the program"
 msgstr "Saír do programa"
 
-#: mini-utils/gcolorsel/menus.c:821
+#: mini-utils/gcolorsel/menus.c:904
 msgid "Open"
 msgstr "Abrir"
 
-#: mini-utils/gcolorsel/menus.c:821
+#: mini-utils/gcolorsel/menus.c:904
 msgid "Open a palette"
 msgstr "Abrir unha paleta"
 
-#: mini-utils/gcolorsel/menus.c:826
+#: mini-utils/gcolorsel/menus.c:909
 msgid "Grab"
 msgstr "Capturar"
 
-#: mini-utils/gcolorsel/menus.c:826
+#: mini-utils/gcolorsel/menus.c:909
 msgid "Grab a color on the screen"
 msgstr "Capturar unha cor da pantalla"
 
-#: mini-utils/gcolorsel/menus.c:829
+#: mini-utils/gcolorsel/menus.c:912
 msgid "About this application"
 msgstr "Acerca desta aplicación"
 
@@ -1777,7 +1903,7 @@ msgid "Float"
 msgstr "Número Real"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:194 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:504 mini-utils/gw/gw.c:574
 msgid "Name"
 msgstr "Nome"
