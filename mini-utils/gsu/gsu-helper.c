@@ -304,6 +304,7 @@ log_su (const struct passwd *pw, int successful)
 #define CONV_ECHO_ON  1
 #define CONV_ECHO_OFF 0
 
+#ifndef _pam_overwrite
 #define _pam_overwrite(x) \
 { \
      register char *xx; \
@@ -311,6 +312,7 @@ log_su (const struct passwd *pw, int successful)
           while (*xx) \
                *xx++ = '\0'; \
 }
+#endif
 
 static char *read_string(int echo, const char *remark)
 {
