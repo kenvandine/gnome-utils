@@ -791,8 +791,10 @@ is_nautilus_running (void)
 gboolean
 is_component_action_type (const gchar *filename)
 {
-	const char *mimeType = gnome_vfs_mime_type_from_name (filename);	
+	gchar *mimeType = gnome_vfs_get_mime_type (filename);	
 	GnomeVFSMimeActionType actionType = gnome_vfs_mime_get_default_action_type (mimeType);
+	
+	g_free (mimeType);
 	
 	if (actionType == GNOME_VFS_MIME_ACTION_TYPE_COMPONENT) {
 		return TRUE;
@@ -821,8 +823,10 @@ open_file_with_nautilus (const gchar *filename)
 gboolean
 open_file_with_application(const gchar *filename)
 {
-	const char *mimeType = gnome_vfs_mime_type_from_name(filename);	
-	GnomeVFSMimeApplication *mimeApp = gnome_vfs_mime_get_default_application(mimeType);
+	gchar *mimeType = gnome_vfs_get_mime_type (filename);	
+	GnomeVFSMimeApplication *mimeApp = gnome_vfs_mime_get_default_application (mimeType);
+	
+	g_free (mimeType);
 		
 	if (mimeApp) {
 		char **argv;

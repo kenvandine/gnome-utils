@@ -315,7 +315,7 @@ add_file_to_search_results (const gchar 	*file,
 			    GtkListStore 	*store, 
 			    GtkTreeIter 	*iter)
 {					
-	const gchar *mime_type = gnome_vfs_mime_type_from_name (file);
+	gchar *mime_type = gnome_vfs_get_mime_type (file);
 	gchar *description = get_file_type_with_mime_type (file, mime_type);
 	gchar *icon_path = get_file_icon_with_mime_type (file, mime_type);
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (icon_path, NULL);
@@ -379,6 +379,7 @@ add_file_to_search_results (const gchar 	*file,
 	g_object_unref (G_OBJECT(pixbuf));
 	g_free (base_name);
 	g_free (dir_name);
+	g_free (mime_type);
 	g_free (utf8_base_name);
 	g_free (utf8_dir_name);
 	g_free (icon_path); 
