@@ -294,7 +294,6 @@ main (int argc, char *argv[])
 	   logview_create_window_open_file (user_prefs->logfile);
 	   if (logview_count_logs() == 0) {
 		   GtkWidget *window;
-		   ShowErrMessage (_("No log files to open"));
 		   window = logview_create_window ();
 		   gtk_widget_show (window);
 	   }
@@ -933,8 +932,7 @@ logview_help (GtkAction *action, GtkWidget *callback_data)
 					      gtk_widget_get_screen (GTK_WIDGET(window)), &error);
 	if (error) {
 		gchar *message;
-		message = g_strdup_printf (_("There was an error displaying help: %s"), error->message);
-		ShowErrMessage (message);
+		ShowErrMessage (window, _("There was an error displaying help."), error->message);
 		g_error_free (error);
 	}
 }

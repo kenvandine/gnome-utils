@@ -25,28 +25,25 @@
 
 #include "logview.h"
 
-extern ConfigData *cfg;
-extern GtkWidget *window;
-
 static gboolean queue_err_messages = FALSE;
-static GList *msg_queue = NULL;
+static GList *msg_queue_main = NULL, *msg_queue_sec = NULL;
 
 
 static void
-MakeErrorDialog (const char *msg)
+MakeErrorDialog (LogviewWindow *window, const char *main, char *secondary)
 {
 	GtkWidget *dialog;
-	dialog = gtk_message_dialog_new (NULL,
-					 GTK_DIALOG_MODAL,
-					 GTK_MESSAGE_ERROR,
-					 GTK_BUTTONS_OK,
-					 msg);
-	g_signal_connect (G_OBJECT (dialog), "response",
-			  G_CALLBACK (gtk_widget_destroy),
-			  NULL);
-
+	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
+						     GTK_DIALOG_MODAL,
+						     GTK_MESSAGE_ERROR,
+						     GTK_BUTTONS_OK,
+						     "<span weight=\"bold\" size=\"larger\">%s</span>\n\n%s",
+						     main,
+						     secondary);
 	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-	gtk_widget_show (dialog);
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
+	gtk_dialog_run (GTK_DIALOG (dialog));
+	gtk_widget_destroy (dialog);
 }
 
 /* ----------------------------------------------------------------------
@@ -56,13 +53,13 @@ MakeErrorDialog (const char *msg)
    ---------------------------------------------------------------------- */
 
 void
-ShowErrMessage (const char *msg)
+ShowErrMessage (LogviewWindow *window, char *main, char *secondary)
 {
-  if (queue_err_messages) {
-	  msg_queue = g_list_append (msg_queue, g_strdup (msg));
-  } else {
-	  MakeErrorDialog (msg);
-  }
+	if (queue_err_messages) {
+		msg_queue_main = g_list_append (msg_queue_main, g_strdup (main));
+		msg_queue_sec = g_list_append (msg_queue_sec, g_strdup (secondary));
+	} else
+		MakeErrorDialog (window, main, secondary);
 }
 
 void
@@ -74,27 +71,39 @@ QueueErrMessages (gboolean do_queue)
 void
 ShowQueuedErrMessages (void)
 {
-	if (msg_queue != NULL) {
-		GList *li;
+	if (msg_queue_main != NULL) {
+		GList *li, *li_sec;
 		GString *gs = g_string_new (NULL);
+		GString *gs_sec = g_string_new (NULL);
 
-		for (li = msg_queue; li != NULL; li = li->next) {
+		for (li = msg_queue_main, li_sec=msg_queue_sec; li != NULL; li = li->next) {
 			char *msg = li->data;
+			char *sec = li_sec->data;
+
 			li->data = NULL;
+			li_sec->data = NULL;
 
 			g_string_append (gs, msg);
+			g_string_append (gs_sec, sec);
 
-			if (li->next != NULL)
+			if (li->next != NULL) {
 				g_string_append (gs, "\n");
+				g_string_append (gs_sec, "\n");
+			}
 
 			g_free (msg);
+			g_free (sec);
+			li_sec = li_sec->next;
 		}
-		g_list_free (msg_queue);
-		msg_queue = NULL;
+		g_list_free (msg_queue_main);
+		g_list_free (msg_queue_sec);
+		msg_queue_main = NULL;
+		msg_queue_sec = NULL;
 
-		MakeErrorDialog (gs->str);
+		MakeErrorDialog (NULL, gs->str, gs_sec->str);
 
 		g_string_free (gs, TRUE);
+		g_string_free (gs_sec, TRUE);
 	}
 }
 

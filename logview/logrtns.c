@@ -42,6 +42,7 @@ void UpdateLastPage (Log *log);
 
 extern GList *regexp_db;
 extern GList *actions_db;
+const char *error_main = N_("Cannot open file.");
 
 /*
  * -------------------
@@ -205,7 +206,7 @@ OpenLogFile (char *filename)
    GError *error;
    GnomeVFSResult result;
    GnomeVFSFileSize size, read_bytes;
-
+   
    if (file_is_zipped (filename)) {
 	   char *command;
 	   gint result;
@@ -229,7 +230,7 @@ OpenLogFile (char *filename)
    /* Alloc memory for log structure */
    tlog = g_new0 (Log, 1);
    if (tlog == NULL) {
-	   ShowErrMessage (_("Not enough memory!\n"));
+	   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
 	   return NULL;
    }
 
@@ -240,7 +241,7 @@ OpenLogFile (char *filename)
 
    result = gnome_vfs_open (&(tlog->handle), filename, GNOME_VFS_OPEN_READ);
    if (result != GNOME_VFS_OK) {
-	   ShowErrMessage (_("Unable to open logfile!\n"));
+	   ShowErrMessage (NULL, error_main, _("Unable to open logfile!\n"));
 	   return NULL;
    }
 
@@ -258,7 +259,7 @@ OpenLogFile (char *filename)
    for (i=0; buffer_lines[i+1] != NULL; i++) {	   
 	   line = g_malloc (sizeof(**(tlog->lines)));
 	   if (!line) {
-		   ShowErrMessage ("Unable to malloc for lines[i]\n");
+		   ShowErrMessage (NULL, error_main, "Unable to malloc for lines[i]\n");
 		   return NULL;
 	   }
 
@@ -308,7 +309,7 @@ isLogFile (char *filename, gboolean show_error)
 	   if (show_error) {
 		   g_snprintf (buff, sizeof (buff),
 			       _("%s is not a regular file."), filename);
-		   ShowErrMessage (buff);
+		   ShowErrMessage (NULL, error_main, buff);
 	   }
       return FALSE;
    }
@@ -320,7 +321,7 @@ isLogFile (char *filename, gboolean show_error)
 			       _("%s is not user readable. "
 				 "Either run the program as root or ask the sysadmin to "
 				 "change the permissions on the file."), filename);
-		   ShowErrMessage (buff);
+		   ShowErrMessage (NULL, error_main, buff);
 	   }
       return FALSE;
    }
@@ -338,7 +339,7 @@ isLogFile (char *filename, gboolean show_error)
 	   if (show_error) {
 		   g_snprintf (buff, sizeof (buff),
 			       _("%s could not be opened."), filename);
-		   ShowErrMessage (buff);
+		   ShowErrMessage (NULL, error_main, buff);
 	   }
       return FALSE;
    }
@@ -359,7 +360,7 @@ isLogFile (char *filename, gboolean show_error)
    if (found_space == NULL) {
 	   if (show_error) {
 		   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-		   ShowErrMessage (buff);
+		   ShowErrMessage (NULL, error_main, buff);
 	   }
 	   return FALSE;
    }
@@ -370,7 +371,7 @@ isLogFile (char *filename, gboolean show_error)
    if (i == 12) {
 	   if (show_error) {
 		   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-		   ShowErrMessage (buff);
+		   ShowErrMessage (NULL, error_main, buff);
 	   }
 	   return FALSE;
    }
@@ -646,7 +647,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    offsetyear = 0;
    curmark = malloc (sizeof (DateMark));
    if (curmark == NULL) {
-      ShowErrMessage (_("ReadLogStats: out of memory"));
+	   ShowErrMessage (NULL, error_main, _("ReadLogStats: out of memory"));
       exit (0);
    }
    log->lstats.firstmark = curmark;
@@ -670,7 +671,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
 	   
 	   curmark->next = malloc (sizeof (DateMark));
 	   if (curmark->next == NULL) {
-		   ShowErrMessage (_("ReadLogStats: out of memory"));
+		   ShowErrMessage (NULL, error_main, _("ReadLogStats: out of memory"));
 		   exit (0);
 	   }
 
@@ -800,7 +801,7 @@ UpdateLogStats( Log *log )
 		   continue;
 	   curmark->next = malloc (sizeof (DateMark));
 	   if (curmark->next == NULL) {
-		   ShowErrMessage (_("ReadLogStats: out of memory"));
+		   ShowErrMessage (NULL, error_main, _("ReadLogStats: out of memory"));
 		   exit (0);
 	   }
 	   curmark->next->prev = curmark;
@@ -1142,13 +1143,13 @@ ReadPageDown (Log *log, LogLine ***inp_mon_lines, gboolean exec_actions)
 							 sizeof(*(new_mon_lines)) * new_lines_read);
 				
 				if (!new_mon_lines) {
-					ShowErrMessage ("Unable to realloc for new_mon_lines\n");
+					ShowErrMessage (NULL, error_main, "Unable to realloc for new_mon_lines\n");
 					return 0; 
 				}
 				
 				line = malloc (sizeof(**(new_mon_lines)));
 				if (!line) {
-					ShowErrMessage ("Unable to malloc for line\n");
+					ShowErrMessage (NULL, error_main, "Unable to malloc for line\n");
 					return 0;
 				}
 				ParseLine (buffer, line);

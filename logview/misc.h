@@ -20,7 +20,7 @@
 #ifndef __LOG_MISC_H__
 #define __LOG_MISC_H__
 
-void ShowErrMessage (const char *msg);
+void ShowErrMessage (LogviewWindow *window, char *main, char *secondary);
 void QueueErrMessages (gboolean do_queue);
 void ShowQueuedErrMessages (void);
 char *LocaleToUTF8 (const char *in);
