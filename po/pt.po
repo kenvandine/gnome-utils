@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.4\n"
-"POT-Creation-Date: 2003-05-20 01:08+0000\n"
-"PO-Revision-Date: 2003-05-20 01:10+0000\n"
+"POT-Creation-Date: 2003-05-26 23:46+0000\n"
+"PO-Revision-Date: 2003-05-26 23:50+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -810,8 +810,9 @@ msgstr ""
 "ext2 para o sistema de ficheiros nativo de Linux ou fat para sistema de "
 "ficheiros DOS."
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1950
-#: gsearchtool/gsearchtool.c:1970
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:834
+#: gsearchtool/gsearchtool.c:1158 gsearchtool/gsearchtool.c:2063
+#: gsearchtool/gsearchtool.c:2083
 msgid "Search for Files"
 msgstr "Procurar Ficheiros"
 
@@ -819,114 +820,123 @@ msgstr "Procurar Ficheiros"
 msgid "Search your disk for files"
 msgstr "Procurar ficheiros no seu disco"
 
-#: gsearchtool/gsearchtool.c:68
-msgid "C_ontains the text"
-msgstr "C_ontém o texto"
+#: gsearchtool/gsearchtool.c:73
+msgid "Contains the _text"
+msgstr "Contém o _texto"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:75
 msgid "_Date modified less than (days)"
 msgstr "_Data modificação à menos de (dias)"
 
-#: gsearchtool/gsearchtool.c:71
-msgid "Da_te modified more than (days)"
-msgstr "Da_ta modificação à mais de (dias)"
+#: gsearchtool/gsearchtool.c:76
+msgid "Date modified more than (da_ys)"
+msgstr "Data modificação à mais de (d_ias)"
 
-#: gsearchtool/gsearchtool.c:73
-msgid "_Size at least (kilobytes)"
-msgstr "Taman_ho pelo menos (kilobytes)"
+#: gsearchtool/gsearchtool.c:78
+msgid "S_ize at least (kilobytes)"
+msgstr "Tamanho pelo menos (kilob_ytes)"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:79
 msgid "Si_ze at most (kilobytes)"
 msgstr "Tamanho no máximo (_kilobytes)"
 
-#: gsearchtool/gsearchtool.c:75
+#: gsearchtool/gsearchtool.c:80
 msgid "File is empty"
 msgstr "Ficheiro está vazio"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:82
 msgid "Owned by _user"
 msgstr "Pertencente ao _utilizador"
 
-#: gsearchtool/gsearchtool.c:78
+#: gsearchtool/gsearchtool.c:83
 msgid "Owned by _group"
 msgstr "Pertencente ao _grupo"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:84
 msgid "Owner is unrecognized"
 msgstr "Detentor desconhecido"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:86
 msgid "Na_me does not contain"
 msgstr "No_me não contém"
 
-#: gsearchtool/gsearchtool.c:82
+#: gsearchtool/gsearchtool.c:87
 msgid "Name matches regular e_xpression"
 msgstr "Ficheiro coincide com e_xpressão regular"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:89
 msgid "Show hidden files and folders"
 msgstr "Mostrar ficheiros e pastas escondidas"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:90
 msgid "Follow symbolic links"
 msgstr "Seguir ligações simbólicas"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:91
 msgid "Include other filesystems"
 msgstr "Incluir outros sistemas de ficheiros"
 
-#: gsearchtool/gsearchtool.c:517 gsearchtool/gsearchtool.c:1050
+#: gsearchtool/gsearchtool.c:520 gsearchtool/gsearchtool.c:1143
 msgid "No files found"
 msgstr "Nenhum ficheiro encontrado"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:613
 msgid "Entry changed called for a non entry option!"
 msgstr "Entrada modificada invocada para uma opção não introduzida!"
 
-#: gsearchtool/gsearchtool.c:787
+#: gsearchtool/gsearchtool.c:779
+#, c-format
+msgid "The animation file is missing or invalid: %s"
+msgstr "O ficheiro de animação não existe ou é inválido: %s"
+
+#: gsearchtool/gsearchtool.c:834
+msgid "Searching..."
+msgstr "A Procurar..."
+
+#: gsearchtool/gsearchtool.c:880
 msgid "Set the text of 'Name contains'"
 msgstr "Definir o texto de 'Nome contém'"
 
-#: gsearchtool/gsearchtool.c:788
+#: gsearchtool/gsearchtool.c:881
 msgid "Set the text of 'Look in folder'"
 msgstr "Definir o texto de 'Procurar na pasta'"
 
-#: gsearchtool/gsearchtool.c:789
+#: gsearchtool/gsearchtool.c:882
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Ordenar ficheiros por um dos seguintes: nome, pasta, tamanho, tipo ou data"
 
-#: gsearchtool/gsearchtool.c:790
+#: gsearchtool/gsearchtool.c:883
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Definir ordenação para descendente, por omissão é ascendente"
 
-#: gsearchtool/gsearchtool.c:791
+#: gsearchtool/gsearchtool.c:884
 msgid "Automatically start a search"
 msgstr "Iniciar automaticamente uma procura"
 
-#: gsearchtool/gsearchtool.c:796
+#: gsearchtool/gsearchtool.c:889
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Seleccionar a restrição '%s'"
 
-#: gsearchtool/gsearchtool.c:902
+#: gsearchtool/gsearchtool.c:995
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Opção inválida indicada no argumento de linha de comando do sortby."
 
-#: gsearchtool/gsearchtool.c:1038
-msgid "(aborted)"
-msgstr "(abortado)"
+#: gsearchtool/gsearchtool.c:1131
+msgid "(stopped)"
+msgstr "(parado)"
 
-#: gsearchtool/gsearchtool.c:1054
+#: gsearchtool/gsearchtool.c:1147
 msgid "One file found"
 msgstr "Encontrado um ficheiro"
 
-#: gsearchtool/gsearchtool.c:1057
+#: gsearchtool/gsearchtool.c:1150
 #, c-format
 msgid "%d files found"
 msgstr "Encontrados %d ficheiros"
 
-#: gsearchtool/gsearchtool.c:1154
+#: gsearchtool/gsearchtool.c:1251
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -934,7 +944,7 @@ msgstr ""
 "Foram reportados os seguintes erros ao procurar.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1255
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -942,104 +952,104 @@ msgstr ""
 "\n"
 "... Demasiados erros para mostrar ..."
 
-#: gsearchtool/gsearchtool.c:1171
+#: gsearchtool/gsearchtool.c:1268
 msgid "Search Errors"
 msgstr "Erros de Procura"
 
-#: gsearchtool/gsearchtool.c:1209 gsearchtool/gsearchtool.c:1233
+#: gsearchtool/gsearchtool.c:1305 gsearchtool/gsearchtool.c:1326
 msgid "Search for Files Error"
 msgstr "Erro de Procura de Ficheiros"
 
-#: gsearchtool/gsearchtool.c:1323
+#: gsearchtool/gsearchtool.c:1416
 msgid "Search Rule Value Entry"
 msgstr "Entrada de Valores da Regra de Procura"
 
-#: gsearchtool/gsearchtool.c:1324
+#: gsearchtool/gsearchtool.c:1417
 msgid "Enter a value for search rule"
 msgstr "Introduza um valor para a regra de procura"
 
-#: gsearchtool/gsearchtool.c:1362
+#: gsearchtool/gsearchtool.c:1455
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Clicar para Remover a Regra '%s'"
 
-#: gsearchtool/gsearchtool.c:1414
+#: gsearchtool/gsearchtool.c:1507
 msgid "A_vailable options:"
 msgstr "Opções disponí_veis:"
 
-#: gsearchtool/gsearchtool.c:1427
+#: gsearchtool/gsearchtool.c:1520
 msgid "Search Rules Menu"
 msgstr "Menu das Regras de Procura"
 
-#: gsearchtool/gsearchtool.c:1428
+#: gsearchtool/gsearchtool.c:1521
 msgid "Select a search rule from the menu"
 msgstr "Seleccionar uma regra de procura do menu"
 
-#: gsearchtool/gsearchtool.c:1456
+#: gsearchtool/gsearchtool.c:1553
 msgid "S_earch results:"
 msgstr "R_esultados da procura:"
 
-#: gsearchtool/gsearchtool.c:1532
+#: gsearchtool/gsearchtool.c:1633
 msgid "Name"
 msgstr "Nome"
 
-#: gsearchtool/gsearchtool.c:1552
+#: gsearchtool/gsearchtool.c:1653
 msgid "Folder"
 msgstr "Pasta"
 
-#: gsearchtool/gsearchtool.c:1563
+#: gsearchtool/gsearchtool.c:1664
 msgid "Size"
 msgstr "Tamanho"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1674
 msgid "Type"
 msgstr "Tipo"
 
-#: gsearchtool/gsearchtool.c:1583
+#: gsearchtool/gsearchtool.c:1684
 msgid "Date Modified"
 msgstr "Data Modificação"
 
-#: gsearchtool/gsearchtool.c:1621
+#: gsearchtool/gsearchtool.c:1732
 msgid "_Name contains:"
 msgstr "_Nome contém:"
 
-#: gsearchtool/gsearchtool.c:1636 gsearchtool/gsearchtool.c:1637
+#: gsearchtool/gsearchtool.c:1747 gsearchtool/gsearchtool.c:1748
 msgid "File Name Entry"
 msgstr "Entrada de Nome do Ficheiro"
 
-#: gsearchtool/gsearchtool.c:1636 gsearchtool/gsearchtool.c:1637
+#: gsearchtool/gsearchtool.c:1747 gsearchtool/gsearchtool.c:1748
 msgid "Enter the file name you want to search"
 msgstr "Introduza o nome do ficheiro que deseja procurar"
 
-#: gsearchtool/gsearchtool.c:1649
+#: gsearchtool/gsearchtool.c:1760
 msgid "_Look in folder:"
 msgstr "_Procurar na pasta:"
 
-#: gsearchtool/gsearchtool.c:1655
+#: gsearchtool/gsearchtool.c:1766
 msgid "Browse"
 msgstr "Procurar"
 
-#: gsearchtool/gsearchtool.c:1664 gsearchtool/gsearchtool.c:1665
+#: gsearchtool/gsearchtool.c:1775 gsearchtool/gsearchtool.c:1776
 msgid "Starting folder entry"
 msgstr "Entrada de pasta inicial"
 
-#: gsearchtool/gsearchtool.c:1664 gsearchtool/gsearchtool.c:1665
+#: gsearchtool/gsearchtool.c:1775 gsearchtool/gsearchtool.c:1776
 msgid "Enter the folder name where you want to start the search"
 msgstr "Introduza a pasta onde deseja iniciar a procura"
 
-#: gsearchtool/gsearchtool.c:1684 gsearchtool/gsearchtool.c:1685
-msgid "Additional Options"
-msgstr "Opções Adicionais"
+#: gsearchtool/gsearchtool.c:1795
+msgid "Show more _options"
+msgstr "Mostrar mais _opções"
 
-#: gsearchtool/gsearchtool.c:1732
+#: gsearchtool/gsearchtool.c:1845
 msgid "Click to Start the search"
 msgstr "Clicar para Iniciar a procura"
 
-#: gsearchtool/gsearchtool.c:1733
+#: gsearchtool/gsearchtool.c:1846
 msgid "Click to Stop the search"
 msgstr "Clicar para Parar a procura"
 
-#: gsearchtool/gsearchtool.c:1966
+#: gsearchtool/gsearchtool.c:2079
 msgid "Cannot initialize bonobo."
 msgstr "Incapaz de inicializar bonobo."
 
@@ -1059,52 +1069,48 @@ msgstr "_Gravar Resultados Como..."
 msgid "Can't Display Help"
 msgstr "Incapaz de Mostrar Ajuda"
 
-#: gsearchtool/gsearchtool-callbacks.c:132
-msgid "Searching..."
-msgstr "A Procurar..."
-
-#: gsearchtool/gsearchtool-callbacks.c:290
+#: gsearchtool/gsearchtool-callbacks.c:297
 #, c-format
 msgid "This will open %d separate files. Are you sure you want to do this?"
 msgstr ""
 "Isto irá abrir %d ficheiros diferentes. Deseja mesmo efectuar esta operação?"
 
-#: gsearchtool/gsearchtool-callbacks.c:293
+#: gsearchtool/gsearchtool-callbacks.c:300
 #, c-format
 msgid "Open %d Files?"
 msgstr "Abrir %d Ficheiros?"
 
-#: gsearchtool/gsearchtool-callbacks.c:350
-#: gsearchtool/gsearchtool-callbacks.c:623
+#: gsearchtool/gsearchtool-callbacks.c:357
+#: gsearchtool/gsearchtool-callbacks.c:630
 #, c-format
 msgid "There is no installed viewer capable of displaying \"%s\"."
 msgstr "Não existe nenhum visualizador capaz de mostrar \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:357
-#: gsearchtool/gsearchtool-callbacks.c:630
+#: gsearchtool/gsearchtool-callbacks.c:364
+#: gsearchtool/gsearchtool-callbacks.c:637
 msgid "Can't Display Location"
 msgstr "Incapaz de Mostrar Localização"
 
-#: gsearchtool/gsearchtool-callbacks.c:395
+#: gsearchtool/gsearchtool-callbacks.c:402
 #, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr ""
 "Isto irá abrir %d pastas diferentes. Deseja mesmo efectuar esta operação?"
 
-#: gsearchtool/gsearchtool-callbacks.c:398
+#: gsearchtool/gsearchtool-callbacks.c:405
 #, c-format
 msgid "Open %d Folders?"
 msgstr "Abrir %d Pastas?"
 
-#: gsearchtool/gsearchtool-callbacks.c:437
+#: gsearchtool/gsearchtool-callbacks.c:444
 msgid "The nautilus file manager is not running."
 msgstr "O gestor de ficheiros nautilus não está em execução."
 
-#: gsearchtool/gsearchtool-callbacks.c:732
+#: gsearchtool/gsearchtool-callbacks.c:739
 msgid "Save Search Results As..."
 msgstr "Gravar Resultados da Procura Como..."
 
-#: gsearchtool/gsearchtool-callbacks.c:775
+#: gsearchtool/gsearchtool-callbacks.c:782
 #, c-format
 msgid ""
 "Cannot save search results.\n"
@@ -1113,25 +1119,17 @@ msgstr ""
 "Incapaz de gravar resultados da procura.\n"
 "\"%s\" é uma pasta."
 
-#: gsearchtool/gsearchtool-callbacks.c:803
+#: gsearchtool/gsearchtool-callbacks.c:810
 #, c-format
 msgid "File \"%s\" already exists. Overwrite?"
 msgstr "Ficheiro \"%s\" já existe. Sobrepor?"
 
-#: gsearchtool/gsearchtool-callbacks.c:840
+#: gsearchtool/gsearchtool-callbacks.c:847
 #, c-format
 msgid "Cannot save search results to the file \"%s\"."
 msgstr "Incapaz de gravar resultados da procura para o ficheiro \"%s\"."
 
-#: gsearchtool/gsearchtool-support.c:290
-msgid "Expander Size"
-msgstr "Tamanho do Expansor"
-
-#: gsearchtool/gsearchtool-support.c:291
-msgid "Size of the expander arrow"
-msgstr "Tamanho da seta de expansão"
-
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:58
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1140,27 +1138,23 @@ msgstr ""
 "Erro GConf:\n"
 "  %s"
 
-#: gsearchtool/gsearchtool-support.c:586
-msgid "%Y%m%d%H%M%S"
-msgstr "%Y%m%d%M%H%S"
-
-#: gsearchtool/gsearchtool-support.c:617
+#: gsearchtool/gsearchtool-support.c:315
 msgid "today at %-I:%M %p"
 msgstr "hoje às %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:619
+#: gsearchtool/gsearchtool-support.c:317
 msgid "yesterday at %-I:%M %p"
 msgstr "ontem às %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:621 gsearchtool/gsearchtool-support.c:623
+#: gsearchtool/gsearchtool-support.c:319 gsearchtool/gsearchtool-support.c:321
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:748
+#: gsearchtool/gsearchtool-support.c:446
 msgid "link (broken)"
 msgstr "ligação (errada)"
 
-#: gsearchtool/gsearchtool-support.c:753
+#: gsearchtool/gsearchtool-support.c:451
 #, c-format
 msgid "link to %s"
 msgstr "ligação para %s"
@@ -1617,6 +1611,21 @@ msgid ""
 msgstr ""
 "Especifica o ficheiro de log a abrir ao iniciar. Por omissão é /var/adm/"
 "messages ou /var/log/messages, dependendo do seu sistema operativo."
+
+#~ msgid "(aborted)"
+#~ msgstr "(abortado)"
+
+#~ msgid "Additional Options"
+#~ msgstr "Opções Adicionais"
+
+#~ msgid "Expander Size"
+#~ msgstr "Tamanho do Expansor"
+
+#~ msgid "Size of the expander arrow"
+#~ msgstr "Tamanho da seta de expansão"
+
+#~ msgid "%Y%m%d%H%M%S"
+#~ msgstr "%Y%m%d%M%H%S"
 
 #~ msgid "Copyright 1999 by Mike Hughes"
 #~ msgstr "Copyright 1999 por Mike Hughes"
