@@ -34,7 +34,7 @@ int
 main(int argc, char *argv[])
 {
 	GtkWidget *theent;
-#ifdef GTK_HAVE_ACCEL_GROUP
+#ifdef GTK_HAVE_FEATURES_1_1_0
 	GtkAccelGroup *accel;
 #else
 	GtkAcceleratorTable *accel;
@@ -56,7 +56,7 @@ main(int argc, char *argv[])
 			   GTK_SIGNAL_FUNC(dorun), theent);
 	gtk_window_set_focus(GTK_WINDOW(thewin), theent);
 
-#ifdef GTK_HAVE_ACCEL_GROUP
+#ifdef GTK_HAVE_FEATURES_1_1_0
 	accel = gtk_accel_group_new();
 #else
 	accel = gtk_accelerator_table_new ();
