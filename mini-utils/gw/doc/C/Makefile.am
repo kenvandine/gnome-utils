@@ -44,4 +44,10 @@ install-data-local: index.html
 	-for file in $(srcdir)/*.png ; do \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gw_helpdir);\
 	done
+	$(mkinstalldirs) $(DESTDIR)$(gw_helpdir)/stylesheet-images
+	-for file in $(srcdir)/gw/stylesheet-images/*.gif; do \
+	basefile=`basename $$file`; \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gw_helpdir)/stylesheet-images/$$basefile; \
+	done
+
 
