@@ -137,6 +137,8 @@ init_gui (void)
 	gtk_widget_show (size_label);
 	gtk_box_pack_start (GTK_BOX (hbox), size_label, FALSE, FALSE, 0);
 
+	gtk_container_border_width (GTK_CONTAINER (vbox), 5);
+
 	gnome_app_set_contents (GNOME_APP (app), vbox);
 
 	gtk_widget_show (app);
@@ -150,6 +152,7 @@ add_file (const char *file)
 	int type;
 	const char *icon;
 	char *msg;
+	off_t size;
 
 	if (g_hash_table_lookup (file_ht, file) != NULL)
 		return;
@@ -163,10 +166,12 @@ add_file (const char *file)
 	if (S_ISDIR (s.st_mode)) {
 		type = TYPE_FOLDER;
 		icon = folder_icon;
+		size = s.st_size;
 	} else if (S_ISREG (s.st_mode) ||
 		   S_ISLNK (s.st_mode)) {
 		type = TYPE_REGULAR;
 		icon = file_icon;
+		size = 0; /* FIXME: should we even do this? */
 	} else {
 		/* FIXME: error of some sort */
 		return;
@@ -178,7 +183,7 @@ add_file (const char *file)
 	f = g_new0 (File, 1);
 	f->type = type;
 	f->name = g_strdup (file);
-	f->size = s.st_size;
+	f->size = size;
 
 	gnome_icon_list_append (GNOME_ICON_LIST (icon_list),
 				icon, file);
