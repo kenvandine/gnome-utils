@@ -1,3 +1,22 @@
+2000-02-27  Vince Hodges  <vhodges@home.com>
+
+	* gsu-lib.c (fill_command_args): Added function to fill in args array.
+	(gsu_getpass): If user is null, assumes root.
+	(gsu_call_helper): Now calls gsu_get_helper().  Passes command line args
+	to gsu-helper. Wrapped traces in a debug macro. Added code to check to see
+	if we're already root and only ask for a password if we're not.  Initialized
+	password variable to "". Now calls execv() with an appropriatly initialized
+	argument array.
+
+	* gsu-test.c: Added command line arguments to pass to
+	gsu-helper.
+
+	* gsu-lib.h: Added prototype for gsu_call_helper.  Added debug macro.
+
+	* gsu-helper.c:  undef'd USE_PAM.  It seems broken on my machine.  When I 
+	have more time, I'll look into this.  Rearranged some of the code so that
+	it would compile with USE_PAM not defined.
+
 1999-07-28  Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>
 
 	* gsu-lib.c, gsu.c : Use g_strdup_printf instead of g_strconcat for

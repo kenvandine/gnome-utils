@@ -79,7 +79,9 @@
 
    Written by David MacKenzie <djm@gnu.ai.mit.edu>.  */
 
+
 #include <config.h>
+#undef USE_PAM
 #include <stdio.h>
 #include <getopt.h>
 #include <sys/types.h>
@@ -88,9 +90,9 @@
 #ifdef USE_PAM
 #include <security/pam_appl.h>
 #include <security/pam_misc.h>
+#endif
 #include <signal.h>
 #include <sys/wait.h>
-#endif
 #include "system.h"
 
 #if defined(HAVE_SYSLOG_H) && defined(HAVE_SYSLOG)
@@ -219,6 +221,17 @@ static struct option const longopts[] =
   {0, 0, 0, 0}
 };
 
+#ifndef _pam_overwrite
+#define _pam_overwrite(x) \
+{ \
+     register char *xx; \
+     if ((xx=x)) \
+          while (*xx) \
+               *xx++ = '\0'; \
+}
+#endif
+
+
 /* abort on fatal errors. */
 
 static void
@@ -269,8 +282,11 @@ helper_error (int status, int errnum, const char *message, ...)
 
   va_end (args);
 
-  if (status)
-    exit (status);
+  if (status) {
+//	  sleep(1);  
+	  exit (status);
+  }
+  
 }
 
 /* read the password. */
@@ -396,15 +412,6 @@ log_su (const struct passwd *pw, int successful)
 #define CONV_ECHO_ON  1
 #define CONV_ECHO_OFF 0
 
-#ifndef _pam_overwrite
-#define _pam_overwrite(x) \
-{ \
-     register char *xx; \
-     if ((xx=x)) \
-          while (*xx) \
-               *xx++ = '\0'; \
-}
-#endif
 
 static char *read_string(int echo, const char *remark)
 {
@@ -417,7 +424,6 @@ static char *read_string(int echo, const char *remark)
 	  _pam_overwrite(tmp);       /* overwrite the old record of
 				      * the password */
      } else {
-	  fprintf(stderr,"%s",remark);
 	  text = fgets(buffer,INPUTSIZE-1,stdin);
 	  if (text) {
 	       tmp = buffer + strlen(buffer);
@@ -471,12 +477,14 @@ correct_password (const struct passwd *pw)
   int saved_stderr_fd;
   int dev_null_fd;
 
+  
   /* root always succeeds; this isn't an authentication question (no
    * extra privs are being granted) so it shouldn't authenticate with PAM.
    * However, we want to create the pam_handle so that proper credentials
    * are created later with pam_setcred(). */
   retval = pam_start("su", pw->pw_name, &conv, &pamh);
   PAM_BAIL_P;
+
   if (getuid () == 0)
     return 1;
 
@@ -494,7 +502,6 @@ correct_password (const struct passwd *pw)
     exit (2);
 
   /* temporarily redirect stdin from our password_fd. */
-
   saved_stdin_fd = dup (0);
   if (saved_stdin_fd < 0)
     exit (2);
@@ -549,6 +556,7 @@ correct_password (const struct passwd *pw)
     return 1;
 
   unencrypted = helper_read_password ();
+
   if (unencrypted == NULL)
     {
       helper_error (0, 0, _("getpass: cannot open /dev/tty"));
@@ -852,6 +860,7 @@ helper_init (int *argc, char **argv)
 
   if (sscanf (passwd_fd_arg, "%d", &passwd_fd) != 1)
     helper_abort ();
+
 }
 
 int
@@ -870,12 +879,13 @@ main (int argc, char **argv)
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
+
   helper_init (&argc, argv);
 
   fast_startup = 0;
   simulate_login = 0;
-  change_environment = 1;
-
+  change_environment = 1;  
+  
   while ((optc = getopt_long (argc, argv, "c:flmps:", longopts, (int *) 0))
 	 != EOF)
     {
@@ -928,7 +938,7 @@ main (int argc, char **argv)
     new_user = argv[optind++];
   if (optind < argc)
     additional_args = argv + optind;
-
+  
   pw = getpwnam (new_user);
   if (pw == 0)
     helper_error (1, 0, _("user %s does not exist"), new_user);
