@@ -30,9 +30,15 @@
 #define VERSION "0.0.0"
 #endif
 
-static void string_callback(gchar * s, gpointer data)
+GnomeFileEntry *fentry;
+
+static void string_callback(GnomeDialog *dlg, gint button_num, gpointer data)
 {
-  if (s) {
+  if (button_num == 0) {
+    char *s;
+
+    s = gtk_entry_get_text(GTK_ENTRY(gnome_file_entry_gtk_entry(fentry)));
+
     if ( gnome_execute_shell(NULL, s) < 0 ) {
       gchar * t = g_copy_strings(_("Failed to execute command:\n"), 
                                  s, "\n", g_unix_error_string(errno),
@@ -41,6 +47,7 @@ static void string_callback(gchar * s, gpointer data)
       g_free(t); /* well, not really needed */
     }
   }
+  gtk_main_quit();
 }
 
 int main (int argc, char ** argv)
@@ -53,11 +60,26 @@ int main (int argc, char ** argv)
 
   gnome_init (APPNAME, VERSION, argc, argv);
 
-  dialog = gnome_request_string_dialog(_("Enter a command to execute:"),
-                                       string_callback, NULL);
+  dialog = gnome_dialog_new(_("Run Program"),
+                            _("Run"), _("Cancel"), NULL);
+  gnome_dialog_set_default(GNOME_DIALOG(dialog), 0);
+  gnome_dialog_close_hides(GNOME_DIALOG(dialog), TRUE);
+  gnome_dialog_set_close(GNOME_DIALOG(dialog), TRUE);
+
+  gtk_signal_connect(GTK_OBJECT(dialog), "clicked", 
+		     GTK_SIGNAL_FUNC(string_callback), NULL);
 
   gtk_signal_connect(GTK_OBJECT(dialog), "close", 
 		     GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
+
+  fentry = GNOME_FILE_ENTRY(gnome_file_entry_new("gnome-run", _("Select a program to run")));
+
+  gtk_signal_connect(GTK_OBJECT(GTK_COMBO(fentry->gentry)->entry), "activate", 
+		     GTK_SIGNAL_FUNC(string_callback), NULL);
+
+  gtk_container_add(GTK_CONTAINER(GNOME_DIALOG(dialog)->vbox),
+                    GTK_WIDGET(fentry));
+  gtk_widget_show_all(dialog);
 
   gtk_main();
 
