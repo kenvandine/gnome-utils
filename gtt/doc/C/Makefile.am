@@ -30,7 +30,7 @@ gtt/usage.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gtt.sgml
 
 dist-hook:
-	mkdir $(distdir)/gtt
+	$(mkinstalldirs) $(distdir)/gtt
 	-cp $(srcdir)/gtt/*.html gtt/*.css $(distdir)/gtt
 	-cp $(srcdir)/*.html $(distdir)
 	-cp $(srcdir)/*.png $(distdir)

@@ -30,7 +30,7 @@ gshutdown/usage.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gshutdown.sgml
 
 dist-hook:
-	mkdir $(distdir)/gshutdown
+	$(mkinstalldirs) $(distdir)/gshutdown
 	-cp $(srcdir)/gshutdown/*.html gshutdown/*.css $(distdir)/gshutdown
 	-cp $(srcdir)/*.html $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
