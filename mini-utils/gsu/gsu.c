@@ -1,6 +1,5 @@
 /* This is a hacked up version of GNU su which requests the password
    via a Gnome dialog box. It also has some Debian patches. 
-   For some reason getspnam() seems to always return NULL on my computer.
    - Havoc Pennington <hp@pobox.com> */
 
 /* su for GNU.  Run a shell with substitute user and group IDs.
@@ -126,7 +125,7 @@ uid_t getuid ();
 #include <shadow.h>
 #endif
 
-#include "error.h"
+/* error.h no longer included, use g_error instead */
 
 #ifdef HAVE_PATHS_H
 #include <paths.h>
@@ -208,7 +207,7 @@ static void
 xputenv (const char *val)
 {
   if (putenv (val))
-    error (1, 0, _("virtual memory exhausted"));
+    g_error (_("virtual memory exhausted"));
 }
 
 /* Return a newly-allocated string whose contents concatenate
@@ -392,13 +391,13 @@ change_identity (const struct passwd *pw)
 #ifdef HAVE_INITGROUPS
   errno = 0;
   if (initgroups (pw->pw_name, pw->pw_gid) == -1)
-    error (1, errno, _("cannot set groups"));
+    g_error (_("Cannot set groups: %s"), g_unix_error_string(errno));
   endgrent ();
 #endif
   if (setgid (pw->pw_gid))
-    error (1, errno, _("cannot set group id"));
+    g_error (_("Cannot set group id: %s"), g_unix_error_string(errno));
   if (setuid (pw->pw_uid))
-    error (1, errno, _("cannot set user id"));
+    g_error (_("Cannot set user id: %s"), g_unix_error_string(errno));
 }
 
 /* Run SHELL, or DEFAULT_SHELL if SHELL is empty.
@@ -442,7 +441,7 @@ run_shell (const char *shell, const char *command, char **additional_args)
       args[argno++] = *additional_args;
   args[argno] = NULL;
   execv (shell, (char **) args);
-  error (1, errno, _("cannot run %s"), shell);
+  g_error (_("cannot run %s"), shell);
 }
 
 /* Return 1 if SHELL is a restricted shell (one not returned by
@@ -575,7 +574,7 @@ main (int argc, char **argv)
 
   pw = getpwnam (new_user);
   if (pw == 0)
-    error (1, 0, _("user %s does not exist"), new_user);
+    g_error (_("user %s does not exist"), new_user);
   endpwent ();
 
   /* Make a copy of the password information and point pw at the local
@@ -600,7 +599,7 @@ main (int argc, char **argv)
 			 NULL);
       gtk_widget_show(d);
       gtk_main(); /* wait for dialog to die, then quit */
-      error (1, 0, _("incorrect password")); /* just to be sure */
+      g_error (_("incorrect password")); /* just to be sure */
     }
 #ifdef SYSLOG_SUCCESS
   else
@@ -619,7 +618,8 @@ main (int argc, char **argv)
 	 probably a uucp account or has restricted access.  Don't
 	 compromise the account by allowing access with a standard
 	 shell.  */
-      error (0, 0, _("using restricted shell %s"), pw->pw_shell);
+      g_print (_("using restricted shell %s"), pw->pw_shell);
+      exit(0); /* Gnome change: the above was an error() call with exit 0 */
       shell = 0;
     }
   if (shell == 0)
@@ -629,9 +629,11 @@ main (int argc, char **argv)
   modify_environment (pw, shell);
 
   change_identity (pw);
-  if (simulate_login && chdir (pw->pw_dir))
-    error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
-
+  if (simulate_login && chdir (pw->pw_dir)) {
+    /* error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir); */
+    g_warning(_("Cannot change directory to %s"), pw->pw_dir);
+    exit(0);
+  }
   run_shell (shell, command, additional_args);
 }
 

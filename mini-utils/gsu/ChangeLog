@@ -1,0 +1,6 @@
+Tue Apr 21 19:37:40 1998  Havoc Pennington  <hp@pobox.com>
+
+	* gsu.c: Replaced error() calls, since some systems don't have
+	this (it comes with GNU shellutils, so the original su source
+	used it freely). Reported by Sebastian Wilhelmi.
+
