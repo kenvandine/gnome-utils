@@ -2,10 +2,17 @@ if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
-SUBDIRS = po idl $(gfloppy) logview gcharmap \
-	gcalc gsearchtool  gdictsrc \
-	gdialog \
-	meat-grinder exe-handler
+SUBDIRS = po 		\
+	idl		\
+	$(gfloppy)	\
+ 	logview 	\
+	gcharmap 	\
+	gcalc 		\
+	gsearchtool	\
+	gdictsrc	\
+	gdialog		\
+	meat-grinder	\
+	exe-handler
 
 #splash stripchart mini-utils gtt
 
