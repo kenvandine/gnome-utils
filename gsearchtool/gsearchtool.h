@@ -63,20 +63,22 @@ struct _FindOption {
 	/*the index of the template this uses*/
 	gint templ;
 
-	/*these guys aren't in a union so that they aren't lost when we
-	  change templates*/
+	/* is this option enabled */
+	gint enabled;
 
-	/* true false data */
-	gint bool;
+	union {
+		/* true false data */
+		gint bool;
 
-	/* this is a char string of the data */
-	gchar text[256];
+		/* this is a char string of the data */
+		gchar text[256];
 
-	/* number data */
-	gint number;
+		/* number data */
+		gint number;
 
-	/* the time data */
-	gchar time[50];
+		/* the time data */
+		gchar time[50];
+	} data;
 };
 	
 

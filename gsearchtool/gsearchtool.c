@@ -48,6 +48,13 @@ FindOptionTemplate templates[] = {
 GList *criteria_find=NULL;
 GList *criteria_grep=NULL;
 
+static GtkWidget *find_box=NULL;
+static GtkWidget *grep_box=NULL;
+
+static GtkWidget *start_dir_e=NULL;
+
+static gint current_template=0;
+
 #if 1
 /* search for a filename */
 static void
@@ -543,7 +550,14 @@ main(int argc, char *argv[])
 
 #else
 
-GtkWidget *
+static void
+menu_toggled(GtkWidget *w, gpointer data)
+{
+	if(GTK_CHECK_MENU_ITEM(w)->active)
+		current_template = (long)data;
+}
+
+static GtkWidget *
 make_list_of_templates(void)
 {
 	GtkWidget *menu;
@@ -559,6 +573,9 @@ make_list_of_templates(void)
 	for(i=0;templates[i].type!=FIND_OPTION_END;i++) {
 		menuitem=gtk_radio_menu_item_new_with_label(group,
 							    templates[i].desc);
+		gtk_signal_connect(GTK_OBJECT(menuitem),"toggled",
+				   GTK_SIGNAL_FUNC(menu_toggled),
+				   (gpointer)(long)i);
 		group=gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(menuitem));
 		gtk_menu_append (GTK_MENU (menu), menuitem);
 		gtk_widget_show (menuitem);
@@ -566,7 +583,87 @@ make_list_of_templates(void)
 	return menu;
 }
 
-GtkWidget *
+static gint
+remove_option(GtkWidget *w, gpointer data)
+{
+	FindOption *opt = data;
+	if(templates[opt->templ].type == FIND_OPTION_GREP) {
+		gtk_container_remove(GTK_CONTAINER(grep_box),w->parent);
+		criteria_grep = g_list_remove(criteria_grep,opt);
+	} else {
+		gtk_container_remove(GTK_CONTAINER(find_box),w->parent);
+		criteria_find = g_list_remove(criteria_find,opt);
+	}
+	return FALSE;
+}
+
+static gint
+enable_option(GtkWidget *w, gpointer data)
+{
+	FindOption *opt = data;
+	GtkWidget *frame = gtk_object_get_user_data(GTK_OBJECT(w));
+	gtk_widget_set_sensitive(GTK_WIDGET(frame),
+				 GTK_TOGGLE_BUTTON(w)->active);
+	opt->enabled = GTK_TOGGLE_BUTTON(w)->active;
+	return FALSE;
+}
+
+/*FIXME: check for length*/
+static gint
+entry_changed(GtkWidget *w, gpointer data)
+{
+	FindOption *opt = data;
+	switch(templates[opt->templ].type) {
+	case FIND_OPTION_TEXT:
+	case FIND_OPTION_GREP:
+		strcpy(opt->data.text,gtk_entry_get_text(GTK_ENTRY(w)));
+		break;
+	case FIND_OPTION_NUMBER:
+		sscanf(gtk_entry_get_text(GTK_ENTRY(w)),"%d",
+		       &opt->data.number);
+		break;
+	case FIND_OPTION_TIME:
+		strcpy(opt->data.time,gtk_entry_get_text(GTK_ENTRY(w)));
+		break;
+	default:
+		g_warning("Entry changed called for a non entry option!");
+		break;
+	}
+	return FALSE;
+}
+
+static gint
+bool_changed(GtkWidget *w, gpointer data)
+{
+	FindOption *opt = data;
+	opt->data.bool = (GTK_TOGGLE_BUTTON(w)->active!=FALSE);
+	return FALSE;
+}
+
+static void
+set_option_defaults(FindOption *opt)
+{
+	switch(templates[opt->templ].type) {
+	case FIND_OPTION_CHECKBOX_TRUE:
+		opt->data.bool = TRUE;
+		break;
+	case FIND_OPTION_CHECKBOX_FALSE:
+		opt->data.bool = FALSE;
+		break;
+	case FIND_OPTION_TEXT:
+	case FIND_OPTION_GREP:
+		opt->data.text[0]='\0';
+		break;
+	case FIND_OPTION_NUMBER:
+		opt->data.number = 0;
+		break;
+	case FIND_OPTION_TIME:
+		opt->data.time[0]='\0';
+		break;
+	}
+}
+
+static GtkWidget *
 create_option_box(FindOption *opt)
 {
 	GtkWidget *hbox;
@@ -584,11 +681,15 @@ create_option_box(FindOption *opt)
 	case FIND_OPTION_CHECKBOX_TRUE:
 		option = gtk_check_button_new_with_label(
 						templates[opt->templ].desc);
+		gtk_signal_connect(GTK_OBJECT(option),"toggled",
+				   GTK_SIGNAL_FUNC(bool_changed),opt);
 		gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(option),TRUE);
 		break;
 	case FIND_OPTION_CHECKBOX_FALSE:
 		option = gtk_check_button_new_with_label(
 						templates[opt->templ].desc);
+		gtk_signal_connect(GTK_OBJECT(option),"toggled",
+				   GTK_SIGNAL_FUNC(bool_changed),opt);
 		break;
 	case FIND_OPTION_TEXT:
 	case FIND_OPTION_NUMBER:
@@ -598,35 +699,41 @@ create_option_box(FindOption *opt)
 		w = gtk_label_new(templates[opt->templ].desc);
 		gtk_box_pack_start(GTK_BOX(option),w,FALSE,FALSE,0);
 		w = gtk_entry_new();
+		gtk_signal_connect(GTK_OBJECT(w),"changed",
+				   GTK_SIGNAL_FUNC(entry_changed),opt);
 		gtk_box_pack_start(GTK_BOX(option),w,TRUE,TRUE,0);
 		break;
 	}
 	gtk_container_add(GTK_CONTAINER(frame),option);
 
 	w = gtk_check_button_new_with_label("Enable");
+	gtk_object_set_user_data(GTK_OBJECT(w),frame);
+	gtk_signal_connect(GTK_OBJECT(w),"toggled",
+			   GTK_SIGNAL_FUNC(enable_option),opt);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(w),TRUE);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 
 	w = gtk_button_new_with_label("Remove");
+	gtk_signal_connect(GTK_OBJECT(w),"clicked",
+			   GTK_SIGNAL_FUNC(remove_option),opt);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 
 	return hbox;
 }
 
-void
-add_option(gint templ, GtkWidget *find_box, GtkWidget *grep_box)
+static void
+add_option(gint templ)
 {
 	FindOption *opt = g_new(FindOption,1);
 	GtkWidget *w;
 
 	opt->templ = templ;
-	opt->bool = TRUE;
-	opt->text[0] = '\0';
-	opt->number = 0;
-	opt->time[0] = '\0';
+	opt->enabled = TRUE;
+
+	set_option_defaults(opt);
 
 	w = create_option_box(opt);
-	gtk_widget_show(w);
+	gtk_widget_show_all(w);
 
 	/*if it's a grep type option (criterium)*/
 	if(templates[templ].type == FIND_OPTION_GREP) {
@@ -638,17 +745,30 @@ add_option(gint templ, GtkWidget *find_box, GtkWidget *grep_box)
 	}
 }
 
-GtkWidget *
+static gint
+add_option_cb(GtkWidget *w, gpointer data)
+{
+	add_option(current_template);
+	return FALSE;
+}
+
+static GtkWidget *
 create_find_page(void)
 {
-	GtkWidget *find_box;
-	GtkWidget *grep_box;
 	GtkWidget *vbox;
 	GtkWidget *hbox;
 	GtkWidget *w;
 
 	vbox = gtk_vbox_new(FALSE,5);
 	gtk_container_border_width(GTK_CONTAINER(vbox),5);
+
+	hbox = gtk_hbox_new(FALSE,5);
+	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
+	w = gtk_label_new(_("Start in directory:"));
+	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+	start_dir_e = gtk_entry_new();
+	gtk_box_pack_start(GTK_BOX(hbox),start_dir_e,TRUE,TRUE,0);
+	gtk_entry_set_text(GTK_ENTRY(start_dir_e),".");
 
 	find_box = gtk_vbox_new(TRUE,5);
 	gtk_box_pack_start(GTK_BOX(vbox),find_box,TRUE,TRUE,0);
@@ -660,10 +780,11 @@ create_find_page(void)
 
 	w = gtk_option_menu_new();
 	gtk_option_menu_set_menu(GTK_OPTION_MENU(w), make_list_of_templates());
-	gtk_option_menu_set_history(GTK_OPTION_MENU (w), 4);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 
 	w = gtk_button_new_with_label(_("Add"));
+	gtk_signal_connect(GTK_OBJECT(w),"clicked",
+			   GTK_SIGNAL_FUNC(add_option_cb),NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 
 	w = gtk_hseparator_new();
@@ -677,18 +798,18 @@ create_find_page(void)
 	w = gtk_button_new_with_label(_("Stop"));
 	gtk_box_pack_end(GTK_BOX(hbox),w,FALSE,FALSE,0);
 
-	add_option(0,find_box,grep_box);
+	add_option(0);
 
 	return vbox;
 }
 
-GtkWidget *
+static GtkWidget *
 create_locate_page(void)
 {
-	return gtk_label_new("This is not yet implemented");
+	return gtk_label_new(_("This is not yet implemented"));
 }
 
-GtkWidget *
+static GtkWidget *
 create_window(void)
 {
 	GtkWidget *nbook;
@@ -730,13 +851,13 @@ quit_cb (GtkWidget *widget, gpointer data)
 
 
 
-GnomeUIInfo file_menu[] = {
+static GnomeUIInfo file_menu[] = {
 	{GNOME_APP_UI_ITEM, N_("Exit"), NULL, quit_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'X', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
-GnomeUIInfo help_menu[] = {  
+static GnomeUIInfo help_menu[] = {  
 	{ GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}, 
 	
@@ -746,7 +867,7 @@ GnomeUIInfo help_menu[] = {
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
-GnomeUIInfo gsearch_menu[] = {
+static GnomeUIInfo gsearch_menu[] = {
 	{GNOME_APP_UI_SUBTREE, N_("File"), NULL, file_menu, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
