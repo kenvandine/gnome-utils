@@ -1,19 +1,21 @@
 # traditional Chinese translation of gnome-utils.
-# Copyright (C) 1999, 2001, 2002, 2003 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2001, 02, 03, 04 Free Software Foundation, Inc.
 # Ming-Yen Hsu <myhsu@cyberdude.com>, 1999.
 # Abel Cheung <maddog@linux.org.hk>, 2001-2003.
+# Roy Hiu-yeung Chan <roy.chan@debian.org.hk>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 2.3.4\n"
-"POT-Creation-Date: 2004-03-23 06:50+1200\n"
-"PO-Revision-Date: 2003-08-19 07:25+0800\n"
-"Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
+"Project-Id-Version: gnome-utils 2.6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-22 20:20+0800\n"
+"PO-Revision-Date: 2004-03-22 20:30+0800\n"
+"Last-Translator: Roy Hiu-yeung Chan <roy.chan@debian.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -61,7 +63,7 @@ msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
 msgstr ""
-"出現嚴重錯誤。請檢查伺服器和連接埠是否正確。作為參考值，預設的伺服器是 dict."
+"出現嚴重錯誤。請檢查伺服器和連接埠是否正確。供你參考，預設的伺服器是 dict."
 "org，而預設的連接埠是 2628。"
 
 #. Translator credits
@@ -71,6 +73,7 @@ msgstr ""
 "i18n 程式中文化計劃\n"
 "http://i18n.linux.org.tw/\n"
 "\n"
+"Roy Chan <roy.chan@linux.org.hk>, 2004\n"
 "Abel Cheung <maddog@linux.org.hk>, 2001-2003\n"
 "Ming-Yen Hsu <myhsu@cyberdude.com>, 1999"
 
@@ -112,9 +115,8 @@ msgid "Find"
 msgstr "搜尋"
 
 #: gdictsrc/gdict-app.c:477
-#, fuzzy
 msgid "_Search for:"
-msgstr "搜尋出現錯誤"
+msgstr "搜尋(_S)："
 
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
@@ -199,7 +201,7 @@ msgstr "預設伺服器(_F)"
 
 #: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
-msgstr "將伺服器恢復成預設值"
+msgstr "將伺服器網域名域恢復成預設值"
 
 #: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
@@ -262,13 +264,16 @@ msgid "Default Strategy"
 msgstr "預設搜尋方式"
 
 #: gdictsrc/gdict-pref-dialog.c:658
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "There was an error displaying help: \n"
 "%s"
-msgstr "發生錯誤。‘%s’沒有內容"
+msgstr ""
+"顯示說明文件時發生錯誤：\n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
+#, fuzzy
 msgid "Enter a word to know the spelling"
 msgstr "請輸入字詞來尋找該字詞的正確拼字方式"
 
@@ -317,7 +322,7 @@ msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers"
 msgstr ""
-"要連接的字典伺服碞。預設的伺服器為 dict.org。請瀏覽 http://www.dict.org 獲取"
+"要連接的字典伺服器。預設的伺服器為 dict.org。請瀏覽 http://www.dict.org 獲取"
 "有關其它伺服器的詳情。"
 
 #: gdictsrc/gdict.schemas.in.h:6
@@ -367,7 +372,7 @@ msgstr ""
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
-msgstr "※只適合進階使用者※ ─ 格式化 FAT 所使用的預設背景程序"
+msgstr "※只適合進階使用者※ ─ 格式化 FAT 所使用的預設後端程序"
 
 #: gfloppy/gfloppy.schemas.in.h:3
 msgid "Default filesystem type"
@@ -382,12 +387,12 @@ msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
 msgstr ""
-"如選用本選項，表示優先選用 mkdosfs 作為格式化 FAT 檔案系統的背景程序，否則表"
+"如選用本選項，表示優先選用 mkdosfs 作為格式化 FAT 檔案系統的後端程序，否則表"
 "示優先選用 mtools。"
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr "ext2 表示 linux 沿用的檔案系統，或是 fat 表示 DOS 的檔案系統。"
+msgstr "ext2 表示 linux 沿用的檔案系統，或是 fat 表示 DOS/Windows 的檔案系統。"
 
 #: gfloppy/src/badblocks.c:94
 msgid "Internal Error: Unable to seek to the correct location."
@@ -484,7 +489,7 @@ msgid ""
 "Read Error:\n"
 "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
-"讀取資料發生錯誤：\n"
+"讀取資料時發生錯誤：\n"
 "問題發生在第 %d 個磁區，預計資料為 %d，實際讀取資料為 %d"
 
 #: gfloppy/src/fdformat.c:143
@@ -524,11 +529,11 @@ msgstr ""
 
 #: gfloppy/src/fdformat.c:214
 msgid "Could not determine current floppy geometry."
-msgstr "無法決定目前碟片的大小。"
+msgstr "無法決定目前軟碟片的大小。"
 
 #: gfloppy/src/gfloppy.c:221
 msgid "Error while creating a unique filename for the bad blocks list file."
-msgstr "當為壞磁區清單檔命名時出現錯誤。"
+msgstr "當為壞磁區清單檔命名時發生錯誤。"
 
 #: gfloppy/src/gfloppy.c:241
 msgid "Error while filling the bad blocks list file."
@@ -569,7 +574,7 @@ msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
-"壞磁區檢查公用程式 (mbadblocks) 回報了以下的錯誤：\n"
+"壞磁區檢查公用程式 (mbadblocks) 匯報了以下的錯誤：\n"
 "%s。"
 
 #: gfloppy/src/gfloppy.c:441
@@ -611,7 +616,7 @@ msgid ""
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
-"<small><i><b>注意</b>：系統中並沒有 mbadblocks 公用程式。如果要進行徹底的 "
+"<small><i><b>注意</b>：系統中沒有安裝 mbadblocks 公用程式。如果要進行徹底的 "
 "DOS (fat) 格式化，就必須安裝該程式。</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
@@ -701,7 +706,7 @@ msgid ""
 "Please attach device to continue."
 msgstr ""
 "%s 裝置並未連接至電腦。\n"
-"請接上裝置再繼續。"
+"請接上裝置後再繼續。"
 
 #: gfloppy/src/main.c:170 gfloppy/src/main.c:222
 #, c-format
@@ -714,13 +719,12 @@ msgstr ""
 "若要獲得寫入的權限，請聯絡系統管理員。"
 
 #: gfloppy/src/main.c:216
-#, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "無法開啟 %s 裝置，不能繼續格式化。"
+msgstr "無法開啟任何裝置，不能繼續格式化。"
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 或 /dev/fd0"
 
 #: gfloppy/src/main.c:394
 #, c-format
@@ -744,7 +748,7 @@ msgid "DEVICE"
 msgstr "裝置"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
@@ -752,9 +756,6 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
-"軟碟片已經成功格式化，但在 %2$d 個磁區中找到 <b>%1$d 個壞磁區</b>，全部都已加"
-"上標記。"
-msgstr[1] ""
 "軟碟片已經成功格式化，但在 %2$d 個磁區中找到 <b>%1$d 個壞磁區</b>，全部都已加"
 "上標記。"
 
@@ -781,28 +782,30 @@ msgid "Search your disk for files"
 msgstr "在磁碟中搜尋檔案"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:99
+#, fuzzy
 msgid "Image/label border"
-msgstr ""
+msgstr "圖像/標籤邊界"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
+#, fuzzy
 msgid "Width of border around the label and image in the alert dialog"
-msgstr ""
+msgstr "在警告對話方塊中包圍標籤和圖像的邊框大小"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
 msgid "Alert Type"
-msgstr ""
+msgstr "警告訊息類型"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "The type of alert"
-msgstr ""
+msgstr "警告訊息的類型"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:118
 msgid "Alert Buttons"
-msgstr ""
+msgstr "警報按鈕"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "The buttons shown in the alert dialog"
-msgstr ""
+msgstr "在警告對話方塊顯示的按鈕"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -814,37 +817,34 @@ msgstr "開啟資料夾(_P)"
 
 #: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
-msgstr ""
+msgstr "丟進回收筒(_V)"
 
 #: gsearchtool/gsearchtool-callbacks.c:64
 msgid "_Save Results As..."
 msgstr "將結果儲存為(_S)..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
-#, fuzzy
 msgid "Could not open help document."
-msgstr "無法開啟說明文件"
+msgstr "無法開啟說明文件。"
 
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "是否確定要開啟 %d 份文件？"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] "這樣會開啟 %d 個不同的資料夾。是否確定要這樣做？"
-msgstr[1] "這樣會開啟 %d 個不同的資料夾。是否確定要這樣做？"
+msgstr[0] "這樣會另外開啟 %d 個視窗。"
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open document \"%s\"."
-msgstr "無法開啟“%s”檔案"
+msgstr "無法開啟“%s”文件"
 
 #: gsearchtool/gsearchtool-callbacks.c:393
 #: gsearchtool/gsearchtool-callbacks.c:947
@@ -855,11 +855,10 @@ msgstr "沒有任何已安裝的顯示模式可以顯示該檔案。"
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "是否確定要開啟 %d 個資料夾？"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "無法開啟“%s”資料夾"
 
@@ -868,86 +867,84 @@ msgid "The nautilus file manager is not running."
 msgstr "nautilus 檔案總管並未執行。"
 
 #: gsearchtool/gsearchtool-callbacks.c:612
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to trash."
-msgstr "無法將“%s”儲存至 %s"
+msgstr "無法將“%s”丟進回收筒。"
 
 #: gsearchtool/gsearchtool-callbacks.c:615
-#, fuzzy
 msgid "The document does not exist."
-msgstr "啟始資料夾不存在"
+msgstr "資料夾不存在。"
 
 #: gsearchtool/gsearchtool-callbacks.c:652
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to the trash."
-msgstr "無法將“%s”儲存至 %s"
+msgstr "無法將“%s”丟進回收筒。"
 
 #: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr ""
+msgstr "移動“%s”失敗： %s。"
 
 #: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
-msgstr ""
+msgstr "是否確定永久刪除“%s”？"
 
 #: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr ""
+msgstr "回收筒無法使用。未能把“%s”丟進回收筒。"
 
 #: gsearchtool/gsearchtool-callbacks.c:730
-#, fuzzy, c-format
+#, c-format
 msgid "Could not delete \"%s\"."
-msgstr "無法開啟“%s”資料夾"
+msgstr "無法刪除“%s”。"
 
 #: gsearchtool/gsearchtool-callbacks.c:733
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr ""
+msgstr "刪除 \"%s\" 失敗: %s。"
 
 #: gsearchtool/gsearchtool-callbacks.c:1132
 msgid "Save Search Results As..."
 msgstr "將搜尋結果另存為..."
 
 #: gsearchtool/gsearchtool-callbacks.c:1184
-#, fuzzy
 msgid "Could not save document."
-msgstr "不可以將“”儲存至 %s"
+msgstr "無法儲存文件。"
 
 #: gsearchtool/gsearchtool-callbacks.c:1186
 #, fuzzy
 msgid "You did not select a document name."
-msgstr "無法開啟“%s”檔案"
+msgstr "您並沒有選取一個文件名稱。"
 
 #: gsearchtool/gsearchtool-callbacks.c:1212
 #: gsearchtool/gsearchtool-callbacks.c:1307
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
-msgstr "不可以將“”儲存至 %s"
+msgstr "無法將“%s”文件儲存至“%s”"
 
 #: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
-msgstr ""
+msgstr "您所選的文件名稱是一個資料夾。"
 
 #: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "文件“%s”已存在，是否確定覆寫這個檔案？"
 
 #: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr ""
+msgstr "如果您取代一個現有的檔案，該檔案的原有內容將會消失。"
 
 #: gsearchtool/gsearchtool-callbacks.c:1260
+#, fuzzy
 msgid "_Replace"
-msgstr ""
+msgstr "取代(_R)"
 
 #: gsearchtool/gsearchtool-callbacks.c:1310
-#, fuzzy
 msgid "You may not have write permissions to the document."
-msgstr "您沒有足夠權限寫入檔案。不會儲存檔案。"
+msgstr "您沒有足夠權限寫入檔案。"
 
 #: gsearchtool/gsearchtool-support.c:64
 #, c-format
@@ -1018,7 +1015,7 @@ msgstr "屬於指定群組(_G)"
 
 #: gsearchtool/gsearchtool.c:81
 msgid "Owner is unrecognized"
-msgstr "擁有者無法識別"
+msgstr "無法識別擁有者"
 
 #: gsearchtool/gsearchtool.c:83
 msgid "Na_me does not contain"
@@ -1029,9 +1026,8 @@ msgid "Name matches regular e_xpression"
 msgstr "檔名符合正規表示式(_X)"
 
 #: gsearchtool/gsearchtool.c:86
-#, fuzzy
 msgid "Show hidden and backup files"
-msgstr "顯示隱藏的檔案或資料夾"
+msgstr "顯示隱藏或備份的檔案或資料夾"
 
 #: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
@@ -1054,18 +1050,16 @@ msgid "No Files Found"
 msgstr "找不到任何檔案"
 
 #: gsearchtool/gsearchtool.c:541
-#, fuzzy, c-format
+#, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "找到 %d 個檔案"
-msgstr[1] "找到 %d 個檔案"
 
 #: gsearchtool/gsearchtool.c:545
-#, fuzzy, c-format
+#, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "找到 %d 個檔案"
-msgstr[1] "找到 %d 個檔案"
 
 #: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
@@ -1121,17 +1115,14 @@ msgstr ""
 "... 錯誤過多，無法顯示 ..."
 
 #: gsearchtool/gsearchtool.c:1312
-#, fuzzy
 msgid "Error while searching for files."
 msgstr "搜尋檔案時出現錯誤。"
 
 #: gsearchtool/gsearchtool.c:1353
-#, fuzzy
 msgid "Error parsing the search command."
 msgstr "分析搜尋指令時發生錯誤"
 
 #: gsearchtool/gsearchtool.c:1376
-#, fuzzy
 msgid "Error running the search command."
 msgstr "執行搜尋指令時發生錯誤"
 
@@ -1217,13 +1208,12 @@ msgid "Show more _options"
 msgstr "顯示進階選項(_O)"
 
 #: gsearchtool/gsearchtool.c:1872
-#, fuzzy
 msgid "Show more options"
-msgstr "顯示進階選項(_O)"
+msgstr "顯示進階選項"
 
 #: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
-msgstr ""
+msgstr "展開或收起一系列搜尋選項。"
 
 #: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
@@ -1265,7 +1255,7 @@ msgstr "加入(_A)"
 #: logview/actions.c:162
 #, fuzzy
 msgid "Add an action"
-msgstr "行動"
+msgstr "加入行動"
 
 #: logview/actions.c:164
 msgid "_Edit"
@@ -1274,16 +1264,15 @@ msgstr "修改(_E)"
 #: logview/actions.c:169
 #, fuzzy
 msgid "Edit an action"
-msgstr "執行行動(_E)"
+msgstr "編輯行動"
 
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "移除(_R)"
 
 #: logview/actions.c:176
-#, fuzzy
 msgid "Remove an action"
-msgstr "移除所有項目"
+msgstr "移除行動"
 
 #: logview/actions.c:263
 #, c-format
@@ -1334,49 +1323,48 @@ msgstr "行動"
 
 #: logview/actions.c:687
 msgid "_Tag:"
-msgstr ""
+msgstr "標籤(_T):"
 
 #: logview/actions.c:696
 msgid "Tag that identifies the log file."
-msgstr ""
+msgstr "用作識別紀錄檔的標籤"
 
 #: logview/actions.c:705
 #, fuzzy
 msgid "_Log name:"
-msgstr "檔案系統標記名稱(_N)："
+msgstr "系統記錄檔案名稱(_L)："
 
 #: logview/actions.c:714
 msgid "Regular expression that will match the log name."
-msgstr ""
+msgstr "用作搜索記錄檔名的正規表示式。"
 
 #: logview/actions.c:724
-#, fuzzy
 msgid "_Process:"
-msgstr "進程："
+msgstr "程序(_P)："
 
 #: logview/actions.c:733
 msgid "Regular expression that will match process part of message."
-msgstr ""
+msgstr "用作搜索記錄中程序部份的正規表示式。"
 
 #: logview/actions.c:743
-#, fuzzy
 msgid "_Message:"
-msgstr "訊息："
+msgstr "訊息(_M)"
 
 #: logview/actions.c:752
 msgid "Regular expression that will match the message."
-msgstr ""
+msgstr "用作搜索記錄訊息的正規表示式。"
 
 #: logview/actions.c:762
-#, fuzzy
 msgid "_Action:"
-msgstr "行動"
+msgstr "行動(_A):"
 
 #: logview/actions.c:771
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
+"如果符合之前所有正規表示式，這行動將會被執行。這是由一個系統指令 system(動"
+"作) 去執行的。"
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1462,11 +1450,10 @@ msgid "<No log loaded>"
 msgstr "<未載入任何日誌>"
 
 #: logview/info.c:183
-#, fuzzy, c-format
+#, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld 位元組"
-msgstr[1] "%ld 位元組"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1717,6 +1704,7 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "太多需要監察的日誌了，請關閉一部份並再嘗試"
 
 #: logview/monitor.c:298 logview/monitor.c:335
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list 是 NULL\n"
 
@@ -1725,6 +1713,7 @@ msgid "Monitoring Logs..."
 msgstr "正在監察日誌..."
 
 #: logview/monitor.c:643
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr "被更改了！！\n"
 
