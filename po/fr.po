@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.2\n"
-"POT-Creation-Date: 2001-08-25 16:56+0200\n"
-"PO-Revision-Date: 2001-08-25 16:47+0200\n"
+"POT-Creation-Date: 2001-08-30 10:46+0200\n"
+"PO-Revision-Date: 2001-08-30 10:46+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@eikonex.org>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -556,7 +556,7 @@ msgid "Cross-reference:"
 msgstr "Référence croisée :"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:519
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:570
 #: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:195
 msgid "Preferences"
 msgstr "Préférences"
@@ -646,7 +646,7 @@ msgstr "Incapable d'analyser la chaîne de géométrie « %s »"
 msgid "Specify the geometry of the window."
 msgstr "Spécifie la géométrie de la fenêtre."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:234 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:308 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GÉOMÉTRIE"
 
@@ -884,15 +884,15 @@ msgstr "Commande mutilé"
 msgid "No command for this mime type"
 msgstr "Aucune commande pour ce type MIME"
 
-#: gtt/app.c:120 gtt/app.c:232
+#: gtt/app.c:104 gtt/app.c:213
 msgid "no project selected"
 msgstr "Pas de projet sélectionné"
 
-#: gtt/app.c:221
+#: gtt/app.c:202
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:264 mini-utils/gless/gless.c:423
+#: gtt/app.c:245 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -900,33 +900,33 @@ msgstr ""
 "Ne peut comprendre la géométrie (position et taille)\n"
 "spécifiée sur la ligne de commande"
 
-#: gtt/clist.c:171
-msgid "Total"
-msgstr "Total"
+#: gtt/file-io.c:331
+msgid "project %t started"
+msgstr "Projet %t démarré"
 
-#: gtt/clist.c:172
-msgid "Today"
-msgstr "Aujourd'hui"
+#: gtt/file-io.c:334
+msgid "stopped project %t"
+msgstr "Projet stoppé %t"
 
-#: gtt/clist.c:173 gtt/menucmd.c:121
-msgid "Project Title"
-msgstr "Titre du projet"
+#. Translators: This is a "time format", that is
+#. * format on how to print the elapsed time with
+#. * hours:minutes:seconds.
+#: gtt/file-io.c:530
+#, c-format
+msgid "%d:%02d:%02d"
+msgstr "%d:%02d:%02d"
 
-#: gtt/clist.c:174 gtt/menucmd.c:122 stripchart/params.c:654
-msgid "Description"
-msgstr "Description"
-
-#: gtt/log.c:54
+#: gtt/log.c:53
 #, c-format
 msgid "Cannot open logfile %s for append"
 msgstr "Ne peut ouvrir le journal %s pour ajout"
 
 #. Translators: Format to use in the gtt logfile
-#: gtt/log.c:63
+#: gtt/log.c:62
 msgid "%b %d %H:%M:%S"
 msgstr "%d %b %H:%M:%S"
 
-#: gtt/log.c:83 gtt/log.c:237
+#: gtt/log.c:83 gtt/log.c:244
 msgid "program started"
 msgstr "Programme lancé"
 
@@ -935,11 +935,11 @@ msgid "no description"
 msgstr "Pas de description"
 
 #. log_if_equal
-#: gtt/log.c:229
+#: gtt/log.c:236
 msgid "program exited"
 msgstr "Programme terminé"
 
-#: gtt/main.c:101
+#: gtt/main.c:106
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -948,15 +948,15 @@ msgstr ""
 "Cliquez sur « Valider » pour démarrer GTimeTracker tout de même\n"
 "ou « Annuler » pour quitter."
 
-#: gtt/main.c:112
+#: gtt/main.c:117
 msgid "Cannot create pid-file!"
 msgstr "Ne peut créer le fichier-pid !"
 
-#: gtt/main.c:144
+#: gtt/main.c:183
 msgid "Error"
 msgstr "Erreur"
 
-#: gtt/main.c:145
+#: gtt/main.c:184
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -964,43 +964,56 @@ msgstr ""
 "Une erreur est survenue durant la lecture du fichier de configuration.\n"
 "Dois-je installer une nouvelle configuration ?"
 
-#: gtt/main.c:234
+#: gtt/main.c:308
 msgid "Specify geometry"
 msgstr "Spécifie la géométrie"
 
-#: gtt/main.c:236
+#: gtt/main.c:310
 msgid "Select a project on startup"
 msgstr "Choisir un projet au lancement de l'application"
 
-#: gtt/main.c:236
+#: gtt/main.c:310
 msgid "PROJECT"
 msgstr "PROJET"
 
-#: gtt/menucmd.c:36 gtt/menucmd.c:167 gtt/menucmd.c:199
+#: gtt/main.c:343 gtt/menucmd.c:50 gtt/menucmd.c:58 gtt/menucmd.c:225
+#: gtt/menucmd.c:263
 msgid "Warning"
 msgstr "Avertissement"
 
-#: gtt/menucmd.c:37 gtt/menucmd.c:201
-msgid "I could not write the configuration file!"
-msgstr "Je n'ai pas pu enregistrer le fichier de configuration !"
+#: gtt/menucmd.c:51 gtt/menucmd.c:265
+msgid "Could not write the configuration file!"
+msgstr "N'a pu écrire le fichier de configuration !"
 
-#: gtt/menucmd.c:68
+#: gtt/menucmd.c:59
+msgid "Unknown error occurred"
+msgstr "Une erreur inconnue est survenue"
+
+#: gtt/menucmd.c:107
 msgid "Time tracking tool for GNOME"
 msgstr "Outil de gestion du temps pour GNOME"
 
-#: gtt/menucmd.c:115 gtt/toolbar.c:143
+#: gtt/menucmd.c:157 gtt/toolbar.c:143
 msgid "New Project..."
 msgstr "Nouveau projet..."
 
-#: gtt/menucmd.c:169
+#: gtt/menucmd.c:163
+msgid "Project Title"
+msgstr "Titre du projet"
+
+#: gtt/menucmd.c:164 stripchart/params.c:654
+msgid "Description"
+msgstr "Description"
+
+#: gtt/menucmd.c:227
 msgid "I could not read the configuration file"
 msgstr "Je n'ai pas pu lire le fichier de configuration"
 
-#: gtt/menucmd.c:183 gtt/toolbar.c:150
+#: gtt/menucmd.c:241 gtt/toolbar.c:150
 msgid "Reload Configuration File"
 msgstr "Recharger le fichier de configuration"
 
-#: gtt/menucmd.c:184
+#: gtt/menucmd.c:242
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1008,16 +1021,16 @@ msgstr ""
 "Cela écrasera vos projets actuels.\n"
 "Voulez-vous vraiment recharger votre fichier de configuration ?"
 
-#: gtt/menucmd.c:221
+#: gtt/menucmd.c:285
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr "Le fichier %s existe, l'écraser ?"
 
-#: gtt/menucmd.c:232
+#: gtt/menucmd.c:296
 msgid "File cannot be written"
 msgstr "Le fichier ne peut être écrit"
 
-#: gtt/menucmd.c:252
+#: gtt/menucmd.c:316
 msgid "Export Current State"
 msgstr "Exporter la valeur courante"
 
@@ -1057,151 +1070,159 @@ msgstr "Chronomè_tre lancé"
 msgid "_Timer"
 msgstr "Chronomè_tre"
 
-#: gtt/options.c:190
+#: gtt/options.c:233
 msgid "Display"
 msgstr "Affichage"
 
-#: gtt/options.c:198
+#: gtt/options.c:241
 msgid "Show Seconds"
 msgstr "Afficher les secondes"
 
-#: gtt/options.c:204
+#: gtt/options.c:247
 msgid "Show Status Bar"
 msgstr "Afficher la barre d'état"
 
-#: gtt/options.c:210
+#: gtt/options.c:253
 msgid "Show Table Header"
 msgstr "Afficher les en-têtes de table"
 
-#: gtt/options.c:224 gtt/options.c:539
+#: gtt/options.c:259
+msgid "Show Sub-Projects"
+msgstr "Afficher les sous-projets"
+
+#: gtt/options.c:273 gtt/options.c:590
 msgid "Toolbar"
 msgstr "Barre d'outils"
 
-#: gtt/options.c:232
+#: gtt/options.c:281
 msgid "Show Toolbar Icons"
 msgstr "Afficher les icônes de la barre d'outils"
 
-#: gtt/options.c:238
+#: gtt/options.c:287
 msgid "Show Toolbar Texts"
 msgstr "Afficher les textes de la barre d'outils"
 
-#: gtt/options.c:244
+#: gtt/options.c:293
 msgid "Show Tooltips"
 msgstr "Activer les bulles d'aide"
 
-#: gtt/options.c:250
+#: gtt/options.c:299
 msgid "Toolbar Segments"
 msgstr "Segments de la barre d'outils"
 
-#: gtt/options.c:258
+#: gtt/options.c:307
 msgid "Show `New'"
 msgstr "Afficher « Nouveau »"
 
-#: gtt/options.c:264
+#: gtt/options.c:313
 msgid "Show `Save', `Reload'"
 msgstr "Afficher « Recharger », « Enregistrer »"
 
-#: gtt/options.c:270
+#: gtt/options.c:319
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Afficher « Couper », « Copier », « Coller »"
 
-#: gtt/options.c:276
+#: gtt/options.c:325
 msgid "Show `Properties'"
 msgstr "Afficher « Propriétés »"
 
-#: gtt/options.c:282
+#: gtt/options.c:331
 msgid "Show `Timer'"
 msgstr "Afficher « Chronomètre »"
 
-#: gtt/options.c:288
+#: gtt/options.c:337
 msgid "Show `Preferences'"
 msgstr "Afficher « Préférences »"
 
-#: gtt/options.c:294
+#: gtt/options.c:343
 msgid "Show `Help'"
 msgstr "Afficher « Aide »"
 
-#: gtt/options.c:300
+#: gtt/options.c:349
 msgid "Show `Quit'"
 msgstr "Afficher « Quitter »"
 
-#: gtt/options.c:314
+#: gtt/options.c:363
 msgid "Shell Commands"
 msgstr "Commandes Shell"
 
-#: gtt/options.c:322
+#: gtt/options.c:371
 msgid "Switch Project Command:"
 msgstr "Commande pour changer de projet :"
 
-#: gtt/options.c:334
+#: gtt/options.c:383
 msgid "No Project Command:"
 msgstr "Commande « aucun projet » :"
 
-#: gtt/options.c:369
+#: gtt/options.c:418
 msgid "Logfile"
 msgstr "Historique"
 
-#: gtt/options.c:377
+#: gtt/options.c:426
 msgid "Use Logfile"
 msgstr "Utiliser l'historique"
 
-#: gtt/options.c:386
+#: gtt/options.c:435
 msgid "Filename:"
 msgstr "Nom du fichier :"
 
-#: gtt/options.c:400
+#: gtt/options.c:449
 msgid "Entry Start:"
 msgstr "Début de l'entrée :"
 
-#: gtt/options.c:414
+#: gtt/options.c:463
 msgid "Entry Stop:"
 msgstr "Fin de l'entrée:"
 
-#: gtt/options.c:428
+#: gtt/options.c:477
 msgid "Timeout in secs:"
 msgstr "Délai avant expiration en secondes :"
 
-#: gtt/options.c:526
+#: gtt/options.c:577
 msgid "Misc"
 msgstr "Divers"
+
+#: gtt/proj.c:287
+msgid "Old GTT Tasks"
+msgstr "Vieilles tâches GTT"
 
 #: gtt/prop.c:60
 msgid "empty"
 msgstr "vide"
 
-#: gtt/prop.c:168
+#: gtt/prop.c:187
 msgid "Properties"
 msgstr "Propriétés"
 
-#: gtt/prop.c:176
+#: gtt/prop.c:195
 msgid "Project"
 msgstr "Projet"
 
-#: gtt/prop.c:195
+#: gtt/prop.c:214
 msgid "Project Title:"
 msgstr "Titre du projet :"
 
-#: gtt/prop.c:208
+#: gtt/prop.c:227
 msgid "Project Description:"
 msgstr "Description du projet :"
 
-#: gtt/prop.c:221
+#: gtt/prop.c:240
 msgid "Project Time today:"
 msgstr "Temps pour le projet aujourd'hui :"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:256 gtt/prop.c:294
 msgid "hours"
 msgstr "heures"
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:267 gtt/prop.c:305
 msgid "mins"
 msgstr "minutes"
 
-#: gtt/prop.c:259 gtt/prop.c:297
+#: gtt/prop.c:278 gtt/prop.c:316
 msgid "secs"
 msgstr "secondes"
 
-#: gtt/prop.c:263
+#: gtt/prop.c:282
 msgid "Project Time ever:"
 msgstr "Temps total sur le projet :"
 
@@ -3840,685 +3861,3 @@ msgid ""
 msgstr ""
 "Ne peut trouver le programme d'archive (tar) !\n"
 "Il s'agit du programme utilisé pour la création d'archives."
-
-#~ msgid "project %t started"
-#~ msgstr "Projet %t démarré"
-
-#~ msgid "stopped project %t"
-#~ msgstr "Projet stoppé %t"
-
-#~ msgid "Formatting /dev/floppy"
-#~ msgstr "Formattage de /dev/floppy"
-
-#~ msgid "Formatting %s"
-#~ msgstr "Formattage %s"
-
-#~ msgid ""
-#~ "Number of files: 0\n"
-#~ "Number of folders: 0"
-#~ msgstr ""
-#~ "Nombre de fichiers : 0\n"
-#~ "Nombre de répertoires : 0"
-
-#~ msgid "ASCII code:"
-#~ msgstr "Code ASCII :"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
-
-#~ msgid "OK"
-#~ msgstr "Valider"
-
-#~ msgid "Open log...            "
-#~ msgstr "Ouvrir un historique...   "
-
-#~ msgid "Export log...          "
-#~ msgstr "Exporter l'historique..."
-
-#~ msgid "Close log              "
-#~ msgstr "Fermer l'historique    "
-
-#~ msgid "Switch log             "
-#~ msgstr "Changer d'historique   "
-
-#~ msgid "Monitor..              "
-#~ msgstr "Surveiller...          "
-
-#~ msgid "Exit                   "
-#~ msgstr "Quitter                "
-
-#~ msgid "Calendar                "
-#~ msgstr "Calendrier              "
-
-#~ msgid "Log stats               "
-#~ msgstr "Statistiques d'historique"
-
-#~ msgid "Zoom                    "
-#~ msgstr "Zoom                    "
-
-#~ msgid "Preferences...          "
-#~ msgstr "Préférences...          "
-
-#~ msgid "About..                "
-#~ msgstr "À propos...            "
-
-#~ msgid ""
-#~ "Notebook\n"
-#~ "Toplevel\n"
-#~ "Modal\n"
-#~ "Default\n"
-#~ msgstr ""
-#~ "Carnet\n"
-#~ "1er niveau\n"
-#~ "Modal\n"
-#~ "Défaut\n"
-
-#~ msgid ""
-#~ "Left\n"
-#~ "Right\n"
-#~ "Top\n"
-#~ "Bottom\n"
-#~ msgstr ""
-#~ "Gauche\n"
-#~ "Droite\n"
-#~ "Haut\n"
-#~ "Bas\n"
-
-#~ msgid "window1"
-#~ msgstr "window1"
-
-#~ msgid "_Save..."
-#~ msgstr "Enregi_strer..."
-
-#~ msgid "Write information to disk"
-#~ msgstr "Enregistrer l'information sur le disque"
-
-#~ msgid "Save not implemented yet\n"
-#~ msgstr "L'enregistrement n'est pas encore implémenté\n"
-
-#~ msgid "rparen expected"
-#~ msgstr "rparen attendu"
-
-#~ msgid "extra gunk at end: \"%s\""
-#~ msgstr "données supplémentaire à la fin : « %s »"
-
-#~ msgid "%s, line %d: "
-#~ msgstr "%s, ligne %d : "
-
-#~ msgid "can't open config file \"%s\""
-#~ msgstr "Ne peut ouvrir le fichier de configuration « %s »"
-
-#~ msgid ""
-#~ "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "Ne peut ouvrir le fichier de configuration « ./gstripchart.conf », « %s "
-#~ "», « %s » ou « %s »"
-
-#~ msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
-#~ msgstr ""
-#~ "Ne peut ouvrir le fichier de configuration « ./gstripchart.conf », « %s » "
-#~ "ou « %s »"
-
-#~ msgid "identifier or begin must be first"
-#~ msgstr "La première ligne doit être un identificateur ou un begin"
-
-#~ msgid "unrecognized color: %s"
-#~ msgstr "Couleur inconnue : %s"
-
-#~ msgid "scale must be either \"log\" or \"linear\""
-#~ msgstr "l'échelle doit être soit « log » soit « linéaire »"
-
-#~ msgid "no equation found"
-#~ msgstr "aucune équation trouvée"
-
-#~ msgid "invalid option: \"%s\""
-#~ msgstr "Option invalide : « %s »"
-
-#~ msgid "E_xit"
-#~ msgstr "_Quitter"
-
-#~ msgid "Terminate the stripchart program"
-#~ msgstr "Terminer le programme gStripchart"
-
-#~ msgid "Copyright 1998,99 John Kodis"
-#~ msgstr "Copyright 1998,99 John Kodis"
-
-#~ msgid "Identifier"
-#~ msgstr "Identificateur"
-
-#~ msgid "Expected range"
-#~ msgstr "Intervalle attendu"
-
-#~ msgid "Displayed range"
-#~ msgstr "Intervalle affiché"
-
-#~ msgid "Stripchart Parameters"
-#~ msgstr "Paramètres de Stripchart"
-
-#~ msgid "Params"
-#~ msgstr "Paramètres"
-
-#~ msgid "gstripchart"
-#~ msgstr "gStripchart"
-
-#~ msgid "Stripchart Viewer"
-#~ msgstr "Moniteur Stripchart"
-
-#~ msgid "invalid display type: %s\n"
-#~ msgstr "Type d'affichage invalide : %s\n"
-
-#~ msgid "Chart update interval"
-#~ msgstr "Intervalle entre les mises à jour du graphe"
-
-#~ msgid "SECS"
-#~ msgstr "SECS"
-
-#~ msgid "Chart low-pass filter time constant"
-#~ msgstr "Constante de temps pour le filtre passe-bas du graphe"
-
-#~ msgid "Slider update interval"
-#~ msgstr "Intervalle entre les mises à jour de l'ascenseur"
-
-#~ msgid "Slider low-pass filter time constant"
-#~ msgstr "Constante de temps pour le filtre passe-bas de l'ascenseur"
-
-#~ msgid "Adds a menubar to the main window"
-#~ msgstr "Ajouter une barre de menu à la fenêtre principale"
-
-#~ msgid "Omits slider window"
-#~ msgstr "Omettre la fenêtre coulissante"
-
-#~ msgid "TYPE is one of gtk, applet, text, or none"
-#~ msgstr "Le TYPE peut être gtk, text, graph ou aucun"
-
-#~ msgid "TYPE"
-#~ msgstr "TYPE"
-
-#~ msgid "TYPE is one of gtk, text, or none"
-#~ msgstr "Le TYPE peut être gtk, text, graph ou aucun"
-
-#~ msgid "white"
-#~ msgstr "blanc"
-
-#~ msgid "black"
-#~ msgstr "noir"
-
-#~ msgid "red"
-#~ msgstr "rouge"
-
-#~ msgid "yellow"
-#~ msgstr "jaune"
-
-#~ msgid "blue"
-#~ msgstr "bleu"
-
-#~ msgid "green"
-#~ msgstr "vert"
-
-#~ msgid "cyan"
-#~ msgstr "cyan"
-
-#~ msgid "magenta"
-#~ msgstr "magenta"
-
-#~ msgid "Busy"
-#~ msgstr "Occupé"
-
-#~ msgid "Load"
-#~ msgstr "Charger"
-
-#~ msgid "Swap"
-#~ msgstr "Swap"
-
-#~ msgid "Battery"
-#~ msgstr "Baterie"
-
-#~ msgid "Net In"
-#~ msgstr "Net In"
-
-#~ msgid "Net Out"
-#~ msgstr "Net Out"
-
-#~ msgid "ppp"
-#~ msgstr "ppp"
-
-#~ msgid "Hide calendar"
-#~ msgstr "Cacher le calendrier"
-
-#~ msgid "%s: unable to load the penguin.\n"
-#~ msgstr "%s : incapable de charger le pengouin.\n"
-
-#~ msgid ""
-#~ "You are trying to do something which requires\n"
-#~ "root (system administrator) privileges.\n"
-#~ "To do this, you must give the root password.\n"
-#~ "Please enter the root password now, or choose\n"
-#~ "Cancel if you do not know it."
-#~ msgstr ""
-#~ "Vous essayez de faire quelque chose qui nécessite\n"
-#~ "d'avoir les privilèges root (administrateur système).\n"
-#~ "Pour faire ceci, vous devez donner le mot de passe\n"
-#~ "de root.\n"
-#~ "Veuillez saisir le mot de passe de root maintenant,\n"
-#~ "ou choisissez « Annuler » si vous ne le connaissez pas."
-
-#~ msgid ""
-#~ "You are trying to change your user identity.\n"
-#~ "Please enter the password for user `%s'."
-#~ msgstr ""
-#~ "Vous êtes en train d'essayer de changer votre identité.\n"
-#~ "Veuillez saisir le mot de passe de l'utilisateur « %s »."
-
-#~ msgid "Command to be run as another user"
-#~ msgstr "Commande à exécuter sous une autre identité"
-
-#~ msgid "User name to run command as"
-#~ msgstr "Nom d'utilisateur sous lequel exécuter la commande"
-
-#~ msgid "File containing interface description"
-#~ msgstr "Fichier contenant la description d'interface"
-
-#~ msgid "Target User"
-#~ msgstr "Utilisateur cible"
-
-#~ msgid "USER"
-#~ msgstr "UTILISATEUR"
-
-#~ msgid ""
-#~ "Failed to execute command:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Échec de l'exécution de la commande :\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Run Program"
-#~ msgstr "Lancer le programme"
-
-#~ msgid "Run"
-#~ msgstr "Exécuter"
-
-#~ msgid "Select a program to run"
-#~ msgstr "Choisissez un programme à exécuter"
-
-#~ msgid "New search"
-#~ msgstr "Nouvelle recherche"
-
-#~ msgid "Open search spec"
-#~ msgstr "Ouvrir des paramètres de recherche"
-
-#~ msgid "Save search spec"
-#~ msgstr "Enregistrer les paramètres de la recherche"
-
-#~ msgid "Save search spec as..."
-#~ msgstr "Enregistrer les paramètres de la recherche sous..."
-
-#~ msgid "Add condition"
-#~ msgstr "Ajouter une condition"
-
-#~ msgid "Add a search condition"
-#~ msgstr "Ajouter une condition de recherche"
-
-#~ msgid "Remove condition"
-#~ msgstr "Enlever une condition"
-
-#~ msgid "Remove last search condition"
-#~ msgstr "Enlever la dernière condition de recherche"
-
-#~ msgid "Show advanced options"
-#~ msgstr "Afficher les options avancées"
-
-#~ msgid "Start search"
-#~ msgstr "Démarrer la recherche"
-
-#~ msgid "New"
-#~ msgstr "Nouveau"
-
-#~ msgid "Clear the search window"
-#~ msgstr "Effacer la fenêtre de recherche"
-
-#~ msgid "Start the current search"
-#~ msgstr "Démarrer la recherche courante"
-
-#~ msgid "Find Files"
-#~ msgstr "Rechercher des fichiers"
-
-#~ msgid "Directory:"
-#~ msgstr "Répertoire :"
-
-#~ msgid "Directory to Search"
-#~ msgstr "Répertoire à rechercher"
-
-#~ msgid "GNOME Find"
-#~ msgstr "GNOME Find"
-
-#~ msgid "(C) 1998 the Free Software Foundation"
-#~ msgstr "(C) 1998 la Free Software Foundation"
-
-#~ msgid "GNOME Find is a fast, flexible file search tool."
-#~ msgstr ""
-#~ "GNOME Find est un outil de recherche de fichiers rapide et flexible."
-
-#~ msgid "Cut the text to clipboard"
-#~ msgstr "Coupe le texte vers le persse-papiers"
-
-#~ msgid "Copy the text to clipboard."
-#~ msgstr "Copie le texte vers le presse-papiers"
-
-#~ msgid "This sets the overall application settings."
-#~ msgstr "Ceci définit les paramètres globaux de l'application."
-
-#~ msgid "About Gnome Find..."
-#~ msgstr "À propos de Gnome Find..."
-
-#~ msgid "_About"
-#~ msgstr "À _propos"
-
-#~ msgid "_File"
-#~ msgstr "_Fichier"
-
-#~ msgid "_Help"
-#~ msgstr "_Aide"
-
-#~ msgid "label2"
-#~ msgstr "label2"
-
-#~ msgid "label13"
-#~ msgstr "label13"
-
-#~ msgid "label14"
-#~ msgstr "label14"
-
-#~ msgid "label15"
-#~ msgstr "label15"
-
-#~ msgid "label16"
-#~ msgstr "label16"
-
-#~ msgid "label4"
-#~ msgstr "label4"
-
-#~ msgid "Please enter the name of the new project:"
-#~ msgstr "Entrez le nom du nouveau projet :"
-
-#~ msgid "F_ilter"
-#~ msgstr "F_iltre"
-
-#~ msgid "16-bit"
-#~ msgstr "16-bit"
-
-#, fuzzy
-#~ msgid "Delayed"
-#~ msgstr "Recharger"
-
-#~ msgid "Simple"
-#~ msgstr "Simple"
-
-#, fuzzy
-#~ msgid "Search in"
-#~ msgstr "Recherche en cours..."
-
-#, fuzzy
-#~ msgid "Add to favorites"
-#~ msgstr "Ajouter des exemples par défaut"
-
-#, fuzzy
-#~ msgid "Rename"
-#~ msgstr "Nom du fichier"
-
-#~ msgid "Parsing Colors"
-#~ msgstr "Analyse des couleurs"
-
-#~ msgid "Error, cannot find the file 'rgb.txt' on your system!"
-#~ msgstr ""
-#~ "Erreur : impossible de trouver le fichier 'rgb.txt' dans votre système !"
-
-#, fuzzy
-#~ msgid "No Name"
-#~ msgstr "Nom"
-
-#~ msgid ""
-#~ "A quick hack to show the amount of space free on mounted file systems "
-#~ "uitilizing a dial."
-#~ msgstr ""
-#~ "Une bidouille rapide pour afficher l'espace libre sur les systèmes de "
-#~ "fichiers montés en utilisant un cadran."
-
-#~ msgid "GHex: Converter"
-#~ msgstr "GHex : convertisseur"
-
-#~ msgid "Decimal"
-#~ msgstr "Décimal"
-
-#~ msgid "Hex"
-#~ msgstr "Hexa"
-
-#~ msgid "ASCII"
-#~ msgstr "ASCII"
-
-#~ msgid "Get cursor value"
-#~ msgstr "Prendre la valeur sous le curseur"
-
-#~ msgid "ERROR"
-#~ msgstr "ERREUR"
-
-#~ msgid "GHex (%s): Find Data"
-#~ msgstr "GHex (%s): rechercher des données"
-
-#~ msgid "Search for %s"
-#~ msgstr "Rechercher %s"
-
-#~ msgid "Find Previous"
-#~ msgstr "Rechercher le précédent"
-
-#~ msgid "GHex (%s): Find & Replace Data"
-#~ msgstr "GHex (%s): rechercher & remplacer des données"
-
-#~ msgid "Replace %s"
-#~ msgstr "Remplacer %s"
-
-#~ msgid "Find next"
-#~ msgstr "Rechercher le suivant"
-
-#~ msgid "Replace"
-#~ msgstr "Remplacer"
-
-#~ msgid "Replace All"
-#~ msgstr "Remplacer tout"
-
-#~ msgid "GHex (%s): Jump To Byte"
-#~ msgstr "GHex (%s): aller à l'octet"
-
-#~ msgid "There is no active buffer to search!"
-#~ msgstr "Il n'y a pas de tampon actif dans lequel chercher !"
-
-#~ msgid "There seems to be no string to search for!"
-#~ msgstr "Il semble qu'il n'y ait pas de chaîne à rechercher !"
-
-#~ msgid "End Of File reached"
-#~ msgstr "Fin du fichier atteinte"
-
-#~ msgid "Beginning Of File reached"
-#~ msgstr "Début du fichier atteint"
-
-#~ msgid "There is no active buffer to move the cursor in!"
-#~ msgstr "Il n'y a pas de tampon actif pour y déplacer le curseur !"
-
-#~ msgid "No offset has been specified!"
-#~ msgstr "Le déplacement n'a pas été spécifié !"
-
-#~ msgid "The offset must be a positive integer value!"
-#~ msgstr "Le déplacement doit être une valeur positive et entière !"
-
-#~ msgid "Can not position cursor beyond the End Of File!"
-#~ msgstr "Impossible de positionner le curseur après la fin du fichier !"
-
-#~ msgid "There is no active buffer to replace data in!"
-#~ msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données !"
-
-#~ msgid "Strange find or replace string!"
-#~ msgstr "Chaîne recherchée bizarre !"
-
-#~ msgid "Both strings must be of the same length!"
-#~ msgstr "Les deux chaînes doivent avoir la même longueur !"
-
-#~ msgid "End Of File reached!"
-#~ msgstr "Fin du fichier atteinte !"
-
-#~ msgid "Replaced %d occurencies."
-#~ msgstr "%d occurences remplacées."
-
-#~ msgid "_Bytes"
-#~ msgstr "_Octets"
-
-#~ msgid "Group data by 8 bits"
-#~ msgstr "Grouper les données par 8 bits"
-
-#~ msgid "_Words"
-#~ msgstr "_Mots"
-
-#~ msgid "Group data by 16 bits"
-#~ msgstr "Grouper les données par 16 bits"
-
-#~ msgid "_Longwords"
-#~ msgstr "Mots _longs"
-
-#~ msgid "Group data by 32 bits"
-#~ msgstr "Grouper les données par 32 bits"
-
-#~ msgid "_Goto Byte..."
-#~ msgstr "Aller à l'_octet..."
-
-#~ msgid "Jump to a certain position"
-#~ msgstr "Aller à la position..."
-
-#~ msgid "_Group Data As"
-#~ msgstr "_Grouper les données par"
-
-#~ msgid "_Add view"
-#~ msgstr "_Ajouter une vue"
-
-#~ msgid "Add a new view of the buffer"
-#~ msgstr "Ajouter une vue du tampon"
-
-#~ msgid "_Remove view"
-#~ msgstr "Enleve_r la vue"
-
-#~ msgid ""
-#~ "File %s has changed since last save.\n"
-#~ "Do you want to save changes?"
-#~ msgstr ""
-#~ "Le document %s a été modifié depuis son dernier enregistrement.\n"
-#~ "Voulez-vous enregistrer les changements ?"
-
-#~ msgid "Offset: %s"
-#~ msgstr "Offset: %s"
-
-#~ msgid "Maximum number of undo levels"
-#~ msgstr "Nombre d'étapes en arrière mémorisées"
-
-#~ msgid "Show cursor offset in statusbar as"
-#~ msgstr "Afficher la position du curseur dans la barre d'état comme"
-
-#~ msgid "Hexadecimal"
-#~ msgstr "Hexadécimal"
-
-#~ msgid "Custom"
-#~ msgstr "Personnalisé"
-
-#~ msgid "Show offsets column"
-#~ msgstr "Montrer la colonne offset"
-
-#~ msgid "Editing"
-#~ msgstr "Edition en cours"
-
-#~ msgid "Browse..."
-#~ msgstr "Naviguer..."
-
-#~ msgid "Default Group Type"
-#~ msgstr "Type du groupe par défaut"
-
-#~ msgid "MDI Mode"
-#~ msgstr "Mode MDI"
-
-#~ msgid "MDI"
-#~ msgstr "MDI"
-
-#~ msgid "Can not open desired font!"
-#~ msgstr "Impossible d'utiliser la police spécifiée !"
-
-#~ msgid "Open Con_verter..."
-#~ msgstr "Ouvrir le con_vertisseur..."
-
-#~ msgid "Open base conversion dialog"
-#~ msgstr "Faire des changements de base numérique"
-
-#~ msgid "Bytes"
-#~ msgstr "Octets"
-
-#~ msgid "Longwords"
-#~ msgstr "Mots longs"
-
-#~ msgid "hex data"
-#~ msgstr "données héxa"
-
-#~ msgid "ASCII data"
-#~ msgstr "données ASCII"
-
-#~ msgid "GHex, a binary file editor"
-#~ msgstr "GHex, un éditeur de fichiers binaires"
-
-#~ msgid "Released under the terms of GNU Public License"
-#~ msgstr "Distribué sous les termes de la Licence Publique Générale GNU"
-
-#~ msgid "Error saving file!"
-#~ msgstr "Erreur lors de la sauvegarde du fichier !"
-
-#~ msgid "Saved buffer to file %s"
-#~ msgstr "Enregistrer le tampon dans le fichier %s"
-
-#~ msgid "Select a file to save buffer as"
-#~ msgstr "Sélectionnez un fichier où sauver le tampon"
-
-#~ msgid "Really revert file %s?"
-#~ msgstr "Vraiment revenir à la version enregistrée du fichier %s ?"
-
-#~ msgid "Reverted buffer from file %s"
-#~ msgstr "Revenir à la version enregistrée %s"
-
-#~ msgid "Loaded file %s"
-#~ msgstr "Fichier %s  chargé"
-
-#~ msgid "Format Style:"
-#~ msgstr "Format :"
-
-#~ msgid "Color Values:"
-#~ msgstr "Attributs de la couleur :"
-
-#~ msgid "This is not yet implemented"
-#~ msgstr "Ceci n'est pas encore implémenté"
-
-#~ msgid "invalid display type: %s"
-#~ msgstr "Type d'affichage invalide : %s"
-
-#~ msgid ""
-#~ "Linux Native (ext2)\n"
-#~ "Dos (FAT)\n"
-#~ msgstr ""
-#~ "Linux Natif (ext2)\n"
-#~ "Dos (FAT)\n"
-
-#~ msgid ""
-#~ "High Density 3.5\" (1.44 MB)\n"
-#~ "High Density 5.25\" (1.2 MB)\n"
-#~ "Double Density 3.5\" (720 KB)\n"
-#~ "Double Density 5.25\" (360 KB)\n"
-#~ msgstr ""
-#~ "Haute Densité 3.5\" (1.44 Mo)\n"
-#~ "Haute Densité 5.25\" (1.2 Mo)\n"
-#~ "Double Densité 3.5\" (720 ko)\n"
-#~ "Double Densité 5.25\" (360 ko)\n"
-
-#~ msgid "EWarning: Could not open device %s"
-#~ msgstr "EAttention: Je ne peux pas ouvrir le lecteur %s"
