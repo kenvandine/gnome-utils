@@ -40,19 +40,19 @@ quit_cb (GtkWidget *widget, gpointer data)
 
 /* Menus */
 GnomeUIInfo gcalc_program_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
+	{GNOME_APP_UI_ITEM, N_("_About..."), NULL, about_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT},
 	/*{GNOME_APP_UI_ITEM, N_("Preferences..."), NULL, NULL, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF},*/
 	{GNOME_APP_UI_SEPARATOR},
-	{GNOME_APP_UI_ITEM, N_("Quit"),  NULL, quit_cb, NULL, NULL,
+	{GNOME_APP_UI_ITEM, N_("_Quit"),  NULL, quit_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_QUIT,
-	'Q', GDK_CONTROL_MASK, NULL},
+	 'Q', GDK_CONTROL_MASK, NULL},
 	GNOMEUIINFO_END
 };
 
 GnomeUIInfo gcalc_edit_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("Copy"), NULL, NULL, NULL, NULL,
+	{GNOME_APP_UI_ITEM, N_("_Copy"), NULL, NULL, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY},
 	GNOMEUIINFO_END
 };
@@ -62,10 +62,10 @@ GnomeUIInfo gcalc_menu[] = {
 	{GNOME_APP_UI_SUBTREE, "", NULL, &gcalc_program_menu, NULL, NULL,
 	        GNOME_APP_PIXMAP_DATA, foot_xpm, 0, 0, NULL },            
 #else
-        {GNOME_APP_UI_SUBTREE, N_("Program"), NULL, gcalc_program_menu, NULL, NULL,
+        {GNOME_APP_UI_SUBTREE, N_("_Program"), NULL, gcalc_program_menu, NULL, NULL,
 	        GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
 #endif
-	{GNOME_APP_UI_SUBTREE, N_("Edit"), NULL, gcalc_edit_menu, NULL, NULL,
+	{GNOME_APP_UI_SUBTREE, N_("_Edit"), NULL, gcalc_edit_menu, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
         GNOMEUIINFO_END
 };
