@@ -32,7 +32,7 @@ int ReadPageDown (Log *log, LogLine ***inp_mon_lines, gboolean exec_actions);
 void MoveToMark ();
 #endif
 
-int isLogFile (char *filename);
+int isLogFile (char *filename, gboolean show_error);
 int isSameDay (time_t day1, time_t day2);
 int WasModified (Log *log);
 void ParseLine (char *buff, LogLine * line);

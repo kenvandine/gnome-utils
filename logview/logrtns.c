@@ -185,8 +185,10 @@ OpenLogFile (char *filename)
    GnomeVFSResult result;
    GnomeVFSFileSize size, read_bytes;
 
+   g_print("Trying to open the file %s\n", filename);
+
    /* Check that the file exists and is readable and is a logfile */
-   if (!isLogFile (filename))
+   if (!isLogFile (filename, TRUE))
 	   return NULL;
 
    /* Alloc memory for log structure */
@@ -252,7 +254,7 @@ OpenLogFile (char *filename)
    that it is readable.
    ---------------------------------------------------------------------- */
 int
-isLogFile (char *filename)
+isLogFile (char *filename, gboolean show_error)
 {
    char buff[1024];
    char **token;
@@ -267,19 +269,23 @@ isLogFile (char *filename)
 
    /* Check that its a regular file       */
    if (info.type != GNOME_VFS_FILE_TYPE_REGULAR) {
-      g_snprintf (buff, sizeof (buff),
-		  _("%s is not a regular file."), filename);
-      ShowErrMessage (buff);
+	   if (show_error) {
+		   g_snprintf (buff, sizeof (buff),
+			       _("%s is not a regular file."), filename);
+		   ShowErrMessage (buff);
+	   }
       return FALSE;
    }
 
    /* File unreadable                     */
    if (!(info.permissions & GNOME_VFS_PERM_USER_READ)) {
-      g_snprintf (buff, sizeof (buff),
-		  _("%s is not user readable. "
-      "Either run the program as root or ask the sysadmin to "
-      "change the permissions on the file."), filename);
-      ShowErrMessage (buff);
+	   if (show_error) {
+		   g_snprintf (buff, sizeof (buff),
+			       _("%s is not user readable. "
+				 "Either run the program as root or ask the sysadmin to "
+				 "change the permissions on the file."), filename);
+		   ShowErrMessage (buff);
+	   }
       return FALSE;
    }
 
@@ -293,19 +299,19 @@ isLogFile (char *filename)
        * we should state why the open failed
        * ie. file too large etc etc..
        */
-      g_snprintf (buff, sizeof (buff),
-		  _("%s could not be opened."), filename);
-      ShowErrMessage (buff);
+	   if (show_error) {
+		   g_snprintf (buff, sizeof (buff),
+			       _("%s could not be opened."), filename);
+		   ShowErrMessage (buff);
+	   }
       return FALSE;
    }
 
    switch (gnome_vfs_read (handle, buff, sizeof(buff), &size)) {
    case GNOME_VFS_ERROR_EOF :
-	   gnome_vfs_close (handle);
-	   return TRUE;
-	   break;
    case GNOME_VFS_OK :
 	   gnome_vfs_close (handle);
+	   return TRUE;
 	   break;
    default:
 	   gnome_vfs_close (handle);
@@ -315,8 +321,10 @@ isLogFile (char *filename)
 
    found_space = g_strstr_len (buff, 1024, " ");
    if (found_space == NULL) {
-	   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-	   ShowErrMessage (buff);
+	   if (show_error) {
+		   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
+		   ShowErrMessage (buff);
+	   }
 	   return FALSE;
    }
    
@@ -324,8 +332,10 @@ isLogFile (char *filename)
    i = get_month (token[0]);
    g_strfreev (token);
    if (i == 12) {
-	   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-	   ShowErrMessage (buff);
+	   if (show_error) {
+		   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
+		   ShowErrMessage (buff);
+	   }
 	   return FALSE;
    }
 

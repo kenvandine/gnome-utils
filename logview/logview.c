@@ -283,6 +283,7 @@ main (int argc, char *argv[])
    while ((next_opt = poptGetNextOpt (poptCon)) > 0) {
 	   if ( next_opt == 1 ) {
 		   if (file_to_open) {
+			   g_print("in main, trying to open %s\n", file_to_open);
 			   logview_create_window_open_file (file_to_open);
 			   g_free (file_to_open);
 		   }
@@ -291,6 +292,7 @@ main (int argc, char *argv[])
 
    /* If no log was passed as parameter, open regular logs */
    if (logview_count_logs() == 0) {
+	   g_print("in main, regular, trying to open %s\n", user_prefs->logfile);
 	   logview_create_window_open_file (user_prefs->logfile);
 	   if (logview_count_logs() == 0) {
 		   GtkWidget *window;
@@ -724,7 +726,7 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs, GConfClient *client)
 	struct stat filestat;
 	
 	logfile = gconf_client_get_string (client, "/apps/gnome-system-log/logfile", NULL);
-	if (logfile != NULL && strcmp (logfile, "")) {
+	if (logfile != NULL && strcmp (logfile, "") && isLogFile(logfile, FALSE)) {
 		prefs->logfile = g_strdup (logfile);
 		g_free (logfile);
 	}
