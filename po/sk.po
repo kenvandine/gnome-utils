@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.1\n"
-"POT-Creation-Date: 2001-09-21 12:58+0200\n"
-"PO-Revision-Date: 2001-09-21 14:11CET\n"
+"POT-Creation-Date: 2001-09-24 14:25+0200\n"
+"PO-Revision-Date: 2001-09-24 14:26CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -275,7 +275,7 @@ msgid "Exit"
 msgstr "Koniec"
 
 #: gcharmap/src/interface.c:239 gcharmap/src/menus.c:104
-#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:170
+#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:179
 msgid "Copy"
 msgstr "Kopírova»"
 
@@ -357,7 +357,7 @@ msgstr "Nastaví, èi mô¾u ma» tlaèidlá fokus"
 msgid "Insert character(s) by choosing character codes"
 msgstr "Vlo¾í znak(y) pomocou ich kódov"
 
-#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:166
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:175
 msgid "Cut"
 msgstr "Vystrihnú»"
 
@@ -369,7 +369,7 @@ msgstr "Vystrihne výber"
 msgid "Copy the selection"
 msgstr "Skopíruje výber"
 
-#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:174
+#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:183
 msgid "Paste"
 msgstr "Vlo¾i»"
 
@@ -641,7 +641,7 @@ msgstr "Nepodarilo sa rozlo¾i» re»azec umiestnenia '%s'"
 msgid "Specify the geometry of the window."
 msgstr "Uvádza umiestnenie okna."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:332 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:446 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRY"
 
@@ -880,15 +880,15 @@ msgstr "Príkaz zamotaný"
 msgid "No command for this mime type"
 msgstr "Pre tento typ MIME nie je príkaz"
 
-#: gtt/app.c:118 gtt/app.c:231
+#: gtt/app.c:115 gtt/app.c:229
 msgid "no project selected"
 msgstr "nevybraný projekt"
 
-#: gtt/app.c:220
+#: gtt/app.c:218
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:263 mini-utils/gless/gless.c:423
+#: gtt/app.c:261 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -896,34 +896,38 @@ msgstr ""
 "Nerozumiem umiestneniu (pozícii a veµkosti)\n"
 " uvedenému na príkazovom riadku"
 
-#: gtt/ctree.c:353
+#: gtt/ctree.c:442
 msgid "Total"
 msgstr "Celkom"
 
-#: gtt/ctree.c:354 gtt/glade/interval_edit.glade.h:14
+#: gtt/ctree.c:446 gtt/glade/interval_edit.glade.h:14
 msgid "Today"
 msgstr "Dnes"
 
-#: gtt/ctree.c:355 gtt/menucmd.c:183
+#: gtt/ctree.c:450 gtt/menucmd.c:144
 msgid "Project Title"
 msgstr "Titulok projektu"
 
-#: gtt/ctree.c:356 gtt/menucmd.c:184 stripchart/params.c:654
+#: gtt/ctree.c:454 gtt/menucmd.c:145 stripchart/params.c:654
 msgid "Description"
 msgstr "Popis"
 
-#: gtt/file-io.c:342
+#: gtt/ctree.c:458
+msgid "Task"
+msgstr "Úloha"
+
+#: gtt/file-io.c:358
 msgid "project %t started"
 msgstr "projekt %t spustený"
 
-#: gtt/file-io.c:345
+#: gtt/file-io.c:361
 msgid "stopped project %t"
 msgstr "zastavený projekt %t"
 
 #. Translators: This is a "time format", that is
 #. * format on how to print the elapsed time with
 #. * hours:minutes:seconds.
-#: gtt/file-io.c:580
+#: gtt/file-io.c:641
 #, c-format
 msgid "%d:%02d:%02d"
 msgstr "%d:%02d:%02d"
@@ -1005,24 +1009,24 @@ msgstr "Chyba - Neznáme"
 msgid "unknown token: >>>>"
 msgstr "neznámy token: >>>>"
 
-#: gtt/journal.c:106
+#: gtt/journal.c:107
 msgid "Error 404 Not Found"
 msgstr "Chyba 404 Nenájdené"
 
-#: gtt/journal.c:108
+#: gtt/journal.c:109
 #, c-format
 msgid "The file %s was not found."
 msgstr "Súbor %s nebol nájdený."
 
-#: gtt/journal.c:109
+#: gtt/journal.c:110
 msgid "(null)"
 msgstr "(null)"
 
-#: gtt/journal.c:118
+#: gtt/journal.c:119
 msgid "Unkown Error"
 msgstr "Neznáma chyba"
 
-#: gtt/journal.c:167 gtt/plug-in.c:89
+#: gtt/journal.c:168 gtt/plug-in.c:89
 #, c-format
 msgid ""
 "Unable to open the file %s\n"
@@ -1031,12 +1035,12 @@ msgstr ""
 "Nepodarilo sa otvori» súbor %s\n"
 "%s"
 
-#: gtt/journal.c:246 gtt/proj.c:489 gtt/proj.c:1156 gtt/proj.c:1273
-#: gtt/proj.c:1411
+#: gtt/journal.c:247 gtt/proj.c:505 gtt/proj.c:1200 gtt/proj.c:1317
+#: gtt/proj.c:1455
 msgid "New Task"
 msgstr "Nová úloha"
 
-#: gtt/journal.c:404
+#: gtt/journal.c:421
 msgid "Save HTML To File"
 msgstr "Ulo¾i» HTML do súboru"
 
@@ -1063,7 +1067,7 @@ msgstr "program spustený"
 msgid "program exited"
 msgstr "program skonèil"
 
-#: gtt/main.c:113
+#: gtt/main.c:115
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -1072,187 +1076,170 @@ msgstr ""
 "Stlaète OK, ak chcete spusti» GTimeTracker aj tak, inak stlaète Zru¹i» pre "
 "koniec."
 
-#: gtt/main.c:124
+#: gtt/main.c:127
 msgid "Cannot create pid-file!"
 msgstr "Nemô¾em vytvori» súbor pid!"
 
-#: gtt/main.c:194
+#: gtt/main.c:220
+msgid "Do you want to continue?"
+msgstr "Chcete pokraèova»?"
+
+#: gtt/main.c:223 gtt/main.c:282
 msgid "Error"
 msgstr "Chyba"
 
-#: gtt/main.c:195
-msgid ""
-"An error occured while reading the configuration file.\n"
-"Shall I setup a new configuration?"
-msgstr ""
-"Nastala chyba pri èítaní konfiguraèného súboru.\n"
-"Mám vytvori» novú konfiguráciu?"
+#: gtt/main.c:279
+msgid "Shall I setup a new configuration?"
+msgstr "Mám nastavi» novú konfiguráciu?"
 
-#: gtt/main.c:332
+#: gtt/main.c:446
 msgid "Specify geometry"
 msgstr "©pecifikuje umiestnenie"
 
-#: gtt/main.c:334
+#: gtt/main.c:448
 msgid "Select a project on startup"
 msgstr "Výber projektu pri ¹tarte"
 
-#: gtt/main.c:334
+#: gtt/main.c:448
 msgid "PROJECT"
 msgstr "PROJEKT"
 
-#: gtt/main.c:372 gtt/menucmd.c:51 gtt/menucmd.c:59 gtt/menucmd.c:67
-#: gtt/menucmd.c:75 gtt/menucmd.c:245 gtt/menucmd.c:283
+#: gtt/main.c:487 gtt/menucmd.c:48 gtt/menucmd.c:200 gtt/menucmd.c:236
 msgid "Warning"
 msgstr "Varovanie"
 
-#: gtt/menucmd.c:52
-msgid "Could not write the data file!"
-msgstr "Nemô¾em zapisova» do dátového súboru!"
-
-#: gtt/menucmd.c:60
-msgid "Could not read the data file!"
-msgstr "Nemô¾em èíta» dátový súbor!"
-
-#: gtt/menucmd.c:68 gtt/menucmd.c:285
-msgid "Could not write the configuration file!"
-msgstr "Nemô¾em zapisova» do konfiguraèného súboru!"
-
-#: gtt/menucmd.c:76
-msgid "Unknown error occurred"
-msgstr "Nastala neznáma chyba"
-
-#: gtt/menucmd.c:127
+#: gtt/menucmd.c:85
 msgid "Time tracking tool for GNOME"
 msgstr "GNOME nástroj pre sledovanie èasu"
 
-#: gtt/menucmd.c:177
+#: gtt/menucmd.c:138
 msgid "New Project..."
 msgstr "Nový projekt..."
 
-#: gtt/menucmd.c:247
-msgid "I could not read the configuration file"
-msgstr "Nemô¾em èíta» konfiguraèný súbor!"
-
-#: gtt/menucmd.c:261 gtt/toolbar.c:156
+#: gtt/menucmd.c:220 gtt/toolbar.c:165
 msgid "Reload Configuration File"
 msgstr "Znovu naèíta» konfiguraèný súbor"
 
-#: gtt/menucmd.c:262
-msgid ""
-"This will overwrite your current set of projects.\n"
-"Do you really want to reload the configuration file?"
-msgstr ""
-"Toto prepí¹e Va¹e aktuálne projekty.\n"
-"Naozaj chcete znovu naèíta» konfiguraèný súbor?"
+#: gtt/menucmd.c:221
+msgid "Do you really want to reload the configuration file?"
+msgstr "Naozaj chcete znovu naèíta» konfiguraèný súbor?"
 
-#: gtt/menucmd.c:305
+#: gtt/menucmd.c:256
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr "Súbor %s u¾ existuje. Prepísa»?"
 
-#: gtt/menucmd.c:316
+#: gtt/menucmd.c:267
 msgid "File cannot be written"
 msgstr "Súbor nie je mo¾né zapísa»"
 
-#: gtt/menucmd.c:336
+#: gtt/menucmd.c:287
 msgid "Export Current State"
 msgstr "Exportova» aktuálny stav"
 
-#: gtt/menus.c:34
+#: gtt/menus.c:33
 msgid "_New Project..."
 msgstr "_Nový projekt..."
 
-#: gtt/menus.c:37
+#: gtt/menus.c:36
 msgid "_Reload Configuration File"
 msgstr "_Znovu naèíta» konfiguraèný súbor"
 
-#: gtt/menus.c:41
+#: gtt/menus.c:40
 msgid "_Save Configuration File"
 msgstr "_Ulo¾i» konfiguraèný súbor"
 
-#: gtt/menus.c:45
+#: gtt/menus.c:44
 msgid "_Export Current State"
 msgstr "_Exportova» aktuálny stav"
 
-#: gtt/menus.c:64 gtt/menus.c:156
+#: gtt/menus.c:63 gtt/menus.c:173
 msgid "Clear _Daily Counter"
 msgstr "Vymaza» _denné poèítadlo"
 
-#: gtt/menus.c:65
+#: gtt/menus.c:64 gtt/menus.c:174
 msgid "Zero out todays timer by deleting todays time logs"
 msgstr "Vynulova» dne¹né èasovaèe zmazaním záznamov o dne¹nom èase"
 
-#: gtt/menus.c:80 gtt/menus.c:160
+#: gtt/menus.c:68 gtt/menus.c:87 gtt/menus.c:156
 msgid "_Journal..."
 msgstr "®_urnál..."
 
-#: gtt/menus.c:81
+#: gtt/menus.c:69 gtt/menus.c:88 gtt/menus.c:157
 msgid "Show the timesheet journal for this project"
 msgstr "Zobrazí ¾urnál èasu pre tento projekt"
 
-#: gtt/menus.c:84
+#: gtt/menus.c:72 gtt/menus.c:160
+msgid "New _Task..."
+msgstr "Nová ú_loha..."
+
+#: gtt/menus.c:73 gtt/menus.c:161
+msgid "Change the current task for this project"
+msgstr "Zmení aktuálnu úlohu pre tento projekt"
+
+#: gtt/menus.c:91
 msgid "_All Journal..."
 msgstr "_V¹etky ¾urnály..."
 
-#: gtt/menus.c:85
+#: gtt/menus.c:92
 msgid "Show the verbose timesheet journal for this project"
 msgstr "Zobrazí podrobný ¾urnál èasu pre tento projekt"
 
-#: gtt/menus.c:88
+#: gtt/menus.c:95
 msgid "_Invoice..."
 msgstr "_Faktúra..."
 
-#: gtt/menus.c:89
+#: gtt/menus.c:96
 msgid "Show a sample invoice for this project"
 msgstr "Zobrazí uká¾kovú faktúru pre tento projekt"
 
-#: gtt/menus.c:92
+#: gtt/menus.c:99
 msgid "_Primer..."
 msgstr "_Návod..."
 
-#: gtt/menus.c:93
+#: gtt/menus.c:100
 msgid "Show a sample introductory primer for designing custom reports"
 msgstr "Zobrazí jednoduchý návod pre vytváranie vlastných reportov"
 
-#: gtt/menus.c:96
+#: gtt/menus.c:103
 msgid "_New Report..."
 msgstr "_Nový report..."
 
-#: gtt/menus.c:97
+#: gtt/menus.c:104
 msgid "Define a path to a new GTT phtml report file"
 msgstr "Definuje cestu k novému súboru GTT reportu .phtml"
 
-#: gtt/menus.c:108
+#: gtt/menus.c:115
 msgid "St_art"
 msgstr "©t_art"
 
-#: gtt/menus.c:109
+#: gtt/menus.c:116
 msgid "Start the timer running"
 msgstr "Spustí beh èasovaèa"
 
-#: gtt/menus.c:114
+#: gtt/menus.c:121
 msgid "Sto_p"
 msgstr "Sto_p"
 
-#: gtt/menus.c:115
+#: gtt/menus.c:122
 msgid "Stop the timer"
 msgstr "Zastaví èasovaè"
 
-#: gtt/menus.c:120
+#: gtt/menus.c:127
 msgid "_Timer Running"
 msgstr "Be¾iaci èa_sovaè"
 
-#: gtt/menus.c:139
+#: gtt/menus.c:146
 msgid "_Reports"
 msgstr "_Reporty"
 
-#: gtt/menus.c:140
+#: gtt/menus.c:147
 msgid "_Timer"
 msgstr "Èaso_vaè"
 
 #. deal with the i18n menu path ...
 #. (is this right ??? or is this pre-i18n ???)
-#: gtt/menus.c:231
+#: gtt/menus.c:244
 msgid "Reports"
 msgstr "Reporty"
 
@@ -1260,7 +1247,7 @@ msgstr "Reporty"
 msgid "Reports/<Separator>"
 msgstr "Reporty/<Separator>"
 
-#: gtt/proj.c:470
+#: gtt/proj.c:486
 msgid "Old GTT Tasks"
 msgstr "Staré úlohy GTT"
 
@@ -1269,7 +1256,7 @@ msgstr "Staré úlohy GTT"
 msgid "empty"
 msgstr "prázdne"
 
-#: gtt/timer.c:116
+#: gtt/timer.c:117
 #, c-format
 msgid ""
 "The keyboard and mouse have been idle\n"
@@ -1282,88 +1269,88 @@ msgstr ""
 "Momentálne be¾iaci projekt (%s - %s)\n"
 "bol zastavený. Chcete ho re¹tartova»?"
 
-#: gtt/timer.c:124
+#: gtt/timer.c:125
 msgid "System Idle"
 msgstr "Systém nevyu¾itý"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:148
+#: gtt/toolbar.c:157
 msgid "[GTT]New"
 msgstr "[GTT]Nový"
 
-#: gtt/toolbar.c:149
+#: gtt/toolbar.c:158
 msgid "Create a New Project..."
 msgstr "Vytvorí nový projekt..."
 
-#: gtt/toolbar.c:155
+#: gtt/toolbar.c:164
 msgid "Reload"
 msgstr "Obnovi»"
 
-#: gtt/glade/journal.glade.h:7 gtt/toolbar.c:159 stripchart/params.c:939
+#: gtt/glade/journal.glade.h:7 gtt/toolbar.c:168 stripchart/params.c:939
 msgid "Save"
 msgstr "Ulo¾i»"
 
-#: gtt/toolbar.c:160
+#: gtt/toolbar.c:169
 msgid "Save Configuration File"
 msgstr "Ulo¾í konfiguraèný súbor"
 
-#: gtt/toolbar.c:167
+#: gtt/toolbar.c:176
 msgid "Cut Selected Project"
 msgstr "Vystrihne vybraný projekt"
 
-#: gtt/toolbar.c:171
+#: gtt/toolbar.c:180
 msgid "Copy Selected Project"
 msgstr "Kopíruje vybraný projekt"
 
-#: gtt/toolbar.c:175
+#: gtt/toolbar.c:184
 msgid "Paste Project"
 msgstr "Vlo¾í projekt"
 
-#: gtt/glade/journal.glade.h:2 gtt/toolbar.c:182
+#: gtt/glade/journal.glade.h:2 gtt/toolbar.c:191
 msgid "Journal"
 msgstr "®urnál"
 
-#: gtt/toolbar.c:183
+#: gtt/toolbar.c:192
 msgid "View and Edit Timestamp Logs"
 msgstr "Zobrazí a upraví záznamy o èase"
 
-#: gtt/toolbar.c:188
+#: gtt/toolbar.c:197
 msgid "Props"
 msgstr "Vlastnosti"
 
-#: gtt/toolbar.c:189
+#: gtt/toolbar.c:198
 msgid "Edit Project Properties..."
 msgstr "Upraví vlastnosti projektu..."
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:202
 msgid "Timer"
 msgstr "Èasovaè"
 
-#: gtt/toolbar.c:194
+#: gtt/toolbar.c:203
 msgid "Start/Stop Timer"
 msgstr "Zapne/vypne èasovaè"
 
-#: gtt/toolbar.c:206
+#: gtt/toolbar.c:215
 msgid "Prefs"
 msgstr "Nastavenie"
 
-#: gtt/toolbar.c:207
+#: gtt/toolbar.c:216
 msgid "Edit Preferences..."
 msgstr "Upravi» nastavenie..."
 
-#: gtt/toolbar.c:211
+#: gtt/toolbar.c:220
 msgid "Manual"
 msgstr "Manuál"
 
-#: gtt/toolbar.c:212
+#: gtt/toolbar.c:221
 msgid "User's Guide and Manual"
 msgstr "Pou¾ívateµský manuál"
 
-#: gtt/toolbar.c:217
+#: gtt/toolbar.c:226
 msgid "Quit"
 msgstr "Koniec"
 
-#: gtt/toolbar.c:217
+#: gtt/toolbar.c:226
 msgid "Quit GTimeTracker"
 msgstr "Ukonèí GNOME Sledovaè èasu"
 
@@ -1495,7 +1482,9 @@ msgstr "Zobrazi»"
 
 #: gtt/glade/prefs.glade.h:2
 msgid "Enter a shell command to be executed when no projects are active."
-msgstr "Zadajte príkaz, ktorý sa má spusti» v dobe, ked nie je aktívny ¾iadny projekt."
+msgstr ""
+"Zadajte príkaz, ktorý sa má spusti» v dobe, ked nie je aktívny ¾iadny "
+"projekt."
 
 #: gtt/glade/prefs.glade.h:3
 msgid "Enter a shell command to be executed whenever projects are switched."
@@ -1515,8 +1504,8 @@ msgid ""
 "Entry that will be logged when a project starts. Use %t for the project "
 "title, %d for the description, etc. See the manual for more options."
 msgstr ""
-"Polo¾ka ¾urnálu pre spustenie projektu. Pre titulok projektu pou¾ite %t, "
-"pre jeho popis %d apod. Dal¹ie mo¾nosti nájdete v manuáli."
+"Polo¾ka ¾urnálu pre spustenie projektu. Pre titulok projektu pou¾ite %t, pre "
+"jeho popis %d apod. Dal¹ie mo¾nosti nájdete v manuáli."
 
 #: gtt/glade/prefs.glade.h:9
 #, no-c-format
@@ -1568,82 +1557,90 @@ msgid "Shell Commands"
 msgstr "Príkazy shellu"
 
 #: gtt/glade/prefs.glade.h:20
+msgid "Show Current Task"
+msgstr "Zobrazi» aktuálnu úlohu"
+
+#: gtt/glade/prefs.glade.h:21
+msgid "Show Project Description"
+msgstr "Zobrazi» popis projektu"
+
+#: gtt/glade/prefs.glade.h:22
 msgid "Show Seconds"
 msgstr "Zobrazi» sekundy"
 
-#: gtt/glade/prefs.glade.h:21
+#: gtt/glade/prefs.glade.h:23
 msgid "Show Status Bar"
 msgstr "Zobrazi» stavový riadok"
 
-#: gtt/glade/prefs.glade.h:22
+#: gtt/glade/prefs.glade.h:24
 msgid "Show Sub-Projects"
 msgstr "Zobrazi» podprojetky"
 
-#: gtt/glade/prefs.glade.h:23
+#: gtt/glade/prefs.glade.h:25
 msgid "Show Table Header"
 msgstr "Zobrazi» hlavièku tabuµky"
 
-#: gtt/glade/prefs.glade.h:24
+#: gtt/glade/prefs.glade.h:26
 msgid "Show Toolbar Icons"
 msgstr "Zobrazi» ikony nástrojového pruhu"
 
-#: gtt/glade/prefs.glade.h:25
+#: gtt/glade/prefs.glade.h:27
 msgid "Show Toolbar Texts"
 msgstr "Zobrazi» texty nástrojového pruhu"
 
-#: gtt/glade/prefs.glade.h:26
+#: gtt/glade/prefs.glade.h:28
 msgid "Show Tooltips"
 msgstr "Zobrazi» tipy"
 
-#: gtt/glade/prefs.glade.h:27
+#: gtt/glade/prefs.glade.h:29
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Zobrazi» 'Vystrihnú»', 'Kopírova»', 'Vlo¾i»'"
 
-#: gtt/glade/prefs.glade.h:28
+#: gtt/glade/prefs.glade.h:30
 msgid "Show `Help'"
 msgstr "Zobrazi» 'Pomocník'"
 
-#: gtt/glade/prefs.glade.h:29
+#: gtt/glade/prefs.glade.h:31
 msgid "Show `Journal'"
 msgstr "Zobrazi» '®urnál'"
 
-#: gtt/glade/prefs.glade.h:30
+#: gtt/glade/prefs.glade.h:32
 msgid "Show `New'"
 msgstr "Zobrazi» 'Nový'"
 
-#: gtt/glade/prefs.glade.h:31
+#: gtt/glade/prefs.glade.h:33
 msgid "Show `Preferences'"
 msgstr "Zobrazi» 'Nastavenie'"
 
-#: gtt/glade/prefs.glade.h:32
+#: gtt/glade/prefs.glade.h:34
 msgid "Show `Properties'"
 msgstr "Zobrazi» 'Vlastnosti'"
 
-#: gtt/glade/prefs.glade.h:33
+#: gtt/glade/prefs.glade.h:35
 msgid "Show `Quit'"
 msgstr "Zobrazi» 'Koniec'"
 
-#: gtt/glade/prefs.glade.h:34
+#: gtt/glade/prefs.glade.h:36
 msgid "Show `Save', `Reload'"
 msgstr "Zobrazi» 'Ulo¾i»', 'Obnovi»'"
 
-#: gtt/glade/prefs.glade.h:35
+#: gtt/glade/prefs.glade.h:37
 msgid "Show `Timer'"
 msgstr "Zobrazi» 'Èasovaè'"
 
-#: gtt/glade/prefs.glade.h:36
+#: gtt/glade/prefs.glade.h:38
 msgid "Switch Project Command:"
 msgstr "Príkaz pre prepnutie projektu:"
 
-#: gtt/glade/prefs.glade.h:37
+#: gtt/glade/prefs.glade.h:39
 msgid ""
 "Switches between projects that happen faster than this will not be logged "
 "(enter the number of seconds)"
 msgstr ""
-"Prepnutia medzi projektmi rýchlej¹ie ako táto doba nebudú zaznamenané v ¾urnáli "
-"(zadajte poèet sekúnd)"
+"Prepnutia medzi projektmi rýchlej¹ie ako táto doba nebudú zaznamenané v "
+"¾urnáli (zadajte poèet sekúnd)"
 
-#: gtt/glade/prefs.glade.h:38
+#: gtt/glade/prefs.glade.h:40
 msgid ""
 "The current active project will be made inactive after there has been no "
 "keyboard/mouse activity after this number of seconds.  Set to -1 to disable."
@@ -1651,15 +1648,15 @@ msgstr ""
 "Aktívny projekt sa stane neaktívnym, ak nie je ¾iadna aktivita my¹i alebo "
 "klávesnice za túto dobu v sekundách. Vypnete hodnotou -1."
 
-#: gtt/glade/prefs.glade.h:39
+#: gtt/glade/prefs.glade.h:41
 msgid "Toolbar"
 msgstr "Nástrojový pruh"
 
-#: gtt/glade/prefs.glade.h:40
+#: gtt/glade/prefs.glade.h:42
 msgid "Toolbar Segments"
 msgstr "Segmenty nástrojového pruhu"
 
-#: gtt/glade/prefs.glade.h:41
+#: gtt/glade/prefs.glade.h:43
 msgid "Use Logfile"
 msgstr "Pou¾i» súbor so záznamom"
 
@@ -1695,7 +1692,9 @@ msgstr "Jednotná mzda:"
 msgid ""
 "If the gap between intervals is smaller than this, the intervals will be "
 "merged together."
-msgstr "Ak je medzera medzi intervalmi men¹ia ako toto, intervali budú spojené do jedného."
+msgstr ""
+"Ak je medzera medzi intervalmi men¹ia ako toto, intervali budú spojené do "
+"jedného."
 
 #: gtt/glade/project_properties.glade.h:9
 msgid ""
