@@ -944,6 +944,19 @@ project_compute_secs (GttProject *proj)
 	proj->dirty_time = FALSE;
 }
 
+static void
+children_modified (GttProject *prj)
+{
+	GList *node;
+	if (!prj) return;
+	for (node= prj->sub_projects; node; node=node->next)
+	{
+		GttProject * subprj = node->data;
+		children_modified (subprj);
+	}
+	proj_modified (prj);
+}
+
 void
 gtt_project_list_compute_secs (void)
 {
@@ -951,8 +964,8 @@ gtt_project_list_compute_secs (void)
 	for (node= plist; node; node=node->next)
 	{
 		GttProject * prj = node->data;
-		/* refresh will recompute seconds *and* send an event */
-		proj_refresh_time (prj);
+		project_compute_secs (prj);
+		children_modified (prj);
 	}
 }
 
