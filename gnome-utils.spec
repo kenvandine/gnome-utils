@@ -48,7 +48,7 @@ patch -p1 << 'EOF'
  
  ## to automatically rebuild aclocal.m4 if any of the macros in
  ## `macros/' change
-EOF
+'EOF'
 
 %build
 # Needed for snapshot releases.
