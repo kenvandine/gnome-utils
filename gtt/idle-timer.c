@@ -22,6 +22,9 @@
 #include <gtk/gtk.h>
 
 #include <stdio.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include <X11/Xlib.h>
 #include <X11/Xos.h>
 
@@ -409,6 +412,8 @@ dispatch_event (IdleTimeout *si, XEvent *event)
 static Bool
 if_event_predicate (Display *dpy, XEvent *ev, XPointer arg)
 {
+  IdleTimeout *si = (IdleTimeout *) arg;
+
 printf ("duude event predicate\n");
   switch (ev->xany.type) 
   {
@@ -525,13 +530,14 @@ poll_idle_time (IdleTimeout *si, Bool until_idle_p)
       }
     }
 
+printf ("duuude  idle for %ld secs \n", time(0) - si->last_activity_time);
+return si->last_activity_time;
+
   while (1)
     {
 
 if (False == XCheckIfEvent (si->dpy, &event, if_event_predicate, (XPointer) si))
 {
-printf ("duuuude no events match\n");
-return si->last_activity_time;
 }
 else
 {
@@ -979,18 +985,48 @@ proc_interrupts_activity_p (IdleTimeout *si)
 static int
 idle_timeout_main_loop (gpointer data)
 {
-	IdleTimeout *si = data;
-	int quit_now = 0;
-	int fd;
+  IdleTimeout *si = data;
+  int quit_now = 0;
+  fd_set rfds;
+  struct timeval tv;
+  int fd;
+  int retval;
 
-	fd = ConnectionNumber (si->dpy);
+  FD_ZERO (&rfds);
+  fd = ConnectionNumber (si->dpy);
 
-	while (!quit_now)
-	{
-		quit_now = gtk_main_iteration_do (TRUE);
+  while (!quit_now)
+  {
+     FD_SET (fd, &rfds);
+
+     /* block and wait one sec at most */
+     tv.tv_sec = 1;
+     tv.tv_usec = 0;
+     retval = select(fd+1, &rfds, NULL, NULL, &tv);
+     if (0 > retval)
+     {
+        printf ("duuude fatal error \n");
+        return 0;
+     }
+if (0<retval) printf ("duude select!\n");
+
+     /* Monitor X input queue */
+     {
+        XEvent event;
+        if (False == XCheckIfEvent (si->dpy, &event, if_event_predicate, (XPointer) si))
+        {}
+     }
+
+     /* Clear out pending gtk events */
+     while (gtk_events_pending())
+     {
+        quit_now = gtk_main_iteration_do (FALSE);
+        if (quit_now) return 0;
+     }
+
 printf ("did = %d fd=%d\n", quit_now, fd);
-	}
-	return 0;
+  }
+  return 0;
 }
 
 
@@ -1016,6 +1052,7 @@ idle_timeout_new (void)
 
   /* how often we recheck the main window tree */
   si->prefs.notice_events_timeout = 7;
+
 
 /* hack alert don't run this unless other extensions ... yadda */
   notice_events (si, DefaultRootWindow(si->dpy), True);
