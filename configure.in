@@ -213,7 +213,7 @@ dnl ******************
 dnl gdialog checks
 dnl ******************
 
-if test $enable_gdialog = yes; then
+if test "x$enable_gdialog" = "xyes"; then
   AC_CHECK_CURSES
   AC_SUBST(CURSES_INCLUDEDIR)
   AC_SUBST(CURSES_LIBS)
