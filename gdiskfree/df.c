@@ -155,6 +155,8 @@ build_app_window ()
   int                 i;
 
   window = gnome_app_new ("GDiskFree", "Disk Free");
+  gtk_signal_connect(GTK_OBJECT(window),"destroy",
+		     GTK_SIGNAL_FUNC(gtk_main_quit),NULL);
   
   w_box = gtk_vbox_new (FALSE, 0);
   i = 0;
