@@ -485,6 +485,10 @@ static void do_logo_box(GtkWidget * box)
   GdkFont * font;
   gchar * s;
   GtkWidget * marquee_frame, * align;
+#ifdef WITH_SPARKLES
+  GdkImlibImage *im;
+  GtkWidget *image;
+#endif
 
   hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
   buttonbox = gtk_vbox_new(FALSE,GNOME_PAD_SMALL);
