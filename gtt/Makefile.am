@@ -16,7 +16,6 @@ gtt_SOURCES = 		\
 	main.c		\
 	menucmd.c	\
 	menus.c		\
-	menus.h		\
 	plug-in.c	\
 	prefs.c		\
 	proj.c		\
@@ -42,6 +41,7 @@ noinst_HEADERS = 	\
 	journal.h	\
 	log.h		\
 	menucmd.h	\
+	menus.h		\
 	plug-in.h	\
 	prefs.h		\
 	proj.h		\
