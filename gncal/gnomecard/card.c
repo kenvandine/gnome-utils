@@ -23,6 +23,8 @@ empty_CardProperty(void)
 	CardProperty prop;
 	
 	prop.used = 0;
+	
+	prop.type = PROP_NONE;
 	prop.encod = ENC_7BIT;
 	prop.value = VAL_INLINE;
 	prop.charset = NULL;
@@ -102,6 +104,24 @@ card_new(void)
 	c->name.prop    = c->photo.prop    = c->bday.prop   = c->timezn.prop = 
 	c->geopos.prop  = c->logo.prop     = c->org.prop    = c->rev.prop    =
 	c->sound.prop   = c->key.prop = empty_CardProperty();
+	
+	c->fname.prop.type = PROP_FNAME;
+	c->name.prop.type = PROP_NAME;
+	c->photo.prop.type = PROP_PHOTO;
+	c->bday.prop.type = PROP_BDAY;
+	c->mailer.prop.type = PROP_MAILER;
+	c->timezn.prop.type = PROP_TIMEZN;
+	c->geopos.prop.type = PROP_GEOPOS;
+	c->title.prop.type = PROP_TITLE;
+	c->role.prop.type = PROP_ROLE;
+	c->logo.prop.type = PROP_LOGO;
+	c->org.prop.type = PROP_ORG;
+	c->comment.prop.type = PROP_COMMENT;
+	c->rev.prop.type = PROP_REV;
+	c->sound.prop.type = PROP_SOUND;
+	c->url.prop.type = PROP_URL;
+	c->uid.prop.type = PROP_UID;
+	c->key.prop.type = PROP_KEY;
 	
 	c->flag = 0;
 	c->user_data = NULL;
@@ -815,100 +835,100 @@ card_create_from_vobject (VObject *vcrd)
 		propid = card_lookup_name(n);
 		
 		switch (propid) {
-		 case FNAME:
+		 case PROP_FNAME:
 			prop = &crd->fname.prop;
 			crd->fname.str = g_strdup(str_val(o));
 			free(the_str);
 			break;
-		 case NAME:
+		 case PROP_NAME:
 			prop = &crd->name.prop;
 			crd->name = get_CardName(o);
 			break;
-		 case PHOTO:
+		 case PROP_PHOTO:
 			prop = &crd->photo.prop;
 			crd->photo = get_CardPhoto(o);
 			break;
-		 case BDAY:
+		 case PROP_BDAY:
 			prop = &crd->bday.prop;
 			crd->bday = strtoCardBDay(str_val(o));
 			free(the_str);
 			break;
-		 case DELADDR:
+		 case PROP_DELADDR:
 			crd->deladdr = g_list_append(crd->deladdr,
 						     get_CardDelAddr(o));
 			break;
-		 case DELLABEL:
+		 case PROP_DELLABEL:
 			crd->dellabel = g_list_append(crd->dellabel,
 						     get_CardDelLabel(o));
 			break;
-		 case PHONE:
+		 case PROP_PHONE:
 			crd->phone = g_list_append(crd->phone,
 						   get_CardPhone(o));
 			break;
-		 case EMAIL:
+		 case PROP_EMAIL:
 			crd->email = g_list_append(crd->email,
 						   get_CardEMail(o));
 			break;
-		 case MAILER:
+		 case PROP_MAILER:
 			prop = &crd->mailer.prop;
 			crd->mailer.str = g_strdup(str_val(o));
 			free(the_str);
 			break;
-		 case TIMEZN:
+		 case PROP_TIMEZN:
 			prop = &crd->timezn.prop;
 			crd->timezn = strtoCardTimeZone(str_val(o));
 			break;
-		 case GEOPOS:
+		 case PROP_GEOPOS:
 			prop = &crd->geopos.prop;
 			crd->geopos = strtoCardGeoPos(str_val(o));
 			break;
-		 case TITLE:
+		 case PROP_TITLE:
 			prop = &crd->title.prop;
 			crd->title.str = g_strdup(str_val(o));
 			free(the_str);
 			break;
-		 case ROLE:
+		 case PROP_ROLE:
 			prop = &crd->role.prop;
 			crd->role.str = g_strdup(str_val(o));
 			free(the_str);
 			break;
-		 case LOGO:
+		 case PROP_LOGO:
 			prop = &crd->logo.prop;
 			crd->logo = get_CardPhoto(o);
 			break;
-		 case AGENT:
+		 case PROP_AGENT:
 			crd->agent = card_create_from_vobject(o);
 			break;
-		 case ORG:
+		 case PROP_ORG:
 			prop = &crd->org.prop;
 			crd->org = get_CardOrg(o);
 			break;
-		 case COMMENT:
+		 case PROP_COMMENT:
 			prop = &crd->comment.prop;
 			crd->comment.str = g_strdup(str_val(o));
 			crd->comment.prop.encod = ENC_QUOTED_PRINTABLE;
 			free(the_str);
 			break;
-		 case REV:
+		 case PROP_REV:
 			prop = &crd->rev.prop;
 			crd->rev = strtoCardRev(str_val(o));
 			free(the_str);
 			break;
-		 case SOUND:
+		 case PROP_SOUND:
 			prop = &crd->sound.prop;
 			crd->sound = get_CardSound(o);
 			break;
-		 case URL:
+		 case PROP_URL:
 			prop = &crd->url.prop;
 			crd->url.str = g_strdup(str_val(o));
 			free(the_str);
 			break;
-		 case UID:
+		 case PROP_UID:
 			prop = &crd->uid.prop;
 			crd->uid.str = g_strdup(str_val(o));
 			free(the_str);
 			break;
-		 case VERSION:
+		 case PROP_VERSION:
 				{
 					char *str;
 					str = str_val(o);
@@ -917,7 +937,7 @@ card_create_from_vobject (VObject *vcrd)
 					free(the_str);
 				}
 			break;
-		 case KEY:
+		 case PROP_KEY:
 			prop = &crd->key.prop;
 			crd->key.type = get_key_type(o);
 			crd->key.data = g_strdup(str_val(o));
@@ -927,8 +947,10 @@ card_create_from_vobject (VObject *vcrd)
 			g_warning("? < Property lookup returned invalid value.");
 		}
 		
-		if (prop)
+		if (prop) {
+			prop->type = propid;
 		  *prop = get_CardProperty(o);
+		}
 	}
 	
 	return crd;

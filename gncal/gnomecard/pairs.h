@@ -4,61 +4,37 @@
 #include "../versit/vcc.h"
 #include "card.h"
 
-#define FNAME 1
-#define MAILER 2
-#define TITLE 3
-#define ROLE 4
-#define COMMENT 5
-#define URL 6
-#define UID 7
-#define NAME 8
-#define PHOTO 9
-#define BDAY 10
-#define DELADDR 11
-#define DELLABEL 12
-#define PHONE 13
-#define EMAIL 21
-#define TIMEZN 14
-#define GEOPOS 15
-#define LOGO 16
-#define AGENT 17
-#define ORG 18
-#define REV 19
-#define SOUND 20
-#define KEY 22
-#define VERSION 23
-
 struct pair
 {
 	char *str;
-	int id;
+	enum PropertyType id;
 };
 
 struct pair prop_lookup[] = {
-		{ VCFullNameProp, FNAME },
-		{ VCNameProp, NAME },
-		{ VCPhotoProp, PHOTO },
-		{ VCBirthDateProp, BDAY },
-		{ VCAdrProp, DELADDR },
-		{ VCDeliveryLabelProp, DELLABEL },
-		{ VCTelephoneProp, PHONE },
-		{ VCEmailAddressProp, EMAIL },
-		{ VCMailerProp, MAILER },
-		{ VCTimeZoneProp, TIMEZN },
-		{ VCGeoProp, GEOPOS },
-		{ VCTitleProp, TITLE },
-		{ VCBusinessRoleProp, ROLE },
-		{ VCLogoProp, LOGO },
-		{ VCAgentProp, AGENT },
-		{ VCOrgProp, ORG },
-		{ VCCommentProp, COMMENT },
-		{ VCLastRevisedProp, REV },
-		{ VCPronunciationProp, SOUND },
-		{ VCURLProp, URL },
-		{ VCUniqueStringProp, UID },
-		{ VCVersionProp, VERSION },
-		{ VCPublicKeyProp, KEY },
-		{ NULL, 0} };
+		{      VCFullNameProp, PROP_FNAME },
+		{          VCNameProp, PROP_NAME },
+		{         VCPhotoProp, PROP_PHOTO },
+		{     VCBirthDateProp, PROP_BDAY },
+		{           VCAdrProp, PROP_DELADDR },
+		{ VCDeliveryLabelProp, PROP_DELLABEL },
+		{     VCTelephoneProp, PROP_PHONE },
+		{  VCEmailAddressProp, PROP_EMAIL },
+		{        VCMailerProp, PROP_MAILER },
+		{      VCTimeZoneProp, PROP_TIMEZN },
+		{           VCGeoProp, PROP_GEOPOS },
+		{         VCTitleProp, PROP_TITLE },
+		{  VCBusinessRoleProp, PROP_ROLE },
+		{          VCLogoProp, PROP_LOGO },
+		{         VCAgentProp, PROP_AGENT },
+		{           VCOrgProp, PROP_ORG },
+		{       VCCommentProp, PROP_COMMENT },
+		{   VCLastRevisedProp, PROP_REV },
+		{ VCPronunciationProp, PROP_SOUND },
+		{           VCURLProp, PROP_URL },
+		{  VCUniqueStringProp, PROP_UID },
+		{       VCVersionProp, PROP_VERSION },
+		{     VCPublicKeyProp, PROP_KEY },
+		{ NULL, PROP_NONE} };
 
 struct pair addr_pairs[] = {
 		{ VCDomesticProp, ADDR_DOM },
