@@ -1,16 +1,13 @@
-Source: gnome-utils@SUFFIX@
+Source: @SNAP@gnome-utils
 Section: utils
 Priority: optional
-Maintainer: Jim Pick <jim@jimpick.com>
-Standards-Version: 2.4.0.0
+Maintainer: James LewisMoss <dres@debian.org>
+Standards-Version: 3.0.0
 
-Package: gnome-utils@SUFFIX@
+Package: @SNAP@gnome-utils
 Architecture: any
-Depends: gnome-core@SUFFIX@ (>= ${Source-Version}), ${shlibs:Depends}
-Conflicts: gedit
-Replaces: gedit
-Provides: gedit
-Description: Gnome Utilities (gtop, gtt, gedit, ghex, gnomecal, and more)
+Depends: @SNAP@gnome-core (>= 1.0.7-0), ${shlibs:Depends}
+Description: Gnome Utilities (gtt, ghex, and more)
  Gnome is the "GNU Network Object Model Environment"
  .
  It is a project to build a complete, user-friendly desktop based
@@ -19,19 +16,17 @@ Description: Gnome Utilities (gtop, gtt, gedit, ghex, gnomecal, and more)
  This package contains:
  .
    gcalc - a simple calculator
+   gcolorsel - a color selector
    gdialog - a Gtk version of the 'dialog' program
-   gdiskfree - displays disk usage as a column of gauges
-   gedit - a text editor
+   gfontsel - a font selector
    ghex - a hex editor
    gless - a Gtk version of the 'less' pager
    gnome-run - a graphical utility to execute a user entered command
-   gnomecal - an appointment calendar and todo list
-   gnomecard - a business card maker
    gpenguin - a penguin that follows the mouse
    grun - a minimal graphical utility to execute a user entered command
    gsearchtool - a tool for finding and grepping through files
    gshutdown - reboot or shutdown your machine
-   gtop - a process monitor (like top and gmemusage)
+   gstripchart - plot system measurements
    gtt - a task timer/tracker
    guname - display 'uname' information about your system
    gw - display users on the system, like 'w'

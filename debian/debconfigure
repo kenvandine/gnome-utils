@@ -12,10 +12,50 @@ if [ ! -r rules.in ]; then
 	exit 1
 fi
 
-debtype='official'
-prefix='/usr'
+# Defaults
+
 gtkprefix='/usr'
-pkgsuffix=''
+
+# Guess type of package and version number
+
+topdirname=`basename $(dirname $PWD)`
+headchangelog=`head -1 changelog`
+case "$topdirname" in
+	snap-*)
+	    debtype='snap'
+	    snap='snap-'
+	    prefix='/opt/snapshots'
+	    sysconfdir='/opt/snapshots/etc'
+	    localstatedir='/opt/snapshots/var/lib'
+	    pkgname=`expr $topdirname : 'snap-\(.*\)-[0-9.]*$'`
+	    version=`expr $topdirname : 'snap-.*-\([0-9.]*\)$'`
+	    strip_rpath=1
+	    inrevision=`expr "$headchangelog" : "snap-$pkgname ($version-\(.*\))"`
+	    if [ -z "$inrevision" ]; then
+		revision=1
+	    else
+	        revision="$inrevision"
+	    fi
+	    email=`sed -n 's,^Maintainer: \(.*\),\1,p' < control.in`
+	    ;;
+	*)
+	    debtype='release'
+	    snap=''
+	    prefix='/usr'
+	    sysconfdir='/etc'
+	    localstatedir='/var/lib'
+	    pkgname=`expr $topdirname : '\(.*\)-[^-]*$'`
+	    version=`expr $topdirname : '.*-\([^-]*\)$'`
+	    strip_rpath=0
+	    if [ -z "$pkgname" -o -z "$version" ]; then
+		echo "Error:  Please rename top-level directory to be $topdirname-<version>"
+		exit 1
+	    fi
+	    if [ `expr "$headchangelog" : "$pkgname ($version-.*)"` = 0 ]; then
+		echo "Error:  Please add a new changelog entry for $pkgname-$version"
+		exit 1
+	    fi
+esac
 
 for dc_option
 do
@@ -27,17 +67,18 @@ do
     case "$dc_option" in
 
 	--clean)
-	    rm -f control rules *~ core *files *menu *substvars *.postinst *.debhelper
+	    rm -f control rules *~ core *files *menu *substvars *.postinst \
+			    *.debhelper 
 	    exit ;;
 
 	--prefix=*)
 	    prefix="$dc_optarg" ;;
 
-	--pkgsuffix=*)
-	    pkgsuffix="$dc_optarg" ;;
+	--revision=*)
+	    revision="$dc_optarg" ;;
 
-	--debtype=*)
-	    debtype="$dc_optarg" ;;
+	--email=*)
+	    email="$dc_optarg" ;;
 
 	*)
 	    cat <<EOF 1>&2
@@ -46,8 +87,12 @@ Options: [defaults in brackets after descriptions]
   --help                  print this message
   --clean		  remove generated files
   --prefix=PREFIX         install files under under PREFIX dir [/usr]
-  --pkgsuffix=SUFFIX      append SUFFIX onto package names []
-  --debtype=DEBTYPE       enable macros with the name of DEBTYPE [official]
+  --revision=REVISION     for snapshot packages, use this revision number when
+                          creating changelog entries [default: use last
+                          revision in changelog if it was a snapshot package,
+                          and the version matches, otherwise use -1]
+  --email=EMAIL           e-mail to use in changelog (if a new changelog entry
+                          is added)
 EOF
 	    exit ;;
 
@@ -57,51 +102,120 @@ done
 # Strip leading slash
 prefix=`expr $prefix : '/\(.*\)'`
 gtkprefix=`expr $gtkprefix : '/\(.*\)'`
+sysconfdir=`expr $sysconfdir : '/\(.*\)'`
+localstatedir=`expr $localstatedir : '/\(.*\)'`
 
 for infile in `ls control.in rules.in`
 do
     tofile=`expr $infile : '\(.*\)\.in'`
     cat $infile | \
-       sed "s,@SUFFIX@,$pkgsuffix,g" | \
+       sed "s,@SNAP@,$snap,g" | \
        sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@SYSCONFDIR@,$sysconfdir,g" | \
+       sed "s,@LOCALSTATEDIR@,$localstatedir,g" | \
        sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,@DEBTYPE@,$debtype,g" | \
        sed "s,%$debtype>,," | sed '/^%/d' > $tofile
 done
 chmod +x rules
 
-for filesfile in `ls *.files.in`
+for filesfile in `ls *.files.in 2> /dev/null`
 do
     tofile=`expr $filesfile : '\(.*\)\.files\.in'`
-    tofile=`echo $tofile$pkgsuffix.files`
+    tofile=`echo $snap$tofile.files`
     cat $filesfile | \
-       sed "s,@SUFFIX@,$pkgsuffix,g" | \
+       sed "s,@SNAP@,$snap,g" | \
        sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@SYSCONFDIR@,$sysconfdir,g" | \
+       sed "s,@LOCALSTATEDIR@,$localstatedir,g" | \
        sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,@DEBTYPE@,$debtype,g" | \
        sed "s,%$debtype>,," | sed '/^%/d' > $tofile
 done
 
-for menufile in `ls *.menu.in`
+for conffilesfile in `ls *.conffiles.in 2> /dev/null`
+do
+    tofile=`expr $conffilesfile : '\(.*\)\.conffiles\.in'`
+    tofile=`echo $snap$tofile.conffiles`
+    cat $conffilesfile | \
+       sed "s,@SNAP@,$snap,g" | \
+       sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@SYSCONFDIR@,$sysconfdir,g" | \
+       sed "s,@LOCALSTATEDIR@,$localstatedir,g" | \
+       sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,@DEBTYPE@,$debtype,g" | \
+       sed "s,%$debtype>,," | sed '/^%/d' > $tofile
+done
+
+
+for menufile in `ls *.menu.in 2> /dev/null`
 do
     tofile=`expr $menufile : '\(.*\)\.menu\.in'`
-    tofile=`echo $tofile$pkgsuffix.menu`
+    tofile=`echo $snap$tofile.menu`
     cat $menufile | \
-       sed "s,@SUFFIX@,$pkgsuffix,g" | \
+       sed "s,@SNAP@,$snap,g" | \
        sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@SYSCONFDIR@,$sysconfdir,g" | \
+       sed "s,@LOCALSTATEDIR@,$localstatedir,g" | \
        sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,@DEBTYPE@,$debtype,g" | \
        sed "s,%$debtype>,," | sed '/^%/d' > $tofile
 done
 
-#for postinst in libguilegtk0$pkgsuffix
-#do
-#
-#cat > $postinst.postinst <<EOF
-##! /bin/sh
-#
-#set -e
-#ldconfig
-#
-##DEBHELPER#
-#EOF
-#
-#done
+for postinst in `(ls lib*.files.in | grep -v '\-dev' | sed 's,\.files\.in,,') 2> /dev/null`
+do
+
+cat > $postinst.postinst <<EOF
+#! /bin/sh
+
+set -e
+ldconfig
+
+#DEBHELPER#
+EOF
+
+done
+
+for postinstfile in `ls *.postinst.in 2> /dev/null`
+do
+    tofile=`expr $postinstfile : '\(.*\)\.postinst\.in'`
+    tofile=`echo $snap$tofile.postinst`
+    cat $postinstfile | \
+       sed "s,@SNAP@,$snap,g" | \
+       sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,@SYSCONFDIR@,$sysconfdir,g" | \
+       sed "s,@LOCALSTATEDIR@,$localstatedir,g" | \
+       sed "s,@DEBTYPE@,$debtype,g" | \
+       sed "s,%$debtype>,," | sed '/^%/d' > $tofile
+done
+
+for prermfile in `ls *.prerm.in 2> /dev/null`
+do
+    tofile=`expr $prermfile : '\(.*\)\.prerm\.in'`
+    tofile=`echo $snap$tofile.prerm`
+    cat $prermfile | \
+       sed "s,@SNAP@,$snap,g" | \
+       sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,@SYSCONFDIR@,$sysconfdir,g" | \
+       sed "s,@LOCALSTATEDIR@,$localstatedir,g" | \
+       sed "s,@DEBTYPE@,$debtype,g" | \
+       sed "s,%$debtype>,," | sed '/^%/d' > $tofile
+done
+
+for dirsfile in `ls *.dirs.in 2> /dev/null`
+do
+    tofile=`expr $dirsfile : '\(.*\)\.dirs\.in'`
+    tofile=`echo $snap$tofile.dirs`
+    cat $dirsfile | \
+       sed "s,@SNAP@,$snap,g" | \
+       sed "s,@PREFIX@,$prefix,g" | \
+       sed "s,@GTKPREFIX@,$gtkprefix,g" | \
+       sed "s,@SYSCONFDIR@,$sysconfdir,g" | \
+       sed "s,@LOCALSTATEDIR@,$localstatedir,g" | \
+       sed "s,@DEBTYPE@,$debtype,g" | \
+       sed "s,%$debtype>,," | sed '/^%/d' > $tofile
+done
+
 
