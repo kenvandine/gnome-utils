@@ -10,7 +10,7 @@
 <article id="index"> <!-- please do not change the id -->
 
  <artheader>
-  <title>GNOME Character Map</title>
+  <title>GNOME Character Map Manual</title>
   <copyright>
    <year>2000</year>
    <holder>Hongli Lai</holder>
@@ -64,12 +64,14 @@
 
   <para>
    <application>GNOME Character Map</application> is a program that
-   allows you to select ASCII characters. With <application>GNOME
-   Character Map</application>, you can also use high ASCII characters
-   that you cannot type with your keybord. It's similar to Microsoft
+   allows you to select any character available in your current
+   font. With <application>GNOME Character Map</application>, you can
+   also use characters that you cannot type with your keybord (such as
+   "extended ASCII characters", or characters with codes greater than
+   127, for example the copyright symbol). It's similar to Microsoft
    Windows' <application>Character Map</application>. The difference
    is that <application>Gnome Character Map</application> is better
-   ;-)  
+   ;-)
   </para>
 
   <para>
@@ -77,7 +79,7 @@
    Because there wasn't such a program available for Linux, until 
    now. When I write documents, sometimes I want to use special
    characters like an E-circumflex. To do that, I have to write a
-   program that prints all ASCII characters to stdout and copy the
+   program that prints all font characters to stdout and copy the
    character to clipboard. I like the Windows' <application>Character
    Map</application>, because it's easy and fast to use. So I wrote
    one myself for Linux.
@@ -142,13 +144,13 @@
    <para>
     Create the desired text by clicking on the character buttons.
     Notice that as your mouse moves over each character, the character
-    is shown in the <interface>Previewer</interface>(the black box to
+    is shown in the <interface>Previewer</interface> (the black box to
     the right).  You may also enter standard keyboard text by typing
     on the keyboard. (You may have to click in the entry to bring the
     cursor focus to the entry.)  If you cannot find a character you
-    would like to type, you may specify the character by its ASCII
-    index(a number between 0 and 255)
-    by using the <interface>Insert ASCII Character Dialog</interface>,
+    would like to type, you may specify the character by its code
+    (a number between 0 and 255)
+    by using the <interface>Insert Character Dialog</interface>,
     which is accessible under the <guimenu>Edit</guimenu> menu. 
    </para>
 
@@ -258,7 +260,7 @@
            </shortcut>
            <guimenuitem>Cut</guimenuitem>
           </menuchoice>
-          which cuts(removes) the text from the entry and places it in the
+          which cuts (removes) the text from the entry and places it in the
           clipboard.
          </para>
         </listitem>
@@ -300,9 +302,9 @@
            <guimenuitem>Insert ASCII Character</guimenuitem>
           </menuchoice>
           which opens the <interface>Insert ASCII
-          Character</interface> Dialog(see <xref
+          Character</interface> Dialog (see <xref
           linkend="insertascii-fig"> which allows
-          you to specify the ASCII value for the character you wish to
+          you to specify the code  for the character you wish to
           insert.
          </para>
          <figure id="insertascii-fig">
@@ -343,7 +345,7 @@
           determines whether the <interface>status bar</interface> is
           shown at the bottom of the window. The <interface>status
           bar</interface> shows character below the mouse pointer and
-          the corresponding ASCII index of the character.
+          the corresponding character code.
          </para>
         </listitem>
        </itemizedlist>
@@ -403,6 +405,16 @@
    copying.  This appears to be limited to special spacing characters,
    such as ASCII 127.
   </para>
+  <para> Currently, <application>GNOME Character Map</application>
+  uses the default encoding (iso8859-1, also known as
+  Latin-1) to establish correspondence between symbol codes and the
+  symbols shown in the preview window and <interface>Insert Character
+  dialog</interface>; for example, under this encoding code 228
+  corresponds to the symbol ä (a-umlaut). However, the actual
+  appearance of a symbol when you insert it into some application,
+  such as text editor, will be determined by the font used by the this
+  application. For example, if your application uses Cyrillic fonts in
+  koi8-r encoding, the code 228 corresponds to Cyrillic D.  </para>
  </sect1>
 
 
