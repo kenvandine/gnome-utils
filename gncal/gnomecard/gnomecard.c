@@ -37,8 +37,9 @@
 GtkWidget *gnomecard_window;
 
 GtkCList *gnomecard_list=NULL;
-gint     gnomecard_selected_row=0;
+GtkWidget *cardlist_scrollwin=NULL; /* scrollwin for cardlist */
 
+gint     gnomecard_selected_row=0;
 GtkWidget *tb_next, *tb_prev, *tb_first, *tb_last;
 GtkWidget *tb_edit, *tb_find, *tb_save, *tb_del;
 GtkWidget *menu_next, *menu_prev, *menu_first, *menu_last;
@@ -609,7 +610,7 @@ void gnomecard_sort_by_fname(GtkWidget *w, gpointer data)
 
 void gnomecard_init(void)
 {
-	GtkWidget *canvas, *align, *hbox, *hbox1, *hbox2, *scrollwin;
+	GtkWidget *canvas, *align, *hbox, *hbox1, *hbox2;
 
 	/* hard coded column headers */
 	ColumnType hdrs[] = {COLTYPE_CARDNAME, COLTYPE_EMAIL, COLTYPE_ORG, 
@@ -634,8 +635,15 @@ void gnomecard_init(void)
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
 	
-        gnomecardCreateCardListDisplay(hdrs, &scrollwin, &gnomecard_list);
-	gtk_box_pack_start(GTK_BOX(hbox), scrollwin, TRUE, TRUE, 0);
+	cardlist_scrollwin = gtk_scrolled_window_new(NULL, NULL);
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(cardlist_scrollwin),
+				   GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+        gnomecard_list = gnomecardCreateCardListDisplay(hdrs);
+	gtk_container_add(GTK_CONTAINER(cardlist_scrollwin), 
+			  gnomecard_list);
+	gtk_widget_show(cardlist_scrollwin);
+				       
+	gtk_box_pack_start(GTK_BOX(hbox), cardlist_scrollwin, TRUE, TRUE, 0);
 
 	align = gtk_alignment_new(0.5, 0.5, 0.5, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), align, FALSE, FALSE, 0);

@@ -10,6 +10,7 @@
 
 /*extern GtkCTree  *gnomecard_tree; */
 extern GtkCList *gnomecard_list;
+extern GtkWidget *cardlist_scrollwin;
 extern gint gnomecard_selected_row;
 
 extern GList *gnomecard_crds;

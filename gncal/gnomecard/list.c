@@ -467,17 +467,15 @@ gnomecardClearCardListDisplay(GtkWidget *list)
 }
 
 /* create a clist based on the column headings */
-void
-gnomecardCreateCardListDisplay(ColumnType *hdrs, GtkWidget **box, 
-			       GtkWidget **list)
+GtkWidget *
+gnomecardCreateCardListDisplay(ColumnType *hdrs)
 {
-    GtkWidget *scrollwin, *cardlist;
+    GtkWidget *cardlist;
     GList *cols, *titles, *l;
     gint  i;
 
     cols = buildColumnHeaders(hdrs);
 
-    scrollwin = gtk_scrolled_window_new(NULL, NULL);
     cardlist = gtk_clist_new(numColumnHeaders(cols));
     gtk_object_set_data(GTK_OBJECT(cardlist), "ColumnHeaders", cols);
     
@@ -494,7 +492,6 @@ gnomecardCreateCardListDisplay(ColumnType *hdrs, GtkWidget **box,
     gtk_clist_column_titles_show(GTK_CLIST(cardlist));
     gnomecardFreeColTitles(titles);
     
-    gtk_container_add(GTK_CONTAINER(scrollwin), cardlist);
 /* 	gtk_widget_realize(GTK_WIDGET(gnomecard_list)); */
 /*
   gdk_gc_get_values(gnomecard_tree->lines_gc, &crd_tree_values);
@@ -523,8 +520,6 @@ gnomecardCreateCardListDisplay(ColumnType *hdrs, GtkWidget **box,
    "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_by_fname),
    (gpointer) NULL);
 */
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrollwin),
-				   GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     gtk_clist_set_selection_mode(GTK_CLIST(cardlist), GTK_SELECTION_BROWSE);
     
     gtk_signal_connect(GTK_OBJECT(cardlist), "button_press_event",
@@ -561,8 +556,6 @@ gnomecardCreateCardListDisplay(ColumnType *hdrs, GtkWidget **box,
     gtk_widget_set_usize (GTK_WIDGET(cardlist), LIST_WIDTH, LIST_HEIGHT);
     gtk_clist_column_titles_active(GTK_CLIST(cardlist));
     gtk_widget_show(GTK_WIDGET(cardlist));
-    gtk_widget_show(scrollwin);
     
-    *box = scrollwin;
-    *list = cardlist;
+    return cardlist;
 }

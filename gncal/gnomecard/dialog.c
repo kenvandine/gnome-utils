@@ -18,6 +18,7 @@ typedef struct {
     GtkWidget *srcList;
     GtkWidget *destList;
     GtkWidget *addButton;
+    GnomePropertyBox *box;
 
     GList     *allHdrs;
     GList     *selHdrs;
@@ -28,12 +29,12 @@ typedef struct
 	GtkWidget *entry, *sens, *back;
 } GnomeCardFind;
 
+/* NOT USED
 typedef struct
 {
 	GtkWidget *def_phone, *def_email;
 } GnomeCardSetup;
 
-/* NOT USED
 typedef struct
 {
 	GtkWidget *data, *type;
@@ -619,26 +620,45 @@ gnomecard_cancel(GtkWidget *widget, gpointer data)
 static void
 gnomecard_setup_apply(GtkWidget *widget, int page)
 {
-	GnomeCardSetup *setup;
-	int old_def_data;
+    ColumnType *hdrs, *p;
+    ColumnHdrEditor *edit;
+    GList *l, *cols;
+    gint  ncol;
 
-	if (page != -1)
-	  return;             /* ignore partial applies */
-	
-	setup = (GnomeCardSetup *) gtk_object_get_user_data(GTK_OBJECT(widget));
-	
-/* NOT USED	old_def_data = gnomecard_def_data;  */
-/* NOT USED	gnomecard_def_data = 0; */
+    if (page != -1)
+	return;             /* ignore partial applies */
+    
+    
+    gtk_widget_destroy(GTK_WIDGET(gnomecard_list));
 
-/* NOT USED	
-	if (GTK_TOGGLE_BUTTON(setup->def_phone)->active)
-		gnomecard_def_data |= PHONE;
-	
-	if (GTK_TOGGLE_BUTTON(setup->def_email)->active)
-		gnomecard_def_data |= EMAIL;
-	gnome_config_set_int("/GnomeCard/layout/def_data",  gnomecard_def_data);
-*/
+    edit = (ColumnHdrEditor *) gtk_object_get_user_data(GTK_OBJECT(widget));
+    ncol = g_list_length(edit->selHdrs);
 
+    if (ncol < 1) {
+	/* force at least one column! */
+	hdrs = g_new0(ColumnType, 2);
+	hdrs[0] = COLTYPE_CARDNAME;
+	hdrs[1] = COLTYPE_END;
+    } else {
+	hdrs = g_new0(ColumnType, ncol+1);
+	for (p=hdrs, l=edit->selHdrs; l; l=l->next, p++)
+	    *p = GPOINTER_TO_INT(l->data);
+	*p = COLTYPE_END;
+    }
+
+    /* free old column headers */
+    /* FIXME - need to do this through functions elsewhere */
+    cols = gtk_object_get_data(GTK_OBJECT(gnomecard_list), "ColumnHeaders");
+    if (cols)
+	g_list_free(cols);
+
+    gnomecard_list = gnomecardCreateCardListDisplay(hdrs);
+    gtk_container_add(GTK_CONTAINER(cardlist_scrollwin), gnomecard_list);
+
+    /* FIXME - see if old sort criteria still exists */
+    gnomecard_sort_card_list(gnomecard_sort_criteria);
+    gnomecard_rebuild_list();
+	
 }
 
 
@@ -672,7 +692,7 @@ colsetup_addpress(GtkWidget *widget, gpointer data)
     edit = (ColumnHdrEditor *)data;
     if (GTK_CLIST(edit->srcList)->selection) {
 	gint row, row2;
-	gchar *rowtxt[2];
+	const gchar *rowtxt[2];
 
 	row = GPOINTER_TO_INT(GTK_CLIST(edit->srcList)->selection->data);
 
@@ -689,6 +709,12 @@ colsetup_addpress(GtkWidget *widget, gpointer data)
 	    row2=gtk_clist_append(GTK_CLIST(edit->destList), rowtxt);
 	    gtk_clist_set_row_data(GTK_CLIST(edit->destList),
 				   row2, GINT_TO_POINTER(coltype));
+
+	    /* disable add button */
+	    gtk_widget_set_sensitive(edit->addButton, 0);
+
+	    /* notify property box we've made a change */
+	    gnome_property_box_changed(edit->box);
 	}
 				      
     }
@@ -698,22 +724,32 @@ static void
 colsetup_delpress(GtkWidget *widget, gpointer data)
 {
     ColumnHdrEditor *edit;
-    gint coltype;
+    gint row, coltype;
+    gint row2, coltype2;
 
     edit = (ColumnHdrEditor *)data;
     if (GTK_CLIST(edit->destList)->selection) {
-	gint row;
 
 	row = GPOINTER_TO_INT(GTK_CLIST(edit->destList)->selection->data);
-	
-	g_message("adding row # %d",row);
-	
 	coltype = GPOINTER_TO_INT(gtk_clist_get_row_data(GTK_CLIST(edit->destList), row));
-	g_message("coltype is %d",coltype);
 	
 	/* del from the clist */
 	edit->selHdrs=g_list_remove(edit->selHdrs, GINT_TO_POINTER(coltype));
 	gtk_clist_remove(GTK_CLIST(edit->destList), row);
+
+	/* tell propertybox we have made a change */
+	gnome_property_box_changed(edit->box);
+
+	/* enable add button if required */
+	if (GTK_CLIST(edit->srcList)->selection) {
+	    
+	    row2 = GPOINTER_TO_INT(GTK_CLIST(edit->srcList)->selection->data);
+	    coltype2 = GPOINTER_TO_INT(gtk_clist_get_row_data(GTK_CLIST(edit->srcList), row2));
+
+	    g_message("coltype coltype2 %d %d",coltype, coltype2);
+	    if (coltype2 == coltype)
+		gtk_widget_set_sensitive(edit->addButton, 1);
+	}
     }
 }
 
@@ -730,24 +766,11 @@ colsetup_uppress(GtkWidget *widget, gpointer data)
 	GList *prevnode, *curnode;
 
 	row = GPOINTER_TO_INT(GTK_CLIST(edit->destList)->selection->data);
-	
-	g_message("adding row # %d",row);
-	
+	if (row == 0)
+	    return;
+
 	coltype = GPOINTER_TO_INT(gtk_clist_get_row_data(GTK_CLIST(edit->destList), row));
-	g_message("coltype is %d, name is %s",coltype,
-		  getColumnNameFromType(coltype));
 
-#if 0
-	/* print out list */
-	g_message("Current sel list:");
-	for (l=edit->selHdrs; l; l=l->next) {
-	    gint c;
-
-	    c = l->data;
-	    g_message(" %d : %s",c, getColumnNameFromType(c));
-	}
-#endif
-	
 	/* move selected item up one */
 	if ((curnode=g_list_find(edit->selHdrs, GINT_TO_POINTER(coltype)))) {
 	    prevnode = curnode->prev;
@@ -769,46 +792,12 @@ colsetup_uppress(GtkWidget *widget, gpointer data)
 		/* do nothing */  
 	    }
 
-#if 0
-	g_message("after moveup:");
-	for (l=edit->selHdrs; l; l=l->next) {
-	    gint c;
-
-	    c = l->data;
-	    g_message(" %d : %s",c, getColumnNameFromType(c));
-	}
-#endif
-
 	    /* move rows around in clist too */
 	    gtk_clist_swap_rows(GTK_CLIST(edit->destList), row, row-1);
 	    gtk_clist_select_row(GTK_CLIST(edit->destList), row-1, 0);
-#if 0
-	    if (row > 0) {
-		gchar *rowtxt, *rowtxtprev, *tmp;
-		gint i, j;
 
-		gtk_clist_get_text(GTK_CLIST(edit->destList), row, 0,
-				   &tmp);
-		rowtxt = g_strdup(tmp);
-		gtk_clist_get_text(GTK_CLIST(edit->destList), row-1, 0,
-				   &rowtxtprev);
-
-		i = GPOINTER_TO_INT(gtk_clist_get_row_data(GTK_CLIST(edit->destList), row));
-		j = GPOINTER_TO_INT(gtk_clist_get_row_data(GTK_CLIST(edit->destList), row-1));
-		
-		gtk_clist_set_text(GTK_CLIST(edit->destList), row, 0,
-					     rowtxtprev);
-		gtk_clist_set_text(GTK_CLIST(edit->destList), row-1, 0,
-					     rowtxt);
-		gtk_clist_set_row_data(GTK_CLIST(edit->destList), row, 
-				       GINT_TO_POINTER(j));
-		gtk_clist_set_row_data(GTK_CLIST(edit->destList), row-1, 
-				       GINT_TO_POINTER(i));
-
-		gtk_clist_select_row(GTK_CLIST(edit->destList), row-1, 0);
-		g_free(rowtxt);
-	    }
-#endif
+	    /* notify property box we've made a change */
+	    gnome_property_box_changed(edit->box);
 	}
     }
 }
@@ -826,24 +815,11 @@ colsetup_dnpress(GtkWidget *widget, gpointer data)
 	GList *curnode, *nextnode;
 
 	row = GPOINTER_TO_INT(GTK_CLIST(edit->destList)->selection->data);
-	
-	g_message("adding row # %d",row);
-	
+	if (row == GTK_CLIST(edit->destList)->rows-1)
+	    return;
+
 	coltype = GPOINTER_TO_INT(gtk_clist_get_row_data(GTK_CLIST(edit->destList), row));
-	g_message("coltype is %d, name is %s",coltype,
-		  getColumnNameFromType(coltype));
 
-#if 1
-	/* print out list */
-	g_message("Current sel list:");
-	for (l=edit->selHdrs; l; l=l->next) {
-	    gint c;
-
-	    c = l->data;
-	    g_message(" %d : %s",c, getColumnNameFromType(c));
-	}
-#endif
-	
 	/* move selected item up one */
 	if ((curnode=g_list_find(edit->selHdrs, GINT_TO_POINTER(coltype)))) {
 	    nextnode = curnode->next;
@@ -867,19 +843,12 @@ colsetup_dnpress(GtkWidget *widget, gpointer data)
 		/* do nothing */  
 	    }
 
-#if 1
-	    g_message("after moveup:");
-	    for (l=edit->selHdrs; l; l=l->next) {
-		gint c;
-		
-		c = l->data;
-		g_message(" %d : %s",c, getColumnNameFromType(c));
-	    }
-#endif
-
 	    /* move rows around in clist too */
 	    gtk_clist_swap_rows(GTK_CLIST(edit->destList), row, row+1);
 	    gtk_clist_select_row(GTK_CLIST(edit->destList), row+1, 0);
+
+	    /* notify property box we've made a change */
+	    gnome_property_box_changed(edit->box);
 	}
     }
 }
@@ -887,8 +856,6 @@ colsetup_dnpress(GtkWidget *widget, gpointer data)
 void
 gnomecard_setup(GtkWidget *widget, gpointer data)
 {
-	GnomePropertyBox *box;
-	GnomeCardSetup *setup;
 	GtkWidget *vbox, *vbox2, *frame;
 	GtkWidget *label, *check;
 
@@ -898,23 +865,24 @@ gnomecard_setup(GtkWidget *widget, gpointer data)
 	GtkWidget *upButton;
 	GtkWidget *dnButton;
 	GtkWidget *align;
-	GList     *l;
+	GList     *l, *cols;
 	gint      i;
 
 	ColumnHdrEditor  *edit;
+	ColumnHeader     *hdr;
 
 	edit = g_new0(ColumnHdrEditor, 1);
-	setup = g_malloc(sizeof(GnomeCardSetup));
-	box = GNOME_PROPERTY_BOX(gnome_property_box_new());
-	gtk_object_set_user_data(GTK_OBJECT(box), setup);
-	gtk_window_set_wmclass(GTK_WINDOW(box), "GnomeCard",
+	edit->box = GNOME_PROPERTY_BOX(gnome_property_box_new());
+	gtk_object_set_user_data(GTK_OBJECT(edit->box), edit);
+	gtk_window_set_wmclass(GTK_WINDOW(edit->box), "GnomeCard",
 			       "GnomeCard");
-	gtk_signal_connect(GTK_OBJECT(box), "apply",
+	gtk_signal_connect(GTK_OBJECT(edit->box), "apply",
 			   (GtkSignalFunc)gnomecard_setup_apply, NULL);
 
 	vbox = my_gtk_vbox_new();
 	label = gtk_label_new(_("Layout"));
-	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
+	gtk_notebook_append_page(GTK_NOTEBOOK(edit->box->notebook),
+				 vbox, label);
 	
 	frame = gtk_frame_new(_("Column Display"));
 	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, FALSE, 0);
@@ -972,7 +940,8 @@ gnomecard_setup(GtkWidget *widget, gpointer data)
 	/* fill in the two lists */
 	edit->allHdrs = getAllColumnHdrs();
 	for (l=edit->allHdrs, i=0; l; l=l->next, i++) {
-	    gchar *rowtxt[2];
+	    const gchar *rowtxt[2];
+
 	    rowtxt[0] = ((ColumnHeader *)(l->data))->colname;
 	    rowtxt[1] = NULL;
 
@@ -981,7 +950,23 @@ gnomecard_setup(GtkWidget *widget, gpointer data)
 				   GINT_TO_POINTER(((ColumnHeader *)
 						    (l->data))->coltype));
 	}
+
+	/* prime with current headers */
+	/* FIXME - need helper function to get this info */
+	cols = gtk_object_get_data(GTK_OBJECT(gnomecard_list),
+				   "ColumnHeaders");
 	edit->selHdrs = NULL;
+	for (l=cols; l; l=l->next) {
+	    const gchar *rowtxt[2];
+
+	    hdr = (ColumnHeader *)l->data;
+	    edit->selHdrs = g_list_append(edit->selHdrs, 
+					  GINT_TO_POINTER(hdr->coltype));
+
+	    rowtxt[0] = getColumnNameFromType(hdr->coltype);
+	    rowtxt[1] = NULL;
+	    gtk_clist_append(GTK_CLIST(edit->destList), rowtxt);
+	}
 
 	gtk_signal_connect(GTK_OBJECT(edit->addButton), "clicked",
 			   GTK_SIGNAL_FUNC(colsetup_addpress), edit);
@@ -991,28 +976,9 @@ gnomecard_setup(GtkWidget *widget, gpointer data)
 			   GTK_SIGNAL_FUNC(colsetup_uppress), edit);
 	gtk_signal_connect(GTK_OBJECT(dnButton), "clicked",
 			   GTK_SIGNAL_FUNC(colsetup_dnpress), edit);
-
 	gtk_signal_connect(GTK_OBJECT(edit->srcList), "select_row",
 			   GTK_SIGNAL_FUNC(colsetup_list_selected), edit);
-    
-
-#if 0
-	/* falta conectar con el apply... checa my_connect. */
-	check = setup->def_phone = gtk_check_button_new_with_label("Phone");
-/* NOT USED	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_def_data & PHONE);  */
- 	gtk_signal_connect_object(GTK_OBJECT(check), "clicked",
-				  GTK_SIGNAL_FUNC(gnome_property_box_changed),
-				  GTK_OBJECT(box));
-	gtk_box_pack_start(GTK_BOX(vbox2), check, FALSE, FALSE, 0);
-	check = setup->def_email = gtk_check_button_new_with_label("E-mail");
- 	gtk_signal_connect_object(GTK_OBJECT(check), "clicked",
-				  GTK_SIGNAL_FUNC(gnome_property_box_changed),
-				  GTK_OBJECT(box));
-/* NOT USED	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_def_data & EMAIL); */
-	gtk_box_pack_start(GTK_BOX(vbox2), check, FALSE, FALSE, 0);
-#endif
-	
-	gtk_widget_show_all(GTK_WIDGET(box));
+	gtk_widget_show_all(GTK_WIDGET(edit->box));
 }
 
 #if 0

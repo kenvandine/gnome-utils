@@ -15,8 +15,7 @@ void gnomecard_list_set_sorted_pos(Card *crd);
 GList *gnomecardCreateColTitles(GList *col);
 void gnomecardFreeColTitles(GList *titles);
 void gnomecardClearCardListDisplay(GtkWidget *list);
-void gnomecardCreateCardListDisplay(ColumnType *hdrs, GtkWidget **box,
-			     GtkWidget **list);
+GtkWidget *gnomecardCreateCardListDisplay(ColumnType *hdrs);
 #endif
 
 
