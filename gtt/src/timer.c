@@ -95,7 +95,7 @@ timer_func(gpointer data)
 	{
 		ctree_update_label(global_ptw, cur_proj);
 	} 
-	else if (0 == gtt_project_get_secs_current(cur_proj) % 60) 
+	else if (1 == gtt_project_get_secs_day(cur_proj) % 5) 
 	{
 		ctree_update_label(global_ptw, cur_proj);
 	}

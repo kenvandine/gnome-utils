@@ -122,6 +122,8 @@ widget_key_event(GtkCTree *ctree, GdkEvent *event, gpointer data)
 				ptn = gtk_ctree_node_get_row_data(ctree, rownode);
 				if ((ptn->prj == cur_proj) && timer_is_running())
 				{
+					gtt_project_timer_update (ptn->prj);
+					ctree_update_label (ptn->ptw, ptn->prj);
 					gtk_ctree_unselect (ctree, rownode);
 					cur_proj_set (NULL);
 				}
@@ -129,6 +131,8 @@ widget_key_event(GtkCTree *ctree, GdkEvent *event, gpointer data)
 				{
 					gtk_ctree_select (ctree, rownode);
 					cur_proj_set (ptn->prj);
+					gtt_project_timer_update (ptn->prj);
+					ctree_update_label (ptn->ptw, ptn->prj);
 				}
 			}
 			return TRUE;
@@ -217,6 +221,8 @@ tree_select_row(GtkCTree *ctree, GtkCTreeNode* rownode, gint column)
 	ProjTreeNode *ptn;
 	ptn = gtk_ctree_node_get_row_data(ctree, rownode);
 	cur_proj_set(ptn->prj);
+	gtt_project_timer_update (ptn->prj);
+	ctree_update_label (ptn->ptw, ptn->prj);
 }
 
 
@@ -227,6 +233,8 @@ tree_unselect_row(GtkCTree *ctree, GtkCTreeNode* rownode, gint column)
 	ProjTreeNode *ptn;
 	ptn = gtk_ctree_node_get_row_data(ctree, rownode);
 	if (ptn->prj != cur_proj) return;
+	gtt_project_timer_update (ptn->prj);
+	ctree_update_label (ptn->ptw, ptn->prj);
 	cur_proj_set(NULL);
 }
 
