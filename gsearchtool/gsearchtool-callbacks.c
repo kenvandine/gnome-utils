@@ -117,6 +117,10 @@ click_find_cb (GtkWidget	*widget,
 {
 	gchar *command;
 
+	if (search_command.not_running_timeout == TRUE) {
+		return;
+	}
+
 	gtk_widget_set_sensitive (interface.stop_button, FALSE);
 	gtk_widget_set_sensitive (interface.find_button, FALSE);
 
