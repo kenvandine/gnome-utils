@@ -18,6 +18,7 @@
  * USA
  */
 
+#include <config.h>
 #include <gnome.h>
 
 #include "menuentrywiz.h"
@@ -27,9 +28,8 @@
 #include "run_command.h"
 
 #define APPNAME "edit-menus"
-#define COPYRIGHT_NOTICE "Copyright 1998, under the GNU General Public License."
+#define COPYRIGHT_NOTICE _("Copyright 1998, under the GNU General Public License.")
 
-#define GUI_SPACIOUSNESS 5 /* FIXME use GNOME_PAD when it exists */
 #define TREEITEM_ROOT_KEY "tree_item_root" /* FIXME is this used? */
 
 #ifndef VERSION
@@ -111,6 +111,10 @@ int main ( int argc, char ** argv )
   /* What does this do, anyway? */
   argp_program_version = VERSION;
 
+  /* Initialize the i18n stuff */
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  textdomain (PACKAGE);
+
   gnome_init (APPNAME, 0, argc, argv, 0, 0);
 
   prepare_app();
@@ -132,19 +136,22 @@ int main ( int argc, char ** argv )
 
 static GnomeUIInfo help_menu[] = {
   GNOMEUIINFO_HELP(APPNAME),
-  {GNOME_APP_UI_ITEM, "About...", "Tell about this application", 
+  {GNOME_APP_UI_ITEM, N_("About..."), 
+   N_("Tell about this application"), 
    about_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL },
   GNOMEUIINFO_END
 };
 
 static GnomeUIInfo file_menu[] = {
-  {GNOME_APP_UI_ITEM, "Save", "Write menu to disk", 
+  {GNOME_APP_UI_ITEM, 
+   N_("Save"), N_("Write menu to disk"), 
    save_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 's', 
    GDK_CONTROL_MASK, NULL },
   GNOMEUIINFO_SEPARATOR,
-  {GNOME_APP_UI_ITEM, "Exit", "Quit the application without saving",
+  {GNOME_APP_UI_ITEM, N_("Exit"), 
+   N_("Quit the application without saving"),
    delete_event_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'q', 
    GDK_CONTROL_MASK, NULL },
@@ -152,8 +159,8 @@ static GnomeUIInfo file_menu[] = {
 };
 
 static GnomeUIInfo prefs_menu[] = {
-  {GNOME_APP_UI_ITEM, "Preferences", 
-   "Change application preferences",
+  {GNOME_APP_UI_ITEM, N_("Preferences"), 
+   N_("Change application preferences"),
    preferences_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'p', 
    GDK_CONTROL_MASK, NULL },
@@ -161,33 +168,35 @@ static GnomeUIInfo prefs_menu[] = {
 };
 
 static GnomeUIInfo main_menu[] = {
-  GNOMEUIINFO_SUBTREE ("File", file_menu),
-  GNOMEUIINFO_SUBTREE ("Preferences", prefs_menu),
-  GNOMEUIINFO_SUBTREE ("Help", help_menu),
+  GNOMEUIINFO_SUBTREE (N_("File"), file_menu),
+  GNOMEUIINFO_SUBTREE (N_("Preferences"), prefs_menu),
+  GNOMEUIINFO_SUBTREE (N_("Help"), help_menu),
   GNOMEUIINFO_END
 };
 
 static GnomeUIInfo toolbar[] = {
-  {GNOME_APP_UI_ITEM, "Cut", "Remove this menu item",
+  {GNOME_APP_UI_ITEM, N_("Cut"), N_("Remove this menu item"),
    cut_cb, NULL, NULL, GNOME_APP_PIXMAP_STOCK,
    GNOME_STOCK_PIXMAP_CUT, 'k', GDK_CONTROL_MASK, NULL },
-  {GNOME_APP_UI_ITEM, "Paste", "Paste the last menu item you cut",
+  {GNOME_APP_UI_ITEM, N_("Paste"), 
+   N_("Paste the last menu item you cut"),
    paste_cb, NULL, NULL, GNOME_APP_PIXMAP_STOCK,
    GNOME_STOCK_PIXMAP_PASTE, 'y', GDK_CONTROL_MASK, NULL },
-  {GNOME_APP_UI_ITEM, "New", 
-   "Add a new menu item below current selection", 
+  {GNOME_APP_UI_ITEM, N_("New"), 
+   N_("Add a new menu item below current selection"), 
    new_cb, NULL, NULL, GNOME_APP_PIXMAP_STOCK,
    GNOME_STOCK_PIXMAP_NEW, 'n', GDK_CONTROL_MASK, NULL },
   /* Edit should have a stock pixmap, oh well, using properties */
-  {GNOME_APP_UI_ITEM, "Edit", 
-   "Edit this menu item", 
+  {GNOME_APP_UI_ITEM, N_("Edit"), 
+   N_("Edit this menu item"), 
    edit_cb, NULL, NULL, GNOME_APP_PIXMAP_STOCK,
    GNOME_STOCK_PIXMAP_PROPERTIES, 'e', GDK_CONTROL_MASK, NULL },
-  {GNOME_APP_UI_ITEM, "Test", 
-   "Create a test menu", 
+  {GNOME_APP_UI_ITEM, N_("Test"), 
+   N_("Create a test menu"), 
    test_cb, NULL, NULL, GNOME_APP_PIXMAP_NONE,
    NULL, 't', GDK_CONTROL_MASK, NULL },
-  {GNOME_APP_UI_ITEM, "Exit", "Quit the application without saving",
+  {GNOME_APP_UI_ITEM, N_("Exit"), 
+   N_("Quit the application without saving"),
    delete_event_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_EXIT, 'q', 
    GDK_CONTROL_MASK, NULL },
@@ -204,14 +213,14 @@ void prepare_app()
   GtkWidget * tree_box, * frame;
   GtkWidget * scrolled_win;
 
-  app = gnome_app_new(APPNAME, "Menu Editor");
+  app = gnome_app_new(APPNAME, _("Menu Editor"));
 
   gnome_app_create_menus(GNOME_APP(app), main_menu);
   gnome_app_create_toolbar(GNOME_APP(app), toolbar);
   
   /******** Contents **************/
 
-  app_box = gtk_vbox_new ( FALSE, GUI_SPACIOUSNESS );
+  app_box = gtk_vbox_new ( FALSE, GNOME_PAD );
   gtk_widget_show(app_box);
 
   gnome_app_set_contents ( GNOME_APP(app), app_box );
@@ -224,8 +233,8 @@ void prepare_app()
 		       GTK_SIGNAL_FUNC (delete_event_cb),
 		       NULL );
 
-  frame = gtk_frame_new("Menu Editing Window");
-  gtk_container_border_width(GTK_CONTAINER(frame), GUI_SPACIOUSNESS);
+  frame = gtk_frame_new(_("Menu Editing Window"));
+  gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD);
 
   scrolled_win = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
@@ -235,13 +244,13 @@ void prepare_app()
   gtk_container_add ( GTK_CONTAINER(frame), scrolled_win );
   gtk_widget_show(scrolled_win);
   gtk_container_border_width(GTK_CONTAINER(scrolled_win), 
-			     GUI_SPACIOUSNESS);
+			     GNOME_PAD);
   gtk_box_pack_end( GTK_BOX(app_box), frame,
-		    TRUE, TRUE, GUI_SPACIOUSNESS );
+		    TRUE, TRUE, GNOME_PAD );
 
   gtk_widget_show(frame);
 
-  tree_box = gtk_vbox_new ( FALSE, GUI_SPACIOUSNESS );
+  tree_box = gtk_vbox_new ( FALSE, GNOME_PAD );
   gtk_container_add ( GTK_CONTAINER(scrolled_win), tree_box );
 
   gtk_widget_show(tree_box);
@@ -461,7 +470,7 @@ static void save_cb(GtkWidget *w, gpointer data)
   gchar * user_menu;
   user_menu = make_user_menu ( menu_data );
 
-  g_print("Created this menu:\n");
+  g_print(_("Created this menu:\n"));
   g_print("%s", user_menu);
 
   changed_since_saved = FALSE;
@@ -472,7 +481,7 @@ static void cut_cb(GtkWidget *w, gpointer data)
   Menu * m;
   if (selected_tree_item && selected_menu) {
     m = selected_menu;
-    remove_from_tree(m); /* changes selection, thus m */
+    remove_from_tree(m); /* changes selection, thus m needed */
     if (clipboard) {
       menu_destroy(clipboard);
     }
@@ -516,7 +525,7 @@ static void edit_cb(GtkWidget *w, gpointer data)
   }
   else {
     if ( IS_MENU_SEPARATOR(selected_menu) ) {
-      popup_ok("You can't edit a separator");
+      popup_ok(_("You can't edit a separator"));
       return;
     }
     edit_this_menu(selected_menu);
@@ -548,24 +557,24 @@ static void popup_test(Menu * m)
   GtkWidget * button;
   
   d = gtk_dialog_new();
-  gtk_window_set_title( GTK_WINDOW(d), "Testing menu");
+  gtk_window_set_title( GTK_WINDOW(d), _("Testing menu"));
 
   button = gnome_stock_button(GNOME_STOCK_BUTTON_CLOSE);
   gtk_signal_connect_object ( GTK_OBJECT(button), "clicked",
-			      GTK_SIGNAL_FUNC(gtk_widget_destroy),
-			      GTK_OBJECT(d) );
+                              GTK_SIGNAL_FUNC(gtk_widget_destroy),
+                              GTK_OBJECT(d) );
   gtk_container_add ( GTK_CONTAINER(GTK_DIALOG(d)->action_area),
 		      button );
   gtk_widget_show(button);
 
-  frame = gtk_frame_new("Working Test Menu");
-  gtk_container_border_width(GTK_CONTAINER(frame), GUI_SPACIOUSNESS);
+  frame = gtk_frame_new(_("Working Test Menu"));
+  gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD);
   gtk_box_pack_start ( GTK_BOX(GTK_DIALOG(d)->vbox), frame, 
-		       TRUE, TRUE, GUI_SPACIOUSNESS );
+                       TRUE, TRUE, GNOME_PAD );
   
-  menu_box = gtk_vbox_new ( FALSE, GUI_SPACIOUSNESS);
+  menu_box = gtk_vbox_new ( FALSE, GNOME_PAD);
   gtk_container_border_width(GTK_CONTAINER(menu_box), 
-			     GUI_SPACIOUSNESS);
+                             GNOME_PAD);
   gtk_container_add ( GTK_CONTAINER(frame), menu_box );
   gtk_widget_show(menu_box);
   gtk_widget_show(frame);
@@ -597,14 +606,14 @@ static void popup_new_what()
   GtkWidget * label;
 
   d = gtk_dialog_new();
-  gtk_window_set_title( GTK_WINDOW(d), "Menu item type");
+  gtk_window_set_title( GTK_WINDOW(d), _("Menu item type"));
   
-  label = gtk_label_new("What kind of menu item?");
+  label = gtk_label_new(_("What kind of menu item?"));
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG(d)->vbox), 
 		      label, TRUE, TRUE, 0);
   gtk_widget_show(label);
 
-  button = gtk_radio_button_new_with_label(NULL, "Command");
+  button = gtk_radio_button_new_with_label(NULL, _("Command"));
   gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (button), TRUE);
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG(d)->vbox), 
 		      button, TRUE, TRUE, 0);
@@ -612,7 +621,7 @@ static void popup_new_what()
   
   group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
 
-  button = gtk_radio_button_new_with_label (group, "Folder");
+  button = gtk_radio_button_new_with_label (group, _("Folder"));
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG(d)->vbox), 
 		      button, TRUE, TRUE, 0);
   gtk_widget_show (button);
@@ -620,7 +629,7 @@ static void popup_new_what()
   group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
 
   button = gtk_radio_button_new_with_label (group,
-					    "Separator");
+					    _("Separator"));
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG(d)->vbox), 
 		      button, TRUE, TRUE, 0);
   gtk_widget_show (button);
@@ -651,17 +660,17 @@ static void popup_quit_for_sure()
 {
   GtkWidget * mb;
   
-  mb = gnome_message_box_new("You have unsaved changes. Quit?",
-			     GNOME_MESSAGE_BOX_QUESTION,
-			     GNOME_STOCK_BUTTON_YES,
-			     GNOME_STOCK_BUTTON_NO,
-			     NULL);
+  mb = gnome_message_box_new(_("You have unsaved changes. Quit?"),
+                             GNOME_MESSAGE_BOX_QUESTION,
+                             GNOME_STOCK_BUTTON_YES,
+                             GNOME_STOCK_BUTTON_NO,
+                             NULL);
   gnome_message_box_set_modal(GNOME_MESSAGE_BOX(mb));
   gnome_message_box_set_default(GNOME_MESSAGE_BOX(mb), 0);
 
   gtk_signal_connect( GTK_OBJECT(mb), "clicked",
-		      GTK_SIGNAL_FUNC(quit_for_sure_cb),
-		      NULL );
+                      GTK_SIGNAL_FUNC(quit_for_sure_cb),
+                      NULL );
 
   gtk_widget_show(mb);
 }
@@ -681,18 +690,18 @@ static void popup_ok(gchar * message)
 
 static void popup_nothing_selected()
 {
-  popup_ok("You must select a menu item before "
-		    "performing this operation.");
+  popup_ok(_("You must select a menu item before "
+		    "performing this operation."));
 }
 
 static void popup_no_name()
 {
-  popup_ok("You must name your menu item.");
+  popup_ok(_("You must name your menu item."));
 }
 
 static void popup_clipboard_empty()
 {
-  popup_ok("The clipboard is empty");
+  popup_ok(_("The clipboard is empty"));
 }
 
 /*****************************************
@@ -731,10 +740,10 @@ static void new_what_cb(GtkWidget * button, gpointer data)
 
   switch (which) {
   case command_radio:
-    new_menu = menu_command_new("New Command", NULL, NULL, NULL);
+    new_menu = menu_command_new(_("New Command"), NULL, NULL, NULL);
     break;
   case folder_radio:
-    new_menu = menu_folder_new("New Folder", NULL, NULL, NULL);
+    new_menu = menu_folder_new(_("New Folder"), NULL, NULL, NULL);
     break;
   case separator_radio:
     new_menu = menu_separator_new(NULL);
