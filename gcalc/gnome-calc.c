@@ -299,7 +299,9 @@ reduce_stack(GnomeCalc *gc)
 	if(errno>0 ||
 	   finite(stack->d.number)==0) {
 		do_error(gc);
+		stack->d.number = 0;
 		errno = 0;
+		gc->_priv->error = FALSE;
 	}
 }
 
@@ -561,8 +563,10 @@ simple_func(GtkWidget *w, gpointer data)
 	
 	if(errno>0 ||
 	   finite(stack->d.number)==0) {
-		errno = 0;
 		do_error(gc);
+		gc->_priv->error = FALSE;
+		stack->d.number = 0;
+		errno = 0;
 		return;
 	}
 	
@@ -1098,7 +1102,7 @@ sin_helper (double value)
 {
 	double ret = sin (value);
 	
-	if (fabs (ret) <= sin (M_PI)) 
+	if (fabs (ret) <= fabs (sin (M_PI))) 
 		return 0.0;
 	else
 		return ret;
@@ -1108,8 +1112,25 @@ static double
 cos_helper (double value)
 {
 	double ret = cos (value);
-	if (fabs (ret) <= cos (M_PI_2))
+	if (fabs (ret) <= fabs (cos (M_PI_2)))
 		return 0.0;
+	else
+		return ret;
+}
+
+static double
+tan_helper (double value)
+{
+	double ret = tan (value);
+	double temp1, temp2;
+
+	if (fabs (ret) >= fabs (tan(3 * M_PI_2))) {
+		errno=ERANGE;
+		return 0.0;
+	}
+	else if (fabs (ret) <= fabs (tan(M_PI))) {
+		return 0.0;
+	}
 	else
 		return ret;
 }
@@ -1125,7 +1146,7 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("INV"),  NULL,                       NULL,   NULL,   FALSE, {'i','I',0}, N_("Shift"), NULL }, /*inverse button*/
 		{N_("sin"),  (GtkSignalFunc)simple_func, sin_helper, asin, TRUE,{'s','S',0}, N_("Sine"), NULL },
 		{N_("cos"),  (GtkSignalFunc)simple_func, cos_helper, acos, TRUE,{'c','C',0}, N_("Cosine"), NULL },
-		{N_("tan"),  (GtkSignalFunc)simple_func, tan,    atan,   TRUE,  {'t','T',0}, N_("Tangent"), NULL },
+		{N_("tan"),  (GtkSignalFunc)simple_func, tan_helper,    atan,   TRUE,  {'t','T',0}, N_("Tangent"), NULL },
 		{N_("DEG"),  (GtkSignalFunc)drg_toggle,  NULL,   NULL,   FALSE, {'d','D',0}, N_("Switch degrees / radians / grad"), NULL }
 	},{
 		{N_("e"),    (GtkSignalFunc)set_e,       NULL,   NULL,   FALSE, {'e','E',0}, N_("Base of Natural Logarithm"), NULL },
