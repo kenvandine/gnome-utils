@@ -38,7 +38,7 @@ typedef struct _MyToolbar MyToolbar;
 
 struct _MyToggle {
         GtkWidget *button;
-        GtkPixmap *pmap1, *pmap2, *cur_pmap;
+        GnomePixmap *pmap1, *pmap2, *cur_pmap;
         GtkBox *vbox;
 };
 
@@ -61,15 +61,7 @@ add_button(GtkToolbar *tbar, char *text, char *tt_text,
 {
 	GtkWidget *w, *pixmap;
 
-        /*
-	 * TODO: hmmm, I should rename some global variables some time.
-	 * `window' is the main window of the app. I will be doing this at
-	 * least when I have to support multiple app window (e.g. for the
-	 * networked version)
-	 */
-        pixmap = gnome_create_pixmap_widget_d((GtkWidget *)window,
-                                              (GtkWidget *)tbar,
-                                              pmap_data);
+	pixmap = gnome_pixmap_new_from_xpm_d(pmap_data);
 
         w = gtk_toolbar_append_item(tbar, text, tt_text, NULL, pixmap,
                                     sigfunc, NULL);
@@ -84,7 +76,7 @@ add_stock_button(GtkToolbar *tbar, char *text, char *tt_text,
                  char *icon, GtkSignalFunc sigfunc)
 {
 	GtkWidget *w, *pixmap;
-        /* TODO: see notes above (window) */
+
 	pixmap = gnome_stock_pixmap_widget((GtkWidget *)window, icon);
 	w = gtk_toolbar_append_item(tbar, text, tt_text, NULL, pixmap,
 				    sigfunc, NULL);
@@ -97,23 +89,12 @@ add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
                   gchar **pmap1, gchar **pmap2, GtkSignalFunc sigfunc)
 {
 	MyToggle *w;
-	GdkPixmap *pmap;
-	GdkBitmap *bmap;
-	static GtkStyle *style = NULL;
 
         w = g_malloc(sizeof(MyToggle));
 
-        /* TODO: see notes above (window) */
-	if (!style) style = gtk_widget_get_style(window);
-	pmap = gdk_pixmap_create_from_xpm_d(window->window, &bmap,
-					    &style->bg[GTK_STATE_NORMAL],
-					    pmap1);
-	w->pmap1 = (GtkPixmap *)gtk_pixmap_new(pmap, bmap);
+	w->pmap1 = GNOME_PIXMAP(gnome_pixmap_new_from_xpm_d(pmap1));
 	gtk_widget_ref(GTK_WIDGET(w->pmap1));
-	pmap = gdk_pixmap_create_from_xpm_d(window->window, &bmap,
-					    &style->bg[GTK_STATE_NORMAL],
-					    pmap2);
-	w->pmap2 = (GtkPixmap *)gtk_pixmap_new(pmap, bmap);
+	w->pmap2 = GNOME_PIXMAP(gnome_pixmap_new_from_xpm_d(pmap2));
 	gtk_widget_ref(GTK_WIDGET(w->pmap2));
 
         gtk_widget_show(GTK_WIDGET(w->pmap1));
@@ -132,7 +113,7 @@ add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
 
 
 static void
-my_set_icon(GtkToolbar *toolbar, MyToggle *toggle, GtkPixmap *pmap)
+my_set_icon(GtkToolbar *toolbar, MyToggle *toggle, GnomePixmap *pmap)
 {
         if (toggle->cur_pmap == pmap) return;
 
