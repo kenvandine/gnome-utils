@@ -832,6 +832,7 @@ scrub_intervals (GttTask *tsk)
 			GttInterval *ivl = node->data;
 			int gap_up=1000000000;
 			int gap_down=1000000000;
+			int do_merge = FALSE;
 			int len;
 
 			if (ivl->running) continue;
@@ -840,14 +841,26 @@ scrub_intervals (GttTask *tsk)
 			if (node->next)
 			{
 				GttInterval *nivl = node->next->data;
-				gap_down = ivl->start - nivl->stop;
+
+				/* merge only if the intervals are in teh same day */
+				if (get_midnight (ivl->start) == get_midnight (nivl->stop))
+				{
+					gap_down = ivl->start - nivl->stop;
+					do_merge = TRUE;
+				}
 			} 
 			if (node->prev)
 			{
 				GttInterval *nivl = node->prev->data;
-				gap_up = nivl->start - ivl->stop;
+
+				/* merge only if the intervals are in teh same day */
+				if (get_midnight (nivl->start) == get_midnight (ivl->stop))
+				{
+					gap_up = nivl->start - ivl->stop;
+					do_merge = TRUE;
+				}
 			}
-			if (!node->next && !node->prev) continue;
+			if (!do_merge) continue;
 			if (gap_up < gap_down)
 			{
 				gtt_interval_merge_up (ivl);
