@@ -2,21 +2,24 @@
 # Copyright (C) 2000,2001 Free Software Foundation, Inc.
 # Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2000,2001.
 #
-#. Translator credits
-#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
-#: gsearchtool/gsearchtool.c:1001 logview/about.c:52
-#: meat-grinder/meat-grinder.c:380
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.1\n"
-"POT-Creation-Date: 2002-01-30 16:37+0100\n"
-"PO-Revision-Date: 2002-01-30 16:37CET\n"
+"POT-Creation-Date: 2002-02-04 12:12+0100\n"
+"PO-Revision-Date: 2002-02-04 12:16+0100\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
+
+#. Translator credits
+#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
+#: gsearchtool/gsearchtool.c:1643 logview/about.c:52
+#: meat-grinder/meat-grinder.c:380
+msgid "translator_credits"
+msgstr "Stanislav Višňovský"
 
 #: gcalc/gcalc.c:47
 msgid "The GNOME Calculator"
@@ -391,7 +394,6 @@ msgid "Exit"
 msgstr "Koniec"
 
 #: gcharmap/src/interface.c:244 gcharmap/src/menus.c:101
-#: gdictsrc/gdict-app.c:556
 msgid "Copy"
 msgstr "Kopírovať"
 
@@ -461,7 +463,7 @@ msgstr "Nastaví, či môžu mať tlačidlá fokus"
 #. GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
 #. cb_insert_char_click, NULL),
 #. GNOMEUIINFO_SEPARATOR,
-#: gcharmap/src/menus.c:99 gdictsrc/gdict-app.c:553
+#: gcharmap/src/menus.c:99
 msgid "Cut"
 msgstr "Vystrihnúť"
 
@@ -473,7 +475,7 @@ msgstr "Vystrihne výber"
 msgid "Copy the selection"
 msgstr "Skopíruje výber"
 
-#: gcharmap/src/menus.c:103 gdictsrc/gdict-app.c:559
+#: gcharmap/src/menus.c:103
 msgid "Paste"
 msgstr "Vložiť"
 
@@ -481,19 +483,11 @@ msgstr "Vložiť"
 msgid "Paste the clipboard"
 msgstr "Vloží zo schránky"
 
-#: gdictsrc/main.c:89
-msgid ""
-"The server could not be contacted. \n"
-"If you are not connected to the internet please do so."
-msgstr ""
-"Server nie je možné kontaktovať.\n"
-"Ak nie ste pripojený na Internet, pripojte sa."
-
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
 #: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:418
-#: gdictsrc/gdict-pref-dialog.c:462 gdictsrc/gdict-speller.c:411
+#: gdictsrc/gdict-pref-dialog.c:462 gdictsrc/gdict-speller.c:434
 msgid "Cannot connect to server"
 msgstr "Nepodarilo sa spojiť so serverom"
 
@@ -542,51 +536,35 @@ msgstr ""
 "Nepodarilo sa vykonať požadovanú operáciu.\n"
 "Buď server, ktorý používate, nefunguje, alebo nie ste pripojený na Internet."
 
-#: gdictsrc/gdict-app.c:489 gdictsrc/gdict-app.c:546
+#: gdictsrc/gdict-app.c:489
 msgid "Lookup"
 msgstr "Hľadať"
 
-#: gdictsrc/gdict-app.c:490 gdictsrc/gdict-app.c:547
+#: gdictsrc/gdict-app.c:490
 msgid "Lookup word in dictionary"
 msgstr "Hľadá slovo v slovníku"
 
-#: gdictsrc/gdict-app.c:492 gdictsrc/gdict-app.c:549
+#: gdictsrc/gdict-app.c:492
 msgid "Spell"
 msgstr "Kontrola"
 
-#: gdictsrc/gdict-app.c:493 gdictsrc/gdict-app.c:550
+#: gdictsrc/gdict-app.c:493
 msgid "Check word spelling"
 msgstr "Skontroluje slovo"
 
-#: gdictsrc/gdict-app.c:554
-msgid "Cut to Clipboard"
-msgstr "Vystrihnúť do schránky"
+#: gdictsrc/gdict-app.c:594 gdictsrc/gdict-speller.c:128
+msgid "Word : "
+msgstr "Slovo: "
 
-#: gdictsrc/gdict-app.c:557
-msgid "Copy to Clipboard"
-msgstr "Skopírovať do schránky"
-
-#: gdictsrc/gdict-app.c:560
-msgid "Paste Clipboard Contents"
-msgstr "Vložiť obsah schránky"
-
-#: gdictsrc/gdict-app.c:563
-msgid "Settings"
-msgstr "Nastavenia"
-
-#: gdictsrc/gdict-app.c:564
-msgid "Server to use, default search strategy, fonts"
-msgstr "Používaný server, stratégia hľadania, písma"
-
-#: gdictsrc/gdict-app.c:619
-msgid "_Lookup"
+#: gdictsrc/gdict-app.c:598
+msgid "_Look Up"
 msgstr "_Hľadať"
 
 #: gdictsrc/gdict-applet.c:268
 msgid "Press button to look up any highlighted text in a dictionary"
 msgstr "Stlačením tlačidla nájdete vybraný text v slovníku"
 
-#: gdictsrc/gdict-defbox.c:633 gdictsrc/gdict-speller.c:436
+#: gdictsrc/gdict-defbox.c:633 gdictsrc/gdict-speller.c:459
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Chyba spúšťaní otázky: %s"
@@ -667,77 +645,103 @@ msgstr "Uvedený server nebol nájdený."
 msgid "The server could not be found on that port."
 msgstr "Server na zadanom porte nebol nájdený."
 
-#: gdictsrc/gdict-speller.c:127
+#: gdictsrc/gdict-speller.c:136
 msgid "_Spell"
 msgstr "_Kontrola"
 
-#: gdictsrc/gdict-speller.c:138
+#: gdictsrc/gdict-speller.c:150
 msgid "Search Strategy:"
 msgstr "Stratégia hľadania:"
 
-#: gdictsrc/gdict-speller.c:176
-msgid "_Look Up"
-msgstr "_Hľadať"
+#: gdictsrc/gdict-speller.c:162
+msgid "Search Results"
+msgstr "Výsledky hľadania"
 
-#: gdictsrc/gdict-speller.c:182
+#: gdictsrc/gdict-speller.c:200
+msgid "_Look Up Word"
+msgstr "_Hľadať slovo"
+
+#: gdictsrc/gdict-speller.c:207
 msgid "Spell checker"
 msgstr "Kontrola pravopisu"
 
-#: gsearchtool/gsearchtool.c:43
+#: gsearchtool/gsearchtool.c:63
 msgid "File name is"
 msgstr "Meno súboru je"
 
-#: gsearchtool/gsearchtool.c:44
+#: gsearchtool/gsearchtool.c:64
 msgid "File name is not"
 msgstr "Meno súboru nie je"
 
-#: gsearchtool/gsearchtool.c:46
+#: gsearchtool/gsearchtool.c:65
 msgid "Don't search mounted filesystems"
 msgstr "Nehľadať na pripojených systémoch súborov"
 
-#: gsearchtool/gsearchtool.c:48
+#: gsearchtool/gsearchtool.c:66
 msgid "Follow symbolic links"
 msgstr "Sledovať symbolické odkazy"
 
-#: gsearchtool/gsearchtool.c:49
+#: gsearchtool/gsearchtool.c:67
 msgid "Process directory contents depth first"
 msgstr "Najprv spracovať podpriečinky"
 
-#: gsearchtool/gsearchtool.c:50
+#: gsearchtool/gsearchtool.c:68
 msgid "Don't search subdirectories"
 msgstr "Nehľadať v podpriečinkoch"
 
-#: gsearchtool/gsearchtool.c:51
+#: gsearchtool/gsearchtool.c:69
 msgid "Owned by user"
 msgstr "Vlastní používateľ"
 
-#: gsearchtool/gsearchtool.c:52
+#: gsearchtool/gsearchtool.c:70
 msgid "Owned by group"
 msgstr "Vlastní skupina"
 
-#: gsearchtool/gsearchtool.c:53
+#: gsearchtool/gsearchtool.c:71
 msgid "Invalid user or group"
 msgstr "Neplatný používateľ alebo skupina"
 
-#: gsearchtool/gsearchtool.c:54
+#: gsearchtool/gsearchtool.c:72
 msgid "Last time modified"
 msgstr "Čas poslednej zmeny"
 
-#: gsearchtool/gsearchtool.c:55
+#: gsearchtool/gsearchtool.c:73
 msgid "File is empty"
 msgstr "Súbor je prázdny"
 
-#: gsearchtool/gsearchtool.c:56
+#: gsearchtool/gsearchtool.c:74
 msgid "Matches regular expression"
 msgstr "Odpovedá regulárnemu výrazu"
 
-#: gsearchtool/gsearchtool.c:240
-msgid ""
-"A search is already running.  Please wait for that search to complete or "
-"cancel it."
-msgstr "Hľadanie už prebieha. Prosím, čakaje, kým neskončí, alebo ho prerušte."
+#: gsearchtool/gsearchtool.c:545
+msgid "today at %-I:%M %p"
+msgstr "dnes o %-I:%M"
 
-#: gsearchtool/gsearchtool.c:357
+#: gsearchtool/gsearchtool.c:547
+msgid "yesterday at %-I:%M %p"
+msgstr "včera o %-I:%M"
+
+#: gsearchtool/gsearchtool.c:549 gsearchtool/gsearchtool.c:551
+msgid "%m/%-d/%y, %-I:%M %p"
+msgstr "%-d/%m/%y, %-I:%M"
+
+#: gsearchtool/gsearchtool.c:561
+msgid "%Y%m%d%H%M%S"
+msgstr "%d%m%Y%H%M%S"
+
+#: gsearchtool/gsearchtool.c:576
+msgid "folder"
+msgstr "priečinok"
+
+#: gsearchtool/gsearchtool.c:578
+msgid "program"
+msgstr "program"
+
+#: gsearchtool/gsearchtool.c:580
+msgid "symbolic link"
+msgstr "symbolický odkaz"
+
+#: gsearchtool/gsearchtool.c:758
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -745,108 +749,146 @@ msgstr ""
 "\n"
 "... Príliš veľa chýb ...."
 
-#: gsearchtool/gsearchtool.c:390
+#: gsearchtool/gsearchtool.c:795
 msgid "Start directory does not exist."
 msgstr "Počiatočný priečinok neexistuje."
 
-#: gsearchtool/gsearchtool.c:401 gsearchtool/gsearchtool.c:875
+#: gsearchtool/gsearchtool.c:806 gsearchtool/gsearchtool.c:1420
 msgid "Cannot perform the search. Please specify a search criteria."
 msgstr "Nie je možné hľadať. Prosím, zadajte kritériá hľadania."
 
-#: gsearchtool/gsearchtool.c:427
+#: gsearchtool/gsearchtool.c:823 gsearchtool/gsearchtool.c:1440
+msgid ""
+"A search is already running.  Please wait for the search to complete or "
+"cancel it."
+msgstr "Hľadanie už prebieha. Prosím, čakaje, kým neskončí, alebo ho prerušte."
+
+#: gsearchtool/gsearchtool.c:841
 msgid "Start directory does not exist"
 msgstr "Počiatočný priečinok neexistuje"
 
-#: gsearchtool/gsearchtool.c:442
+#: gsearchtool/gsearchtool.c:856
 msgid "Cannot show the search command line. Please specify a search criteria."
 msgstr ""
 "Nie je možné zobraziť príkazový riadok hľadania. Prosím, zadajte kritériá "
 "hľadania."
 
-#: gsearchtool/gsearchtool.c:446
+#: gsearchtool/gsearchtool.c:860
 msgid "Search Command Line"
 msgstr "Príkazový riadok pre hľadanie"
 
-#: gsearchtool/gsearchtool.c:461
+#: gsearchtool/gsearchtool.c:875
 msgid ""
 "This is the command line that can be used to execute this search from the "
 "console.\n"
-"(Note: To print one file per line rather then null separated, append \"| tr "
-"'\\000' '\\n'\" to the line below.)\n"
 "\n"
 "Command:"
 msgstr ""
 "Toto je príkazový riadok, ktorý môže byť použitý pre hľadanie z konzole.\n"
-"(Poznámka: pre zobrazenie jedného súboru na riadok namiesto oddelených\n"
-"nulami, pridajte do riadku \"| tr '\\000' '\\n'\")\n"
 "\n"
 "Príkaz:"
 
-#: gsearchtool/gsearchtool.c:571
+#: gsearchtool/gsearchtool.c:1005
 msgid "No viewer available for this mime type."
 msgstr "Pre tento typ MIME nie je dostupný prehliadač."
 
-#: gsearchtool/gsearchtool.c:656
+#: gsearchtool/gsearchtool.c:1091
 msgid "Entry changed called for a non entry option!"
 msgstr "Zmenená položka volaná pre voľbu bez položiek!"
 
-#: gsearchtool/gsearchtool.c:720
+#: gsearchtool/gsearchtool.c:1155
 msgid "Enabled"
 msgstr "Povolené"
 
-#: gsearchtool/gsearchtool.c:777
-msgid "Start in directory "
-msgstr "Začať v priečinku "
+#: gsearchtool/gsearchtool.c:1213
+msgid "S_tarting in folder:"
+msgstr "_Začať v priečinku:"
 
-#: gsearchtool/gsearchtool.c:779
+#: gsearchtool/gsearchtool.c:1215
 msgid "Browse"
 msgstr "Prechádzať"
 
-#: gsearchtool/gsearchtool.c:912
-msgid "Search For "
-msgstr "Hľadať "
+#: gsearchtool/gsearchtool.c:1232
+msgid "Rules:"
+msgstr "Pravidlá:"
 
-#: gsearchtool/gsearchtool.c:981
-msgid "Simple"
-msgstr "Jednoduché"
+#: gsearchtool/gsearchtool.c:1252
+msgid "A_dd Rule:"
+msgstr "_Pridať pravidlo:"
 
-#: gsearchtool/gsearchtool.c:984
-msgid "Advanced"
-msgstr "Pokročilé"
+#: gsearchtool/gsearchtool.c:1283 gsearchtool/gsearchtool.c:1496
+msgid "F_ind"
+msgstr "_Nájsť:"
 
-#: gsearchtool/gsearchtool.c:1010
+#: gsearchtool/gsearchtool.c:1300 gsearchtool/gsearchtool.c:1512
+msgid "Results"
+msgstr "Výsledky"
+
+#: gsearchtool/gsearchtool.c:1332 gsearchtool/gsearchtool.c:1545
+msgid "Name"
+msgstr "Meno"
+
+#: gsearchtool/gsearchtool.c:1354 gsearchtool/gsearchtool.c:1567
+msgid "Folder"
+msgstr "Priečinok"
+
+#: gsearchtool/gsearchtool.c:1366 gsearchtool/gsearchtool.c:1579
+msgid "Size"
+msgstr "Veľkosť"
+
+#: gsearchtool/gsearchtool.c:1378 gsearchtool/gsearchtool.c:1591
+msgid "Type"
+msgstr "Typ"
+
+#: gsearchtool/gsearchtool.c:1389 gsearchtool/gsearchtool.c:1602
+msgid "Date Modified"
+msgstr "Čas zmeny"
+
+#: gsearchtool/gsearchtool.c:1467
+msgid "Find files _named:"
+msgstr "Nájsť súbory pomenované: "
+
+#: gsearchtool/gsearchtool.c:1622
+msgid "Si_mple"
+msgstr "_Jednoduché"
+
+#: gsearchtool/gsearchtool.c:1625
+msgid "Ad_vanced"
+msgstr "_Pokročilé"
+
+#: gsearchtool/gsearchtool.c:1650
 msgid "The Gnome Search Tool"
 msgstr "GNOME Nástoj pre hľadanie"
 
-#: gsearchtool/gsearchtool.c:1011
+#: gsearchtool/gsearchtool.c:1651
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998,2000 Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:1012
+#: gsearchtool/gsearchtool.c:1652
 msgid "Frontend to the unix find/locate commands"
 msgstr "Rozhranie pre unixové príkazy find/locate"
 
-#: gsearchtool/gsearchtool.c:1057
+#: gsearchtool/gsearchtool.c:1703
 msgid "Cannot save the results file."
 msgstr "Nemôžem uložiť súbor s výsledkami."
 
-#: gsearchtool/gsearchtool.c:1064 meat-grinder/meat-grinder.c:492
+#: gsearchtool/gsearchtool.c:1710 meat-grinder/meat-grinder.c:492
 msgid "Save Results"
 msgstr "Uložiť výsledky"
 
-#: gsearchtool/gsearchtool.c:1099
+#: gsearchtool/gsearchtool.c:1745
 msgid "S_how Command"
 msgstr "_Zobraziť príkaz"
 
-#: gsearchtool/gsearchtool.c:1100
+#: gsearchtool/gsearchtool.c:1746
 msgid "Save Results _As..."
 msgstr "Uložiť výsledky _ako..."
 
-#: gsearchtool/gsearchtool.c:1133
+#: gsearchtool/gsearchtool.c:1780
 msgid "Cannot initialize bonobo."
 msgstr "Nepodarilo sa inicializovať Bonobo."
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1137
+#: gsearchtool/gsearchtool.c:1784
 msgid "Search Tool"
 msgstr "Hľadanie"
 
@@ -1809,6 +1851,10 @@ msgstr "Generátor archívov"
 #: meat-grinder/archive-generator.desktop.in.h:2
 msgid "Create compressed archives containing many files"
 msgstr "Vytvára komprimované archívy obsahujúce veľa súborov"
+
+#: gsearchtool/gnome-search-tool.desktop.in.h:1
+msgid "Search for Files"
+msgstr "Hľadať súbory"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search your disk for files"
