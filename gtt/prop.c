@@ -92,6 +92,7 @@ static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 	secs += atoi(s);
 	if (secs != dlg->proj->secs) {
 		dlg->proj->secs = secs;
+		clist_update_label(dlg->proj);
 	}
 
 }
