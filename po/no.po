@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.2.1\n"
-"POT-Creation-Date: 2000-12-05 15:25+0100\n"
-"PO-Revision-Date: 2000-12-05 15:26+01:00\n"
+"POT-Creation-Date: 2001-01-29 23:04+0100\n"
+"PO-Revision-Date: 2001-01-29 23:05+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Gnome kalkulator"
 msgid "Select ASCII Character"
 msgstr "Velg ASCII-tegn"
 
-#: gcharmap/src/asciiselect.c:118
+#: gcharmap/src/asciiselect.c:118 gcharmap/src/menus.c:95
 msgid "Insert"
 msgstr "Sett inn"
 
@@ -41,37 +41,156 @@ msgstr "ASCII-kode:"
 msgid "Character:"
 msgstr "Tegn:"
 
-#: gcharmap/src/interface.c:130
+#: gcharmap/src/callbacks.c:42 gcharmap/src/interface.c:130
 msgid "Gnome Character Map"
 msgstr "Gnome tegnkart"
+
+#: gcharmap/src/callbacks.c:46
+msgid ""
+"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"contain bad English."
+msgstr ""
+"GNOME versjonen av Microsoft Windows' tegnkart. Advarsel: kan inneholde "
+"dårlig engelsk."
+
+#: gcharmap/src/callbacks.c:76
+#, c-format
+msgid "%s: ASCII code %d"
+msgstr "%s: ASCII-kode %d"
+
+#: gcharmap/src/callbacks.c:103
+msgid "Text copied to clipboard..."
+msgstr "Tekst kopiert til utklippstavlen..."
+
+#: gcharmap/src/callbacks.c:115
+msgid "Text cut to clipboard..."
+msgstr "Tekst klippet ut til utklippstavle..."
+
+#: gcharmap/src/callbacks.c:168
+msgid "Text pasted from clipboard..."
+msgstr "Tekst limt inn fra utklippstavlen..."
 
 #: gcharmap/src/interface.c:159
 msgid "Action Toolbar"
 msgstr "Verktøylinje for handling"
 
-#: gcharmap/src/interface.c:176
+#: gcharmap/src/interface.c:178
 msgid "Text to copy:"
 msgstr "Tekst som skal kopieres:"
 
-#: gcharmap/src/interface.c:220 gstripchart/gstripchart.c:1798
-#: mini-utils/gcolorsel/menus.c:921
+#: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
+#: gstripchart/gstripchart.c:1798 mini-utils/gcolorsel/menus.c:921
 msgid "Exit"
 msgstr "Avslutt"
 
-#: gcharmap/src/interface.c:221 gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:100
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopiér"
 
-#: gcharmap/src/interface.c:225 gstripchart/gstripchart.c:1786
-#: gstripchart/gstripchart.c:2070 mini-utils/gcolorsel/menus.c:919
-#: mini-utils/gshutdown/gshutdown.c:319
+#: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
+#: gstripchart/gstripchart.c:1786 gstripchart/gstripchart.c:2070
+#: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "Om"
 
-#: gcharmap/src/interface.c:227 gdictsrc/gdict-applet.c:142
-#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:2067
+#: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
+#: gdictsrc/gdict-applet.c:286 gstripchart/gstripchart.c:1780
+#: gstripchart/gstripchart.c:2067
 msgid "Help"
 msgstr "Hjelp"
+
+#: gcharmap/src/menus.c:47
+msgid "Insert Character..."
+msgstr "Sett inn tegn..."
+
+#: gcharmap/src/menus.c:48
+msgid "Insert character(s) by choosing ASCII codes."
+msgstr "Sett inn tegn ved å velge ASCII-koder."
+
+#: gcharmap/src/menus.c:55
+msgid "_Action Toolbar"
+msgstr "Verktøylinje for h_andling"
+
+#: gcharmap/src/menus.c:55
+msgid "View or hide the action toolbar"
+msgstr "Vis eller skjul verktøylinjen for handling"
+
+#: gcharmap/src/menus.c:57
+msgid "_Text Toolbar"
+msgstr "Verk_tøylinje med tekst"
+
+#: gcharmap/src/menus.c:57
+msgid "View or hide the text toolbar"
+msgstr "Vis eller skjul verktøylinjen med tekst"
+
+#: gcharmap/src/menus.c:59
+msgid "_Statusbar"
+msgstr "_Statuslinje"
+
+#: gcharmap/src/menus.c:59
+msgid "View or hide the statusbar"
+msgstr "Vis eller skjul statuslinjen"
+
+#: gcharmap/src/menus.c:66
+msgid "Character Table's Font..."
+msgstr "Skrifttype for tegntabellen..."
+
+#: gcharmap/src/menus.c:66
+msgid "Set the character table's font."
+msgstr "Sett skrifttype for tegntabellen."
+
+#: gcharmap/src/menus.c:69
+msgid "_Insert at end"
+msgstr "Sett _inn på slutten"
+
+#: gcharmap/src/menus.c:69
+msgid "Insert every selected character at the end of the text entry"
+msgstr "Sett inn alle valgte tegn ved slutten av tekstfeltet"
+
+#: gcharmap/src/menus.c:71
+msgid "_Focusable Buttons"
+msgstr "_Fokuserbare knapper"
+
+#: gcharmap/src/menus.c:71
+msgid "Set the buttons to be focusable or not"
+msgstr "Bestem om knappene skal være fokuserbare eller ikke"
+
+#: gcharmap/src/menus.c:95
+msgid "Insert character(s) by choosing ASCII codes"
+msgstr "Sett inn tegn ved å velge ASCII-koder"
+
+#: gcharmap/src/menus.c:98 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Klipp ut"
+
+#: gcharmap/src/menus.c:98
+msgid "Cut the selection"
+msgstr "Klipp ut utvalget"
+
+#: gcharmap/src/menus.c:100
+msgid "Copy the selection"
+msgstr "Kopiér utvalget"
+
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Lim inn"
+
+#: gcharmap/src/menus.c:102
+msgid "Paste the clipboard"
+msgstr "Lim inn utklippstavlen"
+
+#: gcharmap/src/menus.c:105
+msgid "Show Gnome Character Map's manual"
+msgstr "Vis brukerhåndboken for Gnome tegnkart"
+
+#: gcharmap/src/menus.c:107 mini-utils/gcolorsel/menus.c:919
+msgid "About this application"
+msgstr "Om denne applikasjonen"
+
+#: gcharmap/src/menus.c:110 mini-utils/gcolorsel/menus.c:921
+msgid "Exit the program"
+msgstr "Avslutt programmet"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
@@ -129,7 +248,7 @@ msgstr ""
 "du ikke er koblet til internett allerede, gjør dette og prøv igjen."
 
 #: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
-#: gdictsrc/gdict-applet.c:166
+#: gdictsrc/gdict-applet.c:315
 msgid "Lookup"
 msgstr "Slå opp"
 
@@ -145,10 +264,6 @@ msgstr "Stav"
 msgid "Check word spelling"
 msgstr "Sjekk ordets staving"
 
-#: gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Klipp ut"
-
 #: gdictsrc/gdict-app.c:518
 msgid "Cut to Clipboard"
 msgstr "Klipp ut til utklippstavle"
@@ -156,10 +271,6 @@ msgstr "Klipp ut til utklippstavle"
 #: gdictsrc/gdict-app.c:521
 msgid "Copy to Clipboard"
 msgstr "Kopiér til utklippstavle"
-
-#: gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Lim inn"
 
 #: gdictsrc/gdict-app.c:524
 msgid "Paste Clipboard Contents"
@@ -177,25 +288,25 @@ msgstr "Tjener som skal brukes, standard strategi for søk, skrifttyper"
 msgid "Word definition"
 msgstr "Orddefinisjon"
 
-#: gdictsrc/gdict-applet.c:128
-msgid "Cannot create applet!\n"
-msgstr "Kan ikke opprette applet!\n"
-
-#: gdictsrc/gdict-applet.c:138
+#: gdictsrc/gdict-applet.c:282
 msgid "About..."
 msgstr "Om..."
 
-#: gdictsrc/gdict-applet.c:147
+#: gdictsrc/gdict-applet.c:291
 msgid "Preferences..."
 msgstr "Brukervalg..."
 
-#: gdictsrc/gdict-applet.c:151
+#: gdictsrc/gdict-applet.c:295
 msgid "Show/Hide Definition Window..."
 msgstr "Vis/skjul definisjonsvindu..."
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:299
 msgid "Spell Check..."
 msgstr "Stavekontroll..."
+
+#: gdictsrc/gdict-applet.c:311
+msgid "Cannot create applet!\n"
+msgstr "Kan ikke opprette applet!\n"
 
 #: gdictsrc/gdict-pref-dialog.c:38
 msgid "Headword:"
@@ -279,7 +390,7 @@ msgstr ""
 msgid "Applet"
 msgstr "Applet"
 
-#: gdictsrc/gdict-pref-dialog.c:577
+#: gdictsrc/gdict-pref-dialog.c:581
 msgid "The server you specified could not be found."
 msgstr "Tjeneren du spesifiserte ble ikke funnet."
 
@@ -2306,14 +2417,6 @@ msgstr "Hent"
 msgid "Grab a color on the screen"
 msgstr "Hent en farge fra skjermen"
 
-#: mini-utils/gcolorsel/menus.c:919
-msgid "About this application"
-msgstr "Om denne applikasjonen"
-
-#: mini-utils/gcolorsel/menus.c:921
-msgid "Exit the program"
-msgstr "Avslutt programmet"
-
 #: mini-utils/gcolorsel/session.c:304
 msgid ""
 "Your config file is corrupted.\n"
@@ -3178,91 +3281,4 @@ msgstr "Bare superbruker kan bruke dette verktøyet"
 
 #: mini-utils/idetool/idetool.c:446
 msgid "You appear to have no IDE drives"
-msgstr "Det ser ut til at du ikke har noen IDE disker"
-
-#~ msgid "Insert character"
-#~ msgstr "Sett inn tegn"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-#~ msgstr "-adobe-helvetica-fet-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-
-#~ msgid "Insert character..."
-#~ msgstr "Sett inn tegn..."
-
-#~ msgid "_Toolbar"
-#~ msgstr "Verk_tøylinje"
-
-#~ msgid "View or hide the toolbar"
-#~ msgstr "Vis eller skjul verktøylinjen"
-
-#~ msgid "_Statusbar"
-#~ msgstr "_Statuslinje"
-
-#~ msgid "View or hide the statusbar"
-#~ msgstr "Vis eller skjul statuslinjen"
-
-#~ msgid "Cut the text to clipboard"
-#~ msgstr "Klipp ut teksten til utklippstavlen"
-
-#~ msgid "Copy the text to clipboard."
-#~ msgstr "Kopiér teksten til utklippstavlen."
-
-#~ msgid "Paste the text from clipboard."
-#~ msgstr "Lim inn teksten fra utklippstavlen."
-
-#~ msgid "Exit the application"
-#~ msgstr "Avslutt applikasjonen"
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "Tekst klippet ut til utklippstavle..."
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "Tekst kopiert til utklippstavlen..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "Tekst limt inn fra utklippstavlen..."
-
-#~ msgid ""
-#~ "The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
-#~ "contain bad English.\n"
-#~ "http://users.telekabel.nl/hongli/"
-#~ msgstr ""
-#~ "GNOME versjonen av Microsoft Windows' tegnkart. Advarsel: kan inneholde "
-#~ "dårlig engelsk.\n"
-#~ "http://users.telekabel.nl/hongli/"
-
-#~ msgid "This sets the overall application settings."
-#~ msgstr "Dette endrer generelle innstillinger for applikasjonen."
-
-#~ msgid "About Gnome Find..."
-#~ msgstr "Om GNOME søk..."
-
-#~ msgid "_About"
-#~ msgstr "Om..."
-
-#~ msgid "Info about the striphart program"
-#~ msgstr "Informasjon om stripchart programmet"
-
-#~ msgid "_File"
-#~ msgstr "Fil"
-
-#~ msgid "_Help"
-#~ msgstr "Hjelp"
-
-#~ msgid "label2"
-#~ msgstr "etikett2"
-
-#~ msgid "label13"
-#~ msgstr "etikett13"
-
-#~ msgid "label14"
-#~ msgstr "etikett14"
-
-#~ msgid "label15"
-#~ msgstr "etikett15"
-
-#~ msgid "label16"
-#~ msgstr "etikett16"
-
-#~ msgid "label4"
-#~ msgstr "etikett4"
+msgstr "Du ser ikke ut til å ha noen IDE-disker"
