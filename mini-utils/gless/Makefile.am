@@ -25,4 +25,8 @@ Utilities_in_files = gless.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @XML_I18N_MERGE_DESKTOP_RULE@
 
-EXTRA_DIST = gless.1 gless.desktop.in $(top_srcdir)/sgmldocs.make
+EXTRA_DIST = \
+	$(man_MANS) \
+	$(Utilities_in_files) \
+	$(Utilities_DATA) \
+	$(top_srcdir)/sgmldocs.make

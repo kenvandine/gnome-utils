@@ -20,4 +20,7 @@ Root_in_files = gnome-run.desktop.in
 Root_DATA = $(Root_in_files:.desktop.in=.desktop)
 @XML_I18N_MERGE_DESKTOP_RULE@
 
-EXTRA_DIST = gnome-run.desktop.in $(top_srcdir)/sgmldocs.make
+EXTRA_DIST = \
+	$(Root_in_files) \
+	$(Root_DATA) \
+	$(top_srcdir)/sgmldocs.make

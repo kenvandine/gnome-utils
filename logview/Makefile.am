@@ -46,13 +46,12 @@ additional_DATA  = logview-descript.db \
 		   logview-actions.db
 
 EXTRA_DIST = \
-	logview.desktop.in		\
-	logview-descript.db	\
-	logview-regexp.db	\
-	logview-actions.db	\
+	$(Utilities_in_files)	\
+	$(Utilities_DATA)	\
+	$(additional_DATA)	\
 	logview-pam		\
 	logview-security.in	\
-	logview.1
+	$(man_MANS)
 
 install-data-local: logview-security
 if CONSOLE_HELPER

@@ -27,4 +27,9 @@ System_DATA = $(System_in_files:.desktop.in=.desktop)
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-who.png
 
-EXTRA_DIST = gw.desktop.in gnome-who.png gw.1 $(top_srcdir)/sgmldocs.make
+EXTRA_DIST = \
+	$(man_MANS) \
+	$(System_in_files) \
+	$(System_DATA) \
+	$(pixmap_DATA) \
+	$(top_srcdir)/sgmldocs.make

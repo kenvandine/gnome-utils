@@ -10,4 +10,7 @@ cromagnon: cromagnon.scm Makefile
 	sed -e "s#@GNOMEG@#$(GNOMEG)#" -e "s#@MYVERSION@#$(VERSION)#"<$< >$@
 	chmod +x $@
 
-EXTRA_DIST = cromagnon.scm Cromagnon.desktop.in
+EXTRA_DIST = \
+	cromagnon.scm \
+	$(Utilities_DATA) \
+	$(Utilities_in_files)

@@ -18,14 +18,6 @@ gshutdown_LDADD = \
 
 man_MANS = gshutdown.8
 
-EXTRA_DIST = \
-	gshutdown.desktop.in \
-	gnome-shutdown.png  \
-	gshutdown.8 \
-	$(top_srcdir)/sgmldocs.make \
-	gshutdown-security.in \
-	gshutdown-pam
-
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = gnome-shutdown.png
 
@@ -33,6 +25,16 @@ Systemdir = $(datadir)/gnome/apps/System
 System_in_files = gshutdown.desktop.in
 System_DATA = $(System_in_files:.desktop.in=.desktop)
 @XML_I18N_MERGE_DESKTOP_RULE@
+
+EXTRA_DIST = \
+	$(man_MANS) \
+	$(pixmaps_DATA) \
+	$(System_in_files) \
+	$(System_DATA) \
+	$(top_srcdir)/sgmldocs.make \
+	gshutdown-security.in \
+	gshutdown-pam
+
 
 install-data-local: gshutdown-security
 if CONSOLE_HELPER

@@ -21,9 +21,6 @@ gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
 
 man_MANS = gdiskfree.1
 
-EXTRA_DIST = gdiskfree.desktop.in gdiskfree.1 $(top_srcdir)/sgmldocs.make \
-             gdiskfree.png gdiskfree-splash.png
-
 Systemdir = $(datadir)/gnome/apps/System
 System_in_files = gdiskfree.desktop.in
 System_DATA = $(System_in_files:.desktop.in=.desktop)
@@ -31,3 +28,10 @@ System_DATA = $(System_in_files:.desktop.in=.desktop)
 
 Pixmapsdir = $(datadir)/pixmaps
 Pixmaps_DATA = gdiskfree.png gdiskfree-splash.png
+
+EXTRA_DIST = \
+	$(man_MANS) \
+	$(System_in_files) \
+	$(System_DATA) \
+	$(Pixmaps_DATA) \
+	$(top_srcdir)/sgmldocs.make

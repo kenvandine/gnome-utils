@@ -26,8 +26,12 @@ man_MANS = gsearchtool.1
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-searchtool.png
 
-EXTRA_DIST = gnome-searchtool.png gsearchtool.desktop.in gsearchtool.1
-
 Utilities_in_files = gsearchtool.desktop.in 
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @XML_I18N_MERGE_DESKTOP_RULE@
+
+EXTRA_DIST = \
+	$(pixmap_DATA) \
+	$(Utilities_in_files) \
+	$(Utilities_DATA) \
+	$(man_MANS)

@@ -30,6 +30,7 @@ gtt_SOURCES = 		\
 
 noinst_HEADERS = 	\
 	ctree.h		\
+	cur-proj.h	\
 	dialog.h	\
 	err-throw.h	\
 	file-io.h	\
@@ -67,15 +68,16 @@ gtt_LDADD = \
 	$(GCONF_LIBS)	 	\
 	$(INTLLIBS)
 
-EXTRA_DIST = 		\
-	.cvsignore	\
-	design.txt	\
-	gtt.desktop.in 	\
-	$(top_srcdir)/sgmldocs.make
-
 Productivitydir = $(datadir)/gnome/apps/Applications
 Productivity_in_files = gtt.desktop.in
 Productivity_DATA = $(Productivity_in_files:.desktop.in=.desktop)
 @XML_I18N_MERGE_DESKTOP_RULE@
 
+EXTRA_DIST = 		\
+	down.xpm	\
+	left.xpm	\
+	design.txt	\
+	$(Productivity_in_files) \
+	$(Productivity_DATA) \
+	$(top_srcdir)/sgmldocs.make
 

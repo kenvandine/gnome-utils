@@ -23,4 +23,7 @@ Utilities_in_files = meat-grinder.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @XML_I18N_MERGE_DESKTOP_RULE@
 
-EXTRA_DIST = meat-grinder.desktop.in meat-grinder.1
+EXTRA_DIST = \
+	$(man_MANS) \
+	$(Utilities_in_files) \
+	$(Utilities_DATA)

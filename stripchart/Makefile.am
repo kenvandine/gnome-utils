@@ -28,11 +28,6 @@ stripchart_applet_LDADD = \
 
 man_MANS = stripchart.1 stripchart-applet.1
 
-EXTRA_DIST = \
- gnome-stripchart.png stripchart.conf stripchart.params \
- stripchart.desktop.in stripchart-applet.desktop.in $(top_srcdir)/sgmldocs.make \
- stripchart-applet.gnorba stripchart.1 stripchart-applet.1
-
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-stripchart.png
 
@@ -50,6 +45,17 @@ Applet_DATA = $(Applet_in_files:.desktop.in=.desktop)
 
 gnorbadir  = $(sysconfdir)/CORBA/servers
 gnorba_DATA = stripchart-applet.gnorba
+
+EXTRA_DIST = \
+	$(man_MANS) \
+	$(pixmap_DATA) \
+	$(conf_DATA) \
+	$(Utilities_DATA) \
+	$(Utilities_in_files) \
+	$(Applet_DATA) \
+	$(Applet_in_files) \
+	$(gnorba_DATA) \
+	$(top_srcdir)/sgmldocs.make
 
 sanitize:	clean
 	$(RM) core *~ doc/C/*.html doc/C/*~

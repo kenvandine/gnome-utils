@@ -26,10 +26,11 @@ gcalc_LDADD = \
 
 man_MANS = gcalc.1
 
-EXTRA_DIST = \
-	gcalc.desktop.in	\
-	gcalc.1
-
 Utilities_in_files = gcalc.desktop.in 
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @XML_I18N_MERGE_DESKTOP_RULE@
+
+EXTRA_DIST = \
+	$(man_MANS) \
+	$(Utilities_in_files) \
+	$(Utilities_DATA)
