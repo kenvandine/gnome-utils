@@ -31,10 +31,15 @@ static void callback_err(GtkWidget *w, gpointer *unused)
 	exit(-1);
 }
 
+int dialog_yesno(const char *title, const char *prompt, int height, int width)
+{
+    dialog_yesno_with_default(title, prompt, height, width, 1);
+}
+
 /*
  * Display a dialog box with two buttons - Yes and No
  */
-int dialog_yesno(const char *title, const char *prompt, int height, int width)
+int dialog_yesno_with_default(const char *title, const char *prompt, int height, int width, int yesno_default)
 {
 	int i, x, y, key = 0, button = 0;
 	WINDOW *dialog;
@@ -45,16 +50,26 @@ int dialog_yesno(const char *title, const char *prompt, int height, int width)
 			GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO, NULL);
 		GtkWidget *hbox;
 		GtkWidget *vbox;
-		
+
+                gnome_dialog_set_default(GNOME_DIALOG(w), !yesno_default);
+                
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
 		
 		hbox = gtk_hbox_new(FALSE, 0);
 		vbox = gtk_vbox_new(FALSE, 0);
 
-
-		label_autowrap(vbox, prompt, width);
-		
+                if(width != 0)
+                {
+                    label_autowrap(vbox, prompt, width);
+		}
+                else
+                {
+                    GtkWidget *t = gtk_label_new(prompt);
+                    gtk_box_pack_start(GTK_BOX(vbox), t, TRUE, TRUE, 0);
+                    gtk_misc_set_alignment(GTK_MISC(t), -1, 0);
+                }
+                
 		gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
 
 		gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), 
@@ -84,7 +99,6 @@ int dialog_yesno(const char *title, const char *prompt, int height, int width)
 
 	draw_box(dialog, 0, 0, height, width, dialog_attr, border_attr);
 	wattrset(dialog, border_attr);
-	wmove(dialog, height - 3, 0);
 	waddch(dialog, ACS_LTEE);
 	for (i = 0; i < width - 2; i++)
 		waddch(dialog, ACS_HLINE);
@@ -106,8 +120,11 @@ int dialog_yesno(const char *title, const char *prompt, int height, int width)
 
 	x = width / 2 - 10;
 	y = height - 2;
-	print_button(dialog, "  No  ", y, x + 13, FALSE);
-	print_button(dialog, " Yes ", y, x, TRUE);
+	print_button(dialog, "  No  ", y, x + 13, !yesno_default);
+	print_button(dialog, " Yes ", y, x, yesno_default);
+	wmove(dialog, y,
+              (yesno_default ? x : x + 13));
+        button = !yesno_default;
 	wrefresh(dialog);
 
 	while (key != ESC) {

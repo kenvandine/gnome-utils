@@ -48,12 +48,17 @@ copy_and_activate_cb (GtkWidget * widget, gpointer user_data)
 		GtkWidget *new_item;
 		GList *item;
 
+                /* FIXME: this doesn't properly set an item already in
+                the list as the top (and shown option) */
 		for (item = GTK_LIST (list)->children;
 		     item; item = item->next) {
 			GtkLabel *label = GTK_LABEL (
 				GTK_BIN (item->data)->child);
 			if (strcmp (GTK_LABEL (label)->label,
 				    fontname) == 0) {
+                                gtk_entry_set_text(
+                                    GTK_ENTRY(GTK_COMBO(cfg->combo)->entry),
+                                    GTK_LABEL(label)->label);
 				gtk_entry_select_region (
 					GTK_ENTRY (cfg->entry),
 					0, GTK_ENTRY (cfg->entry)->text_length);

@@ -1,3 +1,27 @@
+Sat Jun  3 10:58:03 EDT 2000 Gregory McLean <gregm@comstar.net>
+
+	* applied a patch from James LewisMoss <dres@ioa.com>
+        that does the following:
+        2) fixes a function usage in cromagnon.scm (comes up and runs)
+        3) fixes a bug in gfontsel where you pick font A and press apply. Then
+        pick font B and press apply.  Then pick font A again and press
+        apply.  When you choose a font for the second time (therefore it's
+        in the dropdown list at the top) it doesn't appear in the text
+        box.  This makes the text box update. 
+        4) Adds a --defaultno option to gdialog --yesno option (--defaultno
+        can appear at the begining and the end of the command line.  The
+        only problem with this is that I had to change the default for the
+        text fallback since it was already no to yes (so that the graphical
+        and text versions acted the same in this respect whereas they
+        didn't before).
+        5) It also makes --yesno dialogs auto size so you can say 'gdialog
+        --yesno "For you?" 0 0' and it'll pick a size.
+        6) Basically copies the --guage option to --gauge (to have a correctly
+        spelled option).
+        (#1 was obsolete and not applied.)
+        All these patches are applied to the distributed debian packages 
+        (they were all generated because of bug reports to debian).
+
 Thu Jun 01 19:33:04 2000  George Lebl <jirka@5z.com>
 
 	* configure.in, gcalc/Makefile.am, gcalc/doc/C/*: Added docs from

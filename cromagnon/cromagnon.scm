@@ -671,7 +671,7 @@
 			  (desc (list-ref x (1- (length x)))))
 		      ;; put desc at the beginning
 		      ;; (desc is the last line previous to the crontab entry
-		      (set! entry (cons (substring desc 1 (length desc)) entry))
+		      (set! entry (cons (substring desc 1 (string-length desc)) entry))
 		      (set-cdr! (list-tail x (- (length x) 2)) '())	; chop desc
 		      (set! entries (cons entry entries)))))
 	      (cm-read-raw-crontab-entries))

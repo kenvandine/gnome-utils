@@ -41,7 +41,7 @@ jumperFn j_checklist, j_radiolist, j_inputbox, j_guage;
 
 static struct Mode modes[] =
 {
-	{"--yesno", 5, 5, 1, j_yesno},
+	{"--yesno", 5, 6, 1, j_yesno},
 	{"--msgbox", 5, 5, 1, j_msgbox},
 	{"--infobox", 5, 5, 1, j_infobox},
 	{"--textbox", 5, 5, 1, j_textbox},
@@ -50,6 +50,7 @@ static struct Mode modes[] =
 	{"--radiolist", 9, 0, 3, j_radiolist},
 	{"--inputbox", 5, 6, 1, j_inputbox},
 	{"--guage", 6, 6, 1, j_guage},
+	{"--gauge", 6, 6, 1, j_guage},
 	{NULL, 0, 0, 0, NULL}
 };
 
@@ -134,6 +135,8 @@ int main(int argc, char *argv[])
 				clear_screen = 1;
 				offset++;
 			}
+                } else if(!strcmp(argv[offset + 1], "--defaultno")) {
+                    offset++;
 		} else		/* no more common options */
 			end_common_opts = 1;
 	}
@@ -160,6 +163,12 @@ int main(int argc, char *argv[])
 	init_dialog();
 	retval = (*(modePtr->jumper)) (title, argc - offset, (const char * const *)argv + offset);
 
+        if(retval == -10)
+        {
+            Usage(argv[0]);
+            retval = !retval;
+        }
+        
 	if (clear_screen) {	/* clear screen before exit */
 		attr_clear(stdscr, LINES, COLS, screen_attr);
 		if(!gnome_mode) refresh();
@@ -186,7 +195,7 @@ static void Usage(const char *name)
 \n\
 \nBox options:\
 \n\
-\n  --yesno     <text> <height> <width>\
+\n  [--defaultno] --yesno     <text> <height> <width> [--defaultno]\
 \n  --msgbox    <text> <height> <width>\
 \n  --infobox   <text> <height> <width>\
 \n  --inputbox  <text> <height> <width> [<init>]\
@@ -194,7 +203,9 @@ static void Usage(const char *name)
 \n  --menu      <text> <height> <width> <menu height> <tag1> <item1>...\
 \n  --checklist <text> <height> <width> <list height> <tag1> <item1> <status1>...\
 \n  --radiolist <text> <height> <width> <list height> <tag1> <item1> <status1>...\
-\n  --guage     <text> <height> <width> <percent>\n", VERSION, name, name, name);
+\n  --gauge     <text> <height> <width> <percent>\
+\n  --guage     <text> <height> <width> <percent>\n",
+                VERSION, name, name, name);
 	exit(-1);
 }
 
@@ -204,7 +215,25 @@ static void Usage(const char *name)
 
 int j_yesno(const char *t, int ac, const char *const *av)
 {
-	return dialog_yesno(t, av[2], atoi(av[3]), atoi(av[4]));
+    if(!strcmp(av[0], "--defaultno"))
+    {
+        return dialog_yesno_with_default(t, av[2], atoi(av[3]),
+                                         atoi(av[4]), 0);
+    }
+    else if(ac == 5)
+    {
+	return dialog_yesno_with_default(t, av[2], atoi(av[3]),
+                                         atoi(av[4]), 1);
+    }
+    else if(!strcmp(av[5], "--defaultno"))
+    {
+        return dialog_yesno_with_default(t, av[2], atoi(av[3]),
+                                         atoi(av[4]), 0);
+    }
+    else
+    {
+        return -10;
+    }
 }
 
 int j_msgbox(const char *t, int ac, const char *const *av)
