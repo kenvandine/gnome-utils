@@ -40,7 +40,6 @@
  * -------------------
  */
 
-extern ConfigData *cfg;
 extern UserPrefsStruct *user_prefs;
 
 /*
@@ -48,8 +47,6 @@ extern UserPrefsStruct *user_prefs;
  * Module variables 
  * -------------------
  */
-
-Log *loglist[MAX_NUM_LOGS];
 
 char *month[12] =
 {N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
@@ -242,42 +239,6 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
         window->curlog->current_line_no = row;
         log_redrawdetail (window);
     }
-
-}
-
-/* ----------------------------------------------------------------------
-   NAME:        change_log
-   DESCRIPTION: User switchs to another Log file
-   ---------------------------------------------------------------------- */
-
-void
-change_log (LogviewWindow *window, int direction)
-{
-   if (window->numlogs == 1)
-        return;
-   if (direction > 0) {
-       if (window->curlognum == window->numlogs - 1)
-	       window->curlognum = 0;
-       else
-	       window->curlognum++;
-   }
-   else {
-       if (window->curlognum == 0)
-	       window->curlognum = window->numlogs - 1;
-       else
-	       window->curlognum--;
-   }
-
-   save_rows_to_expand (window);
-
-   window->curlog = loglist[window->curlognum];
-
-   log_repaint (window);
-   if (window->loginfovisible)
-       RepaintLogInfo (window);
-   if (window->calendar_visible)
-       init_calendar_data (window);
-   UpdateStatusArea(window);
 
 }
 
@@ -548,8 +509,5 @@ InitPages (LogviewWindow *window)
    if (window->curlog == NULL)
       return -1;
    window->curlog->first_time = TRUE;
-   loglist[0] = window->curlog;
-   window->curlognum = 0;
-   (window->numlogs)++;
    return TRUE;
 }

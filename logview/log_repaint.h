@@ -25,7 +25,6 @@ gboolean log_repaint (LogviewWindow *window);
 void log_redrawdetail (LogviewWindow *window);
 void DrawLogLines (LogviewWindow *window, Log *current_log);
 void UpdateStatusArea (LogviewWindow *window);
-void change_log (LogviewWindow *window, int direction);
 void handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data);
 void handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
 			       GtkTreeViewColumn *arg2, gpointer user_data);

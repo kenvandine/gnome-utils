@@ -33,7 +33,8 @@
  *       ----------------
  */
 
-extern Log *loglist[];
+Log *loglist[MAX_NUM_LOGS];
+int numlogs;
 
 static GtkWidget *monoptions = NULL;
 static GtkWidget *monwindow = NULL;
@@ -145,7 +146,7 @@ MonitorMenu (GtkAction *action, GtkWidget *callback_data)
       gtk_container_add (GTK_CONTAINER (scrolled_win), srclist_view);
       gtk_widget_show (srclist_view);
 
-      for (i = 0; i < window->numlogs; i++) {
+      for (i = 0; i < numlogs; i++) {
           if (loglist[i]->mon_on == FALSE) {
               gtk_list_store_append (srclist, (GtkTreeIter *)&newiter);
               gtk_list_store_set (srclist, (GtkTreeIter *)&newiter, 0,
@@ -202,7 +203,7 @@ MonitorMenu (GtkAction *action, GtkWidget *callback_data)
       gtk_container_add (GTK_CONTAINER (scrolled_win), destlist_view);
       gtk_widget_show (destlist_view);
 
-      for (i = 0; i < window->numlogs; i++) {
+      for (i = 0; i < numlogs; i++) {
           if (loglist[i]->mon_on == TRUE) {
               monitorcount++;
               gtk_list_store_append (destlist, (GtkTreeIter *)&newiter);
@@ -455,7 +456,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    gtk_box_pack_start (GTK_BOX (vbox), notebook, TRUE, TRUE, 0);
    gtk_widget_show (notebook);
    
-   for (i = 0; i < window->numlogs; i++)
+   for (i = 0; i < numlogs; i++)
      {
        if (loglist[i]->mon_on != TRUE)
 	 continue;
@@ -620,7 +621,7 @@ mon_check_logs (LogviewWindow *window)
 {
   gint i;
 
-  for (i = 0; i < window->numlogs; i++) {
+  for (i = 0; i < numlogs; i++) {
       if (loglist[i]->mon_on != TRUE)
           continue;
       if (WasModified (loglist[i]) != TRUE)
