@@ -391,7 +391,7 @@ CreateMainWin ()
 
    /* Create App */
 
-   if ((curlog != NULL) && (numlogs))
+   if ((curlog != NULL) && (curlog->name != NULL) && (numlogs))
        window_title = g_strdup_printf ("%s - %s", curlog->name, APP_NAME);
    else
        window_title = g_strdup_printf (APP_NAME);
