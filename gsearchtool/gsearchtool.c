@@ -528,6 +528,7 @@ add_no_files_found_message (GtkListStore 	*store,
 static GtkWidget *
 make_list_of_templates (void)
 {
+	gboolean ACTIVATE_MENU_OPTION = TRUE;
 	GtkWidget *menu;
 	GtkWidget *menuitem;
 	GtkWidget *separator;
@@ -560,6 +561,12 @@ make_list_of_templates (void)
 		
 		if (templates[i].is_selected == TRUE) {
 			gtk_widget_set_sensitive (menuitem, FALSE);
+		}
+		else {
+			if (ACTIVATE_MENU_OPTION == TRUE) {
+				ACTIVATE_MENU_OPTION = FALSE;
+				g_signal_emit_by_name (G_OBJECT(menuitem), "activate", NULL);
+			}
 		}
 	}
 	return menu;
