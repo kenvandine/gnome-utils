@@ -74,7 +74,7 @@ cb_charbtn_enter (GtkButton *button, gpointer user_data)
     gchar *text, *s;
 
     gtk_label_get (label, &text);
-    s = g_strdup_printf (_("%s: ASCII code %d"), text, (unsigned char) text[0]);
+    s = g_strdup_printf (_("%s: Character code %d"), text, (unsigned char) text[0]);
     gnome_appbar_set_status (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar), s);
     gtk_label_set_text (GTK_LABEL (mainapp->preview_label), text);
     g_free (s);

@@ -1,5 +1,7 @@
 2001-06-05  Kjartan Maraas  <kmaraas@gnome.org>
 
+	* src/asciselect.c, callbacks.c, menus.c: Use Character code instead
+	of ASCII code since ASCII only covers 7-bits.
 	* src/*.*: Fix i18n brokenness by including <config.h> at the top
 	of all .c files. Also shuffle the headers a bit. Finally make the
 	"help" button work by passing the app name instead of PACKAGE as

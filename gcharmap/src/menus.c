@@ -49,7 +49,7 @@ GnomeUIInfo edit_menu[] =
     GNOMEUIINFO_MENU_SELECT_ALL_ITEM (cb_select_all_click, NULL),
     GNOMEUIINFO_SEPARATOR,
     GNOMEUIINFO_ITEM_DATA(N_("Insert Character..."),
-      N_("Insert character(s) by choosing ASCII codes."), cb_insert_char_click,
+      N_("Insert character(s) by choosing character codes."), cb_insert_char_click,
       NULL, gcharmap_map_16_xpm),
     GNOMEUIINFO_END
 };
@@ -96,7 +96,7 @@ GnomeUIInfo menubar[] =
 };
 
 GnomeUIInfo toolbar[] = {
-    GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing ASCII codes"),
+    GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
       cb_insert_char_click, &gcharmap_map_24_xpm),
     GNOMEUIINFO_SEPARATOR,
     GNOMEUIINFO_ITEM_STOCK(N_("Cut"), N_("Cut the selection"),

@@ -120,14 +120,14 @@ ascii_select_init (AsciiSelect *obj)
     GtkStyle *style;
     GtkObject *adj;
 
-    obj->window = gnome_dialog_new (_("Select ASCII Character"),
+    obj->window = gnome_dialog_new (_("Select Character"),
       GNOME_STOCK_BUTTON_OK, _("Insert"), GNOME_STOCK_BUTTON_CLOSE, NULL);
     gnome_dialog_set_default (GNOME_DIALOG (obj->window), 1);
     gtk_signal_connect_object (GTK_OBJECT (obj->window), "destroy",
       GTK_SIGNAL_FUNC (ascii_select_destroy), GTK_OBJECT (obj));
 
     gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (obj->window)->vbox),
-      gtk_label_new (_("ASCII code:")), FALSE, FALSE, 0);
+      gtk_label_new (_("Character code:")), FALSE, FALSE, 0);
 
     adj = gtk_adjustment_new (65, 0, 255, 1, 10, 10);
     spin = gtk_spin_button_new (GTK_ADJUSTMENT (adj), 1, 0);
