@@ -229,9 +229,13 @@ toggled (GtkToggleButton *tb)
 	disclosure = CDDB_DISCLOSURE (tb);
 	do_animation (disclosure, gtk_toggle_button_get_active (tb));
 
+	/*  Disabled for now.  By default we won't show the additional options section.
+	    But, keep the gconf key so advanced users can change the default behavior.
+	    
 	gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/show_additional_options",
 		       	       	       disclosure->priv->style == GTK_EXPANDER_COLLAPSED 
 				       ? TRUE : FALSE);
+	*/
 
 	if (disclosure->priv->container == NULL) {
 		return;
