@@ -147,7 +147,7 @@ static void get_linux_info()
       info[si_distribution_version] = g_strdup(buf);
       fclose(f);
     }
-  } else if (g_file_exists("/etc/mandrake-release)) {  
+  } else if (g_file_exists("/etc/mandrake-release")) {  
     FILE *f;
     gchar buf[80];
 
