@@ -25,6 +25,7 @@
 #include <string.h>
 
 #include "err-throw.h"
+#include "log.h"
 #include "proj.h"
 #include "proj_p.h"
 

@@ -22,6 +22,7 @@
 #include <stdlib.h>
 
 #include "cur-proj.h"
+#include "log.h"
 #include "prefs.h"
 #include "proj.h"
 
