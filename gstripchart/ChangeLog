@@ -1,3 +1,11 @@
+1999-08-22  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (prefs_callback): Removed an '#if 0' section of
+	code containing gettext_noop macros with various color names.
+	This section was added as part of the i18n effort, but isn't
+	required.  The color names are taken from the X11 rgb.txt file,
+	and so are not subject to translation.
+
 1999-08-15  Matthias Warkus  <mawa@iname.com>
 
 	* gnome-stripchart.png: New icon by Ben Frantzdale.

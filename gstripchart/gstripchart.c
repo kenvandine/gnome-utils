@@ -1453,20 +1453,6 @@ prefs_callback(GtkWidget *chart, gpointer unused)
 
       row[0] = _("Identifier"); row[1] = _(chart_glob.parray[p]->ident);
       gtk_clist_append(GTK_CLIST(clist), row);
-#if 0
-/* FIXME: this should be elsewhere; but I have no idea where the color
-   name come from... here are some values.
-   FIXME: and where those Busy, Load etc come from ?
-   PS: keep the #if 0, this code must never be compiled; it is just for
-   gettext to find the strings; until somebody move it to the proper
-   place.
-*/
-   { char place_holder[]={
-   N_("yellow"),N_("blue"),N_("red"),N_("green"),N_("white"),
-   N_("Busy"),N_("Load"),N_("PPP In"),N_("PPP Out"),N_("Swap")
-   };}
-
-#endif
       row[0] = _("Color"); row[1] = _( chart_glob.parray[p]->color_name );
       gtk_clist_append(GTK_CLIST(clist), row);
       row[0] = _("Filename"); row[1] = chart_glob.parray[p]->filename;
