@@ -26,30 +26,76 @@
 #include <time.h>
 #include <sys/stat.h>
 #include "logview.h"
+#include "userprefs.h"
 
-#define USERPREFSDIALOG_WIDTH            500
-#define USERPREFSDIALOG_HEIGHT           300
+#define GCONF_WIDTH_KEY  "/apps/gnome-system-log/width"
+#define GCONF_HEIGHT_KEY "/apps/gnome-system-log/height"
+#define GCONF_LOGFILE "/apps/gnome-system-log/logfile"
 
-/*
- *  --------------------------
- *  Local and global variables
- *  --------------------------
- */
-
-extern ConfigData *cfg;
-extern UserPrefsStruct *user_prefs;
-extern GtkWidget *app;
-
-/* Struct to hold function data */
-typedef struct 
+void
+prefs_create_defaults (UserPrefsStruct *prefs)
 {
-   GtkWidget *userprefs_property;
-   GtkWidget *frame;
-   GtkWidget *table;
-   GtkWidget *columns_tab_label;
-   GtkWidget *hostname_width_label;
-   GtkWidget *hostname_width_spinner;
-   GtkAdjustment *hostname_width_spinner_adjust;
-} UserPrefsDialogStruct;
+	int i;
+	gchar *logfiles[] = {"/etc/syslog.conf", "/var/adm/messages",
+			     "/var/log/messages","/var/log/sys.log"};
 
-UserPrefsDialogStruct upds;
+	/* For first time running, try parsing various logfiles */
+
+	for (i=0; i<4; i++) {
+		if (isLogFile (logfiles[i], FALSE)) {
+			prefs->logfile = g_strdup (logfiles[i]);
+			break;
+		}
+	}
+}
+
+UserPrefsStruct *
+prefs_load (GConfClient *client)
+{
+	gchar *logfile = NULL;
+	int width, height;
+	UserPrefsStruct *prefs;
+
+	prefs = g_new0 (UserPrefsStruct, 1);
+	
+	logfile = gconf_client_get_string (client, GCONF_LOGFILE, NULL);
+	if (logfile != NULL && strcmp (logfile, "") && isLogFile(logfile, FALSE)) {
+		prefs->logfile = g_strdup (logfile);
+		g_free (logfile);
+	}
+	else
+		prefs_create_defaults(prefs);
+
+	width = gconf_client_get_int (client, GCONF_WIDTH_KEY, NULL);
+	height = gconf_client_get_int (client, GCONF_HEIGHT_KEY, NULL);
+	prefs->width = (width == 0 ? LOG_CANVAS_W : width);
+	prefs->height = (height == 0 ? LOG_CANVAS_H : height);
+
+	return prefs;
+}
+
+void
+prefs_save (GConfClient *client, LogviewWindow *window, UserPrefsStruct *prefs)
+{
+	if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL) &&
+	    prefs->logfile != NULL)
+		gconf_client_set_string (client, GCONF_LOGFILE, prefs->logfile, NULL);
+	if (prefs->width > 0 && prefs->height > 0) {
+		if (gconf_client_key_is_writable (client, GCONF_WIDTH_KEY, NULL))
+			gconf_client_set_int (client, GCONF_WIDTH_KEY, prefs->width, NULL);
+		if (gconf_client_key_is_writable (client, GCONF_HEIGHT_KEY, NULL))
+			gconf_client_set_int (client, GCONF_HEIGHT_KEY, prefs->height, NULL);
+	}
+}
+
+void
+prefs_store_size (LogviewWindow *window, UserPrefsStruct *prefs)
+{
+	int width, height;
+	gtk_window_get_size (GTK_WINDOW(window), &width, &height);
+	/* FIXME : we should check the state of the window, maximized or not */
+	if (width > 0 && height > 0) {
+		prefs->width = width;
+		prefs->height = height;
+	}
+}

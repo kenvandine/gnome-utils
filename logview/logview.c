@@ -37,11 +37,13 @@
 #include "logview-findbar.h"
 #include <popt.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include "userprefs.h"
 
 static GObjectClass *parent_class;
 static GSList *logview_windows = NULL;
 static gchar *program_name = NULL;
 static GConfClient *client = NULL;
+static UserPrefsStruct *user_prefs;
 
 /*
  *    -------------------
@@ -58,7 +60,6 @@ static void CloseLogMenu (GtkAction *action, GtkWidget *callback_data);
 static void FileSelectResponse (GtkWidget * chooser, gint response, gpointer data);
 static void open_databases (void);
 static GtkWidget *logview_create_window (void);
-static void SaveUserPrefs(UserPrefsStruct *prefs);
 static char * parse_syslog(gchar * syslog_file);
 static void logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state);
 static void toggle_calendar (GtkAction *action, GtkWidget *callback_data);
@@ -69,6 +70,8 @@ static void logview_menus_set_state (LogviewWindow *logviewwindow);
 static void logview_search (GtkAction *action, GtkWidget *callback_data);
 static void logview_help (GtkAction *action, GtkWidget *callback_data);
 static int logview_count_logs (void);
+gboolean window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
+				 gpointer data);
 
 /*
  *    ,-------.
@@ -148,8 +151,6 @@ static const char *ui_description =
  */
 	
 GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
-UserPrefsStruct *user_prefs = NULL;
-UserPrefsStruct user_prefs_struct = {0};
 ConfigData *cfg = NULL;
 gchar *file_to_open;
 
@@ -181,8 +182,14 @@ destroy (GObject *object, gpointer data)
    logview_windows = g_slist_remove (logview_windows, window);
    if (window->monitored)
 	   monitor_stop (window);
-   if (logview_windows == NULL)
+   if (logview_windows == NULL) {
+	   if (window->curlog)
+		   user_prefs->logfile = window->curlog->name;
+	   else
+		   user_prefs->logfile = NULL;
+	   prefs_save (client, window, user_prefs);
 	   gtk_main_quit ();
+   }
 }
 
 static gint
@@ -272,8 +279,7 @@ main (int argc, char *argv[])
    /*  Load graphics config and prefs */
    cfg = CreateConfig();
    open_databases ();
-   user_prefs = &user_prefs_struct;
-   SetDefaultUserPrefs(user_prefs, client);
+   user_prefs = prefs_load (client);
    
    program_name = (gchar *) argv[0];
    poptCon = poptGetContext ("gnome-system-log", argc, (const gchar **) argv, 
@@ -371,7 +377,7 @@ CreateMainWin (LogviewWindow *window)
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
                                     N_("Process"), N_("Message"), NULL };
 
-   gtk_window_set_default_size (GTK_WINDOW (window), LOG_CANVAS_W, LOG_CANVAS_H);
+   gtk_window_set_default_size (GTK_WINDOW (window), user_prefs->width, user_prefs->height);
 
    vbox = gtk_vbox_new (FALSE, 0);
    gtk_container_add (GTK_CONTAINER (window), vbox);
@@ -447,9 +453,10 @@ CreateMainWin (LogviewWindow *window)
    /* Add signal handlers */
    g_signal_connect (G_OBJECT (selection), "changed",
                      G_CALLBACK (handle_selection_changed_cb), window);
-
    g_signal_connect (G_OBJECT (window->view), "row_activated",
                      G_CALLBACK (handle_row_activation_cb), window);
+   g_signal_connect (G_OBJECT (window), "configure_event",
+		     G_CALLBACK (window_size_changed_cb), window);
 
    window->find_bar = gtk_toolbar_new ();
    logview_findbar_populate (window, window->find_bar);
@@ -703,36 +710,6 @@ IsLeapYear (int year)
 
 }
 
-void SetDefaultUserPrefs(UserPrefsStruct *prefs, GConfClient *client)
-{
-	/* Make defaults configurable later */
-	/* Will have to save prefs. eventually too*/
-	gchar *logfile = NULL;
-	struct stat filestat;
-	
-	logfile = gconf_client_get_string (client, "/apps/gnome-system-log/logfile", NULL);
-	if (logfile != NULL && strcmp (logfile, "") && isLogFile(logfile, FALSE)) {
-		prefs->logfile = g_strdup (logfile);
-		g_free (logfile);
-	}
-	else {
-
-		/* For first time running, try parsing /etc/syslog.conf */
-		if (lstat("/etc/syslog.conf", &filestat) == 0) {
-			if ((logfile = parse_syslog("/etc/syslog.conf")) == NULL);
-			prefs->logfile = g_strdup (logfile);
-		}
-		else if (lstat("/var/adm/messages", &filestat) == 0) 
-			prefs->logfile = g_strdup ("/var/adm/messages");
-		else if (lstat("/var/log/messages", &filestat) == 0) 
-			prefs->logfile = g_strdup ("/var/log/messages");
-		else if (lstat("/var/log/sys.log", &filestat) == 0) 
-			prefs->logfile = g_strdup ("/var/log/sys.log");
-		else
-			prefs->logfile = NULL;
-	}
-}
-
 char * parse_syslog(gchar * syslog_file) {
 /* Most of this stolen from sysklogd sources */
     char * logfile = NULL;
@@ -782,15 +759,6 @@ char * parse_syslog(gchar * syslog_file) {
         
     }
     return logfile; 
-}
-
-
- 
-void SaveUserPrefs(UserPrefsStruct *prefs)
-{
-    if (gconf_client_key_is_writable (client, "/apps/gnome-system-log/logfile", NULL) &&
-	prefs->logfile != NULL)
-	    gconf_client_set_string (client, "/apps/gnome-system-log/logfile", prefs->logfile, NULL);
 }
 
 static void 
@@ -953,7 +921,6 @@ logview_window_finalize (GObject *object)
         LogviewWindow *window = (LogviewWindow *) object;
 
 	g_object_unref (window->ui_manager);
-	SaveUserPrefs(user_prefs);
         parent_class->finalize (object);
 }
 
@@ -991,3 +958,12 @@ logview_window_get_type (void)
 	return object_type;
 }
 
+gboolean 
+window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
+				 gpointer data)
+{
+	LogviewWindow *window = data;
+
+	prefs_store_size (window, user_prefs);
+	return FALSE;
+}

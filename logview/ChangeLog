@@ -1,5 +1,16 @@
 2004-11-04  Vincent Noel  <vnoel@cox.net>
 
+	* logview.c (destroy): Only save the size and opened log when
+	destroying the last window.
+
+	* userprefs.c (prefs_create_defaults): open one of standard logs
+	when there is no previous selection in gconf.
+	(prefs_load): Read previous log and window size in gconf.
+	(prefs_save): Store the opened log and window size in gconf.
+
+	* logview.c (CreateMainWin): Use the width/height stored in gconf
+	for creating the window.
+
 	* userprefs.c: Renamed the file from userprefsdialog.c
 
 	* logrtns.c: Remove the ifdef'ed functions, which have not been

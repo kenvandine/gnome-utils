@@ -128,11 +128,8 @@ typedef void (*MonActions)();
 
 typedef struct
 {
-	/* FIXME: This should perhaps be a glist of logfiles to
-	** open on startup. Also one should be able to set the value in
-	** the prefs dialog
-	*/
 	gchar *logfile;
+	int width, height;
 } UserPrefsStruct;
 
 typedef struct
