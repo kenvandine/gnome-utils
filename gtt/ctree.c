@@ -51,7 +51,43 @@ static void cupdate_label(GttProject *p, gboolean expand);
 /* ============================================================== */
 
 static int
-clist_event(GtkCList *clist, GdkEvent *event, gpointer data)
+widget_key_event(GtkCTree *ctree, GdkEvent *event, gpointer data)
+{
+	GtkCTreeNode *rownode;
+	GdkEventKey *kev = (GdkEventKey *)event;
+
+	if (event->type != GDK_KEY_RELEASE) return FALSE;
+	switch (kev->keyval)
+	{
+		case GDK_Return:
+			rownode = gtk_ctree_node_nth (ctree,  GTK_CLIST(ctree)->focus_row);
+			if (rownode)
+			{
+				GttProject *prj;
+				prj = gtk_ctree_node_get_row_data(ctree, rownode);
+				gtk_ctree_select (ctree, rownode);
+				cur_proj_set (prj);
+			}
+			return TRUE;
+		case GDK_Up:
+		case GDK_Down:
+			return FALSE;
+		case GDK_Left:
+			rownode = gtk_ctree_node_nth (ctree,  GTK_CLIST(ctree)->focus_row);
+			gtk_ctree_collapse (ctree, rownode);
+			return TRUE;
+		case GDK_Right:
+			rownode = gtk_ctree_node_nth (ctree,  GTK_CLIST(ctree)->focus_row);
+			gtk_ctree_expand (ctree, rownode);
+			return TRUE;
+		default:
+			return FALSE;
+	}
+	return FALSE;
+}
+
+static int
+widget_button_event(GtkCList *clist, GdkEvent *event, gpointer data)
 {
 	int row,column;
 	GdkEventButton *bevent = (GdkEventButton *)event;
@@ -86,19 +122,20 @@ clist_event(GtkCList *clist, GdkEvent *event, gpointer data)
 	return TRUE;
 }
 
+/* ============================================================== */
 
 static void
-tree_select_row(GtkCTree *ctree, GtkCTreeNode* row, gint column)
+tree_select_row(GtkCTree *ctree, GtkCTreeNode* rownode, gint column)
 {
-	cur_proj_set(gtk_ctree_node_get_row_data(ctree, row));
+	cur_proj_set(gtk_ctree_node_get_row_data(ctree, rownode));
 }
 
 
 
 static void
-tree_unselect_row(GtkCTree *ctree, GtkCTreeNode* row, gint column)
+tree_unselect_row(GtkCTree *ctree, GtkCTreeNode* rownode, gint column)
 {
-	if (gtk_ctree_node_get_row_data(ctree, row) != cur_proj) return;
+	if (gtk_ctree_node_get_row_data(ctree, rownode) != cur_proj) return;
 	cur_proj_set(NULL);
 }
 
@@ -328,8 +365,10 @@ create_ctree(void)
 		GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_widget_show_all (sw);
 
-	gtk_signal_connect(GTK_OBJECT(w), "event",
-			   GTK_SIGNAL_FUNC(clist_event), NULL);
+	gtk_signal_connect(GTK_OBJECT(w), "button_press_event",
+			   GTK_SIGNAL_FUNC(widget_button_event), NULL);
+	gtk_signal_connect(GTK_OBJECT(w), "key_release_event",
+			   GTK_SIGNAL_FUNC(widget_key_event), NULL);
 	gtk_signal_connect(GTK_OBJECT(w), "tree_select_row",
 			   GTK_SIGNAL_FUNC(tree_select_row), NULL);
 	gtk_signal_connect(GTK_OBJECT(w), "click_column",
