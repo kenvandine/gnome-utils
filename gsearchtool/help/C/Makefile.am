@@ -13,7 +13,15 @@ EXTRA_DIST = \
 
 gsearch_help_DATA = ${HTML_FILES} topic.dat
 
-
+#
+# This is icky but insures that the doc files are generated when the sgml 
+# file changes, plus it only generates em once. The distclean target 
+# will take care of clobbering the generated html and the directory that
+# db2html makes, while the dist-hook will make sure that the html files 
+# and directory gets copied into a dist (so mere mortals w/o docbook can 
+# build this) The install-data-local target copies all the bits and pieces
+# where the runtime help system can find it.
+#
 ${HTML_FILES} : $(SGML_FILES)
 	if [ ! -d gsearch ] ; then cd $(srcdir) && db2html gsearch.sgml ; fi
 	-cd $(srcdir) && cp gsearch/$@ .
