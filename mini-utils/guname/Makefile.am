@@ -32,7 +32,7 @@ guname_DEPENDENCIES=AUTHORS.h
 Rootdir = $(datadir)/apps
 Root_DATA = guname.desktop
 
-EXTRA_DIST = guname.desktop
+EXTRA_DIST = guname.desktop AUTHORS.h
 
 AUTHORS.h: $(wildcard ../../../gnome-*/AUTHORS)
 	cat ../../../gnome-*/AUTHORS \

@@ -16,3 +16,5 @@ BITMAPS = penguin1.xpm
 pixmap_DATA = $(BITMAPS)
 
 Utilitiesdir = $(datadir)/apps/Utilities
+
+EXTRA_DIST = penguin1.xpm
