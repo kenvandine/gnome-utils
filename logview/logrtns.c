@@ -315,7 +315,16 @@ isLogFile (char *filename)
       ShowErrMessage (buff);
       return FALSE;
    }
-   fgets (buff, sizeof (buff), fp);
+   if (fgets (buff, sizeof (buff), fp) == NULL) {
+       /* Either an error, or empty log */
+       fclose (fp);
+       if (feof(fp)) 
+           /* EOF -> empty file, still a valid log though */
+           return TRUE;
+       else 
+           /* !EOF -> read error */
+           return FALSE;
+   }
    fclose (fp);
    token = strtok (buff, " ");
    /* This is not a good assumption I don't think, especially

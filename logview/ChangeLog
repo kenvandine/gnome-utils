@@ -1,3 +1,10 @@
+2002-05-11 Samuel Stringham  <sams@e-sa.com> 
+
+	* logrtns.c: On log rotation, or log creation, 
+	or just empty logs logview fails.  Tough to tell if 
+	a log is actually a system log when it is empty, but 
+	should still try to read/monitor it. Fixes #81348.
+
 2002-05-11  Samuel Stringham  <sams@e-sa.com>
 	
 	* actions.c: Fix crash in actions dialog. Fixes #81397.
