@@ -1359,7 +1359,6 @@ create_main_window (void)
 	GtkWidget 	*entry;
 	GtkWidget 	*folder_entry;
 	GtkWidget 	*button;
-	GtkWidget 	*hsep;
 	GtkWidget 	*table;
 	GtkWidget 	*results;
 	GtkWidget 	*window;
@@ -1450,9 +1449,6 @@ create_main_window (void)
 	
 	results = create_search_results_section ();
 	gtk_box_pack_start (GTK_BOX(window), results, TRUE, TRUE, GNOME_PAD_SMALL);
-	
-	hsep = gtk_hseparator_new ();
-	gtk_box_pack_start (GTK_BOX(window),hsep,FALSE,FALSE,0);
 	
 	hbox = gtk_hbutton_box_new ();
 	gtk_button_box_set_layout (GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
