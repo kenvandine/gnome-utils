@@ -22,6 +22,7 @@
 #ifndef _INTERFACE_H_
 #define _INTERFACE_H_
 
+#include <gconf/gconf-client.h>
 #include <gtk/gtk.h>
 #include <gnome.h>
 #include <bonobo/bonobo-dock-layout.h>
@@ -45,6 +46,7 @@ typedef struct _MainApp
     gboolean insert_at_end;
     GList *buttons;
     GtkStyle *btnstyle;
+    GConfClient *conf;
 } MainApp;
 
 typedef struct _MainAppClass

@@ -121,6 +121,13 @@ dnl *********************************************
 dnl for anything which calls gconftool-2 correctly
 dnl *********************************************
 
+
+AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
+
+if test x"$GCONFTOOL" = xno; then
+  AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
+fi
+
 AM_GCONF_SOURCE_2
 
 dnl Putting the code check below so we don't forget it's there

@@ -29,6 +29,10 @@
 #include "interface.h"
 #include "asciiselect.h"
 
+#include <gconf/gconf-client.h>
+#include <gnome.h>
+
+
 void
 cb_about_click (GtkWidget *widget, gpointer user_data)
 {
@@ -263,19 +267,10 @@ cb_select_all_click (GtkWidget *widget, gpointer user_data)
 void
 cb_set_button_focusable (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
 {
-    guint i;
-
-    if (checkmenuitem->active == TRUE)
-    {
-        for (i = 0; i < g_list_length (mainapp->buttons); i++)
-            GTK_WIDGET_SET_FLAGS (GTK_WIDGET (g_list_nth_data (
-              mainapp->buttons, i)), GTK_CAN_FOCUS);
-    } else
-    {
-        for (i = 0; i < g_list_length (mainapp->buttons); i++)
-            GTK_WIDGET_UNSET_FLAGS (GTK_WIDGET (g_list_nth_data (
-              mainapp->buttons, i)), GTK_CAN_FOCUS);
-    }
+    gconf_client_set_bool(mainapp->conf, 
+			  "/apps/gcharmap/can_focus_buttons", 
+			  checkmenuitem->active, 
+			  NULL);
 }
 
 
@@ -289,37 +284,40 @@ cb_set_chartable_font (GtkWidget *widget, gpointer user_data)
 void
 cb_set_insert_at_end (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
 {
-    mainapp->insert_at_end = checkmenuitem->active;
+    gconf_client_set_bool (mainapp->conf, 
+			   "/apps/gcharmap/insert_at_end", 
+			   checkmenuitem->active, 
+			   NULL);
 }
 
 
 void
 cb_toggle_actionbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
 {
-    if (checkmenuitem->active == TRUE)
-        gtk_widget_show (mainapp->actionbar);
-    else
-        gtk_widget_hide (mainapp->actionbar);
+    gconf_client_set_bool (mainapp->conf, 
+			   "/apps/gcharmap/show_actionbar", 
+			   checkmenuitem->active, 
+			   NULL);
 }
 
 
 void
 cb_toggle_textbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
 {
-    if (checkmenuitem->active == TRUE)
-        gtk_widget_show (mainapp->textbar);
-    else
-        gtk_widget_hide (mainapp->textbar);
+    gconf_client_set_bool (mainapp->conf, 
+			   "/apps/gcharmap/show_textbar", 
+			   checkmenuitem->active, 
+			   NULL);
 }
 
 
 void
 cb_toggle_statusbar (GtkCheckMenuItem *checkmenuitem, gpointer user_data)
 {
-    if (checkmenuitem->active == TRUE)
-        gtk_widget_show (GNOME_APP (mainapp->window)->statusbar);
-    else
-        gtk_widget_hide (GNOME_APP (mainapp->window)->statusbar);
+    gconf_client_set_bool (mainapp->conf, 
+			   "/apps/gcharmap/show_statusbar", 
+			   checkmenuitem->active, 
+			   NULL);
 }
 
 

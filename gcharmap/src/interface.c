@@ -343,18 +343,7 @@ main_app_create_ui (MainApp *app)
         gtk_widget_set_style (app->preview_label, style);
     }
 #endif
-    /* some default prefs */
-    app->insert_at_end = FALSE;
-    
     gtk_widget_show_all (vbox);
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
-      view_menu[0].widget), TRUE);
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
-      view_menu[1].widget), TRUE);
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
-      settings_menu[0].widget), app->insert_at_end);
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
-      settings_menu[1].widget), TRUE);
     gtk_widget_grab_focus (app->entry);
     
 }

@@ -26,6 +26,8 @@
 #include <gnome.h>
 #include "interface.h"
 
+extern void install_notifiers();
+
 static int save_session(GnomeClient        *client,
 			gint                phase,
 			GnomeRestartStyle   save_style,
@@ -50,6 +52,7 @@ static gint client_die(GnomeClient *client, gpointer client_data)
         return FALSE;
 }
 
+
 int
 main (int argc, char *argv[])
 {
@@ -63,13 +66,18 @@ main (int argc, char *argv[])
                         LIBGNOMEUI_MODULE,
                         argc, argv, NULL);
 
+
     client = gnome_master_client ();
     g_signal_connect (G_OBJECT (client), "save_yourself",
 		      G_CALLBACK (save_session), (gpointer) argv[0]);
     g_signal_connect (G_OBJECT (client), "die",
 		      G_CALLBACK (client_die), NULL);
 
-    gtk_widget_show (GTK_WIDGET (main_app_new ()->window));
+
+    main_app_new ();
+    install_notifiers();
+    gtk_widget_show (GTK_WIDGET (mainapp->window));
+    init_prefs();
     gtk_main ();
     return 0;
 }
