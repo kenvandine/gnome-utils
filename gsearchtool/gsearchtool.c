@@ -1024,6 +1024,7 @@ create_main_window (void)
 	GtkWidget 	*table;
 	GtkWidget 	*results;
 	GtkWidget 	*window;
+	GtkWidget	*image;
 	GtkWidget 	*disclosure;
 
 	window = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
@@ -1031,6 +1032,9 @@ create_main_window (void)
 
 	hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
 	gtk_box_pack_start (GTK_BOX(window), hbox, FALSE, FALSE, GNOME_PAD_SMALL);
+	
+	image = gtk_image_new_from_file (GNOME_ICONDIR"/gnome-searchtool.png");
+	gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, GNOME_PAD_SMALL);
 	
 	table = gtk_table_new (2, 2, FALSE);
 	gtk_table_set_row_spacings (GTK_TABLE(table), GNOME_PAD);
