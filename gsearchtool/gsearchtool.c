@@ -577,31 +577,21 @@ quit_cb (GtkWidget *widget, gpointer data)
 }
 
 
-
 static GnomeUIInfo file_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("E_xit"), NULL, quit_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x', GDK_CONTROL_MASK, NULL},
-	{GNOME_APP_UI_ENDOFINFO}
+	GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb,NULL),
+	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo help_menu[] = {  
-	{ GNOME_APP_UI_HELP, NULL, NULL, "gsearchtool", NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}, 
-	
-	{GNOME_APP_UI_ITEM, N_("_About..."), NULL, about_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-	
-	{GNOME_APP_UI_ENDOFINFO}
+	GNOMEUIINFO_HELP("gsearchtool"),
+	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
+	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo gsearch_menu[] = {
-	{GNOME_APP_UI_SUBTREE, N_("_File"), NULL, file_menu, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-	
-	{GNOME_APP_UI_SUBTREE, N_("_Help"), NULL, help_menu, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-	
-	{GNOME_APP_UI_ENDOFINFO}
+	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
+        GNOMEUIINFO_END
 };
 
 
@@ -627,7 +617,6 @@ main(int argc, char *argv[])
 
 	/*set up the menu*/
         gnome_app_create_menus(GNOME_APP(app), gsearch_menu);
-	gtk_menu_item_right_justify(GTK_MENU_ITEM(gsearch_menu[1].widget));
 
 	search = create_window();
 	gtk_widget_show_all(search);
