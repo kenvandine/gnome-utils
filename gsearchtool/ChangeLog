@@ -1,3 +1,11 @@
+Tue Jun 06 15:31:30 2000  George Lebl <jirka@5z.com>
+
+	* gsearchtool.c: use the -0 and -Z and other tricks to make this
+	  work correctly for weird filenames.  The downside is it won't
+	  work on non-GNU versions of find, grep and xarg, but it's really
+	  unsafe if arbitrary things can be passed to programs.  Also add
+	  a dialog box to display the command used.
+
 Tue Jun  6 12:09:56 EDT 2000 Gregory McLean <gregm@comstar.net>
 
 	* help/* : Lots of loving going on so the documentation 

@@ -35,17 +35,17 @@ const FindOptionTemplate templates[] = {
 	{ FIND_OPTION_BOOL, "-empty", N_("Empty file") },
 	{ FIND_OPTION_BOOL, "-nouser -o -nogroup",
 				N_("Invalid user or group") },
-	{ FIND_OPTION_TEXT, "\\! -name '%s'", N_("Filenames except") },
+	{ FIND_OPTION_TEXT, "'!' -name '%s'", N_("Filenames except") },
 	{ FIND_OPTION_BOOL, "-follow", N_("Follow symbolic links") },
-	{ FIND_OPTION_GREP, "fgrep -l '%s'", N_("Simple substring search") },
-	{ FIND_OPTION_GREP, "grep -l '%s'", N_("Regular expression search") },
-	{ FIND_OPTION_GREP, "egrep -l '%s'",
+	{ FIND_OPTION_GREP, "fgrep -lZ '%s' --", N_("Simple substring search") },
+	{ FIND_OPTION_GREP, "grep -lZ '%s' --", N_("Regular expression search") },
+	{ FIND_OPTION_GREP, "egrep -lZ '%s' --",
 				N_("Extended regular expression search") },
 	{ FIND_OPTION_END, NULL,NULL}
 };
 
 /*this will not include the directories in search*/
-const static char defoptions[] = "\\! -type d";
+const static char defoptions[] = "'!' -type d";
 /*this should be done if the above is made optional*/
 /*char defoptions[] = "-mindepth 0";*/
 
@@ -149,13 +149,13 @@ makecmd(char *start_dir)
 			}
 		}
 	}
-	g_string_append(cmdbuf,"-print ");
+	g_string_append(cmdbuf,"-print0 ");
 
-	for(list=criteria_grep;list!=NULL;list=g_list_next(list)) {
+	for(list = criteria_grep; list != NULL; list = g_list_next(list)) {
 		FindOption *opt = list->data;
 		if(opt->enabled) {
-			g_string_sprintfa(cmdbuf, "| xargs ");
-			if(templates[opt->templ].type!=FIND_OPTION_GREP)
+			g_string_sprintfa(cmdbuf, "| xargs -0 ");
+			if(templates[opt->templ].type != FIND_OPTION_GREP)
 				g_warning(_("non-grep option found in grep list, bad bad!"));
 			else {
 				char *s = quote_quote_string(opt->data.text);
@@ -237,9 +237,9 @@ really_run_command(char *cmd, int *running)
 	fcntl(fderr[0],F_SETFL,O_NONBLOCK);
 
 	while(*running==1) {
-		n=read(fd[0],ret,PIPE_READ_BUFFER);
+		n = read(fd[0], ret, PIPE_READ_BUFFER);
 		for(i=0;i<n;i++) {
-			if(ret[i]=='\n') {
+			if(ret[i]=='\0') {
 				s[spos]=0;
 				spos=0;
 				outdlg_additem(s);
@@ -247,14 +247,14 @@ really_run_command(char *cmd, int *running)
 				s[spos++]=ret[i];
 		}
 
-		n=read(fderr[0],ret,PIPE_READ_BUFFER-1);
-		if(n>0) {
-			ret[n]='\0';
+		n=read(fderr[0], ret, PIPE_READ_BUFFER-1);
+		if(n > 0) {
+			ret[n] = '\0';
 			if(!errors)
 				errors = g_string_new(ret);
 			else
 				errors = g_string_append(errors,ret);
-			fprintf(stderr,"%s",ret);
+			fprintf(stderr, "%s", ret);
 		}
 		
 		if(waitpid(-1,NULL,WNOHANG)!=0)
@@ -264,7 +264,7 @@ really_run_command(char *cmd, int *running)
 		/*if(gtk_events_pending())
 			gtk_main_iteration_do(FALSE);*/
 		gtk_main_iteration_do(TRUE);
-		if(*running==2) {
+		if(*running == 2) {
 			kill(pid, SIGKILL);
 			wait(NULL);
 		}
@@ -272,7 +272,7 @@ really_run_command(char *cmd, int *running)
 	/* now we got it all ... so finish reading from the pipe */
 	while((n=read(fd[0],ret,PIPE_READ_BUFFER))>0) {
 		for(i=0;i<n;i++) {
-			if(ret[i]=='\n') {
+			if(ret[i]=='\0') {
 				s[spos]=0;
 				spos=0;
 				outdlg_additem(s);
@@ -343,6 +343,49 @@ run_command(GtkWidget *w, gpointer data)
 
 	gtk_widget_set_sensitive(buttons[0], FALSE);
 	gtk_widget_set_sensitive(buttons[1], TRUE);
+}
+
+static void
+run_cmd_dialog(GtkWidget *wid, gpointer data)
+{
+	char *cmd;
+	char *start_dir;
+	GtkWidget *dlg;
+	GtkWidget *w;
+
+	if(start_dir_e) {
+		start_dir = gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(start_dir_e), TRUE);
+		if(!start_dir) {
+			gnome_app_error (GNOME_APP(app),
+					 _("Start directory does not exist"));
+			return;
+		}
+	} else
+		start_dir = NULL;
+
+	cmd = makecmd(start_dir);
+	g_free(start_dir);
+
+	dlg = gnome_dialog_new(_("Search command line"),
+			       GNOME_STOCK_BUTTON_CLOSE,
+			       NULL);
+	gnome_dialog_set_close(GNOME_DIALOG(dlg), TRUE);
+	gnome_dialog_set_parent(GNOME_DIALOG(dlg), GTK_WINDOW(app));
+
+	w = gtk_label_new(_("This is the command line that can be used to "
+			    "execute this search from the console:\n"
+			    "(Note: to print one file per line rather then "
+			    "null separated,\nappend \"| tr '\\000' '\\n'\" "
+			    "to the line below)"));
+	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(dlg)->vbox), w, TRUE, TRUE, 0);
+
+	w = gtk_entry_new();
+	gtk_entry_set_text(GTK_ENTRY(w), cmd);
+	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(dlg)->vbox), w, FALSE, FALSE, 0);
+
+	gtk_widget_show_all(dlg);
+
+	g_free(cmd);
 }
 
 
@@ -416,7 +459,7 @@ entry_changed(GtkWidget *w, gpointer data)
 		opt->data.time = gtk_entry_get_text(GTK_ENTRY(w));
 		break;
 	default:
-		g_warning("Entry changed called for a non entry option!");
+		g_warning(_("Entry changed called for a non entry option!"));
 		break;
 	}
 }
@@ -476,22 +519,24 @@ create_option_box(FindOption *opt, gboolean enabled)
 		gtk_box_pack_start(GTK_BOX(option),w,TRUE,TRUE,0);
 		break;
 	default:
+		/* This should never happen, if it does, there is a bug */
+		option = gtk_label_new("???");
 	        break;
 	}
-	gtk_container_add(GTK_CONTAINER(frame),option);
+	gtk_container_add(GTK_CONTAINER(frame), option);
 
 	w = gtk_check_button_new_with_label(_("Enable"));
-	gtk_object_set_user_data(GTK_OBJECT(w),frame);
-	gtk_signal_connect(GTK_OBJECT(w),"toggled",
+	gtk_object_set_user_data(GTK_OBJECT(w), frame);
+	gtk_signal_connect(GTK_OBJECT(w), "toggled",
 			   GTK_SIGNAL_FUNC(enable_option), opt);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), enabled);
 	enable_option(w, opt);
-	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE,FALSE,0);
 
 	w = gtk_button_new_with_label(_("Remove"));
-	gtk_signal_connect(GTK_OBJECT(w),"clicked",
-			   GTK_SIGNAL_FUNC(remove_option),opt);
-	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+	gtk_signal_connect(GTK_OBJECT(w), "clicked",
+			   GTK_SIGNAL_FUNC(remove_option), opt);
+	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE,FALSE, 0);
 
 	return hbox;
 }
@@ -572,6 +617,11 @@ create_find_page(void)
 
 	w = gtk_hseparator_new();
 	gtk_box_pack_end(GTK_BOX(vbox),w,FALSE,FALSE,0);
+
+	w = gtk_button_new_with_label(_("Show Command"));
+	gtk_signal_connect(GTK_OBJECT(w), "clicked",
+			   GTK_SIGNAL_FUNC(run_cmd_dialog), NULL);
+	gtk_box_pack_end(GTK_BOX(hbox), w, FALSE, FALSE, 0);
 
 	buttons[1] = gtk_button_new_with_label(_("Start"));
 	buttons[0] = gtk_button_new_with_label(_("Stop"));
