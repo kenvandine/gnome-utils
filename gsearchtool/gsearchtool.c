@@ -276,14 +276,16 @@ make_find_cmd (const char *start_dir)
 {
 	GString *cmdbuf;
 	GList *list;
+	gchar *escape_dir = NULL;
 	
 	if (criteria_find==NULL) return NULL;
 
 	cmdbuf = g_string_new ("");
 
-	if(start_dir)
-		g_string_append_printf(cmdbuf, "find %s %s ", start_dir, defoptions);
-	else
+	if(start_dir) {
+		escape_dir = g_strescape(start_dir, NULL);
+		g_string_append_printf(cmdbuf, "find \"%s\" %s ", escape_dir, defoptions);
+	} else
 		g_string_append_printf(cmdbuf, "find . %s ", defoptions);
 
 	for(list=criteria_find;list!=NULL;list=g_list_next(list)) {
@@ -323,6 +325,8 @@ make_find_cmd (const char *start_dir)
 		}
 	}
 	g_string_append (cmdbuf, "-print ");
+
+	g_free(escape_dir);
 
 	return g_string_free(cmdbuf, FALSE);
 }
