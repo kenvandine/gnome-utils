@@ -8,6 +8,6 @@ gtt_helpdir = $(datadir)/gnome/help/gtt/es
 
 install-data-local:
 	$(mkinstalldirs) $(gtt_helpdir)
-	$(INSTALL_DATA)  index.html $(gtt_helpdir)
-	$(INSTALL_DATA)  topic.dat $(gtt_helpdir)
+	$(INSTALL_DATA)  $(srcdir)/index.html $(gtt_helpdir)
+	$(INSTALL_DATA)  $(srcdir)/topic.dat $(gtt_helpdir)
 
