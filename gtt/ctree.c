@@ -84,11 +84,15 @@ typedef struct ProjTreeNode_s
 struct ProjTreeWindow_s 
 {
 	GtkCTree *ctree;
+
+	/* stuff that defines the column layout */
 	ColType cols[NCOLS];
 	char * col_titles[NCOLS];
 	GtkJustification col_justify[NCOLS];
+	gboolean col_width_set[NCOLS];
 	int ncols;
 
+	/* stuff we need to have handy while dragging */
 	GdkDragContext *drag_context;
 	GtkCTreeNode *source_ctree_node;
 	GtkCTreeNode *parent_ctree_node;
@@ -250,6 +254,8 @@ tree_collapse (GtkCTree *ctree, GtkCTreeNode *row)
 	}
 }
 
+/* ============================================================== */
+
 static void
 click_column(GtkCList *clist, gint col, gpointer data)
 {
@@ -316,31 +322,6 @@ click_column(GtkCList *clist, gint col, gpointer data)
 	
 	ctree_setup(ptw);
 }
-
-#ifdef CLIST_HEADER_HACK
-static void
-clist_header_hack(GtkWidget *w)
-{
-	GtkStyle *style;
-	GdkGCValues vals;
-	int width;
-
-	if (clist_header_width_set) return;
-	clist_header_width_set = 1;
-	style = gtk_widget_get_style(w);
-	g_return_if_fail(style != NULL);
-	if (!style->fg_gc[0]) {
-		/* Fallback if the GC still isn't available */
-		width = 50;
-	} else {
-		gdk_gc_get_values(style->fg_gc[0], &vals);
-		width = gdk_string_width(vals.font, "00:00:00");
-	}
-	gtk_clist_set_column_width(GTK_CLIST(w), TOTAL_COL, width);
-	gtk_clist_set_column_width(GTK_CLIST(w), TIME_COL, width);
-	gtk_clist_set_column_width(GTK_CLIST(w), TITLE_COL, 120);
-}
-#endif /* CLIST_HEADER_HACK */
 
 /* ============================================================== */
 /* Attempt to change pixmaps to indicate whether dragged project
@@ -526,74 +507,92 @@ ctree_init_cols (ProjTreeWindow *ptw)
 			case TIME_EVER_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("Total");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_CURRENT_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("This Memo");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_TODAY_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("Today");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_WEEK_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("Week");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_MONTH_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("Month");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_YEAR_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("Year");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case TITLE_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  _("Project Title");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case DESC_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  _("Description");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case TASK_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  _("Task");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case START_COL:
-				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
+				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
 				ptw->col_titles[i] =  _("Estimated Start Date");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case END_COL:
-				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
+				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
 				ptw->col_titles[i] =  _("Estimated End Date");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case DUE_COL:
-				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
+				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
 				ptw->col_titles[i] =  _("Date Due");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case SIZING_COL:
-				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
+				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
 				ptw->col_titles[i] =  _("Sizing");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case PERCENT_COL:
-				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
+				ptw->col_justify[i] = GTK_JUSTIFY_RIGHT;
 				ptw->col_titles[i] =  _("% Complete");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case URGENCY_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  _("Urgency");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case IMPORTANCE_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  _("Importance");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case STATUS_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  _("Status");
+				ptw->col_width_set[i] = FALSE;
 				break;
 			case NULL_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
 				ptw->col_titles[i] =  "";
+				ptw->col_width_set[i] = FALSE;
 				break;
 		}
 	}
@@ -601,6 +600,69 @@ ctree_init_cols (ProjTreeWindow *ptw)
 
 /* ============================================================== */
 
+static int
+string_width(GtkWidget *w, const char * str)
+{
+	GtkStyle *style;
+	GdkFont *font;
+	GdkGC *gc;
+	GdkGCValues vals;
+	int width;
+
+	style = gtk_widget_get_style(w);
+
+	/* Fallback if the GC still isn't available */
+	if (NULL == style) 
+	{
+		style = gtk_widget_get_default_style ();
+		if (NULL == style) return 49;
+	}
+	font = style->font;
+
+	/* glurg. Try really hard to find a font */
+	if (NULL == font)
+	{
+		gc = style->text_gc[0];
+		if (NULL == gc) gc = style->fg_gc[0];
+		if (NULL == gc) gc = style->bg_gc[0];
+		if (NULL == gc) gc = style->base_gc[0];
+		if (NULL == gc)
+		{
+			style = gtk_widget_get_default_style ();
+			if (NULL == style) return 50;
+	
+			gc = style->text_gc[0];
+			if (NULL == gc) gc = style->fg_gc[0];
+			if (NULL == gc) gc = style->bg_gc[0];
+			if (NULL == gc) gc = style->base_gc[0];
+			if (NULL == gc) return 51;
+		}
+	
+		gdk_gc_get_values(gc, &vals);
+		font = vals.font;
+	}
+
+	/* ha. Finally. Get the width. */
+	width = gdk_string_width(font, str);
+
+	return width;
+}
+
+/* Initialize to a reasonable column width, but only 
+ * if it hasn't been set already.  */
+
+static void
+default_col_width (ProjTreeWindow *ptw, int col, const char * str)
+{
+	int width;
+	if (TRUE == ptw->col_width_set[col]) return;
+
+	width = string_width (GTK_WIDGET(ptw->ctree), str);
+	ctree_set_col_width (ptw, col, width);
+}
+
+/* Note: we don't need i18n/l7n translations for most of the strings;
+ * they are used only for column widths ... */
 void 
 ctree_update_column_visibility (ProjTreeWindow *ptw)
 {
@@ -612,74 +674,92 @@ ctree_update_column_visibility (ProjTreeWindow *ptw)
 		switch (ptw->cols[i])
 		{
 		case TITLE_COL:
+			default_col_width (ptw, i, "-00:00:00");
 			break;
 		case TIME_EVER_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_ever);
+			default_col_width (ptw, i, "-00:00:00");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), 
+				i, config_show_title_ever);
 			break;
 		case TIME_CURRENT_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_current);
+			default_col_width (ptw, i, "-00:00:00");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_current);
 			break;
 		case TIME_TODAY_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_day);
+			default_col_width (ptw, i, "-00:00:00");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				 i, config_show_title_day);
 			break;
 		case TIME_WEEK_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_week);
+			default_col_width (ptw, i, "-00:00:00");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_week);
 			break;
 		case TIME_MONTH_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_month);
+			default_col_width (ptw, i, "-00:00:00");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), 
+				i, config_show_title_month);
 			break;
 		case TIME_YEAR_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_year);
+			default_col_width (ptw, i, "-00:00:00");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_year);
 			break;
 		case DESC_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_desc);
+			default_col_width (ptw, i, "Not too long");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), 
+				i, config_show_title_desc);
 			break;
 		case TASK_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_task);
+			default_col_width (ptw, i, "Some longer string");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_task);
 			break;
 		case START_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_estimated_start);
+			default_col_width (ptw, i, "-00:00:00");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_estimated_start);
 			break;
 		case END_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_estimated_end);
+			default_col_width (ptw, i, "-00:00:00");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_estimated_end);
 			break;
 		case DUE_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_due_date);
+			default_col_width (ptw, i, "-00:00:00");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_due_date);
 			break;
 		case SIZING_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_sizing);
+			default_col_width (ptw, i, "xx.xx");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_sizing);
 			break;
 		case PERCENT_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_percent_complete);
+			default_col_width (ptw, i, "100%");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_percent_complete);
 			break;
 		case URGENCY_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_urgency);
+			default_col_width (ptw, i, "X");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_urgency);
 			break;
 		case IMPORTANCE_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_importance);
+			default_col_width (ptw, i, "XXX");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_importance);
 			break;
 		case STATUS_COL:
-			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
-				config_show_title_status);
+			default_col_width (ptw, i, "abcedfg");
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree),
+				i, config_show_title_status);
 			break;
 		case NULL_COL:
 			break;
 		}
+
 	}
 }
 
@@ -1354,7 +1434,7 @@ ctree_set_col_width (ProjTreeWindow *ptw, int col, int width)
 {
 	if (!ptw) return;
 	gtk_clist_set_column_width(GTK_CLIST(ptw->ctree), col, width);
-	// ptw->clist_header_width_set = 1;
+	ptw->col_width_set[col] = TRUE;
 }
 
 int
