@@ -281,11 +281,7 @@ main (int argc, char *argv[])
 
    gconf_init (argc, argv, NULL);
 
-   icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (), "logviewer", 48, 0);
-   if (icon_info) {
-       gnome_window_icon_set_default_from_file (gtk_icon_info_get_filename (icon_info));
-       gtk_icon_info_free (icon_info);
-   }
+   gtk_window_set_default_icon_name ("logviewer");
    
    poptCon = poptGetContext ("gnome-system-log", argc, (const gchar **) argv, 
 							 options, 0);  

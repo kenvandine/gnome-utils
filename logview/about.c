@@ -21,8 +21,8 @@
 #include <config.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <gnome.h>
 #include "logview.h"
 
 static GtkWidget *about_window = NULL;
@@ -32,40 +32,39 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 {
   GdkPixbuf *logo = NULL;
   /* Author needs some sort of dash over the 'e' in Cesar  - U-00E9 */
-  const char *author[] = { N_("Cesar Miquel (miquel@df.uba.ar)"), NULL};
-  char *comments = N_("A system log viewer for GNOME.");
-  gchar *documenters[] = {
-	  NULL
-  };
+  static const gchar *author[] = { "Cesar Miquel (miquel@df.uba.ar)", NULL};
+  gchar *documenters[] = {NULL};
   /* Translator credits */
-  gchar *translator_credits = _("translator-credits");
-  GtkWidget *window = GTK_WIDGET (user_data);
+  const gchar *translator_credits = _("translator-credits");
+  LogviewWindow *window = user_data;
 
   if (about_window != NULL) {
-	  gtk_widget_show_now (about_window);
-	  gdk_window_raise (about_window->window);
+	  gtk_window_set_screen (GTK_WINDOW(about_window), 
+				 gtk_widget_get_screen(GTK_WIDGET(window)));
+	  gtk_window_present (GTK_WINDOW(about_window));
 	  return;
   }
 
-  logo = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), "logviewer", 48, 0, NULL);
-  about_window = gnome_about_new (_("System Log Viewer"), VERSION,
-           			  "Copyright \xc2\xa9 1998-2003 Free Software Foundation, Inc.",
-				  _(comments),
-				  author,
-				  (const char **)documenters,
-				  strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
-				  logo);
-  if (window != NULL)
-	  gtk_window_set_transient_for (GTK_WINDOW (about_window),
-				   GTK_WINDOW (window));
-  if (logo != NULL)
-    gdk_pixbuf_unref (logo);
+  about_window = gtk_about_dialog_new ();
+  g_object_set (about_window,
+		"name",  _("System Log Viewer"),
+		"version", VERSION,
+		"copyright", "Copyright \xc2\xa9 1998-2004 Free Software Foundation, Inc.",
+		"comments", _("A system log viewer for GNOME."),
+		"authors", author,
+		"documenters", documenters,
+		"translator_credits", strcmp (translator_credits, "translator-credits") != 0 ? translator_credits : NULL,
+		"logo_icon_name", "logviewer",
+		NULL);
+
+  gtk_window_set_screen (GTK_WINDOW (about_window),
+			 gtk_widget_get_screen (GTK_WIDGET(window)));
 
   gtk_signal_connect (GTK_OBJECT (about_window), "destroy",
 		      GTK_SIGNAL_FUNC (gtk_widget_destroyed),
 		      &about_window);
+
   gtk_widget_show (about_window);
+
   return;
-
-}                           
-
+}
