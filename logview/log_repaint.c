@@ -43,6 +43,7 @@ extern UserPrefsStruct *user_prefs;
 extern GtkWidget *view;
 extern GtkWidget *window;
 extern GtkWidget *statusbar;
+extern GtkWidget *output_window;
 
 
 /*
@@ -91,6 +92,7 @@ void handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data);
 void handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
      GtkTreeViewColumn *arg2, gpointer user_data);
 void save_rows_to_expand (Log *log);
+void logview_set_window_title (GtkWidget *window);
 
 static void iterate_thru_children(GtkTreeView  *tree_view,
                       GtkTreeModel *tree_model, GtkTreePath  *tree_path,
@@ -372,8 +374,10 @@ log_repaint ()
    UpdateStatusArea ();	   
 
    /* Check that there is at least one log */
-   if (curlog == NULL)
-      return FALSE;
+   if (curlog == NULL) {
+	   gtk_widget_hide (output_window);
+	   return FALSE;
+   }
    
    /* Draw the tree view */ 
    DrawLogLines (curlog); 
@@ -389,7 +393,6 @@ UpdateStatusArea ()
    char status_text[255];
    char *utf8;
    char *buffer;
-   char *window_title;
    char *statusbar_text;
    /* Translators: Date only format, %x should well do really */
    const char *time_fmt = _("%x"); /* an evil way to avoid warning */
@@ -400,11 +403,12 @@ UpdateStatusArea ()
        return;
    }
 
-   if (curlog->name != NULL) {
+   logview_set_window_title (window);
+   /*   if (curlog->name != NULL) {
        window_title = g_strdup_printf ("%s - %s", curlog->name, APP_NAME);
        gtk_window_set_title (GTK_WINDOW (window), window_title);
        g_free (window_title);
-   }
+       }*/
 
    if (curlog->curmark != NULL) {
        tdm = &curlog->curmark->fulldate;

@@ -76,6 +76,7 @@ void handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
      GtkTreeViewColumn *arg2, gpointer user_data);
 void save_rows_to_expand (Log *log);
 void CloseAllLogs (GtkAction *action, GtkWidget *callback_data);
+void logview_set_window_title (GtkWidget *window);
 
 static void logview_menu_item_set_state (char *path, gboolean state);
 static void toggle_calendar (GtkAction *action, GtkWidget *callback_data);
@@ -393,13 +394,7 @@ CreateMainWin ()
    /* Create App */
 
    window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-
-   if ((curlog != NULL) && (curlog->name != NULL) && (numlogs))
-       window_title = g_strdup_printf ("%s - %s", curlog->name, APP_NAME);
-   else
-       window_title = g_strdup_printf (APP_NAME);
-   gtk_window_set_title (GTK_WINDOW (window), window_title);
-   g_free (window_title);
+   logview_set_window_title (window);
 
    gtk_window_set_default_size (GTK_WINDOW (window), LOG_CANVAS_W, LOG_CANVAS_H);
 
@@ -1037,4 +1032,16 @@ logview_help (GtkAction *action, GtkWidget *callback_data)
                                                                                 
         gnome_help_display_desktop (NULL, "gnome-system-log", "gnome-system-log", NULL, &error);
                                                                                 
+}
+
+void
+logview_set_window_title (GtkWidget *window)
+{
+	gchar *window_title;
+	if ((curlog != NULL) && (curlog->name != NULL) && (numlogs))
+		window_title = g_strdup_printf ("%s - %s", curlog->name, APP_NAME);
+	else
+		window_title = g_strdup_printf (APP_NAME);
+	gtk_window_set_title (GTK_WINDOW (window), window_title);
+	g_free (window_title);
 }
