@@ -1,18 +1,72 @@
-EXTRA_DIST = author.html index.html intro.html legal.html \
-             topic.dat tutor.html usage.html
-
-
 gcharmap_helpdir = $(datadir)/gnome/help/gcharmap/C
+gcharmap_help_DATA = index.html authors.html bugs.html usage.html topic.dat \
+			license.html ln7.html
+
+SGML_FILES =\
+	gcharmap.sgml
+
+EXTRA_DIST = 		\
+	topic.dat 	\
+	gcharmap	\
+	$(SGML_FILES)
+
+all:
+
+index.html: gcharmap/index.html
+	-cd $(srcdir) && cp gcharmap/index.html .
+
+authors.html: gcharmap/authors.html
+	-cd $(srcdir) && cp gcharmap/authors.html .
+
+usage.html: gcharmap/usage.html
+	-cd $(srcdir) && cp gcharmap/usage.html .
+
+bugs.html: gcharmap/bugs.html
+	-cd $(srcdir) && cp gcharmap/bugs.html .
+
+license.html: gcharmap/license.html
+	-cd $(srcdir) && cp gcharmap/license.html .
+
+ln7.html: gcharmap/ln7.html
+	-cd $(srcdir) && cp gcharmap/ln7.html .
+
+gcharmap/index.html: $(SGML_FILES)
+	-cd $(srcdir) && db2html gcharmap.sgml
+
+gcharmap/usage.html: $(SGML_FILES)
+	-cd $(srcdir) && db2html gcharmap.sgml
+
+gcharmap/authors.html: $(SGML_FILES)
+	-cd $(srcdir) && db2html gcharmap.sgml
+
+gcharmap/bugs.html: $(SGML_FILES)
+	-cd $(srcdir) && db2html gcharmap.sgml
+
+gcharmap/license.html: $(SGML_FILES)
+	-cd $(srcdir) && db2html gcharmap.sgml
+
+gcharmap/ln7.html: $(SGML_FILES)
+	-cd $(srcdir) && db2html gcharmap.sgml
 
 dist-hook:
-	-cp $(EXTRA_DIST) $(distdir)
+	$(mkinstalldirs) $(distdir)/gcharmap
+	-cp $(srcdir)/gcharmap/*.html gcharmap/*.css $(distdir)/gcharmap
+	-cp $(srcdir)/*.html $(distdir)
+	$(mkinstalldirs) $(distdir)/images
+	-cp $(srcdir)/images/*.png $(distdir)/images
 
-install-data-local:
-	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) author.html $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) index.html $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) intro.html $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) legal.html $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) topic.dat $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) tutor.html $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) usage.html $(DESTDIR)$(gcharmap_helpdir)
+install-data-local: index.html
+	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)/images
+	-for file in $(srcdir)/gcharmap/*.html $(srcdir)/gcharmap/*.css; do \
+	basefile=`basename $$file`; \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/$$basefile; \
+	done
+	-for file in $(srcdir)/images/*.png ; do \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/images;\
+	done
+	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)/stylesheet-images
+	-for file in $(srcdir)/gcharmap/stylesheet-images/*.gif; do \
+	basefile=`basename $$file`; \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/stylesheet-images/$$basefile; \
+	done
+

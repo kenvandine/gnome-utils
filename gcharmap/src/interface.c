@@ -367,8 +367,8 @@ AboutClick (GtkWidget *widget, gpointer gdata)
 gboolean
 HelpClick (GtkWidget *widget, gpointer gdata)
 {
-  gnome_app_message (GNOME_APP (mainf),
-    N_("There's no documentation available yet."));
+  GnomeHelpMenuEntry ref = {"gcharmap", "index.html"};
+  gnome_help_display (NULL, &ref);
   return FALSE;
 }
 
