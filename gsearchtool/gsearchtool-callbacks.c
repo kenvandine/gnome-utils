@@ -736,7 +736,7 @@ show_file_selector_cb (GtkWidget 	*widget,
 
 	gtk_window_set_modal (GTK_WINDOW(interface.file_selector), TRUE);
 	gtk_window_set_transient_for (GTK_WINDOW(interface.file_selector), GTK_WINDOW(interface.main_window));
-	gtk_window_set_position (GTK_WINDOW (interface.file_selector), GTK_WIN_POS_MOUSE);
+	gtk_window_set_position (GTK_WINDOW (interface.file_selector), GTK_WIN_POS_CENTER_ON_PARENT);
 
 	gtk_widget_show (GTK_WIDGET(interface.file_selector));
 }
