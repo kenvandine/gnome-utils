@@ -1141,6 +1141,7 @@ scrub_intervals (GttTask *tsk)
 		{
 			GttInterval *ivl = node->data;
 			if ((FALSE == ivl->running) &&
+			    (0 != ivl->start) &&
 			    ((ivl->stop - ivl->start) <= mini))
 			{
 				tsk->interval_list = g_list_remove (tsk->interval_list, ivl);
@@ -1195,6 +1196,7 @@ scrub_intervals (GttTask *tsk)
 			int len;
 
 			if (ivl->running) continue;
+			if (0 == ivl->start) continue;
 			len = ivl->stop - ivl->start;
 			if (len > merge) continue;
 			if (node->next)
