@@ -118,6 +118,7 @@ int main(int argc, char *argv[])
   GList *ent;
 
   gnome_config_clean_file(path);
+  gnome_config_sync();
   
   for(ent = notes; ent; ent = ent->next)
     {
