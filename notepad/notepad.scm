@@ -47,6 +47,9 @@
 ;; Session id.
 (define session-id #f)
 
+;; Client object
+(define client #f)
+
 
 ;;;
 ;;; Generic code.
@@ -257,7 +260,7 @@
     ;; This is just for debugging; we'll remove it later.
     (add-menu-item menu "Save session (debugging only)"
 		   (lambda ()
-		     (gnome-session-request-save 'both #f 'any #f #t)))
+		     (gnome-client-request-save client 'both #f 'any #f #t)))
     (add-menu-item menu (gettext "Exit") confirm-exit)
     menu))
 
@@ -333,7 +336,8 @@
 
     window))
 
-(define (notepad-save-for-session save-style shutdown? interact-style fast?)
+(define (notepad-save-for-session client phase 
+				  save-style shutdown? interact-style fast?)
   ;; FIXME: things to save:
   ;; * window geometry - no way to get this with current guile/gtk.
   ;; * cursor position
@@ -348,26 +352,23 @@
 
     ;; This command restarts the program but doesn't supply the
     ;; session id.
-    (apply gnome-session-set-clone-command program command)
+    (gnome-client-set-clone-command client (cons program command))
 
-    (if session-id
-	(set! command (cons (string-append "--session-id=" session-id)
-			    command)))
     ;; Restart the command with the session id.
-    (apply gnome-session-set-restart-command program command))
+    (gnome-client-set-restart-command client (cons program command)) #t)
   #t)
 
 
 ;; Parse command line options.
 (define (notepad-parse-options argv)
-  (get-option argv '() '(#:file #:session-id)
+  (get-option argv '() '(#:file #:sm-client-id)
 	      (lambda (type argument new-argv)
 		(cond
 		 ((eq? type #:file)
 		  (set! file-name argument))
 
-		 ((eq? type #:session-id)
-		  (set! session-id argument))
+		 ((eq? type #:sm-client-id)
+		  #t)
 
 		 ;; FIXME: error handling.
 		 )
@@ -377,13 +378,15 @@
 
 (notepad-parse-options (cdr (program-arguments)))
 
-(set! session-id (gnome-session-init notepad-save-for-session
-				     ;; We don't care about exiting.
-				     (lambda (shutdown?) #f)
-				     session-id))
+(set! client (gnome-client-new (program-arguments)))
+(gtk-signal-connect client "save_yourself" 
+		    (lambda (phase 
+			     save-style shutdown? interact-style fast?)
+		      (notepad-save-for-session client phase save-style 
+						shutdown? interact-style fast?)
+		      ))
 
-(gnome-session-set-current-directory (getcwd))
-(gnome-session-set-program (car (program-arguments)))
+(gnome-client-set-current-directory client (getcwd))
 
 (set! main-window (notepad))
 
