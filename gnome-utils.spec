@@ -31,24 +31,6 @@ using your computer easy, powerful, and easy to configure.
 
 %prep
 %setup
-patch -p1 << 'EOF'
---- gnome-utils/Makefile.am.msf	Mon May  4 20:35:51 1998
-+++ gnome-utils/Makefile.am	Mon May  4 20:36:18 1998
-@@ -1,10 +1,10 @@
- if GUILE
--guile_DIRS = cromagnon find-file notepad
-+guile_DIRS = #cromagnon find-file notepad
- endif
- 
- SUBDIRS = po intl macros \
--	edit-menus @PROGRAMS_GENIUS@ gcalc ghex gncal gedit \
--	@PROGRAMS_GTOP@ gtt mini-utils $(guile_DIRS)
-+	@PROGRAMS_GENIUS@ gcalc ghex gncal \
-+	@PROGRAMS_GTOP@ gtt $(guile_DIRS)
- 
- ## to automatically rebuild aclocal.m4 if any of the macros in
- ## `macros/' change
-'EOF'
 
 %build
 # Needed for snapshot releases.
