@@ -792,7 +792,8 @@ static const gchar * scroll_text[] = {
 };
 
 static int nscroll_texts = sizeof (scroll_text) / sizeof (scroll_text[0]);
-static int scroll_text_widths[500] = { 0 };
+/* Add 7 to the size for Gnome 1.0 luck! */
+static int scroll_text_widths[sizeof(scroll_text)/sizeof(scroll_text[0])+7] = { 0 };
 static int cur_scroll_text = 0;
 static int cur_scroll_index = 0;
 
@@ -872,7 +873,7 @@ static int marquee_timer (gpointer data)
         {
         case 1:
           scroll_state = 2;
-          timer = gtk_timeout_add (700, marquee_timer, NULL);
+          timer = gtk_timeout_add (400, marquee_timer, NULL);
           return_val = FALSE;
           break;
         case 2:
