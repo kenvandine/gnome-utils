@@ -175,14 +175,14 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
   gtk_widget_show (padding);
   gtk_box_pack_start (GTK_BOX (hbox), padding, TRUE, TRUE, 0);
 
-  button = gnome_stock_button (GNOME_STOCK_BUTTON_CANCEL);
+  button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_CANCEL);
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, TRUE, 0);
   gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
 			     GTK_SIGNAL_FUNC (gtk_widget_destroy),
 			     GTK_OBJECT (actions_dialog));
   gtk_widget_show (button);
 
-  button = gnome_stock_button (GNOME_STOCK_BUTTON_OK);
+  button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_OK);
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, TRUE, 0);
   gtk_signal_connect (GTK_OBJECT (button), "clicked",
 		      GTK_SIGNAL_FUNC (apply_actions),
@@ -747,9 +747,9 @@ edit_action_entry (Action *action)
   gtk_widget_set_usize (label, 60, -1);
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
   gtk_widget_show (label);
-  text = gtk_text_new (NULL, NULL);
+  text = gtk_text_view_new ();
   gtk_widget_set_usize (text, 200, -1);
-  gtk_text_set_editable (GTK_TEXT (text), TRUE);
+  gtk_text_set_editable (GTK_TEXT_VIEW (text), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), text, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tips, text, _("Description of this entry."), NULL);
   gtk_widget_show (text); 
@@ -766,14 +766,14 @@ edit_action_entry (Action *action)
   gtk_widget_show (padding);
   gtk_box_pack_start (GTK_BOX (hbox), padding, TRUE, TRUE, 0);
 
-  button = gnome_stock_button (GNOME_STOCK_BUTTON_CANCEL);
+  button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_CANCEL);
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, TRUE, 0);
   gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
 			     GTK_SIGNAL_FUNC (gtk_widget_destroy),
 			     GTK_OBJECT (action_record));
   gtk_widget_show (button);
 
-  button = gnome_stock_button (GNOME_STOCK_BUTTON_OK);
+  button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_OK);
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, TRUE, 0);
   gtk_widget_show (button);
   gtk_signal_connect (GTK_OBJECT (button), "clicked",
@@ -787,7 +787,7 @@ edit_action_entry (Action *action)
   gtk_widget_show (action_record);
 
   /* Insert text into text widget */
-  gtk_text_insert (GTK_TEXT (text), NULL, NULL, NULL, action->description, 
+  gtk_text_insert (GTK_TEXT_VIEW (text), NULL, NULL, NULL, action->description, 
 		   strlen (action->description));
 }
 

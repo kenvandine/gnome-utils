@@ -77,7 +77,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 				  (const char *)translator_credits,
 				  logo);
   if (app != NULL)
-	  gnome_dialog_set_parent (GNOME_DIALOG (about_window),
+	  gtk_window_set_transient_for (GTK_WINDOW (about_window),
 				   GTK_WINDOW (app));
   gtk_signal_connect (GTK_OBJECT (about_window), "destroy",
 		      GTK_SIGNAL_FUNC (gtk_widget_destroyed),

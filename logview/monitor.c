@@ -232,7 +232,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
                           srclist);
 
       /* OK button */
-      button = gnome_stock_button (GNOME_STOCK_BUTTON_OK);
+      button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_OK);
       gtk_widget_show (button);
       gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
@@ -240,7 +240,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
                           NULL);
 
       /* Cancel button */
-      button = gnome_stock_button (GNOME_STOCK_BUTTON_CANCEL);
+      button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_CANCEL);
       gtk_widget_show (button);
       gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",

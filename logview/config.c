@@ -150,7 +150,7 @@ CreateConfig(void)
 	  GdkFont *font;
 	  
 	  font = gtk_style_get_font(cs);
-	  gdk_font_unref (font);
+	  //FIXME gdk_font_unref (font);
   }
   {
 	  GdkFont *font;
@@ -173,7 +173,7 @@ CreateConfig(void)
 	  GdkFont *font;
 
 	  font = gtk_style_get_font(cs);
-	  gdk_font_unref (font);
+	  //FIXME gdk_font_unref (font);
   }
   {
 	  GdkFont *font;
@@ -191,7 +191,7 @@ CreateConfig(void)
 	  GdkFont *font;
 
 	  font = gtk_style_get_font(cs);
-	  gdk_font_unref (font);
+	  //FIXME gdk_font_unref (font);
   }
   {
 	  GdkFont *font;
