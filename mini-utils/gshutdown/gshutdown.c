@@ -42,6 +42,7 @@ static void apply_prefs_cb(GnomePropertyBox * pb, gint page,
                            GtkEntry ** entries);
 static void confirm_cb(GnomeDialog * d, gint which);
 static void toggle_confirm_cb(GtkWidget * button, gpointer data);
+static void revert_defaults_cb(GtkWidget * button, GtkEntry ** entries);
 
 static void popup_preferences(void);
 static void popup_about(void);
@@ -98,7 +99,7 @@ static gchar * confirm_questions[] = {
 };
 
 
-static gchar * runlevel_commands[] = {
+static gchar * default_runlevel_commands[] = {
   "shutdown -h now",
   "shutdown",
   "telinit 2",
@@ -107,6 +108,8 @@ static gchar * runlevel_commands[] = {
   "telinit 5",
   "shutdown -r now"
 };
+
+static gchar * runlevel_commands[7];
 
 static Runlevel requested_runlevel;
 
@@ -140,7 +143,7 @@ int main ( int argc, char ** argv )
   i = 0;
   while (i < 7) {
     config_string = g_copy_strings("/"APPNAME"/Commands/", 
-				   config_keys[i], "=", runlevel_commands[i],
+				   config_keys[i], "=", default_runlevel_commands[i],
 				   NULL);
     runlevel_commands[i] = 
       gnome_config_get_string_with_default ( config_string,
@@ -296,32 +299,39 @@ static void prepare_advanced_vbox(GtkWidget * vbox)
 
 static void popup_preferences() 
 {
-  GtkWidget * box, * label, * button, * entry_box;
+  GtkWidget * box, * label, * button, * table;
   GtkWidget * d;
   static GtkWidget * entries[7];
   Runlevel i;
+  gint row = 0;
+  gint col = 0;
 
   d = gnome_property_box_new();
 
-  box = gtk_hbox_new(FALSE, GNOME_PAD);
-  gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD);
-
-  entry_box = gtk_vbox_new(TRUE, 0);
-  gtk_box_pack_start (GTK_BOX(box), entry_box, TRUE, TRUE, GNOME_PAD_SMALL); 
+  table = gtk_table_new(8, 2, TRUE);
+  gtk_table_set_col_spacings(GTK_TABLE(table), GNOME_PAD * 2);
+  gtk_container_border_width(GTK_CONTAINER(table), GNOME_PAD);
 
   i = Halt;
   while ( i <= Reboot ) {
     if ( i == Runlevel_4 ) {
-      /* There are two entry boxes forming two columns of entries. */
-      entry_box = gtk_vbox_new(TRUE, 0);
-      gtk_box_pack_end (GTK_BOX(box), entry_box, TRUE, TRUE, 
-                        GNOME_PAD_SMALL); 
+      /* There are two columns of entries, 4 in one, 3 in the other */
+      ++col;
+      row = 0;
     }
 
     label = gtk_label_new(human_readable[i]);
-    gtk_box_pack_start(GTK_BOX(entry_box), label, TRUE, TRUE, 0); 
+    gtk_table_attach(GTK_TABLE(table), label, col, col+1, row, row+1, 
+                     0, 0, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+    ++row;
+
     entries[i] = gtk_entry_new();
-    gtk_box_pack_start(GTK_BOX(entry_box), entries[i], TRUE, TRUE, 0);
+    gtk_widget_set_usize(entries[i], 200, 20); /* Ugh, if PropertyBox changes
+                                                  size this will break */
+    gtk_table_attach(GTK_TABLE(table), entries[i], col, col+1, row, row+1, 
+                     0, 0, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+    ++row;
+
     gtk_entry_set_text(GTK_ENTRY(entries[i]), runlevel_commands[i]);
 
     gtk_signal_connect_object( GTK_OBJECT(entries[i]), "changed",
@@ -329,8 +339,18 @@ static void popup_preferences()
                                GTK_OBJECT(d) );
     ++i;
   }
-  
-  gnome_property_box_append_page(GNOME_PROPERTY_BOX(d), box,
+
+  /* Put in a "revert to defaults" button */
+  button = gtk_button_new_with_label(_("Revert to Defaults"));
+  /* Attach to the last of 8 table slots in col. 2 */
+  gtk_table_attach(GTK_TABLE(table), button, col, col+1,row+1, row+2, 
+                   0, 0, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+  gtk_signal_connect(GTK_OBJECT(button), "clicked", 
+                     GTK_SIGNAL_FUNC(revert_defaults_cb), entries);
+
+
+  gnome_property_box_append_page(GNOME_PROPERTY_BOX(d), table,
                                  gtk_label_new(_("Commands")) );
 
   box = gtk_vbox_new(FALSE, GNOME_PAD);
@@ -433,6 +453,17 @@ static void popup_confirm(void)
 /**********************************
   Callbacks
   *******************************/
+static void revert_defaults_cb(GtkWidget * button, GtkEntry ** entries)
+{
+  Runlevel i;
+
+  i = Halt;
+  while ( i <= Reboot ) {
+    gtk_entry_set_text(entries[i], default_runlevel_commands[i]);
+    ++i;
+  }
+}
+
 static void confirm_cb(GnomeDialog * d, gint which)
 {
   if (confirm_button_state == FALSE) {
