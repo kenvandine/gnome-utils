@@ -919,7 +919,7 @@ file_event_after_cb  (GtkWidget 	*widget,
 		return FALSE;
 	}
 	
-	if ((!event->state & GDK_CONTROL_MASK) && (!event->state & GDK_SHIFT_MASK)) {
+	if (!(event->state & GDK_CONTROL_MASK) && !(event->state & GDK_SHIFT_MASK)) {
 		if (search_command.single_click_to_activate == TRUE) { 	
 			if ((event->type == GDK_BUTTON_PRESS) 
 			     && (event->button == 1 || event->button == 2)) {  
