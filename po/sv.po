@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2001-09-07 00:57+0200\n"
-"PO-Revision-Date: 2001-09-07 01:06+0200\n"
+"POT-Creation-Date: 2001-09-28 16:18+0200\n"
+"PO-Revision-Date: 2001-09-28 23:37+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -166,15 +166,15 @@ msgstr "-"
 msgid "SUM"
 msgstr "SUM"
 
-#: gcalc/gnome-calc.c:1212
+#: gcalc/gnome-calc.c:1212 gtt/ctree.c:810
 msgid "1"
 msgstr "1"
 
-#: gcalc/gnome-calc.c:1213
+#: gcalc/gnome-calc.c:1213 gtt/ctree.c:809
 msgid "2"
 msgstr "2"
 
-#: gcalc/gnome-calc.c:1214
+#: gcalc/gnome-calc.c:1214 gtt/ctree.c:808
 msgid "3"
 msgstr "3"
 
@@ -278,7 +278,7 @@ msgid "Exit"
 msgstr "Avsluta"
 
 #: gcharmap/src/interface.c:239 gcharmap/src/menus.c:104
-#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:167
+#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:181
 msgid "Copy"
 msgstr "Kopiera"
 
@@ -360,7 +360,7 @@ msgstr "Ange om knapparna ska vara fokuserbara"
 msgid "Insert character(s) by choosing character codes"
 msgstr "Infoga tecken genom att välja teckenkoder"
 
-#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:163
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:177
 msgid "Cut"
 msgstr "Klipp ut"
 
@@ -372,7 +372,7 @@ msgstr "Klipp ut markeringen"
 msgid "Copy the selection"
 msgstr "Kopiera markeringen"
 
-#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:171
+#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:185
 msgid "Paste"
 msgstr "Klistra in"
 
@@ -555,8 +555,8 @@ msgid "Cross-reference:"
 msgstr "Korsreferens:"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:571
-#: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:195
+#: gdictsrc/gdict-pref-dialog.c:129 mini-utils/gshutdown/gshutdown.c:316
+#: stripchart/prefs.c:195
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -632,11 +632,11 @@ msgstr "Slå upp ord..."
 msgid "Spell checker"
 msgstr "Stavningskontroll"
 
-#: gdiskfree/gdiskfree_app.c:52 gdiskfree/gdiskfree_menus.c:108
+#: gdiskfree/gdiskfree_app.c:53 gdiskfree/gdiskfree_menus.c:108
 msgid "GDiskFree"
 msgstr "GDiskFree"
 
-#: gdiskfree/gdiskfree_app.c:72
+#: gdiskfree/gdiskfree_app.c:73
 #, c-format
 msgid "Unable to parse the geometry string '%s'"
 msgstr "Kunde inte tolka geometristrängen \"%s\""
@@ -645,7 +645,7 @@ msgstr "Kunde inte tolka geometristrängen \"%s\""
 msgid "Specify the geometry of the window."
 msgstr "Ange fönstrets geometri."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:316 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:445 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
@@ -817,13 +817,13 @@ msgstr "Lägg till"
 msgid "Show Command"
 msgstr "Visa kommando"
 
-#: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:759
-#: gtt/glade/interval_edit.glade.h:11 gtt/phtml.c:130 gtt/phtml.c:394
+#: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:759 gtt/ghtml.c:94
+#: gtt/ghtml.c:262 gtt/glade/interval_edit.glade.h:11
 msgid "Start"
 msgstr "Starta"
 
-#: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:760
-#: gtt/glade/interval_edit.glade.h:13 gtt/phtml.c:133 gtt/phtml.c:394
+#: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:760 gtt/ghtml.c:94
+#: gtt/ghtml.c:265 gtt/glade/interval_edit.glade.h:13
 msgid "Stop"
 msgstr "Stopp"
 
@@ -885,15 +885,15 @@ msgstr "Felaktigt kommando"
 msgid "No command for this mime type"
 msgstr "Inget kommando för denna MIME-typ"
 
-#: gtt/app.c:109 gtt/app.c:218
+#: gtt/app.c:115 gtt/app.c:227
 msgid "no project selected"
 msgstr "inget projekt valt"
 
-#: gtt/app.c:207
+#: gtt/app.c:217
 msgid "00:00"
 msgstr "00.00"
 
-#: gtt/app.c:250 mini-utils/gless/gless.c:423
+#: gtt/app.c:259 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -901,56 +901,231 @@ msgstr ""
 "Förstod inte geometrin (position och storlek)\n"
 " som angavs på kommandoraden"
 
-#: gtt/ctree.c:298
+#: gtt/ctree.c:528
 msgid "Total"
 msgstr "Totalt"
 
-#: gtt/ctree.c:299 gtt/glade/interval_edit.glade.h:14
+#: gtt/ctree.c:532
+msgid "This Memo"
+msgstr "Denna anteckning"
+
+#: gtt/ctree.c:536 gtt/glade/interval_edit.glade.h:14
 msgid "Today"
 msgstr "Idag"
 
-#: gtt/ctree.c:300 gtt/menucmd.c:167
+#: gtt/ctree.c:540
+msgid "Week"
+msgstr "Vecka"
+
+#: gtt/ctree.c:544
+msgid "Month"
+msgstr "Månad"
+
+#: gtt/ctree.c:548
+msgid "Year"
+msgstr "År"
+
+#: gtt/ctree.c:552 gtt/menucmd.c:144
 msgid "Project Title"
 msgstr "Projekttitel"
 
-#: gtt/ctree.c:301 gtt/menucmd.c:168 stripchart/params.c:654
+#: gtt/ctree.c:556 gtt/menucmd.c:145 stripchart/params.c:654
 msgid "Description"
 msgstr "Beskrivning"
 
-#: gtt/file-io.c:336
+#: gtt/ctree.c:560
+msgid "Task"
+msgstr "Uppgift"
+
+#: gtt/ctree.c:564
+msgid "Estimated Start Date"
+msgstr "Uppskattat startdatum"
+
+#: gtt/ctree.c:568
+msgid "Estimated End Date"
+msgstr "Uppskattat slutdatum"
+
+#: gtt/ctree.c:572
+msgid "Date Due"
+msgstr "Färdigdatum"
+
+#: gtt/ctree.c:576
+msgid "Sizing"
+msgstr "Storlek"
+
+#: gtt/ctree.c:580 gtt/glade/project_properties.glade.h:5
+#, no-c-format
+msgid "% Complete"
+msgstr "% färdigt"
+
+#: gtt/ctree.c:584
+msgid "Urgency"
+msgstr "Angelägenhet"
+
+#: gtt/ctree.c:588
+msgid "Importance"
+msgstr "Viktighet"
+
+#: gtt/ctree.c:592 mini-utils/idetool/idetool.c:317
+#: mini-utils/idetool/idetool.c:319
+msgid "Status"
+msgstr "Status"
+
+#: gtt/ctree.c:820 gtt/glade/project_properties.glade.h:25
+msgid "Low"
+msgstr "Låg"
+
+#: gtt/ctree.c:821
+msgid "Med"
+msgstr "Mellan"
+
+#: gtt/ctree.c:822 gtt/glade/project_properties.glade.h:15
+msgid "High"
+msgstr "Hög"
+
+#: gtt/ctree.c:831 gtt/glade/project_properties.glade.h:29
+msgid "Not Started"
+msgstr "Inte påbörjad"
+
+#: gtt/ctree.c:832 gtt/glade/project_properties.glade.h:21
+msgid "In Progress"
+msgstr "Pågår"
+
+#: gtt/ctree.c:833 gtt/glade/project_properties.glade.h:31
+msgid "On Hold"
+msgstr "Vilande"
+
+#: gtt/ctree.c:834 gtt/glade/project_properties.glade.h:9
+msgid "Cancelled"
+msgstr "Avbrutet"
+
+#: gtt/ctree.c:835 gtt/glade/project_properties.glade.h:10
+msgid "Completed"
+msgstr "Färdigställd"
+
+#: gtt/file-io.c:373
 msgid "project %t started"
 msgstr "projektet %t startade"
 
-#: gtt/file-io.c:339
+#: gtt/file-io.c:376
 msgid "stopped project %t"
 msgstr "stoppade projektet %t"
 
 #. Translators: This is a "time format", that is
 #. * format on how to print the elapsed time with
 #. * hours:minutes:seconds.
-#: gtt/file-io.c:570
+#: gtt/file-io.c:670
 #, c-format
 msgid "%d:%02d:%02d"
 msgstr "%d.%02d.%02d"
 
-#: gtt/journal.c:98
+#: gtt/ghtml.c:94 gtt/ghtml.c:219
+msgid "Memo"
+msgstr "Anteckning"
+
+#: gtt/ghtml.c:94 gtt/ghtml.c:268
+msgid "Elapsed"
+msgstr "Förlupen"
+
+#: gtt/ghtml.c:112 gtt/ghtml.c:364
+msgid "(empty)"
+msgstr "(tom)"
+
+#: gtt/ghtml.c:224
+msgid "Task Time"
+msgstr "Uppgiftstid"
+
+#: gtt/ghtml.c:228
+msgid "Bill Status"
+msgstr "Debiteringsstatus"
+
+#: gtt/ghtml.c:232 gtt/ghtml.c:396 gtt/glade/task_properties.glade.h:4
+msgid "Billable"
+msgstr "Debiterbart"
+
+#: gtt/ghtml.c:236
+msgid "Bill Rate"
+msgstr "Debiteringsavgift"
+
+#: gtt/ghtml.c:240 mini-utils/gcolorsel/view-color-list.c:197
+#: mini-utils/guname/moreinfo.c:227
+msgid "Value"
+msgstr "Värde"
+
+#: gtt/ghtml.c:244
+msgid "Billable Value"
+msgstr "Debiterbart värde"
+
+#: gtt/ghtml.c:248 gtt/ghtml.c:274
+msgid "No Default Value"
+msgstr "Inget standardvärde"
+
+#: gtt/ghtml.c:271
+msgid "Start Time Fuzziness"
+msgstr "Starttidsosäkerhet"
+
+#: gtt/ghtml.c:380 gtt/glade/task_properties.glade.h:11
+msgid "Hold"
+msgstr "Vänta"
+
+#: gtt/ghtml.c:383 gtt/glade/task_properties.glade.h:3
+msgid "Bill"
+msgstr "Räkning"
+
+#: gtt/ghtml.c:386 gtt/glade/task_properties.glade.h:20
+msgid "Paid"
+msgstr "Betalat"
+
+#: gtt/ghtml.c:399 gtt/glade/task_properties.glade.h:16
+msgid "Not Billable"
+msgstr "Inte debiterbart"
+
+#: gtt/ghtml.c:402 gtt/glade/task_properties.glade.h:15
+msgid "No Charge"
+msgstr "Ingen avgift"
+
+#: gtt/ghtml.c:412 gtt/glade/task_properties.glade.h:21
+msgid "Regular"
+msgstr "Vanlig"
+
+#: gtt/ghtml.c:415 gtt/glade/task_properties.glade.h:19
+msgid "Overtime"
+msgstr "Övertid"
+
+#: gtt/ghtml.c:418
+msgid "Double Overtime"
+msgstr "Dubbel övertid"
+
+#: gtt/ghtml.c:421 gtt/glade/task_properties.glade.h:10
+msgid "Flat Fee"
+msgstr "Fast avgift"
+
+#: gtt/ghtml.c:441
+msgid "Error - Unknown"
+msgstr "Fel - Okänt"
+
+#: gtt/ghtml.c:686
+msgid "unknown token: >>>>"
+msgstr "okänd teckensekvens: >>>>"
+
+#: gtt/journal.c:107
 msgid "Error 404 Not Found"
 msgstr "Fel 404 Inte hittad"
 
-#: gtt/journal.c:100
+#: gtt/journal.c:109
 #, c-format
 msgid "The file %s was not found."
 msgstr "Filen %s hittades inte."
 
-#: gtt/journal.c:101
+#: gtt/journal.c:110
 msgid "(null)"
 msgstr "(null)"
 
-#: gtt/journal.c:110
+#: gtt/journal.c:119
 msgid "Unkown Error"
 msgstr "Okänt fel"
 
-#: gtt/journal.c:159 gtt/plug-in.c:89
+#: gtt/journal.c:168 gtt/plug-in.c:89
 #, c-format
 msgid ""
 "Unable to open the file %s\n"
@@ -959,34 +1134,39 @@ msgstr ""
 "Kunde inte öppna filen %s\n"
 "%s"
 
-#: gtt/journal.c:204
+#: gtt/journal.c:247 gtt/proj.c:716 gtt/proj.c:1527 gtt/proj.c:1647
+#: gtt/proj.c:1787
+msgid "New Task"
+msgstr "Ny uppgift"
+
+#: gtt/journal.c:421
 msgid "Save HTML To File"
 msgstr "Spara HTML till fil"
 
-#: gtt/log.c:54
+#: gtt/log.c:55
 #, c-format
 msgid "Cannot open logfile %s for append"
 msgstr "Kan inte öppna loggfilen %s för tillägg"
 
 #. Translators: Format to use in the gtt logfile
-#: gtt/log.c:63
+#: gtt/log.c:64
 msgid "%b %d %H:%M:%S"
 msgstr "%d %b %H.%M.%S"
-
-#: gtt/log.c:84 gtt/log.c:245
-msgid "program started"
-msgstr "programmet startades"
 
 #: gtt/log.c:102
 msgid "no description"
 msgstr "ingen beskrivning"
 
+#: gtt/log.c:167 gtt/log.c:258
+msgid "program started"
+msgstr "programmet startades"
+
 #. log_if_equal
-#: gtt/log.c:237
+#: gtt/log.c:250
 msgid "program exited"
 msgstr "programmet avslutades"
 
-#: gtt/main.c:110
+#: gtt/main.c:115
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -994,81 +1174,64 @@ msgstr ""
 "Du verkar redan köra en GTimeTracker.\n"
 "Klicka på OK för att starta ändå eller tryck Avbryt för att hoppa ur."
 
-#: gtt/main.c:121
+#: gtt/main.c:127
 msgid "Cannot create pid-file!"
 msgstr "Kan inte skapa pid-fil!"
 
-#: gtt/main.c:187
+#: gtt/main.c:220
+msgid "Do you want to continue?"
+msgstr "Vill du fortsätta?"
+
+#: gtt/main.c:223 gtt/main.c:282
 msgid "Error"
 msgstr "Fel"
 
-#: gtt/main.c:188
-msgid ""
-"An error occured while reading the configuration file.\n"
-"Shall I setup a new configuration?"
-msgstr ""
-"Ett fel uppstod vid läsning av konfigurationsfilen.\n"
-"Ska jag skapa en ny uppsättning inställningar?"
+#: gtt/main.c:279
+msgid "Shall I setup a new configuration?"
+msgstr "Ska jag ställa in en ny konfiguration?"
 
-#: gtt/main.c:316
+#: gtt/main.c:445
 msgid "Specify geometry"
 msgstr "Ange geometri"
 
-#: gtt/main.c:318
+#: gtt/main.c:447
 msgid "Select a project on startup"
 msgstr "Välj ett projekt vid uppstart"
 
-#: gtt/main.c:318
+#: gtt/main.c:447
 msgid "PROJECT"
 msgstr "PROJEKT"
 
-#: gtt/main.c:356 gtt/menucmd.c:51 gtt/menucmd.c:59 gtt/menucmd.c:229
-#: gtt/menucmd.c:267
+#: gtt/main.c:486 gtt/menucmd.c:48 gtt/menucmd.c:200 gtt/menucmd.c:236
 msgid "Warning"
 msgstr "Varning"
 
-#: gtt/menucmd.c:52 gtt/menucmd.c:269
-msgid "Could not write the configuration file!"
-msgstr "Kunde inte skriva konfigurationsfilen!"
-
-#: gtt/menucmd.c:60
-msgid "Unknown error occurred"
-msgstr "Okänt kommando inträffade"
-
-#: gtt/menucmd.c:111
+#: gtt/menucmd.c:85
 msgid "Time tracking tool for GNOME"
 msgstr "Tidmätningsverktyg för GNOME"
 
-#: gtt/menucmd.c:161
+#: gtt/menucmd.c:138
 msgid "New Project..."
 msgstr "Nytt projekt..."
 
-#: gtt/menucmd.c:231
-msgid "I could not read the configuration file"
-msgstr "Jag kunde inte läsa konfigurationsfilen"
-
-#: gtt/menucmd.c:245 gtt/toolbar.c:153
+#: gtt/menucmd.c:220 gtt/toolbar.c:167
 msgid "Reload Configuration File"
 msgstr "Läs om konfigurationsfilen"
 
-#: gtt/menucmd.c:246
-msgid ""
-"This will overwrite your current set of projects.\n"
-"Do you really want to reload the configuration file?"
-msgstr ""
-"Detta skriver över dina nuvarande projekt.\n"
-"Är du säker på att du vill läsa om konfigurationsfilen?"
+#: gtt/menucmd.c:221
+msgid "Do you really want to reload the configuration file?"
+msgstr "Vill du verkligen läsa om konfigurationsfilen?"
 
-#: gtt/menucmd.c:289
+#: gtt/menucmd.c:256
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr "Filen %s finns redan, skriv över?"
 
-#: gtt/menucmd.c:300
+#: gtt/menucmd.c:267
 msgid "File cannot be written"
 msgstr "Filen kan inte skrivas"
 
-#: gtt/menucmd.c:320
+#: gtt/menucmd.c:287
 msgid "Export Current State"
 msgstr "Exportera aktuellt tillstånd"
 
@@ -1088,357 +1251,213 @@ msgstr "_Spara konfigurationsfilen"
 msgid "_Export Current State"
 msgstr "_Exportera aktuellt tillstånd"
 
-#: gtt/menus.c:63 gtt/menus.c:151
+#: gtt/menus.c:63 gtt/menus.c:173
 msgid "Clear _Daily Counter"
 msgstr "Töm _dagliga räknaren"
 
-#: gtt/menus.c:64
+#: gtt/menus.c:64 gtt/menus.c:174
 msgid "Zero out todays timer by deleting todays time logs"
 msgstr "Nollställ dagens klocka genom att ta bort tidsloggarna för idag"
 
-#: gtt/menus.c:79 gtt/menus.c:155
+#: gtt/menus.c:68 gtt/menus.c:87 gtt/menus.c:156
 msgid "_Journal..."
 msgstr "_Dagbok..."
 
-#: gtt/menus.c:80
+#: gtt/menus.c:69 gtt/menus.c:88 gtt/menus.c:157
 msgid "Show the timesheet journal for this project"
 msgstr "Visa tidsdagbok för detta projekt"
 
-#: gtt/menus.c:83
+#: gtt/menus.c:72 gtt/menus.c:160
+msgid "New _Task..."
+msgstr "Ny _uppgift..."
+
+#: gtt/menus.c:73 gtt/menus.c:161
+msgid "Change the current task for this project"
+msgstr "Ändra aktuell uppgift för detta projekt"
+
+#: gtt/menus.c:91
 msgid "_All Journal..."
 msgstr "_Komplett dagbok..."
 
-#: gtt/menus.c:84
+#: gtt/menus.c:92
 msgid "Show the verbose timesheet journal for this project"
 msgstr "Visa den utförliga tidsdagboken för detta projekt"
 
-#: gtt/menus.c:87
+#: gtt/menus.c:95
 msgid "_Invoice..."
 msgstr "R_äkning..."
 
-#: gtt/menus.c:88
+#: gtt/menus.c:96
 msgid "Show a sample invoice for this project"
-msgstr "VIsa en exempelräkning för detta projekt"
+msgstr "Visa en exempelräkning för detta projekt"
 
-#: gtt/menus.c:91
+#: gtt/menus.c:99
+msgid "_Primer..."
+msgstr "_Förstagångshandbok..."
+
+#: gtt/menus.c:100
+msgid "Show a sample introductory primer for designing custom reports"
+msgstr "Visa en introduktionshandbok för skapande av anpassade rapporter"
+
+#: gtt/menus.c:103
 msgid "_New Report..."
 msgstr "_Ny rapport..."
 
-#: gtt/menus.c:92
+#: gtt/menus.c:104
 msgid "Define a path to a new GTT phtml report file"
 msgstr "Ange en sökväg till en ny GTT phtml-rapportfil"
 
-#: gtt/menus.c:103
+#: gtt/menus.c:115
 msgid "St_art"
 msgstr "St_arta"
 
-#: gtt/menus.c:104
+#: gtt/menus.c:116
 msgid "Start the timer running"
 msgstr "Starta klockan"
 
-#: gtt/menus.c:109
+#: gtt/menus.c:121
 msgid "Sto_p"
 msgstr "Sto_ppa"
 
-#: gtt/menus.c:110
+#: gtt/menus.c:122
 msgid "Stop the timer"
 msgstr "Stoppa klockan"
 
-#: gtt/menus.c:115
+#: gtt/menus.c:127
 msgid "_Timer Running"
 msgstr "_Klocka aktiverad"
 
-#: gtt/menus.c:134
+#: gtt/menus.c:146
 msgid "_Reports"
 msgstr "_Rapporter"
 
-#: gtt/menus.c:135
+#: gtt/menus.c:147
 msgid "_Timer"
 msgstr "_Klocka"
 
 #. deal with the i18n menu path ...
 #. (is this right ??? or is this pre-i18n ???)
-#: gtt/menus.c:226
+#: gtt/menus.c:244
 msgid "Reports"
 msgstr "Rapporter"
-
-#: gtt/options.c:234
-msgid "Display"
-msgstr "Utseende"
-
-#: gtt/options.c:242
-msgid "Show Seconds"
-msgstr "Visa sekunder"
-
-#: gtt/options.c:248
-msgid "Show Status Bar"
-msgstr "Visa statusrad"
-
-#: gtt/options.c:254
-msgid "Show Table Header"
-msgstr "Visa tabellrubriker"
-
-#: gtt/options.c:260
-msgid "Show Sub-Projects"
-msgstr "Visa underprojekt"
-
-#: gtt/options.c:274 gtt/options.c:591
-msgid "Toolbar"
-msgstr "Knapprad"
-
-#: gtt/options.c:282
-msgid "Show Toolbar Icons"
-msgstr "Visa knappradsikoner"
-
-#: gtt/options.c:288
-msgid "Show Toolbar Texts"
-msgstr "Visa knappradstexter"
-
-#: gtt/options.c:294
-msgid "Show Tooltips"
-msgstr "Visa hjälpbubblor"
-
-#: gtt/options.c:300
-msgid "Toolbar Segments"
-msgstr "Knappradsdelar"
-
-#: gtt/options.c:308
-msgid "Show `New'"
-msgstr "Visa \"Ny\""
-
-#: gtt/options.c:314
-msgid "Show `Save', `Reload'"
-msgstr "Visa \"Spara\", \"Läs om\""
-
-#: gtt/options.c:320
-msgid "Show `Cut', `Copy', `Paste'"
-msgstr "Visa \"Klipp ut\", \"Kopiera\", \"Klistra in\""
-
-#: gtt/options.c:326
-msgid "Show `Properties'"
-msgstr "Visa \"Egenskaper\""
-
-#: gtt/options.c:332
-msgid "Show `Timer'"
-msgstr "Visa \"Klocka\""
-
-#: gtt/options.c:338
-msgid "Show `Preferences'"
-msgstr "Visa \"Inställningar\""
-
-#: gtt/options.c:344
-msgid "Show `Help'"
-msgstr "Visa \"Hjälp\""
-
-#: gtt/options.c:350
-msgid "Show `Quit'"
-msgstr "Visa \"Avsluta\""
-
-#: gtt/options.c:364
-msgid "Shell Commands"
-msgstr "Skalkommandon"
-
-#: gtt/options.c:372
-msgid "Switch Project Command:"
-msgstr "Byt projektkommando:"
-
-#: gtt/options.c:384
-msgid "No Project Command:"
-msgstr "Inget projektkommando:"
-
-#: gtt/options.c:419
-msgid "Logfile"
-msgstr "Loggfil"
-
-#: gtt/options.c:427
-msgid "Use Logfile"
-msgstr "Använd loggfil"
-
-#: gtt/options.c:436
-msgid "Filename:"
-msgstr "Filnamn:"
-
-#: gtt/options.c:450
-msgid "Entry Start:"
-msgstr "Poststart:"
-
-#: gtt/options.c:464
-msgid "Entry Stop:"
-msgstr "Poststopp:"
-
-#: gtt/options.c:478
-msgid "Timeout in secs:"
-msgstr "Tidsgräns i sekunder:"
-
-# FIXME
-#: gtt/options.c:578
-msgid "Misc"
-msgstr "Diverse"
-
-#: gtt/phtml.c:91 gtt/phtml.c:394
-msgid "Memo"
-msgstr "Anteckning"
-
-#: gtt/phtml.c:96
-msgid "Task Time"
-msgstr "Uppgiftstid"
-
-#: gtt/glade/task_properties.glade.h:3 gtt/phtml.c:100 gtt/phtml.c:245
-msgid "Billable"
-msgstr "Debiterbar"
-
-#: gtt/phtml.c:104
-msgid "Bill Rate"
-msgstr "Debiteringsavgift"
-
-#: gtt/phtml.c:108 mini-utils/gcolorsel/view-color-list.c:197
-#: mini-utils/guname/moreinfo.c:227
-msgid "Value"
-msgstr "Värde"
-
-#: gtt/phtml.c:112
-msgid "Billable Value"
-msgstr "Debiterbart värde"
-
-#: gtt/phtml.c:116 gtt/phtml.c:139 gtt/phtml.c:290
-msgid "Error - Unknown"
-msgstr "Fel - Okänt"
-
-#: gtt/phtml.c:136 gtt/phtml.c:394
-msgid "Elapsed"
-msgstr "Förlupen"
-
-#: gtt/phtml.c:226 gtt/phtml.c:412 gtt/phtml.c:486
-msgid "(empty)"
-msgstr "(tom)"
-
-#: gtt/glade/task_properties.glade.h:10 gtt/phtml.c:242
-msgid "Hold"
-msgstr "Vänta"
-
-#: gtt/glade/task_properties.glade.h:13 gtt/phtml.c:248
-msgid "Not Billable"
-msgstr "Inte debiterbart"
-
-#: gtt/glade/task_properties.glade.h:12 gtt/phtml.c:251
-msgid "No Charge"
-msgstr "Ingen avgift"
-
-#: gtt/glade/task_properties.glade.h:17 gtt/phtml.c:261
-msgid "Regular"
-msgstr "Vanlig"
-
-#: gtt/glade/task_properties.glade.h:16 gtt/phtml.c:264
-msgid "Overtime"
-msgstr "Övertid"
-
-#: gtt/phtml.c:267
-msgid "Double Overtime"
-msgstr "Dubbel övertid"
-
-#: gtt/glade/task_properties.glade.h:9 gtt/phtml.c:270
-msgid "Flat Fee"
-msgstr "Fast avgift"
-
-#: gtt/phtml.c:572
-msgid "unknown token: >>>>"
-msgstr "okänd teckensekvens: >>>>"
 
 #: gtt/plug-in.c:120
 msgid "Reports/<Separator>"
 msgstr "Rapporter/<Avskiljare>"
 
-#: gtt/proj.c:451
+#: gtt/proj.c:697
 msgid "Old GTT Tasks"
 msgstr "Gammal GTT-uppgift"
 
-#: gtt/proj.c:470 gtt/proj.c:1149
-msgid "New Task"
-msgstr "Ny uppgift"
-
-#: gtt/props-proj.c:71 gtt/props-proj.c:72 gtt/props-task.c:67
-#: gtt/props-task.c:68
+#: gtt/props-proj.c:94 gtt/props-proj.c:95 gtt/props-task.c:75
+#: gtt/props-task.c:76
 msgid "empty"
 msgstr "tom"
 
+#: gtt/timer.c:117
+#, c-format
+msgid ""
+"The keyboard and mouse have been idle\n"
+"for %d minutes.  The currently running\n"
+"project (%s - %s)\n"
+"has been stopped.\n"
+"Do you want to restart it?"
+msgstr ""
+"Tangentbordet och musen har inte använts\n"
+"på %d minuter. Det körande projektet\n"
+"(%s - %s) har stoppats.\n"
+"Vill du starta om det?"
+
+#: gtt/timer.c:125
+msgid "System Idle"
+msgstr "Systemet oanvänt"
+
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:145
+#: gtt/toolbar.c:159
 msgid "[GTT]New"
 msgstr "Ny"
 
-#: gtt/toolbar.c:146
+#: gtt/toolbar.c:160
 msgid "Create a New Project..."
 msgstr "Skapa ett nytt projekt..."
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:166
 msgid "Reload"
 msgstr "Läs om"
 
-#: gtt/glade/journal.glade.h:6 gtt/toolbar.c:156 stripchart/params.c:939
+#: gtt/glade/journal.glade.h:7 gtt/toolbar.c:170 stripchart/params.c:939
 msgid "Save"
 msgstr "Spara"
 
-#: gtt/toolbar.c:157
+#: gtt/toolbar.c:171
 msgid "Save Configuration File"
 msgstr "Spara konfigurationsfil"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:178
 msgid "Cut Selected Project"
 msgstr "Klipp ut markerat projekt"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:182
 msgid "Copy Selected Project"
 msgstr "Kopiera markerat projekt"
 
-#: gtt/toolbar.c:172
+#: gtt/toolbar.c:186
 msgid "Paste Project"
 msgstr "Klistra in projekt"
 
-#: gtt/glade/journal.glade.h:2 gtt/toolbar.c:179
+#: gtt/glade/journal.glade.h:2 gtt/toolbar.c:193
 msgid "Journal"
 msgstr "Dagbok"
 
-#: gtt/toolbar.c:180
+#: gtt/toolbar.c:194
 msgid "View and Edit Timestamp Logs"
 msgstr "Visa och redigera tidsstämplingsloggar"
 
-#: gtt/toolbar.c:185
+#: gtt/toolbar.c:199
 msgid "Props"
 msgstr "Egensk."
 
-#: gtt/toolbar.c:186
+#: gtt/toolbar.c:200
 msgid "Edit Project Properties..."
 msgstr "Redigera projektegenskaper..."
 
-#: gtt/toolbar.c:190
+#: gtt/toolbar.c:204
 msgid "Timer"
 msgstr "Klocka"
 
-#: gtt/toolbar.c:191
+#: gtt/toolbar.c:205
 msgid "Start/Stop Timer"
 msgstr "Starta/stoppa klocka"
 
-#: gtt/toolbar.c:203
+#: gtt/toolbar.c:211 logview/calendar.c:112 logview/logview.c:107
+msgid "Calendar"
+msgstr "Kalender"
+
+#: gtt/toolbar.c:212
+msgid "View Calendar"
+msgstr "Visa kalender"
+
+#: gtt/toolbar.c:225
 msgid "Prefs"
 msgstr "Inställn."
 
-#: gtt/toolbar.c:204
+#: gtt/toolbar.c:226
 msgid "Edit Preferences..."
 msgstr "Redigera inställningar..."
 
-#: gtt/toolbar.c:208
+#: gtt/toolbar.c:230
 msgid "Manual"
 msgstr "Manual"
 
-#: gtt/toolbar.c:209
+#: gtt/toolbar.c:231
 msgid "User's Guide and Manual"
 msgstr "Användarguide och -manual"
 
-#: gtt/toolbar.c:214
+#: gtt/toolbar.c:236
 msgid "Quit"
 msgstr "Avsluta"
 
-#: gtt/toolbar.c:214
+#: gtt/toolbar.c:236
 msgid "Quit GTimeTracker"
 msgstr "Avsluta GTimeTracker"
 
@@ -1486,19 +1505,17 @@ msgstr "Ange hur osäker starttiden är"
 msgid "Start Fuzz"
 msgstr "Startosäkerhet"
 
-#: gtt/glade/interval_popup.glade.h:1 mini-utils/gw/gw.c:495
-msgid "Delete"
-msgstr "Ta bort"
+#: gtt/glade/interval_popup.glade.h:1
+msgid "Delete Interval"
+msgstr "Ta bort intervall"
 
 #: gtt/glade/interval_popup.glade.h:2
 msgid "Delete This Interval"
 msgstr "Ta bort detta intervall"
 
-#: gtt/glade/interval_popup.glade.h:3 mini-utils/gcolorsel/gcolorsel.c:32
-#: mini-utils/gcolorsel/menus.c:573 mini-utils/gcolorsel/menus.c:660
-#: stripchart/params.c:1041 stripchart/params.c:1044
-msgid "Edit"
-msgstr "Redigera"
+#: gtt/glade/interval_popup.glade.h:3
+msgid "Edit Interval"
+msgstr "Redigera intervall"
 
 #: gtt/glade/interval_popup.glade.h:4
 msgid "Edit the Start & Stop Times"
@@ -1528,6 +1545,14 @@ msgstr "Slå samman i intervallet nedan"
 msgid "Merge Up"
 msgstr "Slå samman uppåt"
 
+#: gtt/glade/interval_popup.glade.h:11
+msgid "Paste Memo"
+msgstr "Klistra in anteckning"
+
+#: gtt/glade/interval_popup.glade.h:12 gtt/glade/task_popup.glade.h:7
+msgid "Paste a previously cut memo."
+msgstr "Klistra in en tidigare urklippt anteckning."
+
 #: gtt/glade/journal.glade.h:1 mini-utils/gcolorsel/menus.c:89
 #: mini-utils/gcolorsel/menus.c:913 mini-utils/gshutdown/gshutdown.c:155
 #: mini-utils/gshutdown/gshutdown.c:631 stripchart/params.c:953
@@ -1546,7 +1571,11 @@ msgstr "Öppna fil"
 msgid "Print"
 msgstr "Skriv ut"
 
-#: gtt/glade/journal.glade.h:7
+#: gtt/glade/journal.glade.h:6
+msgid "Refresh"
+msgstr "Uppdatera"
+
+#: gtt/glade/journal.glade.h:8
 msgid "Save File"
 msgstr "Spara fil"
 
@@ -1554,35 +1583,338 @@ msgstr "Spara fil"
 msgid "Information"
 msgstr "Information"
 
+#: gtt/glade/prefs.glade.h:1
+msgid "Display"
+msgstr "Utseende"
+
+#: gtt/glade/prefs.glade.h:2
+msgid "Enter a shell command to be executed when no projects are active."
+msgstr "Ange ett skalkommando att köra då inga projekt är aktiva."
+
+#: gtt/glade/prefs.glade.h:3
+msgid "Enter a shell command to be executed whenever projects are switched."
+msgstr "Ange ett skalkommando att köra då projekt byts."
+
+#: gtt/glade/prefs.glade.h:4
+msgid "Entry Start:"
+msgstr "Poststart:"
+
+#: gtt/glade/prefs.glade.h:5
+msgid "Entry Stop:"
+msgstr "Poststopp:"
+
+#: gtt/glade/prefs.glade.h:7
+#, no-c-format
+msgid ""
+"Entry that will be logged when a project starts. Use %t for the project "
+"title, %d for the description, etc. See the manual for more options."
+msgstr ""
+"Post som kommer att loggas då ett projekt startas. Använd %t för "
+"projekttiteln, %d för beskrivningen, osv. Se manualen för fler alternativ."
+
+#: gtt/glade/prefs.glade.h:9
+#, no-c-format
+msgid ""
+"Entry that will be logged when the project stops.  Use %t for the porject "
+"title, %d for the project description, etc. See the manual for more options."
+msgstr ""
+"Post som kommer att loggas då projektet stoppas. Använd %t för "
+"projekttiteln, %d för projektbeskrivningen, osv. Se manualen för fler "
+"alternativ."
+
+#~ msgid ""
+#~ "Entry that will be logged when the project stops.  Use %t for the project "
+#~ "title, %d for the project description, etc. See the manual for more options."
+#~ msgstr ""
+#~ "Post som kommer att loggas då projektet stoppas. Använd %t för "
+#~ "projekttiteln, %d för projektbeskrivningen, osv. Se manualen för fler "
+#~ "alternativ."
+
+#: gtt/glade/prefs.glade.h:10
+msgid "Fields"
+msgstr "Fält"
+
+#: gtt/glade/prefs.glade.h:11
+msgid "Filename:"
+msgstr "Filnamn:"
+
+#: gtt/glade/prefs.glade.h:12
+msgid "Idle Seconds:"
+msgstr "Tomgångssekunder:"
+
+#: gtt/glade/prefs.glade.h:13
+msgid "Inactivity Timeout"
+msgstr "Inaktivitetstimeout"
+
+#: gtt/glade/prefs.glade.h:14
+msgid "Logfile"
+msgstr "Loggfil"
+
+#: gtt/glade/prefs.glade.h:15
+msgid "Min Recorded:"
+msgstr "Minst inspelad:"
+
+# FIXME
+#: gtt/glade/prefs.glade.h:16
+msgid "Misc"
+msgstr "Diverse"
+
+#: gtt/glade/prefs.glade.h:17
+msgid "No Project Command:"
+msgstr "Inget projektkommando:"
+
+#: gtt/glade/prefs.glade.h:18
+msgid "Project List Display"
+msgstr "Projektlistevisning"
+
+#: gtt/glade/prefs.glade.h:19
+msgid "Shell"
+msgstr "Skal"
+
+#: gtt/glade/prefs.glade.h:20
+msgid "Shell Commands"
+msgstr "Skalkommandon"
+
+#: gtt/glade/prefs.glade.h:21
+msgid "Show Current Task"
+msgstr "Visa aktuell uppgift"
+
+#: gtt/glade/prefs.glade.h:22
+msgid "Show Estimated Effort"
+msgstr "Visa uppskattad tidsåtgång"
+
+#: gtt/glade/prefs.glade.h:23
+msgid "Show Percent Complete"
+msgstr "Visa procent färdigt"
+
+#: gtt/glade/prefs.glade.h:24
+msgid "Show Planned Project End Date"
+msgstr "Visa planerat slutdatum för projekt"
+
+#: gtt/glade/prefs.glade.h:25
+msgid "Show Planned Project Start Date"
+msgstr "Visa planerat startdatum för projekt"
+
+#: gtt/glade/prefs.glade.h:26
+msgid "Show Project Description"
+msgstr "Visa projektbeskrivning:"
+
+#: gtt/glade/prefs.glade.h:27
+msgid "Show Project Due Date"
+msgstr "Visa färdigdatum"
+
+#: gtt/glade/prefs.glade.h:28
+msgid "Show Project Importance"
+msgstr "Visa projektviktighet"
+
+#: gtt/glade/prefs.glade.h:29
+msgid "Show Project Status"
+msgstr "Visa projektstatus"
+
+#: gtt/glade/prefs.glade.h:30
+msgid "Show Project Urgency"
+msgstr "Visa projektangelägenhet"
+
+#: gtt/glade/prefs.glade.h:31
+msgid "Show Seconds"
+msgstr "Visa sekunder"
+
+#: gtt/glade/prefs.glade.h:32
+msgid "Show Status Bar"
+msgstr "Visa statusrad"
+
+#: gtt/glade/prefs.glade.h:33
+msgid "Show Sub-Projects"
+msgstr "Visa underprojekt"
+
+#: gtt/glade/prefs.glade.h:34
+msgid "Show Table Header"
+msgstr "Visa tabellrubriker"
+
+#: gtt/glade/prefs.glade.h:35
+msgid "Show Time For The Current Task"
+msgstr "Visa tid för aktuell uppgift"
+
+#: gtt/glade/prefs.glade.h:36
+msgid "Show Time This Month"
+msgstr "Visa tid denna månad"
+
+#: gtt/glade/prefs.glade.h:37
+msgid "Show Time This Week"
+msgstr "Visa tid denna vecka"
+
+#: gtt/glade/prefs.glade.h:38
+msgid "Show Time This Year"
+msgstr "Visa tid detta år"
+
+#: gtt/glade/prefs.glade.h:39
+msgid "Show Time Today"
+msgstr "Visa tid idag"
+
+#: gtt/glade/prefs.glade.h:40
+msgid "Show Toolbar Icons"
+msgstr "Visa knappradsikoner"
+
+#: gtt/glade/prefs.glade.h:41
+msgid "Show Toolbar Texts"
+msgstr "Visa knappradstexter"
+
+#: gtt/glade/prefs.glade.h:42
+msgid "Show Tooltips"
+msgstr "Visa hjälpbubblor"
+
+#: gtt/glade/prefs.glade.h:43
+msgid "Show Total Time Ever"
+msgstr "Visa total tid"
+
+#: gtt/glade/prefs.glade.h:44
+msgid "Show `Cut', `Copy', `Paste'"
+msgstr "Visa \"Klipp ut\", \"Kopiera\", \"Klistra in\""
+
+#: gtt/glade/prefs.glade.h:45
+msgid "Show `Help'"
+msgstr "Visa \"Hjälp\""
+
+#: gtt/glade/prefs.glade.h:46
+msgid "Show `Journal'"
+msgstr "Visa \"Dagbok\""
+
+#: gtt/glade/prefs.glade.h:47
+msgid "Show `New'"
+msgstr "Visa \"Ny\""
+
+#: gtt/glade/prefs.glade.h:48
+msgid "Show `Preferences'"
+msgstr "Visa \"Inställningar\""
+
+#: gtt/glade/prefs.glade.h:49
+msgid "Show `Properties'"
+msgstr "Visa \"Egenskaper\""
+
+#: gtt/glade/prefs.glade.h:50
+msgid "Show `Quit'"
+msgstr "Visa \"Avsluta\""
+
+#: gtt/glade/prefs.glade.h:51
+msgid "Show `Save', `Reload'"
+msgstr "Visa \"Spara\", \"Läs om\""
+
+#: gtt/glade/prefs.glade.h:52
+msgid "Show `Timer'"
+msgstr "Visa \"Klocka\""
+
+#: gtt/glade/prefs.glade.h:53
+msgid ""
+"Show the 'szing', that is, the estimated amount of work that it will take to "
+"perform this project."
+msgstr ""
+"Visa \"storleken\", dvs den uppskattade mängden arbete som det kommer att ta "
+"att slutföra detta projekt."
+
+#~ "Show the 'sizing', that is, the estimated amount of work that it will take "
+#~ "to perform this project."
+#~ msgstr ""
+#~ "Visa \"storleken\", dvs den uppskattade mängden arbete som det kommer att ta "
+#~ "att slutföra detta projekt."
+
+#: gtt/glade/prefs.glade.h:54
+msgid "Switch Project Command:"
+msgstr "Byt projektkommando:"
+
+#: gtt/glade/prefs.glade.h:55
+msgid ""
+"Switches between projects that happen faster than this will not be logged "
+"(enter the number of seconds)"
+msgstr ""
+"Byten mellan projekt som sker snabbare än detta kommer inte att loggas "
+"(ange antalet sekunder)"
+
+#: gtt/glade/prefs.glade.h:56
+msgid ""
+"The current active project will be made inactive after there has been no "
+"keyboard/mouse activity after this number of seconds.  Set to -1 to disable."
+msgstr ""
+"Det för tillfället aktiva projektet kommer att göras inaktivt efter det att "
+"det inte har varit någon tangentbords-/musaktivitet efter detta antal "
+"sekunder. Ställ till -1 för att deaktivera."
+
+#: gtt/glade/prefs.glade.h:57
+msgid "Toolbar"
+msgstr "Knapprad"
+
+#: gtt/glade/prefs.glade.h:58
+msgid "Toolbar Segments"
+msgstr "Knappradsdelar"
+
+#: gtt/glade/prefs.glade.h:59
+msgid "Use Logfile"
+msgstr "Använd loggfil"
+
+#: gtt/glade/prefs.glade.h:60
+msgid "View Project Fields"
+msgstr "Visa projektfält"
+
 #: gtt/glade/project_properties.glade.h:1
 msgid "        "
 msgstr "        "
 
 #: gtt/glade/project_properties.glade.h:2
+msgid "            "
+msgstr "            "
+
+#: gtt/glade/project_properties.glade.h:3
 msgid "                        "
 msgstr "                        "
 
-#: gtt/glade/project_properties.glade.h:3
+#: gtt/glade/project_properties.glade.h:6
 msgid "A title to assign to this project"
 msgstr "En titel att tilldela detta projekt"
 
-#: gtt/glade/project_properties.glade.h:4
+#: gtt/glade/project_properties.glade.h:7
 msgid "Auto-merge Gap:"
 msgstr "Avstånd för automatisk sammanslagning:"
 
-#: gtt/glade/project_properties.glade.h:5
+#: gtt/glade/project_properties.glade.h:8
 msgid "Auto-merge Interval:"
 msgstr "Intervall för automatisk sammanslagning:"
 
-#: gtt/glade/project_properties.glade.h:6
+#: gtt/glade/project_properties.glade.h:11
+msgid ""
+"Does this item need immediate attention? Note that some urgent tasks might "
+"not be important.  For example, Bill may want you to answer his email today, "
+"but you may have better things to do today."
+msgstr ""
+"Kräver detta objekt omedelbar uppmärksamhet? Observera att en del angelägna "
+"uppgifter inte behöver vara viktiga. Nisse vill kanske att du svarar på hans "
+"brev idag, men det finns viktigare saker att göra idag."
+
+#: gtt/glade/project_properties.glade.h:12
 msgid "Double-Overtime Rate:"
 msgstr "Dubbel övertidsavgift:"
 
-#: gtt/glade/project_properties.glade.h:7
+#: gtt/glade/project_properties.glade.h:13
+msgid "Due Date:"
+msgstr "Färdigdatum:"
+
+#: gtt/glade/project_properties.glade.h:14
 msgid "Flat Fee:"
 msgstr "Fast avgift:"
 
-#: gtt/glade/project_properties.glade.h:8
+#: gtt/glade/project_properties.glade.h:16
+msgid "Hours to Finish:"
+msgstr "Timmar att färdigställa:"
+
+#: gtt/glade/project_properties.glade.h:17
+msgid ""
+"How important is it to perform this task?  Not everything important is "
+"urgent.  For example, it is important to file a tax return every year, but "
+"you have a lot of time to get ready to do this."
+msgstr ""
+"Hur viktigt är det att denna uppgift utförs? Inte allt som är viktigt är "
+"brådskande. Det är till exempel viktigt att deklarera varje år, men det "
+"finns gott om tid att göra detta."
+
+#: gtt/glade/project_properties.glade.h:18
 msgid ""
 "If the gap between intervals is smaller than this, the intervals will be "
 "merged together."
@@ -1590,7 +1922,7 @@ msgstr ""
 "Om avståndet mellan intervallen är mindre än detta kommer intervallen att "
 "slås samman."
 
-#: gtt/glade/project_properties.glade.h:9
+#: gtt/glade/project_properties.glade.h:19
 msgid ""
 "If this project is billed for one price no matter how long it takes, enter "
 "the fee here."
@@ -1598,7 +1930,11 @@ msgstr ""
 "Om detta projekt kommer att kosta en viss avgift oavsett hur lång tid det "
 "tar kan du ange avgiften här."
 
-#: gtt/glade/project_properties.glade.h:10
+#: gtt/glade/project_properties.glade.h:20
+msgid "Importance:"
+msgstr "Viktighet:"
+
+#: gtt/glade/project_properties.glade.h:22
 msgid ""
 "Internal notes about the project, memos that will not be printed on an "
 "invoice."
@@ -1606,70 +1942,141 @@ msgstr ""
 "Interna noteringar om projektet, anteckningar som inte kommer att skrivas på "
 "en räkning."
 
-#: gtt/glade/project_properties.glade.h:11
+#: gtt/glade/project_properties.glade.h:23
 msgid "Intervals"
 msgstr "Intervall"
 
-#: gtt/glade/project_properties.glade.h:12
+#: gtt/glade/project_properties.glade.h:24
 msgid "Intervals smaller than this will be discarded"
 msgstr "Intervall mindre än detta kommer att ignoreras"
 
-#: gtt/glade/project_properties.glade.h:13
+#: gtt/glade/project_properties.glade.h:26
+msgid "Medium"
+msgstr "Mellan"
+
+#: gtt/glade/project_properties.glade.h:27
 msgid "Minimum Interval: "
 msgstr "Minimumintervall: "
 
-#: gtt/glade/project_properties.glade.h:14
-#: gtt/glade/task_properties.glade.h:14
+#: gtt/glade/project_properties.glade.h:28
+msgid "Not Set"
+msgstr "Inte angiven"
+
+#: gtt/glade/project_properties.glade.h:30
+#: gtt/glade/task_properties.glade.h:17
 msgid "Notes:"
 msgstr "Anteckningar:"
 
-#: gtt/glade/project_properties.glade.h:15
+#: gtt/glade/project_properties.glade.h:32
 msgid "Overtime Rate:"
 msgstr "Övertidsavgift:"
 
-#: gtt/glade/project_properties.glade.h:16
+#: gtt/glade/project_properties.glade.h:33
+msgid "Planned Finish:"
+msgstr "Planerat slut:"
+
+#: gtt/glade/project_properties.glade.h:34
+msgid "Planned Start:"
+msgstr "Planerad start:"
+
+#: gtt/glade/project_properties.glade.h:35
+msgid "Planning"
+msgstr "Planering"
+
+#: gtt/glade/project_properties.glade.h:36
 msgid "Project"
 msgstr "Projekt"
 
-#: gtt/glade/project_properties.glade.h:17
+#: gtt/glade/project_properties.glade.h:37
 msgid "Project Description:"
 msgstr "Projektbeskrivning:"
 
-#: gtt/glade/project_properties.glade.h:18
+#: gtt/glade/project_properties.glade.h:38
 msgid "Project Title:"
 msgstr "Projekttitel:"
 
-#: gtt/glade/project_properties.glade.h:19
+#: gtt/glade/project_properties.glade.h:39
 msgid "Rates"
 msgstr "Avgifter"
 
-#: gtt/glade/project_properties.glade.h:20
+#: gtt/glade/project_properties.glade.h:40
 msgid "Regular Rate:"
 msgstr "Vanlig avgift:"
 
-#: gtt/glade/project_properties.glade.h:21
+#: gtt/glade/project_properties.glade.h:41
+msgid "Status:"
+msgstr "Status:"
+
+#: gtt/glade/project_properties.glade.h:42
 msgid "The dollars per hour charged for overtime work on this project."
 msgstr "Kronor per timme som tas för övertidsarbete på detta projekt."
 
-#: gtt/glade/project_properties.glade.h:22
+#: gtt/glade/project_properties.glade.h:43
 msgid "The dollars per hour normally charged for this project."
 msgstr "Kronor per timme som normalt tas för detta projekt."
 
-#: gtt/glade/project_properties.glade.h:23
+#: gtt/glade/project_properties.glade.h:44
 msgid "The over-overtime rate (overtime on Sundays, etc.)"
 msgstr "Övertidsavgiften (övertid på söndagar osv)"
 
-#: gtt/glade/project_properties.glade.h:24
+#: gtt/glade/project_properties.glade.h:45
 msgid "Time below which an interval is merged with its neighbors"
 msgstr "Tid under vilken ett intervall slås samman med dess grannar"
 
-#: gtt/glade/project_properties.glade.h:25
+#: gtt/glade/project_properties.glade.h:46
+msgid "Urgency:"
+msgstr "Angelägenhet"
+
+#: gtt/glade/project_properties.glade.h:47
+msgid "What is the status of this project?"
+msgstr "Vad är statusen på detta projekt?"
+
+#: gtt/glade/project_properties.glade.h:48
 msgid "a short description that will be printed on the invoice."
 msgstr "en kort beskrivning som kommer att skrivas ut på räkningen."
 
-#: gtt/glade/project_properties.glade.h:26
+#: gtt/glade/project_properties.glade.h:49
 msgid "seconds"
 msgstr "sekunder"
+
+#: gtt/glade/task_popup.glade.h:1
+msgid "Delete _Memo"
+msgstr "Ta bort ante_ckning"
+
+#: gtt/glade/task_popup.glade.h:2
+msgid "Delete _Times"
+msgstr "Ta bort _tider"
+
+#: gtt/glade/task_popup.glade.h:3
+msgid "Delete the memo only, keep the time intervals"
+msgstr "Ta bort endast anteckningen, behåll tidsintervallen"
+
+#: gtt/glade/task_popup.glade.h:4
+msgid "Delete the memo, and the time intervals below it."
+msgstr "Ta bort anteckningen och tidsintervallen nedanför."
+
+#: gtt/glade/task_popup.glade.h:5
+msgid "Edit the memo and othr task properties."
+msgstr "Redigera anteckningen och andra uppgiftsegenskaper."
+
+#~ msgid "Edit the memo and other task properties."
+#~ msgstr "Redigera anteckningen och andra uppgiftsegenskaper."
+
+#: gtt/glade/task_popup.glade.h:6
+msgid "Insert a new memo above this one."
+msgstr "Infoga en ny anteckning ovanför denna."
+
+#: gtt/glade/task_popup.glade.h:8
+msgid "_Edit Memo"
+msgstr "_Redigera anteckning"
+
+#: gtt/glade/task_popup.glade.h:9
+msgid "_New Memo"
+msgstr "_Ny anteckning"
+
+#: gtt/glade/task_popup.glade.h:10
+msgid "_Paste Memo"
+msgstr "Klistra _in anteckning"
 
 #: gtt/glade/task_properties.glade.h:1
 msgid "A set of private notes that will not be printed on an invoice."
@@ -1680,52 +2087,69 @@ msgstr ""
 msgid "A short description to attach to this block of time."
 msgstr "En kort beskrivning att bifoga detta tidsblock."
 
-#: gtt/glade/task_properties.glade.h:4
-msgid "Billable:"
-msgstr "Debiterbar:"
-
 #: gtt/glade/task_properties.glade.h:5
+msgid "Billable:"
+msgstr "Debiterbart:"
+
+#: gtt/glade/task_properties.glade.h:6
 msgid "Billing Block:"
 msgstr "Debiteringsblock:"
 
-#: gtt/glade/task_properties.glade.h:6
+#: gtt/glade/task_properties.glade.h:7
 msgid "Billing Rate:"
 msgstr "Debiteringsavgift:"
 
-#: gtt/glade/task_properties.glade.h:7
-msgid ""
-"Can this task be billed to the customer?  \"Hold\" means maybe but not yet, "
-"\"Not Billable\" means don't print on the invoice, \"No Charge\" means print "
-"on the invoice as 'free'."
-msgstr ""
-"Kan denna uppgift debiteras kunden? \"Vänta\" betyder kanske men inte än, "
-"\"Inte debiterbar\" betyder skriv inte detta på räkningen, \"Ingen avgift\" "
-"betyder skriv ut det på räkningen som \"utan kostnad\"."
-
 #: gtt/glade/task_properties.glade.h:8
+msgid "Billing Status:"
+msgstr "Debiteringsstatus:"
+
+#: gtt/glade/task_properties.glade.h:9
 msgid "Fee rate to be charged for this task."
 msgstr "Avgift att debiteras denna uppgift."
 
-#: gtt/glade/task_properties.glade.h:11
+#: gtt/glade/task_properties.glade.h:12
+msgid ""
+"How should this task be billed?  \"Billable\" means bill to the customer in "
+"the normal fashion.   \"Not Billable\" means we can't ask for money for "
+"this, don't print on the invoice.   \"No Charge\" means print on the invoice "
+"as 'free/no-charge'."
+msgstr ""
+"Kan denna uppgift debiteras? \"Debiterbar\" betyder debitera kunden på "
+"normalt vis. \"Inte debiterbart\" betyder att vi inte kan ta betalt för "
+"detta, och skriv inte detta på räkningen. \"Ingen avgift\" betyder skriv ut "
+"det på räkningen som \"utan kostnad\"."
+
+#: gtt/glade/task_properties.glade.h:13
+msgid ""
+"Is this task ready to be billed to the customer? \"Hold\" means maybe, but "
+"not yet, needs review.   \"Bill\" means print this on the next invoice.   "
+"\"Paid\" means that it should no longer be included on invoices."
+msgstr ""
+"Är denna uppgift redo att debiteras kunden? \"Vänta\" betyder kanske men "
+"inte än, kräver granskning. \"Räkning\" betyder skriv detta på nästa "
+"räkning. \"Betalat\" betyder att detta inte längre ska inkluderas på "
+"räkningar."
+
+#: gtt/glade/task_properties.glade.h:14
 msgid "Memo:"
 msgstr "Anteckning:"
 
-#: gtt/glade/task_properties.glade.h:15
+#: gtt/glade/task_properties.glade.h:18
 msgid "OverOver"
 msgstr "Överövertid"
 
-#: gtt/glade/task_properties.glade.h:18
+#: gtt/glade/task_properties.glade.h:22
 msgid "Task Properties"
 msgstr "Uppgiftsegenskaper"
 
-#: gtt/glade/task_properties.glade.h:19
+#: gtt/glade/task_properties.glade.h:23
 msgid ""
 "The billed unit of time will be rounded to an integer multiple of this time."
 msgstr ""
 "Den debiterade tidsenheten kommer att rundas av till en heltalsmultipel av "
 "denna tid."
 
-#: gtt/glade/task_properties.glade.h:20
+#: gtt/glade/task_properties.glade.h:24
 msgid "minutes"
 msgstr "minuter"
 
@@ -1832,10 +2256,6 @@ msgstr ""
 "meddelande: [%s]\n"
 "beskrivning: [%s]\n"
 "åtgärd: [%s]\n"
-
-#: logview/calendar.c:112 logview/logview.c:107
-msgid "Calendar"
-msgstr "Kalender"
 
 #: logview/info.c:79 logview/logview.c:110
 msgid "Log stats"
@@ -2249,6 +2669,12 @@ msgstr "Lista"
 #: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "Grid"
 msgstr "Rutnät"
+
+#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1041
+#: stripchart/params.c:1044
+msgid "Edit"
+msgstr "Redigera"
 
 #: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1034
 #: stripchart/params.c:1037
@@ -3411,6 +3837,10 @@ msgstr "Kommandorad"
 msgid "Add some defaults"
 msgstr "Lägg till några standardposter"
 
+#: mini-utils/gw/gw.c:495
+msgid "Delete"
+msgstr "Ta bort"
+
 #: mini-utils/gw/gw.c:513
 msgid "Command Editor"
 msgstr "Kommandoredigerare"
@@ -3556,10 +3986,6 @@ msgstr "Geometri"
 #: mini-utils/idetool/idetool.c:315
 msgid "Cache"
 msgstr "Cache"
-
-#: mini-utils/idetool/idetool.c:317 mini-utils/idetool/idetool.c:319
-msgid "Status"
-msgstr "Status"
 
 #: mini-utils/idetool/idetool.c:323
 msgid "Legacy MFM/RLL drive"
@@ -4436,6 +4862,29 @@ msgstr "Personlig cron-hanterare"
 msgid "Personal crontab manager"
 msgstr "Personlig crontab-hanterare"
 
+#~ msgid ""
+#~ "An error occured while reading the configuration file.\n"
+#~ "Shall I setup a new configuration?"
+#~ msgstr ""
+#~ "Ett fel uppstod vid läsning av konfigurationsfilen.\n"
+#~ "Ska jag skapa en ny uppsättning inställningar?"
+
+#~ msgid "Could not write the configuration file!"
+#~ msgstr "Kunde inte skriva konfigurationsfilen!"
+
+#~ msgid "Unknown error occurred"
+#~ msgstr "Okänt kommando inträffade"
+
+#~ msgid ""
+#~ "This will overwrite your current set of projects.\n"
+#~ "Do you really want to reload the configuration file?"
+#~ msgstr ""
+#~ "Detta skriver över dina nuvarande projekt.\n"
+#~ "Är du säker på att du vill läsa om konfigurationsfilen?"
+
+#~ msgid "Timeout in secs:"
+#~ msgstr "Tidsgräns i sekunder:"
+
 #~ msgid "<html><body><h1>Error 404 Not Found</h1>The file "
 #~ msgstr "<html><body><h1>Fel 404 Inte hittad</h1>Filen "
 
@@ -4473,9 +4922,6 @@ msgstr "Personlig crontab-hanterare"
 #~ msgstr ""
 #~ "Antal filer: 0\n"
 #~ "Antal mappar: 0"
-
-#~ msgid "Cancel"
-#~ msgstr "Avbryt"
 
 #~ msgid "OK"
 #~ msgstr "OK"
