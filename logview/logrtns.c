@@ -247,7 +247,6 @@ OpenLogFile (char *filename)
 		   ShowErrMessage (NULL, error_main, "Unable to malloc for lines[i]\n");
 		   return NULL;
 	   }
-
 	   ParseLine (buffer_lines[i], line);
 	   (tlog->lines)[i] = line;
    }   
@@ -401,7 +400,7 @@ ParseLine (char *buff, LogLine * line)
    strncpy (line->message, buff, MAX_WIDTH);
    line->message[MAX_WIDTH-1] = '\0';
 
-   token = strtok (buff, " ");
+   token = strtok (line->message, " ");
    if (token == NULL) return;
    /* This is not a good assumption I don't think, especially
     * if log is internationalized
@@ -578,7 +577,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    curdate = -1;
    while ((curdate < 0) && (buffer_lines[nl]!=NULL))
    {
-	   curdate = GetDate (buffer_lines[nl]);
+	   curdate = GetDate (buffer_lines[nl]);	  
 	   nl++;
    }
    log->lstats.startdate = curdate;
@@ -589,21 +588,21 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    curmark = malloc (sizeof (DateMark));
    if (curmark == NULL) {
 	   ShowErrMessage (NULL, error_main, _("ReadLogStats: out of memory"));
-      exit (0);
+	   exit (0);
    }
-   log->lstats.firstmark = curmark;
    curmark->time = curdate;
    curmark->year = offsetyear;
    curmark->next = NULL;
    curmark->prev = NULL;
    curmark->offset = info.size;
    curmark->ln = nl;
+   log->lstats.firstmark = curmark;
 
    /* Count days appearing in the log */
 
    i = 0;
    for (i=0; buffer_lines[i]!=NULL; i++) {
-	   newdate = GetDate (buffer_lines[nl]);
+	   newdate = GetDate (buffer_lines[i]);
 
 	   if (newdate < 0)
 		   continue;
