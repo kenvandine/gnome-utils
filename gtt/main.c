@@ -155,9 +155,9 @@ init_list(void)
 	GttErrCode xml_errcode, conf_errcode;
 	const char * xml_filepath;
 
-	/* Read the data file first, and the config later.
-	 * The config cile contains things like the 'current project',
-	 * which is undefined until the proejcts have been read in.
+	/* Read the data file first, and then the config file.
+	 * The config file contains things like the 'current project',
+	 * which are undefined until the projects have been read in.
 	 */
 	xml_filepath = gnome_config_get_real_path (XML_DATA_FILENAME);
         gtt_err_set_code (GTT_NO_ERR);

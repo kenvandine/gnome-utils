@@ -16,6 +16,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
  */
 
+#include <glib.h>
 #include <gnome-xml/parser.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -325,31 +326,49 @@ parse_project (xmlNodePtr project)
 
 /* =========================================================== */
 
-void
-gtt_xml_read_file (const char * filename)
+GList *
+gtt_xml_read_projects (const char * filename)
 {
+	GList *prjs = NULL;
 	xmlDocPtr doc;
 	xmlNodePtr root, project_list, project;
 
 	doc = xmlParseFile (filename);
 
-	if (!doc) { gtt_err_set_code (GTT_CANT_OPEN_FILE); return; }
+	if (!doc) { gtt_err_set_code (GTT_CANT_OPEN_FILE); return NULL; }
 	root = doc->root;
 	if (strcmp ("gtt", root->name)) {
-		gtt_err_set_code (GTT_NOT_A_GTT_FILE); return; }
+		gtt_err_set_code (GTT_NOT_A_GTT_FILE); return NULL; }
 
 	project_list = root->childs;
 
 	/* If no children, then no projects -- a clean slate */
-	if (!project_list) return;
+	if (!project_list) return NULL;
 
 	if (strcmp ("project-list", project_list->name)) {
-		gtt_err_set_code (GTT_FILE_CORRUPT); return; }
+		gtt_err_set_code (GTT_FILE_CORRUPT); return NULL; }
 
 	for (project=project_list->childs; project; project=project->next)
 	{
 		GttProject *prj;
 		prj = parse_project (project);
+		prjs = g_list_append (prjs, prj);
+	}
+	return prjs;
+}
+
+/* =========================================================== */
+
+void
+gtt_xml_read_file (const char * filename)
+{
+	GList *node, *prjs = NULL;
+
+	prjs = gtt_xml_read_projects (filename);
+
+	for (node=prjs; node; node=node->next)
+	{
+		GttProject *prj = node->data;
 		gtt_project_list_append (prj);
 	}
 

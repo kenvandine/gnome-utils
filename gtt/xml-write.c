@@ -355,10 +355,14 @@ gtt_to_dom_tree (void)
 void
 gtt_xml_write_file (const char * filename)
 {
+	char * tmpfilename;
 	xmlNodePtr topnode;
 	FILE *fh;
+	int rc;
 
-	fh = fopen (filename, "w");
+	tmpfilename = g_strconcat (filename, ".tmp", NULL);
+	fh = fopen (tmpfilename, "w");
+	g_free (tmpfilename);
 	if (!fh) { gtt_err_set_code (GTT_CANT_OPEN_FILE); return; }
 
 	topnode = gtt_to_dom_tree();
@@ -369,11 +373,34 @@ gtt_xml_write_file (const char * filename)
 
 	fprintf(fh, "\n");
 
-	/* hack alert XXX we should check for error condition
-	 * to make sure that we didn't run out of disk space, 
-	 * have i/o errorsm, etc. */
-	fflush (fh);
-	fclose (fh);
+	/* The algorithm we use here is to write to a tmp file,
+	 * make sure that the write succeeded, and only then 
+	 * rename the temp file to the real file name.  Note that
+	 * certain errors (e.g. no room on disk) are not reported
+	 * until the fclose, which makes this an important code 
+	 * to check.
+	 * Sure wish there was a way of finding out if xmlElemDump
+	 * suceeded ...
+	 */
+	rc = fflush (fh);
+	if (rc) { gtt_err_set_code (GTT_CANT_WRITE_FILE); return; }
+
+	rc = fclose (fh);
+	if (rc) { gtt_err_set_code (GTT_CANT_WRITE_FILE); return; }
+
+	/* If we were truly paranoid, we could, at this point, try
+	 * to re-open and re-read the data file, and then match what 
+	 * we read to the existing gtt data.   I'm not sure if 
+	 * I should be that paranoid.  However, once upon a time,
+	 * I did loose all my data during a gnome-desktop-shutdown,
+	 * which freaked me out, but I cannot reproduce this loss.  
+	 * What to do, what to do ...
+	 */
+
+	tmpfilename = g_strconcat (filename, ".tmp", NULL);
+	rc = rename (tmpfilename, filename);
+	g_free (tmpfilename);
+	if (rc) { gtt_err_set_code (GTT_CANT_WRITE_FILE); return; }
 }
 
 /* ===================== END OF FILE ================== */

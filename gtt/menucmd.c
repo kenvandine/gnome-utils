@@ -46,8 +46,22 @@ gtt_show_err (GttErrCode code)
 			return;
 
 		case GTT_CANT_OPEN_FILE:
+		case GTT_CANT_WRITE_FILE:
+		{
+			msgbox_ok(_("Warning"),
+			  _("Could not write the data file!"),
+			  GNOME_STOCK_BUTTON_OK,
+			  GTK_SIGNAL_FUNC(gtk_main_quit));
+			return;
+		}
 		case GTT_NOT_A_GTT_FILE:
-
+		{
+			msgbox_ok(_("Warning"),
+			  _("Could not read the data file!"),
+			  GNOME_STOCK_BUTTON_OK,
+			  GTK_SIGNAL_FUNC(gtk_main_quit));
+			return;
+		}
 		case GTT_CANT_WRITE_CONFIG:
 		{
 			msgbox_ok(_("Warning"),
