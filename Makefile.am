@@ -9,7 +9,8 @@ endif
 SUBDIRS = po idl $(gfloppy) logview gcharmap \
 	gcalc gsearchtool $(gtt) gdictsrc \
 	mini-utils splash gdialog \
-	meat-grinder exe-handler omf-install
+	meat-grinder exe-handler omf-install \
+	stripchart
 
 EXTRA_DIST = gnome-utils.spec.in
 
