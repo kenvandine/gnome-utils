@@ -3,7 +3,10 @@ objc_DIRS =
 endif
 
 if GUILE
-guile_DIRS = #cromagnon find-file notepad
+if FALSE
+guile_extra_DIRS = cromagnon
+endif
+guile_DIRS = $(guile_extra_DIRS) #find-file notepad
 endif
 
 if HAVE_LIBGTOP
