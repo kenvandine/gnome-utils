@@ -1184,7 +1184,7 @@ gtt_project_timer_update (GttProject *proj)
 	zero_on_rollover (now);
 
 	/* If timer isn't running, do nothing.  Normally,
-	 * this function should nbever be called when timer is running,
+	 * this function should never be called when timer is stopped,
 	 * but there are a few rare cases (e.g. clear daily counter).
 	 * where it is.
 	 */
@@ -1575,11 +1575,13 @@ gtt_interval_merge_down (GttInterval *ivl)
 GttTask *
 gtt_interval_split (GttInterval *ivl)
 {
+	int is_running = 0;
 	gint idx;
 	GttProject *prj;
 	GttTask *prnt;
 	GttTask *newtask;
 	GList *node;
+	GttInterval *first_ivl;
 
 	if (!ivl) return NULL;
 	prnt = ivl->parent;
@@ -1588,6 +1590,15 @@ gtt_interval_split (GttInterval *ivl)
 	if (!prj) return NULL;
 	node = g_list_find (prnt->interval_list, ivl);
 	if (!node) return NULL;
+
+	/* avoid mangled intervals, stop the task */
+	first_ivl = (GttInterval *) (prnt->interval_list->data);
+	is_running = first_ivl -> running;
+	if (is_running) 
+	{
+		gtt_project_timer_update (prj);
+		first_ivl->running = FALSE;
+	}
 
 	newtask = gtt_task_new();
 
@@ -1616,6 +1627,8 @@ gtt_interval_split (GttInterval *ivl)
 		GttInterval *nivl = node->data;
 		nivl->parent = newtask;
 	}
+
+	if (is_running) gtt_project_timer_start (prj);
 
 	proj_refresh_time (prnt->parent);
 	return newtask;
