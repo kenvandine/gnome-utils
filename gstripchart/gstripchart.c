@@ -42,6 +42,7 @@
 #include <applet-widget.h>
 #endif
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 #define NELS(a) (sizeof(a) / sizeof(*a))
 
@@ -2214,6 +2215,7 @@ main(int argc, char **argv)
     gnome_init_with_popt_table(
       prog_name, VERSION, argc, argv, arglist, 0, NULL);
 
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-stripchart.png");
   /* In either of the graphical modes, we get the width of the root
      window, and use this as the number of samples to be kept in the
      value history. */

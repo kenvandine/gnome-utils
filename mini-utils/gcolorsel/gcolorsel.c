@@ -13,6 +13,7 @@
 #include "utils.h"
 
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 #include <glade/glade.h>
 
 GnomeMDI *mdi;
@@ -137,6 +138,7 @@ int main (int argc, char *argv[])
   textdomain (PACKAGE);
 
   gnome_init ("gcolorsel", VERSION, argc, argv);
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-color-browser.png");
   glade_gnome_init ();
 
   /* For gtk_type_from_name in session.c */

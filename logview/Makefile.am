@@ -2,7 +2,7 @@
 
 SUBDIRS = pixmaps
 
-Utilitiesdir = $(datadir)/gnome/apps/Utilities
+Utilitiesdir = $(datadir)/gnome/apps/System
 additionaldir  = $(datadir)/logview
 
 INCLUDES = -DG_LOG_DOMAIN=\"logview\"					\

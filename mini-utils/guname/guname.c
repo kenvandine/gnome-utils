@@ -22,6 +22,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 #include <errno.h>
 
 #include <sys/utsname.h>
@@ -135,6 +136,8 @@ main ( int argc, char ** argv )
 #else /* ! GUNAME_CAPPLET */
   gnome_init (APPNAME, VERSION, argc, argv);
 #endif /* ! GUNAME_CAPPLET */
+
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-info.png");
 
   load_system_info ();
 
@@ -739,7 +742,7 @@ static void save_callback(GtkWidget * menuitem, gpointer data)
   }
 
   fs = gtk_file_selection_new(_("Save System Information As..."));
-  
+  gnome_window_icon_set_from_default (GTK_WINDOW (fs));
   gtk_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button), "clicked",
                      GTK_SIGNAL_FUNC(file_selection_cb), fs);
 

@@ -24,6 +24,7 @@
 #endif
 
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 #include "gdiskfree_app.h"
 #include "gdiskfree_options.h"
 
@@ -95,6 +96,7 @@ main (int argc, gchar *argv[])
   textdomain (PACKAGE);
   
   gnome_init_with_popt_table (PACKAGE, VERSION, argc, argv, options, 0, &pctx);
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-diskfree.png");
   poptFreeContext (pctx);
   /** Get the configuration (or default) **/
   gdiskfree_option_init ();

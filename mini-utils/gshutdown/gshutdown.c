@@ -20,6 +20,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 #include <unistd.h> /* getuid */
 #include <string.h> /* strtok */
 
@@ -144,7 +145,7 @@ int main ( int argc, char ** argv )
   textdomain (PACKAGE);
 
   gnome_init (APPNAME, VERSION, argc, argv);
-
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-shutdown.png");
   if(getuid() && !check_whether_suid_and_executable("shutdown")) {
     gnome_dialog_run(GNOME_DIALOG(
     gnome_message_box_new(_("You must be the super-user (root) to shut down or restart the computer."),

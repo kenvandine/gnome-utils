@@ -30,6 +30,7 @@
 #include "logview.h"
 #include "gnome.h"
 #include "log.xpm"
+#include <libgnomeui/gnome-window-icon.h>
 
 /*
  *    -------------------
@@ -185,11 +186,13 @@ destroy (void)
 int
 main (int argc, char *argv[])
 {
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  textdomain (PACKAGE);
+
   /*  Initialize gnome & gtk */
   gnome_init ("logview", VERSION, argc, argv);
 
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-  textdomain (PACKAGE);
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-log.png");
   
   /*  Load graphics config */
   cfg = CreateConfig();
@@ -388,18 +391,6 @@ CreateMainWin ()
    gtk_widget_show (box);
    gtk_widget_show (hbox);
    gtk_widget_show (app);
-
-   // Create application icon using tigerts' log
-   icon_pixmap = gdk_pixmap_create_from_xpm_d (frame->window, &icon_bitmap, 
-					       NULL, log_xpm);
-   if (icon_pixmap)
-     {
-       gdk_window_set_icon (GTK_WIDGET(app)->window, NULL, icon_pixmap, icon_bitmap);
-       gdk_window_set_icon_name (GTK_WIDGET(app)->window, "Logview");
-     }
-   else
-     fprintf (stderr, "Couldn't create icon pixmap!\n");
-   
 
 }
 
@@ -671,6 +662,7 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
 
 
    filesel = gtk_file_selection_new (_("Open new logfile"));
+   gnome_window_icon_set_from_default (GTK_WINDOW (filesel));
 
    /* Make window modal */
    gtk_window_set_modal (GTK_WINDOW (filesel), TRUE);

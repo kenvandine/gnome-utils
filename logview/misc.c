@@ -75,8 +75,9 @@ ShowErrMessage (char *msg)
 {
   GtkWidget *msgbox;
 
-printf(_("Error: [%s]\n"), msg);
-  msgbox = gnome_message_box_new (msg, GNOME_MESSAGE_BOX_ERROR, _("Ok"), NULL);
+  printf(_("Error: [%s]\n"), msg);
+  msgbox = gnome_message_box_new (msg, GNOME_MESSAGE_BOX_ERROR,
+				  GNOME_STOCK_BUTTON_OK, NULL);
   gtk_window_set_modal (GTK_WINDOW(msgbox),TRUE); 
   gtk_widget_show (msgbox);
 }

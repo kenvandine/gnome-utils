@@ -18,6 +18,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 #include <string.h>
 #include <signal.h>
 #include <errno.h>
@@ -211,6 +212,7 @@ main(int argc, char *argv[])
 
 	gnome_init_with_popt_table("gtt", VERSION, argc, argv,
 				   geo_options, 0, NULL);
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-cromagnon.png");
 
 #ifdef USE_SM
 	client = gnome_master_client();

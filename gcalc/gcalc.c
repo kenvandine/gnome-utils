@@ -6,6 +6,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 /* values for selection info */
 enum {
@@ -128,7 +129,7 @@ main(int argc, char *argv[])
 	textdomain (PACKAGE);
 
 	gnome_init ("gcalc", VERSION, argc, argv);
-	
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-calc2.png");
         app=gnome_app_new("gcalc", _("Gnome Calculator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gcalc", "gcalc");
 	gtk_window_set_policy (GTK_WINDOW (app), TRUE, FALSE, TRUE);

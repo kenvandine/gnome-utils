@@ -35,6 +35,18 @@ GNOME_COMPILE_WARNINGS
 
 GNOME_X_CHECKS
 
+dnl Check for new enough gnome-libs
+CFLAGS_save=$CFLAGS
+LDFLAGS_save=$LDFLAGS
+CFLAGS=`gnome-config --cflags gnomeui`
+LDFLAGS=`gnome-config --libs gnomeui`
+
+AC_CHECK_LIB(gnomeui, gnome_window_icon_set_default_from_file, ,[
+AC_MSG_ERROR(gnome-libs 1.0.59 or higher is required.)])
+
+CFLAGS=$CFLAGS_save
+LDFLAGS=$LDFLAGS_save
+
 dnl PROGRAMS_GNCAL="gncal"
 dnl AC_SUBST(PROGRAMS_GNCAL)
 
@@ -213,7 +225,7 @@ if test "x$GNOME_APPLETS_LIBS" != "x"; then
 fi
 AM_CONDITIONAL(BUILD_GSTRIPCHART_APPLET, test $enable_gstripchart_applet = yes)
 
-dnl **********************************************************************
+AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${prefix}/share/pixmaps")
 
 AC_OUTPUT([
 Makefile

@@ -71,3 +71,5 @@
 
 #undef USE_PAM
 #undef BUILD_GSTRIPCHART_APPLET
+
+#undef GNOME_ICONDIR

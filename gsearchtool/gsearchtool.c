@@ -6,6 +6,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 #include <string.h>
 #include <unistd.h>
@@ -759,7 +760,8 @@ main(int argc, char *argv[])
 	textdomain (PACKAGE);
 
 	gnome_init ("gsearchtool", VERSION, argc, argv);
-	
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-searchtool.png");
+
         app = gnome_app_new("gsearchtool", _("Gnome Search Tool"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gsearchtool", "gsearchtool");
 	gtk_window_set_policy (GTK_WINDOW (app), TRUE, TRUE, TRUE);

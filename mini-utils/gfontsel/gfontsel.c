@@ -9,6 +9,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 #include <gdk/gdkkeysyms.h>
 
 #include <stdlib.h>
@@ -287,6 +288,7 @@ main (int argc, char *argv[])
 	gnome_init_with_popt_table ("gfontsel", VERSION,
 				    argc, argv,
 				    options, 0, NULL);
+	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-fontsel.png");
 	
 	signal (SIGHUP, handle_signal);
 	signal (SIGINT, handle_signal);

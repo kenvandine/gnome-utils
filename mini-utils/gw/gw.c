@@ -21,6 +21,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 #include <string.h>
 
@@ -133,6 +134,7 @@ int main ( int argc, char ** argv )
   textdomain (PACKAGE);
 
   gnome_init (APPNAME, VERSION, argc, argv);
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-who.png");
 
   w_command = gnome_is_program_in_path("w");
   if (w_command == NULL) {
