@@ -6,7 +6,7 @@ if GUILE
 if FALSE
 guile_extra_DIRS = cromagnon
 endif
-guile_DIRS = $(guile_extra_DIRS) notepad
+guile_DIRS = $(guile_extra_DIRS)
 endif
 
 if HAVE_LIBGTOP
