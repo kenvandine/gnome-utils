@@ -15,6 +15,8 @@ gcalc_LDADD = \
 	$(GNOMEUI_LIBS) \
 	$(INTLLIBS)
 
-EXTRA_DIST = gcalc.desktop
+EXTRA_DIST = \
+	gcalc.desktop	\
+	foot.xpm
 
 Utilities_DATA = gcalc.desktop 

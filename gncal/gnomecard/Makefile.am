@@ -10,12 +10,13 @@ INCLUDES = 			\
 
 bin_PROGRAMS = gnomecard
 
-gnomecard_SOURCES = \
-	card.c \
-	card.h \
-	pairs.h \
-	gnomecard.c \
-	gnomecard.h \
+gnomecard_SOURCES =	\
+	card.c		\
+	card.h		\
+	cardtypes.h	\
+	pairs.h		\
+	gnomecard.c	\
+	gnomecard.h	\
 	images.h
 	
 LINK_FLAGS = \
@@ -25,21 +26,21 @@ LINK_FLAGS = \
 
 gnomecard_LDADD = $(LINK_FLAGS)
 
-EXTRA_DIST =  \
-	addr.xpm  \
-	addrtool.xpm  \
-	cardedit.xpm  \
-	cardnew.xpm  \
-	cardfind.xpm  \
-	email.xpm  \
-	expl.xpm  \
-	first.xpm  \
-	geo.xpm  \
-	ident.xpm  \
-	last.xpm  \
-	org.xpm  \
-	sec.xpm  \
-	tel.xpm  \
-	teltool.xpm  \
-	phone.xpm    \
+EXTRA_DIST =		\
+	addr.xpm	\
+	addrtool.xpm	\
+	cardedit.xpm	\
+	cardnew.xpm	\
+	cardfind.xpm	\
+	email.xpm	\
+	expl.xpm	\
+	first.xpm	\
+	geo.xpm		\
+	ident.xpm	\
+	last.xpm	\
+	org.xpm		\
+	sec.xpm		\
+	tel.xpm		\
+	teltool.xpm	\
+	phone.xpm	\
 	world.xpm
