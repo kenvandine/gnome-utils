@@ -6,6 +6,7 @@ INCLUDES = 	\
 	$(GNOME_UTILS_CFLAGS)					\
 	$(GNOMEVFS_CFLAGS)					\
 	$(GNOMEDESKTOP_CFLAGS)					\
+	-DG_DISABLE_DEPRECATED					\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"			\
 	-DDATADIR=\""$(datadir)"\"
@@ -17,11 +18,9 @@ schema_in_file = gnome-search-tool.schemas.in
 schema_DATA = $(schema_in_file:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
-gnome_search_tool_SOURCES =	\
-	gsearchtool-alert-dialog.c \
-	gsearchtool-alert-dialog.h \
-	gsearchtool-spinner.c \
-	gsearchtool-spinner.h \
+gnome_search_tool_SOURCES =     \
+	gsearchtool-spinner.c   \
+	gsearchtool-spinner.h   \
 	gsearchtool-support.c   \
 	gsearchtool-support.h   \
 	gsearchtool-callbacks.c \

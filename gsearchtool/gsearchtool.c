@@ -48,7 +48,6 @@
 #include "gsearchtool.h"
 #include "gsearchtool-callbacks.h"
 #include "gsearchtool-support.h"
-#include "gsearchtool-alert-dialog.h"
 #include "gsearchtool-spinner.h"
 
 #define GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE 48
@@ -1470,40 +1469,77 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 				}
 				
 				if (gsearch->command_details->is_command_using_quick_mode != TRUE) {
-				     
-					dialog = gsearch_alert_dialog_new (GTK_WINDOW (gsearch->window),
-		                		                           GTK_DIALOG_DESTROY_WITH_PARENT,
-							                   GTK_MESSAGE_ERROR,
-								           GTK_BUTTONS_OK,
-								           _("The search results may be invalid."
-									     "  There were errors while performing this search."),
-								           NULL,
-								           NULL);			
-				
-					gsearch_alert_dialog_set_secondary_label (GSEARCH_ALERT_DIALOG (dialog), NULL);							   
-					gsearch_alert_dialog_set_details_label (GSEARCH_ALERT_DIALOG (dialog), error_msgs->str);
+
+					GtkWidget * hbox;
+					GtkWidget * spacer;
+					GtkWidget * expander;
+					GtkWidget * label;
+
+					dialog = gtk_message_dialog_new (GTK_WINDOW (gsearch->window),
+					                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+					                                 GTK_MESSAGE_ERROR,
+					                                 GTK_BUTTONS_OK,
+					                                 _("The search results may be invalid."
+									   "  There were errors while performing this search."));
+					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "");
+
+					gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+
+					hbox = gtk_hbox_new (0, FALSE);
+
+					spacer = gtk_label_new ("     ");
+					gtk_box_pack_start (GTK_BOX (hbox), spacer, FALSE, FALSE, 0);
+
+					expander = gtk_expander_new_with_mnemonic (_("Show more _details"));
+					gtk_container_set_border_width (GTK_CONTAINER (expander), 6);
+					gtk_expander_set_spacing (GTK_EXPANDER (expander), 6);
+					gtk_box_pack_start (GTK_BOX (hbox), expander, TRUE, TRUE, 0);
+
+					label = gtk_label_new (error_msgs->str);
+					gtk_container_add (GTK_CONTAINER (expander), label);
+
+					gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), hbox, FALSE, FALSE, 0);
+					gtk_widget_show_all (hbox);
 					
 					g_signal_connect (G_OBJECT (dialog),
-						"response",
-						G_CALLBACK (gtk_widget_destroy), NULL);
+					                  "response",
+					                   G_CALLBACK (gtk_widget_destroy), NULL);
 					
 					gtk_widget_show (dialog);
 				}
 				else {
 					GtkWidget * button;
-								       			       
-					dialog = gsearch_alert_dialog_new (GTK_WINDOW (gsearch->window),
-		                		                           GTK_DIALOG_DESTROY_WITH_PARENT,
-							                   GTK_MESSAGE_ERROR,
-								           GTK_BUTTONS_CANCEL,
-								           _("The search results may be invalid."
-									     "  Do you want to disable the quick search feature?"),
-								           NULL,
-								           NULL);
-									   
-					gsearch_alert_dialog_set_secondary_label (GSEARCH_ALERT_DIALOG (dialog), NULL);							   
-					gsearch_alert_dialog_set_details_label (GSEARCH_ALERT_DIALOG (dialog), error_msgs->str);
-					
+					GtkWidget * hbox;
+					GtkWidget * spacer;
+					GtkWidget * expander;
+					GtkWidget * label;
+
+					dialog = gtk_message_dialog_new (GTK_WINDOW (gsearch->window),
+					                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+					                                 GTK_MESSAGE_ERROR,
+					                                 GTK_BUTTONS_CANCEL,
+					                                 _("The search results may be invalid."
+									   "  Do you want to disable the quick search feature?"));
+					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "");
+
+					gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+
+					hbox = gtk_hbox_new (0, FALSE);
+
+					spacer = gtk_label_new ("     ");
+					gtk_box_pack_start (GTK_BOX (hbox), spacer, FALSE, FALSE, 0);
+
+					expander = gtk_expander_new_with_mnemonic (_("Show more _details"));
+					gtk_container_set_border_width (GTK_CONTAINER (expander), 6);
+					gtk_expander_set_spacing (GTK_EXPANDER (expander), 6);
+					gtk_box_pack_start (GTK_BOX (hbox), expander, TRUE, TRUE, 0);
+
+					label = gtk_label_new (error_msgs->str);
+					gtk_container_add (GTK_CONTAINER (expander), label);
+
+					gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), hbox, FALSE, FALSE, 0);
+					gtk_widget_show_all (hbox);
+
 					button = gsearchtool_button_new_with_stock_icon (_("Disable _Quick Search"), GTK_STOCK_OK);
 					GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
 					gtk_widget_show (button);
@@ -1512,8 +1548,8 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 					gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 				
 					g_signal_connect (G_OBJECT (dialog),
-						"response",
-						G_CALLBACK (disable_quick_search_cb), (gpointer) gsearch);
+					                  "response",
+					                  G_CALLBACK (disable_quick_search_cb), (gpointer) gsearch);
 					
 					gtk_widget_show (dialog);
 				}
@@ -1554,13 +1590,16 @@ spawn_search_command (GSearchWindow * gsearch,
 
 		stop_animation (gsearch);
 
-		dialog = gsearch_alert_dialog_new (GTK_WINDOW (gsearch->window),
-	                                           GTK_DIALOG_DESTROY_WITH_PARENT,
-				                   GTK_MESSAGE_ERROR,
-					           GTK_BUTTONS_OK,
-					           _("Error parsing the search command."),
-					           (error == NULL) ? NULL : error->message,
-					           NULL);
+		dialog = gtk_message_dialog_new (GTK_WINDOW (gsearch->window),
+		                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+		                                 GTK_MESSAGE_ERROR,
+		                                 GTK_BUTTONS_OK,
+		                                 _("Error parsing the search command."));
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+		                                          (error == NULL) ? "" : error->message);
+
+		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+		gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
@@ -1582,15 +1621,18 @@ spawn_search_command (GSearchWindow * gsearch,
 		GtkWidget * dialog;
 		
 		stop_animation (gsearch);
-		
-		dialog = gsearch_alert_dialog_new (GTK_WINDOW (gsearch->window),
-	                                           GTK_DIALOG_DESTROY_WITH_PARENT,
-				                   GTK_MESSAGE_ERROR,
-					           GTK_BUTTONS_OK,
-					           _("Error running the search command."),
-					           (error == NULL) ? NULL : error->message,
-					           NULL);
-							   
+	
+		dialog = gtk_message_dialog_new (GTK_WINDOW (gsearch->window),
+		                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+		                                 GTK_MESSAGE_ERROR,
+		                                 GTK_BUTTONS_OK,
+		                                 _("Error running the search command."));
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+		                                          (error == NULL) ? "" : error->message);  
+
+		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+		gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
+
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 		g_error_free (error);

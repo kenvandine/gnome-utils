@@ -45,7 +45,6 @@
 #include "gsearchtool.h"
 #include "gsearchtool-callbacks.h"
 #include "gsearchtool-support.h"
-#include "gsearchtool-alert-dialog.h"
 
 #define SILENT_WINDOW_OPEN_LIMIT 5
 
@@ -154,16 +153,19 @@ click_help_cb (GtkWidget * widget,
 	                                      NULL, gtk_widget_get_screen (widget), &error);
 	if (error) {
 		GtkWidget * dialog;
+		
+		dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+		                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+		                                 GTK_MESSAGE_ERROR,
+		                                 GTK_BUTTONS_OK,
+		                                 _("Could not open help document."));
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+		                                          error->message);
 
-		dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-		                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-						   GTK_MESSAGE_ERROR,
-						   GTK_BUTTONS_OK,
-						   _("Could not open help document."),
-						   error->message,
-						   NULL);
+		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+		gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
-                g_signal_connect (G_OBJECT (dialog),
+		g_signal_connect (G_OBJECT (dialog),
                                   "response",
                                   G_CALLBACK (gtk_widget_destroy), NULL);
 
@@ -300,13 +302,16 @@ display_dialog_file_open_limit (GtkWidget * window,
 	                                       count),
 	                             count);
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-	                                   GTK_MESSAGE_QUESTION,
-	                                   GTK_BUTTONS_CANCEL,
-	                                   primary,
-	                                   secondary,
-	                                   NULL);
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_QUESTION,
+	                                 GTK_BUTTONS_CANCEL,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          secondary);
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
 	button = gtk_button_new_from_stock ("gtk-open");
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
@@ -333,13 +338,17 @@ display_dialog_could_not_open_file (GtkWidget * window,
 
 	primary = g_strdup_printf (_("Could not open document \"%s\"."), file);
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-	                                   GTK_MESSAGE_ERROR,
-	                                   GTK_BUTTONS_OK,
-	                                   primary,
-	                                   message,
-	                                   NULL);
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_OK,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          message);
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
+
 	g_signal_connect (G_OBJECT (dialog),
                		  "response",
                		  G_CALLBACK (gtk_widget_destroy), NULL);
@@ -448,13 +457,16 @@ display_dialog_folder_open_limit (GtkWidget * window,
 					       count),
 	                             count);
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-					   GTK_MESSAGE_QUESTION,
-					   GTK_BUTTONS_CANCEL,
-					   primary,
-					   secondary,
-					   NULL);						  
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_QUESTION,
+	                                 GTK_BUTTONS_CANCEL,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          secondary);
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
 	button = gtk_button_new_from_stock ("gtk-open");
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
@@ -480,13 +492,16 @@ display_dialog_could_not_open_folder (GtkWidget * window,
 
 	primary = g_strdup_printf (_("Could not open folder \"%s\"."), folder);
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-                                           GTK_DIALOG_DESTROY_WITH_PARENT,
-			                   GTK_MESSAGE_ERROR,
-				           GTK_BUTTONS_OK,
-				           primary,
-				           _("The nautilus file manager is not running."),
-				           NULL);
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_OK,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          _("The nautilus file manager is not running."));
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
 	g_signal_connect (G_OBJECT (dialog),
                		  "response",
@@ -564,13 +579,17 @@ display_dialog_could_not_move_to_trash (GtkWidget * window,
 
 	primary = g_strdup_printf (_("Could not move \"%s\" to trash."), file);
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-					   GTK_MESSAGE_ERROR,
-					   GTK_BUTTONS_OK,
-					   primary,
-					   message,
-					   NULL);
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_OK,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          message);
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
+
 	g_signal_connect (G_OBJECT (dialog),
                		  "response",
                		  G_CALLBACK (gtk_widget_destroy), NULL);
@@ -594,13 +613,16 @@ display_dialog_delete_permanently (GtkWidget * window,
 	secondary = g_strdup_printf (_("Trash is unavailable.  Could not move \"%s\" to the trash."),
 	                             file);
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-					   GTK_MESSAGE_QUESTION,
-					   GTK_BUTTONS_CANCEL,
-					   primary,
-					   secondary,
-					   NULL);
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_QUESTION,
+	                                 GTK_BUTTONS_CANCEL,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          secondary);
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
 	button = gtk_button_new_from_stock ("gtk-delete");
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
@@ -628,13 +650,17 @@ display_dialog_could_not_delete (GtkWidget * window,
 
 	primary = g_strdup_printf (_("Could not delete \"%s\"."), file);
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-					   GTK_MESSAGE_ERROR,
-					   GTK_BUTTONS_OK,
-					   primary,
-					   message,
-					   NULL);
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_OK,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          message);
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
+
 	g_signal_connect (G_OBJECT (dialog),
                		  "response",
                		  G_CALLBACK (gtk_widget_destroy), NULL);
@@ -1148,13 +1174,17 @@ display_dialog_could_not_save_no_name (GtkWidget * window)
 	primary = g_strdup (_("Could not save document."));
 	secondary = g_strdup (_("You did not select a document name."));
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-	                                   GTK_MESSAGE_ERROR,
-	                                   GTK_BUTTONS_OK,
-	                                   primary,
-	                                   secondary,
-	                                   NULL);
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_OK,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          secondary);
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
+
 	g_signal_connect (G_OBJECT (dialog),
 	                  "response",
 	                  G_CALLBACK (gtk_widget_destroy), NULL);		
@@ -1175,13 +1205,17 @@ display_dialog_could_not_save_to (GtkWidget * window,
 	                           g_path_get_basename (file),
 	                           g_path_get_dirname (file));
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-	                                   GTK_MESSAGE_ERROR,
-	                                   GTK_BUTTONS_OK,
-	                                   primary,
-	                                   message,
-	                                   NULL);
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_ERROR,
+	                                 GTK_BUTTONS_OK,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          message);
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
+
 	g_signal_connect (G_OBJECT (dialog),
 	                  "response",
 	                  G_CALLBACK (gtk_widget_destroy), NULL);
@@ -1206,13 +1240,16 @@ display_dialog_could_not_save_exists (GtkWidget * window,
 	secondary = g_strdup (_("If you replace an existing file, "
 	                        "its contents will be overwritten."));
 
-	dialog = gsearch_alert_dialog_new (GTK_WINDOW (window),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-	                                   GTK_MESSAGE_QUESTION,
-	                                   GTK_BUTTONS_CANCEL,
-	                                   primary,
-	                                   secondary,
-	                                   NULL);	
+	dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                 GTK_MESSAGE_QUESTION,
+	                                 GTK_BUTTONS_CANCEL,
+	                                 primary);
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+	                                          secondary);
+
+	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
 	button = gsearchtool_button_new_with_stock_icon (_("_Replace"), GTK_STOCK_OK);
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
