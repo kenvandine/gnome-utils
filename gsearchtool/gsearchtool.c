@@ -1778,6 +1778,8 @@ main (int 	argc,
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
+	g_set_application_name (_("Search for Files"));
+
 	define_popt_descriptions ();
 
 	gsearchtool = gnome_program_init ("gnome-search-tool", VERSION, 
