@@ -180,7 +180,6 @@ OpenLogFile (char *filename)
    Log *tlog;
    LogLine *line;
    char buffer[1024];
-   int i, j;
 
    /* Check that the file exists and is readable and is a
       logfile */

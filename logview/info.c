@@ -168,7 +168,7 @@ RepaintLogInfo (void)
    /* Check that there is at least one log */
    if (curlog == NULL) {
        if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
-           g_snprintf (buffer, sizeof (buffer), "");
+           g_snprintf (buffer, sizeof (buffer), "%c", '\0');
            i = 0;
            while (1) {
                gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);

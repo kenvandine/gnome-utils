@@ -179,7 +179,6 @@ GnomeUIInfo main_menu[] = {
  */
 	
 GtkWidget *app = NULL;
-static GtkWidget *viewport;
 GtkLabel *date_label = NULL;
 
 GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
@@ -249,7 +248,6 @@ static gboolean
 restore_session (void)
 {
    Log *tl;
-   gint i, logcnt = 0;
 
    /* closing the log file opened by default */
    CloseLog (loglist[0]);
@@ -278,6 +276,7 @@ restore_session (void)
             g_free (f);
       }
    } while ((next_opt = poptGetNextOpt (poptCon)) != -1);
+   return TRUE;
 }
 
 static gint
@@ -374,10 +373,8 @@ InitApp ()
 void
 CreateMainWin ()
 {
-   GtkWidget *w, *vbox, *table, *hbox, *hbox_date;
-   GtkWidget *padding;
+   GtkWidget *vbox, *hbox, *hbox_date;
    GtkLabel *label;
-   GtkObject *adj;
    GtkAllocation req_size;
    GtkTreeStore *tree_store;
    GtkTreeSelection *selection;

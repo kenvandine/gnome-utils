@@ -86,12 +86,10 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
    GtkWidget *hbox, *hbox2, *hbox3;
    GtkWidget *label;
    GtkWidget *scrolled_win;
-   GtkWidget *list_item;
    GtkWidget *button;       
    GtkTooltips *tooltips;
    GtkWidget *vbox2;       
    GtkBox *vbox;
-   char buffer[10];
    int i;
    GtkCellRenderer *cell_renderer;
    GtkTreeViewColumn *column;
@@ -280,7 +278,6 @@ mon_add_log (GtkWidget *widget,
   GtkTreeSelection *selection = NULL;
   GtkTreeIter newiter;
   GtkTreeModel *model = NULL;
-  const char *name;
   int sellognum;
   gboolean selected = TRUE;
 
@@ -321,7 +318,6 @@ mon_remove_log (GtkWidget *widget,
   GtkTreeModel *model = NULL;
   GtkTreeSelection *selection = NULL;
   GtkTreeIter newiter; 
-  const char *name;
   int sellognum;
   static gboolean selected = TRUE;
 

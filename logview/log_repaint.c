@@ -228,7 +228,6 @@ void
 handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
      GtkTreeViewColumn *arg2, gpointer user_data)
 {
-    GtkTreeIter iter;
     GtkTreeModel *model;
     GtkTreePath *root_tree;
     gint row = 0;
@@ -479,8 +478,8 @@ DrawLogLines (Log *current_log)
    GtkTreePath *path;
    LogLine *line;
    char tmp[4096];
-   char *utf8;
-   gint i = 0, count = 0;
+   char *utf8 = NULL;
+   gint i = 0;
    gint cm, cd;
 
    

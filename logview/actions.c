@@ -191,7 +191,6 @@ make_tree_from_actions_db (GList *db)
 {
   char buffer[50];
   GList *item;
-  GList *sibling = NULL;
   Action *action;
   GtkTreeIter newiter;
 
@@ -572,8 +571,6 @@ static void
 apply_edit (GtkWidget *w, gpointer data)
 {
 	char *text;
-	GtkTextBuffer *buffer;
-	GtkTextIter start, end;
 	GtkWidget *action_record = data;
 	GtkWidget *tag =
 		gtk_object_get_data (GTK_OBJECT (action_record), "tag");
