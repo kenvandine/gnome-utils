@@ -81,7 +81,6 @@
 
 
 #include <config.h>
-#undef USE_PAM
 #include <stdio.h>
 #include <getopt.h>
 #include <sys/types.h>
