@@ -31,19 +31,19 @@ chart_class_init(ChartClass *klass)
 
   chart_signals[PRE_UPDATE] = 
     gtk_signal_new("chart_pre_update",
-      GTK_RUN_FIRST, object_class->type,
+      GTK_RUN_FIRST, GTK_CLASS_TYPE (object_class),
       GTK_SIGNAL_OFFSET(ChartClass, chart_pre_update),
       gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
 
   chart_signals[POST_UPDATE] = 
     gtk_signal_new("chart_post_update",
-      GTK_RUN_FIRST, object_class->type,
+      GTK_RUN_FIRST, GTK_CLASS_TYPE (object_class),
       GTK_SIGNAL_OFFSET(ChartClass, chart_post_update),
       gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
 
   chart_signals[RESCALE] = 
     gtk_signal_new("chart_rescale",
-      GTK_RUN_FIRST, object_class->type,
+      GTK_RUN_FIRST, GTK_CLASS_TYPE (object_class),
       GTK_SIGNAL_OFFSET(ChartClass, chart_rescale),
       gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
 
@@ -88,8 +88,8 @@ chart_get_type(void)
 	sizeof(ChartClass),
 	(GtkClassInitFunc)chart_class_init,
 	(GtkObjectInitFunc)chart_object_init,
-	(GtkArgSetFunc)NULL,
-	(GtkArgGetFunc)NULL
+	NULL,
+	NULL
       };
       gc_type = gtk_type_unique(gtk_drawing_area_get_type(), &gc_info);
     }

@@ -98,13 +98,13 @@ main(int argc, char *argv[])
     geometry_h < 0 ? default_h : geometry_h);
   gtk_widget_set_uposition(app->frame, geometry_x, geometry_y);
   gtk_widget_show(app->frame);
-  gtk_signal_connect(GTK_OBJECT(app->frame), "destroy", gtk_main_quit, NULL);
+  gtk_signal_connect(GTK_OBJECT(app->frame), "destroy", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
 
   gnome_app_set_contents(GNOME_APP(app->frame), app->hbox);
 
   gtk_widget_add_events(app->strip, GDK_BUTTON_PRESS_MASK);
   gtk_signal_connect(GTK_OBJECT(app->frame),
-    "button-press-event", on_button_press, app);
+    "button-press-event", GTK_SIGNAL_FUNC (on_button_press), app);
 
   if ((client = gnome_master_client()) != NULL)
     gtk_signal_connect(GTK_OBJECT(client),

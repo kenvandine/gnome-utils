@@ -193,17 +193,26 @@ on_show_values(GtkWidget *unused, Chart_app *app)
 void
 on_about_menu(void)
 {
+  gchar *logo_file;
+  GdkPixbuf *logo;
+  GtkWidget *about;
   const char *authors[] = { "John Kodis, kodis@jagunet.com", NULL };
-  GtkWidget *about = gnome_about_new(
+
+  logo_file = gnome_pixmap_file ("gnome-stripchart.png");
+  if (logo_file)
+    logo  = gdk_pixbuf_new_from_file (logo_file, NULL);
+   about = gnome_about_new(
     _("Stripchart"), VERSION,
     _("Copyright 2000 John Kodis"),
-    authors,
     _("The GNOME stripchart program plots various user-specified parameters "
       "as a function of time.  Its main use is to chart system performance "
       "parameters such as CPU load, CPU utilization, network traffic levels, "
       "and the like.  Other more ingenious uses are left as an exercise for "
       "the interested user."),
-    GNOME_ICONDIR "/gnome-stripchart.png");
+    authors,
+    NULL,			/* Documenterss */
+    NULL,			/* Translator credits */
+    logo);
   gtk_widget_show(about);
 }
 
