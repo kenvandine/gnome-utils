@@ -15,7 +15,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "config.h"
+#include <config.h>
 
 #include "interface.h"
 #include "asciiselect.h"
@@ -35,7 +35,7 @@ GnomeUIInfo edit_menu[] = {
    GNOMEUIINFO_SEPARATOR,
    GNOMEUIINFO_MENU_SELECT_ALL_ITEM (SelectAllClick, NULL),
    GNOMEUIINFO_SEPARATOR,
-   GNOMEUIINFO_ITEM_NONE("Insert ASCII character...", "Insert ASCII character",
+   GNOMEUIINFO_ITEM_NONE(N_("Insert ASCII character..."), N_("Insert ASCII character"),
      InsertAsciiCharacterClick),
    GNOMEUIINFO_END
 };
@@ -97,7 +97,7 @@ main_new ()
 
   tooltips = gtk_tooltips_new ();
 
-  mainf = gnome_app_new (N_("Gnome Character Map"), N_("Gnome Character Map"));
+  mainf = gnome_app_new (_("Gnome Character Map"), _("Gnome Character Map"));
   gtk_widget_realize (mainf);
   gtk_signal_connect (GTK_OBJECT (mainf), "delete_event",
     GTK_SIGNAL_FUNC (main_close), NULL);
@@ -143,7 +143,7 @@ main_controls_new ()
   hbox1 = gtk_hbox_new (FALSE, 6);
   gtk_box_pack_start (GTK_BOX (vbox), hbox1, FALSE, TRUE, 0);
 
-  Label = gtk_label_new (N_("Text to Copy:"));
+  Label = gtk_label_new (_("Text to Copy:"));
   gtk_box_pack_start (GTK_BOX (hbox1), Label, FALSE, TRUE, 0);
 
   Edit = gtk_entry_new ();
@@ -182,25 +182,25 @@ main_controls_new ()
   gtk_widget_push_style (PreviewStyle);
   gtk_widget_pop_style ();
 
-  Close = gtk_button_new_with_label ("Close");
+  Close = gtk_button_new_with_label (_("Close"));
   GTK_WIDGET_SET_FLAGS (Close, GTK_CAN_DEFAULT);
   gtk_signal_connect (GTK_OBJECT (Close), "clicked",
     GTK_SIGNAL_FUNC (main_close), NULL);
   gtk_container_add (GTK_CONTAINER (btnbox), Close);
 
-  Copy = gtk_button_new_with_label ("Copy");
+  Copy = gtk_button_new_with_label (_("Copy"));
   GTK_WIDGET_SET_FLAGS (Copy, GTK_CAN_DEFAULT);
   gtk_signal_connect (GTK_OBJECT (Copy), "clicked",
     GTK_SIGNAL_FUNC (CopyClick), NULL);
   gtk_container_add (GTK_CONTAINER (btnbox), Copy);
 
-  About = gtk_button_new_with_label ("About");
+  About = gtk_button_new_with_label (_("About"));
   GTK_WIDGET_SET_FLAGS (About, GTK_CAN_DEFAULT);
   gtk_signal_connect (GTK_OBJECT (About), "clicked",
     GTK_SIGNAL_FUNC (AboutClick), NULL);
   gtk_container_add (GTK_CONTAINER (btnbox), About);
 
-  Help = gtk_button_new_with_label ("Help");
+  Help = gtk_button_new_with_label (_("Help"));
   GTK_WIDGET_SET_FLAGS (Help, GTK_CAN_DEFAULT);
   gtk_signal_connect (GTK_OBJECT (Help), "clicked",
     GTK_SIGNAL_FUNC (HelpClick), NULL);
@@ -300,7 +300,7 @@ ButtonEnter (GtkWidget *widget, gpointer gdata)
   gtk_label_get (label, &text);
   gtk_label_set_text (GTK_LABEL (Preview), text);
   gnome_appbar_set_status (GNOME_APPBAR (Status),
-    g_strdup_printf (N_("%s: ASCII character %d"), text, (unsigned char) text[0]));
+    g_strdup_printf (_("%s: ASCII character %d"), text, (unsigned char) text[0]));
   return FALSE;
 }
 
@@ -317,7 +317,7 @@ CutClick (GtkWidget *widget, gpointer gdata)
 {
   SelectAllClick (Edit, NULL);
   gtk_editable_cut_clipboard (GTK_EDITABLE (Edit));
-  gnome_app_flash (GNOME_APP (mainf), N_("Text cut to clipboard..."));
+  gnome_app_flash (GNOME_APP (mainf), _("Text cut to clipboard..."));
   return FALSE;
 }
 
@@ -326,7 +326,7 @@ CopyClick (GtkWidget *widget, gpointer gdata)
 {
   SelectAllClick (Edit, NULL);
   gtk_editable_copy_clipboard (GTK_EDITABLE (Edit));
-  gnome_app_flash (GNOME_APP (mainf), N_("Text copied to clipboard..."));
+  gnome_app_flash (GNOME_APP (mainf), _("Text copied to clipboard..."));
   return FALSE;
 }
 
@@ -335,7 +335,7 @@ PasteClick (GtkWidget *widget, gpointer gdata)
 {
   gtk_editable_paste_clipboard (GTK_EDITABLE (Edit));
   gnome_appbar_set_status (GNOME_APPBAR (Status),
-    N_("Text pasted from clipboard..."));
+    _("Text pasted from clipboard..."));
   return FALSE;
 }
 

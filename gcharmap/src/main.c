@@ -15,14 +15,17 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <config.h>
 #include <gnome.h>
-#include "config.h"
 
 extern void main_new ();
 
 int 
 main (int argc, char *argv[]) 
 {
+  bindtextdomain(PACKAGE,GNOMELOCALEDIR);
+  textdomain(PACKAGE);
+  
   gnome_init ("Character Map", VERSION, argc, argv);
   main_new ();
   gtk_main ();

@@ -14,6 +14,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+#include <config.h>
 #include "interface.h"
 #include "asciiselect.h"
 
@@ -38,7 +39,7 @@ InsertAsciiCharacterClick (GtkWidget *widget, gpointer gdata)
   gdk_color_alloc (gdk_colormap_get_system (), &white);
   gdk_color_alloc (gdk_colormap_get_system (), &black);
 
-  EntryDialog = gnome_dialog_new ("Insert ASCII character",
+  EntryDialog = gnome_dialog_new (_("Insert ASCII character"),
     GNOME_STOCK_BUTTON_OK, GNOME_STOCK_BUTTON_APPLY,
     GNOME_STOCK_BUTTON_CANCEL, NULL);
   gnome_dialog_button_connect (GNOME_DIALOG (EntryDialog), 0,
