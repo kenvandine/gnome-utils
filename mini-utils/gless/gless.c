@@ -281,27 +281,28 @@ static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb,NULL),
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb,NULL),
 	GNOMEUIINFO_SEPARATOR,
-#if 0
-	GNOMEUIINFO_MENU_PREFERENCES_ITEM(preferences_cb,NULL),
-	GNOMEUIINFO_SEPARATOR,
-#endif
 	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb,NULL),
 	GNOMEUIINFO_MENU_EXIT_ITEM(exit_cb,NULL),
 	GNOMEUIINFO_END
 };
 
-static GnomeUIInfo view_menu[] = {
-  {GNOME_APP_UI_TOGGLEITEM, N_("_Fixed Font"), 
-   N_("Display text with a fixed font"),
-   fixed_cb, NULL, NULL,
-   0, 0, 'f', 
-   GDK_CONTROL_MASK, NULL },
-  GNOMEUIINFO_END
+
+static GnomeUIInfo settings_menu[] = {
+	{GNOME_APP_UI_TOGGLEITEM, N_("_Fixed Font"), 
+		N_("Display text with a fixed font"),
+		fixed_cb, NULL, NULL,
+		0, 0, 'f', 
+		GDK_CONTROL_MASK, NULL },
+#if 0
+	GNOMEUIINFO_MENU_PREFERENCES_ITEM(preferences_cb,NULL),
+	GNOMEUIINFO_SEPARATOR,
+#endif
+	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
-	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
+	GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
 	GNOMEUIINFO_END
 };
