@@ -209,7 +209,7 @@ void set_swatch(RGBColor *c, GtkWidget *clist)
             
 void load_rgb(GtkWidget *clist)
 {
-    GtkWidget *prog_window, *box, *bar;
+    GtkWidget *prog_window, *hbox, *bar, *label;
     char tmp[256];
     int t;
     FILE *file;
@@ -231,10 +231,13 @@ void load_rgb(GtkWidget *clist)
     prog_window = gnome_dialog_new(N_("Gnome Color Browser"), GNOME_STOCK_BUTTON_CANCEL, NULL);
 
     bar = gtk_progress_bar_new();
-    box = gnome_build_labelled_widget(N_("Parsing Colors"), bar);
+    hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+    label = gtk_label_new(N_("Parsing Colors"));
+    gtk_box_pack_start_defaults(GTK_BOX(hbox), label);
+    gtk_box_pack_start_defaults(GTK_BOX(hbox), bar);
     gtk_progress_bar_update(GTK_PROGRESS_BAR(bar), 0);
 
-    gtk_box_pack_end_defaults(GTK_BOX(GNOME_DIALOG(prog_window)->vbox), box);
+    gtk_box_pack_end_defaults(GTK_BOX(GNOME_DIALOG(prog_window)->vbox), hbox);
 	
     gtk_widget_show_all(prog_window);
 
