@@ -20,5 +20,7 @@ BITMAPS = penguin1.png
 pixmap_DATA = $(BITMAPS)
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
+Utilities_DATA = gpenguin.desktop
 
-EXTRA_DIST = penguin1.png
+EXTRA_DIST = penguin1.png gpenguin.desktop
+
