@@ -3,6 +3,7 @@
 	* logrtns.c (file_is_zipped): New.
 	(OpenLogFile): Check if the file is zipped, and unzip it in a temp
 	directory if it is.
+	(ReadLogStats): Remove debug spew.
 
 	* logview.c (SetDefaultUserPrefs): When trying to open the logfile
 	saved in gconf, fail silently if the file is not a log. 

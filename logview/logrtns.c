@@ -714,7 +714,6 @@ ReadLogStats (Log *log, gchar **buffer_lines)
 	   
 	   memcpy (&curmark->fulldate, localtime (&curmark->time), sizeof (struct tm));
 	   
-	   fprintf (stderr, "%s\n", ctime (&curmark->time)); 
 	   if (curmark->next != NULL)
 		   curmark = curmark->next;
 	   else {
