@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2000-04-18 00:04+0200\n"
-"PO-Revision-Date: 2000-04-18 00:05+02:00\n"
+"POT-Creation-Date: 2000-04-25 19:47+0200\n"
+"PO-Revision-Date: 2000-04-25 19:52+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "Stav"
 msgid "Check word spelling"
 msgstr "Sjekk ordets staving"
 
-#: gdictsrc/gdict-app.c:440 gtt/toolbar.c:163
+#: gdictsrc/gdict-app.c:440 gtt/toolbar.c:159
 msgid "Cut"
 msgstr "Klipp ut"
 
@@ -90,7 +90,7 @@ msgstr "Klipp ut"
 msgid "Cut to Clipboard"
 msgstr "Klipp ut til utklippstavle"
 
-#: gdictsrc/gdict-app.c:441 gtt/toolbar.c:167
+#: gdictsrc/gdict-app.c:441 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopiér"
 
@@ -98,7 +98,7 @@ msgstr "Kopiér"
 msgid "Copy to Clipboard"
 msgstr "Kopiér til utklippstavle"
 
-#: gdictsrc/gdict-app.c:442 gtt/toolbar.c:171
+#: gdictsrc/gdict-app.c:442 gtt/toolbar.c:167
 msgid "Paste"
 msgstr "Lim inn"
 
@@ -534,7 +534,7 @@ msgstr "Hjelp"
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/view-color-list.c:179
+#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/view-color-list.c:191
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Verdi"
@@ -543,7 +543,7 @@ msgstr "Verdi"
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/view-color-list.c:178
+#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/view-color-list.c:190
 msgid "Color"
 msgstr "Farge"
 
@@ -596,7 +596,7 @@ msgid "Help"
 msgstr "Hjelp"
 
 #: gstripchart/gstripchart.c:1768 gstripchart/gstripchart.c:2052
-#: mini-utils/gshutdown/gshutdown.c:318
+#: mini-utils/gcolorsel/menus.c:380 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "Om"
 
@@ -604,7 +604,7 @@ msgstr "Om"
 msgid "Params"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1780
+#: gstripchart/gstripchart.c:1780 mini-utils/gcolorsel/menus.c:374
 msgid "Exit"
 msgstr "Avslutt"
 
@@ -829,7 +829,7 @@ msgstr "Advarsel"
 msgid "I could not write the configuration file!"
 msgstr "Jeg kunne ikke skrive konfigurasjonsfilen!"
 
-#: gtt/menucmd.c:93 gtt/toolbar.c:146
+#: gtt/menucmd.c:93 gtt/toolbar.c:142
 msgid "New Project..."
 msgstr "Nytt prosjekt..."
 
@@ -841,7 +841,7 @@ msgstr "Skriv inn navnet på det nye prosjektet:"
 msgid "I could not read the configuration file"
 msgstr "Jeg kunne ikke lese konfigurasjonsfilen"
 
-#: gtt/menucmd.c:145 gtt/toolbar.c:153
+#: gtt/menucmd.c:145 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Les konfigurasjonsfilen på nytt"
 
@@ -1038,136 +1038,160 @@ msgid "Project Time ever:"
 msgstr "Prosjekttid noensinne:"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:145
+#: gtt/toolbar.c:141
 msgid "[GTT]New"
 msgstr "[GTT]Ny"
 
-#: gtt/toolbar.c:152
+#: gtt/toolbar.c:148
 msgid "Reload"
 msgstr "Les på nytt"
 
-#: gtt/toolbar.c:156
+#: gtt/toolbar.c:152
 msgid "Save"
 msgstr "Lagre"
 
-#: gtt/toolbar.c:157
+#: gtt/toolbar.c:153
 msgid "Save Configuration File"
 msgstr "Lagre konfigurasjonsfilen"
 
-#: gtt/toolbar.c:164
+#: gtt/toolbar.c:160
 msgid "Cut Selected Project"
 msgstr "Klipp ut valgte prosjekt"
 
-#: gtt/toolbar.c:168
+#: gtt/toolbar.c:164
 msgid "Copy Selected Project"
 msgstr "Kopier valgte prosjekt"
 
-#: gtt/toolbar.c:172
+#: gtt/toolbar.c:168
 msgid "Paste Project"
 msgstr "Lim inn valgte prosjekt"
 
-#: gtt/toolbar.c:178
+#: gtt/toolbar.c:174
 msgid "Props"
 msgstr "Egenskaper"
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:175
 msgid "Edit Properties..."
 msgstr "Rediger egenskaper..."
 
-#: gtt/toolbar.c:183
+#: gtt/toolbar.c:179
 msgid "Timer"
 msgstr "Klokke"
 
-#: gtt/toolbar.c:184
+#: gtt/toolbar.c:180
 msgid "Start/Stop Timer"
 msgstr "Start/Stopp klokke"
 
-#: gtt/toolbar.c:193
+#: gtt/toolbar.c:189
 msgid "Prefs"
 msgstr "Preferanser"
 
-#: gtt/toolbar.c:194
+#: gtt/toolbar.c:190
 msgid "Edit Preferences..."
 msgstr "Rediger preferanser..."
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:194
 msgid "Manual"
 msgstr "Manuell"
 
-#: gtt/toolbar.c:198
+#: gtt/toolbar.c:194
 msgid "Manual..."
 msgstr "Manuell..."
 
-#: gtt/toolbar.c:203
+#: gtt/toolbar.c:199
 msgid "Quit"
 msgstr "Avslutt"
 
-#: gtt/toolbar.c:203
+#: gtt/toolbar.c:199
 msgid "Quit GTimeTracker"
 msgstr "Avslutt GTimeTracker"
 
-#: mini-utils/gcolorsel/menus.c:72
-msgid "Open file"
-msgstr "Åpne fil"
+#. Init GnomeMDI
+#: mini-utils/gcolorsel/gcolorsel.c:51
+msgid "GColorsel"
+msgstr "GColorsel"
 
-#: mini-utils/gcolorsel/menus.c:96
-msgid "Can not open file !"
-msgstr "Kan ikke åpne fil !"
-
-#: mini-utils/gcolorsel/menus.c:158
-msgid "Gnome Color Browser"
-msgstr "Gnome fargeleser"
-
-#: mini-utils/gcolorsel/menus.c:161
-msgid "Small utility to browse available X11 colors."
-msgstr "Lite verktøy for å bla gjennom tilgjengelige X11-farger."
-
-#: mini-utils/gcolorsel/menus.c:177
+#: mini-utils/gcolorsel/menus.c:47
 msgid "New color"
 msgstr "Ny farge"
 
-#: mini-utils/gcolorsel/menus.c:179
+#: mini-utils/gcolorsel/menus.c:49
 msgid "Remove selected colors"
 msgstr "Fjern valgte farger"
 
-#: mini-utils/gcolorsel/menus.c:181
+#: mini-utils/gcolorsel/menus.c:51
 msgid "Edit selected color..."
 msgstr "Rediger valgt farge..."
 
-#: mini-utils/gcolorsel/view-color-generic.c:15
+#: mini-utils/gcolorsel/menus.c:98
+msgid "Open file"
+msgstr "Åpne fil"
+
+#: mini-utils/gcolorsel/menus.c:123
+msgid "Can not open file !"
+msgstr "Kan ikke åpne fil !"
+
+#: mini-utils/gcolorsel/menus.c:190
+msgid "Gnome Color Browser"
+msgstr "Gnome fargeleser"
+
+#: mini-utils/gcolorsel/menus.c:193
+msgid "Small utility to browse available X11 colors."
+msgstr "Lite verktøy for å bla gjennom tilgjengelige X11-farger."
+
+#: mini-utils/gcolorsel/menus.c:374
+msgid "Exit the program"
+msgstr "Avslutt programmet"
+
+#: mini-utils/gcolorsel/menus.c:377
+msgid "Grab"
+msgstr "Hent"
+
+#: mini-utils/gcolorsel/menus.c:377
+msgid "Grab a color on the screen"
+msgstr "Hent en farge fra skjermen"
+
+#: mini-utils/gcolorsel/menus.c:380
+msgid "About this application"
+msgstr "Om denne applikasjonen"
+
+#: mini-utils/gcolorsel/view-color-generic.c:16
 msgid "Decimal 8 bits"
 msgstr "Desimal 8 bits"
 
-#: mini-utils/gcolorsel/view-color-generic.c:16
+#: mini-utils/gcolorsel/view-color-generic.c:17
 msgid "Decimal 16 bits"
 msgstr "Desimal 16 bits"
 
-#: mini-utils/gcolorsel/view-color-generic.c:17
+#: mini-utils/gcolorsel/view-color-generic.c:18
 msgid "Hex 8 bits"
 msgstr "Hex 8 bits"
 
-#: mini-utils/gcolorsel/view-color-generic.c:18
+#: mini-utils/gcolorsel/view-color-generic.c:19
 msgid "Hex 16 bits"
 msgstr "Hex 16 bits"
 
-#: mini-utils/gcolorsel/view-color-generic.c:19
+#: mini-utils/gcolorsel/view-color-generic.c:20
 msgid "Float"
 msgstr "Flyttall"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:180 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gcolorsel/view-color-list.c:192 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:502 mini-utils/gw/gw.c:572
 msgid "Name"
 msgstr "Navn"
 
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:9
 #: mini-utils/gcolorsel/widget-control-virtual.c:94
 msgid "Red :"
 msgstr "Rød :"
 
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:10
 #: mini-utils/gcolorsel/widget-control-virtual.c:98
 msgid "Green :"
 msgstr "Grønn :"
 
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:11
 #: mini-utils/gcolorsel/widget-control-virtual.c:102
 msgid "Blue :"
 msgstr "Blå :"
@@ -1176,31 +1200,96 @@ msgstr "Blå :"
 msgid "Tolerance :"
 msgstr "Toleranse :"
 
-#: mini-utils/gfontsel/gfontsel.c:157
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:8
+#: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:8
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:8
+#: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:8
+#: mini-utils/gcolorsel/glade/view-color-grid-properties.glade.h:8
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:8
+msgid "window1"
+msgstr "vindu1"
+
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:9
+#: mini-utils/gcolorsel/glade/view-color-grid-properties.glade.h:9
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:9
+msgid "Special properties"
+msgstr "Spesielle egenskaper"
+
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:10
+msgid "File name :"
+msgstr "Filnavn :"
+
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:11
+msgid "Comments :"
+msgstr "Kommentarer :"
+
+#: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:9
+#: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:9
+msgid "Common properties"
+msgstr "Vanlige egenskaper"
+
+#: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:10
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:13
+msgid "Name :"
+msgstr "Navn :"
+
+#: mini-utils/gcolorsel/glade/view-color-edit.glade.h:12
+msgid "Position :"
+msgstr "Posisjon :"
+
+#: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:10
+msgid "Colors format :"
+msgstr "Fargeformat :"
+
+#: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:11
+msgid "Display document control (if exists)"
+msgstr "Vis dokumentkontroll (hvis den eksisterer)"
+
+#: mini-utils/gcolorsel/glade/view-color-grid-properties.glade.h:10
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:11
+msgid "Color width :"
+msgstr "Fargebredde :"
+
+#: mini-utils/gcolorsel/glade/view-color-grid-properties.glade.h:11
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:12
+msgid "Color height :"
+msgstr "Fargehøyde :"
+
+#: mini-utils/gcolorsel/glade/view-color-list-properties.glade.h:10
+msgid "Draw numbers"
+msgstr "Tegn nummer"
+
+#: mini-utils/gfontsel/gfontsel.c:156
 msgid "Font Selector"
 msgstr "Skrifttypevelger"
 
-#: mini-utils/gfontsel/gfontsel.c:185
+#: mini-utils/gfontsel/gfontsel.c:184
 msgid "Selection:"
 msgstr "Valg:"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:267
 msgid "Font to load"
 msgstr "Skrifttype som skal lastes"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:267
 msgid "FONTSPEC"
 msgstr "FONTSPEC"
 
-#: mini-utils/gfontsel/gfontsel.c:269
+#: mini-utils/gfontsel/gfontsel.c:268
 msgid "Print selected font name on exit"
 msgstr "Skriv ut navn på valgte skrifttype ved avslutning"
 
-#: mini-utils/gfontsel/gfontsel.c:270
+#: mini-utils/gfontsel/gfontsel.c:269
 msgid "Inhibit remembering selected font for next run"
 msgstr "Hindre husking av valgt skrifttype for neste kjøring"
 
-#: mini-utils/gfontsel/gfontsel.c:271
+#: mini-utils/gfontsel/gfontsel.c:270
 msgid "Inhibit loading of last font"
 msgstr "Hindre lasting av forrige skrifttype"
 
@@ -1383,12 +1472,12 @@ msgstr "Er du sikker på at du vil bytte til kjøringsnivå 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Er du sikker på at du vil starte maskinen på nytt?"
 
-#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:593
+#: mini-utils/gshutdown/gshutdown.c:150 mini-utils/gshutdown/gshutdown.c:590
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Du må være superbruker (root) for å slå av eller starte maskinen på nytt."
 
-#: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:596
+#: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:593
 msgid "Close"
 msgstr "Lukk"
 
@@ -1443,7 +1532,7 @@ msgstr ""
 msgid "Don't ask next time."
 msgstr "Ikke spør neste gang."
 
-#: mini-utils/gshutdown/gshutdown.c:691
+#: mini-utils/gshutdown/gshutdown.c:688
 msgid "Command execution failed: fork failed"
 msgstr "Kommandokjøringen feilet: fork feilet"
 
