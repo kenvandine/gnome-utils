@@ -982,7 +982,7 @@ grab_mouse_clicked_release (GtkWidget *widget, GdkEventButton *event,
   GdkImage *image;
   guint32 pixel;
   GdkVisual *visual;
-  GdkColormap *colormap = gdk_colormap_get_system ();
+  GdkColormap *colormap = gtk_widget_get_colormap (widget);
   XColor xcolor;
   double r = 0, g = 0, b = 0;
 

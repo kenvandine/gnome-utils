@@ -236,6 +236,8 @@ dialog_prefs (void)
   GladeXML *gui;
   int menupos;
 
+  static GnomeHelpMenuEntry help_entry = { "gcolorsel", "index.html" };
+  
   if (! property) {
     
     gui = glade_xml_new (GCOLORSEL_GLADEDIR "dialog-prefs.glade", NULL);
@@ -248,7 +250,9 @@ dialog_prefs (void)
 			GTK_SIGNAL_FUNC (apply_cb), NULL); 
     gtk_signal_connect (GTK_OBJECT (property), "destroy",
 			GTK_SIGNAL_FUNC (destroy_cb), NULL);
-
+    gtk_signal_connect (GTK_OBJECT (property), "help",
+			GTK_SIGNAL_FUNC (gnome_help_display), &help_entry);
+			
     /* Session */
 
     check_save_session = glade_xml_get_widget (gui, "check-save-session");
