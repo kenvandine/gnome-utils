@@ -1146,7 +1146,7 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("CE/C"), (GtkSignalFunc)clear_calc,  NULL,   NULL,   FALSE, {GDK_Clear,GDK_Delete,0}, N_("Clear"), NULL },
 		{N_("AC"),   (GtkSignalFunc)reset_calc,  NULL,   NULL,   FALSE, {'a','A', GDK_Escape, 0}, N_("Reset"), NULL }
 	},{
-		{N_("INV"),  NULL,                       NULL,   NULL,   FALSE, {'i','I',0}, N_("Shift"), NULL }, /*inverse button*/
+		{N_("INV"),  NULL,                       NULL,   NULL,   FALSE, {'i','I',0}, N_("Inverse trigonometry/log function"), NULL }, /*inverse button*/
 		{N_("sin"),  (GtkSignalFunc)simple_func, sin_helper, asin, TRUE,{'s','S',0}, N_("Sine"), NULL },
 		{N_("cos"),  (GtkSignalFunc)simple_func, cos_helper, acos, TRUE,{'c','C',0}, N_("Cosine"), NULL },
 		{N_("tan"),  (GtkSignalFunc)simple_func, tan_helper,    atan,   TRUE,  {'t','T',0}, N_("Tangent"), NULL },
@@ -1164,25 +1164,25 @@ static const CalculatorButton buttons[8][5] = {
 		{N_(")"),    (GtkSignalFunc)sub_parenth, NULL,   NULL,   FALSE, {')',0}, N_("Closing Parenthesis"), NULL },
 		{N_("/"),    (GtkSignalFunc)math_func,   c_div,  NULL,   FALSE, {'/',GDK_KP_Divide,0}, N_("Divide by"), NULL }
 	},{
-		{N_("STO"),  (GtkSignalFunc)store_m,     NULL,   NULL,   FALSE, {0}, N_("Store"), NULL },
+		{N_("STO"),  (GtkSignalFunc)store_m,     NULL,   NULL,   FALSE, {0}, N_("Store the value in the\ndisplay field in memory"), NULL },
 		{N_("7"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'7',GDK_KP_7,GDK_KP_Home,0}, NULL, NULL },
 		{N_("8"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'8',GDK_KP_8,GDK_KP_Up,0}, NULL, NULL },
 		{N_("9"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'9',GDK_KP_9,GDK_KP_Page_Up,0}, NULL, NULL },
 		{N_("*"),    (GtkSignalFunc)math_func,   c_mul,  NULL,   FALSE, {'*',GDK_KP_Multiply,0}, N_("Multiply by"), NULL }
 	},{
-		{N_("RCL"),  (GtkSignalFunc)recall_m,    NULL,   NULL,   FALSE, {0}, N_("Recall"), NULL },
+		{N_("RCL"),  (GtkSignalFunc)recall_m,    NULL,   NULL,   FALSE, {0}, N_("Display the value in memory\nin the display field"), NULL },
 		{N_("4"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'4',GDK_KP_4,GDK_KP_Left,0}, NULL, NULL },
 		{N_("5"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'5',GDK_KP_5,GDK_KP_Begin,0}, NULL, NULL },
 		{N_("6"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'6',GDK_KP_6,GDK_KP_Right,0}, NULL, NULL },
 		{N_("-"),    (GtkSignalFunc)math_func,   c_sub,  NULL,   FALSE, {'-',GDK_KP_Subtract,0}, N_("Subtract"), NULL }
 	},{
-		{N_("SUM"),  (GtkSignalFunc)sum_m,       NULL,   NULL,   FALSE, {0}, N_("Sum"), NULL },
+		{N_("SUM"),  (GtkSignalFunc)sum_m,       NULL,   NULL,   FALSE, {0}, N_("Add the value in the display\nfield to the value in memory"), NULL },
 		{N_("1"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'1',GDK_KP_1,GDK_KP_End,0}, NULL, NULL },
 		{N_("2"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'2',GDK_KP_2,GDK_KP_Down,0}, NULL, NULL },
 		{N_("3"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'3',GDK_KP_3,GDK_KP_Page_Down,0}, NULL, NULL },
 		{N_("+"),    (GtkSignalFunc)math_func,   c_add,  NULL,   FALSE, {'+',GDK_KP_Add,0}, N_("Add"), NULL }
 	},{
-		{N_("EXC"),  (GtkSignalFunc)exchange_m,  NULL,   NULL,   FALSE, {0}, N_("Exchange"), NULL },
+		{N_("EXC"),  (GtkSignalFunc)exchange_m,  NULL,   NULL,   FALSE, {0}, N_("Exchange the values in the\ndisplay field and memory"), NULL },
 		{N_("0"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'0',GDK_KP_0,GDK_KP_Insert,0}, NULL, NULL },
 		{N_("."),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'.',GDK_KP_Decimal,',',GDK_KP_Delete,0}, N_("Decimal Point"), NULL },
 		{N_("+/-"),  (GtkSignalFunc)negate_val,  c_neg,  NULL,   FALSE, {0}, N_("Change sign"), NULL },
