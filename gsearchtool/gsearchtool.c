@@ -517,8 +517,9 @@ add_file_to_search_results (const gchar 	*file,
 	GdkPixbuf *pixbuf;
 	GnomeVFSFileInfo *vfs_file_info;
 	gchar *readable_size, *readable_date;
-	gchar *utf8_base_name, *utf8_dir_name;
-	gchar *base_name, *dir_name;
+	gchar *utf8_base_name, *utf8_dir_name, *utf8_relative_dir_name;
+	gchar *base_name, *dir_name, *relative_dir_name;
+	gchar *look_in_folder;
 	
 	if (g_hash_table_lookup_extended (search_command.file_hash, file, NULL, NULL) == TRUE) {
 		return;
@@ -543,13 +544,30 @@ add_file_to_search_results (const gchar 	*file,
 	base_name = g_path_get_basename (file);
 	dir_name = g_path_get_dirname (file);
 	
+	look_in_folder = g_strdup (search_command.look_in_folder);
+	if (strlen (look_in_folder) > 1) {
+		gchar *path;
+
+		if (g_str_has_suffix (look_in_folder, G_DIR_SEPARATOR_S) == TRUE) {
+			look_in_folder[strlen (look_in_folder) - 1] = '\0'; 
+		}
+		path = g_path_get_dirname (look_in_folder);
+		relative_dir_name = g_strconcat (&dir_name[strlen (path) + 1], NULL);
+		g_free (path);
+	}
+	else {
+		relative_dir_name = g_strdup (dir_name);
+	}
+
 	utf8_base_name = g_locale_to_utf8 (base_name, -1, NULL, NULL, NULL);
 	utf8_dir_name = g_locale_to_utf8 (dir_name, -1, NULL, NULL, NULL);
+	utf8_relative_dir_name = g_locale_to_utf8 (relative_dir_name, -1, NULL, NULL, NULL);
 
 	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
 	gtk_list_store_set (GTK_LIST_STORE(store), iter,
 			    COLUMN_ICON, pixbuf, 
 			    COLUMN_NAME, utf8_base_name,
+			    COLUMN_RELATIVE_PATH, utf8_relative_dir_name,
 			    COLUMN_PATH, utf8_dir_name,
 			    COLUMN_READABLE_SIZE, readable_size,
 			    COLUMN_SIZE, (-1) * (gdouble) vfs_file_info->size,
@@ -562,8 +580,11 @@ add_file_to_search_results (const gchar 	*file,
 	gnome_vfs_file_info_unref (vfs_file_info);
 	g_free (base_name);
 	g_free (dir_name);
+	g_free (relative_dir_name);
 	g_free (utf8_base_name);
 	g_free (utf8_dir_name);
+	g_free (utf8_relative_dir_name);
+	g_free (look_in_folder);
 	g_free (readable_size);
 	g_free (readable_date);
 }
@@ -583,6 +604,7 @@ add_no_files_found_message (GtkListStore 	*store,
 	gtk_list_store_set (GTK_LIST_STORE(store), iter,
 		    	    COLUMN_ICON, NULL, 
 			    COLUMN_NAME, _("No files found"),
+			    COLUMN_RELATIVE_PATH, "",
 		    	    COLUMN_PATH, "",
 			    COLUMN_READABLE_SIZE, "",
 			    COLUMN_SIZE, (gdouble) 0,
@@ -1882,6 +1904,7 @@ create_search_results_section (void)
 					      G_TYPE_STRING, 
 					      G_TYPE_STRING, 
 					      G_TYPE_STRING,
+					      G_TYPE_STRING,
 					      G_TYPE_DOUBLE,
 					      G_TYPE_STRING,
 					      G_TYPE_STRING,
@@ -1962,7 +1985,7 @@ create_search_results_section (void)
 	/* create the folder column */
 	renderer = gtk_cell_renderer_text_new (); 
 	column = gtk_tree_view_column_new_with_attributes (_("Folder"), renderer,
-							   "text", COLUMN_PATH,
+							   "text", COLUMN_RELATIVE_PATH,
 							   NULL);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
