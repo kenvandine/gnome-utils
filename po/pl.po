@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-19 12:12+0100\n"
+"POT-Creation-Date: 2004-02-13 13:02+0100\n"
 "PO-Revision-Date: 2003-11-15 23:16+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Akcesoria"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "Wyszukiwanie w słowniku"
 
@@ -56,8 +56,8 @@ msgstr "Sł_ownik"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "Nie można nawiązać połączenia z serwerem"
 
@@ -167,7 +167,7 @@ msgstr "Wprowadź słowo lub wybierz jedno z poniższej listy"
 msgid "Look Up for a Word"
 msgstr "Wyszukanie słowa"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:139
 msgid "_Lookup"
 msgstr "_Znajdź"
 
@@ -176,85 +176,94 @@ msgstr "_Znajdź"
 msgid "Error invoking query: %s"
 msgstr "Błąd przy zadawaniu pytania: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "Preferencje słownika"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "Inteligentne _wyszukiwanie"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "_Serwer:"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "Do_myślny serwer"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "Przywraca domyślny serwer"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "Domyś_lny port"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "Przywraca domyślny port"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "Serwer"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "Wejście serwera"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "Wprowadź nazwę serwera"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "Wejście portu"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "Wprowadź nazwę portu"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "_Baza danych:"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "_Domyślna strategia wyszukiwania:"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "Przeszukaj wszystkie bazy danych"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "Baza danych"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "Nazwa bazy danych"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "Domyślna strategia wyszukiwania"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Wystąpił błąd podczas wyświetlania pomocy: \n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -778,7 +787,7 @@ msgstr "Postęp formatowania"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2216
 msgid "Search for Files"
 msgstr "Wyszukiwanie plików"
 
@@ -1166,79 +1175,79 @@ msgstr "Menu reguł wyszukiwania"
 msgid "Select a search rule from the menu"
 msgstr "Wybierz z menu regułę wyszukiwania"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1612
 msgid "S_earch results:"
 msgstr "_Wyniki wyszukiwania:"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1692
 msgid "Name"
 msgstr "Nazwa"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1712
 msgid "Folder"
 msgstr "Folder"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1723
 msgid "Size"
 msgstr "Rozmiar"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1733
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1743
 msgid "Date Modified"
 msgstr "Data modyfikacji"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1801
 msgid "_Name contains:"
 msgstr "_Nazwa zawiera:"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1816 gsearchtool/gsearchtool.c:1817
 msgid "Name Contains Entry"
 msgstr "Wpis zawartości nazwy"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1816 gsearchtool/gsearchtool.c:1817
 msgid "Enter the file name you want to search"
 msgstr "Podaj nazwę pliku, który chcesz odnaleźć"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1829
 msgid "_Look in folder:"
 msgstr "_Wyszukiwanie w folderze:"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1835
 msgid "Browse"
 msgstr "Wybór katalogu"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
 msgid "Look in Folder Entry"
 msgstr "_Wyszukiwanie w pozycji folderów"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
 msgid "Enter the folder name where you want to start the search"
 msgstr "Wprowadź nazwę folderu, w którym chcesz rozpocząć wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1875
 msgid "Show more _options"
 msgstr "Wyświetl więcej _opcji"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1885
 msgid "Show more options"
 msgstr "Wyświetla dodatkowe opcje"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1885
 msgid "Expands or collapses a list of search options."
 msgstr "Rozwija lub zwija listę opcji wyszukiwania."
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1932
 msgid "Click to Start the search"
 msgstr "Kliknij, aby rozpocząć wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1933
 msgid "Click to Stop the search"
 msgstr "Kliknij, aby zatrzymać wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2212
 msgid "Cannot initialize bonobo."
 msgstr "Nie można zainicjować bonobo."
 
@@ -1767,43 +1776,3 @@ msgstr "Szczegóły wiersza z dziennika"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
-
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "Brak pliku animacji lub jest on niewłaściwy: %s"
-
-#~ msgid "One File Found"
-#~ msgstr "Odnaleziono jeden plik"
-
-#~ msgid "One file found"
-#~ msgstr "Odnaleziono jeden plik"
-
-#~ msgid "Open %d documents?"
-#~ msgstr "Czy otworzyć %d dokumentów?"
-
-#~ msgid ""
-#~ "This will open %d separate documents. Are you sure you want to do this?"
-#~ msgstr ""
-#~ "Operacja spowoduje otwarcie %d oddzielnych dokumentów. Czy na pewno tego "
-#~ "chcesz?"
-
-#~ msgid "Could not open document \"%s\""
-#~ msgstr "Nie można otworzyć dokumentu \"%s\""
-
-#~ msgid "Open %d folders?"
-#~ msgstr "Czy otworzyć %d folderów?"
-
-#~ msgid ""
-#~ "You did not select a document name or the name selected was a folder.  "
-#~ "The document is not saved."
-#~ msgstr ""
-#~ "Nie wybrano nazwy dokumentu lub wybrana nazwa określała folder. Dokument "
-#~ "nie został zapisany."
-
-#~ msgid "The contents of the file \"%s\" will be lost."
-#~ msgstr "Zawartość pliku \"%s\" zostanie utracona."
-
-#~ msgid "Overwrite an existing file?"
-#~ msgstr "Czy nadpisać istniejący plik?"
-
-#~ msgid "Could not save document \"%s\" to %s"
-#~ msgstr "Nie można zapisać dokumentu \"%s\" pod nazwą %s"
