@@ -436,14 +436,19 @@ drag_file_cb  (GtkWidget          *widget,
 			   COLUMN_NO_FILES_FOUND, &no_files_found,
 		           -1);
 			   	   
+	file = g_build_filename (utf8_path, utf8_name, NULL);
+	locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
+
 	if (!no_files_found) {
-		file = g_build_filename (utf8_path, utf8_name, NULL);
-		locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
-		url_file = g_strconcat ("file://", locale_file, NULL);
-		g_free (locale_file);
-		g_free (file);
-			
+		url_file = g_strconcat ("file://", locale_file, NULL);	
+	} 
+	else {
+		url_file = g_strconcat (locale_file, NULL);
 	}	
+
+	g_free (locale_file);
+	g_free (file);
+
 	gtk_selection_data_set (selection_data, 
 				selection_data->target,
 				8, 
