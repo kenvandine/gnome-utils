@@ -3,53 +3,43 @@ BUGS TO BE SQUASHED
 
 The code to process a command option error leaves trailing cruft after
 the command name, and includes all the gnome-internal options but
-omits the long-named varients of the gstripchart options.
-
-Resizing only works when enlarging the size of the window from its
-default value.  When shrinking the window, stuff on the RHS gets
-squeezed out of the window.  This is driving me nuts.  It's got to be
-something simple, but I can't see what it is.  Also, there seems to be
-a race condition such that the chart doesn't get redrawn for a few
-seconds after making a sudden, large increase in the size of the window.
+omits the long-named variants of the gstripchart options.  This seems
+like it's caused by an error in the popt routines.
 
 The help browser doesn't jump to the name tags listed in the
 topics.dat file.  Instead, the help file always loads the help page
 starting at the top of the file.  As far as I can tell, this doesn't
 work for any other apps either, so I'll assume that the problem lies
-outside of gstripchart.
+with the help browser.
 
 
 FEATURES TO BE ADDED
 
-Add session management code.  Also, figure out how to account for WM
-decorations when dealing with a geometry string that specify a
-position relative to the lower or right sides.
+Rework the param menu pop-up so that the fields in existing parameters
+are readily editable, and so that new paramaters can be added.
 
-Use notebook pages for configuration.  Have a right-click pop up a
-configuration notebook.  This should probably be written using one of
-the GUI config tools, such as Linuxconf or COAS.
+Add session management code.
 
-Add auto-ranging.  Having to manually specify the range for a value is
-too awkward.
+Figure out how to account for WM decorations when dealing with a
+geometry string that specify a position relative to the bottom or
+right side.
 
 Add an option to include legends along the sides of the display.  The
 vertical legend could include the name and last value of each
 parameter.  This could get crowded in a hurry.
 
+Allow the background color to be defined on the command line and in
+the config file.
+
+Add a small left-button pop-up showing the current and top values for
+each active paramater.
+
+
+THINGS TO CONSIDER
+
 Allow values to be plotted using a logarithmic basis rather than a
 linear one.  This would be especially handy for values such as load
 which is normally very low, but which can jump way up at times.
-
-Don't draw a line if there's no value available.  For example, it
-should be possible to distinguish between a 'net connection down'
-condition and a 'no net traffic' condition.  This will require some
-type of conditional test in the config setup.
-
-Allow the background color and geometry parameters to be defined on
-the command line and in the config file.
-
-Catch a SIGHUP and re-read the config file.  This would be handier
-than stopping and restarting on each change to the configuration file.
 
 Allow fields to be split on delimtiers other than whitespace and
 colon, then eliminate the colon from the seperator list and add it to
@@ -59,6 +49,4 @@ Use regular expressions instead of strstr for field matching and
 strtok for splitting?  This would be more versatile, but would also
 make the code dependent on some regex package.  I'll probably wait
 until the existing scheme proves itself inadequate.
-
-Grep for FIX THIS.  Fix that.  Remember the .html as well.
 

@@ -24,6 +24,7 @@
 #include "config.h"
 
 #include <ctype.h>
+#include <errno.h>
 #include <math.h>
 #include <setjmp.h>
 #include <stdarg.h>
@@ -31,30 +32,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <sys/time.h>
+#include <unistd.h>
 
-#include <X11/Xlib.h>	// for ex-pee-arse-geometry routine
-#include <X11/Xutil.h>	// for flags returned above
+#include <X11/Xlib.h>	/* for the ex-pee-arse-geometry routine */
+#include <X11/Xutil.h>	/* for flags returned above */
 
 #include <gnome.h>
 
-#ifdef HAVE_LIBGTOP
+#define NELS(a) (sizeof(a) / sizeof(*a))
 
+#ifdef HAVE_LIBGTOP
 #include <glibtop.h>
 #include <glibtop/union.h>
-#include <glibtop/parameter.h>
-
 typedef struct
 {
-  glibtop_cpu		cpu;
-  glibtop_mem		mem;
-  glibtop_swap		swap;
-  glibtop_uptime	uptime;
-  glibtop_loadavg	loadavg;
+  glibtop_cpu     cpu;
+  glibtop_mem     mem;
+  glibtop_swap    swap;
+  glibtop_uptime  uptime;
+  glibtop_loadavg loadavg;
 }
 gtop_struct;
-
 #endif
 
 static char *prog_name = "gstripchart";
@@ -71,6 +70,7 @@ static int minor_tick=0, major_tick=0;
 static int geometry_flags;
 static int geometry_w=160, geometry_h=100;
 static int geometry_x, geometry_y;
+static int root_width, root_height;
 
 /*
  * streq -- case-blind string comparison returning true on equality.
@@ -253,7 +253,7 @@ gtop_value(char *str, gtop_struct *gtp, double *val)
 	    {
 	      *val = *((double *)cp);
 	    }
-	  else // if (gtop_vars[i].type == 'L')
+	  else /* if (gtop_vars[i].type == 'L') */
 	    {
 	      unsigned long ul = *((unsigned long *)cp);
 	      *val = ul;
@@ -345,19 +345,25 @@ num_op(Expr *e)
 static double
 mul_op(Expr *e)
 {
-  double val = num_op(e);
+  double val1 = num_op(e);
   while (*e->s=='*' || *e->s=='/' || *e->s=='%')
     {
       char c = *e->s;
       stripbl(e, 1);
       if (c == '*')
-	val *= num_op(e);
-      else if (c == '/')
-	val /= num_op(e);
+	val1 *= num_op(e);
       else
-	val = fmod(val, num_op(e));
+	{
+	  double val2 = num_op(e);
+	  if (val2 == 0) /* FIX THIS: there's got to be a better way. */
+	    val1 = 0;
+	  else if (c == '/')
+	    val1 /= val2;
+	  else
+	    val1 = fmod(val1, val2);
+	}
     }
-  return val;
+  return val1;
 }
 
 /*
@@ -416,20 +422,21 @@ static double eval(
  */
 typedef struct
 {
-  char *ident;		/* paramater name */
+  char active;		/* set if this parameter should be displayed */
   char id_char;		/* single-char parameter name abbreviation */
+  char *ident;		/* paramater name */
   char *color_name;	/* the name of the fg color for this parameter */
   char *filename;	/* the file to read this parameter from */
   char *pattern;	/* marks the line in the file for this paramater */
   char *eqn;		/* equation used to compute this paramater value */
   char *eqn_src;	/* where the eqn was defined, for error reporting */
-  float top, bot;	/* highest and lowest values ever expected */
+  float hi, lo;		/* highest and lowest values expected */
+  float max, min;	/* highest and lowest values encountered */
+  float top, bot;	/* highest and lowest display values */
   GdkColor gdk_color;	/* the rgb values for the color */
   GdkGC *gdk_gc;	/* the graphics context entry for the color */
   int vars;		/* how many vars to read from the line in the file */
   double *last, *now;	/* the last and current vars, as enumerated above */
-  int max_val, num_val;	/* how many vals are allocated and in use */
-  int new_val;		/* index of the newest val */
   float *val;		/* value history */
 }
 Param;
@@ -441,6 +448,9 @@ typedef struct
 {
   int params;
   Param **parray;
+  int max_val;		/* how many vals are allocated  */
+  int num_val;		/* how many vals are currently in use */
+  int new_val;		/* the index of the newest val */
   double lpf_const;
   double t_diff;
   struct timeval t_last, t_now;
@@ -450,8 +460,6 @@ typedef struct
 }
 Param_glob;
 
-static int params;
-static Param **chart_param, **slider_param;
 static Param_glob chart_glob, slider_glob;
 
 /*
@@ -541,7 +549,7 @@ yes_no(char *str)
  * initialization.
  */
 static int
-read_param_defns(Param ***ppp)
+read_param_defns(Param_glob *pgp)
 {
   int i, j, lineno = 0, params = 0;
   Param **p = NULL;
@@ -551,7 +559,6 @@ read_param_defns(Param ***ppp)
 #endif
   FILE *fd;
 
-  *ppp = p;
   if (config_file)
     {
       strcpy(fn, config_file);
@@ -655,6 +662,7 @@ read_param_defns(Param ***ppp)
 		  p = realloc(p, params * sizeof(*p));
 		  p[params-1] = malloc(sizeof(*p[params-1]));
 		  p[params-1]->ident = strdup(val);
+		  p[params-1]->active = 1;
 		  p[params-1]->vars = 0;
 		  p[params-1]->id_char = '*';
 		  p[params-1]->pattern = NULL;
@@ -662,11 +670,8 @@ read_param_defns(Param ***ppp)
 		  p[params-1]->eqn = NULL;
 		  p[params-1]->eqn_src = NULL;
 		  p[params-1]->color_name = NULL;
-		  p[params-1]->max_val = 1024;
-		  p[params-1]->new_val = 0;
-		  p[params-1]->num_val = 0;
-		  p[params-1]->top = 1.0;
-		  p[params-1]->bot = 0.0;
+		  p[params-1]->hi = p[params-1]->top = p[params-1]->min = 1.0;
+		  p[params-1]->lo = p[params-1]->bot = p[params-1]->max = 0.0;
 		}
 	      else if (streq(key, "end"))
 		{
@@ -684,6 +689,8 @@ read_param_defns(Param ***ppp)
 		  if (!gdk_color_parse(val, &p[params-1]->gdk_color))
 		    defns_error(fn, lineno, "unrecognized color: %s", val);
 		}
+	      else if (streq(key, "active"))
+		p[params-1]->active = yes_no(val);
 	      else if (streq(key, "filename"))
 		p[params-1]->filename = strdup(val);
 	      else if (streq(key, "pattern"))
@@ -698,9 +705,11 @@ read_param_defns(Param ***ppp)
 		  p[params-1]->eqn = strdup(val);
 		}
 	      else if (streq(key, "maximum"))
-		p[params-1]->top = atof(val);
+		p[params-1]->hi = p[params-1]->top = p[params-1]->min =
+		  atof(val);
 	      else if (streq(key, "minimum"))
-		p[params-1]->bot = atof(val);
+		p[params-1]->lo = p[params-1]->bot = p[params-1]->max =
+		  atof(val);
 	      else
 		defns_error(fn, lineno, "invalid option: \"%s\"", bp);
 	    }
@@ -711,7 +720,7 @@ read_param_defns(Param ***ppp)
   /* Allocate space after sizes have been established. */
   for (i=0; i<params; i++)
     {
-      p[i]->val  = malloc(p[i]->max_val * sizeof(p[i]->val[0]));
+      p[i]->val  = malloc(pgp->max_val * sizeof(p[i]->val[0]));
       p[i]->last = malloc(p[i]->vars * sizeof(p[i]->last[0]));
       p[i]->now  = malloc(p[i]->vars * sizeof(p[i]->now[0]));
       /* The initial `now' values get used as the first set of `last'
@@ -721,7 +730,8 @@ read_param_defns(Param ***ppp)
 	p[i]->now[j] = 0;
     }
 
-  *ppp = p;
+  pgp->params = params;
+  pgp->parray = p;
   return params;
 }
 
@@ -742,10 +752,45 @@ split_and_extract(char *str, Param *p)
   return i;
 }
 
-static void
-update_values(Param_glob *pgp)
+static double
+cap(double x)
 {
-  int param_num;
+  static const double ranges[] = { .1,.2,.5, 1,2,5, 10,20,50 };
+
+  static const double pow10[] =
+  {
+    1e-30, 1e-29, 1e-28, 1e-27, 1e-26, 1e-25, 1e-24, 1e-23, 1e-22, 1e-21,
+    1e-20, 1e-19, 1e-18, 1e-17, 1e-16, 1e-15, 1e-14, 1e-13, 1e-12, 1e-11,
+    1e-10, 1e-09, 1e-08, 1e-07, 1e-06, 1e-05, 1e-04, 1e-03, 1e-02, 1e-01,
+    1e+00, 1e+01, 1e+02, 1e+03, 1e+04, 1e+05, 1e+06, 1e+07, 1e+08, 1e+09,
+    1e+10, 1e+11, 1e+12, 1e+13, 1e+14, 1e+15, 1e+16, 1e+17, 1e+18, 1e+19,
+    1e+20, 1e+21, 1e+22, 1e+23, 1e+24, 1e+25, 1e+26, 1e+27, 1e+28, 1e+29, 1e30
+  };
+
+  int e, f, j;
+  double d;
+
+  if (x < pow10[1] || pow10[NELS(pow10)-2] < x)
+    {
+      errno = EDOM;
+      return x;
+    }
+
+  frexp( x, &e );		/* e gets the base 2 log of x */
+  f = e * 0.90308998699194;	/* scale e by 3 / ( log(10) / log(2) ) */
+  j = f % 3 + 3;		/* j gets index of nearest value in ranges */
+  d = pow10[ 30 + f / 3 ];	/* d gets decade value */
+
+  while (ranges[j] * d > x) --j;
+  while (ranges[j] * d < x) ++j;
+
+  return ranges[j] * d;
+}
+
+static int
+update_values(Param_glob *pgp, Param_glob *slave_pgp)
+{
+  int param_num, last_val_pos, next_val_pos, capped=0;
 
   pgp->t_last = pgp->t_now;
   gettimeofday(&pgp->t_now, NULL);
@@ -763,48 +808,66 @@ update_values(Param_glob *pgp)
   if (gtop_loadavg)
     glibtop_get_loadavg(&pgp->gtop.loadavg);
 #endif
-  for (param_num = 0; param_num < pgp->params; param_num++)
-    {
-      Param *p = pgp->parray[param_num];
-      double prev, val = 0;
-      FILE *pu = NULL;
-      char buf[1000];
 
-      if (p->filename)
-	{
+  last_val_pos = pgp->new_val;
+  if (pgp->num_val < pgp->max_val)
+    pgp->num_val++;
+  next_val_pos = ++pgp->new_val;
+  if (next_val_pos >= pgp->max_val)
+    next_val_pos = pgp->new_val = 0;
+
+  for (param_num = 0; param_num < pgp->params; param_num++)
+    if (pgp->parray[param_num]->active)
+      {
+	Param *p = pgp->parray[param_num];
+	double prev, val = 0;
+	FILE *pu = NULL;
+	char buf[1000];
+
+	if (p->filename)
 	  if (*p->filename == '|')
 	    pu = popen(p->filename+1, "r");
 	  else
 	    pu = fopen(p->filename, "r");
-	}
-      
-      if (pu)
-	{
-	  fgets(buf, sizeof(buf), pu);
-	  if (p->pattern)
-	    while (!ferror(pu) && !feof(pu) && !strstr(buf, p->pattern))
-	      fgets(buf, sizeof(buf), pu);
-	  if (*p->filename == '|') pclose(pu); else fclose(pu);
-	}
+	if (pu)
+	  {
+	    fgets(buf, sizeof(buf), pu);
+	    if (p->pattern)
+	      while (!ferror(pu) && !feof(pu) && !strstr(buf, p->pattern))
+		fgets(buf, sizeof(buf), pu);
+	    if (*p->filename == '|') pclose(pu); else fclose(pu);
+	  }
 
-      /* Copy now vals to last vals, update now vals, and compute a new
-	 param value based on the new now vals.  */
-      memcpy(p->last, p->now, p->vars * sizeof(*(p->last)));
-      split_and_extract(buf, p);
-      val = eval(
-	p->eqn, p->eqn_src, pgp->t_diff,
+	/* Copy now vals to last vals, update now vals, and compute a
+	   new param value based on the new now vals.  */
+	memcpy(p->last, p->now, p->vars * sizeof(*(p->last)));
+	split_and_extract(buf, p);
+	val = eval(
+	  p->eqn, p->eqn_src, pgp->t_diff,
 #ifdef HAVE_LIBGTOP
-	&pgp->gtop,
+	  &pgp->gtop,
 #endif
-	p->vars, p->last, p->now );
+	  p->vars, p->last, p->now );
 
-      /* Put the new val into the val history. */
-      prev = p->val[p->new_val];
-      p->new_val = (p->new_val+1) % p->max_val;
-      p->val[p->new_val] = prev + pgp->lpf_const * (val - prev);
-      if (p->num_val < p->max_val)
-	p->num_val++;
-    }
+	/* Low-pass filter the new val, and add to the val history. */
+	prev = p->val[last_val_pos];
+	val = p->val[next_val_pos] = prev + pgp->lpf_const * (val - prev);
+
+	/* Update the min and max values. */
+	if (val < p->min) p->min = p->bot = val;
+	if (val > p->max)
+	  {
+	    p->max = val;
+	    if (val > p->top)
+	      {
+		p->top = cap(val);
+		if (slave_pgp)
+		  slave_pgp->parray[param_num]->top = p->top;
+		capped = 1;
+	      }
+	  }
+      }
+  return capped;
 }
 
 /*
@@ -816,7 +879,7 @@ no_display(void)
   while (1)
     {
       usleep((int)(1e6 * chart_interval + 0.5));
-      update_values(&chart_glob);
+      update_values(&chart_glob, NULL);
     }
 }
 
@@ -831,14 +894,16 @@ numeric_with_ident(void)
   while (1)
     {
       usleep((int)(1e6 * chart_interval + 0.5));
-      update_values(&chart_glob);
+      update_values(&chart_glob, NULL);
 
-      for (p=0; p<params; p++)
-	fprintf(stdout, " %12.3f",
-		chart_param[p]->val[chart_param[p]->new_val]);
+      for (p=0; p<chart_glob.params; p++)
+	if (chart_glob.parray[p]->active)
+	  fprintf(stdout, " %12.3f",
+	    chart_glob.parray[p]->val[chart_glob.new_val]);
       fprintf(stdout, "\n");
-      for (p=0; p<params; p++)
-	fprintf(stdout, " %12s", chart_param[p]->ident);
+      for (p=0; p<chart_glob.params; p++)
+	if (chart_glob.parray[p]->active)
+	  fprintf(stdout, " %12s", chart_glob.parray[p]->ident);
       fprintf(stdout, "\r");
       fflush(stdout);
     }
@@ -859,21 +924,47 @@ numeric_with_graph(void)
   while (1)
     {
       usleep((int)(1e6 * chart_interval + 0.5));
-      update_values(&chart_glob);
+      update_values(&chart_glob, NULL);
 
-      for (p=0; p<params; p++)
-	{
-	  float v = chart_param[p]->val[chart_param[p]->new_val];
-	  float t = chart_param[p]->top;
-	  float s = (t<=0) ? 0 : v / t;
-	  char per[8];
-	  int i = (int)((width-1) * s + 0.5);
-	  buf[i] = chart_param[p]->id_char;
-	  sprintf(per, "%d", (int)(100*s));
-	  memcpy(buf+i+1, per, strlen(per));
-	}
+      for (p=0; p<chart_glob.params; p++)
+	if (chart_glob.parray[p]->active)
+	  {
+	    float v = chart_glob.parray[p]->val[chart_glob.new_val];
+	    float t = chart_glob.parray[p]->top;
+	    float s = (t<=0) ? 0 : v / t;
+	    char per[8];
+	    int i = (int)((width-1) * s + 0.5);
+	    buf[i] = chart_glob.parray[p]->id_char;
+	    sprintf(per, "%d", (int)(100*s));
+	    memcpy(buf+i+1, per, strlen(per));
+	  }
       trimtb(buf);
       fprintf(stdout, "%s\n", buf);
+    }
+}
+
+static void
+readjust_top_for_width(int width)
+{
+  float t;
+  int p, n, i, v;
+
+  // printf("readjusting top for width=%d, vals=%d\n",
+  // 	 width, chart_glob.num_val);
+  n = width < chart_glob.num_val ? width : chart_glob.num_val;
+  for (p = 0; p < chart_glob.params; p++)
+    {
+      v = chart_glob.new_val;
+      t = chart_glob.parray[p]->val[v];
+      for (i=1; i<n; i++)
+	{
+	  if (--v < 0)
+	    v = chart_glob.max_val - 1;
+	  if (t > chart_glob.parray[p]->val[v])
+	    t = chart_glob.parray[p]->val[v];
+	}
+      chart_glob.parray[p]->top = t;
+      // printf("top[%d] %s\t= %g\n", p, chart_glob.parray[p]->ident, t);
     }
 }
 
@@ -890,30 +981,26 @@ destroy_handler(GtkWidget *widget, gpointer *data)
 }
 
 static gint
-cfg_handler(GtkWidget *widget, GdkEventConfigure *e, gpointer whence)
+config_handler(GtkWidget *widget, GdkEventConfigure *e, gpointer whence)
 {
   int p, w = widget->allocation.width, h = widget->allocation.height;
-
-  //printf("CFG %s: alloc=(%d,%d), req=(%d,%d)\n",
-  //  (char*)whence, w, h,
-  //  widget->requisition.width, widget->requisition.height);
 
   /* On the initial configuration event, get the window colormap and
      allocate a color in it for each parameter color. */
   if (colormap == NULL)
     {
       colormap = gdk_window_get_colormap(widget->window);
-      for (p=0; p<params; p++)
+      for (p=0; p<chart_glob.params; p++)
 	{
-	  gdk_color_alloc(colormap, &chart_param[p]->gdk_color);
-	  chart_param[p]->gdk_gc = gdk_gc_new(widget->window);
+	  gdk_color_alloc(colormap, &chart_glob.parray[p]->gdk_color);
+	  chart_glob.parray[p]->gdk_gc = gdk_gc_new(widget->window);
 	  if (include_slider)
-	    slider_param[p]->gdk_gc = chart_param[p]->gdk_gc;
+	    slider_glob.parray[p]->gdk_gc = chart_glob.parray[p]->gdk_gc;
 	  gdk_gc_set_foreground(
-	    chart_param[p]->gdk_gc, &chart_param[p]->gdk_color);
+	    chart_glob.parray[p]->gdk_gc, &chart_glob.parray[p]->gdk_color);
 	  if (include_slider)
 	    gdk_gc_set_foreground(
-	      slider_param[p]->gdk_gc, &chart_param[p]->gdk_color);
+	      slider_glob.parray[p]->gdk_gc, &chart_glob.parray[p]->gdk_color);
 	}
     }
 
@@ -925,7 +1012,10 @@ cfg_handler(GtkWidget *widget, GdkEventConfigure *e, gpointer whence)
   gdk_draw_rectangle(
     pixmap, widget->style->bg_gc[GTK_WIDGET_STATE(widget)], TRUE, 0,0, w,h);
 
-  return 0;
+  /* Adjust top values appropriately for the new chart window width. */
+  readjust_top_for_width(w);
+
+  return FALSE;
 }
 
 /*
@@ -943,8 +1033,8 @@ overlay_tick_marks(GtkWidget *widget, int minor, int major)
 	int d = 1;
 	if (major && --q == 0)
 	  d += 2, q = major;
-	gdk_draw_line(
-	  widget->window, widget->style->black_gc, p, c-d, p, c+d);
+	gdk_draw_line(widget->window, widget->style->black_gc,
+	  p, c-d, p, c+d);
       }
 }
 
@@ -965,69 +1055,82 @@ chart_expose_handler(GtkWidget *widget, GdkEventExpose *event)
   /* Plot as much of the value history as is available and as the
      window will hold.  Plot points from newest to oldest until we run
      out of data or the window is full. */
-  for (p=params; p--; )
-    {
-      float top = chart_param[p]->top;
-      int n = w > chart_param[p]->num_val ? w : chart_param[p]->num_val;
-      int i, j = chart_param[p]->new_val;
-      int x0, x1 = w - 1;
-      int y0, y1 = val2y(chart_param[p]->val[j], top, h);
-      for (i=0; i<n; i++)
-	{
-          if (--j < 0) j = chart_param[p]->max_val - 1;
-	  x0 = x1; y0 = y1;
-	  x1 = x0 - 1;
-          y1 = val2y(chart_param[p]->val[j], top, h);
-	  gdk_draw_line(pixmap, chart_param[p]->gdk_gc, x0,y0, x1,y1);
-	}
-    }
+  for (p = chart_glob.params; p--; )
+    if (chart_glob.parray[p]->active)
+      {
+	float top = chart_glob.parray[p]->top;
+	int n = w < chart_glob.num_val ? w : chart_glob.num_val;
+	int i, j = chart_glob.new_val;
+	int x0, x1 = w - 1;
+	int y0, y1 = val2y(chart_glob.parray[p]->val[j], top, h);
+	for (i=0; i<n; i++)
+	  {
+	    if (--j < 0) j = chart_glob.max_val - 1;
+	    x0 = x1; y0 = y1;
+	    x1 = x0 - 1;
+	    y1 = val2y(chart_glob.parray[p]->val[j], top, h);
+	    gdk_draw_line(pixmap, chart_glob.parray[p]->gdk_gc, x0,y0, x1,y1);
+	  }
+      }
 
   /* Draw the exposed portions of the pixmap in its window. */
   gdk_draw_pixmap(
-    widget->window, widget->style->fg_gc[GTK_WIDGET_STATE(widget)],
-    pixmap,
+    widget->window, widget->style->fg_gc[GTK_WIDGET_STATE(widget)], pixmap,
     event->area.x, event->area.y,
     event->area.x, event->area.y,
     event->area.width, event->area.height);
 
   overlay_tick_marks(widget, minor_tick, major_tick);
 
-  return 0;
+  return FALSE;
 }
 
+static int chart_ticks;
 static gint
 chart_timer_handler(GtkWidget *widget)
 {
-  int p, w = widget->allocation.width, h = widget->allocation.height;
-
-  /* Shift the pixmap one pixel left, and clear the RHS  */
-  gdk_window_copy_area(
-    pixmap, widget->style->fg_gc[GTK_WIDGET_STATE(widget)], 0, 0,
-    pixmap, 1, 0, w-1, h);
-  gdk_draw_rectangle(
-    pixmap, widget->style->bg_gc[GTK_WIDGET_STATE(widget)], TRUE, 
-    w-1, 0, 1, h);
-
-  /* Collect new parameter values and plot each in the RHS of the
-     pixmap. */
-  update_values(&chart_glob);
-  for (p=params; p--; )
+  int rescale, p, w = widget->allocation.width, h = widget->allocation.height;
+  chart_ticks++;
+  /* Collect new parameter values.  If the scale has changed, clear
+     the pixmap and fake an expose event to reload the pixmap.
+     Otherwise plot each value in the RHS of the pixmap. */
+  rescale = update_values(&chart_glob, include_slider? &slider_glob: NULL);
+  if (rescale)
     {
-      float top = chart_param[p]->top;
-      int i = chart_param[p]->new_val;
-      int m = chart_param[p]->max_val;
-      int y1 = val2y(chart_param[p]->val[i], top, h);
-      int y0 = val2y(chart_param[p]->val[(i+m-1) % m], top, h);
-      gdk_draw_line(pixmap, chart_param[p]->gdk_gc, w-2,y0, w-1,y1);
+      GdkEventExpose expose;
+      expose.area.x = expose.area.y = 0;
+      expose.area.width = w; expose.area.height = h;
+      gdk_draw_rectangle(
+	pixmap, widget->style->bg_gc[GTK_WIDGET_STATE(widget)],
+	TRUE, 0,0, w-1,h-1);
+      chart_expose_handler(widget, &expose);
     }
-
-  gdk_draw_pixmap(
-    widget->window, widget->style->fg_gc[GTK_WIDGET_STATE(widget)], 
-    pixmap, 0,0, 0,0, w,h);
-
-  overlay_tick_marks(widget, minor_tick, major_tick);
-
-  return 1;
+  else
+    {
+      /* Shift the pixmap one pixel left, and clear the RHS  */
+      gdk_window_copy_area(
+	pixmap, widget->style->fg_gc[GTK_WIDGET_STATE(widget)], 0, 0,
+	pixmap, 1, 0, w-1, h);
+      gdk_draw_rectangle(
+	pixmap, widget->style->bg_gc[GTK_WIDGET_STATE(widget)],
+	TRUE, w-1, 0, 1, h);
+      for (p = chart_glob.params; p--; )
+	if (chart_glob.parray[p]->active)
+	  {
+	    float top = chart_glob.parray[p]->top;
+	    int i = chart_glob.new_val;
+	    int m = chart_glob.max_val;
+	    int y1 = val2y(chart_glob.parray[p]->val[i], top, h);
+	    int y0 = val2y(chart_glob.parray[p]->val[(i+m-1) % m], top, h);
+	    gdk_draw_line(pixmap, chart_glob.parray[p]->gdk_gc,
+	      w-2,y0, w-1,y1);
+	  }
+      gdk_draw_pixmap(
+	widget->window, widget->style->fg_gc[GTK_WIDGET_STATE(widget)], 
+	pixmap, 0,0, 0,0, w,h);
+      overlay_tick_marks(widget, minor_tick, major_tick);
+    }
+  return TRUE;
 }
 
 static gint
@@ -1035,56 +1138,71 @@ slider_redraw(GtkWidget *widget)
 {
   int p, w = widget->allocation.width, h = widget->allocation.height;
   GdkGC *bg = widget->style->bg_gc[GTK_WIDGET_STATE(widget)];
-  gdk_draw_rectangle(widget->window, bg, TRUE, 0,0, w-1,h-1);
-  for (p=params; p--; )
-    {
-      GdkPoint tri[3];
-      int y = val2y(
-	slider_param[p]->val[slider_param[p]->new_val],
-	slider_param[p]->top, h);
-      tri[0].x = 1; tri[0].y = y;
-      tri[1].x = w-1; tri[1].y = y-w/2;
-      tri[2].x = w-1; tri[2].y = y+w/2;
-      gdk_draw_polygon(widget->window, slider_param[p]->gdk_gc, TRUE, tri, 3);
-    }
-  //gdk_draw_line(widget->window, widget->style->black_gc, 0,0, 0,h-1);
-
-  return 0;
+  gdk_draw_rectangle(widget->window, bg, TRUE, 0,0, w,h);
+  for (p = slider_glob.params; p--; )
+    // FIX THIS: use slider_glob instead of chart_glob if feasable.
+    if (chart_glob.parray[p]->active)
+      {
+	GdkPoint tri[3];
+	int y = val2y(
+	  slider_glob.parray[p]->val[slider_glob.new_val],
+	  slider_glob.parray[p]->top, h);
+	tri[0].x = 0; tri[0].y = y;
+	tri[1].x = w; tri[1].y = y-w/2;
+	tri[2].x = w; tri[2].y = y+w/2;
+	gdk_draw_polygon(
+	  widget->window, slider_glob.parray[p]->gdk_gc, TRUE, tri, 3);
+      }
+  return FALSE;
 }
 
 static gint
 slider_expose_handler(GtkWidget *widget, GdkEventExpose *event)
 {
   slider_redraw(widget);
-  return 0;
+  return FALSE;
 }
 
+static int slider_ticks;
 static gint
 slider_timer_handler(GtkWidget *widget)
 {
-  update_values(&slider_glob);
+  slider_ticks++;
+  update_values(&slider_glob, NULL);
   slider_redraw(widget);
-  return 1;
+  return TRUE;
 }
 
 static gint
 exit_callback(void)
 {
   gtk_main_quit();
-  return 1;
+  return TRUE;
 }
 
+static void click_handler(GtkWidget *widget, GdkEvent *event, gpointer unused);
 GnomeUIInfo file_menu[] =
 {
+#if 0
+  // FIX THIS: Trying to use an event handler (click_handler) as a
+  // callback doesn't work.
   {
-    GNOME_APP_UI_ITEM, 
-    N_("E_xit"), N_("Terminate the stripchart program"), 
+    GNOME_APP_UI_ITEM, N_("Params"), N_("Examine and adjust parameters"), 
+    click_handler, NULL, NULL, 
+    GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_EXIT, 0, 0, NULL
+  },
+#endif
+  {
+    GNOME_APP_UI_ITEM, N_("Exit"), N_("Terminate the stripchart program"), 
     exit_callback, NULL, NULL, 
-    GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_EXIT, 'x', GDK_CONTROL_MASK, NULL
+    GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_EXIT, 0, 0, NULL
   },
   GNOMEUIINFO_END
 };
 
+/*
+ * about_callback -- pops up the standard "about" window.
+ */
 static gint
 about_callback(void)
 {
@@ -1106,8 +1224,7 @@ about_callback(void)
 GnomeUIInfo help_menu[] =
 {
   {
-    GNOME_APP_UI_ITEM,
-    N_("_About"), N_("Info about the striphart program"),
+    GNOME_APP_UI_ITEM, N_("About"), N_("Info about the striphart program"),
     about_callback, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL
   },
@@ -1118,8 +1235,8 @@ GnomeUIInfo help_menu[] =
 
 GnomeUIInfo mainmenu[] =
 {
-  GNOMEUIINFO_SUBTREE(N_("_File"), file_menu),
-  GNOMEUIINFO_SUBTREE(N_("_Help"), help_menu),
+  GNOMEUIINFO_SUBTREE(N_("File"), file_menu),
+  GNOMEUIINFO_SUBTREE(N_("Help"), help_menu),
   GNOMEUIINFO_END
 };
 
@@ -1135,13 +1252,135 @@ help_menu_action(GtkWidget *menu)
 }
 
 /*
+ * Preferences stuff...
+ */
+static int param_chart_width;
+static GtkWidget *param_renorm;
+static GtkWidget **param_active = NULL;
+
+static void
+prefs_apply(GtkWidget *button, gpointer dialog)
+{
+  int p;
+  for (p = 0; p < chart_glob.params; p++)
+    {
+      chart_glob.parray[p]->active =
+	GTK_TOGGLE_BUTTON(param_active[p])->active;
+      if (include_slider)
+	slider_glob.parray[p]->active =
+	  GTK_TOGGLE_BUTTON(param_active[p])->active;
+    }
+  if (GTK_TOGGLE_BUTTON(param_renorm)->active)
+    readjust_top_for_width(param_chart_width);
+  // FIX THIS: force an exposure here.
+}
+
+static void
+prefs_cancel(GtkWidget *button, gpointer dialog)
+{
+  gnome_dialog_close(GNOME_DIALOG(dialog));
+}
+
+static void
+prefs_okay(GtkWidget *button, gpointer dialog)
+{
+  prefs_apply(button, dialog);
+  prefs_cancel(button, dialog);
+}
+
+/*
+ * prefs_callback -- opens a dialog window for examining and adjusting
+ * chart parameters.
+ */
+static gint
+prefs_callback(GtkWidget *chart, gpointer unused)
+{
+  int p;
+  GtkWidget *dialog, *notebook, *vbox, *clist, *active, *label;
+	 
+  param_chart_width = chart->allocation.width;
+  notebook = gtk_notebook_new();
+  // gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_TOP);
+
+  param_active = realloc(
+    param_active, chart_glob.params * sizeof(*param_active));
+  for (p = 0; p < chart_glob.params; p++)
+    {
+      char *row[2], *ttls[2] = { "Param", "Value" }, range[100];
+	  
+      clist = gtk_clist_new_with_titles(NELS(ttls), ttls);
+      /* FIX THIS: set width to ~20 chars wide, in pixels. */
+      gtk_clist_set_column_width(GTK_CLIST(clist), 0, 120);
+      row[0] = "Identifier"; row[1] = chart_glob.parray[p]->ident;
+      gtk_clist_append(GTK_CLIST(clist), row);
+      row[0] = "Color"; row[1] = chart_glob.parray[p]->color_name;
+      gtk_clist_append(GTK_CLIST(clist), row);
+      row[0] = "Filename"; row[1] = chart_glob.parray[p]->filename;
+      gtk_clist_append(GTK_CLIST(clist), row);
+      row[0] = "Pattern"; row[1] = chart_glob.parray[p]->pattern;
+      gtk_clist_append(GTK_CLIST(clist), row);
+      row[0] = "Equation"; row[1] = chart_glob.parray[p]->eqn;
+      gtk_clist_append(GTK_CLIST(clist), row);
+      row[0] = "Expected range"; row[1] = range;
+      sprintf(range, "%g ... %g",
+	      chart_glob.parray[p]->lo, chart_glob.parray[p]->hi);
+      gtk_clist_append(GTK_CLIST(clist), row);
+      row[0] = "Encountered range"; row[1] = range;
+      sprintf(range, "%g ... %g",
+	      chart_glob.parray[p]->min, chart_glob.parray[p]->max);
+      gtk_clist_append(GTK_CLIST(clist), row);
+      row[0] = "Displayed range"; row[1] = range;
+      sprintf(range, "%g ... %g",
+	      chart_glob.parray[p]->bot, chart_glob.parray[p]->top);
+      gtk_clist_append(GTK_CLIST(clist), row);
+      gtk_widget_show(clist);
+
+      param_active[p] = active = gtk_check_button_new_with_label("Active");
+      gtk_toggle_button_set_state(
+	GTK_TOGGLE_BUTTON(active), chart_glob.parray[p]->active);
+      gtk_widget_show(active);
+
+      vbox = gtk_vbox_new(FALSE, 0);
+      gtk_box_pack_start(GTK_BOX(vbox), clist, TRUE, TRUE, 0);
+      gtk_box_pack_start(GTK_BOX(vbox), active, TRUE, TRUE, 0);
+      gtk_widget_show(vbox);
+
+      label = gtk_label_new(chart_glob.parray[p]->ident);
+      gtk_widget_show(label);
+      gtk_notebook_append_page(GTK_NOTEBOOK(notebook), vbox, label);
+    }
+  gtk_widget_show(notebook);
+
+  dialog = gnome_dialog_new("Gnome Stripchart Parameters",
+    GNOME_STOCK_BUTTON_OK, GNOME_STOCK_BUTTON_APPLY,
+    GNOME_STOCK_BUTTON_CANCEL, GNOME_STOCK_BUTTON_HELP, NULL);
+  gnome_dialog_set_parent(GNOME_DIALOG(dialog), GTK_WINDOW(chart));
+  gnome_dialog_button_connect(GNOME_DIALOG(dialog), 0,
+    GTK_SIGNAL_FUNC(prefs_okay), GNOME_DIALOG(dialog));
+  gnome_dialog_button_connect(GNOME_DIALOG(dialog), 1,
+    GTK_SIGNAL_FUNC(prefs_apply), GNOME_DIALOG(dialog));
+  gnome_dialog_button_connect(GNOME_DIALOG(dialog), 2,
+    GTK_SIGNAL_FUNC(prefs_cancel), GNOME_DIALOG(dialog));
+  gnome_dialog_button_connect(GNOME_DIALOG(dialog), 3,
+    GTK_SIGNAL_FUNC(help_menu_action), GNOME_DIALOG(dialog));
+  gtk_container_add(GTK_CONTAINER(GNOME_DIALOG(dialog)->vbox), notebook);
+
+  param_renorm = gtk_check_button_new_with_label("Renormalize");
+  gtk_widget_show(param_renorm);
+  gtk_container_add(GTK_CONTAINER(GNOME_DIALOG(dialog)->vbox), param_renorm);
+
+  gtk_widget_show(dialog);
+  return 1;
+}
+
+/*
  * click_handler -- activated on any mouse click in the chart window.
  * Creates and pops up a menu in response to the mouse click. 
  */
 static void
-click_handler(GtkWidget *widget, GdkEvent *event, gpointer data)
+click_handler(GtkWidget *widget, GdkEvent *event, gpointer unused)
 {
-  static GtkWidget *menu=NULL, *menu_item;
+  static GtkWidget *menu_item, *menu = NULL;
 
   if (menu == NULL)
     {
@@ -1159,13 +1398,20 @@ click_handler(GtkWidget *widget, GdkEvent *event, gpointer data)
         GTK_SIGNAL_FUNC(about_callback), NULL);
       gtk_widget_show(menu_item);
 
+      menu_item = gtk_menu_item_new_with_label("Params");
+      gtk_menu_append(GTK_MENU(menu), menu_item);
+      gtk_signal_connect_object(GTK_OBJECT(menu_item), "activate",
+        GTK_SIGNAL_FUNC(prefs_callback), GTK_OBJECT(widget));
+      gtk_widget_show(menu_item);
+
       menu_item = gtk_menu_item_new_with_label("Exit");
       gtk_menu_append(GTK_MENU(menu), menu_item);
       gtk_signal_connect_object(GTK_OBJECT(menu_item), "activate",
         GTK_SIGNAL_FUNC(exit_callback), NULL);
       gtk_widget_show(menu_item);
     }
-  // FIX THIS: Should use gnome-popup-menu() instead.
+
+  /* FIX THIS: Should we use gnome_popup_menu() instead? */
   gtk_menu_popup(
     GTK_MENU(menu), NULL, NULL, NULL, NULL, 
     ((GdkEventButton*)event)->button, ((GdkEventButton*)event)->time);
@@ -1180,37 +1426,20 @@ gtk_graph(void)
 {
   GtkWidget *frame, *h_box, *drawing;
   const int slide_w=10;  /* Set the slider width. */
-
-  /* Create a top-level window. Set the title and establish delete and
-     destroy event handlers. */
-  frame = gnome_app_new("gstripchart", "Gnome stripchart viewer");
-  gtk_signal_connect(
-    GTK_OBJECT(frame), "destroy",
-    GTK_SIGNAL_FUNC(destroy_handler), NULL);
-  gtk_signal_connect(
-    GTK_OBJECT(frame), "delete_event",
-    GTK_SIGNAL_FUNC(destroy_handler), NULL);
-
-  /* Set up the pop-up menu handler.  If a mennubar was requested, set
-     that up as well. */
-  gtk_signal_connect(
-    GTK_OBJECT(frame), "button_press_event", 
-    GTK_SIGNAL_FUNC(click_handler), NULL);
-  if (include_menubar)
-    gnome_app_create_menus(GNOME_APP(frame), mainmenu);
+  const int min_w=80, min_h=50; /* minimum width and height. */
 
   /* Create a drawing area.  Add it to the window, show it, and
      set its expose event handler. */
   drawing = gtk_drawing_area_new();
   gtk_drawing_area_size(GTK_DRAWING_AREA(drawing), geometry_w, geometry_h);
-
-  h_box = gtk_hbox_new(FALSE, 0);
-  gnome_app_set_contents(GNOME_APP(frame), h_box);
-  gtk_box_pack_start(GTK_BOX(h_box), drawing, TRUE, TRUE, 0);
+  gtk_widget_set_events(drawing, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK);
   gtk_widget_show(drawing);
 
+  h_box = gtk_hbox_new(FALSE, 0);
+  gtk_box_pack_start(GTK_BOX(h_box), drawing, TRUE, TRUE, 0);
+
   gtk_signal_connect(GTK_OBJECT(drawing), "configure_event", 
-    (GtkSignalFunc)cfg_handler, "draw");
+    (GtkSignalFunc)config_handler, "draw");
   gtk_signal_connect(GTK_OBJECT(drawing), "expose_event", 
     (GtkSignalFunc)chart_expose_handler, NULL);
   if (include_slider)
@@ -1233,25 +1462,44 @@ gtk_graph(void)
         (GtkFunction)slider_timer_handler, slider);
     }
   gtk_widget_show(h_box);
-  gtk_widget_set_events(drawing, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK);
+
+  /* Create a top-level window. Set the title, minimum size (_usize),
+     initial size (_default_size), and establish delete and destroy
+     event handlers. */
+  frame = gnome_app_new("gstripchart", "Gnome stripchart viewer");
+  gtk_widget_set_usize(frame, min_w, min_h);
+  gtk_window_set_default_size(GTK_WINDOW(frame), geometry_w, geometry_h);
+  gtk_signal_connect(
+    GTK_OBJECT(frame), "destroy",
+    GTK_SIGNAL_FUNC(destroy_handler), NULL);
+  gtk_signal_connect(
+    GTK_OBJECT(frame), "delete_event",
+    GTK_SIGNAL_FUNC(destroy_handler), NULL);
+
+  /* Set up the pop-up menu handler.  If a mennubar was requested, set
+     that up as well.  Pack the whole works into the top-level frame. */
+  gtk_signal_connect(
+    GTK_OBJECT(frame), "button_press_event", 
+    GTK_SIGNAL_FUNC(click_handler), NULL);
+  if (include_menubar)
+    gnome_app_create_menus(GNOME_APP(frame), mainmenu);
+  gnome_app_set_contents(GNOME_APP(frame), h_box);
 
   /* Create timer events for the drawing and slider widgets. */
   gtk_timeout_add((int)(1000 * chart_interval),
     (GtkFunction)chart_timer_handler, drawing);
 
-  /* This mess is a failed attempt to handle negative position specs.
-     It fails to accomodate the size of the window decorations. And
-     its ugly.  And there's got to be a better way.  Other than that,
-     it's perfect.  FIX THIS */
+  /* FIX THIS: This mess is a failed attempt to handle negative
+     position specs.  It fails to accomodate the size of the window
+     decorations. And its ugly.  And there's got to be a better way.
+     Other than that, it's perfect.  */
   if (geometry_flags & (XNegative | YNegative))
-  {
-    int x, y, w, h, d;
-    gdk_window_get_geometry(NULL, &x, &y, &w, &h, &d);
-    if (XNegative)
-      geometry_x = w + geometry_x - geometry_w - (include_slider? slide_w: 0);
-    if (YNegative)
-      geometry_y = h + geometry_y - geometry_h;
-  }
+    {
+      if (XNegative)
+	geometry_x = root_width  + geometry_x - geometry_w - slide_w;
+      if (YNegative)
+	geometry_y = root_height + geometry_y - geometry_h;
+    }
   if (geometry_flags & (XValue | YValue))
     gtk_widget_set_uposition(frame, geometry_x, geometry_y);
 
@@ -1263,7 +1511,8 @@ gtk_graph(void)
 static int
 proc_arg(int opt, const char *arg)
 {
-  printf("proc_arg: opt=%c, arg=%s\n", opt, arg);
+  // printf("proc_arg: opt=%c (0x%02x), arg=%s\n", isgraph(c)?c:'.', opt, arg);
+
   switch (opt)
     {
     case 'f': config_file = strdup(arg); break;
@@ -1302,8 +1551,9 @@ popt_arg_extractor(
 {
   if (proc_arg(opt->val, arg))
     {
-      // FIX THIS: the prog name includes trailing junk, and long
-      // options aren't shown but all the Gnome internal options are.
+      /* FIX THIS: the prog name includes trailing junk, and although
+       * the long options aren't shown, all of the Gnome internal
+       * options are. */
       poptPrintUsage(state, stderr, 0);
       exit(EXIT_FAILURE);
     }
@@ -1312,26 +1562,26 @@ popt_arg_extractor(
 static struct
 poptOption arglist[] =
 {
-  { NULL,              '\0', POPT_ARG_CALLBACK, popt_arg_extractor, '\0' },
-  { "geometry",         'g', POPT_ARG_STRING, NULL, 'g',
+  { NULL,             '\0', POPT_ARG_CALLBACK, popt_arg_extractor },
+  { "geometry",        'g', POPT_ARG_STRING, NULL, 'g',
     N_("GEO"), N_("geometry") },
-  { "config-file",	'f', POPT_ARG_STRING, NULL, 'f',
-    N_("FILE"), N_("configuration file")	   },
-  { "chart-interval",	'i', POPT_ARG_STRING, NULL, 'i',
-    N_("SECS"), N_("chart update interval")   },
-  { "chart-filter",	'I', POPT_ARG_STRING, NULL, 'I',
-    N_("SECS"), N_("chart LP filter TC")      },
-  { "slider-interval",	'j', POPT_ARG_STRING, NULL, 'j',
-    N_("SECS"), N_("slider update interval")  },
-  { "slider-filter",	'J', POPT_ARG_STRING, NULL, 'J',
-    N_("SECS"), N_("slider LP filter TC")     },
-  { "menubar",		'M', POPT_ARG_NONE, NULL, 'M',
-    NULL,       N_("add menubar")		   },
-  { "omit-slider",	'S', POPT_ARG_NONE, NULL, 'S',
-    NULL,       N_("omit slider")		   },
-  { "display-type",	't', POPT_ARG_STRING, NULL, 't',
-    N_("TYPE"), N_("gtk|text|graph|none")	   },
-  { NULL,		'\0', 0, NULL, 0 }
+  { "config-file",     'f', POPT_ARG_STRING, NULL, 'f',
+    N_("FILE"), N_("configuration file") },
+  { "chart-interval",  'i', POPT_ARG_STRING, NULL, 'i',
+    N_("SECS"), N_("chart update interval") },
+  { "chart-filter",    'I', POPT_ARG_STRING, NULL, 'I',
+    N_("SECS"), N_("chart LP filter TC") },
+  { "slider-interval", 'j', POPT_ARG_STRING, NULL, 'j',
+    N_("SECS"), N_("slider update interval") },
+  { "slider-filter",   'J', POPT_ARG_STRING, NULL, 'J',
+    N_("SECS"), N_("slider LP filter TC") },
+  { "menubar",         'M', POPT_ARG_NONE, NULL, 'M',
+    NULL,       N_("add menubar") },
+  { "omit-slider",     'S', POPT_ARG_NONE, NULL, 'S',
+    NULL,       N_("omit slider") },
+  { "display-type",    't', POPT_ARG_STRING, NULL, 't',
+    N_("TYPE"), N_("gtk|text|graph|none") },
+  { NULL,             '\0', 0, NULL, 0 }
 };
 
 /*
@@ -1358,43 +1608,49 @@ main(int argc, char **argv)
      default or as specified on the command line. */
   gnome_init_with_popt_table(
     prog_name, prog_version, argc, argv, arglist, 0, &popt_context);
-  params = read_param_defns(&chart_param);
+
+  root_width = 1;
+  if (display == gtk_graph)
+    gdk_window_get_geometry(NULL, NULL, NULL, &root_width, &root_height, NULL);
+  chart_glob.max_val = root_width;
+  chart_glob.new_val = chart_glob.num_val = 0;
+  chart_glob.params = read_param_defns(&chart_glob);
+  chart_glob.lpf_const = exp(-chart_filter / chart_interval);
+  update_values(&chart_glob, NULL);
 
   /* Next, we re-parse the command line options so that they'll
      override any values set in the configuration file. */
   popt_context = poptGetContext(prog_name, argc, argv, arglist, 0);
-  while ((c = poptGetNextOpt(popt_context)) > 0)
-    proc_arg(c, poptGetOptArg(popt_context));
-
-  chart_glob.params = params;
-  chart_glob.parray = chart_param;
-  chart_glob.lpf_const = exp(-chart_filter / chart_interval);
-  update_values(&chart_glob);
+  while ((c = poptGetNextOpt(popt_context)) != -1)
+    if (c > 0)
+      proc_arg(c, poptGetOptArg(popt_context));
 
   /* Clone chart_param into a new slider_param array, then override
      the next, last, and val arrays and associated sizing values. */
   if (display == gtk_graph && include_slider)
     {
       int p;
-      slider_param = malloc(params * sizeof(*slider_param));
-      for (p=0; p<params; p++)
+      slider_glob = chart_glob;
+      slider_glob.max_val = 1;	/* no history whatsoever */
+      slider_glob.num_val = slider_glob.new_val = 0;
+      slider_glob.parray =
+	malloc(slider_glob.params * sizeof(*slider_glob.parray));
+      for (p = 0; p < slider_glob.params; p++)
 	{
-	  slider_param[p] = malloc(sizeof(*slider_param[p]));
-	  *slider_param[p] = *chart_param[p];
-	  slider_param[p]->max_val = 1;
-	  slider_param[p]->num_val = 0;
-	  slider_param[p]->new_val = 0;
-	  slider_param[p]->val = 
-	    malloc(slider_param[p]->max_val * sizeof(slider_param[p]->val[0]));
-	  slider_param[p]->now =
-	    malloc(slider_param[p]->vars * sizeof(slider_param[p]->now[0]));
-	  slider_param[p]->last =
-	    malloc(slider_param[p]->vars * sizeof(slider_param[p]->last[0]));
+	  slider_glob.parray[p] = malloc(sizeof(*slider_glob.parray[p]));
+	  *slider_glob.parray[p] = *chart_glob.parray[p];
+	  slider_glob.parray[p]->val = 
+	    malloc(slider_glob.max_val *
+		   sizeof(slider_glob.parray[p]->val[0]));
+	  slider_glob.parray[p]->now =
+	    malloc(slider_glob.parray[p]->vars *
+		   sizeof(slider_glob.parray[p]->now[0]));
+	  slider_glob.parray[p]->last =
+	    malloc(slider_glob.parray[p]->vars *
+		   sizeof(slider_glob.parray[p]->last[0]));
 	}
-      slider_glob.params = params;
-      slider_glob.parray = slider_param;
       slider_glob.lpf_const = exp(-slider_filter / slider_interval);
-      update_values(&slider_glob);
+      update_values(&slider_glob, NULL);
     }
 
   post_init = 1;

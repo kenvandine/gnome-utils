@@ -1,7 +1,42 @@
-1998-12-19  Herbert Valerio Riedel  <hvr@hvrlab.ml.org>
+1998-12-26  John Kodis  <kodis@jagunet.com>
 
-	* gstripchart.c (update_values): added explicit braces to
-	ambiguous if-clause
+	* gstripchart.c (readjust_top_for_width): New function to readjust
+	the top values for the current display width.  Called from the
+	chart window configuration event handler and from the params menu
+	item okay and apply handlers.
+
+	* gstripchart.c: Performed massive code rearrangement to move the
+	num_val, new_val, and max_val items from the Param struct to the
+	Param_glob struct.  Also eliminated the evil params, chart_param,
+	and slider_param file-scope globals.
+
+1998-12-25  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (chart_timer_handler): Fake an exposure event to
+	redraw the chart pixmap whenever any scale value changes.
+
+1998-12-25  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (cap): New function used by update_values() to
+	force top values to take on a value of the form {1,2,5}*10ex.
+
+1998-12-20  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (main): Hacked on popt stuff to ignore gnome
+	options when processing gstripchart-specific options.  Usage is
+	still broken.
+
+1998-12-20  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (prefs_callback): Added code to display the
+	settings of a parameter, and to toggle the active flag for each
+	parameter.
+
+1998-12-19  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (gtk_graph): Added calls to
+	gtk_widget_set_{usize,default_size} to establish the minimum and
+	initial sizes of the main window.
 
 1998-12-13  John Kodis  <kodis@jagunet.com>
 
