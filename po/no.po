@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.1\n"
-"POT-Creation-Date: 2001-08-29 10:12+0200\n"
-"PO-Revision-Date: 2001-08-13 21:53+0200\n"
+"POT-Creation-Date: 2001-08-30 09:49+0200\n"
+"PO-Revision-Date: 2001-08-30 09:49+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -552,7 +552,7 @@ msgid "Cross-reference:"
 msgstr "Kryssreferanse:"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:519
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:570
 #: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:195
 msgid "Preferences"
 msgstr "Innstillinger"
@@ -642,7 +642,7 @@ msgstr "Kunne ikke lese geometristrengen '%s'"
 msgid "Specify the geometry of the window."
 msgstr "Spesifiserr geometrien til vinduet."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:235 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:308 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
@@ -882,15 +882,15 @@ msgstr "Kommandolinje ødelagt"
 msgid "No command for this mime type"
 msgstr "Ingen kommando for denne MIME-typen"
 
-#: gtt/app.c:120 gtt/app.c:232
+#: gtt/app.c:104 gtt/app.c:213
 msgid "no project selected"
 msgstr "ingen prosjekter valgt"
 
-#: gtt/app.c:221
+#: gtt/app.c:202
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:264 mini-utils/gless/gless.c:423
+#: gtt/app.c:245 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -898,49 +898,33 @@ msgstr ""
 "Kunne ikke forstå geometrien (posisjonen og størrelsen)\n"
 " spesifisert på kommandolinjen"
 
-#: gtt/clist.c:171
-msgid "Total"
-msgstr "Total"
-
-#: gtt/clist.c:172
-msgid "Today"
-msgstr "Idag"
-
-#: gtt/clist.c:173 gtt/menucmd.c:121
-msgid "Project Title"
-msgstr "Prosjekttittel"
-
-#: gtt/clist.c:174 gtt/menucmd.c:122 stripchart/params.c:654
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: gtt/file-io.c:320
+#: gtt/file-io.c:331
 msgid "project %t started"
 msgstr "prosjekt %t startet"
 
-#: gtt/file-io.c:323
+#: gtt/file-io.c:334
 msgid "stopped project %t"
 msgstr "stoppet prosjekt %t"
 
 #. Translators: This is a "time format", that is
 #. * format on how to print the elapsed time with
 #. * hours:minutes:seconds.
-#: gtt/file-io.c:533
+#: gtt/file-io.c:530
 #, c-format
 msgid "%d:%02d:%02d"
 msgstr "%d:%02d:%02d"
 
-#: gtt/log.c:54
+#: gtt/log.c:53
 #, c-format
 msgid "Cannot open logfile %s for append"
 msgstr "Kan ikke legge til data i loggfil %s"
 
 #. Translators: Format to use in the gtt logfile
-#: gtt/log.c:63
+#: gtt/log.c:62
 msgid "%b %d %H:%M:%S"
 msgstr "%b %d %H:%M:%S"
 
-#: gtt/log.c:83 gtt/log.c:237
+#: gtt/log.c:83 gtt/log.c:244
 msgid "program started"
 msgstr "program startet"
 
@@ -949,11 +933,11 @@ msgid "no description"
 msgstr "ingen beskrivelse"
 
 #. log_if_equal
-#: gtt/log.c:229
+#: gtt/log.c:236
 msgid "program exited"
 msgstr "program avsluttet"
 
-#: gtt/main.c:102
+#: gtt/main.c:106
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -961,15 +945,15 @@ msgstr ""
 "Det ser ut som om GtimeTracker allerede kjører.\n"
 "Trykk OK for å starte GTimeTracker likevel, eller avbryt for å avslutte."
 
-#: gtt/main.c:113
+#: gtt/main.c:117
 msgid "Cannot create pid-file!"
 msgstr "Kan ikke opprette pid-fil!"
 
-#: gtt/main.c:145
+#: gtt/main.c:183
 msgid "Error"
 msgstr "Feil"
 
-#: gtt/main.c:146
+#: gtt/main.c:184
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -977,43 +961,56 @@ msgstr ""
 "En feil oppstod under lesing av konfigurasjonsfilen.\n"
 "Skal jeg lage en ny konfigurasjon?"
 
-#: gtt/main.c:235
+#: gtt/main.c:308
 msgid "Specify geometry"
 msgstr "Spesifiser geometri"
 
-#: gtt/main.c:237
+#: gtt/main.c:310
 msgid "Select a project on startup"
 msgstr "Velg et prosjekt ved oppstart"
 
-#: gtt/main.c:237
+#: gtt/main.c:310
 msgid "PROJECT"
 msgstr "PROSJEKT"
 
-#: gtt/menucmd.c:36 gtt/menucmd.c:167 gtt/menucmd.c:199
+#: gtt/main.c:343 gtt/menucmd.c:50 gtt/menucmd.c:58 gtt/menucmd.c:225
+#: gtt/menucmd.c:263
 msgid "Warning"
 msgstr "Advarsel"
 
-#: gtt/menucmd.c:37 gtt/menucmd.c:201
-msgid "I could not write the configuration file!"
-msgstr "Jeg kunne ikke skrive konfigurasjonsfilen!"
+#: gtt/menucmd.c:51 gtt/menucmd.c:265
+msgid "Could not write the configuration file!"
+msgstr "Kunne ikke skrive konfigurasjonsfilen!"
 
-#: gtt/menucmd.c:68
+#: gtt/menucmd.c:59
+msgid "Unknown error occurred"
+msgstr "Ukjent feil oppsto"
+
+#: gtt/menucmd.c:107
 msgid "Time tracking tool for GNOME"
 msgstr "Tidsbrukverktøy for GNOME"
 
-#: gtt/menucmd.c:115 gtt/toolbar.c:143
+#: gtt/menucmd.c:157 gtt/toolbar.c:143
 msgid "New Project..."
 msgstr "Nytt prosjekt..."
 
-#: gtt/menucmd.c:169
+#: gtt/menucmd.c:163
+msgid "Project Title"
+msgstr "Prosjekttittel"
+
+#: gtt/menucmd.c:164 stripchart/params.c:654
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: gtt/menucmd.c:227
 msgid "I could not read the configuration file"
 msgstr "Jeg kunne ikke lese konfigurasjonsfilen"
 
-#: gtt/menucmd.c:183 gtt/toolbar.c:150
+#: gtt/menucmd.c:241 gtt/toolbar.c:150
 msgid "Reload Configuration File"
 msgstr "Les konfigurasjonsfilen på nytt"
 
-#: gtt/menucmd.c:184
+#: gtt/menucmd.c:242
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1021,16 +1018,16 @@ msgstr ""
 "Dette vil overskrive ditt nåværende sett av prosjekter.\n"
 "Vil du virkelig lese konfigurasjonsfilen på nytt?"
 
-#: gtt/menucmd.c:221
+#: gtt/menucmd.c:285
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr "Filen %s eksisterer, overskriv?"
 
-#: gtt/menucmd.c:232
+#: gtt/menucmd.c:296
 msgid "File cannot be written"
 msgstr "Filen kan ikke skrives"
 
-#: gtt/menucmd.c:252
+#: gtt/menucmd.c:316
 msgid "Export Current State"
 msgstr "Eksporter aktiv tilstand"
 
@@ -1070,151 +1067,159 @@ msgstr "Klokken kjører"
 msgid "_Timer"
 msgstr "Klokke"
 
-#: gtt/options.c:190
+#: gtt/options.c:233
 msgid "Display"
 msgstr "Skjerm"
 
-#: gtt/options.c:198
+#: gtt/options.c:241
 msgid "Show Seconds"
 msgstr "Vis sekunder"
 
-#: gtt/options.c:204
+#: gtt/options.c:247
 msgid "Show Status Bar"
 msgstr "Vis statuslinje"
 
-#: gtt/options.c:210
+#: gtt/options.c:253
 msgid "Show Table Header"
 msgstr "Vis tabelloverskrift"
 
-#: gtt/options.c:224 gtt/options.c:539
+#: gtt/options.c:259
+msgid "Show Sub-Projects"
+msgstr "Vis underprosjekter"
+
+#: gtt/options.c:273 gtt/options.c:590
 msgid "Toolbar"
 msgstr "Verktøylinje"
 
-#: gtt/options.c:232
+#: gtt/options.c:281
 msgid "Show Toolbar Icons"
 msgstr "Vis ikoner på verktøylinjen"
 
-#: gtt/options.c:238
+#: gtt/options.c:287
 msgid "Show Toolbar Texts"
 msgstr "Vis tekst på verktøylinjen"
 
-#: gtt/options.c:244
+#: gtt/options.c:293
 msgid "Show Tooltips"
 msgstr "Vis verktøytips"
 
-#: gtt/options.c:250
+#: gtt/options.c:299
 msgid "Toolbar Segments"
 msgstr "Verktøylinjesegmenter"
 
-#: gtt/options.c:258
+#: gtt/options.c:307
 msgid "Show `New'"
 msgstr "Vis `Ny'"
 
-#: gtt/options.c:264
+#: gtt/options.c:313
 msgid "Show `Save', `Reload'"
 msgstr "Vis `Lagre',`Les på nytt'"
 
-#: gtt/options.c:270
+#: gtt/options.c:319
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "Vis `Klipp ut',`Kopier',`Lim inn'"
 
-#: gtt/options.c:276
+#: gtt/options.c:325
 msgid "Show `Properties'"
 msgstr "Vis `Egenskaper'"
 
-#: gtt/options.c:282
+#: gtt/options.c:331
 msgid "Show `Timer'"
 msgstr "Vis `Klokke'"
 
-#: gtt/options.c:288
+#: gtt/options.c:337
 msgid "Show `Preferences'"
 msgstr "Vis `Brukervalg'"
 
-#: gtt/options.c:294
+#: gtt/options.c:343
 msgid "Show `Help'"
 msgstr "Vis `Hjelp'"
 
-#: gtt/options.c:300
+#: gtt/options.c:349
 msgid "Show `Quit'"
 msgstr "Vis `Avslutt'"
 
-#: gtt/options.c:314
+#: gtt/options.c:363
 msgid "Shell Commands"
 msgstr "Skallkommandoer"
 
-#: gtt/options.c:322
+#: gtt/options.c:371
 msgid "Switch Project Command:"
 msgstr "Bytt prosjektkommando:"
 
-#: gtt/options.c:334
+#: gtt/options.c:383
 msgid "No Project Command:"
 msgstr "Ingen prosjektkommando:"
 
-#: gtt/options.c:369
+#: gtt/options.c:418
 msgid "Logfile"
 msgstr "Loggfil"
 
-#: gtt/options.c:377
+#: gtt/options.c:426
 msgid "Use Logfile"
 msgstr "Bruk loggfil"
 
-#: gtt/options.c:386
+#: gtt/options.c:435
 msgid "Filename:"
 msgstr "Filnavn:"
 
-#: gtt/options.c:400
+#: gtt/options.c:449
 msgid "Entry Start:"
 msgstr "Innleggets start:"
 
-#: gtt/options.c:414
+#: gtt/options.c:463
 msgid "Entry Stop:"
 msgstr "Innleggets slutt:"
 
-#: gtt/options.c:428
+#: gtt/options.c:477
 msgid "Timeout in secs:"
 msgstr "Tidsavbrudd i sek:"
 
-#: gtt/options.c:526
+#: gtt/options.c:577
 msgid "Misc"
 msgstr "Forskjellig"
+
+#: gtt/proj.c:287
+msgid "Old GTT Tasks"
+msgstr "Gamle GTT-oppgaver"
 
 #: gtt/prop.c:60
 msgid "empty"
 msgstr "tom"
 
-#: gtt/prop.c:168
+#: gtt/prop.c:187
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: gtt/prop.c:176
+#: gtt/prop.c:195
 msgid "Project"
 msgstr "Prosjekt"
 
-#: gtt/prop.c:195
+#: gtt/prop.c:214
 msgid "Project Title:"
 msgstr "Prosjekttittel:"
 
-#: gtt/prop.c:208
+#: gtt/prop.c:227
 msgid "Project Description:"
 msgstr "Prosjektbeskrivelse:"
 
-#: gtt/prop.c:221
+#: gtt/prop.c:240
 msgid "Project Time today:"
 msgstr "Prosjekttid idag:"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:256 gtt/prop.c:294
 msgid "hours"
 msgstr "timer"
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:267 gtt/prop.c:305
 msgid "mins"
 msgstr "minutter"
 
-#: gtt/prop.c:259 gtt/prop.c:297
+#: gtt/prop.c:278 gtt/prop.c:316
 msgid "secs"
 msgstr "sekunder"
 
-#: gtt/prop.c:263
+#: gtt/prop.c:282
 msgid "Project Time ever:"
 msgstr "Prosjekttid noensinne:"
 
@@ -3835,6 +3840,12 @@ msgid ""
 msgstr ""
 "Kan ikke finne arkivprogrammet (tar)!\n"
 "Dette er programmet som brukes for å lage arkiv."
+
+#~ msgid "Total"
+#~ msgstr "Total"
+
+#~ msgid "Today"
+#~ msgstr "Idag"
 
 #~ msgid "Formatting /dev/floppy"
 #~ msgstr "Formaterer /dev/floppy"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-1.4.0.3\n"
-"POT-Creation-Date: 2001-08-29 10:12+0200\n"
+"POT-Creation-Date: 2001-08-30 09:50+0200\n"
 "PO-Revision-Date: 2001-08-19 20:39+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian (Nynorsk)\n"
@@ -581,7 +581,7 @@ msgid "Cross-reference:"
 msgstr "Føretrekt"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:519
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:570
 #: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:195
 msgid "Preferences"
 msgstr "Innstillingar"
@@ -680,7 +680,7 @@ msgstr "Kan ikkje lesa gruppelistefila"
 msgid "Specify the geometry of the window."
 msgstr "set klientgeometrien til hovudelementet."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:235 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:308 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr ""
 
@@ -941,46 +941,28 @@ msgstr "Kommandolinje"
 msgid "No command for this mime type"
 msgstr "Ingen kommando eller vert oppgitt."
 
-#: gtt/app.c:120 gtt/app.c:232
+#: gtt/app.c:104 gtt/app.c:213
 #, fuzzy
 msgid "no project selected"
 msgstr "Ingen rektangel valt!"
 
-#: gtt/app.c:221
+#: gtt/app.c:202
 #, fuzzy
 msgid "00:00"
 msgstr "00:00:00"
 
-#: gtt/app.c:264 mini-utils/gless/gless.c:423
+#: gtt/app.c:245 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
 msgstr ""
 
-#: gtt/clist.c:171
-msgid "Total"
-msgstr "Totalt"
-
-#: gtt/clist.c:172
-#, fuzzy
-msgid "Today"
-msgstr "i dag"
-
-#: gtt/clist.c:173 gtt/menucmd.c:121
-#, fuzzy
-msgid "Project Title"
-msgstr "Prosjektnamn"
-
-#: gtt/clist.c:174 gtt/menucmd.c:122 stripchart/params.c:654
-msgid "Description"
-msgstr "Skildring"
-
-#: gtt/file-io.c:320
+#: gtt/file-io.c:331
 #, fuzzy
 msgid "project %t started"
 msgstr "Trykk %1 for å starta"
 
-#: gtt/file-io.c:323
+#: gtt/file-io.c:334
 #, fuzzy
 msgid "stopped project %t"
 msgstr "tilpassa prosjekt"
@@ -988,22 +970,22 @@ msgstr "tilpassa prosjekt"
 #. Translators: This is a "time format", that is
 #. * format on how to print the elapsed time with
 #. * hours:minutes:seconds.
-#: gtt/file-io.c:533
+#: gtt/file-io.c:530
 #, c-format
 msgid "%d:%02d:%02d"
 msgstr ""
 
-#: gtt/log.c:54
+#: gtt/log.c:53
 #, fuzzy, c-format
 msgid "Cannot open logfile %s for append"
 msgstr "opna filer"
 
 #. Translators: Format to use in the gtt logfile
-#: gtt/log.c:63
+#: gtt/log.c:62
 msgid "%b %d %H:%M:%S"
 msgstr ""
 
-#: gtt/log.c:83 gtt/log.c:237
+#: gtt/log.c:83 gtt/log.c:244
 #, fuzzy
 msgid "program started"
 msgstr "Ingen program valt"
@@ -1014,86 +996,101 @@ msgid "no description"
 msgstr "skildring"
 
 #. log_if_equal
-#: gtt/log.c:229
+#: gtt/log.c:236
 #, fuzzy
 msgid "program exited"
 msgstr "Ingen program valt"
 
-#: gtt/main.c:102
+#: gtt/main.c:106
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
 msgstr ""
 
-#: gtt/main.c:113
+#: gtt/main.c:117
 #, fuzzy
 msgid "Cannot create pid-file!"
 msgstr "Kan ikkje laga mappe "
 
-#: gtt/main.c:145
+#: gtt/main.c:183
 msgid "Error"
 msgstr "Feil"
 
-#: gtt/main.c:146
+#: gtt/main.c:184
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
 msgstr ""
 
-#: gtt/main.c:235
+#: gtt/main.c:308
 #, fuzzy
 msgid "Specify geometry"
 msgstr "Oppgi redigerar:"
 
-#: gtt/main.c:237
+#: gtt/main.c:310
 #, fuzzy
 msgid "Select a project on startup"
 msgstr "Velg ein katalog"
 
-#: gtt/main.c:237
+#: gtt/main.c:310
 msgid "PROJECT"
 msgstr "PROSJEKT"
 
-#: gtt/menucmd.c:36 gtt/menucmd.c:167 gtt/menucmd.c:199
+#: gtt/main.c:343 gtt/menucmd.c:50 gtt/menucmd.c:58 gtt/menucmd.c:225
+#: gtt/menucmd.c:263
 msgid "Warning"
 msgstr "Åtvaring"
 
-#: gtt/menucmd.c:37 gtt/menucmd.c:201
-msgid "I could not write the configuration file!"
+#: gtt/menucmd.c:51 gtt/menucmd.c:265
+#, fuzzy
+msgid "Could not write the configuration file!"
 msgstr "Kunne ikkje skriva oppsettfila!"
 
-#: gtt/menucmd.c:68
+#: gtt/menucmd.c:59
+msgid "Unknown error occurred"
+msgstr ""
+
+#: gtt/menucmd.c:107
 msgid "Time tracking tool for GNOME"
 msgstr "GNOME tidtakar-verktøy"
 
-#: gtt/menucmd.c:115 gtt/toolbar.c:143
+#: gtt/menucmd.c:157 gtt/toolbar.c:143
 msgid "New Project..."
 msgstr "Nytt prosjekt..."
 
-#: gtt/menucmd.c:169
+#: gtt/menucmd.c:163
+#, fuzzy
+msgid "Project Title"
+msgstr "Prosjektnamn"
+
+#: gtt/menucmd.c:164 stripchart/params.c:654
+msgid "Description"
+msgstr "Skildring"
+
+#: gtt/menucmd.c:227
 msgid "I could not read the configuration file"
 msgstr "Kunne ikkje lesa oppsettfila"
 
-#: gtt/menucmd.c:183 gtt/toolbar.c:150
+#: gtt/menucmd.c:241 gtt/toolbar.c:150
 msgid "Reload Configuration File"
 msgstr "Last oppsettfila på nytt"
 
-#: gtt/menucmd.c:184
+#: gtt/menucmd.c:242
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
 msgstr ""
 
-#: gtt/menucmd.c:221
+#: gtt/menucmd.c:285
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr ""
 
-#: gtt/menucmd.c:232
+#: gtt/menucmd.c:296
 msgid "File cannot be written"
 msgstr ""
 
-#: gtt/menucmd.c:252
+#: gtt/menucmd.c:316
 #, fuzzy
 msgid "Export Current State"
 msgstr "Dato no"
@@ -1140,176 +1137,185 @@ msgstr "Spørjing køyrer"
 msgid "_Timer"
 msgstr "Tidtakar"
 
-#: gtt/options.c:190
+#: gtt/options.c:233
 msgid "Display"
 msgstr "Vis"
 
-#: gtt/options.c:198
+#: gtt/options.c:241
 #, fuzzy
 msgid "Show Seconds"
 msgstr "Vis sekund"
 
-#: gtt/options.c:204
+#: gtt/options.c:247
 #, fuzzy
 msgid "Show Status Bar"
 msgstr "Vis &statuslinje"
 
-#: gtt/options.c:210
+#: gtt/options.c:253
 #, fuzzy
 msgid "Show Table Header"
 msgstr "Vis topptekst"
 
-#: gtt/options.c:224 gtt/options.c:539
+#: gtt/options.c:259
+#, fuzzy
+msgid "Show Sub-Projects"
+msgstr "Eigenskapar"
+
+#: gtt/options.c:273 gtt/options.c:590
 msgid "Toolbar"
 msgstr "Verktøylinje"
 
-#: gtt/options.c:232
+#: gtt/options.c:281
 msgid "Show Toolbar Icons"
 msgstr "Vis ikoner på verktøylinje"
 
-#: gtt/options.c:238
+#: gtt/options.c:287
 msgid "Show Toolbar Texts"
 msgstr "Vis tekst på verktøylinje"
 
-#: gtt/options.c:244
+#: gtt/options.c:293
 msgid "Show Tooltips"
 msgstr "Vis verktøytips"
 
-#: gtt/options.c:250
+#: gtt/options.c:299
 #, fuzzy
 msgid "Toolbar Segments"
 msgstr "Verktøylinjemeny"
 
-#: gtt/options.c:258
+#: gtt/options.c:307
 #, fuzzy
 msgid "Show `New'"
 msgstr "Vis namn"
 
-#: gtt/options.c:264
+#: gtt/options.c:313
 msgid "Show `Save', `Reload'"
 msgstr ""
 
-#: gtt/options.c:270
+#: gtt/options.c:319
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr ""
 
-#: gtt/options.c:276
+#: gtt/options.c:325
 #, fuzzy
 msgid "Show `Properties'"
 msgstr "Eigenskapar"
 
-#: gtt/options.c:282
+#: gtt/options.c:331
 #, fuzzy
 msgid "Show `Timer'"
 msgstr "Vis tid som:"
 
-#: gtt/options.c:288
+#: gtt/options.c:337
 #, fuzzy
 msgid "Show `Preferences'"
 msgstr "ingen referansar"
 
-#: gtt/options.c:294
+#: gtt/options.c:343
 #, fuzzy
 msgid "Show `Help'"
 msgstr "Vis &hjelpelinjer"
 
-#: gtt/options.c:300
+#: gtt/options.c:349
 #, fuzzy
 msgid "Show `Quit'"
 msgstr "Vis eining"
 
-#: gtt/options.c:314
+#: gtt/options.c:363
 #, fuzzy
 msgid "Shell Commands"
 msgstr "Skal-kommando"
 
-#: gtt/options.c:322
+#: gtt/options.c:371
 #, fuzzy
 msgid "Switch Project Command:"
 msgstr "Fråkoplings-kommando :"
 
-#: gtt/options.c:334
+#: gtt/options.c:383
 #, fuzzy
 msgid "No Project Command:"
 msgstr "Førkommando:"
 
-#: gtt/options.c:369
+#: gtt/options.c:418
 #, fuzzy
 msgid "Logfile"
 msgstr "Loggfil:"
 
-#: gtt/options.c:377
+#: gtt/options.c:426
 #, fuzzy
 msgid "Use Logfile"
 msgstr "Bruk 'profil'"
 
-#: gtt/options.c:386
+#: gtt/options.c:435
 msgid "Filename:"
 msgstr "Filnamn:"
 
-#: gtt/options.c:400
+#: gtt/options.c:449
 #, fuzzy
 msgid "Entry Start:"
 msgstr "Start:"
 
-#: gtt/options.c:414
+#: gtt/options.c:463
 #, fuzzy
 msgid "Entry Stop:"
 msgstr "Endra oppføring"
 
-#: gtt/options.c:428
+#: gtt/options.c:477
 #, fuzzy
 msgid "Timeout in secs:"
 msgstr "Tidsgrense %1 sekund"
 
-#: gtt/options.c:526
+#: gtt/options.c:577
 msgid "Misc"
 msgstr "Ymse"
+
+#: gtt/proj.c:287
+msgid "Old GTT Tasks"
+msgstr ""
 
 #: gtt/prop.c:60
 #, fuzzy
 msgid "empty"
 msgstr "Tom"
 
-#: gtt/prop.c:168
+#: gtt/prop.c:187
 msgid "Properties"
 msgstr "Eigenskapar"
 
-#: gtt/prop.c:176
+#: gtt/prop.c:195
 msgid "Project"
 msgstr "Prosjekt"
 
-#: gtt/prop.c:195
+#: gtt/prop.c:214
 #, fuzzy
 msgid "Project Title:"
 msgstr "Prosjektnamn:"
 
-#: gtt/prop.c:208
+#: gtt/prop.c:227
 #, fuzzy
 msgid "Project Description:"
 msgstr "Portskildring: "
 
-#: gtt/prop.c:221
+#: gtt/prop.c:240
 #, fuzzy
 msgid "Project Time today:"
 msgstr "Prosjektkatalog:"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:256 gtt/prop.c:294
 #, fuzzy
 msgid "hours"
 msgstr "time/timar"
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:267 gtt/prop.c:305
 #, fuzzy
 msgid "mins"
 msgstr " min"
 
-#: gtt/prop.c:259 gtt/prop.c:297
+#: gtt/prop.c:278 gtt/prop.c:316
 #, fuzzy
 msgid "secs"
 msgstr " sek"
 
-#: gtt/prop.c:263
+#: gtt/prop.c:282
 #, fuzzy
 msgid "Project Time ever:"
 msgstr "Prosjektnamn:"
@@ -4074,6 +4080,13 @@ msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
 msgstr ""
+
+#~ msgid "Total"
+#~ msgstr "Totalt"
+
+#, fuzzy
+#~ msgid "Today"
+#~ msgstr "i dag"
 
 #, fuzzy
 #~ msgid "Formatting /dev/floppy"
