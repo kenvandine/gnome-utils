@@ -30,7 +30,7 @@
 
 
 typedef struct _OptionsDlg {
-	GtkDialog *dlg;
+	GnomePropertyBox *dlg;
 	GtkCheckButton *show_secs;
 	GtkCheckButton *show_status_bar;
 	GtkCheckButton *show_clist_titles;
@@ -47,16 +47,17 @@ typedef struct _OptionsDlg {
 	GtkCheckButton *logfileuse;
 	GtkEntry *logfileminsecs;
 	GtkWidget *logfileminsecs_l;
-	GtkWidget *ok;
 } OptionsDlg;
 
 
 
 #define ENTRY_TO_CHAR(a, b) { char *s = gtk_entry_get_text(a); if (s[0]) { if (b) g_free(b); b = g_strdup(s); } else { if (b) g_free(b); b = NULL; } }
 
-static void options_ok(GtkWidget *w, OptionsDlg *odlg)
+static void options_apply_cb(GnomePropertyBox *pb, gint page, OptionsDlg *odlg)
 {
 	int state, change;
+
+	if ( page != -1 ) return; /* Only do something on global apply */
 
 	/* display options */
 	state = GTK_TOGGLE_BUTTON(odlg->show_secs)->active;
@@ -141,53 +142,54 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
         }
 
 	toolbar_set_states();
-
-	/* OK or Apply pressed? */
-	if (w == odlg->ok) {
-		gtk_widget_hide(GTK_WIDGET(odlg->dlg));
-	}
 }
 
-
-
-static void buttons(OptionsDlg *odlg, GtkBox *aa)
+/* These two are somewhat lamely cut-and-pasted from prop.c, but they're 
+   so short... It might be nice to add to PropertyBox to avoid
+   the need (?). 
+   gnome_property_box_set_help(GnomePropertyBox * pb, 
+                               gchar * app, gchar * filename);
+   */
+static gint delete_event_cb(GnomePropertyBox * pb, gpointer ignored)
 {
-	GtkWidget *w;
+  gtk_widget_hide(GTK_WIDGET(pb));
+  return TRUE; /* Stop the default property box close handler */
+}
+
+static void help_cb(GnomePropertyBox * pb, gint page, gchar * url)
+{
+  gnome_help_goto(pb, url);
+}
+
+static void signals(OptionsDlg *odlg)
+{
 	char *s, *t;
 
-        w = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
-	gtk_widget_show(w);
-	gtk_signal_connect(GTK_OBJECT(w), "clicked",
-			   GTK_SIGNAL_FUNC(options_ok),
-			   (gpointer *)odlg);
-	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
-	odlg->ok = w;
-
-	w = gnome_stock_button(GNOME_STOCK_BUTTON_APPLY);
-	gtk_widget_show(w);
-	gtk_signal_connect(GTK_OBJECT(w), "clicked",
-			   GTK_SIGNAL_FUNC(options_ok),
-			   (gpointer *)odlg);
-	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
-
-	w = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-	gtk_widget_show(w);
-	gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
-				  GTK_SIGNAL_FUNC(gtk_widget_hide),
-				  GTK_OBJECT(odlg->dlg));
-	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
-
-	w = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
-	gtk_widget_show(w);
 	t = gnome_help_file_path("gtt", "index.html");
 	s = g_copy_strings("file:///", t, "#PREF", NULL);
 	g_free(t);
-	gtk_signal_connect(GTK_OBJECT(w), "clicked",
-			   GTK_SIGNAL_FUNC(gnome_help_goto), s);
-	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
+	gtk_signal_connect(GTK_OBJECT(odlg->dlg), "help",
+			   GTK_SIGNAL_FUNC(help_cb), s);
+	
+	gtk_signal_connect(GTK_OBJECT(odlg->dlg), "apply",
+			   GTK_SIGNAL_FUNC(options_apply_cb), 
+			   odlg);
 }
 
+/* should have done this in prop.c */
+static void toggle_changes_property_box(OptionsDlg * odlg, GtkWidget * tb)
+{
+  gtk_signal_connect_object(GTK_OBJECT(tb), "toggled", 
+			    GTK_SIGNAL_FUNC(gnome_property_box_changed),
+			    GTK_OBJECT(odlg->dlg));
+}
 
+static void entry_changes_property_box(OptionsDlg * odlg, GtkWidget * e)
+{
+  gtk_signal_connect_object(GTK_OBJECT(e), "changed", 
+			    GTK_SIGNAL_FUNC(gnome_property_box_changed),
+			    GTK_OBJECT(odlg->dlg));
+}
 
 static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 {
@@ -206,16 +208,19 @@ static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_secs = GTK_CHECK_BUTTON(w);
-	
+	toggle_changes_property_box(odlg, w);
+
 	w = gtk_check_button_new_with_label(_("Show Status Bar"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_status_bar = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show Table Header"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_clist_titles = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 }
 
 
@@ -237,16 +242,19 @@ static void toolbar_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_icons = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show Toolbar Texts"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_texts = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show Tooltips"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_tips = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	frame = gtk_frame_new(_("Toolbar Segments"));
 	gtk_widget_show(frame);
@@ -260,41 +268,49 @@ static void toolbar_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_new = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show `Save', `Reload'"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_file = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show `Cut', `Copy', `Paste'"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_ccp = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show `Properties'"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_prop = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show `Timer'"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_timer = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show `Preferences'"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_pref = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show `Help'"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_help = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	w = gtk_check_button_new_with_label(_("Show `Quit'"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_exit = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 }
 
 
@@ -321,6 +337,8 @@ static void command_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_table_attach_defaults(table, w, 1, 2, 0, 1);
 	odlg->command = GTK_ENTRY(w);
+	entry_changes_property_box(odlg, w);
+
 	w = gtk_label_new(_("No Project Command:"));
 	gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 	gtk_widget_show(w);
@@ -330,6 +348,7 @@ static void command_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_table_attach_defaults(table, w, 1, 2, 1, 2);
 	odlg->command_null = GTK_ENTRY(w);
+	entry_changes_property_box(odlg, w);
 }
 
 
@@ -365,6 +384,7 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 			   GTK_SIGNAL_FUNC(logfile_sigfunc),
 			   (gpointer *)odlg);
 	odlg->logfileuse = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
 
 	hbox = GTK_BOX(gtk_hbox_new(FALSE, 5));
 	gtk_widget_show(GTK_WIDGET(hbox));
@@ -379,6 +399,8 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_end(hbox, w, FALSE, FALSE, 0);
 	odlg->logfilename = GNOME_FILE_ENTRY(w);
+	entry_changes_property_box(odlg, 
+				   gnome_file_entry_gtk_entry(GNOME_FILE_ENTRY(w)));
 
 	hbox = GTK_BOX(gtk_hbox_new(FALSE, 5));
 	gtk_widget_show(GTK_WIDGET(hbox));
@@ -393,6 +415,7 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_end(hbox, w, FALSE, FALSE, 0);
 	odlg->logfileminsecs = GTK_ENTRY(w);
+	entry_changes_property_box(odlg, w);
 }
 
 
@@ -438,14 +461,17 @@ static void options_dialog_set(OptionsDlg *odlg)
                                     config_show_tb_exit);
 
 	logfile_sigfunc(NULL, odlg);
+
+	/* Full explanation of this is in prop.c */
+	gnome_dialog_set_sensitive(GNOME_DIALOG(odlg->dlg), 0, FALSE);
+	gnome_dialog_set_sensitive(GNOME_DIALOG(odlg->dlg), 1, FALSE);
 }
 
 
 
 void options_dialog(void)
 {
-	GtkBox *vbox, *aa;
-        GtkNotebook *notebook;
+	GtkBox *vbox;
         GtkWidget *w;
 	static OptionsDlg *odlg = NULL;
 	
@@ -453,28 +479,21 @@ void options_dialog(void)
 		char s[64];
 		odlg = g_malloc(sizeof(OptionsDlg));
 
-		odlg->dlg = GTK_DIALOG(gtk_dialog_new());
+		odlg->dlg = GNOME_PROPERTY_BOX(gnome_property_box_new());
 		sprintf(s, APP_NAME " - %s", _("Preferences"));
 		gtk_window_set_title(GTK_WINDOW(odlg->dlg), s);
                 gtk_signal_connect(GTK_OBJECT(odlg->dlg), "delete_event",
-                                   GTK_SIGNAL_FUNC(gtt_delete_event),
+                                   GTK_SIGNAL_FUNC(delete_event_cb),
                                    NULL);
 
-                w = gtk_notebook_new();
-                gtk_widget_show(w);
-                notebook = GTK_NOTEBOOK(w);
-                gtk_box_pack_start(GTK_BOX(GTK_DIALOG(odlg->dlg)->vbox),
-                                   GTK_WIDGET(notebook), FALSE, FALSE, 0);
-
-		aa = GTK_BOX(GTK_DIALOG(odlg->dlg)->action_area);
 		vbox = (GtkBox *)gtk_vbox_new(FALSE, 0);
 		gtk_widget_show(GTK_WIDGET(vbox));
-		gtk_container_border_width(GTK_CONTAINER(vbox), 10);
+		gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD);
                 w = gtk_label_new(_("Misc"));
                 gtk_widget_show(w);
-                gtk_notebook_append_page(notebook, GTK_WIDGET(vbox), w);
+                gnome_property_box_append_page(odlg->dlg, GTK_WIDGET(vbox), w);
 
-		buttons(odlg, aa);
+		signals(odlg);
 		display_options(odlg, vbox);
 		command_options(odlg, vbox);
 		logfile_options(odlg, vbox);
@@ -484,7 +503,7 @@ void options_dialog(void)
 		gtk_container_border_width(GTK_CONTAINER(vbox), 10);
                 w = gtk_label_new(_("Toolbar"));
                 gtk_widget_show(w);
-                gtk_notebook_append_page(notebook, GTK_WIDGET(vbox), w);
+                gnome_property_box_append_page(odlg->dlg, GTK_WIDGET(vbox), w);
                 toolbar_options(odlg, vbox);
 	}
 	options_dialog_set(odlg);
