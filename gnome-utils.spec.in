@@ -62,11 +62,24 @@ make prefix=$RPM_BUILD_ROOT%{_prefix} \
 
 %files
 %config /etc/pam.d/*
-%config /etc/security/*
+%config /etc/security/console.apps/*
 %{_bindir}/*
 %{_sbindir}/*
 %{_sysconfdir}/CORBA/servers/*
-%{_datadir}/*
+%{_datadir}/applets/*/*
+%{_datadir}/application-registry/*
+%{_datadir}/gcolorsel
+%{_datadir}/gnome-utils
+%{_datadir}/gnome/apps/*/*
+%{_datadir}/locale/*/*/*
+%{_datadir}/gnome/help/*/*
+%{_datadir}/gtt
+%{_datadir}/idl/*
+%{_datadir}/logview
+%{_datadir}/mime-info/*
+%{_datadir}/omf/*
+%{_datadir}/pixmaps/*
+%{_datadir}/stripchart
 
 %doc AUTHORS COPYING ChangeLog NEWS README THANKS
 
