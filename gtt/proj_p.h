@@ -74,6 +74,7 @@ struct gtt_task_s {
 	char * notes;           /* internal notes (office private) */
 	GttBillable  billable;  /* if fees can be collected for this task */
 	GttBillRate  billrate;  /* hourly rate at which to bill */
+	int	bill_unit;	/* billable unit, in seconds */
 	GList *interval_list;   /* collection of start-stop's */
 };
 
@@ -82,6 +83,8 @@ struct gtt_interval_s {
 	time_t	start;		/* when the timer started */
 	time_t	stop;		/* if stopped, shows when timer stopped, 
 				 * if running, then the most recent log point */
+	int	fuzz;           /* how fuzzy the start time is.  In
+	                         * seconds, typically 300, 3600 or 1/2 day */
 	short	running;	/* boolean: is the timer running? */
 };
 

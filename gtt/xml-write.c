@@ -61,6 +61,11 @@ gtt_xml_interval_to_dom_tree (GttInterval *ivl)
 	xmlNodeAddContent(node, buff);
 	xmlAddChild (topnode, node);
 
+	g_snprintf (buff, sizeof(buff), "%d", gtt_interval_get_fuzz (ivl));
+	node = xmlNewNode (NULL, "fuzz");
+	xmlNodeAddContent(node, buff);
+	xmlAddChild (topnode, node);
+
 	running = gtt_interval_get_running (ivl);
 	node = xmlNewNode (NULL, "running");
         if (running) {
@@ -103,6 +108,7 @@ static xmlNodePtr
 gtt_xml_task_to_dom_tree (GttTask *task)
 {
 	GList *p;
+	char buff[80];
 	const char * str;
 	xmlNodePtr node, topnode;
 
@@ -152,6 +158,11 @@ gtt_xml_task_to_dom_tree (GttTask *task)
 		xmlNodeAddContent(node, str);
 		xmlAddChild (topnode, node);
 	}
+
+	g_snprintf (buff, sizeof(buff), "%d", gtt_task_get_bill_unit (task));
+	node = xmlNewNode (NULL, "bill_unit");
+	xmlNodeAddContent(node, buff);
+	xmlAddChild (topnode, node);
 
 	/* add list of intervals */
 	p = gtt_task_get_intervals (task);

@@ -85,6 +85,14 @@ parse_interval (xmlNodePtr interval)
 			gtt_interval_set_stop (ivl, thyme);
 		} 
 		else
+		if (0 == strcmp ("fuzz", node->name))
+		{
+			int thyme;
+			str = GET_TEXT (node);
+			thyme = atoi (str);
+			gtt_interval_set_fuzz (ivl, thyme);
+		} 
+		else
 		if (0 == strcmp ("running", node->name))
 		{
 			gboolean ru;
@@ -149,6 +157,14 @@ parse_task (xmlNodePtr task)
 			else if (!strcmp ("OVEROVER", str)) billrate=GTT_OVEROVER;
 			else if (!strcmp ("FLAT_FEE", str)) billrate=GTT_FLAT_FEE;
 			gtt_task_set_billrate (tsk, billrate);
+		} 
+		else
+		if (0 == strcmp ("bill_unit", node->name))
+		{
+			int thyme;
+			str = GET_TEXT (node);
+			thyme = atoi (str);
+			gtt_task_set_bill_unit (tsk, thyme);
 		} 
 		else
 		if (0 == strcmp ("interval-list", node->name))

@@ -248,6 +248,13 @@ GttBillable	gtt_task_get_billable (GttTask *);
 void		gtt_task_set_billrate (GttTask *, GttBillRate);
 GttBillRate	gtt_task_get_billrate (GttTask *);
 
+/* The bill_unit is the minimum billable unit of time. 
+ * Typically 15 minutes or an hour, it represents the smallest unit
+ * of time that will appear on the invoice.
+ */
+void		gtt_task_set_bill_unit (GttTask *, int);
+int		gtt_task_get_bill_unit (GttTask *);
+
 GList *		gtt_task_get_intervals (GttTask *);
 void		gtt_task_add_interval (GttTask *, GttInterval *);
 void		gtt_task_append_interval (GttTask *, GttInterval *);
@@ -258,15 +265,29 @@ int 		gtt_task_get_secs_ever (GttTask *tsk);
 
 
 /* intervals */
+/* The start and stop times define the interval.   
+ * The fuzz (measured in seconds) indicates how 'fuzzy' the 
+ *    true start time was.  Typically, its 0, 300, 3600 or 12*3600
+ *    Just because the start time is fuzy doesn't mean that the total 
+ *    interval is inaccurate: the delta stop-start is still accurate 
+ *    down to the second.  The fuzz is 'merely' used by the GUI
+ *    to help the user report time spent post-facto, without having 
+ *    to exactly nail down the start time.
+ *
+ * The is_running flag indicates whether the timer is running on this
+ * interval.
+ */
 GttInterval *	gtt_interval_new (void);
 void		gtt_interval_destroy (GttInterval *);
 
 void		gtt_interval_set_start (GttInterval *, time_t);
 void		gtt_interval_set_stop (GttInterval *, time_t);
 void		gtt_interval_set_running (GttInterval *, gboolean);
+void		gtt_interval_set_fuzz (GttInterval *, int);
 time_t		gtt_interval_get_start (GttInterval *);
 time_t		gtt_interval_get_stop (GttInterval *);
 gboolean	gtt_interval_get_running (GttInterval *);
+int		gtt_interval_get_fuzz (GttInterval *);
 
 
 #endif /* __GTT_PROJ_H__ */

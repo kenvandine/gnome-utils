@@ -931,6 +931,7 @@ gtt_task_new (void)
 	task->notes = NULL;
 	task->billable = GTT_BILLABLE;
 	task->billrate = GTT_REGULAR;
+	task->bill_unit = 900;
 	task->interval_list = NULL;
 	return task;
 }
@@ -1039,12 +1040,28 @@ gtt_task_get_billrate (GttTask *tsk)
 	return tsk->billrate;
 }
 
+void
+gtt_task_set_bill_unit (GttTask *tsk, int b)
+{
+	if (!tsk) return;
+	tsk->bill_unit = b;
+}
+
+int
+gtt_task_get_bill_unit (GttTask *tsk)
+{
+	if (!tsk) return GTT_REGULAR;
+	return tsk->bill_unit;
+}
+
 GList *
 gtt_task_get_intervals (GttTask *tsk)
 {
 	if (!tsk) return NULL;
 	return tsk->interval_list;
 }
+
+/* =========================================================== */
 
 int
 gtt_task_get_secs_ever (GttTask *tsk)
@@ -1070,6 +1087,7 @@ gtt_interval_new (void)
 	ivl->start = 0;
 	ivl->stop = 0;
 	ivl->running = FALSE;
+	ivl->fuzz = 0;
 	return ivl;
 }
 
@@ -1095,6 +1113,13 @@ gtt_interval_set_stop (GttInterval *ivl, time_t st)
 }
 
 void
+gtt_interval_set_fuzz (GttInterval *ivl, int st)
+{
+	if (!ivl) return;
+	ivl->fuzz = st;
+}
+
+void
 gtt_interval_set_running (GttInterval *ivl, gboolean st)
 {
 	if (!ivl) return;
@@ -1113,6 +1138,13 @@ gtt_interval_get_stop (GttInterval * ivl)
 {
 	if (!ivl) return 0;
 	return ivl->stop;
+}
+
+int
+gtt_interval_get_fuzz (GttInterval * ivl)
+{
+	if (!ivl) return 0;
+	return ivl->fuzz;
 }
 
 gboolean 
