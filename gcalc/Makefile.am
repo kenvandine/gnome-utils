@@ -7,22 +7,22 @@ INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-I$(includedir) 
 
-bin_PROGRAMS = gcalc 
+bin_PROGRAMS = gnome-calculator 
 
-gcalc_SOURCES = \
+gnome_calculator_SOURCES = \
 	gcalc.c		\
 	gnome-calc.c	\
 	gnome-calc.h	\
 	sr.h		\
 	sr.c
 
-gcalc_LDADD = \
+gnome_calculator_LDADD = \
 	$(INTLLIBS) \
 	@GNOME_UTILS_LIBS@
 
-man_MANS = gcalc.1
+man_MANS = gnome-calculator.1
 
-Utilities_in_files = gcalc.desktop.in 
+Utilities_in_files = gnome-calculator.desktop.in 
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
