@@ -1,66 +1,59 @@
 ## Process this file with automake to produce Makefile.in
-
 gcolorsel_helpdir = $(datadir)/gnome/help/gcolorsel/C
-gcolorsel_help_DATA = index.html usage.html simple.html \
-	search.html favorites.html topic.dat
 
-
-SGML_FILES = 		\
+SGML_FILES = \
 	gcolorsel.sgml
 
+HTML_FILES = \
+	index.html
+
 EXTRA_DIST = \
-	topic.dat	gcolorsel	$(SGML_FILES)
+	topic.dat gcolorsel $(SGML_FILES)
 
-all:
+gcolorsel_help_DATA = ${HTML_FILES} topic.dat
 
-index.html: gcolorsel/index.html
-	-cd $(srcdir) && cp gcolorsel/index.html .
-
-simple.html: gcolorsel/simple.html
-	-cd $(srcdir) && cp gcolorsel/simple.html .
-
-favorites.html: gcolorsel/favorites.html
-	-cd $(srcdir) && cp gcolorsel/favorites.html .
-
-usage.html: gcolorsel/usage.html
-	-cd $(srcdir) && cp gcolorsel/usage.html .
-
-search.html: gcolorsel/search.html
-	-cd $(srcdir) && cp gcolorsel/search.html .
-
-gcolorsel/index.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcolorsel.sgml
-
-gcolorsel/usage.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcolorsel.sgml
-
-gcolorsel/simple.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcolorsel.sgml
-
-gcolorsel/favorites.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcolorsel.sgml
-
-gcolorsel/search.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcolorsel.sgml
+#
+# This is icky but insures that the doc files are generated when the sgml 
+# file changes, plus it only generates em once. The distclean target 
+# will take care of clobbering the generated html and the directory that
+# db2html makes, while the dist-hook will make sure that the html files 
+# and directory gets copied into a dist (so mere mortals w/o docbook can 
+# build this) The install-data-local target copies all the bits and pieces
+# where the runtime help system can find it.
+#
+${HTML_FILES} : $(SGML_FILES)
+	if [ ! -d gcolorsel ] ; then cd $(srcdir) && db2html gcolorsel.sgml ; fi
+	-cd $(srcdir) && cp gcolorsel/$@ .
+	if [ -d gcolorsel.junk ] ; then cd $(srcdir) && rm -rf gcolorsel.junk ; fi
 
 dist-hook:
-	$(mkinstalldirs) $(distdir)/gcolorsel
+	$(mkinstalldirs) $(distdir)/gcolorsel 
+	$(mkinstalldirs) $(distdir)/gcolorsel/stylesheet-images
 	-cp $(srcdir)/gcolorsel/*.html gcolorsel/*.css $(distdir)/gcolorsel
+	-cp $(srcdir)/gcolorsel/stylesheet-images/*.gif \
+	 $(distdir)/gcolorsel/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	$(mkinstalldirs) $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
+distclean-generic:
+	-rm -f Makefile
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+	-rm -f $(HTML_FILES)
+	-rm -rf gcolorsel
+
 install-data-local: index.html
-	$(mkinstalldirs) $(DESTDIR)$(gcolorsel_helpdir)
+	$(mkinstalldirs) $(DESTDIR)$(gcolorsel_helpdir)/stylesheet-images
 	-for file in $(srcdir)/gcolorsel/*.html $(srcdir)/gcolorsel/*.css; do \
-	basefile=`basename $$file`; \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gcolorsel_helpdir)/$$basefile; \
+	  basefile=`basename $$file`; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcolorsel_helpdir)/$$basefile; \
 	done
 	-for file in $(srcdir)/*.png ; do \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gcolorsel_helpdir);\
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcolorsel_helpdir); \
 	done
-	$(mkinstalldirs) $(DESTDIR)$(gcolorsel_helpdir)/stylesheet-images
 	-for file in $(srcdir)/gcolorsel/stylesheet-images/*.gif; do \
-	basefile=`basename $$file`; \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gcolorsel_helpdir)/stylesheet-images/$$basefile; \
+	  basefile=`basename $$file`; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcolorsel_helpdir)/stylesheet-images/$$basefile; \
 	done
+
+
+
