@@ -1,20 +1,23 @@
 # Copyright (C) 1999-2002 Free Software Foundation, Inc.
 # Valek Filppov <frob@df.ru>, 1999-2002.
 # Sergey Panov <sipan@mit.edu>, 1999,2000.
-# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2003
-# Andrew W. Nosenko <awn@bcs.zp.ua>, 2003
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2003.
+# Andrew W. Nosenko <awn@bcs.zp.ua>, 2003.
+# Leonid Kanter <leon@asplinux.ru>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2004-03-08 18:08-0800\n"
-"PO-Revision-Date: 2003-06-09 14:04+0300\n"
-"Last-Translator: \"Andrew W. Nosenko\" <awn@bcs.zp.ua>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-20 15:12+0100\n"
+"PO-Revision-Date: 2004-03-20 20:34+0200\n"
+"Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
-"Report-Msgid-Bugs-To: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -112,9 +115,8 @@ msgid "Find"
 msgstr "Найти"
 
 #: gdictsrc/gdict-app.c:477
-#, fuzzy
 msgid "_Search for:"
-msgstr "Поиск файлов"
+msgstr "_Искать:"
 
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
@@ -262,11 +264,13 @@ msgid "Default Strategy"
 msgstr "Исходная стратегия"
 
 #: gdictsrc/gdict-pref-dialog.c:658
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "There was an error displaying help: \n"
 "%s"
-msgstr "Произошла ошибка. Файл \"%s\" пуст."
+msgstr ""
+"При отображении справки произошла ошибка: \n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -416,8 +420,7 @@ msgstr "Идёт проверка на плохие блоки..."
 #: gfloppy/src/badblocks.c:273
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr ""
-"Произошёл сбой при открытии устройства \"%s\" для проверки на плохие блоки\n"
+msgstr "Произошёл сбой при открытии устройства \"%s\" для проверки на плохие блоки\n"
 
 #: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
 msgid "Checking for bad blocks... Done"
@@ -551,8 +554,7 @@ msgstr "Произошла ошибка при выполнении команд
 
 #: gfloppy/src/gfloppy.c:330
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr ""
-"Обнаружена неизвестная начальная строка (сигнатура) mke2fs, отменяется."
+msgstr "Обнаружена неизвестная начальная строка (сигнатура) mke2fs, отменяется."
 
 #: gfloppy/src/gfloppy.c:344
 #, c-format
@@ -603,8 +605,7 @@ msgstr "Создание файловой системы на диске... Вы
 
 #: gfloppy/src/gfloppy.c:524
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr ""
-"Идёт проверка на наличие сбойных блоков... (может занять некоторое время)"
+msgstr "Идёт проверка на наличие сбойных блоков... (может занять некоторое время)"
 
 #: gfloppy/src/gfloppy.c:529
 msgid "Error while checking the bad blocks."
@@ -694,8 +695,7 @@ msgstr "_быстрый (только создаёт файловую систе
 
 #: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
-msgstr ""
-"ст_андартный (добавляет низкоуровневое форматирование к быстрому режиму)"
+msgstr "ст_андартный (добавляет низкоуровневое форматирование к быстрому режиму)"
 
 #: gfloppy/src/main.c:140
 msgid ""
@@ -708,8 +708,7 @@ msgstr ""
 #: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr ""
-"Не удалось открыть устройство \"%s\", невозможно продолжать форматирование."
+msgstr "Не удалось открыть устройство \"%s\", невозможно продолжать форматирование."
 
 #: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
@@ -732,14 +731,12 @@ msgstr ""
 "Свяжитесь с системным администратором для получения прав на запись."
 
 #: gfloppy/src/main.c:216
-#, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
-msgstr ""
-"Не удалось открыть устройство \"%s\", невозможно продолжать форматирование."
+msgstr "Не удается открыть ни одно устройство, форматирование прервано."
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 или /dev/fd0"
 
 #: gfloppy/src/main.c:394
 #, c-format
@@ -763,19 +760,15 @@ msgid "DEVICE"
 msgstr "УСТРОЙСТВО"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
 msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr[0] ""
-"Дискета отформатирована, но <b>%d плохих блоков</b> (из %d) найдены и "
-"отмечены."
-msgstr[1] ""
-"Дискета отформатирована, но <b>%d плохих блоков</b> (из %d) найдены и "
-"отмечены."
+msgstr[0] "Дискета была отформотирована, но <b>%d сбойный блок</b> (из %d) был найден и помечен."
+msgstr[1] "Дискета была отформотирована, но <b>%d сбойных блока</b> (из %d) было найдено и помечено."
+msgstr[2] "Дискета была отформотирована, но <b>%d сбойный блоков</b> (из %d) было найдено и помечено."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -801,27 +794,27 @@ msgstr "Программа поиска файлов на дисках"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:99
 msgid "Image/label border"
-msgstr ""
+msgstr "Рамка изображения/ярлыка"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Width of border around the label and image in the alert dialog"
-msgstr ""
+msgstr "Ширина рамки вокруг ярлыка и изображения в диалоге предупреждения"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
 msgid "Alert Type"
-msgstr ""
+msgstr "Тип предупреждения"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "The type of alert"
-msgstr ""
+msgstr "Тип предупреждения"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:118
 msgid "Alert Buttons"
-msgstr ""
+msgstr "Кнопки предупреждения"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "The buttons shown in the alert dialog"
-msgstr ""
+msgstr "Кнопки, отображаемые в диалоге предупреждения"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -833,39 +826,38 @@ msgstr "Открыть _папку"
 
 #: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
-msgstr ""
+msgstr "_Переместить в корзину"
 
 #: gsearchtool/gsearchtool-callbacks.c:64
 msgid "_Save Results As..."
 msgstr "Сохранить результаты _как..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
-#, fuzzy
 msgid "Could not open help document."
-msgstr "Не удалось открыть справочный документ"
+msgstr "Не удается открыть документ справки"
 
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Вы действительно хотите открыть %d документ?"
+msgstr[1] "Вы действительно хотите открыть %d документа?"
+msgstr[2] "Вы действительно хотите открыть %d документов?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] ""
-"Команда откроет %d отдельных файлов. Вы уверены, что хотите сделать это?"
-msgstr[1] ""
-"Команда откроет %d отдельных файлов. Вы уверены, что хотите сделать это?"
+msgstr[0] "Будет открыто %d отдельное окно."
+msgstr[1] "Будет открыто %d отдельных окна."
+msgstr[2] "Будет открыто %d отдельных окон."
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open document \"%s\"."
-msgstr "Не удалось открыть документ \"%s\""
+msgstr "Не удается открыть документ \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:393
 #: gsearchtool/gsearchtool-callbacks.c:947
@@ -876,99 +868,96 @@ msgstr "Отсутствует программа просмотра, спосо
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Вы действительно хотите открыть %d папку?"
+msgstr[1] "Вы действительно хотите открыть %d папки?"
+msgstr[2] "Вы действительно хотите открыть %d папок?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
-msgstr "Не удалось открыть папку \"%s\""
+msgstr "Не удается открыть папку \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
 msgstr "Файловый менеджер \"Наутилус\" не запущен."
 
 #: gsearchtool/gsearchtool-callbacks.c:612
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to trash."
-msgstr "Не удалось сохранить документ \"%s\" в %s"
+msgstr "Не удается переместить \"%s\" в корзину."
 
 #: gsearchtool/gsearchtool-callbacks.c:615
 msgid "The document does not exist."
-msgstr ""
+msgstr "Документ не существует."
 
 #: gsearchtool/gsearchtool-callbacks.c:652
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to the trash."
-msgstr "Не удалось сохранить документ \"%s\" в %s"
+msgstr "Не удается переместить \"%s\" в корзину."
 
 #: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr ""
+msgstr "Сбой перемещения \"%s\": %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
-msgstr ""
+msgstr "Вы действительно хотите безвозвратно удалить \"%s\"? "
 
 #: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr ""
+msgstr "Корзина недоступна. Не удается переместить \"%s\" в корзину."
 
 #: gsearchtool/gsearchtool-callbacks.c:730
-#, fuzzy, c-format
+#, c-format
 msgid "Could not delete \"%s\"."
-msgstr "Не удалось открыть папку \"%s\""
+msgstr "Не удается удалить \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:733
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr ""
+msgstr "Сбой удаления \"%s\": %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:1132
 msgid "Save Search Results As..."
 msgstr "Сохранить результаты поиска как..."
 
 #: gsearchtool/gsearchtool-callbacks.c:1184
-#, fuzzy
 msgid "Could not save document."
-msgstr "Не удалось сохранить документ \"\" в %s"
+msgstr "Не удается сохранить документ."
 
 #: gsearchtool/gsearchtool-callbacks.c:1186
-#, fuzzy
 msgid "You did not select a document name."
-msgstr "Не удалось открыть документ \"%s\""
+msgstr "Вы не выбрали имя документа."
 
 #: gsearchtool/gsearchtool-callbacks.c:1212
 #: gsearchtool/gsearchtool-callbacks.c:1307
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
-msgstr "Не удалось сохранить документ \"\" в %s"
+msgstr "Не удается сохранить документ \"%s\" в %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
-msgstr ""
+msgstr "Указанное вами имя документа соответствует папке."
 
 #: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "Документ \"%s\" уже существует.  Заменить этот документ?"
 
 #: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr ""
+msgstr "Если вы замените существующий файл, его содержимое будет перезаписано."
 
 #: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
-msgstr ""
+msgstr "_Заменить"
 
 #: gsearchtool/gsearchtool-callbacks.c:1310
-#, fuzzy
 msgid "You may not have write permissions to the document."
-msgstr ""
-"Вы не меете прав на запись заданный данный документ.  Документ не сохранен."
+msgstr "Возможно, у вас нет прав записи в этот документ."
 
 #: gsearchtool/gsearchtool-support.c:64
 #, c-format
@@ -1050,9 +1039,8 @@ msgid "Name matches regular e_xpression"
 msgstr "Имя совпадает с ре_гулярным выражением"
 
 #: gsearchtool/gsearchtool.c:86
-#, fuzzy
 msgid "Show hidden and backup files"
-msgstr "Показывать скрытые файлы и каталоги"
+msgstr "Показывать скрытые файлы и резервные копии"
 
 #: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
@@ -1071,23 +1059,24 @@ msgid "(stopped)"
 msgstr "(остановлен)"
 
 #: gsearchtool/gsearchtool.c:536
-#, fuzzy
 msgid "No Files Found"
-msgstr "Файлы не найдены"
+msgstr "Файлов не найдено"
 
 #: gsearchtool/gsearchtool.c:541
-#, fuzzy, c-format
+#, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
-msgstr[0] "%d файлов найдено"
-msgstr[1] "%d файлов найдено"
+msgstr[0] "Найден %d файл"
+msgstr[1] "Найдено %d файла"
+msgstr[2] "Найдено %d файлов"
 
 #: gsearchtool/gsearchtool.c:545
-#, fuzzy, c-format
+#, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
-msgstr[0] "%d файлов найдено"
-msgstr[1] "%d файлов найдено"
+msgstr[0] "Найден %d файл"
+msgstr[1] "Найдено %d файла"
+msgstr[2] "Найдено %d файлов"
 
 #: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
@@ -1107,8 +1096,7 @@ msgstr "Установить текст для поля \"Искать в пап
 
 #: gsearchtool/gsearchtool.c:923
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr ""
-"Сортировать файлы по одному из критериев: имя, каталог, размер, тип, дата"
+msgstr "Сортировать файлы по одному из критериев: имя, каталог, размер, тип, дата"
 
 #: gsearchtool/gsearchtool.c:924
 msgid "Set sort order to descending, the default is ascending"
@@ -1144,19 +1132,16 @@ msgstr ""
 "... Слишком много ошибок ..."
 
 #: gsearchtool/gsearchtool.c:1312
-#, fuzzy
 msgid "Error while searching for files."
-msgstr "Произошла ошибка при поиске файлов"
+msgstr "Произошла ошибка при поиске файлов."
 
 #: gsearchtool/gsearchtool.c:1353
-#, fuzzy
 msgid "Error parsing the search command."
-msgstr "Ошибка разбора команды поиска"
+msgstr "Ошибка разбора команды поиска."
 
 #: gsearchtool/gsearchtool.c:1376
-#, fuzzy
 msgid "Error running the search command."
-msgstr "Ошибка запуска команда поиска"
+msgstr "Ошибка выполнения команда поиска."
 
 #: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
@@ -1209,7 +1194,7 @@ msgstr "Дата изменения"
 
 #: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
-msgstr "И_мя содержит"
+msgstr "_Имя содержит:"
 
 #: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
@@ -1217,7 +1202,7 @@ msgstr "Ввести имя файла, который необходимо на
 
 #: gsearchtool/gsearchtool.c:1815
 msgid "Name Contains Entry"
-msgstr ""
+msgstr "Имя содержит элемент"
 
 #: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
@@ -1237,16 +1222,15 @@ msgstr "Искать в указанной папке"
 
 #: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
-msgstr "_Показывать больше параметров"
+msgstr "Показывать больше _параметров"
 
 #: gsearchtool/gsearchtool.c:1872
-#, fuzzy
 msgid "Show more options"
-msgstr "_Показывать больше параметров"
+msgstr "Показывать больше параметров"
 
 #: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
-msgstr ""
+msgstr "Расширяет или сжимает список параметров поиска."
 
 #: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
@@ -1267,12 +1251,11 @@ msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:44
 msgid "A system log viewer for GNOME."
-msgstr "Программа просмотра системных журналов для GNOME."
+msgstr "Программа просмотра системных журналов для среды \"Гном\"."
 
 #: logview/about.c:58
-#, fuzzy
 msgid "System Log Viewer"
-msgstr "Просмотр журналов системы"
+msgstr "Программа просмотра системных журналов"
 
 #: logview/actions.c:74
 msgid "Action Database"
@@ -1284,35 +1267,32 @@ msgstr "Действия"
 
 #: logview/actions.c:157
 msgid "_Add"
-msgstr "Доб_авить"
+msgstr "_Добавить"
 
 #: logview/actions.c:162
-#, fuzzy
 msgid "Add an action"
-msgstr "Действия"
+msgstr "Добавить действие"
 
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "_Изменить"
 
 #: logview/actions.c:169
-#, fuzzy
 msgid "Edit an action"
-msgstr "В_ыполнять действия"
+msgstr "Изменить действие"
 
 #: logview/actions.c:171
 msgid "_Remove"
-msgstr "У_брать"
+msgstr "_Удалить"
 
 #: logview/actions.c:176
 msgid "Remove an action"
-msgstr ""
+msgstr "Удалить действие"
 
 #: logview/actions.c:263
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
-msgstr ""
-"Невозможно открыть базу данных действий <%s>! Произошёл сбой при открытии."
+msgstr "Невозможно открыть базу данных действий <%s>! Произошёл сбой при открытии."
 
 #: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
 #: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
@@ -1352,56 +1332,52 @@ msgid "description"
 msgstr "описание"
 
 #: logview/actions.c:651
-#, fuzzy
 msgid "Edit Action"
-msgstr "Действия"
+msgstr "Изменить действие"
 
 #: logview/actions.c:687
-#, fuzzy
 msgid "_Tag:"
-msgstr "_Страница:"
+msgstr "_Тэг:"
 
 #: logview/actions.c:696
 msgid "Tag that identifies the log file."
-msgstr ""
+msgstr "Тэг, который идентифицирует журнал."
 
 #: logview/actions.c:705
-#, fuzzy
 msgid "_Log name:"
-msgstr "И_мя тома: "
+msgstr "Имя _журнала:"
 
 #: logview/actions.c:714
 msgid "Regular expression that will match the log name."
-msgstr ""
+msgstr "Регулярное выражение, соответствующее имени журнала."
 
 #: logview/actions.c:724
-#, fuzzy
 msgid "_Process:"
-msgstr "Процесс:"
+msgstr "_Процесс:"
 
 #: logview/actions.c:733
 msgid "Regular expression that will match process part of message."
-msgstr ""
+msgstr "Регулярное выражение, соответствующее имени процесса в сообщении."
 
 #: logview/actions.c:743
-#, fuzzy
 msgid "_Message:"
-msgstr "Сообщение:"
+msgstr "_Сообщение:"
 
 #: logview/actions.c:752
 msgid "Regular expression that will match the message."
-msgstr ""
+msgstr "Регулярное выражение, которое будет соответствовать сообщению."
 
 #: logview/actions.c:762
-#, fuzzy
 msgid "_Action:"
-msgstr "Действия"
+msgstr "_Действие:"
 
 #: logview/actions.c:771
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
+"Действие, которое будет выполнено в случае соответствия всех предыдущих рег. выражений. Выполняется при помощи системной "
+"команды: system (действие)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1442,8 +1418,7 @@ msgstr ""
 #: logview/desc_db.c:147
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
-msgstr ""
-"Невозможно открыть базу данных описаний <%s>! Произошёл сбой при открытии."
+msgstr "Невозможно открыть базу данных описаний <%s>! Произошёл сбой при открытии."
 
 #. ----------------------------------------------------------------------
 #. NAME:
@@ -1490,11 +1465,12 @@ msgid "<No log loaded>"
 msgstr "<Журнал не загружен>"
 
 #: logview/info.c:183
-#, fuzzy, c-format
+#, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld байт"
-msgstr[1] "%ld байт"
+msgstr[1] "%ld байта"
+msgstr[2] "%ld байтов"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1743,10 +1719,10 @@ msgstr "В_ыполнять действия"
 
 #: logview/monitor.c:290
 msgid "Too many logs to monitor. Remove one and try again"
-msgstr ""
-"Слишком много журналов в числе отслеживаемых. Уберите один и попробуйте снова"
+msgstr "Слишком много журналов в числе отслеживаемых. Уберите один и попробуйте снова"
 
 #: logview/monitor.c:298 logview/monitor.c:335
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list имеет значение NULL\n"
 
@@ -1755,6 +1731,7 @@ msgid "Monitoring Logs..."
 msgstr "Отслеживание журналов..."
 
 #: logview/monitor.c:643
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr "ИЗМЕНЕНО!\n"
 
@@ -1779,9 +1756,8 @@ msgid "Description:"
 msgstr "Описание:"
 
 #: logview/zoom.c:129
-#, fuzzy
 msgid "Log Line Details"
-msgstr "Подробная строка журнала для"
+msgstr "Детали длинной строки"
 
 #. Translators: do not include year, it would be bogus
 #: logview/zoom.c:187
@@ -2358,3 +2334,4 @@ msgstr "%e %B %X"
 
 #~ msgid "File is _named:"
 #~ msgstr "И_мя файла:"
+
