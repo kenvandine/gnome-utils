@@ -856,9 +856,9 @@ add_page_before(Chart_app *app, int n, Param_desc *desc)
   app->plist = g_list_append(app->plist, page);
   gtk_object_set_user_data(GTK_OBJECT(page->table), page);
 
-  #ifdef DEBUG
+#ifdef DEBUG
   printf("add_param: n %d, page %p\n", n, page);
-  #endif DEBUG
+#endif /* DEBUG */
   return page;
 }
 
