@@ -43,6 +43,7 @@
 
 #define C_STANDARD_STRFTIME_CHARACTERS "aAbBcdHIjmMpSUwWxXyYZ"
 #define C_STANDARD_NUMERIC_STRFTIME_CHARACTERS "dHIjmMSUwWyY"
+#define SUS_EXTENDED_STRFTIME_MODIFIERS "EO"
 #define BINARY_EXEC_MIME_TYPE      "application/x-executable-binary"
 #define ICON_THEME_EXECUTABLE_ICON "gnome-fs-executable"
 #define ICON_THEME_REGULAR_ICON    "gnome-fs-regular"
@@ -354,30 +355,35 @@ get_readable_date (const time_t file_time_raw)
 		format = g_strdup(_("%m/%-d/%y, %-I:%M %p"));
 	}
 	
-	readable_date = strdup_strftime (format, file_time);
+	readable_date = gsearchtool_strdup_strftime (format, file_time);
 	g_free (format);
 	
 	return readable_date;
 }  
 
 gchar *
-strdup_strftime (const gchar *format, 
-		 struct tm *time_pieces)
+gsearchtool_strdup_strftime (const gchar *format, 
+                             struct tm *time_pieces)
 {
-	/* this function is based on eel */
+	/* This function is borrowed from eel's eel_strdup_strftime() */
 	GString *string;
 	const char *remainder, *percent;
-	char code[3], buffer[512];
+	char code[4], buffer[512];
 	char *piece, *result, *converted;
 	size_t string_length;
 	gboolean strip_leading_zeros, turn_leading_zeros_to_spaces;
+	char modifier;
+	int i;
 
+	/* Format could be translated, and contain UTF-8 chars,
+	 * so convert to locale encoding which strftime uses */
 	converted = g_locale_from_utf8 (format, -1, NULL, NULL, NULL);
 	g_return_val_if_fail (converted != NULL, NULL);
 	
 	string = g_string_new ("");
 	remainder = converted;
 
+	/* Walk from % character to % character. */
 	for (;;) {
 		percent = strchr (remainder, '%');
 		if (percent == NULL) {
@@ -387,6 +393,7 @@ strdup_strftime (const gchar *format,
 		g_string_append_len (string, remainder,
 				     percent - remainder);
 
+		/* Handle the "%" character. */
 		remainder = percent + 1;
 		switch (*remainder) {
 		case '-':
@@ -404,7 +411,7 @@ strdup_strftime (const gchar *format,
 			remainder++;
 			continue;
 		case '\0':
-			g_warning ("Trailing %% passed to strdup_strftime");
+			g_warning ("Trailing %% passed to gsearchtool_strdup_strftime");
 			g_string_append_c (string, '%');
 			continue;
 		default:
@@ -412,26 +419,53 @@ strdup_strftime (const gchar *format,
 			turn_leading_zeros_to_spaces = FALSE;
 			break;
 		}
+
+		modifier = 0;
+		if (strchr (SUS_EXTENDED_STRFTIME_MODIFIERS, *remainder) != NULL) {
+			modifier = *remainder;
+			remainder++;
+
+			if (*remainder == 0) {
+				g_warning ("Unfinished %%%c modifier passed to gsearchtool_strdup_strftime", modifier);
+				break;
+			}
+		} 
 		
 		if (strchr (C_STANDARD_STRFTIME_CHARACTERS, *remainder) == NULL) {
-			g_warning ("strdup_strftime does not support "
+			g_warning ("gsearchtool_strdup_strftime does not support "
 				   "non-standard escape code %%%c",
 				   *remainder);
 		}
 
-		code[0] = '%';
-		code[1] = *remainder;
-		code[2] = '\0';
+		/* Convert code to strftime format. We have a fixed
+		 * limit here that each code can expand to a maximum
+		 * of 512 bytes, which is probably OK. There's no
+		 * limit on the total size of the result string.
+		 */
+		i = 0;
+		code[i++] = '%';
+		if (modifier != 0) {
+#ifdef HAVE_STRFTIME_EXTENSION
+			code[i++] = modifier;
+#endif
+		}
+		code[i++] = *remainder;
+		code[i++] = '\0';
 		string_length = strftime (buffer, sizeof (buffer),
 					  code, time_pieces);
 		if (string_length == 0) {
+			/* We could put a warning here, but there's no
+			 * way to tell a successful conversion to
+			 * empty string from a failure.
+			 */
 			buffer[0] = '\0';
 		}
 
+		/* Strip leading zeros if requested. */
 		piece = buffer;
 		if (strip_leading_zeros || turn_leading_zeros_to_spaces) {
 			if (strchr (C_STANDARD_NUMERIC_STRFTIME_CHARACTERS, *remainder) == NULL) {
-				g_warning ("strdup_strftime does not support "
+				g_warning ("gsearchtool_strdup_strftime does not support "
 					   "modifier for non-numeric escape code %%%c%c",
 					   remainder[-1],
 					   *remainder);
@@ -450,12 +484,17 @@ strdup_strftime (const gchar *format,
 			}
 		}
 		remainder++;
+
+		/* Add this piece. */
 		g_string_append (string, piece);
 	}
 	
+	/* Convert the string back into utf-8. */
 	result = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
+
 	g_string_free (string, TRUE);
 	g_free (converted);
+
 	return result;
 }
 

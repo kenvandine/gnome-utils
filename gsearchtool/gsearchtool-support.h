@@ -78,7 +78,7 @@ gchar *
 get_readable_date 		(const time_t file_time_raw);
 
 gchar *    	
-strdup_strftime 		(const gchar *format, 
+gsearchtool_strdup_strftime	(const gchar *format, 
 				 struct tm *time_pieces); 
 const char *
 get_file_type_for_mime_type	(const gchar *filename,
