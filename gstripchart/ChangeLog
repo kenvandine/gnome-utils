@@ -1,0 +1,49 @@
+1998-11-28  John Kodis  <kodis@kodis.jagunet.com>
+
+	* gstripchart.c (popt_arg_extractor): changed from argp-based to
+	 popt-based command line handling.
+
+1998-10-25  John Kodis  <kodis@kodis.jagunet.com>
+
+	* gstripchart.c (arglist): Changed --add_menubar switch to
+	--menubar; also fixed it so that it now works.
+	(gtk_graph): Handle geometry settings.
+
+	* gstripchart.html: Added some documentation about the geometry
+	option and the use of the libgtop variables.
+
+1998-09-05  John Kodis  <kodis@kodis.jagunet.com>
+
+	* gstripchart.c (read_param_defns): Initialized the `now' array to
+	zero.
+	(gtop_value): Added libgtop parameters as a source of plot data.
+
+1998-08-27  John Kodis  <kodis@kodis.jagunet.com>
+
+	* gstripchart.c (main): Allow config parameters to be overridden
+	by command line options by adding two explicit argp_parse calls in
+	place of the implicit call from gnome init.
+
+1998-08-22  John Kodis  <kodis@kodis.jagunet.com>
+
+	* gstripchart.c (overlay_tick_marks): New function.
+	(read_param_defns): Add code to handle major/minor_tick parameter
+	settings. 
+
+	* gstripchart.html: Changed omit-menu entries to add-menubar
+	entries. 
+
+	* gstripchart.c (click_handler): Now correctly pops up a menu.
+	(help_menu_action): Now correctly pops open a help browser to
+	display the gstripchart help file.
+	(main): Added textdomain calls to initialize the i18n stuff.
+	(gtk_graph): Always do pop-up menu set-up; do menubar set-up if
+	requested.
+
+1998-08-17  John Kodis  <kodis@kodis.jagunet.com>
+
+	* gstripchart.c (read_param_defns): Accept some command-line
+	arguments as config file parameters.
+	(click_handler): Add beginnings of pop-up menu support.
+	(tc_to_lpf_const): Add low-pass filtering to chart and slider
+	values. 

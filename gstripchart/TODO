@@ -1,5 +1,9 @@
 
-JUST PLAIN BUGS
+BUGS TO BE SQUASHED
+
+The code to process a command option error leaves trailing cruft after
+the command name, and includes all the gnome-internal options but
+omits the long-named varients of the gstripchart options.
 
 Resizing only works when enlarging the size of the window from its
 default value.  When shrinking the window, stuff on the RHS gets
@@ -8,12 +12,6 @@ something simple, but I can't see what it is.  Also, there seems to be
 a race condition such that the chart doesn't get redrawn for a few
 seconds after making a sudden, large increase in the size of the window.
 
-When a menu is included, it gets laid over the top of the chart
-window.  It would be better to pack it into the enclosing window so
-that ploted values don't get hidden beneith the menu bar.  This,
-unfortunately, would leave a large blank area exposed when the menu bar
-is torn off.  I see no good solution to this quandry.
-
 The help browser doesn't jump to the name tags listed in the
 topics.dat file.  Instead, the help file always loads the help page
 starting at the top of the file.  As far as I can tell, this doesn't
@@ -21,57 +19,41 @@ work for any other apps either, so I'll assume that the problem lies
 outside of gstripchart.
 
 
-GNOME-SPECIFIC ITEMS
+FEATURES TO BE ADDED
 
-Add session management code.  This will require support for a
---geometry option.
-
-
-CONFIGURATION-SPECIFIC ITEMS
+Add session management code.  Also, figure out how to account for WM
+decorations when dealing with a geometry string that specify a
+position relative to the lower or right sides.
 
 Use notebook pages for configuration.  Have a right-click pop up a
 configuration notebook.  This should probably be written using one of
 the GUI config tools, such as Linuxconf or COAS.
 
-
-APPLICATION-SPECIFIC ITEMS
-
-Add a low-pass filter to the position of the slider arrows, so that
-they don't jump around so erratically.  Maybe do the same for the
-chart window.
-
-Add an option to allow the slider window to be placed on the LHS
-instead of the RHS of the frame.
-
-Add support for named parameters using the Gtop library.  This will be
-easier to configure and more portable than reading directly from /proc.
-
-Add a way to read parameter values from a pipe, such as stdin.  This
-will allow the output of programs to be plotted.
-
-Add an auto-ranging capability, for things like load which don't have
-any well defined upper bound.  Perhaps better yet: add named functions
-to the eval code.  This would permit plotting something like
-log(load).  Perhaps this should be worked in elsewhere, so that value
-displays could be kept in sync.
+Add auto-ranging.  Having to manually specify the range for a value is
+too awkward.
 
 Add an option to include legends along the sides of the display.  The
 vertical legend could include the name and last value of each
 parameter.  This could get crowded in a hurry.
 
-Allow a few global setup parameters to be defined in the configuration
-file.  The polling interval, background color, and geometry parameters
-come to mind, but there are probably others as well.
+Allow values to be plotted using a logarithmic basis rather than a
+linear one.  This would be especially handy for values such as load
+which is normally very low, but which can jump way up at times.
 
 Don't draw a line if there's no value available.  For example, it
 should be possible to distinguish between a 'net connection down'
 condition and a 'no net traffic' condition.  This will require some
 type of conditional test in the config setup.
 
+Allow the background color and geometry parameters to be defined on
+the command line and in the config file.
+
 Catch a SIGHUP and re-read the config file.  This would be handier
 than stopping and restarting on each change to the configuration file.
 
-Allow fields to be split on delimtiers other than whitespace.
+Allow fields to be split on delimtiers other than whitespace and
+colon, then eliminate the colon from the seperator list and add it to
+the net I/O items.
 
 Use regular expressions instead of strstr for field matching and
 strtok for splitting?  This would be more versatile, but would also
