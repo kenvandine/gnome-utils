@@ -1,3 +1,18 @@
+1999-11-09  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (applet): Add help, about, and params menu items
+	to the applet right-click menu.
+	(applet_resize_handler): Take slider width into account when
+	setting width in vertically-oriented panels.
+	(gnome_graph): Brought comments back into sync with the code.
+
+1999-11-01  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (applet): Handle size and orientation changes by
+	resizing the chart and slider drawing areas.  These drawing areas
+	are stored in an array that is passed as the optional signal
+	handler parameter.
+
 1999-10-27  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (get_all_netload): Use u_int64_t for net stats to
