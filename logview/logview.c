@@ -43,6 +43,7 @@ gboolean log_repaint (GtkWidget * canvas, GdkRectangle * area);
 gboolean PointerMoved (GtkWidget * canvas, GdkEventMotion * event);
 gboolean HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key);
 gboolean handle_log_mouse_button (GtkWidget * win, GdkEventButton *event);
+gboolean handle_log_mouse_scroll (GtkWidget * win, GdkEventScroll *event);
 void ExitProg (GtkWidget * widget, gpointer user_data);
 void LoadLogMenu (GtkWidget * widget, gpointer user_data);
 void CloseLogMenu (GtkWidget * widget, gpointer user_data);
@@ -160,6 +161,8 @@ GnomeUIInfo main_menu[] = {
 
 GtkWidget *app = NULL;
 GtkWidget *main_win_scrollbar = NULL;
+static GtkWidget *viewport;
+GtkWidget *main_win_hor_scrollbar = NULL; 
 GtkLabel *filename_label = NULL, *date_label = NULL;
 
 GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
@@ -302,24 +305,28 @@ CreateMainWin ()
    table = gtk_table_new (2, 2, FALSE);
    gtk_widget_show (table);
 
-   w = gtk_viewport_new (NULL, NULL);
-   gtk_widget_set_usize (w, LOG_CANVAS_W, 0); 
-   gtk_widget_show (w);
+   viewport = gtk_viewport_new (NULL, NULL);
+   gtk_widget_set_usize (viewport, LOG_CANVAS_W, 0); 
+   gtk_widget_show (viewport);
                
    canvas = gtk_drawing_area_new ();
    /*gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W, LOG_CANVAS_H); */
    gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W,
 			  LOG_CANVAS_H); 
    /*gtk_widget_set_usize ( GTK_WIDGET (canvas), LOG_CANVAS_W, LOG_CANVAS_H);*/
-   gtk_container_add (GTK_CONTAINER (w), canvas);
-   gtk_table_attach (GTK_TABLE (table), w, 0, 1, 0, 1,
+   gtk_container_add (GTK_CONTAINER (viewport), canvas);
+   gtk_table_attach (GTK_TABLE (table), viewport, 0, 1, 0, 1,
 		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
 		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
 
-   adj = (GtkObject *)gtk_viewport_get_hadjustment (GTK_VIEWPORT (w));
-   w = gtk_hscrollbar_new (GTK_ADJUSTMENT (adj));
-   gtk_widget_show (w);
-   gtk_table_attach (GTK_TABLE (table), w, 0, 1, 1, 2,
+   if (curlog != NULL)
+	   adj = (GtkObject *)gtk_viewport_get_hadjustment (GTK_VIEWPORT (viewport));
+   else
+	   adj = gtk_adjustment_new (100.0, 0.0, 101.0, 1, 10, 101.0);
+   
+   main_win_hor_scrollbar = gtk_hscrollbar_new (GTK_ADJUSTMENT (adj));
+   gtk_widget_show(main_win_hor_scrollbar);
+   gtk_table_attach (GTK_TABLE (table), main_win_hor_scrollbar, 0, 1, 1, 2,
 		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
 		     (GtkAttachOptions) (0), 0, 0);
 
@@ -339,9 +346,6 @@ CreateMainWin ()
    gtk_signal_connect (GTK_OBJECT (adj), "value_changed",
 		       (GtkSignalFunc) MainWinScrolled,
 		       (gpointer) main_win_scrollbar);       
-   gtk_signal_connect (GTK_OBJECT (main_win_scrollbar), "button_release_event", 
- 		       (GtkSignalFunc) ScrollWin, 
- 		       (gpointer) main_win_scrollbar);        
    gtk_widget_show (main_win_scrollbar);  
 
 
@@ -350,17 +354,23 @@ CreateMainWin ()
    /*  Install event handlers */
    gtk_signal_connect (GTK_OBJECT (canvas), "expose_event",
 		       GTK_SIGNAL_FUNC (log_repaint), NULL);
+#if 0
    gtk_signal_connect (GTK_OBJECT (canvas), "motion_notify_event",
 		       GTK_SIGNAL_FUNC (PointerMoved), NULL);
+#endif
    gtk_signal_connect (GTK_OBJECT (app), "key_press_event",
 		       GTK_SIGNAL_FUNC (HandleLogKeyboard), NULL);
-   gtk_signal_connect (GTK_OBJECT (app), "button_press_event",
+   gtk_signal_connect (GTK_OBJECT (canvas), "button_press_event",
 		       GTK_SIGNAL_FUNC (handle_log_mouse_button), NULL);
+   g_signal_connect (G_OBJECT (canvas), "scroll_event", 
+   		     G_CALLBACK (handle_log_mouse_scroll), NULL);
    gtk_signal_connect (GTK_OBJECT (canvas), "size_allocate",
 		       GTK_SIGNAL_FUNC (CanvasResized), NULL);
    gtk_widget_set_events (canvas, GDK_EXPOSURE_MASK |
 			  GDK_BUTTON_PRESS_MASK |
-			  GDK_POINTER_MOTION_MASK );
+			  GDK_POINTER_MOTION_MASK |
+			  GDK_SCROLL_MASK
+			  );
 
    gtk_widget_set_events (app, GDK_KEY_PRESS_MASK);
 
@@ -550,10 +560,22 @@ void set_scrollbar_size (int num_lines)
   gtk_signal_connect (GTK_OBJECT (adj), "value_changed",
 		      (GtkSignalFunc) MainWinScrolled,
 		      (gpointer) main_win_scrollbar);       
-  gtk_adjustment_set_value (GTK_ADJUSTMENT(adj), curlog->ln);
+  if (curlog != NULL )
+  {
+  	gtk_adjustment_set_value (GTK_ADJUSTMENT(adj), curlog->ln); 
+	adj = (GtkObject*)gtk_viewport_get_hadjustment (GTK_VIEWPORT (viewport));
+  	gtk_adjustment_set_value (GTK_ADJUSTMENT(adj),0); 
+  }
+  else
+	adj = gtk_adjustment_new (100.0, 0.0, 101.0, 1, 10, 101.0);
+
+  gtk_range_set_adjustment (GTK_RANGE (main_win_hor_scrollbar),GTK_ADJUSTMENT (adj));
+
   gtk_widget_realize (main_win_scrollbar);
+  gtk_widget_realize (main_win_hor_scrollbar);
 
   gtk_widget_queue_resize (main_win_scrollbar);
+  gtk_widget_queue_resize (main_win_hor_scrollbar);
 }
 
 /* ----------------------------------------------------------------------
@@ -579,6 +601,7 @@ CloseLogMenu (GtkWidget * widget, gpointer user_data)
       log_repaint (NULL, NULL);
       if (loginfovisible)
 	 RepaintLogInfo (NULL, NULL);
+      set_scrollbar_size (1);
       return;
    }
    for (i = curlognum; i < numlogs; i++)

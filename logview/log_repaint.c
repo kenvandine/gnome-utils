@@ -190,26 +190,45 @@ NumTextLines (int l)
 gboolean
 handle_log_mouse_button (GtkWidget * win, GdkEventButton *event)
 {
-  static guint32 lasttime;
-  static int clicked_before = FALSE;
 
-  if (event->type == GDK_BUTTON_PRESS && !clicked_before)
-    {
-      lasttime = event->time;
-      clicked_before = TRUE;
+  if (event->type == GDK_2BUTTON_PRESS) {
+    if (!zoom_visible)
+      create_zoom_view (NULL, NULL);
+  }
+  else if (event->button == 1) {
+    int cursory, nl;
+    Page *np;
+    if (curlog == NULL)
       return FALSE;
-    }
-  
-  clicked_before = FALSE;
-  if (event->time - lasttime < 100 ||
-      event->time - lasttime > 200)
-    return FALSE;
 
-  /* If zoom is already visible ignore */
-  if (!zoom_visible)
-    create_zoom_view (NULL, NULL);
+     cursory = event->y;
+     cursor_visible = TRUE;
+     if ((nl = GetLineAtCursor (cursory)) != -1 && nl != curlog->pointerln)
+     {
+       np = GetPageAtCursor (cursory);
+       log_redrawcursor (curlog->pointerln, nl, np);
+       curlog->pointerln = nl;
+       curlog->pointerpg = np;
+       log_redrawdetail ();
+     }
+  } 
 
   return FALSE;
+}
+
+gboolean
+handle_log_mouse_scroll (GtkWidget * win, GdkEventScroll *event)
+{
+  GtkAdjustment *adj;
+  adj = GTK_ADJUSTMENT (GTK_RANGE (main_win_scrollbar)->adjustment);
+
+  if (event->direction == GDK_SCROLL_UP)
+    gtk_adjustment_set_value (adj, (adj->value - 5.0));
+  else if (event->direction == GDK_SCROLL_DOWN)
+    gtk_adjustment_set_value (adj, (adj->value + 5.0));
+    
+  return FALSE;
+
 }
 
 /* ----------------------------------------------------------------------
