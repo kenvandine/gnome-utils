@@ -263,7 +263,6 @@ static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
                       help_box, TRUE, TRUE, 0);
 
   button = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
-  gtk_widget_set_usize(button, GNOME_BUTTON_WIDTH, GNOME_BUTTON_HEIGHT);
   gtk_box_pack_end(GTK_BOX(help_box), button, FALSE, FALSE, 0);
   
   gtk_signal_connect( GTK_OBJECT(button), "clicked",
@@ -301,13 +300,11 @@ static void prepare_advanced_vbox(GtkWidget * vbox)
   /* Fixme these should be stock buttons */
 
   button = gnome_stock_or_ordinary_button("Preferences");
-  gtk_widget_set_usize(button, GNOME_BUTTON_WIDTH, GNOME_BUTTON_HEIGHT);
   gtk_box_pack_end(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
   gtk_signal_connect(GTK_OBJECT(button), "clicked",
                      GTK_SIGNAL_FUNC(popup_preferences), NULL);
 
   button = gnome_stock_or_ordinary_button("About");
-  gtk_widget_set_usize(button, GNOME_BUTTON_WIDTH, GNOME_BUTTON_HEIGHT);
   gtk_box_pack_end(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
   gtk_signal_connect(GTK_OBJECT(button), "clicked",
                      GTK_SIGNAL_FUNC(popup_about), NULL);
@@ -358,7 +355,6 @@ static void popup_preferences()
 
   /* Put in a "revert to defaults" button */
   button = gtk_button_new_with_label(_("Revert to Defaults"));
-  gtk_widget_set_usize(button, GNOME_BUTTON_WIDTH, GNOME_BUTTON_HEIGHT);
   /* Attach to the last of 8 table slots in col. 2 */
   gtk_table_attach(GTK_TABLE(table), button, col, col+1,row+1, row+2, 
                    0, 0, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
