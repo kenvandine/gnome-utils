@@ -301,12 +301,15 @@ void label_autowrap(GtkWidget *vbox, const char *input, int w)
 	int wlen;
 	int blen;
 	int pspace;
-	
+	const char *orig_input;
+
 	if(w>511)
 		w=511;
 		
 	input=unquote_nl(input);
-	
+	/* Save this so we can free it later */
+	orig_input = input;
+
 	bp=buf;
 	wp=word;
 	wlen=0;
@@ -367,10 +370,9 @@ void label_autowrap(GtkWidget *vbox, const char *input, int w)
 		else
 			pspace=1;
 	}
-#if 0
-	/* Used in various conditions, no need to free it */
-	g_free((gpointer)input); /* allocated by unquote_nl() */
-#endif
+
+	g_free((gpointer)orig_input); /* allocated by unquote_nl() */
+
 	if(blen)
 	{
 		GtkWidget *t;
