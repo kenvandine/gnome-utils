@@ -253,16 +253,24 @@ static void prepare_app()
 
 static void popup_about()
 {
-  GtkWidget * ga;
+  static GtkWidget * ga = NULL;
   static const char * authors[] = { "Havoc Pennington <hp@pobox.com>",
                                     NULL };
 
+  if (ga != NULL)
+  {
+  	gdk_window_show (ga->window);
+  	gdk_window_raise (ga->window);
+	return;
+  }
   ga = gnome_about_new (APPNAME,
                         VERSION, 
                         COPYRIGHT_NOTICE,
                         authors,
                         "",
                         NULL);
+  gtk_signal_connect (GTK_OBJECT (ga), "destroy",
+		      GTK_SIGNAL_FUNC (gtk_widget_destroyed), &ga);
   
   gtk_widget_show(ga);
 }
@@ -468,7 +476,8 @@ static void save_cb(GtkWidget * w, gpointer data)
 
 static void preferences_cb(GtkWidget *w, gpointer data)
 {
-  GtkWidget * pb, *sw;
+  static GtkWidget *pb = NULL;
+  GtkWidget *sw;
   GtkWidget * frame, * frame_vbox, * page_vbox, 
     * bottom_hbox, * entry_hbox, * button_shrink_vbox;
   GtkWidget * defaults_button, * add_button, * delete_button;
@@ -481,6 +490,13 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   Action * a;
   gchar * text[2];
   gint row;
+
+  if (pb != NULL)
+  {
+  	gdk_window_show (pb->window);
+	gdk_window_raise (pb->window);
+	return;
+  }
 
   /* Create everything. */
   titles[0] = N_("Name");
@@ -607,6 +623,9 @@ static void preferences_cb(GtkWidget *w, gpointer data)
 
   gtk_signal_connect(GTK_OBJECT(pb), "apply",
                      GTK_SIGNAL_FUNC(apply_prefs_cb), list);
+
+  gtk_signal_connect(GTK_OBJECT(pb), "destroy",
+		     GTK_SIGNAL_FUNC(gtk_widget_destroyed), &pb);
 
   gtk_signal_connect_object(GTK_OBJECT(name_entry), "changed",
                             GTK_SIGNAL_FUNC(gnome_property_box_changed),
