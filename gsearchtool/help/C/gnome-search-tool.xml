@@ -425,6 +425,12 @@
     <title>To Save the Search Results</title>
     <para>To save the results of the last search that <application>&app;</application> performed, right-click in the <guilabel>Search results</guilabel> list, then choose <guimenuitem>Save Results As</guimenuitem>. Enter the name of the file to which you want to save the results, then click Save.</para>
     </sect2>
+    
+    <sect2 id="gsearchtool-disablequicksearches">
+    <title>To Disable Quick Searches</title>
+    <para>By default, <application>&app;</application> attempts to speed up some searches by using the <command>locate</command> command.  <command>Locate</command> provides a secure way to index and quickly search for files.  Because <command>locate</command> relies on a file index, the <guilabel>Search results</guilabel> list may not be up to date.  To disable quick searches, run the command:</para>
+    <para><computeroutput>#</computeroutput> <userinput>gconftool-2 --type=bool --set /apps/gnome-search-tool/disable_quick_search 1</userinput></para>
+    </sect2>
 
  
   </sect1>
