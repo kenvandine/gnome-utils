@@ -60,27 +60,32 @@
 
   <sect1 id="introduction">
     <title>GNOME-exe-handler</title>
-    <para>The <application>gnome-exe-handler</application> is a small utility
-      used by other applications to launch programs inside the
+    <para>The <application>gnome-exe-handler</application> is a utility
+      that other applications use to launch programs inside the
     <acronym>GNOME</acronym> environment. It checks to see if a file is
-    executable, then prompts users to be sure they want to run it. It can be invoked directly from
-    the command line. However, it is more likely to have been invoked by another program,
-      often the <application>Nautilus</application> file manager, by
-    double-clicking on a file name or icon.
+    executable, then prompts users to be sure they want to run the file. You can
+    also run <application>gnome-exe-handler</application> directly from
+    the command line. However, other applications usually invoke the
+    utility. For example, the <application>Nautilus</application> file manager
+    frequently invokes <application>gnome-exe-handler</application> when you
+    double-click on a file name or icon.
     </para>
 
-    <para>Typically, <application>gnome-exe-handler</application> will be invoked
-    for the execution of a binary file in a case where the file's permissions
-    have not been set to allow user execution. The
-    <application>gnome-exe-handler</application> will first try to determine the
-    type of file. If it appears to be executable, it will prompt the user to
+    <para>Typically, an application uses
+    <application>gnome-exe-handler</application> to execute a binary file in a
+    case where the permissions of a file have not been set to allow user execution. The
+    <application>gnome-exe-handler</application> first tries to determine the
+    type of file. If it appears to be executable,
+    <application>gnome-exe-handler</application> prompts the user to
     determine whether the user wants to start the program. If the user answers
-    "yes", it will change the permissions to allow the program to be executed.
+    "yes", <application>gnome-exe-handler</application> changes the
+    permissions to allow the user to run the program.
 
       <warning>
 	<para>Executing arbitrary programs you download from the Internet
 	can be dangerous. Be sure you understand what a program is before you
-	  permit <application>gnome-exe-handler</application> to execute it.</para>
+	  permit <application>gnome-exe-handler</application> to run the
+	program.</para>
       </warning>
     </para>
 
