@@ -1,7 +1,4 @@
-figs = \
-	figures/meat-grinder-main.png  \
-	figures/meat-grinder-main-full.png
-
+figdir = figures
 docname = meat-grinder
 lang = C
 omffile = meat-grinder-C.omf

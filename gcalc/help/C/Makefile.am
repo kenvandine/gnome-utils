@@ -1,5 +1,4 @@
-figs = \
-	figures/gcalc_window.png
+figdir = figures
 docname = gnome-calculator
 lang = C
 omffile = gnome-calculator-C.omf

@@ -1,8 +1,4 @@
-figs = \
-	figures/example-dialog.png  \
-	figures/gdialog-msgbox.png \
-	figures/gdialog-yesno.png
-
+figdir = figures
 docname = gdialog
 lang = C
 omffile = gdialog-C.omf

@@ -1,7 +1,4 @@
-figs = \
-	figures/gsearchtool_advanced.png  \
-	figures/gsearchtool_simple.png
-
+figdir = figures
 docname = gnome-search-tool
 lang = C
 omffile = gnome-search-tool-C.omf
