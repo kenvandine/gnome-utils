@@ -2349,7 +2349,6 @@ main (int 	argc,
 	GnomeProgram *gsearchtool;
 	GnomeClient  *client;
 	GtkWidget    *window;
-	GtkIconInfo  *icon_info;
 
 	memset (&interface, 0, sizeof (interface));
 
@@ -2375,12 +2374,8 @@ main (int 	argc,
 					  GNOME_PARAM_APP_DATADIR, DATADIR,  
 					  NULL);
 	gsearchtool_init_stock_icons ();				  
-	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (), GNOME_SEARCH_TOOL_ICON, 
-	                                        GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE, 0);
-	if (icon_info) {
-		gtk_window_set_default_icon_from_file (gtk_icon_info_get_filename (icon_info), NULL);
-		gtk_icon_info_free (icon_info);
-	}
+
+	gtk_window_set_default_icon_name (GNOME_SEARCH_TOOL_ICON);
 
 	if (!bonobo_init_full (&argc, argv, bonobo_activation_orb_get (), NULL, NULL))
 		g_error (_("Cannot initialize bonobo."));
