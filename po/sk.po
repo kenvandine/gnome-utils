@@ -1,18 +1,18 @@
 # gnome-utils sk.po
-# Copyright (C) 2000 Free Software Foundation, Inc.
-# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2000.
+# Copyright (C) 2000,2001 Free Software Foundation, Inc.
+# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2000,2001.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 1.2.1\n"
-"POT-Creation-Date: 2001-09-03 05:33-0700\n"
-"PO-Revision-Date: 2001-08-13 16:06CET\n"
+"Project-Id-Version: gnome-utils 1.4.1\n"
+"POT-Creation-Date: 2001-09-21 12:58+0200\n"
+"PO-Revision-Date: 2001-09-21 14:11CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
-"Language-Team: Slovak <sk-i18n@linux.sk>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.8\n"
+"X-Generator: KBabel 0.9.5\n"
 
 #: gcalc/gcalc.c:41
 msgid "The Gnome Calculator"
@@ -275,7 +275,7 @@ msgid "Exit"
 msgstr "Koniec"
 
 #: gcharmap/src/interface.c:239 gcharmap/src/menus.c:104
-#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:166
+#: gdictsrc/gdict-app.c:519 gtt/toolbar.c:170
 msgid "Copy"
 msgstr "Kopírova»"
 
@@ -357,7 +357,7 @@ msgstr "Nastaví, èi mô¾u ma» tlaèidlá fokus"
 msgid "Insert character(s) by choosing character codes"
 msgstr "Vlo¾í znak(y) pomocou ich kódov"
 
-#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:162
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:516 gtt/toolbar.c:166
 msgid "Cut"
 msgstr "Vystrihnú»"
 
@@ -369,7 +369,7 @@ msgstr "Vystrihne výber"
 msgid "Copy the selection"
 msgstr "Skopíruje výber"
 
-#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:170
+#: gcharmap/src/menus.c:106 gdictsrc/gdict-app.c:522 gtt/toolbar.c:174
 msgid "Paste"
 msgstr "Vlo¾i»"
 
@@ -551,8 +551,8 @@ msgid "Cross-reference:"
 msgstr "Krí¾ová referencia:"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:571
-#: mini-utils/gshutdown/gshutdown.c:316 stripchart/prefs.c:195
+#: gdictsrc/gdict-pref-dialog.c:129 mini-utils/gshutdown/gshutdown.c:316
+#: stripchart/prefs.c:195
 msgid "Preferences"
 msgstr "Nastavenie"
 
@@ -641,7 +641,7 @@ msgstr "Nepodarilo sa rozlo¾i» re»azec umiestnenia '%s'"
 msgid "Specify the geometry of the window."
 msgstr "Uvádza umiestnenie okna."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:310 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:332 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRY"
 
@@ -812,13 +812,13 @@ msgstr "Prida»"
 msgid "Show Command"
 msgstr "Ukáza» príkaz"
 
-#: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:759
-#: gtt/glade/interval_edit_strings.c:9
+#: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:759 gtt/ghtml.c:93
+#: gtt/ghtml.c:257 gtt/glade/interval_edit.glade.h:11
 msgid "Start"
 msgstr "©tart"
 
-#: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:760
-#: gtt/glade/interval_edit_strings.c:8
+#: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:760 gtt/ghtml.c:93
+#: gtt/ghtml.c:260 gtt/glade/interval_edit.glade.h:13
 msgid "Stop"
 msgstr "Stop"
 
@@ -880,15 +880,15 @@ msgstr "Príkaz zamotaný"
 msgid "No command for this mime type"
 msgstr "Pre tento typ MIME nie je príkaz"
 
-#: gtt/app.c:107 gtt/app.c:216
+#: gtt/app.c:118 gtt/app.c:231
 msgid "no project selected"
 msgstr "nevybraný projekt"
 
-#: gtt/app.c:205
+#: gtt/app.c:220
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:248 mini-utils/gless/gless.c:423
+#: gtt/app.c:263 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -896,46 +896,174 @@ msgstr ""
 "Nerozumiem umiestneniu (pozícii a veµkosti)\n"
 " uvedenému na príkazovom riadku"
 
-#: gtt/file-io.c:334
+#: gtt/ctree.c:353
+msgid "Total"
+msgstr "Celkom"
+
+#: gtt/ctree.c:354 gtt/glade/interval_edit.glade.h:14
+msgid "Today"
+msgstr "Dnes"
+
+#: gtt/ctree.c:355 gtt/menucmd.c:183
+msgid "Project Title"
+msgstr "Titulok projektu"
+
+#: gtt/ctree.c:356 gtt/menucmd.c:184 stripchart/params.c:654
+msgid "Description"
+msgstr "Popis"
+
+#: gtt/file-io.c:342
 msgid "project %t started"
 msgstr "projekt %t spustený"
 
-#: gtt/file-io.c:337
+#: gtt/file-io.c:345
 msgid "stopped project %t"
 msgstr "zastavený projekt %t"
 
 #. Translators: This is a "time format", that is
 #. * format on how to print the elapsed time with
 #. * hours:minutes:seconds.
-#: gtt/file-io.c:533
+#: gtt/file-io.c:580
 #, c-format
 msgid "%d:%02d:%02d"
 msgstr "%d:%02d:%02d"
 
-#: gtt/log.c:53
+#: gtt/ghtml.c:93 gtt/ghtml.c:218
+msgid "Memo"
+msgstr "Memo"
+
+#: gtt/ghtml.c:93 gtt/ghtml.c:263
+msgid "Elapsed"
+msgstr "Uplynulo"
+
+#: gtt/ghtml.c:111 gtt/ghtml.c:360
+msgid "(empty)"
+msgstr "(prázne)"
+
+#: gtt/ghtml.c:223
+msgid "Task Time"
+msgstr "Èas úlohy"
+
+#: gtt/ghtml.c:227 gtt/ghtml.c:379 gtt/glade/task_properties.glade.h:3
+msgid "Billable"
+msgstr "Vyúètovateµná"
+
+#: gtt/ghtml.c:231
+msgid "Bill Rate"
+msgstr "Frekvencia úètovania"
+
+#: gtt/ghtml.c:235 mini-utils/gcolorsel/view-color-list.c:197
+#: mini-utils/guname/moreinfo.c:227
+msgid "Value"
+msgstr "Hodnota"
+
+#: gtt/ghtml.c:239
+msgid "Billable Value"
+msgstr "Vyúètovateµná hodnota"
+
+#: gtt/ghtml.c:243 gtt/ghtml.c:269
+msgid "No Default Value"
+msgstr "®iadna ¹tandardná hodnota"
+
+#: gtt/ghtml.c:266
+msgid "Start Time Fuzziness"
+msgstr "Nepresnos» poèiatoèného èasu"
+
+#: gtt/ghtml.c:376 gtt/glade/task_properties.glade.h:10
+msgid "Hold"
+msgstr "Pozdr¾ané"
+
+#: gtt/ghtml.c:382 gtt/glade/task_properties.glade.h:13
+msgid "Not Billable"
+msgstr "Nevyúètovateµné"
+
+#: gtt/ghtml.c:385 gtt/glade/task_properties.glade.h:12
+msgid "No Charge"
+msgstr "Bezplatne"
+
+#: gtt/ghtml.c:395 gtt/glade/task_properties.glade.h:17
+msgid "Regular"
+msgstr "Normálny"
+
+#: gtt/ghtml.c:398 gtt/glade/task_properties.glade.h:16
+msgid "Overtime"
+msgstr "Cezèas"
+
+#: gtt/ghtml.c:401
+msgid "Double Overtime"
+msgstr "Dvojitý cezèas"
+
+#: gtt/ghtml.c:404 gtt/glade/task_properties.glade.h:9
+msgid "Flat Fee"
+msgstr "Jednotná mzda"
+
+#: gtt/ghtml.c:424
+msgid "Error - Unknown"
+msgstr "Chyba - Neznáme"
+
+#: gtt/ghtml.c:664
+msgid "unknown token: >>>>"
+msgstr "neznámy token: >>>>"
+
+#: gtt/journal.c:106
+msgid "Error 404 Not Found"
+msgstr "Chyba 404 Nenájdené"
+
+#: gtt/journal.c:108
+#, c-format
+msgid "The file %s was not found."
+msgstr "Súbor %s nebol nájdený."
+
+#: gtt/journal.c:109
+msgid "(null)"
+msgstr "(null)"
+
+#: gtt/journal.c:118
+msgid "Unkown Error"
+msgstr "Neznáma chyba"
+
+#: gtt/journal.c:167 gtt/plug-in.c:89
+#, c-format
+msgid ""
+"Unable to open the file %s\n"
+"%s"
+msgstr ""
+"Nepodarilo sa otvori» súbor %s\n"
+"%s"
+
+#: gtt/journal.c:246 gtt/proj.c:489 gtt/proj.c:1156 gtt/proj.c:1273
+#: gtt/proj.c:1411
+msgid "New Task"
+msgstr "Nová úloha"
+
+#: gtt/journal.c:404
+msgid "Save HTML To File"
+msgstr "Ulo¾i» HTML do súboru"
+
+#: gtt/log.c:55
 #, c-format
 msgid "Cannot open logfile %s for append"
 msgstr "Nepodarilo sa otvori» súbor so záznamom %s pre pridávanie"
 
 #. Translators: Format to use in the gtt logfile
-#: gtt/log.c:62
+#: gtt/log.c:64
 msgid "%b %d %H:%M:%S"
 msgstr "%b %d %H:%M:%S"
 
-#: gtt/log.c:83 gtt/log.c:244
-msgid "program started"
-msgstr "program spustený"
-
-#: gtt/log.c:101
+#: gtt/log.c:102
 msgid "no description"
 msgstr "bez popisu"
 
+#: gtt/log.c:167 gtt/log.c:258
+msgid "program started"
+msgstr "program spustený"
+
 #. log_if_equal
-#: gtt/log.c:236
+#: gtt/log.c:250
 msgid "program exited"
 msgstr "program skonèil"
 
-#: gtt/main.c:108
+#: gtt/main.c:113
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -944,15 +1072,15 @@ msgstr ""
 "Stlaète OK, ak chcete spusti» GTimeTracker aj tak, inak stlaète Zru¹i» pre "
 "koniec."
 
-#: gtt/main.c:119
+#: gtt/main.c:124
 msgid "Cannot create pid-file!"
 msgstr "Nemô¾em vytvori» súbor pid!"
 
-#: gtt/main.c:185
+#: gtt/main.c:194
 msgid "Error"
 msgstr "Chyba"
 
-#: gtt/main.c:186
+#: gtt/main.c:195
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -960,57 +1088,56 @@ msgstr ""
 "Nastala chyba pri èítaní konfiguraèného súboru.\n"
 "Mám vytvori» novú konfiguráciu?"
 
-#: gtt/main.c:310
+#: gtt/main.c:332
 msgid "Specify geometry"
 msgstr "©pecifikuje umiestnenie"
 
-#: gtt/main.c:312
+#: gtt/main.c:334
 msgid "Select a project on startup"
 msgstr "Výber projektu pri ¹tarte"
 
-#: gtt/main.c:312
+#: gtt/main.c:334
 msgid "PROJECT"
 msgstr "PROJEKT"
 
-#: gtt/main.c:350 gtt/menucmd.c:51 gtt/menucmd.c:59 gtt/menucmd.c:229
-#: gtt/menucmd.c:267
+#: gtt/main.c:372 gtt/menucmd.c:51 gtt/menucmd.c:59 gtt/menucmd.c:67
+#: gtt/menucmd.c:75 gtt/menucmd.c:245 gtt/menucmd.c:283
 msgid "Warning"
 msgstr "Varovanie"
 
-#: gtt/menucmd.c:52 gtt/menucmd.c:269
-#, fuzzy
+#: gtt/menucmd.c:52
+msgid "Could not write the data file!"
+msgstr "Nemô¾em zapisova» do dátového súboru!"
+
+#: gtt/menucmd.c:60
+msgid "Could not read the data file!"
+msgstr "Nemô¾em èíta» dátový súbor!"
+
+#: gtt/menucmd.c:68 gtt/menucmd.c:285
 msgid "Could not write the configuration file!"
 msgstr "Nemô¾em zapisova» do konfiguraèného súboru!"
 
-#: gtt/menucmd.c:60
+#: gtt/menucmd.c:76
 msgid "Unknown error occurred"
-msgstr ""
+msgstr "Nastala neznáma chyba"
 
-#: gtt/menucmd.c:111
+#: gtt/menucmd.c:127
 msgid "Time tracking tool for GNOME"
 msgstr "GNOME nástroj pre sledovanie èasu"
 
-#: gtt/menucmd.c:161
+#: gtt/menucmd.c:177
 msgid "New Project..."
 msgstr "Nový projekt..."
 
-#: gtt/ctree.c:278 gtt/menucmd.c:167
-msgid "Project Title"
-msgstr "Titulok projektu"
-
-#: gtt/ctree.c:279 gtt/menucmd.c:168 stripchart/params.c:654
-msgid "Description"
-msgstr "Popis"
-
-#: gtt/menucmd.c:231
+#: gtt/menucmd.c:247
 msgid "I could not read the configuration file"
 msgstr "Nemô¾em èíta» konfiguraèný súbor!"
 
-#: gtt/menucmd.c:245 gtt/toolbar.c:152
+#: gtt/menucmd.c:261 gtt/toolbar.c:156
 msgid "Reload Configuration File"
 msgstr "Znovu naèíta» konfiguraèný súbor"
 
-#: gtt/menucmd.c:246
+#: gtt/menucmd.c:262
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1018,649 +1145,726 @@ msgstr ""
 "Toto prepí¹e Va¹e aktuálne projekty.\n"
 "Naozaj chcete znovu naèíta» konfiguraèný súbor?"
 
-#: gtt/menucmd.c:289
+#: gtt/menucmd.c:305
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr "Súbor %s u¾ existuje. Prepísa»?"
 
-#: gtt/menucmd.c:300
+#: gtt/menucmd.c:316
 msgid "File cannot be written"
 msgstr "Súbor nie je mo¾né zapísa»"
 
-#: gtt/menucmd.c:320
+#: gtt/menucmd.c:336
 msgid "Export Current State"
 msgstr "Exportova» aktuálny stav"
 
-#: gtt/menus.c:30
+#: gtt/menus.c:34
 msgid "_New Project..."
 msgstr "_Nový projekt..."
 
-#: gtt/menus.c:33
+#: gtt/menus.c:37
 msgid "_Reload Configuration File"
 msgstr "_Znovu naèíta» konfiguraèný súbor"
 
-#: gtt/menus.c:37
+#: gtt/menus.c:41
 msgid "_Save Configuration File"
 msgstr "_Ulo¾i» konfiguraèný súbor"
 
-#: gtt/menus.c:41
+#: gtt/menus.c:45
 msgid "_Export Current State"
 msgstr "_Exportova» aktuálny stav"
 
-#: gtt/menus.c:66 gtt/menus.c:127
+#: gtt/menus.c:64 gtt/menus.c:156
 msgid "Clear _Daily Counter"
 msgstr "Vymaza» _denné poèítadlo"
 
-#: gtt/menus.c:71
-msgid "_Journal..."
-msgstr ""
+#: gtt/menus.c:65
+msgid "Zero out todays timer by deleting todays time logs"
+msgstr "Vynulova» dne¹né èasovaèe zmazaním záznamov o dne¹nom èase"
 
-#: gtt/menus.c:83
+#: gtt/menus.c:80 gtt/menus.c:160
+msgid "_Journal..."
+msgstr "®_urnál..."
+
+#: gtt/menus.c:81
+msgid "Show the timesheet journal for this project"
+msgstr "Zobrazí ¾urnál èasu pre tento projekt"
+
+#: gtt/menus.c:84
+msgid "_All Journal..."
+msgstr "_V¹etky ¾urnály..."
+
+#: gtt/menus.c:85
+msgid "Show the verbose timesheet journal for this project"
+msgstr "Zobrazí podrobný ¾urnál èasu pre tento projekt"
+
+#: gtt/menus.c:88
+msgid "_Invoice..."
+msgstr "_Faktúra..."
+
+#: gtt/menus.c:89
+msgid "Show a sample invoice for this project"
+msgstr "Zobrazí uká¾kovú faktúru pre tento projekt"
+
+#: gtt/menus.c:92
+msgid "_Primer..."
+msgstr "_Návod..."
+
+#: gtt/menus.c:93
+msgid "Show a sample introductory primer for designing custom reports"
+msgstr "Zobrazí jednoduchý návod pre vytváranie vlastných reportov"
+
+#: gtt/menus.c:96
+msgid "_New Report..."
+msgstr "_Nový report..."
+
+#: gtt/menus.c:97
+msgid "Define a path to a new GTT phtml report file"
+msgstr "Definuje cestu k novému súboru GTT reportu .phtml"
+
+#: gtt/menus.c:108
 msgid "St_art"
 msgstr "©t_art"
 
-#: gtt/menus.c:87
+#: gtt/menus.c:109
+msgid "Start the timer running"
+msgstr "Spustí beh èasovaèa"
+
+#: gtt/menus.c:114
 msgid "Sto_p"
 msgstr "Sto_p"
 
-#: gtt/menus.c:92
-msgid "_Timer Running"
-msgstr "Be¾iaci èa_sovaè "
+#: gtt/menus.c:115
+msgid "Stop the timer"
+msgstr "Zastaví èasovaè"
 
-#: gtt/menus.c:111
+#: gtt/menus.c:120
+msgid "_Timer Running"
+msgstr "Be¾iaci èa_sovaè"
+
+#: gtt/menus.c:139
+msgid "_Reports"
+msgstr "_Reporty"
+
+#: gtt/menus.c:140
 msgid "_Timer"
 msgstr "Èaso_vaè"
 
-#: gtt/options.c:234
-msgid "Display"
-msgstr "Zobrazi»"
+#. deal with the i18n menu path ...
+#. (is this right ??? or is this pre-i18n ???)
+#: gtt/menus.c:231
+msgid "Reports"
+msgstr "Reporty"
 
-#: gtt/options.c:242
-msgid "Show Seconds"
-msgstr "Zobrazi» sekundy"
+#: gtt/plug-in.c:120
+msgid "Reports/<Separator>"
+msgstr "Reporty/<Separator>"
 
-#: gtt/options.c:248
-msgid "Show Status Bar"
-msgstr "Zobrazi» stavový riadok"
-
-#: gtt/options.c:254
-msgid "Show Table Header"
-msgstr "Zobrazi» hlavièku tabuµky"
-
-#: gtt/options.c:260
-#, fuzzy
-msgid "Show Sub-Projects"
-msgstr "Zobrazi» 'Vlastnosti'"
-
-#: gtt/options.c:274 gtt/options.c:591
-msgid "Toolbar"
-msgstr "Nástrojový pruh"
-
-#: gtt/options.c:282
-msgid "Show Toolbar Icons"
-msgstr "Zobrazi» ikony nástrojového pruhu"
-
-#: gtt/options.c:288
-msgid "Show Toolbar Texts"
-msgstr "Zobrazi» texty nástrojového pruhu"
-
-#: gtt/options.c:294
-msgid "Show Tooltips"
-msgstr "Zobrazi» tipy"
-
-#: gtt/options.c:300
-msgid "Toolbar Segments"
-msgstr "Segmenty nástrojového pruhu"
-
-#: gtt/options.c:308
-msgid "Show `New'"
-msgstr "Zobrazi» 'Nový'"
-
-#: gtt/options.c:314
-msgid "Show `Save', `Reload'"
-msgstr "Zobrazi» 'Ulo¾i»', 'Obnovi»'"
-
-#: gtt/options.c:320
-msgid "Show `Cut', `Copy', `Paste'"
-msgstr "Zobrazi» 'Vystrihnú»', 'Kopírova»', 'Vlo¾i»'"
-
-#: gtt/options.c:326
-msgid "Show `Properties'"
-msgstr "Zobrazi» 'Vlastnosti'"
-
-#: gtt/options.c:332
-msgid "Show `Timer'"
-msgstr "Zobrazi» 'Èasovaè'"
-
-#: gtt/options.c:338
-msgid "Show `Preferences'"
-msgstr "Zobrazi» 'Nastavenie'"
-
-#: gtt/options.c:344
-msgid "Show `Help'"
-msgstr "Zobrazi» 'Pomocník'"
-
-#: gtt/options.c:350
-msgid "Show `Quit'"
-msgstr "Zobrazi» 'Koniec'"
-
-#: gtt/options.c:364
-msgid "Shell Commands"
-msgstr "Príkazy shellu"
-
-#: gtt/options.c:372
-msgid "Switch Project Command:"
-msgstr "Príkaz pre prepnutie projektu:"
-
-#: gtt/options.c:384
-msgid "No Project Command:"
-msgstr "Príkaz pre ¾iadny projekt:"
-
-#: gtt/options.c:419
-msgid "Logfile"
-msgstr "Súbor so záznamom"
-
-#: gtt/options.c:427
-msgid "Use Logfile"
-msgstr "Pou¾i» súbor so záznamom"
-
-#: gtt/options.c:436
-msgid "Filename:"
-msgstr "Meno súboru:"
-
-#: gtt/options.c:450
-msgid "Entry Start:"
-msgstr "©tart polo¾ky:"
-
-#: gtt/options.c:464
-msgid "Entry Stop:"
-msgstr "Koniec polo¾ky:"
-
-#: gtt/options.c:478
-msgid "Timeout in secs:"
-msgstr "Timeout v sek:"
-
-#: gtt/options.c:578
-msgid "Misc"
-msgstr "Rôzne"
-
-#: gtt/proj.c:436
+#: gtt/proj.c:470
 msgid "Old GTT Tasks"
-msgstr ""
+msgstr "Staré úlohy GTT"
 
-#: gtt/proj.c:455 gtt/proj.c:858
-msgid "New Task"
+#: gtt/props-proj.c:71 gtt/props-proj.c:72 gtt/props-task.c:67
+#: gtt/props-task.c:68
+msgid "empty"
+msgstr "prázdne"
+
+#: gtt/timer.c:116
+#, c-format
+msgid ""
+"The keyboard and mouse have been idle\n"
+"for %d minutes.  The currently running\n"
+"project (%s - %s)\n"
+"has been stopped.\n"
+"Do you want to restart it?"
 msgstr ""
+"Klávesnica a my¹ sa nepou¾ili %d minút.\n"
+"Momentálne be¾iaci projekt (%s - %s)\n"
+"bol zastavený. Chcete ho re¹tartova»?"
+
+#: gtt/timer.c:124
+msgid "System Idle"
+msgstr "Systém nevyu¾itý"
 
 #. Note to translators: just skip the `[GTT]'
-#: gtt/toolbar.c:144
+#: gtt/toolbar.c:148
 msgid "[GTT]New"
 msgstr "[GTT]Nový"
 
-#: gtt/toolbar.c:145
-#, fuzzy
+#: gtt/toolbar.c:149
 msgid "Create a New Project..."
-msgstr "Nový projekt..."
+msgstr "Vytvorí nový projekt..."
 
-#: gtt/toolbar.c:151
+#: gtt/toolbar.c:155
 msgid "Reload"
-msgstr "Obnovi»."
+msgstr "Obnovi»"
 
-#: gtt/glade/journal_strings.c:11 gtt/toolbar.c:155 stripchart/params.c:939
+#: gtt/glade/journal.glade.h:7 gtt/toolbar.c:159 stripchart/params.c:939
 msgid "Save"
 msgstr "Ulo¾i»"
 
-#: gtt/toolbar.c:156
+#: gtt/toolbar.c:160
 msgid "Save Configuration File"
 msgstr "Ulo¾í konfiguraèný súbor"
 
-#: gtt/toolbar.c:163
+#: gtt/toolbar.c:167
 msgid "Cut Selected Project"
 msgstr "Vystrihne vybraný projekt"
 
-#: gtt/toolbar.c:167
+#: gtt/toolbar.c:171
 msgid "Copy Selected Project"
 msgstr "Kopíruje vybraný projekt"
 
-#: gtt/toolbar.c:171
+#: gtt/toolbar.c:175
 msgid "Paste Project"
 msgstr "Vlo¾í projekt"
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gtt/glade/journal_strings.c:7 gtt/toolbar.c:178
+#: gtt/glade/journal.glade.h:2 gtt/toolbar.c:182
 msgid "Journal"
-msgstr ""
+msgstr "®urnál"
 
-#: gtt/toolbar.c:179
+#: gtt/toolbar.c:183
 msgid "View and Edit Timestamp Logs"
-msgstr ""
+msgstr "Zobrazí a upraví záznamy o èase"
 
-#: gtt/toolbar.c:184
+#: gtt/toolbar.c:188
 msgid "Props"
 msgstr "Vlastnosti"
 
-#: gtt/toolbar.c:185
-#, fuzzy
-msgid "Edit Project Properties..."
-msgstr "Upraví vlastnosti..."
-
 #: gtt/toolbar.c:189
+msgid "Edit Project Properties..."
+msgstr "Upraví vlastnosti projektu..."
+
+#: gtt/toolbar.c:193
 msgid "Timer"
 msgstr "Èasovaè"
 
-#: gtt/toolbar.c:190
+#: gtt/toolbar.c:194
 msgid "Start/Stop Timer"
 msgstr "Zapne/vypne èasovaè"
 
-#: gtt/toolbar.c:202
+#: gtt/toolbar.c:206
 msgid "Prefs"
 msgstr "Nastavenie"
 
-#: gtt/toolbar.c:203
+#: gtt/toolbar.c:207
 msgid "Edit Preferences..."
 msgstr "Upravi» nastavenie..."
 
-#: gtt/toolbar.c:207
+#: gtt/toolbar.c:211
 msgid "Manual"
 msgstr "Manuál"
 
-#: gtt/toolbar.c:208
+#: gtt/toolbar.c:212
 msgid "User's Guide and Manual"
-msgstr ""
+msgstr "Pou¾ívateµský manuál"
 
-#: gtt/toolbar.c:213
+#: gtt/toolbar.c:217
 msgid "Quit"
 msgstr "Koniec"
 
-#: gtt/toolbar.c:213
+#: gtt/toolbar.c:217
 msgid "Quit GTimeTracker"
 msgstr "Ukonèí GNOME Sledovaè èasu"
 
-#: gtt/ctree.c:276
-msgid "Total"
-msgstr "Celkom"
-
-#: gtt/ctree.c:277 gtt/glade/interval_edit_strings.c:20
-msgid "Today"
-msgstr "Dnes"
-
-#. ===================== END OF FILE ==============================
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gtt/glade/interval_edit_strings.c:7
-#, fuzzy
-msgid "Start Fuzz"
-msgstr "©tart"
-
-#: gtt/glade/interval_edit_strings.c:10
-msgid "Set how Uncertain the Start Time Is"
-msgstr ""
-
-#: gtt/glade/interval_edit_strings.c:11
-msgid "Exact Time"
-msgstr ""
-
-#: gtt/glade/interval_edit_strings.c:12
-#, fuzzy
-msgid "5 Min"
-msgstr "Min"
-
-#: gtt/glade/interval_edit_strings.c:13
-#, fuzzy
-msgid "10 Min"
-msgstr "Min"
-
-#: gtt/glade/interval_edit_strings.c:14
-#, fuzzy
-msgid "15 Min"
-msgstr "Min"
-
-#: gtt/glade/interval_edit_strings.c:15
-#, fuzzy
-msgid "20 Min"
-msgstr "Min"
-
-#: gtt/glade/interval_edit_strings.c:16
-#, fuzzy
-msgid "30 Min"
-msgstr "Min"
-
-#: gtt/glade/interval_edit_strings.c:17
+#: gtt/glade/interval_edit.glade.h:1
 msgid "1 Hour"
-msgstr ""
+msgstr "1 hodina"
 
-#: gtt/glade/interval_edit_strings.c:18
-#, fuzzy
+#: gtt/glade/interval_edit.glade.h:2
+msgid "10 Min"
+msgstr "10 min"
+
+#: gtt/glade/interval_edit.glade.h:3
+msgid "15 Min"
+msgstr "15 min"
+
+#: gtt/glade/interval_edit.glade.h:4
 msgid "2 Hours"
-msgstr "hod"
+msgstr "2 hodiny"
 
-#: gtt/glade/interval_edit_strings.c:19
-#, fuzzy
+#: gtt/glade/interval_edit.glade.h:5
+msgid "20 Min"
+msgstr "20 min"
+
+#: gtt/glade/interval_edit.glade.h:6
 msgid "3 Hours"
-msgstr "hod"
+msgstr "3 hodiny"
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gtt/glade/interval_popup_strings.c:7
-#, fuzzy
-msgid "Edit the Start & Stop Times"
-msgstr "Zapne/vypne èasovaè"
+#: gtt/glade/interval_edit.glade.h:7
+msgid "30 Min"
+msgstr "30 min"
 
-#: gtt/glade/interval_popup_strings.c:8 mini-utils/gcolorsel/gcolorsel.c:32
-#: mini-utils/gcolorsel/menus.c:573 mini-utils/gcolorsel/menus.c:660
-#: stripchart/params.c:1041 stripchart/params.c:1044
-msgid "Edit"
-msgstr "Upravi»"
+#: gtt/glade/interval_edit.glade.h:8
+msgid "5 Min"
+msgstr "5 min"
 
-#: gtt/glade/interval_popup_strings.c:9
+#: gtt/glade/interval_edit.glade.h:9
+msgid "Exact Time"
+msgstr "Presný èas"
+
+#: gtt/glade/interval_edit.glade.h:10
+msgid "Set how Uncertain the Start Time Is"
+msgstr "Nastavte, ako veµmi je poèiatoèný èas nepresný"
+
+#: gtt/glade/interval_edit.glade.h:12
+msgid "Start Fuzz"
+msgstr "Nepresnos» ¹tartu"
+
+#: gtt/glade/interval_popup.glade.h:1
+msgid "Delete Interval"
+msgstr "Odstráni» interval"
+
+#: gtt/glade/interval_popup.glade.h:2
 msgid "Delete This Interval"
-msgstr ""
+msgstr "Odstráni tento interval"
 
-#: gtt/glade/interval_popup_strings.c:10 mini-utils/gw/gw.c:495
-msgid "Delete"
-msgstr "Zmaza»"
+#: gtt/glade/interval_popup.glade.h:3
+msgid "Edit Interval"
+msgstr "Upravi» interval"
 
-#: gtt/glade/interval_popup_strings.c:11
-msgid "Merge Into Interval Above"
-msgstr ""
+#: gtt/glade/interval_popup.glade.h:4
+msgid "Edit the Start & Stop Times"
+msgstr "Upraví poèiatoèný a koncový èas"
 
-#: gtt/glade/interval_popup_strings.c:12
-msgid "Merge Up"
-msgstr ""
+#: gtt/glade/interval_popup.glade.h:5
+msgid "Insert Memo"
+msgstr "Vlo¾i» memo"
 
-#: gtt/glade/interval_popup_strings.c:13
-msgid "Merege Into Interval Below"
-msgstr ""
+#: gtt/glade/interval_popup.glade.h:6
+msgid "Insert a new memo above this time interval."
+msgstr "Vlo¾í nové memo nad tento interval."
 
-#: gtt/glade/interval_popup_strings.c:14
+#: gtt/glade/interval_popup.glade.h:7
 msgid "Merge Down"
-msgstr ""
+msgstr "Spoji» dolu"
 
-#: gtt/glade/journal_strings.c:8
-#, fuzzy
-msgid "New File"
-msgstr "Nový pohµad"
+#: gtt/glade/interval_popup.glade.h:8
+msgid "Merge Into Interval Above"
+msgstr "Spojí s intervalom hore"
 
-#: gtt/glade/journal_strings.c:9
-#, fuzzy
-msgid "Print"
-msgstr "Bod"
+#: gtt/glade/interval_popup.glade.h:9
+msgid "Merge Into Interval Below"
+msgstr "Spojí s intervalom dole"
 
-#: gtt/glade/journal_strings.c:10
-#, fuzzy
-msgid "Open File"
-msgstr "Otvorí súbor so záznamom"
+#: gtt/glade/interval_popup.glade.h:10
+msgid "Merge Up"
+msgstr "Spoji» hore"
 
-#: gtt/glade/journal_strings.c:12
-#, fuzzy
-msgid "Save File"
-msgstr "_Ulo¾i» paletu"
+#: gtt/glade/interval_popup.glade.h:11
+msgid "Paste Memo"
+msgstr "Vlo¾i» memo"
 
-#: gtt/glade/journal_strings.c:13 mini-utils/gcolorsel/menus.c:89
+#: gtt/glade/interval_popup.glade.h:12 gtt/glade/task_popup.glade.h:7
+msgid "Paste a previously cut memo."
+msgstr "Vlo¾í predtým vystrihnuté memo."
+
+#: gtt/glade/journal.glade.h:1 mini-utils/gcolorsel/menus.c:89
 #: mini-utils/gcolorsel/menus.c:913 mini-utils/gshutdown/gshutdown.c:155
 #: mini-utils/gshutdown/gshutdown.c:631 stripchart/params.c:953
 msgid "Close"
 msgstr "Zavrie»"
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gtt/glade/project_properties_strings.c:7
-msgid "A title to assign to this project"
-msgstr ""
+#: gtt/glade/journal.glade.h:3
+msgid "New File"
+msgstr "Nový súbor"
 
-#: gtt/glade/project_properties_strings.c:8
-msgid "a short description that will be printed on the invoice."
-msgstr ""
+#: gtt/glade/journal.glade.h:4
+msgid "Open File"
+msgstr "Otvori» súbor"
 
-#: gtt/glade/project_properties_strings.c:9
-msgid "Project Title:"
-msgstr "Titulok projektu:"
+#: gtt/glade/journal.glade.h:5
+msgid "Print"
+msgstr "Tlaèi»"
 
-#: gtt/glade/project_properties_strings.c:10
-msgid "Project Description:"
-msgstr "Popis projektu:"
+#: gtt/glade/journal.glade.h:6
+msgid "Refresh"
+msgstr "Obnovi»"
 
-#: gtt/glade/project_properties_strings.c:11
-#: gtt/glade/task_properties_strings.c:8
-msgid "Notes:"
-msgstr ""
+#: gtt/glade/journal.glade.h:8
+msgid "Save File"
+msgstr "Ulo¾i» súbor"
 
-#: gtt/glade/project_properties_strings.c:12
+#: gtt/glade/not-implemented.glade.h:1
+msgid "Information"
+msgstr "Informácie"
+
+#: gtt/glade/prefs.glade.h:1
+msgid "Display"
+msgstr "Zobrazi»"
+
+#: gtt/glade/prefs.glade.h:2
+msgid "Enter a shell command to be executed when no projects are active."
+msgstr "Zadajte príkaz, ktorý sa má spusti» v dobe, ked nie je aktívny ¾iadny projekt."
+
+#: gtt/glade/prefs.glade.h:3
+msgid "Enter a shell command to be executed whenever projects are switched."
+msgstr "Zadajte príkaz, ktorý sa má spusti» v dobe, ked sa prepne projekt."
+
+#: gtt/glade/prefs.glade.h:4
+msgid "Entry Start:"
+msgstr "©tart polo¾ky:"
+
+#: gtt/glade/prefs.glade.h:5
+msgid "Entry Stop:"
+msgstr "Koniec polo¾ky:"
+
+#: gtt/glade/prefs.glade.h:7
+#, no-c-format
 msgid ""
-"Internal notes about the project, memos that will not be printed on an "
-"invoice."
+"Entry that will be logged when a project starts. Use %t for the project "
+"title, %d for the description, etc. See the manual for more options."
 msgstr ""
+"Polo¾ka ¾urnálu pre spustenie projektu. Pre titulok projektu pou¾ite %t, "
+"pre jeho popis %d apod. Dal¹ie mo¾nosti nájdete v manuáli."
 
-#: gtt/glade/project_properties_strings.c:13
-msgid "Project"
-msgstr "Projekt"
-
-#: gtt/glade/project_properties_strings.c:14
-msgid "Regular Rate:"
+#: gtt/glade/prefs.glade.h:9
+#, no-c-format
+msgid ""
+"Entry that will be logged when the project stops.  Use %t for the porject "
+"title, %d for the project description, etc. See the manual for more options."
 msgstr ""
+"Polo¾ka ¾urnálu pre zastavenie projektu. Pre titulok projektu pou¾ite %t, "
+"pre jeho popis %d apod. Dal¹ie mo¾nosti nájdete v manuáli."
 
-#: gtt/glade/project_properties_strings.c:15
-msgid "Overtime Rate:"
+#: gtt/glade/prefs.glade.h:10
+msgid "Filename:"
+msgstr "Meno súboru:"
+
+#: gtt/glade/prefs.glade.h:11
+msgid "Idle Seconds:"
+msgstr "Neèinná doba:"
+
+#: gtt/glade/prefs.glade.h:12
+msgid "Inactivity Timeout"
+msgstr "Èas neèinnosti"
+
+#: gtt/glade/prefs.glade.h:13
+msgid "Logfile"
+msgstr "Súbor so záznamom"
+
+#: gtt/glade/prefs.glade.h:14
+msgid "Min Recorded:"
+msgstr "Zaznamenané minúty:"
+
+#: gtt/glade/prefs.glade.h:15
+msgid "Misc"
+msgstr "Rôzne"
+
+#: gtt/glade/prefs.glade.h:16
+msgid "No Project Command:"
+msgstr "Príkaz pre ¾iadny projekt:"
+
+#: gtt/glade/prefs.glade.h:17
+msgid "Project List Display"
+msgstr "Zobrazenie zoznamu projektov"
+
+#: gtt/glade/prefs.glade.h:18
+msgid "Shell"
+msgstr "Shell"
+
+#: gtt/glade/prefs.glade.h:19
+msgid "Shell Commands"
+msgstr "Príkazy shellu"
+
+#: gtt/glade/prefs.glade.h:20
+msgid "Show Seconds"
+msgstr "Zobrazi» sekundy"
+
+#: gtt/glade/prefs.glade.h:21
+msgid "Show Status Bar"
+msgstr "Zobrazi» stavový riadok"
+
+#: gtt/glade/prefs.glade.h:22
+msgid "Show Sub-Projects"
+msgstr "Zobrazi» podprojetky"
+
+#: gtt/glade/prefs.glade.h:23
+msgid "Show Table Header"
+msgstr "Zobrazi» hlavièku tabuµky"
+
+#: gtt/glade/prefs.glade.h:24
+msgid "Show Toolbar Icons"
+msgstr "Zobrazi» ikony nástrojového pruhu"
+
+#: gtt/glade/prefs.glade.h:25
+msgid "Show Toolbar Texts"
+msgstr "Zobrazi» texty nástrojového pruhu"
+
+#: gtt/glade/prefs.glade.h:26
+msgid "Show Tooltips"
+msgstr "Zobrazi» tipy"
+
+#: gtt/glade/prefs.glade.h:27
+msgid "Show `Cut', `Copy', `Paste'"
+msgstr "Zobrazi» 'Vystrihnú»', 'Kopírova»', 'Vlo¾i»'"
+
+#: gtt/glade/prefs.glade.h:28
+msgid "Show `Help'"
+msgstr "Zobrazi» 'Pomocník'"
+
+#: gtt/glade/prefs.glade.h:29
+msgid "Show `Journal'"
+msgstr "Zobrazi» '®urnál'"
+
+#: gtt/glade/prefs.glade.h:30
+msgid "Show `New'"
+msgstr "Zobrazi» 'Nový'"
+
+#: gtt/glade/prefs.glade.h:31
+msgid "Show `Preferences'"
+msgstr "Zobrazi» 'Nastavenie'"
+
+#: gtt/glade/prefs.glade.h:32
+msgid "Show `Properties'"
+msgstr "Zobrazi» 'Vlastnosti'"
+
+#: gtt/glade/prefs.glade.h:33
+msgid "Show `Quit'"
+msgstr "Zobrazi» 'Koniec'"
+
+#: gtt/glade/prefs.glade.h:34
+msgid "Show `Save', `Reload'"
+msgstr "Zobrazi» 'Ulo¾i»', 'Obnovi»'"
+
+#: gtt/glade/prefs.glade.h:35
+msgid "Show `Timer'"
+msgstr "Zobrazi» 'Èasovaè'"
+
+#: gtt/glade/prefs.glade.h:36
+msgid "Switch Project Command:"
+msgstr "Príkaz pre prepnutie projektu:"
+
+#: gtt/glade/prefs.glade.h:37
+msgid ""
+"Switches between projects that happen faster than this will not be logged "
+"(enter the number of seconds)"
 msgstr ""
+"Prepnutia medzi projektmi rýchlej¹ie ako táto doba nebudú zaznamenané v ¾urnáli "
+"(zadajte poèet sekúnd)"
 
-#: gtt/glade/project_properties_strings.c:16
-msgid "Double-Overtime Rate:"
+#: gtt/glade/prefs.glade.h:38
+msgid ""
+"The current active project will be made inactive after there has been no "
+"keyboard/mouse activity after this number of seconds.  Set to -1 to disable."
 msgstr ""
+"Aktívny projekt sa stane neaktívnym, ak nie je ¾iadna aktivita my¹i alebo "
+"klávesnice za túto dobu v sekundách. Vypnete hodnotou -1."
 
-#: gtt/glade/project_properties_strings.c:17
-msgid "Flat Fee:"
-msgstr ""
+#: gtt/glade/prefs.glade.h:39
+msgid "Toolbar"
+msgstr "Nástrojový pruh"
 
-#: gtt/glade/project_properties_strings.c:18
+#: gtt/glade/prefs.glade.h:40
+msgid "Toolbar Segments"
+msgstr "Segmenty nástrojového pruhu"
+
+#: gtt/glade/prefs.glade.h:41
+msgid "Use Logfile"
+msgstr "Pou¾i» súbor so záznamom"
+
+#: gtt/glade/project_properties.glade.h:1
 msgid "        "
-msgstr ""
+msgstr "        "
 
-#: gtt/glade/project_properties_strings.c:19
-#, fuzzy
+#: gtt/glade/project_properties.glade.h:2
 msgid "                        "
-msgstr "Filter..                "
+msgstr "                        "
 
-#: gtt/glade/project_properties_strings.c:20
-msgid "The dollars per hour normally charged for this project."
-msgstr ""
+#: gtt/glade/project_properties.glade.h:3
+msgid "A title to assign to this project"
+msgstr "Titulok pre tento projekt"
 
-#: gtt/glade/project_properties_strings.c:21
-msgid "The dollars per hour charged for overtime work on this project."
-msgstr ""
+#: gtt/glade/project_properties.glade.h:4
+msgid "Auto-merge Gap:"
+msgstr "Medzera pre auto-spojenie:"
 
-#: gtt/glade/project_properties_strings.c:22
-msgid "The over-overtime rate (overtime on Sundays, etc.)"
-msgstr ""
+#: gtt/glade/project_properties.glade.h:5
+msgid "Auto-merge Interval:"
+msgstr "Interval pre auto-spojenie:"
 
-#: gtt/glade/project_properties_strings.c:23
+#: gtt/glade/project_properties.glade.h:6
+msgid "Double-Overtime Rate:"
+msgstr "Frekvencia dvojitého cezèasu:"
+
+#: gtt/glade/project_properties.glade.h:7
+msgid "Flat Fee:"
+msgstr "Jednotná mzda:"
+
+#: gtt/glade/project_properties.glade.h:8
+msgid ""
+"If the gap between intervals is smaller than this, the intervals will be "
+"merged together."
+msgstr "Ak je medzera medzi intervalmi men¹ia ako toto, intervali budú spojené do jedného."
+
+#: gtt/glade/project_properties.glade.h:9
 msgid ""
 "If this project is billed for one price no matter how long it takes, enter "
 "the fee here."
 msgstr ""
+"Ak je projekt platený rovnako bez ohµadu na to, ako dlho trva, zadajte sem "
+"mzdu."
 
-#: gtt/glade/project_properties_strings.c:24
-msgid "Rates"
-msgstr ""
-
-#: gtt/glade/project_properties_strings.c:25
-msgid "Minimum Interval: "
-msgstr ""
-
-#: gtt/glade/project_properties_strings.c:26
-msgid "Auto-merge Interval:"
-msgstr ""
-
-#: gtt/glade/project_properties_strings.c:27
-msgid "Auto-merge Gap:"
-msgstr ""
-
-#: gtt/glade/project_properties_strings.c:28
-#: gtt/glade/project_properties_strings.c:29
-#: gtt/glade/project_properties_strings.c:30
-#, fuzzy
-msgid "seconds"
-msgstr "sek"
-
-#: gtt/glade/project_properties_strings.c:31
-msgid "Intervals smaller than this will be discarded"
-msgstr ""
-
-#: gtt/glade/project_properties_strings.c:32
-msgid "Time below which an interval is merged with its neighbors"
-msgstr ""
-
-#: gtt/glade/project_properties_strings.c:33
+#: gtt/glade/project_properties.glade.h:10
 msgid ""
-"If the gap between intervals is smaller than this, the intervals will be "
-"merged together."
-msgstr ""
+"Internal notes about the project, memos that will not be printed on an "
+"invoice."
+msgstr "Súkromné poznámky o projekte, memo, ktoré nebude vytlaèené na faktúre."
 
-#: gtt/glade/project_properties_strings.c:34
-#, fuzzy
+#: gtt/glade/project_properties.glade.h:11
 msgid "Intervals"
-msgstr "V¹eobecné"
+msgstr "Intervaly"
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: gtt/glade/task_properties_strings.c:7
-#, fuzzy
-msgid "Memo:"
-msgstr "Pamä»"
+#: gtt/glade/project_properties.glade.h:12
+msgid "Intervals smaller than this will be discarded"
+msgstr "Intervaly men¹ie ako táto hodnota budú zahodené"
 
-#: gtt/glade/task_properties_strings.c:9
+#: gtt/glade/project_properties.glade.h:13
+msgid "Minimum Interval: "
+msgstr "Minimálny iterval:"
+
+#: gtt/glade/project_properties.glade.h:14
+#: gtt/glade/task_properties.glade.h:14
+msgid "Notes:"
+msgstr "Poznámky:"
+
+#: gtt/glade/project_properties.glade.h:15
+msgid "Overtime Rate:"
+msgstr "Mzda pre cezèas:"
+
+#: gtt/glade/project_properties.glade.h:16
+msgid "Project"
+msgstr "Projekt"
+
+#: gtt/glade/project_properties.glade.h:17
+msgid "Project Description:"
+msgstr "Popis projektu:"
+
+#: gtt/glade/project_properties.glade.h:18
+msgid "Project Title:"
+msgstr "Titulok projektu:"
+
+#: gtt/glade/project_properties.glade.h:19
+msgid "Rates"
+msgstr "Mzdy"
+
+#: gtt/glade/project_properties.glade.h:20
+msgid "Regular Rate:"
+msgstr "Normálna mzda:"
+
+#: gtt/glade/project_properties.glade.h:21
+msgid "The dollars per hour charged for overtime work on this project."
+msgstr "Dolárov za hodinu úètovaných pre cezèasy pre tento projekt."
+
+#: gtt/glade/project_properties.glade.h:22
+msgid "The dollars per hour normally charged for this project."
+msgstr "Dolárov za hodinu normálne úètovaných pre tento projekt."
+
+#: gtt/glade/project_properties.glade.h:23
+msgid "The over-overtime rate (overtime on Sundays, etc.)"
+msgstr "Frekvencia pre dvojitý cezèas (nedele apod)"
+
+#: gtt/glade/project_properties.glade.h:24
+msgid "Time below which an interval is merged with its neighbors"
+msgstr "Doba, pod ktorú je interval spojený so súsediacimi intervalmi"
+
+#: gtt/glade/project_properties.glade.h:25
+msgid "a short description that will be printed on the invoice."
+msgstr "krátky popis vytlaèený na faktúre."
+
+#: gtt/glade/project_properties.glade.h:26
+msgid "seconds"
+msgstr "sekúnd"
+
+#: gtt/glade/task_popup.glade.h:1
+msgid "Delete _Memo"
+msgstr "Odstráni» _memo"
+
+#: gtt/glade/task_popup.glade.h:2
+msgid "Delete _Times"
+msgstr "Odstráni» è_asy"
+
+#: gtt/glade/task_popup.glade.h:3
+msgid "Delete the memo only, keep the time intervals"
+msgstr "Odstráni iba memo, èasové intervaly zostanú"
+
+#: gtt/glade/task_popup.glade.h:4
+msgid "Delete the memo, and the time intervals below it."
+msgstr "Odstráni iba memo a èasové intervaly pod ním."
+
+#: gtt/glade/task_popup.glade.h:5
+msgid "Edit the memo and othr task properties."
+msgstr "Upraví memo a ostatné vlastnosti úlohy."
+
+#: gtt/glade/task_popup.glade.h:6
+msgid "Insert a new memo above this one."
+msgstr "Vlo¾í nové memo nad aktuálny."
+
+#: gtt/glade/task_popup.glade.h:8
+msgid "_Edit Memo"
+msgstr "_Upravi» memo"
+
+#: gtt/glade/task_popup.glade.h:9
+msgid "_New Memo"
+msgstr "_Nové memo"
+
+#: gtt/glade/task_popup.glade.h:10
+msgid "_Paste Memo"
+msgstr "_Vlo¾i» memo"
+
+#: gtt/glade/task_properties.glade.h:1
+msgid "A set of private notes that will not be printed on an invoice."
+msgstr "Súkromné poznámky, ktoré nebudú na faktúre."
+
+#: gtt/glade/task_properties.glade.h:2
+msgid "A short description to attach to this block of time."
+msgstr "Krátky popis pridaný k tomuto bloku èasu."
+
+#: gtt/glade/task_properties.glade.h:4
 msgid "Billable:"
-msgstr ""
+msgstr "Zúètovateµné:"
 
-#: gtt/glade/task_properties_strings.c:10
-msgid "Billing Rate:"
-msgstr ""
-
-#: gtt/glade/task_properties_strings.c:11
+#: gtt/glade/task_properties.glade.h:5
 msgid "Billing Block:"
-msgstr ""
+msgstr "Zúètovateµný blok:"
 
-#: gtt/glade/task_properties_strings.c:12
+#: gtt/glade/task_properties.glade.h:6
+msgid "Billing Rate:"
+msgstr "Frekvencia úètovania:"
+
+#: gtt/glade/task_properties.glade.h:7
 msgid ""
 "Can this task be billed to the customer?  \"Hold\" means maybe but not yet, "
 "\"Not Billable\" means don't print on the invoice, \"No Charge\" means print "
 "on the invoice as 'free'."
 msgstr ""
+"Mô¾e by» táto úloha úètovaná zákazníkovi? \"Pozdr¾ané\" znamená, ¾e mo¾no, "
+"ale nie teraz, \"Nevyúètovateµné\" znamená, ¾e nemá by» na faktúre a "
+"\"Bezplatne\" zamená, ¾e vytlaèi» na faktúre ako 'zadarmo'."
 
-#: gtt/glade/task_properties_strings.c:13
-#, fuzzy
-msgid "Hold"
-msgstr "Plná"
-
-#: gtt/glade/task_properties_strings.c:14
-#, fuzzy
-msgid "Billable"
-msgstr "Zakázané"
-
-#: gtt/glade/task_properties_strings.c:15
-msgid "Not Billable"
-msgstr ""
-
-#: gtt/glade/task_properties_strings.c:16
-msgid "No Charge"
-msgstr ""
-
-#: gtt/glade/task_properties_strings.c:17
+#: gtt/glade/task_properties.glade.h:8
 msgid "Fee rate to be charged for this task."
-msgstr ""
+msgstr "Mzda úètovaná za túto úlohu."
 
-#: gtt/glade/task_properties_strings.c:18
-#, fuzzy
-msgid "Regular"
-msgstr "Obnovi»."
+#: gtt/glade/task_properties.glade.h:11
+msgid "Memo:"
+msgstr "Memo:"
 
-#: gtt/glade/task_properties_strings.c:19
-msgid "Overtime"
-msgstr ""
-
-#: gtt/glade/task_properties_strings.c:20
-#, fuzzy
+#: gtt/glade/task_properties.glade.h:15
 msgid "OverOver"
-msgstr "Server"
+msgstr "Dvojitý"
 
-#: gtt/glade/task_properties_strings.c:21
-#, fuzzy
-msgid "Flat Fee"
-msgstr "Reálne"
-
-#: gtt/glade/task_properties_strings.c:22
-msgid ""
-"The billed unit of time wioll be rounded to an integer multiple of this time."
-msgstr ""
-
-#: gtt/glade/task_properties_strings.c:23
-msgid "A set of private notes that will not be printed on an invoice."
-msgstr ""
-
-#: gtt/glade/task_properties_strings.c:24
-msgid "A short description to attach to this block of time."
-msgstr ""
-
-#: gtt/glade/task_properties_strings.c:25
-#, fuzzy
-msgid "minutes"
-msgstr "min"
-
-#: gtt/glade/task_properties_strings.c:26
-#, fuzzy
+#: gtt/glade/task_properties.glade.h:18
 msgid "Task Properties"
-msgstr "Vlastnosti"
+msgstr "Vlastnosti úlohy"
 
-#: gtt/journal.c:91
-msgid "<html><body><h1>Error 404 Not Found</h1>The file "
-msgstr ""
+#: gtt/glade/task_properties.glade.h:19
+msgid "The billed unit of time will be rounded to an integer multiple of this time."
+msgstr "Jednotka úètovaného èasu bude zaokrúhlená na celoèíselný násobok tohto èasu."
 
-#: gtt/journal.c:95
-msgid "(null)"
-msgstr ""
-
-#: gtt/journal.c:98
-msgid " was not found. </body></html>"
-msgstr ""
-
-#: gtt/journal.c:103
-msgid "<html><body><h1>Unkown Error</h1>"
-msgstr ""
-
-#: gtt/phtml.c:39
-msgid ""
-"<table border=1><caption><em>hey hey hey!</em></caption><tr><th "
-"colspan=4>Memo<tr><th>&nbsp;<th>Start<th>Stop<th>Elapsed"
-msgstr ""
-
-#: gtt/phtml.c:58 gtt/phtml.c:132
-#, fuzzy
-msgid "(empty)"
-msgstr "prázdne"
-
-#: gtt/phtml.c:150
-msgid "unknown token: >>>>"
-msgstr ""
-
-#: gtt/props-proj.c:70 gtt/props-proj.c:71 gtt/props-task.c:66
-#: gtt/props-task.c:67
-msgid "empty"
-msgstr "prázdne"
+#: gtt/glade/task_properties.glade.h:20
+msgid "minutes"
+msgstr "minút"
 
 #: logview/about.c:41
 msgid "Cesar Miquel (miquel@df.uba.ar)"
@@ -2150,8 +2354,7 @@ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr ""
-"Nepodarilo sa otvori» databázu regulárnych výrazov  <%s>! Otvorenie zlyhalo."
+msgstr "Nepodarilo sa otvori» databázu regulárnych výrazov  <%s>! Otvorenie zlyhalo."
 
 #: logview/desc_db.c:147
 #, c-format
@@ -2182,6 +2385,12 @@ msgstr "Zoznam"
 #: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "Grid"
 msgstr "Mrie¾ka"
+
+#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1041
+#: stripchart/params.c:1044
+msgid "Edit"
+msgstr "Upravi»"
 
 #: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1034
 #: stripchart/params.c:1037
@@ -2769,10 +2978,6 @@ msgstr "Reálne"
 msgid "Color"
 msgstr "Farba"
 
-#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:227
-msgid "Value"
-msgstr "Hodnota"
-
 #. Create everything.
 #: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:490 mini-utils/gw/gw.c:560
@@ -2784,6 +2989,7 @@ msgid "Tolerance :"
 msgstr "Tolerancia: "
 
 #: mini-utils/gfontsel/gfontsel.c:162
+#: mini-utils/gfontsel/gfontsel.desktop.in.h:1
 msgid "Font Selector"
 msgstr "Výber písma"
 
@@ -2840,7 +3046,7 @@ msgstr "_Písmo s pevnou ¹írkou"
 msgid "Display text with a fixed font"
 msgstr "Zobrazí text písmom s pevnou ¹írkou"
 
-#: mini-utils/gless/gless.c:351
+#: mini-utils/gless/gless.c:351 mini-utils/gless/gless.desktop.in.h:2
 msgid "Text File Viewer"
 msgstr "Zobrazovaè textových súborov"
 
@@ -3058,6 +3264,7 @@ msgstr ""
 "nastala inicializaèná chyba pri ¹tarte apletu ovládacieho centra pre "
 "systémovú informáciu"
 
+#: mini-utils/guname/guname-capplet.desktop.in.h:2
 #: mini-utils/guname/guname.c:446
 msgid "System Information"
 msgstr "Systémová informácia"
@@ -3347,6 +3554,10 @@ msgstr "Príkazový riadok"
 #: mini-utils/gw/gw.c:493
 msgid "Add some defaults"
 msgstr "Prida» príklady"
+
+#: mini-utils/gw/gw.c:495
+msgid "Delete"
+msgstr "Zmaza»"
 
 #: mini-utils/gw/gw.c:513
 msgid "Command Editor"
@@ -3819,7 +4030,8 @@ msgid "Scale"
 msgstr "©kála"
 
 #: stripchart/chart-app.c:197 stripchart/stripchart-applet.c:69
-#: stripchart/stripchart.c:92 stripchart/stripchart.c:97
+#: stripchart/stripchart-applet.desktop.in.h:2 stripchart/stripchart.c:92
+#: stripchart/stripchart.c:97
 msgid "Stripchart"
 msgstr "Stripchart"
 
@@ -4197,163 +4409,176 @@ msgstr ""
 "Nepodarilo sa nájs» archivaèný program (tar).\n"
 "Tento program sa pou¾íva pre vytváranie archívov."
 
-#~ msgid "Project Time today:"
-#~ msgstr "Èas projektu dnes:"
-
-#~ msgid "Project Time ever:"
-#~ msgstr "Celkový èas projektu:"
-
-#~ msgid "Manual..."
-#~ msgstr "Manuál..."
-
-#: gfloppy/gfloppy.desktop.in:3
-msgid "gfloppy"
-msgstr "gfloppy"
-
-#: gfloppy/gfloppy.desktop.in:4
+#: gfloppy/gfloppy.desktop.in.h:1
 msgid "Format Floppy Disks"
 msgstr "Formátuje diskety"
 
-#: gdictsrc/GDict.desktop.in:3
+#: gfloppy/gfloppy.desktop.in.h:2
+msgid "gfloppy"
+msgstr "gfloppy"
+
+#: gdictsrc/GDict.desktop.in.h:1 gdictsrc/gdict.desktop.in.h:1
 msgid "GDict"
 msgstr "GDict"
 
-#: gdictsrc/GDict.desktop.in:4
+#: gdictsrc/GDict.desktop.in.h:2
 msgid "Gnome client for the MIT dictionary server"
 msgstr "Gnome klient pre slovníkový server MIT"
 
-#: gdictsrc/gdict.desktop.in:4
+#: gdictsrc/gdict.desktop.in.h:2
 msgid "GNOME client for RFC 2229-compliant dictionary server"
 msgstr "GNOME klient pre slovníkový server podµa RFC 2229"
 
-#: notepad/Notepad.desktop.in:3
-msgid "Notepad"
-msgstr "Poznámkový blok"
+#: stripchart/stripchart-applet.desktop.in.h:1
+msgid "Shows a stripchart plot"
+msgstr "Zobrazí graf stripchart"
 
-#: notepad/Notepad.desktop.in:4
-msgid "Simple editor (notepad)"
-msgstr "Jednoduchý editor (poznámkový blok)"
-
-#: mini-utils/idetool/idetool.desktop.in:3
-msgid "IDE Device Tool"
-msgstr "Nástroj pre IDE zariadenia"
-
-#: mini-utils/idetool/idetool.desktop.in:4
-msgid "Show and Configure IDE Device Settings"
-msgstr "Zobrazuje a nastavuje IDE zariadenia"
-
-#: mini-utils/gw/gw.desktop.in:3
-msgid "User Listing"
-msgstr "Zoznam pou¾ívateµov"
-
-#: mini-utils/gw/gw.desktop.in:4
-msgid "View users on the system"
-msgstr "Zobrazuje zoznam pou¾ívateµov v systéme"
-
-#: mini-utils/guname/guname.desktop.in:3
-msgid "System Info"
-msgstr "Systémové informácie"
-
-#: mini-utils/guname/guname.desktop.in:4
-msgid "Technical information about this computer"
-msgstr "Technické informácie o tomto poèítaèi"
-
-#: mini-utils/gshutdown/gshutdown.desktop.in:3
-msgid "Shut Down or Reboot"
-msgstr "Vypnutie alebo re¹tart"
-
-#: mini-utils/gshutdown/gshutdown.desktop.in:4
-msgid "Turn off or reset the computer"
-msgstr "Vypne alebo re¹tartuje poèítaè"
-
-#: mini-utils/grun/grun.desktop.in:3
-msgid "Run A Command..."
-msgstr "Vykona» príkaz..."
-
-#: mini-utils/grun/grun.desktop.in:4
-msgid "Ask for a command to execute"
-msgstr "Opýta sa pou¾ívateåa, aký príkaz chce vykona»"
-
-#: mini-utils/gpenguin/gpenguin.desktop.in:3
-msgid "GNOME Penguin"
-msgstr "GNOME tuèniak"
-
-#: mini-utils/gpenguin/gpenguin.desktop.in:4
-msgid "Let a cute pinguin chase your pointer"
-msgstr "Vá¹ kurzor bude nahána» milý tuèniak"
-
-#: mini-utils/gnome-run/gnome-run.desktop.in:3
-msgid "Run program..."
-msgstr "Spusti» program..."
-
-#: mini-utils/gnome-run/gnome-run.desktop.in:4
-msgid "Prompts the user for a program to run"
-msgstr "Spýta sa pou¾ívateµa, ktorý program chce spusti»"
-
-#: mini-utils/gless/gless.desktop.in:4
-msgid "Page files as with `more' and `less'"
-msgstr "Zobrazuje text po stránkach, ako 'more' a 'less'"
-
-#: mini-utils/gfontsel/gfontsel.desktop.in:4
-msgid "Select a font for pasting"
-msgstr "Výber písma pre vkladanie"
-
-#: mini-utils/gcolorsel/gcolorsel.desktop.in:3
-msgid "Color Browser"
-msgstr "Prehliadaè farieb"
-
-#: mini-utils/gcolorsel/gcolorsel.desktop.in:4
-msgid "Browse available X11 colors."
-msgstr "Zobrazuje dostupné farby X11."
-
-#: logview/logview.desktop.in:3
-msgid "System log monitor"
-msgstr "Monitor systémových záznamov"
-
-#: logview/logview.desktop.in:4
-msgid "SysLog tool"
-msgstr "Nástroj pre systémové záznamy"
-
-#: gtt/gtt.desktop.in:3
-msgid "Time tracking tool"
-msgstr "Sledovaè èasu"
-
-#: gtt/gtt.desktop.in:4
-msgid "Time Tracker tool"
-msgstr "Nástroj na sledovanie èasu"
-
-#: gstripchart/gstripchart.desktop.in:3
+#: gstripchart/gstripchart.desktop.in.h:1 stripchart/stripchart.desktop.in.h:1
 msgid "Stripchart Plotter"
 msgstr "Zobrazovaè grafov"
 
-#: gstripchart/gstripchart_applet.desktop.in:3
+#: notepad/Notepad.desktop.in.h:1
+msgid "Notepad"
+msgstr "Poznámkový blok"
+
+#: notepad/Notepad.desktop.in.h:2
+msgid "Simple editor (notepad)"
+msgstr "Jednoduchý editor (poznámkový blok)"
+
+#: mini-utils/idetool/idetool.desktop.in.h:1
+msgid "IDE Device Tool"
+msgstr "Nástroj pre IDE zariadenia"
+
+#: mini-utils/idetool/idetool.desktop.in.h:2
+msgid "Show and Configure IDE Device Settings"
+msgstr "Zobrazuje a nastavuje IDE zariadenia"
+
+#: mini-utils/gw/gw.desktop.in.h:1
+msgid "User Listing"
+msgstr "Zoznam pou¾ívateµov"
+
+#: mini-utils/gw/gw.desktop.in.h:2
+msgid "View users on the system"
+msgstr "Zobrazuje zoznam pou¾ívateµov v systéme"
+
+#: mini-utils/guname/guname-capplet.desktop.in.h:1
+msgid "Show various system information"
+msgstr "Zobrazí rôzne systémové informácie"
+
+#: mini-utils/guname/guname.desktop.in.h:1
+msgid "System Info"
+msgstr "Systémové informácie"
+
+#: mini-utils/guname/guname.desktop.in.h:2
+msgid "Technical information about this computer"
+msgstr "Technické informácie o tomto poèítaèi"
+
+#: mini-utils/gshutdown/gshutdown.desktop.in.h:1
+msgid "Shut Down or Reboot"
+msgstr "Vypnutie alebo re¹tart"
+
+#: mini-utils/gshutdown/gshutdown.desktop.in.h:2
+msgid "Turn off or reset the computer"
+msgstr "Vypne alebo re¹tartuje poèítaè"
+
+#: mini-utils/grun/grun.desktop.in.h:1
+msgid "Ask for a command to execute"
+msgstr "Opýta sa pou¾ívateåa, aký príkaz chce vykona»"
+
+#: mini-utils/grun/grun.desktop.in.h:2
+msgid "Run A Command..."
+msgstr "Vykona» príkaz..."
+
+#: mini-utils/gpenguin/gpenguin.desktop.in.h:1
+msgid "GNOME Penguin"
+msgstr "GNOME tuèniak"
+
+#: mini-utils/gpenguin/gpenguin.desktop.in.h:2
+msgid "Let a cute pinguin chase your pointer"
+msgstr "Vá¹ kurzor bude nahána» milý tuèniak"
+
+#: mini-utils/gnome-run/gnome-run.desktop.in.h:1
+msgid "Prompts the user for a program to run"
+msgstr "Spýta sa pou¾ívateµa, ktorý program chce spusti»"
+
+#: mini-utils/gnome-run/gnome-run.desktop.in.h:2
+msgid "Run program..."
+msgstr "Spusti» program..."
+
+#: mini-utils/gless/gless.desktop.in.h:1
+msgid "Page files as with `more' and `less'"
+msgstr "Zobrazuje text po stránkach, ako 'more' a 'less'"
+
+#: mini-utils/gfontsel/gfontsel.desktop.in.h:2
+msgid "Select a font for pasting"
+msgstr "Výber písma pre vkladanie"
+
+#: mini-utils/gcolorsel/gcolorsel.desktop.in.h:1
+msgid "Browse available X11 colors."
+msgstr "Zobrazuje dostupné farby X11."
+
+#: mini-utils/gcolorsel/gcolorsel.desktop.in.h:2
+msgid "Color Browser"
+msgstr "Prehliadaè farieb"
+
+#: meat-grinder/meat-grinder.desktop.in.h:1
+msgid "Archive Generator"
+msgstr "Generátor archívov"
+
+#: meat-grinder/meat-grinder.desktop.in.h:2
+msgid "GNOME Archive Generator aka Meat Grinder"
+msgstr "Generátor archívov GNOME zvyný Meat Grinder"
+
+#: logview/logview.desktop.in.h:1
+msgid "SysLog tool"
+msgstr "Nástroj pre systémové záznamy"
+
+#: logview/logview.desktop.in.h:2
+msgid "System log monitor"
+msgstr "Monitor systémových záznamov"
+
+#: gtt/gtt.desktop.in.h:1
+msgid "Time Tracker tool"
+msgstr "Nástroj na sledovanie èasu"
+
+#: gtt/gtt.desktop.in.h:2
+msgid "Time tracking tool"
+msgstr "Sledovaè èasu"
+
+#: gstripchart/gstripchart_applet.desktop.in.h:1
 msgid "Gstripchart"
 msgstr "Gstripchart"
 
-#: gstripchart/gstripchart_applet.desktop.in:4
+#: gstripchart/gstripchart_applet.desktop.in.h:2
 msgid "Shows a stripchart"
 msgstr "Zobrazuje graf"
 
-#: gsearchtool/gsearchtool.desktop.in:3
+#: gsearchtool/gsearchtool.desktop.in.h:1
+#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
 msgid "GNOME Search Tool"
 msgstr "GNOME Hµadanie"
 
-#: gdiskfree/gdiskfree.desktop.in:3
+#: gdiskfree/gdiskfree.desktop.in.h:1
 msgid "GNOME DiskFree"
 msgstr "GNOME Miesto na disku"
 
-#: gdiskfree/gdiskfree.desktop.in:4
+#: gdiskfree/gdiskfree.desktop.in.h:2
 msgid "Show free space on mounted file systems using dials."
 msgstr "Zobrazuje voµné miesto na pripojenom súborovom systéme pomocou diód"
 
-#: gcalc/gcalc.desktop.in:3
+#: gcharmap/gcharmap.desktop.in.h:1
+msgid "GNOME Character Map"
+msgstr "Mapa znakov GNOME"
+
+#: gcalc/gcalc.desktop.in.h:1
 msgid "Simple Calculator"
 msgstr "Kalkulaèka"
 
-#: cromagnon/Cromagnon.desktop.in:3
+#: cromagnon/Cromagnon.desktop.in.h:1
 msgid "Personal cron manager"
 msgstr "Osobný správca cronu"
 
-#: cromagnon/Cromagnon.desktop.in:4
+#: cromagnon/Cromagnon.desktop.in.h:2
 msgid "Personal crontab manager"
 msgstr "Osobný správca cronu"
+
