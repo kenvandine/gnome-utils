@@ -1858,7 +1858,7 @@ static GnomeUIInfo file_menu[] = {
 };
 
 static GnomeUIInfo help_menu[] = {  
-	GNOMEUIINFO_HELP("gsearchtool"),
+	GNOMEUIINFO_HELP("gnome-search-tool"),
 	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
 	GNOMEUIINFO_END
 };
@@ -1882,7 +1882,7 @@ main(int argc, char *argv[])
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-	gsearchtool = gnome_program_init ("gnome-search-tool", VERSION, LIBGNOMEUI_MODULE, argc, argv, NULL);
+	gsearchtool = gnome_program_init ("gnome-search-tool", VERSION, LIBGNOMEUI_MODULE, argc, argv, GNOME_PARAM_APP_DATADIR,DATADIR, NULL);
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-searchtool.png");
 
 	if (!bonobo_init (bonobo_activation_orb_get (), NULL, NULL))

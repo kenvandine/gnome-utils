@@ -7,6 +7,7 @@ INCLUDES = 	\
 	$(GNOMEVFS_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
+	-DDATADIR=\""$(datadir)"\"			\
 	-I$(includedir)					
 
 bin_PROGRAMS = gnome-search-tool
