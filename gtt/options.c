@@ -146,26 +146,15 @@ static void options_apply_cb(GnomePropertyBox *pb, gint page, OptionsDlg *odlg)
 	toolbar_set_states();
 }
 
-/* These two are somewhat lamely cut-and-pasted from prop.c, but they're 
-   so short... It might be nice to add to PropertyBox to avoid
-   the need (?). 
-   gnome_property_box_set_help(GnomePropertyBox * pb, 
-                               gchar * app, gchar * filename);
-   */
-static void help_cb(GnomePropertyBox * pb, gint page, gchar * url)
-{
-  gnome_help_goto(pb, url);
-}
-
 static void signals(OptionsDlg *odlg)
 {
+        static GnomeHelpMenuEntry help_entry = { NULL, "properties" };
 	char *s, *t;
 
-	t = gnome_help_file_path("gtt", "index.html");
-	s = g_strconcat("file:///", t, "#PREF", NULL);
-	g_free(t);
+	help_entry.name = gnome_app_id;
 	gtk_signal_connect(GTK_OBJECT(odlg->dlg), "help",
-			   GTK_SIGNAL_FUNC(help_cb), s);
+			   GTK_SIGNAL_FUNC(gnome_help_pbox_display),
+			   &help_entry);
 	
 	gtk_signal_connect(GTK_OBJECT(odlg->dlg), "apply",
 			   GTK_SIGNAL_FUNC(options_apply_cb), 

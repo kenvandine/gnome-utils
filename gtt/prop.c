@@ -38,11 +38,6 @@ typedef struct _PropDlg {
 } PropDlg;
 
 
-static void help_cb(GnomePropertyBox * pb, gint page, gchar * url)
-{
-  gnome_help_goto(pb, url);
-}
-
 static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 {
 	gchar *s;
@@ -162,6 +157,7 @@ void prop_dialog_set_project(project *proj)
 
 void prop_dialog(project *proj)
 {
+        static GnomeHelpMenuEntry help_entry = { NULL, "properties-edit" };
 	GtkWidget *w;
 	GtkBox *vbox;
 	GtkTable *table;
@@ -186,11 +182,10 @@ void prop_dialog(project *proj)
 		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "apply",
 				   GTK_SIGNAL_FUNC(prop_set), dlg);
 
-		t = gnome_help_file_path("gtt", "index.html");
-		s1 = g_strconcat("file:///", t, "#PROP", NULL);
-		g_free(t);
+		help_entry.name = gnome_app_id;
 		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "help",
-				   GTK_SIGNAL_FUNC(help_cb), s1);
+				   GTK_SIGNAL_FUNC(gnome_help_pbox_display),
+				   &help_entry);
 
 		table = GTK_TABLE(gtk_table_new(4, 7, FALSE));
 		gtk_widget_show(GTK_WIDGET(table));
