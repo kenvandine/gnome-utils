@@ -24,6 +24,7 @@
 
 #include "journal.h"
 #include "plug-in.h"
+#include "util.h"
 
 struct NewPluginDialog_s
 {
