@@ -918,7 +918,7 @@ nautilus_is_running()
 	gboolean ret;
 	
 	CORBA_exception_init (&ev); 
-	obj = bonobo_activation_activate_from_id ("OAFIID:nautilus_factory:bd1e1862-92d7-4391-963e-37583f0daef3",
+	obj = bonobo_activation_activate_from_id ("OAFIID:Nautilus_Factory",
 		Bonobo_ACTIVATION_FLAG_EXISTING_ONLY, NULL, &ev);
 		
 	ret = !CORBA_Object_is_nil (obj, &ev);
