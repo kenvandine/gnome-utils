@@ -60,45 +60,10 @@ static void check_for_clock_skew (IdleTimeout *si);
 
 
 /* ===================================================================== */
-
-static gint
-idle_timer (gpointer closure)
-{
-  IdleTimeout *si = (IdleTimeout *) closure;
-
-  /* What an amazingly shitty design.  Not only does Xt execute timeout
-     events from XtAppNextEvent() instead of from XtDispatchEvent(), but
-     there is no way to tell Xt to block until there is an X event OR a
-     timeout happens.  Once your timeout proc is called, XtAppNextEvent()
-     still won't return until a "real" X event comes in.
-
-     So this function pushes a stupid, gratuitous, unnecessary event back
-     on the event queue to force XtAppNextEvent to return Right Fucking Now.
-     When the code in sleep_until_idle() sees an event of type XAnyEvent,
-     which the server never generates, it knows that a timeout has occurred.
-
-     The same is true for gtk.
-   */
-  XEvent fake_event;
-  fake_event.type = 0;	/* XAnyEvent type, ignored. */
-  fake_event.xany.display = si->dpy;
-  fake_event.xany.window  = 0;
-  XPutBackEvent (si->dpy, &fake_event);
-
-  return 0;
-}
-
-/* ===================================================================== */
-
-static void
-schedule_wakeup_event (IdleTimeout *si, int when)
-{
-  /* Wake up periodically to ask the server if we are idle. */
-  si->timer_id = gtk_timeout_add (when*1000, idle_timer,
-                                  (gpointer) si);
-}
-
-/* ===================================================================== */
+/* This routine will install event masks on the indicated window, 
+ * and its children.  These masks are designed to trigger if there's 
+ * keyboard/strcuture activity in that window.
+ */
 
 static void
 notice_events (IdleTimeout *si, Window window, Bool top_p)
@@ -116,11 +81,9 @@ notice_events (IdleTimeout *si, Window window, Bool top_p)
 printf ("duuuude notice events our window g=%p xw=0x%x root=0x%x\n",gwin, (int) window, DefaultRootWindow (si->dpy));
     return;
   }
-printf ("duuuude notice events not**** our window g=%p xw=0x%x\n",gwin, (int) window);
 
   if (!XQueryTree (si->dpy, window, &root, &parent, &kids, &nkids))
   {
-printf ("duude no tree  !!\n");
     return;
   }
   if (window == root) top_p = False;
@@ -163,6 +126,8 @@ printf ("duude no tree  !!\n");
 }
 
 /* ===================================================================== */
+/* stuff realted to the notice-events timer */
+
 static int
 saver_ehandler (Display *dpy, XErrorEvent *error)
 {
@@ -222,6 +187,7 @@ printf ("duuude notice events timer popeed\n");
   XSetErrorHandler (old_handler);
 
   /* we pop once, and we don't pop again */
+  si->notice_events_timer_id = 0;
   return 0;
 }
 
@@ -229,42 +195,18 @@ printf ("duuude notice events timer popeed\n");
 static void
 start_notice_events_timer (IdleTimeout *si, Window w)
 {
-  IdleTimeoutPrefs *p = &si->prefs;
-  struct notice_events_timer_arg *arg = g_new(struct notice_events_timer_arg, 1);
+  struct notice_events_timer_arg *arg;
 
-  arg->si = si;
-  arg->w = w;
-  gtk_timeout_add (p->notice_events_timeout *1000, notice_events_timer,
-		   (gpointer) arg);
-
+  if (0 == si->notice_events_timer_id)
+  {
+    arg = g_new(struct notice_events_timer_arg, 1);
+    arg->si = si;
+    arg->w = w;
+    si->notice_events_timer_id = gtk_timeout_add (
+               si->prefs.notice_events_timeout *1000, 
+               notice_events_timer, (gpointer) arg);
+  }
 }
-
-
-/* ===================================================================== */
-
-/* Call this when user activity (or "simulated" activity) has been noticed.
- */
-static void
-reset_timers (IdleTimeout *si)
-{
-  IdleTimeoutPrefs *p = &si->prefs;
-  if (si->using_mit_saver_extension || si->using_sgi_saver_extension)
-    return;
-
-  if (si->timer_id)
-    {
-#ifdef DEBUG_TIMERS
-      fprintf (stderr, "killing idle_timer  (%ld, %ld)\n",
-                 p->timeout, si->timer_id);
-#endif /* DEBUG_TIMERS */
-      gtk_timeout_remove (si->timer_id);
-    }
-
-  schedule_wakeup_event (si, p->timeout); /* sets si->timer_id */
-
-  si->last_activity_time = time ((time_t *) 0);
-}
-
 
 /* ===================================================================== */
 
@@ -308,7 +250,6 @@ check_pointer_timer (gpointer closure)
       active_p = True;
 
 #ifdef DEBUG_TIMERS
-      if (p->verbose_p)
 	if (root_x == ssi->poll_mouse_last_root_x &&
 	    root_y == ssi->poll_mouse_last_root_y &&
 	    child  == ssi->poll_mouse_last_child)
@@ -341,8 +282,7 @@ check_pointer_timer (gpointer closure)
       proc_interrupts_activity_p (si))
     {
 # ifdef DEBUG_TIMERS
-      if (p->verbose_p)
-        fprintf (stderr, "/proc/interrupts activity at %s.\n",
+      fprintf (stderr, "/proc/interrupts activity at %s.\n",
                  timestring());
 # endif /* DEBUG_TIMERS */
       active_p = True;
@@ -352,7 +292,7 @@ check_pointer_timer (gpointer closure)
   if (active_p) 
   {
 printf ("duuude saw pointer activity !!! \n");
-    reset_timers (si);
+    si->last_activity_time = time ((time_t *) 0);
   }
 
   check_for_clock_skew (si);
@@ -393,7 +333,6 @@ check_for_clock_skew (IdleTimeout *si)
                  (shift / (60 * 60)), ((shift / 60) % 60), (shift % 60));
 #endif /* DEBUG_TIMERS */
 
-      idle_timer ((gpointer) si);
     }
 
   si->last_wall_clock_time = now;
@@ -414,15 +353,20 @@ if_event_predicate (Display *dpy, XEvent *ev, XPointer arg)
 {
   IdleTimeout *si = (IdleTimeout *) arg;
 
-printf ("duude event predicate\n");
+printf ("duude event predicate type=%d\n", ev->xany.type);
+  si->last_activity_time = time ((time_t *) 0);
   switch (ev->xany.type) 
   {
-    case 0:		/* our synthetic "timeout" event has been signalled */
-printf ("duude synthetic\n");
-      break;
 
     case CreateNotify:
-printf ("duude create notif\n");
+printf ("duude create notify ********************************************\n");
+      /* A window has been created on the screen somewhere.  If we're
+         supposed to scan all windows for events, prepare this window. */
+      if (si->scanning_all_windows)
+      {
+        Window w = ev->xcreatewindow.window;
+        start_notice_events_timer (si, w);
+      }
       break;
 
     case KeyPress:
@@ -430,11 +374,9 @@ printf ("duude create notif\n");
     case ButtonPress:
     case ButtonRelease:
     case MotionNotify:
-printf ("duude button/key/motion\n");
       break;
 
     default:
-printf ("duude unk type %d\n", ev->xany.type);
       break;
   }
 
@@ -468,67 +410,15 @@ printf ("duude unk type %d\n", ev->xany.type);
 /* ex-sleep_until_idle; now returns how long system as been idle */
 
 int
-poll_idle_time (IdleTimeout *si, Bool until_idle_p)
+poll_idle_time (IdleTimeout *si)
 {
   IdleTimeoutPrefs *p;
   XEvent event;
-  Bool scanning_all_windows;
-  Bool polling_for_idleness;
-  Bool polling_mouse_position;
 
   if (!si) return 0;
 
-  /* We need to select events on all windows if we're not using any extensions.
-     Otherwise, we don't need to. */
-  scanning_all_windows = !(si->using_xidle_extension ||
-                           si->using_mit_saver_extension ||
-                           si->using_sgi_saver_extension);
-
-  /* We need to periodically wake up and check for idleness if we're not using
-     any extensions, or if we're using the XIDLE extension.  The other two
-     extensions explicitly deliver events when we go idle/non-idle, so we
-     don't need to poll. */
-  polling_for_idleness = !(si->using_mit_saver_extension ||
-                           si->using_sgi_saver_extension);
-
-  /* Whether we need to periodically wake up and check to see if the mouse has
-     moved.  We only need to do this when not using any extensions.  The reason
-     this isn't the same as `polling_for_idleness' is that the "idleness" poll
-     can happen (for example) 5 minutes from now, whereas the mouse-position
-     poll should happen with low periodicity.  We don't need to poll the mouse
-     position with the XIDLE extension, but we do need to periodically wake up
-     and query the server with that extension.  For our purposes, polling
-     /proc/interrupts is just like polling the mouse position.  It has to
-     happen on the same kind of schedule. */
-  polling_mouse_position = (si->using_proc_interrupts ||
-                           !(si->using_xidle_extension ||
-                             si->using_mit_saver_extension ||
-                             si->using_sgi_saver_extension));
-
   p = &si->prefs;
 
-  if (until_idle_p)
-    {
-      if (polling_for_idleness)
-        /* This causes a no-op event to be delivered to us in a while, so that
-           we come back around through the event loop again.  Use of this timer
-           is economical: for example, if the screensaver should come on in 5
-           minutes, and the user has been idle for 2 minutes, then this
-           timeout will go off no sooner than 3 minutes from now.  */
-        schedule_wakeup_event (si, p->timeout);
-
-      if (polling_mouse_position)
-      {
-        /* Check to see if the mouse has moved, and set up a repeating timer
-           to do so periodically (typically, every 5 seconds.) */
-        if (0 == si->check_pointer_timer_id)
-	{
-          si->check_pointer_timer_id = gtk_timeout_add (p->pointer_timeout *1000, 
-                  check_pointer_timer, (gpointer) si);
-	  check_pointer_timer ((gpointer) si);
-        }
-      }
-    }
 
 printf ("duuude  idle for %ld secs \n", time(0) - si->last_activity_time);
 return si->last_activity_time;
@@ -539,14 +429,9 @@ return si->last_activity_time;
 if (False == XCheckIfEvent (si->dpy, &event, if_event_predicate, (XPointer) si))
 {
 }
-else
-{
-printf ("duuude match \n");
-}
 
       switch (event.xany.type) {
       case 0:		/* our synthetic "timeout" event has been signalled */
-	if (until_idle_p)
 	  {
 	    Time idle;
 #ifdef HAVE_XIDLE_EXTENSION
@@ -608,62 +493,7 @@ printf ("duuude match \n");
                    we need to lock down in a hurry! */
                 goto DONE;
               }
-            else
-              {
-                /* The event went off, but it turns out that the user has not
-                   yet been idle for long enough.  So re-signal the event.
-                   */
-                if (polling_for_idleness)
-                  schedule_wakeup_event (si, p->timeout - idle);
-              }
 	  }
-	break;
-
-      case CreateNotify:
-        /* A window has been created on the screen somewhere.  If we're
-           supposed to scan all windows for events, prepare this window. */
-	if (scanning_all_windows)
-	  {
-            Window w = event.xcreatewindow.window;
-	    start_notice_events_timer (si, w);
-	  }
-	break;
-
-      case KeyPress:
-      case KeyRelease:
-      case ButtonPress:
-      case ButtonRelease:
-      case MotionNotify:
-
-#ifdef DEBUG_TIMERS
-	if (p->verbose_p)
-	  {
-	    if (event.xany.type == MotionNotify)
-	      fprintf (stderr,"%s: MotionNotify at %s\n",blurb(),timestring());
-	    else if (event.xany.type == KeyPress)
-	      fprintf (stderr, "%s: KeyPress seen on 0x%X at %s\n", blurb(),
-		       (unsigned int) event.xkey.window, timestring ());
-	    else if (event.xany.type == ButtonPress)
-	      fprintf (stderr, "%s: ButtonPress seen on 0x%X at %s\n", blurb(),
-		       (unsigned int) event.xbutton.window, timestring ());
-	  }
-#endif /* DEBUG_TIMERS */
-
-	/* If any widgets want to handle this event, let them. */
-	dispatch_event (si, &event);
-
-	/* We got a user event.
-	   If we're waiting for the user to become active, this is it.
-	   If we're waiting until the user becomes idle, reset the timers
-	   (since now we have longer to wait.)
-	 */
-	if (!until_idle_p)
-	  {
-	      goto DONE;
-	  }
-	else
-	  reset_timers (si);
-
 	break;
 
       default:
@@ -763,8 +593,6 @@ printf ("duuude match \n");
       gtk_timeout_remove (si->timer_id);
       si->timer_id = 0;
     }
-
-  if (until_idle_p) abort ();
 
   return si->last_activity_time;
 }
@@ -979,7 +807,7 @@ proc_interrupts_activity_p (IdleTimeout *si)
 /* ===================================================================== */
 /* we need to take over the main loop, in order to be able to capture
  * X Events before gdk eats them.   So we select on the X socket, and
- * timeout once a minute.
+ * timeout once a second.
  */
 
 static int
@@ -1006,9 +834,9 @@ idle_timeout_main_loop (gpointer data)
      if (0 > retval)
      {
         printf ("duuude fatal error \n");
+        gtk_main_quit();
         return 0;
      }
-if (0<retval) printf ("duude select!\n");
 
      /* Monitor X input queue */
      {
@@ -1023,8 +851,6 @@ if (0<retval) printf ("duude select!\n");
         quit_now = gtk_main_iteration_do (FALSE);
         if (quit_now) return 0;
      }
-
-printf ("did = %d fd=%d\n", quit_now, fd);
   }
   return 0;
 }
@@ -1051,8 +877,48 @@ idle_timeout_new (void)
   si->prefs.pointer_timeout = 5;
 
   /* how often we recheck the main window tree */
-  si->prefs.notice_events_timeout = 7;
+  si->prefs.notice_events_timeout = 30;
 
+  /* ------------------------------------------------------------- */
+  /* We need to select events on all windows if we're not using any extensions.
+     Otherwise, we don't need to. */
+  si->scanning_all_windows = !(si->using_xidle_extension ||
+                               si->using_mit_saver_extension ||
+                               si->using_sgi_saver_extension);
+
+  /* We need to periodically wake up and check for idleness if we're not using
+     any extensions, or if we're using the XIDLE extension.  The other two
+     extensions explicitly deliver events when we go idle/non-idle, so we
+     don't need to poll. */
+  si->polling_for_idleness = !(si->using_mit_saver_extension ||
+                               si->using_sgi_saver_extension);
+
+  /* Whether we need to periodically wake up and check to see if the mouse has
+     moved.  We only need to do this when not using any extensions.  The reason
+     this isn't the same as `polling_for_idleness' is that the "idleness" poll
+     can happen (for example) 5 minutes from now, whereas the mouse-position
+     poll should happen with low periodicity.  We don't need to poll the mouse
+     position with the XIDLE extension, but we do need to periodically wake up
+     and query the server with that extension.  For our purposes, polling
+     /proc/interrupts is just like polling the mouse position.  It has to
+     happen on the same kind of schedule. */
+  si->polling_mouse_position = (si->using_proc_interrupts ||
+                              !(si->using_xidle_extension ||
+                               si->using_mit_saver_extension ||
+                               si->using_sgi_saver_extension));
+
+  if (si->polling_mouse_position)
+  {
+    /* Check to see if the mouse has moved, and set up a repeating timer
+       to do so periodically (typically, every 5 seconds.) */
+    si->check_pointer_timer_id = gtk_timeout_add (si->prefs.pointer_timeout *1000, 
+                  check_pointer_timer, (gpointer) si);
+
+    /* run it once, to initialze stuff */
+    check_pointer_timer ((gpointer) si);
+  }
+
+  /* ------------------------------------------------------------- */
 
 /* hack alert don't run this unless other extensions ... yadda */
   notice_events (si, DefaultRootWindow(si->dpy), True);

@@ -57,6 +57,10 @@ struct IdleTimeout {
   Bool using_sgi_saver_extension;  /* and `si->using_*' is the *reality*.    */
   Bool using_proc_interrupts;
 
+  Bool scanning_all_windows;
+  Bool polling_for_idleness;
+  Bool polling_mouse_position;
+
 # ifdef HAVE_MIT_SAVER_EXTENSION
   int mit_saver_ext_event_number;
   int mit_saver_ext_error_number;
@@ -68,6 +72,7 @@ struct IdleTimeout {
 
   guint timer_id;		/* Timer to implement `prefs.timeout' */
   guint check_pointer_timer_id;	/* `prefs.pointer_timeout' */
+  guint notice_events_timer_id;	/* `prefs.notice_events_timeout' */
 
   time_t last_activity_time;		   /* Used only when no server exts. */
   time_t last_wall_clock_time;             /* Used to detect laptop suspend. */
@@ -119,7 +124,7 @@ extern Bool query_proc_interrupts_available (IdleTimeout *, const char **why);
 
 /* return number of seconds that system has been idle */
 IdleTimeout * idle_timeout_new (void);
-int poll_idle_time (IdleTimeout *si, Bool until_idle_p);
+int poll_idle_time (IdleTimeout *si);
 
 
 #endif /* __IDLE_TIMER_H__ */
