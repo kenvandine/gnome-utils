@@ -34,6 +34,7 @@ typedef struct _PropTaskDlg
 	GnomePropertyBox *dlg;
 	GtkEntry *memo;
 	GtkText *notes;
+	GtkOptionMenu *billstatus;
 	GtkOptionMenu *billable;
 	GtkOptionMenu *billrate;
 	GtkEntry *unit;
@@ -46,6 +47,7 @@ typedef struct _PropTaskDlg
 static void 
 task_prop_set(GnomePropertyBox * pb, gint page, PropTaskDlg *dlg)
 {
+	GttBillStatus status;
 	GttBillable able;
 	GttBillRate rate;
 	GtkWidget *menu, *menu_item;
@@ -73,6 +75,12 @@ task_prop_set(GnomePropertyBox * pb, gint page, PropTaskDlg *dlg)
 		ivl = (int) (60.0 * atof (gtk_entry_get_text(dlg->unit)));
 		gtt_task_set_bill_unit (dlg->task, ivl);
 
+	        menu = gtk_option_menu_get_menu (dlg->billstatus);
+        	menu_item = gtk_menu_get_active(GTK_MENU(menu));
+        	status = (GttBillStatus) (gtk_object_get_data(
+			GTK_OBJECT(menu_item), "billstatus"));
+		gtt_task_set_billstatus (dlg->task, status);
+
 	        menu = gtk_option_menu_get_menu (dlg->billable);
         	menu_item = gtk_menu_get_active(GTK_MENU(menu));
         	able = (GttBillable) (gtk_object_get_data(
@@ -95,6 +103,7 @@ task_prop_set(GnomePropertyBox * pb, gint page, PropTaskDlg *dlg)
 static void 
 do_set_task(GttTask *tsk, PropTaskDlg *dlg)
 {
+	GttBillStatus status;
 	GttBillable able;
 	GttBillRate rate;
 	char buff[132];
@@ -119,11 +128,15 @@ do_set_task(GttTask *tsk, PropTaskDlg *dlg)
 	g_snprintf (buff, 132, "%g", ((double) gtt_task_get_bill_unit(tsk))/60.0);
 	gtk_entry_set_text(dlg->unit, buff);
 
+	status = gtt_task_get_billstatus (tsk);
+	if (GTT_HOLD == status) gtk_option_menu_set_history (dlg->billstatus, 0);
+	else if (GTT_BILL == status) gtk_option_menu_set_history (dlg->billstatus, 1);
+	else if (GTT_PAID == status) gtk_option_menu_set_history (dlg->billstatus, 2);
+
 	able = gtt_task_get_billable (tsk);
-	if (GTT_HOLD == able) gtk_option_menu_set_history (dlg->billable, 0);
-	else if (GTT_BILLABLE == able) gtk_option_menu_set_history (dlg->billable, 1);
-	else if (GTT_NOT_BILLABLE == able) gtk_option_menu_set_history (dlg->billable, 2);
-	else if (GTT_NO_CHARGE == able) gtk_option_menu_set_history (dlg->billable, 3);
+	if (GTT_BILLABLE == able) gtk_option_menu_set_history (dlg->billable, 0);
+	else if (GTT_NOT_BILLABLE == able) gtk_option_menu_set_history (dlg->billable, 1);
+	else if (GTT_NO_CHARGE == able) gtk_option_menu_set_history (dlg->billable, 2);
 
 	rate = gtt_task_get_billrate (tsk);
 	if (GTT_REGULAR == rate) gtk_option_menu_set_history (dlg->billrate, 0);
@@ -176,6 +189,13 @@ prop_task_dialog_new (void)
 				  GTK_OBJECT(dlg->dlg));
 	dlg->notes = GTK_TEXT(e);
 
+	e = glade_xml_get_widget (gtxml, "billstatus menu");
+	dlg->billstatus = GTK_OPTION_MENU(e);
+	e = gtk_option_menu_get_menu (GTK_OPTION_MENU(e));
+	gtk_signal_connect_object(GTK_OBJECT(e), "selection_done",
+				  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
+				  GTK_OBJECT(dlg->dlg));
+
 	e = glade_xml_get_widget (gtxml, "billable menu");
 	dlg->billable = GTK_OPTION_MENU(e);
 	e = gtk_option_menu_get_menu (GTK_OPTION_MENU(e));
@@ -198,24 +218,37 @@ prop_task_dialog_new (void)
 
 	/* ------------------------------------------------------ */
 	/* associate values with the two option menus */
+	menu = gtk_option_menu_get_menu (dlg->billstatus);
+
+	gtk_option_menu_set_history (dlg->billstatus, 0);
+	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
+	gtk_object_set_data(GTK_OBJECT(menu_item), "billstatus",
+		(gpointer) GTT_HOLD);
+
+	gtk_option_menu_set_history (dlg->billstatus, 1);
+	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
+	gtk_object_set_data(GTK_OBJECT(menu_item), "billstatus",
+		(gpointer) GTT_BILL);
+
+	gtk_option_menu_set_history (dlg->billstatus, 2);
+	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
+	gtk_object_set_data(GTK_OBJECT(menu_item), "billstatus",
+		(gpointer) GTT_PAID);
+
+
 	menu = gtk_option_menu_get_menu (dlg->billable);
 
 	gtk_option_menu_set_history (dlg->billable, 0);
 	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
 	gtk_object_set_data(GTK_OBJECT(menu_item), "billable",
-		(gpointer) GTT_HOLD);
+		(gpointer) GTT_BILLABLE);
 
 	gtk_option_menu_set_history (dlg->billable, 1);
 	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
 	gtk_object_set_data(GTK_OBJECT(menu_item), "billable",
-		(gpointer) GTT_BILLABLE);
-
-	gtk_option_menu_set_history (dlg->billable, 2);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), "billable",
 		(gpointer) GTT_NOT_BILLABLE);
 
-	gtk_option_menu_set_history (dlg->billable, 3);
+	gtk_option_menu_set_history (dlg->billable, 2);
 	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
 	gtk_object_set_data(GTK_OBJECT(menu_item), "billable",
 		(gpointer) GTT_NO_CHARGE);

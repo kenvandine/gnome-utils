@@ -34,6 +34,7 @@ typedef enum {
 	/* task things */
 	MEMO = 1,
 	TASK_TIME,
+	BILLSTATUS,
 	BILLABLE,
 	BILLRATE,
 	VALUE,
@@ -222,6 +223,10 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 				p = stpcpy (p, "<th>");
 				TASK_COL_TITLE (_("Task Time"));
 				break;
+			case BILLSTATUS:
+				p = stpcpy (p, "<th>");
+				TASK_COL_TITLE (_("Bill Status"));
+				break;
 			case BILLABLE:
 				p = stpcpy (p, "<th>");
 				TASK_COL_TITLE (_("Billable"));
@@ -279,6 +284,7 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 
 	for (node = gtt_project_get_tasks(prj); node; node=node->next)
 	{
+		GttBillStatus billstatus;
 		GttBillable billable;
 		GttBillRate billrate;
 		const char *pp;
@@ -289,13 +295,14 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 		double hours, value=0.0, billable_value=0.0;
 		
 		/* set up data */
+		billstatus = gtt_task_get_billstatus (tsk);
 		billable = gtt_task_get_billable (tsk);
 		billrate = gtt_task_get_billrate (tsk);
 
 		/* if we are in invoice mode, then skip anything not billable */
 		if (invoice)
 		{
-			if ((GTT_HOLD == billable) || 
+			if ((GTT_BILL != billstatus) || 
 			    (GTT_NOT_BILLABLE == billable)) continue;
 		}
 
@@ -320,9 +327,6 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 
 		switch (billable)
 		{
-			case GTT_HOLD:
-				billable_value = 0.0;
-				break;
 			case GTT_BILLABLE:
 				billable_value = value;
 				break;
@@ -368,13 +372,26 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 					p = print_hours_elapsed (p, 40, task_secs, TRUE);
 					break;
 
-				case BILLABLE:
+				case BILLSTATUS:
 					p = stpcpy (p, "<td>");
-					switch (billable)
+					switch (billstatus)
 					{
 						case GTT_HOLD:
 							p = stpcpy (p, _("Hold"));
 							break;
+						case GTT_BILL:
+							p = stpcpy (p, _("Bill"));
+							break;
+						case GTT_PAID:
+							p = stpcpy (p, _("Paid"));
+							break;
+					}
+					break;
+
+				case BILLABLE:
+					p = stpcpy (p, "<td>");
+					switch (billable)
+					{
 						case GTT_BILLABLE:
 							p = stpcpy (p, _("Billable"));
 							break;
@@ -637,6 +654,11 @@ decode_column (GttGhtml *ghtml, const char * tok)
 	if (0 == strncmp (tok, "$task_time", 10))
 	{
 		TASK_COL(TASK_TIME);
+	}
+	else
+	if (0 == strncmp (tok, "$billstatus", 9))
+	{
+		TASK_COL(BILLSTATUS);
 	}
 	else
 	if (0 == strncmp (tok, "$billable", 9))

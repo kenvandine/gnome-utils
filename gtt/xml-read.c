@@ -141,10 +141,9 @@ parse_task (xmlNodePtr task)
 		else
 		if (0 == strcmp ("billable", node->name))
 		{
-			GttBillable billable = GTT_HOLD;
+			GttBillable billable = GTT_NOT_BILLABLE;
 			str = GET_TEXT (node);
-			if (!strcmp ("HOLD", str)) billable=GTT_HOLD;
-			else if (!strcmp ("BILLABLE", str)) billable=GTT_BILLABLE;
+			if (!strcmp ("BILLABLE", str)) billable=GTT_BILLABLE;
 			else if (!strcmp ("NOT_BILLABLE", str)) billable=GTT_NOT_BILLABLE;
 			else if (!strcmp ("NO_CHARGE", str)) billable=GTT_NO_CHARGE;
 			gtt_task_set_billable (tsk, billable);
@@ -159,6 +158,16 @@ parse_task (xmlNodePtr task)
 			else if (!strcmp ("OVEROVER", str)) billrate=GTT_OVEROVER;
 			else if (!strcmp ("FLAT_FEE", str)) billrate=GTT_FLAT_FEE;
 			gtt_task_set_billrate (tsk, billrate);
+		} 
+		else
+		if (0 == strcmp ("billstatus", node->name))
+		{
+			GttBillStatus billstatus = GTT_HOLD;
+			str = GET_TEXT (node);
+			if (!strcmp ("HOLD", str)) billstatus=GTT_HOLD;
+			else if (!strcmp ("BILL", str)) billstatus=GTT_BILL;
+			else if (!strcmp ("PAID", str)) billstatus=GTT_PAID;
+			gtt_task_set_billstatus (tsk, billstatus);
 		} 
 		else
 		if (0 == strcmp ("bill_unit", node->name))

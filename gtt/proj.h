@@ -36,10 +36,9 @@
 
 typedef enum 
 {
-	GTT_HOLD = 0,	    /* will not appear on invoice */
 	GTT_BILLABLE = 1,   /* billable time */
 	GTT_NOT_BILLABLE,   /* not billable to customer, internal only */
-	GTT_NO_CHARGE       /* no charge */
+	GTT_NO_CHARGE       /* shows on invoice as 'no charge/free' */
 } GttBillable;
 
 typedef enum 
@@ -49,6 +48,13 @@ typedef enum
 	GTT_OVEROVER,
 	GTT_FLAT_FEE
 } GttBillRate;
+		
+typedef enum 
+{
+	GTT_HOLD = 0,	 /* needs review, will not appear on invoice */
+	GTT_BILL = 1,    /* print this on invoice, its done, ready */
+	GTT_PAID         /* its been paid; do not print on invoice any more */
+} GttBillStatus;
 		
 
 /* The three basic structures */
@@ -304,6 +310,8 @@ void		gtt_task_set_billable (GttTask *, GttBillable);
 GttBillable	gtt_task_get_billable (GttTask *);
 void		gtt_task_set_billrate (GttTask *, GttBillRate);
 GttBillRate	gtt_task_get_billrate (GttTask *);
+void		gtt_task_set_billstatus (GttTask *, GttBillStatus);
+GttBillStatus	gtt_task_get_billstatus (GttTask *);
 
 /* The bill_unit is the minimum billable unit of time. 
  * Typically 15 minutes or an hour, it represents the smallest unit

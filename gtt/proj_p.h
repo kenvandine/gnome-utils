@@ -71,13 +71,14 @@ struct gtt_project_s
  */
 struct gtt_task_s 
 {
-	GttProject *parent;     /* parent project */
-	char * memo;            /* invoiceable memo (customer sees this) */
-	char * notes;           /* internal notes (office private) */
-	GttBillable  billable;  /* if fees can be collected for this task */
-	GttBillRate  billrate;  /* hourly rate at which to bill */
-	int	bill_unit;	/* billable unit, in seconds */
-	GList *interval_list;   /* collection of start-stop's */
+	GttProject *parent;       /* parent project */
+	char * memo;              /* invoiceable memo (customer sees this) */
+	char * notes;             /* internal notes (office private) */
+	GttBillable   billable;   /* if fees can be collected for this task */
+	GttBillRate   billrate;   /* hourly rate at which to bill */
+	GttBillStatus billstatus; /* disposition of this item */
+	int	bill_unit;	  /* billable unit, in seconds */
+	GList *interval_list;     /* collection of start-stop's */
 };
 
 /* one start-stop interval */

@@ -37,12 +37,15 @@ Some sample scheme expressions, and their output:
      <br><br>
      Here's a little example:
      <br><br>
-     <tt>(gtt-show-table '($memo "blah blah memo" $billable "bulbous blort" 
+     <tt>(gtt-show-table '($memo "blah blah memo" $billstatus "what's up
+      duude" $billable "bulbous blort" 
       $billrate $value "da bucks" $bill_value))</tt>
      <br><br>
      will print: <br>
-     <?scm (gtt-show-table '($memo "blah blah memo" $billable 
-           "bulbous blort" $billrate $value "da bucks" $bill_value)) ?>
+     <?scm (gtt-show-table '($memo "blah blah memo" 
+                $billstatus "what's up duude" 
+                $billable "bulbous blort" 
+                $billrate $value "da bucks" $bill_value)) ?>
      <br><br>
 <!-- 
 <?scm (gtt-show-table '($memo $billable $billrate $task_time $value $bill_value 

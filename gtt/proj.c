@@ -1318,6 +1318,7 @@ gtt_task_new (void)
 	task->notes = g_strdup ("");
 	task->billable = GTT_BILLABLE;
 	task->billrate = GTT_REGULAR;
+	task->billstatus = GTT_BILL,
 	task->bill_unit = 900;
 	task->interval_list = NULL;
 	return task;
@@ -1338,6 +1339,7 @@ gtt_task_dup (GttTask *old)
 	/* inherit the properties ... important for user */
 	task->billable = old->billable;
 	task->billrate = old->billrate;
+	task->billstatus = old->billstatus;
 	task->bill_unit = old->bill_unit;
 	task->interval_list = NULL;
 
@@ -1458,6 +1460,7 @@ gtt_task_new_insert (GttTask *old)
 	/* inherit the properties ... important for user */
 	task->billable = old->billable;
 	task->billrate = old->billrate;
+	task->billstatus = old->billstatus;
 	task->bill_unit = old->bill_unit;
 	task->interval_list = NULL;
 
@@ -1473,6 +1476,7 @@ gtt_task_new_insert (GttTask *old)
 	prj->task_list = g_list_insert (prj->task_list, task, idx);
 
 	if (is_running) gtt_project_timer_start (prj);
+	proj_refresh_time (prj);
 	return task;
 }
 
@@ -1547,7 +1551,7 @@ gtt_task_set_billable (GttTask *tsk, GttBillable b)
 GttBillable
 gtt_task_get_billable (GttTask *tsk)
 {
-	if (!tsk) return GTT_HOLD;
+	if (!tsk) return GTT_NOT_BILLABLE;
 	return tsk->billable;
 }
 
@@ -1564,6 +1568,21 @@ gtt_task_get_billrate (GttTask *tsk)
 {
 	if (!tsk) return GTT_REGULAR;
 	return tsk->billrate;
+}
+
+void
+gtt_task_set_billstatus (GttTask *tsk, GttBillStatus b)
+{
+	if (!tsk) return;
+	tsk->billstatus = b;
+	proj_modified (tsk->parent);
+}
+
+GttBillStatus
+gtt_task_get_billstatus (GttTask *tsk)
+{
+	if (!tsk) return GTT_HOLD;
+	return tsk->billstatus;
 }
 
 void

@@ -136,7 +136,6 @@ gtt_xml_task_to_dom_tree (GttTask *task)
 		GttBillable billable = gtt_task_get_billable(task);
 		switch (billable)
 		{
-			case GTT_HOLD: str = "HOLD"; break;
 			case GTT_BILLABLE: str = "BILLABLE"; break;
 			case GTT_NOT_BILLABLE: str = "NOT_BILLABLE"; break;
 			case GTT_NO_CHARGE: str = "NO_CHARGE"; break;
@@ -156,6 +155,19 @@ gtt_xml_task_to_dom_tree (GttTask *task)
 			case GTT_FLAT_FEE: str = "FLAT_FEE"; break;
 		}
 		node = xmlNewNode (NULL, "billrate");
+		xmlNodeAddContent(node, str);
+		xmlAddChild (topnode, node);
+	}
+
+	{
+		GttBillStatus billstatus = gtt_task_get_billstatus(task);
+		switch (billstatus)
+		{
+			case GTT_HOLD: str = "HOLD"; break;
+			case GTT_BILL: str = "BILL"; break;
+			case GTT_PAID: str = "PAID"; break;
+		}
+		node = xmlNewNode (NULL, "billstatus");
 		xmlNodeAddContent(node, str);
 		xmlAddChild (topnode, node);
 	}
