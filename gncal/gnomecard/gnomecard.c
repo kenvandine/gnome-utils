@@ -53,7 +53,7 @@ char *gnomecard_fname;
 char *gnomecard_find_str;
 gboolean gnomecard_find_sens;
 gboolean gnomecard_find_back;
-gint gnomecard_def_data;
+/* NOTE USED gint gnomecard_def_data; */
 
 gboolean gnomecard_changed;
 gboolean gnomecard_found;                 /* yeah... pretty messy. (fixme) */
@@ -190,7 +190,7 @@ gnomecard_set_curr(GList *node)
 	    gnomecard_set_prev(FALSE);
 	
     } else {
-	gnomecard_canvas_text_item_set(_("No cards, yet."));
+	gnomecard_canvas_text_item_set(_("No cards, yet.")); 
 	
 	gnomecard_set_edit_del(FALSE);
 	/*gnomecard_set_add(FALSE);*/
@@ -647,7 +647,7 @@ void gnomecard_init(void)
 	canvas = gnomecard_canvas_new();
 	gtk_container_add (GTK_CONTAINER (align), canvas);
 	gtk_widget_show(canvas);
-	
+
 	gnomecard_crds = NULL;
 	
 	tb_save = toolbar[2].widget;
@@ -669,7 +669,7 @@ void gnomecard_init(void)
 	menu_last = gomenu[3].widget;
 
 /* NOT USED	add_menu = addmenu; */
-	gnomecard_def_data = PHONE;
+/* NOT USED	gnomecard_def_data = PHONE; */
 	gnomecard_sort_criteria = gnomecard_cmp_fnames;
 	
 	gnomecard_init_defaults();

@@ -1,6 +1,8 @@
 #ifndef GNOMECARD_COLEDIT_H
 #define GNOMECARD_COLEDIT_H
 
+#include "card.h"
+
 typedef enum {
     COLTYPE_END = -1,
     COLTYPE_FULLNAME = 0,
@@ -30,6 +32,6 @@ ColumnHeader *getColumnHdrFromType(ColumnType type);
 gint numColumnHeaders(GList *cols);
 GList *buildColumnHeaders(ColumnType *cols);
 gchar *getValFromColumnHdr(Card *crd, ColumnHeader *hdr);
-
+GList *getAllColumnHdrs(void);
 
 #endif

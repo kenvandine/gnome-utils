@@ -198,4 +198,17 @@ getValFromColumnHdr(Card *crd, ColumnHeader *hdr)
 }
 
     
+/* return GList of all column headers */
+GList *
+getAllColumnHdrs(void)
+{
+    GList *l=NULL;
+    ColumnHeader *p;
 
+
+    for ( p = column_hdrs; p->coltype != COLTYPE_END; p++ )
+	l = g_list_append(l,p);
+	
+    return l;
+}
+    
