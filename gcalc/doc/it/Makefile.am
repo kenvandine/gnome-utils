@@ -6,7 +6,7 @@ SGML_FILES = \
 	gcalc.sgml
 
 HTML_FILES = authors.html	license.html	usage.html	bugs.html \
-	index.html	ln7.html
+	index.html	ln10.html
 
 
 EXTRA_DIST = \
