@@ -1,3 +1,5 @@
+SUBDIRS = help
+
 INCLUDES =						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
@@ -20,10 +22,7 @@ gstripchart_LDADD =					\
 
 EXTRA_DIST = 						\
 	gnome-stripchart.png				\
-	gstripchart.conf				\
-	gstripchart.desktop	 			\
-	gstripchart.html				\
-	topic.dat
+	gstripchart.conf
 
 pixmapdir =						\
 	$(datadir)/pixmaps
@@ -36,15 +35,3 @@ Utilitiesdir =						\
 
 Utilities_DATA =					\
 	gstripchart.desktop
-
-help_base =						\
-	$(datadir)/gnome/help/gstripchart
-
-install-data-local:
-	$(mkinstalldirs) $(datadir)/gstripchart
-	$(INSTALL_DATA) $(srcdir)/gstripchart.conf $(datadir)/gstripchart/
-	$(mkinstalldirs) $(help_base)/C
-	$(INSTALL_DATA) $(srcdir)/topic.dat $(help_base)/C/
-	$(INSTALL_DATA) $(srcdir)/gstripchart.html $(help_base)/C/
-	rm -f $(help_base)/C/index.html
-	cd $(help_base)/C && $(LN_S) gstripchart.html index.html     

@@ -3,12 +3,10 @@
 EXTRA_DIST = topic.dat # gtt-db.sgml index.html
 
 gtt_helpdir = $(datadir)/gnome/help/gtt/de
+gtt_help_DATA = topic.dat
 
-install-data-local:
-	$(mkinstalldirs) $(gtt_helpdir)
-	#$(INSTALL_DATA)  $(srcdir)/index.html $(gtt_helpdir)
-	( cd $(gtt_helpdir) && \
+install-data-hook:
+	( cd $(DESTDIR)$(gtt_helpdir) && \
 	  rm -f index.html && \
 	  ln -s ../C/index.html . )
-	$(INSTALL_DATA)  $(srcdir)/topic.dat $(gtt_helpdir)
 
