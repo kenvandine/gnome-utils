@@ -62,6 +62,7 @@ gtt_LDADD = \
 
 EXTRA_DIST = 		\
 	.cvsignore	\
+	design.txt	\
 	gtt.desktop 	\
 	$(top_srcdir)/sgmldocs.make
 
