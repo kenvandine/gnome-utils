@@ -859,7 +859,7 @@ static void find_again_cb(GtkWidget * w, gpointer data)
 
     if(!pattern) {
 	gnome_appbar_pop(app->appbar);
-	gnome_app_flash(app->app, _("No search string was specified!"));
+	gnome_app_flash(GNOME_APP(app->app), _("No search string was specified!"));
         return;
     }
 
