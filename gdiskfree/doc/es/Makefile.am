@@ -4,7 +4,7 @@ figs = \
 docname = gdiskfree_util
 lang = es
 omffile = gdiskfree-es.omf
-sgml_ents = gdiskfree \
+sgml_ents = gdiskfree.sgml \
 	authors.sgml \
 	licencia-es.sgml \
 	licencia-nota-es.sgml \
