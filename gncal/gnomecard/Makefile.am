@@ -31,6 +31,8 @@ gnomecard_SOURCES =	\
 	my.h            \
 	pix.c           \
 	pix.h           \
+	popup-menu.c	\
+	popup-menu.h	\
 	sort.c          \
 	sort.h          \
 	pairs.h         \

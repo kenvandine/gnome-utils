@@ -14,6 +14,7 @@
 #include "gnomecard.h"
 #include "init.h"
 #include "my.h"
+#include "popup-menu.h"
 #include "sort.h"
 #include "tree.h"
 
@@ -40,10 +41,10 @@ GtkWidget *tb_edit, *tb_find, *tb_save, *tb_del;
 GtkWidget *menu_next, *menu_prev, *menu_first, *menu_last;
 GtkWidget *menu_edit, *menu_find, *menu_save, *menu_del;
 
-GnomeUIInfo *add_menu; 
+/* NOT USED GnomeUIInfo *add_menu;  */
 
-GList *gnomecard_crds;
-GList *gnomecard_curr_crd;
+GList *gnomecard_crds=NULL;
+GList *gnomecard_curr_crd=NULL;
 
 char *gnomecard_fname;
 char *gnomecard_find_str;
@@ -117,6 +118,7 @@ void gnomecard_set_prev(gboolean state)
 	gtk_widget_set_sensitive(menu_first, state);
 }
 
+/* NOT USED
 extern void gnomecard_set_add(gboolean state)
 {
 	int i;
@@ -125,6 +127,7 @@ extern void gnomecard_set_add(gboolean state)
 		if (add_menu[i].type == GNOME_APP_UI_ITEM)
 			gtk_widget_set_sensitive(GTK_WIDGET(add_menu[i].widget), state);
 }
+*/
 
 extern void gnomecard_set_edit_del(gboolean state)
 {
@@ -144,8 +147,8 @@ extern void gnomecard_set_curr(GList *node)
 		gnomecard_update_canvas(gnomecard_curr_crd->data);
 		
 		if (!((Card *) gnomecard_curr_crd->data)->flag) {
-		  gnomecard_set_edit_del(TRUE);
-			gnomecard_set_add(TRUE);
+		    gnomecard_set_edit_del(TRUE);
+		    /*gnomecard_set_add(TRUE);*/
 		} else { 
 		  gnomecard_set_edit_del(FALSE);
 		}
@@ -164,25 +167,72 @@ extern void gnomecard_set_curr(GList *node)
 		gnomecard_canvas_text_item_set(_("No cards, yet."));
 		
 		gnomecard_set_edit_del(FALSE);
-		gnomecard_set_add(FALSE);
+		/*gnomecard_set_add(FALSE);*/
 		
 		gnomecard_set_next(FALSE);
 		gnomecard_set_prev(FALSE);
 	}
 }
 
+void gnomecard_list_button_press(GtkCList *list, GdkEventButton *event,
+				 gpointer data)
+{
+    static struct menu_item items[] = {
+	{ N_("Edit this item..."), (GtkSignalFunc) gnomecard_edit_card, NULL,
+	  TRUE },
+/* not implemented yet	{ N_("Delete this item"), (GtkSignalFunc) ???gnomecard_del_card???, NULL,
+	TRUE } */
+    };
+    GList *tmp;
+    gint  i;
+    gint  row, col;
+
+    if (!event)
+	return;
+
+    if (event->button == 3) 
+	if (gtk_clist_get_selection_info(list,event->x,event->y,&row,&col )) {
+	    gnomecard_selected_row = row;
+	    gtk_clist_select_row(list, row, 0);
+	    tmp = g_list_nth(gnomecard_crds, row);
+    
+	    if (!tmp) {
+		g_message("Somehow selected non-existant card");
+		return;
+	    }
+	    gnomecard_set_curr(tmp);
+	    popup_menu (items, sizeof (items) / sizeof (items[0]), event);
+	}
+}
+
 void gnomecard_list_selected(GtkCList *list, gint row, gint column,
 			     GdkEventButton *event, gpointer data)
 {
-        GList *tmp;
+    GList *tmp;
+    gint  i;
 
-	gnomecard_selected_row = row;
+    gnomecard_selected_row = row;
+    tmp = g_list_nth(gnomecard_crds, row);
+    
+    if (!tmp) {
+	g_message("Somehow selected non-existant card");
+	return;
+    }
+    
+    if (!event)
+	return;
+    
+    switch (event->button) {
+      case 1:
+	if (event->type == GDK_2BUTTON_PRESS)
+	    gnomecard_edit(tmp);
+	else
+	    gnomecard_set_curr(tmp);
+	break;
 	
-	tmp = g_list_nth(gnomecard_crds, row);
-	
-	if (tmp) {
-	  gnomecard_set_curr(tmp);
-	}
+      default:
+	break;
+    }
 }
 
 void gnomecard_list_unselected(GtkCTree *tree, GtkCTreeNode *row, gint column)
@@ -464,6 +514,7 @@ GnomeUIInfo editmenu[] = {
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
+/* NOT USED
 GnomeUIInfo addmenu[] = {
 	{GNOME_APP_UI_ITEM, N_("Card"), N_("Create new card"),
 	 gnomecard_new_card, NULL, NULL,
@@ -489,7 +540,7 @@ GnomeUIInfo addmenu[] = {
 	
 	{GNOME_APP_UI_ENDOFINFO}
 };
-
+*/
 GnomeUIInfo viewmenu[] = {
 	{GNOME_APP_UI_TOGGLEITEM, N_("Card"), N_("Toggle Card View"),
 	 gnomecard_toggle_card_view, NULL, NULL,
@@ -519,9 +570,9 @@ GnomeUIInfo mainmenu[] = {
 	{GNOME_APP_UI_SUBTREE, N_("Edit"), NULL, editmenu, NULL, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
-	{GNOME_APP_UI_SUBTREE, N_("Add"), NULL, addmenu, NULL, NULL,
+/*	{GNOME_APP_UI_SUBTREE, N_("Add"), NULL, addmenu, NULL, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-
+*/
 /*	{GNOME_APP_UI_SUBTREE, N_("View"), NULL, viewmenu, NULL, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},*/
 
@@ -630,14 +681,16 @@ void gnomecard_init(void)
 	gtk_signal_connect(GTK_OBJECT(gnomecard_list), 
 			   "select_row",
 			   GTK_SIGNAL_FUNC(gnomecard_list_selected), NULL);
+
+/* NOT USED (yet)
 	gtk_signal_connect(GTK_OBJECT(gnomecard_list), 
 			   "unselect_row",
 			   GTK_SIGNAL_FUNC(gnomecard_list_unselected), NULL);
-
+*/
 	gtk_widget_set_usize (GTK_WIDGET(gnomecard_list), LIST_WIDTH, LIST_HEIGHT);
 	gtk_clist_column_titles_active(gnomecard_list);
 
-/*	
+/* NOT USED - will add when I finallize the column header code
 	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(gnomecard_tree)->column->button),
 			   "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_by_fname),
 			   (gpointer) NULL);
@@ -645,6 +698,9 @@ void gnomecard_init(void)
 	gtk_clist_set_policy(gnomecard_list,
 			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_clist_set_selection_mode(gnomecard_list, GTK_SELECTION_BROWSE);
+
+	gtk_signal_connect(GTK_OBJECT(gnomecard_list), "button_press_event",
+			   GTK_SIGNAL_FUNC(gnomecard_list_button_press), NULL);
 
 /*	omenu = gtk_option_menu_new();
 	gtk_clist_set_column_widget(GTK_CLIST(gnomecard_tree), 1, omenu);
@@ -707,7 +763,7 @@ void gnomecard_init(void)
 	menu_next = gomenu[2].widget;
 	menu_last = gomenu[3].widget;
 
-	add_menu = addmenu;
+/* NOT USED	add_menu = addmenu; */
 	gnomecard_def_data = PHONE;
 	gnomecard_sort_criteria = gnomecard_cmp_fnames;
 	

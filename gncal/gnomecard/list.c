@@ -1,3 +1,7 @@
+/* Handle list view of avialable cards */
+/* Michael Fulbright  <msf@redhat.com> */
+/* Copyright (c) 1998 Red Hat Software, Inc */
+
 #include <config.h>
 #include <string.h>
 #include <gnome.h>
@@ -61,6 +65,7 @@ extern void gnomecard_update_list(Card *crd)
 extern void gnomecard_scroll_list(GList *node)
 {
     gint row;
+    GList *tmp;
 
     row = GPOINTER_TO_INT(((Card *) node->data)->prop.user_data);
 
@@ -68,6 +73,14 @@ extern void gnomecard_scroll_list(GList *node)
 	gtk_clist_moveto(gnomecard_list, row, 0, 0.5, 0.0);
 
     gtk_clist_select_row(gnomecard_list, row, 0);
+    tmp = g_list_nth(gnomecard_crds, row);
+
+    if (!tmp) {
+	g_message("Somehow selected non-existant card");
+	return;
+    }
+
+    gnomecard_set_curr(tmp);
 }
 
 static char *gnomecard_first_phone_str(GList *phone)

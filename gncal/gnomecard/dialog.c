@@ -32,15 +32,21 @@ typedef struct
 	/* Identity */
 	GtkWidget *fn;
 	GtkWidget *given, *add, *fam, *pre, *suf;
-	GtkWidget *bday;
+/* not used	GtkWidget *bday;  */
+
+	/* Organization */
+	GtkWidget *title;
+	GtkWidget *orgn;
+/* not used       GtkWidget *role; */
+/* not used       GtkWidget *org1, *org2, *org3, *org4; */
+
+        /* Address */
+        GtkWidget *street1, *street2, *city, *state, *country, *zip;
 	
 	/* Geographical */
 	GtkWidget *tzh, *tzm;
 	GtkWidget *gplon, *gplat;
 	
-	/* Organization */
-	GtkWidget *title, *role;
-	GtkWidget *orgn, *org1, *org2, *org3, *org4;
 
 	/* Explanatory */
 	GtkWidget *comment, *url;
@@ -115,14 +121,15 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 	crd->name.additional = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->add)));
 	crd->name.prefix     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->pre)));
 	crd->name.suffix     = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->suf)));
-	
-	tt = gnome_date_edit_get_date(GNOME_DATE_EDIT(ce->bday));
+
+/* NOT USED (yet)	
+	tt = gnome_date_edit_get_date(GNOME_DATE_EDIT(ce->bday)); 
 	tm = localtime(&tt);
 	
 	crd->bday.year       = tm->tm_year + 1900;
 	crd->bday.month      = tm->tm_mon + 1;
 	crd->bday.day        = tm->tm_mday;
-	
+*/
 	crd->timezn.sign  = (ce->tzh < 0)? -1: 1;
 	crd->timezn.hours = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(ce->tzh));
 	crd->timezn.mins  = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(ce->tzm));
@@ -139,13 +146,14 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 	MY_FREE(crd->org.unit4);
 
 	crd->title.str = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->title)));
-	crd->role.str  = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->role)));
 	crd->org.name  = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->orgn)));
+
+/*	crd->role.str  = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->role)));
 	crd->org.unit1 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org1)));
 	crd->org.unit2 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org2)));
 	crd->org.unit3 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org3)));
 	crd->org.unit4 = MY_STRDUP(gtk_entry_get_text(GTK_ENTRY(ce->org4)));
-	
+*/	
 	MY_FREE(crd->comment.str);
 	MY_FREE(crd->url.str);
 	
@@ -205,7 +213,7 @@ extern void gnomecard_edit(GList *node)
 	Card *crd;
 	time_t tmp_time;
 	
-	ce = g_malloc(sizeof(GnomeCardEditor));
+	ce = g_new0(GnomeCardEditor, 1);
 	ce->l = node;
 	crd = (Card *) node->data;
 	
@@ -213,7 +221,7 @@ extern void gnomecard_edit(GList *node)
 	
 	crd->flag = TRUE;
 	gnomecard_set_edit_del(FALSE);
-	gnomecard_set_add(TRUE);
+	/*gnomecard_set_add(TRUE);*/
 	
 	box = GNOME_PROPERTY_BOX(gnome_property_box_new());
 	gtk_object_set_user_data(GTK_OBJECT(box), ce);
@@ -225,7 +233,6 @@ extern void gnomecard_edit(GList *node)
 			   (GtkSignalFunc)gnomecard_prop_close, node);
 	
 	/* Identity */
-	
 	vbox = my_gtk_vbox_new();
 	label = gtk_label_new(_("Identity"));
 	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
@@ -254,20 +261,26 @@ extern void gnomecard_edit(GList *node)
 	ce->given = entry = my_gtk_entry_new(12, crd->name.given);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1, 0, 0, 0, 0);
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1, 0, 0, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 	label = gtk_label_new(_("Middle:"));
 	ce->add = entry = my_gtk_entry_new(12, crd->name.additional);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
 	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1, 0, 0, 0, 0);
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1, 0, 0, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 	label = gtk_label_new(_("Last:"));
 	ce->fam = entry = my_gtk_entry_new(15, crd->name.family);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
 	gtk_table_attach(GTK_TABLE(table), label, 4, 5, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 5, 6, 0, 1, 0, 0, 0, 0);
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 5, 6, 0, 1, 0, 0, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 	label = gtk_label_new(_("Prefix:"));
 	ce->pre = entry = my_gtk_entry_new(5, crd->name.prefix);
 	align = gtk_alignment_new(0.0, 0.0, 0, 0);
@@ -277,7 +290,8 @@ extern void gnomecard_edit(GList *node)
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
 	gtk_table_attach(GTK_TABLE(table), align, 1, 2, 1, 2, 
 			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
-			 0, 0);
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
 	label = gtk_label_new(_("Suffix:"));
 	ce->suf = entry = my_gtk_entry_new(5, crd->name.suffix);
 	align = gtk_alignment_new(0.0, 0.0, 0, 0);
@@ -287,8 +301,68 @@ extern void gnomecard_edit(GList *node)
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
 	gtk_table_attach(GTK_TABLE(table), align, 5, 6, 1, 2, 
 			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	/* add organization to identity notetab */
+	frame = gtk_frame_new(_("Organization"));
+	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
+
+	table = my_gtk_table_new(4, 1);
+	gtk_container_add(GTK_CONTAINER(frame), table);
+
+	label = gtk_label_new(_("Name:"));
+	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
+	ce->orgn = entry = my_gtk_entry_new(0, crd->org.name);
+	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
+	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK,
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	label = gtk_label_new(_("Title:"));
+	ce->title = entry = my_gtk_entry_new(0, crd->title.str);
+	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE);
+	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	/* add address(es) to identity notetab */
+	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
+	frame = gtk_frame_new(_("Address"));
+	gtk_box_pack_start(GTK_BOX(hbox), frame, FALSE, FALSE, 0);
 	
+	table = my_gtk_table_new(1, 5);
+	gtk_container_add(GTK_CONTAINER(frame), table);
+
+	label = gtk_label_new(_("Street 1:"));
+	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
+	ce->street1 = entry = my_gtk_entry_new(0, crd->org.name);
+	my_connect(entry, "changed", box, &crd->.prop, PROP_ORG);
+	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK,
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	label = gtk_label_new(_("Title:"));
+	ce->title = entry = my_gtk_entry_new(0, crd->title.str);
+	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE);
+	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+/* LOSE BIRTHDAY FOR NOW	
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 	label = gtk_label_new(_("Birthdate:"));
 	
@@ -311,6 +385,7 @@ extern void gnomecard_edit(GList *node)
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+*/
 
 	/* Geographical */
 	
@@ -371,58 +446,6 @@ extern void gnomecard_edit(GList *node)
 	my_connect(adj, "value_changed", box, &crd->geopos.prop, PROP_GEOPOS);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-
-	/* Organization */
-	
-	vbox = my_gtk_vbox_new();
-	label = gtk_label_new(_("Organization"));
-	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
-
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	label = gtk_label_new(_("Title:"));
-	ce->title = entry = my_gtk_entry_new(0, crd->title.str);
-	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-	label = gtk_label_new(_("Role:"));
-	ce->role = entry = my_gtk_entry_new(0, crd->role.str);
-	my_connect(entry, "changed", box, &crd->role.prop, PROP_ROLE);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	
-	frame = gtk_frame_new(_("Organization"));
-	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
-	table = my_gtk_table_new(4, 5);
-	gtk_container_add(GTK_CONTAINER(frame), table);
-	label = gtk_label_new(_("Name:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
-	ce->orgn = entry = my_gtk_entry_new(0, crd->org.name);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1, 
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	label = gtk_label_new(_("Units:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
-	ce->org1 = entry = my_gtk_entry_new(0, crd->org.unit1);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1, 
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	ce->org2 = entry = my_gtk_entry_new(0, crd->org.unit2);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 1, 2,
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	ce->org3 = entry = my_gtk_entry_new(0, crd->org.unit3);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 2, 3,
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	ce->org4 = entry = my_gtk_entry_new(0, crd->org.unit4);
-	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 4, 5,
-			 GTK_EXPAND | GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
 
 	/* Explanatory */
 	
@@ -736,6 +759,8 @@ extern void gnomecard_add_phone_call(GtkWidget *widget, gpointer data)
 	gtk_widget_show(w);
 }
 
+#if 0
+/* NO LONGER IN USE */
 void gnomecard_add_deladdr(GtkWidget *widget, gpointer data)
 {
 	GnomeCardDelAddr *p;
@@ -902,6 +927,8 @@ void gnomecard_add_dellabel(GtkWidget *widget, gpointer data)
 extern void gnomecard_add_dellabel_call(GtkWidget *widget, gpointer data)
 {
 }
+#endif
+
 
 extern void gnomecard_edit_card(GtkWidget *widget, gpointer data)
 {
@@ -938,7 +965,7 @@ static gboolean gnomecard_append_file(char *fname)
 	    gnomecard_add_card_to_list((Card *) c->data);
 	gtk_clist_thaw(gnomecard_list);
 	gnomecard_scroll_list(gnomecard_crds);
-
+	gnomecard_set_curr(gnomecard_crds);
 	return TRUE;
 }
 
