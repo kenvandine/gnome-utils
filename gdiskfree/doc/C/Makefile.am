@@ -34,6 +34,7 @@ dist-hook:
 	-cp $(srcdir)/gdiskfree/stylesheet-images/*.gif \
 	 $(distdir)/gdiskfree/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
+	-cp $(srcdir/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:
@@ -51,6 +52,10 @@ install-data-local: index.html
 	-for file in $(srcdir)/*.png ; do \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gdiskfree_helpdir); \
 	done
+	-for file in $(srcdir)/*.sgml ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gdiskfree_helpdir); \
+	done
+
 	-for file in $(srcdir)/gdiskfree/stylesheet-images/*.gif; do \
 	  basefile=`basename $$file`; \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gdiskfree_helpdir)/stylesheet-images/$$basefile; \
