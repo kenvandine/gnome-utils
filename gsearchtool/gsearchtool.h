@@ -119,7 +119,6 @@ extern struct _InterfaceStruct {
 	GtkSizeGroup 	 	*constraint_size_group;
 	GList 			*selected_constraints;
 	gchar 		 	*save_results_file;	
-	gint 		  	selected_constraint;
 	gboolean  	  	is_gail_loaded;
 } interface;
 

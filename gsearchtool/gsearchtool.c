@@ -662,45 +662,29 @@ intermediate_file_count_update (void)
 	}
 }
 
-static GtkWidget *
+static GtkTreeModel *
 make_list_of_templates (void)
 {
-	gboolean ACTIVATE_MENU_OPTION = TRUE;
-	GtkWidget *menu;
-	GtkWidget *menuitem;
+	GtkListStore *store;
+	GtkTreeIter iter;
 	gint i;
 
-	menu = gtk_menu_new ();
+	store = gtk_list_store_new (1, G_TYPE_STRING);
 
 	for(i=0; templates[i].type != SEARCH_CONSTRAINT_END; i++) {
 		
 		if (templates[i].type == SEARCH_CONSTRAINT_SEPARATOR) {
-			menuitem = gtk_separator_menu_item_new ();	
-			gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
-			gtk_widget_show (menuitem);
+		        gtk_list_store_append (store, &iter);
+		        gtk_list_store_set (store, &iter, 0, "separator", -1);
 		} 
 		else {
 			gchar *text = remove_mnemonic_character (_(templates[i].desc));
-			menuitem = gtk_menu_item_new_with_label (text);
-			g_signal_connect (G_OBJECT(menuitem), "activate",
-					  G_CALLBACK(constraint_menu_item_activate_cb),
-		        		  (gpointer)(long)i);
-			gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
-			gtk_widget_show (menuitem);
+			gtk_list_store_append (store, &iter);
+		        gtk_list_store_set (store, &iter, 0, text, -1);
 			g_free (text);
 		}
-		
-		if (templates[i].is_selected) {
-			gtk_widget_set_sensitive (menuitem, FALSE);
-		}
-		else {
-			if (ACTIVATE_MENU_OPTION) {
-				ACTIVATE_MENU_OPTION = FALSE;
-				g_signal_emit_by_name (G_OBJECT(menuitem), "activate", NULL);
-			}
-		}
 	}
-	return menu;
+	return GTK_TREE_MODEL (store);
 }
 
 static void
@@ -753,14 +737,9 @@ set_constraint_selected_state (gint 		constraint_id,
 	
 	templates[constraint_id].is_selected = state;
 	
-	gtk_option_menu_remove_menu (GTK_OPTION_MENU(interface.constraint_menu));
-	gtk_option_menu_set_menu (GTK_OPTION_MENU(interface.constraint_menu), 
-				  make_list_of_templates());
-	
 	for (index=0; templates[index].type != SEARCH_CONSTRAINT_END; index++) {
 		if (templates[index].is_selected == FALSE) {
-			gtk_option_menu_set_history (GTK_OPTION_MENU(interface.constraint_menu), index);
-			interface.selected_constraint = (long)index;
+			gtk_combo_box_set_active (GTK_COMBO_BOX (interface.constraint_menu), index);
 			gtk_widget_set_sensitive (interface.add_button, TRUE);
 			gtk_widget_set_sensitive (interface.constraint_menu, TRUE);
 			gtk_widget_set_sensitive (interface.constraint_menu_label, TRUE);
@@ -1748,9 +1727,43 @@ add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 	set_constraint_selected_state (constraint->constraint_id, TRUE);
 }
 
+static void
+set_sensitive (GtkCellLayout   *cell_layout,
+               GtkCellRenderer *cell,
+               GtkTreeModel    *tree_model,
+               GtkTreeIter     *iter,
+               gpointer         data)
+{
+	GtkTreePath *path;
+	gint index;
+
+	path = gtk_tree_model_get_path (tree_model, iter);
+	index = gtk_tree_path_get_indices (path)[0];
+	gtk_tree_path_free (path);
+
+	g_object_set (cell, "sensitive", !(templates[index].is_selected), NULL);
+}
+
+static gboolean
+is_separator (GtkTreeModel *model,
+              GtkTreeIter  *iter,
+              gpointer      data)
+{
+	GtkTreePath *path;
+	gint index;
+
+	path = gtk_tree_model_get_path (model, iter);
+	index = gtk_tree_path_get_indices (path)[0];
+	gtk_tree_path_free (path);
+
+	return (templates[index].type == SEARCH_CONSTRAINT_SEPARATOR);
+}
+
 static GtkWidget *
 create_additional_constraint_section (void)
 {
+	GtkCellRenderer *renderer;
+	GtkTreeModel *model;
 	GtkWidget *hbox;
 	gchar *desc;
 
@@ -1765,10 +1778,26 @@ create_additional_constraint_section (void)
 
 	gtk_box_pack_start (GTK_BOX(hbox), interface.constraint_menu_label, FALSE, FALSE, 0);
 	
-	interface.constraint_menu = gtk_option_menu_new ();
+	model = make_list_of_templates ();
+	interface.constraint_menu = gtk_combo_box_new_with_model (model);
+	g_object_unref (model);
+
 	gtk_label_set_mnemonic_widget (GTK_LABEL(interface.constraint_menu_label), GTK_WIDGET(interface.constraint_menu));
-	gtk_option_menu_set_menu (GTK_OPTION_MENU(interface.constraint_menu), make_list_of_templates());
 	gtk_box_pack_start (GTK_BOX(hbox), interface.constraint_menu, TRUE, TRUE, 0);
+
+	renderer = gtk_cell_renderer_text_new ();
+	gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (interface.constraint_menu),
+	                            renderer,
+	                            TRUE);
+	gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (interface.constraint_menu), renderer,
+	                                "text", 0,
+	                                NULL);
+	gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (interface.constraint_menu),
+	                                    renderer,
+	                                    set_sensitive,
+	                                    NULL, NULL);
+	gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (interface.constraint_menu), 
+	                                      is_separator, NULL, NULL);
 
 	if (interface.is_gail_loaded)
 	{
