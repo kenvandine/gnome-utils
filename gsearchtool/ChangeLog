@@ -1,3 +1,20 @@
+2002-10-31  Dennis M. Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.h: Add a look_in_folder variable to the 
+	search_command structure.
+	
+	* gsearchtool.c:  For handle_search_command_stdout_io(), add
+	a filter to ignore a string returned by the find and locate 
+	commands if the string does not have look_in_folder as its prefix.
+	
+	Solaris' default grep command does not support the q option.  
+	Use the c option as a work around, since counts will be 
+	filtered out of the results. 
+	
+	* gsearchtool.c, gsearchtool-callbacks.c:  When calling 
+	gnome_file_entry_get_full_path() set the file_must_exist 
+	flag to FALSE.
+	
 2002-10-30  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c: Support searches of file sizes

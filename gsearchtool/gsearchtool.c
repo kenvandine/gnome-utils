@@ -57,7 +57,7 @@ struct _FindOptionTemplate {
 };
 	
 static FindOptionTemplate templates[] = {
-	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -q '%s' {} \\;", N_("Contains the text"), FALSE },
+	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("Contains the text"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TIME, "-mtime -%d", N_("Date modified less than (days)"), FALSE },
 	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Date modified more than (days)"), FALSE },
@@ -188,7 +188,7 @@ build_search_command (void)
 		gnome_entry_prepend_history (GNOME_ENTRY(interface.file_is_named_entry), TRUE, file_is_named_utf8);
 	}
 	
-	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), TRUE);
+	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
 	gnome_entry_prepend_history (GNOME_ENTRY(gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))), 
 				     TRUE, look_in_folder_utf8);
@@ -196,6 +196,7 @@ build_search_command (void)
 	if (!file_extension_is (look_in_folder_locale, G_DIR_SEPARATOR_S)) {
 		look_in_folder_locale = g_strconcat (look_in_folder_locale, G_DIR_SEPARATOR_S, NULL);
 	}
+	search_command.look_in_folder = g_strdup(look_in_folder_locale);
 	
 	command = g_string_new ("");
 	
@@ -750,23 +751,26 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 				continue;
 			}
 			
-			filename = g_path_get_basename (locale);
+			if (strncmp (string->str, search_data->look_in_folder, strlen (search_data->look_in_folder)) == 0) { 
 			
-			if (fnmatch (search_data->file_is_named_pattern, filename, FNM_NOESCAPE) != FNM_NOMATCH) {
-				if (search_data->show_hidden_files == TRUE) {
-					if (search_data->regex_matching_enabled == FALSE) {
-						add_file_to_search_results (string->str, interface.model, &interface.iter);
-					} 
-					else if (compare_regex (search_data->regex_string, filename) == TRUE) {
-						add_file_to_search_results (string->str, interface.model, &interface.iter);
+				filename = g_path_get_basename (locale);
+			
+				if (fnmatch (search_data->file_is_named_pattern, filename, FNM_NOESCAPE) != FNM_NOMATCH) {
+					if (search_data->show_hidden_files == TRUE) {
+						if (search_data->regex_matching_enabled == FALSE) {
+							add_file_to_search_results (string->str, interface.model, &interface.iter);
+						} 
+						else if (compare_regex (search_data->regex_string, filename) == TRUE) {
+							add_file_to_search_results (string->str, interface.model, &interface.iter);
+						}
 					}
-				}
-				else if (is_path_hidden (string->str) == FALSE) {
-					if (search_data->regex_matching_enabled == FALSE) {
-						add_file_to_search_results (string->str, interface.model, &interface.iter);
-					} 
-					else if (compare_regex (search_data->regex_string, filename) == TRUE) {
-						add_file_to_search_results (string->str, interface.model, &interface.iter);
+					else if (is_path_hidden (string->str) == FALSE) {
+						if (search_data->regex_matching_enabled == FALSE) {
+							add_file_to_search_results (string->str, interface.model, &interface.iter);
+						} 
+						else if (compare_regex (search_data->regex_string, filename) == TRUE) {
+							add_file_to_search_results (string->str, interface.model, &interface.iter);
+						}
 					}
 				}
 			}

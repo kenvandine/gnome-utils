@@ -239,7 +239,7 @@ constraint_entry_changed_cb (GtkWidget 	*widget,
 	} 
 		
 	look_in_folder_string = 
-		gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(interface.look_in_folder_entry), TRUE);
+		gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
 
 	if (look_in_folder_string == NULL) {
 		gtk_widget_set_sensitive (interface.find_button, FALSE);

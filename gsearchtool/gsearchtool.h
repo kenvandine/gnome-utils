@@ -73,6 +73,7 @@ typedef enum {
 struct _SearchStruct {
 	gint			pid;
 	gint 	        	timeout;
+	gchar			*look_in_folder;
 	gchar           	*file_is_named_pattern;
 	gchar 	  		*regex_string;
 	gboolean		lock;	
