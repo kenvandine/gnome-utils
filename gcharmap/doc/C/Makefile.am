@@ -39,6 +39,7 @@ dist-hook:
 	-cp $(srcdir)/gcharmap/stylesheet-images/*.gif \
 	 $(distdir)/gcharmap/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
+	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:
@@ -54,6 +55,9 @@ install-data-local: index.html
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/$$basefile; \
 	done
 	-for file in $(srcdir)/*.png ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir); \
+	done
+	-for file in $(srcdir)/*.sgml ; do \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir); \
 	done
 	-for file in $(srcdir)/gcharmap/stylesheet-images/*.gif; do \

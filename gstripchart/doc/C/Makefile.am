@@ -35,6 +35,7 @@ dist-hook:
 	$(mkinstalldirs) $(distdir)/gstripchart
 	-cp $(srcdir)/gstripchart/*.html gstripchart/*.css $(distdir)/gstripchart
 	-cp $(srcdir)/*.html $(distdir)
+	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 install-data-local: index.html
@@ -45,6 +46,9 @@ install-data-local: index.html
 	done
 	-for file in $(srcdir)/*.png ; do \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gstripchart_helpdir);\
+	done
+	-for file in $(srcdir)/*.sgml ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gstripchart_helpdir); \
 	done
 	$(mkinstalldirs) $(DESTDIR)$(gstripchart_helpdir)/stylesheet-images
 	-for file in $(srcdir)/gstripchart/stylesheet-images/*.gif; do \

@@ -33,6 +33,7 @@ dist-hook:
 	$(mkinstalldirs) $(distdir)/gshutdown
 	-cp $(srcdir)/gshutdown/*.html gshutdown/*.css $(distdir)/gshutdown
 	-cp $(srcdir)/*.html $(distdir)
+	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 install-data-local: index.html
@@ -44,4 +45,6 @@ install-data-local: index.html
 	-for file in $(srcdir)/*.png ; do \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gshutdown_helpdir);\
 	done
-
+	-for file in $(srcdir)/*.sgml ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gshutdown_helpdir); \
+	done

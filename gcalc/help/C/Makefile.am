@@ -18,4 +18,5 @@ gcalc_help_DATA = index.html \
                   usage.html \
 		  bugs.html \
 		  gcalc-main.png \
+		  gcalc.sgml \
 		  topic.dat
