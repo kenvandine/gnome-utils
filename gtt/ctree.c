@@ -839,8 +839,11 @@ ctree_col_values (ProjTreeNode *ptn, gboolean expand)
 			if (config_show_title_estimated_start) {
 				time_t secs;
 				secs = gtt_project_get_estimated_start(prj);
-				print_hours_elapsed (ptn->start_timestr, 24, 
-					secs, config_show_secs);
+				if (0 < secs) {
+					print_date (ptn->start_timestr, 24, secs);
+				} else {
+					ptn->start_timestr[0] = 0x0;
+				}
 			}
 			break;
 		case END_COL:
@@ -848,8 +851,11 @@ ctree_col_values (ProjTreeNode *ptn, gboolean expand)
 			if (config_show_title_estimated_end) {
 				time_t secs;
 				secs = gtt_project_get_estimated_end(prj);
-				print_hours_elapsed (ptn->end_timestr, 24, 
-					secs, config_show_secs);
+				if (0 < secs) {
+					print_date (ptn->end_timestr, 24, secs);
+				} else {
+					ptn->end_timestr[0] = 0x0;
+				}
 			}
 			break;
 		case DUE_COL:
@@ -857,8 +863,11 @@ ctree_col_values (ProjTreeNode *ptn, gboolean expand)
 			if (config_show_title_due_date) {
 				time_t secs;
 				secs = gtt_project_get_due_date(prj);
-				print_hours_elapsed (ptn->due_timestr, 24, 
-					secs, config_show_secs);
+				if (0 < secs) {
+					print_date (ptn->due_timestr, 24, secs);
+				} else {
+					ptn->due_timestr[0] = 0x0;
+				}
 			}
 			break;
 		case SIZING_COL:
