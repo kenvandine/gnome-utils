@@ -73,8 +73,8 @@
    Because there wasn't such a program available for Linux, until 
    now. When I write documents, sometimes I want to use special
    characters like an E-circumflex. To do that, I have to write a
-   program that prints all font characters to stdout and copy the
-   character to clipboard. I like the Windows' <application>Character
+   program that prints all font characters to stdout (how mad can you be? ;-) and copy the
+   character to clipboard . I like the Windows' <application>Character
    Map</application>, because it's easy and fast to use. So I wrote
    one myself for Linux.
   </para>
@@ -83,10 +83,8 @@
     <title>Cross-Platform Support</title>
     <para>
      <application>GNOME Character Map</application> will also
-     work in other Unix platforms like FreeBSD, Solaris, etc. because
-     <application>GNOME Character Map</application>'s source code is
-     completely ANSI and POSIX compliant. It should be possible to
-     compile it on Win32 without any changes, but I'm not sure.
+     work in other Unix platforms like FreeBSD, Solaris, etc., as long as Gnome is
+     available for that platform.
     </para>
    </note>
 
@@ -285,6 +283,14 @@
         <listitem>
          <para>
           <menuchoice>
+           <guimenuitem>Clear</guimenuitem>
+          </menuchoice>
+          clear all text in the entry.
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          <menuchoice>
            <guimenuitem>Select All</guimenuitem>
           </menuchoice>
           which selects all text in the entry.
@@ -293,9 +299,9 @@
         <listitem>
          <para>
           <menuchoice>
-           <guimenuitem>Insert ASCII Character</guimenuitem>
+           <guimenuitem>Insert Character</guimenuitem>
           </menuchoice>
-          which opens the <interface>Insert ASCII
+          which opens the <interface>Insert
           Character</interface> Dialog (see <xref
           linkend="insertascii-fig"> which allows
           you to specify the code  for the character you wish to
@@ -325,10 +331,19 @@
         <listitem>
          <para>
           <menuchoice>
-           <guimenuitem>Toolbar</guimenuitem>
+           <guimenuitem>Action Toolbar</guimenuitem>
           </menuchoice>
           determines whether the icon-based toolbar below the top menu
           bar and above the text entry is shown.
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          <menuchoice>
+           <guimenuitem>Text Toolbar</guimenuitem>
+          </menuchoice>
+          determines whether the toolbar below the action toolbar
+          and above the character table is shown.
          </para>
         </listitem>
         <listitem>
@@ -343,6 +358,42 @@
          </para>
         </listitem>
        </itemizedlist>
+      </para>
+     </listitem>
+    </varlistentry>
+
+    <varlistentry>
+     <term><guimenu>Settings</guimenu></term>
+     <listitem>
+      <para>
+       This menu contains:
+       <itemizedlist>
+        <listitem>
+         <para>
+          <guimenuitem>Character Table's Font...</guimenuitem>
+          sets the character table's font.
+         </para>
+        </listitem>
+
+        <listitem>
+         <para>
+          <guimenuitem>Insert at End</guimenuitem>
+          sets whenether a character should be inserted at the end of the entry, when you
+          click on a button in the character table.
+         </para>
+        </listitem>
+
+        <listitem>
+         <para>
+          <guimenuitem>Focusable Buttons</guimenuitem> sets
+          whenether the buttons in the character table are focusable or not.
+          This is useful in times when you want to select a character from the character table
+          and use the keyboard to insert a character in the entry, but don't want to
+          click on the entry everytime you clicked on a button.
+         </para>
+        </listitem>
+       </itemizedlist>
+
       </para>
      </listitem>
     </varlistentry>
@@ -384,31 +435,8 @@
  <sect1 id="bugs">
   <title>Known Bugs and Limitations</title>
   <para>
-   The keyboard shortcuts for <guimenuitem>Cut</guimenuitem> and
-   <guimenuitem>Copy</guimenuitem> do not always select the text.  You
-   may need to first highlight the text with the mouse before using
-   these two shortcuts.
+  Guess what? I burned all the bugs! :-)
   </para>
-  <para>
-   Some characters do not properly insert inside the middle of text in
-   the entry.  Instead, these characters always are appended to the
-   end of the line.
-  </para>
-  <para>
-   Text with some characters behave strangely when highlighting and
-   copying.  This appears to be limited to special spacing characters,
-   such as ASCII 127.
-  </para>
-  <para> Currently, <application>GNOME Character Map</application>
-  uses the default encoding (iso8859-1, also known as
-  Latin-1) to establish correspondence between symbol codes and the
-  symbols shown in the preview window and <interface>Insert Character
-  dialog</interface>; for example, under this encoding code 228
-  corresponds to the symbol ä (a-umlaut). However, the actual
-  appearance of a symbol when you insert it into some application,
-  such as text editor, will be determined by the font used by the this
-  application. For example, if your application uses Cyrillic fonts in
-  koi8-r encoding, the code 228 corresponds to Cyrillic D.  </para>
  </sect1>
 
 
