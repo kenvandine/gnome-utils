@@ -164,9 +164,9 @@ main_app_create_ui (MainApp *app)
         gnome_font_picker_set_mode (GNOME_FONT_PICKER (app->fontpicker),
           GNOME_FONT_PICKER_MODE_FONT_INFO);
         gnome_font_picker_fi_set_use_font_in_label (GNOME_FONT_PICKER (app->fontpicker),
-          TRUE, 12);
+          FALSE, 12);
         gnome_font_picker_set_font_name (GNOME_FONT_PICKER (app->fontpicker),
-          "-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1");
+          "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*");
         gtk_button_set_relief (GTK_BUTTON (app->fontpicker), GTK_RELIEF_NONE);
         gtk_box_pack_start (GTK_BOX (hbox), app->fontpicker, FALSE, TRUE, 0);
         gtk_signal_connect (GTK_OBJECT (app->fontpicker), "font_set",
@@ -197,9 +197,10 @@ main_app_create_ui (MainApp *app)
         GtkWidget *tmp;
 
         tmp = gtk_button_new ();
+        gtk_widget_ensure_style(tmp);
         app->btnstyle = gtk_style_copy (gtk_widget_get_style (tmp));
         app->btnstyle->font = gdk_fontset_load (
-          "-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso8859-1"
+          "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*"
         );
         gtk_widget_destroy (tmp);
 
@@ -245,7 +246,7 @@ main_app_create_ui (MainApp *app)
         for (i = 0; i < 5; i++) style->fg[i] = white;
         for (i = 0; i < 5; i++) style->bg[i] = black;
         style->font = gdk_fontset_load (
-          "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
+          "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
         );
 
         gtk_widget_set_style (viewport, style);
