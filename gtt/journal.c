@@ -405,15 +405,27 @@ do_show_report (const char * report, GttProject *prj)
 void
 edit_journal(GtkWidget *w, gpointer data)
 {
-	/* xxx hack alert fixme this should need to get the full
-         * path e.g. /usr/share/gtt, and also need to get i18n path */
-	do_show_report ("phtml/C/journal.phtml", cur_proj);
+	char * path;
+
+	/* xxx hack alert fixme the gnome_datadir gives full
+         * path e.g. /usr/share/gtt, but I don't think it gets 
+	 * the i18n path right (subst C for es, fr, de, etc.) */
+
+	/* look in the local build dir first (for testing) */
+	path = gnome_datadir_file ("phtml/C/journal.phtml");
+	if (NULL == path)
+	{
+		path = gnome_datadir_file ("gtt/phtml/C/journal.phtml");
+	}
+	do_show_report (path, cur_proj);
 }
 
 void
 invoke_report(GtkWidget *widget, gpointer data)
 {
 	char * filepath = (char *) data;
+
+	/* do not gnome-filepath this, this is for user-defined reports */
 	do_show_report (filepath, cur_proj);
 }
 
