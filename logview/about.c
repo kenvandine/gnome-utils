@@ -69,7 +69,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   }
 
   /* go get logview.xpm in $(prefix)/share/pixmaps/logview */
-  about_window = gnome_about_new (_("GNOME System Log"), VERSION,
+  about_window = gnome_about_new (_("GNOME System Log Viewer"), VERSION,
            			  N_("Copyright (C) 1998"),
 				  _(comments),
 				  author,

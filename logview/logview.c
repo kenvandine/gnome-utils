@@ -351,7 +351,7 @@ CreateMainWin ()
 
    /* Create App */
 
-   app = gnome_app_new ("Logview", _("System Log Viewer"));
+   app = gnome_app_new ("gnome-system-log", _("System Log Viewer"));
 
    gtk_container_set_border_width ( GTK_CONTAINER (app), 0);
    gtk_window_set_default_size ( GTK_WINDOW (app), LOG_CANVAS_W, LOG_CANVAS_H);
