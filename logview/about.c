@@ -39,7 +39,8 @@ void
 AboutShowWindow (GtkWidget *widget, gpointer user_data)
 {
   GdkPixbuf *logo = NULL;
-  const char *author[] = {N_("Cesar Miquel (miquel@df.uba.ar)"), NULL};
+  /* Author needs some sort of dash over the 'e' in Cesar  - U-00E9 */
+  const char *author[] = { N_("Cesar Miquel (miquel@df.uba.ar)"), NULL};
   char *comments = N_("This program is part of the GNOME project. " 
 "Logview comes with ABSOLUTELY NO WARRANTY. This is free " 
 "software, and you are welcome to redistribute it under the conditions "
