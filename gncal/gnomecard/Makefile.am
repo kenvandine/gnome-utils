@@ -11,6 +11,8 @@ INCLUDES = 			\
 bin_PROGRAMS = gnomecard
 
 gnomecard_SOURCES =	\
+	addresslist.c   \
+	addresslist.h   \
 	card.c		\
 	card.h		\
 	cardtypes.h	\
