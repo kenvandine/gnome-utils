@@ -140,8 +140,10 @@ static void
 clear_col_mcg (MDIColorVirtual *mcv, MDIColorGeneric *from, gboolean unref)
 {
   MDIColorGeneric *mcg = MDI_COLOR_GENERIC (mcv);
-  GList *list = MDI_COLOR_GENERIC (mcv)->col;
+  GList *list, *copy;
   MDIColor *col, *col_parent;
+
+  copy = list = g_list_copy (MDI_COLOR_GENERIC (mcv)->col);
 
   if (g_list_length (mcg->parents) == 1) {
     if (unref) 
@@ -167,6 +169,7 @@ clear_col_mcg (MDIColorVirtual *mcv, MDIColorGeneric *from, gboolean unref)
       list = g_list_next (list);
     }
   }
+  g_list_free (copy);
 }
 
 static void

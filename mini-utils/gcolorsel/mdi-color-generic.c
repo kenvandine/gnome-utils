@@ -549,20 +549,23 @@ mdi_color_generic_clear (MDIColorGeneric *mcg)
 static void
 remove_col (MDIColorGeneric *mcg, MDIColor *col)
 {
-  if (! col->list->next) { /* Remove last */
-    if (! col->list->prev) { /* Remove last & list->length = 1 */
-      g_list_free (mcg->col);
-      mcg->last_col = mcg->col = NULL;
-    } else { /* Remove last & list->length > 1 */
-      mcg->last_col = col->list->prev;
-      g_list_remove (col->list, col);
+  if (col->list != NULL) {
+    if (! col->list->next) { /* Remove last */
+      if (! col->list->prev) { /* Remove last & list->length = 1 */
+        g_list_free (mcg->col);
+        mcg->last_col = mcg->col = NULL;
+      } else { /* Remove last & list->length > 1 */
+        mcg->last_col = col->list->prev;
+        g_list_remove (col->list, col);
+      }
+    } else { /* list->length > 1 */
+      if (! col->list->prev) {/* Remove first & list->length > 1*/
+        mcg->col = g_list_remove (mcg->col, col);
+      } else /* Not first, not last */ {
+        g_list_remove (col->list, col);    
+      }
     }
-  } else { /* list->length > 1 */
-    if (! col->list->prev) {/* Remove first & list->length > 1*/
-      mcg->col = g_list_remove (mcg->col, col);
-    } else /* Not first, not last */ {
-      g_list_remove (col->list, col);    
-    }
+    col->list = NULL;
   }
 }
 

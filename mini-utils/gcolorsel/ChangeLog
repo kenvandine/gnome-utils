@@ -1,3 +1,12 @@
+Fri Feb 09 03:27:51 2001  George Lebl <jirka@5z.com>
+
+	* mdi-color-generic.c: when removing a color make sure it's list is
+	  nulled, and check for that later
+
+	* mdi-color-virtual.c: when clearing the color thing, make a copy
+	  of a list before traverrsing it and wiping entries to avoid
+	  free list corruption
+
 2000-11-13  Tim Gerla  <timg@rrv.net>
 
 	* menus.c: Removed my name.
