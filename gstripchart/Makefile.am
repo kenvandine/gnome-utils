@@ -1,15 +1,10 @@
 
-Utilitiesdir =						\
-	$(datadir)/apps/Utilities
-
-help_base =						\
-	$(datadir)/gnome/help/gstripchart
-
 CFLAGS += -Wall
 
 INCLUDES =						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
+	-DCONFDIR=\"$(datadir)/gstripchart\"		\
 	-I$(includedir)					\
 	$(GNOME_INCLUDEDIR) $(LIBGTOP_INCS)
 
@@ -28,18 +23,25 @@ gstripchart_LDADD =					\
 
 
 EXTRA_DIST = 						\
+	gstripchart.conf				\
 	gstripchart.desktop	 			\
-	gstripchart.html topic.dat			\
-	gstripchart.conf
+	gstripchart.html				\
+	topic.dat
+
+Utilitiesdir =						\
+	$(datadir)/apps/Utilities
 
 Utilities_DATA =					\
 	gstripchart.desktop
 
+help_base =						\
+	$(datadir)/gnome/help/gstripchart
+
 install-data-local:
+	$(mkinstalldirs) $(datadir)/gstripchart
+	$(INSTALL_DATA) $(srcdir)/gstripchart.conf $(datadir)/gstripchart/
 	$(mkinstalldirs) $(help_base)/C
-	$(INSTALL_DATA) $(srcdir)/topic.dat $(help_base)/C/topic.dat
-	$(INSTALL_DATA)					\
-		$(srcdir)/gstripchart.html		\
-		$(help_base)/C/gstripchart.html
-	rm -f $(help_base)/C/index.html ; \
-		$(LN_S) $(help_base)/C/gstripchart.html $(help_base)/C/index.html     
+	$(INSTALL_DATA) $(srcdir)/topic.dat $(help_base)/C/
+	$(INSTALL_DATA) $(srcdir)/gstripchart.html $(help_base)/C/
+	rm -f $(help_base)/C/index.html
+	$(LN_S) $(help_base)/C/gstripchart.html $(help_base)/C/index.html     
