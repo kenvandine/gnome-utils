@@ -58,6 +58,9 @@
 
 static GtkIconSize gsearchtool_icon_size = 0;
 
+struct _SearchStruct search_command;
+struct _InterfaceStruct interface;
+
 typedef struct _FindOptionTemplate FindOptionTemplate;
 struct _FindOptionTemplate {
 	SearchConstraintType type;

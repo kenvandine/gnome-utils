@@ -40,7 +40,7 @@ extern "C" {
 #include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
 
-GConfClient * global_gconf_client;
+static GConfClient * global_gconf_client;
 
 typedef enum {
 	SEARCH_CONSTRAINT_END, 
@@ -72,7 +72,7 @@ typedef enum {
 	NUM_COLUMNS
 } ResultColumn;
 	  
-struct _SearchStruct {
+extern struct _SearchStruct {
 	gint			pid;
 	gint 	        	timeout;
 	gchar			*look_in_folder;
@@ -87,7 +87,7 @@ struct _SearchStruct {
 	GHashTable              *pixbuf_hash;
 } search_command;
 
-struct _InterfaceStruct {
+extern struct _InterfaceStruct {
 	GtkWidget		*file_is_named_entry;
 	GtkWidget 		*look_in_folder_entry;
 	GtkWidget		*find_button;
