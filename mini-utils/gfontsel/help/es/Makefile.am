@@ -1,16 +1,16 @@
 ## Process this file with automake to produce Makefile.in.
 ##
-fontsel_helpdir = $(datadir)/gnome/help/fontsel/es
+gfontsel_helpdir = $(datadir)/gnome/help/gfontsel/es
 
 SGML_FILES = \
-	fontsel.sgml
+	gfontsel.sgml
 
 HTML_FILES = index.html
 
 EXTRA_DIST = \
-	topic.dat fontsel $(SGML_FILES)
+	topic.dat gfontsel $(SGML_FILES)
 
-fontsel_help_DATA = ${HTML_FILES} topic.dat
+gfontsel_help_DATA = ${HTML_FILES} topic.dat
 
 #
 # This is icky but insures that the doc files are generated when the sgml 
@@ -22,16 +22,16 @@ fontsel_help_DATA = ${HTML_FILES} topic.dat
 # where the runtime help system can find it.
 #
 ${HTML_FILES} : $(SGML_FILES)
-	if [ ! -d fontsel ] ; then cd $(srcdir) && db2html fontsel.sgml ; fi
-	-cd $(srcdir) && cp fontsel/$@ .
-	if [ -d fontsel.junk ] ; then cd $(srcdir) && rm -rf fontsel.junk ; fi
+	if [ ! -d gfontsel ] ; then cd $(srcdir) && db2html gfontsel.sgml ; fi
+	-cd $(srcdir) && cp gfontsel/$@ .
+	if [ -d gfontsel.junk ] ; then cd $(srcdir) && rm -rf gfontsel.junk ; fi
 
 dist-hook:
-	$(mkinstalldirs) $(distdir)/fontsel 
-	$(mkinstalldirs) $(distdir)/fontsel/stylesheet-images
-	-cp $(srcdir)/fontsel/*.html fontsel/*.css $(distdir)/fontsel
-	-cp $(srcdir)/fontsel/stylesheet-images/*.gif \
-	 $(distdir)/fontsel/stylesheet-images
+	$(mkinstalldirs) $(distdir)/gfontsel 
+	$(mkinstalldirs) $(distdir)/gfontsel/stylesheet-images
+	-cp $(srcdir)/gfontsel/*.html gfontsel/*.css $(distdir)/gfontsel
+	-cp $(srcdir)/gfontsel/stylesheet-images/*.gif \
+	 $(distdir)/gfontsel/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
@@ -39,20 +39,20 @@ distclean-generic:
 	-rm -f Makefile
 	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
 	-rm -f $(HTML_FILES)
-	-rm -rf fontsel
+	-rm -rf gfontsel
 
 install-data-local: index.html
-	$(mkinstalldirs) $(DESTDIR)$(fontsel_helpdir)/images
-	-for file in $(srcdir)/fontsel/*.html $(srcdir)/fontsel/*.css; do \
+	$(mkinstalldirs) $(DESTDIR)$(gfontsel_helpdir)/stylesheet-images
+	-for file in $(srcdir)/gfontsel/*.html $(srcdir)/gfontsel/*.css; do \
 	  basefile=`basename $$file`; \
-	  $(INSTALL_DATA) $$file $(DESTDIR)$(fontsel_helpdir)/$$basefile; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gfontsel_helpdir)/$$basefile; \
 	done
 	-for file in $(srcdir)/*.png ; do \
-	  $(INSTALL_DATA) $$file $(DESTDIR)$(fontsel_helpdir); \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gfontsel_helpdir); \
 	done
-	-for file in $(srcdir)/fontsel/styleshee-images/*.gif; do \
+	-for file in $(srcdir)/gfontsel/stylesheet-images/*.gif; do \
 	  basefile=`basename $$file`; \
-	  $(INSTALL_DATA) $$file $(DESTDIR)$(fontsel_helpdir)/stylesheet-images/$$basefile; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gfontsel_helpdir)/stylesheet-images/$$basefile; \
 	done
 
 
