@@ -21,18 +21,26 @@ static char copied_string[13]="";
 static void
 about_cb (GtkWidget *widget, gpointer data)
 {
-	GtkWidget *about;
+	static GtkWidget *about = NULL;
 	gchar *authors[] = {
 		"George Lebl",
 		NULL
 	};
 
+	if (about != NULL)
+	{
+		gdk_window_show(about->window);
+		gdk_window_raise(about->window);
+		return;
+	}
 	about = gnome_about_new(_("The Gnome Calculator"), VERSION,
 				"(C) 1998 the Free Software Foundation",
 				(const char **)authors,
 				_("Simple double precision calculator similiar "
 				  "to xcalc"),
 				NULL);
+	gtk_signal_connect(GTK_OBJECT(about), "destroy",
+			   GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
 	gtk_widget_show (about);
 }
 
