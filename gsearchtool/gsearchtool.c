@@ -610,6 +610,10 @@ main(int argc, char *argv[])
 
 	argp_program_version = VERSION;
 
+	/* Initialize the i18n stuff */
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain (PACKAGE);
+
 	gnome_init ("gsearchtool", NULL, argc, argv, 0, NULL);
 	
         app=gnome_app_new("gsearchtool", _("Gnome Search Tool"));

@@ -68,6 +68,10 @@ main(int argc, char *argv[])
 
 	argp_program_version = VERSION;
 
+	/* Initialize the i18n stuff */
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain (PACKAGE);
+
 	gnome_init ("gcalc", NULL, argc, argv, 0, NULL);
 	
         app=gnome_app_new("gcalc", _("Gnome Calculator"));

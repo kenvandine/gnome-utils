@@ -711,9 +711,10 @@ main (int argc, char **argv)
   program_name = argv[0];
 #if 0
   setlocale (LC_ALL, "");
-  bindtextdomain (PACKAGE, LOCALEDIR);
-  textdomain (PACKAGE);
 #endif
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  textdomain (PACKAGE);
+
   gnome_init ("gdiskfree", 0, argc, argv, 0, 0);
 
   fs_select_list = NULL;
