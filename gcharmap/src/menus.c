@@ -67,8 +67,8 @@ GnomeUIInfo settings_menu[] =
       "table's font."), cb_set_chartable_font, GNOME_STOCK_MENU_FONT),
     GNOMEUIINFO_SEPARATOR,
     GNOMEUIINFO_TOGGLEITEM(N_("_Insert at end"), N_("Insert every selected character "
-      "at the end of the text etry"), cb_set_insert_at_end, NULL),
-    GNOMEUIINFO_TOGGLEITEM(N_("_Focusable Buttons"), N_("Set whenether the buttons are "
+      "at the end of the text entry"), cb_set_insert_at_end, NULL),
+    GNOMEUIINFO_TOGGLEITEM(N_("_Focusable Buttons"), N_("Set the buttons to be "
       "focusable or not"), cb_set_button_focusable, NULL),
     GNOMEUIINFO_END
 };
