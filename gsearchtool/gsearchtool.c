@@ -2437,6 +2437,7 @@ gsearch_app_create (GSearchWindow * gsearch)
 	GtkWidget * label;
 	GtkWidget * button;
 	GtkWidget * container;
+	GdkPixbuf * pixbuf;
 	
 	gsearch->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gsearch->command_details = g_new0 (GSearchCommandDetails, 1);
@@ -2467,9 +2468,19 @@ gsearch_app_create (GSearchWindow * gsearch)
 			     drag_types, 
 			     G_N_ELEMENTS (drag_types), 
 			     GDK_ACTION_COPY);
-			     
-	gtk_drag_source_set_icon_stock (gsearch->progress_spinner, GTK_STOCK_FIND);
-	
+
+	pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
+	                                   GNOME_SEARCH_TOOL_ICON,
+	                                   GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE,
+	                                   0,
+	                                   NULL);
+	if (pixbuf) {
+		gtk_drag_source_set_icon_pixbuf (gsearch->progress_spinner, pixbuf);
+	}
+	else {
+		gtk_drag_source_set_icon_stock (gsearch->progress_spinner, GTK_STOCK_FIND);
+	}
+
 	g_signal_connect (G_OBJECT (gsearch->progress_spinner), 
 			  "drag_data_get",
 			  G_CALLBACK (drag_data_animation_cb), 
