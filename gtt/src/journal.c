@@ -642,11 +642,15 @@ resolve_path (char *path_frag)
 						  buff, TRUE, NULL);
 		if (path) return path;
 
-		/* handle unusual data paths for users who compiled custom settings. */
-		snprintf (buff, PATH_MAX, GTTDATADIR "/ghtml/%s/%s", lang, path_frag);
-		path = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_DATADIR,
-						  buff, TRUE, NULL);
-		if (path) return path;
+		/* some users compile with path settings that gnome
+		 * cannot find.  In that case we have to supply a full
+		 * path and check it's existance directly -- we CANNOT
+		 * use gnome_datadir_file() because it wont work!
+		 *
+		 * -warlord 2001-11-29
+		 */
+ 		snprintf (buff, PATH_MAX, GTTDATADIR "/ghtml/%s/%s", lang, path_frag);
+		if (g_file_exists (buff)) return g_strdup (buff);
 	}
 	return g_strdup(path_frag);
 }
