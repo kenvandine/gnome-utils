@@ -76,12 +76,12 @@ str_to_scale_style(const char *style_name)
 }
 
 gdouble
-str_to_gdouble(const char *double_string, gdouble fallback)
+str_to_gdouble(const char *str, gdouble fallback)
 {
   gdouble value;
 
-  if (sscanf(double_string, "%lf", &value) != 1)
-    return fallback;
+  if (str && sscanf(str, "%lf", &value) == 1)
+    return value;
 
-  return value;
+  return fallback;
 }
