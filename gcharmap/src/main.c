@@ -67,16 +67,17 @@ main (int argc, char *argv[])
                         argc, argv,
 			GNOME_PARAM_APP_DATADIR,DATADIR,NULL);
 
-
+    gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-character-map.png");
+	
     client = gnome_master_client ();
     g_signal_connect (G_OBJECT (client), "save_yourself",
 		      G_CALLBACK (save_session), (gpointer) argv[0]);
     g_signal_connect (G_OBJECT (client), "die",
 		      G_CALLBACK (client_die), NULL);
 
-
     main_app_new ();
     install_notifiers();
+    
     gtk_widget_show (GTK_WIDGET (mainapp->window));
     init_prefs();
     gtk_main ();

@@ -47,27 +47,35 @@ cb_about_click (GtkWidget *widget, gpointer user_data)
     /* Translator credits */
     gchar *translator_credits = _("translator_credits");
     GtkWidget *dialog;
-    GdkPixbuf *logo = NULL;
-    gchar *logo_fn;
+    GdkPixbuf *logo  = NULL;
+    GError    *error = NULL;
+    gchar     *logo_fn;
 
-    logo_fn = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gcharmap-logo.png", TRUE, NULL);
-    if (logo_fn != NULL)
-    {
-	    logo = gdk_pixbuf_new_from_file(logo_fn, NULL /* error */);
-	    g_free(logo_fn);
+    logo_fn = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-character-map.png", FALSE, NULL);
+    logo = gdk_pixbuf_new_from_file (logo_fn, &error);
+    
+    if (error) {
+    	    g_warning (G_STRLOC ": cannot open %s: %s", logo_fn, error->message);
+	    g_error_free (error);
     }
+    
+    g_free (logo_fn);
 
     dialog = gnome_about_new (
-      _("Gnome Character Map"),
+      _("GNOME Character Map"),
       VERSION,
       "Copyright (c) 2000 Hongli Lai",
-      _("The Gnome equalivant of Microsoft Windows' Character Map. "
+      _("The GNOME equalivant of Microsoft Windows' Character Map. "
       "Warning: might contain bad English."),
       authors,
       (const char **)documenters,
       strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
       logo
     );
+    
+    if (logo) {
+    	    gdk_pixbuf_unref (logo);
+    }
     gtk_widget_show (dialog);
 }
 
