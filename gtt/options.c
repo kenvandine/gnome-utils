@@ -154,7 +154,7 @@ static void options_apply_cb(GnomePropertyBox *pb, gint page, OptionsDlg *odlg)
 
 static void signals(OptionsDlg *odlg)
 {
-        static GnomeHelpMenuEntry help_entry = { NULL, "index.html#PREF" };
+        static GnomeHelpMenuEntry help_entry = { NULL, "preferences.html#PREF" };
 
 	help_entry.name = gnome_app_id;
 	gtk_signal_connect(GTK_OBJECT(odlg->dlg), "help",
