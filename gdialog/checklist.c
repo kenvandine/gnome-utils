@@ -174,7 +174,7 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
  		gtk_dialog_set_default_response (GTK_DIALOG(dialog),
  						 GTK_RESPONSE_OK);
   
-		label_autowrap (GTK_DIALOG (w)->vbox, prompt, width);
+		label_autowrap (GTK_DIALOG (dialog)->vbox, prompt, width);
 
 		sw = gtk_scrolled_window_new (NULL, NULL);
  		gtk_box_pack_start_defaults (
