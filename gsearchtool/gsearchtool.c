@@ -662,13 +662,14 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 				 gpointer 	data) 
 {
 	struct _SearchStruct *search_data = data;
-	GdkRectangle vis_rect;
 
 	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
 	
 		GError       *error = NULL;
 		GString      *string;
 		GPatternSpec *pattern;
+		GdkRectangle prior_rect;
+		GdkRectangle after_rect;
 		
 		string = g_string_new (NULL);
 		pattern = g_pattern_spec_new (search_data->file_is_named_pattern);	
@@ -733,7 +734,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			g_free (locale);
 			g_free (filename);
 			
-			gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &vis_rect);
+			gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &prior_rect);
 			
 			while (gtk_events_pending ()) {
 				if (search_data->running == MAKE_IT_QUIT) {
@@ -742,8 +743,11 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 				gtk_main_iteration (); 				
 			}
 			
-			if (vis_rect.y == 0) {
-				gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), -1, 0);
+			if (prior_rect.y == 0) {
+				gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &after_rect);
+				if (after_rect.y <= 40) {  /* limit this hack to the first few pixels */
+					gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), -1, 0);
+				}
 			}	
 			
 		} while (g_io_channel_get_buffer_condition(ioc) == G_IO_IN);
