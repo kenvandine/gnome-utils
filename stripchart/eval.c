@@ -631,9 +631,14 @@ get_all_netload(glibtop_netload *netload)
   if ((fd = fopen("/proc/net/dev", "r")) != NULL)
     {
       u_int64_t bytes_in, pkts_in, errs_in, bytes_out, pkts_out, errs_out;
+      const char *format;
       fscanf(fd, "%*[^\n]\n%*[^\n]\n");
-      while (fscanf(fd,
-	"%*[^:]:%lld%lld%lld%*d%*d%*d%*d%*d%lld%lld%lld%*d%*d%*d%*d%*d",
+      /* get the correct format according to arch */
+      if (sizeof (u_int64_t) == sizeof (long))
+	      format = "%*[^:]:%ld%ld%ld%*d%*d%*d%*d%*d%ld%ld%ld%*d%*d%*d%*d%*d";
+      else
+	      format = "%*[^:]:%lld%lld%lld%*d%*d%*d%*d%*d%lld%lld%lld%*d%*d%*d%*d%*d";
+      while (fscanf(fd, format,
 	&bytes_in, &pkts_in, &errs_in, &bytes_out, &pkts_out, &errs_out) == 6)
 	{
 	  netload->packets_in    += pkts_in;
