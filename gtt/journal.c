@@ -462,6 +462,14 @@ edit_invoice(GtkWidget *w, gpointer data)
 }
 
 void
+edit_primer(GtkWidget *w, gpointer data)
+{
+	char * path;
+	path = resolve_path ("primer.ghtml");
+	do_show_report (path, cur_proj);
+}
+
+void
 invoke_report(GtkWidget *widget, gpointer data)
 {
 	char * filepath = (char *) data;
