@@ -82,42 +82,69 @@ static void toggle_zoom (void);
  *    `-------'
  */
 
+enum {
+	MENU_FILE_OPEN = 0,
+	MENU_SWITCH_LOG = 2,
+	MENU_MONITOR = 3,
+	MENU_PROPERTIES = 5,
+	MENU_CLOSE = 7,
+	MENU_CLOSE_ALL = 8,
+	MENU_QUIT = 9 
+};
 
 GnomeUIInfo log_menu[] = {
 	GNOMEUIINFO_MENU_OPEN_ITEM(LoadLogMenu, NULL),
 	GNOMEUIINFO_SEPARATOR,
-    { GNOME_APP_UI_ITEM, N_("S_witch Log"), 
-	  N_("Switch log"), change_log_menu, NULL, NULL,
-      GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-    { GNOME_APP_UI_ITEM, N_("_Monitor..."), 
-	  N_("Monitor Log"), MonitorMenu, NULL, NULL,
-      GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+	GNOMEUIINFO_MENU_NEW_ITEM (N_("S_witch Log"), 
+				N_("Switch log"), 
+				change_log_menu, 
+				NULL),
+	GNOMEUIINFO_MENU_NEW_ITEM (N_("_Monitor..."), 
+				N_("Monitor Log"), 
+				MonitorMenu, 
+				NULL),
 	GNOMEUIINFO_SEPARATOR,
     { GNOME_APP_UI_ITEM, N_("_Properties"), 
-	  N_("Show Log Properties"), LogInfo, NULL, NULL,
-      GNOME_APP_PIXMAP_NONE, NULL, 'I', GDK_CONTROL_MASK, NULL },
+				N_("Show Log Properties"), 
+				LogInfo, 
+				NULL, 
+				NULL,
+				GNOME_APP_PIXMAP_NONE, NULL, 
+				'I', GDK_CONTROL_MASK, NULL },
 	GNOMEUIINFO_SEPARATOR,
-	GNOMEUIINFO_MENU_CLOSE_ITEM(CloseLogMenu, NULL),
+	GNOMEUIINFO_MENU_CLOSE_ITEM (CloseLogMenu, NULL),
     { GNOME_APP_UI_ITEM, N_("Clos_e All"),
-	  N_("Close all Log files"), CloseAllLogs, NULL, NULL,
-      GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 'W',
-      GDK_CONTROL_MASK | GDK_SHIFT_MASK, NULL },
-	GNOMEUIINFO_MENU_QUIT_ITEM(ExitProg, NULL),
+				N_("Close all Log files"), 
+				CloseAllLogs, 
+				NULL, 
+				NULL,
+				GNOME_APP_PIXMAP_STOCK, 
+				GNOME_STOCK_MENU_CLOSE, 
+				'W', GDK_CONTROL_MASK | GDK_SHIFT_MASK, NULL },
+	GNOMEUIINFO_MENU_QUIT_ITEM (ExitProg, NULL),
     GNOMEUIINFO_END
 };
 
 GnomeUIInfo view_menu[] = {
-    { GNOME_APP_UI_TOGGLEITEM, N_("_Calendar"),
-      N_("Show Calendar Log"), toggle_calendar, NULL, NULL,
-      GNOME_APP_PIXMAP_NONE, NULL, 'L', GDK_CONTROL_MASK, NULL },
-    { GNOME_APP_UI_TOGGLEITEM, N_("_Entry Detail"), 
-      N_("Show Entry Detail"), toggle_zoom, NULL, NULL, 
-      GNOME_APP_PIXMAP_NONE, NULL, 'D', GDK_CONTROL_MASK, NULL },
-    GNOMEUIINFO_END
+	{ GNOME_APP_UI_TOGGLEITEM, N_("_Calendar"),
+				N_("Show Calendar Log"), 
+				toggle_calendar, 
+				NULL, 
+				NULL,
+				GNOME_APP_PIXMAP_NONE, NULL, 
+				'L', GDK_CONTROL_MASK, NULL },
+	{ GNOME_APP_UI_TOGGLEITEM, N_("_Entry Detail"), 
+				N_("Show Entry Detail"), 
+				toggle_zoom, 
+				NULL, 
+				NULL, 
+				GNOME_APP_PIXMAP_NONE, NULL, 
+				'D', GDK_CONTROL_MASK, NULL },
+	GNOMEUIINFO_END
 };
 
 GnomeUIInfo help_menu[] = {
-      GNOMEUIINFO_HELP("gnome-system-log"),
+      GNOMEUIINFO_HELP ("gnome-system-log"),
       GNOMEUIINFO_MENU_ABOUT_ITEM (AboutShowWindow, NULL),
       GNOMEUIINFO_END
 };
@@ -126,7 +153,7 @@ GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE (log_menu),
 	GNOMEUIINFO_MENU_VIEW_TREE (view_menu),
 	GNOMEUIINFO_MENU_HELP_TREE (help_menu),
-    	GNOMEUIINFO_END
+	GNOMEUIINFO_END
 };
                  
 
@@ -135,7 +162,7 @@ GnomeUIInfo main_menu[] = {
  *       Global variables
  *       ----------------
  */
-
+	
 GtkWidget *app = NULL;
 static GtkWidget *viewport;
 GtkLabel *date_label = NULL;
@@ -371,10 +398,8 @@ CreateMainWin ()
    vbox = gtk_vbox_new (FALSE, 0);
    gnome_app_set_contents (GNOME_APP (app), vbox);
 
-   /* Deactivate unfinished items */
-   gtk_widget_set_state (log_menu[1].widget, GTK_STATE_INSENSITIVE);
    if (numlogs < 2)
-     gtk_widget_set_state (log_menu[3].widget, GTK_STATE_INSENSITIVE);
+     gtk_widget_set_state (log_menu[MENU_SWITCH_LOG].widget, GTK_STATE_INSENSITIVE);
 
    /* Create scrolled window and tree view */
    scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -472,10 +497,10 @@ CloseLogMenu (GtkWidget *widget, gpointer user_data)
       log_repaint ();
       if (loginfovisible)
 	      RepaintLogInfo ();
-      gtk_widget_set_sensitive (log_menu[6].widget, FALSE); 
-      gtk_widget_set_sensitive (log_menu[8].widget, FALSE); 
-      gtk_widget_set_sensitive (log_menu[9].widget, FALSE); 
-      gtk_widget_set_sensitive (log_menu[4].widget, FALSE); 
+      gtk_widget_set_sensitive (log_menu[MENU_PROPERTIES].widget, FALSE); 
+      gtk_widget_set_sensitive (log_menu[MENU_CLOSE].widget, FALSE); 
+      gtk_widget_set_sensitive (log_menu[MENU_CLOSE_ALL].widget, FALSE); 
+      gtk_widget_set_sensitive (log_menu[MENU_MONITOR].widget, FALSE); 
       for ( i = 0; i < 3; i++) 
          gtk_widget_set_sensitive (view_menu[i].widget, FALSE); 
       return;
@@ -494,7 +519,7 @@ CloseLogMenu (GtkWidget *widget, gpointer user_data)
 
    /* Change menu entry if there is only one log */
    if (numlogs < 2)
-     gtk_widget_set_state (log_menu[3].widget, GTK_STATE_INSENSITIVE);
+     gtk_widget_set_state (log_menu[MENU_SWITCH_LOG].widget, GTK_STATE_INSENSITIVE);
 
 }
 
@@ -551,7 +576,7 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
                save_rows_to_expand (curlog); 
            }
            if (!numlogs) 
-               gtk_widget_set_sensitive (log_menu[8].widget, TRUE); 
+               gtk_widget_set_sensitive (log_menu[MENU_CLOSE].widget, TRUE); 
            
 	       curlog = tl;
 	       curlog->first_time = TRUE; 
@@ -571,11 +596,11 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 		   if (numlogs) {
 			   int i;
 			   if (numlogs >= 2)
-			       gtk_widget_set_sensitive (log_menu[3].widget, TRUE);
+			       gtk_widget_set_sensitive (log_menu[MENU_SWITCH_LOG].widget, TRUE);
 
-			   gtk_widget_set_sensitive (log_menu[9].widget, TRUE);
-			   gtk_widget_set_sensitive (log_menu[6].widget, TRUE);
-			   gtk_widget_set_sensitive (log_menu[4].widget, TRUE);
+			   gtk_widget_set_sensitive (log_menu[MENU_CLOSE_ALL].widget, TRUE);
+			   gtk_widget_set_sensitive (log_menu[MENU_PROPERTIES].widget, TRUE);
+			   gtk_widget_set_sensitive (log_menu[MENU_MONITOR].widget, TRUE);
 			   for (i = 0; i < 3; ++i) 
 			       gtk_widget_set_sensitive (view_menu[i].widget, TRUE);
 		   } 
@@ -677,14 +702,14 @@ CloseAllLogs (void)
    if (loginfovisible)
 	  RepaintLogInfo ();
 
-   gtk_widget_set_sensitive (log_menu[4].widget, FALSE); 
-   gtk_widget_set_sensitive (log_menu[6].widget, FALSE); 
-   gtk_widget_set_sensitive (log_menu[8].widget, FALSE); 
-   gtk_widget_set_sensitive (log_menu[9].widget, FALSE); 
+   gtk_widget_set_sensitive (log_menu[MENU_MONITOR].widget, FALSE); 
+   gtk_widget_set_sensitive (log_menu[MENU_PROPERTIES].widget, FALSE); 
+   gtk_widget_set_sensitive (log_menu[MENU_CLOSE].widget, FALSE); 
+   gtk_widget_set_sensitive (log_menu[MENU_CLOSE_ALL].widget, FALSE); 
    for ( i = 0; i < 3; i++) 
        gtk_widget_set_sensitive (view_menu[i].widget, FALSE); 
 
-   gtk_widget_set_state (log_menu[3].widget, GTK_STATE_INSENSITIVE); 
+   gtk_widget_set_state (log_menu[MENU_SWITCH_LOG].widget, GTK_STATE_INSENSITIVE); 
 
 }
 
