@@ -497,7 +497,9 @@ static void do_list_box(GtkWidget * box)
   /* Fixme, eventually you might could select an item 
      for cut and paste, or some other effect. */
   gtk_clist_set_selection_mode(list, GTK_SELECTION_BROWSE);
+#if 0
   gtk_clist_set_policy(list, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+#endif
 
   gtk_clist_column_titles_passive(list);
 
