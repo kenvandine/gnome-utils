@@ -205,7 +205,7 @@ main (int argc, char *argv[])
   QueueErrMessages (TRUE);
 
   /*  Initialize gnome & gtk */
-  gnome_init ("logview", VERSION, argc, argv);
+  gnome_init ("gnome-system-log", VERSION, argc, argv);
 
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-log.png");
   
@@ -895,9 +895,9 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs)
 	}
 	else {
 		/* First time running logview. Try to find the logfile */
-		if (lstat("/var/adm/messages", &filestat)) 
+		if (lstat("/var/adm/messages", &filestat) == 0) 
 			prefs->logfile = g_strdup ("/var/adm/messages");
-		else if (lstat("/var/log/messages", &filestat)) 
+		else if (lstat("/var/log/messages", &filestat) == 0) 
 			prefs->logfile = g_strdup ("/var/log/messages");
 		else
 			prefs->logfile = NULL;
