@@ -57,7 +57,11 @@ printf ("duuude man yeah idle %ld secs \n", idle_time);
 		if (idle_time > config_idle_timeout) 
 		{
 			ctree_unselect (cur_proj);
-			stop_timer();
+
+			/* don't just stop the timer, make the needed 
+			 * higher-level calls */
+			/* stop_timer(); */
+			cur_proj_set (NULL);
 			return 0;
 		}
 	}
