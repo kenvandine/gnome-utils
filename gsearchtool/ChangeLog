@@ -1,3 +1,9 @@
+2002-06-13  Aruna Pourhit <aruna.pou@wipro.co>
+
+	* gsearchtool.c (stop_search): Don't break if status of 
+	child process is returned, since we want to kill the 
+	child process. Fixes #85131.
+
 2002-06-13  Glynn Foster  <glynn.foster@sun.com>
 
 	* gsearchtool.c: (stop_search): Don't run a search when

@@ -800,7 +800,7 @@ really_run_command(char *cmd, char sepchar, gchar *utf8_pattern_str, RunLevel *r
 			fprintf (stderr, "%s", ret);
 		}
 		
-		if (waitpid (-1, NULL, WNOHANG) != 0)
+		if (waitpid (-1, NULL, WNOHANG) == -1)
 			break;
 		if(gtk_events_pending())
 			gtk_main_iteration_do(TRUE);
