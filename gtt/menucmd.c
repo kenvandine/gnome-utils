@@ -17,31 +17,11 @@
  */
 
 #include <config.h>
-#if HAS_GNOME
 #include <gnome.h>
-#else
-#include <gtk/gtk.h>
-#endif
 #include <string.h>
-
 
 #include "gtt.h"
 
-#undef gettext
-#undef _
-#include <libintl.h>
-#define _(String) gettext(String)
-
-
-#if 0 /* not needed */
-void
-not_implemented(GtkWidget *w, gpointer data)
-{
-	msgbox_ok(gettext("Notice"),
-		  gettext("Not implemented yet"),
-		  gettext("Close"), NULL);
-}
-#endif
 
 
 void
@@ -62,35 +42,6 @@ quit_app(GtkWidget *w, gpointer data)
 void
 about_box(GtkWidget *w, gpointer data)
 {
-#ifdef STANDALONE
-	GtkWidget *dlg, *t;
-	GtkBox *vbox;
-	char s[128];
-
-	new_dialog_ok(gettext("About"), &dlg, &vbox,
-                      gettext("Close"), NULL, NULL);
-
-	t = gtk_label_new(APP_NAME);
-	gtk_widget_show(t);
-	gtk_box_pack_start(vbox, t, FALSE, FALSE, 8);
-
-#ifdef DEBUG
-	sprintf(s, "%s " VERSION "\n" __DATE__ " " __TIME__, gettext("version"));
-	t = gtk_label_new(s);
-#else
-	sprintf(s, "%s " VERSION, gettext("version"));
-	t = gtk_label_new(s);
-#endif
-	gtk_widget_show(t);
-	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
-
-	t = gtk_label_new("Eckehard Berns <eb@berns.prima.de>\n"
-			  "http://www.i-s-o.net/~ecki/gtt/");
-	gtk_widget_show(t);
-	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
-
-	gtk_widget_show(dlg);
-#else /* not STANDALONE */
         GtkWidget *about;
         gchar *authors[] = {
                 "Eckehard Berns\n<eb@berns.prima.de>",
@@ -107,7 +58,6 @@ about_box(GtkWidget *w, gpointer data)
 #endif
                                 NULL);
         gtk_widget_show(about);
-#endif /* not STANDALONE */
 }
 
 
@@ -122,11 +72,7 @@ project_name(GtkWidget *w, GtkEntry *gentry)
 	if (!(s = gtk_entry_get_text(gentry))) return;
 	if (!s[0]) return;
 	project_list_add(proj = project_new_title(s));
-#ifdef GTK_USE_CLIST
         clist_add(proj);
-#else /* not GTK_USE_CLIST */
-	add_item(glist, proj);
-#endif /* not GTK_USE_CLIST */
 }
 
 void
@@ -179,11 +125,7 @@ init_project_list_2(GtkWidget *widget, int button)
 		gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
 		gtk_widget_show(dlg);
 	} else {
-#ifdef GTK_USE_CLIST
                 setup_clist();
-#else /* not GTK_USE_CLIST */
-		setup_list();
-#endif /* not GTK_USE_CLIST */
 	}
 }
 
@@ -232,11 +174,7 @@ cut_project(GtkWidget *w, gpointer data)
 	prop_dialog_set_project(NULL);
 	project_list_remove(cur_proj);
 	cur_proj_set(NULL);
-#ifdef GTK_USE_CLIST
         clist_remove(cutted_project);
-#else
-	gtk_container_remove(GTK_CONTAINER(glist), GTK_LIST(glist)->selection->data);
-#endif
 }
 
 
@@ -250,25 +188,13 @@ paste_project(GtkWidget *w, gpointer data)
 	if (!cutted_project) return;
 	p = project_dup(cutted_project);
 	if (!cur_proj) {
-#ifdef GTK_USE_CLIST
                 clist_add(p);
-#else
-		add_item(glist, p);
-#endif
 		project_list_add(p);
 		return;
 	}
-#ifdef GTK_USE_CLIST
         pos = cur_proj->row;
-#else
-	pos = gtk_list_child_position(GTK_LIST(glist), GTK_LIST(glist)->selection->data);
-#endif
 	project_list_insert(p, pos);
-#ifdef GTK_USE_CLIST
         clist_insert(p, pos);
-#else /* not GTK_USE_CLIST */
-	add_item_at(glist, p, pos);
-#endif /* not GTK_USE_CLIST */
 }
 
 
@@ -310,9 +236,8 @@ menu_stop_timer(GtkWidget *w, gpointer data)
 void
 menu_toggle_timer(GtkWidget *w, gpointer data)
 {
-	g_return_if_fail(GTK_IS_CHECK_MENU_ITEM(w));
-
-	if (GTK_CHECK_MENU_ITEM(w)->active) {
+	/* if (GTK_CHECK_MENU_ITEM(menus_get_toggle_timer())->active) { */
+	if (main_timer == 0) {
 		start_timer();
 	} else {
 		stop_timer();
@@ -345,93 +270,9 @@ menu_clear_daily_counter(GtkWidget *w, gpointer data)
 	g_return_if_fail(cur_proj != NULL);
 
 	cur_proj->day_secs = 0;
-#ifdef GTK_USE_CLIST
         clist_update_label(cur_proj);
-#else
-	update_label(cur_proj);
-#endif
 }
 
-
-
-#ifdef USE_GTT_HELP
-#include "gtthelp.h"
-static GtkWidget *help = NULL;
-
-static void
-help_destroy(GtkWidget *w, gpointer *data)
-{
-	help = NULL;
-}
-
-
-void
-help_goto(char *helppos)
-{
-        char s[1024];
-
-	if (!help) {
-		help = gtt_help_new(APP_NAME " - Help", HELP_PATH "/index.html");
-		gtk_signal_connect(GTK_OBJECT(help), "destroy",
-				   GTK_SIGNAL_FUNC(help_destroy), NULL);
-	}
-        sprintf(s, HELP_PATH "/%s", helppos);
-        gtt_help_goto(GTT_HELP(help), s);
-	gtk_widget_show(help);
-}
-
-
-
-void
-menu_help_contents(GtkWidget *w, gpointer data)
-{
-	if (!help) {
-		help = gtt_help_new(APP_NAME " - Help", HELP_PATH "/index.html");
-		gtk_signal_connect(GTK_OBJECT(help), "destroy",
-				   GTK_SIGNAL_FUNC(help_destroy), NULL);
-	}
-	if (0 == strcmp(data, "help on help")) {
-		gtt_help_on_help(GTT_HELP(help));
-	} else {
-		gtt_help_goto(GTT_HELP(help), HELP_PATH "/index.html");
-	}
-	gtk_widget_show(help);
-}
-#endif /* USE_GTT_HELP */
-
-
-
-#ifdef GNOME_USE_APP
-void
-menu_create(GtkWidget *gnome_app)
-{
-	GtkAcceleratorTable *accel;
-	GtkWidget *w;
-
-	get_menubar(&w, &accel, MENU_MAIN);
-	gtk_widget_show(w);
-	gtk_window_add_accelerator_table(GTK_WINDOW(gnome_app), accel);
-	gnome_app_set_menus(GNOME_APP(gnome_app), GTK_MENU_BAR(w));
-}
-#endif /* GNOME_USE_APP */
-
-
-
-void
-menu_set_states(void)
-{
-	menus_set_state(_("<Main>/Timer/Timer running"), (main_timer == 0) ? 0 : 1);
-	menus_set_sensitive(_("<Main>/Timer/Start"), (main_timer == 0) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Timer/Stop"), (main_timer == 0) ? 0 : 1);
-	menus_set_sensitive(_("<Main>/Edit/Cut"), (cur_proj) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Edit/Copy"), (cur_proj) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Edit/Paste"), (cutted_project) ? 1 : 0);
-	menus_set_sensitive(_("<Popup>/Paste"), (cutted_project) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Edit/Clear Daily Counter"), (cur_proj) ? 1 : 0);
-	menus_set_sensitive(_("<Popup>/Clear Daily Counter"), (cur_proj) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Edit/Properties..."), (cur_proj) ? 1 : 0);
-	toolbar_set_states();
-}
 
 
 

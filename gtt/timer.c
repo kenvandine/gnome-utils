@@ -17,7 +17,7 @@
  */
 
 #include <config.h>
-#include <gtk/gtk.h>
+#include <gnome.h>
 #include <string.h>
 
 #include "gtt.h"
@@ -56,19 +56,11 @@ static gint timer_func(gpointer data)
 	if (!cur_proj) return 1;
 	cur_proj->secs += diff_time;
 	cur_proj->day_secs += diff_time;
-#ifdef GTK_USE_CLIST
 	if (config_show_secs) {
 		if (cur_proj->row != -1) clist_update_label(cur_proj);
 	} else if (cur_proj->day_secs % 60 == 0) {
 		if (cur_proj->row != -1) clist_update_label(cur_proj);
 	}
-#else /* not GTK_USE_CLIST */
-	if (config_show_secs) {
-		if (cur_proj->label) update_label(cur_proj);
-	} else if (cur_proj->day_secs % 60 == 0) {
-		if (cur_proj->label) update_label(cur_proj);
-	}
-#endif /* not GTK_USE_CLIST */
 	return 1;
 }
 

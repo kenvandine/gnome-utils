@@ -48,12 +48,7 @@ project *project_new(void)
 	proj->title = NULL;
 	proj->desc = NULL;
 	proj->secs = proj->day_secs = 0;
-#ifdef GTK_USE_CLIST
         proj->row = -1;
-#else /* not GTK_USE_CLIST */
-	proj->label = NULL;
-	proj->title_label = NULL;
-#endif /* not GTK_USE_CLIST */
 	return proj;
 }
 
@@ -112,13 +107,8 @@ void project_set_title(project *proj, char *t)
 		return;
 	}
 	proj->title = g_strdup(t);
-#ifdef GTK_USE_CLIST
         if (proj->row != -1)
                 clist_update_title(proj);
-#else /* not GTK_USE_CLIST */
-	if (proj->title_label)
-		update_title_label(proj);
-#endif /* not GTK_USE_CLIST */
 }
 
 
@@ -226,11 +216,7 @@ void project_list_time_reset(void)
 	
 	for (t = plist; t; t = t->next) {
 		t->proj->day_secs = 0;
-#ifdef GTK_USE_CLIST
 		if (t->proj->row != -1) clist_update_label(t->proj);
-#else /* not GTK_USE_CLIST */
-		if (t->proj->label) update_label(t->proj);
-#endif /* not GTK_USE_CLIST */
 	}
 }
 
@@ -424,79 +410,9 @@ project_list_load_old(char *fname)
 
 
 
-#if !HAS_GNOME
-static int
-project_list_save_old(char *fname)
-{
-	FILE *f;
-	project_list *pl;
-
-	if (!fname) fname = build_rc_name();
-	/* TODO: maybe I should work with backup files */
-	if (NULL == (f = fopen(fname, "wt"))) {
-		g_warning("could not open %s for writing\n", fname);
-		return 0;
-	}
-	errno = 0;
-
-	fprintf(f, "#\n");
-	fprintf(f, "# %s init file\n", APP_NAME);
-	fprintf(f, "#\n");
-	fprintf(f, "# this file is generated automatically\n");
-	fprintf(f, "# DO NOT EDIT UNLESS YOU KNOW WHAT YOU'RE DOING!\n");
-	fprintf(f, "#\n");
-	
-	/* TODO: time_t can be float! */
-	fprintf(f, "t%ld\n", last_timer);
-	fprintf(f, "s %s\n", (config_show_secs) ? "on" : "off");
-	fprintf(f, "bi %s\n", (config_show_tb_icons) ? "on" : "off");
-	fprintf(f, "bt %s\n", (config_show_tb_texts) ? "on" : "off");
-	fprintf(f, "bp %s\n", (config_show_tb_tips) ? "on" : "off");
-	fprintf(f, "bs %s\n", (config_show_statusbar) ? "on" : "off");
-	fprintf(f, "bh %s\n", (config_show_clist_titles) ? "on" : "off");
-        fprintf(f, "b_n %s\n", (config_show_tb_new) ? "on" : "off");
-        fprintf(f, "b_f %s\n", (config_show_tb_file) ? "on" : "off");
-        fprintf(f, "b_c %s\n", (config_show_tb_ccp) ? "on" : "off");
-        fprintf(f, "b_p %s\n", (config_show_tb_prop) ? "on" : "off");
-        fprintf(f, "b_t %s\n", (config_show_tb_timer) ? "on" : "off");
-        fprintf(f, "b_o %s\n", (config_show_tb_pref) ? "on" : "off");
-        fprintf(f, "b_h %s\n", (config_show_tb_help) ? "on" : "off");
-        fprintf(f, "b_e %s\n", (config_show_tb_exit) ? "on" : "off");
-	if (config_command)
-		fprintf(f, "c %s\n", config_command);
-	if (config_command_null)
-		fprintf(f, "n %s\n", config_command_null);
-	fprintf(f, "lu %s\n", (config_logfile_use) ? "on" : "off");
-	if (config_logfile_name)
-		fprintf(f, "ln %s\n", config_logfile_name);
-	if (config_logfile_min_secs)
-		fprintf(f, "ls %d\n", config_logfile_min_secs);
-	
-	for (pl = plist; pl; pl = pl->next) {
-		if (!pl->proj) continue;
-		if (!pl->proj->title) continue;
-		fprintf(f, "%d %d %s\n", pl->proj->secs, pl->proj->day_secs,
-			pl->proj->title);
-		if (pl->proj->desc) {
-			fprintf(f, " %s\n", pl->proj->desc);
-		}
-		if (errno) break;
-	}
-	fclose(f);
-	if (errno) {
-		g_warning("error while writing to %s\n", fname);
-		return 0;
-	}
-	return 1;
-}
-#endif /* not HAS_GNOME */
-
-
-
 int
 project_list_load(char *fname)
 {
-#if HAS_GNOME
         char s[64];
         int i, num;
         project *proj;
@@ -560,9 +476,6 @@ project_list_load(char *fname)
                 update_toolbar_sections();
         }
         return 1;
-#else /* not HAS_GNOME */
-        return project_list_load_old(fname);
-#endif /* not HAS_GNOME */
 }
 
 
@@ -570,7 +483,6 @@ project_list_load(char *fname)
 int
 project_list_save(char *fname)
 {
-#if HAS_GNOME
         char s[64];
         project_list *pl;
         int i, old_num;
@@ -631,9 +543,6 @@ project_list_save(char *fname)
         }
         gnome_config_sync();
         return 1;
-#else /* not HAS_GNOME */
-        return project_list_save_old(fname);
-#endif /* not HAS_GNOME */
 }
 
 

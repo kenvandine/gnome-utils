@@ -17,16 +17,7 @@
  */
 
 #include <config.h>
-#include <gtk/gtk.h>
-
-#include "gtt-features.h"
-#ifdef GTK_USE_CLIST
-
-#undef gettext
-#undef _
-#include <libintl.h>
-#define _(String) gettext(String)
-#define N_(String) (String)
+#include <gnome.h>
 
 #include "gtt.h"
 
@@ -52,7 +43,7 @@ select_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
         if (gtk_clist_get_row_data(clist, row) == cur_proj)
                 gtk_clist_select_row(GTK_CLIST(glist), row, column);
         cur_proj_set(gtk_clist_get_row_data(clist, row));
-        get_menubar(&menu, NULL, MENU_POPUP);
+        menu = menus_get_popup();
         gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, 0);
 }
 
@@ -230,6 +221,4 @@ clist_update_title(project *p)
 }
 
 
-
-#endif /* GTK_USE_CLIST */
 

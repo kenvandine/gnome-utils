@@ -17,11 +17,8 @@
  */
 
 #include <config.h>
-#if HAS_GNOME
 #include <gnome.h>
-#else
-#include <gtk/gtk.h>
-#endif
+#include <libgnome/gnome-help.h>
 
 #include "gtt.h"
 
@@ -65,11 +62,7 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 	state = GTK_TOGGLE_BUTTON(odlg->show_secs)->active;
 	if (state != config_show_secs) {
 		config_show_secs = state;
-#ifdef GTK_USE_CLIST
                 setup_clist();
-#else
-		setup_list();
-#endif
 	}
 	if (GTK_TOGGLE_BUTTON(odlg->show_status_bar)->active) {
 		gtk_widget_show(GTK_WIDGET(status_bar));
@@ -78,7 +71,6 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 		gtk_widget_hide(GTK_WIDGET(status_bar));
                 config_show_statusbar = 0;
 	}
-#ifdef GTK_USE_CLIST
         if (GTK_TOGGLE_BUTTON(odlg->show_clist_titles)->active) {
                 gtk_clist_column_titles_show(GTK_CLIST(glist));
                 config_show_clist_titles = 1;
@@ -86,8 +78,6 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
                 gtk_clist_column_titles_hide(GTK_CLIST(glist));
                 config_show_clist_titles = 0;
         }
-#endif
-                
 
 	/* shell command options */
 	ENTRY_TO_CHAR(odlg->command, config_command);
@@ -159,18 +149,10 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 
 
 
-static void options_help(GtkWidget *w, gpointer *data)
-{
-#ifdef USE_GTT_HELP
-        help_goto("ch-dialogs.html#s-pref");
-#endif /* USE_GTT_HELP */
-}
-
-
-
 static void buttons(OptionsDlg *odlg, GtkBox *aa)
 {
 	GtkWidget *w;
+	char *s, *t;
 
         w = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
 	gtk_widget_show(w);
@@ -196,9 +178,11 @@ static void buttons(OptionsDlg *odlg, GtkBox *aa)
 
 	w = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
 	gtk_widget_show(w);
-	gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
-				  GTK_SIGNAL_FUNC(options_help),
-				  NULL);
+	t = gnome_help_file_path("gtt", "ch-dialogs.html");
+	s = g_copy_strings("file:///", t, "#s-pref", NULL);
+	g_free(t);
+	gtk_signal_connect(GTK_OBJECT(w), "clicked",
+			   GTK_SIGNAL_FUNC(gnome_help_goto), s);
 	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 }
 
@@ -227,12 +211,10 @@ static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_status_bar = GTK_CHECK_BUTTON(w);
 
-#ifdef GTK_USE_CLIST
 	w = gtk_check_button_new_with_label(_("Show Table Header"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_clist_titles = GTK_CHECK_BUTTON(w);
-#endif
 }
 
 
@@ -420,11 +402,8 @@ static void options_dialog_set(OptionsDlg *odlg)
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_secs), config_show_secs);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_status_bar),
 				    config_show_statusbar);
-#ifdef GTK_USE_CLIST
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_clist_titles),
 				    config_show_clist_titles);
-#endif
-
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_icons),
 				    config_show_tb_icons);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_texts),

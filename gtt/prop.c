@@ -17,20 +17,12 @@
  */
 
 #include <config.h>
-#if HAS_GNOME
 #include <gnome.h>
-#else /* not HAS_GNOME */
-#include <gtk/gtk.h>
-#endif /* not HAS_GNOME */
+#include <libgnome/gnome-help.h>
 #include <string.h>
 
 #include "gtt.h"
 
-
-#undef gettext
-#undef _
-#include <libintl.h>
-#define _(String) gettext(String)
 
 
 
@@ -89,11 +81,7 @@ static void prop_set(GtkButton *w, PropDlg *dlg)
 	secs += atoi(s);
 	if (secs != dlg->proj->day_secs) {
 		dlg->proj->day_secs = secs;
-#ifdef GTK_USE_CLIST
                 clist_update_label(dlg->proj);
-#else
-		update_label(dlg->proj);
-#endif
 	}
 
 	s = gtk_entry_get_text(dlg->ever.h);
@@ -158,21 +146,12 @@ void prop_dialog_set_project(project *proj)
 
 
 
-static void
-prop_help(GtkWidget *w, gpointer *data)
-{
-#ifdef USE_GTT_HELP
-        help_goto("ch-dialogs.html#s-prop");
-#endif /* USE_GTT_HELP */
-}
-
-
-
 void prop_dialog(project *proj)
 {
 	GtkWidget *w;
 	GtkBox *vbox, *aa;
 	GtkTable *table;
+	char *s1, *t;
 
 	if (!proj) return;
 	if (!dlg) {
@@ -210,9 +189,11 @@ void prop_dialog(project *proj)
 		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 		w = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
 		gtk_widget_show(w);
-		gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
-					  GTK_SIGNAL_FUNC(prop_help),
-					  NULL);
+		t = gnome_help_file_path("gtt", "ch-dialogs.html");
+		s1 = g_copy_strings("file:///", t, "#s-prop", NULL);
+		g_free(t);
+		gtk_signal_connect(GTK_OBJECT(w), "clicked",
+				   GTK_SIGNAL_FUNC(gnome_help_goto), s1);
 		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 
 		table = GTK_TABLE(gtk_table_new(4, 7, FALSE));

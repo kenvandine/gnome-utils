@@ -1,12 +1,8 @@
 
-GttHelpdir = $(datadir)/gtt
-
 INCLUDES = 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-DHAS_GNOME=1		\
-	-DHELP_PATH=\"$(GttHelpdir)\" 
-	-DHELP_PATH=\"$(GttHelpdir)\"
+	-DHAS_GNOME=1
 
 bin_PROGRAMS = gtt
 
@@ -30,22 +26,12 @@ gtt_SOURCES = \
 	menucmd.h	\
 	app.c		\
 	log.c		\
-	clist.c		\
-	gtthelp.c	\
-	gtthelp.h	\
-	gtt-features.h
+	clist.c
 
 gtt_LDADD = \
 	$(GTKXMHTML_LIBS)	\
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
-
-GttHelp_DATA = \
-	index.html		\
-	ch-dialogs.html		\
-	ch-main.html		\
-	ch-intro.html		\
-	ch-working.html
 
 EXTRA_DIST = \
 	tb_copy.xpm		\
@@ -74,11 +60,21 @@ EXTRA_DIST = \
 Productivitydir = $(datadir)/apps/Productivity
 Productivity_DATA = gtt.desktop
 
-#install-data-local:
-#	 $(mkinstalldirs) $(Utilitiesdir)
-#	 $(INSTALL_DATA) $(srcdir)/gtt.desktop $(Utilitiesdir)/gtt.desktop
-#	 $(mkinstalldirs) $(GTT_HELP_DIR)
-#	 @list='$(GTT_HELP_FILES)' ; for i in $$list; do \
-#		 echo "$(INSTALL_DATA) $(srcdir)/$$i $(GTT_HELP_DIR)/$$i" ; \
-#		 $(INSTALL_DATA) $(srcdir)/$$i $(GTT_HELP_DIR)/$$i ; \
-#	 done
+
+# maybe there is a macro for that?
+
+gtt_helpdir = $(datadir)/gnome/help/gtt/C
+gtt_helpfiles = \
+	topic.dat		\
+	index.html		\
+	ch-dialogs.html		\
+	ch-main.html		\
+	ch-intro.html		\
+	ch-working.html
+
+install-data-local:
+	 $(mkinstalldirs) $(gtt_helpdir)
+	 @list='$(gtt_helpfiles)' ; for i in $$list; do \
+		 echo "$(INSTALL_DATA) $(srcdir)/$$i $(gtt_helpdir)/$$i" ; \
+		 $(INSTALL_DATA) $(srcdir)/$$i $(gtt_helpdir)/$$i ; \
+	 done

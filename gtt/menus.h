@@ -19,6 +19,11 @@
 #ifndef __MENUS_H__
 #define __MENUS_H__
 
+#if 1
+
+
+#else
+
 
 /* menus.c */
 
@@ -42,5 +47,8 @@ int menus_get_toggle_state(char *path);
 int menus_get_sensitive_state(char *path);
 void
 menus_activate (char *path);
+
+
+#endif /* 0 */
 
 #endif

@@ -19,7 +19,6 @@
 #ifndef __GTT_H__
 #define __GTT_H__
 
-#include "gtt-features.h"
 
 #ifdef TIME_WITH_SYS_TIME
 #include <sys/time.h>
@@ -31,7 +30,9 @@
 #include <time.h>
 #endif /* TIME_WITH_SYS_TIME */
 
-#include "menus.h"
+
+typedef struct _project project;
+
 #include "dialog.h"
 #include "menucmd.h"
 #include "toolbar.h"
@@ -45,6 +46,14 @@
 #endif
 
 
+
+/* menus.h */
+
+GtkWidget *menus_get_popup(void);
+void menus_create(GnomeApp *app);
+void menus_set_states(void);
+
+GtkCheckMenuItem *menus_get_toggle_timer(void);
 
 
 /* err.c */
@@ -65,17 +74,12 @@ void stop_timer(void);
 
 /* proj.c */
 
-typedef struct _project {
+struct _project {
 	char *title;
 	int secs, day_secs;
 	char *desc;
-#ifdef GTK_USE_CLIST
         gint row;
-#else /* not GTK_USE_CLIST */
-	GtkLabel *label;
-	GtkLabel *title_label;
-#endif /* not GTK_USE_CLIST */
-} project;
+};
 
 typedef struct _project_list {
 	project *proj;
@@ -127,9 +131,6 @@ void log_endofday(void);
 
 extern project *cur_proj;
 extern GtkWidget *glist, *window;
-#ifndef GNOME_USE_APP
-extern GtkBox *window_vbox;
-#endif
 extern GtkWidget *status_bar;
 extern int config_show_secs;
 extern int config_show_statusbar;
@@ -150,20 +151,12 @@ extern int config_logfile_use, config_logfile_min_secs;
 
 void update_status_bar(void);
 void cur_proj_set(project *p);
-#ifndef GTK_USE_CLIST
-void update_title_label(project *p);
-void update_label(project *p);
-void add_item(GtkWidget *glist, project *p);
-void add_item_at(GtkWidget *glist, project *p, int pos);
-void setup_list(void);
-#endif
 
 void app_new(int argc, char *argv[]);
 
 
 /* clist.c */
 
-#ifdef GTK_USE_CLIST
 GtkWidget *create_clist(void);
 void setup_clist(void);
 void clist_add(project *p);
@@ -171,7 +164,6 @@ void clist_insert(project *p, gint pos);
 void clist_remove(project *p);
 void clist_update_label(project *p);
 void clist_update_title(project *p);
-#endif GTK_USE_CLIST
 
 
 /* main.c */

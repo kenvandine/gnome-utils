@@ -17,7 +17,7 @@
  */
 
 #include <config.h>
-#include <gtk/gtk.h>
+#include <gnome.h>
 
 #include "gtt.h"
  

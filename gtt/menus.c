@@ -17,55 +17,245 @@
  */
 
 #include <config.h>
-#include <gtk/gtk.h>
-
+#include <gnome.h>
 #include <string.h>
 
-#include "gtt-features.h"
-#include "menus.h"
-#include "menucmd.h"
-
-#undef gettext
-#undef _
-#include <libintl.h>
-#define _(String) gettext(String)
+#include "gtt.h"
 
 
-static void menus_init(void);
-static gint
-menus_install_accel (GtkWidget *widget,
-		     gchar     *signal_name,
-		     gchar      key,
-		     gchar      modifiers,
-		     gchar     *path);
-static void
-menus_remove_accel (GtkWidget *widget,
-		    gchar     *signal_name,
-		    gchar     *path);
+static GnomeUIInfo menu_main_file[] = {
+	{GNOME_APP_UI_ITEM, N_("New Project..."), NULL, new_project, NULL,
+		NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW,
+		'N', GDK_CONTROL_MASK, NULL},
+	{GNOME_APP_UI_SEPARATOR},
+	{GNOME_APP_UI_ITEM, N_("Reload Configuration File"), NULL,
+		init_project_list, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN,
+		'R', GDK_CONTROL_MASK, NULL},
+	{GNOME_APP_UI_ITEM, N_("Save Configuration File"), NULL,
+		save_project_list, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE,
+		'S', GDK_CONTROL_MASK, NULL},
+	{GNOME_APP_UI_SEPARATOR},
+	{GNOME_APP_UI_ITEM, N_("Exit"), NULL,
+		quit_app, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT,
+		'Q', GDK_CONTROL_MASK, NULL},
+	{GNOME_APP_UI_ENDOFINFO}
+};
+
+
+static GnomeUIInfo menu_main_edit[] = {
+#define MENU_EDIT_CUT_POS 0
+	{GNOME_APP_UI_ITEM, N_("Cut"), NULL, cut_project, NULL,
+		NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CUT,
+		'X', GDK_CONTROL_MASK, NULL},
+#define MENU_EDIT_COPY_POS 1
+	{GNOME_APP_UI_ITEM, N_("Copy"), NULL,
+		copy_project, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY,
+		'C', GDK_CONTROL_MASK, NULL},
+#define MENU_EDIT_PASTE_POS 2
+	{GNOME_APP_UI_ITEM, N_("Paste"), NULL,
+		paste_project, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PASTE,
+		'V', GDK_CONTROL_MASK, NULL},
+	{GNOME_APP_UI_SEPARATOR},
+#define MENU_EDIT_CDC_POS 4
+	{GNOME_APP_UI_ITEM, N_("Clear Daily Counter"), NULL,
+		menu_clear_daily_counter, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_BLANK,
+		0, 0, NULL},
+#define MENU_EDIT_PROP_POS 5
+	{GNOME_APP_UI_ITEM, N_("Properties..."), NULL,
+		menu_properties, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_BLANK,
+		'E', GDK_CONTROL_MASK, NULL},
+	{GNOME_APP_UI_SEPARATOR},
+	{GNOME_APP_UI_ITEM, N_("Preferences..."), NULL,
+		menu_options, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP,
+		0, 0, NULL},
+	{GNOME_APP_UI_ENDOFINFO}
+};
+
+
+static GnomeUIInfo menu_main_timer[] = {
+#define MENU_TIMER_START_POS 0
+	{GNOME_APP_UI_ITEM, N_("Start"), NULL, menu_start_timer, NULL,
+		NULL, GNOME_APP_PIXMAP_NONE, NULL,
+		'A', GDK_CONTROL_MASK, NULL},
+#define MENU_TIMER_STOP_POS 1
+	{GNOME_APP_UI_ITEM, N_("Stop"), NULL,
+		menu_stop_timer, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL,
+		'P', GDK_CONTROL_MASK, NULL},
+#define MENU_TIMER_TOGGLE_POS 2
+	{GNOME_APP_UI_TOGGLEITEM, N_("Timer Running"), NULL,
+		menu_toggle_timer, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL,
+		'T', GDK_CONTROL_MASK, NULL},
+	{GNOME_APP_UI_ENDOFINFO}
+};
+
+
+static GnomeUIInfo menu_main_help[] = {
+	{GNOME_APP_UI_ITEM, N_("About..."), NULL, about_box, NULL,
+		NULL, GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT,
+		0, 0, NULL},
+	{GNOME_APP_UI_SEPARATOR},
+	{GNOME_APP_UI_HELP, NULL, NULL, "gtt"},
+	{GNOME_APP_UI_ENDOFINFO}
+};
+
+
+static GnomeUIInfo menu_main[] = {
+	{GNOME_APP_UI_SUBTREE, N_("File"), NULL, menu_main_file, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+	{GNOME_APP_UI_SUBTREE, N_("Edit"), NULL, menu_main_edit, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+	{GNOME_APP_UI_SUBTREE, N_("Timer"), NULL, menu_main_timer, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+#define MENU_HELP_POS 3
+	{GNOME_APP_UI_SUBTREE, N_("Help"), NULL, menu_main_help, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+	{GNOME_APP_UI_ENDOFINFO}
+};
 
 
 
-#define MAX_MENU_ITEMS 29
-static void set_menu_item(GtkMenuEntry me[], int i, char *path, char *accel,
-			  GtkMenuCallback func, gpointer data)
+static GnomeUIInfo menu_popup[] = {
+	{GNOME_APP_UI_ITEM, N_("Properties..."), NULL,
+		menu_properties, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_BLANK,
+		0, 0, NULL},
+	{GNOME_APP_UI_SEPARATOR},
+#define MENU_POPUP_CUT_POS 2
+	{GNOME_APP_UI_ITEM, N_("Cut"), NULL,
+		cut_project, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CUT,
+		0, 0, NULL},
+#define MENU_POPUP_COPY_POS 3
+	{GNOME_APP_UI_ITEM, N_("Copy"), NULL,
+		copy_project, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY,
+		0, 0, NULL},
+#define MENU_POPUP_PASTE_POS 4
+	{GNOME_APP_UI_ITEM, N_("Paste"), NULL,
+		paste_project, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PASTE,
+		0, 0, NULL},
+	{GNOME_APP_UI_SEPARATOR},
+	{GNOME_APP_UI_ITEM, N_("Clear Daily Counter"), NULL,
+		menu_clear_daily_counter, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_BLANK,
+		0, 0, NULL},
+	{GNOME_APP_UI_ENDOFINFO}
+};
+
+
+
+
+GtkWidget *
+menus_get_popup(void)
 {
-	g_return_if_fail(i < MAX_MENU_ITEMS);
-	me[i].path = path;
-	me[i].accelerator = accel;
-	me[i].callback = func;
-	me[i].callback_data = data;
-	me[i].widget = NULL;
+	static GtkWidget *menu = NULL;
+	GtkWidget *w;
+	GnomeUIInfo *p;
+
+	if (menu) return menu;
+	menu = gtk_menu_new();
+	for (p = menu_popup; p->type != GNOME_APP_UI_ENDOFINFO; p++) {
+		if (p->type == GNOME_APP_UI_SEPARATOR) {
+			w = gtk_menu_item_new();
+			gtk_widget_show(w);
+			gtk_menu_append(GTK_MENU(menu), w);
+		} else {
+			w = gtk_menu_item_new_with_label(p->label);
+			p->widget = w;
+			gtk_widget_show(w);
+			if (p->moreinfo)
+				gtk_signal_connect(GTK_OBJECT(w), "activate",
+						   (GtkSignalFunc)p->moreinfo,
+						   NULL);
+			gtk_menu_append(GTK_MENU(menu), w);
+		}
+	}
+	return menu;
 }
 
-static GtkMenuEntry *build_menu_items(int *ret_num)
+
+
+void
+menus_create(GnomeApp *app)
 {
-	static GtkMenuEntry menu_items[MAX_MENU_ITEMS];
-	static int i = 0;
-	
-	if (i) {
-		*ret_num = i;
-		return menu_items;
-	}
+	menus_get_popup(); /* initialize it */
+	gnome_app_create_menus(app, menu_main);
+	gtk_menu_item_right_justify(GTK_MENU_ITEM(menu_main[MENU_HELP_POS].widget));
+}
+
+
+
+GtkCheckMenuItem *
+menus_get_toggle_timer(void)
+{
+	return GTK_CHECK_MENU_ITEM(menu_main_timer[MENU_TIMER_TOGGLE_POS].widget);
+}
+
+
+
+void
+menu_set_states(void)
+{
+	GtkCheckMenuItem *mi;
+
+	if (!menu_main_timer[MENU_TIMER_START_POS].widget) return;
+	mi = GTK_CHECK_MENU_ITEM(menu_main_timer[MENU_TIMER_TOGGLE_POS].widget);
+	mi->active = (main_timer != 0);
+	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_START_POS].widget,
+				 (main_timer == 0));
+	gtk_widget_set_sensitive(menu_main_timer[MENU_TIMER_STOP_POS].widget,
+				 (main_timer != 0));
+	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_CUT_POS].widget,
+				 (cur_proj) ? 1 : 0);
+	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_COPY_POS].widget,
+				 (cur_proj) ? 1 : 0);
+	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_PASTE_POS].widget,
+				 (cutted_project) ? 1 : 0);
+	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_CDC_POS].widget,
+				 (cur_proj) ? 1 : 0);
+
+	if (!menu_popup[MENU_POPUP_CUT_POS].widget) return;
+	gtk_widget_set_sensitive(menu_popup[MENU_POPUP_CUT_POS].widget,
+				 (cur_proj) ? 1 : 0);
+	gtk_widget_set_sensitive(menu_popup[MENU_POPUP_COPY_POS].widget,
+				 (cur_proj) ? 1 : 0);
+	gtk_widget_set_sensitive(menu_popup[MENU_POPUP_PASTE_POS].widget,
+				 (cutted_project) ? 1 : 0);
+
+	toolbar_set_states();
+
+#if 0
+	menus_set_state(_("<Main>/Timer/Timer running"), (main_timer == 0) ? 0 : 1);
+	menus_set_sensitive(_("<Main>/Timer/Start"), (main_timer == 0) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Timer/Stop"), (main_timer == 0) ? 0 : 1);
+	menus_set_sensitive(_("<Main>/Edit/Cut"), (cur_proj) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Edit/Copy"), (cur_proj) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Edit/Paste"), (cutted_project) ? 1 : 0);
+	menus_set_sensitive(_("<Popup>/Paste"), (cutted_project) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Edit/Clear Daily Counter"), (cur_proj) ? 1 : 0);
+	menus_set_sensitive(_("<Popup>/Clear Daily Counter"), (cur_proj) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Edit/Properties..."), (cur_proj) ? 1 : 0);
+#endif
+}
+
+
+
+
+
+
+
+#if 0
 	set_menu_item(menu_items, i, _("<Main>/File/New Project..."), _("<control>N"), new_project, NULL); i++;
 	set_menu_item(menu_items, i, _("<Main>/File/<separator>"), NULL, NULL, NULL); i++;
 	set_menu_item(menu_items, i, _("<Main>/File/Reload Configuration File"), _("<control>R"), init_project_list, NULL); i++;
@@ -86,11 +276,6 @@ static GtkMenuEntry *build_menu_items(int *ret_num)
 #ifdef DEBUG
 	set_menu_item(menu_items, i, "<Main>/Test/Test", NULL, menu_test, NULL); i++;
 #endif /* DEBUG */
-#ifdef USE_GTT_HELP
-	set_menu_item(menu_items, i, _("<Main>/Help/Help on Help..."), NULL, menu_help_contents, "help on help"); i++;
-	set_menu_item(menu_items, i, _("<Main>/Help/Contents..."), _("<alt>H"), menu_help_contents, "contents"); i++;
-	set_menu_item(menu_items, i, _("<Main>/Help/<separator>"), NULL, NULL, NULL); i++;
-#endif
 	set_menu_item(menu_items, i, _("<Main>/Help/About..."), NULL, about_box, NULL); i++;
 	set_menu_item(menu_items, i, _("<Popup>/Properties..."), NULL, menu_properties, NULL); i++;
 	set_menu_item(menu_items, i, _("<Popup>/<separator>"), NULL, NULL, NULL); i++;
@@ -99,21 +284,7 @@ static GtkMenuEntry *build_menu_items(int *ret_num)
 	set_menu_item(menu_items, i, _("<Popup>/Paste"), NULL, paste_project, NULL); i++;
 	set_menu_item(menu_items, i, _("<Popup>/<separator>"), NULL, NULL, NULL); i++;
 	set_menu_item(menu_items, i, _("<Popup>/Clear Daily Counter"), NULL, menu_clear_daily_counter, NULL); i++;
-#ifdef DEBUG
-	if (i < MAX_MENU_ITEMS) {
-		g_warning("%d menu items, but MAX_MENU_ITEMS = %d\n", i, MAX_MENU_ITEMS);
-	}
-#endif
-	if (i > MAX_MENU_ITEMS) i = MAX_MENU_ITEMS;
-	*ret_num = i;
-	return menu_items;
-};
-static int nmenu_items = 0;
 
-static int initialize = TRUE;
-static GtkMenuFactory *factory = NULL;
-static GtkMenuFactory *subfactories[MENU_NUM];
-static GHashTable *entry_ht = NULL;
 
 
 void get_menubar(GtkWidget **menubar,
@@ -137,42 +308,43 @@ void get_menubar(GtkWidget **menubar,
 		*table = subfactories[subfact]->table;
 }
 
+
+
 void
 menus_create (GtkMenuEntry *entries,
 	      int           nmenu_entries)
 {
-  char *accelerator;
-  int i;
+	char *accelerator;
+	int i;
+	
+	if (initialize)
+		menus_init ();
+	
+	if (entry_ht)
+		for (i = 0; i < nmenu_entries; i++) {
+			accelerator = g_hash_table_lookup (entry_ht, entries[i].path);
+			if (accelerator) {
+				if (accelerator[0] == '\0')
+					entries[i].accelerator = NULL;
+				else
+					entries[i].accelerator = accelerator;
+			}
+		}
 
-  if (initialize)
-    menus_init ();
+	gtk_menu_factory_add_entries (factory, entries, nmenu_entries);
 
-  if (entry_ht)
-    for (i = 0; i < nmenu_entries; i++)
-      {
-	accelerator = g_hash_table_lookup (entry_ht, entries[i].path);
-	if (accelerator)
-	  {
-	    if (accelerator[0] == '\0')
-	      entries[i].accelerator = NULL;
-	    else
-	      entries[i].accelerator = accelerator;
-	  }
-      }
-
-  gtk_menu_factory_add_entries (factory, entries, nmenu_entries);
-
-  for (i = 0; i < nmenu_entries; i++)
-    if (entries[i].widget && GTK_BIN (entries[i].widget)->child)
-      {
-	gtk_signal_connect (GTK_OBJECT (entries[i].widget), "install_accelerator",
-			    (GtkSignalFunc) menus_install_accel,
-			    entries[i].path);
-	gtk_signal_connect (GTK_OBJECT (entries[i].widget), "remove_accelerator",
-			    (GtkSignalFunc) menus_remove_accel,
-			    entries[i].path);
-      }
+	for (i = 0; i < nmenu_entries; i++)
+		if (entries[i].widget && GTK_BIN (entries[i].widget)->child) {
+			gtk_signal_connect (GTK_OBJECT (entries[i].widget), "install_accelerator",
+					    (GtkSignalFunc) menus_install_accel,
+					    entries[i].path);
+			gtk_signal_connect (GTK_OBJECT (entries[i].widget), "remove_accelerator",
+					    (GtkSignalFunc) menus_remove_accel,
+					    entries[i].path);
+		}
 }
+
+
 
 void
 menus_set_sensitive (char *path,
@@ -373,3 +545,4 @@ menus_remove_accel (GtkWidget *widget,
     }
 }
 
+#endif
