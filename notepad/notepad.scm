@@ -11,7 +11,6 @@
 ;; * Save state correctly
 ;; * Allow user to choose font
 ;; * Set bg on text widget?
-;; * Write About box (it would be nice to have a standard function)
 ;; * A toolbar and a status area at the bottom
 ;; * Search/replace (or use ILU?)
 ;; * Whatever FIXME comments there are
@@ -169,6 +168,21 @@
       (gnome-history-recently-used file "text/plain" "notepad" "FIXME"))))
 
 ;;;
+;;; Fluff.
+;;;
+
+(define about-box
+  (let ((about-widget #f))
+    (lambda ()
+      (or about-widget
+	  (set! about-widget (gnome-about (gettext "Gnome Notepad")
+					  "0.0"	; FIXME
+					  (gettext "Copyright (C) 1998 Free Software Foundation")
+					  "" ""
+					  "Tom Tromey")))
+      (gtk-widget-show about-widget))))
+
+;;;
 ;;; Notepad code.
 ;;;
 
@@ -274,7 +288,7 @@
 
 (define (help-menu)
   (let ((menu (gtk-menu-new)))
-    (add-menu-item menu (gettext "About Gnome Notepad") FIXME)
+    (add-menu-item menu (gettext "About Gnome Notepad") about-box)
     menu))
 
 (define (add-menu menu-bar menu label)
