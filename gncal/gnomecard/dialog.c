@@ -24,8 +24,8 @@ char *phone_type_name[] =
 			 N_("Car"), N_("ISDN"), N_("Video"), NULL };
 
 char *addr_type_name[] =
-                 { N_("Domiciliary"), N_("International"), N_("Postal Box"),
-			 N_("Parcel"), N_("Home"), N_("Work"), NULL };
+                 { N_("Home"), N_("Work"), N_("Postal Box"), N_("Parcel"),
+		   N_("Domestic"), N_("International"), NULL };
 
 typedef struct
 {
@@ -40,7 +40,12 @@ typedef struct
 /* not used       GtkWidget *role; */
 /* not used       GtkWidget *org1, *org2, *org3, *org4; */
 
+        /* Internet Info */
+        GtkWidget *email;
+        GtkWidget *url;
+
         /* Address */
+        GtkWidget *addrtype[6];
         GtkWidget *street1, *street2, *city, *state, *country, *zip;
 	
 	/* Geographical */
@@ -49,7 +54,7 @@ typedef struct
 	
 
 	/* Explanatory */
-	GtkWidget *comment, *url;
+	GtkWidget *comment;
 
 	/* Security */
 	GtkWidget *key, *keypgp;
@@ -75,6 +80,7 @@ typedef struct
 	
 	GList *l;
 } GnomeCardPhone;
+
 
 typedef struct
 {
@@ -206,12 +212,16 @@ extern void gnomecard_edit(GList *node)
 {
 	GnomePropertyBox *box;
 	GnomeCardEditor *ce;
-	GtkWidget *hbox, *hbox2, *vbox, *frame, *table;
+	GtkWidget *hbox, *hbox2, *vbox, *vbox2, *frame, *table;
 	GtkWidget *label, *entry, *align, *align2, *pix;
+	GtkWidget *addrhbox, *addrvbox, *addrtypebox;
+	GtkWidget *addrtypeframe;
 	GtkWidget *radio1, *radio2, *button;
 	GtkObject *adj;
+	GSList    *addrtypegroup=NULL;
 	Card *crd;
 	time_t tmp_time;
+	gint i;
 	
 	ce = g_new0(GnomeCardEditor, 1);
 	ce->l = node;
@@ -303,11 +313,15 @@ extern void gnomecard_edit(GList *node)
 			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
+	/* organization and internet info share same line */
 	/* add organization to identity notetab */
-	frame = gtk_frame_new(_("Organization"));
-	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
+	hbox2 = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox2, FALSE, FALSE, 0);
 
-	table = my_gtk_table_new(4, 1);
+	frame = gtk_frame_new(_("Organization"));
+	gtk_box_pack_start(GTK_BOX(hbox2), frame, TRUE, FALSE, 0);
+
+	table = my_gtk_table_new(2, 2);
 	gtk_container_add(GTK_CONTAINER(frame), table);
 
 	label = gtk_label_new(_("Name:"));
@@ -324,27 +338,25 @@ extern void gnomecard_edit(GList *node)
 	label = gtk_label_new(_("Title:"));
 	ce->title = entry = my_gtk_entry_new(0, crd->title.str);
 	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE);
-	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
+	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1,
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 1, 2,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
-	/* add address(es) to identity notetab */
-	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-	frame = gtk_frame_new(_("Address"));
-	gtk_box_pack_start(GTK_BOX(hbox), frame, FALSE, FALSE, 0);
-	
-	table = my_gtk_table_new(1, 5);
+	/* internet related information */
+	frame = gtk_frame_new(_("Internet Info"));
+	gtk_box_pack_start(GTK_BOX(hbox2), frame, TRUE, FALSE, 0);
+
+	table = my_gtk_table_new(2, 2);
 	gtk_container_add(GTK_CONTAINER(frame), table);
 
-	label = gtk_label_new(_("Street 1:"));
+	label = gtk_label_new(_("Email Address:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
-	ce->street1 = entry = my_gtk_entry_new(0, crd->org.name);
-	my_connect(entry, "changed", box, &crd->.prop, PROP_ORG);
+	ce->email = entry = my_gtk_entry_new(0, "email@address.here");
+/*	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG); */
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
@@ -352,13 +364,130 @@ extern void gnomecard_edit(GList *node)
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK,
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
-	label = gtk_label_new(_("Title:"));
-	ce->title = entry = my_gtk_entry_new(0, crd->title.str);
-	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE);
-	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
+	label = gtk_label_new(_("Homepage URL:"));
+	ce->url = entry = my_gtk_entry_new(0, crd->url.str);
+	my_connect(entry, "changed", box, &crd->url.prop, PROP_URL);
+	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1,
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 1, 2,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	/* add address notetab */
+	align = gtk_alignment_new(0.0, 0.0, 0, 0);
+	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+        gtk_container_add (GTK_CONTAINER (align), hbox);
+	label = gtk_label_new(_("Addresses"));
+	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), align, label);
+
+	/* make a frame for the address entry area */
+	frame = gtk_frame_new(_("Address"));
+	gtk_box_pack_start(GTK_BOX(hbox), frame, FALSE, FALSE, 0);
+
+	/* make a hbox for entire address entry area */
+	addrhbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_container_add(GTK_CONTAINER(frame), addrhbox);
+
+	/* first have the address type entry area */
+	addrtypebox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_start(GTK_BOX(addrhbox), addrtypebox, FALSE, FALSE, 
+			   GNOME_PAD_SMALL);
+
+
+	addrtypeframe = gtk_frame_new(_("Select address to edit:"));
+	gtk_frame_set_label_align(GTK_FRAME(addrtypeframe), 0.5, 0.5);
+	gtk_box_pack_start(GTK_BOX(addrtypebox), addrtypeframe,FALSE,FALSE, 0);
+
+	/* enter address types (based on Vcal standard I guess) */
+	addrvbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
+	gtk_container_add(GTK_CONTAINER(addrtypeframe), addrvbox);
+
+	for (i = 0; i < 6; i++) {
+		ce->addrtype[i] = gtk_radio_button_new_with_label(addrtypegroup, addr_type_name[i]);
+		addrtypegroup = gtk_radio_button_group(GTK_RADIO_BUTTON(ce->addrtype[i]));
+		gtk_object_set_user_data(GTK_OBJECT(ce->addrtype[i]), (gpointer) (1 << i));
+		gtk_box_pack_start(GTK_BOX(addrvbox), ce->addrtype[i], FALSE, FALSE, 0);
+
+		gtk_toggle_button_set_state( GTK_TOGGLE_BUTTON(ce->addrtype[i]),
+					     (i == 0) );
+
+	}
+
+	/* make the actual entry boxes for entering the address */
+	table = my_gtk_table_new(2, 6);
+	gtk_box_pack_start(GTK_BOX(addrhbox), table, TRUE, FALSE, 0);
+
+	label = gtk_label_new(_("Street 1:"));
+	align = gtk_alignment_new(1.0, 0.5, 0, 0);
+        gtk_container_add (GTK_CONTAINER (align), label);
+	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
+	ce->street1 = entry = my_gtk_entry_new(0, "Street1");
+/*	my_connect(entry, "changed", box, &crd->.prop, PROP_ORG); */
+	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK,
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	label = gtk_label_new(_("Street 2:"));
+	align = gtk_alignment_new(1.0, 0.5, 0, 0);
+        gtk_container_add (GTK_CONTAINER (align), label);
+	ce->street2 = entry = my_gtk_entry_new(0, "Street2");
+/*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
+	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 1, 2,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 1, 2,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	label = gtk_label_new(_("City:"));
+	align = gtk_alignment_new(1.0, 0.5, 0, 0);
+        gtk_container_add (GTK_CONTAINER (align), label);
+	ce->city = entry = my_gtk_entry_new(0, "City");
+/*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
+	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 2, 3,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 2, 3,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	label = gtk_label_new(_("State:"));
+	align = gtk_alignment_new(1.0, 0.5, 0, 0);
+        gtk_container_add (GTK_CONTAINER (align), label);
+	ce->state = entry = my_gtk_entry_new(0, "State");
+/*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
+	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 3, 4,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 3, 4,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	label = gtk_label_new(_("Zip Code:"));
+	align = gtk_alignment_new(1.0, 0.5, 0, 0);
+        gtk_container_add (GTK_CONTAINER (align), label);
+	ce->zip = entry = my_gtk_entry_new(0, "Street2");
+/*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
+	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 4, 5,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 4, 5,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+	label = gtk_label_new(_("Country:"));
+	align = gtk_alignment_new(1.0, 0.5, 0, 0);
+        gtk_container_add (GTK_CONTAINER (align), label);
+	ce->country = entry = my_gtk_entry_new(0, "Country");
+/*	my_connect(entry, "changed", box, &crd->title.prop, PROP_TITLE); */
+	gtk_table_attach(GTK_TABLE(table), align, 0, 1, 5, 6,
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 0, 0);
+	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 5, 6,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
@@ -388,7 +517,6 @@ extern void gnomecard_edit(GList *node)
 */
 
 	/* Geographical */
-	
 	align2 = gtk_alignment_new(0.5, 0.5, 0, 0);
 	hbox2 = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
         gtk_container_add (GTK_CONTAINER (align2), hbox2);
@@ -469,6 +597,7 @@ extern void gnomecard_edit(GList *node)
 					 entry->style->font->descent) * 4);
 	my_connect(entry, "changed", box, &crd->comment.prop, PROP_COMMENT);
 	
+/* URL is above now 
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 	label = gtk_label_new(_("URL:"));
 	ce->url = entry = my_gtk_entry_new(0, crd->url.str);
@@ -476,6 +605,7 @@ extern void gnomecard_edit(GList *node)
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+*/
 
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, GNOME_PAD);

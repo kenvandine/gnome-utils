@@ -58,12 +58,12 @@ enum PhotoType
 
 enum AddrType
 {
-	ADDR_DOM    = 1 << 0,
-	ADDR_INTL   = 1 << 1, 
+	ADDR_HOME   = 1 << 0, 
+	ADDR_WORK   = 1 << 1,
 	ADDR_POSTAL = 1 << 2, 
 	ADDR_PARCEL = 1 << 3, 
-	ADDR_HOME   = 1 << 4, 
-	ADDR_WORK   = 1 << 5
+	ADDR_DOM    = 1 << 4,
+	ADDR_INTL   = 1 << 5 
 };
 
 enum PhoneType
