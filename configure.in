@@ -48,6 +48,29 @@ PKG_CHECK_MODULES(LIBGLADE, libglade-2.0 >= $LIBGLADE_REQUIRED)
 AC_SUBST(LIBGLADE_CFLAGS)
 AC_SUBST(LIBGLADE_LIBS)
 
+dnl ****************************************
+dnl HAL for floppy detection in gfloppy
+dnl ****************************************
+AC_ARG_ENABLE(hal,
+AC_HELP_STRING([--enable-hal],[use hal, if available]),
+[case "${enableval}" in
+yes) ENABLE_HAL=yes ;;
+no)  ENABLE_HAL=no ;;
+*) AC_MSG_ERROR(bad value ${enableval} for --enable-hal) ;;
+esac],
+[ENABLE_HAL=yes]) dnl Default value
+
+if test "x$ENABLE_HAL" = "xyes"; then
+	PKG_CHECK_MODULES(HAL, hal >= 0.4.0,
+		AC_DEFINE(USE_HAL, 1, [defined if using libhal]),
+		[ USE_HAL=""])
+else
+	USE_HAL=""
+fi
+
+AC_SUBST(HAL_CFLAGS)
+AC_SUBST(HAL_LIBS)
+
 dnl *****************************
 dnl popt is needed for most utils
 dnl *****************************
