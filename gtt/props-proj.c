@@ -268,6 +268,14 @@ do_set_project(GttProject *proj, PropDlg *dlg)
 #define DATED(NAME) ({						\
 	GtkWidget *widget;					\
 	widget = glade_xml_get_widget (gtxml, NAME);		\
+	gtk_signal_connect_object(GTK_OBJECT(			\
+		GNOME_DATE_EDIT(widget)->date_entry), "changed",\
+		GTK_SIGNAL_FUNC(gnome_property_box_changed), 	\
+		GTK_OBJECT(dlg->dlg));				\
+	gtk_signal_connect_object(GTK_OBJECT(			\
+		GNOME_DATE_EDIT(widget)->time_entry), "changed",\
+		GTK_SIGNAL_FUNC(gnome_property_box_changed), 	\
+		GTK_OBJECT(dlg->dlg));				\
 	gtk_signal_connect_object(GTK_OBJECT(widget), "date_changed",\
 		GTK_SIGNAL_FUNC(gnome_property_box_changed), 	\
 		GTK_OBJECT(dlg->dlg));				\
