@@ -1568,6 +1568,10 @@ gtt_interval_split (GttInterval *ivl)
 		node->prev->next = NULL;
 		node->prev = NULL;
 	}
+	else
+	{
+		prnt->interval_list = NULL;
+	}
 
 	newtask->interval_list = node;
 
