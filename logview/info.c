@@ -77,9 +77,6 @@ LogInfo (GtkWidget * widget, gpointer user_data)
    gtk_signal_connect (GTK_OBJECT (InfoDialog), "destroy",
 		       (GtkSignalFunc) CloseLogInfo,
 		       &InfoDialog);
-   gtk_signal_connect (GTK_OBJECT (InfoDialog), "delete_event",
-		       (GtkSignalFunc) CloseLogInfo,
-		       &InfoDialog);
    gtk_window_set_title (GTK_WINDOW (InfoDialog), _("Log stats"));
    gtk_container_set_border_width (GTK_CONTAINER (InfoDialog), 0);
    gtk_widget_set_style (InfoDialog, cfg->main_style);
@@ -131,6 +128,29 @@ LogInfo (GtkWidget * widget, gpointer user_data)
    loginfovisible = TRUE;
 }
 
+static int
+get_max_len (void)
+{
+	int len = 5;
+	int i;
+	char *strings[] = {
+		"Log:",
+		"Size:",
+		"Modified:",
+		"Start date:",
+		"Last date:",
+		"Num. lines:",
+		NULL
+	};
+	for (i = 0; strings[i] != NULL; i++) {
+		int l = g_utf8_strlen (_(strings[i]), 1024);
+		if (l > len)
+			len = l;
+	}
+	return len+1;
+}
+
+
 /* ----------------------------------------------------------------------
    NAME:          RepaintLogInfo
    DESCRIPTION:   Repaint the log info window.
@@ -149,6 +169,7 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
    PangoContext *context;
    PangoFontMetrics *metrics;
    PangoFont *font;
+   int max_len;
 
    canvas = info_canvas->window;
    win_width = info_canvas->allocation.width;
@@ -164,10 +185,16 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
    ah = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
    dh = PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
    h = dh + ah;
+
+   /* Note: we use a real translated string that will appear below to gather
+    * the length, that way we'll get semi correct results with a lot more
+    * fonts */
    pango_layout_set_font_description (stat_layout, cfg->fixedb);
-   pango_layout_set_text (stat_layout, "X", -1);
+   pango_layout_set_text (stat_layout, _("Date:"), -1);
    pango_layout_get_pixel_extents (stat_layout, NULL, &logical_rect);
-   w = logical_rect.width;
+   w = logical_rect.width / g_utf8_strlen (_("Date:"), 1024);
+   max_len = get_max_len ();
+
    x = 5;
    y = ah + 6;
    gdk_gc_set_foreground (gc, &cfg->blue);
@@ -191,19 +218,19 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
 	     (font, pango_context_get_language (context));
    af = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
    df = PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
-   gdk_draw_rectangle (canvas, gc, TRUE, 15*w+6, 
+   gdk_draw_rectangle (canvas, gc, TRUE, max_len*w+6, 
 		       y - af-3, 
-		       win_width - 9 - 15*w, 
+		       win_width - 9 - max_len*w, 
 		       win_height - (y - af));
    gdk_gc_set_foreground (gc, &cfg->gray75);
    gdk_draw_rectangle (canvas, gc, TRUE, 3, y-af-3, 
-		       15*w, win_height - (y - af));
+		       max_len*w, win_height - (y - af));
 
    /* Draw Info */
    gdk_gc_set_foreground (gc, &cfg->black);
    pango_layout_set_font_description (stat_layout, cfg->fixedb);
    pango_layout_set_text (stat_layout, _("Log:"), -1);
-   gdk_draw_layout (canvas, gc, x+3, y, stat_layout);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    pango_layout_set_text (stat_layout, _("Size:"), -1);
    gdk_draw_layout (canvas, gc, x, y, stat_layout);
@@ -227,7 +254,7 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
    h = dh + ah;
    y = ah + 6;
    y += 9 + dh + afdb;
-   x = 15*w + 6 + 2;
+   x = max_len*w + 6 + 2;
    g_snprintf (buffer, sizeof (buffer), "%s", curlog->name);
    h = dfdb + afdb+2;
    pango_layout_set_font_description (stat_layout, cfg->fixed);
@@ -281,7 +308,8 @@ CloseLogInfo (GtkWidget * widget, GtkWindow ** window)
    InfoDialog = NULL;
    loginfovisible = FALSE;
 
-   if (G_IS_OBJECT (stat_layout))
+   if (stat_layout != NULL)
       g_object_unref (G_OBJECT (stat_layout));
+   stat_layout = NULL;
 }
 

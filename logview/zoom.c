@@ -84,13 +84,13 @@ create_zoom_view (GtkWidget *widget, gpointer data)
   
         g_signal_connect (G_OBJECT (zoom_dialog), "response",
 		          G_CALLBACK (close_zoom_view),
-		            &zoom_dialog);
+			  &zoom_dialog);
    	g_signal_connect (G_OBJECT (zoom_dialog), "destroy",
 		          G_CALLBACK (quit_zoom_view),
-		            &zoom_dialog);
+			  &zoom_dialog);
         g_signal_connect (G_OBJECT (zoom_dialog), "delete_event",
 		          G_CALLBACK (gtk_true),
-		            NULL);
+			  NULL);
    	
 	gtk_dialog_set_default_response (GTK_DIALOG (zoom_dialog), GTK_RESPONSE_CLOSE);
    	gtk_container_set_border_width (GTK_CONTAINER (zoom_dialog), 0);
@@ -151,6 +151,27 @@ create_zoom_view (GtkWidget *widget, gpointer data)
    zoom_visible = TRUE;
 }
 
+static int
+get_max_len (void)
+{
+	int len = 5;
+	int i;
+	char *strings[] = {
+		"Date:",
+		"Process:",
+		"Message:",
+		"Description:",
+		NULL
+	};
+	for (i = 0; strings[i] != NULL; i++) {
+		int l = g_utf8_strlen (_(strings[i]), 1024);
+		if (l > len)
+			len = l;
+	}
+	return len+1;
+}
+
+
 /* ----------------------------------------------------------------------
    NAME:          repaint_zoom
    DESCRIPTION:   Repaint the zoom window.
@@ -172,6 +193,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    PangoFont *font;
    PangoRectangle logical_rect;
    char *utf8;
+   int max_len;
 
    canvas = zoom_canvas->window;
    win_width = zoom_canvas->allocation.width;
@@ -192,10 +214,15 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    ah = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
    dh = PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
    h = dh + ah;
-   pango_layout_set_text (zoom_layout, "X", -1);
+   /* Note: we use a real translated string that will appear below to gather
+    * the length, that way we'll get semi correct results with a lot more
+    * fonts */
+   pango_layout_set_text (zoom_layout, _("Date:"), -1);
    pango_layout_set_font_description (zoom_layout, cfg->fixedb);
    pango_layout_get_pixel_extents (zoom_layout, NULL, &logical_rect);
-   w = logical_rect.width;
+   w = logical_rect.width / g_utf8_strlen (_("Date:"), 1024);
+   max_len = get_max_len ();
+
    x = 5;
    y = ah + 6;
    gdk_gc_set_foreground (gc, &cfg->blue);
@@ -231,14 +258,14 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    df = PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
 
    gdk_gc_set_foreground (gc, &cfg->blue3);
-   gdk_draw_rectangle (canvas, gc, TRUE, 15*w+6, 
+   gdk_draw_rectangle (canvas, gc, TRUE, max_len*w+6, 
 		       y - af-3, 
-		       win_width - 9 - 15*w, 
+		       win_width - 9 - max_len*w, 
 		       win_height - (y - af) );
    gdk_gc_set_foreground (gc, &cfg->gray75);
    gdk_draw_rectangle (canvas, gc, TRUE, 3, 
 		       y-af-3, 
-		       15*w, win_height - (y - af) );
+		       max_len*w, win_height - (y - af) );
 
    gdk_gc_set_foreground (gc, &cfg->black);
    pango_layout_set_text (zoom_layout, _("Date:"), -1);
@@ -262,7 +289,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    h = dh + ah;
    y = ah + 6;
    y += 9 + dh + afdb;
-   x = 15*w + 6 + 2;
+   x = max_len*w + 6 + 2;
    h = dfdb + afdb;
 
    line = &(curlog->pointerpg->line[curlog->pointerln]);
@@ -305,7 +332,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    if (match_line_in_db (line, regexp_db))
      {
        if (find_tag_in_db (line, descript_db))
-	 draw_parbox (canvas, cfg->fixed, gc, x, y+4, 380,
+	 draw_parbox (canvas, cfg->fixed, gc, x, y+4, 360,
 			  line->description->description, 8);
      }
 
@@ -431,7 +458,8 @@ close_zoom_view (GtkWidget *widget, gpointer data)
 void
 quit_zoom_view (GtkWidget *widget, gpointer data) {
 
-	if (G_IS_OBJECT (zoom_layout))
+	if (zoom_layout != NULL)
 		g_object_unref (G_OBJECT (zoom_layout));
-	gtk_widget_destroy (GTK_WIDGET (zoom_dialog));
+	zoom_layout = NULL;
+	zoom_dialog = NULL;
 }

@@ -32,10 +32,15 @@
  */
 
 #define FIXED_12_FONT      _("fixed 12") 
+/* Translators: It seems for asian languages the Bold seems not to work */
 #define FIXED_12_BFONT     _("fixed Bold 12")
 #define FIXED_10_FONT      _("fixed 10")
+/* Translators: It seems for asian languages the Bold seems not to work */
 #define FIXED_8_BFONT     _("fixed Bold 8")
 
+/* Translators: translate to fonts that appear well in the log viewer,
+ * for example for asian languages, helvetica seems not to work
+ * well for those */
 #define HELVETICA_14_FONT  _("Helvetica 14")
 #define HELVETICA_14_BFONT _("Helvetica Bold 14")
 #define HELVETICA_12_FONT  _("Helvetica 12")

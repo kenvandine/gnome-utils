@@ -1,3 +1,16 @@
+Fri May 17 10:09:46 2002  George Lebl <jirka@5z.com>
+
+	* config.c: add note to translators about fonts, especially about
+	  Helvetica vs asian fonts
+
+	* info.c, zoom.c: fix crashes on window closing, also add more
+	  elaborate logic for figuring out the size of the label area,
+	  still quite stupid, but now it gets it wrong by getting more space
+	  rather then less which is nicer.  Also better get single char
+	  width info in an uglier, more elaborate and hackish way but
+	  in a way that we get more correct.  Some more geometry fixage
+	  to get asian fonts right.
+
 Thu May 16 18:39:42 2002  George Lebl <jirka@5z.com>
 
 	* info.c, log_repaint.c, logview.h, misc.c, zoom.c:
