@@ -17,7 +17,8 @@ gshutdown_LDADD = \
 
 EXTRA_DIST = \
 	topic.dat		\
-	gshutdown.html
+	gshutdown.html		\
+	gshutdown.desktop
 
 gshutdown_helpdir = $(datadir)/gnome/help/gshutdown/C
 
@@ -28,5 +29,3 @@ install-data-local:
 
 Systemdir = $(datadir)/apps/System
 System_DATA = gshutdown.desktop
-
-EXTRA_DIST = gshutdown.desktop
