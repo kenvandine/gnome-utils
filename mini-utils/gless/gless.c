@@ -270,49 +270,25 @@ int main ( int argc, char ** argv )
   ******************************/
 
 static GnomeUIInfo help_menu[] = {
-  GNOMEUIINFO_HELP(APPNAME),
-  {GNOME_APP_UI_ITEM, N_("_About..."), 
-   N_("Tell about this application"), 
-   about_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL },
-  GNOMEUIINFO_END
+	GNOMEUIINFO_HELP(APPNAME),
+	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
+	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo file_menu[] = {
-  {GNOME_APP_UI_ITEM, 
-   N_("_New Window"), N_("New text viewer window"), 
-   new_app_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'n', 
-   GDK_CONTROL_MASK, NULL },
-  {GNOME_APP_UI_ITEM, 
-   N_("_Open..."), N_("Open a new file in this window"), 
-   open_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN, 'o', 
-   GDK_CONTROL_MASK, NULL },
-  {GNOME_APP_UI_ITEM, 
-   N_("Save _As..."), N_("Save file to disk"), 
-   save_as_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 's', 
-   GDK_CONTROL_MASK, NULL },
-  {GNOME_APP_UI_ITEM, N_("_Close"), 
-   N_("Close this window"),
-   close_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'c', 
-   GDK_CONTROL_MASK, NULL },
-  GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_NEW_ITEM(N_("_New Window"),
+				  N_("New text viewer window"), 
+				  new_app_cb, NULL),
+	GNOMEUIINFO_MENU_OPEN_ITEM(open_cb,NULL),
+	GNOMEUIINFO_MENU_SAVE_AS_ITEM(save_as_cb,NULL),
+	GNOMEUIINFO_SEPARATOR,
 #if 0
-  {GNOME_APP_UI_ITEM, N_("_Preferences..."), 
-   N_("Change application preferences"),
-   preferences_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'p', 
-   GDK_CONTROL_MASK, NULL },
+	GNOMEUIINFO_MENU_PREFERENCES_ITEM(preferences_cb,NULL),
+	GNOMEUIINFO_SEPARATOR,
 #endif
-  {GNOME_APP_UI_ITEM, N_("E_xit"), 
-   N_("Quit the application"),
-   exit_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x', 
-   GDK_CONTROL_MASK, NULL },
-  GNOMEUIINFO_END
+	GNOMEUIINFO_MENU_CLOSE_ITEM(close_cb,NULL),
+	GNOMEUIINFO_MENU_EXIT_ITEM(exit_cb,NULL),
+	GNOMEUIINFO_END
 };
 
 static GnomeUIInfo view_menu[] = {
@@ -325,10 +301,10 @@ static GnomeUIInfo view_menu[] = {
 };
 
 static GnomeUIInfo main_menu[] = {
-  GNOMEUIINFO_SUBTREE (N_("_File"), file_menu),
-  GNOMEUIINFO_SUBTREE (N_("_View"), view_menu),
-  GNOMEUIINFO_SUBTREE (N_("_Help"), help_menu),
-  GNOMEUIINFO_END
+	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
+	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
+	GNOMEUIINFO_END
 };
 
 static void gless_new_app(const gchar * filename, const gchar * geometry,
