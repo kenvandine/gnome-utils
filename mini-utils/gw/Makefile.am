@@ -17,4 +17,7 @@ gw_LDADD = \
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_DATA = gw.desktop
 
-EXTRA_DIST = gw.desktop
+pixmapdir = $(datadir)/pixmaps
+pixmap_DATA = gnome-who.png
+
+EXTRA_DIST = gw.desktop gnome-who.png
