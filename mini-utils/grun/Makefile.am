@@ -1,18 +1,11 @@
 
 INCLUDES = 			\
-	-I$(includedir)		\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	$(GNOME_INCLUDEDIR)
+	-I$(includedir)
 
 bin_PROGRAMS = grun
 
 grun_SOURCES = \
 	grun.c
 
-grun_LDADD = \
-	$(GTK_LIBS) \
-	$(GNOME_LIBDIR)         \
-	$(GTKXMHTML_LIBS)	\
-	$(GNOMEUI_LIBS) 	\
-	$(INTLLIBS)
+grun_LDADD = $(GTK_LIBS)
 

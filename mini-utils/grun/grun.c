@@ -39,7 +39,6 @@ main(int argc, char *argv[])
 	gtk_init(&argc, &argv);
 
 	thewin = gtk_window_new(GTK_WINDOW_DIALOG);
-	gtk_window_set_title(GTK_WINDOW(thewin), "Run program");
 	gtk_window_position(GTK_WINDOW(thewin), GTK_WIN_POS_CENTER);
 	gtk_window_set_policy(GTK_WINDOW(thewin), FALSE, FALSE, TRUE);
 	gtk_signal_connect(GTK_OBJECT(thewin), "delete_event",
