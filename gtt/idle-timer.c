@@ -53,6 +53,7 @@
 
 /* #define DEBUG_TIMERS */
 
+#include <errno.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
@@ -199,11 +200,12 @@ notice_events (IdleTimeout *si, Window window, Bool top_p)
   if (top_p && (events & KeyPressMask))
     {
       /* Only mention one window per tree  */
-      /* hack alert -- why does this print statment never go ???? */
+#ifdef DEBUG
+      /* hack alert -- why does this print statment almost never go ???? */
       /* key-press events certainly *do* seem to get delivered, so they
        * must have been selected for ??? */
-      printf ("duude selected KeyPress on 0x%lX\n", 
-	       (unsigned long) window);
+       printf ("duude selected KeyPress on 0x%lX\n", (unsigned long) window);
+#endif
       top_p = False;
     }
 
@@ -638,8 +640,9 @@ static Bool
 if_event_predicate (Display *dpy, XEvent *ev, XPointer arg)
 {
   IdleTimeout *si = (IdleTimeout *) arg;
-
-printf ("duude event type %d\n", ev->xany.type);
+#ifdef DEBUG
+  printf ("duude event type %d\n", ev->xany.type);
+#endif
   switch (ev->xany.type) 
   {
     case KeyPress:
@@ -703,9 +706,9 @@ idle_timeout_main_loop (gpointer data)
      tv.tv_sec = 1;
      tv.tv_usec = 0;
      retval = select(fd+1, &rfds, NULL, NULL, &tv);
-     if (0 > retval)
+     if ((0 > retval) && (EAGAIN != errno) && (EINTR != errno))
      {
-        printf ("duuude fatal error \n");
+        printf ("GTT: fatal error in select %d, %s\n", errno, strerror(errno));
         gtk_main_quit();
         return 0;
      }

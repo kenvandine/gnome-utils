@@ -53,7 +53,6 @@ timer_func(gpointer data)
 	{
 		int idle_time;
 		idle_time = time(0) - poll_last_activity (idt);
-printf ("duuude man yeah idle %ld secs \n", idle_time);
 		if (idle_time > config_idle_timeout) 
 		{
 			ctree_unselect (cur_proj);
