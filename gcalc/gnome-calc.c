@@ -383,7 +383,7 @@ set_result(GnomeCalc *gc)
 		return;
 
 	gc->_priv->result = stack->d.number;
-
+	
         /* make sure put values in a consistent manner */
 	/* XXX: perhaps we can make sure the calculator works on all locales,
 	 * but currently it will lose precision if we don't do this */
@@ -442,19 +442,20 @@ convert_num(gdouble num, GnomeCalcMode from, GnomeCalcMode to)
 {
 	if(to==from)
 		return num;
-	else if(from==GNOME_CALC_DEG)
+	else if(from==GNOME_CALC_DEG) {
 		if(to==GNOME_CALC_RAD) {
-			if (abs (num - 90) < 0.000001)
+			if (fabs (num - 90) < 0.000001)
 				return M_PI_2;
-			else if (abs (num - 180) < 0.000001)
+			else if (fabs (num - 180) < 0.000001)
 				return M_PI;
-			else if (abs (num - 45) < 0.000001)
+			else if (fabs (num - 45) < 0.000001)
 				return M_PI_4;
-			else if (abs (num - 360) < 0.000001)
+			else if (fabs (num - 360) < 0.000001)
 				return 2*M_PI;
 			return (num*M_PI)/180;
 		} else /*GRAD*/
 			return (num*200)/180;
+	}
 	else if(from==GNOME_CALC_RAD)
 		if(to==GNOME_CALC_DEG) {
 			if (num == M_PI)
@@ -525,13 +526,13 @@ simple_func(GtkWidget *w, gpointer data)
 		unselect_invert(gc);
 		return;
 	}
-
+	
 	/*only convert non inverting functions*/
 	if(!gc->_priv->invert && but->convert_to_rad)
 		stack->d.number = convert_num(stack->d.number,
 					      gc->_priv->mode,
 					      GNOME_CALC_RAD);
-
+	
 	errno = 0;
 	{
 		sighandler_t old = signal(SIGFPE,sigfpe_handler);
@@ -541,20 +542,20 @@ simple_func(GtkWidget *w, gpointer data)
 			stack->d.number = (*invfunc)(stack->d.number);
 		signal(SIGFPE,old);
 	}
-
+	
 	if(errno>0 ||
 	   finite(stack->d.number)==0) {
 		errno = 0;
 		do_error(gc);
 		return;
 	}
-
+	
 	/*we are converting back from rad to mode*/
 	if(gc->_priv->invert && but->convert_to_rad)
 		stack->d.number = convert_num(stack->d.number,
 					      GNOME_CALC_RAD,
 					      gc->_priv->mode);
-
+	
 	set_result(gc);
 
 	unselect_invert(gc);
@@ -1080,7 +1081,8 @@ static double
 sin_helper (double value)
 {
 	double ret = sin (value);
-	if (abs (ret) <= sin (M_PI))
+	
+	if (fabs (ret) <= sin (M_PI)) 
 		return 0.0;
 	else
 		return ret;
@@ -1090,7 +1092,7 @@ static double
 cos_helper (double value)
 {
 	double ret = cos (value);
-	if (abs (ret) <= cos (M_PI_2))
+	if (fabs (ret) <= cos (M_PI_2))
 		return 0.0;
 	else
 		return ret;
