@@ -677,7 +677,8 @@ gsearchtool_hig_dialog_new (GtkWindow      *parent,
 	gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 	gtk_widget_show (vbox);
 	
-	title = g_strconcat ("<b>", header, "</b>", NULL);
+	title = g_strconcat ("<span weight=\"bold\" size=\"larger\">", 
+	                     header, "</span>", NULL);
 	label = gtk_label_new (title);  
 	gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 	gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
