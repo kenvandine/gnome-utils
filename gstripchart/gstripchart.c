@@ -1241,8 +1241,10 @@ exit_callback(void)
 GnomeUIInfo file_menu[] =
 {
 #if 0
-  // FIX THIS: Trying to use an event handler (click_handler) as a
-  // callback doesn't work.
+  /*
+     FIX THIS: Trying to use an event handler (click_handler) as a
+     callback doesn't work.
+  */
   {
     GNOME_APP_UI_ITEM, N_("Params"), N_("Examine and adjust parameters"), 
     click_handler, NULL, NULL, 
@@ -1351,7 +1353,7 @@ prefs_callback(GtkWidget *chart, gpointer unused)
   GtkWidget *dialog, *notebook, *vbox, *clist, *active, *label;
 
   notebook = gtk_notebook_new();
-  // gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_TOP);
+/*    gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_TOP); */
 
   param_active = realloc(
     param_active, chart_glob.params * sizeof(*param_active));
@@ -1648,7 +1650,7 @@ gtk_graph(void)
 static int
 proc_arg(int opt, const char *arg)
 {
-  // printf("proc_arg: opt=%c (0x%02x), arg=%s\n", isgraph(c)?c:'.', opt, arg);
+  /*  printf("proc_arg: opt=%c (0x%02x), arg=%s\n", isgraph(c)?c:'.', opt, arg); */
 
   switch (opt)
     {
