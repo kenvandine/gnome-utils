@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-01 12:44+0200\n"
-"PO-Revision-Date: 2003-06-01 12:29+0200\n"
+"POT-Creation-Date: 2003-08-01 00:26+0200\n"
+"PO-Revision-Date: 2003-08-01 00:21+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Accessoires"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:279
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "Rechercher dans un dictionnaire"
 
@@ -54,8 +54,8 @@ msgstr "_Afficher le dictionnaire"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:510 gdictsrc/gdict-speller.c:459
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:459
 msgid "Cannot connect to server"
 msgstr "Ne peut se connecter au serveur"
 
@@ -78,9 +78,10 @@ msgstr ""
 "Contributeur :\n"
 "Christophe Fergeau <teuf@users.sourceforge.net>"
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "Dictionnaire GNOME"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Dictionnaire"
 
 #: gdictsrc/gdict-about.c:58
 msgid "A client for the MIT dictionary server."
@@ -96,7 +97,7 @@ msgstr "Vérification orthographique effectuée"
 
 #: gdictsrc/gdict-app.c:141 gdictsrc/gdict-app.c:285
 msgid "No matches found"
-msgstr "Aucune correspondances trouvées"
+msgstr "Aucune correspondance trouvée"
 
 #: gdictsrc/gdict-app.c:268
 msgid "Looking up word..."
@@ -149,10 +150,6 @@ msgstr "Vérifier l'orthographe du mot"
 msgid "_Dictionary"
 msgstr "_Dictionnaire"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Dictionnaire"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Mot :"
@@ -174,7 +171,7 @@ msgstr "Saisissez un mot ou choisissez en un dans la liste ci-dessous"
 msgid "Look Up for a Word"
 msgstr "Rechercher un mot"
 
-#: gdictsrc/gdict-applet.c:272
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "_Rechercher"
 
@@ -191,75 +188,75 @@ msgstr "Préférences du dictionnaire"
 msgid "Smart _lookup"
 msgstr "Recherche _intelligente"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "_Server:"
 msgstr "_Serveur :"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:207
 msgid "De_fault Server"
 msgstr "Serveur par _défaut"
 
-#: gdictsrc/gdict-pref-dialog.c:214
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset server to default"
 msgstr "Revenir au serveur par défaut"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:224
 msgid "_Port:"
 msgstr "_Port :"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Def_ault Port"
 msgstr "Port par dé_faut"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:250
 msgid "Reset port to default"
 msgstr "Revenir au port par défaut"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Server"
 msgstr "Serveur"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Server Entry"
 msgstr "Entrée de serveur"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Server Name"
 msgstr "Saisissez le nom du serveur"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:255
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Port Entry"
 msgstr "Entrée de port"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Enter the Port Number"
 msgstr "Saisissez le numéro du port"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "_Database:"
 msgstr "_Base de données :"
 
-#: gdictsrc/gdict-pref-dialog.c:260
+#: gdictsrc/gdict-pref-dialog.c:274
 msgid "D_efault strategy:"
 msgstr "S_tratégie par défaut :"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:466
 msgid "Search all databases"
 msgstr "Chercher dans toutes les bases de données"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database"
 msgstr "Base de données"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database Name"
 msgstr "Nom de la base de données"
 
-#: gdictsrc/gdict-pref-dialog.c:628
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "Stratégie par défaut"
 
@@ -521,7 +518,7 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
-"L'utilitaire (%s) de création du système de fichier a rapporté les erreurs "
+"L'utilitaire (%s) de création du système de fichiers a rapporté les erreurs "
 "suivantes :\n"
 "\n"
 "%s (%d)"
@@ -552,7 +549,7 @@ msgstr "Fin du processus fils mbadblocks anormal."
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:459 gfloppy/src/gfloppy.c:499
 msgid "Making filesystem on disk..."
-msgstr "Création du système de fichier sur le disque..."
+msgstr "Création du système de fichiers sur le disque..."
 
 #: gfloppy/src/gfloppy.c:467
 msgid "Unable to create filesystem correctly."
@@ -770,8 +767,8 @@ msgstr ""
 "fichiers DOS."
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "Rechercher des fichiers"
 
@@ -835,7 +832,7 @@ msgstr "Suivre les liens symboliques"
 msgid "Include other filesystems"
 msgstr "Inclure les autres systèmes de fichiers"
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "Aucun fichier trouvé"
 
@@ -881,20 +878,33 @@ msgstr "Sélectionner la contrainte « %s »"
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Option non valide passé en argument de la ligne de commande."
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
 msgstr "(arrêté)"
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+msgid "No Files Found"
+msgstr "Aucun fichier trouvé"
+
+#: gsearchtool/gsearchtool.c:1242
 msgid "One file found"
 msgstr "Un fichier trouvé"
 
 #: gsearchtool/gsearchtool.c:1243
+msgid "One File Found"
+msgstr "Un fichier trouvé"
+
+#: gsearchtool/gsearchtool.c:1246
 #, c-format
 msgid "%d files found"
 msgstr "%d fichiers trouvés"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, c-format
+msgid "%d Files Found"
+msgstr "%d fichiers trouvés"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -902,7 +912,7 @@ msgstr ""
 "Lors de la recherche, les erreurs suivantes ont été rapportées.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -910,109 +920,109 @@ msgstr ""
 "\n"
 "... Trop d'erreurs à afficher ..."
 
-#: gsearchtool/gsearchtool.c:1354
+#: gsearchtool/gsearchtool.c:1360
 msgid "Error while searching for files"
 msgstr "Erreur lors de la recherche de fichiers"
 
-#: gsearchtool/gsearchtool.c:1393
+#: gsearchtool/gsearchtool.c:1399
 msgid "Error parsing the search command"
 msgstr "Erreur lors de l'analyse de la commande de recherche"
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1419
 msgid "Error running the search command"
 msgstr "Erreur lors de l'exécution de la commande de recherche"
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr "Entrée de la valeur de la règle de recherche"
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "Saisissez une valeur pour cette règle de recherche"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Cliquez pour supprimer la règle « %s »"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 msgid "A_vailable options:"
 msgstr "Options _disponibles :"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "Menu de règles de recherche"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "Sélectionnez une règle de recherche depuis le menu"
 
-#: gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gsearchtool.c:1652
 msgid "S_earch results:"
 msgstr "Ré_sultats de la recherche :"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "Nom"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "Dossier"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "Taille"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr "Date de modification"
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
 msgstr "Le _nom contient :"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
 msgstr "Le nom contient l'entrée"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "Saisissez le nom du fichier que vous voulez rechercher"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 msgid "_Look in folder:"
 msgstr "_Rechercher dans le dossier :"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr "Parcourir"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Look in Folder Entry"
 msgstr "Rechercher dans l'entrée du dossier"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr ""
 "Saisissez le nom du dossier dans lequel vous voulez démarrer la recherche"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1909
 msgid "Show more _options"
 msgstr "Afficher plus d'_options"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "Cliquez pour démarrer la recherche"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "Cliquez pour arrêter la recherche"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr "Impossible d'initialiser bonobo."
 
@@ -1154,8 +1164,8 @@ msgid "A system log viewer for GNOME."
 msgstr "Un visionneur de journaux système pour GNOME."
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
-msgstr "Visionneur de journaux système GNOME"
+msgid "System Log Viewer"
+msgstr "Visionneur de journaux système"
 
 #: logview/actions.c:74
 msgid "Action Database"
@@ -1303,7 +1313,7 @@ msgstr "Nombre de lignes :"
 msgid "Log Information"
 msgstr "Information du journal"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<Aucun journal chargé>"
 
@@ -1565,28 +1575,28 @@ msgstr "TOUCHÉ !!\n"
 msgid "Entry Detail"
 msgstr "Détails de l'entrée"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "Date :"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "Processus :"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "Message :"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "Description :"
 
-#: logview/zoom.c:130
+#: logview/zoom.c:129
 msgid "Log Line Details"
 msgstr "Détails de la ligne du journal"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%e %B %X"
 
@@ -1601,6 +1611,12 @@ msgid ""
 msgstr ""
 "Spécifie le fichier journal à ouvrir au démarrage. La valeur par défaut est "
 "soit /var/adm/messages, soit /var/log/messages, suivant votre distribution."
+
+#~ msgid "GNOME Dictionary"
+#~ msgstr "Dictionnaire GNOME"
+
+#~ msgid "GNOME System Log Viewer"
+#~ msgstr "Visionneur de journaux système GNOME"
 
 #~ msgid "Gdialog progressbar"
 #~ msgstr "Barre de progression de gdialog"
@@ -1660,7 +1676,7 @@ msgstr ""
 #~ msgstr "Rechercher pour des erreurs de fichiers"
 
 #~ msgid "File Name Entry"
-#~ msgstr "Entrée de nom de fichier"
+#~ msgstr "Entrée de nom de fichiers"
 
 #~ msgid "Starting folder entry"
 #~ msgstr "Entrée de répertoire de démarrage"
@@ -2215,7 +2231,7 @@ msgstr ""
 #~ "No files or folders, drop files or folders\n"
 #~ "above to add them to the archive"
 #~ msgstr ""
-#~ "Aucun fichiers ou répertoires. déposez des fichiers\n"
+#~ "Aucun fichier ou répertoire. déposez des fichiers\n"
 #~ "ou répertoires au-dessus pour les ajouter à l'archive"
 
 #~ msgid "%s removed"
@@ -2240,7 +2256,7 @@ msgstr ""
 #~ msgstr "Tous les fichiers supprimés"
 
 #~ msgid "No filename selected"
-#~ msgstr "Aucun nom de fichier sélectionné"
+#~ msgstr "Aucun nom de fichiers sélectionné"
 
 #~ msgid "File exists, overwrite?"
 #~ msgstr "Le fichier existe, écraser ?"
@@ -2292,7 +2308,7 @@ msgstr ""
 #~ "created or press it to pop up a file selection dialog."
 #~ msgstr ""
 #~ "Glissez ce bouton ver sla destination où vous voulez que l'archive soit "
-#~ "créée ou cliquez-le pour ouvrir un dialogue de sélection de fichier."
+#~ "créée ou cliquez-le pour ouvrir un dialogue de sélection de fichiers."
 
 #~ msgid "Cannot find proper icons anywhere!"
 #~ msgstr "Ne peut trouver où que ce soit les bonnes icônes !"
@@ -2305,7 +2321,7 @@ msgstr ""
 #~ "Il s'agit du programme utilisé pour la création d'archives."
 
 #~ msgid "EUnable to create filesystem."
-#~ msgstr "EIncapable de créer le système de fichier."
+#~ msgstr "EIncapable de créer le système de fichiers."
 
 #~ msgid "DOS (fat)"
 #~ msgstr "DOS (fat)"
@@ -2393,9 +2409,6 @@ msgstr ""
 
 #~ msgid "symbolic link"
 #~ msgstr "lien symbolique"
-
-#~ msgid "No Files Found."
-#~ msgstr "Aucun fichiers trouvés."
 
 #~ msgid ""
 #~ "Cannot perform the search.\n"
@@ -2559,9 +2572,6 @@ msgstr ""
 
 #~ msgid "_Log"
 #~ msgstr "_Journal"
-
-#~ msgid "System Log Viewer"
-#~ msgstr "Visionneur de journaux système"
 
 #~ msgid "Filename: "
 #~ msgstr "Nom du fichier :"
@@ -2924,7 +2934,7 @@ msgstr ""
 #~ msgstr "Fichier vide"
 
 #~ msgid "Filenames except"
-#~ msgstr "Noms de fichier à exclure"
+#~ msgstr "Noms de fichiers à exclure"
 
 #~ msgid "Simple substring search"
 #~ msgstr "Recherche d'une sous-chaîne simple"
@@ -4056,10 +4066,10 @@ msgstr ""
 #~ msgstr "Inconnu"
 
 #~ msgid "Unknown filesystem"
-#~ msgstr "Système de fichier inconnu"
+#~ msgstr "Système de fichiers inconnu"
 
 #~ msgid "No information for this filesystem."
-#~ msgstr "Aucune information sur ce système de fichier."
+#~ msgstr "Aucune information sur ce système de fichiers."
 
 #~ msgid "Memory"
 #~ msgstr "Mémoire"
