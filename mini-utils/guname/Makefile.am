@@ -10,7 +10,7 @@ moreinfo_c		= moreinfo.c
 moreinfo_h		= moreinfo.h
 endif
 
-
+BUILT_SOURCES = AUTHORS.h
 guname_SOURCES = \
 	guname.c	\
 	info.c		\
@@ -37,8 +37,8 @@ Root_DATA = guname.desktop
 
 EXTRA_DIST = guname.desktop AUTHORS.h
 
-AUTHORS.h: $(wildcard ../../../gnome-*/AUTHORS)
-	cat ../../../gnome-*/AUTHORS \
+AUTHORS.h: $(wildcard $(top_srcdir)/../gnome-*/AUTHORS)
+	cat $(top_srcdir)/../gnome-*/AUTHORS \
 	| sed -e 's,<[^>]*>,,g' -e 's,([^)]*),,g' -e 's, *$$,,g' \
 	| grep -v '^$$' | sort -u \
 	| awk '{print "\""$$0"\","}' > AUTHORS.h
