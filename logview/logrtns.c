@@ -230,6 +230,7 @@ OpenLogFile (char *filename)
 	   g_free (filename);
 
    buffer_lines = g_strsplit (buffer, "\n", -1);
+   g_free (buffer);
 
    /* count the lines */
    for (i=0; buffer_lines[i+1] != NULL; i++);
