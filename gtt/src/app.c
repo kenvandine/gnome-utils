@@ -74,7 +74,8 @@ gboolean geom_size_override = FALSE;
 
 /* ============================================================= */
 
-void update_status_bar(void)
+void 
+update_status_bar(void)
 {
 	char day_total_str[25];
 	static char *old_day_time = NULL;
@@ -83,10 +84,10 @@ void update_status_bar(void)
 
 	if (!status_bar) return;
 	if (status_timer) {
-	if (timer_is_running())
-		gtk_widget_show(status_timer);
-	else
-		gtk_widget_hide(status_timer);
+		if (timer_is_running())
+			gtk_widget_show(status_timer);
+		else
+			gtk_widget_hide(status_timer);
 	}
 	if (!old_day_time) old_day_time = g_strdup("");
 	if (!old_project) old_project = g_strdup("");
@@ -227,9 +228,8 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 					       1, _("no project selected"));
 	gtk_box_pack_start(GTK_BOX(status_bar), GTK_WIDGET(status_project),
 			   TRUE, TRUE, 1);
-	status_timer = gnome_stock_pixmap_widget_at_size(GTK_WIDGET(status_bar),
-							 GNOME_STOCK_TIMER,
-							 16, 16);
+	status_timer = gtk_image_new_from_stock (GNOME_STOCK_TIMER, 
+			GTK_ICON_SIZE_MENU);
 	gtk_widget_show(status_timer);
 	gtk_box_pack_end(GTK_BOX(status_bar), GTK_WIDGET(status_timer),
 			 FALSE, FALSE, 1);
@@ -245,6 +245,7 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 	if (!geometry_string) {
 		return;
 	}
+	// xxx gtk_window_parse_geometry(GTK_WIDGET(window),geometry_string);
 	if (gnome_parse_geometry(geometry_string, &x, &y, &w, &h)) {
 		if ((x != -1) && (y != -1)) {
 			gtk_widget_set_uposition(GTK_WIDGET(window), x, y);

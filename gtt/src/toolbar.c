@@ -253,25 +253,6 @@ build_toolbar(void)
 				 (GtkSignalFunc)quit_app);
 	}
 
-	if (gnome_preferences_get_toolbar_lines()) {
-		gtk_toolbar_set_space_style(GTK_TOOLBAR(mytbar->tbar),
-					    GTK_TOOLBAR_SPACE_LINE);
-		gtk_toolbar_set_space_size(GTK_TOOLBAR(mytbar->tbar),
-					   GNOME_PAD * 2);
-	} else
-		gtk_toolbar_set_space_size(GTK_TOOLBAR(mytbar->tbar),
-					   GNOME_PAD);
-
-	if (!gnome_preferences_get_toolbar_relief_btn())
-		gtk_toolbar_set_button_relief(GTK_TOOLBAR(mytbar->tbar),
-					      GTK_RELIEF_NONE);
-
-	/* gtt handles icons/labels style on its own
-	if (!gnome_preferences_get_toolbar_labels())
-		gtk_toolbar_set_style(GTK_TOOLBAR(mytbar->tbar),
-				      GTK_TOOLBAR_ICONS);
-	*/
-
 	return GTK_WIDGET(mytbar->tbar);
 }
 
