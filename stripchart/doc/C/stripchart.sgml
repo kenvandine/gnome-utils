@@ -265,7 +265,7 @@
 
     <para>The Preferences Window provides a way to adjust settings
     which have an effect on the overall operation of the
-    <application>stripchart</application> program.  Seperate sets of
+    <application>stripchart</application> program.  Separate sets of
     controls are provided for the operation of the pens and for the
     operation of the main chart window.</para>
 
@@ -284,7 +284,7 @@
     to displaying them.  This value defaults to 0.5 for both the pens
     and the chart lines.  Setting the smoothing to zero eliminates
     this filtering of the raw data, resulting updates which are more
-    responsive but which can appear jumppy or jagged.  Setting the
+    responsive but which can appear jumpy or jagged.  Setting the
     smoothing to one freezes the current values in place.
     Intermediate values generate a new plot value by taking the
     difference between the last value and the new raw parameter value,
@@ -427,10 +427,11 @@
 
 	    <para>If a filename beginning with a "?" is supplied, the
 	    file status determines the value to be plotted: -1 for a
-	    non-existant file, 0 for a file of zero length, 1 for a
-	    file with atime newer than mtime, and 2 for a file with
-	    mtime newer than atime.  These values are useful in
-	    displaying the status of a mailbox file.</para>
+	    non-existent file, 0 for a file of zero length, 1 for a
+	    file with an access time that is newer than its
+	    modification time, and 2 for a file with a modification
+	    time that is newer than its access time.  These values are
+	    useful in displaying the status of a mailbox file.</para>
 
 	  </listitem>
 	</varlistentry>
