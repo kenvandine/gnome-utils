@@ -342,8 +342,8 @@ click_file_cb 	     (GtkWidget 	*widget,
 	GtkTreeIter iter;
 
 	if (! gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (interface.tree),
-					     event->x, event->y,
-					     &path, NULL, NULL, NULL)) {
+					     0, event->y, &path, 
+					     NULL, NULL, NULL)) {
 		return FALSE;
 	}
 		
