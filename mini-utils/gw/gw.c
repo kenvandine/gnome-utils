@@ -92,7 +92,6 @@ static void save_actions();
 static void prepend_action(const gchar * key, const gchar * format);
 static void make_actions_popup();
 static void do_action_cb(GtkWidget * menuitem, Action * a);
-static void run_command(gchar * command);
 
 /***********************************
   Globals
@@ -918,8 +917,10 @@ static void do_action(gchar * format, gchar * name, gchar * tty)
 
   g_free(sn_format);
 
+#ifdef GNOME_ENABLE_DEBUG
   g_print("Running: %s\n",full_command);
-  run_command(full_command);
+#endif
+  gnome_execute_shell(NULL, full_command);
 }
 
 static void do_action_cb(GtkWidget * menuitem, Action * a)
@@ -943,31 +944,3 @@ static void do_action_cb(GtkWidget * menuitem, Action * a)
   do_action(a->format, name, tty);
 }
 
-
-/******************************** 
-  Cut and pasted from gshutdown - arrgh. someone Unixy write the
-  gnome-util version, that forks and execs correctly or whatever
-  is supposed to happen!
-  *******************************/
-
-#include <unistd.h>
-#include <sys/types.h>
-#include <stdlib.h>
-
-static void run_command(gchar * command)
-{
-  pid_t new_pid;
-  
-  new_pid = fork();
-
-  switch (new_pid) {
-  case -1 :
-    g_warning("Command execution failed: fork failed");
-    break;
-  case 0 : 
-    _exit(system(command));
-    break;
-  default:
-    break;
-  }
-}

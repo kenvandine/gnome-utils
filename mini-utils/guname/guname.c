@@ -251,23 +251,33 @@ static void file_selection_cb(GtkWidget * button, gpointer fs)
   FILE * f;
 
   fn = gtk_file_selection_get_filename(GTK_FILE_SELECTION(fs));
-  gtk_widget_hide(fs);
 
   if (fn) {
     f = fopen(fn, "w");
     if (f) {
+      gtk_widget_hide(GTK_WIDGET(fs));
       write_to_filestream(f);
-      fclose(f);
+      if ( fclose(f) != 0 ) {
+        gchar * t = 
+          g_copy_strings(_("Error closing file `"), fn,
+                         "': \n", g_unix_error_string(errno),
+                         _("\nSome or all data may not have been written."),
+                         NULL);
+        gnome_error_dialog(t);
+        g_free(t);
+      }
+      gtk_widget_destroy(GTK_WIDGET(fs));
+      return;
     }
     else {
       gchar * s = g_copy_strings(_("Couldn't open file `"), fn, "': ", 
-                                 g_unix_error_string(errno));
+                                 g_unix_error_string(errno), NULL);
       gnome_error_dialog(s);
       g_free(s);
     }
   }
   /* I think this frees fn */
-  gtk_widget_destroy(fs);
+  gtk_widget_destroy(GTK_WIDGET(fs));
 }
 
 static void save_callback(GtkWidget * menuitem, gpointer data)

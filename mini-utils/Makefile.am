@@ -1,2 +1,4 @@
 
-SUBDIRS = gshutdown guname gw grun grun-minimalist gsu
+
+SUBDIRS = gshutdown guname gw gnome-run grun gless
+
