@@ -143,7 +143,7 @@ static void fill_mem_page(GtkWidget * box)
   GtkWidget * hbox;
   GtkWidget * bar;
   GtkWidget * label;
-  const gchar * titles[] = { _("Memory"), _("Megabytes") };
+  const gchar * titles[] = { _("Memory"), _("Kilobytes") };
   gchar * s;
   gint len;
   static const gchar * format = _("%ld%% %s used.");
