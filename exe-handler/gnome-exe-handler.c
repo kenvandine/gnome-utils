@@ -13,11 +13,12 @@
 #include <sys/stat.h>
 
 enum {
-	OK_DIALOG,
-	YESNO_DIALOG
-};
+	OK_DIALOG = 0,
+	YESNO_DIALOG = 1,
 
-enum {
+	WARNING_DIALOG = TRUE,
+	ERROR_DIALOG = FALSE,
+
 	WINDOW_CLOSE = -1,
 	OK_BUTTON = 0,
 	YES_BUTTON = 0,
@@ -25,27 +26,46 @@ enum {
 };
 
 static int
-message (const char *msg, int type)
+message (const char *msg, int type, gboolean warning)
 {
 	GtkWidget *box;
-	char *b1, *b2;
+	char *b1, *b2, *b3;
+	int help_button = 0;
+	int ret;
 	
 	if (type == YESNO_DIALOG) {
 		b1 = GNOME_STOCK_BUTTON_YES;
 		b2 = GNOME_STOCK_BUTTON_NO;
+		b3 = GNOME_STOCK_BUTTON_HELP;
+		help_button = 2;
 	} else /* type == OK_DIALOG */ {
 		b1 = GNOME_STOCK_BUTTON_OK;
-		b2 = NULL;
+		b2 = GNOME_STOCK_BUTTON_HELP;
+		help_button = 1;
+		b3 = NULL;
 	}
 	
-	box = gnome_message_box_new (msg, GNOME_MESSAGE_BOX_ERROR, b1, b2, NULL);
-	return gnome_dialog_run (GNOME_DIALOG (box));
+	box = gnome_message_box_new (msg,
+				     warning ?
+				       GNOME_MESSAGE_BOX_WARNING :
+				       GNOME_MESSAGE_BOX_ERROR,
+				     b1, b2, b3, NULL);
+	gnome_dialog_set_close (GNOME_DIALOG (box), FALSE);
+	while ((ret = gnome_dialog_run (GNOME_DIALOG (box))) == help_button) {
+		GnomeHelpMenuEntry ref
+			= {"gnome-exe-handler", "index.html"};
+		gnome_help_display (NULL, &ref);
+	}
+
+	gnome_dialog_close (GNOME_DIALOG (box));
+
+	return ret;
 }
 
 static void
 error (const char *msg)
 {
-	message (msg, OK_DIALOG);
+	message (msg, OK_DIALOG, ERROR_DIALOG);
 	exit (1);
 }
 
@@ -57,7 +77,7 @@ execute (const char *file)
 		  "might be dangerous.\n\nAre you sure you want to run `%s'?"), file);
 	struct stat s;
 	
-	switch (message (msg, YESNO_DIALOG)){
+	switch (message (msg, YESNO_DIALOG, WARNING_DIALOG)){
 	case YES_BUTTON:
 		if (stat (file, &s) == -1){
 			error (_("Could not access file permissions"));
@@ -83,7 +103,7 @@ execute (const char *file)
 
 		msg = g_strdup_printf (_("Failure at executing `%s'"), file);
 		error (msg);
-		
+
 	case NO_BUTTON:
 	case WINDOW_CLOSE:
 	default:
