@@ -129,7 +129,7 @@ clist_header_hack(GtkWidget *window, GtkWidget *w)
 GtkWidget *
 create_clist(void)
 {
-	GtkWidget *w;
+	GtkWidget *w, *sw;
 	char *titles[4] = {
 		N_("Total"),
 		N_("Today"),
@@ -148,10 +148,14 @@ create_clist(void)
 	gtk_clist_set_column_justification(GTK_CLIST(w), TOTAL_COL, GTK_JUSTIFY_CENTER);
 	gtk_clist_set_column_justification(GTK_CLIST(w), TIME_COL,  GTK_JUSTIFY_CENTER);
 	gtk_clist_column_titles_active(GTK_CLIST(w));
-#if 0
-	gtk_clist_set_policy(GTK_CLIST(w),
-			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-#endif
+
+	sw = gtk_scrolled_window_new (NULL, NULL);
+	gtk_container_add (GTK_CONTAINER (sw), w);
+	gtk_scrolled_window_set_policy (
+		GTK_SCROLLED_WINDOW (sw),
+		GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_widget_show_all (sw);
+
 	gtk_signal_connect(GTK_OBJECT(w), "select_row",
 			   GTK_SIGNAL_FUNC(select_row), NULL);
 	gtk_signal_connect(GTK_OBJECT(w), "click_column",
