@@ -224,8 +224,6 @@ OpenLogFile (char *filename)
       (tlog->lines)[tlog->total_lines - 1] = line;
    }
 
-   tlog->mon_on = FALSE;
-
    /* Read log stats */
    ReadLogStats (tlog);
 

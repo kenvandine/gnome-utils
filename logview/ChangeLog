@@ -1,11 +1,16 @@
 2004-10-27  Vincent Noel  <vnoel@cox.net>
 
+	* monitor.c: Major rewrite. Now any opened log can be monitored by
+	toggling the "monitor" check menu item.
+
 	* logview.c: Allow the opening of new windows. Remove the "Switch
 	Log" option : now each window display its own log. Removed the
 	"Close All Logs" option. Disabled the "Monitor" option for now
 	while I figure how to implement it.
 	(LoadLogMenu, FileSelectResponse): No need for MAX_NUM_LOGS
 	anymore, we can open as many logs as we want.
+	(FileSelectResponse): Always open a log in a new window, except if
+	the window is empty or if the log is already opened in another window.
 
 2004-10-26  Vincent Noel  <vnoel@cox.net>
 

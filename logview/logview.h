@@ -170,10 +170,8 @@ typedef struct
   GHashTable *date_headers; /* stores paths to date headers */
 
   /* Monitor info */
-  GtkWidget *mon_lines;
   MonActions alert;
   long offset_end;
-  int mon_on;		/* Flag set if we are monitoring this log          */
   int mon_numlines;
 }
 Log;
@@ -208,6 +206,10 @@ struct _LogviewWindow {
 	gchar *program_name;
 
 	GtkWidget *view;
+	GtkWidget *mon_list_view;
+	GtkWidget *main_view;
+	GtkWidget *log_scrolled_window;
+	GtkWidget *mon_scrolled_window;
 		
 	GtkWidget *output_window;
 	int output_window_type;
@@ -226,6 +228,9 @@ struct _LogviewWindow {
 
 	int numlogs, curlognum;
 	Log *curlog;	
+
+	gboolean monitored;
+	gint timer_tag;
 };
 
 struct _LogviewWindowClass {
