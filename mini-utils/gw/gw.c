@@ -498,8 +498,8 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   }
 
   /* Create everything. */
-  titles[0] = N_("Name");
-  titles[1] = N_("Command Line");
+  titles[0] = _("Name");
+  titles[1] = _("Command Line");
 
   defaults_button = gtk_button_new_with_label(_("Add some defaults"));
   add_button = gtk_button_new_with_label(_("Add"));
