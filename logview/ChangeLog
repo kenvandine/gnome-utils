@@ -1,4 +1,13 @@
+2004-11-03  Vincent Noel  <vnoel@cox.net>
+
+	* info.c: Mark the info strings for translation.
+
 2004-11-02  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_set_window_title): Use a display name if the
+	log was opened through a temporary file.
+
+	* logrtns.c (OpenLogFile): Add detection and opening of zipped archive.
 
 	* logview.c (logview_create_window): Use g_signal_connect instead
 	of gtk_signal_connect.
