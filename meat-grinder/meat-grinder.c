@@ -975,13 +975,12 @@ init_gui (void)
 	gtk_window_set_resizable (GTK_WINDOW (app), TRUE);
 
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/document-icons/gnome-compressed.png");
+        
+	gnome_app_create_menus (GNOME_APP (app), grinder_menu);
 
         g_signal_connect (G_OBJECT (app), "delete_event",
 			  G_CALLBACK (quit_cb), NULL);
 
-	/*set up the menu*/
-
-        gnome_app_create_menus (GNOME_APP (app), grinder_menu);
 
 	vbox = gtk_vbox_new (FALSE, 5);
 	gtk_widget_show (vbox);
@@ -1069,13 +1068,17 @@ init_gui (void)
 	gnome_app_set_contents (GNOME_APP (app), vbox);
 
         app_bar = gnome_appbar_new (TRUE, TRUE, GNOME_PREFERENCES_NEVER);
+
+	gnome_app_set_statusbar (GNOME_APP (app), app_bar);
         progress_bar = GTK_WIDGET (gnome_appbar_get_progress (
                                 GNOME_APPBAR (app_bar)));
         g_object_set (G_OBJECT (progress_bar),
                       "pulse_step", 0.1,
                       NULL);
+	
+	/*set up the menu*/
+	gnome_app_install_menu_hints (GNOME_APP (app), grinder_menu);
 
-        gtk_box_pack_start (GTK_BOX (vbox), app_bar, FALSE, FALSE, 0);
 	gtk_widget_show_all (vbox);
 	gtk_widget_show (app);
 }
