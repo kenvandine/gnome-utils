@@ -71,11 +71,6 @@ AC_CHECK_LIB(gmp, mpz_init_set,[
 AC_SUBST(GMP_LIB)
 AM_CONDITIONAL(P_GENIUS,test "$p_genius" = genius)
 
-dnl gtop
-p_gtop=
-AC_CHECK_HEADERS(linux/tasks.h,[p_gtop=gtop])
-AM_CONDITIONAL(P_GTOP,test "$p_gtop" = gtop)
-
 dnl gsu
 AC_CHECK_FUNCS(endgrent endpwent)
 
@@ -142,8 +137,6 @@ gncal/gnomecard/Makefile
 gncal/versit/Makefile
 gpostit/Makefile
 gsearchtool/Makefile
-gtop/Makefile
-gtop/proc/Makefile
 gstripchart/Makefile
 gtt/Makefile
 gdialog/Makefile
