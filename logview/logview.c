@@ -346,6 +346,9 @@ logview_create_window ()
    logviewwindow = LOGVIEW_WINDOW (window);
 
    logviewwindow->loginfovisible = FALSE;
+   logviewwindow->zoom_visible = FALSE;
+   logviewwindow->zoom_scrolled_window = NULL;
+   logviewwindow->zoom_dialog = NULL;
 
    logviewwindow->client = gconf_client_get_default ();
    SetDefaultUserPrefs(user_prefs, logviewwindow->client);
@@ -847,10 +850,10 @@ toggle_zoom (GtkAction *action, GtkWidget *callback_data)
 {
     LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
     if (window->zoom_visible) {
-	    close_zoom_view (window->zoom_dialog, window);
-    }
-    else
+	    close_zoom_view (window);
+    } else  {
 	create_zoom_view (window);
+    }
 
 }
 

@@ -192,7 +192,7 @@ handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
     GtkTreeModel *model;
     GtkTreePath *root_tree;
     gint row = 0;
-    LogviewWindow *window = LOGVIEW_WINDOW (user_data);
+    LogviewWindow *window = user_data;
 
     model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
     root_tree = gtk_tree_path_new_root ();
@@ -204,10 +204,8 @@ handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
     window->curlog->current_line_no = row;
 
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM
-				    (gtk_ui_manager_get_widget 
-				     (LOGVIEW_WINDOW(window)->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails")),
+				    (gtk_ui_manager_get_widget (window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails")),
 				    TRUE);
-
 }
 
 
@@ -223,7 +221,7 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
     GtkTreeModel *model;
     GtkTreePath *path, *root_tree;
     gint row = 0;
-    LogviewWindow *window = LOGVIEW_WINDOW (data);
+    LogviewWindow *window = data;
 
     if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
 
@@ -237,7 +235,9 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
         gtk_tree_path_free (path);
 
         window->curlog->current_line_no = row;
-        log_redrawdetail (window);
+
+	if (window->zoom_visible)
+		log_redrawdetail (window);
     }
 
 }

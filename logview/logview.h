@@ -218,12 +218,15 @@ struct _LogviewWindow {
 	GtkUIManager *ui_manager;
 
 	GtkWidget *zoom_dialog;
+	GtkWidget *zoom_scrolled_window;
+	GtkListStore *zoom_store;
 	gboolean zoom_visible;
 	
 	GtkWidget *info_dialog;
 	gboolean loginfovisible;
 
 	GtkWidget *calendar_dialog;
+	GtkWidget *calendar;
 	gboolean calendar_visible;
 
 	int numlogs, curlognum;
