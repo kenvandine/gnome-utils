@@ -7,7 +7,7 @@ guile_DIRS = #cromagnon find-file notepad
 endif
 
 SUBDIRS = po intl macros \
-	gcalc gedit @PROGRAMS_GENIUS@ ghex gncal gsearchtool \
+	gcalc gedit @PROGRAMS_GENIUS@ ghex gncal gsearchtool gdiskfree\
 	@PROGRAMS_GTOP@ gtt $(guile_DIRS) $(objc_DIRS)
 
 # since some of the dirs are conditionally built, we need to tell

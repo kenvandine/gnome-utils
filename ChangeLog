@@ -1,3 +1,13 @@
+Sun May 31 20:39:11 EDT 1998 Gregory McLean <gregm@comstar.net>
+
+	* gdiskfree: Quick and dirty hack of df to gnomeification.
+	This sorta resembles perfmeter on solaris, of which I liked and
+	used often. I missed it on linux so here is the result. Most of
+	the code was snarfed from the gnu fileutils df command. This requires
+	the libgtkext from gxsnmp so it should not built by default. I haven't
+	a clue how to do this so currently it does. Specificly this uses the
+	hacked up gtkdial in that lib.
+
 Tue May 26 00:55:41 1998  Havoc Pennington  <hp@pobox.com>
 
 	* acconfig.h: Add tons of things for mountlist code. Copied from
