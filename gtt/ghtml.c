@@ -767,7 +767,7 @@ do_show_scm (GttGhtml *ghtml, SCM node)
 	if (SCM_NUMBERP(node))
 	{
 		char buf[132];
-		double x = SCM_NUM2DBL (node);
+		double x = scm_num2dbl (node, "do_show_scm");
 		sprintf (buf, "%g ", x);
 		(ghtml->write_stream) (ghtml, buf, strlen(buf), ghtml->user_data);
 	}
