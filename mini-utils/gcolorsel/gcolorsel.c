@@ -393,7 +393,7 @@ actions_fail ()
   GtkWidget *dia;
   char *str;
 
-  str = _("I can't execute this action. Check that :\n\n1. You have associated an action with this event.\n2. The associated document still exits.\n3. The type of the associated document.\n\nGo to preferences, in the edit menu.");
+  str = _("I can't execute this action. Check that :\n\n1. You have associated an action with this event.\n2. The associated document still exists.\n3. The type of the associated document.\n\nGo to preferences, in the edit menu.");
 
   dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_WARNING,
 			       GNOME_STOCK_BUTTON_OK, NULL);

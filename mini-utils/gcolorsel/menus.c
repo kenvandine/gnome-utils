@@ -180,7 +180,7 @@ save_fail (char *filename)
   GtkWidget *dia;
   char *str;
 
-  str = g_strdup_printf (_("GColorsel was unable to save the file :\n\n%s\n\nMake sure that the path you provided exits,\nand that you have the approprate write permissions.\n\nDo you want to retry ?"), filename);
+  str = g_strdup_printf (_("GColorsel was unable to save the file :\n\n%s\n\nMake sure that the path you provided exists,\nand that you have the approprate write permissions.\n\nDo you want to retry ?"), filename);
 
   dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR,
 

@@ -127,7 +127,7 @@ outdlg_double_click(GtkWidget *widget, GdkEventButton *event,
 			   what we want to do and
 			   gnome already uses popt */
 			if(poptParseArgvString(program, &argc, &argv) != 0) {
-				gnome_error_dialog_parented(_("Command mangeled"),
+				gnome_error_dialog_parented(_("Command mangled"),
 							    GTK_WINDOW(outdlg));
 				return FALSE;
 			}
