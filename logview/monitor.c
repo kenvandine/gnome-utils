@@ -83,7 +83,7 @@ static gboolean main_app_hidden = FALSE;
 void
 MonitorMenu (GtkWidget * widget, gpointer user_data)
 {
-   GtkWidget *hbox, *hbox2;
+   GtkWidget *hbox, *hbox2, *hbox3;
    GtkWidget *label;
    GtkWidget *scrolled_win;
    GtkWidget *list_item;
@@ -100,9 +100,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
    if (curlog == NULL || mon_opts_visible)
       return;
      
-   /* Clear loglist[i].mon_on flag */
-   for (i=0; i<numlogs; i++)
-     loglist[i]->mon_on = FALSE;
+   monitorcount = 0;
 
    if (monoptions == NULL)
      {
@@ -130,9 +128,18 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
    
       vbox = GTK_BOX (GTK_DIALOG (monoptions)->vbox);
 
-      label = gtk_label_new (_("Choose logs to monitor"));
+      hbox3 = gtk_hbox_new (FALSE, 2);
+      gtk_box_pack_start (vbox, hbox3, TRUE, TRUE, 0);
+      gtk_widget_show (hbox3);
+
+      label = gtk_label_new (_("Choose logs to monitor:"));
       gtk_misc_set_alignment(GTK_MISC (label), 0.0, 0.0);
-      gtk_box_pack_start (vbox, label, TRUE, TRUE, 0);
+      gtk_box_pack_start (GTK_BOX (hbox3), label, TRUE, TRUE, 0);
+      gtk_widget_show (label);
+
+      label = gtk_label_new (_("Currently monitored logs:"));
+      gtk_misc_set_alignment(GTK_MISC (label), 1.0, 0.0);
+      gtk_box_pack_start (GTK_BOX (hbox3), label, TRUE, TRUE, 0);
       gtk_widget_show (label);
 
       hbox = gtk_hbox_new (FALSE, 2);
@@ -162,12 +169,13 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_container_add (GTK_CONTAINER (scrolled_win), srclist_view);
       gtk_widget_show (srclist_view);
 
-      for (i = 0; i < numlogs; i++)
-        {
-          gtk_list_store_append (srclist, (GtkTreeIter *)&newiter);
-          gtk_list_store_set (srclist, (GtkTreeIter *)&newiter, 0,
-                              loglist[i]->name, 1, i, -1);
-        }
+      for (i = 0; i < numlogs; i++) {
+          if (loglist[i]->mon_on == FALSE) {
+              gtk_list_store_append (srclist, (GtkTreeIter *)&newiter);
+              gtk_list_store_set (srclist, (GtkTreeIter *)&newiter, 0,
+                                  loglist[i]->name, 1, i, -1);
+          }
+      }
 
       vbox2 = gtk_vbox_new (FALSE, 2);
       gtk_box_pack_start ( GTK_BOX (hbox), vbox2, FALSE, FALSE, 0);
@@ -218,6 +226,15 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_container_set_border_width (GTK_CONTAINER (scrolled_win), 3);
       gtk_widget_show (destlist_view);
 
+      for (i = 0; i < numlogs; i++) {
+          if (loglist[i]->mon_on == TRUE) {
+              monitorcount++;
+              gtk_list_store_append (destlist, (GtkTreeIter *)&newiter);
+              gtk_list_store_set (destlist, (GtkTreeIter *)&newiter, 0,
+                                  loglist[i]->name, 1, i, -1);
+          }
+      }
+
       /* Make bottom part of window  -------------------------------- */
       hbox2 = gtk_hbox_new (FALSE, 2);
       gtk_box_pack_start (vbox, hbox2, TRUE, TRUE, 0);
@@ -245,7 +262,6 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
 
    }
    mon_opts_visible = TRUE;
-   monitorcount = 0;
 
    gtk_widget_show (monoptions);
 
@@ -327,6 +343,8 @@ mon_remove_log (GtkWidget *widget,
 
   gtk_tree_selection_get_selected (selection, NULL, &newiter);
   gtk_list_store_remove (destlist, &newiter);
+
+  loglist[sellognum]->mon_on = FALSE; 
 
   monitorcount--;
 }  

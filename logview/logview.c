@@ -75,6 +75,7 @@ void CloseAllLogs (void);
 
 static void toggle_calendar (void);
 static void toggle_zoom (void);
+static void toggle_collapse_rows (void);
 
 /*
  *    ,-------.
@@ -147,6 +148,13 @@ GnomeUIInfo view_menu[] = {
 				NULL, 
 				GNOME_APP_PIXMAP_NONE, NULL, 
 				'D', GDK_CONTROL_MASK, NULL },
+	{ GNOME_APP_UI_ITEM, N_("_Collapse All"),
+				N_("Collapse all the rows"),
+				toggle_collapse_rows,
+				NULL,
+				NULL,
+				GNOME_APP_PIXMAP_NONE, NULL, 
+				'C', GDK_CONTROL_MASK, NULL },
 	GNOMEUIINFO_END
 };
 
@@ -587,6 +595,7 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
            
 	       curlog = tl;
 	       curlog->first_time = TRUE; 
+	       curlog->mon_on = FALSE;
 		   loglist[numlogs] = tl;
 		   numlogs++;
 		   curlognum = numlogs - 1;
@@ -899,4 +908,10 @@ toggle_zoom (void)
     else
 	create_zoom_view ();
 
+}
+
+static void 
+toggle_collapse_rows (void)
+{
+    gtk_tree_view_collapse_all (GTK_TREE_VIEW (view));
 }
