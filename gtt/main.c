@@ -191,60 +191,65 @@ session_die(GnomeClient *client)
  */
 
 static int w_x = 0, w_y = 0, w_w = 0, w_h = 0, w_xyset = 0, w_sx = 0, w_sy = 0;
-static char *geometry_string;
+static char *geometry_string = NULL;
 
 static void
 parse_geometry(void)
 {
-  char *arg = geometry_string;
+	char *arg = geometry_string;
 
-  char *p, *p0;
-  char c;
+	char *p, *p0;
+	char c;
 
-  p = arg;
-  if ((*p >= '0') && (*p <= '9')) {
-    p0 = p;
-    for (; (*p >= '0') && (*p <= '9'); p++) ;
-    if (*p != 'x') {
-      g_print(_("error in geometry string \"%s\"\n"), arg);
-      return;
-    }
-    *p = 0;
-    w_w = atoi(p0);
-    *p = 'x';
-    p0 = ++p;
-    for (; (*p >= '0') && (*p <= '9'); p++) ;
-    c = *p;
-    *p = 0;
-    w_h = atoi(p0);
-    *p = c;
-  }
-  if (*p == 0) return;
-  if ((*p != '-') && (*p != '+')) {
-    g_print(_("error in geometry string \"%s\"\n"), arg);
-    return;
-  }
-  p0 = p;
-  for (p++; (*p >= '0') && (*p <= '9'); p++) ;
-  c = *p;
-  *p = 0;
-  w_sx = (*p0 != '-');
-  w_x = atoi(p0);
-  *p = c;
-  if ((*p != '-') && (*p != '+')) {
-    g_print(_("error in geometry string \"%s\"\n"), arg);
-    return;
-  }
-  p0 = p;
-  for (p++; (*p >= '0') && (*p <= '9'); p++) ;
-  if (*p != 0) {
-    g_print(_("error in geometry string \"%s\"\n"), arg);
-    return;
-  }
-  w_sy = (*p0 != '-');
-  w_y = atoi(p0);
-  w_xyset++;
+	if (!geometry_string)
+		return;
+	p = arg;
+	if ((*p >= '0') && (*p <= '9')) {
+		p0 = p;
+		for (; (*p >= '0') && (*p <= '9'); p++) ;
+		if (*p != 'x') {
+			g_print(_("error in geometry string \"%s\"\n"), arg);
+			return;
+		}
+		*p = 0;
+		w_w = atoi(p0);
+		*p = 'x';
+		p0 = ++p;
+		for (; (*p >= '0') && (*p <= '9'); p++) ;
+		c = *p;
+		*p = 0;
+		w_h = atoi(p0);
+		*p = c;
+	}
+	if (*p == 0)
+		return;
+	if ((*p != '-') && (*p != '+')) {
+		g_print(_("error in geometry string \"%s\"\n"), arg);
+		return;
+	}
+	p0 = p;
+	for (p++; (*p >= '0') && (*p <= '9'); p++) ;
+	c = *p;
+	*p = 0;
+	w_sx = (*p0 != '-');
+	w_x = atoi(p0);
+	*p = c;
+	if ((*p != '-') && (*p != '+')) {
+		g_print(_("error in geometry string \"%s\"\n"), arg);
+		return;
+	}
+	p0 = p;
+	for (p++; (*p >= '0') && (*p <= '9'); p++) ;
+	if (*p != 0) {
+		g_print(_("error in geometry string \"%s\"\n"), arg);
+		return;
+	}
+	w_sy = (*p0 != '-');
+	w_y = atoi(p0);
+	w_xyset++;
 }
+
+
 
 int main(int argc, char *argv[])
 {

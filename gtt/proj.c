@@ -463,6 +463,10 @@ project_list_load(char *fname)
 	if (!config_logfile_stop)
 		config_logfile_stop = g_strdup(_("stopped project %t"));
         config_logfile_min_secs = gnome_config_get_int(GTT"LogFile/MinSecs");
+	if (config_show_statusbar)
+		gtk_widget_show(status_bar);
+	else
+		gtk_widget_hide(status_bar);
 	for (i = 0; i < GTK_CLIST(glist)->columns; i++) {
 		sprintf(s, GTT"CList/ColumnWidth%d=0", i);
 		num = gnome_config_get_int(s);
