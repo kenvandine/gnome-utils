@@ -41,6 +41,7 @@
 
 void MonitorMenu (GtkWidget * widget, gpointer user_data);
 void close_monitor_options (GtkWidget * widget, gpointer client_data);
+void monitor_window_destroyed_cb (GtkWidget * widget, gpointer data);
 void go_monitor_log (GtkWidget * widget, gpointer client_data);
 void mon_remove_log (GtkWidget *widget, GtkWidget *foo);
 void mon_add_log (GtkWidget *widget, GtkWidget *foo);
@@ -73,6 +74,8 @@ static int monitorcount = 0;
 static gboolean mon_opts_visible = FALSE, mon_win_visible = FALSE;
 static gboolean mon_exec_actions = FALSE, mon_hide_while_monitor = FALSE;
 static gboolean main_app_hidden = FALSE;
+
+static gint timer_tag;
 
 /* ----------------------------------------------------------------------
    NAME:         MonitorMenu
@@ -371,6 +374,21 @@ mon_repaint (GtkWidget * widget, GdkEventExpose * event)
    return TRUE;
 }
 
+/* ----------------------------------------------------------------------
+   NAME:          monitor_window_destroyed_cb
+   DESCRIPTION:   Callback called when the monitor window is destroyed.
+   ---------------------------------------------------------------------- */
+
+void
+monitor_window_destroyed_cb (GtkWidget * widget, gpointer data)
+{
+	
+   if (timer_tag > 0)
+      gtk_timeout_remove (timer_tag);
+
+   gtk_widget_destroy (widget);
+   monwindow = NULL;
+}
 
 /* ----------------------------------------------------------------------
    NAME:          close_monitor_options
@@ -443,7 +461,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
      return;
 
    /* Setup timer to check log */
-   gtk_timeout_add (1000, mon_check_logs, NULL);
+   timer_tag = gtk_timeout_add (1000, mon_check_logs, NULL);
 
    /* Create monitor window */
    /* setup size */
@@ -462,8 +480,8 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
 		       GTK_SIGNAL_FUNC (close_monitor_options),
 		       NULL);
    gtk_signal_connect (GTK_OBJECT (monwindow), "destroy",
-		       GTK_SIGNAL_FUNC (gtk_widget_destroyed),
-		       &monwindow);
+		       GTK_SIGNAL_FUNC (monitor_window_destroyed_cb),
+		       monwindow);
    
    vbox = gtk_vbox_new (FALSE, 6);
    gtk_container_add( GTK_CONTAINER (monwindow), vbox);
