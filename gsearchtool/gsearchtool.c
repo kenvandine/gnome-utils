@@ -776,8 +776,10 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		GString      *string;
 		GdkRectangle prior_rect;
 		GdkRectangle after_rect;
+		gint	     look_in_folder_string_length;
 		
 		string = g_string_new (NULL);
+		look_in_folder_string_length = strlen (search_data->look_in_folder);
 
 		while (ioc->is_readable != TRUE);
 
@@ -820,9 +822,9 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 				continue;
 			}
 			
-			if (strncmp (string->str, search_data->look_in_folder, strlen (search_data->look_in_folder)) == 0) { 
+			if (strncmp (string->str, search_data->look_in_folder, look_in_folder_string_length) == 0) { 
 			
-				if (strlen (string->str) != strlen (search_data->look_in_folder)) {
+				if (strlen (string->str) != look_in_folder_string_length) {
 			
 					filename = g_path_get_basename (utf8);
 			
