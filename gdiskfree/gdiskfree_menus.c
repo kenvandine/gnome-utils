@@ -104,7 +104,7 @@ about_cb (GtkWidget *widget, gpointer data)
 	"And others I'm sure I forgot.",
 	NULL
       };
-      gchar *logo = gnome_unconditional_pixmap_file ("gnome-diskfree.png");
+      gchar *logo = gnome_unconditional_pixmap_file ("gdiskfree-splash.png");
       dialog = gnome_about_new (_("GDiskFree"), VERSION, 
 				"Copyright 1998, 1999, 2000 Gregory McLean",
 				(const gchar **)authors,
