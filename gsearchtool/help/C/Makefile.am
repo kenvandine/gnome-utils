@@ -3,13 +3,13 @@
 gsearch_helpdir = $(datadir)/gnome/help/gsearchtool/C
 
 SGML_FILES = \
-	gsearch.sgml
+	gsearchtool.sgml
 
 HTML_FILES = index.html authors.html criteria.html \
 	license.html	locate.html	usage.html
 
 EXTRA_DIST = \
-	topic.dat gsearch $(SGML_FILES)
+	topic.dat gsearchtool $(SGML_FILES)
 
 gsearch_help_DATA = ${HTML_FILES} topic.dat
 
@@ -23,13 +23,13 @@ gsearch_help_DATA = ${HTML_FILES} topic.dat
 # where the runtime help system can find it.
 #
 ${HTML_FILES} : $(SGML_FILES)
-	if [ ! -d gsearch ] ; then cd $(srcdir) && db2html gsearch.sgml ; fi
-	-cd $(srcdir) && cp gsearch/$@ .
-	if [ -d gsearch.junk ] ; then cd $(srcdir) && rm -rf gsearch.junk ; fi
+	if [ ! -d gsearchtool ] ; then cd $(srcdir) && db2html gsearchtool.sgml ; fi
+	-cd $(srcdir) && cp gsearchtool/$@ .
+	if [ -d gsearchtool.junk ] ; then cd $(srcdir) && rm -rf gsearchtool.junk ; fi
 
 dist-hook:
-	$(mkinstalldirs) $(distdir)/gsearch
-	-cp $(srcdir)/gsearch/*.html gsearch/*.css $(distdir)/gsearch
+	$(mkinstalldirs) $(distdir)/gsearchtool
+	-cp $(srcdir)/gsearchtool/*.html gsearchtool/*.css $(distdir)/gsearchtool
 	-cp $(srcdir)/*.html $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
@@ -37,18 +37,21 @@ distclean-generic:
 	-rm -f Makefile
 	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
 	-rm -f $(HTML_FILES)
-	-rm -rf gsearch
+	-rm -rf gsearchtool
 
 install-data-local: index.html
-	$(mkinstalldirs) $(DESTDIR)$(gsearch_helpdir)/images
-	-for file in $(srcdir)/gsearch/*.html $(srcdir)/gsearch/*.css; do \
+	$(mkinstalldirs) $(DESTDIR)$(gsearch_helpdir)/images $(DESTDIR)$(gsearch_helpdir)/stylesheet-images
+	-for file in $(srcdir)/gsearchtool/*.html $(srcdir)/gsearchtool/*.css; do \
 	  basefile=`basename $$file`; \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gsearch_helpdir)/$$basefile; \
 	done
 	-for file in $(srcdir)/*.png ; do \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gsearch_helpdir); \
 	done
-	-for file in $(srcdir)/gsearch/styleshee-images/*.gif; do \
+	-for file in $(srcdir)/*.sgml ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(gsearch_helpdir); \
+	done
+	-for file in $(srcdir)/gsearchtool/stylesheet-images/*.gif; do \
 	  basefile=`basename $$file`; \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(gsearch_helpdir)/stylesheet-images/$$basefile; \
 	done
