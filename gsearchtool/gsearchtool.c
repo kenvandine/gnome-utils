@@ -45,7 +45,8 @@
 typedef enum {
 	NOT_RUNNING,
 	RUNNING,
-	MAKE_IT_STOP
+	MAKE_IT_STOP,
+	MAKE_IT_QUIT
 } RunLevel;
 
 enum {
@@ -802,7 +803,7 @@ really_run_command(char *cmd, char sepchar, gchar *utf8_pattern_str, RunLevel *r
 			break;
 		if(gtk_events_pending())
 			gtk_main_iteration_do(TRUE);
-		if (*running == MAKE_IT_STOP) {
+		if ((*running == MAKE_IT_STOP) || (*running == MAKE_IT_QUIT)) {
 			kill(pid, SIGKILL);
 			wait(NULL);
 		}
@@ -888,9 +889,17 @@ really_run_command(char *cmd, char sepchar, gchar *utf8_pattern_str, RunLevel *r
 	g_string_free (string, TRUE);
 	g_pattern_spec_free (pattern);
 
-	*running = NOT_RUNNING;
-
-	lock = FALSE;
+	if (*running == MAKE_IT_QUIT)
+	{
+	 	*running = NOT_RUNNING;
+		lock = FALSE;
+		gtk_main_quit ();
+ 	}
+ 	else
+ 	{
+		*running = NOT_RUNNING;
+		lock = FALSE;
+	}
 }
 
 static void
@@ -1179,10 +1188,16 @@ static void
 quit_cb(GtkWidget *w, gpointer data)
 {
 	if(find_running == RUNNING)
-		find_running = MAKE_IT_STOP;
+	{
+		find_running = MAKE_IT_QUIT;
+		return;
+	}
 	if(locate_running == RUNNING)
-		locate_running = MAKE_IT_STOP;
-	gtk_main_quit();
+	{
+		locate_running = MAKE_IT_QUIT;
+		return;
+	}
+	gtk_main_quit ();
 }
 
 static void
@@ -2134,7 +2149,8 @@ save_session (GnomeClient *client, gint phase,
 static gint
 die (GnomeClient *client, gpointer client_data)
 {
-	gtk_main_quit ();
+	quit_cb (NULL, NULL);
+	return TRUE;
 }
 
 static GnomeUIInfo search_menu[] = {
