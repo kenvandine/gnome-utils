@@ -43,15 +43,6 @@
 
 #define XML_DATA_FILENAME "gtt-xml.gttml"
 
-/* menus.h */
-
-GtkWidget *menus_get_popup(void);
-void menus_create(GnomeApp *app);
-void menus_set_states(void);
-
-GtkCheckMenuItem *menus_get_toggle_timer(void);
-
-
 /* err.c */
 
 void err_init(void);

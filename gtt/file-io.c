@@ -20,6 +20,7 @@
 #include "config.h"
 
 #include <errno.h>
+#include <glib.h>
 #include <gnome.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -29,6 +30,7 @@
 #include "cur-proj.h"
 #include "err-throw.h"
 #include "file-io.h"
+#include "plug-in.h"
 #include "proj.h"
 #include "proj_p.h"
 #include "toolbar.h"
@@ -350,6 +352,27 @@ gtt_load_config (const char *fname)
 		}
 	}
 
+	/* Read in the user-defined report locations */
+        num = gnome_config_get_int(GTT"Misc/NumReports=0");
+	if (0 < num)
+	{
+        	for (i = num-1; i >= 0 ; i--) 
+		{
+			GttPlugin *plg;
+			char * name, *path, *tip;
+                	g_snprintf(s, sizeof (s), GTT"Report%d/Name", i);
+                	name = gnome_config_get_string(s);
+                	g_snprintf(s, sizeof (s), GTT"Report%d/Path", i);
+                	path = gnome_config_get_string(s);
+                	g_snprintf(s, sizeof (s), GTT"Report%d/Tooltip", i);
+                	tip = gnome_config_get_string(s);
+			plg = gtt_plugin_new (name, path);
+			plg->tooltip = g_strdup (tip);
+printf ("duuude new tool %s--%s\n", name, path);
+			
+        	}
+	} 
+
 	/* The old-style config file also contained project data
 	 * in it. Read this data, if present.  The new config file
 	 * format has num-projects set to -1.
@@ -448,7 +471,8 @@ gtt_load_config (const char *fname)
 void
 gtt_save_config(const char *fname)
 {
-        char s[64];
+	GList *node;
+        char s[120];
         int i, old_num;
 	int x, y, w, h;
 
@@ -517,6 +541,21 @@ gtt_save_config(const char *fname)
                 g_snprintf(s, sizeof (s), GTT"Project%d", i);
                 gnome_config_clean_section(s);
         }
+
+	/* write out the customer report info */
+	i = 0;
+	for (node = gtt_plugin_get_list(); node; node=node->next)
+	{
+		GttPlugin *plg = node->data;
+               	g_snprintf(s, sizeof (s), GTT"Report%d/Name", i);
+        	gnome_config_set_string(s, plg->name);
+               	g_snprintf(s, sizeof (s), GTT"Report%d/Path", i);
+        	gnome_config_set_string(s, plg->path);
+               	g_snprintf(s, sizeof (s), GTT"Report%d/Tooltip", i);
+        	gnome_config_set_string(s, plg->tooltip);
+		i++;
+	}
+        gnome_config_set_int(GTT"Misc/NumReports", i);
 
         gnome_config_sync();
 }

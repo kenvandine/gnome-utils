@@ -164,33 +164,26 @@ dispatch_phtml (GttPhtml *phtml, char *tok, GttProject*prj)
 /* ============================================================== */
 
 void
-gtt_phtml_display (GttPhtml *phtml, const char *path_fragment,
+gtt_phtml_display (GttPhtml *phtml, const char *filepath,
                    GttProject *prj)
 {
 	FILE *ph;
-	char * fullpath;
 
 	if (!phtml)
 		
-	if (!path_fragment)
+	if (!filepath)
 	{
 		(phtml->error) (phtml, 404, NULL);
 		return;
 	}
 
-	/* XXX hack alert FIXME  need to get the full 
-	 * path e.g. /usr/share/gtt, and also need to get i18n path */
-	fullpath = g_strconcat ("phtml/C/", path_fragment, 0);
-	
 	/* try to get the phtml file ... */
-	ph = fopen (fullpath, "r");
+	ph = fopen (filepath, "r");
 	if (!ph)
 	{
-		(phtml->error) (phtml, 404, fullpath);
-		g_free (fullpath);
+		(phtml->error) (phtml, 404, filepath);
 		return;
 	}
-	g_free (fullpath); fullpath = NULL;
 
 	/* Now open the output stream for writing */
 	(phtml->open_stream) (phtml);

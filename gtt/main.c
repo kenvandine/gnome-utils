@@ -33,6 +33,7 @@
 #include "err-throw.h"
 #include "file-io.h"
 #include "gtt.h"
+#include "menus.h"
 #include "menucmd.h"
 #include "shorts.h"		/* SMH 2000-03-22: connect_short_cuts() */
 #include "xml-gtt.h"
@@ -292,6 +293,10 @@ beta_run_or_abort(GtkWidget *w, gint butnum)
 	else
 	{
 		init_list();
+
+		/* plugins need to be added to he main menus dynamically,
+		 * after the config file has been read */
+		menus_add_plugins (GNOME_APP(window));
 		log_start();
 	}
 }

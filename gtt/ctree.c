@@ -23,6 +23,7 @@
 #include "ctree.h"
 #include "cur-proj.h"
 #include "menucmd.h"
+#include "menus.h"
 #include "proj_p.h"
 #include "props-proj.h"
 #include "util.h"

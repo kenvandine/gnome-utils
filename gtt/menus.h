@@ -16,39 +16,15 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef __MENUS_H__
-#define __MENUS_H__
+#ifndef __GTT_MENUS_H__
+#define __GTT_MENUS_H__
 
-#if 1
+GtkWidget *menus_get_popup(void);
+void menus_create(GnomeApp *app);
+void menus_set_states(void);
 
+GtkCheckMenuItem *menus_get_toggle_timer(void);
 
-#else
+void menus_add_plugins(GnomeApp *app);
 
-
-/* menus.c */
-
-enum {
-	MENU_MAIN,
-	MENU_POPUP,
-	MENU_NUM
-};
-
-void get_menubar(GtkWidget **, GtkAcceleratorTable **, int);
-void
-menus_set_sensitive (char *path,
-		     int   sensitive);
-void
-menus_set_state (char *path,
-		 int   state);
-void
-menus_set_show_toggle (char *path,
-		       int   state);
-int menus_get_toggle_state(char *path);
-int menus_get_sensitive_state(char *path);
-void
-menus_activate (char *path);
-
-
-#endif /* 0 */
-
-#endif
+#endif /* __GTT_MENUS_H__ */

@@ -28,6 +28,7 @@
 #include "cur-proj.h"
 #include "gtt.h"
 #include "menucmd.h"
+#include "menus.h"
 #include "props-proj.h"
 #include "toolbar.h"
 #include "util.h"

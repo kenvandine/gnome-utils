@@ -313,8 +313,8 @@ html_on_url_cb(GtkHTML * html, const gchar * url, gpointer data)
 
 /* ============================================================== */
 
-void
-edit_journal(GtkWidget *widget, gpointer data)
+static void
+do_show_report (const char * report, GttProject *prj)
 {
 	GtkWidget *jnl_top, *jnl_viewport, *jnl_browser;
 	GladeXML  *glxml;
@@ -388,18 +388,33 @@ edit_journal(GtkWidget *widget, gpointer data)
 	/* ---------------------------------------------------- */
 	/* finally ... display the actual journal */
 
-	if (!cur_proj)
+	wig->prj = prj;
+	if (!prj)
 	{
-		wig->prj = cur_proj;
 		gtt_phtml_display (&(wig->ph), "noproject.phtml", NULL);
 	} 
 	else 
 	{
-
-		gtt_project_add_notifier (cur_proj, redraw, wig);
-		wig->prj = cur_proj;
-		gtt_phtml_display (&(wig->ph), "journal.phtml", cur_proj);
+		gtt_project_add_notifier (prj, redraw, wig);
+		gtt_phtml_display (&(wig->ph), report, prj);
 	}
+}
+
+/* ============================================================== */
+
+void
+edit_journal(GtkWidget *w, gpointer data)
+{
+	/* xxx hack alert fixme this should need to get the full
+         * path e.g. /usr/share/gtt, and also need to get i18n path */
+	do_show_report ("phtml/C/journal.phtml", cur_proj);
+}
+
+void
+invoke_report(GtkWidget *widget, gpointer data)
+{
+	char * filepath = (char *) data;
+	do_show_report (filepath, cur_proj);
 }
 
 /* ===================== END OF FILE ==============================  */
