@@ -49,6 +49,7 @@
 #define ICON_THEME_CHAR_DEVICE     "gnome-fs-chardev"
 #define ICON_THEME_BLOCK_DEVICE    "gnome-fs-blockdev"
 #define ICON_THEME_SOCKET          "gnome-fs-socket"
+#define ICON_THEME_FIFO            "gnome-fs-fifo"
 
 
 /* START OF THE GCONF FUNCTIONS */
@@ -478,8 +479,13 @@ get_file_type_for_mime_type (const gchar *filename,
 		gnome_vfs_get_file_info (filename, file_info, GNOME_VFS_FILE_INFO_DEFAULT);
 		
 		if (g_file_test (file_info->symlink_name, G_FILE_TEST_EXISTS) != TRUE) {
-			gnome_vfs_file_info_unref (file_info);
-			return _("link (broken)");
+		
+			if ((g_ascii_strcasecmp (mimetype, "x-special/socket") != 0) && 
+		            (g_ascii_strcasecmp (mimetype, "x-special/fifo") != 0)) {
+			    
+				gnome_vfs_file_info_unref (file_info);
+				return _("link (broken)");
+			}
 		}
 			
 		gnome_vfs_file_info_unref (file_info);
@@ -510,6 +516,9 @@ get_file_pixbuf_for_mime_type (const gchar *filename,
 	}
 	else if (g_ascii_strcasecmp (mimetype, "x-special/socket") == 0) {
 		icon_name = g_strdup (ICON_THEME_SOCKET);
+	}
+	else if (g_ascii_strcasecmp (mimetype, "x-special/fifo") == 0) {
+		icon_name = g_strdup (ICON_THEME_FIFO);
 	}
 	else {
 		icon_name = gnome_icon_lookup (gtk_icon_theme_get_default (), NULL, filename, NULL, 
