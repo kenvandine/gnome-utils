@@ -443,14 +443,28 @@ convert_num(gdouble num, GnomeCalcMode from, GnomeCalcMode to)
 	if(to==from)
 		return num;
 	else if(from==GNOME_CALC_DEG)
-		if(to==GNOME_CALC_RAD)
+		if(to==GNOME_CALC_RAD) {
+			if (abs (num - 90) < 0.000001)
+				return M_PI_2;
+			else if (abs (num - 180) < 0.000001)
+				return M_PI;
+			else if (abs (num - 45) < 0.000001)
+				return M_PI_4;
+			else if (abs (num - 360) < 0.000001)
+				return 2*M_PI;
 			return (num*M_PI)/180;
-		else /*GRAD*/
+		} else /*GRAD*/
 			return (num*200)/180;
 	else if(from==GNOME_CALC_RAD)
-		if(to==GNOME_CALC_DEG)
+		if(to==GNOME_CALC_DEG) {
+			if (num == M_PI)
+				return 180;
+			else if (num == M_PI_2)
+				return 90;
+			else if (num == M_PI_4)
+				return 45;
 			return (num*180)/M_PI;
-		else /*GRAD*/
+		} else /*GRAD*/
 			return (num*200)/M_PI;
 	else /*GRAD*/
 		if(to==GNOME_CALC_DEG)
@@ -1061,6 +1075,26 @@ sub_parenth(GtkWidget *w, gpointer data)
 	unselect_invert(gc);
 }
 
+static double
+sin_helper (double value)
+{
+	double ret = sin (value);
+	if (abs (ret) <= sin (M_PI))
+		return 0.0;
+	else
+		return ret;
+}
+
+static double
+cos_helper (double value)
+{
+	double ret = cos (value);
+	if (abs (ret) <= cos (M_PI_2))
+		return 0.0;
+	else
+		return ret;
+}
+
 static const CalculatorButton buttons[8][5] = {
 	{
 		{N_("1/x"),  (GtkSignalFunc)simple_func, c_inv,  NULL,   FALSE, {0}, N_("Inverse"), NULL },
@@ -1070,8 +1104,8 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("AC"),   (GtkSignalFunc)reset_calc,  NULL,   NULL,   FALSE, {'a','A', GDK_Escape, 0}, N_("Reset"), NULL }
 	},{
 		{N_("INV"),  NULL,                       NULL,   NULL,   FALSE, {'i','I',0}, N_("Shift"), NULL }, /*inverse button*/
-		{N_("sin"),  (GtkSignalFunc)simple_func, sin,    asin,   TRUE,  {'s','S',0}, N_("Sine"), NULL },
-		{N_("cos"),  (GtkSignalFunc)simple_func, cos,    acos,   TRUE,  {'c','C',0}, N_("Cosine"), NULL },
+		{N_("sin"),  (GtkSignalFunc)simple_func, sin_helper, asin, TRUE,{'s','S',0}, N_("Sine"), NULL },
+		{N_("cos"),  (GtkSignalFunc)simple_func, cos_helper, acos, TRUE,{'c','C',0}, N_("Cosine"), NULL },
 		{N_("tan"),  (GtkSignalFunc)simple_func, tan,    atan,   TRUE,  {'t','T',0}, N_("Tangent"), NULL },
 		{N_("DEG"),  (GtkSignalFunc)drg_toggle,  NULL,   NULL,   FALSE, {'d','D',0}, N_("Switch degrees / radians / grad"), NULL }
 	},{

@@ -1,3 +1,11 @@
+Wed Feb 27 10:11:58 2002  George Lebl <jirka@5z.com>
+
+	* gnome-calculator.c: fix #70151 by treating very low numbers
+	  like 0 when they're output from sin and cos.  Also do a more
+	  precise conversion for deg->rad, rad->deg for some standard
+	  values.  This should work portably even though
+	  cos(M_PI_2) != 0.0, which seems stupid to me.
+
 2002-02-27  Bastien Nocera  <hadess@hadess.net>
 
 	* doc/C/gcalc.sgml:
