@@ -15,7 +15,8 @@
 #undef NEED_LIBGTOP
 #undef HAVE_GUILE
 
-
+/* Define if you want to build against development gtk */
+#undef HAVE_DEVGTK
 
 /* Define if you have the Andrew File System.  */
 #undef AFS
