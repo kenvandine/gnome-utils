@@ -74,3 +74,14 @@ str_to_scale_style(const char *style_name)
     return chart_scale_log;
   return chart_scale_linear;
 }
+
+gdouble
+str_to_gdouble(const char *double_string, gdouble fallback)
+{
+  gdouble value;
+
+  if (sscanf(double_string, "%lf", &value) != 1)
+    return fallback;
+
+  return value;
+}

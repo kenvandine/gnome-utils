@@ -1,3 +1,22 @@
+2001-07-13  John Kodis  <kodis@jagunet.com>
+
+	* chart.c, chart.h (chart_parameter_add): Add four additional
+	parameters: {top,bot}_{min,max}.  Copy these into the
+	corresponding datum values.
+	(chart_rescale_by_table): Use any user-specified top_max as the
+	maximum upper bound, rather than using the largest table value
+	less than top_max.
+
+	* eval.c (chart_equation_add): Set {top,bot}_{min,max} to the
+	values obtained from the parameter specification, or to +/-
+	G_MAXDOUBLE if no value was supplied.
+
+	* utils.c, utils.h (str_to_gdouble): New helper function used in
+	the preceding change.
+
+	This batch of rescaling changes was developed and submitted by
+	Joachim Breuer <jmbreuer@gmx.net>
+
 2001-07-11  John Kodis  <kodis@jagunet.com>
 
 	* strip.c (strip_overlay_indicators): Draw indicators

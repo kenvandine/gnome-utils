@@ -29,4 +29,6 @@ const char *error(char *msg, ...);
 ChartPlotStyle str_to_plot_style(const char *style_name);
 ChartScaleStyle str_to_scale_style(const char *style_name);
 
+gdouble str_to_gdouble(const char *double_string, gdouble fallback);
+
 #endif /* UTILS_H */

@@ -577,7 +577,11 @@ chart_equation_add(Chart *chart,
     }
 
   datum = chart_parameter_add(chart,
-    evaluate_equation, expr, desc->color_names, adj, pageno);
+    evaluate_equation, expr, desc->color_names, adj, pageno,
+    str_to_gdouble(desc->bot_min, -G_MAXDOUBLE),
+    str_to_gdouble(desc->bot_max, +G_MAXDOUBLE),
+    str_to_gdouble(desc->top_min, -G_MAXDOUBLE),
+    str_to_gdouble(desc->top_max, +G_MAXDOUBLE));
 
   if (rescale)
     chart_set_autorange(datum, chart_rescale_by_decade, NULL);

@@ -107,7 +107,7 @@ static gint
 chart_rescale_by_table(ChartDatum *datum, gdouble *table, gint nels, gint step)
 {
   gint j, changed = 0;
-  gdouble top, bot;
+  gdouble top, bot, last_upper;
   Range *r = (Range *)datum->range_data;
 
   if (r == NULL)
@@ -123,10 +123,11 @@ chart_rescale_by_table(ChartDatum *datum, gdouble *table, gint nels, gint step)
   /* Put top above max and top_min, but not above top_max or end of
      table. */
   j = r->top_index;
+  last_upper = datum->adj->upper;
   top = MAX(datum->max, datum->top_min);
-  while (table[r->top_index] < top
+  while (table[r->top_index] <= top
     && r->top_index + step < r->ranges
-    && table[r->top_index + step] < datum->top_max)
+    && table[r->top_index + step] <= datum->top_max)
     {
       r->top_index += step;
       changed++;
@@ -137,21 +138,33 @@ chart_rescale_by_table(ChartDatum *datum, gdouble *table, gint nels, gint step)
   bot = MIN(datum->max, datum->top_max);
   while (step <= r->top_index
     && bot < table[r->top_index - step]
-    && datum->top_min < table[r->top_index - step])
+    && datum->top_min <= table[r->top_index - step])
     {
       r->top_index -= step;
       changed++;
     }
 
-  if (changed)
+  /* Set the new upper adjustment value.  The new value will be on of
+     table[r->top_index], top_min, or top_max.  If a user-supplied
+     top_max is available, we use that as the outer limit.  */
+  datum->adj->upper = table[r->top_index];
+  if (top > table[r->top_index] && table[r->top_index] < datum->top_max)
+    datum->adj->upper = datum->top_max;
+  else if (step <= r->top_index
+    && bot < table[r->top_index-step]
+    && table[r->top_index-step] < datum->top_min)
     {
-      datum->adj->upper = table[r->top_index];
-      #ifdef DEBUG
-      printf("changed: %p=%2dx%d, %g..%g; %g(%d) -> %g(%d)\n",
-	datum, changed, step, datum->min, datum->max, 
-	table[j], j, table[r->top_index], r->top_index);
-      #endif
+      datum->adj->upper = datum->top_min;
+      if (!changed && last_upper != datum->adj->upper)
+	changed = -1;
     }
+
+#ifdef DEBUG
+  if (changed)
+    printf("changed: %p=%2dx%d, %g..%g; %g(%d) -> %g(%d): %g\n",
+      datum, changed, step, datum->min, datum->max,
+      table[j], j, table[r->top_index], r->top_index, datum->adj->upper);
+#endif
 
   return changed;
 }
@@ -291,7 +304,8 @@ chart_set_interval(Chart *chart, guint msec)
 ChartDatum *
 chart_parameter_add(Chart *chart,
   gdouble (*user_func)(), gpointer user_data,
-  gchar *color_names, GtkAdjustment *adj, int pageno)
+  gchar *color_names, GtkAdjustment *adj, int pageno,
+  gdouble bot_min, gdouble bot_max, gdouble top_min, gdouble top_max)
 {
   ChartDatum *datum = g_malloc(sizeof(*datum));
 
@@ -306,11 +320,17 @@ chart_parameter_add(Chart *chart,
   if (adj == NULL)
     adj = GTK_ADJUSTMENT(gtk_adjustment_new(0,0,0,0,0,0));
   datum->adj = adj;
-  datum->adj->upper = 1.0;
-  datum->adj->lower = 0.0;
+  datum->adj->upper = datum->top_min;
+  datum->adj->lower = datum->bot_min;
 
-  datum->top_max = datum->bot_max = +G_MAXDOUBLE;
-  datum->top_min = datum->bot_min = -G_MAXDOUBLE;
+  datum->top_max = top_max;
+  datum->bot_max = bot_max;
+  datum->top_min = top_min;
+  datum->bot_min = bot_max;
+#ifdef DEBUG
+  printf("Initial bounds %d: %lf - %lf | %lf - %lf\n", pageno,
+    datum->bot_min, datum->bot_max, datum->top_min, datum->top_max);
+#endif
 
   datum->colors = 0;
   datum->color_names = g_strdup(color_names);
