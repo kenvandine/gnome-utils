@@ -80,7 +80,7 @@ get_readable_date 		(const time_t file_time_raw);
 gchar *    	
 strdup_strftime 		(const gchar *format, 
 				 struct tm *time_pieces); 
-gchar *
+const char *
 get_file_type_for_mime_type	(const gchar *filename,
 				 const gchar *mimetype);
 GdkPixbuf *

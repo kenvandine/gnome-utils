@@ -451,7 +451,7 @@ add_file_to_search_results (const gchar 	*file,
 			    GtkTreeIter 	*iter)
 {					
 	const char *mime_type; 
-	gchar *description;
+	const char *description;
 	GdkPixbuf *pixbuf;
 	GnomeVFSFileInfo *vfs_file_info;
 	gchar *readable_size, *readable_date;

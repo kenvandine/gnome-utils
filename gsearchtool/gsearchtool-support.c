@@ -458,33 +458,34 @@ strdup_strftime (const gchar *format,
 	return result;
 }
 
-gchar *
+const char *
 get_file_type_for_mime_type (const gchar *filename, 
-			      const gchar *mimetype)
+                             const gchar *mimetype)
 {
+	const char *desc;
+	
 	if (filename == NULL || mimetype == NULL) {
-		return (gchar *)gnome_vfs_mime_get_description (GNOME_VFS_MIME_TYPE_UNKNOWN);
+		return gnome_vfs_mime_get_description (GNOME_VFS_MIME_TYPE_UNKNOWN);
 	}
+
+	desc = gnome_vfs_mime_get_description (mimetype);
 
 	if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK)) {
-		if (g_ascii_strcasecmp (mimetype, GNOME_VFS_MIME_TYPE_UNKNOWN) == 0) {
-			GnomeVFSFileInfo *file_info;
+	
+		GnomeVFSFileInfo *file_info;
 		
-			file_info = gnome_vfs_file_info_new ();
-			gnome_vfs_get_file_info (filename, file_info, GNOME_VFS_FILE_INFO_DEFAULT);
+		file_info = gnome_vfs_file_info_new ();
+		gnome_vfs_get_file_info (filename, file_info, GNOME_VFS_FILE_INFO_DEFAULT);
 		
-			if (g_file_test (file_info->symlink_name, G_FILE_TEST_EXISTS) != TRUE) {
-				gnome_vfs_file_info_unref (file_info);
-				return _("link (broken)");
-			}
-			
+		if (g_file_test (file_info->symlink_name, G_FILE_TEST_EXISTS) != TRUE) {
 			gnome_vfs_file_info_unref (file_info);
+			return _("link (broken)");
 		}
-		return g_strdup_printf (_("link to %s"), 
-			(gchar *)gnome_vfs_mime_get_description (mimetype));
+			
+		gnome_vfs_file_info_unref (file_info);
+		return g_strdup_printf (_("link to %s"), (desc != NULL) ? desc : mimetype);
 	}
-
-	return (gchar *)gnome_vfs_mime_get_description (mimetype);
+	return desc;
 } 
 
 GdkPixbuf *
