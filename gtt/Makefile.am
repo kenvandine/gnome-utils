@@ -72,11 +72,10 @@ INCLUDES = 			\
 	${GUILE_INCS}
 						 
 gtt_LDADD = \
+	$(GNOME_UTILS_LIBS)	\
 	$(LIBGLADE_LIBS)        \
-	$(GNOME_LIBDIR)         \
-	$(LIBXML_LIBS)        \
+	$(LIBXML_LIBS)        	\
 	$(GTKHTML_LIBS)		\
-	$(GNOMEUI_LIBS) 	\
 	$(GCONF_LIBS)	 	\
 	${GUILE_LIBS}		\
 	$(INTLLIBS)

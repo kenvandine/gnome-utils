@@ -4,7 +4,9 @@ dnl
 
 AC_INIT(gtt)
 AM_CONFIG_HEADER(config.h)
-AC_CANONICAL_SYSTEM
+AM_INIT_AUTOMAKE(gnome-utils, 1.96.0)
+
+AM_MAINTAINER_MODE
 
 dnl
 dnl Due to the sed scripts being split on 90 line
@@ -12,14 +14,6 @@ dnl blocks, this macro needs to be right at the beggining.
 dnl
 
 AM_PROG_XML_I18N_TOOLS
-
-AM_INIT_AUTOMAKE(gnome-utils, 1.96.0)
-
-dnl 
-dnl only useful for maintainers
-dnl
-
-AM_MAINTAINER_MODE
 
 dnl We could probably remove this cruft
 dnl 
@@ -58,6 +52,7 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
+dnl AC_CANONICAL_SYSTEM
 dnl AC_ARG_PROGRAM
 dnl AM_PROG_LIBTOOL
 dnl AM_PROG_LEX
@@ -77,6 +72,7 @@ LIBGTOP_REQUIRED=1.1.6
 LIBBONOBOUI_REQUIRED=1.103.0
 LIBXML_REQUIRED=2.2.8
 LIBPANELAPPLET_REQUIRED=
+GCONF_REQUIRED=1.1.2
 
 dnl *****************************************
 dnl libgnome, libgnomeui needed for all utils
@@ -103,21 +99,25 @@ AC_SUBST(LIBBONOBOUI_CFLAGS)
 AC_SUBST(LIBBONOBOUI_LIBS)
 
 dnl *********************************************
-dnl libgtop is needed for FIXME
+dnl libgtop is needed for FIXME - no pkg-config file yet
 dnl *********************************************
 
-PKG_CHECK_MODULES(LIBGTOP, libgtop-2.0 >= $LIBGTOP_REQUIRED, build_gtop=true, build_gtop=false)
-AC_SUBST(LIBGTOP_CFLAGS)
-AC_SUBST(LIBGTOP_LIBS)
-AM_CONDITIONAL(HAVE_LIBGTOP, test "$build_gtop" = true)
+dnl PKG_CHECK_MODULES(LIBGTOP, libgtop-2.0 >= $LIBGTOP_REQUIRED, build_gtop=yes, build_gtop=no)
+dnl AC_SUBST(LIBGTOP_CFLAGS)
+dnl AC_SUBST(LIBGTOP_LIBS)
+dnl AM_CONDITIONAL(HAVE_LIBGTOP, test "$build_gtop" = "yes")
+
+GNOME_LIBGTOP_HOOK(,build_libgtop=yes)
+AM_CONDITIONAL(HAVE_LIBGTOP, test "x$build_libgtop" = "xyes")
+
 dnl *********************************************
 dnl libxml is needed for stripchart and gtt
 dnl *********************************************
 
-PKG_CHECK_MODULES(LIBXML, libxml-2.0 >= $LIBXML_REQUIRED, build_xml=true, build_xml=false)
+PKG_CHECK_MODULES(LIBXML, libxml-2.0 >= $LIBXML_REQUIRED, build_xml=yes, build_xml=no)
 AC_SUBST(LIBXML_CFLAGS)
 AC_SUBST(LIBXML_LIBS)
-AM_CONDITIONAL(HAVE_LIBXML, test "$build_xml" = true)
+AM_CONDITIONAL(HAVE_LIBXML, test "x$build_xml" = "xyes")
 
 dnl *********************************************
 dnl libpanelapplet - temporarily dnl'd while panel
@@ -148,6 +148,14 @@ fi
 
 AM_CONDITIONAL(BUILD_STRIPCHART_APPLET, test $enable_stripchart_applet = yes)
 AM_CONDITIONAL(BUILD_GCOLORSEL_APPLET, test $enable_gcolorsel_applet = yes)
+
+dnl *********************************************
+dnl gconf is needed by gtt
+dnl *********************************************
+
+PKG_CHECK_MODULES(GCONF, gconf-2.0 >= $GCONF_REQUIRED)
+AC_SUBST(GCONF_LIBS)
+AC_SUBST(GCONF_CFLAGS)
 
 dnl *******************************
 dnl Guile checks

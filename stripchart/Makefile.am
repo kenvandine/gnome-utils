@@ -4,7 +4,7 @@ INCLUDES = -DG_LOG_DOMAIN=\"stripchart\" \
  -DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
  -DLOCALEDIR=\"$(datadir)/locale\" \
  -DCONFDIR=\"$(datadir)/stripchart\" \
- -I$(includedir) $(GNOME_UTILS_CFLAGS) $(GTOP_CFLAGS)
+ -I$(includedir) $(GNOME_UTILS_CFLAGS) $(LIBGTOP_CFLAGS)
 
 bin_PROGRAMS = stripchart stripchart-applet
 
@@ -15,7 +15,7 @@ stripchart_SOURCES = \
 
 stripchart_LDADD = \
  $(GNOME_UTILS_LIBS) $(INTLLIBS) \
- $(GTOP_LIBS) $(LIBXML_LIBS) 
+ $(LIBGTOP_LIBS) $(LIBXML_LIBS) 
 
 stripchart_applet_SOURCES = \
  stripchart-applet.c \
@@ -24,7 +24,7 @@ stripchart_applet_SOURCES = \
 
 stripchart_applet_LDADD = \
  $(GNOME_UTILS_LIBS) $(INTLLIBS) $(GNOME_APPLETS_LIBS) \
- $(GTOP_LIBS) $(LIBXML_LIBS) 
+ $(LIBGTOP_LIBS) $(LIBXML_LIBS) 
 
 man_MANS = stripchart.1 stripchart-applet.1
 
