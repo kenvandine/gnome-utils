@@ -182,15 +182,19 @@
     
     <para>To search for a file on the system, perform the following steps:</para>
     <orderedlist>
+	<listitem>
+	  <para>In the <guilabel>Starting in folder</guilabel> field, enter the
+	  directory you want the search started in. It will search
+	  only that directory and any subdirectories beneath it.</para>
+	</listitem>
+
     	<listitem><para>In the <guilabel>Find files named</guilabel> field, enter one of the following strings:</para>
     		<itemizedlist>
     			<listitem><para>A full filename, for example <userinput>myfile.txt</userinput>. <application>&app;</application>
-    			searches for all files on the system named <userinput>myfile.txt</userinput>.</para></listitem>
+    			searches for all files in the specified directory named <userinput>myfile.txt</userinput>.</para></listitem>
     			<listitem><para>A partial filename, for example <userinput>gnome</userinput>. <application>&app;</application>
-    			searches for all files on the system that contain the string <userinput>gnome</userinput> in their directory path or filename. </para></listitem>
-    			<listitem><para>A directory path combined with wildcards (*), for example <userinput>/home/username/*.txt</userinput>. 
-    			<application>&app;</application> searches the directory <userinput>/home/username</userinput> for all files with the 
-    			extension <userinput>.txt</userinput>.</para></listitem>
+    			searches for all files that contain the string <userinput>gnome</userinput> in their directory path or filename. </para></listitem>
+    			
     		</itemizedlist>
     		<para></para>
     	</listitem>	
