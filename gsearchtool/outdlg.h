@@ -24,14 +24,10 @@
 #include "gsearchtool.h"
 
 
-gboolean outdlg_makedlg(gchar name[]);
-
-void outdlg_additem(gchar item[]);
-
-void outdlg_showdlg();
-
-void outdlg_closedlg(GtkWidget * widget, gpointer * data);
-
-void outdlg_clearlist(GtkWidget * widget, gpointer * data);
+int outdlg_makedlg(char name[],int clear);
+void outdlg_additem(char item[]);
+void outdlg_showdlg(void);
+void outdlg_freeze(void);
+void outdlg_thaw(void);
 
 #endif

@@ -23,23 +23,6 @@
 
 #define PIPE_READ_BUFFER 4096
 
-struct finfo {
-	gchar file[256],dir[256];
-	gboolean subdirs;
-	gchar lastmod[50];
-	gchar group[50];
-	gchar owner[50];
-	gchar extraopts[256];
-	gboolean methodfind;
-	gboolean methodlocate;
-	gchar searchtext[256];
-	gboolean searchgrep;
-	gboolean searchfgrep;
-	gboolean searchegrep;
-	gchar applycmd[256];
-	gboolean mount;
-};
-
 typedef enum {
 	FIND_OPTION_END, /*end the option templates list*/
 	FIND_OPTION_CHECKBOX_TRUE, /*if the user checks this use the option*/
@@ -68,16 +51,16 @@ struct _FindOption {
 
 	union {
 		/* true false data */
-		gint bool;
+		int bool;
 
 		/* this is a char string of the data */
-		gchar text[256];
+		char *text;
 
 		/* number data */
-		gint number;
+		int number;
 
 		/* the time data */
-		gchar time[50];
+		char *time;
 	} data;
 };
 	

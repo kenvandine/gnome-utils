@@ -12,9 +12,7 @@ gsearchtool_SOURCES =	\
 	gsearchtool.c	\
 	gsearchtool.h	\
         outdlg.c	\
-	outdlg.h	\
-	unixcmd.c	\
-	unixcmd.h
+	outdlg.h
 
 gsearchtool_LDADD = \
 	$(GNOME_LIBDIR) \
