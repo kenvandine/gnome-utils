@@ -1,3 +1,5 @@
+SUBDIRS = help
+
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 
 INCLUDES = 						\

@@ -99,6 +99,18 @@ cancel_cb (GtkWidget * widget, gpointer user_data)
 }
 
 static void
+help_cb (GtkWidget * widget, gpointer user_data)
+{
+    gchar *tmp;
+
+    tmp = gnome_help_file_find_file ("gfontsel", "index.html");
+    if (tmp) {
+       gnome_help_goto(0, tmp);
+       g_free(tmp);
+    }
+}
+
+static void
 close_cb (GtkWidget * widget, gpointer user_data)
 {
 	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) user_data;
@@ -145,6 +157,7 @@ gfontsel_create_dialog (gfontsel_cfg_t * cfg)
 	cfg->dialog = gnome_dialog_new (_("Font Selector"),
 					GNOME_STOCK_BUTTON_APPLY,
 					GNOME_STOCK_BUTTON_CLOSE,
+					GNOME_STOCK_BUTTON_HELP,
 					NULL);
 
 	gtk_signal_connect (GTK_OBJECT (cfg->dialog), "close",
@@ -154,6 +167,8 @@ gfontsel_create_dialog (gfontsel_cfg_t * cfg)
 				     cfg);
 	gnome_dialog_button_connect (GNOME_DIALOG (cfg->dialog), 1,
 				     GTK_SIGNAL_FUNC (close_cb), cfg);
+	gnome_dialog_button_connect (GNOME_DIALOG (cfg->dialog), 2,
+				     GTK_SIGNAL_FUNC (help_cb), cfg);
 	gnome_dialog_set_default (GNOME_DIALOG (cfg->dialog), 0);
 	gnome_dialog_set_accelerator (GNOME_DIALOG (cfg->dialog), 0,
 				      GDK_space, 0);
