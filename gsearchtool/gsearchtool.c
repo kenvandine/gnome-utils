@@ -648,59 +648,59 @@ set_constraint_gconf_boolean (gint constraint_id, gboolean flag)
 	switch (constraint_id) {
 	
 		case SEARCH_CONSTRAINT_CONTAINS_THE_TEXT:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/contains_the_text",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/contains_the_text",
 	   		       	       	       	       flag);
 			break;
 		case SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/date_modified_less_than",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/date_modified_less_than",
 	   		       	       	       	       flag);
 			break;
 		case SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/date_modified_more_than",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/date_modified_more_than",
 	   		       	       	       	       flag);
 			break;
 		case SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/size_at_least",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/size_at_least",
 	   		       	       		       flag);
 			break;
 		case SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/size_at_most",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/size_at_most",
 	   		       	       	  	       flag);
 			break;
 		case SEARCH_CONSTRAINT_FILE_IS_EMPTY:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/file_is_empty",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/file_is_empty",
 	   		       	       	               flag);
 			break;
 		case SEARCH_CONSTRAINT_OWNED_BY_USER:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/owned_by_user",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/owned_by_user",
 	   		       	       	               flag);
 			break;
 		case SEARCH_CONSTRAINT_OWNED_BY_GROUP:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/owned_by_group",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/owned_by_group",
 	   		       	       	               flag);
 			break;
 		case SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/owner_is_unrecognized",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/owner_is_unrecognized",
 	   		       	       	               flag);
 			break;
 		case SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/name_does_not_contain",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/name_does_not_contain",
 	   		       	       	               flag);
 			break;
 		case SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/name_matches_regular_expression",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/name_matches_regular_expression",
 	   		       	       	               flag);
 			break;
 		case SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/show_hidden_files_and_folders",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/show_hidden_files_and_folders",
 	   		       	       	               flag);
 			break;
 		case SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/follow_symbolic_links",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/follow_symbolic_links",
 	   		       	       	               flag);
 			break;
 		case SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/include_other_filesystems",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/include_other_filesystems",
 	   		       	       	               flag);
 			break;
 		
@@ -2137,59 +2137,59 @@ handle_gconf_settings (void)
 		}
 	}
 		      
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/contains_the_text")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/contains_the_text")) {
 		add_constraint (SEARCH_CONSTRAINT_CONTAINS_THE_TEXT, "", FALSE); 
 	}
 		
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/date_modified_less_than")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/date_modified_less_than")) {
 		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/date_modified_more_than")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/date_modified_more_than")) {
 		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/size_at_least")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/size_at_least")) {
 		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/size_at_most")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/size_at_most")) {
 		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/file_is_empty")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/file_is_empty")) {
 		add_constraint (SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL, FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owned_by_user")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/owned_by_user")) {
 		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_USER, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owned_by_group")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/owned_by_group")) {
 		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_GROUP, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/owner_is_unrecognized")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/owner_is_unrecognized")) {
 		add_constraint (SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED, NULL, FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/name_does_not_contain")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/name_does_not_contain")) {
 		add_constraint (SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/name_matches_regular_expression")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/name_matches_regular_expression")) {
 		add_constraint (SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION, "", FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_hidden_files_and_folders")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/show_hidden_files_and_folders")) {
 		add_constraint (SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS, NULL, FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/follow_symbolic_links")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/follow_symbolic_links")) {
 		add_constraint (SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS, NULL, FALSE); 
 	}
 	
-	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/include_other_filesystems")) {
+	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/select/include_other_filesystems")) {
 		add_constraint (SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS, NULL, FALSE); 
 	}
 }
