@@ -30,9 +30,7 @@ gnome_system_log_SOURCES = 	\
 	monitor.c       \
 	userprefsdialog.c       \
 	zoom.c \
-	gedit-output-window.c \
-	logview-search.c \
-	logview-search-dialog.c
+	logview-findbar.c
 
 gnome_system_log_LDADD = \
 	$(GNOME_UTILS_LIBS)
