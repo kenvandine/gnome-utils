@@ -1,5 +1,6 @@
-/*   GTimeTracker - a time tracker
+/*   Project data manipulation for GTimeTracker - a time tracker
  *   Copyright (C) 1997,98 Eckehard Berns
+ *   Copyright (C) 2001 Linas Vepstas <linas@linas.org>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,10 +22,30 @@
 
 #include <glib.h>
 
+typedef enum 
+{
+	GTT_HOLD = 0,	    /* will not appear on invoice */
+	GTT_BILLABLE = 1,   /* billable time */
+	GTT_NOT_BILLABLE,   /* not billable to customer, internal only */
+	GTT_NO_CHARGE       /* no charge */
+} GttBillable;
+
+typedef enum 
+{
+	GTT_REGULAR = 0,
+	GTT_OVERTIME,
+	GTT_OVEROVER,
+	GTT_FLAT_FEE
+} GttBillRate;
+		
+
 /* The three basic structures */
 typedef struct gtt_project_s GttProject;
 typedef struct gtt_task_s GttTask;
 typedef struct gtt_interval_s GttInterval;
+
+/* -------------------------------------------------------- */
+/* project data */
 
 /* create, destroy a new project */
 GttProject *	gtt_project_new(void);
@@ -47,12 +68,16 @@ void 		gtt_project_remove(GttProject *p);
 
 void 		gtt_project_set_title(GttProject *, const char *);
 void 		gtt_project_set_desc(GttProject *, const char *);
+void 		gtt_project_set_notes(GttProject *, const char *);
+void 		gtt_project_set_custid(GttProject *, const char *);
 
 /* These two routines return the title & desc strings.
  * Do *not* free these strings when done.  Note that 
  * are freed when project is deleted. */
 const char * 	gtt_project_get_title (GttProject *);
 const char * 	gtt_project_get_desc (GttProject *);
+const char * 	gtt_project_get_notes (GttProject *);
+const char * 	gtt_project_get_custid (GttProject *);
 
 /* The gtt_project_compat_set_secs() routine provides a
  *    backwards-compatible routine for setting the total amount of
@@ -64,9 +89,34 @@ void		gtt_project_compat_set_secs (GttProject *proj,
 			int secs_ever, int secs_day, time_t last_update);
 
 
-/* rate is currency amount to charge for work */
-void 		gtt_project_set_rate (GttProject *, double);
-double 		gtt_project_get_rate (GttProject *);
+/* The billrate is the currency amount to charge for an hour's work.
+ *     overtime_rate is the over-time rate (usually 1.5x billrate)
+ *     overover_rate is the double over-time rate (usually 2x billrate)
+ *     flat_fee is charged, independent of the length of time.
+ */
+void 		gtt_project_set_billrate (GttProject *, double);
+double 		gtt_project_get_billrate (GttProject *);
+void 		gtt_project_set_overtime_rate (GttProject *, double);
+double 		gtt_project_get_overtime_rate (GttProject *);
+void 		gtt_project_set_overover_rate (GttProject *, double);
+double 		gtt_project_get_overover_rate (GttProject *);
+void 		gtt_project_set_flat_fee (GttProject *, double);
+double 		gtt_project_get_flat_fee (GttProject *);
+
+/* The gtt_project_set_min_interval() routine sets the smallest
+ *    time unit, below which work intervals will not be recorded
+ *    (and will instead be discarded).   Default is 3 seconds, 
+ *    but it should be 60 seconds.
+ *
+ * The gtt_project_auto_merge_interval() routine sets the smallest
+ *    time unit, below which work intervals will be merged into 
+ *    prior work intervals rather than being counted as seperate.
+ *    Default is 1 minute, but should be 5 minutes.
+ */
+void		gtt_project_set_min_interval (GttProject *, int);
+int		gtt_project_get_min_interval (GttProject *);
+void		gtt_project_set_auto_merge_interval (GttProject *, int);
+int		gtt_project_get_auto_merge_interval (GttProject *);
 
 /* The id is a simple id, handy for .. stuff */
 void 		gtt_project_set_id (GttProject *, int id);
@@ -74,6 +124,9 @@ int  		gtt_project_get_id (GttProject *);
 
 /* return a project, given only its id; NULL if not found */
 GttProject * 	gtt_project_locate_from_id (int prj_id);
+
+/* -------------------------------------------------------- */
+/* project manipulation */
 
 /* The project_timer_start() routine logs the time when
  *    a new task interval starts.
@@ -111,14 +164,13 @@ int 		gtt_project_total_secs_ever (GttProject *proj);
 void gtt_project_compute_secs (GttProject *proj);
 void gtt_project_list_compute_secs (void);
 
-
 void gtt_clear_daily_counter (GttProject *proj);
-
-
 
 /* return a list of the children of this project */
 GList * 	gtt_project_get_children (GttProject *);
 GList * 	gtt_project_get_tasks (GttProject *);
+
+GttProject * 	gtt_project_get_parent (GttProject *);
 
 /* 
  * The following routines maintain a heirarchical tree of projects.
@@ -155,6 +207,7 @@ void	gtt_project_insert_after (GttProject *proj, GttProject *after_me);
 void	gtt_project_add_task (GttProject *, GttTask *);
 
 /* -------------------------------------------------------- */
+/* master project list */
 
 /* Return a list of all projects */
 GList * 	gtt_get_project_list (void);
@@ -187,6 +240,14 @@ void 		gtt_task_destroy (GttTask *);
 
 void		gtt_task_set_memo (GttTask *, const char *);
 const char *	gtt_task_get_memo (GttTask *);
+void		gtt_task_set_notes (GttTask *, const char *);
+const char *	gtt_task_get_notes (GttTask *);
+
+void		gtt_task_set_billable (GttTask *, GttBillable);
+GttBillable	gtt_task_get_billable (GttTask *);
+void		gtt_task_set_billrate (GttTask *, GttBillRate);
+GttBillRate	gtt_task_get_billrate (GttTask *);
+
 GList *		gtt_task_get_intervals (GttTask *);
 void		gtt_task_add_interval (GttTask *, GttInterval *);
 void		gtt_task_append_interval (GttTask *, GttInterval *);

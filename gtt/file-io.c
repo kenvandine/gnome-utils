@@ -383,7 +383,7 @@ gtt_load_config (const char *fname)
 	{
 		/* Assume we've already read the XML data, and just 
 		 * set the current project */
-		cur_proj = gtt_project_locate_from_id (cur_proj_id);
+		cur_proj_set (gtt_project_locate_from_id (cur_proj_id));
 	}
 
 	/* Over-ride the current project based on the 

@@ -355,11 +355,12 @@ static void
 setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
 {
 	GList *node, *prjlist;
-	int timer_running, cp_found = 0;
+	int timer_running;
 
 	timer_running = timer_is_running();
 	stop_timer();
 
+	/* first, add all projects to the ctree */
 	prjlist = gtt_get_project_list();
 	if (prjlist) {
 		gtk_clist_freeze(GTK_CLIST(tree_w));
@@ -368,17 +369,26 @@ setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
 		{
 			GttProject *prj = node->data;
 			ctree_add(prj, NULL);
-			if (prj == cur_proj) cp_found = 1;
 		}
 		gtk_clist_thaw(GTK_CLIST(tree_w));
 	} else {
 		gtk_clist_clear(GTK_CLIST(tree_w));
 	}
-	if (!cp_found) {
-		cur_proj_set(NULL);
-	} else if (cur_proj) {
+
+	/* next, highlight the current project, and expand 
+	 * the tree branches to it, if needed */
+	if (cur_proj) 
+	{
+		GttProject *parent;
 		gtk_ctree_select(tree_w, cur_proj->trow);
+		parent = gtt_project_get_parent (cur_proj);
+		while (parent) 
+		{
+			gtk_ctree_expand(tree_w, parent->trow);
+			parent = gtt_project_get_parent (parent);
+		}
 	}
+
 	err_init();
 	if (!GTK_WIDGET_MAPPED(top_win)) {
 		gtk_widget_show(top_win);
@@ -513,6 +523,13 @@ ctree_insert_after (GttProject *p, GttProject *sibling)
 	{
 		if (sibling->parent) parentnode = sibling->parent->trow;
 		next_sibling = GTK_CTREE_NODE_NEXT(sibling->trow);
+
+		/* weird math: if this is the last leaf on this
+		 * branch, then next_sibling must be null to become 
+		 * the new last leaf. Unfortunately, GTK_CTREE_NODE_NEXT
+		 * doesn't give null, it just gives the next branch */
+		if (next_sibling &&  
+		   (GTK_CTREE_ROW(next_sibling)->parent != parentnode)) next_sibling = NULL;
 	}
 	treenode = gtk_ctree_insert_node (GTK_CTREE(glist),  
                                parentnode, next_sibling,

@@ -123,6 +123,34 @@ parse_task (xmlNodePtr task)
 			gtt_task_set_memo (tsk, str);
 		} 
 		else
+		if (0 == strcmp ("notes", node->name))
+		{
+			str = GET_TEXT (node);
+			gtt_task_set_notes (tsk, str);
+		} 
+		else
+		if (0 == strcmp ("billable", node->name))
+		{
+			GttBillable billable = GTT_HOLD;
+			str = GET_TEXT (node);
+			if (!strcmp ("HOLD", str)) billable=GTT_HOLD;
+			else if (!strcmp ("BILLABLE", str)) billable=GTT_BILLABLE;
+			else if (!strcmp ("NOT_BILLABLE", str)) billable=GTT_NOT_BILLABLE;
+			else if (!strcmp ("NO_CHARGE", str)) billable=GTT_NO_CHARGE;
+			gtt_task_set_billable (tsk, billable);
+		} 
+		else
+		if (0 == strcmp ("billrate", node->name))
+		{
+			GttBillRate billrate = GTT_REGULAR;
+			str = GET_TEXT (node);
+			if (!strcmp ("REGULAR", str)) billrate=GTT_REGULAR;
+			else if (!strcmp ("OVERTIME", str)) billrate=GTT_OVERTIME;
+			else if (!strcmp ("OVEROVER", str)) billrate=GTT_OVEROVER;
+			else if (!strcmp ("FLAT_FEE", str)) billrate=GTT_FLAT_FEE;
+			gtt_task_set_billrate (tsk, billrate);
+		} 
+		else
 		if (0 == strcmp ("interval-list", node->name))
 		{
 			xmlNodePtr tn;
@@ -170,12 +198,64 @@ parse_project (xmlNodePtr project)
 			gtt_project_set_desc (prj, str);
 		} 
 		else
-		if (0 == strcmp ("rate", node->name))
+		if (0 == strcmp ("notes", node->name))
+		{
+			str = GET_TEXT (node);
+			gtt_project_set_notes (prj, str);
+		} 
+		else
+		if (0 == strcmp ("custid", node->name))
+		{
+			str = GET_TEXT (node);
+			gtt_project_set_custid (prj, str);
+		} 
+		else
+		if (0 == strcmp ("billrate", node->name))
 		{
 			double rate;
 			str = GET_TEXT (node);
 			rate = atof (str);
-			gtt_project_set_rate (prj, rate);
+			gtt_project_set_billrate (prj, rate);
+		} 
+		else
+		if (0 == strcmp ("overtime_rate", node->name))
+		{
+			double rate;
+			str = GET_TEXT (node);
+			rate = atof (str);
+			gtt_project_set_overtime_rate (prj, rate);
+		} 
+		else
+		if (0 == strcmp ("overover_rate", node->name))
+		{
+			double rate;
+			str = GET_TEXT (node);
+			rate = atof (str);
+			gtt_project_set_overover_rate (prj, rate);
+		} 
+		else
+		if (0 == strcmp ("flat_fee", node->name))
+		{
+			double rate;
+			str = GET_TEXT (node);
+			rate = atof (str);
+			gtt_project_set_flat_fee (prj, rate);
+		} 
+		else
+		if (0 == strcmp ("min_interval", node->name))
+		{
+			int ivl;
+			str = GET_TEXT (node);
+			ivl = atoi (str);
+			gtt_project_set_min_interval (prj, ivl);
+		} 
+		else
+		if (0 == strcmp ("auto_merge_interval", node->name))
+		{
+			int ivl;
+			str = GET_TEXT (node);
+			ivl = atoi (str);
+			gtt_project_set_auto_merge_interval (prj, ivl);
 		} 
 		else
 		if (0 == strcmp ("id", node->name))

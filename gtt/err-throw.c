@@ -16,7 +16,9 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include <config.h>
+#include "config.h"
+
+#include <assert.h>
 
 #include "err-throw.h"
  
@@ -27,7 +29,11 @@ void
 gtt_err_set_code (GttErrCode code)
 {
 	/* clear the error if requested. */
-	if (GTT_NO_ERR == code) err = GTT_NO_ERR;
+	if (GTT_NO_ERR == code) 
+	{
+		err = GTT_NO_ERR;
+		return;
+	}
 	
 	/* if the error code is already set, don't over-write it */
 	if (GTT_NO_ERR != err) return;

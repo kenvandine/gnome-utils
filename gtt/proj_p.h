@@ -19,6 +19,7 @@
 #ifndef __GTT_PROJ_P_H__
 #define __GTT_PROJ_P_H__
 
+#include "config.h"
 
 #ifdef TIME_WITH_SYS_TIME
 #include <sys/time.h>
@@ -30,20 +31,25 @@
 #include <time.h>
 #endif /* TIME_WITH_SYS_TIME */
 
-
 #include "gtt.h"
+#include "proj.h"
 
 
 struct gtt_project_s {
 	char *title;     /* short title */
-	char *desc;      /* breif description */
+	char *desc;      /* breif description for invoice */
+	char *notes;     /* long description */
+	char *custid;    /* customer id */
 
 	int min_interval;  /* smallest recorded interval */
 	int auto_merge_interval;  /* merge intervals smaller than this */
 	int secs_ever;   /* seconds spend on this project */
 	int secs_day;    /* seconds spent on this project today */
 
-        double rate;     /* billing rate/price, in units of currency per hour */
+        double billrate;   /* billing rate, in units of currency per hour */
+        double overtime_rate;  /*  in units of currency per hour */
+        double overover_rate;  /*  the good money is here ... */
+        double flat_fee;  /* flat price, in units of currency */
 
 	GList *task_list;      /* annotated chunks of time */
 
@@ -64,7 +70,10 @@ struct gtt_project_s {
  * active interval is the one at the head of the list.
  */
 struct gtt_task_s {
-	char * memo;
+	char * memo;            /* invoiceable memo (customer sees this) */
+	char * notes;           /* internal notes (office private) */
+	GttBillable  billable;  /* if fees can be collected for this task */
+	GttBillRate  billrate;  /* hourly rate at which to bill */
 	GList *interval_list;   /* collection of start-stop's */
 };
 
