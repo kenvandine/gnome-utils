@@ -453,7 +453,7 @@ file_selection_save_as_ok_cb (GtkWidget *widget, GtkWidget *fs)
   /* Does the file already exist ? */
 
   if (g_file_exists (file)) {
-    str = g_strdup_printf (_("'%s' already exists, ecrase it ?"), file);
+    str = g_strdup_printf (_("'%s' already exists, erase it ?"), file);
     dialog = gnome_message_box_new (str, GNOME_MESSAGE_BOX_QUESTION,
 				    GNOME_STOCK_BUTTON_YES,
 				    GNOME_STOCK_BUTTON_NO, NULL);
