@@ -21,7 +21,12 @@
 
 #include "gtt-features.h"
 #ifdef GTK_USE_CLIST
+
+#undef gettext
+#undef _
 #include <libintl.h>
+#define _(String) gettext(String)
+#define N_(String) (String)
 
 #include "gtt.h"
 

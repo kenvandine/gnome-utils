@@ -42,7 +42,7 @@ static gint timer_func(gpointer data)
 			log_endofday();
 			project_list_time_reset();
 		}
-                diff_time = last_timer - t;
+                diff_time = t - last_timer;
 	} else {
                 diff_time = 1;
         }
