@@ -1,6 +1,6 @@
 # Process this file with automake to produce Makefile.in
 
-EXTRA_DIST = ABOUT_NLS BUGS gcharmap.desktop 
+EXTRA_DIST = README TODO BUGS gcharmap.desktop 
 SUBDIRS = src doc pixmaps
 
 sysdir = $(datadir)/gnome/apps/Applications

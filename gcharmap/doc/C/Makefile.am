@@ -1,5 +1,5 @@
-EXTRA_DIST = author.htm index.html intro.htm legal.htm \
-             topic.dat tutor.htm usage.htm
+EXTRA_DIST = author.html index.html intro.html legal.html \
+             topic.dat tutor.html usage.html
 
 
 gcharmap_helpdir = $(datadir)/gnome/help/gcharmap/C
@@ -9,10 +9,10 @@ dist-hook:
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) author.htm $(DESTDIR)$(gcharmap_helpdir)
+	$(INSTALL_DATA) author.html $(DESTDIR)$(gcharmap_helpdir)
 	$(INSTALL_DATA) index.html $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) intro.htm $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) legal.htm $(DESTDIR)$(gcharmap_helpdir)
+	$(INSTALL_DATA) intro.html $(DESTDIR)$(gcharmap_helpdir)
+	$(INSTALL_DATA) legal.html $(DESTDIR)$(gcharmap_helpdir)
 	$(INSTALL_DATA) topic.dat $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) tutor.htm $(DESTDIR)$(gcharmap_helpdir)
-	$(INSTALL_DATA) usage.htm $(DESTDIR)$(gcharmap_helpdir)
+	$(INSTALL_DATA) tutor.html $(DESTDIR)$(gcharmap_helpdir)
+	$(INSTALL_DATA) usage.html $(DESTDIR)$(gcharmap_helpdir)
