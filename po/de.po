@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-1.2.1cvs\n"
-"POT-Creation-Date: 2000-08-12 18:54+0200\n"
-"PO-Revision-Date: 2000-08-12 18:56+02:00\n"
+"POT-Creation-Date: 2000-08-14 14:41+0200\n"
+"PO-Revision-Date: 2000-08-14 14:56+02:00\n"
 "Last-Translator: Benedikt Roth <Benedikt.Roth@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "Zu kopierender Text:"
 
 #: gcharmap/src/interface.c:197 mini-utils/gcolorsel/menus.c:93
 #: mini-utils/gcolorsel/menus.c:954 mini-utils/gshutdown/gshutdown.c:153
-#: mini-utils/gshutdown/gshutdown.c:594
+#: mini-utils/gshutdown/gshutdown.c:594 mini-utils/gsu/gsu-gui-api.c:39
 msgid "Close"
 msgstr "Schließen"
 
@@ -2656,6 +2656,11 @@ msgstr "Suche..."
 msgid "No search string was specified!"
 msgstr "Es wurde keine Suchzeichenkette angegeben!"
 
+#: mini-utils/gpenguin/gpenguin.c:56
+#, c-format
+msgid "%s: unable to load the penguin.\n"
+msgstr "%s: Der Pinguin konnte nicht geladen werden.\n"
+
 #: mini-utils/gshutdown/gshutdown.c:87
 msgid "Shut Down"
 msgstr "Herunterfahren"
@@ -2765,6 +2770,48 @@ msgstr "Nächstes Mal nicht fragen."
 #: mini-utils/gshutdown/gshutdown.c:689
 msgid "Command execution failed: fork failed"
 msgstr "Kommandoausführung fehlgeschlagen: fork() fehlgeschlagen"
+
+#: mini-utils/gsu/gsu-impl.c:153
+msgid ""
+"You are trying to do something which requires\n"
+"root (system administrator) privileges.\n"
+"To do this, you must give the root password.\n"
+"Please enter the root password now, or choose\n"
+"Cancel if you do not know it."
+msgstr ""
+"Sie versuchen etwas, was root (System Administrator) Privilegien verlangt.\n"
+"Um diese zu erlangen müssen Sie das Passwort eingeben.\n"
+"Bitte geben Sie das Passwort jetzt ein, \n"
+"oder wählen Sie Abbrechen, wenn Sie es nicht wissen."
+
+#: mini-utils/gsu/gsu-impl.c:160
+#, c-format
+msgid ""
+"You are trying to change your user identity.\n"
+"Please enter the password for user `%s'."
+msgstr ""
+"Sie versuchen Ihre Benutzer-Identität zu ändern.\n"
+"Bitte geben Sie das Passwort für den Benutzer \"%s\" ein."
+
+#: mini-utils/gsu/gsu-main.c:62
+msgid "Command to be run as another user"
+msgstr "Kommando, das als ein anderer Benutzer ausgeführt werden soll"
+
+#: mini-utils/gsu/gsu-main.c:64
+msgid "User name to run command as"
+msgstr "Benutzername, unter dem das Kommando ausgeführt werden soll"
+
+#: mini-utils/gsu/gsu-main.c:66
+msgid "File containing interface description"
+msgstr "Datei mit der Beschreibung des Benutzer-Interfaces"
+
+#: mini-utils/gsu/gsu-test-server.c:8
+msgid "Target User"
+msgstr "Ziel-Benutzer"
+
+#: mini-utils/gsu/gsu-test-server.c:8
+msgid "USER"
+msgstr "BENUTZER"
 
 #: mini-utils/guname/guname.c:53
 msgid "Make guname act as a control center applet"
