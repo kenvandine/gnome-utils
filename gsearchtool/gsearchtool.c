@@ -73,7 +73,7 @@ static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("Contains the _text"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TIME, "-mtime -%d", N_("_Date modified less than (days)"), FALSE },
-	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Dat_e modified more than (days)"), FALSE },
+	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Date modified more than (da_ys)"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_NUMBER, "-size +%uc", N_("S_ize at least (kilobytes)"), FALSE }, 
 	{ SEARCH_CONSTRAINT_NUMBER, "-size -%uc", N_("Si_ze at most (kilobytes)"), FALSE },
@@ -1552,7 +1552,7 @@ create_search_results_section (void)
 	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 	
-	label = gtk_label_new_with_mnemonic (_("_Search results:"));
+	label = gtk_label_new_with_mnemonic (_("S_earch results:"));
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 	
