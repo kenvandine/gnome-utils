@@ -1,3 +1,19 @@
+1999-10-27  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (get_all_netload): Use u_int64_t for net stats to
+	avoid overflow errors when an interface has transferred more than
+	2^32 bytes of data.  Assume that since we're in a section of code
+	specific to Linux and libgtop, we'll have this definition and the
+	underlying datatype available.  If linux is not defined, just
+	return zero for all network statistics.
+	(gtop_value): Use u_int64_t, as above.
+	
+	* Makefile.am (conf_DATA): Add sections to install
+	gstripchart.conf in $(datadir)/gstripchart during make install.
+
+	* gstripchart.conf (Load): Use new name for load averages:
+	$load_1m, rather than $loadavg_1m.
+
 1999-10-24  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c Added some applet code, currently #ifdef'd out.
