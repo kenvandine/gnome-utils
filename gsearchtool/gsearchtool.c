@@ -714,7 +714,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 
 		do {
 			gint  status;
-			gchar *locale = NULL;
+			gchar *utf8 = NULL;
 			gchar *filename = NULL;
 			
 			if (search_data->running != RUNNING) {
@@ -746,14 +746,14 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 				continue;
 			}
 			
-			locale = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
-			if (locale == NULL) {
+			utf8 = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
+			if (utf8 == NULL) {
 				continue;
 			}
 			
 			if (strncmp (string->str, search_data->look_in_folder, strlen (search_data->look_in_folder)) == 0) { 
 			
-				filename = g_path_get_basename (locale);
+				filename = g_path_get_basename (utf8);
 			
 				if (fnmatch (search_data->file_is_named_pattern, filename, FNM_NOESCAPE) != FNM_NOMATCH) {
 					if (search_data->show_hidden_files == TRUE) {
@@ -774,7 +774,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 					}
 				}
 			}
-			g_free (locale);
+			g_free (utf8);
 			g_free (filename);
 			
 			gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &prior_rect);
@@ -857,7 +857,7 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 	
 		GString         *string;
 		GError          *error = NULL;
-		gchar           *locale = NULL;
+		gchar           *utf8 = NULL;
 		
 		string = g_string_new (NULL);
 		
@@ -895,8 +895,8 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 			   	    (strstr (string->str, "No such file or directory") == NULL) &&
 			   	    (strncmp (string->str, "grep: ", 6) != 0) &&
 			 	    (strcmp (string->str, "find: ") != 0)) { 
-					locale = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
-					error_msgs = g_string_append (error_msgs, locale); 
+					utf8 = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
+					error_msgs = g_string_append (error_msgs, utf8); 
 					truncate_error_msgs = limit_string_to_x_lines (error_msgs, 20);
 				}
 			}
@@ -904,7 +904,7 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 		} while (g_io_channel_get_buffer_condition (ioc) == G_IO_IN);
 		
 		g_string_free (string, TRUE);
-		g_free (locale);
+		g_free (utf8);
 	}
 	
 	if (condition != G_IO_IN) { 
