@@ -217,8 +217,6 @@ gdiskfree_update (GDiskFreeApp *app)
   gdouble            percent;
   glibtop_fsusage    fsu;
 
-  printf("timeout\n");
-
   gl = app->drives;
   if (current_options->sync_required)
     sync ();
