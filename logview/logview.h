@@ -55,8 +55,6 @@
 #define LOG_WINDOW_W             LOG_CANVAS_W+15
 #define LOG_WINDOW_H             LOG_CANVAS_H+LOG_BOTTOM_MARGIN
 
-#define LOGVIEW_VERSION		 "0.1"
-
 
 /*
  *    ,----------.
@@ -221,7 +219,6 @@ void ShowErrMessage (const char *msg);
 void QueueErrMessages (gboolean do_queue);
 void ShowQueuedErrMessages (void);
 GtkWidget *AddMenu (MenuItem * items);
-GtkWidget *ButtonWithPixmap (char **xpmdata, int w, int h);
 ConfigData *CreateConfig(void);
 void set_scrollbar_size (int);
 int repaint_zoom (GtkWidget * widget, GdkEventExpose * event);
@@ -234,5 +231,8 @@ int read_descript_db (char *filename, GList **db);
 int find_tag_in_db (LogLine *line, GList *db);
 int IsLeapYear (int year);
 void SetDefaultUserPrefs(UserPrefsStruct *prefs);
+int exec_action_in_db (Log *log, LogLine *line, GList *db);
+
+#define sure_string ((x)?(x):"")
 
 #endif /* __LOGVIEW_H__ */

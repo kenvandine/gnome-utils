@@ -34,7 +34,7 @@
 int ReadNPagesUp (Log * lg, Page * pg, int n);
 int ReadNPagesDown (Log * lg, Page * pg, int n);
 int ReadPageUp (Log * lg, Page * pg);
-int ReadPageDown (Log * lg, Page * pg);
+int ReadPageDown (Log * lg, Page * pg, gboolean exec_actions);
 int isLogFile (char *filename);
 int isSameDay (time_t day1, time_t day2);
 int WasModified (Log *log);

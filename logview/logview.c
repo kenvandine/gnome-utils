@@ -82,38 +82,38 @@ GtkWidget *create_menu (char *item[], int n);
 
 
 GnomeUIInfo file_menu[] = {
-        {GNOME_APP_UI_ITEM, N_("Open log...            "), 
+        {GNOME_APP_UI_ITEM, N_("Open log..."), 
 	 N_("Open log"), LoadLogMenu, NULL, NULL,
          GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Export log...          "), 
+        {GNOME_APP_UI_ITEM, N_("Export log..."), 
 	 N_("Export log"), StubCall, NULL, NULL,
          GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE_AS, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Close log              "), 
+        {GNOME_APP_UI_ITEM, N_("Close log"), 
 	 N_("Close log"), CloseLogMenu, NULL, NULL,
          GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Switch log             "), 
+        {GNOME_APP_UI_ITEM, N_("Switch log"), 
 	 N_("Switch log"), change_log_menu, NULL, NULL,
          GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Monitor..              "), 
+        {GNOME_APP_UI_ITEM, N_("Monitor..."), 
 	 N_("Monitor log"), MonitorMenu, NULL, NULL,
          GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Exit                   "), 
+        {GNOME_APP_UI_ITEM, N_("Exit"), 
 	 N_("Exit program"), ExitProg, NULL, NULL,
          GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'E', GDK_CONTROL_MASK, NULL},
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
 };
 
 GnomeUIInfo view_menu[] = {
-        {GNOME_APP_UI_ITEM, N_("Calendar                "), 
+        {GNOME_APP_UI_ITEM, N_("Calendar"), 
 	 N_("Show calendar log"), CalendarMenu, NULL, NULL,
          GNOME_APP_PIXMAP_NONE, NULL, 'C', GDK_CONTROL_MASK, NULL},
-        {GNOME_APP_UI_ITEM, N_("Log stats               "), 
+        {GNOME_APP_UI_ITEM, N_("Log stats"), 
 	 N_("Show log stats"), LogInfo, NULL, NULL,
          GNOME_APP_PIXMAP_NONE, NULL, 'I', GDK_CONTROL_MASK, NULL},
-        {GNOME_APP_UI_ITEM, N_("Zoom                    "), 
+        {GNOME_APP_UI_ITEM, N_("Zoom"), 
 	 N_("Show line info"), create_zoom_view, NULL, NULL,
          GNOME_APP_PIXMAP_NONE, NULL, 'Z', GDK_CONTROL_MASK, NULL},
-        {GNOME_APP_UI_ITEM, N_("Preferences...          "), 
+        {GNOME_APP_UI_ITEM, N_("Preferences..."), 
 	 N_("Show user preferences"), UserPrefsDialog, NULL, NULL,
          GNOME_APP_PIXMAP_NONE, NULL, 'P', GDK_CONTROL_MASK, NULL},
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
@@ -132,7 +132,7 @@ GnomeUIInfo filter_menu[] = {
 #endif
 
 GnomeUIInfo help_menu[] = {
-        {GNOME_APP_UI_ITEM, N_("About..                "), 
+        {GNOME_APP_UI_ITEM, N_("About..."), 
 	 N_("Info about logview"), AboutShowWindow,
          NULL, NULL,
          GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
@@ -157,13 +157,13 @@ GnomeUIInfo main_menu[] = {
 
 
 GtkWidget *app = NULL;
-GtkWidget *main_win_scrollbar;
-GtkLabel *filename_label, *date_label;
+GtkWidget *main_win_scrollbar = NULL;
+GtkLabel *filename_label = NULL, *date_label = NULL;
 
-GList *regexp_db, *descript_db, *actions_db;
-UserPrefsStruct *user_prefs;
-UserPrefsStruct user_prefs_struct;
-ConfigData *cfg;
+GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
+UserPrefsStruct *user_prefs = NULL;
+UserPrefsStruct user_prefs_struct = {0};
+ConfigData *cfg = NULL;
 GtkWidget *open_file_dialog = NULL;
 
 extern GdkGC *gc;
@@ -725,82 +725,91 @@ CloseApp (void)
 void
 open_databases (void)
 {
-  char full_name[1024];
-  int found;
+	char full_name[1024];
+	gboolean found;
 
-  /* Find regexp DB -----------------------------------------------------  */
-  found = FALSE;
-  if (cfg->regexp_db_path != NULL)
-    {
-      g_snprintf (full_name, sizeof (full_name),
-		  "%s/logview-regexp.db", cfg->regexp_db_path);
-      DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->regexp_db_path));
-      if (access (full_name, R_OK) == 0) 
-	found = TRUE;
-    }
+	/* Find regexp DB -----------------------------------------------------  */
+	found = FALSE;
+	if (cfg->regexp_db_path != NULL) {
+		g_snprintf (full_name, sizeof (full_name),
+			    "%s/logview-regexp.db", cfg->regexp_db_path);
+		DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->regexp_db_path));
+		if (access (full_name, R_OK) == 0)  {
+			found = TRUE;
+			read_regexp_db (full_name, &regexp_db);
+		}
+	}
 
-  g_snprintf (full_name, sizeof (full_name),
-	      "%s/share/logview/logview-regexp.db", LOGVIEWINSTALLPREFIX);
-  if (access (full_name, R_OK) == 0)
-     {
-         found = TRUE;
-	 cfg->regexp_db_path = g_strdup (full_name);
-         read_regexp_db (full_name, &regexp_db);
-     }
-  else
-    regexp_db = NULL;
+	if ( ! found) {
+		g_snprintf (full_name, sizeof (full_name),
+			    "%s/share/logview/logview-regexp.db", LOGVIEWINSTALLPREFIX);
+		if (access (full_name, R_OK) == 0) {
+			found = TRUE;
+			g_free (cfg->regexp_db_path);
+			cfg->regexp_db_path = g_strdup (full_name);
+			read_regexp_db (full_name, &regexp_db);
+		}
+	}
 
-  /* Find description DB ------------------------------------------------  */
-  found = FALSE;
-  if (cfg->descript_db_path != NULL)
-    {
-      g_snprintf (full_name, sizeof (full_name),
-		  "%s/logview-descript.db", cfg->descript_db_path);
-      DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->descript_db_path));
-      if (access (full_name, R_OK) == 0) 
-	found = TRUE;
-    }
+	/* Find description DB ------------------------------------------------  */
+	found = FALSE;
+	if (cfg->descript_db_path != NULL) {
+		g_snprintf (full_name, sizeof (full_name),
+			    "%s/logview-descript.db", cfg->descript_db_path);
+		DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->descript_db_path));
+		if (access (full_name, R_OK) == 0) {
+			read_descript_db (full_name, &descript_db);
+			found = TRUE;
+		}
+	}
 
-  g_snprintf (full_name, sizeof (full_name),
-	      "%s/share/logview/logview-descript.db", LOGVIEWINSTALLPREFIX);
-  if (access (full_name, R_OK) == 0)
-     {
-         found = TRUE;
-	 cfg->descript_db_path = g_strdup (full_name);
-         read_descript_db (full_name, &descript_db);
-     }
-  else
-    descript_db = NULL;
-
-
-  /* Find action DB ------------------------------------------------  */
-  found = FALSE;
-  if (cfg->action_db_path != NULL)
-    {
-      g_snprintf (full_name, sizeof (full_name),
-		  "%s/logview-actions.db", cfg->action_db_path);
-      DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->action_db_path));
-      if (access (full_name, R_OK) == 0) 
-	found = TRUE;
-    }
+	if ( ! found) {
+		g_snprintf (full_name, sizeof (full_name),
+			    "%s/share/logview/logview-descript.db", LOGVIEWINSTALLPREFIX);
+		if (access (full_name, R_OK) == 0) {
+			found = TRUE;
+			g_free (cfg->descript_db_path);
+			cfg->descript_db_path = g_strdup (full_name);
+			read_descript_db (full_name, &descript_db);
+		}
+	}
 
 
-  g_snprintf (full_name, sizeof (full_name),
-	      "%s/share/logview/logview-actions.db", LOGVIEWINSTALLPREFIX);
-  if (access (full_name, R_OK) == 0)
-     {
-         found = TRUE;
-	 cfg->action_db_path = g_strdup (full_name);
-         read_actions_db (full_name, &actions_db);
-     }
-  else
-    actions_db = NULL;
+	/* Find action DB ------------------------------------------------  */
+	found = FALSE;
+	g_snprintf (full_name, sizeof (full_name),
+		    "%s/.gnome/logview-actions.db", g_get_home_dir ());
+	DB (fprintf (stderr, "Looking for database in [%s/.gnome]\n",
+		     g_get_home_dir ()));
+	if (access (full_name, R_OK) == 0) {
+		found = TRUE;
+		read_actions_db (full_name, &actions_db);
+	}
+
+	if ( ! found && cfg->action_db_path != NULL) {
+		g_snprintf (full_name, sizeof (full_name),
+			    "%s/logview-actions.db", cfg->action_db_path);
+		DB (fprintf (stderr, "Looking for database in [%s]\n", cfg->action_db_path));
+		if (access (full_name, R_OK) == 0) {
+			found = TRUE;
+			read_actions_db (full_name, &actions_db);
+		}
+	}
 
 
-  /* If debugging then print DB */
-  DB (print_db (regexp_db));
+	if ( ! found) {
+		g_snprintf (full_name, sizeof (full_name),
+			    "%s/share/logview/logview-actions.db", LOGVIEWINSTALLPREFIX);
+		if (access (full_name, R_OK) == 0) {
+			found = TRUE;
+			g_free (cfg->action_db_path);
+			cfg->action_db_path = g_strdup (full_name);
+			read_actions_db (full_name, &actions_db);
+		}
+	}
 
-  return;
+	/* If debugging then print DB */
+	DB (print_db (regexp_db));
 }
 
 /* ----------------------------------------------------------------------

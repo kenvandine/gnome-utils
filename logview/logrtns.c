@@ -60,6 +60,7 @@ int match_line_in_db (LogLine *line, GList *db);
 void UpdateLastPage (Log *log);
 
 extern GList *regexp_db;
+extern GList *actions_db;
 
 /*
  * -------------------
@@ -330,7 +331,7 @@ ReadNPagesDown (Log * lg, Page * pg, int n)
    /* Read n pages down.   */
    for (i = 0; i < n; i++)
    {
-      ReadPageDown (lg, cp);
+      ReadPageDown (lg, cp, FALSE /* exec_actions */);
       lg->lastpg = cp;
       lg->firstpg = lg->firstpg->next;
       if (cp->islastpage == TRUE)
@@ -418,7 +419,7 @@ ReadPageUp (Log * lg, Page * pg)
    ---------------------------------------------------------------------- */
 
 int
-ReadPageDown (Log * lg, Page * pg)
+ReadPageDown (Log * lg, Page * pg, gboolean exec_actions)
 {
    FILE *fp;
    LogLine *line;
@@ -477,6 +478,10 @@ ReadPageDown (Log * lg, Page * pg)
 
       line = &pg->line[ln];
       ParseLine (buffer, line);
+
+      if (exec_actions)
+	      exec_action_in_db (lg, line, actions_db);
+
       ln++;
    }
    pg->ll = ln-1;
@@ -914,7 +919,7 @@ MoveToMark (Log *log)
     fseek(fp, mark->offset-1, SEEK_SET);
   else
     fseek(fp, mark->offset, SEEK_SET);
-  ReadPageDown(log, middlepg);
+  ReadPageDown(log, middlepg, FALSE /* exec_actions */);
   if (middlepg->islastpage)
     {
       middlepg = log->lastpg;
@@ -922,7 +927,7 @@ MoveToMark (Log *log)
 	fseek(fp, mark->offset-1, SEEK_SET);
       else
 	fseek(fp, mark->offset, SEEK_SET);
-      ReadPageDown(log, middlepg);
+      ReadPageDown(log, middlepg, FALSE /* exec_actions */);
       ReadNPagesUp(log, middlepg, NUM_PAGES-1);
       log->currentpg = middlepg;
       return;
@@ -932,7 +937,7 @@ MoveToMark (Log *log)
     {
       middlepg = log->firstpg;
       fseek(fp, mark->offset, SEEK_SET);
-      ReadPageDown(log, middlepg);
+      ReadPageDown(log, middlepg, FALSE /* exec_actions */);
       ReadNPagesDown(log, middlepg, NUM_PAGES-1);
       log->currentpg = middlepg;
       return;

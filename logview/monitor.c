@@ -24,11 +24,6 @@
 #include <time.h>
 #include "logview.h"
 #include "logrtns.h"
-#include "ok.xpm"
-#include "cancel.xpm"
-#include "remove.xpm"
-#include "add.xpm"
-#include "actions.xpm"
 
 #define MON_WINDOW_WIDTH           180
 #define MON_WINDOW_HEIGHT          150
@@ -75,8 +70,8 @@ GtkWidget *monwindow = NULL;
 GtkWidget *srclist, *destlist;
 
 int monitorcount;
-int mon_opts_visible, mon_win_visible;
-int mon_exec_actions, mon_hide_while_monitor;
+gboolean mon_opts_visible, mon_win_visible;
+gboolean mon_exec_actions, mon_hide_while_monitor;
 
 /* ----------------------------------------------------------------------
    NAME:         MonitorMenu
@@ -114,9 +109,6 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_widget_set_style (monoptions, cfg->main_style);
       gtk_signal_connect (GTK_OBJECT (monoptions), "destroy",
 			  GTK_SIGNAL_FUNC (close_monitor_options),
-			  &monoptions);
-      gtk_signal_connect (GTK_OBJECT (monoptions), "delete_event",
-			  GTK_SIGNAL_FUNC (close_monitor_options),
 			  NULL);
 
       vbox = (GtkBox *)gtk_vbox_new (FALSE, 2);
@@ -149,7 +141,8 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
 
       srclist = gtk_list_new ();
       gtk_list_set_selection_mode (GTK_LIST (srclist), GTK_SELECTION_SINGLE);
-      gtk_container_add (GTK_CONTAINER (scrolled_win), srclist);
+      gtk_scrolled_window_add_with_viewport
+	      (GTK_SCROLLED_WINDOW (scrolled_win), srclist);
       gtk_widget_set_style (srclist, cfg->main_style);
       gtk_widget_show (srclist);
 
@@ -170,14 +163,16 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_widget_show (vbox2);
 
       /* Arrowed buttons */
-      button = ButtonWithPixmap (addxpm, 62,18);
+      button = gtk_button_new_with_label (_("Add >>"));
+      gtk_widget_show (button);
       gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
                           (GtkSignalFunc) mon_add_log,
                           NULL);
 
       /* Remove button */ 
-      button = ButtonWithPixmap (removexpm, 62,18);
+      button = gtk_button_new_with_label (_("Remove <<"));
+      gtk_widget_show (button);
       gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
                           (GtkSignalFunc) mon_remove_log,
@@ -196,7 +191,8 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
 
       destlist = gtk_list_new ();
       gtk_list_set_selection_mode (GTK_LIST (srclist), GTK_SELECTION_SINGLE);
-      gtk_container_add (GTK_CONTAINER (scrolled_win), destlist);
+      gtk_scrolled_window_add_with_viewport
+	      (GTK_SCROLLED_WINDOW (scrolled_win), destlist);
       gtk_container_set_border_width (GTK_CONTAINER (scrolled_win), 3);
       gtk_widget_show (destlist);
 
@@ -226,25 +222,28 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       mon_exec_actions = TRUE;
 
       /* Actions button */
-      button = ButtonWithPixmap (actionsxpm, 62,15);
+      button = gtk_button_new_with_label (_("Actions..."));
+      gtk_widget_show (button);
       gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
                           GTK_SIGNAL_FUNC (mon_edit_actions),
                           srclist);
 
       /* OK button */
-      button = ButtonWithPixmap (okxpm, 62,15);
+      button = gnome_stock_button (GNOME_STOCK_BUTTON_OK);
+      gtk_widget_show (button);
       gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
                           GTK_SIGNAL_FUNC (go_monitor_log),
-                          srclist);
+                          NULL);
 
       /* Cancel button */
-      button = ButtonWithPixmap (cancelxpm, 62,15);
+      button = gnome_stock_button (GNOME_STOCK_BUTTON_CANCEL);
+      gtk_widget_show (button);
       gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
                           GTK_SIGNAL_FUNC (close_monitor_options),
-                          srclist);
+                          NULL);
 
    }
    mon_opts_visible = TRUE;
@@ -459,10 +458,10 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    gtk_widget_set_uposition(monwindow, x, y);
    gtk_signal_connect (GTK_OBJECT (monwindow), "destroy",
 		       GTK_SIGNAL_FUNC (close_monitor_options),
-		       &monwindow);
-   gtk_signal_connect (GTK_OBJECT (monwindow), "delete_event",
-		       GTK_SIGNAL_FUNC (close_monitor_options),
 		       NULL);
+   gtk_signal_connect (GTK_OBJECT (monwindow), "destroy",
+		       GTK_SIGNAL_FUNC (gtk_widget_destroyed),
+		       &monwindow);
    
    vbox = gtk_vbox_new (FALSE, 10);
    gtk_container_set_border_width (GTK_CONTAINER (vbox), 0);
@@ -570,7 +569,7 @@ mon_read_new_lines (Log *log)
   fseek (log->fp, log->offset_end, SEEK_SET);
   
   /* Read pages into buffers --------------------------- */
-  ReadPageDown (log, &pg);
+  ReadPageDown (log, &pg, mon_exec_actions);
   texts[0] = buffer;
   texts[1] = NULL;
 
@@ -593,7 +592,7 @@ mon_read_new_lines (Log *log)
       gtk_clist_moveto (log->mon_lines, log->mon_numlines, -1,0,0);
       if (pg.islastpage)
 	break;
-      ReadPageDown (log, &pg);
+      ReadPageDown (log, &pg, mon_exec_actions);
     }
 }
 

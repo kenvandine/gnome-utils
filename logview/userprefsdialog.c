@@ -37,8 +37,8 @@
  */
 
 extern ConfigData *cfg;
-extern GdkGC *gc;
 extern UserPrefsStruct *user_prefs;
+extern GtkWidget *app;
 
 /* Struct to hold function data */
 typedef struct 
@@ -108,6 +108,7 @@ void save_property_changes(GnomePropertyBox *prop, gint page, gpointer p)
 	case 0:
 		user_prefs->hostname_column_width =
 			gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(u->hostname_width_spinner));
+		gtk_widget_queue_draw (app);
 		break;
 	default: ;
 	}

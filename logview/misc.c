@@ -31,43 +31,6 @@ extern GtkWidget *app;
 static gboolean queue_err_messages = FALSE;
 static GList *msg_queue = NULL;
 
-
-/* ----------------------------------------------------------------------
-   NAME:	ButtonWithPixmap
-   DESCRIPTION:	
-   ---------------------------------------------------------------------- */
-
-GtkWidget
-*ButtonWithPixmap (char **xpmdata, int w, int h)
-{
-   GtkWidget *button, *pixmapwid, *alignment;
-   GdkPixmap *pixmap;
-   GdkBitmap *mask;
-   GtkStyle *style;
-
-   button = gtk_button_new ();
-   gtk_container_border_width (GTK_CONTAINER (button), 0);
-   gtk_widget_set_style (button, cfg->main_style);
-   gtk_widget_show (button);
-
-   style = gtk_widget_get_style (button);
-
-   pixmap = gdk_pixmap_create_from_xpm_d (button->window, &mask,
-					  &style->bg[GTK_STATE_NORMAL],
-					  xpmdata);
-   pixmapwid = gtk_pixmap_new (pixmap, mask);
-   alignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
-   gtk_container_border_width (GTK_CONTAINER (alignment), 0);
-   if (w > 0 && h > 0)
-     gtk_widget_set_usize (alignment, w, h);
-   gtk_container_add (GTK_CONTAINER (button), alignment);
-   gtk_container_add (GTK_CONTAINER (alignment), pixmapwid);
-   gtk_widget_show (pixmapwid);
-   gtk_widget_show (alignment);
-
-   return button;
-}
-
 static void
 MakeErrorDialog (const char *msg)
 {
