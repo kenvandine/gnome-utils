@@ -896,7 +896,7 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs)
 	else {
 		/* First time running logview. Try to find the logfile */
 		if (lstat("/var/adm/messages", &filestat)) 
-			prefs->logfile = g_strdup ("/var/log/messages");
+			prefs->logfile = g_strdup ("/var/adm/messages");
 		else if (lstat("/var/log/messages", &filestat)) 
 			prefs->logfile = g_strdup ("/var/log/messages");
 		else
