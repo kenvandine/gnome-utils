@@ -1139,24 +1139,32 @@ gtt_project_timer_start (GttProject *proj)
 	GttInterval *ival;
 
 	if (!proj) return;
-	if (NULL == proj->task_list)
-	{
-		task = gtt_task_new();
-		proj->task_list = g_list_prepend (NULL, task);
-		gtt_task_set_memo (task, _("New Task"));
-	}
 
 	/* By definition, the current task is the one at the head 
 	 * of the list, and the current interval is  at the head 
 	 * of the task */
-	task = proj->task_list->data;
-	g_return_if_fail (task);
+	if (NULL == proj->task_list)
+	{
+		task = gtt_task_new();
+		gtt_task_set_memo (task, _("New Task"));
+	}
+	else 
+	{
+		task = proj->task_list->data;
+		g_return_if_fail (task);
+	}
 	ival = g_new0 (GttInterval, 1);
 	ival->start = time(0);
 	ival->stop = ival->start;
 	ival->running = TRUE;
 	task->interval_list = g_list_prepend (task->interval_list, ival);
 	ival->parent = task;
+
+	/* don't add the task until after we've done above */
+	if (NULL == proj->task_list)
+	{
+		gtt_project_add_task (proj, task);
+	}
 }
 
 void 
