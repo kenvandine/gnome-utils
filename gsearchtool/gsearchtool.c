@@ -1218,6 +1218,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 	
 		gint   total_files;
 		gchar *status_bar_string = NULL;
+		gchar *title_bar_string = NULL;
 		gchar *search_status = g_strdup ("");
 		
 		if (search_data->running == MAKE_IT_STOP) {
@@ -1234,22 +1235,26 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 
 		if (total_files == 0) {
 			status_bar_string = g_strdup (_("No files found"));
+			title_bar_string = g_strdup (_("No Files Found"));
 			add_no_files_found_message (interface.model, &interface.iter);
 		}
 		else if (total_files == 1) {
 			status_bar_string = g_strdup (_("One file found"));
+			title_bar_string = g_strdup (_("One File Found"));
 		}
 		else {
 			status_bar_string = g_strdup_printf (_("%d files found"), total_files);
+			title_bar_string = g_strdup_printf (_("%d Files Found"), total_files);
 		}
 		
 		if (strlen(search_status) > 0) {
 			status_bar_string = g_strconcat (status_bar_string, " ", search_status, NULL);
+			title_bar_string = g_strconcat (title_bar_string, " ", search_status, NULL);
 		}
 		gtk_label_set_text (GTK_LABEL (interface.results_label), status_bar_string);
 		
-		status_bar_string = g_strconcat (status_bar_string, " - ", _("Search for Files"), NULL);
-		gtk_window_set_title (GTK_WINDOW (interface.main_window), status_bar_string);
+		title_bar_string = g_strconcat (title_bar_string, " - ", _("Search for Files"), NULL);
+		gtk_window_set_title (GTK_WINDOW (interface.main_window), title_bar_string);
 
 		stop_animation ();
 
@@ -1263,6 +1268,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 
 		g_io_channel_shutdown (ioc, TRUE, NULL);
 		g_free (status_bar_string);
+		g_free (title_bar_string);
 		
 		return FALSE;
 	}
