@@ -1,3 +1,15 @@
+2002-03-16  Kevin Vandersloot <kfv101@psu.edu>
+
+	* meat-grinder.c: change meat-grinder to archive-generator
+	to match binary name so the session-management won't try to
+	run meat-grinder on startup
+
+2002-03-16 Senthilkumar Ramasamy <senthil.ramasamy@wipro.com>
+
+	* meat-grinder.c: "-z" option is not supported by tar in Solaris, 
+	hence that option has been removed, now tar is done & the output 
+	is piped to gzip. patch for bug 73689
+
 2002-02-21  Ganesan Sethuraman <ganesan.sethuraman@wipro.com>
 
 	* meat-grinder.c: Create Archive Menubar Option disabled when no files 

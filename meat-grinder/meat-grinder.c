@@ -21,6 +21,11 @@ static gchar *file_icon = NULL;
 static gchar *folder_icon = NULL;
 static gchar *compress_icon = NULL;
 static gchar *tar_prog = NULL;
+static gchar *sh_prog = NULL;
+static gchar *gzip_prog = NULL;
+static gchar *tarstr = NULL;
+static gchar *filestr = NULL;
+static gchar *gzipstr = NULL;
 static gchar *filename = NULL;
 static pid_t temporary_pid = 0;
 static gchar *temporary_file = NULL;
@@ -61,6 +66,17 @@ free_file (File *f)
 	g_free (f->name);
 	f->name = NULL;
 	g_free (f);
+}
+
+static void 
+cleanup_tmpstr (void)
+{
+	g_free(tarstr);
+	tarstr = NULL;
+	g_free(filestr);
+	filestr = NULL;
+	g_free(gzipstr);
+	gzipstr = NULL;
 }
 
 static char *
@@ -160,7 +176,7 @@ make_argv_fe (gpointer key, gpointer value, gpointer user_data)
 	struct argv_adder *argv_adder = user_data;
 	gchar *file = g_build_filename ((argv_adder->link_dir), (f->base_name), NULL);
 
-	argv_adder->argv[argv_adder->pos ++] = f->base_name;
+	argv_adder->argv[argv_adder->pos ++] = g_strconcat ("\"", f->base_name, "\"", NULL);
 
 	/* FIXME: catch errors */
 	symlink (f->name, file);
@@ -208,14 +224,21 @@ create_archive (const gchar *fname,
 	else
 		argv_adder.link_dir = (gchar *)dir;
 
-	argv_adder.argv = g_new (gchar *, number_of_files + number_of_dirs + 4);
-	argv_adder.argv[number_of_files + number_of_dirs + 3] = NULL;
-	argv_adder.argv[0] = tar_prog;
-	argv_adder.argv[1] = "-chzf";
-	argv_adder.argv[2] = (gchar *)fname;
-	argv_adder.pos = 3;
+        /* Since tar -z option is not available in Solaris, doing tar & gzip */
 
+	argv_adder.argv = g_new (gchar *, number_of_files + number_of_dirs + 4);
+	argv_adder.pos = 0;
 	g_hash_table_foreach (file_ht, make_argv_fe, &argv_adder);
+	argv_adder.argv[argv_adder.pos ++] = NULL;
+
+	tarstr = g_strconcat(tar_prog, " -chf - ", NULL);
+	filestr = g_strjoinv(" ", argv_adder.argv);
+	gzipstr = g_strconcat(" | ", gzip_prog, " - > ", (gchar *)fname, NULL);
+
+	argv_adder.argv[0] = sh_prog;
+	argv_adder.argv[1] = "-c";
+	argv_adder.argv[2] = g_strconcat(tarstr, filestr, gzipstr, NULL);	
+	argv_adder.argv[3] = NULL;
 
 	/* FIXME: get error output, check for errors, etc... */
 
@@ -232,8 +255,9 @@ create_archive (const gchar *fname,
 		umask (022);
 		/* FIXME: handler errors */
 		chdir (argv_adder.link_dir);
-		execv (tar_prog, argv_adder.argv);
+		execv (sh_prog, argv_adder.argv);
 		fprintf (stderr, _("Cannot run tar/gtar"));
+		cleanup_tmpstr ();
 		_exit (1);
 	}
 
@@ -251,7 +275,7 @@ create_archive (const gchar *fname,
 	}
 
 	g_free (argv_adder.argv);
-
+	cleanup_tmpstr ();
 	return status;
 }
 
@@ -754,11 +778,11 @@ init_gui (void)
 
 	tips = gtk_tooltips_new ();
 
-        app = gnome_app_new ("meat-grinder",
+        app = gnome_app_new ("archive-generator",
 			     _("GNOME Archive Generator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app),
-				"meat-grinder",
-				"meat-grinder");
+				"archive-generator",
+				"archive-generator");
 	gtk_window_set_policy (GTK_WINDOW (app), FALSE, TRUE, FALSE);
 
         g_signal_connect (G_OBJECT (app), "delete_event",
@@ -872,7 +896,7 @@ main (gint argc, gchar *argv [])
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-	gnome_init_with_popt_table ("meat-grinder", VERSION,
+	gnome_init_with_popt_table ("archive-generator", VERSION,
 				    argc, argv, NULL, 0, &ctx);
 	/* no icon yet */
 	/*gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-meat-grinder.png");*/
@@ -916,6 +940,18 @@ main (gint argc, gchar *argv [])
 			  "This is the program used for creating archives."));
 		exit (1);
 	}
+	sh_prog = g_find_program_in_path ("sh");
+	if (sh_prog == NULL) {
+		g_print("Cannot find the shell (sh) program! Aborting");
+		exit (1);
+	}
+
+	gzip_prog = g_find_program_in_path ("gzip");
+	if (gzip_prog == NULL) {
+		g_print("Cannot find the compression (gzip) program!\n"
+			 "This is the program used for compressing archives.\n");
+		exit (1);
+	}
 
 	files = poptGetArgs (ctx);
 
@@ -947,6 +983,10 @@ main (gint argc, gchar *argv [])
 	gtk_main ();
 
 	cleanup_temporary ();
+
+	g_free(tar_prog);
+	g_free(sh_prog);
+	g_free(gzip_prog);
 	
 	return 0;
 }
