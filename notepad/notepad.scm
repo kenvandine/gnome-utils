@@ -160,7 +160,7 @@
       (gtk-text-freeze text)
       (gtk-widget-realize text)
       (gtk-text-set-point text 0)
-      (gtk-text-foreward-delete text (gtk-text-get-length text))
+      (gtk-text-forward-delete text (gtk-text-get-length text))
       (insert-file)
       (gtk-text-thaw text))))
 
@@ -210,7 +210,7 @@
 	(gtk-text-freeze text-widget)
 	(gtk-widget-realize text-widget)
 	(gtk-text-set-point text-widget 0)
-	(gtk-text-foreward-delete text-widget
+	(gtk-text-forward-delete text-widget
 				  (gtk-text-get-length text-widget))
 	(clear-dirty)
 	(set-file-name #f))))
