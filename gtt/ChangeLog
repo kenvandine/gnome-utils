@@ -1,5 +1,9 @@
 1998-02-13  Federico Mena Quintero  <federico@nuclecu.unam.mx>
 
+	* toolbar.c (add_stock_button): Bad hack: force-realize the window
+	so that the pixmaps will use the correct visual.  The toolbar
+	still has an incorrect size --- Gnome-stock has to be fixed for this.
+
 	* menus.c: Updated g_string_hash and g_string_equal by g_str_hash
 	and g_str_equal, respectively.
 

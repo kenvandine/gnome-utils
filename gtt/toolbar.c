@@ -166,6 +166,12 @@ add_stock_button(GtkToolbar *tbar, char *text, char *tt_text,
         w = button;
 #elif 1
         /* TODO: see notes above (window) */
+	/* FIXME!!!  Gnome-stock is seriously broken.  This force-realize is just a bad
+	 * hack to make the pixmaps use the correct visual.  The toolbar will not have
+	 * the correct size, though, until Gnome-stock is fixed. - Federico
+	 */
+	if (!GTK_WIDGET_REALIZED(window))
+		gtk_widget_realize(window);
 	pixmap = gnome_stock_pixmap_widget((GtkWidget *)window, icon);
         w = gtk_toolbar_append_item(tbar, text, tt_text, pixmap,
                                     (GtkSignalFunc)sigfunc,
