@@ -91,7 +91,7 @@ extern char *first_proj_title;
 
 
 project *project_new(void);
-project *project_new_title(char *);
+project *project_new_title_desc(char *, char *);
 project *project_dup(project *);
 void project_destroy(project *);
 void project_set_title(project *proj, char *t);

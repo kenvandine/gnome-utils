@@ -1,3 +1,23 @@
+Sun Jun 18 15:59:39 2000  George Lebl <jirka@5z.com>
+
+	* dialog.[ch]: fix up data pointers, make dialogs have the main
+	  window as parent, and remove some useless code.
+
+	* menucmd.c, : s/gettext/_/ ... why the @#$@ wasn't this done, am I
+	  missing something here?
+
+	* gtt.h, menucmd.c, proj.c: Apply patch from "Sven M. Hallberg"
+	  <pesco@gmx.de> to allow specifying project title in the new dialog.
+
+	* menucmd.c: free the entries data allocated for the callback.  Also
+	  get rid of the hack with "activate" and use the gnome_dialog method
+	  for this.
+
+	* menucmd.c, prop.c, options.c: make dialogs parent of window and
+	  use gnome_entries for text entry stuff.  When there is no
+	  text, set the entry to "" in options_dialog_set.  When the property
+	  box was just set set the modified state to false.
+
 2000-05-16 Gregory McLean <gregm@comstar.net>
 
 	* applied patch from Gediminas Paulauskas <menesis@delfi.lt>

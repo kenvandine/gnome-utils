@@ -23,6 +23,10 @@
 
 #include "gtt.h"
 
+/* XXX: this is our main window, perhaps it is a bit ugly this way and
+ * should be passed around in the data fields */
+extern GtkWidget *window;
+
 /* This file is a little ugly; it originally didn't use a GnomePropertyBox,
    and now it does, but not in a very natural way. */
 
@@ -141,6 +145,9 @@ void prop_dialog_set_project(project *proj)
 	sprintf(s, "%d", proj->secs % 60);
 	gtk_entry_set_text(dlg->ever.s, s);
 
+	/* set to unmodified as it reflects the current state of the project */
+	gnome_property_box_set_modified(GNOME_PROPERTY_BOX(dlg->dlg),
+					FALSE);
 }
 
 
@@ -148,7 +155,7 @@ void prop_dialog_set_project(project *proj)
 void prop_dialog(project *proj)
 {
         static GnomeHelpMenuEntry help_entry = { NULL, "index.html#PROP" };
-	GtkWidget *w;
+	GtkWidget *w, *e;
 	GtkBox *vbox;
 	GtkTable *table;
 
@@ -187,25 +194,27 @@ void prop_dialog(project *proj)
 		gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 0, 1);
-		w = gtk_entry_new();
-		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+		w = gnome_entry_new("project_title");
+		e = gnome_entry_gtk_entry(GNOME_ENTRY(w));
+		gtk_signal_connect_object(GTK_OBJECT(e), "changed",
 					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
 					  GTK_OBJECT(dlg->dlg));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 1, 7, 0, 1);
-		dlg->title = GTK_ENTRY(w);
+		dlg->title = GTK_ENTRY(e);
 
 		w = gtk_label_new(_("Project Description:"));
 		gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 1, 2);
-		w = gtk_entry_new();
-		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+		w = gnome_entry_new("project_description");
+		e = gnome_entry_gtk_entry(GNOME_ENTRY(w));
+		gtk_signal_connect_object(GTK_OBJECT(e), "changed",
 					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
 					  GTK_OBJECT(dlg->dlg));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 1, 7, 1, 2);
-		dlg->desc = GTK_ENTRY(w);
+		dlg->desc = GTK_ENTRY(e);
 
 		w = gtk_label_new(_("Project Time today:"));
 		gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
@@ -288,6 +297,9 @@ void prop_dialog(project *proj)
 		gtk_table_attach_defaults(table, w, 6, 7, 3, 4);
 
 		gnome_dialog_close_hides(GNOME_DIALOG(dlg->dlg), TRUE);
+		gnome_dialog_set_parent(GNOME_DIALOG(dlg->dlg),
+					GTK_WINDOW(window));
+
 	}
 	prop_dialog_set_project(proj);
 	gtk_widget_show(GTK_WIDGET(dlg->dlg));

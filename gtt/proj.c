@@ -50,14 +50,16 @@ project *project_new(void)
 }
 
 
-project *project_new_title(char *t)
+project *project_new_title_desc(char *t, char *d)
 {
 	project *proj;
 
 	proj = project_new();
-	if (!t) return proj;
+	if (!t || !d) return proj;
 	proj->title = g_malloc(strlen(t) + 1);
 	strcpy(proj->title, t);
+        proj->desc = g_malloc(strlen(d) + 1);
+        strcpy(proj->desc, d);
 	return proj;
 }
 

@@ -22,14 +22,16 @@
 
 #include "gtt.h"
 
-
+/* XXX: this is our main window, perhaps it is a bit ugly this way and
+ * should be passed around in the data fields */
+extern GtkWidget *window;
 
 void
 quit_app(GtkWidget *w, gpointer data)
 {
 	if (!project_list_save(NULL)) {
-		msgbox_ok(gettext("Warning"),
-			  gettext("I could not write the configuration file!"),
+		msgbox_ok(_("Warning"),
+			  _("I could not write the configuration file!"),
 			  GNOME_STOCK_BUTTON_OK,
 			  GTK_SIGNAL_FUNC(gtk_main_quit));
 		return;
@@ -65,6 +67,7 @@ about_box(GtkWidget *w, gpointer data)
                                 NULL);
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",
 			   GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
+	gnome_dialog_set_parent(GNOME_DIALOG(about), GTK_WINDOW(window));
         gtk_widget_show(about);
 }
 
@@ -72,46 +75,75 @@ about_box(GtkWidget *w, gpointer data)
 
 
 static void
-project_name(GtkWidget *w, GtkEntry *gentry)
+project_name_desc(GtkWidget *w, GtkEntry **entries)
 {
-	char *s;
+	char *name, *desc;
 	project *proj;
 
-	if (!(s = gtk_entry_get_text(gentry))) return;
-	if (!s[0]) return;
-	project_list_add(proj = project_new_title(s));
+	if (!(name = gtk_entry_get_text(entries[0]))) return;
+        if (!(desc = gtk_entry_get_text(entries[1]))) return;
+	if (!name[0]) return;
+
+	project_list_add(proj = project_new_title_desc(name, desc));
         clist_add(proj);
 }
+
+static void
+free_data(GtkWidget *dlg, gpointer data)
+{
+	g_free(data);
+}
+
 
 void
 new_project(GtkWidget *widget, gpointer data)
 {
-	GtkWidget *dlg, *t, *text;
+	GtkWidget *dlg, *t, *title, *d, *desc;
 	GtkBox *vbox;
+        GtkWidget **entries = g_new0(GtkWidget *, 2);
+        GtkWidget *table;
 
-	text = gtk_entry_new();
-	new_dialog_ok_cancel(gettext("New Project..."), &dlg, &vbox,
+	title = gnome_entry_new("project_title");
+        desc = gnome_entry_new("project_description");
+        entries[0] = gnome_entry_gtk_entry(GNOME_ENTRY(title));
+        entries[1] = gnome_entry_gtk_entry(GNOME_ENTRY(desc));
+
+	new_dialog_ok_cancel(_("New Project..."), &dlg, &vbox,
 			     GNOME_STOCK_BUTTON_OK,
-			     GTK_SIGNAL_FUNC(project_name), (gpointer *)text,
+			     GTK_SIGNAL_FUNC(project_name_desc),
+                             entries,
 			     GNOME_STOCK_BUTTON_CANCEL, NULL, NULL);
-	t = gtk_label_new(gettext("Please enter the name of the new project:"));
+
+	t = gtk_label_new(_("Project Title"));
+        d = gtk_label_new(_("Description"));
+
+        table = gtk_table_new(2,2, FALSE);
+        gtk_table_attach(GTK_TABLE(table), t,     0,1, 0,1,
+                         GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
+        gtk_table_attach(GTK_TABLE(table), title, 1,2, 0,1,
+                         GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
+        gtk_table_attach(GTK_TABLE(table), d,     0,1, 1,2,
+                         GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
+        gtk_table_attach(GTK_TABLE(table), desc,  1,2, 1,2,
+                         GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 2, 1);
+
+        gtk_box_pack_start(vbox, table, FALSE, FALSE, 2);
 	gtk_widget_show(t);
-	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
+	gtk_widget_show(title);
+        gtk_widget_show(d);
+        gtk_widget_show(desc);
+        gtk_widget_show(table);
 
-	gtk_widget_show(text);
-	gtk_box_pack_end(vbox, text, TRUE, TRUE, 2);
-	gtk_widget_grab_focus(text);
+	gtk_widget_grab_focus(title);
 
-	/*
-	 * TODO: this is kinda hack for the default action to work. I tried
-	 * to do it with just a default button, but that didn't work. So I
-	 * do the default action when the entry gets `activated'.
-	 */
-	gtk_signal_connect(GTK_OBJECT(text), "activate",
-			   GTK_SIGNAL_FUNC(project_name), (gpointer *)text);
-	gtk_signal_connect_object(GTK_OBJECT(text), "activate",
-				  GTK_SIGNAL_FUNC(gtk_widget_destroy),
-				  GTK_OBJECT(dlg));
+	gnome_dialog_editable_enters(GNOME_DIALOG(dlg),
+				     GTK_EDITABLE(entries[0]));
+	gnome_dialog_editable_enters(GNOME_DIALOG(dlg),
+				     GTK_EDITABLE(entries[1]));
+
+	gtk_signal_connect(GTK_OBJECT(dlg), "destroy",
+			   GTK_SIGNAL_FUNC(free_data),
+			   entries);
 	
 	gtk_widget_show(dlg);
 }
@@ -126,9 +158,9 @@ init_project_list_2(GtkWidget *widget, int button)
 	
 	if (button != 0) return;
 	if (!project_list_load(NULL)) {
-		new_dialog_ok(gettext("Warning"), &dlg, &vbox,
+		new_dialog_ok(_("Warning"), &dlg, &vbox,
 			      GNOME_STOCK_BUTTON_OK, NULL, NULL);
-		t = gtk_label_new(gettext("I could not read the configuration file"));
+		t = gtk_label_new(_("I could not read the configuration file"));
 		gtk_widget_show(t);
 		gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
 		gtk_widget_show(dlg);
@@ -142,7 +174,7 @@ init_project_list_2(GtkWidget *widget, int button)
 void
 init_project_list(GtkWidget *widget, gpointer data)
 {
-	msgbox_ok_cancel(gettext("Reload Configuration File"),
+	msgbox_ok_cancel(_("Reload Configuration File"),
 			 _("This will overwrite your current set of projects.\n"
 			   "Do you really want to reload the configuration file?"),
 			 GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
@@ -158,9 +190,9 @@ save_project_list(GtkWidget *widget, gpointer data)
 		GtkWidget *dlg, *t;
 		GtkBox *vbox;
 		
-		new_dialog_ok(gettext("Warning"), &dlg, &vbox,
+		new_dialog_ok(_("Warning"), &dlg, &vbox,
 			      GNOME_STOCK_BUTTON_OK, NULL, NULL);
-		t = gtk_label_new(gettext("I could not write the configuration file!"));
+		t = gtk_label_new(_("I could not write the configuration file!"));
 		gtk_widget_show(t);
 		gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 		gtk_widget_show(dlg);

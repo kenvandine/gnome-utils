@@ -22,6 +22,9 @@
 
 #include "gtt.h"
 
+/* XXX: this is our main window, perhaps it is a bit ugly this way and
+ * should be passed around in the data fields */
+extern GtkWidget *window;
 
 typedef struct _OptionsDlg {
 	GnomePropertyBox *dlg;
@@ -304,7 +307,7 @@ static void toolbar_options(OptionsDlg *odlg, GtkBox *vbox)
 
 static void command_options(OptionsDlg *odlg, GtkBox *vbox)
 {
-	GtkWidget *w, *frame;
+	GtkWidget *w, *e, *frame;
 	GtkTable *table;
 
 	frame = gtk_frame_new(_("Shell Commands"));
@@ -320,22 +323,24 @@ static void command_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_table_attach_defaults(table, w, 0, 1, 0, 1);
 	gtk_table_set_col_spacing(table, 0, 5);
-	w = gtk_entry_new();
+	w = gnome_entry_new("shell_command");
+	e = gnome_entry_gtk_entry(GNOME_ENTRY(w));
 	gtk_widget_show(w);
 	gtk_table_attach_defaults(table, w, 1, 2, 0, 1);
-	odlg->command = GTK_ENTRY(w);
-	entry_changes_property_box(odlg, w);
+	odlg->command = GTK_ENTRY(e);
+	entry_changes_property_box(odlg, e);
 
 	w = gtk_label_new(_("No Project Command:"));
 	gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 	gtk_widget_show(w);
 	gtk_table_attach_defaults(table, w, 0, 1, 1, 2);
 	gtk_table_set_col_spacing(table, 0, 5);
-	w = gtk_entry_new();
+	w = gnome_entry_new("shell_command");
+	e = gnome_entry_gtk_entry(GNOME_ENTRY(w));
 	gtk_widget_show(w);
 	gtk_table_attach_defaults(table, w, 1, 2, 1, 2);
-	odlg->command_null = GTK_ENTRY(w);
-	entry_changes_property_box(odlg, w);
+	odlg->command_null = GTK_ENTRY(e);
+	entry_changes_property_box(odlg, e);
 }
 
 
@@ -449,12 +454,27 @@ static void options_dialog_set(OptionsDlg *odlg)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_tips),
 				    config_show_tb_tips);
 
-	if (config_command) gtk_entry_set_text(odlg->command, config_command);
-	if (config_command_null) gtk_entry_set_text(odlg->command_null, config_command_null);
+	if (config_command)
+		gtk_entry_set_text(odlg->command, config_command);
+	else
+		gtk_entry_set_text(odlg->command, "");
+	if (config_command_null)
+		gtk_entry_set_text(odlg->command_null, config_command_null);
+	else
+		gtk_entry_set_text(odlg->command_null, "");
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->logfileuse), config_logfile_use);
-	if (config_logfile_name) gtk_entry_set_text(GTK_ENTRY(gnome_file_entry_gtk_entry(odlg->logfilename)), config_logfile_name);
-	if (config_logfile_str) gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestr)), config_logfile_str);
-	if (config_logfile_stop) gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestop)), config_logfile_stop);
+	if (config_logfile_name)
+		gtk_entry_set_text(GTK_ENTRY(gnome_file_entry_gtk_entry(odlg->logfilename)), config_logfile_name);
+	else
+		gtk_entry_set_text(GTK_ENTRY(gnome_file_entry_gtk_entry(odlg->logfilename)), "");
+	if (config_logfile_str)
+		gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestr)), config_logfile_str);
+	else
+		gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestr)), "");
+	if (config_logfile_stop)
+		gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestop)), config_logfile_stop);
+	else
+		gtk_entry_set_text(GTK_ENTRY(gnome_entry_gtk_entry(odlg->logfilestop)), "");
 	sprintf(s, "%d", config_logfile_min_secs);
 	gtk_entry_set_text(odlg->logfileminsecs, s);
 
@@ -477,6 +497,9 @@ static void options_dialog_set(OptionsDlg *odlg)
                                     config_show_tb_exit);
 
 	logfile_sigfunc(NULL, odlg);
+
+	/* set to unmodified as it reflects the current state of the app */
+	gnome_property_box_set_modified(GNOME_PROPERTY_BOX(odlg->dlg), FALSE);
 }
 
 
@@ -518,6 +541,8 @@ void options_dialog(void)
                 toolbar_options(odlg, vbox);
 
 		gnome_dialog_close_hides(GNOME_DIALOG(odlg->dlg), TRUE);
+		gnome_dialog_set_parent(GNOME_DIALOG(odlg->dlg),
+					GTK_WINDOW(window));
 	}
 	options_dialog_set(odlg);
 	gtk_widget_show(GTK_WIDGET(odlg->dlg));

@@ -24,26 +24,19 @@
 
 #define DEFBUTTON_TEST
 
-
-gint
-gtt_delete_event(GtkWidget *w, gpointer *data)
-{
-        gtk_widget_hide(w);
-        return FALSE;
-}
-
-
+/* XXX: this is our main window, perhaps it is a bit ugly this way and
+ * should be passed around in the data fields */
+extern GtkWidget *window;
 
 static void dialog_setup(GnomeDialog *dlg, GtkBox **vbox_return)
 {
 	g_return_if_fail(dlg != NULL);
 
-	gtk_window_position(GTK_WINDOW(dlg), GTK_WIN_POS_MOUSE);
-	/* gtk_window_position(GTK_WINDOW(*dlg), GTK_WIN_POS_CENTER); */
+	/* This is set up automatically by gnome dialog */
+	/* gtk_window_position(GTK_WINDOW(dlg), GTK_WIN_POS_MOUSE); */
+	/* gtk_window_position(GTK_WINDOW(dlg), GTK_WIN_POS_CENTER); */
 
-	/* Is this needed? */
-	gtk_signal_connect(GTK_OBJECT(dlg), "delete_event",
-			   GTK_SIGNAL_FUNC(gtk_true), NULL);
+	gnome_dialog_set_parent(GNOME_DIALOG(dlg), GTK_WINDOW(window));
 
 	gnome_dialog_set_close(dlg, TRUE);
 
@@ -53,7 +46,7 @@ static void dialog_setup(GnomeDialog *dlg, GtkBox **vbox_return)
 
 
 void new_dialog_ok(char *title, GtkWidget **dlg, GtkBox **vbox,
-		       char *s, GtkSignalFunc sigfunc, gpointer *data)
+		       char *s, GtkSignalFunc sigfunc, gpointer data)
 {
         char tmp[256];
 
@@ -71,8 +64,8 @@ void new_dialog_ok(char *title, GtkWidget **dlg, GtkBox **vbox,
 
 
 void new_dialog_ok_cancel(char *title, GtkWidget **dlg, GtkBox **vbox,
-			  char *s_ok, GtkSignalFunc sigfunc, gpointer *data,
-			  char *s_cancel, GtkSignalFunc c_sigfunc, gpointer *c_data)
+			  char *s_ok, GtkSignalFunc sigfunc, gpointer data,
+			  char *s_cancel, GtkSignalFunc c_sigfunc, gpointer c_data)
 {
         char tmp[256];
 	
@@ -107,12 +100,10 @@ void msgbox_ok(char *title, char *text, char *ok_text,
         sprintf(s, APP_NAME " - %s", title);
         mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_GENERIC, ok_text, NULL, NULL);
 
-	/* Is this necessary? */
-	gtk_signal_connect(GTK_OBJECT(mbox), "delete_event",
-			   GTK_SIGNAL_FUNC(gtk_true), NULL);
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
 			   func, NULL);
         gtk_window_set_title(GTK_WINDOW(mbox), s);
+	gnome_dialog_set_parent(GNOME_DIALOG(mbox), GTK_WINDOW(window));
 	gtk_widget_show(mbox);
 }
 
@@ -129,11 +120,10 @@ void msgbox_ok_cancel(char *title, char *text,
         sprintf(s, APP_NAME " - %s", title);
 	mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_GENERIC, ok_text, cancel_text, NULL);
 	gnome_dialog_set_default(GNOME_DIALOG(mbox), 1);
-	gtk_signal_connect(GTK_OBJECT(mbox), "delete_event",
-			   GTK_SIGNAL_FUNC(gtk_true), NULL);
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
 			   func, NULL);
         gtk_window_set_title(GTK_WINDOW(mbox), s);
+	gnome_dialog_set_parent(GNOME_DIALOG(mbox), GTK_WINDOW(window));
 	gtk_widget_show(mbox);
 }
 
