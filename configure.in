@@ -309,38 +309,6 @@ dnl ********************
 dnl logview checks
 dnl ********************
 
-withval=""
-
-AC_ARG_WITH(messages,
-[      --with-messages=<filename>   specify messages log file],[
-if test x$withval != x; then
-   AC_MSG_RESULT("Setting messages logfile as specified $withval.")
-   AC_DEFINE_UNQUOTED(PATH_MESSAGES, "$withval")
-fi])
-
-messages_file="$withval"
-
-if test x$withval = x; then
-AC_MSG_CHECKING([for /var/adm/messages])
-if test -f /var/adm/messages; then
-  AC_MSG_RESULT([found])
-  AC_DEFINE(PATH_MESSAGES, "/var/adm/messages")
-  messages_file="/var/adm/messages"
-else
-  AC_MSG_RESULT([not found])
-  AC_MSG_CHECKING([for /var/log/messages])
-  if test -f /var/log/messages; then
-    AC_MSG_RESULT([found])
-    AC_DEFINE(PATH_MESSAGES, "/var/log/messages")
-    messages_file="/var/log/messages"
-  else
-    AC_MSG_RESULT([not found])
-    AC_MSG_ERROR([Cannot find messages log file, you should specify one in --wit
-h-messages=<filename>.])
-  fi
-fi
-fi
-
 dnl This is where the binary actually resides,
 dnl not the console helper link
 if test "x$enable_console_helper" = "xyes"; then
