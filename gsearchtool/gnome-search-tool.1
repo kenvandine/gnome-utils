@@ -1,6 +1,6 @@
 .\" gnome-search-tool.1 - GNOME Search Tool
 .\" Copyright 2001  Jochen Voss
-.TH gnome-search-tool 1 "Dec 30 2004" "gnome-utils 2.6.0"
+.TH gnome-search-tool 1 "Jan 3 2005" "gnome-utils 2.6.0"
 .SH NAME
 gnome-search-tool \- the GNOME Search Tool
 .SH SYNOPSIS
@@ -35,14 +35,11 @@ online help.
 .BR \-\-help ", " \-\^\-?
 Show help message
 .TP
-.BR \-\-usage
-Display brief usage message
-.TP
 .BI "\-\-named=" STRING
-Set the text of 'Name contains'
+Set the text of "Name contains" search option
 .TP
 .BI "\-\-path=" PATH
-Set the text of 'Look in folder'
+Set the text of "Look in folder" search option
 .TP
 .BI "\-\-sortby=" VALUE
 Sort files by one of the following: name, folder, size, type, or date
@@ -54,46 +51,46 @@ Set sort order to descending, the default is ascending
 Automatically start a search
 .TP
 .BI "\-\-contains=" STRING
-Select and set the 'Contains the text' constraint
+Select and set the "Contains the text" search option
 .TP
-.BI "\-\-mtimeless=" NUM
-Select and set the 'Date modified less than' contraint
+.BI "\-\-mtimeless=" DAYS
+Select and set the "Date modified less than" search option
 .TP
-.BI "\-\-mtimemore=" NUM
-Select and set the 'Date modified more than' constraint
+.BI "\-\-mtimemore=" DAYS
+Select and set the "Date modified more than" search option
 .TP
-.BI "\-\-sizemore=" NUM
-Select and set the 'Size at least' constraint
+.BI "\-\-sizemore=" KILOBYTES
+Select and set the "Size at least" search option
 .TP
-.BI "\-\-sizeless=" NUM
-Select and set the 'Size at most' constraint
+.BI "\-\-sizeless=" KILOBYTES
+Select and set the "Size at most" search option
 .TP
 .BR \-\-empty
-Select the 'File is empty' constraint
+Select the "File is empty" search option
 .TP
-.BI "\-\-user=" STRING
-Select and set the 'Owned by user' constraint
+.BI "\-\-user=" USER
+Select and set the "Owned by user" search option
 .TP
-.BI "\-\-group=" STRING
-Select and set the 'Owned by group' constraint
+.BI "\-\-group=" GROUP
+Select and set the "Owned by group" search option
 .TP
 .BR \-\-nouser
-Select the 'Owner is unrecognized constraint
+Select the "Owner is unrecognized" search option
 .TP
 .BI "\-\-notnamed=" STRING
-Select and set the 'Name does not contain' constaint
+Select and set the "Name does not contain" search option
 .TP
-.BI "\-\-regex=" STRING
-Select and set the 'Name matches regular expression' constraint
+.BI "\-\-regex=" PATTERN
+Select and set the "Name matches regular expression" search option
 .TP
 .BR \-\-hidden
-Select the 'Show hidden and backup files' constraint
+Select the "Show hidden and backup files" search option
 .TP
 .BR \-\-follow
-Select the 'Follow symbolic links' constraint
+Select the "Follow symbolic links" search option
 .TP
 .BR \-\-allmounts
-Select the 'Include other filesystems' constraint
+Select the "Include other filesystems" search option
 .SH AUTHOR
 .B GNOME Search Tool
 was originally written by George Lebl (<jirka@5z.com>).
