@@ -385,7 +385,8 @@ on_save(GtkWidget *w, Chart_app *app)
 {
   if (opts_to_file(app, app->config_fn) <= 0)
     error("can't save parameters to file \"%s\".", app->config_fn);
-  gtk_widget_hide(app->file_sel);
+  if (app->file_sel)
+    gtk_widget_hide(app->file_sel);
 }
 
 static void
@@ -1025,7 +1026,7 @@ static GnomeUIInfo help_menu_uiinfo[] =
     0, 0, NULL
   },
   GNOMEUIINFO_SEPARATOR,
-  GNOMEUIINFO_HELP("gstripchart"),
+  GNOMEUIINFO_HELP("stripchart"),
   GNOMEUIINFO_END
 };
 

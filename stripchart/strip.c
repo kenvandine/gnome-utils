@@ -26,6 +26,7 @@ strip_redraw(Strip *strip)
   GtkWidget *widget = GTK_WIDGET(strip);
   gint width = widget->allocation.width;
   gint height = widget->allocation.height;
+  gint indicator_x = 0, indicator_y = 0, indicator_step = 10;
 
   gdk_draw_rectangle(widget->window,
     widget->style->bg_gc[GTK_WIDGET_STATE(widget)], TRUE,
@@ -34,7 +35,6 @@ strip_redraw(Strip *strip)
   for (list = CHART(strip)->param; list != NULL; list = g_slist_next(list))
     {
       gint i, x, y0 = 0, points;
-      gint indicator_x = 0, indicator_y = 0, indicator_step = 10;
       ChartDatum *datum = (ChartDatum *)list->data;
       gint h = datum->newest;
       ChartPlotStyle plot = datum->plot_style;
@@ -117,9 +117,7 @@ strip_update_by_shifting(Strip *strip)
 	}
 
       if (plot == chart_plot_indicator)
-	{
-	  continue;
-	}
+	continue;
 
       h = datum->newest;
       y = val2gdk(datum->history[h], datum->adj, height, scale);
@@ -169,13 +167,18 @@ strip_overlay_ticks(Strip *strip)
 static void
 strip_update(Strip *strip)
 {
-  if (!strip->show_ticks)
+  static int show_ticks = 1;
+
+  if (!show_ticks)
     strip_update_by_shifting(strip);
   else
     {
       strip_redraw(strip);
-      strip_overlay_ticks(strip);
+      if (strip->show_ticks)
+	strip_overlay_ticks(strip);
     }
+
+  show_ticks = strip->show_ticks;
 }
 
 static gint

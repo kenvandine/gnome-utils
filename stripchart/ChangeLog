@@ -1,7 +1,28 @@
+2001-06-23  John Kodis  <kodis@jagunet.com>
+
+	* strip.c (strip_update): Redraw the strip to erase any tick marks
+	when first turning off tick marks.
+	(strip_redraw): Move the indicator position initializations
+	outside of the indicator drawing loop so that more than a single
+	indicator can be displayed.
+
+	* stripchart.params: Add a description and a color to the "Custom"
+	(empty) parameter.  This corrects bug #52789.
+
+	* params.c (help_menu_uiinfo): Eliminate a lurking remnant of the
+	transition from gstripchart: change the name of the help files in
+	the GNOMEUIINFO_HELP macro from "gstripchart" to "stripchart".
+	(on_save): Don't try to hide the file selector unless the file
+	selector actually exists.  This eliminates a warning when saving a
+	configuration file.
+
+	* gnome-utils 1.4.0.1, the "Badger spleens" release was released
+	today.  Too bad I didn't get today's batch of changes in earlier.
+
 2001-06-21  John Kodis  <kodis@jagunet.com>
 
 	* params.c (opts_to_file): Don't try to save parameters that have
-	been deleted (corrects bug 56415).
+	been deleted.  This corrects bugs #55604 and #56415.
 
 2001-06-05  Christian Rose  <menthos@menthos.com>
 
