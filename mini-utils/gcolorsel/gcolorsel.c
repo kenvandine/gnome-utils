@@ -17,6 +17,14 @@ typedef struct
     int r,g,b;
 } RGBColor;
 
+char *rgb_txt[] = { "/usr/X11R6/lib/X11/rgb.txt",
+                    "/usr/X11/lib/X11/rgb.txt",
+                    "/usr/openwin/lib/X11/rgb.txt",
+                    "/usr/lpp/X11/lib/X11/rgb.txt",
+                    "/usr/lib/X11/rgb.txt",
+                    NULL
+};
+
 GtkWidget *window, *clist;
 GdkGC *gc;
 GdkColor black;
@@ -206,20 +214,24 @@ void set_swatch(RGBColor *c, GtkWidget *clist)
 #define GTK_FLUSH \
     while (gtk_events_pending()) \
             gtk_main_iteration();
-            
+
 void load_rgb(GtkWidget *clist)
 {
     GtkWidget *prog_window, *hbox, *bar, *label;
     char tmp[256];
-    int t;
+    int t,i=0;
     FILE *file;
     long flen;
 	
-    file = fopen("/usr/X11R6/lib/X11/rgb.txt", "r");
+    while(rgb_txt[i] != NULL) {
+        if ((file = fopen(rgb_txt[i], "r")) != NULL)
+            break;
+        i++;
+    }
     if(!file)
     {
 	gtk_widget_show(gnome_message_box_new(
-	    _("Error, cannot open /usr/X11R6/lib/X11/rgb.txt.\n"), "error",
+	    _("Error, cannot find the file 'rgb.txt' on your system!"), "error",
 	    GNOME_STOCK_BUTTON_OK, NULL));
 	return;
     }		
@@ -228,11 +240,11 @@ void load_rgb(GtkWidget *clist)
     flen = ftell(file);
     fseek(file, 0, SEEK_SET);
 
-    prog_window = gnome_dialog_new(N_("Gnome Color Browser"), GNOME_STOCK_BUTTON_CANCEL, NULL);
+    prog_window = gnome_dialog_new(_("Gnome Color Browser"), GNOME_STOCK_BUTTON_CANCEL, NULL);
 
     bar = gtk_progress_bar_new();
     hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-    label = gtk_label_new(N_("Parsing Colors"));
+    label = gtk_label_new(_("Parsing Colors"));
     gtk_box_pack_start_defaults(GTK_BOX(hbox), label);
     gtk_box_pack_start_defaults(GTK_BOX(hbox), bar);
     gtk_progress_bar_update(GTK_PROGRESS_BAR(bar), 0);
