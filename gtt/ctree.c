@@ -179,6 +179,7 @@ drag_drop (GtkWidget *widget, GdkDragContext *context,
            gint x, gint y, guint time)
 {
 	GttProject *src_prj, *par_prj=NULL, *sib_prj=NULL;
+	GttProject *old_parent=NULL;
 	GtkCTree *ctree = GTK_CTREE(widget);
 
 	if (!source_ctree_node) return;
@@ -194,11 +195,13 @@ drag_drop (GtkWidget *widget, GdkDragContext *context,
 		sib_prj = gtk_ctree_node_get_row_data(ctree, sibling_ctree_node);
 	if (!par_prj && !sib_prj) return;
 
+	old_parent = gtt_project_get_parent (src_prj);
+
 	if (sib_prj)
 	{
 		gtt_project_insert_before (src_prj, sib_prj);
 
-		/* if collapsed wwe need to update the time */
+		/* if collapsed we need to update the time */
 		ctree_update_label (src_prj->parent);
 	}
 	else if (par_prj)
@@ -206,6 +209,10 @@ drag_drop (GtkWidget *widget, GdkDragContext *context,
 		gtt_project_append_project (par_prj, src_prj);
 		ctree_update_label (par_prj);
 	}
+
+	/* Make sure we update the timestamps for the old parent
+	 * from which we were cutted. */
+	ctree_update_label (old_parent);
 
 	source_ctree_node = NULL;
 	parent_ctree_node = NULL;
@@ -485,6 +492,7 @@ ctree_add (GttProject *p, GtkCTreeNode *parent)
 
 	gtt_project_add_notifier (p, redraw, treenode);
 
+	/* make sure children get moved over also */
 	for (n=gtt_project_get_children(p); n; n=n->next)
 	{
 		GttProject *sub_prj = n->data;
