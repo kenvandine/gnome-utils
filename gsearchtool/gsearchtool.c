@@ -1965,6 +1965,11 @@ create_main_window (void)
 	g_signal_connect (G_OBJECT (interface.expander),"notify::expanded",
 			  G_CALLBACK (click_expander_cb), NULL);
 			  
+	if (interface.is_gail_loaded)
+	{ 
+		add_atk_namedesc (GTK_WIDGET (interface.expander), _("Show more options"), _("Expands or collapses a list of search options."));
+	}
+	
 	interface.additional_constraints = create_additional_constraint_section ();
 	gtk_box_pack_start (GTK_BOX(window), GTK_WIDGET(interface.additional_constraints), FALSE, FALSE, 0);
 	
