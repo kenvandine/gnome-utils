@@ -169,7 +169,7 @@ save_fail (char *filename)
   GtkWidget *dia;
   char *str;
 
-  str = g_strdup_printf ("GColorsel was unable to save the file :\n\n%s\n\nMake sure that the path you provided exits,\nand that you have the approprate write permissions.\n\nDo you want to retry ?", filename);
+  str = g_strdup_printf (_("GColorsel was unable to save the file :\n\n%s\n\nMake sure that the path you provided exits,\nand that you have the approprate write permissions.\n\nDo you want to retry ?"), filename);
 
   dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR,
 
@@ -851,7 +851,7 @@ properties_cb (GtkWidget *widget)
 		      properties_view_destroy_cb, property);
 
   gnome_property_box_append_page (GNOME_PROPERTY_BOX (property), 
-				  vbox_view, gtk_label_new ("View properties"));
+				  vbox_view, gtk_label_new (_("View properties")));
 
   /* document properties */
 
@@ -866,7 +866,7 @@ properties_cb (GtkWidget *widget)
 
   gnome_property_box_append_page (GNOME_PROPERTY_BOX (property), 
 				  vbox_mcg, 
-				  gtk_label_new ("Document properties"));
+				  gtk_label_new (_("Document properties")));
 
   gtk_object_set_data (GTK_OBJECT (property), "prop-view", view);
   gtk_object_set_data (GTK_OBJECT (property), "prop-view-data", view_data);
