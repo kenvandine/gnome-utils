@@ -19,5 +19,5 @@ gshutdown_LDADD = \
 EXTRA_DIST = \
 	gshutdown.desktop
 
-Systemdir = $(datadir)/gnome/apps/Settings
+Systemdir = $(datadir)/gnome/apps/System
 System_DATA = gshutdown.desktop
