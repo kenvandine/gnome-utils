@@ -300,7 +300,7 @@ selection_received (GtkWidget        *widget,
 
 /**************************** Preferences *******************************/
 
-void prefs_load ()
+void prefs_load (void)
 {
   gnome_config_push_prefix ("/gcolorsel/gcolosel/");
 
@@ -318,17 +318,23 @@ void prefs_load ()
   prefs.on_previews2 = gnome_config_get_int ("OnPreviews2=-0");
 
   prefs.tab_pos = gnome_config_get_int ("TabPos=-1");
-  if (prefs.tab_pos == -1) prefs.tab_pos = GTK_POS_TOP;
+  if (prefs.tab_pos < GTK_POS_LEFT ||
+      prefs.tab_pos > GTK_POS_BOTTOM)
+	  prefs.tab_pos = GTK_POS_TOP;
   mdi->tab_pos = prefs.tab_pos;
 
   prefs.mdi_mode = gnome_config_get_int ("MDIMode=-1");
-  if (prefs.mdi_mode == -1) prefs.mdi_mode = GNOME_MDI_NOTEBOOK;
+  if (prefs.mdi_mode != GNOME_MDI_NOTEBOOK &&
+      prefs.mdi_mode != GNOME_MDI_TOPLEVEL &&
+      prefs.mdi_mode != GNOME_MDI_MODAL &&
+      prefs.mdi_mode != GNOME_MDI_DEFAULT_MODE)
+	  prefs.mdi_mode = GNOME_MDI_NOTEBOOK;
   gnome_mdi_set_mode (mdi, prefs.mdi_mode);  
 
   gnome_config_pop_prefix ();
 }
 
-void prefs_save ()
+void prefs_save (void)
 {
   gnome_config_push_prefix ("/gcolorsel/gcolosel/");
 
@@ -353,7 +359,7 @@ void prefs_save ()
 }
 
 static void 
-set_menu ()
+set_menu (void)
 {
   if (prefs.display_doc) {
     gnome_mdi_set_menubar_template (mdi, main_menu_with_doc);
@@ -453,7 +459,7 @@ actions (int r, int g, int b, char *name,
     break;
 
   default:
-    g_assert_not_reached ();
+    g_warning ("Bad action type %d", type);
   }
 }
 
@@ -504,6 +510,9 @@ int main (int argc, char *argv[])
 		      GTK_SIGNAL_FUNC (mdi_remove_child), NULL);
   gtk_signal_connect (GTK_OBJECT (mdi), "app_created",
 		      GTK_SIGNAL_FUNC (app_created), NULL);
+  
+  /* Load prefs */
+  prefs_load ();
 		      
   /* Init menu/toolbar */
   set_menu ();
@@ -524,9 +533,6 @@ int main (int argc, char *argv[])
 		      
   /* For gtk_type_from_name in session.c */
   call_get_type ();		      
-  
-  /* Load prefs */
-  prefs_load ();
 
   /* Load old session if user want that */
   if (prefs.save_session) {

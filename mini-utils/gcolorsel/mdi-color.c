@@ -57,8 +57,8 @@ mdi_color_destroy (GtkObject *object)
 
   /*  printf ("destroy notify : %s\n", col->name); */
 
-  if (col->name)
-    g_free (col->name);
+  g_free (col->name);
+  col->name = NULL;
 
   parent_class->destroy (object);
 }

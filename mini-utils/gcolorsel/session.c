@@ -181,12 +181,16 @@ GnomeMDIChild *child_create (const gchar *config)
   }
 
   buf = gnome_config_get_string ("Views");
-  gnome_config_pop_prefix ();
 
   /* Create Child */
 
   child = GNOME_MDI_CHILD (gtk_type_new (type));
   MDI_COLOR_GENERIC (child)->key = atoi (config);
+
+  /* Load child properties */
+  MDI_COLOR_GENERIC_GET_CLASS (child)->load (MDI_COLOR_GENERIC (child)); 
+
+  gnome_config_pop_prefix ();
 
   next_views (MDI_COLOR_GENERIC (child), buf);
   g_free (buf);
@@ -274,9 +278,6 @@ load_config (GnomeMDI *mdi)
     prefix = g_strdup_printf ("/gcolorsel/%d/", mcg->key);
     gnome_config_push_prefix (prefix);
     g_free (prefix);
-
-    /* Load child properties */
-    MDI_COLOR_GENERIC_GET_CLASS (mcg)->load (mcg); 
 
     /* Configure views */
     str = gnome_config_get_string ("Views");    
@@ -404,7 +405,7 @@ session_create (GnomeMDI *mdi, gboolean init_actions)
   file_sys = mdi_color_file_new ();
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file_sys));
   
-  mdi_color_file_set_filename (file_sys, XLIBDIR "/X11/rgb.txt", FALSE);
+  mdi_color_file_set_filename (file_sys, XLIBDIR "X11/rgb.txt", FALSE);
   mdi_color_generic_set_name (MDI_COLOR_GENERIC (file_sys), _("System Colors"));
   
   /* Add a ColorList view for the system colors document */

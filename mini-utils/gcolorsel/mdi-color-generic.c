@@ -816,32 +816,33 @@ mdi_color_generic_append_view_type (MDIColorGeneric *mcg, GtkType type)
 void
 mdi_color_generic_set_modified (MDIColorGeneric *mcg, gboolean modified)
 {  
-  if ((mcg->monitor_modified)&&(mcg->modified != modified)) {    
-    char *tmp = g_strdup (mcg->name); /* Because of g_free in set_name ! */
-    mcg->modified = modified;
-    mdi_color_generic_set_name (mcg, tmp);      
-    g_free (tmp);
-  } else
-    mcg->modified = modified;
+	if ((mcg->monitor_modified)&&(mcg->modified != modified)) {    
+		mcg->modified = modified;
+		mdi_color_generic_set_name (mcg, mcg->name);      
+	} else {
+		mcg->modified = modified;
+	}
 }
 
 void 
 mdi_color_generic_set_name (MDIColorGeneric *mcg, char *name)
 {
-  if (mcg->name) 
-    g_free (mcg->name);
+	char *old = mcg->name;
 
-  if (name)
-    mcg->name = g_strdup (name);
-  else
-    mcg->name = g_strdup ("");
+	if (name)
+		mcg->name = g_strdup (name);
+	else
+		mcg->name = g_strdup ("");
 
-  if ((mcg->monitor_modified) && (mcg->modified)) {
-    char *tmp = g_strconcat (mcg->name, "*", NULL);
-    gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), tmp); 
-    g_free (tmp);
-  } else 
-    gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), mcg->name);
+	if ((mcg->monitor_modified) && (mcg->modified)) {
+		char *tmp = g_strconcat (mcg->name, "*", NULL);
+		gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), tmp); 
+		g_free (tmp);
+	} else  {
+		gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), mcg->name);
+	}
+
+	g_free (old);
 }
 
 void 

@@ -76,6 +76,8 @@ apply_cb (GtkWidget *widget, int page, gpointer data)
 
   case 1:
     prefs.mdi_mode = option_menu_get_active (GTK_OPTION_MENU (menu_mdi_mode));
+    if (prefs.mdi_mode == 3)
+	    prefs.mdi_mode = GNOME_MDI_DEFAULT_MODE;
     prefs.tab_pos = option_menu_get_active (GTK_OPTION_MENU (menu_tab_pos)); 
     gnome_mdi_set_mode (mdi, prefs.mdi_mode);
     mdi_set_tab_pos (mdi, prefs.tab_pos);
@@ -232,6 +234,7 @@ void
 dialog_prefs (void)
 {  
   GladeXML *gui;
+  int menupos;
 
   if (! property) {
     
@@ -258,6 +261,10 @@ dialog_prefs (void)
 
     menu_mdi_mode = glade_xml_get_widget (gui, "menu-mdi-mode");
     menu_tab_pos  = glade_xml_get_widget (gui, "menu-tab-pos");
+
+    menupos = prefs.mdi_mode;
+    if (menupos == GNOME_MDI_DEFAULT_MODE)
+	    menupos = 3;
 
     gtk_option_menu_set_history (GTK_OPTION_MENU (menu_mdi_mode),
 				 prefs.mdi_mode);
