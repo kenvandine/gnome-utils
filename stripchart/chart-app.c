@@ -219,8 +219,7 @@ on_about_menu(void)
 void
 on_help_menu(void)
 {
-  static GnomeHelpMenuEntry help_entry = { "stripchart", "index.html" };
-  gnome_help_display(NULL, &help_entry);
+  gnome_help_display("index.html", NULL, NULL);
 }
 
 void
