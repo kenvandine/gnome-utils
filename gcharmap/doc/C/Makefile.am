@@ -1,13 +1,13 @@
-gcharmap_helpdir = $(datadir)/gnome/help/gcharmap/C
-gcharmap_help_DATA = index.html authors.html bugs.html usage.html topic.dat \
-			license.html ln7.html
+# Process this file with automake to produce Makefile.in
 
-SGML_FILES =\
+gcharmap_helpdir = $(datadir)/gnome/help/gcharmap/C
+gcharmap_help_DATA = index.html authors.html usage.html topic.dat 
+
+SGML_FILES = \
 	gcharmap.sgml
 
-EXTRA_DIST = 		\
-	topic.dat 	\
-	$(SGML_FILES)
+EXTRA_DIST = \
+	topic.dat gcharmap $(SGML_FILES)
 
 all:
 
@@ -20,31 +20,13 @@ authors.html: gcharmap/authors.html
 usage.html: gcharmap/usage.html
 	-cd $(srcdir) && cp gcharmap/usage.html .
 
-bugs.html: gcharmap/bugs.html
-	-cd $(srcdir) && cp gcharmap/bugs.html .
-
-license.html: gcharmap/license.html
-	-cd $(srcdir) && cp gcharmap/license.html .
-
-ln7.html: gcharmap/ln7.html
-	-cd $(srcdir) && cp gcharmap/ln7.html .
-
 gcharmap/index.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcharmap.sgml
-
-gcharmap/usage.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gcharmap.sgml
 
 gcharmap/authors.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gcharmap.sgml
 
-gcharmap/bugs.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcharmap.sgml
-
-gcharmap/license.html: $(SGML_FILES)
-	-cd $(srcdir) && db2html gcharmap.sgml
-
-gcharmap/ln7.html: $(SGML_FILES)
+gcharmap/usage.html: $(SGML_FILES)
 	-cd $(srcdir) && db2html gcharmap.sgml
 
 dist-hook:
@@ -68,4 +50,5 @@ install-data-local: index.html
 	basefile=`basename $$file`; \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gcharmap_helpdir)/stylesheet-images/$$basefile; \
 	done
+
 
