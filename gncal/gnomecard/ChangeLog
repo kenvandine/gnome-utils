@@ -1,3 +1,21 @@
+1998-07-16  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* card.c: (card_geopos_str, card_timezn_str, card_bday_str) new 
+		functions to help representing the information in the 
+		interfase.
+	* gnomecard.c: a couple of bug fixes (sigsegvs and functionality).
+		I'm using gnome_canvas for the wysywyg view.
+		Almost all the data of the card is represented in the
+		tree now.
+		New 'First' and 'Last' buttons.
+		The tree view now uses solid lines and the scrollbars
+		appear only if necessary. It also freezes while adding
+		cards when loading.
+	* addrtool.xpm: for future use.
+	* last.xpm, next.xpm: the pixmaps for the corresponding buttons.
+		Should these go with the stock?
+	* org.xpm, exp.xpm: for the corresponding sections in the tree.
+
 Thu Jul 16 18:59:34 EDT 1998 Manish Vachharajani <mvachhar@vger.rutgers.edu>
 
 	* gnomecard.c: make it use the most recent ctree interface

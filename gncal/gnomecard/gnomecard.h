@@ -35,20 +35,3 @@ typedef struct
         gint width;
         gint height;
 } pix;
-
-typedef struct
-{
-	GList *card;
-	
-	GList *ident;
-	GList *geo;
-	GList *org;
-	GList *expl;
-	GList *sec;
-	
-	GList *tel;
-	GList *email;
-	GList *addr;
-	
-	GList *props;
-} GnomeCardSib;

@@ -1115,6 +1115,36 @@ add_SoundType(VObject *o, enum SoundType sound_type)
 	return o;
 }
 
+char *card_bday_str(CardBDay bday)
+{
+	char *str;
+	
+	str = malloc(12);
+	snprintf(str, 12, "%04d-%02d-%02d", bday.year, bday.month, bday.day);
+	
+	return str;
+}
+
+char *card_timezn_str(CardTimeZone timezn)
+{
+	char *str;
+	
+	str = malloc(7);
+	snprintf(str, 7, (timezn.sign == -1)? "-%02d:%02d" : "%02d:%02d",
+		 timezn.hours, timezn.mins);
+	return str;
+}
+
+char *card_geopos_str(CardGeoPos geopos)
+{
+	char *str;
+	
+	str = malloc(15);
+	snprintf(str, 15, "%03.02f,%03.02f", geopos.lon, geopos.lat);
+	return str;
+}
+
+
 VObject *
 card_convert_to_vobject(Card *crd)
 {
@@ -1139,12 +1169,11 @@ card_convert_to_vobject(Card *crd)
 		add_CardProperty(vprop, &crd->photo.prop);
 	}
 	if (crd->bday.prop.used) {
-		char date_str[12];
+		char *date_str;
 		
-		snprintf(date_str, 12, "%04d-%02d-%02d", crd->bday.year,
-			                                 crd->bday.month,
-			                                 crd->bday.day);
+		date_str = card_bday_str(crd->bday);
 		vprop = addPropValue(vobj, VCBirthDateProp, date_str);
+		free(date_str);
 		add_CardProperty(vprop, &crd->bday.prop);
 	}
 	if (crd->deladdr) {
@@ -1203,20 +1232,19 @@ card_convert_to_vobject(Card *crd)
 	}
 	add_CardStrProperty(vobj, VCMailerProp, &crd->mailer);
 	if (crd->timezn.prop.used) {
-		char str[7];
+		char *str;
 		
-		snprintf(str, 7, (crd->timezn.sign == -1)? "-%02d:%02d" :
-			                                   "%02d:%02d", 
-			 crd->timezn.hours, crd->timezn.mins);
+		str = card_timezn_str(crd->timezn);
 		vprop = addPropValue(vobj, VCTimeZoneProp, str);
+		free(str);
 		add_CardProperty(vprop, &crd->timezn.prop);
 	}
 	if (crd->geopos.prop.used) {
-		char str[15];
+		char *str;
 		
-		snprintf(str, 15, "%03.02f,%03.02f", 
-			 crd->geopos.lon, crd->geopos.lat);
+		str = card_geopos_str(crd->geopos);
 		vprop = addPropValue(vobj, VCGeoLocationProp, str);
+		free(str);
 		add_CardProperty(vprop, &crd->geopos.prop);
 	}
         add_CardStrProperty(vobj, VCTitleProp, &crd->title);

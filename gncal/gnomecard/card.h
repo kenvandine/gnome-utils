@@ -289,4 +289,8 @@ GList *card_load (GList *crdlist, char *fname);
 void card_save(Card *crd, FILE *fp);
 VObject *card_convert_to_vobject(Card *crd);
 
+char *card_bday_str(CardBDay bday);
+char *card_timezn_str(CardTimeZone timezn);
+char *card_geopos_str(CardGeoPos geopos);
+
 #endif
