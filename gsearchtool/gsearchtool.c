@@ -1437,6 +1437,9 @@ create_main_window (void)
 
 	gtk_box_pack_start (GTK_BOX(window), GTK_WIDGET(interface.additional_constraints), FALSE, FALSE, 0);
 	
+	results = create_search_results_section ();
+	gtk_box_pack_start (GTK_BOX(window), results, TRUE, TRUE, GNOME_PAD_SMALL);
+	
 	hsep = gtk_hseparator_new ();
 	gtk_box_pack_start (GTK_BOX(window),hsep,FALSE,FALSE,0);
 	
@@ -1474,9 +1477,6 @@ create_main_window (void)
 		add_atk_namedesc (GTK_WIDGET(interface.find_button), NULL, _("Click to Start the search"));
 		add_atk_namedesc (GTK_WIDGET(interface.stop_button), NULL, _("Click to Stop the search"));
 	}
-
-	results = create_search_results_section ();
-	gtk_box_pack_start (GTK_BOX(window), results, TRUE, TRUE, GNOME_PAD_SMALL);
 
 	return window;
 }
