@@ -5,21 +5,22 @@
 %define prefix   /usr
 
 Summary: GNOME utility programs
-Name: gnome-utils
-Version: %ver
-Release: %rel
-Copyright: LGPL
-Group: Applications/System
-Source: ftp://ftp.gnome.org/pub/GNOME/sources/gnome-utils-%{ver}.tar.gz
-BuildRoot: /var/tmp/gnome-utils-%{PACKAGE_VERSION}-root
-Obsoletes: gnome
-URL: http://www.gnome.org
-Requires: gnome-libs >= @VERSION@
-Docdir: %{prefix}/doc
+Name: 		gnome-utils
+Version: 	%ver
+Release: 	%rel
+Copyright: 	LGPL
+Group: 		Applications/System
+Source: 	ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-utils-%{ver}.tar.gz
+BuildRoot: 	/var/tmp/gnome-utils-%{PACKAGE_VERSION}-root
+URL: 		http://www.gnome.org
+Requires: 	gnome-libs >= 1.0.59
+Docdir: 	%{prefix}/doc
 
 %description
-GNOME is the GNU Network Object Model Environment. This powerful
-environment is both easy to use and easy to configure.
+GNOME (GNU Network Object Model Environment) is a user-friendly set of
+applications and desktop tools to be used in conjunction with a window
+manager for the X Window System.  GNOME is similar in purpose and scope
+to CDE and KDE, but GNOME is based completely on free software.
 
 This package will install some GNOME utilities, such as the
 calculator, search tool, and system information overview tool.

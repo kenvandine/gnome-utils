@@ -1,5 +1,6 @@
-EXTRA_DIST = gcharmap.xpm "Character Map.xpm" logo.xpm
+# Process this file with automake to produce Makefile.in
 
+EXTRA_DIST = gcharmap.xpm "Character Map.xpm" logo.xpm
 
 gcharmap_sharedir = $(datadir)/gcharmap
 

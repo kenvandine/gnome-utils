@@ -14,15 +14,6 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
-#ifndef _ASCIISELECT_C_
-#define _ASCIISELECT_C_
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
 #include "interface.h"
 #include "asciiselect.h"
 
@@ -127,8 +118,3 @@ SpinEditChanged (GtkEditable *editable, gpointer user_data)
   gtk_label_set_text (GTK_LABEL (DLabel), text);
 }
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
-
-#endif ASCIISELECT

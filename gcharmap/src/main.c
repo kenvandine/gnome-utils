@@ -15,27 +15,17 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef _MAIN_C_
-#define _MAIN_C_
-
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
 #include <gnome.h>
-#include "../config.h"
+#include "config.h"
 
 extern void main_new ();
 
-int main (int argc, char *argv[]) {
+int 
+main (int argc, char *argv[]) 
+{
   gnome_init ("Character Map", VERSION, argc, argv);
   main_new ();
   gtk_main ();
   return 0;
 }
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
-
-#endif _MAIN_C_

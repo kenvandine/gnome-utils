@@ -22,7 +22,7 @@ if FALSE
 extras = gnome-find
 endif
 
-SUBDIRS = po intl macros idl $(gfloppy) logview \
+SUBDIRS = po intl macros idl $(gfloppy) logview gcharmap \
 	gcalc gsearchtool $(gdiskfree) $(gstripchart) gtt gdictsrc \
 	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog $(extras)
 

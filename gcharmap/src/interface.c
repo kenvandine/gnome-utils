@@ -15,16 +15,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef _INTERFACE_C_
-#define _INTERFACE_C_
+#include "config.h"
 
 #include "interface.h"
 #include "asciiselect.h"
-#include "../config.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+#include "gcharmap.xpm"
 
 /* The menus */
 
@@ -98,7 +93,6 @@ main_new ()
 {
   GdkPixmap *Pixmap;
   GdkBitmap *Mask;
-  #include "pixmaps/gcharmap.xpm"
   GtkWidget *item;
 
   tooltips = gtk_tooltips_new ();
@@ -411,8 +405,3 @@ main_close (GtkWidget *widget, gpointer gdata)
   return FALSE;
 }
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
-
-#endif _INTERFACE_C_

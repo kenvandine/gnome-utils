@@ -1,4 +1,6 @@
-EXTRA_DIST = ABOUT_NLS BUGS gcharmap.lsm gcharmap.desktop gcharmap.kdelnk
+# Process this file with automake to produce Makefile.in
+
+EXTRA_DIST = ABOUT_NLS BUGS gcharmap.desktop 
 SUBDIRS = src doc pixmaps
 
 sysdir = $(datadir)/gnome/apps/Applications
@@ -12,4 +14,3 @@ install-data-local:
 	$(INSTALL_DATA) NEWS $(prefix)/doc/gcharmap/NEWS
 	$(INSTALL_DATA) README $(prefix)/doc/gcharmap/README
 	$(INSTALL_DATA) TODO $(prefix)/doc/gcharmap/TODO
-	$(INSTALL_DATA) gcharmap.lsm $(prefix)/doc/gcharmap/gcharmap.lsm
