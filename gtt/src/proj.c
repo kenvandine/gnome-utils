@@ -2161,7 +2161,11 @@ gtt_interval_new_insert_after (GttInterval *where)
 	idx = g_list_index (tsk->interval_list, where);
 	tsk->interval_list = g_list_insert (tsk->interval_list, ivl, idx);
 
-	proj_refresh_time (tsk->parent);
+	/* Don't do a refresh, since the refresh will probably
+	 * cull this interval for being to short, or merge it,
+	 * or something.  Refresh only after some edit has occurred.
+	 */
+	/* proj_refresh_time (tsk->parent); */
 
 	return ivl;
 }
