@@ -1,3 +1,13 @@
+1998-08-06  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* gnomecard.c (gnomecard_update_tree): node should initially point to
+		the children of the crd->user_data.
+		(main): Now using a hpaned for the app_contents (much nicer).
+		(gnomecard_add_card_sections_to_tree): Phone numbers now show
+			their properties in the same node as the number.
+		(gnomecard_update_tree): e-mail address shown with the
+			formatted name of each card.
+
 1998-08-03  Federico Mena Quintero  <federico@nuclecu.unam.mx>
 
 	* Made the code use GtkCTreeNode instead of GList, for the new ctree.

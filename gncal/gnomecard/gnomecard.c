@@ -17,6 +17,8 @@
 #define CANVAS_HEIGHT 150
 #define COL_WIDTH 192
 #define TREE_SPACING 16
+#define TREE_WIDTH 400
+#define TREE_HEIGHT 320
 
 #define _FREE(a) if (a) g_free (a)
 #define MY_STRLEN(x) (x?strlen(x):0)
@@ -349,30 +351,33 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	if (crd->phone) {
 		GtkCTreeNode *phone, *phone2;
 		GList *l;
-		int i;
+		int i, len;
 		
 		text[0] = _("Telephone Numbers");
 		text[1] = "";
 		phone = gtk_ctree_insert(crd_tree, parent, NULL, text,
-														 TREE_SPACING, phone_pix->pixmap,
-														 phone_pix->mask, phone_pix->pixmap,
-														 phone_pix->mask, FALSE, FALSE);
+					 TREE_SPACING, phone_pix->pixmap,
+					 phone_pix->mask, phone_pix->pixmap,
+					 phone_pix->mask, FALSE, FALSE);
 		
 		for (l = crd->phone; l; l = l->next) {
-			text[0] = "";
-				/*phone_type_name[((CardEMail *)l->data)->type];*/
-			text[1] = ((CardPhone *)l->data)->data;
-			phone2 = gtk_ctree_insert(crd_tree, phone, NULL, text, TREE_SPACING,
-																phone_pix->pixmap, phone_pix->mask, 
-																phone_pix->pixmap, phone_pix->mask, 
-																FALSE, FALSE);
-			text[1] = "";
+			text[0] = ((CardPhone *)l->data)->data;
+			text[1] = malloc(1);
+			*text[1] = 0;
+			len = 1;
 			for (i = 0; i < 13; i++)
-				if (((CardPhone *)l->data)->type & (1 << i)) {
-					text[0] = phone_type_name[i];
-					gtk_ctree_insert(crd_tree, phone2, NULL, text, TREE_SPACING, 
-													 NULL, NULL, NULL, NULL, FALSE, FALSE);
-				}
+			  if (((CardPhone *)l->data)->type & (1 << i)) {
+				  len += strlen(phone_type_name[i]) + 1;
+				  text[1] = realloc(text[1], len);
+				  snprintf(text[1], len, "%s %s", text[1], 
+					   phone_type_name[i]);
+			  }
+			
+			phone2 = gtk_ctree_insert(crd_tree, phone, NULL, text, TREE_SPACING,
+						  phone_pix->pixmap, phone_pix->mask, 
+						  phone_pix->pixmap, phone_pix->mask,
+						  FALSE, FALSE);
+			free(text[1]);
 		}
 	}
 	
@@ -383,9 +388,9 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 		text[0] = _("E-mail Addresses");
 		text[1] = "";
 		email = gtk_ctree_insert(crd_tree, parent, NULL, text,
-														 TREE_SPACING, email_pix->pixmap,
-														 email_pix->mask, email_pix->pixmap,
-														 email_pix->mask, FALSE, FALSE);
+					 TREE_SPACING, email_pix->pixmap,
+					 email_pix->mask, email_pix->pixmap,
+					 email_pix->mask, FALSE, FALSE);
 		
 		for (l = crd->email; l; l = l->next) {
 			text[0] = email_type_name[((CardEMail *)l->data)->type];
@@ -480,9 +485,13 @@ void gnomecard_add_card_to_tree(Card *crd)
 {
 	char *text[2];
 	
-	if ((text[1] = crd->fname.str) == NULL)
-	  text[1] = _("No Formatted Name for this card.");
-	text[0] = "";
+	if ((text[0] = crd->fname.str) == NULL)
+	  text[0] = _("No Formatted Name for this card.");
+	
+	if (crd->email)
+	  text[1] = ((CardEMail *) (crd->email->data))->data;
+	else
+	  text[1] = "";
 	
 	crd->user_data = gtk_ctree_insert(crd_tree, NULL, NULL, text,
 					TREE_SPACING, crd_pix->pixmap,
@@ -614,10 +623,15 @@ void gnomecard_update_tree(Card *crd)
 	if ((text = crd->fname.str) == NULL)
 	  text = _("No Formatted Name for this card.");
 	
-	gtk_ctree_set_text(crd_tree, crd->user_data,	1, text);
+	gtk_ctree_set_node_info(crd_tree, crd->user_data, text,
+				TREE_SPACING, crd_pix->pixmap,
+				crd_pix->mask, crd_pix->pixmap,
+				crd_pix->mask, FALSE, FALSE);
 	gtk_ctree_collapse_recursive(crd_tree, crd->user_data);
 	
-	node = crd->user_data;
+	/* FIXME: the gtkctree API is broken. This is a workaround.
+	 * GTK_CTREE_NODE_CHILDREN should exist. */
+	node = GTK_CTREE_ROW(&GTK_CTREE_NODE(crd->user_data)->list)->children;
 	while (node) {
 		tmp = GTK_CTREE_NODE_NEXT (node);
 		gtk_ctree_remove(crd_tree, node);
@@ -625,7 +639,6 @@ void gnomecard_update_tree(Card *crd)
 	}
 	
 	gnomecard_add_card_sections_to_tree(crd);
-	gtk_ctree_expand_recursive(crd_tree, crd->user_data);
 }
 
 void gnomecard_update_canvas(Card *crd) 
@@ -1826,8 +1839,8 @@ GnomeUIInfo mainmenu[] = {
 	{GNOME_APP_UI_SUBTREE, N_("Add"), NULL, addmenu, NULL, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
-	{GNOME_APP_UI_SUBTREE, N_("View"), NULL, viewmenu, NULL, NULL,
-	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+/*	{GNOME_APP_UI_SUBTREE, N_("View"), NULL, viewmenu, NULL, NULL,
+	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},*/
 
 	{GNOME_APP_UI_JUSTIFY_RIGHT},
 		
@@ -1908,7 +1921,9 @@ int main (int argc, char *argv[])
 			   GTK_SIGNAL_FUNC(gnomecard_delete), NULL);
 	
 	hpaned = gtk_hpaned_new();
-
+	gtk_paned_handle_size(GTK_PANED(hpaned), GNOME_PAD_SMALL * 2);
+	gtk_paned_gutter_size(GTK_PANED(hpaned), GNOME_PAD_SMALL * 2 + GNOME_PAD_SMALL);
+	
 	gnome_app_set_contents(GNOME_APP(gnomecard_window), hpaned);
 	gnome_app_create_menus(GNOME_APP(gnomecard_window), mainmenu);
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
@@ -1923,11 +1938,11 @@ int main (int argc, char *argv[])
 	gtk_clist_column_titles_passive(GTK_CLIST(crd_tree));
 	gtk_clist_set_policy(GTK_CLIST(crd_tree),
 			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_widget_set_usize (GTK_WIDGET(crd_tree), 0, 200);
+	gtk_widget_set_usize (GTK_WIDGET(crd_tree), TREE_WIDTH, TREE_HEIGHT);
 	gtk_paned_add1(GTK_PANED(hpaned), GTK_WIDGET(crd_tree));
 	gtk_widget_show(GTK_WIDGET(crd_tree));
 
-	align = gtk_alignment_new(0.5, 0.5, 0.0, 0.0);
+	align = gtk_alignment_new(0.5, 0.5, 0.5, 0.5);
 	gtk_paned_add2(GTK_PANED(hpaned), align);
 	gtk_widget_show(align);
 
