@@ -4,7 +4,7 @@ endif
 
 SUBDIRS = po intl macros \
 	edit-menus @PROGRAMS_GENIUS@ gcalc ghex gncal \
-	@PROGRAMS_GTOP@ gtt $(guile_DIRS)
+	@PROGRAMS_GTOP@ gtt mini-utils $(guile_DIRS)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change

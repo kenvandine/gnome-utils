@@ -1,0 +1,327 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ *   gshutdown: Popup dialog to shut down or reboot.
+ *   Copyright (C) 1998 Havoc Pennington <hp@pobox.com>
+ *
+ * This program is free software; you can redistribute it and/or 
+ * modify it under the terms of the GNU General Public License as 
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+ * USA
+ */
+
+#include <config.h>
+#include <gnome.h>
+
+#define APPNAME "gshutdown"
+#define COPYRIGHT_NOTICE _("Copyright 1998, under the GNU General Public License.")
+
+#ifndef VERSION
+#define VERSION "0.0.0"
+#endif
+
+/****************************
+  Function prototypes
+  ******************************/
+
+static void popup_main_dialog(void);
+static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox);
+static void prepare_advanced_vbox(GtkWidget * vbox);
+static void dialog_clicked_cb(GnomeDialog * d, gint which, gpointer data);
+static void runlevel_cb(GtkRadioButton * b, gint data);
+
+static void popup_preferences(void);
+static void popup_not_in_path(const gchar * command);
+
+void run_command(gchar * command);
+
+/*****************************
+  Runlevel stuff.
+  *****************************/
+
+typedef enum {
+  Halt, 
+  SingleUser,
+  Runlevel_2,
+  Runlevel_3,
+  Runlevel_4,
+  Runlevel_5,
+  Reboot
+} Runlevel;
+
+static gchar * config_keys[] = {
+  "Halt",
+  "SingleUser",
+  "Runlevel_2",
+  "Runlevel_3",
+  "Runlevel_4",
+  "Runlevel_5",
+  "Reboot"
+};
+
+static gchar * runlevel_commands[] = {
+  "shutdown -h now",
+  "shutdown",
+  "telinit 2",
+  "telinit 3",
+  "telinit 4",
+  "telinit 5",
+  "shutdown -r now"
+};
+
+static Runlevel requested_runlevel;
+
+/*******************************
+  Main
+  *******************************/
+
+int main ( int argc, char ** argv )
+{
+  int i;
+  gchar * config_string;
+
+  argp_program_version = VERSION;
+
+  /* Initialize the i18n stuff */
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  textdomain (PACKAGE);
+
+  gnome_init (APPNAME, 0, argc, argv, 0, 0);
+
+  i = 0;
+  while (i < 7) {
+    config_string = g_copy_strings("/", APPNAME, "/Commands/", 
+				   config_keys[i], "=", runlevel_commands[i],
+				   NULL);
+    runlevel_commands[i] = 
+      gnome_config_get_string_with_default ( config_string,
+					     NULL );
+    g_free(config_string);
+    ++i;
+  }
+
+  popup_main_dialog();
+
+  gtk_main();
+
+  exit(EXIT_SUCCESS);
+}
+
+static void popup_main_dialog()
+{
+  GtkWidget * d;
+  GtkWidget * notebook;
+  GtkWidget * easy, * advanced; /* notebook pages */
+
+  d = gnome_dialog_new( _("Shutdown or Reboot"), GNOME_STOCK_BUTTON_OK,
+			GNOME_STOCK_BUTTON_CANCEL, NULL );
+  gnome_dialog_set_destroy( GNOME_DIALOG(d), TRUE );
+  gnome_dialog_set_modal( GNOME_DIALOG(d) );
+
+  notebook = gtk_notebook_new();
+
+  easy = gtk_vbox_new(FALSE, GNOME_PAD);
+  prepare_easy_vbox(d, easy);
+  gtk_container_border_width(GTK_CONTAINER(easy), GNOME_PAD);
+
+  advanced = gtk_vbox_new(FALSE, GNOME_PAD);
+  prepare_advanced_vbox(advanced);
+  gtk_container_border_width(GTK_CONTAINER(advanced), GNOME_PAD);
+
+  gtk_notebook_append_page_menu( GTK_NOTEBOOK(notebook),
+				 easy,
+				 gtk_label_new(_("Easy")),
+				 gtk_label_new(_("Easy")) );
+
+  gtk_notebook_append_page_menu( GTK_NOTEBOOK(notebook),
+				 advanced,
+				 gtk_label_new(_("Advanced")),
+				 gtk_label_new(_("Advanced")) );
+
+  gtk_notebook_popup_enable(GTK_NOTEBOOK(notebook));
+				
+  gtk_container_add( GTK_CONTAINER(GNOME_DIALOG(d)->vbox), notebook );
+
+  gtk_signal_connect ( GTK_OBJECT(d), "clicked",
+                       GTK_SIGNAL_FUNC(dialog_clicked_cb),
+                       NULL );
+ 
+  gtk_widget_show_all(d);
+}
+
+static void prepare_easy_vbox(GtkWidget * dialog, GtkWidget * vbox)
+{
+  GtkWidget * button, * label, * label_vbox, * warning_hbox;
+  GtkWidget * warning_pixmap = NULL;
+  GSList * group;
+  gchar * s;
+
+  warning_hbox = gtk_hbox_new(TRUE, GNOME_PAD);
+  gtk_box_pack_start (GTK_BOX (vbox), 
+		      warning_hbox, TRUE, TRUE, GNOME_PAD);
+
+  /* Fixme, move these messagebox pixmaps into defines */
+  s = gnome_pixmap_file("gnome-warning.png");
+  if (s) warning_pixmap = gnome_pixmap_new_from_file(s);
+
+  if (warning_pixmap) {
+    gtk_box_pack_start (GTK_BOX (warning_hbox), 
+			warning_pixmap, TRUE, TRUE, GNOME_PAD);
+  }
+  
+  label_vbox = gtk_vbox_new(TRUE, GNOME_PAD);
+  gtk_box_pack_end (GTK_BOX (warning_hbox), 
+		      label_vbox, TRUE, TRUE, GNOME_PAD);
+
+  label = gtk_label_new(_("Click OK to shutdown or reboot. You will lose"));
+  gtk_box_pack_start (GTK_BOX (label_vbox), 
+		      label, TRUE, TRUE, 0);
+  label = gtk_label_new(_("any unsaved information in open applications."));
+  gtk_box_pack_start (GTK_BOX (label_vbox), 
+		      label, TRUE, TRUE, 0);
+
+  button = gtk_radio_button_new_with_label(NULL, _("Reboot"));
+
+  gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (button), TRUE);
+  requested_runlevel = Reboot;
+
+  gtk_box_pack_start (GTK_BOX (vbox), 
+		      button, TRUE, TRUE, GNOME_PAD);
+  
+  /* Hacky int-to-pointer cast */
+  gtk_signal_connect ( GTK_OBJECT(button), "clicked",
+                       GTK_SIGNAL_FUNC(runlevel_cb),
+                       (gpointer)Reboot );
+
+  group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
+
+  button = gtk_radio_button_new_with_label (group, _("Shut Down"));
+  gtk_box_pack_start (GTK_BOX (vbox), 
+		      button, TRUE, TRUE, GNOME_PAD);
+
+  gtk_signal_connect ( GTK_OBJECT(button), "clicked",
+                       GTK_SIGNAL_FUNC(runlevel_cb),
+                       (gpointer)Halt );
+
+}
+
+static void prepare_advanced_vbox(GtkWidget * vbox)
+{
+  GtkWidget * button, * label;
+  GtkWidget * box;
+
+  box = gtk_hbox_new(FALSE, GNOME_PAD);
+  gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD);
+  gtk_box_pack_end(GTK_BOX(vbox), box, FALSE, FALSE, GNOME_PAD); 
+
+  /* Fixme add the appropriate stock buttons to gnome-stock */
+  button = gnome_stock_or_ordinary_button("Preferences");
+  gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
+
+  button = gnome_stock_or_ordinary_button("About");
+  gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
+}
+
+static void popup_preferences() 
+{
+  GtkWidget * box, * entry, * label;
+  GtkWidget * d;
+
+  box = gtk_vbox_new(FALSE, GNOME_PAD);
+  gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD_SMALL);
+  gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(d)->vbox), box, TRUE, TRUE, GNOME_PAD); 
+ 
+  label = gtk_label_new(_("Reboot command"));
+  gtk_box_pack_start(GTK_BOX(box), label, TRUE, TRUE, 0); 
+  entry = gtk_entry_new();
+  gtk_box_pack_start(GTK_BOX(box), entry, TRUE, TRUE, 0); 
+
+  label = gtk_label_new(_("Shutdown command"));
+  gtk_box_pack_start(GTK_BOX(box), label, TRUE, TRUE, 0); 
+  entry = gtk_entry_new();
+  gtk_box_pack_start(GTK_BOX(box), entry, TRUE, TRUE, 0); 
+}
+
+static void popup_not_in_path(const gchar * command)
+{
+  GtkWidget * dialog;
+  gchar * message;
+
+  message = g_copy_strings("The command \"", command, "\"\n" 
+			   "could not be found.\n\n" 
+			   "Most likely it's because you are "
+			   "not authorized to use it.\n"
+			   "This command is necessary to "
+			   "shutdown, reboot, or change runlevels.", NULL);
+
+  dialog = gnome_message_box_new(message, GNOME_MESSAGE_BOX_ERROR, 
+				 GNOME_STOCK_BUTTON_OK, NULL);
+
+  gtk_signal_connect(GTK_OBJECT(dialog), "clicked",
+		     GTK_SIGNAL_FUNC(gtk_main_quit), 
+		     NULL);
+
+  gtk_widget_show(dialog);
+
+  g_free(message);
+}
+
+/**********************************
+  Callbacks
+  *******************************/
+static void dialog_clicked_cb(GnomeDialog * d, gint which, gpointer data)
+{
+  /* 0 is the OK button */
+  if ( which == 0 ) {
+    if ( gnome_is_program_in_path(runlevel_commands[requested_runlevel]) ) {
+      run_command(runlevel_commands[requested_runlevel]);
+    }
+    else {
+      popup_not_in_path(runlevel_commands[requested_runlevel]);
+      return;
+    }
+  }
+
+  gtk_main_quit();
+}
+
+static void runlevel_cb(GtkRadioButton * b, gint data)
+{
+  requested_runlevel = data;
+}
+
+
+/********************************
+  Stuff that should be in gnome-util and be an exec
+  *******************************/
+
+#include <unistd.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void run_command(gchar * command)
+{
+  pid_t new_pid;
+  
+  new_pid = fork();
+
+  switch (new_pid) {
+  case -1 :
+    g_warning("Command execution failed: fork failed");
+    break;
+  case 0 : 
+    _exit(system(command));
+    break;
+  default:
+    break;
+  }
+}
+

@@ -1,0 +1,11 @@
+
+Remember that gsu must have the same permissions as /bin/su to work.
+Something like:
+$ su root
+$ chown root.root gsu
+$ chmod u+s gsu
+
+ought to work. gsu is relatively UNTESTED and likely INSECURE. Do not
+use on mission-critical systems.
+
+

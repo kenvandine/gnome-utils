@@ -70,6 +70,29 @@ PROGRAMS_GTOP=""
 AC_CHECK_HEADERS(linux/tasks.h,[PROGRAMS_GTOP=gtop])
 AC_SUBST(PROGRAMS_GTOP)
 
+dnl gsu
+AC_CHECK_FUNCS(endgrent endpwent)
+
+dnl Needed on SysV for shadow passwords.
+AC_CHECK_LIB(sec, main)
+
+dnl Needed on Linux for shadow passwords.
+AC_CHECK_LIB(shadow, main)
+
+AC_EGREP_HEADER(sp_pwdp, shadow.h,
+		AC_CHECK_FUNC(getspnam, AC_DEFINE(HAVE_SHADOW_H)))
+
+AC_CHECK_FUNCS(crypt)
+if test $ac_cv_func_crypt = no; then
+  # SCO-ODT-3.0 is reported to need this library for crypt.
+  AC_CHECK_LIB(ufc, crypt, LIBS="$LIBS -lufc",
+    [# NetBSD needs this library for crypt.
+    AC_CHECK_LIB(crypt, crypt)])
+fi
+
+dnl gsu end.
+
+
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
@@ -90,6 +113,9 @@ gncal/versit/Makefile
 gtop/Makefile
 gtop/proc/Makefile
 gtt/Makefile
+mini-utils/Makefile
+mini-utils/gshutdown/Makefile
+mini-utils/gsu/Makefile
 notepad/Makefile
 intl/Makefile
 stamp.h],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])
