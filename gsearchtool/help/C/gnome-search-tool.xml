@@ -3,8 +3,8 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "1.107.0">
-  <!ENTITY manrevision "2.1">
-  <!ENTITY date "July 2002">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY date "August 2002">
   <!ENTITY app "Search Tool">
 ]>
 <!-- 
@@ -13,6 +13,7 @@
   http://developer.gnome.org/projects/gdp 
   Template version: 2.0 beta
   Template last modified Apr 11, 2002
+  
 -->
 <!-- =============Document Header ============================= -->
 <article id="index" lang="en">
@@ -85,7 +86,17 @@
 	  <para role="publisher">GNOME Documentation Project</para>
 	</revdescription> 
  </revision>
-	<revision> 
+ <revision> 
+			<revnumber>Search Tool Manual V2.1</revnumber> 
+			<date>July 2002</date> 
+			<revdescription> 
+	  		<para role="author">Sun GNOME Documentation Team
+	    <email>gdocteam@sun.com</email>
+	  		</para>
+	  		<para role="publisher">GNOME Documentation Project</para>
+			</revdescription> 
+ </revision> 
+ <revision> 
 			<revnumber>Search Tool Manual V2.0</revnumber> 
 			<date>May 2002</date> 
 			<revdescription> 
@@ -148,7 +159,7 @@
     	<varlistentry>
     		<term><guimenu>Actions</guimenu> menu</term>
     		<listitem>
-    		<para>Choose <guimenuitem>Search for Files</guimenuitem></para>
+    		<para>Choose <guimenuitem>Search for Files</guimenuitem>.</para>
     		</listitem>
     	</varlistentry>
     	<varlistentry>
@@ -230,19 +241,19 @@
     <orderedlist>
     	<listitem><para>In the <guilabel>Starting in folder</guilabel> field, enter the path to the directory in which you want <application>&app;</application>
     	to begin the search. For example, if you enter <userinput>/home/username/work</userinput>, <application>&app;</application> begins the search in the <userinput>work
-    	</userinput> subdirectory and searches in all subdirectories of <userinput>work</userinput>.</para>
-    	<para>By default, <application>&app;</application> begins the search in the current working directory. </para></listitem>
+    	</userinput> subdirectory and searches in all subdirectories of <userinput>work</userinput>.
+    	By default, <application>&app;</application> begins the search in the current working directory. </para></listitem>
     	<listitem><para>Select the search criteria that you want to apply, as follows:</para>
     		<orderedlist>
     			<listitem><para>Click the <guilabel>Add Rule</guilabel> drop-down list box.</para></listitem>
     			<listitem><para>Select the search rule that you want to apply.</para></listitem>
     			<listitem><para>Click <guibutton>Add</guibutton> to add the search rule to the list of search rules.</para></listitem>
-    			<listitem><para>Ensure that the <guilabel>Enable</guilabel> checkbox is selected.</para></listitem>
+    			<listitem><para>Ensure that the <guilabel>Enable</guilabel> check box is selected.</para></listitem>
     			<listitem><para>Specify the required search information for the search rule, see 
         <xref linkend="tbl-search-rules"/> for information.</para></listitem>
     			<listitem><para>Repeat the above steps for each search rule that you want to apply.</para></listitem>
     		</orderedlist>
-    		<para>To disable a search rule, deselect the <guilabel>Enable</guilabel> checkbox next to the rule. To remove a search rule from the 
+    		<para>To disable a search rule, deselect the <guilabel>Enable</guilabel> check box next to the rule. To remove a search rule from the 
     		<guilabel>Rules</guilabel> list, select the rule, then click <guibutton>Remove</guibutton>.</para>
     	</listitem>	
     	<listitem><para>Click <guibutton>Find</guibutton> to perform the search. <application>&app;</application> displays the results

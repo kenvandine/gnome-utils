@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
-"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"[
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "1.107.0">
-  <!ENTITY manrevision "2.1">
-  <!ENTITY date "June 2002">
-  <!ENTITY app "GNOME Calculator">
+  <!ENTITY manrevision "2.2">
+  <!ENTITY date "August 2002">
+  <!ENTITY app "Calculator">
 ]>
 <!-- 
       (Do not remove this comment block.)
@@ -13,6 +13,7 @@
   http://developer.gnome.org/projects/gdp
   Template version: 2.0 beta
   Template last modified Feb 12, 2002
+  
 -->
 <!-- =============Document Header ============================= -->
 <article id="index" lang="en">
@@ -83,6 +84,15 @@
 		  </revdescription> 
 		</revision> 
 		<revision> 
+		  <revnumber>GNOME Calculator Manual V2.1</revnumber> 
+		  <date>June 2002</date> 
+		  <revdescription> 
+			 <para role="author">Sun GNOME Documentation Team
+				<email>gdocteam@sun.com</email> </para> 
+			 <para role="publisher">GNOME Documentation Project</para> 
+		  </revdescription> 
+		</revision> 
+		<revision> 
 		  <revnumber>GNOME Calculator Manual V2.0</revnumber> 
 		  <date>March 2002</date> 
 		  <revdescription> 
@@ -123,15 +133,34 @@
 	 <title>Introduction</title> 
 	 <para><application>GNOME Calculator</application> is a simple mathematical
 		and scientific calculator that includes arithmetic, trigonometric, and
-		logarithmic functions.</para> 
-	 <para>To start <application>&app;</application>, open the <guimenu>Applications</guimenu> menu on the Menu Panel, then choose 
-		<menuchoice> 
-		  <guisubmenu>Accessories</guisubmenu> 
-		  <guimenuitem>Calculator</guimenuitem> 
-		</menuchoice>. </para> 
+		logarithmic functions.</para> 	 
+  </sect1>
+  
+  <sect1 id="gcalc-getting-started">
+  <title>Getting Started</title>
+  <para>You can start <application>&app;</application> in the following ways:</para>
+		<variablelist>
+			<varlistentry>
+			<term><guimenu>Applications</guimenu> menu</term>
+			<listitem>
+			<para>Choose 
+			<menuchoice>
+			<guisubmenu>Accessories</guisubmenu>
+			<guimenuitem>Calculator</guimenuitem>
+			</menuchoice>. </para>
+			</listitem>
+			</varlistentry>
+			<varlistentry>
+			<term>Command line</term>
+			<listitem>
+			<para>Type <command>gnome-calculator</command>, then press <keycap>Return</keycap>.</para>
+			</listitem>
+			</varlistentry>
+		</variablelist>
+ 
 	 <para>When you start <application>&app;</application>, the
 		<application>&app;</application> window is displayed.</para>
-<!-- ==== Figure ==== -->
+         <!-- ==== Figure ==== -->
 	 <figure id="gcalc_window"> 
 		<title>&app; Window</title> 
 		<screenshot> 
@@ -140,13 +169,14 @@
 				<imagedata fileref="figures/gcalc_window.png" format="PNG"/> 
 			 </imageobject> 
 			 <textobject> 
-				<phrase>Screenshot of the GNOME Calculator window.</phrase> 
+				<phrase>Shows Calculator window.</phrase> 
 			 </textobject> 
 		  </mediaobject> 
 		</screenshot> 
 	 </figure>
 <!-- ==== End of Figure ==== -->
   </sect1>
+  
 <!-- ============= Usage ============================= -->
   <sect1 id="gcalc-usage"> 
 	 <title>Usage</title> 
