@@ -104,7 +104,6 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	GtkCList *cl;
 	char *titles[2]= { _("Setting"), _("Value") };
 	
-	printf("You have a %s\n", drive);
 	/*
 	 *	Process the drive.
 	 */
@@ -126,23 +125,11 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	 
 	pmode=get_power_mode(fd);
 	
-	printf("Drive is %s, settings are %skept, irq unmask is %s, DMA is %s.\n",
-		bit32_names[bits32],
-		keepsetting?"":"not ",
-		mask?"enabled":"disabled",
-		dma?"on":"off"
-	);
-	printf("Multicount is %d\n", multi);
-	
 	memset(&hd, 0, sizeof(hd));
 	if(ioctl(fd, HDIO_GET_IDENTITY, &hd)==-1)
 	{
-		printf("Legacy drive.\n");
 		id=0;
 	}
-	if(*hd.serial_no)
-		printf("Serial Number: %s\n", hd.serial_no);
-	printf("Status is: %s\n", power_names[pmode]);
 	
 	/*
 	 *	Add this drive to the notebook
@@ -188,7 +175,7 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	gtk_widget_show(vbox);
 }
 
-static void ide_parser(void)
+static int ide_parser(void)
 {
 	char i;
 	GtkWidget *toplevel;
@@ -196,6 +183,7 @@ static void ide_parser(void)
 	GtkWidget *pixmap;
 	GtkWidget *notebook;
 	unsigned char *pic;
+	int drives=0;
 	
 	/*
 	 *	Set up the outer display first
@@ -237,22 +225,22 @@ static void ide_parser(void)
 		int fd;
 		
 		sprintf(buf, "/dev/hd%c", i);
-		printf("Check drive %s\n",buf);
 		fd=open(buf,O_RDONLY);
 		if(fd==-1)
 		{
 			continue;
 		}
 		ide_stat_drive(buf+5, fd, notebook);
-		printf("Next drive\n");
+		drives++;
 		close(fd);
 	}
-	printf("Drives scanned.\n");
 	gtk_signal_connect(GTK_OBJECT(toplevel), "close",
 		GTK_SIGNAL_FUNC(gtk_main_quit),
 		NULL);
-		
-	gtk_widget_show(toplevel);
+
+	if(drives)		
+		gtk_widget_show(toplevel);
+	return drives;
 }
 
 
@@ -268,7 +256,7 @@ int main(int argc, char *argv[])
 
 	if(geteuid())
 	{
-		GtkWidget *w=gnome_message_box_new("Only the superuser can use this tool,",
+		GtkWidget *w=gnome_message_box_new(_("Only the superuser can use this tool"),
 					GNOME_MESSAGE_BOX_ERROR,
 					GNOME_STOCK_BUTTON_OK, NULL);
 		gtk_signal_connect(GTK_OBJECT(w), "destroy", 
@@ -277,7 +265,17 @@ int main(int argc, char *argv[])
 		gtk_main();
 		exit(1);
 	}
-	ide_parser();
+	if(ide_parser()==0)
+	{
+		GtkWidget *w=gnome_message_box_new(_("I can find no IDE drives"),
+					GNOME_MESSAGE_BOX_ERROR,
+					GNOME_STOCK_BUTTON_OK, NULL);
+		gtk_signal_connect(GTK_OBJECT(w), "destroy", 
+				GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
+		gtk_widget_show(w);
+		gtk_main();
+		exit(1);
+	}
 	gtk_main();
 	exit(EXIT_SUCCESS);
 }
