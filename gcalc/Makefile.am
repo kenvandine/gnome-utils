@@ -18,7 +18,7 @@ gnome_calculator_SOURCES = \
 
 gnome_calculator_LDADD = \
 	@GNOME_UTILS_LIBS@	\
-	$(X_PRE_LIBS) $(X_LIBS) -lX11 $(X_EXTRA_LIBS)
+	$(X_LIBS)
 
 man_MANS = gnome-calculator.1
 

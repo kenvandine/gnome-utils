@@ -166,6 +166,33 @@ else
   AM_CONDITIONAL(CONSOLE_HELPER, false)
 fi
 
+dnl ************************************************
+dnl X development libraries check
+dnl ************************************************
+
+if $PKG_CONFIG --exists pangoxft ; then
+  PANGO_PACKAGES="pangox pangoxft"
+else
+  PANGO_PACKAGES="pangox"
+fi
+
+x_libs="`$PKG_CONFIG --libs $PANGO_PACKAGES`"
+case x_libs in
+  *-lX11*) pango_omitted_x_deps=no ;;
+  *)       pango_omitted_x_deps=yes ;;
+esac
+
+if test $pango_omitted_x_deps = yes ; then
+  AC_PATH_XTRA
+
+  if test x$no_x = xyes ; then
+    AC_MSG_ERROR([X development libraries not found])
+  else
+    X_LIBS="$X_PRE_LIBS $X_LIBS -lX11 $X_EXTRA_LIBS"
+  fi
+fi
+
+AC_SUBST(X_LIBS)
 
 
 dnl *************************************************
@@ -297,6 +324,7 @@ echo ""
 dnl <= CFLAGS and LDFLAGS =>
 echo "CFLAGS : $CFLAGS"
 echo "LDFLAGS : $LDFLAGS"
+echo "X_LIBS : $X_LIBS"
 echo ""
 
 dnl <= Prefixes =>
