@@ -1032,95 +1032,102 @@ void
 show_file_selector_cb (GtkWidget 	*widget, 
 		       gpointer		data)
 {
-	interface.file_selector = gtk_file_selection_new(_("Save Search Results As..."));
+	interface.file_selector = gtk_file_chooser_dialog_new (_("Save Search Results As..."),
+							       GTK_WINDOW (interface.main_window),
+							       GTK_FILE_CHOOSER_ACTION_SAVE,
+							       GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+							       GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+							       NULL);
 		
-	if (interface.save_results_file) gtk_file_selection_set_filename(GTK_FILE_SELECTION(interface.file_selector), 
-									interface.save_results_file);
-
-	g_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION(interface.file_selector)->ok_button), "clicked",
-				G_CALLBACK (save_results_cb), NULL);
+	/* This is not working properly in GTK+ at this time! (using GTK+ 2.3.1)
+	if (interface.save_results_file != NULL) {
+		gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (interface.file_selector), 
+						   interface.save_results_file);
+	} */
 	
-	g_signal_connect_swapped (GTK_OBJECT (GTK_FILE_SELECTION (interface.file_selector)->ok_button),
-                             	"clicked",
-                             	G_CALLBACK (gtk_widget_destroy), 
-                             	(gpointer) interface.file_selector); 
-
-   	g_signal_connect_swapped (GTK_OBJECT (GTK_FILE_SELECTION (interface.file_selector)->cancel_button),
-                             	"clicked",
-                             	G_CALLBACK (gtk_widget_destroy),
-                             	(gpointer) interface.file_selector); 
+	g_signal_connect (G_OBJECT (interface.file_selector), "response",
+			  G_CALLBACK (save_results_cb), NULL);
 
 	gtk_window_set_modal (GTK_WINDOW(interface.file_selector), TRUE);
-	gtk_window_set_transient_for (GTK_WINDOW(interface.file_selector), GTK_WINDOW(interface.main_window));
+	gtk_window_set_default_size (GTK_WINDOW(interface.file_selector), 600, 400);
 	gtk_window_set_position (GTK_WINDOW (interface.file_selector), GTK_WIN_POS_CENTER_ON_PARENT);
 
 	gtk_widget_show (GTK_WIDGET(interface.file_selector));
 }
 
 void
-save_results_cb (GtkFileSelection *selector, 
-		 gpointer 	  user_data, 
+save_results_cb (GtkWidget       *chooser, 
+		 gint		  response, 
 		 gpointer 	  data)
 {
 	FILE *fp;
 	GtkListStore *store;
 	GtkTreeIter iter;
 	gint n_children, i;
-	gchar *utf8;
+	gchar *utf8 = NULL;
 	
+	if (response != GTK_RESPONSE_OK) {
+		gtk_widget_destroy (GTK_WIDGET (chooser));
+		return;
+	}
+
 	store = interface.model;
+	g_free (interface.save_results_file);
 	
-	interface.save_results_file = (gchar *)gtk_file_selection_get_filename (GTK_FILE_SELECTION (interface.file_selector));
-	utf8 = g_filename_to_utf8 (interface.save_results_file, -1, NULL, NULL, NULL);
+	interface.save_results_file = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+	gtk_widget_destroy (chooser);
+	
+	if (interface.save_results_file != NULL) {
+		utf8 = g_filename_to_utf8 (interface.save_results_file, -1, NULL, NULL, NULL);
+	}
+	
+	if (utf8 == NULL || g_file_test (interface.save_results_file, G_FILE_TEST_IS_DIR)) {
+		GtkWidget *dialog;
+		gchar *title_msg;
+		gchar *error_msg;
+		
+		title_msg = g_strdup_printf (_("Could not save document \"\" to \"%s\"."), 
+		                             (utf8 != NULL) ? utf8 : "");
+				     
+		error_msg = g_strdup_printf (_("You did not select a document name or the name selected was a folder.  The document is not saved."));
+
+		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
+		                                     GTK_DIALOG_DESTROY_WITH_PARENT,
+						     GTK_BUTTONS_OK,
+						     title_msg,
+						     error_msg);
+
+		g_signal_connect (G_OBJECT (dialog),
+				"response",
+				G_CALLBACK (gtk_widget_destroy), NULL);
+					
+		gtk_widget_show (dialog);
+		g_free (title_msg);
+		g_free (error_msg);
+		
+		return;	
+	}
 	
 	if (g_file_test (interface.save_results_file, G_FILE_TEST_EXISTS)) {
 		
-		if (g_file_test (interface.save_results_file, G_FILE_TEST_IS_DIR)) {
-			GtkWidget *dialog;
-			gchar *title_msg;
-			gchar *error_msg;
-			
-			title_msg = g_strdup_printf (_("Could not save document \"\" to %s"), 
-		                                     interface.save_results_file);
-					     
-			error_msg = g_strdup_printf (_("You did not select a document name or the name selected was a folder.  The document is not saved."));
-
-			dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-			                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-							     GTK_BUTTONS_OK,
-							     title_msg,
-							     error_msg);
-
-			g_signal_connect (G_OBJECT (dialog),
-					"response",
-					G_CALLBACK (gtk_widget_destroy), NULL);
-					
-			gtk_widget_show (dialog);
-			g_free (title_msg);
-			g_free (error_msg);
-			
-			return;	
-		}
-		else {
-			GtkWidget *dialog;
-			gchar     *text;
-			gint      response;
+		GtkWidget *dialog;
+		gchar     *text;
+		gint      response;
 				 
-			text = g_strdup_printf (_("The contents of the file \"%s\" will be lost."), utf8);
+		text = g_strdup_printf (_("The contents of the file \"%s\" will be lost."), utf8);
 			
-			dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-			                                     0 /* flags */,
-							     GTK_BUTTONS_OK_CANCEL,
-							     _("Overwrite an existing file?"),
-							     text);
+		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
+		                                     0 /* flags */,
+						     GTK_BUTTONS_OK_CANCEL,
+						     _("Overwrite an existing file?"),
+						     text);
 			
-			response = gtk_dialog_run (GTK_DIALOG (dialog));
+		response = gtk_dialog_run (GTK_DIALOG (dialog));
 		
-			gtk_widget_destroy (GTK_WIDGET(dialog));
-			g_free (text);
+		gtk_widget_destroy (GTK_WIDGET(dialog));
+		g_free (text);
 			
-			if (response != GTK_RESPONSE_OK) return;
-		}
+		if (response != GTK_RESPONSE_OK) return;
 	}
 	
 	if ((fp = fopen (interface.save_results_file, "w")) != NULL) {
@@ -1154,7 +1161,7 @@ save_results_cb (GtkFileSelection *selector,
 		gchar *title_msg;
 		gchar *error_msg;
 		
-		title_msg = g_strdup_printf (_("Could not save document \"%s\" to %s"), 
+		title_msg = g_strdup_printf (_("Could not save document \"%s\" to \"%s\"."), 
 		                             g_path_get_basename (utf8), g_path_get_dirname (utf8));
 					     
 		error_msg = g_strdup_printf ("%s",

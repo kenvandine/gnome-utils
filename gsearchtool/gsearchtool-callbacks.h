@@ -111,8 +111,8 @@ void
 show_file_selector_cb 		(GtkWidget 	*widget,
 				 gpointer 	data);
 void   	
-save_results_cb 		(GtkFileSelection   *selector, 
-				 gpointer 	    user_data, 
+save_results_cb 		(GtkWidget         *chooser, 
+				 gint	 	    response, 
 				 gpointer 	    data);
 void    
 save_session_cb 		(GnomeClient 	    *client, 
