@@ -1,5 +1,6 @@
 # Czech message catalog for gnome-utils.
 # Copyright (C) 2001,2003 Free Software Foundation, Inc.
+# Copyright (C) 2003 Miloslav Trmac <mitr@volny.cz>
 # David Sauer <davids@penguin.cz>, 1999.
 # George Lebl <jirka@5z.com>, 2000-2001.
 # Michal Bukovjan <bukm@centrum.cz>, 2002,2003
@@ -8,14 +9,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 2003-12-31 12:02+1300\n"
-"PO-Revision-Date: 2003-12-12 18:54+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-31 20:19+0100\n"
+"PO-Revision-Date: 2003-12-31 23:04+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -733,7 +735,7 @@ msgid "DEVICE"
 msgstr "ZAŘÍZENÍ"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
@@ -741,10 +743,13 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
-"Disketa byla naformátována, ale byly nalezeno a označeno <b>%d špatných "
-"bloků</b> (z %d)."
+"Disketa byla naformátována, ale byl nalezen a označen <b>%d špatný "
+"blok</b> (z %d)."
 msgstr[1] ""
-"Disketa byla naformátována, ale byly nalezeno a označeno <b>%d špatných "
+"Disketa byla naformátována, ale byly nalezeny a označeny <b>%d špatné "
+"bloky</b> (z %d)."
+msgstr[2] ""
+"Disketa byla naformátována, ale bylo nalezeno a označeno <b>%d špatných "
 "bloků</b> (z %d)."
 
 #: gfloppy/src/progress.c:126
@@ -814,19 +819,21 @@ msgid "Could not open help document."
 msgstr "Nemohu otevřít dokument nápovědy."
 
 #: gsearchtool/gsearchtool-callbacks.c:318
-#, fuzzy, c-format
+#, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] "Jste si jisti, že chcete otevřít %d dokumentů?"
-msgstr[1] "Jste si jisti, že chcete otevřít %d dokumentů?"
+msgstr[0] "Jste si jisti, že chcete otevřít %d dokument?"
+msgstr[1] "Jste si jisti, že chcete otevřít %d dokumenty?"
+msgstr[2] "Jste si jisti, že chcete otevřít %d dokumentů?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] "Toto otevře %d oddělených oken."
-msgstr[1] "Toto otevře %d oddělených oken."
+msgstr[0] "Toto otevře %d oddělené okno."
+msgstr[1] "Toto otevře %d oddělená okna."
+msgstr[2] "Toto otevře %d oddělených oken."
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
@@ -840,11 +847,12 @@ msgid "There is no installed viewer capable of displaying the document."
 msgstr "Není nainstalován žádný prohlížeč schopný zobrazit tento dokument."
 
 #: gsearchtool/gsearchtool-callbacks.c:444
-#, fuzzy, c-format
+#, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] "Jste si jisti, že chcete otevřít %d adresářů?"
-msgstr[1] "Jste si jisti, že chcete otevřít %d adresářů?"
+msgstr[0] "Jste si jisti, že chcete otevřít %d adresář?"
+msgstr[1] "Jste si jisti, že chcete otevřít %d adresáře?"
+msgstr[2] "Jste si jisti, že chcete otevřít %d adresářů?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
 #, c-format
@@ -1037,18 +1045,20 @@ msgid "No Files Found"
 msgstr "Nenalezeny žádné soubory"
 
 #: gsearchtool/gsearchtool.c:570
-#, fuzzy, c-format
+#, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
-msgstr[0] "Nalezeno %d souborů"
-msgstr[1] "Nalezeno %d souborů"
+msgstr[0] "Nalezen %d soubor"
+msgstr[1] "Nalezeny %d soubory"
+msgstr[2] "Nalezeno %d souborů"
 
 #: gsearchtool/gsearchtool.c:573
-#, fuzzy, c-format
+#, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
-msgstr[0] "Nalezeno %d souborů"
-msgstr[1] "Nalezeno %d souborů"
+msgstr[0] "Nalezen %d soubor"
+msgstr[1] "Nalezeny %d soubory"
+msgstr[2] "Nalezeno %d souborů"
 
 #: gsearchtool/gsearchtool.c:678
 msgid "Entry changed called for a non entry option!"
@@ -1382,11 +1392,12 @@ msgid "<No log loaded>"
 msgstr "<Není načten soubor se záznamem>"
 
 #: logview/info.c:183
-#, fuzzy, c-format
+#, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
-msgstr[0] "%ld bajtů"
-msgstr[1] "%ld bajtů"
+msgstr[0] "%ld bajt"
+msgstr[1] "%ld bajty"
+msgstr[2] "%ld bajtů"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1680,9 +1691,3 @@ msgstr "Podrobnosti řádku záznamu"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%e. %B %X"
-
-#~ msgid "One File Found"
-#~ msgstr "Nalezen jeden soubor"
-
-#~ msgid "One file found"
-#~ msgstr "Nalezen jeden soubor"
