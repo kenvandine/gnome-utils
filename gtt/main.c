@@ -287,7 +287,8 @@ read_config(void)
 }
 
 
-
+#if 0
+/* used only to display development version warning messsage */
 static void 
 beta_run_or_abort(GtkWidget *w, gint butnum)
 {
@@ -300,6 +301,7 @@ beta_run_or_abort(GtkWidget *w, gint butnum)
 		read_config();
 	}
 }
+#endif
 
 /* save_all() is a bit sloppy, in that if we get two errors in a row,
  * we'll miss the second one ... but what the hey, who cares.
@@ -476,6 +478,7 @@ main(int argc, char *argv[])
 	 */
 	connect_short_cuts();
 
+#if 0
 	msgbox_ok_cancel(_("Warning"),
 		"WARNING !!! Achtung !!! Avertisment !!!\n"
 		"\n"
@@ -489,7 +492,9 @@ main(int argc, char *argv[])
 		"cvs checkout -D \"Aug 27 2001\" gnome-utils/gtt\n",
 	     "Continue", "Exit", 
 		GTK_SIGNAL_FUNC(beta_run_or_abort));
-
+#else
+	read_config();
+#endif
 
 	gh_enter(argc, argv, guile_inner_main);
 	return 0; /* not reached !? */
