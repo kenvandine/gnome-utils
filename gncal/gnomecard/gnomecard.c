@@ -743,7 +743,7 @@ gnomecard_sort_by_col(GtkWidget *w, gint col, GtkWidget *list)
 	/* this is a hack - need function to just rebuid list    */
 	/* and maintain current selection in list w/o me knowing */
 	/* about it here                                         */
-	gnomecard_rebuild_list(NULL);
+	gnomecard_rebuild_list();
     }
 
 }

@@ -185,7 +185,7 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 	gnomecard_scroll_list(ce->l);
 */
 	gnomecard_sort_card_list(gnomecard_sort_criteria); 
-	gnomecard_rebuild_list(crd);
+	gnomecard_rebuild_list();
 	gnomecard_update_canvas(crd);
 	gnomecard_set_changed(TRUE);
 }

@@ -48,7 +48,7 @@ gnomecard_do_sort_cards(sort_func criteria)
 	if (curr == l->data)
 	    gnomecard_curr_crd = l;
     }
-    gnomecard_rebuild_list(gnomecard_curr_crd);
+    gnomecard_rebuild_list();
 /*	gnomecard_set_changed(TRUE); WHY? We didnt change data any */
 }
 

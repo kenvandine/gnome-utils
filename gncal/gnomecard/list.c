@@ -147,9 +147,19 @@ gnomecard_update_list(Card *crd)
 /* redraw list based on gnomecard_crd structure               */
 /* used after a sort, for example, has changed order of cards */
 void
-gnomecard_rebuild_list(Card *curcard)
+gnomecard_rebuild_list(void)
 {
     GList *c;
+    Card  *curcard=NULL;
+    gint  currow;
+
+    if (gnomecard_list->selection) {
+	currow = GPOINTER_TO_INT(gnomecard_list->selection->data);
+	if (currow >= 0)
+	    curcard = (Card *)gtk_clist_get_row_data(gnomecard_list, currow);
+	else
+	    curcard = NULL;
+    }
 
     gtk_clist_freeze(gnomecard_list);
     gtk_clist_clear(gnomecard_list);
@@ -272,11 +282,8 @@ gnomecard_add_card_to_list(Card *crd)
 	row = gtk_clist_append(gnomecard_list, tmp);
 
 	rowtxt = gnomecardCreateColValues(crd, cols);
-	for (col=0, l=rowtxt; l; l=l->next, col++) {
-	    g_message("gnomecard_add_card_to_list - col %d data is %s",
-		      col, (gchar *) l->data);
+	for (col=0, l=rowtxt; l; l=l->next, col++)
 	    gtk_clist_set_text(gnomecard_list, row, col, l->data);
-	}
 	    
 	gtk_clist_set_row_data(gnomecard_list, row, crd);
 	gnomecardFreeColValues(rowtxt);
