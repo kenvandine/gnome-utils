@@ -117,6 +117,8 @@ void		gtt_project_set_min_interval (GttProject *, int);
 int		gtt_project_get_min_interval (GttProject *);
 void		gtt_project_set_auto_merge_interval (GttProject *, int);
 int		gtt_project_get_auto_merge_interval (GttProject *);
+void		gtt_project_set_auto_merge_gap (GttProject *, int);
+int		gtt_project_get_auto_merge_gap (GttProject *);
 
 /* The id is a simple id, handy for .. stuff */
 void 		gtt_project_set_id (GttProject *, int id);

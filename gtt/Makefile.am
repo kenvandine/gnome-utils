@@ -18,7 +18,7 @@ gtt_SOURCES = 		\
 	options.c	\
 	phtml.c		\
 	proj.c		\
-	prop.c		\
+	proj-prop.c	\
 	shorts.c	\
 	timer.c		\
 	toolbar.c	\

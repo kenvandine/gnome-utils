@@ -20,6 +20,7 @@
 
 #include <errno.h>
 #include <gconf/gconf.h>
+#include <glade/glade.h>
 #include <gnome.h>
 #include <libgnomeui/gnome-window-icon.h>
 #include <signal.h>
@@ -332,6 +333,8 @@ main(int argc, char *argv[])
 	signal (SIGTERM, got_signal);
 	lock_gtt();
 	app_new(argc, argv, geometry_string);
+
+	glade_gnome_init();
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
 			   GTK_SIGNAL_FUNC(quit_app), NULL);
 

@@ -15,7 +15,8 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-#include <config.h>
+#include "config.h"
+
 #include <gnome.h>
 
 #include <stdlib.h>
@@ -64,6 +65,7 @@ char *config_command_null = NULL;
 gboolean geom_place_override = FALSE;
 gboolean geom_size_override = FALSE;
 
+/* ============================================================= */
 
 void update_status_bar(void)
 {
@@ -246,3 +248,5 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 				" specified on command line"));
 	}
 }
+
+/* ============================== END OF FILE ===================== */

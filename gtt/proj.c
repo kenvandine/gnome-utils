@@ -45,12 +45,13 @@ gtt_project_new(void)
 	GttProject *proj;
 	
 	proj = g_new0(GttProject, 1);
-	proj->title = NULL;
-	proj->desc = NULL;
-	proj->notes = NULL;
+	proj->title = g_strdup ("");
+	proj->desc = g_strdup ("");
+	proj->notes = g_strdup ("");
 	proj->custid = NULL;
 	proj->min_interval = 3;
 	proj->auto_merge_interval = 60;
+	proj->auto_merge_gap = 60;
 	proj->secs_ever = 0;
 	proj->secs_day = 0;
 	proj->billrate = 1.0;
@@ -75,9 +76,8 @@ gtt_project_new_title_desc(const char *t, const char *d)
 	GttProject *proj;
 
 	proj = gtt_project_new();
-	if (!t || !d) return proj;
-	proj->title = g_strdup (t);
-        proj->desc = g_strdup (d);
+	if (t) { g_free(proj->title); proj->title = g_strdup (t); }
+        if (d) { g_free(proj->desc); proj->desc = g_strdup (d); }
 	return proj;
 }
 
@@ -93,11 +93,17 @@ gtt_project_dup(GttProject *proj)
 	p = gtt_project_new();
 	p->min_interval = proj->min_interval;
 	p->auto_merge_interval = proj->auto_merge_interval;
+	p->auto_merge_gap = proj->auto_merge_gap;
 	p->secs_ever = proj->secs_ever;
 	p->secs_day = proj->secs_day;
-	if (proj->title) p->title = g_strdup(proj->title);
-	if (proj->desc) p->desc = g_strdup(proj->desc);
-	if (proj->notes) p->notes = g_strdup(proj->notes);
+
+	g_free(p->title);
+	g_free(p->desc);
+	g_free(p->notes);
+
+	p->title = g_strdup(proj->title);
+	p->desc = g_strdup(proj->desc);
+	p->notes = g_strdup(proj->notes);
 	if (proj->custid) p->custid = g_strdup(proj->custid);
 
 	p->billrate = proj->billrate;
@@ -188,7 +194,7 @@ gtt_project_set_title(GttProject *proj, const char *t)
 	if (!proj) return;
 	if (proj->title) g_free(proj->title);
 	if (!t) {
-		proj->title = NULL;
+		proj->title = g_strdup ("");
 		return;
 	}
 	proj->title = g_strdup(t);
@@ -203,7 +209,7 @@ gtt_project_set_desc(GttProject *proj, const char *d)
 	if (!proj) return;
 	if (proj->desc) g_free(proj->desc);
 	if (!d) {
-		proj->desc = NULL;
+		proj->desc = g_strdup ("");
 		return;
 	}
 	proj->desc = g_strdup(d);
@@ -216,7 +222,7 @@ gtt_project_set_notes(GttProject *proj, const char *d)
 	if (!proj) return;
 	if (proj->notes) g_free(proj->notes);
 	if (!d) {
-		proj->notes = NULL;
+		proj->notes = g_strdup ("");
 		return;
 	}
 	proj->notes = g_strdup(d);
@@ -344,6 +350,20 @@ gtt_project_get_auto_merge_interval (GttProject *proj)
 {
 	if (!proj) return 0.0;
 	return proj->auto_merge_interval;
+}
+
+void
+gtt_project_set_auto_merge_gap (GttProject *proj, int r)
+{
+	if (!proj) return;
+	proj->auto_merge_gap = r;
+}
+
+int
+gtt_project_get_auto_merge_gap (GttProject *proj)
+{
+	if (!proj) return 0.0;
+	return proj->auto_merge_gap;
 }
 
 /* =========================================================== */

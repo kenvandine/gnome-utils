@@ -44,6 +44,7 @@ struct gtt_project_s
 
 	int min_interval;  /* smallest recorded interval */
 	int auto_merge_interval;  /* merge intervals smaller than this */
+	int auto_merge_gap;       /* merge gaps smaller than this */
 	int secs_ever;   /* seconds spend on this project */
 	int secs_day;    /* seconds spent on this project today */
 
