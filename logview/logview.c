@@ -182,7 +182,7 @@ destroy (GObject *object, gpointer data)
    if (window->monitored)
 	   monitor_stop (window);
    if (logview_windows == NULL) {
-	   if (window->curlog)
+	   if (window->curlog && !(window->curlog->display_name))
 		   user_prefs->logfile = window->curlog->name;
 	   else
 		   user_prefs->logfile = NULL;
