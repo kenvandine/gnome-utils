@@ -18,7 +18,16 @@ August 2001
      yet finished).
   -- Infrastructure for storing price & billing information has been
      put into place.  This allows billing invoices to be generated.
+     Tasks can be marked as billable, non-billable, on-hold, or 
+     free-of-charge. Billing rates for regular, overtime, 
+     double-overtime or flat-fee can be set per task.
      (Fancier-looking invoices still needed).
+  -- Auto-merge/cleanup of short intervals supported. Extremely short
+     intervals (the length is configurable) are automatically removed
+     from the log files.  Slightly longer but still short intervals
+     are automerged into nearby neighbors. Short gaps between intervals
+     are coalesced as well.  You can specify a time period of 0 seconds
+     to turn these features off.
   -- The journal GUI is based on extended html pages.  If you know
      html, then you can create customized report pages.
      User-defined reports (contained in ghtml files) can be added to the
@@ -34,6 +43,9 @@ August 2001
      there is now a new XML file format that stores both project and 
      journal data.
   -- Export to GnuCash coming soon, I hope ...
+
+A very simple website for gtt is now up at 
+http://www.linas.org/linux/gtt/gtt.html
 
   (This blast of new features by Linas Vepstas <linas@linas.org>)
 
