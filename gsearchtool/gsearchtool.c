@@ -1375,7 +1375,7 @@ add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 	
 	if (show_constraint == TRUE) {
 		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
-			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "toggled", 0);
+			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "clicked", 0);
 			gtk_widget_show (interface.additional_constraints);
 		}
 	} 
@@ -1684,8 +1684,8 @@ create_main_window (void)
 	
 	interface.checkbutton = gtk_check_button_new_with_mnemonic (_("Show more _options"));
 	gtk_box_pack_start (GTK_BOX(window), interface.checkbutton, FALSE, FALSE, 0);
-	g_signal_connect (G_OBJECT (interface.checkbutton),"toggled",
-			  G_CALLBACK (toggle_check_button_cb), NULL);
+	g_signal_connect (G_OBJECT (interface.checkbutton),"clicked",
+			  G_CALLBACK (click_check_button_cb), NULL);
 			  
 	interface.additional_constraints = create_additional_constraint_section ();
 	gtk_box_pack_start (GTK_BOX(window), GTK_WIDGET(interface.additional_constraints), FALSE, FALSE, 0);
@@ -1871,7 +1871,7 @@ handle_gconf_settings (void)
 {
 	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_additional_options") == TRUE) {
 		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
-			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "toggled", 0);
+			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "clicked", 0);
 			gtk_widget_show (interface.additional_constraints);
 		}
 	}
