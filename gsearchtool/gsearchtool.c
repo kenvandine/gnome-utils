@@ -57,6 +57,7 @@ enum {
 	COLUMN_TYPE,
 	COLUMN_READABLE_DATE,
 	COLUMN_DATE,
+	COLUMN_NO_FILES_FOUND,
 	NUM_COLUMNS
 };
 
@@ -129,6 +130,7 @@ static gboolean lock = FALSE;
 static int current_template = 0;
 
 static char *filename = NULL;
+static gchar *locate_string = NULL;
 
 static GtkWidget *save_widget = NULL;
 
@@ -226,7 +228,6 @@ make_locate_cmd(void)
 {
 	GString *cmdbuf;
 	gchar *locate_path;
-	gchar *locate_string;
 	gchar *locate_command;
 	
 	locate_string = 
@@ -256,7 +257,6 @@ make_locate_cmd(void)
 		g_string_append_printf (cmdbuf, "find \"%s\" -name '%s' -mount", locate_path, locate_string);
 	}
 	g_free (locate_path);
-	g_free (locate_string);
 	g_free (locate_command);
 	
 	return g_string_free (cmdbuf, FALSE);
@@ -537,6 +537,7 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 			    COLUMN_TYPE, description,
 			    COLUMN_READABLE_DATE, readable_date,
 			    COLUMN_DATE, date,
+			    COLUMN_NO_FILES_FOUND, FALSE,
 			    -1);
 			    
 	gnome_vfs_file_info_clear (vfs_file_info);
@@ -623,6 +624,7 @@ add_message_to_list_store(GtkListStore *store, GtkTreeIter *iter)
 			    		COLUMN_TYPE, "",
 		    			COLUMN_READABLE_DATE, "",
 		    			COLUMN_DATE, 0,
+					COLUMN_NO_FILES_FOUND, TRUE,
 		    			-1);
 	}
 }
@@ -636,11 +638,18 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, 
 	int fd[2], fderr[2];
 	int i,n;
 	int pid;
+	GPatternSpec *pattern;
+	gchar *base_name = NULL;
 	GString *errors = NULL;
 	gboolean add_to_errors = TRUE;
+	gchar *utf8_locate_string;
+	gchar *wildcarded_string;
 	
 	lock = TRUE;
 
+	wildcarded_string = g_strdup_printf ("*%s*", locate_string);
+	utf8_locate_string = g_locale_to_utf8 (wildcarded_string, -1, NULL, NULL, NULL);
+	pattern = g_pattern_spec_new (utf8_locate_string);
 	/* reset scroll position and clear the tree view */
 	gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(tree), 0, 0);
 	gtk_list_store_clear (GTK_LIST_STORE(store)); 
@@ -704,7 +713,11 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, 
 			if (*running != RUNNING)
 				break;
 			if(ret[i] == sepchar) {
-				add_file_to_list_store(string->str, store, iter);
+			        base_name = g_locale_to_utf8 (g_path_get_basename (string->str), -1, NULL, NULL, NULL);
+				
+				if (g_pattern_match_string (pattern, base_name)) {
+				        add_file_to_list_store (string->str, store, iter);
+				}
 				g_string_assign (string, "");
 			} else {
 				g_string_append_c (string, ret[i]);
@@ -745,7 +758,11 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, 
 			if (*running != RUNNING) 
 				break;
 			if(ret[i] == sepchar) {
-				add_file_to_list_store(string->str, store, iter);
+			        base_name = g_locale_to_utf8 (g_path_get_basename (string->str), -1, NULL, NULL, NULL);
+				
+				if (g_pattern_match_string (pattern, base_name)) {
+				        add_file_to_list_store (string->str, store, iter);
+				}
 				g_string_assign (string, "");
 			} else {
 				g_string_append_c (string, ret[i]);
@@ -791,6 +808,10 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, 
 	add_message_to_list_store (store, iter);
 
 	g_string_free (string, TRUE);
+	g_free (base_name);
+	g_free (utf8_locate_string);
+	g_free (wildcarded_string);
+	g_pattern_spec_free (pattern);
 
 	*running = NOT_RUNNING;
 
@@ -1000,6 +1021,7 @@ launch_file (GtkWidget *w, GdkEventButton *event, gpointer data)
 	gchar *file = NULL;
 	gchar *utf8_name = NULL;
 	gchar *utf8_path = NULL;
+	gboolean no_files_found = FALSE;
 	GtkListStore *store;
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;
@@ -1020,20 +1042,27 @@ launch_file (GtkWidget *w, GdkEventButton *event, gpointer data)
 		
 		gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
 							       COLUMN_PATH, &utf8_path,
+							       COLUMN_NO_FILES_FOUND, &no_files_found,
 								-1);
-		file = g_build_filename (utf8_path, utf8_name, NULL);
+
+		if (!no_files_found) {
+			file = g_build_filename (utf8_path, utf8_name, NULL);
 		
-		if (nautilus_is_running ()) {
-			launch_nautilus (file);
+			if (nautilus_is_running ()) {
+				launch_nautilus (file);
+			}
+			else {
+				if (!view_file_with_application(file))	
+					gnome_error_dialog_parented(_("No viewer available for this mime type."),
+							    	    GTK_WINDOW(app));
+			}
+
+			g_free (file);
 		}
-		else {
-			if (!view_file_with_application(file))	
-				gnome_error_dialog_parented(_("No viewer available for this mime type."),
-						    	    GTK_WINDOW(app));
-		}
-		g_free(utf8_name);
-		g_free(utf8_path);
-		g_free(file);
+		
+		g_free (utf8_name);
+		g_free (utf8_path);
+
 		return TRUE;
 	}
 	return FALSE;
@@ -1393,7 +1422,8 @@ create_find_page(void)
 					 G_TYPE_DOUBLE,
 					 G_TYPE_STRING,
 					 G_TYPE_STRING,
-					 G_TYPE_STRING);				 
+					 G_TYPE_STRING,
+					 G_TYPE_BOOLEAN);				 
 	
 	find_tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(find_model));
 	gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (find_tree), TRUE);
@@ -1690,7 +1720,8 @@ create_locate_page(void)
 					  G_TYPE_DOUBLE,
 					  G_TYPE_STRING,
 					  G_TYPE_STRING,
-					  G_TYPE_STRING);
+					  G_TYPE_STRING,
+					  G_TYPE_BOOLEAN);
 	
 	locate_tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(locate_model));
 	gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (locate_tree), TRUE);
