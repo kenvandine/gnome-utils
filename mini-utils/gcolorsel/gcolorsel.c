@@ -20,21 +20,28 @@ GnomeMDI *mdi;
 /* First view is considered as the default view ... */
 views_t views_tab[] = { {N_("List"), GTK_POLICY_NEVER, GTK_POLICY_ALWAYS, 
 			 (views_new)view_color_list_new, 
-			 view_color_list_get_type       },
+			 view_color_list_get_type,
+			 "List view description TODO" },
 			{N_("Grid"), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC,
 			 (views_new)view_color_grid_new, 
-			 view_color_grid_get_type       },
+			 view_color_grid_get_type,
+			 "Grid view description TODO" },
 			{N_("Edit"), GTK_POLICY_NEVER, GTK_POLICY_NEVER,
 			 (views_new)view_color_edit_new, 
-			 view_color_edit_get_type       },
+			 view_color_edit_get_type,
+			 "Edit view description TODO" },
 			
 			{ NULL, 0, 0, NULL, 0 } };
 
 docs_t docs_tab[] = { 
-  { N_("File"),       mdi_color_file_get_type,            TRUE,  FALSE },
-  { N_("Search RGB"), mdi_color_virtual_rgb_get_type,     TRUE,  TRUE  },
-  { N_("Monitor"),    mdi_color_virtual_monitor_get_type, FALSE, TRUE  },
-  { N_("Concact"),    mdi_color_virtual_get_type,         TRUE,  TRUE  },
+  { N_("File"),       mdi_color_file_get_type,            TRUE,  FALSE,
+  "File document description TODO" },
+  { N_("Search RGB"), mdi_color_virtual_rgb_get_type,     TRUE,  TRUE,  
+  "Search RGB document description TODO" },
+  { N_("Monitor"),    mdi_color_virtual_monitor_get_type, FALSE, TRUE,  
+  "Monitor document description TODO" },
+  { N_("Concat"),    mdi_color_virtual_get_type,         TRUE,  TRUE,  
+  "Concat document description TODO" },
   { NULL, NULL, FALSE },
 };
 

@@ -1,3 +1,12 @@
+2000-05-02 Eric Brayeur <eb2@ibelgique.com>
+
+	* menus.c : don't break string, that make life harder for traductor.
+
+	* menus.c : (save_as) don't forget previous name, and restore it if
+	  file can't be saved.
+
+	* dialog-new-doc.c : finished. 
+	
 2000-05-01 Eric Brayeur <eb2@ibelgique.com>
 
 	* mdi-color-generic.c (mdi_color_generic_apply) : call
@@ -13,6 +22,15 @@
 
 	* menu.c : destroy mcg or view properties widget if view / doc
 	  destroyed.
+
+	* glade/dialog-new-doc.glade : new file; 
+
+	* dialog-new-doc.c : new file
+
+	* menu.c (new_doc_cb) call new doc dialog.
+
+	* dialog-new-doc.c : finish first and second page : document name,
+	  document type, and parents document. Works well.
 	
 2000-04-30 Eric Brayeur <eb2@ibelgique.com>
 

@@ -230,16 +230,13 @@ void
 progress_set (GnomeMDI *mdi, float val)
 {
   GList *list = mdi->windows;
-  GtkProgress *progress;
   GnomeAppBar *appbar;
 
   while (list) {
     appbar = GNOME_APPBAR (GNOME_APP (list->data)->statusbar);
 
     gnome_appbar_set_progress (appbar, val);
-//    progress = gnome_appbar_get_progress (GNOME_APPBAR (app->statusbar));
 
-//    gtk_progress_set_percentage (progress, val);
     gtk_widget_draw (GTK_WIDGET (gnome_appbar_get_progress (appbar)), NULL);
 
     list = g_list_next (list);
@@ -255,4 +252,14 @@ mdi_set_sensitive (GnomeMDI *mdi, gboolean val)
     gtk_widget_set_sensitive (GTK_WIDGET (GNOME_APP (list->data)), val);
     list = g_list_next (list);
   }
+}
+
+gpointer 
+clist_get_data_selected (GtkCList *clist)
+{
+  if (clist->selection)
+    return gtk_clist_get_row_data (clist,
+				   GPOINTER_TO_INT (clist->selection->data));
+  else
+    return NULL;
 }

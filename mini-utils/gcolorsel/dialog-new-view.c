@@ -1,9 +1,6 @@
 #include "gcolorsel.h"
 #include "dialogs.h"
 #include "mdi-color-generic.h"
-#include "view-color-list.h"
-#include "view-color-grid.h"
-#include "view-color-edit.h"
 
 #include "gnome.h"
 #include "glade/glade.h"

@@ -119,15 +119,16 @@ GnomeUIInfo main_menu[] = {
 static void
 new_doc_cb (GtkWidget *widget)
 {
-  MDIColorFile *file;
-
-  file = MDI_COLOR_FILE (mdi_color_file_new ());
-  mdi_color_generic_set_name (MDI_COLOR_GENERIC (file), _("New"));
-  
-  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file));
-  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
-
-  msg_flash (mdi, _("Document created ..."));
+  /*  MDIColorFile *file;
+      
+      file = MDI_COLOR_FILE (mdi_color_file_new ());
+      mdi_color_generic_set_name (MDI_COLOR_GENERIC (file), _("New"));
+      
+      gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file));
+      gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
+      
+      msg_flash (mdi, _("Document created ..."));*/
+  dialog_new_doc ();
 }
 
 static void
@@ -142,14 +143,8 @@ save_fail (char *filename)
   GtkWidget *dia;
   char *str;
 
-  str = g_strconcat (_("GColorsel was unable to save the file :"),
-		     "\n\n",
-		     filename,
-		     "\n\n",
-		     _("Make sure that the path you provided exists,\nand that you have the appropriate write permissions."), 
-		     "\n\n",
-		     _("Do you want to retry ?"),
-		     NULL);
+  str = g_strdup_printf ("GColorsel was unable to save the file :\n\n%s\n\nMake sure that the path you provided exits,\nand that you have the approprate write permissions.\n\nDo you want to retry ?", filename);
+
   dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR,
 
 			       GNOME_STOCK_BUTTON_YES, 
@@ -167,16 +162,9 @@ load_fail (char *filename)
   GtkWidget *dia;
   char *str;
 
-  str = g_strconcat (_("Gcolorsel was unable to load the file :"), 
-		     "\n\n",
-		     filename,
-		     "\n\n",
-		     _("Make sure that the path you provided exists,\nand that you have permissions for opening the file."), 
-		     "\n\n",
-		     _("May be this is not a palette file ..."),
-		     NULL);
-  dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR,
+  str = g_strdup_printf (_("GColorsel was unable to load the file:\n\n%s\n\nMake sure that the path you provided exists,\nand that you have permissions for opening the file."), filename);
 
+  dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_ERROR,
 			       GNOME_STOCK_BUTTON_OK, NULL);
   g_free (str);
 
@@ -341,7 +329,15 @@ save_as_cb (GtkWidget *widget)
       old = mcf->filename;
       mcf->filename = NULL;
       
-      if (save_file (mcf) != 1) break;
+      switch (save_file (mcf)) {
+      case -1:
+      case 2:
+	mcf->filename = old;
+	return;
+      case 0 : /* Ok */
+	g_free (old);
+	return;
+      }
     }
   } else
     display_todo ();
@@ -372,18 +368,17 @@ close_view_cb (GtkWidget *widget)
 
     if (! mcg->temp) {
       GtkWidget *dia;
-      char *str, *str2;
+      char *str;
       int ret;
-      
-      str = g_strdup_printf (_("I'm going to close the last view of '%s' document.\n\nDocument will be closed too, continue ?"), MDI_COLOR_GENERIC (child)->name);
-      
-      if (MDI_COLOR_GENERIC (child)->other_views) {     
-	str2 = g_strdup_printf (_("%s\n\nPlease note that %d virtual document use data from this document."), str, g_list_length (MDI_COLOR_GENERIC (child)->other_views));
-	g_free (str); str = str2;
-      }
-      
+            
+      if (MDI_COLOR_GENERIC (child)->other_views) 
+	str = g_strdup_printf (_("I'm going to close the last view of '%s'.\n\nThis document will be closed too, continue ?\n\nPlease note that %d virtual document use data from this document."), MDI_COLOR_GENERIC (child)->name, g_list_length (MDI_COLOR_GENERIC (child)->other_views));
+      else 
+      	str = g_strdup_printf (_("I'm going to close the last view of '%s'.\n\nThis document will be closed too, continue ?"), MDI_COLOR_GENERIC (child)->name);
+            
       dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_QUESTION,
-				   GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
+				   GNOME_STOCK_BUTTON_YES, 
+				   GNOME_STOCK_BUTTON_NO,
 				   NULL);
       g_free (str);
       
@@ -404,37 +399,23 @@ static void
 close_doc_cb (GtkWidget *widget)
 {
   GnomeMDIChild *child = gnome_mdi_get_active_child (mdi);
-  char *str, *str2;
+  MDIColorGeneric *mcg;
+  char *str;
   GtkWidget *dia;
   int ret;
 
   if (!child) return;
+  mcg = MDI_COLOR_GENERIC (child);
 
-  str = g_strdup_printf (_("I'm going to close the '%s' document."),
-			 MDI_COLOR_GENERIC (child)->name);
+  if (mcg->other_views)
+    str = g_strdup_printf (_("I'm going to close '%s'.\n\nPlease note that %d views will be destroyed,\nand that %d virtual document use data from this document.\n\nDo you want to continue ?"), mcg->name, g_list_length (child->views), g_list_length (mcg->other_views));
+  else
+    str = g_strdup_printf (_("I'm going to close '%s'.\n\nPlease note that %d views will be destroyed.\n\nDo you want to continue ?"), mcg->name, g_list_length (child->views)); 
 
-  if (child->views) {
-    str2 = g_strdup_printf (_("%s\n\nPlease note that %d views will be destroyed"), str, g_list_length (child->views));
-
-    g_free (str); str = str2;
-
-    if (MDI_COLOR_GENERIC (child)->other_views) {
-      str2 = g_strdup_printf (_("%s,\nand that %d virtual document use data from this document."), str, g_list_length (MDI_COLOR_GENERIC (child)->other_views));
-
-      g_free (str); str = str2;
-    } else {
-      str2 = g_strconcat (str, ".", NULL);
-      g_free (str); str = str2;
-    }
-  }
-
-  str2 = g_strconcat (str, "\n\n", _("Do you want to continue ?"), NULL);
-  g_free (str);
-
-  dia = gnome_message_box_new (str2, GNOME_MESSAGE_BOX_QUESTION,
+  dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_QUESTION,
 			       GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
 			       GNOME_STOCK_BUTTON_CANCEL, NULL);
-  g_free (str2);
+  g_free (str);
   
   ret = gnome_dialog_run_and_close (GNOME_DIALOG (dia));
   

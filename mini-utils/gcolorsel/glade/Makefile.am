@@ -2,7 +2,9 @@
 
 gladedir = $(datadir)/gcolorsel/glade
 
-glade_DATA = 	dialog-new-view.glade				\
+glade_DATA = 	dialog-new-doc.glade				\
+		dialog-new-doc.glade.h				\
+		dialog-new-view.glade				\
 		dialog-new-view.glade.h				\
 	 	mdi-color-generic-properties.glade		\
 		mdi-color-generic-properties.glade.h		\

@@ -40,5 +40,8 @@ void mdi_set_sensitive (GnomeMDI *mdi, gboolean val);
 
 void progress_set (GnomeMDI *mdi, float val);
 
+gpointer clist_get_data_selected (GtkCList *clist);
+
+
 #endif
 

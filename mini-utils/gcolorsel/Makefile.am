@@ -15,7 +15,8 @@ INCLUDES = 						\
 
 bin_PROGRAMS = gcolorsel
 
-gcolorsel_SOURCES = 	dialog-new-view.c		\
+gcolorsel_SOURCES = 	dialog-new-doc.c		\
+			dialog-new-view.c		\
 			dialogs.h			\
 			gcolorsel.c			\
 			gcolorsel.h			\

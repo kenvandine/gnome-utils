@@ -15,6 +15,7 @@ typedef struct views_t {
   int scroll_v_policy;
   views_new new;
   GtkType (*type) (void);
+  char *description;
 } views_t;
 
 typedef struct docs_t {
@@ -22,9 +23,11 @@ typedef struct docs_t {
   GtkType (*type) (void);
   gboolean can_create;
   gboolean connect;
+  char *description;
 } docs_t;
 
 extern views_t views_tab[];
+extern docs_t  docs_tab[];
 
 views_t *get_views_from_type (GtkType type);
 
