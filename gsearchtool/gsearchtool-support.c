@@ -311,7 +311,8 @@ is_path_in_home_folder (const gchar *path)
 gboolean 
 is_path_in_mount_folder (const gchar *path)
 {
-	return (g_strstr_len (path, strlen ("/mnt/"), "/mnt/") != NULL);
+	return ((g_strstr_len (path, strlen ("/mnt/"), "/mnt/") != NULL) ||
+	        (g_strstr_len (path, strlen ("/media/"), "/media/") != NULL));
 }
 
 gboolean 
