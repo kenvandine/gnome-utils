@@ -117,9 +117,8 @@ int main(int argc, char *argv[])
 		gnome_mode=1;
 	}
 	
-#ifdef HAVE_RC_FILE
-
-	else if (!strcmp(argv[1], "--create-rc")) {
+	if (!strcmp(argv[1], "--create-rc")) {
+		
 #ifndef NO_COLOR_CURSES
 		if (argc != 3) {
 			Usage();
@@ -133,7 +132,6 @@ int main(int argc, char *argv[])
 		return -1;
 #endif
 	}
-#endif
 
 	while (offset < argc - 1 && !end_common_opts) {		/* Common options */
 		if (!strcmp(argv[offset + 1], "--title")) {
