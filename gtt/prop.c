@@ -180,7 +180,7 @@ void prop_dialog(project *proj)
 
 		help_entry.name = gnome_app_id;
 		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "help",
-				   GTK_SIGNAL_FUNC(gnome_help_pbox_goto),
+				   GTK_SIGNAL_FUNC(gnome_help_pbox_display),
 				   &help_entry);
 
 		table = GTK_TABLE(gtk_table_new(4, 7, FALSE));

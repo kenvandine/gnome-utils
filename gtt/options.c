@@ -158,7 +158,7 @@ static void signals(OptionsDlg *odlg)
 
 	help_entry.name = gnome_app_id;
 	gtk_signal_connect(GTK_OBJECT(odlg->dlg), "help",
-			   GTK_SIGNAL_FUNC(gnome_help_pbox_goto),
+			   GTK_SIGNAL_FUNC(gnome_help_pbox_display),
 			   &help_entry);
 	
 	gtk_signal_connect(GTK_OBJECT(odlg->dlg), "apply",
