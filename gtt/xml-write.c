@@ -285,6 +285,13 @@ gtt_xml_project_to_dom_tree (GttProject *prj)
 	xmlNodeAddContent(node, buff);
 	xmlAddChild (topnode, node);
 
+	/* store auto_merge_gap */
+	g_snprintf (buff, sizeof(buff), "%d",
+                    gtt_project_get_auto_merge_gap(prj));
+	node = xmlNewNode (NULL, "auto_merge_gap");
+	xmlNodeAddContent(node, buff);
+	xmlAddChild (topnode, node);
+
 	/* handle tasks */
 	tasks = gtt_project_get_tasks(prj);
 	node = gtt_task_list_to_dom_tree (tasks);

@@ -274,6 +274,14 @@ parse_project (xmlNodePtr project)
 			gtt_project_set_auto_merge_interval (prj, ivl);
 		} 
 		else
+		if (0 == strcmp ("auto_merge_gap", node->name))
+		{
+			int ivl;
+			str = GET_TEXT (node);
+			ivl = atoi (str);
+			gtt_project_set_auto_merge_gap (prj, ivl);
+		} 
+		else
 		if (0 == strcmp ("id", node->name))
 		{
 			int id;
