@@ -28,6 +28,8 @@ DIST_SUBDIRS = \
 EXTRA_DIST = \
 	gnome-utils.spec.in \
 	gnome-utils.spec \
+	omf.make \
+	xmldocs.make \
 	intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in
