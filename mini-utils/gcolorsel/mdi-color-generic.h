@@ -6,7 +6,7 @@
 
 #include <libgnomeui/gnome-mdi-child.h>
 
-BEGIN_GNOME_DECLS
+G_BEGIN_DECLS
 
 #define MDI_COLOR_GENERIC(obj)          GTK_CHECK_CAST (obj, mdi_color_generic_get_type (), MDIColorGeneric)
 #define MDI_COLOR_GENERIC_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, mdi_color_generic_get_type (), MDIColorGenericClass)
@@ -138,6 +138,6 @@ void mdi_color_generic_set_name     (MDIColorGeneric *mcg, char *name);
 
 void mdi_color_generic_set_temp     (MDIColorGeneric *mcg, gboolean val);
 					
-END_GNOME_DECLS
+G_END_DECLS
 
 #endif

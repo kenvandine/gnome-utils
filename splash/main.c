@@ -179,7 +179,7 @@ static void display_errors(void)
 		return;
 	elock++;
 	
-	error_box=gtk_window_new(GTK_WINDOW_DIALOG);
+	error_box=gtk_dialog_new();
 	gtk_window_set_title(GTK_WINDOW(error_box), "Error Report");
 	gtk_widget_realize(error_box);
 	gdk_window_set_icon_name(error_box->window, title);

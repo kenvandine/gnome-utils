@@ -52,9 +52,10 @@ message (const char *msg, int type, gboolean warning)
 				     b1, b2, b3, NULL);
 	gnome_dialog_set_close (GNOME_DIALOG (box), FALSE);
 	while ((ret = gnome_dialog_run (GNOME_DIALOG (box))) == help_button) {
-		GnomeHelpMenuEntry ref
-			= {"gnome-exe-handler", "index.html"};
-		gnome_help_display (NULL, &ref);
+		gnome_help_display (gnome_program_get (),
+				"index.html",
+				NULL,
+				NULL /* error */);
 	}
 
 	gnome_dialog_close (GNOME_DIALOG (box));

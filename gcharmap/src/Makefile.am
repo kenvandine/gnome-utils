@@ -3,7 +3,7 @@ bin_PROGRAMS = gcharmap
 INCLUDES =\
 	-DG_LOG_DOMAIN=\"gcharmap\"\
 	-I$(srcdir)/../pixmaps\
-	$(GNOME_INCLUDEDIR)\
+	$(GNOME_UTILS_CFLAGS)\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
 gcharmap_SOURCES = \
@@ -13,7 +13,7 @@ gcharmap_SOURCES = \
         callbacks.c callbacks.h\
         asciiselect.c asciiselect.h
 
-gcharmap_LDADD = $(GNOME_LIBDIR) $(GNOME_LIBS) $(GNOMEUI_LIBS) $(INTLLIBS)
+gcharmap_LDADD = $(GNOME_UTILS_LIBS) $(INTLLIBS)
 
 man_MANS = gcharmap.1
 

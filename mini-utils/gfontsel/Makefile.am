@@ -6,15 +6,14 @@ INCLUDES = 						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-I$(includedir)					\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_UTILS_CFLAGS)
 
 bin_PROGRAMS = gfontsel
 
 gfontsel_SOURCES = gfontsel.c
 
 gfontsel_LDADD = \
-	$(GNOME_LIBDIR) \
-	$(GNOMEUI_LIBS) \
+	$(GNOME_UTILS_LIBS) \
 	$(INTLLIBS)
 
 man_MANS = gfontsel.1

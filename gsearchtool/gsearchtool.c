@@ -489,14 +489,14 @@ entry_changed(GtkWidget *w, gpointer data)
 	switch(templates[opt->templ].type) {
 	case FIND_OPTION_TEXT:
 	case FIND_OPTION_GREP:
-		opt->data.text = gtk_entry_get_text(GTK_ENTRY(w));
+		opt->data.text = (gchar *)gtk_entry_get_text(GTK_ENTRY(w));
 		break;
 	case FIND_OPTION_NUMBER:
 		sscanf(gtk_entry_get_text(GTK_ENTRY(w)),"%d",
 		       &opt->data.number);
 		break;
 	case FIND_OPTION_TIME:
-		opt->data.time = gtk_entry_get_text(GTK_ENTRY(w));
+		opt->data.time = (gchar *)gtk_entry_get_text(GTK_ENTRY(w));
 		break;
 	default:
 		g_warning(_("Entry changed called for a non entry option!"));
@@ -683,7 +683,7 @@ create_find_page(void)
 static void
 run_locate_command(GtkWidget *w, gpointer data)
 {
-	char *cmd;
+	gchar *cmd;
 	GtkWidget **buttons = data;
 
 	char *locate_string;
@@ -694,7 +694,7 @@ run_locate_command(GtkWidget *w, gpointer data)
 		return;
 	}
 
-	locate_string = gtk_entry_get_text(GTK_ENTRY(locate_entry));
+	locate_string = (gchar *)gtk_entry_get_text(GTK_ENTRY(locate_entry));
 	if(!locate_string || !*locate_string) {
 		gnome_app_error (GNOME_APP(app),
 				 _("Nothing to locate"));
@@ -793,6 +793,11 @@ about_cb (GtkWidget *widget, gpointer data)
 		"George Lebl <jirka@5z.com>",
 		NULL
 	};
+	gchar *documenters[] = {
+		NULL
+	};
+	/* Translator credits */
+	gchar *translator_credits = _("");
 
 	if (about != NULL)
 	{
@@ -803,9 +808,11 @@ about_cb (GtkWidget *widget, gpointer data)
 
 	about = gnome_about_new(_("The Gnome Search Tool"), VERSION,
 				_("(C) 1998,2000 the Free Software Foundation"),
-				authors,
 				_("Frontend to the unix find/grep/locate "
 				  "commands"),
+				authors,
+				(const char **)documenters,
+				(const char *)translator_credits,
 				NULL);
 	gtk_signal_connect (GTK_OBJECT (about), "destroy",
 			    GTK_SIGNAL_FUNC (gtk_widget_destroyed), &about);

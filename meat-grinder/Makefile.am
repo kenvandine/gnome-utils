@@ -5,15 +5,14 @@ SUBDIRS = help
 INCLUDES = \
 	-I$(top_srcdir) 				\
 	-DG_LOG_DOMAIN=\"MeatGrinder\" 			\
-	$(GNOME_INCLUDEDIR)				\
+	$(GNOME_UTILS_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
 meat_grinder_SOURCES = 	\
 	meat-grinder.c
 
 meat_grinder_LDADD = \
-	$(GNOME_LIBDIR)		\
-	$(GNOMEUI_LIBS) 	\
+	$(GNOME_UTILS_LIBS)		\
 	$(INTLLIBS)
 
 man_MANS = meat-grinder.1

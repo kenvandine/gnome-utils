@@ -3,7 +3,7 @@
 
 #include <gtk/gtkobject.h>
 
-BEGIN_GNOME_DECLS
+G_BEGIN_DECLS
 
 #define TYPE_MDI_COLOR          (mdi_color_get_type ())
 #define MDI_COLOR(obj)          GTK_CHECK_CAST (obj, mdi_color_get_type (), MDIColor)
@@ -55,6 +55,6 @@ guint mdi_color_get_type (void);
 
 GtkObject *mdi_color_new (void);
 
-END_GNOME_DECLS
+G_END_DECLS
 
 #endif

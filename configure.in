@@ -15,6 +15,8 @@ dnl a start of some nicer configure.in stuff
 dnl
 LIBGNOME_REQUIRED=1.96.0
 LIBGNOMEUI_REQUIRED=1.96.0
+LIBGLADE_REQUIRED=1.99.2
+LIBGTOP_REQUIRED=1.1.6
 
 AM_CONFIG_HEADER(config.h)
 AC_CANONICAL_SYSTEM
@@ -188,25 +190,13 @@ if test "x$enable_gnome_print" = "xyes"; then
   AC_DEFINE(HAVE_GNOME_PRINT)
 fi
 
-dnl *******************************
+dnl ******************************************
 dnl LibGlade
-dnl glade is needed to build gtt
-dnl *******************************
-AC_MSG_CHECKING(for Glade libraries >= 0.11)
-if gnome-config --libs libglade > /dev/null 2>&1; then
-    vers=`gnome-config --modversion libglade | awk 'BEGIN { FS = "."; } { print $1 * 1000 + $2;}'`
-    if test "$vers" -ge 11; then
-        AC_MSG_RESULT(found)
-    else
-	AC_MSG_ERROR(You need at least libglade 0.11 for this version of gnome-utils)
-    fi
-else
-    AC_MSG_ERROR(Did not find libGlade installed)
-fi
-GLADE_LIBS=`gnome-config --libs libglade`
-GLADE_CFLAGS=`gnome-config --cflags libglade`
+dnl glade is needed to build gtt and gcolorsel
+dnl ******************************************
+PKG_CHECK_MODULES(GLADE, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libglade-2.0 >= $LIBGLADE_REQUIRED)
+AC_SUBST(GLADE_CFLAGS)
 AC_SUBST(GLADE_LIBS)
-AC_SUBST(GLADE_FGLAGS)
 
 dnl *******************************
 dnl gtkhtml
@@ -355,8 +345,12 @@ dnl gsu end.
 dnl Some nice conditional
 dnl AM_CONDITIONAL(FALSE, test x = y)
 
+dnl *****************
 dnl Check for libgtop
-GNOME_INIT_LIBGTOP
+dnl *****************
+PKG_CHECK_MODULES(GLADE, libgtop-2.0 >= $LIBGTOP_REQUIRED)
+AC_SUBST(GTOP_CFLAGS)
+AC_SUBST(GTOP_LIBS)
 
 dnl gdialog
 AC_CHECK_CURSES

@@ -217,6 +217,7 @@ outdlg_makedlg(char name[], gboolean clear)
 void
 outdlg_additem(char item[])
 {
+	GdkFont *font;
 	int width;
 	
 	if(!outdlg)
@@ -224,11 +225,13 @@ outdlg_additem(char item[])
 
 	gtk_clist_append(GTK_CLIST(outlist), &item);
 
-	width = gdk_string_width(GTK_WIDGET(outlist)->style->font, item);
+	font = gtk_style_get_font(GTK_WIDGET(outlist)->style);
+	width = gdk_string_width(font, item);
 	if(list_width < width) {
 		list_width = width;
 		gtk_clist_set_column_width(GTK_CLIST(outlist), 0, list_width);
 	}
+	gdk_font_unref(font);
 }
 
 void

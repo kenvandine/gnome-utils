@@ -3,7 +3,7 @@
 
 #include <gnome.h>
   
-BEGIN_GNOME_DECLS
+G_BEGIN_DECLS
 
 #define TYPE_CONTROL_GENERIC            (control_generic_get_type ())
 #define CONTROL_GENERIC(obj)            (GTK_CHECK_CAST ((obj), TYPE_CONTROL_GENERIC, ControlGeneric))
@@ -35,6 +35,6 @@ GtkWidget *control_generic_new      (void);
 void       control_generic_assign   (ControlGeneric *cg, MDIColorGeneric *mcg);
 void       control_generic_sync     (ControlGeneric *cg);
 
-END_GNOME_DECLS
+G_END_DECLS
 
 #endif

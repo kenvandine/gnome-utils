@@ -5,15 +5,14 @@ SUBDIRS = help
 INCLUDES = \
 	-DG_LOG_DOMAIN=\"ExeHandler\" 			\
 	-I$(top_srcdir) 				\
-	$(GNOME_INCLUDEDIR)				\
+	$(GNOME_UTILS_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
 gnome_exe_handler_SOURCES = 	\
 	gnome-exe-handler.c
 
 gnome_exe_handler_LDADD = 	\
-	$(GNOME_LIBDIR)		\
-	$(GNOMEUI_LIBS)
+	$(GNOME_UTILS_LIBS)
 
 man_MANS = gnome-exe-handler.1
 

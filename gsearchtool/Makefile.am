@@ -6,7 +6,7 @@ INCLUDES = 						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-I$(includedir)					\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_UTILS_CFLAGS)
 
 bin_PROGRAMS = gsearchtool 
 
@@ -17,8 +17,7 @@ gsearchtool_SOURCES =	\
 	outdlg.h
 
 gsearchtool_LDADD = \
-	$(GNOME_LIBDIR) \
-	$(GNOMEUI_LIBS) \
+	$(GNOME_UTILS_LIBS) \
 	$(INTLLIBS)
 
 man_MANS = gsearchtool.1

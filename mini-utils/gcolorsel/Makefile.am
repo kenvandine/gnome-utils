@@ -12,7 +12,8 @@ INCLUDES = 						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-I$(includedir)					\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_UTILS_CFLAGS)				\
+	$(GLADE_CFLAGS)
 
 bin_PROGRAMS = gcolorsel
 
@@ -58,10 +59,9 @@ gcolorsel_SOURCES = 	dialog-new-doc.c		\
 			widget-control-virtual-rgb.h
 
 gcolorsel_LDADD = \
-	$(GNOME_LIBDIR)  				\
-	$(GNOMEUI_LIBS) 				\
+	$(GNOME_UTILS_LIBS) 				\
 	$(INTLLIBS)					\
-	@GLADE_LIBS@					\
+	$(GLADE_LIBS)					\
 	$(GNOME_XML_LIB)
 
 man_MANS = gcolorsel.1

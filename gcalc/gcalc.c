@@ -29,7 +29,7 @@ about_cb (GtkWidget *widget, gpointer data)
 	static GtkWidget *about = NULL;
 	gchar *authors[] = {
 		"George Lebl <jirka@5z.com>",
-		"Bastien Nocera <hadess@hadess.net>",
+		"Bastien Nocera <hadess@hadess.net> (fixes)",
 		NULL
 	};
 	gchar *documenters[] = {
@@ -165,7 +165,7 @@ main(int argc, char *argv[])
 			GTK_SIGNAL_FUNC(quit_cb), NULL);
 
 	/*set up the menu*/
-        gnome_app_create_menus(GNOME_APP(app), gcalc_menu);
+        gnome_app_create_menus_with_data(GNOME_APP(app), gcalc_menu, app);
 
 	calc = gnome_calc_new();
 	gnome_calc_bind_extra_keys (GNOME_CALC (calc), GTK_WIDGET (app));

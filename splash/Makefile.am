@@ -3,7 +3,7 @@
 INCLUDES = -I$(includedir) 				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_UTILS_CFLAGS)
 
 bin_PROGRAMS = splash splac
 
@@ -14,7 +14,7 @@ splash_SOURCES = \
 splac_SOURCES = \
 	splac.c
 
-splash_LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
+splash_LDADD = $(GNOME_UTILS_LIBS) $(INTLLIBS)
 
 man_MANS = splash.1 splac.1
 

@@ -370,6 +370,11 @@ about_cb (GtkWidget *widget, gpointer data)
 		"George Lebl <jirka@5z.com>",
 		NULL
 	};
+	gchar *documenters[] = {
+		NULL
+	};
+	/* Translator credits */
+	gchar *translator_credits = _("");
 
 	if (about != NULL) {
 		gtk_widget_show_now (about);
@@ -378,8 +383,10 @@ about_cb (GtkWidget *widget, gpointer data)
 	}
 	about = gnome_about_new (_("The GNOME Archive Generator"), VERSION,
 				 "(C) 2001 George Lebl",
-				 (const char **)authors,
 				 _("Drag files in to make archives"),
+				 (const char **)authors,
+				 (const char **)documenters,
+				 (const char *)translator_credits,
 				 NULL);
 	gtk_signal_connect (GTK_OBJECT (about), "destroy",
 			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
@@ -396,9 +403,10 @@ quit_cb (GtkWidget *item)
 static void
 select_all_cb (GtkWidget *w, gpointer data)
 {
-	int i;
+	gint i, num_icons;
 
-	for (i = 0; i < GNOME_ICON_LIST (icon_list)->icons; i++) {
+	num_icons = gnome_icon_list_get_num_icons(GNOME_ICON_LIST (icon_list));
+	for (i = 0; i < num_icons; i++) {
 		gnome_icon_list_select_icon (GNOME_ICON_LIST (icon_list), i);
 	}
 }
@@ -424,22 +432,27 @@ clear_cb (GtkWidget *w, gpointer data)
 static void
 remove_cb (GtkWidget *w, gpointer data)
 {
-	while (GNOME_ICON_LIST (icon_list)->selection != NULL) {
-		int pos = GPOINTER_TO_INT (GNOME_ICON_LIST (icon_list)->selection->data);
+	GList *list;
+	
+	list = gnome_icon_list_get_selection(GNOME_ICON_LIST (icon_list));
+	while (list != NULL) {
+		int pos = GPOINTER_TO_INT (list->data);
 		remove_pos (pos);
+		list = gnome_icon_list_get_selection
+			(GNOME_ICON_LIST (icon_list));
 	}
 }
 
 static void
 save_ok (GtkWidget *widget, GtkFileSelection *fsel)
 {
-	char *fname;
+	gchar *fname;
 
 	g_return_if_fail (GTK_IS_FILE_SELECTION(fsel));
 
 	setup_busy (GTK_WIDGET (fsel), TRUE);
 
-	fname = gtk_file_selection_get_filename (fsel);
+	fname = (gchar *)gtk_file_selection_get_filename (fsel);
 	if (fname == NULL || fname[0] == '\0') {
 		ERRDLGP (_("No filename selected"), fsel);
 		setup_busy (GTK_WIDGET (fsel), FALSE);
@@ -593,11 +606,11 @@ add_file (const char *file)
 static void
 add_ok (GtkWidget *widget, GtkFileSelection *fsel)
 {
-	char *fname;
+	gchar *fname;
 
 	g_return_if_fail (GTK_IS_FILE_SELECTION(fsel));
 
-	fname = gtk_file_selection_get_filename (fsel);
+	fname = (gchar *)gtk_file_selection_get_filename (fsel);
 	if (fname == NULL || fname[0] == '\0') {
 		ERRDLGP (_("No filename selected"), fsel);
 		return;
@@ -755,7 +768,7 @@ init_gui (void)
 	gtk_widget_show (sw);
 	gtk_box_pack_start (GTK_BOX (vbox), sw, TRUE, TRUE, 0);
 
-	icon_list = gnome_icon_list_new (/*evil*/66, NULL, 0);
+	icon_list = gnome_icon_list_new (/*evil*/66, 0);
 	gnome_icon_list_set_selection_mode  (GNOME_ICON_LIST (icon_list),
 					     GTK_SELECTION_MULTIPLE);
 	gtk_widget_show (icon_list);
@@ -778,7 +791,7 @@ init_gui (void)
 	gtk_widget_show (compress_button);
 	w = NULL;
 	if (compress_icon != NULL)
-		w = gnome_stock_pixmap_widget (NULL, compress_icon);
+		w = gtk_image_new_from_file (compress_icon);
 	if (w == NULL)
 		w = gtk_label_new (_("Archive"));
 	gtk_widget_show (w);

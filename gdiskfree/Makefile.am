@@ -4,7 +4,7 @@ SUBDIRS = doc
 
 INCLUDES = -DG_LOG_DOMAIN=\"GDiskFree\"			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-I$(includedir) $(GNOME_INCLUDEDIR) $(LIBGTOP_INCS)
+	-I$(includedir) $(GNOME_UTILS_CFLAGS) $(GTOP_CFLAGS)
 
 bin_PROGRAMS = gdiskfree 
 
@@ -15,9 +15,8 @@ gdiskfree_SOURCES = \
 	gdiskfree.c
 
 
-gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
-		  $(GNOMEUI_LIBS) $(INTLLIBS) \
-		  $(LIBGTOP_LIBS) $(LIBGTOP_EXTRA_LIBS)
+gdiskfree_LDADD = $(GNOME_UTILS_LIBS) $(GTKXMHTML_LIBS) \
+		  $(INTLLIBS) $(GTOP_LIBS)
 
 man_MANS = gdiskfree.1
 
