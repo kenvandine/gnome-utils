@@ -48,5 +48,5 @@ AsciiSelect *ascii_select_new (void);
 void ascii_select_destroy (AsciiSelect *obj);
 
 
-#endif _ASCII_SELECT_H_
+#endif /* _ASCII_SELECT_H_ */
 

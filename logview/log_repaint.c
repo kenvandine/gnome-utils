@@ -626,8 +626,11 @@ DrawMonthHeader (LogLine * line, int y)
 {
    char buf[100];
    int  h, centery, skip;
-   GdkColor color[] =
-   {cfg->blue1, cfg->blue, cfg->blue3};
+   GdkColor color[3];
+
+   color[0] = cfg->blue1;
+   color[1] = cfg->blue;
+   color[2] = cfg->blue3;
 
    h = cfg->headingb->ascent - cfg->headingb->descent;
    skip = (log_line_sep - cfg->fixed->ascent + cfg->fixed->descent);
@@ -653,8 +656,11 @@ DrawMonthHeader (LogLine * line, int y)
 void
 DrawLogCursor (int y)
 {
-   GdkColor color[] =
-   {cfg->gray25, cfg->gray50, cfg->gray75};
+   GdkColor color[3];
+
+   color[0] = cfg->gray25;
+   color[1] = cfg->gray50;
+   color[2] = cfg->gray75;
 
    Draw3DBox (canvas, gc, 5, y - log_line_sep + 3, canvas_width - 10, log_line_sep, color);
 }

@@ -1,3 +1,28 @@
+Fri Feb 09 05:53:48 2001  George Lebl <jirka@5z.com>
+
+	* configure.in, mini-utils/gcolorsel/Makefile.am:  Correctly check
+	  and do voodo for libxml and libglade
+
+	* Apply patch from: "Dave" drk@sgi.com
+
+	* gcharmap/src/interface.h, gcharmap/src/asciiselect.h:
+	  ANSI does not allow tokens after #endif; comment them out.
+
+	* gdictsrc/Makefile.am: Let builders link with external -lintl.
+
+	* logview/log_repaint.c: Static initializers must have
+	  compile-time static values.
+
+	* logview/logview.c: Use C comments in C code, not C++ comments.
+
+	* mini-utils/gcolorsel/mdi-color-virtual-monitor.c,
+	  mini-utils/gcolorsel/view-color-list.c,
+	  mini-utils/gcolorsel/mdi-color.c,
+	  mini-utils/gcolorsel/mdi-color-file.c,
+	  mini-utils/gcolorsel/mdi-color-generic.c,
+	  mini-utils/gcolorsel/gcolorsel.c:
+	  Use C comments in C code, not C++ comments.
+
 Fri Feb 09 05:35:23 2001  George Lebl <jirka@5z.com>
 
 	* logview/logview.c: fix canceling of file dialog and do better

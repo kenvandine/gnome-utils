@@ -60,9 +60,8 @@ gcolorsel_LDADD = \
 	$(GNOME_LIBDIR)  				\
 	$(GNOMEUI_LIBS) 				\
 	$(INTLLIBS)					\
-	-lxml						\
-	-lglade 					\
-	-lglade-gnome
+	@GLADE_LIBS@					\
+	$(GNOME_XML_LIB)
 
 EXTRA_DIST = gcolorsel.desktop
 

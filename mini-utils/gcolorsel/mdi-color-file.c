@@ -178,7 +178,7 @@ mdi_color_file_load (MDIColorFile *mcf, GnomeMDI *mdi)
 
   fclose (fp);
 
-//  if (!nb) ok = FALSE;
+/*  if (!nb) ok = FALSE; */
   mdi_color_generic_thaw (MDI_COLOR_GENERIC (mcf));
   mdi_color_generic_set_modified (MDI_COLOR_GENERIC (mcf), FALSE);
   

@@ -110,7 +110,7 @@ mdi_color_virtual_monitor_add (MDIColorVirtualMonitor *m, MDIColor *col)
 static void         
 mdi_color_virtual_monitor_save (MDIColorGeneric *mcg)
 {
-//  MDIColorVirtualMonitor *mcv = MDI_COLOR_VIRTUAL_Monitor (mcg);
+  /*  MDIColorVirtualMonitor *mcv = MDI_COLOR_VIRTUAL_Monitor (mcg); */
 
   parent_2_class->save (mcg);
 }
@@ -118,7 +118,7 @@ mdi_color_virtual_monitor_save (MDIColorGeneric *mcg)
 static void         
 mdi_color_virtual_monitor_load (MDIColorGeneric *mcg)
 {
-//  MDIColorVirtualMonitor *mcv = MDI_COLOR_VIRTUAL_Monitor (mcg);
+  /*  MDIColorVirtualMonitor *mcv = MDI_COLOR_VIRTUAL_Monitor (mcg); */
   
   mdi_color_generic_sync_control (mcg); 
 

@@ -325,7 +325,7 @@ mdi_color_generic_thaw (MDIColorGeneric *mcg)
 static void 
 mdi_color_generic_document_changed (MDIColorGeneric *mcg, gpointer data)
 {
-//  g_assert_not_reached ();
+  /*  g_assert_not_reached (); */
 }
 
 static GList*
@@ -373,7 +373,7 @@ mdi_color_generic_post_change (MDIColorGeneric *mcg, MDIColor *col,
     mcg->changes = mcg->last_changes = NULL;
     append_change (mcg, col);
   } else {
-//    if (! col->change) {
+    /*    if (! col->change) { */
     if (col->change_phase != mcg->changes_phase) {
       append_change (mcg, col);
       col->change       = type;
@@ -676,7 +676,7 @@ mdi_color_generic_change_pos (MDIColorGeneric *mcg,
     } else 
       return;
 
-//  mcg->col = g_list_remove (mcg->col, col);
+  /*  mcg->col = g_list_remove (mcg->col, col); */
   remove_col (mcg, col);
   
   col->pos = new_pos;
@@ -716,7 +716,7 @@ mdi_color_generic_connect (MDIColorGeneric *mcg,
 
   mdi_color_generic_set_all_color_change (mcg, CHANGE_APPEND);
   gtk_signal_emit_by_name (GTK_OBJECT (to), "document_changed", mcg->col);
-//  mdi_color_generic_set_all_color_change (mcg, 0);
+  /*  mdi_color_generic_set_all_color_change (mcg, 0); */
   mcg->changes_phase++;
 }
 

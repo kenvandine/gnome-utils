@@ -106,6 +106,10 @@ if gnome-config --libs libglade > /dev/null 2>&1; then
 else
     AC_MSG_ERROR(Did not find libGlade installed)
 fi
+GLADE_LIBS=`gnome-config --libs libglade`
+GLADE_CFLAGS=`gnome-config --cflags libglade`
+AC_SUBST(GLADE_LIBS)
+AC_SUBST(GLADE_FGLAGS)
 
 dnl ******************** 
 dnl gfloppy
@@ -300,11 +304,11 @@ mini-utils/idetool/doc/C/Makefile
 mini-utils/gfontsel/Makefile
 mini-utils/gfontsel/help/Makefile
 mini-utils/gfontsel/help/C/Makefile
-mini-utils/gfontsel/help/es/Makefile])
+mini-utils/gfontsel/help/es/Makefile
+mini-utils/gcolorsel/Makefile
+mini-utils/gcolorsel/glade/Makefile
+mini-utils/gcolorsel/doc/Makefile
+mini-utils/gcolorsel/doc/C/Makefile])
 
-#mini-utils/gcolorsel/Makefile
-#mini-utils/gcolorsel/glade/Makefile
-#mini-utils/gcolorsel/doc/Makefile
-#mini-utils/gcolorsel/doc/C/Makefile
 #mini-utils/gsu/Makefile
 #mini-utils/gpenguin/Makefile

@@ -395,7 +395,7 @@ actions_fail ()
 			       GNOME_STOCK_BUTTON_OK, NULL);
 
   gtk_widget_show (GTK_WIDGET (dia));
-//  gnome_dialog_run_and_close (GNOME_DIALOG (dia)); 
+  /*  gnome_dialog_run_and_close (GNOME_DIALOG (dia)); */
   /* don't work ... */
 }
 

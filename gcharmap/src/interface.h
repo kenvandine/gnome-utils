@@ -58,4 +58,4 @@ MainApp *main_app_new (void);
 void main_app_destroy (MainApp *obj);
 
 
-#endif _INTERFACE_H_
+#endif /* _INTERFACE_H_ */

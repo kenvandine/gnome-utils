@@ -307,9 +307,9 @@ CreateMainWin ()
    gtk_widget_show (w);
                
    canvas = gtk_drawing_area_new ();
-   //gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W, LOG_CANVAS_H); 
+   /*gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W, LOG_CANVAS_H); */
    gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W, 10); 
-   //gtk_widget_set_usize ( GTK_WIDGET (canvas), LOG_CANVAS_W, LOG_CANVAS_H);
+   /*gtk_widget_set_usize ( GTK_WIDGET (canvas), LOG_CANVAS_W, LOG_CANVAS_H);*/
    gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (w), canvas);
    gtk_box_pack_start (GTK_BOX(hbox), w, TRUE, TRUE, 0);
 
