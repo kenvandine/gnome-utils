@@ -1,5 +1,16 @@
 2002-03-20  Kevin Vandersloot <kfv101@psu.edu>
 
+	* src/main.c: update for binary rename
+
+	* src/callbacks.c: move cursor to after insert text. This
+	makes the "not insert at end" option behave as one would
+	want.
+
+	* src/interface.c: make insert at end FALSE as default since
+	it now behaves properly
+
+2002-03-20  Kevin Vandersloot <kfv101@psu.edu>
+
 	Patch from Muktha <muktha.narayan@wipro.com>. Fixes bug
 	#74318
 	* src/interface.c: remove the tooltip for the copy button

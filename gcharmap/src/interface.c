@@ -344,7 +344,7 @@ main_app_create_ui (MainApp *app)
     }
 #endif
     /* some default prefs */
-    app->insert_at_end = TRUE;
+    app->insert_at_end = FALSE;
     
     gtk_widget_show_all (vbox);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
