@@ -218,8 +218,10 @@ handle_signal (int sig)
 }
 
 static void
-parse_an_arg(poptContext ctx, const struct poptOption *opt,
-	     const char *arg, void *data)
+parse_an_arg (poptContext ctx,
+	      enum poptCallbackReason reason,
+	      const struct poptOption *opt,
+	      const char *arg, void *data)
 {
 	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) data;
 
@@ -259,20 +261,19 @@ int
 main (int argc, char *argv[])
 {
 	static gfontsel_cfg_t cfg;
+	
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain (PACKAGE);
 
 	cfg.font_load = NULL;
 	cfg.print_on_exit = FALSE;
 	cfg.remember_font = TRUE;
 	cfg.load_last = TRUE;
-
-	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-	textdomain (PACKAGE);
-
-	options[0].descrip = &cfg;
-
-	gnome_init_with_popt_table("gfontsel", VERSION, argc, argv,
-				   options, 0, NULL);
-
+	options[0].descrip = (char *) &cfg;
+	gnome_init_with_popt_table ("gfontsel", VERSION,
+				    argc, argv,
+				    options, 0, NULL);
+	
 	signal (SIGHUP, handle_signal);
 	signal (SIGINT, handle_signal);
 	signal (SIGQUIT, handle_signal);
