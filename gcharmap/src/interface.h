@@ -22,8 +22,8 @@
 #ifndef _INTERFACE_H_
 #define _INTERFACE_H_
 
-#include <gconf/gconf-client.h>
 #include <gtk/gtk.h>
+#include <gconf/gconf-client.h>
 #include <gnome.h>
 #include <bonobo/bonobo-dock-layout.h>
 

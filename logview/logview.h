@@ -157,10 +157,6 @@ typedef void (*MonActions)();
 
 typedef struct
 {
-	/* Negative column width indicates don't show */
-	int process_column_width;
-	int hostname_column_width;
-	int message_column_width;
 	/* FIXME: This should perhaps be a glist of logfiles to
 	** open on startup. Also one should be able to set the value in
 	** the prefs dialog

@@ -29,7 +29,6 @@
 #include "interface.h"
 #include "asciiselect.h"
 
-#include <gconf/gconf-client.h>
 #include <gnome.h>
 
 void

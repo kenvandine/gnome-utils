@@ -40,6 +40,12 @@ Utilities_in_files = gnome-system-log.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+schemadir   = $(sysconfdir)/gconf/schemas
+schemas_in_file = logview.schemas.in
+schema_DATA = $(schemas_in_file:.schemas.in=.schemas)
+schema_source_data = $(foreach file, $(schema_DATA), $(srcdir)/$(file))
+@INTLTOOL_SCHEMAS_RULE@
+
 additional_DATA  = gnome-system-log-descript.db \
                    gnome-system-log-regexp.db \
 		   gnome-system-log-actions.db
@@ -48,11 +54,18 @@ EXTRA_DIST = \
 	$(Utilities_in_files)	\
 	$(Utilities_DATA)	\
 	$(additional_DATA)	\
+	$(schema_DATA) 		\
 	gnome-system-log-pam		\
 	gnome-system-log-security.in	\
 	$(man_MANS)
 
-install-data-local: gnome-system-log-security
+install-gconf-schemas:
+	if test -z "$(DESTDIR)" ; then \
+		GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(schema_source_data) ; \
+	fi
+
+install-data-local: gnome-system-log-security install-gconf-schemas
+	
 if CONSOLE_HELPER
 	$(INSTALL_DATA) -D gnome-system-log-pam $(DESTDIR)$(PAM_PREFIX)/pam.d/gnome-system-log
 	$(INSTALL_DATA) -D gnome-system-log-security $(DESTDIR)$(PAM_PREFIX)/security/console.apps/gnome-system-log

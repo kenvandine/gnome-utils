@@ -47,7 +47,6 @@ void change_log_menu (GtkWidget * widget, gpointer user_data);
 void CalendarMenu (GtkWidget * widget, gpointer user_data);
 void MonitorMenu (GtkWidget* widget, gpointer user_data); 
 void create_zoom_view (void);
-void UserPrefsDialog(GtkWidget * widget, gpointer user_data);
 void AboutShowWindow (GtkWidget* widget, gpointer user_data);
 void CloseApp (void);
 void CloseLog (Log *);
@@ -789,15 +788,8 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs)
 	gchar *logfile = NULL;
 	struct stat filestat;
 	
-	/* FIXME: load saved values. Should install gconf schemas file for
-	** defaults 
-	*/
-	prefs->process_column_width = 12;
-	prefs->hostname_column_width = 15;
-	prefs->message_column_width = 24;
-	
 	logfile = gconf_client_get_string (client, "/apps/logview/logfile", NULL);
-	if (logfile != NULL) {
+	if (logfile != NULL && strcmp (logfile, "")) {
 		prefs->logfile = g_strdup (logfile);
 		g_free (logfile);
 	}
@@ -816,13 +808,6 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs)
 void SaveUserPrefs(UserPrefsStruct *prefs)
 {
     gconf_client_set_string (client, "/apps/logview/logfile", prefs->logfile, NULL);
-    gconf_client_set_int (client, "/apps/logview/process_column_width",
-    			  prefs->process_column_width, NULL);
-    gconf_client_set_int (client, "/apps/logview/hostname_column_width",
-    			  prefs->hostname_column_width, NULL);
-    gconf_client_set_int (client, "/apps/logview/message_column_width",
-    			  prefs->message_column_width, NULL);
-
 }
 
 static void 
