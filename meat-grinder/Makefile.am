@@ -5,6 +5,7 @@ SUBDIRS = help
 INCLUDES = \
 	-I$(top_srcdir) 				\
 	-DG_LOG_DOMAIN=\"MeatGrinder\" 			\
+	-DDATADIR=\""$(datadir)"\"			\
 	$(GNOME_UTILS_CFLAGS)				\
 	-DG_DISABLE_DEPRECATED				\
 	-DGDK_DISABLE_DEPRECATED			\

@@ -919,9 +919,9 @@ main (gint argc, gchar *argv [])
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-	gnome_program_init ("archive-generator", VERSION, LIBGNOMEUI_MODULE,
+	gnome_program_init ("meat-grinder", VERSION, LIBGNOMEUI_MODULE,
 				    argc, argv, GNOME_PARAM_POPT_TABLE,
-				    &options, NULL);
+				    &options,GNOME_PARAM_APP_DATADIR,DATADIR,NULL);
 
 	client = gnome_master_client ();
 
