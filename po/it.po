@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-06 20:01+0200\n"
+"POT-Creation-Date: 2004-10-12 12:03+1300\n"
 "PO-Revision-Date: 2004-10-09 18:49+0200\n"
 "Last-Translator: Luca Ferretti <elle.uca@infinito.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
@@ -63,7 +63,10 @@ msgstr "Impossibile connettersi al server"
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
-msgstr "Si è verificato un errore grave. Controllare che le impostazioni relative al server ed alla porta siano corretti. Le impostazioni predefinite sono: server dict.org sulla porta 2628."
+msgstr ""
+"Si è verificato un errore grave. Controllare che le impostazioni relative al "
+"server ed alla porta siano corretti. Le impostazioni predefinite sono: "
+"server dict.org sulla porta 2628."
 
 #. Translator credits
 #: gdictsrc/gdict-about.c:43 logview/about.c:49
@@ -346,7 +349,10 @@ msgid ""
 "The search strategy to use. This is dependant on the search strategy that "
 "the dictionary server supports. The default strategy is 'lev' - Match words "
 "within Levenshtein distance one"
-msgstr "La strategia di ricerca da utilizzare. Dipende dalle strategie supportate dal server. Il valore predefinito è \"lev\" - trova parole con distanza di Levenshtein pari ad uno."
+msgstr ""
+"La strategia di ricerca da utilizzare. Dipende dalle strategie supportate "
+"dal server. Il valore predefinito è \"lev\" - trova parole con distanza di "
+"Levenshtein pari ad uno."
 
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
@@ -364,11 +370,15 @@ msgstr "Formatta i dischi floppy"
 msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
-msgstr "Impostare a 0 per la formattazione veloce, 1 per quella standatd (con formattazione a basso livello) e 2 per quella accurata (con ricerca dei blocchi danneggiati)."
+msgstr ""
+"Impostare a 0 per la formattazione veloce, 1 per quella standatd (con "
+"formattazione a basso livello) e 2 per quella accurata (con ricerca dei "
+"blocchi danneggiati)."
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
-msgstr "Backend predefinito per la formattazione FAT - SOLO PER UTENTI ESPERTI!"
+msgstr ""
+"Backend predefinito per la formattazione FAT - SOLO PER UTENTI ESPERTI!"
 
 #: gfloppy/gfloppy.schemas.in.h:3
 msgid "Default filesystem type"
@@ -382,11 +392,14 @@ msgstr "Modalità di formattazione predefinita"
 msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
-msgstr "Impostare a vero per utilizzare \"mkdosfs\" come backend di formattazione FAT predefinto, a falso per usare invece \"mformat\"."
+msgstr ""
+"Impostare a vero per utilizzare \"mkdosfs\" come backend di formattazione "
+"FAT predefinto, a falso per usare invece \"mformat\"."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr "\"ext2\" per il file system nativo di Linux o \"fat\" per il file system DOS."
+msgstr ""
+"\"ext2\" per il file system nativo di Linux o \"fat\" per il file system DOS."
 
 #: gfloppy/src/badblocks.c:94
 msgid "Internal Error: Unable to seek to the correct location."
@@ -406,7 +419,8 @@ msgstr "Verifica di blocchi danneggiati... "
 #: gfloppy/src/badblocks.c:273
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr "Apertura del device %s per la ricerca dei blocchi danneggiati fallita\n"
+msgstr ""
+"Apertura del device %s per la ricerca dei blocchi danneggiati fallita\n"
 
 #: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
 msgid "Checking for bad blocks... Done"
@@ -530,7 +544,9 @@ msgstr "Impossibile determinare la geometria del floppy corrente."
 
 #: gfloppy/src/gfloppy.c:222
 msgid "Error while creating a unique filename for the bad blocks list file."
-msgstr "Errore durante la creazione di un nome unico per il file della lista dei blocchi danneggiati."
+msgstr ""
+"Errore durante la creazione di un nome unico per il file della lista dei "
+"blocchi danneggiati."
 
 #: gfloppy/src/gfloppy.c:242
 msgid "Error while filling the bad blocks list file."
@@ -693,7 +709,9 @@ msgstr "_Standard (formatta a basso livello oltre al modo «Veloce»)"
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
-msgstr "Non risultano installati né «mke2fs», né «mkdosfs» o «mformat». Per la formattazione di un floppy è necessaria almeno una di queste utilità."
+msgstr ""
+"Non risultano installati né «mke2fs», né «mkdosfs» o «mformat». Per la "
+"formattazione di un floppy è necessaria almeno una di queste utilità."
 
 #: gfloppy/src/main.c:164
 #, c-format
@@ -974,23 +992,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:510
+#: gsearchtool/gsearchtool-support.c:511
 msgid "today at %-I:%M %p"
 msgstr "oggi alle %-H.%M"
 
-#: gsearchtool/gsearchtool-support.c:512
+#: gsearchtool/gsearchtool-support.c:513
 msgid "yesterday at %-I:%M %p"
 msgstr "ieri alle %-H.%M"
 
-#: gsearchtool/gsearchtool-support.c:514 gsearchtool/gsearchtool-support.c:516
+#: gsearchtool/gsearchtool-support.c:515 gsearchtool/gsearchtool-support.c:517
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %d/%m/%Y, %-H.%M"
 
-#: gsearchtool/gsearchtool-support.c:687
+#: gsearchtool/gsearchtool-support.c:688
 msgid "link (broken)"
 msgstr "collegamento (interrotto)"
 
-#: gsearchtool/gsearchtool-support.c:692
+#: gsearchtool/gsearchtool-support.c:693
 #, c-format
 msgid "link to %s"
 msgstr "collegamento a %s"
@@ -1140,13 +1158,17 @@ msgstr ""
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
-msgstr "Il risultato della ricerca potrebbe non essere valido. Si sono verificati alcuni errori durante la ricerca."
+msgstr ""
+"Il risultato della ricerca potrebbe non essere valido. Si sono verificati "
+"alcuni errori durante la ricerca."
 
 #: gsearchtool/gsearchtool.c:1380
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
-msgstr "I risultati della ricerca potrebbero essere non validi. Disabilitare la funzionalità di riceca veloce?"
+msgstr ""
+"I risultati della ricerca potrebbero essere non validi. Disabilitare la "
+"funzionalità di riceca veloce?"
 
 #: gsearchtool/gsearchtool.c:1388
 msgid "Disable _Quick Search"
@@ -1376,7 +1398,9 @@ msgstr "_Processo:"
 
 #: logview/actions.c:733
 msgid "Regular expression that will match process part of message."
-msgstr "Espressione regolare che ha corrispondeza con la parte processo del messaggio."
+msgstr ""
+"Espressione regolare che ha corrispondeza con la parte processo del "
+"messaggio."
 
 #: logview/actions.c:743
 msgid "_Message:"
@@ -1394,7 +1418,10 @@ msgstr "_Azione:"
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
-msgstr "Azione che verrà eseguita se tutte le espressioni regolari precedenti trovano corrispondenza. Verrà eseguito da un comando di sistema: system (azione)."
+msgstr ""
+"Azione che verrà eseguita se tutte le espressioni regolari precedenti "
+"trovano corrispondenza. Verrà eseguito da un comando di sistema: system "
+"(azione)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1428,7 +1455,9 @@ msgstr "Calendario"
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "Impossibile aprire il database delle espressioni regolari <%s>! Apertura fallita."
+msgstr ""
+"Impossibile aprire il database delle espressioni regolari <%s>! Apertura "
+"fallita."
 
 #: logview/desc_db.c:147
 #, c-format
