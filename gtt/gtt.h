@@ -106,6 +106,9 @@ extern char *config_command, *config_command_null, *config_logfile_name,
 	*config_logfile_str, *config_logfile_stop;
 extern int config_logfile_use, config_logfile_min_secs;
 
+extern gboolean geom_size_override;
+extern gboolean geom_place_override;
+
 void update_status_bar(void);
 void cur_proj_set(GttProject *p);
 

@@ -69,4 +69,8 @@ struct gtt_interval_s {
 };
 
 
+/* some misc 'private' routines */
+void zero_on_rollover (time_t now, time_t last);
+
+
 #endif /* __GTT_PROJ_P_H__ */

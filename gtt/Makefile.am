@@ -13,6 +13,7 @@ gtt_SOURCES = 		\
 	dialog.c	\
 	err.c		\
 	err-throw.c	\
+	file-io.c	\
 	log.c		\
 	menucmd.c	\
 	main.c		\

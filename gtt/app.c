@@ -82,7 +82,8 @@ char *config_logfile_stop = NULL;
 int config_logfile_use = 0;
 int config_logfile_min_secs = 0;
 
-
+gboolean geom_place_override = FALSE;
+gboolean geom_size_override = FALSE;
 
 
 void update_status_bar(void)
@@ -250,10 +251,14 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 		return;
 	}
 	if (gnome_parse_geometry(geometry_string, &x, &y, &w, &h)) {
-		if ((x != -1) && (y != -1))
+		if ((x != -1) && (y != -1)) {
 			gtk_widget_set_uposition(GTK_WIDGET(window), x, y);
-		if ((w != -1) && (h != -1))
+			geom_place_override=TRUE;
+		}
+		if ((w != -1) && (h != -1)) {
 			gtk_window_set_default_size(GTK_WINDOW(window), w, h);
+			geom_size_override=TRUE;
+		}
 	} else {
 		gnome_app_error(GNOME_APP(window),
 			_("Couldn't understand geometry (position and size)\n"
