@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.99\n"
-"POT-Creation-Date: 2001-09-15 01:58+0200\n"
-"PO-Revision-Date: 2001-09-14 16:52+02:00\n"
+"POT-Creation-Date: 2001-09-21 05:39-0400\n"
+"PO-Revision-Date: 2001-09-23 16:52+02:00\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -250,7 +250,7 @@ msgstr "%s: tegnkode %d"
 
 #: gcharmap/src/callbacks.c:134
 msgid "Text copied to clipboard..."
-msgstr "Tekst kopiéret til klippebordet..."
+msgstr "Tekst kopieret til klippebordet..."
 
 #: gcharmap/src/callbacks.c:146
 msgid "Text cut to clipboard..."
@@ -908,13 +908,13 @@ msgstr "Total"
 
 #: gtt/ctree.c:354 gtt/glade/interval_edit.glade.h:14
 msgid "Today"
-msgstr "Idag"
+msgstr "I dag"
 
-#: gtt/ctree.c:355 gtt/menucmd.c:169
+#: gtt/ctree.c:355 gtt/menucmd.c:183
 msgid "Project Title"
 msgstr "Projekttitel"
 
-#: gtt/ctree.c:356 gtt/menucmd.c:170 stripchart/params.c:654
+#: gtt/ctree.c:356 gtt/menucmd.c:184 stripchart/params.c:654
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -1037,8 +1037,8 @@ msgstr ""
 "Ude af stand til at åbne filen %s\n"
 "%s"
 
-#: gtt/journal.c:246 gtt/proj.c:489 gtt/proj.c:1143 gtt/proj.c:1260
-#: gtt/proj.c:1398
+#: gtt/journal.c:246 gtt/proj.c:489 gtt/proj.c:1156 gtt/proj.c:1273
+#: gtt/proj.c:1411
 msgid "New Task"
 msgstr "Ny opgave"
 
@@ -1106,36 +1106,44 @@ msgstr "Vælg projekt ved opstart"
 msgid "PROJECT"
 msgstr "PROJEKT"
 
-#: gtt/main.c:372 gtt/menucmd.c:53 gtt/menucmd.c:61 gtt/menucmd.c:231
-#: gtt/menucmd.c:269
+#: gtt/main.c:372 gtt/menucmd.c:51 gtt/menucmd.c:59 gtt/menucmd.c:67
+#: gtt/menucmd.c:75 gtt/menucmd.c:245 gtt/menucmd.c:283
 msgid "Warning"
 msgstr "Advarsel"
 
-#: gtt/menucmd.c:54 gtt/menucmd.c:271
+#: gtt/menucmd.c:52
+msgid "Could not write the data file!"
+msgstr "Kunne ikke skrive datafilen!"
+
+#: gtt/menucmd.c:60
+msgid "Could not read the data file!"
+msgstr "Kunne ikke læse datafilen!"
+
+#: gtt/menucmd.c:68 gtt/menucmd.c:285
 msgid "Could not write the configuration file!"
 msgstr "Konfigurationsfilen kunne ikke skrives!"
 
-#: gtt/menucmd.c:62
+#: gtt/menucmd.c:76
 msgid "Unknown error occurred"
 msgstr "Der skete en ukendt fejl"
 
-#: gtt/menucmd.c:113
+#: gtt/menucmd.c:127
 msgid "Time tracking tool for GNOME"
 msgstr "Tidsforbrugsværktøj til Gnome"
 
-#: gtt/menucmd.c:163
+#: gtt/menucmd.c:177
 msgid "New Project..."
 msgstr "Nyt projekt..."
 
-#: gtt/menucmd.c:233
+#: gtt/menucmd.c:247
 msgid "I could not read the configuration file"
 msgstr "Konfigurationsfilen kunne ikke læses"
 
-#: gtt/menucmd.c:247 gtt/toolbar.c:156
+#: gtt/menucmd.c:261 gtt/toolbar.c:156
 msgid "Reload Configuration File"
 msgstr "Genindlæs konfigurationsfil"
 
-#: gtt/menucmd.c:248
+#: gtt/menucmd.c:262
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1143,16 +1151,16 @@ msgstr ""
 "Dette vil overskrive dit oprindelige sæt af projekter.\n"
 "Vil du virkelig genindlæse konfigurationsfilen?"
 
-#: gtt/menucmd.c:291
+#: gtt/menucmd.c:305
 #, c-format
 msgid "File %s exists, overwrite?"
 msgstr "Filen %s eksisterer allerede, overskriv den?"
 
-#: gtt/menucmd.c:302
+#: gtt/menucmd.c:316
 msgid "File cannot be written"
 msgstr "Fil kan ikke skrives"
 
-#: gtt/menucmd.c:322
+#: gtt/menucmd.c:336
 msgid "Export Current State"
 msgstr "Eksportér nuværende tilstand"
 
@@ -1178,7 +1186,7 @@ msgstr "Nulstil _daglig tæller"
 
 #: gtt/menus.c:65
 msgid "Zero out todays timer by deleting todays time logs"
-msgstr "Nulstil tidstæller for i dag ved at slette dagens tisdlogninger"
+msgstr "Nulstil tidstæller for i dag ved at slette dagens tidslogninger"
 
 #: gtt/menus.c:80 gtt/menus.c:160
 msgid "_Journal..."
@@ -1268,7 +1276,7 @@ msgid "empty"
 msgstr "tom"
 
 #: gtt/timer.c:116
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The keyboard and mouse have been idle\n"
 "for %d minutes.  The currently running\n"
@@ -1276,8 +1284,8 @@ msgid ""
 "has been stopped.\n"
 "Do you want to restart it?"
 msgstr ""
-"Det ser ud til at systemet har ligget stille\n"
-"i %d minutter, og at det aktuelt kørende\n"
+"Tastaturet og musen har ligget stille\n"
+"i %d minutter. Det aktuelt kørende\n"
 "projekt (%s - %s)\n"
 "er blevet stoppet.\n"
 "Vil du genstarte det?"
@@ -1489,6 +1497,14 @@ msgstr "Gem fil"
 msgid "Information"
 msgstr "Information"
 
+#: gtt/glade/not-implemented.glade.h:2
+msgid ""
+"This function is not yet implemented!\n"
+"Coming Soon, I hope!"
+msgstr ""
+"Denne funktion er ikke implementeret endnu!\n"
+"Jeg håber det kommer snart!"
+
 #: gtt/glade/prefs.glade.h:1
 msgid "Display"
 msgstr "Vis"
@@ -1646,13 +1662,13 @@ msgstr ""
 "(indtast antal sekunder)"
 
 #: gtt/glade/prefs.glade.h:38
-#, fuzzy
 msgid ""
 "The current active project will be made inactive after there has been no "
 "keyboard/mouse activity after this number of seconds.  Set to -1 to disable."
 msgstr ""
 "Det aktive projekt vil blive gjort inaktivt efter at der ikke har været "
-"nogen aktivitet i dette antal sekunder."
+"nogen aktivitet på tastatur eller mus i dette antal sekunder. Sæt til "
+"-1 for at deaktivere."
 
 #: gtt/glade/prefs.glade.h:39
 msgid "Toolbar"
@@ -1680,11 +1696,11 @@ msgstr "En titel til dette projekt"
 
 #: gtt/glade/project_properties.glade.h:4
 msgid "Auto-merge Gap:"
-msgstr "Flet automatils hul:"
+msgstr "Flet automatisk hul:"
 
 #: gtt/glade/project_properties.glade.h:5
 msgid "Auto-merge Interval:"
-msgstr "Flet automatis interval:"
+msgstr "Interval for automatisk indfleting:"
 
 #: gtt/glade/project_properties.glade.h:6
 msgid "Double-Overtime Rate:"
@@ -2565,7 +2581,7 @@ msgstr "Dobbeltklik i forhåndsvisninger:"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:7
 msgid "DoubleClick in views:"
-msgstr "Dobbelklik i visninger:"
+msgstr "Dobbeltklik i visninger:"
 
 #: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:8
 msgid "Drop:"
@@ -4593,13 +4609,6 @@ msgstr "Personlig crontabredigering"
 
 #~ msgid "Min Log Time in secs:"
 #~ msgstr "Mindste logningstid i sekunder:"
-
-#~ msgid ""
-#~ "This function is not yet implemented!\n"
-#~ "Coming Soon, I hope!"
-#~ msgstr ""
-#~ "Denne funktion er ikke implementeret endnu!\n"
-#~ "Jeg håber det kommer snart!"
 
 #~ msgid "<html><body><h1>Error 404 Not Found</h1>The file "
 #~ msgstr "<html><body><h1>Fejl 404 - Ikke fundet</h1>Filen "
