@@ -16,7 +16,6 @@ gcalc_LDADD = \
 	$(INTLLIBS)
 
 EXTRA_DIST = \
-	gcalc.desktop	\
-	foot.xpm
+	gcalc.desktop
 
 Utilities_DATA = gcalc.desktop 
