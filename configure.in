@@ -26,6 +26,11 @@ AC_PROG_MAKE_SET
 
 GNOME_X_CHECKS
 
+GNOME_CHECK_OBJC
+if test $OBJECTIVE_C = yes; then
+  GNOME_INIT_OBJC
+fi
+
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_C_INLINE

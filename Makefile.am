@@ -1,10 +1,14 @@
+if OBJECTIVE_C
+objc_DIRS =  gpostit
+endif
+
 if GUILE
 guile_DIRS = #cromagnon find-file notepad
 endif
 
 SUBDIRS = po intl macros \
-	@PROGRAMS_GENIUS@ gcalc ghex gncal \
-	@PROGRAMS_GTOP@ gtt $(guile_DIRS)
+	@PROGRAMS_GENIUS@ gcalc ghex gncal gedit\
+	@PROGRAMS_GTOP@ gtt $(guile_DIRS) $(objc_DIRS)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
