@@ -65,7 +65,6 @@ static void popup_about(void);
 
 static gint delete_event_cb(GtkWidget * w, gpointer data);
 static void about_cb(GtkWidget * w, gpointer data);
-static void save_cb(GtkWidget * w, gpointer data);
 
 static void preferences_cb(GtkWidget *w, gpointer data);
 
@@ -173,12 +172,6 @@ static GnomeUIInfo help_menu[] = {
 };
 
 static GnomeUIInfo file_menu[] = {
-	{GNOME_APP_UI_ITEM, 
-		N_("_Save..."), N_("Write information to disk"), 
-		save_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, GNOME_KEY_NAME_SAVE_AS, 
-		GNOME_KEY_MOD_SAVE_AS, NULL },
-	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_EXIT_ITEM(delete_event_cb,NULL),
 	GNOMEUIINFO_END
 };
@@ -467,11 +460,6 @@ static gint delete_event_cb(GtkWidget * w, gpointer data)
 static void about_cb(GtkWidget * w, gpointer data)
 {
   popup_about();
-}
-
-static void save_cb(GtkWidget * w, gpointer data)
-{
-  g_warning(_("Save not implemented yet\n"));
 }
 
 static void preferences_cb(GtkWidget *w, gpointer data)
