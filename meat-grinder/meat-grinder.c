@@ -232,10 +232,9 @@ start_progress_bar (gboolean flag)
 static void
 setup_busy (GtkWidget *w, gboolean busy)
 {
-	GdkCursor *cursor;
-	static gint timeout;
 
 	if (busy) {
+		GdkCursor *cursor;
 		/* Change cursor to busy */
 		cursor = gdk_cursor_new (GDK_WATCH);
 		gdk_window_set_cursor (w->window, cursor);
