@@ -1,5 +1,7 @@
 # Process this file with automake to produce Makefile.am
 
+SUBDIRS = doc
+
 INCLUDES = 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
