@@ -255,12 +255,7 @@ Gtop_data;
  * referenced, and so the corresponding libgtop routine should be
  * called on each eval cycle.
  */
-static int gtop_cpu;
-static int gtop_mem;
-static int gtop_swap;
-static int gtop_uptime;
-static int gtop_loadavg;
-static int gtop_netload;
+static int gtop_cpu, gtop_mem, gtop_swap, gtop_uptime, gtop_load, gtop_net;
 
 #define GTOP_OFF(el) offsetof(gtop_struct, el)
 
@@ -296,24 +291,24 @@ Gtop_data gtop_vars[] =
   { "idletime",         'D', &gtop_uptime,  GTOP_OFF(uptime.idletime)       },
 
   /* glibtop loadavg stats */
-  { "load_running",     'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_running)    },
-  { "load_tasks",       'L', &gtop_loadavg, GTOP_OFF(loadavg.nr_tasks)      },
-  { "load_1m",          'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[0])    },
-  { "load_5m",          'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[1])    },
-  { "load_15m",         'D', &gtop_loadavg, GTOP_OFF(loadavg.loadavg[2])    },
+  { "load_running",     'L', &gtop_load,    GTOP_OFF(loadavg.nr_running)    },
+  { "load_tasks",       'L', &gtop_load,    GTOP_OFF(loadavg.nr_tasks)      },
+  { "load_1m",          'D', &gtop_load,    GTOP_OFF(loadavg.loadavg[0])    },
+  { "load_5m",          'D', &gtop_load,    GTOP_OFF(loadavg.loadavg[1])    },
+  { "load_15m",         'D', &gtop_load,    GTOP_OFF(loadavg.loadavg[2])    },
 
   /* netload stats -- Linux-specific for the time being */
-  { "net_pkts_in",      'L', &gtop_netload, GTOP_OFF(netload.packets_in)    },
-  { "net_pkts_out",     'L', &gtop_netload, GTOP_OFF(netload.packets_out)   },
-  { "net_pkts_total",   'L', &gtop_netload, GTOP_OFF(netload.packets_total) },
+  { "net_pkts_in",      'L', &gtop_net,     GTOP_OFF(netload.packets_in)    },
+  { "net_pkts_out",     'L', &gtop_net,     GTOP_OFF(netload.packets_out)   },
+  { "net_pkts_total",   'L', &gtop_net,     GTOP_OFF(netload.packets_total) },
 
-  { "net_bytes_in",     'L', &gtop_netload, GTOP_OFF(netload.bytes_in)      },
-  { "net_bytes_out",    'L', &gtop_netload, GTOP_OFF(netload.bytes_out)     },
-  { "net_bytes_total",  'L', &gtop_netload, GTOP_OFF(netload.bytes_total)   },
+  { "net_bytes_in",     'L', &gtop_net,     GTOP_OFF(netload.bytes_in)      },
+  { "net_bytes_out",    'L', &gtop_net,     GTOP_OFF(netload.bytes_out)     },
+  { "net_bytes_total",  'L', &gtop_net,     GTOP_OFF(netload.bytes_total)   },
 
-  { "net_errs_in",      'L', &gtop_netload, GTOP_OFF(netload.errors_in)     },
-  { "net_errs_out",     'L', &gtop_netload, GTOP_OFF(netload.errors_out)    },
-  { "net_errs_total",   'L', &gtop_netload, GTOP_OFF(netload.errors_total)  },
+  { "net_errs_in",      'L', &gtop_net,     GTOP_OFF(netload.errors_in)     },
+  { "net_errs_out",     'L', &gtop_net,     GTOP_OFF(netload.errors_out)    },
+  { "net_errs_total",   'L', &gtop_net,     GTOP_OFF(netload.errors_total)  },
 
   /* end of array marker */
   { NULL,	         0,  NULL,          0 }
@@ -350,11 +345,11 @@ gtop_value(
 	    }
 	  else /* if (gtop_vars[i].type == 'L') */
 	    {
-	      unsigned long ul = *((unsigned long *)cp);
+	      u_int64_t ul = *((u_int64_t *)cp);
 	      if (delta)
 		{
 		  cp = ((char *)gtp_last) + gtop_vars[i].off;
-		  ul -= *((unsigned long *)cp);
+		  ul -= *((unsigned long long *)cp);
 		}
 	      *val = ul;
 	    }
@@ -366,19 +361,22 @@ gtop_value(
 
 /*
  * get_all_netload -- a Linux-specific routine to get net load
- * information for all interfaces
+ * information for all interfaces.  This assumes that u_int64_t is
+ * defined and that 64-bit ints are available, but since this is quite
+ * linux-specific anyway, I think that this should be okay. 
  */
 static void
 get_all_netload(glibtop_netload *netload)
 {
   FILE *fd;
   memset(netload, 0, sizeof(*netload));
+#if linux
   if ((fd = fopen("/proc/net/dev", "r")) != NULL)
     {
-      unsigned long bytes_in, pkts_in, errs_in, bytes_out, pkts_out, errs_out;
+      u_int64_t bytes_in, pkts_in, errs_in, bytes_out, pkts_out, errs_out;
       fscanf(fd, "%*[^\n]\n%*[^\n]\n");
       while (fscanf(fd,
-	"%*[^:]:%ld%ld%ld%*d%*d%*d%*d%*d%ld%ld%ld%*d%*d%*d%*d%*d",
+	"%*[^:]:%lld%lld%lld%*d%*d%*d%*d%*d%lld%lld%lld%*d%*d%*d%*d%*d",
 	&bytes_in, &pkts_in, &errs_in, &bytes_out, &pkts_out, &errs_out) == 6)
 	{
 	  netload->packets_in    += pkts_in;
@@ -393,6 +391,7 @@ get_all_netload(glibtop_netload *netload)
 	}
       fclose(fd);
     }
+#endif
 }
 #endif
 
@@ -992,9 +991,9 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
     glibtop_get_swap_occasionally(&pgp->gtop_now.swap);
   if (gtop_uptime)
     glibtop_get_uptime(&pgp->gtop_now.uptime);
-  if (gtop_loadavg)
+  if (gtop_load)
     glibtop_get_loadavg(&pgp->gtop_now.loadavg);
-  if (gtop_netload)
+  if (gtop_net)
     get_all_netload(&pgp->gtop_now.netload);
 #endif
 
@@ -1191,10 +1190,9 @@ config_handler(GtkWidget *widget, GdkEventConfigure *e, gpointer whence)
     {
       AppletWidget *app = APPLET_WIDGET(widget->parent->parent);
       GNOME_Panel_OrientType po = applet_widget_get_panel_orient(app);
-      GNOME_Panel_SizeType   ps = applet_widget_get_panel_size(app);
+      int xs = applet_widget_get_panel_pixel_size(app);
       int fs = applet_widget_get_free_space(app);
-      printf("panel: %d (%c), %d (%c), %d\n",
-	po, "UDLR"[po], ps, "TNLH"[ps], fs);
+      printf("config: %d (%c), %d, %d\n", po, "UDLR"[po], xs, fs);
     }
 #endif
   /* On the initial configuration event, get the window colormap and
@@ -1859,15 +1857,17 @@ gnome_graph(void)
 static void
 change_orient_handler(AppletWidget *applet, GNOME_Panel_OrientType orient)
 {
+  int xs = applet_widget_get_panel_pixel_size(applet);
   int fs = applet_widget_get_free_space(applet);
-  printf("orient: %d (%c); fs=%d\n", orient, "UDLR"[orient], fs);
+  printf("orient: %d (%c); %d, %d\n", orient, "UDLR"[orient], xs, fs);
 }
 
 static void
-change_size_handler(AppletWidget *applet, GNOME_Panel_SizeType size)
+change_pixel_handler(AppletWidget *applet, int size)
 {
+  int xs = applet_widget_get_panel_pixel_size(applet);
   int fs = applet_widget_get_free_space(applet);
-  printf("size: %d (%c); fs=%d\n", size, "TNLH"[size], fs);
+  printf("pixels: %d; %d, %d\n", size, xs, fs);
 }
 
 static void
@@ -1934,11 +1934,9 @@ applet(void)
     "delete_event", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
 
   gtk_signal_connect(GTK_OBJECT(frame),
-    "change_size", (GtkSignalFunc)change_size_handler, NULL);
+    "change_pixel_size", (GtkSignalFunc)change_pixel_handler, NULL);
   gtk_signal_connect(GTK_OBJECT(frame),
     "change_orient", (GtkSignalFunc)change_orient_handler, NULL);
-  gtk_signal_connect(GTK_OBJECT(frame),
-    "change_position", (GtkSignalFunc)change_pos_handler, NULL);
 
   /* Set up the pop-up menu handler.  Pack the whole works into the
      top-level applet. */
