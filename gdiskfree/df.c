@@ -36,7 +36,6 @@
 #include "save-cwd.h" 
 #define STREQ(s1, s2) ((strcmp (s1, s2) == 0))
 
-char *dirname ();
 void strip_trailing_slashes ();
 char *xgetcwd ();
 
@@ -482,6 +481,39 @@ show_disk (const char *disk)
   show_dev (disk, (char *) NULL, (char *) NULL);
 }
 
+/* Return the directory component of PATH.  If PATH doesn't have one,
+   return ".".  The return value is allocated with `g_malloc', and
+   should be released with `g_free'.  */
+static char *
+g_dirname (const char *path)
+{
+  char *newpath;
+  char *slash;
+  int length;			/* Length of result, not including NUL.  */
+
+  slash = strrchr (path, '/');
+  if (slash == 0)
+    {
+      /* File is in the current directory.  */
+      path = ".";
+      length = 1;
+    }
+  else
+    {
+      /* Remove any trailing slashes from the result.  */
+      while (slash > path && *slash == '/')
+	--slash;
+
+      length = slash - path + 1;
+    }
+  newpath = (char *) g_malloc (length + 1);
+  if (newpath == 0)
+    return 0;
+  strncpy (newpath, path, length);
+  newpath[length] = 0;
+  return newpath;
+}
+
 /* Return the root mountpoint of the filesystem on which FILE exists, in
    malloced storage.  FILE_STAT should be the result of stating FILE.  */
 static char *
@@ -508,10 +540,10 @@ find_mount_point (const char *file, const struct stat *file_stat)
       char *tmp = g_strdup (file);
       char *dir;
 
-      dir = dirname (tmp);
-      free (tmp);
+      dir = g_dirname (tmp);
+      g_free (tmp);
       rv = chdir (dir);
-      free (dir);
+      g_free (dir);
 
       if (rv < 0)
 	return NULL;
