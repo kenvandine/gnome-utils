@@ -1380,7 +1380,7 @@ save_session_cb (GnomeClient * client,
 	char ** argv;
 	int argc;
 
-	set_clone_command (gsearch, &argc, &argv, client_data, FALSE);
+	set_clone_command (gsearch, &argc, &argv, "gnome-search-tool", FALSE);
 	gnome_client_set_clone_command (client, argc, argv);
 	gnome_client_set_restart_command (client, argc, argv);	
 }

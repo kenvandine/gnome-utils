@@ -2702,7 +2702,7 @@ main (int argc,
 	if ((client = gnome_master_client ()) != NULL) {
 		g_signal_connect (client, "save_yourself",
 		                  G_CALLBACK (save_session_cb),
-		                  (gpointer) argv[0]);
+		                  (gpointer) gsearch);
 		g_signal_connect (client, "die",
 		                  G_CALLBACK (die_cb),
 		                  (gpointer) gsearch->command_details);
