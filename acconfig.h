@@ -14,6 +14,7 @@
 #undef HAVE_LIBGTOP
 #undef NEED_LIBGTOP
 #undef HAVE_GUILE
+#undef HAVE_LINUX_TABLE
 
 /* Define if you want to build against development gtk */
 #undef HAVE_DEVGTK
