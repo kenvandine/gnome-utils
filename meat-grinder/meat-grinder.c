@@ -1,6 +1,7 @@
 /* meat-grinder, maker of tarballs */
 
 #include <config.h>
+#include <gtk/gtk.h>
 #include <gnome.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
@@ -14,18 +15,18 @@ static GtkWidget *icon_list = NULL;
 static GtkWidget *status_label = NULL;
 static GtkWidget *compress_button = NULL;
 static GHashTable *file_ht = NULL;
-static int number_of_files = 0;
-static int number_of_dirs = 0;
-static char *file_icon = NULL;
-static char *folder_icon = NULL;
-static char *compress_icon = NULL;
-static char *tar_prog = NULL;
-static char *filename = NULL;
+static gint number_of_files = 0;
+static gint number_of_dirs = 0;
+static gchar *file_icon = NULL;
+static gchar *folder_icon = NULL;
+static gchar *compress_icon = NULL;
+static gchar *tar_prog = NULL;
+static gchar *filename = NULL;
 static pid_t temporary_pid = 0;
-static char *temporary_file = NULL;
+static gchar *temporary_file = NULL;
 
-#define ERRDLG(error) gnome_dialog_run_and_close (GNOME_DIALOG (gnome_error_dialog_parented (error, GTK_WINDOW (app))))
-#define ERRDLGP(error,parent) gnome_dialog_run_and_close (GNOME_DIALOG (gnome_error_dialog_parented (error, GTK_WINDOW (parent))))
+#define ERRDLG(error) gtk_message_dialog_new (GTK_WINDOW(app), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, error);
+#define ERRDLGP(error,parent) gtk_message_dialog_new (GTK_WINDOW(parent), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, error);
 
 static GtkTargetEntry drop_targets [] = {
   { "text/uri-list", 0, 0 }
@@ -46,9 +47,9 @@ enum {
 
 typedef struct _File File;
 struct _File {
-	int type;
-	char *name;
-	char *base_name;
+	gint type;
+	gchar *name;
+	gchar *base_name;
 };
 
 static void
@@ -60,15 +61,15 @@ free_file (File *f)
 	g_free (f);
 }
 
-static char *
+static gchar *
 make_temp_dir (void)
 {
-	char *name = NULL;
-	char *gname;
+	gchar *name = NULL;
+	gchar *gname;
 	do {
 		if (name != NULL)
 			free (name);
-		name = tempnam (NULL, "gmg");
+		*name = g_mkstemp ("gmg");
 	} while (mkdir (name, 0755) < 0);
 
 	gname = g_strdup (name);
@@ -79,20 +80,24 @@ make_temp_dir (void)
 static gboolean
 query_dialog (const gchar *msg)
 {
-	int ret;
+	gint response;
 	GtkWidget *req;
 
-	req = gnome_message_box_new (msg,
-				     GNOME_MESSAGE_BOX_QUESTION,
-				     GNOME_STOCK_BUTTON_YES,
-				     GNOME_STOCK_BUTTON_NO,
-				     NULL);
+	req = gtk_message_dialog_new (GTK_WINDOW (app),
+				       GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+				       GTK_MESSAGE_QUESTION,
+				       GTK_BUTTONS_NONE,
+				       msg);
+	
+	gtk_dialog_add_buttons (GTK_DIALOG (req),
+				GTK_STOCK_NO, GTK_RESPONSE_NO,
+				GTK_STOCK_YES, GTK_RESPONSE_YES,
+				NULL);
+	
 
-	gtk_window_set_modal (GTK_WINDOW (req), TRUE);
+	response = gtk_dialog_run (GTK_DIALOG (req));
 
-	ret = gnome_dialog_run (GNOME_DIALOG (req));
-
-	if (ret == 0)
+	if (response == GTK_RESPONSE_YES)
 		return TRUE;
 	else /* this includes -1 which is "destroyed" */
 		return FALSE;
@@ -102,7 +107,7 @@ static void
 update_status (void)
 {
 	if (number_of_files > 0 || number_of_dirs > 0) {
-		char *msg;
+		gchar *msg;
 		msg = g_strdup_printf (_("Number of files: %d\nNuber of folders: %d"),
 				       number_of_files, number_of_dirs);
 		gtk_label_set_text (GTK_LABEL (status_label), msg);
@@ -116,7 +121,7 @@ update_status (void)
 
 /* removes icon, positions should not be trusted after this */
 static void
-remove_pos (int pos)
+remove_pos (gint pos)
 {
 	File *f;
 
@@ -140,9 +145,9 @@ remove_pos (int pos)
 }
 
 struct argv_adder {
-	char *link_dir;
-	char **argv;
-	int pos;
+	gchar *link_dir;
+	gchar **argv;
+	gint pos;
 };
 
 static void
@@ -150,7 +155,7 @@ make_argv_fe (gpointer key, gpointer value, gpointer user_data)
 {
 	File *f = value;
 	struct argv_adder *argv_adder = user_data;
-	char *file = g_concat_dir_and_file (argv_adder->link_dir, f->base_name);
+	gchar *file = g_build_filename ((argv_adder->link_dir), (f->base_name), NULL);
 
 	argv_adder->argv[argv_adder->pos ++] = f->base_name;
 
@@ -162,8 +167,8 @@ static void
 whack_links_fe (gpointer key, gpointer value, gpointer user_data)
 {
 	File *f = value;
-	char *link_dir = user_data;
-	char *file = g_concat_dir_and_file (link_dir, f->base_name);
+	gchar *link_dir = user_data;
+	gchar *file = g_build_filename ((link_dir), (f->base_name), NULL);
 
 	unlink (file);
 	g_free (file);
@@ -187,8 +192,8 @@ setup_busy (GtkWidget *w, gboolean busy)
 }
 
 static gboolean
-create_archive (const char *fname,
-		const char *dir,
+create_archive (const gchar *fname,
+		const gchar *dir,
 		gboolean gui_errors)
 {
 	gboolean status = TRUE;
@@ -198,13 +203,13 @@ create_archive (const char *fname,
 	if (dir == NULL)
 		argv_adder.link_dir = make_temp_dir ();
 	else
-		argv_adder.link_dir = (char *)dir;
+		argv_adder.link_dir = (gchar *)dir;
 
-	argv_adder.argv = g_new (char *, number_of_files + number_of_dirs + 4);
+	argv_adder.argv = g_new (gchar *, number_of_files + number_of_dirs + 4);
 	argv_adder.argv[number_of_files + number_of_dirs + 3] = NULL;
 	argv_adder.argv[0] = tar_prog;
 	argv_adder.argv[1] = "-chzf";
-	argv_adder.argv[2] = (char *)fname;
+	argv_adder.argv[2] = (gchar *)fname;
 	argv_adder.pos = 3;
 
 	g_hash_table_foreach (file_ht, make_argv_fe, &argv_adder);
@@ -250,8 +255,8 @@ create_archive (const char *fname,
 static void
 start_temporary (void)
 {
-	char *dir;
-	char *file = NULL;
+	gchar *dir;
+	gchar *file = NULL;
 
 	if (temporary_file != NULL) {
 		if (access (temporary_file, F_OK) == 0)
@@ -262,7 +267,7 @@ start_temporary (void)
 		 * this file is missing, we let nautilus have it and hope
 		 * he chokes on it */
 
-		dir = g_dirname (temporary_file);
+		dir = g_path_get_dirname (temporary_file);
 		rmdir (dir);
 		g_free (dir);
 
@@ -276,7 +281,7 @@ start_temporary (void)
 
 	/* make a temporary dirname */
 	dir = make_temp_dir ();
-	file = g_concat_dir_and_file (dir, _("Archive.tar.gz"));
+	file = g_build_filename ((dir), (_("Archive.tar.gz")), NULL);
 
 	temporary_pid = fork ();
 
@@ -309,7 +314,7 @@ start_temporary (void)
 static gboolean
 ensure_temporary (void)
 {
-	int status;
+	gint status;
 
 	start_temporary ();
 
@@ -338,7 +343,7 @@ ensure_temporary (void)
 static void
 cleanup_temporary (void)
 {
-	char *file = temporary_file;
+	gchar *file = temporary_file;
 	pid_t pid = temporary_pid;
 
 	temporary_file = NULL;
@@ -350,11 +355,11 @@ cleanup_temporary (void)
 	}
 	
 	if (file != NULL) {
-		char *dir;
+		gchar *dir;
 
 		unlink (file);
 
-		dir = g_dirname (file);
+		dir = g_path_get_dirname (file);
 		rmdir (dir);
 		g_free (dir);
 	}
@@ -384,11 +389,11 @@ about_cb (GtkWidget *widget, gpointer data)
 	about = gnome_about_new (_("The GNOME Archive Generator"), VERSION,
 				 "(C) 2001 George Lebl",
 				 _("Drag files in to make archives"),
-				 (const char **)authors,
-				 (const char **)documenters,
-				 (const char *)translator_credits,
+				 (const gchar **)authors,
+				 (const gchar **)documenters,
+				 (const gchar *)translator_credits,
 				 NULL);
-	gtk_signal_connect (GTK_OBJECT (about), "destroy",
+	g_signal_connect (GTK_OBJECT (about), "destroy",
 			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
 			    &about);
 	gtk_widget_show (about);
@@ -436,7 +441,7 @@ remove_cb (GtkWidget *w, gpointer data)
 	
 	list = gnome_icon_list_get_selection(GNOME_ICON_LIST (icon_list));
 	while (list != NULL) {
-		int pos = GPOINTER_TO_INT (list->data);
+		gint pos = GPOINTER_TO_INT (list->data);
 		remove_pos (pos);
 		list = gnome_icon_list_get_selection
 			(GNOME_ICON_LIST (icon_list));
@@ -490,14 +495,14 @@ archive_cb (GtkWidget *w, gpointer data)
 	if (filename != NULL)
 		gtk_file_selection_set_filename (fsel, filename);
 
-	gtk_signal_connect (GTK_OBJECT (fsel->ok_button), "clicked",
+	g_signal_connect (GTK_OBJECT (fsel->ok_button), "clicked",
 			    GTK_SIGNAL_FUNC (save_ok), fsel);
-	gtk_signal_connect_object
+	gtk_signal_connect_full
 		(GTK_OBJECT (fsel->cancel_button), "clicked",
 		 GTK_SIGNAL_FUNC (gtk_widget_destroy), 
 		 GTK_OBJECT (fsel));
 
-	gtk_window_position (GTK_WINDOW (fsel), GTK_WIN_POS_MOUSE);
+	gtk_window_set_position (GTK_WINDOW (fsel), GTK_WIN_POS_MOUSE);
 
 	gtk_window_set_transient_for (GTK_WINDOW (fsel),
 				      GTK_WINDOW (app));
@@ -506,16 +511,16 @@ archive_cb (GtkWidget *w, gpointer data)
 }
 
 static void
-add_file (const char *file)
+add_file (const gchar *file)
 {
 	struct stat s;
 	File *f, *oldf;
-	int type;
-	const char *icon;
-	int pos;
-	int i;
-	const char *base_name;
-	char *fullname;
+	gint type;
+	const gchar *icon;
+	gint pos;
+	gint i;
+	const gchar *base_name;
+	gchar *fullname;
 
 	if (file == NULL ||
 	    file[0] == '\0')
@@ -530,14 +535,14 @@ add_file (const char *file)
 	}
 
 	if (strcmp (fullname, "/") != 0)
-		base_name = g_basename (fullname);
+		base_name = g_path_get_basename (fullname);
 	else
 		base_name = "/";
 
 	oldf = g_hash_table_lookup (file_ht, base_name);
 	i = 1;
 	while (oldf != NULL) {
-		char *temp;
+		gchar *temp;
 		if (strcmp (oldf->name, fullname) == 0) {
 			g_free (fullname);
 			return;
@@ -633,14 +638,14 @@ add_cb (GtkWidget *w, gpointer data)
 	if (filename != NULL)
 		gtk_file_selection_set_filename (fsel, filename);
 
-	gtk_signal_connect (GTK_OBJECT (fsel->ok_button), "clicked",
+	g_signal_connect (GTK_OBJECT (fsel->ok_button), "clicked",
 			    GTK_SIGNAL_FUNC (add_ok), fsel);
-	gtk_signal_connect_object
+	gtk_signal_connect_full
 		(GTK_OBJECT (fsel->cancel_button), "clicked",
 		 GTK_SIGNAL_FUNC (gtk_widget_destroy), 
 		 GTK_OBJECT (fsel));
 
-	gtk_window_position (GTK_WINDOW (fsel), GTK_WIN_POS_MOUSE);
+	gtk_window_set_position (GTK_WINDOW (fsel), GTK_WIN_POS_MOUSE);
 
 	gtk_window_set_transient_for (GTK_WINDOW (fsel),
 				      GTK_WINDOW (app));
@@ -660,8 +665,8 @@ drag_data_received (GtkWidget          *widget,
 {
 	if (data->length >= 0 &&
 	    data->format == 8) {
-		int i;
-		char **files = g_strsplit ((char *)data->data, "\r\n", -1);
+		gint i;
+		gchar **files = g_strsplit ((gchar *)data->data, "\r\n", -1);
 		for (i = 0; files != NULL && files[i] != NULL; i++) {
 			/* FIXME: EVIL!!!! */
 			if (strncmp (files[i], "file:", strlen ("file:")) == 0)
@@ -682,7 +687,7 @@ drag_data_get (GtkWidget          *widget,
 	       guint               time,
 	       gpointer            data)
 {
-	char *string;
+	gchar *string;
 
 	if ( ! ensure_temporary ()) {
 		/*FIXME: cancel the drag*/
@@ -751,7 +756,7 @@ init_gui (void)
 				"meat-grinder");
 	gtk_window_set_policy (GTK_WINDOW (app), FALSE, TRUE, FALSE);
 
-        gtk_signal_connect (GTK_OBJECT (app), "destroy",
+        g_signal_connect (GTK_OBJECT (app), "destroy",
 			    GTK_SIGNAL_FUNC (quit_cb), NULL);
 
 	/*set up the menu*/
@@ -797,7 +802,7 @@ init_gui (void)
 	gtk_widget_show (w);
 	gtk_container_add (GTK_CONTAINER (compress_button), w);
 	gtk_box_pack_start (GTK_BOX (hbox), compress_button, FALSE, FALSE, 0);
-	gtk_signal_connect (GTK_OBJECT (compress_button), "clicked",
+	g_signal_connect (GTK_OBJECT (compress_button), "clicked",
 			    GTK_SIGNAL_FUNC (archive_cb), NULL);
 	gtk_tooltips_set_tip (tips, compress_button,
 			      _("Drag this button to the destination where you "
@@ -813,9 +818,9 @@ init_gui (void)
 			     drag_targets, n_drag_targets,
 			     GDK_ACTION_COPY);
 	/* just in case some wanker like nautilus took our image */
-	gtk_signal_connect (GTK_OBJECT (compress_button), "drag_begin",
+	g_signal_connect (GTK_OBJECT (compress_button), "drag_begin",
 			    GTK_SIGNAL_FUNC (start_temporary), NULL);
-	gtk_signal_connect (GTK_OBJECT (compress_button), "drag_data_get",
+	g_signal_connect (GTK_OBJECT (compress_button), "drag_data_get",
 			    GTK_SIGNAL_FUNC (drag_data_get), NULL);
 
 
@@ -825,14 +830,14 @@ init_gui (void)
 	gtk_box_pack_start (GTK_BOX (hbox), status_label, FALSE, FALSE, 0);
 	update_status ();
 
-	gtk_container_border_width (GTK_CONTAINER (vbox), 5);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
 
 	/* setup dnd */
 	gtk_drag_dest_set (app,
 			   GTK_DEST_DEFAULT_ALL,
 			   drop_targets, n_drop_targets,
 			   GDK_ACTION_LINK);
-	gtk_signal_connect (GTK_OBJECT (app), "drag_data_received",
+	g_signal_connect (GTK_OBJECT (app), "drag_data_received",
 			    GTK_SIGNAL_FUNC (drag_data_received), NULL);
 
 	gnome_app_set_contents (GNOME_APP (app), vbox);
@@ -841,7 +846,7 @@ init_gui (void)
 }
 
 static void
-got_signal (int sig)
+got_signal (gint sig)
 {
 	cleanup_temporary ();
 	
@@ -850,12 +855,12 @@ got_signal (int sig)
 	kill (getpid (), sig);
 }
 
-int
-main (int argc, char *argv [])
+gint
+main (gint argc, gchar *argv [])
 {
-	int i;
+	gint i;
 	poptContext ctx;
-	const char **files;
+	const gchar **files;
 	
 	/* Initialize the i18n stuff */
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
@@ -867,31 +872,31 @@ main (int argc, char *argv [])
 	/* no icon yet */
 	/*gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-meat-grinder.png");*/
 
-	file_icon = gnome_pixmap_file ("mc/i-regular.png");
+	file_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "mc/i-regular.png", TRUE, NULL);
 	if (file_icon == NULL)
-		file_icon = gnome_pixmap_file ("nautilus/i-regular.png");
+		file_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "nautilus/i-regular.png", TRUE, NULL);
 	if (file_icon == NULL)
-		file_icon = gnome_pixmap_file ("nautilus/gnome/i-regular.png");
+		file_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "nautilus/gnome/i-regular.png", TRUE, NULL);
 	if (file_icon == NULL)
-		file_icon = gnome_pixmap_file ("gnome-file.png");
+		file_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-file.png", TRUE, NULL);
 	if (file_icon == NULL)
-		file_icon = gnome_pixmap_file ("gnome-unknown.png");
+		file_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-unknown.png", TRUE, NULL);
 
-	folder_icon = gnome_pixmap_file ("gnome-folder.png");
+	folder_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-folder.png", TRUE, NULL);
 	if (folder_icon == NULL)
-		folder_icon = gnome_pixmap_file ("nautilus/gnome-folder.png");
+		folder_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "nautilus/gnome-folder.png", TRUE, NULL);
 	if (folder_icon == NULL)
-		folder_icon = gnome_pixmap_file ("nautilus/gnome/gnome/gnome-folder.png");
+		folder_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "nautilus/gnome/gnome/gnome-folder.png", TRUE, NULL);
 	if (folder_icon == NULL)
-		folder_icon = gnome_pixmap_file ("mc/i-directory.png");
+		folder_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "mc/i-directory.png", TRUE, NULL);
 	if (folder_icon == NULL)
-		folder_icon = gnome_pixmap_file ("gnome-unknown.png");
+		folder_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-unknown.png", TRUE, NULL);
 
-	compress_icon = gnome_pixmap_file ("gnome-compressed.png");
+	compress_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-compressed.png", TRUE, NULL);
 	if (compress_icon == NULL)
-		compress_icon = gnome_pixmap_file ("nautilus/gnome-compressed.png");
+		compress_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "nautilus/gnome-compressed.png", TRUE, NULL);
 	if (compress_icon == NULL)
-		compress_icon = gnome_pixmap_file ("mc/gnome-compressed.png");
+		compress_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "mc/gnome-compressed.png", TRUE, NULL);
 
 	if (folder_icon == NULL || file_icon == NULL) {
 		ERRDLG (_("Cannot find proper icons anywhere!"));
@@ -919,8 +924,8 @@ main (int argc, char *argv [])
 		if (files[i][0] == '/') {
 			add_file (files[i]);
 		} else {
-			char *curdir = g_get_current_dir ();
-			char *file = g_concat_dir_and_file (curdir, files[i]);
+			gchar *curdir = g_get_current_dir ();
+			gchar *file = g_build_filename ((curdir), (files[i]), NULL);
 			add_file (file);
 			g_free (file);
 			g_free (curdir);

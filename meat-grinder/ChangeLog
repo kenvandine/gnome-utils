@@ -1,3 +1,15 @@
+2001-12-18  Josh Barrow  <drleary@mac.com>
+
+	* Makefile.am:
+	* meat-grinder.c: (make_temp_dir), (query_dialog), (update_status),
+	(remove_pos), (make_argv_fe), (whack_links_fe), (create_archive),
+	(start_temporary), (ensure_temporary), (cleanup_temporary),
+	(about_cb), (remove_cb), (archive_cb), (add_file), (add_cb),
+	(drag_data_received), (drag_data_get), (init_gui), (got_signal),
+	(main):
+	Made to compile with G_DISABLE_DEPRECATED, GTK_DISABLE_DEPRECATED,
+	and GNOME_DISABLE_DEPRECATED
+
 2001-12-14  Seth Nickell  <snickell@stanford.edu>
 
 	* meat-grinder.desktop.in:
