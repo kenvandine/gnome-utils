@@ -2,7 +2,7 @@
 INCLUDES = 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR) $(LIBGTOP_INCS)
 
 bin_PROGRAMS = guname
 
