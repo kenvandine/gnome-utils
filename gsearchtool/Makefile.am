@@ -8,23 +8,23 @@ INCLUDES = 	\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-I$(includedir)					
-	
-bin_PROGRAMS = gsearchtool 
 
-gsearchtool_SOURCES =	\
+bin_PROGRAMS = gnome-search-tool
+
+gnome_search_tool_SOURCES =	\
 	gsearchtool.c	\
 	gsearchtool.h
 
-gsearchtool_LDADD = \
+gnome_search_tool_LDADD = \
 	$(GNOME_UTILS_LIBS) \
 	$(GNOMEVFS_LIBS)
 
-man_MANS = gsearchtool.1
+man_MANS = gnome-search-tool.1
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-searchtool.png
 
-Utilities_in_files = gsearchtool.desktop.in 
+Utilities_in_files = gnome-search-tool.desktop.in 
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
