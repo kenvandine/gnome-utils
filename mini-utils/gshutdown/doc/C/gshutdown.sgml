@@ -67,7 +67,9 @@
       selecting <guimenuitem>Shut Down or Reboot</guimenuitem> from
       <guisubmenu>System</guisubmenu> submenu of the <guimenu>Main
 	Menu</guimenu>, or by running the command
-      <command>gshutdown</command> on the command line.  
+      <command>gshutdown</command> on the command line. Gshutdown is
+      intended for use by system administrators, and must be run with
+      root authority.
     </para>
 
      </sect1>
@@ -135,7 +137,29 @@
   <para>Using the Advanced tab, you can change to any
       runlevel.</para>
 
+      <para>A <emphasis>runlevel</emphasis> is a software
+       configuration of the system which allows  only  a selected
+       group of processes to exist.  The processes spawned by
+       <application>init</application> for each of these runlevels
+       are defined  in  the <filename>/etc/inittab
+       file</filename>. Init can be in one of eight runlevels: 0-6 and
+       S or s.</para>
 
+      <para>Runlevels 0, 1, and 6 are reserved. Runlevel 0 is used to
+       halt the system, runlevel 6 is used to reboot the  system,
+       and  runlevel 1 is used to get the system down into single
+       user mode. Runlevel S is  not  really  meant  to  be  used
+       directly,  but more for the scripts that are executed when
+       entering runlevel 1.</para>
+
+      <para>More information on runlevels is available in the
+      <application>init</application> manual page, which can be viewed
+      using the command <command>man init</command> at the command
+      line or by selecting <guimenuitem>Help system</guimenuitem> from
+      the GNOME <guimenu>Main Menu</guimenu> and selecting the option
+      "Man Pages" from the Help Index. The
+      <application>init</application> man page is found under the
+      <guilabel>Administration</guilabel> category heading.</para>
 
 	</sect2>
 
