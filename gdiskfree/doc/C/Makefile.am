@@ -5,7 +5,8 @@ gdiskfree_helpdir = $(datadir)/gnome/help/gdiskfree/C
 SGML_FILES = \
 	gdiskfree.sgml
 
-HTML_FILES = index.html authors.html 	license.html	usage.html
+HTML_FILES = index.html authors.html 	prefs.html	usage.html	\
+	ln7.html
 
 EXTRA_DIST = \
 	topic.dat gdiskfree $(SGML_FILES)
