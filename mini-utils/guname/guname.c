@@ -98,8 +98,7 @@ typedef enum {
 /************************************
   Globals
   ***********************************/
-/* In something of an abuse (would an enum-indexed array be better?),
-   using the struct for descriptive strings as well. */
+
 const gchar * descriptions[] = {
   N_("Distribution:"), 
   N_("Operating System:"),
