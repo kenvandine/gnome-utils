@@ -381,7 +381,6 @@ CreateMainWin (LogviewWindow *window)
    GtkAccelGroup *accel_group;
    GError *error;
    GtkWidget *menubar;
-   GtkWidget *main_view;
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
                                     N_("Process"), N_("Message"), NULL };
 
@@ -501,8 +500,8 @@ CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 
    CloseLog (window->curlog);
 
-   logview_menus_set_state (window);
    window->curlog = NULL;
+   logview_menus_set_state (window);
    log_repaint (window);
    if (window->loginfovisible)
 	   RepaintLogInfo (window);
@@ -940,6 +939,7 @@ logview_menus_set_state (LogviewWindow *window)
 	logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
 	logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", (window->curlog != NULL));
 	logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", (window->curlog != NULL));
+	logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", (window->curlog != NULL));
 }
 
 static int
