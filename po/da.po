@@ -1,10 +1,10 @@
 # Danish Translation of gnome-utils.
-# Copyright (C) 1999, 2000, 01, 02, 03 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 01, 02, 03, 04 Free Software Foundation, Inc.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
 # Kim Schulz <kim@schulz.dk>, 1999.
 # Birger Langkjer <birger.langkjer@image.dk>, 1999.
 # Keld Simonsen <keld@dkuug.dk>, 2000-2001.
-# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 #
 # Konventioner:
 #
@@ -13,20 +13,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.99\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
-"PO-Revision-Date: 2003-11-20 20:34+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-23 22:35+0100\n"
+"PO-Revision-Date: 2004-02-23 22:37+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
 msgstr "Tilbehør"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "Ordbogsopslag"
 
@@ -58,8 +59,8 @@ msgstr "_Vis ordbog"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "Kan ikke forbinde med server!"
 
@@ -169,7 +170,7 @@ msgstr "Indtast et ord eller vælg et fra listen nedenfor"
 msgid "Look Up for a Word"
 msgstr "Slå et ord op"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "_Slå op"
 
@@ -178,85 +179,94 @@ msgstr "_Slå op"
 msgid "Error invoking query: %s"
 msgstr "Fejl ved udførsel af forespørgsel: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "Indstillinger for ordbog"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "Smart _opslag"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "For_valgt server"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "Nulstil servernavn til standardnavn"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "Forv_algt port"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "Nulstil port til standardværdi"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "Serverindtastning"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "Indtast servernavnet"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "Portindtastning"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "Indtast portnummeret"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "_Database:"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "_Forvalgt strategi:"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "Søg i alle databaser"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "Database"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "Databasenavn"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "Forvalgt strategi"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
+"Der opstod en fejl ved visning af hjælp: \n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -713,13 +723,12 @@ msgstr ""
 "Kontakt systemadministratoren for at få skriverettigheder."
 
 #: gfloppy/src/main.c:216
-#, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "Kan ikke åbne enheden %s, formatering kan ikke fortsætte."
+msgstr "Kan ikke nogen enhed, formatering kan ikke fortsætte."
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 eller /dev/fd0"
 
 #: gfloppy/src/main.c:394
 #, c-format
@@ -743,7 +752,7 @@ msgid "DEVICE"
 msgstr "ENHED"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
@@ -751,7 +760,7 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
-"Disketten er blevet formateret, men <b>%d ugyldig blokke</b> (ud af %d) er "
+"Disketten er blevet formateret, men <b>%d ugyldig blok</b> (ud af %d) er "
 "blevet fundet og markeret."
 msgstr[1] ""
 "Disketten er blevet formateret, men <b>%d ugyldig blokke</b> (ud af %d) er "
@@ -783,29 +792,27 @@ msgstr "Søg efter filer på disken"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:99
 msgid "Image/label border"
-msgstr ""
+msgstr "Billed-/etiketkant"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Width of border around the label and image in the alert dialog"
-msgstr ""
+msgstr "Bredden af kanten rundt om etiketten og billedet i meddelelsesvinduet"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
-#, fuzzy
 msgid "Alert Type"
-msgstr "Vælg type"
+msgstr "Meddelelsestype"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "The type of alert"
-msgstr ""
+msgstr "Meddelelsestypen"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:118
-#, fuzzy
 msgid "Alert Buttons"
-msgstr "_Fokuserbare knapper"
+msgstr "Knapper"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "The buttons shown in the alert dialog"
-msgstr ""
+msgstr "De knapper der vises i meddelelsesvinduet"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -824,26 +831,23 @@ msgid "_Save Results As..."
 msgstr "_Gem resultater som..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
-#, fuzzy
 msgid "Could not open help document."
-msgstr "Kunne ikke åbne hjælpedokument"
+msgstr "Kunne ikke åbne hjælpedokument."
 
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Er du sikker på at du ønsker at åbne %d dokument?"
+msgstr[1] "Er du sikker på at du ønsker at åbne %d dokumenter?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
-msgstr[0] ""
-"Dette vil åbne %d forskellige filer. Er du sikker på at du vil gøre det?"
-msgstr[1] ""
-"Dette vil åbne %d forskellige filer. Er du sikker på at du vil gøre det?"
+msgstr[0] "Dette vil åbne %d separat vindue."
+msgstr[1] "Dette vil åbne %d separate vinduer."
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
@@ -860,27 +864,26 @@ msgstr "Der er ikke nogen installeret fremviser der kan vise dokumentet."
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Er du sikker på du ønsker at åbne %d mappe?"
+msgstr[1] "Er du sikker på du ønsker at åbne %d mapper?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
-msgstr "Kunne ikke åbne mappen \"%s\""
+msgstr "Kunne ikke åbne mappen \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
 msgstr "Filhåndteringen Nautilus kører ikke."
 
 #: gsearchtool/gsearchtool-callbacks.c:612
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Kunne ikke flytte \"%s\" til papirkurven."
 
 #: gsearchtool/gsearchtool-callbacks.c:615
-#, fuzzy
 msgid "The document does not exist."
-msgstr "Startmappe eksisterer ikke."
+msgstr "Dokumentet eksisterer ikke."
 
 #: gsearchtool/gsearchtool-callbacks.c:652
 #, c-format
@@ -918,44 +921,40 @@ msgid "Save Search Results As..."
 msgstr "Gem søgeresultater som..."
 
 #: gsearchtool/gsearchtool-callbacks.c:1184
-#, fuzzy
 msgid "Could not save document."
-msgstr "Kunne ikke gemme dokumentet \"\" som %s"
+msgstr "Kunne ikke gemme dokument."
 
 #: gsearchtool/gsearchtool-callbacks.c:1186
-#, fuzzy
 msgid "You did not select a document name."
-msgstr "Kunne ikke åbne dokumentet \"%s\"."
+msgstr "Du valgte ikke et dokumentnavn."
 
 #: gsearchtool/gsearchtool-callbacks.c:1212
 #: gsearchtool/gsearchtool-callbacks.c:1307
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
-msgstr "Kunne ikke gemme dokumentet \"\" som %s"
+msgstr "Kunne ikke gemme dokumentet \"%s\" som %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
-msgstr ""
+msgstr "Det valgte dokumentnavn er en mappe."
 
 #: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "Dokumentet \"%s\" eksisterer allerede. Ønsker du at erstatte det?"
 
 #: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
+"Hvis du erstatter en eksisterende fil, vil filens indhold blive overskrevet."
 
 #: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
-msgstr ""
+msgstr "_Erstat"
 
 #: gsearchtool/gsearchtool-callbacks.c:1310
-#, fuzzy
 msgid "You may not have write permissions to the document."
-msgstr ""
-"Du har muligvis ikke skriverettigheder til dokumentet. Dokumentet er ikke "
-"gemt."
+msgstr "Du har muligvis ikke skriverettigheder til dokumentet."
 
 #: gsearchtool/gsearchtool-support.c:63
 #, c-format
@@ -1038,9 +1037,8 @@ msgid "Name matches regular e_xpression"
 msgstr "Fil passer til _regulært udtryk"
 
 #: gsearchtool/gsearchtool.c:86
-#, fuzzy
 msgid "Show hidden and backup files"
-msgstr "Vis skjulte filer og mapper"
+msgstr "Vis skjulte filer og sikkerhedskopier"
 
 #: gsearchtool/gsearchtool.c:87
 msgid "Follow symbolic links"
@@ -1063,17 +1061,17 @@ msgid "No Files Found"
 msgstr "Ingen filer fundet"
 
 #: gsearchtool/gsearchtool.c:541
-#, fuzzy, c-format
+#, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
-msgstr[0] "%d filer fundet"
+msgstr[0] "%d fil fundet"
 msgstr[1] "%d filer fundet"
 
 #: gsearchtool/gsearchtool.c:545
-#, fuzzy, c-format
+#, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
-msgstr[0] "%d filer fundet"
+msgstr[0] "%d fil fundet"
 msgstr[1] "%d filer fundet"
 
 #: gsearchtool/gsearchtool.c:651
@@ -1133,19 +1131,16 @@ msgstr ""
 "... For mange fejl til at vise ..."
 
 #: gsearchtool/gsearchtool.c:1312
-#, fuzzy
 msgid "Error while searching for files."
-msgstr "Fejl under søgning efter filer"
+msgstr "Fejl under søgning efter filer."
 
 #: gsearchtool/gsearchtool.c:1353
-#, fuzzy
 msgid "Error parsing the search command."
-msgstr "Fejl ved fortolkning af søgekommandoen"
+msgstr "Fejl ved fortolkning af søgekommandoen."
 
 #: gsearchtool/gsearchtool.c:1376
-#, fuzzy
 msgid "Error running the search command."
-msgstr "Fejl ved kørsel af søgekommandoen"
+msgstr "Fejl ved kørsel af søgekommandoen."
 
 #: gsearchtool/gsearchtool.c:1472
 msgid "Search Rule Value Entry"
@@ -1155,87 +1150,86 @@ msgstr "Søgeregelværdi"
 msgid "Enter a value for search rule"
 msgstr "Indtast en værdi for søgereglen"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klik for at fjerne reglen '%s'"
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "T_ilgængelige indstillinger:"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "Søgeregelmenu"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "Vælg en søgeregel fra menuen"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "S_øgeresultater:"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "Navn"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "Størrelse"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "Ændringstidspunkt"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "_Navn indeholder:"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr "Navn indeholder-indtastning"
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "Indtast det filnavn du ønsker at søge efter"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr "Navn indeholder-indtastning"
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "_Kig i mappen:"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "Gennemse"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "Kig i mappe-indtastning"
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1846 gsearchtool/gsearchtool.c:1847
 msgid "Enter the folder name where you want to start the search"
 msgstr "Indtast navnet på mappen hvor du ønsker at begynde søgningen"
+
+#: gsearchtool/gsearchtool.c:1847
+msgid "Look in Folder Entry"
+msgstr "Kig i mappe-indtastning"
 
 #: gsearchtool/gsearchtool.c:1865
 msgid "Show more _options"
 msgstr "Vis flere _indstillinger"
 
 #: gsearchtool/gsearchtool.c:1875
-#, fuzzy
 msgid "Show more options"
-msgstr "Vis flere _indstillinger"
+msgstr "Vis flere indstillinger"
 
 #: gsearchtool/gsearchtool.c:1875
 msgid "Expands or collapses a list of search options."
-msgstr ""
+msgstr "Udvider eller sammenfolder en liste af søgemuligheder."
 
 #: gsearchtool/gsearchtool.c:1922
 msgid "Click to Start the search"
@@ -1274,13 +1268,25 @@ msgstr "Handlinger"
 msgid "_Add"
 msgstr "_Tilføj"
 
+#: logview/actions.c:162
+msgid "Add an action"
+msgstr "Tilføj en handling"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "_Redigér"
 
+#: logview/actions.c:169
+msgid "Edit an action"
+msgstr "Redigér en handling"
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "_Fjern"
+
+#: logview/actions.c:176
+msgid "Remove an action"
+msgstr "Fjern en handling"
 
 #: logview/actions.c:263
 #, c-format
@@ -1323,6 +1329,54 @@ msgstr "handling at udføre når reg. udtryk findes"
 #: logview/actions.c:515
 msgid "description"
 msgstr "beskrivelse"
+
+#: logview/actions.c:651
+msgid "Edit Action"
+msgstr "Redigér handling"
+
+#: logview/actions.c:687
+msgid "_Tag:"
+msgstr "_Mærke:"
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr "Mærke der indentificerer logfilen."
+
+#: logview/actions.c:705
+msgid "_Log name:"
+msgstr "_Lognavn:"
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr "Regulært udtryk der passer til lognavnet."
+
+#: logview/actions.c:724
+msgid "_Process:"
+msgstr "_Proces:"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr "Regulært udtryk der passer til procesdelen af beskeden."
+
+#: logview/actions.c:743
+msgid "_Message:"
+msgstr "_Besked:"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr "Regulært udtryk der passer til beskeden."
+
+#: logview/actions.c:762
+msgid "_Action:"
+msgstr "_Handling:"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
+"Handling som udføres hvis alle foregående regulære udtryk passer. Dette "
+"udføres med systemkommandoen: system(handling)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1408,7 +1462,7 @@ msgid "<No log loaded>"
 msgstr "<Ingen log indlæst>"
 
 #: logview/info.c:183
-#, fuzzy, c-format
+#, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld byte"
@@ -1665,6 +1719,7 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "For mange logfiler til at overvåge. Luk en og prøv igen."
 
 #: logview/monitor.c:298 logview/monitor.c:335
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list er NULL\n"
 
@@ -1673,6 +1728,7 @@ msgid "Monitoring Logs..."
 msgstr "Overvåger logfiler..."
 
 #: logview/monitor.c:643
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr "ÆNDRET!\n"
 
@@ -1705,66 +1761,6 @@ msgstr "Loglinjedetaljer"
 msgid "%B %e %X"
 msgstr "%e. %B %X"
 
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "Animationsfilen mangler eller er ugyldig: %s"
-
-#~ msgid "One File Found"
-#~ msgstr "Én fil fundet"
-
-#~ msgid "One file found"
-#~ msgstr "Én fil fundet"
-
-#~ msgid "Open %d documents?"
-#~ msgstr "Åbn %d dokumenter?"
-
-#~ msgid ""
-#~ "This will open %d separate documents. Are you sure you want to do this?"
-#~ msgstr ""
-#~ "Dette vil åbne %d forskellige dokumenter. Er du sikker på at du vil gøre "
-#~ "det?"
-
-#~ msgid "Could not open document \"%s\""
-#~ msgstr "Kunne ikke åbne dokument \"%s\""
-
-#~ msgid "Open %d folders?"
-#~ msgstr "Åbn %d mapper?"
-
-#~ msgid ""
-#~ "This will open %d separate folders. Are you sure you want to do this?"
-#~ msgstr ""
-#~ "Dette vil åbne %d forskellige mapper. Er du sikker på at du vil gøre det?"
-
-#~ msgid ""
-#~ "You did not select a document name or the name selected was a folder.  "
-#~ "The document is not saved."
-#~ msgstr ""
-#~ "Du valgte ikke et dokumentnavn eller det valgte navn var en mappe. "
-#~ "Dokumentet er ikke gemt."
-
-#~ msgid "The contents of the file \"%s\" will be lost."
-#~ msgstr "Indholdet af filen \"%s\" vil gå tabt."
-
-#~ msgid "Overwrite an existing file?"
-#~ msgstr "Overskriv en eksisterende fil?"
-
-#~ msgid "Could not save document \"%s\" to %s"
-#~ msgstr "Kunne ikke gemme dokumentet \"%s\" som %s"
-
-#~ msgid "Enter the text"
-#~ msgstr "Indtast teksten"
-
-#~ msgid "_Word: "
-#~ msgstr "_Ord: "
-
-#~ msgid "Headword:"
-#~ msgstr "Hovedord:"
-
-#~ msgid "Sub-number:"
-#~ msgstr "Undernummer:"
-
-#~ msgid "Pronunciation:"
-#~ msgstr "Udtale:"
-
 #~ msgid "Etymology:"
 #~ msgstr "Etymologi:"
 
@@ -1785,1692 +1781,3 @@ msgstr "%e. %B %X"
 
 #~ msgid "Floppy formatter"
 #~ msgstr "Disketteformatering"
-
-#~ msgid "(aborted)"
-#~ msgstr "(afbrudt)"
-
-#~ msgid "Search Errors"
-#~ msgstr "Søgefejl"
-
-#~ msgid "Search for Files Error"
-#~ msgstr "Søg efter filer - fejl"
-
-#~ msgid "File Name Entry"
-#~ msgstr "Filnavnsindtastning"
-
-#~ msgid "Starting folder entry"
-#~ msgstr "Startmappe"
-
-#~ msgid "Additional Options"
-#~ msgstr "Ekstra indstillinger"
-
-#~ msgid "Can't Display Help"
-#~ msgstr "Kan ikke vise hjælp"
-
-#~ msgid "Open %d Files?"
-#~ msgstr "Åbn %d filer?"
-
-#~ msgid "Can't Display Location"
-#~ msgstr "Kan ikke vise sted"
-
-#~ msgid ""
-#~ "Cannot save search results.\n"
-#~ "\"%s\" is a folder."
-#~ msgstr ""
-#~ "Kan ikke gemme søgeresultater.\n"
-#~ "\"%s\" er en mappe."
-
-#~ msgid "File \"%s\" already exists. Overwrite?"
-#~ msgstr "Filen %s eksisterer allerede. Overskriv den?"
-
-#~ msgid "Cannot save search results to the file \"%s\"."
-#~ msgstr "Kan ikke gemme søgeresultater i filen \"%s\"."
-
-#~ msgid "Expander Size"
-#~ msgstr "Udviderpilstørrelse"
-
-#~ msgid "Size of the expander arrow"
-#~ msgstr "Størrelsen af udviderpilen"
-
-#~ msgid "%Y%m%d%H%M%S"
-#~ msgstr "%d%m%Y%H%M%S"
-
-#~ msgid "Log stats"
-#~ msgstr "Logstatus"
-
-#~ msgid "Ac_tions"
-#~ msgstr "_Handlinger"
-
-#~ msgid "Zoom view"
-#~ msgstr "Zoom-visning"
-
-#~ msgid ""
-#~ "Executing arbitrary programs that you downloaded from the network might "
-#~ "be dangerous.\n"
-#~ "\n"
-#~ "Are you sure you want to run `%s'?"
-#~ msgstr ""
-#~ "At køre tilfældige programmer som du har hentet fra netværket, kan være "
-#~ "farligt.\n"
-#~ "\n"
-#~ "Er du sikker på at du vil køre '%s'?"
-
-#~ msgid "Could not access file permissions"
-#~ msgstr "Kunne ikke få adgang til filrettigheder"
-
-#~ msgid "Could not execute the file `%s' due to a permission problem"
-#~ msgstr "Kunne ikke køre filen '%s' pga. et rettighedsproblem"
-
-#~ msgid "Failure at executing `%s'"
-#~ msgstr "Fejl ved kørsel af '%s'"
-
-#~ msgid "It was not possible to open the file `%s'"
-#~ msgstr "Det var ikke muligt at åbne filen '%s'"
-
-#~ msgid "The file `%s' is empty"
-#~ msgstr "Filen '%s' er tom"
-
-#~ msgid "There was an error. `%s' is empty"
-#~ msgstr "Der opstod en fejl, '%s' er tom"
-
-#~ msgid "This is a library and can not be executed"
-#~ msgstr "Dette er et rutinebibliotek og kan ikke køres"
-
-#~ msgid "The file is a core file and can not be executed"
-#~ msgstr "Filen er et hukommelsesdump og kan ikke køres"
-
-#~ msgid "This is an unknown kind of executable"
-#~ msgstr "Dette er en ukendt form for kørbar fil"
-
-#~ msgid ""
-#~ "The executable is for a different platform and can not be executed on "
-#~ "this system"
-#~ msgstr ""
-#~ "Den kørbare fil er beregnet til en anden platform og kan ikke køres på "
-#~ "dette system"
-
-#~ msgid "File is not named"
-#~ msgstr "Fil er ikke navngivet"
-
-#~ msgid "File is _named:"
-#~ msgstr "Fil er _navngivet:"
-
-#~ msgid ""
-#~ "This program is part of the GNOME project. Logview comes with ABSOLUTELY "
-#~ "NO WARRANTY. This is free software, and you are welcome to redistribute "
-#~ "it under the conditions of the GNU General Public Licence. The log icon "
-#~ "is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-#~ msgstr ""
-#~ "Dette program er en del af Gnome-projektet. Logvisning kommer uden NOGEN "
-#~ "SOM HELST GARANTI. Dette er frit programmel, og du er velkommen til at "
-#~ "give det videre under betingelserne angivet i GNU General Public Licence. "
-#~ "Logikonet er udført af Tuomas Kuosmanen (alias tigert)."
-
-#~ msgid "Copyright (C) 1998"
-#~ msgstr "Copyright © 1998"
-
-#~ msgid "GNOME Search Tool"
-#~ msgstr "Filsøgningsværktøj"
-
-#~ msgid ""
-#~ "Client for MIT dictionary server.\n"
-#~ "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
-#~ msgstr ""
-#~ "Klient til MIT-ordbogsserver.\n"
-#~ "Netadresse: http://gdict.dhs.org/, http://www.psilord.com/code/"
-
-#~ msgid "Archive Generator"
-#~ msgstr "Arkivgenerator"
-
-#~ msgid "Create compressed archives containing many files"
-#~ msgstr "Opret komprimerede arkiver der kan indeholde mange filer"
-
-#~ msgid ""
-#~ "Number of files: %d\n"
-#~ "Number of folders: %d"
-#~ msgstr ""
-#~ "Antal filer: %d\n"
-#~ "Antal mapper: %d"
-
-#~ msgid ""
-#~ "No files or folders, drop files or folders\n"
-#~ "above to add them to the archive"
-#~ msgstr ""
-#~ "Ingen filer eller mapper, slip filer eller\n"
-#~ "mapper ovenfor for at tilføje dem til arkivet."
-
-#~ msgid "%s removed"
-#~ msgstr "%s fjernet"
-
-#~ msgid "Failed to create %s"
-#~ msgstr "Kunne ikke oprette %s"
-
-#~ msgid "Archive.tar.gz"
-#~ msgstr "arkiv.tar.gz"
-
-#~ msgid "GNOME Archive Generator"
-#~ msgstr "Gnome-arkivgenerator"
-
-#~ msgid "Drag files in to make archives"
-#~ msgstr "Træk filer for at oprette arkiver"
-
-#~ msgid "All files selected"
-#~ msgstr "Alle filer markeret"
-
-#~ msgid "All files removed"
-#~ msgstr "Alle filer fjernet"
-
-# dækker vist bedre end ental
-#~ msgid "No filename selected"
-#~ msgstr "Ingen filnavne markeret"
-
-#~ msgid "File exists, overwrite?"
-#~ msgstr "Filer eksisterer allerede, overskriv dem?"
-
-#~ msgid "%s created"
-#~ msgstr "%s oprettet"
-
-#~ msgid "No items to archive"
-#~ msgstr "Ingen elementer til arkiv"
-
-#~ msgid "Save Results"
-#~ msgstr "Gem resultater"
-
-#~ msgid "%s added"
-#~ msgstr "%s tilføjet"
-
-#~ msgid "File does not exists"
-#~ msgstr "Filen eksisterer ikke"
-
-#~ msgid "_Add file or folder..."
-#~ msgstr "_Tilføj fil eller mappe..."
-
-#~ msgid "Add a file or folder to archive"
-#~ msgstr "Tilføj en fil eller en mappe til arkivet"
-
-#~ msgid "_Create archive..."
-#~ msgstr "_Opret arkiv..."
-
-#~ msgid "Create a new archive from the items"
-#~ msgstr "Opret et nyt arkiv med de markerede elementer"
-
-#~ msgid "Remove the selected item"
-#~ msgstr "Fjern den valgte fil"
-
-#~ msgid "R_emove All"
-#~ msgstr "Fj_ern alle"
-
-#~ msgid "Remove all items"
-#~ msgstr "Fjern alle filer"
-
-#~ msgid "Drop files here to add them to the archive."
-#~ msgstr "Træk og slip filer her for at tilføje dem til arkivet."
-
-#~ msgid "_Create Archive"
-#~ msgstr "_Opret arkiv"
-
-#~ msgid ""
-#~ "Drag this button to the destination where you want the archive to be "
-#~ "created or press it to pop up a file selection dialog."
-#~ msgstr ""
-#~ "Træk denne knap til destinationen hvor du ønsker arkivet skal oprettes, "
-#~ "eller tryk på den for at åbne filvælgervinduet."
-
-#~ msgid "Cannot find proper icons anywhere!"
-#~ msgstr "Kan ikke finde de rigtige ikoner!"
-
-#~ msgid ""
-#~ "Cannot find the archive (tar) program!\n"
-#~ "This is the program used for creating archives."
-#~ msgstr ""
-#~ "Kan ikke finde arkivprogrammet (tar)!\n"
-#~ "Dette program skal bruges til at oprette arkiverne."
-
-#~ msgid "Gnome Character Map"
-#~ msgstr "Gnome-tegnoversigt"
-
-#~ msgid "De_fault"
-#~ msgstr "St_andard"
-
-#~ msgid "EBad block at block %lu"
-#~ msgstr "Ugyldig blok ved blok %lu"
-
-#~ msgid "Format a Floppy"
-#~ msgstr "Formatér en diskette"
-
-#~ msgid "_Quick format"
-#~ msgstr "H_urtig formatering"
-
-#~ msgid "File name is"
-#~ msgstr "Filnavn er"
-
-#~ msgid "File name is not"
-#~ msgstr "Filnavn er ikke"
-
-#~ msgid "Don't search mounted filesystems"
-#~ msgstr "Søg ikke i monterede filsystemer"
-
-# måske ikke helt optimal
-#~ msgid "Process folder contents depth first"
-#~ msgstr "Søg yderste mapper først"
-
-#~ msgid "Invalid user or group"
-#~ msgstr "Ugyldig bruger eller gruppe"
-
-#~ msgid "Last time modified"
-#~ msgstr "Sidste ændringstidspunkt"
-
-#~ msgid "folder"
-#~ msgstr "mappe"
-
-#~ msgid "program"
-#~ msgstr "program"
-
-#~ msgid "symbolic link"
-#~ msgstr "symbolske henvisning"
-
-#~ msgid ""
-#~ "Cannot perform the search.\n"
-#~ "The Bourne shell was not found\n"
-#~ "It is typically installed as /bin/sh or /usr/bin/sh."
-#~ msgstr ""
-#~ "Kan ikke foretage søgningen.\n"
-#~ "Bournekommandoskallen blev ikke fundet.\n"
-#~ "Den er som regel indstalleret som /bin/sh\n"
-#~ "eller /usr/bin/sh."
-
-#~ msgid "Cannot perform the search. Please specify a search criteria."
-#~ msgstr "Kan ikke udføre søgning. Angiv venligst et søgekriterium."
-
-#~ msgid ""
-#~ "A search is already running.  Please wait for the search to complete or "
-#~ "cancel it."
-#~ msgstr ""
-#~ "En søgning er allerede i gang. Vent til den er færdig eller annullér den."
-
-#~ msgid "Start folder does not exist"
-#~ msgstr "Startmappe eksisterer ikke"
-
-#~ msgid ""
-#~ "Cannot show the search command line. Please specify a search criteria."
-#~ msgstr ""
-#~ "Kan ikke vise kommandolinjen til søgningen. Angiv venligst et "
-#~ "søgekriterium."
-
-# at smække "linje" på bliver ret langt og er unødvendigt
-#~ msgid "Search Command Line"
-#~ msgstr "Søgningskommando"
-
-#~ msgid ""
-#~ "This is the command line that can be used to execute this search\n"
-#~ "from the console.\n"
-#~ "\n"
-#~ "C_ommand:"
-#~ msgstr ""
-#~ "Følgende kommandolinje kan bruges til at udføre søgningen fra en "
-#~ "terminal.\n"
-#~ "\n"
-#~ "K_ommando:"
-
-#~ msgid "Command"
-#~ msgstr "Kommando"
-
-# at smække "linje" på bliver ret langt og er unødvendigt
-#~ msgid "Command Line Entry"
-#~ msgstr "Kommandoindtastning"
-
-#~ msgid "Use this command line to execute the search from console"
-#~ msgstr "Benyt denne kommandolinje til at udføre søgningen fra en terminal"
-
-#~ msgid "No viewer available for this mime type."
-#~ msgstr "Ingen fremviser tilgængelig for denne MIME-type."
-
-#~ msgid "Enabled"
-#~ msgstr "Aktiveret"
-
-#~ msgid "Toggle On/Off to enable/disable the rule"
-#~ msgstr "Aktivér/deaktivér reglen"
-
-#~ msgid "Rules:"
-#~ msgstr "Regler:"
-
-#~ msgid "A_dd Rule:"
-#~ msgstr "_Tilføj regel:"
-
-#~ msgid "Click to Add a Rule"
-#~ msgstr "Klik for at tilføje en regel"
-
-#~ msgid "Click to Start the Search"
-#~ msgstr "Klik for at starte søgningen"
-
-#~ msgid "Click to Stop the Search"
-#~ msgstr "Klik for at stoppe søgningen"
-
-#~ msgid "S_how Command..."
-#~ msgstr "_Vis kommando..."
-
-#~ msgid "Show the command used to perform the search"
-#~ msgstr "Vis den kommando der bruges til at foretage søgningen"
-
-#~ msgid "Save the search results"
-#~ msgstr "Gem søgeresultaterne"
-
-#~ msgid "Sear_ch"
-#~ msgstr "Sø_g"
-
-#~ msgid "Log:"
-#~ msgstr "Log:"
-
-#~ msgid "Switch log"
-#~ msgstr "Skift log"
-
-#~ msgid "About..."
-#~ msgstr "Om..."
-
-#~ msgid "Info about logview"
-#~ msgstr "Info om logviser"
-
-#~ msgid "_Log"
-#~ msgstr "_Log"
-
-#~ msgid "Cannot load required fonts, cannot continue"
-#~ msgstr "Kan ikke indlæse påkrævne skrifttype, kan ikke fortsætte"
-
-#~ msgid "Hide app"
-#~ msgstr "Skjul program"
-
-#~ msgid "hostname column width ( 0 to hide this column ): "
-#~ msgstr "værtsnavn-kolonnebredde (0 for at skjule denne kolonne): "
-
-#~ msgid "Columns"
-#~ msgstr "Kolonner"
-
-#~ msgid "Default strategy"
-#~ msgstr "Forvalgt strategi"
-
-#~ msgid "Format another floppy?"
-#~ msgstr "Formatér en anden diskette?"
-
-#~ msgid "Add..."
-#~ msgstr "Tilføj..."
-
-#~ msgid "Edit..."
-#~ msgstr "Rediger..."
-
-#~ msgid "Remove"
-#~ msgstr "Fjern"
-
-#~ msgid "description:"
-#~ msgstr "beskrivelse:"
-
-#~ msgid "Cannot start the archive (tar) program"
-#~ msgstr "Kan ikke starte arkivprogrammet (tar)"
-
-#~ msgid "Cannot run tar/gtar"
-#~ msgstr "Kan ikke køre tar/gtar"
-
-#~ msgid "Press button to look up any highlighted text in a dictionary"
-#~ msgstr "Tryk for at slå den markerede tekst op i en ordbog"
-
-#~ msgid "Open log..."
-#~ msgstr "Åbn log..."
-
-#~ msgid "Open log"
-#~ msgstr "Åbn log"
-
-#~ msgid "Export log..."
-#~ msgstr "Eksportér log..."
-
-#~ msgid "Export log"
-#~ msgstr "Eksportér log"
-
-#~ msgid "Exit"
-#~ msgstr "Afslut"
-
-#~ msgid "Exit program"
-#~ msgstr "Afslut program"
-
-#~ msgid "Show log stats"
-#~ msgstr "Vis logstatus"
-
-#~ msgid "Zoom"
-#~ msgstr "Zoom"
-
-#~ msgid "Show line info"
-#~ msgstr "Vis linjeinfo"
-
-#~ msgid "Select log events"
-#~ msgstr "Vælg loghændelser"
-
-#~ msgid "Filter log events"
-#~ msgstr "Filtrér loghændelser"
-
-#~ msgid "Run in analog (slide rule) mode"
-#~ msgstr "Kør i analog (regnestoks-) tilstand"
-
-#~ msgid "Shift"
-#~ msgstr "Skift"
-
-#~ msgid "Store"
-#~ msgstr "Gem"
-
-#~ msgid "Recall"
-#~ msgstr "Genkald"
-
-#~ msgid "Sum"
-#~ msgstr "Sum"
-
-#~ msgid "Exchange"
-#~ msgstr "Ombyt"
-
-#~ msgid "_Browse Characters..."
-#~ msgstr "_Gennemse tegn..."
-
-#~ msgid "_Text Toolbar"
-#~ msgstr "_Tekstværktøjslinje"
-
-#~ msgid "View or hide the text toolbar"
-#~ msgstr "Vis eller skjul tekstværktøjslinjen"
-
-#~ msgid "_Statusbar"
-#~ msgstr "_Statuslinje"
-
-#~ msgid "View or hide the statusbar"
-#~ msgstr "Vis eller skjul statuslinjen"
-
-#~ msgid "_Insert at end"
-#~ msgstr "_Indsæt ved slutning"
-
-#~ msgid "Insert every selected character at the end of the text entry"
-#~ msgstr "Indsæt alle valgte tegn i slutningen af teksten"
-
-#~ msgid "Set the buttons to be focusable or not"
-#~ msgstr "Vælg om knapperne kan modtage tastaturfokus"
-
-#~ msgid "Lookup"
-#~ msgstr "Slå op"
-
-#~ msgid "Spell"
-#~ msgstr "Stav"
-
-#~ msgid "_Look Up"
-#~ msgstr "_Slå op"
-
-#~ msgid "_Spell"
-#~ msgstr "_Stavning"
-
-#~ msgid "Spell checker"
-#~ msgstr "Stavekontrol"
-
-#~ msgid "Don't search subdirectories"
-#~ msgstr "Søg ikke i undermapper"
-
-#~ msgid "Results"
-#~ msgstr "Resultater"
-
-#~ msgid "The Gnome Search Tool"
-#~ msgstr "Filsøgningsværktøj til Gnome"
-
-#~ msgid "Logview"
-#~ msgstr "Logvisning"
-
-#~ msgid "Date: "
-#~ msgstr "Dato: "
-
-#~ msgid "Floppy Density:"
-#~ msgstr "Diskettedensitet:"
-
-#~ msgid "The GNOME Archive Generator"
-#~ msgstr "Arkivgeneratoren til Gnome"
-
-#~ msgid "Archive"
-#~ msgstr "Arkiv"
-
-#~ msgid "Set _Server"
-#~ msgstr "Sæt _server"
-
-#~ msgid "Set _Port"
-#~ msgstr "Sæt _port"
-
-#~ msgid "Set the port number"
-#~ msgstr "Angiv portnummeret"
-
-#~ msgid "Show user preferences"
-#~ msgstr "Vis indstillinger"
-
-#~ msgid "The server you specified could not be found."
-#~ msgstr "Den angivne server blev ikke fundet."
-
-#~ msgid "The server could not be found on that port."
-#~ msgstr "Den angivne server blev ikke fundet på den angivne port."
-
-#~ msgid "View or hide the action toolbar"
-#~ msgstr "Vis eller skjul handlingsværktøjslinjen"
-
-#~ msgid ""
-#~ "The server could not be contacted. \n"
-#~ "If you are not connected to the internet please do so."
-#~ msgstr ""
-#~ "Kunne ikke opnå kontakt med serveren.\n"
-#~ "Hvis du ikke er forbundet til internettet, så tilkobl dig venligst."
-
-#~ msgid "Cut to Clipboard"
-#~ msgstr "Klip til klippebordet"
-
-#~ msgid "Copy to Clipboard"
-#~ msgstr "Kopiér til klippebord"
-
-#~ msgid "Paste Clipboard Contents"
-#~ msgstr "Indsæt indholdet af klippebordet"
-
-#~ msgid "Settings"
-#~ msgstr "Indstillinger"
-
-#~ msgid "Server to use, default search strategy, fonts"
-#~ msgstr "Server, forvalgt søgestrategi, skrifttyper"
-
-#~ msgid "Start in directory "
-#~ msgstr "Start i mappen "
-
-#~ msgid "Locate file: "
-#~ msgstr "Find fil: "
-
-#~ msgid "Full find (find)"
-#~ msgstr "Grundig søgning (find)"
-
-#~ msgid "Quick find (locate)"
-#~ msgstr "Hurtig søgning (locate)"
-
-#~ msgid "Command mangled"
-#~ msgstr "Kommando i uorden"
-
-#~ msgid "no project selected"
-#~ msgstr "intet projekt er valgt"
-
-#~ msgid "Today"
-#~ msgstr "I dag"
-
-#~ msgid "Time spent on this project today."
-#~ msgstr "Tid brugt på dette projekt i dag."
-
-#~ msgid "Week"
-#~ msgstr "Uge"
-
-#~ msgid "Time spent on this project this week."
-#~ msgstr "Tid brugt på dette projekt denne uge."
-
-#~ msgid "Month"
-#~ msgstr "Måned"
-
-#~ msgid "Time spent on this project this month."
-#~ msgstr "Tid brugt på dette projekt denne måned."
-
-#~ msgid "Year"
-#~ msgstr "År"
-
-#~ msgid "Time spent on this project this year."
-#~ msgstr "Tid brugt på dette projekt dette år."
-
-#~ msgid "Title"
-#~ msgstr "Titel"
-
-#~ msgid "Project Title"
-#~ msgstr "Projekttitel"
-
-#~ msgid "Description"
-#~ msgstr "Beskrivelse"
-
-#~ msgid "The current diary entry"
-#~ msgstr "Luk nuværende kalenderindgang"
-
-#~ msgid "Estimated Project Start Date"
-#~ msgstr "Anslået startdato for projekt"
-
-#~ msgid "End"
-#~ msgstr "Slut"
-
-#~ msgid "Estimated Project Completion Date"
-#~ msgstr "Anslået slutdato for projekt"
-
-#~ msgid "Due"
-#~ msgstr "Forfald"
-
-#~ msgid ""
-#~ "Due Date: the date by which the project absolutely must be completed by."
-#~ msgstr ""
-#~ "Forfaldsdato: Datoen for hvornår projektet absolut skal være færdiggjort."
-
-#~ msgid "Sizing: How much work it will take to finish this project."
-#~ msgstr ""
-#~ "Størrelse: Hvor meget arbejde det vil tage at afslutte dette projekt."
-
-#~ msgid "Done"
-#~ msgstr "Færdig"
-
-#~ msgid ""
-#~ "Percent Complete: How much of this project has been finished till now."
-#~ msgstr ""
-#~ "Procent færdig: Hvor meget af dette projekt er blevet færdiggjort indtil "
-#~ "nu."
-
-#~ msgid "U"
-#~ msgstr "H"
-
-#~ msgid "Urgency: Does this project need to be done soon, done quickly?"
-#~ msgstr ""
-#~ "Hastende: Skal dette projekt afsluttes snart, eller udføres hurtigt?"
-
-#~ msgid "Imp"
-#~ msgstr "Vkt"
-
-#~ msgid "Importance: How important is this project?"
-#~ msgstr "Vigtighed: Hvor vigtigt er dette projekt?"
-
-#~ msgid "Status"
-#~ msgstr "Status"
-
-#~ msgid "The current status of this project."
-#~ msgstr "Den aktuelle status for dette projekt"
-
-#~ msgid "Low"
-#~ msgstr "Lav"
-
-#~ msgid "Med"
-#~ msgstr "Mellem"
-
-#~ msgid "High"
-#~ msgstr "Høj"
-
-#~ msgid "Not Started"
-#~ msgstr "Ikke startet"
-
-#~ msgid "In Progress"
-#~ msgstr "I gang"
-
-#~ msgid "On Hold"
-#~ msgstr "Afventer"
-
-#~ msgid "Cancelled"
-#~ msgstr "Annulleret"
-
-#~ msgid "project %t started"
-#~ msgstr "projektet %t er startet"
-
-#~ msgid "stopped project %t"
-#~ msgstr "stoppede projektet %t"
-
-#~ msgid "%d:%02d:%02d"
-#~ msgstr "%d:%02d:%02d"
-
-#~ msgid "Elapsed"
-#~ msgstr "Påløbet"
-
-#~ msgid "(empty)"
-#~ msgstr "<tom>"
-
-#~ msgid "Notes"
-#~ msgstr "Noter"
-
-#~ msgid "Task Time"
-#~ msgstr "Opgavetid"
-
-#~ msgid "Bill Status"
-#~ msgstr "Status på fakturering"
-
-#~ msgid "Billable"
-#~ msgstr "Betalbart"
-
-#~ msgid "Bill Rate"
-#~ msgstr "Regningstarif"
-
-#~ msgid "Value"
-#~ msgstr "Værdi"
-
-#~ msgid "Billable Value"
-#~ msgstr "Fakturerbar værdi"
-
-#~ msgid "No Default Value"
-#~ msgstr "Ingen standard-værdi"
-
-#~ msgid "Start Time Fuzziness"
-#~ msgstr "Usikkerhed på starttid"
-
-#~ msgid "Bill"
-#~ msgstr "Fakturér"
-
-#~ msgid "Paid"
-#~ msgstr "Betalt"
-
-#~ msgid "Not Billable"
-#~ msgstr "Ikke fakturerbart"
-
-#~ msgid "No Charge"
-#~ msgstr "Ingen regning"
-
-#~ msgid "Regular"
-#~ msgstr "Normal"
-
-#~ msgid "Overtime"
-#~ msgstr "Overarbejde"
-
-#~ msgid "Double Overtime"
-#~ msgstr "Dobbelt-overarbejde"
-
-#~ msgid "Flat Fee"
-#~ msgstr "Fast honorar"
-
-#~ msgid "Error - Unknown"
-#~ msgstr "Fejl - ukendt"
-
-#~ msgid "unknown token: >>>>"
-#~ msgstr "ukendt enhed: >>>>"
-
-#~ msgid "Error 404 Not Found"
-#~ msgstr "Fejl 404 Ikke fundet"
-
-#~ msgid "The file %s was not found."
-#~ msgstr "Filen %s blev ikke fundet"
-
-#~ msgid "(null)"
-#~ msgstr "<nul>"
-
-#~ msgid "Unkown Error"
-#~ msgstr "Ukendt fejl"
-
-#~ msgid ""
-#~ "Unable to open the file %s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Ude af stand til at åbne filen %s\n"
-#~ "%s"
-
-#~ msgid "New Diary Entry"
-#~ msgstr "Ny indgang i kalender"
-
-#~ msgid "Save HTML To File"
-#~ msgstr "Gem HTML i fil"
-
-#~ msgid "Cannot open logfile %s for append"
-#~ msgstr "Kan ikke åbne logfilen %s til tilføjelse"
-
-#~ msgid "no description"
-#~ msgstr "ingen beskrivelse"
-
-#~ msgid "program started"
-#~ msgstr "program startet"
-
-#~ msgid "program exited"
-#~ msgstr "program afsluttet"
-
-#~ msgid ""
-#~ "There seems to be another GTimeTracker running.\n"
-#~ "Press OK to start GTimeTracker anyway, or press Cancel to quit."
-#~ msgstr ""
-#~ "Det er ud til at en anden GTimeTracker allerede kører.\n"
-#~ "Tryk O.k. for at starte GTimeTracker alligevel eller Annullér for at "
-#~ "afslutte."
-
-#~ msgid "Cannot create pid-file!"
-#~ msgstr "Kan ikke oprette pid-fil!"
-
-#~ msgid "Error"
-#~ msgstr "Fejl"
-
-#~ msgid "Shall I setup a new configuration?"
-#~ msgstr "Skal jeg opsætte en ny konfiguration?"
-
-#~ msgid "Specify geometry"
-#~ msgstr "Angiv geometri"
-
-#~ msgid "Select a project on startup"
-#~ msgstr "Vælg projekt ved opstart"
-
-#~ msgid "PROJECT"
-#~ msgstr "PROJEKT"
-
-#~ msgid "Warning"
-#~ msgstr "Advarsel"
-
-#~ msgid ""
-#~ "GTimeTracker is a combination stop-watch, diary, consultant billing "
-#~ "system and project manager.  You can measure the amount of time you spend "
-#~ "on a task, associate a memo with it, set a billing rate, print an "
-#~ "invoice, as well as track that status of other projects."
-#~ msgstr ""
-#~ "GTimeTracker er en kombination af stopur, kalender, faktureringssystem "
-#~ "for konsulenter og projektadministrator. Du kan måle mængden af tid du "
-#~ "bruger på en opgave, tilknytte et notat til det, sætte en "
-#~ "faktureringspris, udskrive en faktura, samt følge status for andre "
-#~ "projekter."
-
-#~ msgid "New Project..."
-#~ msgstr "Nyt projekt..."
-
-#~ msgid "Reload Configuration File"
-#~ msgstr "Genindlæs konfigurationsfil"
-
-#~ msgid "Do you really want to reload the configuration file?"
-#~ msgstr "Vil du virkelig genindlæse konfigurationsfilen?"
-
-#~ msgid "File cannot be written"
-#~ msgstr "Fil kan ikke skrives"
-
-#~ msgid "Export Current State"
-#~ msgstr "Eksportér nuværende tilstand"
-
-#~ msgid "_New Project..."
-#~ msgstr "_Nyt projekt..."
-
-#~ msgid "_Reload Configuration File"
-#~ msgstr "_Genindlæs konfigurationsfil"
-
-#~ msgid "_Save Configuration File"
-#~ msgstr "_Gem konfigurationsfil"
-
-#~ msgid "_Export Current State"
-#~ msgstr "_Eksportér nuværende tilstand"
-
-#~ msgid "Clear _Daily Counter"
-#~ msgstr "Nulstil _daglig tæller"
-
-#~ msgid "Zero out todays timer by deleting todays time logs"
-#~ msgstr "Nulstil tidstæller for i dag ved at slette dagens tidslogninger"
-
-#~ msgid "_Journal..."
-#~ msgstr "_Journal..."
-
-#~ msgid "Show the timesheet journal for this project"
-#~ msgstr "Vis journalen med tidspunkter for dette projekt"
-
-#~ msgid "New Diary _Entry"
-#~ msgstr "Ny _indgang i kalender"
-
-#~ msgid "Change the current task for this project"
-#~ msgstr "Ændr den igangværende opgave for dette projekt"
-
-#~ msgid "_All Journal..."
-#~ msgstr "_Hele journalen..."
-
-#~ msgid "Show the verbose timesheet journal for this project"
-#~ msgstr "Vis den udførlige tidsjournal for dette projekt"
-
-#~ msgid "_Invoice..."
-#~ msgstr "_Fakturér..."
-
-#~ msgid "Show a sample invoice for this project"
-#~ msgstr "Vis et eksempel på en faktura for dette projekt."
-
-#~ msgid "_Primer..."
-#~ msgstr "_Introduktion..."
-
-#~ msgid "Show a sample introductory primer for designing custom reports"
-#~ msgstr "Viser et eksempel på en introduktion til at designe kunderapporter"
-
-#~ msgid "_New Report..."
-#~ msgstr "_Ny rapport..."
-
-#~ msgid "Define a path to a new GTT phtml report file"
-#~ msgstr "Angiv en sti til en ny GTT phtml rapportfil"
-
-#~ msgid "Start the timer running"
-#~ msgstr "Start med at lade tidstæller køre"
-
-#~ msgid "Sto_p"
-#~ msgstr "Sto_p"
-
-#~ msgid "_Timer Running"
-#~ msgstr "_Tidstæller kører"
-
-#~ msgid "_Reports"
-#~ msgstr "_Rapporter"
-
-#~ msgid "_Timer"
-#~ msgstr "_Tidstæller"
-
-#~ msgid "Reports"
-#~ msgstr "Rapporter"
-
-#~ msgid "Reports/<Separator>"
-#~ msgstr "Rapporter/<Adskiller>"
-
-#~ msgid "empty"
-#~ msgstr "tom"
-
-#~ msgid ""
-#~ "The keyboard and mouse have been idle\n"
-#~ "for %d minutes.  The currently running\n"
-#~ "project (%s - %s)\n"
-#~ "has been stopped.\n"
-#~ "Do you want to restart it?"
-#~ msgstr ""
-#~ "Tastaturet og musen har ligget stille\n"
-#~ "i %d minutter. Det aktuelt kørende\n"
-#~ "projekt (%s - %s)\n"
-#~ "er blevet stoppet.\n"
-#~ "Vil du genstarte det?"
-
-#~ msgid "[GTT]New"
-#~ msgstr "[GTT]Ny"
-
-#~ msgid "Create a New Project..."
-#~ msgstr "Opret et nyt projekt..."
-
-#~ msgid "Reload"
-#~ msgstr "Genindlæs"
-
-#~ msgid "Save Configuration File"
-#~ msgstr "Gem konfigurationsfil"
-
-#~ msgid "Cut Selected Project"
-#~ msgstr "Udklip valgt projekt"
-
-#~ msgid "Paste Project"
-#~ msgstr "Indsæt projekt"
-
-#~ msgid "Journal"
-#~ msgstr "Journal"
-
-#~ msgid "View and Edit Timestamp Logs"
-#~ msgstr "Se og redigér logger af tidsstempler"
-
-#~ msgid "Props"
-#~ msgstr "Egnsk"
-
-#~ msgid "Edit Project Properties..."
-#~ msgstr "Redigér projekt-egenskaber..."
-
-#~ msgid "Timer"
-#~ msgstr "Tidstæller"
-
-#~ msgid "Start/Stop Timer"
-#~ msgstr "Start/stop tidstæller"
-
-#~ msgid "View Calendar"
-#~ msgstr "Vis kalender"
-
-#~ msgid "Prefs"
-#~ msgstr "Opsæt"
-
-#~ msgid "Manual"
-#~ msgstr "Manuelt"
-
-#~ msgid "User's Guide and Manual"
-#~ msgstr "Brugervejledning og -håndbog"
-
-#~ msgid "Quit"
-#~ msgstr "Afslut"
-
-#~ msgid "Quit GTimeTracker"
-#~ msgstr "Afslut tidsforbrugværktøjet"
-
-#~ msgid "Exact Time"
-#~ msgstr "Præcis tid"
-
-#~ msgid "Set how Uncertain the Start Time Is"
-#~ msgstr "Sæt hvor usikker starttiden er"
-
-#~ msgid "Start Fuzz"
-#~ msgstr "Usikkerhed på start"
-
-#~ msgid "Add a new time interval."
-#~ msgstr "Indsæt et nyt tidsinterval."
-
-#~ msgid "Delete Interval"
-#~ msgstr "Slet interval"
-
-#~ msgid "Delete This Interval"
-#~ msgstr "Slet dette opdateringsinterval"
-
-#~ msgid "Edit Interval"
-#~ msgstr "Redigér intervaller"
-
-#~ msgid "Edit the Start & Stop Times"
-#~ msgstr "Redigér Start/stop tider"
-
-#~ msgid "Insert Diary Entry"
-#~ msgstr "Indsæt kalenderindgang"
-
-#~ msgid "Insert a new diary entry above this time interval."
-#~ msgstr "Indsæt en ny kalenderindgang over dette tidsinterval."
-
-#~ msgid "Merge Down"
-#~ msgstr "Flet ned"
-
-#~ msgid "Merge Into Interval Above"
-#~ msgstr "Flet ind i interval ovenover"
-
-#~ msgid "Merge Into Interval Below"
-#~ msgstr "Flet ind i interval nedenunder"
-
-#~ msgid "Merge Up"
-#~ msgstr "Flet op"
-
-#~ msgid "New Interval"
-#~ msgstr "Nyt interval"
-
-#~ msgid "Paste Diary Entry"
-#~ msgstr "Indsæt indgang i kalender"
-
-#~ msgid "Paste a previously cut diary entry."
-#~ msgstr "Indsæt en tidligere udklippet kalenderindgang."
-
-#~ msgid "New File"
-#~ msgstr "Ny fil"
-
-#~ msgid "Print"
-#~ msgstr "Udskriv"
-
-#~ msgid "Refresh"
-#~ msgstr "Genopfrisk"
-
-#~ msgid "Save File"
-#~ msgstr "Gem fil"
-
-#~ msgid "Information"
-#~ msgstr "Information"
-
-#~ msgid ""
-#~ "This function is not yet implemented!\n"
-#~ "Coming Soon, I hope!"
-#~ msgstr ""
-#~ "Denne funktion er ikke implementeret endnu!\n"
-#~ "Jeg håber det kommer snart!"
-
-#~ msgid "Display"
-#~ msgstr "Vis"
-
-#~ msgid "Enter a shell command to be executed when no projects are active."
-#~ msgstr ""
-#~ "Indtast en skalkommando som skal udføres når ingen projekter er aktive."
-
-#~ msgid "Enter a shell command to be executed whenever projects are switched."
-#~ msgstr ""
-#~ "Indtast en skalkommando som skal udføres når der skiftes mellem projekter."
-
-#~ msgid "Entry Stop:"
-#~ msgstr "Elementslutning:"
-
-#~ msgid ""
-#~ "Entry that will be logged when a project starts. Use %t for the project "
-#~ "title, %d for the description, etc. See the manual for more options."
-#~ msgstr ""
-#~ "Indgang der vil blive logget når et projekt starter. Brug %t for "
-#~ "projekttitlen %d for beskrivelsen osv. Se manualen for flere muligheder."
-
-#~ msgid ""
-#~ "Entry that will be logged when the project stops.  Use %t for the porject "
-#~ "title, %d for the project description, etc. See the manual for more "
-#~ "options."
-#~ msgstr ""
-#~ "Indgang der vil blive logget når et projekt stopper. Brug %t for "
-#~ "projekttitlen %d for beskrivelsen osv. Se manualen for flere muligheder."
-
-#~ msgid "Fields"
-#~ msgstr "Felter"
-
-#~ msgid "Idle Seconds:"
-#~ msgstr "Stille sekunder:"
-
-#~ msgid "Inactivity Timeout"
-#~ msgstr "Tidsudløb for inaktivitet"
-
-#~ msgid "Logfile"
-#~ msgstr "Logfil"
-
-#~ msgid "Min Recorded:"
-#~ msgstr "Min nedskrevet:"
-
-#~ msgid "Misc"
-#~ msgstr "Divs."
-
-#~ msgid "No Project Command:"
-#~ msgstr "Ingen projektkommando:"
-
-#~ msgid "Project List Display"
-#~ msgstr "Visning af projektliste"
-
-#~ msgid "Shell"
-#~ msgstr "Skal"
-
-#~ msgid "Shell Commands"
-#~ msgstr "Skalkommandoer"
-
-#~ msgid "Show Current Diary Entry"
-#~ msgstr "Vis aktuelle kalenderindgang"
-
-#~ msgid "Show Estimated Effort"
-#~ msgstr "Vis anslået indsats"
-
-#~ msgid "Show Percent Complete"
-#~ msgstr "Vis procent færdiggjort"
-
-#~ msgid "Show Planned Project End Date"
-#~ msgstr "Vis planlagt slutdato for projekt"
-
-#~ msgid "Show Planned Project Start Date"
-#~ msgstr "Vis planlagt startdato for projekt"
-
-#~ msgid "Show Project Description"
-#~ msgstr "Vis projektbeskrivelse"
-
-#~ msgid "Show Project Due Date"
-#~ msgstr "Vis projektafleveringsdato"
-
-#~ msgid "Show Project Importance"
-#~ msgstr "Vis projektvigtighed"
-
-#~ msgid "Show Project Status"
-#~ msgstr "Vis projektstatus"
-
-#~ msgid "Show Project Urgency"
-#~ msgstr "Vis projekthastende"
-
-#~ msgid "Show Seconds"
-#~ msgstr "Vis sekunder"
-
-#~ msgid "Show Status Bar"
-#~ msgstr "Vis statuslinje"
-
-#~ msgid "Show Sub-Projects"
-#~ msgstr "Vis underprojekter"
-
-#~ msgid "Show Table Header"
-#~ msgstr "Vis tabelhoved"
-
-#~ msgid "Show Time For The Current Diary Entry"
-#~ msgstr "Vis tid for aktuelle kalenderindgang"
-
-#~ msgid "Show Time This Month"
-#~ msgstr "Vis tid i denne måned"
-
-#~ msgid "Show Time This Week"
-#~ msgstr "Vis tid i denne uge"
-
-#~ msgid "Show Time This Year"
-#~ msgstr "Vis tid i dette år"
-
-#~ msgid "Show Time Today"
-#~ msgstr "Vis tid i dag"
-
-#~ msgid "Show Toolbar Icons"
-#~ msgstr "Vis ikoner på værktøjslinjen"
-
-#~ msgid "Show Toolbar Texts"
-#~ msgstr "Vis tekst på værktøjslinjen"
-
-#~ msgid "Show Tooltips"
-#~ msgstr "Vis hjælpetekster"
-
-#~ msgid "Show Total Time Ever"
-#~ msgstr "Vis total tid ialt"
-
-#~ msgid "Show `Cut', `Copy', `Paste'"
-#~ msgstr "Vis 'Klip', 'Kopiér', 'Indsæt'"
-
-#~ msgid "Show `Help'"
-#~ msgstr "Vis 'Hjælp'"
-
-#~ msgid "Show `Journal'"
-#~ msgstr "Vis 'Journal'"
-
-#~ msgid "Show `New'"
-#~ msgstr "Vis 'Ny'"
-
-#~ msgid "Show `Preferences'"
-#~ msgstr "Vis 'Opsætning'"
-
-#~ msgid "Show `Quit'"
-#~ msgstr "Vis 'Afslut'"
-
-#~ msgid "Show `Save', `Reload'"
-#~ msgstr "Vis 'Gem', 'Genindlæs'"
-
-#~ msgid "Show `Timer'"
-#~ msgstr "Vis 'Tidstæller'"
-
-#~ msgid ""
-#~ "Show the 'szing', that is, the estimated amount of work that it will take "
-#~ "to perform this project."
-#~ msgstr ""
-#~ "Vis 'szing', dvs. den anslåede mængde arbejde, det vil tage at udføre "
-#~ "dette projekt."
-
-#~ msgid "Switch Project Command:"
-#~ msgstr "Skift projektkommando:"
-
-#~ msgid ""
-#~ "Switches between projects that happen faster than this will not be logged "
-#~ "(enter the number of seconds)"
-#~ msgstr ""
-#~ "Skift mellem projekter som sker hurtigere end dette, vil ikke blive "
-#~ "logget (indtast antal sekunder)"
-
-#~ msgid ""
-#~ "The current active project will be made inactive after there has been no "
-#~ "keyboard/mouse activity after this number of seconds.  Set to -1 to "
-#~ "disable."
-#~ msgstr ""
-#~ "Det aktive projekt vil blive gjort inaktivt efter at der ikke har været "
-#~ "nogen aktivitet på tastatur eller mus i dette antal sekunder. Sæt til -1 "
-#~ "for at deaktivere."
-
-#~ msgid "Toolbar"
-#~ msgstr "Værktøjslinje"
-
-#~ msgid "Toolbar Segments"
-#~ msgstr "Værktøjslinjesegmenter"
-
-#~ msgid "View Project Fields"
-#~ msgstr "Vis projektfelter"
-
-#~ msgid "            "
-#~ msgstr "            "
-
-#~ msgid "                        "
-#~ msgstr "                        "
-
-#~ msgid "% Complete"
-#~ msgstr "% færdig"
-
-#~ msgid "A title to assign to this project"
-#~ msgstr "En titel til dette projekt"
-
-#~ msgid "Auto-merge Gap:"
-#~ msgstr "Flet automatisk hul:"
-
-#~ msgid "Auto-merge Interval:"
-#~ msgstr "Interval for automatisk indfleting:"
-
-#~ msgid ""
-#~ "Does this item need immediate attention? Note that some urgent tasks "
-#~ "might not be important.  For example, Bill may want you to answer his "
-#~ "email today, but you may have better things to do today."
-#~ msgstr ""
-#~ "Kræver dette punkt øjeblikkelig opmærksomhed? Bemærk at nogen hastende "
-#~ "opgaver ikke behøver at være vigtige. Fx ønsker Peter at du svarer på "
-#~ "hans e-post i dag, men du har måske bedre ting at foretage dig i dag."
-
-#~ msgid "Double-Overtime Rate:"
-#~ msgstr "Tarif for dobbelt-overarbejde:"
-
-#~ msgid "Due Date:"
-#~ msgstr "Afleveringsdato:"
-
-#~ msgid "Flat Fee:"
-#~ msgstr "Fast honorar:"
-
-#~ msgid "Hours to Finish:"
-#~ msgstr "Timer til afslutning:"
-
-#~ msgid ""
-#~ "How important is it to perform this task?  Not everything important is "
-#~ "urgent.  For example, it is important to file a tax return every year, "
-#~ "but you have a lot of time to get ready to do this."
-#~ msgstr ""
-#~ "Hvor vigtigt er det at udføre denne opgave? Ikke alt vigtigt er hastende. "
-#~ "fx er det vigtigt at indsende selvangivelse hvert år, men du har masser "
-#~ "af tid til at komme igang med dette."
-
-#~ msgid ""
-#~ "If the gap between intervals is smaller than this, the intervals will be "
-#~ "merged together."
-#~ msgstr ""
-#~ "Hvis hullet mellem intervaller er mindre end dette, vil intervallerne "
-#~ "blive flettet sammen."
-
-#~ msgid ""
-#~ "If this project is billed for one price no matter how long it takes, "
-#~ "enter the fee here."
-#~ msgstr ""
-#~ "Hvis projektet bliver betalt med én pris, lige meget hvor lang tid det "
-#~ "tager, så indtast honoraret her."
-
-#~ msgid "Importance:"
-#~ msgstr "Vigtighed:"
-
-#~ msgid ""
-#~ "Internal notes about the project that will not be printed on an invoice."
-#~ msgstr ""
-#~ "Interne noter om projektet, der ikke vil blive skrevet på en faktura."
-
-#~ msgid "Intervals smaller than this will be discarded"
-#~ msgstr "Intervaller mindre end dette vil ikke blive behandlet"
-
-#~ msgid "Medium"
-#~ msgstr "Mellem"
-
-#~ msgid "Minimum Interval: "
-#~ msgstr "Minimum interval: "
-
-#~ msgid "Not Set"
-#~ msgstr "Ikke sat"
-
-#~ msgid "Notes:"
-#~ msgstr "Noter:"
-
-#~ msgid "Overtime Rate:"
-#~ msgstr "Tarif for overarbejde:"
-
-#~ msgid "Planned Finish:"
-#~ msgstr "Planlagt færdiggørelse:"
-
-#~ msgid "Planned Start:"
-#~ msgstr "Planlagt start:"
-
-#~ msgid "Planning"
-#~ msgstr "Planlægning"
-
-#~ msgid "Project"
-#~ msgstr "Projekt"
-
-#~ msgid "Project Description:"
-#~ msgstr "Projektbeskrivelse:"
-
-#~ msgid "Project Title:"
-#~ msgstr "Projekttitel:"
-
-#~ msgid "Rates"
-#~ msgstr "Tariffer"
-
-#~ msgid "Regular Rate:"
-#~ msgstr "Normaltarif:"
-
-#~ msgid "Status:"
-#~ msgstr "Status:"
-
-#~ msgid "The dollars per hour charged for overtime work on this project."
-#~ msgstr "Kroner pr time for overarbejde på dette projekt."
-
-#~ msgid "The dollars per hour normally charged for this project."
-#~ msgstr "Kroner pr time for normalt arbejde på dette projekt."
-
-#~ msgid "The over-overtime rate (overtime on Sundays, etc.)"
-#~ msgstr "Tarif for ekstra overarbejde (overarbejde på søndage osv.)"
-
-#~ msgid "Time below which an interval is merged with its neighbors"
-#~ msgstr "Tidsrum under hvilet et interval flettes ind med sine naboer."
-
-#~ msgid "Urgency:"
-#~ msgstr "Hastende:"
-
-#~ msgid "What is the status of this project?"
-#~ msgstr "Hvad er status på dette projekt?"
-
-#~ msgid "a short description that will be printed on the invoice."
-#~ msgstr "en kort beskrivelse som vil blive skrevet på fakturaen."
-
-#~ msgid "seconds"
-#~ msgstr "sek."
-
-#~ msgid "Add a new time interval"
-#~ msgstr "Tilføj et nyt tidsinterval"
-
-#~ msgid "Cut Entry & _Times"
-#~ msgstr "Udklip indgang & _tider"
-
-#~ msgid "Delete the diary entry only, keep the time intervals"
-#~ msgstr "Slet kun kalenderindgangen, behold tidsintervallerne"
-
-#~ msgid "Delete the diary entry, and the time intervals below it."
-#~ msgstr "Slet kalenderindgangen, og tidsintervallerne under den."
-
-#~ msgid "Edit the diary entry and other task properties."
-#~ msgstr "Redigér kalenderindgangen og andre opgaveprioriteter."
-
-#~ msgid "Insert a new diary entry above this one."
-#~ msgstr "Indsæt en ny kalenderindgang over denne."
-
-#~ msgid "New Time Interval"
-#~ msgstr "Nyt opdateringsinterval"
-
-#~ msgid "_Cut Diary Entry"
-#~ msgstr "_Udklip kalenderindgangen"
-
-#~ msgid "_Edit Diary Entry"
-#~ msgstr "_Redigér kalenderindgang"
-
-#~ msgid "_New Diary Entry"
-#~ msgstr "_Ny kalenderindgang"
-
-#~ msgid "_Paste Diary Entry"
-#~ msgstr "_Indsæt kalenderindgang"
-
-#~ msgid "A set of private notes that will not be printed on an invoice."
-#~ msgstr "Et sæt af private noter der ikke vil blive skrevet på en faktura."
-
-#~ msgid "A short description to attach to this block of time."
-#~ msgstr "En kort beskrivelse knyttet til denne tidsblok."
-
-#~ msgid "Billable:"
-#~ msgstr "Betalbart:"
-
-#~ msgid "Billing Block:"
-#~ msgstr "Regningsblok:"
-
-#~ msgid "Billing Rate:"
-#~ msgstr "Regningstarif:"
-
-#~ msgid "Billing Status:"
-#~ msgstr "Regningsstatus:"
-
-#~ msgid "Diary Entry Properties"
-#~ msgstr "Indstillinger for kalenderindgang"
-
-#~ msgid "Fee rate to be charged for this task."
-#~ msgstr "Honorartarif som skal tages for denne opgave."
-
-#~ msgid ""
-#~ "How should this task be billed?  \"Billable\" means bill to the customer "
-#~ "in the normal fashion.   \"Not Billable\" means we can't ask for money "
-#~ "for this, don't print on the invoice.   \"No Charge\" means print on the "
-#~ "invoice as 'free/no-charge'."
-#~ msgstr ""
-#~ "Hvordan skal denne opgave faktureres? 'Fakturerbar' betyder fakturér "
-#~ "kunden på normal måde. 'ikke fakturerbar' betyder at vi ikke kan bede om "
-#~ "betaling for dette, må ikke skrives på fakturaen. 'Ingen regning' betyder "
-#~ "skriv på fakturaen som 'gratis'."
-
-#~ msgid ""
-#~ "Is this task ready to be billed to the customer? \"Hold\" means maybe, "
-#~ "but not yet, needs review.   \"Bill\" means print this on the next "
-#~ "invoice.   \"Paid\" means that it should no longer be included on "
-#~ "invoices."
-#~ msgstr ""
-#~ "Er denne opgave klar til at faktureres til kunden? 'Afvent' betyder "
-#~ "måske, men ikke endnu, kræver eftersyn. 'Fakturér' betyder udskriv dette "
-#~ "på den næste faktura. 'Betalt' betyder at det ikke længere bør inkluderes "
-#~ "på fakturaer."
-
-#~ msgid "OverOver"
-#~ msgstr "EkstraOver"
-
-#~ msgid ""
-#~ "The billed unit of time will be rounded to an integer multiple of this "
-#~ "time."
-#~ msgstr ""
-#~ "Den fakturerede tidsenhed vil blive rundet af til et helt antal gange "
-#~ "denne tid."
-
-#~ msgid "minutes"
-#~ msgstr "minutter"
-
-#~ msgid "Do nothing"
-#~ msgstr "Gør ingenting"
-
-#~ msgid "Append it to ->"
-#~ msgstr "Tilføj den til ->"
-
-#~ msgid "Search it in ->"
-#~ msgstr "Søg efter den i ->"
-
-#~ msgid "Edit it"
-#~ msgstr "Ændr det"
-
-#~ msgid "List"
-#~ msgstr "Liste"
-
-#~ msgid "Grid"
-#~ msgstr "Gitter"
-
-#~ msgid "Monitor"
-#~ msgstr "Overvåg"
-
-#~ msgid "Concat"
-#~ msgstr "Sammenføj"
-
-#~ msgid "'%s' document has been modified; do you wish to save it ?"
-#~ msgstr "Dokumentet '%s' er ændret; vil du gemme det?"
-
-#~ msgid "GColorsel was unable to paste colors from the clipboard."
-#~ msgstr "GColorsel kunne ikke indsætte farver fra klippebordet."
-
-#~ msgid "Please select a file document before."
-#~ msgstr "Venligst vælg et fildokument først."
-
-#~ msgid ""
-#~ "I can't execute this action. Check that :\n"
-#~ "\n"
-#~ "1. You have associated an action with this event.\n"
-#~ "2. The associated document still exists.\n"
-#~ "3. The type of the associated document.\n"
-#~ "\n"
-#~ "Go to preferences, in the edit menu."
-#~ msgstr ""
-#~ "Kan ikke udføre denne handling. Tjek at:\n"
-#~ "\n"
-#~ "1. Du har associeret en handling med denne hændelse.\n"
-#~ "2. Det associerede dokument stadig eksisterer.\n"
-#~ "3. Typen på det associerede dokument er rigtig.\n"
-#~ "\n"
-#~ "Gå til indstillinger, i 'Redigér'-menuen."
-
-#~ msgid "GColorsel"
-#~ msgstr "Farvevælger"
-
-#~ msgid "Add ->"
-#~ msgstr "Tilføj ->"
-
-#~ msgid "Add all ->"
-#~ msgstr "Tilføj alle ->"
-
-#~ msgid "Available documents"
-#~ msgstr "Tilgængelige dokumenter"
-
-#~ msgid "Connect to"
-#~ msgstr "Forbind til"
-
-#~ msgid "Create a document"
-#~ msgstr "Opret dokument"
-
-#~ msgid "Create views"
-#~ msgstr "Opret visninger"
-
-#~ msgid "Description :"
-#~ msgstr "Beskrivelse:"
-
-#~ msgid ""
-#~ "Please, select the type of document to create.\n"
-#~ "You can choose a short name, do not confuse it with the file name."
-#~ msgstr ""
-#~ "Venligst vælg typen af det dokument du skal oprette.\n"
-#~ "Du kan vælge et kort navn eftersom det er ikke det samme som filnavnet."
-
-#~ msgid "Select source document"
-#~ msgstr "Vælg kildedokument"
-
-#~ msgid "Short name : "
-#~ msgstr "Kort navn: "
-
-#~ msgid ""
-#~ "This document read document from one or more other document. Please, "
-#~ "choose these documents."
-#~ msgstr ""
-#~ "Dette dokumentet læser dokumenter fra et eller flere andre dokumenter. "
-#~ "Vælg disse dokumenter."
-
-#~ msgid ""
-#~ "You can create one or more views for this document. Note that you have to "
-#~ "create at least one view."
-#~ msgstr ""
-#~ "Du kan lave et eller flere visninger for dette dokument. Bemærk at du "
-#~ "skal have mindst en visning."
-
-#~ msgid "Create a new view"
-#~ msgstr "Opretter en ny visning"
-
-#~ msgid "Please, select the type of view you want to create."
-#~ msgstr "Vælg venligst hvilken visningstype til vil oprette."
-
-#~ msgid "Bottom"
-#~ msgstr "Bund"
-
-#~ msgid "Display documents menu (restart required)."
-#~ msgstr "Vis dokumentmenu (kræver genstart)"
-
-#~ msgid "Documents"
-#~ msgstr "Dokumenter"
-
-#~ msgid "DoubleClick in previews:"
-#~ msgstr "Dobbeltklik i forhåndsvisninger:"
-
-#~ msgid "DoubleClick in views:"
-#~ msgstr "Dobbeltklik i visninger:"
-
-#~ msgid "Drop:"
-#~ msgstr "Drop:"
-
-#~ msgid "General"
-#~ msgstr "Generelt"
-
-#~ msgid "Grab:"
-#~ msgstr "Fang:"
-
-#~ msgid "Left"
-#~ msgstr "Venstre"
-
-#~ msgid "MDI (Multiple Document Interface)"
-#~ msgstr "Multidokument"
-
-#~ msgid "Modal"
-#~ msgstr "Modal"
-
-#~ msgid "Mode:"
-#~ msgstr "Tilstand:"
-
-#~ msgid "Notebook"
-#~ msgstr "Notesbog"
-
-#~ msgid "Notebook Tab position:"
-#~ msgstr "Notesbog-faneposition:"
-
-#~ msgid "On ... execute ..."
-#~ msgstr "Ved ... kør ..."
-
-#~ msgid "Right"
-#~ msgstr "Højre"
-
-#~ msgid "Save session on exit."
-#~ msgstr "Gem session ved afslutning."
-
-#~ msgid "Session"
-#~ msgstr "Session"
-
-#~ msgid "Top"
-#~ msgstr "Top"
-
-#~ msgid "Toplevel"
-#~ msgstr "Øverste"
-
-#~ msgid ""
-#~ "Begin\n"
-#~ "Comments :"
-#~ msgstr ""
-#~ "Begynd\n"
-#~ "kommentarer :"
-
-#~ msgid ""
-#~ "End\n"
-#~ "Comments :"
-#~ msgstr ""
-#~ "Slut\n"
-#~ "kommentarer :"
