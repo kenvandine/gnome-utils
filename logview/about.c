@@ -79,6 +79,9 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   if (app != NULL)
 	  gtk_window_set_transient_for (GTK_WINDOW (about_window),
 				   GTK_WINDOW (app));
+  if (logo != NULL)
+    gdk_pixbuf_unref (logo);
+
   gtk_signal_connect (GTK_OBJECT (about_window), "destroy",
 		      GTK_SIGNAL_FUNC (gtk_widget_destroyed),
 		      &about_window);
