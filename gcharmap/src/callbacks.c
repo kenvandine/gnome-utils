@@ -36,7 +36,7 @@ cb_about_click (GtkWidget *widget, gpointer user_data)
 {
     const gchar *authors[] =
     {
-        "Hongli Lai (hongli@telekabel.nl)",
+        "Hongli Lai (h.lai@chello.nl)",
         NULL
     };
     gchar *documenters[] = {
