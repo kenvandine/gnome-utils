@@ -82,6 +82,7 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		GtkWidget *hbox;
 		GtkWidget *vbox;
 		GtkWidget *but;
+		GtkWidget *first_button;
 		GtkWidget *butframe;
 		GtkWidget *butbox;
 		
@@ -89,8 +90,9 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
-		gnome_dialog_button_connect (GNOME_DIALOG (w), 0, 
-																 GTK_SIGNAL_FUNC(cancel_callback), NULL);
+		gnome_dialog_button_connect (GNOME_DIALOG (w), 0,
+					     GTK_SIGNAL_FUNC(cancel_callback),
+					     NULL);
 		
 		hbox = gtk_hbox_new(FALSE, 0);
 		vbox = gtk_vbox_new(FALSE, 0);
@@ -104,15 +106,21 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		gtk_container_set_border_width(GTK_CONTAINER(butbox), GNOME_PAD);
 		gtk_frame_set_shadow_type(GTK_FRAME(butframe), GTK_SHADOW_ETCHED_IN);
 				
+		first_button = NULL;
 		
 		for(i=0; i< max_choice; i++)
 		{
-			char *x=(char *)items[2*i];
-			char *y=(char *)items[2*i+1];
-			char *p=g_malloc(strlen(x)+strlen(y)+10);
-			sprintf(p, "%s  -   %s", x, y);
+			char *x = (char *)items[2*i];
+			char *y = (char *)items[2*i+1];
+			char *p;
+
+			p = g_strdup_printf("%s  -   %s", x, y);
 			but=gtk_button_new_with_label(p);
 			g_free(p);
+
+			if (first_button == NULL)
+				first_button = but;
+
 			gtk_box_pack_start(GTK_BOX(butbox), but, TRUE, TRUE, 0);
 			gtk_signal_connect(GTK_OBJECT(but), "clicked",
 			GTK_SIGNAL_FUNC(okayed), GUINT_TO_POINTER(i));
@@ -128,6 +136,8 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 			TRUE, TRUE, GNOME_PAD);
 		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 		gtk_widget_show_all(w);
+		if (first_button != NULL)
+			gtk_widget_grab_focus (first_button);
 		gtk_main();
 		return 0;
 	}

@@ -139,6 +139,7 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 					GNOME_STOCK_BUTTON_CANCEL, NULL);
 		GtkWidget *hbox, *vbox, *sw;
 
+		gnome_dialog_set_default(GNOME_DIALOG(w), 0);
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
 

@@ -325,9 +325,9 @@ parse_rc (void)
 	    return 0;		/* step (b) failed, use default values */
 
 	if (tempptr[0] == '\0' || lastch (tempptr) == '/')
-	    sprintf (str, "%s%s", tempptr, DIALOGRC);
+	    g_snprintf (str, sizeof(str), "%s%s", tempptr, DIALOGRC);
 	else
-	    sprintf (str, "%s/%s", tempptr, DIALOGRC);
+	    g_snprintf (str, sizeof(str), "%s/%s", tempptr, DIALOGRC);
 
 	if ((rc_file = fopen (str, "rt")) == NULL)
 	    return 0;		/* step (b) failed, use default values */

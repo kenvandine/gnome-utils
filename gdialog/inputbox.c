@@ -59,6 +59,7 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 		GtkWidget *vbox;
 		GtkWidget *ibox;
 
+		gnome_dialog_set_default (GNOME_DIALOG (w), 0);
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
 
@@ -72,6 +73,7 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 		input = gtk_entry_new();
 		if(init)
 			gtk_entry_set_text(GTK_ENTRY(input),init);
+		gnome_dialog_editable_enters (GNOME_DIALOG (w), GTK_EDITABLE (input));
 			
 		gtk_container_set_border_width(GTK_CONTAINER(ibox), GNOME_PAD);
 			
@@ -89,6 +91,7 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",
 			GTK_SIGNAL_FUNC(okayed), NULL);
 		gtk_widget_show_all(w);
+		gtk_widget_grab_focus (input);
 		gtk_main();
 		return 0;
 	}

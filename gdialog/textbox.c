@@ -55,8 +55,7 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 	WINDOW *dialog, *text;
 
 	if (gnome_mode) {
-		GtkWidget *w = gnome_dialog_new(title,
-					    GNOME_STOCK_BUTTON_OK, NULL);
+		GtkWidget *w;
 		GtkWidget *hbox;
 		GtkWidget *vbox;
 		
@@ -76,6 +75,9 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 			gtk_widget_show(w);
 			return 0;
 		}
+
+		w = gnome_dialog_new(title,
+				     GNOME_STOCK_BUTTON_OK, NULL);
 		
 		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
@@ -116,11 +118,13 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 			gtk_text_insert(GTK_TEXT(text), NULL, NULL, NULL, buf, strlen(buf));
 		}
 		fclose(fp);
+		gtk_editable_set_position(GTK_EDITABLE(text), 0);
 		gtk_signal_connect(GTK_OBJECT(w), "destroy",
 			GTK_SIGNAL_FUNC(cancelled), NULL);
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",
 			GTK_SIGNAL_FUNC(okayed), NULL);
 		gtk_widget_show(w);
+		gtk_widget_grab_focus (text);
 		gtk_main();
 		return 0;
 	}

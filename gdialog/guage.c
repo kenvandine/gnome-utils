@@ -21,6 +21,10 @@
 #include "dialog.h"
 
 /*
+ * FIXME: The gnome mode of this just doesn't work
+ */
+
+/*
  * Display a guage, or progress meter.  Starts at percent% and
  * reads stdin.  If stdin is not XXX, then it is interpreted as
  * a percentage, and the display is updated accordingly.  Otherwise
@@ -88,7 +92,7 @@ dialog_guage (const char *title, const char *prompt, int height,
 
 	wattrset (dialog, title_attr);
 	wmove (dialog, height - 3, (width / 2) - 2);
-	sprintf (buf, "%3d%%", percent);
+	g_snprintf (buf, sizeof(buf), "%3d%%", percent);
 	waddstr (dialog, buf);
 
 	x = (percent * (width - 8)) / 100;
