@@ -259,7 +259,7 @@ gtt_load_config (const char *fname)
         char s[256];
         int i, num;
         GttProject *proj;
-        int _n, _f, _c, _p, _t, _o, _h, _e;
+        int _n, _f, _c, _j, _p, _t, _o, _h, _e;
 	gboolean got_default;
 	int cur_proj_id = -1;
 
@@ -283,6 +283,7 @@ gtt_load_config (const char *fname)
         _n = config_show_tb_new;
         _f = config_show_tb_file;
         _c = config_show_tb_ccp;
+	_j = config_show_tb_journal;
         _p = config_show_tb_prop;
         _t = config_show_tb_timer;
         _o = config_show_tb_pref;
@@ -324,6 +325,7 @@ gtt_load_config (const char *fname)
         config_show_tb_new = gnome_config_get_bool(GTT"Toolbar/ShowNew=true");
         config_show_tb_file = gnome_config_get_bool(GTT"Toolbar/ShowFile=false");
         config_show_tb_ccp = gnome_config_get_bool(GTT"Toolbar/ShowCCP=false");
+        config_show_tb_journal = gnome_config_get_bool(GTT"Toolbar/ShowJournal=true");
         config_show_tb_prop = gnome_config_get_bool(GTT"Toolbar/ShowProp=true");
         config_show_tb_timer = gnome_config_get_bool(GTT"Toolbar/ShowTimer=true");
         config_show_tb_pref = gnome_config_get_bool(GTT"Toolbar/ShowPref=false");
@@ -455,11 +457,13 @@ gtt_load_config (const char *fname)
         if ((_n != config_show_tb_new) ||
             (_f != config_show_tb_file) ||
             (_c != config_show_tb_ccp) ||
+	    (_j != config_show_tb_journal) ||
             (_p != config_show_tb_prop) ||
             (_t != config_show_tb_timer) ||
             (_o != config_show_tb_pref) ||
             (_h != config_show_tb_help) ||
-            (_e != config_show_tb_exit)) {
+            (_e != config_show_tb_exit)) 
+	{
                 update_toolbar_sections();
         }
 }
@@ -497,6 +501,7 @@ gtt_save_config(const char *fname)
         gnome_config_set_bool(GTT"Toolbar/ShowNew", config_show_tb_new);
         gnome_config_set_bool(GTT"Toolbar/ShowFile", config_show_tb_file);
         gnome_config_set_bool(GTT"Toolbar/ShowCCP", config_show_tb_ccp);
+        gnome_config_set_bool(GTT"Toolbar/ShowJournal", config_show_tb_journal);
         gnome_config_set_bool(GTT"Toolbar/ShowProp", config_show_tb_prop);
         gnome_config_set_bool(GTT"Toolbar/ShowTimer", config_show_tb_timer);
         gnome_config_set_bool(GTT"Toolbar/ShowPref", config_show_tb_pref);

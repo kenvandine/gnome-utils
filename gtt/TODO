@@ -10,8 +10,7 @@ Support some SQL database for logging?
 Create bonobo component to allow tasks to be put into calander (e.g.
 evolution calender).
 
-wire in inactivity timeout.  The stuff in idle-timer.c seems to work,
-but needs to be integrated with gui...
+Inactivity timeout works. Just need to hook it up to preferences dialog ...
 
 
 Later:
@@ -29,7 +28,7 @@ that read of new project list succeeded.
 export is broken with new heirarchy (should be stripped, in favour 
 of 'print'?)
 
-config_show_tb_journal should be configurable/savable
+config_show_tb_journal needs to be wired into prefs.glade
 
 fix annoying cursor shape when dragging projects around
 
@@ -54,6 +53,7 @@ build fancier reports/journals, including
 support for 'minimum billing blocks' is everywhere, exept in the actual invoice
 report. Add it there.
 
-bug: on project properties, clicking 'close' accepts the cahnges,
-instead of rejecting them as it should
+bug: on project properties, clicking 'close' accepts the changes,
+instead of rejecting them. This seems to be a gnome dialog thing.
+I think we need a 'reject' button ... 
 
