@@ -1,10 +1,10 @@
 # Note that this is NOT a relocatable package
-%define ver      @VERSION@
-%define  RELEASE 1
-%define  rel     %{?CUSTOM_RELEASE} %{!?CUSTOM_RELEASE:%RELEASE}
-%define prefix   /usr
+%define  ver      @VERSION@
+%define  RELEASE  1
+%define  rel      %{?CUSTOM_RELEASE} %{!?CUSTOM_RELEASE:%RELEASE}
+%define  prefix   /usr
 
-Summary: GNOME utility programs
+Summary: 	GNOME utility programs
 Name: 		gnome-utils
 Version: 	%ver
 Release: 	%rel
@@ -57,117 +57,16 @@ fi
 
 make prefix=$RPM_BUILD_ROOT%{prefix} sysconfdir=$RPM_BUILD_ROOT/etc install
 
-# ###########################################################################
-#  A collection of scriptlet functions to ease the maintence of rpm spec
-#  files. They are designed to help build dynamic %files sections.
-#
-
-function ProcessLang() {
-  # This will handle the locale stuff inserting the language specific 
-  # tags before each bit. This will use the included find-lang.sh included
-  # in rpm 3.0.xx +
-  #
-  # Usage: ProcessLang <output file> <attr>
-  #
-  # output file -- Where we should append the output.
-  # attr        -- what should be inserted in the %defattr () line before 
-  #                this section.
-  if [ -f /usr/lib/rpm/find-lang.sh ] ; then
-    /usr/lib/rpm/find-lang.sh $RPM_BUILD_ROOT %name
-    if [ -f %{name}.lang ] ; then
-      if [ ! -z "$2" ] ; then
-        sed "s:(644, root, root, 755):$2:g" %{name}.lang >tmp.lang && mv tmp.lang %{name}.lang
-      fi
-      if [ ! -z "$1" ] ; then
-        cat %{name}.lang >> "$1"
-        rm -f %{name}.lang
-      fi
-    fi
-  fi
-}
-
-function ProcessBin() {
-  # Gather up all the executable files. Stripping if requested.
-  # This will not recurse.
-  # 
-  # Usage: ProcessBin <output file> <attr> <strip>
-  #
-  if [ -d $RPM_BUILD_ROOT%{_prefix}/bin ] ; then
-    echo "%defattr (0555, bin, bin)" >>%{name}.files
-    find $RPM_BUILD_ROOT%{_prefix}/bin -type f -print | sed "s:^$RPM_BUILD_ROOT::g" >>%{name}.files
-  fi
-}
-
-function ProcessLib() {
-  # Gather up any libraries.
-  # Usage: ProcessLib <output file> <dir> <type>
-  # Type is either 'runtime' or 'devel'
-  if [ -d $2 ] ; then
-    echo "%defattr (0555, bin, bin)" >>$3
-    case "$3" in
-      runtime)
-       # Grab runtime libraries
-       find $2 -name "*.so.*" -print | sed "s:^$RPM_BUILD_ROOT::g" >>$1
-       ;;
-      devel)
-       find $2 -name "*.so" -print | sed "s:^$RPM_BUILD_ROOT::g" >>$1
-       find $2 -name "*.la" -print | sed "s:^$RPM_BUILD_ROOT::g" >>$1
-       find $2 -name "*.a" -print | sed "s:^$RPM_BUILD_ROOT::g" >>$1
-       find $2 -name "*.sh" -print | sed "s:^$RPM_BUILD_ROOT::g" >>$1
-       ;;
-    esac
-   fi
-}
-
-function ProcessDir() {
-  # Build a list of files in the specified dir sticking
-  # a %defattr line as specified in front of the mess. This is intended
-  # for normal dirs. Use ProcessLib for library dirs
-  # for include dirs. Appending to <output file>.
-  # This will recurse.
-  #
-  # Usage: ProcessDir <dir> <output file> <attr>
-  #
-  if [ -d $1 ] ; then
-   if [ ! -z "$3" ] ; then
-     echo "%defattr ($3)" >>$2
-   fi
-   echo "*** Processing $1"
-   find $1 -type f -print | sed "s:^$RPM_BUILD_ROOT::g" >>$2
-  fi
-}
-###
-## Custom bit
-###
-function BuildFiles() {
-   ProcessBin
-   ProcessLang %{name}.files
-   for i in `find $RPM_BUILD_ROOT%{_prefix}/share -maxdepth 1 -type d -print | \
-    sed "s:^$RPM_BUILD_ROOT%{_prefix}/share::g"` ; do
-    echo $i
-    case $i in
-     /locale)
-      echo "Skipping $i"
-      ;;
-    *)
-      ProcessDir $RPM_BUILD_ROOT%{_prefix}/share$i %{name}.files "0444, bin, bin, 0555"
-      ;;
-    esac
-   done
-   ProcessDir $RPM_BUILD_ROOT/etc %{name}.files "0444, bin, bin, 0555"
-}
-
-############################################################################
-# Now lets build up a %files section.
-if [ -f %{name}.files ] ; then
-  rm -f %{name}.files
-fi
-
-BuildFiles
-
-
 %clean
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.files
-%doc AUTHORS COPYING ChangeLog NEWS README
+%files
+%prefix/bin/*
+%prefix/share/applets/*
+%prefix/share/gfloppy/*
+%prefix/share/gnome/apps/*
+%prefix/share/gnome/help/*
+%prefix/share/gstripchart/*
+%prefix/share/locale/*
+%prefix/share/pixmaps/*
+%doc AUTHORS COPYING ChangeLog NEWS README THANKS
