@@ -177,33 +177,28 @@ static GnomeUIInfo help_menu[] = {
 
 static GnomeUIInfo file_menu[] = {
   {GNOME_APP_UI_ITEM, 
-   N_("Save..."), N_("Write information to disk"), 
+   N_("_Save..."), N_("Write information to disk"), 
    save_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE, 's', 
    GDK_CONTROL_MASK, NULL },
   GNOMEUIINFO_SEPARATOR,
-  {GNOME_APP_UI_ITEM, N_("Exit"), 
-   N_("Quit the application without saving"),
-   delete_event_cb, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'q', 
-   GDK_CONTROL_MASK, NULL },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo prefs_menu[] = {
-  {GNOME_APP_UI_ITEM, N_("Preferences..."), 
+  {GNOME_APP_UI_ITEM, N_("_Preferences..."), 
    N_("Change application preferences"),
    preferences_cb, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 'p', 
+   GDK_CONTROL_MASK, NULL },
+  {GNOME_APP_UI_ITEM, N_("E_xit"), 
+   N_("Quit the application"),
+   delete_event_cb, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'x', 
    GDK_CONTROL_MASK, NULL },
   GNOMEUIINFO_END
 };
 
 static GnomeUIInfo main_menu[] = {
-  GNOMEUIINFO_SUBTREE (N_("File"), file_menu),
-  GNOMEUIINFO_SUBTREE (N_("Preferences"), prefs_menu),
-#define MENU_HELP_POS 2
-  GNOMEUIINFO_SUBTREE (N_("Help"), help_menu),
+  GNOMEUIINFO_SUBTREE (N_("_File"), file_menu),
+#define MENU_HELP_POS 1
+  GNOMEUIINFO_SUBTREE (N_("_Help"), help_menu),
   GNOMEUIINFO_END
 };
 
@@ -244,7 +239,7 @@ static void prepare_app()
 
   gtk_widget_set_events(clist, GDK_BUTTON_PRESS_MASK);
 
-  gtk_clist_set_border(GTK_CLIST(clist), GTK_SHADOW_OUT);
+  gtk_clist_set_shadow_type(GTK_CLIST(clist), GTK_SHADOW_OUT);
   gtk_clist_set_selection_mode(GTK_CLIST(clist), GTK_SELECTION_BROWSE);
   gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(sw),
                                  GTK_POLICY_AUTOMATIC,
@@ -277,8 +272,8 @@ static void popup_about()
                         VERSION, 
                         COPYRIGHT_NOTICE,
                         authors,
-                        0,
-                        0 );
+                        "",
+                        "" );
   
   gtk_widget_show(ga);
 }
@@ -392,6 +387,7 @@ static void reset_list(GtkCList * list)
       total_width += (col_widths[col] + 15);
       ++col;
     }
+    total_width = gtk_clist_columns_autosize(list);
 
     /* set total widget size to the sum of all column widths, 
        with sanity check. */
@@ -473,7 +469,7 @@ static void preferences_cb(GtkWidget *w, gpointer data)
   list = gtk_clist_new_with_titles(2, titles);
   sw = gtk_scrolled_window_new (NULL, NULL);
   gtk_container_add (GTK_CONTAINER (sw), list);
-  gtk_clist_set_border(GTK_CLIST(list), GTK_SHADOW_OUT);
+  gtk_clist_set_shadow_type(GTK_CLIST(list), GTK_SHADOW_OUT);
   gtk_clist_set_selection_mode(GTK_CLIST(list), GTK_SELECTION_BROWSE);
   gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (sw),
                                  GTK_POLICY_AUTOMATIC,
@@ -948,4 +944,3 @@ static void do_action_cb(GtkWidget * menuitem, Action * a)
 
   do_action(a->format, name, tty);
 }
-
