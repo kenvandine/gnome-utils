@@ -169,7 +169,9 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 		draw_shadow(stdscr, y, x, height, width);
 #endif
 	dialog = newwin(height, width, y, x);
+#ifdef WITH_GPM
 	mouse_setbase(x, y);
+#endif
 	keypad(dialog, TRUE);
 
 	/* Create window for text region, used for scrolling text */
@@ -178,7 +180,9 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 	keypad(text, TRUE);
 
 	/* register the new window, along with its borders */
+#ifdef WITH_GPM
 	mouse_mkbigregion(0, 0, height - 2, width, 1, 0, 2 /* not normal */ );
+#endif
 	draw_box(dialog, 0, 0, height, width, dialog_attr, border_attr);
 
 	wattrset(dialog, border_attr);

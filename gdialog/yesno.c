@@ -77,7 +77,9 @@ int dialog_yesno(const char *title, const char *prompt, int height, int width)
 		draw_shadow(stdscr, y, x, height, width);
 #endif
 	dialog = newwin(height, width, y, x);
+#ifdef WITH_GPM
 	mouse_setbase(x, y);
+#endif
 	keypad(dialog, TRUE);
 
 	draw_box(dialog, 0, 0, height, width, dialog_attr, border_attr);

@@ -80,7 +80,9 @@ int dialog_msgbox(const char *title, const char *prompt, int height, int width,
 		draw_shadow(stdscr, y, x, height, width);
 #endif
 	dialog = newwin(height, width, y, x);
+#ifdef WITH_GPM
 	mouse_setbase(x, y);
+#endif
 	keypad(dialog, TRUE);
 
 	draw_box(dialog, 0, 0, height, width, dialog_attr, border_attr);
@@ -106,8 +108,9 @@ int dialog_msgbox(const char *title, const char *prompt, int height, int width,
 		wmove(dialog, height - 2, 1);
 		for (i = 0; i < width - 2; i++)
 			waddch(dialog, ' ');
-
+#ifdef WITH_GPM
 		mouse_mkbutton(height - 2, width / 2 - 4, 6, '\n');
+#endif
 		print_button(dialog, "  OK  ",
 			     height - 2, width / 2 - 4, TRUE);
 

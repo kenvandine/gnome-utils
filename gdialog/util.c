@@ -152,7 +152,9 @@ void dialog_clear(void)
 void init_dialog(void)
 {
 	if (gnome_mode == 0) {
+#ifdef WITH_GPM
 		mouse_open();
+#endif
 #ifdef HAVE_RC_FILE
 #ifndef NO_COLOR_CURSES
 		if (parse_rc() == -1)	/* Read the configuration file */
@@ -201,7 +203,9 @@ void color_setup(void)
  */
 void end_dialog(void)
 {
+#ifdef WITH_GPM
 	mouse_close();
+#endif
 	endwin();
 }
 
@@ -388,7 +392,9 @@ void print_button(WINDOW * win, const char *label, int y, int x, int selected)
 	wattrset(win, selected ? button_active_attr : button_inactive_attr);
 	waddstr(win, "<");
 	temp = strspn(label, " ");
+#ifdef WITH_GPM
 	mouse_mkbutton(y, x, strlen(label) + 2, tolower(label[temp]));
+#endif
 	label += temp;
 	wattrset(win, selected ? button_label_active_attr
 		 : button_label_inactive_attr);

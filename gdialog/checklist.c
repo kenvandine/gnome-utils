@@ -217,7 +217,9 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 		draw_shadow(stdscr, y, x, height, width);
 #endif
 	dialog = newwin(height, width, y, x);
+#ifdef WITH_GPM
 	mouse_setbase(x, y);
+#endif
 	keypad(dialog, TRUE);
 
 	draw_box(dialog, 0, 0, height, width, dialog_attr, border_attr);
@@ -274,8 +276,10 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 	wnoutrefresh(list);
 
 	/* register the new window, along with its borders */
+#ifdef WITH_GPM
 	mouse_mkbigregion(box_y, box_x, list_height + 2, list_width + 2,
 		  item_no, item_x /* the threshold */ , 0 /* normal */ );
+#endif
 
 	if (list_height < item_no) {
 		wattrset(dialog, darrow_attr);

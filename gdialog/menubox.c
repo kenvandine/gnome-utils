@@ -118,7 +118,9 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		draw_shadow(stdscr, y, x, height, width);
 #endif
 	dialog = newwin(height, width, y, x);
+#ifdef WITH_GPM
 	mouse_setbase(x, y);
+#endif
 	keypad(dialog, TRUE);
 
 	draw_box(dialog, 0, 0, height, width, dialog_attr, border_attr);
@@ -175,8 +177,10 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 	wnoutrefresh(menu);
 
 	/* register the new window, along with its borders */
+#ifdef WITH_GPM
 	mouse_mkbigregion(box_y, box_x, menu_height + 2, menu_width + 2,
 	      item_no, item_x /* the threshold */ , 1 /* dirty mode */ );
+#endif
 
 	if (menu_height < item_no) {
 		wattrset(dialog, darrow_attr);

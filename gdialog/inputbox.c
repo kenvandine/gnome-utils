@@ -101,7 +101,9 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 		draw_shadow(stdscr, y, x, height, width);
 #endif
 	dialog = newwin(height, width, y, x);
+#ifdef WITH_GPM
 	mouse_setbase(x, y);
+#endif
 	keypad(dialog, TRUE);
 
 	draw_box(dialog, 0, 0, height, width, dialog_attr, border_attr);
@@ -131,7 +133,9 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 	getyx(dialog, y, x);
 	box_y = y + 2;
 	box_x = (width - box_width) / 2;
+#ifdef WITH_GPM
 	mouse_mkregion(y + 1, box_x - 1, 3, box_width + 2, 'i');
+#endif
 	draw_box(dialog, y + 1, box_x - 1, 3, box_width + 2,
 		 border_attr, dialog_attr);
 
