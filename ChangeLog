@@ -1,3 +1,12 @@
+2003-05-19 Archana Shah <archana.shah@wipro.com>
+
+	* configure.in:  Placed a check for enabling IPv6 support
+	on the system. It gets enabled only if getaddrinfo() and 
+	structure sockaddr_storage are defined on the system and
+	socket of AF_INET6 family can be created.
+
+	* acconfig.h: Defined ENABLE_IPV6.
+
 2003-05-18  Glynn Foster  <glynn.foster@sun.com>
 
 	* configure.in: Release 2.3.2

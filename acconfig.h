@@ -21,6 +21,7 @@
 #undef HAVE_GNOME_PRINT
 #undef HAVE_LINUX_FD_H
 #undef PATH_MESSAGES
+#undef ENABLE_IPV6
 
 /* Define if LibGTop has support for multiple processors. */
 #undef HAVE_LIBGTOP_SMP
