@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /* Simple Double precision calculator using the GnomeCalculator widget
-   Copyright (C) 1998 Free Software Foundation
+   Copyright (C) 1998 Free Software Foundation, Inc.
 
    Author: George Lebl <jirka@5z.com>
 */
@@ -58,7 +58,7 @@ about_cb (GtkWidget *widget, gpointer data)
 	g_free (file);
 	
 	about = gnome_about_new(_("GNOME Calculator"), VERSION,
-				_("(C) 1998 Free Software Foundation"),
+				_("(C) 1998 Free Software Foundation, Inc."),
 				_("Simple double precision calculator similar "
 				  "to xcalc"),
 				(const char **)authors,
