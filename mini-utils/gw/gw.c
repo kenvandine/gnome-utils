@@ -708,6 +708,10 @@ static void clist_selected_cb(GtkCList * clist, gint row,
   GtkEntry * name_entry, * command_entry;
   gchar * name, * command;
 
+  /* clist is evil */
+  if (row >= clist->rows)
+	  return;
+
   name_entry = gtk_object_get_data(GTK_OBJECT(clist), 
                                    NAME_ENTRY_KEY);
   command_entry = gtk_object_get_data(GTK_OBJECT(clist), 
@@ -741,6 +745,10 @@ static void name_changed_cb(GtkEntry * entry, GtkCList * clist)
   gchar * name;
   gint row;
 
+  /* no selection */
+  if (clist->selection == NULL)
+	  return;
+
   name = gtk_entry_get_text(entry);
 
   row = GPOINTER_TO_INT(clist->selection->data);
@@ -752,6 +760,10 @@ static void command_changed_cb(GtkEntry * entry, GtkCList * clist)
 {
   gchar * command;
   gint row;
+
+  /* no selection */
+  if (clist->selection == NULL)
+	  return;
 
   command = gtk_entry_get_text(entry);
   
