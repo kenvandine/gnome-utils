@@ -557,13 +557,19 @@ mon_read_last_page (Log *log)
    GtkTreeIter iter;
    GtkListStore *list;
    GtkTreePath *path;
+   gint num_of_lines_to_display;
  
    log->mon_numlines = 0;
    
    if (!log->total_lines)
        return; 
 
-   for (i = 5; i; --i) {
+   if (log->total_lines < 5)
+       num_of_lines_to_display = log->total_lines;
+   else
+       num_of_lines_to_display = 5;
+
+   for (i = num_of_lines_to_display; i; --i) {
        mon_format_line (buffer, sizeof(buffer), 
                         (log->lines)[log->total_lines - i]);
        list = (GtkListStore *)

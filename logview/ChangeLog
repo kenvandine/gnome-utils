@@ -1,5 +1,11 @@
 2004-07-19  Shakti Sen  <shprasad@novell.com>
 
+	* monitor.c (mon_read_last_page):
+	Fixes the crash if log messages is having less
+	than 5 lines.  Fixes bug #145180
+
+2004-07-19  Shakti Sen  <shprasad@novell.com>
+
 	*monitor.c (monitor_window_destroyed_cb):
 	Remove the timer to fix the crash.
 	Fixes bug #145120
