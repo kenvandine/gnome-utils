@@ -21,6 +21,12 @@
 #include "asciiselect.h"
 #include "gcharmap.xpm"
 
+/* Prototypes */
+
+void main_new (void);
+void main_controls_new (void);
+void main_charmap_new (void);
+
 /* The menus */
 
 GnomeUIInfo file_menu[] = {
