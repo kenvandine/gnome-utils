@@ -1,5 +1,16 @@
 2004-10-28  Vincent Noel  <vnoel@cox.net>
 
+	* misc.c (MakeErrorDialog): Port from gnome_message_box_new to
+	gtk_message_dialog_new.
+
+	* logview.c (logview_help): Use a convenience error function.
+
+	* logrtns.c: Remove prototype.
+
+	* logview.h: 
+	* log_repaint.c: 
+	* monitor.c: Remove useless #define's and #include's.	
+
 	* about.c (AboutShowWindow): use the very convenient
 	gtk_about_show_dialog.
 	(AboutShowWindow): Add a bunch of authors.
