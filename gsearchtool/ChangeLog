@@ -1,5 +1,19 @@
 2004-07-16  Dennis Cranston <dennis_cranston at yahoo com>
 
+	* gsearchtool-support.h:  Add gsearchtool_gconf_get_string().
+	
+	* gsearchtool-support.c:  (get_readable_date):  Remove
+	local date_format_pref and use a global variable.  This
+	way we don't perform a gconf lookup for each file in the
+	search results list.
+	
+	* gsearchtool.c: (spawn_search_command): Set global
+	date_format_pref here.
+	
+	* gsearchtool.h:  Add global date_format_pref.
+	
+2004-07-16  Dennis Cranston <dennis_cranston at yahoo com>
+
 	* gsearchtool-support.c:  (get_readable_date):  Use the
 	/apps/nautilus/preferences/date_format key to determine the
 	format of the date modified field in the search results list.

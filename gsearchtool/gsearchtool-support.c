@@ -472,7 +472,6 @@ gchar *
 get_readable_date (const time_t file_time_raw)
 {
 	struct tm *file_time;
-	gchar *date_format_pref;
 	gchar *format;
 	GDate *today;
 	GDate *file_date;
@@ -480,19 +479,14 @@ get_readable_date (const time_t file_time_raw)
 	gchar *readable_date;
 
 	file_time = localtime (&file_time_raw);
-	
-	/* Base format of date field on nautilus date_format key */
-	date_format_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/date_format");
-	
-	if (date_format_pref != NULL) {
-		if (strcmp(date_format_pref, GSEARCH_DATE_FORMAT_LOCALE) == 0) {
-			g_free (date_format_pref);
+
+	/* Base format of date column on nautilus date_format key */
+	if (search_command.date_format_pref != NULL) {
+		if (strcmp(search_command.date_format_pref, GSEARCH_DATE_FORMAT_LOCALE) == 0) {
 			return gsearchtool_strdup_strftime ("%c", file_time);
-		} else if (strcmp (date_format_pref, GSEARCH_DATE_FORMAT_ISO) == 0) {
-			g_free (date_format_pref);
+		} else if (strcmp (search_command.date_format_pref, GSEARCH_DATE_FORMAT_ISO) == 0) {
 			return gsearchtool_strdup_strftime ("%Y-%m-%d %H:%M:%S", file_time);
 		}
-		g_free (date_format_pref);
 	}
 	
 	file_date = g_date_new_dmy (file_time->tm_mday,

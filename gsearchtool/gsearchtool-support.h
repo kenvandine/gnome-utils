@@ -111,6 +111,9 @@ void
 gsearchtool_gconf_set_boolean 	(const gchar *key, 
 				 const gboolean flag);
 
+char *
+gsearchtool_gconf_get_string 	(const gchar *key);
+
 gchar *
 gsearchtool_unique_filename 	(const gchar *dir,
 				 const gchar *suffix);

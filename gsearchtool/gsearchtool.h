@@ -78,6 +78,7 @@ extern struct _SearchStruct {
 	gchar			*look_in_folder;
 	gchar           	*file_is_named_pattern;
 	gchar 	  		*regex_string;
+	gchar                   *date_format_pref;
 	gboolean		lock;	
 	gboolean		show_hidden_files;
 	gboolean		regex_matching_enabled;

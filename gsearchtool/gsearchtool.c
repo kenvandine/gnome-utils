@@ -1440,6 +1440,12 @@ spawn_search_command (gchar *command)
 	search_command.aborted = FALSE;
 	search_command.running = RUNNING; 
 	search_command.pixbuf_hash = g_hash_table_new (g_str_hash, g_str_equal);
+	
+	/* Get value of nautilus date_format key */
+	if (search_command.date_format_pref !=NULL) {
+		g_free (search_command.date_format_pref);
+	}
+	search_command.date_format_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/date_format");
 
 	gtk_window_set_default (GTK_WINDOW(interface.main_window), interface.stop_button);
 	gtk_widget_show (interface.stop_button);
