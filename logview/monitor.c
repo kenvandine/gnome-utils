@@ -537,7 +537,7 @@ mon_read_last_page (Log *log)
     {
       if (i<0)
 	continue;
-      mon_format_line (buffer, sizeof (buffer), &pg.line[i]);
+      mon_format_line (buffer, sizeof (buffer), &pg.line[i + 1]);
       list = (GtkListStore *)
               gtk_tree_view_get_model (GTK_TREE_VIEW(log->mon_lines));
       gtk_list_store_append (list, &iter);
@@ -597,7 +597,7 @@ mon_read_new_lines (Log *log)
 
   while (TRUE) 
     {
-      for (i=pg.fl;i<pg.ll;i++)
+      for (i=pg.fl;i<=pg.ll;i++)
 	{
 	  mon_format_line (buffer, sizeof (buffer), &pg.line[i]);
 	  gtk_list_store_append (list, &iter);
