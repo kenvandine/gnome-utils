@@ -78,6 +78,8 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
 		
 		RepaintLogInfo (window);
 	}
+
+	gtk_widget_show_all (window->info_text_view);
 	
 	gtk_widget_show_all (window->info_dialog);
 	window->loginfovisible = TRUE;
@@ -97,23 +99,23 @@ RepaintLogInfo (LogviewWindow *window)
    if (!window->curlog)
 	   return;
    
-   tmp = g_strdup_printf("Size: %ld bytes", (long) window->curlog->lstats.size);
+   tmp = g_strdup_printf(_("Size: %ld bytes"), (long) window->curlog->lstats.size);
    size = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf ("Modified: %s", ctime (&(window->curlog)->lstats.mtime));
+   tmp = g_strdup_printf (_("Modified: %s"), ctime (&(window->curlog)->lstats.mtime));
    modified = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf("Start Date: %s", ctime (&(window->curlog)->lstats.startdate));
+   tmp = g_strdup_printf(_("Start Date: %s"), ctime (&(window->curlog)->lstats.startdate));
    start_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf("Last Date: %s", ctime (&(window->curlog)->lstats.enddate));
+   tmp = g_strdup_printf(_("Last Date: %s"), ctime (&(window->curlog)->lstats.enddate));
    last_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf("Number of Lines: %ld", window->curlog->lstats.numlines);
+   tmp = g_strdup_printf(_("Number of Lines: %ld)"), window->curlog->lstats.numlines);
    num_lines = LocaleToUTF8 (tmp);
    g_free (tmp);
    
