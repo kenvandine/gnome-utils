@@ -797,17 +797,66 @@ drag_data_get (GtkWidget          *widget,
 				8, string, strlen (string)+1);
 	g_free (string);
 }
+GtkWidget*
+archive_button_new_with_stock_image (const gchar* text, const gchar* stock_id)
+{
+        GtkWidget *button;
+        GtkStockItem item;
+        GtkWidget *label;
+        GtkWidget *image;
+        GtkWidget *hbox;
+        GtkWidget *align;
+
+        button = gtk_button_new ();
+
+        if (GTK_BIN (button)->child)
+                gtk_container_remove (GTK_CONTAINER (button),
+                                      GTK_BIN (button)->child);
+
+        if (gtk_stock_lookup (stock_id, &item))
+        {
+                label = gtk_label_new_with_mnemonic (text);
+
+                gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
+
+                image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
+                hbox = gtk_hbox_new (FALSE, 2);
+
+                align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+
+                gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
+                gtk_box_pack_end (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+                gtk_container_add (GTK_CONTAINER (button), align);
+                gtk_container_add (GTK_CONTAINER (align), hbox);
+                gtk_widget_show_all (align);
+
+                return button;
+        }
+
+        label = gtk_label_new_with_mnemonic (text);
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
+
+        gtk_misc_set_alignment (GTK_MISC (label), 0.5, 0.5);
+
+        gtk_widget_show (label);
+        gtk_container_add (GTK_CONTAINER (button), label);
+
+        return button;
+}
+
 
 /* Menus */
 static GnomeUIInfo file_menu[] = {
-	GNOMEUIINFO_ITEM_NONE
+        GNOMEUIINFO_ITEM_STOCK 
 		(N_("_Add file or folder..."),
-		 N_("Add a file or folder to the archive"),
-		 add_cb),
-	GNOMEUIINFO_ITEM_NONE
-		(N_("_Create archive..."),
-		 N_("Create a new archive from the items"),
-		 archive_cb),
+                 N_("Add a file or folder to archive"),
+                 add_cb, GTK_STOCK_DND_MULTIPLE),
+
+	{ GNOME_APP_UI_ITEM, N_("_Create archive..."), N_("Create a new archive from the items"), 
+	(gpointer) archive_cb, NULL, NULL, GNOME_APP_PIXMAP_FILENAME, "document-icons/gnome-compressed.png", 
+	0, (GdkModifierType) 0, NULL },
+
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_QUIT_ITEM (quit_cb, NULL),
 	GNOMEUIINFO_END
@@ -842,6 +891,7 @@ init_gui (void)
 	GtkWidget *vbox;
 	GtkWidget *sw;
 	GtkWidget *w;
+	GtkWidget *image;
 	GtkTooltips *tips;
 
 	tips = gtk_tooltips_new ();
@@ -859,6 +909,7 @@ init_gui (void)
 			  G_CALLBACK (quit_cb), NULL);
 
 	/*set up the menu*/
+
         gnome_app_create_menus (GNOME_APP (app), grinder_menu);
 
 	vbox = gtk_vbox_new (FALSE, 5);
@@ -1009,9 +1060,6 @@ main (gint argc, gchar *argv [])
 
 	g_signal_connect (client, "die", G_CALLBACK (die), NULL);
 
-	/* no icon yet */
-	/*gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-meat-grinder.png");*/
-
 	file_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "mc/i-regular.png", TRUE, NULL);
 	if (file_icon == NULL)
 		file_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "nautilus/i-regular.png", TRUE, NULL);
@@ -1032,7 +1080,7 @@ main (gint argc, gchar *argv [])
 	if (folder_icon == NULL)
 		folder_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-unknown.png", TRUE, NULL);
 
-	compress_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-compressed.png", TRUE, NULL);
+	compress_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "document-icons/gnome-compressed.png", TRUE, NULL);
 	if (compress_icon == NULL)
 		compress_icon = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "nautilus/gnome-compressed.png", TRUE, NULL);
 	if (compress_icon == NULL)
