@@ -399,7 +399,7 @@ view_color_list_button_press (GtkCList *clist, GdkEventButton *event,
 	  gtk_clist_thaw (clist);
 	}      
 	
-	menu_view_do_popup (event);
+	menu_view_do_popup (event, VIEW_COLOR_GENERIC (vcl));
 	return FALSE;
       }
     }

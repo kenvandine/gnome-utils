@@ -135,7 +135,7 @@ view_color_grid_button_press (GtkWidget *widget,
 
   if (event->type == GDK_BUTTON_PRESS) {
     if (event->button == 3) {
-      menu_view_do_popup (event);
+      menu_view_do_popup (event, VIEW_COLOR_GENERIC (data));
       return FALSE;
     }
   } else

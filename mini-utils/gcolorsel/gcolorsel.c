@@ -16,7 +16,11 @@
 #include <libgnomeui/gnome-window-icon.h>
 #include <glade/glade.h>
 
-GnomeMDI *mdi;
+#ifdef HAVE_GNOME_APPLET
+#include <applet-widget.h>
+#endif
+
+GnomeMDI *mdi = NULL;
 GtkWidget *event_widget = NULL;
 prefs_t prefs;
 
@@ -88,6 +92,8 @@ mdi_remove_child (GnomeMDI *mdi, MDIColorGeneric *mcg)
   GtkWidget *dia;
   int ret;
   char *str;
+
+  if (mcg->other_views) return TRUE;
 
   if ((IS_MDI_COLOR_FILE (mcg)) && (mcg->modified)) {
 
@@ -479,18 +485,248 @@ actions_views (MDIColor *col)
   actions (0, 0, 0, NULL, col, prefs.on_views, prefs.on_views2);
 }
 
+/*********************** Applet **************************/
+
+#ifdef HAVE_GNOME_APPLET
+
+typedef struct data_t {
+  GtkWidget *applet;
+  
+  GtkWidget *dialog;
+  GtkWidget *view;
+  
+  GtkWidget *button;
+  GtkWidget *arrow;
+  
+  PanelOrientType orient;
+  int size;
+} data_t;
+
+static void
+applet_button_clicked (GtkWidget *widget, data_t *data)
+{
+  GtkAllocation dsize;
+  gint x1, y1, x2, y2, x, y;
+  
+  if (GTK_WIDGET_VISIBLE (data->dialog))
+    gtk_widget_hide (data->dialog);
+  else {
+    
+    dsize = data->dialog->allocation;   
+    gdk_window_get_origin (data->applet->window, &x1, &y1);
+    x2 = x1 + data->applet->allocation.width;
+    y2 = y1 + data->applet->allocation.height;
+    if (data->orient == ORIENT_UP)
+      y = MAX (y1 - dsize.height, 0);
+    else if (data->orient == ORIENT_DOWN)
+      y = MIN (y2, gdk_screen_height () - dsize.height);
+    else
+      y = CLAMP (y1, 0, gdk_screen_height () - dsize.height);
+    if (data->orient == ORIENT_LEFT)
+      x = MAX (x1 - dsize.width, 0);   
+    else if (data->orient == ORIENT_RIGHT)
+      x = MIN (x2, gdk_screen_width () - dsize.width);
+    else
+      x = CLAMP (x1, 0, gdk_screen_width () - dsize.width);
+    gtk_widget_set_uposition (data->dialog, x, y);        
+    
+    gtk_widget_show_all (data->dialog);    
+    gdk_window_raise (data->dialog->window);  
+  }    
+}
+
+static void
+applet_create_dialog (data_t *data)
+{
+  GtkWidget *frame, *box;
+  MDIColorGeneric *mcg;
+  char *buf;
+  GList *list;
+  gboolean load = FALSE;
+  
+  /* Dialog */
+  
+  data->dialog = gtk_window_new (GTK_WINDOW_POPUP);
+  gtk_widget_set_usize (GTK_WIDGET (data->dialog), 300, 250);
+  gtk_widget_set_app_paintable (GTK_WIDGET (data->dialog), TRUE);
+  gtk_widget_size_request (data->dialog, NULL);
+  gtk_widget_realize (data->dialog);
+  
+  /* Frame */
+  
+  frame = gtk_frame_new (NULL);
+  gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
+  gtk_container_add (GTK_CONTAINER (data->dialog), frame);
+
+  /* Box */
+  
+  box = gtk_hbox_new (FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (box), GNOME_PAD_SMALL);
+  gtk_container_add (GTK_CONTAINER (frame), box);
+
+  /* Create document / Or use document if already opened */
+    
+  buf = gnome_util_prepend_user_home ("/.gcolorsel_colors");
+    
+  list = mdi->children;
+  while (list) {
+    if (IS_MDI_COLOR_FILE (list->data))
+      if (! strcmp (MDI_COLOR_FILE (list->data)->filename, buf)) break;
+    
+      list = g_list_next (list);
+  }
+    
+  if (list) 
+    mcg = list->data;
+  else {
+    mcg = MDI_COLOR_GENERIC (mdi_color_file_new ());
+    gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (mcg));
+    
+    mdi_color_file_set_filename (MDI_COLOR_FILE (mcg), buf, TRUE);
+    mdi_color_generic_set_name (mcg, _("User Colors"));
+      
+    load = TRUE;
+  }
+    
+  g_free (buf);
+    
+  /* Create view */
+      
+  data->view = mdi_color_generic_create_other_view (mcg);
+  gtk_box_pack_start_defaults (GTK_BOX (box), data->view);
+ 
+  /* Load document, if needed */
+  
+  if (load)
+    mdi_color_file_load (MDI_COLOR_FILE (mcg), mdi);
+      
+  gnome_mdi_register (mdi, GTK_OBJECT (APPLET_WIDGET (data->applet)));      
+}
+
+static void
+applet_change_pixel_size (AppletWidget *applet, int size, data_t *data)
+{
+  if ((data->orient == ORIENT_UP) || (data->orient == ORIENT_DOWN))
+    gtk_widget_set_usize (data->button, 0, size);
+  else
+    gtk_widget_set_usize (data->button, size, 0); 
+    
+  data->size = size;    
+}
+
+static void
+applet_change_orient (AppletWidget *applet, PanelOrientType o, data_t *data)
+{
+  GtkArrowType arrow_type = GTK_ARROW_UP;
+  
+  printf ("Change orient ...\n");
+  
+  data->orient = o;  
+  
+  switch (o) {
+    case ORIENT_UP:
+      arrow_type = GTK_ARROW_UP; break;    
+    case ORIENT_DOWN:
+      arrow_type = GTK_ARROW_DOWN; break;    
+    case ORIENT_LEFT:
+      arrow_type = GTK_ARROW_LEFT; break;    
+    case ORIENT_RIGHT:  
+      arrow_type = GTK_ARROW_RIGHT; break;    
+  }
+  
+  gtk_arrow_set (GTK_ARROW (data->arrow), arrow_type, GTK_SHADOW_OUT);    
+  
+  applet_change_pixel_size (applet, data->size, data);
+}
+
+static GtkWidget *
+applet_start_new_applet (const char *goad_id, 
+			 const char **params, gint nparams)
+{  
+  data_t *data;
+
+  data = g_new0 (data_t, 1);
+
+  printf ("applet_start_new_applet : %s\n", goad_id);
+  if (strcmp (goad_id, "gcolorsel_applet")) return NULL;
+
+  data->applet = applet_widget_new ("hello_applet");
+  if (! data->applet) 
+    g_error("Can't create applet!\n");
+
+  gtk_signal_connect (GTK_OBJECT (data->applet), "change_pixel_size",
+                      GTK_SIGNAL_FUNC (applet_change_pixel_size), data);    
+                      
+  gtk_signal_connect (GTK_OBJECT (data->applet), "change_orient",
+                      GTK_SIGNAL_FUNC (applet_change_orient), data);                      
+
+  applet_create_dialog (data);    
+  menu_configure_applet (APPLET_WIDGET (data->applet), 
+      VIEW_COLOR_GENERIC (gtk_object_get_data (GTK_OBJECT (data->view), "view_object")));
+                                                                          
+  data->arrow = gtk_arrow_new (GTK_ARROW_UP, GTK_SHADOW_OUT);    
+
+  data->button = gtk_widget_new (GTK_TYPE_BUTTON,
+                                 "visible", TRUE,
+                                 "can_focus", FALSE,
+                                 "child", data->arrow,
+                                 "signal::clicked", applet_button_clicked, data,
+                                 NULL);
+
+  applet_widget_add (APPLET_WIDGET (data->applet), data->button);
+  
+  gtk_widget_show_all (data->button);
+  gtk_widget_show (data->applet);
+
+  applet_widget_send_draw (APPLET_WIDGET (data->applet), TRUE);
+
+  return data->applet;
+}
+
+#endif
+
 /**************************** Main *******************************/
 
 int main (int argc, char *argv[])
 {
+  char *goad_id;
+  gboolean applet_mode = FALSE;
+
   /* Initialize i18n */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
+  
+  if (strstr(argv[0], "gcolorsel_applet")) 
+    applet_mode = TRUE;
+  
+#ifdef HAVE_GNOME_APPLET
+  if (applet_mode)
+    applet_widget_init ("gcolorsel_applet", NULL, argc, argv, NULL, 0, NULL); 
+#else
+  if (applet_mode) 
+    g_error ("This version of GColorsel doesn't support Gnome Applet !"); 
+#endif
 
-  gnome_init ("gcolorsel", VERSION, argc, argv);
+  if (! applet_mode)  
+    gnome_init ("gcolorsel", VERSION, argc, argv);    
+
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-color-browser.png");
   glade_gnome_init ();
+  
+  /* Init GnomeMDI */
+  mdi = GNOME_MDI (gnome_mdi_new ("gcolorsel", _("GColorsel")));
 
+  gtk_signal_connect (GTK_OBJECT (mdi), "destroy",
+		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+  gtk_signal_connect (GTK_OBJECT (mdi), "remove_child", 
+		      GTK_SIGNAL_FUNC (mdi_remove_child), NULL);
+  gtk_signal_connect (GTK_OBJECT (mdi), "app_created",
+		      GTK_SIGNAL_FUNC (app_created), NULL);
+		      
+  /* Init menu/toolbar */
+  set_menu ();
+  gnome_mdi_set_toolbar_template (mdi, toolbar);		      
+		  
   /* For clipboard */
   event_widget = gtk_window_new (GTK_WINDOW_POPUP);
 
@@ -503,26 +739,27 @@ int main (int argc, char *argv[])
 		      GTK_SIGNAL_FUNC (selection_get), NULL);
   gtk_signal_connect (GTK_OBJECT (event_widget), "selection_received",
 		      GTK_SIGNAL_FUNC (selection_received), NULL);
-
-  /* Init GnomeMDI */
-  mdi = GNOME_MDI (gnome_mdi_new ("gcolorsel", _("GColorsel")));
-
-  gtk_signal_connect (GTK_OBJECT (mdi), "destroy",
-		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
-  gtk_signal_connect (GTK_OBJECT (mdi), "remove_child", 
-		      GTK_SIGNAL_FUNC (mdi_remove_child), NULL);
-  gtk_signal_connect (GTK_OBJECT (mdi), "app_created",
-		      GTK_SIGNAL_FUNC (app_created), NULL);
-
+		      
+  /* For gtk_type_from_name in session.c */
+  call_get_type ();		      
+  
   /* Load prefs */
   prefs_load ();
 
-  /* Init menu/toolbar */
-  set_menu ();
-  gnome_mdi_set_toolbar_template (mdi, toolbar);
+#ifdef HAVE_GNOME_APPLET
 
-  /* For gtk_type_from_name in session.c */
-  call_get_type ();
+  if (applet_mode) {
+
+    applet_factory_new ("gcolorsel_applet_factory", NULL, applet_start_new_applet);
+    goad_id = (char *)goad_server_activation_id ();
+
+    printf ("goad_id : %s\n", goad_id);
+
+    applet_widget_gtk_main ();
+    
+    return 0;
+  }
+#endif
 
   /* Load old session if user want that */
   if (prefs.save_session) {

@@ -19,6 +19,7 @@ struct _MDIColorFile {
   MDIColorGeneric mdi_child;
 
   char *filename;
+  gboolean create;
 
   char *header;
   char *comments_begin;
@@ -36,8 +37,8 @@ MDIColorFile *mdi_color_file_new          (void);
 gboolean      mdi_color_file_load         (MDIColorFile *mcf, GnomeMDI *mdi);
 gboolean      mdi_color_file_save         (MDIColorFile *mcf);
 void          mdi_color_file_set_filename (MDIColorFile *mcf, 
-					   const char *filename);
-
+					   const char *filename, gboolean create);
+					   
 END_GNOME_DECLS
 
 #endif

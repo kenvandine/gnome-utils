@@ -186,10 +186,11 @@ msg_flash (GnomeMDI *mdi, char *msg)
 {
   GList *list = mdi->windows;
 
-  while (list) {
-    gnome_app_flash (GNOME_APP (list->data), msg);
-    list = g_list_next (list);
-  }
+  while (list) 
+    if (GNOME_IS_APP (list->data)) {
+      gnome_app_flash (GNOME_APP (list->data), msg);
+      list = g_list_next (list);
+    }
 }
 
 void 
@@ -197,11 +198,12 @@ msg_put (GnomeMDI *mdi, char *msg)
 {
   GList *list = mdi->windows;
 
-  while (list) {
-    gnome_appbar_set_status (GNOME_APPBAR (GNOME_APP (list->data)->statusbar), 
-			     msg);
-    list = g_list_next (list);
-  }
+  while (list) 
+    if (GNOME_IS_APP (list->data)) {
+      gnome_appbar_set_status (GNOME_APPBAR (GNOME_APP (list->data)->statusbar), 
+     			       msg);
+      list = g_list_next (list);
+    }
 }
 
 void 
@@ -209,10 +211,11 @@ msg_push (GnomeMDI *mdi, char *msg)
 {
   GList *list = mdi->windows;
 
-  while (list) {
-    gnome_appbar_push (GNOME_APPBAR (GNOME_APP (list->data)->statusbar), msg);
-    list = g_list_next (list);
-  }
+  while (list) 
+    if (GNOME_IS_APP (list->data)) {
+      gnome_appbar_push (GNOME_APPBAR (GNOME_APP (list->data)->statusbar), msg);
+      list = g_list_next (list);
+    }
 }
 
 void 
@@ -220,11 +223,12 @@ msg_pop (GnomeMDI *mdi)
 {
   GList *list = mdi->windows;
 
-  while (list) {
-    gnome_appbar_pop (GNOME_APPBAR (GNOME_APP (list->data)->statusbar));
-    gnome_appbar_refresh (GNOME_APPBAR (GNOME_APP (list->data)->statusbar));
-    list = g_list_next (list);
-  }
+  while (list) 
+    if (GNOME_IS_APP (list->data)) {
+      gnome_appbar_pop (GNOME_APPBAR (GNOME_APP (list->data)->statusbar));
+      gnome_appbar_refresh (GNOME_APPBAR (GNOME_APP (list->data)->statusbar));
+      list = g_list_next (list);
+    }
 }
 
 void 
@@ -233,15 +237,18 @@ progress_set (GnomeMDI *mdi, float val)
   GList *list = mdi->windows;
   GnomeAppBar *appbar;
 
-  while (list) {
-    appbar = GNOME_APPBAR (GNOME_APP (list->data)->statusbar);
+  while (list) 
+  
+    if (GNOME_IS_APP (list->data)) {
+  
+      appbar = GNOME_APPBAR (GNOME_APP (list->data)->statusbar);
+ 
+      gnome_appbar_set_progress (appbar, val);
 
-    gnome_appbar_set_progress (appbar, val);
-
-    gtk_widget_draw (GTK_WIDGET (gnome_appbar_get_progress (appbar)), NULL);
-
-    list = g_list_next (list);
-  }
+      gtk_widget_draw (GTK_WIDGET (gnome_appbar_get_progress (appbar)), NULL);
+ 
+      list = g_list_next (list);
+    }
 }
 
 void 
@@ -249,10 +256,11 @@ mdi_set_sensitive (GnomeMDI *mdi, gboolean val)
 {
   GList *list = mdi->windows;
 
-  while (list) {
-    gtk_widget_set_sensitive (GTK_WIDGET (GNOME_APP (list->data)), val);
-    list = g_list_next (list);
-  }
+  while (list) 
+    if (GNOME_IS_APP (list->data)) {
+      gtk_widget_set_sensitive (GTK_WIDGET (GNOME_APP (list->data)), val);
+      list = g_list_next (list);
+    }
 }
 
 gpointer 
@@ -304,14 +312,14 @@ mdi_set_tab_pos (GnomeMDI *mdi, int tab_pos)
   GList *list = mdi->windows;
   GtkWidget *nb;
 
-  while (list) {
-    nb = GNOME_APP (list->data)->contents;
-
-    if (GTK_IS_NOTEBOOK (nb))
-      gtk_notebook_set_tab_pos (GTK_NOTEBOOK (nb), tab_pos);
+  while (list) 
+    if (GNOME_IS_APP (list->data)) {
+      nb = GNOME_APP (list->data)->contents;
+ 
+      if (GTK_IS_NOTEBOOK (nb))
+        gtk_notebook_set_tab_pos (GTK_NOTEBOOK (nb), tab_pos);
     
-    list = g_list_next (list);
-  }
-
+      list = g_list_next (list);
+    }
 }
 

@@ -16,6 +16,10 @@
 #include "gnome.h"
 #include <gdk/gdkx.h>
 
+#ifdef HAVE_GNOME_APPLET
+#include "applet-widget.h"
+#endif
+
 static GList *prop_list = NULL;  /* List of GnomePropertyBox */
 
 /* New */
@@ -34,16 +38,16 @@ static void revert_cb  (GtkWidget *widget);
 static void exit_cb    (GtkWidget *widget);
 
 /* edit */
-static void copy_cb    (GtkWidget *widget);
+static void copy_cb    (GtkWidget *widget, gpointer data);
 static void paste_cb    (GtkWidget *widget);
-static void insert_color_cb  (GtkWidget *widget);
-static void remove_cb     (GtkWidget *widget);
-static void edit_cb       (GtkWidget *widget);
+static void insert_color_cb  (GtkWidget *widget, gpointer data);
+static void remove_cb     (GtkWidget *widget, gpointer data);
+static void edit_cb       (GtkWidget *widget, gpointer data);
 static void preferences_cb (GtkWidget *widget);
-static void properties_cb (GtkWidget *widget);
+static void properties_cb (GtkWidget *widget, gpointer data);
 
 /* Help */
-static void about_cb   (GtkWidget *widget);
+static void about_cb   (GtkWidget *widget, gpointer data);
 
 /* Other */
 static void grab_cb    (GtkWidget *widget);
@@ -73,9 +77,15 @@ GnomeUIInfo file_menu[] = {
 
   GNOMEUIINFO_SEPARATOR,
   
-  GNOMEUIINFO_MENU_OPEN_ITEM    (open_cb,    NULL),
-  GNOMEUIINFO_MENU_SAVE_ITEM    (save_cb,    NULL),
-  GNOMEUIINFO_MENU_SAVE_AS_ITEM (save_as_cb, NULL),
+  GNOMEUIINFO_ITEM_STOCK        (N_("_Open palette..."),
+                                 N_("Load a palette"),
+                                 open_cb,    GNOME_STOCK_MENU_OPEN),
+  GNOMEUIINFO_ITEM_STOCK        (N_("_Save palette"),
+                                 N_("Save the current palette in a file"),
+                                 save_cb,    GNOME_STOCK_MENU_SAVE),
+  GNOMEUIINFO_ITEM_STOCK        (N_("Save palette _As..."),
+                                 N_("Save the current palette with a different name"),
+                                 save_as_cb, GNOME_STOCK_MENU_SAVE_AS),
   GNOMEUIINFO_MENU_REVERT_ITEM  (revert_cb,  NULL),
   
   GNOMEUIINFO_SEPARATOR,
@@ -104,7 +114,8 @@ GnomeUIInfo edit_menu[] = {
   
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_MENU_PROPERTIES_ITEM (properties_cb, NULL),
+  GNOMEUIINFO_ITEM_STOCK (N_("Document/View properties"), NULL,
+                          properties_cb, GNOME_STOCK_MENU_PROP),
   GNOMEUIINFO_MENU_PREFERENCES_ITEM (preferences_cb, NULL),
 			     
   GNOMEUIINFO_END
@@ -226,7 +237,7 @@ open_cb (GtkWidget *widget)
     filename = gtk_file_selection_get_filename (fs);
     
     file = MDI_COLOR_FILE (mdi_color_file_new ());
-    mdi_color_file_set_filename (file, filename);
+    mdi_color_file_set_filename (file, filename, FALSE);
     mdi_color_generic_set_name (MDI_COLOR_GENERIC (file), 
 				g_basename (filename));
 
@@ -397,8 +408,8 @@ close_view_cb (GtkWidget *widget)
       char *str;
       int ret;
             
-      if (MDI_COLOR_GENERIC (child)->other_views) 
-	str = g_strdup_printf (_("I'm going to close the last view of '%s'.\n\nThis document will be closed too, continue ?\n\nPlease note that %d virtual document use data from this document."), MDI_COLOR_GENERIC (child)->name, g_list_length (MDI_COLOR_GENERIC (child)->other_views));
+      if (MDI_COLOR_GENERIC (child)->docs) 
+	str = g_strdup_printf (_("I'm going to close the last view of '%s'.\n\nThis document will be closed too, continue ?\n\nPlease note that %d virtual document use data from this document."), MDI_COLOR_GENERIC (child)->name, g_list_length (MDI_COLOR_GENERIC (child)->docs));
       else 
       	str = g_strdup_printf (_("I'm going to close the last view of '%s'.\n\nThis document will be closed too, continue ?"), MDI_COLOR_GENERIC (child)->name);
             
@@ -429,12 +440,14 @@ close_doc_cb (GtkWidget *widget)
   char *str;
   GtkWidget *dia;
   int ret;
+  
+  /* FIXME : close applet */
 
   if (!child) return;
   mcg = MDI_COLOR_GENERIC (child);
 
-  if (mcg->other_views)
-    str = g_strdup_printf (_("I'm going to close '%s'.\n\nPlease note that %d views will be destroyed,\nand that %d virtual document use data from this document.\n\nDo you want to continue ?"), mcg->name, g_list_length (child->views), g_list_length (mcg->other_views));
+  if (mcg->docs)
+    str = g_strdup_printf (_("I'm going to close '%s'.\n\nPlease note that %d views will be destroyed,\nand that %d virtual document use data from this document.\n\nDo you want to continue ?"), mcg->name, g_list_length (child->views), g_list_length (mcg->docs));
   else
     str = g_strdup_printf (_("I'm going to close '%s'.\n\nPlease note that %d views will be destroyed.\n\nDo you want to continue ?"), mcg->name, g_list_length (child->views)); 
 
@@ -468,7 +481,7 @@ exit_cb (GtkWidget *widget)
 }
 
 static void
-about_cb (GtkWidget *widget)
+about_cb (GtkWidget *widget, gpointer data)
 {
   static GtkWidget *about = NULL;
   
@@ -484,8 +497,11 @@ about_cb (GtkWidget *widget)
     return;
   }
   
-  about = gnome_about_new (_("Gnome Color Browser"), VERSION,
-			   "(C) 1997-98 Tim P. Gerla", 
+  about = gnome_about_new (_("Gnome Color Browser"), VERSION
+#ifdef HAVE_GNOME_APPLET
+  "a"
+#endif  
+			   , "(C) 1997-98 Tim P. Gerla", 
 			   (const gchar**)authors,
 			   _("Small utility to browse available X11 colors."),
 			   NULL);                                
@@ -499,7 +515,7 @@ about_cb (GtkWidget *widget)
 /****************** Edit Menu ***************************************/
 
 static void 
-copy_cb (GtkWidget *widget)
+copy_cb (GtkWidget *widget, gpointer data)
 {
   GtkWidget *w;
   GList *l, *list;
@@ -510,10 +526,16 @@ copy_cb (GtkWidget *widget)
   char *tmp;
   gboolean first = TRUE;
 
-  w = gnome_mdi_get_active_view (mdi);
-  if (! w) return;
+  if (data)
+    view = VIEW_COLOR_GENERIC (data); 
+  else {
+  
+    w = gnome_mdi_get_active_view (mdi);
+    if (! w) return;
 
-  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+    view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+  }
+  
   l = list = VIEW_COLOR_GENERIC_GET_CLASS (view)->get_selected (view);
   if (!list) return;
 
@@ -579,17 +601,22 @@ menu_edit (MDIColor *col)
 }
 
 static void
-insert_color_cb (GtkWidget *widget)
+insert_color_cb (GtkWidget *widget, gpointer data)
 {
   MDIColor *col;
   ViewColorGeneric *view;
   GtkWidget *w;
   int pos;
   
-  w = gnome_mdi_get_active_view (mdi);
-  if (! w) return;
+  if (data)
+    view = VIEW_COLOR_GENERIC (data);
+  else {  
   
-  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+    w = gnome_mdi_get_active_view (mdi);
+    if (! w) return;
+  
+    view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+  }
 
   if (! mdi_color_generic_can_do (view->mcg, CHANGE_APPEND)) return;
 
@@ -604,17 +631,22 @@ insert_color_cb (GtkWidget *widget)
 }
 
 static void 
-remove_cb (GtkWidget *widget)
+remove_cb (GtkWidget *widget, gpointer data)
 {
   ViewColorGeneric *view;
   GtkWidget *w;
   GList *l;
   MDIColorGeneric *mcg;
+  
+  if (data) 
+    view = VIEW_COLOR_GENERIC (data);
+  else {
 
-  w = gnome_mdi_get_active_view (mdi);
-  if (! w) return;
+    w = gnome_mdi_get_active_view (mdi);
+    if (! w) return;
 
-  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+    view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+  }
 
   VIEW_COLOR_GENERIC_GET_CLASS (view)->remove_selected (view);
 
@@ -631,7 +663,7 @@ remove_cb (GtkWidget *widget)
 }
 
 static void
-edit_cb (GtkWidget *widget)
+edit_cb (GtkWidget *widget, gpointer data)
 {
   GtkWidget *w;
   ViewColorGeneric *view;
@@ -639,21 +671,30 @@ edit_cb (GtkWidget *widget)
   GList *list, *l;
   MDIColor *col;
   GList *connect = NULL;
+  
+  printf ("1\n");
+  if (data) 
+    view = VIEW_COLOR_GENERIC (data);
+  else {
 
-  w = gnome_mdi_get_active_view (mdi);
-  if (! w) return;
+    w = gnome_mdi_get_active_view (mdi);
+    if (! w) return;
 
-  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
-
+    view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+  }
+g_assert (IS_VIEW_COLOR_GENERIC (view));
   l = list = VIEW_COLOR_GENERIC_GET_CLASS (view)->get_selected (view);
   if (!list) return;
+  printf ("2\n");
 
   monitor = mdi_color_virtual_monitor_new ();
   mdi_color_generic_set_name (MDI_COLOR_GENERIC (monitor), _("Edit"));
   mdi_color_generic_set_temp (MDI_COLOR_GENERIC (monitor), TRUE);
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (monitor));
+  printf ("3\n");
 
   while (l) {
+  printf ("4\n");
     col = l->data;
 
     col = mdi_color_generic_get_owner (col);
@@ -664,13 +705,14 @@ edit_cb (GtkWidget *widget)
       connect = g_list_prepend (connect, col->owner);
 
     l = g_list_next (l);
+    printf ("5\n");
   }
 
   mdi_color_generic_append_view_type (MDI_COLOR_GENERIC (monitor),
 				      TYPE_VIEW_COLOR_EDIT);
-
+printf ("6\n");
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (monitor));
-
+printf ("7\n");
   l = connect;
   while (l) {
     mdi_color_generic_connect (MDI_COLOR_GENERIC (l->data),
@@ -678,7 +720,7 @@ edit_cb (GtkWidget *widget)
 
     l = g_list_next (l);
   }
-  
+printf ("8\n");  
   g_list_free (connect);
   g_list_free (list);
 }
@@ -821,7 +863,7 @@ properties_view_destroy_cb (GtkWidget *widget, gpointer data)
 }
 
 static void
-properties_cb (GtkWidget *widget)
+properties_cb (GtkWidget *widget, gpointer data)
 {
   GtkWidget *property;
   ViewColorGeneric *view;
@@ -829,7 +871,13 @@ properties_cb (GtkWidget *widget)
   MDIColorGeneric *mcg;
   gpointer view_data, mcg_data;
   
-  view = gtk_object_get_data (GTK_OBJECT (mdi->active_view), "view_object");
+  if (data)
+    view = VIEW_COLOR_GENERIC (data);
+  else {  
+    view = gtk_object_get_data (GTK_OBJECT (mdi->active_view), "view_object");
+    if (!view) return;
+  }
+  
   mcg = VIEW_COLOR_GENERIC (view)->mcg;
 
   property = gnome_property_box_new ();
@@ -886,14 +934,14 @@ properties_cb (GtkWidget *widget)
 /*********************** View Popup Menu *******************************/
 
 void
-menu_view_do_popup (GdkEventButton *event)
+menu_view_do_popup (GdkEventButton *event, ViewColorGeneric *view)
 {
   static GtkWidget *popup = NULL;
 
   if (!popup) 
     popup = gnome_popup_menu_new (edit_menu);
 
-  gnome_popup_menu_do_popup (popup, NULL, NULL, event, edit_menu);
+  gnome_popup_menu_do_popup (popup, NULL, NULL, event, view);
 }
 
 /************************* ToolBar *************************************/
@@ -1038,3 +1086,28 @@ grab_cb (GtkWidget *widget)
 		    picker_cursor,
 		    0);
 }
+
+/*************************** Applet ***********************************/
+
+#ifdef HAVE_GNOME_APPLET
+
+void menu_configure_applet (AppletWidget *applet, ViewColorGeneric *view)
+{
+  applet_widget_register_stock_callback (APPLET_WIDGET (applet), "about",
+                                         GNOME_STOCK_MENU_ABOUT,
+                                         _("About..."), about_cb, view);
+                                         
+  applet_widget_register_stock_callback (APPLET_WIDGET (applet), 
+                                         "properties",
+                                         GNOME_STOCK_MENU_PROP,
+                                         _("Document/View properties"),
+                                         properties_cb, view);
+
+  applet_widget_register_stock_callback (APPLET_WIDGET (applet),
+       					 "preferences", 
+       					 GNOME_STOCK_MENU_PREF,
+       					 _("Preferences"),
+       					 preferences_cb, view);
+}
+
+#endif

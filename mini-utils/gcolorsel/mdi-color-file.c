@@ -68,6 +68,7 @@ static void
 mdi_color_file_init (MDIColorFile *mcf)
 {
   mcf->filename = NULL;
+  mcf->create   = FALSE;
   mcf->header   = NULL;
   mcf->comments_begin = NULL;
   mcf->comments_end   = NULL;
@@ -89,12 +90,14 @@ mdi_color_file_new (void)
 }
 
 void
-mdi_color_file_set_filename (MDIColorFile *mcf, const char *filename)
+mdi_color_file_set_filename (MDIColorFile *mcf, const char *filename,
+                             gboolean create)
 {
   if (mcf->filename)
     g_free (mcf->filename);
 
   mcf->filename = g_strdup (filename);  
+  mcf->create = create;
 }
 
 gboolean
@@ -107,11 +110,13 @@ mdi_color_file_load (MDIColorFile *mcf, GnomeMDI *mdi)
   int nb = 0;
   long size, pos = 0, last_pos = 0;
 
-  mdi_color_generic_freeze (MDI_COLOR_GENERIC (mcf));
-
-  fp = fopen (mcf->filename, "r");
+  if (mcf->create) 
+    fp = fopen (mcf->filename, "a+");
+  else 
+    fp = fopen (mcf->filename, "r");
+    
   if (!fp) 
-    return FALSE; 
+    return FALSE;
 
   fseek (fp, 0, SEEK_END);
   size = ftell (fp);
@@ -119,9 +124,11 @@ mdi_color_file_load (MDIColorFile *mcf, GnomeMDI *mdi)
 
   if (mcf->header) {
     g_free (mcf->header);
-    mcf->header = NULL;
+    mcf->header = NULL;       
   }
-
+printf ("Load begin\n");  
+  mdi_color_generic_freeze (MDI_COLOR_GENERIC (mcf));
+printf ("1\n");
   while (1) {
     fgets(tmp, 255, fp);    
 
@@ -155,23 +162,28 @@ mdi_color_file_load (MDIColorFile *mcf, GnomeMDI *mdi)
     pos = ftell (fp);
 
     if (pos > last_pos) {    
-      progress_set (mdi, ((float)pos / (float)size));
-      
+printf ("1\n");    
+      if (mdi)
+	progress_set (mdi, ((float)pos / (float)size));
+
       last_pos += size / 150;
     }
-      
+printf ("2\n");      
     mdi_color_generic_append_new (MDI_COLOR_GENERIC (mcf), 
 				  r, g, b, name);
+printf ("3\n");				  
     nb++;
   }
-
-  progress_set (mdi, 0);
-
+printf ("Load end\n");
+  if (mdi)
+    progress_set (mdi, 0);
+printf ("1\n");
   fclose (fp);
 
 //  if (!nb) ok = FALSE;
-
+printf ("2\n");
   mdi_color_generic_thaw (MDI_COLOR_GENERIC (mcf));
+printf ("3\n");  
   mdi_color_generic_set_modified (MDI_COLOR_GENERIC (mcf), FALSE);
   
   return ok;
@@ -356,6 +368,7 @@ static void
 mdi_color_generic_save  (MDIColorGeneric *mcg)
 {
   gnome_config_set_string ("FileName", MDI_COLOR_FILE (mcg)->filename);
+  gnome_config_set_bool ("Create", MDI_COLOR_FILE (mcg)->create);
 
   parent_class->save (mcg);
 }
@@ -370,6 +383,8 @@ mdi_color_generic_load  (MDIColorGeneric *mcg)
     g_free (str);
     str = NULL;
   }
+  
+  MDI_COLOR_FILE (mcg)->create = gnome_config_get_bool ("Create");
     
   MDI_COLOR_FILE (mcg)->filename = str;
 

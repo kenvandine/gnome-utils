@@ -396,25 +396,38 @@ void
 session_create (GnomeMDI *mdi, gboolean init_actions)
 {
   GtkWidget *first;
-  MDIColorFile *file;
+  MDIColorFile *file_sys, *file_usr;
   MDIColorVirtualRGB *virtual;
+  char *buf;
 
-  /* Create a file document */
-  file = mdi_color_file_new ();
-  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file));
+  /* Create a file document for the system colors */
+  file_sys = mdi_color_file_new ();
+  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file_sys));
   
-  mdi_color_file_set_filename (file, "/usr/X11R6/lib/X11/rgb.txt");
-  mdi_color_generic_set_name (MDI_COLOR_GENERIC (file), _("System"));
+  mdi_color_file_set_filename (file_sys, "/usr/X11R6/lib/X11/rgb.txt", FALSE);
+  mdi_color_generic_set_name (MDI_COLOR_GENERIC (file_sys), _("System Colors"));
   
-  /* Add a ColorList view for the file document */
-  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
+  /* Add a ColorList view for the system colors document */
+  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file_sys));
   first = gnome_mdi_get_active_view (mdi);
 
-  /* Add a ColorGrid view for the file document */
-  mdi_color_generic_append_view_type (MDI_COLOR_GENERIC (file), 
+  /* Add a ColorGrid view for the system colors document */
+  mdi_color_generic_append_view_type (MDI_COLOR_GENERIC (file_sys), 
 				      TYPE_VIEW_COLOR_GRID);
-  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
+  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file_sys));
   
+  /* Create a file document for the user colors */
+  file_usr = mdi_color_file_new ();
+  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file_usr));
+  
+  /* Add a ColorList view for the user colors document */
+  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file_usr));
+  
+  buf = gnome_util_prepend_user_home ("/.gcolorsel_colors");
+  mdi_color_file_set_filename (file_usr, buf, TRUE);
+  g_free (buf);
+  mdi_color_generic_set_name (MDI_COLOR_GENERIC (file_usr), _("User Colors"));  
+
   /* Create a search document */
   virtual = mdi_color_virtual_rgb_new ();
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (virtual));
@@ -426,30 +439,29 @@ session_create (GnomeMDI *mdi, gboolean init_actions)
   /* Add a ColorList view for the search document  */  
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
 
-  /* Add a ColorSearch view for the search document */
-  mdi_color_generic_append_view_type (MDI_COLOR_GENERIC (virtual), 
-				      TYPE_VIEW_COLOR_GRID);
-  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
-
-  /* Connect Search document to file document */
-  mdi_color_generic_connect (MDI_COLOR_GENERIC (file),
-			     MDI_COLOR_GENERIC (virtual)); 
+  /* Connect Search document to users and system documents */
+  mdi_color_generic_connect (MDI_COLOR_GENERIC (file_sys),
+			     MDI_COLOR_GENERIC (virtual));
+			     
+  mdi_color_generic_connect (MDI_COLOR_GENERIC (file_usr),
+                             MDI_COLOR_GENERIC (virtual));			      
  
   /* Tell the MDI to display ColorList for the file document */
   gnome_mdi_set_active_view (mdi, first);
   
   if (init_actions) {
-    int key = MDI_COLOR_GENERIC (virtual)->key;
+    int key_search = MDI_COLOR_GENERIC (virtual)->key;
+    int key_user   = MDI_COLOR_GENERIC (file_usr)->key;
 
-    prefs.on_drop  = ACTIONS_SEARCH;
-    prefs.on_drop2 = key;
+    prefs.on_drop  = ACTIONS_APPEND;
+    prefs.on_drop2 = key_user;
 
     prefs.on_grab  = ACTIONS_SEARCH;
-    prefs.on_grab2 = key;
+    prefs.on_grab2 = key_search;
 
     prefs.on_views = ACTIONS_EDIT;
 
     prefs.on_previews  = ACTIONS_SEARCH;
-    prefs.on_previews2 = key;
+    prefs.on_previews2 = key_search;
   }
 }

@@ -42,6 +42,7 @@ struct _MDIColorGeneric {
   GList *views_type;
 
   GList *other_views;
+  GList *docs;
   GList *parents;
 
   GList *col;
@@ -72,6 +73,8 @@ struct _MDIColorGenericClass {
 };
 
 guint mdi_color_generic_get_type (void);
+
+GtkWidget *mdi_color_generic_create_other_view (MDIColorGeneric *mcg);
 
 void mdi_color_generic_append           (MDIColorGeneric *mcg, 
 					 MDIColor *col);

@@ -1,3 +1,44 @@
+2000-05-29  Eric Brayeur    <eb2@ibelgique.com>
+
+	* Open-VMS exam ;-)
+
+	* mdi-color-generic.[ch], menus.c : rename other_views -> docs.          
+          other_views : new list, a list of views contained in applets.
+
+	* menus.c (menu_view_do_popup) : pass view, and use it as data 
+          for gnome_popup_menu_do_popup; so we don't use
+          gnome_mdi_get_active_child with a view in a applet.
+	  (*_cb) : check data != NULL ...
+
+	* gcolorsel.c : Start gcolorsel in applet mode, if called with
+          gcolorsel_applet and applet support.
+	  Start factory; in a first time, all applet = a view to the same
+          document (~/.gcolorsel_applet); So all applets are synchronized.
+
+	* menus.c (menu_configure_applet) : register menu for applet.
+
+	* gcolorsel.c : change size / change orient.
+
+2000-05-28  Eric Brayeur    <eb2@ibelgique.com>
+
+	* mdi-color-file.c : new flag, create (create file if not found).
+		
+	* session.c : create file ~/.gcolorsel_colors if not found.
+
+2000-05-27  Eric Brayeur    <eb2@ibelgique.com>
+
+	* session.c (session_create) : Rename 'System' -> 'System colors'.
+          Open another file : ~/.gcolorsel_colors in 'User colors',
+          and show it in a ColorList view.
+          Removed the ColorGrid view for the search document.
+          Made the search document search in system and user colors.
+          Drop a color -> append it in 'User colors'.
+
+	* menus.c :
+          'Save' -> 'Save palette' 'Open...' -> 'Open palette...'.
+          'Save As...' -> 'Save palette As...'
+	  'Properties...' -> 'Document/View properties'.
+	  	                  
 2000-05-20  Kjartan Maraas  <kmaraas@gnu.org>
 
 	* *.c: Added #include <config.h> many places to make translations
