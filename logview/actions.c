@@ -162,6 +162,7 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
   gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
 			     GTK_SIGNAL_FUNC (gtk_widget_destroy),
 			     GTK_OBJECT (actions_dialog));
+  gtk_widget_grab_focus (button);
   gtk_widget_show (button);
 
   button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_OK);
@@ -206,17 +207,20 @@ make_tree_from_actions_db (GList *db)
       if (strncmp (buffer, action->tag, 49) != 0) {
 	  strncpy (buffer, action->tag, 50);
 	  buffer[49] = '\0';
-	  /* this is the parent node */
+          /* Add an action with a new tag as a top level node(parent node) */  
           gtk_tree_store_append (ctree, &newiter, NULL);
           gtk_tree_store_set (ctree, &newiter, 0, buffer, 1,
                               (gpointer)action, -1);
           ctree_parent = gtk_tree_iter_copy (&newiter);
 	}
-      /* this is the actual node */
-      /* Store data in tree */
-      gtk_tree_store_append (ctree, &newiter, ctree_parent); 
-      gtk_tree_store_set (ctree, &newiter, 0, buffer, 1,
-                          (gpointer)action, -1);
+      else {
+          /* If Tag of new action is same as an existing action's tag, add 
+             the new action as a child to the existing action(parent) */
+
+	  gtk_tree_store_append (ctree, &newiter, ctree_parent); 
+	  gtk_tree_store_set (ctree, &newiter, 0, buffer, 1,
+			      (gpointer)action, -1);
+	}
     }
 
   /* done. */

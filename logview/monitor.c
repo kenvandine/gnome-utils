@@ -261,6 +261,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
                           GTK_SIGNAL_FUNC (close_monitor_options),
                           NULL);
+      gtk_widget_grab_focus (button);
 
    }
    mon_opts_visible = TRUE;
