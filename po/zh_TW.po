@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 2.8.1\n"
+"Project-Id-Version: gnome-utils 2.10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 10:11-0500\n"
-"PO-Revision-Date: 2004-09-29 18:16+0800\n"
+"POT-Creation-Date: 2005-03-08 07:25+0800\n"
+"PO-Revision-Date: 2005-03-08 07:28+0800\n"
 "Last-Translator: Roy Hiu-yeung Chan <roy.chan@debian.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -17,46 +17,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
+#: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:1
+#: ../gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "查字典"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:27
-#: gdictsrc/gnome-dictionary.desktop.in.h:2
+#: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:2
+#: ../gdictsrc/gdict-applet.c:27 ../gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "在線上字典中查字"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:650
-#: logview/logview.c:111
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:650
+#: ../logview/logview.c:111
 msgid "_About"
 msgstr "關於(_A)"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:2 ../logview/logview.c:88
 msgid "_Help"
 msgstr "求助(_H)"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:3
 msgid "_Look Up Selected Text"
 msgstr "檢索選定的字詞(_L)"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:4
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:4
 msgid "_Preferences"
 msgstr "偏好設定(_P)"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: ../gdictsrc/dict.c:676 ../gdictsrc/gdict-pref-dialog.c:664
+#: ../gdictsrc/gdict-pref-dialog.c:713
 msgid "Cannot connect to server"
 msgstr "無法連接伺服器"
 
-#: gdictsrc/dict.c:689
-#, fuzzy
+#: ../gdictsrc/dict.c:689
 msgid "Server Error"
-msgstr "伺服器輸入欄"
+msgstr "伺服器錯誤"
 
-#: gdictsrc/dict.c:690
+#: ../gdictsrc/dict.c:690
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -65,350 +65,329 @@ msgstr ""
 "org，而預設的連接埠是 2628。"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: ../gdictsrc/gdict-about.c:42 ../logview/about.c:43
 msgid "translator-credits"
 msgstr ""
 "i18n 程式中文化計劃\n"
 "http://i18n.linux.org.tw/\n"
 "\n"
+"Woodman Tuen <wmtuen@gmail.com>, 2005\n"
 "Roy Chan <roy.chan@linux.org.hk>, 2004\n"
 "Abel Cheung <maddog@linux.org.hk>, 2001-2004\n"
 "Ming-Yen Hsu <myhsu@cyberdude.com>, 1999"
 
-#: gdictsrc/gdict-about.c:44
+#: ../gdictsrc/gdict-about.c:44
 msgid "A client for the MIT dictionary server."
 msgstr "使用 MIT 字典伺服器的客戶端程式。"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
-#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: ../gdictsrc/gdict-about.c:47 ../gdictsrc/gdict-defbox.c:82
+#: ../gdictsrc/gdict-defbox.c:94 ../gdictsrc/gdict-pref-dialog.c:470
+#: ../gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "字典"
 
-#: gdictsrc/gdict-app.c:87
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:87
 msgid "Connection error"
-msgstr "無法連接伺服器"
+msgstr "連接錯誤"
 
-#: gdictsrc/gdict-app.c:134
+#: ../gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
-msgstr ""
+msgstr "無法進行要求的動作。"
 
-#: gdictsrc/gdict-app.c:135
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:135
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
-"無法進行所要求的操作程序。\n"
-"原因是無法連接所使用的伺服器，\n"
+"也許是您使用的伺服器不存在，\n"
 "或是根本未連接至網際網路。"
 
-#: gdictsrc/gdict-app.c:301
+#: ../gdictsrc/gdict-app.c:301
 msgid "Print Word Definition"
-msgstr ""
+msgstr "列印字詞的解釋"
 
-#: gdictsrc/gdict-app.c:416
+#: ../gdictsrc/gdict-app.c:416
 msgid "Find"
 msgstr "搜尋"
 
-#: gdictsrc/gdict-app.c:426
+#: ../gdictsrc/gdict-app.c:426
 msgid "_Search for:"
 msgstr "搜尋(_S)："
 
-#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:863
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:496 ../gdictsrc/gdict-applet.c:314
+#: ../gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "無法顯示說明文件"
 
 #. Top
-#: gdictsrc/gdict-app.c:626
+#: ../gdictsrc/gdict-app.c:626
 msgid "_Dictionary"
 msgstr "字典(_D)"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
+#: ../gdictsrc/gdict-app.c:632 ../gdictsrc/gdict-app.c:763
 msgid "_Look Up Word"
 msgstr "查字(_L)"
 
-#: gdictsrc/gdict-app.c:633
+#: ../gdictsrc/gdict-app.c:633
 msgid "Lookup word in dictionary"
 msgstr "在字典中查字"
 
-#: gdictsrc/gdict-app.c:634
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:634
 msgid "_Print"
-msgstr "連接埠(_P)："
+msgstr "列印(_P)"
 
-#: gdictsrc/gdict-app.c:635
+#: ../gdictsrc/gdict-app.c:635
 msgid "Print the current definition"
-msgstr ""
+msgstr "列印目前的解釋"
 
-#: gdictsrc/gdict-app.c:636
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:636
 msgid "_Close"
-msgstr "全部關閉(_E)"
+msgstr "關閉(_C)"
 
-#: gdictsrc/gdict-app.c:637
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:637
 msgid "Close the application"
-msgstr "隱藏程式(_H)"
+msgstr "關閉程式"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:640 logview/logview.c:103
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:640 ../logview/logview.c:103
 msgid "_Find..."
-msgstr "搜尋(_F)"
+msgstr "搜尋(_F)..."
 
-#: gdictsrc/gdict-app.c:641
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:641
 msgid "Find a word in the text"
-msgstr "包含指定的文字(_T)"
+msgstr "在文本中搜尋字詞"
 
-#: gdictsrc/gdict-app.c:642
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:642
 msgid "Find Ne_xt"
-msgstr "搜尋"
+msgstr "搜尋下一個(_X)"
 
-#: gdictsrc/gdict-app.c:643
+#: ../gdictsrc/gdict-app.c:643
 msgid "Find next occurrence of the word"
-msgstr ""
+msgstr "跳到同一個字下次出現的地方"
 
-#: gdictsrc/gdict-app.c:644
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:644
 msgid "P_references"
-msgstr "偏好設定(_P)"
+msgstr "偏好設定(_R)"
 
-#: gdictsrc/gdict-app.c:645
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:645
 msgid "Configure the application"
-msgstr "隱藏程式(_H)"
+msgstr "設置程式"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:648 logview/logview.c:109
+#: ../gdictsrc/gdict-app.c:648 ../logview/logview.c:109
 msgid "_Contents"
-msgstr ""
+msgstr "內容(_C)"
 
-#: gdictsrc/gdict-app.c:649
+#: ../gdictsrc/gdict-app.c:649
 msgid "View help for this application"
-msgstr ""
+msgstr "顯示本程式的說明文件"
 
-#: gdictsrc/gdict-app.c:651
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:651
 msgid "About this application"
-msgstr "隱藏程式(_H)"
+msgstr "關於這程式"
 
-#: gdictsrc/gdict-app.c:657
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:657
 msgid "On a Dictionary Server"
-msgstr "字典伺服器"
+msgstr "在字典伺服器上查詢"
 
-#: gdictsrc/gdict-app.c:659
+#: ../gdictsrc/gdict-app.c:659
 msgid "On a Web Site"
-msgstr ""
+msgstr "在網站上查詢"
 
-#: gdictsrc/gdict-app.c:665
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:665
 msgid "Cu_t"
-msgstr "剪下"
+msgstr "剪下(_T)"
 
-#: gdictsrc/gdict-app.c:666
+#: ../gdictsrc/gdict-app.c:666
 msgid "Cut the selection"
 msgstr "剪下選定的範圍"
 
-#: gdictsrc/gdict-app.c:667
+#: ../gdictsrc/gdict-app.c:667
 msgid "_Copy"
-msgstr ""
+msgstr "複製(_C)"
 
-#: gdictsrc/gdict-app.c:668 logview/logview.c:99
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:668 ../logview/logview.c:99
 msgid "Copy the selection"
-msgstr "剪下選定的範圍"
+msgstr "複制已選取的範圍"
 
-#: gdictsrc/gdict-app.c:669
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:669
 msgid "_Paste"
-msgstr "貼上"
+msgstr "貼上(_P)"
 
-#: gdictsrc/gdict-app.c:670
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:670
 msgid "Paste clipboard"
-msgstr "貼上剪貼簿的內容"
+msgstr ""
 
-#: gdictsrc/gdict-app.c:671
+#: ../gdictsrc/gdict-app.c:671
 msgid "Select _All"
-msgstr ""
+msgstr "全部選取(_A)"
 
-#: gdictsrc/gdict-app.c:672
+#: ../gdictsrc/gdict-app.c:672
 msgid "Select everything"
-msgstr ""
+msgstr "全部選取"
 
-#: gdictsrc/gdict-app.c:677
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:677
 msgid "_Spellings"
 msgstr "拼字檢查(_S)"
 
-#: gdictsrc/gdict-app.c:678
+#: ../gdictsrc/gdict-app.c:678
 msgid "View alternate spellings"
-msgstr ""
+msgstr "顯示其它的拼法"
 
-#: gdictsrc/gdict-app.c:760
+#: ../gdictsrc/gdict-app.c:760
 msgid "_Word:"
 msgstr "字詞(_W)："
 
-#: gdictsrc/gdict-app.c:788
+#: ../gdictsrc/gdict-app.c:788
 msgid "Word"
 msgstr "字詞"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gdict-app.c:791
+#: ../gdictsrc/gdict-app.c:789 ../gdictsrc/gdict-app.c:791
 msgid "Word Entry"
 msgstr "字詞輸入欄"
 
-#: gdictsrc/gdict-app.c:790
+#: ../gdictsrc/gdict-app.c:790
 msgid "Enter a Word or select one from the list below"
 msgstr "請輸入字詞或在下列的清單中選擇"
 
-#: gdictsrc/gdict-app.c:794
+#: ../gdictsrc/gdict-app.c:794
 msgid "Look Up for a Word"
 msgstr "查字"
 
-#: gdictsrc/gdict-applet.c:152
+#: ../gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:83
+#: ../gdictsrc/gdict-defbox.c:83
 msgid "Looking up word..."
 msgstr "正在檢索字詞..."
 
-#: gdictsrc/gdict-defbox.c:100
+#: ../gdictsrc/gdict-defbox.c:100
 msgid "Lookup done"
 msgstr "完成檢索"
 
-#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+#: ../gdictsrc/gdict-defbox.c:112 ../gdictsrc/gdict-speller.c:253
 msgid "No matches found"
 msgstr "找不到符合的結果"
 
-#: gdictsrc/gdict-defbox.c:122
+#: ../gdictsrc/gdict-defbox.c:122
 msgid "String not found"
 msgstr "找不到字串"
 
-#: gdictsrc/gdict-defbox.c:542
+#: ../gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
-msgstr ""
+msgstr "解釋預覽"
 
-#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
-#, fuzzy
+#: ../gdictsrc/gdict-defbox.c:902 ../gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
-msgstr "詢問時出現錯誤：%s"
+msgstr "查詢時出現錯誤"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: ../gdictsrc/gdict-pref-dialog.c:254
 msgid "De_fault Server"
 msgstr "預設伺服器(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: ../gdictsrc/gdict-pref-dialog.c:265
 msgid "_Server:"
 msgstr "伺服器(_S)："
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: ../gdictsrc/gdict-pref-dialog.c:273
 msgid "Reset server to default"
 msgstr "將伺服器網域名域恢復成預設值"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: ../gdictsrc/gdict-pref-dialog.c:275
 msgid "_Port:"
 msgstr "連接埠(_P)："
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: ../gdictsrc/gdict-pref-dialog.c:285
 msgid "Def_ault Port"
 msgstr "預設連接埠(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: ../gdictsrc/gdict-pref-dialog.c:300
 msgid "Reset port to default"
 msgstr "將連接埠號碼恢復成預設值"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: ../gdictsrc/gdict-pref-dialog.c:301
 msgid "Server"
 msgstr "伺服器"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: ../gdictsrc/gdict-pref-dialog.c:303
 msgid "Server Entry"
 msgstr "伺服器輸入欄"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: ../gdictsrc/gdict-pref-dialog.c:303
 msgid "Enter the Server Name"
 msgstr "請輸入伺服器名稱"
 
-#: gdictsrc/gdict-pref-dialog.c:304
+#: ../gdictsrc/gdict-pref-dialog.c:304
 msgid "Port"
 msgstr "連接埠"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: ../gdictsrc/gdict-pref-dialog.c:306
 msgid "Port Entry"
 msgstr "連接埠輸入欄"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: ../gdictsrc/gdict-pref-dialog.c:306
 msgid "Enter the Port Number"
 msgstr "請輸入連接埠號碼"
 
-#: gdictsrc/gdict-pref-dialog.c:309
+#: ../gdictsrc/gdict-pref-dialog.c:309
 msgid "_Database:"
 msgstr "資料庫(_D)："
 
-#: gdictsrc/gdict-pref-dialog.c:316
-#, fuzzy
+#: ../gdictsrc/gdict-pref-dialog.c:316
 msgid "Strat_egy:"
-msgstr "搜尋方法(_T)："
+msgstr "搜尋方法(_E)："
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: ../gdictsrc/gdict-pref-dialog.c:342
 msgid "Web Site"
-msgstr ""
+msgstr "網站"
 
-#: gdictsrc/gdict-pref-dialog.c:342
-#, fuzzy
+#: ../gdictsrc/gdict-pref-dialog.c:342
 msgid "Search Address"
-msgstr "搜尋結果(_R)："
+msgstr "地址搜尋"
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: ../gdictsrc/gdict-pref-dialog.c:462
 msgid "Dictionary Preferences"
 msgstr "字典偏好設定"
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: ../gdictsrc/gdict-pref-dialog.c:474
 msgid "Web Sites"
-msgstr ""
+msgstr "網站"
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: ../gdictsrc/gdict-pref-dialog.c:656
 msgid "Search all databases"
 msgstr "搜尋所有資料庫"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: ../gdictsrc/gdict-pref-dialog.c:817
 msgid "Database"
 msgstr "資料庫"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: ../gdictsrc/gdict-pref-dialog.c:817
 msgid "Database Name"
 msgstr "資料庫名稱"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: ../gdictsrc/gdict-pref-dialog.c:834
 msgid "Default Strategy"
 msgstr "預設搜尋方式"
 
-#: gdictsrc/gdict-speller.c:234
+#: ../gdictsrc/gdict-speller.c:234
 msgid "Spell-checking..."
 msgstr "正在進行拼字檢查..."
 
-#: gdictsrc/gdict-speller.c:243
+#: ../gdictsrc/gdict-speller.c:243
 msgid "Spell check done"
 msgstr "拼字檢查完成"
 
-#: gdictsrc/gdict.schemas.in.h:1
+#: ../gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "字典伺服器"
 
-#: gdictsrc/gdict.schemas.in.h:2
+#: ../gdictsrc/gdict.schemas.in.h:2
 msgid "Port used to connect to server"
 msgstr "連接至伺服器所用的連接埠"
 
-#: gdictsrc/gdict.schemas.in.h:3
+#: ../gdictsrc/gdict.schemas.in.h:3
 msgid ""
 "Specify whether to use smart lookup. This key is dependant on whether the "
 "dictionary server supports this option. The default is TRUE"
@@ -416,11 +395,11 @@ msgstr ""
 "是否使用智慧型檢索。本設定鍵會否生效取決於字典伺服器是否支援這個選項。預設為 "
 "TRUE"
 
-#: gdictsrc/gdict.schemas.in.h:4
+#: ../gdictsrc/gdict.schemas.in.h:4
 msgid "The database to use in the dictionary server."
 msgstr "字典伺服器所使用的資料庫。"
 
-#: gdictsrc/gdict.schemas.in.h:5
+#: ../gdictsrc/gdict.schemas.in.h:5
 msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers"
@@ -428,7 +407,7 @@ msgstr ""
 "要連接的字典伺服器。預設的伺服器為 dict.org。請瀏覽 http://www.dict.org 獲取"
 "有關其它伺服器的詳情。"
 
-#: gdictsrc/gdict.schemas.in.h:6
+#: ../gdictsrc/gdict.schemas.in.h:6
 msgid ""
 "The name of the individual database to use in the dictionary server. ! "
 "specifies that gnome-dictionary should search all databases in a given server"
@@ -436,15 +415,15 @@ msgstr ""
 "指定使用字典伺服器中的哪一個資料庫。“!”表示 gnome-dictionary 會搜尋指定伺服器"
 "的所有資料庫"
 
-#: gdictsrc/gdict.schemas.in.h:7
+#: ../gdictsrc/gdict.schemas.in.h:7
 msgid "The port number to connect to. The default port is 2628."
 msgstr "連線至指定的連接埠。預設連接埠為 2628。"
 
-#: gdictsrc/gdict.schemas.in.h:8
+#: ../gdictsrc/gdict.schemas.in.h:8
 msgid "The search strategy to use"
 msgstr "使用的搜尋方法"
 
-#: gdictsrc/gdict.schemas.in.h:9
+#: ../gdictsrc/gdict.schemas.in.h:9
 msgid ""
 "The search strategy to use. This is dependant on the search strategy that "
 "the dictionary server supports. The default strategy is 'lev' - Match words "
@@ -453,24 +432,23 @@ msgstr ""
 "使用的搜尋方式。它取決於字典伺服器能夠支援的搜尋方式。預設方式為‘lev’─ 符合所"
 "有 Levenshtein distance 為 1 的字 (即是只差一個字母)"
 
-#: gdictsrc/gdict.schemas.in.h:10
+#: ../gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "使用智慧型檢索"
 
-#: gdictsrc/main.c:90
-#, fuzzy
+#: ../gdictsrc/main.c:90
 msgid "Gnome Dictionary"
-msgstr "字典"
+msgstr "Gnome 字典"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
+#: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "軟碟格式化程式"
 
-#: gfloppy/gfloppy.desktop.in.h:2
+#: ../gfloppy/gfloppy.desktop.in.h:2
 msgid "Format Floppy Disks"
 msgstr "將軟碟格式化"
 
-#: gfloppy/gfloppy.schemas.in.h:1
+#: ../gfloppy/gfloppy.schemas.in.h:1
 msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
@@ -478,19 +456,19 @@ msgstr ""
 "0 表示快速格式化，1 表示標準格式化 (加上低階格式化)，而 2 表示較徹底的格式化 "
 "(加上壞磁區掃描)。"
 
-#: gfloppy/gfloppy.schemas.in.h:2
+#: ../gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
 msgstr "※只適合進階使用者※ ─ 格式化 FAT 所使用的預設後端程序"
 
-#: gfloppy/gfloppy.schemas.in.h:3
+#: ../gfloppy/gfloppy.schemas.in.h:3
 msgid "Default filesystem type"
 msgstr "預設檔案系統類型"
 
-#: gfloppy/gfloppy.schemas.in.h:4
+#: ../gfloppy/gfloppy.schemas.in.h:4
 msgid "Default formatting mode"
 msgstr "預設格式化方式"
 
-#: gfloppy/gfloppy.schemas.in.h:5
+#: ../gfloppy/gfloppy.schemas.in.h:5
 msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
@@ -498,62 +476,62 @@ msgstr ""
 "如選用本選項，表示優先選用 mkdosfs 作為格式化 FAT 檔案系統的後端程序，否則表"
 "示優先選用 mtools。"
 
-#: gfloppy/gfloppy.schemas.in.h:6
+#: ../gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 表示 linux 沿用的檔案系統，或是 fat 表示 DOS/Windows 的檔案系統。"
 
-#: gfloppy/src/badblocks.c:84
+#: ../gfloppy/src/badblocks.c:84
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "內部錯誤：無法搜尋正確的位置。"
 
-#: gfloppy/src/badblocks.c:93
+#: ../gfloppy/src/badblocks.c:93
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "內部錯誤：do_test 中的值 (%ld) 有誤\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:251
+#: ../gfloppy/src/badblocks.c:251
 msgid "Checking for bad blocks..."
 msgstr "檢查壞磁區..."
 
-#: gfloppy/src/badblocks.c:263
+#: ../gfloppy/src/badblocks.c:263
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "開啟裝置 %s 失敗，無法檢查壞磁區\n"
 
-#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
+#: ../gfloppy/src/badblocks.c:283 ../gfloppy/src/gfloppy.c:527
 msgid "Checking for bad blocks... Done"
 msgstr "檢查壞磁區...完成"
 
-#: gfloppy/src/fdformat.c:42
+#: ../gfloppy/src/fdformat.c:42
 msgid "Formatting the disk..."
 msgstr "格式化碟片..."
 
-#: gfloppy/src/fdformat.c:45
+#: ../gfloppy/src/fdformat.c:45
 msgid "I don't know what this is, but it's very wrong."
 msgstr "仍未清楚實際情況，不過肯定是出了問題。"
 
-#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
+#: ../gfloppy/src/fdformat.c:53 ../gfloppy/src/fdformat.c:66
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "格式化第 %d 個磁軌時發生錯誤"
 
-#: gfloppy/src/fdformat.c:75
+#: ../gfloppy/src/fdformat.c:75
 msgid "Error during completion of formatting"
 msgstr "進行格式化最後程序時發生錯誤"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:79
+#: ../gfloppy/src/fdformat.c:79
 msgid "Formatting the disk... Done"
 msgstr "格式化碟片...完成"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:95
+#: ../gfloppy/src/fdformat.c:95
 msgid "Verifying the format..."
 msgstr "正在檢驗格式..."
 
-#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
+#: ../gfloppy/src/fdformat.c:100 ../gfloppy/src/fdformat.c:185
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -563,12 +541,12 @@ msgstr ""
 "\n"
 "請確保軟碟沒有加上防寫保護。"
 
-#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
+#: ../gfloppy/src/fdformat.c:103 ../gfloppy/src/fdformat.c:188
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "沒有足夠權限開啟軟碟裝置 %s。"
 
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: ../gfloppy/src/fdformat.c:107 ../gfloppy/src/fdformat.c:192
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -580,7 +558,7 @@ msgstr ""
 "請確保軟碟已放進軟碟機中\n"
 "而且活門已經關閉。"
 
-#: gfloppy/src/fdformat.c:110
+#: ../gfloppy/src/fdformat.c:110
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -591,7 +569,7 @@ msgstr ""
 "\n"
 "錯誤碼為 %s:%d"
 
-#: gfloppy/src/fdformat.c:133
+#: ../gfloppy/src/fdformat.c:133
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -600,31 +578,31 @@ msgstr ""
 "讀取資料時發生錯誤：\n"
 "問題發生在第 %d 個磁區，預計資料為 %d，實際讀取資料為 %d"
 
-#: gfloppy/src/fdformat.c:136
+#: ../gfloppy/src/fdformat.c:136
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "問題發生在第 %d 個磁區，預計資料為 %d，實際讀取資料為 %d"
 
-#: gfloppy/src/fdformat.c:147
+#: ../gfloppy/src/fdformat.c:147
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "第 %d 個磁區有壞磁軌。繼續格式化..."
 
-#: gfloppy/src/fdformat.c:156
+#: ../gfloppy/src/fdformat.c:156
 #, c-format
 msgid "Error closing device %s"
 msgstr "關閉裝置 %s 時發生錯誤"
 
-#: gfloppy/src/fdformat.c:163
+#: ../gfloppy/src/fdformat.c:163
 msgid "Verifying the format... Done"
 msgstr "檢驗格式...完成"
 
-#: gfloppy/src/fdformat.c:175
+#: ../gfloppy/src/fdformat.c:175
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "無法寫入裝置 %s"
 
-#: gfloppy/src/fdformat.c:195
+#: ../gfloppy/src/fdformat.c:195
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -635,28 +613,28 @@ msgstr ""
 "\n"
 "錯誤代碼 %s"
 
-#: gfloppy/src/fdformat.c:207
+#: ../gfloppy/src/fdformat.c:207
 msgid "Could not determine current floppy geometry."
 msgstr "無法決定目前軟碟片的大小。"
 
-#: gfloppy/src/gfloppy.c:215
+#: ../gfloppy/src/gfloppy.c:215
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr "當為壞磁區清單檔命名時發生錯誤。"
 
-#: gfloppy/src/gfloppy.c:235
+#: ../gfloppy/src/gfloppy.c:235
 msgid "Error while filling the bad blocks list file."
 msgstr "當填上壞磁區清單檔案時發生錯誤。"
 
-#: gfloppy/src/gfloppy.c:298
+#: ../gfloppy/src/gfloppy.c:298
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "執行 (%s) 指令時發生錯誤：%s。"
 
-#: gfloppy/src/gfloppy.c:324
+#: ../gfloppy/src/gfloppy.c:324
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "不明的 mke2fs 輸出結果，取消操作程序。"
 
-#: gfloppy/src/gfloppy.c:338
+#: ../gfloppy/src/gfloppy.c:338
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -667,16 +645,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:355
+#: ../gfloppy/src/gfloppy.c:355
 msgid "Abnormal child process termination."
 msgstr "副進程不正常地中止了。"
 
-#: gfloppy/src/gfloppy.c:380
+#: ../gfloppy/src/gfloppy.c:380
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "當啟動 mbadblocks 指令時出錯：%s。"
 
-#: gfloppy/src/gfloppy.c:392
+#: ../gfloppy/src/gfloppy.c:392
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -685,41 +663,42 @@ msgstr ""
 "壞磁區檢查公用程式 (mbadblocks) 匯報了以下的錯誤：\n"
 "%s。"
 
-#: gfloppy/src/gfloppy.c:435
+#: ../gfloppy/src/gfloppy.c:435
 msgid "Abnormal mbadblocks child process termination."
 msgstr "mbadblocks 副進程不正常地中止了。"
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
+#: ../gfloppy/src/gfloppy.c:461 ../gfloppy/src/gfloppy.c:501
 msgid "Making filesystem on disk..."
 msgstr "在碟片中建立檔案系統..."
 
-#: gfloppy/src/gfloppy.c:469
+#: ../gfloppy/src/gfloppy.c:469
 msgid "Unable to create filesystem correctly."
 msgstr "無法正確地建立檔案系統。"
 
-#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
+#: ../gfloppy/src/gfloppy.c:474 ../gfloppy/src/gfloppy.c:513
 msgid "Making filesystem on disk... Done"
 msgstr "在碟片中建立檔案系統...完成"
 
-#: gfloppy/src/gfloppy.c:518
+#: ../gfloppy/src/gfloppy.c:518
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "正在檢查壞磁區...（可能需要一段時間）"
 
-#: gfloppy/src/gfloppy.c:523
+#: ../gfloppy/src/gfloppy.c:523
 msgid "Error while checking the bad blocks."
 msgstr "檢查壞磁區時出現錯誤。"
 
-#: gfloppy/src/gfloppy2.glade.h:1
-#: gnome-screenshot/gnome-panel-screenshot.glade.h:1
+#: ../gfloppy/src/gfloppy2.glade.h:1
+#: ../gnome-screenshot/gnome-panel-screenshot.glade.h:1
 msgid "    "
 msgstr "    "
 
-#: gfloppy/src/gfloppy2.glade.h:2 gnome-screenshot/gnome-screenshot.glade.h:1
+#: ../gfloppy/src/gfloppy2.glade.h:2
+#: ../gnome-screenshot/gnome-screenshot.glade.h:1
 msgid "*"
 msgstr "×"
 
-#: gfloppy/src/gfloppy2.glade.h:3
+#: ../gfloppy/src/gfloppy2.glade.h:3
 msgid ""
 "<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
 "system.  It must be installed in order to perform a thorough DOS (fat) "
@@ -728,94 +707,91 @@ msgstr ""
 "<small><i><b>注意</b>：系統中沒有安裝 mbadblocks 公用程式。如果要進行徹底的 "
 "DOS (fat) 格式化，就必須安裝該程式。</i></small>"
 
-#: gfloppy/src/gfloppy2.glade.h:4
+#: ../gfloppy/src/gfloppy2.glade.h:4
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:5
+#: ../gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "倍密度 3.5\" (720 KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:6
+#: ../gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "倍密度 5.25\" (360 KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:7
+#: ../gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "檔案系統類型(_T)："
 
-#: gfloppy/src/gfloppy2.glade.h:8
-#, fuzzy
+#: ../gfloppy/src/gfloppy2.glade.h:8
 msgid "Filesystem Settings"
-msgstr "檔案系統類型(_T)："
+msgstr "檔案系統設定"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: ../gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "軟碟密度(_D)："
 
-#: gfloppy/src/gfloppy2.glade.h:11
+#: ../gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "軟碟裝置(_V)："
 
-#: gfloppy/src/gfloppy2.glade.h:12
-#, fuzzy
+#: ../gfloppy/src/gfloppy2.glade.h:12
 msgid "Formatting Mode"
-msgstr "預設格式化方式"
+msgstr "格式化方式"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: ../gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "高密度 3.5\" (1.44 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: ../gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "高密度 5.25\" (1.2 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: ../gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Linux Native (ext2)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: ../gfloppy/src/gfloppy2.glade.h:16
 msgid "Physical Settings"
-msgstr ""
+msgstr "物理設定"
 
-#: gfloppy/src/gfloppy2.glade.h:17
+#: ../gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
 msgstr "徹底[在標準模式上加上壞磁區檢查](_G)"
 
-#: gfloppy/src/gfloppy2.glade.h:18
+#: ../gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
 msgstr "檔案系統標記名稱(_N)："
 
-#: gfloppy/src/gfloppy2.glade.h:19
+#: ../gfloppy/src/gfloppy2.glade.h:19
 msgid "_Format"
 msgstr "格式化(_F)"
 
-#: gfloppy/src/gfloppy2.glade.h:20
+#: ../gfloppy/src/gfloppy2.glade.h:20
 msgid "_Quick (only creates the filesystem)"
 msgstr "快速[只建立檔案系統](_Q)"
 
-#: gfloppy/src/gfloppy2.glade.h:21
+#: ../gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "標準[在快速模式上加上低階格式化](_S)"
 
-#: gfloppy/src/main.c:224
-#, fuzzy
+#: ../gfloppy/src/main.c:224
 msgid "Cannot Format"
-msgstr "格式化(_F)"
+msgstr "無法格式化"
 
-#: gfloppy/src/main.c:225
+#: ../gfloppy/src/main.c:225
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
 "mke2fs 及 mkdosfs/mformat 程式都沒有安裝。將磁片格式化至少需要其中一個程式。"
 
-#: gfloppy/src/main.c:245
+#: ../gfloppy/src/main.c:245
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "無法開啟 %s 裝置，不能繼續格式化。"
 
-#: gfloppy/src/main.c:248 gfloppy/src/main.c:311
+#: ../gfloppy/src/main.c:248 ../gfloppy/src/main.c:311
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -824,7 +800,7 @@ msgstr ""
 "%s 裝置並未連接至電腦。\n"
 "請接上裝置後再繼續。"
 
-#: gfloppy/src/main.c:251 gfloppy/src/main.c:314
+#: ../gfloppy/src/main.c:251 ../gfloppy/src/main.c:314
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -834,43 +810,39 @@ msgstr ""
 "沒有足夠的權限寫入 %s，不可能格式化。\n"
 "若要獲得寫入的權限，請聯絡系統管理員。"
 
-#: gfloppy/src/main.c:258 gfloppy/src/main.c:322
-#, fuzzy
+#: ../gfloppy/src/main.c:258 ../gfloppy/src/main.c:322
 msgid "Cannot initialize device"
-msgstr "無法初始化 bonobo。"
+msgstr "裝置無法起動"
 
-#: gfloppy/src/main.c:308
+#: ../gfloppy/src/main.c:308
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "無法開啟任何裝置，不能繼續格式化。"
 
-#: gfloppy/src/main.c:311 gfloppy/src/main.c:314
+#: ../gfloppy/src/main.c:311 ../gfloppy/src/main.c:314
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 或 /dev/fd0"
 
-#: gfloppy/src/main.c:475
-#, fuzzy
+#: ../gfloppy/src/main.c:475
 msgid "Could not display help for the floppy formatter."
-msgstr ""
-"無法顯示軟碟格式化程式的說明文件。\n"
-"%s"
+msgstr "無法顯示軟碟格式化程式的說明文件。"
 
-#: gfloppy/src/main.c:494
+#: ../gfloppy/src/main.c:494
 msgid "Incorrect volume name"
-msgstr ""
+msgstr "不正確的檔案系統名稱"
 
-#: gfloppy/src/main.c:495
+#: ../gfloppy/src/main.c:495
 msgid "The volume name can't contain any blank space."
 msgstr "檔案系統標記名稱內不可含有任何空格。"
 
-#: gfloppy/src/main.c:544
+#: ../gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "準備格式化的裝置"
 
-#: gfloppy/src/main.c:545
+#: ../gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "裝置"
 
-#: gfloppy/src/progress.c:122
+#: ../gfloppy/src/progress.c:122
 #, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -882,338 +854,321 @@ msgstr[0] ""
 "軟碟片已經成功格式化，但在 %2$d 個磁區中找到 <b>%1$d 個壞磁區</b>，全部都已加"
 "上標記。"
 
-#: gfloppy/src/progress.c:125
+#: ../gfloppy/src/progress.c:125
 msgid "Floppy formatted successfully."
 msgstr "軟碟格式化成功。"
 
-#: gfloppy/src/progress.c:131
+#: ../gfloppy/src/progress.c:131
 msgid "Floppy formatting cancelled."
 msgstr "取消格式化軟碟的動作。"
 
-#: gfloppy/src/progress.c:174
+#: ../gfloppy/src/progress.c:174
 msgid "Format Progress"
 msgstr "格式化進度"
 
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
+#: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr "（無效的統一碼）"
 
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
+#: ../gnome-screenshot/gnome-egg-xfer-dialog.c:471
 #, c-format
 msgid "(%d:%02d:%d Remaining)"
-msgstr ""
+msgstr "（剩餘 %d:%02d:%d）"
 
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
+#: ../gnome-screenshot/gnome-egg-xfer-dialog.c:476
 #, c-format
 msgid "(%d:%02d Remaining)"
-msgstr ""
+msgstr "（剩餘 %d:%02d）"
 
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
+#: ../gnome-screenshot/gnome-egg-xfer-dialog.c:587
 #, c-format
 msgid "%ld of %ld"
-msgstr ""
+msgstr "%2$ld 之 %1$ld"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:86
-#, fuzzy
+#: ../gnome-screenshot/gnome-panel-screenshot.c:86
 msgid "Error loading help"
-msgstr "關閉裝置 %s 時發生錯誤"
+msgstr "載入說明文件時發生錯誤"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:87
-#, fuzzy
+#: ../gnome-screenshot/gnome-panel-screenshot.c:87
 msgid "There was an error displaying the help pages for this dialog:"
-msgstr ""
-"顯示說明文件時發生錯誤：\n"
-"%s"
+msgstr "顯示這對話視窗的說明文件時發生錯誤："
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: gnome-screenshot/gnome-panel-screenshot.c:111
+#: ../gnome-screenshot/gnome-panel-screenshot.c:111
 #, c-format
 msgid "Screenshot-%s.png"
-msgstr ""
+msgstr "Screenshot-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: gnome-screenshot/gnome-panel-screenshot.c:117
+#: ../gnome-screenshot/gnome-panel-screenshot.c:117
 msgid "Screenshot.png"
-msgstr ""
+msgstr "Screenshot.png"
 
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: gnome-screenshot/gnome-panel-screenshot.c:155
+#: ../gnome-screenshot/gnome-panel-screenshot.c:155
 #, c-format
 msgid "Screenshot-%s-%d.png"
-msgstr ""
+msgstr "Screenshot-%s-%d.png"
 
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: gnome-screenshot/gnome-panel-screenshot.c:163
+#: ../gnome-screenshot/gnome-panel-screenshot.c:163
 #, c-format
 msgid "Screenshot-%d.png"
-msgstr ""
+msgstr "Screenshot-%d.png"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:338
+#: ../gnome-screenshot/gnome-panel-screenshot.c:338
 msgid "Unable to take a screenshot of the current desktop."
-msgstr ""
+msgstr "目前的桌面無法拍下畫面快照。"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:410
+#: ../gnome-screenshot/gnome-panel-screenshot.c:410
 msgid "Grab a window instead of the entire screen"
-msgstr ""
+msgstr "擷取單一視窗而不是整個畫面"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:411
+#: ../gnome-screenshot/gnome-panel-screenshot.c:411
 msgid "Include the window border with the screenshot"
-msgstr ""
+msgstr "畫面快照包含視窗邊框"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:412
+#: ../gnome-screenshot/gnome-panel-screenshot.c:412
 msgid "Take screenshot after specified delay [in seconds]"
-msgstr ""
+msgstr "在指定的時間後（秒）拍攝畫面快照"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:413
+#: ../gnome-screenshot/gnome-panel-screenshot.c:413
 msgid "Effect to add to the window border"
-msgstr ""
+msgstr "加到視窗邊框的效果"
 
-#: gnome-screenshot/gnome-panel-screenshot.glade.h:2
+#: ../gnome-screenshot/gnome-panel-screenshot.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>選項</b>"
 
-#: gnome-screenshot/gnome-panel-screenshot.glade.h:3
+#: ../gnome-screenshot/gnome-panel-screenshot.glade.h:3
 msgid "<b>Preview</b>"
-msgstr ""
+msgstr "<b>預覽</b>"
 
-#: gnome-screenshot/gnome-panel-screenshot.glade.h:4
-#: gnome-screenshot/gnome-screenshot.glade.h:2
+#: ../gnome-screenshot/gnome-panel-screenshot.glade.h:4
+#: ../gnome-screenshot/gnome-screenshot.glade.h:2
 msgid "Save Screenshot"
-msgstr ""
+msgstr "儲存畫面快照"
 
-#: gnome-screenshot/gnome-screenshot.glade.h:3
-#, fuzzy
+#: ../gnome-screenshot/gnome-screenshot.glade.h:3
 msgid "Save in _folder:"
-msgstr "在指定資料夾開始搜尋(_L)："
+msgstr "儲存於資料夾(_F)："
 
-#: gnome-screenshot/gnome-screenshot.glade.h:4
-#, fuzzy
+#: ../gnome-screenshot/gnome-screenshot.glade.h:4
 msgid "_Name:"
-msgstr "名稱"
+msgstr "名稱(_N)："
 
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:1
 msgid "Border Effect"
-msgstr ""
+msgstr "邊框效果"
 
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:2
 msgid "Directory that the screenshooter last used to save in"
-msgstr ""
+msgstr "上次畫面快照擷取程式用作儲存的目錄"
 
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
 msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"black-line\"."
-msgstr ""
+msgstr "加到邊框外的效果。數值有“shadow”，“none”及“black-line”。"
 
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
-msgstr ""
+msgstr "包含邊框"
 
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
 msgid "Include the window manager border along with the screenshot"
-msgstr ""
+msgstr "畫面快照包含視窗管理員邊框"
 
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
 msgid "Web directory"
-msgstr ""
+msgstr "網路字典"
 
-#: gnome-screenshot/screenshot-dialog.c:194
+#: ../gnome-screenshot/screenshot-dialog.c:194
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-panel"
 msgstr ""
+"找不到畫面快照程式的 Glade 檔。\n"
+"請檢查 gnome panel 的安裝是否正確"
 
-#: gnome-screenshot/screenshot-dialog.c:213
+#: ../gnome-screenshot/screenshot-dialog.c:213
 msgid "Select a directory"
-msgstr ""
+msgstr "選擇資料夾"
 
-#: gnome-screenshot/screenshot-save.c:40
-#, fuzzy, c-format
+#: ../gnome-screenshot/screenshot-save.c:40
+#, c-format
 msgid ""
 "Unable to clear the temporary directory:\n"
 "%s"
-msgstr "無法正確地建立檔案系統。"
+msgstr ""
+"無法清除暫存目錄：\n"
+"%s"
 
-#: gnome-screenshot/screenshot-save.c:78
+#: ../gnome-screenshot/screenshot-save.c:78
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
-msgstr ""
+msgstr "儲存進程在無法預期下離開。我們無法將畫面快照寫到磁碟上。"
 
-#: gnome-screenshot/screenshot-save.c:188
+#: ../gnome-screenshot/screenshot-save.c:188
 msgid "Unknown error saving screenshot to disk"
-msgstr ""
+msgstr "儲存畫面快照到磁碟時發生不明的錯誤"
 
-#: gnome-screenshot/screenshot-utils.c:611
+#: ../gnome-screenshot/screenshot-utils.c:611
 msgid "Untitled Window"
-msgstr ""
+msgstr "未命名視窗"
 
-#: gnome-screenshot/screenshot-xfer.c:103
+#: ../gnome-screenshot/screenshot-xfer.c:103
 msgid "Preparing to copy"
-msgstr ""
+msgstr "正在準備複製"
 
-#: gnome-screenshot/screenshot-xfer.c:181
-#, fuzzy
+#: ../gnome-screenshot/screenshot-xfer.c:181
 msgid "File already exists"
-msgstr "已經開啟該檔案"
+msgstr "檔案已經存在"
 
-#: gnome-screenshot/screenshot-xfer.c:184
-#, fuzzy, c-format
+#: ../gnome-screenshot/screenshot-xfer.c:184
+#, c-format
 msgid "The file \"%s\" already exists.  Would you like to replace it?"
-msgstr "文件“%s”已存在，是否確定覆寫這個檔案？"
+msgstr "檔案“%s”已存在。您要覆寫這個檔案嗎？"
 
-#: gnome-screenshot/screenshot-xfer.c:190
-#: gsearchtool/gsearchtool-callbacks.c:1269
+#: ../gnome-screenshot/screenshot-xfer.c:190
+#: ../gsearchtool/gsearchtool-callbacks.c:1269
 msgid "_Replace"
 msgstr "取代(_R)"
 
-#: gnome-screenshot/screenshot-xfer.c:230
+#: ../gnome-screenshot/screenshot-xfer.c:230
 #, c-format
 msgid "Unknown GnomeVFSXferProgressStatus %d"
-msgstr ""
+msgstr "不明的 GnomeVFSXferProgressStatus %d"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1
+#: ../gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
 msgstr "在電腦中搜尋檔案、資料夾和文件"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search for Files..."
-msgstr "搜尋檔案"
+msgstr "搜尋檔案..."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:1
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:1
 msgid "Disable Quick Search"
-msgstr "停止使用快速搜尋功能(_Q)"
+msgstr "停用快速搜尋功能"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:2
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:2
 msgid "Disable Quick Search Second Scan"
-msgstr "停止使用快速搜尋功能(_Q)"
+msgstr "停用快速搜尋第二次掃描功能"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:3
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:3
 msgid "Quick Search Excluded Paths"
-msgstr ""
+msgstr "不包含路徑的快速搜尋"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:4
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:4
 msgid "Quick Search Second Scan Excluded Paths"
-msgstr ""
+msgstr "不包含路徑的快速搜尋第二次掃描"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:7
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:7
 msgid "Select the search option \"Contains the text\""
-msgstr "包含指定的文字(_T)"
+msgstr "選擇搜尋選項「包含指定的文字」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:10
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:10
 msgid "Select the search option \"Date modified less than\""
-msgstr "最後修改時間少於(_D)"
+msgstr "選擇搜尋選項「最後修改時間少於」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:13
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:13
 msgid "Select the search option \"Date modified more than\""
-msgstr "最後修改時間多於"
+msgstr "選擇搜尋選項「最後修改時間多於」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:16
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:16
 msgid "Select the search option \"File is empty\""
-msgstr "檔案是空白的"
+msgstr "選擇搜尋選項「檔案是空白的」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:19
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:19
 msgid "Select the search option \"Follow symbolic links\""
-msgstr "跟隨符號連結"
+msgstr "選擇搜尋選項「跟隨符號連結」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:22
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:22
 msgid "Select the search option \"Include other filesystems\""
-msgstr "包括其它檔案系統"
+msgstr "選擇搜尋選項「包括其它檔案系統」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:25
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:25
 msgid "Select the search option \"Name does not contain\""
-msgstr "名稱中沒有(_M)"
+msgstr "選擇搜尋選項「名稱中沒有」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:28
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:28
 msgid "Select the search option \"Name matches regular expression\""
-msgstr "檔名符合正規表示式(_X)"
+msgstr "選擇搜尋選項「檔名符合正規表示式」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:31
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:31
 msgid "Select the search option \"Owned by group\""
-msgstr "屬於指定群組(_G)"
+msgstr "選擇搜尋選項「屬於指定群組」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:34
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:34
 msgid "Select the search option \"Owned by user\""
-msgstr "由指定帳戶擁有(_U)"
+msgstr "選擇搜尋選項「由指定帳戶擁有」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:37
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:37
 msgid "Select the search option \"Owner is unrecognized\""
-msgstr "無法識別擁有者"
+msgstr "選擇搜尋選項「無法識別擁有者」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:40
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:40
 msgid "Select the search option \"Show hidden files and folders\""
-msgstr ""
+msgstr "選擇搜尋選項「顯示隱藏檔案及資料夾」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:43
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:43
 msgid "Select the search option \"Size at least\""
-msgstr "檔案大小下限(_I)"
+msgstr "選擇搜尋選項「檔案大小下限」"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:46
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:46
 msgid "Select the search option \"Size at most\""
-msgstr ""
+msgstr "選擇搜尋選項「檔案大小上限」"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:47
-#, fuzzy
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:47
 msgid "Show Additional Options"
-msgstr "額外選項"
+msgstr "顯示額外選項"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:48
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:48
 msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
 msgstr ""
+"這設定鍵確定搜尋工具在進行快速搜尋時會忽略的路徑。支援萬用字符‘*’及‘?’。預設"
+"的數值是 /mnt/*，/media/*，/dev/*，/tmp/*，/proc/*及/var/*。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:49
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:49
 msgid ""
 "This key defines the paths the search tool will exclude from a second scan "
 "when performing a quick search. The second scan uses the find command to "
@@ -1221,222 +1176,225 @@ msgid ""
 "not been indexed. The wildcards '*' and '?' are supported. The default value "
 "is /."
 msgstr ""
+"這設定鍵確定搜尋工具在進行快速搜尋第二次掃描會忽略的路徑。快速搜尋第二次掃描"
+"是做用 find 指令來尋找檔案。第二次掃描的目的是尋找那些沒有建立索引的檔案。支"
+"援萬用字符‘*’及‘?’。預設的數值是 ./。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:50
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
 "This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「包含指定的文字」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:51
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「最後修改時間少於」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:52
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
 "This key determines if the \"Date modified more than\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「最後修改時間多於」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:53
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:53
 msgid ""
 "This key determines if the \"File is empty\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「檔案是空白的」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:54
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:54
 msgid ""
 "This key determines if the \"Follow symbolic links\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「跟隨符號連結」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:55
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:55
 msgid ""
 "This key determines if the \"Include other filesystems\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定定在搜尋工具開始搜尋時已選用了「包括其它檔案系統」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:56
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
 "This key determines if the \"Name does not contain\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「名稱中沒有」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:57
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定定在搜尋工具開始搜尋時已選用了「檔名符合正規表示式」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:58
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:58
 msgid ""
 "This key determines if the \"Owned by group\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「屬於指定群組」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:59
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:59
 msgid ""
 "This key determines if the \"Owned by user\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「由指定帳戶擁有」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:60
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:60
 msgid ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「無法識別擁有者」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:61
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:61
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「顯示隱藏檔案及資料夾」選項。"
 
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:64
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Show more options\" section is expanded when "
 "the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始時「顯示更多選項」的部份會展開。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:65
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「檔案大小下限」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:66
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:66
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
-msgstr ""
+msgstr "這設定鍵確定在搜尋工具開始搜尋時已選用了「檔案大小上限」選項。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:67
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
-msgstr ""
+msgstr "這設定鍵確定搜尋工具在進行快速搜尋後不使用·find·指令"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:68
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
-msgstr ""
+msgstr "這設定鍵確定搜尋工具在進行的檔案名稱搜尋時不使用 locate 指令。"
 
-#: gsearchtool/gsearchtool-callbacks.c:163
+#: ../gsearchtool/gsearchtool-callbacks.c:163
 msgid "Could not open help document."
 msgstr "無法開啟說明文件。"
 
-#: gsearchtool/gsearchtool-callbacks.c:298
+#: ../gsearchtool/gsearchtool-callbacks.c:298
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "是否確定要開啟 %d 份文件？"
 
-#: gsearchtool/gsearchtool-callbacks.c:303
-#: gsearchtool/gsearchtool-callbacks.c:460
+#: ../gsearchtool/gsearchtool-callbacks.c:303
+#: ../gsearchtool/gsearchtool-callbacks.c:460
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "這樣會另外開啟 %d 個視窗。"
 
-#: gsearchtool/gsearchtool-callbacks.c:343
+#: ../gsearchtool/gsearchtool-callbacks.c:343
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "無法開啟“%s”文件"
 
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: ../gsearchtool/gsearchtool-callbacks.c:418
+#: ../gsearchtool/gsearchtool-callbacks.c:761
 msgid "The document does not exist."
 msgstr "資料夾不存在。"
 
-#: gsearchtool/gsearchtool-callbacks.c:431
+#: ../gsearchtool/gsearchtool-callbacks.c:431
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "沒有任何已安裝的顯示模式可以顯示該檔案。"
 
-#: gsearchtool/gsearchtool-callbacks.c:455
+#: ../gsearchtool/gsearchtool-callbacks.c:455
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "是否確定要開啟 %d 個資料夾？"
 
-#: gsearchtool/gsearchtool-callbacks.c:499
+#: ../gsearchtool/gsearchtool-callbacks.c:499
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "無法開啟“%s”資料夾"
 
-#: gsearchtool/gsearchtool-callbacks.c:507
+#: ../gsearchtool/gsearchtool-callbacks.c:507
 msgid "The nautilus file manager is not running."
 msgstr "nautilus 檔案總管並未執行。"
 
-#: gsearchtool/gsearchtool-callbacks.c:587
+#: ../gsearchtool/gsearchtool-callbacks.c:587
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "無法將“%s”丟進回收筒。"
 
-#: gsearchtool/gsearchtool-callbacks.c:618
+#: ../gsearchtool/gsearchtool-callbacks.c:618
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "是否確定永久刪除“%s”？"
 
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: ../gsearchtool/gsearchtool-callbacks.c:621
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "回收筒無法使用。未能把“%s”丟進回收筒。"
 
-#: gsearchtool/gsearchtool-callbacks.c:660
+#: ../gsearchtool/gsearchtool-callbacks.c:660
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "無法刪除“%s”。"
 
-#: gsearchtool/gsearchtool-callbacks.c:780
+#: ../gsearchtool/gsearchtool-callbacks.c:780
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "移動“%s”失敗： %s。"
 
-#: gsearchtool/gsearchtool-callbacks.c:812
+#: ../gsearchtool/gsearchtool-callbacks.c:812
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr "刪除 \"%s\" 失敗: %s。"
+msgstr "刪除“%s”失敗：%s。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1158
+#: ../gsearchtool/gsearchtool-callbacks.c:1158
 msgid "Save Search Results As..."
 msgstr "將搜尋結果另存為..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: ../gsearchtool/gsearchtool-callbacks.c:1186
 msgid "Could not save document."
 msgstr "無法儲存文件。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: ../gsearchtool/gsearchtool-callbacks.c:1187
 msgid "You did not select a document name."
 msgstr "您未選取任何文件。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: ../gsearchtool/gsearchtool-callbacks.c:1217
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "無法將“%s”文件儲存至“%s”"
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: ../gsearchtool/gsearchtool-callbacks.c:1250
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "文件“%s”已存在，是否確定覆寫這個檔案？"
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: ../gsearchtool/gsearchtool-callbacks.c:1254
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "如果您取代一個現有的檔案，該檔案的原有內容將會消失。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1318
+#: ../gsearchtool/gsearchtool-callbacks.c:1318
 msgid "The document name you selected is a folder."
 msgstr "您所選的文件名稱是一個資料夾。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1369
+#: ../gsearchtool/gsearchtool-callbacks.c:1369
 msgid "You may not have write permissions to the document."
 msgstr "您沒有足夠權限寫入檔案。"
 
-#: gsearchtool/gsearchtool-support.c:70
+#: ../gsearchtool/gsearchtool-support.c:70
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1450,190 +1408,189 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:521
+#: ../gsearchtool/gsearchtool-support.c:521
 msgid "today at %-I:%M %p"
 msgstr "今天%p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:523
+#: ../gsearchtool/gsearchtool-support.c:523
 msgid "yesterday at %-I:%M %p"
 msgstr "昨天%p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
+#: ../gsearchtool/gsearchtool-support.c:525
+#: ../gsearchtool/gsearchtool-support.c:527
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%Y年%m月%d日 (%A) %p %-I:%M:%S"
 
-#: gsearchtool/gsearchtool-support.c:711
+#: ../gsearchtool/gsearchtool-support.c:711
 msgid "link (broken)"
 msgstr "鏈結 (目標不存在)"
 
-#: gsearchtool/gsearchtool-support.c:717
+#: ../gsearchtool/gsearchtool-support.c:717
 #, c-format
 msgid "link to %s"
 msgstr "%s 的鏈結"
 
-#: gsearchtool/gsearchtool.c:81
+#: ../gsearchtool/gsearchtool.c:81
 msgid "Contains the _text"
 msgstr "包含指定的文字(_T)"
 
-#: gsearchtool/gsearchtool.c:83
+#: ../gsearchtool/gsearchtool.c:83
 msgid "_Date modified less than"
 msgstr "最後修改時間少於(_D)"
 
-#: gsearchtool/gsearchtool.c:83 gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:83 ../gsearchtool/gsearchtool.c:84
 msgid "days"
 msgstr "日"
 
-#: gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:84
 msgid "Date modified more than"
 msgstr "最後修改時間多於"
 
-#: gsearchtool/gsearchtool.c:86
+#: ../gsearchtool/gsearchtool.c:86
 msgid "S_ize at least"
 msgstr "檔案大小下限(_I)"
 
-#: gsearchtool/gsearchtool.c:86 gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:86 ../gsearchtool/gsearchtool.c:87
 msgid "kilobytes"
 msgstr "KB"
 
-#: gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:87
 msgid "Si_ze at most"
 msgstr "檔案大小上限(_Z)"
 
-#: gsearchtool/gsearchtool.c:88
+#: ../gsearchtool/gsearchtool.c:88
 msgid "File is empty"
 msgstr "檔案是空白的"
 
-#: gsearchtool/gsearchtool.c:90
+#: ../gsearchtool/gsearchtool.c:90
 msgid "Owned by _user"
 msgstr "由指定帳戶擁有(_U)"
 
-#: gsearchtool/gsearchtool.c:91
+#: ../gsearchtool/gsearchtool.c:91
 msgid "Owned by _group"
 msgstr "屬於指定群組(_G)"
 
-#: gsearchtool/gsearchtool.c:92
+#: ../gsearchtool/gsearchtool.c:92
 msgid "Owner is unrecognized"
 msgstr "無法識別擁有者"
 
-#: gsearchtool/gsearchtool.c:94
+#: ../gsearchtool/gsearchtool.c:94
 msgid "Na_me does not contain"
 msgstr "名稱中沒有(_M)"
 
-#: gsearchtool/gsearchtool.c:95
+#: ../gsearchtool/gsearchtool.c:95
 msgid "Name matches regular e_xpression"
 msgstr "檔名符合正規表示式(_X)"
 
-#: gsearchtool/gsearchtool.c:97
+#: ../gsearchtool/gsearchtool.c:97
 msgid "Show hidden and backup files"
 msgstr "顯示隱藏或備份的檔案或資料夾"
 
-#: gsearchtool/gsearchtool.c:98
+#: ../gsearchtool/gsearchtool.c:98
 msgid "Follow symbolic links"
 msgstr "跟隨符號連結"
 
-#: gsearchtool/gsearchtool.c:99
+#: ../gsearchtool/gsearchtool.c:99
 msgid "Include other filesystems"
 msgstr "包括其它檔案系統"
 
-#: gsearchtool/gsearchtool.c:180
+#: ../gsearchtool/gsearchtool.c:180
 msgid "_Open"
 msgstr "開啟(_O)"
 
-#: gsearchtool/gsearchtool.c:181
+#: ../gsearchtool/gsearchtool.c:181
 msgid "O_pen Folder"
 msgstr "開啟資料夾(_P)"
 
-#: gsearchtool/gsearchtool.c:182
+#: ../gsearchtool/gsearchtool.c:182
 msgid "Mo_ve to Trash"
 msgstr "丟進回收筒(_V)"
 
-#: gsearchtool/gsearchtool.c:183
+#: ../gsearchtool/gsearchtool.c:183
 msgid "_Save Results As..."
 msgstr "將結果儲存為(_S)..."
 
-#: gsearchtool/gsearchtool.c:249 gsearchtool/gsearchtool.c:266
+#: ../gsearchtool/gsearchtool.c:249 ../gsearchtool/gsearchtool.c:266
 msgid "A locate database has probably not been created."
-msgstr ""
+msgstr "locate 指令的資料庫可能還未建立。"
 
-#: gsearchtool/gsearchtool.c:369
+#: ../gsearchtool/gsearchtool.c:369
 #, c-format
 msgid "Character set conversion failed for \"%s\""
-msgstr ""
+msgstr "“%s”的字符轉換失敗"
 
-#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
+#: ../gsearchtool/gsearchtool.c:735 ../gsearchtool/gsearchtool.c:764
 msgid "No files found"
 msgstr "找不到符合條件的檔案"
 
-#: gsearchtool/gsearchtool.c:757
+#: ../gsearchtool/gsearchtool.c:757
 msgid "(stopped)"
 msgstr "(已停止)"
 
-#: gsearchtool/gsearchtool.c:763
+#: ../gsearchtool/gsearchtool.c:763
 msgid "No Files Found"
 msgstr "找不到任何檔案"
 
-#: gsearchtool/gsearchtool.c:768
+#: ../gsearchtool/gsearchtool.c:768
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "找到 %d 個檔案"
 
-#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
+#: ../gsearchtool/gsearchtool.c:772 ../gsearchtool/gsearchtool.c:810
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "找到 %d 個檔案"
 
-#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
-#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
+#: ../gsearchtool/gsearchtool.c:789 ../gsearchtool/gsearchtool.c:1048
+#: ../gsearchtool/gsearchtool.c:1134 ../gsearchtool/gsearchtool.c:2804
 msgid "Search for Files"
 msgstr "搜尋檔案"
 
-#: gsearchtool/gsearchtool.c:882
+#: ../gsearchtool/gsearchtool.c:882
 msgid "Entry changed called for a non entry option!"
 msgstr "已更改的欄位使用了無效的欄位選項！"
 
-#: gsearchtool/gsearchtool.c:1134
+#: ../gsearchtool/gsearchtool.c:1134
 msgid "Searching..."
 msgstr "搜尋中..."
 
-#: gsearchtool/gsearchtool.c:1157
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:1157
 msgid "Set the text of \"Name contains\" search option"
-msgstr "預先填上準備搜尋的檔案名稱"
+msgstr "預先填上在「檔名中含有」搜尋選項中的文字"
 
-#: gsearchtool/gsearchtool.c:1158
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:1158
 msgid "Set the text of \"Look in folder\" search option"
-msgstr "預先填上會搜尋的資料夾"
+msgstr "預先填上在「在指定資料夾開始搜尋」搜尋選項中的文字"
 
-#: gsearchtool/gsearchtool.c:1159
+#: ../gsearchtool/gsearchtool.c:1159
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "根據以下其中一種屬性排列檔案：名稱、資料夾、大小、類型或日期"
 
-#: gsearchtool/gsearchtool.c:1160
+#: ../gsearchtool/gsearchtool.c:1160
 msgid "Set sort order to descending, the default is ascending"
 msgstr "設定為相反次序排列 (預設為順序排列)"
 
-#: gsearchtool/gsearchtool.c:1161
+#: ../gsearchtool/gsearchtool.c:1161
 msgid "Automatically start a search"
 msgstr "自動開始搜尋"
 
-#: gsearchtool/gsearchtool.c:1167
-#, fuzzy, c-format
+#: ../gsearchtool/gsearchtool.c:1167
+#, c-format
 msgid "Select the \"%s\" search option"
-msgstr "指定「%s」條件"
+msgstr "選擇搜尋選項“%s”"
 
-#: gsearchtool/gsearchtool.c:1170
-#, fuzzy, c-format
+#: ../gsearchtool/gsearchtool.c:1170
+#, c-format
 msgid "Select and set the \"%s\" search option"
-msgstr "檔名符合正規表示式(_X)"
+msgstr "選擇及設定搜尋選項“%s”"
 
-#: gsearchtool/gsearchtool.c:1277
+#: ../gsearchtool/gsearchtool.c:1277
 msgid "Invalid option passed to sortby command line argument."
 msgstr "sortby 參數中的選項無效。"
 
-#: gsearchtool/gsearchtool.c:1573
+#: ../gsearchtool/gsearchtool.c:1573
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1641,309 +1598,298 @@ msgstr ""
 "\n"
 "... 錯誤過多，無法顯示 ..."
 
-#: gsearchtool/gsearchtool.c:1587
+#: ../gsearchtool/gsearchtool.c:1587
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "搜尋結果可能無效。進行搜尋時發生錯誤。"
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
+#: ../gsearchtool/gsearchtool.c:1599 ../gsearchtool/gsearchtool.c:1639
 msgid "Show more _details"
 msgstr "顯示其它詳細資料(_D)"
 
-#: gsearchtool/gsearchtool.c:1627
+#: ../gsearchtool/gsearchtool.c:1627
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr "搜尋結果可能無效。您想不想停止使用快速搜尋功能？"
 
-#: gsearchtool/gsearchtool.c:1650
+#: ../gsearchtool/gsearchtool.c:1650
 msgid "Disable _Quick Search"
 msgstr "停止使用快速搜尋功能(_Q)"
 
-#: gsearchtool/gsearchtool.c:1677
+#: ../gsearchtool/gsearchtool.c:1677
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1704
+#: ../gsearchtool/gsearchtool.c:1704
 msgid "Error parsing the search command."
 msgstr "分析搜尋指令時發生錯誤"
 
-#: gsearchtool/gsearchtool.c:1737
+#: ../gsearchtool/gsearchtool.c:1737
 msgid "Error running the search command."
 msgstr "執行搜尋指令時發生錯誤"
 
-#: gsearchtool/gsearchtool.c:1884
-#, fuzzy, c-format
+#: ../gsearchtool/gsearchtool.c:1884
+#, c-format
 msgid "Enter a text value for the \"%s\" search option."
-msgstr "檔名符合正規表示式(_X)"
+msgstr "輸入搜尋選項·“%s”搜尋用的文字。"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1889
+#: ../gsearchtool/gsearchtool.c:1889
 #, c-format
 msgid "\"%s\" in %s"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1891
-#, fuzzy, c-format
+#: ../gsearchtool/gsearchtool.c:1891
+#, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
-msgstr "檔名符合正規表示式(_X)"
+msgstr "在 %s 輸入搜尋選項“%s”的數值。"
 
-#: gsearchtool/gsearchtool.c:1950
-#, fuzzy, c-format
+#: ../gsearchtool/gsearchtool.c:1950
+#, c-format
 msgid "Remove \"%s\""
-msgstr "移除"
+msgstr "移除“%s”"
 
-#: gsearchtool/gsearchtool.c:1951
-#, fuzzy, c-format
+#: ../gsearchtool/gsearchtool.c:1951
+#, c-format
 msgid "Click to remove the \"%s\" search option."
-msgstr "指定「%s」條件"
+msgstr "按這裡移除搜尋選項“%s”。"
 
-#: gsearchtool/gsearchtool.c:2044
+#: ../gsearchtool/gsearchtool.c:2044
 msgid "A_vailable options:"
 msgstr "目前提供的選項(_V)："
 
-#: gsearchtool/gsearchtool.c:2073
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2073
 msgid "Available options"
-msgstr "目前提供的選項(_V)："
+msgstr "可用的選項"
 
-#: gsearchtool/gsearchtool.c:2074
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2074
 msgid "Select a search option from the drop-down list."
-msgstr "在選單中選擇搜尋條件"
+msgstr "在下拉式選單中選擇搜尋選項。"
 
-#: gsearchtool/gsearchtool.c:2086
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2086
 msgid "Add search option"
-msgstr "加入行動"
+msgstr "加入搜尋選項"
 
-#: gsearchtool/gsearchtool.c:2087
+#: ../gsearchtool/gsearchtool.c:2087
 msgid "Click to add the selected available search option."
-msgstr ""
+msgstr "按這裡加入搜尋選項。"
 
-#: gsearchtool/gsearchtool.c:2108
+#: ../gsearchtool/gsearchtool.c:2108
 msgid "S_earch results:"
 msgstr "搜尋結果(_E)："
 
-#: gsearchtool/gsearchtool.c:2144
+#: ../gsearchtool/gsearchtool.c:2144
 msgid "List View"
-msgstr ""
+msgstr "清單顯示模式"
 
-#: gsearchtool/gsearchtool.c:2194
+#: ../gsearchtool/gsearchtool.c:2194
 msgid "Name"
 msgstr "名稱"
 
-#: gsearchtool/gsearchtool.c:2214
+#: ../gsearchtool/gsearchtool.c:2214
 msgid "Folder"
 msgstr "資料夾"
 
-#: gsearchtool/gsearchtool.c:2225
+#: ../gsearchtool/gsearchtool.c:2225
 msgid "Size"
 msgstr "大小"
 
-#: gsearchtool/gsearchtool.c:2235
+#: ../gsearchtool/gsearchtool.c:2235
 msgid "Type"
 msgstr "類型"
 
-#: gsearchtool/gsearchtool.c:2245
+#: ../gsearchtool/gsearchtool.c:2245
 msgid "Date Modified"
 msgstr "最後修改時間"
 
-#: gsearchtool/gsearchtool.c:2613
+#: ../gsearchtool/gsearchtool.c:2613
 msgid "_Name contains:"
 msgstr "檔名中含有(_N)："
 
-#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
+#: ../gsearchtool/gsearchtool.c:2627 ../gsearchtool/gsearchtool.c:2628
 msgid "Enter a filename or partial filename with or without wildcards."
-msgstr ""
+msgstr "輸入檔案的名稱或檔案部份的名稱（名稱中可配合萬用字元）。"
 
-#: gsearchtool/gsearchtool.c:2628
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2628
 msgid "Name contains"
-msgstr "檔名中含有(_N)："
+msgstr "檔名中含有"
 
-#: gsearchtool/gsearchtool.c:2634
+#: ../gsearchtool/gsearchtool.c:2634
 msgid "_Look in folder:"
 msgstr "在指定資料夾開始搜尋(_L)："
 
-#: gsearchtool/gsearchtool.c:2640
+#: ../gsearchtool/gsearchtool.c:2640
 msgid "Browse"
 msgstr "瀏覽"
 
-#: gsearchtool/gsearchtool.c:2645
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2645
 msgid "Look in folder"
-msgstr "在指定資料夾開始搜尋(_L)："
+msgstr "在資料夾中搜尋"
 
-#: gsearchtool/gsearchtool.c:2645
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2645
 msgid "Select the folder or device from which you want to begin the search."
-msgstr "請輸入準備搜尋的資料夾"
+msgstr "選擇準備搜尋的資料夾或裝置。"
 
-#: gsearchtool/gsearchtool.c:2656
+#: ../gsearchtool/gsearchtool.c:2656
 msgid "Show more _options"
 msgstr "顯示進階選項(_O)"
 
-#: gsearchtool/gsearchtool.c:2665
+#: ../gsearchtool/gsearchtool.c:2665
 msgid "Show more options"
 msgstr "顯示進階選項"
 
-#: gsearchtool/gsearchtool.c:2665
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2665
 msgid "Click to expand or collapse the list of available options."
-msgstr "展開或收起一系列搜尋選項。"
+msgstr "按這裡展開或收起一系列搜尋選項。"
 
-#: gsearchtool/gsearchtool.c:2689
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2689
 msgid "Click to display the help manual."
-msgstr "無法顯示說明文件"
+msgstr "按下本按鈕來顯示說明文件。"
 
-#: gsearchtool/gsearchtool.c:2697
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2697
 msgid "Click to close \"Search for Files\"."
-msgstr "搜尋檔案"
+msgstr "按下本按鈕來關閉「搜尋檔案」。"
 
-#: gsearchtool/gsearchtool.c:2723
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2723
 msgid "Click to perform a search."
-msgstr "按下本按鈕後會停止搜尋"
+msgstr "按下本按鈕來進行搜尋"
 
-#: gsearchtool/gsearchtool.c:2724
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2724
 msgid "Click to stop a search."
-msgstr "按下本按鈕後會停止搜尋"
+msgstr "按下本按鈕來停止搜尋。"
 
-#: gsearchtool/gsearchtool.c:2824
+#: ../gsearchtool/gsearchtool.c:2824
 msgid "Cannot initialize bonobo."
 msgstr "無法初始化 bonobo。"
 
-#: logview/about.c:47 logview/logview.c:47
+#: ../logview/about.c:47 ../logview/logview.c:47
 msgid "System Log Viewer"
 msgstr "系統日誌顯示程式"
 
-#: logview/about.c:50
+#: ../logview/about.c:50
 msgid "A system log viewer for GNOME."
 msgstr "適用於 GNOME 的系統日誌顯示程式。"
 
-#: logview/actions.c:85
+#: ../logview/actions.c:85
 msgid "Action Database"
 msgstr "行動資料庫"
 
-#: logview/actions.c:96
+#: ../logview/actions.c:96
 msgid "Actions"
 msgstr "行動"
 
-#: logview/actions.c:168
+#: ../logview/actions.c:168
 msgid "_Add"
 msgstr "加入(_A)"
 
-#: logview/actions.c:173
+#: ../logview/actions.c:173
 msgid "Add an action"
 msgstr "加入行動"
 
-#: logview/actions.c:175 logview/logview.c:86
+#: ../logview/actions.c:175 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "修改(_E)"
 
-#: logview/actions.c:180
+#: ../logview/actions.c:180
 msgid "Edit an action"
 msgstr "編輯行動"
 
-#: logview/actions.c:182
+#: ../logview/actions.c:182
 msgid "_Remove"
 msgstr "移除(_R)"
 
-#: logview/actions.c:187
+#: ../logview/actions.c:187
 msgid "Remove an action"
 msgstr "移除行動"
 
-#: logview/actions.c:274
+#: ../logview/actions.c:274
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "無法開啟紀錄行動的資料庫 <%s>！開啟失敗。"
 
-#: logview/actions.c:309 logview/actions.c:322 logview/actions.c:333
-#: logview/actions.c:344 logview/actions.c:355 logview/actions.c:366
+#: ../logview/actions.c:309 ../logview/actions.c:322 ../logview/actions.c:333
+#: ../logview/actions.c:344 ../logview/actions.c:355 ../logview/actions.c:366
 msgid "Error parsing actions data base"
 msgstr "讀入紀錄行動的資料庫時發生錯誤"
 
-#: logview/actions.c:400
+#: ../logview/actions.c:400
 msgid "Can't write to actions database!"
 msgstr "無法寫入紀錄行動的資料庫！"
 
-#: logview/actions.c:498
+#: ../logview/actions.c:498
 #, c-format
 msgid "Error while executing specified action: %s"
 msgstr "當進行指定的行動時出現錯誤：%s"
 
-#: logview/actions.c:521
+#: ../logview/actions.c:521
 msgid "<empty>"
 msgstr "<空白>"
 
-#: logview/actions.c:522
+#: ../logview/actions.c:522
 msgid "log name regexp"
 msgstr "日誌名稱的正規表示式"
 
-#: logview/actions.c:523
+#: ../logview/actions.c:523
 msgid "process regexp"
 msgstr "進程名稱的正規表示式"
 
-#: logview/actions.c:524
+#: ../logview/actions.c:524
 msgid "message regexp"
 msgstr "訊息的正規表示式"
 
-#: logview/actions.c:525
+#: ../logview/actions.c:525
 msgid "action to execute when regexps are TRUE"
 msgstr "當符合正規表示式時所執行的行動"
 
-#: logview/actions.c:526
+#: ../logview/actions.c:526
 msgid "description"
 msgstr "說明"
 
-#: logview/actions.c:662
+#: ../logview/actions.c:662
 msgid "Edit Action"
 msgstr "編輯行動"
 
-#: logview/actions.c:698
+#: ../logview/actions.c:698
 msgid "_Tag:"
 msgstr "標籤(_T):"
 
-#: logview/actions.c:707
+#: ../logview/actions.c:707
 msgid "Tag that identifies the log file."
 msgstr "用作識別紀錄檔的標籤"
 
-#: logview/actions.c:716
+#: ../logview/actions.c:716
 msgid "_Log name:"
 msgstr "系統紀錄檔名(_L)："
 
-#: logview/actions.c:725
+#: ../logview/actions.c:725
 msgid "Regular expression that will match the log name."
 msgstr "用作搜索紀錄檔名的正規表示式。"
 
-#: logview/actions.c:735
+#: ../logview/actions.c:735
 msgid "_Process:"
 msgstr "程序(_P)："
 
-#: logview/actions.c:744
+#: ../logview/actions.c:744
 msgid "Regular expression that will match process part of message."
 msgstr "用作搜索記錄中程序部份的正規表示式。"
 
-#: logview/actions.c:754
+#: ../logview/actions.c:754
 msgid "_Message:"
 msgstr "訊息(_M)"
 
-#: logview/actions.c:763
+#: ../logview/actions.c:763
 msgid "Regular expression that will match the message."
 msgstr "用作搜索記錄訊息的正規表示式。"
 
-#: logview/actions.c:773
+#: ../logview/actions.c:773
 msgid "_Action:"
 msgstr "行動(_A):"
 
-#: logview/actions.c:782
+#: ../logview/actions.c:782
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
@@ -1951,15 +1897,15 @@ msgstr ""
 "如果符合之前所有正規表示式，這行動將會被執行。這是由一個系統指令 system(動"
 "作) 去執行的。"
 
-#: logview/actions.c:792
+#: ../logview/actions.c:792
 msgid "_Description:"
 msgstr "說明(_D)："
 
-#: logview/actions.c:801
+#: ../logview/actions.c:801
 msgid "Description of this entry."
 msgstr "本項目的說明文字。"
 
-#: logview/actions.c:825
+#: ../logview/actions.c:825
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1976,16 +1922,16 @@ msgstr ""
 "說明：[%s]\n"
 "行動：[%s]\n"
 
-#: logview/calendar.c:55
+#: ../logview/calendar.c:55
 msgid "Calendar"
 msgstr "日曆"
 
-#: logview/desc_db.c:66
+#: ../logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr "無法開啟正規表示式資料庫 <%s>！開啟失敗。"
 
-#: logview/desc_db.c:176
+#: ../logview/desc_db.c:176
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "無法開啟說明文字資料庫 <%s>！開啟失敗。"
@@ -1994,134 +1940,132 @@ msgstr "無法開啟說明文字資料庫 <%s>！開啟失敗。"
 #. NAME:
 #. DESCRIPTION:
 #. ----------------------------------------------------------------------
-#: logview/gnome-system-log.desktop.in.h:1
+#: ../logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "系統日誌"
 
-#: logview/gnome-system-log.desktop.in.h:2
+#: ../logview/gnome-system-log.desktop.in.h:2
 msgid "View the system log file"
 msgstr "顯示系統日誌檔案"
 
-#: logview/info.c:47
+#: ../logview/info.c:47
 msgid "Properties"
 msgstr "屬性"
 
-#: logview/info.c:95
+#: ../logview/info.c:95
 #, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld 位元組"
 
-#: logview/info.c:97
-#, fuzzy, c-format
+#: ../logview/info.c:97
+#, c-format
 msgid "<b>Size</b>: %s"
-msgstr "最後修改時間："
+msgstr "<b>大小</b>：%s"
 
-#: logview/info.c:102
-#, fuzzy, c-format
+#: ../logview/info.c:102
+#, c-format
 msgid "<b>Modified</b>: %s"
-msgstr "最後修改時間："
+msgstr "<b>最後修改時間</b>：%s"
 
-#: logview/info.c:106
-#, fuzzy, c-format
+#: ../logview/info.c:106
+#, c-format
 msgid "<b>Start Date</b>: %s"
-msgstr "開始時間："
+msgstr "<b>開始時間</b>：%s"
 
-#: logview/info.c:110
-#, fuzzy, c-format
+#: ../logview/info.c:110
+#, c-format
 msgid "<b>Last Date</b>: %s"
-msgstr "結束時間："
+msgstr "<b>結束時間</b>：%s"
 
-#: logview/info.c:114
-#, fuzzy, c-format
+#: ../logview/info.c:114
+#, c-format
 msgid "<b>Number of Lines</b>: %ld"
-msgstr "行數："
+msgstr "<b>行數</b>：%ld"
 
-#: logview/log_repaint.c:36
+#: ../logview/log_repaint.c:36
 msgid "January"
 msgstr "一月"
 
-#: logview/log_repaint.c:36
+#: ../logview/log_repaint.c:36
 msgid "February"
 msgstr "二月"
 
-#: logview/log_repaint.c:36
+#: ../logview/log_repaint.c:36
 msgid "March"
 msgstr "三月"
 
-#: logview/log_repaint.c:36
+#: ../logview/log_repaint.c:36
 msgid "April"
 msgstr "四月"
 
-#: logview/log_repaint.c:36
+#: ../logview/log_repaint.c:36
 msgid "May"
 msgstr "五月"
 
-#: logview/log_repaint.c:37
+#: ../logview/log_repaint.c:37
 msgid "June"
 msgstr "六月"
 
-#: logview/log_repaint.c:37
+#: ../logview/log_repaint.c:37
 msgid "July"
 msgstr "七月"
 
-#: logview/log_repaint.c:37
+#: ../logview/log_repaint.c:37
 msgid "August"
 msgstr "八月"
 
-#: logview/log_repaint.c:37
+#: ../logview/log_repaint.c:37
 msgid "September"
 msgstr "九月"
 
-#: logview/log_repaint.c:37
+#: ../logview/log_repaint.c:37
 msgid "October"
 msgstr "十月"
 
-#: logview/log_repaint.c:38
+#: ../logview/log_repaint.c:38
 msgid "November"
 msgstr "十一月"
 
-#: logview/log_repaint.c:38
+#: ../logview/log_repaint.c:38
 msgid "December"
 msgstr "十二月"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:278
+#: ../logview/log_repaint.c:278
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:297
-#, fuzzy
+#: ../logview/log_repaint.c:297
 msgid "Last Modified:"
 msgstr "最後修改時間："
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:326
+#: ../logview/log_repaint.c:326
 msgid "%B %e"
 msgstr "%b%e日"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:398
+#: ../logview/log_repaint.c:398
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:50
-#, fuzzy
+#: ../logview/logrtns.c:50
 msgid "The file could not be opened"
-msgstr "無法開啟 %s。"
+msgstr "檔案無法開啟"
 
-#: logview/logrtns.c:216
+#: ../logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "無法開啟日誌！\n"
 
-#: logview/logrtns.c:223
+#: ../logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "記憶體不足！\n"
 
-#: logview/logrtns.c:276
+#: ../logview/logrtns.c:276
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2130,182 +2074,167 @@ msgstr ""
 "用戶不能讀取 %s。您可以使用 root 的身份來執行程式，或是要求系統管理員更改檔案"
 "的權限。"
 
-#: logview/logrtns.c:281
+#: ../logview/logrtns.c:281
 #, c-format
 msgid "%s is too big."
-msgstr ""
+msgstr "%s 太大。"
 
-#: logview/logrtns.c:285
+#: ../logview/logrtns.c:285
 #, c-format
 msgid "%s could not be opened."
 msgstr "無法開啟 %s。"
 
-#: logview/logrtns.c:326 logview/logrtns.c:337
+#: ../logview/logrtns.c:326 ../logview/logrtns.c:337
 #, c-format
 msgid "%s not a log file."
 msgstr "%s 不是日誌檔案。"
 
-#: logview/logrtns.c:588 logview/logrtns.c:612
+#: ../logview/logrtns.c:588 ../logview/logrtns.c:612
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats：記憶體不足"
 
-#: logview/logview-findbar.c:265
-#, fuzzy
+#: ../logview/logview-findbar.c:265
 msgid "Fin_d:"
-msgstr "搜尋"
+msgstr "搜尋(_D)："
 
-#: logview/logview-findbar.c:283
-#, fuzzy
+#: ../logview/logview-findbar.c:283
 msgid "Find Next"
-msgstr "搜尋"
+msgstr "搜尋下一個"
 
-#: logview/logview-findbar.c:293
+#: ../logview/logview-findbar.c:293
 msgid "Find Previous"
-msgstr ""
+msgstr "搜尋上一個"
 
-#: logview/logview.c:85
-#, fuzzy
+#: ../logview/logview.c:85
 msgid "_Log"
-msgstr "紀錄："
+msgstr "日誌(_L)"
 
-#: logview/logview.c:87
+#: ../logview/logview.c:87
 msgid "_View"
-msgstr ""
+msgstr "顯示(_V)"
 
-#: logview/logview.c:90
-#, fuzzy
+#: ../logview/logview.c:90
 msgid "_Open..."
-msgstr "開啟(_O)"
+msgstr "開啟(_O)..."
 
-#: logview/logview.c:90
-#, fuzzy
+#: ../logview/logview.c:90
 msgid "Open a log from file"
-msgstr "開啟新的日誌"
+msgstr "從檔案中開啟日誌"
 
-#: logview/logview.c:92
+#: ../logview/logview.c:92
 msgid "_Properties"
 msgstr "屬性(_P)"
 
-#: logview/logview.c:92
+#: ../logview/logview.c:92
 msgid "Show Log Properties"
 msgstr "顯示日誌屬性"
 
-#: logview/logview.c:94
-#, fuzzy
+#: ../logview/logview.c:94
 msgid "Close"
-msgstr "全部關閉(_E)"
+msgstr "關閉"
 
-#: logview/logview.c:94
+#: ../logview/logview.c:94
 msgid "Close this log"
-msgstr ""
+msgstr "關閉本日誌"
 
-#: logview/logview.c:96
-#, fuzzy
+#: ../logview/logview.c:96
 msgid "_Quit"
-msgstr "修改(_E)"
+msgstr "離開(_Q)"
 
-#: logview/logview.c:96
-#, fuzzy
+#: ../logview/logview.c:96
 msgid "Quit the log viewer"
-msgstr "系統日誌顯示程式"
+msgstr "離開日誌顯示程式"
 
-#: logview/logview.c:99
+#: ../logview/logview.c:99
 msgid "Copy"
-msgstr ""
+msgstr "複製"
 
-#: logview/logview.c:101
+#: ../logview/logview.c:101
 msgid "Select All"
-msgstr ""
+msgstr "全部選取"
 
-#: logview/logview.c:101
+#: ../logview/logview.c:101
 msgid "Select the entire log"
-msgstr ""
+msgstr "選取整個日誌"
 
-#: logview/logview.c:103
+#: ../logview/logview.c:103
 msgid "Find pattern in logs"
-msgstr ""
+msgstr "在紀錄檔中搜尋字串樣式"
 
-#: logview/logview.c:106
-#, fuzzy
+#: ../logview/logview.c:106
 msgid "Collapse _All"
-msgstr "全部摺疊(_C)"
+msgstr "全部摺疊(_A)"
 
-#: logview/logview.c:106
+#: ../logview/logview.c:106
 msgid "Collapse all the rows"
 msgstr "將展開的紀錄內容全部摺疊"
 
-#: logview/logview.c:109
+#: ../logview/logview.c:109
 msgid "Open the help contents for the log viewer"
-msgstr ""
+msgstr "開啟系統日誌顯示程式的說明文件"
 
-#: logview/logview.c:111
+#: ../logview/logview.c:111
 msgid "Show the about dialog for the log viewer"
-msgstr ""
+msgstr "開啟系統日誌顯示程式的關於視窗"
 
-#: logview/logview.c:117
-#, fuzzy
+#: ../logview/logview.c:117
 msgid "_Monitor"
-msgstr "監察(_M)..."
+msgstr "監察(_M)"
 
-#: logview/logview.c:117
-#, fuzzy
+#: ../logview/logview.c:117
 msgid "Monitor Current Log"
-msgstr "監察日誌"
+msgstr "監察目前的日誌"
 
-#: logview/logview.c:119
-#, fuzzy
+#: ../logview/logview.c:119
 msgid "Ca_lendar"
-msgstr "日曆"
+msgstr "日曆(_L)"
 
-#: logview/logview.c:119
+#: ../logview/logview.c:119
 msgid "Show Calendar Log"
 msgstr "顯示日曆紀錄"
 
-#: logview/logview.c:121
+#: ../logview/logview.c:121
 msgid "_Entry Detail"
 msgstr "項目細節(_E)："
 
-#: logview/logview.c:121
+#: ../logview/logview.c:121
 msgid "Show Entry Detail"
 msgstr "顯示該項目的細節"
 
-#: logview/logview.c:386
+#: ../logview/logview.c:386
 msgid "Date"
 msgstr "日期"
 
-#: logview/logview.c:386
+#: ../logview/logview.c:386
 msgid "Host Name"
 msgstr "主機名稱"
 
-#: logview/logview.c:387
+#: ../logview/logview.c:387
 msgid "Process"
 msgstr "進程"
 
-#: logview/logview.c:387
+#: ../logview/logview.c:387
 msgid "Message"
 msgstr "訊息"
 
-#: logview/logview.c:580
+#: ../logview/logview.c:580
 msgid "Open new logfile"
 msgstr "開啟新的日誌"
 
-#: logview/logview.c:876
-#, fuzzy
+#: ../logview/logview.c:876
 msgid "There was an error displaying help."
-msgstr ""
-"顯示說明文件時發生錯誤：\n"
-"%s"
+msgstr "顯示說明文件時發生錯誤。"
 
-#: logview/logview.c:894
+#: ../logview/logview.c:894
 #, c-format
 msgid "%s (monitored) - %s"
-msgstr ""
+msgstr "%s (監察中) - %s"
 
-#: logview/logview.schemas.in.h:1
+#: ../logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
 msgstr "啟動程式時開啟的日誌"
 
-#: logview/logview.schemas.in.h:2
+#: ../logview/logview.schemas.in.h:2
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
@@ -2313,421 +2242,11 @@ msgstr ""
 "指定啟動時預設開啟的日誌。預設值可能是 /var/adm/messages 或 /var/log/"
 "messages，取決於所使用的作業系統。"
 
-#: logview/zoom.c:71
+#: ../logview/zoom.c:71
 msgid "Entry Detail"
 msgstr "項目細節"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:135
+#: ../logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%b%d日 %X"
-
-#~ msgid "Enter a value for search rule"
-#~ msgstr "請輸入有關該搜尋條件的值"
-
-#~ msgid "Click to Remove the '%s' Rule"
-#~ msgstr "按下本按鈕後會移除‘%s’條件"
-
-#~ msgid "Search Rules Menu"
-#~ msgstr "搜尋條件選單"
-
-#, fuzzy
-#~ msgid "Enter the file name you want to search."
-#~ msgstr "請輸入想搜尋的檔案名稱"
-
-#~ msgid "Name Contains Entry"
-#~ msgstr "這個欄位指定檔名中含有甚麼"
-
-#~ msgid "Click to Start the search"
-#~ msgstr "按下本按鈕後會開始搜尋"
-
-#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
-#~ msgstr "<span weight=\"bold\">檔案系統設定</span>"
-
-#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
-#~ msgstr "<span weight=\"bold\">格式化模式</span>"
-
-#~ msgid "<span weight=\"bold\">Physical Settings</span>"
-#~ msgstr "<span weight=\"bold\">硬體設定</span>"
-
-#~ msgid "_Show Dictionary"
-#~ msgstr "顯示字典(_S)"
-
-#~ msgid "Check word spelling"
-#~ msgstr "拼字檢查"
-
-#, fuzzy
-#~ msgid "Quit the application"
-#~ msgstr "隱藏程式(_H)"
-
-#~ msgid "Smart _lookup"
-#~ msgstr "智慧型檢索(_L)"
-
-#~ msgid "D_efault strategy:"
-#~ msgstr "預設搜尋方式(_E)："
-
-#~ msgid "Enter a word to know the spelling"
-#~ msgstr "請輸入字詞來尋找正確的拼字方式"
-
-#~ msgid "Click to do the spell check"
-#~ msgstr "按下該按鈕後可檢查拼字"
-
-#~ msgid "Check Spelling"
-#~ msgstr "檢查拼字"
-
-#~ msgid "Search Strategy"
-#~ msgstr "搜尋方法"
-
-#, fuzzy
-#~ msgid "Select Size At Most"
-#~ msgstr "檔案大小上限(_Z)"
-
-#~ msgid "Image/label border"
-#~ msgstr "圖像/標籤邊界"
-
-#~ msgid "Width of border around the label and image in the alert dialog"
-#~ msgstr "在警告對話方塊中，包圍標籤和圖像的邊框寬度"
-
-#~ msgid "Alert Type"
-#~ msgstr "警告訊息類型"
-
-#~ msgid "The type of alert"
-#~ msgstr "警告訊息的類型"
-
-#~ msgid "Alert Buttons"
-#~ msgstr "警報按鈕"
-
-#~ msgid "The buttons shown in the alert dialog"
-#~ msgstr "在警告對話方塊顯示的按鈕"
-
-#~ msgid "Could not move \"%s\" to the trash."
-#~ msgstr "無法將“%s”丟進回收筒。"
-
-#~ msgid "_Lookup"
-#~ msgstr "檢索(_L)"
-
-#~ msgid ""
-#~ "There was an error displaying help: \n"
-#~ "%s"
-#~ msgstr ""
-#~ "顯示說明文件時發生錯誤：\n"
-#~ "%s"
-
-#, fuzzy
-#~ msgid "Copy selected lines"
-#~ msgstr "複製選定的範圍"
-
-#~ msgid "Size:"
-#~ msgstr "大小："
-
-#~ msgid "Log Information"
-#~ msgstr "日誌資料"
-
-#~ msgid "<No log loaded>"
-#~ msgstr "<未載入任何日誌>"
-
-#~ msgid "%s is not a regular file."
-#~ msgstr "%s 不是正常的檔案。"
-
-#~ msgid "_Calendar"
-#~ msgstr "日曆(_C)"
-
-#~ msgid "No log files to open"
-#~ msgstr "沒有已開啟的日誌"
-
-#~ msgid "Date:"
-#~ msgstr "日期："
-
-#~ msgid "Process:"
-#~ msgstr "進程："
-
-#~ msgid "Message:"
-#~ msgstr "訊息："
-
-#~ msgid "Description:"
-#~ msgstr "描述："
-
-#~ msgid "Log Line Details"
-#~ msgstr "該行日誌的細節"
-
-#~ msgid "Accessories"
-#~ msgstr "附屬應用程式"
-
-#~ msgid "Look in Folder Entry"
-#~ msgstr "這個欄位指定在哪個資料夾開始搜尋"
-
-#~ msgid "Cesar Miquel (miquel@df.uba.ar)"
-#~ msgstr "César Miquel (miquel@df.uba.ar)"
-
-#~ msgid "S_witch Log"
-#~ msgstr "切換日誌(_W)"
-
-#~ msgid "Switch between already opened logs"
-#~ msgstr "切換至其它已開啟的日誌"
-
-#~ msgid "Close all Log files"
-#~ msgstr "關閉所有日誌"
-
-#~ msgid "Too many open logs. Close one and try again"
-#~ msgstr "開啟太多日誌了，請關閉一部份並再嘗試"
-
-#~ msgid "Error: [%s]\n"
-#~ msgstr "錯誤：[%s]\n"
-
-#~ msgid "Monitor Options"
-#~ msgstr "有關監察的選項"
-
-#~ msgid "Ac_tions..."
-#~ msgstr "行動(_T)..."
-
-#~ msgid "_Select logs to monitor:"
-#~ msgstr "選取準備監察的日誌(_S)："
-
-#~ msgid "Currently _monitored logs:"
-#~ msgstr "目前正在監察的日誌(_M)："
-
-#~ msgid "Add logs to monitor"
-#~ msgstr "加入會監察的日誌"
-
-#~ msgid "Remove logs from monitor"
-#~ msgstr "移除不會繼續監察的日誌"
-
-#~ msgid "_Execute actions"
-#~ msgstr "執行行動(_E)"
-
-#~ msgid "Too many logs to monitor. Remove one and try again"
-#~ msgstr "太多需要監察的日誌了，請關閉一部份並再嘗試"
-
-#~ msgid "tmp_list is NULL\n"
-#~ msgstr "tmp_list 是 NULL\n"
-
-#~ msgid "Monitoring Logs..."
-#~ msgstr "正在監察日誌..."
-
-#~ msgid "TOUCHED!!\n"
-#~ msgstr "被更改了！！\n"
-
-#~ msgid "Search your disk for files"
-#~ msgstr "在磁碟中搜尋檔案"
-
-#~ msgid ""
-#~ "While searching the following errors were reported.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "當搜尋時發生以下的錯誤。\n"
-#~ "\n"
-
-#~ msgid "Error while searching for files."
-#~ msgstr "搜尋檔案時出現錯誤。"
-
-#~ msgid "Search Rule Value Entry"
-#~ msgstr "搜尋條件輸入欄"
-
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "動畫檔案不存在或者無效：%s"
-
-#~ msgid "One File Found"
-#~ msgstr "找到一個檔案"
-
-#~ msgid "One file found"
-#~ msgstr "找到一個檔案"
-
-#~ msgid "Open %d documents?"
-#~ msgstr "是否開啟 %d 個檔案？"
-
-#~ msgid ""
-#~ "This will open %d separate documents. Are you sure you want to do this?"
-#~ msgstr "這樣會開啟 %d 個不同的檔案。是否確定要這樣做？"
-
-#~ msgid "Could not open document \"%s\""
-#~ msgstr "無法開啟“%s”檔案"
-
-#~ msgid "Open %d folders?"
-#~ msgstr "是否開啟 %d 個資料夾？"
-
-#~ msgid ""
-#~ "You did not select a document name or the name selected was a folder.  "
-#~ "The document is not saved."
-#~ msgstr "您未選取檔案名稱，或者選定的名稱是資料夾。不會儲存檔案。"
-
-#~ msgid "The contents of the file \"%s\" will be lost."
-#~ msgstr "將會失去檔案“%s”的內容。"
-
-#~ msgid "Overwrite an existing file?"
-#~ msgstr "是否覆寫已存在的檔案？"
-
-#~ msgid "Could not save document \"%s\" to %s"
-#~ msgstr "無法將“%s”儲存至 %s"
-
-#~ msgid "GNOME Dictionary"
-#~ msgstr "GNOME 字典"
-
-#~ msgid "Indicates the percentage specified at the standard input"
-#~ msgstr "顯示參數中指定的進度百分值"
-
-#~ msgid "Enter the text"
-#~ msgstr "請輸入文字"
-
-#~ msgid "Sub-number:"
-#~ msgstr "編號："
-
-#~ msgid "Pronunciation:"
-#~ msgstr "發音："
-
-#~ msgid "Etymology:"
-#~ msgstr "語源："
-
-#~ msgid "Part of speech:"
-#~ msgstr "詞類："
-
-#~ msgid "Example:"
-#~ msgstr "例子："
-
-#~ msgid "Main body:"
-#~ msgstr "正文："
-
-#~ msgid "Cross-reference:"
-#~ msgstr "參考："
-
-#~ msgid "Search _Results"
-#~ msgstr "搜尋結果(_R)"
-
-#~ msgid "Search for Files Error"
-#~ msgstr "搜尋檔案出現錯誤"
-
-#~ msgid "Open %d Files?"
-#~ msgstr "是否開啟 %d 個檔案？"
-
-#~ msgid ""
-#~ "Cannot save search results.\n"
-#~ "\"%s\" is a folder."
-#~ msgstr ""
-#~ "無法儲存搜尋結果。\n"
-#~ "“%s”是一個資料夾。"
-
-#~ msgid "File \"%s\" already exists. Overwrite?"
-#~ msgstr "檔案“%s”已存在。是否覆寫？"
-
-#~ msgid "Cannot save search results to the file \"%s\"."
-#~ msgstr "無法將搜尋結果儲存至“%s”。"
-
-#~ msgid ""
-#~ "This program is part of the GNOME project. Logview comes with ABSOLUTELY "
-#~ "NO WARRANTY. This is free software, and you are welcome to redistribute "
-#~ "it under the conditions of the GNU General Public Licence. The log icon "
-#~ "is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
-#~ msgstr ""
-#~ "本程式屬於 GNOME 專案其中一員。日誌顯示程式是沒有使用保證的。本程式是自由"
-#~ "軟體，您可以遵照 GNU 通用公共許可證條款 (GNU General Public License) 重新"
-#~ "發佈本程式。承蒙 Tuomas Kuosmanen (即 tigert) 提供日誌的圖示。"
-
-#~ msgid "Log stats"
-#~ msgstr "日誌統計"
-
-#~ msgid "Zoom view"
-#~ msgstr "詳細資料"
-
-#~ msgid "_Show/Hide Definition Window..."
-#~ msgstr "顯示或隱藏定義視窗(_S)..."
-
-#~ msgid "Could not execute the file `%s' due to a permission problem"
-#~ msgstr "因權限不足而無法執行檔案‘%s’"
-
-#~ msgid "Failure at executing `%s'"
-#~ msgstr "執行‘%s’失敗"
-
-#~ msgid "It was not possible to open the file `%s'"
-#~ msgstr "不可能開啟檔案‘%s’"
-
-#~ msgid "The file `%s' is empty"
-#~ msgstr "檔案‘%s’沒有內容"
-
-#~ msgid "File is not named"
-#~ msgstr "檔案的名稱不是"
-
-#~ msgid "File is _named:"
-#~ msgstr "檔案名稱(_N)："
-
-#~ msgid "Remove the selected item"
-#~ msgstr "移除已選取的項目"
-
-#~ msgid "R_emove All"
-#~ msgstr "全部移除(_E)"
-
-#~ msgid "Default strategy"
-#~ msgstr "預設搜尋方式"
-
-#~ msgid "folder"
-#~ msgstr "資料夾"
-
-#~ msgid "program"
-#~ msgstr "程式"
-
-#~ msgid "symbolic link"
-#~ msgstr "符號連結"
-
-#~ msgid "Cannot perform the search. Please specify a search criteria."
-#~ msgstr "無法進行搜尋。請指定搜尋條件。"
-
-#~ msgid ""
-#~ "A search is already running.  Please wait for the search to complete or "
-#~ "cancel it."
-#~ msgstr "已經在進行另一次搜尋。請先等候搜尋完成或是取消搜尋。"
-
-#~ msgid ""
-#~ "Cannot show the search command line. Please specify a search criteria."
-#~ msgstr "無法顯示搜尋所用的實際指令。請指定搜尋條件。"
-
-#~ msgid "Search Command Line"
-#~ msgstr "搜尋用的指令列"
-
-#~ msgid "Command"
-#~ msgstr "指令"
-
-#~ msgid "Command Line Entry"
-#~ msgstr "指令列輸入欄"
-
-#~ msgid "Use this command line to execute the search from console"
-#~ msgstr "這是執行搜尋時實際使用的指令"
-
-#~ msgid "No viewer available for this mime type."
-#~ msgstr "無法提供任何可瀏覽此 mime 類型的檔案的程式。"
-
-#~ msgid "Enabled"
-#~ msgstr "啟用"
-
-#~ msgid "Toggle On/Off to enable/disable the rule"
-#~ msgstr "切換此選項來決定是否啟用該搜尋條件"
-
-#~ msgid "Rules:"
-#~ msgstr "條件："
-
-#~ msgid "A_dd Rule:"
-#~ msgstr "新增條件(_D)："
-
-#~ msgid "Simple"
-#~ msgstr "基本"
-
-#~ msgid "Advanced"
-#~ msgstr "進階"
-
-#~ msgid "S_how Command..."
-#~ msgstr "顯示指令(_H)..."
-
-#~ msgid "Save the search results"
-#~ msgstr "儲存搜尋結果"
-
-#~ msgid "Sear_ch"
-#~ msgstr "搜尋(_C)"
-
-#~ msgid "Search Tool"
-#~ msgstr "搜尋工具"
-
-#~ msgid "Add..."
-#~ msgstr "新增..."
-
-#~ msgid "Out of memory!\n"
-#~ msgstr "記憶體不足！\n"
-
-#~ msgid "About..."
-#~ msgstr "關於..."
