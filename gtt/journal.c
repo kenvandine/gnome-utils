@@ -87,26 +87,29 @@ wiggy_error (GttPhtml *pl, int err, const char * msg, gpointer ud)
 	Wiggy *wig = (Wiggy *) ud;
 	GtkHTML *htmlw = wig->htmlw;
 	GtkHTMLStream *han;
-	char * buff;
+	char buff[1000], *p;
 
 	han = gtk_html_begin_content(htmlw, "text/html");
 
 	if (404 == err)
 	{
-		buff = _("<html><body><h1>Error 404 Not Found</h1>"
-		       "The file ");
-		gtk_html_write (htmlw, han, buff, strlen (buff));
-	
-		buff = msg? (char*) msg : _("(null)");
-		gtk_html_write (htmlw, han, buff, strlen (buff));
+		p = buff;
+		p = stpcpy (p, "<html><body><h1>");
+		p = stpcpy (p, _("Error 404 Not Found"));
+		p = stpcpy (p, "</h1>");
+		p += sprintf (p, _("The file %s was not found."),
+		             (msg? (char*) msg : _("(null)")));
 		
-		buff = _(" was not found. </body></html>");
-		gtk_html_write (htmlw, han, buff, strlen (buff));
+		p = stpcpy (p, "</body></html>");
+		gtk_html_write (htmlw, han, buff, p-buff);
 	}
 	else
 	{
-		buff = _("<html><body><h1>Unkown Error</h1>");
-		gtk_html_write (htmlw, han, buff, strlen (buff));
+		p = buff;
+		p = stpcpy (p, "<html><body><h1>");
+		p = stpcpy (p, _("Unkown Error"));
+		p = stpcpy (p, "</h1></body></html>");
+		gtk_html_write (htmlw, han, buff, p-buff);
 	}
 	
 	gtk_html_end (htmlw, han, GTK_HTML_STREAM_OK);
