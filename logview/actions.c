@@ -36,27 +36,10 @@ extern GList *actions_db;
 static GList *local_actions_db = NULL;
 
 GtkWidget *actions_dialog = NULL;
-GtkCTree *ctree = NULL;
-GtkCTreeNode *selected_node = NULL;
-GList *ctree_parent = NULL;
-
-static void
-tree_select_row (GtkCTree     *ctree,
-		 GtkCTreeNode *row,
-		 gint          column)
-{
-	selected_node = row;
-}
-
-static void
-tree_unselect_row (GtkCTree     *ctree,
-		   GtkCTreeNode *row,
-		   gint          column)
-{
-	if (selected_node == row)
-		selected_node = NULL;
-}
-
+GtkWidget *ctree_view;
+GtkTreeStore *ctree = NULL;
+GtkTreeIter *selected_node = NULL;
+GtkTreeIter *ctree_parent = NULL;
 
 static void
 apply_actions (GtkWidget *w, gpointer data)
@@ -90,7 +73,9 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
   GtkWidget *swin;
   GtkBox *vbox;
   const gchar *title[] = {N_("Action database")};
-  
+  GtkCellRenderer *cell_renderer;
+  GtkTreeViewColumn *column; 
+
   /* Create main window ------------------------------------------------  */
   actions_dialog = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_container_set_border_width (GTK_CONTAINER (actions_dialog), 5);
@@ -108,17 +93,18 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
   
   /* List with actions */
 
-  ctree = GTK_CTREE (gtk_ctree_new_with_titles (1, 0, (char **)title));
-  gtk_signal_connect (GTK_OBJECT (ctree), "tree_select_row",
-		      GTK_SIGNAL_FUNC (tree_select_row), NULL);
-  gtk_signal_connect (GTK_OBJECT (ctree), "tree_unselect_row",
-		      GTK_SIGNAL_FUNC (tree_unselect_row), NULL);
+  ctree = gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_POINTER);
+  cell_renderer = gtk_cell_renderer_text_new ();
+  ctree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (ctree));
+  g_object_unref (G_OBJECT (ctree));
+  column = gtk_tree_view_column_new_with_attributes (*title, cell_renderer,
+                                                     "text", 0, NULL);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (ctree_view), column);
   selected_node = NULL;
   swin = gtk_scrolled_window_new (NULL, NULL);
-  gtk_container_add (GTK_CONTAINER (swin), GTK_WIDGET (ctree));
-  gtk_ctree_set_line_style (ctree, GTK_CTREE_LINES_DOTTED);
-  gtk_clist_set_reorderable (GTK_CLIST(ctree), TRUE);
-  gtk_widget_set_usize (GTK_WIDGET (ctree), -1, 300);
+  gtk_container_add (GTK_CONTAINER (swin), GTK_WIDGET (ctree_view));
+  gtk_tree_view_set_reorderable (GTK_TREE_VIEW (ctree_view), TRUE);
+  gtk_widget_set_usize (GTK_WIDGET (ctree_view), -1, 300);
 
 /* ----------------------------------------------------------------------
   gtk_signal_connect (GTK_OBJECT (ctree), "button_press_event",
@@ -134,12 +120,14 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
   -------------------------------------------------------------------- */
 
   gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (swin), TRUE, TRUE, 0);
-  gtk_clist_column_titles_passive (GTK_CLIST (ctree));
-  gtk_clist_set_column_justification (GTK_CLIST (ctree), 1, GTK_JUSTIFY_RIGHT);
-  gtk_clist_set_selection_mode (GTK_CLIST (ctree), GTK_SELECTION_SINGLE);
+  gtk_tree_view_column_set_clickable (GTK_TREE_VIEW_COLUMN (column), FALSE);
+  gtk_tree_view_column_set_alignment ( GTK_TREE_VIEW_COLUMN (column), 0.1);
+  gtk_tree_selection_set_mode ( (GtkTreeSelection *)gtk_tree_view_get_selection
+                               (GTK_TREE_VIEW (ctree_view)),
+                                GTK_SELECTION_SINGLE);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (swin),
 				  GTK_POLICY_ALWAYS, GTK_POLICY_AUTOMATIC);
-  gtk_clist_set_column_width (GTK_CLIST (ctree), 0, 300);
+  gtk_tree_view_column_set_fixed_width ( GTK_TREE_VIEW_COLUMN (column), 300);
   gtk_widget_show_all (GTK_WIDGET(swin));
       
       
@@ -208,15 +196,12 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
 void
 make_tree_from_actions_db (GList *db)
 {
-  char *text[2];
   char buffer[50];
   GList *item;
   GList *sibling = NULL;
   Action *action;
+  GtkTreeIter newiter;
 
-  text[0] = buffer;
-  text[1] = NULL;
-  
   /* Create first item */
   ctree_parent = NULL;
   buffer[0] = '\0';
@@ -228,16 +213,16 @@ make_tree_from_actions_db (GList *db)
 	  strncpy (buffer, action->tag, 50);
 	  buffer[49] = '\0';
 	  /* this is the parent node */
-	  sibling = (GList *)gtk_ctree_insert_node (ctree, NULL, NULL, (char **)text, 5, NULL, NULL,
-				      NULL, NULL, FALSE, FALSE);
-	  ctree_parent = sibling;
+          gtk_tree_store_append (ctree, &newiter, NULL);
+          gtk_tree_store_set (ctree, &newiter, 0, buffer, 1,
+                              (gpointer)action, -1);
+          ctree_parent = gtk_tree_iter_copy (&newiter);
 	}
       /* this is the actual node */
-      sibling = (GList *)gtk_ctree_insert_node (ctree, (GtkCTreeNode *)ctree_parent, NULL, (char **)text, 5, NULL, NULL,
-						NULL, NULL, FALSE, FALSE);
       /* Store data in tree */
-      gtk_ctree_node_set_row_data (ctree, (GtkCTreeNode *)sibling,
-				   (gpointer) action);
+      gtk_tree_store_append (ctree, &newiter, ctree_parent); 
+      gtk_tree_store_set (ctree, &newiter, 0, buffer, 1,
+                          (gpointer)action, -1);
     }
 
   /* done. */
@@ -523,16 +508,23 @@ static void
 remove_actions_entry_cb (GtkWidget *widget, gpointer data)
 {
   Action *action;
+  GtkTreeSelection *selection;
+  GtkTreeIter newiter;
+  GtkTreeModel *model = NULL;
+  gboolean selected;
 
-  if (selected_node == NULL)
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (ctree_view));
+  selected = gtk_tree_selection_get_selected (selection, &model, &newiter);
+  if (selected == FALSE)
 	  return;
 
-  action = (Action *) gtk_ctree_node_get_row_data (GTK_CTREE (ctree),
-						   selected_node);
+  selected_node = gtk_tree_iter_copy (&newiter);
+  gtk_tree_model_get (GTK_TREE_MODEL (model), selected_node, 1,
+		      (gpointer)&action, -1);
 
   if (action != NULL) {
 	  local_actions_db = g_list_remove (local_actions_db, action);
-	  gtk_clist_clear (GTK_CLIST (ctree));
+	  gtk_tree_store_clear (ctree);
 	  selected_node = NULL;
 	  make_tree_from_actions_db (local_actions_db);
   }
@@ -547,12 +539,19 @@ static void
 edit_actions_entry_cb (GtkWidget *widget, gpointer data)
 {
   Action *action;
+  GtkTreeSelection *selection;
+  GtkTreeIter newiter;
+  GtkTreeModel *model = NULL;
+  gboolean selected;
 
-  if (selected_node == NULL)
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (ctree_view));
+  selected = gtk_tree_selection_get_selected (selection, &model, &newiter);
+  if (selected == FALSE)
 	  return;
 
-  action = (Action *) gtk_ctree_node_get_row_data (GTK_CTREE (ctree),
-						   selected_node);
+  selected_node = gtk_tree_iter_copy (&newiter);
+  gtk_tree_model_get (GTK_TREE_MODEL (model), selected_node, 1,
+		      (gpointer)&action, -1);
 
   edit_action_entry (action);
 }
@@ -608,7 +607,7 @@ apply_edit (GtkWidget *w, gpointer data)
 	local_actions_db = g_list_sort (local_actions_db,
 					action_compare);
 
-	gtk_clist_clear (GTK_CLIST (ctree));
+	gtk_tree_store_clear (ctree);
 	selected_node = NULL;
 	make_tree_from_actions_db (local_actions_db);
 }

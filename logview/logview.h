@@ -206,7 +206,7 @@ typedef struct
   CalendarData *caldata;
 
   /* Monitor info */
-  GtkCList *mon_lines;
+  GtkWidget *mon_lines;
   MonActions alert;
   long offset_end;
   int mon_on;		/* Flag set if we are monitoring this log          */
