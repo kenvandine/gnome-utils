@@ -70,7 +70,7 @@ copy_contents (GtkWidget *widget, gpointer data)
 	strcpy(copied_string, gnome_calc_get_result_string(GNOME_CALC (calc)));
 	g_strstrip(copied_string);
 	gtk_selection_owner_set (app,
-				 GDK_SELECTION_PRIMARY,
+				 GDK_SELECTION_CLIPBOARD,
 				 GDK_CURRENT_TIME);
 }
 
@@ -150,7 +150,7 @@ main(int argc, char *argv[])
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-	gnome_program_init ("gcalc", VERSION, LIBGNOMEUI_MODULE,
+	gnome_program_init ("gnome-calculator", VERSION, LIBGNOMEUI_MODULE,
 			argc, argv, GNOME_PARAM_POPT_TABLE, options, NULL);
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-calc2.png");
 
@@ -159,7 +159,7 @@ main(int argc, char *argv[])
 		return 0;
 	}
 
-        app = gnome_app_new("gcalc", _("GNOME Calculator"));
+        app = gnome_app_new("gnome-calculator", _("GNOME Calculator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gnome-calculator", "gnome-calculator");
 	gtk_window_set_policy (GTK_WINDOW (app), FALSE, TRUE, FALSE);
 
@@ -173,7 +173,7 @@ main(int argc, char *argv[])
 	gnome_calc_bind_extra_keys (GNOME_CALC (calc), GTK_WIDGET (app));
 	gtk_widget_show(calc);
 
-	gtk_selection_add_targets (GTK_WIDGET (app), GDK_SELECTION_PRIMARY,
+	gtk_selection_add_targets (GTK_WIDGET (app), GDK_SELECTION_CLIPBOARD,
 				   targets, n_targets);
 
         gtk_signal_connect(GTK_OBJECT(app), "selection_get",
