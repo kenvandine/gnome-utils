@@ -1559,7 +1559,7 @@ spawn_search_command (gchar *command)
 		click_to_activate_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/click_policy");
 		
 		if (strncmp (click_to_activate_pref, "single", 6) == 0) { 
-			/* Format name column for double click to activate items */
+			/* Format name column for single click to activate items */
 			search_command.single_click_to_activate = TRUE;		
 			g_object_set (interface.name_column_renderer,
 			       "underline", PANGO_UNDERLINE_SINGLE,
@@ -1567,7 +1567,7 @@ spawn_search_command (gchar *command)
 			       NULL);
 		}
 		else {
-			/* Format name column for single click to activate items */
+			/* Format name column for double click to activate items */
 			g_object_set (interface.name_column_renderer,
 			       "underline", PANGO_UNDERLINE_NONE,
 			       "underline-set", FALSE,
