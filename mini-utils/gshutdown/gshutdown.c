@@ -400,6 +400,9 @@ static void popup_preferences()
   gtk_signal_connect( GTK_OBJECT(d), "apply",
                       GTK_SIGNAL_FUNC(apply_prefs_cb), entries );
 
+  gtk_signal_connect( GTK_OBJECT(d), "help",
+                      GTK_SIGNAL_FUNC(help_cb), d );
+
   gtk_widget_show_all(d);
 }
 
