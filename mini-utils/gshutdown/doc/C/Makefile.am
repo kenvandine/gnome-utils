@@ -33,8 +33,7 @@ dist-hook:
 	mkdir $(distdir)/gshutdown
 	-cp $(srcdir)/gshutdown/*.html gshutdown/*.css $(distdir)/gshutdown
 	-cp $(srcdir)/*.html $(distdir)
-	mkdir $(distdir)/images
-	-cp $(srcdir)/images/*.png $(distdir)/images
+	-cp $(srcdir)/*.png $(distdir)
 
 install-data-local: index.html
 	$(mkinstalldirs) $(DESTDIR)$(gshutdown_helpdir)/images
@@ -42,7 +41,7 @@ install-data-local: index.html
 	basefile=`basename $$file`; \
 	$(INSTALL_DATA) $$file $(DESTDIR)$(gshutdown_helpdir)/$$basefile; \
 	done
-	-for file in $(srcdir)/images/*.png ; do \
-	$(INSTALL_DATA) $$file $(DESTDIR)$(gshutdown_helpdir)/images;\
+	-for file in $(srcdir)/*.png ; do \
+	$(INSTALL_DATA) $$file $(DESTDIR)$(gshutdown_helpdir);\
 	done
 
