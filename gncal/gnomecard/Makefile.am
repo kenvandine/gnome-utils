@@ -43,12 +43,13 @@ gnomecard_SOURCES =	\
 	popup-menu.h	\
 	sort.c          \
 	sort.h          \
-	pairs.h
+	pairs.h		\
+	gnome-pim-impl.c
 #         \
 #	tree.c          \
 #	tree.h
 
-CORBA_SRCLIST = gnome-pim-common.c\
+CORBA_SRCLIST = gnome-pim-common.c \
 	gnome-pim-skels.c	\
 	gnome-pim-stubs.c	\
 	gnome-pim.h
@@ -63,8 +64,7 @@ LINK_FLAGS = \
 
 gnomecard_LDADD = $(LINK_FLAGS)\
 	$(GNOME_LIBDIR) \
-	$(GNORBA_LIBS) \
-	$(GNOMEUI_LIBS)
+	$(GNOMEGNORBA_LIBS)
 
 EXTRA_DIST =		\
 	addr.xpm	\
