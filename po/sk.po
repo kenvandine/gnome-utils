@@ -7,19 +7,20 @@
 # Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>, 2002.
 # Stanislav Visnovsky <visnovsky@kde.org>, 2003.
 # Stanislav Visnovsky <visnov@suse.cz>, 2003.
-#
+# Ivan Noris <vix@vazka.sk>, 2004
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: GNOME gnome-utils.HEAD\n"
-"POT-Creation-Date: 2004-05-21 16:58+1200\n"
-"PO-Revision-Date: 2003-09-03 15:12+0200\n"
-"Last-Translator: Stanislav Visnovsky <visnov@suse.cz>\n"
+"Project-Id-Version: gnome-utils HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-05-29 03:54+0200\n"
+"PO-Revision-Date: 2004-05-29 12:19+0200\n"
+"Last-Translator: Ivan Noris <vix@vazka.sk>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
-"X-Generator: KBabel 1.2\n"
+"Content-Transfer-Encoding: 8bit"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -113,9 +114,8 @@ msgid "Find"
 msgstr "Nájsť"
 
 #: gdictsrc/gdict-app.c:479
-#, fuzzy
 msgid "_Search for:"
-msgstr "Hľadať súbory"
+msgstr "_Hľadať súbory:"
 
 #: gdictsrc/gdict-app.c:492
 msgid "_Find"
@@ -177,9 +177,8 @@ msgid "_Lookup"
 msgstr "_Hľadať"
 
 #: gdictsrc/gdict-applet.c:155
-#, fuzzy
 msgid "Dictionary word entry"
-msgstr "Server slovníku"
+msgstr "Položka slova slovníka"
 
 #: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
 #, c-format
@@ -272,6 +271,8 @@ msgid ""
 "There was an error displaying help: \n"
 "%s"
 msgstr ""
+"Nastala chyba pri zobrazovaní pomocníka: \n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -718,13 +719,12 @@ msgstr ""
 "Kontaktujte administrátora vášho systému o získaní práv pre zápis."
 
 #: gfloppy/src/main.c:216
-#, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "Nepodarilo sa otvoriť zariadenie %s, formátovanie nemôže pokračovať."
+msgstr "Nepodarilo sa otvoriť žiadne, formátovanie nemôže pokračovať."
 
 #: gfloppy/src/main.c:219 gfloppy/src/main.c:222
 msgid "/dev/floppy/0 or /dev/fd0"
-msgstr ""
+msgstr "/dev/floppy/0 alebo /dev/fd0"
 
 #: gfloppy/src/main.c:394
 #, c-format
@@ -748,17 +748,14 @@ msgid "DEVICE"
 msgstr "ZARIADENIE"
 
 #: gfloppy/src/progress.c:123
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
-msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr[0] ""
-"Disketa je naformátovaná, ale boli nájdené a označené <b>chybné bloky</b> (%"
-"d z %d)."
-msgstr[1] ""
+msgstr ""
+"Disketa je naformátovaná, ale bol nájdený a označený <b>chybný blok</b> (%d z %d)."
 "Disketa je naformátovaná, ale boli nájdené a označené <b>chybné bloky</b> (%"
 "d z %d)."
 
@@ -786,27 +783,27 @@ msgstr "Hľadajte súbory na disku"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:99
 msgid "Image/label border"
-msgstr ""
+msgstr "Okraj obrázka/nadpisu"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Width of border around the label and image in the alert dialog"
-msgstr ""
+msgstr "Šírka okraja medzi nadpisom a obrázkom vo výstražnom dialógu"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:109
 msgid "Alert Type"
-msgstr ""
+msgstr "Typ upozornenia"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "The type of alert"
-msgstr ""
+msgstr "Typ upozornenia"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:118
 msgid "Alert Buttons"
-msgstr ""
+msgstr "Tlačidlá vo výstražnom dialógu."
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "The buttons shown in the alert dialog"
-msgstr ""
+msgstr "Tlačidlá zobrazené vo výstražnom dialógu."
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -818,37 +815,32 @@ msgstr "Ot_voriť priečinok"
 
 #: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
-msgstr ""
+msgstr "_Presunúť do Koša"
 
 #: gsearchtool/gsearchtool-callbacks.c:64
 msgid "_Save Results As..."
 msgstr "Uložiť výsledky _ako..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
-#, fuzzy
 msgid "Could not open help document."
-msgstr "Nepodarilo sa otvoriť dokument s pomocníkom"
+msgstr "Nepodarilo sa otvoriť dokument s pomocníkom."
 
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
 msgid "Are you sure you want to open %d document?"
-msgid_plural "Are you sure you want to open %d documents?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "Naozaj chcete otvoriť %d dokument?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, fuzzy, c-format
+#, c-format
 msgid "This will open %d separate window."
-msgid_plural "This will open %d separate windows."
-msgstr[0] "Toto otvír %d samostatných priečinkov. Chcete to urobiť?"
-msgstr[1] "Toto otvír %d samostatných priečinkov. Chcete to urobiť?"
+msgstr "Otvorí sa %d samostatných okien."
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open document \"%s\"."
-msgstr "Nie je možné otvoriť dokument \"%s\""
+msgstr "Nie je možné otvoriť dokument \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:393
 #: gsearchtool/gsearchtool-callbacks.c:947
@@ -858,100 +850,95 @@ msgstr "Nemáte nainštalovaný prehliadač, ktorý dokáže zobraziť tento dok
 #: gsearchtool/gsearchtool-callbacks.c:444
 #, c-format
 msgid "Are you sure you want to open %d folder?"
-msgid_plural "Are you sure you want to open %d folders?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "Naozaj chcete otvoriť %d priečinok?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
-msgstr "Nie je možné otvoriť priečinok \"%s\""
+msgstr "Nepodarilo sa otvoriť priečinok \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:509
 msgid "The nautilus file manager is not running."
 msgstr "Nebeží správca súborov Nautilus."
 
 #: gsearchtool/gsearchtool-callbacks.c:612
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to trash."
-msgstr "Nie je možné uložiť dokument \"%s\" do %s"
+msgstr "Nepodarilo sa presunúť \"%s\" do Koša."
 
 #: gsearchtool/gsearchtool-callbacks.c:615
 msgid "The document does not exist."
-msgstr ""
+msgstr "Dokument neexistuje."
 
 #: gsearchtool/gsearchtool-callbacks.c:652
-#, fuzzy, c-format
+#, c-format
 msgid "Could not move \"%s\" to the trash."
-msgstr "Nie je možné uložiť dokument \"%s\" do %s"
+msgstr "Nepodarilo sa presunúť \"%s\" do Koša."
 
 #: gsearchtool/gsearchtool-callbacks.c:655
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr ""
+msgstr "Presúvanie \"%s\" zlyhalo: %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:685
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
-msgstr ""
+msgstr "Chcete navždy vymazať \"%s\"?"
 
 #: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr ""
+msgstr "Kôš nie je dostupný.  Nepodarilo sa presunúť \"%s\" do Koša."
 
 #: gsearchtool/gsearchtool-callbacks.c:730
-#, fuzzy, c-format
+#, c-format
 msgid "Could not delete \"%s\"."
-msgstr "Nie je možné otvoriť priečinok \"%s\""
+msgstr "Nepodarilo sa vymazať \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:733
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr ""
+msgstr "Vymazanie \"%s\" zlyhalo: %s."
 
 #: gsearchtool/gsearchtool-callbacks.c:1132
 msgid "Save Search Results As..."
 msgstr "Uložiť výsledky hľadania ako..."
 
 #: gsearchtool/gsearchtool-callbacks.c:1184
-#, fuzzy
 msgid "Could not save document."
-msgstr "Nie je možné uložiť dokument \"%s\""
+msgstr "Nepodarilo sa uložiť dokument."
 
 #: gsearchtool/gsearchtool-callbacks.c:1186
-#, fuzzy
 msgid "You did not select a document name."
-msgstr "Nie je možné otvoriť dokument \"%s\""
+msgstr "Nevybrali ste meno dokumentu."
 
 #: gsearchtool/gsearchtool-callbacks.c:1212
 #: gsearchtool/gsearchtool-callbacks.c:1307
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
-msgstr "Nie je možné uložiť dokument \"%s\""
+msgstr "Nepodarilo sa uložiť dokument \"%s\" do \"%s\"."
 
 #: gsearchtool/gsearchtool-callbacks.c:1216
 msgid "The document name you selected is a folder."
-msgstr ""
+msgstr "Meno dokumentu, ktoré ste vybrali, je priečinok."
 
 #: gsearchtool/gsearchtool-callbacks.c:1245
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr ""
+msgstr "Dokument \"%s\" už existuje.  Chcete ho prepísať?"
 
 #: gsearchtool/gsearchtool-callbacks.c:1249
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr ""
+msgstr "Ak nahradíte existujúci súbor, jeho obsah bude prepísaný."
 
 #: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "_Replace"
-msgstr ""
+msgstr "N_ahradiť"
 
 #: gsearchtool/gsearchtool-callbacks.c:1310
-#, fuzzy
 msgid "You may not have write permissions to the document."
 msgstr ""
-"Možno nemáte dostatočné práva pre zápis dokumentu. Dokument sa neuloží."
+"Možno nemáte dostatočné práva pre zápis dokumentu."
 
 #: gsearchtool/gsearchtool-support.c:66
 #, c-format
@@ -1033,9 +1020,8 @@ msgid "Name matches regular e_xpression"
 msgstr "Súbor odpovedá _regulárnemu výrazu"
 
 #: gsearchtool/gsearchtool.c:89
-#, fuzzy
 msgid "Show hidden and backup files"
-msgstr "Zobraziť skryté súbory a priečinky"
+msgstr "Zobraziť skryté a záložné súbory"
 
 #: gsearchtool/gsearchtool.c:90
 msgid "Follow symbolic links"
@@ -1058,18 +1044,14 @@ msgid "No Files Found"
 msgstr "Nenájdené žiadne súbory"
 
 #: gsearchtool/gsearchtool.c:556
-#, fuzzy, c-format
+#, c-format
 msgid "%d File Found"
-msgid_plural "%d Files Found"
-msgstr[0] "Nájdených %d súborov"
-msgstr[1] "Nájdených %d súborov"
+msgstr "Nájdený %d súbor"
 
 #: gsearchtool/gsearchtool.c:560
-#, fuzzy, c-format
+#, c-format
 msgid "%d file found"
-msgid_plural "%d files found"
-msgstr[0] "Nájdených %d súborov"
-msgstr[1] "Nájdených %d súborov"
+msgstr "Nájdený %d súbor"
 
 #: gsearchtool/gsearchtool.c:666
 msgid "Entry changed called for a non entry option!"
@@ -1125,24 +1107,21 @@ msgstr ""
 "... Príliš veľa chýb ...."
 
 #: gsearchtool/gsearchtool.c:1327
-#, fuzzy
 msgid "Error while searching for files."
-msgstr "Chyba pri hľadaní súborov"
+msgstr "Chyba pri hľadaní súborov."
 
 #: gsearchtool/gsearchtool.c:1368
-#, fuzzy
 msgid "Error parsing the search command."
-msgstr "Chyba pri spracovaní príkazu pre hľadanie"
+msgstr "Chyba pri spracovaní príkazu pre hľadanie."
 
 #: gsearchtool/gsearchtool.c:1391
-#, fuzzy
 msgid "Error running the search command."
-msgstr "Chyba pri spustení príkazu"
+msgstr "Chyba pri spustení príkazu hľadania."
 
 #: gsearchtool/gsearchtool.c:1488
 #, c-format
 msgid "'%s' entry"
-msgstr ""
+msgstr "položka '%s'"
 
 #: gsearchtool/gsearchtool.c:1489
 msgid "Enter a value for search rule"
@@ -1222,13 +1201,12 @@ msgid "Show more _options"
 msgstr "Zobraziť ďa_lšie možnosti"
 
 #: gsearchtool/gsearchtool.c:1890
-#, fuzzy
 msgid "Show more options"
-msgstr "Zobraziť ďa_lšie možnosti"
+msgstr "Zobraziť ďalšie možnosti"
 
 #: gsearchtool/gsearchtool.c:1890
 msgid "Expands or collapses a list of search options."
-msgstr ""
+msgstr "Rozbali alebo zabalí zoznam možností hľadania."
 
 #: gsearchtool/gsearchtool.c:1937
 msgid "Click to Start the search"
@@ -1268,18 +1246,16 @@ msgid "_Add"
 msgstr "_Pridať"
 
 #: logview/actions.c:162
-#, fuzzy
 msgid "Add an action"
-msgstr "Akcie"
+msgstr "Pridať akciu"
 
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "_Upraviť"
 
 #: logview/actions.c:169
-#, fuzzy
 msgid "Edit an action"
-msgstr "_Vykonať akcie"
+msgstr "Upraviť akciu"
 
 #: logview/actions.c:171
 msgid "_Remove"
@@ -1287,7 +1263,7 @@ msgstr "_Odstrániť"
 
 #: logview/actions.c:176
 msgid "Remove an action"
-msgstr ""
+msgstr "Odstrániť akciu"
 
 #: logview/actions.c:263
 #, c-format
@@ -1332,55 +1308,50 @@ msgid "description"
 msgstr "popis"
 
 #: logview/actions.c:651
-#, fuzzy
 msgid "Edit Action"
-msgstr "Akcie"
+msgstr "Upraviť akciu"
 
 #: logview/actions.c:687
 msgid "_Tag:"
-msgstr ""
+msgstr "_Značka:"
 
 #: logview/actions.c:696
 msgid "Tag that identifies the log file."
-msgstr ""
+msgstr "Značka, ktorá identifikuje súbor záznamu."
 
 #: logview/actions.c:705
-#, fuzzy
 msgid "_Log name:"
-msgstr "Meno _diskety:"
+msgstr "_Meno záznamu:"
 
 #: logview/actions.c:714
 msgid "Regular expression that will match the log name."
-msgstr ""
+msgstr "Regulárny výraz vyhovujúci menu súboru záznamu."
 
 #: logview/actions.c:724
-#, fuzzy
 msgid "_Process:"
-msgstr "Proces:"
+msgstr "_Proces:"
 
 #: logview/actions.c:733
 msgid "Regular expression that will match process part of message."
-msgstr ""
+msgstr "Regulárny výraz vyhovujúci "
 
 #: logview/actions.c:743
-#, fuzzy
 msgid "_Message:"
-msgstr "Správa:"
+msgstr "_Správa:"
 
 #: logview/actions.c:752
 msgid "Regular expression that will match the message."
-msgstr ""
+msgstr "Regulárny výraz, ktorému má vyhovovať správa."
 
 #: logview/actions.c:762
-#, fuzzy
 msgid "_Action:"
-msgstr "Akcie"
+msgstr "_Akcia:"
 
 #: logview/actions.c:771
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
-msgstr ""
+msgstr "Akcia, ktorá sa vykoná, ak boli splnené všetky predchádzajúce regulárne výrazy. Vykoná sa pomocou príkazu: system (akcia)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1467,11 +1438,9 @@ msgid "<No log loaded>"
 msgstr "<Nenačítaný žiadny záznam>"
 
 #: logview/info.c:183
-#, fuzzy, c-format
+#, c-format
 msgid "%ld byte"
-msgid_plural "%ld bytes"
-msgstr[0] "%ld bajtov"
-msgstr[1] "%ld bajtov"
+msgstr "%ld bajtov"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1723,6 +1692,7 @@ msgstr ""
 "Príliš veľa sledovaných záznamov. Odstráňte niektorý a skúste to znovu."
 
 #: logview/monitor.c:298 logview/monitor.c:335
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list je NULL\n"
 
@@ -1731,6 +1701,7 @@ msgid "Monitoring Logs..."
 msgstr "Monitorujem záznamy.."
 
 #: logview/monitor.c:643
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr "ZMENENÝ!!\n"
 
@@ -1763,43 +1734,3 @@ msgstr "Detaily pre riadok záznamu"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#~ msgid "Search Rule Value Entry"
-#~ msgstr "Hodnota pravidla hľadania"
-
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "Súbor s animáciou chýba alebo nie je platný: %s"
-
-#~ msgid "One File Found"
-#~ msgstr "Nájdený jeden súbor"
-
-#~ msgid "One file found"
-#~ msgstr "Nájdený jeden súbor"
-
-#~ msgid "Open %d documents?"
-#~ msgstr "Otvoriť %d dokumentov?"
-
-#~ msgid ""
-#~ "This will open %d separate documents. Are you sure you want to do this?"
-#~ msgstr "Toto otvorí %d samostatných dokumentov. Chcete to urobiť?"
-
-#~ msgid "Could not open document \"%s\""
-#~ msgstr "Nie je možné otvoriť dokument \"%s\""
-
-#~ msgid "Open %d folders?"
-#~ msgstr "Otvoriť %d priečinkov?"
-
-#~ msgid ""
-#~ "You did not select a document name or the name selected was a folder.  "
-#~ "The document is not saved."
-#~ msgstr ""
-#~ "Nevybrali ste meno dokument alebo je vybrané meno priečinok. Dokument sa "
-#~ "neuloží."
-
-#~ msgid "The contents of the file \"%s\" will be lost."
-#~ msgstr "Obsah súboru \"%s\" bude stratený."
-
-#~ msgid "Overwrite an existing file?"
-#~ msgstr "Prepísať existujúci súbor?"
-
-#~ msgid "Could not save document \"%s\" to %s"
-#~ msgstr "Nie je možné uložiť dokument \"%s\" do %s"
