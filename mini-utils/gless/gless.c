@@ -42,6 +42,7 @@ typedef struct _GnomeLessApp GnomeLessApp;
 struct _GnomeLessApp {
   GtkWidget * app;  /* GnomeApp widget  */
   GtkWidget * less; /* GnomeLess widget */
+  GnomeAppBar * appbar; /* appbar in GnomeApp, for convenience */
   gchar * file;     /* File being displayed, or NULL */
   GList * dialogs;  /* Any associated dialogs - need destroying when
                        the window closes. */
@@ -370,7 +371,6 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
 {
   GnomeLessApp * app;
   GtkWidget * app_box;
-  GtkWidget * statusbar;
 
   gint width = 480, height = 500;
   gboolean geometry_error = FALSE;
@@ -378,8 +378,8 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
   app = g_new(GnomeLessApp, 1);
 
   app->app = gnome_app_new( APPNAME, _("Text File Viewer") ); 
-  statusbar = gtk_statusbar_new();
-  gnome_app_set_statusbar(GNOME_APP(app->app), statusbar);
+  app->appbar = GNOME_APPBAR(gnome_appbar_new(TRUE, TRUE));
+  gnome_app_set_statusbar(GNOME_APP(app->app), GTK_WIDGET(app->appbar));
 
   apps = g_list_append(apps, app);
 
@@ -465,7 +465,7 @@ static void popup_about()
 static void
 gless_show_file_error(GnomeLessApp * app, const gchar * error)
 {
-  gnome_app_pop_status(GNOME_APP(app->app));
+  gnome_appbar_pop(app->appbar);
   gnome_app_error(GNOME_APP(app->app), error);
 }
 
@@ -477,7 +477,7 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
   g_return_val_if_fail(app != NULL, FALSE);
   g_return_val_if_fail(filename != NULL, FALSE);
 
-  gnome_app_push_status(GNOME_APP(app->app), _("Loading..."));
+  gnome_appbar_push (app->appbar, _("Loading..."));
 
   if ( ! g_file_exists(filename) ) {
     gchar * s;
@@ -526,10 +526,10 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
     }
   }
 
-  gnome_app_pop_status(GNOME_APP(app->app));
+  gnome_appbar_pop(app->appbar);
 
   gtk_window_set_title(GTK_WINDOW(app->app), g_filename_pointer(filename));
-  gnome_app_set_status(GNOME_APP(app->app), g_filename_pointer(filename));
+  gnome_appbar_set_default(app->appbar, g_filename_pointer(filename));
 
   app->file = g_strdup(filename);
 
@@ -572,16 +572,16 @@ static gboolean gless_app_save(GnomeLessApp * app, const gchar * path)
   g_return_val_if_fail(app != NULL, FALSE);
   g_return_val_if_fail(path != NULL, FALSE);
 
-  gnome_app_push_status(GNOME_APP(app->app), _("Saving..."));
+  gnome_appbar_push (app->appbar, _("Saving..."));
 
   /* FIXME this just overwrites; need to ask whether to do so. */
 
   if ( gnome_less_write_file(GNOME_LESS(app->less), path) ) {
-    gnome_app_pop_status(GNOME_APP(app->app));
+    gnome_appbar_pop (app->appbar);
     return TRUE; /* succeeded */
   }
 
-  gnome_app_pop_status(GNOME_APP(app->app));
+  gnome_appbar_pop (app->appbar);
 
   s = g_copy_strings(_("Failed to write file:\n"), path, 
                      "\n", g_unix_error_string(errno), NULL);
