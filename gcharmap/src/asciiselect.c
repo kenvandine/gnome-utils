@@ -66,11 +66,15 @@ cb_ascii_select_entry_changed (GtkEditable *edit, gpointer user_data)
 {
     gchar *s;
     gint i, f;
+    gunichar c;
 
     if (updating == TRUE) return;
     updating = TRUE;
-    s = (gchar *)gtk_entry_get_text (GTK_ENTRY (edit));
-    i = (gint) s[0];
+    s = (gchar *)gtk_editable_get_chars (edit, 0, -1);
+    if (!s)
+    	return;
+    i = g_utf8_get_char (s);
+    g_free (s);
     f = (gfloat) i;
     gtk_spin_button_set_value (GTK_SPIN_BUTTON (user_data), f);
     updating = FALSE;
@@ -80,14 +84,19 @@ static void
 cb_ascii_select_spin_changed (GtkEditable *edit, gpointer user_data)
 {
     gint i;
-
+    gchar *text;
     gchar buf[7];
     gint n;
 
     if (updating == TRUE) return;
     updating = TRUE;
-    i = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (edit));
-    
+    text = gtk_editable_get_chars (edit, 0, -1);
+    if (!text)
+    	return;
+    i = atoi (text);
+    g_free (text);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (edit), i);
+
     n=g_unichar_to_utf8(i, buf);
     buf[n]=0;
 
@@ -141,18 +150,9 @@ ascii_select_init (AsciiSelect *obj)
       GTK_SIGNAL_FUNC (cb_ascii_select_spin_changed), entry);
     gtk_signal_connect (GTK_OBJECT (entry), "changed",
       GTK_SIGNAL_FUNC (cb_ascii_select_entry_changed), spin);
-    /*gtk_signal_connect_object (GTK_OBJECT (obj->window), "clicked",
-			       GTK_SIGNAL_FUNC (gtk_spin_button_update),
-			       GTK_OBJECT (spin));*/
     g_signal_connect (G_OBJECT (obj->window), "response",
     		      G_CALLBACK (cb_ascii_select_clicked), entry);
 
-#if 0
-    gnome_dialog_editable_enters (GNOME_DIALOG (obj->window),
-				  GTK_EDITABLE (entry));
-    gnome_dialog_editable_enters (GNOME_DIALOG (obj->window),
-				  GTK_EDITABLE (spin));
-#endif
     gtk_widget_show_all (GTK_DIALOG (obj->window)->vbox);
     gtk_widget_grab_focus (spin);
 }
