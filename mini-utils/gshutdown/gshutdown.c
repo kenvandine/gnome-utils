@@ -20,6 +20,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <unistd.h> /* getuid */
 #include <string.h> /* strtok */
 
 #define APPNAME "gshutdown"
@@ -140,6 +141,15 @@ int main ( int argc, char ** argv )
   textdomain (PACKAGE);
 
   gnome_init (APPNAME, VERSION, argc, argv);
+
+  if(getuid()) {
+    gnome_dialog_run(GNOME_DIALOG(
+    gnome_message_box_new(_("You must be the super-user (root) to shut down or restart the computer."),
+                          GNOME_MESSAGE_BOX_ERROR,
+                          _("Close"), NULL)
+    ));
+    return 0;
+  }
 
   i = 0;
   while (i < 7) {
