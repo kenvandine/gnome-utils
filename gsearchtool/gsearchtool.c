@@ -31,6 +31,8 @@
 #  include <config.h>
 #endif
 
+#include <gnome.h>
+
 #include "gsearchtool.h"
 #include "gsearchtool-support.h"
 #include "gsearchtool-callbacks.h"
@@ -39,11 +41,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <fnmatch.h>
-#include <sys/wait.h>
-#include <gdk/gdkkeysyms.h>
-#include <libgnomeui/gnome-window-icon.h>
-#include <libgnomevfs/gnome-vfs-mime.h>
-#include <libgnomevfs/gnome-vfs-mime-handlers.h>
+#include <libbonobo.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
@@ -1510,7 +1508,7 @@ main (int 	argc,
 					  
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-searchtool.png");
 
-	if (!bonobo_init (bonobo_activation_orb_get (), NULL, NULL))
+	if (!bonobo_init_full (&argc, argv, bonobo_activation_orb_get (), NULL, NULL))
 		g_error (_("Cannot initialize bonobo."));
 
 	bonobo_activate ();

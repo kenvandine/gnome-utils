@@ -1,3 +1,15 @@
+2002-11-29  Dennis M. Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.[ch]: Fixed (-Wall) compiler warnings.  
+	Replaced call to bonobo_init() with bonobo_init_full().
+	
+	* gsearchtool-callbacks.[ch]:  Fixed (-Wall) compiler 
+	warnings. Replaced calls to g_return_if_fail() with 
+	g_return_val_if_fail().
+	
+	* gsearchtool-support.[ch]:  Fixed (-Wall) compiler 
+	warnings.  Removed unused global_client_free() function.
+	
 2002-11-29  Fernando Herrera <fherrera@onirica.com>
 
        * gnome-search-tool.desktop.in: add X-GNOME-BUGZILLA stuff

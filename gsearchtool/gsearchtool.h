@@ -34,8 +34,6 @@
 #define GTK_DISABLE_DEPRECATED
 #define GNOME_DISABLE_DEPRECATED
 
-#include <gnome.h>
-
 #ifdef __cplusplus
 extern "C" {
 #pragma }
@@ -137,6 +135,9 @@ remove_constraint 		(gint constraint_id);
 void  		
 update_constraint_info 		(SearchConstraint *constraint, 
 				 gchar *info);
+void
+set_constraint_selected_state	(gint		constraint_id, 
+				 gboolean	state);
 gboolean
 update_progress_bar 		(gpointer data);
 

@@ -31,7 +31,11 @@
 
 #define SILENT_WINDOW_OPEN_LIMIT 5
 
+#include <gnome.h>
+
+#include <string.h>
 #include <signal.h>
+#include <sys/wait.h>
 
 #include "gsearchtool.h"
 #include "gsearchtool-support.h"
@@ -155,7 +159,6 @@ void
 add_constraint_cb (GtkWidget 	*widget, 
 		   gpointer 	data)
 {
-	SearchConstraint *constraint = g_new(SearchConstraint,1);
 	GtkWidget *menu;
 	GtkWidget *item;
 	
@@ -772,7 +775,7 @@ save_results_cb (GtkFileSelection *selector,
 		if (response != GTK_RESPONSE_YES) return;
 	}
 	
-	if (fp = fopen(interface.save_results_file, "w")) {
+	if ((fp = fopen (interface.save_results_file, "w")) != NULL) {
 	
 		if (gtk_tree_model_get_iter_root(GTK_TREE_MODEL(store), &iter)) {
 			
@@ -838,7 +841,7 @@ key_press_cb (GtkWidget    	*widget,
 	      GdkEventKey	*event, 
 	      gpointer 		data)
 {
-	g_return_if_fail (GTK_IS_WIDGET(widget));
+	g_return_val_if_fail (GTK_IS_WIDGET(widget), FALSE);
 
 	if (event->keyval == GDK_Escape) {
 		if (search_command.running == RUNNING) {
@@ -885,7 +888,7 @@ look_in_folder_key_press_cb (GtkWidget    	*widget,
 		     	     GdkEventKey	*event, 
 		     	     gpointer 		data)
 {
-	g_return_if_fail (GTK_IS_WIDGET(widget));
+	g_return_val_if_fail (GTK_IS_WIDGET(widget), FALSE);
 
 	if (event->keyval == GDK_Return)
 	{

@@ -29,21 +29,18 @@
 #  include <config.h>
 #endif
 
+#include <gnome.h>
+
+#include <regex.h>
+#include <gconf/gconf.h>
+#include <gconf/gconf-client.h>
+#include <libgnomevfs/gnome-vfs-mime-handlers.h>
+#include <libgnomevfs/gnome-vfs-ops.h> 
+#include <bonobo-activation/bonobo-activation.h>
+
 #include "gsearchtool-support.h"
 #include "gsearchtool-callbacks.h"
 #include "gsearchtool.h"
-
-#include <regex.h>
-#include <gtk/gtkcheckbutton.h>
-#include <gtk/gtktogglebutton.h>
-#include <libgnomevfs/gnome-vfs-mime.h>
-#include <libgnomevfs/gnome-vfs-mime-handlers.h>
-#include <libgnomevfs/gnome-vfs-mime-utils.h>
-#include <libgnomevfs/gnome-vfs-ops.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
-#include <bonobo-activation/bonobo-activation.h>
-#include <gconf/gconf-client.h>
-#include <gconf/gconf.h>
 
 #define C_STANDARD_STRFTIME_CHARACTERS "aAbBcdHIjmMpSUwWxXyYZ"
 #define C_STANDARD_NUMERIC_STRFTIME_CHARACTERS "dHIjmMSUwWyY"
@@ -97,16 +94,13 @@ get_x_y (CDDBDisclosure *disclosure,
 	 GtkStateType *state_type)
 {
 	GtkCheckButton *check_button;
-	GdkRectangle new_area, restrict_area;
 	int indicator_size, indicator_spacing;
 	int focus_width;
 	int focus_pad;
 	gboolean interior_focus;
 	GtkWidget *widget = GTK_WIDGET (disclosure);
-	GtkAllocation *area = &widget->allocation;
 	GtkBin *bin = GTK_BIN (disclosure);
-	GtkRequisition child_requisition;
-	int width, height;
+	int width;
 	
 	if (GTK_WIDGET_VISIBLE (disclosure) &&
 	    GTK_WIDGET_MAPPED (disclosure)) {
@@ -157,7 +151,6 @@ get_x_y (CDDBDisclosure *disclosure,
 static gboolean
 expand_collapse_timeout (gpointer data)
 {
-	GdkRectangle area;
 	GtkWidget *widget = data;
 	CDDBDisclosure *disclosure = data;
 	GtkStateType state_type;
@@ -331,17 +324,6 @@ cddb_disclosure_set_container (CDDBDisclosure *disclosure,
 /* START OF THE GCONF FUNCTIONS */
 
 static GConfClient *global_gconf_client = NULL;
-
-static void
-global_client_free (void)
-{
-	if (global_gconf_client == NULL) {
-		return;
-	}
-	
-	g_object_unref (global_gconf_client);
-	global_gconf_client = NULL;
-}
 
 gboolean
 gsearchtool_gconf_handle_error (GError **error)

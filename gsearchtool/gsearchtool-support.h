@@ -28,12 +28,12 @@
 #ifndef _GSEARCHTOOL_SUPPORT_H_
 #define _GSEARCHTOOL_SUPPORT_H_
 
-#include <gnome.h>
-
 #ifdef __cplusplus
 extern "C" {
 #pragma }
 #endif
+
+#include <gnome.h>
 
 #define CDDB_DISCLOSURE_TYPE (cddb_disclosure_get_type ())
 #define CDDB_DISCLOSURE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), CDDB_DISCLOSURE_TYPE, CDDBDisclosure))
@@ -61,6 +61,9 @@ cddb_disclosure_get_type 	(void);
 GtkWidget *
 cddb_disclosure_new 		(const char *shown,
 				 const char *hidden);
+void
+cddb_disclosure_set_container 	(CDDBDisclosure *disclosure,
+				 GtkWidget *container);
 gboolean  	
 is_path_hidden 			(const gchar *path);
 

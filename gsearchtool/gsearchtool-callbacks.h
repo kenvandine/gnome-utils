@@ -28,8 +28,6 @@
 #ifndef _GSEARCHTOOL_CALLBACKS_H_
 #define _GSEARCHTOOL_CALLBACKS_H_
 
-#include <gnome.h>
-
 #ifdef __cplusplus
 extern "C" {
 #pragma }
