@@ -140,10 +140,9 @@
     <para>	  
 	<application>gdialog</application> is used
 	in shell scripts or from the command prompt.
-	To run gdialog, a complete description is
-	given on the command line or in the shell 
-	script of the dialog box 
-	to be created. For example,
+	To use gdialog, give instructions describing the dialog to be created on
+	the command line or in a shell 
+	script. For example,
 	<programlisting>
 	<command>
 	gdialog --msgbox "Here's a test message !" 200 150 
@@ -176,7 +175,7 @@
 
 	<para>
 	The complete command line options list for 
-	<application>gdialog</application> is</para>
+	<application>gdialog</application> is:</para>
 	<para> 
 	<command>
 	  gdialog [--title <replaceable>title</replaceable>] [--separate-output] 
@@ -187,7 +186,7 @@
 	<command>title</command> specifies the title for the dialog. 
 	</para>
 	<para>
-	"Box Options" can be one of the following 
+	"Box Options" can be one of the following: 
 	<itemizedlist>
 	<listitem>
 	    <para>
@@ -288,30 +287,18 @@
 <sect1 id="dialogs">
 <title>Using different types of dialog boxes</title>
 	
-	<para>
-	This section shows how to create and display different 
-	types of dialogs. The examples, all use a 
-	width of 250 and a height of 150 in place of  
-	<command><replaceable>width</replaceable></command> and 
-	<command><replaceable>height</replaceable></command>. 
-	</para>
-	
-
 	<sect2 id="yesnobox">
 	<title>Creating a Confirmation Dialog</title>
 	<para>
-	Create a dialog box showing a question and a "Yes" and 
-	a "No" button using the <command>--yesno</command> option. 
+	To create a dialog box showing a question and a "Yes" and 
+	a "No" button, use the <command>--yesno</command> option. 
 	To create a dialog box with the 
 	title as "My Dialog",
 	and question to be shown "Should I exit ?"
-	use the following command 
+	use the following command: 
 	<programlisting>
 	<command>
-	gdialog --title "My Dialog" 
-		--yesno
-		"Should I exit ?"
-		250 150		 
+	gdialog --title "My Dialog" --yesno "Should I exit ?" 250 150		 
 	</command>
 	</programlisting>
 	</para>
@@ -320,7 +307,7 @@
 	<xref linkend="gdialog-yesno" />. 
       	
         <figure id="gdialog-yesno">
-	  <title>confirmation box example</title>
+	  <title>Confirmation Box Example</title>
 	  <screenshot>
 	    <mediaobject>
 	      <imageobject>
@@ -339,7 +326,8 @@
 	</para>		
 	<para>
 	The return value from gdialog is 0 if the user clicked on "Yes"
-	and 1 if the user clicked on "No". By default, the "Yes" button is
+	and 1 if the user clicked on "No".</para>
+      <para>By default, the "Yes" button is
 	highlighted when the dialog is displayed. In case you want the "No" 
 	button to be highlighted, add <command>--defaultno</command>
 	</para>	
@@ -350,10 +338,10 @@
 	<para>
 	You can create a dialog box that shows a message 
 	using the <command>--msgbox</command> option. 
-	For example, to create a dialog box with the 
+	To create a dialog box with the 
 	title as "My Dialog",
 	and message to be shown "Here's a message !"
-	use the following command
+	use the following command:
 	<programlisting> 
 	<command>
 	gdialog --title "My Dialog" --msgbox "Here's a message" 250 150		 
