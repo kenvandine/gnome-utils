@@ -91,7 +91,7 @@ do_show_journal (GttGhtml *ghtml, GttProject*prj)
 	p = prn;
 	p += sprintf (p, "<table border=1><tr><th colspan=4>%s\n"
 		"<tr><th>&nbsp;<th>%s<th>%s<th>%s",
-		_("Memo"), _("Start"), _("Stop"), _("Elapsed"));
+		_("Diary Entry"), _("Start"), _("Stop"), _("Elapsed"));
 
 	(ghtml->write_stream) (ghtml, prn, p-prn, ghtml->user_data);
 
@@ -216,7 +216,7 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 				mcols = ghtml->ninvl_cols - ghtml->ntask_cols;
 				if (0 >= mcols) mcols = 1; 
 				p += sprintf (p, "<th colspan=%d>", mcols);
-				TASK_COL_TITLE (_("Memo"));
+				TASK_COL_TITLE (_("Diary Entry"));
 				break;
 			}
 			case TASK_TIME:

@@ -515,10 +515,10 @@ ctree_init_cols (ProjTreeWindow *ptw)
 				break;
 			case TIME_CURRENT_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
-				ptw->col_titles[i] = _("This Memo");
+				ptw->col_titles[i] = _("Entry");
 				ptw->col_tooltips[i] = 
 					_("Time spent under the current "
-					"task memo.");
+					"diary entry.");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case TIME_TODAY_COL:
@@ -566,9 +566,9 @@ ctree_init_cols (ProjTreeWindow *ptw)
 				break;
 			case TASK_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
-				ptw->col_titles[i] =  _("Task");
+				ptw->col_titles[i] =  _("Diary Entry");
 				ptw->col_tooltips[i] = 
-					_("The memo for the current task");
+					_("The current diary entry");
 				ptw->col_width_set[i] = FALSE;
 				break;
 			case START_COL:

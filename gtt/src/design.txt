@@ -3,21 +3,31 @@ Design Quickie Overview
 -----------------------
 by Linas Vepstas, August 2001
 
-Files
------
-Project data is pretty-much isolated from the rest of the 
-code, in the proj.c file.  The structures are not visible,
-and are kept private, in proj_p.h.  This should allow the
-project data to be more easily interfaced to things like SQL
-databases.  The structures are also GUI (gtk/gnome) independent,
-which should also allow them to be used inside of e.g. cgi-bins.
+Overall Structure
+-----------------
+GTT four basic parts:
+1) the 'engine', a set of C objects that encapsulate 
+   project, task and time interval data with a set of 
+   GUI-independent prgramming API's.  The API is in proj.h,
+   the code in proj.c and the private data structs in 
+   proj_p.h.  The goal of splitting out the data this way is
+   to make it easier to write an SQL back-end for storage,
+   and/or to interface to the web via cgi-bins.
+   
+2) some code to read/write the structs to an XML-formatted
+   file. The code in in xml-read.c, xml-write.c
 
-Project data is saved in an XML file format: see
-xml-read.c and xml-write.c
+3) The 'journal' code.  This code displays the diary
+   of project activity as html, inside the gtkhtml html
+   widget.  It uses scheme as an extension language, so 
+   that the user can design custom forms.  The code is in
+   ghtml.c.  The design should be sufficiently abstract
+   that it could be piped to anything (e.g. to cgi-bins
+   in apache).
 
-Journals are displayed as html by the gtkhtml widget.  The
-generation of the html output has been abstracted so that
-it could be piped to anything (e.g. to a cgi-bin).
+4) The Gnome GUI.  This is most of the rest of the files,
+   including the parts of teh GUI done up with glade.
+
 
 Projects, Sub-projects, Tasks and Intervals
 -------------------------------------------
@@ -28,6 +38,8 @@ A 'task' is supposed to be just a text memo associated with some
 intervals.  Think of a task as a kind of a "diary entry": a place
 where you can write down what you did today.   You can't go back
 and restart old tasks because you can't go back and re-live yesterday.
+(Tasks are mis-named, and should probably have been called 'diary 
+entries').
 
 If you want to 'restart' a task, then what you should really do is to
 set up a set of sub-projects.  Projects & sub-projects can always be

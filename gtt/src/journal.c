@@ -244,7 +244,7 @@ interval_insert_memo_cb(GtkWidget * w, gpointer data)
 	/* try to get billrates consistent across gap */
 	newtask = gtt_interval_get_parent (wig->interval);
 	newtask = gtt_task_dup (newtask);
-	gtt_task_set_memo (newtask, _("New Task"));
+	gtt_task_set_memo (newtask, _("New Diary Entry"));
 	gtt_task_set_notes (newtask, "");
 
 	gtt_interval_split (wig->interval, newtask);

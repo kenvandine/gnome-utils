@@ -385,6 +385,10 @@ int 		gtt_project_list_total_secs_ever (void);
 
 /* -------------------------------------------------------- */
 /* Tasks */
+/* Taks may be a bit misnamed -- they should ave been called 
+ * 'diary entries'.
+ */
+
 /* The gtt_task_dup() routine makes a copy of the indicated task.
  *    it copies the memo, notes, adn billing info, but not the 
  *    intervals, nor the parent.

@@ -713,7 +713,7 @@ gtt_project_compat_set_secs (GttProject *proj, int sever, int sday, time_t last)
 
 	/* All new data will get its own task */
 	tsk = gtt_task_new ();
-	gtt_task_set_memo (tsk, _("New Task"));
+	gtt_task_set_memo (tsk, _("New Diary Entry"));
 	gtt_project_append_task (proj, tsk);
 
 	proj_refresh_time (proj);
@@ -1524,7 +1524,7 @@ gtt_project_timer_start (GttProject *proj)
 	if (NULL == proj->task_list)
 	{
 		task = gtt_task_new();
-		gtt_task_set_memo (task, _("New Task"));
+		gtt_task_set_memo (task, _("New Diary Entry"));
 	}
 	else 
 	{
@@ -1644,7 +1644,7 @@ gtt_task_new (void)
 
 	task = g_new0(GttTask, 1);
 	task->parent = NULL;
-	task->memo = g_strdup (_("New Task"));
+	task->memo = g_strdup (_("New Diary Entry"));
 	task->notes = g_strdup ("");
 	task->billable = GTT_BILLABLE;
 	task->billrate = GTT_REGULAR;
@@ -1784,7 +1784,7 @@ gtt_task_new_insert (GttTask *old)
 	if (!old) return NULL;
 
 	task = g_new0(GttTask, 1);
-	task->memo = g_strdup (_("New Task"));
+	task->memo = g_strdup (_("New Diary Entry"));
 	task->notes = g_strdup ("");
 
 	/* inherit the properties ... important for user */
