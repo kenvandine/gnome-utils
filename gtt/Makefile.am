@@ -37,7 +37,8 @@ gtt_SOURCES = \
 
 gtt_LDADD = \
 	$(GTKXMHTML_LIBS)	\
-	$(GNOMEUI_LIBS)
+	$(GNOMEUI_LIBS) 	\
+	$(INTLLIBS)
 
 GttHelp_DATA = \
 	index.html		\
