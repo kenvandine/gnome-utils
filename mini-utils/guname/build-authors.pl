@@ -28,7 +28,7 @@ if (!-e 'CVSROOT/modules') {
 # Read the modules file.
 
 open MODULES, "$gnomedir/CVSROOT/modules" or
-  croak "open ($gnomedir/CVSROOT/modules)";
+  croak "open ($gnomedir/CVSROOT/modules): $!";
 my @modules = grep /^gnome\s+/, <MODULES>;
 croak "Invalid modules file $gnomedir/CVSROOT/modules" unless
   $#modules == 0;
