@@ -12,6 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: TransDict server\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -736,6 +737,7 @@ msgstr[0] "Disketa je oblikovana, ali nađeno je i označeno <b>%d loših blokov
 "d)."
 msgstr[1] "Disketa je oblikovana, ali nađeno je i označeno <b>%d loših blokova</b>(od %"
 "d)."
+msgstr[2] ""
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -805,20 +807,22 @@ msgstr "Nisam mogao otvoriti dokument s pomoći."
 
 #. plural form
 #: gsearchtool/gsearchtool-callbacks.c:318
-#, c-format
+#, fuzzy, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "Sigurni ste da želite otvoriti dokument %d?"
 msgstr[1] "Sigurni ste da želite otvoriti dokumente %d?"
+msgstr[2] ""
 
 #. plural form
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
-#, c-format
+#, fuzzy, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "Ovo će otvoriti %d odvojen prozor."
 msgstr[1] "Ovo će otvoriti %d odvojenih prozora."
+msgstr[2] ""
 
 #: gsearchtool/gsearchtool-callbacks.c:390
 #: gsearchtool/gsearchtool-callbacks.c:944
@@ -833,11 +837,12 @@ msgstr "Ne postoji preglednik koji može prikazati dokument."
 
 #. plural form
 #: gsearchtool/gsearchtool-callbacks.c:444
-#, c-format
+#, fuzzy, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Sigurni ste da želite otvoriti mapu %d?"
 msgstr[1] "Sigurni ste da želite otvoriti mape %d?"
+msgstr[2] ""
 
 #: gsearchtool/gsearchtool-callbacks.c:502
 #, fuzzy, c-format
@@ -1031,19 +1036,21 @@ msgstr "Nisu nađene datoteke"
 
 #. plural form
 #: gsearchtool/gsearchtool.c:541
-#, c-format
+#, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d nađena datoteka"
 msgstr[1] "%d nađenih datoteka"
+msgstr[2] ""
 
 #. plural form
 #: gsearchtool/gsearchtool.c:545
-#, c-format
+#, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d nađena datoteka"
 msgstr[1] "%d nađenih datoteka"
+msgstr[2] ""
 
 #: gsearchtool/gsearchtool.c:651
 msgid "Entry changed called for a non entry option!"
@@ -1429,11 +1436,12 @@ msgstr "<Log datoteka nije učitana>"
 
 #. plural form
 #: logview/info.c:183
-#, c-format
+#, fuzzy, c-format
 msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld bajt"
 msgstr[1] "%ld bajtova"
+msgstr[2] ""
 
 #: logview/log_repaint.c:59
 msgid "January"
