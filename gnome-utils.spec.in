@@ -37,18 +37,13 @@ calculator, search tool, and system information overview tool.
 - Integrate into gnome-utils CVS source tree
 
 %prep
-%setup
+%setup -q
 
 %build
 %ifarch alpha
 MYARCH_FLAGS=--host=alpha-redhat-linux
 %endif
-# Needed for snapshot releases.
-if [ ! -f configure ]; then
-  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%prefix $MYARCH_FLAGS
-else
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix $MYARCH_FLAGS
-fi
+CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix --sysconfdir=/etc $MYARCH_FLAGS
 
 if [ "$SMP" != "" ]; then
   make MAKE="make -j$SMP"
@@ -57,20 +52,13 @@ else
 fi
 
 %install
-rm -rf $RPM_BUILD_ROOT
+[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT%{prefix} install
+make prefix=$RPM_BUILD_ROOT%{prefix} sysconfdir=$RPM_BUILD_ROOT/etc install
 
-# New users will never get rid of this :)
-rm -f $RPM_BUILD_ROOT%{prefix}/share/gnome/apps/Utilities/gpenguin.desktop
-
-# gshutdown isn't what we want at this time
-#rm -f $RPM_BUILD_ROOT%{prefix}/bin/gshutdown
-#rm -f $RPM_BUILD_ROOT%{prefix}/share/gnome/apps/*/gshutdown.desktop
-#rm -rf $RPM_BUILD_ROOT%{prefix}/share/gnome/help/gshutdown
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-, root, root)
