@@ -95,6 +95,8 @@ query_dialog (const gchar *msg)
 
 	response = gtk_dialog_run (GTK_DIALOG (req));
 
+	gtk_widget_destroy(req);
+
 	if (response == GTK_RESPONSE_YES)
 		return TRUE;
 	else /* this includes -1 which is "destroyed" */
