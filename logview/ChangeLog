@@ -1,3 +1,26 @@
+2002-06-19  Deepa Natarajan  <deepa.natarajan@wipro.com>
+ 
+	* actions.c: Change the windows to dialog boxes. Set
+	atk relation between entry box and label, set mnemonics,
+	set default button, change title of dialog to "Actions",
+	position buttons to the right of the tree view. 
+	s/gtk_widget_set_usize/gtk_widget_set_size_request.
+
+	* monitor.c: s/GtkWindow/GtkDialog, add mnemonics,
+	set tooltips - thanks Parag, expand some of the
+	labels, change the ordering of the buttons, put all
+	the button in the same row, change the title of the 
+	dialog to "Monitor Options" and set the default button.
+	s/gtk_widget_set_usize/gtk_widget_set_size_request.
+
+	* zoom/info.c: Remove all pango stuff. Display info
+	in a GtkTreeView.
+
+	* log_repaint.c: Call repaint_zoom() and  RepaintLogInfo()
+	without parameters - change prototype.
+
+	* logview.h: change the prototype for repaint_zoom().
+
 2002-06-12  Narayana Pattipati <narayana.pattipati@wipro.com>
 
         * monitor.c: In mon_read_new_lines function, as new lines are read,

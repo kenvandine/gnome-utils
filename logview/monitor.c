@@ -62,7 +62,6 @@ void InitMonitorData (void);
  */
 
 extern GtkWidget *app;
-extern ConfigData *cfg;
 extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 
@@ -92,6 +91,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
    GtkWidget *scrolled_win;
    GtkWidget *list_item;
    GtkWidget *button;       
+   GtkTooltips *tooltips;
    GtkWidget *vbox2;       
    GtkBox *vbox;
    char buffer[10];
@@ -109,18 +109,29 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
 
    if (monoptions == NULL)
      {
-       /* monoptions = gtk_dialog_new ();   */
-      monoptions = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+      monoptions = gtk_dialog_new ();   
       gtk_container_set_border_width (GTK_CONTAINER (monoptions), 5);
-      gtk_window_set_title (GTK_WINDOW (monoptions), _("Monitor options"));
-      gtk_signal_connect (GTK_OBJECT (monoptions), "destroy",
-			  GTK_SIGNAL_FUNC (close_monitor_options),
-			  NULL);
+      gtk_window_set_title (GTK_WINDOW (monoptions), _("Monitor Options"));
 
-      vbox = (GtkBox *)gtk_vbox_new (FALSE, 2);
-      gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
-      gtk_container_add (GTK_CONTAINER (monoptions), GTK_WIDGET (vbox));
-      gtk_widget_show (GTK_WIDGET (vbox)); 
+      button = gtk_dialog_add_button (GTK_DIALOG (monoptions),
+                                     "Ac_tions", GTK_RESPONSE_NONE);
+      gtk_signal_connect (GTK_OBJECT (button), "clicked",
+                                     GTK_SIGNAL_FUNC (mon_edit_actions), srclist_view);
+
+      button = gtk_dialog_add_button (GTK_DIALOG (monoptions),
+                                     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+      gtk_signal_connect (GTK_OBJECT (button), "clicked",
+                                     GTK_SIGNAL_FUNC (close_monitor_options), NULL);
+
+      button = gtk_dialog_add_button (GTK_DIALOG (monoptions),
+                                     GTK_STOCK_OK, GTK_RESPONSE_OK);
+      gtk_signal_connect (GTK_OBJECT (button), "clicked",
+                                     GTK_SIGNAL_FUNC (go_monitor_log), NULL);
+
+      gtk_dialog_set_default_response (GTK_DIALOG (monoptions),
+                                     GTK_RESPONSE_OK); 
+   
+      vbox = GTK_BOX (GTK_DIALOG (monoptions)->vbox);
 
       label = gtk_label_new (_("Choose logs to monitor"));
       gtk_misc_set_alignment(GTK_MISC (label), 0.0, 0.0);
@@ -135,7 +146,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       scrolled_win = gtk_scrolled_window_new (NULL, NULL);
       gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
                                       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-      gtk_widget_set_usize (scrolled_win, 160, 100);
+      gtk_widget_set_size_request (scrolled_win, 160, 100);
       gtk_container_set_border_width (GTK_CONTAINER (scrolled_win), 3);
       gtk_box_pack_start (GTK_BOX (hbox), scrolled_win, TRUE, TRUE, 0);
       gtk_widget_show (scrolled_win);
@@ -162,21 +173,25 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
         }
 
       vbox2 = gtk_vbox_new (FALSE, 2);
-      gtk_box_pack_start ( GTK_BOX (hbox), vbox2, TRUE, TRUE, 0);
+      gtk_box_pack_start ( GTK_BOX (hbox), vbox2, FALSE, FALSE, 0);
       gtk_widget_show (vbox2);
 
+      tooltips = gtk_tooltips_new ();
+
       /* Arrowed buttons */
-      button = gtk_button_new_with_label (_("Add >>"));
+      button = gtk_button_new_from_stock (GTK_STOCK_ADD);
+      gtk_tooltips_set_tip (tooltips, button, _("Add logs to monitor"), NULL); 
       gtk_widget_show (button);
-      gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
+      gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, FALSE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
                           (GtkSignalFunc) mon_add_log,
                           NULL);
 
       /* Remove button */ 
-      button = gtk_button_new_with_label (_("Remove <<"));
+      button = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
+      gtk_tooltips_set_tip (tooltips, button, _("Remove logs from monitor"), NULL);
       gtk_widget_show (button);
-      gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
+      gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, FALSE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
                           (GtkSignalFunc) mon_remove_log,
                           NULL);
@@ -187,7 +202,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       scrolled_win = gtk_scrolled_window_new (NULL, NULL);
       gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
                                       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-      gtk_widget_set_usize( scrolled_win, 160, 100);
+      gtk_widget_set_size_request( scrolled_win, 160, 100);
       gtk_box_pack_start (GTK_BOX (hbox), scrolled_win, TRUE, TRUE, 0);
       gtk_widget_show (scrolled_win);
 
@@ -212,7 +227,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_widget_show (hbox2);
 
       /* Check boxes */
-      button = gtk_check_button_new_with_label (_("Hide app"));
+      button = gtk_check_button_new_with_mnemonic (_("_Hide Application"));
       gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), FALSE);
       gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
@@ -220,7 +235,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
                           srclist_view);
       gtk_widget_show (button);
       
-      button = gtk_check_button_new_with_label (_("Exec actions"));
+      button = gtk_check_button_new_with_mnemonic (_("_Execute Actions"));
       gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), TRUE);
       gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
@@ -230,31 +245,6 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
 
       mon_hide_while_monitor = FALSE;
       mon_exec_actions = TRUE;
-
-      /* Actions button */
-      button = gtk_button_new_with_label (_("Actions..."));
-      gtk_widget_show (button);
-      gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
-      gtk_signal_connect (GTK_OBJECT (button), "clicked",
-                          GTK_SIGNAL_FUNC (mon_edit_actions),
-                          srclist_view);
-
-      /* OK button */
-      button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_OK);
-      gtk_widget_show (button);
-      gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
-      gtk_signal_connect (GTK_OBJECT (button), "clicked",
-                          GTK_SIGNAL_FUNC (go_monitor_log),
-                          NULL);
-
-      /* Cancel button */
-      button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_CANCEL);
-      gtk_widget_show (button);
-      gtk_box_pack_start (GTK_BOX (hbox2), button, FALSE, TRUE, 0);
-      gtk_signal_connect (GTK_OBJECT (button), "clicked",
-                          GTK_SIGNAL_FUNC (close_monitor_options),
-                          NULL);
-      gtk_widget_grab_focus (button);
 
    }
    mon_opts_visible = TRUE;
@@ -451,7 +441,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
    gtk_container_set_border_width (GTK_CONTAINER (monwindow), 0);
    gtk_window_set_title (GTK_WINDOW (monwindow), _("Monitoring logs..."));
 
-   gtk_widget_set_usize(monwindow, w, h);
+   gtk_widget_set_size_request(monwindow, w, h);
    gtk_widget_set_uposition(monwindow, x, y);
    gtk_signal_connect (GTK_OBJECT (monwindow), "destroy",
 		       GTK_SIGNAL_FUNC (close_monitor_options),
@@ -478,7 +468,7 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
        
        frame = gtk_frame_new (NULL);
        gtk_container_set_border_width (GTK_CONTAINER (frame), 1);
-       gtk_widget_set_usize (frame, 200, 150);
+       gtk_widget_set_size_request (frame, 200, 150);
        gtk_widget_show (frame);
        
        /* Create destination list */

@@ -68,7 +68,7 @@ void open_databases (void);
 void destroy (void);
 void InitApp (void);
 int InitPages (void);
-int RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event);
+int RepaintLogInfo (void);
 int read_regexp_db (char *filename, GList **db);
 int read_actions_db (char *filename, GList **db);
 void print_db (GList *gb);
@@ -225,7 +225,7 @@ restore_session (void)
    curlognum = 0;
    log_repaint (NULL, NULL);
    if (loginfovisible)
-       RepaintLogInfo (NULL, NULL);
+       RepaintLogInfo ();
    set_scrollbar_size (1);
    numlogs = 0;
 
@@ -666,7 +666,7 @@ CloseLogMenu (GtkWidget * widget, gpointer user_data)
       curlognum = 0;
       log_repaint (NULL, NULL);
       if (loginfovisible)
-	 RepaintLogInfo (NULL, NULL);
+	 RepaintLogInfo ();
       set_scrollbar_size (1);
       gtk_widget_set_sensitive (log_menu[7].widget, FALSE); 
       gtk_widget_set_sensitive (log_menu[4].widget, FALSE); 
@@ -684,7 +684,7 @@ CloseLogMenu (GtkWidget * widget, gpointer user_data)
    log_repaint (NULL, NULL);
 
    if (loginfovisible)
-      RepaintLogInfo (NULL, NULL);
+      RepaintLogInfo ();
 
    /* Change menu entry if there is only one log */
    if (numlogs < 2)
@@ -748,7 +748,7 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 	 /* Clear window */
 	 log_repaint (NULL, NULL);
 	 if (loginfovisible)
-	   RepaintLogInfo (NULL, NULL);
+	   RepaintLogInfo ();
 	 if (calendarvisible)
 	   init_calendar_data();
 	 UpdateStatusArea();

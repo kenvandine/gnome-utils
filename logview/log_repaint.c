@@ -98,7 +98,7 @@ int HandleLogEvents (void);
 int GetLineAtCursor (int y);
 int NumTextLines (int l);
 int RepaintCalendar (GtkWidget * widget, GdkEventExpose * event);
-int RepaintLogInfo (GtkWidget *, GdkEventExpose *);
+int RepaintLogInfo (void);
 int rapaint_zoom (GtkWidget * widget, GdkEventExpose * event);
 gboolean HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key);
 gboolean PointerMoved (GtkWidget * cv, GdkEventMotion * event);
@@ -327,7 +327,7 @@ change_log (int direction)
 			     curlog->ln);
   log_repaint (NULL, NULL);
   if (loginfovisible)
-    RepaintLogInfo (NULL, NULL);
+    RepaintLogInfo ();
   if (calendarvisible)
     init_calendar_data ();
   UpdateStatusArea();
@@ -844,7 +844,7 @@ void
 log_redrawdetail ()
 {
   if (zoom_visible)
-    repaint_zoom (NULL, NULL);
+    repaint_zoom ();
 }
 
 /* ----------------------------------------------------------------------

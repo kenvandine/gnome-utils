@@ -229,7 +229,7 @@ void ShowQueuedErrMessages (void);
 GtkWidget *AddMenu (MenuItem * items);
 ConfigData *CreateConfig(void);
 void set_scrollbar_size (int);
-int repaint_zoom (GtkWidget * widget, GdkEventExpose * event);
+int repaint_zoom (void);
 void MoveToMark (Log *log);
 void ScrollUp (int howmuch);
 void ScrollDown (int howmuch);

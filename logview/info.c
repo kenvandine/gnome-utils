@@ -29,13 +29,10 @@
 #include "close.xpm"
 #endif
 
-#define INFO_WIDTH            350
-#define INFO_HEIGHT           140
-
-
 void LogInfo (GtkWidget * widget, gpointer user_data);
 void CloseLogInfo (GtkWidget * widget, GtkWindow ** window);
-int RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event);
+void QuitLogInfo (GtkWidget *widget, gpointer data);
+int RepaintLogInfo (void);
 
 
 
@@ -46,12 +43,9 @@ int RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event);
  */
 
 int loginfovisible;
+static GtkWidget *scrolled_window = NULL;
 GtkWidget *InfoDialog;
-GtkWidget *info_canvas;
-PangoLayout *stat_layout;
 
-extern ConfigData *cfg;
-extern GdkGC *gc;
 extern Log *curlog;
 
 
@@ -63,93 +57,43 @@ extern Log *curlog;
 void
 LogInfo (GtkWidget * widget, gpointer user_data)
 {
-   GtkWidget *frame;
-   GtkWidget *vbox;
-   int h1, h2;
-   PangoContext *context;
-   PangoFontMetrics *metrics;
-   PangoFont *font;
 
    if (curlog == NULL || loginfovisible)
       return;
 
-   InfoDialog = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-   gtk_signal_connect (GTK_OBJECT (InfoDialog), "destroy",
-		       (GtkSignalFunc) CloseLogInfo,
-		       &InfoDialog);
-   gtk_window_set_title (GTK_WINDOW (InfoDialog), _("Log stats"));
-   gtk_container_set_border_width (GTK_CONTAINER (InfoDialog), 0);
-   gtk_widget_set_style (InfoDialog, cfg->main_style);
-   gtk_widget_realize (InfoDialog);
+   if (InfoDialog == NULL) {
+      InfoDialog = gtk_dialog_new_with_buttons (_("Log stats"),
+                                                  GTK_WINDOW_TOPLEVEL,
+                                                  GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
+                                                  NULL);
 
-   vbox = gtk_vbox_new (FALSE, 2);
-   gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
-   gtk_container_add (GTK_CONTAINER (InfoDialog), vbox);
-   gtk_widget_show (vbox);
+      /* FIXME: no need to pass InfoDialog - its global !! */ 
+      g_signal_connect (G_OBJECT (InfoDialog), "response",
+                        G_CALLBACK (CloseLogInfo),
+                        &InfoDialog);
+      g_signal_connect (GTK_OBJECT (InfoDialog), "destroy",
+                        G_CALLBACK (QuitLogInfo),
+                        &InfoDialog);
+      g_signal_connect (GTK_OBJECT (InfoDialog), "delete_event",
+                        G_CALLBACK (gtk_true),
+                        NULL);
 
-   frame = gtk_frame_new (NULL);
-   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
-   gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
-   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
-   gtk_widget_set_style (frame, cfg->main_style);
-   gtk_widget_show (frame);
+      gtk_window_set_default_size (GTK_WINDOW (InfoDialog), 425, 200);
+      gtk_dialog_set_default_response (GTK_DIALOG (InfoDialog),
+                                       GTK_RESPONSE_CLOSE);
+      gtk_container_set_border_width (GTK_CONTAINER (InfoDialog), 0);
+      gtk_widget_realize (InfoDialog);
 
-   info_canvas = gtk_drawing_area_new ();
-   gtk_signal_connect (GTK_OBJECT (info_canvas), "expose_event",
-		       (GtkSignalFunc) RepaintLogInfo, NULL);
+      RepaintLogInfo ();
 
-   stat_layout = gtk_widget_create_pango_layout (widget, "");
-   context = gdk_pango_context_get ();
-   pango_context_set_language (context, gtk_get_default_language ());
-   font = LoadFont (context, cfg->headingb);
-   metrics = pango_font_get_metrics
-	     (font, pango_context_get_language (context));
-   h1 = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics)) +
-	PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
-   font = LoadFont (context, cfg->fixedb);
-   metrics = pango_font_get_metrics
-	     (font, pango_context_get_language (context));
-   h2 = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics)) +
-	PANGO_PIXELS (pango_font_metrics_get_descent (metrics)) + 2;
-   GTK_WIDGET (info_canvas)->requisition.width = INFO_WIDTH;
-   GTK_WIDGET (info_canvas)->requisition.height = h1*2+8*h2;
-   gtk_widget_queue_resize (GTK_WIDGET (info_canvas));
-   gtk_widget_set_events (info_canvas, GDK_EXPOSURE_MASK);
-   gtk_widget_set_style (info_canvas, cfg->white_bg_style);
-   gtk_container_add (GTK_CONTAINER (frame), info_canvas);
-   gtk_widget_show (info_canvas);
-   gtk_widget_realize (info_canvas);
+   }
 
-   gtk_widget_show (InfoDialog);
+   gtk_widget_show_all (InfoDialog);
 
-   g_object_unref (G_OBJECT (context));
-   pango_font_metrics_unref (metrics);
-   g_object_unref (G_OBJECT (font));
    loginfovisible = TRUE;
-}
 
-static int
-get_max_len (void)
-{
-	int len = 5;
-	int i;
-	char *strings[] = {
-		"Log:",
-		"Size:",
-		"Modified:",
-		"Start date:",
-		"Last date:",
-		"Num. lines:",
-		NULL
-	};
-	for (i = 0; strings[i] != NULL; i++) {
-		int l = g_utf8_strlen (_(strings[i]), 1024);
-		if (l > len)
-			len = l;
-	}
-	return len+1;
 }
-
 
 /* ----------------------------------------------------------------------
    NAME:          RepaintLogInfo
@@ -157,141 +101,118 @@ get_max_len (void)
    ---------------------------------------------------------------------- */
 
 int
-RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
+RepaintLogInfo (void)
 {
-   static GdkDrawable *canvas;
-   char buffer[1024];
+   static GtkWidget *info_tree;
+   static GtkCellRenderer *renderer;
+   static GtkTreeViewColumn *column1, *column2;
+   static GtkListStore *store;
+   const gchar *titles[] = { N_("Size:"), N_("Modified:"), 
+       N_("Start Date:"), N_("Last Date:"), N_("Number of Lines:"), NULL };
+   GtkTreeIter iter;
+   gchar buffer[1024];
    char *utf8;
-   int x, y, h, w;
-   int ah, dh, afdb, dfdb, df, af;
-   int win_width, win_height;
-   PangoRectangle logical_rect;
-   PangoContext *context;
-   PangoFontMetrics *metrics;
-   PangoFont *font;
-   int max_len;
+   gint i;
 
-   canvas = info_canvas->window;
-   win_width = info_canvas->allocation.width;
-   win_height = info_canvas->allocation.height;
+   if (scrolled_window == NULL) {
 
-   context = gdk_pango_context_get ();
-   pango_context_set_language (context, gtk_get_default_language ());
-   font = LoadFont (context, cfg->headingb);
-   metrics = pango_font_get_metrics
-             (font, pango_context_get_language (context));
+       scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+       gtk_widget_set_sensitive (scrolled_window, TRUE);
+       gtk_container_set_border_width (GTK_CONTAINER (scrolled_window),
+                                       GNOME_PAD_SMALL);
+       gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+                                       GTK_POLICY_AUTOMATIC,
+                                       GTK_POLICY_AUTOMATIC);
+       gtk_box_pack_start (GTK_BOX (GTK_DIALOG (InfoDialog)->vbox),
+                           scrolled_window, TRUE, TRUE, 0);
 
-   /* Draw title */
-   ah = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
-   dh = PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
-   h = dh + ah;
+       store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+       info_tree = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
+       gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (info_tree), TRUE);
 
-   /* Note: we use a real translated string that will appear below to gather
-    * the length, that way we'll get semi correct results with a lot more
-    * fonts */
-   pango_layout_set_font_description (stat_layout, cfg->fixedb);
-   pango_layout_set_text (stat_layout, _("Date:"), -1);
-   pango_layout_get_pixel_extents (stat_layout, NULL, &logical_rect);
-   w = logical_rect.width / g_utf8_strlen (_("Date:"), 1024);
-   max_len = get_max_len ();
+       gtk_container_add (GTK_CONTAINER (scrolled_window), info_tree);
 
-   x = 5;
-   y = ah + 6;
-   gdk_gc_set_foreground (gc, &cfg->blue);
-   gdk_draw_rectangle (canvas, gc, TRUE, 3, 3, win_width - 6, h+6);
-   gdk_gc_set_foreground (gc, &cfg->white);
-   pango_layout_set_font_description (stat_layout, cfg->headingb);
-   pango_layout_set_text (stat_layout, _("Log information"), -1);
-   gdk_draw_layout (canvas, gc, x+3, y-12, stat_layout);
-   font = LoadFont (context, cfg->fixedb);
-   metrics = pango_font_get_metrics
-	     (font, pango_context_get_language (context));
-   afdb = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
-   y += 9 + dh + afdb;
-   dfdb = PANGO_PIXELS (pango_font_metrics_get_descent (metrics)); 
+       /* Create Columns */
+       renderer = gtk_cell_renderer_text_new ();
+       column1 = gtk_tree_view_column_new_with_attributes (_("Log Information"),
+                    renderer, "text", 0, NULL);
+       gtk_tree_view_column_set_sizing (column1, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+       gtk_tree_view_column_set_resizable (column1, TRUE);
+       gtk_tree_view_append_column (GTK_TREE_VIEW (info_tree), column1);
+       gtk_tree_view_column_set_spacing (column1, GNOME_PAD_BIG);
 
-   /* Draw rectangle */
-   h = dfdb + afdb+2;
-   gdk_gc_set_foreground (gc, &cfg->blue3);
-   font = LoadFont (context, cfg->fixed);
-   metrics = pango_font_get_metrics
-	     (font, pango_context_get_language (context));
-   af = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
-   df = PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
-   gdk_draw_rectangle (canvas, gc, TRUE, max_len*w+6, 
-		       y - af-3, 
-		       win_width - 9 - max_len*w, 
-		       win_height - (y - af));
-   gdk_gc_set_foreground (gc, &cfg->gray75);
-   gdk_draw_rectangle (canvas, gc, TRUE, 3, y-af-3, 
-		       max_len*w, win_height - (y - af));
+       renderer = gtk_cell_renderer_text_new ();
+       column2 = gtk_tree_view_column_new_with_attributes ("", renderer,
+                    "text", 1, NULL);
+       gtk_tree_view_column_set_sizing (column2, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+       gtk_tree_view_column_set_resizable (column2, TRUE);
+       gtk_tree_view_append_column (GTK_TREE_VIEW (info_tree), column2);
+       gtk_tree_view_column_set_spacing (column2, GNOME_PAD_BIG);
 
-   /* Draw Info */
-   gdk_gc_set_foreground (gc, &cfg->black);
-   pango_layout_set_font_description (stat_layout, cfg->fixedb);
-   pango_layout_set_text (stat_layout, _("Log:"), -1);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   pango_layout_set_text (stat_layout, _("Size:"), -1);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   pango_layout_set_text (stat_layout, _("Modified:"), -1);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   pango_layout_set_text (stat_layout, _("Start date:"), -1);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   pango_layout_set_text (stat_layout, _("Last date:"), -1);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   pango_layout_set_text (stat_layout, _("Num. lines:"), -1);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
+       /* Add entries to the list */
+       for (i = 0; titles[i]; i++) {
+           gtk_list_store_append (GTK_LIST_STORE (store), &iter);
+           gtk_list_store_set (GTK_LIST_STORE (store), &iter, 0, titles[i], -1);
+       }
+
+   }
+
+   if (curlog != NULL)
+       g_snprintf (buffer, sizeof (buffer), _("%s"), curlog->name);
+   else
+       g_snprintf (buffer, sizeof (buffer), _("<No log loaded>"));
+   gtk_tree_view_column_set_title (column2, buffer);
+
+   gtk_widget_show_all (scrolled_window);
 
    /* Check that there is at least one log */
-   if (curlog == NULL)
-      return -1;
+   if (curlog == NULL) {
+       if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
+           g_snprintf (buffer, sizeof (buffer), "");
+           i = 0;
+           while (1) {
+               gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
+               if (!titles[++i])
+                   break;
+               gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
+           }
+       }        
+       return -1;
+   }
 
-   h = dh + ah;
-   y = ah + 6;
-   y += 9 + dh + afdb;
-   x = max_len*w + 6 + 2;
-   g_snprintf (buffer, sizeof (buffer), "%s", curlog->name);
-   h = dfdb + afdb+2;
-   pango_layout_set_font_description (stat_layout, cfg->fixed);
-   pango_layout_set_text (stat_layout, buffer, -1);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   g_snprintf (buffer, sizeof (buffer),
-	      _("%ld bytes"), (long) curlog->lstats.size);
-   pango_layout_set_text (stat_layout, buffer, -1);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.mtime));
-   utf8 = LocaleToUTF8 (buffer);
-   pango_layout_set_text (stat_layout, utf8, -1);
-   g_free (utf8);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   g_snprintf (buffer, sizeof (buffer), "%s ",
-	      ctime (&curlog->lstats.startdate));
-   utf8 = LocaleToUTF8 (buffer);
-   pango_layout_set_text (stat_layout, utf8, -1);
-   g_free (utf8);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.enddate));
-   utf8 = LocaleToUTF8 (buffer);
-   pango_layout_set_text (stat_layout, utf8, -1);
-   g_free (utf8);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
-   y += h;
-   g_snprintf (buffer, sizeof (buffer), "%ld ", curlog->lstats.numlines);
-   pango_layout_set_text (stat_layout, buffer, -1);
-   gdk_draw_layout (canvas, gc, x, y, stat_layout);
+   if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
+    
+       g_snprintf (buffer, sizeof (buffer),
+                   _("%ld bytes"), (long) curlog->lstats.size);
+       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
 
-   pango_font_metrics_unref (metrics);
-   g_object_unref (G_OBJECT (context));
-   g_object_unref (G_OBJECT (font));
+       gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
+       g_snprintf (buffer, strlen (ctime (&curlog->lstats.mtime)), _("%s"),
+                   ctime (&curlog->lstats.mtime));
+       utf8 = LocaleToUTF8 (buffer);
+       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
+       g_free (utf8);
+
+       gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
+       g_snprintf (buffer, strlen (ctime (&curlog->lstats.startdate)), _("%s"),
+                   ctime (&curlog->lstats.startdate));
+       utf8 = LocaleToUTF8 (buffer);
+       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
+       g_free (utf8);
+
+       gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
+       g_snprintf (buffer, strlen (ctime (&curlog->lstats.enddate)), _("%s"),
+                   ctime (&curlog->lstats.enddate));
+       utf8 = LocaleToUTF8 (buffer);
+       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
+       g_free (utf8);
+ 
+       gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
+       g_snprintf (buffer, sizeof (buffer), "%ld ", curlog->lstats.numlines);
+       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
+ 
+   }
+
    return TRUE;
 }
 
@@ -306,10 +227,14 @@ CloseLogInfo (GtkWidget * widget, GtkWindow ** window)
    if (loginfovisible)
       gtk_widget_hide (InfoDialog);
    InfoDialog = NULL;
+   scrolled_window = NULL;
    loginfovisible = FALSE;
 
-   if (stat_layout != NULL)
-      g_object_unref (G_OBJECT (stat_layout));
-   stat_layout = NULL;
+}
+
+void QuitLogInfo (GtkWidget *widget, gpointer data)
+{
+   scrolled_window = NULL;
+   gtk_widget_destroy (GTK_WIDGET (InfoDialog));
 }
 

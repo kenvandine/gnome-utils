@@ -22,6 +22,7 @@ static void edit_actions_entry_cb (GtkWidget *widget, gpointer data);
 static void remove_actions_entry_cb (GtkWidget *widget, gpointer data);
 static void add_actions_entry_cb (GtkWidget *widget, gpointer data);
 static void edit_action_entry (Action *action);
+static void set_atk_relation (GtkWidget *label, GtkWidget *widget);
 
 int exec_action_in_db (Log *log, LogLine *line, GList *db);
 int read_actions_db (char *filename, GList **db);
@@ -29,7 +30,6 @@ int write_actions_db (char *filename, GList *db);
 
 
 
-extern ConfigData *cfg;
 extern GList *actions_db;
 
 
@@ -68,28 +68,41 @@ void
 mon_edit_actions (GtkWidget *widget, gpointer data)
 {
   GtkWidget *hbox;
-  GtkWidget *button;       
+  GtkWidget *button;
   GtkWidget *swin;
   GtkBox *vbox;
+  GtkWidget *vbox2;
   const gchar *title[] = {N_("Action database")};
   GtkCellRenderer *cell_renderer;
   GtkTreeViewColumn *column; 
+  GtkTooltips *tips;
+
+  tips = gtk_tooltips_new ();
 
   /* Create main window ------------------------------------------------  */
-  actions_dialog = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  actions_dialog = gtk_dialog_new ();
   gtk_container_set_border_width (GTK_CONTAINER (actions_dialog), 5);
-  gtk_window_set_title (GTK_WINDOW (actions_dialog), _("Action options"));
-  gtk_widget_set_style (actions_dialog, cfg->main_style);
-  gtk_widget_set_usize (actions_dialog, 400, -1);
-  gtk_signal_connect (GTK_OBJECT (actions_dialog), "destroy",
-		      GTK_SIGNAL_FUNC (gtk_widget_destroyed),
-		      &actions_dialog);
-  
-  vbox = (GtkBox *)gtk_vbox_new (FALSE, 5);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
-  gtk_container_add (GTK_CONTAINER (actions_dialog), GTK_WIDGET (vbox));
-  gtk_widget_show (GTK_WIDGET (vbox)); 
-  
+  gtk_window_set_title (GTK_WINDOW (actions_dialog), _("Actions"));
+  gtk_widget_set_size_request (actions_dialog, 400, -1);
+
+  button = gtk_dialog_add_button (GTK_DIALOG (actions_dialog),
+                      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+  gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
+                      GTK_SIGNAL_FUNC (gtk_widget_destroy),
+                      GTK_OBJECT (actions_dialog));
+  button = gtk_dialog_add_button (GTK_DIALOG (actions_dialog),
+                      GTK_STOCK_OK, GTK_RESPONSE_OK);
+  gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
+                      GTK_SIGNAL_FUNC (apply_actions),
+                      GTK_OBJECT (actions_dialog));
+  gtk_dialog_set_default_response (GTK_DIALOG (actions_dialog), GTK_RESPONSE_OK);
+
+  vbox = GTK_BOX (GTK_DIALOG (actions_dialog)->vbox);
+
+  hbox = gtk_hbox_new (FALSE, 2);
+  gtk_box_pack_start (vbox, hbox, TRUE, TRUE, 0);
+  gtk_widget_show (hbox);
+
   /* List with actions */
 
   ctree = gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_POINTER);
@@ -103,7 +116,7 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
   swin = gtk_scrolled_window_new (NULL, NULL);
   gtk_container_add (GTK_CONTAINER (swin), GTK_WIDGET (ctree_view));
   gtk_tree_view_set_reorderable (GTK_TREE_VIEW (ctree_view), TRUE);
-  gtk_widget_set_usize (GTK_WIDGET (ctree_view), -1, 300);
+  gtk_widget_set_size_request (GTK_WIDGET (ctree_view), -1, 300);
 
 /* ----------------------------------------------------------------------
   gtk_signal_connect (GTK_OBJECT (ctree), "button_press_event",
@@ -118,7 +131,7 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
   GTK_SIGNAL_FUNC (after_move), NULL);
   -------------------------------------------------------------------- */
 
-  gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (swin), TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), GTK_WIDGET (swin), TRUE, TRUE, 0);
   gtk_tree_view_column_set_clickable (GTK_TREE_VIEW_COLUMN (column), FALSE);
   gtk_tree_view_column_set_alignment ( GTK_TREE_VIEW_COLUMN (column), 0.1);
   gtk_tree_selection_set_mode ( (GtkTreeSelection *)gtk_tree_view_get_selection
@@ -130,47 +143,33 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
   gtk_widget_show_all (GTK_WIDGET(swin));
       
       
-  /* Make bottom part ------------------------------------------------ */
-  hbox = gtk_hbox_new (FALSE, 2);
-  gtk_box_pack_start (vbox, hbox, FALSE, FALSE, 0);
-  gtk_widget_show (hbox);
+  /* Buttons in the side ------------------------------------------------ */
 
-  button = gtk_button_new_with_label (_("Add..."));
+  vbox2 = gtk_vbox_new (FALSE, 2);
+  gtk_box_pack_start (GTK_BOX (hbox), vbox2, FALSE, TRUE, 0);
+  gtk_box_set_spacing (GTK_BOX (hbox), GNOME_PAD_BIG);
+  gtk_widget_show (vbox2);
+
+  button = gtk_button_new_with_mnemonic (_("_Add"));
   gtk_signal_connect (GTK_OBJECT (button), "clicked", 
 		      GTK_SIGNAL_FUNC (add_actions_entry_cb), NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
   gtk_widget_show (button);
+  gtk_tooltips_set_tip (tips, button, "Add an action", NULL);
   
-  button = gtk_button_new_with_label (_("Edit..."));
-  gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
+  button = gtk_button_new_with_mnemonic (_("_Edit"));
   gtk_signal_connect (GTK_OBJECT (button), "clicked", 
 		      GTK_SIGNAL_FUNC (edit_actions_entry_cb), NULL);
+  gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
   gtk_widget_show (button);
+  gtk_tooltips_set_tip (tips, button, "Edit an action", NULL);
   
-  button = gtk_button_new_with_label (_("Remove"));
-  gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
+  button = gtk_button_new_with_mnemonic (_("_Remove"));
   gtk_signal_connect (GTK_OBJECT (button), "clicked", 
 		      GTK_SIGNAL_FUNC (remove_actions_entry_cb), NULL);
+  gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
   gtk_widget_show (button);
-
-  hbox = gtk_hbox_new (FALSE, 5);
-  gtk_box_pack_start (vbox, hbox, FALSE, FALSE, 0);
-  gtk_widget_show (hbox);
-
-  button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_CANCEL);
-  gtk_box_pack_end (GTK_BOX (hbox), button, FALSE, FALSE, 0);
-  gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
-			     GTK_SIGNAL_FUNC (gtk_widget_destroy),
-			     GTK_OBJECT (actions_dialog));
-  gtk_widget_grab_focus (button);
-  gtk_widget_show (button);
-
-  button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_OK);
-  gtk_box_pack_end (GTK_BOX (hbox), button, FALSE, FALSE, 0);
-  gtk_signal_connect (GTK_OBJECT (button), "clicked",
-		      GTK_SIGNAL_FUNC (apply_actions),
-		      NULL);
-  gtk_widget_show (button);
+  gtk_tooltips_set_tip (tips, button, "Remove an action", NULL);
 
   /* Copy all actions */
   free_actions_db (&local_actions_db);
@@ -621,7 +620,7 @@ edit_action_entry (Action *action)
   GtkWidget *text;
   GtkWidget *entry;
   GtkWidget *action_record;
-  GtkWidget *button;       
+  GtkWidget *button;
   GtkBox *vbox;
   GtkTooltips *tips;
 
@@ -631,20 +630,30 @@ edit_action_entry (Action *action)
   edited_action = action;
   
   /* Create main window ------------------------------------------------  */
-  action_record = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_modal (GTK_WINDOW (action_record), TRUE);
-  gtk_window_set_transient_for (GTK_WINDOW (action_record),
-				GTK_WINDOW (actions_dialog));
+  action_record = gtk_dialog_new ();
+
+  gtk_window_set_title (GTK_WINDOW (action_record), "Edit Action");
+  button = gtk_dialog_add_button (GTK_DIALOG (action_record),
+               GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+  gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
+                      GTK_SIGNAL_FUNC (gtk_widget_destroy),
+                      GTK_OBJECT (action_record));
+
+  button = gtk_dialog_add_button (GTK_DIALOG (action_record),
+               GTK_STOCK_OK, GTK_RESPONSE_OK);
+  gtk_signal_connect (GTK_OBJECT (button), "clicked",
+                      GTK_SIGNAL_FUNC (apply_edit),
+                      action_record);
+  gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
+                      GTK_SIGNAL_FUNC (gtk_widget_destroy),
+                      GTK_OBJECT (action_record));
+  gtk_dialog_set_default_response (GTK_DIALOG (action_record), GTK_RESPONSE_OK);
   gtk_container_set_border_width (GTK_CONTAINER (action_record), 5);
-  gtk_window_set_title (GTK_WINDOW (action_record), "Edit action record");
-  gtk_widget_set_style (action_record, cfg->main_style);
-  gtk_widget_set_usize (action_record, 375, -1);
-  
-  vbox = (GtkBox *)gtk_vbox_new (FALSE, 2);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
-  gtk_container_add (GTK_CONTAINER (action_record), GTK_WIDGET (vbox));
-  gtk_widget_show (GTK_WIDGET (vbox)); 
-  
+  gtk_widget_set_size_request (action_record, 375, -1); 
+
+
+  vbox = GTK_BOX (GTK_DIALOG(action_record)->vbox);
+
   /* Show fields to edit ----------------------------------------------- */
   tips = gtk_tooltips_new ();
 
@@ -652,29 +661,30 @@ edit_action_entry (Action *action)
   hbox = gtk_hbox_new (FALSE, 2);
   gtk_box_pack_start (vbox, hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new ("Tag:");
-  gtk_widget_set_usize (label, 60, -1);
+  label = gtk_label_new_with_mnemonic ("_Tag:");
+  gtk_widget_set_size_request (label, 60, -1);
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
   gtk_widget_show (label);
   entry = gtk_entry_new ();
-  gtk_widget_set_usize (entry, 200, -1);
+  gtk_widget_set_size_request (entry, 200, -1);
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->tag);
   gtk_tooltips_set_tip (tips, entry, "Tag that identifies the log file.", NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "tag", entry);
+  set_atk_relation (label, entry);
 
   /* log name */
   hbox = gtk_hbox_new (FALSE, 2);
   gtk_box_pack_start (vbox, hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new ("Log name:");
-  gtk_widget_set_usize (label, 60, -1);
+  label = gtk_label_new_with_mnemonic ("_Log name:");
+  gtk_widget_set_size_request (label, 60, -1);
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
   gtk_widget_show (label);
   entry = gtk_entry_new ();
-  gtk_widget_set_usize (entry, 200, -1);
+  gtk_widget_set_size_request (entry, 200, -1);
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->log_name);
@@ -682,17 +692,18 @@ edit_action_entry (Action *action)
 			NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "log_name", entry);
+  set_atk_relation (label, entry);
       
   /* Process */
   hbox = gtk_hbox_new (FALSE, 2);
   gtk_box_pack_start (vbox, hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new ("process:");
-  gtk_widget_set_usize (label, 60, -1);
+  label = gtk_label_new_with_mnemonic ("_Process:");
+  gtk_widget_set_size_request (label, 60, -1);
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
   gtk_widget_show (label);
   entry = gtk_entry_new ();
-  gtk_widget_set_usize (entry, 200, -1);
+  gtk_widget_set_size_request (entry, 200, -1);
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->process);
@@ -700,17 +711,18 @@ edit_action_entry (Action *action)
 			NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "process", entry);
+  set_atk_relation (label, entry);
 
   /* Message */
   hbox = gtk_hbox_new (FALSE, 2);
   gtk_box_pack_start (vbox, hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new ("message:");
-  gtk_widget_set_usize (label, 60, -1);
+  label = gtk_label_new_with_mnemonic ("_Message:");
+  gtk_widget_set_size_request (label, 60, -1);
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
   gtk_widget_show (label);
   entry = gtk_entry_new ();
-  gtk_widget_set_usize (entry, 200, -1);
+  gtk_widget_set_size_request (entry, 200, -1);
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->message);
@@ -718,17 +730,18 @@ edit_action_entry (Action *action)
 			NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "message", entry);
+  set_atk_relation (label, entry);
 
   /* Action */
   hbox = gtk_hbox_new (FALSE, 2);
   gtk_box_pack_start (vbox, hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new ("action:");
-  gtk_widget_set_usize (label, 60, -1);
+  label = gtk_label_new_with_mnemonic ("_Action:");
+  gtk_widget_set_size_request (label, 60, -1);
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
   gtk_widget_show (label);
   entry = gtk_entry_new ();
-  gtk_widget_set_usize (entry, 200, -1);
+  gtk_widget_set_size_request (entry, 200, -1);
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->action);
@@ -736,49 +749,27 @@ edit_action_entry (Action *action)
 			NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "action", entry);
+  set_atk_relation (label, entry);
 
   /* Description */
   hbox = gtk_hbox_new (FALSE, 2);
   gtk_box_pack_start (vbox, hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new (_("description:"));
-  gtk_widget_set_usize (label, 60, -1);
+  label = gtk_label_new_with_mnemonic (_("_Description:"));
+  gtk_widget_set_size_request (label, 60, -1);
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
   gtk_widget_show (label);
   text = gtk_entry_new ();
-  gtk_widget_set_usize (text, 200, -1);
+  gtk_widget_set_size_request (text, 200, -1);
   gtk_entry_set_editable (GTK_ENTRY (text), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), text, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (text), action->description);
   gtk_tooltips_set_tip (tips, text, _("Description of this entry."), NULL);
   gtk_widget_show (text); 
   gtk_object_set_data (GTK_OBJECT (action_record), "description", text);
+  set_atk_relation (label, text);
 
-
-  /* Make bottom part ------------------------------------------------ */
-  hbox = gtk_hbox_new (FALSE, 2);
-  gtk_box_pack_start (vbox, hbox, FALSE, FALSE, 0);
-  gtk_widget_show (hbox);
-
-  button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_CANCEL);
-  gtk_box_pack_end (GTK_BOX (hbox), button, FALSE, FALSE, 0);
-  gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
-			     GTK_SIGNAL_FUNC (gtk_widget_destroy),
-			     GTK_OBJECT (action_record));
-  gtk_widget_show (button);
-
-  button = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_OK);
-  gtk_box_pack_end (GTK_BOX (hbox), button, FALSE, FALSE, 0);
-  gtk_widget_show (button);
-  gtk_signal_connect (GTK_OBJECT (button), "clicked",
-		      GTK_SIGNAL_FUNC (apply_edit),
-		      action_record);
-  gtk_signal_connect_object (GTK_OBJECT (button), "clicked",
-			     GTK_SIGNAL_FUNC (gtk_widget_destroy),
-			     GTK_OBJECT (action_record));
-
-
-  gtk_widget_show (action_record);
+  gtk_widget_show (action_record); 
 }
 
 /* ----------------------------------------------------------------------
@@ -881,3 +872,30 @@ copy_actions_db (GList *db)
 
 	return copy;
 }
+
+static void
+set_atk_relation (GtkWidget *label, GtkWidget *widget)
+{
+	AtkObject *atk_widget;
+	AtkObject *atk_label;
+	AtkRelationSet *relation_set;
+	AtkRelation *relation;
+	AtkObject *targets[1];
+	atk_widget = gtk_widget_get_accessible (widget);
+	atk_label = gtk_widget_get_accessible (label);
+
+	/* Set label-for relation */
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
+
+	/* Check if gail is loaded */
+	if (GTK_IS_ACCESSIBLE (atk_widget) == FALSE)
+		return;
+
+	/* Set labelled-by relation */
+	relation_set = atk_object_ref_relation_set (atk_widget);
+	targets[0] = atk_label;
+	relation = atk_relation_new (targets, 1, ATK_RELATION_LABELLED_BY);
+	atk_relation_set_add (relation_set, relation);
+	g_object_unref (G_OBJECT (relation));
+}
+
