@@ -198,7 +198,7 @@ build_search_command (void)
 						search_command.file_is_named_pattern);
 		} 
 		else {
-			g_string_append_printf (command, "find \"%s\" '!' -type d -name '%s' -xdev -print", 
+			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' -xdev -print", 
 						look_in_folder_locale, 
 						search_command.file_is_named_pattern);
 		}
@@ -212,12 +212,12 @@ build_search_command (void)
 		search_command.file_is_named_pattern = escape_single_quotes (file_is_named_locale);
 		
 		if (search_command.file_is_named_pattern == NULL) {
-			g_string_append_printf (command, "find \"%s\" '!' -type d -name '%s' ", 
+			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' ", 
 					 	look_in_folder_locale,
 						"*");
 		}
 		else {
-			g_string_append_printf (command, "find \"%s\" '!' -type d -name '%s' ", 
+			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' ", 
 					 	look_in_folder_locale,
 						search_command.file_is_named_pattern);
 		}
