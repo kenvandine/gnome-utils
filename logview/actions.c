@@ -21,10 +21,10 @@
 #include <libgnome/gnome-util.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+#include "actions.h"
 #include "logview.h"
 #include <string.h>
 #include <regex.h>
-#include "actions.h"
 
 #define MAX_NUM_MATCHES     10
 #define DELIM               ":"

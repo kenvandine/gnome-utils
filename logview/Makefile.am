@@ -18,9 +18,11 @@ gnome_system_log_SOURCES = 	\
 	about.c			\
 	about.h			\
 	actions.c		\
+	actions.h		\
 	calendar.c		\
 	calendar.h		\
 	config.c		\
+	configdata.h		\
 	desc_db.c       	\
 	desc_db.h		\
 	info.c			\
@@ -36,6 +38,7 @@ gnome_system_log_SOURCES = 	\
 	monitor.c       	\
 	monitor.h		\
 	userprefs.c             \
+	userprefs.h		\
 	zoom.c 			\
 	zoom.h			\
 	logview-findbar.c	\
