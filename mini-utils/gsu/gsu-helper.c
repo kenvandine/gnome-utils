@@ -128,7 +128,7 @@ uid_t getuid ();
 #include <shadow.h>
 #endif
 
-#include <glib.h>
+#include "error.h"
 
 #ifdef HAVE_PATHS_H
 #include <paths.h>
@@ -172,6 +172,9 @@ void endusershell ();
 void setusershell ();
 
 char *basename ();
+char *xmalloc ();
+char *xrealloc ();
+char *xstrdup ();
 
 extern char **environ;
 
@@ -221,7 +224,7 @@ static char *
 concat (const char *s1, const char *s2, const char *s3)
 {
   int len1 = strlen (s1), len2 = strlen (s2), len3 = strlen (s3);
-  char *result = (char *) g_malloc (len1 + len2 + len3 + 1);
+  char *result = (char *) xmalloc (len1 + len2 + len3 + 1);
 
   strcpy (result, s1);
   strcpy (result + len1, s2);
@@ -304,7 +307,6 @@ log_su (const struct passwd *pw, int successful)
 #define CONV_ECHO_ON  1
 #define CONV_ECHO_OFF 0
 
-#ifndef _pam_overwrite
 #define _pam_overwrite(x) \
 { \
      register char *xx; \
@@ -312,7 +314,6 @@ log_su (const struct passwd *pw, int successful)
           while (*xx) \
                *xx++ = '\0'; \
 }
-#endif
 
 static char *read_string(int echo, const char *remark)
 {
@@ -436,7 +437,7 @@ modify_environment (const struct passwd *pw, const char *shell)
       /* Leave TERM unchanged.  Set HOME, SHELL, USER, LOGNAME, PATH.
          Unset all other environment variables.  */
       term = getenv ("TERM");
-      environ = (char **) g_malloc (2 * sizeof (char *));
+      environ = (char **) xmalloc (2 * sizeof (char *));
       environ[0] = 0;
       if (term)
 	xputenv (concat ("TERM", "=", term));
@@ -520,17 +521,17 @@ run_shell (const char *shell, const char *command, char **additional_args)
   pam_end(pamh, 0);
 #endif
   if (additional_args)
-    args = (const char **) g_malloc (sizeof (char *)
+    args = (const char **) xmalloc (sizeof (char *)
 				    * (10 + elements (additional_args)));
   else
-    args = (const char **) g_malloc (sizeof (char *) * 10);
+    args = (const char **) xmalloc (sizeof (char *) * 10);
   if (simulate_login)
     {
       char *arg0;
       char *shell_basename;
 
       shell_basename = basename (shell);
-      arg0 = g_malloc (strlen (shell_basename) + 2);
+      arg0 = xmalloc (strlen (shell_basename) + 2);
       arg0[0] = '-';
       strcpy (arg0 + 1, shell_basename);
       args[0] = arg0;
@@ -666,7 +667,7 @@ main (int argc, char **argv)
 
   program_name = argv[0];
   setlocale (LC_ALL, "");
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  bindtextdomain (PACKAGE, LOCALEDIR);
   textdomain (PACKAGE);
 
   fast_startup = 0;
@@ -709,7 +710,7 @@ main (int argc, char **argv)
 
   if (show_version)
     {
-      printf ("su (%s) %s\n", PACKAGE, VERSION);
+      printf ("su (%s) %s\n", GNU_PACKAGE, VERSION);
       exit (0);
     }
 
@@ -736,9 +737,9 @@ main (int argc, char **argv)
      the static data through the getlogin call from log_su.  */
   pw_copy = *pw;
   pw = &pw_copy;
-  pw->pw_name = g_strdup (pw->pw_name);
-  pw->pw_dir = g_strdup (pw->pw_dir);
-  pw->pw_shell = g_strdup (pw->pw_shell);
+  pw->pw_name = xstrdup (pw->pw_name);
+  pw->pw_dir = xstrdup (pw->pw_dir);
+  pw->pw_shell = xstrdup (pw->pw_shell);
 
   if (!correct_password (pw))
     {
@@ -769,7 +770,7 @@ main (int argc, char **argv)
     }
   if (shell == 0)
     {
-      shell = g_strdup (pw->pw_shell);
+      shell = xstrdup (pw->pw_shell);
     }
   modify_environment (pw, shell);
 
