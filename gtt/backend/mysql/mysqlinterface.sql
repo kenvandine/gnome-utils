@@ -23,8 +23,6 @@ CREATE TABLE project (
 	min_interval		int		default 3,
 	auto_merge_interval	int		default 60,
 	auto_merge_gap		int		default 60,
-	secs_ever		int		default 0,
-	secs_day		int		default 0,
 	billrate		double		default 800.00,
 	overtime_rate		double		default 1000.00,
 	overover_rate		double		default 1500.00,
@@ -37,6 +35,7 @@ CREATE TABLE task (
 	billable		int		default 0,
 	billrate		int		default 0,
 	done			int		default 0,
+	billunit		int		default 900,
 	topic			varchar(55)	default '',
 	description		text		default '',
 	username		varchar(55)
