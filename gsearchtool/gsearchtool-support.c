@@ -652,20 +652,21 @@ get_file_type_with_mime_type (const gchar *filename,
 	}
 
 	if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK) == TRUE) {
-		GnomeVFSFileInfo *file_info;
+		if (g_ascii_strcasecmp (mimetype, GNOME_VFS_MIME_TYPE_UNKNOWN) == 0) {
+			GnomeVFSFileInfo *file_info;
 		
-		file_info = gnome_vfs_file_info_new ();
-		gnome_vfs_get_file_info (filename, file_info, GNOME_VFS_FILE_INFO_DEFAULT);
+			file_info = gnome_vfs_file_info_new ();
+			gnome_vfs_get_file_info (filename, file_info, GNOME_VFS_FILE_INFO_DEFAULT);
 		
-		if (g_file_test (file_info->symlink_name, G_FILE_TEST_EXISTS) == TRUE) {
+			if (g_file_test (file_info->symlink_name, G_FILE_TEST_EXISTS) != TRUE) {
+				gnome_vfs_file_info_unref (file_info);
+				return _("link (broken)");
+			}
+			
 			gnome_vfs_file_info_unref (file_info);
-			return g_strdup_printf (_("link to %s"), 
-				(gchar *)gnome_vfs_mime_get_description (mimetype));
 		}
-		else { 
-			gnome_vfs_file_info_unref (file_info);
-			return _("link (broken)");
-		}
+		return g_strdup_printf (_("link to %s"), 
+			(gchar *)gnome_vfs_mime_get_description (mimetype));
 	}
 
 	return (gchar *)gnome_vfs_mime_get_description (mimetype);
