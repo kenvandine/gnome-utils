@@ -174,6 +174,13 @@ gtt_xml_project_to_dom_tree (GttProject *prj)
 		xmlAddChild (topnode, node);	
 	}
 
+	/* store id */
+	g_snprintf (buff, sizeof(buff), "%d",
+                    gtt_project_get_id(prj));
+	node = xmlNewNode (NULL, "id");
+	xmlNodeAddContent(node, buff);
+	xmlAddChild (topnode, node);
+
 	/* store price */
 	g_snprintf (buff, sizeof(buff), "%.18g",
                     gtt_project_get_rate(prj));

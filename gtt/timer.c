@@ -20,8 +20,9 @@
 #include <gnome.h>
 #include <string.h>
 
+#include "ctree.h"
 #include "gtt.h"
-#include "proj_p.h"
+#include "proj.h"
 
 
 static gint main_timer = 0;
@@ -33,10 +34,13 @@ timer_func(gpointer data)
 	if (!cur_proj) return 1;
 
 	gtt_project_timer_update (cur_proj);
-	if (config_show_secs) {
-		if (cur_proj->row != -1) clist_update_label(cur_proj);
-	} else if (cur_proj->day_secs % 60 == 0) {
-		if (cur_proj->row != -1) clist_update_label(cur_proj);
+	if (config_show_secs) 
+	{
+		ctree_update_label(cur_proj);
+	} 
+	else if (0 == gtt_project_total_secs_day(cur_proj)) 
+	{
+		ctree_update_label(cur_proj);
 	}
 	return 1;
 }

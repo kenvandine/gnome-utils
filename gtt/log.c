@@ -18,12 +18,11 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "gtt.h"
-#include "proj_p.h"
-
-#include <stdlib.h>
-#include <stdio.h>
+#include "proj.h"
 
 #define CAN_LOG ((config_logfile_name!=NULL)&&(config_logfile_use))
 
@@ -76,6 +75,7 @@ build_log_entry(const char *format, GttProject *proj)
 	char tmp[256];
 	const char *p;
 	char *ret;
+	int sss;
 
 	if (!format)
 		format = config_logfile_str;
@@ -100,41 +100,48 @@ build_log_entry(const char *format, GttProject *proj)
 					g_string_append(str,
 							_("no description"));
 				break;
-			case 'T':
+			case 'T': 
+				sss = gtt_project_total_secs_ever(proj);
 				g_snprintf(tmp, sizeof (tmp),
-					   "%d:%02d:%02d", proj->secs / 3600,
-					   (proj->secs / 60) % 60,
-					   proj->secs % 60);
+					   "%d:%02d:%02d", sss / 3600,
+					   (sss / 60) % 60,
+					   sss % 60);
 				g_string_append(str, tmp);
 				break;
 			case 'm':
+				sss = gtt_project_total_secs_day (proj);
 				g_snprintf(tmp, sizeof (tmp),
-					   "%d", proj->day_secs / 60);
+					   "%d", sss / 60);
 				g_string_append(str, tmp);
 				break;
 			case 'M':
+				sss = gtt_project_total_secs_day (proj);
 				g_snprintf(tmp, sizeof (tmp), "%02d",
-					   (proj->day_secs / 60) % 60);
+					   (sss / 60) % 60);
 				g_string_append(str, tmp);
 				break;
 			case 's':
+				sss = gtt_project_total_secs_day (proj);
 				g_snprintf(tmp, sizeof (tmp),
-					   "%d", proj->day_secs);
+					   "%d", sss);
 				g_string_append(str, tmp);
 				break;
 			case 'S':
+				sss = gtt_project_total_secs_day (proj);
 				g_snprintf(tmp, sizeof (tmp),
-					   "%02d", proj->day_secs % 60);
+					   "%02d", sss % 60);
 				g_string_append(str, tmp);
 				break;
 			case 'h':
+				sss = gtt_project_total_secs_day (proj);
 				g_snprintf(tmp, sizeof (tmp),
-					   "%d", proj->day_secs / 3600);
+					   "%d", sss / 3600);
 				g_string_append(str, tmp);
 				break;
 			case 'H':
+				sss = gtt_project_total_secs_day (proj);
 				g_snprintf(tmp, sizeof (tmp),
-					   "%02d", proj->day_secs / 3600);
+					   "%02d", sss / 3600);
 				g_string_append(str, tmp);
 				break;
 			default:

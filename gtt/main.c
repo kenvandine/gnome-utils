@@ -16,15 +16,19 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include <config.h>
+#include "config.h"
+
+#include <errno.h>
 #include <gnome.h>
 #include <libgnomeui/gnome-window-icon.h>
-#include <string.h>
 #include <signal.h>
-#include <errno.h>
+#include <string.h>
 #include <unistd.h>
 
+#include "ctree.h"
 #include "dialog.h"
+#include "err-throw.h"
+#include "file-io.h"
 #include "gtt.h"
 #include "menucmd.h"
 #include "shorts.h"		/* SMH 2000-03-22: connect_short_cuts() */
@@ -118,7 +122,8 @@ static void lock_gtt(void)
 
 
 
-void unlock_gtt(void)
+void 
+unlock_gtt(void)
 {
 	log_exit();
 	unlink(build_lock_fname());
@@ -126,20 +131,53 @@ void unlock_gtt(void)
 
 
 
-static void init_list_2(GtkWidget *w, gint butnum)
+static void 
+init_list_2(GtkWidget *w, gint butnum)
 {
 	if (butnum == 1)
 		gtk_main_quit();
 	else
-                setup_clist();
+                setup_ctree();
 }
 
-static void init_list(void)
+static void 
+init_list(void)
 {
-	if (!project_list_load(NULL)) {
+	GttErrCode xml_errcode, conf_errcode;
+	const char * xml_filepath;
+
+	/* Read the data file first, and the config later.
+	 * The config cile contains things like the 'current project',
+	 * which is undefined until the proejcts have been read in.
+	 */
+	xml_filepath = gnome_config_get_real_path ("gtt.xml");
+        gtt_err_set_code (GTT_NO_ERR);
+        gtt_xml_read_file (xml_filepath);
+
+	xml_errcode = gtt_err_get_code();
+
+        gtt_err_set_code (GTT_NO_ERR);
+	gtt_load_config (NULL);
+	conf_errcode = gtt_err_get_code();
+
+	/* If the xml file read bombed because the file doesn't exist,
+	 * and yet the project list isn't null, that's because we read
+	 * and old-format config file that had the proejcts in it.
+	 * This is not an arror. This is OK.
+	 */
+	if (!((GTT_NO_ERR == xml_errcode) ||
+	      ((GTT_CANT_OPEN_FILE == xml_errcode) &&
+	        gtt_get_project_list())
+	    ))
+	{
+		g_warning ("xml file read bombed, errcode = %d\n", xml_errcode);
+	}
+
+	if (GTT_NO_ERR != conf_errcode) 
+	{
                 if (errno == ENOENT) {
                         errno = 0;
-                        setup_clist();
+                        setup_ctree();
                         return;
                 }
 		msgbox_ok_cancel(_("Error"),
@@ -150,10 +188,22 @@ static void init_list(void)
 				 GNOME_STOCK_BUTTON_NO,
 				 GTK_SIGNAL_FUNC(init_list_2));
 	} else {
-                setup_clist();
+                setup_ctree();
 	}
+
 }
 
+
+void
+save_all (void)
+{
+	const char * xml_filepath;
+	xml_filepath = gnome_config_get_real_path ("gtt.xml");
+
+	gtt_save_config (NULL);
+
+	gtt_xml_write_file (xml_filepath);
+}
 
 
 
@@ -178,6 +228,7 @@ save_state(GnomeClient *client, gint phase, GnomeRestartStyle save_style,
 	char *argv[5];
 	int argc;
 	int x, y, w, h;
+	int rc;
 
 	sess_id  = gnome_client_get_id(client);
 	if (!window)
@@ -199,7 +250,13 @@ save_state(GnomeClient *client, gint phase, GnomeRestartStyle save_style,
 	gnome_client_set_restart_command(client, argc, argv);
 	g_free(argv[2]);
 
-	return project_list_save(NULL);
+	/* save both te user preferences/config and the project lists */
+	gtt_err_set_code (GTT_NO_ERR);
+	save_all();
+	rc = 0;
+	if (GTT_NO_ERR == gtt_err_get_code()) rc = 1;
+
+	return rc;
 }
 
 
@@ -222,6 +279,22 @@ got_signal (int sig)
 	kill (getpid (), sig);
 }
 
+static void 
+beta_run_or_abort(GtkWidget *w, gint butnum)
+{
+	if (butnum == 1)
+	{
+		gtk_main_quit();
+	}
+	else
+	{
+		init_list();
+		log_start();
+	}
+}
+
+
+
 int 
 main(int argc, char *argv[])
 {
@@ -242,6 +315,9 @@ main(int argc, char *argv[])
 				   geo_options, 0, NULL);
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-cromagnon.png");
 
+	bindtextdomain(PACKAGE, GNOMELOCALEDIR);
+	textdomain(PACKAGE);
+
 #ifdef USE_SM
 	client = gnome_master_client();
 	gtk_signal_connect(GTK_OBJECT(client), "save_yourself",
@@ -249,9 +325,6 @@ main(int argc, char *argv[])
 	gtk_signal_connect(GTK_OBJECT(client), "die",
 			   GTK_SIGNAL_FUNC(session_die), NULL);
 #endif /* USE_SM */
-
-	bindtextdomain(PACKAGE, GNOMELOCALEDIR);
-	textdomain(PACKAGE);
 
 	signal (SIGCHLD, SIG_IGN);
 	signal (SIGINT, got_signal);
@@ -267,11 +340,18 @@ main(int argc, char *argv[])
 	 */
 	connect_short_cuts();
 
-	/* start timer before the state of the menu items is set */
-	/* why is this important to do ???? */
-	// start_timer();
-	init_list();
-	log_start();
+	msgbox_ok_cancel(_("Warning"),
+		"WARNING !!! Achtung !!! Avertisment !!!\n"
+		"\n"
+		"This is a development version of GTT.  It uses a new\n"
+		"file format that may leave your old data damaged and\n"
+		"unrecoverable.  There may be incompatible file format\n"
+		"changes in the near future. Use at own risk!\n"
+		"\n"
+		"The last stable, working version can be obtained with\n"
+		"cvs checkout -D \"Aug 27 2001\" gnome-utils/gtt\n",
+	     "Continue", "Exit", 
+		GTK_SIGNAL_FUNC(beta_run_or_abort));
 
 	gtk_main();
 

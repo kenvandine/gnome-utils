@@ -1,6 +1,18 @@
 
+Tue Aug 28 20:11:34 CDT 2001  Linas Vepstas <linas@linas.org>
 
-Fri Aug 24 23:05:16 CDT 2001
+	* main.c: add warning noting file format change.
+
+	* ctree.[ch]: convert old clist display to ctree display for
+	  heirarchical projects (sub-projects).  One can drag-n-drop
+	  projects to reparent/reorder them.
+
+	* *.[ch] rewire so that project timing data is stored in xml file
+	  while true GUI config data is stored in config file
+
+	* proj.[ch] add routines to subtotal time spent in sub-projects.
+
+Fri Aug 24 23:05:16 CDT 2001  Linas Vepstas <linas@linas.org>
 	* app.c clist.c gtt.h main.c menucmd.c menus.c proj.c timer.c
 	  toolbar.c: add routine gboolean timer_is_running()
 
@@ -14,13 +26,13 @@ Fri Aug 24 23:05:16 CDT 2001
 
 	* fix bug introduced last week regarding zeroing of day timers.
 
-Fri Aug 17 10:56:14 CDT 2001 Linas Vepstas <linas@linas.org>
+Fri Aug 17 10:56:14 CDT 2001  Linas Vepstas <linas@linas.org>
 
 	* xml-read.c, xml-write.c: add routines to read, write XML to file.
 
 	* *.[ch] misc cleanup, additions to support above.
 
-Tue Aug 14 19:46:21 CDT 2001 Linas Vepstas <linas@linas.org>
+Tue Aug 14 19:46:21 CDT 2001  Linas Vepstas <linas@linas.org>
 
 	* *.[ch]: add C structs for storing/maniuplating log data
 	  in memory. This includes heirarchical project trees, 

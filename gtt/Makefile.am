@@ -9,14 +9,14 @@ bin_PROGRAMS = gtt
 
 gtt_SOURCES = 		\
 	app.c		\
-	clist.c		\
+	ctree.c		\
 	dialog.c	\
 	err.c		\
 	err-throw.c	\
 	file-io.c	\
 	log.c		\
-	menucmd.c	\
 	main.c		\
+	menucmd.c	\
 	menus.c		\
 	menus.h		\
 	options.c	\
@@ -25,18 +25,22 @@ gtt_SOURCES = 		\
 	shorts.c	\
 	timer.c		\
 	toolbar.c	\
+	util.c		\
 	xml-read.c	\
 	xml-write.c
 
 noinst_HEADERS = 	\
+	ctree.h		\
 	dialog.h	\
 	err-throw.h	\
+	file-io.h	\
 	gtt.h		\
 	menucmd.h	\
 	proj.h		\
 	proj_p.h	\
 	shorts.h	\
 	toolbar.h	\
+	util.h		\
 	xml-gtt.h
 	
 

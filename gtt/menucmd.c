@@ -20,23 +20,62 @@
 #include <gnome.h>
 #include <string.h>
 
+#include "ctree.h"
 #include "dialog.h"
+#include "err-throw.h"
+#include "file-io.h"
 #include "gtt.h"
 #include "menucmd.h"
+#include "proj.h"
 #include "proj_p.h"
+#include "xml-gtt.h"
 
 /* XXX: this is our main window, perhaps it is a bit ugly this way and
  * should be passed around in the data fields */
 extern GtkWidget *window;
 
+static void 
+gtt_show_err (GttErrCode code)
+{
+	switch (code)
+	{
+		case GTT_NO_ERR:
+			return;
+
+		case GTT_CANT_OPEN_FILE:
+		case GTT_NOT_A_GTT_FILE:
+
+		case GTT_CANT_WRITE_CONFIG:
+		{
+			msgbox_ok(_("Warning"),
+			  _("Could not write the configuration file!"),
+			  GNOME_STOCK_BUTTON_OK,
+			  GTK_SIGNAL_FUNC(gtk_main_quit));
+			return;
+		}
+		default:
+		{
+			msgbox_ok(_("Warning"),
+			  _("Unknown error occured"),
+			  GNOME_STOCK_BUTTON_OK,
+			  GTK_SIGNAL_FUNC(gtk_main_quit));
+			return;
+		}
+	}
+}
+
 void
 quit_app(GtkWidget *w, gpointer data)
 {
-	if (!project_list_save(NULL)) {
-		msgbox_ok(_("Warning"),
-			  _("I could not write the configuration file!"),
-			  GNOME_STOCK_BUTTON_OK,
-			  GTK_SIGNAL_FUNC(gtk_main_quit));
+	GttErrCode errcode;
+
+	gtt_err_set_code (GTT_NO_ERR);
+	save_all();
+
+	errcode = gtt_err_get_code();
+	if (GTT_NO_ERR != errcode)
+	{
+		gtt_show_err (errcode);
 		return;
 	}
 	gtk_main_quit();
@@ -88,8 +127,8 @@ project_name_desc(GtkWidget *w, GtkEntry **entries)
 	if (!name[0]) return;
 
 	proj = gtt_project_new_title_desc(name, desc);
-	project_list_add (proj);
-        clist_add (proj);
+	gtt_project_list_append (proj);
+        ctree_add (proj, NULL);
 }
 
 static void
@@ -159,11 +198,28 @@ new_project(GtkWidget *widget, gpointer data)
 static void
 init_project_list_2(GtkWidget *widget, int button)
 {
+	GttErrCode errcode;
+        const char * xml_filepath;
+
 	GtkWidget *dlg, *t;
 	GtkBox *vbox;
 	
 	if (button != 0) return;
-	if (!project_list_load(NULL)) {
+
+	gtt_err_set_code (GTT_NO_ERR);
+
+	/* Read the data file first, and the config later. 
+	 * The config file contains stuff like the 'current project',
+	 * which is undefined until the projects are read. */
+        xml_filepath = gnome_config_get_real_path ("gtt.xml");
+printf ("duuuude init list its %s\n", xml_filepath);
+        gtt_xml_read_file (xml_filepath);
+	
+	gtt_load_config (NULL);
+	errcode = gtt_err_get_code();
+
+	if (GTT_NO_ERR != errcode) 
+	{
 		new_dialog_ok(_("Warning"), &dlg, &vbox,
 			      GNOME_STOCK_BUTTON_OK, NULL, NULL);
 		t = gtk_label_new(_("I could not read the configuration file"));
@@ -171,7 +227,7 @@ init_project_list_2(GtkWidget *widget, int button)
 		gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
 		gtk_widget_show(dlg);
 	} else {
-                setup_clist();
+                setup_ctree();
 	}
 }
 
@@ -192,13 +248,19 @@ init_project_list(GtkWidget *widget, gpointer data)
 void
 save_project_list(GtkWidget *widget, gpointer data)
 {
-	if (!project_list_save(NULL)) {
+	GttErrCode errcode;
+
+	gtt_err_set_code (GTT_NO_ERR);
+	save_all ();
+	errcode = gtt_err_get_code();
+	if (GTT_NO_ERR != errcode) 
+	{
 		GtkWidget *dlg, *t;
 		GtkBox *vbox;
 		
 		new_dialog_ok(_("Warning"), &dlg, &vbox,
 			      GNOME_STOCK_BUTTON_OK, NULL, NULL);
-		t = gtk_label_new(_("I could not write the configuration file!"));
+		t = gtk_label_new(_("Could not write the configuration file!"));
 		gtk_widget_show(t);
 		gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 		gtk_widget_show(dlg);
@@ -277,12 +339,12 @@ cut_project(GtkWidget *w, gpointer data)
 {
 	if (!cur_proj) return;
 	if (cutted_project)
-		project_destroy(cutted_project);
+		gtt_project_destroy(cutted_project);
 	cutted_project = cur_proj;
 	prop_dialog_set_project(NULL);
-	project_list_remove(cur_proj);
+	gtt_project_remove(cur_proj);
 	cur_proj_set(NULL);
-        clist_remove(cutted_project);
+        ctree_remove(cutted_project);
 }
 
 
@@ -290,19 +352,23 @@ cut_project(GtkWidget *w, gpointer data)
 void
 paste_project(GtkWidget *w, gpointer data)
 {
-	int pos;
 	GttProject *p;
 	
 	if (!cutted_project) return;
-	p = project_dup(cutted_project);
+	p = cutted_project;
+
+	/* if we paste a second time, we better paste a copy ... */
+	cutted_project = gtt_project_dup(cutted_project);
+
+	/* insert before the current proj */
+	gtt_project_insert_before (p, cur_proj);
+
 	if (!cur_proj) {
-                clist_add(p);
-		project_list_add(p);
+		/* top-level insert */
+                ctree_add(p, NULL);
 		return;
 	}
-        pos = cur_proj->row;
-	project_list_insert(p, pos);
-        clist_insert(p, pos);
+        ctree_insert_before(p, cur_proj);
 }
 
 
@@ -312,8 +378,8 @@ copy_project(GtkWidget *w, gpointer data)
 {
 	if (!cur_proj) return;
 	if (cutted_project)
-		project_destroy(cutted_project);
-	cutted_project = project_dup(cur_proj);
+		gtt_project_destroy(cutted_project);
+	cutted_project = gtt_project_dup(cur_proj);
 	menu_set_states(); /* to enable paste */
 }
 
@@ -377,7 +443,7 @@ menu_clear_daily_counter(GtkWidget *w, gpointer data)
 {
 	g_return_if_fail(cur_proj != NULL);
 
-	cur_proj->day_secs = 0;
-        clist_update_label(cur_proj);
+	gtt_clear_daily_counter (cur_proj);
+        ctree_update_label(cur_proj);
 }
 

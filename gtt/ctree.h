@@ -1,4 +1,5 @@
-/*   Implement a catch-throw-like error mechanism for gtt
+/*   ctree implementation of main window for GTimeTracker - a time tracker
+ *   Copyright (C) 1997,98 Eckehard Berns
  *   Copyright (C) 2001 Linas Vepstas
  *
  *   This program is free software; you can redistribute it and/or modify
@@ -16,32 +17,22 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#ifndef __GTT_CTREE_H__
+#define __GTT_CTREE_H__
 
-typedef enum {
-	GTT_NO_ERR = 0,
-	GTT_CANT_OPEN_FILE,
-	GTT_NOT_A_GTT_FILE,
-	GTT_FILE_CORRUPT,
-	GTT_CANT_WRITE_CONFIG
-} GttErrCode;
+#include <gnome.h>
+#include "proj.h"
+
+extern int clist_header_width_set;
+
+GtkWidget *create_ctree(void);
+void setup_ctree(void);
+void ctree_add(GttProject *p, GtkCTreeNode *parent);
+void ctree_insert_before(GttProject *p, GttProject *insert_before_me);
+void ctree_remove(GttProject *p);
+void ctree_update_label(GttProject *p);
+void ctree_update_title(GttProject *p);
+void ctree_update_desc(GttProject *p);
 
 
-/* 
- * These two routines can be used ot implement a poor-mans 
- * try-catch block by doing as follows:
- *
- *  gtt_err_set_code (GTT_NO_ERR);  // start of try block
- *  { do stuff ... }
- *  switch (gtt_err_get_code()) {     // catch block
- *     case GTT_NO ERR: break;
- *     case GTT_BOGUS_ERROR: { try to recover...}
- *  }
- */
-
-GttErrCode gtt_err_get_code (void);
-
-void gtt_err_set_code (GttErrCode);
-	
- 
-
-/* =========================== END OF FILE ======================== */
+#endif /* __GTT_CTREE_H__ */

@@ -21,69 +21,164 @@
 
 #include <glib.h>
 
+/* The three basic structures */
 typedef struct gtt_project_s GttProject;
-
 typedef struct gtt_task_s GttTask;
 typedef struct gtt_interval_s GttInterval;
 
 /* create, destroy a new project */
-GttProject *gtt_project_new(void);
-GttProject *gtt_project_new_title_desc(const char *, const char *);
-GttProject *project_dup(GttProject *);
-void project_destroy(GttProject *);
+GttProject *	gtt_project_new(void);
+GttProject *	gtt_project_new_title_desc(const char *, const char *);
+void 		gtt_project_destroy(GttProject *);
 
-void gtt_project_set_title(GttProject *, const char *);
-void gtt_project_set_desc(GttProject *, const char *);
+/* The gtt_project_dup() routine will make a copy of the indicated
+ *    project. Note, it will copy the sub-projects, but it will *not*
+ *    copy the tasks (I dunno, this is probably a bug, I think it should
+ *    copy the tasks as well ....)
+ */
+GttProject *	gtt_project_dup(GttProject *);
+
+/* The gtt_project_remove() routine will take the project out of 
+ *    either the master list, or out of any parents' list of 
+ *    sub-projects that it might below to.  As a result, this 
+ *    project will dangle there -- don't loose it 
+ */
+void 		gtt_project_remove(GttProject *p);
+
+void 		gtt_project_set_title(GttProject *, const char *);
+void 		gtt_project_set_desc(GttProject *, const char *);
 
 /* These two routines return the title & desc strings.
  * Do *not* free these strings when done.  Note that 
  * are freed when project is deleted. */
-const char * gtt_project_get_title (GttProject *);
-const char * gtt_project_get_desc (GttProject *);
+const char * 	gtt_project_get_title (GttProject *);
+const char * 	gtt_project_get_desc (GttProject *);
 
-void gtt_project_set_rate (GttProject *, double);
-double gtt_project_get_rate (GttProject *);
+/* The gtt_project_compat_set_secs() routine provides a
+ *    backwards-compatible routine for setting the total amount of
+ *    time spent on a project.  It does this by creating a new task,
+ *    labelling it as 'old gtt data', and putting the time info
+ *    into that task.
+ */
+void		gtt_project_compat_set_secs (GttProject *proj, 
+			int secs_ever, int secs_day, time_t last_update);
 
+
+/* rate is currency amount to charge for work */
+void 		gtt_project_set_rate (GttProject *, double);
+double 		gtt_project_get_rate (GttProject *);
+
+/* The id is a simple id, handy for .. stuff */
+void 		gtt_project_set_id (GttProject *, int id);
+int  		gtt_project_get_id (GttProject *);
+
+/* return a project, given only its id; NULL if not found */
+GttProject * 	gtt_project_locate_from_id (int prj_id);
 
 /* The project_timer_start() routine logs the time when
  *    a new task interval starts.
  * The project_timer_update() routine updates the end-time
  *    for a task interval. 
  */
-void gtt_project_timer_start (GttProject *);
-void gtt_project_timer_update (GttProject *);
-void gtt_project_timer_stop (GttProject *);
+void 		gtt_project_timer_start (GttProject *);
+void 		gtt_project_timer_update (GttProject *);
+void 		gtt_project_timer_stop (GttProject *);
+
+
+/* The gtt_project_get_secs_day() routine returns the
+ *    number of seconds spent on this project today,
+ *    *NOT* including its sub-projects.
+ *
+ * The gtt_project_get_secs_ever() routine returns the
+ *    number of seconds spent on this project,
+ *    *NOT* including its sub-projects.
+ *
+ * The gtt_project_total_secs_day() routine returns the
+ *    total number of seconds spent on this project today,
+ *    including a total of all its sub-projects.
+ *
+ * The gtt_project_total_secs_ever() routine returns the
+ *    total number of seconds spent on this project,
+ *    including a total of all its sub-projects.
+ */
+
+int 		gtt_project_get_secs_day (GttProject *proj);
+int 		gtt_project_get_secs_ever (GttProject *proj);
+
+int 		gtt_project_total_secs_day (GttProject *proj);
+int 		gtt_project_total_secs_ever (GttProject *proj);
+
+void gtt_project_compute_secs (GttProject *proj);
+void gtt_project_list_compute_secs (void);
+
+
+void gtt_clear_daily_counter (GttProject *proj);
+
+
 
 /* return a list of the children of this project */
 GList * 	gtt_project_get_children (GttProject *);
 GList * 	gtt_project_get_tasks (GttProject *);
 
-void		gtt_project_add_project (GttProject *, GttProject *);
-void		gtt_project_add_task (GttProject *, GttTask *);
+/* 
+ * The following routines maintain a heirarchical tree of projects.
+ * Note, however, that these routines do not sanity check the tree
+ * globally, so it is possible to create loops or disconected
+ * components if one is sloppy.
+ *
+ * The gtt_project_append_project() routine makes 'child' a subproject 
+ *    of 'parent'.  In doing this, it removes the child from its
+ *    present location (whether as child of a diffferent project,
+ *    or from the master project list).  It appends the child
+ *    to the parent's list: the child becomes the 'last one'.
+ *    If 'parent' is NULL, then the child is appended to the 
+ *    top-level project list.
+ */
+void	gtt_project_append_project (GttProject *parent, GttProject *child);
+
+/* 
+ * The gtt_project_insert_before() routine will insert 'proj' on the 
+ *     same list as 'before_me', be will insert it before it.  Note
+ *     that 'before_me' may be in the top-level list, or it may be
+ *     in a subproject list; either way, the routine works.  If
+ *     'before_me' is null, then the project is appended to the master
+ *     list.  The project is removed from its old location before
+ *     being inserted into its new location.
+ *
+ * The gtt_project_insert_after() routine works similarly, except that
+ *     if 'after_me' is null, then the proj is prepended to the 
+ *     master list.
+ */
+void	gtt_project_insert_before (GttProject *proj, GttProject *before_me);
+void	gtt_project_insert_after (GttProject *proj, GttProject *after_me);
+
+void	gtt_project_add_task (GttProject *, GttTask *);
 
 /* -------------------------------------------------------- */
 
 /* Return a list of all projects */
-GList * gtt_get_project_list (void);
+GList * 	gtt_get_project_list (void);
 
-/* add project to the master project list */
-void gtt_project_list_add(GttProject *p);
+/* append project to the master project list */
+void 		gtt_project_list_append(GttProject *p);
 
-void project_list_add(GttProject *p);
-void project_list_insert(GttProject *p, int pos);
-void project_list_remove(GttProject *p);
 void project_list_destroy(void);
-void project_list_time_reset(void);
-int project_list_load(const char *fname);
-int project_list_save(const char *fname);
-gboolean project_list_export (const char *fname);
 void project_list_sort_time(void);
 void project_list_sort_total_time(void);
 void project_list_sort_title(void);
 void project_list_sort_desc(void);
 
-char *project_get_timestr(GttProject *p, int show_secs);
-char *project_get_total_timestr(GttProject *p, int show_secs);
+/* The gtt_project_list_total_secs_day() routine returns the
+ *    total number of seconds spent on all projects today,
+ *    including a total of all sub-projects.
+ *
+ * The gtt_project_list_total_secs_ever() routine returns the
+ *    total number of seconds spent all projects,
+ *    including a total of all sub-projects.
+ */
+
+int 		gtt_project_list_total_secs_day (void);
+int 		gtt_project_list_total_secs_ever (void);
 
 /* -------------------------------------------------------- */
 /* tasks */
@@ -94,6 +189,11 @@ void		gtt_task_set_memo (GttTask *, const char *);
 const char *	gtt_task_get_memo (GttTask *);
 GList *		gtt_task_get_intervals (GttTask *);
 void		gtt_task_add_interval (GttTask *, GttInterval *);
+void		gtt_task_append_interval (GttTask *, GttInterval *);
+
+/* gtt_task_get_secs_ever() adds up and returns the total number of 
+ * seconds in the intervals in this task. */
+int 		gtt_task_get_secs_ever (GttTask *tsk);
 
 
 /* intervals */

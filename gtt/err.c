@@ -35,7 +35,7 @@
 static void die(void)
 {
 	fprintf(stderr, " - saving and dying\n");
-	project_list_save(NULL);
+	save_all();
 	unlock_gtt();
 	exit(1);
 }

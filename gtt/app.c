@@ -23,9 +23,11 @@
 #include <errno.h>
 #include <string.h>
 
+#include "ctree.h"
 #include "gtt.h"
 #include "menucmd.h"
 #include "toolbar.h"
+#include "util.h"
 
 
 /* I had some problems with the GtkStatusbar (frame and label didn't
@@ -56,31 +58,8 @@ static GtkLabel *status_project = NULL;
 static GtkLabel *status_day_time = NULL;
 #endif /* GTK_USE_STATUSBAR */
 
-#ifdef DEBUG
-int config_show_secs = 1;
-#else
-int config_show_secs = 0;
-#endif
-int config_show_statusbar = 1;
-int config_show_clist_titles = 1;
-int config_show_tb_icons = 1;
-int config_show_tb_texts = 1;
-int config_show_tb_tips = 1;
-int config_show_tb_new = 1;
-int config_show_tb_file = 0;
-int config_show_tb_ccp = 0;
-int config_show_tb_prop = 1;
-int config_show_tb_timer = 1;
-int config_show_tb_pref = 1;
-int config_show_tb_help = 1;
-int config_show_tb_exit = 1;
 char *config_command = NULL;
 char *config_command_null = NULL;
-char *config_logfile_name = NULL;
-char *config_logfile_str = NULL;
-char *config_logfile_stop = NULL;
-int config_logfile_use = 0;
-int config_logfile_min_secs = 0;
 
 gboolean geom_place_override = FALSE;
 gboolean geom_size_override = FALSE;
@@ -88,6 +67,7 @@ gboolean geom_size_override = FALSE;
 
 void update_status_bar(void)
 {
+	char day_total_str[25];
 	static char *old_day_time = NULL;
         static char *old_project = NULL;
 	char *s;
@@ -101,7 +81,11 @@ void update_status_bar(void)
 	}
         if (!old_day_time) old_day_time = g_strdup("");
         if (!old_project) old_project = g_strdup("");
-        s = g_strdup(project_get_timestr(NULL, config_show_secs));
+
+	print_time (day_total_str, 25, 
+		gtt_project_list_total_secs_day(), config_show_secs);
+
+        s = g_strdup(day_total_str);
         if (0 != strcmp(s, old_day_time)) {
 #ifdef GTK_USE_STATUSBAR
                 gtk_statusbar_remove(status_day_time, 2, status_day_time_id);
@@ -135,7 +119,8 @@ void update_status_bar(void)
 
 
 
-void cur_proj_set(GttProject *proj)
+void 
+cur_proj_set(GttProject *proj)
 {
 	pid_t pid;
 	char *cmd, *p;
@@ -235,7 +220,7 @@ void app_new(int argc, char *argv[], const char *geometry_string)
 	gtk_box_pack_end(GTK_BOX(status_bar), GTK_WIDGET(status_timer),
 			 FALSE, FALSE, 1);
 
-        glist = create_clist();
+        glist = create_ctree();
 	gtk_box_pack_end(GTK_BOX(vbox), glist->parent, TRUE, TRUE, 0);
 	gtk_widget_set_usize(glist, -1, 120);
 	gtk_widget_show_all(glist->parent);

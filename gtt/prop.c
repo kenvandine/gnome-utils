@@ -22,7 +22,7 @@
 #include <string.h>
 
 #include "gtt.h"
-#include "proj_p.h"
+#include "proj.h"
 
 /* XXX: this is our main window, perhaps it is a bit ugly this way and
  * should be passed around in the data fields */
@@ -53,25 +53,25 @@ static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 
 	s = gtk_entry_get_text(dlg->title);
 	if (!s) g_warning("%s:%d\n", __FILE__, __LINE__);
-	if (0 != strcmp(dlg->proj->title, s)) {
+	if (0 != strcmp(gtt_project_get_title(dlg->proj), s)) {
 		if (s[0]) {
 			gtt_project_set_title(dlg->proj, s);
 		} else {
 			gtt_project_set_title(dlg->proj, _("empty"));
-			gtk_entry_set_text(dlg->title, dlg->proj->title);
+			gtk_entry_set_text(dlg->title, gtt_project_get_title(dlg->proj));
 		}
 	}
 
 	s = gtk_entry_get_text(dlg->desc);
 	if (!s) {
-		if (dlg->proj->desc)
+		if (gtt_project_get_desc(dlg->proj))
 			gtt_project_set_desc(dlg->proj, NULL);
 	} else if (!s[0]) {
-		if (dlg->proj->desc)
+		if (gtt_project_get_desc(dlg->proj))
 			gtt_project_set_desc(dlg->proj, NULL);
-	} else if (NULL == dlg->proj->desc) {
+	} else if (NULL == gtt_project_get_desc(dlg->proj)) {
 		gtt_project_set_desc(dlg->proj, s);
-	} else if (0 != strcmp(dlg->proj->desc, s)) {
+	} else if (0 != strcmp(gtt_project_get_desc(dlg->proj), s)) {
 		if (s[0])
 			gtt_project_set_desc(dlg->proj, s);
 		else
@@ -84,10 +84,17 @@ static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 	secs += atoi(s) * 60;
 	s = gtk_entry_get_text(dlg->day.s);
 	secs += atoi(s);
+// hack alert -- fixme -- xxx this is currently broken
+//  by the current design, and needs fixing
+//
+#if FIXME
 	if (secs != dlg->proj->day_secs) {
 		dlg->proj->day_secs = secs;
-                clist_update_label(dlg->proj);
+                ctree_update_label(dlg->proj);
 	}
+#else
+g_warning ("can't adjust: this function is currently broken and needs a fundamental design change to fix \n");
+#endif
 
 	s = gtk_entry_get_text(dlg->ever.h);
 	secs = atoi(s) * 3600;
@@ -95,10 +102,14 @@ static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 	secs += atoi(s) * 60;
 	s = gtk_entry_get_text(dlg->ever.s);
 	secs += atoi(s);
+#if FIXME
 	if (secs != dlg->proj->secs) {
 		dlg->proj->secs = secs;
-		clist_update_label(dlg->proj);
+		ctree_update_label(dlg->proj);
 	}
+#else
+g_warning ("can't adjust: this function is currently broken and needs a fundamental design change to fix \n");
+#endif
 
 }
 
@@ -109,6 +120,7 @@ static PropDlg *dlg = NULL;
 void prop_dialog_set_project(GttProject *proj)
 {
 	char s[128];
+	int day_secs, secs;
 
 	if (!dlg) return;
 
@@ -125,25 +137,32 @@ void prop_dialog_set_project(GttProject *proj)
 		return;
 	}
 	dlg->proj = proj;
-	if (proj->title)
-		gtk_entry_set_text(dlg->title, proj->title);
+
+	if (gtt_project_get_title(proj))
+		gtk_entry_set_text(dlg->title, gtt_project_get_title(proj));
 	else
 		gtk_entry_set_text(dlg->title, "");
-	if (proj->desc)
-		gtk_entry_set_text(dlg->desc, proj->desc);
+
+	if (gtt_project_get_desc(proj))
+		gtk_entry_set_text(dlg->desc, gtt_project_get_desc(proj));
 	else
 		gtk_entry_set_text(dlg->desc, "");
-	g_snprintf(s, sizeof (s), "%d", proj->day_secs / 3600);
+
+
+	day_secs = gtt_project_total_secs_day (proj);
+	secs = gtt_project_total_secs_ever (proj);
+
+	g_snprintf(s, sizeof (s), "%d", day_secs / 3600);
 	gtk_entry_set_text(dlg->day.h, s);
-	g_snprintf(s, sizeof (s), "%d", (proj->day_secs % 3600) / 60);
+	g_snprintf(s, sizeof (s), "%d", (day_secs % 3600) / 60);
 	gtk_entry_set_text(dlg->day.m, s);
-	g_snprintf(s, sizeof (s), "%d", proj->day_secs % 60);
+	g_snprintf(s, sizeof (s), "%d", day_secs % 60);
 	gtk_entry_set_text(dlg->day.s, s);
-	g_snprintf(s, sizeof (s), "%d", proj->secs / 3600);
+	g_snprintf(s, sizeof (s), "%d", secs / 3600);
 	gtk_entry_set_text(dlg->ever.h, s);
-	g_snprintf(s, sizeof (s), "%d", (proj->secs % 3600) / 60);
+	g_snprintf(s, sizeof (s), "%d", (secs % 3600) / 60);
 	gtk_entry_set_text(dlg->ever.m, s);
-	g_snprintf(s, sizeof (s), "%d", proj->secs % 60);
+	g_snprintf(s, sizeof (s), "%d", secs % 60);
 	gtk_entry_set_text(dlg->ever.s, s);
 
 	/* set to unmodified as it reflects the current state of the project */

@@ -38,16 +38,22 @@ struct gtt_project_s {
 	char *title;     /* short title */
 	char *desc;      /* breif description */
 
-	int secs;        /* seconds spend on this project */
-	int day_secs;    /* seconds spent on this project today */
+	int secs_ever;   /* seconds spend on this project */
+	int secs_day;    /* seconds spent on this project today */
 
         double rate;     /* billing rate/price, in units of currency per hour */
 
 	GList *task_list;      /* annotated chunks of time */
+
+	/* hack alert -- the project heriarachy should probably be 
+	 * reimplemented as a GNode rather than a GList */
 	GList *sub_projects;   /* sub-projects */
+	GttProject *parent;    /* back pointer to parent project */
+
+	int id;		/* simple id number */
 
         /* miscellaneous -- used bu GUI to display */
-        gint row;
+        GtkCTreeNode *trow;
 };
 
 

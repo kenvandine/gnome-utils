@@ -20,6 +20,7 @@
 #include <gnome.h>
 #include <libgnome/gnome-help.h>
 
+#include "ctree.h"
 #include "gtt.h"
 #include "toolbar.h"
 
@@ -32,6 +33,7 @@ typedef struct _OptionsDlg {
 	GtkCheckButton *show_secs;
 	GtkCheckButton *show_status_bar;
 	GtkCheckButton *show_clist_titles;
+	GtkCheckButton *show_subprojects;
 	GtkCheckButton *show_tb_icons, *show_tb_texts;
 	GtkCheckButton *show_tb_tips;
         GtkCheckButton *show_tb_new, *show_tb_ccp, *show_tb_pref;
@@ -52,6 +54,33 @@ typedef struct _OptionsDlg {
 } OptionsDlg;
 
 
+#ifdef DEBUG
+int config_show_secs = 1;
+#else
+int config_show_secs = 0;
+#endif
+int config_show_statusbar = 1;
+int config_show_clist_titles = 1;
+int config_show_subprojects = 1;
+
+int config_show_tb_icons = 1;
+int config_show_tb_texts = 1;
+int config_show_tb_tips = 1;
+int config_show_tb_new = 1;
+int config_show_tb_file = 0;
+int config_show_tb_ccp = 0;
+int config_show_tb_prop = 1;
+int config_show_tb_timer = 1;
+int config_show_tb_pref = 1;
+int config_show_tb_help = 1;
+int config_show_tb_exit = 1;
+
+char *config_logfile_name = NULL;
+char *config_logfile_str = NULL;
+char *config_logfile_stop = NULL;
+int config_logfile_use = 0;
+int config_logfile_min_secs = 0;
+
 
 #define ENTRY_TO_CHAR(a, b) { char *s = gtk_entry_get_text(a); if (s[0]) { if (b) g_free(b); b = g_strdup(s); } else { if (b) g_free(b); b = NULL; } }
 
@@ -65,7 +94,7 @@ static void options_apply_cb(GnomePropertyBox *pb, gint page, OptionsDlg *odlg)
 	state = GTK_TOGGLE_BUTTON(odlg->show_secs)->active;
 	if (state != config_show_secs) {
 		config_show_secs = state;
-                setup_clist();
+                setup_ctree();
 		update_status_bar();
 		if (status_bar)
 		gtk_widget_queue_resize(status_bar);
@@ -83,6 +112,20 @@ static void options_apply_cb(GnomePropertyBox *pb, gint page, OptionsDlg *odlg)
         } else {
                 gtk_clist_column_titles_hide(GTK_CLIST(glist));
                 config_show_clist_titles = 0;
+        }
+
+        if (GTK_TOGGLE_BUTTON(odlg->show_subprojects)->active) {
+                config_show_subprojects = 1;
+		// what isn the world is 'show stub ???
+		// gtk_ctree_set_show_stub(GTK_CTREE(glist), TRUE);
+		gtk_ctree_set_line_style(GTK_CTREE(glist), GTK_CTREE_LINES_SOLID);
+		gtk_ctree_set_expander_style(GTK_CTREE(glist),GTK_CTREE_EXPANDER_SQUARE);
+        } else {
+		// what isn the world is 'show stub ???
+		// gtk_ctree_set_show_stub(GTK_CTREE(glist), FALSE);
+		gtk_ctree_set_line_style(GTK_CTREE(glist), GTK_CTREE_LINES_NONE);
+		gtk_ctree_set_expander_style(GTK_CTREE(glist),GTK_CTREE_EXPANDER_NONE);
+                config_show_subprojects = 0;
         }
 
 	/* shell command options */
@@ -211,6 +254,12 @@ static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_clist_titles = GTK_CHECK_BUTTON(w);
+	toggle_changes_property_box(odlg, w);
+
+	w = gtk_check_button_new_with_label(_("Show Sub-Projects"));
+	gtk_widget_show(w);
+	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
+	odlg->show_subprojects = GTK_CHECK_BUTTON(w);
 	toggle_changes_property_box(odlg, w);
 }
 
@@ -448,6 +497,8 @@ static void options_dialog_set(OptionsDlg *odlg)
 				    config_show_statusbar);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_clist_titles),
 				    config_show_clist_titles);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_subprojects),
+				    config_show_subprojects);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_icons),
 				    config_show_tb_icons);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(odlg->show_tb_texts),

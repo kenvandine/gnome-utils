@@ -73,6 +73,21 @@ void prop_dialog(GttProject *proj);
 /* options.c */
 
 void options_dialog(void);
+extern int config_show_secs;
+extern int config_show_statusbar;
+extern int config_show_clist_titles;
+extern int config_show_subprojects;
+extern int config_show_tb_icons;
+extern int config_show_tb_texts;
+extern int config_show_tb_tips;
+extern int config_show_tb_new;
+extern int config_show_tb_file;
+extern int config_show_tb_ccp;
+extern int config_show_tb_prop;
+extern int config_show_tb_timer;
+extern int config_show_tb_pref;
+extern int config_show_tb_help;
+extern int config_show_tb_exit;
 
 
 /* log.c */
@@ -88,24 +103,12 @@ void log_endofday(void);
 extern GttProject *cur_proj;
 extern GtkWidget *glist, *window;
 extern GtkWidget *status_bar;
-extern int config_show_secs;
-extern int config_show_statusbar;
-extern int config_show_clist_titles;
-extern int config_show_tb_icons;
-extern int config_show_tb_texts;
-extern int config_show_tb_tips;
-extern int config_show_tb_new;
-extern int config_show_tb_file;
-extern int config_show_tb_ccp;
-extern int config_show_tb_prop;
-extern int config_show_tb_timer;
-extern int config_show_tb_pref;
-extern int config_show_tb_help;
-extern int config_show_tb_exit;
+
 extern char *config_command, *config_command_null, *config_logfile_name,
 	*config_logfile_str, *config_logfile_stop;
 extern int config_logfile_use, config_logfile_min_secs;
 
+/* true if command line over-rides geometry */
 extern gboolean geom_size_override;
 extern gboolean geom_place_override;
 extern char *first_proj_title;	/* command line flag */
@@ -116,22 +119,10 @@ void cur_proj_set(GttProject *p);
 void app_new(int argc, char *argv[], const char *geometry_string);
 
 
-/* clist.c */
-
-extern int clist_header_width_set;
-
-GtkWidget *create_clist(void);
-void setup_clist(void);
-void clist_add(GttProject *p);
-void clist_insert(GttProject *p, gint pos);
-void clist_remove(GttProject *p);
-void clist_update_label(GttProject *p);
-void clist_update_title(GttProject *p);
-void clist_update_desc(GttProject *p);
-
-
 /* main.c */
 
+/* save_all() will write out all state to files */
+void save_all (void);
 void unlock_gtt(void);
 const char *gtt_gettext(const char *s);
 

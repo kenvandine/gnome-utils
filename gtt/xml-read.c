@@ -42,9 +42,12 @@
 	char * sstr = NULL;					\
 	xmlNodePtr text;					\
 	text = node->childs;					\
-	if (!text) { gtt_err_set_code (GTT_FILE_CORRUPT);  }	\
+	if (!text) { 						\
+		gtt_err_set_code (GTT_FILE_CORRUPT);		\
+	}							\
 	else if (strcmp ("text", text->name)) {			\
-                gtt_err_set_code (GTT_FILE_CORRUPT); } 		\
+                gtt_err_set_code (GTT_FILE_CORRUPT);		\
+	} 							\
 	else sstr = text->content;				\
 	sstr;							\
 })
@@ -127,7 +130,7 @@ parse_task (xmlNodePtr task)
 			{
 				GttInterval *ival;
 				ival = parse_interval (tn);
-				gtt_task_add_interval (tsk, ival);
+				gtt_task_append_interval (tsk, ival);
 			}
 		} 
 		else
@@ -175,6 +178,14 @@ parse_project (xmlNodePtr project)
 			gtt_project_set_rate (prj, rate);
 		} 
 		else
+		if (0 == strcmp ("id", node->name))
+		{
+			int id;
+			str = GET_TEXT (node);
+			id = atoi (str);
+			gtt_project_set_id (prj, id);
+		} 
+		else
 		if (0 == strcmp ("task-list", node->name))
 		{
 			xmlNodePtr tn;
@@ -193,11 +204,12 @@ parse_project (xmlNodePtr project)
 			{
 				GttProject *child;
 				child = parse_project (tn);
-				gtt_project_add_project (prj, child);
+				gtt_project_append_project (prj, child);
 			}
 		} 
 		else
 		{ 
+			g_warning ("unexpected node %s\n", node->name);
 			gtt_err_set_code (GTT_FILE_CORRUPT);
 		}
 	}
@@ -220,6 +232,10 @@ gtt_xml_read_file (const char * filename)
 		gtt_err_set_code (GTT_NOT_A_GTT_FILE); return; }
 
 	project_list = root->childs;
+
+	/* If no children, then no projects -- a clean slate */
+	if (!project_list) return;
+
 	if (strcmp ("project-list", project_list->name)) {
 		gtt_err_set_code (GTT_FILE_CORRUPT); return; }
 
@@ -227,8 +243,11 @@ gtt_xml_read_file (const char * filename)
 	{
 		GttProject *prj;
 		prj = parse_project (project);
-		gtt_project_list_add (prj);
+		gtt_project_list_append (prj);
 	}
+
+	/* recompute the cached counters */
+	gtt_project_list_compute_secs ();
 }
 
 /* ====================== END OF FILE =============== */

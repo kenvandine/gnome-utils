@@ -25,10 +25,19 @@
 #include <string.h>
 
 
+#include "ctree.h"
 #include "err-throw.h"
 #include "proj.h"
 #include "proj_p.h"
 
+static void project_list_time_reset (void);
+
+// hack alert -- should be static
+GList * plist = NULL;
+
+/* ============================================================= */
+
+static int next_free_id = 1;
 
 GttProject *
 gtt_project_new(void)
@@ -38,11 +47,17 @@ gtt_project_new(void)
 	proj = g_new0(GttProject, 1);
 	proj->title = NULL;
 	proj->desc = NULL;
-	proj->secs = proj->day_secs = 0;
+	proj->secs_ever = 0;
+	proj->secs_day = 0;
 	proj->rate = 1.0;
 	proj->task_list = NULL;
 	proj->sub_projects = NULL;
-        proj->row = -1;
+	proj->parent = NULL;
+        proj->trow = NULL;
+
+        proj->id = next_free_id;
+	next_free_id ++;
+
 	return proj;
 }
 
@@ -62,14 +77,15 @@ gtt_project_new_title_desc(const char *t, const char *d)
 
 
 GttProject *
-project_dup(GttProject *proj)
+gtt_project_dup(GttProject *proj)
 {
+	GList *node;
 	GttProject *p;
 
 	if (!proj) return NULL;
 	p = gtt_project_new();
-	p->secs = proj->secs;
-	p->day_secs = proj->day_secs;
+	p->secs_ever = proj->secs_ever;
+	p->secs_day = proj->secs_day;
 	if (proj->title)
 		p->title = g_strdup(proj->title);
 	else
@@ -80,21 +96,49 @@ project_dup(GttProject *proj)
 		p->desc = NULL;
 
 	p->rate = proj->rate;
-	p->task_list = NULL;
+
+	/* Don't copy the tasks.  Do copy the sub-projects */
+	for (node=proj->sub_projects; node; node=node->next)
+	{
+		GttProject *sub = node->data;
+		sub = gtt_project_dup (sub);
+		gtt_project_append_project (p, sub);
+	}
+
 	p->sub_projects = NULL;
 	return p;
 }
 
 
+/* remove the roject from any lists, etc. */
+void 
+gtt_project_remove(GttProject *p)
+{
+	/* if we are in someone elses list, remove */
+	if (p->parent)
+	{
+		p->parent->sub_projects = 
+			g_list_remove (p->parent->sub_projects, p);
+		p->parent = NULL;
+	}
+	else
+	{
+		/* else we are in the master list ... remove */
+		plist = g_list_remove(plist, p);
+	}
+}
+
 
 void 
-project_destroy(GttProject *proj)
+gtt_project_destroy(GttProject *proj)
 {
 	if (!proj) return;
-	project_list_remove(proj);
-	g_free(proj->title);
+	gtt_project_remove(proj);
+
+	if (proj->title) g_free(proj->title);
 	proj->title = NULL;
-	g_free(proj->desc);
+
+	if (proj->desc) g_free(proj->desc);
 	proj->desc = NULL;
 
         if (proj->task_list)
@@ -110,20 +154,19 @@ project_destroy(GttProject *proj)
 
         if (proj->sub_projects)
 	{
-		GList *node;
-		for (node=proj->sub_projects; node; node=node->next)
+		while (proj->sub_projects)
 		{
-			project_destroy (node->data);
+			/* destroying a sub-project pops it off the list */
+			gtt_project_destroy (proj->sub_projects->data);
 		}
-		g_list_free (proj->sub_projects);
 	}
-	proj->sub_projects = NULL;
 
 	g_free(proj);
 }
 
 
 /* ========================================================= */
+/* set/get project titles and descriptions */
 
 void 
 gtt_project_set_title(GttProject *proj, const char *t)
@@ -135,8 +178,7 @@ gtt_project_set_title(GttProject *proj, const char *t)
 		return;
 	}
 	proj->title = g_strdup(t);
-        if (proj->row != -1)
-                clist_update_title(proj);
+        ctree_update_title(proj);
 }
 
 
@@ -151,8 +193,7 @@ gtt_project_set_desc(GttProject *proj, const char *d)
 		return;
 	}
 	proj->desc = g_strdup(d);
-	if (proj->row != -1)
-		clist_update_desc(proj);
+	ctree_update_desc(proj);
 }
 
 const char * 
@@ -185,12 +226,216 @@ gtt_project_get_rate (GttProject *proj)
 
 /* =========================================================== */
 
-void 
-gtt_project_add_project (GttProject *proj, GttProject *child)
+void
+gtt_project_set_id (GttProject *proj, int new_id)
 {
-	if (!proj || !child) return;
-	proj->sub_projects = g_list_append (proj->sub_projects, child);
+	if (!proj) return;
+
+	if (gtt_project_locate_from_id (new_id))
+	{
+		g_warning ("a project with id =%d already exists\n", new_id);
+	}
+
+	proj->id = new_id;
+	if (new_id >= next_free_id) next_free_id = new_id + 1;
 }
+
+int
+gtt_project_get_id (GttProject *proj)
+{
+	if (!proj) return -1;
+	return proj->id;
+}
+
+/* =========================================================== */
+/* compatibility interface */
+
+static time_t
+get_midnight (time_t last)
+{
+	struct tm lt;
+	time_t midnight;
+
+	if (0 >= last)
+	{
+		last = time(0);
+	}
+
+	memcpy (&lt, localtime (&last), sizeof (struct tm));
+	lt.tm_sec = 0;
+	lt.tm_min = 0;
+	lt.tm_hour = 0;
+	midnight = mktime (&lt);
+
+	return midnight;
+}
+
+void 
+gtt_project_compat_set_secs (GttProject *proj, int sever, int sday, time_t last)
+{
+	time_t midnight;
+	GttTask *tsk;
+	GttInterval *ivl;
+
+	proj->secs_ever = sever;
+	proj->secs_day = sday;
+
+	/* get the midnight of the last update */
+	midnight = get_midnight (last);
+
+	tsk = gtt_task_new ();
+	gtt_task_set_memo (tsk, _("Old GTT Tasks"));
+
+	ivl = gtt_interval_new();
+	ivl->stop = midnight - 1;
+	ivl->start = midnight - 1 - sever + sday;
+	gtt_task_add_interval (tsk, ivl);
+
+	if (0 < sday)
+	{
+		ivl = gtt_interval_new();
+		ivl->start = midnight +1;
+		ivl->stop = midnight + sday + 1;
+		gtt_task_add_interval (tsk, ivl);
+	}
+
+	gtt_project_add_task (proj, tsk);
+
+}
+
+/* =========================================================== */
+/* add subprojects, tasks */
+
+void 
+gtt_project_append_project (GttProject *proj, GttProject *child)
+{
+	if (!child) return;
+	gtt_project_remove(child);
+	if (!proj)
+	{
+		/* if no parent specified, put in top-level list */
+		gtt_project_list_append (child);
+		return;
+	}
+
+	proj->sub_projects = g_list_append (proj->sub_projects, child);
+	child->parent = proj;
+}
+
+void 
+gtt_project_insert_before(GttProject *p, GttProject *before_me)
+{
+	gint pos;
+
+	if (!p) return;
+	gtt_project_remove(p);
+
+	/* no before ?? then append to master list */
+	if (!before_me)
+	{
+		plist = g_list_append (plist, p);
+		p->parent = NULL;
+		return;
+	}
+	else
+	{
+		if (!before_me->parent)
+		{
+			/* if before_me has no parent, then its in the 
+			 * master list */
+			pos  = g_list_index (plist, before_me);
+
+			/* this shouldn't happen ....node should be found */
+			if (0 > pos) 
+			{
+				plist = g_list_append (plist, p);
+				p->parent = NULL;
+				return;
+			}
+			plist = g_list_insert (plist, p, pos);
+			p->parent = NULL;
+			return;
+		}
+		else
+		{
+			GList *sub;
+			sub = before_me->parent->sub_projects;
+			pos  = g_list_index (sub, before_me);
+
+			/* this shouldn't happen ....node should be found */
+			if (0 > pos) 
+			{
+				sub = g_list_append (sub, p);
+				before_me->parent->sub_projects = sub;
+				p->parent = before_me->parent;
+				return;
+			}
+			sub = g_list_insert (sub, p, pos);
+			before_me->parent->sub_projects = sub;
+			p->parent = before_me->parent;
+			return;
+		}
+	}
+}
+
+void 
+gtt_project_insert_after(GttProject *p, GttProject *after_me)
+{
+	gint pos;
+
+	if (!p) return;
+	gtt_project_remove(p);
+
+	/* no after ?? then prepend to master list */
+	if (!after_me)
+	{
+		plist = g_list_prepend (plist, p);
+		p->parent = NULL;
+		return;
+	}
+	else
+	{
+		if (!after_me->parent)
+		{
+			/* if after_me has no parent, then its in the 
+			 * master list */
+			pos  = g_list_index (plist, after_me);
+
+			/* this shouldn't happen ....node should be found */
+			if (0 > pos) 
+			{
+				plist = g_list_prepend (plist, p);
+				p->parent = NULL;
+				return;
+			}
+			pos ++;
+			plist = g_list_insert (plist, p, pos);
+			p->parent = NULL;
+			return;
+		}
+		else
+		{
+			GList *sub;
+			sub = after_me->parent->sub_projects;
+			pos  = g_list_index (sub, after_me);
+
+			/* this shouldn't happen ....node should be found */
+			if (0 > pos) 
+			{
+				sub = g_list_prepend (sub, p);
+				after_me->parent->sub_projects = sub;
+				p->parent = after_me->parent;
+				return;
+			}
+			pos ++;
+			sub = g_list_insert (sub, p, pos);
+			after_me->parent->sub_projects = sub;
+			p->parent = after_me->parent;
+			return;
+		}
+	}
+}
+
 
 void 
 gtt_project_add_task (GttProject *proj, GttTask *task)
@@ -213,6 +458,171 @@ gtt_project_get_tasks (GttProject *proj)
 {
 	if (!proj) return NULL;
 	return proj->task_list;
+}
+
+/* =========================================================== */
+/* get totals */
+
+static int
+project_list_total_secs_day (GList *prjs)
+{
+	GList *node;
+	int total = 0;
+	if (!prjs) return 0;
+
+	for (node=prjs; node; node=node->next)
+	{
+		GttProject *proj = node->data;
+		total += proj->secs_day;
+		if (proj->sub_projects)
+		{
+			total += project_list_total_secs_day (proj->sub_projects);
+		}
+	}
+	return total;
+}
+
+int
+gtt_project_list_total_secs_day (void)
+{
+	return project_list_total_secs_day(plist);
+}
+
+
+
+/* this routine adds up total day-secs for this project, and its sub-projects */
+int
+gtt_project_total_secs_day (GttProject *proj)
+{
+	int total = 0;
+	if (!proj) return 0;
+
+	total = proj->secs_day;
+	if (proj->sub_projects)
+	{
+		total += project_list_total_secs_day (proj->sub_projects);
+	}
+	return total;
+}
+
+int
+gtt_project_get_secs_day (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->secs_day;
+}
+
+
+static int
+project_list_total_secs_ever (GList *prjs)
+{
+	GList *node;
+	int total = 0;
+	if (!prjs) return 0;
+
+	for (node=prjs; node; node=node->next)
+	{
+		GttProject *proj = node->data;
+		total += proj->secs_ever;
+		if (proj->sub_projects)
+		{
+			total += project_list_total_secs_ever (proj->sub_projects);
+		}
+	}
+	return total;
+}
+
+int
+gtt_project_list_total_secs_ever (void)
+{
+	return project_list_total_secs_ever(plist);
+}
+
+
+/* this routine adds up total secs for this project, and its sub-projects */
+int
+gtt_project_total_secs_ever (GttProject *proj)
+{
+	int total = 0;
+	if (!proj) return 0;
+
+	total = proj->secs_ever;
+	if (proj->sub_projects)
+	{
+		total += project_list_total_secs_ever (proj->sub_projects);
+	}
+	return total;
+}
+
+int
+gtt_project_get_secs_ever (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->secs_ever;
+}
+
+
+/* =========================================================== */
+/* recomputed cached data */
+
+void
+gtt_project_compute_secs (GttProject *proj)
+{
+	int total_ever = 0;
+	int total_day = 0;
+	time_t midnight;
+
+	GList *tsk_node, *ivl_node, *prj_node;
+
+	midnight = get_midnight (-1);
+	/* total up tasks */
+	for (tsk_node= proj->task_list; tsk_node; tsk_node=tsk_node->next)
+	{
+		GttTask * task = tsk_node->data;
+		for (ivl_node= task->interval_list; ivl_node; ivl_node=ivl_node->next)
+		{
+			GttInterval *ivl = ivl_node->data;
+			total_ever += ivl->stop - ivl->start;
+			if (ivl->start >= midnight)
+			{
+				total_day += ivl->stop - ivl->start;
+			}
+			else if (ivl->stop > midnight)
+			{
+				total_day += ivl->stop - midnight;
+			}
+		}
+	}
+
+	proj->secs_ever = total_ever;
+	proj->secs_day = total_day;
+
+	/* do the subprojects as well */
+	for (prj_node= proj->sub_projects; prj_node; prj_node=prj_node->next)
+	{
+		GttProject * prj = prj_node->data;
+		gtt_project_compute_secs (prj);
+	}
+}
+
+void
+gtt_project_list_compute_secs (void)
+{
+	GList *node;
+	for (node= plist; node; node=node->next)
+	{
+		GttProject * prj = node->data;
+		gtt_project_compute_secs (prj);
+	}
+}
+
+/* =========================================================== */
+
+void 
+gtt_clear_daily_counter (GttProject *proj)
+{
+	if (!proj) return;
+	proj->secs_day = 0;
 }
 
 /* =========================================================== */
@@ -241,6 +651,7 @@ zero_on_rollover (time_t now)
 	if ((year_last_reset != t1->tm_year) ||
 	    (day_last_reset != t1->tm_yday)) 
 	{
+		gtt_project_list_compute_secs ();
 		project_list_time_reset();
 		log_endofday();
 		year_last_reset = t1->tm_year;
@@ -271,7 +682,7 @@ gtt_project_timer_start (GttProject *proj)
 	g_return_if_fail (task);
 	ival = g_new0 (GttInterval, 1);
 	ival->start = time(0);
-	ival->stop = 0;
+	ival->stop = ival->start;
 	ival->running = TRUE;
 	task->interval_list = g_list_prepend (task->interval_list, ival);
 }
@@ -297,14 +708,6 @@ gtt_project_timer_update (GttProject *proj)
 
 
 	/* compute the delta change, update cached data */
-	if (0 != ival->stop)
-	{
-		prev_update = ival->stop;
-	}
-	else
-	{
-		prev_update = ival->start;
-	}
 	now = time(0);
 	zero_on_rollover (now);
 
@@ -318,10 +721,11 @@ gtt_project_timer_update (GttProject *proj)
 		return;
 	}
 
+	prev_update = ival->stop;
 	ival->stop = now;
 	diff = now - prev_update;
-	proj->secs += diff;
-	proj->day_secs += diff;
+	proj->secs_ever += diff;
+	proj->secs_day += diff;
 }
 
 void 
@@ -382,6 +786,13 @@ void
 gtt_task_add_interval (GttTask *tsk, GttInterval *ival)
 {
 	if (!tsk || !ival) return;
+	tsk->interval_list = g_list_prepend (tsk->interval_list, ival);
+}
+
+void
+gtt_task_append_interval (GttTask *tsk, GttInterval *ival)
+{
+	if (!tsk || !ival) return;
 	tsk->interval_list = g_list_append (tsk->interval_list, ival);
 }
 
@@ -410,6 +821,20 @@ gtt_task_get_intervals (GttTask *tsk)
 {
 	if (!tsk) return NULL;
 	return tsk->interval_list;
+}
+
+int
+gtt_task_get_secs_ever (GttTask *tsk)
+{
+	GList *node;
+	int total = 0;
+
+	for (node=tsk->interval_list; node; node=node->next)
+	{
+		GttInterval * ivl = node->data;
+		total += ivl->stop - ivl->start;
+	}
+	return total;
 }
 
 /* =========================================================== */
@@ -474,11 +899,11 @@ gtt_interval_get_running (GttInterval * ivl)
 	return (gboolean) ivl->running;
 }
 
-/*******************************************************************
- * project_list -- simple wrapper around glib routines
- */
+/* ============================================================= */
+/* project_list -- simple wrapper around glib routines */
+/* hack alert -- this list should probably be replaced with a 
+ * GNode tree ... */
 
-GList * plist = NULL;
 
 GList *
 gtt_get_project_list (void)
@@ -487,44 +912,20 @@ gtt_get_project_list (void)
 }
 
 void 
-gtt_project_list_add(GttProject *p)
+gtt_project_list_append(GttProject *p)
 {
-	if (!p) return;
-// hack alert XXX FIXME --- disabled for testing
-//	plist = g_list_append (plist, p);
+	gtt_project_insert_before (p, NULL);
 }
 
-void 
-project_list_add(GttProject *p)
-{
-	if (!p) return;
-	plist = g_list_append (plist, p);
-}
-
-void 
-project_list_insert(GttProject *p, int pos)
-{
-	if (!p) return;
-	plist = g_list_insert (plist, p, pos);
-}
-
-void 
-project_list_remove(GttProject *p)
-{
-	if (!p) return;
-	plist = g_list_remove (plist, p);
-}
 
 void 
 project_list_destroy(void)
 {
-	GList *node;
-	for (node = plist; node; node=node->next)
+	while (plist)
 	{
-		project_destroy(node->data);
+		/* destroying a project pops the plist ... */
+		gtt_project_destroy(plist->data);
 	}
-	g_list_free (plist);
-	plist = NULL;
 }
 
 static void
@@ -533,87 +934,48 @@ project_list_sort(int (cmp)(const void *, const void *))
 	plist = g_list_sort (plist, cmp);
 }
 
+/* -------------------- */
+/* given id, walk the tree of projects till we find it. */
+
+static GttProject *
+locate_from_id (GList *prj_list, int prj_id)
+{
+	GList *node;
+	for (node = prj_list; node; node=node->next)
+	{
+		GttProject *prj = node->data;
+		if (prj_id == prj->id) return prj;
+
+		/* recurse to handle sub-projects */
+		if (prj->sub_projects)
+		{
+			prj = locate_from_id (prj->sub_projects, prj_id);
+			if (prj) return prj;
+		}
+	}
+	return NULL;  /* not found */
+}
+
+GttProject *
+gtt_project_locate_from_id (int prj_id)
+{
+	return locate_from_id (plist, prj_id);
+}
 
 /* ============================================================= */
 /* misc GUI-related routines */
 
-void 
+static void 
 project_list_time_reset(void)
 {
 	GList *node;
 	for (node = plist; node; node=node->next)
 	{
 		GttProject *prj = node->data;
-		prj->day_secs = 0;
-		if (prj->row != -1) clist_update_label(prj);
+		prj->secs_day = 0;
+		ctree_update_label(prj);
 	}
 }
-
-/* ============================================================= */
-
-
-
-char *
-project_get_timestr(GttProject *proj, int show_secs)
-{
-	static char s[20];
-	time_t t;
-	
-	/* if NULL, then we total up over *all* projects */
-	if (proj == NULL) 
-	{
-		GList *node;
-		t = 0;
-		for (node = plist; node; node = node->next)
-		{
-			GttProject *prj = node->data;
-			t += prj->day_secs;
-		}
-	} else 
-	{
-		t = proj->day_secs;
-	}
-	if (t >= 0) {
-		if (show_secs)
-			g_snprintf(s, sizeof (s),
-				   "%02d:%02d:%02d", (int)(t / 3600),
-				   (int)((t % 3600) / 60), (int)(t % 60));
-		else
-			g_snprintf(s, sizeof (s), "%02d:%02d", (int)(t / 3600),
-				   (int)((t % 3600) / 60));
-	} else {
-		if (show_secs)
-			g_snprintf(s, sizeof (s),
-				   "-%02d:%02d:%02d", (int)(-t / 3600),
-				   (int)((-t % 3600) / 60), (int)(-t % 60));
-		else
-			g_snprintf(s, sizeof (s),
-				   "-%02d:%02d", (int)(-t / 3600),
-				   (int)((-t % 3600) / 60));
-	}
-	return s;
-}
-
-char *
-project_get_total_timestr(GttProject *proj, int show_secs)
-{
-	static char s[20];
-	time_t t;
-
-	if (proj == NULL) {
-		return NULL;
-	} else {
-		t = proj->secs;
-	}
-	if (show_secs)
-		g_snprintf(s, sizeof (s), "%02d:%02d:%02d", (int)(t / 3600),
-			   (int)((t % 3600) / 60), (int)(t % 60));
-	else
-		g_snprintf(s, sizeof (s), "%02d:%02d", (int)(t / 3600),
-			   (int)((t % 3600) / 60));
-	return s;
-}
-
 
 /* ==================================================================== */
 /* sort funcs */
@@ -622,19 +984,18 @@ project_get_total_timestr(GttProject *proj, int show_secs)
 static int
 cmp_time(const void *aa, const void *bb)
 {
-	const GttProject *a = aa;
-	const GttProject *b = bb;
-        return (int)(b->day_secs - a->day_secs);
+	GttProject *a = (GttProject *)aa;
+	GttProject *b = (GttProject *)bb;
+        return (gtt_project_total_secs_day(b) - gtt_project_total_secs_day(a));
 }
 
 static int
 cmp_total_time(const void *aa, const void *bb)
 {
-	const GttProject *a = aa;
-	const GttProject *b = bb;
-	return (int)(b->secs - a->secs);
+	GttProject *a = (GttProject *)aa;
+	GttProject *b = (GttProject *)bb;
+        return (gtt_project_total_secs_ever(b) - gtt_project_total_secs_ever(a));
 }
-
 
 
 static int

@@ -25,12 +25,13 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "ctree.h"
 #include "err-throw.h"
+#include "file-io.h"
 #include "gtt.h"
 #include "proj.h"
 #include "proj_p.h"
 #include "toolbar.h"
-#include "xml-gtt.h"
 
 #ifdef DEBUG
 #define GTT "/gtt-DEBUG/"
@@ -84,8 +85,7 @@ read_tb_sects(char *s)
 }
 
 
-
-static int
+static void
 project_list_load_old(const char *fname)
 {
 	FILE *f;
@@ -95,18 +95,26 @@ project_list_load_old(const char *fname)
 	char s[1024];
 	int i;
 	time_t tmp_time = -1;
+	time_t day_secs, ever_secs;
         int _n, _f, _c, _p, _t, _o, _h, _e;
 
 	if (fname != NULL)
+	{
 		realname = fname;
+	}
 	else
+	{
 		realname = build_rc_name();
-	if (NULL == (f = fopen(realname, "rt"))) {
+	}
+
+	if (NULL == (f = fopen(realname, "rt"))) 
+	{
+		gtt_err_set_code(GTT_CANT_OPEN_FILE);
 #ifdef ENOENT
-                if (errno == ENOENT) return 0;
+                if (errno == ENOENT) return;
 #endif
 		g_warning("could not open %s\n", realname);
-		return 0;
+		return;
 	}
 	pl = gtt_get_project_list();
 	plist = NULL;
@@ -189,11 +197,12 @@ project_list_load_old(const char *fname)
 		} else if ((s[0] >= '0') && (s[0] <='9')) {
 			/* new project */
 			proj = gtt_project_new();
-			project_list_add(proj);
-			proj->secs = atol(s);
+			gtt_project_list_append(proj);
+			ever_secs = atol(s);
 			for (i = 0; s[i] != ' '; i++) ;
 			i++;
-			proj->day_secs = atol(&s[i]);
+			day_secs = atol(&s[i]);
+			gtt_project_compat_set_secs (proj, ever_secs, day_secs, tmp_time);
 			for (; s[i] != ' '; i++) ;
 			i++;
 			while (s[strlen(s) - 1] == '\n')
@@ -208,6 +217,8 @@ project_list_load_old(const char *fname)
 	plist = pl;
 	project_list_destroy();
 	plist = t;
+
+	gtt_project_list_compute_secs();
 	if (tmp_time > 0) {
 		set_last_reset (tmp_time);
 		zero_on_rollover (time(0));
@@ -223,22 +234,23 @@ project_list_load_old(const char *fname)
             (_e != config_show_tb_exit)) {
                 update_toolbar_sections();
         }
-	return 1;
+	return;
 
-	err:
+err:
 	fclose(f);
+	gtt_err_set_code (GTT_FILE_CORRUPT);
 	g_warning("error reading %s\n", realname);
 	project_list_destroy();
 	plist = pl;
-	return 0;
 }
 
 
 
-int
-project_list_load(const char *fname)
+void
+gtt_load_config (const char *fname)
 {
 	time_t last_timer = -1;
+	time_t ever_secs, day_secs;
         char s[256];
         int i, num;
         GttProject *proj;
@@ -246,10 +258,11 @@ project_list_load(const char *fname)
 	gboolean got_default;
 	int cur_proj_id = -1;
 
-	/* the old file type doesn't have numprojets in it */
+	/* The old file type doesn't have numprojets in it */
         gnome_config_get_int_with_default(GTT"Misc/NumProjects=0", &got_default);
         if (got_default) {
-                return project_list_load_old(fname);
+                project_list_load_old(fname);
+                return;
         }
 
 	/* If already running, and we are over-loading a new file,
@@ -261,9 +274,6 @@ project_list_load(const char *fname)
 		 * the project list is destroyed ... */
 		first_proj_title = g_strdup (gtt_project_get_title (cur_proj));
 	}
-
-	/* start with a clean slate */
-        project_list_destroy();
 
         _n = config_show_tb_new;
         _f = config_show_tb_file;
@@ -299,6 +309,7 @@ project_list_load(const char *fname)
 
         config_show_secs = gnome_config_get_bool(GTT"Display/ShowSecs=false");
         config_show_clist_titles = gnome_config_get_bool(GTT"Display/ShowTableHeader=false");
+        config_show_subprojects = gnome_config_get_bool(GTT"Display/ShowSubProjects=true");
         config_show_tb_icons = gnome_config_get_bool(GTT"Toolbar/ShowIcons=true");
         config_show_tb_texts = gnome_config_get_bool(GTT"Toolbar/ShowTexts=true");
         config_show_tb_tips = gnome_config_get_bool(GTT"Toolbar/ShowTips=true");
@@ -335,25 +346,45 @@ project_list_load(const char *fname)
 						   i, num);
 		}
 	}
+
+	/* The old-style config file also contained project data
+	 * in it. Read this data, if present.  The new config file
+	 * format has num-projects set to -1.
+	 */
+        last_timer = atol(gnome_config_get_string(GTT"Misc/LastTimer=-1"));
         num = gnome_config_get_int(GTT"Misc/NumProjects=0");
-        for (i = 0; i < num; i++) {
-                proj = gtt_project_new();
-                project_list_add(proj);
-                g_snprintf(s, sizeof (s), GTT"Project%d/Title", i);
-                gtt_project_set_title(proj, gnome_config_get_string(s));
+	if (0 < num)
+	{
+		/* start with a clean slate */
+        	project_list_destroy();
 
-		/* Match the last running project */
-		if (i == cur_proj_id) {
-			cur_proj_set(proj);
-		}
-
-                g_snprintf(s, sizeof (s), GTT"Project%d/Desc", i);
-                gtt_project_set_desc(proj, gnome_config_get_string(s));
-                g_snprintf(s, sizeof (s), GTT"Project%d/SecsEver=0", i);
-                proj->secs = gnome_config_get_int(s);
-                g_snprintf(s, sizeof (s), GTT"Project%d/SecsDay=0", i);
-                proj->day_secs = gnome_config_get_int(s);
-        }
+        	for (i = 0; i < num; i++) {
+                	proj = gtt_project_new();
+                	gtt_project_list_append(proj);
+                	g_snprintf(s, sizeof (s), GTT"Project%d/Title", i);
+                	gtt_project_set_title(proj, gnome_config_get_string(s));
+	
+			/* Match the last running project */
+			if (i == cur_proj_id) {
+				cur_proj_set(proj);
+			}
+	
+                	g_snprintf(s, sizeof (s), GTT"Project%d/Desc", i);
+                	gtt_project_set_desc(proj, gnome_config_get_string(s));
+                	g_snprintf(s, sizeof (s), GTT"Project%d/SecsEver=0", i);
+                	ever_secs = gnome_config_get_int(s);
+                	g_snprintf(s, sizeof (s), GTT"Project%d/SecsDay=0", i);
+                	day_secs = gnome_config_get_int(s);
+			gtt_project_compat_set_secs (proj, ever_secs, day_secs, last_timer);
+        	}
+		gtt_project_list_compute_secs();
+	} 
+	else 
+	{
+		/* Assume we've already read the XML data, and just 
+		 * set the current project */
+		cur_proj = gtt_project_locate_from_id (cur_proj_id);
+	}
 
 	/* Over-ride the current project based on the 
 	 * command-line setting */
@@ -363,10 +394,12 @@ project_list_load(const char *fname)
         	for (node = gtt_get_project_list(); node; node = node->next) 
 		{
 			GttProject *prj = node->data;
-			if (!prj->title) continue;
+			if (!gtt_project_get_title(prj)) continue;
 
 			/* set project based on command line */
-			if (0 == strcmp(prj->title, first_proj_title)) {
+			if (0 == strcmp(gtt_project_get_title(prj), 
+			                first_proj_title)) 
+			{
 				cur_proj_set(prj);
 				break;
 			}
@@ -377,8 +410,8 @@ project_list_load(const char *fname)
 	first_proj_title = NULL;
 
 	/* reset the clocks, if needed */
-        last_timer = atol(gnome_config_get_string(GTT"Misc/LastTimer=-1"));
-	if (last_timer > 0) {
+	if (last_timer > 0) 
+	{
 		set_last_reset (last_timer);
 		zero_on_rollover (time(0));
 	}
@@ -403,30 +436,19 @@ project_list_load(const char *fname)
             (_e != config_show_tb_exit)) {
                 update_toolbar_sections();
         }
-
-#if 0
-	/* hack alert XXX FIXME bogus */
-	gtt_err_set_code (GTT_NO_ERR);
-	gtt_xml_read_file ("/home/linas/.gnome/gtt.xml");
-	printf ("duuude err = %d\n", gtt_err_get_code());
-#endif
-        return 1;
 }
 
 
+/* ======================================================= */
+/* save only the GUI configuration info, not the actual data */
 
-int
-project_list_save(const char *fname)
+void
+gtt_save_config(const char *fname)
 {
         char s[64];
-	GList *node;
         int i, old_num;
 	int x, y, w, h;
-	int cur_run_proj=-1;
-#if 0
-	/* hack alert XXX FIXME bogus */
-	gtt_xml_write_file ("/home/linas/.gnome/gtt.xml");
-#endif
+
         old_num = gnome_config_get_int(GTT"Misc/NumProjects=0");
 
 	/* save the window location and size */
@@ -440,6 +462,7 @@ project_list_save(const char *fname)
 	/* save the configure dialog values */
         gnome_config_set_bool(GTT"Display/ShowSecs", config_show_secs);
         gnome_config_set_bool(GTT"Display/ShowTableHeader", config_show_clist_titles);
+        gnome_config_set_bool(GTT"Display/ShowSubProjects", config_show_subprojects);
         gnome_config_set_bool(GTT"Toolbar/ShowIcons", config_show_tb_icons);
         gnome_config_set_bool(GTT"Toolbar/ShowTexts", config_show_tb_texts);
         gnome_config_set_bool(GTT"Toolbar/ShowTips", config_show_tb_tips);
@@ -480,45 +503,19 @@ project_list_save(const char *fname)
 		gnome_config_set_int(s, GTK_CLIST(glist)->column[i].width);
 	}
 
-	/* save the individual projects */
-        i = 0;
-        for (node = gtt_get_project_list(); node; node = node->next) 
-	{
-		GttProject *prj = node->data;
-                if (!prj->title) continue;
-
-		/* get the file index of the current project */
-		if (prj == cur_proj) cur_run_proj = i;
-
-		/* save the project info */
-                g_snprintf(s, sizeof (s), GTT"Project%d/Title", i);
-                gnome_config_set_string(s, prj->title);
-                g_snprintf(s, sizeof (s), GTT"Project%d/Desc", i);
-                if (prj->desc) {
-                        gnome_config_set_string(s, prj->desc);
-                } else {
-                        gnome_config_clean_key(s);
-                }
-                g_snprintf(s, sizeof (s), GTT"Project%d/SecsEver", i);
-                gnome_config_set_int(s, prj->secs);
-                g_snprintf(s, sizeof (s), GTT"Project%d/SecsDay", i);
-                gnome_config_set_int(s, prj->day_secs);
-                i++;
-        }
-
         g_snprintf(s, sizeof (s), "%ld", time(0));
         gnome_config_set_string(GTT"Misc/LastTimer", s);
         gnome_config_set_int(GTT"Misc/TimerRunning", (timer_is_running()));
-        gnome_config_set_int(GTT"Misc/NumProjects", i);
-        gnome_config_set_int(GTT"Misc/CurrProject", cur_run_proj);
+        gnome_config_set_int(GTT"Misc/CurrProject", gtt_project_get_id (cur_proj));
+        gnome_config_set_int(GTT"Misc/NumProjects", -1);
 
-	/* delete excess projects, if any */
-        for (; i < old_num; i++) {
+	/* delete all project information */
+        for (i=0; i < old_num; i++) {
                 g_snprintf(s, sizeof (s), GTT"Project%d", i);
                 gnome_config_clean_section(s);
         }
+
         gnome_config_sync();
-        return 1;
 }
 
 /* ======================================================= */
@@ -555,12 +552,12 @@ project_list_export (const char *fname)
 	{
 		GttProject *prj = node->data;
 		char *total_time, *time_today;
-                if (!prj->title) continue;
-		total_time = get_time (prj->secs);
-		time_today = get_time (prj->day_secs);
+                if (!gtt_project_get_title(prj)) continue;
+		total_time = get_time (gtt_project_total_secs_ever(prj));
+		time_today = get_time (gtt_project_total_secs_day(prj));
 		fprintf (fp, "%s\t%s\t%s\t%s\n",
-			 gtt_sure_string (prj->title),
-			 gtt_sure_string (prj->desc),
+			 gtt_sure_string (gtt_project_get_title(prj)),
+			 gtt_sure_string (gtt_project_get_desc(prj)),
 			 total_time,
 			 time_today);
 		g_free (total_time);
