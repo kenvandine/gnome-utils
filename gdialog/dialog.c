@@ -61,6 +61,40 @@ static struct Mode *modePtr;
 
 int gnome_mode;
 
+void add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc)
+{
+	AtkObject *atk_widget;
+
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+	atk_widget = gtk_widget_get_accessible(widget);
+
+	if (name)
+		atk_object_set_name(atk_widget, name);
+	if (desc)
+		atk_object_set_description(atk_widget, desc);
+}
+
+void add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType type)
+{
+
+	AtkObject *atk_obj1, *atk_obj2;
+	AtkRelationSet *relation_set;
+	AtkRelation *relation;
+
+	g_return_if_fail (GTK_IS_WIDGET(obj1));
+	g_return_if_fail (GTK_IS_WIDGET(obj2));
+
+	atk_obj1 = gtk_widget_get_accessible(obj1);
+	atk_obj2 = gtk_widget_get_accessible(obj2);
+
+	relation_set = atk_object_ref_relation_set (atk_obj1);
+	relation = atk_relation_new(&atk_obj2, 1, type);
+	atk_relation_set_add(relation_set, relation);
+	g_object_unref(G_OBJECT (relation));
+
+}
+
+
 int main(int argc, char *argv[])
 {
 	int offset = 0, clear_screen = 0, end_common_opts = 0, retval;

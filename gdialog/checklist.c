@@ -153,6 +153,8 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 	GtkCellRenderer *renderer;
 	GtkTreeSelection *selection;
 
+	GList *labellist;
+
 	if (gnome_mode) {
 		GtkWidget *w  = gtk_dialog_new_with_buttons (title,
 			NULL,
@@ -185,6 +187,12 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 		g_object_unref (G_OBJECT (store));
 
 		gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (cl));
+
+		if(GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(GTK_WIDGET(cl)))) {
+			labellist = gtk_container_get_children(GTK_CONTAINER(vbox));
+			add_atk_relation(GTK_WIDGET(labellist->data), GTK_WIDGET(cl), ATK_RELATION_LABEL_FOR);
+			add_atk_relation(GTK_WIDGET(cl), GTK_WIDGET(labellist->data), ATK_RELATION_LABELLED_BY);
+		}
 
 		if(flag!=FLAG_CHECK)
 		{

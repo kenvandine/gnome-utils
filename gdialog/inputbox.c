@@ -66,6 +66,9 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 		GtkWidget *hbox;
 		GtkWidget *vbox;
 		GtkWidget *ibox;
+
+		GList *labellist;
+
 		gtk_dialog_set_default_response (GTK_DIALOG(w),GTK_RESPONSE_OK);
 		gtk_window_set_title(GTK_WINDOW(w), title);
 
@@ -82,7 +85,14 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 			gtk_entry_set_text(GTK_ENTRY(input),init);
 			gtk_signal_connect_object(GTK_OBJECT(input), "activate",
                         GTK_SIGNAL_FUNC(gtk_window_activate_default),GTK_OBJECT(w));
-			
+
+		if(GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(input))) {
+			add_atk_namedesc(input, _("GDialog Entry"), _("Enter the text"));
+			labellist = gtk_container_get_children(GTK_CONTAINER(vbox));
+			add_atk_relation(GTK_WIDGET(labellist->data), input, ATK_RELATION_LABEL_FOR);
+			add_atk_relation(input, GTK_WIDGET(labellist->data), ATK_RELATION_LABELLED_BY);
+		}
+
 		gtk_container_set_border_width(GTK_CONTAINER(ibox), GNOME_PAD);
 			
 		gtk_box_pack_start(GTK_BOX(ibox), input, TRUE, TRUE, 0);

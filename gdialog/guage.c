@@ -60,6 +60,8 @@ dialog_guage (const char *title, const char *prompt, int height,
 	GtkWidget *vbox = gtk_vbox_new(FALSE, 0);
 	guint input;
 	GIOChannel *giochannel;
+
+	GList *labellist;
 	
 	label_autowrap(vbox, prompt, width);
 	gtk_progress_set_percentage( GTK_PROGRESS( p ), ( (gfloat) percent ) / 100);
@@ -70,6 +72,13 @@ dialog_guage (const char *title, const char *prompt, int height,
 
 	giochannel = g_io_channel_unix_new (0);
 	input = g_io_add_watch(giochannel, G_IO_IN, callback_progress_bar, (gpointer) p);
+
+	if(GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(p))) {
+		labellist = gtk_container_get_children(GTK_CONTAINER(vbox));
+		add_atk_namedesc(p, _("Gdialog progressbar"), _("Indicates the percentage specified at the standard input"));
+		add_atk_relation(GTK_WIDGET(labellist->data), p, ATK_RELATION_LABEL_FOR);
+		add_atk_relation(p, GTK_WIDGET(labellist->data), ATK_RELATION_LABELLED_BY);
+	}
 
 	gtk_widget_show_all(w);
 	gtk_main();
