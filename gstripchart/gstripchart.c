@@ -1302,7 +1302,6 @@ chart_expose_handler(GtkWidget *widget, GdkEventExpose *event)
 {
   int p, w = widget->allocation.width, h = widget->allocation.height;
 
-  //printf("exposed: %d,%d\n", w, h);
   /* Plot as much of the value history as is available and as the
      window will hold.  Plot points from newest to oldest until we run
      out of data or the window is full. */
