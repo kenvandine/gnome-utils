@@ -75,6 +75,8 @@ static int monitorcount = 0;
 static gboolean mon_opts_visible = FALSE, mon_win_visible = FALSE;
 static gboolean mon_exec_actions = FALSE, mon_hide_while_monitor = FALSE;
 static gboolean main_app_hidden = FALSE;
+static long new_pos_offset = 0L;
+static gboolean is_first_line = TRUE;
 
 /* ----------------------------------------------------------------------
    NAME:         MonitorMenu
@@ -585,14 +587,23 @@ mon_read_new_lines (Log *log)
   GtkTreeIter iter;
   GtkListStore *list;
   GtkTreePath *path;
+  pg.prev = NULL;
 
-  fseek (log->fp, log->offset_end, SEEK_SET);
+  if (is_first_line)
+    {
+      new_pos_offset = log->offset_end;
+      is_first_line = FALSE;
+    }
+  fseek (log->fp, new_pos_offset, SEEK_SET);
   
   list = (GtkListStore *)
           gtk_tree_view_get_model (GTK_TREE_VIEW(log->mon_lines));
 
   /* Read pages into buffers --------------------------- */
   ReadPageDown (log, &pg, mon_exec_actions);
+
+  /* Get last changed position & start reading next set of lines from there */
+  new_pos_offset = pg.lastchpos;
 
   while (TRUE) 
     {
@@ -622,6 +633,7 @@ mon_read_new_lines (Log *log)
       if (pg.islastpage)
 	break;
       ReadPageDown (log, &pg, mon_exec_actions);
+      new_pos_offset = pg.lastchpos;
     }
 }
 

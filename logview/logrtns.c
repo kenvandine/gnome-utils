@@ -532,7 +532,12 @@ ReadPageDown (Log * lg, Page * pg, gboolean exec_actions)
       if (ch == EOF)
       {
 	 if (ln == 0)
-	    pg->prev->islastpage = TRUE;
+	   {
+	     if (pg->prev != NULL)
+	       pg->prev->islastpage = TRUE;
+	     else
+	       pg->islastpage = TRUE; 
+	   }
 	 else
 	   pg->islastpage = TRUE;
 	 ungetc (ch, fp);
