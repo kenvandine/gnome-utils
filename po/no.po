@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.1\n"
-"POT-Creation-Date: 2001-08-19 20:28+0200\n"
+"POT-Creation-Date: 2001-08-29 10:12+0200\n"
 "PO-Revision-Date: 2001-08-13 21:53+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -642,7 +642,7 @@ msgstr "Kunne ikke lese geometristrengen '%s'"
 msgid "Specify the geometry of the window."
 msgstr "Spesifiserr geometrien til vinduet."
 
-#: gdiskfree/gdiskfree.c:59 gtt/main.c:234 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:59 gtt/main.c:235 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
@@ -882,15 +882,15 @@ msgstr "Kommandolinje ødelagt"
 msgid "No command for this mime type"
 msgstr "Ingen kommando for denne MIME-typen"
 
-#: gtt/app.c:119 gtt/app.c:231
+#: gtt/app.c:120 gtt/app.c:232
 msgid "no project selected"
 msgstr "ingen prosjekter valgt"
 
-#: gtt/app.c:220
+#: gtt/app.c:221
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:259 mini-utils/gless/gless.c:423
+#: gtt/app.c:264 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -913,6 +913,22 @@ msgstr "Prosjekttittel"
 #: gtt/clist.c:174 gtt/menucmd.c:122 stripchart/params.c:654
 msgid "Description"
 msgstr "Beskrivelse"
+
+#: gtt/file-io.c:320
+msgid "project %t started"
+msgstr "prosjekt %t startet"
+
+#: gtt/file-io.c:323
+msgid "stopped project %t"
+msgstr "stoppet prosjekt %t"
+
+#. Translators: This is a "time format", that is
+#. * format on how to print the elapsed time with
+#. * hours:minutes:seconds.
+#: gtt/file-io.c:533
+#, c-format
+msgid "%d:%02d:%02d"
+msgstr "%d:%02d:%02d"
 
 #: gtt/log.c:54
 #, c-format
@@ -937,7 +953,7 @@ msgstr "ingen beskrivelse"
 msgid "program exited"
 msgstr "program avsluttet"
 
-#: gtt/main.c:101
+#: gtt/main.c:102
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -945,15 +961,15 @@ msgstr ""
 "Det ser ut som om GtimeTracker allerede kjører.\n"
 "Trykk OK for å starte GTimeTracker likevel, eller avbryt for å avslutte."
 
-#: gtt/main.c:112
+#: gtt/main.c:113
 msgid "Cannot create pid-file!"
 msgstr "Kan ikke opprette pid-fil!"
 
-#: gtt/main.c:144
+#: gtt/main.c:145
 msgid "Error"
 msgstr "Feil"
 
-#: gtt/main.c:145
+#: gtt/main.c:146
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -961,15 +977,15 @@ msgstr ""
 "En feil oppstod under lesing av konfigurasjonsfilen.\n"
 "Skal jeg lage en ny konfigurasjon?"
 
-#: gtt/main.c:234
+#: gtt/main.c:235
 msgid "Specify geometry"
 msgstr "Spesifiser geometri"
 
-#: gtt/main.c:236
+#: gtt/main.c:237
 msgid "Select a project on startup"
 msgstr "Velg et prosjekt ved oppstart"
 
-#: gtt/main.c:236
+#: gtt/main.c:237
 msgid "PROJECT"
 msgstr "PROSJEKT"
 
@@ -1161,22 +1177,6 @@ msgstr "Tidsavbrudd i sek:"
 #: gtt/options.c:526
 msgid "Misc"
 msgstr "Forskjellig"
-
-#: gtt/proj.c:805
-msgid "project %t started"
-msgstr "prosjekt %t startet"
-
-#: gtt/proj.c:808
-msgid "stopped project %t"
-msgstr "stoppet prosjekt %t"
-
-#. Translators: This is a "time format", that is
-#. * format on how to print the elapsed time with
-#. * hours:minutes:seconds.
-#: gtt/proj.c:958
-#, c-format
-msgid "%d:%02d:%02d"
-msgstr "%d:%02d:%02d"
 
 #: gtt/prop.c:60
 msgid "empty"
