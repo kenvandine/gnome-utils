@@ -1890,7 +1890,7 @@ GnomeUIInfo toolbar[] = {
 int main (int argc, char *argv[])
 {
 	GnomeCanvasGroup *root;
-	GtkWidget *canvas, *align, *hpaned;
+	GtkWidget *canvas, *align, *hpaned, *frame;
 	char *titles[] = { N_("Field"), N_("Value")};
 
 	gnome_init("gnomecard", NULL, argc, argv, 0, NULL);
@@ -1924,17 +1924,30 @@ int main (int argc, char *argv[])
 	gtk_clist_set_policy(GTK_CLIST(crd_tree),
 			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_widget_set_usize (GTK_WIDGET(crd_tree), 0, 200);
-	
 	gtk_paned_add1(GTK_PANED(hpaned), GTK_WIDGET(crd_tree));
+	gtk_widget_show(GTK_WIDGET(crd_tree));
+
+	align = gtk_alignment_new(0.5, 0.5, 0.0, 0.0);
+	gtk_paned_add2(GTK_PANED(hpaned), align);
+	gtk_widget_show(align);
+
+	frame = gtk_frame_new (NULL);
+	gtk_container_border_width (GTK_CONTAINER (frame), 10);
+        gtk_container_add (GTK_CONTAINER (align), frame);
+	gtk_widget_show (frame);
+
 	gtk_widget_push_visual(gdk_imlib_get_visual());
 	gtk_widget_push_colormap(gdk_imlib_get_colormap());
 	canvas =
 	  crd_canvas = gnome_canvas_new();
 	gtk_widget_pop_visual();
-	gnome_canvas_set_scroll_region(GNOME_CANVAS(canvas), 0, 0, 
-				       CANVAS_WIDTH, CANVAS_HEIGHT);
+	gtk_widget_pop_colormap();
 	gnome_canvas_set_size(GNOME_CANVAS(canvas), 
 			      CANVAS_WIDTH, CANVAS_HEIGHT);
+	gnome_canvas_set_scroll_region(GNOME_CANVAS(canvas), 0, 0, 
+				       CANVAS_WIDTH, CANVAS_HEIGHT);
+	gtk_container_add (GTK_CONTAINER (frame), canvas);
+	gtk_widget_show(canvas);
 
 	root = GNOME_CANVAS_GROUP (gnome_canvas_root(GNOME_CANVAS(canvas)));
 	gnome_canvas_item_new (root, gnome_canvas_rect_get_type (),
@@ -1954,14 +1967,6 @@ int main (int argc, char *argv[])
 				      "anchor", GTK_ANCHOR_CENTER,
 				      "fill_color", "black",
 				      NULL);
-	
-	gtk_widget_show(canvas);
-
-	align = gtk_alignment_new(0.5, 0.5, 0, GNOME_PAD_SMALL);
-        gtk_container_add (GTK_CONTAINER (align), canvas);
-	gtk_widget_show(align);
-	gtk_paned_add2(GTK_PANED(hpaned), align);
-	gtk_widget_show(GTK_WIDGET(crd_tree));
 
 	crds = NULL;
 	
