@@ -36,11 +36,11 @@
 #include <signal.h>
 
 static GnomeUIInfo popup_menu[] = {
-	GNOMEUIINFO_ITEM_STOCK (N_("_Open..."), 
+	GNOMEUIINFO_ITEM_STOCK (N_("_Open"), 
 				NULL, 
 				open_file_cb,
 				GTK_STOCK_OPEN),
-	GNOMEUIINFO_ITEM_STOCK (N_("O_pen Folder..."), 
+	GNOMEUIINFO_ITEM_STOCK (N_("O_pen Folder"), 
 				NULL, 
 				open_folder_cb,
 				GTK_STOCK_OPEN),
@@ -159,11 +159,7 @@ add_constraint_cb (GtkWidget 	*widget,
 	item = gtk_menu_get_active (GTK_MENU(menu));
 	
 	if (GTK_WIDGET_SENSITIVE(item) == TRUE) {
-		interface.geometry.min_height += 30; 
-		gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), 
-					       GTK_WIDGET(interface.main_window),
-					       &interface.geometry, GDK_HINT_MIN_SIZE);
-		add_constraint (interface.selected_constraint);
+		add_constraint (interface.selected_constraint, NULL);
 	}
 }
 

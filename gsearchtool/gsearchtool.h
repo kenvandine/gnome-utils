@@ -90,6 +90,7 @@ struct _InterfaceStruct {
 	GtkWidget 		*file_selector;
 	GtkWidget 		*status_bar;
 	GtkWidget   		*progress_bar;
+	GtkWidget	 	*disclosure;
 	GtkWidget 		*additional_constraints;
 	GtkWidget		*constraint_menu;
 	GtkWidget 		*constraint;
@@ -123,7 +124,8 @@ void
 spawn_search_command 		(gchar *command);
 
 void  		
-add_constraint 			(gint constraint_id);
+add_constraint 			(gint constraint_id,
+				 gchar *value);
 
 void  		
 remove_constraint 		(gint constraint_id);

@@ -54,71 +54,6 @@ struct _FindOptionTemplate {
 	gchar 	 *desc;            /* description */
 	gboolean is_selected;     
 };
-
-struct _PoptArgument {	
-	gchar *name;
-	gchar *path;
-	gchar *sortby;
-	gboolean descending;
-	gboolean autostart;
-} PoptArgument;
-
-struct poptOption options[] = { 
-  {
-	"name", 
-	'\0', 
-	POPT_ARG_STRING, 
-	&PoptArgument.name, 
-	0, 
-	N_("Set the text of 'file is named'"), 
-	NULL
-  },
-  {
-	"path", 
-	'\0', 
-	POPT_ARG_STRING, 
-	&PoptArgument.path, 
-	0, 
-	N_("Set the text of 'look in folder'"), 
-	NULL
-  },
-  {
-	"sortby", 
-	'\0', 
-	POPT_ARG_STRING, 
-	&PoptArgument.sortby, 
-	0, 
-	N_("Sort files by one of the following: name, folder, size, type, or date"), 
-	NULL
-  },
-  {
-	"descending", 
-	'\0', 
-	POPT_ARG_NONE, 
-	&PoptArgument.descending, 
-	0, 
-	N_("Set sort order to descending, the default is ascending"), 
-	NULL
-  },
-  {
-	"autostart", 
-	'\0', 
-	POPT_ARG_NONE, 
-	&PoptArgument.autostart, 
-	0, 
-	N_("Automatically start a search"), 
-	NULL
-  },
-  { 
-	NULL,
-	'\0',
-	0,
-	NULL,
-	0,
-	NULL,
-	NULL
-  }
-};
 	
 static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -q '%s' {} \\;", N_("Contains the text"), FALSE },
@@ -144,6 +79,83 @@ static GtkTargetEntry dnd_table[] = {
 };
 
 static guint n_dnds = sizeof (dnd_table) / sizeof (dnd_table[0]);
+
+enum {
+	SEARCH_CONSTRAINT_CONTAINS_THE_TEXT, 
+	SEARCH_CONSTRAINT_OWNED_BY_USER, 
+	SEARCH_CONSTRAINT_OWNED_BY_GROUP,
+	SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED,
+	SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE,
+	SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER,
+	SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
+	SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN,
+	SEARCH_CONSTRAINT_FILE_IS_EMPTY,
+	SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED,
+	SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION,
+	SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS,
+	SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS
+};
+
+struct _PoptArgument {	
+	gchar 		*name;
+	gchar 		*path;
+	gchar 		*contains;
+	gchar		*user;
+	gchar		*group;
+	gboolean	nouser;
+	gchar		*mtimeless;
+	gchar		*mtimemore;
+	gchar  		*sizeless;	
+	gchar  		*sizemore;
+	gboolean 	empty;
+	gchar		*notnamed;
+	gchar		*regex;
+	gboolean	follow;
+	gboolean	allmounts;
+	gchar 		*sortby;
+	gboolean 	descending;
+	gboolean 	autostart;
+} PoptArgument;
+
+struct poptOption options[] = { 
+  	{ "name", '\0', POPT_ARG_STRING, &PoptArgument.name, 0, 
+	  N_("Set the text of 'file is named'"), NULL},
+	{ "path", '\0', POPT_ARG_STRING, &PoptArgument.path, 0, 
+	  N_("Set the text of 'look in folder'"), NULL},
+  	{ "sortby", '\0', POPT_ARG_STRING, &PoptArgument.sortby, 0, 
+	  N_("Sort files by one of the following: name, folder, size, type, or date"), NULL},
+  	{ "descending", '\0', POPT_ARG_NONE, &PoptArgument.descending, 0, 
+	  N_("Set sort order to descending, the default is ascending"), NULL},
+  	{ "autostart", '\0', POPT_ARG_NONE, &PoptArgument.autostart, 0, 
+	  N_("Automatically start a search"), NULL},
+  	{ "contains", '\0', POPT_ARG_STRING, &PoptArgument.contains, 0, 
+	  N_("Select the 'Contains the text' constraint"), NULL},
+	{ "user", '\0', POPT_ARG_STRING, &PoptArgument.user, 0, 
+	  N_("Select the 'Owned by user' constraint"), NULL},
+  	{ "group", '\0', POPT_ARG_STRING, &PoptArgument.group, 0, 
+	  N_("Select the 'Owned by group"), NULL},
+  	{ "nouser", '\0', POPT_ARG_NONE, &PoptArgument.nouser, 0, 
+	  N_("Select the 'Owner is unrecognized' constraint"), NULL},
+  	{ "mtimeless", '\0', POPT_ARG_STRING, &PoptArgument.mtimeless, 0, 
+	  N_("Select the 'Date modified before (days)' constraint"), NULL},
+  	{ "mtimemore", '\0', POPT_ARG_STRING, &PoptArgument.mtimemore, 0, 
+	  N_("Select the 'Date modified after (days)' constraint"), NULL},
+  	{ "sizeless", '\0', POPT_ARG_STRING, &PoptArgument.sizeless, 0, 
+	  N_("Select the 'Size is less than (kilobytes)' constraint"), NULL},
+  	{ "sizemore", '\0', POPT_ARG_STRING, &PoptArgument.sizemore, 0, 
+	  N_("Select the 'Size is more than (kilobytes)' constraint"), NULL},
+  	{ "empty", '\0', POPT_ARG_NONE, &PoptArgument.empty, 0, 
+	  N_("Select the 'File is empty' constraint"), NULL},
+  	{ "notnamed", '\0', POPT_ARG_STRING, &PoptArgument.notnamed, 0, 
+	  N_("Select the 'File is not named' constraint"), NULL},
+  	{ "regex", '\0', POPT_ARG_STRING, &PoptArgument.regex, 0, 
+	  N_("Select the 'File matches regular expression' constraint"), NULL},
+  	{ "follow", '\0', POPT_ARG_NONE, &PoptArgument.follow, 0, 
+	  N_("Select the 'Follow symbolic links' constraint"), NULL},
+  	{ "allmounts", '\0', POPT_ARG_NONE, &PoptArgument.allmounts, 0, 
+	  N_("Select the 'Search other filesystems' constraint"), NULL},
+  	{ NULL,'\0', 0, NULL, 0, NULL, NULL}
+};
 
 gchar *
 build_search_command (void)
@@ -298,6 +310,8 @@ add_file_to_search_results (const gchar 	*file,
 	gchar *utf8_base_name, *utf8_dir_name;
 	gchar *base_name, *dir_name;
 	
+	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), TRUE);
+	
 	if (pixbuf != NULL) {
 		GdkPixbuf *scaled;
 		int        new_w, new_h;
@@ -362,10 +376,11 @@ add_no_files_found_message (GtkListStore 	*store,
 			    GtkTreeIter 	*iter)
 {
 	/* When the list is empty append a 'No Files Found.' message. */
+	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), FALSE);
 	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
 	gtk_list_store_set (GTK_LIST_STORE(store), iter,
 		    	    COLUMN_ICON, NULL, 
-			    COLUMN_NAME, _("No Files Found."),
+			    COLUMN_NAME, _("No files found"),
 		    	    COLUMN_PATH, "",
 			    COLUMN_READABLE_SIZE, "",
 			    COLUMN_SIZE, (gdouble) 0,
@@ -553,6 +568,54 @@ handle_popt_args (void)
 		gtk_entry_set_text (GTK_ENTRY(gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))),
 				    g_locale_to_utf8 (PoptArgument.path, -1, NULL, NULL, NULL));
 	}	
+	if (PoptArgument.contains != NULL) {
+		add_constraint (SEARCH_CONSTRAINT_CONTAINS_THE_TEXT, 
+				PoptArgument.contains); 
+	}
+	if (PoptArgument.user != NULL) {
+		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_USER, 
+				PoptArgument.user); 
+	}
+	if (PoptArgument.group != NULL) {
+		add_constraint (SEARCH_CONSTRAINT_OWNED_BY_GROUP, 
+				PoptArgument.group); 
+	}
+	if (PoptArgument.nouser == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED, NULL); 
+	}
+	if (PoptArgument.mtimeless != NULL) {
+		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE, 
+				PoptArgument.mtimeless); 
+	}
+	if (PoptArgument.mtimemore != NULL) {
+		add_constraint (SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER, 
+				PoptArgument.mtimemore); 
+	}
+	if (PoptArgument.sizeless != NULL) {
+		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN,
+				PoptArgument.sizeless);
+	}
+	if (PoptArgument.sizemore != NULL) {
+		add_constraint (SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN,
+				PoptArgument.sizemore);
+	}
+	if (PoptArgument.empty == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_FILE_IS_EMPTY, NULL);
+	}
+	if (PoptArgument.notnamed != NULL) {
+		add_constraint (SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED, 
+				PoptArgument.notnamed); 
+	}
+	if (PoptArgument.regex != NULL) {
+		add_constraint (SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION, 
+				PoptArgument.regex); 
+	}
+	if (PoptArgument.follow == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS, NULL); 
+	}
+	if (PoptArgument.allmounts == TRUE) {
+		add_constraint (SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS, NULL); 
+	}
 	if (PoptArgument.sortby != NULL) {
 	
 		if (strcmp (PoptArgument.sortby, "name") == 0) {
@@ -583,6 +646,9 @@ handle_popt_args (void)
 			gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (interface.model), sort_by, 
 							      GTK_SORT_ASCENDING);
 		}
+	}
+	if (PoptArgument.autostart == TRUE) {
+		click_find_cb (interface.find_button, NULL);
 	}
 }
 
@@ -846,7 +912,7 @@ spawn_search_command (gchar *command)
 }
   
 static GtkWidget *
-create_constraint_box (SearchConstraint *opt)
+create_constraint_box (SearchConstraint *opt, gchar *value)
 {
 	GtkWidget *hbox;
 	GtkWidget *label;
@@ -898,6 +964,10 @@ create_constraint_box (SearchConstraint *opt)
 		/* add label and text field */
 		gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
 		
+		if (value != NULL) {
+			gtk_entry_set_text (GTK_ENTRY(entry), value);
+		}
+		
 		break;
 	default:
 		/* This should never happen.  If it does, there is a bug */
@@ -922,15 +992,25 @@ create_constraint_box (SearchConstraint *opt)
 }
 
 void
-add_constraint (gint constraint_id)
+add_constraint (gint constraint_id, gchar *value)
 {
 	SearchConstraint *constraint = g_new(SearchConstraint,1);
 	GtkWidget *widget;
 	
+	if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
+		g_signal_emit_by_name (G_OBJECT(interface.disclosure), "clicked", 0);
+		gtk_widget_show (interface.additional_constraints);
+	}
+	
+	interface.geometry.min_height += 30; 
+	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), 
+				       GTK_WIDGET(interface.main_window),
+				       &interface.geometry, GDK_HINT_MIN_SIZE);
+	
 	constraint->constraint_id = constraint_id;
 	set_constraint_info_defaults (constraint);
 	
-	widget = create_constraint_box (constraint);
+	widget = create_constraint_box (constraint, value);
 	gtk_box_pack_start (GTK_BOX(interface.constraint), widget, FALSE, FALSE, 0);
 	gtk_widget_show_all (widget);
 	
@@ -1028,7 +1108,8 @@ create_search_results_section (void)
 					      G_TYPE_BOOLEAN);
 	
 	interface.tree = gtk_tree_view_new_with_model (GTK_TREE_MODEL(interface.model));
-						
+
+	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), FALSE);						
 	gtk_tree_view_set_rules_hint (GTK_TREE_VIEW(interface.tree), TRUE);
   	g_object_unref (G_OBJECT(interface.model));
 	
@@ -1138,7 +1219,6 @@ create_main_window (void)
 	GtkWidget 	*results;
 	GtkWidget 	*window;
 	GtkWidget	*image;
-	GtkWidget 	*disclosure;
 
 	window = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
 	gtk_container_set_border_width (GTK_CONTAINER(window), GNOME_PAD);
@@ -1214,11 +1294,11 @@ create_main_window (void)
 	gtk_entry_set_text (GTK_ENTRY(entry), string);
 	g_free (string);
 	
-	disclosure = cddb_disclosure_new (_("Additional Constraints"), _("Additional Constraints"));
-	gtk_box_pack_start (GTK_BOX(window), disclosure, FALSE, FALSE, 0);
+	interface.disclosure = cddb_disclosure_new (_("Additional Constraints"), _("Additional Constraints"));
+	gtk_box_pack_start (GTK_BOX(window), interface.disclosure, FALSE, FALSE, 0);
 	
 	interface.additional_constraints = create_additional_constraint_section ();
-  	cddb_disclosure_set_container (CDDB_DISCLOSURE(disclosure), interface.additional_constraints);
+  	cddb_disclosure_set_container (CDDB_DISCLOSURE(interface.disclosure), interface.additional_constraints);
 
 	gtk_box_pack_start (GTK_BOX(window), GTK_WIDGET(interface.additional_constraints), FALSE, FALSE, 0);
 	
@@ -1316,8 +1396,6 @@ main (int 	argc,
 	gnome_app_set_contents (GNOME_APP(interface.main_window), window);
 
 	setup_app_progress_bar ();
-	
-	handle_popt_args ();
 
 	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), GTK_WIDGET(interface.main_window),
 				       &interface.geometry, GDK_HINT_MIN_SIZE);
@@ -1337,10 +1415,8 @@ main (int 	argc,
 	
 	gtk_widget_show (interface.main_window);
 	
-	if (PoptArgument.autostart == TRUE) {
-		click_find_cb (interface.find_button, NULL);
-	}
-	
+	handle_popt_args ();
+		
 	gtk_main ();
 
 	return 0;
