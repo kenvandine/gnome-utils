@@ -1,5 +1,4 @@
 #include <config.h>
-#include <fnmatch.h>
 #include <gnome.h>
 
 #include "card.h"
