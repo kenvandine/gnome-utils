@@ -62,6 +62,9 @@ static int current_template = 0;
 
 GtkWidget *app; 
 
+static int find_running = 0;
+static int locate_running = 0;
+
 static int
 count_char(char *s, char p)
 {
@@ -181,8 +184,8 @@ really_run_command(char *cmd, int *running)
 	int spos=0;
 	char ret[PIPE_READ_BUFFER];
 	int fd[2], fderr[2];
-	int pid;
 	int i,n;
+	int pid;
 	GString *errors = NULL;
 
 	if(!lock)
@@ -261,7 +264,7 @@ really_run_command(char *cmd, int *running)
 			gtk_main_iteration_do(FALSE);*/
 		gtk_main_iteration_do(TRUE);
 		if(*running==2) {
-			kill(pid,SIGKILL);
+			kill(pid, SIGKILL);
 			wait(NULL);
 		}
 	}
@@ -308,14 +311,13 @@ static void
 run_command(GtkWidget *w, gpointer data)
 {
 	char *cmd;
-	static int running = 0;
-	GtkWidget *stopbutton = data;
+	GtkWidget **buttons = data;
 
 	char *start_dir;
 
-	if(data==w) {/*we are in the stop button*/
-		if(running>0)
-			running = 2;
+	if(buttons[0]==w) {/*we are in the stop button*/
+		if(find_running>0)
+			find_running = 2;
 		return;
 	}
 
@@ -329,17 +331,17 @@ run_command(GtkWidget *w, gpointer data)
 	} else
 		start_dir = NULL;
 
-	gtk_widget_set_sensitive(stopbutton,TRUE);
-	gtk_grab_add(stopbutton);
+	gtk_widget_set_sensitive(buttons[0], TRUE);
+	gtk_widget_set_sensitive(buttons[1], FALSE);
 	
 	cmd = makecmd(start_dir);
 	g_free(start_dir);
 
-	really_run_command(cmd, &running);
+	really_run_command(cmd, &find_running);
 	g_free(cmd);
 
-	gtk_grab_remove(stopbutton);
-	gtk_widget_set_sensitive(stopbutton,FALSE);
+	gtk_widget_set_sensitive(buttons[0], FALSE);
+	gtk_widget_set_sensitive(buttons[1], TRUE);
 }
 
 
@@ -529,8 +531,8 @@ create_find_page(void)
 	GtkWidget *vbox;
 	GtkWidget *hbox;
 	GtkWidget *w;
-	GtkWidget *sb;
 	char *s;
+	static GtkWidget *buttons[2];
 
 	vbox = gtk_vbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_container_border_width(GTK_CONTAINER(vbox),GNOME_PAD_SMALL);
@@ -548,9 +550,9 @@ create_find_page(void)
 	g_free(s);
 
 	find_box = gtk_vbox_new(TRUE,GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(vbox),find_box,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(vbox),find_box,FALSE,FALSE,0);
 	grep_box = gtk_vbox_new(TRUE,GNOME_PAD_SMALL);
-	gtk_box_pack_start(GTK_BOX(vbox),grep_box,TRUE,TRUE,0);
+	gtk_box_pack_start(GTK_BOX(vbox),grep_box,FALSE,FALSE,0);
 
 	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
@@ -570,15 +572,15 @@ create_find_page(void)
 	w = gtk_hseparator_new();
 	gtk_box_pack_end(GTK_BOX(vbox),w,FALSE,FALSE,0);
 
-	w = gtk_button_new_with_label(_("Start"));
-	sb = gtk_button_new_with_label(_("Stop"));
-	gtk_signal_connect(GTK_OBJECT(w),"clicked",
-			   GTK_SIGNAL_FUNC(run_command),sb);
-	gtk_signal_connect(GTK_OBJECT(sb),"clicked",
-			   GTK_SIGNAL_FUNC(run_command),sb);
-	gtk_box_pack_end(GTK_BOX(hbox),w,FALSE,FALSE,0);
-	gtk_box_pack_end(GTK_BOX(hbox),sb,FALSE,FALSE,0);
-	gtk_widget_set_sensitive(sb,FALSE);
+	buttons[1] = gtk_button_new_with_label(_("Start"));
+	buttons[0] = gtk_button_new_with_label(_("Stop"));
+	gtk_signal_connect(GTK_OBJECT(buttons[1]),"clicked",
+			   GTK_SIGNAL_FUNC(run_command), buttons);
+	gtk_signal_connect(GTK_OBJECT(buttons[0]),"clicked",
+			   GTK_SIGNAL_FUNC(run_command), buttons);
+	gtk_box_pack_end(GTK_BOX(hbox),buttons[0],FALSE,FALSE,0);
+	gtk_box_pack_end(GTK_BOX(hbox),buttons[1],FALSE,FALSE,0);
+	gtk_widget_set_sensitive(buttons[0],FALSE);
 
 	add_option(OPTION_FILENAME, TRUE);
 	add_option(OPTION_NOSUBDIRS, FALSE);
@@ -591,14 +593,13 @@ static void
 run_locate_command(GtkWidget *w, gpointer data)
 {
 	char *cmd;
-	static int running = 0;
-	GtkWidget *stopbutton = data;
+	GtkWidget **buttons = data;
 
 	char *locate_string;
 
-	if(data==w) {/*we are in the stop button*/
-		if(running>0)
-			running = 2;
+	if(buttons[0]==w) {/*we are in the stop button*/
+		if(locate_running>0)
+			locate_running = 2;
 		return;
 	}
 
@@ -610,24 +611,25 @@ run_locate_command(GtkWidget *w, gpointer data)
 	}
 	locate_string = quote_quote_string(locate_string);
 
-	gtk_widget_set_sensitive(stopbutton, TRUE);
-	gtk_grab_add(stopbutton);
+	gtk_widget_set_sensitive(buttons[0], TRUE);
+	gtk_widget_set_sensitive(buttons[1], FALSE);
 
 	cmd = g_strdup_printf("locate '%s'", locate_string);
 
 	g_free(locate_string);
 
-	really_run_command(cmd, &running);
+	really_run_command(cmd, &locate_running);
 	g_free(cmd);
 
-	gtk_grab_remove(stopbutton);
-	gtk_widget_set_sensitive(stopbutton,FALSE);
+	gtk_widget_set_sensitive(buttons[0], FALSE);
+	gtk_widget_set_sensitive(buttons[1], TRUE);
 }
 
 static GtkWidget *
 create_locate_page(void)
 {
-	GtkWidget *w, *vbox, *hbox, *sb;
+	GtkWidget *w, *vbox, *hbox;
+	static GtkWidget *buttons[2];
 
 	vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
 	gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD_SMALL);
@@ -653,15 +655,15 @@ create_locate_page(void)
 	w = gtk_hseparator_new();
 	gtk_box_pack_end(GTK_BOX(vbox),w,FALSE,FALSE,0);
 
-	w = gtk_button_new_with_label(_("Start"));
-	sb = gtk_button_new_with_label(_("Stop"));
-	gtk_signal_connect(GTK_OBJECT(w),"clicked",
-			   GTK_SIGNAL_FUNC(run_locate_command),sb);
-	gtk_signal_connect(GTK_OBJECT(sb),"clicked",
-			   GTK_SIGNAL_FUNC(run_locate_command),sb);
-	gtk_box_pack_end(GTK_BOX(hbox),w,FALSE,FALSE,0);
-	gtk_box_pack_end(GTK_BOX(hbox),sb,FALSE,FALSE,0);
-	gtk_widget_set_sensitive(sb,FALSE);
+	buttons[1] = gtk_button_new_with_label(_("Start"));
+	buttons[0] = gtk_button_new_with_label(_("Stop"));
+	gtk_signal_connect(GTK_OBJECT(buttons[1]),"clicked",
+			   GTK_SIGNAL_FUNC(run_locate_command), buttons);
+	gtk_signal_connect(GTK_OBJECT(buttons[0]),"clicked",
+			   GTK_SIGNAL_FUNC(run_locate_command), buttons);
+	gtk_box_pack_end(GTK_BOX(hbox),buttons[0],FALSE,FALSE,0);
+	gtk_box_pack_end(GTK_BOX(hbox),buttons[1],FALSE,FALSE,0);
+	gtk_widget_set_sensitive(buttons[0],FALSE);
 
 	return vbox;
 }
@@ -709,12 +711,25 @@ about_cb (GtkWidget *widget, gpointer data)
 	gtk_widget_show (about);
 }
 
-static void
-quit_cb (GtkWidget *widget, gpointer data)
+/* thy evil easter egg */
+static gboolean
+window_click(GtkWidget *w, GdkEventButton *be)
 {
-	gtk_main_quit ();
+	static int foo = 0;
+	if(be->button == 3 && (++foo)%3 == 0)
+		gnome_ok_dialog("9\\_/_-\n  /\\ /\\\n\nGEGL!");
+	return TRUE;
 }
 
+static void
+quit_cb(GtkWidget *w, gpointer data)
+{
+	if(find_running > 0)
+		find_running = 2;
+	if(locate_running > 0)
+		locate_running = 2;
+	gtk_main_quit();
+}
 
 static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb,NULL),
@@ -745,13 +760,15 @@ main(int argc, char *argv[])
 
 	gnome_init ("gsearchtool", VERSION, argc, argv);
 	
-        app=gnome_app_new("gsearchtool", _("Gnome Search Tool"));
+        app = gnome_app_new("gsearchtool", _("Gnome Search Tool"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gsearchtool", "gsearchtool");
 	gtk_window_set_policy (GTK_WINDOW (app), TRUE, TRUE, TRUE);
 
         gtk_signal_connect(GTK_OBJECT(app), "delete_event",
 			   GTK_SIGNAL_FUNC(quit_cb), NULL);
-        gtk_window_set_policy(GTK_WINDOW(app),1,1,0);
+
+	gtk_signal_connect(GTK_OBJECT(app), "button_press_event",
+			   GTK_SIGNAL_FUNC(window_click), NULL);
 
 	/*set up the menu*/
         gnome_app_create_menus(GNOME_APP(app), gsearch_menu);
