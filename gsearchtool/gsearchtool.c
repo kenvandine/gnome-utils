@@ -164,6 +164,7 @@ build_search_command (void)
 	GString *command;
 	gchar *file_is_named_utf8;
 	gchar *file_is_named_locale;
+	gchar *file_is_named_escaped;
 	gchar *look_in_folder_utf8;
 	gchar *look_in_folder_locale;
 	
@@ -190,18 +191,19 @@ build_search_command (void)
 		gchar *locate;
 		
 		locate = g_find_program_in_path ("locate");
-		search_command.file_is_named_pattern = escape_single_quotes (file_is_named_locale);
+		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
+		search_command.file_is_named_pattern = g_strdup(file_is_named_locale);
 		
 		if ((locate != NULL) && (is_path_in_home_folder (look_in_folder_locale) != TRUE)) {
 			g_string_append_printf (command, "%s '%s*%s'", 
 						locate, 
 						look_in_folder_locale,
-						search_command.file_is_named_pattern);
+						file_is_named_escaped);
 		} 
 		else {
 			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' -xdev -print", 
 						look_in_folder_locale, 
-						search_command.file_is_named_pattern);
+						file_is_named_escaped);
 		}
 		g_free (locate);
 	} 
@@ -210,9 +212,10 @@ build_search_command (void)
 		gboolean disable_mount_argument = FALSE;
 		
 		search_command.regex_matching_enabled = FALSE;
-		search_command.file_is_named_pattern = escape_single_quotes (file_is_named_locale);
+		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
+		search_command.file_is_named_pattern = g_strdup(file_is_named_locale);
 		
-		if (search_command.file_is_named_pattern == NULL) {
+		if (file_is_named_escaped == NULL) {
 			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' ", 
 					 	look_in_folder_locale,
 						"*");
@@ -220,7 +223,7 @@ build_search_command (void)
 		else {
 			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' ", 
 					 	look_in_folder_locale,
-						search_command.file_is_named_pattern);
+						file_is_named_escaped);
 		}
 	
 		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
