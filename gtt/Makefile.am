@@ -9,6 +9,8 @@ INCLUDES = 			\
 
 bin_PROGRAMS = gtt
 
+man_MANS = gtt.1
+
 gtt_SOURCES = \
 	dialog.c	\
 	dialog.h	\
