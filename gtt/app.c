@@ -150,7 +150,7 @@ cur_proj_set(GttProject *proj)
 	{
 		prev_proj = cur_proj;
 		cur_proj = NULL;
-		ctree_unselect (prev_proj);
+		if (prev_proj) ctree_unselect (prev_proj);
 	}
 	log_proj(proj);
 	menu_set_states();
@@ -161,8 +161,10 @@ cur_proj_set(GttProject *proj)
 	/* handle commands */
 	if (!cmd) return;
 	str = g_string_new (NULL);
-	for (p = cmd; *p; p++) {
-		if ((p[0] == '%') && (p[1] == 's')) {
+	for (p = cmd; *p; p++) 
+	{
+		if ((p[0] == '%') && (p[1] == 's')) 
+		{
 			if (cur_proj)
 			{
 				g_string_append (str, gtt_project_get_title(cur_proj));
@@ -173,14 +175,11 @@ cur_proj_set(GttProject *proj)
 		}
 	}
 	pid = fork();
-	if (pid == 0) {
-		/* if we can't fork exec in first child */
-		if (fork () <= 0) {
-			execlp("sh", "sh", "-c", str->str, NULL);
-			g_warning("%s: %d: cur_proj_set: couldn't exec\n", __FILE__, __LINE__);
-			exit(1);
-		}
-		exit (0);
+	if (pid == 0) 
+	{
+		execlp("sh", "sh", "-c", str->str, NULL);
+		g_warning("%s: %d: cur_proj_set: couldn't exec\n", __FILE__, __LINE__);
+		exit(1);
 	}
 	if (pid < 0) {
 		g_warning("%s: %d: cur_proj_set: couldn't fork\n", __FILE__, __LINE__);
