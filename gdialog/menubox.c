@@ -20,6 +20,10 @@
 
 #include "dialog.h"
 
+/* Prototypes */
+
+void cancel_callback (GtkWidget *widget, gpointer data);
+
 static const char* const *the_items;
 
 static void okayed(GtkWidget *w, int i)

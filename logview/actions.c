@@ -165,7 +165,8 @@ make_tree_from_actions_db (GList *db)
 {
   char *text[2];
   char buffer[50];
-  GList *item, *sibling;
+  GList *item;
+  GList *sibling = NULL;
   Action *action;
 
   text[0] = buffer;

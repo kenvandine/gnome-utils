@@ -60,6 +60,7 @@ void mon_actions_checkbox (GtkWidget *widget, gpointer data);
 void mon_edit_actions (GtkWidget *widget, gpointer data);
 gint mon_check_logs (gpointer);
 int mon_repaint (GtkWidget * widget, GdkEventExpose * event);
+void InitMonitorData (void);
 
 /*
  *       ----------------

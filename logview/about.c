@@ -33,6 +33,10 @@ static GtkWidget *about_window = NULL;
 static GdkGC *gc = NULL;
 static GdkPixmap *logviewpix = NULL, *logpix = NULL;
 
+/* Prototypes */
+
+void AboutShowWindow (GtkWidget *widget, gpointer user_data);
+
 
 void
 AboutShowWindow (GtkWidget *widget, gpointer user_data)

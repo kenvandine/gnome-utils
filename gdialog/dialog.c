@@ -21,6 +21,9 @@
 #include "dialog.h"
 
 static void Usage(const char *name);
+extern int dialog_yesno_with_default(const char *title, const char *prompt, int height, 
+				     int width, int yesno_default);
+int callback_writeerr(GtkWidget *w, gpointer *pt);
 
 static int separate_output = 0;
 

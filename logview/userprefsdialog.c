@@ -19,10 +19,10 @@
     ---------------------------------------------------------------------- */
 
 
+#include <config.h>
 #include <unistd.h>
 #include <time.h>
 #include <sys/stat.h>
-#include <config.h>
 #include "gtk/gtk.h"
 #include "logview.h"
 #include "gnome.h"
@@ -55,14 +55,15 @@ typedef struct
 UserPrefsDialogStruct upds;
 
 void save_property_changes(GnomePropertyBox *prop, gint page, gpointer p);
+void UserPrefsDialog (GtkWidget * widget, gpointer user_data);
 
 void UserPrefsDialog (GtkWidget * widget, gpointer user_data)
 {
    memset((void *)&upds, 0, sizeof(upds));
 
    upds.table = gtk_table_new(3, 2, FALSE);
-   upds.hostname_width_label = gtk_label_new("hostname column width ( 0 to hide this column ): "); 
-   upds.columns_tab_label = gtk_label_new("Columns"); 
+   upds.hostname_width_label = gtk_label_new(_("hostname column width ( 0 to hide this column ): ")); 
+   upds.columns_tab_label = gtk_label_new(_("Columns")); 
    upds.hostname_width_spinner_adjust = (GtkAdjustment *)gtk_adjustment_new(0, 0.0, 100.0, 1.0, 5.0, 5.0); 
    upds.hostname_width_spinner = gtk_spin_button_new(upds.hostname_width_spinner_adjust, 1.0, 0); 
    upds.userprefs_property  = gnome_property_box_new();

@@ -20,6 +20,11 @@
 
 #include "dialog.h"
 
+/* Prototypes */
+
+int dialog_yesno_with_default(const char *title, const char *prompt, 
+			      int height, int width, int yesno_default);
+
 static void callback_yn(GtkWidget *w, gint button, gpointer *unused)
 {
 	/* yes = 0 no = 1 */
@@ -31,7 +36,7 @@ static void callback_err(GtkWidget *w, gpointer *unused)
 	exit(-1);
 }
 
-int dialog_yesno(const char *title, const char *prompt, int height, int width)
+void dialog_yesno(const char *title, const char *prompt, int height, int width)
 {
     dialog_yesno_with_default(title, prompt, height, width, 1);
 }

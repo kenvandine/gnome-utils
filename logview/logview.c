@@ -22,14 +22,13 @@
     ---------------------------------------------------------------------- */
 
 
+#include <config.h>
 #include <unistd.h>
 #include <time.h>
-#include <config.h>
 #include <sys/stat.h>
 #include "gtk/gtk.h"
 #include "logview.h"
-#include "gnome.h"
-#include "log.xpm"
+#include <gnome.h>
 #include <libgnomeui/gnome-window-icon.h>
 
 /*
@@ -39,7 +38,7 @@
  */
 
 void repaint (GtkWidget * canvas, GdkRectangle * area);
-void CreateMainWin ();
+void CreateMainWin (void);
 void log_repaint (GtkWidget * canvas, GdkRectangle * area);
 void PointerMoved (GtkWidget * canvas, GdkEventMotion * event);
 void HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key);
@@ -53,19 +52,22 @@ void MonitorMenu (GtkWidget* widget, gpointer user_data);
 void create_zoom_view (GtkWidget * widget, gpointer user_data);
 void UserPrefsDialog(GtkWidget * widget, gpointer user_data);
 void AboutShowWindow (GtkWidget* widget, gpointer user_data);
-void CloseApp ();
+void CloseApp (void);
 void CloseLog (Log *);
+void FileSelectCancel (GtkWidget * w, GtkFileSelection * fs);
+void FileSelectOk (GtkWidget * w, GtkFileSelection * fs);
 void ShowErrMessage (char *);
 void MainWinScrolled (GtkAdjustment *adjustment, GtkRange *);
 void CanvasResized (GtkWidget *widget, GtkAllocation *allocation);
 void ScrollWin (GtkRange *range, gpointer event);
 void LogInfo (GtkWidget * widget, gpointer user_data);
-void UpdateStatusArea ();
+void UpdateStatusArea (void);
 void set_scrollbar_size (int);
 void change_log (int dir);
-void open_databases ();
-int InitApp ();
-int InitPages ();
+void open_databases (void);
+void destroy (void);
+int InitApp (void);
+int InitPages (void);
 int RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event);
 int read_regexp_db (char *filename, GList **db);
 int read_actions_db (char *filename, GList **db);
@@ -172,7 +174,6 @@ extern int cursor_visible;
 
 static gint init_timer = -1;
 
-
 /* ----------------------------------------------------------------------
    NAME:          destroy
    DESCRIPTION:   Exit program.
@@ -181,7 +182,7 @@ static gint init_timer = -1;
 void
 destroy (void)
 {
-   CloseApp (0);
+   CloseApp ();
 }
 
 /* ----------------------------------------------------------------------
@@ -258,8 +259,6 @@ CreateMainWin ()
    GtkWidget *frame, *padding;
    GtkLabel *label;
    GtkObject *adj;
-   GdkPixmap *icon_pixmap;
-   GdkBitmap *icon_bitmap;
    GtkAllocation req_size;
 
    /* Create App */
@@ -461,7 +460,7 @@ MainWinScrolled (GtkAdjustment *adjustment, GtkRange *range)
    return;
 
  if (newln >= curlog->lstats.numlines)
-   newln == curlog->lstats.numlines - 1;
+   newln = curlog->lstats.numlines - 1;
 
   /* Find mark which has this line */
   mark = curlog->curmark;
@@ -714,7 +713,7 @@ ExitProg (GtkWidget * widget, gpointer user_data)
    ---------------------------------------------------------------------- */
 
 void 
-CloseApp ()
+CloseApp (void)
 {
    int i;
 
@@ -731,7 +730,7 @@ CloseApp ()
    ---------------------------------------------------------------------- */
 
 void
-open_databases ()
+open_databases (void)
 {
   char full_name[255];
   int found;

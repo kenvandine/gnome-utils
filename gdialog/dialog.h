@@ -181,7 +181,7 @@ void draw_box (WINDOW * win, int y, int x, int height, int width, chtype box,
 void draw_shadow (WINDOW * win, int y, int x, int height, int width);
 #endif
 
-int dialog_yesno (const char *title, const char *prompt, int height, int width);
+void dialog_yesno (const char *title, const char *prompt, int height, int width);
 int dialog_msgbox (const char *title, const char *prompt, int height,
 		int width, int pause);
 int dialog_textbox (const char *title, const char *file, int height, int width);

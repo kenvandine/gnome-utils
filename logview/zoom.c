@@ -48,6 +48,7 @@ extern char *month[12];
 extern GList *regexp_db, *descript_db;
 
 void close_zoom_view (GtkWidget * widget, GtkWindow ** window);
+void create_zoom_view (GtkWidget * widget, gpointer user_data);
 int match_line_in_db (LogLine *line, GList *db);
 void draw_parbox (GdkDrawable *win, GdkFont *font, GdkGC *gc,  \
 	     int x, int y, int width, char *text, int max_num_lines);
