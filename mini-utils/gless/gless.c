@@ -47,6 +47,8 @@ struct _GnomeLessApp {
   gchar * file;     /* File being displayed, or NULL */
   GList * dialogs;  /* Any associated dialogs - need destroying when
                        the window closes. */
+  gchar *search_string;	/* the string that was last searched for */
+  gint search_position;	/* the position in the text of the last search */
 };
 
 enum {
@@ -80,6 +82,11 @@ static void fixed_cb(GtkWidget * w, gpointer data);
 static void drop_file(GtkWidget *widget, GdkDragContext *context,
                       gint x, gint y, GtkSelectionData *selectionData,
                       guint info, guint time, GnomeLessApp *app );
+static void find_dialog();
+static void find_destroy_cb(GtkWidget * w, GdkEventAny * e, gpointer data);
+static void find_cb();
+static void find_again_cb();
+static int string_search(gchar * pattern, gchar * text);
 
 /***********************************
   Globals
@@ -295,6 +302,12 @@ static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_END
 };
 
+static GnomeUIInfo edit_menu[] =
+{
+    GNOMEUIINFO_MENU_FIND_ITEM(find_dialog, NULL),
+    GNOMEUIINFO_MENU_FIND_AGAIN_ITEM(find_again_cb, NULL),
+    GNOMEUIINFO_END
+};
 
 static GnomeUIInfo settings_menu[] = {
 	{GNOME_APP_UI_TOGGLEITEM, N_("_Fixed Font"), 
@@ -311,6 +324,7 @@ static GnomeUIInfo settings_menu[] = {
 
 static GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+    GNOMEUIINFO_MENU_EDIT_TREE(edit_menu),
 	GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
 	GNOMEUIINFO_END
@@ -412,6 +426,8 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
   }
 
   app->dialogs = NULL;
+  app->search_string = NULL;
+  app->search_position = 0;
 }
 
 static void popup_about()
@@ -429,6 +445,37 @@ static void popup_about()
   
   gtk_widget_show(ga);
 }
+
+static void find_dialog(GtkWidget * w, gpointer data)
+{
+    GtkWidget *find;
+    GtkWidget *entry;
+
+    const gchar *find_history = "find_history";
+
+    entry = gnome_entry_new(find_history);
+    gnome_entry_load_history(GNOME_ENTRY(entry));
+    gtk_widget_show(entry);
+
+    find = gnome_dialog_new(_("Find string"),
+			    _("Find"),
+			    GNOME_STOCK_BUTTON_CLOSE,
+			    NULL);
+
+    gtk_object_set_data(GTK_OBJECT(find), "app", data);
+
+    gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(find)->vbox),
+		       entry, TRUE, TRUE, GNOME_PAD);
+    gtk_signal_connect(GTK_OBJECT(find), "delete_event",
+		       find_destroy_cb, NULL);
+    gtk_signal_connect(GTK_OBJECT(find), "clicked",
+		       find_cb, entry);
+
+    gtk_widget_show(find);
+
+    gless_add_dialog((GnomeLessApp *) data, find);
+}
+
 
 /******************************
   Misc.
@@ -503,6 +550,7 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
   gnome_appbar_set_default(app->appbar, g_filename_pointer(filename));
 
   app->file = g_strdup(filename);
+  app->search_position = 0;
 
   return TRUE;
 }
@@ -745,3 +793,91 @@ static void drop_file(GtkWidget *widget, GdkDragContext *context,
     
 }
 
+
+static void find_destroy_cb(GtkWidget * w, GdkEventAny * e, gpointer data)
+{
+    GnomeLessApp *app;
+
+    app = (GnomeLessApp *) gtk_object_get_data(GTK_OBJECT(w), "app");
+
+    gless_remove_dialog(app, w);
+}
+
+static void find_cb(GtkWidget * w, gint button, gpointer data)
+{
+    GnomeLessApp *app;
+    GtkWidget *entry;
+
+    gchar *string;
+
+    app = (GnomeLessApp *) gtk_object_get_data(GTK_OBJECT(w), "app");
+    entry = gnome_entry_gtk_entry(GNOME_ENTRY(data));
+
+    string = g_strdup(gtk_entry_get_text(GTK_ENTRY(entry)));
+
+    find_destroy_cb(w, NULL, NULL);
+
+    if (button == 0) {
+	g_free(app->search_string);
+	app->search_string = string;
+	find_again_cb(NULL, app);
+    } else {
+	g_free(string);
+    }
+}
+
+static void find_again_cb(GtkWidget * w, gpointer data)
+{
+    GnomeLessApp *app;
+    GtkText *t;
+
+    gchar *pattern;
+    gchar *text;
+
+    gint len;
+
+    gint result;
+
+    app = (GnomeLessApp *) data;
+
+    gnome_appbar_push(app->appbar, _("Searching..."));
+
+    t = ((GnomeLess *) app->less)->text;
+
+    pattern = app->search_string;
+
+    len = gtk_text_get_length(t);
+    text = gtk_editable_get_chars(GTK_EDITABLE(t), 0, len);
+
+    result = string_search(pattern, text + app->search_position);
+
+    if (result != -1) {
+	result += app->search_position;
+	app->search_position = result + strlen(pattern);
+	gtk_editable_set_position(GTK_EDITABLE(t), result);
+	gtk_editable_select_region(GTK_EDITABLE(t), result, app->search_position);
+    } else {
+	app->search_position = 0;
+    }
+
+    gnome_appbar_pop(app->appbar);
+}
+
+static int string_search(gchar * pattern, gchar * text)
+{
+    gint i, j, k;
+    gint M = strlen(pattern);
+    gint N = strlen(text);
+
+    for (i = 0, j = M - 1; j >= 0; j--) {
+	while (pattern[j] != text[i + j]) {
+	    for (k = 0; j - k >= 0 && pattern[j - k] != text[i + j]; k++) {
+	    }
+	    i += k;
+	    j = M - 1;
+	    if ((i + j) > N)
+		return -1;
+	}
+    }
+    return i;
+}
