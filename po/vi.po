@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
+"POT-Creation-Date: 2004-03-08 18:08-0800\n"
 "PO-Revision-Date: 2003-07-24 15:31+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Đồ phụ tùng"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "Tìm từ điển"
 
@@ -50,8 +50,8 @@ msgstr "_Hiện Từ điển"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "Không thể kết nối đến server"
 
@@ -104,6 +104,11 @@ msgstr "Không thấy chuỗi"
 #: gdictsrc/gdict-app.c:469
 msgid "Find"
 msgstr "Tìm"
+
+#: gdictsrc/gdict-app.c:477
+#, fuzzy
+msgid "_Search for:"
+msgstr "Lỗi tìm kiếm"
 
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
@@ -161,7 +166,7 @@ msgstr "Nhập từ hoặc chọn một từ từ danh sách bên dưới"
 msgid "Look Up for a Word"
 msgstr "Tìm từ"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "_Tìm"
 
@@ -170,85 +175,92 @@ msgstr "_Tìm"
 msgid "Error invoking query: %s"
 msgstr "Lỗi khi truy vấn: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "Thông số từ điển"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "_Tìm thông minh"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "_Server mặc định"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "Đặt lại server về mặc định"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "_Cổng:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "_Cổng mặc định"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "Đặt lại cổng về mặc định"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "Mục nhập server"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "Tên server"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "Cổng"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "Mục nhập cổng"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "Nhập vào số hiệu cổng"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "_Từ điển:"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "Chiến lược _mặc định:"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "Tìm mọi từ trong từ điển"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "Từ điển"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "Tên từ điển"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "Chiến lược mặc định"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, fuzzy, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr "Có lỗi, `%s' rỗng"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -756,7 +768,7 @@ msgstr "Tiến trình định dạng"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "Tìm tập tin"
 
@@ -935,7 +947,7 @@ msgstr ""
 msgid "You may not have write permissions to the document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:63
+#: gsearchtool/gsearchtool-support.c:64
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -949,23 +961,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:348
+#: gsearchtool/gsearchtool-support.c:349
 msgid "today at %-I:%M %p"
 msgstr "hôm nay là %-I:%M:%p"
 
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:351
 msgid "yesterday at %-I:%M %p"
 msgstr "hôm qua là %-I:%M:%p"
 
-#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
+#: gsearchtool/gsearchtool-support.c:353 gsearchtool/gsearchtool-support.c:355
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%-d/%m/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:487
+#: gsearchtool/gsearchtool-support.c:526
 msgid "link (broken)"
 msgstr "liên kết (hỏng)"
 
-#: gsearchtool/gsearchtool-support.c:492
+#: gsearchtool/gsearchtool-support.c:531
 #, c-format
 msgid "link to %s"
 msgstr "liên kết tới %s"
@@ -1131,97 +1143,97 @@ msgstr "Mục nhập giá trị quy tắc tìm"
 msgid "Enter a value for search rule"
 msgstr "Nhập giá trị cho quy tắc tìm"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Nhấn vào để loại bỏ quy tắc '%s'"
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "Tùy chọn _hiện có:"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "Menu quy tắc tìm"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "Chọn một quy tắc tìm từ menu"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "_Kết quả tìm:"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "Tên"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "Thư mục"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "Kích thước"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "Loại"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "Ngày sửa đổi"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "_Tên chứa:"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "Nhập tên tập tin bạn muốn tìm"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "_Tìm trong thư mục:"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "Duyệt"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "Tìm trong thư mục"
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
 msgid "Enter the folder name where you want to start the search"
 msgstr "Nhập tên thư mục, nơi bạn muốn bắt đầu tìm"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1844
+msgid "Look in Folder Entry"
+msgstr "Tìm trong thư mục"
+
+#: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
 msgstr "Hiện nhiều _tùy chọn hơn"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 #, fuzzy
 msgid "Show more options"
 msgstr "Hiện nhiều _tùy chọn hơn"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "Nhấn để bắt đầu tìm"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "Nhấn để chấm dứt tìm"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr "Không thể khởi động Bonobo."
 
@@ -1250,13 +1262,28 @@ msgstr "Hành động"
 msgid "_Add"
 msgstr "_Thêm"
 
+#: logview/actions.c:162
+#, fuzzy
+msgid "Add an action"
+msgstr "Hành động"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "_Sửa"
 
+#: logview/actions.c:169
+#, fuzzy
+msgid "Edit an action"
+msgstr "_Thực hiện hành động"
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "_Loại bỏ"
+
+#: logview/actions.c:176
+#, fuzzy
+msgid "Remove an action"
+msgstr "Loại bỏ mọi thứ"
 
 #: logview/actions.c:263
 #, c-format
@@ -1299,6 +1326,58 @@ msgstr "hành động cần thực hiện khi khớp regexp"
 #: logview/actions.c:515
 msgid "description"
 msgstr "mô tả"
+
+#: logview/actions.c:651
+#, fuzzy
+msgid "Edit Action"
+msgstr "Hành động"
+
+#: logview/actions.c:687
+#, fuzzy
+msgid "_Tag:"
+msgstr "_Trang:"
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr ""
+
+#: logview/actions.c:705
+#, fuzzy
+msgid "_Log name:"
+msgstr "Tên _volume:"
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr ""
+
+#: logview/actions.c:724
+#, fuzzy
+msgid "_Process:"
+msgstr "Tiến trình:"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr ""
+
+#: logview/actions.c:743
+#, fuzzy
+msgid "_Message:"
+msgstr "Thông điệp:"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr ""
+
+#: logview/actions.c:762
+#, fuzzy
+msgid "_Action:"
+msgstr "Hành động"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1782,9 +1861,6 @@ msgstr "%e %B %X"
 #~ msgid "(aborted)"
 #~ msgstr "(ngừng)"
 
-#~ msgid "Search Errors"
-#~ msgstr "Lỗi tìm kiếm"
-
 #~ msgid "Search for Files Error"
 #~ msgstr "Lỗi tìm tập tin"
 
@@ -2156,9 +2232,6 @@ msgstr "%e %B %X"
 #~ msgid "_Font:"
 #~ msgstr "_Font:"
 
-#~ msgid "_Page:"
-#~ msgstr "_Trang:"
-
 #~ msgid "_Text to copy:"
 #~ msgstr "_Chữ cần chép:"
 
@@ -2230,9 +2303,6 @@ msgstr "%e %B %X"
 
 #~ msgid "The file `%s' is empty"
 #~ msgstr "Tập tin `%s' rỗng"
-
-#~ msgid "There was an error. `%s' is empty"
-#~ msgstr "Có lỗi, `%s' rỗng"
 
 #~ msgid "This is a library and can not be executed"
 #~ msgstr "Đây là một thư viện nên không thể được thực hiện"
@@ -2342,9 +2412,6 @@ msgstr "%e %B %X"
 
 #~ msgid "R_emove All"
 #~ msgstr "_Loại bỏ"
-
-#~ msgid "Remove all items"
-#~ msgstr "Loại bỏ mọi thứ"
 
 #~ msgid "Drop files here to add them to the archive."
 #~ msgstr "Thả các tập tin ở đây để thêm vào kho lưu."

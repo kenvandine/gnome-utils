@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-Utils 2.2\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
+"POT-Creation-Date: 2004-03-08 18:08-0800\n"
 "PO-Revision-Date: 2003-03-14 10:47+0600\n"
 "Last-Translator: Runa Bhattacharjee <runa77@softhome.net>\n"
 "Language-Team: BANGLA <gnome-translation@bengalinux.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "আনুষঙ্গিক"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "অভিধানে সন্ধান"
 
@@ -54,8 +54,8 @@ msgstr "_অভিধান"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "সার্ভারের সাথে সংযুক্ত হওয়া সম্ভব হয়নি"
 
@@ -110,6 +110,11 @@ msgstr "পংক্তিটি খুঁজে পাওয়া যায়নি
 #: gdictsrc/gdict-app.c:469
 msgid "Find"
 msgstr "খোঁজ"
+
+#: gdictsrc/gdict-app.c:477
+#, fuzzy
+msgid "_Search for:"
+msgstr "অনুসন্ধানের ফলে সৃষ্ট সমস্যাসমূহ"
 
 # msgstr "খঁোজ"
 #: gdictsrc/gdict-app.c:490
@@ -169,7 +174,7 @@ msgstr "একটি শব্দ লিখুন অথবা তালিক�
 msgid "Look Up for a Word"
 msgstr "কোন একটি শব্দ সন্ধান করা হোক"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "_সন্ধান"
 
@@ -178,86 +183,94 @@ msgstr "_সন্ধান"
 msgid "Error invoking query: %s"
 msgstr "এই অনুসন্ধানটি নির্বাহ করতে সমস্যা দেখা দিয়েছে: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "অভিধানের বৈশিষ্ট্যাবলি"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "বিশেষ _সন্ধান"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "_সার্ভার:"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "ডি_ফল্ট সার্ভার"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "সার্ভারকে ডিফল্ট মান দিয়ে রিসেট করা হোক"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "_পোর্ট:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "ডিফ_ল্ট পোর্ট"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "পোর্টকে ডিফল্ট মান দিয়ে রিসেট করা হোক"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "সার্ভার"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "সার্ভার বিষয়ক এন্ট্রি"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "সার্ভারের নাম লিখুন"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "পোর্ট"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "পোর্ট বিষয়ক এন্ট্রি"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "পোর্টের সংখ্যা লিখুন"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "_ডাটাবেস:"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "ডি_ফল্ট নীতি:"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "সকল ডাটাবেস খোঁজা হোক"
 
 # msgstr "সকল ডাটাবেস খঁোজা হোক"
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "ডাটাবেস"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "ডাটাবেসের নাম"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "ডিফল্ট নীতি"
+
+# msgstr "'%s' ফাইলটিতে কিছু লেখা নেই"
+#: gdictsrc/gdict-pref-dialog.c:658
+#, fuzzy, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr "সমস্যা দেখা দিয়েছে। '%s' খালি"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -759,7 +772,7 @@ msgstr "ফরম্যাট প্রক্রিয়ার অগ্রগত�
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "ফাইল খঁোজা হোক"
 
@@ -934,7 +947,7 @@ msgstr ""
 msgid "You may not have write permissions to the document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:63
+#: gsearchtool/gsearchtool-support.c:64
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -948,23 +961,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:348
+#: gsearchtool/gsearchtool-support.c:349
 msgid "today at %-I:%M %p"
 msgstr "%-I:%M %p -এ আজ"
 
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:351
 msgid "yesterday at %-I:%M %p"
 msgstr "%-I:%M %p -এ গতকাল"
 
-#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
+#: gsearchtool/gsearchtool-support.c:353 gsearchtool/gsearchtool-support.c:355
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:487
+#: gsearchtool/gsearchtool-support.c:526
 msgid "link (broken)"
 msgstr "লিঙ্ক (ত্রুটিপূর্ণ)"
 
-#: gsearchtool/gsearchtool-support.c:492
+#: gsearchtool/gsearchtool-support.c:531
 #, c-format
 msgid "link to %s"
 msgstr "%s -এর লিঙ্ক"
@@ -1133,100 +1146,100 @@ msgstr "রুল ভ্যালিউ এন্ট্রি খঁোজা �
 msgid "Enter a value for search rule"
 msgstr "অনুসন্ধান পদ্ধতির জন্য মান লিখুন"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "'%s' নিয়মটি সরানোর জন্য ক্লিক করুণ"
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "বর্ত_মান অপশনসমূহঃ"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "অনুসন্ধান পদ্ধতি প্রদর্শনকারী মেনু"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "মেনু থেকে একটি অনুসন্ধান পদ্ধতি বেছে নিন"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 #, fuzzy
 msgid "S_earch results:"
 msgstr "অ_নুসন্ধানের ফলাফল"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "নাম"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "ফোল্ডার"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "মাপ"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "ধরন"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "পরিবর্তনের তারিখ"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "যে ফাইলটি খঁুজতে ইচ্ছুক তার নাম লিখুন"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "_এই ফোল্ডারে দেখ:"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "ব্রাউজ"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
+msgid "Enter the folder name where you want to start the search"
+msgstr "যে ফোল্ডার থেকে খঁোজ শুরু করতে ইচ্ছুক তার নাম লিখুন"
+
+#: gsearchtool/gsearchtool.c:1844
 #, fuzzy
 msgid "Look in Folder Entry"
 msgstr "_এই ফোল্ডারে দেখ:"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Enter the folder name where you want to start the search"
-msgstr "যে ফোল্ডার থেকে খঁোজ শুরু করতে ইচ্ছুক তার নাম লিখুন"
-
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1862
 #, fuzzy
 msgid "Show more _options"
 msgstr "লগের বৈশিষ্ট্যাবলী প্রদর্শন করা হোক"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 #, fuzzy
 msgid "Show more options"
 msgstr "লগের বৈশিষ্ট্যাবলী প্রদর্শন করা হোক"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "সন্ধান প্রক্রিয়া শুরু করার জন্য ক্লিক করুন"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "সন্ধান প্রক্রিয়া থামানোর জন্য ক্লিক করুন"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr "বোনোবো চালু করা সম্ভব হয়নি"
 
@@ -1257,13 +1270,27 @@ msgstr "কার্যাবলী"
 msgid "_Add"
 msgstr "_যোগ করা"
 
+#: logview/actions.c:162
+#, fuzzy
+msgid "Add an action"
+msgstr "কার্যাবলী"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "_এডিট"
 
+#: logview/actions.c:169
+#, fuzzy
+msgid "Edit an action"
+msgstr "_কার্য নির্বাহ করা হোক"
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "_সরিয়ে ফেলা হোক"
+
+#: logview/actions.c:176
+msgid "Remove an action"
+msgstr ""
 
 #: logview/actions.c:263
 #, c-format
@@ -1306,6 +1333,58 @@ msgstr "regexps-এর মান 'সত্য' হলে যে কার্য
 #: logview/actions.c:515
 msgid "description"
 msgstr "বিবরণ"
+
+#: logview/actions.c:651
+#, fuzzy
+msgid "Edit Action"
+msgstr "কার্যাবলী"
+
+#: logview/actions.c:687
+#, fuzzy
+msgid "_Tag:"
+msgstr "_পৃষ্ঠা:"
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr ""
+
+#: logview/actions.c:705
+#, fuzzy
+msgid "_Log name:"
+msgstr "ভলিউমের_নাম:"
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr ""
+
+#: logview/actions.c:724
+#, fuzzy
+msgid "_Process:"
+msgstr "প্রসেস:"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr ""
+
+#: logview/actions.c:743
+#, fuzzy
+msgid "_Message:"
+msgstr "বার্তা:"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr ""
+
+#: logview/actions.c:762
+#, fuzzy
+msgid "_Action:"
+msgstr "কার্যাবলী"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -2030,9 +2109,6 @@ msgstr "%B %e %X"
 #~ msgid "_Font:"
 #~ msgstr "_ফন্ট:"
 
-#~ msgid "_Page:"
-#~ msgstr "_পৃষ্ঠা:"
-
 #~ msgid "_Text to copy:"
 #~ msgstr "_যে টেক্সট কপি করা হবে:"
 
@@ -2113,9 +2189,6 @@ msgstr "%B %e %X"
 
 #~ msgid "(aborted)"
 #~ msgstr "(পরিত্যক্ত)"
-
-#~ msgid "Search Errors"
-#~ msgstr "অনুসন্ধানের ফলে সৃষ্ট সমস্যাসমূহ"
 
 #~ msgid "Search for Files Error"
 #~ msgstr "ফাইলের সমস্যাসমূহ সন্ধান করা হোক"
@@ -2205,10 +2278,6 @@ msgstr "%B %e %X"
 # msgstr "'%s' ফাইলটি পড়া যায়নি"
 #~ msgid "The file `%s' is empty"
 #~ msgstr "'%s' ফাইলটি খালি"
-
-# msgstr "'%s' ফাইলটিতে কিছু লেখা নেই"
-#~ msgid "There was an error. `%s' is empty"
-#~ msgstr "সমস্যা দেখা দিয়েছে। '%s' খালি"
 
 # msgstr "সমস্যা দেখা দিয়েছে। '%s' -এ কিছুই লেখা নেই"
 #~ msgid "This is a library and can not be executed"

@@ -10,21 +10,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.5.2\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-18 12:11+0100\n"
+"POT-Creation-Date: 2004-03-08 18:08-0800\n"
 "PO-Revision-Date: 2004-01-18 12:11+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
 msgstr "Zubehör"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "Wörterbuchsuche"
 
@@ -56,8 +56,8 @@ msgstr "_Wörterbuch anzeigen"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "Verbindung zum Server konnte nicht hergestellt werden"
 
@@ -119,6 +119,11 @@ msgstr "Zeichenkette nicht gefunden"
 msgid "Find"
 msgstr "Suchen"
 
+#: gdictsrc/gdict-app.c:477
+#, fuzzy
+msgid "_Search for:"
+msgstr "Nach Dateien suchen"
+
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
 msgstr "_Suchen"
@@ -175,7 +180,7 @@ msgstr "Ein Wort eingeben oder eines aus der Liste auswählen"
 msgid "Look Up for a Word"
 msgstr "Ein Wort nachschlagen"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "_Nachschlagen"
 
@@ -184,85 +189,92 @@ msgstr "_Nachschlagen"
 msgid "Error invoking query: %s"
 msgstr "Fehler beim Abfragen: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "Wörterbucheinstellungen"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "_Intelligente Suche"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "_Vorgabe-Server"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "Server auf Vorgabe zurücksetzen"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "Vor_gabe-Port"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "Port auf Vorgabe zurücksetzen"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "Server-Eintrag"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "Den Namen des Servers eingeben"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "Port-Eintrag"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "Die Port-Nummer eingeben"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "_Datenbank:"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "_Vorgabemethode:"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "Alle Datenbanken durchsuchen"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "Datenbank"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "Name der Datenbank"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "Standardvorgehen"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr ""
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -794,7 +806,7 @@ msgstr "Fortschritt der Formatierung"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "Nach Dateien suchen"
 
@@ -971,7 +983,7 @@ msgstr "_Ersetzen"
 msgid "You may not have write permissions to the document."
 msgstr "Sie haben möglicherweise keine Schreibrechte auf das Dokument."
 
-#: gsearchtool/gsearchtool-support.c:63
+#: gsearchtool/gsearchtool-support.c:64
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -985,23 +997,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:348
+#: gsearchtool/gsearchtool-support.c:349
 msgid "today at %-I:%M %p"
 msgstr "Heute, %k:%M"
 
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:351
 msgid "yesterday at %-I:%M %p"
 msgstr "Gestern, %k:%M"
 
-#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
+#: gsearchtool/gsearchtool-support.c:353 gsearchtool/gsearchtool-support.c:355
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%d.%m.%y, %k:%M"
 
-#: gsearchtool/gsearchtool-support.c:487
+#: gsearchtool/gsearchtool-support.c:526
 msgid "link (broken)"
 msgstr "Verknüpfung (fehlerhaft)"
 
-#: gsearchtool/gsearchtool-support.c:492
+#: gsearchtool/gsearchtool-support.c:531
 #, c-format
 msgid "link to %s"
 msgstr "Verknüpfung mit %s"
@@ -1164,97 +1176,97 @@ msgstr "Wert des Suchregeleingabefelds"
 msgid "Enter a value for search rule"
 msgstr "Geben Sie einen Wert für die Suchregel ein"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klicken Sie hier, um die Regel »%s« zu entfernen"
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "_Verfügbare Kriterien:"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "Suchregelmenü"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "Wählen Sie eine Suchregel aus dem Menü"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "Such_ergebnisse:"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "Name"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "Ordner"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "Größe"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "Geändert am"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "_Name enthält:"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr "Name enthält-Eingabefeld"
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "Geben Sie den Dateinamen ein, nach dem Sie suchen wollen"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr "Name enthält-Eingabefeld"
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "Ordner _durchsuchen:"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "Auswählen"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "Ordner durchsuchen-Eingabefeld"
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
 msgid "Enter the folder name where you want to start the search"
 msgstr ""
 "Geben Sie den Namen des Ordners an, in dem die Suche begonnen werden soll"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1844
+msgid "Look in Folder Entry"
+msgstr "Ordner durchsuchen-Eingabefeld"
+
+#: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
 msgstr "Weitere _Einstellungen anzeigen"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Show more options"
 msgstr "Weitere Einstellungen anzeigen"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
 msgstr "Eine Liste weiterer Sucheinstellungen aus- bzw. einklappen."
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "Klicken Sie hier, um die Suche zu starten"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "Klicken Sie hier, um die Suche anzuhalten"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr "Bonobo konnte nicht initialisiert werden."
 
@@ -1591,97 +1603,97 @@ msgstr "%s ist keine Protokolldatei."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: Kein Speicher mehr"
 
-#: logview/logview.c:98
+#: logview/logview.c:97
 msgid "S_witch Log"
 msgstr "Protokoll _wechseln"
 
-#: logview/logview.c:99
+#: logview/logview.c:98
 msgid "Switch between already opened logs"
 msgstr "Zwischen bereits geöffneten Protokollen wechseln"
 
-#: logview/logview.c:105
+#: logview/logview.c:104
 msgid "_Monitor..."
 msgstr "Ü_berwachen..."
 
-#: logview/logview.c:106
+#: logview/logview.c:105
 msgid "Monitor Logs"
 msgstr "Protokolle überwachen"
 
-#: logview/logview.c:114
+#: logview/logview.c:113
 msgid "_Properties"
 msgstr "Ei_genschaften"
 
-#: logview/logview.c:115
+#: logview/logview.c:114
 msgid "Show Log Properties"
 msgstr "Protokolleigenschaften anzeigen"
 
-#: logview/logview.c:123
+#: logview/logview.c:122
 msgid "Clos_e All"
 msgstr "_Alle schließen"
 
-#: logview/logview.c:124
+#: logview/logview.c:123
 msgid "Close all Log files"
 msgstr "Alle Protokolldateien schließen"
 
-#: logview/logview.c:136
+#: logview/logview.c:135
 msgid "_Calendar"
 msgstr "_Kalender"
 
-#: logview/logview.c:137
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "Das Kalenderprotokoll anzeigen"
 
-#: logview/logview.c:143
+#: logview/logview.c:142
 msgid "_Entry Detail"
 msgstr "_Details zum Eintrag"
 
-#: logview/logview.c:144
+#: logview/logview.c:143
 msgid "Show Entry Detail"
 msgstr "Details zum Eintrag anzeigen"
 
-#: logview/logview.c:150
+#: logview/logview.c:149
 msgid "_Collapse All"
 msgstr "Alle ein_klappen"
 
-#: logview/logview.c:151
+#: logview/logview.c:150
 msgid "Collapse all the rows"
 msgstr "Alle Zeilen einklappen"
 
-#: logview/logview.c:368
+#: logview/logview.c:367
 msgid "No log files to open"
 msgstr "Keine Protokolldateien zum Öffnen"
 
-#: logview/logview.c:390
+#: logview/logview.c:389
 msgid "Date"
 msgstr "Datum"
 
-#: logview/logview.c:390
+#: logview/logview.c:389
 msgid "Host Name"
 msgstr "Rechnername"
 
-#: logview/logview.c:391
+#: logview/logview.c:390
 msgid "Process"
 msgstr "Prozess"
 
-#: logview/logview.c:391
+#: logview/logview.c:390
 msgid "Message"
 msgstr "Meldung"
 
-#: logview/logview.c:472
+#: logview/logview.c:471
 msgid "Last Modified: "
 msgstr "Zuletzt geändert: "
 
-#: logview/logview.c:571 logview/logview.c:646
+#: logview/logview.c:570 logview/logview.c:645
 msgid "Too many open logs. Close one and try again"
 msgstr ""
 "Zu viele Protokolle geöffnet. Schließen Sie eines und versuchen Sie es noch "
 "einmal"
 
-#: logview/logview.c:583
+#: logview/logview.c:582
 msgid "File already opened"
 msgstr "Datei ist bereits geöffnet"
 
-#: logview/logview.c:659
+#: logview/logview.c:658
 msgid "Open new logfile"
 msgstr "Neue Protokolldatei öffnen"
 

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nautilus\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
+"POT-Creation-Date: 2004-03-08 18:08-0800\n"
 "PO-Revision-Date: 2003-02-03 10:16+EDT\n"
 "Last-Translator: Ge'ez Frontier Foundation <locales@geez.org>\n"
 "Language-Team: Amharic <locales@geez.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "አጋዥ ፕሮግራሞች"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr ""
 
@@ -54,8 +54,8 @@ msgstr "መዝገበ ቃላት (_D)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr ""
 
@@ -106,6 +106,11 @@ msgstr ""
 #: gdictsrc/gdict-app.c:469
 msgid "Find"
 msgstr "ፈልግ"
+
+#: gdictsrc/gdict-app.c:477
+#, fuzzy
+msgid "_Search for:"
+msgstr "ፋይሎችን አስስ"
 
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
@@ -160,7 +165,7 @@ msgstr ""
 msgid "Look Up for a Word"
 msgstr ""
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr ""
 
@@ -169,84 +174,91 @@ msgstr ""
 msgid "Error invoking query: %s"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "የመዝገበ ቃላት ምርጫዎች"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "ሰርቨር፦ (_S)"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "ፖርት፦ (_P)"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "ሰርቨር"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "ፖርት"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "ዳታቤዝ፦ (_D)"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "ዳታቤዝ"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
 msgstr ""
 
 #: gdictsrc/gdict-speller.c:147
@@ -709,7 +721,7 @@ msgstr ""
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "ፋይሎችን አስስ"
 
@@ -881,7 +893,7 @@ msgstr ""
 msgid "You may not have write permissions to the document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:63
+#: gsearchtool/gsearchtool-support.c:64
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -895,23 +907,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:348
+#: gsearchtool/gsearchtool-support.c:349
 msgid "today at %-I:%M %p"
 msgstr "ዛሬ በ %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:351
 msgid "yesterday at %-I:%M %p"
 msgstr "ትናንት በ %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
+#: gsearchtool/gsearchtool-support.c:353 gsearchtool/gsearchtool-support.c:355
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:487
+#: gsearchtool/gsearchtool-support.c:526
 msgid "link (broken)"
 msgstr "የተሰበረ አያያዝ"
 
-#: gsearchtool/gsearchtool-support.c:492
+#: gsearchtool/gsearchtool-support.c:531
 #, c-format
 msgid "link to %s"
 msgstr ""
@@ -1068,97 +1080,97 @@ msgstr ""
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 #, fuzzy
 msgid "S_earch results:"
 msgstr "የአሰሳ ውጤቶች (_e)"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "ስም"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "ዶሴ"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "መጠን"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "ዓይነት"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "የተቀየረ ቀን"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "ቃኝ"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
 msgid "Enter the folder name where you want to start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1844
+msgid "Look in Folder Entry"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Show more options"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -1188,13 +1200,26 @@ msgstr "ትግባሮች"
 msgid "_Add"
 msgstr "ጨምር (_A)"
 
+#: logview/actions.c:162
+#, fuzzy
+msgid "Add an action"
+msgstr "ትግባሮች"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "አስተካክል (_E)"
 
+#: logview/actions.c:169
+msgid "Edit an action"
+msgstr ""
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "አስወግድ (_R)"
+
+#: logview/actions.c:176
+msgid "Remove an action"
+msgstr ""
 
 #: logview/actions.c:263
 #, c-format
@@ -1237,6 +1262,57 @@ msgstr ""
 #: logview/actions.c:515
 msgid "description"
 msgstr "መግለጫ"
+
+#: logview/actions.c:651
+#, fuzzy
+msgid "Edit Action"
+msgstr "ትግባሮች"
+
+#: logview/actions.c:687
+#, fuzzy
+msgid "_Tag:"
+msgstr "ገጽ፦ (_P)"
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr ""
+
+#: logview/actions.c:705
+msgid "_Log name:"
+msgstr ""
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr ""
+
+#: logview/actions.c:724
+#, fuzzy
+msgid "_Process:"
+msgstr "ሂደት፦"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr ""
+
+#: logview/actions.c:743
+#, fuzzy
+msgid "_Message:"
+msgstr "መልዕክት፦"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr ""
+
+#: logview/actions.c:762
+#, fuzzy
+msgid "_Action:"
+msgstr "ትግባሮች"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1831,9 +1907,6 @@ msgstr "%B %e %X"
 
 #~ msgid "_Font:"
 #~ msgstr "የፊደል ቅርጽ፦ (_F)"
-
-#~ msgid "_Page:"
-#~ msgstr "ገጽ፦ (_P)"
 
 #~ msgid "_Text to copy:"
 #~ msgstr "ጽሑፉን ቅጁ፦ (_T)"

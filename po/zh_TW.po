@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.3.4\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
+"POT-Creation-Date: 2004-03-08 18:08-0800\n"
 "PO-Revision-Date: 2003-08-19 07:25+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "附屬應用程式"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "查字典"
 
@@ -51,8 +51,8 @@ msgstr "顯示字典(_S)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "無法連接伺服器"
 
@@ -111,6 +111,11 @@ msgstr "找不到字串"
 msgid "Find"
 msgstr "搜尋"
 
+#: gdictsrc/gdict-app.c:477
+#, fuzzy
+msgid "_Search for:"
+msgstr "搜尋出現錯誤"
+
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
 msgstr "搜尋(_F)"
@@ -167,7 +172,7 @@ msgstr "請輸入字詞或在下列的清單中選擇"
 msgid "Look Up for a Word"
 msgstr "查字"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "檢索(_L)"
 
@@ -176,85 +181,92 @@ msgstr "檢索(_L)"
 msgid "Error invoking query: %s"
 msgstr "詢問時出現錯誤：%s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "字典偏好設定"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "智慧型檢索(_L)"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "伺服器(_S)："
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "預設伺服器(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "將伺服器恢復成預設值"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "連接埠(_P)："
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "預設連接埠(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "將連接埠號碼恢復成預設值"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "伺服器"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "伺服器輸入欄"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "請輸入伺服器名稱"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "連接埠"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "連接埠輸入欄"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "請輸入連接埠號碼"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "資料庫(_D)："
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "預設搜尋方式(_E)："
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "搜尋所有資料庫"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "資料庫"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "資料庫名稱"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "預設搜尋方式"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, fuzzy, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr "發生錯誤。‘%s’沒有內容"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -760,7 +772,7 @@ msgstr "格式化進度"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "搜尋檔案"
 
@@ -937,7 +949,7 @@ msgstr ""
 msgid "You may not have write permissions to the document."
 msgstr "您沒有足夠權限寫入檔案。不會儲存檔案。"
 
-#: gsearchtool/gsearchtool-support.c:63
+#: gsearchtool/gsearchtool-support.c:64
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -951,23 +963,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:348
+#: gsearchtool/gsearchtool-support.c:349
 msgid "today at %-I:%M %p"
 msgstr "今天%p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:351
 msgid "yesterday at %-I:%M %p"
 msgstr "昨天%p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
+#: gsearchtool/gsearchtool-support.c:353 gsearchtool/gsearchtool-support.c:355
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%Y-%m-%d %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:487
+#: gsearchtool/gsearchtool-support.c:526
 msgid "link (broken)"
 msgstr "鏈結 (目標不存在)"
 
-#: gsearchtool/gsearchtool-support.c:492
+#: gsearchtool/gsearchtool-support.c:531
 #, c-format
 msgid "link to %s"
 msgstr "%s 的鏈結"
@@ -1131,97 +1143,97 @@ msgstr "搜尋條件輸入欄"
 msgid "Enter a value for search rule"
 msgstr "請輸入有關該搜尋條件的值"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "按下本按鈕後會移除‘%s’條件"
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "目前提供的選項(_V)："
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "搜尋條件選單"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "在選單中選擇搜尋條件"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "搜尋結果(_E)："
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "名稱"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "資料夾"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "大小"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "類型"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "最後修改時間"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "檔名中含有(_N)："
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr "這個欄位指定檔名中含有甚麼"
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "請輸入想搜尋的檔案名稱"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr "這個欄位指定檔名中含有甚麼"
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "在指定資料夾開始搜尋(_L)："
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "瀏覽"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "這個欄位指定在哪個資料夾開始搜尋"
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
 msgid "Enter the folder name where you want to start the search"
 msgstr "請輸入準備搜尋的資料夾"
 
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1844
+msgid "Look in Folder Entry"
+msgstr "這個欄位指定在哪個資料夾開始搜尋"
+
+#: gsearchtool/gsearchtool.c:1862
 msgid "Show more _options"
 msgstr "顯示進階選項(_O)"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 #, fuzzy
 msgid "Show more options"
 msgstr "顯示進階選項(_O)"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "按下本按鈕後會開始搜尋"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "按下本按鈕後會停止搜尋"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr "無法初始化 bonobo。"
 
@@ -1250,13 +1262,28 @@ msgstr "行動"
 msgid "_Add"
 msgstr "加入(_A)"
 
+#: logview/actions.c:162
+#, fuzzy
+msgid "Add an action"
+msgstr "行動"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "修改(_E)"
 
+#: logview/actions.c:169
+#, fuzzy
+msgid "Edit an action"
+msgstr "執行行動(_E)"
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "移除(_R)"
+
+#: logview/actions.c:176
+#, fuzzy
+msgid "Remove an action"
+msgstr "移除所有項目"
 
 #: logview/actions.c:263
 #, c-format
@@ -1299,6 +1326,57 @@ msgstr "當符合正規表示式時所執行的行動"
 #: logview/actions.c:515
 msgid "description"
 msgstr "說明"
+
+#: logview/actions.c:651
+#, fuzzy
+msgid "Edit Action"
+msgstr "行動"
+
+#: logview/actions.c:687
+msgid "_Tag:"
+msgstr ""
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr ""
+
+#: logview/actions.c:705
+#, fuzzy
+msgid "_Log name:"
+msgstr "檔案系統標記名稱(_N)："
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr ""
+
+#: logview/actions.c:724
+#, fuzzy
+msgid "_Process:"
+msgstr "進程："
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr ""
+
+#: logview/actions.c:743
+#, fuzzy
+msgid "_Message:"
+msgstr "訊息："
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr ""
+
+#: logview/actions.c:762
+#, fuzzy
+msgid "_Action:"
+msgstr "行動"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1748,9 +1826,6 @@ msgstr "%B %e %X"
 #~ msgid "Search _Results"
 #~ msgstr "搜尋結果(_R)"
 
-#~ msgid "Search Errors"
-#~ msgstr "搜尋出現錯誤"
-
 #~ msgid "Search for Files Error"
 #~ msgstr "搜尋檔案出現錯誤"
 
@@ -1822,9 +1897,6 @@ msgstr "%B %e %X"
 #~ msgid "The file `%s' is empty"
 #~ msgstr "檔案‘%s’沒有內容"
 
-#~ msgid "There was an error. `%s' is empty"
-#~ msgstr "發生錯誤。‘%s’沒有內容"
-
 #~ msgid "File is not named"
 #~ msgstr "檔案的名稱不是"
 
@@ -1836,9 +1908,6 @@ msgstr "%B %e %X"
 
 #~ msgid "R_emove All"
 #~ msgstr "全部移除(_E)"
-
-#~ msgid "Remove all items"
-#~ msgstr "移除所有項目"
 
 #~ msgid "Default strategy"
 #~ msgstr "預設搜尋方式"

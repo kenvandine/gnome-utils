@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.96.0\n"
-"POT-Creation-Date: 2004-01-13 13:40+1300\n"
+"POT-Creation-Date: 2004-03-08 18:08-0800\n"
 "PO-Revision-Date: 2002-04-30 14:02MET\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Accessories"
 msgstr ""
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "Cweraedje dins l' diccionaire"
 
@@ -60,8 +60,8 @@ msgstr "_Diccionaire"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "Dji n' pout m' raloyî å sierveu"
 
@@ -125,6 +125,11 @@ msgstr "Tchinne nén trovêye"
 msgid "Find"
 msgstr "Trover"
 
+#: gdictsrc/gdict-app.c:477
+#, fuzzy
+msgid "_Search for:"
+msgstr "Cweri après des fitchîs"
+
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
 msgstr "_Trover"
@@ -181,7 +186,7 @@ msgstr "Tapez on mot ou l' tchoezi dins l' djivêye chal pa dzo"
 msgid "Look Up for a Word"
 msgstr "Cweri après on mot"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "C_weri"
 
@@ -190,87 +195,94 @@ msgstr "C_weri"
 msgid "Error invoking query: %s"
 msgstr "Åk n' a nén stî tot cwerant: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "Preferinces pol diccionaire"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "Sûti c_weraedje"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "_Sierveu:"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 #, fuzzy
 msgid "De_fault Server"
 msgstr "Prémetowe sitratédjeye"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "Rimete li prémetou sierveu"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "_Pôrt:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 #, fuzzy
 msgid "Def_ault Port"
 msgstr "Pré_metou"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "Rimete li prémetou pôrt"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "Sierveu"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "Intrêye do sierveu"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "Tapez li no do sierveu"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "Pôrt"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "Intrêye do pôrt"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "Tapez l' limero do pôrt"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "_Båze di dnêyes:"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "Prémetowe sitratédje_ye:"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "Cweri dins totes les båzes di dnêyes"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "Båze di dnêyes"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "No del båze di dnêyes"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "Prémetowe sitratédjeye"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, fuzzy, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr "Åk n' a nén stî. «%s» est vude"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -758,7 +770,7 @@ msgstr "Avançmint di l' abwesnaedje"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
 #: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
+#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
 msgid "Search for Files"
 msgstr "Cweri après des fitchîs"
 
@@ -937,7 +949,7 @@ msgstr ""
 msgid "You may not have write permissions to the document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:63
+#: gsearchtool/gsearchtool-support.c:64
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -949,23 +961,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:348
+#: gsearchtool/gsearchtool-support.c:349
 msgid "today at %-I:%M %p"
 msgstr "ouy a %H:%M"
 
-#: gsearchtool/gsearchtool-support.c:350
+#: gsearchtool/gsearchtool-support.c:351
 msgid "yesterday at %-I:%M %p"
 msgstr "ayir a %H:%M"
 
-#: gsearchtool/gsearchtool-support.c:352 gsearchtool/gsearchtool-support.c:354
+#: gsearchtool/gsearchtool-support.c:353 gsearchtool/gsearchtool-support.c:355
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%-d/%-m/%y, %H:%M"
 
-#: gsearchtool/gsearchtool-support.c:487
+#: gsearchtool/gsearchtool-support.c:526
 msgid "link (broken)"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:492
+#: gsearchtool/gsearchtool-support.c:531
 #, c-format
 msgid "link to %s"
 msgstr ""
@@ -1134,103 +1146,103 @@ msgstr ""
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Clitchîz po verifyî l' ortografeye"
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 #, fuzzy
 msgid "Search Rules Menu"
 msgstr "Rizultat do cweraedje"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 #, fuzzy
 msgid "Select a search rule from the menu"
 msgstr "Askepyî ene novele årtchive a pårti des cayets"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 #, fuzzy
 msgid "S_earch results:"
 msgstr "Rizultats do c_weraedje"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "No"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "Ridant"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "Grandeu"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "Sôre"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1826
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "Kimincî a pårti do ridant:"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "Foyter"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
+msgid "Enter the folder name where you want to start the search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1844
 #, fuzzy
 msgid "Look in Folder Entry"
 msgstr "Kimincî a pårti do ridant:"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Enter the folder name where you want to start the search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:1865
+#: gsearchtool/gsearchtool.c:1862
 #, fuzzy
 msgid "Show more _options"
 msgstr "Mostrer les prôpietés do djournå"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 #, fuzzy
 msgid "Show more options"
 msgstr "Mostrer les prôpietés do djournå"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1872
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1922
+#: gsearchtool/gsearchtool.c:1919
 msgid "Click to Start the search"
 msgstr "Clitchiz po-z enonder l' cweraedje"
 
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1920
 msgid "Click to Stop the search"
 msgstr "Clitchîz po-z arester l' cweraedje"
 
-#: gsearchtool/gsearchtool.c:2202
+#: gsearchtool/gsearchtool.c:2199
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -1260,13 +1272,28 @@ msgstr "Accions"
 msgid "_Add"
 msgstr "_Radjouter"
 
+#: logview/actions.c:162
+#, fuzzy
+msgid "Add an action"
+msgstr "Accions"
+
 #: logview/actions.c:164
 msgid "_Edit"
 msgstr "_Candjî"
 
+#: logview/actions.c:169
+#, fuzzy
+msgid "Edit an action"
+msgstr "_Enonder accions"
+
 #: logview/actions.c:171
 msgid "_Remove"
 msgstr "_Oister"
+
+#: logview/actions.c:176
+#, fuzzy
+msgid "Remove an action"
+msgstr "Oister tos les cayets"
 
 #: logview/actions.c:263
 #, c-format
@@ -1309,6 +1336,57 @@ msgstr "bouye a enonder si li regexp est VEUR"
 #: logview/actions.c:515
 msgid "description"
 msgstr "discrijhaedje"
+
+#: logview/actions.c:651
+#, fuzzy
+msgid "Edit Action"
+msgstr "Accions"
+
+#: logview/actions.c:687
+msgid "_Tag:"
+msgstr ""
+
+#: logview/actions.c:696
+msgid "Tag that identifies the log file."
+msgstr ""
+
+#: logview/actions.c:705
+#, fuzzy
+msgid "_Log name:"
+msgstr "_No do volume:"
+
+#: logview/actions.c:714
+msgid "Regular expression that will match the log name."
+msgstr ""
+
+#: logview/actions.c:724
+#, fuzzy
+msgid "_Process:"
+msgstr "Process:"
+
+#: logview/actions.c:733
+msgid "Regular expression that will match process part of message."
+msgstr ""
+
+#: logview/actions.c:743
+#, fuzzy
+msgid "_Message:"
+msgstr "Messaedje:"
+
+#: logview/actions.c:752
+msgid "Regular expression that will match the message."
+msgstr ""
+
+#: logview/actions.c:762
+#, fuzzy
+msgid "_Action:"
+msgstr "Accions"
+
+#: logview/actions.c:771
+msgid ""
+"Action that will be executed if all previous regexps. are matched. This is "
+"executed by a system command: system (action)."
+msgstr ""
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1757,10 +1835,6 @@ msgstr "%e di %B %X"
 #~ msgstr "Abwesneu di plaketes"
 
 #, fuzzy
-#~ msgid "Search Errors"
-#~ msgstr "Cweri après des fitchîs"
-
-#, fuzzy
 #~ msgid "Search for Files Error"
 #~ msgstr "Cweri après des fitchîs"
 
@@ -2100,9 +2174,6 @@ msgstr "%e di %B %X"
 #~ msgid "The file `%s' is empty"
 #~ msgstr "Li fitchî «%s» est vude"
 
-#~ msgid "There was an error. `%s' is empty"
-#~ msgstr "Åk n' a nén stî. «%s» est vude"
-
 #, fuzzy
 #~ msgid "File is not named"
 #~ msgstr "Li no di fitchî n' est nén"
@@ -2186,9 +2257,6 @@ msgstr "%e di %B %X"
 
 #~ msgid "R_emove All"
 #~ msgstr "Oister _ttafwait"
-
-#~ msgid "Remove all items"
-#~ msgstr "Oister tos les cayets"
 
 #~ msgid "_Create Archive"
 #~ msgstr "As_kepyî årtchive"
