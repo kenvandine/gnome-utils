@@ -1,4 +1,4 @@
-SUBDIRS = src pixmaps doc
+SUBDIRS = src pixmaps help
 
 desktopdir = $(datadir)/applications
 desktop_in_files = gcharmap.desktop.in
