@@ -1,4 +1,4 @@
-SUBDIRS = doc
+SUBDIRS = help
 
 bin_PROGRAMS = gdialog
 
