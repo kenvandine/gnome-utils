@@ -1,5 +1,7 @@
 bin_PROGRAMS = meat-grinder
 
+SUBDIRS = help
+
 INCLUDES = \
 	-I$(top_srcdir) 				\
 	-DG_LOG_DOMAIN=\"MeatGrinder\" 			\
