@@ -95,11 +95,11 @@ GnomeUIInfo toolbar[] = {
       cb_insert_char_click, NULL),
     GNOMEUIINFO_SEPARATOR,*/
     GNOMEUIINFO_ITEM_STOCK(N_("Cut"), N_("Cut the selection"),
-      cb_cut_click, GNOME_STOCK_PIXMAP_CUT),
+      cb_cut_click, GTK_STOCK_CUT),
     GNOMEUIINFO_ITEM_STOCK(N_("Copy"), N_("Copy the selection"),
-      cb_copy_click, GNOME_STOCK_PIXMAP_COPY),
+      cb_copy_click, GTK_STOCK_COPY),
     GNOMEUIINFO_ITEM_STOCK(N_("Paste"), N_("Paste the clipboard"),
-      cb_paste_click, GNOME_STOCK_PIXMAP_PASTE),
+      cb_paste_click, GTK_STOCK_PASTE),
     GNOMEUIINFO_SEPARATOR,
     GNOMEUIINFO_END
 };

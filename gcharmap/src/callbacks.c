@@ -46,7 +46,7 @@ cb_about_click (GtkWidget *widget, gpointer user_data)
     GdkPixbuf *logo = NULL;
     gchar *logo_fn;
 
-    logo_fn = gnome_pixmap_file("gcharmap-logo.png");
+    logo_fn = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gcharmap-logo.png", TRUE, NULL);
     if (logo_fn != NULL)
     {
 	    logo = gdk_pixbuf_new_from_file(logo_fn, NULL /* error */);
@@ -78,9 +78,9 @@ void
 cb_charbtn_click (GtkButton *button, gpointer user_data)
 {
     GtkLabel *label = GTK_LABEL (GTK_BIN (button)->child);
-    gchar *text;
+    const gchar *text;
 
-    gtk_label_get (label, &text);
+    text = gtk_label_get_text (label);
 
     if (strcmp (text, _("del")) == 0) {
 	    if ( ! mainapp->insert_at_end) {
@@ -109,7 +109,10 @@ cb_charbtn_click (GtkButton *button, gpointer user_data)
 	    gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
 				      strlen (text), &current_pos);
     } else {
-	    gtk_entry_append_text (GTK_ENTRY (mainapp->entry), text);
+           gint current_pos;
+           gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), -1);
+           current_pos = gtk_editable_get_position (GTK_EDITABLE (mainapp->entry));
+           gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text, strlen(text), &current_pos);
     }
 }
 
@@ -118,10 +121,11 @@ void
 cb_charbtn_enter (GtkButton *button, gpointer user_data)
 {
     GtkLabel *label = GTK_LABEL (GTK_BIN (button)->child);
-    gchar *text, *s;
+    gchar *s;
    int code;
+    const gchar *text;
 
-    gtk_label_get (label, &text);
+    text = gtk_label_get_text (label);
     if (strcmp (text, _("del")) == 0) {
 	    code = 127;
     } else {
@@ -229,7 +233,7 @@ cb_paste_click (GtkWidget *widget, gpointer user_data)
 void
 cb_select_all_click (GtkWidget *widget, gpointer user_data)
 {
-    gtk_entry_select_region (GTK_ENTRY (mainapp->entry), 0, -1);
+    gtk_editable_select_region (GTK_EDITABLE (mainapp->entry), 0, -1);
 }
 
 

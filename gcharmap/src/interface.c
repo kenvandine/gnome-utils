@@ -40,7 +40,7 @@ create_button (const gchar *label, GtkSignalFunc func)
     button = gtk_button_new_with_label (label);
     GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
     if (func != NULL)
-        gtk_signal_connect (GTK_OBJECT (button), "clicked",
+        g_signal_connect (G_OBJECT (button), "clicked",
           func, NULL);
     gtk_widget_show (button);
     return button;
@@ -74,12 +74,12 @@ create_chartable (void)
               (GtkAttachOptions) (GTK_EXPAND | GTK_SHRINK | GTK_FILL),
               0, 0);
 
-            gtk_signal_connect (GTK_OBJECT (button), "clicked",
-              GTK_SIGNAL_FUNC (cb_charbtn_click), NULL);
-            gtk_signal_connect (GTK_OBJECT (button), "enter",
-              GTK_SIGNAL_FUNC (cb_charbtn_enter), NULL);
-            gtk_signal_connect (GTK_OBJECT (button), "leave",
-              GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
+            g_signal_connect (G_OBJECT (button), "clicked",
+              G_CALLBACK (cb_charbtn_click), NULL);
+            g_signal_connect (G_OBJECT (button), "enter",
+              G_CALLBACK (cb_charbtn_enter), NULL);
+            g_signal_connect (G_OBJECT (button), "leave",
+              G_CALLBACK (cb_charbtn_leave), NULL);
 
         }
     }
@@ -107,12 +107,12 @@ create_chartable (void)
               (GtkAttachOptions) (GTK_EXPAND | GTK_SHRINK | GTK_FILL),
               0, 0);
 
-            gtk_signal_connect (GTK_OBJECT (button), "clicked",
-              GTK_SIGNAL_FUNC (cb_charbtn_click), NULL);
-            gtk_signal_connect (GTK_OBJECT (button), "enter",
-              GTK_SIGNAL_FUNC (cb_charbtn_enter), NULL);
-            gtk_signal_connect (GTK_OBJECT (button), "leave",
-              GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
+            g_signal_connect (G_OBJECT (button), "clicked",
+              G_CALLBACK (cb_charbtn_click), NULL);
+            g_signal_connect (G_OBJECT (button), "enter",
+              G_CALLBACK (cb_charbtn_enter), NULL);
+            g_signal_connect (G_OBJECT (button), "leave",
+              G_CALLBACK (cb_charbtn_leave), NULL);
 
         }
     }
@@ -139,8 +139,8 @@ main_app_create_ui (MainApp *app)
         app->window = gnome_app_new (_(PACKAGE), _("Gnome Character Map"));
         gtk_widget_set_name (app->window, "mainapp");
         
-        gtk_signal_connect_object (GTK_OBJECT (app->window), "destroy",
-          GTK_SIGNAL_FUNC (main_app_destroy), G_OBJECT (app));
+        g_signal_connect_swapped (G_OBJECT (app->window), "destroy",
+          G_CALLBACK (main_app_destroy), G_OBJECT (app));
         gtk_widget_realize (app->window);
 	
         appbar = gnome_appbar_new (FALSE, TRUE, GNOME_PREFERENCES_USER);
@@ -180,13 +180,14 @@ main_app_create_ui (MainApp *app)
           "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*");
         gtk_button_set_relief (GTK_BUTTON (app->fontpicker), GTK_RELIEF_NONE);
         gtk_box_pack_start (GTK_BOX (hbox), app->fontpicker, FALSE, TRUE, 0);
-        gtk_signal_connect (GTK_OBJECT (app->fontpicker), "font_set",
-          GTK_SIGNAL_FUNC (cb_fontpicker_font_set), NULL);
+        g_signal_connect (G_OBJECT (app->fontpicker), "font_set",
+          G_CALLBACK (cb_fontpicker_font_set), NULL);
 
         vsep = gtk_vseparator_new ();
         gtk_box_pack_start (GTK_BOX (hbox), vsep, FALSE, FALSE, 0);
 #endif	
         alabel = gtk_label_new_with_mnemonic (_("_Text to copy:"));
+        gtk_misc_set_padding (GTK_MISC (alabel), GNOME_PAD_SMALL, -1);
         gtk_box_pack_start (GTK_BOX (hbox), alabel, FALSE, TRUE, 0);
 
         app->entry = gtk_entry_new ();
@@ -220,8 +221,8 @@ main_app_create_ui (MainApp *app)
         font = gdk_fontset_load (
           _("-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*")
         );
-	if (font != NULL)
-		gtk_style_set_font(app->btnstyle, font);
+        if (font != NULL)
+               gtk_style_set_font(app->btnstyle, font);
 #endif
         gtk_widget_destroy (tmp);
 
@@ -270,8 +271,8 @@ main_app_create_ui (MainApp *app)
         font = gdk_fontset_load (
           _("-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*")
         );
-	if (font != NULL)
-		gtk_style_set_font(style, font);
+        if (font != NULL)
+               gtk_style_set_font(style, font);
 
         gtk_widget_set_style (viewport, style);
         gtk_box_pack_start (GTK_BOX (vbox2), viewport, FALSE, TRUE, 0);
@@ -281,14 +282,20 @@ main_app_create_ui (MainApp *app)
         gtk_widget_set_style (app->preview_label, style);
     }
 #endif
+    /* some default prefs */
+    app->insert_at_end = TRUE;
+    
     gtk_widget_show_all (vbox);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
       view_menu[0].widget), TRUE);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
       view_menu[1].widget), TRUE);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
+      settings_menu[0].widget), app->insert_at_end);
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
       settings_menu[1].widget), TRUE);
     gtk_widget_grab_focus (app->entry);
+    
 }
 
 

@@ -55,7 +55,10 @@ cb_ascii_select_clicked (GtkDialog *dialog, gint id, gpointer user_data)
 	gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
               strlen (text), &current_pos);
     } else {
-        gtk_entry_append_text (GTK_ENTRY (mainapp->entry), text);
+        gint current_pos;
+        gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), -1);
+        current_pos = gtk_editable_get_position (GTK_EDITABLE (mainapp->entry));
+        gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text, strlen(text), &current_pos);
     }
        
 }
@@ -110,8 +113,7 @@ ascii_select_init (AsciiSelect *obj)
 {
     GtkWidget *spin;
     GtkWidget *entry;
-    GtkStyle *style;
-    GtkObject *adj;
+    GtkAdjustment *adj;
     GdkFont *font;
 
     obj->window = gtk_dialog_new_with_buttons (_("Select Character"), NULL,
@@ -123,7 +125,7 @@ ascii_select_init (AsciiSelect *obj)
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox),
       gtk_label_new (_("Character code:")), FALSE, FALSE, 0);
 
-    adj = gtk_adjustment_new (65, 0, 255, 1, 10, 10);
+    adj = (GtkAdjustment *)gtk_adjustment_new (65, 0, 255, 1, 10, 10);
     spin = gtk_spin_button_new (GTK_ADJUSTMENT (adj), 1, 0);
     gtk_spin_button_set_update_policy (GTK_SPIN_BUTTON (spin),
       GTK_UPDATE_IF_VALID);
@@ -136,20 +138,21 @@ ascii_select_init (AsciiSelect *obj)
     entry = gtk_entry_new ();
     gtk_entry_set_text (GTK_ENTRY (entry), "A");
     gtk_entry_set_max_length (GTK_ENTRY (entry), 1);
+#if 0 /* It seems dumb to hard code the font here */
     style = gtk_style_copy (gtk_widget_get_style (entry));
-
     font = gdk_fontset_load (
       _("-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*")
     );
     if (font != NULL)
 	    gtk_style_set_font(style, font);
     gtk_widget_set_style (entry, style);
+#endif
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox),
       entry, TRUE, TRUE, 0);
-    gtk_signal_connect (GTK_OBJECT (spin), "changed",
-      GTK_SIGNAL_FUNC (cb_ascii_select_spin_changed), entry);
-    gtk_signal_connect (GTK_OBJECT (entry), "changed",
-      GTK_SIGNAL_FUNC (cb_ascii_select_entry_changed), spin);
+    g_signal_connect (G_OBJECT (spin), "changed",
+       		      G_CALLBACK (cb_ascii_select_spin_changed), entry);
+    g_signal_connect (G_OBJECT (entry), "changed",
+       		      G_CALLBACK (cb_ascii_select_entry_changed), spin);
     g_signal_connect (G_OBJECT (obj->window), "response",
     		      G_CALLBACK (cb_ascii_select_clicked), entry);
 
@@ -164,17 +167,19 @@ ascii_select_get_type (void)
     static guint ga_type = 0;
 
     if (!ga_type) {
-        GtkTypeInfo ga_info = {
-          "AsciiSelect",
-          sizeof (AsciiSelect),
+        GTypeInfo ga_info = {
           sizeof (AsciiSelectClass),
-          (GtkClassInitFunc) NULL,
-          (GtkObjectInitFunc) ascii_select_init,
+          (GBaseInitFunc) NULL,
+          (GBaseFinalizeFunc) NULL,
+          (GClassInitFunc) NULL,
+          (GClassFinalizeFunc) NULL,
           NULL,
-          NULL,
-          (GtkClassInitFunc) NULL
+          sizeof(AsciiSelect),
+          0,
+          (GInstanceInitFunc) ascii_select_init,
+          NULL
         };
-        ga_type = gtk_type_unique (gtk_object_get_type (), &ga_info);
+        ga_type = g_type_register_static (gtk_object_get_type (), "AsciiSelect",&ga_info, 0);
     }
     return ga_type;
 }
@@ -183,7 +188,7 @@ ascii_select_get_type (void)
 AsciiSelect *
 ascii_select_new (void)
 {
-    return ASCII_SELECT (gtk_type_new ((GtkType) ASCII_SELECT_TYPE));
+    return ASCII_SELECT (g_object_new ((GType) ASCII_SELECT_TYPE, NULL));
 }
 
 

@@ -33,7 +33,7 @@
 
 typedef struct _AsciiSelect
 {
-    GtkObject parent_struct;
+    GObject parent_struct;
     GtkWidget *window;
 } AsciiSelect;
 
