@@ -57,17 +57,12 @@ GtkCheckMenuItem *menus_get_toggle_timer(void);
 void err_init(void);
 
 
-
 /* timer.c */
+
 void start_timer(void);
 void stop_timer(void);
 gboolean timer_is_running (void);
 
-
-/* prop.c */
-
-void prop_dialog_set_project(GttProject *proj);
-void prop_dialog(GttProject *proj);
 
 /* options.c */
 

@@ -223,5 +223,34 @@ is_same_day (time_t ta, time_t tb)
   return (ltb.tm_year - lta.tm_year)*365;  /* very approximate */
 }
 
+/* ============================================================== */
+
+void
+xxxgtk_text_set_text (GtkText *text, const char *str)
+{
+	if (!str) str = "";
+	gtk_text_freeze(text);
+	gtk_text_set_point(text, 0);
+	gtk_text_forward_delete (text, gtk_text_get_length(text));
+	gtk_text_insert(text, NULL, NULL, NULL, str, strlen (str));
+	gtk_text_thaw(text);
+}
+
+const char *
+xxxgtk_text_get_text (GtkText *text)
+{
+	int len;
+
+	/* hack alert xxx fixme this is just wrong */
+	/* among other things, it screews up when there are 
+	 * embedded special chars, e.g.  angle brackets */
+	/* crazy text handling; note this is broken for
+	 * double-byte character sets */
+	len = gtk_text_get_length(text);
+	if (len >= text->text_len) len = text->text_len -1;
+	text->text.ch[len] = 0x0;  /* null-erminate */
+	return text->text.ch;
+}
+
 /* ===================== END OF FILE ============================ */
 

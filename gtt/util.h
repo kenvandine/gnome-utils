@@ -20,6 +20,7 @@
 #define __GTT_UTIL_H__
 
 #include <glib.h>
+#include <gtk/gtktext.h>
 
 typedef enum
 {
@@ -61,5 +62,9 @@ char * print_date_time (char * buff, size_t len, time_t secs);
  */
 
 int is_same_day (time_t, time_t);
+
+/* some gtk-like utilities */
+void xxxgtk_text_set_text (GtkText *text, const char *str);
+const char * xxxgtk_text_get_text (GtkText *text);
 
 #endif /* __GTT_UTIL_H__ */

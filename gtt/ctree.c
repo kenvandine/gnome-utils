@@ -24,6 +24,7 @@
 #include "gtt.h"
 #include "menucmd.h"
 #include "proj_p.h"
+#include "props-proj.h"
 #include "util.h"
 
 /* There is a bug in clist which makes all but the last column headers
@@ -61,7 +62,7 @@ clist_event(GtkCList *clist, GdkEvent *event, gpointer data)
 
 	if (event->type == GDK_2BUTTON_PRESS) 
 	{
-		prop_dialog(cur_proj);
+		prop_dialog_show(cur_proj);
 		/* hmmm so that the event selects it ... weird*/
 		gtk_clist_unselect_row(clist,row,column);
 

@@ -18,7 +18,8 @@ gtt_SOURCES = 		\
 	options.c	\
 	phtml.c		\
 	proj.c		\
-	proj-prop.c	\
+	props-proj.c	\
+	props-task.c	\
 	shorts.c	\
 	timer.c		\
 	toolbar.c	\
@@ -37,6 +38,8 @@ noinst_HEADERS = 	\
 	phtml.h		\
 	proj.h		\
 	proj_p.h	\
+	props-proj.h	\
+	props-task.h	\
 	shorts.h	\
 	toolbar.h	\
 	util.h		\

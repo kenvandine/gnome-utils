@@ -27,6 +27,7 @@
 #include "ctree.h"
 #include "gtt.h"
 #include "menucmd.h"
+#include "props-proj.h"
 #include "toolbar.h"
 #include "util.h"
 

@@ -117,7 +117,7 @@ gtt_xml_task_to_dom_tree (GttTask *task)
 	topnode = xmlNewNode (NULL, "gtt:task");
 
 	str = gtt_task_get_memo(task);
-	if (str)
+	if (str && str[0])
 	{
 		node = xmlNewNode (NULL, "memo");
 		xmlNodeAddContent(node, str);
@@ -125,7 +125,7 @@ gtt_xml_task_to_dom_tree (GttTask *task)
 	}
 
 	str = gtt_task_get_notes(task);
-	if (str)
+	if (str && str[0])
 	{
 		node = xmlNewNode (NULL, "notes");
 		xmlNodeAddContent(node, str);

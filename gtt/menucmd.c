@@ -28,6 +28,7 @@
 #include "menucmd.h"
 #include "proj.h"
 #include "proj_p.h"
+#include "props-proj.h"
 #include "xml-gtt.h"
 
 /* XXX: this is our main window, perhaps it is a bit ugly this way and
@@ -437,7 +438,7 @@ void
 menu_properties(GtkWidget *w, gpointer data)
 {
 	if (cur_proj) {
-		prop_dialog(cur_proj);
+		prop_dialog_show(cur_proj);
 	}
 }
 

@@ -28,6 +28,7 @@
 #include "journal.h"
 #include "phtml.h"
 #include "proj.h"
+#include "props-task.h"
 
 
 /* this struct is a random mish-mash of stuff, not well organized */
@@ -42,6 +43,7 @@ typedef struct wiggy_s {
 	GtkWidget *start_widget;
 	GtkWidget *stop_widget;
 	GtkWidget *fuzz_widget;
+	GttTask *task;
 	GttInterval *interval;
 } Wiggy;
 
@@ -327,15 +329,6 @@ interval_popup_cb (Wiggy *wig)
 }
 
 /* ============================================================== */
-/* memo edits */
-
-static void
-memo_edit_cb (Wiggy *wig)
-{
-	printf ("duude edit the memo !!! \n");
-}
-
-/* ============================================================== */
 /* html events */
 
 static void
@@ -358,9 +351,11 @@ html_link_clicked_cb(GtkHTML * html, const gchar * url, gpointer data)
 		if (addr) interval_popup_cb (wig);
 	}
 	else
-	if (0 == strncmp (url, "gtt:memo", 8))
+	if (0 == strncmp (url, "gtt:task", 8))
 	{
-		memo_edit_cb (wig);
+		wig->task = addr;
+		prop_task_dialog_show (wig->task);
+// hack alert xxx fixme -- we need to redraw the journal display after editing !!!
 	}
 	else
 	{

@@ -51,11 +51,11 @@ show_journal (GttPhtml *phtml, GttProject*prj)
 		
 		p = prn;
 		p = stpcpy (p, "<tr><td colspan=4>"
-			"<a href=\"gtt:memo:");
+			"<a href=\"gtt:task:");
 		p += sprintf (p, "%p\">", tsk);
 
 		buf = gtt_task_get_memo(tsk);
-		buf = buf? buf : _("(null)");
+		if (!buf || !buf[0]) buf = _("(empty)");
 		p = stpcpy (p, buf);
 		p = stpcpy (p, "</a>");
 
@@ -129,14 +129,14 @@ dispatch_phtml (GttPhtml *phtml, char *tok, GttProject*prj)
 		if (0 == strncmp (tok, "$project_title", 13))
 		{
 			const char * str = gtt_project_get_title(prj);
-			str = str? str : _("(null)");
+			if (!str || !str[0]) str = _("(empty)");
 			(phtml->write_stream) (phtml, str, strlen(str));
 		}
 		else
 		if (0 == strncmp (tok, "$project_desc", 13))
 		{
 			const char * str = gtt_project_get_desc(prj);
-			str = str? str : _("(null)");
+			str = str? str : "";
 			(phtml->write_stream) (phtml, str, strlen(str));
 		}
 		else

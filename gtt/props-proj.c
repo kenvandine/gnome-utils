@@ -24,8 +24,9 @@
 #include <libgnome/gnome-help.h>
 #include <string.h>
 
-#include "gtt.h"
 #include "proj.h"
+#include "props-proj.h"
+#include "util.h"
 
 
 typedef struct _PropDlg 
@@ -59,8 +60,6 @@ prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 
 	if (0 == page)
 	{
-		int len;
-
 		str = gtk_entry_get_text(dlg->title);
 		if (str && str[0]) 
 		{
@@ -73,13 +72,7 @@ prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 		}
 	
 		gtt_project_set_desc(dlg->proj, gtk_entry_get_text(dlg->desc));
-
-		/* crazy text handling; note this is broken for
-		 * double-byte character sets */
-		len = gtk_text_get_length(dlg->notes);
-		if (len >= dlg->notes->text_len) len = dlg->notes->text_len -1;
-		dlg->notes->text.ch[len] = 0x0;  /* null-erminate */
-		gtt_project_set_notes (dlg->proj, dlg->notes->text.ch);
+		gtt_project_set_notes(dlg->proj, xxxgtk_text_get_text(dlg->notes));
 	}
 
 	if (1 == page)
@@ -110,15 +103,20 @@ prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 
 static PropDlg *dlg = NULL;
 
-void 
-prop_dialog_set_project(GttProject *proj)
+static void 
+do_set_project(GttProject *proj)
 {
 	char buff[132];
-	const char * str;
 
 	if (!dlg) return;
 
-	if (!proj) {
+/* hack alert -- fixme -- we don't really need to do this work
+ * if the thing aint visible. we should check for visibility and defer ...
+ */
+	if (!proj) 
+	{
+		/* We null these out, because old values may be left
+		 * over from an earlier project */
 		dlg->proj = NULL;
 		gtk_entry_set_text(dlg->title, "");
 		gtk_entry_set_text(dlg->desc, "");
@@ -139,8 +137,7 @@ prop_dialog_set_project(GttProject *proj)
 
 	gtk_entry_set_text(dlg->title, gtt_project_get_title(proj));
 	gtk_entry_set_text(dlg->desc, gtt_project_get_desc(proj));
-	str = gtt_project_get_notes (proj);
-	gtk_text_insert(dlg->notes, NULL, NULL, NULL, str, strlen (str));
+	xxxgtk_text_set_text(dlg->notes, gtt_project_get_notes (proj));
 
 	/* hack alert should use local currencies for this */
 	g_snprintf (buff, 132, "%.2f", gtt_project_get_billrate(proj));
@@ -166,20 +163,14 @@ prop_dialog_set_project(GttProject *proj)
 
 /* ============================================================== */
 
-void prop_dialog(GttProject *proj)
+static void 
+prop_dialog_new (void)
 {
 	GladeXML *gtxml;
 	GtkWidget *e;
         static GnomeHelpMenuEntry help_entry = { NULL, "index.html#PROP" };
 
-	if (!proj) return;
-
-	if (dlg) 
-	{
-		prop_dialog_set_project(proj);
-		gtk_widget_show(GTK_WIDGET(dlg->dlg));
-		return;
-	}
+	if (dlg) return;
 
 	dlg = g_malloc(sizeof(PropDlg));
 
@@ -258,11 +249,6 @@ void prop_dialog(GttProject *proj)
 				  GTK_OBJECT(dlg->dlg));
 	dlg->gap = GTK_ENTRY(e);
 
-	/* ------------------------------------------------------ */
-	prop_dialog_set_project(proj);
-	gtk_widget_show(GTK_WIDGET(dlg->dlg));
-
-
 	gnome_dialog_close_hides(GNOME_DIALOG(dlg->dlg), TRUE);
 /*
 	gnome_dialog_set_parent(GNOME_DIALOG(dlg->dlg), GTK_WINDOW(window));
@@ -271,3 +257,23 @@ void prop_dialog(GttProject *proj)
 }
 
 
+/* ============================================================== */
+
+void 
+prop_dialog_show(GttProject *proj)
+{
+	if (!dlg) prop_dialog_new();
+ 
+	do_set_project(proj);
+	gtk_widget_show(GTK_WIDGET(dlg->dlg));
+}
+
+void 
+prop_dialog_set_project(GttProject *proj)
+{
+	if (!dlg) return;
+ 
+	do_set_project(proj);
+}
+
+/* ==================== END OF FILE ============================= */

@@ -947,8 +947,8 @@ gtt_task_new (void)
 	GttTask *task;
 
 	task = g_new0(GttTask, 1);
-	task->memo = NULL;
-	task->notes = NULL;
+	task->memo = g_strdup ("");
+	task->notes = g_strdup ("");
 	task->billable = GTT_BILLABLE;
 	task->billrate = GTT_REGULAR;
 	task->bill_unit = 900;
@@ -1001,7 +1001,7 @@ gtt_task_set_memo(GttTask *tsk, const char *m)
 	if (tsk->memo) g_free(tsk->memo);
 	if (!m) 
 	{
-		tsk->memo = NULL;
+		tsk->memo = g_strdup ("");
 		return;
 	}
 	tsk->memo = g_strdup(m);
@@ -1014,7 +1014,7 @@ gtt_task_set_notes(GttTask *tsk, const char *m)
 	if (tsk->notes) g_free(tsk->notes);
 	if (!m) 
 	{
-		tsk->notes = NULL;
+		tsk->notes = g_strdup ("");
 		return;
 	}
 	tsk->notes = g_strdup(m);
