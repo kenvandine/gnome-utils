@@ -198,6 +198,13 @@ cb_exit_click (GtkWidget *widget, gpointer user_data)
 void
 cb_fontpicker_font_set (GnomeFontPicker *picker, gchar *font, gpointer app)
 {
+    /* if font setting isn't changed, do nothing */
+    if ( strcmp(font, ((MainApp *)app)->font) == 0 )
+      return;
+   
+    g_free( ((MainApp *)app)->font);
+    ((MainApp *)app)->font = g_strdup(font);
+   
     main_app_set_font ((MainApp *) app, font);
 }
 
@@ -337,6 +344,8 @@ set_chartable_labels (void)
 	button = GTK_BUTTON (g_list_nth_data (mainapp->buttons, i));
         gtk_button_set_label (button, utf);
     }
+   
+    main_app_set_font(mainapp, mainapp->font);
 }
  
 #endif /* _CALLBACKS_C_ */

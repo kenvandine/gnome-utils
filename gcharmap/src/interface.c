@@ -90,7 +90,6 @@ create_chartable (MainApp *app)
     }
 
     set_chartable_labels ();
-    main_app_set_font (app, "Sans 12");
     gtk_widget_show_all (chartable);
     return chartable;
 }
@@ -288,8 +287,12 @@ main_app_create_ui (MainApp *app)
 static void
 main_app_init (MainApp *obj)
 {
+    gchar *defaultfont = "Sans 12";
+   
     mainapp = obj;
     mainapp->current_page=0;
+    mainapp->font = defaultfont;
+    
     main_app_create_ui (obj);
 }
 

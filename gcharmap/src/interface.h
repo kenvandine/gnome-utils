@@ -47,6 +47,7 @@ typedef struct _MainApp
     GList *buttons;
     GConfClient *conf;
     gint current_page;
+    gchar *font;
 } MainApp;
 
 typedef struct _MainAppClass
