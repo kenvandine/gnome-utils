@@ -176,7 +176,8 @@ guint gtt_help_get_type(void)
 			sizeof(GttHelpClass),
 			(GtkClassInitFunc) gtt_help_class_init,
 			(GtkObjectInitFunc) gtt_help_init,
-			(GtkArgFunc) NULL,
+			(GtkArgSetFunc) NULL,
+			(GtkArgGetFunc) NULL,
 		};
 		GttHelp_type = gtk_type_unique(gnome_app_get_type(), &GttHelp_info);
 		parent_class = gtk_type_class(gnome_app_get_type());
