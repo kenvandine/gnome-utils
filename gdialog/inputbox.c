@@ -73,7 +73,7 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 		if(init)
 			gtk_entry_set_text(GTK_ENTRY(input),init);
 			
-		gtk_container_border_width(GTK_CONTAINER(ibox), GNOME_PAD);
+		gtk_container_set_border_width(GTK_CONTAINER(ibox), GNOME_PAD);
 			
 		gtk_box_pack_start(GTK_BOX(ibox), input, TRUE, TRUE, 0);
 		gtk_box_pack_start(GTK_BOX(vbox), ibox, TRUE, TRUE, 0);
@@ -83,7 +83,7 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 		gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox),
 				   hbox,
 				   TRUE, TRUE, GNOME_PAD);
-		gtk_window_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
+		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 		gtk_signal_connect(GTK_OBJECT(w), "destroy",
 			GTK_SIGNAL_FUNC(cancelled), NULL);
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",

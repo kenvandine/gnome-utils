@@ -181,7 +181,7 @@ void prop_dialog(project *proj)
 					  GTK_WIDGET(vbox),
 					  gtk_label_new(_("Project")));
 
-		gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD);
+		gtk_container_set_border_width(GTK_CONTAINER(vbox), GNOME_PAD);
 
 		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "apply",
 				   GTK_SIGNAL_FUNC(prop_set), dlg);

@@ -90,8 +90,8 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		butbox=gtk_vbox_new(FALSE, 0);
 		butframe=gtk_frame_new("");
 		
-		gtk_container_border_width(GTK_CONTAINER(butframe), GNOME_PAD);
-		gtk_container_border_width(GTK_CONTAINER(butbox), GNOME_PAD);
+		gtk_container_set_border_width(GTK_CONTAINER(butframe), GNOME_PAD);
+		gtk_container_set_border_width(GTK_CONTAINER(butbox), GNOME_PAD);
 		gtk_frame_set_shadow_type(GTK_FRAME(butframe), GTK_SHADOW_ETCHED_IN);
 				
 		
@@ -116,7 +116,7 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), 
 			hbox,
 			TRUE, TRUE, GNOME_PAD);
-		gtk_window_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
+		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 		gtk_widget_show_all(w);
 		gtk_main();
 		return;

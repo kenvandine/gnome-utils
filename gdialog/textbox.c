@@ -105,7 +105,7 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 		gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox),
 				   hbox,
 				   TRUE, TRUE, GNOME_PAD);
-		gtk_window_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
+		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 		
 		gtk_widget_realize(text);
 		gtk_widget_set_usize(text, 8*width, 7*height);

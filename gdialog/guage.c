@@ -53,7 +53,7 @@ dialog_guage (const char *title, const char *prompt, int height,
 	gtk_box_pack_start(GTK_BOX(vbox), p, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), vbox,
 			   TRUE, TRUE, GNOME_PAD);
-	gtk_window_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
+	gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 	gtk_widget_show_all(w);
 	gtk_main();
 	exit( 0 );
