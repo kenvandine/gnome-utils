@@ -325,6 +325,28 @@
 
     window))
 
+(define (notepad-save-for-session save-style shutdown? interact-style fast?)
+  ;; FIXME: things to save:
+  ;; * the file
+  ;; * window geometry
+  ;; * cursor position, font, scrollbar position
+  ;; * dirty flag
+  #t)
+
+
+;; FIXME: parse command-line arguments.
+
+(gnome-session-init notepad-save-for-session
+		    ;; We don't care about exiting.
+		    (lambda (shutdown?) #f)
+		    )
+
+(gnome-session-set-current-directory (getcwd))
+(apply gnome-session-set-restart-command (program-arguments))
+(gnome-session-set-clone-command (program-arguments))
+(gnome-session-set-program (car (program-arguments)))
+
+
 (set! main-window (notepad))
 (set-file-name #f)
 (clear-dirty)
