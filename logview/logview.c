@@ -68,6 +68,7 @@ static void toggle_monitor (GtkAction *action, GtkWidget *callback_data);
 static void logview_menus_set_state (LogviewWindow *logviewwindow);
 static void logview_search (GtkAction *action, GtkWidget *callback_data);
 static void logview_help (GtkAction *action, GtkWidget *callback_data);
+static void logview_copy (GtkAction *action, GtkWidget *callback_data);
 static int logview_count_logs (void);
 gboolean window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
 				 gpointer data);
@@ -94,7 +95,9 @@ static GtkActionEntry entries[] = {
 	{ "Quit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q", N_("Quit the log viewer"), 
 	  G_CALLBACK (gtk_main_quit) },
 
-	{ "Search", GTK_STOCK_FIND, N_("_Find"), "<control>F", N_("Find pattern in logs"),
+	{ "Copy", GTK_STOCK_COPY, N_("Copy"), "<control>C", N_("Copy the selection"),
+	  G_CALLBACK (logview_copy) },
+	{ "Search", GTK_STOCK_FIND, N_("_Find..."), "<control>F", N_("Find pattern in logs"),
 	  G_CALLBACK (logview_search) },
 
 	{"CollapseAll", NULL, N_("Collapse _All"), "<control>A", N_("Collapse all the rows"),
@@ -130,6 +133,7 @@ static const char *ui_description =
 	"			<menuitem action='Quit'/>"
 	"		</menu>"
 	"		<menu action='EditMenu'>"
+	"                       <menuitem action='Copy'/>"
 	"			<menuitem action='Search'/>"
 	"		</menu>"	
 	"		<menu action='ViewMenu'>"
@@ -342,6 +346,8 @@ logview_create_window ()
    logviewwindow->zoom_visible = FALSE;
    logviewwindow->zoom_scrolled_window = NULL;
    logviewwindow->zoom_dialog = NULL;
+   logviewwindow->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),
+							     GDK_SELECTION_CLIPBOARD);
 
    /* FIXME : we need to listen to this key, not just read it. */
    gtk_ui_manager_set_add_tearoffs (logviewwindow->ui_manager, 
@@ -754,6 +760,21 @@ logview_search (GtkAction *action,GtkWidget *callback_data)
 }
 
 static void
+logview_copy (GtkAction *action, GtkWidget *callback_data)
+{
+	LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
+	LogLine *line;
+	gchar *text;
+
+	if (window->curlog->current_line_no <= 0 || 
+	    ((line = (window->curlog->lines)[window->curlog->current_line_no]) == NULL))
+		return;
+	text = g_strdup_printf ("%s %s %s", line->hostname, line->process, line->message);
+	gtk_clipboard_set_text (window->clipboard, LocaleToUTF8(text), -1);
+	g_free (text);
+}
+
+static void
 logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state)
 {
 	g_return_if_fail (path);
@@ -765,6 +786,7 @@ static void
 logview_menus_set_state (LogviewWindow *window)
 {
 	if (window->monitored) {
+		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", FALSE); 
@@ -784,6 +806,7 @@ logview_menus_set_state (LogviewWindow *window)
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", (window->curlog != NULL));
+		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", (window->curlog != NULL));
 	}
 }
 

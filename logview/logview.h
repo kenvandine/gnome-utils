@@ -161,10 +161,11 @@ struct _LogviewWindow {
 	GtkToolItem *find_prev;
 	gchar *find_string;
 
-	Log *curlog;	
+	Log *curlog;
 
 	gboolean monitored;
 	gint timer_tag;
+	GtkClipboard *clipboard;
 };
 
 struct _LogviewWindowClass {
