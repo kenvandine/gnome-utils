@@ -325,6 +325,13 @@ isLogFile (char *filename)
    }
    */
 
+   if (token == NULL)
+   {
+      g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
+      ShowErrMessage (buff);
+      return FALSE;
+   }
+
    i = get_month (token);
 
    if (i == 12)
