@@ -26,6 +26,8 @@
  */
 
 #define ICON_SIZE 24.0
+#define GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE 48
+#define GNOME_SEARCH_TOOL_STOCK "panel-searchtool"
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
@@ -45,6 +47,8 @@
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
+
+static GtkIconSize gsearchtool_icon_size = 0;
 
 typedef struct _FindOptionTemplate FindOptionTemplate;
 struct _FindOptionTemplate {
@@ -1217,7 +1221,7 @@ create_search_results_section (void)
 	gtk_widget_set_sensitive (GTK_WIDGET(interface.results), FALSE); 
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(interface.results), GTK_SHADOW_IN);	
 	gtk_container_set_border_width (GTK_CONTAINER(interface.results), 0);
-	gtk_widget_set_usize (interface.results, 530, 200); 
+	gtk_widget_set_size_request (interface.results, 530, 200); 
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(interface.results),
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
@@ -1363,7 +1367,7 @@ create_main_window (void)
 	hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
 	gtk_box_pack_start (GTK_BOX(window), hbox, FALSE, FALSE, GNOME_PAD_SMALL);
 	
-	image = gtk_image_new_from_file (GNOME_ICONDIR"/gnome-searchtool.png");
+	image = gtk_image_new_from_stock (GNOME_SEARCH_TOOL_STOCK, gsearchtool_icon_size);
 	gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, GNOME_PAD_SMALL);
 	
 	table = gtk_table_new (2, 2, FALSE);
@@ -1481,6 +1485,43 @@ create_main_window (void)
 	return window;
 }
 
+static void
+register_gsearchtool_icon (GtkIconFactory *factory)
+{
+	GtkIconSource	*source;
+	GtkIconSet	*icon_set;
+
+	source = gtk_icon_source_new ();
+
+	gtk_icon_source_set_filename (source, GNOME_ICONDIR"/gnome-searchtool.png");
+
+	icon_set = gtk_icon_set_new ();
+	gtk_icon_set_add_source (icon_set, source);
+
+	gtk_icon_factory_add (factory, GNOME_SEARCH_TOOL_STOCK, icon_set);
+
+	gtk_icon_set_unref (icon_set);
+
+	gtk_icon_source_free (source);	
+}
+
+static void
+gsearchtool_init_stock_icons ()
+{
+	GtkIconFactory	*factory;
+
+	gsearchtool_icon_size = gtk_icon_size_register ("panel-menu",
+							GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE,
+							GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE);
+
+	factory = gtk_icon_factory_new ();
+	gtk_icon_factory_add_default (factory);
+
+	register_gsearchtool_icon (factory);
+
+	g_object_unref (factory);
+}
+
 int
 main (int 	argc, 
       char 	*argv[])
@@ -1505,7 +1546,7 @@ main (int 	argc,
 					  GNOME_PARAM_POPT_FLAGS, 0,
 					  GNOME_PARAM_APP_DATADIR, DATADIR,  
 					  NULL);
-					  
+	gsearchtool_init_stock_icons ();				  
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-searchtool.png");
 
 	if (!bonobo_init_full (&argc, argv, bonobo_activation_orb_get (), NULL, NULL))
