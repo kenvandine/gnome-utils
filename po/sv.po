@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.x\n"
-"POT-Creation-Date: 2000-05-14 00:38+0200\n"
+"POT-Creation-Date: 2000-05-15 17:31+0200\n"
 "PO-Revision-Date: 1999-09-07 03:10+0200\n"
 "Last-Translator: Andreas Hyden <a.hyden@cyberpoint.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -34,90 +34,98 @@ msgstr ""
 "Klient för MIT ordboksserver.\n"
 "Webb: http://gdict.dhs.org/, http://www.psilord.com/code/"
 
-#: gdictsrc/gdict-app.c:115
+#: gdictsrc/gdict-app.c:92 gdictsrc/gdict-app.c:96
+msgid "Cannot find server"
+msgstr "Kan inte hitta server"
+
+#: gdictsrc/gdict-app.c:121
 msgid "Spell-checking..."
 msgstr "Kollar stavning..."
 
-#: gdictsrc/gdict-app.c:122
+#: gdictsrc/gdict-app.c:128
 msgid "Spell check done"
 msgstr "Stavningskontroll klar"
 
-#: gdictsrc/gdict-app.c:129 gdictsrc/gdict-app.c:246
+#: gdictsrc/gdict-app.c:135 gdictsrc/gdict-app.c:252
 msgid "No matches found"
 msgstr "Inga sökträffar"
 
-#: gdictsrc/gdict-app.c:150
+#: gdictsrc/gdict-app.c:156
 msgid "Cannot connect to dictionary server!"
 msgstr "Kan inte ansluta till ordboksserver!"
 
-#: gdictsrc/gdict-app.c:232
+#: gdictsrc/gdict-app.c:238
 msgid "Looking up word..."
 msgstr "Letar upp ord..."
 
-#: gdictsrc/gdict-app.c:239
+#: gdictsrc/gdict-app.c:245
 msgid "Lookup done"
 msgstr "Uppletning klar"
 
-#: gdictsrc/gdict-app.c:257
+#: gdictsrc/gdict-app.c:263
 msgid "String not found"
 msgstr "Hittade inte strängen"
 
-#: gdictsrc/gdict-app.c:344
+#: gdictsrc/gdict-app.c:350
 msgid "Find:"
 msgstr "Hitta:"
 
-#: gdictsrc/gdict-app.c:392 gdictsrc/gdict-app.c:440
+#: gdictsrc/gdict-app.c:378
+msgid "Can not complete this action"
+msgstr "Kan inte fortsätta med denna aktionen"
+
+#: gdictsrc/gdict-app.c:414 gdictsrc/gdict-app.c:462
 #: gdictsrc/gdict-applet.c:125
 msgid "Lookup"
 msgstr "Leta upp"
 
-#: gdictsrc/gdict-app.c:392 gdictsrc/gdict-app.c:440
+#: gdictsrc/gdict-app.c:414 gdictsrc/gdict-app.c:462
 msgid "Lookup word in dictionary"
 msgstr "Letar upp ord i ordboken"
 
-#: gdictsrc/gdict-app.c:393 gdictsrc/gdict-app.c:441
+#: gdictsrc/gdict-app.c:415 gdictsrc/gdict-app.c:463
 msgid "Spell"
 msgstr "Stava"
 
-#: gdictsrc/gdict-app.c:393 gdictsrc/gdict-app.c:441
+#: gdictsrc/gdict-app.c:415 gdictsrc/gdict-app.c:463
 msgid "Check word spelling"
 msgstr "Kolla stavning"
 
-#: gcharmap/src/interface.c:66 gdictsrc/gdict-app.c:443 gtt/toolbar.c:159
+#: gcharmap/src/interface.c:66 gdictsrc/gdict-app.c:465 gtt/toolbar.c:159
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: gdictsrc/gdict-app.c:443
+#: gdictsrc/gdict-app.c:465
 msgid "Cut to Clipboard"
 msgstr "Klipp ut till urklipp"
 
-#: gcharmap/src/interface.c:68 gdictsrc/gdict-app.c:444 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:68 gdictsrc/gdict-app.c:466 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopiera"
 
-#: gdictsrc/gdict-app.c:444
+#: gdictsrc/gdict-app.c:466
 msgid "Copy to Clipboard"
 msgstr "Kopiera till urklipp"
 
-#: gcharmap/src/interface.c:70 gdictsrc/gdict-app.c:445 gtt/toolbar.c:167
+#: gcharmap/src/interface.c:70 gdictsrc/gdict-app.c:467 gtt/toolbar.c:167
 msgid "Paste"
 msgstr "Klistra in"
 
-#: gdictsrc/gdict-app.c:445
+#: gdictsrc/gdict-app.c:467
 msgid "Paste Clipboard Contents"
 msgstr "Klistra in urklippsinnehåll"
 
-#: gdictsrc/gdict-app.c:447
+#: gdictsrc/gdict-app.c:469
 msgid "Settings"
 msgstr "Inställningar"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-app.c:447 gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:499
+#: gdictsrc/gdict-app.c:469 gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:499
 #: mini-utils/gshutdown/gshutdown.c:314
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: gdictsrc/gdict-app.c:507
+#: gdictsrc/gdict-app.c:529
 msgid "Word definition"
 msgstr "Orddefinition"
 
@@ -280,10 +288,6 @@ msgstr ""
 "Gnome's motsvarighet till Microsoft Windows teckenkarta. Varning: kan "
 "innehålla dålig engelska.\n"
 "http://users.telekabel.nl/hongli/"
-
-#: gcharmap/src/interface.c:371
-msgid "There's no documentation available yet."
-msgstr "Det finns ingen dokumentation tillgänlig än."
 
 #: gdiskfree/gdiskfree.c:58
 msgid "Specify the geometry of the window."
@@ -2762,6 +2766,9 @@ msgstr "Endast superanvändaren kan använda detta verktyg"
 #: mini-utils/idetool/idetool.c:451
 msgid "You appear to have no IDE drives"
 msgstr "Du verkar inte ha några IDE-diskar"
+
+#~ msgid "There's no documentation available yet."
+#~ msgstr "Det finns ingen dokumentation tillgänlig än."
 
 #~ msgid "Ok"
 #~ msgstr "Ok"
