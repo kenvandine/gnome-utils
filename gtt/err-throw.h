@@ -28,7 +28,7 @@ typedef enum {
 
 
 /* 
- * These two routines can be used ot implement a poor-mans 
+ * These two routines can be used to implement a poor-man's 
  * try-catch block by doing as follows:
  *
  *  gtt_err_set_code (GTT_NO_ERR);  // start of try block
