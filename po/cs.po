@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-01 13:57+0100\n"
-"PO-Revision-Date: 2004-12-01 19:41+0100\n"
+"POT-Creation-Date: 2004-12-11 20:30+0100\n"
+"PO-Revision-Date: 2004-12-11 22:32+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:122
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:121
 msgid "Dictionary Lookup"
 msgstr "Vyhledání ve slovníku"
 
@@ -29,12 +29,12 @@ msgstr "Vyhledání ve slovníku"
 msgid "Lookup words in an online dictionary"
 msgstr "Vyhledávání slov v on-line slovníku"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:588
-#: logview/logview.c:113
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:583
+#: logview/logview.c:111
 msgid "_About"
 msgstr "O _aplikaci"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:90
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
 msgid "_Help"
 msgstr "_Nápověda"
 
@@ -53,10 +53,8 @@ msgstr "Zobrazit slo_vník"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#. Could not look up search strategies, so just display a
-#. * label; FIXME: Memory leak
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:429
-#: gdictsrc/gdict-pref-dialog.c:478 gdictsrc/gdict-speller.c:689
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:428
+#: gdictsrc/gdict-pref-dialog.c:477
 msgid "Cannot connect to server"
 msgstr "Nemohu se připojit k serveru"
 
@@ -86,53 +84,33 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "Klient pro server se slovníkem MIT."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:247
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:218 gdictsrc/gdict-app.c:229
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Slovník"
 
-#: gdictsrc/gdict-app.c:101
+#: gdictsrc/gdict-app.c:75
 msgid "Spell-checking..."
 msgstr "Kontrola pravopisu..."
 
-#: gdictsrc/gdict-app.c:108
+#: gdictsrc/gdict-app.c:83
 msgid "Spell check done"
 msgstr "Kontrola pravopisu dokončena"
 
-#: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:263
+#: gdictsrc/gdict-app.c:91 gdictsrc/gdict-app.c:246
 msgid "No matches found"
 msgstr "Nic nenalezeno"
 
 # FIXME: s/x/ct/
-#: gdictsrc/gdict-app.c:126
+#: gdictsrc/gdict-app.c:103
 msgid "Connexion error"
 msgstr "Chyba spojení"
 
-#: gdictsrc/gdict-app.c:238
-msgid "Looking up word..."
-msgstr "Hledám slovo..."
-
-#: gdictsrc/gdict-app.c:253
-msgid "Lookup done"
-msgstr "Hledání hotovo"
-
-#: gdictsrc/gdict-app.c:276
-msgid "String not found"
-msgstr "Řetězec nenalezen"
-
-#: gdictsrc/gdict-app.c:445
-msgid "Find"
-msgstr "Hledat"
-
-#: gdictsrc/gdict-app.c:455
-msgid "_Search for:"
-msgstr "_Hledat:"
-
-#: gdictsrc/gdict-app.c:505
+#: gdictsrc/gdict-app.c:148
 msgid "Unable to perform requested operation."
 msgstr "Nemohu provést požadovanou operaci."
 
-#: gdictsrc/gdict-app.c:506
+#: gdictsrc/gdict-app.c:149
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -140,255 +118,237 @@ msgstr ""
 "Buď není server, který používáte, k dispozici, \n"
 "nebo nejste připojeni k Internetu."
 
-#: gdictsrc/gdict-app.c:543 gdictsrc/gdict-applet.c:350
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-app.c:219
+msgid "Looking up word..."
+msgstr "Hledám slovo..."
+
+#: gdictsrc/gdict-app.c:235
+msgid "Lookup done"
+msgstr "Hledání hotovo"
+
+#: gdictsrc/gdict-app.c:260
+msgid "String not found"
+msgstr "Řetězec nenalezen"
+
+#: gdictsrc/gdict-app.c:440
+msgid "Find"
+msgstr "Hledat"
+
+#: gdictsrc/gdict-app.c:450
+msgid "_Search for:"
+msgstr "_Hledat:"
+
+#: gdictsrc/gdict-app.c:527 gdictsrc/gdict-applet.c:352
+#: gdictsrc/gdict-pref-dialog.c:627
 msgid "Could not display help"
 msgstr "Nemohu zobrazit nápovědu"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:568 gdictsrc/gdict-app.c:864
-#: gdictsrc/gdict-speller.c:251
+#: gdictsrc/gdict-app.c:567 gdictsrc/gdict-app.c:875
 msgid "_Look Up Word"
 msgstr "_Hledat slovo"
 
-#: gdictsrc/gdict-app.c:569
+#: gdictsrc/gdict-app.c:568
 msgid "Lookup word in dictionary"
 msgstr "Hledat slovo ve slovníku"
 
-#: gdictsrc/gdict-app.c:570
-msgid "Check _Spelling"
-msgstr "_Kontrolovat pravopis"
-
-#: gdictsrc/gdict-app.c:571
-msgid "Check word spelling"
-msgstr "Kontrolovat pravopis"
-
-#: gdictsrc/gdict-app.c:573
+#: gdictsrc/gdict-app.c:569
 msgid "_Print"
 msgstr "Vy_tisknout"
 
-#: gdictsrc/gdict-app.c:574
+#: gdictsrc/gdict-app.c:570
 msgid "Print the current definition"
 msgstr "Vytisknout aktuální definici"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:578 logview/logview.c:105
+#: gdictsrc/gdict-app.c:573 logview/logview.c:103
 msgid "_Find..."
 msgstr "_Hledat..."
 
-#: gdictsrc/gdict-app.c:579
+#: gdictsrc/gdict-app.c:574
 msgid "Find a word in the text"
 msgstr "Hledat slovo v textu"
 
-#: gdictsrc/gdict-app.c:580
+#: gdictsrc/gdict-app.c:575
 msgid "Find Ne_xt"
 msgstr "Hledat _následující"
 
-#: gdictsrc/gdict-app.c:581
+#: gdictsrc/gdict-app.c:576
 msgid "Find next occurrence of the word"
 msgstr "Hledat následující výskyt slova"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:577
 msgid "P_references"
 msgstr "_Nastavení"
 
-#: gdictsrc/gdict-app.c:583
+#: gdictsrc/gdict-app.c:578
 msgid "Configure the application"
 msgstr "Nastavit aplikaci"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:586 logview/logview.c:111
+#: gdictsrc/gdict-app.c:581 logview/logview.c:109
 msgid "_Contents"
 msgstr "_Obsah"
 
-#: gdictsrc/gdict-app.c:587
+#: gdictsrc/gdict-app.c:582
 msgid "View help for this application"
 msgstr "Zobrazit nápovědu k této aplikaci"
 
-#: gdictsrc/gdict-app.c:589
+#: gdictsrc/gdict-app.c:584
 msgid "About this application"
 msgstr "O této aplikaci"
 
-#: gdictsrc/gdict-app.c:596 logview/logview.c:98
-msgid "_Quit"
-msgstr "U_končit"
-
-#: gdictsrc/gdict-app.c:597
-msgid "Quit the application"
-msgstr "Ukončit aplikaci"
-
-#: gdictsrc/gdict-app.c:601
+#: gdictsrc/gdict-app.c:591
 msgid "_Close"
 msgstr "_Zavřít"
 
-#: gdictsrc/gdict-app.c:602
+#: gdictsrc/gdict-app.c:592
 msgid "Close the application"
 msgstr "Zavřít aplikaci"
 
-#: gdictsrc/gdict-app.c:607
+#: gdictsrc/gdict-app.c:597
 msgid "Cu_t"
 msgstr "_Vyjmout"
 
-#: gdictsrc/gdict-app.c:608
+#: gdictsrc/gdict-app.c:598
 msgid "Cut the selection"
 msgstr "Vyjmout výběr"
 
-#: gdictsrc/gdict-app.c:609
+#: gdictsrc/gdict-app.c:599
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: gdictsrc/gdict-app.c:610 logview/logview.c:101
+#: gdictsrc/gdict-app.c:600 logview/logview.c:99
 msgid "Copy the selection"
 msgstr "Kopírovat výběr"
 
-#: gdictsrc/gdict-app.c:611
+#: gdictsrc/gdict-app.c:601
 msgid "_Paste"
 msgstr "V_ložit"
 
-#: gdictsrc/gdict-app.c:612
+#: gdictsrc/gdict-app.c:602
 msgid "Paste clipboard"
 msgstr "Vložit schránku"
 
-#: gdictsrc/gdict-app.c:613
+#: gdictsrc/gdict-app.c:603
 msgid "Select _All"
 msgstr "Vybrat vš_e"
 
-#: gdictsrc/gdict-app.c:614
+#: gdictsrc/gdict-app.c:604
 msgid "Select everything"
 msgstr "Vybrat vše"
 
-#: gdictsrc/gdict-app.c:861 gdictsrc/gdict-speller.c:179
+#: gdictsrc/gdict-app.c:609
+msgid "View _Spellings"
+msgstr "Zobrazit _zápisy"
+
+#: gdictsrc/gdict-app.c:610
+msgid "View alternate spellings"
+msgstr "Zobrazit jiné zápisy"
+
+#: gdictsrc/gdict-app.c:872
 msgid "_Word:"
 msgstr "_Slova:"
 
-#: gdictsrc/gdict-app.c:884 gdictsrc/gdict-speller.c:197
+#: gdictsrc/gdict-app.c:891
 msgid "Word"
 msgstr "Slovo"
 
-#: gdictsrc/gdict-app.c:885 gdictsrc/gdict-app.c:887
-#: gdictsrc/gdict-speller.c:199
+#: gdictsrc/gdict-app.c:892 gdictsrc/gdict-app.c:894
 msgid "Word Entry"
 msgstr "Položka se slovem"
 
-#: gdictsrc/gdict-app.c:886
+#: gdictsrc/gdict-app.c:893
 msgid "Enter a Word or select one from the list below"
 msgstr "Zadejte slovo nebo jedno vyberte ze seznamu níže"
 
-#: gdictsrc/gdict-app.c:890
+#: gdictsrc/gdict-app.c:897
 msgid "Look Up for a Word"
 msgstr "Hledat slovo"
 
-#: gdictsrc/gdict-applet.c:127
+#: gdictsrc/gdict-applet.c:126
 msgid "Dictionary word entry"
 msgstr "Pole pro slovo ze slovníku"
 
-#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:366
+#: gdictsrc/gdict-defbox.c:670 gdictsrc/gdict-speller.c:284
 msgid "Error invoking query"
 msgstr "Chyba při spouštění dotazu"
 
-#: gdictsrc/gdict-pref-dialog.c:136
+#: gdictsrc/gdict-pref-dialog.c:154
 msgid "Dictionary Preferences"
 msgstr "Nastavení slovníku"
 
-#: gdictsrc/gdict-pref-dialog.c:149
-msgid "Smart _lookup"
-msgstr "_Chytré hledání"
-
-#: gdictsrc/gdict-pref-dialog.c:163
+#: gdictsrc/gdict-pref-dialog.c:172
 msgid "De_fault Server"
 msgstr "_Implicitní server"
 
-#: gdictsrc/gdict-pref-dialog.c:174
+#: gdictsrc/gdict-pref-dialog.c:183
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:183
+#: gdictsrc/gdict-pref-dialog.c:191
 msgid "Reset server to default"
 msgstr "Vrátit implicitní server"
 
-#: gdictsrc/gdict-pref-dialog.c:191
+#: gdictsrc/gdict-pref-dialog.c:193
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:201
+#: gdictsrc/gdict-pref-dialog.c:203
 msgid "Def_ault Port"
 msgstr "I_mplicitní port"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:218
 msgid "Reset port to default"
 msgstr "Vrátit implicitní port"
 
-#: gdictsrc/gdict-pref-dialog.c:217
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:221
 msgid "Server Entry"
 msgstr "Položka se serverem"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:221
 msgid "Enter the Server Name"
 msgstr "Zadejte název serveru"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:222
+#: gdictsrc/gdict-pref-dialog.c:224
 msgid "Port Entry"
 msgstr "Položka s portem"
 
-#: gdictsrc/gdict-pref-dialog.c:222
+#: gdictsrc/gdict-pref-dialog.c:224
 msgid "Enter the Port Number"
 msgstr "Zadejte číslo portu"
 
-#: gdictsrc/gdict-pref-dialog.c:231
+#: gdictsrc/gdict-pref-dialog.c:227
 msgid "_Database:"
 msgstr "_Databáze:"
 
-#: gdictsrc/gdict-pref-dialog.c:238
-msgid "D_efault strategy:"
-msgstr "Implicitní strat_egie:"
+#: gdictsrc/gdict-pref-dialog.c:234
+msgid "Strat_egy:"
+msgstr "S_trategie:"
 
-#: gdictsrc/gdict-pref-dialog.c:421
+#: gdictsrc/gdict-pref-dialog.c:420
 msgid "Search all databases"
 msgstr "Prohledat všechny databáze"
 
-#: gdictsrc/gdict-pref-dialog.c:582
+#: gdictsrc/gdict-pref-dialog.c:581
 msgid "Database"
 msgstr "Databáze"
 
-#: gdictsrc/gdict-pref-dialog.c:582
+#: gdictsrc/gdict-pref-dialog.c:581
 msgid "Database Name"
 msgstr "Název databáze"
 
-#: gdictsrc/gdict-pref-dialog.c:600
+#: gdictsrc/gdict-pref-dialog.c:598
 msgid "Default Strategy"
 msgstr "Implicitní strategie"
-
-#: gdictsrc/gdict-speller.c:199
-msgid "Enter a word to know the spelling"
-msgstr "Zadejte slovo a dozvíte se, jak se píše"
-
-#: gdictsrc/gdict-speller.c:204
-msgid "Search s_trategy:"
-msgstr "S_trategie hledání:"
-
-#: gdictsrc/gdict-speller.c:208 gsearchtool/gsearchtool.c:2079
-msgid "Show more _options"
-msgstr "Zobrazit více _možností"
-
-#: gdictsrc/gdict-speller.c:214
-msgid "Click to do the spell check"
-msgstr "Klikněte zde a provedete kontrolu pravopisu"
-
-#: gdictsrc/gdict-speller.c:264
-msgid "Check Spelling"
-msgstr "Kontrolovat pravopis"
-
-#: gdictsrc/gdict-speller.c:651
-msgid "Search Strategy"
-msgstr "Strategie hledání"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -450,7 +410,7 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Použít chytré hledání"
 
-#: gdictsrc/main.c:101
+#: gdictsrc/main.c:93
 msgid "Gnome Dictionary"
 msgstr "Gnome Slovník"
 
@@ -893,9 +853,9 @@ msgstr "Průběh formátování"
 msgid "Find files, folders, and documents on your computer"
 msgstr "Hledat soubory, adresáře a dokumenty ve vašem počítači"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
-#: gsearchtool/gsearchtool.c:891 gsearchtool/gsearchtool.c:977
-#: gsearchtool/gsearchtool.c:2394 gsearchtool/gsearchtool.c:2415
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:661
+#: gsearchtool/gsearchtool.c:918 gsearchtool/gsearchtool.c:1004
+#: gsearchtool/gsearchtool.c:2445 gsearchtool/gsearchtool.c:2466
 msgid "Search for Files"
 msgstr "Hledat soubory"
 
@@ -1162,27 +1122,27 @@ msgstr "Tlačítka zobrazovaná v dialogu upozornění"
 msgid "Show more _details"
 msgstr "Zobrazit více _podrobností"
 
-#: gsearchtool/gsearchtool-callbacks.c:50
+#: gsearchtool/gsearchtool-callbacks.c:51
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: gsearchtool/gsearchtool-callbacks.c:54
+#: gsearchtool/gsearchtool-callbacks.c:52
 msgid "O_pen Folder"
 msgstr "O_tevřít adresář"
 
-#: gsearchtool/gsearchtool-callbacks.c:59
+#: gsearchtool/gsearchtool-callbacks.c:53
 msgid "Mo_ve to Trash"
 msgstr "_Přesunout do koše"
 
-#: gsearchtool/gsearchtool-callbacks.c:64
+#: gsearchtool/gsearchtool-callbacks.c:54
 msgid "_Save Results As..."
 msgstr "Uložit výsledky j_ako..."
 
-#: gsearchtool/gsearchtool-callbacks.c:111
+#: gsearchtool/gsearchtool-callbacks.c:109
 msgid "Could not open help document."
 msgstr "Nemohu otevřít dokument nápovědy."
 
-#: gsearchtool/gsearchtool-callbacks.c:307
+#: gsearchtool/gsearchtool-callbacks.c:305
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
@@ -1190,8 +1150,8 @@ msgstr[0] "Jste si jisti, že chcete otevřít %d dokument?"
 msgstr[1] "Jste si jisti, že chcete otevřít %d dokumenty?"
 msgstr[2] "Jste si jisti, že chcete otevřít %d dokumentů?"
 
-#: gsearchtool/gsearchtool-callbacks.c:312
-#: gsearchtool/gsearchtool-callbacks.c:464
+#: gsearchtool/gsearchtool-callbacks.c:310
+#: gsearchtool/gsearchtool-callbacks.c:462
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -1199,26 +1159,22 @@ msgstr[0] "Toto otevře %d oddělené okno."
 msgstr[1] "Toto otevře %d oddělená okna."
 msgstr[2] "Toto otevře %d oddělených oken."
 
-#: gsearchtool/gsearchtool-callbacks.c:372
-#: gsearchtool/gsearchtool-callbacks.c:405
-#: gsearchtool/gsearchtool-callbacks.c:954
-#: gsearchtool/gsearchtool-callbacks.c:987
+#: gsearchtool/gsearchtool-callbacks.c:370
+#: gsearchtool/gsearchtool-callbacks.c:403
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Nemohu otevřít dokument \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:375
-#: gsearchtool/gsearchtool-callbacks.c:630
-#: gsearchtool/gsearchtool-callbacks.c:957
+#: gsearchtool/gsearchtool-callbacks.c:373
+#: gsearchtool/gsearchtool-callbacks.c:629
 msgid "The document does not exist."
 msgstr "Dokument neexistuje."
 
-#: gsearchtool/gsearchtool-callbacks.c:408
-#: gsearchtool/gsearchtool-callbacks.c:990
+#: gsearchtool/gsearchtool-callbacks.c:406
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Není nainstalován žádný prohlížeč schopný zobrazit tento dokument."
 
-#: gsearchtool/gsearchtool-callbacks.c:459
+#: gsearchtool/gsearchtool-callbacks.c:457
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
@@ -1226,91 +1182,91 @@ msgstr[0] "Jste si jisti, že chcete otevřít %d adresář?"
 msgstr[1] "Jste si jisti, že chcete otevřít %d adresáře?"
 msgstr[2] "Jste si jisti, že chcete otevřít %d adresářů?"
 
-#: gsearchtool/gsearchtool-callbacks.c:517
+#: gsearchtool/gsearchtool-callbacks.c:515
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Nemohu otevřít adresář \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:524
+#: gsearchtool/gsearchtool-callbacks.c:522
 msgid "The nautilus file manager is not running."
 msgstr "Správce souborů Nautilus neběží."
 
-#: gsearchtool/gsearchtool-callbacks.c:627
+#: gsearchtool/gsearchtool-callbacks.c:626
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Nemohu přesunout \"%s\" do koše."
 
-#: gsearchtool/gsearchtool-callbacks.c:667
+#: gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "Nemohu přesunout \"%s\" do koše."
 
-#: gsearchtool/gsearchtool-callbacks.c:670
+#: gsearchtool/gsearchtool-callbacks.c:669
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Přesun \"%s\" selhal: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:700
+#: gsearchtool/gsearchtool-callbacks.c:699
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Chcete \"%s\" odstranit natrvalo?"
 
-#: gsearchtool/gsearchtool-callbacks.c:703
+#: gsearchtool/gsearchtool-callbacks.c:702
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Koš není k dispozici. Nemohu přesunout \"%s\" do koše."
 
-#: gsearchtool/gsearchtool-callbacks.c:745
+#: gsearchtool/gsearchtool-callbacks.c:744
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Nemohu odstranit \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:748
+#: gsearchtool/gsearchtool-callbacks.c:747
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Odstraňování \"%s\" selhalo: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1175
+#: gsearchtool/gsearchtool-callbacks.c:1123
 msgid "Save Search Results As..."
 msgstr "Uložit výsledky hledání jako..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1227
+#: gsearchtool/gsearchtool-callbacks.c:1175
 msgid "Could not save document."
 msgstr "Nemohu uložit dokument."
 
-#: gsearchtool/gsearchtool-callbacks.c:1229
+#: gsearchtool/gsearchtool-callbacks.c:1177
 msgid "You did not select a document name."
 msgstr "Nevybrali jste název dokumentu."
 
-#: gsearchtool/gsearchtool-callbacks.c:1255
-#: gsearchtool/gsearchtool-callbacks.c:1350
+#: gsearchtool/gsearchtool-callbacks.c:1203
+#: gsearchtool/gsearchtool-callbacks.c:1298
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Nemohu uložit dokument \"%s\" do \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:1259
+#: gsearchtool/gsearchtool-callbacks.c:1207
 msgid "The document name you selected is a folder."
 msgstr "Název dokumentu, který jste vybrali, je adresář."
 
-#: gsearchtool/gsearchtool-callbacks.c:1288
+#: gsearchtool/gsearchtool-callbacks.c:1236
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokument \"%s\" již existuje. Chcete jej nahradit?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1292
+#: gsearchtool/gsearchtool-callbacks.c:1240
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Pokud nahradíte existující soubor, jeho obsah bude přepsán."
 
-#: gsearchtool/gsearchtool-callbacks.c:1303
+#: gsearchtool/gsearchtool-callbacks.c:1251
 #: gnome-screenshot/screenshot-xfer.c:190
 msgid "_Replace"
 msgstr "_Nahradit"
 
-#: gsearchtool/gsearchtool-callbacks.c:1353
+#: gsearchtool/gsearchtool-callbacks.c:1301
 msgid "You may not have write permissions to the document."
 msgstr "Možná nemáte oprávnění zápisu do dokumentu."
 
-#: gsearchtool/gsearchtool-support.c:68
+#: gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1324,104 +1280,104 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:620
+#: gsearchtool/gsearchtool-support.c:623
 msgid "today at %-I:%M %p"
 msgstr "dnes v %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:622
+#: gsearchtool/gsearchtool-support.c:625
 msgid "yesterday at %-I:%M %p"
 msgstr "včera v %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
+#: gsearchtool/gsearchtool-support.c:627 gsearchtool/gsearchtool-support.c:629
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A %-d. %B %Y v %-H:%M:%S"
 
-#: gsearchtool/gsearchtool-support.c:797
+#: gsearchtool/gsearchtool-support.c:813
 msgid "link (broken)"
 msgstr "odkaz (chybný)"
 
-#: gsearchtool/gsearchtool-support.c:802
+#: gsearchtool/gsearchtool-support.c:819
 #, c-format
 msgid "link to %s"
 msgstr "odkaz na %s"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:75
 msgid "Contains the _text"
 msgstr "_Obsahuje text"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:77
 msgid "_Date modified less than"
 msgstr "_Datum úpravy méně než"
 
-#: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:77 gsearchtool/gsearchtool.c:78
 msgid "days"
 msgstr "dní"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:78
 msgid "Date modified more than"
 msgstr "Datum úpravy více než"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:80
 msgid "S_ize at least"
 msgstr "Veliko_st alespoň"
 
-#: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:80 gsearchtool/gsearchtool.c:81
 msgid "kilobytes"
 msgstr "kilobajtů"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:81
 msgid "Si_ze at most"
 msgstr "Velikost nejví_ce"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:82
 msgid "File is empty"
 msgstr "Soubor je prázdný"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:84
 msgid "Owned by _user"
 msgstr "Vlastněno _uživatelem"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:85
 msgid "Owned by _group"
 msgstr "Vlastněno s_kupinou"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:86
 msgid "Owner is unrecognized"
 msgstr "Vlastníka nelze rozpoznat"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:88
 msgid "Na_me does not contain"
 msgstr "Náze_v neobsahuje"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:89
 msgid "Name matches regular e_xpression"
 msgstr "Název odpovídá re_gulárnímu výrazu"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:91
 msgid "Show hidden and backup files"
 msgstr "Zobrazovat skryté a záložní soubory"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:92
 msgid "Follow symbolic links"
 msgstr "Sledovat symbolické odkazy"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:93
 msgid "Include other filesystems"
 msgstr "Zahrnout jiné systémy souborů"
 
-#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
+#: gsearchtool/gsearchtool.c:607 gsearchtool/gsearchtool.c:636
 msgid "No files found"
 msgstr "Nenalezeny žádné soubory"
 
-#: gsearchtool/gsearchtool.c:602
+#: gsearchtool/gsearchtool.c:629
 msgid "(stopped)"
 msgstr "(zastaveno)"
 
-#: gsearchtool/gsearchtool.c:608
+#: gsearchtool/gsearchtool.c:635
 msgid "No Files Found"
 msgstr "Nenalezeny žádné soubory"
 
-#: gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:640
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
@@ -1429,7 +1385,7 @@ msgstr[0] "Nalezen %d soubor"
 msgstr[1] "Nalezeny %d soubory"
 msgstr[2] "Nalezeno %d souborů"
 
-#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
+#: gsearchtool/gsearchtool.c:644 gsearchtool/gsearchtool.c:682
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
@@ -1437,45 +1393,45 @@ msgstr[0] "Nalezen %d soubor"
 msgstr[1] "Nalezeny %d soubory"
 msgstr[2] "Nalezeno %d souborů"
 
-#: gsearchtool/gsearchtool.c:727
+#: gsearchtool/gsearchtool.c:754
 msgid "Entry changed called for a non entry option!"
 msgstr "Signál změny políčka volán pro volbu bez políčka!"
 
-#: gsearchtool/gsearchtool.c:977
+#: gsearchtool/gsearchtool.c:1004
 msgid "Searching..."
 msgstr "Hledání..."
 
-#: gsearchtool/gsearchtool.c:999
+#: gsearchtool/gsearchtool.c:1026
 msgid "Set the text of 'Name contains'"
 msgstr "Nastavit text 'Název obsahuje'"
 
-#: gsearchtool/gsearchtool.c:1000
+#: gsearchtool/gsearchtool.c:1027
 msgid "Set the text of 'Look in folder'"
 msgstr "Nastavit text 'Hledat v adresáři'"
 
-#: gsearchtool/gsearchtool.c:1001
+#: gsearchtool/gsearchtool.c:1028
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Třídit soubory podle jednoho z následujícího: název, adresář, typ nebo datum"
 
-#: gsearchtool/gsearchtool.c:1002
+#: gsearchtool/gsearchtool.c:1029
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Nastavit pořadí třídění na sestupné, implicitní je vzestupné"
 
-#: gsearchtool/gsearchtool.c:1003
+#: gsearchtool/gsearchtool.c:1030
 msgid "Automatically start a search"
 msgstr "Automaticky začít vyhledávat"
 
-#: gsearchtool/gsearchtool.c:1008
+#: gsearchtool/gsearchtool.c:1035
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Vybrat omezení '%s'"
 
-#: gsearchtool/gsearchtool.c:1114
+#: gsearchtool/gsearchtool.c:1141
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Parametru příkazové řádky sortby byla předána neplatná volba."
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1440
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1483,126 +1439,130 @@ msgstr ""
 "\n"
 "... Příliš mnoho chyb k zobrazení ..."
 
-#: gsearchtool/gsearchtool.c:1422
+#: gsearchtool/gsearchtool.c:1449
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "Výsledky hledání možná nejsou platné. Při hledání došlo k chybám."
 
-#: gsearchtool/gsearchtool.c:1443
+#: gsearchtool/gsearchtool.c:1470
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 "Výsledky hledání možná nejsou platné. Chcete zakázat funkci rychlého hledání?"
 
-#: gsearchtool/gsearchtool.c:1451
+#: gsearchtool/gsearchtool.c:1478
 msgid "Disable _Quick Search"
 msgstr "Zakázat _rychlé hledání"
 
-#: gsearchtool/gsearchtool.c:1495
+#: gsearchtool/gsearchtool.c:1522
 msgid "Error parsing the search command."
 msgstr "Chyba při zpracovávání příkazu hledání."
 
-#: gsearchtool/gsearchtool.c:1524
+#: gsearchtool/gsearchtool.c:1551
 msgid "Error running the search command."
 msgstr "Chyba při spouštění příkazu hledání."
 
-#: gsearchtool/gsearchtool.c:1638
+#: gsearchtool/gsearchtool.c:1688
 #, c-format
 msgid "'%s' entry"
 msgstr "Pole '%s'"
 
-#: gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1689
 msgid "Enter a value for search rule"
 msgstr "Zadejte hodnotu pro vyhledávací pravidlo"
 
-#: gsearchtool/gsearchtool.c:1686
+#: gsearchtool/gsearchtool.c:1736
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Kliknutím zde odstraníte pravidlo '%s'"
 
-#: gsearchtool/gsearchtool.c:1775
+#: gsearchtool/gsearchtool.c:1825
 msgid "A_vailable options:"
 msgstr "Dostupné _volby:"
 
-#: gsearchtool/gsearchtool.c:1805
+#: gsearchtool/gsearchtool.c:1855
 msgid "Search Rules Menu"
 msgstr "Menu pro vyhledávací pravidla"
 
-#: gsearchtool/gsearchtool.c:1806
+#: gsearchtool/gsearchtool.c:1856
 msgid "Select a search rule from the menu"
 msgstr "Vyberte z menu vyhledávací pravidlo"
 
-#: gsearchtool/gsearchtool.c:1837
+#: gsearchtool/gsearchtool.c:1887
 msgid "S_earch results:"
 msgstr "Výsl_edky hledání:"
 
-#: gsearchtool/gsearchtool.c:1917
+#: gsearchtool/gsearchtool.c:1968
 msgid "Name"
 msgstr "Název"
 
-#: gsearchtool/gsearchtool.c:1937
+#: gsearchtool/gsearchtool.c:1988
 msgid "Folder"
 msgstr "Adresář"
 
-#: gsearchtool/gsearchtool.c:1948
+#: gsearchtool/gsearchtool.c:1999
 msgid "Size"
 msgstr "Velikost"
 
-#: gsearchtool/gsearchtool.c:1958
+#: gsearchtool/gsearchtool.c:2009
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1968
+#: gsearchtool/gsearchtool.c:2019
 msgid "Date Modified"
 msgstr "Datum změny"
 
-#: gsearchtool/gsearchtool.c:2025
+#: gsearchtool/gsearchtool.c:2076
 msgid "_Name contains:"
 msgstr "_Název obsahuje:"
 
-#: gsearchtool/gsearchtool.c:2040 gsearchtool/gsearchtool.c:2041
+#: gsearchtool/gsearchtool.c:2091 gsearchtool/gsearchtool.c:2092
 msgid "Enter the file name you want to search."
 msgstr "Zadejte název souboru, který chcete hledat."
 
-#: gsearchtool/gsearchtool.c:2041
+#: gsearchtool/gsearchtool.c:2092
 msgid "Name Contains Entry"
 msgstr "Položka s obsahovaným názvem"
 
-#: gsearchtool/gsearchtool.c:2052
+#: gsearchtool/gsearchtool.c:2103
 msgid "_Look in folder:"
 msgstr "Hledat v _adresáři:"
 
-#: gsearchtool/gsearchtool.c:2058
+#: gsearchtool/gsearchtool.c:2109
 msgid "Browse"
 msgstr "Probírat"
 
-#: gsearchtool/gsearchtool.c:2065
+#: gsearchtool/gsearchtool.c:2116
 msgid "Select the folder where you want to start the search."
 msgstr "Zvolte adresář, kde chcete začít hledat."
 
-#: gsearchtool/gsearchtool.c:2089
+#: gsearchtool/gsearchtool.c:2130
+msgid "Show more _options"
+msgstr "Zobrazit více _možností"
+
+#: gsearchtool/gsearchtool.c:2140
 msgid "Show more options"
 msgstr "Zobrazit více možností"
 
-#: gsearchtool/gsearchtool.c:2089
+#: gsearchtool/gsearchtool.c:2140
 msgid "Expands or collapses a list of search options."
 msgstr "Rozbalí nebo skryje seznam možností hledání."
 
-#: gsearchtool/gsearchtool.c:2136
+#: gsearchtool/gsearchtool.c:2187
 msgid "Click to Start the search"
 msgstr "Kliknutím zde začnete hledat"
 
-#: gsearchtool/gsearchtool.c:2137
+#: gsearchtool/gsearchtool.c:2188
 msgid "Click to Stop the search"
 msgstr "Kliknutím zde zastavíte hledání"
 
-#: gsearchtool/gsearchtool.c:2411
+#: gsearchtool/gsearchtool.c:2462
 msgid "Cannot initialize bonobo."
 msgstr "Nemohu inicializovat bonobo."
 
-#: logview/about.c:47 logview/logview.c:49
+#: logview/about.c:47 logview/logview.c:47
 msgid "System Log Viewer"
 msgstr "Prohlížeč systémových záznamů"
 
@@ -1626,7 +1586,7 @@ msgstr "_Přidat"
 msgid "Add an action"
 msgstr "Přidat akci"
 
-#: logview/actions.c:176 logview/logview.c:88
+#: logview/actions.c:176 logview/logview.c:86
 msgid "_Edit"
 msgstr "_Upravit"
 
@@ -1883,19 +1843,19 @@ msgstr "%e. %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:43
-msgid "This file cannot be opened"
-msgstr "Tento soubor nelze otevřít"
+#: logview/logrtns.c:44
+msgid "The file could not be opened"
+msgstr "Soubor nelze otevřít"
 
-#: logview/logrtns.c:206
+#: logview/logrtns.c:210
 msgid "Unable to open logfile!\n"
 msgstr "Nemohu otevřít soubor záznamů!\n"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:217
 msgid "Not enough memory!\n"
 msgstr "Nedostatek paměti!\n"
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:269
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1905,22 +1865,22 @@ msgstr ""
 "uživatel root, nebo požádejte správce systému, aby změnil přístupová práva k "
 "tomuto souboru."
 
-#: logview/logrtns.c:282
+#: logview/logrtns.c:274
 #, c-format
 msgid "%s is too big."
 msgstr "%s je příliš velký."
 
-#: logview/logrtns.c:286
+#: logview/logrtns.c:278
 #, c-format
 msgid "%s could not be opened."
 msgstr "Nemohu otevřít %s."
 
-#: logview/logrtns.c:301 logview/logrtns.c:312
+#: logview/logrtns.c:319 logview/logrtns.c:330
 #, c-format
 msgid "%s not a log file."
 msgstr "Soubor %s není souborem záznamů."
 
-#: logview/logrtns.c:563 logview/logrtns.c:587
+#: logview/logrtns.c:581 logview/logrtns.c:605
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: nedostatek paměti"
 
@@ -1936,127 +1896,127 @@ msgstr "Hledat následující"
 msgid "Find Previous"
 msgstr "Hledat předchozí"
 
-#: logview/logview.c:87
+#: logview/logview.c:85
 msgid "_Log"
 msgstr "_Záznam"
 
-#: logview/logview.c:89
+#: logview/logview.c:87
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: logview/logview.c:92
+#: logview/logview.c:90
 msgid "_Open..."
 msgstr "_Otevřít..."
 
-#: logview/logview.c:92
+#: logview/logview.c:90
 msgid "Open a log from file"
 msgstr "Otevřít záznam ze souboru"
 
-#: logview/logview.c:94
+#: logview/logview.c:92
 msgid "_Properties"
 msgstr "_Vlastnosti"
 
-#: logview/logview.c:94
+#: logview/logview.c:92
 msgid "Show Log Properties"
 msgstr "Zobrazit vlastnosti záznamu"
 
-#: logview/logview.c:96
+#: logview/logview.c:94
 msgid "Close"
 msgstr "Zavřít"
 
-#: logview/logview.c:96
+#: logview/logview.c:94
 msgid "Close this log"
 msgstr "Zavřít tento záznam"
 
-#: logview/logview.c:98
+#: logview/logview.c:96
+msgid "_Quit"
+msgstr "U_končit"
+
+#: logview/logview.c:96
 msgid "Quit the log viewer"
 msgstr "Ukončit prohlížeč záznamů"
 
-#: logview/logview.c:101
+#: logview/logview.c:99
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: logview/logview.c:103
+#: logview/logview.c:101
 msgid "Select All"
 msgstr "Vybrat vše"
 
-#: logview/logview.c:103
+#: logview/logview.c:101
 msgid "Select the entire log"
 msgstr "Vybrat celý záznam"
 
-#: logview/logview.c:105
+#: logview/logview.c:103
 msgid "Find pattern in logs"
 msgstr "Hledat v záznamech vzorek"
 
-#: logview/logview.c:108
+#: logview/logview.c:106
 msgid "Collapse _All"
 msgstr "S_balit vše"
 
-#: logview/logview.c:108
+#: logview/logview.c:106
 msgid "Collapse all the rows"
 msgstr "Sbalí všechny řádky"
 
-#: logview/logview.c:111
+#: logview/logview.c:109
 msgid "Open the help contents for the log viewer"
 msgstr "Otevřít obsah nápovědy prohlížeče záznamů"
 
-#: logview/logview.c:113
+#: logview/logview.c:111
 msgid "Show the about dialog for the gconf editor"
 msgstr "Zobrazit dialog o editoru gconf"
 
-#: logview/logview.c:119
+#: logview/logview.c:117
 msgid "_Monitor"
 msgstr "_Sledovat"
 
-#: logview/logview.c:119
+#: logview/logview.c:117
 msgid "Monitor Current Log"
 msgstr "Sledovat aktuální záznam"
 
-#: logview/logview.c:121
+#: logview/logview.c:119
 msgid "Ca_lendar"
 msgstr "_Kalendář"
 
-#: logview/logview.c:121
+#: logview/logview.c:119
 msgid "Show Calendar Log"
 msgstr "Zobrazit záznamy z kalendáře"
 
-#: logview/logview.c:123
+#: logview/logview.c:121
 msgid "_Entry Detail"
 msgstr "D_etaily položky"
 
-#: logview/logview.c:123
+#: logview/logview.c:121
 msgid "Show Entry Detail"
 msgstr "Zobrazit podrobnosti položky"
 
-#: logview/logview.c:178
-msgid "Open the specified log."
-msgstr "Otevřít určený záznam."
-
-#: logview/logview.c:389
+#: logview/logview.c:386
 msgid "Date"
 msgstr "Datum"
 
-#: logview/logview.c:389
+#: logview/logview.c:386
 msgid "Host Name"
 msgstr "Název počítače"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 msgid "Process"
 msgstr "Proces"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 msgid "Message"
 msgstr "Zpráva"
 
-#: logview/logview.c:583
+#: logview/logview.c:580
 msgid "Open new logfile"
 msgstr "Otevřít nový soubor"
 
-#: logview/logview.c:879
+#: logview/logview.c:876
 msgid "There was an error displaying help."
 msgstr "Při zobrazování nápovědy došlo k chybě."
 
-#: logview/logview.c:897
+#: logview/logview.c:894
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (sledován) - %s"
@@ -2248,129 +2208,3 @@ msgstr "Soubor \"%s\" již existuje. Chcete jej nahradit?"
 #, c-format
 msgid "Unknown GnomeVFSXferProgressStatus %d"
 msgstr "Neznámý GnomeVFSXferProgressStatus %d"
-
-#~ msgid ""
-#~ "There was an error displaying help: \n"
-#~ "%s"
-#~ msgstr ""
-#~ "Při zobrazování nápovědy došlo k chybě: \n"
-#~ "%s"
-
-#~ msgid "Search _results:"
-#~ msgstr "Výsl_edky hledání:"
-
-#~ msgid "_Dictionary"
-#~ msgstr "_Slovník"
-
-#~ msgid "_Lookup"
-#~ msgstr "H_ledat"
-
-#~ msgid "%s is not a regular file."
-#~ msgstr "%s není normální soubor."
-
-#~ msgid "No log files to open"
-#~ msgstr "K otevření nebyly určeny soubory se záznamy"
-
-#~ msgid "Date:"
-#~ msgstr "Datum:"
-
-#~ msgid "Process:"
-#~ msgstr "Proces:"
-
-#~ msgid "Message:"
-#~ msgstr "Zpráva:"
-
-#~ msgid "Description:"
-#~ msgstr "Popis:"
-
-#~ msgid "Log Line Details"
-#~ msgstr "Podrobnosti řádku záznamu"
-
-#~ msgid "<No log loaded>"
-#~ msgstr "<Není načten záznam>"
-
-#~ msgid "Close the output window"
-#~ msgstr "Zavřít okno výstupu"
-
-#~ msgid "Clear the output window"
-#~ msgstr "Vymazat okno výstupu"
-
-#~ msgid "Output Lines"
-#~ msgstr "Řádky výstupu"
-
-#~ msgid "Size:"
-#~ msgstr "Velikost:"
-
-#~ msgid "Log Information"
-#~ msgstr "Informace o záznamech"
-
-#~ msgid "%ld byte"
-#~ msgid_plural "%ld bytes"
-#~ msgstr[0] "%ld bajt"
-#~ msgstr[1] "%ld bajty"
-#~ msgstr[2] "%ld bajtů"
-
-#~ msgid "_File"
-#~ msgstr "_Soubor"
-
-#~ msgid "Open Log..."
-#~ msgstr "Otevřít záznam..."
-
-#~ msgid "S_witch Log"
-#~ msgstr "_Přepnout soubor záznamů"
-
-#~ msgid "Switch between already opened logs"
-#~ msgstr "Přepínat mezi již otevřenými záznamy"
-
-#~ msgid "Close all Log files"
-#~ msgstr "Zavřít všechny soubory se záznamy"
-
-#~ msgid "Too many open logs. Close one and try again"
-#~ msgstr "Příliš mnoho otevřených záznamů. Zavřete nějaký a zkuste to znovu."
-
-#~ msgid "Monitor Options"
-#~ msgstr "Možnosti sledování"
-
-#~ msgid "Ac_tions..."
-#~ msgstr "A_kce..."
-
-#~ msgid "_Select logs to monitor:"
-#~ msgstr "_Vyberte záznamy ke sledování:"
-
-#~ msgid "Currently _monitored logs:"
-#~ msgstr "Právě _sledované záznamy:"
-
-#~ msgid "Add logs to monitor"
-#~ msgstr "Přidat záznamy ke sledovaným"
-
-#~ msgid "Remove logs from monitor"
-#~ msgstr "Odstranit záznamy ze sledovaných"
-
-#~ msgid "_Execute actions"
-#~ msgstr "Spustit akc_e"
-
-#~ msgid "Too many logs to monitor. Remove one and try again"
-#~ msgstr ""
-#~ "Příliš mnoho záznamů ke sledování. Odeberte prosím nějaký a zkuste to "
-#~ "znovu."
-
-#~ msgid "tmp_list is NULL\n"
-#~ msgstr "tmp_list je NULL\n"
-
-#~ msgid "Monitoring Logs..."
-#~ msgstr "Sleduji záznamy..."
-
-#~ msgid "Accessories"
-#~ msgstr "Příslušenství"
-
-#~ msgid "Error: [%s]\n"
-#~ msgstr "Chyba: [%s]\n"
-
-#~ msgid "TOUCHED!!\n"
-#~ msgstr "DOTČEN!!\n"
-
-#~ msgid "Look in Folder Entry"
-#~ msgstr "Položka Hledat v adresáři"
-
-#~ msgid "The animation file is missing or invalid: %s"
-#~ msgstr "Soubor animace chybí nebo není platný: %s"
