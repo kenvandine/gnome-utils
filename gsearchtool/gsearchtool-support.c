@@ -53,6 +53,8 @@
 #define ICON_THEME_SOCKET          "gnome-fs-socket"
 #define ICON_THEME_FIFO            "gnome-fs-fifo"
 #define MAX_SYMLINKS_FOLLOWED      32
+#define GSEARCH_DATE_FORMAT_LOCALE "locale"
+#define GSEARCH_DATE_FORMAT_ISO    "iso"
 
 
 /* START OF THE GCONF FUNCTIONS */
@@ -470,6 +472,7 @@ gchar *
 get_readable_date (const time_t file_time_raw)
 {
 	struct tm *file_time;
+	gchar *date_format_pref;
 	gchar *format;
 	GDate *today;
 	GDate *file_date;
@@ -477,6 +480,21 @@ get_readable_date (const time_t file_time_raw)
 	gchar *readable_date;
 
 	file_time = localtime (&file_time_raw);
+	
+	/* Base format of date field on nautilus date_format key */
+	date_format_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/date_format");
+	
+	if (date_format_pref != NULL) {
+		if (strcmp(date_format_pref, GSEARCH_DATE_FORMAT_LOCALE) == 0) {
+			g_free (date_format_pref);
+			return gsearchtool_strdup_strftime ("%c", file_time);
+		} else if (strcmp (date_format_pref, GSEARCH_DATE_FORMAT_ISO) == 0) {
+			g_free (date_format_pref);
+			return gsearchtool_strdup_strftime ("%Y-%m-%d %H:%M:%S", file_time);
+		}
+		g_free (date_format_pref);
+	}
+	
 	file_date = g_date_new_dmy (file_time->tm_mday,
 			       file_time->tm_mon + 1,
 			       file_time->tm_year + 1900);
@@ -499,9 +517,9 @@ get_readable_date (const time_t file_time_raw)
 	} else if (file_date_age == 1) {
 		format = g_strdup(_("yesterday at %-I:%M %p"));
 	} else if (file_date_age < 7) {
-		format = g_strdup(_("%m/%-d/%y, %-I:%M %p"));
+		format = g_strdup(_("%A, %B %-d %Y at %-I:%M:%S %p"));
 	} else {
-		format = g_strdup(_("%m/%-d/%y, %-I:%M %p"));
+		format = g_strdup(_("%A, %B %-d %Y at %-I:%M:%S %p"));
 	}
 	
 	readable_date = gsearchtool_strdup_strftime (format, file_time);
