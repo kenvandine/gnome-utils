@@ -61,7 +61,9 @@ dnl gsu
 AM_PATH_GLIB(1.1.15)
 AC_CHECK_LIB(pam, pam_authenticate, [
 	AC_DEFINE(USE_PAM)
-	PAM_LIBS="-lpam -ldl"
+	AC_CHECK_LIB(pam_misc, pam_misc_setenv,
+	[PAM_LIBS="-ldl -lpam -lpam_misc"], [PAM_LIBS="-ldl -lpam"],
+	-ldl -lpam)
 ], [PAM_LIBS=], -ldl)
 AC_SUBST(PAM_LIBS)
 
