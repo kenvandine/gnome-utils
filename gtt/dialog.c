@@ -170,8 +170,8 @@ void msgbox_ok(char *title, char *text, char *ok_text,
 	GtkWidget *mbox;
 
         sprintf(s, APP_NAME " - %s", title);
-        mbox = gnome_messagebox_new(text, GNOME_MESSAGEBOX_GENERIC, ok_text, NULL, NULL);
-	gnome_messagebox_set_default(GNOME_MESSAGEBOX(mbox), 1);
+        mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_GENERIC, ok_text, NULL, NULL);
+	gnome_message_box_set_default(GNOME_MESSAGE_BOX(mbox), 1);
 	gtk_signal_connect(GTK_OBJECT(mbox), "delete_event",
 			   GTK_SIGNAL_FUNC(gtk_true), NULL);
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
@@ -202,8 +202,8 @@ void msgbox_ok_cancel(char *title, char *text,
 	GtkWidget *mbox;
 
         sprintf(s, APP_NAME " - %s", title);
-	mbox = gnome_messagebox_new(text, GNOME_MESSAGEBOX_GENERIC, ok_text, cancel_text, NULL);
-	gnome_messagebox_set_default(GNOME_MESSAGEBOX(mbox), 1);
+	mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_GENERIC, ok_text, cancel_text, NULL);
+	gnome_message_box_set_default(GNOME_MESSAGE_BOX(mbox), 1);
 	gtk_signal_connect(GTK_OBJECT(mbox), "delete_event",
 			   GTK_SIGNAL_FUNC(gtk_true), NULL);
 	gtk_signal_connect(GTK_OBJECT(mbox), "clicked",
