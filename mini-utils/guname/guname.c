@@ -130,7 +130,7 @@ main ( int argc, char ** argv )
     gnome_init_with_popt_table (APPNAME, VERSION, argc, argv, guname_options, 0, NULL);
   }
 #else /* ! GUNAME_CAPPLET */
-  gnome_init_with_popt_table (APPNAME, VERSION, argc, argv, guname_options, 0, NULL);
+  gnome_init (APPNAME, VERSION, argc, argv);
 #endif /* ! GUNAME_CAPPLET */
 
   load_system_info ();
