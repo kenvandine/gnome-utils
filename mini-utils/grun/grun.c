@@ -3,6 +3,7 @@
    wrong with GtkAccelerator?!?!
  */
 #include <unistd.h>
+#include <config.h>
 #include <gnome.h>
 #include <gdk/gdkkeysyms.h>
 
@@ -31,11 +32,19 @@ void dorun(GtkWidget *widget, GtkWidget *theent)
 }
 
 #define APPNAME "grun"
+#ifndef VERSION
+#define VERSION "0.0.0"
+#endif
 
 int
 main(int argc, char *argv[])
 {
 	GtkWidget *theent;
+
+	argp_program_version = VERSION;
+	
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain (PACKAGE);
 
 	gnome_init (APPNAME, 0, argc, argv, 0, 0);
 
@@ -47,17 +56,18 @@ main(int argc, char *argv[])
 	gtk_signal_connect(GTK_OBJECT(thewin), "delete_event",
 			   GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
 
-	gnome_dialog_button_connect(GNOME_DIALOG(thewin), 0, 
-				    GTK_SIGNAL_FUNC(dorun), theent);
-	gnome_dialog_button_connect(GNOME_DIALOG(thewin), 1, 
-				    GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
-
 	theent = gtk_entry_new();
 	gtk_container_add(GTK_CONTAINER(GNOME_DIALOG(thewin)->vbox), theent);
 	gtk_signal_connect(GTK_OBJECT(theent), "key_press_event",
 			   GTK_SIGNAL_FUNC(dokey), NULL);
 	gtk_signal_connect(GTK_OBJECT(theent), "activate",
 			   GTK_SIGNAL_FUNC(dorun), theent);
+
+	gnome_dialog_button_connect(GNOME_DIALOG(thewin), 0, 
+				    GTK_SIGNAL_FUNC(dorun), theent);
+	gnome_dialog_button_connect(GNOME_DIALOG(thewin), 1, 
+				    GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
+
 	gtk_window_set_focus(GTK_WINDOW(thewin), theent);
 
 	gtk_widget_show_all(thewin);
