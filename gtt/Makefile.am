@@ -37,7 +37,7 @@ gtt_SOURCES = 	\
 	gtt-features.h
 
 gtt_LDADD = \
-	$(top_builddir)/libgnomeui/_libs/libgnomeui.a 	\
+	$(top_builddir)/libgnomeui/libgnomeui.la 	\
 	$(top_builddir)/libgnome/libgnome.la		\
 	$(top_builddir)/gtk-xmhtml/libgtkxmhtml.la	\
 	$(top_builddir)/intl/libintl.a			\
@@ -69,6 +69,9 @@ EXTRA_DIST = \
 	tb_home.xpm		\
 	tb_back.xpm		\
 	tb_forward.xpm		\
+	tb_home_.xpm		\
+	tb_back_.xpm		\
+	tb_forward_.xpm		\
 	gtt.sgml		\
 	$(GTT_HELP_FILES)	\
 	gtt.text		\
