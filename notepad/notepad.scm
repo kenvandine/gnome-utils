@@ -162,7 +162,8 @@
       (gtk-text-set-point text 0)
       (gtk-text-forward-delete text (gtk-text-get-length text))
       (insert-file)
-      (gtk-text-thaw text))))
+      (gtk-text-thaw text)
+      (gnome-history-recently-used file "text/plain" "notepad" "FIXME"))))
 
 ;;;
 ;;; Notepad code.
