@@ -44,4 +44,4 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/topic.dat $(help_base)/C/
 	$(INSTALL_DATA) $(srcdir)/gstripchart.html $(help_base)/C/
 	rm -f $(help_base)/C/index.html
-	$(LN_S) $(help_base)/C/gstripchart.html $(help_base)/C/index.html     
+	cd $(help_base)/C && $(LN_S) gstripchart.html index.html     
