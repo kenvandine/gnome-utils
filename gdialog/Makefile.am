@@ -20,7 +20,7 @@ gdialog_SOURCES =	\
 INCLUDES = \
 	$(GNOME_UTILS_CFLAGS)	\
 	-I$(includedir)	\
-	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
+	-DGNOMELOCALEDIR=\""$(gnomeutilslocaledir)"\"	\
 	$(CURSES_INCLUDEDIR)
 
 gdialog_LDADD = \

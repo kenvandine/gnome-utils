@@ -12,7 +12,7 @@ INCLUDES = \
 	-DGDK_PIXBUF_DISABLE_DEPRECATED			\
 	-DGTK_DISABLE_DEPRECATED			\
 	-DGNOME_DISABLE_DEPRECATED			\
-	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
+	-DGNOMELOCALEDIR=\""$(gnomeutilslocaledir)"\"
 
 archive_generator_SOURCES = 	\
 	meat-grinder.c

@@ -6,7 +6,7 @@ INCLUDES =\
 	-DDATADIR=\""$(datadir)"\"	\
 	$(GNOME_UTILS_CFLAGS) \
 	$(LIBBONOBOUI_CFLAGS) \
-	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
+	-DGNOMELOCALEDIR=\""$(gnomeutilslocaledir)"\"
 
 gnome_character_map_SOURCES = \
         main.c\
