@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-11-27 13:24+0200\n"
+"POT-Creation-Date: 2001-01-31 18:13+0200\n"
 "PO-Revision-Date: 1999-10-01 19:18+0300\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -29,7 +29,7 @@ msgstr "GNOME калькулятор"
 msgid "Select ASCII Character"
 msgstr "Вибрати символ ASCII"
 
-#: gcharmap/src/asciiselect.c:118
+#: gcharmap/src/asciiselect.c:118 gcharmap/src/menus.c:95
 msgid "Insert"
 msgstr "Вставити"
 
@@ -41,37 +41,157 @@ msgstr "Код ASCII:"
 msgid "Character:"
 msgstr "Символ:"
 
-#: gcharmap/src/interface.c:130
+#: gcharmap/src/callbacks.c:42 gcharmap/src/interface.c:130
 msgid "Gnome Character Map"
 msgstr "Мапа символ╕в"
+
+#: gcharmap/src/callbacks.c:46
+msgid ""
+"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"contain bad English."
+msgstr ""
+
+#: gcharmap/src/callbacks.c:76
+#, fuzzy, c-format
+msgid "%s: ASCII code %d"
+msgstr "Код ASCII:"
+
+#: gcharmap/src/callbacks.c:103
+#, fuzzy
+msgid "Text copied to clipboard..."
+msgstr "Скоп╕ювати у буфер обм╕ну"
+
+#: gcharmap/src/callbacks.c:115
+#, fuzzy
+msgid "Text cut to clipboard..."
+msgstr "Вир╕зати у буфер обм╕ну"
+
+#: gcharmap/src/callbacks.c:168
+msgid "Text pasted from clipboard..."
+msgstr ""
 
 #: gcharmap/src/interface.c:159
 msgid "Action Toolbar"
 msgstr "Панель д╕й"
 
-#: gcharmap/src/interface.c:176
+#: gcharmap/src/interface.c:178
 msgid "Text to copy:"
 msgstr "Текст для коп╕ювання:"
 
-#: gcharmap/src/interface.c:220 gstripchart/gstripchart.c:1798
-#: mini-utils/gcolorsel/menus.c:921
+#: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
+#: gstripchart/gstripchart.c:1798 mini-utils/gcolorsel/menus.c:921
 msgid "Exit"
 msgstr "Вийти"
 
-#: gcharmap/src/interface.c:221 gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:100
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Коп╕ювати"
 
-#: gcharmap/src/interface.c:225 gstripchart/gstripchart.c:1786
-#: gstripchart/gstripchart.c:2070 mini-utils/gcolorsel/menus.c:919
-#: mini-utils/gshutdown/gshutdown.c:319
+#: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
+#: gstripchart/gstripchart.c:1786 gstripchart/gstripchart.c:2070
+#: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "Про"
 
-#: gcharmap/src/interface.c:227 gdictsrc/gdict-applet.c:142
-#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:2067
+#: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
+#: gdictsrc/gdict-applet.c:286 gstripchart/gstripchart.c:1780
+#: gstripchart/gstripchart.c:2067
 msgid "Help"
 msgstr "Дов╕дка"
+
+#: gcharmap/src/menus.c:47
+msgid "Insert Character..."
+msgstr "Вставити символ..."
+
+#: gcharmap/src/menus.c:48
+msgid "Insert character(s) by choosing ASCII codes."
+msgstr "Вставити символи вибираючи коди ASCII."
+
+#: gcharmap/src/menus.c:55
+msgid "_Action Toolbar"
+msgstr "Панель д╕й"
+
+#: gcharmap/src/menus.c:55
+msgid "View or hide the action toolbar"
+msgstr "Показати чи прибрати панель д╕й"
+
+#: gcharmap/src/menus.c:57
+msgid "_Text Toolbar"
+msgstr "Панель тексту"
+
+#: gcharmap/src/menus.c:57
+msgid "View or hide the text toolbar"
+msgstr "Показати чи прибрати панель тексту"
+
+#: gcharmap/src/menus.c:59
+msgid "_Statusbar"
+msgstr "Панель стану"
+
+#: gcharmap/src/menus.c:59
+msgid "View or hide the statusbar"
+msgstr "Показати чи прибрати панель стану"
+
+#: gcharmap/src/menus.c:66
+msgid "Character Table's Font..."
+msgstr "Шрифт таблиц╕ символ╕в..."
+
+#: gcharmap/src/menus.c:66
+msgid "Set the character table's font."
+msgstr "Встановити шрифт таблиц╕ символ╕в."
+
+#: gcharmap/src/menus.c:69
+msgid "_Insert at end"
+msgstr "Вставити в к╕нець"
+
+#: gcharmap/src/menus.c:69
+msgid "Insert every selected character at the end of the text entry"
+msgstr ""
+
+#: gcharmap/src/menus.c:71
+msgid "_Focusable Buttons"
+msgstr ""
+
+#: gcharmap/src/menus.c:71
+msgid "Set the buttons to be focusable or not"
+msgstr ""
+
+#: gcharmap/src/menus.c:95
+msgid "Insert character(s) by choosing ASCII codes"
+msgstr ""
+
+#: gcharmap/src/menus.c:98 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Вир╕зати"
+
+#: gcharmap/src/menus.c:98
+msgid "Cut the selection"
+msgstr "Вир╕зити вибране"
+
+#: gcharmap/src/menus.c:100
+msgid "Copy the selection"
+msgstr "Скоп╕ювати вибране"
+
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Вставити"
+
+#: gcharmap/src/menus.c:102
+msgid "Paste the clipboard"
+msgstr "Вставити буфер обм╕ну"
+
+#: gcharmap/src/menus.c:105
+#, fuzzy
+msgid "Show Gnome Character Map's manual"
+msgstr "Мапа символ╕в"
+
+#: gcharmap/src/menus.c:107 mini-utils/gcolorsel/menus.c:919
+msgid "About this application"
+msgstr "Про цю програму"
+
+#: gcharmap/src/menus.c:110 mini-utils/gcolorsel/menus.c:921
+msgid "Exit the program"
+msgstr "Вийти з програми"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
@@ -130,7 +250,7 @@ msgstr ""
 "спробуйте ще раз."
 
 #: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
-#: gdictsrc/gdict-applet.c:166
+#: gdictsrc/gdict-applet.c:315
 msgid "Lookup"
 msgstr "Пошук"
 
@@ -146,10 +266,6 @@ msgstr "Орфограф╕я"
 msgid "Check word spelling"
 msgstr "Перев╕рка орфограф╕╖"
 
-#: gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Вир╕зати"
-
 #: gdictsrc/gdict-app.c:518
 msgid "Cut to Clipboard"
 msgstr "Вир╕зати у буфер обм╕ну"
@@ -157,10 +273,6 @@ msgstr "Вир╕зати у буфер обм╕ну"
 #: gdictsrc/gdict-app.c:521
 msgid "Copy to Clipboard"
 msgstr "Скоп╕ювати у буфер обм╕ну"
-
-#: gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Вставити"
 
 #: gdictsrc/gdict-app.c:524
 msgid "Paste Clipboard Contents"
@@ -178,25 +290,25 @@ msgstr "Використовуваний сервер, типова стратег╕я пошуку, щрифти"
 msgid "Word definition"
 msgstr "Визначення слова"
 
-#: gdictsrc/gdict-applet.c:128
-msgid "Cannot create applet!\n"
-msgstr "Неможливо створити аплет!\n"
-
-#: gdictsrc/gdict-applet.c:138
+#: gdictsrc/gdict-applet.c:282
 msgid "About..."
 msgstr "Про..."
 
-#: gdictsrc/gdict-applet.c:147
+#: gdictsrc/gdict-applet.c:291
 msgid "Preferences..."
 msgstr "Налаштування..."
 
-#: gdictsrc/gdict-applet.c:151
+#: gdictsrc/gdict-applet.c:295
 msgid "Show/Hide Definition Window..."
 msgstr "Показати/прибрати викно визначення..."
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:299
 msgid "Spell Check..."
 msgstr "Перев╕рка орфоргаф╕╖..."
+
+#: gdictsrc/gdict-applet.c:311
+msgid "Cannot create applet!\n"
+msgstr "Неможливо створити аплет!\n"
 
 #: gdictsrc/gdict-pref-dialog.c:38
 msgid "Headword:"
@@ -280,7 +392,7 @@ msgstr ""
 msgid "Applet"
 msgstr "Аплет"
 
-#: gdictsrc/gdict-pref-dialog.c:577
+#: gdictsrc/gdict-pref-dialog.c:581
 msgid "The server you specified could not be found."
 msgstr "Вказаного сервера не знайдено."
 
@@ -2304,14 +2416,6 @@ msgstr "Захопити"
 #: mini-utils/gcolorsel/menus.c:916
 msgid "Grab a color on the screen"
 msgstr "Захопити кол╕р на екран╕"
-
-#: mini-utils/gcolorsel/menus.c:919
-msgid "About this application"
-msgstr "Про цю програму"
-
-#: mini-utils/gcolorsel/menus.c:921
-msgid "Exit the program"
-msgstr "Вийти з програми"
 
 #: mini-utils/gcolorsel/session.c:304
 msgid ""
