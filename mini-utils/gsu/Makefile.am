@@ -64,7 +64,7 @@ CORBA_SRCLIST = gsu-common.c \
 	gsu-stubs.c	\
 	gsu.h
 
-CLEANFILES += $(CORBA_SRCLIST)
+CLEANFILES += $(CORBA_SRCLIST) my_gsu_idl
 
 EXTRA_DIST = gsu.gnorba
 
