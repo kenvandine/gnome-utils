@@ -210,9 +210,13 @@ gdiskfree_app_change_orient (GDiskFreeApp *app, GtkOrientation orientation)
       gtk_widget_unref (GTK_WIDGET (frame));
       gl = g_list_next (gl);
     }
+  gtk_window_set_policy (GTK_WINDOW (app->app), FALSE, FALSE, TRUE);
+  gtk_widget_hide (app->app);
   gnome_app_set_contents (GNOME_APP (app->app), app->dial_box);
   gtk_container_resize_children (GTK_CONTAINER (app->dial_box));
   gtk_widget_show_all (app->dial_box);
+  gtk_widget_show (app->app);
+  gtk_window_set_policy (GTK_WINDOW (app->app), FALSE, TRUE, FALSE);
 }
 /**
  * gdiskfree_update
