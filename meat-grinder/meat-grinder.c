@@ -749,7 +749,7 @@ main (int argc, char *argv [])
 		compress_icon = gnome_pixmap_file ("mc/gnome-compressed.png");
 
 	if (folder_icon == NULL || file_icon == NULL) {
-		ERRDLG (_("Cannot file proper icons anywhere!"));
+		ERRDLG (_("Cannot find proper icons anywhere!"));
 		exit (1);
 	}
 
