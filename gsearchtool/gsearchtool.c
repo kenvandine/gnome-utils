@@ -25,7 +25,7 @@
  *
  */
 
-#define ICON_SIZE 24
+#define ICON_SIZE 24.0
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
@@ -223,12 +223,27 @@ add_file_to_search_results (const gchar 	*file,
 	gchar *base_name, *dir_name;
 	
 	if (pixbuf != NULL) {
-		GdkPixbuf *scaled = gdk_pixbuf_scale_simple (pixbuf,
-				  		  ICON_SIZE,
-				  		  ICON_SIZE,
-				  		  GDK_INTERP_BILINEAR);
+		GdkPixbuf *scaled;
+		int        new_w, new_h;
+		int        w, h;
+		double     factor;
+
+		/* scale keeping aspect ratio. */
+
+		w = gdk_pixbuf_get_width (pixbuf);
+		h = gdk_pixbuf_get_height (pixbuf);
+			
+		factor = MIN (ICON_SIZE / w, ICON_SIZE / h);
+		new_w  = MAX ((int) (factor * w), 1);
+		new_h  = MAX ((int) (factor * h), 1);
+			
+		scaled = gdk_pixbuf_scale_simple (pixbuf,
+						  new_w,
+						  new_h,
+						  GDK_INTERP_BILINEAR);
+						  				  
 		g_object_unref (G_OBJECT (pixbuf));
-		pixbuf = scaled;	
+		pixbuf = scaled;       	
 	}
 	gnome_vfs_get_file_info (file, vfs_file_info, GNOME_VFS_FILE_INFO_DEFAULT);
 	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
