@@ -23,9 +23,11 @@
 #include <gtk/gtk.h>
 #endif
 
-#include "gtt.h"
-
+#include <stdio.h>
+#include <errno.h>
 #include <string.h>
+
+#include "gtt.h"
 
 
 #undef gettext
@@ -286,10 +288,20 @@ static void init_list_2(GtkWidget *w, gint butnum)
 static void init_list(void)
 {
 	if (!project_list_load(NULL)) {
+#ifdef ENOENT
+                if (errno == ENOENT) {
+                        errno = 0;
+                        setup_list();
+                        return;
+                }
+#else
+#warning ENOENT not defined?
+#endif
 		msgbox_ok_cancel(_("Error"),
-				 _("I could not read the init file.\n"
-				   "Shall I install a new init file?"),
-				 _("Yes"), _("No, just quit!"),
+				 _("An error occured while reading the "
+                                   "configuration file.\n"
+				   "Shall I setup a new configuration?"),
+				 _("Yes"), _("No"),
 				 GTK_SIGNAL_FUNC(init_list_2));
 	} else {
 		setup_list();

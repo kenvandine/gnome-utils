@@ -1,5 +1,10 @@
 Tue Jan 20 02:03:29 1998  Eckehard Berns  <eb@berns.prima.de>
 
+	* app.c (init_list): checked for ENOENT - no configuration file is
+ 	  no error
+
+	* proj.c (project_list_load): checked for ENOENT
+
 	* gtthelp.c: Added a toolbar. Added a menu to configure the
  	  toolbar. These toolbar settings still need to be saved.
 

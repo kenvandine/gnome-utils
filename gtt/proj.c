@@ -237,6 +237,11 @@ int project_list_load(char *fname)
 
 	if (!fname) fname = build_rc_name();
 	if (NULL == (f = fopen(fname, "rt"))) {
+#ifdef ENOENT
+                if (errno == ENOENT) return 0;
+#else
+#warning ENOENT not defined?
+#endif
 		g_warning("could not open %s\n", fname);
 		return 0;
 	}
