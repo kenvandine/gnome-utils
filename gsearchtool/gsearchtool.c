@@ -885,6 +885,7 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 		
 				gnome_app_error (GNOME_APP (interface.main_window), error_msgs->str);	
 			}
+			truncate_error_msgs = FALSE;
 			g_string_truncate (error_msgs, 0);
 		}
 		g_io_channel_shutdown(ioc, TRUE, NULL);
