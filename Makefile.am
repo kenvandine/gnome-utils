@@ -9,8 +9,6 @@ endif
 always_built_SUBDIRS = \
 	po 		\
 	logview 	\
-	gcharmap 	\
-	gcalc 		\
 	gsearchtool	\
 	gdictsrc
 
