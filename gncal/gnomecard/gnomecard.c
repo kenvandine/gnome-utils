@@ -539,8 +539,6 @@ GnomeUIInfo mainmenu[] = {
 /*	{GNOME_APP_UI_SUBTREE, N_("View"), NULL, viewmenu, NULL, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},*/
 
-	{GNOME_APP_UI_JUSTIFY_RIGHT},
-		
 	{GNOME_APP_UI_SUBTREE, N_("Help"), NULL, helpmenu, NULL, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
