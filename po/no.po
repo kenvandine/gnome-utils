@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.1\n"
-"POT-Creation-Date: 2002-04-23 21:12+0200\n"
-"PO-Revision-Date: 2002-04-23 21:16+0200\n"
+"POT-Creation-Date: 2002-04-29 14:49+0200\n"
+"PO-Revision-Date: 2002-04-29 14:55+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -76,33 +76,29 @@ msgstr ""
 "systemet"
 
 #. Translator credits
-#: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:48 gdictsrc/gdict-about.c:39
-#: gsearchtool/gsearchtool.c:1711 logview/about.c:52
-#: meat-grinder/meat-grinder.c:422
+#: gcalc/gcalc.c:43 gcharmap/src/callbacks.c:48 gdictsrc/gdict-about.c:43
+#: gsearchtool/gsearchtool.c:1715 logview/about.c:52
+#: meat-grinder/meat-grinder.c:429
 msgid "translator_credits"
 msgstr "oversetter_kreditt"
 
-#: gcalc/gcalc.c:47
-msgid "The GNOME Calculator"
+#: gcalc/gcalc.c:61 gcalc/gcalc.c:204
+msgid "GNOME Calculator"
 msgstr "GNOME kalkulator"
 
-#: gcalc/gcalc.c:49
+#: gcalc/gcalc.c:63
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Enkel dobbeltpresisjonskalkulator lik xcalc"
 
-#: gcalc/gcalc.c:132
+#: gcalc/gcalc.c:150
 msgid "Run in analog (slide rule) mode"
 msgstr "Kjør i analog (skyvelær) modus"
-
-#: gcalc/gcalc.c:186
-msgid "GNOME Calculator"
-msgstr "GNOME kalkulator"
 
 #: gcalc/gnome-calc.c:227
 msgid "inf"
 msgstr "inf"
 
-#: gcalc/gnome-calc.c:450 gcalc/gnome-calc.c:1153
+#: gcalc/gnome-calc.c:450
 msgid "DEG"
 msgstr "DEG"
 
@@ -154,13 +150,13 @@ msgstr "AC"
 msgid "Reset"
 msgstr "Nullstill"
 
-#: gcalc/gnome-calc.c:1149 gcalc/gnome-calc.c:1204
+#: gcalc/gnome-calc.c:1149 gcalc/gnome-calc.c:1205
 msgid "INV"
 msgstr "INV"
 
 #: gcalc/gnome-calc.c:1149
-msgid "Shift"
-msgstr "Shift"
+msgid "Inverse trigonometry/log function"
+msgstr "Invers trigonometrisk/log-funksjon"
 
 #. inverse button
 #: gcalc/gnome-calc.c:1150
@@ -187,203 +183,224 @@ msgstr "tan"
 msgid "Tangent"
 msgstr "Tangens"
 
-#: gcalc/gnome-calc.c:1153
+#. Ugly hack so that window won't resize when selecting GRAD - there should be a better fix that this
+#: gcalc/gnome-calc.c:1154
+msgid " DEG  "
+msgstr " DEG "
+
+#: gcalc/gnome-calc.c:1154
 msgid "Switch degrees / radians / grad"
 msgstr "Bytt om grader / radianer / grad"
 
-#: gcalc/gnome-calc.c:1155
+#: gcalc/gnome-calc.c:1156
 msgid "e"
 msgstr "e"
 
-#: gcalc/gnome-calc.c:1155
+#: gcalc/gnome-calc.c:1156
 msgid "Base of Natural Logarithm"
 msgstr "Basis for naturlig logaritme"
 
-#: gcalc/gnome-calc.c:1156
+#: gcalc/gnome-calc.c:1157
 msgid "EE"
 msgstr "EE"
 
-#: gcalc/gnome-calc.c:1156
+#: gcalc/gnome-calc.c:1157
 msgid "Add digit"
 msgstr "Legg til tall"
 
-#: gcalc/gnome-calc.c:1157
+#: gcalc/gnome-calc.c:1158
 msgid "log"
 msgstr "log"
 
-#: gcalc/gnome-calc.c:1157
+#: gcalc/gnome-calc.c:1158
 msgid "Base 10 Logarithm"
 msgstr "Base 10 logaritme"
 
-#: gcalc/gnome-calc.c:1158
+#: gcalc/gnome-calc.c:1159
 msgid "ln"
 msgstr "ln"
 
-#: gcalc/gnome-calc.c:1158
+#: gcalc/gnome-calc.c:1159
 msgid "Natural Logarithm"
 msgstr "Naturlig logaritme"
 
-#: gcalc/gnome-calc.c:1159
+#: gcalc/gnome-calc.c:1160
 msgid "x^y"
 msgstr "x^y"
 
-#: gcalc/gnome-calc.c:1159
+#: gcalc/gnome-calc.c:1160
 msgid "Power"
 msgstr "Potens:"
 
-#: gcalc/gnome-calc.c:1161
+#: gcalc/gnome-calc.c:1162
 msgid "PI"
 msgstr "PI"
 
-#: gcalc/gnome-calc.c:1162
+#: gcalc/gnome-calc.c:1163
 msgid "x!"
 msgstr "x!"
 
-#: gcalc/gnome-calc.c:1162
+#: gcalc/gnome-calc.c:1163
 msgid "Factorial"
 msgstr "Faktoriell"
 
-#: gcalc/gnome-calc.c:1163
+#: gcalc/gnome-calc.c:1164
 msgid "("
 msgstr "("
 
-#: gcalc/gnome-calc.c:1163
+#: gcalc/gnome-calc.c:1164
 msgid "Opening Parenthesis"
 msgstr "Parantes"
 
-#: gcalc/gnome-calc.c:1164
+#: gcalc/gnome-calc.c:1165
 msgid ")"
 msgstr ")"
 
-#: gcalc/gnome-calc.c:1164
+#: gcalc/gnome-calc.c:1165
 msgid "Closing Parenthesis"
 msgstr "Parantes slutt"
 
-#: gcalc/gnome-calc.c:1165
+#: gcalc/gnome-calc.c:1166
 msgid "/"
 msgstr "/"
 
-#: gcalc/gnome-calc.c:1165
+#: gcalc/gnome-calc.c:1166
 msgid "Divide by"
 msgstr "Divider med"
 
-#: gcalc/gnome-calc.c:1167
+#: gcalc/gnome-calc.c:1168
 msgid "STO"
 msgstr "STO"
 
-#: gcalc/gnome-calc.c:1167
-msgid "Store"
-msgstr "Lagre"
-
 #: gcalc/gnome-calc.c:1168
+msgid ""
+"Store the value in the\n"
+"display field in memory"
+msgstr ""
+"Lagre verdien i\n"
+"visningsfeltet i minne"
+
+#: gcalc/gnome-calc.c:1169
 msgid "7"
 msgstr "7"
 
-#: gcalc/gnome-calc.c:1169
+#: gcalc/gnome-calc.c:1170
 msgid "8"
 msgstr "8"
 
-#: gcalc/gnome-calc.c:1170
+#: gcalc/gnome-calc.c:1171
 msgid "9"
 msgstr "9"
 
-#: gcalc/gnome-calc.c:1171
+#: gcalc/gnome-calc.c:1172
 msgid "*"
 msgstr "*"
 
-#: gcalc/gnome-calc.c:1171
+#: gcalc/gnome-calc.c:1172
 msgid "Multiply by"
 msgstr "Multipliser med"
 
-#: gcalc/gnome-calc.c:1173
+#: gcalc/gnome-calc.c:1174
 msgid "RCL"
 msgstr "RCL"
 
-#: gcalc/gnome-calc.c:1173
-msgid "Recall"
-msgstr "Hent tilbake"
-
 #: gcalc/gnome-calc.c:1174
+msgid ""
+"Display the value in memory\n"
+"in the display field"
+msgstr ""
+"Vis verdi fra minne\n"
+"i visningsfeltet"
+
+#: gcalc/gnome-calc.c:1175
 msgid "4"
 msgstr "4"
 
-#: gcalc/gnome-calc.c:1175
+#: gcalc/gnome-calc.c:1176
 msgid "5"
 msgstr "5"
 
-#: gcalc/gnome-calc.c:1176
+#: gcalc/gnome-calc.c:1177
 msgid "6"
 msgstr "6"
 
-#: gcalc/gnome-calc.c:1177
+#: gcalc/gnome-calc.c:1178
 msgid "-"
 msgstr "-"
 
-#: gcalc/gnome-calc.c:1177
+#: gcalc/gnome-calc.c:1178
 msgid "Subtract"
 msgstr "Trekk fra"
 
-#: gcalc/gnome-calc.c:1179
+#: gcalc/gnome-calc.c:1180
 msgid "SUM"
 msgstr "SUM"
 
-#: gcalc/gnome-calc.c:1179
-msgid "Sum"
-msgstr "Sum"
-
 #: gcalc/gnome-calc.c:1180
+msgid ""
+"Add the value in the display\n"
+"field to the value in memory"
+msgstr ""
+"Legg verdien i visningsfeltet\n"
+"til verdien i minne"
+
+#: gcalc/gnome-calc.c:1181
 msgid "1"
 msgstr "1"
 
-#: gcalc/gnome-calc.c:1181
+#: gcalc/gnome-calc.c:1182
 msgid "2"
 msgstr "2"
 
-#: gcalc/gnome-calc.c:1182
+#: gcalc/gnome-calc.c:1183
 msgid "3"
 msgstr "3"
 
-#: gcalc/gnome-calc.c:1183
+#: gcalc/gnome-calc.c:1184
 msgid "+"
 msgstr "+"
 
-#: gcalc/gnome-calc.c:1183
+#: gcalc/gnome-calc.c:1184
 msgid "Add"
 msgstr "Legg til"
 
-#: gcalc/gnome-calc.c:1185
+#: gcalc/gnome-calc.c:1186
 msgid "EXC"
 msgstr "EXC"
 
-#: gcalc/gnome-calc.c:1185
-msgid "Exchange"
-msgstr "Bytt om"
-
 #: gcalc/gnome-calc.c:1186
+msgid ""
+"Exchange the values in the\n"
+"display field and memory"
+msgstr ""
+"Bytt verdiene i\n"
+"visningsfeltet og minne"
+
+#: gcalc/gnome-calc.c:1187
 msgid "0"
 msgstr "0"
 
-#: gcalc/gnome-calc.c:1187
+#: gcalc/gnome-calc.c:1188
 msgid "."
 msgstr "."
 
-#: gcalc/gnome-calc.c:1187
+#: gcalc/gnome-calc.c:1188
 msgid "Decimal Point"
 msgstr "Desimaltegn"
 
-#: gcalc/gnome-calc.c:1188
+#: gcalc/gnome-calc.c:1189
 msgid "+/-"
 msgstr "+/-"
 
-#: gcalc/gnome-calc.c:1188
+#: gcalc/gnome-calc.c:1189
 msgid "Change sign"
 msgstr "Endre fortegn"
 
-#: gcalc/gnome-calc.c:1189
+#: gcalc/gnome-calc.c:1190
 msgid "="
 msgstr "="
 
-#: gcalc/gnome-calc.c:1189
+#: gcalc/gnome-calc.c:1190
 msgid "Calculate"
 msgstr "Beregn"
 
@@ -439,38 +456,40 @@ msgstr "Tegn som skal settes inn"
 msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
-#: gcharmap/src/callbacks.c:61 gcharmap/src/interface.c:193
-msgid "Gnome Character Map"
-msgstr "Gnome tegnkart"
+#: gcharmap/src/callbacks.c:65
+msgid "GNOME Character Map"
+msgstr "Tegnkart"
 
-#: gcharmap/src/callbacks.c:64
+#: gcharmap/src/callbacks.c:68
 msgid ""
-"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"The GNOME equalivant of Microsoft Windows' Character Map. Warning: might "
 "contain bad English."
-msgstr ""
-"GNOME versjonen av Microsoft Windows' tegnkart. Advarsel: kan inneholde "
-"dårlig engelsk."
+msgstr "GNOME versjonen av Microsoft Windows' tegnkart. Advarsel: kan inneholde dårlig engelsk."
 
-#: gcharmap/src/callbacks.c:89 gcharmap/src/callbacks.c:135
+#: gcharmap/src/callbacks.c:97 gcharmap/src/callbacks.c:143
 msgid "del"
 msgstr "del"
 
-#: gcharmap/src/callbacks.c:141
+#: gcharmap/src/callbacks.c:149
 #, c-format
 msgid " %s: Character code %d"
 msgstr "%s: Tegnkode %d"
 
-#: gcharmap/src/callbacks.c:183
+#: gcharmap/src/callbacks.c:191
 msgid "Text copied to clipboard..."
 msgstr "Tekst kopiert til utklippstavlen..."
 
-#: gcharmap/src/callbacks.c:205
+#: gcharmap/src/callbacks.c:213
 msgid "Text cut to clipboard..."
 msgstr "Tekst klippet ut til utklippstavle..."
 
-#: gcharmap/src/callbacks.c:254
+#: gcharmap/src/callbacks.c:262
 msgid "Text pasted from clipboard..."
 msgstr "Tekst limt inn fra utklippstavlen..."
+
+#: gcharmap/src/interface.c:193
+msgid "Gnome Character Map"
+msgstr "Gnome tegnkart"
 
 #: gcharmap/src/interface.c:224
 msgid "Action Toolbar"
@@ -597,45 +616,55 @@ msgstr "Det oppsto en feil under lasting av konfigurasjon fra %s. (%s)\n"
 msgid ""
 "There was an error subscribing to notification of statusbar visibility "
 "changes. (%s)\n"
-msgstr "Det oppsto en feil under abonnering på endringsinformasjon for endringer i synlighet av statuslinjen. (%s)\n"
+msgstr ""
+"Det oppsto en feil under abonnering på endringsinformasjon for endringer i "
+"synlighet av statuslinjen. (%s)\n"
 
 #: gcharmap/src/notifiers.c:121
 #, c-format
 msgid ""
 "There was an error subscribing to notification of textbar visibility "
 "changes. (%s)\n"
-msgstr "Det oppsto en feil under abonnering på endringsinformasjon for synlighet for tekstlinjen. (%s)\n"
+msgstr ""
+"Det oppsto en feil under abonnering på endringsinformasjon for synlighet for "
+"tekstlinjen. (%s)\n"
 
 #: gcharmap/src/notifiers.c:134
 #, c-format
 msgid ""
 "There was an error subscribing to notification of actionbar visibility "
 "changes. (%s)\n"
-msgstr "Det oppsto en feil under abonnering på endringsinformasjon for synlighet av handlingslinjen. (%s)\n"
+msgstr ""
+"Det oppsto en feil under abonnering på endringsinformasjon for synlighet av "
+"handlingslinjen. (%s)\n"
 
 #: gcharmap/src/notifiers.c:147
 #, c-format
 msgid ""
 "There was an error subscribing to notification of insertion behaviour "
 "changes. (%s)\n"
-msgstr "Det oppsto en feil under abonnering på endringsinformasjon for innsettingsoppførsel. (%s)\n"
+msgstr ""
+"Det oppsto en feil under abonnering på endringsinformasjon for "
+"innsettingsoppførsel. (%s)\n"
 
 #: gcharmap/src/notifiers.c:160
 #, c-format
 msgid ""
 "There was an error subscribing to notification of button focusability "
 "changes. (%s)\n"
-msgstr "Det oppsto en feil under abonnering på endringsinformasjon for knappefokus. (%s)\n"
+msgstr ""
+"Det oppsto en feil under abonnering på endringsinformasjon for knappefokus. "
+"(%s)\n"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:646 gdictsrc/gdict-pref-dialog.c:463
-#: gdictsrc/gdict-pref-dialog.c:514 gdictsrc/gdict-speller.c:449
+#: gdictsrc/dict.c:648 gdictsrc/gdict-pref-dialog.c:461
+#: gdictsrc/gdict-pref-dialog.c:512 gdictsrc/gdict-speller.c:449
 msgid "Cannot connect to server"
 msgstr "Kan ikke koble til tjener"
 
-#: gdictsrc/dict.c:659
+#: gdictsrc/dict.c:661
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -643,7 +672,7 @@ msgstr ""
 "En alvorlig feil oppsto. Vennligst sjekk at tjener og port er korrekt. \n"
 "For referanse; forvalgt tjener er dict.org og porten er 2628"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:58
 msgid ""
 "Client for MIT dictionary server.\n"
 "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
@@ -651,35 +680,35 @@ msgstr ""
 "Klient for MIT ordboktjener.\n"
 "Web: http://gdict.dhs.org/, http://www.psilord.com/code/"
 
-#: gdictsrc/gdict-app.c:120
+#: gdictsrc/gdict-app.c:119
 msgid "Spell-checking..."
 msgstr "Stavekontroll..."
 
-#: gdictsrc/gdict-app.c:128
+#: gdictsrc/gdict-app.c:127
 msgid "Spell check done"
 msgstr "Stavekontroll fullført"
 
-#: gdictsrc/gdict-app.c:136 gdictsrc/gdict-app.c:265
+#: gdictsrc/gdict-app.c:135 gdictsrc/gdict-app.c:264
 msgid "No matches found"
 msgstr "Ingen treff"
 
-#: gdictsrc/gdict-app.c:249
+#: gdictsrc/gdict-app.c:248
 msgid "Looking up word..."
 msgstr "Slår opp ord..."
 
-#: gdictsrc/gdict-app.c:257
+#: gdictsrc/gdict-app.c:256
 msgid "Lookup done"
 msgstr "Oppslag fullført"
 
-#: gdictsrc/gdict-app.c:277
+#: gdictsrc/gdict-app.c:276
 msgid "String not found"
 msgstr "Streng ikke funnet"
 
-#: gdictsrc/gdict-app.c:419
+#: gdictsrc/gdict-app.c:418
 msgid "Find:"
 msgstr "Finn:"
 
-#: gdictsrc/gdict-app.c:444
+#: gdictsrc/gdict-app.c:443
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -689,55 +718,72 @@ msgstr ""
 "Enten er tjeneren du bruker er utilgjengelig \n"
 "eller så er du ikke koblet til internett."
 
-#: gdictsrc/gdict-app.c:535
-msgid "Lookup"
-msgstr "Slå opp"
+#: gdictsrc/gdict-app.c:534
+msgid "_Lookup"
+msgstr "S_lå opp"
 
-#: gdictsrc/gdict-app.c:536
+#: gdictsrc/gdict-app.c:535
 msgid "Lookup word in dictionary"
 msgstr "Slå opp ord i ordbok"
 
-#: gdictsrc/gdict-app.c:538
-msgid "Spell"
-msgstr "Stav"
+#: gdictsrc/gdict-app.c:537 gdictsrc/gdict-speller.c:148
+msgid "_Spell"
+msgstr "_Stav"
 
-#: gdictsrc/gdict-app.c:539
+#: gdictsrc/gdict-app.c:538
 msgid "Check word spelling"
 msgstr "Sjekk ordets staving"
 
-#: gdictsrc/gdict-app.c:617 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:546
+msgid "_Quit"
+msgstr "_Avslutt"
+
+#: gdictsrc/gdict-app.c:547
+msgid "Quit dictionary"
+msgstr "Avslutt ordbok"
+
+#: gdictsrc/gdict-app.c:584
+msgid "_Dictionary"
+msgstr "Or_dbok"
+
+#: gdictsrc/gdict-app.c:620 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Ordbok"
 
-#: gdictsrc/gdict-app.c:638 gdictsrc/gdict-speller.c:130
+#: gdictsrc/gdict-app.c:641 gdictsrc/gdict-speller.c:129
 msgid "_Word : "
 msgstr "_Ord : "
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:645
 msgid "_Look Up"
 msgstr "S_lå opp"
 
-#: gdictsrc/gdict-app.c:670 gdictsrc/gdict-speller.c:143
+#: gdictsrc/gdict-app.c:673 gdictsrc/gdict-speller.c:142
 msgid "Word"
 msgstr "Ord"
 
-#: gdictsrc/gdict-app.c:671 gdictsrc/gdict-speller.c:144
+#: gdictsrc/gdict-app.c:674 gdictsrc/gdict-app.c:675
+#: gdictsrc/gdict-speller.c:143
 msgid "Word Entry"
 msgstr "Ordoppføring"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:674
 msgid "Enter a Word or select one from the list below"
 msgstr "Skriv inn et ord eller velg et fra listen under"
 
-#: gdictsrc/gdict-app.c:673
+#: gdictsrc/gdict-app.c:677
 msgid "Look Up for a Word"
 msgstr "Slå opp et ord"
 
-#: gdictsrc/gdict-applet.c:276
+#: gdictsrc/gdict-applet.c:266
+msgid "Dictionary Applet"
+msgstr "Ordbok-applet"
+
+#: gdictsrc/gdict-applet.c:278
 msgid "Press button to look up any highlighted text in a dictionary"
 msgstr "Trykk på knappen for å slå opp markert tekst i en ordbok"
 
-#: gdictsrc/gdict-defbox.c:633 gdictsrc/gdict-speller.c:474
+#: gdictsrc/gdict-defbox.c:638 gdictsrc/gdict-speller.c:474
 #, c-format
 msgid "Error invoking query: %s"
 msgstr "Feil utføring av spørring: %s"
@@ -775,8 +821,8 @@ msgid "Cross-reference:"
 msgstr "Kryssreferanse:"
 
 #: gdictsrc/gdict-pref-dialog.c:185
-msgid "Preferences"
-msgstr "Innstillinger"
+msgid "Dictionary Preferences"
+msgstr "Brukervalg for ordbok"
 
 #: gdictsrc/gdict-pref-dialog.c:197
 msgid "Smart _lookup"
@@ -818,63 +864,59 @@ msgstr "Tjeneroppføring"
 msgid "Enter the Server Name"
 msgstr "Skriv inn navn på tjeneren"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Port Entry"
 msgstr "Portoppføring"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Port Number"
 msgstr "Skriv inn portnummeret"
 
-#: gdictsrc/gdict-pref-dialog.c:259
+#: gdictsrc/gdict-pref-dialog.c:257
 msgid "_Database:"
 msgstr "_Database:"
 
-#: gdictsrc/gdict-pref-dialog.c:266
+#: gdictsrc/gdict-pref-dialog.c:264
 msgid "D_efault strategy:"
 msgstr "Forvalgt strat_egi:"
 
-#: gdictsrc/gdict-pref-dialog.c:455
+#: gdictsrc/gdict-pref-dialog.c:453
 msgid "Search all databases"
 msgstr "Søk i alle databaser"
 
-#: gdictsrc/gdict-pref-dialog.c:620
+#: gdictsrc/gdict-pref-dialog.c:618
 msgid "Database"
 msgstr "Database"
 
-#: gdictsrc/gdict-pref-dialog.c:620
+#: gdictsrc/gdict-pref-dialog.c:618
 msgid "Database Name"
 msgstr "Databasenavn"
 
-#: gdictsrc/gdict-pref-dialog.c:633
+#: gdictsrc/gdict-pref-dialog.c:630
 msgid "Default Strategy"
 msgstr "Forvalgt strategi"
 
-#: gdictsrc/gdict-speller.c:144
+#: gdictsrc/gdict-speller.c:143
 msgid "Enter a word to know the spelling"
 msgstr "Skriv inn et ord for å vise staving"
 
-#: gdictsrc/gdict-speller.c:149
-msgid "_Spell"
-msgstr "_Stav"
-
-#: gdictsrc/gdict-speller.c:158
+#: gdictsrc/gdict-speller.c:157
 msgid "Click to do the spell check"
 msgstr "Klikk for å utføre stavekontroll"
 
-#: gdictsrc/gdict-speller.c:164
+#: gdictsrc/gdict-speller.c:163
 msgid "Search S_trategy:"
 msgstr "Søkes_trategi:"
 
-#: gdictsrc/gdict-speller.c:176
+#: gdictsrc/gdict-speller.c:175
 msgid "Search Results"
 msgstr "Søkeresultater"
 
-#: gdictsrc/gdict-speller.c:214
+#: gdictsrc/gdict-speller.c:213
 msgid "_Look Up Word"
 msgstr "S_lå opp ord..."
 
@@ -882,7 +924,7 @@ msgstr "S_lå opp ord..."
 msgid "Spell checker"
 msgstr "Stavekontroll"
 
-#: gdictsrc/gdict-speller.c:631
+#: gdictsrc/gdict-speller.c:639
 msgid "Search Strategy"
 msgstr "Søkestrategi"
 
@@ -904,8 +946,8 @@ msgid "About..."
 msgstr "Om..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:3
-msgid "Preferences..."
-msgstr "Brukervalg..."
+msgid "Preferences"
+msgstr "Innstillinger"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
 msgid "Show/Hide Definition Window..."
@@ -1450,50 +1492,47 @@ msgstr "E_nkelt"
 msgid "Ad_vanced"
 msgstr "A_vansert"
 
-#: gsearchtool/gsearchtool.c:1718
-msgid "The Gnome Search Tool"
-msgstr "Gnome søkeverktøy"
+#: gsearchtool/gsearchtool.c:1731
+#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
+msgid "GNOME Search Tool"
+msgstr "GNOME søkeverktøy"
 
-#: gsearchtool/gsearchtool.c:1719
+#: gsearchtool/gsearchtool.c:1732
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "© 1998-2000 Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:1720
+#: gsearchtool/gsearchtool.c:1733
 msgid "Frontend to the unix find/locate commands"
 msgstr "Grensesnitt mot UNIXs find/locate kommandoer"
 
-#: gsearchtool/gsearchtool.c:1755
+#: gsearchtool/gsearchtool.c:1772
 #, c-format
 msgid "File %s already exists. Overwrite?"
 msgstr "Filen %s eksisterer allerede. Overskriv?"
 
-#: gsearchtool/gsearchtool.c:1790
+#: gsearchtool/gsearchtool.c:1807
 msgid "Cannot save the results file."
 msgstr "Kan ikke lagre resultatfil."
 
-#: gsearchtool/gsearchtool.c:1797 meat-grinder/meat-grinder.c:535
+#: gsearchtool/gsearchtool.c:1814 meat-grinder/meat-grinder.c:584
 msgid "Save Results"
 msgstr "Lagre resultater"
 
-#: gsearchtool/gsearchtool.c:1853
+#: gsearchtool/gsearchtool.c:1870
 msgid "S_how Command"
 msgstr "_Vis kommando"
 
-#: gsearchtool/gsearchtool.c:1854
+#: gsearchtool/gsearchtool.c:1871
 msgid "Save Results _As..."
 msgstr "Lagre resultater _som..."
 
-#: gsearchtool/gsearchtool.c:1889
+#: gsearchtool/gsearchtool.c:1906
 msgid "Cannot initialize bonobo."
 msgstr "Kan ikke initiere bonobo."
 
-#: gsearchtool/gsearchtool.c:1893
+#: gsearchtool/gsearchtool.c:1910
 msgid "Search Tool"
 msgstr "Søkeverktøy"
-
-#: gsearchtool/help/es/gsearchtool.desktop.in.h:1
-msgid "GNOME Search Tool"
-msgstr "GNOME søkeverktøy"
 
 #: logview/about.c:42
 msgid "Cesar Miquel (miquel@df.uba.ar)"
@@ -1513,8 +1552,8 @@ msgstr ""
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
 #: logview/about.c:72
-msgid "Logview"
-msgstr "Loggvisning"
+msgid "GNOME System Log"
+msgstr "GNOME systemlogg"
 
 #: logview/about.c:73
 msgid "Copyright (C) 1998"
@@ -1536,7 +1575,7 @@ msgstr "Legg til..."
 msgid "Edit..."
 msgstr "Rediger..."
 
-#: logview/actions.c:151 meat-grinder/meat-grinder.c:762
+#: logview/actions.c:151
 msgid "Remove"
 msgstr "Fjern"
 
@@ -1613,44 +1652,44 @@ msgstr "Kalender"
 #. * 	-------------------
 #.
 #: logview/config.c:34
-msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+msgid "fixed 12"
+msgstr "fast 12"
 
 #: logview/config.c:35
-msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+msgid "fixed Bold 12"
+msgstr "fast uthevet 12"
 
 #: logview/config.c:36
-msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+msgid "fixed 10"
+msgstr "fast 10"
 
 #: logview/config.c:37
-msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+msgid "fixed Bold 8"
+msgstr "fast uthevet 8"
 
 #: logview/config.c:39
-msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+msgid "Helvetica 14"
+msgstr "Helvetica 14"
 
 #: logview/config.c:40
-msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+msgid "Helvetica Bold 14"
+msgstr "Helvetica uthevet 14"
 
 #: logview/config.c:41
-msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+msgid "Helvetica 12"
+msgstr "Helvetica 12"
 
 #: logview/config.c:42
-msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+msgid "Helvetica Bold 12"
+msgstr "Helvetica uthevet 12"
 
 #: logview/config.c:43
-msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+msgid "Helvetica 10"
+msgstr "Helvetica 10"
 
 #: logview/config.c:44
-msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+msgid "Helvetica Bold 10"
+msgstr "Helvetica uthevet 10"
 
 #: logview/desc_db.c:37
 #, c-format
@@ -1674,99 +1713,99 @@ msgstr "Systemlogg"
 msgid "View the system log file"
 msgstr "Vis systemets loggfiler"
 
-#: logview/info.c:79 logview/logview.c:113
+#: logview/info.c:83 logview/logview.c:113
 msgid "Log stats"
 msgstr "Loggstatus"
 
-#: logview/info.c:139
+#: logview/info.c:176
 msgid "Log information"
 msgstr "Logginformasjon"
 
-#: logview/info.c:156
+#: logview/info.c:204
 msgid "Log:"
 msgstr "Logg:"
 
-#: logview/info.c:158
+#: logview/info.c:207
 msgid "Size:"
 msgstr "Størrelse:"
 
-#: logview/info.c:160
+#: logview/info.c:210
 msgid "Modified:"
 msgstr "Endret:"
 
-#: logview/info.c:162
+#: logview/info.c:213
 msgid "Start date:"
 msgstr "Startdato:"
 
-#: logview/info.c:164
+#: logview/info.c:216
 msgid "Last date:"
 msgstr "Siste dato:"
 
-#: logview/info.c:166
+#: logview/info.c:219
 msgid "Num. lines:"
 msgstr "Ant. linjer:"
 
-#: logview/info.c:183
+#: logview/info.c:237
 #, c-format
 msgid "%ld bytes"
 msgstr "%ld bytes"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "January"
 msgstr "Januar"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "February"
 msgstr "Februar"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "March"
 msgstr "Mars"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "April"
 msgstr "April"
 
-#: logview/log_repaint.c:83
+#: logview/log_repaint.c:84
 msgid "May"
 msgstr "Mai"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "June"
 msgstr "Juni"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "July"
 msgstr "Juli"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "August"
 msgstr "August"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "September"
 msgstr "September"
 
-#: logview/log_repaint.c:84
+#: logview/log_repaint.c:85
 msgid "October"
 msgstr "Oktober"
 
-#: logview/log_repaint.c:85
+#: logview/log_repaint.c:86
 msgid "November"
 msgstr "November"
 
-#: logview/log_repaint.c:85
+#: logview/log_repaint.c:86
 msgid "December"
 msgstr "Desember"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:497
+#: logview/log_repaint.c:510
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:611
+#: logview/log_repaint.c:628
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1774,7 +1813,7 @@ msgstr "%X"
 #. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:695
+#: logview/log_repaint.c:738
 msgid "%B %e"
 msgstr "%B %e"
 
@@ -1891,28 +1930,28 @@ msgstr "Filtrer logghendelser"
 msgid "Info about logview"
 msgstr "Informasjon om loggvisning"
 
-#: logview/logview.c:346
+#: logview/logview.c:347
 msgid "No log files to open"
 msgstr "Ingen loggfile å åpne"
 
 #. Create App
-#: logview/logview.c:369
+#: logview/logview.c:370
 msgid "System Log Viewer"
 msgstr "Visning av systemlogg"
 
-#: logview/logview.c:480
+#: logview/logview.c:481
 msgid "Filename: "
 msgstr "Filnavn: "
 
-#: logview/logview.c:496
+#: logview/logview.c:497
 msgid "Date: "
 msgstr "Dato: "
 
-#: logview/logview.c:748 logview/logview.c:803
+#: logview/logview.c:749 logview/logview.c:804
 msgid "Too many open logs. Close one and try again"
 msgstr "For mange åpne logger. Lukk en og prøv på nytt"
 
-#: logview/logview.c:816
+#: logview/logview.c:817
 msgid "Open new logfile"
 msgstr "Åpne ny loggfil"
 
@@ -1973,37 +2012,37 @@ msgstr "Bredde på kolonne med vertsnavn (0 for å skjule denne kolonnen):"
 msgid "Columns"
 msgstr "Kolonner"
 
-#: logview/zoom.c:78
+#: logview/zoom.c:82
 msgid "Zoom view"
 msgstr "Zoom visning"
 
-#: logview/zoom.c:154
+#: logview/zoom.c:190
 #, c-format
 msgid "Log line detail for %s"
 msgstr "Detaljer i logglinje for %s"
 
-#: logview/zoom.c:157
+#: logview/zoom.c:193
 msgid "Log line detail for <No log loaded>"
 msgstr "Detaljer i logglinje for <Ingen logg lastet>"
 
-#: logview/zoom.c:180
+#: logview/zoom.c:227
 msgid "Date:"
 msgstr "Dato:"
 
-#: logview/zoom.c:182
+#: logview/zoom.c:231
 msgid "Process:"
 msgstr "Prosess:"
 
-#: logview/zoom.c:184
+#: logview/zoom.c:234
 msgid "Message:"
 msgstr "Melding:"
 
-#: logview/zoom.c:186
+#: logview/zoom.c:237
 msgid "Description:"
 msgstr "Beskrivelse:"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:212
+#: logview/zoom.c:262
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -2015,7 +2054,7 @@ msgstr "Arkivgenerator"
 msgid "Create compressed archives containing many files"
 msgstr "Opprett komprimerte arkiv som inneholder mange filer"
 
-#: meat-grinder/meat-grinder.c:130
+#: meat-grinder/meat-grinder.c:132
 #, c-format
 msgid ""
 "Number of files: %d\n"
@@ -2024,7 +2063,7 @@ msgstr ""
 "Antall filer: %d\n"
 "Antall mapper: %d"
 
-#: meat-grinder/meat-grinder.c:136
+#: meat-grinder/meat-grinder.c:138
 msgid ""
 "No files or folders, drop files or folders\n"
 "above to add them to the archive"
@@ -2032,79 +2071,79 @@ msgstr ""
 "Ingen filer eller mapper, slipp filer eller mapper\n"
 "over for å legge dem til i arkivet"
 
-#: meat-grinder/meat-grinder.c:261 meat-grinder/meat-grinder.c:264
+#: meat-grinder/meat-grinder.c:264 meat-grinder/meat-grinder.c:267
 msgid "Cannot start the archive (tar) program"
 msgstr "Kan ikke starte arkivprogrammet (tar)"
 
-#: meat-grinder/meat-grinder.c:272
+#: meat-grinder/meat-grinder.c:275
 msgid "Cannot run tar/gtar"
 msgstr "Kan ikke kjøre tar/gtar"
 
-#: meat-grinder/meat-grinder.c:324
+#: meat-grinder/meat-grinder.c:327
 msgid "Archive.tar.gz"
 msgstr "Arkiv.tar.gz"
 
-#: meat-grinder/meat-grinder.c:429
-msgid "The GNOME Archive Generator"
-msgstr "GNOME arkivgenerator"
-
-#: meat-grinder/meat-grinder.c:431
-msgid "Drag files in to make archives"
-msgstr "Dra filer hit for å lage arkiv"
-
-#: meat-grinder/meat-grinder.c:503 meat-grinder/meat-grinder.c:662
-msgid "No filename selected"
-msgstr "Ingen filnavn valgt"
-
-#: meat-grinder/meat-grinder.c:507
-msgid "File exists, overwrite?"
-msgstr "Filen eksisterer, overskriv?"
-
-#: meat-grinder/meat-grinder.c:531
-msgid "No items to archive"
-msgstr "Ingen oppføringer å arkivere"
-
-#: meat-grinder/meat-grinder.c:665
-msgid "File does not exists"
-msgstr "Filen eksisterer ikke"
-
-#: meat-grinder/meat-grinder.c:679
-msgid "Add file or folder"
-msgstr "Legg til fil eller mappe"
-
-#: meat-grinder/meat-grinder.c:749
-msgid "Add file or folder..."
-msgstr "Legg til fil eller mappe..."
-
-#: meat-grinder/meat-grinder.c:750
-msgid "Add a file or folder to the archive"
-msgstr "Legg til en fil eller en mappe i arkivet"
-
-#: meat-grinder/meat-grinder.c:753
-msgid "Create archive..."
-msgstr "Opprett arkiv..."
-
-#: meat-grinder/meat-grinder.c:754
-msgid "Create a new archive from the items"
-msgstr "Opprett et nytt arkiv fra oppføringene"
-
-#: meat-grinder/meat-grinder.c:763
-msgid "Remove the selected item(s)"
-msgstr "Fjern valgt(e) oppføring(er)"
-
-#: meat-grinder/meat-grinder.c:795
+#: meat-grinder/meat-grinder.c:447 meat-grinder/meat-grinder.c:845
 msgid "GNOME Archive Generator"
 msgstr "GNOME arkivgenerator"
 
-#: meat-grinder/meat-grinder.c:825
+#: meat-grinder/meat-grinder.c:449
+msgid "Drag files in to make archives"
+msgstr "Dra filer hit for å lage arkiv"
+
+#: meat-grinder/meat-grinder.c:552 meat-grinder/meat-grinder.c:712
+msgid "No filename selected"
+msgstr "Ingen filnavn valgt"
+
+#: meat-grinder/meat-grinder.c:556
+msgid "File exists, overwrite?"
+msgstr "Filen eksisterer, overskriv?"
+
+#: meat-grinder/meat-grinder.c:580
+msgid "No items to archive"
+msgstr "Ingen oppføringer å arkivere"
+
+#: meat-grinder/meat-grinder.c:715
+msgid "File does not exists"
+msgstr "Filen eksisterer ikke"
+
+#: meat-grinder/meat-grinder.c:729
+msgid "Add file or folder"
+msgstr "Legg til fil eller mappe"
+
+#: meat-grinder/meat-grinder.c:799
+msgid "_Add file or folder..."
+msgstr "_Legg til fil eller mappe..."
+
+#: meat-grinder/meat-grinder.c:800
+msgid "Add a file or folder to the archive"
+msgstr "Legg til en fil eller en mappe i arkivet"
+
+#: meat-grinder/meat-grinder.c:803
+msgid "_Create archive..."
+msgstr "_Opprett arkiv..."
+
+#: meat-grinder/meat-grinder.c:804
+msgid "Create a new archive from the items"
+msgstr "Opprett et nytt arkiv fra oppføringene"
+
+#: meat-grinder/meat-grinder.c:812
+msgid "_Remove"
+msgstr "Fje_rn"
+
+#: meat-grinder/meat-grinder.c:813
+msgid "Remove the selected item(s)"
+msgstr "Fjern valgt(e) oppføring(er)"
+
+#: meat-grinder/meat-grinder.c:884
 msgid "Drop files here to add them to the archive."
 msgstr "Slipp filer her for å legge dem til i arkivet."
 
-#: meat-grinder/meat-grinder.c:843
+#: meat-grinder/meat-grinder.c:902
 msgid "Archive"
 msgstr "Arkiv"
 
-#: meat-grinder/meat-grinder.c:850
+#: meat-grinder/meat-grinder.c:909
 msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
@@ -2112,17 +2151,83 @@ msgstr ""
 "Dra denne knappen til målet hvor du ønsker at arkivet skal opprettes eller "
 "trykk på den for å få opp en filvalg-dialog."
 
-#: meat-grinder/meat-grinder.c:975
+#: meat-grinder/meat-grinder.c:1036
 msgid "Cannot find proper icons anywhere!"
 msgstr "Kan ikke finne riktige ikoner noe sted!"
 
-#: meat-grinder/meat-grinder.c:983
+#: meat-grinder/meat-grinder.c:1044
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
 msgstr ""
 "Kan ikke finne arkivprogrammet (tar)!\n"
 "Dette er programmet som brukes for å lage arkiv."
+
+#~ msgid "The GNOME Calculator"
+#~ msgstr "GNOME kalkulator"
+
+#~ msgid "Shift"
+#~ msgstr "Shift"
+
+#~ msgid "Store"
+#~ msgstr "Lagre"
+
+#~ msgid "Recall"
+#~ msgstr "Hent tilbake"
+
+#~ msgid "Sum"
+#~ msgstr "Sum"
+
+#~ msgid "Exchange"
+#~ msgstr "Bytt om"
+
+#~ msgid "Lookup"
+#~ msgstr "Slå opp"
+
+#~ msgid "Spell"
+#~ msgstr "Stav"
+
+#~ msgid "Preferences..."
+#~ msgstr "Brukervalg..."
+
+#~ msgid "The Gnome Search Tool"
+#~ msgstr "Gnome søkeverktøy"
+
+#~ msgid "Logview"
+#~ msgstr "Loggvisning"
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+
+#~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+#~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+
+#~ msgid "The GNOME Archive Generator"
+#~ msgstr "GNOME arkivgenerator"
 
 #~ msgid "Dos (FAT)"
 #~ msgstr "DOS (FAT)"
@@ -2187,9 +2292,6 @@ msgstr ""
 
 #~ msgid "Server to use, default search strategy, fonts"
 #~ msgstr "Tjener som skal brukes, standard strategi for søk, skrifttyper"
-
-#~ msgid "_Lookup"
-#~ msgstr "S_lå opp"
 
 #~ msgid "Start in directory "
 #~ msgstr "Start i katalog "
@@ -2768,9 +2870,6 @@ msgstr ""
 #~ msgid "View Calendar"
 #~ msgstr "Vis kalender"
 
-#~ msgid "Edit Preferences..."
-#~ msgstr "Rediger brukervalg..."
-
 #~ msgid "User's Guide and Manual"
 #~ msgstr "Brukerhåndbok"
 
@@ -2925,9 +3024,6 @@ msgstr ""
 
 #~ msgid "Manual"
 #~ msgstr "Brukerhåndbok"
-
-#~ msgid "Quit"
-#~ msgstr "Avslutt"
 
 #~ msgid "1 Hour"
 #~ msgstr "1 time"
@@ -4691,9 +4787,6 @@ msgstr ""
 
 #~ msgid "Show free space on mounted file systems using dials."
 #~ msgstr "Viser ledig diskplass på monterte filsystemer."
-
-#~ msgid "GNOME Character Map"
-#~ msgstr "Tegnkart"
 
 #~ msgid "Personal cron manager"
 #~ msgstr "Crontab editor"
