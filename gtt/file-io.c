@@ -368,8 +368,6 @@ gtt_load_config (const char *fname)
                 	tip = gnome_config_get_string(s);
 			plg = gtt_plugin_new (name, path);
 			plg->tooltip = g_strdup (tip);
-printf ("duuude new tool %s--%s\n", name, path);
-			
         	}
 	} 
 
