@@ -56,7 +56,7 @@ install-data-local: gnome-system-log-security
 if CONSOLE_HELPER
 	$(INSTALL_DATA) -D gnome-system-log-pam $(DESTDIR)$(PAM_PREFIX)/pam.d/gnome-system-log
 	$(INSTALL_DATA) -D gnome-system-log-security $(DESTDIR)$(PAM_PREFIX)/security/console.apps/gnome-system-log
-	$(INSTALL_DATA) -m 755 -d $(sbindir)
-	mv -f $(bindir)/gnome-system-log $(sbindir)
-	$(LN_S) @CONSOLE_HELPER@ $(bindir)/gnome-system-log
+	$(INSTALL_DATA) -m 755 -d $(DESTDIR)$(sbindir)
+	mv -f $(DESTDIR)$(bindir)/gnome-system-log $(DESTDIR)$(sbindir)
+	$(LN_S) @CONSOLE_HELPER@ $(DESTDIR)$(bindir)/gnome-system-log
 endif
