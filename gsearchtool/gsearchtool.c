@@ -1037,7 +1037,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 			gchar *desc = g_strconcat (_(templates[opt->constraint_id].desc), ".", NULL);
 			label = gtk_label_new (desc);
 			g_free (desc);
-			gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
+			gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
 		}
 		break;
 	case SEARCH_CONSTRAINT_TEXT:
@@ -1048,7 +1048,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 			label = gtk_label_new (desc);
 			g_free (desc);
 		}
-		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
+		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
 		
 		if (templates[opt->constraint_id].type == SEARCH_CONSTRAINT_TEXT) {
 			entry = gtk_entry_new();
@@ -1083,7 +1083,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 				  NULL);
 				  
 		/* add label and text field */
-		gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+		gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, GNOME_PAD_SMALL);
 		
 		break;
 	default:
@@ -1097,7 +1097,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 	g_signal_connect(G_OBJECT(button), "clicked",
 			 G_CALLBACK(remove_constraint_cb), opt);
         gtk_size_group_add_widget (interface.constraint_size_group, button);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, GNOME_PAD_SMALL);
+	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	
 	if (interface.is_gail_loaded) {
 		gchar *desc = g_strdup_printf (_("Click to Remove the '%s' Rule"), 
@@ -1146,8 +1146,8 @@ create_additional_constraint_section (void)
 	GtkWidget *label;
 	GtkWidget *button;
 
-	vbox1 = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
-	gtk_container_set_border_width (GTK_CONTAINER(vbox1), GNOME_PAD_SMALL);
+	vbox1 = gtk_vbox_new (FALSE, 0);
+	gtk_container_set_border_width (GTK_CONTAINER(vbox1), 0);
 
 	interface.constraint = gtk_vbox_new (FALSE, 0); 
 	vbox2 = gtk_vbox_new (FALSE, 0);
@@ -1156,12 +1156,12 @@ create_additional_constraint_section (void)
 	gtk_box_pack_end (GTK_BOX(vbox2), hbox, FALSE, FALSE, 0);
 	
 	label = gtk_label_new_with_mnemonic (_("A_vailable options:"));
-	gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
+	gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
 	
 	interface.constraint_menu = gtk_option_menu_new ();
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), GTK_WIDGET(interface.constraint_menu));
 	gtk_option_menu_set_menu (GTK_OPTION_MENU(interface.constraint_menu), make_list_of_templates());
-	gtk_box_pack_start (GTK_BOX(hbox), interface.constraint_menu, TRUE, TRUE, GNOME_PAD_SMALL);
+	gtk_box_pack_start (GTK_BOX(hbox), interface.constraint_menu, TRUE, TRUE, GNOME_PAD);
 
 	if (interface.is_gail_loaded)
 	{
@@ -1172,15 +1172,15 @@ create_additional_constraint_section (void)
 
 	button = gtk_button_new_from_stock (GTK_STOCK_ADD);
 	interface.constraint_size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-	gtk_widget_set_size_request (GTK_WIDGET(button), 78, -1);
 	gtk_size_group_add_widget (interface.constraint_size_group, button);
+	gtk_size_group_add_widget (interface.constraint_size_group, gtk_button_new_from_stock (GTK_STOCK_REMOVE));
 	
 	g_signal_connect (G_OBJECT(button),"clicked",
 			  G_CALLBACK(add_constraint_cb),NULL);
 	
-	gtk_box_pack_end (GTK_BOX(hbox), button, FALSE, FALSE, GNOME_PAD_SMALL); 
+	gtk_box_pack_end (GTK_BOX(hbox), button, FALSE, FALSE, 0); 
 		
-	gtk_box_pack_start (GTK_BOX(vbox1), interface.constraint, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX(vbox1), interface.constraint, TRUE, TRUE, GNOME_PAD_SMALL);
 	
 	gtk_container_add (GTK_CONTAINER(vbox1), GTK_WIDGET(vbox2));
 	
