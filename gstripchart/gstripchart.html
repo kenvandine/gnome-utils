@@ -39,9 +39,12 @@ There are a few command line switches that can be used to alter the
 behavior of the program.
 <pre>
   -f, --config-file=FILE     configuration file
+  -g, --geometry=GEOMETRY    geometry
   -i, --chart-interval=SECS  chart update interval
+  -I, --chart-filter=SECS    chart low-pass filter time constant
   -j, --slider-interval=SECS slider update interval
-  -M, --omit-menu            omit menu
+  -J, --slider-filter=SECS   slider low-pass filter time constant
+  -M, --menubar              add menubar
   -S, --omit-slider          omit slider
   -t, --display-type=TYPE    type of display
 		none:	no display is produced (for debugging);
@@ -60,6 +63,45 @@ behavior of the program.
       --usage                Give a short usage message
   -V, --version              Print program version
 </pre>
+
+<dl>
+<dt> configuration file
+  <dd> Specifies a file from which to read configuration information.
+  If unspecified, the current working directory is checked for a file
+  named "gstripchart.conf", the user's home directory is checked for a
+  file named ".gstripchart.conf", and the /etc directory is checked
+  for a file named "gstripchart.conf".  The first such file found is
+  used.
+
+<dt> geometry
+  <dd> A standard X11 geometry specification of the form WxH+X+Y.
+
+<dt> chart-interval
+<dt> slider-interval
+  <dd> Specifies the time interval in seconds between updates to the
+  chart window and slider window.  If unspecified, the chart window
+  will be updated every 5 seconds and the slider window will be
+  updated every 0.2 seconds.
+
+<dt> chart-filter
+<dt> slider-filter
+  <dd> Specifies the time constant in seconds to be used in low-pass
+  filtering the data displayed in the chart or slider windows.  A time
+  constant of 0 seconds turns low-pass filtering off, which can result
+  in a jumpy display.  A time constant in the same range as the
+  interval parameter, described above, is usually a good choice.  Much
+  larger values cause display updates to become sluggish.  If
+  unspecified, no low pass filtering is performed in either window.
+
+<dt> menubar
+  <dd> Adds an application menubar to the main window.  Normally this
+  is omitted, and the menu is popped up by right-clicking on the chart
+  window. 
+
+<dt> omit-slider
+  <dd> Causes the display of the slider window to be suppressed.
+
+</dl>
 
 <a name="configuration">
 <h3> Configuration </h3>
@@ -137,5 +179,33 @@ The elapsed time in seconds between the last and current iteration is
 ~t.  The requested update interval is $i (and the delta is ~i, but
 will always be zero).  All the usual infix arithmatic operators are
 available.
+
+<p> If libgtop support has been compiled into the gstripchart program,
+a value can be obtained from this library.  This provides a portable
+method of obtaining many system performance parameters.  The following
+libgtop parameters are available:
+
+<dl>
+  <dt> CPU Statistics
+    <dd> cpu_total, cpu_user, cpu_nice, cpu_sys, cpu_idle, and cpu_freq
+
+  <dt> Memory Statistics
+    <dd> mem_total, mem_used, mem_free, mem_shared, mem_buffer,
+    mem_cached, mem_user, mem_locked
+
+  <dt> Swap Statistics
+    <dd> swap_total, swap_used, swap_free, swap_pagein, swap_pageout
+
+  <dt> Uptime Statistics
+    <dd> uptime, idletime
+
+  <dt> Loadavg Statistics
+    <dd> loadavg_running, loadavg_tasks,
+    loadavg_1m, loadavg_5m, loadavg_15m
+</dl>
+
+<p> These are all signed long integer quantities, except for uptime,
+idletime, and the three loadavg values which are floating point
+values.
 
 </body>
