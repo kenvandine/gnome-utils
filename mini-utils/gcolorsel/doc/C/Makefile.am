@@ -1,9 +1,9 @@
 figs = \
-	favorites.png  \
-	grid.png  \
-	list.png  \
-	search.png  \
-	simple.png
+	figures/favorites.png  \
+	figures/grid.png  \
+	figures/list.png  \
+	figures/search.png  \
+	figures/simple.png
 
 app = gcolorsel
 lang = C

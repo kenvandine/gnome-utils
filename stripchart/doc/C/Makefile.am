@@ -1,10 +1,10 @@
 figs = \
-	applet.png  \
-	main.png  \
-	menu.png  \
-	param.png  \
-	prefs.png  \
-	text.png
+	figures/applet.png  \
+	figures/main.png  \
+	figures/menu.png  \
+	figures/param.png  \
+	figures/prefs.png  \
+	figures/text.png
 
 app = stripchart
 lang = C

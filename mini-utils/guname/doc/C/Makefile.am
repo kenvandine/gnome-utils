@@ -1,8 +1,8 @@
 figs = \
-	guname-cpuinfo.png  \
-	guname-diskinfo.png  \
-	guname-main.png  \
-	guname-memoryinfo.png
+	figures/guname-cpuinfo.png  \
+	figures/guname-diskinfo.png  \
+	figures/guname-main.png  \
+	figures/guname-memoryinfo.png
 
 app = guname
 lang = C

@@ -1,6 +1,6 @@
 figs = \
-	gw-main.png  \
-	gw-menuitems.png
+	figures/gw-main.png  \
+	figures/gw-menuitems.png
 
 app = gw
 lang = C

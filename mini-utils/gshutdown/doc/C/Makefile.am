@@ -1,7 +1,7 @@
 figs = \
-	gshutdown-advanced.png  \
-	gshutdown-preferences.png  \
-	gshutdown.png
+	figures/gshutdown-advanced.png  \
+	figures/gshutdown-preferences.png  \
+	figures/gshutdown.png
 
 app = gshutdown
 lang = C

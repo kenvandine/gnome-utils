@@ -1,5 +1,5 @@
 figs = \
-	idetool.png
+	figures/idetool.png
 
 app = idetool
 lang = C

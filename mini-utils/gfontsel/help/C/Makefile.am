@@ -1,6 +1,6 @@
 figs = \
-	filterwin.png  \
-	mainshot.png
+	figures/filterwin.png  \
+	figures/mainshot.png
 app = gfontsel
 lang = C
 include $(top_srcdir)/app-docs.make
