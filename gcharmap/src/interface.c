@@ -66,20 +66,13 @@ create_chartable (void)
     GtkWidget *chartable, *button;
     gint v, h;
 
-    chartable = gtk_table_new (8, 24, TRUE);
+    chartable = gtk_table_new (16, 16, TRUE);
 
-    for (v = 0; v <= 3; v++)
+    for (v = 0; v < 16; v++)
     {
-        for (h = 0; h <= 23; h++)
+        for (h = 0; h < 16; h++)
         {
-	    char buf[7];
-            int n;
-            int ch = v * 24 + h + 32;
-	   
-	    n = g_unichar_to_utf8 (ch, buf);
-            buf[n] = 0;
-            
-            button = gtk_button_new_with_label (buf);
+            button = gtk_button_new_with_label ("");
             mainapp->buttons = g_list_append (mainapp->buttons, button);
             gtk_table_attach (GTK_TABLE (chartable), button, h, h + 1, v, v + 1,
               (GtkAttachOptions) (GTK_EXPAND | GTK_SHRINK | GTK_FILL),
@@ -87,61 +80,16 @@ create_chartable (void)
               0, 0);
 
             g_signal_connect (G_OBJECT (button), "clicked",
-              G_CALLBACK (cb_charbtn_click), NULL);
+              G_CALLBACK (cb_charbtn_click), GINT_TO_POINTER (h + v * 16));
             g_signal_connect (G_OBJECT (button), "enter",
-              G_CALLBACK (cb_charbtn_enter), NULL);
+              G_CALLBACK (cb_charbtn_enter), GINT_TO_POINTER (h + v * 16));
             g_signal_connect (G_OBJECT (button), "leave",
-              G_CALLBACK (cb_charbtn_leave), NULL);
-
-
-            g_signal_connect (G_OBJECT (button), "focus_in_event",
-              GTK_SIGNAL_FUNC (cb_charbtn_enter), NULL);
-            g_signal_connect (G_OBJECT (button), "focus_out_event",
-              GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
-
+              G_CALLBACK (cb_charbtn_leave), GINT_TO_POINTER (h + v * 16));
 
         }
     }
 
-    for (v = 0; v <= 3; v++)
-    {
-        for (h = 0; h <= 23; h++)
-        {
-            char buf[7];
-            int n;
-	    int ch = v * 24 + h + 161;
-	    
-	    if (ch > 0xff)
-		    continue;
-
-            n = g_unichar_to_utf8 (ch, buf);
-            buf[n] = 0;
-	    
-            button = gtk_button_new_with_label (buf);
-            mainapp->buttons = g_list_append (mainapp->buttons, button);
-            gtk_table_attach (GTK_TABLE (chartable), button,
-              h, h + 1, v + 4, v + 5,
-              (GtkAttachOptions) (GTK_EXPAND | GTK_SHRINK | GTK_FILL),
-              (GtkAttachOptions) (GTK_EXPAND | GTK_SHRINK | GTK_FILL),
-              0, 0);
-
-            g_signal_connect (G_OBJECT (button), "clicked",
-              G_CALLBACK (cb_charbtn_click), NULL);
-            g_signal_connect (G_OBJECT (button), "enter",
-              G_CALLBACK (cb_charbtn_enter), NULL);
-            g_signal_connect (G_OBJECT (button), "leave",
-              G_CALLBACK (cb_charbtn_leave), NULL);
-
-
-            g_signal_connect (G_OBJECT (button), "focus_in_event",
-              GTK_SIGNAL_FUNC (cb_charbtn_enter), NULL);
-            g_signal_connect (G_OBJECT (button), "focus_out_event",
-              GTK_SIGNAL_FUNC (cb_charbtn_leave), NULL);
-
-
-        }
-    }
-
+    set_chartable_labels ();
     gtk_widget_show_all (chartable);
     return chartable;
 }
@@ -198,6 +146,7 @@ main_app_create_ui (MainApp *app)
     GtkWidget *viewport;
     GtkWidget *image;
 
+    GtkObject *page_adj;
 
     /* Main window */
     {
@@ -236,6 +185,22 @@ main_app_create_ui (MainApp *app)
         gnome_app_add_docked (GNOME_APP (app->window), hbox, _("Action Toolbar"),
           BONOBO_DOCK_ITEM_BEH_EXCLUSIVE | BONOBO_DOCK_ITEM_BEH_NEVER_VERTICAL,
           BONOBO_DOCK_TOP, 2, 0, 1);
+
+        /* The page selector */
+        alabel = gtk_label_new_with_mnemonic (_("_Page:"));
+        gtk_misc_set_padding (GTK_MISC (alabel), GNOME_PAD_SMALL, -1);
+        gtk_box_pack_start (GTK_BOX (hbox), alabel, FALSE, TRUE, 0);
+
+        page_adj = gtk_adjustment_new (0, 0, 255, 1, 16, 16);
+        app->page_spin = gtk_spin_button_new (GTK_ADJUSTMENT (page_adj), 1, 0);
+        gtk_spin_button_set_update_policy (GTK_SPIN_BUTTON (app->page_spin),
+            GTK_UPDATE_IF_VALID);
+        gtk_label_set_mnemonic_widget (GTK_LABEL (alabel), app->page_spin);
+     
+        gtk_box_pack_start (GTK_BOX (hbox), app->page_spin, TRUE, TRUE, 0);
+        g_signal_connect (G_OBJECT (app->page_spin), "value-changed",
+                            G_CALLBACK (cb_page_select_spin_changed), NULL);
+        /* end of page selector */
 
         alabel = gtk_label_new_with_mnemonic (_("_Text to copy:"));
         gtk_misc_set_padding (GTK_MISC (alabel), GNOME_PAD_SMALL, -1);
@@ -309,6 +274,7 @@ static void
 main_app_init (MainApp *obj)
 {
     mainapp = obj;
+    mainapp->current_page=0;
     main_app_create_ui (obj);
 }
 

@@ -42,9 +42,11 @@ typedef struct _MainApp
     GtkWidget *textbar;
     GtkWidget *preview_label;
     GtkWidget *fontpicker;
+    GtkWidget *page_spin;
     GtkWidget *chartable;
     GList *buttons;
     GConfClient *conf;
+    gint current_page;
 } MainApp;
 
 typedef struct _MainAppClass
