@@ -74,6 +74,12 @@
 typedef void (*MenuCallback) (GtkWidget * widget, gpointer user_data);
 typedef struct __menu_item MenuItem;
 
+/* for the search results */
+enum {
+	LOGVIEW_WINDOW_OUTPUT_WINDOW_NONE,
+	LOGVIEW_WINDOW_OUTPUT_WINDOW_SEARCH,
+};
+
 typedef struct
 {
   /* Paths ----------------------------------------------------- */

@@ -30,7 +30,10 @@ gnome_system_log_SOURCES = 	\
 	misc.c		\
 	monitor.c       \
 	userprefsdialog.c       \
-	zoom.c
+	zoom.c \
+	gedit-output-window.c \
+	logview-search.c \
+	logview-search-dialog.c
 
 gnome_system_log_LDADD = \
 	$(GNOME_UTILS_LIBS)
@@ -71,7 +74,7 @@ install-gconf-schemas:
 endif
 
 install-data-local: gnome-system-log-security install-gconf-schemas
-	
+
 if CONSOLE_HELPER
 	$(INSTALL_DATA) -D gnome-system-log-pam $(DESTDIR)$(PAM_PREFIX)/pam.d/gnome-system-log
 	$(INSTALL_DATA) -D gnome-system-log-security $(DESTDIR)$(PAM_PREFIX)/security/console.apps/gnome-system-log

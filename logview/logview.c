@@ -29,7 +29,10 @@
 #include <time.h>
 #include <sys/stat.h>
 #include "logview.h"
+#include "logview-search.h"
+#include "logview-search-dialog.h"
 #include <libgnomeui/gnome-window-icon.h>
+#include "gedit-output-window.h"
 #include <ctype.h>
 
 /*
@@ -78,6 +81,10 @@ static void toggle_calendar (void);
 static void toggle_zoom (void);
 static void toggle_collapse_rows (void);
 static void logview_menus_set_state (int numlogs);
+static void logview_search (GtkWidget *widget, gpointer data);
+static void logview_close_output_window (GtkWidget *widget, gpointer user_data);
+static void logview_output_window_changed (GtkWidget *widget, gchar *key, gpointer user_data);
+
 
 /*
  *    ,-------.
@@ -92,7 +99,8 @@ enum {
 	MENU_PROPERTIES = 5,
 	MENU_CLOSE = 7,
 	MENU_CLOSE_ALL = 8,
-	MENU_QUIT = 9 
+	MENU_QUIT = 9,
+	MENU_FIND = 0
 };
 
 GnomeUIInfo log_menu[] = {
@@ -134,6 +142,18 @@ GnomeUIInfo log_menu[] = {
     GNOMEUIINFO_END
 };
 
+GnomeUIInfo edit_menu[] = {
+	{ GNOME_APP_UI_ITEM, N_("_Find"),
+	  N_("Find pattern in logs"),
+	  logview_search,
+	  NULL,
+	  NULL,
+	  GNOME_APP_PIXMAP_STOCK,
+	  GTK_STOCK_FIND,
+	  'F', GDK_CONTROL_MASK, NULL },
+	GNOMEUIINFO_END
+};
+
 GnomeUIInfo view_menu[] = {
 	{ GNOME_APP_UI_TOGGLEITEM, N_("_Calendar"),
 				N_("Show Calendar Log"), 
@@ -167,6 +187,7 @@ GnomeUIInfo help_menu[] = {
 
 GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_MENU_FILE_TREE (log_menu),
+	GNOMEUIINFO_MENU_EDIT_TREE (edit_menu),
 	GNOMEUIINFO_MENU_VIEW_TREE (view_menu),
 	GNOMEUIINFO_MENU_HELP_TREE (help_menu),
 	GNOMEUIINFO_END
@@ -181,6 +202,7 @@ GnomeUIInfo main_menu[] = {
 	
 GtkWidget *app = NULL;
 GtkWidget *statusbar = NULL;
+GtkWidget *output_window = NULL;
 
 GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
 UserPrefsStruct *user_prefs = NULL;
@@ -192,6 +214,7 @@ GtkWidget *view = NULL;
 GConfClient *client;
 poptContext poptCon;
 gint next_opt;
+int output_window_type;
 
 struct poptOption options[] = { {
 	"file",
@@ -209,7 +232,8 @@ extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 extern int loginfovisible, calendarvisible;
 extern int cursor_visible;
-extern int zoom_visible;
+extern int zoom_visible;	
+
 
 /* ----------------------------------------------------------------------
    NAME:          destroy
@@ -381,7 +405,6 @@ CreateMainWin ()
 {
    GtkWidget *vbox, *hbox, *hbox_date;
    GtkLabel *label;
-   GtkAllocation req_size;
    GtkTreeStore *tree_store;
    GtkTreeSelection *selection;
    GtkTreeViewColumn *column;
@@ -454,11 +477,25 @@ CreateMainWin ()
    g_signal_connect (G_OBJECT (view), "row_activated",
                      G_CALLBACK (handle_row_activation_cb), NULL);
 
+   /* Create ouput window */
+   output_window = gedit_output_window_new ();
+   output_window_type = LOGVIEW_WINDOW_OUTPUT_WINDOW_NONE;
+   gedit_output_window_set_select_multiple (GEDIT_OUTPUT_WINDOW (output_window),
+					    GTK_SELECTION_SINGLE);
+   gtk_box_pack_start (GTK_BOX (vbox), output_window, FALSE, FALSE, 0);
+   g_signal_connect (G_OBJECT (output_window), "close_requested",
+		     G_CALLBACK (logview_close_output_window), app);
+   
+   g_signal_connect (G_OBJECT (output_window), "selection_changed",
+		     G_CALLBACK (logview_output_window_changed), app);
+
    /* Create status area at bottom */
    statusbar = gtk_statusbar_new ();
    gtk_box_pack_start (GTK_BOX (vbox), statusbar, FALSE, FALSE, 0);
 
    gtk_widget_show_all (vbox);
+   gtk_widget_hide (output_window);
+
    gtk_widget_show_now (app);
 
 }
@@ -474,7 +511,7 @@ CloseLogMenu (GtkWidget *widget, gpointer user_data)
    int i;
 
    if (numlogs == 0)
-      return;
+	   return;
 
    CloseLog (curlog);
 
@@ -514,6 +551,7 @@ CloseLogMenu (GtkWidget *widget, gpointer user_data)
 void
 change_log_menu (GtkWidget * widget, gpointer user_data)
 {
+  gtk_widget_hide (output_window);
   change_log (1);
 
 }
@@ -680,7 +718,7 @@ CloseAllLogs (void)
    if (loginfovisible)
 	  RepaintLogInfo ();
 
-   logview_menus_set_state (numlogs);
+  logview_menus_set_state (numlogs);
 
 }
 
@@ -930,6 +968,45 @@ static void
 toggle_collapse_rows (void)
 {
     gtk_tree_view_collapse_all (GTK_TREE_VIEW (view));
+}
+
+static void
+logview_search (GtkWidget *widget, gpointer data)
+{
+	static GtkWidget *dialog = NULL;
+
+	if (dialog != NULL) {
+		gtk_window_present (GTK_WINDOW (dialog));
+		return;
+	}
+
+	dialog = logview_search_dialog_new (GTK_WINDOW (app));
+	g_object_add_weak_pointer (G_OBJECT (dialog), (gpointer)&dialog);
+	gtk_widget_show (dialog);
+}
+
+static void
+logview_close_output_window (GtkWidget *widget, gpointer user_data)
+{
+	gedit_output_window_clear (GEDIT_OUTPUT_WINDOW (widget));
+	gtk_widget_hide (widget);
+}
+
+static void
+logview_output_window_changed (GtkWidget *widget, gchar *key, gpointer user_data)
+{
+	GtkTreePath *child_path, *path;
+	GtkTreeModel *model;
+	model = gtk_tree_view_get_model (GTK_TREE_VIEW(view));
+	child_path = logview_tree_path_from_key (model, key);
+	if (child_path) {
+		gtk_tree_view_expand_to_path (GTK_TREE_VIEW (view), child_path);
+		gtk_tree_selection_select_path (gtk_tree_view_get_selection (GTK_TREE_VIEW (view)),
+						child_path);
+		gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (view),
+					      child_path, NULL, FALSE, 0, 0);
+	}
+	return;
 }
 
 static void
