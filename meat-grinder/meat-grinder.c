@@ -29,6 +29,7 @@ static gchar *gzipstr = NULL;
 static gchar *filename = NULL;
 static pid_t temporary_pid = 0;
 static gchar *temporary_file = NULL;
+struct poptOption options;
 
 static GtkWidget *create_archive_widget=NULL;
 
@@ -783,7 +784,7 @@ init_gui (void)
 	gtk_window_set_wmclass (GTK_WINDOW (app),
 				"archive-generator",
 				"archive-generator");
-	gtk_window_set_policy (GTK_WINDOW (app), FALSE, TRUE, FALSE);
+	gtk_window_set_resizable (GTK_WINDOW (app), TRUE);
 
         g_signal_connect (G_OBJECT (app), "delete_event",
 			  G_CALLBACK (quit_cb), NULL);
@@ -795,7 +796,7 @@ init_gui (void)
 	gtk_widget_show (vbox);
 
 	sw = gtk_scrolled_window_new (NULL, NULL);
-	gtk_widget_set_usize (sw, 250, 150);
+	gtk_widget_set_size_request (sw, 250, 150);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
 					GTK_POLICY_AUTOMATIC,
 					GTK_POLICY_AUTOMATIC);
@@ -884,20 +885,51 @@ got_signal (gint sig)
 	kill (getpid (), sig);
 }
 
+static gint
+save_session (GnomeClient *client, gint phase,
+ 	      GnomeRestartStyle save_style, gint shutdown,
+ 	      GnomeInteractStyle interact_style, gint fast,
+ 	      gpointer client_data)
+{
+ 	gchar *argv[] = { NULL };
+ 
+ 	argv[0] = (gchar *) client_data;
+ 	gnome_client_set_clone_command (client, 1, argv);
+ 	gnome_client_set_restart_command (client, 1, argv);
+ 
+ 	return TRUE;
+}
+ 
+static gint
+die (GnomeClient *client, gpointer client_data)
+{
+	gtk_main_quit ();
+}
+
 gint
 main (gint argc, gchar *argv [])
 {
 	gint i;
 	poptContext ctx;
 	const gchar **files;
+	GnomeClient *client;
 	
 	/* Initialize the i18n stuff */
 	bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
 
-	gnome_init_with_popt_table ("archive-generator", VERSION,
-				    argc, argv, NULL, 0, &ctx);
+	gnome_program_init ("archive-generator", VERSION, LIBGNOMEUI_MODULE,
+				    argc, argv, GNOME_PARAM_POPT_TABLE,
+				    &options, NULL);
+
+	client = gnome_master_client ();
+
+	g_signal_connect (client, "save_yourself",
+			  G_CALLBACK (save_session), (gpointer)argv[0]);
+
+	g_signal_connect (client, "die", G_CALLBACK (die), NULL);
+
 	/* no icon yet */
 	/*gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-meat-grinder.png");*/
 
@@ -952,6 +984,8 @@ main (gint argc, gchar *argv [])
 			 "This is the program used for compressing archives.\n");
 		exit (1);
 	}
+
+	ctx = poptGetContext (PACKAGE, argc, (const char **) argv, &options, 0);
 
 	files = poptGetArgs (ctx);
 
