@@ -269,37 +269,36 @@ open_file_cb (GtkWidget 	*widget,
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;
 	
-		store = interface.model;
-		selection = interface.selection;
+	store = interface.model;
+	selection = interface.selection;
 		
-		if (!gtk_tree_selection_get_selected (selection, NULL, &iter))
-    			return;
+	if (!gtk_tree_selection_get_selected (selection, NULL, &iter))
+		return;
 		
-		gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
+	gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
 							       COLUMN_PATH, &utf8_path,
 							       COLUMN_NO_FILES_FOUND, &no_files_found,
 								-1);
 
-		if (!no_files_found) {
-			file = g_build_filename (utf8_path, utf8_name, NULL);
-			locale_file = g_locale_from_utf8(file, -1, NULL, NULL, NULL);
+	if (!no_files_found) {		
+		file = g_build_filename (utf8_path, utf8_name, NULL);
+		locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
 			
-			if (is_nautilus_running ()) {
-				open_file_with_nautilus (locale_file);
-			}
-			else {
-				if (!open_file_with_application(locale_file))	
-					gnome_error_dialog_parented(_("No viewer available for this mime type."),
-							    	    GTK_WINDOW(interface.main_window));
-			}
-
-			g_free (file);
-			g_free (locale_file);
+		if (is_component_action_type (locale_file) 
+		    && is_nautilus_running ()) {
+			open_file_with_nautilus (locale_file);
 		}
-		
+		else {
+			if (!open_file_with_application (locale_file)) {
+				gnome_error_dialog_parented (_("Sorry, no viewer available for this file type."),
+						    	     GTK_WINDOW(interface.main_window));
+			}
+		} 
+		g_free (file);
+		g_free (locale_file);
+	}
 	g_free (utf8_name);
 	g_free (utf8_path);
-	
 }
 
 void
@@ -382,19 +381,21 @@ click_file_cb 	     (GtkWidget 	*widget,
 		
 		if (!no_files_found) {
 			file = g_build_filename (utf8_path, utf8_name, NULL);
-			locale_file = g_locale_from_utf8(file, -1, NULL, NULL, NULL);
+			locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
 			
-			if (is_nautilus_running ()) {
+			if (is_component_action_type (locale_file) 
+			    && is_nautilus_running ()) {
 				open_file_with_nautilus (locale_file);
 			}
 			else {
-				if (!open_file_with_application(locale_file))	
-					gnome_error_dialog_parented(_("No viewer available for this mime type."),
-							    	    GTK_WINDOW(interface.main_window));
-			}
+				if (!open_file_with_application (locale_file)) {
+					gnome_error_dialog_parented (_("Sorry, no viewer available for this file type."),
+							    	     GTK_WINDOW(interface.main_window));
+				}
+			} 
+			g_free (file);
+			g_free (locale_file);
 		}
-		g_free (file);
-		g_free (locale_file);
 		g_free (utf8_name);
 		g_free (utf8_path);
 	}

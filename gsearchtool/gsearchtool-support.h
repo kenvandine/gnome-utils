@@ -99,6 +99,9 @@ get_file_icon_with_mime_type 	(const gchar *filename,
 gboolean  	
 is_nautilus_running 		(void);
 
+gboolean
+is_component_action_type 	(const gchar *filename);
+
 gboolean 	
 open_file_with_nautilus 	(const gchar *filename);
 

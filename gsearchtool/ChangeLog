@@ -1,3 +1,13 @@
+2002-10-05  Dennis M. Cransotn <dennis_cranston@yahoo.com>
+
+	* gsearchtool-support.[ch]:  Added function 
+	is_component_action_type().
+	
+	* gsearchtool-callbacks.c:  Fix for bug report #94858, 
+	before opening a file with nautilus call 
+	is_component_action_type() to check that the file has 
+	a default action type of component.  
+	
 2002-10-05  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool-callbacks.c:  Fixed popup menu for 
