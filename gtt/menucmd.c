@@ -116,7 +116,7 @@ init_project_list_2(GtkWidget *widget, int button)
 	GtkWidget *dlg, *t;
 	GtkBox *vbox;
 	
-	if (button != 1) return;
+	if (button != 0) return;
 	if (!project_list_load(NULL)) {
 		new_dialog_ok(gettext("Warning"), &dlg, &vbox,
 			      gettext("Oops"), NULL, NULL);

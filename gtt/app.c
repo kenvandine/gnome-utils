@@ -183,7 +183,7 @@ static void unlock_quit(void)
 
 static void init_list_2(GtkWidget *w, gint butnum)
 {
-	if (butnum == 2) unlock_quit();
+	if (butnum == 1) unlock_quit();
 	else
                 setup_clist();
 }
