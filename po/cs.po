@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-11 20:30+0100\n"
-"PO-Revision-Date: 2004-12-11 22:32+0100\n"
+"POT-Creation-Date: 2004-12-13 20:30+0100\n"
+"PO-Revision-Date: 2004-12-13 22:31+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Vyhledání ve slovníku"
 msgid "Lookup words in an online dictionary"
 msgstr "Vyhledávání slov v on-line slovníku"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:583
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:784
 #: logview/logview.c:111
 msgid "_About"
 msgstr "O _aplikaci"
@@ -84,33 +84,33 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "Klient pro server se slovníkem MIT."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:218 gdictsrc/gdict-app.c:229
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:262 gdictsrc/gdict-app.c:275
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Slovník"
 
-#: gdictsrc/gdict-app.c:75
+#: gdictsrc/gdict-app.c:110
 msgid "Spell-checking..."
 msgstr "Kontrola pravopisu..."
 
-#: gdictsrc/gdict-app.c:83
+#: gdictsrc/gdict-app.c:118
 msgid "Spell check done"
 msgstr "Kontrola pravopisu dokončena"
 
-#: gdictsrc/gdict-app.c:91 gdictsrc/gdict-app.c:246
+#: gdictsrc/gdict-app.c:126 gdictsrc/gdict-app.c:294
 msgid "No matches found"
 msgstr "Nic nenalezeno"
 
 # FIXME: s/x/ct/
-#: gdictsrc/gdict-app.c:103
+#: gdictsrc/gdict-app.c:138
 msgid "Connexion error"
 msgstr "Chyba spojení"
 
-#: gdictsrc/gdict-app.c:148
+#: gdictsrc/gdict-app.c:192
 msgid "Unable to perform requested operation."
 msgstr "Nemohu provést požadovanou operaci."
 
-#: gdictsrc/gdict-app.c:149
+#: gdictsrc/gdict-app.c:193
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -118,151 +118,155 @@ msgstr ""
 "Buď není server, který používáte, k dispozici, \n"
 "nebo nejste připojeni k Internetu."
 
-#: gdictsrc/gdict-app.c:219
+#: gdictsrc/gdict-app.c:263
 msgid "Looking up word..."
 msgstr "Hledám slovo..."
 
-#: gdictsrc/gdict-app.c:235
+#: gdictsrc/gdict-app.c:281
 msgid "Lookup done"
 msgstr "Hledání hotovo"
 
-#: gdictsrc/gdict-app.c:260
+#: gdictsrc/gdict-app.c:308
 msgid "String not found"
 msgstr "Řetězec nenalezen"
 
-#: gdictsrc/gdict-app.c:440
+#: gdictsrc/gdict-app.c:381
+msgid "Print Word Definition"
+msgstr "Vytisknout definici slova"
+
+#: gdictsrc/gdict-app.c:495
 msgid "Find"
 msgstr "Hledat"
 
-#: gdictsrc/gdict-app.c:450
+#: gdictsrc/gdict-app.c:505
 msgid "_Search for:"
 msgstr "_Hledat:"
 
-#: gdictsrc/gdict-app.c:527 gdictsrc/gdict-applet.c:352
+#: gdictsrc/gdict-app.c:582 gdictsrc/gdict-applet.c:352
 #: gdictsrc/gdict-pref-dialog.c:627
 msgid "Could not display help"
 msgstr "Nemohu zobrazit nápovědu"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:567 gdictsrc/gdict-app.c:875
+#: gdictsrc/gdict-app.c:768 gdictsrc/gdict-app.c:890
 msgid "_Look Up Word"
 msgstr "_Hledat slovo"
 
-#: gdictsrc/gdict-app.c:568
+#: gdictsrc/gdict-app.c:769
 msgid "Lookup word in dictionary"
 msgstr "Hledat slovo ve slovníku"
 
-#: gdictsrc/gdict-app.c:569
+#: gdictsrc/gdict-app.c:770
 msgid "_Print"
 msgstr "Vy_tisknout"
 
-#: gdictsrc/gdict-app.c:570
+#: gdictsrc/gdict-app.c:771
 msgid "Print the current definition"
 msgstr "Vytisknout aktuální definici"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:573 logview/logview.c:103
+#: gdictsrc/gdict-app.c:774 logview/logview.c:103
 msgid "_Find..."
 msgstr "_Hledat..."
 
-#: gdictsrc/gdict-app.c:574
+#: gdictsrc/gdict-app.c:775
 msgid "Find a word in the text"
 msgstr "Hledat slovo v textu"
 
-#: gdictsrc/gdict-app.c:575
+#: gdictsrc/gdict-app.c:776
 msgid "Find Ne_xt"
 msgstr "Hledat _následující"
 
-#: gdictsrc/gdict-app.c:576
+#: gdictsrc/gdict-app.c:777
 msgid "Find next occurrence of the word"
 msgstr "Hledat následující výskyt slova"
 
-#: gdictsrc/gdict-app.c:577
+#: gdictsrc/gdict-app.c:778
 msgid "P_references"
 msgstr "_Nastavení"
 
-#: gdictsrc/gdict-app.c:578
+#: gdictsrc/gdict-app.c:779
 msgid "Configure the application"
 msgstr "Nastavit aplikaci"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:581 logview/logview.c:109
+#: gdictsrc/gdict-app.c:782 logview/logview.c:109
 msgid "_Contents"
 msgstr "_Obsah"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:783
 msgid "View help for this application"
 msgstr "Zobrazit nápovědu k této aplikaci"
 
-#: gdictsrc/gdict-app.c:584
+#: gdictsrc/gdict-app.c:785
 msgid "About this application"
 msgstr "O této aplikaci"
 
-#: gdictsrc/gdict-app.c:591
+#: gdictsrc/gdict-app.c:792
 msgid "_Close"
 msgstr "_Zavřít"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:793
 msgid "Close the application"
 msgstr "Zavřít aplikaci"
 
-#: gdictsrc/gdict-app.c:597
+#: gdictsrc/gdict-app.c:798
 msgid "Cu_t"
 msgstr "_Vyjmout"
 
-#: gdictsrc/gdict-app.c:598
+#: gdictsrc/gdict-app.c:799
 msgid "Cut the selection"
 msgstr "Vyjmout výběr"
 
-#: gdictsrc/gdict-app.c:599
+#: gdictsrc/gdict-app.c:800
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: gdictsrc/gdict-app.c:600 logview/logview.c:99
+#: gdictsrc/gdict-app.c:801 logview/logview.c:99
 msgid "Copy the selection"
 msgstr "Kopírovat výběr"
 
-#: gdictsrc/gdict-app.c:601
+#: gdictsrc/gdict-app.c:802
 msgid "_Paste"
 msgstr "V_ložit"
 
-#: gdictsrc/gdict-app.c:602
+#: gdictsrc/gdict-app.c:803
 msgid "Paste clipboard"
 msgstr "Vložit schránku"
 
-#: gdictsrc/gdict-app.c:603
+#: gdictsrc/gdict-app.c:804
 msgid "Select _All"
 msgstr "Vybrat vš_e"
 
-#: gdictsrc/gdict-app.c:604
+#: gdictsrc/gdict-app.c:805
 msgid "Select everything"
 msgstr "Vybrat vše"
 
-#: gdictsrc/gdict-app.c:609
+#: gdictsrc/gdict-app.c:810
 msgid "View _Spellings"
 msgstr "Zobrazit _zápisy"
 
-#: gdictsrc/gdict-app.c:610
+#: gdictsrc/gdict-app.c:811
 msgid "View alternate spellings"
 msgstr "Zobrazit jiné zápisy"
 
-#: gdictsrc/gdict-app.c:872
+#: gdictsrc/gdict-app.c:887
 msgid "_Word:"
 msgstr "_Slova:"
 
-#: gdictsrc/gdict-app.c:891
+#: gdictsrc/gdict-app.c:906
 msgid "Word"
 msgstr "Slovo"
 
-#: gdictsrc/gdict-app.c:892 gdictsrc/gdict-app.c:894
+#: gdictsrc/gdict-app.c:907 gdictsrc/gdict-app.c:909
 msgid "Word Entry"
 msgstr "Položka se slovem"
 
-#: gdictsrc/gdict-app.c:893
+#: gdictsrc/gdict-app.c:908
 msgid "Enter a Word or select one from the list below"
 msgstr "Zadejte slovo nebo jedno vyberte ze seznamu níže"
 
-#: gdictsrc/gdict-app.c:897
+#: gdictsrc/gdict-app.c:912
 msgid "Look Up for a Word"
 msgstr "Hledat slovo"
 
@@ -270,7 +274,11 @@ msgstr "Hledat slovo"
 msgid "Dictionary word entry"
 msgstr "Pole pro slovo ze slovníku"
 
-#: gdictsrc/gdict-defbox.c:670 gdictsrc/gdict-speller.c:284
+#: gdictsrc/gdict-defbox.c:344
+msgid "Definition preview"
+msgstr "Náhled definice"
+
+#: gdictsrc/gdict-defbox.c:682 gdictsrc/gdict-speller.c:284
 msgid "Error invoking query"
 msgstr "Chyba při spouštění dotazu"
 
