@@ -842,6 +842,7 @@ open_file_with_application (GtkWidget * window,
 				}
 				else {
 				 	screen = gtk_widget_get_screen (window);
+					gnome_desktop_item_set_launch_time (ditem, gtk_get_current_event_time ());
 					gnome_desktop_item_launch_on_screen (ditem, uris, 
 						GNOME_DESKTOP_ITEM_LAUNCH_APPEND_URIS, screen, -1, &error);
 					if (error) {
