@@ -701,7 +701,7 @@ void gnomecard_init(void)
 
 	scrollwin = gtk_scrolled_window_new(NULL, NULL);
 /*	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(4, titles)); */
-	gnomecard_list = GTK_CLIST(gtk_clist_new(4);
+	gnomecard_list = GTK_CLIST(gtk_clist_new(4));
 
 	/* Hard coding column types for now */
 	cols = buildColumnHeaders(hdrs);
