@@ -788,7 +788,7 @@ cap(double x)
 }
 
 static int
-update_values(Param_glob *pgp, Param_glob *slave_pgp)
+update_values(Param_glob *pgp, Param_glob *slave_pgp, int readjust)
 {
   int param_num, last_val_pos, next_val_pos, capped=0;
 
@@ -844,7 +844,7 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
 
 	  /* Copy now vals to last vals, update now vals, and compute
 	     a new param value based on the new now vals.  */
-	  memcpy(p->last, p->now, p->vars * sizeof(*(p->last)));
+	  memcpy(p->last, p->now, p->vars * sizeof(p->last[0]));
 	  split_and_extract(buf, p);
 	  val = eval(
 	    p->eqn, p->eqn_src, pgp->t_diff,
@@ -858,16 +858,20 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
 	  val = p->val[next_val_pos] = prev + pgp->lpf_const * (val - prev);
 
 	  /* Update the min and max values. */
-	  if (val < p->min) p->min = p->bot = val;
-	  if (val > p->max)
+	  if (readjust)
 	    {
-	      p->max = val;
-	      if (val > p->top)
+	      if (val < p->min)
+		p->min = val;
+	      if (val > p->max)
 		{
-		  p->top = cap(val);
-		  if (slave_pgp)
-		    slave_pgp->parray[param_num]->top = p->top;
-		  capped = 1;
+		  p->max = val;
+		  if (val > p->top)
+		    {
+		      p->top = cap(val);
+		      if (slave_pgp)
+			slave_pgp->parray[param_num]->top = p->top;
+		      capped = 1;
+		    }
 		}
 	    }
 	}
@@ -884,7 +888,7 @@ no_display(void)
   while (1)
     {
       usleep((int)(1e6 * chart_interval + 0.5));
-      update_values(&chart_glob, NULL);
+      update_values(&chart_glob, NULL, 0);
     }
 }
 
@@ -899,7 +903,7 @@ numeric_with_ident(void)
   while (1)
     {
       usleep((int)(1e6 * chart_interval + 0.5));
-      update_values(&chart_glob, NULL);
+      update_values(&chart_glob, NULL, 0);
 
       for (p=0; p<chart_glob.params; p++)
 	if (chart_glob.parray[p]->active)
@@ -929,7 +933,7 @@ numeric_with_graph(void)
   while (1)
     {
       usleep((int)(1e6 * chart_interval + 0.5));
-      update_values(&chart_glob, NULL);
+      update_values(&chart_glob, NULL, 0);
 
       for (p=0; p<chart_glob.params; p++)
 	if (chart_glob.parray[p]->active)
@@ -953,9 +957,10 @@ readjust_top_for_width(int width)
 {
   float t;
   int p, n, i, v;
-
-  // printf("readjusting top for width=%d, vals=%d\n",
-  // 	 width, chart_glob.num_val);
+#if 0
+  printf("readjusting top for width=%d, vals=%d\n",
+  	 width, chart_glob.num_val);
+#endif
   n = width < chart_glob.num_val ? width : chart_glob.num_val;
   for (p = 0; p < chart_glob.params; p++)
     {
@@ -968,8 +973,21 @@ readjust_top_for_width(int width)
 	  if (t > chart_glob.parray[p]->val[v])
 	    t = chart_glob.parray[p]->val[v];
 	}
-      chart_glob.parray[p]->top = t;
-      // printf("top[%d] %s\t= %g\n", p, chart_glob.parray[p]->ident, t);
+      /* Only adjust top upward from its expected hi value. */
+      if (chart_glob.parray[p]->hi < chart_glob.parray[p]->top)
+	{
+	  t = cap(t);
+	  chart_glob.parray[p]->top = t;
+	  if (include_slider)
+	    slider_glob.parray[p]->top = t;
+	}
+#if 0
+      printf("top[%d] %s\t= %g\t=> %g",
+	     p, chart_glob.parray[p]->ident, t, chart_glob.parray[p]->top);
+      if (include_slider)
+	printf("\t%g", slider_glob.parray[p]->top);
+      printf("\n");
+#endif
     }
 }
 
@@ -1099,7 +1117,7 @@ chart_timer_handler(GtkWidget *widget)
   /* Collect new parameter values.  If the scale has changed, clear
      the pixmap and fake an expose event to reload the pixmap.
      Otherwise plot each value in the RHS of the pixmap. */
-  rescale = update_values(&chart_glob, include_slider? &slider_glob: NULL);
+  rescale = update_values(&chart_glob, include_slider? &slider_glob: NULL, 1);
   if (rescale)
     {
       GdkEventExpose expose;
@@ -1173,7 +1191,7 @@ static gint
 slider_timer_handler(GtkWidget *widget)
 {
   slider_ticks++;
-  update_values(&slider_glob, NULL);
+  update_values(&slider_glob, NULL, 0);
   slider_redraw(widget);
   return TRUE;
 }
@@ -1185,7 +1203,6 @@ exit_callback(void)
   return TRUE;
 }
 
-static void click_handler(GtkWidget *widget, GdkEvent *event, gpointer unused);
 GnomeUIInfo file_menu[] =
 {
 #if 0
@@ -1277,7 +1294,7 @@ prefs_apply(GtkWidget *button, gpointer dialog)
     }
   if (GTK_TOGGLE_BUTTON(param_renorm)->active)
     readjust_top_for_width(param_chart_width);
-  // FIX THIS: force an exposure here.
+  // FIX THIS: should we force an exposure here?
 }
 
 static void
@@ -1621,7 +1638,7 @@ main(int argc, char **argv)
   chart_glob.new_val = chart_glob.num_val = 0;
   chart_glob.params = read_param_defns(&chart_glob);
   chart_glob.lpf_const = exp(-chart_filter / chart_interval);
-  update_values(&chart_glob, NULL);
+  update_values(&chart_glob, NULL, 0);
 
   /* Next, we re-parse the command line options so that they'll
      override any values set in the configuration file. */
@@ -1645,17 +1662,17 @@ main(int argc, char **argv)
 	  slider_glob.parray[p] = malloc(sizeof(*slider_glob.parray[p]));
 	  *slider_glob.parray[p] = *chart_glob.parray[p];
 	  slider_glob.parray[p]->val = 
-	    malloc(slider_glob.max_val *
+	    calloc(slider_glob.max_val,
 		   sizeof(slider_glob.parray[p]->val[0]));
 	  slider_glob.parray[p]->now =
-	    malloc(slider_glob.parray[p]->vars *
+	    calloc(slider_glob.parray[p]->vars,
 		   sizeof(slider_glob.parray[p]->now[0]));
 	  slider_glob.parray[p]->last =
-	    malloc(slider_glob.parray[p]->vars *
+	    calloc(slider_glob.parray[p]->vars,
 		   sizeof(slider_glob.parray[p]->last[0]));
 	}
       slider_glob.lpf_const = exp(-slider_filter / slider_interval);
-      update_values(&slider_glob, NULL);
+      update_values(&slider_glob, NULL, 0);
     }
 
   post_init = 1;

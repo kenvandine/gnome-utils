@@ -1,3 +1,14 @@
+1999-01-01  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (readjust_top_for_width): When readjusting
+	parameter top values, insure that the new top value is no smaller
+	than the user-specified maximum expected value.
+	(update_values): Only readjust top values when requested.  Only
+	request that this be done when updating the chart parameters in
+	the chart_timer_handler routine.
+	(main): Allocate slider arrays with calloc rather than malloc to
+	avoid problems caused by evaluating random garbage.
+
 1998-12-26  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (readjust_top_for_width): New function to readjust
