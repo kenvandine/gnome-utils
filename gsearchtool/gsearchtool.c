@@ -946,7 +946,7 @@ create_search_results_section (void)
 					     NULL);
 					     
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-	gtk_tree_view_column_set_fixed_width (column, 140);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);				     
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME); 
 	gtk_tree_view_append_column (GTK_TREE_VIEW(interface.tree), column);
@@ -957,7 +957,7 @@ create_search_results_section (void)
 							   "text", COLUMN_PATH,
 							   NULL);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-	gtk_tree_view_column_set_fixed_width (column, 135);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_PATH); 
 	gtk_tree_view_append_column (GTK_TREE_VIEW(interface.tree), column);
@@ -969,7 +969,7 @@ create_search_results_section (void)
 							   "text", COLUMN_READABLE_SIZE,
 							   NULL);						   
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-	gtk_tree_view_column_set_fixed_width (column, 65);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_SIZE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW(interface.tree), column);
@@ -980,7 +980,7 @@ create_search_results_section (void)
 							   "text", COLUMN_TYPE,
 							   NULL);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-	gtk_tree_view_column_set_fixed_width (column, 75);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_TYPE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW(interface.tree), column);
@@ -991,7 +991,7 @@ create_search_results_section (void)
 							   "text", COLUMN_READABLE_DATE,
 							   NULL);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-	gtk_tree_view_column_set_fixed_width (column, 75);
+	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_DATE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW(interface.tree), column);
