@@ -34,6 +34,7 @@ dist-hook:
 	-cp $(srcdir)/guname/stylesheet-images/*.gif \
 	 $(distdir)/guname/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
+	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:
@@ -49,6 +50,9 @@ install-data-local: index.html
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(guname_helpdir)/$$basefile; \
 	done
 	-for file in $(srcdir)/*.png ; do \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(guname_helpdir); \
+	done
+	-for file in $(srcdir)/*.sgml ; do \
 	  $(INSTALL_DATA) $$file $(DESTDIR)$(guname_helpdir); \
 	done
 	-for file in $(srcdir)/guname/stylesheet-images/*.gif; do \
