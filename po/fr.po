@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-02-15 17:22+0100\n"
+"POT-Creation-Date: 2000-03-08 16:44+0100\n"
 "PO-Revision-Date: 1998-02-28 19:57+0100\n"
 "Last-Translator: Vincent Renardias <vincent@ldsol.com>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
@@ -14,367 +14,83 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gcalc/gcalc.c:30
+#: gcalc/gcalc.c:36
 msgid "The Gnome Calculator"
 msgstr "La calculatrice GNOME"
 
-#: gcalc/gcalc.c:33
+#: gcalc/gcalc.c:39
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Calculatrice simple en double-précision similaire a xcalc"
 
-#: gcalc/gcalc.c:124
+#: gcalc/gcalc.c:132
 msgid "Gnome Calculator"
 msgstr "Calculatrice GNOME"
 
-#: gdiskfree/df.c:212
-msgid ""
-"A quick hack to show the amount of space free on mounted file systems "
-"uitilizing a dial."
+#: gdiskfree/gdiskfree.c:57
+#, fuzzy
+msgid "Specifiy the geometry of the window."
+msgstr "Spécifie la géométrie"
+
+#: gdiskfree/gdiskfree.c:58
+#, fuzzy
+msgid "GOMETRY"
+msgstr "GÉOMÉTRIE"
+
+#: gdiskfree/gdiskfree_app.c:53 gdiskfree/gdiskfree_menus.c:110
+msgid "GDiskFree"
 msgstr ""
-"Une bidouille rapide pour afficher l'espace libre sur les systèmes de "
-"fichiers montés en utilisant un cadran."
 
-#: ghex/converter.c:41
-msgid "GHex: Converter"
-msgstr "GHex : convertisseur"
-
-#: ghex/converter.c:50
-msgid "Binary"
-msgstr "Binaire"
-
-#: ghex/converter.c:60 ghex/preferences.c:110
-msgid "Decimal"
-msgstr "Décimal"
-
-#: ghex/converter.c:70
-msgid "Hex"
-msgstr "Hexa"
-
-#: ghex/converter.c:80
-msgid "ASCII"
-msgstr "ASCII"
-
-#: ghex/converter.c:90
-msgid "Get cursor value"
-msgstr "Prendre la valeur sous le curseur"
-
-#: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:596
-msgid "Close"
-msgstr "Fermer"
-
-#: ghex/converter.c:189
-msgid "ERROR"
-msgstr "ERREUR"
-
-#: ghex/findreplace.c:51 ghex/main.c:83
+#: gdiskfree/gdiskfree_app.c:73
 #, c-format
-msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): rechercher des données"
-
-#: ghex/findreplace.c:60
-#, c-format
-msgid "Search for %s"
-msgstr "Rechercher %s"
-
-#: ghex/findreplace.c:76
-msgid "Find Next"
-msgstr "Rechercher le suivant"
-
-#: ghex/findreplace.c:83
-msgid "Find Previous"
-msgstr "Rechercher le précédent"
-
-#: ghex/findreplace.c:111 ghex/main.c:84
-#, c-format
-msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): rechercher & remplacer des données"
-
-#: ghex/findreplace.c:125
-#, c-format
-msgid "Replace %s"
-msgstr "Remplacer %s"
-
-#: ghex/findreplace.c:141
-msgid "Find next"
-msgstr "Rechercher le suivant"
-
-#: ghex/findreplace.c:148
-msgid "Replace"
-msgstr "Remplacer"
-
-#: ghex/findreplace.c:155
-msgid "Replace All"
-msgstr "Remplacer tout"
-
-#: ghex/findreplace.c:179 ghex/main.c:85
-#, c-format
-msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): aller à l'octet"
-
-#: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
-msgid "There is no active buffer to search!"
-msgstr "Il n'y a pas de tampon actif dans lequel chercher !"
-
-#: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
-msgid "There seems to be no string to search for!"
-msgstr "Il semble qu'il n'y ait pas de chaîne à rechercher !"
-
-#: ghex/findreplace.c:274 ghex/findreplace.c:351
-msgid "End Of File reached"
-msgstr "Fin du fichier atteinte"
-
-#: ghex/findreplace.c:298
-msgid "Beginning Of File reached"
-msgstr "Début du fichier atteint"
-
-#: ghex/findreplace.c:306
-msgid "There is no active buffer to move the cursor in!"
-msgstr "Il n'y a pas de tampon actif pour y déplacer le curseur !"
-
-#: ghex/findreplace.c:311
-msgid "No offset has been specified!"
-msgstr "Le déplacement n'a pas été spécifié !"
-
-#: ghex/findreplace.c:318
-msgid "The offset must be a positive integer value!"
-msgstr "Le déplacement doit être une valeur positive et entière !"
-
-#: ghex/findreplace.c:323
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "Impossible de positionner le curseur après la fin du fichier !"
-
-#: ghex/findreplace.c:361 ghex/findreplace.c:400
-msgid "There is no active buffer to replace data in!"
-msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données !"
-
-#: ghex/findreplace.c:372 ghex/findreplace.c:411
-msgid "Strange find or replace string!"
-msgstr "Chaîne recherchée bizarre !"
-
-#: ghex/findreplace.c:377 ghex/findreplace.c:416
-msgid "Both strings must be of the same length!"
-msgstr "Les deux chaînes doivent avoir la même longueur !"
-
-#: ghex/findreplace.c:390
-msgid "End Of File reached!"
-msgstr "Fin du fichier atteinte !"
-
-#: ghex/findreplace.c:431
-#, c-format
-msgid "Replaced %d occurencies."
-msgstr "%d occurences remplacées."
-
-#: ghex/hex-document.c:59
-msgid "_Bytes"
-msgstr "_Octets"
-
-#: ghex/hex-document.c:60
-msgid "Group data by 8 bits"
-msgstr "Grouper les données par 8 bits"
-
-#: ghex/hex-document.c:61
-msgid "_Words"
-msgstr "_Mots"
-
-#: ghex/hex-document.c:62
-msgid "Group data by 16 bits"
-msgstr "Grouper les données par 16 bits"
-
-#: ghex/hex-document.c:63
-msgid "_Longwords"
-msgstr "Mots _longs"
-
-#: ghex/hex-document.c:64
-msgid "Group data by 32 bits"
-msgstr "Grouper les données par 32 bits"
-
-#: ghex/hex-document.c:80
-msgid "_Goto Byte..."
-msgstr "Aller à l'_octet..."
-
-#: ghex/hex-document.c:80
-msgid "Jump to a certain position"
-msgstr "Aller à la position..."
-
-#: ghex/hex-document.c:83
-msgid "_Group Data As"
-msgstr "_Grouper les données par"
-
-#: ghex/hex-document.c:88
-msgid "_Add view"
-msgstr "_Ajouter une vue"
-
-#: ghex/hex-document.c:89
-msgid "Add a new view of the buffer"
-msgstr "Ajouter une vue du tampon"
-
-#: ghex/hex-document.c:90
-msgid "_Remove view"
-msgstr "Enleve_r la vue"
-
-#: ghex/hex-document.c:91
-msgid "Remove the current view of the buffer"
-msgstr "Enlever la vue courante du tampon"
-
-#: ghex/main.c:51
-#, c-format
-msgid ""
-"File %s has changed since last save.\n"
-"Do you want to save changes?"
+msgid "Unable to parse the geometry string '%s'"
 msgstr ""
-"Le document %s a été modifié depuis son dernier enregistrement.\n"
-"Voulez-vous enregistrer les changements ?"
 
-#: ghex/main.c:170
-#, c-format
-msgid "Offset: %s"
-msgstr "Offset: %s"
+#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:171
+msgid "Properties"
+msgstr "Propriétés"
 
-#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
-msgid "Default"
-msgstr "Défaut"
+#: gdiskfree/gdiskfree_menus.c:46
+msgid "This sets the overall application settings."
+msgstr ""
 
-#: ghex/preferences.c:51
-msgid "Notebook"
-msgstr "Carnet"
+#: gdiskfree/gdiskfree_menus.c:113
+msgid "GDiskFree is a GNOME implementation of the shell utility 'df'."
+msgstr ""
 
-#: ghex/preferences.c:52
-msgid "Toplevel"
-msgstr "1er niveau"
+#: gdiskfree/gdiskfree_options.c:191
+#, fuzzy
+msgid "GDiskFree Properties"
+msgstr "Propriétés"
 
-#: ghex/preferences.c:53
-msgid "Modal"
-msgstr "Modal"
+#: gdiskfree/gdiskfree_options.c:196
+msgid "Invoke sync before getting usage info"
+msgstr ""
 
-#: ghex/preferences.c:82
-msgid "Maximum number of undo levels"
-msgstr "Nombre d'étapes en arrière mémorisées"
+#: gdiskfree/gdiskfree_options.c:207
+msgid "Show drive mount points"
+msgstr ""
 
-#: ghex/preferences.c:96
-msgid "Show cursor offset in statusbar as"
-msgstr "Afficher la position du curseur dans la barre d'état comme"
+#: gdiskfree/gdiskfree_options.c:216
+msgid "Dial Orientation"
+msgstr ""
 
-#: ghex/preferences.c:115
-msgid "Hexadecimal"
-msgstr "Hexadécimal"
+#: gdiskfree/gdiskfree_options.c:221
+msgid "Vertical"
+msgstr ""
 
-#: ghex/preferences.c:121
-msgid "Custom"
-msgstr "Personnalisé"
+#: gdiskfree/gdiskfree_options.c:234
+msgid "Horizontal"
+msgstr ""
 
-#: ghex/preferences.c:131
-msgid "Show offsets column"
-msgstr "Montrer la colonne offset"
+#: gdiskfree/gdiskfree_options.c:253
+#, fuzzy
+msgid "Update interval (ms)"
+msgstr "Intervalle entre les mises à jour du graphe"
 
-#: ghex/preferences.c:136
-msgid "Editing"
-msgstr "Edition en cours"
-
-#: ghex/preferences.c:143
-msgid "Font"
-msgstr "Police"
-
-#: ghex/preferences.c:159
-msgid "Browse..."
-msgstr "Naviguer..."
-
-#: ghex/preferences.c:178
-msgid "Default Group Type"
-msgstr "Type du groupe par défaut"
-
-#: ghex/preferences.c:194 gtt/options.c:186
-msgid "Display"
-msgstr "Affichage"
-
-#: ghex/preferences.c:201
-msgid "MDI Mode"
-msgstr "Mode MDI"
-
-#: ghex/preferences.c:218
-msgid "MDI"
-msgstr "MDI"
-
-#: ghex/preferences.c:365
-msgid "Can not open desired font!"
-msgstr "Impossible d'utiliser la police spécifiée !"
-
-#: ghex/ui.c:51
-msgid "Open Con_verter..."
-msgstr "Ouvrir le con_vertisseur..."
-
-#: ghex/ui.c:52
-msgid "Open base conversion dialog"
-msgstr "Faire des changements de base numérique"
-
-#: ghex/ui.c:89
-msgid "Bytes"
-msgstr "Octets"
-
-#: ghex/ui.c:90
-msgid "Words"
-msgstr "Mots"
-
-#: ghex/ui.c:91
-msgid "Longwords"
-msgstr "Mots longs"
-
-#: ghex/ui.c:96
-msgid "hex data"
-msgstr "données hexa"
-
-#: ghex/ui.c:97
-msgid "ASCII data"
-msgstr "données ASCII"
-
-#: ghex/ui.c:175
-msgid "GHex, a binary file editor"
-msgstr "GHex, un éditeur de fichiers binaires"
-
-#: ghex/ui.c:177
-msgid "Released under the terms of GNU Public License"
-msgstr "Distribué sous les termes de la Licence Publique Générale GNU"
-
-#: ghex/ui.c:194 ghex/ui.c:345
-msgid "Error saving file!"
-msgstr "Erreur lors de la sauvegarde du fichier !"
-
-#: ghex/ui.c:198 ghex/ui.c:340
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "Enregistrer le tampon dans le fichier %s"
-
-#: ghex/ui.c:207
-msgid "Select a file to open"
-msgstr "Sélectionnez un fichier à ouvrir"
-
-#: ghex/ui.c:225
-msgid "Select a file to save buffer as"
-msgstr "Sélectionnez un fichier où sauver le tampon"
-
-#: ghex/ui.c:273
-#, c-format
-msgid "Really revert file %s?"
-msgstr "Vraiment revenir à la version enregistrée du fichier %s ?"
-
-#: ghex/ui.c:286
-#, c-format
-msgid "Reverted buffer from file %s"
-msgstr "Revenir à la version enregistrée %s"
-
-#: ghex/ui.c:301
-#, c-format
-msgid "Loaded file %s"
-msgstr "Fichier %s  chargé"
-
-#: ghex/ui.c:306
-msgid "Can not open file!"
-msgstr "Impossible d'ouvrir le fichier !"
-
-#: ghex/ui.c:349
-msgid "Can't open file for writing!"
-msgstr "Impossible d'ouvrir le fichier en écriture !"
+#: gdiskfree/gdiskfree_options.c:264
+#, fuzzy
+msgid "General Settings"
+msgstr "Conserver les paramètres"
 
 #: gsearchtool/gsearchtool.c:26
 msgid "File name"
@@ -455,7 +171,7 @@ msgstr "Le répertoire de démarrage n'existe pas"
 msgid "Enable"
 msgstr "Activer"
 
-#: gsearchtool/gsearchtool.c:488
+#: gsearchtool/gsearchtool.c:488 mini-utils/gcolorsel/gcolorsel.c:147
 msgid "Remove"
 msgstr "Enlever"
 
@@ -488,7 +204,8 @@ msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
 "in a string with wildcards, it will have to match the full path"
-msgstr "Ceci est une interface pour locate. Si vous tapez une chaîne\n"
+msgstr ""
+"Ceci est une interface pour locate. Si vous tapez une chaîne\n"
 "simple, elle sera comparée au chemin complet des fichiers, et si vous\n"
 "entrez une expression régulière, elle sera comparée au chemin complet"
 
@@ -504,19 +221,19 @@ msgstr "Recherche complète (find)"
 msgid "Quick find (locate)"
 msgstr "Recherche rapide (locate)"
 
-#: gsearchtool/gsearchtool.c:694
+#: gsearchtool/gsearchtool.c:701
 msgid "The Gnome Search Tool"
 msgstr "L'outil de recherche GNOME"
 
-#: gsearchtool/gsearchtool.c:695
+#: gsearchtool/gsearchtool.c:702
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998,2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:697
+#: gsearchtool/gsearchtool.c:704
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Interface graphique des commandes Unix find, grep et locate"
 
-#: gsearchtool/gsearchtool.c:739
+#: gsearchtool/gsearchtool.c:748
 msgid "Gnome Search Tool"
 msgstr "Outil de recherche GNOME"
 
@@ -638,7 +355,7 @@ msgstr "_Aide"
 msgid "Param"
 msgstr "Paramètres"
 
-#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/gcolorsel.c:156
+#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/gcolorsel.c:601
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Valeur"
@@ -647,7 +364,7 @@ msgstr "Valeur"
 msgid "Identifier"
 msgstr "Identificateur"
 
-#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/gcolorsel.c:598
 msgid "Color"
 msgstr "Couleur"
 
@@ -700,7 +417,7 @@ msgid "Help"
 msgstr "Aide"
 
 #: gstripchart/gstripchart.c:1768 gstripchart/gstripchart.c:2052
-#: mini-utils/gshutdown/gshutdown.c:318
+#: mini-utils/gcolorsel/gcolorsel.c:166 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "A propos"
 
@@ -708,7 +425,7 @@ msgstr "A propos"
 msgid "Params"
 msgstr "Paramètres"
 
-#: gstripchart/gstripchart.c:1780
+#: gstripchart/gstripchart.c:1780 mini-utils/gcolorsel/gcolorsel.c:160
 msgid "Exit"
 msgstr "Quitter"
 
@@ -929,31 +646,31 @@ msgstr "Choisir un projet au lancement de l'application"
 msgid "PROJECT"
 msgstr "PROJET"
 
-#: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
+#: gtt/menucmd.c:31 gtt/menucmd.c:129 gtt/menucmd.c:161
 msgid "Warning"
 msgstr "Avertissement"
 
-#: gtt/menucmd.c:32 gtt/menucmd.c:155
+#: gtt/menucmd.c:32 gtt/menucmd.c:163
 msgid "I could not write the configuration file!"
 msgstr "Je n'ai pas pu enregistrer le fichier de configuration !"
 
-#: gtt/menucmd.c:85 gtt/toolbar.c:146
+#: gtt/menucmd.c:93 gtt/toolbar.c:146
 msgid "New Project..."
 msgstr "Nouveau projet..."
 
-#: gtt/menucmd.c:89
+#: gtt/menucmd.c:97
 msgid "Please enter the name of the new project:"
 msgstr "Entrez le nom du nouveau projet :"
 
-#: gtt/menucmd.c:123
+#: gtt/menucmd.c:131
 msgid "I could not read the configuration file"
 msgstr "Je n'ai pas pu lire le fichier de configuration"
 
-#: gtt/menucmd.c:137 gtt/toolbar.c:153
+#: gtt/menucmd.c:145 gtt/toolbar.c:153
 msgid "Reload Configuration File"
 msgstr "Recharger le fichier de configuration"
 
-#: gtt/menucmd.c:138
+#: gtt/menucmd.c:146
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -992,6 +709,10 @@ msgstr "Chronomè_tre lancé"
 #: gtt/menus.c:99
 msgid "_Timer"
 msgstr "Chronomè_tre"
+
+#: gtt/options.c:186
+msgid "Display"
+msgstr "Affichage"
 
 #: gtt/options.c:194
 msgid "Show Seconds"
@@ -1114,10 +835,6 @@ msgstr "Projet stoppé %t"
 msgid "empty"
 msgstr "vide"
 
-#: gtt/prop.c:171
-msgid "Properties"
-msgstr "Propriétés"
-
 #: gtt/prop.c:178
 msgid "Project"
 msgstr "Projet"
@@ -1231,61 +948,172 @@ msgstr "Quitter"
 msgid "Quit GTimeTracker"
 msgstr "Quitter GTimeTracker"
 
-#: mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
-#: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
+#: mini-utils/gcolorsel/gcolorsel.c:58
+msgid "Decimal (8 bit)"
+msgstr "Décimal (8 bits)"
+
+#: mini-utils/gcolorsel/gcolorsel.c:60
+msgid "Decimal (16 bit)"
+msgstr "Décimal (16 bits)"
+
+#: mini-utils/gcolorsel/gcolorsel.c:62
+msgid "Hex (8 bit)"
+msgstr "Hexa (8 bits)"
+
+#: mini-utils/gcolorsel/gcolorsel.c:64
+msgid "Hex (16 bit)"
+msgstr "Hexa (16 bits)"
+
+#: mini-utils/gcolorsel/gcolorsel.c:66
+msgid "Float"
+msgstr "Flottant"
+
+#: mini-utils/gcolorsel/gcolorsel.c:77
+msgid "Continuous (Slow)"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:81
+#, fuzzy
+msgid "Delayed"
+msgstr "Recharger"
+
+#: mini-utils/gcolorsel/gcolorsel.c:85
+msgid "Discontinuous"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:98 mini-utils/gcolorsel/gcolorsel.c:461
+#, fuzzy
+msgid "Simple"
+msgstr "Taille"
+
+#: mini-utils/gcolorsel/gcolorsel.c:101 mini-utils/gcolorsel/gcolorsel.c:479
+msgid "Favorites"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:108
+#, fuzzy
+msgid "Search it"
+msgstr "Résultats de la recherche"
+
+#: mini-utils/gcolorsel/gcolorsel.c:111
+msgid "Add it to favorites"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:123
+#, fuzzy
+msgid "Format"
+msgstr "Flottant"
+
+#: mini-utils/gcolorsel/gcolorsel.c:124
+#, fuzzy
+msgid "Search update"
+msgstr "Résultats de la recherche"
+
+#: mini-utils/gcolorsel/gcolorsel.c:125
+#, fuzzy
+msgid "Search in"
+msgstr "Recherche en cours..."
+
+#: mini-utils/gcolorsel/gcolorsel.c:126
+msgid "On drop"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:140
+#, fuzzy
+msgid "Add to favorites"
+msgstr "Ajouter des exemples par défaut"
+
+#: mini-utils/gcolorsel/gcolorsel.c:150
+#, fuzzy
+msgid "Rename"
+msgstr "Nom du fichier"
+
+#: mini-utils/gcolorsel/gcolorsel.c:160
+msgid "Exit the program"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:163
+msgid "Grab"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:163
+msgid "Grab a color on the screen"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:166
+msgid "About this application"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:268
+msgid "Error, cannot save favorites !"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:338
+msgid "Red :"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:342
+#, fuzzy
+msgid "Green : "
+msgstr "vert"
+
+#: mini-utils/gcolorsel/gcolorsel.c:346
+msgid "Blue : "
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:350
+msgid "Tolerance (%) : "
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:421 mini-utils/gcolorsel/gcolorsel.c:424
+#: mini-utils/gcolorsel/gcolorsel.c:995
 msgid "Gnome Color Browser"
 msgstr "Sélecteur de couleurs GNOME"
 
-#: mini-utils/gcolorsel/gcolorsel.c:79
-msgid "Format Style:"
-msgstr "Format :"
+#. Page 2
+#: mini-utils/gcolorsel/gcolorsel.c:466
+#, fuzzy
+msgid "Search"
+msgstr "Recherche en cours..."
 
-#: mini-utils/gcolorsel/gcolorsel.c:89
-msgid "Color Name:"
-msgstr "Nom de la couleur :"
+#. Create progress bar
+#: mini-utils/gcolorsel/gcolorsel.c:484
+msgid "Parsing Colors"
+msgstr "Analyse des couleurs"
 
-#: mini-utils/gcolorsel/gcolorsel.c:96
-msgid "Color Values:"
-msgstr "Attributs de la couleur :"
-
-#. Create everything.
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:225
-#: mini-utils/gw/gw.c:486 mini-utils/gw/gw.c:556
-msgid "Name"
-msgstr "Nom"
-
-#: mini-utils/gcolorsel/gcolorsel.c:234
+#: mini-utils/gcolorsel/gcolorsel.c:528
 msgid "Error, cannot find the file 'rgb.txt' on your system!"
 msgstr ""
 "Erreur : impossible de trouver le fichier 'rgb.txt' dans votre système !"
 
-#: mini-utils/gcolorsel/gcolorsel.c:247
-msgid "Parsing Colors"
-msgstr "Analyse des couleurs"
+#. Create everything.
+#: mini-utils/gcolorsel/gcolorsel.c:604 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gw/gw.c:486 mini-utils/gw/gw.c:556
+msgid "Name"
+msgstr "Nom"
 
-#: mini-utils/gcolorsel/gcolorsel.c:316
-msgid "Decimal (8 bit)"
-msgstr "Décimal (8 bits)"
+#: mini-utils/gcolorsel/gcolorsel.c:609
+#, fuzzy
+msgid "Match"
+msgstr "Cache"
 
-#: mini-utils/gcolorsel/gcolorsel.c:317
-msgid "Decimal (16 bit)"
-msgstr "Décimal (16 bits)"
-
-#: mini-utils/gcolorsel/gcolorsel.c:318
-msgid "Hex (8 bit)"
-msgstr "Hexa (8 bits)"
-
-#: mini-utils/gcolorsel/gcolorsel.c:319
-msgid "Hex (16 bit)"
-msgstr "Hexa (16 bits)"
-
-#: mini-utils/gcolorsel/gcolorsel.c:320
-msgid "Float"
-msgstr "Flottant"
-
-#: mini-utils/gcolorsel/gcolorsel.c:373
+#: mini-utils/gcolorsel/gcolorsel.c:999
 msgid "Small utility to browse available X11 colors."
 msgstr "Petit utilitaire pour voir les couleurs X11 disponibles."
+
+#: mini-utils/gcolorsel/gcolorsel.c:1072
+#, fuzzy
+msgid "No Name"
+msgstr "Nom"
+
+#: mini-utils/gcolorsel/gcolorsel.c:1141
+msgid "Enter new name for : "
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:1400
+#, fuzzy
+msgid "Dropped"
+msgstr "rouge"
 
 #: mini-utils/gfontsel/gfontsel.c:157
 msgid "Font Selector"
@@ -1349,23 +1177,23 @@ msgstr "Affiche le texte avec une police fixe"
 msgid "Text File Viewer"
 msgstr "Visualiseur de fichiers texte"
 
-#: mini-utils/gless/gless.c:440
+#: mini-utils/gless/gless.c:446
 msgid "Copyright 1998, under the GNU General Public License."
 msgstr "Copyright 1998, sous les termes de la Licence Publique Générale GNU."
 
-#: mini-utils/gless/gless.c:459
+#: mini-utils/gless/gless.c:467
 msgid "Find string"
 msgstr "Trouver une chaîne"
 
-#: mini-utils/gless/gless.c:460
+#: mini-utils/gless/gless.c:468
 msgid "Find"
 msgstr "Rechercher"
 
-#: mini-utils/gless/gless.c:497
+#: mini-utils/gless/gless.c:505
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: mini-utils/gless/gless.c:501
+#: mini-utils/gless/gless.c:509
 #, c-format
 msgid ""
 "No such file or directory:\n"
@@ -1374,7 +1202,7 @@ msgstr ""
 "Aucun fichier ou répertoire:\n"
 "%s"
 
-#: mini-utils/gless/gless.c:519
+#: mini-utils/gless/gless.c:527
 #, c-format
 msgid ""
 "Failed to decompress and display the file:\n"
@@ -1385,7 +1213,7 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: mini-utils/gless/gless.c:532
+#: mini-utils/gless/gless.c:540
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1393,7 +1221,7 @@ msgstr ""
 "Impossible d'afficher le fichier compressé.\n"
 "zcat n'est pas dans votre chemin."
 
-#: mini-utils/gless/gless.c:540
+#: mini-utils/gless/gless.c:548
 #, c-format
 msgid ""
 "Error loading file:\n"
@@ -1404,11 +1232,11 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: mini-utils/gless/gless.c:598
+#: mini-utils/gless/gless.c:606
 msgid "Saving..."
 msgstr "Enregistrement..."
 
-#: mini-utils/gless/gless.c:609
+#: mini-utils/gless/gless.c:617
 #, c-format
 msgid ""
 "Failed to write file:\n"
@@ -1419,23 +1247,23 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: mini-utils/gless/gless.c:659
+#: mini-utils/gless/gless.c:667
 msgid "Save Text As..."
 msgstr "Enregistrer le texte sous..."
 
-#: mini-utils/gless/gless.c:699
+#: mini-utils/gless/gless.c:707
 msgid "Open Text File..."
 msgstr "Ouvrir un fichier texte..."
 
-#: mini-utils/gless/gless.c:763
+#: mini-utils/gless/gless.c:771
 msgid "Sorry, no preferences yet."
 msgstr "Désolé, pas encore de préférences."
 
-#: mini-utils/gless/gless.c:850
+#: mini-utils/gless/gless.c:858
 msgid "Searching..."
 msgstr "Recherche en cours..."
 
-#: mini-utils/gless/gless.c:861
+#: mini-utils/gless/gless.c:869
 msgid "No search string was specified!"
 msgstr "Aucune chaîne à rechercher n'a été spécifiée !"
 
@@ -1527,6 +1355,10 @@ msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Vous devez être le super-utilisateur (root) pour éteindre ou redémarrer "
 "l'ordinateur."
+
+#: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:596
+msgid "Close"
+msgstr "Fermer"
 
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:186
@@ -1933,6 +1765,11 @@ msgstr "Commande"
 msgid "Running: %s\n"
 msgstr "Exécution de : %s\n"
 
+#: mini-utils/idetool/idetool.c:19 mini-utils/idetool/idetool.c:142
+#: mini-utils/idetool/idetool.c:327
+msgid "Default"
+msgstr "Défaut"
+
 #: mini-utils/idetool/idetool.c:20
 msgid "16-bit"
 msgstr "16-bit"
@@ -2086,6 +1923,260 @@ msgstr "Seul le super-utilisateur (root) peut utiliser cet outil"
 #: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "Il semble que vous n'ayez pas de disque IDE"
+
+#~ msgid ""
+#~ "A quick hack to show the amount of space free on mounted file systems "
+#~ "uitilizing a dial."
+#~ msgstr ""
+#~ "Une bidouille rapide pour afficher l'espace libre sur les systèmes de "
+#~ "fichiers montés en utilisant un cadran."
+
+#~ msgid "GHex: Converter"
+#~ msgstr "GHex : convertisseur"
+
+#~ msgid "Binary"
+#~ msgstr "Binaire"
+
+#~ msgid "Decimal"
+#~ msgstr "Décimal"
+
+#~ msgid "Hex"
+#~ msgstr "Hexa"
+
+#~ msgid "ASCII"
+#~ msgstr "ASCII"
+
+#~ msgid "Get cursor value"
+#~ msgstr "Prendre la valeur sous le curseur"
+
+#~ msgid "ERROR"
+#~ msgstr "ERREUR"
+
+#~ msgid "GHex (%s): Find Data"
+#~ msgstr "GHex (%s): rechercher des données"
+
+#~ msgid "Search for %s"
+#~ msgstr "Rechercher %s"
+
+#~ msgid "Find Next"
+#~ msgstr "Rechercher le suivant"
+
+#~ msgid "Find Previous"
+#~ msgstr "Rechercher le précédent"
+
+#~ msgid "GHex (%s): Find & Replace Data"
+#~ msgstr "GHex (%s): rechercher & remplacer des données"
+
+#~ msgid "Replace %s"
+#~ msgstr "Remplacer %s"
+
+#~ msgid "Find next"
+#~ msgstr "Rechercher le suivant"
+
+#~ msgid "Replace"
+#~ msgstr "Remplacer"
+
+#~ msgid "Replace All"
+#~ msgstr "Remplacer tout"
+
+#~ msgid "GHex (%s): Jump To Byte"
+#~ msgstr "GHex (%s): aller à l'octet"
+
+#~ msgid "There is no active buffer to search!"
+#~ msgstr "Il n'y a pas de tampon actif dans lequel chercher !"
+
+#~ msgid "There seems to be no string to search for!"
+#~ msgstr "Il semble qu'il n'y ait pas de chaîne à rechercher !"
+
+#~ msgid "End Of File reached"
+#~ msgstr "Fin du fichier atteinte"
+
+#~ msgid "Beginning Of File reached"
+#~ msgstr "Début du fichier atteint"
+
+#~ msgid "There is no active buffer to move the cursor in!"
+#~ msgstr "Il n'y a pas de tampon actif pour y déplacer le curseur !"
+
+#~ msgid "No offset has been specified!"
+#~ msgstr "Le déplacement n'a pas été spécifié !"
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "Le déplacement doit être une valeur positive et entière !"
+
+#~ msgid "Can not position cursor beyond the End Of File!"
+#~ msgstr "Impossible de positionner le curseur après la fin du fichier !"
+
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "Il n'y a pas de tampon actif dans lequel remplacer des données !"
+
+#~ msgid "Strange find or replace string!"
+#~ msgstr "Chaîne recherchée bizarre !"
+
+#~ msgid "Both strings must be of the same length!"
+#~ msgstr "Les deux chaînes doivent avoir la même longueur !"
+
+#~ msgid "End Of File reached!"
+#~ msgstr "Fin du fichier atteinte !"
+
+#~ msgid "Replaced %d occurencies."
+#~ msgstr "%d occurences remplacées."
+
+#~ msgid "_Bytes"
+#~ msgstr "_Octets"
+
+#~ msgid "Group data by 8 bits"
+#~ msgstr "Grouper les données par 8 bits"
+
+#~ msgid "_Words"
+#~ msgstr "_Mots"
+
+#~ msgid "Group data by 16 bits"
+#~ msgstr "Grouper les données par 16 bits"
+
+#~ msgid "_Longwords"
+#~ msgstr "Mots _longs"
+
+#~ msgid "Group data by 32 bits"
+#~ msgstr "Grouper les données par 32 bits"
+
+#~ msgid "_Goto Byte..."
+#~ msgstr "Aller à l'_octet..."
+
+#~ msgid "Jump to a certain position"
+#~ msgstr "Aller à la position..."
+
+#~ msgid "_Group Data As"
+#~ msgstr "_Grouper les données par"
+
+#~ msgid "_Add view"
+#~ msgstr "_Ajouter une vue"
+
+#~ msgid "Add a new view of the buffer"
+#~ msgstr "Ajouter une vue du tampon"
+
+#~ msgid "_Remove view"
+#~ msgstr "Enleve_r la vue"
+
+#~ msgid "Remove the current view of the buffer"
+#~ msgstr "Enlever la vue courante du tampon"
+
+#~ msgid ""
+#~ "File %s has changed since last save.\n"
+#~ "Do you want to save changes?"
+#~ msgstr ""
+#~ "Le document %s a été modifié depuis son dernier enregistrement.\n"
+#~ "Voulez-vous enregistrer les changements ?"
+
+#~ msgid "Offset: %s"
+#~ msgstr "Offset: %s"
+
+#~ msgid "Notebook"
+#~ msgstr "Carnet"
+
+#~ msgid "Toplevel"
+#~ msgstr "1er niveau"
+
+#~ msgid "Modal"
+#~ msgstr "Modal"
+
+#~ msgid "Maximum number of undo levels"
+#~ msgstr "Nombre d'étapes en arrière mémorisées"
+
+#~ msgid "Show cursor offset in statusbar as"
+#~ msgstr "Afficher la position du curseur dans la barre d'état comme"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Hexadécimal"
+
+#~ msgid "Custom"
+#~ msgstr "Personnalisé"
+
+#~ msgid "Show offsets column"
+#~ msgstr "Montrer la colonne offset"
+
+#~ msgid "Editing"
+#~ msgstr "Edition en cours"
+
+#~ msgid "Font"
+#~ msgstr "Police"
+
+#~ msgid "Browse..."
+#~ msgstr "Naviguer..."
+
+#~ msgid "Default Group Type"
+#~ msgstr "Type du groupe par défaut"
+
+#~ msgid "MDI Mode"
+#~ msgstr "Mode MDI"
+
+#~ msgid "MDI"
+#~ msgstr "MDI"
+
+#~ msgid "Can not open desired font!"
+#~ msgstr "Impossible d'utiliser la police spécifiée !"
+
+#~ msgid "Open Con_verter..."
+#~ msgstr "Ouvrir le con_vertisseur..."
+
+#~ msgid "Open base conversion dialog"
+#~ msgstr "Faire des changements de base numérique"
+
+#~ msgid "Bytes"
+#~ msgstr "Octets"
+
+#~ msgid "Words"
+#~ msgstr "Mots"
+
+#~ msgid "Longwords"
+#~ msgstr "Mots longs"
+
+#~ msgid "hex data"
+#~ msgstr "données hexa"
+
+#~ msgid "ASCII data"
+#~ msgstr "données ASCII"
+
+#~ msgid "GHex, a binary file editor"
+#~ msgstr "GHex, un éditeur de fichiers binaires"
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Distribué sous les termes de la Licence Publique Générale GNU"
+
+#~ msgid "Error saving file!"
+#~ msgstr "Erreur lors de la sauvegarde du fichier !"
+
+#~ msgid "Saved buffer to file %s"
+#~ msgstr "Enregistrer le tampon dans le fichier %s"
+
+#~ msgid "Select a file to open"
+#~ msgstr "Sélectionnez un fichier à ouvrir"
+
+#~ msgid "Select a file to save buffer as"
+#~ msgstr "Sélectionnez un fichier où sauver le tampon"
+
+#~ msgid "Really revert file %s?"
+#~ msgstr "Vraiment revenir à la version enregistrée du fichier %s ?"
+
+#~ msgid "Reverted buffer from file %s"
+#~ msgstr "Revenir à la version enregistrée %s"
+
+#~ msgid "Loaded file %s"
+#~ msgstr "Fichier %s  chargé"
+
+#~ msgid "Can not open file!"
+#~ msgstr "Impossible d'ouvrir le fichier !"
+
+#~ msgid "Can't open file for writing!"
+#~ msgstr "Impossible d'ouvrir le fichier en écriture !"
+
+#~ msgid "Format Style:"
+#~ msgstr "Format :"
+
+#~ msgid "Color Name:"
+#~ msgstr "Nom de la couleur :"
+
+#~ msgid "Color Values:"
+#~ msgstr "Attributs de la couleur :"
 
 #~ msgid "This is not yet implemented"
 #~ msgstr "Ceci n'est pas encore implémenté"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.5\n"
-"POT-Creation-Date: 1999-11-26 15:32+0100\n"
+"POT-Creation-Date: 2000-03-08 16:44+0100\n"
 "PO-Revision-Date: 1999-08-13 23:03+0200\n"
 "Last-Translator: Mikko Rauhala <mjr@iki.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -13,559 +13,315 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gcalc/gcalc.c:30
+#: gcalc/gcalc.c:36
 msgid "The Gnome Calculator"
 msgstr "GNOME-laskin"
 
-#: gcalc/gcalc.c:33
+#: gcalc/gcalc.c:39
 msgid "Simple double precision calculator similiar to xcalc"
 msgstr "Yksinkertainen, xcalc:in kaltainen liukulukulaskin"
 
-#: gcalc/gcalc.c:124
+#: gcalc/gcalc.c:132
 msgid "Gnome Calculator"
 msgstr "GNOME-laskin"
 
-#: gdiskfree/df.c:212
-msgid ""
-"A quick hack to show the amount of space free on mounted file systems "
-"uitilizing a dial."
+#: gdiskfree/gdiskfree.c:57
+#, fuzzy
+msgid "Specifiy the geometry of the window."
+msgstr "Määritä geometria"
+
+#: gdiskfree/gdiskfree.c:58
+#, fuzzy
+msgid "GOMETRY"
+msgstr "GEOMETRIA"
+
+#: gdiskfree/gdiskfree_app.c:53 gdiskfree/gdiskfree_menus.c:110
+msgid "GDiskFree"
 msgstr ""
-"Pikainen sovellus, joka näyttää liitettyjen tiedostojärjestelmien vapaana "
-"olevan levytilan."
 
-#: ghex/converter.c:41
-msgid "GHex: Converter"
-msgstr "GHex: Heksamuuntaja"
-
-#: ghex/converter.c:50
-msgid "Binary"
-msgstr "Binääri"
-
-#: ghex/converter.c:60 ghex/preferences.c:110
-msgid "Decimal"
-msgstr "Desimaali"
-
-#: ghex/converter.c:70
-msgid "Hex"
-msgstr "Heksa"
-
-#: ghex/converter.c:80
-msgid "ASCII"
-msgstr "ASCII"
-
-#: ghex/converter.c:90
-msgid "Get cursor value"
-msgstr "Hae kursorin arvo"
-
-#: ghex/converter.c:96 mini-utils/gshutdown/gshutdown.c:152
-#: mini-utils/gshutdown/gshutdown.c:596
-msgid "Close"
-msgstr "Sulje"
-
-#: ghex/converter.c:190
-msgid "ERROR"
-msgstr "VIRHE"
-
-#: ghex/findreplace.c:51 ghex/main.c:83
+#: gdiskfree/gdiskfree_app.c:73
 #, c-format
-msgid "GHex (%s): Find Data"
-msgstr "GHex (%s): Etsi"
-
-#: ghex/findreplace.c:60
-#, c-format
-msgid "Search for %s"
-msgstr "Etsi %s"
-
-#: ghex/findreplace.c:76
-msgid "Find Next"
-msgstr "Etsi seuraava"
-
-#: ghex/findreplace.c:83
-msgid "Find Previous"
-msgstr "Etsi edellinen"
-
-#: ghex/findreplace.c:111 ghex/main.c:84
-#, c-format
-msgid "GHex (%s): Find & Replace Data"
-msgstr "GHex (%s): Etsi ja korvaa"
-
-#: ghex/findreplace.c:125
-#, c-format
-msgid "Replace %s"
-msgstr "Korvaa %s"
-
-#: ghex/findreplace.c:141
-msgid "Find next"
-msgstr "Etsi seuraava"
-
-#: ghex/findreplace.c:148
-msgid "Replace"
-msgstr "Korvaa"
-
-#: ghex/findreplace.c:155
-msgid "Replace All"
-msgstr "Korvaa kaikki"
-
-#: ghex/findreplace.c:179 ghex/main.c:85
-#, c-format
-msgid "GHex (%s): Jump To Byte"
-msgstr "GHex (%s): Siirry tavuun"
-
-#: ghex/findreplace.c:260 ghex/findreplace.c:283 ghex/findreplace.c:336
-msgid "There is no active buffer to search!"
-msgstr "Ei aktiivista puskuria josta etsittäisiin."
-
-#: ghex/findreplace.c:268 ghex/findreplace.c:291 ghex/findreplace.c:344
-msgid "There seems to be no string to search for!"
-msgstr "Ei merkkijonoa jota etsittäisiin."
-
-#: ghex/findreplace.c:274 ghex/findreplace.c:351
-msgid "End Of File reached"
-msgstr "EOF (tiedoston loppu) tuli vastaan"
-
-#: ghex/findreplace.c:298
-msgid "Beginning Of File reached"
-msgstr "Tiedoston alussa"
-
-#: ghex/findreplace.c:306
-msgid "There is no active buffer to move the cursor in!"
-msgstr "Ei aktiivista puskuria jossa kursoria siirrettäisiin."
-
-#: ghex/findreplace.c:311
-msgid "No offset has been specified!"
-msgstr "Alkupaikkaa ei ole määritelty."
-
-#: ghex/findreplace.c:318
-msgid "The offset must be a positive integer value!"
-msgstr "Alkupaikan täytyy olla positiivinen kokonaislukuarvo."
-
-#: ghex/findreplace.c:323
-msgid "Can not position cursor beyond the End Of File!"
-msgstr "Osoitinta ei voi sijoittaa tiedoston lopun (EOF) ohi."
-
-#: ghex/findreplace.c:361 ghex/findreplace.c:400
-msgid "There is no active buffer to replace data in!"
-msgstr "Ei aktiivista puskuria, josta etsittäisiin."
-
-#: ghex/findreplace.c:372 ghex/findreplace.c:411
-msgid "Strange find or replace string!"
-msgstr "Outo haku- tai korvausmerkkijono."
-
-#: ghex/findreplace.c:377 ghex/findreplace.c:416
-msgid "Both strings must be of the same length!"
-msgstr "Molempien merkkijonojen täytyy olla samanmittaisia."
-
-#: ghex/findreplace.c:390
-msgid "End Of File reached!"
-msgstr "EOF (tiedoston loppu) tuli vastaan."
-
-#: ghex/findreplace.c:431
-#, c-format
-msgid "Replaced %d occurencies."
-msgstr "%d sijaintia korvattu."
-
-#: ghex/hex-document.c:57
-msgid "_Bytes"
-msgstr "_Tavuittain"
-
-#: ghex/hex-document.c:58
-msgid "Group data by 8 bits"
-msgstr "Ryhmittele data 8 bitin ryhmiin"
-
-#: ghex/hex-document.c:59
-msgid "_Words"
-msgstr "_Sanoittain"
-
-#: ghex/hex-document.c:60
-msgid "Group data by 16 bits"
-msgstr "Ryhmittele data 16 bitin ryhmiin"
-
-#: ghex/hex-document.c:61
-msgid "_Longwords"
-msgstr "_Pitkäsanoittain"
-
-#: ghex/hex-document.c:62
-msgid "Group data by 32 bits"
-msgstr "Ryhmittele data 32 bitin ryhmiin"
-
-#: ghex/hex-document.c:78
-msgid "Jump to a certain position"
-msgstr "Hyppää tiettyyn sijaintiin"
-
-#: ghex/hex-document.c:78
-msgid "_Goto Byte..."
-msgstr "_Mene tavuun..."
-
-#: ghex/hex-document.c:81
-msgid "_Group Data As"
-msgstr "Ryhmittele _data..."
-
-#: ghex/hex-document.c:86
-msgid "_Add view"
-msgstr "_Lisää näkymä"
-
-#: ghex/hex-document.c:87
-msgid "Add a new view of the buffer"
-msgstr "Lisää uusi puskurinäkymä"
-
-#: ghex/hex-document.c:88
-msgid "_Remove view"
-msgstr "_Poista näkymä"
-
-#: ghex/hex-document.c:89
-msgid "Remove the current view of the buffer"
-msgstr "Poista tämänhetkinen puskurinäkymä"
-
-#: ghex/main.c:51
-#, c-format
-msgid ""
-"File %s has changed since last save.\n"
-"Do you want to save changes?"
+msgid "Unable to parse the geometry string '%s'"
 msgstr ""
-"Tiedosto %s on muuttunut sitten viime tallennuksen.\n"
-"Haluatko tallentaa muutokset?"
 
-#: ghex/main.c:174
-#, c-format
-msgid "Offset: %s"
-msgstr "Siirros: %s"
+#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:171
+msgid "Properties"
+msgstr "Ominaisuudet"
 
-#: ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
-#: mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
-msgid "Default"
-msgstr "Oletus"
+#: gdiskfree/gdiskfree_menus.c:46
+msgid "This sets the overall application settings."
+msgstr ""
 
-#: ghex/preferences.c:51
-msgid "Notebook"
-msgstr "Lehtiö"
+#: gdiskfree/gdiskfree_menus.c:113
+msgid "GDiskFree is a GNOME implementation of the shell utility 'df'."
+msgstr ""
 
-#: ghex/preferences.c:52
-msgid "Toplevel"
-msgstr "Ikkuna"
+#: gdiskfree/gdiskfree_options.c:191
+#, fuzzy
+msgid "GDiskFree Properties"
+msgstr "Ominaisuudet"
 
-#: ghex/preferences.c:53
-msgid "Modal"
-msgstr "Modaalinen"
+#: gdiskfree/gdiskfree_options.c:196
+msgid "Invoke sync before getting usage info"
+msgstr ""
 
-#: ghex/preferences.c:82
-msgid "Maximum number of undo levels"
-msgstr "Suurin peruutustasojen määrä"
+#: gdiskfree/gdiskfree_options.c:207
+msgid "Show drive mount points"
+msgstr ""
 
-#: ghex/preferences.c:96
-msgid "Show cursor offset in statusbar as"
-msgstr "Kursorin siirroksen näyttömuoto:"
+#: gdiskfree/gdiskfree_options.c:216
+msgid "Dial Orientation"
+msgstr ""
 
-#: ghex/preferences.c:115
-msgid "Hexadecimal"
-msgstr "Heksadesimaali"
+#: gdiskfree/gdiskfree_options.c:221
+msgid "Vertical"
+msgstr ""
 
-#: ghex/preferences.c:121
-msgid "Custom"
-msgstr "Oma"
+#: gdiskfree/gdiskfree_options.c:234
+msgid "Horizontal"
+msgstr ""
 
-#: ghex/preferences.c:131
-msgid "Show offsets column"
-msgstr "Näytä siirrossarake"
+#: gdiskfree/gdiskfree_options.c:253
+#, fuzzy
+msgid "Update interval (ms)"
+msgstr "kaavion päivitysväli"
 
-#: ghex/preferences.c:136
-msgid "Editing"
-msgstr "Muokkaus"
+#: gdiskfree/gdiskfree_options.c:264
+#, fuzzy
+msgid "General Settings"
+msgstr "Pidä asetukset"
 
-#: ghex/preferences.c:143
-msgid "Font"
-msgstr "Kirjasinlaji"
-
-#: ghex/preferences.c:159
-msgid "Browse..."
-msgstr "Selaa..."
-
-#: ghex/preferences.c:178
-msgid "Default Group Type"
-msgstr "Oletusryhmittely"
-
-#: ghex/preferences.c:194 gtt/options.c:186
-msgid "Display"
-msgstr "Näyttö"
-
-#: ghex/preferences.c:201
-msgid "MDI Mode"
-msgstr "MDI-malli"
-
-#: ghex/preferences.c:218
-msgid "MDI"
-msgstr "MDI"
-
-#: ghex/preferences.c:365
-msgid "Can not open desired font!"
-msgstr "Haluttua kirjasinlajia ei voitu avata!"
-
-#: ghex/ui.c:51
-msgid "Open Con_verter..."
-msgstr "Avaa _Muuntaja"
-
-#: ghex/ui.c:52
-msgid "Open base conversion dialog"
-msgstr "Avaa muunnosdialogi"
-
-#: ghex/ui.c:89
-msgid "Bytes"
-msgstr "Tavuittain"
-
-#: ghex/ui.c:90
-msgid "Words"
-msgstr "Sanoittain"
-
-#: ghex/ui.c:91
-msgid "Longwords"
-msgstr "Pitkäsanoittain"
-
-#: ghex/ui.c:96
-msgid "hex data"
-msgstr "heksadata"
-
-#: ghex/ui.c:97
-msgid "ASCII data"
-msgstr "ASCII-data"
-
-#: ghex/ui.c:174
-msgid "GHex, a binary file editor"
-msgstr "GHex, binääritiedostoeditori"
-
-#: ghex/ui.c:176
-msgid "Released under the terms of GNU Public License"
-msgstr "Julkaistu GNU GPL -lisenssillä"
-
-#: ghex/ui.c:193 ghex/ui.c:344
-msgid "Error saving file!"
-msgstr "Virhe tiedostoa tallennettaessa!"
-
-#: ghex/ui.c:197 ghex/ui.c:339
-#, c-format
-msgid "Saved buffer to file %s"
-msgstr "Puskuri tallennettu tiedostoon %s"
-
-#: ghex/ui.c:206
-msgid "Select a file to open"
-msgstr "Valitse avattava tiedosto"
-
-#: ghex/ui.c:224
-msgid "Select a file to save buffer as"
-msgstr "Valitse tiedosto johon puskuri tallennetaan"
-
-#: ghex/ui.c:272
-#, c-format
-msgid "Really revert file %s?"
-msgstr "Hylätäänkö todella tiedostoon %s tehdyt muutokset?"
-
-#: ghex/ui.c:285
-#, c-format
-msgid "Reverted buffer from file %s"
-msgstr "Puskuri palautettu tiedostosta %s"
-
-#: ghex/ui.c:300
-#, c-format
-msgid "Loaded file %s"
-msgstr "Tiedosto %s ladattu"
-
-#: ghex/ui.c:305
-msgid "Can not open file!"
-msgstr "Tiedostoa ei voitu avata."
-
-#: ghex/ui.c:348
-msgid "Can't open file for writing!"
-msgstr "Tiedostoa ei voitu avata kirjoitusta varten."
-
-#: gsearchtool/gsearchtool.c:21
+#: gsearchtool/gsearchtool.c:26
 msgid "File name"
 msgstr "Tiedostonimi"
 
-#: gsearchtool/gsearchtool.c:23
+#: gsearchtool/gsearchtool.c:28
 msgid "Don't search subdirectories"
 msgstr "Älä etsi alihakemistoista"
 
-#: gsearchtool/gsearchtool.c:24
+#: gsearchtool/gsearchtool.c:29
 msgid "File owner"
 msgstr "Tiedoston omistaja"
 
-#: gsearchtool/gsearchtool.c:25
+#: gsearchtool/gsearchtool.c:30
 msgid "File owner group"
 msgstr "Tiedoston omistajaryhmä"
 
-#: gsearchtool/gsearchtool.c:26
+#: gsearchtool/gsearchtool.c:31
 msgid "Last modification time"
 msgstr "Viimeisimmän muutoksen aika"
 
-#: gsearchtool/gsearchtool.c:28
+#: gsearchtool/gsearchtool.c:33
 msgid "Don't search mounted filesystems"
 msgstr "Älä hae liitetyistä tiedostojärjestelmistä"
 
-#: gsearchtool/gsearchtool.c:30
+#: gsearchtool/gsearchtool.c:34
 msgid "Empty file"
 msgstr "Tyhjä tiedosto"
 
-#: gsearchtool/gsearchtool.c:32
+#: gsearchtool/gsearchtool.c:36
 msgid "Invalid user or group"
 msgstr "Kelvoton käyttäjä tai ryhmä"
 
-#: gsearchtool/gsearchtool.c:33
+#: gsearchtool/gsearchtool.c:37
 msgid "Filenames except"
 msgstr "Tiedostonimet paitsi"
 
-#: gsearchtool/gsearchtool.c:34
+#: gsearchtool/gsearchtool.c:38
+msgid "Follow symbolic links"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:39
 msgid "Simple substring search"
 msgstr "Yksinkertainen merkkijonohaku"
 
-#: gsearchtool/gsearchtool.c:35
+#: gsearchtool/gsearchtool.c:40
 msgid "Regular expression search"
 msgstr "Haku säännöllisellä lausekkeella"
 
-#: gsearchtool/gsearchtool.c:37
+#: gsearchtool/gsearchtool.c:42
 msgid "Extended regular expression search"
 msgstr "Haku laajennetulla säännöllisellä ilmaisulla"
 
-#: gsearchtool/gsearchtool.c:94 gsearchtool/gsearchtool.c:150
+#: gsearchtool/gsearchtool.c:141
 msgid "grep options found in find list bad bad!"
 msgstr "grepin valitsimia löydetty findin listasta, paha, paha!"
 
-#: gsearchtool/gsearchtool.c:165
+#: gsearchtool/gsearchtool.c:155
 msgid "non-grep option found in grep list, bad bad!"
 msgstr "kelvottomia grep-optioita löydetty grepin listasta, paha, paha!"
+
+#: gsearchtool/gsearchtool.c:192
+msgid "Search already running on another page"
+msgstr ""
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
-#: gsearchtool/gsearchtool.c:205
+#: gsearchtool/gsearchtool.c:204
 msgid "Search Results"
 msgstr "Haun tulokset"
 
-#: gsearchtool/gsearchtool.c:430
+#: gsearchtool/gsearchtool.c:326
+#, fuzzy
+msgid "Start directory does not exist"
+msgstr "Aloita hakemistosta:"
+
+#: gsearchtool/gsearchtool.c:480
 msgid "Enable"
 msgstr "Käytä"
 
-#: gsearchtool/gsearchtool.c:437
+#: gsearchtool/gsearchtool.c:488 mini-utils/gcolorsel/gcolorsel.c:147
 msgid "Remove"
 msgstr "Poista"
 
-#: gsearchtool/gsearchtool.c:489
+#: gsearchtool/gsearchtool.c:540
 msgid "Start in directory:"
 msgstr "Aloita hakemistosta:"
 
-#: gsearchtool/gsearchtool.c:507 mini-utils/gw/gw.c:488
+#: gsearchtool/gsearchtool.c:542
+#, fuzzy
+msgid "Browse"
+msgstr "Selaa..."
+
+#: gsearchtool/gsearchtool.c:562 mini-utils/gw/gw.c:490
 msgid "Add"
 msgstr "Uusi"
 
-#: gsearchtool/gsearchtool.c:518
+#: gsearchtool/gsearchtool.c:573 gsearchtool/gsearchtool.c:656
 msgid "Start"
 msgstr "Aloita"
 
-#: gsearchtool/gsearchtool.c:519
+#: gsearchtool/gsearchtool.c:574 gsearchtool/gsearchtool.c:657
 msgid "Stop"
 msgstr "Pysäytä"
 
-#: gsearchtool/gsearchtool.c:537
-msgid "This is not yet implemented"
-msgstr "Tätä ei ole vielä toteutettu"
+#: gsearchtool/gsearchtool.c:608
+#, fuzzy
+msgid "Nothing to locate"
+msgstr "Ladattava kirjasinlaji"
 
-#: gsearchtool/gsearchtool.c:550
+#: gsearchtool/gsearchtool.c:635
+msgid ""
+"This is an interface to locate.  If you type in a simple string it\n"
+"will be matched as a subset of the full path, and if you type\n"
+"in a string with wildcards, it will have to match the full path"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:644
+#, fuzzy
+msgid "Locate file: "
+msgstr "Tiedosto %s ladattu"
+
+#: gsearchtool/gsearchtool.c:678
 msgid "Full find (find)"
 msgstr "Täysi haku (find)"
 
-#: gsearchtool/gsearchtool.c:553
+#: gsearchtool/gsearchtool.c:680
 msgid "Quick find (locate)"
 msgstr "Pikahaku (locate)"
 
-#: gsearchtool/gsearchtool.c:568
+#: gsearchtool/gsearchtool.c:701
 msgid "The Gnome Search Tool"
 msgstr "GNOME:n etsintätyökalu"
 
-#: gsearchtool/gsearchtool.c:569
-msgid "(C) 1998 the Free Software Foundation"
+#: gsearchtool/gsearchtool.c:702
+#, fuzzy
+msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:571
+#: gsearchtool/gsearchtool.c:704
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Käyttöliittymä unixin find-, grep- ja locate-komennoile"
 
-#: gsearchtool/gsearchtool.c:614
+#: gsearchtool/gsearchtool.c:748
 msgid "Gnome Search Tool"
 msgstr "GNOME:n etsintätyökalu"
 
-#: gstripchart/gstripchart.c:427
+#: gstripchart/gstripchart.c:440
 msgid "rparen expected"
 msgstr "oikea sulku puuttuu"
 
-#: gstripchart/gstripchart.c:444
+#: gstripchart/gstripchart.c:457
 #, c-format
 msgid "no such field: %d"
 msgstr "Ei kenttää %d"
 
-#: gstripchart/gstripchart.c:472
+#: gstripchart/gstripchart.c:485
 msgid "missing variable identifer"
 msgstr "muuttujatunnus puuttuu"
 
-#: gstripchart/gstripchart.c:474
+#: gstripchart/gstripchart.c:487
 #, c-format
 msgid "invalid variable identifer: %s"
 msgstr "virheellinen muuttujatunnus: %s"
 
-#: gstripchart/gstripchart.c:478
+#: gstripchart/gstripchart.c:491
 msgid "number expected"
 msgstr "numero puuttuu"
 
-#: gstripchart/gstripchart.c:557
+#: gstripchart/gstripchart.c:569
 #, c-format
 msgid "extra gunk at end: \"%s\""
 msgstr "ylimääräistä roskaa lopussa: \"%s\""
 
-#: gstripchart/gstripchart.c:635
+#: gstripchart/gstripchart.c:651
 #, c-format
 msgid "%s, line %d: "
 msgstr "%s, rivi %d: "
 
-#: gstripchart/gstripchart.c:712
+#: gstripchart/gstripchart.c:732
 #, c-format
 msgid "can't open config file \"%s\""
 msgstr "en voi avata asetustiedostoa \"%s\""
 
-#: gstripchart/gstripchart.c:739
+#: gstripchart/gstripchart.c:759
 #, c-format
 msgid ""
 "can't open config file \"./gstripchart.conf\", \"%s\", \"%s\", or \"%s\""
 msgstr ""
 
-#: gstripchart/gstripchart.c:744
+#: gstripchart/gstripchart.c:764
 #, fuzzy, c-format
 msgid "can't open config file \"./gstripchart.conf\", \"%s\", or \"%s\""
 msgstr "en voi avata asetustiedostoa \"%s\""
 
-#: gstripchart/gstripchart.c:821
+#: gstripchart/gstripchart.c:842
 msgid "identifier or begin must be first"
 msgstr "tunnus tai begin ensimmäiseksi"
 
-#: gstripchart/gstripchart.c:829 gstripchart/gstripchart.c:846
+#: gstripchart/gstripchart.c:850 gstripchart/gstripchart.c:867
 #, c-format
 msgid "unrecognized color: %s"
 msgstr "tunnistamaton väri: %s"
 
-#: gstripchart/gstripchart.c:873
+#: gstripchart/gstripchart.c:882
+msgid "scale must be either \"log\" or \"linear\""
+msgstr ""
+
+#: gstripchart/gstripchart.c:897
+msgid "no equation found"
+msgstr ""
+
+#: gstripchart/gstripchart.c:914
 #, c-format
 msgid "invalid option: \"%s\""
 msgstr "virheellinen valitsin: \"%s\""
 
-#: gstripchart/gstripchart.c:1423
+#: gstripchart/gstripchart.c:1477
 msgid "E_xit"
 msgstr "_Lopeta"
 
-#: gstripchart/gstripchart.c:1423
+#: gstripchart/gstripchart.c:1477
 msgid "Terminate the stripchart program"
 msgstr "Lopeta ohjelma"
 
-#: gstripchart/gstripchart.c:1439
+#: gstripchart/gstripchart.c:1493
 #, fuzzy
 msgid "Copyright 1998,99 John Kodis"
 msgstr "Copyright 1998 John Kodis"
 
-#: gstripchart/gstripchart.c:1441
+#: gstripchart/gstripchart.c:1495
 msgid ""
 "The GNOME stripchart program plots various user-specified parameters as a "
 "function of time.  Its main use is to chart system performance parameters "
@@ -578,228 +334,244 @@ msgstr ""
 "verkkoliikennettä. Muut mahdolliset käyttötarkoitukset jätetään käyttäjän "
 "harjoitustehtäväksi."
 
-#: gstripchart/gstripchart.c:1454
-msgid "Info about the striphart program"
-msgstr "Tietoja ohjelmasta"
-
-#: gstripchart/gstripchart.c:1454
+#: gstripchart/gstripchart.c:1508
 msgid "_About"
 msgstr "_Tietoja"
 
-#: gstripchart/gstripchart.c:1465
+#: gstripchart/gstripchart.c:1508
+msgid "Info about the striphart program"
+msgstr "Tietoja ohjelmasta"
+
+#: gstripchart/gstripchart.c:1519
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: gstripchart/gstripchart.c:1466
+#: gstripchart/gstripchart.c:1520
 msgid "_Help"
 msgstr "_Ohje"
 
-#: gstripchart/gstripchart.c:1530 gstripchart/gstripchart.c:1647
+#: gstripchart/gstripchart.c:1584 gstripchart/gstripchart.c:1722
 msgid "Param"
 msgstr "Parametrit"
 
-#: gstripchart/gstripchart.c:1530 mini-utils/gcolorsel/gcolorsel.c:156
+#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/gcolorsel.c:601
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Arvo"
 
-#: gstripchart/gstripchart.c:1534
+#: gstripchart/gstripchart.c:1588
 msgid "Identifier"
 msgstr "Tunnus"
 
-#: gstripchart/gstripchart.c:1536 mini-utils/gcolorsel/gcolorsel.c:155
+#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/gcolorsel.c:598
 msgid "Color"
 msgstr "Väri"
 
-#: gstripchart/gstripchart.c:1538
+#: gstripchart/gstripchart.c:1592
 msgid "Filename"
 msgstr "Tiedostonimi"
 
-#: gstripchart/gstripchart.c:1540
+#: gstripchart/gstripchart.c:1594
 msgid "Pattern"
 msgstr "Lauseke"
 
-#: gstripchart/gstripchart.c:1542
+#: gstripchart/gstripchart.c:1596
 msgid "Equation"
 msgstr "Kaava"
 
-#: gstripchart/gstripchart.c:1544
+#: gstripchart/gstripchart.c:1598
 msgid "Expected range"
 msgstr "Odotettu arvoalue"
 
-#: gstripchart/gstripchart.c:1548
+#: gstripchart/gstripchart.c:1602
 msgid "Displayed range"
 msgstr "Näytetty arvoalue"
 
-#: gstripchart/gstripchart.c:1552
+#: gstripchart/gstripchart.c:1606
 msgid "Current value"
 msgstr "Tämänhetkinen arvo"
 
-#: gstripchart/gstripchart.c:1559
+#: gstripchart/gstripchart.c:1613
 msgid "Active"
 msgstr "Aktiivinen"
 
-#: gstripchart/gstripchart.c:1575
-msgid "Gnome Stripchart Parameters"
+#: gstripchart/gstripchart.c:1629
+#, fuzzy
+msgid "Stripchart Parameters"
 msgstr "GNOME-järjestelmäkäyräpiirturin asetukset"
 
-#: gstripchart/gstripchart.c:1647
+#: gstripchart/gstripchart.c:1723
 #, fuzzy
 msgid "Current"
 msgstr "Tämänhetkinen arvo"
 
-#: gstripchart/gstripchart.c:1647
+#: gstripchart/gstripchart.c:1724
 msgid "Top"
 msgstr ""
 
-#: gstripchart/gstripchart.c:1675 gstripchart/gstripchart.c:1950
+#: gstripchart/gstripchart.c:1725
+#, fuzzy
+msgid "Scale"
+msgstr "Tallenna"
+
+#: gstripchart/gstripchart.c:1762 gstripchart/gstripchart.c:2049
 msgid "Help"
 msgstr "Ohje"
 
-#: gstripchart/gstripchart.c:1681 gstripchart/gstripchart.c:1953
-#: mini-utils/gshutdown/gshutdown.c:318
+#: gstripchart/gstripchart.c:1768 gstripchart/gstripchart.c:2052
+#: mini-utils/gcolorsel/gcolorsel.c:166 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "Tietoja"
 
-#: gstripchart/gstripchart.c:1687
+#: gstripchart/gstripchart.c:1774
 msgid "Params"
 msgstr "Parametrit"
 
-#: gstripchart/gstripchart.c:1693
+#: gstripchart/gstripchart.c:1780 mini-utils/gcolorsel/gcolorsel.c:160
 msgid "Exit"
 msgstr "Lopeta"
-
-#: gstripchart/gstripchart.c:1799
-msgid "Gnome stripchart viewer"
-msgstr "GNOME-järjestelmäkäyräpiirturi"
 
 #. Create a top-level application window. Set minimum size (_usize),
 #. initial size (_default_size), and establish delete and destroy
 #. event handlers.
-#: gstripchart/gstripchart.c:1799
+#: gstripchart/gstripchart.c:1886
 msgid "gstripchart"
 msgstr "gstripchart"
 
-#: gstripchart/gstripchart.c:1956
+#: gstripchart/gstripchart.c:1886
+#, fuzzy
+msgid "Stripchart Viewer"
+msgstr "GNOME-järjestelmäkäyräpiirturi"
+
+#: gstripchart/gstripchart.c:2055
 #, fuzzy
 msgid "Params..."
 msgstr "Parametrit"
 
-#: gstripchart/gstripchart.c:2000
+#: gstripchart/gstripchart.c:2100
 #, c-format
 msgid "invalid display type: %s\n"
 msgstr "kelvoton näyttötyyppi: %s\n"
 
-#: gstripchart/gstripchart.c:2025
-msgid "GEO"
-msgstr "GEO"
-
-#: gstripchart/gstripchart.c:2025
+#: gstripchart/gstripchart.c:2125
 msgid "Geometry string: WxH+X+Y"
 msgstr ""
 
-#: gstripchart/gstripchart.c:2027
+#: gstripchart/gstripchart.c:2125
+msgid "GEO"
+msgstr "GEO"
+
+#: gstripchart/gstripchart.c:2127
 #, fuzzy
 msgid "Configuration file name"
 msgstr "asetustiedosto"
 
-#: gstripchart/gstripchart.c:2027
+#: gstripchart/gstripchart.c:2127
 msgid "FILE"
 msgstr "TIEDOSTO"
 
-#: gstripchart/gstripchart.c:2029
+#: gstripchart/gstripchart.c:2129
 #, fuzzy
 msgid "Chart update interval"
 msgstr "kaavion päivitysväli"
 
-#: gstripchart/gstripchart.c:2029 gstripchart/gstripchart.c:2031
-#: gstripchart/gstripchart.c:2033 gstripchart/gstripchart.c:2035
+#: gstripchart/gstripchart.c:2129 gstripchart/gstripchart.c:2131
+#: gstripchart/gstripchart.c:2133 gstripchart/gstripchart.c:2135
 msgid "SECS"
 msgstr "SEKUNTIA"
 
-#: gstripchart/gstripchart.c:2031
+#: gstripchart/gstripchart.c:2131
 msgid "Chart low-pass filter time constant"
 msgstr ""
 
-#: gstripchart/gstripchart.c:2033
+#: gstripchart/gstripchart.c:2133
 #, fuzzy
 msgid "Slider update interval"
 msgstr "liu'uttimen päivitysväli"
 
-#: gstripchart/gstripchart.c:2035
+#: gstripchart/gstripchart.c:2135
 msgid "Slider low-pass filter time constant"
 msgstr ""
 
-#: gstripchart/gstripchart.c:2037
+#: gstripchart/gstripchart.c:2137
 msgid "Adds a menubar to the main window"
 msgstr ""
 
-#: gstripchart/gstripchart.c:2039
+#: gstripchart/gstripchart.c:2139
 #, fuzzy
 msgid "Omits slider window"
 msgstr "jätä liu'utin pois"
 
-#: gstripchart/gstripchart.c:2041
+#: gstripchart/gstripchart.c:2142
+msgid "TYPE is one of gtk, applet, text, or none"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2142 gstripchart/gstripchart.c:2144
 msgid "TYPE"
 msgstr "TYYPPI"
 
-#: gstripchart/gstripchart.c:2041
-msgid "TYPE is one of gtk, text, graph, or none"
+#: gstripchart/gstripchart.c:2144
+msgid "TYPE is one of gtk, text, or none"
 msgstr ""
 
-#: gstripchart/gstripchart.c:2190
-msgid "black"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2190
-msgid "blue"
-msgstr "sininen"
-
-#: gstripchart/gstripchart.c:2190
-msgid "red"
-msgstr "punainen"
-
-#: gstripchart/gstripchart.c:2190
+#: gstripchart/gstripchart.c:2295
 msgid "white"
 msgstr "valkoinen"
 
-#: gstripchart/gstripchart.c:2190
+#: gstripchart/gstripchart.c:2295
+msgid "black"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2295
+msgid "red"
+msgstr "punainen"
+
+#: gstripchart/gstripchart.c:2295
 msgid "yellow"
 msgstr "keltainen"
 
-#: gstripchart/gstripchart.c:2191
-msgid "Busy"
-msgstr "Kiire"
+#: gstripchart/gstripchart.c:2296
+msgid "blue"
+msgstr "sininen"
 
-#: gstripchart/gstripchart.c:2191
-msgid "Load"
-msgstr "Kuorma"
-
-#: gstripchart/gstripchart.c:2191
-msgid "cyan"
-msgstr ""
-
-#: gstripchart/gstripchart.c:2191
+#: gstripchart/gstripchart.c:2296
 msgid "green"
 msgstr "vihreä"
 
-#: gstripchart/gstripchart.c:2191
+#: gstripchart/gstripchart.c:2296
+msgid "cyan"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2296
 msgid "magenta"
 msgstr ""
 
-#: gstripchart/gstripchart.c:2192
-msgid "Net In"
-msgstr ""
+#: gstripchart/gstripchart.c:2297
+msgid "Busy"
+msgstr "Kiire"
 
-#: gstripchart/gstripchart.c:2192
-msgid "Net Out"
-msgstr ""
+#: gstripchart/gstripchart.c:2297
+msgid "Load"
+msgstr "Kuorma"
 
-#: gstripchart/gstripchart.c:2192
+#: gstripchart/gstripchart.c:2297
 msgid "Swap"
 msgstr "Sivutus"
 
-#: gstripchart/gstripchart.c:2192
+#: gstripchart/gstripchart.c:2297
+#, fuzzy
+msgid "Battery"
+msgstr "Lauseke"
+
+#: gstripchart/gstripchart.c:2298
+msgid "Net In"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2298
+msgid "Net Out"
+msgstr ""
+
+#: gstripchart/gstripchart.c:2298
 msgid "ppp"
 msgstr ""
 
@@ -811,7 +583,7 @@ msgstr "ei valittua projektia"
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:251 mini-utils/gless/gless.c:424
+#: gtt/app.c:251 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -868,47 +640,47 @@ msgstr ""
 "Tapahtui virhe luettaessa asetustiedostoa.\n"
 "Määritänkö uudet asetukset?"
 
-#: gtt/main.c:204 mini-utils/gless/gless.c:131
-msgid "GEOMETRY"
-msgstr "GEOMETRIA"
-
 #: gtt/main.c:204
 msgid "Specify geometry"
 msgstr "Määritä geometria"
 
-#: gtt/main.c:206
-msgid "PROJECT"
-msgstr "PROJEKTI"
+#: gtt/main.c:204 mini-utils/gless/gless.c:130
+msgid "GEOMETRY"
+msgstr "GEOMETRIA"
 
 #: gtt/main.c:206
 msgid "Select a project on startup"
 msgstr "Valitse projekti käynnistettäessä"
 
-#: gtt/menucmd.c:31 gtt/menucmd.c:121 gtt/menucmd.c:153
+#: gtt/main.c:206
+msgid "PROJECT"
+msgstr "PROJEKTI"
+
+#: gtt/menucmd.c:31 gtt/menucmd.c:129 gtt/menucmd.c:161
 msgid "Warning"
 msgstr "Varoitus"
 
-#: gtt/menucmd.c:32 gtt/menucmd.c:155
+#: gtt/menucmd.c:32 gtt/menucmd.c:163
 msgid "I could not write the configuration file!"
 msgstr "En voinut kirjoittaa asetustiedostoa."
 
-#: gtt/menucmd.c:85 gtt/toolbar.c:146
+#: gtt/menucmd.c:93 gtt/toolbar.c:146
 msgid "New Project..."
 msgstr "Uusi projekti..."
 
-#: gtt/menucmd.c:89
+#: gtt/menucmd.c:97
 msgid "Please enter the name of the new project:"
 msgstr "Anna uuden projektin nimi:"
 
-#: gtt/menucmd.c:123
+#: gtt/menucmd.c:131
 msgid "I could not read the configuration file"
 msgstr "En voinut lukea asetustiedostoa"
 
-#: gtt/menucmd.c:137 gtt/toolbar.c:153
+#: gtt/menucmd.c:145 gtt/toolbar.c:153
 msgid "Reload Configuration File"
 msgstr "Lataa asetustiedosto uudelleen"
 
-#: gtt/menucmd.c:138
+#: gtt/menucmd.c:146
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -947,6 +719,10 @@ msgstr "_Ajastin käy"
 #: gtt/menus.c:99
 msgid "_Timer"
 msgstr "A_jastin"
+
+#: gtt/options.c:186
+msgid "Display"
+msgstr "Näyttö"
 
 #: gtt/options.c:194
 msgid "Show Seconds"
@@ -1069,10 +845,6 @@ msgstr "projekti %t pysäytetty"
 msgid "empty"
 msgstr "tyhjä"
 
-#: gtt/prop.c:171
-msgid "Properties"
-msgstr "Ominaisuudet"
-
 #: gtt/prop.c:178
 msgid "Project"
 msgstr "Projekti"
@@ -1186,138 +958,250 @@ msgstr "Lopeta"
 msgid "Quit GTimeTracker"
 msgstr "Lopeta ajanseuranta"
 
-#: mini-utils/gcolorsel/gcolorsel.c:65 mini-utils/gcolorsel/gcolorsel.c:67
-#: mini-utils/gcolorsel/gcolorsel.c:243 mini-utils/gcolorsel/gcolorsel.c:369
-msgid "Gnome Color Browser"
-msgstr "GNOME:n väriselain"
-
-#: mini-utils/gcolorsel/gcolorsel.c:79
-msgid "Format Style:"
-msgstr "Näyttömuoto:"
-
-#: mini-utils/gcolorsel/gcolorsel.c:89
-msgid "Color Name:"
-msgstr "Värin nimi:"
-
-#: mini-utils/gcolorsel/gcolorsel.c:96
-msgid "Color Values:"
-msgstr "Väriarvot:"
-
-#: mini-utils/gcolorsel/gcolorsel.c:157 mini-utils/guname/moreinfo.c:225
-#: mini-utils/gw/gw.c:479 mini-utils/gw/gw.c:554
-msgid "Name"
-msgstr "Nimi"
-
-#: mini-utils/gcolorsel/gcolorsel.c:234
-msgid "Error, cannot find the file 'rgb.txt' on your system!"
-msgstr "Virhe, tiedostoa 'rgb.txt' ei löydy järjestelmästäsi!"
-
-#: mini-utils/gcolorsel/gcolorsel.c:247
-msgid "Parsing Colors"
-msgstr "Tutkitaan värejä"
-
-#: mini-utils/gcolorsel/gcolorsel.c:316
+#: mini-utils/gcolorsel/gcolorsel.c:58
 msgid "Decimal (8 bit)"
 msgstr "Kymmenjärjestelmä (8 bittiä)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:317
+#: mini-utils/gcolorsel/gcolorsel.c:60
 msgid "Decimal (16 bit)"
 msgstr "Kymmenjärjestelmä (16 bittiä)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:318
+#: mini-utils/gcolorsel/gcolorsel.c:62
 msgid "Hex (8 bit)"
 msgstr "Heksa (8 bittiä)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:319
+#: mini-utils/gcolorsel/gcolorsel.c:64
 msgid "Hex (16 bit)"
 msgstr "Heksa (16 bittiä)"
 
-#: mini-utils/gcolorsel/gcolorsel.c:320
+#: mini-utils/gcolorsel/gcolorsel.c:66
 msgid "Float"
 msgstr "Liukuluku"
 
-#: mini-utils/gcolorsel/gcolorsel.c:373
+#: mini-utils/gcolorsel/gcolorsel.c:77
+msgid "Continuous (Slow)"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:81
+#, fuzzy
+msgid "Delayed"
+msgstr "Päivitä"
+
+#: mini-utils/gcolorsel/gcolorsel.c:85
+msgid "Discontinuous"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:98 mini-utils/gcolorsel/gcolorsel.c:461
+#, fuzzy
+msgid "Simple"
+msgstr "Koko"
+
+#: mini-utils/gcolorsel/gcolorsel.c:101 mini-utils/gcolorsel/gcolorsel.c:479
+msgid "Favorites"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:108
+#, fuzzy
+msgid "Search it"
+msgstr "Haun tulokset"
+
+#: mini-utils/gcolorsel/gcolorsel.c:111
+msgid "Add it to favorites"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:123
+#, fuzzy
+msgid "Format"
+msgstr "Liukuluku"
+
+#: mini-utils/gcolorsel/gcolorsel.c:124
+#, fuzzy
+msgid "Search update"
+msgstr "Haun tulokset"
+
+#: mini-utils/gcolorsel/gcolorsel.c:125
+#, fuzzy
+msgid "Search in"
+msgstr "Etsin..."
+
+#: mini-utils/gcolorsel/gcolorsel.c:126
+msgid "On drop"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:140
+#, fuzzy
+msgid "Add to favorites"
+msgstr "Lisää muutama oletusasetus"
+
+#: mini-utils/gcolorsel/gcolorsel.c:150
+#, fuzzy
+msgid "Rename"
+msgstr "Tiedostonimi"
+
+#: mini-utils/gcolorsel/gcolorsel.c:160
+msgid "Exit the program"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:163
+msgid "Grab"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:163
+msgid "Grab a color on the screen"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:166
+msgid "About this application"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:268
+msgid "Error, cannot save favorites !"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:338
+msgid "Red :"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:342
+#, fuzzy
+msgid "Green : "
+msgstr "vihreä"
+
+#: mini-utils/gcolorsel/gcolorsel.c:346
+msgid "Blue : "
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:350
+msgid "Tolerance (%) : "
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:421 mini-utils/gcolorsel/gcolorsel.c:424
+#: mini-utils/gcolorsel/gcolorsel.c:995
+msgid "Gnome Color Browser"
+msgstr "GNOME:n väriselain"
+
+#. Page 2
+#: mini-utils/gcolorsel/gcolorsel.c:466
+#, fuzzy
+msgid "Search"
+msgstr "Etsin..."
+
+#. Create progress bar
+#: mini-utils/gcolorsel/gcolorsel.c:484
+msgid "Parsing Colors"
+msgstr "Tutkitaan värejä"
+
+#: mini-utils/gcolorsel/gcolorsel.c:528
+msgid "Error, cannot find the file 'rgb.txt' on your system!"
+msgstr "Virhe, tiedostoa 'rgb.txt' ei löydy järjestelmästäsi!"
+
+#. Create everything.
+#: mini-utils/gcolorsel/gcolorsel.c:604 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gw/gw.c:486 mini-utils/gw/gw.c:556
+msgid "Name"
+msgstr "Nimi"
+
+#: mini-utils/gcolorsel/gcolorsel.c:609
+#, fuzzy
+msgid "Match"
+msgstr "Välimuisti"
+
+#: mini-utils/gcolorsel/gcolorsel.c:999
 msgid "Small utility to browse available X11 colors."
 msgstr "Pieni työkalu käytettävissä olevien X11:n värien selailuun"
 
-#: mini-utils/gfontsel/gfontsel.c:145
+#: mini-utils/gcolorsel/gcolorsel.c:1072
+#, fuzzy
+msgid "No Name"
+msgstr "Nimi"
+
+#: mini-utils/gcolorsel/gcolorsel.c:1141
+msgid "Enter new name for : "
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:1400
+#, fuzzy
+msgid "Dropped"
+msgstr "punainen"
+
+#: mini-utils/gfontsel/gfontsel.c:157
 msgid "Font Selector"
 msgstr "Kirjasinlajin valitsin"
 
-#: mini-utils/gfontsel/gfontsel.c:170
+#: mini-utils/gfontsel/gfontsel.c:185
 msgid "Selection:"
 msgstr "Valinta:"
 
-#: mini-utils/gfontsel/gfontsel.c:253
-msgid "FONTSPEC"
-msgstr "KIRJLAJI"
-
-#: mini-utils/gfontsel/gfontsel.c:253
+#: mini-utils/gfontsel/gfontsel.c:268
 msgid "Font to load"
 msgstr "Ladattava kirjasinlaji"
 
-#: mini-utils/gfontsel/gfontsel.c:254
+#: mini-utils/gfontsel/gfontsel.c:268
+msgid "FONTSPEC"
+msgstr "KIRJLAJI"
+
+#: mini-utils/gfontsel/gfontsel.c:269
 msgid "Print selected font name on exit"
 msgstr "Tulosta valitun kirjasinlajin nimi lopetettaessa"
 
-#: mini-utils/gfontsel/gfontsel.c:255
+#: mini-utils/gfontsel/gfontsel.c:270
 msgid "Inhibit remembering selected font for next run"
 msgstr "Estä valitun kirjasinlajin muistaminen seuraavalla suorituskerralla"
 
-#: mini-utils/gfontsel/gfontsel.c:256
+#: mini-utils/gfontsel/gfontsel.c:271
 msgid "Inhibit loading of last font"
 msgstr "Estä edellisen kirjasinlajin lataus"
 
-#: mini-utils/gless/gless.c:29
-msgid "Copyright 1998, under the GNU General Public License."
-msgstr "Copyright 1998, GNU GPL:n alla."
-
-#: mini-utils/gless/gless.c:116
+#: mini-utils/gless/gless.c:115
 #, c-format
 msgid "Reason %d\n"
 msgstr "Syy %d\n"
 
-#: mini-utils/gless/gless.c:131
+#: mini-utils/gless/gless.c:130
 msgid "Where to put the window, and its size"
 msgstr "Mihin ikkuna sijoitetaan ja mikä on sen koko"
 
-#: mini-utils/gless/gless.c:132
+#: mini-utils/gless/gless.c:131
 msgid "Ignore standard input; may be needed in some cases."
 msgstr "Ohita vakiosyöttövirta; voi olla tarpeen joissain tilanteissa."
 
-#: mini-utils/gless/gless.c:294
+#: mini-utils/gless/gless.c:293
 msgid "_New Window"
 msgstr "_Uusi ikkuna"
 
-#: mini-utils/gless/gless.c:295
+#: mini-utils/gless/gless.c:294
 msgid "New text viewer window"
 msgstr "Uusi teksti-ikkuna"
 
-#: mini-utils/gless/gless.c:313
+#: mini-utils/gless/gless.c:312
 msgid "_Fixed Font"
 msgstr "_Tasavälinen kirjasinlaji"
 
-#: mini-utils/gless/gless.c:314
+#: mini-utils/gless/gless.c:313
 msgid "Display text with a fixed font"
 msgstr "Näytä tiedosto tasavälisellä kirjasinlajilla"
 
-#: mini-utils/gless/gless.c:352
+#: mini-utils/gless/gless.c:351
 msgid "Text File Viewer"
 msgstr "Tekstitiedostojen näyttöohjelma"
 
-#: mini-utils/gless/gless.c:460
+#: mini-utils/gless/gless.c:446
+msgid "Copyright 1998, under the GNU General Public License."
+msgstr "Copyright 1998, GNU GPL:n alla."
+
+#: mini-utils/gless/gless.c:467
 msgid "Find string"
 msgstr "Etsi seuraava"
 
-#: mini-utils/gless/gless.c:461
+#: mini-utils/gless/gless.c:468
 msgid "Find"
 msgstr "Etsi"
 
-#: mini-utils/gless/gless.c:498
+#: mini-utils/gless/gless.c:505
 msgid "Loading..."
 msgstr "Lataan..."
 
-#: mini-utils/gless/gless.c:502
+#: mini-utils/gless/gless.c:509
 #, c-format
 msgid ""
 "No such file or directory:\n"
@@ -1326,7 +1210,7 @@ msgstr ""
 "Tiedostoa tai hakemistoa ei löydy:\n"
 "%s"
 
-#: mini-utils/gless/gless.c:520
+#: mini-utils/gless/gless.c:527
 #, c-format
 msgid ""
 "Failed to decompress and display the file:\n"
@@ -1337,7 +1221,7 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: mini-utils/gless/gless.c:533
+#: mini-utils/gless/gless.c:540
 msgid ""
 "Unable to display compressed file.\n"
 "zcat not found in your path."
@@ -1345,7 +1229,7 @@ msgstr ""
 "Pakatun tiedoston näyttö epäonnistui.\n"
 "zcat-komentoa ei löytynyt hakupolustasi."
 
-#: mini-utils/gless/gless.c:541
+#: mini-utils/gless/gless.c:548
 #, c-format
 msgid ""
 "Error loading file:\n"
@@ -1356,11 +1240,11 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: mini-utils/gless/gless.c:599
+#: mini-utils/gless/gless.c:606
 msgid "Saving..."
 msgstr "Tallennan..."
 
-#: mini-utils/gless/gless.c:610
+#: mini-utils/gless/gless.c:617
 #, c-format
 msgid ""
 "Failed to write file:\n"
@@ -1371,23 +1255,23 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: mini-utils/gless/gless.c:660
+#: mini-utils/gless/gless.c:667
 msgid "Save Text As..."
 msgstr "Tallenna teksti nimellä..."
 
-#: mini-utils/gless/gless.c:700
+#: mini-utils/gless/gless.c:707
 msgid "Open Text File..."
 msgstr "Avaa tekstitiedosto..."
 
-#: mini-utils/gless/gless.c:764
+#: mini-utils/gless/gless.c:771
 msgid "Sorry, no preferences yet."
 msgstr "Pahoittelut, ei asetuksia vielä."
 
-#: mini-utils/gless/gless.c:851
+#: mini-utils/gless/gless.c:858
 msgid "Searching..."
 msgstr "Etsin..."
 
-#: mini-utils/gless/gless.c:862
+#: mini-utils/gless/gless.c:869
 msgid "No search string was specified!"
 msgstr "Hakumerkkijonoa ei määritelty!"
 
@@ -1407,12 +1291,12 @@ msgid "Run Program"
 msgstr "Suorita ohjelma"
 
 #: mini-utils/gnome-run/gnome-run.c:70
-msgid "Cancel"
-msgstr "Peruuta"
-
-#: mini-utils/gnome-run/gnome-run.c:70
 msgid "Run"
 msgstr "Suorita"
+
+#: mini-utils/gnome-run/gnome-run.c:70
+msgid "Cancel"
+msgstr "Peruuta"
 
 #: mini-utils/gnome-run/gnome-run.c:81
 msgid "Select a program to run"
@@ -1480,6 +1364,10 @@ msgstr ""
 "Sinun täytyy olla pääkäyttäjä (root) sammuttaaksesi tietokoneen\n"
 "tai käynnistääksesi sen uudelleen."
 
+#: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:596
+msgid "Close"
+msgstr "Sulje"
+
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:186
 msgid "Shutdown or Reboot"
@@ -1539,23 +1427,24 @@ msgstr "Komennon suoritus epäonnistui: fork epäonnistui"
 msgid "Make guname act as a control center applet"
 msgstr "Aseta guname toimimaan hallintakeskuksen sovelmana"
 
-#: mini-utils/guname/guname.c:115
+#: mini-utils/guname/guname.c:117
 msgid "an initialization error occurred while starting 'guname-capplet'."
 msgstr "alustusvirhe sattui käynnistettäessä 'guname-capplet':ia."
 
-#: mini-utils/guname/guname.c:425
+#: mini-utils/guname/guname.c:427
 msgid "System Information"
 msgstr "Järjestelmätiedot"
 
-#: mini-utils/guname/guname.c:510
+#: mini-utils/guname/guname.c:509
 msgid "Logo file not found"
 msgstr "Logotiedostoa ei löytynyt"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:514
+#: mini-utils/guname/guname.c:513
 msgid "GNOME contributors:"
 msgstr "GNOME:n kehittäjät"
 
+#. fontset used by guname; adapt it if your language requires it
 #: mini-utils/guname/guname.c:517
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
@@ -1743,12 +1632,12 @@ msgid "No information for this filesystem."
 msgstr "Ei tietoja tälle tiedostojärjestelmälle."
 
 #: mini-utils/guname/moreinfo.c:161
-msgid "Kilobytes"
-msgstr "Kilotavua"
-
-#: mini-utils/guname/moreinfo.c:161
 msgid "Memory"
 msgstr "Muisti"
+
+#: mini-utils/guname/moreinfo.c:161
+msgid "Kilobytes"
+msgstr "Kilotavua"
 
 #: mini-utils/guname/moreinfo.c:186
 msgid "%ld%% memory used."
@@ -1810,12 +1699,12 @@ msgstr ""
 "Komentoa tarvitaan, jotta tämä ohjelma toimisi."
 
 #: mini-utils/gw/gw.c:174
-msgid "Write information to disk"
-msgstr "Kirjoita tiedot levylle"
-
-#: mini-utils/gw/gw.c:174
 msgid "_Save..."
 msgstr "_Tallenna..."
+
+#: mini-utils/gw/gw.c:174
+msgid "Write information to disk"
+msgstr "Kirjoita tiedot levylle"
 
 #: mini-utils/gw/gw.c:202
 msgid "Active User Listing"
@@ -1829,24 +1718,23 @@ msgstr "Päivitä tiedot"
 msgid "Save not implemented yet\n"
 msgstr "Tallennusta ei ole vielä toteutettu\n"
 
-#: mini-utils/gw/gw.c:479
+#: mini-utils/gw/gw.c:487
 msgid "Command Line"
 msgstr "Komentorivi"
 
-#. Create everything.
-#: mini-utils/gw/gw.c:487
+#: mini-utils/gw/gw.c:489
 msgid "Add some defaults"
 msgstr "Lisää muutama oletusasetus"
 
-#: mini-utils/gw/gw.c:489
+#: mini-utils/gw/gw.c:491
 msgid "Delete"
 msgstr "Poista"
 
-#: mini-utils/gw/gw.c:507
+#: mini-utils/gw/gw.c:509
 msgid "Command Editor"
 msgstr "Komentoeditori"
 
-#: mini-utils/gw/gw.c:517
+#: mini-utils/gw/gw.c:519
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -1860,7 +1748,7 @@ msgstr ""
 "Voit käyttää %u:ta komennossa kuvaamaan\n"
 "valittua käyttäjän nimeä ja %t:tä kuvaamaan tty:tä."
 
-#: mini-utils/gw/gw.c:524
+#: mini-utils/gw/gw.c:526
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -1868,18 +1756,23 @@ msgstr ""
 "Paina tätä painiketta lisätäksesi\n"
 "joitakin esimerkkikomentoja."
 
-#: mini-utils/gw/gw.c:532
+#: mini-utils/gw/gw.c:534
 msgid "Menu items"
 msgstr "Valikon kohdat"
 
-#: mini-utils/gw/gw.c:560
+#: mini-utils/gw/gw.c:562
 msgid "Command"
 msgstr "Komento"
 
-#: mini-utils/gw/gw.c:947
+#: mini-utils/gw/gw.c:949
 #, c-format
 msgid "Running: %s\n"
 msgstr "Ajetaan: %s\n"
+
+#: mini-utils/idetool/idetool.c:19 mini-utils/idetool/idetool.c:142
+#: mini-utils/idetool/idetool.c:327
+msgid "Default"
+msgstr "Oletus"
 
 #: mini-utils/idetool/idetool.c:20
 msgid "16-bit"
@@ -1915,13 +1808,13 @@ msgstr "Tämän aseman DMA-asetuksia ei voida muuttaa."
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Disabled"
-msgstr "Estetty"
+msgid "Enabled"
+msgstr "Sallittu"
 
 #: mini-utils/idetool/idetool.c:79 mini-utils/idetool/idetool.c:111
 #: mini-utils/idetool/idetool.c:323 mini-utils/idetool/idetool.c:325
-msgid "Enabled"
-msgstr "Sallittu"
+msgid "Disabled"
+msgstr "Estetty"
 
 #: mini-utils/idetool/idetool.c:91 mini-utils/idetool/idetool.c:103
 msgid "The IRQ unmask setting for this drive cannot be changed."
@@ -2032,6 +1925,257 @@ msgstr "Vain pääkäyttäjä voi käyttää tätä työkalua"
 #: mini-utils/idetool/idetool.c:428
 msgid "You appear to have no IDE drives"
 msgstr "Sinulla ei näytä olevan IDE-levyjä"
+
+#~ msgid ""
+#~ "A quick hack to show the amount of space free on mounted file systems "
+#~ "uitilizing a dial."
+#~ msgstr ""
+#~ "Pikainen sovellus, joka näyttää liitettyjen tiedostojärjestelmien vapaana "
+#~ "olevan levytilan."
+
+#~ msgid "GHex: Converter"
+#~ msgstr "GHex: Heksamuuntaja"
+
+#~ msgid "Binary"
+#~ msgstr "Binääri"
+
+#~ msgid "Decimal"
+#~ msgstr "Desimaali"
+
+#~ msgid "Hex"
+#~ msgstr "Heksa"
+
+#~ msgid "ASCII"
+#~ msgstr "ASCII"
+
+#~ msgid "Get cursor value"
+#~ msgstr "Hae kursorin arvo"
+
+#~ msgid "ERROR"
+#~ msgstr "VIRHE"
+
+#~ msgid "GHex (%s): Find Data"
+#~ msgstr "GHex (%s): Etsi"
+
+#~ msgid "Search for %s"
+#~ msgstr "Etsi %s"
+
+#~ msgid "Find Next"
+#~ msgstr "Etsi seuraava"
+
+#~ msgid "Find Previous"
+#~ msgstr "Etsi edellinen"
+
+#~ msgid "GHex (%s): Find & Replace Data"
+#~ msgstr "GHex (%s): Etsi ja korvaa"
+
+#~ msgid "Replace %s"
+#~ msgstr "Korvaa %s"
+
+#~ msgid "Find next"
+#~ msgstr "Etsi seuraava"
+
+#~ msgid "Replace"
+#~ msgstr "Korvaa"
+
+#~ msgid "Replace All"
+#~ msgstr "Korvaa kaikki"
+
+#~ msgid "GHex (%s): Jump To Byte"
+#~ msgstr "GHex (%s): Siirry tavuun"
+
+#~ msgid "There is no active buffer to search!"
+#~ msgstr "Ei aktiivista puskuria josta etsittäisiin."
+
+#~ msgid "There seems to be no string to search for!"
+#~ msgstr "Ei merkkijonoa jota etsittäisiin."
+
+#~ msgid "End Of File reached"
+#~ msgstr "EOF (tiedoston loppu) tuli vastaan"
+
+#~ msgid "Beginning Of File reached"
+#~ msgstr "Tiedoston alussa"
+
+#~ msgid "There is no active buffer to move the cursor in!"
+#~ msgstr "Ei aktiivista puskuria jossa kursoria siirrettäisiin."
+
+#~ msgid "No offset has been specified!"
+#~ msgstr "Alkupaikkaa ei ole määritelty."
+
+#~ msgid "The offset must be a positive integer value!"
+#~ msgstr "Alkupaikan täytyy olla positiivinen kokonaislukuarvo."
+
+#~ msgid "Can not position cursor beyond the End Of File!"
+#~ msgstr "Osoitinta ei voi sijoittaa tiedoston lopun (EOF) ohi."
+
+#~ msgid "There is no active buffer to replace data in!"
+#~ msgstr "Ei aktiivista puskuria, josta etsittäisiin."
+
+#~ msgid "Strange find or replace string!"
+#~ msgstr "Outo haku- tai korvausmerkkijono."
+
+#~ msgid "Both strings must be of the same length!"
+#~ msgstr "Molempien merkkijonojen täytyy olla samanmittaisia."
+
+#~ msgid "End Of File reached!"
+#~ msgstr "EOF (tiedoston loppu) tuli vastaan."
+
+#~ msgid "Replaced %d occurencies."
+#~ msgstr "%d sijaintia korvattu."
+
+#~ msgid "_Bytes"
+#~ msgstr "_Tavuittain"
+
+#~ msgid "Group data by 8 bits"
+#~ msgstr "Ryhmittele data 8 bitin ryhmiin"
+
+#~ msgid "_Words"
+#~ msgstr "_Sanoittain"
+
+#~ msgid "Group data by 16 bits"
+#~ msgstr "Ryhmittele data 16 bitin ryhmiin"
+
+#~ msgid "_Longwords"
+#~ msgstr "_Pitkäsanoittain"
+
+#~ msgid "Group data by 32 bits"
+#~ msgstr "Ryhmittele data 32 bitin ryhmiin"
+
+#~ msgid "Jump to a certain position"
+#~ msgstr "Hyppää tiettyyn sijaintiin"
+
+#~ msgid "_Goto Byte..."
+#~ msgstr "_Mene tavuun..."
+
+#~ msgid "_Group Data As"
+#~ msgstr "Ryhmittele _data..."
+
+#~ msgid "_Add view"
+#~ msgstr "_Lisää näkymä"
+
+#~ msgid "Add a new view of the buffer"
+#~ msgstr "Lisää uusi puskurinäkymä"
+
+#~ msgid "_Remove view"
+#~ msgstr "_Poista näkymä"
+
+#~ msgid "Remove the current view of the buffer"
+#~ msgstr "Poista tämänhetkinen puskurinäkymä"
+
+#~ msgid ""
+#~ "File %s has changed since last save.\n"
+#~ "Do you want to save changes?"
+#~ msgstr ""
+#~ "Tiedosto %s on muuttunut sitten viime tallennuksen.\n"
+#~ "Haluatko tallentaa muutokset?"
+
+#~ msgid "Offset: %s"
+#~ msgstr "Siirros: %s"
+
+#~ msgid "Notebook"
+#~ msgstr "Lehtiö"
+
+#~ msgid "Toplevel"
+#~ msgstr "Ikkuna"
+
+#~ msgid "Modal"
+#~ msgstr "Modaalinen"
+
+#~ msgid "Maximum number of undo levels"
+#~ msgstr "Suurin peruutustasojen määrä"
+
+#~ msgid "Show cursor offset in statusbar as"
+#~ msgstr "Kursorin siirroksen näyttömuoto:"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Heksadesimaali"
+
+#~ msgid "Custom"
+#~ msgstr "Oma"
+
+#~ msgid "Show offsets column"
+#~ msgstr "Näytä siirrossarake"
+
+#~ msgid "Editing"
+#~ msgstr "Muokkaus"
+
+#~ msgid "Font"
+#~ msgstr "Kirjasinlaji"
+
+#~ msgid "Default Group Type"
+#~ msgstr "Oletusryhmittely"
+
+#~ msgid "MDI Mode"
+#~ msgstr "MDI-malli"
+
+#~ msgid "MDI"
+#~ msgstr "MDI"
+
+#~ msgid "Can not open desired font!"
+#~ msgstr "Haluttua kirjasinlajia ei voitu avata!"
+
+#~ msgid "Open Con_verter..."
+#~ msgstr "Avaa _Muuntaja"
+
+#~ msgid "Open base conversion dialog"
+#~ msgstr "Avaa muunnosdialogi"
+
+#~ msgid "Bytes"
+#~ msgstr "Tavuittain"
+
+#~ msgid "Words"
+#~ msgstr "Sanoittain"
+
+#~ msgid "Longwords"
+#~ msgstr "Pitkäsanoittain"
+
+#~ msgid "hex data"
+#~ msgstr "heksadata"
+
+#~ msgid "ASCII data"
+#~ msgstr "ASCII-data"
+
+#~ msgid "GHex, a binary file editor"
+#~ msgstr "GHex, binääritiedostoeditori"
+
+#~ msgid "Released under the terms of GNU Public License"
+#~ msgstr "Julkaistu GNU GPL -lisenssillä"
+
+#~ msgid "Error saving file!"
+#~ msgstr "Virhe tiedostoa tallennettaessa!"
+
+#~ msgid "Saved buffer to file %s"
+#~ msgstr "Puskuri tallennettu tiedostoon %s"
+
+#~ msgid "Select a file to open"
+#~ msgstr "Valitse avattava tiedosto"
+
+#~ msgid "Select a file to save buffer as"
+#~ msgstr "Valitse tiedosto johon puskuri tallennetaan"
+
+#~ msgid "Really revert file %s?"
+#~ msgstr "Hylätäänkö todella tiedostoon %s tehdyt muutokset?"
+
+#~ msgid "Reverted buffer from file %s"
+#~ msgstr "Puskuri palautettu tiedostosta %s"
+
+#~ msgid "Can not open file!"
+#~ msgstr "Tiedostoa ei voitu avata."
+
+#~ msgid "Can't open file for writing!"
+#~ msgstr "Tiedostoa ei voitu avata kirjoitusta varten."
+
+#~ msgid "This is not yet implemented"
+#~ msgstr "Tätä ei ole vielä toteutettu"
+
+#~ msgid "Format Style:"
+#~ msgstr "Näyttömuoto:"
+
+#~ msgid "Color Name:"
+#~ msgstr "Värin nimi:"
+
+#~ msgid "Color Values:"
+#~ msgstr "Väriarvot:"
 
 #~ msgid "gtk|text|graph|none"
 #~ msgstr "gtk|teksti|graafi|ei mitään"

@@ -19,7 +19,7 @@ extras = gnome-find
 endif
 
 SUBDIRS = po intl macros idl \
-	gcalc ghex gsearchtool $(gdiskfree) $(gstripchart) gtt \
+	gcalc gsearchtool $(gdiskfree) $(gstripchart) gtt \
 	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog $(extras)
 
 EXTRA_DIST = gnome-utils.spec.in
