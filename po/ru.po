@@ -6,13 +6,33 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util\n"
-"POT-Creation-Date: 2000-05-20 20:42+0000\n"
-"PO-Revision-Date: 2000-05-20 21:08+00:00\n"
+"POT-Creation-Date: 2000-05-23 21:30+0000\n"
+"PO-Revision-Date: 2000-05-23 21:37+00:00\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=KOI8-r\n"
 "Content-Transfer-Encoding: 8-bit\n"
+
+#: gcalc/gcalc.c:37
+msgid "The Gnome Calculator"
+msgstr "Калькулятор Gnome"
+
+#: gcalc/gcalc.c:40
+msgid "Simple double precision calculator similiar to xcalc"
+msgstr "Простой калькулятор с двойной точностью наподобие xcalc"
+
+#: gcalc/gcalc.c:133
+msgid "Gnome Calculator"
+msgstr "Калькулятор Gnome"
+
+#: gcharmap/src/asciiselect.c:42 gcharmap/src/interface.c:38
+msgid "Insert ASCII character"
+msgstr "Вставить ASCII символ"
+
+#: gcharmap/src/interface.c:38
+msgid "Insert ASCII character..."
+msgstr "Вставка ASCII символа..."
 
 #: gcharmap/src/interface.c:44
 msgid "_Toolbar"
@@ -38,7 +58,8 @@ msgstr "Вырезать"
 msgid "Cut the text to clipboard"
 msgstr "Вырезать текст в буфер обмена"
 
-#: gcharmap/src/interface.c:68 gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:68 gcharmap/src/interface.c:191
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Скопировать"
 
@@ -70,6 +91,23 @@ msgstr "Таблица символов Gnome"
 #: gcharmap/src/interface.c:146
 msgid "Text to Copy:"
 msgstr "Текст для копирования:"
+
+#: gcharmap/src/interface.c:185 mini-utils/gcolorsel/menus.c:83
+#: mini-utils/gcolorsel/menus.c:906 mini-utils/gshutdown/gshutdown.c:153
+#: mini-utils/gshutdown/gshutdown.c:594
+msgid "Close"
+msgstr "Закрыть"
+
+#: gcharmap/src/interface.c:197 gstripchart/gstripchart.c:1790
+#: gstripchart/gstripchart.c:2074 mini-utils/gcolorsel/menus.c:912
+#: mini-utils/gshutdown/gshutdown.c:319
+msgid "About"
+msgstr "О программе"
+
+#: gcharmap/src/interface.c:203 gnome-find/gnome-find.c:89
+#: gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:2071
+msgid "Help"
+msgstr "Справка"
 
 #: gcharmap/src/interface.c:303
 #, c-format
@@ -141,6 +179,10 @@ msgid ""
 "Internet. If you are not already connected to the Internet, please\n"
 "do so and try again."
 msgstr ""
+"Невозможно выполнить запрошенное действие, либо потому что сервер\n"
+"который вы используете отключен, либо потому что вы не подключены\n"
+"к Интернет. Если вы еще не подключились к Интернет, сделайте это\n"
+"и попробуйте еще раз."
 
 #: gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
 #: gdictsrc/gdict-applet.c:153
@@ -177,7 +219,7 @@ msgstr "Установки"
 
 #: gdictsrc/gdict-app.c:528
 msgid "Server to use, default search strategy, fonts"
-msgstr ""
+msgstr "Используемый сервер, исходная стратегия поиска, шрифты"
 
 #: gdictsrc/gdict-app.c:589
 msgid "Word definition"
@@ -197,7 +239,7 @@ msgstr "Настройки..."
 
 #: gdictsrc/gdict-applet.c:138
 msgid "Show/Hide Definition Window..."
-msgstr ""
+msgstr "Показать/Скрыть окно определений..."
 
 #: gdictsrc/gdict-applet.c:142
 msgid "Spell Check..."
@@ -408,7 +450,7 @@ msgid "File"
 msgstr "Файл"
 
 #: gnome-find/gnome-find.c:87 mini-utils/gcolorsel/gcolorsel.c:32
-#: mini-utils/gcolorsel/menus.c:566
+#: mini-utils/gcolorsel/menus.c:566 mini-utils/gcolorsel/menus.c:652
 msgid "Edit"
 msgstr "Выход"
 
@@ -416,11 +458,6 @@ msgstr "Выход"
 #: mini-utils/gcolorsel/session.c:424
 msgid "Search"
 msgstr "Поиск"
-
-#: gnome-find/gnome-find.c:89 gstripchart/gstripchart.c:1784
-#: gstripchart/gstripchart.c:2071
-msgid "Help"
-msgstr "Справка"
 
 #: gnome-find/gnome-find.c:95
 msgid "New"
@@ -617,9 +654,8 @@ msgid "Save Results"
 msgstr "Сохранить результаты"
 
 #: gsearchtool/outdlg.c:130
-#, fuzzy
 msgid "Command mangeled"
-msgstr "Командная строка"
+msgstr ""
 
 #: gsearchtool/outdlg.c:159
 msgid "No command for this mime type"
@@ -800,11 +836,6 @@ msgstr "Верхнее"
 #: gstripchart/gstripchart.c:1747
 msgid "Scale"
 msgstr "Шкала"
-
-#: gstripchart/gstripchart.c:1790 gstripchart/gstripchart.c:2074
-#: mini-utils/gcolorsel/menus.c:912 mini-utils/gshutdown/gshutdown.c:319
-msgid "About"
-msgstr "О программе"
 
 #: gstripchart/gstripchart.c:1796
 msgid "Params"
@@ -1852,7 +1883,8 @@ msgstr "Выберите исходный документ"
 msgid ""
 "This document read document from one or more other document. Please, choose "
 "these documents."
-msgstr "Этот документ считывает документ из одного или более документов. Выберите их."
+msgstr ""
+"Этот документ считывает документ из одного или более документов. Выберите их."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:17
 msgid "Available documents"
@@ -1899,7 +1931,9 @@ msgstr "Создать окна"
 msgid ""
 "You can create one or more views for this document. Note that you have to "
 "create at least one view."
-msgstr "Вы можете создать одно или больше окон для этого документа. Вы должны создать хотя бы одно."
+msgstr ""
+"Вы можете создать одно или больше окон для этого документа. Вы должны "
+"создать хотя бы одно."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:27
 msgid "Available views"
@@ -2142,11 +2176,6 @@ msgstr "Закрыть окно"
 msgid "Close the current view"
 msgstr "Закрыть текущее окно"
 
-#: mini-utils/gcolorsel/menus.c:83 mini-utils/gcolorsel/menus.c:906
-#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
-msgid "Close"
-msgstr "Закрыть"
-
 #: mini-utils/gcolorsel/menus.c:99
 msgid "Insert color"
 msgstr "Вставить цвет"
@@ -2335,7 +2364,9 @@ msgstr "Загрузка файла, подождите..."
 msgid ""
 "One or more files can not be restored :\n"
 "\n"
-msgstr "Один или более файлов не могут быть восстановлены:\n\n"
+msgstr ""
+"Один или более файлов не могут быть восстановлены:\n"
+"\n"
 
 #: mini-utils/gcolorsel/session.c:407
 msgid "System"
@@ -3134,15 +3165,3 @@ msgstr "Только администратор может использовать этот инструмент"
 #: mini-utils/idetool/idetool.c:451
 msgid "You appear to have no IDE drives"
 msgstr "Кажется у Вас нет IDE дисков"
-
-#~ msgid "The Gnome Calculator"
-#~ msgstr "Калькулятор Gnome"
-
-#~ msgid "Simple double precision calculator similiar to xcalc"
-#~ msgstr "Простой калькулятор с двойной точностью наподобие xcalc"
-
-#~ msgid "Gnome Calculator"
-#~ msgstr "Калькулятор Gnome"
-
-#~ msgid "There's no documentation available yet."
-#~ msgstr "Документация пока не доступна."
