@@ -1136,11 +1136,10 @@ show_file_selector_cb (GtkWidget 	*widget,
 							       GTK_STOCK_SAVE, GTK_RESPONSE_OK,
 							       NULL);
 		
-	/* This is not working properly in GTK+ at this time! (using GTK+ 2.3.1)
-	if (interface.save_results_file != NULL) {
-		gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (interface.file_selector), 
-						   interface.save_results_file);
-	} */
+	if (interface.save_results_file != NULL) {  
+		gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (interface.file_selector),
+		                               interface.save_results_file);
+	}
 	
 	g_signal_connect (G_OBJECT (interface.file_selector), "response",
 			  G_CALLBACK (save_results_cb), NULL);
