@@ -6,16 +6,25 @@ if BUILD_GDIALOG
 gdialog = gdialog
 endif
 
-SUBDIRS = po 		\
+always_built_SUBDIRS = \
+	po 		\
 	idl		\
-	$(gfloppy)	\
- 	logview 	\
+	logview 	\
 	gcharmap 	\
 	gcalc 		\
 	gsearchtool	\
 	gdictsrc	\
-	$(gdialog)	\
 	meat-grinder
+
+SUBDIRS = \
+	$(always_built_SUBDIRS)	\
+	$(gfloppy)	\
+	$(gdialog)
+
+DIST_SUBDIRS = \
+	$(always_built_SUBDIRS)	\
+	gfloppy			\
+	gdialog
 
 EXTRA_DIST = \
 	gnome-utils.spec.in \
