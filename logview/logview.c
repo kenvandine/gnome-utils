@@ -413,7 +413,6 @@ CreateMainWin ()
    gnome_app_create_menus (GNOME_APP (app), main_menu);
 
    vbox = gtk_vbox_new (FALSE, 6);
-   gtk_container_set_border_width ( GTK_CONTAINER (vbox), 6);
    gnome_app_set_contents (GNOME_APP (app), vbox);
 
    if (numlogs < 2)
