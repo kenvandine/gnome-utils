@@ -254,8 +254,8 @@ main_app_create_ui (MainApp *app)
         guint8 i;
 
         viewport = gtk_viewport_new (NULL, NULL);
-        gdk_color_alloc (gdk_colormap_get_system (), &black);
-        gdk_color_alloc (gdk_colormap_get_system (), &white);
+        gdk_color_alloc (gtk_widget_get_colormap (viewport), &black);
+        gdk_color_alloc (gtk_widget_get_colormap (viewport), &white);
 
         style = gtk_style_copy (gtk_widget_get_style (viewport));
         for (i = 0; i < 5; i++) style->fg[i] = white;
