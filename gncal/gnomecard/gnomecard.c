@@ -619,6 +619,7 @@ void gnomecard_sort_by_fname(GtkWidget *w, gpointer data)
 void gnomecard_init(void)
 {
 	GtkWidget *canvas, *align, *hbox, *hbox1, *hbox2;
+	GtkWidget *table, *w;
 	gint ncol, i;
 
 	/* hard coded column headers */
@@ -680,19 +681,43 @@ void gnomecard_init(void)
 				       
 	gtk_box_pack_start(GTK_BOX(hbox), cardlist_scrollwin, TRUE, TRUE, 0);
 
-	align = gtk_alignment_new(0.5, 0.5, 0.5, 0.5);
-	gtk_box_pack_start(GTK_BOX(hbox), align, FALSE, FALSE, 0);
-	gtk_widget_show(align);
-
+	/* add canvas with some scrollbars */
 	gtk_widget_push_visual(gdk_imlib_get_visual());
 	gtk_widget_push_colormap(gdk_imlib_get_colormap());
 	
 	canvas = gnomecard_canvas_new();
-	gtk_container_add (GTK_CONTAINER (align), canvas);
-	gtk_widget_show(canvas);
+	table = gtk_table_new(2, 2, FALSE);
+	gtk_table_set_row_spacings(GTK_TABLE(table), 4);
+	gtk_table_set_col_spacings(GTK_TABLE(table), 4);
+	gtk_box_pack_start(GTK_BOX(hbox), table, FALSE, FALSE, 0);
 
+	gtk_table_attach(GTK_TABLE(table), canvas, 0, 1, 0, 1,
+			 GTK_EXPAND | GTK_FILL | GTK_SHRINK,
+			 GTK_EXPAND | GTK_FILL | GTK_SHRINK,
+			 0, 0);
+
+	w = gtk_hscrollbar_new (GTK_LAYOUT (canvas)->hadjustment);
+        gtk_table_attach (GTK_TABLE (table), w,
+                          0, 1, 1, 2,
+                          GTK_EXPAND | GTK_FILL | GTK_SHRINK,
+                          GTK_FILL,
+                          0, 0);
+        gtk_widget_show (w);
+        w = gtk_vscrollbar_new (GTK_LAYOUT (canvas)->vadjustment);
+        gtk_table_attach (GTK_TABLE (table), w,
+                          1, 2, 0, 1,
+                          GTK_FILL,
+                          GTK_EXPAND | GTK_FILL | GTK_SHRINK,
+                          0, 0);
+        gtk_widget_show (w);
+	gtk_widget_show(canvas);
+	gtk_widget_show(table);
+
+	/* no cards yet */
 	gnomecard_crds = NULL;
-	
+
+	/* FIXME ? - ugly mechanism to be able to enable/disable buttons on */
+	/*           toolbar                                                */
 	tb_save = toolbar[2].widget;
 	tb_edit = toolbar[5].widget;
 	tb_del  = toolbar[6].widget;

@@ -8,12 +8,20 @@
 #include "gnomecard.h"
 #include "canvas.h"
 
-#define CANVAS_FONT "-adobe-helvetica-medium-r-*-*-12-140-*-*-p-*-iso8859-1"
-#define ADDR_FONT "-adobe-helvetica-medium-r-*-*-10-100-*-*-p-*-iso8859-1"
+#define CANVAS_FONT "-adobe-helvetica-medium-r-*-*-*-120-*-*-p-*-iso8859-1"
+#define ADDR_FONT "-adobe-helvetica-medium-r-*-*-*-100-*-*-p-*-iso8859-1"
 #define CANVAS_WIDTH 225
 #define CANVAS_HEIGHT 350
 #define LIST_SPACING 15.0
 #define ADDR_SPACING 11.0
+
+#define HEADER_BOX_COLOR  "khaki"
+#define SUBHEADER_BOX_COLOR ""
+#define LABEL_BOX_COLOR "dark khaki"
+
+#define HEADER_TEXT_COLOR "black"
+#define LABEL_TEXT_COLOR   "black"
+#define BODY_TEXT_COLOR    "black"
 
 typedef struct {
     GnomeCanvasItem *street1;
@@ -24,39 +32,35 @@ typedef struct {
 
 GtkWidget *gnomecard_canvas;
 static GnomeCanvasItem *cardname, *fullname, *workphone, *homephone;
-static GnomeCanvasItem *email, *url, *org, *title;
+static GnomeCanvasItem *email, *url, *org, *title, *memos;
 static CanvasAddressItem homeaddr, workaddr;
+static GnomeCanvasGroup *root;
 
 static void gnomecard_canvas_text_item_set(GnomeCanvasItem *p, gchar *text);
 
 GtkWidget *
 gnomecard_canvas_new(void)
 {
-	GnomeCanvasGroup *root;
 	GtkWidget *canvas;
-	gdouble ypos;
-
+	gdouble ypos, x1, x2, y1, y2;
+	GtkStyle *style;
 	GnomeCanvasItem *item;
+	gint i;
 
 	canvas = gnomecard_canvas = gnome_canvas_new();
 	gtk_widget_pop_visual();
 	gtk_widget_pop_colormap();
+
+	style = gtk_style_copy(gtk_widget_get_style(canvas));
+	for (i=0; i<5; i++)
+	    style->bg[i].red = style->bg[i].green = style->bg[i].blue = 0xffff;
+
+	gtk_widget_set_style(GTK_WIDGET(canvas), style);
+
 	gnome_canvas_set_size(GNOME_CANVAS(canvas), 
 			      CANVAS_WIDTH, CANVAS_HEIGHT);
-	gnome_canvas_set_scroll_region(GNOME_CANVAS(canvas), 0, 0, 
-				       CANVAS_WIDTH, CANVAS_HEIGHT);
 
 	root = GNOME_CANVAS_GROUP (gnome_canvas_root(GNOME_CANVAS(canvas)));
-
-	gnome_canvas_item_new (root, gnome_canvas_rect_get_type (),
-			       "x1", 0.0,
-			       "y1", 0.0,
-			       "x2", (double) (CANVAS_WIDTH - 1),
-			       "y2", (double) (CANVAS_HEIGHT - 1),
-			       "fill_color", "white",
-			       "outline_color", "black",
-			       "width_pixels", 0,
-			       NULL);
 
 	/* label at top of canvas, contains current cardname */
 	gnome_canvas_item_new (root, gnome_canvas_rect_get_type (),
@@ -64,8 +68,8 @@ gnomecard_canvas_new(void)
 			       "y1", 5.0,
 			       "x2", (double) (CANVAS_WIDTH - 6.0),
 			       "y2", (double) 35,
-			       "fill_color", "khaki",
-			       "outline_color", "khaki",
+			       "fill_color", HEADER_BOX_COLOR,
+			       "outline_color", HEADER_BOX_COLOR,
 			       "width_pixels", 0,
 			       NULL);
 
@@ -73,9 +77,9 @@ gnomecard_canvas_new(void)
 				      "text", "",
 				      "x", CANVAS_WIDTH / 2.0,
 				      "y", 20.0,
-				      "font", "-adobe-helvetica-medium-r-*-*-20-240-*-*-p-*-iso8859-1",
+				      "font", "-adobe-helvetica-medium-r-normal-*-*-180-*-*-p-*-iso8859-1",
 				      "anchor", GTK_ANCHOR_CENTER,
-				      "fill_color", "black",
+				      "fill_color", HEADER_TEXT_COLOR,
 				      NULL);
 
 	/* Full name for card */
@@ -86,7 +90,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos,
 				      "font", CANVAS_FONT,
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", BODY_TEXT_COLOR,
 				      NULL);
 
 	/* Organization and title */
@@ -97,7 +101,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos,
 				      "font", CANVAS_FONT,
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", BODY_TEXT_COLOR,
 				      NULL);
 
 	ypos += LIST_SPACING;
@@ -107,7 +111,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos,
 				      "font", CANVAS_FONT,
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", BODY_TEXT_COLOR,
 				      NULL);
 
 	/* web site and email */
@@ -118,7 +122,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos,
 				      "font", CANVAS_FONT,
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", BODY_TEXT_COLOR,
 				      NULL);
 	ypos += LIST_SPACING;
 	url = gnome_canvas_item_new (root, gnome_canvas_text_get_type (),
@@ -127,7 +131,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos,
 				      "font", CANVAS_FONT,
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", BODY_TEXT_COLOR,
 				      NULL);
 
 	/* phone #'s */
@@ -137,8 +141,8 @@ gnomecard_canvas_new(void)
 			       "y1", ypos,
 			       "x2", (double) (CANVAS_WIDTH - 6.0),
 			       "y2", (double) ypos+20,
-			       "fill_color", "khaki",
-			       "outline_color", "khaki",
+			       "fill_color", HEADER_BOX_COLOR,
+			       "outline_color", HEADER_BOX_COLOR,
 			       "width_pixels", 0,
 			       NULL);
 
@@ -148,7 +152,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos+10,
 				      "font",  "-adobe-helvetica-medium-r-*-*-14-140-*-*-p-*-iso8859-1",
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", HEADER_TEXT_COLOR,
 				      NULL);
 
 	ypos += 30;
@@ -157,8 +161,8 @@ gnomecard_canvas_new(void)
 			       "y1", ypos-6.0,
 			       "x2", (double) 45.0,
 			       "y2", (double) ypos+6,
-			       "fill_color", "dark khaki",
-			       "outline_color", "dark khaki",
+			       "fill_color", LABEL_BOX_COLOR,
+			       "outline_color", LABEL_BOX_COLOR,
 			       "width_pixels", 0,
 			       NULL);
 	gnome_canvas_item_new (root, gnome_canvas_text_get_type (),
@@ -167,7 +171,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos,
 				      "font",  CANVAS_FONT,
 				      "anchor", GTK_ANCHOR_EAST,
-				      "fill_color", "black",
+				      "fill_color", LABEL_TEXT_COLOR,
 				      NULL);
 
 	homephone = gnome_canvas_item_new (root, gnome_canvas_text_get_type (),
@@ -176,7 +180,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos,
 				      "font", CANVAS_FONT,
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", BODY_TEXT_COLOR,
 				      NULL);
 
 
@@ -186,8 +190,8 @@ gnomecard_canvas_new(void)
 			       "y1", ypos-6.0,
 			       "x2", (double) 45.0,
 			       "y2", (double) ypos+6,
-			       "fill_color", "dark khaki",
-			       "outline_color", "dark khaki",
+			       "fill_color", LABEL_BOX_COLOR,
+			       "outline_color", LABEL_BOX_COLOR,
 			       "width_pixels", 0,
 			       NULL);
 	gnome_canvas_item_new (root, gnome_canvas_text_get_type (),
@@ -196,7 +200,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos,
 				      "font",  CANVAS_FONT,
 				      "anchor", GTK_ANCHOR_EAST,
-				      "fill_color", "black",
+				      "fill_color", LABEL_TEXT_COLOR,
 				      NULL);
 
 	workphone = gnome_canvas_item_new (root, gnome_canvas_text_get_type (),
@@ -205,7 +209,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos,
 				      "font", CANVAS_FONT,
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", BODY_TEXT_COLOR,
 				      NULL);
 
 	/* addresses */
@@ -215,8 +219,8 @@ gnomecard_canvas_new(void)
 			       "y1", ypos,
 			       "x2", (double) (CANVAS_WIDTH - 6.0),
 			       "y2", (double) ypos+20,
-			       "fill_color", "khaki",
-			       "outline_color", "khaki",
+			       "fill_color", HEADER_BOX_COLOR,
+			       "outline_color", HEADER_BOX_COLOR,
 			       "width_pixels", 0,
 			       NULL);
 
@@ -226,7 +230,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos+10,
 				      "font",  "-adobe-helvetica-medium-r-*-*-14-140-*-*-p-*-iso8859-1",
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", HEADER_TEXT_COLOR,
 				      NULL);
 
 	/* home address */
@@ -236,8 +240,8 @@ gnomecard_canvas_new(void)
 			       "y1", ypos,
 			       "x2", (double) 150.0,
 			       "y2", (double) ypos+10,
-			       "fill_color", "dark khaki",
-			       "outline_color", "dark khaki",
+			       "fill_color", LABEL_BOX_COLOR,
+			       "outline_color", LABEL_BOX_COLOR,
 			       "width_pixels", 0,
 			       NULL);
 
@@ -247,7 +251,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos+5,
 				      "font",  "-adobe-helvetica-medium-r-*-*-10-100-*-*-p-*-iso8859-1",
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", LABEL_TEXT_COLOR,
 				      NULL);
 	
 	ypos += 20;
@@ -258,7 +262,7 @@ gnomecard_canvas_new(void)
 						  "y", ypos,
 						  "font", ADDR_FONT,
 						  "anchor", GTK_ANCHOR_WEST,
-						  "fill_color", "black",
+						  "fill_color",BODY_TEXT_COLOR,
 						  NULL);
 
 	ypos += ADDR_SPACING;
@@ -269,7 +273,7 @@ gnomecard_canvas_new(void)
 						  "y", ypos,
 						  "font", ADDR_FONT,
 						  "anchor", GTK_ANCHOR_WEST,
-						  "fill_color", "black",
+						  "fill_color",BODY_TEXT_COLOR,
 						  NULL);
 
 	ypos += ADDR_SPACING;
@@ -280,7 +284,7 @@ gnomecard_canvas_new(void)
 						  "y", ypos,
 						  "font", ADDR_FONT,
 						  "anchor", GTK_ANCHOR_WEST,
-						  "fill_color", "black",
+						  "fill_color",BODY_TEXT_COLOR,
 						  NULL);
 
 	ypos += ADDR_SPACING;
@@ -291,7 +295,7 @@ gnomecard_canvas_new(void)
 						  "y", ypos,
 						  "font", ADDR_FONT,
 						  "anchor", GTK_ANCHOR_WEST,
-						  "fill_color", "black",
+						  "fill_color",BODY_TEXT_COLOR,
 						  NULL);
 
 
@@ -303,8 +307,8 @@ gnomecard_canvas_new(void)
 			       "y1", ypos,
 			       "x2", (double) 150.0,
 			       "y2", (double) ypos+10,
-			       "fill_color", "dark khaki",
-			       "outline_color", "dark khaki",
+			       "fill_color", LABEL_BOX_COLOR,
+			       "outline_color", LABEL_BOX_COLOR,
 			       "width_pixels", 0,
 			       NULL);
 
@@ -314,7 +318,7 @@ gnomecard_canvas_new(void)
 				      "y", ypos+5,
 				      "font",  "-adobe-helvetica-medium-r-*-*-10-100-*-*-p-*-iso8859-1",
 				      "anchor", GTK_ANCHOR_WEST,
-				      "fill_color", "black",
+				      "fill_color", LABEL_TEXT_COLOR,
 				      NULL);
 	
 	ypos += 20;
@@ -325,7 +329,7 @@ gnomecard_canvas_new(void)
 						  "y", ypos,
 						  "font", ADDR_FONT,
 						  "anchor", GTK_ANCHOR_WEST,
-						  "fill_color", "black",
+						  "fill_color",BODY_TEXT_COLOR,
 						  NULL);
 
 	ypos += ADDR_SPACING;
@@ -336,7 +340,7 @@ gnomecard_canvas_new(void)
 						  "y", ypos,
 						  "font", ADDR_FONT,
 						  "anchor", GTK_ANCHOR_WEST,
-						  "fill_color", "black",
+						  "fill_color",BODY_TEXT_COLOR,
 						  NULL);
 
 	ypos += ADDR_SPACING;
@@ -347,7 +351,7 @@ gnomecard_canvas_new(void)
 						  "y", ypos,
 						  "font", ADDR_FONT,
 						  "anchor", GTK_ANCHOR_WEST,
-						  "fill_color", "black",
+						  "fill_color",BODY_TEXT_COLOR,
 						  NULL);
 
 	ypos += ADDR_SPACING;
@@ -358,10 +362,45 @@ gnomecard_canvas_new(void)
 						  "y", ypos,
 						  "font", ADDR_FONT,
 						  "anchor", GTK_ANCHOR_WEST,
-						  "fill_color", "black",
+						  "fill_color",BODY_TEXT_COLOR,
 						  NULL);
 
 
+	/* memo(s) */
+	ypos += LIST_SPACING;
+	gnome_canvas_item_new (root, gnome_canvas_rect_get_type (),
+			       "x1", 5.0,
+			       "y1", ypos,
+			       "x2", (double) (CANVAS_WIDTH - 6.0),
+			       "y2", (double) ypos+20,
+			       "fill_color", HEADER_BOX_COLOR,
+			       "outline_color", HEADER_BOX_COLOR,
+			       "width_pixels", 0,
+			       NULL);
+
+	gnome_canvas_item_new (root, gnome_canvas_text_get_type (),
+				      "text", "Memo(s)",
+				      "x", 10.0,
+				      "y", ypos+10,
+				      "font",  "-adobe-helvetica-medium-r-*-*-14-140-*-*-p-*-iso8859-1",
+				      "anchor", GTK_ANCHOR_WEST,
+				      "fill_color", HEADER_TEXT_COLOR,
+				      NULL);
+
+
+	ypos += 30;
+	memos = gnome_canvas_item_new (root, gnome_canvas_text_get_type (),
+				      "text", "",
+				      "x", 5.0,
+				      "y", ypos,
+				      "font", CANVAS_FONT,
+				      "anchor", GTK_ANCHOR_WEST,
+				      "fill_color", BODY_TEXT_COLOR,
+				      NULL);
+
+	/* set scrolling region */
+	gnome_canvas_item_get_bounds(GNOME_CANVAS_ITEM(root), &x1,&y1,&x2,&y2);
+	gnome_canvas_set_scroll_region(GNOME_CANVAS(canvas), x1, y1, x2, y2);
 
 	/* all done */
 	return canvas;
@@ -385,6 +424,7 @@ gnomecard_update_canvas(Card *crd)
 {
     GList *l;
     gchar *name;
+    gdouble x1, x2, y1, y2;
 
     if (!crd) {
 	g_message("NULL card in gnomecard_update_canvas!");
@@ -508,4 +548,15 @@ gnomecard_update_canvas(Card *crd)
 	gnomecard_canvas_text_item_set(workaddr.country, "");
     }
 
+    /* memos */
+    if (crd->comment.str)
+	gnomecard_canvas_text_item_set(memos, crd->comment.str);
+    else
+	gnomecard_canvas_text_item_set(memos, "");
+
+    /* set scrolling region */
+    gnome_canvas_item_get_bounds(GNOME_CANVAS_ITEM(root), &x1,&y1,&x2,&y2);
+    gnome_canvas_set_scroll_region(GNOME_CANVAS(gnomecard_canvas),
+				   x1, y1, x2, y2);
+    
 }
