@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2002-03-13 21:38+0100\n"
-"PO-Revision-Date: 2002-03-13 21:38+0100\n"
+"POT-Creation-Date: 2002-03-22 14:54+0100\n"
+"PO-Revision-Date: 2002-03-22 15:01+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,10 @@ msgstr "Uruchamia w trybie analogowym (liczydło suwakowe)"
 #: gcalc/gcalc.c:1
 msgid "GNOME Calculator"
 msgstr "Kalkulator GNOME"
+
+#: gcalc/gnome-calc.c:1
+msgid "inf"
+msgstr "inf"
 
 #: gcalc/gnome-calc.c:1 gcalc/gnome-calc.c:1
 msgid "DEG"
@@ -402,6 +406,10 @@ msgstr "Pasek czynności"
 msgid "_Text to copy:"
 msgstr "Kopiowany _tekst:"
 
+#: gcharmap/src/interface.c:1
+msgid "_Copy"
+msgstr "S_kopiuj"
+
 #: gcharmap/src/interface.c:1 gcharmap/src/interface.c:1
 msgid "Text to copy"
 msgstr "Kopiowany tekst"
@@ -410,9 +418,10 @@ msgstr "Kopiowany tekst"
 msgid "Entry"
 msgstr "Wejście"
 
-#: gcharmap/src/interface.c:1
-msgid "_Copy"
-msgstr "S_kopiuj"
+#: gcharmap/src/interface.c:1 gcharmap/src/interface.c:1
+#: gcharmap/src/menus.c:1
+msgid "Copy"
+msgstr "Skopiuj"
 
 #: gcharmap/src/interface.c:1
 msgid "Copy the text"
@@ -425,10 +434,6 @@ msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-2,*-r-2"
 #: gcharmap/src/interface.c:1 logview/logview.c:1
 msgid "Exit"
 msgstr "Zakończ"
-
-#: gcharmap/src/interface.c:1 gcharmap/src/menus.c:1
-msgid "Copy"
-msgstr "Skopiuj"
 
 #: gcharmap/src/interface.c:1
 msgid "About"
@@ -587,12 +592,28 @@ msgid "Check word spelling"
 msgstr "Wprawdza pisownię słowa"
 
 #: gdictsrc/gdict-app.c:1 gdictsrc/gdict-speller.c:1
-msgid "Word : "
-msgstr "Słowo :"
+msgid "_Word : "
+msgstr "_Słowo :"
 
 #: gdictsrc/gdict-app.c:1
 msgid "_Look Up"
 msgstr "_Wyszukaj"
+
+#: gdictsrc/gdict-app.c:1 gdictsrc/gdict-speller.c:1
+msgid "Word"
+msgstr "Słowo"
+
+#: gdictsrc/gdict-app.c:1 gdictsrc/gdict-speller.c:1
+msgid "Word Entry"
+msgstr "Wejście słowa"
+
+#: gdictsrc/gdict-app.c:1
+msgid "Enter a Word or select one from the list below"
+msgstr "Wprowadź słowo lub wybierz jedno z poniższej listy"
+
+#: gdictsrc/gdict-app.c:1
+msgid "Look Up for a Word"
+msgstr "Wyszukanie słowa"
 
 #: gdictsrc/gdict-applet.c:1
 msgid "Press button to look up any highlighted text in a dictionary"
@@ -640,8 +661,8 @@ msgid "Preferences"
 msgstr "Preferencje"
 
 #: gdictsrc/gdict-pref-dialog.c:1
-msgid "Smart lookup"
-msgstr "Inteligentne wyszukiwanie"
+msgid "Smart _lookup"
+msgstr "Inteligentne _wyszukiwanie"
 
 #: gdictsrc/gdict-pref-dialog.c:1
 msgid "Server:"
@@ -652,6 +673,10 @@ msgid "Set _Server"
 msgstr "Ustaw _serwer"
 
 #: gdictsrc/gdict-pref-dialog.c:1
+msgid "Set the dictionary server"
+msgstr "Ustawienie serwera słownika"
+
+#: gdictsrc/gdict-pref-dialog.c:1
 msgid "Port:"
 msgstr "Port:"
 
@@ -660,32 +685,72 @@ msgid "Set _Port"
 msgstr "Ustaw p_ort"
 
 #: gdictsrc/gdict-pref-dialog.c:1
-msgid "Database:"
-msgstr "Baza danych:"
+msgid "Set the port number"
+msgstr "Ustawienie numeru portu"
 
 #: gdictsrc/gdict-pref-dialog.c:1
-msgid "Default strategy:"
-msgstr "Domyślna strategia wyszukiwania:"
+msgid "Server"
+msgstr "Serwer"
+
+#: gdictsrc/gdict-pref-dialog.c:1
+msgid "Server Entry"
+msgstr "Wejście serwera"
+
+#: gdictsrc/gdict-pref-dialog.c:1
+msgid "Enter the Server Name"
+msgstr "Wprowadź nazwę serwera"
+
+#: gdictsrc/gdict-pref-dialog.c:1
+msgid "Port"
+msgstr "Port"
+
+#: gdictsrc/gdict-pref-dialog.c:1
+msgid "Port Entry"
+msgstr "Wejście portu"
+
+#: gdictsrc/gdict-pref-dialog.c:1
+msgid "Enter the Port Number"
+msgstr "Wprowadź nazwę portu"
+
+#: gdictsrc/gdict-pref-dialog.c:1
+msgid "_Database:"
+msgstr "_Baza danych:"
+
+#: gdictsrc/gdict-pref-dialog.c:1
+msgid "D_efault strategy:"
+msgstr "_Domyślna strategia wyszukiwania:"
 
 #: gdictsrc/gdict-pref-dialog.c:1
 msgid "Search all databases"
 msgstr "Przeszukaj wszystkie bazy danych"
 
 #: gdictsrc/gdict-pref-dialog.c:1
-msgid "The server you specified could not be found."
-msgstr "Nie można odnaleźć podanego serwera."
+msgid "Database"
+msgstr "Baza danych"
 
 #: gdictsrc/gdict-pref-dialog.c:1
-msgid "The server could not be found on that port."
-msgstr "Nie można odnaleźć serwera na tym porcie."
+msgid "Database Name"
+msgstr "Nazwa bazy danych"
+
+#: gdictsrc/gdict-pref-dialog.c:1
+msgid "Default Strategy"
+msgstr "Domyślna strategia wyszukiwania"
+
+#: gdictsrc/gdict-speller.c:1
+msgid "Enter a word to know the spelling"
+msgstr "Wprowadź słowo, którego pisownię chcesz poznać"
 
 #: gdictsrc/gdict-speller.c:1
 msgid "_Spell"
 msgstr "_Pisownia"
 
 #: gdictsrc/gdict-speller.c:1
-msgid "Search Strategy:"
-msgstr "Strategia wyszukiwania:"
+msgid "Click to do the spell check"
+msgstr "Kliknij, aby sprawdzić pisownię"
+
+#: gdictsrc/gdict-speller.c:1
+msgid "Search S_trategy:"
+msgstr "_Strategia wyszukiwania:"
 
 #: gdictsrc/gdict-speller.c:1
 msgid "Search Results"
@@ -698,6 +763,10 @@ msgstr "_Wyszukaj słowo"
 #: gdictsrc/gdict-speller.c:1
 msgid "Spell checker"
 msgstr "Sprawdzanie pisowni"
+
+#: gdictsrc/gdict-speller.c:1
+msgid "Search Strategy"
+msgstr "Strategia wyszukiwania"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.h:1
 msgid "Accessories"
