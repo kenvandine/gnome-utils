@@ -672,6 +672,7 @@ void gnomecard_init(void)
 {
 	char *titles[] = { "Name", "Organization", "Phone #", "Email"};
 	GtkWidget *canvas, *align, *hpaned;
+	GtkWidget *scrollwin;
 	/*, *omenu, *menu, *item;
 	int i;*/
 
@@ -694,9 +695,11 @@ void gnomecard_init(void)
 	gnome_app_create_menus(GNOME_APP(gnomecard_window), mainmenu);
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
+	scrollwin = gtk_scrolled_window_new(NULL, NULL);
 	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(4, titles));
-	gtk_paned_add1(GTK_PANED(hpaned), GTK_WIDGET(gnomecard_list));
- 	gtk_widget_realize(GTK_WIDGET(gnomecard_list));
+	gtk_paned_add1(GTK_PANED(hpaned), scrollwin);
+	gtk_container_add(GTK_CONTAINER(scrollwin), GTK_WIDGET(gnomecard_list));
+/* 	gtk_widget_realize(GTK_WIDGET(gnomecard_list)); */
 /*
 	gdk_gc_get_values(gnomecard_tree->lines_gc, &crd_tree_values);
 */
@@ -722,7 +725,7 @@ void gnomecard_init(void)
 			   "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_by_fname),
 			   (gpointer) NULL);
 */
-	gtk_clist_set_policy(gnomecard_list,
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrollwin),
 			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_clist_set_selection_mode(gnomecard_list, GTK_SELECTION_BROWSE);
 
@@ -758,6 +761,7 @@ void gnomecard_init(void)
 /* & (GTK_WIDGET(crd_tree)->style->fg[GTK_STATE_NORMAL]);*/
 	
 	gtk_widget_show(GTK_WIDGET(gnomecard_list));
+	gtk_widget_show(scrollwin);
 
 	align = gtk_alignment_new(0.5, 0.5, 0.5, 0.5);
 	gtk_paned_add2(GTK_PANED(hpaned), align);
