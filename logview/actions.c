@@ -478,17 +478,17 @@ exec_action_in_db (Log *log, LogLine *line, GList *db)
   /* If there is a non-null action execute it */
   if (cur_action != NULL)
    {
-     if ((pid = fork()) < 0)
+     GError *error = NULL;
+
+     if (!g_spawn_command_line_async(cur_action->action, &error) && error != NULL)
       {
-        return FALSE;
-      }
-     else if (pid == 0)
-      {
-        if (execlp(cur_action->action, cur_action->action, NULL) == -1)
-         {
-	   ShowErrMessage (_("Error while executing specified action"));
-	   exit(1);
-         }
+        gchar *err_msg;
+
+        err_msg = g_strdup_printf (_("Error while executing specified action: %s"), error->message);
+        ShowErrMessage (err_msg);
+
+        g_free (err_msg);
+        g_error_free(error);
       }
    }
 
