@@ -92,15 +92,22 @@ GtkWidget *
 create_clist(void)
 {
         GtkWidget *w;
+	GtkStyle *style;
+	GdkGCValues vals;
         char *titles[2] = {
-                "00:00:00", /* to make room */
+		N_("Time"),
                 N_("Project Title")
         };
 
+        titles[0] = _(titles[0]);
         titles[1] = _(titles[1]);
         w = gtk_clist_new_with_titles(2, titles);
+	style = gtk_widget_get_style(w);
+	g_return_val_if_fail(style != NULL, NULL);
+	gdk_gc_get_values(style->fg_gc[0], &vals);
+	gtk_clist_set_column_width(GTK_CLIST(w), 0,
+				   gdk_string_width(vals.font, "00:00:00"));
 	gtk_clist_set_selection_mode(GTK_CLIST(w), GTK_SELECTION_SINGLE);
-        gtk_clist_set_column_title(GTK_CLIST(w), 0, _("Time"));
         gtk_clist_set_column_justification(GTK_CLIST(w), 0, GTK_JUSTIFY_CENTER);
         gtk_clist_column_titles_active(GTK_CLIST(w));
         gtk_clist_set_policy(GTK_CLIST(w),
