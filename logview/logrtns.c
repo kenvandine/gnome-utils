@@ -290,30 +290,6 @@ isLogFile (char *filename, gboolean show_error)
    GnomeVFSResult result;
    GnomeVFSFileSize size;
 
-   result = gnome_vfs_get_file_info (filename, &info, GNOME_VFS_FILE_INFO_DEFAULT);
-
-   /* Check that its a regular file       */
-   if (info.type != GNOME_VFS_FILE_TYPE_REGULAR) {
-	   if (show_error) {
-		   g_snprintf (buff, sizeof (buff),
-			       _("%s is not a regular file."), filename);
-		   ShowErrMessage (NULL, error_main, buff);
-	   }
-	   return FALSE;
-   }
-
-   /* File unreadable                     */
-   if (!(info.permissions & GNOME_VFS_PERM_USER_READ)) {
-	   if (show_error) {
-		   g_snprintf (buff, sizeof (buff),
-			       _("%s is not user readable. "
-				 "Either run the program as root or ask the sysadmin to "
-				 "change the permissions on the file."), filename);
-		   ShowErrMessage (NULL, error_main, buff);
-	   }
-	   return FALSE;
-   }
-
    /* Read first line and check that it has the format
     * of a log file: Date ...    */
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
@@ -324,8 +300,21 @@ isLogFile (char *filename, gboolean show_error)
 	    * ie. file too large etc etc..
 	    */
 	   if (show_error) {
-		   g_snprintf (buff, sizeof (buff),
-			       _("%s could not be opened."), filename);
+		   switch (result) {
+		   case GNOME_VFS_ERROR_ACCESS_DENIED:
+		   case GNOME_VFS_ERROR_NOT_PERMITTED:
+			   g_snprintf (buff, sizeof (buff),
+				       _("%s is not user readable. "
+					 "Either run the program as root or ask the sysadmin to "
+					 "change the permissions on the file."), filename);
+			   break;
+		   case GNOME_VFS_ERROR_TOO_BIG:
+			   g_snprintf (buff, sizeof (buff), _("%s is too big."));
+			   break;
+		   default:
+			   g_snprintf (buff, sizeof (buff),
+				       _("%s could not be opened."), filename);
+		   }
 		   ShowErrMessage (NULL, error_main, buff);
 	   }
 	   return FALSE;
