@@ -166,6 +166,7 @@ build_app_window ()
       adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (0.0, 0.0, 100.0, 0.01,
 						       0.1, 0.0));
       t_dial[i] = gtk_dial_new (adjustment);
+      gtk_dial_set_view_only(GTK_DIAL(t_dial[i]), TRUE);
       gtk_widget_set_usize (t_dial[i], 75, 60);
       gtk_container_add (GTK_CONTAINER (frame), t_dial[i]);
       gtk_box_pack_start (GTK_BOX (w_box), frame, FALSE, FALSE, 0);
