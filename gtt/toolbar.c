@@ -119,13 +119,9 @@ toolbar_set_states(void)
 static void
 toolbar_help(GtkWidget *widget, gpointer data)
 {
-	char *s, *t;
-	
-	t = gnome_help_file_path("gtt", "index.html");
-	s = g_strconcat("file:///", t, NULL);
-	g_free(t);
-	gnome_help_goto(NULL, s);
-	g_free(s);
+
+	GnomeHelpMenuEntry ref = {"gtt", "index.html"};
+	gnome_help_display (NULL, &ref);
 }
 
 
