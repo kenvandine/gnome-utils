@@ -26,8 +26,9 @@ AC_PROG_MAKE_SET
 
 GNOME_X_CHECKS
 
-PROGRAMS_GNCAL="gncal"
-AC_SUBST(PROGRAMS_GNCAL)
+dnl PROGRAMS_GNCAL="gncal"
+dnl AC_SUBST(PROGRAMS_GNCAL)
+
 GNOME_CHECK_OBJC
 if test $OBJECTIVE_C = yes; then
   GNOME_INIT_OBJC
@@ -106,9 +107,6 @@ find-file/Makefile
 gcalc/Makefile
 gdiskfree/Makefile
 ghex/Makefile
-gncal/Makefile
-gncal/gnomecard/Makefile
-gncal/versit/Makefile
 gpostit/Makefile
 gsearchtool/Makefile
 gstripchart/Makefile
