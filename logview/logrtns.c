@@ -1128,6 +1128,8 @@ CloseLog (Log * log)
    Page *cur, *next;
    int i;
 
+   g_return_if_fail (log);
+
    /* Close file */
    if (log->fp != NULL)
       fclose (log->fp);
