@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-16 20:51+0100\n"
-"PO-Revision-Date: 2004-01-17 01:54+0100\n"
-"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"POT-Creation-Date: 2004-02-24 04:58+0100\n"
+"PO-Revision-Date: 2004-02-24 11:50+0100\n"
+"Last-Translator: Michiel Sikkes <michiel@sikkes.xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Accessoires"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "Zoekopdracht woordenboek"
 
@@ -61,8 +61,8 @@ msgstr "Woorden_boek tonen"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
-#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
 msgstr "Kan niet verbinden met de server"
 
@@ -130,6 +130,11 @@ msgstr "Tekst niet gevonden"
 msgid "Find"
 msgstr "Zoeken"
 
+#
+#: gdictsrc/gdict-app.c:477
+msgid "_Search for:"
+msgstr "_Zoeken naar:"
+
 #: gdictsrc/gdict-app.c:490
 msgid "_Find"
 msgstr "_Zoeken"
@@ -186,7 +191,7 @@ msgstr "Voer een woord in of selecteer het van de onderstaande lijst"
 msgid "Look Up for a Word"
 msgstr "Zoek een woord op"
 
-#: gdictsrc/gdict-applet.c:136
+#: gdictsrc/gdict-applet.c:144
 msgid "_Lookup"
 msgstr "_Opzoeken"
 
@@ -195,85 +200,93 @@ msgstr "_Opzoeken"
 msgid "Error invoking query: %s"
 msgstr "Fout bij zoekopdracht: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:169
+#: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
 msgstr "Woordenboek-voorkeuren"
 
-#: gdictsrc/gdict-pref-dialog.c:182
+#: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
 msgstr "Slim _zoeken"
 
-#: gdictsrc/gdict-pref-dialog.c:200
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:207
+#: gdictsrc/gdict-pref-dialog.c:196
 msgid "De_fault Server"
 msgstr "S_tandaardserver"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
 msgstr "Server resetten naar standaardwaarde"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
 msgstr "_Poort:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:229
 msgid "Def_ault Port"
 msgstr "St_andaard poort"
 
-#: gdictsrc/gdict-pref-dialog.c:250
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
 msgstr "Poort resetten naar standaardwaarde"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Server Entry"
 msgstr "Server Invoer"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
 msgstr "Servernaam invoeren"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port"
 msgstr "Poort"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Port Entry"
 msgstr "Poort-invoer"
 
-#: gdictsrc/gdict-pref-dialog.c:256
+#: gdictsrc/gdict-pref-dialog.c:244
 msgid "Enter the Port Number"
 msgstr "Poortnummer invoeren"
 
-#: gdictsrc/gdict-pref-dialog.c:267
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "_Database:"
 msgstr "_Database:"
 
-#: gdictsrc/gdict-pref-dialog.c:274
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "D_efault strategy:"
 msgstr "Standaard strat_egie:"
 
-#: gdictsrc/gdict-pref-dialog.c:466
+#: gdictsrc/gdict-pref-dialog.c:454
 msgid "Search all databases"
 msgstr "Alle databases doorzoeken"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database"
 msgstr "Database"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:615
 msgid "Database Name"
 msgstr "Database-naam"
 
-#: gdictsrc/gdict-pref-dialog.c:646
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Default Strategy"
 msgstr "Standaard strategie"
+
+#: gdictsrc/gdict-pref-dialog.c:658
+#, c-format
+msgid ""
+"There was an error displaying help: \n"
+"%s"
+msgstr "Er is een fout opgetreden bij het bekijken van help: \n"
+"%s"
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
@@ -1192,74 +1205,74 @@ msgstr "Zoekregel waarde-invoer"
 msgid "Enter a value for search rule"
 msgstr "Voer een waarde in voor de zoek-regel"
 
-#: gsearchtool/gsearchtool.c:1511
+#: gsearchtool/gsearchtool.c:1509
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klik om de '%s'-regel te verwijderen."
 
-#: gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1565
 msgid "A_vailable options:"
 msgstr "_Beschikbare opties:"
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1578
 msgid "Search Rules Menu"
 msgstr "Zoekregels-menu"
 
-#: gsearchtool/gsearchtool.c:1581
+#: gsearchtool/gsearchtool.c:1579
 msgid "Select a search rule from the menu"
 msgstr "Selecteer een zoek-regel uit het menu"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1610
 msgid "S_earch results:"
 msgstr "Z_oekresultaten:"
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1690
 msgid "Name"
 msgstr "Naam"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1710
 msgid "Folder"
 msgstr "Map"
 
-#: gsearchtool/gsearchtool.c:1724
+#: gsearchtool/gsearchtool.c:1721
 msgid "Size"
 msgstr "Grootte"
 
-#: gsearchtool/gsearchtool.c:1734
+#: gsearchtool/gsearchtool.c:1731
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1744
+#: gsearchtool/gsearchtool.c:1741
 msgid "Date Modified"
 msgstr "Wijzigingsdatum"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1799
 msgid "_Name contains:"
 msgstr "_Naam bevat:"
 
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
-msgid "Name Contains Entry"
-msgstr "Naam bevat"
-
-#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
+#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
 msgid "Enter the file name you want to search"
 msgstr "Voer de bestandsnaam in die u wilt zoeken"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1815
+msgid "Name Contains Entry"
+msgstr "Naam bevat"
+
+#: gsearchtool/gsearchtool.c:1826
 msgid "_Look in folder:"
 msgstr "_Beginnen in map:"
 
-#: gsearchtool/gsearchtool.c:1836
+#: gsearchtool/gsearchtool.c:1832
 msgid "Browse"
 msgstr "Bladeren"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
-msgid "Look in Folder Entry"
-msgstr "Beginnen in map"
-
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1846 gsearchtool/gsearchtool.c:1847
 msgid "Enter the folder name where you want to start the search"
 msgstr "De mapnaam vanwaar u wilt beginnen met zoeken invoeren"
+
+#: gsearchtool/gsearchtool.c:1847
+msgid "Look in Folder Entry"
+msgstr "Beginnen in map"
 
 #: gsearchtool/gsearchtool.c:1865
 msgid "Show more _options"
@@ -1401,7 +1414,8 @@ msgstr "_Proces:"
 
 #: logview/actions.c:733
 msgid "Regular expression that will match process part of message."
-msgstr "Reguliere expressie dat overeenkomt met het proces-deel van het bericht."
+msgstr ""
+"Reguliere expressie dat overeenkomt met het proces-deel van het bericht."
 
 #: logview/actions.c:743
 msgid "_Message:"
@@ -1419,7 +1433,9 @@ msgstr "_Actie:"
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
-msgstr "Actie die wordt uitgevoerd als aan alle voorgaande reguliere expressies is voldaan. Dit wordt uitgevoerd door een systeemopdracht: systeem (actie)."
+msgstr ""
+"Actie die wordt uitgevoerd als aan alle voorgaande reguliere expressies is "
+"voldaan. Dit wordt uitgevoerd door een systeemopdracht: systeem (actie)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1884,10 +1900,6 @@ msgstr "%B %e %X"
 #~ msgstr "(afgebroken)"
 
 #
-#~ msgid "Search Errors"
-#~ msgstr "Fouten bij zoekactie"
-
-#
 #~ msgid "Search for Files Error"
 #~ msgstr "Fout bij zoeken naar bestanden"
 
@@ -2108,9 +2120,6 @@ msgstr "%B %e %X"
 
 #~ msgid "The file `%s' is empty"
 #~ msgstr "Het bestand `%s' is leeg"
-
-#~ msgid "There was an error. `%s' is empty"
-#~ msgstr "Er is een fout opgetreden. `%s' is leeg"
 
 #~ msgid "This is a library and can not be executed"
 #~ msgstr "Dit is een bibliotheek en kan niet worden uitgevoerd"
