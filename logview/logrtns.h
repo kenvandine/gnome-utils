@@ -19,17 +19,10 @@
 
     ---------------------------------------------------------------------- */
 
-
-#include <sys/stat.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <malloc.h>
-#include <string.h>
-#include "logview.h"
-
 #ifndef __LOGRTNS_H__
 #define __LOGRTNS_H__
+
+#include "logview.h"
 
 #ifdef FIXME
 int ReadNPagesUp (Log * lg, Page * pg, int n);
