@@ -3,7 +3,7 @@
 gstripchart_helpdir = $(datadir)/gnome/help/gstripchart/C
 gstripchart_help_DATA = $(HTML_FILES) topic.dat main.png text.png param.png
 
-EXTRA_DIST = gstripchart.sgml gnome-legalnotice.sgml topic.dat gstripchart
+EXTRA_DIST = gstripchart.sgml topic.dat gstripchart
 
 HTML_FILES = docbook.css \
  index.html ln7.html usage.html prefs.html bugs.html authors.html license.html
