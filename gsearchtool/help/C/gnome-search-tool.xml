@@ -1,427 +1,359 @@
 <?xml version="1.0"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
- "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"  [
-<!ENTITY legal SYSTEM "legal.xml">
-<!ENTITY version "2.0">
-<!ENTITY date "Feb. 10, 2002"> <!-- date the manual was last updated -->
-<!ENTITY app "<application>GNOME Search Tool</application>">
-<!ENTITY application "GNOME Search Tool">
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "1.103.0">
+  <!ENTITY manrevision "2.0">
+  <!ENTITY date "May 2002">
+  <!ENTITY app "Search Tool">
 ]>
-
 <!-- 
       (Do not remove this comment block.)
   Maintained by the GNOME Documentation Project
-  http://developer.gnome.org/projects/gdp
+  http://developer.gnome.org/projects/gdp 
   Template version: 2.0 beta
-  Template last modified Feb 12, 2002
+  Template last modified Apr 11, 2002
 -->
-
-
+<!-- =============Document Header ============================= -->
 <article id="index" lang="en">
-
-
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
   <articleinfo> 
-  <title>GNOME Search Tool Manual</title>
-    <copyright>
-      <year>2000</year>
-      <holder>Alexander Kirillov</holder>
+    <title>&app; Manual V&manrevision;</title>       
+
+    <copyright> 
+      <year>2002</year> 
+      <holder>Sun Microsystems</holder> 
+    </copyright> 
+    <copyright> 
+      <year>2000</year> 
+      <holder>Alexander Kirillov</holder> 
     </copyright>
-    <copyright>
-      <year>2002</year>
-      <holder>John Fleck</holder>
-    </copyright>
+<!-- translators: uncomment this:
 
-    <publisher>
-      <publishername>
-	GNOME Documentation Project
-      </publishername>
-    </publisher>
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
 
-    &legal;
+   -->
+    <publisher> 
+      <publishername> GNOME Documentation Project </publishername> 
+    </publisher> 
 
-    <legalnotice id="feedback">
-      <title>Feedback Information</title>
-      <para>
-	To report a bug or make a suggestion regarding this
-	application or this documentation, please see  the
-	<ulink type="help"
-	       url="ghelp:gnome-feedback">GNOME Feedback Page</ulink>.
-      </para>
-    </legalnotice>
+   &legal;
 
-    <authorgroup>
-      <author>
-	  <firstname>Alexander</firstname>
-	  <surname>Kirillov</surname>
-	  <affiliation>
-		<orgname>GNOME Documentation Project</orgname>
-	  </affiliation>
-	</author>
-	<author>
-	  <firstname>John</firstname>
-	  <surname>Fleck</surname>
-	  <affiliation>
-		<orgname>GNOME Documentation Project</orgname>
-		
-	  </affiliation>
-	</author>
-  </authorgroup>
+    <authorgroup> 
+      <author> 
+	<firstname>Sun</firstname> 
+	<surname>GNOME Documentation Team</surname> 
+	<affiliation> 
+	  <orgname>Sun Microsystems</orgname> 
+	  <address> <email>gdocteam@sun.com</email> </address> 
+	</affiliation> 
+      </author> 
+      <author> 
+	<firstname>Alexander</firstname> 
+	<surname>Kirillov</surname> 
+	<affiliation> 
+	  <orgname>GNOME Documentation Project</orgname> 
+	  <address> <email>kirillov@math.sunysb.edu</email> </address> 
+	</affiliation> 
+      </author> 
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default.
+       <othercredit role="translator">
+	<firstname>Latin</firstname> 
+	<surname>Translator 1</surname> 
+	<affiliation> 
+	  <orgname>Latin Translation Team</orgname> 
+	  <address> <email>translator@gnome.org</email> </address> 
+	</affiliation>
+	<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
 
     <revhistory>
+      <revision> 
+	<revnumber>&app; Manual V&manrevision;</revnumber> 
+	<date>&date;</date> 
+	<revdescription> 
+	  <para role="author">Sun GNOME Documentation Team
+	    <email>gdocteam@sun.com</email>
+	  </para>
+	  <para role="publisher">GNOME Documentation Project</para>
+	</revdescription> 
+      </revision> 
+      <revision> 
+	<revnumber>GNOME Search Tool Manual</revnumber> 
+	<date>2000</date> 
+	<revdescription> 
+	  <para role="author">Alexander Kirillov
+	    <email>kirillov@math.sunysb.edu</email>
+	  </para>
+	  <para role="publisher">GNOME Documentation Project</para>
+	</revdescription> 
+      </revision> 
+    </revhistory> 
 
-	<revision>
-	  <revnumber>2.0</revnumber>
-	  <date> 10 Feb. 2002</date> <!-- or use &date; -->
-	  <revdescription>
-                   <para role="author">John Fleck
-                     <email>jfleck@inkstain.net</email></para>
-                   <para role="publisher">GNOME Documentation Project</para>
-          </revdescription>
+    <releaseinfo>This manual describes version &appversion; of &app;.
+    </releaseinfo> 
+    <legalnotice> 
+      <title>Feedback</title> 
+      <para>To report a bug or make a suggestion regarding the &app; application or
+	this manual, follow the directions in the 
+	<ulink url="ghelp:gnome-feedback"
+	  type="help">GNOME Feedback Page</ulink>. 
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice> 
+  </articleinfo> 
 
-	</revision>
+  <indexterm> 
+    <primary>Search Tool</primary> 
+  </indexterm> 
 
-	<revision>
-	  <revnumber>1.0</revnumber>
-	  <date>17 Feb. 2000</date>
-	  <revdescription>
-                   <para role="author">Alexander Kirillov</para>
-                   <para role="publisher">GNOME Documentation
-                    Project</para>
-	            <para>This was the original release, for GNOME 1.2</para>
-          </revdescription>
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
 
-
-	</revision>
-
-  </revhistory>
-
-     <releaseinfo>
-       This manual describes version &version; of &application;. The manual was
-       last updated on &date;.
-    </releaseinfo>
-
-  </articleinfo>
-
-  <sect1 id="intro">
+  <sect1 id="gsearchtool-introduction"> 
     <title>Introduction</title> 
-
-    <para>
-      <indexterm>
-	<primary>file search</primary>
-      </indexterm>
-       &app; searches for files. &app; can
-       search by filename, modification date or other characteristics.</para>
-
-    <para> To start the search tool, select
-      <guimenuitem>GNOME Search Tool</guimenuitem> from
-      the <guimenu>Utilities</guimenu> submenu of the <guimenu>Main
-      Menu</guimenu>, or type
-      <command>gnome-search-tool</command> on the command line.  
-    </para> 
-
-    </sect1>
-
-  <sect1 id="usage"> 
-    <title>Usage</title>
-    <para>
-    <application>GNOME Search Tool</application> provides two types of
-      search:
-	      <variablelist>
-		<varlistentry>
-		  <term>simple</term>
-		  <listitem>
-		    <para>Simple search is faster, but can only search by filename.</para>
-		  </listitem>
-		</varlistentry>
-		<varlistentry>
-		  <term>Advanced</term>
-		  <listitem>
-		    <para>Advanced search provides many possibilities, but is
-		    slower.</para>
-		  </listitem>
-		</varlistentry>
-	      </variablelist>
-    </para>      
+    <para>The <application>&app;</application> application enables you to search for files on your system. You
+    can use <application>&app;</application> to perform the following types of search: </para> 
+    <itemizedlist>
+    <listitem><para>Simple search. To use the simple search option, you can type a full filename or a partial filename with wildcards. </para></listitem>
+    <listitem><para>Advanced search. To use the advanced search options, you select additional search criteria that you want 
+    <application>&app;</application> to apply.</para></listitem>
+    </itemizedlist>
+    <para><application>&app;</application> uses the <command>find</command>, <command>grep</command>, and <command>locate</command> UNIX commands.</para>
   </sect1>
 
-  <sect1 id="locate">
-    <title>Simple mode</title>
+  <sect1 id="gsearchtool-getting-started">
+    <title>Getting Started</title> 
+
+    <para>You can start <application>&app;</application> in the following ways:
+    </para> 
+    <variablelist>
+    	<varlistentry>
+    		<term><guimenu>Actions</guimenu> menu</term>
+    		<listitem>
+    		<para>Choose <guimenuitem>Search for Files</guimenuitem></para>
+    		</listitem>
+    	</varlistentry>
+    	<varlistentry>
+    		<term>Command line</term>
+    		<listitem>
+    		<para>Type <command>gnome-search-tool</command>, then press <keycap>Return</keycap>.</para>
+    		<para> 		 
+    		</para> 
+    		</listitem>
+    	</varlistentry>
+    </variablelist>
+
+    <para>When you start <application>&app;</application>, the following window is displayed.</para>
+
+    <!-- ==== Figure ==== -->
+      <figure id="mainwindow-fig"> 
+	<title>&app; Window</title> 
+	<screenshot> 
+	  <mediaobject> 
+	    <imageobject><imagedata
+		fileref="figures/gnome-search-tool_window.png" format="PNG"/> 
+	    </imageobject>
+	    <textobject> 
+	      <phrase>Shows &app; main window. Contains titlebar, menubar, Simple and Advanced tabbed sections. </phrase> 
+	    </textobject> 
+	  </mediaobject> 
+	</screenshot> 
+      </figure>
+    <!-- ==== End of Figure ==== -->
+
+  </sect1>
+
+<!-- ================ Usage ================================ -->
+
+  <sect1 id="gsearchtool-usage"> 
+    <title>Usage</title>
+
+    <sect2 id="gsearchtool-simple">
+    <title>To Perform a Simple Search</title>
+    <para>Use the <guilabel>Simple</guilabel> tabbed section to perform a simple search. </para> 
     
-
-<figure  id="simplewindow-fig">
-<title>&app; Simple Mode</title>
-<screenshot>
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="figures/gsearchtool_simple.png" format="PNG"/>
-    </imageobject>
-    <imageobject>
-      <imagedata fileref="figures/gsearchtool_simple.eps" format="EPS"/>
-    </imageobject>
-    <textobject>
-      <phrase>Screenshot of simple mode</phrase>
-    </textobject>
-   </mediaobject>
-</screenshot>
-</figure>
-
+    <para>To search for a file on the system, perform the following steps:</para>
+    <orderedlist>
+    	<listitem><para>In the <guilabel>Find files named</guilabel> field, enter one of the following strings:</para>
+    		<itemizedlist>
+    			<listitem><para>A full filename, for example <userinput>myfile.txt</userinput>. <application>&app;</application>
+    			searches for all files on the system named <userinput>myfile.txt</userinput>.</para></listitem>
+    			<listitem><para>A partial filename, for example <userinput>gnome</userinput>. <application>&app;</application>
+    			searches for all files on the system that contain the string <userinput>gnome</userinput> in their directory path or filename. </para></listitem>
+    			<listitem><para>A directory path combined with wildcards (*), for example <userinput>/home/username/*.txt</userinput>. 
+    			<application>&app;</application> searches the directory <userinput>/home/username</userinput> for all files with the 
+    			extension <userinput>.txt</userinput>.</para></listitem>
+    		</itemizedlist>
+    		<para></para>
+    	</listitem>	
+    	<listitem><para>Click <guibutton>Find</guibutton> to perform the search. <application>&app;</application> displays the results
+	of the search in the <guilabel>Results</guilabel> list box. If <application>&app;</application> does not find any files that match the 
+	search criteria, the application does not display anything in the <guilabel>Results</guilabel> list box. </para>
+    	</listitem>
+    	<listitem><para>To open a file displayed in the <guilabel>Results</guilabel> list box, double-click on the file. The file opens in your file manager.</para>
+    	</listitem>
+    </orderedlist>
+    </sect2>
     
-
-    <para> In <guilabel>Simple</guilabel> mode, &app; uses a database containing the
-      names of all the files on the system. Simple mode is fast, but only allows
-      searches by filenames. Simple mode will not find files
-      added after the last database update.
-    </para>
-    <para> To find a file with the simple mode, enter a
-      any portion of the file name in the <guilabel>Search For</guilabel> field
-      and click <guibutton>Find</guibutton>.
-    </para>
-    <para> To restrict search to a subdirectory, use the
-      directory name in combination with the wildcards. For example,
-      to search for all files with extension
-      <filename>txt</filename> in the directory <filename
-      class="directory">/home/user</filename>, enter <userinput>
-      /home/user/*.txt</userinput> in the <guilabel>Locate
-      file</guilabel> field.
-    </para>
-
-    <para><guilabel>Simple</guilabel> mode uses the  <command>locate
-      </command> command. More detailed information is available in the <ulink type="man"
-	url="man:locate">locate manual page</ulink>. 
-    </para>
-    <sect2 id="locatedb">
-      <title> The locate database</title>
-      <para>
-	On most systems, the <command>locate</command> database used for
-	<guilabel>Simple</guilabel> search is
-	updated daily, usually automatically at night. You also can run the command
-      <command>updatedb</command> to manually update the database. This requires
-	system administrator (root) privileges. More information is available in
-	the <ulink type="man"
-	url="man:updatedb">updatedb manual page</ulink>.
-      </para>
+    <sect2 id="gsearchtool-advanced">
+    <title>To Perform an Advanced Search</title>
+    <para>Use the <guilabel>Advanced</guilabel> tabbed section to perform an advanced search. </para>
+    
+    <para>To search for a file on the system, perform the following steps:</para>
+    <orderedlist>
+    	<listitem><para>In the <guilabel>Starting in folder</guilabel> field, enter the path to the directory in which you want <application>&app;</application>
+    	to begin the search. For example, if you enter <userinput>/home/username/work</userinput>, <application>&app;</application> begins the search in the <userinput>work
+    	</userinput> subdirectory and searches in all subdirectories of <userinput>work</userinput>.</para>
+    	<para>By default, <application>&app;</application> begins the search in the current working directory. </para></listitem>
+    	<listitem><para>Select the search criteria that you want to apply, as follows:</para>
+    		<orderedlist>
+    			<listitem><para>Click the <guilabel>Add Rule</guilabel> drop-down list box.</para></listitem>
+    			<listitem><para>Select the search rule that you want to apply.</para></listitem>
+    			<listitem><para>Click <guibutton>Add</guibutton> to add the search rule to the list of search rules.</para></listitem>
+    			<listitem><para>Ensure that the <guilabel>Enable</guilabel> checkbox is selected.</para></listitem>
+    			<listitem><para>Specify the required search information for the search rule, see <xref linkend="tbl-search-rules"/> for information.</para></listitem>
+    			<listitem><para>Repeat the above steps for each search rule that you want to apply.</para></listitem>
+    		</orderedlist>
+    		<para>To disable a search rule, deselect the <guilabel>Enable</guilabel> checkbox next to the rule. To remove a search rule from the 
+    		<guilabel>Rules</guilabel> list, select the rule, then click <guibutton>Remove</guibutton>.</para>
+    	</listitem>	
+    	<listitem><para>Click <guibutton>Find</guibutton> to perform the search. <application>&app;</application> displays the results
+	of the search in the <guilabel>Results</guilabel> list box. If <application>&app;</application> does not find any files that match the 
+	search criteria, the application does not display anything in the <guilabel>Results</guilabel> list box.</para>
+    	</listitem>
+    	<listitem><para>To open a file displayed in the <guilabel>Results</guilabel> list box, double-click on the file. The file opens in your file manager.</para>
+    	</listitem>
+    </orderedlist>
+    
+    <table frame="topbot" id="tbl-search-rules">
+    <title>Search Rules</title> 
+		  <tgroup cols="2" colsep="1" rowsep="1">
+			 <colspec colname="COLSPEC0" colwidth="33*"/>
+			 <colspec colname="COLSPEC1" colwidth="33*"/>
+			 <thead> 
+				<row> 
+				  <entry> 
+					 <para>Rule Name</para></entry> 
+				  <entry> 
+					 <para>Description</para></entry> 
+				</row> 
+			 </thead> 
+			 <tbody> 
+				<row> 
+				  <entry> 
+					 <para>File name is</para></entry> 
+				  <entry> 
+					 <para>Search for a file by filename. Enter a full filename or a partial filename with wildcards in the field provided. 
+					 Use * to indicate a sequence of characters. Use ? to indicate a single character. The search is case sensitive.</para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>File name is not</para></entry> 
+				  <entry> 
+					 <para>Search for files that do not match the filename that you enter. Enter a full filename or a partial filename with wildcards in the
+					 field provided. Use * to indicate a sequence of characters. Use ? to indicate a single character. The search is case sensitive.</para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>Don't search mounted filesystems</para></entry> 
+				  <entry> 
+					 <para>Search only the subdirectories that are mounted on the same disk as the start directory.</para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>Follow symbolic links</para></entry> 
+				  <entry> 
+					 <para>Follow symbolic links when searching for files.</para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>Process directory contents depth first</para></entry> 
+				  <entry> 
+					 <para>Search the directories in ascending order, starting with the lowest directories in the directory hierarchy. </para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>Don't search subdirectories</para></entry> 
+				  <entry> 
+					 <para>Do not search the subdirectories of the start directory.</para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>Owned by user</para></entry> 
+				  <entry> 
+					 <para>Search for files that are owned by the user specified. Type the name of the user in the text box provided</para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>Owned by group</para></entry> 
+				  <entry> 
+					 <para>Search for files that are owned by the group specified. Type the name of the group in the text box provided. </para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>Invalid user or group</para></entry> 
+				  <entry> 
+					 <para>Search for files that are owned by a user or group that is unknown to the system.</para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>Last time modified</para></entry> 
+				  <entry> 
+					 <para>Search for files that were modified within the number of days specified. Type the number of days in the text box provided. For example, 
+					 type <userinput>3</userinput> to search for files that were modified in the last three days.</para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>File is empty</para></entry> 
+				  <entry> 
+					 <para>Search for empty files.</para></entry>  
+				</row> 
+				<row> 
+				  <entry> 
+					 <para>Matches regular expression</para></entry> 
+				  <entry> 
+					 <para>Search for files that contain the specified regular expression in their directory path or filename. Type the regular expression in the text 
+					 box provided. </para></entry>  
+				</row> 				
+			 </tbody> 
+		  </tgroup> 
+		</table> 
+    
     </sect2>
 
+	<sect2 id="gsearchtool-stop">
+    <title>To Stop a Search</title>
+    <para>Click <guibutton>Stop</guibutton> to stop a search before <application>&app;</application> completes the search. </para>
+    </sect2>
+    
+    <sect2 id="gsearchtool-search-command">
+    <title>To View the Search Command Used by &app;</title>
+    <para>To view the command that <application>&app;</application> used to perform the previous search, choose 
+    <menuchoice>
+    <guimenu>File</guimenu>
+    <guimenuitem>Show Command</guimenuitem>
+    </menuchoice>. The <guilabel>Search Command Line</guilabel> displays the command. </para>
+    </sect2>
+    
+    <sect2 id="gsearchtool-savetofile">
+    <title>To Save the Search Results</title>
+    <para>To save the results of the last search that <application>&app;</application> performed, choose 
+    <menuchoice>
+    <guimenu>File</guimenu>
+    <guimenuitem>Save Results As</guimenuitem>
+    </menuchoice>. Enter the name of the file to which you want to save the results, then click OK.</para>
+    </sect2>
 
-    </sect1>
-
-
-
-  <sect1 id="gsearchtool-advanced">
-    <title>Advanced search mode</title>
-    <para>The <guilabel>Advanced</guilabel> mode provides more search options.
-
-<figure  id="mainwindow-fig">
-<title>&app; Advanced Search</title>
-<screenshot>
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="figures/gsearchtool_advanced.png" format="PNG"/>
-    </imageobject>
-    <imageobject>
-      <imagedata fileref="figures/image.eps" format="EPS"/>
-    </imageobject>
-    <textobject>
-      <phrase>Screenshot of advanced search window</phrase>
-    </textobject>
-   </mediaobject>
-</screenshot>
-</figure>
-
-    </para>
-
-    <para> 
-      To start a search, you must give &app; the
-      search criteria and the directory to start in. 
-    </para> 
-
-   <para> By default, the search starts in the current working
-      directory. If &app;
-      was started from the menu, the current working directory is
-      your home directory. You can change the starting directory by
-      entering any valid path in the <guilabel>Start in
-      directory</guilabel> field, or by choosing a directory using the
-      <guibutton>Browse...</guibutton> button.</para>
-
-    <para>&app; allows you to specify multiple search criteria. By default, it
-      uses a single criteria: <guilabel>File name is</guilabel>. Additional
-      criteria can be selected by clicking on the menu next to the
-      <guibutton>Add</guibutton> button. Once a new criterion is selected, click
-      <guibutton>Add.</guibutton> Available criteria include:
-
-      <itemizedlist>
-	<listitem><para> 
-	    <emphasis>File name is</emphasis>  &mdash; search by filename. You
-	    can use the wildcards * and ? in the search. UNIX file names are
-	    case-sensitive. 
-	</para></listitem>
-
-	<listitem>
-          <para> <emphasis>Don't search subdirectories</emphasis>
-           &mdash; if this option is selected, <application>GNOME
-           Search Tool</application> will not search the files in the
-           subdirectories of the start directory.  
-	  </para>
-	</listitem>
-
-	<listitem><para> 
-	    <emphasis>Owned by user</emphasis>  &mdash; search by the name of
-	    the user owning the file.
-	</para></listitem>
-
-	<listitem><para> 
-	    <emphasis>Owned by group</emphasis>  &mdash; search by the name
-	    of the group owning the file. 
-	</para></listitem>
-
-	<listitem><para> 
-	    <emphasis>Last time modified</emphasis>  &mdash; search for
-	    files which were modified during the last N days (to be
-	    precise, during the last N*24 hours).  
-	</para></listitem>
-
-	<listitem><para> <emphasis>Don't search mounted
-	  filesystems</emphasis> &mdash; if this option is selected,
-	  &app; will only
-	  search in the subdirectories which are mounted on the same
-	  device (disk) as the starting directory.
-	  </para></listitem>
-
-	<listitem>
-	  <para> <emphasis>File is empty</emphasis> &mdash; this criterion
-	    matches the empty file. Mostly used by system
-	    administrators for system maintenance.  
-	  </para></listitem>
-
-	<listitem><para> 
-	  <emphasis>Invalid user or group</emphasis> &mdash; matches files
-	    whose owner or group is not known to the system. This
-	    option can be useful when searching for files belonging to
-	    users who have been removed from the system. Mostly used
-	    by system administrators for system maintenance.   
-	</para></listitem>
-
-	<listitem>
-	  <para> 
-	    <emphasis>File name is not</emphasis> &mdash;
-	    matches all files except those whose file name is given. As
-	    before, you can use wildcards. For example, if you specify
-	    in this field <filename>*~</filename>, <application>GNOME
-	    Search Tool</application> will exclude from the search all
-	    files with names ending with tilde (~).
-	  </para>
-	</listitem>
-
-	<listitem><para> <emphasis>Matches regular expression</emphasis> &mdash;
-	  matches all files that
-	  <emphasis>contain</emphasis> given regular expression.
-	  Since this option involves reading contents of every file,
-	  it can slow down the search significantly.
-	  </para></listitem>
-
-
-      </itemizedlist>
-
-
-
-
-</para>
-
-
-
-
-
-   <para> By default, &app;
-      also searches through all subdirectories of the given directory;
-      you can turn this behavior off by enabling the option
-      <guilabel>Don't search subdirectories</guilabel>. For finer
-      control, you can enable the option <guilabel>Don't search
-      mounted filesystems</guilabel>, which will exclude from the
-      search subdirectories which are physically located (mounted) on
-      drives or partitions other than the starting directory.
-    </para>
-
-   
-   
-   <para> After you have specified the search criteria and starting
-   directory, click <guibutton>Find</guibutton>. This will take some
-   time (depending on the directory size and system speed). You will be
-   presented with a window containing the list of
-   files matching your criteria. If the search is taking too much time,
-   you can abort it by clicking <guibutton>Cancel</guibutton>.
-   </para>
-
-   <para> You can double-click on any
-      file in the search results window to open it. It has the same effect
-      as double-clicking 
-      on this file in a File Manager window &mdash; that is, the file
-      will be opened using the default action for this file type.
-    </para> 
-    </sect1>
-  
-  <sect1 id="authors">
-    <title>Authors</title>
-     <para>
-      <application>GNOME Search Tool</application> was written by
-      George Lebl (<email>jirka@5z.com</email>). Please send all
-      comments, suggestions, and bug reports to the <ulink
-      url="http://bugzilla.gnome.org" type="http">GNOME bug tracking
-      database</ulink>. You also can use <application>Bug Report
-      Tool</application> (<command>bug-buddy</command>), available in
-      the <guisubmenu>Programming</guisubmenu> submenu of <guimenu>Main
-      Menu</guimenu>, for submitting bug reports.
-      </para>
-    <para>
-      This manual was written by Alexander Kirillov
-      (<email>kirillov@math.sunysb.edu</email>) and John Fleck
-      (<email>jfleck@inkstain.net</email>. Please send all
-      comments and suggestions regarding this manual to the <ulink
-      type="http" url="http://developer.gnome.org/projects/gdp/">GNOME
-      Documentation Project</ulink> by sending an email to
-      <email>docs@gnome.org</email>. You can also add your comments
-      online by using the <ulink type="http"
-      url="http://developer.gnome.org/projects/gdp/doctable/">GNOME
-      Documentation Status Table</ulink>.
-      </para>
-    </sect1>
-
- <!-- ============= Application License ============================= -->
-
- <sect1 id="license">
-  <title>License</title>
-  <para>
-   This program is free software; you can redistribute it and/or
-   modify it under the terms of the  <ulink type="help" url="gnome-help:gpl">
-    <citetitle>GNU General Public License</citetitle></ulink> as
-   published by the Free Software Foundation; 
-   either version 2 of the License, or (at your option) any later
-   version.
-  </para>
-  <para>
-   This program is distributed in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   <citetitle>GNU General Public License</citetitle> for more details.
-  </para>
-  <para>
-   A copy of the <citetitle>GNU General Public License</citetitle> is
-   included as an appendix to the <citetitle>GNOME Users
-   Guide</citetitle>.  You may also obtain a copy of the
-   <citetitle>GNU General Public License</citetitle> from the Free
-   Software Foundation by visiting <ulink type="http"
-   url="http://www.fsf.org">their Web site</ulink> or by writing to
-   <address>
-    Free Software Foundation, Inc.
-    <street>59 Temple Place</street> - Suite 330
-    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
-    <country>USA</country>
-   </address>
-  </para>
- </sect1>
+ 
+  </sect1>
 
 
 </article>
-
-
-
-
