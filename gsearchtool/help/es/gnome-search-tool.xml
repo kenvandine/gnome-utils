@@ -1,10 +1,11 @@
 <?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "2.1">
-  <!ENTITY manrevision "2.3">
-  <!ENTITY date "Septiembre de 2002">
-  <!ENTITY app "Buscar archivos">
+  <!ENTITY appversion "2.2.3">
+  <!ENTITY manrevision "2.3.1">
+  <!ENTITY date "Septiembre 2003">
+  <!ENTITY app "Search for Files">
+  <!ENTITY ug "GNOME Desktop User Guide">
 ]>
 <!-- 
       (Do not remove this comment block.)
@@ -18,9 +19,10 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo>
-    <title>Manual de &app; V&manrevision;</title>
+    <title>Manual de la aplicaci&oacute;n &app; V&manrevision;</title>
 
     <copyright> 
+      <year>2002</year> 
       <year>2003</year> 
       <holder>Sun Microsystems</holder> 
     </copyright> 
@@ -37,18 +39,18 @@
 
    -->
     <publisher> 
-      <publishername>Proyecto de documentaci&oacute;n de GNOME</publishername> 
+      <publishername> Proyecto de documentaci&oacute;n de GNOME </publishername> 
     </publisher> 
 
    &legal;
 
     <authorgroup>
       <author> 
-	<firstname>Equipo de documentaci&oacute;n</firstname> 
-	<surname>de Sun GNOME</surname> 
+	<firstname>Sun</firstname> 
+	<surname>Equipo de documentaci&oacute;n de GNOME</surname> 
 	<affiliation> 
 	  <orgname>Sun Microsystems</orgname> 
-	  <address> <email>gdocteam@sun.com</email> </address>
+	  <address></address>
 	</affiliation>
       </author>
       <author> 
@@ -75,47 +77,47 @@
 
  <revhistory>
  <revision> 
-	<revnumber>Manual de &app; V&manrevision;</revnumber> 
+	<revnumber>Manual de la aplicaci&oacute;n &app;  V&manrevision;</revnumber> 
 	<date>&date;</date> 
 	<revdescription> 
-	  <para role="author">Equipo de documentaci&oacute;n de Sun GNOME
-	    <email>gdocteam@sun.com</email>
-	  </para>
+	  <para role="author">Equipo de documentaci&oacute;n de Sun GNOME</para>
 	  <para role="publisher">Proyecto de documentaci&oacute;n de GNOME</para>
 	</revdescription>
  </revision>
  <revision> 
-			<revnumber>Manual de la Herramienta de b&uacute;squeda V2.2</revnumber> 
-			<date>Agosto de 2002</date> 
+			<revnumber>Manual de la Herramienta de b&uacute;squeda V2.3</revnumber> 
+			<date>Septiembre 2002</date> 
 			<revdescription> 
-	  		<para role="author">Equipo de documentaci&oacute;n de Sun GNOME
-	    		<email>gdocteam@sun.com</email>
-	  		</para>
+	  		<para role="author">Equipo de documentaci&oacute;n de Sun GNOME</para>
 	  		<para role="publisher">Proyecto de documentaci&oacute;n de GNOME</para>
 			</revdescription>
  </revision>
  <revision> 
-			<revnumber>Manual de la Herramienta de b&uacute;squeda V2.1</revnumber> 
-			<date>Julio de 2002</date> 
-			<revdescription> 
-	  		<para role="author">Equipo de documentaci&oacute;n de Sun GNOME
-	    		<email>gdocteam@sun.com</email>
-	  		</para>
+		  <revnumber>Manual de la herramienta de B&uacute;squeda de GNOME V2.2</revnumber>
+		  <date>Agosto 2002</date> 
+		  <revdescription> 
+			 <para role="author">Equipo de documentaci&oacute;n de Sun GNOME</para>
 	  		<para role="publisher">Proyecto de documentaci&oacute;n de GNOME</para>
 			</revdescription>
  </revision>
  <revision> 
-			<revnumber>Manual de la Herramienta de b&uacute;squeda V2.0</revnumber> 
-			<date>Mayo de 2002</date> 
+			<revnumber>Manual de la herramienta de B&uacute;squeda de GNOME V2.1</revnumber> 
+			<date>Julio 2002</date> 
 			<revdescription> 
-	  		<para role="author">Equipo de documentaci&oacute;n de Sun GNOME
-	    		<email>gdocteam@sun.com</email>
-	  		</para>
+	  		<para role="author">Equipo de documentaci&oacute;n de Sun GNOME</para>
 	  		<para role="publisher">Proyecto de documentaci&oacute;n de GNOME</para>
 			</revdescription>
  </revision>
  <revision> 
-	<revnumber>Manual de la Herramienta de b&uacute;squeda de GNOME</revnumber> 
+			<revnumber>Manual de la herramienta de B&uacute;squeda de GNOME V2.0</revnumber> 
+			<date>Mayo 2002</date> 
+			<revdescription> 
+	  		<para role="author">Equipo de documentaci&oacute;n de Sun GNOME</para>
+	  		<para role="publisher">Proyecto de documentaci&oacute;n de GNOME</para>
+			</revdescription>
+ </revision>
+ <revision> 
+	<revnumber>Manual de la herramienta de B&uacute;squeda de GNOME</revnumber> 
 	<date>2000</date> 
 	<revdescription> 
 	  <para role="author">Alexander Kirillov
@@ -126,12 +128,11 @@
  </revision>
  </revhistory>
 
-    <releaseinfo>Este manual describe la versi&oacute;n &appversion; de &app;.
+    <releaseinfo>Este manual describe la versi&oacute;n &appversion; de la aplicaci&oacute;n &app;.
     </releaseinfo>
     <legalnotice> 
       <title>Comentarios</title>
-      <para>Para informar de un defecto o realizar una sugerencia sobre la aplicaci&oacute;n &app; o el presente manual, siga las indicaciones que aparecen en 
-	<ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>. 
+      <para>Para informar de un defecto o realizar una sugerencia sobre la aplicaci&oacute;n &app; o el presente manual, siga las indicaciones que aparecen en <ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>. 
       </para>
 <!-- Translators may also add here feedback address for translations -->
     </legalnotice>
@@ -147,44 +148,44 @@
   <sect1 id="gsearchtool-introduction"> 
 	 <title>Introducci&oacute;n</title>
     <para>La aplicaci&oacute;n <application>&app;</application> permite buscar archivos en el sistema. 
-Si desea hacer una b&uacute;squeda b&aacute;sica puede escribir el nombre de un archivo completo o parcial con comodines. 
-Para refinar la b&uacute;squeda puede seleccionar las restricciones adicionales que <application>&app;</application> deba aplicar.</para>
-    <para>La <application>&app;</application> usa los comandos de UNIX <command>find</command>, <command>grep</command> y <command>locate</command>.</para>
+Para efectuar una b&uacute;squeda b&aacute;sica, escriba un nombre de archivo o una parte de &eacute;l con comodines. 
+Para refinar la b&uacute;squeda, seleccione las opciones de b&uacute;squeda adicionales que desee que la aplicaci&oacute;n <application>&app;</application> utilice.</para>
+    <para>La aplicaci&oacute;n <application>&app;</application> utiliza los comandos <command>find</command>, <command>grep</command> y <command>locate</command> de UNIX.</para>
   </sect1>
 
   <sect1 id="gsearchtool-getting-started"> 
 	 <title>Procedimientos iniciales</title>
 
-    <para>Para iniciar <application>&app;</application>, siga este procedimiento:
+    <para>Para iniciar la aplicaci&oacute;n <application>&app;</application>, siga los siguientes pasos:
     </para>
     <variablelist>
     	<varlistentry>
-    		<term>Men&uacute; <guimenu>Acciones</guimenu></term>
+    		<term>Men&uacute;</term>
     		<listitem>
-    		<para>Seleccione <guimenuitem>Buscar archivos</guimenuitem>.</para>
+    		<para>Para obtener informaci&oacute;n sobre como iniciar la aplicaci&oacute;n <application>&app;</application> desde un men&uacute;, consulte la ultima versi&oacute;n de la &ug; para su plataforma. </para>
     		</listitem>
     	</varlistentry>
     	<varlistentry>
     		<term>L&iacute;nea de comandos</term>
     		<listitem>
-    		<para>Escriba <command>gnome-search-tool</command> y, a continuaci&oacute;n, pulse <keycap>Intro</keycap>.</para>
+    		<para>Ejecute el comando siguiente: <command>gnome-search-tool</command></para>
     		<para>		 
     		</para>
     		</listitem>
     	</varlistentry>
     </variablelist>
 
-    <para>Al iniciar <application>&app;</application>, se muestra la siguiente ventana.</para>
+    <para>Al iniciar la aplicaci&oacute;n <application>&app;</application>, se muestra la siguiente ventana.</para>
 
     <!-- ==== Figure ==== -->
       <figure id="mainwindow-fig"> 
-	<title>Ventana de &app;</title>
+	<title>Ventana de la aplicaci&oacute;n &app;</title>
 	<screenshot>
 	  <mediaobject>
 	    <imageobject><imagedata 		fileref="figures/gnome-search-tool_window.png" format="PNG"/> 
 	    </imageobject>
 	    <textobject>
-	      <phrase>Muestra la ventana principal de &app;. Contiene las barras de titulo y de men&uacute;s m&aacute;s las secciones Simple y Avanzado. </phrase>
+	      <phrase>Muestra la ventana principal de la aplicaci&oacute;n &app;. Contiene las barras de t&iacute;tulo y men&uacute;s y las secciones con pesta&ntilde;as Simple y Avanzado. </phrase>
 	    </textobject>
 	  </mediaobject>
 	</screenshot>
@@ -199,58 +200,50 @@ Para refinar la b&uacute;squeda puede seleccionar las restricciones adicionales 
     <title>Uso</title>
 
     <sect2 id="gsearchtool-simple">
-    <title>Ejecutar una b&uacute;squeda b&aacute;sica</title>
+    <title>Para efectuar una b&uacute;squeda b&aacute;sica</title>
     
-    <para>Para llevar a cabo la b&uacute;squeda b&aacute;sica de un archivo en el sistema, ejecute los pasos siguientes:</para>
+    <para>Para efectuar una b&uacute;squeda b&aacute;sica de un archivo en el sistema, efect&uacute;e los siguientes pasos: </para>
     <orderedlist>
-    <listitem><para>En el campo <guilabel>El archivo se denomina</guilabel>, inserte una de las cadenas siguientes:</para>
+    <listitem><para>En el campo <guilabel>El archivo se denomina</guilabel>, inserte una de las siguientes cadenas:</para>
     		<itemizedlist>
-    			<listitem><para>Un nombre de archivo completo, por ejemplo <userinput>miarchivo.txt</userinput>. <application>&app;</application>
-    			busca todos los archivos del sistema con el nombre <userinput>miarchivo.txt</userinput>.</para></listitem>
-    			<listitem><para>El nombre parcial del archivo con asteriscos (*), por ejemplo <userinput>*.txt</userinput>. 
-    			<application>&app;</application> busca en el sistema de archivos todos los que tengan la extensi&oacute;n <userinput>.txt</userinput>.</para></listitem>
+    			<listitem><para>Un nombre de archivo completo, por ejemplo <userinput>myfile.txt</userinput>. La aplicaci&oacute;n <application>&app;</application> busca todos los archivos del sistema cuyo nombre sea <userinput>myfile.txt</userinput>.</para></listitem>
+    			<listitem><para>Un nombre de archivo parcial combinado con comodines (*); por ejemplo <userinput>*.txt</userinput>. 
+    			La aplicaci&oacute;n <application>&app;</application> busca todos los archivos del sistema cuya extensi&oacute;n sea <userinput>.txt</userinput>.</para></listitem>
     		</itemizedlist>
     		<para></para>
      </listitem>
-     <listitem><para>En el campo <guilabel>Buscar en carpeta</guilabel> 
-     escriba la ruta al directorio en el que <application>&app;</application>
-     deba comenzar la b&uacute;squeda. <application>&app;</application> busca en el directorio
-     que se especifique y en los subdirectorios.</para></listitem>
+     <listitem><para>En el campo <guilabel>Buscar en carpeta</guilabel>, inserte la ruta de acceso al directorio en el que desee que la aplicaci&oacute;n <application>&app;</application> empiece la b&uacute;squeda. La aplicaci&oacute;n <application>&app;</application> busca en el directorio especificado y en los subdirectorios de &eacute;ste.</para></listitem>
      <listitem><para>Haga clic en <guibutton>Buscar</guibutton> para ejecutar la b&uacute;squeda. 
-     <application>&app;</application> muestra los resultados de la b&uacute;squeda en 
-     el cuadro de lista <guilabel>Resultados de la b&uacute;squeda</guilabel>. 
-     Si la <application>&app;</application> no encuentra archivos que cumplan el 
-     criterio de b&uacute;squeda, muestra el mensaje "No se ha encontrado ning&uacute;n archivo" 
-     en el cuadro de lista <guilabel>Resultados de la b&uacute;squeda</guilabel>. </para>
+     La aplicaci&oacute;n <application>&app;</application> muestra el resultado de la b&uacute;squeda en el cuadro de lista <guilabel>Resultados de la b&uacute;squeda</guilabel>. 
+Si la aplicaci&oacute;n <application>&app;</application> no encuentra ning&uacute;n archivo que se ajuste a los criterios de b&uacute;squeda se mostrar&aacute; el mensaje "No se ha encontrado ning&uacute;n archivo" en el cuadro de lista <guilabel>Resultados de la b&uacute;squeda</guilabel>. </para>
      </listitem>
      </orderedlist>
      </sect2>
     
     <sect2 id="gsearchtool-advanced">
-    <title>A&ntilde;adir restricciones adicionales</title>
+    <title>Para agregar opciones de b&uacute;squeda</title>
     
-    <para>Si desea a&ntilde;adir restricciones de b&uacute;squeda en un archivo del sistema, ejecute los pasos siguientes:</para>
+    <para>Para agregar opciones a la b&uacute;squeda b&aacute;sica de un archivo en el sistema, efect&uacute;e los siguientes pasos: </para>
   	<orderedlist>
-    		<listitem><para>Haga clic en <guilabel>Restricciones adicionales</guilabel>.</para></listitem>
-    		<listitem><para>Haga clic en el cuadro de lista desplegable <guilabel>Restricciones de b&uacute;squeda disponibles</guilabel>.</para></listitem>
-    		<listitem><para>Seleccione la restricci&oacute;n en la b&uacute;squeda que desee aplicar.</para></listitem>
-    		<listitem><para>Haga clic en <guibutton>Agregar</guibutton> para a&ntilde;adir la restricci&oacute;n de b&uacute;squeda a la lista de restricciones adicionales.</para></listitem>
-    		<listitem><para>Especifique la informaci&oacute;n requerida para la regla de b&uacute;squeda; consulte la
-        	<xref linkend="tbl-search-rules"/> si desea obtener m&aacute;s informaci&oacute;n.</para></listitem>
-    		<listitem><para>Repita los pasos indicados anteriormente para cada restricci&oacute;n de b&uacute;squeda que desee aplicar.</para></listitem>
+    		<listitem><para>Haga clic en la flecha situada junto a <guilabel>Opciones adicionales</guilabel>.</para></listitem>
+    		<listitem><para>Haga clic en la lista desplegable <guilabel>Opciones disponibles</guilabel>.</para></listitem>
+    		<listitem><para>Seleccione la opci&oacute;n de b&uacute;squeda que desee aplicar. </para></listitem>
+    		<listitem><para>Haga clic en <guibutton>A&ntilde;adir</guibutton> para a&ntilde;adir la opci&oacute;n a la lista de opciones adicionales.</para></listitem>
+    		<listitem><para>Especifique la informaci&oacute;n sobre b&uacute;squeda requerida para la opci&oacute;n de b&uacute;squeda. Para obtener m&aacute;s informaci&oacute;n, vea <xref linkend="tbl-search-rules"/>.</para></listitem>
+    		<listitem><para>Repita los pasos indicados anteriormente para cada opci&oacute;n de b&uacute;squeda que desee aplicar. </para></listitem>
     	</orderedlist>	
-    	<para>Si desea eliminar una restricci&oacute;n de b&uacute;squeda de la lista <guilabel>Restricciones adicionales</guilabel>, haga clic en el bot&oacute;n <guibutton>Eliminar</guibutton> que se encuentra junto al requisito. </para>
+    	<para>Para eliminar una opci&oacute;n de b&uacute;squeda de la lista <guilabel>Opciones adicionales</guilabel>, haga clic en el bot&oacute;n <guibutton>Quitar</guibutton> situado junto a la opci&oacute;n. </para>
     	
     
     <table id="tbl-search-rules" frame="topbot">
-    <title>Reglas de b&uacute;squeda</title>
+    <title>Opciones de b&uacute;squeda</title>
 		  <tgroup cols="2" colsep="1" rowsep="1">
 			 <colspec colname="COLSPEC0" colwidth="33*"/>
 			 <colspec colname="COLSPEC1" colwidth="33*"/>
 			 <thead>
 				<row valign="top">
 				  <entry>
-					 <para>Nombre de regla</para></entry>
+					 <para>Nombre de opci&oacute;n</para></entry>
 				  <entry>
 					 <para>Descripci&oacute;n</para></entry>
 				</row>
@@ -258,10 +251,40 @@ Para refinar la b&uacute;squeda puede seleccionar las restricciones adicionales 
 			 <tbody>
 				<row valign="top">
 				  <entry>
-					 <para>Contiene el texto</para></entry>
+					 <para>Contiene el texto.</para></entry>
 				  <entry>
-					 <para>Busca un archivo por nombre de archivo. Inserte un nombre de archivo completo o un nombre de archivo parcial con comodines en el campo que aparece en pantalla. 
-					 Utilice * para indicar una secuencia de caracteres. Utilice ? para indicar un car&aacute;cter &uacute;nico. La b&uacute;squeda distingue may&uacute;sculas y min&uacute;sculas.</para></entry>
+					 <para>Busca un archivo por nombre de archivo. Escriba un nombre de archivo completo o un nombre de archivo parcial con comodines en el campo que aparece en pantalla.  Utilice * para indicar una secuencia de caracteres. 
+					 Utilice ? para indicar un car&aacute;cter &uacute;nico. La b&uacute;squeda distingue may&uacute;sculas y min&uacute;sculas.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Fecha modificada antes de (d&iacute;as)</para></entry>
+				  <entry>
+					 <para>Busca archivos modificados en el periodo anterior al n&uacute;mero de d&iacute;as especificado.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Fecha modificada despu&eacute;s de (d&iacute;as)</para></entry>
+				  <entry>
+					 <para>Busca archivos modificados en el periodo posterior al n&uacute;mero de d&iacute;as especificado.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Tama&ntilde;o m&iacute;nimo (kilobytes)</para></entry>
+				  <entry>
+					 <para>Busca archivos cuyo tama&ntilde;o es menor que el especificado.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Tama&ntilde;o m&aacute;ximo (kilobytes)</para></entry>
+				  <entry>
+					 <para>Busca archivos cuyo tama&ntilde;o es mayor que el especificado.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>El archivo est&aacute; vac&iacute;o</para></entry>
+				  <entry>
+					 <para>Busca archivos vac&iacute;os.</para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
@@ -283,39 +306,10 @@ Para refinar la b&uacute;squeda puede seleccionar las restricciones adicionales 
 				</row>
 				<row valign="top">
 				  <entry>
-					 <para>Fecha modificada antes de (d&iacute;as)</para></entry>
-				  <entry>
-					 <para>Busca los archivos que se modificaron en un per&iacute;odo inferior al n&uacute;mero de d&iacute;as especificado.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>Fecha modificada despu&eacute;s de (d&iacute;as)</para></entry>
-				  <entry>
-					 <para>Busca los archivos que se modificaron en un per&iacute;odo superior al n&uacute;mero de d&iacute;as especificado.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>El tama&ntilde;o es menor que (kilobytes)</para></entry>
-				  <entry>
-					 <para>Busca los archivos con un tama&ntilde;o menor del especificado.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>El tama&ntilde;o es mayor que (kilobytes)</para></entry>
-				  <entry>
-					 <para>Busca los archivos con un tama&ntilde;o mayor del especificado.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>El archivo est&aacute; vac&iacute;o</para></entry>
-				  <entry>
-					 <para>Busca archivos vac&iacute;os.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
 					 <para>El archivo no tiene nombre asignado</para></entry>
 				  <entry>
-					 <para>Busca archivos cuyo nombre no coincide con el nombre que ha introducido. Inserte un nombre de archivo completo o parcial con comodines en el campo que aparece en pantalla.  Utilice * para indicar una secuencia de caracteres. Utilice ? para indicar un car&aacute;cter &uacute;nico. La b&uacute;squeda distingue may&uacute;sculas y min&uacute;sculas.</para></entry>
+					 <para>Busca archivos cuyo nombre no coincide con el nombre que ha introducido. Inserte un nombre de archivo completo o un nombre de archivo parcial con comodines en el campo que aparece en pantalla. 
+					 Utilice * para indicar una secuencia de caracteres. Utilice ? para indicar un car&aacute;cter &uacute;nico. La b&uacute;squeda distingue may&uacute;sculas y min&uacute;sculas.</para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
@@ -331,7 +325,7 @@ Para refinar la b&uacute;squeda puede seleccionar las restricciones adicionales 
 				</row>
 				<row valign="top">
 				  <entry>
-					 <para>Buscar en otros sistemas de archivos</para></entry>
+					 <para>Incluir otros sistemas de archivos</para></entry>
 				  <entry>
 					 <para>La b&uacute;squeda incluye directorios que no est&aacute;n en el mismo sistema de archivos que el directorio de inicio.</para></entry>
 				</row>
@@ -343,19 +337,18 @@ Para refinar la b&uacute;squeda puede seleccionar las restricciones adicionales 
     </sect2>
 
     <sect2 id="gsearchtool-stop">
-    <title>Detener una b&uacute;squeda</title>
-    <para>Haga clic en <guibutton>Detener</guibutton> para detener una b&uacute;squeda antes de que <application>&app;</application> finalice dicha b&uacute;squeda. </para>
+    <title>Para detener una b&uacute;squeda</title>
+    <para>Haga clic en <guibutton>Parar</guibutton> para detener una b&uacute;squeda antes de que la <application>&app;</application> finalice dicha b&uacute;squeda. </para>
     </sect2>
     
     <sect2 id="gsearchtool-view">
-    <title>Abrir un archivo encontrado</title>
-    <para>Si desea abrir un archivo de los mostrados en el cuadro de lista <guilabel>Resultados de la b&uacute;squeda</guilabel>, ejecute uno de los pasos siguientes:</para>
+    <title>Para abrir un archivo encontrado</title>
+    <para>Para abrir un archivo que se muestra en el cuadro de lista <guilabel>Resultados de la b&uacute;squeda</guilabel>, efect&uacute;e uno de los pasos siguientes:</para>
     <itemizedlist>
-    <listitem><para>Haga clic con el bot&oacute;n derecho del rat&oacute;n sobre el objeto y, a continuaci&oacute;n, seleccione <guimenuitem>Abrir</guimenuitem>. </para></listitem>
-     <listitem><para>Haga doble clic con el bot&oacute;n izquierdo del rat&oacute;n sobre el archivo. </para></listitem>
+    <listitem><para>Haga clic con el bot&oacute;n derecho en el archivo y seleccione <guimenuitem>Abrir</guimenuitem>. </para></listitem>
+     <listitem><para>Haga doble clic en el archivo. </para></listitem>
     </itemizedlist>
-    <para>Si desea abrir la carpeta que contiene el archivo que aparece en el cuadro de lista <guilabel>Resultados de la b&uacute;squeda</guilabel>,
-    haga clic con el bot&oacute;n derecho del rat&oacute;n sobre el archivo y, a continuaci&oacute;n, elija <guimenuitem>Abrir carpeta</guimenuitem>.</para>
+    <para>Para abrir la carpeta que contiene un archivo que aparece en la lista <guilabel>Resultados de la b&uacute;squeda</guilabel>, haga clic con el bot&oacute;n derecho en el archivo y seleccione <guimenuitem>Abrir carpeta</guimenuitem>.</para>
     <para>Si desea copiar un archivo que aparece en el cuadro de lista <guilabel>Resultados de la b&uacute;squeda</guilabel> en otra zona del escritorio, arrastre el archivo a esa zona.</para>
     </sect2>
     
@@ -371,10 +364,8 @@ Para refinar la b&uacute;squeda puede seleccionar las restricciones adicionales 
     -->
     
     <sect2 id="gsearchtool-savetofile">
-    <title>Guardar los resultados de la b&uacute;squeda</title>
-    <para>Si desea guardar el resultado de la &uacute;ltima b&uacute;squeda que llev&oacute; a cabo <application>&app;</application>, 
-    haga clic con el bot&oacute;n derecho del rat&oacute;n en la lista <guilabel>Resultados de la b&uacute;squeda</guilabel> y, a continuaci&oacute;n, elija 
-    <guimenuitem>Guardar los resultados como</guimenuitem>. Inserte el nombre del archivo en el que desea guardar los resultados y,  a continuaci&oacute;n, haga clic en Aceptar. </para>
+    <title>Para guardar los resultados de la b&uacute;squeda</title>
+    <para>Para guardar los resultados de la &uacute;ltima b&uacute;squeda efectuada por la <application>&app;</application>, haga clic con el bot&oacute;n derecho en la lista <guilabel>Resultados de la b&uacute;squeda</guilabel> y seleccione <guimenuitem>Guardar resultados como</guimenuitem>. Inserte el nombre del archivo en el que desea guardar los resultados y,  a continuaci&oacute;n, haga clic en Aceptar. </para>
     </sect2>
 
  

@@ -1,10 +1,11 @@
 <?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "2.1">
-  <!ENTITY manrevision "2.3">
-  <!ENTITY date "September 2002">
-  <!ENTITY app "S&ouml;kverktyget">
+  <!ENTITY appversion "2.2.3">
+  <!ENTITY manrevision "2.3.1">
+  <!ENTITY date "September 2003">
+  <!ENTITY app "S&ouml;k efter filer">
+  <!ENTITY ug "Anv&auml;ndarhandbok f&ouml;r Skrivbordet GNOME">
 ]>
 <!-- 
       (Do not remove this comment block.)
@@ -21,6 +22,7 @@
     <title>Manual f&ouml;r &app;, version&nbsp;&manrevision;</title>
 
     <copyright> 
+      <year>2002</year> 
       <year>2003</year> 
       <holder>Sun Microsystems</holder> 
     </copyright> 
@@ -37,18 +39,18 @@
 
    -->
     <publisher> 
-      <publishername> Dokumentationsprojekt f&ouml;r GNOME </publishername> 
+      <publishername> Dokumentationsprojekt f&ouml;r GNOME  </publishername> 
     </publisher> 
 
    &legal;
 
     <authorgroup>
       <author> 
-<firstname>Suns</firstname> 
-<surname>GNOME-dokumentationsteam</surname> 
-<affiliation> 
-  <orgname>Sun Microsystems</orgname> 
-	  <address> <email>gdocteam@sun.com</email> </address>
+	<firstname>Suns</firstname> 
+	<surname>GNOME-dokumentationsteam</surname> 
+	<affiliation> 
+	  <orgname>Sun Microsystems</orgname> 
+	  <address></address>
 	</affiliation>
       </author>
       <author> 
@@ -74,23 +76,26 @@
     </authorgroup>
 
  <revhistory>
- <revision> 
-<revnumber>Manual f&ouml;r &app;, version&nbsp;&manrevision;</revnumber> 
-<date>&date;</date> 
-<revdescription> 
-	  <para role="author">Suns GNOME-dokumentationsteam
-    <email>gdocteam@sun.com</email>
-	  </para>
+ <revision> <revnumber>Manual f&ouml;r &app;, version&nbsp;&manrevision;</revnumber> 
+	<date>&date;</date> 
+	<revdescription> 
+	  <para role="author">Suns GNOME-dokumentationsteam</para>
 	  <para role="publisher">Dokumentationsprojekt f&ouml;r GNOME</para>
 	</revdescription>
+ </revision>
+ <revision> 
+		<revnumber>Manual f&ouml;r s&ouml;kverktyget, V2.3</revnumber> 
+		<date>September 2002</date> 
+		<revdescription> 
+	  		<para role="author">Suns GNOME-dokumentationsteam</para>
+	  		<para role="publisher">Dokumentationsprojekt f&ouml;r GNOME</para>
+			</revdescription>
  </revision>
  <revision> 
 		<revnumber>Manual f&ouml;r s&ouml;kverktyget, version 2.2</revnumber> 
 		<date>Augusti 2002</date> 
 		<revdescription> 
-	  		<para role="author">Suns GNOME-dokumentationsteam
-    <email>gdocteam@sun.com</email>
-	  </para>
+	  		<para role="author">Suns GNOME-dokumentationsteam</para>
 	  		<para role="publisher">Dokumentationsprojekt f&ouml;r GNOME</para>
 			</revdescription>
  </revision>
@@ -98,9 +103,7 @@
 			<revnumber>Manual f&ouml;r s&ouml;kverktyget, version 2.1</revnumber> 
 			<date>Juli 2002</date> 
 			<revdescription> 
-	  		<para role="author">Suns GNOME-dokumentationsteam
-    <email>gdocteam@sun.com</email>
-	  </para>
+	  		<para role="author">Suns GNOME-dokumentationsteam</para>
 	  		<para role="publisher">Dokumentationsprojekt f&ouml;r GNOME</para>
 			</revdescription>
  </revision>
@@ -108,9 +111,7 @@
 			<revnumber>Manual f&ouml;r s&ouml;kverktyget, version 2.0</revnumber> 
 			<date>Maj 2002</date> 
 			<revdescription> 
-	  		<para role="author">Suns GNOME-dokumentationsteam
-    <email>gdocteam@sun.com</email>
-	  </para>
+	  		<para role="author">Suns GNOME-dokumentationsteam</para>
 	  		<para role="publisher">Dokumentationsprojekt f&ouml;r GNOME</para>
 			</revdescription>
  </revision>
@@ -119,7 +120,7 @@
 	<date>2000</date> 
 	<revdescription> 
 	  <para role="author">Alexander Kirillov
-    <email>kirillov@math.sunysb.edu</email>
+	    <email>kirillov@math.sunysb.edu</email>
 	  </para>
 	  <para role="publisher">Dokumentationsprojekt f&ouml;r GNOME</para>
 	</revdescription>
@@ -130,7 +131,7 @@
     </releaseinfo>
     <legalnotice> 
       <title>Feedback</title>
-      <para>F&ouml;lj instruktionerna p&aring; <ulink url="ghelp:gnome-feedback" type="help">GNOME:s feedbacksida</ulink> om du vill rapportera ett fel eller ge f&ouml;rslag betr&auml;ffande det h&auml;r programmet eller den h&auml;r manualen. 
+      <para>F&ouml;lj instruktionerna p&aring; <ulink url="ghelp:gnome-feedback" type="help">GNOME:s feedbacksida</ulink> om du vill rapportera ett fel eller ge f&ouml;rslag betr&auml;ffande det h&auml;r programmet  eller den h&auml;r manualen. 
       </para>
 <!-- Translators may also add here feedback address for translations -->
     </legalnotice>
@@ -159,15 +160,15 @@
     </para>
     <variablelist>
     	<varlistentry>
-    		<term><guimenu>&Aring;tg&auml;rder</guimenu>-menyn</term>
+    		<term>Meny</term>
     		<listitem>
-    		<para>V&auml;lj <guimenuitem>S&ouml;k efter filer</guimenuitem>.</para>
+    		<para>Mer information om hur du startar <application>&app;</application> fr&aring;n en  
+			meny finns i den senaste verisonen av &ug; f&ouml;r din plattform. </para>
     		</listitem>
     	</varlistentry>
-    	<varlistentry>
-    		<term>Kommandoraden</term>
+    	<varlistentry><term>Kommandoraden</term>
     		<listitem>
-    		<para>Skriv <command>gnome-search-tool</command> och trycker sedan p&aring; <keycap>Retur</keycap>.</para>
+    		<para>Utf&ouml;r f&ouml;ljande kommando: <command>gnome-search-tool</command></para>
     		<para>		 
     		</para>
     		</listitem>
@@ -224,30 +225,30 @@
      </sect2>
     
     <sect2 id="gsearchtool-advanced">
-    <title>S&aring; h&auml;r l&auml;gger du till s&ouml;kvillkor</title>
+    <title>S&aring; h&auml;r l&auml;gger du till ett s&ouml;kvillkor</title>
     
     <para>Du kan l&auml;gga till s&ouml;kvillkor n&auml;r du s&ouml;ker efter en fil i systemet med hj&auml;lp av f&ouml;ljande steg:</para>
   	<orderedlist>
-    		<listitem><para>Klicka p&aring; <guilabel>Ytterligare begr&auml;nsningar</guilabel>.</para></listitem>
-    		<listitem><para>Klicka p&aring; den nedrullningsbara listrutan <guilabel>Tillg&auml;ngliga s&ouml;kbegr&auml;nsningar</guilabel>.</para></listitem>
-    		<listitem><para>Markera det villkor du vill anv&auml;nda.</para></listitem>
-    		<listitem><para>L&auml;gg till s&ouml;kvillkoret i listan med ytterligare villkor genom att klicka p&aring; <guibutton>L&auml;gg till</guibutton>.</para></listitem>
+    		<listitem><para>Klicka p&aring; pilen bredvid <guilabel>Ytterligare begr&auml;nsningar</guilabel>.</para></listitem>
+    		<listitem><para>Klicka p&aring; listen <guilabel>Tillg&auml;ngliga s&ouml;kbegr&auml;nsningar</guilabel>.</para></listitem>
+    		<listitem><para>Markera det alternativ du vill anv&auml;nda.</para></listitem>
+    		<listitem><para>Klicka p&aring; <guibutton>L&auml;gg till</guibutton> f&ouml;r att l&auml;gga  s&ouml;kbegr&auml;sningen till listan &ouml;ver ytterligare begr&auml;nsningar.</para></listitem>
     		<listitem><para>Ange n&ouml;dv&auml;ndig s&ouml;kinformation f&ouml;r s&ouml;kvillkoret. Mer information hittar du i <xref linkend="tbl-search-rules"/>.</para></listitem>
-    		<listitem><para>Upprepa stegen ovan f&ouml;r varje s&ouml;kvillkor som du vill anv&auml;nda.</para></listitem>
+    		<listitem><para>Upprepa stegen ovan f&ouml;r varje s&ouml;kalternativ som du vill anv&auml;nda.</para></listitem>
     	</orderedlist>	
     	<para>Du kan ta bort ett s&ouml;kvillkor fr&aring;n listan <guilabel>Ytterligare begr&auml;nsningar</guilabel>
     	genom att klicka p&aring; knappen <guibutton>Ta bort</guibutton> bredvid villkoret. </para>
     	
     
     <table id="tbl-search-rules" frame="topbot">
-    <title>S&ouml;kregler</title>
+    <title>S&ouml;kvillkor</title>
 		  <tgroup cols="2" colsep="1" rowsep="1">
 			 <colspec colname="COLSPEC0" colwidth="33*"/>
 			 <colspec colname="COLSPEC1" colwidth="33*"/>
 			 <thead>
 				<row valign="top">
 				  <entry>
-					 <para>Regelnamn</para></entry>
+					 <para>Namn p&aring; villkor</para></entry>
 				  <entry>
 					 <para>Beskrivning</para></entry>
 				</row>
@@ -257,14 +258,45 @@
 				  <entry>
 					 <para>Inneh&aring;ller texten</para></entry>
 				  <entry>
-					 <para>S&ouml;k efter en fil med hj&auml;lp av filnamnet. Ange ett fullst&auml;ndigt filnamn eller en del av ett filnamn och jokertecken i f&auml;ltet. 
-					 Ange * f&ouml;r att indikera en teckensekvens. Ange ? f&ouml;r att indikera ett enskilt tecken. S&ouml;kningen &auml;r skiftl&auml;gesk&auml;nslig.</para></entry>
+					 <para>S&ouml;k efter en fil med hj&auml;lp av filnamnet. Ange ett fullst&auml;ndigt filnamn eller en del av ett filnamn med jokertecken i 
+					 f&auml;ltet. Ange * f&ouml;r att indikera en teckensekvens. 
+					 Anv&auml;nd? f&ouml;r att indikera ett enskilt tecken. S&ouml;kningen &auml;r skiftl&auml;gesk&auml;nslig.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Modifieringsdatum mindre &auml;n (dagar)</para></entry>
+				  <entry>
+					 <para>S&ouml;k efter filer som har modifierats inom det angivna antalet dagar.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Modifieringsdatum mer &auml;n (dagar)</para></entry>
+				  <entry>
+					 <para>S&ouml;k efter filer som har modifierats efter det angivna antalet dagar.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Mindre &auml;n (Kb)</para></entry>
+				  <entry>
+					 <para>S&ouml;k efter filer som &auml;r mindre &auml;n den angivna storleken.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>St&ouml;rre &auml;n (Kb)</para></entry>
+				  <entry>
+					 <para>S&ouml;k efter filer som &auml;r st&ouml;rre &auml;n den angivna storleken.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Filen &auml;r tom</para></entry>
+				  <entry>
+					 <para>S&ouml;k efter tomma filer.</para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
 					 <para>&Auml;gs av anv&auml;ndaren</para></entry>
 				  <entry>
-					 <para>S&ouml;k efter filer som &auml;gs av den angivna &auml;garen. Ange namnet p&aring; &auml;garen i textrutan</para></entry>
+					 <para>S&ouml;k efter filer som &auml;gs av den angivna &auml;garen. Ange namnet p&aring; anv&auml;ndaren i textrutan. </para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
@@ -280,40 +312,11 @@
 				</row>
 				<row valign="top">
 				  <entry>
-					 <para>Modifieringsdatum tidigare (dagar)</para></entry>
-				  <entry>
-					 <para>S&ouml;k efter filer som har modifierats inom det angivna antalet dagar.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>Modifieringsdatum efter (dagar)</para></entry>
-				  <entry>
-					 <para>S&ouml;k efter filer som har modifierats efter det angivna antalet dagar.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>Mindre &auml;n (kB)</para></entry>
-				  <entry>
-					 <para>S&ouml;k efter filer som &auml;r mindre &auml;n den angivna storleken.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>St&ouml;rre &auml;n (kB)</para></entry>
-				  <entry>
-					 <para>S&ouml;k efter filer som &auml;r st&ouml;rre &auml;n den angivna storleken.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>Filen &auml;r tom</para></entry>
-				  <entry>
-					 <para>S&ouml;k efter tomma filer.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
 					 <para>Filen har inget namn</para></entry>
 				  <entry>
 					 <para>S&ouml;k efter filer som inte matchar det angivna filnamnet. Ange ett fullst&auml;ndigt filnamn eller en del av ett filnamn med jokertecken i 
-					 f&auml;ltet. Ange * f&ouml;r att indikera en teckensekvens. Ange ? f&ouml;r att indikera ett enskilt tecken. S&ouml;kningen &auml;r skiftl&auml;gesk&auml;nslig.</para></entry>
+					 f&auml;ltet. 
+					 Ange * f&ouml;r att indikera en teckensekvens. Ange ? f&ouml;r att indikera ett enskilt tecken. S&ouml;kningen &auml;r skiftl&auml;gesk&auml;nslig.</para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
@@ -330,7 +333,7 @@
 				</row>
 				<row valign="top">
 				  <entry>
-					 <para>S&ouml;k i andra filsystem</para></entry>
+					 <para>Inkludera andra filsystem</para></entry>
 				  <entry>
 					 <para>S&ouml;kningen inkluderar kataloger som inte finns i samma filsystem
 					 som startkatalogen.</para></entry>
@@ -383,5 +386,3 @@
 
 
 </article>
-
-

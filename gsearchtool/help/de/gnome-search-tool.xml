@@ -1,10 +1,11 @@
 <?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "2.1">
-  <!ENTITY manrevision "2.3">
-  <!ENTITY date "September 2002">
-  <!ENTITY app "Search for Files">
+  <!ENTITY appversion "2.2.3">
+  <!ENTITY manrevision "2.3.1">
+  <!ENTITY date "September 2003">
+  <!ENTITY app "Nach Dateien suchen">
+  <!ENTITY ug "GNOME Desktop Benutzerhandbuch">
 ]>
 <!-- 
       (Do not remove this comment block.)
@@ -21,6 +22,7 @@
     <title>&app; Handbuch V&manrevision;</title>
 
     <copyright> 
+      <year>2002</year> 
       <year>2003</year> 
       <holder>Sun Microsystems</holder> 
     </copyright> 
@@ -37,7 +39,7 @@
 
    -->
     <publisher> 
-      <publishername> GNOME-Dokumentationsprojekt </publishername> 
+      <publishername> GNOME Dokumentationsprojekt </publishername> 
     </publisher> 
 
    &legal;
@@ -48,7 +50,7 @@
 	<surname>GNOME-Dokumentationsteam</surname> 
 	<affiliation> 
 	  <orgname>Sun Microsystems</orgname> 
-	  <address> <email>gdocteam@sun.com</email> </address>
+	  <address></address>
 	</affiliation>
       </author>
       <author> 
@@ -78,19 +80,23 @@
 	<revnumber>&app; Handbuch V&manrevision;</revnumber> 
 	<date>&date;</date> 
 	<revdescription> 
-	  <para role="author">Sun GNOME-Dokumentationsteam
-	    <email>gdocteam@sun.com</email>
-	  </para>
+	  <para role="author">Sun GNOME Dokumentationsteam</para>
 	  <para role="publisher">GNOME-Dokumentationsprojekt</para>
 	</revdescription>
+ </revision>
+ <revision> 
+			<revnumber>Suchtool-Handbuch V2.3</revnumber> 
+			<date>September 2002</date> 
+			<revdescription> 
+	  		<para role="author">Sun GNOME Dokumentationsteam</para>
+	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
+			</revdescription>
  </revision>
  <revision> 
 			<revnumber>Suchtool-Handbuch V2.2</revnumber> 
 			<date>August 2002</date> 
 			<revdescription> 
-	  		<para role="author">Sun GNOME-Dokumentationsteam
-	    		<email>gdocteam@sun.com</email>
-	  		</para>
+	  		<para role="author">Sun GNOME Dokumentationsteam</para>
 	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
 			</revdescription>
  </revision>
@@ -98,9 +104,7 @@
 			<revnumber>Suchtool-Handbuch V2.1</revnumber> 
 			<date>Juli 2002</date> 
 			<revdescription> 
-	  		<para role="author">Sun GNOME-Dokumentationsteam
-	    		<email>gdocteam@sun.com</email>
-	  		</para>
+	  		<para role="author">Sun GNOME Dokumentationsteam</para>
 	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
 			</revdescription>
  </revision>
@@ -108,14 +112,12 @@
 			<revnumber>Suchtool-Handbuch V2.0</revnumber> 
 			<date>Mai 2002</date> 
 			<revdescription> 
-	  		<para role="author">Sun GNOME-Dokumentationsteam
-	    		<email>gdocteam@sun.com</email>
-	  		</para>
+	  		<para role="author">Sun GNOME Dokumentationsteam</para>
 	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
 			</revdescription>
  </revision>
  <revision> 
-	<revnumber>GNOME-Suchtool-Handbuch</revnumber> 
+	<revnumber>GNOME Suchtool-Handbuch</revnumber> 
 	<date>2000</date> 
 	<revdescription> 
 	  <para role="author">Alexander Kirillov
@@ -144,38 +146,38 @@
 <!-- ============= Introduction ============================== -->
 
   <sect1 id="gsearchtool-introduction"> 
-     <title>Einf&uuml;hrung</title>
+    <title>Einf&uuml;hrung</title>
     <para>MIthilfe der Anwendung <application>&app;</application> k&ouml;nnen Sie nach Dateien auf Ihrem Computer suchen. 
     Um eine einfache Suche durchzuf&uuml;hren, geben Sie einen Dateinamen vollst&auml;ndig oder mit Platzhaltern ein. 
-    Sie k&ouml;nnen die Suche verfeinern, indem Sie zus&auml;tzliche Einschr&auml;nkungen ausw&auml;hlen, die von 
+    Sie k&ouml;nnen die Suche verfeinern, indem Sie zus&auml;tzliche Suchoptionen ausw&auml;hlen, die von 
     <application>&app;</application> angewendet werden sollen.</para>
     <para><application>&app;</application> arbeitet mit den UNIX-Befehlen <command>find</command>, <command>grep</command> und 
     <command>locate</command>.</para>
   </sect1>
 
   <sect1 id="gsearchtool-getting-started"> 
-     <title>Erste Schritte</title>
+    <title>Erste Schritte</title>
 
-    <para>Sie k&ouml;nnen die <application>&app;</application>-Anwendung auf eine der folgenden Arten starten:
+    <para>Sie k&ouml;nnen <application>&app;</application> auf eine der folgenden Weisen starten:
     </para>
     <variablelist>
     	<varlistentry>
-    		<term>Men&uuml; <guimenu>#Actions</guimenu></term>
+    		<term>Men&uuml;</term>
     		<listitem>
-    		<para>W&auml;hlen Sie <guimenuitem>Nach Dateien suchen</guimenuitem>.</para>
+    		<para>Wie Sie <application>&app;</application> &uuml;ber eines der Men&uuml;s starten, erfahren Sie in der aktuellsten Fassung des Dokuments "&ug;" f&uuml;r Ihre jeweilige Plattform. </para>
     		</listitem>
     	</varlistentry>
     	<varlistentry>
-    <term>Befehlszeile</term>
-    <listitem>
-    		<para>Geben Sie <command>gnome-search-tool</command> ein, und dr&uuml;cken Sie anschlie&szlig;end die <keycap>Eingabetaste</keycap>.</para>
+    		<term>Befehlszeile</term>
+    		<listitem>
+    		<para>F&uuml;hren Sie den folgenden Befehl aus: <command>gnome-search-tool</command></para>
     		<para>		 
     		</para>
     		</listitem>
     	</varlistentry>
     </variablelist>
 
-    <para>Wenn Sie die Anwendung <application>&app;</application> starten, wird das folgende Fenster angezeigt.</para>
+    <para>Wenn Sie <application>&app;</application> starten, wird das folgende Fenster angezeigt.</para>
 
     <!-- ==== Figure ==== -->
       <figure id="mainwindow-fig"> 
@@ -185,7 +187,7 @@
 	    <imageobject><imagedata 		fileref="figures/gnome-search-tool_window.png" format="PNG"/> 
 	    </imageobject>
 	    <textobject>
-	      <phrase>Zeigt das &app;-Hauptfenster an. Enth&auml;lt die Titelleiste, Men&uuml;leiste und die Registerkartenbereiche "Einfache Suche" und "Erweiterte Suche". </phrase>
+	      <phrase>Zeigt das &app;-Hauptfenster an Enth&auml;lt die Titelleiste, Men&uuml;leiste und die Registerkartenbereiche Einfache Suche und Erweiterte Suche </phrase>
 	    </textobject>
 	  </mediaobject>
 	</screenshot>
@@ -197,7 +199,7 @@
 <!-- ================ Usage ================================ -->
 
   <sect1 id="gsearchtool-usage"> 
-    <title>Verwendung</title>
+     <title>Verwendung</title>
 
     <sect2 id="gsearchtool-simple">
     <title>So f&uuml;hren Sie eine einfache Suche durch</title>
@@ -220,38 +222,37 @@
      <application>&app;</application> zeigt die Suchergebnisse im Listenfeld  
      <guilabel>Suchergebnisse</guilabel> an. 
      Wenn <application>&app;</application> keine Dateien findet, die den 
-     angegebenen Suchkriterien entsprechen, wird die Meldung "Es wurden keine Dateien gefunden" im Listenfeld 
+     angegebenen Suchkriterien entsprechen, wird die Meldung "Es wurden keine Dateien gefunden." im Listenfeld 
      <guilabel>Suchergebnisse</guilabel> angezeigt. </para>
      </listitem>
      </orderedlist>
      </sect2>
     
     <sect2 id="gsearchtool-advanced">
-    <title>So f&uuml;gen Sie Sucheinschr&auml;nkungen hinzu</title>
+    <title>So f&uuml;gen Sie weitere Suchoptionen hinzu</title>
     
-    <para>Um Einschr&auml;nkungen f&uuml;r die Suche nach einer Datei auf dem System hinzuzuf&uuml;gen, gehen Sie folgenderma&szlig;en vor:</para>
+    <para>Um weitere Suchoptionen f&uuml;r die Suche nach einer Datei auf dem System hinzuzuf&uuml;gen, gehen Sie folgenderma&szlig;en vor:</para>
   	<orderedlist>
-    		<listitem><para>Klicken Sie auf <guilabel>Zus&auml;tzliche Begrenzungen</guilabel>.</para></listitem>
-    		<listitem><para>Klicken Sie auf das Dropdown-Listenfeld <guilabel>Verf&uuml;gbare Suchbegrenzungen</guilabel>.</para></listitem>
-    		<listitem><para>W&auml;hlen Sie die gew&uuml;nschten Sucheinschr&auml;nkungen aus.</para></listitem>
-    		<listitem><para>Klicken Sie auf <guibutton>Hinzuf&uuml;gen</guibutton>, um der Liste der zus&auml;tzlichen Einschr&auml;nkungen die Sucheinschr&auml;nkungen hinzuzuf&uuml;gen.</para></listitem>
-    		<listitem><para>Geben Sie die erforderlichen Suchinformationen f&uuml;r die Suchregel an. Weitere Informationen hierzu finden Sie unter
+    		<listitem><para>Klicken Sie auf den Pfeil neben <guilabel>Weitere Optionen</guilabel>.</para></listitem>
+    		<listitem><para>Klicken Sie auf das Dropdown-Listenfeld <guilabel>Verf&uuml;gbare Optionen</guilabel>.</para></listitem>
+    		<listitem><para>W&auml;hlen Sie die Suchoption aus, die Sie anwenden m&ouml;chten.</para></listitem>
+    		<listitem><para>Klicken Sie auf <guibutton>Hinzuf&uuml;gen</guibutton>, um die jeweilige Suchoption in die Liste der weiteren Optionen aufzunehmen.</para></listitem>
+    		<listitem><para>Geben Sie die erforderlichen Suchinformationen f&uuml;r die Suchoption an. Weitere Informationen hierzu finden Sie unter
         	<xref linkend="tbl-search-rules"/>.</para></listitem>
-    		<listitem><para>Wiederholen Sie die bereits beschriebenen Schritte f&uuml;r jede Sucheinschr&auml;nkung, die Sie anwenden m&ouml;chten.</para></listitem>
+    		<listitem><para>Wiederholen Sie die bereits beschriebenen Schritte f&uuml;r jede Suchoption, die Sie anwenden m&ouml;chten.</para></listitem>
     	</orderedlist>	
-    	<para>Um eine Sucheinschr&auml;nkung aus der Liste <guilabel>Zus&auml;tzliche Begrenzungen</guilabel>
-    	zu entfernen, klicken Sie auf die Schaltfl&auml;che <guibutton>Entfernen</guibutton> neben der Einschr&auml;nkung. </para>
+    	<para>Um eine Suchoption aus der Liste <guilabel>Weitere Optionen</guilabel> zu entfernen, klicken Sie auf die Schaltfl&auml;che <guibutton>Entfernen</guibutton> neben der Option. </para>
     	
     
     <table id="tbl-search-rules" frame="topbot">
-    <title>Suchregeln</title>
+    <title>Suchoptionen</title>
 		  <tgroup cols="2" colsep="1" rowsep="1">
 			 <colspec colname="COLSPEC0" colwidth="33*"/>
 			 <colspec colname="COLSPEC1" colwidth="33*"/>
 			 <thead>
 				<row valign="top">
 				  <entry>
-					 <para>Regelname</para></entry>
+					 <para>Name der Option</para></entry>
 				  <entry>
 					 <para>Beschreibung</para></entry>
 				</row>
@@ -261,8 +262,38 @@
 				  <entry>
 					 <para>Enth&auml;lt den Text</para></entry>
 				  <entry>
-					 <para>Anhand eines Dateinamens nach einer Datei suchen Geben Sie einen vollst&auml;ndigen Dateinamen oder einen Teil eines Dateinamens, einschlie&szlig;lich Platzhalter, in das entsprechende Feld ein. 
-					Verwenden Sie das Zeichen * f&uuml;r eine beliebige Zeichenkette. Verwenden Sie ?f&uuml;r einzelne Zeichen. Bei der Suche wird zwischen Klein- und Gro&szlig;buchstaben unterschieden.</para></entry>
+					 <para>Anhand eines Dateinamens nach einer Datei suchen Geben Sie einen vollst&auml;ndigen Dateinamen oder einen Teil eines Dateinamens, einschlie&szlig;lich Platzhalter, in das entsprechende Feld ein. Verwenden Sie das Zeichen * f&uuml;r eine beliebige Zeichenkette. 
+					Verwenden Sie das Zeichen ?f&uuml;r einzelne Zeichen. Bei der Suche wird zwischen Klein- und Gro&szlig;buchstaben unterschieden.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Ge&auml;ndert vor weniger als (in Tagen)</para></entry>
+				  <entry>
+					 <para>Nach Dateien suchen, die nach dem angegebenen Datum (aktuelles Datum abz&uuml;glich der angegebenen Anzahl von Tagen) ge&auml;ndert wurden.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Ge&auml;ndert vor mehr als (in Tagen)</para></entry>
+				  <entry>
+					 <para>Nach Dateien suchen, die nach dem angegebenen Datum (aktuelles Datum abz&uuml;glich der angegebenen Anzahl von Tagen) ge&auml;ndert wurden.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Mindestgr&ouml;&szlig;e (in Kilobyte)</para></entry>
+				  <entry>
+					 <para>Nach Dateien suchen, die kleiner als der angegebene Wert sind.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Maximale Gr&ouml;&szlig;e (in Kilobyte)</para></entry>
+				  <entry>
+					 <para>Nach Dateien suchen, die gr&ouml;&szlig;er als der angegebene Wert sind.</para></entry>
+				</row>
+				<row valign="top">
+				  <entry>
+					 <para>Datei ist leer.</para></entry>
+				  <entry>
+					 <para>Nach leeren Dateien suchen</para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
@@ -274,49 +305,20 @@
 				  <entry>
 					 <para>Im Besitz einer Gruppe</para></entry>
 				  <entry>
-					 <para>Nach Dateien suchen, die im Besitz einer bestimmten Gruppe sind. Geben Sie den Namen der Gruppe in das entsprechende Textfeld ein. </para></entry>
+					 <para>Nach Dateien suchen, die im Besitz einer bestimmten Gruppe sind Geben Sie den Namen der Gruppe in das entsprechende Textfeld ein. </para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
 					 <para>Besitzer unbekannt</para></entry>
 				  <entry>
-					 <para>Nach Dateien suchen, die im Besitz eines Benutzers oder einer Gruppe sind, die dem System nicht bekannt sind.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>Datum der &Auml;nderung davor (Tage)</para></entry>
-				  <entry>
-					 <para>Nach Dateien suchen, die bezogen auf die Anzahl der angegebenen Tage im k&uuml;rzer zur&uuml;ckliegenden Zeitraum ge&auml;ndert wurden.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>Datum der &Auml;nderung danach (Tage)</para></entry>
-				  <entry>
-					 <para>Nach Dateien suchen, die bezogen auf die Anzahl der angegebenen Tage im l&auml;nger zur&uuml;ckliegenden Zeitraum ge&auml;ndert wurden.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>Dateigr&ouml;&szlig;e ist kleiner als (Kilobyte)</para></entry>
-				  <entry>
-					 <para>Nach Dateien suchen, die kleiner als der angegebene Wert sind.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>Dateigr&ouml;&szlig;e ist gr&ouml;&szlig;er als (Kilobyte)</para></entry>
-				  <entry>
-					 <para>Nach Dateien suchen, die gr&ouml;&szlig;er als der angegebene Wert sind.</para></entry>
-				</row>
-				<row valign="top">
-				  <entry>
-					 <para>Datei ist leer</para></entry>
-				  <entry>
-					 <para>Nach leeren Dateien suchen</para></entry>
+					 <para>Nach Dateien suchen, die im Besitz eines Benutzers oder einer Gruppe sind, die dem System nicht bekannt sind</para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
 					 <para>Datei mit einem anderen Namen</para></entry>
 				  <entry>
-					 <para>Nach Dateien suchen, die nicht mit dem eingebenen Dateinamen &uuml;bereinstimmen Geben Sie einen vollst&auml;ndigen Dateinamen oder einen Teil eines Dateinamens, einschlie&szlig;lich Platzhalter, in das entsprechende Feld ein. Verwenden Sie das Zeichen * f&uuml;r eine beliebige Zeichenkette. Verwenden Sie ?f&uuml;r einzelne Zeichen. Bei der Suche wird zwischen Klein- und Gro&szlig;buchstaben unterschieden.</para></entry>
+					 <para>Nach Dateien suchen, die nicht mit dem eingebenen Dateinamen &uuml;bereinstimmen Geben Sie einen vollst&auml;ndigen Dateinamen oder einen Teil eines Dateinamens, einschlie&szlig;lich Platzhalter, in das entsprechende Feld ein. 
+					Verwenden Sie das Zeichen * f&uuml;r eine beliebige Zeichenkette. Verwenden Sie ?f&uuml;r einzelne Zeichen. Bei der Suche wird zwischen Klein- und Gro&szlig;buchstaben unterschieden.</para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
@@ -328,11 +330,11 @@
 				  <entry>
 					 <para>Symbolischen Links folgen</para></entry>
 				  <entry>
-					 <para>Bei der Suche nach Dateien symbolischen Links folgen.</para></entry>
+					 <para>Bei der Suche nach Dateien symbolischen Links folgen</para></entry>
 				</row>
 				<row valign="top">
 				  <entry>
-					 <para>Andere Dateisysteme durchsuchen</para></entry>
+					 <para>Andere Dateisysteme einschlie&szlig;en</para></entry>
 				  <entry>
 					 <para>Hierbei werden auch Verzeichnisse durchsucht, die nicht im selben Dateisystem wie das Startverzeichnis enthalten sind.</para></entry>
 				</row>
@@ -375,7 +377,7 @@
     <sect2 id="gsearchtool-savetofile">
     <title>So speichern Sie die Suchergebnisse</title>
     <para>Um die Ergebnisse der letzten in <application>&app;</application> durchgef&uuml;hrten Suche zu speichern, klicken Sie mit der rechten Maustaste auf die Liste  <guilabel>Suchergebnisse</guilabel> und w&auml;hlen 
-    <guimenuitem>Ergebnisse speichern als</guimenuitem>. Geben Sie den Dateinamen ein, unter dem Sie Ihre Ergebnisse speichern m&ouml;chten, und klicken Sie dann auf OK.</para>
+    <guimenuitem>Ergebnisse speichern unter</guimenuitem>. Geben Sie den Dateinamen ein, unter dem Sie Ihre Ergebnisse speichern m&ouml;chten, und klicken Sie dann auf OK.</para>
     </sect2>
 
  
