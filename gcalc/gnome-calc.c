@@ -546,6 +546,12 @@ simple_func(GtkWidget *w, gpointer data)
 	}
 
 	stack = gc->_priv->stack->data;
+
+	if(stack->type==CALCULATOR_FUNCTION) {
+		stack_pop(&gc->_priv->stack);
+		stack = gc->_priv->stack->data;
+	}
+
 	if(stack->type!=CALCULATOR_NUMBER) {
 		unselect_invert(gc);
 		return;
