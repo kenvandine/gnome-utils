@@ -24,16 +24,12 @@ dnl *****************************************
 dnl pkg-config check time
 dnl *****************************************
 
-LIBGNOME_REQUIRED=1.107.0
-LIBGNOMEUI_REQUIRED=1.107.0
+LIBGNOME_REQUIRED=1.116.0
+LIBGNOMEUI_REQUIRED=1.116.1
 LIBGLADE_REQUIRED=1.99.2
-LIBBONOBOUI_REQUIRED=1.103.0
-LIBXML_REQUIRED=2.2.8
-GCONF_REQUIRED=1.1.2
-GTKHTML_REQUIRED=1.99.0
+LIBBONOBOUI_REQUIRED=1.116.0
 GNOMEVFS_REQUIRED=1.9.3
 GNOMEVFSMODULE_REQUIRED=1.9.3
-LIBGTOP_REQUIRED=1.90.0
 LIBPANEL_APPLET_REQUIRED=1.5.8
 
 dnl *****************************************
@@ -59,14 +55,6 @@ AC_SUBST(GNOMEVFS_CFLAGS)
 AC_SUBST(GNOMEVFS_LIBS)
 
 dnl *********************************************
-dnl libglade is needed for gcolorsel
-dnl *********************************************
-
-PKG_CHECK_MODULES(LIBGLADE, libglade-2.0 >= $LIBGLADE_REQUIRED)
-AC_SUBST(LIBGLADE_CFLAGS)
-AC_SUBST(LIBGLADE_LIBS)
-
-dnl *********************************************
 dnl libbonobui is needed for gcharmap
 dnl *********************************************
 
@@ -87,29 +75,6 @@ fi
 
 AM_GCONF_SOURCE_2
 
-dnl Putting the code check below so we don't forget it's there
-
-dnl If the Gnome applet libraries are available, define HAVE_GNOME_APPLET.
-dnl This will allow both an applet and an application version of          
-dnl gcolorsel to be built.
-
-AM_CONDITIONAL(HAVE_GNOME_APPLET, test "x$GNOME_APPLETS_LIBS" != "x")
-
-if test "x$GNOME_APPLETS_LIBS" != "x"; then
-  AC_ARG_ENABLE(gcolorsel-applet,
-  [  --enable-gcolorsel-applet  Build a gcolorsel applet [default=yes]],
-  enable_gcolorsel_applet="$enableval", enable_gcolorsel_applet=yes) 
-fi
-
-AM_CONDITIONAL(BUILD_GCOLORSEL_APPLET, test "$enable_gcolorsel_applet" = yes)
-
-dnl *******************************
-dnl gnome-print checks FIXME
-dnl *******************************
-dnl if test "x$enable_gnome_print" = "xyes"; then
-dnl   AM_PATH_GNOME_PRINT(0.12.0)
-dnl   AC_DEFINE(HAVE_GNOME_PRINT)
-dnl fi
 
 dnl *******************************
 dnl Applet checks
@@ -123,26 +88,18 @@ dnl ***************************************************************
 dnl Other miscellaneous checks 
 dnl ***************************************************************
 
-dnl ***************
-dnl Console helper
-dnl **************
+dnl Check to see if the user wants gdialog. Turn it off by default
+dnl due to lack of maintainance and somewhat bad documentation
+
+AC_ARG_ENABLE(gdialog, 
+  [  --enable-gdialog			Build gdialog [default=no]],
+   enable_gdialog="$enableval", enable_gdialog=no)
+
+AM_CONDITIONAL(ENABLE_GDIALOG, test "$enable_gdialog" = yes)
 
 AC_ARG_ENABLE(console-helper,
-  [  --enable-console-helper=[no/yes]  Enable PAM console helper [default =no]],,
+  [  --enable-console-helper=[no/yes]  	Enable PAM console helper [default =no]],,
   enable_console_helper=no)
-
-dnl **************
-dnl  Test whether jw is installed
-dnl **************
-
-AC_PATH_PROG(JW,jw,no)
-if test x$JW = xno; then
-  HAVE_JW="no"
-else
-  HAVE_JW="yes"
-fi
-AM_CONDITIONAL(HAVE_JW, test "x$HAVE_JW" = "xyes")
-AC_SUBST(HAVE_JW)
 
 dnl ***********
 dnl PAM prefix
@@ -167,19 +124,10 @@ if test "x$CONSOLE_HELPER" = "xno" -a "x$enable_console_helper" = "xyes" ; then
 	AC_MSG_ERROR(Console helper requested but consolehelper binary not found)
 fi
 
-dnl ***********************************************************************
-dnl so that people on places like solaris can set where the rgb.txt file is
-dnl ***********************************************************************
-
-XLIBDIR=$x_libraries
-if test x$XLIBDIR = xNONE ; then
-	XLIBDIR="/usr/X11R6/lib/"
-fi
-AC_SUBST(XLIBDIR)
-
 dnl **************************************************************
 dnl Checks for typedefs, structures, and compiler characteristics.
 dnl **************************************************************
+
 AC_C_CONST
 AC_C_INLINE
 AC_TYPE_OFF_T
@@ -200,15 +148,8 @@ AC_TYPE_SIGNAL
 AC_FUNC_STRFTIME
 AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf)
 
-dnl ********************************************************
-dnl nl_langinfo used for printing i18n time string formats
-dnl check for nl_langinfo(D_FMT) which is missing on FreeBSD
-dnl ********************************************************
-dnl FIXME - dunno about this??
-dnl LANGINFO_D_FMT_CHECK
-
 dnl *****************************************************************
-dnl Allow users to run logview and gshutdown using the console helper 
+dnl Allow users to run logview using the console helper 
 dnl PAM stuff.
 dnl *****************************************************************
 
@@ -261,77 +202,16 @@ EXPANDED_LOGVIEWDIR=`eval echo $LOGVIEWDIR_TMP`
 AC_SUBST(EXPANDED_LOGVIEWDIR)
 
 
-dnl ********************
-dnl gshutdown checks
-dnl ********************
-
-dnl This is where the binary actually resides,
-dnl not the console helper link
-if test "x$enable_console_helper" = "xyes"; then
-	GSHUTDOWNDIR_TMP="$sbindir"
-else
-	GSHUTDOWNDIR_TMP="$bindir"
-fi
-EXPANDED_GSHUTDOWNDIR=`eval echo $GSHUTDOWNDIR_TMP`
-AC_SUBST(EXPANDED_GSHUTDOWNDIR)
-
-
-dnl ******************** 
-dnl gsu checks
-dnl ********************
-
-AC_CHECK_LIB(pam, pam_authenticate, [
-	AC_DEFINE(USE_PAM)
-	AC_CHECK_LIB(pam_misc, pam_misc_setenv,
-	[PAM_LIBS="-ldl -lpam -lpam_misc"], [PAM_LIBS="-ldl -lpam"],
-	-ldl -lpam)
-], [PAM_LIBS=], -ldl)
-AC_SUBST(PAM_LIBS)
-
-AC_CHECK_FUNCS(endgrent endpwent)
-
-
-dnl ********************
-dnl idetool checks
-dnl ********************
-
-dnl mu_idetool=
-dnl AC_CHECK_HEADERS(linux/hdreg.h,[mu_idetool=idetool])
-dnl AM_CONDITIONAL(MU_IDETOOL,test "$mu_idetool" = idetool)
-
-dnl Needed on SysV for shadow passwords.
-AC_CHECK_LIB(sec, main)
-
-dnl Needed on Linux for shadow passwords.
-AC_CHECK_LIB(shadow, main)
-
-AC_EGREP_HEADER(sp_pwdp, shadow.h,
-		AC_CHECK_FUNC(getspnam, AC_DEFINE(HAVE_SHADOW_H)))
-
-AC_CHECK_FUNCS(crypt)
-if test $ac_cv_func_crypt = no; then
-  # SCO-ODT-3.0 is reported to need this library for crypt.
-  AC_CHECK_LIB(ufc, crypt, LIBS="$LIBS -lufc",
-    [# NetBSD needs this library for crypt.
-    AC_CHECK_LIB(crypt, crypt)])
-fi
-
 dnl ******************
 dnl gdialog checks
 dnl ******************
 
-AC_CHECK_CURSES
-AC_SUBST(CURSES_INCLUDEDIR)
-AC_SUBST(CURSES_LIBS)
+if test $enable_gdialog = yes; then
+  AC_CHECK_CURSES
+  AC_SUBST(CURSES_INCLUDEDIR)
+  AC_SUBST(CURSES_LIBS)
+fi
 
-dnl ******************
-dnl guname checks
-dnl ******************
-
-AC_ARG_ENABLE(guname-capplet,
-[  --disable-guname-capplet  Use guname-capplet to build guname with control center applet support[default=yes]], enable_guname_capplet="$enableval", enable_guname_capplet=yes)
-
-AM_CONDITIONAL(GUNAME_CAPPLET, test x$enable_guname_capplet = xno)
 
 dnl ********************
 dnl scrollkeeper checks 
@@ -341,6 +221,7 @@ AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
 if test x$SCROLLKEEPER_CONFIG = xno; then
   AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package)
 fi
+
 
 dnl *******************************
 dnl Internationalization
@@ -394,27 +275,6 @@ meat-grinder/help/Makefile
 meat-grinder/help/C/Makefile
 exe-handler/Makefile])
 
-#gcalc/help/it/Makefile
-#gcalc/help/es/Makefile
-#gcalc/help/de/Makefile
-#mini-utils/Makefile
-#mini-utils/gfontsel/Makefile
-#mini-utils/gfontsel/help/Makefile
-#mini-utils/gfontsel/help/C/Makefile
-#mini-utils/gfontsel/help/es/Makefile
-#mini-utils/gcolorsel/Makefile
-#mini-utils/gcolorsel/glade/Makefile
-#mini-utils/gcolorsel/doc/Makefile
-#mini-utils/gcolorsel/doc/C/Makefile
-#splash/Makefile
-#stripchart/Makefile
-#stripchart/doc/Makefile
-#stripchart/doc/es/Makefile
-#stripchart/doc/C/Makefile
-#cromagnon/Makefile
-#mini-utils/gsu/Makefile
-#mini-utils/gpenguin/Makefile
-
 dnl <= Configuration summary =>
 
 echo ""
@@ -434,9 +294,12 @@ echo "bin dir : "`eval echo $bindir`
 echo "sbin dir : "`eval echo $sbindir`
 echo "PAM prefix : $PAM_PREFIX"
 echo "data dir : "`eval echo $datadir`
-echo "X libraries dir : $XLIBDIR"
 echo ""
 
+echo ""
+echo "The following will be built -"
+echo "============================="
+echo ""
 dnl <= Console Helper =>
 if test "x$enable_console_helper" = "xyes"; then
 	echo "Console helper (logview)          : YES"
@@ -454,27 +317,5 @@ else
 	echo "Build gfloppy                     : NO"
 fi
 
-dnl <= idetool =>
-if test "x$mu_idetool" = "xidetool"; then
-	echo "Build idetool                     : YES"
-else
-	echo "Build idetool                     : NO"
-fi
-
-dnl <= guname capplet =>
-if test "x$enable_guname_capplet" = "xyes"; then
-	echo "guname capplet                    : YES"
-else
-	echo "guname capplet                    : NO"
-fi
-
-dnl <= gcolorsel applet =>
-if test "x$enable_gcolorsel_applet" = "xyes"; then
-	echo "gcolorsel applet                  : YES"
-else
-	echo "gcolorsel applet                  : NO"
-fi
-
 echo ""
 dnl <= End of configuration summary =>
-

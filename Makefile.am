@@ -11,10 +11,7 @@ SUBDIRS = po 		\
 	gsearchtool	\
 	gdictsrc	\
 	gdialog		\
-	meat-grinder	\
-	exe-handler
-
-#splash stripchart mini-utils gtt
+	meat-grinder
 
 EXTRA_DIST = \
 	gnome-utils.spec.in \
