@@ -14,7 +14,7 @@ SUBDIRS = po intl macros \
 # `automake' all the subdirs that make up `gnome-utils'.
 DIST_SUBDIRS = po intl macros \
 	cromagnon find-file gcalc gedit genius ghex gncal gpostit \
-	gsearchtool gtop gtt mini-utils notepad
+	gsearchtool gtop gtt mini-utils notepad gdiskfree
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
