@@ -77,7 +77,9 @@ int main(int argc, char *argv[])
 	
 	if(getenv("DISPLAY"))
 	{
-		gnome_init("gdialog", VERSION, argc, argv);
+		gnome_program_init ("gdialog", VERSION, LIBGNOMEUI_MODULE,
+					argc, argv,NULL);
+
 		gnome_mode=1;
 	}
 	

@@ -68,18 +68,23 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 		
 		if(fp==NULL)
 		{
-			GtkWidget *w=gnome_message_box_new("Unable to open file",
-						GNOME_MESSAGE_BOX_ERROR,
-						GNOME_STOCK_BUTTON_OK,
-						NULL);
+			GtkWidget *w = gtk_message_dialog_new (NULL,
+				GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_MESSAGE_ERROR,
+				GTK_BUTTONS_OK,
+				"Unable to open file",
+				NULL);
 			gtk_widget_show(w);
 			return 0;
 		}
 
-		w = gnome_dialog_new(title,
-				     GNOME_STOCK_BUTTON_OK, NULL);
+		w  = gtk_dialog_new_with_buttons (title,
+                                          NULL,
+                                          GTK_DIALOG_DESTROY_WITH_PARENT,
+                                          GTK_STOCK_OK,
+                                          GTK_RESPONSE_OK,
+                                          NULL);
 		
-		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
 		gtk_window_set_title(GTK_WINDOW(w), title);
 
 		hbox = gtk_hbox_new(FALSE, 0);
@@ -104,13 +109,13 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 		gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
 		gtk_widget_show(hbox);
 
-		gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox),
+		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(w)->vbox),
 				   hbox,
 				   TRUE, TRUE, GNOME_PAD);
 		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 		
 		gtk_widget_realize(text);
-		gtk_widget_set_usize(text, 8*width, 7*height);
+		gtk_widget_set_size_request(text, 8*width, 7*height);
 
 		while(fgets(buf, 511, fp)!=NULL)
 		{
@@ -118,9 +123,9 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 				(GTK_TEXT_VIEW(text), buf);
 		}
 		fclose(fp);
-		gtk_signal_connect(GTK_OBJECT(w), "destroy",
+		gtk_signal_connect(GTK_OBJECT(w), "close",
 			GTK_SIGNAL_FUNC(cancelled), NULL);
-		gtk_signal_connect(GTK_OBJECT(w), "clicked",
+		gtk_signal_connect(GTK_OBJECT(w), "response",
 			GTK_SIGNAL_FUNC(okayed), NULL);
 		gtk_widget_show(w);
 		gtk_widget_grab_focus (text);

@@ -55,7 +55,7 @@ dialog_guage (const char *title, const char *prompt, int height,
       }
     if(gnome_mode)
       {
-	GtkWidget *w = gnome_dialog_new(title, NULL, NULL);
+	GtkWidget *w = gtk_dialog_new_with_buttons (title,NULL,GTK_DIALOG_DESTROY_WITH_PARENT,NULL);
 	GtkWidget *p = gtk_progress_bar_new();
 	GtkWidget *vbox = gtk_vbox_new(FALSE, 0);
 	guint input;
@@ -64,7 +64,7 @@ dialog_guage (const char *title, const char *prompt, int height,
 	label_autowrap(vbox, prompt, width);
 	gtk_progress_set_percentage( GTK_PROGRESS( p ), ( (gfloat) percent ) / 100);
 	gtk_box_pack_start(GTK_BOX(vbox), p, TRUE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), vbox,
+	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(w)->vbox), vbox,
 			   TRUE, TRUE, GNOME_PAD);
 	gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 

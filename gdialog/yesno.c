@@ -27,7 +27,7 @@ int dialog_yesno_with_default(const char *title, const char *prompt,
 
 static void callback_yn(GtkWidget *w, gint button, gpointer *unused)
 {
-	/* yes = 0 no = 1 */
+	/* yes = GTK_RESPONSE_YES no = GTK_RESPONSE_NO */
 	exit(button);
 }
 
@@ -46,19 +46,28 @@ void dialog_yesno(const char *title, const char *prompt, int height, int width)
  */
 int dialog_yesno_with_default(const char *title, const char *prompt, int height, int width, int yesno_default)
 {
-	int i, x, y, key = 0, button = 0;
+	int i, x, y, key = GTK_RESPONSE_YES, button = 0;
 	WINDOW *dialog;
 
 
 	if (gnome_mode) {
-		GtkWidget *w = gnome_dialog_new(title, 	
-			GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO, NULL);
+
+		GtkWidget *w  = gtk_dialog_new_with_buttons (title,
+				NULL,
+				GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_STOCK_YES,
+				GTK_RESPONSE_YES,
+				GTK_STOCK_NO,
+				GTK_RESPONSE_NO,
+				NULL);
 		GtkWidget *hbox;
 		GtkWidget *vbox;
 
-                gnome_dialog_set_default(GNOME_DIALOG(w), !yesno_default);
-                
-		gnome_dialog_set_close(GNOME_DIALOG(w), TRUE);
+		if(yesno_default)
+			gtk_dialog_set_default_response (GTK_DIALOG(w),GTK_RESPONSE_YES);                
+		else
+			gtk_dialog_set_default_response (GTK_DIALOG(w),GTK_RESPONSE_NO);                
+			
 		gtk_window_set_title(GTK_WINDOW(w), title);
 		
 		hbox = gtk_hbox_new(FALSE, 0);
@@ -77,13 +86,13 @@ int dialog_yesno_with_default(const char *title, const char *prompt, int height,
                 
 		gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
 
-		gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(w)->vbox), 
+		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(w)->vbox), 
 			hbox,
 			TRUE, TRUE, GNOME_PAD);
 		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
 		
-		gtk_signal_connect(GTK_OBJECT(w), "clicked", GTK_SIGNAL_FUNC(callback_yn), NULL);
-		gtk_signal_connect(GTK_OBJECT(w), "destroy", GTK_SIGNAL_FUNC(callback_err), NULL);
+		gtk_signal_connect(GTK_OBJECT(w), "response", GTK_SIGNAL_FUNC(callback_yn), NULL);
+		gtk_signal_connect(GTK_OBJECT(w), "close", GTK_SIGNAL_FUNC(callback_err), NULL);
 		gtk_widget_show_all(w);
 		gtk_main();
 		return -1;
@@ -129,7 +138,12 @@ int dialog_yesno_with_default(const char *title, const char *prompt, int height,
 	print_button(dialog, " Yes ", y, x, yesno_default);
 	wmove(dialog, y,
               (yesno_default ? x : x + 13));
-        button = !yesno_default;
+
+	if(yesno_default)
+       		button = GTK_RESPONSE_YES;
+	else
+       		button = GTK_RESPONSE_NO;
+		
 	wrefresh(dialog);
 
 	while (key != ESC) {
@@ -146,19 +160,22 @@ int dialog_yesno_with_default(const char *title, const char *prompt, int height,
 
 		case M_EVENT + 'y':	/* mouse enter... */
 		case M_EVENT + 'n':	/* use the code for toggling */
-			button = (key == M_EVENT + 'y');
+			if(key == M_EVENT + 'y')
+				button = GTK_RESPONSE_NO;
+			else
+				button = GTK_RESPONSE_YES;
 
 		case TAB:
 		case KEY_UP:
 		case KEY_DOWN:
 		case KEY_LEFT:
 		case KEY_RIGHT:
-			if (!button) {
-				button = 1;	/* "No" button selected */
+			if (button == GTK_RESPONSE_YES) {
+				button = GTK_RESPONSE_NO;	/* "No" button selected */
 				print_button(dialog, " Yes ", y, x, FALSE);
 				print_button(dialog, "  No  ", y, x + 13, TRUE);
 			} else {
-				button = 0;	/* "Yes" button selected */
+				button = GTK_RESPONSE_YES;	/* "Yes" button selected */
 				print_button(dialog, "  No  ", y, x + 13, FALSE);
 				print_button(dialog, " Yes ", y, x, TRUE);
 			}
