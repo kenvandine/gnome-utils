@@ -15,4 +15,4 @@ gdiskfree_SOURCES =				\
 	save-cwd.h
 
 gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
-		   $(GNOMEUI_LIBS) $(INTLLIBS) -lgtkext -lgtktty
+		   $(GNOMEUI_LIBS) $(INTLLIBS) -lgtktty
