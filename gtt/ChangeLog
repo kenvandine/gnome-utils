@@ -1,3 +1,25 @@
+Tue Jan 20 02:03:29 1998  Eckehard Berns  <eb@berns.prima.de>
+
+	* gtthelp.c: Added a toolbar. Added a menu to configure the
+ 	  toolbar. These toolbar settings still need to be saved.
+
+Mon Jan 19 22:24:13 1998  Eckehard Berns  <eb@berns.prima.de>
+
+	* prop.c (prop_dialog): signal_connected delete_event to
+ 	  gtt_delete_event
+
+	* options.c (options_dialog): signal_connected delete_event to
+ 	  gtt_delete_event, which actiually just hides the widget
+
+	* app.c: eliminated segfault bug by not destroying any GnomeApp
+ 	  (GTT's main window and GttHelp).
+
+	* gtthelp.c: added history. Found out about
+ 	  XmHTMLAnchorScrollToName. I still do not use it because it is
+ 	  not converted to gtk yet. Found the segfault bug - seems to be a
+ 	  problem with free/malloc in my libc or in gtk - I worked around
+ 	  it by not destroying anything.
+
 Mon Jan 19 01:34:13 1998  Eckehard Berns  <eb@berns.prima.de>
 
 	* dialog.c (new_dialog): included GtkDialog support when

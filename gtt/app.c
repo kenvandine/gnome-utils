@@ -409,11 +409,6 @@ void app_new(int argc, char *argv[])
 #else /* not GNOME_USE_APP */ 
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), APP_NAME " " VERSION);
-
-	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
-			   GTK_SIGNAL_FUNC(gtk_true), NULL);
-	gtk_signal_connect(GTK_OBJECT(window), "destroy",
-			   GTK_SIGNAL_FUNC(quit_app), NULL);
 	gtk_container_border_width(GTK_CONTAINER(window), 1);
 
 	vbox = gtk_vbox_new(FALSE, 3);
@@ -476,6 +471,8 @@ void app_new(int argc, char *argv[])
 		while (y > t) y -= t;
 		gtk_widget_set_uposition(window, x, y);
 	}
+	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
+			   GTK_SIGNAL_FUNC(quit_app), NULL);
 #ifdef GNOME_USE_APP
 	gnome_app_set_contents(GNOME_APP(window), vbox);
 #endif

@@ -27,33 +27,141 @@
 #include <errno.h>
 
 
+#include "tb_home.xpm"
+#include "tb_back.xpm"
+#include "tb_forward.xpm"
+#include "tb_unknown.xpm"
+#include "tb_exit.xpm"
+
+
+/*******************/
+/* history helpers */
+/*******************/
+
+
+static void
+gtt_help_history_add(GttHelp *help, const char *path, const char *anchor)
+{
+        char *s;
+        int len, i;
+
+        len = strlen(path);
+        if (anchor) {
+                if (anchor[0])
+                        len += strlen(anchor) + 1;
+        }
+        s = g_malloc(len + 1);
+        strcpy(s, path);
+        if (anchor) {
+                if (anchor[0]) {
+                        strcat(s, "#");
+                        strcat(s, anchor);
+                }
+        }
+        if (help->history_pos > 0) {
+                if (0 == strcmp(help->history[help->history_pos - 1], s)) {
+                        g_free(s);
+                        return;
+                }
+        }
+        if (help->history_pos == GTT_HELP_MAX_HISTORY) {
+                for (i = 1; i < GTT_HELP_MAX_HISTORY; i++)
+                        help->history[i-1] = help->history[i];
+                help->history_pos--;
+                help->history[help->history_pos] = NULL;
+        }
+        if (help->history[help->history_pos]) {
+                if (0 == strcmp(help->history[help->history_pos], s)) {
+                        g_free(s);
+                        help->history_pos++;
+                        return;
+                }
+                g_free(help->history[help->history_pos]);
+        }
+        help->history[help->history_pos] = s;
+        help->history_pos++;
+        for (i = help->history_pos; i < GTT_HELP_MAX_HISTORY; i++) {
+                if (help->history[i]) {
+                        g_free(help->history[i]);
+                        help->history[i] = NULL;
+                }
+        }
+}
+
+
+
+static const char *
+gtt_help_history_back(GttHelp *help)
+{
+        if (help->history_pos <= 1) return NULL;
+        help->history_pos -= 2;
+        return help->history[help->history_pos];
+}
+
+
+
+static const char *
+gtt_help_history_forward(GttHelp *help)
+{
+        if (help->history_pos == GTT_HELP_MAX_HISTORY) return NULL;
+        return help->history[help->history_pos];
+}
+
+
+
+static gint
+gtt_help_history_is_prev(GttHelp *help)
+{
+        return (help->history_pos > 1);
+}
+
+
+
+static gint
+gtt_help_history_is_next(GttHelp *help)
+{
+        if (help->history_pos == GTT_HELP_MAX_HISTORY) return 0;
+        return (NULL != help->history[help->history_pos]);
+}
+
+
+
+/****************/
+/* widget stuff */
+/****************/
+
 
 static GnomeAppClass *parent_class = NULL;
 
+static void gtt_help_update(GttHelp *help);
 
 
-static void gtt_help_destroy(GtkObject *object)
+static void
+gtt_help_destroy(GtkObject *object)
 {
 	GttHelp *help;
+        int i;
 
 	g_return_if_fail (object != NULL);
 	g_return_if_fail (GTT_IS_HELP (object));
 
 	help = GTT_HELP (object);
-	
+
 	/* free GttHelp resources */
 	if (help->html_source) g_free(help->html_source);
 	if (help->home) g_free(help->home);
-	/* TODO: verify that children of GnomeApp
-	 * (that is GtkWindow), will be destroyed */
+        for (i = 0; i < GTT_HELP_MAX_HISTORY; i++) {
+                if (help->history[i]) g_free(help->history[i]);
+        }
 
-	if (GTK_OBJECT_CLASS(parent_class)->destroy)
-		(* GTK_OBJECT_CLASS(parent_class)->destroy)(GTK_OBJECT(help));
+ 	if (GTK_OBJECT_CLASS(parent_class)->destroy)
+ 		(* GTK_OBJECT_CLASS(parent_class)->destroy)(GTK_OBJECT(help));
 }
 
 
 
-static void gtt_help_class_init(GttHelpClass *helpclass)
+static void
+gtt_help_class_init(GttHelpClass *helpclass)
 {
 	GtkObjectClass *object_class = GTK_OBJECT_CLASS(helpclass);
 	object_class->destroy = gtt_help_destroy;
@@ -61,7 +169,8 @@ static void gtt_help_class_init(GttHelpClass *helpclass)
 
 
 
-static void xmhtml_activate(GtkWidget *w, XmHTMLAnchorCallbackStruct *cbs)
+static void
+xmhtml_activate(GtkWidget *w, XmHTMLAnchorCallbackStruct *cbs)
 {
 	gtt_help_goto(GTT_HELP(w), cbs->href);
 }
@@ -69,17 +178,17 @@ static void xmhtml_activate(GtkWidget *w, XmHTMLAnchorCallbackStruct *cbs)
 
 
 
-static int my_false(GtkWidget *w, gpointer *data)
+static int
+my_false(GtkWidget *w, gpointer *data)
 {
 	return FALSE;
 }
 
 
-void gtt_help_on_help(GttHelp *help)
+void
+gtt_help_on_help(GttHelp *help)
 {
-	gtk_xmhtml_source(help->gtk_xmhtml,
-			  "<html><head><title>Not implemented yet</title></head>\n"
-			  "<body><h3>Not implemented yet</h3></body>\n");
+        gtt_help_goto(help, "<help>");
 }
 
 
@@ -87,43 +196,43 @@ void gtt_help_on_help(GttHelp *help)
 #define USE_HELP_TOOLBAR
 
 #if defined(USE_HELP_MENU) || defined(USE_HELP_TOOLBAR)
-static void help_contents(GtkWidget *w, gpointer *data)
+static void
+help_contents(GtkWidget *w, gpointer *data)
 {
 	gtt_help_goto(GTT_HELP(w), GTT_HELP(w)->home);
+}
+
+static void
+help_back(GtkWidget *w, gpointer *data)
+{
+        g_return_if_fail(gtt_help_history_is_prev(GTT_HELP(w)));
+        gtt_help_goto(GTT_HELP(w), gtt_help_history_back(GTT_HELP(w)));
+}
+
+static void
+help_forward(GtkWidget *w, gpointer *data)
+{
+        g_return_if_fail(gtt_help_history_is_next(GTT_HELP(w)));
+        gtt_help_goto(GTT_HELP(w), gtt_help_history_forward(GTT_HELP(w)));
 }
 #endif /* defined(USE_HELP_MENU) || defined(USE_HELP_TOOLBAR) */
 
 
-#if defined USE_HELP_TOOLBAR && 0
-static GnomeToolbarInfo tb_info[] = {
-};
-#endif /* USE_HELP_TOOLBAR */
-
-static void gtt_help_init(GttHelp *help)
+static void
+gtt_help_init_menu(GttHelp *help)
 {
+#ifdef USE_HELP_MENU
 	GtkWidget *w, *menu, *menubar;
 	GtkAcceleratorTable *accel;
 
-	/* init struct _GttHelp */
-	gtk_signal_connect(GTK_OBJECT(GTK_WINDOW(help)), "delete_event",
-			   (GtkSignalFunc)my_false, NULL);
-
-#ifdef USE_HELP_MENU
 	accel = gtk_accelerator_table_new();
 	menubar = gtk_menu_bar_new();
 	gtk_widget_show(menubar);
+
 	menu = gtk_menu_new();
-	w = gtk_menu_item_new_with_label("Show Contents");
-	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
-				  GTK_SIGNAL_FUNC(help_contents),
-				  GTK_OBJECT(help));
-	gtk_widget_show(w);
-	gtk_menu_append(GTK_MENU(menu), w);
-	gtk_widget_install_accelerator(w, accel, "activate",
-				       'H', GDK_CONTROL_MASK);
 	w = gtk_menu_item_new_with_label("Close Help Window");
 	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
-				  GTK_SIGNAL_FUNC(gtk_widget_destroy),
+				  GTK_SIGNAL_FUNC(gtt_help_close),
 				  GTK_OBJECT(help));
 	gtk_widget_show(w);
 	gtk_menu_append(GTK_MENU(menu), w);
@@ -133,6 +242,65 @@ static void gtt_help_init(GttHelp *help)
 	gtk_widget_show(w);
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
 	gtk_menu_bar_append(GTK_MENU_BAR(menubar), w);
+
+	menu = gtk_menu_new();
+	w = gtk_menu_item_new_with_label("Show Contents");
+        help->menu_contents = w;
+	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
+				  GTK_SIGNAL_FUNC(help_contents),
+				  GTK_OBJECT(help));
+	gtk_widget_show(w);
+	gtk_menu_append(GTK_MENU(menu), w);
+	gtk_widget_install_accelerator(w, accel, "activate",
+				       'H', GDK_CONTROL_MASK);
+	w = gtk_menu_item_new_with_label("Back");
+        help->menu_back = w;
+	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
+				  GTK_SIGNAL_FUNC(help_back),
+				  GTK_OBJECT(help));
+	gtk_widget_show(w);
+	gtk_menu_append(GTK_MENU(menu), w);
+	gtk_widget_install_accelerator(w, accel, "activate",
+				       'B', GDK_CONTROL_MASK);
+	w = gtk_menu_item_new_with_label("Forward");
+        help->menu_forward = w;
+	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
+				  GTK_SIGNAL_FUNC(help_forward),
+				  GTK_OBJECT(help));
+	gtk_widget_show(w);
+	gtk_menu_append(GTK_MENU(menu), w);
+	gtk_widget_install_accelerator(w, accel, "activate",
+				       'F', GDK_CONTROL_MASK);
+	w = gtk_menu_item_new_with_label("Go");
+	gtk_widget_show(w);
+	gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
+	gtk_menu_bar_append(GTK_MENU_BAR(menubar), w);
+
+#ifdef USE_HELP_TOOLBAR
+	menu = gtk_menu_new();
+	w = gtk_check_menu_item_new_with_label("Toolbar Icons");
+        gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(w), 1);
+	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
+				  GTK_SIGNAL_FUNC(gtt_help_update),
+				  GTK_OBJECT(help));
+        help->tbar_icon = GTK_CHECK_MENU_ITEM(w);
+	gtk_widget_show(w);
+	gtk_menu_append(GTK_MENU(menu), w);
+	gtk_widget_install_accelerator(w, accel, "activate",
+				       'H', GDK_MOD1_MASK);
+	w = gtk_check_menu_item_new_with_label("Toolbar Texts");
+        gtk_check_menu_item_set_state(GTK_CHECK_MENU_ITEM(w), 1);
+	gtk_signal_connect_object(GTK_OBJECT(w), "activate",
+				  GTK_SIGNAL_FUNC(gtt_help_update),
+				  GTK_OBJECT(help));
+        help->tbar_text = GTK_CHECK_MENU_ITEM(w);
+	gtk_widget_show(w);
+	gtk_menu_append(GTK_MENU(menu), w);
+	w = gtk_menu_item_new_with_label("Options");
+	gtk_widget_show(w);
+	gtk_menu_item_set_submenu(GTK_MENU_ITEM(w), menu);
+	gtk_menu_bar_append(GTK_MENU_BAR(menubar), w);
+#endif
 
 	menu = gtk_menu_new();
 	w = gtk_menu_item_new_with_label("Help on Help");
@@ -150,13 +318,109 @@ static void gtt_help_init(GttHelp *help)
 	gtk_menu_bar_append(GTK_MENU_BAR(menubar), w);
 
 	gnome_app_set_menus(GNOME_APP(help), GTK_MENU_BAR(menubar));
-#endif /* USE_HELP_MENU */
-	
-	gtk_window_add_accelerator_table(GTK_WINDOW(help), accel);
 
+	gtk_window_add_accelerator_table(GTK_WINDOW(help), accel);
+#endif /* USE_HELP_MENU */
+}
+
+
+static void
+gtt_help_init_toolbar(GttHelp *help)
+{
+#ifdef USE_HELP_TOOLBAR
+        GtkWidget *w, *pixmap;
+        GtkToolbar *tbar;
+
+        tbar = (GtkToolbar *)gtk_toolbar_new(GTK_ORIENTATION_HORIZONTAL,
+                                             GTK_TOOLBAR_BOTH);
+
+        pixmap = gnome_create_pixmap_widget_d(GTK_WIDGET(help),
+                                              GTK_WIDGET(tbar),
+                                              tb_home_xpm);
+        w = gtk_toolbar_append_item(tbar, "Contents", "Show Contents",
+                                    pixmap, NULL, NULL);
+        help->tbar_contents = w;
+        gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
+                                  GTK_SIGNAL_FUNC(help_contents),
+                                  GTK_OBJECT(help));
+
+        gtk_toolbar_append_space(tbar);
+
+        pixmap = gnome_create_pixmap_widget_d(GTK_WIDGET(help),
+                                              GTK_WIDGET(tbar),
+                                              tb_back_xpm);
+        w = gtk_toolbar_append_item(tbar, "Back",
+                                    "Go to the previouse location "
+                                    "in history list",
+                                    pixmap, NULL, NULL);
+        help->tbar_back = w;
+        gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
+                                  GTK_SIGNAL_FUNC(help_back),
+                                  GTK_OBJECT(help));
+
+        pixmap = gnome_create_pixmap_widget_d(GTK_WIDGET(help),
+                                              GTK_WIDGET(tbar),
+                                              tb_forward_xpm);
+        w = gtk_toolbar_append_item(tbar, "Forward",
+                                    "Go to the next location in history list",
+                                    pixmap, NULL, NULL);
+        help->tbar_forward = w;
+        gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
+                                  GTK_SIGNAL_FUNC(help_forward),
+                                  GTK_OBJECT(help));
+
+        gtk_toolbar_append_space(tbar);
+
+        pixmap = gnome_create_pixmap_widget_d(GTK_WIDGET(help),
+                                              GTK_WIDGET(tbar),
+                                              tb_unknown_xpm);
+        w = gtk_toolbar_append_item(tbar, "Help", "Help on Help",
+                                    pixmap, NULL, NULL);
+        gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
+                                  GTK_SIGNAL_FUNC(gtt_help_on_help),
+                                  GTK_OBJECT(help));
+
+        pixmap = gnome_create_pixmap_widget_d(GTK_WIDGET(help),
+                                              GTK_WIDGET(tbar),
+                                              tb_exit_xpm);
+        w = gtk_toolbar_append_item(tbar, "Close", "Close Help Window",
+                                    pixmap, NULL, NULL);
+        gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
+                                  GTK_SIGNAL_FUNC(gtk_widget_hide),
+                                  GTK_OBJECT(help));
+
+        gnome_app_set_toolbar(GNOME_APP(help), tbar);
+
+        help->toolbar = tbar;
+#endif /* USE_HELP_TOOLBAR */
+}
+
+
+static void
+gtt_help_init(GttHelp *help)
+{
+        int i;
+
+	/* init struct _GttHelp */
+	gtk_signal_connect(GTK_OBJECT(GTK_WINDOW(help)), "delete_event",
+			   (GtkSignalFunc)my_false, NULL);
+
+        help->history_pos = 0;
+        for (i = 0; i < GTT_HELP_MAX_HISTORY; i++) {
+                help->history[i] = NULL;
+        }
+        help->menu_contents = NULL;
+        help->menu_back = NULL;
+        help->menu_forward = NULL;
+        help->tbar_contents = NULL;
+        help->tbar_back = NULL;
+        help->tbar_forward = NULL;
 	help->html_source = help->home = NULL;
 	help->document_path[0] = 0;
 
+        gtt_help_init_menu(help);
+        gtt_help_init_toolbar(help);
+	
 	help->gtk_xmhtml = GTK_XMHTML(gtk_xmhtml_new());
 	gtk_signal_connect_object(GTK_OBJECT(help->gtk_xmhtml), "activate",
 			   (GtkSignalFunc)xmhtml_activate, GTK_OBJECT(help));
@@ -166,7 +430,8 @@ static void gtt_help_init(GttHelp *help)
 
 
 
-guint gtt_help_get_type(void)
+guint
+gtt_help_get_type(void)
 {
 	static guint GttHelp_type = 0;
 	if (!GttHelp_type) {
@@ -187,7 +452,51 @@ guint gtt_help_get_type(void)
 
 
 
-GtkWidget *gtt_help_new(char *title, char *filename)
+guint
+gtt_help_close(GttHelp *w)
+{
+        gtk_widget_hide(GTK_WIDGET(w));
+        return FALSE;
+}
+
+
+
+static void
+gtt_help_update(GttHelp *help)
+{
+        if (help->menu_contents)
+                gtk_widget_set_sensitive(help->menu_contents,
+                                         (help->home != NULL));
+        if (help->menu_back)
+                gtk_widget_set_sensitive(help->menu_back,
+                                         gtt_help_history_is_prev(help));
+        if (help->menu_forward)
+                gtk_widget_set_sensitive(help->menu_forward,
+                                         gtt_help_history_is_next(help));
+        if ((help->tbar_icon->active) &&
+            (help->tbar_text->active)) {
+                gtk_toolbar_set_style(help->toolbar, GTK_TOOLBAR_BOTH);
+        } else if ((!help->tbar_icon->active) &&
+                   (help->tbar_text->active)) {
+                gtk_toolbar_set_style(help->toolbar, GTK_TOOLBAR_TEXT);
+        } else {
+                gtk_toolbar_set_style(help->toolbar, GTK_TOOLBAR_ICONS);
+        }
+        if (help->tbar_contents)
+                gtk_widget_set_sensitive(help->tbar_contents,
+                                         (help->home != NULL));
+        if (help->tbar_back)
+                gtk_widget_set_sensitive(help->tbar_back,
+                                         gtt_help_history_is_prev(help));
+        if (help->tbar_forward)
+                gtk_widget_set_sensitive(help->tbar_forward,
+                                         gtt_help_history_is_next(help));
+}
+
+
+
+GtkWidget *
+gtt_help_new(char *title, const char *filename)
 {
 	GtkWidget *w;
 	GttHelp *help;
@@ -200,16 +509,28 @@ GtkWidget *gtt_help_new(char *title, char *filename)
 		gtt_help_goto(help, filename);
 		help->home = g_strdup(filename);
 	}
-	
+
+        gtk_signal_connect(GTK_OBJECT(help), "delete_event",
+                           GTK_SIGNAL_FUNC(gtt_help_close), NULL);
 	gtk_widget_set_usize(GTK_WIDGET(help), 400, 300);
+
+        gtt_help_update(help);
 
 	return w;
 }
 
 
 
-static void jump_to_anchor(GtkXmHTML *w, char *html, char *anchor)
+static void
+jump_to_anchor(GtkXmHTML *w, char *html, char *anchor)
 {
+        /* Okay, after reading much of the sources of gtk-XmHTML, I
+           found the right function to call for this. But it seems not
+           to be implemented yet. To let the user see, that we're
+           trying to do something, I use my improper set_topline */
+#if 0
+        XmHTMLAnchorScrollToName(GTK_WIDGET(w), anchor);
+#else
 	/* TODO: this doesn't seem to work properly */
 	char *p1, *p2, *s;
 	int line = 0;
@@ -248,11 +569,13 @@ static void jump_to_anchor(GtkXmHTML *w, char *html, char *anchor)
 		p1++;
 	}
 	g_free(s);
+#endif
 }
 
 
 
-void gtt_help_goto(GttHelp *help, char *filename)
+void
+gtt_help_goto(GttHelp *help, const char *filename)
 {
 	FILE *f;
 	char *str, *tmp, s[1024], *anchor, *path;
@@ -260,6 +583,17 @@ void gtt_help_goto(GttHelp *help, char *filename)
 	g_return_if_fail(help != NULL);
 	g_return_if_fail(GTT_IS_HELP(help));
 	g_return_if_fail(filename != NULL);
+
+        if (0 == strcmp(filename, "<help>")) {
+                gtt_help_history_add(help, "<help>", NULL);
+                gtt_help_update(help);
+                gtk_xmhtml_source(help->gtk_xmhtml,
+                                  "<html><head><title>Not implemented yet"
+                                  "</title></head>\n"
+                                  "<body><h3>Not implemented yet"
+                                  "</h3></body>\n");
+                return;
+        }
 
 	path = help->document_path;
 	str = help->html_source;
@@ -276,6 +610,7 @@ void gtt_help_goto(GttHelp *help, char *filename)
 		*anchor = 0;
 		anchor++;
 	}
+        /* TODO: jump to a "#anchor" in the same document should work */
 	if ((path[strlen(path) - 1] == '/') ||
 	    (path[0] == 0)) {
 		if (!str) return;
@@ -285,6 +620,8 @@ void gtt_help_goto(GttHelp *help, char *filename)
 			       anchor);
 		return;
 	}
+        gtt_help_history_add(help, path, anchor);
+        gtt_help_update(help);
 	errno = 0;
 	f = fopen(path, "rt");
 	if ((errno) || (!f)) {

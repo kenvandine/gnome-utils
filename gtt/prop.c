@@ -172,6 +172,9 @@ void prop_dialog(project *proj)
 		dlg->dlg = GTK_DIALOG(gtk_dialog_new());
 		sprintf(s, APP_NAME " - %s", _("Properties"));
 		gtk_window_set_title(GTK_WINDOW(dlg->dlg), s);
+                gtk_signal_connect(GTK_OBJECT(dlg->dlg), "delete_event",
+                                   GTK_SIGNAL_FUNC(gtt_delete_event),
+                                   NULL);
 		aa = GTK_BOX(dlg->dlg->action_area);
 		vbox = GTK_BOX(gtk_vbox_new(FALSE, 2));
 		gtk_widget_show(GTK_WIDGET(vbox));

@@ -31,11 +31,19 @@ BEGIN_GNOME_DECLS
 typedef struct _GttHelp GttHelp;
 typedef struct _GttHelpClass GttHelpClass;
 
+#define GTT_HELP_MAX_HISTORY 10
+
 struct _GttHelp {
 	GnomeApp parent_object;
 	GtkXmHTML *gtk_xmhtml;
 	char *home;
 	char *html_source;
+        gint history_pos;
+        char *history[GTT_HELP_MAX_HISTORY];
+        GtkWidget *menu_contents, *menu_back, *menu_forward;
+        GtkWidget *tbar_contents, *tbar_back, *tbar_forward;
+        GtkCheckMenuItem *tbar_icon, *tbar_text;
+        GtkToolbar *toolbar;
 	char document_path[1024];
 };
 
@@ -45,10 +53,12 @@ struct _GttHelpClass {
 
 guint gtt_help_get_type(void);
 GtkWidget *gtt_help_new(char *title,
-			char *filename);	/* filename can contain "#bla" */
+			const char *filename);	/* filename can contain "#bla" */
+
+guint gtt_help_close(GttHelp *help);
 
 void gtt_help_goto(GttHelp *help,
-		   char *filename);		/* filename can contain "#bla" */
+		   const char *filename);	/* filename can contain "#bla" */
 void gtt_help_on_help(GttHelp *help);
 
 END_GNOME_DECLS

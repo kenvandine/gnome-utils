@@ -48,7 +48,7 @@
  * If defines, all my dialogs will use GtkDialog instead of creating it's own
  * window and that stuff.
  */
-#define GTK_USE_DIALOG
+#undef GTK_USE_DIALOG
 
 
 /*

@@ -22,6 +22,8 @@
  * The dialog created is a window widget - not a dialog widget!
  */
 
+gint gtt_delete_event(GtkWidget *w, gpointer *data);
+
 void new_dialog(char *title, GtkWidget **dlg, GtkBox **vbox_return, GtkBox **aa_return);
 void new_dialog_ok(char *title, GtkWidget **dlg, GtkBox **vbox,
 		       char *s, GtkSignalFunc sigfunc, gpointer *data);

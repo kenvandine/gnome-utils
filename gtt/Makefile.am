@@ -1,7 +1,7 @@
 Utilitiesdir = $(datadir)/apps/Utilities
 GTT_HELP_DIR = $(datadir)/gtt
 
-# DEFS += -ggdb -Wall -DDEBUG
+DEFS += -ggdb -Wall -DDEBUG
 
 INCLUDES = 			\
 	-I../.. 		\
@@ -37,7 +37,7 @@ gtt_SOURCES = 	\
 	gtt-features.h
 
 gtt_LDADD = \
-	$(top_builddir)/libgnomeui/libgnomeui.la 	\
+	$(top_builddir)/libgnomeui/_libs/libgnomeui.a 	\
 	$(top_builddir)/libgnome/libgnome.la		\
 	$(top_builddir)/gtk-xmhtml/libgtkxmhtml.la	\
 	$(top_builddir)/intl/libintl.a			\
@@ -66,6 +66,9 @@ EXTRA_DIST = \
 	tb_paste.xpm		\
 	tb_save.xpm		\
 	tb_unknown.xpm		\
+	tb_home.xpm		\
+	tb_back.xpm		\
+	tb_forward.xpm		\
 	gtt.sgml		\
 	$(GTT_HELP_FILES)	\
 	gtt.text		\

@@ -27,6 +27,15 @@
 
 
 
+gint
+gtt_delete_event(GtkWidget *w, gpointer *data)
+{
+        gtk_widget_hide(w);
+        return FALSE;
+}
+
+
+
 void new_dialog(char *title, GtkWidget **dlg, GtkBox **vbox_return, GtkBox **aa_return)
 {
 	GtkWidget *t;

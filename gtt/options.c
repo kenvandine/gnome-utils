@@ -298,6 +298,9 @@ void options_dialog(void)
 		odlg->dlg = GTK_DIALOG(gtk_dialog_new());
 		sprintf(s, APP_NAME " - %s", _("Preferences"));
 		gtk_window_set_title(GTK_WINDOW(odlg->dlg), s);
+                gtk_signal_connect(GTK_OBJECT(odlg->dlg), "delete_event",
+                                   GTK_SIGNAL_FUNC(gtt_delete_event),
+                                   NULL);
 
 		vbox = (GtkBox *)gtk_vbox_new(FALSE, 0);
 		gtk_widget_show(GTK_WIDGET(vbox));

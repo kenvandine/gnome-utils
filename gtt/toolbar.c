@@ -419,9 +419,15 @@ build_toolbar(void)
                    tb_preferences_xpm,
                    _("<Main>/Edit/Preferences..."));
 #ifdef EXTENDED_TOOLBAR
+#ifdef USE_GTT_HELP
+	add_button(mytbar->tbar, _("Help"), _("Help Contents..."),
+                   tb_unknown_xpm,
+                   _("<Main>/Help/Contents..."));
+#else /* not USE_GTT_HELP */
 	add_button(mytbar->tbar, _("About"), _("About..."),
                    tb_unknown_xpm,
                    _("<Main>/Help/About..."));
+#endif /* not USE_GTT_HELP */
 	add_button(mytbar->tbar, _("Exit"), _("Exit GTimeTracker"),
                    tb_exit_xpm,
                    _("<Main>/File/Exit"));
