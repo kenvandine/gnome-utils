@@ -635,6 +635,26 @@ update_search_counts (void)
 	g_free (stopped_string);
 }
 
+static void
+intermediate_file_count_update (void)
+{
+	gchar *string;
+	gint  count;
+	
+	count = gtk_tree_model_iter_n_children (GTK_TREE_MODEL(interface.model), NULL);
+	
+	if (count > 0) {
+		
+		string = g_strdup_printf (ngettext ("%d file found",
+		                                    "%d files found",
+		                                    count),
+		                          count);
+					  
+		gtk_label_set_text (GTK_LABEL (interface.results_label), string);
+		g_free (string);
+	}
+}
+
 static GtkWidget *
 make_list_of_templates (void)
 {
@@ -1168,11 +1188,15 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 					broken_pipe = TRUE;
 				}
 				else if (status == G_IO_STATUS_AGAIN) {
-					while (gtk_events_pending ()) {
-						if (search_data->running == MAKE_IT_QUIT) {
-							return FALSE;
-						}
-						gtk_main_iteration (); 				
+					if (gtk_events_pending ()) {
+						intermediate_file_count_update ();
+						while (gtk_events_pending ()) {
+							if (search_data->running == MAKE_IT_QUIT) {
+								return FALSE;
+							}
+							gtk_main_iteration (); 
+						}	
+ 				
 					}
 				}
 				
@@ -1241,11 +1265,14 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			g_timer_elapsed (timer, &duration);
 
 			if (duration > GNOME_SEARCH_TOOL_REFRESH_DURATION) {
-				while (gtk_events_pending ()) {
-					if (search_data->running == MAKE_IT_QUIT) {
-						return FALSE;
-					}
-					gtk_main_iteration ();		
+				if (gtk_events_pending ()) {
+					intermediate_file_count_update ();
+					while (gtk_events_pending ()) {
+						if (search_data->running == MAKE_IT_QUIT) {
+							return FALSE;
+						}
+						gtk_main_iteration ();		
+					}		
 				}
 				g_timer_reset (timer);
 			}
@@ -1325,11 +1352,15 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 					broken_pipe = TRUE;
 				}
 				else if (status == G_IO_STATUS_AGAIN) {
-					while (gtk_events_pending ()) {
-						if (search_data->running == MAKE_IT_QUIT) {
-							break;
+					if (gtk_events_pending ()) {
+						intermediate_file_count_update ();
+						while (gtk_events_pending ()) {
+							if (search_data->running == MAKE_IT_QUIT) {
+								break;
+							}
+							gtk_main_iteration ();
+
 						}
-						gtk_main_iteration ();
 					}
 				}
 				
