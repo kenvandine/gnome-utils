@@ -3,16 +3,12 @@
 
    Author: George Lebl <jirka@5z.com>
 */
-#define WITH_FOOT
-
 
 #include <config.h>
 #include <gnome.h>
 
-#ifdef WITH_FOOT
-#include "foot.xpm"
-#endif
-
+static GtkWidget *calc;
+static char copied_string[13]="";
 
 static void
 about_cb (GtkWidget *widget, gpointer data)
@@ -38,34 +34,53 @@ quit_cb (GtkWidget *widget, gpointer data)
 	gtk_main_quit ();
 }
 
+/* Callback when the user toggles the selection */
+static void
+copy_contents (GtkWidget *widget, gpointer data)
+{
+	strcpy(copied_string,GNOME_CALCULATOR(calc)->result_string);
+	gtk_selection_owner_set (calc,
+				 GDK_SELECTION_PRIMARY,
+				 GDK_CURRENT_TIME);
+}
+
+
+static void
+selection_handle (GtkWidget *widget, 
+		  GtkSelectionData *selection_data,
+		  int info, int time,
+		  gpointer data)
+{
+	gtk_selection_data_set (selection_data, GDK_SELECTION_TYPE_STRING,
+				8, copied_string, strlen(copied_string));
+}
+
 /* Menus */
-GnomeUIInfo gcalc_program_menu[] = {
+GnomeUIInfo gcalc_calculator_menu[] = {
+	{GNOME_APP_UI_ITEM, N_("E_xit"),  NULL, quit_cb, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_QUIT,
+	 'X', GDK_CONTROL_MASK, NULL},
+	GNOMEUIINFO_END
+};
+
+GnomeUIInfo gcalc_help_menu[] = {
 	{GNOME_APP_UI_ITEM, N_("_About..."), NULL, about_cb, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT},
-	/*{GNOME_APP_UI_ITEM, N_("Preferences..."), NULL, NULL, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF},*/
-	{GNOME_APP_UI_SEPARATOR},
-	{GNOME_APP_UI_ITEM, N_("_Quit"),  NULL, quit_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_QUIT,
-	 'Q', GDK_CONTROL_MASK, NULL},
 	GNOMEUIINFO_END
 };
 
 GnomeUIInfo gcalc_edit_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("_Copy"), NULL, NULL, NULL, NULL,
+	{GNOME_APP_UI_ITEM, N_("_Copy"), NULL, copy_contents, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY},
 	GNOMEUIINFO_END
 };
 
 GnomeUIInfo gcalc_menu[] = {
-#ifdef WITH_FOOT
-	{GNOME_APP_UI_SUBTREE, "", NULL, &gcalc_program_menu, NULL, NULL,
-	        GNOME_APP_PIXMAP_DATA, foot_xpm, 0, 0, NULL },            
-#else
-        {GNOME_APP_UI_SUBTREE, N_("_Program"), NULL, gcalc_program_menu, NULL, NULL,
+        {GNOME_APP_UI_SUBTREE, N_("_Calculator"), NULL, gcalc_calculator_menu, NULL, NULL,
 	        GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-#endif
 	{GNOME_APP_UI_SUBTREE, N_("_Edit"), NULL, gcalc_edit_menu, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+	{GNOME_APP_UI_SUBTREE, N_("_Help"), NULL, gcalc_help_menu, NULL, NULL,
 		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
         GNOMEUIINFO_END
 };
@@ -75,8 +90,7 @@ int
 main(int argc, char *argv[])
 {
 	GtkWidget *app;
-	GtkWidget *calc;
-
+	
 	/* Initialize the i18n stuff */
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
@@ -97,16 +111,18 @@ main(int argc, char *argv[])
 	calc = gnome_calculator_new();
 	gtk_widget_show(calc);
 
+	gtk_selection_add_target (GTK_WIDGET (calc),
+				  GDK_SELECTION_PRIMARY,
+				  GDK_SELECTION_TYPE_STRING,0);
+
+        gtk_signal_connect(GTK_OBJECT(calc), "selection_get",
+			   GTK_SIGNAL_FUNC(selection_handle), NULL);
+
 	gnome_app_set_contents(GNOME_APP(app), calc);
 
 	/* add calculator accel table to our window*/
-#ifdef GTK_HAVE_FEATURES_1_1_0
 	gtk_window_add_accel_group(GTK_WINDOW(app),
 				   GNOME_CALCULATOR(calc)->accel);
-#else
-	gtk_window_add_accelerator_table (GTK_WINDOW (app),
-					  GNOME_CALCULATOR (calc)->accel);
-#endif
 
 	gtk_widget_show(app);
 
