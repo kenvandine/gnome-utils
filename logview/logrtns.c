@@ -218,6 +218,8 @@ OpenLogFile (char *filename)
    strncpy (tlog->name, filename, sizeof (tlog->name)-1);
    tlog->name[sizeof (tlog->name) - 1] = '\0';
    tlog->display_name = display_name;
+   if (display_name)
+	   g_free (filename);
 
    buffer_lines = g_strsplit (buffer, "\n", -1);
 
