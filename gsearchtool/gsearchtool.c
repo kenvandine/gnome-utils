@@ -1359,7 +1359,7 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 					gsearch_alert_dialog_set_secondary_label (GSEARCH_ALERT_DIALOG (dialog), NULL);							   
 					gsearch_alert_dialog_set_details_label (GSEARCH_ALERT_DIALOG (dialog), error_msgs->str);
 					
-					button = gsearchtool_button_new_with_stock_icon (_("_Disable Quick Search"), GTK_STOCK_OK);
+					button = gsearchtool_button_new_with_stock_icon (_("Disable _Quick Search"), GTK_STOCK_OK);
 					GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
 					gtk_widget_show (button);
 
