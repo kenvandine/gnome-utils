@@ -10,11 +10,17 @@ gnome_exe_handler_SOURCES = 	\
 	gnome-exe-handler.c
 
 gnome_exe_handler_LDADD = 	\
-	$(GNOME_LIBS)
+	$(GNOME_LIBDIR)		\
+	$(GNOMEUI_LIBS)
 
 man_MANS = gnome-exe-handler.1
 
+#
+# FIXME: use xml-i18n-tools for this thing
+#
 Mimedir = $(datadir)/mime-info
-Mime_DATA = gnome-exe.keys gnome-exe.applications
+Mime_DATA = gnome-exe.keys
+Appregdir = $(datadir)/application-registry
+Appreg_DATA = gnome-exe.applications
 
-EXTRA_DIST = gnome-exe-handler.1 $(Mime_DATA)
+EXTRA_DIST = gnome-exe-handler.1 $(Mime_DATA) $(Appreg_DATA)

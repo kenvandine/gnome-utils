@@ -12,16 +12,28 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+enum {
+	OK_DIALOG,
+	YESNO_DIALOG
+};
+
+enum {
+	WINDOW_CLOSE = -1,
+	OK_BUTTON = 0,
+	YES_BUTTON = 0,
+	NO_BUTTON = 1
+};
+
 static int
-message (char *msg, int do_yesno)
+message (const char *msg, int type)
 {
 	GtkWidget *box;
 	char *b1, *b2;
 	
-	if (do_yesno){
+	if (type == YESNO_DIALOG) {
 		b1 = GNOME_STOCK_BUTTON_YES;
 		b2 = GNOME_STOCK_BUTTON_NO;
-	} else {
+	} else /* type == OK_DIALOG */ {
 		b1 = GNOME_STOCK_BUTTON_OK;
 		b2 = NULL;
 	}
@@ -31,21 +43,22 @@ message (char *msg, int do_yesno)
 }
 
 static void
-error (char *msg)
+error (const char *msg)
 {
-	message (msg, 0);
+	message (msg, OK_DIALOG);
 	exit (1);
 }
 
-void execute (char *file)
+static void
+execute (const char *file)
 {
 	char *msg = g_strdup_printf (
 		_("Executing arbitrary programs that you downloaded from the network "
 		  "might be dangerous.\n\nAre you sure you want to run `%s'?"), file);
 	struct stat s;
 	
-	switch (message (msg, 1)){
-	case 0:
+	switch (message (msg, YESNO_DIALOG)){
+	case YES_BUTTON:
 		if (stat (file, &s) == -1){
 			error (_("Could not access file permissions"));
 		}
@@ -61,7 +74,7 @@ void execute (char *file)
 		{
 			char *argv [2];
 
-			argv [0] = file;
+			argv [0] = (char *)file;
 			argv [1] = NULL;
 
 			
@@ -71,14 +84,15 @@ void execute (char *file)
 		msg = g_strdup_printf (_("Failure at executing `%s'"), file);
 		error (msg);
 		
-	case 1:
-	case -1:
+	case NO_BUTTON:
+	case WINDOW_CLOSE:
+	default:
 		exit (0);
 	}
 }
 
 static void
-launch (char *file)
+launch (const char *file)
 {
 	char buffer [64];
 	int n;
@@ -135,23 +149,28 @@ launch (char *file)
 
 		if (
 #if defined(__i386__)
-			(processor == 3) ||
+			(processor == 3)
 #elif defined(sparc) || defined(__sparc__) || defined(__sparcv9__)
-			(processor == 2) || (processor == 18) || (processor == 43) ||
+			(processor == 2) || (processor == 18) || (processor == 43)
 #elif defined(parisc) || defined (__parisc__)
-			(processor == 15) ||
+			(processor == 15)
 #elif defined(ppc) || defined(__ppc__)
-			(processor == 20) ||
+			(processor == 20)
+#elif defined(__alpha__)
+			(processor == 41) || (processor == 0x9026)
 #elif defined(__superh__)
-			(processor == 42) ||
+			(processor == 42)
 #elif defined(__ia64__)
-			(processor == 50) ||
+			(processor == 50)
+#else
+			/* On other platforms just assume we're fine */
+			TRUE
 #endif
-			0){
+			) {
 			execute (file);
-		}
-		else
+		} else {
 			error (_("The executable is for a different platform and can not be executed on this system"));
+		}
 
 	}
 	error (_("This is an unknown kind of executable"));
@@ -161,7 +180,7 @@ int
 main (int argc, char *argv [])
 {
 	poptContext ctx;
-	char **files;
+	const char **files;
 	
 	/* Initialize the i18n stuff */
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
