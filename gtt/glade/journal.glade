@@ -30,6 +30,11 @@
   <auto_shrink>False</auto_shrink>
   <enable_layout_config>True</enable_layout_config>
 
+  <signal>
+    <name>destroy</name>
+    <handler>on_close_clicked</handler>
+  </signal>
+  
   <widget>
     <class>GnomeDock</class>
     <child_name>GnomeApp:dock</child_name>
