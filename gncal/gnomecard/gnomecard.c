@@ -65,7 +65,9 @@ static void gnomecard_set_next(gboolean state);
 static void gnomecard_set_prev(gboolean state);
 static gboolean gnomecard_cards_blocked(void);
 static void gnomecard_new_card(GtkWidget *widget, gpointer data);
+static void list_button_press(GtkWidget * widget, GdkEventButton *event);
 void Exception (CORBA_Environment * ev);
+
 void
 Exception (CORBA_Environment * ev)
 {
@@ -142,6 +144,13 @@ gnomecard_set_prev(gboolean state)
     gtk_widget_set_sensitive(tb_first, state);
     gtk_widget_set_sensitive(menu_first, state);
 }
+
+static void
+list_button_press(GtkWidget * widget, GdkEventButton *event)
+{
+    g_message("In list_button_press");
+}
+
 
 /* NOT USED
 extern void gnomecard_set_add(gboolean state)
@@ -623,7 +632,8 @@ void gnomecard_init(void)
 	gnomecard_window = gnome_app_new("GnomeCard", "GnomeCard");
 	gtk_window_set_wmclass(GTK_WINDOW(gnomecard_window), "GnomeCard",
 			       "GnomeCard");
-
+	gtk_window_set_policy(GTK_WINDOW(gnomecard_window), TRUE, TRUE, TRUE);
+			      
 	gtk_widget_show(gnomecard_window);
 	gtk_signal_connect(GTK_OBJECT(gnomecard_window), "delete_event",
 			   GTK_SIGNAL_FUNC(gnomecard_delete), NULL);
@@ -661,8 +671,11 @@ void gnomecard_init(void)
 	    gnomecard_list = gnomecardCreateCardListDisplay(hdrs);
 	}
 
-	gtk_container_add(GTK_CONTAINER(cardlist_scrollwin), 
-			  gnomecard_list);
+	gtk_container_add(GTK_CONTAINER(cardlist_scrollwin), gnomecard_list);
+	gtk_signal_connect(GTK_OBJECT(cardlist_scrollwin),
+			  "button_press_event",
+			  GTK_SIGNAL_FUNC(list_button_press),
+			  NULL);
 	gtk_widget_show(cardlist_scrollwin);
 				       
 	gtk_box_pack_start(GTK_BOX(hbox), cardlist_scrollwin, TRUE, TRUE, 0);

@@ -21,9 +21,6 @@
 #define LIST_WIDTH 450
 #define LIST_HEIGHT 320
 
-
-
-
 static void gnomecard_list_selected(GtkCList *list, gint row, gint column,
 				    GdkEventButton *event, gpointer data);
 static void gnomecard_list_button_press(GtkCList *list, GdkEventButton *event, 
@@ -79,22 +76,23 @@ gnomecard_list_selected(GtkCList *list, gint row, gint column,
 	return;
     }
 
-    if (!event)
-	return;
-    
-    switch (event->button) {
-      case 1:
-	if (event->type == GDK_2BUTTON_PRESS) {
-	    /* see if card if is being editted */
-	    if (!((Card *) gnomecard_curr_crd->data)->flag)
-		gnomecard_edit(tmp);
-	} else {
-	    gnomecard_set_curr(tmp);
+    if (!event) {
+	gnomecard_set_curr(tmp);
+    } else {
+	switch (event->button) {
+	  case 1:
+	    if (event->type == GDK_2BUTTON_PRESS) {
+		/* see if card if is being editted */
+		if (!((Card *) gnomecard_curr_crd->data)->flag)
+		    gnomecard_edit(tmp);
+	    } else {
+		gnomecard_set_curr(tmp);
+	    }
+	    break;
+	    
+	  default:
+	    break;
 	}
-	break;
-	
-      default:
-	break;
     }
 }
 
