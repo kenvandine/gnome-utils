@@ -123,11 +123,11 @@ static void fill_disk_page(GtkWidget * box)
                                   GTK_POLICY_AUTOMATIC, 
                                   GTK_POLICY_AUTOMATIC);
   gtk_container_border_width(GTK_CONTAINER(scrolled_win), GNOME_PAD);
-  gtk_container_add(GTK_CONTAINER(frame), scrolled_win);
+  gtk_container_add (GTK_CONTAINER(frame), scrolled_win);
 
   scrolled_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
   gtk_container_border_width(GTK_CONTAINER(scrolled_box), GNOME_PAD_SMALL);
-  gtk_container_add(GTK_CONTAINER(scrolled_win), scrolled_box);
+  gtk_scrolled_window_add_with_viewport (GTK_CONTAINER(scrolled_win), scrolled_box);
   gtk_box_pack_start(GTK_BOX(box), frame, TRUE, TRUE, 0);
   
   
