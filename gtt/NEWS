@@ -2,12 +2,28 @@
 August 2001
 ===========
 
-* Big changes afoot:  
-  -- XML file format will store both project and journal data
-  -- Heirarchical projects now supported.   Tree can be re-arranged 
-     via drag-n-drop.
-  -- Journal is viewable as html.
-  -- Add variety of billing rates
+* Lots of Big, Brand-New Features:
+  -- Sub-project support has been added.  New projects can be listed as 
+     subprojects of other projects.  The time totals will show the total
+     including sub-projects.  The Heirarchical tree can be expanded/ollapsed
+     to simplify viewing.  The tree can be re-arranged by dragging-n-dopping
+     projects.
+  -- A journal showing explicit start and stop times is now maintained. 
+     Blocks of time can be annotated with memos.  The journal can be 
+     exported as an html page, or printed (ok, printer support not
+     yet finished).
+  -- Infrastructure for storing price & billing information has been
+     put into place.  This will allow billing invoices to be generated.
+     (not yet done, see below).
+  -- The journal GUI is based on html-like pages.  This makes it relatively
+     easy to create new reports and modify the format of existing reports.
+     Thus, custom reports, such as invocies, should be coming soon.  
+     Hopefully, we'll also add a feature that allows custom reports to 
+     be designed from the GUI.
+  -- The above features required an expanded way of storing data: and so
+     there is now a new XML file format that stores both project and journal 
+     data.
+  -- Export to GnuCash coming soon, I hope ...
 
 
 Mon Aug 31 00:38:34 CEST 1998
