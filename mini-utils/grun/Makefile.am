@@ -10,5 +10,9 @@ grun_SOURCES = \
 	grun.c
 
 grun_LDADD = \
-	$(GTK_LIBS)
+	$(GTK_LIBS) \
+	$(GNOME_LIBDIR)         \
+	$(GTKXMHTML_LIBS)	\
+	$(GNOMEUI_LIBS) 	\
+	$(INTLLIBS)
 
