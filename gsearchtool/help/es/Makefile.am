@@ -3,7 +3,7 @@
 gsearch_helpdir = $(datadir)/gnome/help/gsearchtool/es
 
 SGML_FILES = \
-	gsearch.sgml
+	gsearchtool.sgml
 
 HTML_FILES = index.html authors.html criteria.html \
 	license.html	locate.html	usage.html
