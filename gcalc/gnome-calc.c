@@ -1174,6 +1174,7 @@ gnome_calc_instance_init (GnomeCalc *gc)
 {
 	gint x,y;
 	GtkWidget *table;
+	PangoFontDescription *pdesc;
 
 	gc->_priv = g_new0(GnomeCalcPrivate, 1);
 
@@ -1181,6 +1182,14 @@ gnome_calc_instance_init (GnomeCalc *gc)
 	gtk_editable_set_editable (GTK_EDITABLE (gc->_priv->text_display), FALSE);
 
 	gtk_box_pack_start (GTK_BOX (gc), gc->_priv->text_display, FALSE, FALSE, 0);
+	gtk_widget_set_direction (gc->_priv->text_display, GTK_TEXT_DIR_RTL);
+
+	pdesc = pango_font_description_from_string ("Helvetica 24");
+	if (pdesc != NULL) {
+		gtk_widget_modify_font (gc->_priv->text_display, pdesc);
+		pango_font_description_free (pdesc);
+	}
+
 	gtk_widget_show (gc->_priv->text_display);
 
 	gc->_priv->stack = NULL;
