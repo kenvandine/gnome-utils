@@ -40,6 +40,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <locale.h>
 #include <errno.h> /* errno */
 #include <signal.h> /* signal() */
 #include <gtk/gtk.h>

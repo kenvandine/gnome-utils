@@ -24,12 +24,14 @@
 
 #define VERSION	"0.6gnome1"
 
+#include "config.h"
 #include <sys/types.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 
 #ifdef WITH_GNOME
 #include <gtk/gtk.h>

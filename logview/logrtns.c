@@ -21,7 +21,7 @@
 
 #include <config.h>
 #include <gnome.h>
-#include "config.h"
+#include <locale.h>
 #include "logview.h"
 #include "logrtns.h"
 
