@@ -150,12 +150,6 @@ static void options_apply_cb(GnomePropertyBox *pb, gint page, OptionsDlg *odlg)
    gnome_property_box_set_help(GnomePropertyBox * pb, 
                                gchar * app, gchar * filename);
    */
-static gint delete_event_cb(GnomePropertyBox * pb, gpointer ignored)
-{
-  gtk_widget_hide(GTK_WIDGET(pb));
-  return TRUE; /* Stop the default property box close handler */
-}
-
 static void help_cb(GnomePropertyBox * pb, gint page, gchar * url)
 {
   gnome_help_goto(pb, url);
@@ -482,9 +476,6 @@ void options_dialog(void)
 		odlg->dlg = GNOME_PROPERTY_BOX(gnome_property_box_new());
 		sprintf(s, APP_NAME " - %s", _("Preferences"));
 		gtk_window_set_title(GTK_WINDOW(odlg->dlg), s);
-                gtk_signal_connect(GTK_OBJECT(odlg->dlg), "delete_event",
-                                   GTK_SIGNAL_FUNC(delete_event_cb),
-                                   NULL);
 
 		vbox = (GtkBox *)gtk_vbox_new(FALSE, 0);
 		gtk_widget_show(GTK_WIDGET(vbox));

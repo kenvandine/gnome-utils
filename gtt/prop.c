@@ -43,12 +43,6 @@ static void help_cb(GnomePropertyBox * pb, gint page, gchar * url)
   gnome_help_goto(pb, url);
 }
 
-static gint delete_event_cb(GnomePropertyBox * pb, gpointer ignored)
-{
-  gtk_widget_hide(GTK_WIDGET(pb));
-  return TRUE; /* Stop the default property box close handler */
-}
-
 static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 {
 	gchar *s;
@@ -197,9 +191,6 @@ void prop_dialog(project *proj)
 		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "help",
 				   GTK_SIGNAL_FUNC(help_cb), s1);
 
-		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "delete_event",
-				   GTK_SIGNAL_FUNC(delete_event_cb), NULL);
-
 		table = GTK_TABLE(gtk_table_new(4, 7, FALSE));
 		gtk_widget_show(GTK_WIDGET(table));
 		gtk_box_pack_start(vbox, GTK_WIDGET(table), FALSE, FALSE, 2);
@@ -316,8 +307,5 @@ void prop_dialog(project *proj)
 	prop_dialog_set_project(proj);
 	gtk_widget_show(GTK_WIDGET(dlg->dlg));
 }
-
-
-
 
 

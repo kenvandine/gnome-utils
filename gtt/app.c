@@ -218,8 +218,6 @@ void app_new(int argc, char *argv[])
 	gtk_box_pack_end(GTK_BOX(vbox), glist, TRUE, TRUE, 0);
 	gtk_widget_show(glist);
 
-	gtk_widget_show(glist);
-	gtk_container_add(GTK_CONTAINER(window), vbox);
 	gtk_widget_show(vbox);
 	gnome_app_set_contents(GNOME_APP(window), vbox);
 
