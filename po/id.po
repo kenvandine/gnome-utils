@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-29 09:39-0500\n"
+"POT-Creation-Date: 2005-01-10 15:41-0500\n"
 "PO-Revision-Date: 2004-10-27 04:41+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesian <sukarelawan@gnome.linux.or.id>\n"
@@ -12,21 +12,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:122
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
 msgid "Dictionary Lookup"
 msgstr "Cari di Kamus"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:28
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:27
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Cari kata di dalam kamus online"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:588
-#: logview/logview.c:113
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: logview/logview.c:111
 msgid "_About"
 msgstr "_Keterangan Program"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:90
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
 msgid "_Help"
 msgstr "Ba_ntuan"
 
@@ -38,17 +38,11 @@ msgstr "Cari teks yang dipi_lih"
 msgid "_Preferences"
 msgstr "_Pengaturan"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:5
-msgid "_Show Dictionary"
-msgstr "Tampilkan Kamu_s"
-
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#. Could not look up search strategies, so just display a
-#. * label; FIXME: Memory leak
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:429
-#: gdictsrc/gdict-pref-dialog.c:478 gdictsrc/gdict-speller.c:690
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
+#: gdictsrc/gdict-pref-dialog.c:713
 msgid "Cannot connect to server"
 msgstr "Tidak dapat terhubung ke server"
 
@@ -74,52 +68,33 @@ msgstr "Mohammad DAMT <mdamt@bisnisweb.com>"
 msgid "A client for the MIT dictionary server."
 msgstr "Program klien server kamus MIT"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:247
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
+#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Kamus"
 
-#: gdictsrc/gdict-app.c:101
+#: gdictsrc/gdict-app.c:131
 msgid "Spell-checking..."
 msgstr "Periksa ejaan..."
 
-#: gdictsrc/gdict-app.c:108
+#: gdictsrc/gdict-app.c:140
 msgid "Spell check done"
 msgstr "Pemeriksaan ejaan selesai"
 
-#: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:263
+#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
 msgid "No matches found"
 msgstr "Tidak ada yang cocok"
 
-#: gdictsrc/gdict-app.c:126
-msgid "Connexion error"
-msgstr ""
+#: gdictsrc/gdict-app.c:164
+#, fuzzy
+msgid "Connection error"
+msgstr "Tidak dapat terhubung ke server"
 
-#: gdictsrc/gdict-app.c:238
-msgid "Looking up word..."
-msgstr "Mencari kata..."
-
-#: gdictsrc/gdict-app.c:253
-msgid "Lookup done"
-msgstr "Pencarian selesai"
-
-#: gdictsrc/gdict-app.c:276
-msgid "String not found"
-msgstr "Kalimat tidak ketemu"
-
-#: gdictsrc/gdict-app.c:445
-msgid "Find"
-msgstr "Cari"
-
-#: gdictsrc/gdict-app.c:455
-msgid "_Search for:"
-msgstr "_Cari:"
-
-#: gdictsrc/gdict-app.c:505
+#: gdictsrc/gdict-app.c:209
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:506
+#: gdictsrc/gdict-app.c:210
 #, fuzzy
 msgid ""
 "Either the server you are using is not available \n"
@@ -129,268 +104,281 @@ msgstr ""
 "Mungkin servernya sedang tidak dapat dihubungi\n"
 "atau Anda tidak terhubung ke Internet."
 
-#: gdictsrc/gdict-app.c:543 gdictsrc/gdict-applet.c:350
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-app.c:352
+msgid "Looking up word..."
+msgstr "Mencari kata..."
+
+#: gdictsrc/gdict-app.c:369
+msgid "Lookup done"
+msgstr "Pencarian selesai"
+
+#: gdictsrc/gdict-app.c:393
+msgid "String not found"
+msgstr "Kalimat tidak ketemu"
+
+#: gdictsrc/gdict-app.c:467
+msgid "Print Word Definition"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:582
+msgid "Find"
+msgstr "Cari"
+
+#: gdictsrc/gdict-app.c:592
+msgid "_Search for:"
+msgstr "_Cari:"
+
+#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-pref-dialog.c:863
 #, fuzzy
 msgid "Could not display help"
 msgstr "Tidak dapat membuka berkas bantuan"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:568 gdictsrc/gdict-app.c:864
-#: gdictsrc/gdict-speller.c:252
+#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
 msgid "_Look Up Word"
 msgstr "Cari _Kata"
 
-#: gdictsrc/gdict-app.c:569
+#: gdictsrc/gdict-app.c:899
 msgid "Lookup word in dictionary"
 msgstr "Cari kata dalam kamus"
 
-#: gdictsrc/gdict-app.c:570 gdictsrc/gdict-speller.c:191
-msgid "Check _Spelling"
-msgstr "Perik_sa Ejaan"
-
-#: gdictsrc/gdict-app.c:571
-msgid "Check word spelling"
-msgstr "Periksa ejaan pada kata"
-
-#: gdictsrc/gdict-app.c:573
+#: gdictsrc/gdict-app.c:900
 #, fuzzy
 msgid "_Print"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-app.c:574
+#: gdictsrc/gdict-app.c:901
 msgid "Print the current definition"
 msgstr ""
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:578 logview/logview.c:105
+#: gdictsrc/gdict-app.c:904 logview/logview.c:103
 #, fuzzy
 msgid "_Find..."
 msgstr "_Cari"
 
-#: gdictsrc/gdict-app.c:579
+#: gdictsrc/gdict-app.c:905
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "Berisi _teks"
 
-#: gdictsrc/gdict-app.c:580
+#: gdictsrc/gdict-app.c:906
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "Cari"
 
-#: gdictsrc/gdict-app.c:581
+#: gdictsrc/gdict-app.c:907
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:908
 #, fuzzy
 msgid "P_references"
 msgstr "_Pengaturan"
 
-#: gdictsrc/gdict-app.c:583
+#: gdictsrc/gdict-app.c:909
 #, fuzzy
 msgid "Configure the application"
 msgstr "Se_mbunyikan aplikasi"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:586 logview/logview.c:111
+#: gdictsrc/gdict-app.c:912 logview/logview.c:109
 msgid "_Contents"
 msgstr "Daftar _Isi"
 
-#: gdictsrc/gdict-app.c:587
+#: gdictsrc/gdict-app.c:913
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:589
+#: gdictsrc/gdict-app.c:915
 #, fuzzy
 msgid "About this application"
 msgstr "Se_mbunyikan aplikasi"
 
-#: gdictsrc/gdict-app.c:596 logview/logview.c:98
-msgid "_Quit"
-msgstr "_Keluar"
-
-#: gdictsrc/gdict-app.c:597
-#, fuzzy
-msgid "Quit the application"
-msgstr "Se_mbunyikan aplikasi"
-
-#: gdictsrc/gdict-app.c:601
+#: gdictsrc/gdict-app.c:919
 #, fuzzy
 msgid "_Close"
 msgstr "Tutup"
 
-#: gdictsrc/gdict-app.c:602
+#: gdictsrc/gdict-app.c:920
 #, fuzzy
 msgid "Close the application"
 msgstr "Se_mbunyikan aplikasi"
 
-#: gdictsrc/gdict-app.c:607
+#: gdictsrc/gdict-app.c:925
+#, fuzzy
+msgid "On a Dictionary Server"
+msgstr "Server kamus"
+
+#: gdictsrc/gdict-app.c:927
+msgid "On a Web Site"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:933
 msgid "Cu_t"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:608
+#: gdictsrc/gdict-app.c:934
 msgid "Cut the selection"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:609
+#: gdictsrc/gdict-app.c:935
 msgid "_Copy"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:610 logview/logview.c:101
+#: gdictsrc/gdict-app.c:936 logview/logview.c:99
 msgid "Copy the selection"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:611
+#: gdictsrc/gdict-app.c:937
 #, fuzzy
 msgid "_Paste"
 msgstr "Tanggal"
 
-#: gdictsrc/gdict-app.c:612
+#: gdictsrc/gdict-app.c:938
 msgid "Paste clipboard"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:613
+#: gdictsrc/gdict-app.c:939
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:614
+#: gdictsrc/gdict-app.c:940
 msgid "Select everything"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:861 gdictsrc/gdict-speller.c:179
+#: gdictsrc/gdict-app.c:945
+#, fuzzy
+msgid "_Spellings"
+msgstr "Perik_sa Ejaan"
+
+#: gdictsrc/gdict-app.c:946
+msgid "View alternate spellings"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:1031
 msgid "_Word:"
 msgstr "K_ata:"
 
-#: gdictsrc/gdict-app.c:884 gdictsrc/gdict-speller.c:198
+#: gdictsrc/gdict-app.c:1055
 msgid "Word"
 msgstr "Kata"
 
-#: gdictsrc/gdict-app.c:885 gdictsrc/gdict-app.c:887
-#: gdictsrc/gdict-speller.c:200
+#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
 msgid "Word Entry"
 msgstr "Entri Kata"
 
-#: gdictsrc/gdict-app.c:886
+#: gdictsrc/gdict-app.c:1057
 msgid "Enter a Word or select one from the list below"
 msgstr "Masukan kata atau pilih dari dalam daftar berikut"
 
-#: gdictsrc/gdict-app.c:890
+#: gdictsrc/gdict-app.c:1061
 msgid "Look Up for a Word"
 msgstr "Cari Kata"
 
-#: gdictsrc/gdict-applet.c:127
+#: gdictsrc/gdict-applet.c:155
 msgid "Dictionary word entry"
 msgstr "Kata dalam kamus"
 
-#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:367
+#: gdictsrc/gdict-defbox.c:335
+msgid "Definition preview"
+msgstr ""
+
+#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
 #, fuzzy
 msgid "Error invoking query"
 msgstr "Error saat melakukan permintaan: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:136
-msgid "Dictionary Preferences"
-msgstr "Setting Kamus"
-
-#: gdictsrc/gdict-pref-dialog.c:149
-msgid "Smart _lookup"
-msgstr "Pen_carian Pintar"
-
-#: gdictsrc/gdict-pref-dialog.c:163
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "De_fault Server"
 msgstr "Server Ba_waan"
 
-#: gdictsrc/gdict-pref-dialog.c:174
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:183
+#: gdictsrc/gdict-pref-dialog.c:273
 msgid "Reset server to default"
 msgstr "Ganti server kembali ke konfigurasi awal"
 
-#: gdictsrc/gdict-pref-dialog.c:191
+#: gdictsrc/gdict-pref-dialog.c:275
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:201
+#: gdictsrc/gdict-pref-dialog.c:285
 msgid "Def_ault Port"
 msgstr "Port Def_ault"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:300
 msgid "Reset port to default"
 msgstr "Ganti port kembali ke default"
 
-#: gdictsrc/gdict-pref-dialog.c:217
+#: gdictsrc/gdict-pref-dialog.c:301
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:303
 msgid "Server Entry"
 msgstr "Entri Server"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:303
 msgid "Enter the Server Name"
 msgstr "Masukan Nama Server"
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:304
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:222
+#: gdictsrc/gdict-pref-dialog.c:306
 msgid "Port Entry"
 msgstr "Entri Port"
 
-#: gdictsrc/gdict-pref-dialog.c:222
+#: gdictsrc/gdict-pref-dialog.c:306
 msgid "Enter the Port Number"
 msgstr "Masukkan Nomor Port"
 
-#: gdictsrc/gdict-pref-dialog.c:231
+#: gdictsrc/gdict-pref-dialog.c:309
 msgid "_Database:"
 msgstr "Basis _Data:"
 
-#: gdictsrc/gdict-pref-dialog.c:238
-msgid "D_efault strategy:"
-msgstr "Strategi D_efault:"
+#: gdictsrc/gdict-pref-dialog.c:316
+#, fuzzy
+msgid "Strat_egy:"
+msgstr "S_trategi pencarian:"
 
-#: gdictsrc/gdict-pref-dialog.c:421
+#: gdictsrc/gdict-pref-dialog.c:342
+msgid "Web Site"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:342
+#, fuzzy
+msgid "Search Address"
+msgstr "Hasil penca_rian:"
+
+#: gdictsrc/gdict-pref-dialog.c:462
+msgid "Dictionary Preferences"
+msgstr "Setting Kamus"
+
+#: gdictsrc/gdict-pref-dialog.c:474
+msgid "Web Sites"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:656
 msgid "Search all databases"
 msgstr "Cari semua database"
 
-#: gdictsrc/gdict-pref-dialog.c:582
+#: gdictsrc/gdict-pref-dialog.c:817
 msgid "Database"
 msgstr "Basis Data"
 
-#: gdictsrc/gdict-pref-dialog.c:582
+#: gdictsrc/gdict-pref-dialog.c:817
 msgid "Database Name"
 msgstr "Nama Basis Data"
 
-#: gdictsrc/gdict-pref-dialog.c:600
+#: gdictsrc/gdict-pref-dialog.c:834
 msgid "Default Strategy"
 msgstr "Strategi Default"
-
-#: gdictsrc/gdict-speller.c:200
-msgid "Enter a word to know the spelling"
-msgstr "Masukkan kata untuk mengetahui ejaan yang benar"
-
-#: gdictsrc/gdict-speller.c:205
-msgid "Search s_trategy:"
-msgstr "S_trategi pencarian:"
-
-#: gdictsrc/gdict-speller.c:209 gsearchtool/gsearchtool.c:2049
-msgid "Show more _options"
-msgstr "Berikan pilihan lainn_ya"
-
-#: gdictsrc/gdict-speller.c:215
-msgid "Click to do the spell check"
-msgstr "Klik untuk lakukan pengecekan ejaan"
-
-#: gdictsrc/gdict-speller.c:265
-msgid "Check Spelling"
-msgstr "Periksa Ejaan"
-
-#: gdictsrc/gdict-speller.c:652
-msgid "Search Strategy"
-msgstr "Strategi Pencarian"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -451,7 +439,7 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Gunakan teknologi pencarian pintar"
 
-#: gdictsrc/main.c:101
+#: gdictsrc/main.c:80
 #, fuzzy
 msgid "Gnome Dictionary"
 msgstr "Kamus"
@@ -706,6 +694,7 @@ msgid "Error while checking the bad blocks."
 msgstr "Ada error saat memeriksa blok yang rusak."
 
 #: gfloppy/src/gfloppy2.glade.h:1
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:1
 msgid "    "
 msgstr "    "
 
@@ -891,13 +880,193 @@ msgstr "Disket tidak jadi diformat."
 msgid "Format Progress"
 msgstr "Kemajuan Proses Format"
 
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
+msgid " (invalid Unicode)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
+#, c-format
+msgid "(%d:%02d:%d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
+#, c-format
+msgid "(%d:%02d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
+#, c-format
+msgid "%ld of %ld"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:86
+#, fuzzy
+msgid "Error loading help"
+msgstr "Error saat menutup perangkat %s"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:87
+#, fuzzy
+msgid "There was an error displaying the help pages for this dialog:"
+msgstr ""
+"Ada error saat menampilkan layar bantu:\n"
+"%s"
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if a specific window is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:111
+#, c-format
+msgid "Screenshot-%s.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if the entire screen is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:117
+msgid "Screenshot.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if a specific window is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:155
+#, c-format
+msgid "Screenshot-%s-%d.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if the entire screen is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:163
+#, c-format
+msgid "Screenshot-%d.png"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:338
+msgid "Unable to take a screenshot of the current desktop."
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:410
+msgid "Grab a window instead of the entire screen"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:411
+msgid "Include the window border with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:412
+msgid "Take screenshot after specified delay [in seconds]"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:413
+msgid "Effect to add to the window border"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:2
+msgid "<b>Options</b>"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:3
+msgid "<b>Preview</b>"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:4
+#: gnome-screenshot/gnome-screenshot.glade.h:2
+msgid "Save Screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.glade.h:3
+#, fuzzy
+msgid "Save in _folder:"
+msgstr "Cari da_lam folder:"
+
+#: gnome-screenshot/gnome-screenshot.glade.h:4
+#, fuzzy
+msgid "_Name:"
+msgstr "Nama"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
+msgid "Border Effect"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
+msgid "Directory that the screenshooter last used to save in"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
+msgid ""
+"Effect to add to the outside of a border. Possible values are \"shadow\", "
+"\"none\", and \"black-line\"."
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Border"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the window manager border along with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
+msgid "Web directory"
+msgstr ""
+
+#: gnome-screenshot/screenshot-dialog.c:194
+msgid ""
+"Glade file for the screenshot program is missing.\n"
+"Please check your installation of gnome-panel"
+msgstr ""
+
+#: gnome-screenshot/screenshot-save.c:40
+#, fuzzy, c-format
+msgid ""
+"Unable to clear the temporary directory:\n"
+"%s"
+msgstr "Tidak dapat membuat sistem berkas dengan sempurna."
+
+#: gnome-screenshot/screenshot-save.c:78
+msgid ""
+"The child save process unexpectedly exited.  We are unable to write the "
+"screenshot to disk."
+msgstr ""
+
+#: gnome-screenshot/screenshot-save.c:188
+msgid "Unknown error saving screenshot to disk"
+msgstr ""
+
+#: gnome-screenshot/screenshot-utils.c:611
+msgid "Untitled Window"
+msgstr ""
+
+#: gnome-screenshot/screenshot-xfer.c:103
+msgid "Preparing to copy"
+msgstr ""
+
+#: gnome-screenshot/screenshot-xfer.c:181
+#, fuzzy
+msgid "File already exists"
+msgstr "Berkas sudah dibuka."
+
+#: gnome-screenshot/screenshot-xfer.c:184
+#, fuzzy, c-format
+msgid "The file \"%s\" already exists.  Would you like to replace it?"
+msgstr "Dokumen \"%s\" sudah ada. Timpa saja?"
+
+#: gnome-screenshot/screenshot-xfer.c:190
+#: gsearchtool/gsearchtool-callbacks.c:1265
+msgid "_Replace"
+msgstr "_Ganti"
+
+#: gnome-screenshot/screenshot-xfer.c:230
+#, c-format
+msgid "Unknown GnomeVFSXferProgressStatus %d"
+msgstr ""
+
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
 msgstr "Cari berkas, folder, dan dokumen dalam komputer"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
-#: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
-#: gsearchtool/gsearchtool.c:2364 gsearchtool/gsearchtool.c:2385
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
+#: gsearchtool/gsearchtool.c:2688
 msgid "Search for Files"
 msgstr "Cari Berkas"
 
@@ -919,88 +1088,115 @@ msgstr ""
 msgid "Quick Search Second Scan Excluded Paths"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:5
-#, fuzzy
-msgid "Select Contains the Text"
-msgstr "Berisi _teks"
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:6
-#, fuzzy
-msgid "Select Date Modified Less Than"
-msgstr "Tanggal modifikasi lebih mu_da dari"
-
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:7
 #, fuzzy
-msgid "Select Date Modified More Than"
-msgstr "Tanggal modifikasi lebih tua dari"
+msgid "Select the search option \"Contains the text\""
+msgstr "Berisi _teks"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:8
-#, fuzzy
-msgid "Select File is Empty"
-msgstr "Berkasnya kosong"
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:9
-#, fuzzy
-msgid "Select Follow Symbolic Links"
-msgstr "Ikuti link simbolik"
-
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:10
 #, fuzzy
-msgid "Select Include Other Filesystems"
-msgstr "Cari di sistem berkas lain"
+msgid "Select the search option \"Date modified less than\""
+msgstr "Tanggal modifikasi lebih mu_da dari"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:11
-#, fuzzy
-msgid "Select Name Matches Regular Expression"
-msgstr "Nama cocok dengan e_kspresi reguler"
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:12
-#, fuzzy
-msgid "Select Name does not Contain"
-msgstr "Na_ma tidak berisi"
-
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:13
 #, fuzzy
-msgid "Select Owned by Group"
+msgid "Select the search option \"Date modified more than\""
+msgstr "Tanggal modifikasi lebih tua dari"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:16
+#, fuzzy
+msgid "Select the search option \"File is empty\""
+msgstr "Berkasnya kosong"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#, fuzzy
+msgid "Select the search option \"Follow symbolic links\""
+msgstr "Ikuti link simbolik"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:22
+#, fuzzy
+msgid "Select the search option \"Include other filesystems\""
+msgstr "Cari di sistem berkas lain"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:25
+#, fuzzy
+msgid "Select the search option \"Name does not contain\""
+msgstr "Na_ma tidak berisi"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:28
+#, fuzzy
+msgid "Select the search option \"Name matches regular expression\""
+msgstr "Nama cocok dengan e_kspresi reguler"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:31
+#, fuzzy
+msgid "Select the search option \"Owned by group\""
 msgstr "Dimiliki oleh _grup"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:14
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:34
 #, fuzzy
-msgid "Select Owned by User"
+msgid "Select the search option \"Owned by user\""
 msgstr "Dimiliki oleh pengg_una"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:15
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:37
 #, fuzzy
-msgid "Select Owner is Unrecognized"
+msgid "Select the search option \"Owner is unrecognized\""
 msgstr "Pemilik tidak dikenal"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:16
-msgid "Select Show Hidden Files and Folders"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:40
+msgid "Select the search option \"Show hidden files and folders\""
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:17
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:43
 #, fuzzy
-msgid "Select Size At Least"
+msgid "Select the search option \"Size at least\""
 msgstr "Ukuran pal_ing tidak"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:18
-#, fuzzy
-msgid "Select Size At Most"
-msgstr "Ukuran paling be_sar"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:46
+msgid "Select the search option \"Size at most\""
+msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#: gsearchtool/gnome-search-tool.schemas.in.h:47
 #, fuzzy
 msgid "Show Additional Options"
 msgstr "Berikan pilihan lainnya"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:20
+#: gsearchtool/gnome-search-tool.schemas.in.h:48
 msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:21
+#: gsearchtool/gnome-search-tool.schemas.in.h:49
 msgid ""
 "This key defines the paths the search tool will exclude from a second scan "
 "when performing a quick search. The second scan uses the find command to "
@@ -1009,279 +1205,221 @@ msgid ""
 "is /."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:22
+#: gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
-"This key determines if the Additional Options section is expanded when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:23
-msgid ""
-"This key determines if the Contains the Text option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:24
-msgid ""
-"This key determines if the Date Modified Less Than option is selected when "
-"the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:25
-msgid ""
-"This key determines if the Date Modified More Than option is selected when "
-"the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:26
-msgid ""
-"This key determines if the File is Empty option is selected when the search "
-"tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:27
-msgid ""
-"This key determines if the Follow Symbolic Links option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:28
-msgid ""
-"This key determines if the Include Other Filesystems option is selected when "
-"the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:29
-msgid ""
-"This key determines if the Name Matches Regular Expression option is "
-"selected when the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:30
-msgid ""
-"This key determines if the Name does not Contain option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:31
-msgid ""
-"This key determines if the Owned by Group option is selected when the search "
-"tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:32
-msgid ""
-"This key determines if the Owned by User option is selected when the search "
-"tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:33
-msgid ""
-"This key determines if the Owner is Unrecognized option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:34
-msgid ""
-"This key determines if the Show Hidden Files and Folders option is selected "
+"This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:35
+#: gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid ""
-"This key determines if the Size At Least option is selected when the search "
-"tool is started."
+"This key determines if the \"Date modified less than\" search option is "
+"selected when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:36
+#: gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
-"This key determines if the Size At Most option is selected when the search "
-"tool is started."
+"This key determines if the \"Date modified more than\" search option is "
+"selected when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:37
+#: gsearchtool/gnome-search-tool.schemas.in.h:53
+msgid ""
+"This key determines if the \"File is empty\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:54
+msgid ""
+"This key determines if the \"Follow symbolic links\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:55
+msgid ""
+"This key determines if the \"Include other filesystems\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:56
+msgid ""
+"This key determines if the \"Name does not contain\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:57
+msgid ""
+"This key determines if the \"Name matches regular expression\" search option "
+"is selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:58
+msgid ""
+"This key determines if the \"Owned by group\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:59
+msgid ""
+"This key determines if the \"Owned by user\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:60
+msgid ""
+"This key determines if the \"Owner is unrecognized\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:61
+msgid ""
+"This key determines if the \"Show hidden files and folders\" search option "
+"is selected when the search tool is started."
+msgstr ""
+
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
+msgid ""
+"This key determines if the \"Show more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:65
+msgid ""
+"This key determines if the \"Size at least\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:66
+msgid ""
+"This key determines if the \"Size at most\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:38
+#: gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
 msgstr ""
 
-#: gsearchtool/gsearchtool-alert-dialog.c:100
-msgid "Image/label border"
-msgstr "Bingkai gambar/label"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:101
-msgid "Width of border around the label and image in the alert dialog"
-msgstr "Lebar bingkai di sekeliling label dan gambar pada dialog siaga"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:110
-msgid "Alert Type"
-msgstr "Jenis Siaga"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:111
-msgid "The type of alert"
-msgstr "Jenis siaga"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:119
-msgid "Alert Buttons"
-msgstr "Tombol Siaga"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:120
-msgid "The buttons shown in the alert dialog"
-msgstr "tombol yang ditampilkan pada dialog siaga"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:172
-msgid "Show more _details"
-msgstr "Tampilkan _rinciannya"
-
-#: gsearchtool/gsearchtool-callbacks.c:50
-msgid "_Open"
-msgstr "B_uka"
-
-#: gsearchtool/gsearchtool-callbacks.c:54
-msgid "O_pen Folder"
-msgstr "Buka _Folder"
-
-#: gsearchtool/gsearchtool-callbacks.c:59
-msgid "Mo_ve to Trash"
-msgstr "Buang ke _Tong Sampah"
-
-#: gsearchtool/gsearchtool-callbacks.c:64
-msgid "_Save Results As..."
-msgstr "_Simpan Hasil sebagai..."
-
-#: gsearchtool/gsearchtool-callbacks.c:111
+#: gsearchtool/gsearchtool-callbacks.c:161
 msgid "Could not open help document."
 msgstr "Tidak dapat membuka berkas bantuan"
 
-#: gsearchtool/gsearchtool-callbacks.c:319
+#: gsearchtool/gsearchtool-callbacks.c:296
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "Apakah benar ingin membuka %d dokumen?"
 
-#: gsearchtool/gsearchtool-callbacks.c:324
-#: gsearchtool/gsearchtool-callbacks.c:476
+#: gsearchtool/gsearchtool-callbacks.c:301
+#: gsearchtool/gsearchtool-callbacks.c:458
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "Ini akan membuka %d buah folder terpisah."
 
-#: gsearchtool/gsearchtool-callbacks.c:384
-#: gsearchtool/gsearchtool-callbacks.c:417
-#: gsearchtool/gsearchtool-callbacks.c:966
-#: gsearchtool/gsearchtool-callbacks.c:999
+#: gsearchtool/gsearchtool-callbacks.c:341
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Dokumen \"%s\" tidak dapat dibuka."
 
-#: gsearchtool/gsearchtool-callbacks.c:387
-#: gsearchtool/gsearchtool-callbacks.c:642
-#: gsearchtool/gsearchtool-callbacks.c:969
+#: gsearchtool/gsearchtool-callbacks.c:416
+#: gsearchtool/gsearchtool-callbacks.c:759
 msgid "The document does not exist."
 msgstr "Dokumen tidak ada."
 
-#: gsearchtool/gsearchtool-callbacks.c:420
-#: gsearchtool/gsearchtool-callbacks.c:1002
+#: gsearchtool/gsearchtool-callbacks.c:429
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Tidak ada pembaca berkas yang dapat membaca dokumen ini."
 
-#: gsearchtool/gsearchtool-callbacks.c:471
+#: gsearchtool/gsearchtool-callbacks.c:453
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Apakah benar ingin membuka %d folder?"
 
-#: gsearchtool/gsearchtool-callbacks.c:529
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Folder \"%s\" tidak dapat dibuka."
 
-#: gsearchtool/gsearchtool-callbacks.c:536
+#: gsearchtool/gsearchtool-callbacks.c:505
 msgid "The nautilus file manager is not running."
 msgstr "Pengatur berkas nautilus sedang tidak jalan."
 
-#: gsearchtool/gsearchtool-callbacks.c:639
+#: gsearchtool/gsearchtool-callbacks.c:585
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "\"%s\" tidak dapat dibuang ke tong sampah."
 
-#: gsearchtool/gsearchtool-callbacks.c:679
-#, c-format
-msgid "Could not move \"%s\" to the trash."
-msgstr "\"%s\" tidak dapat dibuang ke tong sampah."
-
-#: gsearchtool/gsearchtool-callbacks.c:682
-#, c-format
-msgid "Moving \"%s\" failed: %s."
-msgstr "\"%s\" tidak dapat dipindahkan: %s"
-
-#: gsearchtool/gsearchtool-callbacks.c:712
+#: gsearchtool/gsearchtool-callbacks.c:616
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Apakah benar ingin menghapus \"%s\" secara permanen?"
 
-#: gsearchtool/gsearchtool-callbacks.c:715
+#: gsearchtool/gsearchtool-callbacks.c:619
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Tong sampah tidak ada. Berkas \"%s\" tidak dapat dibuang."
 
-#: gsearchtool/gsearchtool-callbacks.c:757
+#: gsearchtool/gsearchtool-callbacks.c:658
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "\"%s\" tidak dapat dihapus."
 
-#: gsearchtool/gsearchtool-callbacks.c:760
+#: gsearchtool/gsearchtool-callbacks.c:778
+#, c-format
+msgid "Moving \"%s\" failed: %s."
+msgstr "\"%s\" tidak dapat dipindahkan: %s"
+
+#: gsearchtool/gsearchtool-callbacks.c:810
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "\"%s\" tidak dapat dihapus: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1154
 msgid "Save Search Results As..."
 msgstr "Simpan Hasil Pencarian Sebagai..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1239
+#: gsearchtool/gsearchtool-callbacks.c:1182
 msgid "Could not save document."
 msgstr "Dokumen tidak dapat disimpan."
 
-#: gsearchtool/gsearchtool-callbacks.c:1241
+#: gsearchtool/gsearchtool-callbacks.c:1183
 msgid "You did not select a document name."
 msgstr "Nama dokumen belum dipilih."
 
-#: gsearchtool/gsearchtool-callbacks.c:1267
-#: gsearchtool/gsearchtool-callbacks.c:1362
+#: gsearchtool/gsearchtool-callbacks.c:1213
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Dokumen \"%s\" tidak dapat disimpan ke \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:1271
-msgid "The document name you selected is a folder."
-msgstr "Nama dokumen yang Anda pilih adalah folder."
-
-#: gsearchtool/gsearchtool-callbacks.c:1300
+#: gsearchtool/gsearchtool-callbacks.c:1246
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokumen \"%s\" sudah ada. Timpa saja?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1304
+#: gsearchtool/gsearchtool-callbacks.c:1250
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Bila Anda menimpa suatu berkas, isinya yang lama akan ditimpa."
 
-#: gsearchtool/gsearchtool-callbacks.c:1315
-#: gnome-screenshot/screenshot-xfer.c:190
-msgid "_Replace"
-msgstr "_Ganti"
+#: gsearchtool/gsearchtool-callbacks.c:1314
+msgid "The document name you selected is a folder."
+msgstr "Nama dokumen yang Anda pilih adalah folder."
 
 #: gsearchtool/gsearchtool-callbacks.c:1365
 msgid "You may not have write permissions to the document."
 msgstr "Kemungkinan Anda tidak memiliki hak untuk menulis ke berkas ini."
 
-#: gsearchtool/gsearchtool-support.c:68
+#: gsearchtool/gsearchtool-support.c:70
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1295,155 +1433,178 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:620
+#: gsearchtool/gsearchtool-support.c:521
 msgid "today at %-I:%M %p"
 msgstr "hari ini pukul %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:622
+#: gsearchtool/gsearchtool-support.c:523
 msgid "yesterday at %-I:%M %p"
 msgstr "kemarin pukul %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
+#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %-d %B %y pukul %H:%M:%S"
 
-#: gsearchtool/gsearchtool-support.c:797
+#: gsearchtool/gsearchtool-support.c:711
 msgid "link (broken)"
 msgstr "link (terputus)"
 
-#: gsearchtool/gsearchtool-support.c:802
+#: gsearchtool/gsearchtool-support.c:717
 #, c-format
 msgid "link to %s"
 msgstr "link ke %s"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:81
 msgid "Contains the _text"
 msgstr "Berisi _teks"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:83
 msgid "_Date modified less than"
 msgstr "Tanggal modifikasi lebih mu_da dari"
 
-#: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:83 gsearchtool/gsearchtool.c:84
 msgid "days"
 msgstr "hari"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:84
 msgid "Date modified more than"
 msgstr "Tanggal modifikasi lebih tua dari"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:86
 msgid "S_ize at least"
 msgstr "Ukuran pal_ing tidak"
 
-#: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:86 gsearchtool/gsearchtool.c:87
 msgid "kilobytes"
 msgstr "kilobyte"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:87
 msgid "Si_ze at most"
 msgstr "Ukuran paling be_sar"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:88
 msgid "File is empty"
 msgstr "Berkasnya kosong"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:90
 msgid "Owned by _user"
 msgstr "Dimiliki oleh pengg_una"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:91
 msgid "Owned by _group"
 msgstr "Dimiliki oleh _grup"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:92
 msgid "Owner is unrecognized"
 msgstr "Pemilik tidak dikenal"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:94
 msgid "Na_me does not contain"
 msgstr "Na_ma tidak berisi"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:95
 msgid "Name matches regular e_xpression"
 msgstr "Nama cocok dengan e_kspresi reguler"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:97
 msgid "Show hidden and backup files"
 msgstr "Tampilkan berkas dan folder yang tersembunyi"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:98
 msgid "Follow symbolic links"
 msgstr "Ikuti link simbolik"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:99
 msgid "Include other filesystems"
 msgstr "Cari di sistem berkas lain"
 
-#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
+#: gsearchtool/gsearchtool.c:180
+msgid "_Open"
+msgstr "B_uka"
+
+#: gsearchtool/gsearchtool.c:181
+msgid "O_pen Folder"
+msgstr "Buka _Folder"
+
+#: gsearchtool/gsearchtool.c:182
+msgid "Mo_ve to Trash"
+msgstr "Buang ke _Tong Sampah"
+
+#: gsearchtool/gsearchtool.c:183
+msgid "_Save Results As..."
+msgstr "_Simpan Hasil sebagai..."
+
+#: gsearchtool/gsearchtool.c:650 gsearchtool/gsearchtool.c:679
 msgid "No files found"
 msgstr "Tidak ada berkas yang ditemukan"
 
-#: gsearchtool/gsearchtool.c:602
+#: gsearchtool/gsearchtool.c:672
 msgid "(stopped)"
 msgstr "(dihentikan)"
 
-#: gsearchtool/gsearchtool.c:608
+#: gsearchtool/gsearchtool.c:678
 msgid "No Files Found"
 msgstr "Berkas Tidak Ketemu"
 
-#: gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:683
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d Berkas Ditemukan"
 
-#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
+#: gsearchtool/gsearchtool.c:687 gsearchtool/gsearchtool.c:725
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d berkas ditemukan"
 
-#: gsearchtool/gsearchtool.c:743
+#: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr "Isian yang berubah dipanggil pada setiap pilhan isian!"
 
-#: gsearchtool/gsearchtool.c:998
+#: gsearchtool/gsearchtool.c:1049
 msgid "Searching..."
 msgstr "Sedang lakukan pencarian..."
 
-#: gsearchtool/gsearchtool.c:1020
-msgid "Set the text of 'Name contains'"
+#: gsearchtool/gsearchtool.c:1071
+#, fuzzy
+msgid "Set the text of \"Name contains\" search option"
 msgstr "Isi teks pada 'Nama berisi'"
 
-#: gsearchtool/gsearchtool.c:1021
-msgid "Set the text of 'Look in folder'"
+#: gsearchtool/gsearchtool.c:1072
+#, fuzzy
+msgid "Set the text of \"Look in folder\" search option"
 msgstr "Isi teks pada 'Cari dalam folder'"
 
-#: gsearchtool/gsearchtool.c:1022
+#: gsearchtool/gsearchtool.c:1073
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Urutkan berkas berdasarkan salah satu dari: nama, folder, ukuran, tipe, "
 "tanggal"
 
-#: gsearchtool/gsearchtool.c:1023
+#: gsearchtool/gsearchtool.c:1074
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Urutkan terbalik, defaultnya mengurutkan menaik"
 
-#: gsearchtool/gsearchtool.c:1024
+#: gsearchtool/gsearchtool.c:1075
 msgid "Automatically start a search"
 msgstr "Lakukan pencarian secara otomatis"
 
-#: gsearchtool/gsearchtool.c:1029
-#, c-format
-msgid "Select the '%s' constraint"
+#: gsearchtool/gsearchtool.c:1081
+#, fuzzy, c-format
+msgid "Select the \"%s\" search option"
 msgstr "Pilih konstrain '%s'"
 
-#: gsearchtool/gsearchtool.c:1135
+#: gsearchtool/gsearchtool.c:1084
+#, fuzzy, c-format
+msgid "Select and set the \"%s\" search option"
+msgstr "Nama cocok dengan e_kspresi reguler"
+
+#: gsearchtool/gsearchtool.c:1191
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Pilihan yang salah diberikan pada argumen perintah sortby"
 
-#: gsearchtool/gsearchtool.c:1434
+#: gsearchtool/gsearchtool.c:1485
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1451,125 +1612,138 @@ msgstr ""
 "\n"
 "... pesan error terlampau banyak ..."
 
-#: gsearchtool/gsearchtool.c:1443
+#: gsearchtool/gsearchtool.c:1499
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "Hasil pencarian mungkin keliru. Ada error saat melakukan pencarian."
 
-#: gsearchtool/gsearchtool.c:1464
+#: gsearchtool/gsearchtool.c:1511 gsearchtool/gsearchtool.c:1551
+msgid "Show more _details"
+msgstr "Tampilkan _rinciannya"
+
+#: gsearchtool/gsearchtool.c:1539
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr "Hasil pencarian mungkin keliru. Matikan fasilitas pencarian cepat?"
 
-#: gsearchtool/gsearchtool.c:1472
+#: gsearchtool/gsearchtool.c:1562
 msgid "Disable _Quick Search"
 msgstr "Matikan _Pencarian Cepat"
 
-#: gsearchtool/gsearchtool.c:1516
+#: gsearchtool/gsearchtool.c:1589
+#, c-format
+msgid "Failed to set process group id of child %d: %s.\n"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1616
 msgid "Error parsing the search command."
 msgstr "Error saat menguraikan perintah pencarian."
 
-#: gsearchtool/gsearchtool.c:1545
+#: gsearchtool/gsearchtool.c:1649
 msgid "Error running the search command."
 msgstr "Error saat menjalankan perintah pencarian."
 
-#: gsearchtool/gsearchtool.c:1659
+#: gsearchtool/gsearchtool.c:1792
 #, c-format
 msgid "'%s' entry"
 msgstr "Isian '%s'"
 
-#: gsearchtool/gsearchtool.c:1660
+#: gsearchtool/gsearchtool.c:1793
 msgid "Enter a value for search rule"
 msgstr "Masukan nilai aturan pencarian"
 
-#: gsearchtool/gsearchtool.c:1707
+#: gsearchtool/gsearchtool.c:1847
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klik Untuk Membuang Aturan '%s'"
 
-#: gsearchtool/gsearchtool.c:1762
+#: gsearchtool/gsearchtool.c:1939
 msgid "A_vailable options:"
 msgstr "Pilihan _tersedia:"
 
-#: gsearchtool/gsearchtool.c:1775
+#: gsearchtool/gsearchtool.c:1969
 msgid "Search Rules Menu"
 msgstr "Menu Aturan Pencarian"
 
-#: gsearchtool/gsearchtool.c:1776
+#: gsearchtool/gsearchtool.c:1970
 msgid "Select a search rule from the menu"
 msgstr "Pilih aturan pencarian dari dalam menu"
 
-#: gsearchtool/gsearchtool.c:1807
+#: gsearchtool/gsearchtool.c:1999
 msgid "S_earch results:"
 msgstr "Hasil P_encarian:"
 
-#: gsearchtool/gsearchtool.c:1887
+#: gsearchtool/gsearchtool.c:2081
 msgid "Name"
 msgstr "Nama"
 
-#: gsearchtool/gsearchtool.c:1907
+#: gsearchtool/gsearchtool.c:2101
 msgid "Folder"
 msgstr "Folder"
 
-#: gsearchtool/gsearchtool.c:1918
+#: gsearchtool/gsearchtool.c:2112
 msgid "Size"
 msgstr "Ukuran"
 
-#: gsearchtool/gsearchtool.c:1928
+#: gsearchtool/gsearchtool.c:2122
 msgid "Type"
 msgstr "Tipe"
 
-#: gsearchtool/gsearchtool.c:1938
+#: gsearchtool/gsearchtool.c:2132
 msgid "Date Modified"
 msgstr "Tanggal Modifikasi"
 
-#: gsearchtool/gsearchtool.c:1995
+#: gsearchtool/gsearchtool.c:2500
 msgid "_Name contains:"
 msgstr "_Nama berisi:"
 
-#: gsearchtool/gsearchtool.c:2010 gsearchtool/gsearchtool.c:2011
+#: gsearchtool/gsearchtool.c:2515 gsearchtool/gsearchtool.c:2516
 msgid "Enter the file name you want to search."
 msgstr "Isi nama berkas yang hendak dicari"
 
-#: gsearchtool/gsearchtool.c:2011
+#: gsearchtool/gsearchtool.c:2516
 msgid "Name Contains Entry"
 msgstr "Isian Pencocokan Nama"
 
-#: gsearchtool/gsearchtool.c:2022
+#: gsearchtool/gsearchtool.c:2522
 msgid "_Look in folder:"
 msgstr "Cari da_lam folder:"
 
-#: gsearchtool/gsearchtool.c:2028
+#: gsearchtool/gsearchtool.c:2528
 msgid "Browse"
 msgstr "Browse"
 
-#: gsearchtool/gsearchtool.c:2035
+#: gsearchtool/gsearchtool.c:2534
 msgid "Select the folder where you want to start the search."
 msgstr "Isikan nama folder tempat hendak dimulainya pencarian"
 
-#: gsearchtool/gsearchtool.c:2059
+#: gsearchtool/gsearchtool.c:2545
+msgid "Show more _options"
+msgstr "Berikan pilihan lainn_ya"
+
+#: gsearchtool/gsearchtool.c:2555
 msgid "Show more options"
 msgstr "Berikan pilihan lainnya"
 
-#: gsearchtool/gsearchtool.c:2059
+#: gsearchtool/gsearchtool.c:2555
 msgid "Expands or collapses a list of search options."
 msgstr "Kembangkan atau tutap daftar pilihan pencarian."
 
-#: gsearchtool/gsearchtool.c:2106
+#: gsearchtool/gsearchtool.c:2607
 msgid "Click to Start the search"
 msgstr "Klik untuk mulai Pencarian"
 
-#: gsearchtool/gsearchtool.c:2107
+#: gsearchtool/gsearchtool.c:2608
 msgid "Click to Stop the search"
 msgstr "Klik untuk menghentikan Pencarian"
 
-#: gsearchtool/gsearchtool.c:2381
+#: gsearchtool/gsearchtool.c:2708
 msgid "Cannot initialize bonobo."
 msgstr "Tidak dapat inisialisasi bonobo"
 
-#: logview/about.c:47 logview/logview.c:49
+#: logview/about.c:47 logview/logview.c:47
 msgid "System Log Viewer"
 msgstr "Penampil Log Sistem"
 
@@ -1593,7 +1767,7 @@ msgstr "T_ambah"
 msgid "Add an action"
 msgstr "Tambah kegiatan"
 
-#: logview/actions.c:176 logview/logview.c:88
+#: logview/actions.c:176 logview/logview.c:86
 msgid "_Edit"
 msgstr "_Ubah"
 
@@ -1757,25 +1931,31 @@ msgstr "Informasi"
 
 #: logview/info.c:95
 #, c-format
-msgid "<b>Size</b>: %ld bytes"
-msgstr ""
+msgid "%ld byte"
+msgid_plural "%ld bytes"
+msgstr[0] "%ld byte"
 
-#: logview/info.c:99
+#: logview/info.c:97
+#, fuzzy, c-format
+msgid "<b>Size</b>: %s"
+msgstr "Dimodifikasi:"
+
+#: logview/info.c:102
 #, fuzzy, c-format
 msgid "<b>Modified</b>: %s"
 msgstr "Dimodifikasi:"
 
-#: logview/info.c:103
+#: logview/info.c:106
 #, fuzzy, c-format
 msgid "<b>Start Date</b>: %s"
 msgstr "Tanggal Mulai:"
 
-#: logview/info.c:107
+#: logview/info.c:110
 #, fuzzy, c-format
 msgid "<b>Last Date</b>: %s"
 msgstr "Tanggal Terakhir:"
 
-#: logview/info.c:111
+#: logview/info.c:114
 #, fuzzy, c-format
 msgid "<b>Number of Lines</b>: %ld"
 msgstr "Jumlah Baris:"
@@ -1835,7 +2015,8 @@ msgid "%x"
 msgstr "%x"
 
 #: logview/log_repaint.c:297
-msgid "Last Modified: "
+#, fuzzy
+msgid "Last Modified:"
 msgstr "Terakhir dimodifikasi:"
 
 #. Translators: Make sure this is only Month and Day format, year
@@ -1850,20 +2031,20 @@ msgstr "%B %e"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:43
+#: logview/logrtns.c:47
 #, fuzzy
-msgid "This file cannot be opened"
+msgid "The file could not be opened"
 msgstr "%s tidak dapat dibuka"
 
-#: logview/logrtns.c:206
+#: logview/logrtns.c:213
 msgid "Unable to open logfile!\n"
 msgstr "Tidak dapat membuka berkas log\n"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:220
 msgid "Not enough memory!\n"
 msgstr "Memori tidak cukup\n"
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:272
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1872,28 +2053,28 @@ msgstr ""
 "%s tidak dapat dibaca. Jalankan program sebagai root atau minta "
 "sistemadministrator untuk merubah hak akses berkas."
 
-#: logview/logrtns.c:282
+#: logview/logrtns.c:277
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:286
+#: logview/logrtns.c:281
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s tidak dapat dibuka"
 
-#: logview/logrtns.c:301 logview/logrtns.c:312
+#: logview/logrtns.c:322 logview/logrtns.c:333
 #, c-format
 msgid "%s not a log file."
 msgstr "%s bukan berkas log."
 
-#: logview/logrtns.c:563 logview/logrtns.c:587
+#: logview/logrtns.c:584 logview/logrtns.c:608
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memori tidak tersedia"
 
 #: logview/logview-findbar.c:265
 #, fuzzy
-msgid "Fin_d : "
+msgid "Fin_d:"
 msgstr "Cari"
 
 #: logview/logview-findbar.c:283
@@ -1905,131 +2086,132 @@ msgstr "Cari"
 msgid "Find Previous"
 msgstr ""
 
-#: logview/logview.c:87
+#: logview/logview.c:85
 msgid "_Log"
 msgstr "_Log"
 
-#: logview/logview.c:89
+#: logview/logview.c:87
 msgid "_View"
 msgstr "_Tampilan"
 
-#: logview/logview.c:92
+#: logview/logview.c:90
 msgid "_Open..."
 msgstr "B_uka..."
 
-#: logview/logview.c:92
+#: logview/logview.c:90
 msgid "Open a log from file"
 msgstr "Buka log dari sebuah berkas"
 
-#: logview/logview.c:94
+#: logview/logview.c:92
 msgid "_Properties"
 msgstr "_Informasi"
 
-#: logview/logview.c:94
+#: logview/logview.c:92
 msgid "Show Log Properties"
 msgstr "Pengaturan Tampilan Log"
 
-#: logview/logview.c:96
+#: logview/logview.c:94
 msgid "Close"
 msgstr "Tutup"
 
-#: logview/logview.c:96
+#: logview/logview.c:94
 msgid "Close this log"
 msgstr "Tutup log ini"
 
-#: logview/logview.c:98
+#: logview/logview.c:96
+msgid "_Quit"
+msgstr "_Keluar"
+
+#: logview/logview.c:96
 msgid "Quit the log viewer"
 msgstr "Keluar dari penampil log ini"
 
-#: logview/logview.c:101
+#: logview/logview.c:99
 msgid "Copy"
 msgstr ""
 
-#: logview/logview.c:103
+#: logview/logview.c:101
 msgid "Select All"
 msgstr ""
 
-#: logview/logview.c:103
+#: logview/logview.c:101
 msgid "Select the entire log"
 msgstr ""
 
-#: logview/logview.c:105
+#: logview/logview.c:103
 msgid "Find pattern in logs"
 msgstr "Cari pola dalam log"
 
-#: logview/logview.c:108
+#: logview/logview.c:106
 msgid "Collapse _All"
 msgstr "Tutup Semu_a"
 
-#: logview/logview.c:108
+#: logview/logview.c:106
 msgid "Collapse all the rows"
 msgstr "Tutup semua baris"
 
-#: logview/logview.c:111
+#: logview/logview.c:109
 msgid "Open the help contents for the log viewer"
 msgstr "Buka daftar isi bantuan"
 
-#: logview/logview.c:113
-msgid "Show the about dialog for the gconf editor"
+#: logview/logview.c:111
+#, fuzzy
+msgid "Show the about dialog for the log viewer"
 msgstr "Tampilkan dialog tentang aplikasi penyunting gconf"
 
-#: logview/logview.c:119
+#: logview/logview.c:117
 msgid "_Monitor"
 msgstr "_Pantau"
 
-#: logview/logview.c:119
+#: logview/logview.c:117
 msgid "Monitor Current Log"
 msgstr "Pantau Log yang Aktif"
 
-#: logview/logview.c:121
+#: logview/logview.c:119
 #, fuzzy
 msgid "Ca_lendar"
 msgstr "Kalender"
 
-#: logview/logview.c:121
+#: logview/logview.c:119
 msgid "Show Calendar Log"
 msgstr "Tampilkan Log Kalender"
 
-#: logview/logview.c:123
+#: logview/logview.c:121
 msgid "_Entry Detail"
 msgstr "Rincian _Entri"
 
-#: logview/logview.c:123
+#: logview/logview.c:121
 msgid "Show Entry Detail"
 msgstr "Tampilkan Rincian Entri"
 
-#: logview/logview.c:178
-msgid "Open the specified log."
-msgstr ""
-
-#: logview/logview.c:389
+#: logview/logview.c:386
 msgid "Date"
 msgstr "Tanggal"
 
-#: logview/logview.c:389
+#: logview/logview.c:386
 msgid "Host Name"
 msgstr "Nama Host"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 msgid "Process"
 msgstr "Proses"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 msgid "Message"
 msgstr "Pesan"
 
-#: logview/logview.c:583
+#: logview/logview.c:580
 msgid "Open new logfile"
 msgstr "Buka berkas log baru"
 
-#: logview/logview.c:879
+#: logview/logview.c:876
 #, fuzzy
 msgid "There was an error displaying help."
 msgstr ""
 "Ada error saat menampilkan layar bantu:\n"
 "%s"
 
-#: logview/logview.c:897
+#: logview/logview.c:894
 #, fuzzy, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s - %s (dipantau)"
@@ -2056,171 +2238,58 @@ msgstr "Detil Entri"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:86
+#~ msgid "_Show Dictionary"
+#~ msgstr "Tampilkan Kamu_s"
+
+#~ msgid "Check word spelling"
+#~ msgstr "Periksa ejaan pada kata"
+
 #, fuzzy
-msgid "Error loading help"
-msgstr "Error saat menutup perangkat %s"
+#~ msgid "Quit the application"
+#~ msgstr "Se_mbunyikan aplikasi"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:87
+#~ msgid "Smart _lookup"
+#~ msgstr "Pen_carian Pintar"
+
+#~ msgid "D_efault strategy:"
+#~ msgstr "Strategi D_efault:"
+
+#~ msgid "Enter a word to know the spelling"
+#~ msgstr "Masukkan kata untuk mengetahui ejaan yang benar"
+
+#~ msgid "Click to do the spell check"
+#~ msgstr "Klik untuk lakukan pengecekan ejaan"
+
+#~ msgid "Check Spelling"
+#~ msgstr "Periksa Ejaan"
+
+#~ msgid "Search Strategy"
+#~ msgstr "Strategi Pencarian"
+
 #, fuzzy
-msgid "There was an error displaying the help pages for this dialog:"
-msgstr ""
-"Ada error saat menampilkan layar bantu:\n"
-"%s"
+#~ msgid "Select Size At Most"
+#~ msgstr "Ukuran paling be_sar"
 
-#. translators: this is the name of the file that gets made up
-#. * with the screenshot if a specific window is taken
-#: gnome-screenshot/gnome-panel-screenshot.c:111
-#, c-format
-msgid "Screenshot-%s.png"
-msgstr ""
+#~ msgid "Image/label border"
+#~ msgstr "Bingkai gambar/label"
 
-#. translators: this is the name of the file that gets made up
-#. * with the screenshot if the entire screen is taken
-#: gnome-screenshot/gnome-panel-screenshot.c:117
-msgid "Screenshot.png"
-msgstr ""
+#~ msgid "Width of border around the label and image in the alert dialog"
+#~ msgstr "Lebar bingkai di sekeliling label dan gambar pada dialog siaga"
 
-#. translators: this is the name of the file that gets
-#. * made up with the screenshot if a specific window is
-#. * taken
-#: gnome-screenshot/gnome-panel-screenshot.c:155
-#, c-format
-msgid "Screenshot-%s-%d.png"
-msgstr ""
+#~ msgid "Alert Type"
+#~ msgstr "Jenis Siaga"
 
-#. translators: this is the name of the file that gets
-#. * made up with the screenshot if the entire screen is
-#. * taken
-#: gnome-screenshot/gnome-panel-screenshot.c:163
-#, c-format
-msgid "Screenshot-%d.png"
-msgstr ""
+#~ msgid "The type of alert"
+#~ msgstr "Jenis siaga"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:338
-msgid "Unable to take a screenshot of the current desktop."
-msgstr ""
+#~ msgid "Alert Buttons"
+#~ msgstr "Tombol Siaga"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:409
-msgid "Grab a window instead of the entire screen"
-msgstr ""
+#~ msgid "The buttons shown in the alert dialog"
+#~ msgstr "tombol yang ditampilkan pada dialog siaga"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:410
-msgid "Include the window border with the screenshot"
-msgstr ""
-
-#: gnome-screenshot/gnome-panel-screenshot.c:411
-msgid "Take screenshot after specified delay [in seconds]"
-msgstr ""
-
-#: gnome-screenshot/gnome-panel-screenshot.c:412
-msgid "Effect to add to the window border"
-msgstr ""
-
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
-msgid " (invalid Unicode)"
-msgstr ""
-
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
-#, c-format
-msgid "(%d:%02d:%d Remaining)"
-msgstr ""
-
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
-#, c-format
-msgid "(%d:%02d Remaining)"
-msgstr ""
-
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
-#, c-format
-msgid "%ld of %ld"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.glade.h:2
-msgid "Save Screenshot"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.glade.h:3
-#, fuzzy
-msgid "Save in _folder:"
-msgstr "Cari da_lam folder:"
-
-#: gnome-screenshot/gnome-screenshot.glade.h:4
-#, fuzzy
-msgid "_Name:"
-msgstr "Nama"
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
-msgid "Border Effect"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
-msgid "Directory that the screenshooter last used to save in"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
-msgid ""
-"Effect to add to the outside of a border. Possible values are \"shadow\", "
-"\"none\", and \"black-line\"."
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
-msgid "Include Border"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
-msgid "Include the window manager border along with the screenshot"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
-msgid "Web directory"
-msgstr ""
-
-#: gnome-screenshot/screenshot-dialog.c:194
-msgid ""
-"Glade file for the screenshot program is missing.\n"
-"Please check your installation of gnome-panel"
-msgstr ""
-
-#: gnome-screenshot/screenshot-save.c:40
-#, fuzzy, c-format
-msgid ""
-"Unable to clear the temporary directory:\n"
-"%s"
-msgstr "Tidak dapat membuat sistem berkas dengan sempurna."
-
-#: gnome-screenshot/screenshot-save.c:78
-msgid ""
-"The child save process unexpectedly exited.  We are unable to write the "
-"screenshot to disk."
-msgstr ""
-
-#: gnome-screenshot/screenshot-save.c:188
-msgid "Unknown error saving screenshot to disk"
-msgstr ""
-
-#: gnome-screenshot/screenshot-utils.c:611
-msgid "Untitled Window"
-msgstr ""
-
-#: gnome-screenshot/screenshot-xfer.c:103
-msgid "Preparing to copy"
-msgstr ""
-
-#: gnome-screenshot/screenshot-xfer.c:181
-#, fuzzy
-msgid "File already exists"
-msgstr "Berkas sudah dibuka."
-
-#: gnome-screenshot/screenshot-xfer.c:184
-#, fuzzy, c-format
-msgid "The file \"%s\" already exists.  Would you like to replace it?"
-msgstr "Dokumen \"%s\" sudah ada. Timpa saja?"
-
-#: gnome-screenshot/screenshot-xfer.c:230
-#, c-format
-msgid "Unknown GnomeVFSXferProgressStatus %d"
-msgstr ""
+#~ msgid "Could not move \"%s\" to the trash."
+#~ msgstr "\"%s\" tidak dapat dibuang ke tong sampah."
 
 #~ msgid "_Dictionary"
 #~ msgstr "_Kamus"
@@ -2235,9 +2304,6 @@ msgstr ""
 #~ "Ada error saat menampilkan layar bantu:\n"
 #~ "%s"
 
-#~ msgid "Search _results:"
-#~ msgstr "Hasil penca_rian:"
-
 #~ msgid "Size:"
 #~ msgstr "Ukuran:"
 
@@ -2246,10 +2312,6 @@ msgstr ""
 
 #~ msgid "<No log loaded>"
 #~ msgstr "<tidak ada log dibuka>"
-
-#~ msgid "%ld byte"
-#~ msgid_plural "%ld bytes"
-#~ msgstr[0] "%ld byte"
 
 #~ msgid "%s is not a regular file."
 #~ msgstr "%s bukan berkas biasa"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-29 09:39-0500\n"
+"POT-Creation-Date: 2005-01-10 15:41-0500\n"
 "PO-Revision-Date: 2001-08-19 03:21+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
@@ -21,23 +21,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:122
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
 msgid "Dictionary Lookup"
 msgstr ""
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:28
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:27
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 #, fuzzy
 msgid "Lookup words in an online dictionary"
 msgstr "Buscar palabra no diccionario"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:588
-#: logview/logview.c:113
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: logview/logview.c:111
 #, fuzzy
 msgid "_About"
 msgstr "Acerca"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:90
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
 #, fuzzy
 msgid "_Help"
 msgstr "Axuda"
@@ -52,18 +52,11 @@ msgstr "Copiar o proxecto seleccionado"
 msgid "_Preferences"
 msgstr "Preferencias"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:5
-#, fuzzy
-msgid "_Show Dictionary"
-msgstr "Barra de ferramentas de _accións"
-
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#. Could not look up search strategies, so just display a
-#. * label; FIXME: Memory leak
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:429
-#: gdictsrc/gdict-pref-dialog.c:478 gdictsrc/gdict-speller.c:690
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
+#: gdictsrc/gdict-pref-dialog.c:713
 msgid "Cannot connect to server"
 msgstr "Non é posible conectar co servidor"
 
@@ -88,54 +81,33 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "Cliente de GNOME para o servidor de diccionario do MIT"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:247
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
+#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:101
+#: gdictsrc/gdict-app.c:131
 msgid "Spell-checking..."
 msgstr "Comprobando a ortografía..."
 
-#: gdictsrc/gdict-app.c:108
+#: gdictsrc/gdict-app.c:140
 msgid "Spell check done"
 msgstr "Comprobación ortográfica rematada"
 
-#: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:263
+#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
 msgid "No matches found"
 msgstr "Non se atopou ningunha coincidencia"
 
-#: gdictsrc/gdict-app.c:126
-msgid "Connexion error"
-msgstr ""
-
-#: gdictsrc/gdict-app.c:238
-msgid "Looking up word..."
-msgstr "Buscando palabra..."
-
-#: gdictsrc/gdict-app.c:253
-msgid "Lookup done"
-msgstr "Busca rematada"
-
-#: gdictsrc/gdict-app.c:276
-msgid "String not found"
-msgstr "Cadea non atopada"
-
-#: gdictsrc/gdict-app.c:445
+#: gdictsrc/gdict-app.c:164
 #, fuzzy
-msgid "Find"
-msgstr "Buscar"
+msgid "Connection error"
+msgstr "Conectar a"
 
-#: gdictsrc/gdict-app.c:455
-#, fuzzy
-msgid "_Search for:"
-msgstr "Buscar"
-
-#: gdictsrc/gdict-app.c:505
+#: gdictsrc/gdict-app.c:209
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:506
+#: gdictsrc/gdict-app.c:210
 #, fuzzy
 msgid ""
 "Either the server you are using is not available \n"
@@ -145,301 +117,311 @@ msgstr ""
 "que está a usar non funciona ou porque non está conectado á Internet.\n"
 "Se aínda non está conectado á Internet, fágao e tente de novo."
 
-#: gdictsrc/gdict-app.c:543 gdictsrc/gdict-applet.c:350
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-app.c:352
+msgid "Looking up word..."
+msgstr "Buscando palabra..."
+
+#: gdictsrc/gdict-app.c:369
+msgid "Lookup done"
+msgstr "Busca rematada"
+
+#: gdictsrc/gdict-app.c:393
+msgid "String not found"
+msgstr "Cadea non atopada"
+
+#: gdictsrc/gdict-app.c:467
+#, fuzzy
+msgid "Print Word Definition"
+msgstr "Definición da palabra"
+
+#: gdictsrc/gdict-app.c:582
+#, fuzzy
+msgid "Find"
+msgstr "Buscar"
+
+#: gdictsrc/gdict-app.c:592
+#, fuzzy
+msgid "_Search for:"
+msgstr "Buscar"
+
+#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-pref-dialog.c:863
 #, fuzzy
 msgid "Could not display help"
 msgstr "Nome do display X:"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:568 gdictsrc/gdict-app.c:864
-#: gdictsrc/gdict-speller.c:252
+#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
 #, fuzzy
 msgid "_Look Up Word"
 msgstr "Buscar"
 
-#: gdictsrc/gdict-app.c:569
+#: gdictsrc/gdict-app.c:899
 msgid "Lookup word in dictionary"
 msgstr "Buscar palabra no diccionario"
 
-#: gdictsrc/gdict-app.c:570 gdictsrc/gdict-speller.c:191
-#, fuzzy
-msgid "Check _Spelling"
-msgstr "Comprobar a ortografía da palabra"
-
-#: gdictsrc/gdict-app.c:571
-msgid "Check word spelling"
-msgstr "Comprobar a ortografía da palabra"
-
-#: gdictsrc/gdict-app.c:573
+#: gdictsrc/gdict-app.c:900
 #, fuzzy
 msgid "_Print"
 msgstr "Punto"
 
-#: gdictsrc/gdict-app.c:574
+#: gdictsrc/gdict-app.c:901
 #, fuzzy
 msgid "Print the current definition"
 msgstr "Pechar o documento actual"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:578 logview/logview.c:105
+#: gdictsrc/gdict-app.c:904 logview/logview.c:103
 #, fuzzy
 msgid "_Find..."
 msgstr "Buscar:"
 
-#: gdictsrc/gdict-app.c:579
+#: gdictsrc/gdict-app.c:905
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "Copiar a selección"
 
-#: gdictsrc/gdict-app.c:580
+#: gdictsrc/gdict-app.c:906
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "Buscar"
 
-#: gdictsrc/gdict-app.c:581
+#: gdictsrc/gdict-app.c:907
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:908
 #, fuzzy
 msgid "P_references"
 msgstr "Preferencias"
 
-#: gdictsrc/gdict-app.c:583
+#: gdictsrc/gdict-app.c:909
 #, fuzzy
 msgid "Configure the application"
 msgstr "Acerca desta aplicación"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:586 logview/logview.c:111
+#: gdictsrc/gdict-app.c:912 logview/logview.c:109
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:587
+#: gdictsrc/gdict-app.c:913
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:589
+#: gdictsrc/gdict-app.c:915
 #, fuzzy
 msgid "About this application"
 msgstr "Acerca desta aplicación"
 
-#: gdictsrc/gdict-app.c:596 logview/logview.c:98
-#, fuzzy
-msgid "_Quit"
-msgstr "Saír"
-
-#: gdictsrc/gdict-app.c:597
-#, fuzzy
-msgid "Quit the application"
-msgstr "Acerca desta aplicación"
-
-#: gdictsrc/gdict-app.c:601
+#: gdictsrc/gdict-app.c:919
 #, fuzzy
 msgid "_Close"
 msgstr "Pechar"
 
-#: gdictsrc/gdict-app.c:602
+#: gdictsrc/gdict-app.c:920
 #, fuzzy
 msgid "Close the application"
 msgstr "Acerca desta aplicación"
 
-#: gdictsrc/gdict-app.c:607
+#: gdictsrc/gdict-app.c:925
+#, fuzzy
+msgid "On a Dictionary Server"
+msgstr "Editar as preferencias..."
+
+#: gdictsrc/gdict-app.c:927
+msgid "On a Web Site"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:933
 #, fuzzy
 msgid "Cu_t"
 msgstr "Cortar"
 
-#: gdictsrc/gdict-app.c:608
+#: gdictsrc/gdict-app.c:934
 msgid "Cut the selection"
 msgstr "Cortar a selección"
 
-#: gdictsrc/gdict-app.c:609
+#: gdictsrc/gdict-app.c:935
 #, fuzzy
 msgid "_Copy"
 msgstr "Copiar"
 
-#: gdictsrc/gdict-app.c:610 logview/logview.c:101
+#: gdictsrc/gdict-app.c:936 logview/logview.c:99
 #, fuzzy
 msgid "Copy the selection"
 msgstr "Cortar a selección"
 
-#: gdictsrc/gdict-app.c:611
+#: gdictsrc/gdict-app.c:937
 #, fuzzy
 msgid "_Paste"
 msgstr "Pegar"
 
-#: gdictsrc/gdict-app.c:612
+#: gdictsrc/gdict-app.c:938
 #, fuzzy
 msgid "Paste clipboard"
 msgstr "Pegar do portarretallos"
 
-#: gdictsrc/gdict-app.c:613
+#: gdictsrc/gdict-app.c:939
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:614
+#: gdictsrc/gdict-app.c:940
 #, fuzzy
 msgid "Select everything"
 msgstr "Seleccionar os eventos do rexistro"
 
-#: gdictsrc/gdict-app.c:861 gdictsrc/gdict-speller.c:179
+#: gdictsrc/gdict-app.c:945
+#, fuzzy
+msgid "_Spellings"
+msgstr "Corrixir"
+
+#: gdictsrc/gdict-app.c:946
+msgid "View alternate spellings"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:1031
 #, fuzzy
 msgid "_Word:"
 msgstr "Palabra:"
 
-#: gdictsrc/gdict-app.c:884 gdictsrc/gdict-speller.c:198
+#: gdictsrc/gdict-app.c:1055
 #, fuzzy
 msgid "Word"
 msgstr "Palabra:"
 
-#: gdictsrc/gdict-app.c:885 gdictsrc/gdict-app.c:887
-#: gdictsrc/gdict-speller.c:200
+#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
 msgid "Word Entry"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:886
+#: gdictsrc/gdict-app.c:1057
 msgid "Enter a Word or select one from the list below"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:890
+#: gdictsrc/gdict-app.c:1061
 #, fuzzy
 msgid "Look Up for a Word"
 msgstr "Buscar"
 
-#: gdictsrc/gdict-applet.c:127
+#: gdictsrc/gdict-applet.c:155
 #, fuzzy
 msgid "Dictionary word entry"
 msgstr "Editar as preferencias..."
 
-#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:367
+#: gdictsrc/gdict-defbox.c:335
+#, fuzzy
+msgid "Definition preview"
+msgstr "Clic dobre nas previsualizacións:"
+
+#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
 #, fuzzy
 msgid "Error invoking query"
 msgstr "Erro ao efectuar a consulta: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:136
-#, fuzzy
-msgid "Dictionary Preferences"
-msgstr "Editar as preferencias..."
-
-#: gdictsrc/gdict-pref-dialog.c:149
-#, fuzzy
-msgid "Smart _lookup"
-msgstr "Busca intelixente"
-
-#: gdictsrc/gdict-pref-dialog.c:163
+#: gdictsrc/gdict-pref-dialog.c:254
 #, fuzzy
 msgid "De_fault Server"
 msgstr "Estratexia por defecto:"
 
-#: gdictsrc/gdict-pref-dialog.c:174
+#: gdictsrc/gdict-pref-dialog.c:265
 #, fuzzy
 msgid "_Server:"
 msgstr "Servidor:"
 
-#: gdictsrc/gdict-pref-dialog.c:183
+#: gdictsrc/gdict-pref-dialog.c:273
 #, fuzzy
 msgid "Reset server to default"
 msgstr "Voltar aos valores predeterminados"
 
-#: gdictsrc/gdict-pref-dialog.c:191
+#: gdictsrc/gdict-pref-dialog.c:275
 #, fuzzy
 msgid "_Port:"
 msgstr "Porto:"
 
-#: gdictsrc/gdict-pref-dialog.c:201
+#: gdictsrc/gdict-pref-dialog.c:285
 #, fuzzy
 msgid "Def_ault Port"
 msgstr "Por omisión"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:300
 #, fuzzy
 msgid "Reset port to default"
 msgstr "Voltar aos valores predeterminados"
 
-#: gdictsrc/gdict-pref-dialog.c:217
+#: gdictsrc/gdict-pref-dialog.c:301
 #, fuzzy
 msgid "Server"
 msgstr "Servidor:"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:303
 #, fuzzy
 msgid "Server Entry"
 msgstr "Servidor:"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:303
 msgid "Enter the Server Name"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:220
+#: gdictsrc/gdict-pref-dialog.c:304
 #, fuzzy
 msgid "Port"
 msgstr "Porto:"
 
-#: gdictsrc/gdict-pref-dialog.c:222
+#: gdictsrc/gdict-pref-dialog.c:306
 msgid "Port Entry"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:222
+#: gdictsrc/gdict-pref-dialog.c:306
 msgid "Enter the Port Number"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:231
+#: gdictsrc/gdict-pref-dialog.c:309
 #, fuzzy
 msgid "_Database:"
 msgstr "Base de datos:"
 
-#: gdictsrc/gdict-pref-dialog.c:238
+#: gdictsrc/gdict-pref-dialog.c:316
 #, fuzzy
-msgid "D_efault strategy:"
-msgstr "Estratexia por defecto:"
+msgid "Strat_egy:"
+msgstr "Estratexia de busca:"
 
-#: gdictsrc/gdict-pref-dialog.c:421
+#: gdictsrc/gdict-pref-dialog.c:342
+msgid "Web Site"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:342
+#, fuzzy
+msgid "Search Address"
+msgstr "Resultados da busca"
+
+#: gdictsrc/gdict-pref-dialog.c:462
+#, fuzzy
+msgid "Dictionary Preferences"
+msgstr "Editar as preferencias..."
+
+#: gdictsrc/gdict-pref-dialog.c:474
+#, fuzzy
+msgid "Web Sites"
+msgstr "Elementos de menú"
+
+#: gdictsrc/gdict-pref-dialog.c:656
 msgid "Search all databases"
 msgstr "Buscar tódalas bases de datos"
 
-#: gdictsrc/gdict-pref-dialog.c:582
+#: gdictsrc/gdict-pref-dialog.c:817
 #, fuzzy
 msgid "Database"
 msgstr "Base de datos:"
 
-#: gdictsrc/gdict-pref-dialog.c:582
+#: gdictsrc/gdict-pref-dialog.c:817
 #, fuzzy
 msgid "Database Name"
 msgstr "Base de datos:"
 
-#: gdictsrc/gdict-pref-dialog.c:600
+#: gdictsrc/gdict-pref-dialog.c:834
 #, fuzzy
 msgid "Default Strategy"
 msgstr "Estratexia por defecto:"
-
-#: gdictsrc/gdict-speller.c:200
-msgid "Enter a word to know the spelling"
-msgstr ""
-
-#: gdictsrc/gdict-speller.c:205
-#, fuzzy
-msgid "Search s_trategy:"
-msgstr "Estratexia de busca:"
-
-#: gdictsrc/gdict-speller.c:209 gsearchtool/gsearchtool.c:2049
-#, fuzzy
-msgid "Show more _options"
-msgstr "Amosar `Propiedades'"
-
-#: gdictsrc/gdict-speller.c:215
-msgid "Click to do the spell check"
-msgstr ""
-
-#: gdictsrc/gdict-speller.c:265
-#, fuzzy
-msgid "Check Spelling"
-msgstr "Comprobar a ortografía da palabra"
-
-#: gdictsrc/gdict-speller.c:652
-#, fuzzy
-msgid "Search Strategy"
-msgstr "Estratexia de busca:"
 
 #: gdictsrc/gdict.schemas.in.h:1
 #, fuzzy
@@ -494,7 +476,7 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Busca intelixente"
 
-#: gdictsrc/main.c:101
+#: gdictsrc/main.c:80
 #, fuzzy
 msgid "Gnome Dictionary"
 msgstr "Barra de ferramentas de _accións"
@@ -762,6 +744,7 @@ msgid "Error while checking the bad blocks."
 msgstr "MVerificando os bloques erróneos..."
 
 #: gfloppy/src/gfloppy2.glade.h:1
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:1
 msgid "    "
 msgstr ""
 
@@ -948,13 +931,198 @@ msgstr "Formato de disquete cancelado."
 msgid "Format Progress"
 msgstr "Evolución do formato."
 
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
+msgid " (invalid Unicode)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
+#, c-format
+msgid "(%d:%02d:%d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
+#, c-format
+msgid "(%d:%02d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
+#, c-format
+msgid "%ld of %ld"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:86
+#, fuzzy
+msgid "Error loading help"
+msgstr ""
+"Erro ao cargar o ficheiro:\n"
+"%s\n"
+"%s"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:87
+#, fuzzy
+msgid "There was an error displaying the help pages for this dialog:"
+msgstr "Houbo un erro. `%s' está baleiro"
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if a specific window is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:111
+#, c-format
+msgid "Screenshot-%s.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if the entire screen is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:117
+msgid "Screenshot.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if a specific window is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:155
+#, c-format
+msgid "Screenshot-%s-%d.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if the entire screen is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:163
+#, c-format
+msgid "Screenshot-%d.png"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:338
+msgid "Unable to take a screenshot of the current desktop."
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:410
+#, fuzzy
+msgid "Grab a window instead of the entire screen"
+msgstr "Capturar unha cor da pantalla"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:411
+msgid "Include the window border with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:412
+msgid "Take screenshot after specified delay [in seconds]"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:413
+msgid "Effect to add to the window border"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:2
+msgid "<b>Options</b>"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:3
+msgid "<b>Preview</b>"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:4
+#: gnome-screenshot/gnome-screenshot.glade.h:2
+msgid "Save Screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.glade.h:3
+#, fuzzy
+msgid "Save in _folder:"
+msgstr "Cadea non atopada"
+
+#: gnome-screenshot/gnome-screenshot.glade.h:4
+#, fuzzy
+msgid "_Name:"
+msgstr "Nome:"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
+msgid "Border Effect"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
+msgid "Directory that the screenshooter last used to save in"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
+msgid ""
+"Effect to add to the outside of a border. Possible values are \"shadow\", "
+"\"none\", and \"black-line\"."
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Border"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the window manager border along with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
+#, fuzzy
+msgid "Web directory"
+msgstr "Empezar no directorio:"
+
+#: gnome-screenshot/screenshot-dialog.c:194
+msgid ""
+"Glade file for the screenshot program is missing.\n"
+"Please check your installation of gnome-panel"
+msgstr ""
+
+#: gnome-screenshot/screenshot-save.c:40
+#, fuzzy, c-format
+msgid ""
+"Unable to clear the temporary directory:\n"
+"%s"
+msgstr "ENon foi posible crear o sistema de ficheiros correctamente."
+
+#: gnome-screenshot/screenshot-save.c:78
+msgid ""
+"The child save process unexpectedly exited.  We are unable to write the "
+"screenshot to disk."
+msgstr ""
+
+#: gnome-screenshot/screenshot-save.c:188
+msgid "Unknown error saving screenshot to disk"
+msgstr ""
+
+#: gnome-screenshot/screenshot-utils.c:611
+#, fuzzy
+msgid "Untitled Window"
+msgstr "_Nova fiestra"
+
+#: gnome-screenshot/screenshot-xfer.c:103
+#, fuzzy
+msgid "Preparing to copy"
+msgstr "Texto para copiar:"
+
+#: gnome-screenshot/screenshot-xfer.c:181
+#, fuzzy
+msgid "File already exists"
+msgstr "O ficheiro %s xa existe, sobrescribir?"
+
+#: gnome-screenshot/screenshot-xfer.c:184
+#, fuzzy, c-format
+msgid "The file \"%s\" already exists.  Would you like to replace it?"
+msgstr "O ficheiro %s xa existe, sobrescribir?"
+
+#: gnome-screenshot/screenshot-xfer.c:190
+#: gsearchtool/gsearchtool-callbacks.c:1265
+msgid "_Replace"
+msgstr ""
+
+#: gnome-screenshot/screenshot-xfer.c:230
+#, c-format
+msgid "Unknown GnomeVFSXferProgressStatus %d"
+msgstr ""
+
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
-#: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
-#: gsearchtool/gsearchtool.c:2364 gsearchtool/gsearchtool.c:2385
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
+#: gsearchtool/gsearchtool.c:2688
 #, fuzzy
 msgid "Search for Files"
 msgstr "Buscar"
@@ -975,87 +1143,114 @@ msgstr ""
 msgid "Quick Search Second Scan Excluded Paths"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:5
-#, fuzzy
-msgid "Select Contains the Text"
-msgstr "Copiar a selección"
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:6
-#, fuzzy
-msgid "Select Date Modified Less Than"
-msgstr "Modificado:"
-
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:7
 #, fuzzy
-msgid "Select Date Modified More Than"
-msgstr "Modificado:"
+msgid "Select the search option \"Contains the text\""
+msgstr "Copiar a selección"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:8
-#, fuzzy
-msgid "Select File is Empty"
-msgstr "O ficheiro `%s' está baleiro"
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:9
-#, fuzzy
-msgid "Select Follow Symbolic Links"
-msgstr "Seguir as ligazóns simbólicas"
-
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:10
 #, fuzzy
-msgid "Select Include Other Filesystems"
-msgstr "Non buscar nos sistemas de ficheiros montados"
+msgid "Select the search option \"Date modified less than\""
+msgstr "Modificado:"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:11
-#, fuzzy
-msgid "Select Name Matches Regular Expression"
-msgstr "Busca de expresión regular estendida"
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:12
-#, fuzzy
-msgid "Select Name does not Contain"
-msgstr "Escoller unha fonte para pegar"
-
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:13
 #, fuzzy
-msgid "Select Owned by Group"
-msgstr "Grupo do ficheiro"
+msgid "Select the search option \"Date modified more than\""
+msgstr "Modificado:"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:14
-#, fuzzy
-msgid "Select Owned by User"
-msgstr "Grupo do ficheiro"
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:15
-msgid "Select Owner is Unrecognized"
-msgstr ""
-
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:16
-msgid "Select Show Hidden Files and Folders"
+#, fuzzy
+msgid "Select the search option \"File is empty\""
+msgstr "O ficheiro `%s' está baleiro"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#, fuzzy
+msgid "Select the search option \"Follow symbolic links\""
+msgstr "Seguir as ligazóns simbólicas"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:22
+#, fuzzy
+msgid "Select the search option \"Include other filesystems\""
+msgstr "Non buscar nos sistemas de ficheiros montados"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:25
+#, fuzzy
+msgid "Select the search option \"Name does not contain\""
+msgstr "Escoller unha fonte para pegar"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:28
+#, fuzzy
+msgid "Select the search option \"Name matches regular expression\""
+msgstr "Busca de expresión regular estendida"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:31
+#, fuzzy
+msgid "Select the search option \"Owned by group\""
+msgstr "Grupo do ficheiro"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:34
+#, fuzzy
+msgid "Select the search option \"Owned by user\""
+msgstr "Grupo do ficheiro"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:37
+msgid "Select the search option \"Owner is unrecognized\""
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:17
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:40
+msgid "Select the search option \"Show hidden files and folders\""
+msgstr ""
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:43
 #, fuzzy
-msgid "Select Size At Least"
+msgid "Select the search option \"Size at least\""
 msgstr "Busca de expresión regular estendida"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:18
-#, fuzzy
-msgid "Select Size At Most"
-msgstr "Busca de expresión regular estendida"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:46
+msgid "Select the search option \"Size at most\""
+msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#: gsearchtool/gnome-search-tool.schemas.in.h:47
 #, fuzzy
 msgid "Show Additional Options"
 msgstr "Opcións do monitor"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:20
+#: gsearchtool/gnome-search-tool.schemas.in.h:48
 msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:21
+#: gsearchtool/gnome-search-tool.schemas.in.h:49
 msgid ""
 "This key defines the paths the search tool will exclude from a second scan "
 "when performing a quick search. The second scan uses the find command to "
@@ -1064,172 +1259,124 @@ msgid ""
 "is /."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:22
+#: gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
-"This key determines if the Additional Options section is expanded when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:23
-msgid ""
-"This key determines if the Contains the Text option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:24
-msgid ""
-"This key determines if the Date Modified Less Than option is selected when "
-"the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:25
-msgid ""
-"This key determines if the Date Modified More Than option is selected when "
-"the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:26
-msgid ""
-"This key determines if the File is Empty option is selected when the search "
-"tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:27
-msgid ""
-"This key determines if the Follow Symbolic Links option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:28
-msgid ""
-"This key determines if the Include Other Filesystems option is selected when "
-"the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:29
-msgid ""
-"This key determines if the Name Matches Regular Expression option is "
-"selected when the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:30
-msgid ""
-"This key determines if the Name does not Contain option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:31
-msgid ""
-"This key determines if the Owned by Group option is selected when the search "
-"tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:32
-msgid ""
-"This key determines if the Owned by User option is selected when the search "
-"tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:33
-msgid ""
-"This key determines if the Owner is Unrecognized option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:34
-msgid ""
-"This key determines if the Show Hidden Files and Folders option is selected "
+"This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:35
+#: gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid ""
-"This key determines if the Size At Least option is selected when the search "
-"tool is started."
+"This key determines if the \"Date modified less than\" search option is "
+"selected when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:36
+#: gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
-"This key determines if the Size At Most option is selected when the search "
-"tool is started."
+"This key determines if the \"Date modified more than\" search option is "
+"selected when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:37
+#: gsearchtool/gnome-search-tool.schemas.in.h:53
+msgid ""
+"This key determines if the \"File is empty\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:54
+msgid ""
+"This key determines if the \"Follow symbolic links\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:55
+msgid ""
+"This key determines if the \"Include other filesystems\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:56
+msgid ""
+"This key determines if the \"Name does not contain\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:57
+msgid ""
+"This key determines if the \"Name matches regular expression\" search option "
+"is selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:58
+msgid ""
+"This key determines if the \"Owned by group\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:59
+msgid ""
+"This key determines if the \"Owned by user\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:60
+msgid ""
+"This key determines if the \"Owner is unrecognized\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:61
+msgid ""
+"This key determines if the \"Show hidden files and folders\" search option "
+"is selected when the search tool is started."
+msgstr ""
+
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
+msgid ""
+"This key determines if the \"Show more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:65
+msgid ""
+"This key determines if the \"Size at least\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:66
+msgid ""
+"This key determines if the \"Size at most\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:38
+#: gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
 msgstr ""
 
-#: gsearchtool/gsearchtool-alert-dialog.c:100
-msgid "Image/label border"
-msgstr ""
-
-#: gsearchtool/gsearchtool-alert-dialog.c:101
-msgid "Width of border around the label and image in the alert dialog"
-msgstr ""
-
-#: gsearchtool/gsearchtool-alert-dialog.c:110
-#, fuzzy
-msgid "Alert Type"
-msgstr "Seleccione o tipo"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:111
-msgid "The type of alert"
-msgstr ""
-
-#: gsearchtool/gsearchtool-alert-dialog.c:119
-#, fuzzy
-msgid "Alert Buttons"
-msgstr "Botóns en_focables"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:120
-msgid "The buttons shown in the alert dialog"
-msgstr ""
-
-#: gsearchtool/gsearchtool-alert-dialog.c:172
-#, fuzzy
-msgid "Show more _details"
-msgstr "Amosar `Propiedades'"
-
-#: gsearchtool/gsearchtool-callbacks.c:50
-#, fuzzy
-msgid "_Open"
-msgstr "Abrir"
-
-#: gsearchtool/gsearchtool-callbacks.c:54
-#, fuzzy
-msgid "O_pen Folder"
-msgstr "Abrir rexistro"
-
-#: gsearchtool/gsearchtool-callbacks.c:59
-msgid "Mo_ve to Trash"
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:64
-#, fuzzy
-msgid "_Save Results As..."
-msgstr "Gardar resultados"
-
-#: gsearchtool/gsearchtool-callbacks.c:111
+#: gsearchtool/gsearchtool-callbacks.c:161
 #, fuzzy
 msgid "Could not open help document."
 msgstr "Pechar documento"
 
-#: gsearchtool/gsearchtool-callbacks.c:319
+#: gsearchtool/gsearchtool-callbacks.c:296
 #, fuzzy, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "¿Está seguro de que quere apagar o ordenador?"
 msgstr[1] "¿Está seguro de que quere apagar o ordenador?"
 
-#: gsearchtool/gsearchtool-callbacks.c:324
-#: gsearchtool/gsearchtool-callbacks.c:476
+#: gsearchtool/gsearchtool-callbacks.c:301
+#: gsearchtool/gsearchtool-callbacks.c:458
 #, fuzzy, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -1240,121 +1387,105 @@ msgstr[1] ""
 "A seguinte mensaxe vai ser enviada a %s.\n"
 " ¿Está seguro de que quere enviar esta información?"
 
-#: gsearchtool/gsearchtool-callbacks.c:384
-#: gsearchtool/gsearchtool-callbacks.c:417
-#: gsearchtool/gsearchtool-callbacks.c:966
-#: gsearchtool/gsearchtool-callbacks.c:999
+#: gsearchtool/gsearchtool-callbacks.c:341
 #, fuzzy, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Pechar documento"
 
-#: gsearchtool/gsearchtool-callbacks.c:387
-#: gsearchtool/gsearchtool-callbacks.c:642
-#: gsearchtool/gsearchtool-callbacks.c:969
+#: gsearchtool/gsearchtool-callbacks.c:416
+#: gsearchtool/gsearchtool-callbacks.c:759
 #, fuzzy
 msgid "The document does not exist."
 msgstr "O directorio de inicio non existe"
 
-#: gsearchtool/gsearchtool-callbacks.c:420
-#: gsearchtool/gsearchtool-callbacks.c:1002
+#: gsearchtool/gsearchtool-callbacks.c:429
 msgid "There is no installed viewer capable of displaying the document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:471
+#: gsearchtool/gsearchtool-callbacks.c:453
 #, fuzzy, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "¿Está seguro de que quere apagar o ordenador?"
 msgstr[1] "¿Está seguro de que quere apagar o ordenador?"
 
-#: gsearchtool/gsearchtool-callbacks.c:529
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, fuzzy, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Non foi posible abrir o ficheiro `%s': %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:536
+#: gsearchtool/gsearchtool-callbacks.c:505
 msgid "The nautilus file manager is not running."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:639
+#: gsearchtool/gsearchtool-callbacks.c:585
 #, fuzzy, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Pechar documento"
 
-#: gsearchtool/gsearchtool-callbacks.c:679
-#, fuzzy, c-format
-msgid "Could not move \"%s\" to the trash."
-msgstr "Pechar documento"
-
-#: gsearchtool/gsearchtool-callbacks.c:682
-#, c-format
-msgid "Moving \"%s\" failed: %s."
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:712
+#: gsearchtool/gsearchtool-callbacks.c:616
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:715
+#: gsearchtool/gsearchtool-callbacks.c:619
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:757
+#: gsearchtool/gsearchtool-callbacks.c:658
 #, fuzzy, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Non foi posible abrir o ficheiro `%s': %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:760
+#: gsearchtool/gsearchtool-callbacks.c:778
+#, c-format
+msgid "Moving \"%s\" failed: %s."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:810
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1154
 #, fuzzy
 msgid "Save Search Results As..."
 msgstr "Gardar resultados"
 
-#: gsearchtool/gsearchtool-callbacks.c:1239
+#: gsearchtool/gsearchtool-callbacks.c:1182
 #, fuzzy
 msgid "Could not save document."
 msgstr "Pechar documento"
 
-#: gsearchtool/gsearchtool-callbacks.c:1241
+#: gsearchtool/gsearchtool-callbacks.c:1183
 #, fuzzy
 msgid "You did not select a document name."
 msgstr "Pechar documento"
 
-#: gsearchtool/gsearchtool-callbacks.c:1267
-#: gsearchtool/gsearchtool-callbacks.c:1362
+#: gsearchtool/gsearchtool-callbacks.c:1213
 #, fuzzy, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Pechar documento"
 
-#: gsearchtool/gsearchtool-callbacks.c:1271
-msgid "The document name you selected is a folder."
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:1300
+#: gsearchtool/gsearchtool-callbacks.c:1246
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1304
+#: gsearchtool/gsearchtool-callbacks.c:1250
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1315
-#: gnome-screenshot/screenshot-xfer.c:190
-msgid "_Replace"
+#: gsearchtool/gsearchtool-callbacks.c:1314
+msgid "The document name you selected is a folder."
 msgstr ""
 
 #: gsearchtool/gsearchtool-callbacks.c:1365
 msgid "You may not have write permissions to the document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:68
+#: gsearchtool/gsearchtool-support.c:70
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1366,170 +1497,194 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:620
+#: gsearchtool/gsearchtool-support.c:521
 msgid "today at %-I:%M %p"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:622
+#: gsearchtool/gsearchtool-support.c:523
 msgid "yesterday at %-I:%M %p"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
+#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:797
+#: gsearchtool/gsearchtool-support.c:711
 msgid "link (broken)"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:802
+#: gsearchtool/gsearchtool-support.c:717
 #, c-format
 msgid "link to %s"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:81
 #, fuzzy
 msgid "Contains the _text"
 msgstr "Copiar a selección"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:83
 #, fuzzy
 msgid "_Date modified less than"
 msgstr "Modificado:"
 
-#: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:83 gsearchtool/gsearchtool.c:84
 #, fuzzy
 msgid "days"
 msgstr "Hoxe"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:84
 #, fuzzy
 msgid "Date modified more than"
 msgstr "Modificado:"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:86
 #, fuzzy
 msgid "S_ize at least"
 msgstr "Busca de expresión regular estendida"
 
-#: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:86 gsearchtool/gsearchtool.c:87
 #, fuzzy
 msgid "kilobytes"
 msgstr "Kilobytes"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:87
 #, fuzzy
 msgid "Si_ze at most"
 msgstr "Busca de expresión regular estendida"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:88
 #, fuzzy
 msgid "File is empty"
 msgstr "O ficheiro `%s' está baleiro"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:90
 #, fuzzy
 msgid "Owned by _user"
 msgstr "Grupo do ficheiro"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:91
 #, fuzzy
 msgid "Owned by _group"
 msgstr "Grupo do ficheiro"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:92
 msgid "Owner is unrecognized"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:94
 msgid "Na_me does not contain"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:95
 #, fuzzy
 msgid "Name matches regular e_xpression"
 msgstr "Busca de expresión regular estendida"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:97
 #, fuzzy
 msgid "Show hidden and backup files"
 msgstr "Engadir ficheiro ou cartafol"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:98
 msgid "Follow symbolic links"
 msgstr "Seguir as ligazóns simbólicas"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:99
 #, fuzzy
 msgid "Include other filesystems"
 msgstr "Non buscar nos sistemas de ficheiros montados"
 
-#: gsearchtool/gsearchtool.c:581 gsearchtool/gsearchtool.c:609
+#: gsearchtool/gsearchtool.c:180
+#, fuzzy
+msgid "_Open"
+msgstr "Abrir"
+
+#: gsearchtool/gsearchtool.c:181
+#, fuzzy
+msgid "O_pen Folder"
+msgstr "Abrir rexistro"
+
+#: gsearchtool/gsearchtool.c:182
+msgid "Mo_ve to Trash"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:183
+#, fuzzy
+msgid "_Save Results As..."
+msgstr "Gardar resultados"
+
+#: gsearchtool/gsearchtool.c:650 gsearchtool/gsearchtool.c:679
 #, fuzzy
 msgid "No files found"
 msgstr "Non se atopou ningunha coincidencia"
 
-#: gsearchtool/gsearchtool.c:602
+#: gsearchtool/gsearchtool.c:672
 msgid "(stopped)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:608
+#: gsearchtool/gsearchtool.c:678
 #, fuzzy
 msgid "No Files Found"
 msgstr "Non se atopou ningunha coincidencia"
 
-#: gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:683
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "Non se atopou ningunha coincidencia"
 msgstr[1] "Non se atopou ningunha coincidencia"
 
-#: gsearchtool/gsearchtool.c:617 gsearchtool/gsearchtool.c:655
+#: gsearchtool/gsearchtool.c:687 gsearchtool/gsearchtool.c:725
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "Non se atopou ningunha coincidencia"
 msgstr[1] "Non se atopou ningunha coincidencia"
 
-#: gsearchtool/gsearchtool.c:743
+#: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr "¡\"Entry changed\" foi chamada para unha opción non válida!"
 
-#: gsearchtool/gsearchtool.c:998
+#: gsearchtool/gsearchtool.c:1049
 msgid "Searching..."
 msgstr "Buscando..."
 
-#: gsearchtool/gsearchtool.c:1020
-msgid "Set the text of 'Name contains'"
+#: gsearchtool/gsearchtool.c:1071
+msgid "Set the text of \"Name contains\" search option"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1021
-msgid "Set the text of 'Look in folder'"
+#: gsearchtool/gsearchtool.c:1072
+msgid "Set the text of \"Look in folder\" search option"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1022
+#: gsearchtool/gsearchtool.c:1073
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1023
+#: gsearchtool/gsearchtool.c:1074
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1024
+#: gsearchtool/gsearchtool.c:1075
 msgid "Automatically start a search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1029
+#: gsearchtool/gsearchtool.c:1081
 #, fuzzy, c-format
-msgid "Select the '%s' constraint"
+msgid "Select the \"%s\" search option"
 msgstr "Seguir as ligazóns simbólicas"
 
-#: gsearchtool/gsearchtool.c:1135
+#: gsearchtool/gsearchtool.c:1084
+#, fuzzy, c-format
+msgid "Select and set the \"%s\" search option"
+msgstr "Busca de expresión regular estendida"
+
+#: gsearchtool/gsearchtool.c:1191
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1434
+#: gsearchtool/gsearchtool.c:1485
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1537,136 +1692,151 @@ msgstr ""
 "\n"
 "... Demasiados erros para amosar ..."
 
-#: gsearchtool/gsearchtool.c:1443
+#: gsearchtool/gsearchtool.c:1499
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1464
+#: gsearchtool/gsearchtool.c:1511 gsearchtool/gsearchtool.c:1551
+#, fuzzy
+msgid "Show more _details"
+msgstr "Amosar `Propiedades'"
+
+#: gsearchtool/gsearchtool.c:1539
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1472
+#: gsearchtool/gsearchtool.c:1562
 msgid "Disable _Quick Search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1516
+#: gsearchtool/gsearchtool.c:1589
+#, c-format
+msgid "Failed to set process group id of child %d: %s.\n"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1616
 #, fuzzy
 msgid "Error parsing the search command."
 msgstr "MVerificando os bloques erróneos..."
 
-#: gsearchtool/gsearchtool.c:1545
+#: gsearchtool/gsearchtool.c:1649
 #, fuzzy
 msgid "Error running the search command."
 msgstr "MVerificando os bloques erróneos..."
 
-#: gsearchtool/gsearchtool.c:1659
+#: gsearchtool/gsearchtool.c:1792
 #, c-format
 msgid "'%s' entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1660
+#: gsearchtool/gsearchtool.c:1793
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1707
+#: gsearchtool/gsearchtool.c:1847
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1762
+#: gsearchtool/gsearchtool.c:1939
 #, fuzzy
 msgid "A_vailable options:"
 msgstr "Vistas dispoñibles"
 
-#: gsearchtool/gsearchtool.c:1775
+#: gsearchtool/gsearchtool.c:1969
 #, fuzzy
 msgid "Search Rules Menu"
 msgstr "Resultados da busca"
 
-#: gsearchtool/gsearchtool.c:1776
+#: gsearchtool/gsearchtool.c:1970
 #, fuzzy
 msgid "Select a search rule from the menu"
 msgstr "Crear un novo arquivo a partir dos elementos"
 
-#: gsearchtool/gsearchtool.c:1807
+#: gsearchtool/gsearchtool.c:1999
 #, fuzzy
 msgid "S_earch results:"
 msgstr "Resultados da busca"
 
-#: gsearchtool/gsearchtool.c:1887
+#: gsearchtool/gsearchtool.c:2081
 msgid "Name"
 msgstr "Nome"
 
-#: gsearchtool/gsearchtool.c:1907
+#: gsearchtool/gsearchtool.c:2101
 #, fuzzy
 msgid "Folder"
 msgstr "Sólido"
 
-#: gsearchtool/gsearchtool.c:1918
+#: gsearchtool/gsearchtool.c:2112
 #, fuzzy
 msgid "Size"
 msgstr "Tamaño:"
 
-#: gsearchtool/gsearchtool.c:1928
+#: gsearchtool/gsearchtool.c:2122
 msgid "Type"
 msgstr "Tipo"
 
-#: gsearchtool/gsearchtool.c:1938
+#: gsearchtool/gsearchtool.c:2132
 #, fuzzy
 msgid "Date Modified"
 msgstr "Modificado:"
 
-#: gsearchtool/gsearchtool.c:1995
+#: gsearchtool/gsearchtool.c:2500
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2010 gsearchtool/gsearchtool.c:2011
+#: gsearchtool/gsearchtool.c:2515 gsearchtool/gsearchtool.c:2516
 msgid "Enter the file name you want to search."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2011
+#: gsearchtool/gsearchtool.c:2516
 msgid "Name Contains Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2022
+#: gsearchtool/gsearchtool.c:2522
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "Cadea non atopada"
 
-#: gsearchtool/gsearchtool.c:2028
+#: gsearchtool/gsearchtool.c:2528
 msgid "Browse"
 msgstr "Examinar"
 
-#: gsearchtool/gsearchtool.c:2035
+#: gsearchtool/gsearchtool.c:2534
 msgid "Select the folder where you want to start the search."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2059
+#: gsearchtool/gsearchtool.c:2545
+#, fuzzy
+msgid "Show more _options"
+msgstr "Amosar `Propiedades'"
+
+#: gsearchtool/gsearchtool.c:2555
 #, fuzzy
 msgid "Show more options"
 msgstr "Amosar `Propiedades'"
 
-#: gsearchtool/gsearchtool.c:2059
+#: gsearchtool/gsearchtool.c:2555
 msgid "Expands or collapses a list of search options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2106
+#: gsearchtool/gsearchtool.c:2607
 msgid "Click to Start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2107
+#: gsearchtool/gsearchtool.c:2608
 msgid "Click to Stop the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2381
+#: gsearchtool/gsearchtool.c:2708
 msgid "Cannot initialize bonobo."
 msgstr ""
 
-#: logview/about.c:47 logview/logview.c:49
+#: logview/about.c:47 logview/logview.c:47
 msgid "System Log Viewer"
 msgstr "Visualizador do rexistro do sistema"
 
@@ -1693,7 +1863,7 @@ msgstr "Engadir"
 msgid "Add an action"
 msgstr "Accións"
 
-#: logview/actions.c:176 logview/logview.c:88
+#: logview/actions.c:176 logview/logview.c:86
 #, fuzzy
 msgid "_Edit"
 msgstr "Editar"
@@ -1869,26 +2039,33 @@ msgid "Properties"
 msgstr "Propiedades"
 
 #: logview/info.c:95
-#, c-format
-msgid "<b>Size</b>: %ld bytes"
-msgstr ""
+#, fuzzy, c-format
+msgid "%ld byte"
+msgid_plural "%ld bytes"
+msgstr[0] "%ld bytes"
+msgstr[1] "%ld bytes"
 
-#: logview/info.c:99
+#: logview/info.c:97
+#, fuzzy, c-format
+msgid "<b>Size</b>: %s"
+msgstr "Modificado:"
+
+#: logview/info.c:102
 #, fuzzy, c-format
 msgid "<b>Modified</b>: %s"
 msgstr "Modificado:"
 
-#: logview/info.c:103
+#: logview/info.c:106
 #, fuzzy, c-format
 msgid "<b>Start Date</b>: %s"
 msgstr "Data de comezo:"
 
-#: logview/info.c:107
+#: logview/info.c:110
 #, fuzzy, c-format
 msgid "<b>Last Date</b>: %s"
 msgstr "Última data:"
 
-#: logview/info.c:111
+#: logview/info.c:114
 #, fuzzy, c-format
 msgid "<b>Number of Lines</b>: %ld"
 msgstr "Núm. de liñas:"
@@ -1949,7 +2126,7 @@ msgstr "%x"
 
 #: logview/log_repaint.c:297
 #, fuzzy
-msgid "Last Modified: "
+msgid "Last Modified:"
 msgstr "Modificado:"
 
 #. Translators: Make sure this is only Month and Day format, year
@@ -1964,20 +2141,20 @@ msgstr "%d de %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:43
+#: logview/logrtns.c:47
 #, fuzzy
-msgid "This file cannot be opened"
+msgid "The file could not be opened"
 msgstr "%s non se pode abrir."
 
-#: logview/logrtns.c:206
+#: logview/logrtns.c:213
 msgid "Unable to open logfile!\n"
 msgstr "¡Non é posible abrir o ficheiro de rexistro!\n"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:220
 msgid "Not enough memory!\n"
 msgstr "¡Memoria insuficiente!\n"
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:272
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1986,28 +2163,28 @@ msgstr ""
 "%s non e lexible polo usuario. Execúteo coma root, ou ben pídalle ao "
 "administrador que modifique os permisos do ficheiro."
 
-#: logview/logrtns.c:282
+#: logview/logrtns.c:277
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:286
+#: logview/logrtns.c:281
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s non se pode abrir."
 
-#: logview/logrtns.c:301 logview/logrtns.c:312
+#: logview/logrtns.c:322 logview/logrtns.c:333
 #, c-format
 msgid "%s not a log file."
 msgstr "%s non e un ficheiro de rexistro."
 
-#: logview/logrtns.c:563 logview/logrtns.c:587
+#: logview/logrtns.c:584 logview/logrtns.c:608
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memoria esgotada"
 
 #: logview/logview-findbar.c:265
 #, fuzzy
-msgid "Fin_d : "
+msgid "Fin_d:"
 msgstr "Buscar:"
 
 #: logview/logview-findbar.c:283
@@ -2019,148 +2196,149 @@ msgstr "Buscar"
 msgid "Find Previous"
 msgstr ""
 
-#: logview/logview.c:87
+#: logview/logview.c:85
 #, fuzzy
 msgid "_Log"
 msgstr "Rexistro:"
 
-#: logview/logview.c:89
+#: logview/logview.c:87
 #, fuzzy
 msgid "_View"
 msgstr "Nova vista"
 
-#: logview/logview.c:92
+#: logview/logview.c:90
 #, fuzzy
 msgid "_Open..."
 msgstr "Abrir"
 
-#: logview/logview.c:92
+#: logview/logview.c:90
 #, fuzzy
 msgid "Open a log from file"
 msgstr "Abir un novo ficheiro de rexistro"
 
-#: logview/logview.c:94
+#: logview/logview.c:92
 #, fuzzy
 msgid "_Properties"
 msgstr "Propiedades"
 
-#: logview/logview.c:94
+#: logview/logview.c:92
 #, fuzzy
 msgid "Show Log Properties"
 msgstr "Amosar `Propiedades'"
 
-#: logview/logview.c:96
+#: logview/logview.c:94
 #, fuzzy
 msgid "Close"
 msgstr "Pechar"
 
-#: logview/logview.c:96
+#: logview/logview.c:94
 msgid "Close this log"
 msgstr ""
 
-#: logview/logview.c:98
+#: logview/logview.c:96
+#, fuzzy
+msgid "_Quit"
+msgstr "Saír"
+
+#: logview/logview.c:96
 #, fuzzy
 msgid "Quit the log viewer"
 msgstr "Visualizador do rexistro do sistema"
 
-#: logview/logview.c:101
+#: logview/logview.c:99
 msgid "Copy"
 msgstr "Copiar"
 
-#: logview/logview.c:103
+#: logview/logview.c:101
 #, fuzzy
 msgid "Select All"
 msgstr "Selección:"
 
-#: logview/logview.c:103
+#: logview/logview.c:101
 msgid "Select the entire log"
 msgstr ""
 
-#: logview/logview.c:105
+#: logview/logview.c:103
 #, fuzzy
 msgid "Find pattern in logs"
 msgstr "Buscar cadea"
 
-#: logview/logview.c:108
+#: logview/logview.c:106
 #, fuzzy
 msgid "Collapse _All"
 msgstr "Pechar o rexistro"
 
-#: logview/logview.c:108
+#: logview/logview.c:106
 msgid "Collapse all the rows"
 msgstr ""
 
-#: logview/logview.c:111
+#: logview/logview.c:109
 msgid "Open the help contents for the log viewer"
 msgstr ""
 
-#: logview/logview.c:113
-msgid "Show the about dialog for the gconf editor"
+#: logview/logview.c:111
+msgid "Show the about dialog for the log viewer"
 msgstr ""
 
-#: logview/logview.c:119
+#: logview/logview.c:117
 #, fuzzy
 msgid "_Monitor"
 msgstr "Monitorizar"
 
-#: logview/logview.c:119
+#: logview/logview.c:117
 #, fuzzy
 msgid "Monitor Current Log"
 msgstr "Monitorizar rexistro"
 
-#: logview/logview.c:121
+#: logview/logview.c:119
 #, fuzzy
 msgid "Ca_lendar"
 msgstr "Calendario"
 
-#: logview/logview.c:121
+#: logview/logview.c:119
 #, fuzzy
 msgid "Show Calendar Log"
 msgstr "Ver o rexistro do calendario"
 
-#: logview/logview.c:123
+#: logview/logview.c:121
 #, fuzzy
 msgid "_Entry Detail"
 msgstr "Inicio da entrada:"
 
-#: logview/logview.c:123
+#: logview/logview.c:121
 msgid "Show Entry Detail"
 msgstr ""
 
-#: logview/logview.c:178
-msgid "Open the specified log."
-msgstr ""
-
-#: logview/logview.c:389
+#: logview/logview.c:386
 #, fuzzy
 msgid "Date"
 msgstr "Data:"
 
-#: logview/logview.c:389
+#: logview/logview.c:386
 #, fuzzy
 msgid "Host Name"
 msgstr "Nome da máquina:"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 #, fuzzy
 msgid "Process"
 msgstr "Proceso:"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 #, fuzzy
 msgid "Message"
 msgstr "Mensaxe:"
 
-#: logview/logview.c:583
+#: logview/logview.c:580
 msgid "Open new logfile"
 msgstr "Abir un novo ficheiro de rexistro"
 
-#: logview/logview.c:879
+#: logview/logview.c:876
 #, fuzzy
 msgid "There was an error displaying help."
 msgstr "Houbo un erro. `%s' está baleiro"
 
-#: logview/logview.c:897
+#: logview/logview.c:894
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr ""
@@ -2185,176 +2363,52 @@ msgstr "Inicio da entrada:"
 msgid "%B %e %X"
 msgstr "%d de %B, %X"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:86
 #, fuzzy
-msgid "Error loading help"
-msgstr ""
-"Erro ao cargar o ficheiro:\n"
-"%s\n"
-"%s"
+#~ msgid "_Show Dictionary"
+#~ msgstr "Barra de ferramentas de _accións"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:87
 #, fuzzy
-msgid "There was an error displaying the help pages for this dialog:"
-msgstr "Houbo un erro. `%s' está baleiro"
+#~ msgid "Check _Spelling"
+#~ msgstr "Comprobar a ortografía da palabra"
 
-#. translators: this is the name of the file that gets made up
-#. * with the screenshot if a specific window is taken
-#: gnome-screenshot/gnome-panel-screenshot.c:111
-#, c-format
-msgid "Screenshot-%s.png"
-msgstr ""
+#~ msgid "Check word spelling"
+#~ msgstr "Comprobar a ortografía da palabra"
 
-#. translators: this is the name of the file that gets made up
-#. * with the screenshot if the entire screen is taken
-#: gnome-screenshot/gnome-panel-screenshot.c:117
-msgid "Screenshot.png"
-msgstr ""
-
-#. translators: this is the name of the file that gets
-#. * made up with the screenshot if a specific window is
-#. * taken
-#: gnome-screenshot/gnome-panel-screenshot.c:155
-#, c-format
-msgid "Screenshot-%s-%d.png"
-msgstr ""
-
-#. translators: this is the name of the file that gets
-#. * made up with the screenshot if the entire screen is
-#. * taken
-#: gnome-screenshot/gnome-panel-screenshot.c:163
-#, c-format
-msgid "Screenshot-%d.png"
-msgstr ""
-
-#: gnome-screenshot/gnome-panel-screenshot.c:338
-msgid "Unable to take a screenshot of the current desktop."
-msgstr ""
-
-#: gnome-screenshot/gnome-panel-screenshot.c:409
 #, fuzzy
-msgid "Grab a window instead of the entire screen"
-msgstr "Capturar unha cor da pantalla"
+#~ msgid "Quit the application"
+#~ msgstr "Acerca desta aplicación"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:410
-msgid "Include the window border with the screenshot"
-msgstr ""
-
-#: gnome-screenshot/gnome-panel-screenshot.c:411
-msgid "Take screenshot after specified delay [in seconds]"
-msgstr ""
-
-#: gnome-screenshot/gnome-panel-screenshot.c:412
-msgid "Effect to add to the window border"
-msgstr ""
-
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
-msgid " (invalid Unicode)"
-msgstr ""
-
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
-#, c-format
-msgid "(%d:%02d:%d Remaining)"
-msgstr ""
-
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
-#, c-format
-msgid "(%d:%02d Remaining)"
-msgstr ""
-
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
-#, c-format
-msgid "%ld of %ld"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.glade.h:2
-msgid "Save Screenshot"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.glade.h:3
 #, fuzzy
-msgid "Save in _folder:"
-msgstr "Cadea non atopada"
+#~ msgid "Smart _lookup"
+#~ msgstr "Busca intelixente"
 
-#: gnome-screenshot/gnome-screenshot.glade.h:4
 #, fuzzy
-msgid "_Name:"
-msgstr "Nome:"
+#~ msgid "D_efault strategy:"
+#~ msgstr "Estratexia por defecto:"
 
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
-msgid "Border Effect"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
-msgid "Directory that the screenshooter last used to save in"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
-msgid ""
-"Effect to add to the outside of a border. Possible values are \"shadow\", "
-"\"none\", and \"black-line\"."
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
-msgid "Include Border"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
-msgid "Include the window manager border along with the screenshot"
-msgstr ""
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
 #, fuzzy
-msgid "Web directory"
-msgstr "Empezar no directorio:"
+#~ msgid "Check Spelling"
+#~ msgstr "Comprobar a ortografía da palabra"
 
-#: gnome-screenshot/screenshot-dialog.c:194
-msgid ""
-"Glade file for the screenshot program is missing.\n"
-"Please check your installation of gnome-panel"
-msgstr ""
-
-#: gnome-screenshot/screenshot-save.c:40
-#, fuzzy, c-format
-msgid ""
-"Unable to clear the temporary directory:\n"
-"%s"
-msgstr "ENon foi posible crear o sistema de ficheiros correctamente."
-
-#: gnome-screenshot/screenshot-save.c:78
-msgid ""
-"The child save process unexpectedly exited.  We are unable to write the "
-"screenshot to disk."
-msgstr ""
-
-#: gnome-screenshot/screenshot-save.c:188
-msgid "Unknown error saving screenshot to disk"
-msgstr ""
-
-#: gnome-screenshot/screenshot-utils.c:611
 #, fuzzy
-msgid "Untitled Window"
-msgstr "_Nova fiestra"
+#~ msgid "Search Strategy"
+#~ msgstr "Estratexia de busca:"
 
-#: gnome-screenshot/screenshot-xfer.c:103
 #, fuzzy
-msgid "Preparing to copy"
-msgstr "Texto para copiar:"
+#~ msgid "Select Size At Most"
+#~ msgstr "Busca de expresión regular estendida"
 
-#: gnome-screenshot/screenshot-xfer.c:181
 #, fuzzy
-msgid "File already exists"
-msgstr "O ficheiro %s xa existe, sobrescribir?"
+#~ msgid "Alert Type"
+#~ msgstr "Seleccione o tipo"
 
-#: gnome-screenshot/screenshot-xfer.c:184
-#, fuzzy, c-format
-msgid "The file \"%s\" already exists.  Would you like to replace it?"
-msgstr "O ficheiro %s xa existe, sobrescribir?"
+#, fuzzy
+#~ msgid "Alert Buttons"
+#~ msgstr "Botóns en_focables"
 
-#: gnome-screenshot/screenshot-xfer.c:230
-#, c-format
-msgid "Unknown GnomeVFSXferProgressStatus %d"
-msgstr ""
+#, fuzzy
+#~ msgid "Could not move \"%s\" to the trash."
+#~ msgstr "Pechar documento"
 
 #, fuzzy
 #~ msgid "_Dictionary"
@@ -2371,10 +2425,6 @@ msgstr ""
 #~ msgstr "Houbo un erro. `%s' está baleiro"
 
 #, fuzzy
-#~ msgid "Search _results:"
-#~ msgstr "Resultados da busca"
-
-#, fuzzy
 #~ msgid "Close the output window"
 #~ msgstr "Pechar a vista actual"
 
@@ -2388,12 +2438,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Log Information"
 #~ msgstr "Información do rexistro"
-
-#, fuzzy
-#~ msgid "%ld byte"
-#~ msgid_plural "%ld bytes"
-#~ msgstr[0] "%ld bytes"
-#~ msgstr[1] "%ld bytes"
 
 #~ msgid "%s is not a regular file."
 #~ msgstr "%s non e un ficheiro regular."
@@ -3440,10 +3484,6 @@ msgstr ""
 #~ msgid "The server could not be found on that port."
 #~ msgstr "Non se atopou o servidor indicado."
 
-#, fuzzy
-#~ msgid "_Spell"
-#~ msgstr "Corrixir"
-
 #~ msgid "Spell checker"
 #~ msgstr "Comprobación ortográfica"
 
@@ -3514,9 +3554,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Non foi posible iniciar o diccionario; probablemente non se puido "
 #~ "contactar con http://www.dict.org."
-
-#~ msgid "Word definition"
-#~ msgstr "Definición da palabra"
 
 #~ msgid "Spell Check..."
 #~ msgstr "Comprobación da ortografía..."
@@ -4053,9 +4090,6 @@ msgstr ""
 #~ msgid "Available documents"
 #~ msgstr "Documentos dispoñibles"
 
-#~ msgid "Connect to"
-#~ msgstr "Conectar a"
-
 #~ msgid "Create a document"
 #~ msgstr "Crear un documento"
 
@@ -4106,9 +4140,6 @@ msgstr ""
 
 #~ msgid "Documents"
 #~ msgstr "Documentos"
-
-#~ msgid "DoubleClick in previews:"
-#~ msgstr "Clic dobre nas previsualizacións:"
 
 #~ msgid "DoubleClick in views:"
 #~ msgstr "Clic dobre nas vistas:"
@@ -4771,9 +4802,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Prema este botón para engadir\n"
 #~ "algúns comandos de exemplo."
-
-#~ msgid "Menu items"
-#~ msgstr "Elementos de menú"
 
 #~ msgid "Running: %s\n"
 #~ msgstr "Executando: %s\n"

@@ -6,12 +6,11 @@
 #
 # $Id$
 #
-#: gdictsrc/gdict-pref-dialog.c:342
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-30 23:43+0100\n"
+"POT-Creation-Date: 2005-01-10 15:41-0500\n"
 "PO-Revision-Date: 2004-12-30 23:43+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -20,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:136
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
 msgid "Dictionary Lookup"
 msgstr "Ordboksuppslagning"
 
@@ -136,7 +135,7 @@ msgstr "Sök"
 msgid "_Search for:"
 msgstr "_Sök efter:"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:304
+#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
 #: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "Kunde inte visa hjälp"
@@ -272,15 +271,15 @@ msgstr "Ange ett ord eller välj ett från listan nedan"
 msgid "Look Up for a Word"
 msgstr "Slå upp ett ord"
 
-#: gdictsrc/gdict-applet.c:141
+#: gdictsrc/gdict-applet.c:155
 msgid "Dictionary word entry"
 msgstr "Fält för ordboksord"
 
-#: gdictsrc/gdict-defbox.c:332
+#: gdictsrc/gdict-defbox.c:335
 msgid "Definition preview"
 msgstr "Förhandsvisning av definition"
 
-#: gdictsrc/gdict-defbox.c:671 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
 msgid "Error invoking query"
 msgstr "Fel vid körning av frågan"
 
@@ -1062,7 +1061,7 @@ msgstr "Sök filer, mappar och dokument på din dator"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
 #: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2678
+#: gsearchtool/gsearchtool.c:2688
 msgid "Search for Files"
 msgstr "Sök efter filer"
 
@@ -1084,11 +1083,144 @@ msgstr "Exkluderade sökvägar vid snabbsökning"
 msgid "Quick Search Second Scan Excluded Paths"
 msgstr "Exkluderade sökvägar vid andra genomsökningen i snabbsökning"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:5
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:7
+#, fuzzy
+msgid "Select the search option \"Contains the text\""
+msgstr "Markerade objektet innehåller texten"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:10
+#, fuzzy
+msgid "Select the search option \"Date modified less than\""
+msgstr "Markerade objektets ändringsdatum mindre än"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:13
+#, fuzzy
+msgid "Select the search option \"Date modified more than\""
+msgstr "Markerade objektets ändringsdatum större än"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:16
+#, fuzzy
+msgid "Select the search option \"File is empty\""
+msgstr "Markerade filen är tom"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#, fuzzy
+msgid "Select the search option \"Follow symbolic links\""
+msgstr "Välj begränsningen \"Följ symboliska länkar\""
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:22
+#, fuzzy
+msgid "Select the search option \"Include other filesystems\""
+msgstr "Markerad objektet inkludera andra filsystem"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:25
+#, fuzzy
+msgid "Select the search option \"Name does not contain\""
+msgstr "Namnet på det markerade objektet innehåller inte"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:28
+#, fuzzy
+msgid "Select the search option \"Name matches regular expression\""
+msgstr "Namnet på det markerade objektet matchar reguljärt uttryck"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:31
+#, fuzzy
+msgid "Select the search option \"Owned by group\""
+msgstr "Markerade objektet ägs av gruppen"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:34
+#, fuzzy
+msgid "Select the search option \"Owned by user\""
+msgstr "Markerade objektet ägs av användaren"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:37
+#, fuzzy
+msgid "Select the search option \"Owner is unrecognized\""
+msgstr "Ägaren till det markerade objektet är okänd"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:40
+#, fuzzy
+msgid "Select the search option \"Show hidden files and folders\""
+msgstr "Markerade objektet visa dolda filer och mappar"
+
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:43
+#, fuzzy
+msgid "Select the search option \"Size at least\""
+msgstr "Storleken på det markerade objektet är minst"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:46
+msgid "Select the search option \"Size at most\""
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:47
 msgid "Show Additional Options"
 msgstr "Visa ytterligare alternativ"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:6
+#: gsearchtool/gnome-search-tool.schemas.in.h:48
 msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
@@ -1098,7 +1230,7 @@ msgstr ""
 "snabbsökning. Jokertecknen \"*\" och \"?\" stöds. Standardvärdena är /mnt/"
 "*, /media/*, /dev/*, /tmp/*, /proc/* och /var/*."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:7
+#: gsearchtool/gnome-search-tool.schemas.in.h:49
 msgid ""
 "This key defines the paths the search tool will exclude from a second scan "
 "when performing a quick search. The second scan uses the find command to "
@@ -1112,7 +1244,117 @@ msgstr ""
 "genomsökningen är att hitta filer som inte har indexerats. Jokertecknen \"*"
 "\" och \"?\" stöds. Standardvärdet är /."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:8
+#: gsearchtool/gnome-search-tool.schemas.in.h:50
+#, fuzzy
+msgid ""
+"This key determines if the \"Contains the text\" search option is selected "
+"when the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Innehåller texten\" är markerat då "
+"sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:51
+#, fuzzy
+msgid ""
+"This key determines if the \"Date modified less than\" search option is "
+"selected when the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Ändringsdatumet mindre än\" är markerat "
+"då sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:52
+#, fuzzy
+msgid ""
+"This key determines if the \"Date modified more than\" search option is "
+"selected when the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Ändringsdatumet större än\" är markerat "
+"då sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:53
+#, fuzzy
+msgid ""
+"This key determines if the \"File is empty\" search option is selected when "
+"the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Filen är tom\" är markerat då "
+"sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:54
+#, fuzzy
+msgid ""
+"This key determines if the \"Follow symbolic links\" search option is "
+"selected when the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Följ symboliska länkar\" är markerat då "
+"sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:55
+#, fuzzy
+msgid ""
+"This key determines if the \"Include other filesystems\" search option is "
+"selected when the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Inkludera andra filsystem\" är markerat "
+"då sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:56
+#, fuzzy
+msgid ""
+"This key determines if the \"Name does not contain\" search option is "
+"selected when the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Namnet innehåller inte\" är markerat då "
+"sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:57
+#, fuzzy
+msgid ""
+"This key determines if the \"Name matches regular expression\" search option "
+"is selected when the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Namnet matchar reguljärt uttryck\" är "
+"markerat då sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:58
+#, fuzzy
+msgid ""
+"This key determines if the \"Owned by group\" search option is selected when "
+"the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Ägs av gruppen\" är markerat då "
+"sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:59
+#, fuzzy
+msgid ""
+"This key determines if the \"Owned by user\" search option is selected when "
+"the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Ägs av användaren\" är markerat då "
+"sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:60
+#, fuzzy
+msgid ""
+"This key determines if the \"Owner is unrecognized\" search option is "
+"selected when the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Ägaren är okänd\" är markerat då "
+"sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:61
+#, fuzzy
+msgid ""
+"This key determines if the \"Show hidden files and folders\" search option "
+"is selected when the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Visa dolda filer och mappar\" är "
+"markerat då sökverktyget startas."
+
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Show more options\" section is expanded when "
 "the search tool is started."
@@ -1120,7 +1362,25 @@ msgstr ""
 "Denna nyckel avgör om sektionen \"Visa fler alternativ\" är utfälld då "
 "sökverktyget startas."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:9
+#: gsearchtool/gnome-search-tool.schemas.in.h:65
+#, fuzzy
+msgid ""
+"This key determines if the \"Size at least\" search option is selected when "
+"the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Storleken är som minst\" är markerat då "
+"sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:66
+#, fuzzy
+msgid ""
+"This key determines if the \"Size at most\" search option is selected when "
+"the search tool is started."
+msgstr ""
+"Denna nyckel avgör om alternativet \"Storleken är som mest\" är markerat då "
+"sökverktyget startas."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
@@ -1128,7 +1388,7 @@ msgstr ""
 "Denna nyckel avgör om sökverktyget inaktiverar användningen av find-"
 "kommandot efter det att en snabbsökning genomförts."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:10
+#: gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
@@ -1401,11 +1661,13 @@ msgid "Searching..."
 msgstr "Söker..."
 
 #: gsearchtool/gsearchtool.c:1071
-msgid "Set the text of 'Name contains'"
+#, fuzzy
+msgid "Set the text of \"Name contains\" search option"
 msgstr "Ställ in texten för \"Namnet innehåller\""
 
 #: gsearchtool/gsearchtool.c:1072
-msgid "Set the text of 'Look in folder'"
+#, fuzzy
+msgid "Set the text of \"Look in folder\" search option"
 msgstr "Ställ in texten för \"Leta i mappen\""
 
 #: gsearchtool/gsearchtool.c:1073
@@ -1422,16 +1684,24 @@ msgstr ""
 msgid "Automatically start a search"
 msgstr "Starta en sökning automatiskt"
 
-#: gsearchtool/gsearchtool.c:1080
-#, c-format
-msgid "Select the '%s' constraint"
+#: gsearchtool/gsearchtool.c:1081
+#, fuzzy, c-format
+msgid "Select the \"%s\" search option"
 msgstr "Välj begränsningen \"%s\""
 
-#: gsearchtool/gsearchtool.c:1186
+# Konstig engelska... felrapporterat som
+# http://bugzilla.gnome.org/show_bug.cgi?id=162536
+#
+#: gsearchtool/gsearchtool.c:1084
+#, fuzzy, c-format
+msgid "Select and set the \"%s\" search option"
+msgstr "Namnet på det markerade objektet matchar reguljärt uttryck"
+
+#: gsearchtool/gsearchtool.c:1191
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ogiltigt alternativ skickat till sortby-kommandoradsargument."
 
-#: gsearchtool/gsearchtool.c:1480
+#: gsearchtool/gsearchtool.c:1485
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1439,7 +1709,7 @@ msgstr ""
 "\n"
 "...För många fel för att visa..."
 
-#: gsearchtool/gsearchtool.c:1494
+#: gsearchtool/gsearchtool.c:1499
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1447,49 +1717,49 @@ msgstr ""
 "Sökresultaten kan vara felaktiga. Det inträffade fel vid utförandet av denna "
 "sökning."
 
-#: gsearchtool/gsearchtool.c:1506 gsearchtool/gsearchtool.c:1546
+#: gsearchtool/gsearchtool.c:1511 gsearchtool/gsearchtool.c:1551
 msgid "Show more _details"
 msgstr "Visa fler _detaljer"
 
-#: gsearchtool/gsearchtool.c:1534
+#: gsearchtool/gsearchtool.c:1539
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 "Sökresultaten kan vara felaktiga. Vill du inaktivera snabbsökningsfunktionen?"
 
-#: gsearchtool/gsearchtool.c:1557
+#: gsearchtool/gsearchtool.c:1562
 msgid "Disable _Quick Search"
 msgstr "Inaktivera _snabbsökning"
 
-#: gsearchtool/gsearchtool.c:1584
+#: gsearchtool/gsearchtool.c:1589
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Misslyckades med att ställa in processgruppid för barn %d: %s.\n"
 
-#: gsearchtool/gsearchtool.c:1611
+#: gsearchtool/gsearchtool.c:1616
 msgid "Error parsing the search command."
 msgstr "Fel vid tolkning av sökkommandot."
 
-#: gsearchtool/gsearchtool.c:1644
+#: gsearchtool/gsearchtool.c:1649
 msgid "Error running the search command."
 msgstr "Fel vid körande av sökkommandot."
 
-#: gsearchtool/gsearchtool.c:1787
+#: gsearchtool/gsearchtool.c:1792
 #, c-format
 msgid "'%s' entry"
 msgstr "Fält för \"%s\""
 
-#: gsearchtool/gsearchtool.c:1788
+#: gsearchtool/gsearchtool.c:1793
 msgid "Enter a value for search rule"
 msgstr "Ange ett värde för sökregeln"
 
-#: gsearchtool/gsearchtool.c:1842
+#: gsearchtool/gsearchtool.c:1847
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klicka för att ta bort regeln \"%s\""
 
-#: gsearchtool/gsearchtool.c:1934
+#: gsearchtool/gsearchtool.c:1939
 msgid "A_vailable options:"
 msgstr "_Tillgängliga alternativ:"
 
@@ -1498,7 +1768,7 @@ msgstr "_Tillgängliga alternativ:"
 # Sun vill ha "Sökningsregelmeny"
 # Jag vill ha "Sökregelmeny"
 #
-#: gsearchtool/gsearchtool.c:1964
+#: gsearchtool/gsearchtool.c:1969
 msgid "Search Rules Menu"
 msgstr "Sökregelmeny"
 
@@ -1510,81 +1780,81 @@ msgstr "Sökregelmeny"
 # Sun vill ha "sökningsregel"
 # Jag vill ha "sökregel"
 #
-#: gsearchtool/gsearchtool.c:1965
+#: gsearchtool/gsearchtool.c:1970
 msgid "Select a search rule from the menu"
 msgstr "Välj en sökregel från menyn"
 
-#: gsearchtool/gsearchtool.c:1994
+#: gsearchtool/gsearchtool.c:1999
 msgid "S_earch results:"
 msgstr "S_ökresultat:"
 
-#: gsearchtool/gsearchtool.c:2075
+#: gsearchtool/gsearchtool.c:2081
 msgid "Name"
 msgstr "Namn"
 
-#: gsearchtool/gsearchtool.c:2095
+#: gsearchtool/gsearchtool.c:2101
 msgid "Folder"
 msgstr "Mapp"
 
-#: gsearchtool/gsearchtool.c:2106
+#: gsearchtool/gsearchtool.c:2112
 msgid "Size"
 msgstr "Storlek"
 
-#: gsearchtool/gsearchtool.c:2116
+#: gsearchtool/gsearchtool.c:2122
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:2126
+#: gsearchtool/gsearchtool.c:2132
 msgid "Date Modified"
 msgstr "Ändringsdatum"
 
-#: gsearchtool/gsearchtool.c:2494
+#: gsearchtool/gsearchtool.c:2500
 msgid "_Name contains:"
 msgstr "_Namnet innehåller:"
 
-#: gsearchtool/gsearchtool.c:2509 gsearchtool/gsearchtool.c:2510
+#: gsearchtool/gsearchtool.c:2515 gsearchtool/gsearchtool.c:2516
 msgid "Enter the file name you want to search."
 msgstr "Ange namnet på den fil som du vill söka efter."
 
-#: gsearchtool/gsearchtool.c:2510
+#: gsearchtool/gsearchtool.c:2516
 msgid "Name Contains Entry"
 msgstr "Namnet innehåller posten"
 
-#: gsearchtool/gsearchtool.c:2516
+#: gsearchtool/gsearchtool.c:2522
 msgid "_Look in folder:"
 msgstr "_Leta i mappen:"
 
-#: gsearchtool/gsearchtool.c:2522
+#: gsearchtool/gsearchtool.c:2528
 msgid "Browse"
 msgstr "Bläddra"
 
-#: gsearchtool/gsearchtool.c:2528
+#: gsearchtool/gsearchtool.c:2534
 msgid "Select the folder where you want to start the search."
 msgstr "Välj den mapp där du vill påbörja sökningen."
 
-#: gsearchtool/gsearchtool.c:2539
+#: gsearchtool/gsearchtool.c:2545
 msgid "Show more _options"
 msgstr "Visa fler _alternativ"
 
-#: gsearchtool/gsearchtool.c:2549
+#: gsearchtool/gsearchtool.c:2555
 msgid "Show more options"
 msgstr "Visa fler alternativ"
 
-#: gsearchtool/gsearchtool.c:2549
+#: gsearchtool/gsearchtool.c:2555
 msgid "Expands or collapses a list of search options."
 msgstr "Fäller ut eller in en lista med sökalternativ."
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:2601
+#: gsearchtool/gsearchtool.c:2607
 msgid "Click to Start the search"
 msgstr "Klicka om du vill starta sökningen"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:2602
+#: gsearchtool/gsearchtool.c:2608
 msgid "Click to Stop the search"
 msgstr "Klicka om du vill stoppa sökningen"
 
-#: gsearchtool/gsearchtool.c:2698
+#: gsearchtool/gsearchtool.c:2708
 msgid "Cannot initialize bonobo."
 msgstr "Kan inte initiera bonobo."
 
@@ -1782,6 +2052,11 @@ msgid_plural "%ld bytes"
 msgstr[0] "%ld byte"
 msgstr[1] "%ld byte"
 
+#: logview/info.c:97
+#, c-format
+msgid "<b>Size</b>: %s"
+msgstr "<b>Storlek</b>: %s"
+
 #: logview/info.c:102
 #, c-format
 msgid "<b>Modified</b>: %s"
@@ -1857,8 +2132,8 @@ msgid "%x"
 msgstr "%x"
 
 #: logview/log_repaint.c:297
-msgid "Last Modified: "
-msgstr "Senast ändrad: "
+msgid "Last Modified:"
+msgstr "Senast ändrad:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
@@ -1872,19 +2147,19 @@ msgstr "%e %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:44
+#: logview/logrtns.c:47
 msgid "The file could not be opened"
 msgstr "Filen kunde inte öppnas"
 
-#: logview/logrtns.c:210
+#: logview/logrtns.c:213
 msgid "Unable to open logfile!\n"
 msgstr "Kan inte öppna loggfil!\n"
 
-#: logview/logrtns.c:217
+#: logview/logrtns.c:220
 msgid "Not enough memory!\n"
 msgstr "Inte tillräckligt med minne!\n"
 
-#: logview/logrtns.c:269
+#: logview/logrtns.c:272
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1893,27 +2168,28 @@ msgstr ""
 "%s är inte läsbar för användare. Kör antingen programmet som root eller be "
 "systemadministratören ändra rättigheterna på filen."
 
-#: logview/logrtns.c:274
+#: logview/logrtns.c:277
 #, c-format
 msgid "%s is too big."
 msgstr "%s är för stor."
 
-#: logview/logrtns.c:278
+#: logview/logrtns.c:281
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s kunde inte öppnas."
 
-#: logview/logrtns.c:319 logview/logrtns.c:330
+#: logview/logrtns.c:322 logview/logrtns.c:333
 #, c-format
 msgid "%s not a log file."
 msgstr "%s är ingen loggfil."
 
-#: logview/logrtns.c:581 logview/logrtns.c:605
+#: logview/logrtns.c:584 logview/logrtns.c:608
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: slut på minne"
 
 #: logview/logview-findbar.c:265
-msgid "Fin_d : "
+#, fuzzy
+msgid "Fin_d:"
 msgstr "S_ök: "
 
 #: logview/logview-findbar.c:283
@@ -1993,8 +2269,8 @@ msgid "Open the help contents for the log viewer"
 msgstr "Öppna loggvisarens hjälpinnehållssida"
 
 #: logview/logview.c:111
-msgid "Show the about dialog for the gconf editor"
-msgstr "Visa omdialogrutan för gconf-redigeraren"
+msgid "Show the about dialog for the log viewer"
+msgstr "Visa omdialogrutan för loggvisaren"
 
 #: logview/logview.c:117
 msgid "_Monitor"
@@ -2071,6 +2347,15 @@ msgstr "Postdetalj"
 msgid "%B %e %X"
 msgstr "%e %B %X"
 
+#~ msgid "Last Modified: "
+#~ msgstr "Senast ändrad: "
+
+#~ msgid "Fin_d : "
+#~ msgstr "S_ök: "
+
+#~ msgid "Show the about dialog for the gconf editor"
+#~ msgstr "Visa omdialogrutan för gconf-redigeraren"
+
 #~ msgid "Connexion error"
 #~ msgstr "Anslutningsfel"
 
@@ -2146,44 +2431,14 @@ msgstr "%e %B %X"
 # Konstig engelska... felrapporterat som
 # http://bugzilla.gnome.org/show_bug.cgi?id=162536
 #
-#~ msgid "Selected Item Contains the Text"
-#~ msgstr "Markerade objektet innehåller texten"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
 #~ msgid "Select Date Modified Less Than"
 #~ msgstr "Markerade objektets ändringsdatum mindre än"
 
 # Konstig engelska... felrapporterat som
 # http://bugzilla.gnome.org/show_bug.cgi?id=162536
 #
-#~ msgid "Selected Item Date Modified Less Than"
-#~ msgstr "Markerade objektets ändringsdatum mindre än"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
-#~ msgid "Select Date Modified More Than"
-#~ msgstr "Markerade objektets ändringsdatum större än"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
-#~ msgid "Select File is Empty"
-#~ msgstr "Markerade filen är tom"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
 #~ msgid "Select Follow Symbolic Links"
 #~ msgstr "Markerade objektet följer symboliska länkar"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
-#~ msgid "Select Include Other Filesystems"
-#~ msgstr "Markerad objektet inkludera andra filsystem"
 
 # Konstig engelska... felrapporterat som
 # http://bugzilla.gnome.org/show_bug.cgi?id=162536
@@ -2197,50 +2452,8 @@ msgstr "%e %B %X"
 # Konstig engelska... felrapporterat som
 # http://bugzilla.gnome.org/show_bug.cgi?id=162536
 #
-#~ msgid "Select Name Matches Regular Expression"
-#~ msgstr "Namnet på det markerade objektet matchar reguljärt uttryck"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
-#~ msgid "Select Name does not Contain"
-#~ msgstr "Namnet på det markerade objektet innehåller inte"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
-#~ msgid "Select Owned by Group"
-#~ msgstr "Markerade objektet ägs av gruppen"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
-#~ msgid "Select Owned by User"
-#~ msgstr "Markerade objektet ägs av användaren"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
-#~ msgid "Select Owner is Unrecognized"
-#~ msgstr "Ägaren till det markerade objektet är okänd"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
-#~ msgid "Select Show Hidden Files and Folders"
-#~ msgstr "Markerade objektet visa dolda filer och mappar"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
 #~ msgid "Select Shows Hidden Files and Folders"
 #~ msgstr "Markerade objektet visar dolda filer och mappar"
-
-# Konstig engelska... felrapporterat som
-# http://bugzilla.gnome.org/show_bug.cgi?id=162536
-#
-#~ msgid "Select Size At Least"
-#~ msgstr "Storleken på det markerade objektet är minst"
 
 # Konstig engelska... felrapporterat som
 # http://bugzilla.gnome.org/show_bug.cgi?id=162536
@@ -2248,112 +2461,11 @@ msgstr "%e %B %X"
 #~ msgid "Select Size At Most"
 #~ msgstr "Storleken på det markerade objektet är som mest"
 
-#~ msgid ""
-#~ "This key determines if the Contains the Text option is selected when the "
-#~ "search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Innehåller texten\" är markerat då "
-#~ "sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Date Modified Less Than option is selected "
-#~ "when the search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Ändringsdatumet mindre än\" är "
-#~ "markerat då sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Date Modified More Than option is selected "
-#~ "when the search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Ändringsdatumet större än\" är "
-#~ "markerat då sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the File is Empty option is selected when the "
-#~ "search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Filen är tom\" är markerat då "
-#~ "sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Follow Symbolic Links option is selected when "
-#~ "the search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Följ symboliska länkar\" är markerat "
-#~ "då sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Include Other Filesystems option is selected "
-#~ "when the search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Inkludera andra filsystem\" är "
-#~ "markerat då sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Name Matches Regular Expression option is "
-#~ "selected when the search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Namnet matchar reguljärt uttryck\" "
-#~ "är markerat då sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Name does not Contain option is selected when "
-#~ "the search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Namnet innehåller inte\" är markerat "
-#~ "då sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Owned by Group option is selected when the "
-#~ "search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Ägs av gruppen\" är markerat då "
-#~ "sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Owned by User option is selected when the "
-#~ "search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Ägs av användaren\" är markerat då "
-#~ "sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Owner is Unrecognized option is selected when "
-#~ "the search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Ägaren är okänd\" är markerat då "
-#~ "sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Show Hidden Files and Folders option is "
-#~ "selected when the search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Visa dolda filer och mappar\" är "
-#~ "markerat då sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Size At Least option is selected when the "
-#~ "search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Storleken är som minst\" är markerat "
-#~ "då sökverktyget startas."
-
-#~ msgid ""
-#~ "This key determines if the Size At Most option is selected when the "
-#~ "search tool is started."
-#~ msgstr ""
-#~ "Denna nyckel avgör om alternativet \"Storleken är som mest\" är markerat "
-#~ "då sökverktyget startas."
-
 #~ msgid "<b>Size</b>: %ld bytes"
 #~ msgstr "<b>Storlek</b>: %ld byte"
 
 #~ msgid "Size: %ld bytes"
 #~ msgstr "Storlek: %ld byte"
-
-#~ msgid "<b>Size</b>: %s"
-#~ msgstr "<b>Storlek</b>: %s"
 
 #~ msgid "Size: %s"
 #~ msgstr "Storlek: %s"
@@ -2382,14 +2494,8 @@ msgstr "%e %B %X"
 #~ msgid "Number of Lines:"
 #~ msgstr "Antal rader:"
 
-#~ msgid "Last Modified:"
-#~ msgstr "Senast ändrad:"
-
 #~ msgid "The file could not be opened."
 #~ msgstr "Filen kunde inte öppnas."
-
-#~ msgid "Fin_d: "
-#~ msgstr "S_ök: "
 
 #~ msgid "Find : "
 #~ msgstr "Sök: "
@@ -2402,9 +2508,6 @@ msgstr "%e %B %X"
 
 #~ msgid "Quit"
 #~ msgstr "Avsluta"
-
-#~ msgid "Show the about dialog for the log viewer"
-#~ msgstr "Visa omdialogrutan för loggvisaren"
 
 #~ msgid "Monitor"
 #~ msgstr "Övervaka"
@@ -3266,9 +3369,6 @@ msgstr "%e %B %X"
 
 #~ msgid "Select the 'File matches regular expression' constraint"
 #~ msgstr "Välj begränsningen \"Filen matchar reguljärt uttryck\""
-
-#~ msgid "Select the 'Follow symbolic links' constraint"
-#~ msgstr "Välj begränsningen \"Följ symboliska länkar\""
 
 #~ msgid "Select the 'Include other filesystems' constraint"
 #~ msgstr "Välj begränsningen \"inkludera andra filsystem\""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.5.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-04 14:31+0100\n"
+"POT-Creation-Date: 2005-01-10 15:41-0500\n"
 "PO-Revision-Date: 2004-12-04 14:32+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
@@ -15,21 +15,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:121
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
 msgid "Dictionary Lookup"
 msgstr "Oppslag i ordbok"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:28
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:27
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Slå opp ord i en ordbok på nett"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:603
-#: logview/logview.c:113
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: logview/logview.c:111
 msgid "_About"
 msgstr "_Om"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:90
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
 msgid "_Help"
 msgstr "_Hjelp"
 
@@ -41,17 +41,11 @@ msgstr "S_lå opp valgt tekst"
 msgid "_Preferences"
 msgstr "_Brukervalg"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:5
-msgid "_Show Dictionary"
-msgstr "Vi_s ordbok"
-
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#. Could not look up search strategies, so just display a
-#. * label; FIXME: Memory leak
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:436
-#: gdictsrc/gdict-pref-dialog.c:485 gdictsrc/gdict-speller.c:692
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
+#: gdictsrc/gdict-pref-dialog.c:713
 msgid "Cannot connect to server"
 msgstr "Kan ikke koble til tjener"
 
@@ -76,52 +70,33 @@ msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 msgid "A client for the MIT dictionary server."
 msgstr "En klient for MIT ordboktjener."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:233 gdictsrc/gdict-app.c:244
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
+#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Ordbok"
 
-#: gdictsrc/gdict-app.c:93
+#: gdictsrc/gdict-app.c:131
 msgid "Spell-checking..."
 msgstr "Stavekontroll..."
 
-#: gdictsrc/gdict-app.c:101
+#: gdictsrc/gdict-app.c:140
 msgid "Spell check done"
 msgstr "Stavekontroll fullført"
 
-#: gdictsrc/gdict-app.c:109 gdictsrc/gdict-app.c:261
+#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
 msgid "No matches found"
 msgstr "Ingen treff"
 
-#: gdictsrc/gdict-app.c:121
-msgid "Connexion error"
+#: gdictsrc/gdict-app.c:164
+#, fuzzy
+msgid "Connection error"
 msgstr "Feil med tilkobling"
 
-#: gdictsrc/gdict-app.c:234
-msgid "Looking up word..."
-msgstr "Slår opp ord..."
-
-#: gdictsrc/gdict-app.c:250
-msgid "Lookup done"
-msgstr "Oppslag fullført"
-
-#: gdictsrc/gdict-app.c:275
-msgid "String not found"
-msgstr "Streng ikke funnet"
-
-#: gdictsrc/gdict-app.c:456
-msgid "Find"
-msgstr "Finn"
-
-#: gdictsrc/gdict-app.c:466
-msgid "_Search for:"
-msgstr "_Søk etter:"
-
-#: gdictsrc/gdict-app.c:519
+#: gdictsrc/gdict-app.c:209
 msgid "Unable to perform requested operation."
 msgstr "Kunne ikke utføre etterspurt operasjon."
 
-#: gdictsrc/gdict-app.c:520
+#: gdictsrc/gdict-app.c:210
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -129,255 +104,270 @@ msgstr ""
 "Enten er tjeneren du bruker er utilgjengelig \n"
 "eller så er du ikke koblet til internett."
 
-#: gdictsrc/gdict-app.c:557 gdictsrc/gdict-applet.c:351
-#: gdictsrc/gdict-pref-dialog.c:636
+#: gdictsrc/gdict-app.c:352
+msgid "Looking up word..."
+msgstr "Slår opp ord..."
+
+#: gdictsrc/gdict-app.c:369
+msgid "Lookup done"
+msgstr "Oppslag fullført"
+
+#: gdictsrc/gdict-app.c:393
+msgid "String not found"
+msgstr "Streng ikke funnet"
+
+#: gdictsrc/gdict-app.c:467
+#, fuzzy
+msgid "Print Word Definition"
+msgstr "Skriv ut denne definisjonen"
+
+#: gdictsrc/gdict-app.c:582
+msgid "Find"
+msgstr "Finn"
+
+#: gdictsrc/gdict-app.c:592
+msgid "_Search for:"
+msgstr "_Søk etter:"
+
+#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "Kunne ikke vise hjelp"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:583 gdictsrc/gdict-app.c:892
-#: gdictsrc/gdict-speller.c:254
+#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
 msgid "_Look Up Word"
 msgstr "S_lå opp ord..."
 
-#: gdictsrc/gdict-app.c:584
+#: gdictsrc/gdict-app.c:899
 msgid "Lookup word in dictionary"
 msgstr "Slå opp ord i ordbok"
 
-#: gdictsrc/gdict-app.c:585
-msgid "Check _Spelling"
-msgstr "Sjekk _staving"
-
-#: gdictsrc/gdict-app.c:586
-msgid "Check word spelling"
-msgstr "Sjekk ordets staving"
-
-#: gdictsrc/gdict-app.c:588
+#: gdictsrc/gdict-app.c:900
 msgid "_Print"
 msgstr "S_kriv ut"
 
-#: gdictsrc/gdict-app.c:589
+#: gdictsrc/gdict-app.c:901
 msgid "Print the current definition"
 msgstr "Skriv ut denne definisjonen"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:593 logview/logview.c:105
+#: gdictsrc/gdict-app.c:904 logview/logview.c:103
 msgid "_Find..."
 msgstr "_Finn..."
 
-#: gdictsrc/gdict-app.c:594
+#: gdictsrc/gdict-app.c:905
 msgid "Find a word in the text"
 msgstr "Finn et ord i teksten"
 
-#: gdictsrc/gdict-app.c:595
+#: gdictsrc/gdict-app.c:906
 msgid "Find Ne_xt"
 msgstr "Finn ne_ste"
 
-#: gdictsrc/gdict-app.c:596
+#: gdictsrc/gdict-app.c:907
 msgid "Find next occurrence of the word"
 msgstr "Finn neste instans av ordet"
 
-#: gdictsrc/gdict-app.c:597
+#: gdictsrc/gdict-app.c:908
 msgid "P_references"
 msgstr "B_rukervalg"
 
-#: gdictsrc/gdict-app.c:598
+#: gdictsrc/gdict-app.c:909
 msgid "Configure the application"
 msgstr "Konfigurer programmet"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:601 logview/logview.c:111
+#: gdictsrc/gdict-app.c:912 logview/logview.c:109
 msgid "_Contents"
 msgstr "_Innhold"
 
-#: gdictsrc/gdict-app.c:602
+#: gdictsrc/gdict-app.c:913
 msgid "View help for this application"
 msgstr "Vis hjelp for dette programmet"
 
-#: gdictsrc/gdict-app.c:604
+#: gdictsrc/gdict-app.c:915
 msgid "About this application"
 msgstr "_Om dette programmet"
 
-#: gdictsrc/gdict-app.c:611 logview/logview.c:98
-msgid "_Quit"
-msgstr "A_vslutt"
-
-#: gdictsrc/gdict-app.c:612
-msgid "Quit the application"
-msgstr "Avslutt programmet"
-
-#: gdictsrc/gdict-app.c:616
+#: gdictsrc/gdict-app.c:919
 msgid "_Close"
 msgstr "L_ukk"
 
-#: gdictsrc/gdict-app.c:617
+#: gdictsrc/gdict-app.c:920
 msgid "Close the application"
 msgstr "Lukk programmet"
 
-#: gdictsrc/gdict-app.c:622
+#: gdictsrc/gdict-app.c:925
+#, fuzzy
+msgid "On a Dictionary Server"
+msgstr "Ordboktjener"
+
+#: gdictsrc/gdict-app.c:927
+msgid "On a Web Site"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:933
 msgid "Cu_t"
 msgstr "K_lipp ut"
 
-#: gdictsrc/gdict-app.c:623
+#: gdictsrc/gdict-app.c:934
 msgid "Cut the selection"
 msgstr "Klipp ut utvalget"
 
-#: gdictsrc/gdict-app.c:624
+#: gdictsrc/gdict-app.c:935
 msgid "_Copy"
 msgstr "_Kopier"
 
-#: gdictsrc/gdict-app.c:625 logview/logview.c:101
+#: gdictsrc/gdict-app.c:936 logview/logview.c:99
 msgid "Copy the selection"
 msgstr "Kopier utvalget"
 
-#: gdictsrc/gdict-app.c:626
+#: gdictsrc/gdict-app.c:937
 msgid "_Paste"
 msgstr "L_im inn"
 
-#: gdictsrc/gdict-app.c:627
+#: gdictsrc/gdict-app.c:938
 msgid "Paste clipboard"
 msgstr "Lim inn fra utklippstavlen"
 
-#: gdictsrc/gdict-app.c:628
+#: gdictsrc/gdict-app.c:939
 msgid "Select _All"
 msgstr "Velg _alt"
 
-#: gdictsrc/gdict-app.c:629
+#: gdictsrc/gdict-app.c:940
 msgid "Select everything"
 msgstr "Vel alt"
 
-#: gdictsrc/gdict-app.c:889 gdictsrc/gdict-speller.c:181
+#: gdictsrc/gdict-app.c:945
+#, fuzzy
+msgid "_Spellings"
+msgstr "Sjekk _staving"
+
+#: gdictsrc/gdict-app.c:946
+msgid "View alternate spellings"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:1031
 msgid "_Word:"
 msgstr "_Ord:"
 
-#: gdictsrc/gdict-app.c:908 gdictsrc/gdict-speller.c:199
+#: gdictsrc/gdict-app.c:1055
 msgid "Word"
 msgstr "Ord"
 
-#: gdictsrc/gdict-app.c:909 gdictsrc/gdict-app.c:911
-#: gdictsrc/gdict-speller.c:201
+#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
 msgid "Word Entry"
 msgstr "Ordoppføring"
 
-#: gdictsrc/gdict-app.c:910
+#: gdictsrc/gdict-app.c:1057
 msgid "Enter a Word or select one from the list below"
 msgstr "Skriv inn et ord eller velg et fra listen under"
 
-#: gdictsrc/gdict-app.c:914
+#: gdictsrc/gdict-app.c:1061
 msgid "Look Up for a Word"
 msgstr "Slå opp et ord"
 
-#: gdictsrc/gdict-applet.c:126
+#: gdictsrc/gdict-applet.c:155
 msgid "Dictionary word entry"
 msgstr "Felt for ord i ordbok"
 
-#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:369
+#: gdictsrc/gdict-defbox.c:335
+msgid "Definition preview"
+msgstr ""
+
+#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
 msgid "Error invoking query"
 msgstr "Feil under utføring av spørring"
 
-#: gdictsrc/gdict-pref-dialog.c:146
-msgid "Dictionary Preferences"
-msgstr "Brukervalg for ordbok"
-
-#: gdictsrc/gdict-pref-dialog.c:159
-msgid "Smart _lookup"
-msgstr "Smart opps_lag"
-
-#: gdictsrc/gdict-pref-dialog.c:173
+#: gdictsrc/gdict-pref-dialog.c:254
 msgid "De_fault Server"
 msgstr "For_valgt tjener"
 
-#: gdictsrc/gdict-pref-dialog.c:184
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "_Server:"
 msgstr "_Tjener:"
 
-#: gdictsrc/gdict-pref-dialog.c:193
+#: gdictsrc/gdict-pref-dialog.c:273
 msgid "Reset server to default"
 msgstr "Sett tjener til forvalgt verdi"
 
-#: gdictsrc/gdict-pref-dialog.c:201
+#: gdictsrc/gdict-pref-dialog.c:275
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:211
+#: gdictsrc/gdict-pref-dialog.c:285
 msgid "Def_ault Port"
 msgstr "Forv_algt port"
 
-#: gdictsrc/gdict-pref-dialog.c:226
+#: gdictsrc/gdict-pref-dialog.c:300
 msgid "Reset port to default"
 msgstr "Sett port til forvalgt verdi"
 
-#: gdictsrc/gdict-pref-dialog.c:227
+#: gdictsrc/gdict-pref-dialog.c:301
 msgid "Server"
 msgstr "Tjener"
 
-#: gdictsrc/gdict-pref-dialog.c:229
+#: gdictsrc/gdict-pref-dialog.c:303
 msgid "Server Entry"
 msgstr "Tjeneroppføring"
 
-#: gdictsrc/gdict-pref-dialog.c:229
+#: gdictsrc/gdict-pref-dialog.c:303
 msgid "Enter the Server Name"
 msgstr "Skriv inn navn på tjeneren"
 
-#: gdictsrc/gdict-pref-dialog.c:230
+#: gdictsrc/gdict-pref-dialog.c:304
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:306
 msgid "Port Entry"
 msgstr "Portoppføring"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:306
 msgid "Enter the Port Number"
 msgstr "Skriv inn portnummeret"
 
-#: gdictsrc/gdict-pref-dialog.c:241
+#: gdictsrc/gdict-pref-dialog.c:309
 msgid "_Database:"
 msgstr "_Database:"
 
-#: gdictsrc/gdict-pref-dialog.c:248
-msgid "D_efault strategy:"
-msgstr "Forvalgt strat_egi:"
+#: gdictsrc/gdict-pref-dialog.c:316
+#, fuzzy
+msgid "Strat_egy:"
+msgstr "Søkes_trategi:"
 
-#: gdictsrc/gdict-pref-dialog.c:428
+#: gdictsrc/gdict-pref-dialog.c:342
+msgid "Web Site"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:342
+#, fuzzy
+msgid "Search Address"
+msgstr "Søk_eresultater:"
+
+#: gdictsrc/gdict-pref-dialog.c:462
+msgid "Dictionary Preferences"
+msgstr "Brukervalg for ordbok"
+
+#: gdictsrc/gdict-pref-dialog.c:474
+msgid "Web Sites"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:656
 msgid "Search all databases"
 msgstr "Søk i alle databaser"
 
-#: gdictsrc/gdict-pref-dialog.c:589
+#: gdictsrc/gdict-pref-dialog.c:817
 msgid "Database"
 msgstr "Database"
 
-#: gdictsrc/gdict-pref-dialog.c:589
+#: gdictsrc/gdict-pref-dialog.c:817
 msgid "Database Name"
 msgstr "Databasenavn"
 
-#: gdictsrc/gdict-pref-dialog.c:607
+#: gdictsrc/gdict-pref-dialog.c:834
 msgid "Default Strategy"
 msgstr "Forvalgt strategi"
-
-#: gdictsrc/gdict-speller.c:201
-msgid "Enter a word to know the spelling"
-msgstr "Skriv inn et ord for å vise staving"
-
-#: gdictsrc/gdict-speller.c:207
-msgid "Search s_trategy:"
-msgstr "Søkes_trategi:"
-
-#: gdictsrc/gdict-speller.c:211 gsearchtool/gsearchtool.c:2106
-msgid "Show more _options"
-msgstr "Vis flere _alternativer"
-
-#: gdictsrc/gdict-speller.c:217
-msgid "Click to do the spell check"
-msgstr "Klikk for å utføre stavekontroll"
-
-#: gdictsrc/gdict-speller.c:267
-msgid "Check Spelling"
-msgstr "Sjekk staving"
-
-#: gdictsrc/gdict-speller.c:654
-msgid "Search Strategy"
-msgstr "Søkestrategi"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -437,7 +427,7 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Bruk smart oppslag"
 
-#: gdictsrc/main.c:94
+#: gdictsrc/main.c:80
 msgid "Gnome Dictionary"
 msgstr "GNOME ordbok"
 
@@ -692,6 +682,7 @@ msgid "Error while checking the bad blocks."
 msgstr "Feil under sjekk etter dårlige blokker."
 
 #: gfloppy/src/gfloppy2.glade.h:1
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:1
 msgid "    "
 msgstr "    "
 
@@ -873,13 +864,194 @@ msgstr "Formatering av diskett avbrutt."
 msgid "Format Progress"
 msgstr "Fremgang for formatering"
 
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
+msgid " (invalid Unicode)"
+msgstr " (ugyldig Unicode)"
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
+#, c-format
+msgid "(%d:%02d:%d Remaining)"
+msgstr "(%d:%02d:%d gjenstår)"
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
+#, c-format
+msgid "(%d:%02d Remaining)"
+msgstr "(%d:%02d gjenstår)"
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
+#, c-format
+msgid "%ld of %ld"
+msgstr "%ld av %ld"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:86
+msgid "Error loading help"
+msgstr "Feil under lasting av hjelp"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:87
+msgid "There was an error displaying the help pages for this dialog:"
+msgstr "Det oppsto en feil under visning av hjelp for denne dialogen:"
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if a specific window is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:111
+#, c-format
+msgid "Screenshot-%s.png"
+msgstr "Skjermdump-%s.png"
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if the entire screen is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:117
+msgid "Screenshot.png"
+msgstr "Skjermdump.png"
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if a specific window is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:155
+#, c-format
+msgid "Screenshot-%s-%d.png"
+msgstr "Skjermdump-%s-%d.png"
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if the entire screen is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:163
+#, c-format
+msgid "Screenshot-%d.png"
+msgstr "Skjermdump-%d.png"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:338
+msgid "Unable to take a screenshot of the current desktop."
+msgstr "Kan ikke ta skjermdump av dette skrivebordet."
+
+#: gnome-screenshot/gnome-panel-screenshot.c:410
+msgid "Grab a window instead of the entire screen"
+msgstr "Dump et vindu i stedet for hele skjermen"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:411
+msgid "Include the window border with the screenshot"
+msgstr "Ta med vinduskant i skjermdumpet"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:412
+msgid "Take screenshot after specified delay [in seconds]"
+msgstr "Ta skjermdump etter oppgitt pause [i sekunder]"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:413
+msgid "Effect to add to the window border"
+msgstr "Effekt som skal legges til vinduskanten"
+
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:2
+msgid "<b>Options</b>"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:3
+msgid "<b>Preview</b>"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.glade.h:4
+#: gnome-screenshot/gnome-screenshot.glade.h:2
+msgid "Save Screenshot"
+msgstr "Lagre skjermdump"
+
+#: gnome-screenshot/gnome-screenshot.glade.h:3
+msgid "Save in _folder:"
+msgstr "Lagre i _mappe:"
+
+#: gnome-screenshot/gnome-screenshot.glade.h:4
+msgid "_Name:"
+msgstr "_Navn:"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
+msgid "Border Effect"
+msgstr "Effekt for kant"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
+msgid "Directory that the screenshooter last used to save in"
+msgstr "Katalog hvor forrige skjermdump ble lagret"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
+msgid ""
+"Effect to add to the outside of a border. Possible values are \"shadow\", "
+"\"none\", and \"black-line\"."
+msgstr ""
+"Effekt som skal legges til på utsiden av kanten. Mulige verdier er «shadow», "
+"«none» og «black-line»."
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Border"
+msgstr "Ta med kant"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the window manager border along with the screenshot"
+msgstr "Ta med vindushåndtererens kan i skjermdumpet"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
+msgid "Web directory"
+msgstr "Web-katalog"
+
+#: gnome-screenshot/screenshot-dialog.c:194
+msgid ""
+"Glade file for the screenshot program is missing.\n"
+"Please check your installation of gnome-panel"
+msgstr ""
+"Glade-fil for skjermdumpprogrammet mangler.\n"
+"Vennligst sjekk installasjonen."
+
+#: gnome-screenshot/screenshot-save.c:40
+#, c-format
+msgid ""
+"Unable to clear the temporary directory:\n"
+"%s"
+msgstr ""
+"Kan ikke tømme midlertidig katalog:\n"
+"%s"
+
+#: gnome-screenshot/screenshot-save.c:78
+msgid ""
+"The child save process unexpectedly exited.  We are unable to write the "
+"screenshot to disk."
+msgstr ""
+"Underprosessen for lagring avsluttet uventet. Kan ikke skrive skjermdumpet "
+"til disk."
+
+#: gnome-screenshot/screenshot-save.c:188
+msgid "Unknown error saving screenshot to disk"
+msgstr "Ukjent feil under lagring av skjermdump til disk"
+
+#: gnome-screenshot/screenshot-utils.c:611
+msgid "Untitled Window"
+msgstr "Vindu uten tittel"
+
+#: gnome-screenshot/screenshot-xfer.c:103
+msgid "Preparing to copy"
+msgstr "Forbereder kopiering"
+
+#: gnome-screenshot/screenshot-xfer.c:181
+msgid "File already exists"
+msgstr "Filen eksisterer allerede"
+
+#: gnome-screenshot/screenshot-xfer.c:184
+#, c-format
+msgid "The file \"%s\" already exists.  Would you like to replace it?"
+msgstr "Filen «%s» eksisterer allerede. Vil du erstatte den?"
+
+#: gnome-screenshot/screenshot-xfer.c:190
+#: gsearchtool/gsearchtool-callbacks.c:1265
+msgid "_Replace"
+msgstr "E_rstatt"
+
+#: gnome-screenshot/screenshot-xfer.c:230
+#, c-format
+msgid "Unknown GnomeVFSXferProgressStatus %d"
+msgstr "Ukjent GnomeVFSXferProgressSatus %d"
+
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
 msgstr "Finn filer, mapper og dokumenter på din datamaskin"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:638
-#: gsearchtool/gsearchtool.c:895 gsearchtool/gsearchtool.c:981
-#: gsearchtool/gsearchtool.c:2421 gsearchtool/gsearchtool.c:2442
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
+#: gsearchtool/gsearchtool.c:2688
 msgid "Search for Files"
 msgstr "Søk etter filer"
 
@@ -899,74 +1071,115 @@ msgstr "Utelatte stier for hurtigsøk"
 msgid "Quick Search Second Scan Excluded Paths"
 msgstr "Utelatte stier for andre gangs søk ved hurtigsøk"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:5
-msgid "Select Contains the Text"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:7
+#, fuzzy
+msgid "Select the search option \"Contains the text\""
 msgstr "Velg Innholder tekst"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:6
-msgid "Select Date Modified Less Than"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:10
+#, fuzzy
+msgid "Select the search option \"Date modified less than\""
 msgstr "Velg Endringsdato eldre enn"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:7
-msgid "Select Date Modified More Than"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:13
+#, fuzzy
+msgid "Select the search option \"Date modified more than\""
 msgstr "Velg Endringsdato nyere enn"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:8
-msgid "Select File is Empty"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:16
+#, fuzzy
+msgid "Select the search option \"File is empty\""
 msgstr "Velg Filen er tom"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:9
-msgid "Select Follow Symbolic Links"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#, fuzzy
+msgid "Select the search option \"Follow symbolic links\""
 msgstr "Velg Følg symbolske lenker"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:10
-msgid "Select Include Other Filesystems"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:22
+#, fuzzy
+msgid "Select the search option \"Include other filesystems\""
 msgstr "Velg Ta med andre filsystemer"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:11
-msgid "Select Name Matches Regular Expression"
-msgstr "Velg Navn har treff på vanlig uttrykk"
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:12
-msgid "Select Name does not Contain"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:25
+#, fuzzy
+msgid "Select the search option \"Name does not contain\""
 msgstr "Velg Navn inneholder ikke"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:13
-msgid "Select Owned by Group"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:28
+#, fuzzy
+msgid "Select the search option \"Name matches regular expression\""
+msgstr "Velg Navn har treff på vanlig uttrykk"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:31
+#, fuzzy
+msgid "Select the search option \"Owned by group\""
 msgstr "Velg Eies av gruppe"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:14
-msgid "Select Owned by User"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:34
+#, fuzzy
+msgid "Select the search option \"Owned by user\""
 msgstr "Velg Eies av bruker"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:15
-msgid "Select Owner is Unrecognized"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:37
+#, fuzzy
+msgid "Select the search option \"Owner is unrecognized\""
 msgstr "Velg Eier gjenkjennes ikke"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:16
-msgid "Select Show Hidden Files and Folders"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:40
+#, fuzzy
+msgid "Select the search option \"Show hidden files and folders\""
 msgstr "Velg Vis skjulte filer og mapper"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:17
-msgid "Select Size At Least"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:43
+#, fuzzy
+msgid "Select the search option \"Size at least\""
 msgstr "Velg Minste størrelse"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:18
-msgid "Select Size At Most"
-msgstr "Velg Ikke større enn"
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:46
+msgid "Select the search option \"Size at most\""
+msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#: gsearchtool/gnome-search-tool.schemas.in.h:47
 msgid "Show Additional Options"
 msgstr "Vis flere alternativer"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:20
+#: gsearchtool/gnome-search-tool.schemas.in.h:48
 msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:21
+#: gsearchtool/gnome-search-tool.schemas.in.h:49
 msgid ""
 "This key defines the paths the search tool will exclude from a second scan "
 "when performing a quick search. The second scan uses the find command to "
@@ -975,280 +1188,226 @@ msgid ""
 "is /."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:22
+#: gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
-"This key determines if the Additional Options section is expanded when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:23
-msgid ""
-"This key determines if the Contains the Text option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:24
-msgid ""
-"This key determines if the Date Modified Less Than option is selected when "
-"the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:25
-msgid ""
-"This key determines if the Date Modified More Than option is selected when "
-"the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:26
-msgid ""
-"This key determines if the File is Empty option is selected when the search "
-"tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:27
-msgid ""
-"This key determines if the Follow Symbolic Links option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:28
-msgid ""
-"This key determines if the Include Other Filesystems option is selected when "
-"the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:29
-msgid ""
-"This key determines if the Name Matches Regular Expression option is "
-"selected when the search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:30
-msgid ""
-"This key determines if the Name does not Contain option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:31
-msgid ""
-"This key determines if the Owned by Group option is selected when the search "
-"tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:32
-msgid ""
-"This key determines if the Owned by User option is selected when the search "
-"tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:33
-msgid ""
-"This key determines if the Owner is Unrecognized option is selected when the "
-"search tool is started."
-msgstr ""
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:34
-msgid ""
-"This key determines if the Show Hidden Files and Folders option is selected "
+"This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:35
+#: gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid ""
-"This key determines if the Size At Least option is selected when the search "
-"tool is started."
+"This key determines if the \"Date modified less than\" search option is "
+"selected when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:36
+#: gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
-"This key determines if the Size At Most option is selected when the search "
-"tool is started."
+"This key determines if the \"Date modified more than\" search option is "
+"selected when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:37
+#: gsearchtool/gnome-search-tool.schemas.in.h:53
+msgid ""
+"This key determines if the \"File is empty\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:54
+msgid ""
+"This key determines if the \"Follow symbolic links\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:55
+msgid ""
+"This key determines if the \"Include other filesystems\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:56
+msgid ""
+"This key determines if the \"Name does not contain\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:57
+msgid ""
+"This key determines if the \"Name matches regular expression\" search option "
+"is selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:58
+msgid ""
+"This key determines if the \"Owned by group\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:59
+msgid ""
+"This key determines if the \"Owned by user\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:60
+msgid ""
+"This key determines if the \"Owner is unrecognized\" search option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:61
+msgid ""
+"This key determines if the \"Show hidden files and folders\" search option "
+"is selected when the search tool is started."
+msgstr ""
+
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
+msgid ""
+"This key determines if the \"Show more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:65
+msgid ""
+"This key determines if the \"Size at least\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:66
+msgid ""
+"This key determines if the \"Size at most\" search option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:38
+#: gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
 msgstr ""
 
-#: gsearchtool/gsearchtool-alert-dialog.c:100
-msgid "Image/label border"
-msgstr "Kant for bilde/etikett"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:101
-msgid "Width of border around the label and image in the alert dialog"
-msgstr "Bredde på kanten rundt etiketten og bildet i varseldialogen"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:110
-msgid "Alert Type"
-msgstr "Varseltype"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:111
-msgid "The type of alert"
-msgstr "Type varsel"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:119
-msgid "Alert Buttons"
-msgstr "Varslingsknapp"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:120
-msgid "The buttons shown in the alert dialog"
-msgstr "Knappene som vises i varseldialogen"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:172
-msgid "Show more _details"
-msgstr "Vis flere _detaljer"
-
-#: gsearchtool/gsearchtool-callbacks.c:50
-msgid "_Open"
-msgstr "_Åpne"
-
-#: gsearchtool/gsearchtool-callbacks.c:54
-msgid "O_pen Folder"
-msgstr "Å_pne mappe"
-
-#: gsearchtool/gsearchtool-callbacks.c:59
-msgid "Mo_ve to Trash"
-msgstr "Fl_ytt til papirkurven"
-
-#: gsearchtool/gsearchtool-callbacks.c:64
-msgid "_Save Results As..."
-msgstr "Lagre re_sultater som..."
-
-#: gsearchtool/gsearchtool-callbacks.c:111
+#: gsearchtool/gsearchtool-callbacks.c:161
 msgid "Could not open help document."
 msgstr "Kunne ikke åpne hjelpdokumentet."
 
-#: gsearchtool/gsearchtool-callbacks.c:307
+#: gsearchtool/gsearchtool-callbacks.c:296
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "Er du sikker på at du vil åpne %d dokument?"
 msgstr[1] "Er du sikker på at du vil åpne %d dokumenter?"
 
-#: gsearchtool/gsearchtool-callbacks.c:312
-#: gsearchtool/gsearchtool-callbacks.c:464
+#: gsearchtool/gsearchtool-callbacks.c:301
+#: gsearchtool/gsearchtool-callbacks.c:458
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "Dette vil åpne %d separat mappe."
 msgstr[1] "Dette vil åpne %d separate mapper."
 
-#: gsearchtool/gsearchtool-callbacks.c:372
-#: gsearchtool/gsearchtool-callbacks.c:405
+#: gsearchtool/gsearchtool-callbacks.c:341
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Kunne ikke åpne dokument «%s»."
 
-#: gsearchtool/gsearchtool-callbacks.c:375
-#: gsearchtool/gsearchtool-callbacks.c:631
+#: gsearchtool/gsearchtool-callbacks.c:416
+#: gsearchtool/gsearchtool-callbacks.c:759
 msgid "The document does not exist."
 msgstr "Dokumentet eksisterer ikke."
 
-#: gsearchtool/gsearchtool-callbacks.c:408
+#: gsearchtool/gsearchtool-callbacks.c:429
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Du har ikke installert visningsprogram som kan vise dokumentet."
 
-#: gsearchtool/gsearchtool-callbacks.c:459
+#: gsearchtool/gsearchtool-callbacks.c:453
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Er du sikker på at du vil åpne %d mappe?"
 msgstr[1] "Er du sikker på at du vil åpne %d mapper?"
 
-#: gsearchtool/gsearchtool-callbacks.c:517
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Kunne ikke åpne mappe «%s»."
 
-#: gsearchtool/gsearchtool-callbacks.c:524
+#: gsearchtool/gsearchtool-callbacks.c:505
 msgid "The nautilus file manager is not running."
 msgstr "Filhåndtereren Nautilus kjører ikke."
 
-#: gsearchtool/gsearchtool-callbacks.c:628
+#: gsearchtool/gsearchtool-callbacks.c:585
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Kunne ikke flytte «%s» til papirkurven."
 
-#: gsearchtool/gsearchtool-callbacks.c:668
-#, c-format
-msgid "Could not move \"%s\" to the trash."
-msgstr "Kunne ikke flytte «%s» til papirkurven."
-
-#: gsearchtool/gsearchtool-callbacks.c:671
-#, c-format
-msgid "Moving \"%s\" failed: %s."
-msgstr "Flytting av «%s» feilet: %s."
-
-#: gsearchtool/gsearchtool-callbacks.c:701
+#: gsearchtool/gsearchtool-callbacks.c:616
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Vil du slette «%s» permanent?"
 
-#: gsearchtool/gsearchtool-callbacks.c:704
+#: gsearchtool/gsearchtool-callbacks.c:619
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 "Papirkurven er ikke tilgjengelig. Kunne ikke flytte «%s» til papirkurven."
 
-#: gsearchtool/gsearchtool-callbacks.c:746
+#: gsearchtool/gsearchtool-callbacks.c:658
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Kan ikke slette «%s»."
 
-#: gsearchtool/gsearchtool-callbacks.c:749
+#: gsearchtool/gsearchtool-callbacks.c:778
+#, c-format
+msgid "Moving \"%s\" failed: %s."
+msgstr "Flytting av «%s» feilet: %s."
+
+#: gsearchtool/gsearchtool-callbacks.c:810
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Sletting av «%s» feilet: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1093
+#: gsearchtool/gsearchtool-callbacks.c:1154
 msgid "Save Search Results As..."
 msgstr "Lagre søkeresultater som..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1145
+#: gsearchtool/gsearchtool-callbacks.c:1182
 msgid "Could not save document."
 msgstr "Kunne ikke lagre dokument."
 
-#: gsearchtool/gsearchtool-callbacks.c:1147
+#: gsearchtool/gsearchtool-callbacks.c:1183
 msgid "You did not select a document name."
 msgstr "Kunne valgte ikke et dokumentnavn."
 
-#: gsearchtool/gsearchtool-callbacks.c:1173
-#: gsearchtool/gsearchtool-callbacks.c:1268
+#: gsearchtool/gsearchtool-callbacks.c:1213
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Kunne ikke lagre dokument «%s» til «%s»."
 
-#: gsearchtool/gsearchtool-callbacks.c:1177
-msgid "The document name you selected is a folder."
-msgstr "Dokumentnavnet du valgte er en mappe."
-
-#: gsearchtool/gsearchtool-callbacks.c:1206
+#: gsearchtool/gsearchtool-callbacks.c:1246
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokument «%s» eksisterer allerede. Vil du erstatte den?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1210
+#: gsearchtool/gsearchtool-callbacks.c:1250
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 "Hvis du erstatter en eksisterende fil vil innholdet i denne bli overskrevet."
 
-#: gsearchtool/gsearchtool-callbacks.c:1221
-#: gnome-screenshot/screenshot-xfer.c:190
-msgid "_Replace"
-msgstr "E_rstatt"
+#: gsearchtool/gsearchtool-callbacks.c:1314
+msgid "The document name you selected is a folder."
+msgstr "Dokumentnavnet du valgte er en mappe."
 
-#: gsearchtool/gsearchtool-callbacks.c:1271
+#: gsearchtool/gsearchtool-callbacks.c:1365
 msgid "You may not have write permissions to the document."
 msgstr "Du har ikke skriverettigheter til dokumentet."
 
-#: gsearchtool/gsearchtool-support.c:68
+#: gsearchtool/gsearchtool-support.c:70
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1262,157 +1421,180 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:620
+#: gsearchtool/gsearchtool-support.c:521
 msgid "today at %-I:%M %p"
 msgstr "i dag kl. %H:%M"
 
-#: gsearchtool/gsearchtool-support.c:622
+#: gsearchtool/gsearchtool-support.c:523
 msgid "yesterday at %-I:%M %p"
 msgstr "i går kl. %H:%M"
 
-#: gsearchtool/gsearchtool-support.c:624 gsearchtool/gsearchtool-support.c:626
+#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %-d.%m.%y, %H:%M"
 
-#: gsearchtool/gsearchtool-support.c:810
+#: gsearchtool/gsearchtool-support.c:711
 msgid "link (broken)"
 msgstr "lenke (ødelagt)"
 
-#: gsearchtool/gsearchtool-support.c:816
+#: gsearchtool/gsearchtool-support.c:717
 #, c-format
 msgid "link to %s"
 msgstr "lenke til %s"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:81
 msgid "Contains the _text"
 msgstr "Innholder _teksten"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:83
 msgid "_Date modified less than"
 msgstr "_Endringsdato mindre enn"
 
-#: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:83 gsearchtool/gsearchtool.c:84
 msgid "days"
 msgstr "dager"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:84
 msgid "Date modified more than"
 msgstr "Endringsdato mer enn"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:86
 msgid "S_ize at least"
 msgstr "M_inste størrelse"
 
-#: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:86 gsearchtool/gsearchtool.c:87
 msgid "kilobytes"
 msgstr "kilobyte"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:87
 msgid "Si_ze at most"
 msgstr "Ikke st_ørre enn"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:88
 msgid "File is empty"
 msgstr "Filen er tomt"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:90
 msgid "Owned by _user"
 msgstr "Eies av br_uker"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:91
 msgid "Owned by _group"
 msgstr "Eies av _gruppe"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:92
 msgid "Owner is unrecognized"
 msgstr "Eier gjenkjennes ikke"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:94
 msgid "Na_me does not contain"
 msgstr "Na_vn inneholder ikke"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:95
 msgid "Name matches regular e_xpression"
 msgstr "Navn har tre_ff på vanlig uttrykk"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:97
 msgid "Show hidden and backup files"
 msgstr "Vis skjulte filer og sikkerhetskopier"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:98
 msgid "Follow symbolic links"
 msgstr "Følg symbolske lenker"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:99
 msgid "Include other filesystems"
 msgstr "Ta med andre filsystemer"
 
-#: gsearchtool/gsearchtool.c:585 gsearchtool/gsearchtool.c:613
+#: gsearchtool/gsearchtool.c:180
+msgid "_Open"
+msgstr "_Åpne"
+
+#: gsearchtool/gsearchtool.c:181
+msgid "O_pen Folder"
+msgstr "Å_pne mappe"
+
+#: gsearchtool/gsearchtool.c:182
+msgid "Mo_ve to Trash"
+msgstr "Fl_ytt til papirkurven"
+
+#: gsearchtool/gsearchtool.c:183
+msgid "_Save Results As..."
+msgstr "Lagre re_sultater som..."
+
+#: gsearchtool/gsearchtool.c:650 gsearchtool/gsearchtool.c:679
 msgid "No files found"
 msgstr "Ingen filer funnet"
 
-#: gsearchtool/gsearchtool.c:606
+#: gsearchtool/gsearchtool.c:672
 msgid "(stopped)"
 msgstr "(stoppet)"
 
-#: gsearchtool/gsearchtool.c:612
+#: gsearchtool/gsearchtool.c:678
 msgid "No Files Found"
 msgstr "Ingen filer funnet"
 
-#: gsearchtool/gsearchtool.c:617
+#: gsearchtool/gsearchtool.c:683
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d fil funnet"
 msgstr[1] "%d filer funnet"
 
-#: gsearchtool/gsearchtool.c:621 gsearchtool/gsearchtool.c:659
+#: gsearchtool/gsearchtool.c:687 gsearchtool/gsearchtool.c:725
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d fil funnet"
 msgstr[1] "%d filer funnet"
 
-#: gsearchtool/gsearchtool.c:731
+#: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 "Oppføring endret ble kalt for et alternativ som ikke gjaldt oppføringen!"
 
-#: gsearchtool/gsearchtool.c:981
+#: gsearchtool/gsearchtool.c:1049
 msgid "Searching..."
 msgstr "Søker..."
 
-#: gsearchtool/gsearchtool.c:1003
-msgid "Set the text of 'Name contains'"
+#: gsearchtool/gsearchtool.c:1071
+#, fuzzy
+msgid "Set the text of \"Name contains\" search option"
 msgstr "Sett teksten for «Navnet inneholder»"
 
-#: gsearchtool/gsearchtool.c:1004
-msgid "Set the text of 'Look in folder'"
+#: gsearchtool/gsearchtool.c:1072
+#, fuzzy
+msgid "Set the text of \"Look in folder\" search option"
 msgstr "Sett teksten for «Se i mappe»"
 
-#: gsearchtool/gsearchtool.c:1005
+#: gsearchtool/gsearchtool.c:1073
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sorter filer på en av førlgende: navn, mappe, størrelse, type eller dato"
 
-#: gsearchtool/gsearchtool.c:1006
+#: gsearchtool/gsearchtool.c:1074
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Sett sorteringsrekkefølgen til synkende. Forvalg er stigende"
 
-#: gsearchtool/gsearchtool.c:1007
+#: gsearchtool/gsearchtool.c:1075
 msgid "Automatically start a search"
 msgstr "Start et søk automatisk"
 
-#: gsearchtool/gsearchtool.c:1012
-#, c-format
-msgid "Select the '%s' constraint"
+#: gsearchtool/gsearchtool.c:1081
+#, fuzzy, c-format
+msgid "Select the \"%s\" search option"
 msgstr "Velg begrensningen «%s»"
 
-#: gsearchtool/gsearchtool.c:1118
+#: gsearchtool/gsearchtool.c:1084
+#, fuzzy, c-format
+msgid "Select and set the \"%s\" search option"
+msgstr "Velg Navn har treff på vanlig uttrykk"
+
+#: gsearchtool/gsearchtool.c:1191
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ugyldig flagg gitt til flagget --sortby."
 
-#: gsearchtool/gsearchtool.c:1417
+#: gsearchtool/gsearchtool.c:1485
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1420,7 +1602,7 @@ msgstr ""
 "\n"
 "... For mange feil å vise..."
 
-#: gsearchtool/gsearchtool.c:1426
+#: gsearchtool/gsearchtool.c:1499
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1428,120 +1610,133 @@ msgstr ""
 "Søkeresultatet kan være ugyldig. Det ble funnet feil under utføring av dette "
 "søket."
 
-#: gsearchtool/gsearchtool.c:1447
+#: gsearchtool/gsearchtool.c:1511 gsearchtool/gsearchtool.c:1551
+msgid "Show more _details"
+msgstr "Vis flere _detaljer"
+
+#: gsearchtool/gsearchtool.c:1539
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 "Søkeresultatet kan være ugyldig. Vil du deaktivere hurtigsøkfunksjonen?"
 
-#: gsearchtool/gsearchtool.c:1455
+#: gsearchtool/gsearchtool.c:1562
 msgid "Disable _Quick Search"
 msgstr "Deaktiver _hurtigsøk"
 
-#: gsearchtool/gsearchtool.c:1499
+#: gsearchtool/gsearchtool.c:1589
+#, c-format
+msgid "Failed to set process group id of child %d: %s.\n"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1616
 msgid "Error parsing the search command."
 msgstr "Feil under lesing av søkekommandoen."
 
-#: gsearchtool/gsearchtool.c:1528
+#: gsearchtool/gsearchtool.c:1649
 msgid "Error running the search command."
 msgstr "Feil under kjøring av søkekommandoen."
 
-#: gsearchtool/gsearchtool.c:1665
+#: gsearchtool/gsearchtool.c:1792
 #, c-format
 msgid "'%s' entry"
 msgstr "«%s»-oppføring"
 
-#: gsearchtool/gsearchtool.c:1666
+#: gsearchtool/gsearchtool.c:1793
 msgid "Enter a value for search rule"
 msgstr "Oppgi en verdi for søkeregel"
 
-#: gsearchtool/gsearchtool.c:1713
+#: gsearchtool/gsearchtool.c:1847
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klikk for å fjerne regelen «%s»"
 
-#: gsearchtool/gsearchtool.c:1802
+#: gsearchtool/gsearchtool.c:1939
 msgid "A_vailable options:"
 msgstr "Til_gjengelige alternativer:"
 
-#: gsearchtool/gsearchtool.c:1832
+#: gsearchtool/gsearchtool.c:1969
 msgid "Search Rules Menu"
 msgstr "Meny for søkeregler"
 
-#: gsearchtool/gsearchtool.c:1833
+#: gsearchtool/gsearchtool.c:1970
 msgid "Select a search rule from the menu"
 msgstr "Velg en søkeregel fra menyen"
 
-#: gsearchtool/gsearchtool.c:1864
+#: gsearchtool/gsearchtool.c:1999
 msgid "S_earch results:"
 msgstr "Søk_eresultater:"
 
-#: gsearchtool/gsearchtool.c:1944
+#: gsearchtool/gsearchtool.c:2081
 msgid "Name"
 msgstr "Navn"
 
-#: gsearchtool/gsearchtool.c:1964
+#: gsearchtool/gsearchtool.c:2101
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1975
+#: gsearchtool/gsearchtool.c:2112
 msgid "Size"
 msgstr "Størrelse"
 
-#: gsearchtool/gsearchtool.c:1985
+#: gsearchtool/gsearchtool.c:2122
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1995
+#: gsearchtool/gsearchtool.c:2132
 msgid "Date Modified"
 msgstr "Dato endret"
 
-#: gsearchtool/gsearchtool.c:2052
+#: gsearchtool/gsearchtool.c:2500
 msgid "_Name contains:"
 msgstr "_Navnet inneholder:"
 
-#: gsearchtool/gsearchtool.c:2067 gsearchtool/gsearchtool.c:2068
+#: gsearchtool/gsearchtool.c:2515 gsearchtool/gsearchtool.c:2516
 msgid "Enter the file name you want to search."
 msgstr "Oppgi filnavnet du ønsker å søke etter."
 
-#: gsearchtool/gsearchtool.c:2068
+#: gsearchtool/gsearchtool.c:2516
 msgid "Name Contains Entry"
 msgstr "Oppføring for Navn inneholder"
 
-#: gsearchtool/gsearchtool.c:2079
+#: gsearchtool/gsearchtool.c:2522
 msgid "_Look in folder:"
 msgstr "_Se i mappe:"
 
-#: gsearchtool/gsearchtool.c:2085
+#: gsearchtool/gsearchtool.c:2528
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: gsearchtool/gsearchtool.c:2092
+#: gsearchtool/gsearchtool.c:2534
 msgid "Select the folder where you want to start the search."
 msgstr "Velg mappen du vil starte søket i"
 
-#: gsearchtool/gsearchtool.c:2116
+#: gsearchtool/gsearchtool.c:2545
+msgid "Show more _options"
+msgstr "Vis flere _alternativer"
+
+#: gsearchtool/gsearchtool.c:2555
 msgid "Show more options"
 msgstr "Vis flere alternativer"
 
-#: gsearchtool/gsearchtool.c:2116
+#: gsearchtool/gsearchtool.c:2555
 msgid "Expands or collapses a list of search options."
 msgstr "Utvider eller slår sammen en liste med søkealternativer."
 
-#: gsearchtool/gsearchtool.c:2163
+#: gsearchtool/gsearchtool.c:2607
 msgid "Click to Start the search"
 msgstr "Klikk for å starte søket"
 
-#: gsearchtool/gsearchtool.c:2164
+#: gsearchtool/gsearchtool.c:2608
 msgid "Click to Stop the search"
 msgstr "Klikk for å stoppe søket"
 
-#: gsearchtool/gsearchtool.c:2438
+#: gsearchtool/gsearchtool.c:2708
 msgid "Cannot initialize bonobo."
 msgstr "Kan ikke initiere bonobo."
 
-#: logview/about.c:47 logview/logview.c:49
+#: logview/about.c:47 logview/logview.c:47
 msgid "System Log Viewer"
 msgstr "Visning av systemlogg"
 
@@ -1565,7 +1760,7 @@ msgstr "_Legg til"
 msgid "Add an action"
 msgstr "Legg til en handling"
 
-#: logview/actions.c:176 logview/logview.c:88
+#: logview/actions.c:176 logview/logview.c:86
 msgid "_Edit"
 msgstr "R_ediger"
 
@@ -1729,25 +1924,32 @@ msgstr "Egenskaper"
 
 #: logview/info.c:95
 #, c-format
-msgid "<b>Size</b>: %ld bytes"
+msgid "%ld byte"
+msgid_plural "%ld bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: logview/info.c:97
+#, fuzzy, c-format
+msgid "<b>Size</b>: %s"
 msgstr "<b>Størrelse</b>: %ld bytes"
 
-#: logview/info.c:99
+#: logview/info.c:102
 #, c-format
 msgid "<b>Modified</b>: %s"
 msgstr "<b>Endret:</b>: %s"
 
-#: logview/info.c:103
+#: logview/info.c:106
 #, c-format
 msgid "<b>Start Date</b>: %s"
 msgstr "<b>Startdato:</b>: %s"
 
-#: logview/info.c:107
+#: logview/info.c:110
 #, c-format
 msgid "<b>Last Date</b>: %s"
 msgstr "<b>Siste dato:</b>: %s"
 
-#: logview/info.c:111
+#: logview/info.c:114
 #, c-format
 msgid "<b>Number of Lines</b>: %ld"
 msgstr "<b>Antall linjer:</b>: %ld"
@@ -1807,7 +2009,8 @@ msgid "%x"
 msgstr "%x"
 
 #: logview/log_repaint.c:297
-msgid "Last Modified: "
+#, fuzzy
+msgid "Last Modified:"
 msgstr "Sist endret: "
 
 #. Translators: Make sure this is only Month and Day format, year
@@ -1822,19 +2025,20 @@ msgstr "%B %e"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:43
-msgid "This file cannot be opened"
+#: logview/logrtns.c:47
+#, fuzzy
+msgid "The file could not be opened"
 msgstr "Denne filen kunne ikke åpnes"
 
-#: logview/logrtns.c:206
+#: logview/logrtns.c:213
 msgid "Unable to open logfile!\n"
 msgstr "Kunne ikke åpne loggfil!\n"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:220
 msgid "Not enough memory!\n"
 msgstr "Ike nok minne!\n"
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:272
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1844,27 +2048,28 @@ msgstr ""
 "programmet som root eller spør systemadministratoren om å endre rettighetene "
 "til filen."
 
-#: logview/logrtns.c:282
+#: logview/logrtns.c:277
 #, c-format
 msgid "%s is too big."
 msgstr "%s er for stor."
 
-#: logview/logrtns.c:286
+#: logview/logrtns.c:281
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s kunne ikke åpnes."
 
-#: logview/logrtns.c:301 logview/logrtns.c:312
+#: logview/logrtns.c:322 logview/logrtns.c:333
 #, c-format
 msgid "%s not a log file."
 msgstr "%s er ikke en loggfil."
 
-#: logview/logrtns.c:563 logview/logrtns.c:587
+#: logview/logrtns.c:584 logview/logrtns.c:608
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: tom for minne"
 
 #: logview/logview-findbar.c:265
-msgid "Fin_d : "
+#, fuzzy
+msgid "Fin_d:"
 msgstr "_Finn:"
 
 #: logview/logview-findbar.c:283
@@ -1875,127 +2080,128 @@ msgstr "Finn neste"
 msgid "Find Previous"
 msgstr "Finn forrige"
 
-#: logview/logview.c:87
+#: logview/logview.c:85
 msgid "_Log"
 msgstr "_Logg"
 
-#: logview/logview.c:89
+#: logview/logview.c:87
 msgid "_View"
 msgstr "_Vis"
 
-#: logview/logview.c:92
+#: logview/logview.c:90
 msgid "_Open..."
 msgstr "_Åpne..."
 
-#: logview/logview.c:92
+#: logview/logview.c:90
 msgid "Open a log from file"
 msgstr "Åpne en loggfil"
 
-#: logview/logview.c:94
+#: logview/logview.c:92
 msgid "_Properties"
 msgstr "E_genskaper"
 
-#: logview/logview.c:94
+#: logview/logview.c:92
 msgid "Show Log Properties"
 msgstr "Vis egenskaper for logg"
 
-#: logview/logview.c:96
+#: logview/logview.c:94
 msgid "Close"
 msgstr "Lukk"
 
-#: logview/logview.c:96
+#: logview/logview.c:94
 msgid "Close this log"
 msgstr "Lukk denne loggen"
 
-#: logview/logview.c:98
+#: logview/logview.c:96
+msgid "_Quit"
+msgstr "A_vslutt"
+
+#: logview/logview.c:96
 msgid "Quit the log viewer"
 msgstr "Avslutt loggvisning"
 
-#: logview/logview.c:101
+#: logview/logview.c:99
 msgid "Copy"
 msgstr "Kopier"
 
-#: logview/logview.c:103
+#: logview/logview.c:101
 msgid "Select All"
 msgstr "Velg alt"
 
-#: logview/logview.c:103
+#: logview/logview.c:101
 msgid "Select the entire log"
 msgstr "Velg hele loggen"
 
-#: logview/logview.c:105
+#: logview/logview.c:103
 msgid "Find pattern in logs"
 msgstr "Finn mønster i logger"
 
-#: logview/logview.c:108
+#: logview/logview.c:106
 msgid "Collapse _All"
 msgstr "Slå sammen _alle"
 
-#: logview/logview.c:108
+#: logview/logview.c:106
 msgid "Collapse all the rows"
 msgstr "Slå sammen alle radene"
 
-#: logview/logview.c:111
+#: logview/logview.c:109
 msgid "Open the help contents for the log viewer"
 msgstr "Åpne hjelp for loggvisning"
 
-#: logview/logview.c:113
-msgid "Show the about dialog for the gconf editor"
+#: logview/logview.c:111
+#, fuzzy
+msgid "Show the about dialog for the log viewer"
 msgstr "Vis dialogen «Om loggvisning»"
 
-#: logview/logview.c:119
+#: logview/logview.c:117
 msgid "_Monitor"
 msgstr "_Overvåk"
 
-#: logview/logview.c:119
+#: logview/logview.c:117
 msgid "Monitor Current Log"
 msgstr "Overvåk denne loggen"
 
-#: logview/logview.c:121
+#: logview/logview.c:119
 msgid "Ca_lendar"
 msgstr "Ka_lender"
 
-#: logview/logview.c:121
+#: logview/logview.c:119
 msgid "Show Calendar Log"
 msgstr "Vis kalenderloggen"
 
-#: logview/logview.c:123
+#: logview/logview.c:121
 msgid "_Entry Detail"
 msgstr "D_etaljer om oppføringen"
 
-#: logview/logview.c:123
+#: logview/logview.c:121
 msgid "Show Entry Detail"
 msgstr "Vis detaljer om oppføringen"
 
-#: logview/logview.c:178
-msgid "Open the specified log."
-msgstr "Åpne oppgitt logg."
-
-#: logview/logview.c:389
+#: logview/logview.c:386
 msgid "Date"
 msgstr "Dato"
 
-#: logview/logview.c:389
+#: logview/logview.c:386
 msgid "Host Name"
 msgstr "Vertsnavn"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 msgid "Process"
 msgstr "Prosess"
 
-#: logview/logview.c:390
+#: logview/logview.c:387
 msgid "Message"
 msgstr "Melding"
 
-#: logview/logview.c:583
+#: logview/logview.c:580
 msgid "Open new logfile"
 msgstr "Åpne ny loggfil"
 
-#: logview/logview.c:879
+#: logview/logview.c:876
 msgid "There was an error displaying help."
 msgstr "Det oppsto en feil under visning av hjelp."
 
-#: logview/logview.c:897
+#: logview/logview.c:894
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (overvåket) - %s"
@@ -2021,172 +2227,59 @@ msgstr "Detaljer om oppføring"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:86
-msgid "Error loading help"
-msgstr "Feil under lasting av hjelp"
+#~ msgid "_Show Dictionary"
+#~ msgstr "Vi_s ordbok"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:87
-msgid "There was an error displaying the help pages for this dialog:"
-msgstr "Det oppsto en feil under visning av hjelp for denne dialogen:"
+#~ msgid "Check word spelling"
+#~ msgstr "Sjekk ordets staving"
 
-#. translators: this is the name of the file that gets made up
-#. * with the screenshot if a specific window is taken
-#: gnome-screenshot/gnome-panel-screenshot.c:111
-#, c-format
-msgid "Screenshot-%s.png"
-msgstr "Skjermdump-%s.png"
+#~ msgid "Quit the application"
+#~ msgstr "Avslutt programmet"
 
-#. translators: this is the name of the file that gets made up
-#. * with the screenshot if the entire screen is taken
-#: gnome-screenshot/gnome-panel-screenshot.c:117
-msgid "Screenshot.png"
-msgstr "Skjermdump.png"
+#~ msgid "Smart _lookup"
+#~ msgstr "Smart opps_lag"
 
-#. translators: this is the name of the file that gets
-#. * made up with the screenshot if a specific window is
-#. * taken
-#: gnome-screenshot/gnome-panel-screenshot.c:155
-#, c-format
-msgid "Screenshot-%s-%d.png"
-msgstr "Skjermdump-%s-%d.png"
+#~ msgid "D_efault strategy:"
+#~ msgstr "Forvalgt strat_egi:"
 
-#. translators: this is the name of the file that gets
-#. * made up with the screenshot if the entire screen is
-#. * taken
-#: gnome-screenshot/gnome-panel-screenshot.c:163
-#, c-format
-msgid "Screenshot-%d.png"
-msgstr "Skjermdump-%d.png"
+#~ msgid "Enter a word to know the spelling"
+#~ msgstr "Skriv inn et ord for å vise staving"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:338
-msgid "Unable to take a screenshot of the current desktop."
-msgstr "Kan ikke ta skjermdump av dette skrivebordet."
+#~ msgid "Click to do the spell check"
+#~ msgstr "Klikk for å utføre stavekontroll"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:409
-msgid "Grab a window instead of the entire screen"
-msgstr "Dump et vindu i stedet for hele skjermen"
+#~ msgid "Check Spelling"
+#~ msgstr "Sjekk staving"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:410
-msgid "Include the window border with the screenshot"
-msgstr "Ta med vinduskant i skjermdumpet"
+#~ msgid "Search Strategy"
+#~ msgstr "Søkestrategi"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:411
-msgid "Take screenshot after specified delay [in seconds]"
-msgstr "Ta skjermdump etter oppgitt pause [i sekunder]"
+#~ msgid "Select Size At Most"
+#~ msgstr "Velg Ikke større enn"
 
-#: gnome-screenshot/gnome-panel-screenshot.c:412
-msgid "Effect to add to the window border"
-msgstr "Effekt som skal legges til vinduskanten"
+#~ msgid "Image/label border"
+#~ msgstr "Kant for bilde/etikett"
 
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
-msgid " (invalid Unicode)"
-msgstr " (ugyldig Unicode)"
+#~ msgid "Width of border around the label and image in the alert dialog"
+#~ msgstr "Bredde på kanten rundt etiketten og bildet i varseldialogen"
 
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
-#, c-format
-msgid "(%d:%02d:%d Remaining)"
-msgstr "(%d:%02d:%d gjenstår)"
+#~ msgid "Alert Type"
+#~ msgstr "Varseltype"
 
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
-#, c-format
-msgid "(%d:%02d Remaining)"
-msgstr "(%d:%02d gjenstår)"
+#~ msgid "The type of alert"
+#~ msgstr "Type varsel"
 
-#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
-#, c-format
-msgid "%ld of %ld"
-msgstr "%ld av %ld"
+#~ msgid "Alert Buttons"
+#~ msgstr "Varslingsknapp"
 
-#: gnome-screenshot/gnome-screenshot.glade.h:2
-msgid "Save Screenshot"
-msgstr "Lagre skjermdump"
+#~ msgid "The buttons shown in the alert dialog"
+#~ msgstr "Knappene som vises i varseldialogen"
 
-#: gnome-screenshot/gnome-screenshot.glade.h:3
-msgid "Save in _folder:"
-msgstr "Lagre i _mappe:"
+#~ msgid "Could not move \"%s\" to the trash."
+#~ msgstr "Kunne ikke flytte «%s» til papirkurven."
 
-#: gnome-screenshot/gnome-screenshot.glade.h:4
-msgid "_Name:"
-msgstr "_Navn:"
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
-msgid "Border Effect"
-msgstr "Effekt for kant"
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
-msgid "Directory that the screenshooter last used to save in"
-msgstr "Katalog hvor forrige skjermdump ble lagret"
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
-msgid ""
-"Effect to add to the outside of a border. Possible values are \"shadow\", "
-"\"none\", and \"black-line\"."
-msgstr ""
-"Effekt som skal legges til på utsiden av kanten. Mulige verdier er «shadow», "
-"«none» og «black-line»."
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
-msgid "Include Border"
-msgstr "Ta med kant"
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
-msgid "Include the window manager border along with the screenshot"
-msgstr "Ta med vindushåndtererens kan i skjermdumpet"
-
-#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
-msgid "Web directory"
-msgstr "Web-katalog"
-
-#: gnome-screenshot/screenshot-dialog.c:194
-msgid ""
-"Glade file for the screenshot program is missing.\n"
-"Please check your installation of gnome-panel"
-msgstr ""
-"Glade-fil for skjermdumpprogrammet mangler.\n"
-"Vennligst sjekk installasjonen."
-
-#: gnome-screenshot/screenshot-save.c:40
-#, c-format
-msgid ""
-"Unable to clear the temporary directory:\n"
-"%s"
-msgstr ""
-"Kan ikke tømme midlertidig katalog:\n"
-"%s"
-
-#: gnome-screenshot/screenshot-save.c:78
-msgid ""
-"The child save process unexpectedly exited.  We are unable to write the "
-"screenshot to disk."
-msgstr ""
-"Underprosessen for lagring avsluttet uventet. Kan ikke skrive skjermdumpet "
-"til disk."
-
-#: gnome-screenshot/screenshot-save.c:188
-msgid "Unknown error saving screenshot to disk"
-msgstr "Ukjent feil under lagring av skjermdump til disk"
-
-#: gnome-screenshot/screenshot-utils.c:611
-msgid "Untitled Window"
-msgstr "Vindu uten tittel"
-
-#: gnome-screenshot/screenshot-xfer.c:103
-msgid "Preparing to copy"
-msgstr "Forbereder kopiering"
-
-#: gnome-screenshot/screenshot-xfer.c:181
-msgid "File already exists"
-msgstr "Filen eksisterer allerede"
-
-#: gnome-screenshot/screenshot-xfer.c:184
-#, c-format
-msgid "The file \"%s\" already exists.  Would you like to replace it?"
-msgstr "Filen «%s» eksisterer allerede. Vil du erstatte den?"
-
-#: gnome-screenshot/screenshot-xfer.c:230
-#, c-format
-msgid "Unknown GnomeVFSXferProgressStatus %d"
-msgstr "Ukjent GnomeVFSXferProgressSatus %d"
+#~ msgid "Open the specified log."
+#~ msgstr "Åpne oppgitt logg."
 
 #~ msgid "_Calendar"
 #~ msgstr "_Kalender"
