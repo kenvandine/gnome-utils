@@ -83,9 +83,7 @@ int main(int argc, char *argv[])
 	
 	if(getenv("DISPLAY"))
 	{
-		gtk_init(&argc, &argv);
-		gdk_imlib_init();
-		gnomelib_init(argv[0], VERSION);
+		gnome_init("gdialog", VERSION, argc, argv);
 		gnome_mode=1;
 	}
 	

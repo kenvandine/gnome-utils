@@ -87,11 +87,11 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 
 		tbox=gtk_hbox_new(FALSE, 0);
 		
-		text=gtk_text_new(NULL, NULL);
+		text=gtk_text_view_new();
 		
 		gtk_box_pack_start(GTK_BOX(tbox), text, FALSE, FALSE, 0);
 		
-		scroller=gtk_vscrollbar_new(GTK_TEXT(text)->vadj);
+		scroller=gtk_vscrollbar_new(GTK_TEXT_VIEW(text)->vadjustment);
 		gtk_box_pack_start(GTK_BOX(tbox), scroller, FALSE, FALSE, 0);
 		
 		gtk_widget_show_all(tbox);
@@ -114,11 +114,10 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 
 		while(fgets(buf, 511, fp)!=NULL)
 		{
-			gtk_text_set_point(GTK_TEXT(text), gtk_text_get_length(GTK_TEXT(text)));
-			gtk_text_insert(GTK_TEXT(text), NULL, NULL, NULL, buf, strlen(buf));
+			(GTK_TEXT_VIEW_GET_CLASS(text)->insert_at_cursor)
+				(GTK_TEXT_VIEW(text), buf);
 		}
 		fclose(fp);
-		gtk_editable_set_position(GTK_EDITABLE(text), 0);
 		gtk_signal_connect(GTK_OBJECT(w), "destroy",
 			GTK_SIGNAL_FUNC(cancelled), NULL);
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",

@@ -22,8 +22,6 @@
 #define WITH_GNOME		/* Gnome support */
 #undef WITH_GPM			/* Gpm mouse support */
 
-#define VERSION	"0.6gnome1"
-
 #include "config.h"
 #include <sys/types.h>
 #include <fcntl.h>

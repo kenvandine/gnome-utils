@@ -109,7 +109,7 @@ static gint lwidth=0 , rwidth=0;
 
 static void clist_add(GtkCList *cl, char *l, char *r)
 {
-	GdkFont * font = gtk_widget_get_style(GTK_WIDGET(cl))->font; 
+	GdkFont * font = gtk_style_get_font(GTK_WIDGET(cl)->style); 
 	gchar *data[2];
 	
 	data[0]=l;

@@ -31,7 +31,8 @@ static void okayed(GtkWidget *w, int button, gpointer *d)
 {
 	if(button==0)
 	{
-		char *p=gtk_entry_get_text(GTK_ENTRY(input));
+		gchar *p = (gchar *) gtk_entry_get_text(GTK_ENTRY(input));
+
 		write(2,p, strlen(p));
 		write(2, "\n", 1);
 	}
