@@ -1,3 +1,10 @@
+1998-08-03  Federico Mena Quintero  <federico@nuclecu.unam.mx>
+
+	* Made the code use GtkCTreeNode instead of GList, for the new ctree.
+
+	* gnomecard.c (gnomecard_update_tree): Use GTK_CTREE_NODE_NEXT,
+	since the nodes are opaque structures now.
+
 1998-08-03  Arturo Espinods Aldama  <arturo@nuclecu.unam.mx>
 
 	* gnomecard.c: gnome_canvas_new now needs no arguments. Corrected.

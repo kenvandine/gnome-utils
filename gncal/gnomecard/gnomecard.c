@@ -177,7 +177,7 @@ void gnomecard_toggle_tree_view(GtkWidget *w, gpointer data)
 void gnomecard_add_card_sections_to_tree(Card *crd)
 {
 	char *text[2];
-	GList *parent, *child;
+	GtkCTreeNode *parent, *child;
 	
 	parent = crd->user_data;
 	child = parent;
@@ -253,7 +253,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 											 NULL, NULL, NULL, NULL, FALSE, FALSE);
 		}
 		if (crd->org.prop.used) {
-			GList *org;
+			GtkCTreeNode *org;
 			
 			text[0] = _("Organization");
 			text[1] = "";
@@ -298,7 +298,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	
 	if (crd->comment.prop.used || crd->sound.prop.used ||
 	    crd->url.prop.used) {
-		GList *expl;
+		GtkCTreeNode *expl;
 		
 		text[0] = _("Explanatory");
 		text[1] = "";
@@ -308,7 +308,7 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 					expl_pix->mask, FALSE, FALSE);
 		if (crd->comment.prop.used) {
 			char *rem, *c;
-			GList *comment;
+			GtkCTreeNode *comment;
 			
 			text[0] = _("Comment");
 			text[1] = "";
@@ -347,7 +347,8 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	}
 	
 	if (crd->phone) {
-		GList *l, *phone, *phone2;
+		GtkCTreeNode *phone, *phone2;
+		GList *l;
 		int i;
 		
 		text[0] = _("Telephone Numbers");
@@ -376,7 +377,8 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	}
 	
 	if (crd->email) {
-		GList *l, *email;
+		GtkCTreeNode *email;
+		GList *l;
 		
 		text[0] = _("E-mail Addresses");
 		text[1] = "";
@@ -395,7 +397,8 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	}
 	
 	if (crd->deladdr || crd->dellabel) {
-		GList *l, *addr, *addr2;
+		GtkCTreeNode *addr, *addr2;
+		GList *l;
 		int i;
 		
 		text[0] = _("Delivery Addresses");
@@ -594,7 +597,7 @@ void gnomecard_set_changed(gboolean val)
 
 void gnomecard_scroll_tree(GList *node)
 {
-	GList *tree_node;
+	GtkCTreeNode *tree_node;
 	
 	tree_node = ((Card *) node->data)->user_data;
 
@@ -605,7 +608,7 @@ void gnomecard_scroll_tree(GList *node)
 /* I'm using collapse and expand to avoid ctree_remove SIGSEGV */
 void gnomecard_update_tree(Card *crd)
 {
-	GList *node, *tmp;
+	GtkCTreeNode *node, *tmp;
 	char *text;
 	
 	if ((text = crd->fname.str) == NULL)
@@ -614,9 +617,9 @@ void gnomecard_update_tree(Card *crd)
 	gtk_ctree_set_text(crd_tree, crd->user_data,	1, text);
 	gtk_ctree_collapse_recursive(crd_tree, crd->user_data);
 	
-	node = GTK_CTREE_ROW((GList *) crd->user_data)->children;
+	node = crd->user_data;
 	while (node) {
-		tmp = node->next;
+		tmp = GTK_CTREE_NODE_NEXT (node);
 		gtk_ctree_remove(crd_tree, node);
 		node = tmp;
 	}
@@ -1689,7 +1692,7 @@ void
 gnomecard_about(GtkWidget *widget, gpointer data)
 {
         GtkWidget *about;
-        gchar *authors[] = { "arturo@nuclecu.unam.mx", NULL };
+	const gchar *authors[] = { "arturo@nuclecu.unam.mx", NULL };
 
         about = gnome_about_new (_("GnomeCard"), NULL,
 				 "(C) 1997-1998 the Free Software Fundation",
