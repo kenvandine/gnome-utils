@@ -33,13 +33,7 @@
 
 #include "gsearchtool.h"
 
-#define STDIN  0
-#define STDOUT 1
-#define STDERR 2
-
 #define ICON_SIZE 20
-#define ISSLASH(C) ((C) == '/')
-#define BACKSLASH_IS_PATH_SEPARATOR ISSLASH ('\\')
 #define C_STANDARD_STRFTIME_CHARACTERS "aAbBcdHIjmMpSUwWxXyYZ"
 #define C_STANDARD_NUMERIC_STRFTIME_CHARACTERS "dHIjmMSUwWyY"
 
@@ -1519,21 +1513,8 @@ create_find_page(void)
 	gtk_button_box_set_layout (GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
 	gtk_box_pack_start(GTK_BOX(vbox2),hbox,FALSE,FALSE,0);
 
-	/* create find button */
-	find.buttons[1] = gtk_button_new ();
+	find.buttons[1] = gtk_button_new_from_stock(GTK_STOCK_FIND);
 	gtk_widget_set_size_request (GTK_WIDGET(find.buttons[1]), 88, -1);
-	
-	align = gtk_alignment_new(0.5, 0.5, 0, 0);
-	gtk_container_add( GTK_CONTAINER (find.buttons[1]), align);
-	
-	hbox2 = gtk_hbox_new (FALSE, 0);
-	gtk_container_add(GTK_CONTAINER(align), hbox2);
-	
-	image = gtk_image_new_from_stock("gtk-find", GTK_ICON_SIZE_BUTTON);
-	gtk_box_pack_start (GTK_BOX(hbox2), image, FALSE, FALSE, 0);
-	
-	label = gtk_label_new_with_mnemonic(_("_Find"));
-	gtk_box_pack_start(GTK_BOX(hbox2), label, FALSE, FALSE, 0);
 	
 	find.buttons[0] = gtk_button_new_from_stock(GTK_STOCK_STOP);
 	gtk_widget_set_size_request (GTK_WIDGET(find.buttons[0]), 88, -1);
@@ -1841,21 +1822,8 @@ create_locate_page(void)
 	gtk_button_box_set_layout (GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
 
-	/* create a custom find button */
-	locate.buttons[1] = gtk_button_new ();
+	locate.buttons[1] = gtk_button_new_from_stock(GTK_STOCK_FIND);
 	gtk_widget_set_size_request (GTK_WIDGET(locate.buttons[1]), 88, -1);
-	
-	align = gtk_alignment_new(0.5, 0.5, 0, 0);
-	gtk_container_add( GTK_CONTAINER (locate.buttons[1]), align);
-	
-	hbox2 = gtk_hbox_new (FALSE, 0);
-	gtk_container_add(GTK_CONTAINER(align), hbox2);
-	
-	image = gtk_image_new_from_stock("gtk-find", GTK_ICON_SIZE_BUTTON);
-	gtk_box_pack_start (GTK_BOX(hbox2), image, FALSE, FALSE, 0);
-	
-	label = gtk_label_new_with_mnemonic(_("_Find"));
-	gtk_box_pack_start(GTK_BOX(hbox2), label, FALSE, FALSE, 0);
 
 	locate.buttons[0] = gtk_button_new_from_stock(GTK_STOCK_STOP);
 	gtk_widget_set_size_request (GTK_WIDGET(locate.buttons[0]), 88, -1);
