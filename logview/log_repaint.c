@@ -439,7 +439,10 @@ log_repaint (GtkWidget * win, GdkEventExpose * event)
 
    /* Check that there is at least one log */
    if (curlog == NULL)
+   {
+      UpdateStatusArea ();	   
       return FALSE;
+   }
 
    pg = curlog->currentpg;
    ln = curlog->firstline;
@@ -494,7 +497,11 @@ UpdateStatusArea ()
   const char *time_fmt = _("%x"); /* an evil way to avoid warning */
 
   if (curlog == NULL)
-    return;
+  {
+      gtk_label_set_text (filename_label, "");
+      gtk_label_set_text (date_label, "");    
+      return;
+  }
 
   if (curlog->name != NULL)
     {
