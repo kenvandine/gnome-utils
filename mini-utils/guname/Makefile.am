@@ -5,20 +5,22 @@ INCLUDES = 			\
 
 bin_PROGRAMS = guname
 
+if HAVE_LIBGTOP
+moreinfo_c		= moreinfo.c
+moreinfo_h		= moreinfo.h
+endif
+
+
 guname_SOURCES = \
 	guname.c	\
 	info.c		\
 	list.c		\
-	moreinfo.c	\
-	fsusage.c	\
-	mountlist.c
+	$(moreinfo_c)
 
 noinst_HEADERS = \
 	info.h		\
 	list.h		\
-	moreinfo.h	\
-	fsusage.h	\
-	mountlist.h
+	$(moreinfo_h)
 
 
 guname_LDADD = \

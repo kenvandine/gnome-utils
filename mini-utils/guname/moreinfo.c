@@ -21,17 +21,17 @@
 
 #include "config.h"
 
-#ifdef HAVE_LIBGTOP
 #include <glibtop.h>
-#define GLIBTOP_NAMES 1 /* hmm, no, this is wrong. hmm. */
 #include <glibtop/mem.h>
 #include <glibtop/swap.h>
-#endif
+
+#include <glibtop/fsusage.h>
+#include <glibtop/mountlist.h>
+
+#include <glibtop/xmalloc.h>
 
 #include <gnome.h>
 #include "info.h"
-#include "mountlist.h"
-#include "fsusage.h"
 #include "moreinfo.h"
 #include "list.h"
 
@@ -245,30 +245,34 @@ void load_fsinfo()
 {
   gchar ** fs_info;
   gdouble * percent_full;
-  struct mount_entry * me, * tmp;
+  glibtop_fsusage fsusage;
+  glibtop_mountlist mountlist;
+  glibtop_mountentry *mount_list;
   const gchar * percent_full_format = _("%2d%% full ");
   const gchar * device_info_format = 
     _("%ld megabytes, %ld free (%ld superuser); %ld inodes, %ld free.");
   gchar * s;
   gint    percent;
   gint    len;
-  struct fs_usage fu;
+  int     i;
 
-  me = read_filesystem_list(TRUE, TRUE);
-  
-  while ( me ) {
+  mount_list = glibtop_get_mountlist (&mountlist, TRUE);
+
+  for (i = 0; i < mountlist.number; i++) {
     fs_info = g_malloc(sizeof(gchar *) * end_filesystem_info);
     filesystems = g_list_append(filesystems, fs_info);
     percent_full = NULL;
 
     fs_info[fs_description] = 
-      g_copy_strings(_("Mount Point: "), me->me_mountdir, 
-                     _("    Device: "), me->me_devname,
-                     _("    Filesystem Type: "), me->me_type,
-                       NULL);
-  
-    if ( get_fs_usage(me->me_mountdir, me->me_devname, &fu) == 0 ) {
-      if (fu.fsu_blocks == 0) {
+      g_copy_strings(_("Mount Point: "), mount_list [i].mountdir, 
+                     _("    Device: "), mount_list [i].devname,
+                     _("    Filesystem Type: "), mount_list [i].type,
+                     NULL);
+    
+    glibtop_get_fsusage (&fsusage, mount_list [i].mountdir);
+
+    if (TRUE) {
+      if (fsusage.blocks == 0) {
         /* /proc or the like */
         fs_info[fs_numbers] = NULL;
         fs_info[fs_percent_full] = NULL;
@@ -277,16 +281,16 @@ void load_fsinfo()
         len = strlen (device_info_format) + (MAX_ITOA_LEN * 5);
         s = g_malloc(len);
         g_snprintf(s, len, device_info_format, 
-                   BLOCKS_TO_MB(fu.fsu_blocks),
-                   BLOCKS_TO_MB(fu.fsu_bavail), 
-                   BLOCKS_TO_MB(fu.fsu_bfree), 
-                   fu.fsu_files,
-                   fu.fsu_ffree);
+                   BLOCKS_TO_MB(fsusage.blocks),
+                   BLOCKS_TO_MB(fsusage.bavail), 
+                   BLOCKS_TO_MB(fsusage.bfree), 
+                   fsusage.files,
+                   fsusage.ffree);
         fs_info[fs_numbers] = s;
 
         percent_full = g_malloc(sizeof(gdouble));
         *percent_full =
-          1.0 - ((gdouble)fu.fsu_bavail)/((gdouble)fu.fsu_blocks);
+          1.0 - ((gdouble)fsusage.bavail)/((gdouble)fsusage.blocks);
         
         percent = (gint)((*percent_full) * 100);
         
@@ -303,15 +307,9 @@ void load_fsinfo()
 
     filesystems_percent_full = 
       g_list_append(filesystems_percent_full, percent_full);
-
-    tmp = me;
-    me = me->me_next;
-    /* Hmm, I hope this is right */
-    g_free(tmp->me_mountdir);
-    g_free(tmp->me_devname);
-    g_free(tmp->me_type);
-    g_free(tmp);  
   }
+
+  glibtop_free(mount_list);
 }
 
 static gchar *
@@ -330,12 +328,10 @@ add_memory_info(unsigned long glibtop_value,
                 gint glibtop_define,
                 memory_info mi)
 {
-#ifdef HAVE_LIBGTOP
   memory[mi] = memsize_string(glibtop_value);
   memory_descriptions[mi] = 
     g_strdup(glibtop_labels_mem[glibtop_define]);
   /*        glibtop_descriptions_mem[glibtop_define] */
-#endif
 }
 
 static void
@@ -343,17 +339,14 @@ add_swap_info(unsigned long glibtop_value,
               gint glibtop_define,
               memory_info mi)
 {
-#ifdef HAVE_LIBGTOP
   memory[mi] = memsize_string(glibtop_value);
   memory_descriptions[mi] = 
     g_strdup(glibtop_labels_swap[glibtop_define]);
   /*                     glibtop_descriptions_swap[glibtop_define]) */
-#endif
 }
 
 void load_meminfo()
 {
-#ifdef HAVE_LIBGTOP
   glibtop_mem membuf;
   glibtop_swap swapbuf;
 
@@ -380,7 +373,6 @@ void load_meminfo()
   add_swap_info(swapbuf.used,  GLIBTOP_SWAP_USED,    mem_swap_used);
   add_swap_info(swapbuf.free,  GLIBTOP_SWAP_FREE,    mem_swap_free);
 
-#endif
 }
 
 void load_moreinfo()

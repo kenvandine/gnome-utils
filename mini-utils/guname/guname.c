@@ -26,7 +26,9 @@
 #include <unistd.h>
 
 #include "list.h"
+#if HAVE_LIBGTOP
 #include "moreinfo.h"
+#endif
 #include "info.h"
 
 #define APPNAME "guname"
@@ -75,7 +77,9 @@ int main ( int argc, char ** argv )
   gnome_init (APPNAME, 0, argc, argv, 0, 0);
 
   load_system_info();
+#if HAVE_LIBGTOP
   load_moreinfo();
+#endif
 
   popup_main_dialog();
 
@@ -220,12 +224,14 @@ static void do_popup(GtkWidget * clist)
   gtk_menu_append(GTK_MENU(popup), mi);
   gtk_widget_show(mi);  
 
+#if HAVE_LIBGTOP
   mi = gnome_stock_menu_item(GNOME_STOCK_MENU_BLANK,
                              _("Detailed Information..."));
   gtk_signal_connect(GTK_OBJECT(mi), "activate",
                      GTK_SIGNAL_FUNC(detailed_callback), NULL);
   gtk_menu_append(GTK_MENU(popup), mi);
   gtk_widget_show(mi);  
+#endif
 }
 
 /**********************************
@@ -340,7 +346,9 @@ static void mail_callback(GtkWidget * menuitem, gpointer data)
 
 static void detailed_callback(GtkWidget * menuitem, gpointer data)
 {
+#if HAVE_LIBGTOP
   display_moreinfo();
+#endif
 }
 
 /*********************************************
