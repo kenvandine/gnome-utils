@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: iPACKAGE VERSION\n"
-"POT-Creation-Date: 2002-11-25 14:29+0000\n"
-"PO-Revision-Date: 2002-02-25 01:08+0800\n"
+"POT-Creation-Date: 2002-11-27 01:40+0800\n"
+"PO-Revision-Date: 2002-11-27 00:16+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1091,7 +1091,7 @@ msgstr "ERalat bile mengisi fail senarai blok teruk."
 #: gfloppy/src/gfloppy.c:308
 #, c-format
 msgid "EError while spawning the (%s) command: %s."
-msgstr ""
+msgstr "ERalat bila melaksanakan arahan (%s): %s."
 
 #: gfloppy/src/gfloppy.c:332
 msgid "EUnknown mke2fs starting signature, cancelling."
@@ -1104,15 +1104,18 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
+"EUtiliti penciptaan sistemfail (%s) melaporkan ralat berikut:\n"
+"\n"
+"%s (%d)"
 
 #: gfloppy/src/gfloppy.c:363
 msgid "EAbnormal child process termination."
-msgstr ""
+msgstr "EPenamatan proses anak tidak normal."
 
 #: gfloppy/src/gfloppy.c:388
 #, c-format
 msgid "EError while spawning the mbadblocks command: %s."
-msgstr ""
+msgstr "ERalat melaksanakan arahan mbadblocks: %s."
 
 #: gfloppy/src/gfloppy.c:400
 #, c-format
@@ -1121,10 +1124,12 @@ msgid ""
 "errors:\n"
 "%s."
 msgstr ""
+"EUtiliti pemeriksa blok teruk (mbadblocks) melaporkan ralat berikut:\n"
+"%s."
 
 #: gfloppy/src/gfloppy.c:443
 msgid "EAbnormal mbadblocks child process termination."
-msgstr ""
+msgstr "EPenamatan proses anak mbadblock tidak normal."
 
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:470 gfloppy/src/gfloppy.c:510
@@ -1156,18 +1161,20 @@ msgid ""
 "<b>Note</b>: The mbadblocks utility isn't installed on this system. It must "
 "be installed in order to make a thorough DOS (fat) formatting."
 msgstr ""
+"<b>Nota</b>: Utiliti mbadblocks tidak dipasang pada sistem ini. Ianya "
+"mestilah dipasang untuk membuat pengformatan DOS(fat) yg thorough."
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem settings</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Tetapan sistemfail</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:5
 msgid "<span weight=\"bold\">Formatting mode</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Mod pengformatan</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:6
 msgid "<span weight=\"bold\">Physical settings</span>"
-msgstr ""
+msgstr "<span weight=\"bold\">Tetapan fizikal</span>"
 
 #: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
@@ -1211,7 +1218,7 @@ msgstr "Linux Native (ext2)"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
-msgstr ""
+msgstr "Thorou_gh (tambah pemeriksaan blok teruks ke mod piawai)"
 
 #: gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
@@ -1234,6 +1241,8 @@ msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
+"Antara aplikasi mke2s atau mkdosfs/mformat tidak dipasang. Anda tidak boleh "
+"mengformat liut tanpa salah satu drpdnya."
 
 #: gfloppy/src/main.c:155 gfloppy/src/main.c:199
 #, c-format
@@ -1271,7 +1280,7 @@ msgstr ""
 
 #: gfloppy/src/main.c:425
 msgid "The volume name can't contain any blank space."
-msgstr ""
+msgstr "Nama volum tak boleh mengandungi sebarang ruang kosong."
 
 #: gfloppy/src/main.c:471
 msgid "The device to format"
@@ -1287,6 +1296,8 @@ msgid ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr ""
+"Liut telahdiformat, tetapi <b>&d blok teruk</b> (drpd %d) dijumpai dan "
+"ditanda."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -1305,10 +1316,12 @@ msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
 msgstr ""
+"0 untuk format pantas, 1 untuk yang piawai (tambah pengformatan aras-rendah) "
+"dan akhirnya 2 untuk pengformatan thorough (tambah pengimbasan blok teruk)."
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
-msgstr ""
+msgstr "PENGGUNA MAHIS SAHAJA - Backend default untuk pengformatan FAT"
 
 #: gfloppy/gfloppy.schemas.in.h:3
 msgid "Default filesystem type"
@@ -1323,10 +1336,13 @@ msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
 msgstr ""
+"BENAR untuk menetapkan mkdosfs sebagai pengformat FAT belakangtabir digemari "
+"atau PALSU untuk menetapkan mtools sebagai pengformat FAT belakangtabir "
+"digemari."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr ""
+msgstr "ext2 untuk sistemfail linux natif atau fat untuk DOS"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1518
 msgid "Search for Files"
@@ -1354,7 +1370,7 @@ msgstr "Saiz sekurang-kurang (kilobyte)"
 
 #: gsearchtool/gsearchtool.c:66
 msgid "Size at most (kilobytes)"
-msgstr ""
+msgstr "Saiz tak melebihi (kilobyte)"
 
 #: gsearchtool/gsearchtool.c:67
 msgid "File is empty"
@@ -1386,7 +1402,7 @@ msgstr "Ikut pautan simbolik"
 
 #: gsearchtool/gsearchtool.c:77
 msgid "Include other filesystems"
-msgstr "Termasuk  sistem fail lain"
+msgstr "Termasuk sistem fail lain"
 
 #: gsearchtool/gsearchtool.c:133
 msgid "Set the text of 'file is named'"
@@ -1411,62 +1427,55 @@ msgstr "Automatik mula pencarian"
 
 #: gsearchtool/gsearchtool.c:143
 msgid "Select the 'Contains the text' constraint"
-msgstr ""
+msgstr "Pilih syarat 'Mengandungi teks'"
 
 #: gsearchtool/gsearchtool.c:145
-#, fuzzy
 msgid "Select the 'Date modified less than (days)' constraint"
-msgstr "Pilih 'Tarikh diubasuai kurang drpd (hari) "
+msgstr "Pilih syarat 'Tarikh diubasuai kurang drpd (hari) "
 
 #: gsearchtool/gsearchtool.c:147
-#, fuzzy
 msgid "Select the 'Date modified more than (days)' constraint"
-msgstr "Ikut pautan simbolik"
+msgstr "Pilih syarat 'Tarikh diubasuai lebih drpd (hari)"
 
 #: gsearchtool/gsearchtool.c:149
-#, fuzzy
 msgid "Select the 'Size at most (kilobytes)' constraint"
-msgstr "Padankan penyataan regular (regexp)"
+msgstr "Pilih syarat 'Saiz tak melebihi (kilobyte)'"
 
 #: gsearchtool/gsearchtool.c:151
-#, fuzzy
 msgid "Select the 'Size at least (kilobytes)' constraint"
-msgstr "Padankan penyataan regular (regexp)"
+msgstr "Pilih syarat 'Saiz sekurang-kurang (kilobyte)'"
 
 #: gsearchtool/gsearchtool.c:153
 msgid "Select the 'File is empty' constraint"
-msgstr ""
+msgstr "Pilih syarat 'Fail adalah kosong'"
 
 #: gsearchtool/gsearchtool.c:155
 msgid "Select the 'Owned by user' constraint"
-msgstr ""
+msgstr "Pilih syarat 'Dimiliki oleh pengguna'"
 
 #: gsearchtool/gsearchtool.c:157
 msgid "Select the 'Owned by group' constraint"
-msgstr ""
+msgstr "Pilih syarat 'Dimiliki oleh kumpulan'"
 
 #: gsearchtool/gsearchtool.c:159
 msgid "Select the 'Owner is unrecognized' constraint"
-msgstr ""
+msgstr "Pilih syarat 'Pemilik tak dikenali'"
 
 #: gsearchtool/gsearchtool.c:161
 msgid "Select the 'File is not named' constraint"
-msgstr ""
+msgstr "Pilih syarat 'Fail tidak bernama'"
 
 #: gsearchtool/gsearchtool.c:163
-#, fuzzy
 msgid "Select the 'File matches regular expression' constraint"
-msgstr "Padankan penyataan regular (regexp)"
+msgstr "PIlih syarat 'Fail padan ungkapan regular (regexp)"
 
 #: gsearchtool/gsearchtool.c:165
-#, fuzzy
 msgid "Select the 'Follow symbolic links' constraint"
-msgstr "Ikut pautan simbolik"
+msgstr "Pilih syarat 'Ikut pautan simbolik'"
 
 #: gsearchtool/gsearchtool.c:167
-#, fuzzy
 msgid "Select the 'Include other filesystems' constraint"
-msgstr "Padankan penyataan regular (regexp)"
+msgstr "Pilih syarat 'Termasuk sistem fail lain'"
 
 #: gsearchtool/gsearchtool.c:412
 msgid "No files found"
@@ -1478,7 +1487,7 @@ msgstr "Kemasukkan diubah dipanggil untuk opsyen bukan kemasukkan!"
 
 #: gsearchtool/gsearchtool.c:681
 msgid "Invalid option passed to sortby command line argument."
-msgstr ""
+msgstr "Opsyen tidak sah dihantar ke hujah arahan baris sortby"
 
 #: gsearchtool/gsearchtool.c:810
 msgid "(aborted)"
@@ -1504,6 +1513,8 @@ msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
+"Bila mencari, ralat berikut dilaporkan.\n"
+"\n"
 
 #: gsearchtool/gsearchtool.c:925
 msgid ""
@@ -1536,7 +1547,7 @@ msgstr "Klik untuk Buang Tatacara '%s'"
 
 #: gsearchtool/gsearchtool.c:1170
 msgid "A_vailable options:"
-msgstr ""
+msgstr "Opsyen yang _ada:"
 
 #: gsearchtool/gsearchtool.c:1180
 msgid "Search Rules Menu"
@@ -1571,9 +1582,8 @@ msgid "Date Modified"
 msgstr "Tarikh Diubahsuai"
 
 #: gsearchtool/gsearchtool.c:1376
-#, fuzzy
 msgid "File is _named:"
-msgstr "Cari _nama fail:"
+msgstr "Fail  ber_nama:"
 
 #: gsearchtool/gsearchtool.c:1391 gsearchtool/gsearchtool.c:1392
 msgid "File Name Entry"
@@ -2230,502 +2240,3 @@ msgid ""
 msgstr ""
 "Tak dapat menjumpai program arkib (tar)!\n"
 " Program ini digunakan untuk mencipta arkib."
-
-#~ msgid "EUnable to create filesystem."
-#~ msgstr "ETak dapat mencipta fail sistem."
-
-#~ msgid "DOS (fat)"
-#~ msgstr "DOD (fat)"
-
-#, fuzzy
-#~ msgid "Filesystem settings"
-#~ msgstr "Jenis sistem fail:"
-
-#, fuzzy
-#~ msgid "Formatting mode"
-#~ msgstr "MMemformat cakera..."
-
-#, fuzzy
-#~ msgid ""
-#~ "Sorry, could not start the search.\n"
-#~ "%s\n"
-#~ msgstr "Klik untuk memulakan pencarian"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-
-#~ msgid "del"
-#~ msgstr "del"
-
-#~ msgid " %s: Character code %d"
-#~ msgstr " %s: Kod Aksara %d"
-
-#~ msgid "Gnome Character Map"
-#~ msgstr "Peta Aksara GNOME"
-
-#~ msgid "De_fault"
-#~ msgstr "De_fault"
-
-#~ msgid "EBad block at block %lu"
-#~ msgstr "EBlok teruk pada blok %lu"
-
-#~ msgid "Format a Floppy"
-#~ msgstr "Format  Liut"
-
-#~ msgid "_Quick format"
-#~ msgstr "Format _pantas"
-
-#~ msgid "File name is"
-#~ msgstr "Nama fail ialah"
-
-# mushkil ...
-#~ msgid "Process folder contents depth first"
-#~ msgstr "Proses kandungan folder dahulu"
-
-#~ msgid "Invalid user or group"
-#~ msgstr "Penguna atau kumpulan yang tidak wujud"
-
-#~ msgid "Last time modified"
-#~ msgstr "Masa terakhir diubah"
-
-#~ msgid "Start folder does not exist."
-#~ msgstr "Folder permulaan tidak wujud."
-
-#~ msgid "today at %-I:%M %p"
-#~ msgstr "hari ini pada %-I:%M %p"
-
-#~ msgid "yesterday at %-I:%M %p"
-#~ msgstr "semalam pada %-I:%M %p"
-
-#~ msgid "%m/%-d/%y, %-I:%M %p"
-#~ msgstr "%m/%-d/%y, %-I:%M %p"
-
-#~ msgid "%Y%m%d%H%M%S"
-#~ msgstr "%Y%m%d%H%M%S"
-
-#~ msgid "folder"
-#~ msgstr "folder"
-
-#~ msgid "program"
-#~ msgstr "program"
-
-#~ msgid "symbolic link"
-#~ msgstr "pautan simbolik"
-
-#~ msgid "No Files Found."
-#~ msgstr "Tiada Fail Dijumpai."
-
-#~ msgid ""
-#~ "Cannot perform the search.\n"
-#~ "The Bourne shell was not found\n"
-#~ "It is typically installed as /bin/sh or /usr/bin/sh."
-#~ msgstr ""
-#~ "Tak dapat lakukan carian.\n"
-#~ " Bash tidak dijumpai\n"
-#~ "Ianya biasanya dipasang sebagai /bin/sh atau /usr/bin/sh."
-
-#~ msgid "Searching..."
-#~ msgstr "Mencari..."
-
-#~ msgid "Cannot perform the search. Please specify a search criteria."
-#~ msgstr "Tak dapat melakukan pencarian. Sila nyatakan kriteris pencarian."
-
-#~ msgid ""
-#~ "A search is already running.  Please wait for the search to complete or "
-#~ "cancel it."
-#~ msgstr ""
-#~ "Pencarian sudah terlaksana. Sila tunggu hingga pencarian selesai atau "
-#~ "batalkan ia."
-
-#~ msgid "Start folder does not exist"
-#~ msgstr "Folder permulaan tidak wujud"
-
-#~ msgid ""
-#~ "Cannot show the search command line. Please specify a search criteria."
-#~ msgstr ""
-#~ "Tak dapat memapar arahan baris pencarian. Sila nyatakan kriteria "
-#~ "pencarian."
-
-#~ msgid "Search Command Line"
-#~ msgstr "Arahan Baris Pencarian"
-
-#~ msgid ""
-#~ "This is the command line that can be used to execute this search\n"
-#~ "from the console.\n"
-#~ "\n"
-#~ "C_ommand:"
-#~ msgstr ""
-#~ "Berikut adalah arahan baris yang boleh digunakan untuk melaksanakan "
-#~ "carian ini daripada konsol:\n"
-#~ "\n"
-#~ "_Arahan:"
-
-#~ msgid "Command"
-#~ msgstr "Arahan"
-
-#~ msgid "Command Line Entry"
-#~ msgstr "Kemasukan Arahan Baris"
-
-#~ msgid "Use this command line to execute the search from console"
-#~ msgstr "Guna arahan baris ini  untuk melaksanakan pencarian daripada konsol"
-
-#~ msgid "No viewer available for this mime type."
-#~ msgstr "Tiada pelihat yang ada untuk jenis mime ini"
-
-#~ msgid "Enabled"
-#~ msgstr "Dihidupkan"
-
-#~ msgid "Toggle On/Off to enable/disable the rule"
-#~ msgstr "Toggle On/Off untuk menghidup/matikan tatacara"
-
-#~ msgid "Rules:"
-#~ msgstr "Tatacara:"
-
-#~ msgid "A_dd Rule:"
-#~ msgstr "_Tambah Tatacara:"
-
-#~ msgid "Click to Add a Rule"
-#~ msgstr "Klik untuk Menambah Tatacara"
-
-#~ msgid "Click to Start the Search"
-#~ msgstr "Klik untuk mula mencari"
-
-#~ msgid "Click to Stop the Search"
-#~ msgstr "Klik untuk hentikan pencarian"
-
-#~ msgid "Simple"
-#~ msgstr "Ringkas"
-
-#~ msgid "Advanced"
-#~ msgstr "Lanjutan"
-
-#~ msgid "Frontend to the unix find/locate commands"
-#~ msgstr "Antaramuka untuk arahan unix find/locate"
-
-#~ msgid "File %s already exists. Overwrite?"
-#~ msgstr "Fail %s tersedia ada. Tindih?"
-
-#~ msgid "Cannot save the results file."
-#~ msgstr "Tak dapat menyimpan fail hasil."
-
-#~ msgid "S_how Command..."
-#~ msgstr "Papar Ara_han..."
-
-#~ msgid "Show the command used to perform the search"
-#~ msgstr "Papar arahan digunakan untuk melakukan pencarian"
-
-#~ msgid "Save Results _As..."
-#~ msgstr "Simpan Hasil Seb_agai..."
-
-#~ msgid "Save the search results"
-#~ msgstr "Simpan hasil pencarian"
-
-#~ msgid "Sear_ch"
-#~ msgstr "_Cari"
-
-#~ msgid "Search Tool"
-#~ msgstr "Radas pencarian"
-
-#~ msgid "Switch log"
-#~ msgstr "Tukar log"
-
-#~ msgid "About..."
-#~ msgstr "Perihal..."
-
-#~ msgid "Info about logview"
-#~ msgstr "Maklumat perihal logview"
-
-#~ msgid "x^2"
-#~ msgstr "x^2"
-
-#~ msgid "x^y"
-#~ msgstr "x^y"
-
-#~ msgid "Default database. ! indicates all databases"
-#~ msgstr "Pangkalandata default. ! menunjukkan semua pangkalandata"
-
-#~ msgid "Default strategy"
-#~ msgstr "Strategi default"
-
-#~ msgid "Format another floppy?"
-#~ msgstr "Format liut lain?"
-
-#~ msgid "Add..."
-#~ msgstr "Tambah..."
-
-#~ msgid "Edit..."
-#~ msgstr "Edit..."
-
-#~ msgid "Remove"
-#~ msgstr "Buang"
-
-#~ msgid "description:"
-#~ msgstr "keterangan:"
-
-#~ msgid "fixed 12"
-#~ msgstr "fixed 12"
-
-#~ msgid "fixed Bold 12"
-#~ msgstr "fixed Bold 12"
-
-#~ msgid "fixed 10"
-#~ msgstr "fixed 10"
-
-#~ msgid "fixed Bold 8"
-#~ msgstr "fixed Bold 8"
-
-#~ msgid "Helvetica 14"
-#~ msgstr "Helvetica 14"
-
-#~ msgid "Helvetica Bold 14"
-#~ msgstr "Helvetica Bold 14"
-
-#~ msgid "Helvetica 12"
-#~ msgstr "Helvetica 12"
-
-#~ msgid "Helvetica Bold 12"
-#~ msgstr "Helvetica Bold 12"
-
-#~ msgid "Helvetica 10"
-#~ msgstr "Helvetica 10"
-
-#~ msgid "Helvetica Bold 10"
-#~ msgstr "Helvetica Bold 10"
-
-#~ msgid "Log:"
-#~ msgstr "Log:"
-
-#~ msgid "Out of memory!\n"
-#~ msgstr "Kehabisan memori!\n"
-
-#~ msgid "_Log"
-#~ msgstr "_Log"
-
-#~ msgid "System Log Viewer"
-#~ msgstr "Pelihat Log Sistem"
-
-#~ msgid "Cannot load required fonts, cannot continue"
-#~ msgstr "Tak dapat memuatkan fotn diperlukan, tak dapat teryskan"
-
-#~ msgid "Add >>"
-#~ msgstr "Tambah >>"
-
-#~ msgid "Remove <<"
-#~ msgstr "Buang <<"
-
-#~ msgid "Hide app"
-#~ msgstr "Sembunyi app"
-
-#~ msgid "hostname column width ( 0 to hide this column ): "
-#~ msgstr "lebar kolum namahos (0 untuk sembunyi kolum ini): "
-
-#~ msgid "Columns"
-#~ msgstr "Kolum"
-
-#~ msgid "_Floppy Device:"
-#~ msgstr "Peranti _Liut:"
-
-#~ msgid "Dictionary Applet"
-#~ msgstr "Aplet Kamus"
-
-#~ msgid "Find:"
-#~ msgstr "Cari:"
-
-#~ msgid "Press button to look up any highlighted text in a dictionary"
-#~ msgstr "Tekan butang untuk mencari ayat yang diserlahkan di dalam kamus"
-
-#~ msgid "GNOME System Log"
-#~ msgstr "Log Sistem GNOME"
-
-#~ msgid "Open log..."
-#~ msgstr "Buka log..."
-
-#~ msgid "Open log"
-#~ msgstr "Buka log"
-
-#~ msgid "Export log..."
-#~ msgstr "Eksport log..."
-
-#~ msgid "Export log"
-#~ msgstr "Eksport log"
-
-#~ msgid "Exit program"
-#~ msgstr "Keluar program"
-
-#~ msgid "Zoom"
-#~ msgstr "Zoom"
-
-#~ msgid "Show line info"
-#~ msgstr "Papar maklumat baris"
-
-#~ msgid "Select...               "
-#~ msgstr "Pilih...                "
-
-#~ msgid "Select log events"
-#~ msgstr "PIlih acara log"
-
-#~ msgid "Filter..                "
-#~ msgstr "Tapisan..               "
-
-#~ msgid "Filter log events"
-#~ msgstr "Tapis acara log"
-
-#~ msgid "Cannot start the archive (tar) program"
-#~ msgstr "Tak dapat memulakan program arkib (tar)"
-
-#~ msgid "Cannot run tar/gtar"
-#~ msgstr "Tak dapat melaksanakan tar/gtar"
-
-#~ msgid "The GNOME Calculator"
-#~ msgstr "Kalkulator GNOME"
-
-#~ msgid "Run in analog (slide rule) mode"
-#~ msgstr "Laksanakan dalam mod analog (slide rule)"
-
-#~ msgid "Shift"
-#~ msgstr "Shif"
-
-#~ msgid "Store"
-#~ msgstr "Simpan"
-
-#~ msgid "Recall"
-#~ msgstr "Ingat"
-
-#~ msgid "Sum"
-#~ msgstr "Jumlah"
-
-#~ msgid "Exchange"
-#~ msgstr "Tukar"
-
-#~ msgid ""
-#~ "The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
-#~ "contain bad English."
-#~ msgstr ""
-#~ "Perisian GNOME yang menyerupai Microsoft Windows Character Map. Amaran : "
-#~ "Mungkin mengandungi terjemahan Bahasa Melayu yang teruk."
-
-#~ msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
-#~ msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
-
-#~ msgid "About"
-#~ msgstr "Perihal"
-
-#~ msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-#~ msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-
-#~ msgid "_Browse Characters..."
-#~ msgstr "_Lihat Aksara..."
-
-#~ msgid "_Text Toolbar"
-#~ msgstr "Toolbar _Teks"
-
-#~ msgid "View or hide the text toolbar"
-#~ msgstr "Papar atau sembunyikan toolbar teks"
-
-#~ msgid "_Statusbar"
-#~ msgstr "_Statusbar"
-
-#~ msgid "View or hide the statusbar"
-#~ msgstr "Papar atau sembunyikan statusbar"
-
-#~ msgid "_Insert at end"
-#~ msgstr "S_isipkan dia hujung"
-
-#~ msgid "Insert every selected character at the end of the text entry"
-#~ msgstr "Selitkan setiap aksara dihujung kemasukkan data"
-
-#~ msgid "_Focusable Buttons"
-#~ msgstr "Butang boleh _fokus"
-
-#~ msgid "Set the buttons to be focusable or not"
-#~ msgstr "Tetapkan butang agar boleh difokus atau tidak"
-
-#~ msgid "Spell"
-#~ msgstr "Eja"
-
-#~ msgid "_Look Up"
-#~ msgstr "Car_i"
-
-#~ msgid "_Spell"
-#~ msgstr "Ej_a"
-
-#~ msgid "Spell checker"
-#~ msgstr "Pemeriksa ejaan"
-
-#~ msgid "Preferences..."
-#~ msgstr "Keutamaan..."
-
-#~ msgid "Results"
-#~ msgstr "Hasil"
-
-#~ msgid "The Gnome Search Tool"
-#~ msgstr "Radas pencarian Gnome"
-
-#~ msgid "Logview"
-#~ msgstr "Logview"
-
-#~ msgid "Date: "
-#~ msgstr "Tarikh: "
-
-#~ msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#~ msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-
-#~ msgid "Floppy Density:"
-#~ msgstr "Kepadatan Liut:"
-
-#~ msgid "The GNOME Archive Generator"
-#~ msgstr "Penjana Arkib bagi GNOME"
-
-#~ msgid "Archive"
-#~ msgstr "Arkib"
-
-#~ msgid "Don't search subdirectories"
-#~ msgstr "Jangan cari subdirektori"
-
-#~ msgid "Set _Server"
-#~ msgstr "Tetapkan pela_yan"
-
-#~ msgid "Set _Port"
-#~ msgstr "Tetapkan _Liang"
-
-#~ msgid "Set the port number"
-#~ msgstr "Tetapkan nombor liang"
-
-#~ msgid "Show user preferences"
-#~ msgstr "Papar keutamaan pengguna"
-
-#~ msgid "The server you specified could not be found."
-#~ msgstr "Pelayan yang anda nyatakan tidak dapat ditemui"
-
-#~ msgid "The server could not be found on that port."
-#~ msgstr "Pelayan tersebut tidak dijumpai pada liang tesebut."
-
-#~ msgid "Utility"
-#~ msgstr "Utiliti"
