@@ -101,13 +101,12 @@ cancel_cb (GtkWidget * widget, gpointer user_data)
 static void
 help_cb (GtkWidget * widget, gpointer user_data)
 {
-    gchar *tmp;
+    GnomeHelpMenuEntry ref = {"gfontsel", "index.html"};
+			gnome_help_display (NULL, &ref);
+			
 
-    tmp = gnome_help_file_find_file ("gfontsel", "index.html");
-    if (tmp) {
-       gnome_help_goto(0, tmp);
-       g_free(tmp);
-    }
+  
+    
 }
 
 static void
