@@ -1139,7 +1139,6 @@ show_file_selector_cb (GtkWidget 	*widget,
 			  G_CALLBACK (save_results_cb), NULL);
 
 	gtk_window_set_modal (GTK_WINDOW(interface.file_selector), TRUE);
-	gtk_window_set_default_size (GTK_WINDOW(interface.file_selector), 600, 400);
 	gtk_window_set_position (GTK_WINDOW (interface.file_selector), GTK_WIN_POS_CENTER_ON_PARENT);
 
 	gtk_widget_show (GTK_WIDGET(interface.file_selector));
