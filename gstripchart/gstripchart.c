@@ -18,7 +18,7 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. 
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
 #include "config.h"
@@ -60,6 +60,7 @@ typedef struct
 gtop_struct;
 #endif
 
+static char *applet_name = "gstripchart_applet";
 static char *prog_name = "gstripchart";
 static char *prog_version = "1.6";
 static char *config_file = NULL;
@@ -70,11 +71,12 @@ static float slider_filter = 0.0;
 static int include_menubar = 0;
 static int include_slider = 1;
 static int status_outline = 0;
-static int minor_tick=0, major_tick=0;
+static int minor_tick, major_tick;
 static int geometry_flags;
-static int geometry_w=200, geometry_h=50;
+static int slider_width = 10;
+static int geometry_w = 200, geometry_h = 50;
 static int geometry_x, geometry_y;
-static int root_width=1, root_height;
+static int root_width = 1, root_height;
 static int update_count = 0;
 static int update_chart = 0;
 
@@ -159,7 +161,7 @@ hi_lo_fmt(double hv, char *hs, double lv, char *ls)
     }
 }
 
-/* 
+/*
  * Expr -- the info required to evaluate an expression.
  *
  * The last and now arrays are doubles in order to handle values that
@@ -1164,10 +1166,6 @@ readjust_top_for_width(int width)
 	  chart_glob.parray[p]->top = top;
 	  if (include_slider)
 	    slider_glob.parray[p]->top = top;
-#if 0
-	  printf("top[%d] %s\t= %g\t=> %g\n",
-	    p, chart_glob.parray[p]->ident, t, chart_glob.parray[p]->top);
-#endif
 	  readjust = 1;
 	}
     }
@@ -1181,20 +1179,11 @@ static GdkPixmap *pixmap;
 static GdkColormap *colormap;
 
 static gint
-config_handler(GtkWidget *widget, GdkEventConfigure *e, gpointer whence)
+config_handler(GtkWidget *widget, GdkEventConfigure *not_used, gpointer unused)
 {
   int p, c, w = widget->allocation.width, h = widget->allocation.height;
 
-#ifdef HAVE_GNOME_APPLET
-  if (display == applet)
-    {
-      AppletWidget *app = APPLET_WIDGET(widget->parent->parent);
-      GNOME_Panel_OrientType po = applet_widget_get_panel_orient(app);
-      int xs = applet_widget_get_panel_pixel_size(app);
-      int fs = applet_widget_get_free_space(app);
-      printf("config: %d (%c), %d, %d\n", po, "UDLR"[po], xs, fs);
-    }
-#endif
+  (printf)("config: %p, %dx%d\n", widget, w, h);
   /* On the initial configuration event, get the window colormap and
      allocate a color in it for each parameter color. */
   if (colormap == NULL)
@@ -1447,7 +1436,7 @@ about_callback(void)
   const gchar *authors[] = { "John Kodis, kodis@jagunet.com", NULL };
   GtkWidget *about = gnome_about_new(
     _(prog_name), prog_version,
-    _("Copyright 1998 John Kodis"),
+    _("Copyright 1998,99 John Kodis"),
     authors,
     _("The GNOME stripchart program plots various user-specified parameters "
       "as a function of time.  Its main use is to chart system performance "
@@ -1483,7 +1472,7 @@ GnomeUIInfo mainmenu[] =
  * and points it toward the gstripchart help file.
  */
 static void
-help_menu_action(GtkWidget *menu)
+help_menu_action(GtkWidget *unused1, void *unused2)
 {
   static GnomeHelpMenuEntry help_entry = { "gstripchart", "index.html" };
   gnome_help_display(NULL, &help_entry);
@@ -1526,7 +1515,7 @@ prefs_okay(GtkWidget *button, gpointer dialog)
  * chart parameters.
  */
 static gint
-prefs_callback(GtkWidget *chart, gpointer unused)
+prefs_callback(GtkWidget *chart, void *unused)
 {
   int p;
   GtkWidget *dialog, *notebook, *vbox, *clist, *active, *label;
@@ -1763,10 +1752,9 @@ gnome_graph(void)
 {
   GnomeClient *client;
   GtkWidget *frame, *h_box, *drawing;
-  const int slide_w=10;		/* Set the slider width. */
 
-  /* Create a drawing area.  Add it to the window, show it, and
-     set its expose event handler. */
+  /* Create a drawing area for the chart plot; pack it into an h-box,
+     and connect the configure and expose signal handlers. */
   drawing = gtk_drawing_area_new();
   gtk_drawing_area_size(GTK_DRAWING_AREA(drawing), geometry_w, geometry_h);
   gtk_widget_set_events(drawing, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK);
@@ -1776,9 +1764,13 @@ gnome_graph(void)
   gtk_box_pack_start(GTK_BOX(h_box), drawing, TRUE, TRUE, 0);
 
   gtk_signal_connect(GTK_OBJECT(drawing),
-    "configure_event", (GtkSignalFunc)config_handler, "draw");
+    "configure_event", (GtkSignalFunc)config_handler, NULL);
   gtk_signal_connect(GTK_OBJECT(drawing),
     "expose_event", (GtkSignalFunc)chart_expose_handler, NULL);
+
+  /* If a slider window is to be included, create a drawing area for
+     that, pack it and separator into the h-box, connect the expose
+     handler and start an update timer. */
   if (include_slider)
     {
       GtkWidget *sep = gtk_vseparator_new();
@@ -1787,7 +1779,8 @@ gnome_graph(void)
       gtk_box_pack_start(GTK_BOX(h_box), sep, FALSE, TRUE, 0);
       gtk_widget_show(sep);
 
-      gtk_drawing_area_size(GTK_DRAWING_AREA(slider), slide_w, geometry_h);
+      gtk_drawing_area_size(GTK_DRAWING_AREA(slider),
+	slider_width, geometry_h);
       gtk_box_pack_start(GTK_BOX(h_box), slider, FALSE, FALSE, 0);
       gtk_widget_show(slider);
 
@@ -1800,7 +1793,7 @@ gnome_graph(void)
     }
   gtk_widget_show(h_box);
 
-  /* Create a top-level window. Set the title, minimum size (_usize),
+  /* Create a top-level application window. Set minimum size (_usize),
      initial size (_default_size), and establish delete and destroy
      event handlers. */
   frame = gnome_app_new(_("gstripchart"), _("Gnome stripchart viewer"));
@@ -1819,7 +1812,7 @@ gnome_graph(void)
     gnome_app_create_menus(GNOME_APP(frame), mainmenu);
   gnome_app_set_contents(GNOME_APP(frame), h_box);
 
-  /* Create timer events for the drawing and slider widgets. */
+  /* Connect a timer event to update the chart drawing area. */
   gtk_timeout_add((int)(1000 * chart_interval),
     (GtkFunction)chart_timer_handler, drawing);
 
@@ -1830,7 +1823,7 @@ gnome_graph(void)
   if (geometry_flags & (XNegative | YNegative))
     {
       if (XNegative)
-	geometry_x = root_width  + geometry_x - geometry_w - slide_w;
+	geometry_x = root_width  + geometry_x - geometry_w - slider_width;
       if (YNegative)
 	geometry_y = root_height + geometry_y - geometry_h;
     }
@@ -1854,25 +1847,35 @@ gnome_graph(void)
 
 #ifdef HAVE_GNOME_APPLET
 static void
-change_orient_handler(AppletWidget *applet, GNOME_Panel_OrientType orient)
+applet_orient_handler(AppletWidget *applet, int i, GtkDrawingArea *drawings[2])
 {
-  int xs = applet_widget_get_panel_pixel_size(applet);
-  int fs = applet_widget_get_free_space(applet);
-  printf("orient: %d (%c); %d, %d\n", orient, "UDLR"[orient], xs, fs);
+  int o, h, w;
+  o = applet->orient;
+  h = applet->size;
+  if (o == ORIENT_UP || o == ORIENT_DOWN)
+    w = h * 3;
+  else
+    w = include_slider ? h - (slider_width + 2) : h;
+  gtk_drawing_area_size(drawings[0], w, h);
+  if (drawings[1])
+    gtk_drawing_area_size(drawings[1], slider_width, h);
+  (printf)("orient: %dx%d, %c(%d), %d\n", w, h, "UDLR"[o], o, i);
 }
 
 static void
-change_pixel_handler(AppletWidget *applet, int size)
+applet_resize_handler(AppletWidget *applet, int i, GtkDrawingArea *drawings[2])
 {
-  int xs = applet_widget_get_panel_pixel_size(applet);
-  int fs = applet_widget_get_free_space(applet);
-  printf("pixels: %d; %d, %d\n", size, xs, fs);
-}
-
-static void
-change_pos_handler(AppletWidget *applet, int x, int y)
-{
-  printf("pos: %d, %d\n", x, y);
+  int o, h, w;
+  o = applet->orient;
+  h = applet->size;
+  if (o == ORIENT_UP || o == ORIENT_DOWN)
+    w = h * 3;
+  else
+    w = include_slider ? h - (slider_width + 2) : h;
+  gtk_drawing_area_size(drawings[0], w, h);
+  if (drawings[1])
+    gtk_drawing_area_size(drawings[1], slider_width, h);
+  (printf)("resize: %dx%d, %c(%d), %d\n", w, h, "UDLR"[o], o, i);
 }
 
 /*
@@ -1882,33 +1885,39 @@ change_pos_handler(AppletWidget *applet, int x, int y)
 static void
 applet(void)
 {
-  GtkWidget *frame, *h_box, *drawing;
-  const int slide_w=10;		/* Set the slider width. */
+  GtkWidget *frame, *h_box, *drawing, *drawings[2];
 
-  /* Create a drawing area, show it, and set its expose event
-     handler. */
-  drawing = gtk_drawing_area_new();
-  //gtk_drawing_area_size(GTK_DRAWING_AREA(drawing), geometry_w, geometry_h);
+  /* Create a too-small drawing area to plot the chart data in, and
+     connect the configure and expose signal handlers.  The drawing
+     area gets reconfigured to its proper size when the change-size or
+     change-orient handlers get run.  I'd rather have just created an
+     empty applet frame here, and populate it in the change-size
+     handler; unfortunately, the change-size signal doesn't get sent
+     if the applet is left empty.  Hence, this hack.  */
+  drawings[0] = drawing = gtk_drawing_area_new();
+  gtk_drawing_area_size(GTK_DRAWING_AREA(drawing), 15, 15);
   gtk_widget_set_events(drawing, GDK_EXPOSURE_MASK | GDK_BUTTON_PRESS_MASK);
-  gtk_widget_show(drawing);
-
-  h_box = gtk_hbox_new(FALSE, 0);
-  gtk_box_pack_start(GTK_BOX(h_box), drawing, TRUE, TRUE, 0);
-
   gtk_signal_connect(GTK_OBJECT(drawing),
-    "configure_event", (GtkSignalFunc)config_handler, "draw");
+    "configure_event", (GtkSignalFunc)config_handler, NULL);
   gtk_signal_connect(GTK_OBJECT(drawing),
     "expose_event", (GtkSignalFunc)chart_expose_handler, NULL);
+  gtk_widget_show(drawing);
 
+  /* Pack the chart into an h-box.  If the sliders are to be
+     displayed, create a drawing area for the slider box and pack that
+     in too.  */
+  h_box = gtk_hbox_new(FALSE, 0);
+  gtk_box_pack_start(GTK_BOX(h_box), drawing, TRUE, TRUE, 0);
   if (include_slider)
     {
       GtkWidget *sep = gtk_vseparator_new();
       GtkWidget *slider = gtk_drawing_area_new();
+      drawings[1] = slider;
 
       gtk_box_pack_start(GTK_BOX(h_box), sep, FALSE, TRUE, 0);
       gtk_widget_show(sep);
 
-      gtk_drawing_area_size(GTK_DRAWING_AREA(slider), slide_w, geometry_h);
+      gtk_drawing_area_size(GTK_DRAWING_AREA(slider), slider_width, 15);
       gtk_box_pack_start(GTK_BOX(h_box), slider, FALSE, FALSE, 0);
       gtk_widget_show(slider);
 
@@ -1919,35 +1928,36 @@ applet(void)
       gtk_timeout_add((int)(1000 * slider_interval),
         (GtkFunction)slider_timer_handler, slider);
     }
+  gtk_timeout_add((int)(1000 * chart_interval),
+    (GtkFunction)chart_timer_handler, drawing);
   gtk_widget_show(h_box);
 
-  /* Create a top-level window. Set the title, minimum size (_usize),
-     initial size (_default_size), and establish delete and destroy
-     event handlers. */
-  frame = applet_widget_new(prog_name);
-  //gtk_widget_set_usize(frame, 1, 1); /* min_w, min_h */
-  //gtk_window_set_default_size(GTK_WINDOW(frame), geometry_w, geometry_h);
+  /* Create an applet frame and connect the various signal handlers
+     and menu items.  */
+  frame = applet_widget_new(applet_name);
   gtk_signal_connect(GTK_OBJECT(frame),
     "destroy", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
   gtk_signal_connect(GTK_OBJECT(frame),
     "delete_event", GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
-
   gtk_signal_connect(GTK_OBJECT(frame),
-    "change_pixel_size", (GtkSignalFunc)change_pixel_handler, NULL);
+    "change_pixel_size", (GtkSignalFunc)applet_resize_handler, drawings);
   gtk_signal_connect(GTK_OBJECT(frame),
-    "change_orient", (GtkSignalFunc)change_orient_handler, NULL);
-
-  /* Set up the pop-up menu handler.  Pack the whole works into the
-     top-level applet. */
+    "change_orient", (GtkSignalFunc)applet_orient_handler, drawings);
   gtk_signal_connect(GTK_OBJECT(frame),
     "button_press_event", GTK_SIGNAL_FUNC(click_handler), NULL);
+
+  applet_widget_register_stock_callback(APPLET_WIDGET(frame),
+    "help", GNOME_STOCK_MENU_BLANK, _("Help"),
+    (AppletCallbackFunc)help_menu_action, NULL);
+  applet_widget_register_stock_callback(APPLET_WIDGET(frame),
+    "about", GNOME_STOCK_MENU_ABOUT, _("About"),
+    (AppletCallbackFunc)about_callback, NULL);
+  applet_widget_register_stock_callback(APPLET_WIDGET(frame),
+    "params", GNOME_STOCK_MENU_BLANK, _("Params..."),
+    (AppletCallbackFunc)prefs_callback, NULL);
+
+  /* Add the h-box to the applet, and off we go. */
   applet_widget_add(APPLET_WIDGET(frame), h_box);
-
-  /* Create timer events for the drawing and slider widgets. */
-  gtk_timeout_add((int)(1000 * chart_interval),
-    (GtkFunction)chart_timer_handler, drawing);
-
-  /* Show the top-level window and enter the main event loop. */
   gtk_widget_show(frame);
   applet_widget_gtk_main();
 }
@@ -2002,9 +2012,6 @@ popt_arg_extractor(
 {
   if (proc_arg(opt->val, arg))
     {
-      /* FIX THIS: the program name includes trailing junk, and
-       * although the long options aren't shown, all of the Gnome
-       * internal options are. */
       poptPrintUsage(state, stderr, 0);
       exit(EXIT_FAILURE);
     }
@@ -2044,14 +2051,25 @@ main(int argc, char **argv)
   int c;
   poptContext popt_context;
 
-  /* Initialize the i18n libraries and the gtop library if it is
-     linked in.  The applet_widget_init routine performs applet,
-     gnome, and gtk initialization, and makes the first of two passes
-     through any command line arguments. */
+  /* Initialize the i18n code, and the gtop library if it's linked in.  */
   bindtextdomain(PACKAGE, GNOMELOCALEDIR);
   textdomain(PACKAGE);
 #ifdef HAVE_LIBGTOP
   glibtop_init_r(&glibtop_global_server, 0, 0);
+#endif
+
+#ifdef HAVE_GNOME_APPLET
+  /* UGLY_HACK: default to --type=applet if invoked with a program
+     name containing "_applet". */
+  if (strstr(argv[0], applet_name))
+    display = applet;
+  /* EVEN_UGLIER_HACK: call the goad_register_arguments() unpublished
+     internal function to allow the popt argument parser to deal with
+     the --activate-goad-server option. */
+  {
+    extern void goad_register_arguments(void);
+    goad_register_arguments();
+  }
 #endif
 
   /* Make an initial scan of the command line arguments to get the
@@ -2066,11 +2084,15 @@ main(int argc, char **argv)
      won't dump core. */
 #ifdef HAVE_GNOME_APPLET
   if (display == applet)
-    applet_widget_init(prog_name, VERSION, argc, argv, arglist, 0, NULL);
+    applet_widget_init(applet_name, VERSION, argc, argv, arglist, 0, NULL);
 #endif
   if (display == gnome_graph)
     gnome_init_with_popt_table(
       prog_name, VERSION, argc, argv, arglist, 0, NULL);
+
+  /* In either of the graphical modes, we get the width of the root
+     window, and use this as the number of samples to be kept in the
+     value history. */
   if (display == applet || display == gnome_graph)
     gdk_window_get_geometry(
       NULL, NULL, NULL, &root_width, &root_height, NULL);
@@ -2079,6 +2101,14 @@ main(int argc, char **argv)
   chart_glob.new_val = chart_glob.num_val = 0;
   chart_glob.params = read_param_defns(&chart_glob);
   chart_glob.lpf_const = exp(-chart_filter / chart_interval);
+
+  /* This is part of a none-too-satisfactory initialization sequence.
+     During the update_chart==0 pass, the parameter equations are
+     evaluated solely to detect syntax errors and to determine which
+     libgtop routines should be called at the beginning of each
+     update_values pass.  Any equation evaluation errors detected
+     during this pass are fatal. */
+  update_chart = 0;
   update_values(&chart_glob, NULL);
 
   /* Next, we re-parse the command line options so that they'll
@@ -2114,13 +2144,6 @@ main(int argc, char **argv)
       slider_glob.lpf_const = exp(-slider_filter / slider_interval);
       update_values(&slider_glob, NULL);
     }
-
-  /* This is part of a none-too-satisfactory initialization sequence.
-     During the prior update_chart==0 pass, the parameter equations
-     are evaluated solely to detect syntax errors and to determine
-     which libgtop routines should be called at the beginning of each
-     update_values pass.  Any equation evaluation errors detected
-     during this pass are fatal. */
 
   /* During the update_chart==1 pass, a set of parameter variables is
      gathered, but the resulting parameter values are not evaluated.
