@@ -27,7 +27,7 @@
 #include "tb_timer.xpm"
 #include "tb_timer_stopped.xpm"
 
-#include "tb_preferences.xpm"
+/* #include "tb_preferences-2.xpm" */
 #include "tb_unknown.xpm"
 #include "tb_exit.xpm"
 
@@ -241,9 +241,10 @@ build_toolbar(void)
              (config_show_tb_exit)))
                 gtk_toolbar_append_space(mytbar->tbar);
         if (config_show_tb_pref)
-                add_button(mytbar->tbar, _("Prefs"), _("Edit Preferences..."),
-                           tb_preferences_xpm,
-                           (GtkSignalFunc)menu_options);
+                add_stock_button(mytbar->tbar, _("Prefs"),
+				 _("Edit Preferences..."),
+				 GNOME_STOCK_PIXMAP_PREFERENCES,
+				 (GtkSignalFunc)menu_options);
         if (config_show_tb_help) {
 		add_button(mytbar->tbar, _("Manual"), _("Manual..."),
 			   tb_unknown_xpm,
