@@ -239,8 +239,6 @@ logview_create_window_open_file (gchar *file)
 			logview_menus_set_state (logview);
 			gtk_widget_show (window);
 			log_repaint (logview);
-			UpdateStatusArea(logview);
-			logview_set_window_title (logview);
 			gtk_widget_show (window);
 		}
 	}
@@ -495,10 +493,7 @@ CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 
    window->curlog = NULL;
    logview_menus_set_state (window);
-   logview_set_window_title (window);
    log_repaint (window);
-   if (window->loginfovisible)
-	   RepaintLogInfo (window);
 }
 
 /* ----------------------------------------------------------------------
@@ -547,12 +542,9 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 			   
 			   log_repaint (window);
 			   
-			   if (window->loginfovisible)
-				   RepaintLogInfo (window);
 			   if (window->calendar_visible)
 				   init_calendar_data(window);
 			   
-			   UpdateStatusArea(window);
 			   logview_menus_set_state (window);
 		   }
 	   }
