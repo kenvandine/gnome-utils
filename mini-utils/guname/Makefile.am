@@ -28,3 +28,5 @@ guname_LDADD = \
 	$(INTLLIBS)		\
 	$(LIBGTOP_LIBS)
 
+Rootdir = $(datadir)/apps
+Root_DATA = guname.desktop

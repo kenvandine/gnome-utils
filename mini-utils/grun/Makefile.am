@@ -14,3 +14,6 @@ grun_LDADD = \
 	$(GTKXMHTML_LIBS)	\
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
+
+Rootdir = $(datadir)/apps
+Root_DATA = grun.desktop

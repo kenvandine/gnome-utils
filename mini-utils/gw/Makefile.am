@@ -15,3 +15,6 @@ gw_LDADD = \
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
 
+Utilitiesdir = $(datadir)/apps/Utilities
+Utilities_DATA = gw.desktop
+

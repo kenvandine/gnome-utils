@@ -46,7 +46,8 @@ gchar ** memory_descriptions = NULL;
 gdouble memory_percent_full;
 gdouble swap_percent_full;
 
-static GtkWidget * create_disk_box(const gchar ** fs_info, gdouble * percent_full)
+static GtkWidget * 
+create_disk_box(const gchar ** fs_info, gdouble * percent_full)
 {
   GtkWidget * label;
   GtkWidget * vbox;
@@ -181,6 +182,11 @@ static void fill_mem_page(GtkWidget * box)
   gtk_box_pack_start (GTK_BOX(hbox), bar,   FALSE, FALSE, GNOME_PAD);
   gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
   gtk_box_pack_start (GTK_BOX(vbox), hbox,  FALSE, FALSE, GNOME_PAD);
+}
+
+static void fill_status_page(GtkWidget * box)
+{
+
 }
 
 static void create_page(GtkWidget * notebook, 
@@ -374,3 +380,4 @@ void load_moreinfo()
   load_fsinfo();
   load_meminfo();
 }
+
