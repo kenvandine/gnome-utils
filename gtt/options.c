@@ -23,12 +23,6 @@
 #include "gtt.h"
 
 
-#undef gettext
-#undef _
-#include <libintl.h>
-#define _(String) gettext(String)
-
-
 typedef struct _OptionsDlg {
 	GnomePropertyBox *dlg;
 	GtkCheckButton *show_secs;

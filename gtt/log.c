@@ -24,11 +24,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#undef gettext
-#undef _
-#include <libintl.h>
-#define _(String) gettext(String)
-
 
 static int log_write(time_t t, char *s)
 {

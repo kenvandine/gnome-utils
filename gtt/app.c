@@ -26,12 +26,6 @@
 #include "gtt.h"
 
 
-#undef gettext
-#undef _
-#include <libintl.h>
-#define _(String) gettext(String)
-
-
 /* I had some problems with the GtkStatusbar (frame and label didn't
    get shown). So I defined this here */
 #define GTK_USE_STATUSBAR
