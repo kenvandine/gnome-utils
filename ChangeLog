@@ -1,3 +1,13 @@
+2000-12-21  Curtis Duhn <curtis@duhn.com>
+	* gdictsrc/gdict-applet.c: Made the size of the applet change
+	dynamically as the user resizes or reorients the panel.
+	Refactored the code to help make it more modular and eliminate 
+	unnecessary globals.
+	* gdictsrc/main.c: Modified to interface with refactored code in
+	gdict-applet.c.
+	* gdictsrc/gdict-pref-dialog.c: Fixed bug that causes "Smart
+	lookup" state to not be saved unless user also changes host or port.
+	
 2000-12-06  Jason Leach  <jasonleach@usa.net>
 
 	* configure.in: Small compile fix related to Objective C checks,
