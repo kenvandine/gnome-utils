@@ -669,7 +669,7 @@ char * gui_getpass(void)
   gtk_container_border_width( GTK_CONTAINER(GNOME_DIALOG(dialog)->vbox), 
 			      GNOME_PAD );
   gnome_dialog_set_close(GNOME_DIALOG(dialog), TRUE);
-  gnome_dialog_set_modal(GNOME_DIALOG(dialog));
+  gtk_window_set_modal(GTK_WINDOW(dialog));
   gnome_dialog_set_default(GNOME_DIALOG(dialog), 0); /* OK button */
 
   if ( strcmp(new_user, "root") == 0 ) {

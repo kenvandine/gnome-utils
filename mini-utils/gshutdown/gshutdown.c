@@ -453,7 +453,7 @@ static void popup_confirm(void)
 
   /* Has to be or the runlevel requested
      could change in the background */
-  gnome_dialog_set_modal(GNOME_DIALOG(d)); 
+  gtk_window_set_modal(GTK_WINDOW(d)); 
 
   gtk_signal_connect(GTK_OBJECT(d), "clicked",
                      GTK_SIGNAL_FUNC(confirm_cb), NULL);
