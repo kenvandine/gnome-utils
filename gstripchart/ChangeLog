@@ -1,9 +1,19 @@
-1998-11-28  John Kodis  <kodis@kodis.jagunet.com>
+1998-12-13  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (read_param_defns): if defined, add CONFDIR to the
+	config file search path.
+
+1998-12-06  John Kodis  <kodis@jagunet.com>
+
+	* gstripchart.c (eval): make libgtop parameter conditioned upon
+	HAVE_LIBGTOP.
+
+1998-11-28  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (popt_arg_extractor): changed from argp-based to
 	 popt-based command line handling.
 
-1998-10-25  John Kodis  <kodis@kodis.jagunet.com>
+1998-10-25  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (arglist): Changed --add_menubar switch to
 	--menubar; also fixed it so that it now works.
@@ -12,19 +22,19 @@
 	* gstripchart.html: Added some documentation about the geometry
 	option and the use of the libgtop variables.
 
-1998-09-05  John Kodis  <kodis@kodis.jagunet.com>
+1998-09-05  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (read_param_defns): Initialized the `now' array to
 	zero.
 	(gtop_value): Added libgtop parameters as a source of plot data.
 
-1998-08-27  John Kodis  <kodis@kodis.jagunet.com>
+1998-08-27  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (main): Allow config parameters to be overridden
 	by command line options by adding two explicit argp_parse calls in
 	place of the implicit call from gnome init.
 
-1998-08-22  John Kodis  <kodis@kodis.jagunet.com>
+1998-08-22  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (overlay_tick_marks): New function.
 	(read_param_defns): Add code to handle major/minor_tick parameter
@@ -40,7 +50,7 @@
 	(gtk_graph): Always do pop-up menu set-up; do menubar set-up if
 	requested.
 
-1998-08-17  John Kodis  <kodis@kodis.jagunet.com>
+1998-08-17  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (read_param_defns): Accept some command-line
 	arguments as config file parameters.
