@@ -1014,7 +1014,6 @@ create_search_results_section (void)
 GtkWidget *
 create_main_window (void)
 {
-	static gchar 	*history = NULL;
 	gchar 		*string;
 	GtkWidget 	*hbox;	
 	GtkWidget 	*label;
@@ -1044,7 +1043,7 @@ create_main_window (void)
 	
 	gtk_table_attach (GTK_TABLE(table), label, 0, 1, 0, 1, GTK_FILL, 0, 0, 1);
 
-	interface.file_is_named_entry = gnome_entry_new (history);
+	interface.file_is_named_entry = gnome_entry_new ("gsearchtool-file-entry");
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry)));
 	gnome_entry_set_max_saved (GNOME_ENTRY(interface.file_is_named_entry), 10);
 	gtk_table_attach (GTK_TABLE(table), interface.file_is_named_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 0, 0);
@@ -1072,7 +1071,7 @@ create_main_window (void)
 	
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
 	
-	interface.look_in_folder_entry = gnome_file_entry_new ("directory", _("Browse"));
+	interface.look_in_folder_entry = gnome_file_entry_new ("gsearchtool-folder-entry", _("Browse"));
 	gnome_file_entry_set_directory_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry), TRUE);
 	entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), entry);
