@@ -6,6 +6,7 @@ gttglade_DATA =			\
   interval_popup.glade		\
   journal.glade			\
   not-implemented.glade		\
+  prefs.glade			\
   project_properties.glade	\
   task_properties.glade
 
