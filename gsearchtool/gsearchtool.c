@@ -1295,9 +1295,7 @@ create_search_results_section (void)
         gtk_tree_view_column_pack_start (column, renderer, TRUE);
         gtk_tree_view_column_set_attributes (column, renderer,
                                              "text", COLUMN_NAME,
-					     NULL);
-					     
-	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+					     NULL);				     
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);				     
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME); 
@@ -1308,7 +1306,6 @@ create_search_results_section (void)
 	column = gtk_tree_view_column_new_with_attributes (_("Folder"), renderer,
 							   "text", COLUMN_PATH,
 							   NULL);
-	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_PATH); 
@@ -1319,8 +1316,7 @@ create_search_results_section (void)
 	g_object_set( renderer, "xalign", 1.0, NULL);
 	column = gtk_tree_view_column_new_with_attributes (_("Size"), renderer,
 							   "text", COLUMN_READABLE_SIZE,
-							   NULL);						   
-	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+							   NULL);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_SIZE);
@@ -1331,7 +1327,6 @@ create_search_results_section (void)
 	column = gtk_tree_view_column_new_with_attributes (_("Type"), renderer,
 							   "text", COLUMN_TYPE,
 							   NULL);
-	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_TYPE);
@@ -1342,7 +1337,6 @@ create_search_results_section (void)
 	column = gtk_tree_view_column_new_with_attributes (_("Date Modified"), renderer,
 							   "text", COLUMN_READABLE_DATE,
 							   NULL);
-	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_DATE);
