@@ -134,10 +134,33 @@ struct poptOption options [] = {
   { NULL, 0, 0, NULL, 0}
 };
 
+static int save_session(GnomeClient        *client,
+                        gint                phase,
+                        GnomeRestartStyle   save_style,
+                        gint                shutdown,
+                        GnomeInteractStyle  interact_style,
+                        gint                fast,
+                        gpointer            client_data) {
+       gchar *argv[]= { NULL };
+
+       argv[0] = (char*) client_data;
+       gnome_client_set_clone_command(client, 1, argv);
+       gnome_client_set_restart_command(client, 1, argv);
+
+       return TRUE;
+}
+
+static gint client_die(GnomeClient *client, gpointer client_data)
+{
+       gtk_main_quit ();
+}
+
+
 
 int
 main(int argc, char *argv[])
 {
+	GnomeClient *client;
 	static GtkTargetEntry targets[] = {
 		{ "STRING", TARGET_STRING },
 		{ "TEXT",   TARGET_TEXT }, 
@@ -178,6 +201,12 @@ main(int argc, char *argv[])
 
         gtk_signal_connect(GTK_OBJECT(app), "selection_get",
 			   GTK_SIGNAL_FUNC(selection_handle), NULL);
+
+	client = gnome_master_client();
+	g_signal_connect (client, "save_yourself",
+				G_CALLBACK(save_session), (gpointer)argv[0]);
+	g_signal_connect (client, "die",
+				G_CALLBACK(client_die), NULL);
 
 	gnome_app_set_contents(GNOME_APP(app), calc);
 
