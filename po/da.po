@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.99\n"
-"POT-Creation-Date: 2002-05-20 10:28+0100\n"
-"PO-Revision-Date: 2002-05-18 12:37+0200\n"
+"POT-Creation-Date: 2002-05-21 22:24+0200\n"
+"PO-Revision-Date: 2002-05-21 22:24+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr ""
 
 #. Translator credits
 #: gcalc/gcalc.c:42 gcharmap/src/callbacks.c:47 gdictsrc/gdict-about.c:43
-#: gsearchtool/gsearchtool.c:1995 logview/about.c:52
+#: gsearchtool/gsearchtool.c:1986 logview/about.c:52
 #: meat-grinder/meat-grinder.c:474
 msgid "translator_credits"
 msgstr "Ole Laursen <olau@hardworking.dk>"
@@ -650,8 +650,8 @@ msgstr "Tekst ikke fundet"
 msgid "Find"
 msgstr "Find"
 
-#: gdictsrc/gdict-app.c:476 gsearchtool/gsearchtool.c:1500
-#: gsearchtool/gsearchtool.c:1833
+#: gdictsrc/gdict-app.c:476 gsearchtool/gsearchtool.c:1491
+#: gsearchtool/gsearchtool.c:1824
 msgid "_Find"
 msgstr "_Find"
 
@@ -1102,13 +1102,22 @@ msgstr ""
 
 #: gfloppy/src/main.c:287
 msgid "The device to format"
-msgstr "Enheden der skal formatteres"
+msgstr "Den enhed der skal formatteres"
 
 #: gfloppy/src/main.c:288
 msgid "DEVICE"
 msgstr "ENHED"
 
-#: gfloppy/src/main.c:365
+#: gfloppy/src/main.c:349
+#, c-format
+msgid ""
+"Could not display help for the floppy formatter.\n"
+"%s"
+msgstr ""
+"Kunne ikke vise hjælpen til disketteformateringen.\n"
+"%s"
+
+#: gfloppy/src/main.c:388
 msgid "Format another floppy?"
 msgstr "Formatér en anden diskette?"
 
@@ -1179,7 +1188,7 @@ msgstr "Fil er tom"
 msgid "Matches regular expression"
 msgstr "Passer til regulært udtryk"
 
-#: gsearchtool/gsearchtool.c:273 gsearchtool/gsearchtool.c:942
+#: gsearchtool/gsearchtool.c:273 gsearchtool/gsearchtool.c:933
 msgid "Start folder does not exist."
 msgstr "Startmappe eksisterer ikke."
 
@@ -1215,7 +1224,7 @@ msgstr "symbolske henvisning"
 msgid "No Files Found."
 msgstr "Ingen filer fundet."
 
-#: gsearchtool/gsearchtool.c:741
+#: gsearchtool/gsearchtool.c:735
 msgid ""
 "Cannot perform the search.\n"
 "The Bourne shell was not found\n"
@@ -1226,11 +1235,11 @@ msgstr ""
 "Den er som regel indstalleret som /bin/sh\n"
 "eller /usr/bin/sh."
 
-#: gsearchtool/gsearchtool.c:756
+#: gsearchtool/gsearchtool.c:750
 msgid "Searching..."
 msgstr "Søger..."
 
-#: gsearchtool/gsearchtool.c:870
+#: gsearchtool/gsearchtool.c:864
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1238,45 +1247,45 @@ msgstr ""
 "\n"
 "...for mange fejl til at vise..."
 
-#: gsearchtool/gsearchtool.c:881
+#: gsearchtool/gsearchtool.c:875
 msgid "No files found"
 msgstr "Ingen filer fundet"
 
-#: gsearchtool/gsearchtool.c:884
+#: gsearchtool/gsearchtool.c:878
 msgid "One file found"
 msgstr "Én fil fundet"
 
-#: gsearchtool/gsearchtool.c:886
+#: gsearchtool/gsearchtool.c:880
 #, c-format
 msgid "%d files found"
 msgstr "%d filer fundet"
 
-#: gsearchtool/gsearchtool.c:953 gsearchtool/gsearchtool.c:1664
+#: gsearchtool/gsearchtool.c:944 gsearchtool/gsearchtool.c:1655
 msgid "Cannot perform the search. Please specify a search criteria."
 msgstr "Kan ikke udføre søgning. Angiv venligst et søgekriterium."
 
-#: gsearchtool/gsearchtool.c:970 gsearchtool/gsearchtool.c:1685
+#: gsearchtool/gsearchtool.c:961 gsearchtool/gsearchtool.c:1676
 msgid ""
 "A search is already running.  Please wait for the search to complete or "
 "cancel it."
 msgstr ""
 "En søgning er allerede i gang. Vent til den er færdig eller annullér den."
 
-#: gsearchtool/gsearchtool.c:1004
+#: gsearchtool/gsearchtool.c:995
 msgid "Start folder does not exist"
 msgstr "Startmappe eksisterer ikke"
 
-#: gsearchtool/gsearchtool.c:1019
+#: gsearchtool/gsearchtool.c:1010
 msgid "Cannot show the search command line. Please specify a search criteria."
 msgstr ""
 "Kan ikke vise kommandolinjen til søgningen. Angiv venligst et søgekriterium."
 
 # at smække "linje" på bliver ret langt og er unødvendigt
-#: gsearchtool/gsearchtool.c:1023
+#: gsearchtool/gsearchtool.c:1014
 msgid "Search Command Line"
 msgstr "Søgningskommando"
 
-#: gsearchtool/gsearchtool.c:1041
+#: gsearchtool/gsearchtool.c:1032
 msgid ""
 "This is the command line that can be used to execute this search\n"
 "from the console.\n"
@@ -1287,196 +1296,196 @@ msgstr ""
 "\n"
 "K_ommando:"
 
-#: gsearchtool/gsearchtool.c:1062
+#: gsearchtool/gsearchtool.c:1053
 msgid "Command"
 msgstr "Kommando"
 
 # at smække "linje" på bliver ret langt og er unødvendigt
-#: gsearchtool/gsearchtool.c:1063
+#: gsearchtool/gsearchtool.c:1054
 msgid "Command Line Entry"
 msgstr "Kommandoindtastning"
 
-#: gsearchtool/gsearchtool.c:1063
+#: gsearchtool/gsearchtool.c:1054
 msgid "Use this command line to execute the search from console"
 msgstr "Benyt denne kommandolinje til at udføre søgningen fra en terminal"
 
-#: gsearchtool/gsearchtool.c:1171
+#: gsearchtool/gsearchtool.c:1162
 msgid "No viewer available for this mime type."
 msgstr "Ingen fremviser tilgængelig for denne MIME-type."
 
-#: gsearchtool/gsearchtool.c:1262
+#: gsearchtool/gsearchtool.c:1253
 msgid "Entry changed called for a non entry option!"
 msgstr "Det ændrede indtastningsfelt ønskede et ikke-indtastningsflag!"
 
-#: gsearchtool/gsearchtool.c:1332
+#: gsearchtool/gsearchtool.c:1323
 msgid "Search Rule Value Entry"
 msgstr "Søgeregelværdi"
 
-#: gsearchtool/gsearchtool.c:1332
+#: gsearchtool/gsearchtool.c:1323
 msgid "Enter a value for search rule"
 msgstr "Indtast en værdi for søgereglen"
 
-#: gsearchtool/gsearchtool.c:1347
+#: gsearchtool/gsearchtool.c:1338
 msgid "Enabled"
 msgstr "Aktiveret"
 
-#: gsearchtool/gsearchtool.c:1355
+#: gsearchtool/gsearchtool.c:1346
 msgid "Toggle On/Off to enable/disable the rule"
 msgstr "Aktivér/deaktivér reglen"
 
-#: gsearchtool/gsearchtool.c:1363
+#: gsearchtool/gsearchtool.c:1354
 msgid "Click to Remove the Rule"
 msgstr "Klik for at fjerne reglen"
 
-#: gsearchtool/gsearchtool.c:1409 gsearchtool/gsearchtool.c:1787
+#: gsearchtool/gsearchtool.c:1400 gsearchtool/gsearchtool.c:1778
 msgid "S_tarting in folder:"
 msgstr "S_tarter i mappen:"
 
-#: gsearchtool/gsearchtool.c:1413 gsearchtool/gsearchtool.c:1793
+#: gsearchtool/gsearchtool.c:1404 gsearchtool/gsearchtool.c:1784
 msgid "Browse"
 msgstr "Gennemse"
 
-#: gsearchtool/gsearchtool.c:1421 gsearchtool/gsearchtool.c:1422
-#: gsearchtool/gsearchtool.c:1802 gsearchtool/gsearchtool.c:1803
+#: gsearchtool/gsearchtool.c:1412 gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1793 gsearchtool/gsearchtool.c:1794
 msgid "Starting folder entry"
 msgstr "Startmappe"
 
-#: gsearchtool/gsearchtool.c:1421 gsearchtool/gsearchtool.c:1422
-#: gsearchtool/gsearchtool.c:1802 gsearchtool/gsearchtool.c:1803
+#: gsearchtool/gsearchtool.c:1412 gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1793 gsearchtool/gsearchtool.c:1794
 msgid "Enter the folder name where you want to start the search"
 msgstr "Indtast navnet på mappen hvor du ønsker at begynde søgningen"
 
-#: gsearchtool/gsearchtool.c:1443
+#: gsearchtool/gsearchtool.c:1434
 msgid "Rules:"
 msgstr "Regler:"
 
-#: gsearchtool/gsearchtool.c:1463
+#: gsearchtool/gsearchtool.c:1454
 msgid "A_dd Rule:"
 msgstr "_Tilføj regel:"
 
-#: gsearchtool/gsearchtool.c:1472
+#: gsearchtool/gsearchtool.c:1463
 msgid "Search Rules Menu"
 msgstr "Søgeregelsmenu"
 
-#: gsearchtool/gsearchtool.c:1472
+#: gsearchtool/gsearchtool.c:1463
 msgid "Select a search rule from the menu"
 msgstr "Vælg en søgeregel fra menuen"
 
-#: gsearchtool/gsearchtool.c:1515
+#: gsearchtool/gsearchtool.c:1506
 msgid "Click to Add a Rule"
 msgstr "Klik for at tilføje en regel"
 
-#: gsearchtool/gsearchtool.c:1516
+#: gsearchtool/gsearchtool.c:1507
 msgid "Click to Start the Search"
 msgstr "Klik for at starte søgningen"
 
-#: gsearchtool/gsearchtool.c:1517
+#: gsearchtool/gsearchtool.c:1508
 msgid "Click to Stop the Search"
 msgstr "Klik for at stoppe søgningen"
 
-#: gsearchtool/gsearchtool.c:1522 gsearchtool/gsearchtool.c:1854
+#: gsearchtool/gsearchtool.c:1513 gsearchtool/gsearchtool.c:1845
 msgid "S_earch Results"
 msgstr "S_øgeresultater"
 
-#: gsearchtool/gsearchtool.c:1562 gsearchtool/gsearchtool.c:1894
+#: gsearchtool/gsearchtool.c:1553 gsearchtool/gsearchtool.c:1885
 msgid "Name"
 msgstr "Navn"
 
-#: gsearchtool/gsearchtool.c:1584 gsearchtool/gsearchtool.c:1916
+#: gsearchtool/gsearchtool.c:1575 gsearchtool/gsearchtool.c:1907
 msgid "Folder"
 msgstr "Mappe"
 
-#: gsearchtool/gsearchtool.c:1596 gsearchtool/gsearchtool.c:1928
+#: gsearchtool/gsearchtool.c:1587 gsearchtool/gsearchtool.c:1919
 msgid "Size"
 msgstr "Størrelse"
 
-#: gsearchtool/gsearchtool.c:1608 gsearchtool/gsearchtool.c:1940
+#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1931
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:1619 gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1610 gsearchtool/gsearchtool.c:1942
 msgid "Date Modified"
 msgstr "Ændringstidspunkt"
 
-#: gsearchtool/gsearchtool.c:1763
+#: gsearchtool/gsearchtool.c:1754
 msgid "Find files _named:"
 msgstr "Find filer med _navnet:"
 
-#: gsearchtool/gsearchtool.c:1778 gsearchtool/gsearchtool.c:1779
+#: gsearchtool/gsearchtool.c:1769 gsearchtool/gsearchtool.c:1770
 msgid "File Name Entry"
 msgstr "Filnavn"
 
-#: gsearchtool/gsearchtool.c:1778 gsearchtool/gsearchtool.c:1779
+#: gsearchtool/gsearchtool.c:1769 gsearchtool/gsearchtool.c:1770
 msgid "Enter the file name you want to search"
 msgstr "Indtast det filnavn du ønsker at søge efter"
 
-#: gsearchtool/gsearchtool.c:1848
+#: gsearchtool/gsearchtool.c:1839
 msgid "Click to Start the search"
 msgstr "Klik for at starte søgningen"
 
-#: gsearchtool/gsearchtool.c:1849
+#: gsearchtool/gsearchtool.c:1840
 msgid "Click to Stop the search"
 msgstr "Klik for stoppe søgningen"
 
-#: gsearchtool/gsearchtool.c:1971
-msgid "Si_mple"
-msgstr "Si_mpel"
+#: gsearchtool/gsearchtool.c:1962
+msgid "Simple"
+msgstr "Simpel"
 
-#: gsearchtool/gsearchtool.c:1973
-msgid "Ad_vanced"
-msgstr "A_vanceret"
+#: gsearchtool/gsearchtool.c:1964
+msgid "Advanced"
+msgstr "Avanceret"
 
-#: gsearchtool/gsearchtool.c:2011
+#: gsearchtool/gsearchtool.c:2002
 #: gsearchtool/help/es/gsearchtool.desktop.in.h:1
 msgid "GNOME Search Tool"
 msgstr "Filsøgningsværktøj"
 
-#: gsearchtool/gsearchtool.c:2012
+#: gsearchtool/gsearchtool.c:2003
 msgid "(C) 1998,2002 the Free Software Foundation"
 msgstr "© 1998, 2000 The Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:2013
+#: gsearchtool/gsearchtool.c:2004
 msgid "Frontend to the unix find/locate commands"
 msgstr "Grafisk grænseflade til Unix' find/locate-kommandoer"
 
-#: gsearchtool/gsearchtool.c:2052
+#: gsearchtool/gsearchtool.c:2043
 #, c-format
 msgid "File %s already exists. Overwrite?"
 msgstr "Filen %s eksisterer allerede, overskriv den?"
 
-#: gsearchtool/gsearchtool.c:2087
+#: gsearchtool/gsearchtool.c:2078
 msgid "Cannot save the results file."
 msgstr "Kan ikke gemme resultatfilen."
 
-#: gsearchtool/gsearchtool.c:2094 meat-grinder/meat-grinder.c:652
+#: gsearchtool/gsearchtool.c:2085 meat-grinder/meat-grinder.c:652
 msgid "Save Results"
 msgstr "Gem resultater"
 
-#: gsearchtool/gsearchtool.c:2150
+#: gsearchtool/gsearchtool.c:2141
 msgid "S_how Command..."
 msgstr "_Vis kommando..."
 
-#: gsearchtool/gsearchtool.c:2151
+#: gsearchtool/gsearchtool.c:2142
 msgid "Show the command used to perform the search"
 msgstr "Vis den kommando der bruges til at foretage søgningen"
 
-#: gsearchtool/gsearchtool.c:2154
+#: gsearchtool/gsearchtool.c:2145
 msgid "Save Results _As..."
 msgstr "Gem resultater _som..."
 
-#: gsearchtool/gsearchtool.c:2155
+#: gsearchtool/gsearchtool.c:2146
 msgid "Save the search results"
 msgstr "Gem søgeresultaterne"
 
-#: gsearchtool/gsearchtool.c:2170
+#: gsearchtool/gsearchtool.c:2161
 msgid "Sear_ch"
 msgstr "Sø_g"
 
-#: gsearchtool/gsearchtool.c:2192
+#: gsearchtool/gsearchtool.c:2183
 msgid "Cannot initialize bonobo."
 msgstr "Kan ikke klargøre Bonobo."
 
-#: gsearchtool/gsearchtool.c:2196
+#: gsearchtool/gsearchtool.c:2187
 msgid "Search Tool"
 msgstr "Filsøgningsværktøj"
 
