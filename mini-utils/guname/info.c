@@ -28,6 +28,7 @@
 
 #define DEBIAN_STRING "Debian GNU/Linux"
 #define REDHAT_STRING "Red Hat Linux"
+#define SUSE_STRING "SuSE Linux"
 
 /************************************
   Globals
@@ -161,7 +162,18 @@ static void get_linux_info()
         info[si_distribution_version] = g_strdup(buf);
       fclose(f);
     }
-  }
+  } else if (g_file_exists("/etc/SuSE-release")) {
+    FILE *f;
+	gchar buf[80];
+
+	info[si_distribution] = g_strdup(SUSE_STRING);
+	f = fopen("/etc/SuSE-release", "r");
+	if (f) { 
+	  fgets(buf, 79, f);
+	  info[si_distribution_version] = g_strdup(buf);
+	  fclose(f);
+	}
+  }		
   /* OK, people using other dists will need to add theirs, I have
      no idea how to identify a Red Hat system. */
   else {
