@@ -4,12 +4,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 0\n"
-"POT-Creation-Date: 2004-01-04 04:07+0100\n"
-"PO-Revision-Date: 2004-01-04 08:42+CET\n"
+"POT-Creation-Date: 2004-01-05 04:12+0100\n"
+"PO-Revision-Date: 2004-01-05 12:24+CET\n"
 "Last-Translator: Robert Sedak <robert.sedak@sk.tel.hr>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: TransDict server\n"
 
@@ -664,7 +664,7 @@ msgstr "_Brzo (samo stvara datotečni sustav)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standardno (dodaje formatiranje niske razine brzom formatiranju)"
 
-#: gfloppy/src/main.c:134
+#: gfloppy/src/main.c:140
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -672,12 +672,12 @@ msgstr ""
 "Niti mke2fs niti mkdosfs/mformat aplikacije nisu instalirane. Ne možete "
 "formatirati disketu bez jedne od njih."
 
-#: gfloppy/src/main.c:158 gfloppy/src/main.c:202
+#: gfloppy/src/main.c:164
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Ne mogu otvoriti uređaj %s, formatiranje se ne može nastaviti"
 
-#: gfloppy/src/main.c:161 gfloppy/src/main.c:205
+#: gfloppy/src/main.c:167 gfloppy/src/main.c:219
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -686,7 +686,7 @@ msgstr ""
 "Uređaj %s je odspoje.\n"
 "Molim priključite uređaj za nastavak."
 
-#: gfloppy/src/main.c:164 gfloppy/src/main.c:208
+#: gfloppy/src/main.c:170 gfloppy/src/main.c:222
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -696,7 +696,15 @@ msgstr ""
 "Nemate dovoljne dozvole za pisanje u %s, formatiranje neće biti moguće.\n"
 "Kontaktirajte administratora sustava za dobijanje dozvola za pisanje."
 
-#: gfloppy/src/main.c:402
+#: gfloppy/src/main.c:216
+msgid "Unable to open any device, formatting cannot continue."
+msgstr "Ne mogu otvoriti bilo koji uređaj, oblikovanje se ne može nastaviti."
+
+#: gfloppy/src/main.c:219 gfloppy/src/main.c:222
+msgid "/dev/floppy/0 or /dev/fd0"
+msgstr "/dev/floppy/0 ili /dev/fd0"
+
+#: gfloppy/src/main.c:394
 #, c-format
 msgid ""
 "Could not display help for the floppy formatter.\n"
@@ -705,23 +713,23 @@ msgstr ""
 "Ne mogu prikazati pomoć za formatiranje diskete.\n"
 "%s"
 
-#: gfloppy/src/main.c:435
+#: gfloppy/src/main.c:427
 msgid "The volume name can't contain any blank space."
 msgstr "Ime volumena ne može sadržavati praznine."
 
-#: gfloppy/src/main.c:484
+#: gfloppy/src/main.c:474
 msgid "The device to format"
 msgstr "Uređaj za formatiranje"
 
-#: gfloppy/src/main.c:485
+#: gfloppy/src/main.c:475
 msgid "DEVICE"
 msgstr "UREĐAJ"
 
 #. plural form
 #: gfloppy/src/progress.c:123
 #, c-format
-msgid "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been found and marked."
-msgstr "Disketa je oblikovana, ali nađeno je i označeno <b>%d loših blokova</b>(od %d)."
+#~ msgid "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been found and marked."
+#~ msgstr "Disketa je oblikovana, ali nađeno je i označeno <b>%d loših blokova</b>(od %d)."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
