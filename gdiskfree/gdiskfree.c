@@ -80,6 +80,28 @@ excluded_fstype (const char *fstype)
     }
   return 0;
 }
+
+guchar *
+gdiskfree_convert_size ( unsigned long size)
+{
+     float size_f = (float) size;
+
+     /* The firs time we divide by 1024, after that, we divide
+	by 1000 */
+     if (size_f < 1024)
+	  return g_strdup_printf ("%.1f b", size_f);
+     size_f = size_f / 1024;
+     if (size_f < 1024)
+	  return g_strdup_printf ("%.1f Mb", size_f);
+     size_f = size_f / 1000;
+     if (size_f < 1024)
+	  return g_strdup_printf ("%.1f Gb", size_f);
+     size_f = size_f / 1000;
+     if (size_f < 1024)
+	  return g_strdup_printf ("%.1f Tb", size_f);
+     size_f = size_f / 1000;
+}
+
 /**
  * Program entry point
  **/
@@ -113,12 +135,18 @@ main (int argc, gchar *argv[])
   excluded = g_list_append (excluded, "devpts");
   for (i = 0; i < mountlist.number; i++)
     {
-/*      g_print ("type: %s\n", mount_list[i].type); */
+      glibtop_fsusage    fsusage;
+      unsigned long      size;
+
+      glibtop_get_fsusage (&fsusage, mount_list [i].mountdir);
+      size = fsusage.blocks;
+      /*g_print ("type: %s\n", mount_list[i].type);*/
       if (!(excluded_fstype (mount_list[i].type)))
 	gdiskfree_app_add_disk (app, mount_list[i].devname,
-				mount_list[i].mountdir);
+				mount_list[i].mountdir,
+				gdiskfree_convert_size (size / 2));
     }
-  gtk_widget_show_all (GTK_WIDGET (app->app));
+  gtk_widget_show (GTK_WIDGET (app->app));
   gdiskfree_update (app);
   /* Start the update timer */
   timeout_id = gtk_timeout_add (current_options->update_interval,

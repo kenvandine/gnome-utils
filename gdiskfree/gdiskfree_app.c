@@ -136,7 +136,7 @@ delete_event_cb (GtkWidget *window, GdkEventAny *e, gpointer data)
  **/
 void
 gdiskfree_app_add_disk (GDiskFreeApp *app, const gchar *disk,
-			const gchar *mount_point)
+			const gchar *mount_point, const gchar *disk_size)
 {
   GtkWidget      *frame;
   GtkWidget      *box;
@@ -158,13 +158,22 @@ gdiskfree_app_add_disk (GDiskFreeApp *app, const gchar *disk,
   gtk_dial_set_view_only (GTK_DIAL (gdisk->dial), TRUE);
   gtk_box_pack_start (GTK_BOX (box), gdisk->dial, FALSE, FALSE, 0);
   app->drives = g_list_append (app->drives, gdisk);
-  gdisk->label = gtk_label_new (mount_point);
+  /* Add mount point label */
+  gdisk->mount_label = gtk_label_new (mount_point);
+  gtk_box_pack_start (GTK_BOX (box), gdisk->mount_label, FALSE, FALSE, 0);
   gtk_widget_show_all (frame);
-  gtk_box_pack_start (GTK_BOX (box), gdisk->label, FALSE, FALSE, 0);
   if (gnome_config_get_bool ("/GDiskFree/properties/show_mount"))
-    gtk_widget_show (gdisk->label);
+    gtk_widget_show (gdisk->mount_label);
   else
-    gtk_widget_hide (gdisk->label);
+    gtk_widget_hide (gdisk->mount_label);
+  /* Add disk size label */
+  gdisk->size_label = gtk_label_new (disk_size);
+  gtk_box_pack_start (GTK_BOX (box), gdisk->size_label, FALSE, FALSE, 0);
+  if (gnome_config_get_bool ("/GDiskFree/properties/show_size"))
+    gtk_widget_show (gdisk->size_label);
+  else
+    gtk_widget_hide (gdisk->size_label);
+
 }
 /**
  * gdiskfree_app_change_orient

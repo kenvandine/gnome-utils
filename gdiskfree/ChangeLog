@@ -1,3 +1,22 @@
+2000-06-10  Chema Celorio  <chema@celorio.com>
+
+	* gdiskfree_options.h: add show_size
+
+	* gdiskfree_options.c: add show_size
+
+	* gdiskfree.c (main): add a size to disks (i.e. "20.1 Gb")
+	(gdiskfree_convert_size): new fucntion, converts a size in
+	unsigned long type to a string like "10b","13 Mb", "20 Gb" ...
+
+	* gdiskfree_app.c (gdiskfree_app_add_disk): create size label
+	and add a parameter [ const gchar *disk_size ]
+
+	* gdiskfree_app.h (gdiskfree_update): rename label --> mount_label
+	and add size_label
+
+	* gdiskfree.c (save_session): Fix a bug in which the labels
+	of the disk will show upon startup regardless of the preference settings
+
 2000-05-13 John Fleck <jfleck@inkstain.net>
 
 	* fixed dtd <warning> problem

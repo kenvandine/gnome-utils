@@ -86,14 +86,19 @@ gdiskfree_option_dialog_apply (GnomePropertyBox *box, gint page_num,
     }
 
   current_options->show_mount = opt->show_mount;
+  current_options->show_size = opt->show_size;
   gl = app->drives;
   while (gl)
     {
       disk = (GDiskFreeDisk *) gl->data;
       if (current_options->show_mount)
-	gtk_widget_show (disk->label);
+	gtk_widget_show (disk->mount_label);
       else
-	gtk_widget_hide (disk->label);
+	gtk_widget_hide (disk->mount_label);
+      if (current_options->show_size)
+	gtk_widget_show (disk->size_label);
+      else
+	gtk_widget_hide (disk->size_label);
       gl = g_list_next (gl);
     }
   /* Save the options -- Structure free'd on window destruction.*/
@@ -130,6 +135,12 @@ gdiskfree_show_mount_changed (GtkWidget *widget, GnomePropertyBox *box)
   working->show_mount = GTK_TOGGLE_BUTTON (widget)->active;
   gnome_property_box_changed (GNOME_PROPERTY_BOX (box));
 }
+static void
+gdiskfree_show_size_changed (GtkWidget *widget, GnomePropertyBox *box)
+{
+  working->show_size = GTK_TOGGLE_BUTTON (widget)->active;
+  gnome_property_box_changed (GNOME_PROPERTY_BOX (box));
+}
 /****************************************************************************
  * Implementation 
  **/
@@ -150,6 +161,8 @@ gdiskfree_option_init ()
     ("/GDiskFree/properties/orientation=GTK_ORIENTATION_VERTICAL", NULL);
   current_options->show_mount = gnome_config_get_bool_with_default
     ("/GDiskFree/properties/show_mount=FALSE", NULL);
+  current_options->show_size = gnome_config_get_bool_with_default
+    ("/GDiskFree/properties/show_size=FALSE", NULL);
 }
 /**
  * gdiskfree_option_save:
@@ -161,6 +174,8 @@ gdiskfree_option_save ()
 			 current_options->sync_required);
   gnome_config_set_bool ("/GDiskFree/properties/show_mount",
 			 current_options->show_mount);
+  gnome_config_set_bool ("/GDiskFree/properties/show_size",
+			 current_options->show_size);
   gnome_config_set_int ("/GDiskFree/properties/update_interval",
 			current_options->update_interval);
   gnome_config_set_int ("/GDiskFree/properties/orientation",
@@ -189,7 +204,7 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   gtk_window_set_title (GTK_WINDOW 
 			(&GNOME_PROPERTY_BOX(propbox)->dialog.window), 
 			_("GDiskFree Properties"));
-  box = gtk_table_new (3, 4, FALSE);
+  box = gtk_table_new (4, 4, FALSE);
   /* General settings for GDiskFree */
 
   checkbox = gtk_check_button_new_with_label 
@@ -202,6 +217,7 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
 		      propbox);
   gtk_table_attach (GTK_TABLE (box), checkbox, 0, 2, 0, 1,
 		    GTK_SHRINK | GTK_FILL, GTK_SHRINK, 2, 2);
+
   working->show_mount = current_options->show_mount;
   checkbox = gtk_check_button_new_with_label
     (_("Show drive mount points"));
@@ -212,10 +228,22 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   gtk_signal_connect (GTK_OBJECT (checkbox), "toggled",
 		      (GtkSignalFunc) gdiskfree_show_mount_changed,
 		      propbox);
+
+  working->show_size = current_options->show_size;
+  checkbox = gtk_check_button_new_with_label
+    (_("Show drive size"));
+  if (current_options->show_size)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (checkbox), TRUE);
+  gtk_table_attach (GTK_TABLE (box), checkbox, 0, 2, 2, 3,
+		    GTK_SHRINK | GTK_FILL, GTK_SHRINK, 2, 2);
+  gtk_signal_connect (GTK_OBJECT (checkbox), "toggled",
+		      (GtkSignalFunc) gdiskfree_show_size_changed,
+		      propbox);
+
   working->orientation = current_options->orientation;
   label = gtk_label_new (_("Dial Orientation"));
   gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-  gtk_table_attach (GTK_TABLE (box), label, 0, 1, 2, 3, 
+  gtk_table_attach (GTK_TABLE (box), label, 0, 1, 3, 4, 
 		    GTK_SHRINK | GTK_FILL, GTK_SHRINK, 1, 1);
   checkbox = gtk_radio_button_new_with_label (orientation_group, 
 					      _("Vertical"));
@@ -228,7 +256,7 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
 		       GINT_TO_POINTER (GTK_ORIENTATION_VERTICAL));
   
   orientation_group = gtk_radio_button_group (GTK_RADIO_BUTTON (checkbox));
-  gtk_table_attach (GTK_TABLE (box), checkbox, 1, 2, 2, 3,
+  gtk_table_attach (GTK_TABLE (box), checkbox, 1, 2, 3, 4,
 		    GTK_SHRINK | GTK_FILL, GTK_SHRINK, 3, 0);
   checkbox = gtk_radio_button_new_with_label (orientation_group,
 					      _("Horizontal"));
@@ -240,7 +268,7 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   gtk_object_set_data (GTK_OBJECT (checkbox), "value",
 		       GINT_TO_POINTER (GTK_ORIENTATION_HORIZONTAL));
   orientation_group = gtk_radio_button_group (GTK_RADIO_BUTTON (checkbox));
-  gtk_table_attach (GTK_TABLE (box), checkbox, 2, 3, 2, 3,
+  gtk_table_attach (GTK_TABLE (box), checkbox, 2, 3, 3, 4,
 		    GTK_SHRINK | GTK_FILL, GTK_SHRINK, 3, 0);
   /* Do this again */
   working->orientation = current_options->orientation;
@@ -251,12 +279,12 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
 		      (GtkSignalFunc) gdiskfree_update_interval_changed,
 		      propbox);
   label = gtk_label_new (_("Update interval (ms)"));
-  gtk_table_attach (GTK_TABLE (box), label, 0, 1, 3, 4,
+  gtk_table_attach (GTK_TABLE (box), label, 0, 1, 4, 5,
 		    GTK_SHRINK | GTK_FILL, GTK_SHRINK, 3, 0);
   checkbox = gtk_hscale_new (GTK_ADJUSTMENT (udp_adjust));  
   gtk_range_set_update_policy (GTK_RANGE (checkbox), GTK_UPDATE_CONTINUOUS);
   gtk_scale_set_digits (GTK_SCALE (checkbox), 0);
-  gtk_table_attach (GTK_TABLE (box), checkbox, 1, 3, 3, 4,
+  gtk_table_attach (GTK_TABLE (box), checkbox, 1, 3, 4, 5,
 		    GTK_SHRINK | GTK_FILL | GTK_EXPAND, GTK_SHRINK, 3, 3);
 
   gtk_widget_show_all (box);

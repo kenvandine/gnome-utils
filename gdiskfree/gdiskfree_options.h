@@ -32,6 +32,7 @@ struct _GDiskFreeOptions {
   gint             update_interval;
   gboolean         sync_required;
   gboolean         show_mount;
+  gboolean         show_size;
   GtkOrientation   orientation;
 
 };

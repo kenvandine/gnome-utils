@@ -35,7 +35,8 @@ struct _GDiskFreeApp {
 };
 struct _GDiskFreeDisk {
   GtkWidget    *dial;
-  GtkWidget    *label;
+  GtkWidget    *mount_label;
+  GtkWidget    *size_label;
   gchar        *drive;
   gchar        *mount_point;
 };
@@ -46,7 +47,8 @@ GDiskFreeApp       *gdiskfree_app_new          (const gchar    *geo);
 void               gdiskfree_app_close         (GDiskFreeApp   *app);
 void               gdiskfree_app_add_disk      (GDiskFreeApp   *app,
 						const gchar    *disk,
-						const gchar    *mount_point);
+						const gchar    *mount_point,
+						const gchar    *disk_size);
 void               gdiskfree_app_change_orient (GDiskFreeApp   *app,
 						GtkOrientation orient);
 gboolean           gdiskfree_update            (GDiskFreeApp   *app);
