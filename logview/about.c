@@ -40,7 +40,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 {
   GdkPixbuf *logo = NULL;
   const char *author[] = {N_("Cesar Miquel (miquel@df.uba.ar)"), NULL};
-  char *comments = N_("This  program  is  part of  the  GNOME  project." 
+  char *comments = N_("This program is part of the GNOME project. " 
 "Logview comes with ABSOLUTELY NO WARRANTY. This is free " 
 "software, and you are welcome to redistribute it under the conditions "
 "of the GNU General Public Licence. The log icon is a courtesy of "
