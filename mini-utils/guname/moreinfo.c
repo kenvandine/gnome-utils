@@ -27,10 +27,13 @@
 #include "fsusage.h"
 #include "moreinfo.h"
 #include "list.h"
+
+#ifdef HAVE_LIBGTOP
 #include <glibtop.h>
 #define GLIBTOP_NAMES 1 /* hmm, no, this is wrong. hmm. */
 #include <glibtop/mem.h>
 #include <glibtop/swap.h>
+#endif
 
 /* From the comp.lang.c FAQ */
 #define MAX_ITOA_LEN ((sizeof(long) * CHAR_BIT + 2) / 3 + 1)  /* +1 for '-' */
@@ -326,10 +329,12 @@ add_memory_info(unsigned long glibtop_value,
                 gint glibtop_define,
                 memory_info mi)
 {
+#ifdef HAVE_LIBGTOP
   memory[mi] = memsize_string(glibtop_value);
   memory_descriptions[mi] = 
     g_strdup(glibtop_labels_mem[glibtop_define]);
   /*        glibtop_descriptions_mem[glibtop_define] */
+#endif
 }
 
 static void
@@ -337,10 +342,12 @@ add_swap_info(unsigned long glibtop_value,
               gint glibtop_define,
               memory_info mi)
 {
+#ifdef HAVE_LIBGTOP
   memory[mi] = memsize_string(glibtop_value);
   memory_descriptions[mi] = 
     g_strdup(glibtop_labels_swap[glibtop_define]);
   /*                     glibtop_descriptions_swap[glibtop_define]) */
+#endif
 }
 
 void load_meminfo()
