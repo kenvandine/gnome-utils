@@ -25,6 +25,8 @@ static gchar *filename = NULL;
 static pid_t temporary_pid = 0;
 static gchar *temporary_file = NULL;
 
+static GtkWidget *create_archive_widget=NULL;
+
 #define ERRDLG(error) gtk_message_dialog_new (GTK_WINDOW(app), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, error);
 #define ERRDLGP(error,parent) gtk_message_dialog_new (GTK_WINDOW(parent), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, error);
 
@@ -139,6 +141,7 @@ remove_pos (gint pos)
 
 	if (number_of_files + number_of_dirs <= 0) {
 		gtk_widget_set_sensitive (compress_button, FALSE);
+		gtk_widget_set_sensitive (create_archive_widget, FALSE);
 	}
 
 	update_status ();
@@ -431,6 +434,7 @@ clear_cb (GtkWidget *w, gpointer data)
 	number_of_files = number_of_dirs = 0;
 	gnome_icon_list_clear (GNOME_ICON_LIST (icon_list));
 	gtk_widget_set_sensitive (compress_button, FALSE);
+	gtk_widget_set_sensitive (create_archive_widget, FALSE);
 	update_status ();
 }
 
@@ -582,6 +586,7 @@ add_file (const gchar *file)
 	}
 
 	gtk_widget_set_sensitive (compress_button, TRUE);
+	gtk_widget_set_sensitive (create_archive_widget, TRUE);
 
 	f = g_new0 (File, 1);
 	f->type = type;
@@ -811,6 +816,7 @@ init_gui (void)
 			      NULL);
 
 	gtk_widget_set_sensitive (compress_button, FALSE);
+	gtk_widget_set_sensitive (file_menu[1].widget, FALSE);
 
 	/* setup dnd */
 	gtk_drag_source_set (compress_button,
@@ -914,6 +920,8 @@ main (gint argc, gchar *argv [])
 	files = poptGetArgs (ctx);
 
 	init_gui ();
+
+	create_archive_widget = file_menu[1].widget;
 
 	file_ht = g_hash_table_new (g_str_hash, g_str_equal);
 
