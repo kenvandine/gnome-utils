@@ -34,6 +34,12 @@
 #  include <config.h>
 #endif
 
+#include <fnmatch.h>
+
+#ifndef FNM_CASEFOLD
+#  define FNM_CASEFOLD 0
+#endif
+
 #include <gnome.h>
 
 #include "gsearchtool.h"
@@ -43,7 +49,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <signal.h>
-#include <fnmatch.h>
 #include <libbonobo.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
@@ -60,21 +65,21 @@ struct _FindOptionTemplate {
 };
 	
 static FindOptionTemplate templates[] = {
-	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("Contains the text"), FALSE },
+	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("C_ontains the text"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_TIME, "-mtime -%d", N_("Date modified less than (days)"), FALSE },
-	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Date modified more than (days)"), FALSE },
+	{ SEARCH_CONSTRAINT_TIME, "-mtime -%d", N_("_Date modified less than (days)"), FALSE },
+	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Da_te modified more than (days)"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_NUMBER, "-size +%uc", N_("Size at least (kilobytes)"), FALSE }, 
-	{ SEARCH_CONSTRAINT_NUMBER, "-size -%uc", N_("Size at most (kilobytes)"), FALSE },
+	{ SEARCH_CONSTRAINT_NUMBER, "-size +%uc", N_("_Size at least (kilobytes)"), FALSE }, 
+	{ SEARCH_CONSTRAINT_NUMBER, "-size -%uc", N_("Si_ze at most (kilobytes)"), FALSE },
 	{ SEARCH_CONSTRAINT_BOOL, "-size 0c \\( -type f -o -type d \\)", N_("File is empty"), FALSE },	
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_TEXT, "-user '%s'", N_("Owned by user"), FALSE },
-	{ SEARCH_CONSTRAINT_TEXT, "-group '%s'", N_("Owned by group"), FALSE },
+	{ SEARCH_CONSTRAINT_TEXT, "-user '%s'", N_("Owned by _user"), FALSE },
+	{ SEARCH_CONSTRAINT_TEXT, "-group '%s'", N_("Owned by _group"), FALSE },
 	{ SEARCH_CONSTRAINT_BOOL, "\\( -nouser -o -nogroup \\)", N_("Owner is unrecognized"), FALSE },
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_TEXT, "'!' -name '%s'", N_("File is not named"), FALSE },
-	{ SEARCH_CONSTRAINT_TEXT, "-regex '%s'", N_("File matches regular expression"), FALSE }, 
+	{ SEARCH_CONSTRAINT_TEXT, "'!' -name '*%s*'", N_("Na_me does not contain"), FALSE },
+	{ SEARCH_CONSTRAINT_TEXT, "-regex '%s'", N_("Name matches regular e_xpression"), FALSE }, 
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_BOOL, "-follow", N_("Follow symbolic links"), FALSE },
 	{ SEARCH_CONSTRAINT_BOOL, "-xdev", N_("Include other filesystems"), FALSE },
@@ -153,6 +158,53 @@ struct poptOption options[] = {
   	{ NULL,'\0', 0, NULL, 0, NULL, NULL}
 };
 
+static gchar *find_command_default_name_option;
+static gchar *locate_command_default_options;
+	
+void   
+setup_case_insensitive_arguments (void)
+{
+	static gboolean first_pass = TRUE;
+	gchar *cmd_stderr;
+
+	if (first_pass != TRUE) {
+		return;
+	}
+
+	first_pass = FALSE;
+
+	/* check find command for -iname argument compatibility */
+	g_spawn_command_line_sync ("find /dev/null -name 'string'", NULL, &cmd_stderr, NULL, NULL);
+
+	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
+		find_command_default_name_option = g_strdup ("-iname");
+		templates[SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED].option = g_strdup ("'!' -iname '*%s*'");
+	}
+	else {
+		find_command_default_name_option = g_strdup ("-name");
+	}
+	g_free (cmd_stderr);
+
+	/* check grep command for -i argument compatibility */
+	g_spawn_command_line_sync ("grep -i 'string' /dev/null", NULL, &cmd_stderr, NULL, NULL);
+
+	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
+		templates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = g_strdup ("-exec grep -i -c '%s' {} \\;");
+	}
+	g_free (cmd_stderr);
+
+	/* check locate command for -i argument compatibility */
+	g_spawn_command_line_sync ("locate -i /dev/null/string", NULL, &cmd_stderr, NULL, NULL);
+
+	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
+		locate_command_default_options = g_strdup ("-i");
+	}
+	else {
+		locate_command_default_options = g_strdup ("");
+	}
+	g_free (cmd_stderr);
+}
+
 gchar *
 build_search_command (void)
 {
@@ -162,6 +214,8 @@ build_search_command (void)
 	gchar *file_is_named_escaped;
 	gchar *look_in_folder_utf8;
 	gchar *look_in_folder_locale;
+
+	setup_case_insensitive_arguments ();
 	
 	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))));
 
@@ -169,8 +223,18 @@ build_search_command (void)
 		file_is_named_locale = NULL;
 	} 
 	else {
-		file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
+		gchar *locale;
+
+		locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
 		gnome_entry_prepend_history (GNOME_ENTRY(interface.file_is_named_entry), TRUE, file_is_named_utf8);
+
+		if (strstr (locale, "*") == NULL) {
+			file_is_named_utf8 = g_strconcat ("*", file_is_named_utf8, "*", NULL);
+		}
+		
+		file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
+		
+		g_free (locale);
 	}
 	
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
@@ -193,16 +257,18 @@ build_search_command (void)
 		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
-		if ((locate != NULL) && (is_path_in_home_folder (look_in_folder_locale) != TRUE)
-		    && (is_path_in_mount_folder (look_in_folder_locale) != TRUE)) {
-			g_string_append_printf (command, "%s '%s*%s'", 
-						locate, 
+		if ((locate != NULL) && (is_path_in_home_folder (look_in_folder_locale) != TRUE) 
+		     && (is_path_in_mount_folder (look_in_folder_locale) != TRUE)) {	
+			g_string_append_printf (command, "%s %s '%s*%s'", 
+						locate,
+						locate_command_default_options,
 						look_in_folder_locale,
 						file_is_named_escaped);
 		} 
 		else {
-			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' -xdev -print", 
+			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p %s '%s' -xdev -print", 
 						look_in_folder_locale, 
+						find_command_default_name_option, 
 						file_is_named_escaped);
 		}
 		g_free (locate);
@@ -216,13 +282,15 @@ build_search_command (void)
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
 		if (file_is_named_escaped == NULL) {
-			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' ", 
+			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p %s '%s' ", 
 					 	look_in_folder_locale,
+						find_command_default_name_option,
 						"*");
 		}
 		else {
-			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' ", 
+			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p %s '%s' ", 
 					 	look_in_folder_locale,
+						find_command_default_name_option,
 						file_is_named_escaped);
 		}
 	
@@ -428,14 +496,15 @@ make_list_of_templates (void)
 			gtk_widget_show (menuitem);
 		} 
 		else {
-			menuitem = gtk_radio_menu_item_new_with_label (group,
-							      	_(templates[i].desc));
+			gchar *text = remove_mnemonic_character (templates[i].desc);
+			menuitem = gtk_radio_menu_item_new_with_label (group, _(text));
 			g_signal_connect (G_OBJECT(menuitem), "toggled",
 					  G_CALLBACK(constraint_menu_toggled_cb),
 		        		  (gpointer)(long)i);
 			group = gtk_radio_menu_item_get_group (GTK_RADIO_MENU_ITEM (menuitem));
 			gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
 			gtk_widget_show (menuitem);
+			g_free (text);
 		}
 		
 		if (templates[i].is_selected == TRUE) {
@@ -590,15 +659,17 @@ define_popt_descriptions (void)
 	gint i = 0;
 	gint j;
 
-	options[i++].descrip = g_strdup (_("Set the text of 'file is named'"));
-	options[i++].descrip = g_strdup (_("Set the text of 'look in folder'"));
+	options[i++].descrip = g_strdup (_("Set the text of 'Name contains'"));
+	options[i++].descrip = g_strdup (_("Set the text of 'Look in folder'"));
   	options[i++].descrip = g_strdup (_("Sort files by one of the following: name, folder, size, type, or date"));
   	options[i++].descrip = g_strdup (_("Set sort order to descending, the default is ascending"));
   	options[i++].descrip = g_strdup (_("Automatically start a search"));
 
 	for (j = 0; templates[j].type != SEARCH_CONSTRAINT_END; j++) {
 		if (templates[j].type != SEARCH_CONSTRAINT_SEPARATOR) {
-			options[i++].descrip = g_strdup_printf (_("Select the '%s' constraint"), templates[j].desc);
+			gchar *text = remove_mnemonic_character (templates[j].desc);
+			options[i++].descrip = g_strdup_printf (_("Select the '%s' constraint"), _(text));
+			g_free (text);
 		}
 	}
 }
@@ -762,7 +833,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			
 				filename = g_path_get_basename (utf8);
 			
-				if (fnmatch (search_data->file_is_named_pattern, filename, FNM_NOESCAPE) != FNM_NOMATCH) {
+				if (fnmatch (search_data->file_is_named_pattern, filename, FNM_NOESCAPE | FNM_CASEFOLD ) != FNM_NOMATCH) {
 					if (search_data->show_hidden_files == TRUE) {
 						if (search_data->regex_matching_enabled == FALSE) {
 							add_file_to_search_results (string->str, interface.model, &interface.iter);
@@ -1056,10 +1127,12 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 	switch(templates[opt->constraint_id].type) {
 	case SEARCH_CONSTRAINT_BOOL:
 		{
-			gchar *desc = g_strconcat (LEFT_LABEL_SPACING, _(templates[opt->constraint_id].desc), ".", NULL);
+			gchar *text = remove_mnemonic_character (templates[opt->constraint_id].desc);
+			gchar *desc = g_strconcat (LEFT_LABEL_SPACING, _(text), ".", NULL);
 			label = gtk_label_new (desc);
-			g_free (desc);
 			gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
+			g_free (desc);
+			g_free (text);
 		}
 		break;
 	case SEARCH_CONSTRAINT_TEXT:
@@ -1067,7 +1140,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 	case SEARCH_CONSTRAINT_TIME:
 		{
 			gchar *desc = g_strconcat (LEFT_LABEL_SPACING, _(templates[opt->constraint_id].desc), ":", NULL);
-			label = gtk_label_new (desc);
+			label = gtk_label_new_with_mnemonic (desc);
 			g_free (desc);
 		}
 		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD_SMALL);
@@ -1092,6 +1165,8 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 			add_atk_relation (entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY);
 			add_atk_relation (GTK_WIDGET(label), entry, ATK_RELATION_LABEL_FOR);
 		}
+		
+		gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (entry));
 		
 		g_signal_connect (G_OBJECT(entry), "changed",
 			 	  G_CALLBACK(constraint_update_info_cb), opt);
@@ -1122,10 +1197,11 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	
 	if (interface.is_gail_loaded) {
-		gchar *desc = g_strdup_printf (_("Click to Remove the '%s' Rule"), 
-					       _(templates[opt->constraint_id].desc));
+		gchar *text = remove_mnemonic_character (templates[opt->constraint_id].desc);
+		gchar *desc = g_strdup_printf (_("Click to Remove the '%s' Rule"), _(text));
 		add_atk_namedesc (GTK_WIDGET(button), NULL, desc);
 		g_free (desc);
+		g_free (text);
 	}
 	return hbox;
 }
@@ -1215,8 +1291,8 @@ GtkWidget *
 create_search_results_section (void)
 {
 	GtkWidget 	  *label;
-	GtkWidget 	  *frame;	
-	GtkWidget 	  *window;	
+	GtkWidget 	  *frame;
+	GtkWidget	  *window;	
 	GtkTreeViewColumn *column;	
 	GtkCellRenderer   *renderer;
 	
@@ -1228,7 +1304,7 @@ create_search_results_section (void)
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
 	gtk_frame_set_label_widget (GTK_FRAME(frame), label);
 	
-	window = gtk_scrolled_window_new (NULL, NULL); 
+	window = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_IN);	
 	gtk_container_set_border_width (GTK_CONTAINER(window), 0);
 	gtk_widget_set_size_request (window, 530, 160); 
@@ -1362,8 +1438,8 @@ create_main_window (void)
 {
 	gchar 		*string;
 	GtkWidget 	*hbox;	
-	GtkWidget 	*label;
 	GtkWidget 	*entry;
+	GtkWidget	*label;
 	GtkWidget 	*folder_entry;
 	GtkWidget 	*button;
 	GtkWidget 	*window;
@@ -1383,7 +1459,7 @@ create_main_window (void)
 	gtk_table_set_col_spacings (GTK_TABLE(interface.table), GNOME_PAD);
 	gtk_container_add (GTK_CONTAINER(hbox), interface.table);
 	
-	label = gtk_label_new_with_mnemonic (_("File is _named:"));
+	label = gtk_label_new_with_mnemonic (_("_Name contains:"));
 	gtk_label_set_justify (GTK_LABEL(label), GTK_JUSTIFY_LEFT);
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
 	

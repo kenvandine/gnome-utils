@@ -408,15 +408,15 @@ is_path_hidden (const gchar *path)
 }
 
 gboolean 
-is_path_in_mount_folder (const gchar *path)
-{
-	return (g_strstr_len (path, strlen ("/mnt/"), "/mnt/") != NULL);
-}
-
-gboolean 
 is_path_in_home_folder (const gchar *path)
 {
 	return (g_strstr_len (path, strlen (g_get_home_dir ()), g_get_home_dir ()) != NULL);
+}
+
+gboolean 
+is_path_in_mount_folder (const gchar *path)
+{
+	return (g_strstr_len (path, strlen ("/mnt/"), "/mnt/") != NULL);
 }
 
 gboolean
@@ -485,6 +485,27 @@ escape_single_quotes (const gchar *string)
 		else {
 			g_string_append_c(gs, *string);
 		}
+	}
+	return g_string_free (gs, FALSE);
+}
+
+gchar *
+remove_mnemonic_character (const gchar *string)
+{
+	GString *gs;
+	gboolean first_mnemonic = TRUE;
+	
+	if (string == NULL) {
+		return NULL;
+	}
+	
+	gs = g_string_new ("");
+	for(; *string; string++) {
+		if ((first_mnemonic == TRUE) && (*string == '_')) {
+			first_mnemonic = FALSE;
+			continue;
+		}
+		g_string_append_c(gs, *string);
 	}
 	return g_string_free (gs, FALSE);
 }

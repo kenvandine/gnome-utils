@@ -1,3 +1,23 @@
+2003-01-20  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c:  Fix bug #102480.  Add mnemonics to additional 
+	options of type SEARCH_CONSTRAINT_TEXT.
+
+	* gsearchtool-support.[ch]:  Added remove_mnemonic_character().
+
+2003-01-20  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c:  Fix bug #100728.  Default filename search 
+	constraint should be case insensitive (system dependent).  Also, 
+	converted the 'Contains the text' and 'File is not named' search 
+	constraints to be case insensitive for consistency.  
+
+2003-01-20  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c:  Fix bug #98548.  Default filename search 
+	should be by substring.  As a result, the 'file is named' 
+	entry has been renamed to 'Name contains'.
+
 2003-01-09  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c:  Do not use the locate command for finding
