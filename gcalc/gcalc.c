@@ -81,33 +81,26 @@ selection_handle (GtkWidget *widget,
 }
 
 /* Menus */
-GnomeUIInfo gcalc_calculator_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("E_xit"),  NULL, quit_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_QUIT,
-	 'x', GDK_CONTROL_MASK, NULL},
+static GnomeUIInfo file_menu[] = {
+	GNOMEUIINFO_MENU_EXIT_ITEM(quit_cb,NULL),
 	GNOMEUIINFO_END
 };
 
-GnomeUIInfo gcalc_help_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("_About..."), NULL, about_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT},
+static GnomeUIInfo edit_menu[] = {
+	GNOMEUIINFO_MENU_COPY_ITEM(copy_contents,NULL),
 	GNOMEUIINFO_END
 };
 
-GnomeUIInfo gcalc_edit_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("_Copy"), NULL, copy_contents, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY,
-	'c', GDK_CONTROL_MASK, NULL},
+static GnomeUIInfo help_menu[] = {
+	GNOMEUIINFO_HELP("gcalc"),
+	GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb,NULL),
 	GNOMEUIINFO_END
 };
 
-GnomeUIInfo gcalc_menu[] = {
-        {GNOME_APP_UI_SUBTREE, N_("_Calculator"), NULL, gcalc_calculator_menu, NULL, NULL,
-	        GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{GNOME_APP_UI_SUBTREE, N_("_Edit"), NULL, gcalc_edit_menu, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-	{GNOME_APP_UI_SUBTREE, N_("_Help"), NULL, gcalc_help_menu, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+static GnomeUIInfo gcalc_menu[] = {
+	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+	GNOMEUIINFO_MENU_EDIT_TREE(edit_menu),
+	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
         GNOMEUIINFO_END
 };
 
