@@ -11,6 +11,7 @@ EXTRA_DIST = fontsel.sgml \
              ln7.html \
              authors.html \
 	     mainshot.png \
+	     filterwin.png \
 	     topic.dat
 
 gfontsel_helpdir = $(datadir)/gnome/help/gfontsel/C
@@ -22,4 +23,5 @@ gfontsel_help_DATA = index.html \
 		     ln7.html \
 		     authors.html \
 		     mainshot.png \
+		     filterwin.png \
 	             topic.dat

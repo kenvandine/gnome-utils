@@ -1,5 +1,5 @@
 <!DOCTYPE Article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN"[
-<!ENTITY version "1.0.50">
+<!ENTITY version "1.0.51">
 ]>
  
 <article id="index">
@@ -203,12 +203,26 @@
 	In this window, you can set the font selector to show only the
 	fonts which satisfy some criteria.  You can specify values for
 	font foundry (vendor), weight, character set, slant, set
-	width, and spacing. You can choose <keysym>*</keysym>, which
-	means "any value"; you can also specify several values for the
-	same field: just click on several of the them with the left
-	mouse button (you do not need to hold <keycap>SHIFT</keycap>
-	or <keycap>CTRL</keycap>).
+	width, and spacing (see <xref linkend="xlfd"> for description
+	of these and other font parameters). You can choose
+	<keysym>*</keysym>, which means "any value"; you can also
+	specify several values for the same field: just click on
+	several of the them with the left mouse button (you do not
+	need to hold <keycap>SHIFT</keycap> or <keycap>CTRL</keycap>).
       </para>
+
+	<figure id="filtershot">
+	  <title>Filter window</title>
+	  <screenshot>
+	    <screeninfo> GNOME Font Selector - Filter Window</screeninfo>
+	    <graphic fileref="filterwin" format="png"
+	    srccredit="sasha">
+	    </graphic>
+	  </screenshot>
+	</figure>
+
+
+
       <para> You can also specify allowed font types, using
 	checkbuttons at the top of this window. Possible types are
 	bitmap fonts, scalable fonts, and scaled bitmaps. The most
@@ -304,7 +318,7 @@
               example, 12) </para></listitem>
 
 	  <listitem><para> <guilabel>pointsize</guilabel> &mdash;
-              approximate point size of the text, measured in tenths
+              approximate point size of the font, measured in tenths
               of a point. In the example above, point size is 120,
               that is, 12 points. One point is equal to 1/72 of an
               inch, which is the common convention in English and
@@ -326,7 +340,7 @@
               font. Allowed values are (m)onospaced, (c)haracter cell
               (in both of these spacings, all characters have the same
               width) and proportional (characters have varying
-              sizes). Proportional fonts usually look nicer;
+              sizes). Proportional fonts usually look nicer. 
               </para></listitem>
 
 	  <listitem><para> character set <guilabel>registry</guilabel>
@@ -340,7 +354,7 @@
 		<listitem>
 		  <para>
 		    <emphasis>iso8859-1</emphasis>, also known as
-		    Latin 1,&mdash; this character set includes all
+		    Latin 1 &mdash; this character set includes all
 		    the symbols found on the keyboard, i.e. Latin
 		    letters, punctuation marks, numbers, symbols such
 		    as @ or $. It also includes some special symbols,
@@ -418,7 +432,10 @@
       This manual was written by Alexander Kirillov
       (<email>kirillov@math.sunysb.edu</email>). Please send all comments
       and suggestions regarding the manual to the GNOME Documentation
-      Project at <email>docs@gnome.org</email>. 
+      Project at <email>docs@gnome.org</email>. You can also add your
+      comments online by using <ulink type="http"
+      url="http://www.gnome.org/gdp/doctable/">GNOME Documentation
+      Status Table</ulink>. 
       </para>
     </sect1>
   
