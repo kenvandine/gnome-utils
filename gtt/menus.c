@@ -37,6 +37,11 @@ static GnomeUIInfo menu_main_file[] = {
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE,
 		'S', GDK_CONTROL_MASK, NULL},
 	{GNOME_APP_UI_SEPARATOR},
+	{GNOME_APP_UI_ITEM, N_("Preferences..."), NULL,
+		menu_options, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF,
+		0, 0, NULL},
+	{GNOME_APP_UI_SEPARATOR},
 	{GNOME_APP_UI_ITEM, N_("Quit"), NULL,
 		quit_app, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_QUIT,
@@ -71,11 +76,6 @@ static GnomeUIInfo menu_main_edit[] = {
 		menu_properties, NULL, NULL,
 		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP,
 		'E', GDK_CONTROL_MASK, NULL},
-	{GNOME_APP_UI_SEPARATOR},
-	{GNOME_APP_UI_ITEM, N_("Preferences..."), NULL,
-		menu_options, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF,
-		0, 0, NULL},
 	{GNOME_APP_UI_ENDOFINFO}
 };
 
@@ -223,6 +223,8 @@ menu_set_states(void)
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_PASTE_POS].widget,
 				 (cutted_project) ? 1 : 0);
 	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_CDC_POS].widget,
+				 (cur_proj) ? 1 : 0);
+	gtk_widget_set_sensitive(menu_main_edit[MENU_EDIT_PROP_POS].widget,
 				 (cur_proj) ? 1 : 0);
 
 	if (!menu_popup[MENU_POPUP_CUT_POS].widget) return;
