@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils-1.1.1cvs\n"
-"POT-Creation-Date: 2000-06-01 12:38+0200\n"
-"PO-Revision-Date: 2000-06-01 12:46+02:00\n"
+"Project-Id-Version: gnome-utils-1.2.1cvs\n"
+"POT-Creation-Date: 2000-07-10 23:27+0200\n"
+"PO-Revision-Date: 2000-06-10 21:29+02:00\n"
 "Last-Translator: Benedikt Roth <Benedikt.Roth@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -279,7 +279,7 @@ msgid "Cross-reference:"
 msgstr "Querverweis:"
 
 #. Fixme these should be stock buttons
-#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:495
+#: gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
 #: mini-utils/gcolorsel/menus.c:1109 mini-utils/gshutdown/gshutdown.c:314
 msgid "Preferences"
 msgstr "Einstellungen:"
@@ -332,7 +332,7 @@ msgstr "Applet"
 #. * label; FIXME: Memory leak
 #.
 #: gdictsrc/gdict-pref-dialog.c:498 gdictsrc/gdict-pref-dialog.c:542
-#: gdictsrc/gdict-speller.c:386
+#: gdictsrc/gdict-speller.c:393
 msgid "Cannot connect to server"
 msgstr "Kann keine Verbindung zum Server herstellen."
 
@@ -359,7 +359,7 @@ msgstr "Geometrie des Fensters angeben."
 msgid "GEOMETRY"
 msgstr "GEOMETRIE"
 
-#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:160
+#: gdiskfree/gdiskfree_menus.c:45 gtt/prop.c:167
 msgid "Properties"
 msgstr "Eigenschaften"
 
@@ -371,35 +371,39 @@ msgstr "Hiermit werden die Einstellungen der Anwendung überhaupt getätigt."
 msgid "GDiskFree is a GNOME implementation of the shell utility 'df'."
 msgstr "GDiskFree ist eine GNOME-Implementierung des Shell-Befehls 'df'."
 
-#: gdiskfree/gdiskfree_options.c:191
+#: gdiskfree/gdiskfree_options.c:206
 msgid "GDiskFree Properties"
 msgstr "Eigenschaften von GDiskFree"
 
-#: gdiskfree/gdiskfree_options.c:196
+#: gdiskfree/gdiskfree_options.c:211
 msgid "Invoke sync before getting usage info"
 msgstr "Erst `sync' aufrufen, um dann die Belegung angezeigt zu bekommen"
 
-#: gdiskfree/gdiskfree_options.c:207
+#: gdiskfree/gdiskfree_options.c:223
 msgid "Show drive mount points"
 msgstr "Mountpunkte der Partitionen anzeigen"
 
-#: gdiskfree/gdiskfree_options.c:216
+#: gdiskfree/gdiskfree_options.c:234
+msgid "Show drive size"
+msgstr "Größe des Laufwerkes zeigen"
+
+#: gdiskfree/gdiskfree_options.c:244
 msgid "Dial Orientation"
 msgstr "Anordnung der Anzeigescheiben"
 
-#: gdiskfree/gdiskfree_options.c:221
+#: gdiskfree/gdiskfree_options.c:249
 msgid "Vertical"
 msgstr "Vertikal"
 
-#: gdiskfree/gdiskfree_options.c:234
+#: gdiskfree/gdiskfree_options.c:262
 msgid "Horizontal"
 msgstr "Horizontal"
 
-#: gdiskfree/gdiskfree_options.c:253
+#: gdiskfree/gdiskfree_options.c:281
 msgid "Update interval (ms)"
 msgstr "Auffrischungsintervall (ms)"
 
-#: gdiskfree/gdiskfree_options.c:264
+#: gdiskfree/gdiskfree_options.c:292
 msgid "General Settings"
 msgstr "Allgemeine Einstellungen"
 
@@ -470,12 +474,12 @@ msgstr "Neu"
 msgid "Clear the search window"
 msgstr "Das Such-Fenster leeren"
 
-#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:565
+#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:610
 #: mini-utils/gw/gw.c:508
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:491
+#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:536
 #: logview/actions.c:127
 msgid "Remove"
 msgstr "Entfernen"
@@ -587,35 +591,58 @@ msgstr "Die Suche läuft bereits auf einer anderen Seite"
 msgid "Search Results"
 msgstr "Suchergebnisse"
 
-#: gsearchtool/gsearchtool.c:329
+#: gsearchtool/gsearchtool.c:329 gsearchtool/gsearchtool.c:360
 msgid "Start directory does not exist"
 msgstr "Das Startverzeichnis ist nicht vorhanden"
 
-#: gsearchtool/gsearchtool.c:483
+#: gsearchtool/gsearchtool.c:369
+msgid "Search command line"
+msgstr "Such-Kommandozeile"
+
+#: gsearchtool/gsearchtool.c:375
+msgid ""
+"This is the command line that can be used to execute this search from the "
+"console:\n"
+"(Note: to print one file per line rather then null separated,\n"
+"append \"| tr '\\000' '\\n'\" to the line below)"
+msgstr ""
+"Dies ist die Kommando-Zeile um diese Suche von der Konsole aus auszuführen:\n"
+"(Merke: Um eine Datei pro Zeile (statt null-getrennt) anzuzeigen,\n"
+"muss \"| tr '\\000' '\\n'\" an die Zeile unten angehängt werden)"
+
+#: gsearchtool/gsearchtool.c:462
+msgid "Entry changed called for a non entry option!"
+msgstr "'Eintrag geändert' wurde für etwas aufgerufen was kein Eintrag ist"
+
+#: gsearchtool/gsearchtool.c:528
 msgid "Enable"
 msgstr "Aktiv"
 
-#: gsearchtool/gsearchtool.c:543
+#: gsearchtool/gsearchtool.c:588
 msgid "Start in directory:"
 msgstr "Start in Verzeichnis:"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:590
 msgid "Browse"
 msgstr "Stöbern"
 
-#: gsearchtool/gsearchtool.c:576 gsearchtool/gsearchtool.c:659
+#: gsearchtool/gsearchtool.c:621
+msgid "Show Command"
+msgstr "Befehl zeigen"
+
+#: gsearchtool/gsearchtool.c:626 gsearchtool/gsearchtool.c:709
 msgid "Start"
 msgstr "Starten"
 
-#: gsearchtool/gsearchtool.c:577 gsearchtool/gsearchtool.c:660
+#: gsearchtool/gsearchtool.c:627 gsearchtool/gsearchtool.c:710
 msgid "Stop"
 msgstr "Stoppen"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:660
 msgid "Nothing to locate"
 msgstr "Nichts zu finden mit 'locate'"
 
-#: gsearchtool/gsearchtool.c:638
+#: gsearchtool/gsearchtool.c:688
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -627,31 +654,31 @@ msgstr ""
 "(Jokerzeichen) eingeben, muss es eine Übereinstimmung mit einem kompletten\n"
 "Pfadnamen geben."
 
-#: gsearchtool/gsearchtool.c:647
+#: gsearchtool/gsearchtool.c:697
 msgid "Locate file: "
 msgstr "Zu findende Datei (mit `locate'): "
 
-#: gsearchtool/gsearchtool.c:681
+#: gsearchtool/gsearchtool.c:731
 msgid "Full find (find)"
 msgstr "Volle Suche (mit `find')"
 
-#: gsearchtool/gsearchtool.c:683
+#: gsearchtool/gsearchtool.c:733
 msgid "Quick find (locate)"
 msgstr "Schnelle Suche (mit `locate')"
 
-#: gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:754
 msgid "The Gnome Search Tool"
 msgstr "Das GNOME-Suchwerkzeug"
 
-#: gsearchtool/gsearchtool.c:705
+#: gsearchtool/gsearchtool.c:755
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998, 2000 The Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:707
+#: gsearchtool/gsearchtool.c:757
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Front-End zu den Unix-Befehlen find/grep/locate"
 
-#: gsearchtool/gsearchtool.c:765
+#: gsearchtool/gsearchtool.c:815
 msgid "Gnome Search Tool"
 msgstr "GNOME-Suchwerkzeug"
 
@@ -1010,11 +1037,11 @@ msgstr "Gesamt"
 msgid "Today"
 msgstr "Heute"
 
-#: gtt/clist.c:171
+#: gtt/clist.c:171 gtt/menucmd.c:117
 msgid "Project Title"
 msgstr "Projekttitel"
 
-#: gtt/clist.c:172
+#: gtt/clist.c:172 gtt/menucmd.c:118
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -1066,37 +1093,33 @@ msgstr "Ein Projekt beim Start wählen"
 msgid "PROJECT"
 msgstr "PROJEKT"
 
-#: gtt/menucmd.c:31 gtt/menucmd.c:129 gtt/menucmd.c:161
+#: gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
 msgid "Warning"
 msgstr "Achtung!"
 
-#: gtt/menucmd.c:32 gtt/menucmd.c:163
+#: gtt/menucmd.c:34 gtt/menucmd.c:195
 msgid "I could not write the configuration file!"
 msgstr "Ich konnte die Konfigurationsdatei nicht speichern!"
 
 # Translation according to gtt.desktop
 # 2000-05-18 06:00:04 CEST -ke-
-#: gtt/menucmd.c:63
+#: gtt/menucmd.c:65
 msgid "Time tracking tool for GNOME"
 msgstr "Stoppuhr für GNOME"
 
-#: gtt/menucmd.c:93 gtt/toolbar.c:142
+#: gtt/menucmd.c:111 gtt/toolbar.c:142
 msgid "New Project..."
 msgstr "Neues Projekt..."
 
-#: gtt/menucmd.c:97
-msgid "Please enter the name of the new project:"
-msgstr "Bitte geben Sie den Namen für das neue Projekt ein:"
-
-#: gtt/menucmd.c:131
+#: gtt/menucmd.c:163
 msgid "I could not read the configuration file"
 msgstr "Ich konnte die Konfigurationsdatei nicht lesen"
 
-#: gtt/menucmd.c:145 gtt/toolbar.c:149
+#: gtt/menucmd.c:177 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Konfigurationsdatei neu einlesen"
 
-#: gtt/menucmd.c:146
+#: gtt/menucmd.c:178
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -1136,155 +1159,155 @@ msgstr "S_toppuhr läuft"
 msgid "_Timer"
 msgstr "S_toppuhr"
 
-#: gtt/options.c:186
+#: gtt/options.c:189
 msgid "Display"
 msgstr "Anzeige"
 
-#: gtt/options.c:194
+#: gtt/options.c:197
 msgid "Show Seconds"
 msgstr "Sekunden anzeigen"
 
-#: gtt/options.c:200
+#: gtt/options.c:203
 msgid "Show Status Bar"
 msgstr "Statusbalken anzeigen"
 
-#: gtt/options.c:206
+#: gtt/options.c:209
 msgid "Show Table Header"
 msgstr "Tabellenkopf anzeigen"
 
-#: gtt/options.c:220 gtt/options.c:514
+#: gtt/options.c:223 gtt/options.c:537
 msgid "Toolbar"
 msgstr "Werkzeugleiste"
 
-#: gtt/options.c:228
+#: gtt/options.c:231
 msgid "Show Toolbar Icons"
 msgstr "Icons der Werkzeugleiste anzeigen"
 
-#: gtt/options.c:234
+#: gtt/options.c:237
 msgid "Show Toolbar Texts"
 msgstr "Texte der Werkzeugleiste anzeigen"
 
-#: gtt/options.c:240
+#: gtt/options.c:243
 msgid "Show Tooltips"
 msgstr "Minihilfen anzeigen"
 
-#: gtt/options.c:246
+#: gtt/options.c:249
 msgid "Toolbar Segments"
 msgstr "Einträge in der Werkzeugleiste"
 
-#: gtt/options.c:254
+#: gtt/options.c:257
 msgid "Show `New'"
 msgstr "`Neu' anzeigen"
 
-#: gtt/options.c:260
+#: gtt/options.c:263
 msgid "Show `Save', `Reload'"
 msgstr "`Speichern' und `Einlesen' anzeigen"
 
-#: gtt/options.c:266
+#: gtt/options.c:269
 msgid "Show `Cut', `Copy', `Paste'"
 msgstr "`Ausschneiden', `Kopieren' und `Einfügen' anzeigen"
 
-#: gtt/options.c:272
+#: gtt/options.c:275
 msgid "Show `Properties'"
 msgstr "`Eigenschaften' anzeigen"
 
-#: gtt/options.c:278
+#: gtt/options.c:281
 msgid "Show `Timer'"
 msgstr "`Stoppuhr' anzeigen"
 
-#: gtt/options.c:284
+#: gtt/options.c:287
 msgid "Show `Preferences'"
 msgstr "`Einstellungen' anzeigen"
 
-#: gtt/options.c:290
+#: gtt/options.c:293
 msgid "Show `Help'"
 msgstr "`Hilfe' anzeigen"
 
-#: gtt/options.c:296
+#: gtt/options.c:299
 msgid "Show `Quit'"
 msgstr "`Beenden' anzeigen"
 
-#: gtt/options.c:310
+#: gtt/options.c:313
 msgid "Shell Commands"
 msgstr "Befehle"
 
-#: gtt/options.c:318
+#: gtt/options.c:321
 msgid "Switch Project Command:"
 msgstr "Befehle beim Wechseln eines Projekts:"
 
-#: gtt/options.c:329
+#: gtt/options.c:333
 msgid "No Project Command:"
 msgstr "Befehle beim Beenden eines Projekts:"
 
-#: gtt/options.c:363
+#: gtt/options.c:368
 msgid "Logfile"
 msgstr "Logdatei"
 
-#: gtt/options.c:371
+#: gtt/options.c:376
 msgid "Use Logfile"
 msgstr "Logdatei benutzen"
 
-#: gtt/options.c:380
+#: gtt/options.c:385
 msgid "Filename:"
 msgstr "Dateiname:"
 
-#: gtt/options.c:394
+#: gtt/options.c:399
 msgid "Entry Start:"
 msgstr "Eintrag gestartet:"
 
-#: gtt/options.c:408
+#: gtt/options.c:413
 msgid "Entry Stop:"
 msgstr "Eintrag gestoppt:"
 
-#: gtt/options.c:422
+#: gtt/options.c:427
 msgid "Timeout in secs:"
 msgstr "Verzögerung in Sekunden:"
 
-#: gtt/options.c:501
+#: gtt/options.c:524
 msgid "Misc"
 msgstr "Verschiedenes"
 
-#: gtt/proj.c:461
+#: gtt/proj.c:463
 msgid "project %t started"
 msgstr "Projekt %t gestartet"
 
-#: gtt/proj.c:464
+#: gtt/proj.c:466
 msgid "stopped project %t"
 msgstr "Projekt %t angehalten"
 
-#: gtt/prop.c:55
+#: gtt/prop.c:59
 msgid "empty"
 msgstr "leeres Projekt"
 
-#: gtt/prop.c:167
+#: gtt/prop.c:174
 msgid "Project"
 msgstr "Projekt"
 
-#: gtt/prop.c:186
+#: gtt/prop.c:193
 msgid "Project Title:"
 msgstr "Projekttitel:"
 
-#: gtt/prop.c:198
+#: gtt/prop.c:206
 msgid "Project Description:"
 msgstr "Projektbeschreibung:"
 
-#: gtt/prop.c:210
+#: gtt/prop.c:219
 msgid "Project Time today:"
 msgstr "Projektzeit heute:"
 
-#: gtt/prop.c:226 gtt/prop.c:264
+#: gtt/prop.c:235 gtt/prop.c:273
 msgid "hours"
 msgstr "Stunden"
 
-#: gtt/prop.c:237 gtt/prop.c:275
+#: gtt/prop.c:246 gtt/prop.c:284
 msgid "mins"
 msgstr "Minuten"
 
-#: gtt/prop.c:248 gtt/prop.c:286
+#: gtt/prop.c:257 gtt/prop.c:295
 msgid "secs"
 msgstr "Sekunden"
 
-#: gtt/prop.c:252
+#: gtt/prop.c:261
 msgid "Project Time ever:"
 msgstr "Gesamte Projektzeit:"
 
@@ -1509,51 +1532,51 @@ msgstr "Zeilenzahl:"
 msgid "%ld bytes"
 msgstr "%ld Bytes"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "January"
 msgstr "Januar"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "February"
 msgstr "Februar "
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "March"
 msgstr "März"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "April"
 msgstr "April"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:88
 msgid "May"
 msgstr "Mai"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "June"
 msgstr "Juni"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "July"
 msgstr "Juli"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "August"
 msgstr "August"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "September"
 msgstr "September"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:89
 msgid "October"
 msgstr "Oktober"
 
-#: logview/log_repaint.c:89
+#: logview/log_repaint.c:90
 msgid "November"
 msgstr "November"
 
-#: logview/log_repaint.c:89
+#: logview/log_repaint.c:90
 msgid "December"
 msgstr "Dezember"
 
@@ -1595,132 +1618,140 @@ msgstr "%s konnte nicht geöffnet werden."
 msgid "%s not a log file."
 msgstr "%s ist keine Logdatei."
 
-#: logview/logrtns.c:614 logview/logrtns.c:645 logview/logrtns.c:776
+#: logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: kein Speicher mehr"
 
-#: logview/logview.c:84
+#: logview/logview.c:85
 msgid "Open log...            "
 msgstr "Log öffnen...          "
 
-#: logview/logview.c:85
+#: logview/logview.c:86
 msgid "Open log"
 msgstr "Log öffnen"
 
-#: logview/logview.c:87
+#: logview/logview.c:88
 msgid "Export log...          "
 msgstr "Log exportieren...     "
 
-#: logview/logview.c:88
+#: logview/logview.c:89
 msgid "Export log"
 msgstr "Log exportieren"
 
-#: logview/logview.c:90
+#: logview/logview.c:91
 msgid "Close log              "
 msgstr "Log schließen          "
 
-#: logview/logview.c:91
+#: logview/logview.c:92
 msgid "Close log"
 msgstr "Log schließen"
 
-#: logview/logview.c:93
+#: logview/logview.c:94
 msgid "Switch log             "
 msgstr "Log umschalten         "
 
-#: logview/logview.c:94
+#: logview/logview.c:95
 msgid "Switch log"
 msgstr "Log umschalten"
 
-#: logview/logview.c:96
+#: logview/logview.c:97
 msgid "Monitor..              "
 msgstr "Überwachen...          "
 
-#: logview/logview.c:97
+#: logview/logview.c:98
 msgid "Monitor log"
 msgstr "Log überwachen"
 
-#: logview/logview.c:99
+#: logview/logview.c:100
 msgid "Exit                   "
 msgstr "Beenden                "
 
-#: logview/logview.c:100
+#: logview/logview.c:101
 msgid "Exit program"
 msgstr "Programm verlassen"
 
-#: logview/logview.c:106
+#: logview/logview.c:107
 msgid "Calendar                "
 msgstr "Kalender                "
 
-#: logview/logview.c:107
+#: logview/logview.c:108
 msgid "Show calendar log"
 msgstr "Kalenderlog anzeigen"
 
-#: logview/logview.c:109
+#: logview/logview.c:110
 msgid "Log stats               "
 msgstr "Logstatistiken          "
 
-#: logview/logview.c:110
+#: logview/logview.c:111
 msgid "Show log stats"
 msgstr "Logstatistiken anzeigen"
 
-#: logview/logview.c:112
+#: logview/logview.c:113
 msgid "Zoom                    "
 msgstr "Zoom                    "
 
-#: logview/logview.c:113
+#: logview/logview.c:114
 msgid "Show line info"
 msgstr "Zeileninformation anzeigen"
 
-#: logview/logview.c:119
+#: logview/logview.c:116
+msgid "Preferences...          "
+msgstr "Einstellungen..."
+
+#: logview/logview.c:117
+msgid "Show user preferences"
+msgstr "Benutzer-Einstellungen anzeigen"
+
+#: logview/logview.c:123
 msgid "Select...               "
 msgstr "Auswählen...            "
 
-#: logview/logview.c:120
+#: logview/logview.c:124
 msgid "Select log events"
 msgstr "Logereignisse auswählen"
 
-#: logview/logview.c:122
+#: logview/logview.c:126
 msgid "Filter..                "
 msgstr "Filtern...              "
 
-#: logview/logview.c:123
+#: logview/logview.c:127
 msgid "Filter log events"
 msgstr "Logereignisse filtern"
 
-#: logview/logview.c:129
+#: logview/logview.c:133
 msgid "About..                "
 msgstr "Info...                "
 
-#: logview/logview.c:130
+#: logview/logview.c:134
 msgid "Info about logview"
 msgstr "Informationen über Logview"
 
-#: logview/logview.c:139
+#: logview/logview.c:143
 msgid "F_ilter"
 msgstr "F_ilter"
 
-#: logview/logview.c:230
+#: logview/logview.c:238
 msgid "No log files to open"
 msgstr "Keine Logdateien zum Öffnen"
 
 #. Create App
-#: logview/logview.c:259
+#: logview/logview.c:267
 msgid "System Log Viewer"
 msgstr "Systemlog-Anzeiger"
 
-#: logview/logview.c:360
+#: logview/logview.c:368
 msgid "Filename: "
 msgstr "Dateiname: "
 
-#: logview/logview.c:376
+#: logview/logview.c:384
 msgid "Date: "
 msgstr "Datum: "
 
-#: logview/logview.c:611
+#: logview/logview.c:619
 msgid "Too many open logs. Close one and try again"
 msgstr "Zuviele geöffnete Logs. Eines schließen und nochmal versuchen."
 
-#: logview/logview.c:664
+#: logview/logview.c:672
 msgid "Open new logfile"
 msgstr "Neue Logdatei öffnen"
 
@@ -1986,89 +2017,6 @@ msgstr "Bitte wählen Sie zuvor die Art der Ansicht, die Sie erzeugen wollen."
 #: mini-utils/gcolorsel/glade/dialog-new-view.glade.h:10
 msgid "label4"
 msgstr "beschriftung4"
-
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:8
-msgid "Session"
-msgstr "Sitzung"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:9
-msgid "Save session on exit."
-msgstr "Sitzung beim Beenden speichern."
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:10
-#: mini-utils/gshutdown/gshutdown.c:396
-msgid "General"
-msgstr "Allgemein"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:11
-msgid "MDI (Multiple Document Interface)"
-msgstr "MDI (Multiples Dokumenten Interface)"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:12
-msgid "Notebook Tab position:"
-msgstr "Tabulator Position:"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:13
-msgid "Mode:"
-msgstr "Modus:"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:14
-msgid ""
-"Notebook\n"
-"Toplevel\n"
-"Modal\n"
-"Default\n"
-msgstr ""
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:19
-msgid ""
-"Left\n"
-"Right\n"
-"Top\n"
-"Bottom\n"
-msgstr ""
-"Links\n"
-"Rechts\n"
-"Oben\n"
-"Unten\n"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:24
-msgid "Display documents menu (restart required)."
-msgstr "Dokumentenmenü anzeigen (Neustart erforderlich)."
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:25
-msgid "Documents"
-msgstr "Dokumente"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:26
-msgid "On ... execute ..."
-msgstr "Wenn ... dann führe ... aus"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:27
-msgid "DoubleClick in previews:"
-msgstr ""
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:28
-msgid "DoubleClick in views:"
-msgstr ""
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:29
-msgid "Grab:"
-msgstr "Erfassen:"
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:30
-msgid "Drop:"
-msgstr ""
-
-#: mini-utils/gcolorsel/glade/dialog-prefs.glade.h:31
-msgid "Actions"
-msgstr "Aktionen"
 
 #.
 #. * Chaînes de caractères à traduire générées par
@@ -2459,31 +2407,31 @@ msgstr "Name"
 msgid "Tolerance :"
 msgstr "Toleranz:"
 
-#: mini-utils/gfontsel/gfontsel.c:157
+#: mini-utils/gfontsel/gfontsel.c:162
 msgid "Font Selector"
 msgstr "Schriftwähler"
 
-#: mini-utils/gfontsel/gfontsel.c:185
+#: mini-utils/gfontsel/gfontsel.c:190
 msgid "Selection:"
 msgstr "Auswahl:"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:273
 msgid "Font to load"
 msgstr "Zu ladende Schriftart"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:273
 msgid "FONTSPEC"
 msgstr "SCHRIFT"
 
-#: mini-utils/gfontsel/gfontsel.c:269
+#: mini-utils/gfontsel/gfontsel.c:274
 msgid "Print selected font name on exit"
 msgstr "Den gewählten Namen der Schriftart beim Verlassen ausgeben"
 
-#: mini-utils/gfontsel/gfontsel.c:270
+#: mini-utils/gfontsel/gfontsel.c:275
 msgid "Inhibit remembering selected font for next run"
 msgstr "Die gewählte Schriftart beim nächsten Start nicht laden"
 
-#: mini-utils/gfontsel/gfontsel.c:271
+#: mini-utils/gfontsel/gfontsel.c:276
 msgid "Inhibit loading of last font"
 msgstr "Letzten Font nicht laden"
 
@@ -2702,6 +2650,10 @@ msgstr "Befehle"
 #: mini-utils/gshutdown/gshutdown.c:384
 msgid "Confirm before shutdown?"
 msgstr "Vor dem Herunterfahren nachfragen?"
+
+#: mini-utils/gshutdown/gshutdown.c:396
+msgid "General"
+msgstr "Allgemein"
 
 #: mini-utils/gshutdown/gshutdown.c:449
 #, c-format
@@ -3226,6 +3178,50 @@ msgstr "Nur der Superuser (root) kann dieses Werkzeug benutzen"
 #: mini-utils/idetool/idetool.c:451
 msgid "You appear to have no IDE drives"
 msgstr "Sie scheinen keine IDE-Laufwerke zu besitzen"
+
+#~ msgid "Please enter the name of the new project:"
+#~ msgstr "Bitte geben Sie den Namen für das neue Projekt ein:"
+
+#~ msgid "Session"
+#~ msgstr "Sitzung"
+
+#~ msgid "Save session on exit."
+#~ msgstr "Sitzung beim Beenden speichern."
+
+#~ msgid "MDI (Multiple Document Interface)"
+#~ msgstr "MDI (Multiples Dokumenten Interface)"
+
+#~ msgid "Notebook Tab position:"
+#~ msgstr "Tabulator Position:"
+
+#~ msgid "Mode:"
+#~ msgstr "Modus:"
+
+#~ msgid ""
+#~ "Left\n"
+#~ "Right\n"
+#~ "Top\n"
+#~ "Bottom\n"
+#~ msgstr ""
+#~ "Links\n"
+#~ "Rechts\n"
+#~ "Oben\n"
+#~ "Unten\n"
+
+#~ msgid "Display documents menu (restart required)."
+#~ msgstr "Dokumentenmenü anzeigen (Neustart erforderlich)."
+
+#~ msgid "Documents"
+#~ msgstr "Dokumente"
+
+#~ msgid "On ... execute ..."
+#~ msgstr "Wenn ... dann führe ... aus"
+
+#~ msgid "Grab:"
+#~ msgstr "Erfassen:"
+
+#~ msgid "Actions"
+#~ msgstr "Aktionen"
 
 #~ msgid "System"
 #~ msgstr "System"
