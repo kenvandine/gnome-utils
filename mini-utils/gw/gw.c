@@ -715,9 +715,8 @@ static void load_actions()
 
   config_iterator = gnome_config_init_iterator("/"APPNAME"/"ACTIONS_SECTION);
 
-  while ( (config_iterator = 
-           gnome_config_iterator_next(config_iterator, 
-                                      &name, &command)) != NULL ) {
+  while (config_iterator) {
+    config_iterator = gnome_config_iterator_next(config_iterator, &name, &command);
     a = g_new(Action, 1);
     a->key = name; a->format = command;
     actions = g_list_prepend(actions, a);
