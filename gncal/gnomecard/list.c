@@ -64,12 +64,32 @@ gnomecard_update_list(Card *crd)
     gchar  *text[4];
     gint   row;
 
-    row = GPOINTER_TO_INT(crd->prop.user_data);
+    row = gtk_clist_find_row_from_data( gnomecard_list, crd);
     
     gnomecard_create_list_row(crd, text);
     gtk_clist_remove(gnomecard_list, row);
     gtk_clist_insert(gnomecard_list, row, text);
+    gtk_clist_set_row_data(gnomecard_list, row, crd);
     gnomecard_destroy_list_row(text);
+}
+
+
+/* redraw list based on gnomecard_crd structure               */
+/* used after a sort, for example, has changed order of cards */
+void
+gnomecard_rebuild_list(Card *curcard)
+{
+    GList *c;
+
+    gtk_clist_freeze(gnomecard_list);
+    gtk_clist_clear(gnomecard_list);
+    for (c = gnomecard_crds; c; c = c->next)
+	gnomecard_add_card_to_list((Card *) c->data);
+    gtk_clist_thaw(gnomecard_list);
+    if (curcard)
+	gnomecard_scroll_list(curcard);
+    else
+	gnomecard_scroll_list(gnomecard_crds);
 }
 
 void
@@ -78,7 +98,7 @@ gnomecard_scroll_list(GList *node)
     gint row;
     GList *tmp;
 
-    row = GPOINTER_TO_INT(((Card *) node->data)->prop.user_data);
+    row = gtk_clist_find_row_from_data(gnomecard_list,(Card *) node->data);
 
     if (gtk_clist_row_is_visible(gnomecard_list, row) != GTK_VISIBILITY_FULL)
 	gtk_clist_moveto(gnomecard_list, row, 0, 0.5, 0.0);
@@ -140,6 +160,18 @@ gnomecard_add_card_sections_to_list(Card *crd)
     g_message("gnomecard_add_card_sections_to_list not implemented");
 }
 */
+void
+gnomecard_list_remove_card(Card *crd)
+{
+    gint row;
+
+    row = gtk_clist_find_row_from_data( gnomecard_list, crd);
+    if (row < 0)
+	g_message("list_remove_card: couldnt find data %p",crd);
+    gtk_clist_freeze(gnomecard_list);
+    gtk_clist_remove(gnomecard_list, row);
+    gtk_clist_thaw(gnomecard_list);
+}
 
 void
 gnomecard_add_card_to_list(Card *crd)
@@ -150,7 +182,8 @@ gnomecard_add_card_to_list(Card *crd)
 	gnomecard_create_list_row(crd, text);
 	g_message("gnomcard_add_card_to_list - adding name %s to list",text[0]);
 	row = gtk_clist_append(gnomecard_list, text); 
-	crd->prop.user_data = GINT_TO_POINTER(row);
+/*	crd->prop.user_data = GINT_TO_POINTER(row); */
+	gtk_clist_set_row_data(gnomecard_list, row, crd);
 
 	gnomecard_destroy_list_row(text);
 }

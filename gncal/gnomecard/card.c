@@ -150,6 +150,8 @@ card_new(void)
 void 
 card_free(Card *crd)
 {
+    GList *l;
+
 	g_return_if_fail (crd != NULL);
 	  
 	MY_FREE(crd->name.family); card_prop_free(crd->name.prop);
@@ -173,7 +175,23 @@ card_free(Card *crd)
 	MY_FREE(crd->comment.str); card_prop_free(crd->comment.prop);
 	MY_FREE(crd->url.str); card_prop_free(crd->url.prop);
 	MY_FREE(crd->uid.str); card_prop_free(crd->uid.prop);
-	
+
+	/* address is a little more complicated */
+	card_prop_free(crd->postal.prop);
+	while ((l = crd->postal.l)) {
+	    CardPostAddr *p;
+
+	    p = (CardPostAddr *)(l->data);
+	    card_prop_free(p->prop);
+	    MY_FREE(p->street1);
+	    MY_FREE(p->street2);
+	    MY_FREE(p->city);
+	    MY_FREE(p->state);
+	    MY_FREE(p->zip);
+	    MY_FREE(p->country);
+	    crd->postal.l = g_list_remove_link(crd->postal.l, l);
+	    g_list_free(l);
+	}
 	free(crd);
 }
 

@@ -7,6 +7,47 @@
 #include "my.h"
 #include "list.h"
 
+
+/* New Code */
+
+/* widget and data are ignored, just there for now so we can be */
+/* a direct signal callback if necessary                        */
+void
+gnomecard_delete_current_card(GtkWidget *widget, gpointer data)
+{
+    GList *tmp;
+
+    if (!gnomecard_curr_crd) {
+	g_message("in delete_current_card, no current card!");
+	return;
+    }
+
+    if (gnomecard_curr_crd->next)
+	tmp = gnomecard_curr_crd->next;
+    else
+	tmp = gnomecard_curr_crd->prev;
+    
+    gnomecard_list_remove_card(gnomecard_curr_crd->data);
+    card_free(gnomecard_curr_crd->data);
+    gnomecard_crds = g_list_remove_link(gnomecard_crds, gnomecard_curr_crd);
+    g_list_free(gnomecard_curr_crd);
+
+    if (tmp) 
+	gnomecard_scroll_list(tmp);
+    else
+	gnomecard_set_curr(NULL);
+
+}
+
+
+
+
+
+
+
+
+/*********** OLD CODE *****************************************/
+#if 0
 static void del_prop(GtkCTreeNode *node, gpointer data)
 {
 	CardProperty *prop = data;
@@ -198,6 +239,7 @@ static void del_org(GtkCTreeNode *node, gpointer data)
 	g_message("in del_org, did not remove node and select");
 }
 
+#if 0
 typedef void (*DelFunc) (GtkCTreeNode *, gpointer);
 
 extern void gnomecard_del(GtkWidget *widget, gpointer data)
@@ -223,3 +265,7 @@ extern void gnomecard_del(GtkWidget *widget, gpointer data)
 	
 	gnomecard_set_changed(TRUE);
 }
+#endif
+
+
+#endif

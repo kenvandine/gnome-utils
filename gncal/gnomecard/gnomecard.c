@@ -193,8 +193,8 @@ gnomecard_list_button_press(GtkCList *list, GdkEventButton *event,
     static struct menu_item items[] = {
 	{ N_("Edit this item..."), (GtkSignalFunc) gnomecard_edit_card, NULL,
 	  TRUE },
-/* not implemented yet	{ N_("Delete this item"), (GtkSignalFunc) ???gnomecard_del_card???, NULL,
-   TRUE } */
+	{ N_("Delete this item"), (GtkSignalFunc)gnomecard_delete_current_card,
+	  NULL, TRUE } 
     };
     GList *tmp;
     gint  row, col;
@@ -215,6 +215,7 @@ gnomecard_list_button_press(GtkCList *list, GdkEventButton *event,
 
 	    /* see if card if is being editted */
 	    items[0].sensitive = !((Card *) tmp->data)->flag;
+	    items[1].sensitive = !((Card *) tmp->data)->flag;
 
 	    gnomecard_set_curr(tmp);
 	    popup_menu (items, sizeof (items) / sizeof (items[0]), event);
@@ -513,7 +514,7 @@ GnomeUIInfo editmenu[] = {
 	GNOME_APP_PIXMAP_STOCK, "GnomeCardEditMenu", 0, 0, NULL},
 	
 	{GNOME_APP_UI_ITEM, N_("Delete"), N_("Delete element"),
-	 gnomecard_del, NULL, NULL,
+	 gnomecard_delete_current_card, NULL, NULL,
 	GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 0, 0, NULL},
 	
 	{GNOME_APP_UI_SEPARATOR},
@@ -627,7 +628,7 @@ GnomeUIInfo toolbar[] = {
 	GNOME_APP_PIXMAP_STOCK, "GnomeCardEdit", 0, 0, NULL},
 	
 	{GNOME_APP_UI_ITEM, N_("Del"), N_("Delete card"),
-	 gnomecard_del, NULL, NULL,
+	 gnomecard_delete_current_card, NULL, NULL,
 	GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_CLOSE, 0, 0, NULL},
 	
 	{GNOME_APP_UI_SEPARATOR},

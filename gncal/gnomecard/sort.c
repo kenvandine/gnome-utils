@@ -35,7 +35,7 @@ gnomecard_sort_card_list(sort_func compar)
 	g_free(array);
 }
 
-#ifndef B4MSF
+#if 0
 static void
 gnomecard_do_sort_cards(sort_func criteria)
 {
@@ -45,23 +45,18 @@ gnomecard_do_sort_cards(sort_func criteria)
 static void
 gnomecard_do_sort_cards(sort_func criteria)
 {
-	GList *l;
-	Card *curr;
-	
-	curr = gnomecard_curr_crd->data;
-	gnomecard_sort_card_list(criteria);
-	
-	gtk_clist_freeze(GTK_CLIST(gnomecard_tree));
-	for (l = gnomecard_crds; l; l = l->next) {
-		if (curr == l->data)
-			gnomecard_curr_crd = l;
-		gtk_ctree_move(gnomecard_tree, ((Card *) l->data)->prop.user_data,
-			       NULL, NULL);
-	}
-	gtk_clist_thaw(GTK_CLIST(gnomecard_tree));
-	
-	gnomecard_scroll_tree(gnomecard_curr_crd);
-	gnomecard_set_changed(TRUE);
+    GList *l;
+    Card *curr;
+    
+    curr = gnomecard_curr_crd->data;
+    gnomecard_sort_card_list(criteria);
+    
+    for (l = gnomecard_crds; l; l = l->next) {
+	if (curr == l->data)
+	    gnomecard_curr_crd = l;
+    }
+    gnomecard_rebuild_list(gnomecard_curr_crd);
+/*	gnomecard_set_changed(TRUE); WHY? We didnt change data any */
 }
 #endif
 

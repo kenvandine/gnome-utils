@@ -259,18 +259,39 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 	else
 	  crd->key.type = KEY_X509;
 
-	gnomecard_update_list(crd);
-	gnomecard_update_canvas(crd);
+/*	gnomecard_update_list(crd);
 	gnomecard_scroll_list(ce->l);
+*/
+	gnomecard_sort_card_list(gnomecard_sort_criteria); 
+	gnomecard_rebuild_list(crd);
+	gnomecard_update_canvas(crd);
 	gnomecard_set_changed(TRUE);
 }
 
+/*
 static void gnomecard_prop_close(GtkWidget *widget, gpointer node)
 {
 	((Card *) ((GList *) node)->data)->flag = FALSE;
 	
 	if ((GList *) node == gnomecard_curr_crd)
 	  gnomecard_set_edit_del(TRUE);
+}
+*/
+static void gnomecard_prop_close(GtkWidget *widget, gpointer data)
+{
+    Card *card;
+    GList *l;
+
+    card = (Card *) data;
+    card->flag = FALSE;
+	
+    for (l = gnomecard_crds; l; l = l->next) {
+	if (card == l->data)
+	    break;
+    }
+
+    if (l == gnomecard_curr_crd)
+	gnomecard_set_edit_del(TRUE);
 }
 
 static void gnomecard_take_from_name(GtkWidget *widget, gpointer data)
@@ -325,9 +346,14 @@ extern void gnomecard_edit(GList *node)
 			       "GnomeCard");
 	gtk_signal_connect(GTK_OBJECT(box), "apply",
 			   (GtkSignalFunc)gnomecard_prop_apply, NULL);
-	gtk_signal_connect(GTK_OBJECT(box), "destroy",
+/*	gtk_signal_connect(GTK_OBJECT(box), "destroy",
 			   (GtkSignalFunc)gnomecard_prop_close, node);
-	
+*/
+/* changed to use card ptr, not pointer to list entry containing card */
+	gtk_signal_connect(GTK_OBJECT(box), "destroy",
+			   (GtkSignalFunc)gnomecard_prop_close, crd);
+
+
 	/* Identity notebook page*/
 	vbox = my_gtk_vbox_new();
 	label = gtk_label_new(_("Identity"));
@@ -1370,8 +1396,8 @@ addrtypeclicked(GtkWidget *widget, gpointer data)
 
 extern void gnomecard_edit_card(GtkWidget *widget, gpointer data)
 {
-	if (gnomecard_curr_crd)
-	  gnomecard_edit(gnomecard_curr_crd);
+    if (gnomecard_curr_crd)
+	gnomecard_edit(gnomecard_curr_crd);
 }
 
 static gboolean gnomecard_append_file(char *fname)

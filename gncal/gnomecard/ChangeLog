@@ -1,3 +1,25 @@
+1998-11-11  Michael Fulbright <drmike@redhat.com>
+	* sort.c: fixed sorting so it works again
+
+	* dialog.c: changed gnomecard_prop_close to accept ptr to Card
+	struct being editted argument instead of ptr to the GList element
+	containing the card. This is because the order of cards in the
+	gnomecard_crds GList can change after the user edits data and sorting
+	criteria is applied, and the ptr to the GList element containing
+	the card is not necessarily invariant.  Better to just pass a
+	ptr to the Card itself anyways.
+	
+1998-11-10  Michael Fulbright <drmike@redhat.com>
+        * list.c: Changed mechanism for determining relationship between
+	a row in the gnomcard_list clist and the matching Card struct.
+	We assign as row data for each row a ptr to the  Card struct.
+
+	* gnomecard.c, dialog.c, del.c: Fixed so we can delete entries now.
+	Replaced most of the code in del.c with a single function
+	gnomecard_delete_current_card.
+
+	* card.c: fixed card_free() to remove address structures properly
+	
 1998-11-10  Michael Fulbright <drmike@redhat.com>
 	* card.[ch], pairs.h, cardtypes.h: Changed PROP_DELADDR to 
 	PROP_POSTADDR
