@@ -864,6 +864,11 @@ file_button_release_event_cb (GtkWidget 	*widget,
 
 		gtk_tree_path_free (path);
 	}	
+
+	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
+		return FALSE;
+	}
+	
 	if (event->button == 3) {	
 		
 		GtkWidget *popup;
@@ -914,18 +919,18 @@ file_event_after_cb  (GtkWidget 	*widget,
 		return FALSE;
 	}
 	
-	if (search_command.single_click_to_activate == TRUE) { 	
-		if (event->type == GDK_BUTTON_PRESS 
-		     && (event->button == 1 || event->button == 2)
-		     && !(event->state & GDK_CONTROL_MASK) 
-	   	     && !(event->state & GDK_SHIFT_MASK)) {  
+	if ((!event->state & GDK_CONTROL_MASK) && (!event->state & GDK_SHIFT_MASK)) {
+		if (search_command.single_click_to_activate == TRUE) { 	
+			if ((event->type == GDK_BUTTON_PRESS) 
+			     && (event->button == 1 || event->button == 2)) {  
+				open_file_cb (widget, data); 
+				return TRUE;	
+			}
+		} 
+		else if (event->type == GDK_2BUTTON_PRESS) {
 			open_file_cb (widget, data); 
-			return TRUE;	
+			return TRUE;
 		}
-	} 
-	else if (event->type == GDK_2BUTTON_PRESS) {
-		open_file_cb (widget, data); 
-		return TRUE;
 	}
 	return FALSE;
 }

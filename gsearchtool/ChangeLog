@@ -1,5 +1,11 @@
 2004-12-01  Dennis Cranston <dennis_cranston@yahoo.com>
 
+	* gsearchtool-callbacks.c (file_button_release_event_cb):
+	Guard against zero selected rows.  (file_event_after_cb):
+	Don't open selection when control or shift is pressed.
+	 
+2004-12-01  Dennis Cranston <dennis_cranston@yahoo.com>
+
 	* gsearchtool.[ch], gsearchtool-callbacks.c:
 	Add support for the 'single click to activate items' 
 	selection mode.  Fixes Bug #160098.
