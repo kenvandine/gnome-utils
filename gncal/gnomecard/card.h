@@ -3,7 +3,7 @@
 
 #include <time.h>
 #include <glib.h>
-
+#include <stdio.h>
 #include "cardtypes.h"
 
 #define PO 0
