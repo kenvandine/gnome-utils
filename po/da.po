@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.50\n"
-"POT-Creation-Date: 2000-04-28 01:03+0200\n"
+"POT-Creation-Date: 2000-05-02 23:43+0200\n"
 "PO-Revision-Date: 2000-05-02 03:30+02:00\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
@@ -595,7 +595,7 @@ msgid "Help"
 msgstr "Hjælp"
 
 #: gstripchart/gstripchart.c:1768 gstripchart/gstripchart.c:2052
-#: mini-utils/gcolorsel/menus.c:843 mini-utils/gshutdown/gshutdown.c:318
+#: mini-utils/gcolorsel/menus.c:824 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "Om..."
 
@@ -603,7 +603,7 @@ msgstr "Om..."
 msgid "Params"
 msgstr "Parametre"
 
-#: gstripchart/gstripchart.c:1780 mini-utils/gcolorsel/menus.c:833
+#: gstripchart/gstripchart.c:1780 mini-utils/gcolorsel/menus.c:814
 msgid "Exit"
 msgstr "Afslut"
 
@@ -1538,37 +1538,38 @@ msgstr "Beskrivelse:"
 msgid "List"
 msgstr "List"
 
-#: mini-utils/gcolorsel/gcolorsel.c:24
+#: mini-utils/gcolorsel/gcolorsel.c:25
 msgid "Grid"
 msgstr "Gitter"
 
-#: mini-utils/gcolorsel/gcolorsel.c:27 mini-utils/gcolorsel/menus.c:499
+#: mini-utils/gcolorsel/gcolorsel.c:29 mini-utils/gcolorsel/menus.c:480
 msgid "Edit"
 msgstr "Ændre"
 
-#: mini-utils/gcolorsel/gcolorsel.c:34
+#: mini-utils/gcolorsel/gcolorsel.c:37
 msgid "File"
 msgstr "Fil"
 
-#: mini-utils/gcolorsel/gcolorsel.c:35
+#: mini-utils/gcolorsel/gcolorsel.c:39
 msgid "Search RGB"
 msgstr "Søg RGB"
 
-#: mini-utils/gcolorsel/gcolorsel.c:36
+#: mini-utils/gcolorsel/gcolorsel.c:41
 msgid "Monitor"
 msgstr "Overvåg"
 
-#: mini-utils/gcolorsel/gcolorsel.c:37
-msgid "Concact"
+#: mini-utils/gcolorsel/gcolorsel.c:43
+#, fuzzy
+msgid "Concat"
 msgstr "Kontakt"
 
-#: mini-utils/gcolorsel/gcolorsel.c:80
+#: mini-utils/gcolorsel/gcolorsel.c:87
 #, c-format
 msgid "'%s' document has been modified; do you wish to save it ?"
 msgstr "dokument '%s' er ændret; vil du gemme det?"
 
 #. Init GnomeMDI
-#: mini-utils/gcolorsel/gcolorsel.c:129
+#: mini-utils/gcolorsel/gcolorsel.c:136
 msgid "GColorsel"
 msgstr "Farvevælger"
 
@@ -1600,11 +1601,11 @@ msgstr "Luk nuværende dokument"
 msgid "Close view"
 msgstr "Luk visning"
 
-#: mini-utils/gcolorsel/menus.c:62 mini-utils/gcolorsel/menus.c:837
+#: mini-utils/gcolorsel/menus.c:62 mini-utils/gcolorsel/menus.c:818
 msgid "Close the current view"
 msgstr "Luk nuværende visning"
 
-#: mini-utils/gcolorsel/menus.c:79 mini-utils/gcolorsel/menus.c:837
+#: mini-utils/gcolorsel/menus.c:79 mini-utils/gcolorsel/menus.c:818
 #: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:593
 msgid "Close"
 msgstr "Luk"
@@ -1621,150 +1622,123 @@ msgstr "Fjern valgte farve"
 msgid "Edit selected colors ..."
 msgstr "Redigér valgte farver..."
 
-#: mini-utils/gcolorsel/menus.c:125
-msgid "New"
-msgstr "Ny"
-
-#: mini-utils/gcolorsel/menus.c:130
-msgid "Document created ..."
-msgstr "Dokument oprettet ..."
-
-#: mini-utils/gcolorsel/menus.c:145
-msgid "GColorsel was unable to save the file :"
-msgstr "GColorsel kunne ikke gemme filen:"
-
-#: mini-utils/gcolorsel/menus.c:149
+#: mini-utils/gcolorsel/menus.c:165
+#, fuzzy, c-format
 msgid ""
-"Make sure that the path you provided exists,\n"
-"and that you have the appropriate write permissions."
-msgstr ""
-"Forsikr dig om at stien du opgav eksisterer,\n"
-"og at du har tilstrækkelige skriverettigheder."
-
-#: mini-utils/gcolorsel/menus.c:151
-msgid "Do you want to retry ?"
-msgstr "Vil du prøve igen?"
-
-#: mini-utils/gcolorsel/menus.c:170
-msgid "Gcolorsel was unable to load the file :"
-msgstr "Gcolorsel kunne ikke indlæse filen:"
-
-#: mini-utils/gcolorsel/menus.c:174
-msgid ""
+"GColorsel was unable to load the file:\n"
+"\n"
+"%s\n"
+"\n"
 "Make sure that the path you provided exists,\n"
 "and that you have permissions for opening the file."
 msgstr ""
 "Forsikr dig om at stien du opgav eksisterer,\n"
 "og at du har rettigheder til at åbne filen."
 
-#: mini-utils/gcolorsel/menus.c:176
-msgid "May be this is not a palette file ..."
-msgstr "Dette er måske ikke en palettefil ..."
-
-#: mini-utils/gcolorsel/menus.c:196
+#: mini-utils/gcolorsel/menus.c:184
 msgid "Open Palette"
 msgstr "Åbn palette"
 
-#: mini-utils/gcolorsel/menus.c:221
+#: mini-utils/gcolorsel/menus.c:209
 msgid "Loading file, please wait ..."
 msgstr "Indlæser fil, vent venligst..."
 
-#: mini-utils/gcolorsel/menus.c:252
+#: mini-utils/gcolorsel/menus.c:240
 msgid "Save Palette as"
 msgstr "Gem palette som"
 
-#: mini-utils/gcolorsel/menus.c:299
+#: mini-utils/gcolorsel/menus.c:287
 msgid "File not saved ..."
 msgstr "Fil ikke gemt ..."
 
-#: mini-utils/gcolorsel/menus.c:309
+#: mini-utils/gcolorsel/menus.c:297
 msgid "File saved ..."
 msgstr "Fil gemt ..."
 
-#: mini-utils/gcolorsel/menus.c:378
-#, c-format
+#: mini-utils/gcolorsel/menus.c:375
+#, fuzzy, c-format
 msgid ""
-"I'm going to close the last view of '%s' document.\n"
+"I'm going to close the last view of '%s'.\n"
 "\n"
-"Document will be closed too, continue ?"
+"This document will be closed too, continue ?\n"
+"\n"
+"Please note that %d virtual document use data from this document."
 msgstr ""
 "Skal lukke den sidste fremvisning af dokumentet '%s'.\n"
 "\n"
 "Dette dokument vil også blive lukket, fortsæt?"
 
-#: mini-utils/gcolorsel/menus.c:381
-#, c-format
+#: mini-utils/gcolorsel/menus.c:377
+#, fuzzy, c-format
 msgid ""
-"%s\n"
+"I'm going to close the last view of '%s'.\n"
 "\n"
-"Please note that %d virtual document use data from this document."
+"This document will be closed too, continue ?"
+msgstr ""
+"Skal lukke den sidste fremvisning af dokumentet '%s'.\n"
+"\n"
+"Dette dokument vil også blive lukket, fortsæt?"
+
+#: mini-utils/gcolorsel/menus.c:411
+#, fuzzy, c-format
+msgid ""
+"I'm going to close '%s'.\n"
+"\n"
+"Please note that %d views will be destroyed,\n"
+"and that %d virtual document use data from this document.\n"
+"\n"
+"Do you want to continue ?"
 msgstr ""
 "%s\n"
 "\n"
 "Bemærk venligst at det virtuelle dokument %d bruger data fra dette dokument."
 
 #: mini-utils/gcolorsel/menus.c:413
-#, c-format
-msgid "I'm going to close the '%s' document."
-msgstr "Lukker dokumentet '%s'."
-
-#: mini-utils/gcolorsel/menus.c:417
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s\n"
+"I'm going to close '%s'.\n"
 "\n"
-"Please note that %d views will be destroyed"
+"Please note that %d views will be destroyed.\n"
+"\n"
+"Do you want to continue ?"
 msgstr ""
 "%s\n"
 "\n"
 "Bemærk venligst at %d fremvisninger vil blive ødelagt"
 
-#: mini-utils/gcolorsel/menus.c:422
-#, c-format
-msgid ""
-"%s,\n"
-"and that %d virtual document use data from this document."
-msgstr ""
-"%s,\n"
-"og at det virtuelle dokument %d bruger data fra dette dokument."
-
-#: mini-utils/gcolorsel/menus.c:431
-msgid "Do you want to continue ?"
-msgstr "Vil du fortsætte?"
-
-#: mini-utils/gcolorsel/menus.c:477
+#: mini-utils/gcolorsel/menus.c:458
 msgid "Gnome Color Browser"
 msgstr "Gnome farvevælger"
 
-#: mini-utils/gcolorsel/menus.c:480
+#: mini-utils/gcolorsel/menus.c:461
 msgid "Small utility to browse available X11 colors."
 msgstr "Lille værktøj til at gennemse X11-farver."
 
-#: mini-utils/gcolorsel/menus.c:532
+#: mini-utils/gcolorsel/menus.c:513
 msgid "New Color"
 msgstr "Ny farve"
 
-#: mini-utils/gcolorsel/menus.c:833
+#: mini-utils/gcolorsel/menus.c:814
 msgid "Exit the program"
 msgstr "Afslut programmet"
 
-#: mini-utils/gcolorsel/menus.c:835
+#: mini-utils/gcolorsel/menus.c:816
 msgid "Open"
 msgstr "Åbn"
 
-#: mini-utils/gcolorsel/menus.c:835
+#: mini-utils/gcolorsel/menus.c:816
 msgid "Open a palette"
 msgstr "Åbn en palette"
 
-#: mini-utils/gcolorsel/menus.c:840
+#: mini-utils/gcolorsel/menus.c:821
 msgid "Grab"
 msgstr "Fang"
 
-#: mini-utils/gcolorsel/menus.c:840
+#: mini-utils/gcolorsel/menus.c:821
 msgid "Grab a color on the screen"
 msgstr "Fang en farve på skærmen"
 
-#: mini-utils/gcolorsel/menus.c:843
+#: mini-utils/gcolorsel/menus.c:824
 msgid "About this application"
 msgstr "Om dette program"
 
@@ -2271,11 +2245,11 @@ msgstr "Distributionsversion:"
 
 #: mini-utils/guname/info.c:43
 msgid "Operating System Version:"
-msgstr "Operativsystemversion:"
+msgstr "Styresystemversion:"
 
 #: mini-utils/guname/info.c:44
 msgid "Operating System Release:"
-msgstr "Operativsystemets udgivelse:"
+msgstr "Styresystemets udgivelse:"
 
 #: mini-utils/guname/info.c:45
 msgid "Processor Type:"
@@ -2653,8 +2627,3 @@ msgstr "Kun superbrugeren kan bruge dette værktøj"
 msgid "You appear to have no IDE drives"
 msgstr "Du ser ikke ud til at have nogen IDE-drev"
 
-#~ msgid "Tolerance :"
-#~ msgstr "Tolerance :"
-
-#~ msgid "Position :"
-#~ msgstr "Position :"
