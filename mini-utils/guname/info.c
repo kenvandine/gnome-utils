@@ -27,6 +27,7 @@
 #include <errno.h>
 
 #define DEBIAN_STRING "Debian GNU/Linux"
+#define MANDRAKE_STRING "Mandrake-Linux"
 #define REDHAT_STRING "Red Hat Linux"
 #define SUSE_STRING "SuSE Linux"
 
@@ -146,6 +147,29 @@ static void get_linux_info()
       info[si_distribution_version] = g_strdup(buf);
       fclose(f);
     }
+  } else if (g_file_exists("/etc/mandrake-release)) {  
+    FILE *f;
+    gchar buf[80];
+
+    info[si_distribution] = g_strdup(MANDRAKE_STRING);
+    f = fopen("/etc/mandrake-release", "r");
+    if (f) {
+      fgets(buf, 79, f);
+      info[si_distribution_version] = g_strdup(buf);
+      fclose(f);
+    }
+  } else if (g_file_exists("/etc/SuSE-release")) {
+    FILE *f;
+    gchar buf[80];
+
+    info[si_distribution] = g_strdup(SUSE_STRING);
+    f = fopen("/etc/SuSE-release", "r");
+    if (f) { 
+      fgets(buf, 79, f);
+      info[si_distribution_version] = g_strdup(buf);
+      fclose(f);
+    }
+
   } else if (g_file_exists("/etc/redhat-release")) {
     FILE *f;
     gchar buf[80];
