@@ -22,8 +22,12 @@
 #include "gtt.h"
 
 /* There is a bug in clist which makes all but the last column headers
-   0 pixels wide. This hack fixes this. */
+ * 0 pixels wide. This hack fixes this. */
 #define CLIST_HEADER_HACK
+
+/* I'm having some trouble with the gtk_clist_moveto. So it can be disabled
+ * here */
+#define CLIST_USE_MOVETO
 
 #define TOTAL_COL	0
 #define TIME_COL	1
@@ -38,6 +42,11 @@ select_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 	if (!event) return;
 	if (event->button != 3) {
 		cur_proj_set(gtk_clist_get_row_data(clist, row));
+		if ((event->type == GDK_2BUTTON_PRESS) &&
+		    (cur_proj)) {
+			prop_dialog(cur_proj);
+			return;
+		}
 		return;
 	}
 	/* TODO: workaround -- should be removed when the bug in clist is fixed.
@@ -46,7 +55,7 @@ select_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 		gtk_clist_unselect_row(GTK_CLIST(glist), cur_proj->row, column);
 	cur_proj_set(gtk_clist_get_row_data(clist, row));
 	menu = menus_get_popup();
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, 0);
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, event->time);
 }
 
 
@@ -58,13 +67,20 @@ unselect_row(GtkCList *clist, gint row, gint column, GdkEventButton *event)
 
 	if (gtk_clist_get_row_data(clist, row) != cur_proj) return;
 	if ((!event) || (event->button != 3)) {
+		if (event->type == GDK_2BUTTON_PRESS) {
+			cur_proj_set(gtk_clist_get_row_data(clist, row));
+			gtk_clist_select_row(GTK_CLIST(glist), cur_proj->row,
+					     column);
+			prop_dialog(cur_proj);
+			return;
+		}
 		cur_proj_set(NULL);
 		return;
 	}
 	/* make sure the project keeps selection */
 	gtk_clist_select_row(GTK_CLIST(glist), row, column);
 	menu = menus_get_popup();
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, 0);
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, event->time);
 }
 
 
@@ -165,6 +181,13 @@ setup_clist(void)
 		cur_proj_set(NULL);
 	} else if (cur_proj) {
 		gtk_clist_select_row(GTK_CLIST(glist), cur_proj->row, 0);
+#ifdef CLIST_USE_MOVETO
+#ifdef DEBUG
+		g_message("moveto: %d", cur_proj->row);
+#endif
+		gtk_clist_moveto(GTK_CLIST(glist), cur_proj->row, 0,
+				  0.5, -1);
+#endif /* CLIST_USE_MOVETO */
 	}
 	err_init();
 	if (!GTK_WIDGET_MAPPED(window)) {

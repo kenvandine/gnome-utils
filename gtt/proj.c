@@ -457,7 +457,7 @@ project_list_load(char *fname)
                 project_set_title(proj, gnome_config_get_string(s));
 		if ((proj->title) && (first_proj_title)) {
 			if (0 == strcmp(proj->title, first_proj_title)) {
-				cur_proj = proj;
+				cur_proj_set(proj);
 				first_proj_title = NULL;
 			}
 		}

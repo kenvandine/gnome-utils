@@ -159,7 +159,6 @@ argp_parser(int key, char *arg, struct argp_state *state)
 	char c;
 
 	if (key == 's') {
-		g_message("arg = %s", arg);
 		first_proj_title = arg;
 		return 0;
 	}
