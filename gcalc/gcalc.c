@@ -38,7 +38,7 @@ about_cb (GtkWidget *widget, gpointer data)
 		gdk_window_raise(about->window);
 		return;
 	}
-	about = gnome_about_new(_("The Gnome Calculator"), VERSION,
+	about = gnome_about_new(_("The GNOME Calculator"), VERSION,
 				"(C) 1998 the Free Software Foundation",
 				(const char **)authors,
 				_("Simple double precision calculator similiar "
@@ -149,7 +149,7 @@ main(int argc, char *argv[])
 		return 0;
 	}
 
-        app = gnome_app_new("gcalc", _("Gnome Calculator"));
+        app = gnome_app_new("gcalc", _("GNOME Calculator"));
 	gtk_window_set_wmclass (GTK_WINDOW (app), "gcalc", "gcalc");
 	gtk_window_set_policy (GTK_WINDOW (app), FALSE, TRUE, FALSE);
 
