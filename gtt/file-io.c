@@ -209,7 +209,8 @@ project_list_load_old(const char *fname)
 	project_list_destroy();
 	plist = t;
 	if (tmp_time > 0) {
-		zero_on_rollover (time(0), tmp_time);
+		set_last_reset (tmp_time);
+		zero_on_rollover (time(0));
 	}
 	update_status_bar();
         if ((_n != config_show_tb_new) ||
@@ -272,12 +273,6 @@ project_list_load(const char *fname)
         _o = config_show_tb_pref;
         _h = config_show_tb_help;
         _e = config_show_tb_exit;
-
-	/* reset the clocks, if needed */
-        last_timer = atol(gnome_config_get_string(GTT"Misc/LastTimer=-1"));
-	if (last_timer > 0) {
-		zero_on_rollover (time(0), last_timer);
-	}
 
 	/* get last running project */
        	cur_proj_id = gnome_config_get_int(GTT"Misc/CurrProject=-1");
@@ -377,7 +372,16 @@ project_list_load(const char *fname)
 			}
 		}
 	}
+
+	/* FIXME: this is a mem leak, depending on usage in main.c*/
 	first_proj_title = NULL;
+
+	/* reset the clocks, if needed */
+        last_timer = atol(gnome_config_get_string(GTT"Misc/LastTimer=-1"));
+	if (last_timer > 0) {
+		set_last_reset (last_timer);
+		zero_on_rollover (time(0));
+	}
 
 	/* if a project is running, then set it running again,
 	 * otherwise be sure to stop the clock. */

@@ -216,26 +216,36 @@ gtt_project_get_tasks (GttProject *proj)
 }
 
 /* =========================================================== */
-/* zero out day counts if rolled past mignight */
+/* zero out day counts if rolled past midnight */
+
+static int day_last_reset = -1;
+static int year_last_reset = -1;
 
 void
-zero_on_rollover (time_t now, time_t last)
+set_last_reset (time_t last)
 {
-	struct tm t1, t0;
-	time_t diff = now - last;
+	struct tm *t0;
+	t0 = localtime (&last);
+	day_last_reset = t0->tm_yday;
+	year_last_reset = t0->tm_year;
+}
+
+
+void
+zero_on_rollover (time_t now)
+{
+	struct tm *t1;
 
 	/* zero out day counts */
-        if (0 < diff) 
+	t1 = localtime(&now);
+	if ((year_last_reset != t1->tm_year) ||
+	    (day_last_reset != t1->tm_yday)) 
 	{
-                memcpy(&t0, localtime(&last), sizeof(struct tm));
-                memcpy(&t1, localtime(&now), sizeof(struct tm));
-                if ((t0.tm_year != t1.tm_year) ||
-                    (t0.tm_yday != t1.tm_yday)) 
-		{
-                        project_list_time_reset();
-			log_endofday();
-                }
-        }
+		project_list_time_reset();
+		log_endofday();
+		year_last_reset = t1->tm_year;
+	    	day_last_reset = t1->tm_yday;
+	}
 }
 
 
@@ -296,9 +306,7 @@ gtt_project_timer_update (GttProject *proj)
 		prev_update = ival->start;
 	}
 	now = time(0);
-
-	/* zero out day counts if rolled past mignight */
-	zero_on_rollover (now, prev_update);
+	zero_on_rollover (now);
 
 	/* if timer isn't running, do nothing.  Its arguabley
 	 * an error condition if this routine was called with the timer
