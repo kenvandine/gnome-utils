@@ -17,7 +17,7 @@ idetool_LDADD = \
 
 pixmapdir = $(datadir)/pixmaps
 
-BITMAPS = ide-disk-drive.xpm
+BITMAPS = ide-disk-drive.png
 
 pixmap_DATA = $(BITMAPS)
 

@@ -350,7 +350,7 @@ static int ide_parser(void)
 	
 	tbox=gtk_hbox_new(TRUE, GNOME_PAD);
 	
-	pic=gnome_pixmap_file("ide-disk-drive.xpm");
+	pic=gnome_pixmap_file("ide-disk-drive.png");
 	if(pic)
 	{
 		pixmap = gnome_pixmap_new_from_file(pic);
