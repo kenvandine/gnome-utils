@@ -28,6 +28,8 @@
 
 struct gtt_project_s 
 {
+	/* 'protected' data, accessible trough setters & getters */
+	/* This data defines the 'state' of the project. */
 	char *title;     /* short title */
 	char *desc;      /* breif description for invoice */
 	char *notes;     /* long description */
@@ -36,8 +38,6 @@ struct gtt_project_s
 	int min_interval;  /* smallest recorded interval */
 	int auto_merge_interval;  /* merge intervals smaller than this */
 	int auto_merge_gap;       /* merge gaps smaller than this */
-	int secs_ever;   /* seconds spend on this project */
-	int secs_day;    /* seconds spent on this project today */
 
         double billrate;   /* billing rate, in units of currency per hour */
         double overtime_rate;  /*  in units of currency per hour */
@@ -55,13 +55,23 @@ struct gtt_project_s
 	 * by a gobj callback */
 	GList *listeners;      /* listeners for change events */
 
+        /* miscellaneous -- used by GUI to display */
+        gpointer *private_data;
+
 	int id;		/* simple id number */
+
+	/* ------------------------------------------------ */
+	/* 'private' internal data caches & etc. stores temp info */
+
 	int being_destroyed : 1;  /* project is being destroyed */
 	int frozen : 1 ;          /* defer recomputes of time totals */
 	int dirty_time : 1 ;      /* the time totals are wrong */
 
-        /* miscellaneous -- used by GUI to display */
-        gpointer *private_data;
+	int secs_ever;   /* seconds spend on this project */
+	int secs_year;  /* seconds spent on this project this year */
+	int secs_month;  /* seconds spent on this project this month */
+	int secs_week;   /* seconds spent on this project this week */
+	int secs_day;    /* seconds spent on this project today */
 };
 
 

@@ -39,13 +39,17 @@
 typedef enum {
 	NULL_COL = 0,
 	TIME_EVER_COL = 1,
+	TIME_YEAR_COL,
+	TIME_MONTH_COL,
+	TIME_WEEK_COL,
 	TIME_TODAY_COL,
+	TIME_CURRENT_COL,
 	TITLE_COL,
 	DESC_COL,
 	TASK_COL,
 } ColType;
 
-#define NCOLS		5
+#define NCOLS		10
 
 
 typedef struct ProjTreeNode_s
@@ -64,7 +68,11 @@ struct ProjTreeWindow_s
 	GtkJustification col_justify[NCOLS];
 	int ncols;
 	char ever_timestr[24];
+	char current_timestr[24];
 	char day_timestr[24];
+	char week_timestr[24];
+	char month_timestr[24];
+	char year_timestr[24];
 
 	// int clist_header_width_set;
 };
@@ -222,10 +230,22 @@ click_column(GtkCList *clist, gint col, gpointer data)
 	switch (ct)
 	{
 		case TIME_EVER_COL:
-			project_list_sort_total_time();
+			project_list_sort_ever();
+			break;
+		case TIME_CURRENT_COL:
+			project_list_sort_current();
 			break;
 		case TIME_TODAY_COL:
-			project_list_sort_time();
+			project_list_sort_day();
+			break;
+		case TIME_WEEK_COL:
+			project_list_sort_week();
+			break;
+		case TIME_MONTH_COL:
+			project_list_sort_month();
+			break;
+		case TIME_YEAR_COL:
+			project_list_sort_year();
 			break;
 		case TITLE_COL:
 			project_list_sort_title();
@@ -425,7 +445,11 @@ ctree_init_cols (ProjTreeWindow *ptw)
 
 	/* init column types */
 	i=0; ptw->cols[i] = TIME_EVER_COL;
+	i++; ptw->cols[i] = TIME_YEAR_COL;
+	i++; ptw->cols[i] = TIME_MONTH_COL;
+	i++; ptw->cols[i] = TIME_WEEK_COL;
 	i++; ptw->cols[i] = TIME_TODAY_COL;
+	i++; ptw->cols[i] = TIME_CURRENT_COL;
 	i++; ptw->cols[i] = TITLE_COL;
 	i++; ptw->cols[i] = DESC_COL;
 	i++; ptw->cols[i] = TASK_COL;
@@ -441,9 +465,25 @@ ctree_init_cols (ProjTreeWindow *ptw)
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("Total");
 				break;
+			case TIME_CURRENT_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
+				ptw->col_titles[i] =  _("This Memo");
+				break;
 			case TIME_TODAY_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
 				ptw->col_titles[i] =  _("Today");
+				break;
+			case TIME_WEEK_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
+				ptw->col_titles[i] =  _("Week");
+				break;
+			case TIME_MONTH_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
+				ptw->col_titles[i] =  _("Month");
+				break;
+			case TIME_YEAR_COL:
+				ptw->col_justify[i] = GTK_JUSTIFY_CENTER;
+				ptw->col_titles[i] =  _("Year");
 				break;
 			case TITLE_COL:
 				ptw->col_justify[i] = GTK_JUSTIFY_LEFT;
@@ -477,11 +517,31 @@ ctree_update_column_visibility (ProjTreeWindow *ptw)
 	{
 		switch (ptw->cols[i])
 		{
+		case TITLE_COL:
+			break;
 		case TIME_EVER_COL:
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+				config_show_title_ever);
+			break;
+		case TIME_CURRENT_COL:
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+				config_show_title_current);
 			break;
 		case TIME_TODAY_COL:
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+				config_show_title_day);
 			break;
-		case TITLE_COL:
+		case TIME_WEEK_COL:
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+				config_show_title_week);
+			break;
+		case TIME_MONTH_COL:
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+				config_show_title_month);
+			break;
+		case TIME_YEAR_COL:
+			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
+				config_show_title_year);
 			break;
 		case DESC_COL:
 			gtk_clist_set_column_visibility (GTK_CLIST(ptw->ctree), i, 
@@ -515,10 +575,34 @@ ctree_col_values (ProjTreeWindow *ptw, GttProject *prj)
 					gtt_project_total_secs_ever(prj), 
 					config_show_secs);
 				break;
+			case TIME_CURRENT_COL:
+				ptw->col_values[i] =  ptw->current_timestr;
+				print_hours_elapsed (ptw->current_timestr, 24, 
+					gtt_project_total_secs_current(prj), 
+					config_show_secs);
+				break;
 			case TIME_TODAY_COL:
 				ptw->col_values[i] =  ptw->day_timestr;
 				print_hours_elapsed (ptw->day_timestr, 24, 
 					gtt_project_total_secs_day(prj), 
+					config_show_secs);
+				break;
+			case TIME_WEEK_COL:
+				ptw->col_values[i] =  ptw->week_timestr;
+				print_hours_elapsed (ptw->week_timestr, 24, 
+					gtt_project_total_secs_week(prj), 
+					config_show_secs);
+				break;
+			case TIME_MONTH_COL:
+				ptw->col_values[i] =  ptw->month_timestr;
+				print_hours_elapsed (ptw->month_timestr, 24, 
+					gtt_project_total_secs_month(prj), 
+					config_show_secs);
+				break;
+			case TIME_YEAR_COL:
+				ptw->col_values[i] =  ptw->year_timestr;
+				print_hours_elapsed (ptw->year_timestr, 24, 
+					gtt_project_total_secs_year(prj), 
 					config_show_secs);
 				break;
 			case TITLE_COL:
@@ -592,7 +676,7 @@ ctree_new(void)
 
 	ctree_init_cols (ptw);
 
-	w = gtk_ctree_new_with_titles(ptw->ncols, 2, ptw->col_titles);
+	w = gtk_ctree_new_with_titles(ptw->ncols, 6, ptw->col_titles);
 	ptw->ctree = GTK_CTREE(w);
 
 	for (i=0; i<ptw->ncols; i++)
@@ -915,35 +999,63 @@ static void
 cupdate_label(ProjTreeNode *ptn, gboolean expand)
 {
 	GttProject *p = ptn->prj;
-	int secs_ever, secs_day;
-	char ever_timestr[24], day_timestr[24];
-	int ever_col=-1, day_col=-1;
+	ProjTreeWindow *ptw = ptn->ptw;
+	int secs_ever;
+	int secs_current;
+	int secs_day;
+	int secs_week;
+	int secs_month;
+	int secs_year;
+	int ever_col=-1;
+	int current_col=-1;
+	int day_col=-1;
+	int week_col=-1;
+	int month_col=-1;
+	int year_col=-1;
 	int i;
 
 	if (expand)
 	{
 		secs_ever = gtt_project_get_secs_ever (p);
+		secs_current = gtt_project_get_secs_current (p);
 		secs_day = gtt_project_get_secs_day (p);
+		secs_week = gtt_project_get_secs_week (p);
+		secs_month = gtt_project_get_secs_month (p);
+		secs_year = gtt_project_get_secs_year (p);
 	}
 	else
 	{
 		secs_ever = gtt_project_total_secs_ever (p);
+		secs_current = gtt_project_total_secs_current (p);
 		secs_day = gtt_project_total_secs_day (p);
+		secs_week = gtt_project_total_secs_week (p);
+		secs_month = gtt_project_total_secs_month (p);
+		secs_year = gtt_project_total_secs_year (p);
 	}
 
-	print_hours_elapsed (ever_timestr, 24, secs_ever, config_show_secs);
-	print_hours_elapsed (day_timestr, 24, secs_day, config_show_secs);
+	print_hours_elapsed (ptw->ever_timestr, 24, secs_ever, config_show_secs);
+	print_hours_elapsed (ptw->current_timestr, 24, secs_current, config_show_secs);
+	print_hours_elapsed (ptw->day_timestr, 24, secs_day, config_show_secs);
+	print_hours_elapsed (ptw->week_timestr, 24, secs_week, config_show_secs);
+	print_hours_elapsed (ptw->month_timestr, 24, secs_month, config_show_secs);
+	print_hours_elapsed (ptw->year_timestr, 24, secs_year, config_show_secs);
 
 	for (i=0; i<ptn->ptw->ncols; i++)
 	{
-		if (TIME_EVER_COL == ptn->ptw->cols[i]) ever_col = i;
-		if (TIME_TODAY_COL == ptn->ptw->cols[i]) day_col = i;
+		if (TIME_EVER_COL == ptw->cols[i]) ever_col = i;
+		if (TIME_CURRENT_COL == ptw->cols[i]) current_col = i;
+		if (TIME_TODAY_COL == ptw->cols[i]) day_col = i;
+		if (TIME_WEEK_COL == ptw->cols[i]) week_col = i;
+		if (TIME_MONTH_COL == ptw->cols[i]) month_col = i;
+		if (TIME_YEAR_COL == ptw->cols[i]) year_col = i;
 	}
 
-	gtk_ctree_node_set_text(ptn->ptw->ctree, ptn->ctnode, ever_col,
-			   ever_timestr);
-	gtk_ctree_node_set_text(ptn->ptw->ctree, ptn->ctnode, day_col,
-			   day_timestr);
+	gtk_ctree_node_set_text(ptw->ctree, ptn->ctnode, ever_col, ptw->ever_timestr);
+	gtk_ctree_node_set_text(ptw->ctree, ptn->ctnode, current_col, ptw->current_timestr);
+	gtk_ctree_node_set_text(ptw->ctree, ptn->ctnode, day_col, ptw->day_timestr);
+	gtk_ctree_node_set_text(ptw->ctree, ptn->ctnode, week_col, ptw->week_timestr);
+	gtk_ctree_node_set_text(ptw->ctree, ptn->ctnode, month_col, ptw->month_timestr);
+	gtk_ctree_node_set_text(ptw->ctree, ptn->ctnode, year_col, ptw->year_timestr);
 	update_status_bar();
 }
 

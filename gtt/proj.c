@@ -63,6 +63,9 @@ gtt_project_new(void)
 	proj->auto_merge_gap = 60;
 	proj->secs_ever = 0;
 	proj->secs_day = 0;
+	proj->secs_week = 0;
+	proj->secs_month = 0;
+	proj->secs_year = 0;
 	proj->billrate = 10.0;
 	proj->overtime_rate = 15.0;
 	proj->overover_rate = 20.0;
@@ -109,6 +112,9 @@ gtt_project_dup(GttProject *proj)
 	p->auto_merge_gap = proj->auto_merge_gap;
 	p->secs_ever = proj->secs_ever;
 	p->secs_day = proj->secs_day;
+	p->secs_week = proj->secs_week;
+	p->secs_month = proj->secs_month;
+	p->secs_year = proj->secs_year;
 
 	g_free(p->title);
 	g_free(p->desc);
@@ -470,6 +476,69 @@ get_midnight (time_t last)
 	return midnight;
 }
 
+static time_t
+get_sunday (time_t last)
+{
+	struct tm lt;
+	time_t sunday;
+
+	if (0 >= last)
+	{
+		last = time(0);
+	}
+
+	memcpy (&lt, localtime (&last), sizeof (struct tm));
+	lt.tm_sec = 0;
+	lt.tm_min = 0;
+	lt.tm_hour = 0;
+	lt.tm_mday -= lt.tm_wday;
+	sunday = mktime (&lt);
+
+	return sunday;
+}
+
+static time_t
+get_month (time_t last)
+{
+	struct tm lt;
+	time_t first;
+
+	if (0 >= last)
+	{
+		last = time(0);
+	}
+
+	memcpy (&lt, localtime (&last), sizeof (struct tm));
+	lt.tm_sec = 0;
+	lt.tm_min = 0;
+	lt.tm_hour = 0;
+	lt.tm_mday = 1;
+	first = mktime (&lt);
+
+	return first;
+}
+
+static time_t
+get_newyear (time_t last)
+{
+	struct tm lt;
+	time_t newyear;
+
+	if (0 >= last)
+	{
+		last = time(0);
+	}
+
+	memcpy (&lt, localtime (&last), sizeof (struct tm));
+	lt.tm_sec = 0;
+	lt.tm_min = 0;
+	lt.tm_hour = 0;
+	lt.tm_mday -= lt.tm_yday;
+	newyear = mktime (&lt);
+
+	return newyear;
+}
+
 void 
 gtt_project_compat_set_secs (GttProject *proj, int sever, int sday, time_t last)
 {
@@ -714,32 +783,68 @@ gtt_project_get_tasks (GttProject *proj)
 /* =========================================================== */
 /* get totals */
 
-static int
-project_list_total_secs_day (GList *prjs)
-{
-	GList *node;
-	int total = 0;
-	if (!prjs) return 0;
-
-	for (node=prjs; node; node=node->next)
-	{
-		GttProject *proj = node->data;
-		total += proj->secs_day;
-		if (proj->sub_projects)
-		{
-			total += project_list_total_secs_day (proj->sub_projects);
-		}
-	}
-	return total;
-}
 
 int
-gtt_project_list_total_secs_day (void)
+gtt_project_foreach (GttProject *prj, GttProjectCB cb, gpointer data)
 {
-	return project_list_total_secs_day(plist);
+	int rc;
+	GList *node;
+	if (!prj || !cb) return 0;
+
+	rc = cb (prj, data);
+	if (0 == rc) return 0;
+
+	for (node=prj->sub_projects; node; node=node->next)
+	{
+		GttProject *subprj = node->data;
+		if (!subprj) continue;  /* this can't really happen */
+		rc = gtt_project_foreach (subprj, cb, data);
+		if (0 == rc) return 0;
+	}
+	return rc;
 }
 
+static int
+prj_total_secs_day (GttProject *prj, gpointer data)
+{
+	*((int *) data) += prj->secs_day;
+	return 1;
+}
 
+static int
+prj_total_secs_week (GttProject *prj, gpointer data)
+{
+	*((int *) data) += prj->secs_week;
+	return 1;
+}
+
+static int
+prj_total_secs_month (GttProject *prj, gpointer data)
+{
+	*((int *) data) += prj->secs_month;
+	return 1;
+}
+
+static int
+prj_total_secs_year (GttProject *prj, gpointer data)
+{
+	*((int *) data) += prj->secs_year;
+	return 1;
+}
+
+static int
+prj_total_secs_ever (GttProject *prj, gpointer data)
+{
+	*((int *) data) += prj->secs_ever;
+	return 1;
+}
+
+static int
+prj_total_secs_current (GttProject *prj, gpointer data)
+{
+	*((int *) data) += gtt_project_get_secs_current (prj);
+	return 1;
+}
 
 /* this routine adds up total day-secs for this project, and its sub-projects */
 int
@@ -747,12 +852,52 @@ gtt_project_total_secs_day (GttProject *proj)
 {
 	int total = 0;
 	if (!proj) return 0;
+	gtt_project_foreach (proj, prj_total_secs_day, &total);
+	return total;
+}
 
-	total = proj->secs_day;
-	if (proj->sub_projects)
-	{
-		total += project_list_total_secs_day (proj->sub_projects);
-	}
+int
+gtt_project_total_secs_week (GttProject *proj)
+{
+	int total = 0;
+	if (!proj) return 0;
+	gtt_project_foreach (proj, prj_total_secs_week, &total);
+	return total;
+}
+
+int
+gtt_project_total_secs_month (GttProject *proj)
+{
+	int total = 0;
+	if (!proj) return 0;
+	gtt_project_foreach (proj, prj_total_secs_month, &total);
+	return total;
+}
+
+int
+gtt_project_total_secs_year (GttProject *proj)
+{
+	int total = 0;
+	if (!proj) return 0;
+	gtt_project_foreach (proj, prj_total_secs_year, &total);
+	return total;
+}
+
+int
+gtt_project_total_secs_ever (GttProject *proj)
+{
+	int total = 0;
+	if (!proj) return 0;
+	gtt_project_foreach (proj, prj_total_secs_ever, &total);
+	return total;
+}
+
+int
+gtt_project_total_secs_current (GttProject *proj)
+{
+	int total = 0;
+	if (!proj) return 0;
+	gtt_project_foreach (proj, prj_total_secs_current, &total);
 	return total;
 }
 
@@ -763,46 +908,25 @@ gtt_project_get_secs_day (GttProject *proj)
 	return proj->secs_day;
 }
 
-
-static int
-project_list_total_secs_ever (GList *prjs)
-{
-	GList *node;
-	int total = 0;
-	if (!prjs) return 0;
-
-	for (node=prjs; node; node=node->next)
-	{
-		GttProject *proj = node->data;
-		total += proj->secs_ever;
-		if (proj->sub_projects)
-		{
-			total += project_list_total_secs_ever (proj->sub_projects);
-		}
-	}
-	return total;
-}
-
 int
-gtt_project_list_total_secs_ever (void)
+gtt_project_get_secs_week (GttProject *proj)
 {
-	return project_list_total_secs_ever(plist);
-}
-
-
-/* this routine adds up total secs for this project, and its sub-projects */
-int
-gtt_project_total_secs_ever (GttProject *proj)
-{
-	int total = 0;
 	if (!proj) return 0;
+	return proj->secs_week;
+}
 
-	total = proj->secs_ever;
-	if (proj->sub_projects)
-	{
-		total += project_list_total_secs_ever (proj->sub_projects);
-	}
-	return total;
+int
+gtt_project_get_secs_month (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->secs_month;
+}
+
+int
+gtt_project_get_secs_year (GttProject *proj)
+{
+	if (!proj) return 0;
+	return proj->secs_year;
 }
 
 int
@@ -812,6 +936,33 @@ gtt_project_get_secs_ever (GttProject *proj)
 	return proj->secs_ever;
 }
 
+int
+gtt_project_get_secs_current (GttProject *proj)
+{
+	GttTask *tsk;
+	if (!proj) return 0;
+	if (!proj->task_list) return 0;
+	tsk = proj->task_list->data;
+
+	return gtt_task_get_secs_ever(tsk);
+}
+
+/* =========================================================== */
+
+int
+gtt_project_list_total_secs_day (void)
+{
+	GList *node;
+	int total = 0;
+	if (!plist) return 0;
+
+	for (node=plist; node; node=node->next)
+	{
+		GttProject *proj = node->data;
+		total += gtt_project_total_secs_day (proj);
+	}
+	return total;
+}
 
 /* =========================================================== */
 /* Recomputed cached data.  Scrub it while we're at it. */
@@ -908,7 +1059,7 @@ scrub_intervals (GttTask *tsk)
 			{
 				GttInterval *nivl = node->next->data;
 
-				/* merge only if the intervals are in teh same day */
+				/* merge only if the intervals are in the same day */
 				if (get_midnight (ivl->start) == get_midnight (nivl->stop))
 				{
 					gap_down = ivl->start - nivl->stop;
@@ -919,7 +1070,7 @@ scrub_intervals (GttTask *tsk)
 			{
 				GttInterval *nivl = node->prev->data;
 
-				/* merge only if the intervals are in teh same day */
+				/* merge only if the intervals are in the same day */
 				if (get_midnight (nivl->start) == get_midnight (ivl->stop))
 				{
 					gap_up = nivl->start - ivl->stop;
@@ -950,7 +1101,10 @@ project_compute_secs (GttProject *proj)
 {
 	int total_ever = 0;
 	int total_day = 0;
-	time_t midnight;
+	int total_week = 0;
+	int total_month = 0;
+	int total_year = 0;
+	time_t midnight, sunday, month, newyear;
 	GList *tsk_node, *ivl_node, *prj_node;
 
 	if (!proj) return;
@@ -963,6 +1117,10 @@ project_compute_secs (GttProject *proj)
 	}
 
 	midnight = get_midnight (-1);
+	sunday = get_sunday (-1);
+	month = get_month (-1);
+	newyear = get_newyear (-1);
+
 	/* total up tasks */
 	for (tsk_node= proj->task_list; tsk_node; tsk_node=tsk_node->next)
 	{
@@ -980,11 +1138,38 @@ project_compute_secs (GttProject *proj)
 			{
 				total_day += ivl->stop - midnight;
 			}
+			if (ivl->start >= sunday)
+			{
+				total_week += ivl->stop - ivl->start;
+			}
+			else if (ivl->stop > sunday)
+			{
+				total_week += ivl->stop - sunday;
+			}
+			if (ivl->start >= month)
+			{
+				total_month += ivl->stop - ivl->start;
+			}
+			else if (ivl->stop > month)
+			{
+				total_month += ivl->stop - month;
+			}
+			if (ivl->start >= newyear)
+			{
+				total_year += ivl->stop - ivl->start;
+			}
+			else if (ivl->stop > newyear)
+			{
+				total_year += ivl->stop - newyear;
+			}
 		}
 	}
 
 	proj->secs_ever = total_ever;
 	proj->secs_day = total_day;
+	proj->secs_week = total_week;
+	proj->secs_month = total_month;
+	proj->secs_year = total_year;
 	proj->dirty_time = FALSE;
 }
 
@@ -1274,6 +1459,9 @@ gtt_project_timer_update (GttProject *proj)
 	diff = now - prev_update;
 	proj->secs_ever += diff;
 	proj->secs_day += diff;
+	proj->secs_week += diff;
+	proj->secs_month += diff;
+	proj->secs_year += diff;
 }
 
 void 
@@ -1947,10 +2135,20 @@ project_list_destroy(void)
 	}
 }
 
-static void
-project_list_sort(int (cmp)(const void *, const void *))
+static GList *
+project_list_sort(GList *prjs, int (cmp)(const void *, const void *))
 {
-	plist = g_list_sort (plist, cmp);
+	GList *node;
+	prjs = g_list_sort (prjs, cmp);
+	for (node = prjs; node; node=node->next)
+	{
+		GttProject *prj = node->data;
+		if (prj->sub_projects)
+		{
+			prj->sub_projects = project_list_sort (prj->sub_projects, cmp);
+		}
+	}
+	return prjs;
 }
 
 /* -------------------- */
@@ -1986,7 +2184,7 @@ gtt_project_locate_from_id (int prj_id)
 
 
 static int
-cmp_time(const void *aa, const void *bb)
+cmp_day(const void *aa, const void *bb)
 {
 	GttProject *a = (GttProject *)aa;
 	GttProject *b = (GttProject *)bb;
@@ -1994,11 +2192,43 @@ cmp_time(const void *aa, const void *bb)
 }
 
 static int
-cmp_total_time(const void *aa, const void *bb)
+cmp_week(const void *aa, const void *bb)
+{
+	GttProject *a = (GttProject *)aa;
+	GttProject *b = (GttProject *)bb;
+	return (gtt_project_total_secs_week(b) - gtt_project_total_secs_week(a));
+}
+
+static int
+cmp_month(const void *aa, const void *bb)
+{
+	GttProject *a = (GttProject *)aa;
+	GttProject *b = (GttProject *)bb;
+	return (gtt_project_total_secs_month(b) - gtt_project_total_secs_month(a));
+}
+
+static int
+cmp_year(const void *aa, const void *bb)
+{
+	GttProject *a = (GttProject *)aa;
+	GttProject *b = (GttProject *)bb;
+	return (gtt_project_total_secs_year(b) - gtt_project_total_secs_year(a));
+}
+
+static int
+cmp_ever(const void *aa, const void *bb)
 {
 	GttProject *a = (GttProject *)aa;
 	GttProject *b = (GttProject *)bb;
 	return (gtt_project_total_secs_ever(b) - gtt_project_total_secs_ever(a));
+}
+
+static int
+cmp_current(const void *aa, const void *bb)
+{
+	GttProject *a = (GttProject *)aa;
+	GttProject *b = (GttProject *)bb;
+	return (gtt_project_total_secs_current(b) - gtt_project_total_secs_current(a));
 }
 
 
@@ -2026,27 +2256,51 @@ cmp_desc(const void *aa, const void *bb)
 
 
 void
-project_list_sort_time(void)
+project_list_sort_day(void)
 {
-	project_list_sort(cmp_time);
+	plist = project_list_sort(plist, cmp_day);
 }
 
 void
-project_list_sort_total_time(void)
+project_list_sort_week(void)
 {
-	project_list_sort(cmp_total_time);
+	plist = project_list_sort(plist, cmp_week);
+}
+
+void
+project_list_sort_month(void)
+{
+	plist = project_list_sort(plist, cmp_month);
+}
+
+void
+project_list_sort_year(void)
+{
+	plist = project_list_sort(plist, cmp_year);
+}
+
+void
+project_list_sort_ever(void)
+{
+	plist = project_list_sort(plist, cmp_ever);
+}
+
+void
+project_list_sort_current(void)
+{
+	plist = project_list_sort(plist, cmp_current);
 }
 
 void
 project_list_sort_title(void)
 {
-	project_list_sort(cmp_title);
+	plist = project_list_sort(plist, cmp_title);
 }
 
 void
 project_list_sort_desc(void)
 {
-	project_list_sort(cmp_desc);
+	plist = project_list_sort(plist, cmp_desc);
 }
 
 /* =========================== END OF FILE ========================= */
