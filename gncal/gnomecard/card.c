@@ -81,7 +81,8 @@ card_new(void)
 	c->deladdr.l  = NULL;
 	c->dellabel.l = NULL;
 	c->phone.l    = NULL;
-	c->email.l    = NULL;
+	c->email.type  = EMAIL_INET;
+	c->email.address  = NULL;
 	c->timezn.sign  = 1;
 	c->timezn.hours = c->timezn.mins = 0;
 	c->geopos.lon   = c->geopos.lat  = 0;
@@ -540,7 +541,7 @@ get_CardEMail(VObject *o)
 	
 	ret = malloc(sizeof(CardEMail));
 	ret->type = get_email_type(o);
-	ret->data = g_strdup(str_val(o));
+	ret->address = g_strdup(str_val(o));
 	ret->prop = get_CardProperty(o);
 	
 	free(the_str);
@@ -889,7 +890,8 @@ card_create_from_vobject (VObject *vcrd)
 				CardEMail *c;
 				c = get_CardEMail(o);
 				prop = &c->prop;
-				crd->email.l = g_list_append(crd->email.l, c);
+				crd->email.type = c->type;
+				crd->email.address = c->address;
 			}
 			break;
 		 case PROP_MAILER:
@@ -1263,6 +1265,8 @@ card_convert_to_vobject(Card *crd)
 			add_CardProperty(vprop, &phone->prop);
 		}
 	}
+
+/* NO LONGER USE A LIST FOR EMAIL
 	if (crd->email.l) {
 		GList *node;
 		
@@ -1275,6 +1279,16 @@ card_convert_to_vobject(Card *crd)
 			add_CardProperty(vprop, &email->prop);
 		}
 	}
+*/
+/* Instead we have a single email field */
+	if (crd->email.prop.used) {
+	    vprop = add_strProp(vobj, VCEmailAddressProp, crd->email.address);
+			add_EMailType(vprop, crd->email.type);
+			add_CardProperty(vprop, &crd->email.prop);
+	}
+
+
+
 	add_CardStrProperty(vobj, VCMailerProp, &crd->mailer);
 	if (crd->timezn.prop.used) {
 		char *str;

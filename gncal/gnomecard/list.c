@@ -33,8 +33,8 @@ static void gnomecard_create_list_row(Card *crd, gchar **text)
 	else
 	    text[0] = g_strdup("No name");
 
-	if (crd->email.l) {
-	    text[1] = g_strdup(((CardEMail *) (crd->email.l->data))->data);
+	if (crd->email.address) {
+	    text[1] = g_strdup(crd->email.address);
 	} else {
 	    text[1] = g_strdup("");
 	}

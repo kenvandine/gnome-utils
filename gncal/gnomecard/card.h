@@ -115,6 +115,8 @@ typedef struct
 	char *data;
 } CardPhone;
 
+/* NOT USED - We're not keeping a list of emails, just one per person */
+#if 0
 typedef struct 
 {
 	CardProperty prop;
@@ -122,6 +124,15 @@ typedef struct
 	enum EMailType type;
 	char *data;
 } CardEMail;
+#else
+typedef struct 
+{
+	CardProperty prop;
+	
+	enum EMailType type;
+	char *address;
+} CardEMail;
+#endif
 
 typedef struct
 {
@@ -197,7 +208,7 @@ typedef struct _Card
 	CardList        dellabel;
 	
 	CardList        phone;
-	CardList        email;
+	CardEMail       email;
 	CardStrProperty mailer;
 	
 	CardTimeZone    timezn;

@@ -272,36 +272,44 @@ extern void gnomecard_edit(GList *node)
 	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, FALSE, 0);
 
 	/* pack all name fields into a table */
-	nametable = my_gtk_table_new(1, 6);
+	nametable = my_gtk_table_new(1, 4);
 	gtk_container_add(GTK_CONTAINER(frame), nametable);
 
 	/* first name */
 	label = gtk_label_new(_("First:"));
-	ce->given = entry = my_gtk_entry_new(12, crd->name.given);
+	ce->given = entry = my_gtk_entry_new(0, crd->name.given);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
+	align = gtk_alignment_new(0.0, 0.0, 0, 0);
+        gtk_container_add (GTK_CONTAINER (align), entry);
 	gtk_table_attach(GTK_TABLE(nametable), label, 0, 1, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
-	gtk_table_attach(GTK_TABLE(nametable), entry, 1, 2, 0, 1, 
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+	gtk_table_attach(GTK_TABLE(nametable), align, 1, 2, 0, 1, 
+			 GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_SHRINK, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
 	label = gtk_label_new(_("Middle:"));
-	ce->add = entry = my_gtk_entry_new(12, crd->name.additional);
+	ce->add = entry = my_gtk_entry_new(0, crd->name.additional);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
 	gtk_table_attach(GTK_TABLE(nametable), label, 2, 3, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
-	gtk_table_attach(GTK_TABLE(nametable), entry, 3, 4, 0, 1, 0, 0, 
+	gtk_table_attach(GTK_TABLE(nametable), entry, 3, 4, 0, 1, 
+			 GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_SHRINK, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
 	label = gtk_label_new(_("Last:"));
-	ce->fam = entry = my_gtk_entry_new(15, crd->name.family);
+	ce->fam = entry = my_gtk_entry_new(0, crd->name.family);
+	align = gtk_alignment_new(0.0, 0.0, 0, 0);
+        gtk_container_add (GTK_CONTAINER (align), entry);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(nametable), label, 4, 5, 0, 1,
+	gtk_table_attach(GTK_TABLE(nametable), label, /*4, 5, 0, 1, */
+			                              0, 1, 1, 2, 
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
-	gtk_table_attach(GTK_TABLE(nametable), entry, 5, 6, 0, 1, 0, 0, 
+	gtk_table_attach(GTK_TABLE(nametable), align, /*5, 6, 0, 1,*/
+			                              1, 4 , 1, 2,
+			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
 	label = gtk_label_new(_("Prefix:"));
@@ -309,9 +317,9 @@ extern void gnomecard_edit(GList *node)
 	align = gtk_alignment_new(0.0, 0.0, 0, 0);
         gtk_container_add (GTK_CONTAINER (align), entry);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(nametable), label, 0, 1, 1, 2,
+	gtk_table_attach(GTK_TABLE(nametable), label, 0, 1, 2, 3,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(nametable), align, 1, 2, 1, 2, 
+	gtk_table_attach(GTK_TABLE(nametable), align, 1, 2, 2, 3, 
 			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
@@ -320,9 +328,9 @@ extern void gnomecard_edit(GList *node)
 	align = gtk_alignment_new(0.0, 0.0, 0, 0); 
         gtk_container_add (GTK_CONTAINER (align), entry);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-        gtk_table_attach(GTK_TABLE(nametable), label, 4, 5, 1, 2,
+        gtk_table_attach(GTK_TABLE(nametable), label, 2, 3, 2, 3,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(nametable), align, 5, 6, 1, 2, 
+	gtk_table_attach(GTK_TABLE(nametable), align, 3, 4, 2, 3, 
 			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
@@ -368,8 +376,8 @@ extern void gnomecard_edit(GList *node)
 
 	label = gtk_label_new(_("Email Address:"));
 	gtk_misc_set_alignment(GTK_MISC(label), 1, 0.5);
-	ce->email = entry = my_gtk_entry_new(0, "email@address.here");
-/*	my_connect(entry, "changed", box, &crd->org.prop, PROP_ORG); */
+	ce->email = entry = my_gtk_entry_new(0, crd->email.address);
+	my_connect(entry, "changed", box, &crd->email.prop, PROP_ORG);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
@@ -746,7 +754,9 @@ void gnomecard_add_email(GtkWidget *widget, gpointer data)
 	GnomeCardEMail *e;
 	CardEMail *email;
 	char *text;
-	
+
+	g_message("gnomecard_add_email not used/implemented");
+#if 0	
 	e = (GnomeCardEMail *) data;
 	
 	text = gtk_entry_get_text(GTK_ENTRY(e->data));
@@ -766,6 +776,7 @@ void gnomecard_add_email(GtkWidget *widget, gpointer data)
 	
 	gtk_editable_delete_text(GTK_EDITABLE(e->data), 0, strlen(text));
 	gnomecard_set_changed(TRUE);
+#endif
 }
 
 extern void gnomecard_add_email_call(GtkWidget *widget, gpointer data)
@@ -775,7 +786,9 @@ extern void gnomecard_add_email_call(GtkWidget *widget, gpointer data)
 	char *title;
 	Card *crd;
 	int i;
-	
+
+	g_message("gnomecard_add_email_call not used/implemented");
+#if 0	
 	crd = gnomecard_curr_crd->data;
 
 	/* + 7 for case crd->fname == 0, which sprintf's to "(null)" */
@@ -816,6 +829,7 @@ extern void gnomecard_add_email_call(GtkWidget *widget, gpointer data)
 	
 	gtk_widget_show_all(GNOME_DIALOG(w)->vbox);
 	gtk_widget_show(w);
+#endif
 }
 
 void gnomecard_add_phone(GtkWidget *widget, gpointer data)
@@ -1298,11 +1312,15 @@ void gnomecard_find_card(GtkWidget *w, gpointer data)
 				if (gnomecard_match_pattern(pattern, 
 																		((CardPhone *) k->data)->data, sens))
 					found = 1;
-			
+
+#if 0			
 			for (k = crd->email.l; k && !found; k = k->next)
 				if (gnomecard_match_pattern(pattern, 
 																		((CardEMail *) k->data)->data, sens))
 						found = 1;
+#else
+			g_message("Did not search of email (yet)");
+#endif
 
 			for (k = crd->dellabel.l; k && !found; k = k->next)
 				if (gnomecard_match_pattern(pattern, 

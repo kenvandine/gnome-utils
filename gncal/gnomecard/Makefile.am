@@ -35,9 +35,10 @@ gnomecard_SOURCES =	\
 	popup-menu.h	\
 	sort.c          \
 	sort.h          \
-	pairs.h         \
-	tree.c          \
-	tree.h
+	pairs.h
+#         \
+#	tree.c          \
+#	tree.h
 
 LINK_FLAGS = \
 	$(GNOME_LIBDIR) \

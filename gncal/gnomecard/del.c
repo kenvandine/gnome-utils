@@ -99,7 +99,10 @@ static void del_email_list(GtkCTreeNode *node, gpointer data)
 {
 	CardList *email_list;
 	GList *email;
-	
+
+
+	g_message("del_email_list not implemented yet");
+#if 0	
 	email_list = data;
 	card_prop_free(email_list->prop);
 	
@@ -122,13 +125,16 @@ static void del_email_list(GtkCTreeNode *node, gpointer data)
 	gtk_ctree_select(gnomecard_tree, 
 			 ((Card *) gnomecard_curr_crd->data)->prop.user_data);
 */
+#endif
 }
 
 static void del_email(GtkCTreeNode *node, gpointer data)
 {
 	CardList *email_list;
 	GList *email;
-	
+
+	g_message("del_email not implemented yet");
+#if 0	
 	email_list = & ((Card *) gnomecard_curr_crd->data)->email;
 	for (email = email_list->l; email; email = email->next)
 	  if (email->data == data)
@@ -171,6 +177,7 @@ static void del_email(GtkCTreeNode *node, gpointer data)
 			gtk_ctree_remove_node(gnomecard_tree, email_list->prop.user_data);*/
 		}
 	}
+#endif
 }
 
 static void del_org(GtkCTreeNode *node, gpointer data)

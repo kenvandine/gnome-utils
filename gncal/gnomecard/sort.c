@@ -129,10 +129,13 @@ extern int gnomecard_cmp_emails(const void *crd1, const void *crd2)
 	char *host1, *host2;
 	Card *card1, *card2;
 	int ret;
+
+	g_message("gnomecard_cmp_emails not used/implemented");
 	
+#if 0	
 	card1 = (* (Card **) crd1);
 	card2 = (* (Card **) crd2);
-	
+
 	if (! card1->email.l && !card2->email.l)
 	  return gnomecard_cmp_fnames(crd1, crd2);
 	if (! card1->email.l)
@@ -153,4 +156,8 @@ extern int gnomecard_cmp_emails(const void *crd1, const void *crd2)
 	}
 	
 	return strcmp(email1, email2);
+#else
+	return 0;
+#endif
+
 }
