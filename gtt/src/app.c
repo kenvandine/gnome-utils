@@ -159,7 +159,7 @@ cur_proj_set(GttProject *proj)
 	}
 	log_proj(proj);
 	menu_set_states();
-	prop_dialog_set_project(proj);
+	if (proj) prop_dialog_set_project(proj);
 	update_status_bar();
 	cmd = (proj) ? config_command : config_command_null;
 
