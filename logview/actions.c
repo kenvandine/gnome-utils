@@ -563,6 +563,8 @@ static void
 apply_edit (GtkWidget *w, gpointer data)
 {
 	char *text;
+	GtkTextBuffer *buffer;
+	GtkTextIter start, end;
 	GtkWidget *action_record = data;
 	GtkWidget *tag =
 		gtk_object_get_data (GTK_OBJECT (action_record), "tag");
@@ -594,8 +596,10 @@ apply_edit (GtkWidget *w, gpointer data)
 	edited_action->action =
 		gtk_editable_get_chars (GTK_EDITABLE (action), 0, -1);
 	g_free (edited_action->description);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (description));
+	gtk_text_buffer_get_bounds (buffer, &start, &end);
 	edited_action->description =
-		gtk_editable_get_chars (GTK_EDITABLE (description), 0, -1);
+		gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
 
 	if ( ! g_list_find (local_actions_db, edited_action))
 		local_actions_db = g_list_prepend (local_actions_db,
@@ -787,10 +791,9 @@ edit_action_entry (Action *action)
   gtk_widget_show (action_record);
 
   /* Insert text into text widget */
-  gtk_text_buffer_insert_at_cursor
-	  (gtk_text_view_get_buffer(GTK_TEXT_VIEW (text)),
-	  action->description, 
-	  strlen (action->description));
+  gtk_text_buffer_set_text (gtk_text_view_get_buffer(GTK_TEXT_VIEW (text)),
+  			    action->description, 
+	  		    strlen (action->description));
 }
 
 /* ----------------------------------------------------------------------
