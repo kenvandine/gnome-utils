@@ -3,7 +3,7 @@ bin_PROGRAMS = gcharmap
 INCLUDES =\
 	-DG_LOG_DOMAIN=\"gcharmap\"\
 	-I$(srcdir)/../pixmaps\
-	@BONOBOUI_CFLAGS@ \
+	@LIBBONOBOUI_CFLAGS@ \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
 gcharmap_SOURCES = \
@@ -13,7 +13,7 @@ gcharmap_SOURCES = \
         callbacks.c callbacks.h\
         asciiselect.c asciiselect.h
 
-gcharmap_LDADD = @BONOBOUI_LIBS@ $(INTLLIBS)
+gcharmap_LDADD = @LIBBONOBOUI_LIBS@ $(INTLLIBS)
 
 man_MANS = gcharmap.1
 

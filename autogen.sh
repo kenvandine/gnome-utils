@@ -4,14 +4,19 @@
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
-PKG_NAME="Gnome Utilities"
+PKG_NAME="GNOME Utilities"
 
 (test -f $srcdir/configure.in \
-  && test -d $srcdir/gtt \
-  && test -d $srcdir/mini-utils) || {
+  && test -f $srcdir/ChangeLog \
+  && test -d $srcdir/gtt) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
-    echo " top-level $PKG_NAME directory"
+    echo " top-level gnome directory"
     exit 1
 }
 
-. $srcdir/macros/autogen.sh
+
+which gnome-autogen.sh || {
+    echo "You need to install gnome-common from the GNOME CVS"
+    exit 1
+}
+USE_GNOME2_MACROS=1 . gnome-autogen.sh

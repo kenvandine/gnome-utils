@@ -15,7 +15,7 @@ stripchart_SOURCES = \
 
 stripchart_LDADD = \
  $(GNOME_UTILS_LIBS) $(INTLLIBS) \
- $(GTOP_LIBS) $(GNOME_XML_LIB) 
+ $(GTOP_LIBS) $(LIBXML_LIBS) 
 
 stripchart_applet_SOURCES = \
  stripchart-applet.c \
@@ -24,7 +24,7 @@ stripchart_applet_SOURCES = \
 
 stripchart_applet_LDADD = \
  $(GNOME_UTILS_LIBS) $(INTLLIBS) $(GNOME_APPLETS_LIBS) \
- $(GTOP_LIBS) $(GNOME_XML_LIB) 
+ $(GTOP_LIBS) $(LIBXML_LIBS) 
 
 man_MANS = stripchart.1 stripchart-applet.1
 

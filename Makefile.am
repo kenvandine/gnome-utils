@@ -1,7 +1,3 @@
-#if OBJECTIVE_C
-#objc_DIRS = 
-#endif
-
 if GUILE
 if FALSE
 guile_extra_DIRS = cromagnon
@@ -20,7 +16,7 @@ if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
-SUBDIRS = po intl macros idl $(gfloppy) logview gcharmap \
+SUBDIRS = po idl $(gfloppy) logview gcharmap \
 	gcalc gsearchtool $(gdiskfree) $(stripchart) gtt gdictsrc \
 	$(guile_DIRS) mini-utils splash gdialog \
 	meat-grinder exe-handler omf-install
@@ -29,9 +25,3 @@ EXTRA_DIST = gnome-utils.spec.in
 
 dist-hook: gnome-utils.spec
 	cp gnome-utils.spec $(distdir)
-
-## to automatically rebuild aclocal.m4 if any of the macros in
-## `macros/' change
-@MAINT@include macros/macros.dep
-@MAINT@macros/macros.dep: macros/Makefile.am
-@MAINT@	cd macros && $(MAKE) macros.dep

@@ -13,7 +13,7 @@ INCLUDES = 						\
 	-DLOCALEDIR=\"$(datadir)/locale\"		\
 	-I$(includedir)					\
 	$(GNOME_UTILS_CFLAGS)				\
-	$(GLADE_CFLAGS)
+	$(LIBGLADE_CFLAGS)
 
 bin_PROGRAMS = gcolorsel
 
@@ -61,8 +61,8 @@ gcolorsel_SOURCES = 	dialog-new-doc.c		\
 gcolorsel_LDADD = \
 	$(GNOME_UTILS_LIBS) 				\
 	$(INTLLIBS)					\
-	$(GLADE_LIBS)					\
-	$(GNOME_XML_LIB)
+	$(LIBGLADE_LIBS)				\
+	$(LIBXML_LIBS)
 
 man_MANS = gcolorsel.1
 

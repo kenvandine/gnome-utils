@@ -62,7 +62,7 @@ noinst_HEADERS = 	\
 CFLAGS = @CFLAGS@ 		\
 	${GCONF_CFLAGS} 	\
 	${GTKHTML_CFLAGS} 	\
-	${GLADE_CFLAGS} 
+	${LIBGLADE_CFLAGS} 
 
 INCLUDES = 			\
 	-I$(includedir)		\
@@ -72,9 +72,9 @@ INCLUDES = 			\
 	${GUILE_INCS}
 						 
 gtt_LDADD = \
-	$(GLADE_LIBS)           \
+	$(LIBGLADE_LIBS)        \
 	$(GNOME_LIBDIR)         \
-	$(GNOME_XML_LIB)        \
+	$(LIBXML_LIBS)        \
 	$(GTKHTML_LIBS)		\
 	$(GNOMEUI_LIBS) 	\
 	$(GCONF_LIBS)	 	\
