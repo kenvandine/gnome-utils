@@ -45,7 +45,7 @@
 #define C_STANDARD_STRFTIME_CHARACTERS "aAbBcdHIjmMpSUwWxXyYZ"
 #define C_STANDARD_NUMERIC_STRFTIME_CHARACTERS "dHIjmMSUwWyY"
 #define SUS_EXTENDED_STRFTIME_MODIFIERS "EO"
-#define BINARY_EXEC_MIME_TYPE      "application/x-executable-binary"
+#define BINARY_EXEC_MIME_TYPE      "application/x-executable"
 #define ICON_THEME_EXECUTABLE_ICON "gnome-fs-executable"
 #define ICON_THEME_REGULAR_ICON    "gnome-fs-regular"
 #define ICON_THEME_CHAR_DEVICE     "gnome-fs-chardev"
@@ -791,7 +791,8 @@ get_file_type_for_mime_type (const gchar *filename,
 		if (g_file_test (file_info->symlink_name, G_FILE_TEST_EXISTS) != TRUE) {
 		
 			if ((g_ascii_strcasecmp (mimetype, "x-special/socket") != 0) && 
-		            (g_ascii_strcasecmp (mimetype, "x-special/fifo") != 0)) {
+		            (g_ascii_strcasecmp (mimetype, "x-special/fifo") != 0) &&
+			    (g_ascii_strcasecmp (mimetype, BINARY_EXEC_MIME_TYPE) != 0)) {
 			    
 				gnome_vfs_file_info_unref (file_info);
 				return _("link (broken)");
