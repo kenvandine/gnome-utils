@@ -239,10 +239,12 @@ static void clist_add(GtkCList *cl, char *a, char *b, int blen)
 static char *make_multi(int n)
 {
 	static char buf[128];
-	if(n)
-		sprintf(buf, _("Yes (%d sector%s)"), n, n==1?"":"s");
-	else
+        if (n == 0)
 		sprintf(buf, _("No"));
+        else if (n == 1)
+		sprintf(buf, _("Yes (%d sector)"), n);
+        else
+		sprintf(buf, _("Yes (%d sectors)"), n);
 	return buf;
 }
 
