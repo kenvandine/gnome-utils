@@ -18,7 +18,6 @@
 
     ---------------------------------------------------------------------- */
 
-#include <libgnome/gnome-util.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include "actions.h"
@@ -62,7 +61,7 @@ apply_actions (GtkWidget *w, gpointer data)
 	actions_db = local_actions_db;
 	local_actions_db = NULL;
 
-	fname = gnome_util_home_file ("gnome-system-log-actions.db");
+	fname = g_strdup_printf ("%s/.gnome2/gnome-system-log-actions.db", g_get_home_dir());
 	if (write_actions_db (fname, actions_db)) {
 		gtk_widget_destroy (actions_dialog);
 	}
