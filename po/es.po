@@ -11,8 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2003-06-06 12:32+0200\n"
-"PO-Revision-Date: 2003-06-06 15:43-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-07 12:18+0200\n"
+"PO-Revision-Date: 2003-08-07 10:05-0300\n"
 "Last-Translator: Pablo G. del Campo <pablodc@bigfoot.com>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +25,7 @@ msgstr ""
 msgid "Accessories"
 msgstr "Accesorios"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:156
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:143
 msgid "Dictionary Lookup"
 msgstr "Búsqueda en diccionario"
 
@@ -56,8 +57,8 @@ msgstr "Mo_strar el diccionario"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:510 gdictsrc/gdict-speller.c:459
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:524 gdictsrc/gdict-speller.c:459
 msgid "Cannot connect to server"
 msgstr "No se puede conectar con el servidor"
 
@@ -81,9 +82,10 @@ msgstr ""
 "Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Miguel de Icaza <miguel@metropolis.nuclecu.unam.mx>"
 
-#: gdictsrc/gdict-about.c:56
-msgid "GNOME Dictionary"
-msgstr "Diccionario de GNOME"
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:773
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Diccionario"
 
 #: gdictsrc/gdict-about.c:58
 msgid "A client for the MIT dictionary server."
@@ -152,10 +154,6 @@ msgstr "Comprobar la ortografía de la palabra"
 msgid "_Dictionary"
 msgstr "_Diccionario"
 
-#: gdictsrc/gdict-app.c:773 gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Diccionario"
-
 #: gdictsrc/gdict-app.c:796 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Palabra:"
@@ -177,7 +175,7 @@ msgstr "Ingrese una palabra o seleccione una desde la siguiente lista"
 msgid "Look Up for a Word"
 msgstr "Buscar una palabra"
 
-#: gdictsrc/gdict-applet.c:149
+#: gdictsrc/gdict-applet.c:136
 msgid "_Lookup"
 msgstr "_Búsqueda"
 
@@ -194,75 +192,75 @@ msgstr "Preferencias del diccionario"
 msgid "Smart _lookup"
 msgstr "Búsqueda inte_ligente"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "_Server:"
 msgstr "_Servidor:"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:207
 msgid "De_fault Server"
 msgstr "S_ervidor predeterminado"
 
-#: gdictsrc/gdict-pref-dialog.c:214
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset server to default"
 msgstr "Reiniciar servidor con valores predeterminados"
 
-#: gdictsrc/gdict-pref-dialog.c:216
+#: gdictsrc/gdict-pref-dialog.c:224
 msgid "_Port:"
 msgstr "_Puerto:"
 
-#: gdictsrc/gdict-pref-dialog.c:232
+#: gdictsrc/gdict-pref-dialog.c:240
 msgid "Def_ault Port"
 msgstr "P_uerto predeterminado"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:250
 msgid "Reset port to default"
 msgstr "Reiniciar puerto con valores predeterminados"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:251
 msgid "Server"
 msgstr "Servidor"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Server Entry"
 msgstr "Entrada del servidor"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Enter the Server Name"
 msgstr "Ingrese el nombre del servidor"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:255
 msgid "Port"
 msgstr "Puerto"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Port Entry"
 msgstr "Ingreso de puerto"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid "Enter the Port Number"
 msgstr "Ingrese el número de puerto"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "_Database:"
 msgstr "_Base de datos:"
 
-#: gdictsrc/gdict-pref-dialog.c:260
+#: gdictsrc/gdict-pref-dialog.c:274
 msgid "D_efault strategy:"
 msgstr "_Estrategia predeterminada:"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:466
 msgid "Search all databases"
 msgstr "Buscar en todas las bases de datos"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database"
 msgstr "Base de datos"
 
-#: gdictsrc/gdict-pref-dialog.c:616
+#: gdictsrc/gdict-pref-dialog.c:631
 msgid "Database Name"
 msgstr "Nombre de la base de datos"
 
-#: gdictsrc/gdict-pref-dialog.c:628
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "Estrategia predeterminada"
 
@@ -589,8 +587,9 @@ msgid ""
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
-"<small><i><b>Aviso</b>: La utilidad mbadblocks no esta instalada en este sistema. Debe "
-"estar instalada para poder dar un formato completo de DOS (fat).</i></small>"
+"<small><i><b>Aviso</b>: La utilidad mbadblocks no esta instalada en este "
+"sistema. Debe estar instalada para poder dar un formato completo de DOS "
+"(fat).</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
@@ -777,8 +776,8 @@ msgstr ""
 "archivos DOS."
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:781
-#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1251
-#: gsearchtool/gsearchtool.c:2185 gsearchtool/gsearchtool.c:2205
+#: gsearchtool/gsearchtool.c:927 gsearchtool/gsearchtool.c:1256
+#: gsearchtool/gsearchtool.c:2191 gsearchtool/gsearchtool.c:2211
 msgid "Search for Files"
 msgstr "Buscar archivos"
 
@@ -842,7 +841,7 @@ msgstr "Seguir los enlaces simbólicos"
 msgid "Include other filesystems"
 msgstr "Incluir a otros sistemas de archivos"
 
-#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1236
+#: gsearchtool/gsearchtool.c:523 gsearchtool/gsearchtool.c:1237
 msgid "No files found"
 msgstr "No se encontraron archivos"
 
@@ -892,20 +891,33 @@ msgstr ""
 "Se ha proporcionado una opción inválida en la línea de argumentos del "
 "comando sortby."
 
-#: gsearchtool/gsearchtool.c:1224
+#: gsearchtool/gsearchtool.c:1225
 msgid "(stopped)"
 msgstr "(detenido)"
 
-#: gsearchtool/gsearchtool.c:1240
+#: gsearchtool/gsearchtool.c:1238
+msgid "No Files Found"
+msgstr "No se encontraron archivos"
+
+#: gsearchtool/gsearchtool.c:1242
 msgid "One file found"
 msgstr "Un archivo encontrado"
 
 #: gsearchtool/gsearchtool.c:1243
+msgid "One File Found"
+msgstr "Un archivo encontrado"
+
+#: gsearchtool/gsearchtool.c:1246
 #, c-format
 msgid "%d files found"
 msgstr "%d archivos encontrados"
 
-#: gsearchtool/gsearchtool.c:1344
+#: gsearchtool/gsearchtool.c:1247
+#, c-format
+msgid "%d Files Found"
+msgstr "%d archivos encontrados"
+
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -913,7 +925,7 @@ msgstr ""
 "Se reportaron los siguientes errores durante la búsqueda.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1348
+#: gsearchtool/gsearchtool.c:1354
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -921,108 +933,108 @@ msgstr ""
 "\n"
 "... Demasiados errores para ser mostrados ..."
 
-#: gsearchtool/gsearchtool.c:1354
+#: gsearchtool/gsearchtool.c:1360
 msgid "Error while searching for files"
 msgstr "Ocurrió un error al buscar los archivos"
 
-#: gsearchtool/gsearchtool.c:1393
+#: gsearchtool/gsearchtool.c:1399
 msgid "Error parsing the search command"
 msgstr "Ocurrió un error al analizar el comando de búsqueda"
 
-#: gsearchtool/gsearchtool.c:1413
+#: gsearchtool/gsearchtool.c:1419
 msgid "Error running the search command"
 msgstr "Ocurrió un error al ejecutar el comando de búsqueda"
 
-#: gsearchtool/gsearchtool.c:1505
+#: gsearchtool/gsearchtool.c:1511
 msgid "Search Rule Value Entry"
 msgstr "Ingreso de valor de regla de búsqueda"
 
-#: gsearchtool/gsearchtool.c:1506
+#: gsearchtool/gsearchtool.c:1512
 msgid "Enter a value for search rule"
 msgstr "Ingrese un valor para la regla de búsqueda"
 
-#: gsearchtool/gsearchtool.c:1544
+#: gsearchtool/gsearchtool.c:1550
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Pulse para quitar la regla «%s»"
 
-#: gsearchtool/gsearchtool.c:1600
+#: gsearchtool/gsearchtool.c:1606
 msgid "A_vailable options:"
 msgstr "O_pciones disponibles:"
 
-#: gsearchtool/gsearchtool.c:1613
+#: gsearchtool/gsearchtool.c:1619
 msgid "Search Rules Menu"
 msgstr "Menú de reglas de búsqueda"
 
-#: gsearchtool/gsearchtool.c:1614
+#: gsearchtool/gsearchtool.c:1620
 msgid "Select a search rule from the menu"
 msgstr "Seleccione una regla de búsqueda desde el menú"
 
-#: gsearchtool/gsearchtool.c:1646
+#: gsearchtool/gsearchtool.c:1652
 msgid "S_earch results:"
 msgstr "R_esultados de la búsqueda:"
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1732
 msgid "Name"
 msgstr "Nombre"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1752
 msgid "Folder"
 msgstr "Carpeta"
 
-#: gsearchtool/gsearchtool.c:1757
+#: gsearchtool/gsearchtool.c:1763
 msgid "Size"
 msgstr "Tamaño"
 
-#: gsearchtool/gsearchtool.c:1767
+#: gsearchtool/gsearchtool.c:1773
 msgid "Type"
 msgstr "Tipo"
 
-#: gsearchtool/gsearchtool.c:1777
+#: gsearchtool/gsearchtool.c:1783
 msgid "Date Modified"
 msgstr "Fecha de modificación"
 
-#: gsearchtool/gsearchtool.c:1840
+#: gsearchtool/gsearchtool.c:1846
 msgid "_Name contains:"
 msgstr "El _nombre contiene:"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Name Contains Entry"
 msgstr "Modificador de el nombre contiene"
 
-#: gsearchtool/gsearchtool.c:1855 gsearchtool/gsearchtool.c:1856
+#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
 msgid "Enter the file name you want to search"
 msgstr "Ingrese el nombre del archivo que quiere buscar"
 
-#: gsearchtool/gsearchtool.c:1868
+#: gsearchtool/gsearchtool.c:1874
 msgid "_Look in folder:"
 msgstr "B_uscar en la carpeta:"
 
-#: gsearchtool/gsearchtool.c:1874
+#: gsearchtool/gsearchtool.c:1880
 msgid "Browse"
 msgstr "Examinar"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Look in Folder Entry"
 msgstr "Buscar en la entrada de la carpeta"
 
-#: gsearchtool/gsearchtool.c:1883 gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1889 gsearchtool/gsearchtool.c:1890
 msgid "Enter the folder name where you want to start the search"
 msgstr "Ingrese el nombre de la carpeta donde quiere iniciar la búsqueda"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1909
 msgid "Show more _options"
 msgstr "Mostrar mas _opciones"
 
-#: gsearchtool/gsearchtool.c:1953
+#: gsearchtool/gsearchtool.c:1959
 msgid "Click to Start the search"
 msgstr "Pulse para iniciar la búsqueda"
 
-#: gsearchtool/gsearchtool.c:1954
+#: gsearchtool/gsearchtool.c:1960
 msgid "Click to Stop the search"
 msgstr "Pulse para detener la busqueda"
 
-#: gsearchtool/gsearchtool.c:2201
+#: gsearchtool/gsearchtool.c:2207
 msgid "Cannot initialize bonobo."
 msgstr "No se puede inicializar bonobo."
 
@@ -1096,8 +1108,8 @@ msgid ""
 "You did not select a document name or the name selected was a folder.  The "
 "document is not saved."
 msgstr ""
-"No ha seleccionado un nombre para el documento o el nombre seleccionado fué una carpeta.  El "
-"documento no se ha guardado."
+"No ha seleccionado un nombre para el documento o el nombre seleccionado fué "
+"una carpeta.  El documento no se ha guardado."
 
 #: gsearchtool/gsearchtool-callbacks.c:903
 #, c-format
@@ -1117,7 +1129,9 @@ msgstr "No se ha podido guardar el documento «%s» en %s"
 msgid ""
 "You may not have write permissions to the document.  The document is not "
 "saved."
-msgstr "Usted no debe tener permisos de escritura en el documento.  El documento no se guardará."
+msgstr ""
+"Usted no debe tener permisos de escritura en el documento.  El documento no "
+"se guardará."
 
 #: gsearchtool/gsearchtool-support.c:58
 #, c-format
@@ -1156,11 +1170,11 @@ msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:44
 msgid "A system log viewer for GNOME."
-msgstr "Un visor de bitacoras del sistema de GNOME."
+msgstr "Un visor de bitácoras del sistema de GNOME."
 
 #: logview/about.c:58
-msgid "GNOME System Log Viewer"
-msgstr "Visualizador de bitácoras del sistema GNOME"
+msgid "System Log Viewer"
+msgstr "Sistema de visualización de bitácora"
 
 #: logview/actions.c:74
 msgid "Action Database"
@@ -1307,7 +1321,7 @@ msgstr "Cantidad de líneas:"
 msgid "Log Information"
 msgstr "Información de la bitácora"
 
-#: logview/info.c:163 logview/zoom.c:156
+#: logview/info.c:163 logview/zoom.c:155
 msgid "<No log loaded>"
 msgstr "<no se ha cargado ningua bitácora>"
 
@@ -1568,28 +1582,28 @@ msgstr "¡¡TOCADO!!\n"
 msgid "Entry Detail"
 msgstr "Detalle de entrada"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Date:"
 msgstr "Fecha:"
 
-#: logview/zoom.c:102
+#: logview/zoom.c:101
 msgid "Process:"
 msgstr "Proceso:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Message:"
 msgstr "Mensaje:"
 
-#: logview/zoom.c:103
+#: logview/zoom.c:102
 msgid "Description:"
 msgstr "Descripción"
 
-#: logview/zoom.c:130
+#: logview/zoom.c:129
 msgid "Log Line Details"
 msgstr "Detalles de línea de la bitácora"
 
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:184
+#: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
@@ -1603,7 +1617,14 @@ msgid ""
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "Indica el archivo de bitácora a abrir durante el inicio. Los predeterminados "
-"son «/var/adm/messages» o «/var/log/messages», dependiendo de su sistema operativo."
+"son «/var/adm/messages» o «/var/log/messages», dependiendo de su sistema "
+"operativo."
+
+#~ msgid "GNOME Dictionary"
+#~ msgstr "Diccionario de GNOME"
+
+#~ msgid "GNOME System Log Viewer"
+#~ msgstr "Visualizador de bitácoras del sistema GNOME"
 
 #~ msgid "Gdialog progressbar"
 #~ msgstr "Barra de progreso de Gdialog"
@@ -2353,9 +2374,6 @@ msgstr ""
 #~ msgid "symbolic link"
 #~ msgstr "enlace simbólico"
 
-#~ msgid "No Files Found."
-#~ msgstr "No se encontraron archivos."
-
 #~ msgid ""
 #~ "Cannot perform the search.\n"
 #~ "The Bourne shell was not found\n"
@@ -2508,9 +2526,6 @@ msgstr ""
 
 #~ msgid "_Log"
 #~ msgstr "_Bitácora"
-
-#~ msgid "System Log Viewer"
-#~ msgstr "Sistema de visualización de bitácora"
 
 #~ msgid "Cannot load required fonts, cannot continue"
 #~ msgstr "No puedo cargar las fuentes requeridas, no puedo continuar"
