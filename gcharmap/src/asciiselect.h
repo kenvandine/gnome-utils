@@ -24,7 +24,7 @@ extern "C" {
 
 #include <gnome.h>
 
-gboolean InsertAsciiCharacterClick (GtkWidget *widget, gpointer gdata);
+gboolean InsertCharacterClick (GtkWidget *widget, gpointer gdata);
 
 #ifdef __cplusplus
 }

@@ -15,6 +15,9 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef _MAIN_C_
+#define _MAIN_C_
+
 #include <config.h>
 #include <gnome.h>
 
@@ -32,3 +35,4 @@ main (int argc, char *argv[])
   return 0;
 }
 
+#endif _MAIN_C_

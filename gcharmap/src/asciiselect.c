@@ -14,6 +14,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
+#ifndef _ASCIISELECT_C_
+#define _ASCIISELECT_C_
+
 #include <config.h>
 #include "interface.h"
 #include "asciiselect.h"
@@ -28,7 +32,7 @@ GtkWidget *SpinEdit;
 GtkWidget *DLabel;
 
 gboolean
-InsertAsciiCharacterClick (GtkWidget *widget, gpointer gdata)
+InsertCharacterClick (GtkWidget *widget, gpointer gdata)
 {
   GtkObject *Adj;
   GtkWidget *DViewport;
@@ -39,7 +43,7 @@ InsertAsciiCharacterClick (GtkWidget *widget, gpointer gdata)
   gdk_color_alloc (gdk_colormap_get_system (), &white);
   gdk_color_alloc (gdk_colormap_get_system (), &black);
 
-  EntryDialog = gnome_dialog_new (_("Insert ASCII character"),
+  EntryDialog = gnome_dialog_new (_("Insert character"),
     GNOME_STOCK_BUTTON_OK, GNOME_STOCK_BUTTON_APPLY,
     GNOME_STOCK_BUTTON_CANCEL, NULL);
   gnome_dialog_button_connect (GNOME_DIALOG (EntryDialog), 0,
@@ -83,6 +87,7 @@ InsertAsciiCharacterClick (GtkWidget *widget, gpointer gdata)
   gtk_widget_pop_style ();
 
   gnome_dialog_set_parent (GNOME_DIALOG (EntryDialog), GTK_WINDOW (mainf));
+  gtk_widget_grab_focus (SpinEdit);
   gtk_widget_show_all (EntryDialog);
   return FALSE;
 }
@@ -119,3 +124,4 @@ SpinEditChanged (GtkEditable *editable, gpointer user_data)
   gtk_label_set_text (GTK_LABEL (DLabel), text);
 }
 
+#endif _ASCIISELECT_C_

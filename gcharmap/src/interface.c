@@ -15,11 +15,15 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef _INTERFACE_C_
+#define _INTERFACE_C_
+
 #include <config.h>
 
 #include "interface.h"
 #include "asciiselect.h"
-#include "gcharmap.xpm"
+#include <gnome-character-map.xpm>
+#include <charmap_24.xpm>
 
 /* Prototypes */
 
@@ -41,8 +45,8 @@ GnomeUIInfo edit_menu[] = {
    GNOMEUIINFO_SEPARATOR,
    GNOMEUIINFO_MENU_SELECT_ALL_ITEM (SelectAllClick, NULL),
    GNOMEUIINFO_SEPARATOR,
-   GNOMEUIINFO_ITEM_NONE(N_("Insert ASCII character..."), N_("Insert ASCII character"),
-     InsertAsciiCharacterClick),
+   GNOMEUIINFO_ITEM_NONE(N_("Insert character..."), N_("Insert character"),
+     InsertCharacterClick),
    GNOMEUIINFO_END
 };
 
@@ -69,6 +73,8 @@ GnomeUIInfo menubar[] = {
 };
 
 GnomeUIInfo toolbar[] = {
+   GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character"), InsertCharacterClick, &charmap_24_xpm),
+   GNOMEUIINFO_SEPARATOR,
    GNOMEUIINFO_ITEM_STOCK(N_("Cut"), N_("Cut the text to clipboard"),
      CutClick, GNOME_STOCK_PIXMAP_CUT),
    GNOMEUIINFO_ITEM_STOCK(N_("Copy"), N_("Copy the text to clipboard."),
@@ -306,7 +312,7 @@ ButtonEnter (GtkWidget *widget, gpointer gdata)
   gtk_label_get (label, &text);
   gtk_label_set_text (GTK_LABEL (Preview), text);
   gnome_appbar_set_status (GNOME_APPBAR (Status),
-    g_strdup_printf (_("%s: ASCII character %d"), text, (unsigned char) text[0]));
+    g_strdup_printf (_("%s: ASCII code %d"), text, (unsigned char) text[0]));
   return FALSE;
 }
 
@@ -411,3 +417,4 @@ main_close (GtkWidget *widget, gpointer gdata)
   return FALSE;
 }
 
+#endif _INTERFACE_C_

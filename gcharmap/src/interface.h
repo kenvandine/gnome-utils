@@ -45,7 +45,7 @@ gboolean ToolbarToggle (GtkCheckMenuItem *checkmenuitem,
   gpointer user_data);
 gboolean StatusbarToggle (GtkCheckMenuItem *checkmenuitem,
   gpointer user_data);
-gboolean InsertAsciiCharacterClick (GtkWidget *widget, gpointer gdata);
+gboolean InsertCharacterClick (GtkWidget *widget, gpointer gdata);
 void PopupMenuDetach (GtkWidget *attach_widget, GtkMenu *Menu);
 gboolean main_close (GtkWidget *widget, gpointer gdata);
 

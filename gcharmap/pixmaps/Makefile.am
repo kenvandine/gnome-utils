@@ -1,6 +1,6 @@
-# Process this file with automake to produce Makefile.in
+pixmapsdir = $(datadir)/pixmaps
 
+pixmaps_DATA = \
+	gnome-character-map.xpm
 
-gcharmap_sharedir = $(datadir)/pixmaps/gcharmap
-
-EXTRA_DIST = gcharmap.xpm Character_Map.xpm logo.xpm
+EXTRA_DIST = charmap_big.xpm charmap_24.xpm $(pixmaps_DATA)
