@@ -114,6 +114,8 @@ static GtkMenu * actions_popup = NULL;
 static gint popup_x, popup_y;
 static gint tty_column, name_column;
 
+static gchar * w_command = NULL;
+
 /* Hmm, well, I can't think of much else. */
 static Action default_actions[] = {
   {"YTalk", "ytalk %u#%t"},
@@ -137,6 +139,22 @@ int main ( int argc, char ** argv )
   textdomain (PACKAGE);
 
   gnome_init (APPNAME, 0, argc, argv, 0, 0);
+
+  w_command = gnome_is_program_in_path("w");
+  if (w_command == NULL) {
+    GtkWidget * dialog;
+    dialog = 
+      gnome_message_box_new(_("Couldn't find the \"w\" command in your path.\n"
+                              "This command is needed for the program to work."),
+                            GNOME_MESSAGE_BOX_ERROR,
+                            GNOME_STOCK_BUTTON_CLOSE,
+                            NULL);
+    gtk_signal_connect(GTK_OBJECT(dialog), "close", 
+                       GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
+    gtk_widget_show(dialog);
+    gtk_main();
+    exit(EXIT_FAILURE);
+  }
 
   load_actions();
 
@@ -305,7 +323,7 @@ static void reset_list(GtkCList * list)
   /* Start getting "w" information */
   memset(buffer, '\0', sizeof(buffer));
 
-  f = popen("w", "r");
+  f = popen(w_command, "r");
 
   if ( f != NULL ) {
 
@@ -393,6 +411,8 @@ static void reset_list(GtkCList * list)
 
 static gint list_clicked_cb(GtkCList * list, GdkEventButton * e)
 {
+  if (actions_popup == NULL) return FALSE;
+
   if (e->button == 1) {
     /* Ignore button 1 */
     return FALSE; 

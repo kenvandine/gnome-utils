@@ -1,3 +1,10 @@
+Thu May 28 01:34:32 1998  Havoc Pennington  <hp@pobox.com>
+
+	* gw.c (list_clicked_cb): Do the right thing if there's nothing on
+	the popup menu (i.e. actions_popup == NULL).
+	(main): Check for "w" in the path, and if it isn't found pop up 
+	a dialog and exit.
+
 Mon May 25 16:21:57 1998  Havoc Pennington  <hp@pobox.com>
 
 	* gw.c: Return FALSE instead of TRUE from button press event
