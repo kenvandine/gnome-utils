@@ -577,7 +577,7 @@ static void file_selection_cb(GtkWidget * button, gpointer fs)
       write_to_filestream(f);
       if ( fclose(f) != 0 ) {
         gchar * t = 
-          g_copy_strings(_("Error closing file `"), fn,
+          g_strconcat(_("Error closing file `"), fn,
                          "': \n", g_unix_error_string(errno),
                          _("\nSome or all data may not have been written."),
                          NULL);
@@ -588,7 +588,7 @@ static void file_selection_cb(GtkWidget * button, gpointer fs)
       return;
     }
     else {
-      gchar * s = g_copy_strings(_("Couldn't open file `"), fn, "': ", 
+      gchar * s = g_strconcat(_("Couldn't open file `"), fn, "': ", 
                                  g_unix_error_string(errno), NULL);
       gnome_error_dialog(s);
       g_free(s);
@@ -637,7 +637,7 @@ static void mail_clicked_callback(GtkWidget* dialog, gint button,
     
     /* This isn't translated; maybe good, since most tech support email should be
        in English? don't know. */
-    command = g_copy_strings("mailx -s \"System Information for host ", 
+    command = g_strconcat("mailx -s \"System Information for host ", 
                              info[si_host] ? info[si_host] : "Unknown",
                              "\" ", data->to, NULL);
     
@@ -648,14 +648,14 @@ static void mail_clicked_callback(GtkWidget* dialog, gint button,
       failure = pclose(p);
       if (failure) {
         /* I don't think the error_string() will reliably mean anything. */
-        gchar * s = g_copy_strings(_("Command failed ` "), command, _(" ': "), 
+        gchar * s = g_strconcat(_("Command failed ` "), command, _(" ': "), 
                                    g_unix_error_string(errno));
         gnome_error_dialog(s);
         g_free(s);
       }
     }
     else {
-      gchar * t = g_copy_strings(_("Couldn't run command ` "), command, _(" ': "), 
+      gchar * t = g_strconcat(_("Couldn't run command ` "), command, _(" ': "), 
                                  g_unix_error_string(errno));
       gnome_error_dialog(t);
       g_free(t);
@@ -678,7 +678,7 @@ static void confirm_mail(struct MailData* data)
   GtkWidget* label;
   gchar* question;
 
-  question = g_copy_strings(_("The following mail will be sent to "),
+  question = g_strconcat(_("The following mail will be sent to "),
                             data->to, 
                             _(".\n Are you sure you want to mail this information?"), NULL);
 
@@ -764,7 +764,7 @@ static gchar* write_to_string()
     else {
       gchar buf[200];
       g_snprintf (buf, 200, "%-30s %s\n", descriptions[i], info[i]);
-      tmp = g_copy_strings(final ? final : "", buf, NULL);
+      tmp = g_strconcat(final ? final : "", buf, NULL);
       g_free(final);
       final = tmp;
     }

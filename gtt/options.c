@@ -162,7 +162,7 @@ static void signals(OptionsDlg *odlg)
 	char *s, *t;
 
 	t = gnome_help_file_path("gtt", "index.html");
-	s = g_copy_strings("file:///", t, "#PREF", NULL);
+	s = g_strconcat("file:///", t, "#PREF", NULL);
 	g_free(t);
 	gtk_signal_connect(GTK_OBJECT(odlg->dlg), "help",
 			   GTK_SIGNAL_FUNC(help_cb), s);

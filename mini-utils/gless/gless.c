@@ -154,7 +154,7 @@ session_save_state (GnomeClient *client, gint phase,
     GnomeLessApp * a = tmp->data;
     gchar * s
       = gnome_geometry_string( GTK_WIDGET(a->app)->window );
-    argv[argc] = g_copy_strings("--geometry=", s, NULL);
+    argv[argc] = g_strconcat("--geometry=", s, NULL);
     g_free(s);
     free_me = g_list_prepend(free_me, argv[argc]);
     ++argc;
@@ -452,7 +452,7 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
   if ( ! g_file_exists(filename) ) {
     gchar * s;
     s = 
-      g_copy_strings(_("No such file or directory:\n"),
+      g_strconcat(_("No such file or directory:\n"),
                      filename, NULL);
     gless_show_file_error(app, s);
     g_free(s);
@@ -465,11 +465,11 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
        (strcmp(&filename[len - 2], ".Z" ) == 0) ) {
     gchar * s;
     if ( (s = gnome_is_program_in_path("zcat")) ) {
-      gchar * c = g_copy_strings(s, " ", filename, NULL);
+      gchar * c = g_strconcat(s, " ", filename, NULL);
       g_free(s);
       if ( ! gnome_less_show_command(GNOME_LESS(app->less), c) ) {
         gchar * err = 
-          g_copy_strings(_("Failed to decompress and display the file:\n"),
+          g_strconcat(_("Failed to decompress and display the file:\n"),
                          filename, "\n", g_unix_error_string(errno), NULL);
         gless_show_file_error(app, err);
         g_free(err);
@@ -488,7 +488,7 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
   else {
     if ( ! gnome_less_show_file(GNOME_LESS(app->less), filename) ) {
       gchar * err = 
-        g_copy_strings(_("Error loading file:\n"), filename,
+        g_strconcat(_("Error loading file:\n"), filename,
                        "\n", g_unix_error_string(errno), NULL);
       gless_show_file_error(app, err);
       g_free(err);
@@ -553,7 +553,7 @@ static gboolean gless_app_save(GnomeLessApp * app, const gchar * path)
 
   gnome_appbar_pop (app->appbar);
 
-  s = g_copy_strings(_("Failed to write file:\n"), path, 
+  s = g_strconcat(_("Failed to write file:\n"), path, 
                      "\n", g_unix_error_string(errno), NULL);
 
   gnome_app_error(GNOME_APP(app->app), s);

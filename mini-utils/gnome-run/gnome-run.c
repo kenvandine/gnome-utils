@@ -45,7 +45,7 @@ static void string_callback(GnomeDialog *dlg, gint button_num, gpointer data)
 #endif
 
     if ( gnome_execute_shell(NULL, s) < 0 ) {
-      gchar * t = g_copy_strings(_("Failed to execute command:\n"), 
+      gchar * t = g_strconcat(_("Failed to execute command:\n"), 
                                  s, "\n", g_unix_error_string(errno),
                                  NULL);
       gnome_error_dialog(t);

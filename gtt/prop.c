@@ -187,7 +187,7 @@ void prop_dialog(project *proj)
 				   GTK_SIGNAL_FUNC(prop_set), dlg);
 
 		t = gnome_help_file_path("gtt", "index.html");
-		s1 = g_copy_strings("file:///", t, "#PROP", NULL);
+		s1 = g_strconcat("file:///", t, "#PROP", NULL);
 		g_free(t);
 		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "help",
 				   GTK_SIGNAL_FUNC(help_cb), s1);

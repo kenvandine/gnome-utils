@@ -143,7 +143,7 @@ int main ( int argc, char ** argv )
 
   i = 0;
   while (i < 7) {
-    config_string = g_copy_strings("/"APPNAME"/Commands/", 
+    config_string = g_strconcat("/"APPNAME"/Commands/", 
 				   config_keys[i], "=", default_runlevel_commands[i],
 				   NULL);
     runlevel_commands[i] = 
@@ -392,7 +392,7 @@ static void popup_not_in_path(const gchar * command)
   GtkWidget * dialog;
   gchar * message;
 
-  message = g_copy_strings("The command \"", command, "\"\n" 
+  message = g_strconcat("The command \"", command, "\"\n" 
 			   "could not be found.\n\n" 
 			   "Most likely it's because you are "
 			   "not authorized to use it.\n"
@@ -432,7 +432,7 @@ static void popup_confirm(void)
   GtkWidget * d, * button;
   gchar * message;
   
-  message = g_copy_strings(confirm_questions[requested_runlevel],
+  message = g_strconcat(confirm_questions[requested_runlevel],
                            "\nYou will lose any unsaved work.", NULL);
 
   d = gnome_message_box_new(message, GNOME_MESSAGE_BOX_QUESTION, 
@@ -505,7 +505,7 @@ static void apply_prefs_cb(GnomePropertyBox * pb, gint page,
       runlevel_commands[i] = 
         g_strdup( gtk_entry_get_text(entries[i]) );
 
-      config_path = g_copy_strings( "/", APPNAME, "/Commands/", 
+      config_path = g_strconcat( "/", APPNAME, "/Commands/", 
                                     config_keys[i], NULL );
       gnome_config_set_string(config_path, runlevel_commands[i]);
       g_free(config_path);

@@ -314,7 +314,7 @@ void load_fsinfo()
     percent_full = NULL;
 
     fs_info[fs_description] = 
-      g_copy_strings(_("Mount Point: "), mount_list [i].mountdir, 
+      g_strconcat(_("Mount Point: "), mount_list [i].mountdir, 
                      _("    Device: "), mount_list [i].devname,
                      _("    Filesystem Type: "), mount_list [i].type,
                      NULL);
