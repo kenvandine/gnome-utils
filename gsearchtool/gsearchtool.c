@@ -1018,8 +1018,13 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 		}
 		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, GNOME_PAD);
 		
-		entry = gtk_entry_new();
-
+		if (templates[opt->constraint_id].type == SEARCH_CONSTRAINT_TEXT) {
+			entry = gtk_entry_new();
+		}
+		else {
+			entry = gtk_spin_button_new_with_range (0, 999999999, 1);
+		}
+		
 		if (interface.is_gail_loaded)
 		{
 			add_atk_namedesc (GTK_WIDGET(entry), _("Search Rule Value Entry"), 
