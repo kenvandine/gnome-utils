@@ -44,7 +44,7 @@ extern GnomeUIInfo view_menu[];
 
 void close_zoom_view (GtkWidget *widget, gpointer data);
 void quit_zoom_view (GtkWidget *widget, gpointer data);
-void create_zoom_view (GtkWidget *widget, gpointer data);
+void create_zoom_view (void);
 int match_line_in_db (LogLine *line, GList *db);
 
 /* ----------------------------------------------------------------------
@@ -53,7 +53,7 @@ int match_line_in_db (LogLine *line, GList *db);
    ---------------------------------------------------------------------- */
 
 void
-create_zoom_view (GtkWidget *widget, gpointer data)
+create_zoom_view (void)
 {
 
    if (curlog == NULL || zoom_visible)
@@ -144,7 +144,7 @@ repaint_zoom (void)
        gtk_tree_view_column_set_spacing (column2, GNOME_PAD_BIG);
 
        /* Add entries to the list */
-       for (i = 0; titles[i]; i++) {
+       for (i = 0; titles[i]; ++i) {
            gtk_list_store_append (GTK_LIST_STORE (store), &iter);
            gtk_list_store_set (GTK_LIST_STORE (store), &iter, 0, titles[i], -1);
        }
@@ -160,12 +160,18 @@ repaint_zoom (void)
    gtk_widget_show_all (scrolled_window);
 
    /* Check that there is at least one log */
-   if (curlog == NULL)
+   if (curlog == NULL) {
+       gtk_list_store_clear (GTK_LIST_STORE (store));
+       /* Add entries to the list */
+       for (i = 0; titles[i]; ++i) {
+           gtk_list_store_append (GTK_LIST_STORE (store), &iter);
+           gtk_list_store_set (GTK_LIST_STORE (store), &iter, 0, titles[i], -1);
+       }
        return -1;
+   }
   
    if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
-
-       line = &(curlog->pointerpg->line[curlog->pointerln]);
+       line = (curlog->lines)[curlog->current_line_no];
 
        date.tm_mon = line->month;
        date.tm_year = 70 /* bogus */;
@@ -192,29 +198,27 @@ repaint_zoom (void)
        g_free (utf8);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, sizeof (buffer), _("%s"), line->process);
-       utf8 = LocaleToUTF8 (buffer);
+       utf8 = LocaleToUTF8 (line->process);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
        g_free (utf8);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, sizeof (buffer), _("%s"), line->message);
-       utf8 = LocaleToUTF8 (buffer);
+       utf8 = LocaleToUTF8 (line->message);
        gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
        g_free (utf8);
 
        gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
        if (match_line_in_db (line, regexp_db))
            if (find_tag_in_db (line, descript_db)) {
-               g_snprintf (buffer, sizeof (buffer), _("%s"),
-                           line->description->description);
-               gtk_list_store_set (GTK_LIST_STORE (store),
-                           &iter, 1, buffer, -1);
-           }
+               utf8 = LocaleToUTF8 (line->description->description);
+               gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
+               g_free (utf8);
+       }
                
    }
 
    return TRUE;
+
 }
 
 /* ----------------------------------------------------------------------

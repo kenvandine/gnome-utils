@@ -1,3 +1,44 @@
+2002-06-28  Deepa Natarajan  <deepa.natarajan@wipro.com> 
+
+	logview.h: Remove Fonts, Colors & Style info from ConfigData
+	structure. Remove log_page structure. Change Log structure
+	to remove Page stuff and add LogLine. Add an array to 
+	maintain the tree view paths that are expanded in a file. 
+	Used when switching between logs.
+
+	logview.c: Display logs in the form of a tree view placed 
+	inside a scrolled window. Set up 2 call backs: row-activated 
+	for showing zoom window and selection changed to update the 
+	current log line. Removed all canvas and scroll window stuff.
+
+	log_repaint.c: Rewrote to use GtkTreeView. Clean up #defines.
+	Add save_row_to_expand(): to save paths that are currently 
+	expanded. Remove HandleLogKeyboard as it does not follow HIG. 
+	Remove all Pango stuff. Restore session is disabled for now.
+
+	logrtns.c: Clean up #defines. Modify OpenLogLine to read from 
+	file and fill details in the new Log struture. Update CloseLog 
+	to free memory.
+
+	config.[ch]: Modified config data - removed all fonts and 
+	pango stuff.
+
+	zoom.c: Clear the zoom window when file is closed. Change the 
+	prototype for create_zoom_window to pass void. Get the current 
+	log based on the new log structure. Convert description to utf8 
+	before passing it to GtkListStore.
+
+	monitor.c: When the monitoring logs first comes up, display 
+	only the last 5 lines. Remove all page stuff. Right now 
+	updation of logs is disabled. Clean up #defines. 
+
+	menus.c, userprefdialog.c: Do not set styles, to respect themes.
+
+	calendar.c: The functionality of the calander is currently
+	disabled.
+
+	misc.c: Remove the function to load fonts.
+
 2002-06-14  Narayana Pattipati <narayana.pattipati@wipro.com>
 
         * monitor.c: Update the monitor window with the new lines added 

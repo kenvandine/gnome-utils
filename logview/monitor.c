@@ -29,7 +29,6 @@
 #define MON_WINDOW_HEIGHT          150
 
 #define MON_MAX_NUM_LOGS         4   /* Max. num of logs to monitor       */
-#define MON_MAX_NUM_LINES        100 /* Max. num of lines in window       */
 #define MON_MODE_VISIBLE         1   /* Displays log as it is monitored   */
 #define MON_MODE_INVISIBLE       2   /* Monitors log without output       */
 #define MON_MODE_ICONIFIED       3   /* Monitors log showing only an icon */
@@ -520,46 +519,26 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
 void
 mon_read_last_page (Log *log)
 {
-  Page pg;
-  char buffer[1024], buf[10];
-  int i, j;
-  GtkTreeIter iter;
-  GtkListStore *list;
-  GtkTreePath *path;
+   char buffer[1024];
+   int i;
+   GtkTreeIter iter;
+   GtkListStore *list;
+ 
+   log->mon_numlines = 0;
+   
+   if (!log->total_lines)
+      return; 
 
-  log->mon_numlines = 0;
-  fseek (log->fp, log->offset_end, SEEK_SET);
-  
-  /* Read pages into buffers --------------------------- */
-  ReadPageUp (log, &pg);
-
-  for (i=pg.ll-5;i<pg.ll;i++)
-    {
-      if (i<0)
-	continue;
-      mon_format_line (buffer, sizeof (buffer), &pg.line[i + 1]);
-      list = (GtkListStore *)
-              gtk_tree_view_get_model (GTK_TREE_VIEW(log->mon_lines));
-      gtk_list_store_append (list, &iter);
-      gtk_list_store_set (list, &iter, 0, buffer, -1);
-      log->mon_numlines++;
-      if (log->mon_numlines > MON_MAX_NUM_LINES)
-	{
-	  for(j=0;j<LINES_P_PAGE;j++)
-	     {
-               g_snprintf (buf, sizeof (buf), "%d", j);
-               gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL(list),
-                                                    &iter, buf); 
-               gtk_list_store_remove (list, &iter);
-             }
-	  log->mon_numlines -= LINES_P_PAGE;
-	}
-        g_snprintf (buf, sizeof (buf), "%d", log->mon_numlines);
-        path = gtk_tree_path_new_from_string (buf);
-        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (log->mon_lines),  
-                                  path, NULL, TRUE, 0, 0);
-        gtk_tree_path_free (path);
-    }
+   for (i = 5; i; --i) {
+       mon_format_line (buffer, sizeof(buffer), 
+                        (log->lines)[log->total_lines - i]);
+       list = (GtkListStore *)
+               gtk_tree_view_get_model (GTK_TREE_VIEW(log->mon_lines));
+       gtk_list_store_append (list, &iter);
+       gtk_list_store_set (list, &iter, 0, buffer, -1);
+       log->mon_numlines++;
+   }
+ 
 }
 
 /* ----------------------------------------------------------------------
@@ -571,6 +550,7 @@ mon_read_last_page (Log *log)
 void
 mon_read_new_lines (Log *log)
 {
+#ifdef FIXME
   Page pg;
   char buffer[1024], buf[10];
   int i,j;
@@ -625,6 +605,7 @@ mon_read_new_lines (Log *log)
       ReadPageDown (log, &pg, mon_exec_actions);
       new_pos_offset = pg.lastchpos;
     }
+#endif
 }
 
 /* ----------------------------------------------------------------------
@@ -635,11 +616,17 @@ mon_read_new_lines (Log *log)
 void
 mon_format_line (char *buffer, int bufsize, LogLine *line)
 {
-	/* FIXME: this should be translated I think */
-	g_snprintf (buffer, bufsize, "%2d/%2d  %2d:%02d:%02d %s %s", 
-		    (int)line->date, (int)line->month+1,
-		    (int)line->hour, (int)line->min, (int)line->sec,
-		    line->process, line->message);
+    if (line == NULL)
+        return;
+
+	g_snprintf (buffer, bufsize, "%s/%s  %s:%s:%s %s %s", 
+		        LocaleToUTF8 (g_strdup_printf ("%2d", line->date)),
+                LocaleToUTF8 (g_strdup_printf ("%2d", line->month+1)),
+		        LocaleToUTF8 (g_strdup_printf ("%2d", line->hour)),
+                LocaleToUTF8 (g_strdup_printf ("%02d", line->min)), 
+                LocaleToUTF8 (g_strdup_printf ("%02d", line->sec)),
+		        LocaleToUTF8 (line->process),
+                LocaleToUTF8 (line->message));
 }
 
 /* ----------------------------------------------------------------------

@@ -76,7 +76,6 @@ void UserPrefsDialog (GtkWidget * widget, gpointer user_data)
    /* Create frame for main view */
    upds.frame = gtk_frame_new (NULL);
    gtk_container_set_border_width (GTK_CONTAINER (upds.frame), 3);
-   gtk_widget_set_style (upds.frame, cfg->main_style);
    gtk_frame_set_shadow_type (GTK_FRAME (upds.frame), GTK_SHADOW_ETCHED_IN);
    gtk_container_add(GTK_CONTAINER(upds.frame), upds.table);
 

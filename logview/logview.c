@@ -37,32 +37,24 @@
  *    -------------------
  */
 
-void repaint (GtkWidget * canvas, GdkRectangle * area);
 void CreateMainWin (void);
-gboolean log_repaint (GtkWidget * canvas, GdkRectangle * area);
-gboolean PointerMoved (GtkWidget * canvas, GdkEventMotion * event);
-gboolean HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key);
-gboolean handle_log_mouse_button (GtkWidget * win, GdkEventButton *event);
-gboolean handle_log_mouse_scroll (GtkWidget * win, GdkEventScroll *event);
+gboolean log_repaint (void);
+gboolean handle_log_mouse_button (GtkWidget *view, GdkEventButton *event);
 void ExitProg (GtkWidget * widget, gpointer user_data);
 void LoadLogMenu (GtkWidget * widget, gpointer user_data);
 void CloseLogMenu (GtkWidget * widget, gpointer user_data);
 void change_log_menu (GtkWidget * widget, gpointer user_data);
 void CalendarMenu (GtkWidget * widget, gpointer user_data);
 void MonitorMenu (GtkWidget* widget, gpointer user_data); 
-void create_zoom_view (GtkWidget *widget, gpointer data);
+void create_zoom_view (void);
 void UserPrefsDialog(GtkWidget * widget, gpointer user_data);
 void AboutShowWindow (GtkWidget* widget, gpointer user_data);
 void CloseApp (void);
 void CloseLog (Log *);
 void FileSelectCancel (GtkWidget * w, GtkFileSelection * fs);
 void FileSelectOk (GtkWidget * w, GtkFileSelection * fs);
-void MainWinScrolled (GtkAdjustment *adjustment, GtkRange *);
-void CanvasResized (GtkWidget *widget, GtkAllocation *allocation);
-gboolean ScrollWin (GtkRange *range, gpointer event);
 void LogInfo (GtkWidget * widget, gpointer user_data);
 void UpdateStatusArea (void);
-void set_scrollbar_size (int);
 void change_log (int dir);
 void open_databases (void);
 void destroy (void);
@@ -74,9 +66,12 @@ int read_actions_db (char *filename, GList **db);
 void print_db (GList *gb);
 Log *OpenLogFile (char *);
 GtkWidget *new_pixmap_from_data (char  **, GdkWindow *, GdkColor *);
-GtkWidget *create_menu (char *item[], int n);
 void SaveUserPrefs(UserPrefsStruct *prefs);
 void close_zoom_view (GtkWidget *widget, gpointer client_data);
+void handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data);
+void handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path, 
+     GtkTreeViewColumn *arg2, gpointer user_data);
+void save_rows_to_expand (Log *log);
 
 static void toggle_calendar (void);
 static void toggle_zoom (void);
@@ -92,47 +87,47 @@ GnomeUIInfo log_menu[] = {
 	GNOMEUIINFO_MENU_OPEN_ITEM(LoadLogMenu, NULL),
 	GNOMEUIINFO_MENU_SAVE_AS_ITEM(StubCall, NULL),
 	GNOMEUIINFO_SEPARATOR,
-        { GNOME_APP_UI_ITEM, N_("S_witch Log"), 
+    { GNOME_APP_UI_ITEM, N_("S_witch Log"), 
 	  N_("Switch log"), change_log_menu, NULL, NULL,
-          GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
-        { GNOME_APP_UI_ITEM, N_("_Monitor..."), 
+      GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+    { GNOME_APP_UI_ITEM, N_("_Monitor..."), 
 	  N_("Monitor Log"), MonitorMenu, NULL, NULL,
-          GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+      GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
 	GNOMEUIINFO_SEPARATOR,
-        { GNOME_APP_UI_ITEM, N_("_Properties"), 
+    { GNOME_APP_UI_ITEM, N_("_Properties"), 
 	  N_("Show Log Properties"), LogInfo, NULL, NULL,
-          GNOME_APP_PIXMAP_NONE, NULL, 'I', GDK_CONTROL_MASK, NULL},
+      GNOME_APP_PIXMAP_NONE, NULL, 'I', GDK_CONTROL_MASK, NULL },
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_CLOSE_ITEM(CloseLogMenu, NULL),
 	GNOMEUIINFO_MENU_QUIT_ITEM(ExitProg, NULL),
-        {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
+    { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
 };
 
 GnomeUIInfo view_menu[] = {
-        { GNOME_APP_UI_TOGGLEITEM, N_("_Calendar"), N_("Show Calendar Log"), toggle_calendar, 
-	  NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, 'L', GDK_CONTROL_MASK, NULL },
-        { GNOME_APP_UI_TOGGLEITEM, N_("_Entry Detail"), N_("Show Entry Detail"), toggle_zoom, 
-	  NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, 'D', GDK_CONTROL_MASK, NULL },
-        {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
+    { GNOME_APP_UI_TOGGLEITEM, N_("_Calendar"),
+      N_("Show Calendar Log"), toggle_calendar, NULL, NULL,
+      GNOME_APP_PIXMAP_NONE, NULL, 'L', GDK_CONTROL_MASK, NULL },
+    { GNOME_APP_UI_TOGGLEITEM, N_("_Entry Detail"), 
+      N_("Show Entry Detail"), toggle_zoom, NULL, NULL, 
+      GNOME_APP_PIXMAP_NONE, NULL, 'D', GDK_CONTROL_MASK, NULL },
+    { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
 };
-
 
 GnomeUIInfo help_menu[] = {
 	GNOMEUIINFO_HELP("gnome-system-log"),
-        {GNOME_APP_UI_ITEM, N_("About..."), 
-	 N_("Info about logview"), AboutShowWindow,
-         NULL, NULL,
-         GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-        {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
+    { GNOME_APP_UI_ITEM, N_("About..."), 
+	  N_("Info about logview"), AboutShowWindow, NULL, NULL,
+      GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
+    { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
 };
 
 GnomeUIInfo main_menu[] = {
-        { GNOME_APP_UI_SUBTREE, N_("_Log"), NULL,
-          log_menu, NULL, NULL, (GnomeUIPixmapType) 0,
-          NULL, 0, (GdkModifierType) 0, NULL },
+    { GNOME_APP_UI_SUBTREE, N_("_Log"), NULL,
+      log_menu, NULL, NULL, (GnomeUIPixmapType) 0,
+      NULL, 0, (GdkModifierType) 0, NULL },
 	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
-        {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
+    { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
 };
                  
 
@@ -142,11 +137,8 @@ GnomeUIInfo main_menu[] = {
  *       ----------------
  */
 
-
 GtkWidget *app = NULL;
-GtkWidget *main_win_scrollbar = NULL;
 static GtkWidget *viewport;
-GtkWidget *main_win_hor_scrollbar = NULL; 
 GtkLabel *filename_label = NULL, *date_label = NULL;
 
 GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
@@ -154,6 +146,7 @@ UserPrefsStruct *user_prefs = NULL;
 UserPrefsStruct user_prefs_struct = {0};
 ConfigData *cfg = NULL;
 GtkWidget *open_file_dialog = NULL;
+GtkWidget *view = NULL;
 
 GConfClient *client;
 poptContext poptCon;
@@ -171,13 +164,11 @@ struct poptOption options[] = { {
 
 extern GtkWidget *CalendarDialog;
 extern GtkWidget *zoom_dialog;
-extern GdkGC *gc;
 extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 extern int loginfovisible, calendarvisible;
 extern int cursor_visible;
 extern int zoom_visible;
-extern PangoLayout *log_layout;
 
 /* ----------------------------------------------------------------------
    NAME:          destroy
@@ -210,11 +201,13 @@ save_session (GnomeClient *gclient, gint phase,
    g_free (argv);
 
    return TRUE;
+
 }
 
 static gboolean
 restore_session (void)
 {
+#ifdef FIXME
    Log *tl;
    gint i, logcnt = 0;
 
@@ -223,7 +216,7 @@ restore_session (void)
    curlog = NULL;
    loglist[0] = NULL;
    curlognum = 0;
-   log_repaint (NULL, NULL);
+   log_repaint ();
    if (loginfovisible)
        RepaintLogInfo ();
    set_scrollbar_size (1);
@@ -246,6 +239,7 @@ restore_session (void)
             g_free (f);
       }
    } while ((next_opt = poptGetNextOpt (poptCon)) != -1);
+#endif
 }
 
 static gint
@@ -262,51 +256,51 @@ die (GnomeClient *gclient, gpointer client_data)
 int
 main (int argc, char *argv[])
 {
-  GnomeClient *gclient;
+   GnomeClient *gclient;
 
-  bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
-  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-  textdomain(GETTEXT_PACKAGE);
+   bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
+   bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+   textdomain(GETTEXT_PACKAGE);
 
-  QueueErrMessages (TRUE);
+   QueueErrMessages (TRUE);
 
-  /*  Initialize gnome & gtk */
-  gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
-  		      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
+   /*  Initialize gnome & gtk */
+   gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
+			   GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
-  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-log.png");
-  
-  poptCon = poptGetContext ("gnome-system-log", argc, (const gchar **) argv, 
-                            options, 0);  
-  gclient = gnome_master_client ();
-  g_signal_connect (gclient, "save_yourself",
-                    G_CALLBACK (save_session), (gpointer)argv[0]);
-  g_signal_connect (gclient, "die", G_CALLBACK (die), NULL);
-
-  gconf_init (argc, argv, NULL);
-  client = gconf_client_get_default ();
-  
-  /*  Load graphics config */
-  cfg = CreateConfig();
-  
-  /*  Show about window */
-  /* AboutShowWindow (NULL, NULL); */
-
-  InitApp ();
-
-  QueueErrMessages (FALSE);
-  ShowQueuedErrMessages ();
+   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-log.png");
    
-  if (gnome_client_get_flags (gclient) & GNOME_CLIENT_RESTORED) {
-     restore_session ();
-  }
+   poptCon = poptGetContext ("gnome-system-log", argc, (const gchar **) argv, 
+							 options, 0);  
+   gclient = gnome_master_client ();
+   g_signal_connect (gclient, "save_yourself",
+					 G_CALLBACK (save_session), (gpointer)argv[0]);
+   g_signal_connect (gclient, "die", G_CALLBACK (die), NULL);
 
-  /*  Loop application */
-  gtk_main ();
-  
-  SaveUserPrefs(user_prefs);
+   gconf_init (argc, argv, NULL);
+   client = gconf_client_get_default ();
+   
+   /*  Load graphics config */
+   cfg = CreateConfig();
+   
+   InitApp ();
 
-  return 0;
+   log_repaint (); 
+
+   QueueErrMessages (FALSE);
+   ShowQueuedErrMessages ();
+   
+   if (gnome_client_get_flags (gclient) & GNOME_CLIENT_RESTORED) {
+	  restore_session ();
+   }
+
+   /*  Loop application */
+   gtk_main ();
+   
+   SaveUserPrefs(user_prefs);
+
+   return 0;
+
 }
 
 /* ----------------------------------------------------------------------
@@ -317,21 +311,21 @@ main (int argc, char *argv[])
 void
 InitApp ()
 {
-  /*  Initialize variables */
-  loginfovisible = FALSE;
-  regexp_db = NULL;
-  user_prefs = &user_prefs_struct;
-  SetDefaultUserPrefs(user_prefs);
+   loginfovisible = FALSE;
+   regexp_db = NULL;
+   user_prefs = &user_prefs_struct;
+   SetDefaultUserPrefs(user_prefs);
 
-  /*  Display main window */
-  CreateMainWin ();
+   /*  Display main window */
+   CreateMainWin ();
 
-  /* Read databases */
-  open_databases ();
+   /* Read databases */
+   open_databases ();
 
-  /*  Read files and init data. */
-  if (InitPages () < 0)
-    ShowErrMessage (_("No log files to open"));
+   /*  Read files and init data. */
+   if (InitPages () < 0)
+	 ShowErrMessage (_("No log files to open"));
+
 }
 
 /* ----------------------------------------------------------------------
@@ -342,12 +336,19 @@ InitApp ()
 void
 CreateMainWin ()
 {
-   GtkWidget *canvas;
    GtkWidget *w, *vbox, *table, *hbox, *hbox_date;
    GtkWidget *padding;
    GtkLabel *label;
    GtkObject *adj;
    GtkAllocation req_size;
+   GtkTreeStore *tree_store;
+   GtkTreeSelection *selection;
+   GtkTreeViewColumn *column;
+   GtkCellRenderer *renderer;
+   GtkWidget *scrolled_window = NULL;
+   gint i;
+   const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
+                                    N_("Process"), N_("Message"), NULL };
 
    /* Create App */
 
@@ -373,77 +374,46 @@ CreateMainWin ()
    if (numlogs < 2)
      gtk_widget_set_state (log_menu[3].widget, GTK_STATE_INSENSITIVE);
 
-   /* Create main canvas and scroll bars */
-   table = gtk_table_new (2, 2, FALSE);
-   gtk_widget_show (table);
+   /* Create scrolled window and tree view */
+   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+   gtk_widget_set_sensitive (scrolled_window, TRUE);
+   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+               GTK_POLICY_AUTOMATIC,
+               GTK_POLICY_AUTOMATIC);
+   gtk_box_pack_start (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
 
-   viewport = gtk_viewport_new (NULL, NULL);
-   gtk_widget_set_size_request (viewport, LOG_CANVAS_W, 0); 
-   gtk_widget_show (viewport);
-               
-   canvas = gtk_drawing_area_new ();
-   gtk_drawing_area_size (GTK_DRAWING_AREA (canvas), 2*LOG_CANVAS_W,
-			  LOG_CANVAS_H); 
-   gtk_container_add (GTK_CONTAINER (viewport), canvas);
-   gtk_table_attach (GTK_TABLE (table), viewport, 0, 1, 0, 1,
-		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
+   /* Create Tree View */
+   tree_store = gtk_tree_store_new (4,
+                G_TYPE_STRING, G_TYPE_STRING,
+                G_TYPE_STRING, G_TYPE_STRING);
 
-   if (curlog != NULL)
-	   adj = (GtkObject *)gtk_viewport_get_hadjustment (GTK_VIEWPORT (viewport));
-   else
-	   adj = gtk_adjustment_new (100.0, 0.0, 101.0, 1, 10, 101.0);
+   view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (tree_store));
+   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (view), TRUE);
+   g_object_unref (G_OBJECT (tree_store)); 
    
-   main_win_hor_scrollbar = gtk_hscrollbar_new (GTK_ADJUSTMENT (adj));
-   gtk_widget_show(main_win_hor_scrollbar);
-   gtk_table_attach (GTK_TABLE (table), main_win_hor_scrollbar, 0, 1, 1, 2,
-		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-		     (GtkAttachOptions) (0), 0, 0);
+   /* Add Tree View Columns */
+   for (i = 0; column_titles[i]; i++) {
+        renderer = gtk_cell_renderer_text_new ();
+        column = gtk_tree_view_column_new_with_attributes (column_titles[i],
+                    renderer, "text", i, NULL);
+        gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE); 
+        gtk_tree_view_column_set_resizable (column, TRUE);
+        gtk_tree_view_column_set_spacing (column, GNOME_PAD_SMALL);
+        gtk_tree_view_append_column (GTK_TREE_VIEW (view), column);
+   }
 
-   if (curlog != NULL)
-     adj = gtk_adjustment_new ( curlog->ln, 0.0,
-				curlog->lstats.numlines,
-				1.0, 10.0, (float) LINES_P_PAGE);
-   else
-     adj = gtk_adjustment_new (100.0, 0.0, 101.0, 1, 10, 101.0);
+   gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (view));
+   gtk_widget_show_all (scrolled_window);
 
-   main_win_scrollbar = (GtkWidget *)gtk_vscrollbar_new (GTK_ADJUSTMENT(adj));
-   gtk_range_set_update_policy (GTK_RANGE (main_win_scrollbar), GTK_UPDATE_CONTINUOUS);
+   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (view));
+   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
-   gtk_table_attach (GTK_TABLE (table), main_win_scrollbar, 1, 2, 0, 1,
-		     (GtkAttachOptions) (0),
-		     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
-   gtk_signal_connect (GTK_OBJECT (adj), "value_changed",
-		       (GtkSignalFunc) MainWinScrolled,
-		       (gpointer) main_win_scrollbar);       
-   gtk_widget_show (main_win_scrollbar);  
+   /* Add signal handlers */
+   g_signal_connect (G_OBJECT (selection), "changed",
+                     G_CALLBACK (handle_selection_changed_cb), NULL);
 
-
-   gtk_box_pack_start (GTK_BOX (vbox), table, TRUE, TRUE, 0);
-   
-   /*  Install event handlers */
-   gtk_signal_connect (GTK_OBJECT (canvas), "expose_event",
-		       GTK_SIGNAL_FUNC (log_repaint), NULL);
-   gtk_signal_connect (GTK_OBJECT (app), "key_press_event",
-		       GTK_SIGNAL_FUNC (HandleLogKeyboard), NULL);
-   gtk_signal_connect (GTK_OBJECT (canvas), "button_press_event",
-		       GTK_SIGNAL_FUNC (handle_log_mouse_button), NULL);
-   g_signal_connect (G_OBJECT (canvas), "scroll_event", 
-   		     G_CALLBACK (handle_log_mouse_scroll), NULL);
-   gtk_signal_connect (GTK_OBJECT (canvas), "size_allocate",
-		       GTK_SIGNAL_FUNC (CanvasResized), NULL);
-   gtk_widget_set_events (canvas, GDK_EXPOSURE_MASK |
-			  GDK_BUTTON_PRESS_MASK |
-			  GDK_POINTER_MOTION_MASK |
-			  GDK_SCROLL_MASK
-			  );
-
-   gtk_widget_set_events (app, GDK_KEY_PRESS_MASK);
-
-
-   gtk_widget_set_style (canvas, cfg->white_bg_style);
-   gtk_widget_show (canvas);
-
+   g_signal_connect (G_OBJECT (view), "row_activated",
+                     G_CALLBACK (handle_row_activation_cb), NULL);
 
    /* Create status area at bottom */
    hbox = gtk_hbox_new (FALSE, 2);
@@ -488,169 +458,12 @@ CreateMainWin ()
 }
 
 /* ----------------------------------------------------------------------
-   NAME:          MainScreenResized
-   DESCRIPTION:   The main screen was resized.
-   ---------------------------------------------------------------------- */
-
-void
-CanvasResized (GtkWidget *widget, GtkAllocation *allocation)
-{
-  DB (
-      if (allocation)
-      	printf ("Main screen resized!\n New size = (%d,%d)\n", 
-		allocation->width, allocation->height);
-      else
-        printf ("Main screen resized!\nNo allocation :(\n");
-	);
-}
-
-/* ----------------------------------------------------------------------
-   NAME:          ScrollWin
-   DESCRIPTION:   When the mouse button is released we scroll the window.
-   ---------------------------------------------------------------------- */
-
-gboolean
-ScrollWin (GtkRange *range, gpointer event)
-{
-  int newln;
-  
-  newln = (int) range->adjustment->value;
-  if (curlog == NULL ||
-      newln >= curlog->lstats.numlines ||
-      newln < 0)
-    return FALSE;
-
-  /* evil, yes */
-  if (newln == 0)
-	  newln = 1;
-  
-  /* Goto mark */
-  MoveToMark (curlog);
-  curlog->firstline = 0;
-  
-  ScrollDown (newln - curlog->curmark->ln);
-  
-  /* Repaint screen */
-  log_repaint(NULL, NULL);
-
-  return FALSE;
-}
-
-/* ----------------------------------------------------------------------
-   NAME:          MainWinScrolled
-   DESCRIPTION:   main window scrolled
-   ---------------------------------------------------------------------- */
-
-void
-MainWinScrolled (GtkAdjustment *adjustment, GtkRange *range)
-{
-  int newln, howmuch;
-  DateMark *mark;
-
-  newln = (int) range->adjustment->value;
-
- if (newln < 0 ||
-     curlog == NULL)
-   return;
-
- /* evil, yes */
- if (newln == 0)
-	 newln = 1;
-
- if (newln >= curlog->lstats.numlines)
-   newln = curlog->lstats.numlines - 1;
-
-  /* Find mark which has this line */
-  mark = curlog->curmark;
-  if (mark == NULL)
-    return;
-
-  if (newln >= mark->ln)
-    {
-      while( mark->next != NULL)
-	{
-	  if (newln <= mark->next->ln)
-	    break;
-	  mark = mark->next;
-	}
-    }
-  else
-    {
-      while( mark->prev != NULL)
-	{
-	  if (newln >= mark->ln)
-	    break;
-	  mark = mark->prev;
-	}
-    }
-
-  /* Now lets make it the current mark */
-  cursor_visible = FALSE;
-  howmuch = newln - curlog->ln;
-  curlog->ln = newln;
-  if (mark != curlog->curmark)
-    {
-      curlog->curmark = mark;
-      MoveToMark (curlog);
-      curlog->firstline = 0;
-      howmuch = newln - mark->ln;
-    }
-
-  /* Update status area */
-  UpdateStatusArea ();
-
-  /* Only scroll when the scrollbar is released */
-  if (howmuch > 0)
-      ScrollDown (howmuch);
-  else
-      ScrollUp (-1*howmuch);
-
-  if (howmuch != 0)
-    log_repaint(NULL, NULL);
-}
-
-
-/* ----------------------------------------------------------------------
-   NAME:          set_scrollbar_size
-   DESCRIPTION:   Set size of scrollbar acording to file.
-   ---------------------------------------------------------------------- */
-
-void set_scrollbar_size (int num_lines)
-{
-  GtkObject *adj;
-
-  adj = gtk_adjustment_new (-1, 0.0, num_lines,
-			    1.0, 10.0, (float) LINES_P_PAGE);
-  gtk_range_set_adjustment (GTK_RANGE (main_win_scrollbar),
-			    GTK_ADJUSTMENT (adj));
-  gtk_signal_connect (GTK_OBJECT (adj), "value_changed",
-		      (GtkSignalFunc) MainWinScrolled,
-		      (gpointer) main_win_scrollbar);       
-  if (curlog != NULL )
-  {
-  	gtk_adjustment_set_value (GTK_ADJUSTMENT(adj), curlog->ln); 
-	adj = (GtkObject*)gtk_viewport_get_hadjustment (GTK_VIEWPORT (viewport));
-  	gtk_adjustment_set_value (GTK_ADJUSTMENT(adj),0); 
-  }
-  else
-	adj = gtk_adjustment_new (100.0, 0.0, 101.0, 1, 10, 101.0);
-
-  gtk_range_set_adjustment (GTK_RANGE (main_win_hor_scrollbar),GTK_ADJUSTMENT (adj));
-
-  gtk_widget_realize (main_win_scrollbar);
-  gtk_widget_realize (main_win_hor_scrollbar);
-
-  gtk_widget_queue_resize (main_win_scrollbar);
-  gtk_widget_queue_resize (main_win_hor_scrollbar);
-}
-
-/* ----------------------------------------------------------------------
    NAME:          CloseLogMenu
    DESCRIPTION:   Close the current log.
    ---------------------------------------------------------------------- */
 
 void
-CloseLogMenu (GtkWidget * widget, gpointer user_data)
+CloseLogMenu (GtkWidget *widget, gpointer user_data)
 {
    int i;
 
@@ -658,16 +471,16 @@ CloseLogMenu (GtkWidget * widget, gpointer user_data)
       return;
 
    CloseLog (curlog);
+
    numlogs--;
    if (numlogs == 0)
    {
       curlog = NULL;
       loglist[0] = NULL;
       curlognum = 0;
-      log_repaint (NULL, NULL);
+      log_repaint ();
       if (loginfovisible)
-	 RepaintLogInfo ();
-      set_scrollbar_size (1);
+	      RepaintLogInfo ();
       gtk_widget_set_sensitive (log_menu[7].widget, FALSE); 
       gtk_widget_set_sensitive (log_menu[4].widget, FALSE); 
       for ( i = 0; i < 3; i++) 
@@ -681,7 +494,7 @@ CloseLogMenu (GtkWidget * widget, gpointer user_data)
    if (curlognum > 0)
       curlognum--;
    curlog = loglist[curlognum];
-   log_repaint (NULL, NULL);
+   log_repaint ();
 
    if (loginfovisible)
       RepaintLogInfo ();
@@ -690,7 +503,6 @@ CloseLogMenu (GtkWidget * widget, gpointer user_data)
    if (numlogs < 2)
      gtk_widget_set_state (log_menu[3].widget, GTK_STATE_INSENSITIVE);
 
-   set_scrollbar_size (curlog->lstats.numlines);
 }
 
 /* ----------------------------------------------------------------------
@@ -702,6 +514,7 @@ void
 change_log_menu (GtkWidget * widget, gpointer user_data)
 {
   change_log (1);
+
 }
 
 /* ----------------------------------------------------------------------
@@ -738,36 +551,40 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
    }      
 
    if (f != NULL) {
-      if ((tl = OpenLogFile (f)) != NULL)
-      {
-	 curlog = tl;
-	 loglist[numlogs] = tl;
-	 numlogs++;
-	 curlognum = numlogs - 1;
+       if ((tl = OpenLogFile (f)) != NULL) {
+           if (numlogs > 0) {
+               memset (curlog->expand_paths, 0, 
+                       sizeof(curlog->expand_paths));
+               save_rows_to_expand (curlog); 
+           }
 
-	 /* Clear window */
-	 log_repaint (NULL, NULL);
-	 if (loginfovisible)
-	   RepaintLogInfo ();
-	 if (calendarvisible)
-	   init_calendar_data();
-	 UpdateStatusArea();
+	       curlog = tl;
+		   loglist[numlogs] = tl;
+		   numlogs++;
+		   curlognum = numlogs - 1;
 
-	 /* Set main scrollbar */
-	 set_scrollbar_size (curlog->lstats.numlines);
+		   /* Clear window */
+		   log_repaint ();
+		   if (loginfovisible)
+			   RepaintLogInfo ();
+		   if (calendarvisible)
+			   init_calendar_data();
 
-	 if (numlogs)
-	 {
-	   int i;
-	   if (numlogs >= 2)
-	     gtk_widget_set_sensitive (log_menu[3].widget, TRUE);
-	   gtk_widget_set_sensitive (log_menu[7].widget, TRUE);
-	   gtk_widget_set_sensitive (log_menu[4].widget, TRUE);
-	   for ( i = 0; i < 3; i++) 
-	     gtk_widget_set_sensitive (view_menu[i].widget, TRUE);
-	 } 
-      }
+	       UpdateStatusArea();
+
+		   if (numlogs) {
+			   int i;
+			   if (numlogs >= 2)
+			       gtk_widget_set_sensitive (log_menu[3].widget, TRUE);
+
+			   gtk_widget_set_sensitive (log_menu[7].widget, TRUE);
+			   gtk_widget_set_sensitive (log_menu[4].widget, TRUE);
+			   for (i = 0; i < 3; ++i) 
+			       gtk_widget_set_sensitive (view_menu[i].widget, TRUE);
+		   } 
+       }
    }
+
    g_free (f);
 
 }
@@ -823,11 +640,8 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
    gtk_widget_show (filesel);
 
    open_file_dialog = filesel;
+
 }
-
-
-
-
 
 /* ----------------------------------------------------------------------
    NAME:          ExitProg
@@ -838,6 +652,7 @@ void
 ExitProg (GtkWidget * widget, gpointer user_data)
 {
    CloseApp ();
+
 }
 
 /* ----------------------------------------------------------------------
@@ -855,12 +670,8 @@ CloseApp (void)
 
    numlogs = 0;
 
-   if (G_IS_OBJECT (log_layout)) {
-      g_object_unref (G_OBJECT (log_layout));
-      log_layout = NULL;
-   }
-
    gtk_main_quit ();   
+
 }
 
 /* ----------------------------------------------------------------------
@@ -957,6 +768,7 @@ open_databases (void)
 
 	/* If debugging then print DB */
 	DB (print_db (regexp_db));
+
 }
 
 /* ----------------------------------------------------------------------
@@ -970,6 +782,7 @@ IsLeapYear (int year)
       return TRUE;
    else
       return FALSE;
+
 }
 
 void SetDefaultUserPrefs(UserPrefsStruct *prefs)
@@ -1033,5 +846,6 @@ toggle_zoom (void)
 	close_zoom_view (app, NULL);
     }
     else
-	create_zoom_view (NULL, NULL);
+	create_zoom_view ();
+
 }

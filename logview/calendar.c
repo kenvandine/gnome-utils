@@ -122,7 +122,6 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
       g_signal_connect (G_OBJECT (CalendarDialog), "delete_event",
 			G_CALLBACK (gtk_true),
 			NULL);
-      gtk_widget_set_style (CalendarDialog, cfg->main_style);
 
       vbox = gtk_vbox_new (FALSE, 2);
 
@@ -134,7 +133,6 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
 
       gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
       gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
-      gtk_widget_set_style (frame, cfg->main_style);
 
       calendar = (GtkCalendar *)gtk_calendar_new();
 
@@ -298,6 +296,9 @@ calendar_month_changed (GtkWidget *widget, gpointer unused_data)
 void
 calendar_day_selected (GtkWidget *widget, gpointer unused_data)
 {
+#ifdef FIXME
+  /* need to update the calander days with with the ones in logfile */
+
   GtkCalendar *calendar;
   CalendarData *data;
   gint day, month, year;
@@ -329,7 +330,7 @@ calendar_day_selected (GtkWidget *widget, gpointer unused_data)
       /* set_scrollbar_size (curlog->lstats.numlines); */
       log_repaint(NULL, NULL);
     }
-  
+#endif  
 }
 
 /* ----------------------------------------------------------------------
