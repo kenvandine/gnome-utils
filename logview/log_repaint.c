@@ -47,9 +47,10 @@
 extern int loginfovisible, calendarvisible;
 extern int zoom_visible;
 extern ConfigData *cfg;
-extern GtkLabel *filename_label, *date_label;
+extern GtkLabel *date_label;
 extern UserPrefsStruct *user_prefs;
 extern GtkWidget *view;
+extern GtkWidget *app;
 
 
 /*
@@ -404,20 +405,20 @@ UpdateStatusArea ()
    char status_text[255];
    char *utf8;
    char *buffer;
+   char *window_title;
    /* Translators: Date only format, %x should well do really */
    const char *time_fmt = _("%x"); /* an evil way to avoid warning */
  
    if (curlog == NULL) { 
-       gtk_label_set_text (filename_label, "");
        gtk_label_set_text (date_label, "");    
+       gtk_window_set_title (GTK_WINDOW (app), APP_NAME);
        return;
    }
 
    if (curlog->name != NULL) {
-       strncpy (status_text, curlog->name, 30);
-       gtk_label_get ( filename_label, (char **)&buffer);
-       if (strcmp (status_text, buffer) != 0)
-       gtk_label_set_text (filename_label, status_text);
+       window_title = g_strdup_printf ("%s - %s", curlog->name, APP_NAME);
+       gtk_window_set_title (GTK_WINDOW (app), window_title);
+       g_free (window_title);
    }
 
    if (curlog->curmark != NULL) {

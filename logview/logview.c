@@ -121,11 +121,9 @@ GnomeUIInfo help_menu[] = {
 };
 
 GnomeUIInfo main_menu[] = {
-    { GNOME_APP_UI_SUBTREE, N_("_Log"), NULL,
-      log_menu, NULL, NULL, (GnomeUIPixmapType) 0,
-      NULL, 0, (GdkModifierType) 0, NULL },
-	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
-	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
+	GNOMEUIINFO_MENU_FILE_TREE (log_menu),
+	GNOMEUIINFO_MENU_VIEW_TREE (view_menu),
+	GNOMEUIINFO_MENU_HELP_TREE (help_menu),
     { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
 };
                  
@@ -138,7 +136,7 @@ GnomeUIInfo main_menu[] = {
 
 GtkWidget *app = NULL;
 static GtkWidget *viewport;
-GtkLabel *filename_label = NULL, *date_label = NULL;
+GtkLabel *date_label = NULL;
 
 GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
 UserPrefsStruct *user_prefs = NULL;
@@ -343,12 +341,18 @@ CreateMainWin ()
    GtkCellRenderer *renderer;
    GtkWidget *scrolled_window = NULL;
    gint i;
+   gchar *window_title;
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
                                     N_("Process"), N_("Message"), NULL };
 
    /* Create App */
 
-   app = gnome_app_new ("gnome-system-log", _("System Log Viewer"));
+   if ((curlog != NULL) && (numlogs))
+       window_title = g_strdup_printf ("%s - %s", curlog->name, APP_NAME);
+   else
+       window_title = g_strdup_printf (APP_NAME);
+   app = gnome_app_new ("gnome-system-log", window_title);
+   g_free (window_title);
 
    gtk_container_set_border_width ( GTK_CONTAINER (app), 0);
    gtk_window_set_default_size ( GTK_WINDOW (app), LOG_CANVAS_W, LOG_CANVAS_H);
@@ -415,17 +419,6 @@ CreateMainWin ()
    hbox = gtk_hbox_new (FALSE, 2);
    gtk_container_set_border_width ( GTK_CONTAINER (hbox), 3);
 
-   label = (GtkLabel *)gtk_label_new (_("Filename: "));
-   gtk_label_set_justify (label, GTK_JUSTIFY_LEFT);
-   gtk_box_pack_start (GTK_BOX (hbox), GTK_WIDGET (label), FALSE, FALSE, 0);
-   gtk_widget_show (GTK_WIDGET (label));  
-
-   filename_label = (GtkLabel *)gtk_label_new ("");
-   gtk_widget_show ( GTK_WIDGET (filename_label));  
-   gtk_label_set_justify (label, GTK_JUSTIFY_LEFT);
-   gtk_box_pack_start (GTK_BOX (hbox), GTK_WIDGET (filename_label), 
-		       FALSE, FALSE, 0);
-   
    hbox_date = gtk_hbox_new (FALSE, 2);
    gtk_container_set_border_width ( GTK_CONTAINER (hbox_date), 3);
 
@@ -477,7 +470,8 @@ CloseLogMenu (GtkWidget *widget, gpointer user_data)
       log_repaint ();
       if (loginfovisible)
 	      RepaintLogInfo ();
-      gtk_widget_set_sensitive (log_menu[7].widget, FALSE); 
+      gtk_widget_set_sensitive (log_menu[6].widget, FALSE); 
+      gtk_widget_set_sensitive (log_menu[8].widget, FALSE); 
       gtk_widget_set_sensitive (log_menu[4].widget, FALSE); 
       for ( i = 0; i < 3; i++) 
          gtk_widget_set_sensitive (view_menu[i].widget, FALSE); 
@@ -553,6 +547,8 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
                        sizeof(curlog->expand_paths));
                save_rows_to_expand (curlog); 
            }
+           if (!numlogs) 
+               gtk_widget_set_sensitive (log_menu[8].widget, TRUE); 
 
 	       curlog = tl;
 		   loglist[numlogs] = tl;
@@ -573,7 +569,7 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 			   if (numlogs >= 2)
 			       gtk_widget_set_sensitive (log_menu[3].widget, TRUE);
 
-			   gtk_widget_set_sensitive (log_menu[7].widget, TRUE);
+			   gtk_widget_set_sensitive (log_menu[6].widget, TRUE);
 			   gtk_widget_set_sensitive (log_menu[4].widget, TRUE);
 			   for (i = 0; i < 3; ++i) 
 			       gtk_widget_set_sensitive (view_menu[i].widget, TRUE);

@@ -58,6 +58,8 @@
 #define LOG_WINDOW_W             LOG_CANVAS_W+15
 #define LOG_WINDOW_H             LOG_CANVAS_H+LOG_BOTTOM_MARGIN
 
+#define APP_NAME                 _("System Log Viewer")
+
 
 /*
  *    ,----------.
