@@ -313,7 +313,8 @@ build_search_command (void)
 	command = g_string_new ("");
 	search_command.show_hidden_files = FALSE;
 	
-	if (GTK_WIDGET_VISIBLE(interface.additional_constraints) == FALSE) {
+	if ((GTK_WIDGET_VISIBLE(interface.additional_constraints) == FALSE) ||
+	    (interface.selected_constraints == NULL)) {
 	
 		gchar *locate;
 		gboolean disable_quick_search;
