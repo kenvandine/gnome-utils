@@ -20,7 +20,8 @@ EXTRA_DIST = \
 	gshutdown.desktop \
 	gnome-shutdown.png  \
 	$(top_srcdir)/sgmldocs.make \
-	gshutdown-security.in
+	gshutdown-security.in \
+	gshutdown-pam
 
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = gnome-shutdown.png
@@ -33,6 +34,6 @@ if CONSOLE_HELPER
 	$(INSTALL_DATA) -D gshutdown-pam @PAM_PREFIX@/pam.d/gshutdown
 	$(INSTALL_DATA) -D gshutdown-security @PAM_PREFIX@/security/console.apps/gshutdown
 	$(INSTALL_DATA) -m 755 -d $(sbindir)
-	mv $(bindir)/gshutdown $(sbindir)
+	mv -f $(bindir)/gshutdown $(sbindir)
 	$(LN_S) @CONSOLE_HELPER@ $(bindir)/gshutdown
 endif

@@ -54,6 +54,6 @@ if CONSOLE_HELPER
 	$(INSTALL_DATA) -D logview-pam @PAM_PREFIX@/pam.d/logview
 	$(INSTALL_DATA) -D logview-security @PAM_PREFIX@/security/console.apps/logview
 	$(INSTALL_DATA) -m 755 -d $(sbindir)
-	mv $(bindir)/logview $(sbindir)
+	mv -f $(bindir)/logview $(sbindir)
 	$(LN_S) @CONSOLE_HELPER@ $(bindir)/logview
 endif
