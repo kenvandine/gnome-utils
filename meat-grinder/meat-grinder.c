@@ -599,7 +599,7 @@ drag_data_get (GtkWidget          *widget,
 static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_ITEM_NONE
 		(N_("Create archive..."),
-		 N_("Create a new archive from the selected items"),
+		 N_("Create a new archive from the items"),
 		 archive_cb),
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_EXIT_ITEM (quit_cb, NULL),
@@ -635,6 +635,9 @@ init_gui (void)
 	GtkWidget *vbox;
 	GtkWidget *sw;
 	GtkWidget *w;
+	GtkTooltips *tips;
+
+	tips = gtk_tooltips_new ();
 
         app = gnome_app_new ("meat-grinder",
 			     _("GNOME Archive Generator"));
@@ -666,6 +669,10 @@ init_gui (void)
 	gtk_widget_show (icon_list);
 	gtk_container_add (GTK_CONTAINER (sw), icon_list);
 
+	gtk_tooltips_set_tip (tips, icon_list,
+			      _("Drop files here to add them to an archive."),
+			      NULL);
+
 	w = gtk_hseparator_new ();
 	gtk_widget_show (w);
 	gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
@@ -679,7 +686,7 @@ init_gui (void)
 	gtk_widget_show (compress_button);
 	w = NULL;
 	if (compress_icon != NULL)
-		w = gnome_pixmap_new_from_file (compress_icon);
+		w = gnome_stock_pixmap_widget (NULL, compress_icon);
 	if (w == NULL)
 		w = gtk_label_new (_("Archive"));
 	gtk_widget_show (w);
@@ -687,6 +694,11 @@ init_gui (void)
 	gtk_box_pack_start (GTK_BOX (hbox), compress_button, FALSE, FALSE, 0);
 	gtk_signal_connect (GTK_OBJECT (compress_button), "clicked",
 			    GTK_SIGNAL_FUNC (archive_cb), NULL);
+	gtk_tooltips_set_tip (tips, compress_button,
+			      _("Drag this button to the destination where you "
+				"want the archive to be created or press it to "
+				"pop up a file selection dialog."),
+			      NULL);
 
 	gtk_widget_set_sensitive (compress_button, FALSE);
 
