@@ -192,8 +192,6 @@ build_search_command (void)
 	}
 	g_free (file_is_named_locale);
 	g_free (look_in_folder_locale);
-
-	fprintf (stderr, "COMMAND (%s)\n", command->str);
 	
 	return g_string_free (command, FALSE);
 }
