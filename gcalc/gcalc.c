@@ -59,7 +59,7 @@ about_cb (GtkWidget *widget, gpointer data)
 	
 	about = gnome_about_new(_("GNOME Calculator"), VERSION,
 				"(C) 1998 the Free Software Foundation",
-				_("Simple double precision calculator similiar "
+				_("Simple double precision calculator similar "
 				  "to xcalc"),
 				(const char **)authors,
 				(const char **)documenters,
@@ -199,7 +199,9 @@ main(int argc, char *argv[])
         gnome_app_create_menus_with_data(GNOME_APP(app), gcalc_menu, app);
 
 	calc = gnome_calc_new();
-	gnome_calc_bind_extra_keys (GNOME_CALC (calc), GTK_WIDGET (app));
+/*
+	gnome_calc_bind_extra_keys (GNOME_CALC (calc), GTK_WIDGET (app)); 
+*/
 	gtk_widget_show(calc);
 
 	gtk_selection_add_targets (GTK_WIDGET (app), GDK_SELECTION_CLIPBOARD,
@@ -215,8 +217,8 @@ main(int argc, char *argv[])
 				G_CALLBACK(client_die), NULL);
 
 	gnome_app_set_contents(GNOME_APP(app), calc);
-
 	/* add calculator accel table to our window*/
+
 	gtk_window_add_accel_group(GTK_WINDOW(app),
 				   gnome_calc_get_accel_group(GNOME_CALC(calc)));
 
