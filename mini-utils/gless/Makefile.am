@@ -1,5 +1,8 @@
+# Process this file with automake to produce Makefile.in
 
-INCLUDES = 			\
+SUBDIRS = doc
+
+INCLUDES = -DG_LOG_DOMAIN=\"gless\" 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	$(GNOME_INCLUDEDIR)
