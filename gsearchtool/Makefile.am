@@ -24,6 +24,6 @@ gsearchtool_LDADD = \
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-searchtool.png
 
-EXTRA_DIST = gnome-searchtool.png gsearchtool.desktop
+EXTRA_DIST = gnome-searchtool.png gsearchtool.desktop $(top_srcdir)/app-docs.make
 
 Utilities_DATA = gsearchtool.desktop 

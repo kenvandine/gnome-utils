@@ -63,7 +63,7 @@ gcolorsel_LDADD = \
 	@GLADE_LIBS@					\
 	$(GNOME_XML_LIB)
 
-EXTRA_DIST = gcolorsel.desktop
+EXTRA_DIST = gcolorsel.desktop $(top_srcdir)/app-docs.make
 
 Utilities_DATA = gcolorsel.desktop
 

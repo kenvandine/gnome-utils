@@ -18,4 +18,4 @@ gnome_run_LDADD = \
 Rootdir = $(datadir)/gnome/apps
 Root_DATA = gnome-run.desktop
 
-EXTRA_DIST = gnome-run.desktop
+EXTRA_DIST = gnome-run.desktop $(top_srcdir)/app-docs.make

@@ -8,7 +8,7 @@ notepad: notepad.scm Makefile
 	sed -e "s#@GNOMEG@#$(GNOMEG)#" -e "s#@MYVERSION@#$(VERSION)#"<$< >$@
 	chmod +x $@
 
-EXTRA_DIST = notepad.scm Notepad.desktop
+EXTRA_DIST = notepad.scm Notepad.desktop $(top_srcdir)/app-docs.make
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_DATA = Notepad.desktop

@@ -23,4 +23,4 @@ System_DATA = gw.desktop
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-who.png
 
-EXTRA_DIST = gw.desktop gnome-who.png
+EXTRA_DIST = gw.desktop gnome-who.png $(top_srcdir)/app-docs.make

@@ -51,5 +51,6 @@ EXTRA_DIST = 		\
 	guname.desktop	\
 	moreinfo.c	\
 	moreinfo.h	\
-	guname-capplet.desktop
+	guname-capplet.desktop \
+	$(top_srcdir)/app-docs.make
 

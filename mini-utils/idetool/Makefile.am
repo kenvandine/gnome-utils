@@ -22,7 +22,7 @@ BITMAPS = ide-disk-drive.png
 
 pixmap_DATA = $(BITMAPS)
 
-EXTRA_DIST  = $(BITMAPS) idetool.desktop
+EXTRA_DIST  = $(BITMAPS) idetool.desktop $(top_srcdir)/app-docs.make
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 Utilities_DATA = idetool.desktop

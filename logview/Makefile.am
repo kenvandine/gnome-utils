@@ -45,4 +45,4 @@ EXTRA_DIST = \
 	logview.desktop		\
 	logview-descript.db	\
 	logview-regexp.db	\
-	logview-actions.db 
+	logview-actions.db
