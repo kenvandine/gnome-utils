@@ -162,95 +162,122 @@ build_toolbar(void)
 	mytbar = g_malloc0(sizeof(MyToolbar));
 	mytbar->tbar = GTK_TOOLBAR(gtk_toolbar_new());
 
-	if (config_show_tb_new) {
+	if (config_show_tb_new) 
+	{
 		gtk_toolbar_insert_stock (mytbar->tbar, 
 			GTK_STOCK_NEW,
-			_("Create a New Project..."),
-			NULL,
-			(GtkSignalFunc)new_project,
-			NULL,
+			_("Create a New Project..."), NULL,
+			(GtkSignalFunc)new_project, NULL,
 			position++);
 		gtk_toolbar_append_space(mytbar->tbar);
 		position ++;
 	}
-	if (config_show_tb_file) {
-		add_stock_button(mytbar->tbar, _("Reload"),
-				 _("Reload Configuration File"),
-				 GTK_STOCK_OPEN,
-				 (GtkSignalFunc)init_project_list);
-		add_stock_button(mytbar->tbar, _("Save"),
-				 _("Save Configuration File"),
-				 GTK_STOCK_SAVE,
-				 (GtkSignalFunc)save_project_list);
+	if (config_show_tb_file) 
+	{
+		gtk_toolbar_insert_stock (mytbar->tbar, 
+				GTK_STOCK_OPEN,
+				_("Reload Configuration File"), NULL,
+				(GtkSignalFunc)init_project_list, NULL,
+				position ++);
+		gtk_toolbar_insert_stock (mytbar->tbar, 
+				GTK_STOCK_SAVE,
+				_("Save Configuration File"), NULL,
+				(GtkSignalFunc)save_project_list, NULL,
+				position ++);
 		gtk_toolbar_append_space(mytbar->tbar);
+		position ++;
 	}
-	if (config_show_tb_ccp) {
-		mytbar->cut = add_stock_button(mytbar->tbar, _("Cut"),
-					       _("Cut Selected Project"),
-					       GTK_STOCK_CUT,
-					       (GtkSignalFunc)cut_project);
-		mytbar->copy = add_stock_button(mytbar->tbar, _("Copy"),
-						_("Copy Selected Project"),
-						GTK_STOCK_COPY,
-						(GtkSignalFunc)copy_project);
-		mytbar->paste = add_stock_button(mytbar->tbar, _("Paste"),
-						 _("Paste Project"),
-						 GTK_STOCK_PASTE,
-						 (GtkSignalFunc)paste_project);
+	if (config_show_tb_ccp) 
+	{
+		mytbar->cut = gtk_toolbar_insert_stock (mytbar->tbar, 
+				GTK_STOCK_CUT,
+				_("Cut Selected Project"), NULL,
+				(GtkSignalFunc)cut_project, NULL,
+				position ++);
+		mytbar->copy = gtk_toolbar_insert_stock (mytbar->tbar, 
+				GTK_STOCK_COPY,
+				_("Copy Selected Project"), NULL,
+				(GtkSignalFunc)copy_project, NULL,
+				position ++);
+		mytbar->paste = gtk_toolbar_insert_stock (mytbar->tbar, 
+				GTK_STOCK_PASTE,
+				_("Paste Project"), NULL,
+				(GtkSignalFunc)paste_project, NULL,
+				position ++);
 		gtk_toolbar_append_space(mytbar->tbar);
+		position ++;
 	}
-	if (config_show_tb_journal) {
+	if (config_show_tb_journal) 
+	{
 		mytbar->journal_w = add_stock_button(mytbar->tbar, 
 				 _("Journal"),
 				 _("View and Edit Timestamp Logs"),
 				 GNOME_STOCK_BOOK_OPEN,
 				 (GtkSignalFunc)edit_journal);
+		position ++;
 	}
-	if (config_show_tb_prop) {
-		mytbar->prop_w = add_stock_button(mytbar->tbar, _("Props"),
-				  _("Edit Project Properties..."),
-				  GTK_STOCK_PROPERTIES,
-				  (GtkSignalFunc)menu_properties);
+	if (config_show_tb_prop) 
+	{
+		mytbar->prop_w = gtk_toolbar_insert_stock (mytbar->tbar, 
+				GTK_STOCK_PROPERTIES,
+				_("Edit Project Properties..."), NULL,
+				(GtkSignalFunc)menu_properties, NULL,
+				position ++);
 	}
-	if (config_show_tb_timer) {
+	if (config_show_tb_timer) 
+	{
 #ifdef GNOME_20_BROKEN_NEEDS_FIXING
 		mytbar->timer = add_toggle_button(mytbar->tbar, _("Timer"),
-				  _("Start/Stop Timer"),
-				  GNOME_STOCK_TIMER,
-				  (GtkSignalFunc)menu_toggle_timer,
-				  &(mytbar->timer_w));
+				_("Start/Stop Timer"),
+				GNOME_STOCK_TIMER,
+				(GtkSignalFunc)menu_toggle_timer,
+				&(mytbar->timer_w));
+		position ++;
 #endif
 	}
-	if (config_show_tb_calendar) {
+	if (config_show_tb_calendar) 
+	{
 		mytbar->calendar_w = add_stock_button(mytbar->tbar, 
-				 _("Calendar"),
-				 _("View Calendar"),
-				 GNOME_STOCK_TEXT_BULLETED_LIST,
-				 (GtkSignalFunc)edit_calendar);
+				_("Calendar"),
+				_("View Calendar"),
+				GNOME_STOCK_TEXT_BULLETED_LIST,
+				(GtkSignalFunc)edit_calendar);
+		position ++;
 	}
 	if (((config_show_tb_timer)    || 
 	     (config_show_tb_journal)  ||    
-	     (config_show_tb_calendar)  ||    
+	     (config_show_tb_calendar) ||    
 	     (config_show_tb_prop)     ) &&
 	    ((config_show_tb_pref) || 
 	     (config_show_tb_help) ||
 	     (config_show_tb_exit)))
+	{
 		gtk_toolbar_append_space(mytbar->tbar);
-	if (config_show_tb_pref)
-		add_stock_button(mytbar->tbar, _("Prefs"),
-				 _("Edit Preferences..."),
-				 GTK_STOCK_PREFERENCES,
-				 (GtkSignalFunc)menu_options);
-	if (config_show_tb_help) {
-		add_stock_button(mytbar->tbar, _("Manual"), 
-				 _("User's Guide and Manual"),
-				 GTK_STOCK_HELP,
-				 (GtkSignalFunc)toolbar_help);
+		position ++;
 	}
-	if (config_show_tb_exit) {
-		add_stock_button(mytbar->tbar, _("Quit"), _("Quit GTimeTracker"),
-				 GTK_STOCK_QUIT,
-				 (GtkSignalFunc)quit_app);
+	if (config_show_tb_pref)
+	{
+		gtk_toolbar_insert_stock (mytbar->tbar, 
+				GTK_STOCK_PREFERENCES,
+				_("Edit Preferences..."), NULL,
+				(GtkSignalFunc)menu_options, NULL,
+				position ++);
+	}
+	if (config_show_tb_help) 
+	{
+		gtk_toolbar_insert_stock (mytbar->tbar, 
+				GTK_STOCK_HELP,
+				_("User's Guide and Manual"), NULL,
+				(GtkSignalFunc)toolbar_help, NULL,
+				position ++);
+	}
+	if (config_show_tb_exit) 
+	{
+		gtk_toolbar_insert_stock (mytbar->tbar, 
+				GTK_STOCK_QUIT,
+				_("Quit Gnome TimeTracker"), NULL,
+				 (GtkSignalFunc)quit_app, NULL,
+				position ++);
 	}
 
 	return GTK_WIDGET(mytbar->tbar);
