@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-1.1.0\n"
-"POT-Creation-Date: 2000-04-26 14:27+0200\n"
-"PO-Revision-Date: 2000-04-26 14:48+02:00\n"
+"POT-Creation-Date: 2000-04-27 20:26+0200\n"
+"PO-Revision-Date: 2000-04-27 20:52+02:00\n"
 "Last-Translator: Karl Eichwalder <ke@suse.de>\n"
 "Language-Team: Matthias Warkus <mawa@iname.com>\n"
 "MIME-Version: 1.0\n"
@@ -349,7 +349,7 @@ msgstr "Das Startverzeichnis ist nicht vorhanden"
 msgid "Enable"
 msgstr "Aktiv"
 
-#: gsearchtool/gsearchtool.c:490
+#: gsearchtool/gsearchtool.c:490 logview/actions.c:127
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -536,7 +536,7 @@ msgstr "_Hilfe"
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/view-color-list.c:191
+#: gstripchart/gstripchart.c:1584 mini-utils/gcolorsel/view-color-list.c:192
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Wert"
@@ -545,7 +545,7 @@ msgstr "Wert"
 msgid "Identifier"
 msgstr "Bezeichner"
 
-#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/view-color-list.c:190
+#: gstripchart/gstripchart.c:1590 mini-utils/gcolorsel/view-color-list.c:191
 msgid "Color"
 msgstr "Farbe"
 
@@ -598,7 +598,7 @@ msgid "Help"
 msgstr "Hilfe"
 
 #: gstripchart/gstripchart.c:1768 gstripchart/gstripchart.c:2052
-#: mini-utils/gcolorsel/menus.c:380 mini-utils/gshutdown/gshutdown.c:318
+#: mini-utils/gcolorsel/menus.c:678 mini-utils/gshutdown/gshutdown.c:318
 msgid "About"
 msgstr "Info"
 
@@ -606,7 +606,7 @@ msgstr "Info"
 msgid "Params"
 msgstr "Parameter"
 
-#: gstripchart/gstripchart.c:1780 mini-utils/gcolorsel/menus.c:374
+#: gstripchart/gstripchart.c:1780 mini-utils/gcolorsel/menus.c:668
 msgid "Exit"
 msgstr "Beenden"
 
@@ -1114,52 +1114,631 @@ msgstr "Beenden"
 msgid "Quit GTimeTracker"
 msgstr "GTimeTracker verlassen"
 
+#: logview/about.c:40
+msgid "Cesar Miquel (miquel@df.uba.ar)"
+msgstr "Cesar Miquel (miquel@df.uba.ar)"
+
+#: logview/about.c:41
+msgid ""
+"This  program  is  part of  the  GNOME  project for Linux. Logview comes "
+"with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
+"redistribute it under the conditions of the GNU General Public Licence. The "
+"log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+msgstr ""
+"Dieses Programm ist Teil des GNOME-Projektes. Auf Logview gibt es\n"
+"KEINERLEI GARANTIE. Dies ist freie Software, und Sie dürfen sie unter\n"
+"den Bedingungen der GNU General Public License weiterverbreiten. Das\n"
+"Log-Icon wurde beigesteuert von Tuomas Kuosmanen (alias tigert)."
+
+#. go get logview.xpm in $(prefix)/share/pixmaps/logview
+#: logview/about.c:48
+msgid "Logview"
+msgstr "Logview"
+
+#: logview/about.c:49
+msgid "Copyright (C) 1998"
+msgstr "Copyright (C) 1998"
+
+#: logview/actions.c:56
+msgid "Action database"
+msgstr "Aktionsdatenbank"
+
+#: logview/actions.c:61 logview/monitor.c:114
+msgid "Monitor options"
+msgstr "Überwachungsoptionen"
+
+#: logview/actions.c:113
+msgid "Add..."
+msgstr "Hinzufügen..."
+
+#: logview/actions.c:120
+msgid "Edit..."
+msgstr "Bearbeiten..."
+
+#: logview/actions.c:141 logview/actions.c:662
+msgid "Cancel"
+msgstr "Abbruch"
+
+#: logview/actions.c:146 logview/actions.c:667
+msgid "OK"
+msgstr "OK"
+
+#: logview/actions.c:281 logview/actions.c:294 logview/actions.c:305
+#: logview/actions.c:316 logview/actions.c:327 logview/actions.c:338
+msgid "Error parsing actions data base"
+msgstr "Fehler beim Einlesen der Aktionsdatenbank"
+
+#: logview/actions.c:370
+msgid "Can't write to actions database!"
+msgstr "Kann nicht in Aktionsdatenbank schreiben!"
+
+#: logview/actions.c:476
+msgid "<empty>"
+msgstr "<leer>"
+
+#: logview/actions.c:477
+msgid "log. name regexp"
+msgstr "Lognamen-Regex"
+
+#: logview/actions.c:478
+msgid "process regexp"
+msgstr "Prozeß-Regex"
+
+#: logview/actions.c:479
+msgid "message regexp"
+msgstr "Nachrichten-Regex"
+
+#: logview/actions.c:480
+msgid "action to execute when regexps are TRUE"
+msgstr "Auszuführende Aktion, wenn Regexes WAHR sind"
+
+#: logview/actions.c:481
+msgid "description"
+msgstr "Beschreibung"
+
+#: logview/actions.c:638
+msgid "description:"
+msgstr "Beschreibung:"
+
+#: logview/actions.c:647
+msgid "Description of this entry."
+msgstr "Beschreibung  dieses Eintrages."
+
+#: logview/actions.c:709
+#, c-format
+msgid ""
+"tag: [%s]\n"
+"log_name: [%s]\n"
+"process: [%s]\n"
+"message: [%s]\n"
+"description: [%s]\n"
+"action: [%s]\n"
+msgstr ""
+"Kennung: [%s]\n"
+"Logname: [%s]\n"
+"Prozess: [%s]\n"
+"Nachricht: [%s]\n"
+"Beschreibung: [%s]\n"
+"Aktion: [%s]\n"
+
+#: logview/calendar.c:118
+msgid "Calendar"
+msgstr "Kalender"
+
+#: logview/calendar.c:139
+msgid "Hide calendar"
+msgstr "Kalender verbergen"
+
+#: logview/info.c:80
+msgid "Log stats"
+msgstr "Logstatistik"
+
+#: logview/info.c:140
+msgid "Log information"
+msgstr "Loginformation"
+
+#: logview/info.c:157
+msgid "Log:"
+msgstr "Log:"
+
+#: logview/info.c:159
+msgid "Size:"
+msgstr "Größe:"
+
+#: logview/info.c:161
+msgid "Modified:"
+msgstr "Geändert:"
+
+#: logview/info.c:163
+msgid "Start date:"
+msgstr "Startdatum:"
+
+#: logview/info.c:165
+msgid "Last date:"
+msgstr "Letztes Datum:"
+
+#: logview/info.c:167
+msgid "Num. lines:"
+msgstr "Zeilenzahl:"
+
+#: logview/info.c:183
+#, c-format
+msgid "%ld bytes"
+msgstr "%ld Bytes"
+
+#: logview/log_repaint.c:87
+msgid "January"
+msgstr "Januar"
+
+#: logview/log_repaint.c:87
+msgid "February"
+msgstr "Februar "
+
+#: logview/log_repaint.c:87
+msgid "March"
+msgstr "März"
+
+#: logview/log_repaint.c:87
+msgid "April"
+msgstr "April"
+
+#: logview/log_repaint.c:87
+msgid "May"
+msgstr "Mai"
+
+#: logview/log_repaint.c:88
+msgid "June"
+msgstr "Juni"
+
+#: logview/log_repaint.c:88
+msgid "July"
+msgstr "Juli"
+
+#: logview/log_repaint.c:88
+msgid "August"
+msgstr "August"
+
+#: logview/log_repaint.c:88
+msgid "September"
+msgstr "September"
+
+#: logview/log_repaint.c:88
+msgid "October"
+msgstr "Oktober"
+
+#: logview/log_repaint.c:89
+msgid "November"
+msgstr "November"
+
+#: logview/log_repaint.c:89
+msgid "December"
+msgstr "Dezember"
+
+#: logview/logrtns.c:96
+msgid "Not enough memory!\n"
+msgstr "Nicht genügend Speicher!\n"
+
+#: logview/logrtns.c:104
+msgid "Out of memory!\n"
+msgstr "Kein Speicher mehr!\n"
+
+#: logview/logrtns.c:129
+msgid "Unable to open logfile!\n"
+msgstr "Kann Logdatei nicht öffnen!\n"
+
+#: logview/logrtns.c:183
+#, c-format
+msgid "%s is not a regular file."
+msgstr "%s ist keine normale Datei."
+
+#: logview/logrtns.c:190
+#, c-format
+msgid ""
+"%s is not user readable. Probably has read-only permission. Either run the "
+"program as root or ask the sysadmin to change the permissions on the file."
+msgstr ""
+"%s ist nicht benutzerlesbar. Wahrscheinlich sind die Berechtigungen\n"
+"auf `nur lesen' gesetzt. Starten Sie das Programm entweder als root\n"
+"oder hoffen Sie, daß Sie Ihren Systemadministrator überzeugen können,\n"
+"die Berechtigungen der Datei zu ändern."
+
+#: logview/logrtns.c:202
+#, c-format
+msgid "%s could not be opened."
+msgstr "%s konnte nicht geöffnet werden."
+
+#: logview/logrtns.c:211 logview/logrtns.c:221
+#, c-format
+msgid "%s not a log file."
+msgstr "%s ist keine Logdatei."
+
+#: logview/logrtns.c:614 logview/logrtns.c:645 logview/logrtns.c:776
+msgid "ReadLogStats: out of memory"
+msgstr "ReadLogStats: kein Speicher mehr"
+
+#: logview/logview.c:83
+msgid "Open log...            "
+msgstr "Log öffnen...          "
+
+#: logview/logview.c:84
+msgid "Open log"
+msgstr "Log öffnen"
+
+#: logview/logview.c:86
+msgid "Export log...          "
+msgstr "Log exportieren...     "
+
+#: logview/logview.c:87
+msgid "Export log"
+msgstr "Log exportieren"
+
+#: logview/logview.c:89
+msgid "Close log              "
+msgstr "Log schließen          "
+
+#: logview/logview.c:90
+msgid "Close log"
+msgstr "Log schließen"
+
+#: logview/logview.c:92
+msgid "Switch log             "
+msgstr "Log umschalten         "
+
+#: logview/logview.c:93
+msgid "Switch log"
+msgstr "Log umschalten"
+
+#: logview/logview.c:95
+msgid "Monitor..              "
+msgstr "Überwachen...          "
+
+#: logview/logview.c:96
+msgid "Monitor log"
+msgstr "Log überwachen"
+
+#: logview/logview.c:98
+msgid "Exit                   "
+msgstr "Beenden                "
+
+#: logview/logview.c:99
+msgid "Exit program"
+msgstr "Programm verlassen"
+
+#: logview/logview.c:105
+msgid "Calendar                "
+msgstr "Kalender                "
+
+#: logview/logview.c:106
+msgid "Show calendar log"
+msgstr "Kalenderlog anzeigen"
+
+#: logview/logview.c:108
+msgid "Log stats               "
+msgstr "Logstatistiken          "
+
+#: logview/logview.c:109
+msgid "Show log stats"
+msgstr "Logstatistiken anzeigen"
+
+#: logview/logview.c:111
+msgid "Zoom                    "
+msgstr "Zoom                    "
+
+#: logview/logview.c:112
+msgid "Show line info"
+msgstr "Zeileninformation anzeigen"
+
+#: logview/logview.c:118
+msgid "Select...               "
+msgstr "Auswählen...            "
+
+#: logview/logview.c:119
+msgid "Select log events"
+msgstr "Logereignisse auswählen"
+
+#: logview/logview.c:121
+msgid "Filter..                "
+msgstr "Filtern...              "
+
+#: logview/logview.c:122
+msgid "Filter log events"
+msgstr "Logereignisse filtern"
+
+#: logview/logview.c:128
+msgid "About..                "
+msgstr "Über...                "
+
+#: logview/logview.c:129
+msgid "Info about logview"
+msgstr "Informationen über Logview"
+
+#: logview/logview.c:138
+msgid "F_ilter"
+msgstr "F_ilter"
+
+#: logview/logview.c:227
+msgid "No log files to open"
+msgstr "Keine Logdateien zum Öffnen"
+
+#. Create App
+#: logview/logview.c:256
+msgid "System Log Viewer"
+msgstr "Systemlog-Anzeiger"
+
+#: logview/logview.c:357
+msgid "Filename: "
+msgstr "Dateiname: "
+
+#: logview/logview.c:373
+msgid "Date: "
+msgstr "Datum: "
+
+#: logview/logview.c:620
+msgid "Too many open logs. Close one and try again"
+msgstr "Zuviele geöffnete Logs. Eines schließen und nochmal versuchen."
+
+#: logview/logview.c:673
+msgid "Open new logfile"
+msgstr "Neue Logdatei öffnen"
+
+#: logview/misc.c:78
+#, c-format
+msgid "Error: [%s]\n"
+msgstr "Fehler: [%s]\n"
+
+#: logview/misc.c:79
+msgid "Ok"
+msgstr "OK"
+
+#: logview/monitor.c:131
+msgid "Choose logs to monitor"
+msgstr "Logs zur Überwachung auswählen"
+
+#. Check boxes
+#: logview/monitor.c:210
+msgid "Hide app"
+msgstr "Anwendung verbergen"
+
+#: logview/monitor.c:218
+msgid "Exec actions"
+msgstr "Aktionen ausführen"
+
+#: logview/monitor.c:282 logview/monitor.c:329
+msgid "tmp_list is NULL\n"
+msgstr "tmp_list ist NULL\n"
+
+#: logview/monitor.c:456
+msgid "Monitoring logs.."
+msgstr "Überwache logs..."
+
+#: logview/monitor.c:634
+msgid "TOUCHED!!\n"
+msgstr "BERÜHRT!!\n"
+
+#: logview/zoom.c:77
+msgid "Zoom view"
+msgstr "Ansicht einzoomen"
+
+#: logview/zoom.c:151
+#, c-format
+msgid "Log line detail for %s"
+msgstr "Logzeilen-Detail für %s"
+
+#: logview/zoom.c:153
+msgid "Log line detail for <No log loaded>"
+msgstr "Logzeilen-Detail für <kein Log geladen>"
+
+#: logview/zoom.c:176
+msgid "Date:"
+msgstr "Datum:"
+
+#: logview/zoom.c:178
+msgid "Process:"
+msgstr "Prozess:"
+
+#: logview/zoom.c:180
+msgid "Message:"
+msgstr "Nachricht:"
+
+#: logview/zoom.c:182
+msgid "Description:"
+msgstr "Beschreibung:"
+
+#. First view is considered as the default view ...
+#: mini-utils/gcolorsel/gcolorsel.c:21
+msgid "List"
+msgstr "Liste"
+
+#: mini-utils/gcolorsel/gcolorsel.c:24
+msgid "Grid"
+msgstr ""
+
+#: mini-utils/gcolorsel/gcolorsel.c:27
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: mini-utils/gcolorsel/gcolorsel.c:66
+#, c-format
+msgid "'%s' document has been modified; do you wish to save it ?"
+msgstr "Das Dokument '%s' wurde verändert.  Wollen Sie es speichern?"
+
 #. Init GnomeMDI
-#: mini-utils/gcolorsel/gcolorsel.c:51
+#: mini-utils/gcolorsel/gcolorsel.c:117
 msgid "GColorsel"
 msgstr "Farbwähler"
 
 #: mini-utils/gcolorsel/menus.c:47
+msgid "New Document"
+msgstr "Neues Dokument"
+
+#: mini-utils/gcolorsel/menus.c:48
+msgid "Create a new document"
+msgstr "Ein neues Dokument anlegen"
+
+#: mini-utils/gcolorsel/menus.c:50
+msgid "New View"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:51
+msgid "Create a new view for a document"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:57
+msgid "Close document"
+msgstr "Dokument schließen"
+
+#: mini-utils/gcolorsel/menus.c:58
+msgid "Close the current document"
+msgstr "Das aktuelle Dokument schließen"
+
+#: mini-utils/gcolorsel/menus.c:60
+msgid "Close view"
+msgstr "Schließen"
+
+#: mini-utils/gcolorsel/menus.c:61 mini-utils/gcolorsel/menus.c:672
+msgid "Close the current view"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:78 mini-utils/gcolorsel/menus.c:672
+#: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:593
+msgid "Close"
+msgstr "Schließen"
+
+#: mini-utils/gcolorsel/menus.c:89
 msgid "New color"
 msgstr "Neue Farbe"
 
-#: mini-utils/gcolorsel/menus.c:49
+#: mini-utils/gcolorsel/menus.c:91
 msgid "Remove selected colors"
 msgstr "Gewählte Farbe entfernen"
 
-#: mini-utils/gcolorsel/menus.c:51
+#: mini-utils/gcolorsel/menus.c:93
 msgid "Edit selected color..."
 msgstr "Gewählte Farbe editieren..."
 
-#: mini-utils/gcolorsel/menus.c:98
-msgid "Open file"
-msgstr "Datei öffnen"
+#: mini-utils/gcolorsel/menus.c:124
+msgid "New"
+msgstr "Neu"
 
-#: mini-utils/gcolorsel/menus.c:123
-msgid "Can not open file !"
-msgstr "Kann Datei nicht öffnen!"
+#: mini-utils/gcolorsel/menus.c:129
+msgid "Document created ..."
+msgstr "Dokument angelegt..."
 
-#: mini-utils/gcolorsel/menus.c:190
+#: mini-utils/gcolorsel/menus.c:144
+msgid "GColorsel was unable to save the file :"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:148
+msgid ""
+"Make sure that the path you provided exists,\n"
+"and that you have the appropriate write permissions."
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:150
+msgid "Do you want to retry ?"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:169
+msgid "Gcolorsel was unable to load the file :"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:173
+msgid ""
+"Make sure that the path you provided exists,\n"
+"and that you have permissions for opening the file."
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:175
+msgid "May be this is not a palette file ..."
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:195
+msgid "Open Palette"
+msgstr "Palette öffnen"
+
+#: mini-utils/gcolorsel/menus.c:220
+msgid "Loading file, please wait ..."
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:251
+msgid "Save Palette as"
+msgstr "Palette speichern unter..."
+
+#: mini-utils/gcolorsel/menus.c:298
+msgid "File not saved ..."
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:308
+msgid "File saved ..."
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:372
+#, c-format
+msgid ""
+"I'm going to close the last view of '%s' document.\n"
+"\n"
+"Do you want to close the document too ?"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:375
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"Please note that %d virtual document use data from this document."
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:408
+#, c-format
+msgid "I'm going to close the '%s' document."
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:412
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"Please note that %d views will be destroyed"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:417
+#, c-format
+msgid "%s and that %d virtual document use data from this document"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:426
+msgid "Do you want to continue ?"
+msgstr ""
+
+#: mini-utils/gcolorsel/menus.c:472
 msgid "Gnome Color Browser"
 msgstr "GNOME Farbbetrachter"
 
-#: mini-utils/gcolorsel/menus.c:193
+#: mini-utils/gcolorsel/menus.c:475
 msgid "Small utility to browse available X11 colors."
 msgstr "Kleines Hilfsprogramm, um verfügbare X11-Farben zu betrachten."
 
-#: mini-utils/gcolorsel/menus.c:374
+#: mini-utils/gcolorsel/menus.c:668
 msgid "Exit the program"
 msgstr "Das Programm beenden"
 
-#: mini-utils/gcolorsel/menus.c:377
+#: mini-utils/gcolorsel/menus.c:670
+msgid "Open"
+msgstr "Öffnen"
+
+#: mini-utils/gcolorsel/menus.c:670
+msgid "Open a palette"
+msgstr "Palette öffnen"
+
+#: mini-utils/gcolorsel/menus.c:675
 msgid "Grab"
 msgstr "Auswählen"
 
-#: mini-utils/gcolorsel/menus.c:377
+#: mini-utils/gcolorsel/menus.c:675
 msgid "Grab a color on the screen"
 msgstr "Eine Farbe vom Bildschirm auswählen"
 
-#: mini-utils/gcolorsel/menus.c:380
+#: mini-utils/gcolorsel/menus.c:678
 msgid "About this application"
 msgstr "Info zu dieser Anwendung"
 
@@ -1184,7 +1763,7 @@ msgid "Float"
 msgstr "Gleitkomma"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:192 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gcolorsel/view-color-list.c:193 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:502 mini-utils/gw/gw.c:572
 msgid "Name"
 msgstr "Name"
@@ -1234,8 +1813,24 @@ msgid "File name :"
 msgstr "Dateiname:"
 
 #: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:11
-msgid "Comments :"
-msgstr "Kommentare:"
+msgid ""
+"End\n"
+"Comments :"
+msgstr ""
+"Ende\n"
+"Kommentare:"
+
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:13
+msgid ""
+"Begin\n"
+"Comments :"
+msgstr ""
+"Beginn\n"
+"Kommentare:"
+
+#: mini-utils/gcolorsel/glade/mdi-color-file-properties.glade.h:15
+msgid "Header :"
+msgstr "Kopfeintrag:"
 
 #: mini-utils/gcolorsel/glade/mdi-color-generic-properties.glade.h:9
 #: mini-utils/gcolorsel/glade/view-color-generic-properties.glade.h:9
@@ -1485,10 +2080,6 @@ msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Sie müssen der Superuser (root) sein, um den Computer herunterzufahren\n"
 "oder neu zu starten."
-
-#: mini-utils/gshutdown/gshutdown.c:152 mini-utils/gshutdown/gshutdown.c:593
-msgid "Close"
-msgstr "Schließen"
 
 #. notebook pages
 #: mini-utils/gshutdown/gshutdown.c:186
@@ -2038,39 +2629,18 @@ msgstr "Bei Reset"
 #.
 #. *	Set up the outer display first
 #.
-#: mini-utils/idetool/idetool.c:353
+#: mini-utils/idetool/idetool.c:367
 msgid "IDE Status"
 msgstr "IDE-Status"
 
-#: mini-utils/idetool/idetool.c:366
+#: mini-utils/idetool/idetool.c:389
 msgid "Disk Logo Not Found"
 msgstr "Plattenlogo nicht gefunden"
 
-#: mini-utils/idetool/idetool.c:417
+#: mini-utils/idetool/idetool.c:440
 msgid "Only the superuser can use this tool"
 msgstr "Nur der Superuser kann dieses Werkzeug benutzen"
 
-#: mini-utils/idetool/idetool.c:428
+#: mini-utils/idetool/idetool.c:451
 msgid "You appear to have no IDE drives"
 msgstr "Sie scheinen keine IDE-Laufwerke zu besitzen"
-
-#~ msgid ""
-#~ "Failed to execute command:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Konnte Befehl nicht ausführen:\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Run Program"
-#~ msgstr "Programm ausführen"
-
-#~ msgid "Run"
-#~ msgstr "Ausführen"
-
-#~ msgid "Cancel"
-#~ msgstr "Abbrechen"
-
-#~ msgid "Select a program to run"
-#~ msgstr "Ein Programm zum Ausführen auswählen"
