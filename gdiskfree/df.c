@@ -130,7 +130,7 @@ static GnomeUIInfo file_menu[] = {
 };
 
 static GnomeUIInfo help_menu[] = {
-	GNOMEUIINFO_HELP ("help-browser"),
+	GNOMEUIINFO_HELP ("GDiskFree"),
 	GNOMEUIINFO_MENU_ABOUT_ITEM (about_cb,NULL),
 	GNOMEUIINFO_END
 };
