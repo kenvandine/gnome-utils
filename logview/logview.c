@@ -301,7 +301,7 @@ main (int argc, char *argv[])
    logview_menus_set_state (logviewwindow);
    gtk_widget_show (window);
 
-   log_repaint (logviewwindow)); 
+   log_repaint (logviewwindow); 
 
    gnome_client = gnome_master_client ();
 
@@ -309,7 +309,7 @@ main (int argc, char *argv[])
    ShowQueuedErrMessages ();
    
    if (gnome_client_get_flags (gnome_client) & GNOME_CLIENT_RESTORED) {
-	   restore_session (LOGVIEW_WINDOW(window));
+	   restore_session (logviewwindow));
    }
 
    g_signal_connect (gnome_client, "save_yourself",
@@ -521,7 +521,7 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
    char *f;
    Log *tl;
    gint i;
-   LogviewWindow *window = LOGVIEW_WINDOW (data);
+   LogviewWindow *window = data;
 
    if (response != GTK_RESPONSE_OK) {
 	   gtk_widget_destroy (chooser);
@@ -907,7 +907,7 @@ logview_output_window_changed (GtkWidget *widget, gchar *key, gpointer user_data
 {
 	GtkTreePath *child_path, *path;
 	GtkTreeModel *model;
-	LogviewWindow *window = LOGVIEW_WINDOW (user_data);
+	LogviewWindow *window = user_data;
 
 	model = gtk_tree_view_get_model (GTK_TREE_VIEW(window->view));
 	child_path = logview_tree_path_from_key (model, key);
