@@ -481,7 +481,7 @@ exec_action_in_db (Log *log, LogLine *line, GList *db)
       }
      else if (pid == 0)
       {
-        if (execlp(cur_action->action, NULL) == -1)
+        if (execlp(cur_action->action, cur_action->action, NULL) == -1)
          {
 	   ShowErrMessage (_("Error while executing specified action"));
 	   exit(1);
