@@ -21,7 +21,7 @@
 #define __LOG_ZOOM_H__
 
 void create_zoom_view (LogviewWindow *window);
-void close_zoom_view (GtkWidget *zoom_dialog, gpointer data);
+void close_zoom_view (LogviewWindow *window);
 void quit_zoom_view (GtkWidget *widget, gpointer data);
 int repaint_zoom (LogviewWindow *window);
 
