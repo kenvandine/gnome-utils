@@ -1,3 +1,10 @@
+1998-02-22  Eckehard Berns  <eb@berns.prima.de>
+
+	* options.c (options_dialog): work around a bug in gtk
+	(gtk_widget_get_parent_window), which prevents me of calling
+	gtk_notebook_append_page before the notebook has been
+	conatiner_added to a window.
+
 1998-02-19  Federico Mena Quintero  <federico@nuclecu.unam.mx>
 
 	* main.c (main): Added app_id "gtt".

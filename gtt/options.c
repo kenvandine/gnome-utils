@@ -483,6 +483,8 @@ void options_dialog(void)
                 w = gtk_notebook_new();
                 gtk_widget_show(w);
                 notebook = GTK_NOTEBOOK(w);
+                gtk_box_pack_start(GTK_BOX(GTK_DIALOG(odlg->dlg)->vbox),
+                                   GTK_WIDGET(notebook), FALSE, FALSE, 0);
 
 		aa = GTK_BOX(GTK_DIALOG(odlg->dlg)->action_area);
 		vbox = (GtkBox *)gtk_vbox_new(FALSE, 0);
@@ -503,8 +505,6 @@ void options_dialog(void)
                 w = gtk_label_new(_("Toolbar"));
                 gtk_widget_show(w);
                 gtk_notebook_append_page(notebook, GTK_WIDGET(vbox), w);
-                gtk_box_pack_start(GTK_BOX(GTK_DIALOG(odlg->dlg)->vbox),
-                                   GTK_WIDGET(notebook), FALSE, FALSE, 0);
                 toolbar_options(odlg, vbox);
 	}
 	options_dialog_set(odlg);
