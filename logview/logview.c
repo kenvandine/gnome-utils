@@ -455,7 +455,7 @@ CreateMainWin (LogviewWindow *window)
    gtk_widget_show_all (window->log_scrolled_window);
 
    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->view));
-   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+   gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
 
    /* Add signal handlers */
    g_signal_connect (G_OBJECT (selection), "changed",
@@ -764,14 +764,22 @@ logview_copy (GtkAction *action, GtkWidget *callback_data)
 {
 	LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
 	LogLine *line;
-	gchar *text;
+	int nline, i;
+	gchar *text, **lines;
 
-	if (window->curlog->current_line_no <= 0 || 
-	    ((line = (window->curlog->lines)[window->curlog->current_line_no]) == NULL))
-		return;
-	text = g_strdup_printf ("%s %s %s", line->hostname, line->process, line->message);
-	gtk_clipboard_set_text (window->clipboard, LocaleToUTF8(text), -1);
-	g_free (text);
+	if (window->curlog->selected_line_first > 0 && window->curlog->selected_line_last > 0) {
+		nline = window->curlog->selected_line_last - window->curlog->selected_line_first + 1;
+		lines = g_new0 (gpointer, nline+1);
+		for (i=0; i<=nline; i++) {
+			line = (window->curlog->lines)[window->curlog->selected_line_first + i];
+			lines[i] = g_strdup_printf ("%s %s %s", line->hostname, line->process, line->message);
+		}
+		lines[nline] = NULL;
+		text = g_strjoinv ("\n", lines);
+		gtk_clipboard_set_text (window->clipboard, LocaleToUTF8(text), -1);
+		g_free (text);
+		g_strfreev (lines);
+	}
 }
 
 static void

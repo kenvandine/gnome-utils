@@ -98,6 +98,8 @@ typedef struct
 	CalendarData *caldata;
 	LogStats lstats;
 	gint current_line_no; /* indicates the line that is selected */
+	gint selected_line_first;
+	gint selected_line_last;
 	gint total_lines; /* no of lines in the file */
 	LogLine **lines; /* actual lines */
 	gboolean first_time;

@@ -195,7 +195,6 @@ handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
 				    TRUE);
 }
 
-
 /* ----------------------------------------------------------------------
    NAME:        handle_selection_changed_cb
    DESCRIPTION: User clicked on main window
@@ -204,29 +203,32 @@ handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
 void
 handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 {
-    GtkTreeIter iter;
     GtkTreeModel *model;
-    GtkTreePath *path, *root_tree;
-    gint row = 0;
+    GList *selected_paths, *i;
+    int selected_first = -1, selected_last = -1;
     LogviewWindow *window = data;
+    GtkTreePath *selected_path;
 
-    if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
+    selected_paths = gtk_tree_selection_get_selected_rows (selection, &model);
 
-        path = gtk_tree_model_get_path (model, &iter);
-        root_tree = gtk_tree_path_new_root ();
-
-        window->curlog->current_path = gtk_tree_path_copy (path);
-        iterate_thru_children (GTK_TREE_VIEW (window->view), model, root_tree, path, &row, 0);
-
-        gtk_tree_path_free (root_tree);
-        gtk_tree_path_free (path);
-
-        window->curlog->current_line_no = row;
-
-	if (window->zoom_visible)
-		repaint_zoom (window);
+    if (selected_paths) {
+	    for (i = selected_paths; i != NULL; i = g_list_next (i)) {		    
+		    GtkTreePath *root_tree = gtk_tree_path_new_root ();
+		    int row = 0;
+		    selected_path = i->data;
+		    iterate_thru_children (GTK_TREE_VIEW (window->view), model, root_tree, selected_path, &row, 0);		    
+		    if (selected_last == -1 || row > selected_last)
+			    selected_last = row;
+		    if (selected_first == -1 || row < selected_first)
+			    selected_first = row;
+	    }
+	    window->curlog->current_line_no = selected_last;
+	    window->curlog->current_path = gtk_tree_path_copy (selected_path);
+	    window->curlog->selected_line_first = selected_first;
+	    window->curlog->selected_line_last = selected_last;
+	    g_list_foreach (selected_paths, gtk_tree_path_free, NULL);
+	    g_list_free (selected_paths);
     }
-
 }
 
 /* ----------------------------------------------------------------------
