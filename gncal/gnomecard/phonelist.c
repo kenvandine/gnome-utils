@@ -79,17 +79,18 @@ phonetypeclicked(GtkWidget *widget, gpointer data)
 /* Functions for handling phone numbers */
 /* delete card list of phone numbers from src, freeing as we go */
 void
-deletePhoneList(CardList src)
+deletePhoneList(CardList *src)
 {
     GList *l;
     CardPhone *p;
 
-    for (l=src.l; l; l=l->next) {
+    for (l=src->l; l; l=l->next) {
 	p = (CardPhone *)l->data;
 	MY_FREE(p->data);
     }
     
-    g_list_free(src.l);
+    g_list_free(src->l);
+    src->l = NULL;
 }
 
 /* copy card list of phone from src into dest, allocating as we go */

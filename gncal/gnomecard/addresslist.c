@@ -54,12 +54,12 @@ postaddr_connect(gpointer widget, char *sig, gpointer box,
 
 /* delete card list of addresses from src, freeing as we go */
 void
-deleteAddrList(CardList src)
+deleteAddrList(CardList *src)
 {
     GList *l;
     CardPostAddr *p;
 
-    for (l=src.l; l; l=l->next) {
+    for (l=src->l; l; l=l->next) {
 	p = (CardPostAddr *)l->data;
 	MY_FREE(p->street1);
 	MY_FREE(p->street2);
@@ -70,7 +70,8 @@ deleteAddrList(CardList src)
 	MY_FREE(p);
     }
     
-    g_list_free(src.l);
+    g_list_free(src->l);
+    src->l = NULL;
 }
 
 /* copy card list of addresses from src into dest, allocating as we go */

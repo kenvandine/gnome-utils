@@ -165,10 +165,10 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 	copyGUIToCurAddr(ce);
 
 	/* remove old address list */
-	deleteAddrList(crd->postal);
+	deleteAddrList(&crd->postal);
 
 	/* link to new address list */
-	crd->postal = ce->postal;
+	copyAddrList(ce->postal, &crd->postal);
 
 	/* phone numbers */
 	/* store results from current displayed phone type, since */
@@ -176,10 +176,10 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 	copyGUIToCurPhone(ce);
 
 	/* remove old phone list */
-	deletePhoneList(crd->phone);
+	deletePhoneList(&crd->phone);
 
 	/* link to new phone list */
-	crd->phone = ce->phone;
+	copyPhoneList(ce->phone, &crd->phone);
 
 	/* key data */
         MY_FREE(crd->key.data);
@@ -211,12 +211,18 @@ static void gnomecard_prop_close(GtkWidget *widget, gpointer node)
 */
 static void gnomecard_prop_close(GtkWidget *widget, gpointer data)
 {
+    GnomeCardEditor *ce;
     Card *card;
     GList *l;
 
+    /* cleanup */
+    ce = (GnomeCardEditor *) gtk_object_get_user_data(GTK_OBJECT(widget));
+    deleteAddrList(&ce->postal);
+    deletePhoneList(&ce->phone);
+
     card = (Card *) data;
     card->flag = FALSE;
-	
+
     for (l = gnomecard_crds; l; l = l->next) {
 	if (card == l->data)
 	    break;
@@ -652,7 +658,7 @@ gnomecard_setup_apply(GtkWidget *widget, int page)
     if (cols)
 	g_list_free(cols);
 
-    gnomecard_list = gnomecardCreateCardListDisplay(hdrs);
+    gnomecard_list = GTK_CLIST(gnomecardCreateCardListDisplay(hdrs));
     gtk_container_add(GTK_CONTAINER(cardlist_scrollwin), 
 		      GTK_WIDGET(gnomecard_list));
 
