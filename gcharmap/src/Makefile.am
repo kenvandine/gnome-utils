@@ -18,4 +18,4 @@ gnome_character_map_LDADD = $(GNOME_UTILS_LIBS) $(LIBBONOBOUI_LIBS) $(INTLLIBS)
 
 man_MANS = gnome-character-map.1
 
-EXTRA_DIST = $(gcharmap_SOURCES) gnome-character-map.1
+EXTRA_DIST = $(gnome_character_map_SOURCES) gnome-character-map.1
