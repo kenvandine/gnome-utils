@@ -580,6 +580,7 @@ ctree_new(void)
 
 	gtk_widget_set_usize(w, -1, 120);
 	ctree_update_column_visibility (ptw);
+	gtk_ctree_set_show_stub(w, FALSE);
 
 	/* create the top-level window to hold the c-tree */
 	sw = gtk_scrolled_window_new (NULL, NULL);
