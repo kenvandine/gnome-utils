@@ -48,6 +48,7 @@ static gint      save_session             (GnomeClient         *client,
 					   gint                is_fast,
 					   gpointer            client_data);
 static gint      excluded_fstype          (const char          *fstype);
+guchar *	 gdiskfree_convert_size   ( unsigned long size);
 /**
  * popt table
  **/
