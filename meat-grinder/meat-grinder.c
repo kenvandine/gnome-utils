@@ -501,7 +501,8 @@ about_cb (GtkWidget *widget, gpointer data)
 	if (pixbuf) {
 		gdk_pixbuf_unref (pixbuf);
 	}			 
-	
+
+	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (data));	
 	g_signal_connect (G_OBJECT (about), "destroy",
 			  G_CALLBACK (gtk_widget_destroyed),
 			  &about);
@@ -981,7 +982,7 @@ init_gui (void)
 
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/document-icons/gnome-compressed.png");
         
-	gnome_app_create_menus (GNOME_APP (app), grinder_menu);
+	gnome_app_create_menus_with_data (GNOME_APP (app), grinder_menu, app);
 
         g_signal_connect (G_OBJECT (app), "delete_event",
 			  G_CALLBACK (quit_cb), NULL);

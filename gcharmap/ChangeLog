@@ -1,3 +1,11 @@
+2002-06-01  Ross Burton  <ross@hactar>
+
+	* src/interface.c (main_app_create_ui): Pass a reference to the
+	top-level window as the user_data to the menu callbacks.
+
+	* src/callbacks.c (cb_about_click): Set the about window as
+	transient for the parent window. Fixes #83799.
+
 2002-05-31  Hidetoshi Tajima <hidetoshi.tajima@sun.com>
 	
 	* src/Makefile.am: Updated patch for #83627.

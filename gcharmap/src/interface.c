@@ -216,7 +216,7 @@ main_app_create_ui (MainApp *app)
         gnome_app_set_statusbar (GNOME_APP (app->window), appbar);
         gtk_widget_show (appbar);
 
-        gnome_app_create_menus (GNOME_APP (app->window), menubar);
+        gnome_app_create_menus_with_data (GNOME_APP (app->window), menubar, app->window);
 	edit_menu_set_sensitivity (FALSE);
 
         gnome_app_install_menu_hints (GNOME_APP (app->window), menubar);

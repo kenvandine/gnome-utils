@@ -68,7 +68,8 @@ about_cb (GtkWidget *widget, gpointer data)
 	if (pixbuf) {
 		gdk_pixbuf_unref (pixbuf);
 	}			
-				
+
+	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (data));
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",
 			   GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);
 	gtk_widget_show (about);

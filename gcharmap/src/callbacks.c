@@ -75,6 +75,7 @@ cb_about_click (GtkWidget *widget, gpointer user_data)
     if (logo) {
     	    gdk_pixbuf_unref (logo);
     }
+    gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (user_data));
     gtk_widget_show (dialog);
 }
 

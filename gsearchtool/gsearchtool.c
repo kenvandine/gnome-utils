@@ -736,6 +736,7 @@ really_run_command(char *cmd, char sepchar, gchar *utf8_pattern_str, RunLevel *r
 					_("Cannot perform the search.\n"
 					"The Bourne shell was not found\n"
 					"It is typically installed as /bin/sh or /usr/bin/sh."));
+				gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (app));
 				gtk_dialog_run (GTK_DIALOG (dialog));
 				gtk_widget_destroy (dialog);
 			}
@@ -2026,6 +2027,7 @@ about_cb (GtkWidget *widget, gpointer data)
 		gdk_pixbuf_unref (pixbuf);
 	}
 										
+	gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (data));
 	g_signal_connect (G_OBJECT (about), "destroy",
 			  G_CALLBACK (gtk_widget_destroyed), &about);
 	gtk_widget_show (about);
@@ -2057,7 +2059,7 @@ save_results(GtkFileSelection *selector, gpointer user_data)
 			 GTK_BUTTONS_YES_NO,
 			 _("File %s already exists. Overwrite?"),
 			 filename);
-			 
+		gtk_window_set_transient_for (GTK_WINDOW(dialog), GTK_WINDOW (app));
 		response = gtk_dialog_run (GTK_DIALOG (dialog));
 		
 		gtk_widget_destroy (GTK_WIDGET(dialog));
@@ -2230,7 +2232,7 @@ main(int argc, char *argv[])
 		      NULL);
 				      
 	/*set up the menu*/
-        gnome_app_create_menus (GNOME_APP (app), gsearch_menu);
+        gnome_app_create_menus_with_data (GNOME_APP (app), gsearch_menu, app);
 	gnome_app_install_menu_hints (GNOME_APP (app), gsearch_menu);
 
 	search = create_window();
