@@ -43,7 +43,6 @@ extern int errno;
 #endif
 
 #include "save-cwd.h"
-#include "error.h"
 
 char *xgetcwd __P((void));
 
