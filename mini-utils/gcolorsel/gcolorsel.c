@@ -98,6 +98,16 @@ mdi_remove_child (GnomeMDI *mdi, MDIColorGeneric *mcg)
     if (!ret)     
       while (1) {
 	ret = save_file (MDI_COLOR_FILE (mcg));
+
+	/* We need to save the filename in the config ...
+	   because session is saved before this function */
+	if (ret == 0) {
+	  char *prefix = prefix = g_strdup_printf ("/gcolorsel/%d/", mcg->key);
+	  gnome_config_push_prefix (prefix);
+	  MDI_COLOR_GENERIC_GET_CLASS (mcg)->save (mcg); 
+	  gnome_config_pop_prefix ();
+	  gnome_config_sync ();
+	}
 	if (ret == -1) return FALSE;
 	if (ret != 1) break;
       }

@@ -301,7 +301,10 @@ mdi_color_generic_sync (MDIColorGeneric *mcg, gpointer data)
   prop_t *prop = data;
   MDIColorFile *mcf = MDI_COLOR_FILE (mcg);
 
-  gtk_entry_set_text (GTK_ENTRY (prop->entry_file), mcf->filename);
+  if (mcf->filename)
+    gtk_entry_set_text (GTK_ENTRY (prop->entry_file), mcf->filename);
+  else
+    gtk_entry_set_text (GTK_ENTRY (prop->entry_file), "");
   
   entry_set_text (GTK_ENTRY (GTK_COMBO (prop->combo_header)->entry),
 		  mcf->header, prop);

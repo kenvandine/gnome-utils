@@ -171,6 +171,8 @@ finish_cb (GtkWidget *widget, gpointer data)
   docs = clist_get_data_selected (GTK_CLIST (clist_doc_type));
   mcg = MDI_COLOR_GENERIC (gtk_type_new (docs->type ()));
 
+  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (mcg));
+  
   mdi_color_generic_set_name (mcg, 
 			      gtk_entry_get_text (GTK_ENTRY(entry_name)));
 
