@@ -137,9 +137,6 @@ typedef struct
 
 typedef struct
 {
-	GnomeVFSHandle *handle;
-	GnomeVFSFileSize filesize;
-
 	DateMark *curmark;
 	char name[255];
 	char *display_name;
@@ -157,6 +154,7 @@ typedef struct
 	MonActions alert;
 	GnomeVFSFileOffset mon_offset;
 	GnomeVFSMonitorHandle *mon_handle;
+	GnomeVFSHandle *mon_file_handle;
 }
 Log;
 
@@ -184,8 +182,6 @@ typedef struct _LogviewWindowClass LogviewWindowClass;
 
 struct _LogviewWindow {
 	GtkWindow parent_instance;
-
-	GConfClient *client;
 
 	GtkWidget *view;
 	GtkWidget *mon_list_view;
