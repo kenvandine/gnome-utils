@@ -679,4 +679,10 @@ ctree_unselect (GttProject *p)
 	gtk_ctree_unselect(GTK_CTREE(glist), p->trow);
 }
 
+void 
+ctree_select (GttProject *p)
+{
+	gtk_ctree_select(GTK_CTREE(glist), p->trow);
+}
+
 /* ===================== END OF FILE ==============================  */

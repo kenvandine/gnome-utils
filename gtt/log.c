@@ -94,13 +94,16 @@ build_log_entry(const char *format, GttProject *proj)
 			case 't':
 				g_string_append(str, gtt_project_get_title(proj));
 				break;
-			case 'd':
-				if (gtt_project_get_desc(proj))
-					g_string_append(str, gtt_project_get_desc(proj));
+			case 'd': 
+			{
+				char * desc = gtt_project_get_desc(proj);
+				if (desc && desc[0])
+					g_string_append(str, desc);
 				else
 					g_string_append(str,
 							_("no description"));
 				break;
+			}
 			case 'T': 
 				sss = gtt_project_total_secs_ever(proj);
 				g_snprintf(tmp, sizeof (tmp),

@@ -22,6 +22,7 @@
 
 #include "ctree.h"
 #include "cur-proj.h"
+#include "dialog.h"
 #include "gtt.h"
 #include "idle-timer.h"
 #include "proj.h"
@@ -31,6 +32,14 @@ static gint main_timer = 0;
 static IdleTimeout *idt = NULL;
 
 int config_idle_timeout = -1;
+
+static void
+restart_proj (GtkWidget *w, gpointer data)
+{
+	GttProject *prj = data;
+	ctree_select (prj);
+	cur_proj_set (prj);
+}
 
 static gint 
 timer_func(gpointer data)
@@ -55,12 +64,28 @@ timer_func(gpointer data)
 		idle_time = time(0) - poll_last_activity (idt);
 		if (idle_time > config_idle_timeout) 
 		{
+			char *msg;
+			GttProject *prj = cur_proj;
 			ctree_unselect (cur_proj);
 
 			/* don't just stop the timer, make the needed 
 			 * higher-level calls */
 			/* stop_timer(); */
 			cur_proj_set (NULL);
+
+			/* warn the user */
+			msg = g_strdup_printf (
+				_("It seems that the system has been idle\n"
+				  "for %d minutes, and the currently running\n"
+				  "project (%s - %s)\n"
+				  "has been stopped.\n"
+				  "Do you want to restart it?"),
+				(config_idle_timeout+30)/60,
+				gtt_project_get_title(prj),
+				gtt_project_get_desc(prj));
+			qbox_ok_cancel (_("System Idle"), msg,
+				GNOME_STOCK_BUTTON_YES, restart_proj, prj, 
+				GNOME_STOCK_BUTTON_NO, NULL, NULL);
 			return 0;
 		}
 	}

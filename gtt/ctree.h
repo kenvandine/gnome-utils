@@ -35,6 +35,7 @@ void ctree_update_label(GttProject *p);
 void ctree_update_title(GttProject *p);
 void ctree_update_desc(GttProject *p);
 void ctree_unselect(GttProject *p);
+void ctree_select(GttProject *p);
 
 
 #endif /* __GTT_CTREE_H__ */

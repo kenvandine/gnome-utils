@@ -22,12 +22,17 @@
 void new_dialog_ok(const char *title, GtkWidget **dlg, GtkBox **vbox,
 		   const char *s, GtkSignalFunc sigfunc, gpointer data);
 void new_dialog_ok_cancel(const char *title, GtkWidget **dlg, GtkBox **vbox,
-			  const char *s_ok, GtkSignalFunc sigfunc, gpointer data,
-			  const char *s_cancel, GtkSignalFunc c_sigfunc, gpointer c_data);
+  		  const char *s_ok, GtkSignalFunc sigfunc, gpointer data,
+		  const char *s_cancel, GtkSignalFunc c_sigfunc, gpointer c_data);
+
 void msgbox_ok(const char *title, const char *text, const char *ok_text,
 	       GtkSignalFunc func);
 void msgbox_ok_cancel(const char *title, const char *text,
 		      const char *ok_text, const char *cancel_text,
 		      GtkSignalFunc func);
+
+void qbox_ok_cancel(const char *title, const char *text,
+                   const char *ok_text, GtkSignalFunc sigfunc, gpointer data,
+                   const char *cancel_text, GtkSignalFunc c_sigfunc, gpointer c_data);
 
 #endif
