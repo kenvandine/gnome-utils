@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.0.4\n"
-"POT-Creation-Date: 2003-05-18 02:34+0100\n"
+"POT-Creation-Date: 2003-05-19 12:18+0100\n"
 "PO-Revision-Date: 2003-01-07 17:43+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -49,7 +49,7 @@ msgstr "Εισάγετε το κείμενο"
 msgid "Accessories"
 msgstr "Βοηθήματα"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:270
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:296
 msgid "Dictionary Lookup"
 msgstr "Αναζήτηση Λεξικού"
 
@@ -59,34 +59,37 @@ msgid "Lookup words in an online dictionary"
 msgstr "Αναζήτηση λέξης σε λεξικό του Διαδικτύου"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1
-msgid "Look Up Selected Text..."
-msgstr "Αναζήτηση Επιλεγμένου Κειμένου..."
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_About..."
 msgstr "_Περί..."
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_Help"
 msgstr "_Βοήθεια"
 
+#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#, fuzzy
+msgid "_Look Up Selected Text"
+msgstr "Αναζήτηση Επιλεγμένου Κειμένου..."
+
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-msgid "_Preferences"
+#, fuzzy
+msgid "_Preferences..."
 msgstr "_Προτιμήσεις"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-msgid "_Show/Hide Definition Window..."
-msgstr "_Εμφάνιση/Απόκρυψη Παραθύρου Ορισμού..."
+#, fuzzy
+msgid "_Show Dictionary"
+msgstr "_Λεξικό"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:650 gdictsrc/gdict-pref-dialog.c:466
-#: gdictsrc/gdict-pref-dialog.c:517 gdictsrc/gdict-speller.c:463
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:479
+#: gdictsrc/gdict-pref-dialog.c:530 gdictsrc/gdict-speller.c:463
 msgid "Cannot connect to server"
 msgstr "Αδύνατη η σύνδεση στον εξυπηρετητή"
 
-#: gdictsrc/dict.c:663
+#: gdictsrc/dict.c:677
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -95,7 +98,7 @@ msgstr ""
 "Για αναφορά ο εξ ορισμού εξυπηρετητής είναι dict.org και η θύρα 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:52
+#: gdictsrc/gdict-about.c:43 logview/about.c:53
 msgid "translator_credits"
 msgstr ""
 "Σπύρος Παπαδημητρίου <spapadim+@cs.cmu.edu>\n"
@@ -114,39 +117,39 @@ msgstr "Πνευματικά Δικαιώματα 1999 από τον Μάικ Χ
 msgid "Client for MIT dictionary server.\n"
 msgstr "Πελάτης για τον εξυπηρετητή λεξικού του MIT.\n"
 
-#: gdictsrc/gdict-app.c:128
+#: gdictsrc/gdict-app.c:132
 msgid "Spell-checking..."
 msgstr "Έλεγχος ορθογραφίας..."
 
-#: gdictsrc/gdict-app.c:136
+#: gdictsrc/gdict-app.c:140
 msgid "Spell check done"
 msgstr "Ο έλεγχος ορθογραφίας ολοκληρώθηκε"
 
-#: gdictsrc/gdict-app.c:144 gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:148 gdictsrc/gdict-app.c:292
 msgid "No matches found"
 msgstr "Δε βρέθηκαν ταιριάσματα"
 
-#: gdictsrc/gdict-app.c:271
+#: gdictsrc/gdict-app.c:275
 msgid "Looking up word..."
 msgstr "Ανατρέξιμο λέξης..."
 
-#: gdictsrc/gdict-app.c:279
+#: gdictsrc/gdict-app.c:283
 msgid "Lookup done"
 msgstr "Η εύρεση του λήμματος ολοκληρώθηκε"
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:305
 msgid "String not found"
 msgstr "Το αλφαριθμητικό δε βρέθηκε"
 
-#: gdictsrc/gdict-app.c:469
+#: gdictsrc/gdict-app.c:473
 msgid "Find"
 msgstr "Εύρεση"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:494
 msgid "_Find"
 msgstr "_Εύρεση:"
 
-#: gdictsrc/gdict-app.c:540
+#: gdictsrc/gdict-app.c:544
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -156,53 +159,53 @@ msgstr ""
 "Είτε επειδή ο εξυπηρετητής είναι ανενεργός \n"
 "είτε δεν είστε συνδεδεμένος στο Διαδίκτυο."
 
-#: gdictsrc/gdict-app.c:701 gdictsrc/gdict-app.c:812
+#: gdictsrc/gdict-app.c:705 gdictsrc/gdict-app.c:816
 #: gdictsrc/gdict-speller.c:221
 msgid "_Look Up Word"
 msgstr "_Αναζήτηση Λέξης"
 
-#: gdictsrc/gdict-app.c:702
+#: gdictsrc/gdict-app.c:706
 msgid "Lookup word in dictionary"
 msgstr "Ανατρέξιμο λέξης στο λεξικό"
 
-#: gdictsrc/gdict-app.c:704 gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-app.c:708 gdictsrc/gdict-speller.c:165
 msgid "Check _Spelling"
 msgstr "Έλεγχος _Ορθογραφίας"
 
-#: gdictsrc/gdict-app.c:705
+#: gdictsrc/gdict-app.c:709
 msgid "Check word spelling"
 msgstr "Έλεγχος ορθογραφίας λέξης"
 
-#: gdictsrc/gdict-app.c:749
+#: gdictsrc/gdict-app.c:753
 msgid "_Dictionary"
 msgstr "_Λεξικό"
 
-#: gdictsrc/gdict-app.c:785 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:789 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Λεξικό"
 
-#: gdictsrc/gdict-app.c:808
+#: gdictsrc/gdict-app.c:812
 msgid "_Word: "
 msgstr "_Λέξη: "
 
-#: gdictsrc/gdict-app.c:836 gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:840 gdictsrc/gdict-speller.c:147
 msgid "Word"
 msgstr "Λέξη"
 
-#: gdictsrc/gdict-app.c:837 gdictsrc/gdict-app.c:838
+#: gdictsrc/gdict-app.c:841 gdictsrc/gdict-app.c:842
 #: gdictsrc/gdict-speller.c:148
 msgid "Word Entry"
 msgstr "Καταχώρηση Λέξης"
 
-#: gdictsrc/gdict-app.c:837
+#: gdictsrc/gdict-app.c:841
 msgid "Enter a Word or select one from the list below"
 msgstr "Εισάγετε μια λέξη ή επιλέξτε μια από την παρακάτω λίστα"
 
-#: gdictsrc/gdict-app.c:840
+#: gdictsrc/gdict-app.c:844
 msgid "Look Up for a Word"
 msgstr "Αναζήτηση για Λέξη"
 
-#: gdictsrc/gdict-applet.c:263
+#: gdictsrc/gdict-applet.c:289
 msgid "_Lookup"
 msgstr "_Αναζήτηση"
 
@@ -247,79 +250,79 @@ msgstr "Αντιπαραπομπή:"
 msgid "Dictionary Preferences"
 msgstr "Προτιμήσεις Λεξικού"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:199
 msgid "Smart _lookup"
 msgstr "Έξυπνη _αναζήτηση"
 
-#: gdictsrc/gdict-pref-dialog.c:211
+#: gdictsrc/gdict-pref-dialog.c:215
 msgid "_Server:"
 msgstr "_Εξυπηρετητής:"
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "De_fault Server"
 msgstr "Εξ ορισμού Εξυπηρετητής"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "Reset server to default"
 msgstr "Επαναφορά εξυπηρετητή στις εξ ορισμού ρυθμίσεις"
 
-#: gdictsrc/gdict-pref-dialog.c:226
+#: gdictsrc/gdict-pref-dialog.c:233
 msgid "_Port:"
 msgstr "_Θύρα:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:249
 msgid "Def_ault Port"
 msgstr "Εξ ο_ρισμού θύρα"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "Reset port to default"
 msgstr "Επαναφορά θύρας στις εξ ορισμού ρυθμίσεις"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:260
 msgid "Server"
 msgstr "Εξυπηρετητής"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Server Entry"
 msgstr "Καταχώρηση Εξυπηρετητή"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Enter the Server Name"
 msgstr "Καταχωρήστε το Όνομα Εξυπηρετητή"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:264
 msgid "Port"
 msgstr "Θύρα"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Port Entry"
 msgstr "Καταχώρηση Θύρας"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Enter the Port Number"
 msgstr "Εισάγετε τον Αριθμό Θύρας"
 
-#: gdictsrc/gdict-pref-dialog.c:258
+#: gdictsrc/gdict-pref-dialog.c:270
 msgid "_Database:"
 msgstr "_Βάση δεδομένων:"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:277
 msgid "D_efault strategy:"
 msgstr "Εξ _ορισμού στρατηγική:"
 
-#: gdictsrc/gdict-pref-dialog.c:458
+#: gdictsrc/gdict-pref-dialog.c:471
 msgid "Search all databases"
 msgstr "Αναζήτηση όλων των βάσεων δεδομένων"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database"
 msgstr "Βάση δεδομένων"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database Name"
 msgstr "Όνομα Βάσης Δεδομένων"
 
-#: gdictsrc/gdict-pref-dialog.c:635
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "Εξ ορισμού Στρατηγική"
 
@@ -1222,11 +1225,12 @@ msgstr "σύνδεσμος (σπασμένος)"
 msgid "link to %s"
 msgstr "σύνδεσμος στο %s"
 
-#: logview/about.c:42
+#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
+#: logview/about.c:43
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Σέζαρ Μιγκέλ (miquel@df.uba.ar)"
 
-#: logview/about.c:43
+#: logview/about.c:44
 msgid ""
 "This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
 "WARRANTY. This is free software, and you are welcome to redistribute it "
@@ -1239,11 +1243,11 @@ msgstr ""
 "Άδειας Λογισμικού GNU. Το εικονίδιο του λογοτύπου είναι προσφορά του Tuomas "
 "Kuosmanen (γνωστός και σαν tigert)."
 
-#: logview/about.c:61
+#: logview/about.c:62
 msgid "GNOME System Log Viewer"
 msgstr "Παρακολουθηση Καταγραφών Συστήματος GNOME"
 
-#: logview/about.c:62
+#: logview/about.c:63
 msgid "Copyright (C) 1998"
 msgstr "Πνευματικά δικαιώματα (C) 1998"
 
@@ -1451,37 +1455,37 @@ msgid "December"
 msgstr "Δεκέμβριος"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:403
+#: logview/log_repaint.c:398
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:458
+#: logview/log_repaint.c:453
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:524
+#: logview/log_repaint.c:519
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:191
+#: logview/logrtns.c:194
 msgid "Not enough memory!\n"
 msgstr "Δεν υπάρχει αρκετή μνήμη!\n"
 
-#: logview/logrtns.c:202
+#: logview/logrtns.c:205
 msgid "Unable to open logfile!\n"
 msgstr "Αδύνατο το άνοιγμα αρχείου καταγραφών!\n"
 
-#: logview/logrtns.c:260
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "Το %s δεν είναι κανονικό αρχείο."
 
-#: logview/logrtns.c:268
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1491,17 +1495,17 @@ msgstr ""
 "διαχειριστής ή ζητήστε από το διαχειριστή να αλλάξει τα δικαιώματα του "
 "αρχείου."
 
-#: logview/logrtns.c:285
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "Το %s δε μπόρεσε να ανοιχτεί."
 
-#: logview/logrtns.c:315 logview/logrtns.c:324
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "To %s δεν είναι αρχείο καταγραφών."
 
-#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: η μνήμη εξαντλήθηκε"
 
@@ -1687,13 +1691,17 @@ msgid "Log file to open up on startup"
 msgstr "Αρχείο καταγραφής για άνοιγμα κατά την εκκίνηση"
 
 #: logview/logview.schemas.in.h:2
+#, fuzzy
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
-"messages or /var/log/messages, depending on your distribution."
+"messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "Καθορίζει το αρχείο καταγραφής που θα ανοίγει κατά την εκκίνηση. Το εξ "
 "ορισμού είναι είτε μηνύματα /var/adm/ ή μηνύματα  /var/log/, ανάλογα με την "
 "διανομή σας."
+
+#~ msgid "_Show/Hide Definition Window..."
+#~ msgstr "_Εμφάνιση/Απόκρυψη Παραθύρου Ορισμού..."
 
 #~ msgid "GNOME Calculator"
 #~ msgstr "Αριθμομηχανή του GNOME"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.gnome-2-2\n"
-"POT-Creation-Date: 2003-05-18 02:34+0100\n"
+"POT-Creation-Date: 2003-05-19 12:18+0100\n"
 "PO-Revision-Date: 2003-01-27 15:50+0200\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -35,7 +35,7 @@ msgstr "הכנס את המלל"
 msgid "Accessories"
 msgstr "עזרים"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:270
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:296
 msgid "Dictionary Lookup"
 msgstr "חיפוש במילון"
 
@@ -45,34 +45,37 @@ msgid "Lookup words in an online dictionary"
 msgstr "חפש מילים במילון המקוון"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1
-msgid "Look Up Selected Text..."
-msgstr "חפש את המלל הנבחר..."
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_About..."
 msgstr "_אודות..."
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_Help"
 msgstr "_עזרה"
 
+#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#, fuzzy
+msgid "_Look Up Selected Text"
+msgstr "חפש את המלל הנבחר..."
+
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-msgid "_Preferences"
+#, fuzzy
+msgid "_Preferences..."
 msgstr "_העדפות"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-msgid "_Show/Hide Definition Window..."
-msgstr "ה_צג/הסתר חלון הגדרות..."
+#, fuzzy
+msgid "_Show Dictionary"
+msgstr "_מילון"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:650 gdictsrc/gdict-pref-dialog.c:466
-#: gdictsrc/gdict-pref-dialog.c:517 gdictsrc/gdict-speller.c:463
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:479
+#: gdictsrc/gdict-pref-dialog.c:530 gdictsrc/gdict-speller.c:463
 msgid "Cannot connect to server"
 msgstr "לא ניתן להתחבר לשרת"
 
-#: gdictsrc/dict.c:663
+#: gdictsrc/dict.c:677
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -81,7 +84,7 @@ msgstr ""
 "הינו dict.org and the בפתחה 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:52
+#: gdictsrc/gdict-about.c:43 logview/about.c:53
 msgid "translator_credits"
 msgstr ""
 "גיל אשר\n"
@@ -102,39 +105,39 @@ msgstr "כל הזכויות שמורות 1999 על-ידי Mike Hughes"
 msgid "Client for MIT dictionary server.\n"
 msgstr "לקוח לשרת מילוני MIT.\n"
 
-#: gdictsrc/gdict-app.c:128
+#: gdictsrc/gdict-app.c:132
 msgid "Spell-checking..."
 msgstr "בדיקת איות..."
 
-#: gdictsrc/gdict-app.c:136
+#: gdictsrc/gdict-app.c:140
 msgid "Spell check done"
 msgstr "בדיקת האיות הסתיימה"
 
-#: gdictsrc/gdict-app.c:144 gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:148 gdictsrc/gdict-app.c:292
 msgid "No matches found"
 msgstr "לא נמצאו התאמות"
 
-#: gdictsrc/gdict-app.c:271
+#: gdictsrc/gdict-app.c:275
 msgid "Looking up word..."
 msgstr "מחפש מילה..."
 
-#: gdictsrc/gdict-app.c:279
+#: gdictsrc/gdict-app.c:283
 msgid "Lookup done"
 msgstr "החיפוש הושלם"
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:305
 msgid "String not found"
 msgstr "המחרוזות לא נמצאה"
 
-#: gdictsrc/gdict-app.c:469
+#: gdictsrc/gdict-app.c:473
 msgid "Find"
 msgstr "מצא"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:494
 msgid "_Find"
 msgstr "_מצא"
 
-#: gdictsrc/gdict-app.c:540
+#: gdictsrc/gdict-app.c:544
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -144,53 +147,53 @@ msgstr ""
 "או שהשרת שבו אתה משתמש אינו זמין \n"
 "או שאתה לא מחובר לאינטרנט."
 
-#: gdictsrc/gdict-app.c:701 gdictsrc/gdict-app.c:812
+#: gdictsrc/gdict-app.c:705 gdictsrc/gdict-app.c:816
 #: gdictsrc/gdict-speller.c:221
 msgid "_Look Up Word"
 msgstr "_חפש מילה"
 
-#: gdictsrc/gdict-app.c:702
+#: gdictsrc/gdict-app.c:706
 msgid "Lookup word in dictionary"
 msgstr "חפש מילה במילון"
 
-#: gdictsrc/gdict-app.c:704 gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-app.c:708 gdictsrc/gdict-speller.c:165
 msgid "Check _Spelling"
 msgstr "בדוק _איות"
 
-#: gdictsrc/gdict-app.c:705
+#: gdictsrc/gdict-app.c:709
 msgid "Check word spelling"
 msgstr "בדוק איות מילה"
 
-#: gdictsrc/gdict-app.c:749
+#: gdictsrc/gdict-app.c:753
 msgid "_Dictionary"
 msgstr "_מילון"
 
-#: gdictsrc/gdict-app.c:785 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:789 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "מילון"
 
-#: gdictsrc/gdict-app.c:808
+#: gdictsrc/gdict-app.c:812
 msgid "_Word: "
 msgstr "מי_לה: "
 
-#: gdictsrc/gdict-app.c:836 gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:840 gdictsrc/gdict-speller.c:147
 msgid "Word"
 msgstr "מילה"
 
-#: gdictsrc/gdict-app.c:837 gdictsrc/gdict-app.c:838
+#: gdictsrc/gdict-app.c:841 gdictsrc/gdict-app.c:842
 #: gdictsrc/gdict-speller.c:148
 msgid "Word Entry"
 msgstr "ערך מילה"
 
-#: gdictsrc/gdict-app.c:837
+#: gdictsrc/gdict-app.c:841
 msgid "Enter a Word or select one from the list below"
 msgstr "הכנס מילה או בחר אחת מהרשימה מטה"
 
-#: gdictsrc/gdict-app.c:840
+#: gdictsrc/gdict-app.c:844
 msgid "Look Up for a Word"
 msgstr "חפש בעבור המילה"
 
-#: gdictsrc/gdict-applet.c:263
+#: gdictsrc/gdict-applet.c:289
 msgid "_Lookup"
 msgstr "_חפש"
 
@@ -235,79 +238,79 @@ msgstr "הפניות נוספות:"
 msgid "Dictionary Preferences"
 msgstr "העדפות המילון"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:199
 msgid "Smart _lookup"
 msgstr "_חיפוש חכם"
 
-#: gdictsrc/gdict-pref-dialog.c:211
+#: gdictsrc/gdict-pref-dialog.c:215
 msgid "_Server:"
 msgstr "_שרת:"
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "De_fault Server"
 msgstr "שרת _ברירת מחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "Reset server to default"
 msgstr "קבע מחדש לברירת המחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:226
+#: gdictsrc/gdict-pref-dialog.c:233
 msgid "_Port:"
 msgstr "_פתחה:"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:249
 msgid "Def_ault Port"
 msgstr "פתחה ב_רירת מחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "Reset port to default"
 msgstr "קבע מחדש לפתה ברירת המחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:260
 msgid "Server"
 msgstr "שרת"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Server Entry"
 msgstr "ערך שרת"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Enter the Server Name"
 msgstr "הכנס את שם השרת"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:264
 msgid "Port"
 msgstr "פתחה"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Port Entry"
 msgstr "ערך פתחה"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Enter the Port Number"
 msgstr "הכנס את מספר הפתחה"
 
-#: gdictsrc/gdict-pref-dialog.c:258
+#: gdictsrc/gdict-pref-dialog.c:270
 msgid "_Database:"
 msgstr "_מסד נתונים:"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:277
 msgid "D_efault strategy:"
 msgstr "אסטרטגיית בר_ירת מחדל:"
 
-#: gdictsrc/gdict-pref-dialog.c:458
+#: gdictsrc/gdict-pref-dialog.c:471
 msgid "Search all databases"
 msgstr "חפש בכל מסדי הנתונים"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database"
 msgstr "מסד נתונים"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database Name"
 msgstr "שם מסד הנתונים"
 
-#: gdictsrc/gdict-pref-dialog.c:635
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "אסטרטגיית ברירת מחדל"
 
@@ -1181,11 +1184,12 @@ msgstr "קישור (שבור)"
 msgid "link to %s"
 msgstr "קישור ל %s"
 
-#: logview/about.c:42
+#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
+#: logview/about.c:43
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
-#: logview/about.c:43
+#: logview/about.c:44
 msgid ""
 "This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
 "WARRANTY. This is free software, and you are welcome to redistribute it "
@@ -1196,11 +1200,11 @@ msgstr ""
 "זוהי תוכנה חופשית, והינך מוזמן להפיצה תחת התנאים של GNU הרישיון הציבורי "
 "הכללי. סמל הדו\"ח באדיבות תומס קוסמאנן (הידוע בכינויו tigert)."
 
-#: logview/about.c:61
+#: logview/about.c:62
 msgid "GNOME System Log Viewer"
 msgstr "מציג דו\"חות המערכת של GNOME"
 
-#: logview/about.c:62
+#: logview/about.c:63
 msgid "Copyright (C) 1998"
 msgstr "כל הזכויות שמורות (C) 1998"
 
@@ -1403,37 +1407,37 @@ msgid "December"
 msgstr "דצמבר"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:403
+#: logview/log_repaint.c:398
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:458
+#: logview/log_repaint.c:453
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:524
+#: logview/log_repaint.c:519
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:191
+#: logview/logrtns.c:194
 msgid "Not enough memory!\n"
 msgstr "אין מספיק זיכרון!\n"
 
-#: logview/logrtns.c:202
+#: logview/logrtns.c:205
 msgid "Unable to open logfile!\n"
 msgstr "לא ניתן לפתוח קובץ דו\"ח!\n"
 
-#: logview/logrtns.c:260
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s אינו קובץ רגיל."
 
-#: logview/logrtns.c:268
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1442,17 +1446,17 @@ msgstr ""
 "%s אינו ניתן לקריאה למשתמש. או שתפעיל את התוכנית כ root או בקש ממנהל המערכת "
 "לשנות את ההרשאות של הקובץ."
 
-#: logview/logrtns.c:285
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s לא ניתן לפתיחה."
 
-#: logview/logrtns.c:315 logview/logrtns.c:324
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "%s אינו קובץ דו\"ח."
 
-#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: אין מספיק זכרון"
 
@@ -1637,12 +1641,16 @@ msgid "Log file to open up on startup"
 msgstr "קובץ דו\"ח לפתיחה בהפעלה"
 
 #: logview/logview.schemas.in.h:2
+#, fuzzy
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
-"messages or /var/log/messages, depending on your distribution."
+"messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "מציין את קובץ הדו\"ח לפתיחה בהפעלה. ברירת המחדל היא או /var/adm/messages או /"
 "var/log/messages, תלוי בהפצה שלך."
+
+#~ msgid "_Show/Hide Definition Window..."
+#~ msgstr "ה_צג/הסתר חלון הגדרות..."
 
 #~ msgid "GNOME Calculator"
 #~ msgstr "מחשבון GNOME"

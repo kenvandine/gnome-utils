@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.3.0\n"
-"POT-Creation-Date: 2003-05-18 02:34+0100\n"
+"POT-Creation-Date: 2003-05-19 12:18+0100\n"
 "PO-Revision-Date: 2003-05-03 23:35+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
@@ -33,7 +33,7 @@ msgstr "텍스트를 입력하십시오"
 msgid "Accessories"
 msgstr "액세서리"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:270
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:296
 msgid "Dictionary Lookup"
 msgstr "사전 찾기"
 
@@ -43,34 +43,37 @@ msgid "Lookup words in an online dictionary"
 msgstr "온라인 사전에서 단어 찾아 보기"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1
-msgid "Look Up Selected Text..."
-msgstr "선택한 글자를 찾습니다..."
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_About..."
 msgstr "정보(_A)..."
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_Help"
 msgstr "도움말(_H)"
 
+#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#, fuzzy
+msgid "_Look Up Selected Text"
+msgstr "선택한 글자를 찾습니다..."
+
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-msgid "_Preferences"
+#, fuzzy
+msgid "_Preferences..."
 msgstr "기본 설정(_P)"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-msgid "_Show/Hide Definition Window..."
-msgstr "정의 창 보이거나 닫기(_S)..."
+#, fuzzy
+msgid "_Show Dictionary"
+msgstr "사전(_D)"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:650 gdictsrc/gdict-pref-dialog.c:466
-#: gdictsrc/gdict-pref-dialog.c:517 gdictsrc/gdict-speller.c:463
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:479
+#: gdictsrc/gdict-pref-dialog.c:530 gdictsrc/gdict-speller.c:463
 msgid "Cannot connect to server"
 msgstr "서버로 접속할수 없습니다."
 
-#: gdictsrc/dict.c:663
+#: gdictsrc/dict.c:677
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -79,7 +82,7 @@ msgstr ""
 "본 서버는 dict.org이고 포트는 2628입니다"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:52
+#: gdictsrc/gdict-about.c:43 logview/about.c:53
 msgid "translator_credits"
 msgstr ""
 "류창우 <cwryu@debian.org>\n"
@@ -97,39 +100,39 @@ msgstr "Copyright 1999 by Mike Hughes"
 msgid "Client for MIT dictionary server.\n"
 msgstr "MIT 사전 서버에 대한 클라이언트.\n"
 
-#: gdictsrc/gdict-app.c:128
+#: gdictsrc/gdict-app.c:132
 msgid "Spell-checking..."
 msgstr "철자 검사중..."
 
-#: gdictsrc/gdict-app.c:136
+#: gdictsrc/gdict-app.c:140
 msgid "Spell check done"
 msgstr "철자 검사 완료"
 
-#: gdictsrc/gdict-app.c:144 gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:148 gdictsrc/gdict-app.c:292
 msgid "No matches found"
 msgstr "일치 하는것이 없습니다"
 
-#: gdictsrc/gdict-app.c:271
+#: gdictsrc/gdict-app.c:275
 msgid "Looking up word..."
 msgstr "단어를 찾는중..."
 
-#: gdictsrc/gdict-app.c:279
+#: gdictsrc/gdict-app.c:283
 msgid "Lookup done"
 msgstr "찾기 완료"
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:305
 msgid "String not found"
 msgstr "문자열을 찾을수 없습니다"
 
-#: gdictsrc/gdict-app.c:469
+#: gdictsrc/gdict-app.c:473
 msgid "Find"
 msgstr "찾기"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:494
 msgid "_Find"
 msgstr "찾기(_F)"
 
-#: gdictsrc/gdict-app.c:540
+#: gdictsrc/gdict-app.c:544
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -139,53 +142,53 @@ msgstr ""
 "사용하고 있는 서버를 사용할 수 없거나\n"
 "인터넷에 연결되어 있지 않은것 같습니다."
 
-#: gdictsrc/gdict-app.c:701 gdictsrc/gdict-app.c:812
+#: gdictsrc/gdict-app.c:705 gdictsrc/gdict-app.c:816
 #: gdictsrc/gdict-speller.c:221
 msgid "_Look Up Word"
 msgstr "단어 찾아 보기(_L)"
 
-#: gdictsrc/gdict-app.c:702
+#: gdictsrc/gdict-app.c:706
 msgid "Lookup word in dictionary"
 msgstr "사전에서 단어를 찾음"
 
-#: gdictsrc/gdict-app.c:704 gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-app.c:708 gdictsrc/gdict-speller.c:165
 msgid "Check _Spelling"
 msgstr "맞춤법 검사(_S)"
 
-#: gdictsrc/gdict-app.c:705
+#: gdictsrc/gdict-app.c:709
 msgid "Check word spelling"
 msgstr "맞춤법 검사"
 
-#: gdictsrc/gdict-app.c:749
+#: gdictsrc/gdict-app.c:753
 msgid "_Dictionary"
 msgstr "사전(_D)"
 
-#: gdictsrc/gdict-app.c:785 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:789 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "사전"
 
-#: gdictsrc/gdict-app.c:808
+#: gdictsrc/gdict-app.c:812
 msgid "_Word: "
 msgstr "단어(_W): "
 
-#: gdictsrc/gdict-app.c:836 gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:840 gdictsrc/gdict-speller.c:147
 msgid "Word"
 msgstr "단어"
 
-#: gdictsrc/gdict-app.c:837 gdictsrc/gdict-app.c:838
+#: gdictsrc/gdict-app.c:841 gdictsrc/gdict-app.c:842
 #: gdictsrc/gdict-speller.c:148
 msgid "Word Entry"
 msgstr "단어 엔트리"
 
-#: gdictsrc/gdict-app.c:837
+#: gdictsrc/gdict-app.c:841
 msgid "Enter a Word or select one from the list below"
 msgstr "단어를 입력하거나 다음 목록에서 선택하십시오"
 
-#: gdictsrc/gdict-app.c:840
+#: gdictsrc/gdict-app.c:844
 msgid "Look Up for a Word"
 msgstr "단어 찾아 보기"
 
-#: gdictsrc/gdict-applet.c:263
+#: gdictsrc/gdict-applet.c:289
 msgid "_Lookup"
 msgstr "찾기(_L)"
 
@@ -230,79 +233,79 @@ msgstr "참조:"
 msgid "Dictionary Preferences"
 msgstr "사전 기본 설정"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:199
 msgid "Smart _lookup"
 msgstr "똑똑한 찾기(_L)"
 
-#: gdictsrc/gdict-pref-dialog.c:211
+#: gdictsrc/gdict-pref-dialog.c:215
 msgid "_Server:"
 msgstr "서버(_S):"
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "De_fault Server"
 msgstr "기본 서버(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "Reset server to default"
 msgstr "서버를 기본값으로 합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:226
+#: gdictsrc/gdict-pref-dialog.c:233
 msgid "_Port:"
 msgstr "포트(_P):"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:249
 msgid "Def_ault Port"
 msgstr "기본 포트(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "Reset port to default"
 msgstr "포트 번호를 기본값으로 합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:260
 msgid "Server"
 msgstr "서버"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Server Entry"
 msgstr "서버 항목"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Enter the Server Name"
 msgstr "서버 이름을 입력합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:264
 msgid "Port"
 msgstr "포트"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Port Entry"
 msgstr "포트 엔트리"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Enter the Port Number"
 msgstr "포트 번호를 입력합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:258
+#: gdictsrc/gdict-pref-dialog.c:270
 msgid "_Database:"
 msgstr "데이타베이스(_D):"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:277
 msgid "D_efault strategy:"
 msgstr "기본 전략(_E):"
 
-#: gdictsrc/gdict-pref-dialog.c:458
+#: gdictsrc/gdict-pref-dialog.c:471
 msgid "Search all databases"
 msgstr "모든 데이타베이스 찾기"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database"
 msgstr "데이타베이스"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database Name"
 msgstr "데이타베이스 이름"
 
-#: gdictsrc/gdict-pref-dialog.c:635
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "기본 전략"
 
@@ -1154,11 +1157,12 @@ msgstr "링크 (깨짐)"
 msgid "link to %s"
 msgstr "링크 (%s 가리킴)"
 
-#: logview/about.c:42
+#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
+#: logview/about.c:43
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
-#: logview/about.c:43
+#: logview/about.c:44
 msgid ""
 "This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
 "WARRANTY. This is free software, and you are welcome to redistribute it "
@@ -1170,11 +1174,11 @@ msgstr ""
 "라 재배포할 수 있습니다. 로그 아이콘은 Tuomas Kuosmanen(즉 tigert)의 작품입니"
 "다."
 
-#: logview/about.c:61
+#: logview/about.c:62
 msgid "GNOME System Log Viewer"
 msgstr "GNOME 시스템 로그 보기"
 
-#: logview/about.c:62
+#: logview/about.c:63
 msgid "Copyright (C) 1998"
 msgstr "Copyright (C) 1998"
 
@@ -1377,37 +1381,37 @@ msgid "December"
 msgstr "12월"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:403
+#: logview/log_repaint.c:398
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:458
+#: logview/log_repaint.c:453
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:524
+#: logview/log_repaint.c:519
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:191
+#: logview/logrtns.c:194
 msgid "Not enough memory!\n"
 msgstr "메모리가 부족합니다!\n"
 
-#: logview/logrtns.c:202
+#: logview/logrtns.c:205
 msgid "Unable to open logfile!\n"
 msgstr "로그 파일을 열 수 없습니다!\n"
 
-#: logview/logrtns.c:260
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s 는 보통파일이 아닙니다."
 
-#: logview/logrtns.c:268
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1416,17 +1420,17 @@ msgstr ""
 "%s은(는) 사용자가 읽을 수 없습니다. 이 프로그램을 root로 실행하거나 시스템 관"
 "리자에게 이 파일의 권한을 바꾸라고 요청하십시오."
 
-#: logview/logrtns.c:285
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s를 열수 없습니다."
 
-#: logview/logrtns.c:315 logview/logrtns.c:324
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "%s 는 로그파일이 아닙니다."
 
-#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: 메모리가 바닥났습니다"
 
@@ -1610,12 +1614,16 @@ msgid "Log file to open up on startup"
 msgstr "시작할 때 열어 볼 로그 파일"
 
 #: logview/logview.schemas.in.h:2
+#, fuzzy
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
-"messages or /var/log/messages, depending on your distribution."
+"messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "시작할 때 열어 볼 로그 파일을 지정합니다. 기본값은 배포판에 따라 /var/adm/"
 "messages 아니면 /var/log/messages입니다."
+
+#~ msgid "_Show/Hide Definition Window..."
+#~ msgstr "정의 창 보이거나 닫기(_S)..."
 
 #~ msgid "GNOME Calculator"
 #~ msgstr "그놈 계산기"

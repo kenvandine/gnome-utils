@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2003-05-18 02:34+0100\n"
+"POT-Creation-Date: 2003-05-19 12:18+0100\n"
 "PO-Revision-Date: 2003-01-29 22:36+0800\n"
 "Last-Translator: Wang Li <charles@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -36,7 +36,7 @@ msgstr "输入文本"
 msgid "Accessories"
 msgstr "附件"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:270
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:296
 msgid "Dictionary Lookup"
 msgstr "查字典"
 
@@ -45,39 +45,41 @@ msgstr "查字典"
 msgid "Lookup words in an online dictionary"
 msgstr "在在线字典中查询单词"
 
-# gtt/toolbar.c:168
-#: gdictsrc/GNOME_GDictApplet.xml.h:1
-msgid "Look Up Selected Text..."
-msgstr "查询选中的文本..."
-
 # gstripchart/gstripchart.c:1663 mini-utils/gshutdown/gshutdown.c:318
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
+#: gdictsrc/GNOME_GDictApplet.xml.h:1
 msgid "_About..."
 msgstr "关于(_A)..."
 
 # gstripchart/gstripchart.c:1452
-#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_Help"
 msgstr "帮助(_H)"
 
-# gtt/options.c:499 mini-utils/gshutdown/gshutdown.c:313
+# gtt/toolbar.c:168
+#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#, fuzzy
+msgid "_Look Up Selected Text"
+msgstr "查询选中的文本..."
+
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-msgid "_Preferences"
-msgstr "首选项(_P)"
+#, fuzzy
+msgid "_Preferences..."
+msgstr "首选项..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-msgid "_Show/Hide Definition Window..."
-msgstr "显示/隐藏定义窗口..."
+#, fuzzy
+msgid "_Show Dictionary"
+msgstr "字典(_D)"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:650 gdictsrc/gdict-pref-dialog.c:466
-#: gdictsrc/gdict-pref-dialog.c:517 gdictsrc/gdict-speller.c:463
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:479
+#: gdictsrc/gdict-pref-dialog.c:530 gdictsrc/gdict-speller.c:463
 msgid "Cannot connect to server"
 msgstr "无法连接服务器"
 
-#: gdictsrc/dict.c:663
+#: gdictsrc/dict.c:677
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -86,7 +88,7 @@ msgstr ""
 "2628 可以作为参考"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:52
+#: gdictsrc/gdict-about.c:43 logview/about.c:53
 msgid "translator_credits"
 msgstr "Wang Li <charlesw1234@163.com>"
 
@@ -103,42 +105,42 @@ msgid "Client for MIT dictionary server.\n"
 msgstr "MIT 字典服务器客户端。\n"
 
 # mini-utils/gless/gless.c:851
-#: gdictsrc/gdict-app.c:128
+#: gdictsrc/gdict-app.c:132
 msgid "Spell-checking..."
 msgstr "正在检查拼写..."
 
-#: gdictsrc/gdict-app.c:136
+#: gdictsrc/gdict-app.c:140
 msgid "Spell check done"
 msgstr "拼写检查完成"
 
-#: gdictsrc/gdict-app.c:144 gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:148 gdictsrc/gdict-app.c:292
 msgid "No matches found"
 msgstr "找不到匹配"
 
-#: gdictsrc/gdict-app.c:271
+#: gdictsrc/gdict-app.c:275
 msgid "Looking up word..."
 msgstr "正在搜索单词..."
 
-#: gdictsrc/gdict-app.c:279
+#: gdictsrc/gdict-app.c:283
 msgid "Lookup done"
 msgstr "搜索完成"
 
 # mini-utils/guname/guname.c:506
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:305
 msgid "String not found"
 msgstr "找不到字符串"
 
 # mini-utils/gless/gless.c:461
-#: gdictsrc/gdict-app.c:469
+#: gdictsrc/gdict-app.c:473
 msgid "Find"
 msgstr "搜索"
 
 # mini-utils/gless/gless.c:461
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:494
 msgid "_Find"
 msgstr "搜索(_F)"
 
-#: gdictsrc/gdict-app.c:540
+#: gdictsrc/gdict-app.c:544
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -148,55 +150,55 @@ msgstr ""
 "要么您正使用的服务器不可用\n"
 "要么您没有连接到 Internet。"
 
-#: gdictsrc/gdict-app.c:701 gdictsrc/gdict-app.c:812
+#: gdictsrc/gdict-app.c:705 gdictsrc/gdict-app.c:816
 #: gdictsrc/gdict-speller.c:221
 msgid "_Look Up Word"
 msgstr "搜索单词(_L)"
 
-#: gdictsrc/gdict-app.c:702
+#: gdictsrc/gdict-app.c:706
 msgid "Lookup word in dictionary"
 msgstr "在字典中搜索单词"
 
-#: gdictsrc/gdict-app.c:704 gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-app.c:708 gdictsrc/gdict-speller.c:165
 msgid "Check _Spelling"
 msgstr "检查单词的拼写(_S)"
 
-#: gdictsrc/gdict-app.c:705
+#: gdictsrc/gdict-app.c:709
 msgid "Check word spelling"
 msgstr "检查单词的拼写"
 
-#: gdictsrc/gdict-app.c:749
+#: gdictsrc/gdict-app.c:753
 msgid "_Dictionary"
 msgstr "字典(_D)"
 
-#: gdictsrc/gdict-app.c:785 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:789 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "字典"
 
 # ghex/ui.c:90
-#: gdictsrc/gdict-app.c:808
+#: gdictsrc/gdict-app.c:812
 msgid "_Word: "
 msgstr "单词(_W)："
 
 # ghex/hex-document.c:59
-#: gdictsrc/gdict-app.c:836 gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:840 gdictsrc/gdict-speller.c:147
 msgid "Word"
 msgstr "单词"
 
-#: gdictsrc/gdict-app.c:837 gdictsrc/gdict-app.c:838
+#: gdictsrc/gdict-app.c:841 gdictsrc/gdict-app.c:842
 #: gdictsrc/gdict-speller.c:148
 msgid "Word Entry"
 msgstr "单词条目"
 
-#: gdictsrc/gdict-app.c:837
+#: gdictsrc/gdict-app.c:841
 msgid "Enter a Word or select one from the list below"
 msgstr "输入一个单词或从下面的列表中选择一个单词"
 
-#: gdictsrc/gdict-app.c:840
+#: gdictsrc/gdict-app.c:844
 msgid "Look Up for a Word"
 msgstr "搜索一个单词"
 
-#: gdictsrc/gdict-applet.c:263
+#: gdictsrc/gdict-applet.c:289
 msgid "_Lookup"
 msgstr "搜索(_L)"
 
@@ -243,88 +245,88 @@ msgstr "交叉引用："
 msgid "Dictionary Preferences"
 msgstr "字典首选项"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:199
 msgid "Smart _lookup"
 msgstr "智能搜索(_L)"
 
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:211
+#: gdictsrc/gdict-pref-dialog.c:215
 msgid "_Server:"
 msgstr "服务器(_S)："
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "De_fault Server"
 msgstr "默认服务器(_F)"
 
 # mini-utils/gshutdown/gshutdown.c:368
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "Reset server to default"
 msgstr "将服务器复位为默认设置"
 
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:226
+#: gdictsrc/gdict-pref-dialog.c:233
 msgid "_Port:"
 msgstr "端口(_P)："
 
 # ghex/preferences.c:50 mini-utils/idetool/idetool.c:19
 # mini-utils/idetool/idetool.c:142 mini-utils/idetool/idetool.c:327
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:249
 msgid "Def_ault Port"
 msgstr "默认端口(_A)"
 
 # mini-utils/gshutdown/gshutdown.c:368
 # SUN CHANGED MESSAGE
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "Reset port to default"
 msgstr "将端口复位为默认设置"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:260
 msgid "Server"
 msgstr "服务器"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Server Entry"
 msgstr "服务器条目"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Enter the Server Name"
 msgstr "输入服务器名"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:264
 msgid "Port"
 msgstr "端口"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Port Entry"
 msgstr "端口条目"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Enter the Port Number"
 msgstr "输入端口编号"
 
-#: gdictsrc/gdict-pref-dialog.c:258
+#: gdictsrc/gdict-pref-dialog.c:270
 msgid "_Database:"
 msgstr "数据库(_D)："
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:277
 msgid "D_efault strategy:"
 msgstr "默认策略(_E)："
 
-#: gdictsrc/gdict-pref-dialog.c:458
+#: gdictsrc/gdict-pref-dialog.c:471
 msgid "Search all databases"
 msgstr "搜索所有数据库"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database"
 msgstr "数据库"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database Name"
 msgstr "数据库名称"
 
-#: gdictsrc/gdict-pref-dialog.c:635
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "默认策略"
 
@@ -1251,11 +1253,12 @@ msgstr "链接(已断开)"
 msgid "link to %s"
 msgstr "链接到 %s"
 
-#: logview/about.c:42
+#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
+#: logview/about.c:43
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
-#: logview/about.c:43
+#: logview/about.c:44
 msgid ""
 "This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
 "WARRANTY. This is free software, and you are welcome to redistribute it "
@@ -1266,12 +1269,12 @@ msgstr ""
 "通用公共许可证的条款发行它。日志图标是 Tuomas Kuosmanen (又名 tigert) 的作"
 "品。"
 
-#: logview/about.c:61
+#: logview/about.c:62
 msgid "GNOME System Log Viewer"
 msgstr "GNOME 系统日志查看器"
 
 # gstripchart/gstripchart.c:1425
-#: logview/about.c:62
+#: logview/about.c:63
 msgid "Copyright (C) 1998"
 msgstr "版权所有 (C) 1998"
 
@@ -1488,38 +1491,38 @@ msgid "December"
 msgstr "十二月"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:403
+#: logview/log_repaint.c:398
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:458
+#: logview/log_repaint.c:453
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:524
+#: logview/log_repaint.c:519
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:191
+#: logview/logrtns.c:194
 msgid "Not enough memory!\n"
 msgstr "内存不足！\n"
 
 # ghex/ui.c:305
-#: logview/logrtns.c:202
+#: logview/logrtns.c:205
 msgid "Unable to open logfile!\n"
 msgstr "无法打开日志文件！\n"
 
-#: logview/logrtns.c:260
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s 不是普通文件。"
 
-#: logview/logrtns.c:268
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1528,18 +1531,18 @@ msgstr ""
 "用户不能读取 %s。要么以 root 身份运行程序，要么要求系统管理员改变文件的许可"
 "权。"
 
-#: logview/logrtns.c:285
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "无法打开 %s。"
 
 # ghex/ui.c:305
-#: logview/logrtns.c:315 logview/logrtns.c:324
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "%s 不是日志文件。"
 
-#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats：内存耗尽"
 
@@ -1745,12 +1748,20 @@ msgid "Log file to open up on startup"
 msgstr "启动时打开的日志文件"
 
 #: logview/logview.schemas.in.h:2
+#, fuzzy
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
-"messages or /var/log/messages, depending on your distribution."
+"messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "指定在程序启动时打开的日志文件。根据您使用的发行版，默认是 /var/adm/messages "
 "或者 /var/log/messages。"
+
+# gtt/options.c:499 mini-utils/gshutdown/gshutdown.c:313
+#~ msgid "_Preferences"
+#~ msgstr "首选项(_P)"
+
+#~ msgid "_Show/Hide Definition Window..."
+#~ msgstr "显示/隐藏定义窗口..."
 
 # gcalc/gcalc.c:124
 #~ msgid "GNOME Calculator"
@@ -2783,9 +2794,6 @@ msgstr ""
 # mini-utils/gless/gless.c:851
 #~ msgid "Spell checker"
 #~ msgstr "拼写检查器"
-
-#~ msgid "Preferences..."
-#~ msgstr "首选项..."
 
 # gsearchtool/gsearchtool.c:23
 #~ msgid "Don't search subdirectories"

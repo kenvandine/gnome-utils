@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.3.1\n"
-"POT-Creation-Date: 2003-05-18 02:34+0100\n"
+"POT-Creation-Date: 2003-05-19 12:18+0100\n"
 "PO-Revision-Date: 2003-05-13 16:22+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -34,7 +34,7 @@ msgstr "請輸入文字"
 msgid "Accessories"
 msgstr "附屬應用程式"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:270
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:296
 msgid "Dictionary Lookup"
 msgstr "字典"
 
@@ -44,34 +44,37 @@ msgid "Lookup words in an online dictionary"
 msgstr "在線上字典中檢索字詞"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1
-msgid "Look Up Selected Text..."
-msgstr "檢索以滑鼠選取的字詞..."
-
-#: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_About..."
 msgstr "關於(_A)..."
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_Help"
 msgstr "求助(_H)"
 
+#: gdictsrc/GNOME_GDictApplet.xml.h:3
+#, fuzzy
+msgid "_Look Up Selected Text"
+msgstr "檢索以滑鼠選取的字詞..."
+
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-msgid "_Preferences"
+#, fuzzy
+msgid "_Preferences..."
 msgstr "偏好設定(_P)"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
-msgid "_Show/Hide Definition Window..."
-msgstr "顯示或隱藏定義視窗(_S)..."
+#, fuzzy
+msgid "_Show Dictionary"
+msgstr "字典(_D)"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:650 gdictsrc/gdict-pref-dialog.c:466
-#: gdictsrc/gdict-pref-dialog.c:517 gdictsrc/gdict-speller.c:463
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:479
+#: gdictsrc/gdict-pref-dialog.c:530 gdictsrc/gdict-speller.c:463
 msgid "Cannot connect to server"
 msgstr "無法連接伺服器"
 
-#: gdictsrc/dict.c:663
+#: gdictsrc/dict.c:677
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -80,7 +83,7 @@ msgstr ""
 "org，而預設的連接埠是 2628。"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:52
+#: gdictsrc/gdict-about.c:43 logview/about.c:53
 msgid "translator_credits"
 msgstr ""
 "i18n 程式中文化計劃\n"
@@ -101,39 +104,39 @@ msgstr "版權所有 ©1999 Mike Hughes"
 msgid "Client for MIT dictionary server.\n"
 msgstr "使用 MIT 字典伺服器的客戶端程式。\n"
 
-#: gdictsrc/gdict-app.c:128
+#: gdictsrc/gdict-app.c:132
 msgid "Spell-checking..."
 msgstr "正在進行拼字檢查..."
 
-#: gdictsrc/gdict-app.c:136
+#: gdictsrc/gdict-app.c:140
 msgid "Spell check done"
 msgstr "拼字檢查完成"
 
-#: gdictsrc/gdict-app.c:144 gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:148 gdictsrc/gdict-app.c:292
 msgid "No matches found"
 msgstr "找不到符合的結果"
 
-#: gdictsrc/gdict-app.c:271
+#: gdictsrc/gdict-app.c:275
 msgid "Looking up word..."
 msgstr "正在檢索字詞..."
 
-#: gdictsrc/gdict-app.c:279
+#: gdictsrc/gdict-app.c:283
 msgid "Lookup done"
 msgstr "完成檢索"
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:305
 msgid "String not found"
 msgstr "找不到字串"
 
-#: gdictsrc/gdict-app.c:469
+#: gdictsrc/gdict-app.c:473
 msgid "Find"
 msgstr "搜尋"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:494
 msgid "_Find"
 msgstr "搜尋(_F)"
 
-#: gdictsrc/gdict-app.c:540
+#: gdictsrc/gdict-app.c:544
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
@@ -143,53 +146,53 @@ msgstr ""
 "原因是無法連接所使用的伺服器，\n"
 "或是根本未連接至網際網路。"
 
-#: gdictsrc/gdict-app.c:701 gdictsrc/gdict-app.c:812
+#: gdictsrc/gdict-app.c:705 gdictsrc/gdict-app.c:816
 #: gdictsrc/gdict-speller.c:221
 msgid "_Look Up Word"
 msgstr "檢索字詞(_L)"
 
-#: gdictsrc/gdict-app.c:702
+#: gdictsrc/gdict-app.c:706
 msgid "Lookup word in dictionary"
 msgstr "在字典中檢索字詞"
 
-#: gdictsrc/gdict-app.c:704 gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-app.c:708 gdictsrc/gdict-speller.c:165
 msgid "Check _Spelling"
 msgstr "檢查拼字(_S)"
 
-#: gdictsrc/gdict-app.c:705
+#: gdictsrc/gdict-app.c:709
 msgid "Check word spelling"
 msgstr "檢查拼字"
 
-#: gdictsrc/gdict-app.c:749
+#: gdictsrc/gdict-app.c:753
 msgid "_Dictionary"
 msgstr "字典(_D)"
 
-#: gdictsrc/gdict-app.c:785 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-app.c:789 gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "字典"
 
-#: gdictsrc/gdict-app.c:808
+#: gdictsrc/gdict-app.c:812
 msgid "_Word: "
 msgstr "字詞(_W)："
 
-#: gdictsrc/gdict-app.c:836 gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:840 gdictsrc/gdict-speller.c:147
 msgid "Word"
 msgstr "字詞"
 
-#: gdictsrc/gdict-app.c:837 gdictsrc/gdict-app.c:838
+#: gdictsrc/gdict-app.c:841 gdictsrc/gdict-app.c:842
 #: gdictsrc/gdict-speller.c:148
 msgid "Word Entry"
 msgstr "字詞輸入欄"
 
-#: gdictsrc/gdict-app.c:837
+#: gdictsrc/gdict-app.c:841
 msgid "Enter a Word or select one from the list below"
 msgstr "請輸入字詞或在下列的清單中選擇"
 
-#: gdictsrc/gdict-app.c:840
+#: gdictsrc/gdict-app.c:844
 msgid "Look Up for a Word"
 msgstr "檢索字詞"
 
-#: gdictsrc/gdict-applet.c:263
+#: gdictsrc/gdict-applet.c:289
 msgid "_Lookup"
 msgstr "檢索(_L)"
 
@@ -234,79 +237,79 @@ msgstr "參考："
 msgid "Dictionary Preferences"
 msgstr "字典偏好設定"
 
-#: gdictsrc/gdict-pref-dialog.c:198
+#: gdictsrc/gdict-pref-dialog.c:199
 msgid "Smart _lookup"
 msgstr "智慧型檢索(_L)"
 
-#: gdictsrc/gdict-pref-dialog.c:211
+#: gdictsrc/gdict-pref-dialog.c:215
 msgid "_Server:"
 msgstr "伺服器(_S)："
 
-#: gdictsrc/gdict-pref-dialog.c:218
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "De_fault Server"
 msgstr "預設伺服器(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "Reset server to default"
 msgstr "將伺服器恢復成預設值"
 
-#: gdictsrc/gdict-pref-dialog.c:226
+#: gdictsrc/gdict-pref-dialog.c:233
 msgid "_Port:"
 msgstr "連接埠(_P)："
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:249
 msgid "Def_ault Port"
 msgstr "預設連接埠(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:247
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "Reset port to default"
 msgstr "將連接埠號碼恢復成預設值"
 
-#: gdictsrc/gdict-pref-dialog.c:248
+#: gdictsrc/gdict-pref-dialog.c:260
 msgid "Server"
 msgstr "伺服器"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Server Entry"
 msgstr "伺服器輸入欄"
 
-#: gdictsrc/gdict-pref-dialog.c:249
+#: gdictsrc/gdict-pref-dialog.c:261
 msgid "Enter the Server Name"
 msgstr "請輸入伺服器名稱"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:264
 msgid "Port"
 msgstr "連接埠"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Port Entry"
 msgstr "連接埠輸入欄"
 
-#: gdictsrc/gdict-pref-dialog.c:253
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "Enter the Port Number"
 msgstr "請輸入連接埠號碼"
 
-#: gdictsrc/gdict-pref-dialog.c:258
+#: gdictsrc/gdict-pref-dialog.c:270
 msgid "_Database:"
 msgstr "資料庫(_D)："
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:277
 msgid "D_efault strategy:"
 msgstr "預設搜尋方式(_E)："
 
-#: gdictsrc/gdict-pref-dialog.c:458
+#: gdictsrc/gdict-pref-dialog.c:471
 msgid "Search all databases"
 msgstr "搜尋所有資料庫"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database"
 msgstr "資料庫"
 
-#: gdictsrc/gdict-pref-dialog.c:623
+#: gdictsrc/gdict-pref-dialog.c:636
 msgid "Database Name"
 msgstr "資料庫名稱"
 
-#: gdictsrc/gdict-pref-dialog.c:635
+#: gdictsrc/gdict-pref-dialog.c:648
 msgid "Default Strategy"
 msgstr "預設搜尋方式"
 
@@ -1156,11 +1159,12 @@ msgstr "鏈結 (目標不存在)"
 msgid "link to %s"
 msgstr "%s 的鏈結"
 
-#: logview/about.c:42
+#. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
+#: logview/about.c:43
 msgid "Cesar Miquel (miquel@df.uba.ar)"
 msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
-#: logview/about.c:43
+#: logview/about.c:44
 msgid ""
 "This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
 "WARRANTY. This is free software, and you are welcome to redistribute it "
@@ -1171,11 +1175,11 @@ msgstr ""
 "體，您可以遵照 GNU 通用公共許可證條款 (GNU General Public License) 重新發佈本"
 "程式。承蒙 Tuomas Kuosmanen (即 tigert) 提供日誌的圖示。"
 
-#: logview/about.c:61
+#: logview/about.c:62
 msgid "GNOME System Log Viewer"
 msgstr "系統日誌顯示程式"
 
-#: logview/about.c:62
+#: logview/about.c:63
 msgid "Copyright (C) 1998"
 msgstr "版權所有 ©1998"
 
@@ -1378,37 +1382,37 @@ msgid "December"
 msgstr "十二月"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:403
+#: logview/log_repaint.c:398
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:458
+#: logview/log_repaint.c:453
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:524
+#: logview/log_repaint.c:519
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:191
+#: logview/logrtns.c:194
 msgid "Not enough memory!\n"
 msgstr "記憶體不足！\n"
 
-#: logview/logrtns.c:202
+#: logview/logrtns.c:205
 msgid "Unable to open logfile!\n"
 msgstr "無法開啟日誌！\n"
 
-#: logview/logrtns.c:260
+#: logview/logrtns.c:263
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s 不是正常的檔案。"
 
-#: logview/logrtns.c:268
+#: logview/logrtns.c:271
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1417,17 +1421,17 @@ msgstr ""
 "用戶不能讀取 %s。您可以使用 root 的身份來執行程式，或是要求系統管理員更改檔案"
 "的權限。"
 
-#: logview/logrtns.c:285
+#: logview/logrtns.c:288
 #, c-format
 msgid "%s could not be opened."
 msgstr "無法開啟 %s。"
 
-#: logview/logrtns.c:315 logview/logrtns.c:324
+#: logview/logrtns.c:318 logview/logrtns.c:327
 #, c-format
 msgid "%s not a log file."
 msgstr "%s 不是日誌檔案。"
 
-#: logview/logrtns.c:722 logview/logrtns.c:753 logview/logrtns.c:884
+#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats：記憶體不足"
 
@@ -1613,12 +1617,16 @@ msgid "Log file to open up on startup"
 msgstr "啟動程式時開啟的日誌"
 
 #: logview/logview.schemas.in.h:2
+#, fuzzy
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
-"messages or /var/log/messages, depending on your distribution."
+"messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "指定啟動時預設開啟的日誌。預設值可能是 /var/adm/messages 或 /var/log/"
 "messages，取決於所使用的系統。"
+
+#~ msgid "_Show/Hide Definition Window..."
+#~ msgstr "顯示或隱藏定義視窗(_S)..."
 
 #~ msgid "GNOME Calculator"
 #~ msgstr "GNOME 計算機"
