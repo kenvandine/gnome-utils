@@ -39,6 +39,19 @@
 #define _(String) gettext(String)
 
 
+
+char *
+gtt_gettext(char *s)
+{
+        g_return_val_if_fail(s != NULL, NULL);
+        if (0 == strncmp(s, "[GTT]", 5))
+                return &s[5];
+        return s;
+}
+
+
+
+
 static char *build_lock_fname()
 {
 	static char fname[1024] = "";

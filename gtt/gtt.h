@@ -153,6 +153,7 @@ void app_new(int argc, char *argv[]);
 /* main.c */
 
 void unlock_gtt(void);
+char *gtt_gettext(char *s);
 
 
 #endif /* __GTT_H__ */
