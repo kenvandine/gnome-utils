@@ -101,15 +101,15 @@ dialog_guage (const char *title, const char *prompt, int height,
 
 	if (feof (stdin))
 	    break;
-	gets (buf);
+	fgets (buf, sizeof(buf)-1, stdin);
 	if (buf[0] == 'X') {
 	    /* Next line is percentage */
-	    gets (buf);
+	    fgets (buf, sizeof (buf)-1, stdin);
 	    percent = atoi (buf);
 
 	    /* Rest is message text */
 	    prompt_buf[0] = '\0';
-	    while (strncmp (gets (buf), "XXX", 3))
+	    while (strncmp (fgets (buf, sizeof (buf)-1, stdin), "XXX", 3))
 		strcat (prompt_buf, buf);
 	    prompt = prompt_buf;
 	} else
