@@ -1044,12 +1044,7 @@ static gboolean gnomecard_append_file(char *fname)
 	
 	gnomecard_crds = crds;
 	gnomecard_sort_card_list(gnomecard_sort_criteria);
-
-	gtk_clist_freeze(gnomecard_list);
-	gtk_clist_clear(gnomecard_list);
-	for (c = gnomecard_crds; c; c = c->next)
-	    gnomecard_add_card_to_list((Card *) c->data);
-	gtk_clist_thaw(gnomecard_list);
+	gnomecard_rebuild_list();
 	gnomecard_scroll_list(gnomecard_crds);
 	gnomecard_set_curr(gnomecard_crds);
 	return TRUE;

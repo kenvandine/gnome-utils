@@ -14,7 +14,6 @@
 #include "gnomecard.h"
 #include "init.h"
 #include "my.h"
-#include "popup-menu.h"
 #include "sort.h"
 #include "list.h"
 
@@ -24,9 +23,6 @@
 #define ORG_COL_WIDTH 100
 #define PHONE_COL_WIDTH 100
 #define EMAIL_COL_WIDTH 100
-
-#define LIST_WIDTH 450
-#define LIST_HEIGHT 320
 
 #define NONE  0
 #define FNAME 1
@@ -65,12 +61,8 @@ gboolean gnomecard_found;                 /* yeah... pretty messy. (fixme) */
 static void gnomecard_toggle_card_view(GtkWidget *w, gpointer data);
 static void gnomecard_set_next(gboolean state);
 static void gnomecard_set_prev(gboolean state);
-static void gnomecard_list_button_press(GtkCList *list, GdkEventButton *event, 
-					gpointer data);
 static gboolean gnomecard_cards_blocked(void);
 static void gnomecard_new_card(GtkWidget *widget, gpointer data);
-static void gnomecard_list_selected(GtkCList *list, gint row, gint column,
-				    GdkEventButton *event, gpointer data);
 
 
 gchar
@@ -188,82 +180,6 @@ gnomecard_set_curr(GList *node)
     }
 }
 
-static void
-gnomecard_list_button_press(GtkCList *list, GdkEventButton *event, 
-			    gpointer data)
-{
-    static struct menu_item items[] = {
-	{ N_("Edit this item..."), (GtkSignalFunc) gnomecard_edit_card, NULL,
-	  TRUE },
-	{ N_("Delete this item"), (GtkSignalFunc)gnomecard_delete_current_card,
-	  NULL, TRUE } 
-    };
-    GList *tmp;
-    gint  row, col;
-    
-    if (!event)
-	return;
-    
-    if (event->button == 3) 
-	if (gtk_clist_get_selection_info(list,event->x,event->y,&row,&col )) {
-	    gnomecard_selected_row = row;
-	    gtk_clist_select_row(list, row, 0);
-	    tmp = g_list_nth(gnomecard_crds, row);
-	    
-	    if (!tmp) {
-		g_message("Somehow selected non-existant card on row %d",row);
-		return;
-	    }
-
-	    /* see if card if is being editted */
-	    items[0].sensitive = !((Card *) tmp->data)->flag;
-	    items[1].sensitive = !((Card *) tmp->data)->flag;
-
-	    gnomecard_set_curr(tmp);
-	    popup_menu (items, sizeof (items) / sizeof (items[0]), event);
-	}
-}
-
-static void
-gnomecard_list_selected(GtkCList *list, gint row, gint column,
-			GdkEventButton *event, gpointer data)
-{
-    GList *tmp;
-
-    gnomecard_selected_row = row;
-    tmp = g_list_nth(gnomecard_crds, row);
-    
-    if (!tmp) {
-	g_message("Somehow selected non-existant card on row %d",row);
-	return;
-    }
-
-    if (!event)
-	return;
-    
-    switch (event->button) {
-      case 1:
-	if (event->type == GDK_2BUTTON_PRESS) {
-	    /* see if card if is being editted */
-	    if (!((Card *) gnomecard_curr_crd->data)->flag)
-		gnomecard_edit(tmp);
-	} else {
-	    gnomecard_set_curr(tmp);
-	}
-	break;
-	
-      default:
-	break;
-    }
-}
-
-/* NOT USED 
-void gnomecard_list_unselected(GtkCTree *tree, GtkCTreeNode *row, gint column)
-{
-    g_message("gnomecard_list_unselected not implemented");
-}
-*/
-
 extern void gnomecard_save(void)
 {
 	GList *l;
@@ -292,62 +208,62 @@ gnomecard_cards_blocked(void)
 /* Returns TRUE if the cards were destroyed. FALSE if canceled */
 extern int gnomecard_destroy_cards(void)
 {
-	GList *l;
-
-	if (gnomecard_cards_blocked()) {
-		GtkWidget *w;
-
-		w = gnome_message_box_new("There are cards which are currently being modified.\nFinish any pending modifications and try again.",
-					  GNOME_MESSAGE_BOX_ERROR,
-					  GNOME_STOCK_BUTTON_OK, NULL);
-		GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
-		gtk_widget_show(w);
-		
-		return FALSE;
+    GList *l;
+    
+    if (gnomecard_cards_blocked()) {
+	GtkWidget *w;
+	
+	w = gnome_message_box_new("There are cards which are currently being modified.\nFinish any pending modifications and try again.",
+				  GNOME_MESSAGE_BOX_ERROR,
+				  GNOME_STOCK_BUTTON_OK, NULL);
+	GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
+	gtk_widget_show(w);
+	
+	return FALSE;
+    }
+    
+    if (gnomecard_changed) {
+	GtkWidget *w;
+	char *msg;
+	char *tmp = N_(" changed. Save?");
+	int len;
+	
+	len = strlen(tmp) + strlen(gnomecard_fname) + 1;
+	msg = g_malloc(len);
+	snprintf(msg, len, "%s%s", gnomecard_fname, tmp);
+	
+	w = gnome_message_box_new(msg,
+				  GNOME_MESSAGE_BOX_QUESTION,
+				  GNOME_STOCK_BUTTON_YES,
+				  GNOME_STOCK_BUTTON_NO,
+				  GNOME_STOCK_BUTTON_CANCEL, NULL);
+	GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
+	gtk_widget_show(w);
+	
+	switch(gnome_dialog_run_modal(GNOME_DIALOG(w))) {
+	  case -1:
+	  case 2:
+	    return FALSE;
+	  case 1:
+	    break;
+	  case 0:
+	    gnomecard_save();
 	}
 	
-	if (gnomecard_changed) {
-		GtkWidget *w;
-		char *msg;
-		char *tmp = N_(" changed. Save?");
-		int len;
-		
-		len = strlen(tmp) + strlen(gnomecard_fname) + 1;
-		msg = g_malloc(len);
-		snprintf(msg, len, "%s%s", gnomecard_fname, tmp);
-		 
-		w = gnome_message_box_new(msg,
-					  GNOME_MESSAGE_BOX_QUESTION,
-					  GNOME_STOCK_BUTTON_YES,
-					  GNOME_STOCK_BUTTON_NO,
-					  GNOME_STOCK_BUTTON_CANCEL, NULL);
-		GTK_WINDOW(w)->position = GTK_WIN_POS_MOUSE;
-		gtk_widget_show(w);
-		
-		switch(gnome_dialog_run_modal(GNOME_DIALOG(w))) {
-		 case -1:
-		 case 2:
-			return FALSE;
-		 case 1:
-			break;
-		 case 0:
-			gnomecard_save();
-		}
-		
-		g_free (msg);
-	}
-	
-	for (l = gnomecard_crds; l; l = l->next)
-	    card_free (l->data);
-
-	gtk_clist_clear(gnomecard_list);
-	g_list_free(gnomecard_crds);
-	gnomecard_crds = NULL;
-	
-	gnomecard_set_curr(NULL);
-	gnomecard_set_changed(FALSE);
-	
-	return TRUE;
+	g_free (msg);
+    }
+    
+    for (l = gnomecard_crds; l; l = l->next)
+	card_free (l->data);
+    
+    gnomecardClearCardListDisplay(GTK_WIDGET(gnomecard_list));
+    g_list_free(gnomecard_crds);
+    gnomecard_crds = NULL;
+    
+    gnomecard_set_curr(NULL);
+    gnomecard_set_changed(FALSE);
+    
+    return TRUE;
 }
 
 static void
@@ -670,92 +586,15 @@ void gnomecard_sort_by_fname(GtkWidget *w, gpointer data)
 				      TRUE);
 }
 
-void
-gnomecard_sort_by_col(GtkWidget *w, gint col, GtkWidget *list)
-{
-    GList *cols, *l;
-    ColumnHeader *hdr;
-    sort_func    func=NULL;
-
-    cols = gtk_object_get_data(GTK_OBJECT(list), "ColumnHeaders");
-    l = g_list_nth(cols, col);
-    hdr = (ColumnHeader *)l->data;
-    switch (hdr->coltype) {
-      case COLTYPE_FULLNAME:
-	func = gnomecard_cmp_names;
-	break;
-
-      case COLTYPE_CARDNAME:
-	func = gnomecard_cmp_fnames;
-	break;
-
-      case COLTYPE_FIRSTNAME:
-	func = NULL;
-	break;
-
-      case COLTYPE_MIDDLENAME:
-	func = NULL;
-	break;
-
-      case COLTYPE_LASTNAME:
-	func = NULL;
-	break;
-
-      case COLTYPE_PREFIX:
-	func = NULL;
-	break;
-
-      case COLTYPE_SUFFIX:
-	func = NULL;
-	break;
-
-      case COLTYPE_ORG:
-	func = gnomecard_cmp_org;
-	break;
-
-      case COLTYPE_TITLE:
-	func = NULL;
-	break;
-
-      case COLTYPE_EMAIL:
-	func = gnomecard_cmp_emails;
-	break;
-
-      case COLTYPE_WEBPAGE:
-	func = NULL;
-	break;
-
-      case COLTYPE_HOMEPHONE:
-	func = NULL;
-	break;
-
-      case COLTYPE_WORKPHONE:
-	func = NULL;
-	break;
-	
-      default:
-	break;
-    }
-
-    if (func) {
-	gnomecard_sort_card_list(func);
-
-	/* this is a hack - need function to just rebuid list    */
-	/* and maintain current selection in list w/o me knowing */
-	/* about it here                                         */
-	gnomecard_rebuild_list();
-    }
-
-}
 
 void gnomecard_init(void)
 {
-	GtkWidget *canvas, *align, *hbox, *hbox1, *hbox2;
-	GtkWidget *scrollwin;
-	GList *cols, *titles, *l;
-	gint  i;
+	GtkWidget *canvas, *align, *hbox, *hbox1, *hbox2, *scrollwin;
+
+	/* hard coded column headers */
 	ColumnType hdrs[] = {COLTYPE_CARDNAME, COLTYPE_EMAIL, COLTYPE_ORG, 
 			     COLTYPE_END};
+
 
 	gnomecard_init_stock();
 	gnomecard_init_pixes();
@@ -774,99 +613,9 @@ void gnomecard_init(void)
 	gnome_app_create_menus(GNOME_APP(gnomecard_window), mainmenu);
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
-	scrollwin = gtk_scrolled_window_new(NULL, NULL);
-/*	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(4, titles)); */
-
-	/* Hard coding column types for now */
-	cols = buildColumnHeaders(hdrs);
-	gnomecard_list = GTK_CLIST(gtk_clist_new(numColumnHeaders(cols)));
-	gtk_object_set_data(GTK_OBJECT(gnomecard_list), "ColumnHeaders",
-			    cols);
-
-	titles = gnomecardCreateColTitles(cols);
-
-	for (l=titles, i=0; l; l=l->next, i++) {
-	    g_message("setting col %d title to %s", i, (gchar *)l->data);
-	    gtk_clist_set_column_title( GTK_CLIST(gnomecard_list),
-					i, (gchar *)l->data);
-	    /* need to set widths based on user settings probably */
-	    gtk_clist_set_column_width( GTK_CLIST(gnomecard_list),
-					i, 100);
-	}
-
-	gtk_clist_column_titles_show(GTK_CLIST(gnomecard_list));
-	gnomecardFreeColTitles(titles);
-
+	
+        gnomecardCreateCardListDisplay(hdrs, &scrollwin, &gnomecard_list);
 	gtk_box_pack_start(GTK_BOX(hbox), scrollwin, TRUE, TRUE, 0);
-	gtk_container_add(GTK_CONTAINER(scrollwin), GTK_WIDGET(gnomecard_list));
-/* 	gtk_widget_realize(GTK_WIDGET(gnomecard_list)); */
-/*
-	gdk_gc_get_values(gnomecard_tree->lines_gc, &crd_tree_values);
-*/
-#if 0
-	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 0, NAME_COL_WIDTH);
-	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 1, ORG_COL_WIDTH);
-	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 2, PHONE_COL_WIDTH);
-	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 3, EMAIL_COL_WIDTH);
-#endif
-	gtk_signal_connect(GTK_OBJECT(gnomecard_list), "select_row",
-			   GTK_SIGNAL_FUNC(gnomecard_list_selected), NULL);
-
-	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(gnomecard_list)),
-			   "click_column", 
-			   GTK_SIGNAL_FUNC(gnomecard_sort_by_col),
-			   (gpointer) gnomecard_list);
-/* NOT USED (yet)
-	gtk_signal_connect(GTK_OBJECT(gnomecard_list), 
-			   "unselect_row",
-			   GTK_SIGNAL_FUNC(gnomecard_list_unselected), NULL);
-*/
-
-/* NOT USED - will add when I finallize the column header code
-	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(gnomecard_tree)->column->button),
-			   "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_by_fname),
-			   (gpointer) NULL);
-*/
-	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrollwin),
-			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_clist_set_selection_mode(gnomecard_list, GTK_SELECTION_BROWSE);
-
-	gtk_signal_connect(GTK_OBJECT(gnomecard_list), "button_press_event",
-			   GTK_SIGNAL_FUNC(gnomecard_list_button_press), NULL);
-
-/*	omenu = gtk_option_menu_new();
-	gtk_clist_set_column_widget(GTK_CLIST(gnomecard_tree), 1, omenu);
-	menu = gtk_menu_new();
-	for (i = 0; sort_type_name[i]; i++) {
-		item = gtk_menu_item_new_with_label(sort_type_name[i]);
-		gtk_object_set_user_data(GTK_OBJECT(item), (gpointer) i);
-		gtk_menu_append(GTK_MENU(menu), item);
-		gtk_widget_show(item);
-	}
-	
-	gtk_option_menu_set_menu(GTK_OPTION_MENU(omenu), menu);
-	gtk_widget_show(omenu);*/
-
-/*	
-	crd_tree_sel_col = g_new (GdkColor, 1);
-	crd_tree_sel_col->red = crd_tree_sel_col->green = 
-	  crd_tree_sel_col->blue = 50000;
-	gdk_color_alloc(gtk_widget_get_colormap (GTK_WIDGET (gnomecard_tree)),
-			crd_tree_sel_col);
-
-	crd_tree_usel_col = g_new (GdkColor, 1);
-	crd_tree_usel_col->red = crd_tree_usel_col->green = 
-		crd_tree_usel_col->blue = 60000;
-	gdk_color_alloc(gtk_widget_get_colormap (GTK_WIDGET (gnomecard_tree)),
-			crd_tree_usel_col);
-*/
-/* & (GTK_WIDGET(crd_tree)->style->fg[GTK_STATE_NORMAL]);*/
-	
-	gtk_widget_set_usize (GTK_WIDGET(gnomecard_list),
-			      LIST_WIDTH, LIST_HEIGHT);
-	gtk_clist_column_titles_active(gnomecard_list);
-	gtk_widget_show(GTK_WIDGET(gnomecard_list));
-	gtk_widget_show(scrollwin);
 
 	align = gtk_alignment_new(0.5, 0.5, 0.5, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), align, FALSE, FALSE, 0);

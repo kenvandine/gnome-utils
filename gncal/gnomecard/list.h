@@ -2,6 +2,7 @@
 #define __GNOMECARD_LIST
 
 #include <gnome.h>
+#include "columnhdrs.h"
 
 void gnomecard_update_list(Card *crd);
 void gnomecard_rebuild_list(void);
@@ -13,6 +14,9 @@ void gnomecard_list_set_sorted_pos(Card *crd);
 
 GList *gnomecardCreateColTitles(GList *col);
 void gnomecardFreeColTitles(GList *titles);
+void gnomecardClearCardListDisplay(GtkWidget *list);
+void gnomecardCreateCardListDisplay(ColumnType *hdrs, GtkWidget **box,
+			     GtkWidget **list);
 #endif
 
 

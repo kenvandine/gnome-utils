@@ -6,6 +6,10 @@
 	card, and restore selection to this card after we rebuild
 	list.
 
+	Also moved majority of code which modifies the card list display
+	into list.c. Next step is to made rest of code independent of
+	the current global variable gnomecard_list.
+
 1998-11-14 Michael Fulbright <drmike@redhat.com>
         * gnomecard.c, list.[ch]: added functions to create column
 	titles and values based on user configuration of the
