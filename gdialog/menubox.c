@@ -83,10 +83,10 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 	
 	if(gnome_mode) 	{
 		GtkWidget *w;
-		GtkWidget *but;
+		GtkWidget *options;
 		GtkWidget *first_button;
-		GtkWidget *butbox;
-		GtkWidget *sw;
+		GtkWidget *but;
+		GtkWidget *menu;
 
 		w = gtk_dialog_new_with_buttons (title,	NULL,
 				GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -100,26 +100,24 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 		label_autowrap(GTK_DIALOG(w)->vbox, prompt, width);
 
 		/*
-		 * Setup the containers.
+		 * Setup the option menu
 		 */
-		sw = gtk_scrolled_window_new (NULL, NULL);
- 		gtk_box_pack_start_defaults (
-			GTK_BOX (GTK_DIALOG (w)->vbox), sw);
-		gtk_widget_show (sw);
+		options = gtk_option_menu_new ();
+ 		gtk_box_pack_start_defaults (GTK_BOX (GTK_DIALOG (w)->vbox), options);
+		gtk_widget_show (options);
 
- 		butbox = gtk_vbox_new (FALSE, 0);
- 		gtk_scrolled_window_add_with_viewport (
-			GTK_SCROLLED_WINDOW (sw), butbox);
- 		gtk_widget_show (butbox);
-
-		gtk_container_set_border_width (GTK_CONTAINER (butbox),
-						GNOME_PAD);
 		/*
 		 * Add the buttons.
 		 */
 		the_items = items;
 		first_button = NULL;
-		
+		menu = gtk_option_menu_get_menu (options);
+		if (!GTK_IS_MENU (menu)) {
+			menu = gtk_menu_new ();
+			gtk_option_menu_set_menu (GTK_OPTION_MENU (options), menu);
+			gtk_widget_show (menu);
+		}
+
 		for(i=0; i< item_no; i++)
 		{
 			char *x = (char *)items[2*i];
@@ -127,21 +125,27 @@ int dialog_menu(const char *title, const char *prompt, int height, int width,
 			char *p;
 
 			p = g_strdup_printf("%s  -   %s", x, y);
-			but=gtk_button_new_with_label(p);
+			but = gtk_menu_item_new_with_label (p);
 			g_free(p);
+			gtk_widget_show (but);
 
 			if (first_button == NULL)
 				first_button = but;
+			else
+				gtk_signal_connect(GTK_OBJECT(but), "activate",
+						   GTK_SIGNAL_FUNC(okayed), GUINT_TO_POINTER(i));
 
-			gtk_box_pack_start(GTK_BOX(butbox), but, TRUE, TRUE, 0);
-			gtk_signal_connect(GTK_OBJECT(but), "clicked",
-			GTK_SIGNAL_FUNC(okayed), GUINT_TO_POINTER(i));
+			gtk_menu_shell_append (GTK_MENU_SHELL (menu), but);
+
 		}
 
 
 		gtk_widget_show_all(w);
-		if (first_button != NULL)
-			gtk_widget_grab_focus (first_button);
+		if (first_button != NULL) {
+			gtk_menu_shell_activate_item (GTK_MENU_SHELL (menu), first_button, FALSE);
+			gtk_signal_connect(GTK_OBJECT(first_button), "activate",
+					   GTK_SIGNAL_FUNC(okayed), GUINT_TO_POINTER(0));
+		}
 		gtk_main();
 		return 0;
 	}
