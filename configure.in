@@ -16,7 +16,6 @@ AM_MAINTAINER_MODE
 
 AM_ACLOCAL_INCLUDE(macros)
 AC_CONFIG_SUBDIRS(gfloppy)
-AC_CONFIG_SUBDIRS(gdict)
 
 GNOME_INIT(applets)
 
@@ -63,7 +62,19 @@ AC_TYPE_SIGNAL
 AC_FUNC_STRFTIME
 AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname)
 
+dnl *******************************
+dnl Guile checks
+dnl *******************************
 GNOME_CHECK_GUILE
+
+dnl *******************************
+dnl gnome-print checks
+dnl *******************************
+if test "x$enable_gnome_print" = "xyes"; then
+  AM_PATH_GNOME_PRINT(0.12.0)
+  AC_DEFINE(HAVE_GNOME_PRINT)
+fi
+
 dnl *******************************
 dnl LibGlade
 dnl *******************************
@@ -196,7 +207,8 @@ mini-utils/gfontsel/Makefile
 mini-utils/gfontsel/help/Makefile
 mini-utils/gfontsel/help/C/Makefile
 mini-utils/gfontsel/help/C/stylesheet-images/Makefile
-mini-utils/gcolorsel/Makefile])
+mini-utils/gcolorsel/Makefile
+gdictsrc/Makefile])
 
 #mini-utils/gsu/Makefile
 #mini-utils/gpenguin/Makefile
