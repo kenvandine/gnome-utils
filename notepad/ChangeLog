@@ -1,3 +1,16 @@
+1998-05-27  Marius Vollmer  <mvo@zagadka.ping.de>
+
+	Notepad should work again.
+	
+	* notepad.scm: Use `(gtk gtk)' and `(gnome gnome)' modules instead
+	of `(toolkits gtk)'.
+	(gettext): Dummy definition.
+	(about-box): Changed into a procedure. Set BOX to #f when the
+	window is destroyed.  Don't use `gtk-destroyed?'.  Use #f as the
+	logo.  gnome_about_new can't deal with logos that aren't found.
+	(at toplevel): Don't connect to "delete_event" signal of toplevel
+	window.  The default action is acceptable.
+	
 Thu Mar 19 01:48:44 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* notepad.scm (query-for-save): Put some actual text into message
