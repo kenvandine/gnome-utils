@@ -115,7 +115,7 @@ RepaintLogInfo (LogviewWindow *window)
    last_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf(_("Number of Lines: %ld)"), window->curlog->lstats.numlines);
+   tmp = g_strdup_printf(_("Number of Lines: %ld"), window->curlog->lstats.numlines);
    num_lines = LocaleToUTF8 (tmp);
    g_free (tmp);
    

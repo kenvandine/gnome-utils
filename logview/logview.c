@@ -283,7 +283,6 @@ main (int argc, char *argv[])
    while ((next_opt = poptGetNextOpt (poptCon)) > 0) {
 	   if ( next_opt == 1 ) {
 		   if (file_to_open) {
-			   g_print("in main, trying to open %s\n", file_to_open);
 			   logview_create_window_open_file (file_to_open);
 			   g_free (file_to_open);
 		   }
@@ -292,7 +291,6 @@ main (int argc, char *argv[])
 
    /* If no log was passed as parameter, open regular logs */
    if (logview_count_logs() == 0) {
-	   g_print("in main, regular, trying to open %s\n", user_prefs->logfile);
 	   logview_create_window_open_file (user_prefs->logfile);
 	   if (logview_count_logs() == 0) {
 		   GtkWidget *window;
@@ -886,9 +884,13 @@ logview_menus_set_state (LogviewWindow *window)
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", FALSE); 
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", FALSE);
 	} else {
+		if (window->curlog->display_name)
+			logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
+		else
+			logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", (window->curlog != NULL));
+		
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/Properties", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/CloseLog", (window->curlog != NULL));
-		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", (window->curlog != NULL));
@@ -930,11 +932,19 @@ void
 logview_set_window_title (LogviewWindow *window)
 {
 	gchar *window_title;
-	if ((window->curlog != NULL) && (window->curlog->name != NULL))
-		if (window->monitored) 
-			window_title = g_strdup_printf (_("%s (monitored) - %s"), window->curlog->name, APP_NAME);
+	gchar *logname;
+
+	if ((window->curlog != NULL) && (window->curlog->name != NULL)) {
+		if (window->curlog->display_name != NULL)
+			logname = window->curlog->display_name;
 		else
-			window_title = g_strdup_printf ("%s - %s", window->curlog->name, APP_NAME);
+			logname = window->curlog->name;
+		
+		if (window->monitored) 
+			window_title = g_strdup_printf (_("%s (monitored) - %s"), logname, APP_NAME);
+		else
+			window_title = g_strdup_printf ("%s - %s", logname, APP_NAME);
+	}
 	else
 		window_title = g_strdup_printf (APP_NAME);
 	gtk_window_set_title (GTK_WINDOW (window), window_title);

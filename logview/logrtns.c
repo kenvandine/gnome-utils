@@ -29,6 +29,7 @@
 #include "logview.h"
 #include "logrtns.h"
 #include <libgnomevfs/gnome-vfs.h>
+#include <libgnomevfs/gnome-vfs-mime-utils.h>
 
 /*
  * -------------------
@@ -167,8 +168,25 @@ GnomeVFSFileSize GetLogSize (Log *log)
 	result = gnome_vfs_get_file_info (log->name, &info, GNOME_VFS_FILE_INFO_DEFAULT);
 	return (info.size);
 }
-	
 
+static gboolean
+file_is_zipped (char *filename)
+{
+	char *mime_type;
+
+	mime_type = gnome_vfs_get_file_mime_type (filename, NULL, FALSE);
+
+	if (strcmp (mime_type, GNOME_VFS_MIME_TYPE_UNKNOWN) == 0)
+		return FALSE;
+
+	if (strcmp (mime_type, "application/x-gzip")==0 ||
+	    strcmp (mime_type, "application/x-zip")==0 ||
+	    strcmp (mime_type, "application/zip")==0)
+		return TRUE;
+	else
+		return FALSE;
+}
+	   	
 /* ----------------------------------------------------------------------
    NAME:          OpenLogFile
    DESCRIPTION:   Open a log file and read several pages.
@@ -181,12 +199,29 @@ OpenLogFile (char *filename)
    LogLine *line;
    char *buffer;
    char **buffer_lines;
+   char *display_name=NULL;
+   char *tmp;
    int i;
+   GError *error;
    GnomeVFSResult result;
    GnomeVFSFileSize size, read_bytes;
 
-   g_print("Trying to open the file %s\n", filename);
-
+   if (file_is_zipped (filename)) {
+	   char *command;
+	   gint result;
+	   result = g_file_open_tmp ("log_XXXXXX", &tmp, &error);
+	   if (result >- 1 && tmp != NULL) {
+		   command = g_strdup_printf ("gunzip -c %s > %s", filename, tmp);
+		   result = system (command);
+		   if (result == 0) {
+			   display_name = filename;
+			   filename = tmp;
+		   } else
+			   return NULL;
+	   } else
+		   return NULL;
+   }
+   
    /* Check that the file exists and is readable and is a logfile */
    if (!isLogFile (filename, TRUE))
 	   return NULL;
@@ -201,6 +236,7 @@ OpenLogFile (char *filename)
    /* Open log files */
    strncpy (tlog->name, filename, sizeof (tlog->name)-1);
    tlog->name[sizeof (tlog->name) - 1] = '\0';
+   tlog->display_name = display_name;
 
    result = gnome_vfs_open (&(tlog->handle), filename, GNOME_VFS_OPEN_READ);
    if (result != GNOME_VFS_OK) {
