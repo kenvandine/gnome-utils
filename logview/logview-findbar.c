@@ -28,10 +28,10 @@ logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 					GtkTreeIter *iter, gpointer data)
 {
 	SearchIter *st = data;
-	gchar *found[3];
-	GSList *values, *list;
-	char *date, *hostname, *process, *message;
-	int comp;
+	gchar *found[3] = {NULL, NULL, NULL};
+	int i;
+	gchar *utf8;
+	gchar *fields[3] = {NULL, NULL, NULL}, *hostname, *process, *message;
 	GtkTreePath *search_path = gtk_tree_model_get_path (model, iter);
 
 	if (st->forward) {
@@ -43,13 +43,38 @@ logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 			return TRUE;
 	}
 	
-	gtk_tree_model_get (model, iter, 0, &date, 1, &hostname, 2, &process, 3, &message, -1);
-	
-	found[0] = (hostname==NULL ? NULL : g_strrstr ((char*) hostname, (char*) st->pattern));
-	found[1] = (process==NULL ? NULL : g_strrstr ((char*) process, (char*) st->pattern));
-	found[2] = (message==NULL ? NULL : g_strrstr ((char*) message, (char*) st->pattern));
-	
-	if ((found[0] != NULL) || (found[1] != NULL) || (found[2] != NULL)) {
+	gtk_tree_model_get (model, iter, 1, &(fields[0]), 2, &(fields[1]), 3, &(fields[2]), -1);
+
+	/* Can someone explain to me why the following code doesn't work ? */
+	/*
+	for (i==0; i<3; i++) {
+		if (fields[i] != NULL) {
+			utf8 = g_utf8_casefold (fields[i], -1);
+			found[i] = g_strrstr (utf8, st->pattern);
+			g_free (utf8);
+		}
+	}
+	*/
+
+	if (fields[0] != NULL) {
+		utf8 = g_utf8_casefold (fields[0], -1);
+		found[0] = g_strrstr (utf8, st->pattern);
+		g_free (utf8);
+	}
+	if (fields[1] != NULL) {
+		utf8 = g_utf8_casefold (fields[1], -1);
+		found[1] = g_strrstr (utf8, st->pattern);
+		g_free (utf8);
+	}
+	if (fields[2] != NULL) {
+		utf8 = g_utf8_casefold (fields[2], -1);
+		found[2] = g_strrstr (utf8, st->pattern);
+		g_free (utf8);
+	}
+
+	if ((found[0] == NULL) && (found[1] == NULL) && (found[2] == NULL))
+		return FALSE;
+	else {
 		if (st->forward) {
 			if (gtk_tree_path_compare (st->current_path, search_path) <= st->comparison) {
 				/* if searching forward, stop at the first found item */
