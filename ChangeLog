@@ -1,3 +1,10 @@
+2001-02-15  Dan Mueth <dan@eazel.com>
+
+        * omf-install/Makefile.am: Changed to install under
+          $(datadir)/omf/ instead of $(prefix)/doc/omf because
+          this is The Right Way, and scrollkeeper was recently fixed
+          to work this way.
+
 Thu Feb 15 17:03:36 2001  George Lebl <jirka@5z.com>
 
 	* gdictsrc/gdict-applet.c, gdictsrc/main.c:  Use correct name for

@@ -1,4 +1,4 @@
-omf_dest_dir=$(prefix)/doc/omf/gnome-utils
+omf_dest_dir=$(datadir)/omf/gnome-utils
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(omf_dest_dir)
