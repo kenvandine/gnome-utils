@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2002-04-05 23:34+0200\n"
-"PO-Revision-Date: 2002-04-05 23:35+0200\n"
+"POT-Creation-Date: 2002-04-18 12:23+0200\n"
+"PO-Revision-Date: 2002-04-18 12:37+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -513,6 +513,56 @@ msgstr "Wklej"
 msgid "Paste the clipboard"
 msgstr "Wkleja zawartość schowka"
 
+#: gcharmap/src/notifiers.c:1
+#, c-format
+msgid "There was an error loading config from %s. (%s)\n"
+msgstr "Przy odczycie konfiguracji z %s wystąpił błąd (%s).\n"
+
+#: gcharmap/src/notifiers.c:1
+#, c-format
+msgid ""
+"There was an error subscribing to notification of statusbar visibility "
+"changes. (%s)\n"
+msgstr ""
+"Przy rejestrowaniu się do powiadamiania o zmianach widoczności paska stanu "
+"wystąpił błąd (%s).\n"
+
+#: gcharmap/src/notifiers.c:1
+#, c-format
+msgid ""
+"There was an error subscribing to notification of textbar visibility "
+"changes. (%s)\n"
+msgstr ""
+"Przy rejestrowaniu się do powiadamiania o zmianach widoczności paska "
+"tekstowego wystąpił błąd (%s).\n"
+
+#: gcharmap/src/notifiers.c:1
+#, c-format
+msgid ""
+"There was an error subscribing to notification of actionbar visibility "
+"changes. (%s)\n"
+msgstr ""
+"Przy rejestrowaniu się do powiadamiania o zmianach widoczności paska "
+"operacji wystąpił błąd (%s).\n"
+
+#: gcharmap/src/notifiers.c:1
+#, c-format
+msgid ""
+"There was an error subscribing to notification of insertion behaviour "
+"changes. (%s)\n"
+msgstr ""
+"Przy rejestrowaniu się do powiadamiania o zmianach zachowania przy "
+"wstawianiu wystąpił błąd (%s).\n"
+
+#: gcharmap/src/notifiers.c:1
+#, c-format
+msgid ""
+"There was an error subscribing to notification of button focusability "
+"changes. (%s)\n"
+msgstr ""
+"Przy rejestrowaniu się do powiadamiania o zmianach możliwości przekazywania "
+"skupienia do przycisków wystąpił błąd (%s).\n"
+
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
@@ -590,6 +640,10 @@ msgstr "Pisownia"
 #: gdictsrc/gdict-app.c:1
 msgid "Check word spelling"
 msgstr "Wprawdza pisownię słowa"
+
+#: gdictsrc/gdict-app.c:1 gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Słownik"
 
 #: gdictsrc/gdict-app.c:1 gdictsrc/gdict-speller.c:1
 msgid "_Word : "
@@ -814,10 +868,6 @@ msgid "Process directory contents depth first"
 msgstr "Przeszukiwanie katalogów najpierw w głąb"
 
 #: gsearchtool/gsearchtool.c:1
-msgid "Don't search subdirectories"
-msgstr "Bez przeszukiwania podkatalogów"
-
-#: gsearchtool/gsearchtool.c:1
 msgid "Owned by user"
 msgstr "Właściciel pliku"
 
@@ -836,10 +886,6 @@ msgstr "Czas ostatniej modyfikacji"
 #: gsearchtool/gsearchtool.c:1
 msgid "File is empty"
 msgstr "Plik jest pusty"
-
-#: gsearchtool/gsearchtool.c:1
-msgid "Matches regular expression"
-msgstr "Pasuje do wyrażenia regularnego"
 
 #: gsearchtool/gsearchtool.c:1
 msgid "today at %-I:%M %p"
@@ -928,6 +974,20 @@ msgstr ""
 "Polecenie:"
 
 #: gsearchtool/gsearchtool.c:1
+msgid "Command"
+msgstr "Polecenie"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Command Line Entry"
+msgstr "Wejście wiersza poleceń"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Use this command line to execute the search from console"
+msgstr ""
+"Poniższego wiersza polecenia możesz użyć przy wykonywaniu tego wyszukiwania "
+"z powłoki"
+
+#: gsearchtool/gsearchtool.c:1
 msgid "No viewer available for this mime type."
 msgstr "Brak przeglądarki odpowiadającej temu typowi MIME."
 
@@ -936,8 +996,24 @@ msgid "Entry changed called for a non entry option!"
 msgstr "Wywołano entry_changed dla elementu nie będącego elementem wejściowym!"
 
 #: gsearchtool/gsearchtool.c:1
+msgid "Search Rule Value Entry"
+msgstr "Wejście na wartość reguły wyszukiwania"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Enter a value for search rule"
+msgstr "Wprowadź wartość reguły wyszukiwania"
+
+#: gsearchtool/gsearchtool.c:1
 msgid "Enabled"
 msgstr "Aktywna"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Toggle On/Off to enable/disable the rule"
+msgstr "Przełącz, aby uaktywnić lub unieaktynić regułę"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Click to Remove the Rule"
+msgstr "Kliknij, aby usunąć regułę"
 
 #: gsearchtool/gsearchtool.c:1
 msgid "S_tarting in folder:"
@@ -947,6 +1023,14 @@ msgstr "Rozpoczęcie _w folderze:"
 msgid "Browse"
 msgstr "Wybór katalogu"
 
+#: gsearchtool/gsearchtool.c:1 gsearchtool/gsearchtool.c:1
+msgid "Starting folder entry"
+msgstr "Wejście na folder początkowy"
+
+#: gsearchtool/gsearchtool.c:1 gsearchtool/gsearchtool.c:1
+msgid "Enter the folder name where you want to start the search"
+msgstr "Wprowadź nazwę folderu, w którym chcesz rozpocząć wyszukiwanie"
+
 #: gsearchtool/gsearchtool.c:1
 msgid "Rules:"
 msgstr "Reguły:"
@@ -955,9 +1039,29 @@ msgstr "Reguły:"
 msgid "A_dd Rule:"
 msgstr "Dodaj _regułę:"
 
+#: gsearchtool/gsearchtool.c:1
+msgid "Search Rules Menu"
+msgstr "Menu reguł wyszukiwania"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Select a search rule from the menu"
+msgstr "Wybierz z menu regułę wyszukiwania"
+
 #: gsearchtool/gsearchtool.c:1 gsearchtool/gsearchtool.c:1
 msgid "F_ind"
 msgstr "_Znajdź"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Click to Add a Rule"
+msgstr "Kliknij, aby dodać regułę"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Click to Start the Search"
+msgstr "Kliknij, aby rozpocząć wyszukiwanie"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Click to Stop the Search"
+msgstr "Kliknij, aby zatrzymać wyszukiwanie"
 
 #: gsearchtool/gsearchtool.c:1 gsearchtool/gsearchtool.c:1
 msgid "Results"
@@ -986,6 +1090,22 @@ msgstr "Data modyfikacji"
 #: gsearchtool/gsearchtool.c:1
 msgid "Find files _named:"
 msgstr "Wyszukanie plików o _nazwach:"
+
+#: gsearchtool/gsearchtool.c:1 gsearchtool/gsearchtool.c:1
+msgid "File Name Entry"
+msgstr "Wejście nazwy pliku"
+
+#: gsearchtool/gsearchtool.c:1 gsearchtool/gsearchtool.c:1
+msgid "Enter the file name you want to search"
+msgstr "Podaj nazwę pliku, który chcesz odnaleźć"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Click to Start the search"
+msgstr "Kliknij, aby rozpocząć wyszukiwanie"
+
+#: gsearchtool/gsearchtool.c:1
+msgid "Click to Stop the search"
+msgstr "Kliknij, aby zatrzymać wyszukiwanie"
 
 #: gsearchtool/gsearchtool.c:1
 msgid "Si_mple"
@@ -2001,10 +2121,6 @@ msgstr "Formater dyskietek"
 #: gfloppy/gfloppy.desktop.in.h:1
 msgid "Format Floppy Disks"
 msgstr "Narzędzie do formatowania dyskietek"
-
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Słownik"
 
 #: meat-grinder/archive-generator.desktop.in.h:1
 msgid "Archive Generator"
