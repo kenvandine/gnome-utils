@@ -4,6 +4,16 @@
 #include <time.h>
 #include <glib.h>
 
+#define PO 0
+#define EXT 1
+#define STREET 2
+#define CITY 3
+#define REGION 4
+#define CODE 5
+#define COUNTRY 6
+
+#define DELADDR_MAX 7
+
 typedef struct _group
 {
 	char *name;
@@ -104,13 +114,7 @@ typedef struct
 	CardProperty prop;
 	
 	int type;
-	char *po;         /* Post Office Address */
-	char *ext;        /* Extended Address */
-	char *street;
-	char *city;
-	char *region;
-	char *code;
-	char *country;
+	char *data[DELADDR_MAX];
 } CardDelAddr;            /* Delivery Address */
 
 typedef struct 

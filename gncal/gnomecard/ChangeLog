@@ -1,3 +1,18 @@
+1998-08-08  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* card.[hc], gnomecard.c: CardDelAddr now uses an array of DELADDR_MAX
+		char pointers, instead of using named structure members. It was
+		getting pretty heary... how could one arrive to these situations?
+		Where did common sense go?
+	* cardfind.xpm, Makefile.am: new icon for find utility!
+	* gnomecard.c (gnomecard_find_card): getting ready for the find utility 
+		(to regexp or not to regexp?)
+
+1998-08-07  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
+
+	* gnomecard.c: (gnomecard_init_defaults, gnomecard_setup_apply): 
+		added gnome_config routines.
+												        
 1998-08-07  Arturo Espinosa Aldama  <arturo@nuclecu.unam.mx>
 
 	* gnomecard.c: (gnomecard_set_node_info): Avoids repeating code and

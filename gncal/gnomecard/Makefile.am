@@ -30,6 +30,7 @@ EXTRA_DIST =  \
 	addrtool.xpm  \
 	cardedit.xpm  \
 	cardnew.xpm  \
+	cardfind.xpm  \
 	email.xpm  \
 	expl.xpm  \
 	first.xpm  \

@@ -431,45 +431,42 @@ get_CardDelAddr(VObject *o)
 	VObject *vo;
 	char *the_str;
 	CardDelAddr *addr;
+	int i;
 	
 	addr = malloc(sizeof(CardDelAddr));
 	
-	addr->po = NULL;
-	addr->ext = NULL;
-	addr->street = NULL;
-	addr->city = NULL;
-	addr->region = NULL;
-	addr->code = NULL;
-	addr->country = NULL;
+	for (i = 0; i < DELADDR_MAX; i++)
+		addr->data[i] = NULL;
+	
 	addr->type = get_addr_type(o);
 	addr->prop = get_CardProperty(o);
 	
 	if (has (o, VCPostalBoxProp)) {
-		addr->po = g_strdup(str_val(vo));
+		addr->data[PO] = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCExtAddressProp)) {
-		addr->ext = g_strdup(str_val(vo));
+		addr->data[EXT] = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCStreetAddressProp)) {
-		addr->street = g_strdup(str_val(vo));
+		addr->data[STREET] = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCCityProp)) {
-		addr->city = g_strdup(str_val(vo));
+		addr->data[CITY] = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCRegionProp)) {
-		addr->region = g_strdup(str_val(vo));
+		addr->data[REGION] = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCPostalCodeProp)) {
-		addr->code = g_strdup(str_val(vo));
+		addr->data[CODE] = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	if (has (o, VCCountryNameProp)) {
-		addr->country = g_strdup(str_val(vo));
+		addr->data[COUNTRY] = g_strdup(str_val(vo));
 		free(the_str);
 	}
 	
@@ -1187,13 +1184,13 @@ card_convert_to_vobject(Card *crd)
 			
 			vprop = addProp(vobj, VCAdrProp);
 			add_AddrType(vprop, deladdr->type);
-			add_strProp(vprop, VCPostalBoxProp, deladdr->po);
-			add_strProp(vprop, VCExtAddressProp, deladdr->ext);
-			add_strProp(vprop, VCStreetAddressProp, deladdr->street);
-			add_strProp(vprop, VCCityProp, deladdr->city);
-			add_strProp(vprop, VCRegionProp, deladdr->region);
-			add_strProp(vprop, VCPostalCodeProp, deladdr->code);
-			add_strProp(vprop, VCCountryNameProp, deladdr->country);
+			add_strProp(vprop, VCPostalBoxProp, deladdr->data[PO]);
+			add_strProp(vprop, VCExtAddressProp, deladdr->data[EXT]);
+			add_strProp(vprop, VCStreetAddressProp, deladdr->data[STREET]);
+			add_strProp(vprop, VCCityProp, deladdr->data[CITY]);
+			add_strProp(vprop, VCRegionProp, deladdr->data[REGION]);
+			add_strProp(vprop, VCPostalCodeProp, deladdr->data[CODE]);
+			add_strProp(vprop, VCCountryNameProp, deladdr->data[COUNTRY]);
 			add_CardProperty(vprop, &deladdr->prop);
 		}
 	}

@@ -6,6 +6,7 @@
 #include "cardedit.xpm"
 #include "first.xpm"
 #include "last.xpm"
+#include "cardfind.xpm"
 
 /* Tree icons */
 

@@ -68,3 +68,8 @@ typedef struct
 	
 	GList *l;
 } GnomeCardDelLabel;
+
+typedef struct
+{
+	GtkWidget *entry, *sens, *back;
+} GnomeCardFind;
