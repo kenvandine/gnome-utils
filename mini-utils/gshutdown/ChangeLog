@@ -1,3 +1,9 @@
+Sun Jun 24 15:43:49 2001  George Lebl <jirka@5z.com>
+
+	* gshutdown.c: check /usr/sbin and /sbin for the command even if not
+	  in PATH, since the user may have su'ed to root without changing
+	  his env.  Also fix a crash if command started with whitespace.
+
 2001-06-09 Manuel de Vega Barreiro <mbarreiro@red.madritel.es>
 
 	* mini-utils/gshutdown/doc/es

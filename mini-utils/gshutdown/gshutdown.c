@@ -57,7 +57,7 @@ static void popup_confirm(void);
 
 static void do_shutdown(void);
 static gint check_whether_suid_and_executable (gchar *command_name);
-static void run_command(gchar * command);
+static void run_command(const char * command);
 
 /*****************************
   Runlevel stuff.
@@ -118,7 +118,7 @@ static gchar * default_runlevel_commands[] = {
 
 static gchar * runlevel_commands[7];
 
-static Runlevel requested_runlevel;
+static Runlevel requested_runlevel = Halt;
 
 /* The runlevel radio buttons are on different notebook pages
    but in the same group, so only one is active at a time. */
@@ -581,13 +581,46 @@ GnomeHelpMenuEntry ref = {"gshutdown", "index.html"};
 /*********************************************
   Non-GUI
   ***********************/
+
+/*
+ * Find command, sort of like is_program_in_path, but looks in /sbin and /usr/sbin
+ */
+static char *
+find_command (const char *command_name)
+{
+	char *command_path;
+
+	if (command_name [0] == '/') {
+		if (access (command_name, X_OK) == 0)
+			return g_strdup (command_name);
+		else
+			return NULL;
+	}
+
+	command_path = gnome_is_program_in_path (command_name);
+	if (command_path != NULL)
+		return command_path;
+
+	command_path = g_strconcat ("/sbin/", command_name, NULL);
+	if (access (command_path, X_OK) == 0)
+		return command_path;
+	g_free (command_path);
+
+	command_path = g_strconcat ("/usr/sbin/", command_name, NULL);
+	if (access (command_path, X_OK) == 0)
+		return command_path;
+	g_free (command_path);
+
+	return NULL;
+}
+
 static void do_shutdown(void)
 {
-  gchar * command_name, * command_path;
+  gchar * command_name, * command_path, * command_dup;
 
-  command_name = g_strdup(runlevel_commands[requested_runlevel]);
-  command_name = strtok(command_name, " \r\n\t");
-  command_path = gnome_is_program_in_path(command_name);
+  command_dup = g_strdup (runlevel_commands[requested_runlevel]);
+  command_name = strtok (command_dup, " \r\n\t");
+  command_path = find_command (command_name);
 
   if (getuid () && !check_whether_suid_and_executable (command_path)) {
     gnome_dialog_run
@@ -600,13 +633,13 @@ static void do_shutdown(void)
     exit (1);
   }
 
-  if ( command_path ) {
+  if (command_path != NULL) {
     run_command(runlevel_commands[requested_runlevel]);
-    g_free(command_name);
-  }
-  else {
-    popup_not_in_path(command_name);
-    g_free(command_name);
+    g_free(command_dup);
+    g_free(command_path);
+  } else {
+    popup_not_in_path (command_name);
+    g_free (command_dup);
     return;
   }
 
@@ -677,9 +710,10 @@ check_whether_suid_and_executable (gchar *command_name)
 #include <sys/types.h>
 #include <stdlib.h>
 
-static void run_command(gchar * command)
+static void run_command(const gchar * command)
 {
   pid_t new_pid;
+  char *path;
 
   new_pid = fork();
 
@@ -688,6 +722,22 @@ static void run_command(gchar * command)
     g_warning(_("Command execution failed: fork failed"));
     break;
   case 0 : 
+    /* We make sure that /sbin and /usr/sbin is in path,
+     * because this is where shutdown and halt and friends
+     * like to reside */
+
+    /* no care about leaks, we're exitting soon */
+    path = g_strdup (g_getenv ("PATH"));
+
+    /* eek, handle this case, even though it's nuts */
+    if (path == NULL || path[0] == '\0') {
+	    path = g_strdup ("PATH=/sbin:/usr/sbin");
+    } else {
+	    path = g_strconcat ("PATH=", path, ":/sbin:/usr/sbin", NULL);
+    }
+
+    putenv (path);
+
     _exit(system(command));
     break;
   default:
