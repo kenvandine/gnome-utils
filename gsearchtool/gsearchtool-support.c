@@ -922,7 +922,8 @@ open_file_with_application (const gchar *filename)
 			uri = gnome_vfs_get_uri_from_local_path (filename);
 			uris = g_list_append (uris, uri);
 			
-			if (!g_file_test (desktop_file, G_FILE_TEST_EXISTS)) {
+			if (!g_file_test (desktop_file, G_FILE_TEST_EXISTS) || 
+			    !gnome_vfs_mime_application_supports_uris (mimeApp)) {
 				result = (gnome_vfs_mime_application_launch (mimeApp, uris) == GNOME_VFS_OK);
 			}
 			else {
