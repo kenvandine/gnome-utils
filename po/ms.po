@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: iPACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-17 23:42-0500\n"
-"PO-Revision-Date: 2002-02-05 03:09+0800\n"
+"POT-Creation-Date: 2002-02-25 01:09+0800\n"
+"PO-Revision-Date: 2002-02-25 01:08+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -13,8 +13,8 @@ msgstr ""
 
 #. Translator credits
 #: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
-#: gsearchtool/gsearchtool.c:1643 logview/about.c:52
-#: meat-grinder/meat-grinder.c:380
+#: gsearchtool/gsearchtool.c:1667 logview/about.c:52
+#: meat-grinder/meat-grinder.c:382
 msgid "translator_credits"
 msgstr "Hasbullah Bin Pit (sebol)"
 
@@ -377,9 +377,8 @@ msgid "Action Toolbar"
 msgstr "Toolbar aksi"
 
 #: gcharmap/src/interface.c:189
-#, fuzzy
 msgid "_Text to copy:"
-msgstr "Teks untuk disalin:"
+msgstr "_Teks untuk disalin"
 
 #: gcharmap/src/interface.c:196
 msgid "_Copy"
@@ -410,9 +409,8 @@ msgid "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 
 #: gcharmap/src/menus.c:48
-#, fuzzy
 msgid "_Browse Characters..."
-msgstr "Lihat Aksara..."
+msgstr "_Lihat Aksara..."
 
 #: gcharmap/src/menus.c:49
 msgid "Insert character(s) by choosing character codes."
@@ -479,8 +477,8 @@ msgstr "Tampal klipboard"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:418
-#: gdictsrc/gdict-pref-dialog.c:462 gdictsrc/gdict-speller.c:434
+#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:421
+#: gdictsrc/gdict-pref-dialog.c:465 gdictsrc/gdict-speller.c:434
 msgid "Cannot connect to server"
 msgstr "Gagal mennyambung pelayan"
 
@@ -530,27 +528,27 @@ msgstr ""
 "Sama ada pelayan yang digunakan tidak dapat dihunbungi\n"
 "atau anda tidak ada sambungan ke Internet."
 
-#: gdictsrc/gdict-app.c:489
+#: gdictsrc/gdict-app.c:486
 msgid "Lookup"
 msgstr "Cari"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:487
 msgid "Lookup word in dictionary"
 msgstr "Cari ayat didalam kamus"
 
-#: gdictsrc/gdict-app.c:492
+#: gdictsrc/gdict-app.c:489
 msgid "Spell"
 msgstr "Eja"
 
-#: gdictsrc/gdict-app.c:493
+#: gdictsrc/gdict-app.c:490
 msgid "Check word spelling"
 msgstr "Periksa ejaan"
 
-#: gdictsrc/gdict-app.c:594 gdictsrc/gdict-speller.c:128
+#: gdictsrc/gdict-app.c:591 gdictsrc/gdict-speller.c:128
 msgid "Word : "
 msgstr "Perkataan:"
 
-#: gdictsrc/gdict-app.c:598
+#: gdictsrc/gdict-app.c:595
 msgid "_Look Up"
 msgstr "Car_i"
 
@@ -627,15 +625,15 @@ msgstr "Pangkalan data:"
 msgid "Default strategy:"
 msgstr "Strategi khusus:"
 
-#: gdictsrc/gdict-pref-dialog.c:410
+#: gdictsrc/gdict-pref-dialog.c:413
 msgid "Search all databases"
 msgstr "Cari dalam semua pengkalan data"
 
-#: gdictsrc/gdict-pref-dialog.c:598
+#: gdictsrc/gdict-pref-dialog.c:603
 msgid "The server you specified could not be found."
 msgstr "Pelayan yang anda nyatakan tidak dapat ditemui"
 
-#: gdictsrc/gdict-pref-dialog.c:649
+#: gdictsrc/gdict-pref-dialog.c:660
 msgid "The server could not be found on that port."
 msgstr "Pelayan tersebut tidak dijumpai pada liang tesebut."
 
@@ -659,6 +657,19 @@ msgstr "Car_i Perkataan"
 msgid "Spell checker"
 msgstr "Pemeriksa ejaan"
 
+#: gdictsrc/GNOME_GDictApplet.server.in.h:1
+msgid "Dictionary Lookup"
+msgstr "Carian Kamus"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:2
+#: gdictsrc/gnome-dictionary.desktop.in.h:2
+msgid "Lookup words in an online dictionary"
+msgstr "Cari perkataan pada kamus dalamtalian"
+
+#: gdictsrc/GNOME_GDictApplet.server.in.h:3
+msgid "Utility"
+msgstr "Utiliti"
+
 #: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:137
 msgid "About..."
 msgstr "Perihal..."
@@ -669,7 +680,7 @@ msgstr "Keutamaan..."
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
 msgid "Show/Hide Definition Window..."
-msgstr ""
+msgstr "Papar/Sorok Tetingkap Definisi..."
 
 #: gsearchtool/gsearchtool.c:63
 msgid "File name is"
@@ -720,35 +731,45 @@ msgstr "Fail adalah kosong"
 msgid "Matches regular expression"
 msgstr "Padankan penyataan regular (regexp)"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:549
 msgid "today at %-I:%M %p"
 msgstr "Hari ini pada %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:547
+#: gsearchtool/gsearchtool.c:551
 msgid "yesterday at %-I:%M %p"
-msgstr ""
+msgstr "semalam pada %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:549 gsearchtool/gsearchtool.c:551
+#: gsearchtool/gsearchtool.c:553 gsearchtool/gsearchtool.c:555
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%m/%-d/%y, %-I:%M %p"
 
-#: gsearchtool/gsearchtool.c:561
+#: gsearchtool/gsearchtool.c:565
 msgid "%Y%m%d%H%M%S"
 msgstr "%Y%m%d%H%M%S"
 
-#: gsearchtool/gsearchtool.c:576
+#: gsearchtool/gsearchtool.c:580
 msgid "folder"
 msgstr "folder"
 
-#: gsearchtool/gsearchtool.c:578
+#: gsearchtool/gsearchtool.c:582
 msgid "program"
 msgstr "program"
 
-#: gsearchtool/gsearchtool.c:580
+#: gsearchtool/gsearchtool.c:584
 msgid "symbolic link"
 msgstr "pautan simbolik"
 
-#: gsearchtool/gsearchtool.c:758
+#: gsearchtool/gsearchtool.c:685
+msgid ""
+"Cannot perform the search.\n"
+"The Bourne shell was not found\n"
+"It is typically installed as /bin/sh or /usr/bin/sh."
+msgstr ""
+"Tak dapat lakukan carian.\n"
+" Bash tidak dijumpai\n"
+"Ianya biasanya dipasang sebagai /bin/sh atau /usr/bin/sh."
+
+#: gsearchtool/gsearchtool.c:782
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -756,15 +777,15 @@ msgstr ""
 "\n"
 "... Terlalu banyak ralat untuk dipaparkan ..."
 
-#: gsearchtool/gsearchtool.c:795
+#: gsearchtool/gsearchtool.c:819
 msgid "Start directory does not exist."
 msgstr "Direktori permulaan tidak wujud."
 
-#: gsearchtool/gsearchtool.c:806 gsearchtool/gsearchtool.c:1420
+#: gsearchtool/gsearchtool.c:830 gsearchtool/gsearchtool.c:1444
 msgid "Cannot perform the search. Please specify a search criteria."
 msgstr "Tak dapat melakukan pencarian. Sila nyatakan kriteris pencarian."
 
-#: gsearchtool/gsearchtool.c:823 gsearchtool/gsearchtool.c:1440
+#: gsearchtool/gsearchtool.c:847 gsearchtool/gsearchtool.c:1464
 msgid ""
 "A search is already running.  Please wait for the search to complete or "
 "cancel it."
@@ -772,20 +793,20 @@ msgstr ""
 "Pencarian sudah terlaksana. Sila tunggu hingga pencarian selesai atau "
 "batalkan ia."
 
-#: gsearchtool/gsearchtool.c:841
+#: gsearchtool/gsearchtool.c:865
 msgid "Start directory does not exist"
 msgstr "Direktori permulaan tidak wujud"
 
-#: gsearchtool/gsearchtool.c:856
+#: gsearchtool/gsearchtool.c:880
 msgid "Cannot show the search command line. Please specify a search criteria."
 msgstr ""
 "Tak dapat memapar arahan baris pencarian. Sila nyatakan kriteria pencarian."
 
-#: gsearchtool/gsearchtool.c:860
+#: gsearchtool/gsearchtool.c:884
 msgid "Search Command Line"
 msgstr "Arahan Baris Pencarian"
 
-#: gsearchtool/gsearchtool.c:875
+#: gsearchtool/gsearchtool.c:899
 msgid ""
 "This is the command line that can be used to execute this search from the "
 "console.\n"
@@ -797,107 +818,112 @@ msgstr ""
 "\n"
 "Arahan:"
 
-#: gsearchtool/gsearchtool.c:1005
+#: gsearchtool/gsearchtool.c:1029
 msgid "No viewer available for this mime type."
 msgstr "Tiada pelihat yang ada untuk jenis mime ini"
 
-#: gsearchtool/gsearchtool.c:1091
+#: gsearchtool/gsearchtool.c:1115
 msgid "Entry changed called for a non entry option!"
 msgstr "Kemasukkan diubah dipanggil untuk opsyen bukan kemasukkan!"
 
-#: gsearchtool/gsearchtool.c:1155
+#: gsearchtool/gsearchtool.c:1179
 msgid "Enabled"
 msgstr "Hidupkan"
 
-#: gsearchtool/gsearchtool.c:1213
+#: gsearchtool/gsearchtool.c:1237
 msgid "S_tarting in folder:"
 msgstr "Ber_mula pada folder"
 
-#: gsearchtool/gsearchtool.c:1215
+#: gsearchtool/gsearchtool.c:1239
 msgid "Browse"
 msgstr "Lungsur"
 
-#: gsearchtool/gsearchtool.c:1232
+#: gsearchtool/gsearchtool.c:1256
 msgid "Rules:"
 msgstr "Tatacara:"
 
-#: gsearchtool/gsearchtool.c:1252
+#: gsearchtool/gsearchtool.c:1276
 msgid "A_dd Rule:"
 msgstr "_Tambah Tatacara:"
 
-#: gsearchtool/gsearchtool.c:1283 gsearchtool/gsearchtool.c:1496
+#: gsearchtool/gsearchtool.c:1307 gsearchtool/gsearchtool.c:1520
 msgid "F_ind"
 msgstr "Car_i"
 
-#: gsearchtool/gsearchtool.c:1300 gsearchtool/gsearchtool.c:1512
+#: gsearchtool/gsearchtool.c:1324 gsearchtool/gsearchtool.c:1536
 msgid "Results"
 msgstr "Hasil"
 
-#: gsearchtool/gsearchtool.c:1332 gsearchtool/gsearchtool.c:1545
+#: gsearchtool/gsearchtool.c:1356 gsearchtool/gsearchtool.c:1569
 msgid "Name"
 msgstr "Nama"
 
-#: gsearchtool/gsearchtool.c:1354 gsearchtool/gsearchtool.c:1567
+#: gsearchtool/gsearchtool.c:1378 gsearchtool/gsearchtool.c:1591
 msgid "Folder"
 msgstr "Folder"
 
-#: gsearchtool/gsearchtool.c:1366 gsearchtool/gsearchtool.c:1579
+#: gsearchtool/gsearchtool.c:1390 gsearchtool/gsearchtool.c:1603
 msgid "Size"
 msgstr "Saiz"
 
-#: gsearchtool/gsearchtool.c:1378 gsearchtool/gsearchtool.c:1591
+#: gsearchtool/gsearchtool.c:1402 gsearchtool/gsearchtool.c:1615
 msgid "Type"
 msgstr "Jenis"
 
-#: gsearchtool/gsearchtool.c:1389 gsearchtool/gsearchtool.c:1602
+#: gsearchtool/gsearchtool.c:1413 gsearchtool/gsearchtool.c:1626
 msgid "Date Modified"
 msgstr "Tarikh Diubahsuai"
 
-#: gsearchtool/gsearchtool.c:1467
+#: gsearchtool/gsearchtool.c:1491
 msgid "Find files _named:"
 msgstr "Cari _nama fail:"
 
-#: gsearchtool/gsearchtool.c:1622
+#: gsearchtool/gsearchtool.c:1646
 msgid "Si_mple"
 msgstr "_Mudah"
 
-#: gsearchtool/gsearchtool.c:1625
+#: gsearchtool/gsearchtool.c:1649
 msgid "Ad_vanced"
 msgstr "_Lanjutan"
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1674
 msgid "The Gnome Search Tool"
 msgstr "Radas pencarian Gnome"
 
-#: gsearchtool/gsearchtool.c:1651
+#: gsearchtool/gsearchtool.c:1675
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998,2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:1652
+#: gsearchtool/gsearchtool.c:1676
 msgid "Frontend to the unix find/locate commands"
 msgstr "Antaramuka untuk arahan unix find/locate"
 
-#: gsearchtool/gsearchtool.c:1703
+#: gsearchtool/gsearchtool.c:1711
+#, c-format
+msgid "File %s already exists. Overwrite?"
+msgstr "Fail %s tersedia ada. Tindih?"
+
+#: gsearchtool/gsearchtool.c:1746
 msgid "Cannot save the results file."
 msgstr "Tak dapat menyimpan fail hasil."
 
-#: gsearchtool/gsearchtool.c:1710 meat-grinder/meat-grinder.c:492
+#: gsearchtool/gsearchtool.c:1753 meat-grinder/meat-grinder.c:494
 msgid "Save Results"
 msgstr "Simpan Hasil"
 
-#: gsearchtool/gsearchtool.c:1745
+#: gsearchtool/gsearchtool.c:1788
 msgid "S_how Command"
 msgstr "Paparkan Ara_han"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1789
 msgid "Save Results _As..."
 msgstr "Simpan Hasil seb_agai..."
 
-#: gsearchtool/gsearchtool.c:1780
+#: gsearchtool/gsearchtool.c:1823
 msgid "Cannot initialize bonobo."
 msgstr "Gagal menginitialisasikan Bonobo."
 
-#: gsearchtool/gsearchtool.c:1784
+#: gsearchtool/gsearchtool.c:1827
 msgid "Search Tool"
 msgstr "Radas pencarian"
 
@@ -942,7 +968,7 @@ msgstr "Tambah..."
 msgid "Edit..."
 msgstr "Edit..."
 
-#: logview/actions.c:163 meat-grinder/meat-grinder.c:718
+#: logview/actions.c:163 meat-grinder/meat-grinder.c:720
 msgid "Remove"
 msgstr "Buang"
 
@@ -992,7 +1018,7 @@ msgstr "keterangan:"
 msgid "Description of this entry."
 msgstr "iketerangan kemasukan ini."
 
-#: logview/actions.c:810
+#: logview/actions.c:812
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1148,12 +1174,12 @@ msgstr ""
 msgid "%s could not be opened."
 msgstr "%s tak dapat dibuka."
 
-#: logview/logrtns.c:332
+#: logview/logrtns.c:330 logview/logrtns.c:339
 #, c-format
 msgid "%s not a log file."
 msgstr "%s bukanlah fail log."
 
-#: logview/logrtns.c:756 logview/logrtns.c:787 logview/logrtns.c:918
+#: logview/logrtns.c:765 logview/logrtns.c:796 logview/logrtns.c:927
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: kehabisan memori"
 
@@ -1344,6 +1370,51 @@ msgstr "Penerangan:"
 #: logview/zoom.c:212
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#.
+#. * 	-------------------
+#. * 	     Defines
+#. * 	-------------------
+#.
+#: logview/config.c:34
+msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:35
+msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:36
+msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#: logview/config.c:37
+msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
+
+#: logview/config.c:39
+msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
+
+#: logview/config.c:40
+msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
+
+#: logview/config.c:41
+msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:42
+msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
+
+#: logview/config.c:43
+msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
+
+#: logview/config.c:44
+msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
 
 #: logview/desc_db.c:37
 #, c-format
@@ -1677,16 +1748,16 @@ msgstr ""
 "fail bolehlaksana ini adalah untuk platform lain dan tak boleh dilaksanakan "
 "pada sistem ini"
 
-#: meat-grinder/meat-grinder.c:109
+#: meat-grinder/meat-grinder.c:111
 #, c-format
 msgid ""
 "Number of files: %d\n"
-"Nuber of folders: %d"
+"Number of folders: %d"
 msgstr ""
 "Bilangan fail: %d\n"
 "Bilangan folder: %d"
 
-#: meat-grinder/meat-grinder.c:115
+#: meat-grinder/meat-grinder.c:117
 msgid ""
 "No files or folders, drop files or folders\n"
 "above to add them to the archive"
@@ -1694,79 +1765,79 @@ msgstr ""
 "TIada fail atau folder, heret dan jatuhkan fail\n"
 "atau folder ke atas untuk menambahnya ke arkib"
 
-#: meat-grinder/meat-grinder.c:220 meat-grinder/meat-grinder.c:223
+#: meat-grinder/meat-grinder.c:222 meat-grinder/meat-grinder.c:225
 msgid "Cannot start the archive (tar) program"
 msgstr "Tak dapat memulakan program arkib (tar)"
 
-#: meat-grinder/meat-grinder.c:231
+#: meat-grinder/meat-grinder.c:233
 msgid "Cannot run tar/gtar"
 msgstr "Tak dapat melaksanakan tar/gtar"
 
-#: meat-grinder/meat-grinder.c:282
+#: meat-grinder/meat-grinder.c:284
 msgid "Archive.tar.gz"
 msgstr "Arkib.tar.gz"
 
-#: meat-grinder/meat-grinder.c:387
+#: meat-grinder/meat-grinder.c:389
 msgid "The GNOME Archive Generator"
 msgstr "Penjana Arkib bagi GNOME"
 
-#: meat-grinder/meat-grinder.c:389
+#: meat-grinder/meat-grinder.c:391
 msgid "Drag files in to make archives"
 msgstr "Heret fail kedalamnya untuk membuat arkib"
 
-#: meat-grinder/meat-grinder.c:460 meat-grinder/meat-grinder.c:618
+#: meat-grinder/meat-grinder.c:462 meat-grinder/meat-grinder.c:620
 msgid "No filename selected"
 msgstr "Tiada namafail dipilih"
 
-#: meat-grinder/meat-grinder.c:464
+#: meat-grinder/meat-grinder.c:466
 msgid "File exists, overwrite?"
 msgstr "Fail %s tersedia ada. Tindih?"
 
-#: meat-grinder/meat-grinder.c:488
+#: meat-grinder/meat-grinder.c:490
 msgid "No items to archive"
 msgstr "Tiada item untuk diarkibkan"
 
-#: meat-grinder/meat-grinder.c:621
+#: meat-grinder/meat-grinder.c:623
 msgid "File does not exists"
 msgstr "Fail  tidak wujud"
 
-#: meat-grinder/meat-grinder.c:635
+#: meat-grinder/meat-grinder.c:637
 msgid "Add file or folder"
 msgstr "Tambah fail atau folder"
 
-#: meat-grinder/meat-grinder.c:705
+#: meat-grinder/meat-grinder.c:707
 msgid "Add file or folder..."
 msgstr "Tambah fail atau folder..."
 
-#: meat-grinder/meat-grinder.c:706
+#: meat-grinder/meat-grinder.c:708
 msgid "Add a file or folder to the archive"
 msgstr "TAmbah fail atau folder ke arkib"
 
-#: meat-grinder/meat-grinder.c:709
+#: meat-grinder/meat-grinder.c:711
 msgid "Create archive..."
 msgstr "Cipta arkin..."
 
-#: meat-grinder/meat-grinder.c:710
+#: meat-grinder/meat-grinder.c:712
 msgid "Create a new archive from the items"
 msgstr "Cipta arkib baru dari item"
 
-#: meat-grinder/meat-grinder.c:719
+#: meat-grinder/meat-grinder.c:721
 msgid "Remove the selected item(s)"
 msgstr "Buang item yang dipilih"
 
-#: meat-grinder/meat-grinder.c:751
+#: meat-grinder/meat-grinder.c:753
 msgid "GNOME Archive Generator"
 msgstr "Penjana Arkib bagi GNOME"
 
-#: meat-grinder/meat-grinder.c:781
+#: meat-grinder/meat-grinder.c:783
 msgid "Drop files here to add them to the archive."
 msgstr "Jatuhkan fail disini untuk menambahnya ke arkib."
 
-#: meat-grinder/meat-grinder.c:799
+#: meat-grinder/meat-grinder.c:801
 msgid "Archive"
 msgstr "Arkib"
 
-#: meat-grinder/meat-grinder.c:806
+#: meat-grinder/meat-grinder.c:808
 msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
@@ -1774,11 +1845,11 @@ msgstr ""
 "Heret butang ini ke destinasi di mana anda ingin arkib dicipta atau tekan ia "
 "untuk popupkan dialog pemilihan fail."
 
-#: meat-grinder/meat-grinder.c:899
+#: meat-grinder/meat-grinder.c:901
 msgid "Cannot find proper icons anywhere!"
 msgstr "Tak dapat menjumpai ikon sesuai di mana sekalipun!"
 
-#: meat-grinder/meat-grinder.c:907
+#: meat-grinder/meat-grinder.c:909
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
@@ -1797,10 +1868,6 @@ msgstr "Format Cakera Liut"
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Kamus"
-
-#: gdictsrc/gnome-dictionary.desktop.in.h:2
-msgid "Lookup words in an online dictionary"
-msgstr "Cari perkataan pada kamus dalamtalian"
 
 #: meat-grinder/archive-generator.desktop.in.h:1
 msgid "Archive Generator"
@@ -1835,51 +1902,13 @@ msgid "Perform simple calculations"
 msgstr "Lakukan pengiraan mudah"
 
 #: gsearchtool/help/es/gsearchtool.desktop.in.h:1
-#, fuzzy
 msgid "GNOME Search Tool"
-msgstr "Radas pencarian"
+msgstr "Radas pencarian GNOME"
 
 #: logview/gnome-system-log.desktop.in.h:1
-#, fuzzy
 msgid "System Log"
-msgstr "Pelihat Log Sistem"
+msgstr "Log Sistem"
 
 #: logview/gnome-system-log.desktop.in.h:2
 msgid "View the system log file"
-msgstr ""
-
-#~ msgid "_Action Toolbar"
-#~ msgstr "Toolbar _Aksi"
-
-#~ msgid "View or hide the action toolbar"
-#~ msgstr "Paparkan atau sembunyikan toolbar aksi"
-
-#~ msgid "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#~ msgid "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-#~ msgstr "-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*"
-
-#~ msgid "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
-#~ msgstr "-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*"
+msgstr "Lihat fail log sistem"
