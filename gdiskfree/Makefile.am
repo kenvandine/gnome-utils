@@ -1,4 +1,8 @@
-INCLUDES =						\
+## Process this file with automake to produce Makefile.in
+
+SUBDIRS = doc
+
+INCLUDES = -DG_LOG_DOMAIN=\"GDiskFree\"			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-I$(includedir) $(GNOME_INCLUDEDIR) $(LIBGTOP_INCS)
 
