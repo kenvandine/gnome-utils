@@ -61,17 +61,19 @@ void InitMonitorData (void);
  *       ----------------
  */
 
+extern GtkWidget *app;
 extern ConfigData *cfg;
 extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 
-GtkWidget *monoptions = NULL;
-GtkWidget *monwindow = NULL;
-GtkWidget *srclist, *destlist;
+static GtkWidget *monoptions = NULL;
+static GtkWidget *monwindow = NULL;
+static GtkWidget *srclist, *destlist;
 
-int monitorcount;
-gboolean mon_opts_visible, mon_win_visible;
-gboolean mon_exec_actions, mon_hide_while_monitor;
+static int monitorcount = 0;
+static gboolean mon_opts_visible = FALSE, mon_win_visible = FALSE;
+static gboolean mon_exec_actions = FALSE, mon_hide_while_monitor = FALSE;
+static gboolean main_app_hidden = FALSE;
 
 /* ----------------------------------------------------------------------
    NAME:         MonitorMenu
@@ -385,6 +387,10 @@ close_monitor_options (GtkWidget * widget, gpointer client_data)
       gtk_widget_hide (monoptions);
    monoptions = NULL;
    mon_opts_visible = FALSE;
+   if (mon_hide_while_monitor && main_app_hidden) {
+	   gtk_widget_show (app);
+	   main_app_hidden = FALSE;
+   }
 }
 
 /* ----------------------------------------------------------------------
@@ -437,10 +443,6 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
 
    /* Setup timer to check log */
    gtk_timeout_add (1000, mon_check_logs, NULL);
-
-   /* If hide_while_monitor is set don't display this window */
-   if (mon_hide_while_monitor)
-     return;
 
    /* Create monitor window */
    /* setup size */
@@ -509,6 +511,10 @@ go_monitor_log (GtkWidget * widget, gpointer client_data)
 
    gtk_widget_show (monwindow);
 
+   if (mon_hide_while_monitor) {
+	   gtk_widget_hide (app);
+	   main_app_hidden = TRUE;
+   }
 }
 
 /* ----------------------------------------------------------------------
@@ -644,8 +650,8 @@ mon_check_logs (gpointer data)
 void
 mon_hide_app_checkbox (GtkWidget *widget, gpointer data)
 {
-  mon_hide_while_monitor = (mon_hide_while_monitor) ? FALSE : TRUE;
-  return;
+	mon_hide_while_monitor =
+		GTK_TOGGLE_BUTTON (widget)->active ? TRUE : FALSE;
 }
 
 
@@ -657,6 +663,5 @@ mon_hide_app_checkbox (GtkWidget *widget, gpointer data)
 void
 mon_actions_checkbox (GtkWidget *widget, gpointer data)
 {
-  mon_exec_actions = (mon_exec_actions) ? FALSE : TRUE;
-  return;
+	mon_exec_actions = GTK_TOGGLE_BUTTON (widget)->active ? TRUE : FALSE;
 }
