@@ -1,5 +1,12 @@
 1999-02-10  Martin Baulig  <martin@home-of-linux.org>
 
+	* gsu-lib.c (gsu_call_helper): New file. Use the `gsu_call_helper'
+	function to call the gsu-helper.
+
+	* gsu-test.c: New file for testing only.
+
+1999-02-10  Martin Baulig  <martin@home-of-linux.org>
+
 	* gsu-helper.c (passwd_fd): This is the number of an open file
 	descriptor which we use to read the password from.
 	(message_fd): This is the number of an open file descriptor which
