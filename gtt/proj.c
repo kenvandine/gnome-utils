@@ -756,6 +756,7 @@ gtt_project_get_secs_ever (GttProject *proj)
  *     than proj->auto_merge_gap
  *     Merge all intervals that are shorter than 
  *     proj->auto_merge_interval into the nearest interval.
+ *     (but only do this if the nearest is in the same day).
  */
 
 static int
