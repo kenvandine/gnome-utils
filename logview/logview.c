@@ -516,13 +516,6 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 	   gtk_widget_destroy (chooser);
 	   return;
    }
-
-   /* Check that we haven't opened all logfiles allowed    */
-   if (g_slist_length (logview_windows) >= MAX_NUM_LOGS)
-     {
-       ShowErrMessage (_("Too many open logs. Close one and try again"));
-       return;
-     }
    
    /* If a log was already opened in the window, close it */
    if (window->curlog) {
@@ -565,13 +558,6 @@ LoadLogMenu (GtkAction *action, GtkWidget *callback_data)
 {
    GtkWidget *chooser = NULL;
    LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
-
-   /*  Cannot open more than MAX_NUM_LOGS */
-   if (g_slist_length(logview_windows) == MAX_NUM_LOGS)
-     { 
-       ShowErrMessage (_("Too many open logs. Close one and try again")); 
-       return;
-     }
    
    /*  Cannot have more than one file chooser window */
    /*  at one time. */
