@@ -22,7 +22,7 @@ endif
 
 SUBDIRS = po intl macros idl $(gfloppy) logview gcharmap \
 	gcalc gsearchtool $(gdiskfree) $(stripchart) gtt gdictsrc \
-	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog gstripchart \
+	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog \
 	omf-install
 
 EXTRA_DIST = gnome-utils.spec.in

@@ -234,25 +234,25 @@ AC_ARG_ENABLE(guname-capplet,
 AM_CONDITIONAL(GUNAME_CAPPLET, test x$enable_guname_capplet = xno)
 dnl guname end
 
-dnl If logf() is available, gstripchart will use it in preference 
+dnl If logf() is available, stripchart will use it in preference 
 dnl to the presumably slower log() function.
 AC_CHECK_FUNCS(logf)
 
 dnl If the Gnome applet libraries are available, define HAVE_GNOME_APPLET.
 dnl This will allow both an applet and an application version of          
-dnl gstripchart to be built.
+dnl stripchart and gcolorsel to be built.
 AM_CONDITIONAL(HAVE_GNOME_APPLET, test "x$GNOME_APPLETS_LIBS" != "x")
 
 if test "x$GNOME_APPLETS_LIBS" != "x"; then
-  AC_ARG_ENABLE(gstripchart-applet,
-  [  --enable-gstripchart-applet  Build a gstripchart applet [default=yes]],
-  enable_gstripchart_applet="$enableval", enable_gstripchart_applet=yes)
+  AC_ARG_ENABLE(stripchart-applet,
+  [  --enable-stripchart-applet  Build a stripchart applet [default=yes]],
+  enable_stripchart_applet="$enableval", enable_stripchart_applet=yes)
 
   AC_ARG_ENABLE(gcolorsel-applet,
   [  --enable-gcolorsel-applet  Build a gcolorsel applet [default=yes]],
   enable_gcolorsel_applet="$enableval", enable_gcolorsel_applet=yes) 
 fi
-AM_CONDITIONAL(BUILD_GSTRIPCHART_APPLET, test $enable_gstripchart_applet = yes)
+AM_CONDITIONAL(BUILD_STRIPCHART_APPLET, test $enable_stripchart_applet = yes)
 AM_CONDITIONAL(BUILD_GCOLORSEL_APPLET, test $enable_gcolorsel_applet = yes)
 
 AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${prefix}/share/pixmaps")
@@ -286,9 +286,6 @@ gsearchtool/help/Makefile
 gsearchtool/help/C/Makefile
 gsearchtool/help/it/Makefile
 gsearchtool/help/es/Makefile
-gstripchart/Makefile
-gstripchart/doc/Makefile
-gstripchart/doc/C/Makefile
 gtt/Makefile
 gtt/doc/Makefile
 gtt/doc/C/Makefile
