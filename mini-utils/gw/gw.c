@@ -289,7 +289,7 @@ get_list_column_number (void)
   gchar * token;
   gint col = 0;
   static const gint bufsize = 255;
-  gchar buffer[bufsize+1]; /* For a single line */
+  gchar buffer[256]; /* For a single line */
   FILE * f;
   gchar * returned;
 
@@ -332,7 +332,7 @@ static void reset_list(GtkCList * list)
   gint col;
   gchar ** row_text; 
   static const gint bufsize = 255;
-  gchar buffer[bufsize+1]; /* For a single line */
+  gchar buffer[256]; /* For a single line */
   FILE * f;
   gchar * returned;
   gint total_width;

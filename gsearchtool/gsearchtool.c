@@ -94,6 +94,7 @@ makecmd(void)
 				g_warning(_("grep options found in find list bad bad!"));
 				break;
 			default:
+			        break;
 			}
 		}
 	}
@@ -149,6 +150,7 @@ makecmd(void)
 				g_warning(_("grep options found in find list bad bad!"));
 				break;
 			default:
+			        break;
 			}
 		}
 	}
@@ -376,6 +378,7 @@ set_option_defaults(FindOption *opt)
 		opt->data.time=empty_str;
 		break;
 	default:
+	        break;
 	}
 }
 
@@ -420,6 +423,7 @@ create_option_box(FindOption *opt)
 		gtk_box_pack_start(GTK_BOX(option),w,TRUE,TRUE,0);
 		break;
 	default:
+	        break;
 	}
 	gtk_container_add(GTK_CONTAINER(frame),option);
 

@@ -1589,7 +1589,11 @@ text_load_clist(GtkWidget *txt, GtkWidget *box)
     {
       Param *p = chart_glob.parray[n];
       char val_str[100], top_str[100];
-      char *row_strs[] = { _(p->ident), val_str, top_str };
+      char *row_strs[3];
+
+      row_strs[0] = _(p->ident);
+      row_strs[1] = val_str;
+      row_strs[2] = top_str;
       hi_lo_fmt(p->top, top_str, p->val[chart_glob.new_val], val_str);
       gtk_clist_append(GTK_CLIST(txt), row_strs);
       gtk_clist_set_foreground(GTK_CLIST(txt), n, &p->gdk_color);

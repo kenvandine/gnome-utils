@@ -214,7 +214,7 @@ static void get_uptime()
 {
   FILE * f;
   static const gint bufsize = 80;
-  gchar buffer[bufsize + 1];
+  gchar buffer[81];
   gint chars_read;
   int i = 0;
 
