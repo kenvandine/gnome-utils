@@ -19,6 +19,7 @@
  * USA
  */
 
+#include <config.h>
 #include "info.h"
 #include <unistd.h>
 #include <string.h> /* memset */
