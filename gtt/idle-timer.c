@@ -20,6 +20,35 @@
  * resurection on some rainy day.  Ditto the XIDLE extension code.
  */
 
+
+/* methods of detecting idleness:
+
+      explicitly informed by SGI SCREEN_SAVER server event;
+      explicitly informed by MIT-SCREEN-SAVER server event;
+      (but we can't use these here ... since we just want 
+      arbitrary timeout, not a screen-saving event)
+      poll server idle time with XIDLE extension;
+      select events on all windows, and note absence of recent events;
+      note that /proc/interrupts has not changed in a while;
+      activated by clientmessage.
+
+   methods of detecting non-idleness:
+
+      read events on the xscreensaver window;
+      explicitly informed by SGI SCREEN_SAVER server event;
+      explicitly informed by MIT-SCREEN-SAVER server event;
+      select events on all windows, and note events on any of them;
+      note that /proc/interrupts has changed;
+      deactivated by clientmessage.
+
+   I trust that explains why this function is a big hairy mess.
+
+   N.B. it might have been cleaner/simpler to use 
+   gdk_window_add_filter (and specify a null filter) to get all window
+   events. Or os its advertised.  If so, then we could chop out all
+   of the XQueryTree stuff, as well as the main loop takeover. 
+ */
+
 # include "config.h"
 
 /* #define DEBUG_TIMERS */
@@ -368,29 +397,6 @@ check_for_clock_skew (IdleTimeout *si)
 
 
 /* ===================================================================== */
-
-/* methods of detecting idleness:
-
-      explicitly informed by SGI SCREEN_SAVER server event;
-      explicitly informed by MIT-SCREEN-SAVER server event;
-      (but we can't use these here ... since we just want 
-      arbitrary timeout, not a screen-saving event)
-      poll server idle time with XIDLE extension;
-      select events on all windows, and note absence of recent events;
-      note that /proc/interrupts has not changed in a while;
-      activated by clientmessage.
-
-   methods of detecting non-idleness:
-
-      read events on the xscreensaver window;
-      explicitly informed by SGI SCREEN_SAVER server event;
-      explicitly informed by MIT-SCREEN-SAVER server event;
-      select events on all windows, and note events on any of them;
-      note that /proc/interrupts has changed;
-      deactivated by clientmessage.
-
-   I trust that explains why this function is a big hairy mess.
- */
 
 time_t
 poll_last_activity (IdleTimeout *si)
