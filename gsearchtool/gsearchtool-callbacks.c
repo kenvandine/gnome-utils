@@ -447,7 +447,7 @@ open_folder_cb (GtkWidget 	*widget,
 		                           g_list_length (list));
 		
 		secondary = g_strdup_printf (ngettext ("This will open %d separate window.",
-						       "This will open %d separate windows."
+						       "This will open %d separate windows.",
 						       g_list_length (list)),
 		                             g_list_length (list));
 								  
