@@ -14,7 +14,8 @@ static GtkWidget *app = NULL;
 static GtkWidget *icon_list = NULL;
 static GtkWidget *status_label = NULL;
 static GtkWidget *compress_button = NULL;
-static GtkWidget *status_bar = NULL;
+static GtkWidget *app_bar = NULL;
+static GtkWidget *progress_bar = NULL;
 static GHashTable *file_ht = NULL;
 static gint number_of_files = 0;
 static gint number_of_dirs = 0;
@@ -161,8 +162,7 @@ remove_pos (gint pos)
 	g_hash_table_remove (file_ht, f->base_name);
         
  	status_msg = g_strdup_printf(_("%s removed"), f->base_name);
-        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
-                           0,
+        gnome_appbar_push (GNOME_APPBAR(app_bar), 
                            status_msg);
         g_free (status_msg);
 	free_file (f);
@@ -487,8 +487,7 @@ select_all_cb (GtkWidget *w, gpointer data)
 	for (i = 0; i < num_icons; i++) {
 		gnome_icon_list_select_icon (GNOME_ICON_LIST (icon_list), i);
 	}
-        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
-                           0,
+        gnome_appbar_push (GNOME_APPBAR (app_bar), 
                            _("All files selected"));
 }
 
@@ -507,8 +506,7 @@ clear_cb (GtkWidget *w, gpointer data)
 	number_of_files = number_of_dirs = 0;
 	gnome_icon_list_clear (GNOME_ICON_LIST (icon_list));
 
-        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
-                           0,
+        gnome_appbar_push (GNOME_APPBAR (app_bar), 
                            _("All files removed"));
 
 	gtk_widget_set_sensitive (compress_button, FALSE);
@@ -602,9 +600,7 @@ save_ok (GtkWidget *widget, GtkFileSelection *fsel)
         status_msg = g_strdup_printf(_("%s created"), g_path_get_basename(fname));
 	g_free (filename);
 	filename = g_strdup (fname);
-	gtk_widget_destroy (GTK_WIDGET (fsel));
-        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
-                           0,
+        gnome_appbar_push (GNOME_APPBAR (app_bar), 
                            status_msg);
        g_free (status_msg);
 }
@@ -739,8 +735,7 @@ add_file (const gchar *file)
     
 	update_status ();
         status_msg = g_strdup_printf(_("%s added"), base_name);
-        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
-                           0,
+        gnome_appbar_push (GNOME_APPBAR (app_bar), 
                            status_msg);
         g_free (status_msg);
 	g_free (fullname);
@@ -1038,11 +1033,10 @@ init_gui (void)
 			  G_CALLBACK (drag_data_received), NULL);
 
 	gnome_app_set_contents (GNOME_APP (app), vbox);
-       status_bar = gtk_statusbar_new ();
 
-       gtk_box_pack_start (GTK_BOX (vbox), status_bar, TRUE, TRUE, 0);
-       gtk_widget_show (status_bar);
-
+        app_bar = gnome_appbar_new (TRUE, TRUE, GNOME_PREFERENCES_NEVER);
+        gtk_box_pack_start (GTK_BOX (vbox), app_bar, FALSE, FALSE, 0);
+	gtk_widget_show_all (vbox);
 	gtk_widget_show (app);
 }
 
