@@ -9,5 +9,12 @@ INCLUDES = \
 meat_grinder_SOURCES = 	\
 	meat-grinder.c
 
-meat_grinder_LDADD = 	\
-	$(GNOME_LIBS)
+meat_grinder_LDADD = \
+	$(GNOME_LIBDIR)		\
+	$(GNOMEUI_LIBS) 	\
+	$(INTLLIBS)
+
+Utilitiesdir = $(datadir)/gnome/apps/Utilities
+Utilities_DATA = meat-grinder.desktop
+
+EXTRA_DIST = meat-grinder.desktop
