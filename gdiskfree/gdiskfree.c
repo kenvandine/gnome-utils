@@ -136,6 +136,7 @@ main (int argc, gchar *argv[])
   excluded = g_list_append (excluded, "devpts");
   excluded = g_list_append (excluded, "shm");
   excluded = g_list_append (excluded, "usbfs");
+  excluded = g_list_append (excluded, "usbdevfs");
   for (i = 0; i < mountlist.number; i++)
     {
       glibtop_fsusage    fsusage;
