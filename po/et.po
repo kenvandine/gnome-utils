@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-utils 2.1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-02-08 15:11+0100\n"
-"PO-Revision-Date: 2005-02-09 17:36+0200\n"
-"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
+"PO-Revision-Date: 2005-02-20 09:38+0200\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee> \n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,7 +102,7 @@ msgstr ""
 
 #: gdictsrc/gdict-app.c:301
 msgid "Print Word Definition"
-msgstr ""
+msgstr "Trükib sõnakirjelduse"
 
 #: gdictsrc/gdict-app.c:416
 msgid "Find"
@@ -221,13 +221,12 @@ msgid "Select everything"
 msgstr "Valib kõik"
 
 #: gdictsrc/gdict-app.c:677
-#, fuzzy
 msgid "_Spellings"
-msgstr "Kontrolli _õigekirja"
+msgstr "_Õigekiri"
 
 #: gdictsrc/gdict-app.c:678
 msgid "View alternate spellings"
-msgstr ""
+msgstr "Näitab alternatiivseid õigekirjavorme"
 
 #: gdictsrc/gdict-app.c:760
 msgid "_Word:"
@@ -271,10 +270,9 @@ msgstr "Stringi ei leitud"
 
 #: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
-msgstr ""
+msgstr "Kirjelduse eelvaade"
 
 #: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
-#, fuzzy
 msgid "Error invoking query"
 msgstr "Viga päringu täitmisel"
 
@@ -341,7 +339,7 @@ msgstr "Veebisait"
 #: gdictsrc/gdict-pref-dialog.c:342
 #, fuzzy
 msgid "Search Address"
-msgstr "O_tsingutulemused:"
+msgstr "Aadressiotsing"
 
 #: gdictsrc/gdict-pref-dialog.c:462
 msgid "Dictionary Preferences"
@@ -472,12 +470,12 @@ msgstr "ext2 - linuxi failisüsteem, fat - DOSi failisüsteem."
 
 #: gfloppy/src/badblocks.c:84
 msgid "Internal Error: Unable to seek to the correct location."
-msgstr ""
+msgstr "Sisemine viga: Ei saa positsioneerida õigele asukohale."
 
 #: gfloppy/src/badblocks.c:93
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
-msgstr ""
+msgstr "Sisemine viga: Veider väärtus (%ld) do_test täitmisel\n"
 
 #. while (!i)
 #. ;
@@ -555,6 +553,9 @@ msgid ""
 "\n"
 "Error code %s:%d"
 msgstr ""
+"Üldine viga kettaseadmele ligipääsul %s.\n"
+"\n"
+"Veakood %s:%d"
 
 #: gfloppy/src/fdformat.c:133
 #, c-format
@@ -596,6 +597,9 @@ msgid ""
 "\n"
 "Error code %s"
 msgstr ""
+"Üldine viga kettaseadmele ligipääsul %s.\n"
+"\n"
+"Veakood %s"
 
 #: gfloppy/src/fdformat.c:207
 msgid "Could not determine current floppy geometry."
@@ -607,16 +611,16 @@ msgstr ""
 
 #: gfloppy/src/gfloppy.c:235
 msgid "Error while filling the bad blocks list file."
-msgstr ""
+msgstr "Viga pahade blokkide faili täitmisel."
 
 #: gfloppy/src/gfloppy.c:298
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
-msgstr ""
+msgstr "Viga (%s) käsu käivitamisel: %s."
 
 #: gfloppy/src/gfloppy.c:324
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr ""
+msgstr "Tundmatu mke2fs algussignatuur, katkestan."
 
 #: gfloppy/src/gfloppy.c:338
 #, c-format
@@ -631,12 +635,12 @@ msgstr ""
 
 #: gfloppy/src/gfloppy.c:355
 msgid "Abnormal child process termination."
-msgstr ""
+msgstr "Ebanormaalne lapsprotsessi katkestamine."
 
 #: gfloppy/src/gfloppy.c:380
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
-msgstr ""
+msgstr "Viga mbadblocks käsu käivitamisel: %s."
 
 #: gfloppy/src/gfloppy.c:392
 #, c-format
@@ -644,10 +648,13 @@ msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
+"Pahade blokkide kontrollimise utiliit (mbadblocks) teatas järgnevatest "
+"vigadest:\n"
+"%s."
 
 #: gfloppy/src/gfloppy.c:435
 msgid "Abnormal mbadblocks child process termination."
-msgstr ""
+msgstr "Ebanormaalne mbadblocks lapsprotsessi katkestamine."
 
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
@@ -685,6 +692,9 @@ msgid ""
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
+"<small><i><b>Märkus</b>: Utiliiti mbadblocks ei ole sellesse süsteemi "
+"paigaldatud.  DOS (fat) vormingus vormindamiseks peab see olema paigaldatud."
+"</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "DOS (FAT)"
@@ -703,9 +713,8 @@ msgid "File system _type:"
 msgstr "Failisüsteemi _tüüp:"
 
 #: gfloppy/src/gfloppy2.glade.h:8
-#, fuzzy
 msgid "Filesystem Settings"
-msgstr "Failisüsteemi _tüüp:"
+msgstr "Failisüsteemi sätted"
 
 #: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
@@ -716,9 +725,8 @@ msgid "Floppy de_vice:"
 msgstr "Ketta_seade:"
 
 #: gfloppy/src/gfloppy2.glade.h:12
-#, fuzzy
 msgid "Formatting Mode"
-msgstr "Vormindamise vaikeresiim"
+msgstr "Vormindamiseresiim"
 
 #: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
@@ -757,15 +765,16 @@ msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Tavaline (lisab kiirele resiimile madaltaseme vormindamise)"
 
 #: gfloppy/src/main.c:224
-#, fuzzy
 msgid "Cannot Format"
-msgstr "_Vorminda"
+msgstr "Vormindamine pole võimalik"
 
 #: gfloppy/src/main.c:225
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
+"Rakendusi mke2fs ja mkdosfs/mformat ei ole paigaldatud. Ilma nendeta ei saa "
+"floppykettaid vormindada."
 
 #: gfloppy/src/main.c:245
 #, c-format
@@ -788,11 +797,13 @@ msgid ""
 "be possible.\n"
 "Contact your system administrator about getting write permissions."
 msgstr ""
+"Sul ei ole õiguseid %s seadmele kirjutamiseks ja seetõttu pole vormindamine "
+"võimalik.\n"
+"Kirjutusõiguste saamiseks võta ühendust oma süsteemiülemaga."
 
 #: gfloppy/src/main.c:258 gfloppy/src/main.c:322
-#, fuzzy
 msgid "Cannot initialize device"
-msgstr "Bonobo't ei saa lähtestada."
+msgstr "Seadet ei saa lähtestada"
 
 #: gfloppy/src/main.c:308
 msgid "Unable to open any device, formatting cannot continue."
@@ -803,11 +814,8 @@ msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 või /dev/fd0"
 
 #: gfloppy/src/main.c:475
-#, fuzzy
 msgid "Could not display help for the floppy formatter."
-msgstr ""
-"Kettavormindaja abiinfot ei saa kuvada.\n"
-"%s"
+msgstr "Kettavormindaja abiteavet ei saa kuvada."
 
 #: gfloppy/src/main.c:494
 msgid "Incorrect volume name"
@@ -834,7 +842,11 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
+"Ketas on vormingatud kuid selle käigus leiti ja märgiti <b>1 paha blokk</b> "
+"(%d'st)."
 msgstr[1] ""
+"Ketas on vormingatud kuid selle käigus leiti ja märgiti <b>1 paha blokki</b> "
+"(%d'st)."
 
 #: gfloppy/src/progress.c:125
 msgid "Floppy formatted successfully."
@@ -855,22 +867,21 @@ msgstr " (vigane Unicode)"
 #: gnome-screenshot/gnome-egg-xfer-dialog.c:471
 #, c-format
 msgid "(%d:%02d:%d Remaining)"
-msgstr ""
+msgstr "(%d:%02d:%d jäänud)"
 
 #: gnome-screenshot/gnome-egg-xfer-dialog.c:476
 #, c-format
 msgid "(%d:%02d Remaining)"
-msgstr ""
+msgstr "(%d:%02d jäänud)"
 
 #: gnome-screenshot/gnome-egg-xfer-dialog.c:587
 #, c-format
 msgid "%ld of %ld"
-msgstr ""
+msgstr "%ld / %ld'st"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:86
-#, fuzzy
 msgid "Error loading help"
-msgstr "Viga seadme %s sulgemisel"
+msgstr "Abiteabe laadimise viga"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:87
 msgid "There was an error displaying the help pages for this dialog:"
@@ -881,13 +892,13 @@ msgstr ""
 #: gnome-screenshot/gnome-panel-screenshot.c:111
 #, c-format
 msgid "Screenshot-%s.png"
-msgstr ""
+msgstr "Kuvatõmmis-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
 #: gnome-screenshot/gnome-panel-screenshot.c:117
 msgid "Screenshot.png"
-msgstr ""
+msgstr "Kuvatõmmis.png"
 
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
@@ -895,7 +906,7 @@ msgstr ""
 #: gnome-screenshot/gnome-panel-screenshot.c:155
 #, c-format
 msgid "Screenshot-%s-%d.png"
-msgstr ""
+msgstr "Kuvatõmmis-%s-%d.png"
 
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
@@ -903,45 +914,44 @@ msgstr ""
 #: gnome-screenshot/gnome-panel-screenshot.c:163
 #, c-format
 msgid "Screenshot-%d.png"
-msgstr ""
+msgstr "Kuvatõmmis-%d.png"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:338
 msgid "Unable to take a screenshot of the current desktop."
-msgstr ""
+msgstr "Käesoleva töölaua kuvatõmmist ei saa võtta."
 
 #: gnome-screenshot/gnome-panel-screenshot.c:410
 msgid "Grab a window instead of the entire screen"
-msgstr ""
+msgstr "Tõmmise tegemine aknast, mitte tervest töölauast"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:411
 msgid "Include the window border with the screenshot"
-msgstr ""
+msgstr "Kuvatõmmisesse lisatakse ka akna raam"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:412
 msgid "Take screenshot after specified delay [in seconds]"
-msgstr ""
+msgstr "Kuvatõmmise võtmine peale määratud viivitust [sekundites]"
 
 #: gnome-screenshot/gnome-panel-screenshot.c:413
 msgid "Effect to add to the window border"
-msgstr ""
+msgstr "Efekt, mida lisada aknaraamile"
 
 #: gnome-screenshot/gnome-panel-screenshot.glade.h:2
 msgid "<b>Options</b>"
-msgstr ""
+msgstr "<b>Valikud</b>"
 
 #: gnome-screenshot/gnome-panel-screenshot.glade.h:3
 msgid "<b>Preview</b>"
-msgstr ""
+msgstr "<b>Eelvaade</b>"
 
 #: gnome-screenshot/gnome-panel-screenshot.glade.h:4
 #: gnome-screenshot/gnome-screenshot.glade.h:2
 msgid "Save Screenshot"
-msgstr ""
+msgstr "Salvesta ekraanitõmmis"
 
 #: gnome-screenshot/gnome-screenshot.glade.h:3
-#, fuzzy
 msgid "Save in _folder:"
-msgstr "_Alustada kataloogist:"
+msgstr "Salvesta _kataloogi:"
 
 #: gnome-screenshot/gnome-screenshot.glade.h:4
 msgid "_Name:"
@@ -984,11 +994,13 @@ msgid "Select a directory"
 msgstr ""
 
 #: gnome-screenshot/screenshot-save.c:40
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to clear the temporary directory:\n"
 "%s"
-msgstr "Failisüsteemi ei saa korralikult luua."
+msgstr ""
+"Ajutist kataloogi ei saa puhastada:\n"
+"%s"
 
 #: gnome-screenshot/screenshot-save.c:78
 msgid ""
@@ -1009,14 +1021,13 @@ msgid "Preparing to copy"
 msgstr ""
 
 #: gnome-screenshot/screenshot-xfer.c:181
-#, fuzzy
 msgid "File already exists"
-msgstr "Fail on juba avatud"
+msgstr "Fail on juba olemas"
 
 #: gnome-screenshot/screenshot-xfer.c:184
-#, fuzzy, c-format
+#, c-format
 msgid "The file \"%s\" already exists.  Would you like to replace it?"
-msgstr "Dokument \"%s\" on juba olemas.  Kas sa soovid seda üle kirjutada?"
+msgstr "Fail \"%s\" on juba olemas.  Kas sa soovid seda üle kirjutada?"
 
 #: gnome-screenshot/screenshot-xfer.c:190
 #: gsearchtool/gsearchtool-callbacks.c:1267
@@ -1026,26 +1037,23 @@ msgstr "_Kirjuta üle"
 #: gnome-screenshot/screenshot-xfer.c:230
 #, c-format
 msgid "Unknown GnomeVFSXferProgressStatus %d"
-msgstr ""
+msgstr "Tundmatu GnomeVFSXferProgressStatus %d"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
 msgstr ""
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2
-#, fuzzy
 msgid "Search for Files..."
-msgstr "Failide otsimine"
+msgstr "Otsi faile..."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
-#, fuzzy
 msgid "Disable Quick Search"
-msgstr "Keela _kiirotsing"
+msgstr "Keela kiirotsing"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:2
-#, fuzzy
 msgid "Disable Quick Search Second Scan"
-msgstr "Keela _kiirotsing"
+msgstr "Keela kiirotsingu teine skanneerimine"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:3
 msgid "Quick Search Excluded Paths"
@@ -1537,7 +1545,7 @@ msgstr[1] "%d faili leitud"
 #: gsearchtool/gsearchtool.c:778 gsearchtool/gsearchtool.c:1037
 #: gsearchtool/gsearchtool.c:1123 gsearchtool/gsearchtool.c:2793
 msgid "Search for Files"
-msgstr "Failide otsimine"
+msgstr "Failiotsing"
 
 #: gsearchtool/gsearchtool.c:871
 msgid "Entry changed called for a non entry option!"
@@ -1641,23 +1649,22 @@ msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Sisesta otsingureegli väärtus"
 
 #: gsearchtool/gsearchtool.c:1939
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\""
-msgstr "_Eemalda"
+msgstr "Eemalda \"%s\""
 
 #: gsearchtool/gsearchtool.c:1940
-#, fuzzy, c-format
+#, c-format
 msgid "Click to remove the \"%s\" search option."
-msgstr "Klõpsa reegli '%s' eemaldamiseks"
+msgstr "Klõpsa reegli \"%s\" eemaldamiseks."
 
 #: gsearchtool/gsearchtool.c:2033
 msgid "A_vailable options:"
 msgstr "Võimalikud _valikud:"
 
 #: gsearchtool/gsearchtool.c:2062
-#, fuzzy
 msgid "Available options"
-msgstr "Võimalikud _valikud:"
+msgstr "Võimalikud valikud"
 
 #: gsearchtool/gsearchtool.c:2063
 #, fuzzy
@@ -1665,13 +1672,12 @@ msgid "Select a search option from the drop-down list."
 msgstr "Vali otsingureegel menüüst"
 
 #: gsearchtool/gsearchtool.c:2075
-#, fuzzy
 msgid "Add search option"
-msgstr "Tegevuse lisamine"
+msgstr "Lisa otsinguvalik"
 
 #: gsearchtool/gsearchtool.c:2076
 msgid "Click to add the selected available search option."
-msgstr ""
+msgstr "Klõpsa otsinguvaliku lisamiseks."
 
 #: gsearchtool/gsearchtool.c:2097
 msgid "S_earch results:"
@@ -1710,9 +1716,8 @@ msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:2617
-#, fuzzy
 msgid "Name contains"
-msgstr "_Nimi sisaldab:"
+msgstr "Nimi sisaldab"
 
 #: gsearchtool/gsearchtool.c:2623
 msgid "_Look in folder:"
@@ -1723,14 +1728,12 @@ msgid "Browse"
 msgstr "Lehitsemine"
 
 #: gsearchtool/gsearchtool.c:2634
-#, fuzzy
 msgid "Look in folder"
-msgstr "_Alustada kataloogist:"
+msgstr "Vaata kataloogi"
 
 #: gsearchtool/gsearchtool.c:2634
-#, fuzzy
 msgid "Select the folder or device from which you want to begin the search."
-msgstr "Sisesta kataloogi, kust tahad otsingut alustada, nimi"
+msgstr "Sisesta kataloogi nimi, kust tahad otsingut alustada."
 
 #: gsearchtool/gsearchtool.c:2645
 msgid "Show more _options"
@@ -1745,22 +1748,18 @@ msgid "Click to expand or collapse the list of available options."
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:2678
-#, fuzzy
 msgid "Click to display the help manual."
-msgstr "Klõpsa õigekirja kontrollimiseks"
+msgstr "Klõpsa abiteabe kuvamiseks"
 
 #: gsearchtool/gsearchtool.c:2686
-#, fuzzy
 msgid "Click to close \"Search for Files\"."
-msgstr "Failide otsimine"
+msgstr "Klõpsa \"Failiotsingu\" sulgemiseks"
 
 #: gsearchtool/gsearchtool.c:2712
-#, fuzzy
 msgid "Click to perform a search."
-msgstr "Klõpsa otsingu peatamiseks"
+msgstr "Klõpsa otsingu läbiviimiseks"
 
 #: gsearchtool/gsearchtool.c:2713
-#, fuzzy
 msgid "Click to stop a search."
 msgstr "Klõpsa otsingu peatamiseks"
 
@@ -1964,27 +1963,27 @@ msgstr[1] "%ld baiti"
 #: logview/info.c:97
 #, c-format
 msgid "<b>Size</b>: %s"
-msgstr ""
+msgstr "<b>Suurus</b>: %s"
 
 #: logview/info.c:102
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Modified</b>: %s"
-msgstr "Muudetud:"
+msgstr "<b>Muudetud</b>: %s"
 
 #: logview/info.c:106
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Start Date</b>: %s"
-msgstr "Alguskuupäev:"
+msgstr "<b>Alguskuupäev</b>: %s"
 
 #: logview/info.c:110
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Last Date</b>: %s"
-msgstr "Viimane kuupäev:"
+msgstr "<b>Lõpukuupäev</b>: %s"
 
 #: logview/info.c:114
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Number of Lines</b>: %ld"
-msgstr "Ridade arv:"
+msgstr "<b>Ridade arv</b>: %ld"
 
 #: logview/log_repaint.c:36
 msgid "January"
@@ -2041,9 +2040,8 @@ msgid "%x"
 msgstr "%x"
 
 #: logview/log_repaint.c:297
-#, fuzzy
 msgid "Last Modified:"
-msgstr "Viimati muudetud: "
+msgstr "Viimati muudetud:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
@@ -2058,9 +2056,8 @@ msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
-#, fuzzy
 msgid "The file could not be opened"
-msgstr "%s ei saa avada."
+msgstr "Faili ei saa avada"
 
 #: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
@@ -2068,7 +2065,7 @@ msgstr "Ei saa logifaili avada!\n"
 
 #: logview/logrtns.c:223
 msgid "Not enough memory!\n"
-msgstr "Mälu ei ole piisavalt!\n"
+msgstr "Pole piisavalt mälu!\n"
 
 #: logview/logrtns.c:275
 #, c-format
@@ -2080,7 +2077,7 @@ msgstr ""
 #: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
-msgstr ""
+msgstr "%s on liiga suur."
 
 #: logview/logrtns.c:284
 #, c-format
@@ -2097,26 +2094,24 @@ msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: mälu lõppes"
 
 #: logview/logview-findbar.c:265
-#, fuzzy
 msgid "Fin_d:"
-msgstr "Otsing"
+msgstr "_Otsing"
 
 #: logview/logview-findbar.c:283
-#, fuzzy
 msgid "Find Next"
-msgstr "Otsing"
+msgstr "Otsi järgmist"
 
 #: logview/logview-findbar.c:293
 msgid "Find Previous"
-msgstr ""
+msgstr "Otsi eelmist"
 
 #: logview/logview.c:85
 msgid "_Log"
-msgstr ""
+msgstr "_Logi"
 
 #: logview/logview.c:87
 msgid "_View"
-msgstr ""
+msgstr "_Vaata"
 
 #: logview/logview.c:90
 msgid "_Open..."
@@ -2143,12 +2138,10 @@ msgid "Close this log"
 msgstr "Sulgeb käesoleva logi"
 
 #: logview/logview.c:96
-#, fuzzy
 msgid "_Quit"
 msgstr "_Lõpeta"
 
 #: logview/logview.c:96
-#, fuzzy
 msgid "Quit the log viewer"
 msgstr "Lõpetab logivaataja töö"
 
@@ -2169,7 +2162,6 @@ msgid "Find pattern in logs"
 msgstr "Otsib logist mustrit"
 
 #: logview/logview.c:106
-#, fuzzy
 msgid "Collapse _All"
 msgstr "_Ahenda kõik"
 
@@ -2179,30 +2171,27 @@ msgstr "Ahendab kõik logiread"
 
 #: logview/logview.c:109
 msgid "Open the help contents for the log viewer"
-msgstr ""
+msgstr "Avab logivaataja abiteabe sisukorra"
 
 #: logview/logview.c:111
 msgid "Show the about dialog for the log viewer"
-msgstr ""
+msgstr "Avab logivaataja lähema teabe kuvamise dialoogi"
 
 #: logview/logview.c:117
-#, fuzzy
 msgid "_Monitor"
-msgstr "_Jälgi..."
+msgstr "_Jälgi"
 
 #: logview/logview.c:117
-#, fuzzy
 msgid "Monitor Current Log"
-msgstr "Jälgi logiraamatuid"
+msgstr "Käesoleva logi jälgimine"
 
 #: logview/logview.c:119
-#, fuzzy
 msgid "Ca_lendar"
-msgstr "Kalender"
+msgstr "Ka_lender"
 
 #: logview/logview.c:119
 msgid "Show Calendar Log"
-msgstr ""
+msgstr "Näitab logikalendrit"
 
 #: logview/logview.c:121
 msgid "_Entry Detail"
@@ -2234,16 +2223,16 @@ msgstr "Ava uus logifail"
 
 #: logview/logview.c:876
 msgid "There was an error displaying help."
-msgstr ""
+msgstr "Abiteabe kuvamisel tekkis viga."
 
 #: logview/logview.c:894
 #, c-format
 msgid "%s (monitored) - %s"
-msgstr ""
+msgstr "%s (jälgimisel) - %s"
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
-msgstr ""
+msgstr "Logifail, mis tuleb käivitamisel avada"
 
 #: logview/logview.schemas.in.h:2
 msgid ""
