@@ -755,6 +755,17 @@ do_show_scm (GttGhtml *ghtml, SCM node)
 	int len;
 	char * str = NULL;
 
+	/* guile-1.3.4 returns garbage at low addrs */
+	if ((0xffff > node) && (0 <= node))
+	{
+		g_warning ("You must upgrade the guile package "
+			"to version guile-1.4 or newer!\n"
+			"Until you do this, the HTML Reports and "
+			"the scheme extensions will not work "
+			"correctly!\n");
+		return SCM_UNSPECIFIED;
+	}
+
 	/* either a 'symbol or a "quoted string" */
 	if (SCM_SYMBOLP(node) || SCM_STRINGP (node))
 	{
