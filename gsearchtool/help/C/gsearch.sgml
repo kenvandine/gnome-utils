@@ -1,28 +1,30 @@
-<!DOCTYPE Article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN"[
+<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
 ]>
 
 <article id="index">
 
 
   <artheader> 
-  <title>GNOME Search Tool</title>
+  <title>GNOME Search Tool Manual</title>
     <copyright>
       <year>2000</year>
       <holder>Alexander Kirillov</holder>
     </copyright>
-    <legalnotice>
-   <para>
-    Permission is granted to copy, distribute and/or modify this
-    document under the terms of the <citetitle>GNU Free Documentation
-    License</citetitle>, Version 1.1 or any later version published
-    by the Free Software Foundation with no Invariant Sections, no
-    Front-Cover Texts, and no Back-Cover Texts. You may obtain a copy
-    of the <citetitle>GNU Free Documentation License</citetitle> from
-    the Free Software Foundation by visiting <ulink type="http"
-    url="http://www.fsf.org">their Web site</ulink> or by writing to:
-    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-    Boston, MA 02111-1307, USA.
-   </para>
+    <legalnotice id="legalnotice">
+      <para>
+        Permission is granted to copy, distribute and/or modify this
+        document under the terms of the <ulink type="help"
+        url="gnome-help:fdl"><citetitle>GNU Free Documentation
+        License</citetitle></ulink>, Version 1.1 or any later version
+        published by the Free Software Foundation with no Invariant
+        Sections, no Front-Cover Texts, and no Back-Cover Texts. You
+        may obtain a copy of the <citetitle>GNU Free Documentation
+        License</citetitle> from the Free Software Foundation by
+        visiting <ulink type="http" url="http://www.fsf.org">their Web
+        site</ulink> or by writing to: Free Software Foundation, Inc.,
+        59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+      </para>
+
    <para>
     Many of the names used by companies to distinguish their products and
     services are claimed as trademarks. Where those names appear in any
@@ -167,17 +169,17 @@
     <title>Search Criteria</title> 
 
     <para> In addition to the simple filename search described above,
-      the GNOME Search Tool allows you to specify other criteria. To do
-      so, you should select the appropriate criteria type from the
-      drop-down list (located to the left of the
-      <guibutton>Add</guibutton> button), and press
+      the <application>GNOME Search Tool</application> allows you to
+      specify other criteria. To do so, you should select the
+      appropriate criteria type from the drop-down list (located to
+      the left of the <guibutton>Add</guibutton> button), and press
       <guibutton>Add</guibutton>. This will add this criterion to the
       already existing ones. <application>GNOME Search
-	Tool</application> will search for files meeting
+      Tool</application> will search for files meeting
       <emphasis>all</emphasis> of the specified criteria. For example,
-      <xref linkend="sample"> shows search for all files with extension
-      <filename>txt</filename> which were modified during the last 7
-      days and which contain the word GNOME.
+      <xref linkend="sample"> shows search for all files with
+      extension <filename>txt</filename> which were modified during
+      the last 7 days and which contain the word GNOME.
     </para>
  
     <figure id="sample">
@@ -207,10 +209,12 @@
 	</para></listitem>
 
 	<listitem>
-          <para> <emphasis>Don't search subdirectories</emphasis> &mdash; if
-           this option is selected, GNOME Search Tool will not search
-           the files in the subdirectories of the start directory.
-           </para></listitem>
+          <para> <emphasis>Don't search subdirectories</emphasis>
+           &mdash; if this option is selected, <application>GNOME
+           Search Tool</application> will not search the files in the
+           subdirectories of the start directory.  
+	  </para>
+	</listitem>
 
 	<listitem><para> 
 	    <emphasis>File owner</emphasis>  &mdash; search by the name of
@@ -339,10 +343,11 @@
     <para> To find a file using the quick search mode, just enter a
       substring of the file name in the <guilabel>Locate
       file</guilabel> field. For example, to find all the files whose
-      filenames contain the string "searchtool", enter
+      filenames contain the string <quote>searchtool</quote>, enter
       <userinput>searchtool</userinput> in this field. This will also
-      show all the files that contain the string "searchtool" in their
-      full pathname &mdash; in particular, all the files in <filename
+      show all the files that contain the string
+      <quote>searchtool</quote> in their full pathname &mdash; in
+      particular, all the files in <filename
       class="directory">/usr/share/help/gsearchtool</filename>.
     </para>
     <para> To restrict search to a subdirectory, you can use the
@@ -356,7 +361,8 @@
 
     <para>The quick search mode is actually a front-end to <command>locate
       </command> command, so if you need more detailed information,
-      read the appropriate manual page. 
+      read the appropriate <ulink type="man"
+	url="man:locate">manual page</ulink>. 
     </para>
     <sect2 id="locatedb">
       <title> The locate database</title>
@@ -370,7 +376,8 @@
 	<command>locate</command> command (and thus, for quick search
 	mode of <application>GNOME Search tool</application>), is
 	updated daily, usually at nights. This is done as a
-	<command>cron</command> job &mdash; see the manual page for
+	<command>cron</command> job &mdash; see the <ulink type="man"
+	url="man:cron">manual page</ulink> for
 	<command>cron</command> if you are unfamiliar with this
 	utility. Note that if your computer is usually turned off at
 	night time, the database doesn't get updated. In this case,
@@ -380,13 +387,15 @@
 	requires system administrator (root) privileges.
       </para>
 
-      <para>You can also issue the command "Update database now" by
-      running the command <command>updatedb</command>. Again, this
-      requires system administrator (root) privileges. Without any
-      options, it rebuilds the whole database, for all the files on
-      your system. It also has many command line options allowing you
-      to fine-tune it (for example, istructing it to skip certain
-      directories). For more information, read the manual page for
+      <para>You can also issue the command <quote>Update database
+      now</quote> by running the command
+      <command>updatedb</command>. Again, this requires system
+      administrator (root) privileges. Without any options, it
+      rebuilds the whole database, for all the files on your
+      system. It also has many command line options allowing you to
+      fine-tune it (for example, istructing it to skip certain
+      directories). For more information, read the <ulink type="man"
+	url="man:updatedb">manual page</ulink> for
       <command>updatedb</command>.
       </para>
     </sect2>
@@ -411,12 +420,14 @@
       </para>
     <para>
       This manual was written by Alexander Kirillov
-      (<email>kirillov@math.sunysb.edu</email>). Please send all comments
-      and suggestions regarding the manual to the GNOME Documentation
-      Project at <email>docs@gnome.org</email> or add your comments to 
-      <ulink type="http"
-      url="http://www.gnome.org/gdp/doctable/">GNOME Documentation
-      Status Table</ulink>.
+      (<email>kirillov@math.sunysb.edu</email>). Please send all
+      comments and suggestions regarding this manual to the <ulink
+      type="http" url="http://developer.gnome.org/projects/gdp/">GNOME
+      Documentation Project</ulink> by sending an email to
+      <email>docs@gnome.org</email>. You can also add your comments
+      online by using the <ulink type="http"
+      url="http://developer.gnome.org/projects/gdp/doctable/">GNOME
+      Documentation Status Table</ulink>.
       </para>
     </sect1>
 
@@ -426,8 +437,9 @@
   <title>License</title>
   <para>
    This program is free software; you can redistribute it and/or
-   modify it under the terms of the <citetitle>GNU General Public
-   License</citetitle> as published by the Free Software Foundation;
+   modify it under the terms of the  <ulink type="help" url="gnome-help:gpl">
+    <citetitle>GNU General Public License</citetitle></ulink> as
+   published by the Free Software Foundation; 
    either version 2 of the License, or (at your option) any later
    version.
   </para>
