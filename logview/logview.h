@@ -201,6 +201,8 @@ struct _LogviewWindow {
 	gboolean zoom_visible;
 	
 	GtkWidget *info_dialog;
+	GtkWidget *info_text_view;
+	GtkTextBuffer *info_buffer;
 	gboolean loginfovisible;
 
 	GtkWidget *calendar_dialog;

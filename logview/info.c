@@ -24,14 +24,6 @@
 #include "info.h"
 #include "misc.h"
 
-/*
- *  --------------------------
- *  Local and global variables
- *  --------------------------
- */
-
-static GtkWidget *scrolled_window = NULL;
-
 /* ----------------------------------------------------------------------
    NAME:          LogInfo
    DESCRIPTION:   Display the statistics of the log.
@@ -40,43 +32,53 @@ static GtkWidget *scrolled_window = NULL;
 void
 LogInfo (GtkAction *action, GtkWidget *callback_data)
 {
-   LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
+	GtkWidget *frame;
+	LogviewWindow *window = LOGVIEW_WINDOW(callback_data);
 
-   if (window->curlog == NULL || window->loginfovisible)
-      return;
+	if (window->curlog == NULL || window->loginfovisible)
+		return;
+	
+	if (window->info_dialog == NULL) {
+		GtkWidget *InfoDialog;
+		InfoDialog = gtk_dialog_new_with_buttons (_("Properties"),
+							  GTK_WINDOW (window),
+							  GTK_DIALOG_DESTROY_WITH_PARENT,
+							  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
+							  NULL);
+		
+		g_signal_connect (G_OBJECT (InfoDialog), "response",
+				  G_CALLBACK (CloseLogInfo),
+				  window);
+		g_signal_connect (GTK_OBJECT (InfoDialog), "destroy",
+				  G_CALLBACK (QuitLogInfo),
+				  window);
+		g_signal_connect (GTK_OBJECT (InfoDialog), "delete_event",
+				  G_CALLBACK (gtk_true),
+				  NULL);
+		
+		gtk_dialog_set_default_response (GTK_DIALOG (InfoDialog),
+						 GTK_RESPONSE_CLOSE);
+		gtk_dialog_set_has_separator (GTK_DIALOG(InfoDialog), FALSE);
+		gtk_container_set_border_width (GTK_CONTAINER (InfoDialog), 5);
+		
+		window->info_dialog = InfoDialog;
 
-   if (window->info_dialog == NULL) {
-      GtkWidget *InfoDialog;
-      InfoDialog = gtk_dialog_new_with_buttons (_("Properties"),
-                                                  GTK_WINDOW_TOPLEVEL,
-                                                  GTK_DIALOG_DESTROY_WITH_PARENT,
-                                                  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-                                                  NULL);
+		frame = gtk_frame_new (NULL);
+		gtk_frame_set_shadow_type (GTK_FRAME(frame), GTK_SHADOW_IN);
+		gtk_container_set_border_width (GTK_CONTAINER(frame), 5);
 
-      g_signal_connect (G_OBJECT (InfoDialog), "response",
-                        G_CALLBACK (CloseLogInfo),
-                        window);
-      g_signal_connect (GTK_OBJECT (InfoDialog), "destroy",
-                        G_CALLBACK (QuitLogInfo),
-                        window);
-      g_signal_connect (GTK_OBJECT (InfoDialog), "delete_event",
-                        G_CALLBACK (gtk_true),
-                        NULL);
+		window->info_text_view = gtk_text_view_new_with_buffer (window->info_buffer);
+		gtk_container_add (GTK_CONTAINER (frame), window->info_text_view);
 
-      gtk_window_set_default_size (GTK_WINDOW (InfoDialog), 425, 200);
-      gtk_dialog_set_default_response (GTK_DIALOG (InfoDialog),
-                                       GTK_RESPONSE_CLOSE);
-      gtk_dialog_set_has_separator (GTK_DIALOG(InfoDialog), FALSE);
-      gtk_container_set_border_width (GTK_CONTAINER (InfoDialog), 5);
-      gtk_widget_realize (InfoDialog);
-
-      window->info_dialog = InfoDialog;
-
-      RepaintLogInfo (window);
-   }
-
-   gtk_widget_show_all (window->info_dialog);
-   window->loginfovisible = TRUE;
+		gtk_text_view_set_editable (GTK_TEXT_VIEW (window->info_text_view), FALSE);
+		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (InfoDialog)->vbox), 
+				    frame, TRUE, TRUE, 0);
+		
+		RepaintLogInfo (window);
+	}
+	
+	gtk_widget_show_all (window->info_dialog);
+	window->loginfovisible = TRUE;
 }
 
 /* ----------------------------------------------------------------------
@@ -84,122 +86,51 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
    DESCRIPTION:   Repaint the log info window.
    ---------------------------------------------------------------------- */
 
-int
+void
 RepaintLogInfo (LogviewWindow *window)
 {
-   static GtkWidget *info_tree;
-   static GtkCellRenderer *renderer;
-   static GtkTreeViewColumn *column1, *column2;
-   static GtkListStore *store;
-   const gchar *titles[] = { N_("Size:"), N_("Modified:"), 
-       N_("Start Date:"), N_("Last Date:"), N_("Number of Lines:"), NULL };
-   GtkTreeIter iter;
-   gchar buffer[1024];
    char *utf8;
-   gint i;
-   GtkWidget *InfoDialog = window->info_dialog;
+   gchar *info_string, *size, *modified, *start_date, *last_date, *num_lines, *tmp;
+   
+   if (!window->curlog)
+	   return;
+   
+   tmp = g_strdup_printf("Size: %ld bytes", (long) window->curlog->lstats.size);
+   size = LocaleToUTF8 (tmp);
+   g_free (tmp);
+   
+   tmp = g_strdup_printf ("Modified: %s", ctime (&(window->curlog)->lstats.mtime));
+   modified = LocaleToUTF8 (tmp);
+   g_free (tmp);
+   
+   tmp = g_strdup_printf("Start Date: %s", ctime (&(window->curlog)->lstats.startdate));
+   start_date = LocaleToUTF8 (tmp);
+   g_free (tmp);
+   
+   tmp = g_strdup_printf("Last Date: %s", ctime (&(window->curlog)->lstats.enddate));
+   last_date = LocaleToUTF8 (tmp);
+   g_free (tmp);
+   
+   tmp = g_strdup_printf("Number of Lines: %ld", window->curlog->lstats.numlines);
+   num_lines = LocaleToUTF8 (tmp);
+   g_free (tmp);
+   
+   info_string = g_strdup_printf ("%s\n%s%s%s%s", size, modified, start_date, last_date, num_lines);
+   
+   g_free (size);
+   g_free (modified);
+   g_free (start_date);
+   g_free (last_date);
+   g_free (num_lines);
+   
+   if (window->info_buffer == NULL)
+	   window->info_buffer = gtk_text_buffer_new (NULL);
 
-   if (scrolled_window == NULL) {
+   gtk_text_buffer_set_text (window->info_buffer, info_string, -1);
+   g_free (info_string);
 
-       scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-       gtk_widget_set_sensitive (scrolled_window, TRUE);
-       gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 5);
-       gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
-                                       GTK_POLICY_AUTOMATIC,
-                                       GTK_POLICY_AUTOMATIC);
-       gtk_box_pack_start (GTK_BOX (GTK_DIALOG (InfoDialog)->vbox),
-                           scrolled_window, TRUE, TRUE, 0);
+   gtk_text_view_set_buffer (GTK_TEXT_VIEW(window->info_text_view), window->info_buffer);
 
-       store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
-       info_tree = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
-       gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (info_tree), TRUE);
-
-       gtk_container_add (GTK_CONTAINER (scrolled_window), info_tree);
-
-       /* Create Columns */
-       renderer = gtk_cell_renderer_text_new ();
-       column1 = gtk_tree_view_column_new_with_attributes (_("Log Information"),
-                    renderer, "text", 0, NULL);
-       gtk_tree_view_column_set_sizing (column1, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
-       gtk_tree_view_column_set_resizable (column1, TRUE);
-       gtk_tree_view_append_column (GTK_TREE_VIEW (info_tree), column1);
-       gtk_tree_view_column_set_spacing (column1, 12);
-
-       renderer = gtk_cell_renderer_text_new ();
-       column2 = gtk_tree_view_column_new_with_attributes ("", renderer,
-                    "text", 1, NULL);
-       gtk_tree_view_column_set_sizing (column2, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
-       gtk_tree_view_column_set_resizable (column2, TRUE);
-       gtk_tree_view_append_column (GTK_TREE_VIEW (info_tree), column2);
-       gtk_tree_view_column_set_spacing (column2, 12);
-
-       /* Add entries to the list */
-       for (i = 0; titles[i]; i++) {
-           gtk_list_store_append (GTK_LIST_STORE (store), &iter);
-           gtk_list_store_set (GTK_LIST_STORE (store), &iter, 0, _(titles[i]), -1);
-       }
-
-   }
-
-   if (window->curlog != NULL)
-       g_snprintf (buffer, sizeof (buffer), "%s", window->curlog->name);
-   else
-       g_snprintf (buffer, sizeof (buffer), _("<No log loaded>"));
-   gtk_tree_view_column_set_title (column2, buffer);
-
-   gtk_widget_show_all (scrolled_window);
-
-   /* Check that there is at least one log */
-   if (window->curlog == NULL) {
-       if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
-           g_snprintf (buffer, sizeof (buffer), "%c", '\0');
-           i = 0;
-           while (1) {
-               gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
-               if (!titles[++i])
-                   break;
-               gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-           }
-       }        
-       return -1;
-   }
-
-   if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
-    
-       g_snprintf (buffer, sizeof (buffer),
-                   ngettext ("%ld byte", "%ld bytes",
-                            (long) window->curlog->lstats.size),
-                   (long) window->curlog->lstats.size);
-       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
-
-       gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, strlen (ctime (&(window->curlog)->lstats.mtime)), "%s",
-                   ctime (&(window->curlog)->lstats.mtime));
-       utf8 = LocaleToUTF8 (buffer);
-       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
-       g_free (utf8);
-
-       gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, strlen (ctime (&(window->curlog)->lstats.startdate)), "%s",
-                   ctime (&(window->curlog)->lstats.startdate));
-       utf8 = LocaleToUTF8 (buffer);
-       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
-       g_free (utf8);
-
-       gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, strlen (ctime (&(window->curlog)->lstats.enddate)), "%s",
-                   ctime (&(window->curlog)->lstats.enddate));
-       utf8 = LocaleToUTF8 (buffer);
-       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, utf8, -1);
-       g_free (utf8);
- 
-       gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
-       g_snprintf (buffer, sizeof (buffer), "%ld ", window->curlog->lstats.numlines);
-       gtk_list_store_set (GTK_LIST_STORE (store), &iter, 1, buffer, -1);
- 
-   }
-
-   return TRUE;
 }
 
 /* ----------------------------------------------------------------------
@@ -213,16 +144,15 @@ CloseLogInfo (GtkWidget *widget, int arg, gpointer data)
    LogviewWindow *window = data;
    if (window->loginfovisible)
       gtk_widget_hide (widget);
-   window->info_dialog = NULL;
-   scrolled_window = NULL;
    window->loginfovisible = FALSE;
-
 }
 
 void QuitLogInfo (GtkWidget *widget, gpointer data)
 {
    LogviewWindow *window = data;
-   scrolled_window = NULL;
    gtk_widget_destroy (GTK_WIDGET (window->info_dialog));
+   window->info_dialog = NULL;
+   window->info_buffer = NULL;
+   window->info_text_view = NULL;
 }
 

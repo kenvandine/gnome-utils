@@ -22,7 +22,6 @@
 
 void LogInfo (GtkAction *action, GtkWidget *callback_data);
 void CloseLogInfo (GtkWidget *widget, int arg, gpointer data);
-int RepaintLogInfo (LogviewWindow *window);
 void QuitLogInfo (GtkWidget *widget, gpointer data);
 
 #endif /* __LOG_INFO_H__ */
