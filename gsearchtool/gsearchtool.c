@@ -30,11 +30,6 @@
 #define GNOME_SEARCH_TOOL_ITEM_REFRESH_LIMIT  35
 #define LEFT_LABEL_SPACING "     "
 
-#define DEFAULT_ANIMATION_WIDTH   48
-#define DEFAULT_ANIMATION_HEIGHT  48
-#define DEFAULT_ANIMATION_FRAME    2
-#define TOTAL_ANIMATION_FRAMES     3
-
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
@@ -51,6 +46,7 @@
 #include "gsearchtool-support.h"
 #include "gsearchtool-callbacks.h"
 #include "gsearchtool-alert-dialog.h"
+#include "gsearchtool-spinner.h"
 
 #include <string.h>
 #include <unistd.h>
@@ -896,69 +892,6 @@ get_desktop_item_name (void)
 	return g_string_free (gs, FALSE);
 }
 
-static gboolean
-setup_animation_image (void)
-{
-	gint	   width  = 0;
-	gint	   height = 0;
-	GError     *error = NULL;
-
-	interface.current_animation_frame = DEFAULT_ANIMATION_FRAME - 1;
-
-	interface.pixbuf = gdk_pixbuf_new_from_file (GNOME_ICONDIR"/gnome-search-tool/gnome-search-tool-animation.png",
-	                                             &error);
-	
-	if (error) {
-		g_warning (_("The animation file is missing or invalid: %s"), error->message);		
-		g_error_free (error);
-		gtk_drawing_area_size (GTK_DRAWING_AREA (interface.drawing_area), 0, 0);
-		return FALSE;
-	}
-
-	width  = gdk_pixbuf_get_width (interface.pixbuf); 
-	height = gdk_pixbuf_get_height (interface.pixbuf); 
-
-	gtk_drawing_area_size (GTK_DRAWING_AREA (interface.drawing_area), width / TOTAL_ANIMATION_FRAMES, height);
-	gtk_widget_queue_draw (interface.drawing_area); 
-
-	return TRUE;
-}
-
-static gboolean
-animation_expose_event_cb (GtkWidget       *widget,
-                           GdkEventExpose  *event,
-                           gpointer        *data)
-{
-	gint width  = 0;
-	gint height = 0;
-
-	if (interface.pixbuf == NULL) {
-		return FALSE;
-	}
-
-	gdk_window_clear_area (widget->window,
-	                       event->area.x, event->area.y,
-	                       event->area.width, event->area.height);
-
-	gdk_gc_set_clip_rectangle (widget->style->fg_gc[widget->state], &event->area); 
-
-	width  = gdk_pixbuf_get_width (interface.pixbuf); 
-	height = gdk_pixbuf_get_height (interface.pixbuf); 
-
-	gdk_pixbuf_render_to_drawable_alpha (interface.pixbuf,
-	                                     GDK_DRAWABLE (widget->window),
-	                                     (width * interface.current_animation_frame) / TOTAL_ANIMATION_FRAMES, 0, 
-	                                     0, 0,
-	                                     width / TOTAL_ANIMATION_FRAMES, height,
-	                                     GDK_PIXBUF_ALPHA_FULL, 255,
-	                                     GDK_RGB_DITHER_MAX,
-	                                     0, 0);
-
-	gdk_gc_set_clip_rectangle (widget->style->fg_gc[widget->state], NULL);
-
-        return FALSE;
-}
-
 static void
 start_animation (void)
 {
@@ -968,7 +901,7 @@ start_animation (void)
 	gtk_window_set_title (GTK_WINDOW (interface.main_window), title);
 	
 	gtk_label_set_text (GTK_LABEL (interface.results_label), "");
-	search_command.animation_timeout = g_timeout_add (250, update_animation_timeout_cb, NULL);
+	gsearch_spinner_start (GSEARCH_SPINNER (interface.spinner));
 	
 	g_free (title);
 } 
@@ -976,33 +909,8 @@ start_animation (void)
 static void
 stop_animation (void)
 {
-	interface.current_animation_frame = DEFAULT_ANIMATION_FRAME - 1;
-	g_source_remove (search_command.animation_timeout);
-	gtk_widget_queue_draw (interface.drawing_area);
+	gsearch_spinner_stop (GSEARCH_SPINNER (interface.spinner));
 } 
-
-gboolean
-update_animation_timeout_cb (gpointer data)
-{
-	static gboolean in_forward_progress = TRUE;
-	
-	if (in_forward_progress) {
-		interface.current_animation_frame++;
-		if (interface.current_animation_frame >= (TOTAL_ANIMATION_FRAMES - 1)) {
-			in_forward_progress = !in_forward_progress;
-		}
-	}
-	else {
-		interface.current_animation_frame--;
-		if (interface.current_animation_frame <= 0) {
-			in_forward_progress = !in_forward_progress;
-		}
-	}
-		      
-	gtk_widget_queue_draw (interface.drawing_area);
-
-	return TRUE;
-}
 
 void
 define_popt_descriptions (void) 
@@ -1860,29 +1768,24 @@ create_main_window (void)
 	vbox = gtk_vbox_new (FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
 
-	interface.drawing_area = gtk_drawing_area_new ();
-	gtk_box_pack_start (GTK_BOX (vbox), interface.drawing_area, TRUE, FALSE, 0);
-
-	gtk_drawing_area_size (GTK_DRAWING_AREA (interface.drawing_area),
-	                       DEFAULT_ANIMATION_WIDTH,
-			       DEFAULT_ANIMATION_HEIGHT);
+	interface.spinner = gsearch_spinner_new ();
+	gtk_widget_show (interface.spinner);
+	gtk_box_pack_start (GTK_BOX (vbox), interface.spinner, FALSE, FALSE, 0);
+	gsearch_spinner_set_small_mode (GSEARCH_SPINNER (interface.spinner), FALSE);
 			  
-	gtk_drag_source_set (interface.drawing_area, 
+	gtk_drag_source_set (interface.spinner, 
 			     GDK_BUTTON1_MASK,
 			     drag_types, 
 			     G_N_ELEMENTS (drag_types), 
 			     GDK_ACTION_COPY);
 			     
-	gtk_drag_source_set_icon_stock (interface.drawing_area,
+	gtk_drag_source_set_icon_stock (interface.spinner,
 	                                GTK_STOCK_FIND);
 			  
-	g_signal_connect (G_OBJECT (interface.drawing_area), 
+	g_signal_connect (G_OBJECT (interface.spinner), 
 			  "drag_data_get",
 			  G_CALLBACK (drag_data_animation_cb), 
 			  interface.main_window);
-
-	g_signal_connect (interface.drawing_area, "expose-event",
-			  G_CALLBACK (animation_expose_event_cb), NULL);
 	
 	interface.table = gtk_table_new (2, 2, FALSE);
 	gtk_table_set_row_spacings (GTK_TABLE(interface.table), 6);
@@ -2327,8 +2230,6 @@ main (int 	argc,
 	gtk_widget_hide (interface.stop_button);
 	
 	gtk_widget_show (interface.main_window);
-
-	setup_animation_image ();
 	
 	if (handle_popt_args () == FALSE) {
 		handle_gconf_settings (); 
