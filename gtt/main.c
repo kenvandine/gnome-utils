@@ -22,6 +22,7 @@
 #include <gconf/gconf.h>
 #include <glade/glade.h>
 #include <gnome.h>
+#include <guile/gh.h>
 #include <libgnomeui/gnome-window-icon.h>
 #include <signal.h>
 #include <string.h>
@@ -301,6 +302,13 @@ beta_run_or_abort(GtkWidget *w, gint butnum)
 	}
 }
 
+static void 
+guile_inner_main(int argc, char **argv)
+{
+	gtk_main();
+
+	unlock_gtt();
+}
 
 
 int 
@@ -367,9 +375,7 @@ main(int argc, char *argv[])
 	     "Continue", "Exit", 
 		GTK_SIGNAL_FUNC(beta_run_or_abort));
 
-	gtk_main();
-
-	unlock_gtt();
-	return 0;
+	gh_enter(argc, argv, guile_inner_main);
+	return 0; /* not reached !? */
 }
 

@@ -29,7 +29,7 @@
 
 #include "cur-proj.h"
 #include "journal.h"
-#include "phtml.h"
+#include "ghtml.h"
 #include "proj.h"
 #include "props-invl.h"
 #include "props-task.h"
@@ -38,7 +38,7 @@
 /* this struct is a random mish-mash of stuff, not well organized */
 
 typedef struct wiggy_s {
-	GttPhtml *ph;    
+	GttGhtml *gh;    
 	GtkHTML *htmlw;
 	GtkHTMLStream *handle;
 	GtkWidget *top;
@@ -54,7 +54,7 @@ typedef struct wiggy_s {
 /* html i/o routines */
 
 static void
-wiggy_open (GttPhtml *pl, gpointer ud)
+wiggy_open (GttGhtml *pl, gpointer ud)
 {
 	Wiggy *wig = (Wiggy *) ud;
 
@@ -63,7 +63,7 @@ wiggy_open (GttPhtml *pl, gpointer ud)
 }
 
 static void
-wiggy_close (GttPhtml *pl, gpointer ud)
+wiggy_close (GttGhtml *pl, gpointer ud)
 {
 	Wiggy *wig = (Wiggy *) ud;
 
@@ -73,7 +73,7 @@ wiggy_close (GttPhtml *pl, gpointer ud)
 }
 
 static void
-wiggy_write (GttPhtml *pl, const char *str, size_t len, gpointer ud)
+wiggy_write (GttGhtml *pl, const char *str, size_t len, gpointer ud)
 {
 	Wiggy *wig = (Wiggy *) ud;
 
@@ -82,7 +82,7 @@ wiggy_write (GttPhtml *pl, const char *str, size_t len, gpointer ud)
 }
 
 static void
-wiggy_error (GttPhtml *pl, int err, const char * msg, gpointer ud)
+wiggy_error (GttGhtml *pl, int err, const char * msg, gpointer ud)
 {
 	Wiggy *wig = (Wiggy *) ud;
 	GtkHTML *htmlw = wig->htmlw;
@@ -124,7 +124,7 @@ redraw (GttProject * prj, gpointer data)
 {
 	Wiggy *wig = (Wiggy *) data;
 
-	gtt_phtml_display (wig->ph, wig->filepath, wig->prj);
+	gtt_ghtml_display (wig->gh, wig->filepath, wig->prj);
 }
 
 /* ============================================================== */
@@ -222,7 +222,7 @@ on_close_clicked_cb (GtkWidget *w, gpointer data)
 	gtt_project_remove_notifier (wig->prj, redraw, wig);
 	edit_interval_dialog_destroy (wig->edit_ivl);
 	gtk_widget_destroy (wig->top);
-	gtt_phtml_destroy (wig->ph);
+	gtt_ghtml_destroy (wig->gh);
 	g_free (wig->filepath);
 	g_free (wig);
 }
@@ -347,8 +347,9 @@ do_show_report (const char * report, GttProject *prj)
 
 	wig->top = jnl_top;
 	wig->htmlw = GTK_HTML(jnl_browser);
-	wig->ph = gtt_phtml_new();
-	gtt_phtml_set_stream (wig->ph, wig, wiggy_open, wiggy_write, 
+
+	wig->gh = gtt_ghtml_new();
+	gtt_ghtml_set_stream (wig->gh, wig, wiggy_open, wiggy_write, 
 		wiggy_close, wiggy_error);
 	
 	glade_xml_signal_connect_data (glxml, "on_close_clicked",
@@ -400,12 +401,12 @@ do_show_report (const char * report, GttProject *prj)
 	wig->filepath = g_strdup (report);
 	if (!prj)
 	{
-		gtt_phtml_display (wig->ph, "noproject.phtml", NULL);
+		gtt_ghtml_display (wig->gh, "noproject.ghtml", NULL);
 	} 
 	else 
 	{
 		gtt_project_add_notifier (prj, redraw, wig);
-		gtt_phtml_display (wig->ph, report, prj);
+		gtt_ghtml_display (wig->gh, report, prj);
 	}
 }
 
@@ -423,13 +424,13 @@ resolve_path (char *path_frag)
 	/* look in the local build dir first (for testing) */
 	
 	p = buff;
-	p = stpcpy (p, "phtml/C/");
+	p = stpcpy (p, "ghtml/C/");
 	p = stpcpy (p, path_frag);
 	path = gnome_datadir_file (buff);
 	if (NULL == path)
 	{
 		p = buff;
-		p = stpcpy (p, "gtt/phtml/C/");
+		p = stpcpy (p, "gtt/ghtml/C/");
 		p = stpcpy (p, path_frag);
 		path = gnome_datadir_file (buff);
 	}
@@ -440,7 +441,7 @@ void
 edit_journal(GtkWidget *w, gpointer data)
 {
 	char * path;
-	path = resolve_path ("journal.phtml");
+	path = resolve_path ("journal.ghtml");
 	do_show_report (path, cur_proj);
 }
 
@@ -448,7 +449,7 @@ void
 edit_alldata(GtkWidget *w, gpointer data)
 {
 	char * path;
-	path = resolve_path ("alldata.phtml");
+	path = resolve_path ("bigtable.ghtml");
 	do_show_report (path, cur_proj);
 }
 
@@ -456,7 +457,7 @@ void
 edit_invoice(GtkWidget *w, gpointer data)
 {
 	char * path;
-	path = resolve_path ("invoice.phtml");
+	path = resolve_path ("invoice.ghtml");
 	do_show_report (path, cur_proj);
 }
 
