@@ -64,7 +64,8 @@ main (int argc, char *argv[])
     gnome_program_init ("gnome-character-map",
                         VERSION,
                         LIBGNOMEUI_MODULE,
-                        argc, argv, NULL);
+                        argc, argv,
+			GNOME_PARAM_APP_DATADIR,DATADIR,NULL);
 
 
     client = gnome_master_client ();

@@ -232,10 +232,8 @@ cb_fontpicker_font_set (GnomeFontPicker *gfp, gchar *font_name)
 void
 cb_help_click (GtkWidget *widget, gpointer user_data)
 {
-    gnome_help_display (
-        gnome_program_get_human_readable_name(gnome_program_get ()),
-		    "index.html",
-		    NULL /* error */);
+    GError *error = NULL;
+    gnome_help_display("gnome-character-map",NULL,&error);
 }
 
 

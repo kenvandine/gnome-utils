@@ -74,7 +74,7 @@ GnomeUIInfo settings_menu[] =
 
 GnomeUIInfo help_menu[] =
 {
-    GNOMEUIINFO_HELP ("gcharmap"),
+    GNOMEUIINFO_HELP ("gnome-character-map"),
     GNOMEUIINFO_SEPARATOR,
     GNOMEUIINFO_MENU_ABOUT_ITEM (cb_about_click, NULL),
     GNOMEUIINFO_END
