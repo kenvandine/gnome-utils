@@ -952,6 +952,11 @@ c_fact(gdouble arg1)
 	}
 	for(r=1;i>0;i--)
 		r*=i;
+	
+	if(r>G_MAXDOUBLE) {
+		errno=ERANGE;
+		return 0;
+	}
 
 	return r;
 }
