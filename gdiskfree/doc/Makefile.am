@@ -1,4 +1,4 @@
 ## Process this file with automake to procude Makefile.in
 
-SUBDIRS = C es
+SUBDIRS = C es it
 
