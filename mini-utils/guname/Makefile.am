@@ -10,18 +10,17 @@ moreinfo_c		= moreinfo.c
 moreinfo_h		= moreinfo.h
 endif
 
-BUILT_SOURCES = AUTHORS.h
 guname_SOURCES = \
 	guname.c	\
 	info.c		\
 	list.c		\
-	$(moreinfo_c)
+	$(moreinfo_c)	\
+	AUTHORS.h
 
 noinst_HEADERS = \
 	info.h		\
 	list.h		\
 	$(moreinfo_h)
-
 
 guname_LDADD = \
 	$(GNOME_LIBDIR)         \
@@ -30,15 +29,13 @@ guname_LDADD = \
 	$(LIBGTOP_NAMES_LIBS)	\
 	$(LIBGTOP_EXTRA_LIBS)
 
-guname_DEPENDENCIES=AUTHORS.h
-
 Rootdir = $(datadir)/apps
 Root_DATA = guname.desktop
 
-EXTRA_DIST = guname.desktop AUTHORS.h
+EXTRA_DIST = guname.desktop
 
-AUTHORS.h: $(wildcard $(top_srcdir)/../gnome-*/AUTHORS)
+build_AUTHORS: $(wildcard $(top_srcdir)/../gnome-*/AUTHORS)
 	cat $(top_srcdir)/../gnome-*/AUTHORS \
 	| sed -e 's,<[^>]*>,,g' -e 's,([^)]*),,g' -e 's, *$$,,g' \
-	| grep -v '^$$' | sort -u \
+	| grep -v '^$$' | sed -e 's, *$$,,g' | sort -u \
 	| awk '{print "\""$$0"\","}' > AUTHORS.h
