@@ -38,7 +38,8 @@ EXTRA_DIST = \
 	topic.dat		\
 	gtt-db.sgml		\
 	gtt-db.html		\
-	gtt.desktop
+	gtt.desktop		\
+	gtt.1
 
 Productivitydir = $(datadir)/apps/Productivity
 Productivity_DATA = gtt.desktop
