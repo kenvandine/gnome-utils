@@ -71,6 +71,7 @@ void handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data);
 void handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path, 
      GtkTreeViewColumn *arg2, gpointer user_data);
 void save_rows_to_expand (Log *log);
+void CloseAllLogs (void);
 
 static void toggle_calendar (void);
 static void toggle_zoom (void);
@@ -98,6 +99,10 @@ GnomeUIInfo log_menu[] = {
       GNOME_APP_PIXMAP_NONE, NULL, 'I', GDK_CONTROL_MASK, NULL },
 	GNOMEUIINFO_SEPARATOR,
 	GNOMEUIINFO_MENU_CLOSE_ITEM(CloseLogMenu, NULL),
+    { GNOME_APP_UI_ITEM, N_("Clos_e All"),
+	  N_("Close all Log files"), CloseAllLogs, NULL, NULL,
+      GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_CLOSE, 'W',
+      GDK_CONTROL_MASK | GDK_SHIFT_MASK, NULL },
 	GNOMEUIINFO_MENU_QUIT_ITEM(ExitProg, NULL),
     { GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL }
 };
@@ -472,6 +477,7 @@ CloseLogMenu (GtkWidget *widget, gpointer user_data)
 	      RepaintLogInfo ();
       gtk_widget_set_sensitive (log_menu[6].widget, FALSE); 
       gtk_widget_set_sensitive (log_menu[8].widget, FALSE); 
+      gtk_widget_set_sensitive (log_menu[9].widget, FALSE); 
       gtk_widget_set_sensitive (log_menu[4].widget, FALSE); 
       for ( i = 0; i < 3; i++) 
          gtk_widget_set_sensitive (view_menu[i].widget, FALSE); 
@@ -569,6 +575,7 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 			   if (numlogs >= 2)
 			       gtk_widget_set_sensitive (log_menu[3].widget, TRUE);
 
+			   gtk_widget_set_sensitive (log_menu[9].widget, TRUE);
 			   gtk_widget_set_sensitive (log_menu[6].widget, TRUE);
 			   gtk_widget_set_sensitive (log_menu[4].widget, TRUE);
 			   for (i = 0; i < 3; ++i) 
@@ -644,6 +651,42 @@ void
 ExitProg (GtkWidget * widget, gpointer user_data)
 {
    CloseApp ();
+
+}
+
+/* ----------------------------------------------------------------------
+   NAME:          CloseAllLogs 
+   DESCRIPTION:   Close all log files
+   ---------------------------------------------------------------------- */
+
+void 
+CloseAllLogs (void)
+{
+   int i;
+   
+   if (numlogs == 0)
+      return;
+
+   for (i = 0; i < numlogs; ++i) 
+       CloseLog (loglist[i]);
+
+   numlogs = 0;
+   curlognum = 0;
+   curlog = NULL;
+   loglist[0] = NULL;
+
+   log_repaint ();
+   if (loginfovisible)
+	  RepaintLogInfo ();
+
+   gtk_widget_set_sensitive (log_menu[4].widget, FALSE); 
+   gtk_widget_set_sensitive (log_menu[6].widget, FALSE); 
+   gtk_widget_set_sensitive (log_menu[8].widget, FALSE); 
+   gtk_widget_set_sensitive (log_menu[9].widget, FALSE); 
+   for ( i = 0; i < 3; i++) 
+       gtk_widget_set_sensitive (view_menu[i].widget, FALSE); 
+
+   gtk_widget_set_state (log_menu[3].widget, GTK_STATE_INSENSITIVE); 
 
 }
 
