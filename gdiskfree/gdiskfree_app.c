@@ -212,7 +212,6 @@ gdiskfree_update (GDiskFreeApp *app)
 {
   GList              *gl;
   GDiskFreeDisk      *disk;
-  gint               interval;
   gdouble            used;
   gdouble            percent;
   glibtop_fsusage    fsu;

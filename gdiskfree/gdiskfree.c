@@ -72,7 +72,7 @@ excluded_fstype (const char *fstype)
       type = (gchar *)gl->data;
       if (g_strncasecmp (type, fstype, strlen (fstype)) == 0)
         {
-          g_print ("%s == %s \n", type, fstype);
+/*          g_print ("%s == %s \n", type, fstype); */
 	  return 1;
         }
       gl = g_list_next (gl);
@@ -111,7 +111,7 @@ main (int argc, gchar *argv[])
   excluded = g_list_append (excluded, "devpts");
   for (i = 0; i < mountlist.number; i++)
     {
-      g_print ("type: %s\n", mount_list[i].type);
+/*      g_print ("type: %s\n", mount_list[i].type); */
       if (!(excluded_fstype (mount_list[i].type)))
 	gdiskfree_app_add_disk (app, mount_list[i].devname,
 				mount_list[i].mountdir);
@@ -120,7 +120,7 @@ main (int argc, gchar *argv[])
   gdiskfree_update (app);
   /* Start the update timer */
   timeout_id = gtk_timeout_add (current_options->update_interval,
-				gdiskfree_update, app);
+				(GtkFunction )gdiskfree_update, app);
   gtk_main ();
   return 0;
 }

@@ -81,7 +81,7 @@ gdiskfree_option_dialog_apply (GnomePropertyBox *box, gint page_num,
 	gtk_timeout_remove(timeout_id);
 
       timeout_id = gtk_timeout_add(opt->update_interval,
-				   gdiskfree_update, app);
+				   (GtkFunction)gdiskfree_update, app);
       current_options->update_interval = opt->update_interval;
     }
 
