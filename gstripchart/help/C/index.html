@@ -176,7 +176,7 @@ displayed.
 <dd>	Determines the color to be used in displaying a parameter.
 	The color names and their RGB values are taken from X11/rgb.txt.
 
-<dt> lights: <em>color-name [color-name ...]</em>
+<dt> lights: <em>color-name [, color-name ...]</em>
 <dd>	If a parameter block contains a "lights:" line instead of a
 	"color:" line, the parameter will not be plotted.  Rather, a
 	small square in one of the supplied colors is displayed near
@@ -198,8 +198,11 @@ displayed.
 	first line of the file is used.
 
 <dt> fields: <em>number</em>
-<dd>	The number of fields to be split out of the first line which
-	matches the pattern.  Splitting is done on whitespace.
+<dd>	Deprecated.  This used to be used to specify the number of
+	fields to be split out of the first line which matches the
+	pattern, with splitting being done on whitespace.  This is now
+	calculated as the highest-numbered field used in the
+	equation.
 
 <dt> equation: <em>eqn</em>
 <dd>	An equation used to obtain the value to be ploted for this
