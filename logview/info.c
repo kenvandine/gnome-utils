@@ -48,6 +48,7 @@ int RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event);
 int loginfovisible;
 GtkWidget *InfoDialog;
 GtkWidget *info_canvas;
+PangoLayout *stat_layout;
 
 extern ConfigData *cfg;
 extern GdkGC *gc;
@@ -65,6 +66,9 @@ LogInfo (GtkWidget * widget, gpointer user_data)
    GtkWidget *frame;
    GtkWidget *vbox;
    int h1, h2;
+   PangoContext *context;
+   PangoFontMetrics *metrics;
+   PangoFont *font;
 
    if (curlog == NULL || loginfovisible)
       return;
@@ -97,9 +101,22 @@ LogInfo (GtkWidget * widget, gpointer user_data)
    gtk_signal_connect (GTK_OBJECT (info_canvas), "expose_event",
 		       (GtkSignalFunc) RepaintLogInfo, NULL);
 
-   h1 = cfg->headingb->descent + cfg->headingb->ascent;
-   h2 = cfg->fixedb->descent + cfg->fixedb->ascent+2;
-   gtk_drawing_area_size (GTK_DRAWING_AREA (info_canvas), INFO_WIDTH, h1*2+8*h2);
+   stat_layout = gtk_widget_create_pango_layout (widget, "");
+   context = gdk_pango_context_get ();
+   pango_context_set_language (context, gtk_get_default_language ());
+   font = pango_context_load_font (context, cfg->headingb);
+   metrics = pango_font_get_metrics
+	     (font, pango_context_get_language (context));
+   h1 = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics)) +
+	PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
+   font = pango_context_load_font (context, cfg->fixedb);
+   metrics = pango_font_get_metrics
+	     (font, pango_context_get_language (context));
+   h2 = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics)) +
+	PANGO_PIXELS (pango_font_metrics_get_descent (metrics)) + 2;
+   GTK_WIDGET (info_canvas)->requisition.width = INFO_WIDTH;
+   GTK_WIDGET (info_canvas)->requisition.height = h1*2+8*h2;
+   gtk_widget_queue_resize (GTK_WIDGET (info_canvas));
    gtk_widget_set_events (info_canvas, GDK_EXPOSURE_MASK);
    gtk_widget_set_style (info_canvas, cfg->white_bg_style);
    gtk_container_add (GTK_CONTAINER (frame), info_canvas);
@@ -108,6 +125,9 @@ LogInfo (GtkWidget * widget, gpointer user_data)
 
    gtk_widget_show (InfoDialog);
 
+   g_object_unref (G_OBJECT (context));
+   pango_font_metrics_unref (metrics);
+   g_object_unref (G_OBJECT (font));
    loginfovisible = TRUE;
 }
 
@@ -122,80 +142,122 @@ RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event)
    static GdkDrawable *canvas;
    char buffer[1024];
    int x, y, h, w;
+   int ah, dh, afdb, dfdb, df, af;
    int win_width, win_height;
+   PangoRectangle logical_rect;
+   PangoContext *context;
+   PangoFontMetrics *metrics;
+   PangoFont *font;
 
    canvas = info_canvas->window;
    win_width = info_canvas->allocation.width;
    win_height = info_canvas->allocation.height;
 
+   context = gdk_pango_context_get ();
+   pango_context_set_language (context, gtk_get_default_language ());
+   font = pango_context_load_font (context, cfg->headingb);
+   metrics = pango_font_get_metrics
+             (font, pango_context_get_language (context));
+
    /* Draw title */
-   h = cfg->headingb->descent + cfg->headingb->ascent;
-   w = gdk_string_measure (cfg->fixedb, "X");
+   ah = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
+   dh = PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
+   h = dh + ah;
+   pango_layout_set_font_description (stat_layout, cfg->fixedb);
+   pango_layout_set_text (stat_layout, "X", -1);
+   pango_layout_get_pixel_extents (stat_layout, NULL, &logical_rect);
+   w = logical_rect.width;
    x = 5;
-   y = cfg->headingb->ascent + 6;
+   y = ah + 6;
    gdk_gc_set_foreground (gc, &cfg->blue);
    gdk_draw_rectangle (canvas, gc, TRUE, 3, 3, win_width - 6, h+6);
    gdk_gc_set_foreground (gc, &cfg->white);
-   gdk_draw_string (canvas, cfg->headingb, gc, x+3, y, _("Log information"));
-   y += 9 + cfg->headingb->descent + cfg->fixedb->ascent;
-
+   pango_layout_set_font_description (stat_layout, cfg->headingb);
+   pango_layout_set_text (stat_layout, _("Log information"), -1);
+   gdk_draw_layout (canvas, gc, x+3, y-12, stat_layout);
+   font = pango_context_load_font (context, cfg->fixedb);
+   metrics = pango_font_get_metrics
+	     (font, pango_context_get_language (context));
+   afdb = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
+   y += 9 + dh + afdb;
+   dfdb = PANGO_PIXELS (pango_font_metrics_get_descent (metrics)); 
 
    /* Draw rectangle */
-   h = cfg->fixedb->descent + cfg->fixedb->ascent+2;
+   h = dfdb + afdb+2;
    gdk_gc_set_foreground (gc, &cfg->blue3);
+   font = pango_context_load_font (context, cfg->fixed);
+   metrics = pango_font_get_metrics
+	     (font, pango_context_get_language (context));
+   af = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics));
+   df = PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
    gdk_draw_rectangle (canvas, gc, TRUE, 15*w+6, 
-		       y - cfg->fixed->ascent-3, 
+		       y - af-3, 
 		       win_width - 9 - 15*w, 
-		       win_height - (y - cfg->fixed->ascent));
+		       win_height - (y - af));
    gdk_gc_set_foreground (gc, &cfg->gray75);
-   gdk_draw_rectangle (canvas, gc, TRUE, 3, y-cfg->fixed->ascent-3, 
-		       15*w, win_height - (y - cfg->fixed->ascent));
+   gdk_draw_rectangle (canvas, gc, TRUE, 3, y-af-3, 
+		       15*w, win_height - (y - af));
 
    /* Draw Info */
    gdk_gc_set_foreground (gc, &cfg->black);
-   gdk_draw_string (canvas, cfg->fixedb, gc, x, y, _("Log:"));
+   pango_layout_set_font_description (stat_layout, cfg->fixedb);
+   pango_layout_set_text (stat_layout, _("Log:"), -1);
+   gdk_draw_layout (canvas, gc, x+3, y, stat_layout);
    y += h;
-   gdk_draw_string (canvas, cfg->fixedb, gc, x, y, _("Size:"));
+   pango_layout_set_text (stat_layout, _("Size:"), -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
-   gdk_draw_string (canvas, cfg->fixedb, gc, x, y, _("Modified:"));
+   pango_layout_set_text (stat_layout, _("Modified:"), -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
-   gdk_draw_string (canvas, cfg->fixedb, gc, x, y, _("Start date:"));
+   pango_layout_set_text (stat_layout, _("Start date:"), -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
-   gdk_draw_string (canvas, cfg->fixedb, gc, x, y, _("Last date:"));
+   pango_layout_set_text (stat_layout, _("Last date:"), -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
-   gdk_draw_string (canvas, cfg->fixedb, gc, x, y, _("Num. lines:"));
-
-   gdk_gc_set_font (gc, cfg->fixed);
+   pango_layout_set_text (stat_layout, _("Num. lines:"), -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
 
    /* Check that there is at least one log */
    if (curlog == NULL)
       return -1;
 
-   h = cfg->headingb->descent + cfg->headingb->ascent;
-   y = cfg->headingb->ascent + 6;
-   y += 9 + cfg->headingb->descent + cfg->fixedb->ascent;
+   h = dh + ah;
+   y = ah + 6;
+   y += 9 + dh + afdb;
    x = 15*w + 6 + 2;
    g_snprintf (buffer, sizeof (buffer), "%s", curlog->name);
-   h = cfg->fixedb->descent + cfg->fixedb->ascent+2;
-   gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
+   h = dfdb + afdb+2;
+   pango_layout_set_font_description (stat_layout, cfg->fixed);
+   pango_layout_set_text (stat_layout, buffer, -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer),
 	      _("%ld bytes"), (long) curlog->lstats.size);
-   gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
+   pango_layout_set_text (stat_layout, buffer, -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.mtime));
-   gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
+   pango_layout_set_text (stat_layout, buffer, -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ",
 	      ctime (&curlog->lstats.startdate));
-   gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
+   pango_layout_set_text (stat_layout, buffer, -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ", ctime (&curlog->lstats.enddate));
-   gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
+   pango_layout_set_text (stat_layout, buffer, -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%ld ", curlog->lstats.numlines);
-   gdk_draw_string (canvas, cfg->fixed, gc, x, y, buffer);
+   pango_layout_set_text (stat_layout, buffer, -1);
+   gdk_draw_layout (canvas, gc, x, y, stat_layout);
 
+   pango_font_metrics_unref (metrics);
+   g_object_unref (G_OBJECT (context));
+   g_object_unref (G_OBJECT (font));
    return TRUE;
 }
 
@@ -211,5 +273,8 @@ CloseLogInfo (GtkWidget * widget, GtkWindow ** window)
       gtk_widget_hide (InfoDialog);
    InfoDialog = NULL;
    loginfovisible = FALSE;
+
+   if (G_IS_OBJECT (stat_layout))
+      g_object_unref (G_OBJECT (stat_layout));
 }
 

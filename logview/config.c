@@ -31,30 +31,33 @@
  * 	-------------------
  */
 
-#define FIXED_12_FONT      _("-b&h-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-*-*")
-#define FIXED_12_BFONT     _("-b&h-lucidatypewriter-bold-r-normal-*-12-*-*-*-*-*-*-*")
-#define FIXED_10_FONT      _("-b&h-lucidatypewriter-medium-r-normal-sans-10-*-*-*-*-*-*-*")
-#define FIXED_10_BFONT     _("-b&h-lucidatypewriter-bold-r-normal-sans-10-*-*-*-*-*-*-*")
+#define FIXED_12_FONT      _("fixed 12") 
+#define FIXED_12_BFONT     _("fixed Bold 12")
+#define FIXED_10_FONT      _("fixed 10")
+#define FIXED_8_BFONT     _("fixed Bold 8")
 
-#define HELVETICA_14_FONT  _("-adobe-helvetica-medium-r-normal-*-14-*-*-*-*-*-*-*")
-#define HELVETICA_14_BFONT _("-adobe-helvetica-bold-r-normal-*-14-*-*-*-*-*-*-*")
-#define HELVETICA_12_FONT  _("-adobe-helvetica-medium-r-normal-*-12-*-*-*-*-*-*-*")
-#define HELVETICA_12_BFONT _("-adobe-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*")
-#define HELVETICA_10_FONT  _("-adobe-helvetica-medium-r-normal-*-10-*-*-*-*-*-*-*")
-#define HELVETICA_10_BFONT _("-adobe-helvetica-bold-r-normal-*-10-*-*-*-*-*-*-*")
+#define HELVETICA_14_FONT  _("Helvetica 14")
+#define HELVETICA_14_BFONT _("Helvetica Bold 14")
+#define HELVETICA_12_FONT  _("Helvetica 12")
+#define HELVETICA_12_BFONT _("Helvetica Bold 12")
+#define HELVETICA_10_FONT  _("Helvetica 10")
+#define HELVETICA_10_BFONT _("Helvetica Bold 10")
 
-static GdkFont *
+static PangoFontDescription *
 fontset_load (const char *font_name)
 {
-	GdkFont *font;
+	PangoFontDescription *font;
 
-	font = gdk_fontset_load (font_name);
+	font = (PangoFontDescription *)
+		pango_font_description_from_string (font_name); 
 	if (font != NULL)
 		return font;
-	font = gdk_font_load ("fixed");
+	font = (PangoFontDescription *)
+		pango_font_description_from_string ("fixed"); 
 	if (font != NULL)
 		return font;
-	return gdk_font_load ("*");
+	return (PangoFontDescription *)
+		pango_font_description_from_string ("Sans");
 }
 
 
@@ -110,9 +113,9 @@ CreateConfig(void)
 
   /*  Set up fonts used */
   newcfg->headingb = fontset_load (HELVETICA_12_BFONT);
-  newcfg->heading  = fontset_load (HELVETICA_12_FONT);
+  newcfg->heading  = fontset_load (HELVETICA_10_FONT);
   newcfg->fixed    = fontset_load (FIXED_10_FONT);
-  newcfg->fixedb   = fontset_load (FIXED_10_BFONT);
+  newcfg->fixedb   = fontset_load (FIXED_8_BFONT);
   newcfg->small    = fontset_load (HELVETICA_10_FONT);
 
   /*  Create styles */
@@ -147,16 +150,10 @@ CreateConfig(void)
   /*   } */
 
   {
-	  GdkFont *font;
-	  
-	  font = gtk_style_get_font(cs);
-	  //FIXME gdk_font_unref (font);
-  }
-  {
-	  GdkFont *font;
+	  PangoFontDescription *font;
   
 	  font = fontset_load (HELVETICA_10_FONT);
-	  gtk_style_set_font(newcfg->main_style, font);
+	  newcfg->main_style->font_desc = font;
   }
 
   /* Set default style */
@@ -170,16 +167,10 @@ CreateConfig(void)
   cs->bg[GTK_STATE_NORMAL].green = (gushort) 65535;
   cs->bg[GTK_STATE_NORMAL].blue  = (gushort) 65535;
   {
-	  GdkFont *font;
+	  PangoFontDescription *font;
 
-	  font = gtk_style_get_font(cs);
-	  //FIXME gdk_font_unref (font);
-  }
-  {
-	  GdkFont *font;
- 
 	  font = fontset_load (HELVETICA_10_FONT);
-	  gtk_style_set_font(cs, font);
+	  cs->font_desc = font;
   }
 
   cs = newcfg->black_bg_style = gtk_style_new ();
@@ -188,16 +179,10 @@ CreateConfig(void)
   cs->bg[GTK_STATE_NORMAL].blue  = (gushort) 0;
   cs->bg[GTK_STATE_NORMAL].pixel = black.pixel;
   {
-	  GdkFont *font;
-
-	  font = gtk_style_get_font(cs);
-	  //FIXME gdk_font_unref (font);
-  }
-  {
-	  GdkFont *font;
+	  PangoFontDescription *font;
 
 	  font = fontset_load (HELVETICA_10_FONT);
-	  gtk_style_set_font(cs, font);
+	  cs->font_desc = font;
   }
 
   /* Set paths */

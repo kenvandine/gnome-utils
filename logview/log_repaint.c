@@ -72,6 +72,7 @@ extern UserPrefsStruct *user_prefs;
 
 GdkGC *gc;
 GdkDrawable *canvas;
+PangoLayout *log_layout;
 
 Log *loglist[MAX_NUM_LOGS];
 Log *curlog;
@@ -414,15 +415,27 @@ log_repaint (GtkWidget * win, GdkEventExpose * event)
    Page *pg;
    LogLine *line;
    GdkRectangle *area;
+   PangoContext *context;
+   PangoFontMetrics *metrics;
+   PangoFont *font;
 
    if (firsttime)
    {
       if (win == NULL)
 	 return FALSE;
       firsttime = FALSE;
+      log_layout = gtk_widget_create_pango_layout (main_win_scrollbar, "");
+      context = gdk_pango_context_get ();
+      pango_context_set_language (context, gtk_get_default_language ());
+      font = pango_context_load_font (context, cfg->fixedb);
+      metrics = pango_font_get_metrics
+                (font, pango_context_get_language (context));
       canvas = win->window;
       gc = gdk_gc_new (canvas);
-      log_line_sep = cfg->fixedb->ascent + 3;
+      log_line_sep = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics)) + 3;
+      pango_font_metrics_unref (metrics);
+      g_object_unref (G_OBJECT (context));
+      g_object_unref (G_OBJECT (font));
    }
    offset = LOG_TITLEY;
 
@@ -591,9 +604,13 @@ DrawLogLine (LogLine *line, int y)
   int num_chars, max_num_chars;
   int col_pos = 0;
   int char_width;
+  PangoRectangle logical_rect;
   
-  char_width = gdk_char_width (cfg->fixed, 'A');
-  
+  pango_layout_set_text (log_layout, "A", 1);
+  pango_layout_set_font_description (log_layout, cfg->fixed);
+  pango_layout_get_pixel_extents (log_layout, NULL, &logical_rect);
+  char_width = logical_rect.width; 
+
   /*gdk_gc_set_foreground (gc, &cfg->white); */
   gdk_gc_set_foreground (gc, &cfg->black);
 
@@ -616,12 +633,15 @@ DrawLogLine (LogLine *line, int y)
   } else {
 	  strcpy (tmp, " ");
   }
-  gdk_draw_string (canvas, cfg->fixedb, gc, LOG_COL1, y, tmp);
+  pango_layout_set_font_description (log_layout, cfg->fixed);
+  pango_layout_set_text (log_layout, tmp, -1);
+  gdk_draw_layout (canvas, gc, LOG_COL1, y-10, log_layout);
 
   /* Print four spaces */
   col_pos = LOG_COL1 + strlen(tmp)*char_width;
   strcpy (tmp, "    ");
-  gdk_draw_string (canvas, cfg->fixedb, gc, col_pos, y, tmp);
+  pango_layout_set_text (log_layout, tmp, -1);
+  gdk_draw_layout (canvas, gc, col_pos, y-10, log_layout);
   col_pos = col_pos + 4*char_width;
 
   strcpy (tmp, " ");
@@ -631,12 +651,16 @@ DrawLogLine (LogLine *line, int y)
   	if (strlen (tmp) > user_prefs->hostname_column_width)
     		tmp[user_prefs->hostname_column_width+1] = '\0';
   }
-  gdk_draw_string (canvas, cfg->fixed, gc, col_pos, y, tmp);
+  pango_layout_set_text (log_layout, tmp, -1);
+  pango_layout_set_font_description (log_layout, cfg->fixed);
+  gdk_draw_layout (canvas, gc, col_pos, y-10, log_layout);
 
   /* Print four spaces */
   col_pos = col_pos + user_prefs->hostname_column_width*char_width;
   strcpy (tmp, "    ");
-  gdk_draw_string (canvas, cfg->fixedb, gc, col_pos, y, tmp);
+  pango_layout_set_text (log_layout, tmp, -1);
+  pango_layout_set_font_description (log_layout, cfg->fixedb);
+  gdk_draw_layout (canvas, gc, col_pos, y-10, log_layout);
   col_pos = col_pos + 4*char_width;
 
   strcpy (tmp, " ");
@@ -646,23 +670,29 @@ DrawLogLine (LogLine *line, int y)
   	if (strlen (tmp) > user_prefs->process_column_width)
     		tmp[user_prefs->process_column_width+1] = '\0';
   }
-  gdk_draw_string (canvas, cfg->fixed, gc, col_pos, y, tmp);
+  pango_layout_set_text (log_layout, tmp, -1);
+  pango_layout_set_font_description (log_layout, cfg->fixed);
+  gdk_draw_layout (canvas, gc, col_pos, y-10, log_layout);
 
   /* Print four spaces */
   col_pos = col_pos + user_prefs->process_column_width*char_width;
   strcpy (tmp, "    ");
-  gdk_draw_string (canvas, cfg->fixedb, gc, col_pos, y, tmp);
+  pango_layout_set_text (log_layout, tmp, -1);
+  pango_layout_set_font_description (log_layout, cfg->fixedb);
+  gdk_draw_layout (canvas, gc, col_pos, y-10, log_layout);
   col_pos = col_pos + 4*char_width;
 
   /* For now max string length is ignored */
   num_chars = MAX (strlen (line->message), 1023);
   tmp[1023] = '\0';
   strncpy (tmp, line->message, 1023);
-  max_num_chars = (canvas_width - 10 - col_pos) / gdk_char_width (cfg->fixed, 'A');
+  max_num_chars = (canvas_width - 10 - col_pos) / char_width;
   if (max_num_chars < num_chars)
     max_num_chars = num_chars;
   tmp[max_num_chars] = '\0';
-  gdk_draw_string (canvas, cfg->fixed, gc, col_pos, y, tmp);
+  pango_layout_set_text (log_layout, tmp, -1);
+  pango_layout_set_font_description (log_layout, cfg->fixed);
+  gdk_draw_layout (canvas, gc, col_pos, y-10, log_layout);
 }
 
 
@@ -677,13 +707,26 @@ DrawMonthHeader (LogLine * line, int y)
    char buf[100];
    int  h, centery, skip;
    GdkColor color[3];
+   PangoContext *context;
+   PangoFontMetrics *metrics;
+   PangoFont *font;
 
    color[0] = cfg->blue1;
    color[1] = cfg->blue;
    color[2] = cfg->blue3;
 
-   h = cfg->headingb->ascent - cfg->headingb->descent;
-   skip = (log_line_sep - cfg->fixed->ascent + cfg->fixed->descent);
+   context = gdk_pango_context_get ();
+   pango_context_set_language (context, gtk_get_default_language ());
+   font = pango_context_load_font (context, cfg->headingb);
+   metrics = pango_font_get_metrics
+	     (font, pango_context_get_language (context));
+   h = PANGO_PIXELS (pango_font_metrics_get_ascent (metrics)) -
+       PANGO_PIXELS (pango_font_metrics_get_descent (metrics));
+   font = pango_context_load_font (context, cfg->fixed);	
+   metrics = pango_font_get_metrics
+	     (font, pango_context_get_language (context));
+   skip = (log_line_sep - PANGO_PIXELS (pango_font_metrics_get_ascent (metrics))
+	   + PANGO_PIXELS (pango_font_metrics_get_descent (metrics)));
    centery = y + log_line_sep - ((2 * log_line_sep - skip - h) >> 1);
    Draw3DBox (canvas, gc, 5, y - log_line_sep + skip , canvas_width - 10, 2*log_line_sep-skip, color);
 
@@ -700,9 +743,17 @@ DrawMonthHeader (LogLine * line, int y)
    } else {
 	   g_snprintf (buf, sizeof (buf), "?%d? %d", (int) line->month, line->date);
    }
-   gdk_draw_string (canvas, cfg->headingb, gc, LOG_COL1 - 1, centery + 1, buf);
+   pango_layout_set_text (log_layout, buf, -1);
+   pango_layout_set_font_description (log_layout, cfg->headingb);
+   gdk_draw_layout (canvas, gc, LOG_COL1 - 1, centery + 1 - 12, log_layout);
    gdk_gc_set_foreground (gc, &cfg->white);
-   gdk_draw_string (canvas, cfg->headingb, gc, LOG_COL1, centery, buf);
+   pango_layout_set_text (log_layout, buf, -1);
+   pango_layout_set_font_description (log_layout, cfg->headingb);
+   gdk_draw_layout (canvas, gc, LOG_COL1, centery -12, log_layout);
+
+   g_object_unref (G_OBJECT (font));
+   pango_font_metrics_unref (metrics);
+   g_object_unref (G_OBJECT (context));
 
 }
 

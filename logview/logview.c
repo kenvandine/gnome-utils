@@ -193,6 +193,7 @@ extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 extern int loginfovisible, calendarvisible;
 extern int cursor_visible;
+extern PangoLayout *log_layout;
 
 /* ----------------------------------------------------------------------
    NAME:          destroy
@@ -869,6 +870,9 @@ CloseApp (void)
       CloseLog (loglist[i]);
 
    numlogs = 0;
+
+   if (G_IS_OBJECT (log_layout))
+      g_object_unref (G_OBJECT (log_layout));
 
    gtk_main_quit ();   
 }

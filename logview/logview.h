@@ -71,7 +71,7 @@ typedef struct __menu_item MenuItem;
 typedef struct
 {
   /* Fonts ----------------------------------------------------- */
-  GdkFont *heading, *headingb, *fixed, *fixedb, *small;
+   PangoFontDescription *heading, *headingb, *fixed, *fixedb, *small;
 
   /* Colors ---------------------------------------------------- */
   GdkColor black, green, blue, blue1, blue3, gray25, gray50;
