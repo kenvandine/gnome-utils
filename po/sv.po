@@ -1,20 +1,20 @@
-# Swedish translation of gnome-utils.
-# Copyright (C) 2000, 2001 Free Software Foundation, Inc.
+# Swedish messages for gnome-utils.
+# Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000.
 # Andreas Hyden <a.hyden@cyberpoint.se>.
-# Christian Rose <menthos@menthos.com>, 2001.
+# Christian Rose <menthos@menthos.com>, 2001, 2002.
 #
 # $Id$
 #
 #. Translator credits
 #: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
 #: gsearchtool/gsearchtool.c:800 logview/about.c:52
-#: meat-grinder/meat-grinder.c:377
+#: meat-grinder/meat-grinder.c:380
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2001-12-15 16:00+0100\n"
-"PO-Revision-Date: 2001-12-15 16:00+0100\n"
+"POT-Creation-Date: 2002-01-09 18:25+0100\n"
+"PO-Revision-Date: 2002-01-09 18:25+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -275,7 +275,7 @@ msgstr "Text att kopiera:"
 msgid "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 msgstr "-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*"
 
-#: gcharmap/src/interface.c:235 gcharmap/src/menus.c:111 logview/logview.c:100
+#: gcharmap/src/interface.c:235 gcharmap/src/menus.c:111 logview/logview.c:102
 msgid "Exit"
 msgstr "Avsluta"
 
@@ -390,17 +390,17 @@ msgstr "Avsluta programmet"
 
 #: gdictsrc/main.c:89
 msgid ""
-"Couldn't start the dictionary; most likely, http://www.dict.org could not be "
-"contacted."
+"The server could not be contacted. \n"
+"If you are not connected to the internet please do so."
 msgstr ""
-"Kunde inte starta ordboken. Troligtvis kunde inte http://www.dict.org "
-"kontaktas."
+"Servern kunde inte kontaktas.\n"
+"Om du inte är ansluten till Internet bör du ansluta dig."
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:419
-#: gdictsrc/gdict-pref-dialog.c:463 gdictsrc/gdict-speller.c:411
+#: gdictsrc/dict.c:637 gdictsrc/gdict-pref-dialog.c:418
+#: gdictsrc/gdict-pref-dialog.c:462 gdictsrc/gdict-speller.c:411
 msgid "Cannot connect to server"
 msgstr "Kan inte ansluta till server"
 
@@ -442,18 +442,16 @@ msgstr "Sök:"
 
 #: gdictsrc/gdict-app.c:452
 msgid ""
-"Unable to perform requested operation, either because the server\n"
-"you are using is down or because you are not connected to the\n"
-"Internet. If you are not already connected to the Internet, please\n"
-"do so and try again."
+"Unable to perform requested operation. \n"
+"Either the server you are using is not available \n"
+"or you are not connected to the Internet."
 msgstr ""
-"Kan inte utföra den begärda åtgärden, antingen beroende på att\n"
-"servern du använder är nere eller att är du inte uppkopplad mot\n"
-"Internet. Om du inte redan är uppkopplad mot Internet, koppla\n"
-"upp och förök igen."
+"Kan inte utföra den begärda åtgärden.\n"
+"Antingen är servern du använder nere eller inte\n"
+"tillgänglig eller så är du inte uppkopplad mot\n"
+"Internet."
 
 #: gdictsrc/gdict-app.c:489 gdictsrc/gdict-app.c:546
-#: gdictsrc/gdict-applet.c:185
 msgid "Lookup"
 msgstr "Slå upp"
 
@@ -493,13 +491,9 @@ msgstr "Servern som ska användas, sökstrategi, typsnitt"
 msgid "_Lookup"
 msgstr "_Slå upp"
 
-#: gdictsrc/gdict-applet.c:181
-msgid "Cannot create applet!\n"
-msgstr "Kan inte skapa panelprogram!\n"
-
-#: gdictsrc/gdict-applet.c:434
-msgid "Look up highlighted text in a dictionary"
-msgstr "Slå upp den markerade texten i en ordbok"
+#: gdictsrc/gdict-applet.c:268
+msgid "Press button to look up any highlighted text in a dictionary"
+msgstr "Tryck knappen för att slå upp den markerade texten i en ordbok"
 
 #: gdictsrc/gdict-defbox.c:633 gdictsrc/gdict-speller.c:436
 #, c-format
@@ -538,45 +532,49 @@ msgstr "Huvudkropp:"
 msgid "Cross-reference:"
 msgstr "Korsreferens:"
 
-#: gdictsrc/gdict-pref-dialog.c:176
+#: gdictsrc/gdict-pref-dialog.c:177
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: gdictsrc/gdict-pref-dialog.c:188
+#: gdictsrc/gdict-pref-dialog.c:189
 msgid "Smart lookup"
 msgstr "Smart uppslagning"
 
-#: gdictsrc/gdict-pref-dialog.c:199
+#: gdictsrc/gdict-pref-dialog.c:200
 msgid "Server:"
 msgstr "Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:204
+#: gdictsrc/gdict-pref-dialog.c:205
 msgid "Set _Server"
 msgstr "Ställ in _server"
 
-#: gdictsrc/gdict-pref-dialog.c:209
+#: gdictsrc/gdict-pref-dialog.c:210
 msgid "Port:"
 msgstr "Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:219
+#: gdictsrc/gdict-pref-dialog.c:220
 msgid "Set _Port"
 msgstr "Ställ in _port"
 
-#: gdictsrc/gdict-pref-dialog.c:224
+#: gdictsrc/gdict-pref-dialog.c:225
 msgid "Database:"
 msgstr "Databas:"
 
-#: gdictsrc/gdict-pref-dialog.c:231
+#: gdictsrc/gdict-pref-dialog.c:232
 msgid "Default strategy:"
 msgstr "Standardstategi:"
 
-#: gdictsrc/gdict-pref-dialog.c:411
+#: gdictsrc/gdict-pref-dialog.c:410
 msgid "Search all databases"
 msgstr "Sök i alla databaser"
 
-#: gdictsrc/gdict-pref-dialog.c:600 gdictsrc/gdict-pref-dialog.c:652
+#: gdictsrc/gdict-pref-dialog.c:598
 msgid "The server you specified could not be found."
 msgstr "Servern som du angav kunde inte hittas."
+
+#: gdictsrc/gdict-pref-dialog.c:649
+msgid "The server could not be found on that port."
+msgstr "Servern kunde inte hittas på den porten."
 
 #: gdictsrc/gdict-speller.c:127
 msgid "_Spell"
@@ -702,7 +700,7 @@ msgid "Enable"
 msgstr "Slå på"
 
 #: gsearchtool/gsearchtool.c:576 logview/actions.c:163
-#: meat-grinder/meat-grinder.c:715
+#: meat-grinder/meat-grinder.c:718
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -776,7 +774,7 @@ msgstr "Gnome-sökverktyg"
 msgid "Cannot save file"
 msgstr "Kan inte spara filen"
 
-#: gsearchtool/outdlg.c:71 meat-grinder/meat-grinder.c:489
+#: gsearchtool/outdlg.c:71 meat-grinder/meat-grinder.c:492
 msgid "Save Results"
 msgstr "Spara resultat"
 
@@ -892,11 +890,11 @@ msgstr ""
 "beskrivning: [%s]\n"
 "åtgärd: [%s]\n"
 
-#: logview/calendar.c:112 logview/logview.c:107
+#: logview/calendar.c:112 logview/logview.c:109
 msgid "Calendar"
 msgstr "Kalender"
 
-#: logview/info.c:79 logview/logview.c:110
+#: logview/info.c:79 logview/logview.c:112
 msgid "Log stats"
 msgstr "Loggstatus"
 
@@ -933,62 +931,62 @@ msgstr "Antal rader:"
 msgid "%ld bytes"
 msgstr "%ld byte"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "January"
 msgstr "januari"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "February"
 msgstr "februari"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "March"
 msgstr "mars"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "April"
 msgstr "april"
 
-#: logview/log_repaint.c:86
+#: logview/log_repaint.c:83
 msgid "May"
 msgstr "maj"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "June"
 msgstr "juni"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "July"
 msgstr "juli"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "August"
 msgstr "augusti"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "September"
 msgstr "september"
 
-#: logview/log_repaint.c:87
+#: logview/log_repaint.c:84
 msgid "October"
 msgstr "oktober"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:85
 msgid "November"
 msgstr "november"
 
-#: logview/log_repaint.c:88
+#: logview/log_repaint.c:85
 msgid "December"
 msgstr "december"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:477
+#: logview/log_repaint.c:475
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:587
+#: logview/log_repaint.c:585
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -996,7 +994,7 @@ msgstr "%X"
 #. bogus
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:671
+#: logview/log_repaint.c:669
 msgid "%B %e"
 msgstr "%e %B"
 
@@ -1040,112 +1038,112 @@ msgstr "%s är ingen loggfil."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: slut på minne"
 
-#: logview/logview.c:85
+#: logview/logview.c:87
 msgid "Open log..."
 msgstr "Öppna logg..."
 
-#: logview/logview.c:86
+#: logview/logview.c:88
 msgid "Open log"
 msgstr "Öppna logg"
 
-#: logview/logview.c:88
+#: logview/logview.c:90
 msgid "Export log..."
 msgstr "Exportera logg..."
 
-#: logview/logview.c:89
+#: logview/logview.c:91
 msgid "Export log"
 msgstr "Exportera logg"
 
-#: logview/logview.c:91 logview/logview.c:92
+#: logview/logview.c:93 logview/logview.c:94
 msgid "Close log"
 msgstr "Stäng logg"
 
-#: logview/logview.c:94 logview/logview.c:95
+#: logview/logview.c:96 logview/logview.c:97
 msgid "Switch log"
 msgstr "Växla logg"
 
-#: logview/logview.c:97
+#: logview/logview.c:99
 msgid "Monitor..."
 msgstr "Övervaka..."
 
-#: logview/logview.c:98
+#: logview/logview.c:100
 msgid "Monitor log"
 msgstr "Övervaka logg"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "Exit program"
 msgstr "Avsluta programmet"
 
-#: logview/logview.c:108
+#: logview/logview.c:110
 msgid "Show calendar log"
 msgstr "Visa kalenderlogg"
 
-#: logview/logview.c:111
+#: logview/logview.c:113
 msgid "Show log stats"
 msgstr "Visa loggstatus"
 
-#: logview/logview.c:113
+#: logview/logview.c:115
 msgid "Zoom"
 msgstr "Zooma"
 
-#: logview/logview.c:114
+#: logview/logview.c:116
 msgid "Show line info"
 msgstr "Visa radinformation"
 
-#: logview/logview.c:116
+#: logview/logview.c:118
 msgid "Preferences..."
 msgstr "Inställningar..."
 
-#: logview/logview.c:117
+#: logview/logview.c:119
 msgid "Show user preferences"
 msgstr "Visa användarinställningar"
 
-#: logview/logview.c:124
+#: logview/logview.c:126
 msgid "Select...               "
 msgstr "Välj...                 "
 
-#: logview/logview.c:125
+#: logview/logview.c:127
 msgid "Select log events"
 msgstr "Välj logghändelser"
 
-#: logview/logview.c:127
+#: logview/logview.c:129
 msgid "Filter..                "
 msgstr "Filtrera...             "
 
-#: logview/logview.c:128
+#: logview/logview.c:130
 msgid "Filter log events"
 msgstr "Filtrera logghändelser"
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 msgid "About..."
 msgstr "Om..."
 
-#: logview/logview.c:136
+#: logview/logview.c:138
 msgid "Info about logview"
 msgstr "Information om logview"
 
-#: logview/logview.c:241
+#: logview/logview.c:250
 msgid "No log files to open"
 msgstr "Inga loggfiler att öppna"
 
 #. Create App
-#: logview/logview.c:264
+#: logview/logview.c:273
 msgid "System Log Viewer"
 msgstr "Systemloggvisare"
 
-#: logview/logview.c:368
+#: logview/logview.c:377
 msgid "Filename: "
 msgstr "Filnamn: "
 
-#: logview/logview.c:384
+#: logview/logview.c:393
 msgid "Date: "
 msgstr "Datum: "
 
-#: logview/logview.c:619
+#: logview/logview.c:628
 msgid "Too many open logs. Close one and try again"
 msgstr "För många loggar öppnade. Stäng en och försök igen"
 
-#: logview/logview.c:676
+#: logview/logview.c:685
 msgid "Open new logfile"
 msgstr "Öppna ny loggfil"
 
@@ -1614,7 +1612,7 @@ msgstr ""
 "Den körbara filen är för en annan plattform och kan inte köras på detta "
 "system"
 
-#: meat-grinder/meat-grinder.c:106
+#: meat-grinder/meat-grinder.c:109
 #, c-format
 msgid ""
 "Number of files: %d\n"
@@ -1623,7 +1621,7 @@ msgstr ""
 "Antal filer: %d\n"
 "Antal mappar: %d"
 
-#: meat-grinder/meat-grinder.c:112
+#: meat-grinder/meat-grinder.c:115
 msgid ""
 "No files or folders, drop files or folders\n"
 "above to add them to the archive"
@@ -1631,79 +1629,79 @@ msgstr ""
 "Inga filer eller mappar. Släpp filer eller mappar\n"
 "ovan för att lägga till dem till arkivet"
 
-#: meat-grinder/meat-grinder.c:217 meat-grinder/meat-grinder.c:220
+#: meat-grinder/meat-grinder.c:220 meat-grinder/meat-grinder.c:223
 msgid "Cannot start the archive (tar) program"
 msgstr "Kan inte starta arkiveringsprogrammet (tar)"
 
-#: meat-grinder/meat-grinder.c:228
+#: meat-grinder/meat-grinder.c:231
 msgid "Cannot run tar/gtar"
 msgstr "Kan inte köra tar/gtar"
 
-#: meat-grinder/meat-grinder.c:279
+#: meat-grinder/meat-grinder.c:282
 msgid "Archive.tar.gz"
 msgstr "Arkiv.tar.gz"
 
-#: meat-grinder/meat-grinder.c:384
+#: meat-grinder/meat-grinder.c:387
 msgid "The GNOME Archive Generator"
 msgstr "Arkivskapare för GNOME"
 
-#: meat-grinder/meat-grinder.c:386
+#: meat-grinder/meat-grinder.c:389
 msgid "Drag files in to make archives"
 msgstr "Dra in filer för att skapa arkiv"
 
-#: meat-grinder/meat-grinder.c:457 meat-grinder/meat-grinder.c:615
+#: meat-grinder/meat-grinder.c:460 meat-grinder/meat-grinder.c:618
 msgid "No filename selected"
 msgstr "Inget filnamn valt"
 
-#: meat-grinder/meat-grinder.c:461
+#: meat-grinder/meat-grinder.c:464
 msgid "File exists, overwrite?"
 msgstr "Filen finns redan, skriva över?"
 
-#: meat-grinder/meat-grinder.c:485
+#: meat-grinder/meat-grinder.c:488
 msgid "No items to archive"
 msgstr "Inga objekt att arkivera"
 
-#: meat-grinder/meat-grinder.c:618
+#: meat-grinder/meat-grinder.c:621
 msgid "File does not exists"
 msgstr "Filen finns inte"
 
-#: meat-grinder/meat-grinder.c:632
+#: meat-grinder/meat-grinder.c:635
 msgid "Add file or folder"
 msgstr "Lägg till fil eller mapp"
 
-#: meat-grinder/meat-grinder.c:702
+#: meat-grinder/meat-grinder.c:705
 msgid "Add file or folder..."
 msgstr "Lägg till fil eller mapp..."
 
-#: meat-grinder/meat-grinder.c:703
+#: meat-grinder/meat-grinder.c:706
 msgid "Add a file or folder to the archive"
 msgstr "Lägg till en fil eller mapp till arkivet"
 
-#: meat-grinder/meat-grinder.c:706
+#: meat-grinder/meat-grinder.c:709
 msgid "Create archive..."
 msgstr "Skapa arkiv..."
 
-#: meat-grinder/meat-grinder.c:707
+#: meat-grinder/meat-grinder.c:710
 msgid "Create a new archive from the items"
 msgstr "Skapa ett nytt arkiv utifrån objekten"
 
-#: meat-grinder/meat-grinder.c:716
+#: meat-grinder/meat-grinder.c:719
 msgid "Remove the selected item(s)"
 msgstr "Ta bort de markerade objekten"
 
-#: meat-grinder/meat-grinder.c:748
+#: meat-grinder/meat-grinder.c:751
 msgid "GNOME Archive Generator"
 msgstr "Arkivskapare för GNOME"
 
-#: meat-grinder/meat-grinder.c:778
+#: meat-grinder/meat-grinder.c:781
 msgid "Drop files here to add them to the archive."
 msgstr "Släpp filer här för att lägga till dem i arkivet."
 
-#: meat-grinder/meat-grinder.c:796
+#: meat-grinder/meat-grinder.c:799
 msgid "Archive"
 msgstr "Arkiv"
 
-#: meat-grinder/meat-grinder.c:803
+#: meat-grinder/meat-grinder.c:806
 msgid ""
 "Drag this button to the destination where you want the archive to be created "
 "or press it to pop up a file selection dialog."
@@ -1711,11 +1709,11 @@ msgstr ""
 "Dra denna knapp till målet där du vill att arkivet ska skapas, eller tryck "
 "på den för att få fram en dialog där du kan välja."
 
-#: meat-grinder/meat-grinder.c:897
+#: meat-grinder/meat-grinder.c:900
 msgid "Cannot find proper icons anywhere!"
 msgstr "Kan inte hitta ordentliga ikoner någonstans!"
 
-#: meat-grinder/meat-grinder.c:905
+#: meat-grinder/meat-grinder.c:908
 msgid ""
 "Cannot find the archive (tar) program!\n"
 "This is the program used for creating archives."
@@ -1770,6 +1768,16 @@ msgstr "Miniräknare"
 #: gcalc/gcalc.desktop.in.h:2
 msgid "Perform simple calculations"
 msgstr "Utför enkla beräkningar"
+
+#~ msgid ""
+#~ "Couldn't start the dictionary; most likely, http://www.dict.org could not "
+#~ "be contacted."
+#~ msgstr ""
+#~ "Kunde inte starta ordboken. Troligtvis kunde inte http://www.dict.org "
+#~ "kontaktas."
+
+#~ msgid "Cannot create applet!\n"
+#~ msgstr "Kan inte skapa panelprogram!\n"
 
 #~ msgid "Show/Hide Definition Window..."
 #~ msgstr "Visa/Göm definitionsfönstret..."
