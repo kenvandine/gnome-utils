@@ -18,7 +18,11 @@
 #include "sort.h"
 #include "tree.h"
 
-#define COL_WIDTH 192
+#define NAME_COL_WIDTH 100
+#define ORG_COL_WIDTH 100
+#define PHONE_COL_WIDTH 100
+#define EMAIL_COL_WIDTH 100
+
 #define LIST_WIDTH 400
 #define LIST_HEIGHT 320
 
@@ -646,7 +650,7 @@ void gnomecard_sort_by_fname(GtkWidget *w, gpointer data)
 
 void gnomecard_init(void)
 {
-	char *titles[] = { "", ""};
+	char *titles[] = { "Name", "Organization", "Phone #", "Email"};
 	GtkWidget *canvas, *align, *hpaned;
 	/*, *omenu, *menu, *item;
 	int i;*/
@@ -670,13 +674,16 @@ void gnomecard_init(void)
 	gnome_app_create_menus(GNOME_APP(gnomecard_window), mainmenu);
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
-	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(2, titles));
+	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(4, titles));
 	gtk_paned_add1(GTK_PANED(hpaned), GTK_WIDGET(gnomecard_list));
  	gtk_widget_realize(GTK_WIDGET(gnomecard_list));
 /*
 	gdk_gc_get_values(gnomecard_tree->lines_gc, &crd_tree_values);
 */
-	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 0, COL_WIDTH);
+	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 0, NAME_COL_WIDTH);
+	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 1, ORG_COL_WIDTH);
+	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 2, PHONE_COL_WIDTH);
+	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 3, EMAIL_COL_WIDTH);
 
 	gtk_signal_connect(GTK_OBJECT(gnomecard_list), 
 			   "select_row",

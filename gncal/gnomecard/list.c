@@ -20,6 +20,7 @@ static void gnomecard_create_list_row(Card *crd, gchar **text)
 	gchar  *name=NULL;
 	gchar  *email=NULL;
 	gchar  *phone=NULL;
+	gchar  *business=NULL;
 
 	/* for now we just display either cardname or real name and email */
 	cardname = crd->fname.str;
@@ -33,25 +34,34 @@ static void gnomecard_create_list_row(Card *crd, gchar **text)
 	else
 	    text[0] = g_strdup("No name");
 
-	if (crd->email.address) {
-	    text[1] = g_strdup(crd->email.address);
-	} else {
+	if (crd->org.name)
+	    text[1] = g_strdup(crd->org.name);
+	else
 	    text[1] = g_strdup("");
+
+	/* no phone # yet */
+	text[2] = g_strdup("");
+
+	if (crd->email.address) {
+	    text[3] = g_strdup(crd->email.address);
+	} else {
+	    text[3] = g_strdup("");
 	}
+
 }
 
 static void gnomecard_destroy_list_row(gchar **text)
 {
-    if (text[0])
-	g_free(text[0]);
-    if (text[1])
-	g_free(text[1]);
+    MY_FREE(text[0]);
+    MY_FREE(text[1]);
+    MY_FREE(text[2]);
+    MY_FREE(text[3]);
 }
 
 
 extern void gnomecard_update_list(Card *crd)
 {
-    gchar  *text[2];
+    gchar  *text[4];
     gint   row;
 
     row = GPOINTER_TO_INT(crd->prop.user_data);
@@ -122,7 +132,7 @@ extern void gnomecard_add_card_sections_to_list(Card *crd)
 
 extern void gnomecard_add_card_to_list(Card *crd)
 {
-	gchar  *text[2];
+	gchar  *text[4];
 	gint   row;
 
 	gnomecard_create_list_row(crd, text);
