@@ -1,5 +1,13 @@
 2005-01-25  Dennis Cranston <dennis_cranston@yahoo.com>
 
+	* gsearchtool.h: Add is_locate_database_available.
+	* gsearchtool.c: (setup_case_insensitive_arguments):
+	Set value of is_locate_database_available, 
+	(build_search_command): Before running a locate 
+	command check value of is_locate_database_available.
+	
+2005-01-25  Dennis Cranston <dennis_cranston@yahoo.com>
+
 	* help/C/gnome-search-tool.xml,
 	* gnome-search-tool.1:  Update the date and version 
 	information.

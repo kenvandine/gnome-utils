@@ -199,15 +199,16 @@ static gchar * find_command_default_name_argument;
 static gchar * locate_command_default_options;
 
 static void
-setup_case_insensitive_arguments (void)
+setup_case_insensitive_arguments (GSearchWindow * gsearch)
 {
-	static gboolean case_insensitive_arguments_setup = TRUE;
+	static gboolean case_insensitive_arguments_initialized = FALSE;
+	gchar * cmd_stdout;
 	gchar * cmd_stderr;
 
-	if (case_insensitive_arguments_setup != TRUE) {
+	if (case_insensitive_arguments_initialized == TRUE) {
 		return;
 	}
-	case_insensitive_arguments_setup = FALSE;
+	case_insensitive_arguments_initialized = TRUE;
 
 	/* check find command for -iname argument compatibility */
 	g_spawn_command_line_sync ("find /dev/null -iname 'string'", NULL, &cmd_stderr, NULL, NULL);
@@ -225,22 +226,46 @@ setup_case_insensitive_arguments (void)
 	g_spawn_command_line_sync ("grep -i 'string' /dev/null", NULL, &cmd_stderr, NULL, NULL);
 
 	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
-		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = g_strdup ("'!' -type p -exec grep -i -c '%s' {} \\;");
+		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = 
+		    g_strdup ("'!' -type p -exec grep -i -c '%s' {} \\;");
 	}
 	g_free (cmd_stderr);
 
 	/* check locate command for -i argument compatibility */
-	g_spawn_command_line_sync ("locate -i /dev/null/string", NULL, &cmd_stderr, NULL, NULL);
+	g_spawn_command_line_sync ("locate -i /dev/null", &cmd_stdout, &cmd_stderr, NULL, NULL);
 
 	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
 		locate_command_default_options = g_strdup ("-i");
+
+		/* check locate found /dev/null */
+		if (strstr (cmd_stdout, "/dev/null") != NULL) {
+			gsearch->is_locate_database_available = TRUE;
+		}
+		else {
+			g_warning (_("A locate database has probably not been created."));
+			gsearch->is_locate_database_available = FALSE;	
+		}
+		g_free (cmd_stdout);
+		g_free (cmd_stderr);
 	}
 	else {
 		locate_command_default_options = g_strdup ("");
+		g_free (cmd_stdout);
+		g_free (cmd_stderr);
+
+		/* run locate again to check if it can find /dev/null */
+		g_spawn_command_line_sync ("locate /dev/null", &cmd_stdout, NULL, NULL, NULL);
+		if (strstr (cmd_stdout, "/dev/null") != NULL) {
+			gsearch->is_locate_database_available = TRUE;
+		}
+		else {
+			g_warning (_("A locate database has probably not been created."));
+			gsearch->is_locate_database_available = FALSE;
+		}
+		g_free (cmd_stdout);
 	}
-	g_free (cmd_stderr);
 }
-  
+
 static gchar *
 setup_find_name_options (gchar * file)
 {
@@ -331,7 +356,7 @@ build_search_command (GSearchWindow * gsearch,
 	gchar * look_in_folder_utf8;
 	gchar * look_in_folder_locale;
 
-	setup_case_insensitive_arguments ();
+	setup_case_insensitive_arguments (gsearch);
 	
 	file_is_named_utf8 = g_strdup ((gchar *) gtk_entry_get_text (GTK_ENTRY (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry)))));
 
@@ -405,8 +430,9 @@ build_search_command (GSearchWindow * gsearch,
 			disable_quick_search = gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search");		
 			gsearch->command_details->is_command_second_pass_enabled = !gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search_second_pass");
 		
-			if ((disable_quick_search == FALSE) 
-			    && (locate != NULL) 
+			if ((disable_quick_search == FALSE)
+			    && (gsearch->is_locate_database_available == TRUE)
+			    && (locate != NULL)
 			    && (is_quick_search_excluded_path (look_in_folder_locale) == FALSE)) {
 			    
 					g_string_append_printf (command, "%s %s '%s*%s'", 
