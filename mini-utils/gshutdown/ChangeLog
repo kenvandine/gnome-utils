@@ -1,3 +1,10 @@
+1999-02-07  Martin Baulig  <martin@home-of-linux.org>
+
+	* gshutdown.c (check_whether_suid_and_executable): Check whether
+	a program is suid root and executable for the current user.
+	Use this to check whether to current user is allowed to shut down
+	the computer rather than just checking for uid == 0.
+
 1998-12-19  Herbert Valerio Riedel  <hvr@hvrlab.ml.org>
 
 	* gshutdown.c (prepare_advanced_vbox): 

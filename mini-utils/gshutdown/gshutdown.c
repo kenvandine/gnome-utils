@@ -23,6 +23,8 @@
 #include <unistd.h> /* getuid */
 #include <string.h> /* strtok */
 
+#include <sys/stat.h>
+
 #define APPNAME "gshutdown"
 #define COPYRIGHT_NOTICE _("Copyright 1998, under the GNU General Public License.")
 
@@ -53,6 +55,7 @@ static void popup_not_in_path(const gchar * command);
 static void popup_confirm();
 
 static void do_shutdown();
+static gint check_whether_suid_and_executable (gchar *command_name);
 static void run_command(gchar * command);
 
 /*****************************
@@ -142,7 +145,7 @@ int main ( int argc, char ** argv )
 
   gnome_init (APPNAME, VERSION, argc, argv);
 
-  if(getuid()) {
+  if(getuid() && !check_whether_suid_and_executable("shutdown")) {
     gnome_dialog_run(GNOME_DIALOG(
     gnome_message_box_new(_("You must be the super-user (root) to shut down or restart the computer."),
                           GNOME_MESSAGE_BOX_ERROR,
@@ -576,11 +579,24 @@ static void help_cb(GtkButton * b, gpointer ignored)
   ***********************/
 static void do_shutdown(void)
 {
-  gchar * command_name;
+  gchar * command_name, * command_path;
   
   command_name = g_strdup(runlevel_commands[requested_runlevel]);
   command_name = strtok(command_name, " \r\n\t");
-  if ( gnome_is_program_in_path(command_name) ) {
+  command_path = gnome_is_program_in_path(command_name);
+
+  if (getuid () && !check_whether_suid_and_executable (command_path)) {
+    gnome_dialog_run
+      (GNOME_DIALOG(gnome_message_box_new
+                    (_("You must be the super-user (root) to "
+                       "shut down or restart the computer."),
+                     GNOME_MESSAGE_BOX_ERROR,
+                     _("Close"), NULL)
+                    ));
+    exit (1);
+  }
+
+  if ( command_path ) {
     run_command(runlevel_commands[requested_runlevel]);
     g_free(command_name);
   }
@@ -591,6 +607,62 @@ static void do_shutdown(void)
   }
 
   gtk_main_quit();
+}
+
+/*
+ * Check whether @command_name is suid root and the current user has
+ * execute permission.
+ *
+ */
+
+static gint
+check_whether_suid_and_executable (gchar *command_name)
+{
+  gchar * command_path;
+  gint groups [64], number, i;
+  struct stat statb;
+
+  /* Already a full path name ? */
+  command_path = (command_name[0] == '/') ? command_name :
+    gnome_is_program_in_path(command_name);
+
+  if (!command_path)
+    return FALSE;
+
+  if (stat(command_path, &statb)) {
+    g_free(command_path);
+    return FALSE;
+  }
+
+  g_free(command_path);
+
+  /* Owned by root? */
+  if (statb.st_uid != 0)
+    return FALSE;
+
+  /* SUID to root? */
+  if (!(statb.st_mode & S_ISUID))
+    return FALSE;
+
+  /* If everyone can execute it, return success. */
+  if (statb.st_mode & S_IXOTH)
+    return TRUE;
+
+  /* We need at least group execute permission. */
+  if (!(statb.st_mode & S_IXGRP))
+    return FALSE;
+
+  /* Get all groups the current user is member of. */
+  number = getgroups (63, groups);
+  if (number < 1)
+    return FALSE;
+
+  /* Is the current user in the correct group? */
+  for (i = 0; i < number; i++)
+    if (groups [i] == statb.st_gid)
+      return TRUE;
+
+  return FALSE;
 }
 
 /********************************
@@ -604,7 +676,7 @@ static void do_shutdown(void)
 static void run_command(gchar * command)
 {
   pid_t new_pid;
-  
+
   new_pid = fork();
 
   switch (new_pid) {
