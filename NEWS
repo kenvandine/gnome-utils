@@ -1,0 +1,104 @@
+gnome-utils 1.4.0.1 (2001-06-23)
+
+general:
+	* Add support for xml-i18n-tools. Not .desktop files yet since
+	  there still are issues with different encodings in the same
+	  file. (Kjartan)
+	* Fix build to comply with new docs standards. (John)
+	* Translation updates. (George, Christophe, Zbigniew, Christian
+	  Matthias, Ole, Andras, Kjartan, Pablo, Antti, Stanislav,
+	  Gediminas, Fatih, Valek)
+
+exe-handler:
+
+	* New program from Miguel.
+	* gnome-exe-handler is invoked by applications that
+	  try to launch executables in Unix, but do not have the
+	  executable permission bit set.
+
+gcalc:
+	* Backported gnome-calc from GTK+ 2.0 (Chema)
+	* Make backspace and delete work. (Chema)
+	* Fix layout/spacing bugs. (Chema)
+	* New German docs. (Peter)
+	* New Spanish docs. (Manuel)
+	* Lots of doc fixes (John)
+	* Resize window fixes (Kevin)
+	
+gcharmap:
+	* Fix lots of i18n brokenness and make the help
+	  button work. (Kjartan)
+
+gdialog:
+	* Fix i18n brokenness. (George)
+	* Fix return values (Jochen)
+	
+gdict:
+	* Robustness fixes. (Kjartan)
+	* Lots of i18n cleanup. (Kjartan)
+	* Apply patches from Red Hat to make a dialog
+	  if the server can't be contacted instead of spewing
+	  it on the console.
+	* Handlebar fixes (Bradford)
+
+gdiskfree:
+	* Don't show usage over 100%. (George)
+	* Don't crash on very large disks. (George).
+	* Default to show mount point and size. (George).
+	* Exclude "usbdevfs". (Kjartan)
+	* Fix resizing on orientation change. (George)
+	* Fix help button in preferences. (John)
+
+gfloppy:
+	* Fix i18n brokenness. (Kjartan)
+	* Fix check for recognized devices. (George)
+	* Fix check for write permission. (George)
+	* Error out if we can't find the glade file. (George)
+	
+gsearchtool:
+	* Fix filename corruption. (George)
+	* Fix locate interface to actually show matches. (George)
+	* i18n fixes. (Kjartan)
+	* Limit number of errors to 20. (George)
+	
+gtt:
+	* Lots of cleanup, code correctness etc. (George)
+	* Remove pid file on "unclean" exit. (George)
+	* Spanish translation of docs. (Manuel)
+	
+logview:
+	* Tons of fixes to make the app actually work as expected
+	  in most cases. Fixes crashes in actions among other things. (George)
+	* Fix a lot of i18n problems. (George, Kjartan)
+	* Actually hide the window when the user requests it. (George)
+	* Add more default logs. (George)
+	* Add console helper support. (George)
+	* Cleanup warnings and remove unused code. (Kjartan)
+	
+meat-grinder:
+	* New program by George.
+	* Program to make archives.
+	
+gcolorsel:
+	* Fix bug in float range view. (George)
+	* Fix races in loading of preferences. (George)
+
+gshutdown:
+	* Add console helper support. (Kjartan)
+	* Spanish translation of docs. (Manuel)
+	* Fix help button. (George, patch from Ximian)
+
+guname:
+	* Fix build with WITH_SPARKLES defined. (George, patch from Ximian)
+
+gw:
+	* Remove Save from the menu since it does nothing. (John)
+	* Docs updates. (John)
+	* Add help. (George, patch from Ximian)
+
+stripchart:
+	* Don't try to save parameters that have been deleted.
+	  (John Kodis)
+	* Spanish translation of docs. (Manuel)
+	* Build/warning fixes. (Jason, Kjartan)
+
