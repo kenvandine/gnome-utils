@@ -33,6 +33,7 @@
 #include "proj.h"
 #include "props-invl.h"
 #include "props-task.h"
+#include "util.h"
 
 
 /* this struct is a random mish-mash of stuff, not well organized */
