@@ -12,7 +12,9 @@ gsu_SOURCES = \
 	gsu.c
 
 gsu_helper_SOURCES = \
-	gsu-helper.c
+	gsu-helper.c		\
+	xmalloc.c		\
+	xstrdup.c
 
 gsu_helper_LDADD = \
 	$(GLIB_LIBS)		\
