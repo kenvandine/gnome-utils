@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.1.1\n"
-"POT-Creation-Date: 2002-10-02 11:26+0100\n"
+"POT-Creation-Date: 2002-10-14 15:19+0100\n"
 "PO-Revision-Date: 2001-05-25 13:35+0200\n"
 "Last-Translator: Unmantained\n"
 "Language-Team: Euskara\n"
@@ -1406,7 +1406,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1414
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1516
 #, fuzzy
 msgid "Search for Files"
 msgstr "Bilaketaren komando-lerroa "
@@ -1420,172 +1420,178 @@ msgstr ""
 msgid "Contains the text"
 msgstr "Hautapena kopiatzen du"
 
-#: gsearchtool/gsearchtool.c:61
-msgid "Owned by user"
-msgstr ""
-
 #: gsearchtool/gsearchtool.c:62
-msgid "Owned by group"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:63
-msgid "Owner is unrecognized"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:64
-msgid "Date modified before (days)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:65
 #, fuzzy
-msgid "Date modified after (days)"
+msgid "Date modified less than (days)"
 msgstr "Aldatua:"
 
+#: gsearchtool/gsearchtool.c:63
+#, fuzzy
+msgid "Date modified more than (days)"
+msgstr "Aldatua:"
+
+#: gsearchtool/gsearchtool.c:65
+msgid "Size at least (kilobytes)"
+msgstr ""
+
 #: gsearchtool/gsearchtool.c:66
-msgid "Size is less than (kilobytes)"
+msgid "Size at most (kilobytes)"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:67
-msgid "Size is more than (kilobytes)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:68
 #, fuzzy
 msgid "File is empty"
 msgstr "`%s' fitxategia hutsik dago"
 
 #: gsearchtool/gsearchtool.c:69
+msgid "Owned by user"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:70
+msgid "Owned by group"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:71
+msgid "Owner is unrecognized"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:73
 #, fuzzy
 msgid "File is not named"
 msgstr "Fitxategi-izena"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:74
 #, fuzzy
 msgid "File matches regular expression"
 msgstr "Hedatutako adierazpen erregularren bilaketa "
 
-#: gsearchtool/gsearchtool.c:71
+#: gsearchtool/gsearchtool.c:76
 msgid "Follow symbolic links"
 msgstr "Jarraitu esteka sinbolikoei"
 
-#: gsearchtool/gsearchtool.c:72
+#: gsearchtool/gsearchtool.c:77
 #, fuzzy
-msgid "Search other filesystems"
+msgid "Include other filesystems"
 msgstr "Ez bilatu muntatutako fitxategi-sistemetan"
 
-#: gsearchtool/gsearchtool.c:123
+#: gsearchtool/gsearchtool.c:133
 msgid "Set the text of 'file is named'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:125
+#: gsearchtool/gsearchtool.c:135
 msgid "Set the text of 'look in folder'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:127
+#: gsearchtool/gsearchtool.c:137
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:129
+#: gsearchtool/gsearchtool.c:139
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:131
+#: gsearchtool/gsearchtool.c:141
 msgid "Automatically start a search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:133
+#: gsearchtool/gsearchtool.c:143
 msgid "Select the 'Contains the text' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:135
-msgid "Select the 'Owned by user' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:137
-msgid "Select the 'Owned by group' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:139
-msgid "Select the 'Owner is unrecognized' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:141
-msgid "Select the 'Date modified before (days)' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:143
-msgid "Select the 'Date modified after (days)' constraint"
-msgstr ""
-
 #: gsearchtool/gsearchtool.c:145
-msgid "Select the 'Size is less than (kilobytes)' constraint"
-msgstr ""
+#, fuzzy
+msgid "Select the 'Date modified less than (days)' constraint"
+msgstr "Jarraitu esteka sinbolikoei"
 
 #: gsearchtool/gsearchtool.c:147
-msgid "Select the 'Size is more than (kilobytes)' constraint"
-msgstr ""
+#, fuzzy
+msgid "Select the 'Date modified more than (days)' constraint"
+msgstr "Jarraitu esteka sinbolikoei"
 
 #: gsearchtool/gsearchtool.c:149
+#, fuzzy
+msgid "Select the 'Size at most (kilobytes)' constraint"
+msgstr "Hedatutako adierazpen erregularren bilaketa "
+
+#: gsearchtool/gsearchtool.c:151
+#, fuzzy
+msgid "Select the 'Size at least (kilobytes)' constraint"
+msgstr "Hedatutako adierazpen erregularren bilaketa "
+
+#: gsearchtool/gsearchtool.c:153
 msgid "Select the 'File is empty' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:151
+#: gsearchtool/gsearchtool.c:155
+msgid "Select the 'Owned by user' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:157
+msgid "Select the 'Owned by group' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:159
+msgid "Select the 'Owner is unrecognized' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:161
 msgid "Select the 'File is not named' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:153
+#: gsearchtool/gsearchtool.c:163
 #, fuzzy
 msgid "Select the 'File matches regular expression' constraint"
 msgstr "Hedatutako adierazpen erregularren bilaketa "
 
-#: gsearchtool/gsearchtool.c:155
+#: gsearchtool/gsearchtool.c:165
 #, fuzzy
 msgid "Select the 'Follow symbolic links' constraint"
 msgstr "Jarraitu esteka sinbolikoei"
 
-#: gsearchtool/gsearchtool.c:157
-msgid "Select the 'Search other filesystems' constraint"
-msgstr ""
+#: gsearchtool/gsearchtool.c:167
+#, fuzzy
+msgid "Select the 'Include other filesystems' constraint"
+msgstr "Hedatutako adierazpen erregularren bilaketa "
 
-#: gsearchtool/gsearchtool.c:389
+#: gsearchtool/gsearchtool.c:404
 #, fuzzy
 msgid "No files found"
 msgstr "Ez da bat datorrenik aurkitu"
 
-#: gsearchtool/gsearchtool.c:463
+#: gsearchtool/gsearchtool.c:489
 msgid "Entry changed called for a non entry option!"
 msgstr "Aukerarik ez duen sarreran aldaketa eskatu da!"
 
-#: gsearchtool/gsearchtool.c:645
+#: gsearchtool/gsearchtool.c:671
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:771
+#: gsearchtool/gsearchtool.c:797
 msgid "(aborted)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:780
+#: gsearchtool/gsearchtool.c:806
 #, fuzzy, c-format
 msgid "No files found %s"
 msgstr "Ez da bat datorrenik aurkitu"
 
-#: gsearchtool/gsearchtool.c:785
+#: gsearchtool/gsearchtool.c:811
 #, fuzzy, c-format
 msgid "One file found %s"
 msgstr "Ez da Logo fitxategia aurkitu"
 
-#: gsearchtool/gsearchtool.c:789
+#: gsearchtool/gsearchtool.c:815
 #, fuzzy, c-format
 msgid "%d files found %s"
 msgstr "Ez da bat datorrenik aurkitu"
 
-#: gsearchtool/gsearchtool.c:852
+#: gsearchtool/gsearchtool.c:908
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:856
+#: gsearchtool/gsearchtool.c:912
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1593,112 +1599,116 @@ msgstr ""
 "\n"
 "... Errore gehiegi bistaratzeko..."
 
-#: gsearchtool/gsearchtool.c:889 gsearchtool/gsearchtool.c:910
-#, c-format
-msgid ""
-"Sorry, could not start the search.\n"
-"%s\n"
-msgstr ""
+#: gsearchtool/gsearchtool.c:925
+#, fuzzy
+msgid "Search Errors"
+msgstr "Bilaketaren komando-lerroa "
 
-#: gsearchtool/gsearchtool.c:981
+#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:987
+#, fuzzy
+msgid "Search for Files Error"
+msgstr "Bilaketaren komando-lerroa "
+
+#: gsearchtool/gsearchtool.c:1068
 msgid "Search Rule Value Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:982
+#: gsearchtool/gsearchtool.c:1069
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1020
+#: gsearchtool/gsearchtool.c:1103
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1075
-msgid "A_vailable search constraints:"
-msgstr ""
+#: gsearchtool/gsearchtool.c:1158
+#, fuzzy
+msgid "A_vailable options:"
+msgstr "Erabilgarri dauden ikuspegiak"
 
-#: gsearchtool/gsearchtool.c:1085
+#: gsearchtool/gsearchtool.c:1168
 #, fuzzy
 msgid "Search Rules Menu"
 msgstr "Bilaketaren emaitzak"
 
-#: gsearchtool/gsearchtool.c:1086
+#: gsearchtool/gsearchtool.c:1169
 #, fuzzy
 msgid "Select a search rule from the menu"
 msgstr "Sortu artxibo berri bat elementu horiekin"
 
-#: gsearchtool/gsearchtool.c:1118
+#: gsearchtool/gsearchtool.c:1201
 #, fuzzy
 msgid "S_earch Results"
 msgstr "Bilaketaren emaitzak"
 
-#: gsearchtool/gsearchtool.c:1173
+#: gsearchtool/gsearchtool.c:1274
 msgid "Name"
 msgstr "Izena"
 
-#: gsearchtool/gsearchtool.c:1195
+#: gsearchtool/gsearchtool.c:1296
 msgid "Folder"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1207
+#: gsearchtool/gsearchtool.c:1308
 msgid "Size"
 msgstr "Tamaina"
 
-#: gsearchtool/gsearchtool.c:1218
+#: gsearchtool/gsearchtool.c:1319
 msgid "Type"
 msgstr "Mota"
 
-#: gsearchtool/gsearchtool.c:1229
+#: gsearchtool/gsearchtool.c:1330
 #, fuzzy
 msgid "Date Modified"
 msgstr "Aldatua:"
 
-#: gsearchtool/gsearchtool.c:1270
+#: gsearchtool/gsearchtool.c:1371
 #, fuzzy
 msgid "File is _named:"
 msgstr "Fitxategi-izena:"
 
-#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
+#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
 #, fuzzy
 msgid "File Name Entry"
 msgstr "Fitxategi-izena:"
 
-#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
+#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
 msgid "Enter the file name you want to search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1298
+#: gsearchtool/gsearchtool.c:1399
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "Ez da katea aurkitu"
 
-#: gsearchtool/gsearchtool.c:1304
+#: gsearchtool/gsearchtool.c:1405
 msgid "Browse"
 msgstr "Arakatu"
 
-#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
 #, fuzzy
 msgid "Starting folder entry"
 msgstr "Direktorio honetan hasi:"
 
-#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
 msgid "Enter the folder name where you want to start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1330
+#: gsearchtool/gsearchtool.c:1431 gsearchtool/gsearchtool.c:1432
 #, fuzzy
-msgid "Additional Constraints"
+msgid "Additional Options"
 msgstr "Monitorearen aukerak"
 
-#: gsearchtool/gsearchtool.c:1372
+#: gsearchtool/gsearchtool.c:1474
 msgid "Click to Start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1373
+#: gsearchtool/gsearchtool.c:1475
 msgid "Click to Stop the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1410
+#: gsearchtool/gsearchtool.c:1512
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -2001,102 +2011,111 @@ msgstr "%s ez da egunkari-fitxategia. "
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memoriarik ez"
 
-#: logview/logview.c:98
+#: logview/logview.c:99
 #, fuzzy
 msgid "S_witch Log"
 msgstr "Konmutatu egunkaria"
 
-#: logview/logview.c:99
+#: logview/logview.c:100
 msgid "Switch between already opened logs"
 msgstr ""
 
-#: logview/logview.c:105
+#: logview/logview.c:106
 #, fuzzy
 msgid "_Monitor..."
 msgstr "Monitorea..."
 
-#: logview/logview.c:106
+#: logview/logview.c:107
 #, fuzzy
 msgid "Monitor Logs"
 msgstr "Kontrolatu egunkaria"
 
-#: logview/logview.c:114
+#: logview/logview.c:115
 #, fuzzy
 msgid "_Properties"
 msgstr "Propietateak"
 
-#: logview/logview.c:115
+#: logview/logview.c:116
 #, fuzzy
 msgid "Show Log Properties"
 msgstr "Erakutsi 'Propietateak'"
 
-#: logview/logview.c:123
+#: logview/logview.c:124
 #, fuzzy
 msgid "Clos_e All"
 msgstr "Itxi egunkaria"
 
-#: logview/logview.c:124
+#: logview/logview.c:125
 #, fuzzy
 msgid "Close all Log files"
 msgstr "Erabili egunkari-fitxategia"
 
-#: logview/logview.c:136
+#: logview/logview.c:137
 #, fuzzy
 msgid "_Calendar"
 msgstr "Egutegia"
 
-#: logview/logview.c:137
+#: logview/logview.c:138
 #, fuzzy
 msgid "Show Calendar Log"
 msgstr "Erakutsi egunkariaren egutegia "
 
-#: logview/logview.c:143
+#: logview/logview.c:144
 #, fuzzy
 msgid "_Entry Detail"
 msgstr "Sarreraren hasiera:"
 
-#: logview/logview.c:144
+#: logview/logview.c:145
 msgid "Show Entry Detail"
 msgstr ""
 
-#: logview/logview.c:357
+#: logview/logview.c:151
+#, fuzzy
+msgid "_Collapse All"
+msgstr "Itxi egunkaria"
+
+#: logview/logview.c:152
+msgid "Collapse all the rows"
+msgstr ""
+
+#: logview/logview.c:365
 msgid "No log files to open"
 msgstr "Ez dago irekitzeko egunkari-fitxategirik"
 
-#: logview/logview.c:381
+#: logview/logview.c:389
 #, fuzzy
 msgid "Date"
 msgstr "Data:"
 
-#: logview/logview.c:381
+#: logview/logview.c:389
 #, fuzzy
 msgid "Host Name"
 msgstr "Ostalari-izena:"
 
-#: logview/logview.c:382
+#: logview/logview.c:390
 #, fuzzy
 msgid "Process"
 msgstr "Prozesua:"
 
-#: logview/logview.c:382
+#: logview/logview.c:390
 #, fuzzy
 msgid "Message"
 msgstr "Mezua:"
 
-#: logview/logview.c:466
+#: logview/logview.c:474
 #, fuzzy
 msgid "Last Modified: "
 msgstr "Aldatua:"
 
-#: logview/logview.c:560 logview/logview.c:634
+#: logview/logview.c:568 logview/logview.c:643
 msgid "Too many open logs. Close one and try again"
 msgstr "Egunkari gehiegi dago irekita.Itxi bat eta saiatu berriro "
 
-#: logview/logview.c:572
+#: logview/logview.c:580
 msgid "File already opened"
 msgstr ""
 
-#: logview/logview.c:647
+#: logview/logview.c:656
 msgid "Open new logfile"
 msgstr "Ireki egunkari-fitxategi berria "
 
@@ -2105,50 +2124,55 @@ msgstr "Ireki egunkari-fitxategi berria "
 msgid "Error: [%s]\n"
 msgstr "Errorea: [%s]\n"
 
-#: logview/monitor.c:111
+#: logview/monitor.c:109
 #, fuzzy
 msgid "Monitor Options"
 msgstr "Monitorearen aukerak"
 
-#: logview/monitor.c:133
-msgid "Choose logs to monitor"
+#: logview/monitor.c:135
+#, fuzzy
+msgid "Choose logs to monitor:"
 msgstr "Aukeratu kontrolatzeko egunkariak"
 
-#: logview/monitor.c:180
+#: logview/monitor.c:140
+msgid "Currently monitored logs:"
+msgstr ""
+
+#: logview/monitor.c:188
 #, fuzzy
 msgid "Add logs to monitor"
 msgstr "Aukeratu kontrolatzeko egunkariak"
 
-#: logview/monitor.c:189
+#: logview/monitor.c:197
 #, fuzzy
 msgid "Remove logs from monitor"
 msgstr "Aukeratu kontrolatzeko egunkariak"
 
 #. Check boxes
-#: logview/monitor.c:227
+#: logview/monitor.c:244
 #, fuzzy
 msgid "_Hide Application"
 msgstr "Aplikazio honi buruz"
 
-#: logview/monitor.c:235
+#: logview/monitor.c:252
 #, fuzzy
 msgid "_Execute Actions"
 msgstr "Exekutatu ekintzak"
 
-#: logview/monitor.c:273
+#: logview/monitor.c:289
 #, fuzzy
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Egunkari gehiegi dago irekita.Itxi bat eta saiatu berriro "
 
-#: logview/monitor.c:281 logview/monitor.c:319
+#: logview/monitor.c:297 logview/monitor.c:335
 msgid "tmp_list is NULL\n"
 msgstr "tmp_zerrenda NULUA da\n"
 
-#: logview/monitor.c:439
+#: logview/monitor.c:457
 msgid "Monitoring logs..."
 msgstr "Egunkariak kontrolatzen..."
 
-#: logview/monitor.c:626
+#: logview/monitor.c:644
 msgid "TOUCHED!!\n"
 msgstr "IKUTUA!!\n"
 
@@ -3986,9 +4010,6 @@ msgstr ""
 
 #~ msgid "Available documents"
 #~ msgstr "Erabilgarri dauden dokumentuak"
-
-#~ msgid "Available views"
-#~ msgstr "Erabilgarri dauden ikuspegiak"
 
 #~ msgid "Connect to"
 #~ msgstr "Konektatu "

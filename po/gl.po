@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2002-10-02 11:26+0100\n"
+"POT-Creation-Date: 2002-10-14 15:19+0100\n"
 "PO-Revision-Date: 2001-08-19 03:21+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
@@ -1417,7 +1417,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1414
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1516
 #, fuzzy
 msgid "Search for Files"
 msgstr "Buscar"
@@ -1431,173 +1431,179 @@ msgstr ""
 msgid "Contains the text"
 msgstr "Copiar a selección"
 
-#: gsearchtool/gsearchtool.c:61
-msgid "Owned by user"
-msgstr ""
-
 #: gsearchtool/gsearchtool.c:62
 #, fuzzy
-msgid "Owned by group"
-msgstr "Grupo do ficheiro"
-
-#: gsearchtool/gsearchtool.c:63
-msgid "Owner is unrecognized"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:64
-msgid "Date modified before (days)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:65
-#, fuzzy
-msgid "Date modified after (days)"
+msgid "Date modified less than (days)"
 msgstr "Modificado:"
 
+#: gsearchtool/gsearchtool.c:63
+#, fuzzy
+msgid "Date modified more than (days)"
+msgstr "Modificado:"
+
+#: gsearchtool/gsearchtool.c:65
+msgid "Size at least (kilobytes)"
+msgstr ""
+
 #: gsearchtool/gsearchtool.c:66
-msgid "Size is less than (kilobytes)"
+msgid "Size at most (kilobytes)"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:67
-msgid "Size is more than (kilobytes)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:68
 #, fuzzy
 msgid "File is empty"
 msgstr "O ficheiro `%s' está baleiro"
 
 #: gsearchtool/gsearchtool.c:69
+msgid "Owned by user"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:70
+#, fuzzy
+msgid "Owned by group"
+msgstr "Grupo do ficheiro"
+
+#: gsearchtool/gsearchtool.c:71
+msgid "Owner is unrecognized"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:73
 #, fuzzy
 msgid "File is not named"
 msgstr "Ficheiro non gardado..."
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:74
 #, fuzzy
 msgid "File matches regular expression"
 msgstr "Busca de expresión regular estendida"
 
-#: gsearchtool/gsearchtool.c:71
+#: gsearchtool/gsearchtool.c:76
 msgid "Follow symbolic links"
 msgstr "Seguir as ligazóns simbólicas"
 
-#: gsearchtool/gsearchtool.c:72
+#: gsearchtool/gsearchtool.c:77
 #, fuzzy
-msgid "Search other filesystems"
+msgid "Include other filesystems"
 msgstr "Non buscar nos sistemas de ficheiros montados"
 
-#: gsearchtool/gsearchtool.c:123
+#: gsearchtool/gsearchtool.c:133
 msgid "Set the text of 'file is named'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:125
+#: gsearchtool/gsearchtool.c:135
 msgid "Set the text of 'look in folder'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:127
+#: gsearchtool/gsearchtool.c:137
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:129
+#: gsearchtool/gsearchtool.c:139
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:131
+#: gsearchtool/gsearchtool.c:141
 msgid "Automatically start a search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:133
+#: gsearchtool/gsearchtool.c:143
 msgid "Select the 'Contains the text' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:135
-msgid "Select the 'Owned by user' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:137
-msgid "Select the 'Owned by group' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:139
-msgid "Select the 'Owner is unrecognized' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:141
-msgid "Select the 'Date modified before (days)' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:143
-msgid "Select the 'Date modified after (days)' constraint"
-msgstr ""
-
 #: gsearchtool/gsearchtool.c:145
-msgid "Select the 'Size is less than (kilobytes)' constraint"
-msgstr ""
+#, fuzzy
+msgid "Select the 'Date modified less than (days)' constraint"
+msgstr "Seguir as ligazóns simbólicas"
 
 #: gsearchtool/gsearchtool.c:147
-msgid "Select the 'Size is more than (kilobytes)' constraint"
-msgstr ""
+#, fuzzy
+msgid "Select the 'Date modified more than (days)' constraint"
+msgstr "Seguir as ligazóns simbólicas"
 
 #: gsearchtool/gsearchtool.c:149
+#, fuzzy
+msgid "Select the 'Size at most (kilobytes)' constraint"
+msgstr "Busca de expresión regular estendida"
+
+#: gsearchtool/gsearchtool.c:151
+#, fuzzy
+msgid "Select the 'Size at least (kilobytes)' constraint"
+msgstr "Busca de expresión regular estendida"
+
+#: gsearchtool/gsearchtool.c:153
 msgid "Select the 'File is empty' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:151
+#: gsearchtool/gsearchtool.c:155
+msgid "Select the 'Owned by user' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:157
+msgid "Select the 'Owned by group' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:159
+msgid "Select the 'Owner is unrecognized' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:161
 msgid "Select the 'File is not named' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:153
+#: gsearchtool/gsearchtool.c:163
 #, fuzzy
 msgid "Select the 'File matches regular expression' constraint"
 msgstr "Busca de expresión regular estendida"
 
-#: gsearchtool/gsearchtool.c:155
+#: gsearchtool/gsearchtool.c:165
 #, fuzzy
 msgid "Select the 'Follow symbolic links' constraint"
 msgstr "Seguir as ligazóns simbólicas"
 
-#: gsearchtool/gsearchtool.c:157
-msgid "Select the 'Search other filesystems' constraint"
-msgstr ""
+#: gsearchtool/gsearchtool.c:167
+#, fuzzy
+msgid "Select the 'Include other filesystems' constraint"
+msgstr "Busca de expresión regular estendida"
 
-#: gsearchtool/gsearchtool.c:389
+#: gsearchtool/gsearchtool.c:404
 #, fuzzy
 msgid "No files found"
 msgstr "Non se atopou ningunha coincidencia"
 
-#: gsearchtool/gsearchtool.c:463
+#: gsearchtool/gsearchtool.c:489
 msgid "Entry changed called for a non entry option!"
 msgstr "¡\"Entry changed\" foi chamada para unha opción non válida!"
 
-#: gsearchtool/gsearchtool.c:645
+#: gsearchtool/gsearchtool.c:671
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:771
+#: gsearchtool/gsearchtool.c:797
 msgid "(aborted)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:780
+#: gsearchtool/gsearchtool.c:806
 #, fuzzy, c-format
 msgid "No files found %s"
 msgstr "Non se atopou ningunha coincidencia"
 
-#: gsearchtool/gsearchtool.c:785
+#: gsearchtool/gsearchtool.c:811
 #, fuzzy, c-format
 msgid "One file found %s"
 msgstr "Ficheiro co logo non atopado"
 
-#: gsearchtool/gsearchtool.c:789
+#: gsearchtool/gsearchtool.c:815
 #, fuzzy, c-format
 msgid "%d files found %s"
 msgstr "Non se atopou ningunha coincidencia"
 
-#: gsearchtool/gsearchtool.c:852
+#: gsearchtool/gsearchtool.c:908
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:856
+#: gsearchtool/gsearchtool.c:912
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1605,114 +1611,118 @@ msgstr ""
 "\n"
 "... Demasiados erros para amosar ..."
 
-#: gsearchtool/gsearchtool.c:889 gsearchtool/gsearchtool.c:910
-#, c-format
-msgid ""
-"Sorry, could not start the search.\n"
-"%s\n"
-msgstr ""
+#: gsearchtool/gsearchtool.c:925
+#, fuzzy
+msgid "Search Errors"
+msgstr "Buscar"
 
-#: gsearchtool/gsearchtool.c:981
+#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:987
+#, fuzzy
+msgid "Search for Files Error"
+msgstr "Buscar"
+
+#: gsearchtool/gsearchtool.c:1068
 msgid "Search Rule Value Entry"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:982
+#: gsearchtool/gsearchtool.c:1069
 msgid "Enter a value for search rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1020
+#: gsearchtool/gsearchtool.c:1103
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1075
-msgid "A_vailable search constraints:"
-msgstr ""
+#: gsearchtool/gsearchtool.c:1158
+#, fuzzy
+msgid "A_vailable options:"
+msgstr "Vistas dispoñibles"
 
-#: gsearchtool/gsearchtool.c:1085
+#: gsearchtool/gsearchtool.c:1168
 #, fuzzy
 msgid "Search Rules Menu"
 msgstr "Resultados da busca"
 
-#: gsearchtool/gsearchtool.c:1086
+#: gsearchtool/gsearchtool.c:1169
 #, fuzzy
 msgid "Select a search rule from the menu"
 msgstr "Crear un novo arquivo a partir dos elementos"
 
-#: gsearchtool/gsearchtool.c:1118
+#: gsearchtool/gsearchtool.c:1201
 #, fuzzy
 msgid "S_earch Results"
 msgstr "Resultados da busca"
 
-#: gsearchtool/gsearchtool.c:1173
+#: gsearchtool/gsearchtool.c:1274
 msgid "Name"
 msgstr "Nome"
 
-#: gsearchtool/gsearchtool.c:1195
+#: gsearchtool/gsearchtool.c:1296
 #, fuzzy
 msgid "Folder"
 msgstr "Sólido"
 
-#: gsearchtool/gsearchtool.c:1207
+#: gsearchtool/gsearchtool.c:1308
 #, fuzzy
 msgid "Size"
 msgstr "Tamaño:"
 
-#: gsearchtool/gsearchtool.c:1218
+#: gsearchtool/gsearchtool.c:1319
 msgid "Type"
 msgstr "Tipo"
 
-#: gsearchtool/gsearchtool.c:1229
+#: gsearchtool/gsearchtool.c:1330
 #, fuzzy
 msgid "Date Modified"
 msgstr "Modificado:"
 
-#: gsearchtool/gsearchtool.c:1270
+#: gsearchtool/gsearchtool.c:1371
 #, fuzzy
 msgid "File is _named:"
 msgstr "Nome do ficheiro"
 
-#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
+#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
 #, fuzzy
 msgid "File Name Entry"
 msgstr "Nome do ficheiro:"
 
-#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
+#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
 msgid "Enter the file name you want to search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1298
+#: gsearchtool/gsearchtool.c:1399
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "Cadea non atopada"
 
-#: gsearchtool/gsearchtool.c:1304
+#: gsearchtool/gsearchtool.c:1405
 msgid "Browse"
 msgstr "Examinar"
 
-#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
 #, fuzzy
 msgid "Starting folder entry"
 msgstr "Cadea non atopada"
 
-#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
 msgid "Enter the folder name where you want to start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1330
+#: gsearchtool/gsearchtool.c:1431 gsearchtool/gsearchtool.c:1432
 #, fuzzy
-msgid "Additional Constraints"
+msgid "Additional Options"
 msgstr "Opcións do monitor"
 
-#: gsearchtool/gsearchtool.c:1372
+#: gsearchtool/gsearchtool.c:1474
 msgid "Click to Start the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1373
+#: gsearchtool/gsearchtool.c:1475
 msgid "Click to Stop the search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1410
+#: gsearchtool/gsearchtool.c:1512
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -2015,102 +2025,111 @@ msgstr "%s non e un ficheiro de rexistro."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memoria esgotada"
 
-#: logview/logview.c:98
+#: logview/logview.c:99
 #, fuzzy
 msgid "S_witch Log"
 msgstr "Mudar o rexistro"
 
-#: logview/logview.c:99
+#: logview/logview.c:100
 msgid "Switch between already opened logs"
 msgstr ""
 
-#: logview/logview.c:105
+#: logview/logview.c:106
 #, fuzzy
 msgid "_Monitor..."
 msgstr "Monitorizar..."
 
-#: logview/logview.c:106
+#: logview/logview.c:107
 #, fuzzy
 msgid "Monitor Logs"
 msgstr "Monitorizar rexistro"
 
-#: logview/logview.c:114
+#: logview/logview.c:115
 #, fuzzy
 msgid "_Properties"
 msgstr "Propiedades"
 
-#: logview/logview.c:115
+#: logview/logview.c:116
 #, fuzzy
 msgid "Show Log Properties"
 msgstr "Amosar `Propiedades'"
 
-#: logview/logview.c:123
+#: logview/logview.c:124
 #, fuzzy
 msgid "Clos_e All"
 msgstr "Pechar o rexistro"
 
-#: logview/logview.c:124
+#: logview/logview.c:125
 #, fuzzy
 msgid "Close all Log files"
 msgstr "Usar ficheiro de rexistro"
 
-#: logview/logview.c:136
+#: logview/logview.c:137
 #, fuzzy
 msgid "_Calendar"
 msgstr "Calendario"
 
-#: logview/logview.c:137
+#: logview/logview.c:138
 #, fuzzy
 msgid "Show Calendar Log"
 msgstr "Ver o rexistro do calendario"
 
-#: logview/logview.c:143
+#: logview/logview.c:144
 #, fuzzy
 msgid "_Entry Detail"
 msgstr "Inicio da entrada:"
 
-#: logview/logview.c:144
+#: logview/logview.c:145
 msgid "Show Entry Detail"
 msgstr ""
 
-#: logview/logview.c:357
+#: logview/logview.c:151
+#, fuzzy
+msgid "_Collapse All"
+msgstr "Pechar o rexistro"
+
+#: logview/logview.c:152
+msgid "Collapse all the rows"
+msgstr ""
+
+#: logview/logview.c:365
 msgid "No log files to open"
 msgstr "Non hai ficheiros de rexistro para abrir"
 
-#: logview/logview.c:381
+#: logview/logview.c:389
 #, fuzzy
 msgid "Date"
 msgstr "Data:"
 
-#: logview/logview.c:381
+#: logview/logview.c:389
 #, fuzzy
 msgid "Host Name"
 msgstr "Nome da máquina:"
 
-#: logview/logview.c:382
+#: logview/logview.c:390
 #, fuzzy
 msgid "Process"
 msgstr "Proceso:"
 
-#: logview/logview.c:382
+#: logview/logview.c:390
 #, fuzzy
 msgid "Message"
 msgstr "Mensaxe:"
 
-#: logview/logview.c:466
+#: logview/logview.c:474
 #, fuzzy
 msgid "Last Modified: "
 msgstr "Modificado:"
 
-#: logview/logview.c:560 logview/logview.c:634
+#: logview/logview.c:568 logview/logview.c:643
 msgid "Too many open logs. Close one and try again"
 msgstr "Demasiados rexistros abertos. Peche un e volva a tentalo"
 
-#: logview/logview.c:572
+#: logview/logview.c:580
 msgid "File already opened"
 msgstr ""
 
-#: logview/logview.c:647
+#: logview/logview.c:656
 msgid "Open new logfile"
 msgstr "Abir un novo ficheiro de rexistro"
 
@@ -2119,50 +2138,55 @@ msgstr "Abir un novo ficheiro de rexistro"
 msgid "Error: [%s]\n"
 msgstr "Erro: [%s]\n"
 
-#: logview/monitor.c:111
+#: logview/monitor.c:109
 #, fuzzy
 msgid "Monitor Options"
 msgstr "Opcións do monitor"
 
-#: logview/monitor.c:133
-msgid "Choose logs to monitor"
+#: logview/monitor.c:135
+#, fuzzy
+msgid "Choose logs to monitor:"
 msgstr "Escoller os rexistros para monitorizar"
 
-#: logview/monitor.c:180
+#: logview/monitor.c:140
+msgid "Currently monitored logs:"
+msgstr ""
+
+#: logview/monitor.c:188
 #, fuzzy
 msgid "Add logs to monitor"
 msgstr "Escoller os rexistros para monitorizar"
 
-#: logview/monitor.c:189
+#: logview/monitor.c:197
 #, fuzzy
 msgid "Remove logs from monitor"
 msgstr "Escoller os rexistros para monitorizar"
 
 #. Check boxes
-#: logview/monitor.c:227
+#: logview/monitor.c:244
 #, fuzzy
 msgid "_Hide Application"
 msgstr "Acerca desta aplicación"
 
-#: logview/monitor.c:235
+#: logview/monitor.c:252
 #, fuzzy
 msgid "_Execute Actions"
 msgstr "Executar accións"
 
-#: logview/monitor.c:273
+#: logview/monitor.c:289
 #, fuzzy
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Demasiados rexistros abertos. Peche un e volva a tentalo"
 
-#: logview/monitor.c:281 logview/monitor.c:319
+#: logview/monitor.c:297 logview/monitor.c:335
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list é NULL\n"
 
-#: logview/monitor.c:439
+#: logview/monitor.c:457
 msgid "Monitoring logs..."
 msgstr "Monitorizando rexistros..."
 
-#: logview/monitor.c:626
+#: logview/monitor.c:644
 msgid "TOUCHED!!\n"
 msgstr "¡MODIFICADO!\n"
 
@@ -3366,9 +3390,6 @@ msgstr ""
 
 #~ msgid "Available documents"
 #~ msgstr "Documentos dispoñibles"
-
-#~ msgid "Available views"
-#~ msgstr "Vistas dispoñibles"
 
 #~ msgid "Connect to"
 #~ msgstr "Conectar a"

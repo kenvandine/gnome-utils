@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.109.0\n"
-"POT-Creation-Date: 2002-10-02 11:26+0100\n"
+"POT-Creation-Date: 2002-10-14 15:19+0100\n"
 "PO-Revision-Date: 2002-06-13 14:55+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
@@ -1337,7 +1337,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1414
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1516
 msgid "Search for Files"
 msgstr "파일 찾기"
 
@@ -1350,170 +1350,176 @@ msgstr "디스크에서 파일을 찾습니다"
 msgid "Contains the text"
 msgstr "텍스트 복사"
 
-#: gsearchtool/gsearchtool.c:61
-msgid "Owned by user"
-msgstr "소유한 사용자"
-
 #: gsearchtool/gsearchtool.c:62
-msgid "Owned by group"
-msgstr "소유한 그룹"
-
-#: gsearchtool/gsearchtool.c:63
-msgid "Owner is unrecognized"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:64
-msgid "Date modified before (days)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:65
 #, fuzzy
-msgid "Date modified after (days)"
+msgid "Date modified less than (days)"
 msgstr "변경 일자"
 
+#: gsearchtool/gsearchtool.c:63
+#, fuzzy
+msgid "Date modified more than (days)"
+msgstr "변경 일자"
+
+#: gsearchtool/gsearchtool.c:65
+msgid "Size at least (kilobytes)"
+msgstr ""
+
 #: gsearchtool/gsearchtool.c:66
-msgid "Size is less than (kilobytes)"
+msgid "Size at most (kilobytes)"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:67
-msgid "Size is more than (kilobytes)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:68
 msgid "File is empty"
 msgstr "비어 있는 파일"
 
 #: gsearchtool/gsearchtool.c:69
+msgid "Owned by user"
+msgstr "소유한 사용자"
+
+#: gsearchtool/gsearchtool.c:70
+msgid "Owned by group"
+msgstr "소유한 그룹"
+
+#: gsearchtool/gsearchtool.c:71
+msgid "Owner is unrecognized"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:73
 #, fuzzy
 msgid "File is not named"
 msgstr "파일 이름 제외"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:74
 #, fuzzy
 msgid "File matches regular expression"
 msgstr "정규 표현식과 맞음"
 
-#: gsearchtool/gsearchtool.c:71
+#: gsearchtool/gsearchtool.c:76
 msgid "Follow symbolic links"
 msgstr "심볼릭 링크 따라가기"
 
-#: gsearchtool/gsearchtool.c:72
+#: gsearchtool/gsearchtool.c:77
 #, fuzzy
-msgid "Search other filesystems"
+msgid "Include other filesystems"
 msgstr "마운트된 파일시스템을 찾지 않음"
 
-#: gsearchtool/gsearchtool.c:123
+#: gsearchtool/gsearchtool.c:133
 msgid "Set the text of 'file is named'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:125
+#: gsearchtool/gsearchtool.c:135
 msgid "Set the text of 'look in folder'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:127
+#: gsearchtool/gsearchtool.c:137
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:129
+#: gsearchtool/gsearchtool.c:139
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:131
+#: gsearchtool/gsearchtool.c:141
 msgid "Automatically start a search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:133
+#: gsearchtool/gsearchtool.c:143
 msgid "Select the 'Contains the text' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:135
-msgid "Select the 'Owned by user' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:137
-msgid "Select the 'Owned by group' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:139
-msgid "Select the 'Owner is unrecognized' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:141
-msgid "Select the 'Date modified before (days)' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:143
-msgid "Select the 'Date modified after (days)' constraint"
-msgstr ""
-
 #: gsearchtool/gsearchtool.c:145
-msgid "Select the 'Size is less than (kilobytes)' constraint"
-msgstr ""
+#, fuzzy
+msgid "Select the 'Date modified less than (days)' constraint"
+msgstr "심볼릭 링크 따라가기"
 
 #: gsearchtool/gsearchtool.c:147
-msgid "Select the 'Size is more than (kilobytes)' constraint"
-msgstr ""
+#, fuzzy
+msgid "Select the 'Date modified more than (days)' constraint"
+msgstr "심볼릭 링크 따라가기"
 
 #: gsearchtool/gsearchtool.c:149
+#, fuzzy
+msgid "Select the 'Size at most (kilobytes)' constraint"
+msgstr "정규 표현식과 맞음"
+
+#: gsearchtool/gsearchtool.c:151
+#, fuzzy
+msgid "Select the 'Size at least (kilobytes)' constraint"
+msgstr "정규 표현식과 맞음"
+
+#: gsearchtool/gsearchtool.c:153
 msgid "Select the 'File is empty' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:151
+#: gsearchtool/gsearchtool.c:155
+msgid "Select the 'Owned by user' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:157
+msgid "Select the 'Owned by group' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:159
+msgid "Select the 'Owner is unrecognized' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:161
 msgid "Select the 'File is not named' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:153
+#: gsearchtool/gsearchtool.c:163
 #, fuzzy
 msgid "Select the 'File matches regular expression' constraint"
 msgstr "정규 표현식과 맞음"
 
-#: gsearchtool/gsearchtool.c:155
+#: gsearchtool/gsearchtool.c:165
 #, fuzzy
 msgid "Select the 'Follow symbolic links' constraint"
 msgstr "심볼릭 링크 따라가기"
 
-#: gsearchtool/gsearchtool.c:157
-msgid "Select the 'Search other filesystems' constraint"
-msgstr ""
+#: gsearchtool/gsearchtool.c:167
+#, fuzzy
+msgid "Select the 'Include other filesystems' constraint"
+msgstr "정규 표현식과 맞음"
 
-#: gsearchtool/gsearchtool.c:389
+#: gsearchtool/gsearchtool.c:404
 msgid "No files found"
 msgstr "찾은 파일이 없습니다."
 
-#: gsearchtool/gsearchtool.c:463
+#: gsearchtool/gsearchtool.c:489
 msgid "Entry changed called for a non entry option!"
 msgstr "엔트리가 없는 옵션에 대하여 엔트리 변경 콜백이 실행되었습니다!"
 
-#: gsearchtool/gsearchtool.c:645
+#: gsearchtool/gsearchtool.c:671
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:771
+#: gsearchtool/gsearchtool.c:797
 msgid "(aborted)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:780
+#: gsearchtool/gsearchtool.c:806
 #, fuzzy, c-format
 msgid "No files found %s"
 msgstr "찾은 파일이 없습니다."
 
-#: gsearchtool/gsearchtool.c:785
+#: gsearchtool/gsearchtool.c:811
 #, fuzzy, c-format
 msgid "One file found %s"
 msgstr "1개의 파일을 찾았습니다"
 
-#: gsearchtool/gsearchtool.c:789
+#: gsearchtool/gsearchtool.c:815
 #, fuzzy, c-format
 msgid "%d files found %s"
 msgstr "%d개의 파일을 찾았습니다"
 
-#: gsearchtool/gsearchtool.c:852
+#: gsearchtool/gsearchtool.c:908
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:856
+#: gsearchtool/gsearchtool.c:912
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1521,106 +1527,109 @@ msgstr ""
 "\n"
 "... 너무 오류가 많아서 표시할 수 없습니다  ..."
 
-#: gsearchtool/gsearchtool.c:889 gsearchtool/gsearchtool.c:910
-#, fuzzy, c-format
-msgid ""
-"Sorry, could not start the search.\n"
-"%s\n"
-msgstr "찾기를 시작하려면 클릭하십시오"
+#: gsearchtool/gsearchtool.c:925
+#, fuzzy
+msgid "Search Errors"
+msgstr "파일 찾기"
 
-#: gsearchtool/gsearchtool.c:981
+#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:987
+#, fuzzy
+msgid "Search for Files Error"
+msgstr "파일 찾기"
+
+#: gsearchtool/gsearchtool.c:1068
 msgid "Search Rule Value Entry"
 msgstr "찾기 규칙 값 엔트리"
 
-#: gsearchtool/gsearchtool.c:982
+#: gsearchtool/gsearchtool.c:1069
 msgid "Enter a value for search rule"
 msgstr "찾기 규칙에 대한 값을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1020
+#: gsearchtool/gsearchtool.c:1103
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "규칙을 제거하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1075
-msgid "A_vailable search constraints:"
+#: gsearchtool/gsearchtool.c:1158
+msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1085
+#: gsearchtool/gsearchtool.c:1168
 msgid "Search Rules Menu"
 msgstr "찾기 규칙 메뉴"
 
-#: gsearchtool/gsearchtool.c:1086
+#: gsearchtool/gsearchtool.c:1169
 msgid "Select a search rule from the menu"
 msgstr "메뉴에서 찾기 규칙을 선택합니다"
 
-#: gsearchtool/gsearchtool.c:1118
+#: gsearchtool/gsearchtool.c:1201
 msgid "S_earch Results"
 msgstr "찾은 결과(_E)"
 
-#: gsearchtool/gsearchtool.c:1173
+#: gsearchtool/gsearchtool.c:1274
 msgid "Name"
 msgstr "성명"
 
-#: gsearchtool/gsearchtool.c:1195
+#: gsearchtool/gsearchtool.c:1296
 msgid "Folder"
 msgstr "폴더"
 
-#: gsearchtool/gsearchtool.c:1207
+#: gsearchtool/gsearchtool.c:1308
 msgid "Size"
 msgstr "크기"
 
-#: gsearchtool/gsearchtool.c:1218
+#: gsearchtool/gsearchtool.c:1319
 msgid "Type"
 msgstr "종류"
 
-#: gsearchtool/gsearchtool.c:1229
+#: gsearchtool/gsearchtool.c:1330
 msgid "Date Modified"
 msgstr "변경 일자"
 
-#: gsearchtool/gsearchtool.c:1270
+#: gsearchtool/gsearchtool.c:1371
 #, fuzzy
 msgid "File is _named:"
 msgstr "찾을 파일 이름(_N):"
 
-#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
+#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
 msgid "File Name Entry"
 msgstr "파일 이름 엔트리"
 
-#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
+#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
 msgid "Enter the file name you want to search"
 msgstr "찾을 파일 이름을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1298
+#: gsearchtool/gsearchtool.c:1399
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "시작할 폴더(_T):"
 
-#: gsearchtool/gsearchtool.c:1304
+#: gsearchtool/gsearchtool.c:1405
 msgid "Browse"
 msgstr "찾아보기"
 
-#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
 msgid "Starting folder entry"
 msgstr "시작 폴더 엔트리"
 
-#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
 msgid "Enter the folder name where you want to start the search"
 msgstr "찾기를 시작할 폴더 이름을 입력하십시오"
 
-#: gsearchtool/gsearchtool.c:1330
+#: gsearchtool/gsearchtool.c:1431 gsearchtool/gsearchtool.c:1432
 #, fuzzy
-msgid "Additional Constraints"
+msgid "Additional Options"
 msgstr "실행 옵션"
 
-#: gsearchtool/gsearchtool.c:1372
+#: gsearchtool/gsearchtool.c:1474
 msgid "Click to Start the search"
 msgstr "찾기를 시작하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1373
+#: gsearchtool/gsearchtool.c:1475
 msgid "Click to Stop the search"
 msgstr "찾기를 중단하려면 클릭하십시오"
 
-#: gsearchtool/gsearchtool.c:1410
+#: gsearchtool/gsearchtool.c:1512
 msgid "Cannot initialize bonobo."
 msgstr "보노보를 초기화할 수 없습니다."
 
@@ -1920,93 +1929,101 @@ msgstr "%s 는 로그파일이 아닙니다."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: 메모리가 바닥났습니다"
 
-#: logview/logview.c:98
+#: logview/logview.c:99
 msgid "S_witch Log"
 msgstr "로그 바꾸기(_W)"
 
-#: logview/logview.c:99
+#: logview/logview.c:100
 #, fuzzy
 msgid "Switch between already opened logs"
 msgstr "파일이 이미 열렸습니다"
 
-#: logview/logview.c:105
+#: logview/logview.c:106
 msgid "_Monitor..."
 msgstr "감시(_M)..."
 
-#: logview/logview.c:106
+#: logview/logview.c:107
 #, fuzzy
 msgid "Monitor Logs"
 msgstr "로그 감시"
 
-#: logview/logview.c:114
+#: logview/logview.c:115
 msgid "_Properties"
 msgstr "등록 정보(_P)"
 
-#: logview/logview.c:115
+#: logview/logview.c:116
 msgid "Show Log Properties"
 msgstr "로그 등록 정보를 봅니다"
 
-#: logview/logview.c:123
+#: logview/logview.c:124
 msgid "Clos_e All"
 msgstr ""
 
-#: logview/logview.c:124
+#: logview/logview.c:125
 msgid "Close all Log files"
 msgstr ""
 
-#: logview/logview.c:136
+#: logview/logview.c:137
 msgid "_Calendar"
 msgstr "달력(_C)"
 
-#: logview/logview.c:137
+#: logview/logview.c:138
 msgid "Show Calendar Log"
 msgstr "달력로그을 봅니다"
 
-#: logview/logview.c:143
+#: logview/logview.c:144
 msgid "_Entry Detail"
 msgstr "자세히 보기(_E)"
 
-#: logview/logview.c:144
+#: logview/logview.c:145
 msgid "Show Entry Detail"
 msgstr "로그를 자세히 봅니다"
 
-#: logview/logview.c:357
+#: logview/logview.c:151
+msgid "_Collapse All"
+msgstr ""
+
+#: logview/logview.c:152
+msgid "Collapse all the rows"
+msgstr ""
+
+#: logview/logview.c:365
 msgid "No log files to open"
 msgstr "읽을 로그파일이 없습니다"
 
-#: logview/logview.c:381
+#: logview/logview.c:389
 #, fuzzy
 msgid "Date"
 msgstr "날짜:"
 
-#: logview/logview.c:381
+#: logview/logview.c:389
 #, fuzzy
 msgid "Host Name"
 msgstr "성명"
 
-#: logview/logview.c:382
+#: logview/logview.c:390
 #, fuzzy
 msgid "Process"
 msgstr "작업:"
 
-#: logview/logview.c:382
+#: logview/logview.c:390
 #, fuzzy
 msgid "Message"
 msgstr "메세지:"
 
-#: logview/logview.c:466
+#: logview/logview.c:474
 msgid "Last Modified: "
 msgstr "변경 일자: "
 
-#: logview/logview.c:560 logview/logview.c:634
+#: logview/logview.c:568 logview/logview.c:643
 msgid "Too many open logs. Close one and try again"
 msgstr "너무 많은 로그파일을 열었습니다. 닫고 재시도 하십시오"
 
-#: logview/logview.c:572
+#: logview/logview.c:580
 msgid "File already opened"
 msgstr "파일이 이미 열렸습니다"
 
-#: logview/logview.c:647
+#: logview/logview.c:656
 msgid "Open new logfile"
 msgstr "새 로그 파일 열기"
 
@@ -2015,48 +2032,53 @@ msgstr "새 로그 파일 열기"
 msgid "Error: [%s]\n"
 msgstr "오류: [%s]\n"
 
-#: logview/monitor.c:111
+#: logview/monitor.c:109
 #, fuzzy
 msgid "Monitor Options"
 msgstr "감시 옵션"
 
-#: logview/monitor.c:133
-msgid "Choose logs to monitor"
+#: logview/monitor.c:135
+#, fuzzy
+msgid "Choose logs to monitor:"
 msgstr "감시할 로그를 선택하십시오"
 
-#: logview/monitor.c:180
+#: logview/monitor.c:140
+msgid "Currently monitored logs:"
+msgstr ""
+
+#: logview/monitor.c:188
 #, fuzzy
 msgid "Add logs to monitor"
 msgstr "감시할 로그를 선택하십시오"
 
-#: logview/monitor.c:189
+#: logview/monitor.c:197
 #, fuzzy
 msgid "Remove logs from monitor"
 msgstr "감시할 로그를 선택하십시오"
 
 #. Check boxes
-#: logview/monitor.c:227
+#: logview/monitor.c:244
 msgid "_Hide Application"
 msgstr ""
 
-#: logview/monitor.c:235
+#: logview/monitor.c:252
 #, fuzzy
 msgid "_Execute Actions"
 msgstr "실행"
 
-#: logview/monitor.c:273
+#: logview/monitor.c:289
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr "너무 많은 로그를 감시합니다. 지우고 다시 시도 하십시오"
 
-#: logview/monitor.c:281 logview/monitor.c:319
+#: logview/monitor.c:297 logview/monitor.c:335
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list가 NULL입니다\n"
 
-#: logview/monitor.c:439
+#: logview/monitor.c:457
 msgid "Monitoring logs..."
 msgstr "로그 감시..."
 
-#: logview/monitor.c:626
+#: logview/monitor.c:644
 msgid "TOUCHED!!\n"
 msgstr "변경됨!!\n"
 
@@ -2245,6 +2267,12 @@ msgid ""
 msgstr ""
 "아카이브 (tar) 프로그램을 찾을 수 없습니다!\n"
 "아카이브를 만드는 데 쓰이는 프로그램입니다."
+
+#, fuzzy
+#~ msgid ""
+#~ "Sorry, could not start the search.\n"
+#~ "%s\n"
+#~ msgstr "찾기를 시작하려면 클릭하십시오"
 
 #~ msgid "x^2"
 #~ msgstr "x^2"

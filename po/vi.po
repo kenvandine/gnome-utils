@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
-"POT-Creation-Date: 2002-10-02 11:26+0100\n"
+"POT-Creation-Date: 2002-10-14 15:19+0100\n"
 "PO-Revision-Date: 2002-06-05 02:49+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
@@ -1334,7 +1334,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1414
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1516
 msgid "Search for Files"
 msgstr "Tìm tập tin"
 
@@ -1347,170 +1347,176 @@ msgstr "Tìm tập tin trên đĩa"
 msgid "Contains the text"
 msgstr "Chép chữ"
 
-#: gsearchtool/gsearchtool.c:61
-msgid "Owned by user"
-msgstr "Được sở hữu bởi người dùng"
-
 #: gsearchtool/gsearchtool.c:62
-msgid "Owned by group"
-msgstr "Được sở hữu bởi nhóm"
-
-#: gsearchtool/gsearchtool.c:63
-msgid "Owner is unrecognized"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:64
-msgid "Date modified before (days)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:65
 #, fuzzy
-msgid "Date modified after (days)"
+msgid "Date modified less than (days)"
 msgstr "Ngày sửa đổi"
 
+#: gsearchtool/gsearchtool.c:63
+#, fuzzy
+msgid "Date modified more than (days)"
+msgstr "Ngày sửa đổi"
+
+#: gsearchtool/gsearchtool.c:65
+msgid "Size at least (kilobytes)"
+msgstr ""
+
 #: gsearchtool/gsearchtool.c:66
-msgid "Size is less than (kilobytes)"
+msgid "Size at most (kilobytes)"
 msgstr ""
 
 #: gsearchtool/gsearchtool.c:67
-msgid "Size is more than (kilobytes)"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:68
 msgid "File is empty"
 msgstr "Tập tin rỗng"
 
 #: gsearchtool/gsearchtool.c:69
+msgid "Owned by user"
+msgstr "Được sở hữu bởi người dùng"
+
+#: gsearchtool/gsearchtool.c:70
+msgid "Owned by group"
+msgstr "Được sở hữu bởi nhóm"
+
+#: gsearchtool/gsearchtool.c:71
+msgid "Owner is unrecognized"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:73
 #, fuzzy
 msgid "File is not named"
 msgstr "Tên tập tin không phải là"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:74
 #, fuzzy
 msgid "File matches regular expression"
 msgstr "Dùng biểu thức chính quy"
 
-#: gsearchtool/gsearchtool.c:71
+#: gsearchtool/gsearchtool.c:76
 msgid "Follow symbolic links"
 msgstr "Đi theo các liên kết"
 
-#: gsearchtool/gsearchtool.c:72
+#: gsearchtool/gsearchtool.c:77
 #, fuzzy
-msgid "Search other filesystems"
+msgid "Include other filesystems"
 msgstr "Không tìm trên hệ thống tập tin đã gắn kết"
 
-#: gsearchtool/gsearchtool.c:123
+#: gsearchtool/gsearchtool.c:133
 msgid "Set the text of 'file is named'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:125
+#: gsearchtool/gsearchtool.c:135
 msgid "Set the text of 'look in folder'"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:127
+#: gsearchtool/gsearchtool.c:137
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:129
+#: gsearchtool/gsearchtool.c:139
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:131
+#: gsearchtool/gsearchtool.c:141
 msgid "Automatically start a search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:133
+#: gsearchtool/gsearchtool.c:143
 msgid "Select the 'Contains the text' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:135
-msgid "Select the 'Owned by user' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:137
-msgid "Select the 'Owned by group' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:139
-msgid "Select the 'Owner is unrecognized' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:141
-msgid "Select the 'Date modified before (days)' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:143
-msgid "Select the 'Date modified after (days)' constraint"
-msgstr ""
-
 #: gsearchtool/gsearchtool.c:145
-msgid "Select the 'Size is less than (kilobytes)' constraint"
-msgstr ""
+#, fuzzy
+msgid "Select the 'Date modified less than (days)' constraint"
+msgstr "Đi theo các liên kết"
 
 #: gsearchtool/gsearchtool.c:147
-msgid "Select the 'Size is more than (kilobytes)' constraint"
-msgstr ""
+#, fuzzy
+msgid "Select the 'Date modified more than (days)' constraint"
+msgstr "Đi theo các liên kết"
 
 #: gsearchtool/gsearchtool.c:149
+#, fuzzy
+msgid "Select the 'Size at most (kilobytes)' constraint"
+msgstr "Dùng biểu thức chính quy"
+
+#: gsearchtool/gsearchtool.c:151
+#, fuzzy
+msgid "Select the 'Size at least (kilobytes)' constraint"
+msgstr "Dùng biểu thức chính quy"
+
+#: gsearchtool/gsearchtool.c:153
 msgid "Select the 'File is empty' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:151
+#: gsearchtool/gsearchtool.c:155
+msgid "Select the 'Owned by user' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:157
+msgid "Select the 'Owned by group' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:159
+msgid "Select the 'Owner is unrecognized' constraint"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:161
 msgid "Select the 'File is not named' constraint"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:153
+#: gsearchtool/gsearchtool.c:163
 #, fuzzy
 msgid "Select the 'File matches regular expression' constraint"
 msgstr "Dùng biểu thức chính quy"
 
-#: gsearchtool/gsearchtool.c:155
+#: gsearchtool/gsearchtool.c:165
 #, fuzzy
 msgid "Select the 'Follow symbolic links' constraint"
 msgstr "Đi theo các liên kết"
 
-#: gsearchtool/gsearchtool.c:157
-msgid "Select the 'Search other filesystems' constraint"
-msgstr ""
+#: gsearchtool/gsearchtool.c:167
+#, fuzzy
+msgid "Select the 'Include other filesystems' constraint"
+msgstr "Dùng biểu thức chính quy"
 
-#: gsearchtool/gsearchtool.c:389
+#: gsearchtool/gsearchtool.c:404
 msgid "No files found"
 msgstr "Không tìm thấy"
 
-#: gsearchtool/gsearchtool.c:463
+#: gsearchtool/gsearchtool.c:489
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:645
+#: gsearchtool/gsearchtool.c:671
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:771
+#: gsearchtool/gsearchtool.c:797
 msgid "(aborted)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:780
+#: gsearchtool/gsearchtool.c:806
 #, fuzzy, c-format
 msgid "No files found %s"
 msgstr "Không tìm thấy"
 
-#: gsearchtool/gsearchtool.c:785
+#: gsearchtool/gsearchtool.c:811
 #, fuzzy, c-format
 msgid "One file found %s"
 msgstr "Tìm thấy 1 tập tin"
 
-#: gsearchtool/gsearchtool.c:789
+#: gsearchtool/gsearchtool.c:815
 #, fuzzy, c-format
 msgid "%d files found %s"
 msgstr "tìm thấy %d tập tin"
 
-#: gsearchtool/gsearchtool.c:852
+#: gsearchtool/gsearchtool.c:908
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:856
+#: gsearchtool/gsearchtool.c:912
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1518,106 +1524,109 @@ msgstr ""
 "\n"
 "... Quá nhiều lỗi, không thể hiển thị hết ..."
 
-#: gsearchtool/gsearchtool.c:889 gsearchtool/gsearchtool.c:910
-#, fuzzy, c-format
-msgid ""
-"Sorry, could not start the search.\n"
-"%s\n"
-msgstr "Nhấn để bắt đầu tìm"
+#: gsearchtool/gsearchtool.c:925
+#, fuzzy
+msgid "Search Errors"
+msgstr "Tìm tập tin"
 
-#: gsearchtool/gsearchtool.c:981
+#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:987
+#, fuzzy
+msgid "Search for Files Error"
+msgstr "Tìm tập tin"
+
+#: gsearchtool/gsearchtool.c:1068
 msgid "Search Rule Value Entry"
 msgstr "Mục nhập giá trị quy tắc tìm"
 
-#: gsearchtool/gsearchtool.c:982
+#: gsearchtool/gsearchtool.c:1069
 msgid "Enter a value for search rule"
 msgstr "Nhập giá trị cho quy tắc tìm"
 
-#: gsearchtool/gsearchtool.c:1020
+#: gsearchtool/gsearchtool.c:1103
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Nhấn vào để loại bỏ quy tắc"
 
-#: gsearchtool/gsearchtool.c:1075
-msgid "A_vailable search constraints:"
+#: gsearchtool/gsearchtool.c:1158
+msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1085
+#: gsearchtool/gsearchtool.c:1168
 msgid "Search Rules Menu"
 msgstr "Menu quy tắc tìm"
 
-#: gsearchtool/gsearchtool.c:1086
+#: gsearchtool/gsearchtool.c:1169
 msgid "Select a search rule from the menu"
 msgstr "Chọn một quy tắc tìm từ menu"
 
-#: gsearchtool/gsearchtool.c:1118
+#: gsearchtool/gsearchtool.c:1201
 msgid "S_earch Results"
 msgstr "_Kết quả tìm"
 
-#: gsearchtool/gsearchtool.c:1173
+#: gsearchtool/gsearchtool.c:1274
 msgid "Name"
 msgstr "Tên"
 
-#: gsearchtool/gsearchtool.c:1195
+#: gsearchtool/gsearchtool.c:1296
 msgid "Folder"
 msgstr "Thư mục"
 
-#: gsearchtool/gsearchtool.c:1207
+#: gsearchtool/gsearchtool.c:1308
 msgid "Size"
 msgstr "Kích thước"
 
-#: gsearchtool/gsearchtool.c:1218
+#: gsearchtool/gsearchtool.c:1319
 msgid "Type"
 msgstr "Loại"
 
-#: gsearchtool/gsearchtool.c:1229
+#: gsearchtool/gsearchtool.c:1330
 msgid "Date Modified"
 msgstr "Ngày sửa đổi"
 
-#: gsearchtool/gsearchtool.c:1270
+#: gsearchtool/gsearchtool.c:1371
 #, fuzzy
 msgid "File is _named:"
 msgstr "Tìm các tập tin _tên là:"
 
-#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
+#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
 msgid "File Name Entry"
 msgstr "Nhập tên tập tin"
 
-#: gsearchtool/gsearchtool.c:1285 gsearchtool/gsearchtool.c:1286
+#: gsearchtool/gsearchtool.c:1386 gsearchtool/gsearchtool.c:1387
 msgid "Enter the file name you want to search"
 msgstr "Nhập tên tập tin bạn muốn tìm"
 
-#: gsearchtool/gsearchtool.c:1298
+#: gsearchtool/gsearchtool.c:1399
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "_Bắt đầu tìm tại thư mục:"
 
-#: gsearchtool/gsearchtool.c:1304
+#: gsearchtool/gsearchtool.c:1405
 msgid "Browse"
 msgstr "Duyệt"
 
-#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
 msgid "Starting folder entry"
 msgstr "Thư mục bắt đầu"
 
-#: gsearchtool/gsearchtool.c:1313 gsearchtool/gsearchtool.c:1314
+#: gsearchtool/gsearchtool.c:1414 gsearchtool/gsearchtool.c:1415
 msgid "Enter the folder name where you want to start the search"
 msgstr "Nhập tên thư mục, nơi bạn muốn bắt đầu tìm"
 
-#: gsearchtool/gsearchtool.c:1330
+#: gsearchtool/gsearchtool.c:1431 gsearchtool/gsearchtool.c:1432
 #, fuzzy
-msgid "Additional Constraints"
+msgid "Additional Options"
 msgstr "Tùy chọn hành động"
 
-#: gsearchtool/gsearchtool.c:1372
+#: gsearchtool/gsearchtool.c:1474
 msgid "Click to Start the search"
 msgstr "Nhấn để bắt đầu tìm"
 
-#: gsearchtool/gsearchtool.c:1373
+#: gsearchtool/gsearchtool.c:1475
 msgid "Click to Stop the search"
 msgstr "Nhấn để chấm dứt tìm"
 
-#: gsearchtool/gsearchtool.c:1410
+#: gsearchtool/gsearchtool.c:1512
 msgid "Cannot initialize bonobo."
 msgstr "Không thể khởi động Bonobo."
 
@@ -1917,95 +1926,104 @@ msgstr "%s không phải là log file."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: hết bộ nhớ"
 
-#: logview/logview.c:98
+#: logview/logview.c:99
 msgid "S_witch Log"
 msgstr "_Chuyển log"
 
-#: logview/logview.c:99
+#: logview/logview.c:100
 #, fuzzy
 msgid "Switch between already opened logs"
 msgstr "Tập tin đã mở rồi"
 
-#: logview/logview.c:105
+#: logview/logview.c:106
 msgid "_Monitor..."
 msgstr "Theo _dõi..."
 
-#: logview/logview.c:106
+#: logview/logview.c:107
 #, fuzzy
 msgid "Monitor Logs"
 msgstr "Theo dõi log"
 
-#: logview/logview.c:114
+#: logview/logview.c:115
 msgid "_Properties"
 msgstr "_Thuộc tính"
 
-#: logview/logview.c:115
+#: logview/logview.c:116
 msgid "Show Log Properties"
 msgstr "Hiện thuộc tính log"
 
-#: logview/logview.c:123
+#: logview/logview.c:124
 #, fuzzy
 msgid "Clos_e All"
 msgstr "Đóng log"
 
-#: logview/logview.c:124
+#: logview/logview.c:125
 #, fuzzy
 msgid "Close all Log files"
 msgstr "Đóng log"
 
-#: logview/logview.c:136
+#: logview/logview.c:137
 msgid "_Calendar"
 msgstr "_Lịch"
 
-#: logview/logview.c:137
+#: logview/logview.c:138
 msgid "Show Calendar Log"
 msgstr "Hiện log lịch"
 
-#: logview/logview.c:143
+#: logview/logview.c:144
 msgid "_Entry Detail"
 msgstr "Chi tiết _mục nhập"
 
-#: logview/logview.c:144
+#: logview/logview.c:145
 msgid "Show Entry Detail"
 msgstr "Hiện chi tiết mục nhập"
 
-#: logview/logview.c:357
+#: logview/logview.c:151
+#, fuzzy
+msgid "_Collapse All"
+msgstr "Đóng log"
+
+#: logview/logview.c:152
+msgid "Collapse all the rows"
+msgstr ""
+
+#: logview/logview.c:365
 msgid "No log files to open"
 msgstr "Không có tập tin log nào được mở"
 
-#: logview/logview.c:381
+#: logview/logview.c:389
 #, fuzzy
 msgid "Date"
 msgstr "Ngày:"
 
-#: logview/logview.c:381
+#: logview/logview.c:389
 #, fuzzy
 msgid "Host Name"
 msgstr "Tên"
 
-#: logview/logview.c:382
+#: logview/logview.c:390
 #, fuzzy
 msgid "Process"
 msgstr "Tiến trình:"
 
-#: logview/logview.c:382
+#: logview/logview.c:390
 #, fuzzy
 msgid "Message"
 msgstr "Thông điệp:"
 
-#: logview/logview.c:466
+#: logview/logview.c:474
 msgid "Last Modified: "
 msgstr "Ngày sửa đổi: "
 
-#: logview/logview.c:560 logview/logview.c:634
+#: logview/logview.c:568 logview/logview.c:643
 msgid "Too many open logs. Close one and try again"
 msgstr "Mở quá nhiều tập tin log. Hãy đóng bớt một cái và thử lại."
 
-#: logview/logview.c:572
+#: logview/logview.c:580
 msgid "File already opened"
 msgstr "Tập tin đã mở rồi"
 
-#: logview/logview.c:647
+#: logview/logview.c:656
 msgid "Open new logfile"
 msgstr "Mở log mới"
 
@@ -2014,48 +2032,53 @@ msgstr "Mở log mới"
 msgid "Error: [%s]\n"
 msgstr "Lỗi: [%s]\n"
 
-#: logview/monitor.c:111
+#: logview/monitor.c:109
 #, fuzzy
 msgid "Monitor Options"
 msgstr "Tùy chọn theo dõi"
 
-#: logview/monitor.c:133
-msgid "Choose logs to monitor"
+#: logview/monitor.c:135
+#, fuzzy
+msgid "Choose logs to monitor:"
 msgstr "Chọn log cần theo dõi"
 
-#: logview/monitor.c:180
+#: logview/monitor.c:140
+msgid "Currently monitored logs:"
+msgstr ""
+
+#: logview/monitor.c:188
 #, fuzzy
 msgid "Add logs to monitor"
 msgstr "Chọn log cần theo dõi"
 
-#: logview/monitor.c:189
+#: logview/monitor.c:197
 #, fuzzy
 msgid "Remove logs from monitor"
 msgstr "Chọn log cần theo dõi"
 
 #. Check boxes
-#: logview/monitor.c:227
+#: logview/monitor.c:244
 msgid "_Hide Application"
 msgstr ""
 
-#: logview/monitor.c:235
+#: logview/monitor.c:252
 #, fuzzy
 msgid "_Execute Actions"
 msgstr "Tùy chọn thực thi"
 
-#: logview/monitor.c:273
+#: logview/monitor.c:289
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Theo dõi quá nhiều log. Hãy loại bỏ bớt một cái và thử lại"
 
-#: logview/monitor.c:281 logview/monitor.c:319
+#: logview/monitor.c:297 logview/monitor.c:335
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list là NULL\n"
 
-#: logview/monitor.c:439
+#: logview/monitor.c:457
 msgid "Monitoring logs..."
 msgstr "Đang theo dõi log..."
 
-#: logview/monitor.c:626
+#: logview/monitor.c:644
 msgid "TOUCHED!!\n"
 msgstr ""
 
@@ -2244,6 +2267,12 @@ msgid ""
 msgstr ""
 "Không thể tìm thấy chương trình tar!\n"
 "Chương trình này được dùng để tạo kho lưu."
+
+#, fuzzy
+#~ msgid ""
+#~ "Sorry, could not start the search.\n"
+#~ "%s\n"
+#~ msgstr "Nhấn để bắt đầu tìm"
 
 #~ msgid "x^2"
 #~ msgstr "x^2"
