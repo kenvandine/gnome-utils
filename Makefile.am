@@ -20,13 +20,9 @@ if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
-if FALSE
-extras = gnome-find
-endif
-
 SUBDIRS = po intl macros idl $(gfloppy) logview gcharmap \
 	gcalc gsearchtool $(gdiskfree) $(stripchart) gtt gdictsrc \
-	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog $(extras)
+	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog
 
 EXTRA_DIST = gnome-utils.spec.in
 
