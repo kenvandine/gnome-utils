@@ -40,12 +40,16 @@ static void dialog_clicked_cb(GnomeDialog * d, gint which, gpointer data);
 static void runlevel_cb(GtkRadioButton * b, gint data);
 static void apply_prefs_cb(GnomePropertyBox * pb, gint page, 
                            GtkEntry ** entries);
+static void confirm_cb(GnomeDialog * d, gint which);
+static void toggle_confirm_cb(GtkWidget * button, gpointer data);
 
 static void popup_preferences(void);
 static void popup_about(void);
 static void popup_not_in_path(const gchar * command);
+static void popup_confirm();
 
-void run_command(gchar * command);
+static void do_shutdown();
+static void run_command(gchar * command);
 
 /*****************************
   Runlevel stuff.
@@ -81,6 +85,19 @@ static gchar * human_readable[] = {
   N_("Reboot")
 };
 
+/* These could be generated on the fly, except that it wouldn't
+   be portable across human languages due to different syntax rules. */
+static gchar * confirm_questions[] = {
+  N_("Are you sure you want to shut down the computer?"),
+  N_("Are you sure you want to switch to single user mode?"),
+  N_("Are you sure you want to switch to runlevel 2?"),
+  N_("Are you sure you want to switch to runlevel 3?"),
+  N_("Are you sure you want to switch to runlevel 4?"),
+  N_("Are you sure you want to switch to runlevel 5?"),
+  N_("Are you sure you want to reboot the system?")
+};
+
+
 static gchar * runlevel_commands[] = {
   "shutdown -h now",
   "shutdown",
@@ -101,6 +118,12 @@ static GSList * runlevel_radio_group;
   Main
   *******************************/
 
+static gboolean confirm;
+static gboolean confirm_button_state; /* button - may not reflect synced 
+                                         setting. (Not enough data fields
+                                         in property box callback). Also 
+                                         used in confirm dialog. */
+
 int main ( int argc, char ** argv )
 {
   int i;
@@ -116,7 +139,7 @@ int main ( int argc, char ** argv )
 
   i = 0;
   while (i < 7) {
-    config_string = g_copy_strings("/", APPNAME, "/Commands/", 
+    config_string = g_copy_strings("/"APPNAME"/Commands/", 
 				   config_keys[i], "=", runlevel_commands[i],
 				   NULL);
     runlevel_commands[i] = 
@@ -125,6 +148,10 @@ int main ( int argc, char ** argv )
     g_free(config_string);
     ++i;
   }
+
+  confirm = 
+    gnome_config_get_bool_with_default("/"APPNAME"/General/Confirm=True", 
+                                       NULL);
 
   popup_main_dialog();
 
@@ -254,7 +281,8 @@ static void prepare_advanced_vbox(GtkWidget * vbox)
   gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD);
   gtk_box_pack_end(GTK_BOX(vbox), box, FALSE, FALSE, GNOME_PAD); 
 
-  /* Fixme add the appropriate stock buttons to gnome-stock */
+  /* Fixme these should be stock buttons */
+
   button = gnome_stock_or_ordinary_button("Preferences");
   gtk_box_pack_end(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD); 
   gtk_signal_connect(GTK_OBJECT(button), "clicked",
@@ -268,33 +296,60 @@ static void prepare_advanced_vbox(GtkWidget * vbox)
 
 static void popup_preferences() 
 {
-  GtkWidget * box, * label;
+  GtkWidget * box, * label, * button, * entry_box;
   GtkWidget * d;
   static GtkWidget * entries[7];
   Runlevel i;
 
   d = gnome_property_box_new();
 
-  box = gtk_vbox_new(FALSE, GNOME_PAD);
+  box = gtk_hbox_new(FALSE, GNOME_PAD);
   gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD);
+
+  entry_box = gtk_vbox_new(TRUE, 0);
+  gtk_box_pack_start (GTK_BOX(box), entry_box, TRUE, TRUE, GNOME_PAD_SMALL); 
 
   i = Halt;
   while ( i <= Reboot ) {
+    if ( i == Runlevel_4 ) {
+      /* There are two entry boxes forming two columns of entries. */
+      entry_box = gtk_vbox_new(TRUE, 0);
+      gtk_box_pack_end (GTK_BOX(box), entry_box, TRUE, TRUE, 
+                        GNOME_PAD_SMALL); 
+    }
+
     label = gtk_label_new(human_readable[i]);
-    gtk_box_pack_start(GTK_BOX(box), label, TRUE, TRUE, 0); 
+    gtk_box_pack_start(GTK_BOX(entry_box), label, TRUE, TRUE, 0); 
     entries[i] = gtk_entry_new();
-    gtk_box_pack_start(GTK_BOX(box), entries[i], TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(entry_box), entries[i], TRUE, TRUE, 0);
     gtk_entry_set_text(GTK_ENTRY(entries[i]), runlevel_commands[i]);
-    gtk_widget_set_usize(GTK_WIDGET(entries[i]), 60, 20);
+
     gtk_signal_connect_object( GTK_OBJECT(entries[i]), "changed",
                                GTK_SIGNAL_FUNC(gnome_property_box_changed),
                                GTK_OBJECT(d) );
     ++i;
   }
-
+  
   gnome_property_box_append_page(GNOME_PROPERTY_BOX(d), box,
                                  gtk_label_new(_("Commands")) );
 
+  box = gtk_vbox_new(FALSE, GNOME_PAD);
+  gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD);
+
+  button = gtk_check_button_new_with_label(_("Confirm before shutdown?"));
+  confirm_button_state = confirm;
+  gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(button), confirm_button_state);
+  gtk_signal_connect(GTK_OBJECT(button), "clicked",
+                     GTK_SIGNAL_FUNC(toggle_confirm_cb), NULL);
+  gtk_signal_connect_object( GTK_OBJECT(button), "clicked",
+                             GTK_SIGNAL_FUNC(gnome_property_box_changed),
+                             GTK_OBJECT(d) );
+
+  gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, GNOME_PAD);
+
+  gnome_property_box_append_page(GNOME_PROPERTY_BOX(d), box,
+                                 gtk_label_new(_("General")) );
+  
   gtk_signal_connect( GTK_OBJECT(d), "apply",
                       GTK_SIGNAL_FUNC(apply_prefs_cb), entries );
 
@@ -341,9 +396,60 @@ static void popup_about()
   gtk_widget_show(ga);
 }
 
+static void popup_confirm(void)
+{
+  GtkWidget * d, * button;
+  gchar * message;
+  
+  message = g_copy_strings(confirm_questions[requested_runlevel],
+                           "\nYou will lose any unsaved work.", NULL);
+
+  d = gnome_message_box_new(message, GNOME_MESSAGE_BOX_QUESTION, 
+                            GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
+                            NULL);
+  
+  g_free(message);
+
+  button = gtk_check_button_new_with_label(_("Don't ask next time."));
+  confirm_button_state = confirm; /* Will always be true */
+  gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(button), confirm_button_state);
+  gtk_signal_connect(GTK_OBJECT(button), "clicked",
+                     GTK_SIGNAL_FUNC(toggle_confirm_cb), NULL);
+  gtk_widget_show(button);
+
+  gtk_box_pack_end(GTK_BOX(GNOME_DIALOG(d)->vbox), 
+                   button, FALSE, FALSE, GNOME_PAD);
+
+  /* Has to be or the runlevel requested
+     could change in the background */
+  gnome_dialog_set_modal(GNOME_DIALOG(d)); 
+
+  gtk_signal_connect(GTK_OBJECT(d), "clicked",
+                     GTK_SIGNAL_FUNC(confirm_cb), NULL);
+
+  gtk_widget_show(d);
+}
+
 /**********************************
   Callbacks
   *******************************/
+static void confirm_cb(GnomeDialog * d, gint which)
+{
+  if (confirm_button_state == FALSE) {
+    /* Don't want to be asked next time. */
+    confirm = confirm_button_state; /* not necessary, just nicer */
+    gnome_config_set_bool("/"APPNAME"/General/Confirm", confirm);
+    gnome_config_sync();
+  }
+
+  if ( which == 0 ) { /* Yes */
+    do_shutdown();
+  }
+  else if ( which == 1 ) { /* No */
+    gtk_main_quit();
+  }
+}
+
 static void apply_prefs_cb(GnomePropertyBox * pb, gint page, 
                            GtkEntry ** entries)
 {
@@ -364,6 +470,10 @@ static void apply_prefs_cb(GnomePropertyBox * pb, gint page,
       ++i;
     }
   }
+  else if ( page == 1 ) {
+    confirm = confirm_button_state;
+    gnome_config_set_bool("/"APPNAME"/General/Confirm", confirm);
+  }
   else if ( page == -1 ) { /* End of global apply */
     gnome_config_sync();
   }
@@ -374,23 +484,18 @@ static void apply_prefs_cb(GnomePropertyBox * pb, gint page,
 
 static void dialog_clicked_cb(GnomeDialog * d, gint which, gpointer data)
 {
-  gchar * command_name;
-  /* 0 is the OK button */
-  if ( which == 0 ) {
-    command_name = g_strdup(runlevel_commands[requested_runlevel]);
-    command_name = strtok(command_name, " \r\n\t");
-    if ( gnome_is_program_in_path(command_name) ) {
-      run_command(runlevel_commands[requested_runlevel]);
-      g_free(command_name);
-    }
-    else {
-      popup_not_in_path(command_name);
-      g_free(command_name);
+  if ( which == 0 ) { /* OK button */
+    if ( confirm ) {
+      popup_confirm();
       return;
     }
+    else {
+      do_shutdown();
+    }
   }
-
-  gtk_main_quit();
+  else if ( which == 1 ) { /* Cancel */
+    gtk_main_quit();
+  }
 }
 
 static void runlevel_cb(GtkRadioButton * b, gint data)
@@ -398,6 +503,32 @@ static void runlevel_cb(GtkRadioButton * b, gint data)
   requested_runlevel = data;
 }
 
+static void toggle_confirm_cb(GtkWidget * button, gpointer data)
+{
+  confirm_button_state = !confirm_button_state;
+}
+
+/*********************************************
+  Non-GUI
+  ***********************/
+static void do_shutdown(void)
+{
+  gchar * command_name;
+  
+  command_name = g_strdup(runlevel_commands[requested_runlevel]);
+  command_name = strtok(command_name, " \r\n\t");
+  if ( gnome_is_program_in_path(command_name) ) {
+    run_command(runlevel_commands[requested_runlevel]);
+    g_free(command_name);
+  }
+  else {
+    popup_not_in_path(command_name);
+    g_free(command_name);
+    return;
+  }
+
+  gtk_main_quit();
+}
 
 /********************************
   Stuff that should be in gnome-util and be an exec
@@ -407,7 +538,7 @@ static void runlevel_cb(GtkRadioButton * b, gint data)
 #include <sys/types.h>
 #include <stdlib.h>
 
-void run_command(gchar * command)
+static void run_command(gchar * command)
 {
   pid_t new_pid;
   
