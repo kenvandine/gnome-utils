@@ -9,7 +9,7 @@ HTML_FILES = authors.html configuring.html index.html ln7.html viewing.html \
 	bugs.html license.html
 
 EXTRA_DIST = \
-	topic.dat idetool $(SGML_FILES)
+	topic.dat $(SGML_FILES)
 
 idetool_help_DATA = ${HTML_FILES} topic.dat
 
@@ -34,7 +34,6 @@ dist-hook:
 	-cp $(srcdir)/idetool/stylesheet-images/*.gif \
 	 $(distdir)/idetool/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:

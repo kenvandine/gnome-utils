@@ -8,7 +8,7 @@ SGML_FILES = \
 HTML_FILES = index.html
 
 EXTRA_DIST = \
-	topic.dat gfontsel $(SGML_FILES)
+	topic.dat $(SGML_FILES)
 
 gfontsel_help_DATA = ${HTML_FILES} topic.dat
 
@@ -33,7 +33,6 @@ dist-hook:
 	-cp $(srcdir)/gfontsel/stylesheet-images/*.gif \
 	 $(distdir)/gfontsel/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:

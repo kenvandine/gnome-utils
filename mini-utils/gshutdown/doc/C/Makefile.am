@@ -7,7 +7,7 @@ SGML_FILES = \
 	gshutdown.sgml
 
 EXTRA_DIST = \
-	topic.dat gshutdown $(SGML_FILES)
+	topic.dat $(SGML_FILES)
 
 all:
 
@@ -33,7 +33,6 @@ dist-hook:
 	$(mkinstalldirs) $(distdir)/gshutdown
 	-cp $(srcdir)/gshutdown/*.html gshutdown/*.css $(distdir)/gshutdown
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 install-data-local: index.html

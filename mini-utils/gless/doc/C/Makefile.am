@@ -9,7 +9,7 @@ HTML_FILES = authors.html	index.html	ln7.html	usage.html
 
 
 EXTRA_DIST = \
-	topic.dat gless $(SGML_FILES)
+	topic.dat $(SGML_FILES)
 
 gless_help_DATA = ${HTML_FILES} topic.dat
 
@@ -34,7 +34,6 @@ dist-hook:
 	-cp $(srcdir)/gless/stylesheet-images/*.gif \
 	 $(distdir)/gless/stylesheet-images
 	-cp $(srcdir)/*.html $(distdir)
-	-cp $(srcdir)/*.sgml $(distdir)
 	-cp $(srcdir)/*.png $(distdir)
 
 distclean-generic:
