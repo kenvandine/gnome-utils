@@ -114,7 +114,8 @@ void unlock_gtt(void)
 int main(int argc, char *argv[])
 {
 #if HAS_GNOME
-	gnome_init("gtt", &argc, &argv);
+	/* FIXME: Integrate app command-line handling.  */
+	gnome_init("gtt", NULL, argc, argv, 0, NULL);
 #else 
 	gtk_init(&argc, &argv);
 #endif 

@@ -2,7 +2,8 @@
 INCLUDES = 			\
 	-I$(includedir)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-DHAS_GNOME=1
+	-DHAS_GNOME=1		\
+	$(GNOME_INCLUDEDIR)
 
 bin_PROGRAMS = gtt
 
