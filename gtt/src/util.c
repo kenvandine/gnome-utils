@@ -254,7 +254,7 @@ gtt_glade_xml_new (const char *filename, const char *widget)
 
 	g_return_val_if_fail (filename != NULL, NULL);
 
-	if (g_file_exists (filename))
+	if (g_file_test (filename, G_FILE_TEST_EXISTS))
 		xml = glade_xml_new (filename, widget, NULL);
 
 	if (xml == NULL) {

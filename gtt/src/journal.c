@@ -637,7 +637,8 @@ resolve_path (char *path_frag)
 		p = g_stpcpy (p, lang);
 		p = g_stpcpy (p, "/");
 		p = g_stpcpy (p, path_frag);
-		path = gnome_datadir_file (buff);
+		path = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_DATADIR,
+						  buff, TRUE, NULL);
 		if (path) return path;
 
 		p = buff;
@@ -645,7 +646,8 @@ resolve_path (char *path_frag)
 		p = g_stpcpy (p, lang);
 		p = g_stpcpy (p, "/");
 		p = g_stpcpy (p, path_frag);
-		path = gnome_datadir_file (buff);
+		path = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_DATADIR,
+						  buff, TRUE, NULL);
 		if (path) return path;
 	}
 	return g_strdup(path_frag);
