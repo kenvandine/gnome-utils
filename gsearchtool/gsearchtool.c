@@ -321,14 +321,18 @@ add_file_to_search_results (const gchar 	*file,
 	gchar *mime_type = gnome_vfs_get_mime_type (file);
 	gchar *description = get_file_type_with_mime_type (file, mime_type);
 	gchar *icon_path = get_file_icon_with_mime_type (file, mime_type);
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (icon_path, NULL);
 	GnomeVFSFileInfo *vfs_file_info = gnome_vfs_file_info_new ();
+	GdkPixbuf *pixbuf = NULL;
 	gchar *readable_size, *readable_date, *date;
 	gchar *utf8_base_name, *utf8_dir_name;
 	gchar *base_name, *dir_name;
 	
 	if (gtk_tree_view_get_headers_visible (GTK_TREE_VIEW(interface.tree)) == FALSE) {
 		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), TRUE);
+	}
+	
+	if (icon_path != NULL) {
+		pixbuf = gdk_pixbuf_new_from_file (icon_path, NULL);
 	}
 	
 	if (pixbuf != NULL) {
@@ -378,8 +382,11 @@ add_file_to_search_results (const gchar 	*file,
 			    COLUMN_NO_FILES_FOUND, FALSE,
 			    -1);
 
+	if (pixbuf != NULL) {
+		g_object_unref (G_OBJECT(pixbuf));
+	}
+
 	gnome_vfs_file_info_unref (vfs_file_info);
-	g_object_unref (G_OBJECT(pixbuf));
 	g_free (base_name);
 	g_free (dir_name);
 	g_free (mime_type);
