@@ -118,7 +118,7 @@ static GtkActionEntry entries[] = {
 static GtkToggleActionEntry toggle_entries[] = {
 	{ "MonitorLogs", NULL, N_("_Monitor"), "<control>M", N_("Monitor Current Log"),
 	  G_CALLBACK (toggle_monitor) },
-	{"ShowCalendar", NULL,  N_("_Calendar"), "<control>C", N_("Show Calendar Log"), 
+	{"ShowCalendar", NULL,  N_("Ca_lendar"), "<control>L", N_("Show Calendar Log"), 
 	 G_CALLBACK (toggle_calendar) },
 	{"ShowDetails", NULL,  N_("_Entry Detail"), "<control>E", N_("Show Entry Detail"), 
 	 G_CALLBACK (toggle_zoom) },
