@@ -184,12 +184,12 @@ build_search_command (void)
 		file_is_named_locale = NULL;
 	} 
 	else {
-		file_is_named_locale = g_filename_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
+		file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
 		gnome_entry_prepend_history (GNOME_ENTRY(interface.file_is_named_entry), TRUE, file_is_named_utf8);
 	}
 	
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), TRUE);
-	look_in_folder_locale = g_filename_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
+	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
 	gnome_entry_prepend_history (GNOME_ENTRY(gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))), 
 				     TRUE, look_in_folder_utf8);
 	
@@ -205,7 +205,7 @@ build_search_command (void)
 		
 		locate = g_find_program_in_path ("locate");
 		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
-		search_command.file_is_named_pattern = g_strdup(file_is_named_locale);
+		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
 		if ((locate != NULL) && (is_path_in_home_folder (look_in_folder_locale) != TRUE)) {
 			g_string_append_printf (command, "%s '%s*%s'", 
@@ -226,7 +226,7 @@ build_search_command (void)
 		
 		search_command.regex_matching_enabled = FALSE;
 		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
-		search_command.file_is_named_pattern = g_strdup(file_is_named_locale);
+		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
 		if (file_is_named_escaped == NULL) {
 			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p -name '%s' ", 
