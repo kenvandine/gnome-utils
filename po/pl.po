@@ -9,14 +9,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-21 21:39+0200\n"
+"POT-Creation-Date: 2004-08-03 17:30+1200\n"
 "PO-Revision-Date: 2003-11-15 23:16+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
@@ -24,11 +24,11 @@ msgstr ""
 msgid "Accessories"
 msgstr "Akcesoria"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:144
 msgid "Dictionary Lookup"
 msgstr "Wyszukiwanie w słowniku"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:421
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:160
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Wyszukuje słowo w słowniku sieciowym"
@@ -171,12 +171,12 @@ msgstr "Wprowadź słowo lub wybierz jedno z poniższej listy"
 msgid "Look Up for a Word"
 msgstr "Wyszukanie słowa"
 
-#: gdictsrc/gdict-applet.c:144
+#: gdictsrc/gdict-applet.c:137
 msgid "_Lookup"
 msgstr "_Znajdź"
 
 # FIXME albo coś innego tu dać
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:148
 msgid "Dictionary word entry"
 msgstr "Pole słowa słownika"
 
@@ -423,7 +423,7 @@ msgstr "Wyszukiwanie błędnych bloków..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Nie można otworzyć urządzenia %s w celu wyszukania błędnych bloków\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
 msgid "Checking for bad blocks... Done"
 msgstr "Wyszukiwanie błędnych bloków... Gotowe"
 
@@ -540,25 +540,25 @@ msgstr ""
 msgid "Could not determine current floppy geometry."
 msgstr "Nie można określić aktualnej geometrii dyskietki."
 
-#: gfloppy/src/gfloppy.c:221
+#: gfloppy/src/gfloppy.c:222
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "Błąd przy tworzeniu unikatowej nazwy dla pliku z listą błędnych bloków."
 
-#: gfloppy/src/gfloppy.c:241
+#: gfloppy/src/gfloppy.c:242
 msgid "Error while filling the bad blocks list file."
 msgstr "Błąd przy wypełnianiu pliku z listą błędnych bloków."
 
-#: gfloppy/src/gfloppy.c:304
+#: gfloppy/src/gfloppy.c:305
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Błąd przy uruchamianiu polecenia (%s): %s."
 
-#: gfloppy/src/gfloppy.c:330
+#: gfloppy/src/gfloppy.c:331
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Nieznany komunikat początkowy programu mke2fs. Anulowano."
 
-#: gfloppy/src/gfloppy.c:344
+#: gfloppy/src/gfloppy.c:345
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -570,16 +570,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:361
+#: gfloppy/src/gfloppy.c:362
 msgid "Abnormal child process termination."
 msgstr "Niewłaściwe zakończenie procesu potomnego."
 
-#: gfloppy/src/gfloppy.c:386
+#: gfloppy/src/gfloppy.c:387
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Błąd przy wykonywaniu polecenia mbadblocks: %s."
 
-#: gfloppy/src/gfloppy.c:398
+#: gfloppy/src/gfloppy.c:399
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -589,29 +589,29 @@ msgstr ""
 "nieprawidłowości:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:441
+#: gfloppy/src/gfloppy.c:442
 msgid "Abnormal mbadblocks child process termination."
 msgstr ""
 "Niepoprawne zakończenie procesu potomnego, wykonującego program mbadblocks."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
+#: gfloppy/src/gfloppy.c:468 gfloppy/src/gfloppy.c:508
 msgid "Making filesystem on disk..."
 msgstr "Tworzenie na dyskietce systemu plików..."
 
-#: gfloppy/src/gfloppy.c:475
+#: gfloppy/src/gfloppy.c:476
 msgid "Unable to create filesystem correctly."
 msgstr "Nie można poprawnie utworzyć systemu plików."
 
-#: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
+#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:520
 msgid "Making filesystem on disk... Done"
 msgstr "Tworzenie na dyskietce systemu plików... Gotowe"
 
-#: gfloppy/src/gfloppy.c:524
+#: gfloppy/src/gfloppy.c:525
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Wyszukiwanie błędnych bloków... (może to nieco potrwać)"
 
-#: gfloppy/src/gfloppy.c:529
+#: gfloppy/src/gfloppy.c:530
 msgid "Error while checking the bad blocks."
 msgstr "Błąd przy wyszukiwaniu błędnych bloków."
 
@@ -794,39 +794,44 @@ msgstr "Anulowano formatowanie dyskietki."
 msgid "Format Progress"
 msgstr "Postęp formatowania"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:577
-#: gsearchtool/gsearchtool.c:831 gsearchtool/gsearchtool.c:915
-#: gsearchtool/gsearchtool.c:2196 gsearchtool/gsearchtool.c:2221
+#: gsearchtool/gnome-search-tool.desktop.in.h:1
+msgid "Find files, folders, and documents on your computer"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
+#: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
+#: gsearchtool/gsearchtool.c:2288 gsearchtool/gsearchtool.c:2313
 msgid "Search for Files"
 msgstr "Wyszukiwanie plików"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2
-msgid "Search your disk for files"
-msgstr "Wyszukuje pliki na dysku"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:99
+#: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Image/label border"
 msgstr "Krawędź obrazu/etykiety"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:100
+#: gsearchtool/gsearchtool-alert-dialog.c:101
 msgid "Width of border around the label and image in the alert dialog"
 msgstr "Szerokość krawędzi biegnącej dookoła etykiety i obrazu okna alarmu"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:109
+#: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "Alert Type"
 msgstr "Rodzaj alarmu"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:110
+#: gsearchtool/gsearchtool-alert-dialog.c:111
 msgid "The type of alert"
 msgstr "Rodzaj alarmu"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:118
+#: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "Alert Buttons"
 msgstr "Przyciski alarmowe"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:119
+#: gsearchtool/gsearchtool-alert-dialog.c:120
 msgid "The buttons shown in the alert dialog"
 msgstr "Przyciski wyświetlane w oknie alarmu"
+
+#: gsearchtool/gsearchtool-alert-dialog.c:172
+#, fuzzy
+msgid "Show more _details"
+msgstr "Wyświetl więcej _opcji"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -848,7 +853,7 @@ msgstr "Z_apisz wyniki jako..."
 msgid "Could not open help document."
 msgstr "Nie można otworzyć dokumentu pomocy."
 
-#: gsearchtool/gsearchtool-callbacks.c:318
+#: gsearchtool/gsearchtool-callbacks.c:319
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
@@ -856,8 +861,8 @@ msgstr[0] "Czy na pewno chcesz otworzyć %d dokument?"
 msgstr[1] "Czy na pewno chcesz otworzyć %d dokumenty?"
 msgstr[2] "Czy na pewno chcesz otworzyć %d dokumentów?"
 
-#: gsearchtool/gsearchtool-callbacks.c:323
-#: gsearchtool/gsearchtool-callbacks.c:475
+#: gsearchtool/gsearchtool-callbacks.c:324
+#: gsearchtool/gsearchtool-callbacks.c:477
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -865,28 +870,28 @@ msgstr[0] "Operacja spowoduje otwarcie %d oddzielnego okna."
 msgstr[1] "Operacja spowoduje otwarcie %d oddzielnych okien."
 msgstr[2] "Operacja spowoduje otwarcie %d oddzielnych okien."
 
-#: gsearchtool/gsearchtool-callbacks.c:383
-#: gsearchtool/gsearchtool-callbacks.c:416
-#: gsearchtool/gsearchtool-callbacks.c:965
-#: gsearchtool/gsearchtool-callbacks.c:998
+#: gsearchtool/gsearchtool-callbacks.c:384
+#: gsearchtool/gsearchtool-callbacks.c:418
+#: gsearchtool/gsearchtool-callbacks.c:967
+#: gsearchtool/gsearchtool-callbacks.c:1001
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Nie można otworzyć dokumentu \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:386
-#: gsearchtool/gsearchtool-callbacks.c:641
-#: gsearchtool/gsearchtool-callbacks.c:968
+#: gsearchtool/gsearchtool-callbacks.c:387
+#: gsearchtool/gsearchtool-callbacks.c:643
+#: gsearchtool/gsearchtool-callbacks.c:970
 msgid "The document does not exist."
 msgstr "Dokument nie istnieje."
 
-#: gsearchtool/gsearchtool-callbacks.c:419
-#: gsearchtool/gsearchtool-callbacks.c:1001
+#: gsearchtool/gsearchtool-callbacks.c:421
+#: gsearchtool/gsearchtool-callbacks.c:1004
 msgid "There is no installed viewer capable of displaying the document."
 msgstr ""
 "Nie zainstalowano w systemie przeglądarki obsługującej wyświetlanie "
 "dokumentu."
 
-#: gsearchtool/gsearchtool-callbacks.c:470
+#: gsearchtool/gsearchtool-callbacks.c:472
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
@@ -894,90 +899,90 @@ msgstr[0] "Czy na pewno chcesz otworzyć %d folder?"
 msgstr[1] "Czy na pewno chcesz otworzyć %d foldery?"
 msgstr[2] "Czy na pewno chcesz otworzyć %d folderów?"
 
-#: gsearchtool/gsearchtool-callbacks.c:528
+#: gsearchtool/gsearchtool-callbacks.c:530
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Nie można otworzyć folderu \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:535
+#: gsearchtool/gsearchtool-callbacks.c:537
 msgid "The nautilus file manager is not running."
 msgstr "Nie jest uruchomiony menedżer plików nautilus."
 
-#: gsearchtool/gsearchtool-callbacks.c:638
+#: gsearchtool/gsearchtool-callbacks.c:640
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Nie można przenieść \"%s\" do śmietnika."
 
-#: gsearchtool/gsearchtool-callbacks.c:678
+#: gsearchtool/gsearchtool-callbacks.c:680
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "Nie można przenieść \"%s\" do śmietnika."
 
-#: gsearchtool/gsearchtool-callbacks.c:681
+#: gsearchtool/gsearchtool-callbacks.c:683
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Przenoszenie \"%s\" nie powiodło się: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:711
+#: gsearchtool/gsearchtool-callbacks.c:713
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Czy chcesz usunąć trwale \"%s\"?"
 
-#: gsearchtool/gsearchtool-callbacks.c:714
+#: gsearchtool/gsearchtool-callbacks.c:716
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Śmietnik jest niedostępny.  Nie można przenieść \"%s\" do śmietnika."
 
-#: gsearchtool/gsearchtool-callbacks.c:756
+#: gsearchtool/gsearchtool-callbacks.c:758
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Nie można usunąć \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:759
+#: gsearchtool/gsearchtool-callbacks.c:761
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Usuwanie \"%s\" nie powiodło się: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1189
 msgid "Save Search Results As..."
 msgstr "Zapis wyników wyszukiwania..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1238
+#: gsearchtool/gsearchtool-callbacks.c:1241
 msgid "Could not save document."
 msgstr "Nie można zapisać dokumentu."
 
-#: gsearchtool/gsearchtool-callbacks.c:1240
+#: gsearchtool/gsearchtool-callbacks.c:1243
 msgid "You did not select a document name."
 msgstr "Nie wybrano nazwy dokumentu."
 
-#: gsearchtool/gsearchtool-callbacks.c:1266
-#: gsearchtool/gsearchtool-callbacks.c:1361
+#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1364
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Nie można zapisać dokumentu \"%s\" w \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:1270
+#: gsearchtool/gsearchtool-callbacks.c:1273
 msgid "The document name you selected is a folder."
 msgstr "Wybrana nazwa dokumentu jest folderem."
 
-#: gsearchtool/gsearchtool-callbacks.c:1299
+#: gsearchtool/gsearchtool-callbacks.c:1302
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokument \"%s\" już istnieje. Czy chcesz go zastąpić?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1303
+#: gsearchtool/gsearchtool-callbacks.c:1306
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Jeżeli zastapisz istniejący plik, jego zawartość zostanie nadpisana."
 
-#: gsearchtool/gsearchtool-callbacks.c:1314
+#: gsearchtool/gsearchtool-callbacks.c:1317
 msgid "_Replace"
 msgstr "_Zastąp"
 
-#: gsearchtool/gsearchtool-callbacks.c:1364
+#: gsearchtool/gsearchtool-callbacks.c:1367
 msgid "You may not have write permissions to the document."
 msgstr "Nie posiadasz uprawnień do zapisu do tego dokumentu."
 
-#: gsearchtool/gsearchtool-support.c:66
+#: gsearchtool/gsearchtool-support.c:68
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -991,96 +996,109 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:494
+#: gsearchtool/gsearchtool-support.c:510
 msgid "today at %-I:%M %p"
 msgstr "dziś o %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:496
+#: gsearchtool/gsearchtool-support.c:512
 msgid "yesterday at %-I:%M %p"
 msgstr "wczoraj o %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:498 gsearchtool/gsearchtool-support.c:500
-msgid "%m/%-d/%y, %-I:%M %p"
+#: gsearchtool/gsearchtool-support.c:514 gsearchtool/gsearchtool-support.c:516
+#, fuzzy
+msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%-d/%m/%y, %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:671
+#: gsearchtool/gsearchtool-support.c:687
 msgid "link (broken)"
 msgstr "odnośnik (uszkodzony)"
 
-#: gsearchtool/gsearchtool-support.c:676
+#: gsearchtool/gsearchtool-support.c:692
 #, c-format
 msgid "link to %s"
 msgstr "odnośnik do %s"
 
-#: gsearchtool/gsearchtool.c:73
+#: gsearchtool/gsearchtool.c:74
 msgid "Contains the _text"
 msgstr "Zawiera _napis"
 
-#: gsearchtool/gsearchtool.c:75
-msgid "_Date modified less than (days)"
+#: gsearchtool/gsearchtool.c:76
+#, fuzzy
+msgid "_Date modified less than"
 msgstr "_Czas od modyfikacji nie przekracza (dni)"
 
-#: gsearchtool/gsearchtool.c:76
-msgid "Date modified more than (da_ys)"
+#: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
+msgid "days"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:77
+#, fuzzy
+msgid "Date modified more than"
 msgstr "Czas od m_odyfikacji przekracza (dni)"
 
-#: gsearchtool/gsearchtool.c:78
-msgid "S_ize at least (kilobytes)"
+#: gsearchtool/gsearchtool.c:79
+#, fuzzy
+msgid "S_ize at least"
 msgstr "_Rozmiar przynajmniej (kilobajty)"
 
-#: gsearchtool/gsearchtool.c:79
-msgid "Si_ze at most (kilobytes)"
-msgstr "Ro_zmiar nie przekracza (kilobajty)"
+#: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
+msgid "kilobytes"
+msgstr ""
 
 #: gsearchtool/gsearchtool.c:80
+#, fuzzy
+msgid "Si_ze at most"
+msgstr "Ro_zmiar nie przekracza (kilobajty)"
+
+#: gsearchtool/gsearchtool.c:81
 msgid "File is empty"
 msgstr "Plik jest pusty"
 
-#: gsearchtool/gsearchtool.c:82
+#: gsearchtool/gsearchtool.c:83
 msgid "Owned by _user"
 msgstr "Wł_aściciel pliku"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:84
 msgid "Owned by _group"
 msgstr "Gr_upa przypisana plikowi"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:85
 msgid "Owner is unrecognized"
 msgstr "Nierozpoznany użytkownik"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:87
 msgid "Na_me does not contain"
 msgstr "Naz_wa nie zawiera"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:88
 msgid "Name matches regular e_xpression"
 msgstr "Plik pasuje do wyrażen_ia regularnego"
 
-#: gsearchtool/gsearchtool.c:89
+#: gsearchtool/gsearchtool.c:90
 msgid "Show hidden and backup files"
 msgstr "Wyświetlanie plików ukrytych i zapasowych"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:91
 msgid "Follow symbolic links"
 msgstr "Podążanie za dowiązaniami symbolicznymi"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:92
 msgid "Include other filesystems"
 msgstr "Z innymi systemami plików"
 
-#: gsearchtool/gsearchtool.c:524 gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:547 gsearchtool/gsearchtool.c:575
 msgid "No files found"
 msgstr "Nie odnaleziono plików"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:568
 msgid "(stopped)"
 msgstr "(zatrzymany)"
 
-#: gsearchtool/gsearchtool.c:551
+#: gsearchtool/gsearchtool.c:574
 msgid "No Files Found"
 msgstr "Nie odnaleziono plików."
 
-#: gsearchtool/gsearchtool.c:556
+#: gsearchtool/gsearchtool.c:579
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
@@ -1088,7 +1106,7 @@ msgstr[0] "Odnaleziono %d plik"
 msgstr[1] "Odnaleziono %d pliki"
 msgstr[2] "Odnaleziono %d plików"
 
-#: gsearchtool/gsearchtool.c:560
+#: gsearchtool/gsearchtool.c:583
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
@@ -1096,54 +1114,46 @@ msgstr[0] "Odnaleziono %d plik"
 msgstr[1] "Odnaleziono %d pliki"
 msgstr[2] "Odnaleziono %d plików"
 
-#: gsearchtool/gsearchtool.c:666
+#: gsearchtool/gsearchtool.c:689
 msgid "Entry changed called for a non entry option!"
 msgstr "Wywołano entry_changed dla elementu nie będącego elementem wejściowym!"
 
-#: gsearchtool/gsearchtool.c:915
+#: gsearchtool/gsearchtool.c:942
 msgid "Searching..."
 msgstr "Wyszukiwanie..."
 
-#: gsearchtool/gsearchtool.c:936
+#: gsearchtool/gsearchtool.c:963
 msgid "Set the text of 'Name contains'"
 msgstr "Ustawia napis w polu \"Plik nosi nazwę\""
 
-#: gsearchtool/gsearchtool.c:937
+#: gsearchtool/gsearchtool.c:964
 msgid "Set the text of 'Look in folder'"
 msgstr "Ustawia napis w polu \"Wyszukiwanie w folderze\""
 
-#: gsearchtool/gsearchtool.c:938
+#: gsearchtool/gsearchtool.c:965
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Porządkuje pliki wg jednego z kryteriów: name (nazwa), folder, size "
 "(rozmiar), type (typ) lub date (data)"
 
-#: gsearchtool/gsearchtool.c:939
+#: gsearchtool/gsearchtool.c:966
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Zmienia porządek na malejący (domyślny jest rosnący)."
 
-#: gsearchtool/gsearchtool.c:940
+#: gsearchtool/gsearchtool.c:967
 msgid "Automatically start a search"
 msgstr "Automatycznie rozpoczyna wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:945
+#: gsearchtool/gsearchtool.c:972
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Wybiera warunek \"%s\""
 
-#: gsearchtool/gsearchtool.c:1051
+#: gsearchtool/gsearchtool.c:1078
 msgid "Invalid option passed to sortby command line argument."
 msgstr "W wierszu polecenia podano niepoprawny argument opcji sortby."
 
-#: gsearchtool/gsearchtool.c:1316
-msgid ""
-"While searching the following errors were reported.\n"
-"\n"
-msgstr ""
-"Podczas wyszukiwania zostały zgłoszone następujące błędy.\n"
-"\n"
-
-#: gsearchtool/gsearchtool.c:1320
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1151,117 +1161,129 @@ msgstr ""
 "\n"
 "... Zbyt wiele błędów, aby je wyświetlić ..."
 
-#: gsearchtool/gsearchtool.c:1327
-msgid "Error while searching for files."
-msgstr "Błąd przy wyszukiwaniu plików."
+#: gsearchtool/gsearchtool.c:1359
+msgid ""
+"The search results may be invalid.  There were errors while performing this "
+"search."
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1368
+#: gsearchtool/gsearchtool.c:1380
+msgid ""
+"The search results may be invalid.  Do you want to disable the quick search "
+"feature?"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1388
+msgid "Disable _Quick Search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1432
 msgid "Error parsing the search command."
 msgstr "Błąd przy analizowaniu polecenia wyszukiwania."
 
-#: gsearchtool/gsearchtool.c:1391
+#: gsearchtool/gsearchtool.c:1461
 msgid "Error running the search command."
 msgstr "Błąd przy uruchamianiu polecenia wyszukiwania."
 
-#: gsearchtool/gsearchtool.c:1488
+#: gsearchtool/gsearchtool.c:1572
 #, c-format
 msgid "'%s' entry"
 msgstr "Pole wejściowe \"%s\""
 
-#: gsearchtool/gsearchtool.c:1489
+#: gsearchtool/gsearchtool.c:1573
 msgid "Enter a value for search rule"
 msgstr "Wprowadź wartość reguły wyszukiwania"
 
-#: gsearchtool/gsearchtool.c:1527
+#: gsearchtool/gsearchtool.c:1620
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Kliknij, aby usunąć regułę \"%s\""
 
-#: gsearchtool/gsearchtool.c:1583
+#: gsearchtool/gsearchtool.c:1675
 msgid "A_vailable options:"
 msgstr "_Dostępne opcje:"
 
-#: gsearchtool/gsearchtool.c:1596
+#: gsearchtool/gsearchtool.c:1688
 msgid "Search Rules Menu"
 msgstr "Menu reguł wyszukiwania"
 
-#: gsearchtool/gsearchtool.c:1597
+#: gsearchtool/gsearchtool.c:1689
 msgid "Select a search rule from the menu"
 msgstr "Wybierz z menu regułę wyszukiwania"
 
-#: gsearchtool/gsearchtool.c:1628
+#: gsearchtool/gsearchtool.c:1720
 msgid "S_earch results:"
 msgstr "_Wyniki wyszukiwania:"
 
-#: gsearchtool/gsearchtool.c:1708
+#: gsearchtool/gsearchtool.c:1800
 msgid "Name"
 msgstr "Nazwa"
 
-#: gsearchtool/gsearchtool.c:1728
+#: gsearchtool/gsearchtool.c:1820
 msgid "Folder"
 msgstr "Folder"
 
-#: gsearchtool/gsearchtool.c:1739
+#: gsearchtool/gsearchtool.c:1831
 msgid "Size"
 msgstr "Rozmiar"
 
-#: gsearchtool/gsearchtool.c:1749
+#: gsearchtool/gsearchtool.c:1841
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1759
+#: gsearchtool/gsearchtool.c:1851
 msgid "Date Modified"
 msgstr "Data modyfikacji"
 
-#: gsearchtool/gsearchtool.c:1817
+#: gsearchtool/gsearchtool.c:1909
 msgid "_Name contains:"
 msgstr "_Nazwa zawiera:"
 
-#: gsearchtool/gsearchtool.c:1832 gsearchtool/gsearchtool.c:1833
+#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
 msgid "Enter the file name you want to search"
 msgstr "Podaj nazwę pliku, który chcesz odnaleźć"
 
-#: gsearchtool/gsearchtool.c:1833
+#: gsearchtool/gsearchtool.c:1925
 msgid "Name Contains Entry"
 msgstr "Wpis zawartości nazwy"
 
-#: gsearchtool/gsearchtool.c:1844
+#: gsearchtool/gsearchtool.c:1936
 msgid "_Look in folder:"
 msgstr "_Wyszukiwanie w folderze:"
 
-#: gsearchtool/gsearchtool.c:1850
+#: gsearchtool/gsearchtool.c:1942
 msgid "Browse"
 msgstr "Wybór katalogu"
 
-#: gsearchtool/gsearchtool.c:1861 gsearchtool/gsearchtool.c:1862
+#: gsearchtool/gsearchtool.c:1953 gsearchtool/gsearchtool.c:1954
 msgid "Enter the folder name where you want to start the search"
 msgstr "Wprowadź nazwę folderu, w którym chcesz rozpocząć wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:1862
+#: gsearchtool/gsearchtool.c:1954
 msgid "Look in Folder Entry"
 msgstr "_Wyszukiwanie w pozycji folderów"
 
-#: gsearchtool/gsearchtool.c:1880
+#: gsearchtool/gsearchtool.c:1972
 msgid "Show more _options"
 msgstr "Wyświetl więcej _opcji"
 
-#: gsearchtool/gsearchtool.c:1890
+#: gsearchtool/gsearchtool.c:1982
 msgid "Show more options"
 msgstr "Wyświetla dodatkowe opcje"
 
-#: gsearchtool/gsearchtool.c:1890
+#: gsearchtool/gsearchtool.c:1982
 msgid "Expands or collapses a list of search options."
 msgstr "Rozwija lub zwija listę opcji wyszukiwania."
 
-#: gsearchtool/gsearchtool.c:1937
+#: gsearchtool/gsearchtool.c:2029
 msgid "Click to Start the search"
 msgstr "Kliknij, aby rozpocząć wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:1938
+#: gsearchtool/gsearchtool.c:2030
 msgid "Click to Stop the search"
 msgstr "Kliknij, aby zatrzymać wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:2217
+#: gsearchtool/gsearchtool.c:2309
 msgid "Cannot initialize bonobo."
 msgstr "Nie można zainicjować bonobo."
 
@@ -1325,8 +1347,9 @@ msgstr "Błąd przy analizie bazy danych czynności"
 msgid "Can't write to actions database!"
 msgstr "Nie można zapisać bazy danych czynności!"
 
-#: logview/actions.c:489
-msgid "Error while executing specified action"
+#: logview/actions.c:487
+#, fuzzy, c-format
+msgid "Error while executing specified action: %s"
 msgstr "Przy wykonywaniu zdefiniowanej operacji wystąpił błąd"
 
 #: logview/actions.c:510
@@ -1709,56 +1732,54 @@ msgstr ""
 msgid "Error: [%s]\n"
 msgstr "Błąd: [%s]\n"
 
-#: logview/monitor.c:108
+#: logview/monitor.c:111
 msgid "Monitor Options"
 msgstr "Opcje monitorowania"
 
-#: logview/monitor.c:111
+#: logview/monitor.c:114
 msgid "Ac_tions..."
 msgstr "Ope_racje..."
 
-#: logview/monitor.c:137
+#: logview/monitor.c:140
 msgid "_Select logs to monitor:"
 msgstr "_Wybierz monitorowane dzienniki:"
 
-#: logview/monitor.c:142
+#: logview/monitor.c:145
 msgid "Currently _monitored logs:"
 msgstr "Aktualnie _monitorowane dzienniki:"
 
-#: logview/monitor.c:190
+#: logview/monitor.c:193
 msgid "Add logs to monitor"
 msgstr "Dodaje monitorowane dzienniki"
 
-#: logview/monitor.c:199
+#: logview/monitor.c:202
 msgid "Remove logs from monitor"
 msgstr "Usuwa monitorowane dzienniki"
 
 #. Check boxes
-#: logview/monitor.c:246
+#: logview/monitor.c:249
 msgid "_Hide application"
 msgstr "_Ukrycie aplikacji"
 
-#: logview/monitor.c:254
+#: logview/monitor.c:257
 msgid "_Execute actions"
 msgstr "_Wykonanie operacji"
 
-#: logview/monitor.c:290
+#: logview/monitor.c:293
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr ""
 "Zbyt wiele otwartych dzienników. Spróbuj ponownie po zamknięciu jednego z "
 "nich."
 
-#: logview/monitor.c:298 logview/monitor.c:335
-#, c-format
+#: logview/monitor.c:301 logview/monitor.c:338
 msgid "tmp_list is NULL\n"
 msgstr "tmp_list ma wartość NULL\n"
 
-#: logview/monitor.c:457
+#: logview/monitor.c:475
 msgid "Monitoring Logs..."
 msgstr "Monitorowanie dzienników..."
 
-#: logview/monitor.c:643
-#, c-format
+#: logview/monitor.c:667
 msgid "TOUCHED!!\n"
 msgstr "ZMIENIONY!\n"
 
@@ -1790,6 +1811,19 @@ msgstr "Szczegóły wiersza z dziennika"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Search your disk for files"
+#~ msgstr "Wyszukuje pliki na dysku"
+
+#~ msgid ""
+#~ "While searching the following errors were reported.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Podczas wyszukiwania zostały zgłoszone następujące błędy.\n"
+#~ "\n"
+
+#~ msgid "Error while searching for files."
+#~ msgstr "Błąd przy wyszukiwaniu plików."
 
 #~ msgid "Search Rule Value Entry"
 #~ msgstr "Wejście na wartość reguły wyszukiwania"

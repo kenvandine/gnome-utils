@@ -9,25 +9,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-03 16:33+0200\n"
+"POT-Creation-Date: 2004-08-03 17:30+1200\n"
 "PO-Revision-Date: 2004-07-03 21:31+0200\n"
 "Last-Translator: Laszlo Dvornik <dvornik@invitel.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
 msgstr "Kellékek"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:144
 msgid "Dictionary Lookup"
 msgstr "Keresés a szótárban"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:421
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:160
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Szó keresése egy online szótárban"
@@ -177,11 +177,11 @@ msgstr "Adjon meg egy szót, vagy válasszon az alábbi listából"
 msgid "Look Up for a Word"
 msgstr "Szó kikeresése"
 
-#: gdictsrc/gdict-applet.c:144
+#: gdictsrc/gdict-applet.c:137
 msgid "_Lookup"
 msgstr "_Kikeresés"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:148
 msgid "Dictionary word entry"
 msgstr "Szótári szó bevitele"
 
@@ -324,8 +324,8 @@ msgid ""
 "Specify whether to use smart lookup. This key is dependant on whether the "
 "dictionary server supports this option. The default is TRUE"
 msgstr ""
-"Adja meg, hogy használja-e az okos kikeresést. Ez a kulcs attól is függ, hogy "
-"a szótárkiszolgáló támogatja-e. Alapértelmezésben be van kapcsolva"
+"Adja meg, hogy használja-e az okos kikeresést. Ez a kulcs attól is függ, "
+"hogy a szótárkiszolgáló támogatja-e. Alapértelmezésben be van kapcsolva"
 
 #: gdictsrc/gdict.schemas.in.h:4
 msgid "The database to use in the dictionary server."
@@ -431,7 +431,7 @@ msgstr "Hibás blokkok keresése..."
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Hiba a %s eszköz hibás blokkok kereséséhez történő megnyitásakor\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:533
+#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:534
 msgid "Checking for bad blocks... Done"
 msgstr "Hibás blokkok keresése... Kész"
 
@@ -549,26 +549,26 @@ msgstr ""
 msgid "Could not determine current floppy geometry."
 msgstr "Nem lehet megállapítani a floppy jelenlegi geometriáját."
 
-#: gfloppy/src/gfloppy.c:221
+#: gfloppy/src/gfloppy.c:222
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "Hiba történt a hibás blokkokat felsoroló fájl egyedi nevének létrehozása "
 "közben."
 
-#: gfloppy/src/gfloppy.c:241
+#: gfloppy/src/gfloppy.c:242
 msgid "Error while filling the bad blocks list file."
 msgstr "Hiba történt a hibás blokkokat felsoroló fájl feltöltése közben."
 
-#: gfloppy/src/gfloppy.c:304
+#: gfloppy/src/gfloppy.c:305
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Hiba történt a(z) (%s) parancs elindítása közben: %s."
 
-#: gfloppy/src/gfloppy.c:330
+#: gfloppy/src/gfloppy.c:331
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Ismeretlen mke2fs kezdőszignatúra, művelet megszakítva."
 
-#: gfloppy/src/gfloppy.c:344
+#: gfloppy/src/gfloppy.c:345
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -579,16 +579,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:361
+#: gfloppy/src/gfloppy.c:362
 msgid "Abnormal child process termination."
 msgstr "A gyermekfolyamat abnormálisan ért véget."
 
-#: gfloppy/src/gfloppy.c:386
+#: gfloppy/src/gfloppy.c:387
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Hiba történt az mbadblocks parancs elindítása közben: %s."
 
-#: gfloppy/src/gfloppy.c:398
+#: gfloppy/src/gfloppy.c:399
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -598,28 +598,28 @@ msgstr ""
 "jelentette:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:441
+#: gfloppy/src/gfloppy.c:442
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Az mbadblocks gyermekfolyamat abnormálisan ért véget."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
+#: gfloppy/src/gfloppy.c:468 gfloppy/src/gfloppy.c:508
 msgid "Making filesystem on disk..."
 msgstr "Fájlrendszer létrehozása..."
 
-#: gfloppy/src/gfloppy.c:475
+#: gfloppy/src/gfloppy.c:476
 msgid "Unable to create filesystem correctly."
 msgstr "Hiba a fájlrendszer létrehozásakor."
 
-#: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
+#: gfloppy/src/gfloppy.c:481 gfloppy/src/gfloppy.c:520
 msgid "Making filesystem on disk... Done"
 msgstr "Fájlrendszer létrehozása... Kész"
 
-#: gfloppy/src/gfloppy.c:524
+#: gfloppy/src/gfloppy.c:525
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Hibás blokkok keresése... (ez eltarthat egy darabig)"
 
-#: gfloppy/src/gfloppy.c:529
+#: gfloppy/src/gfloppy.c:530
 msgid "Error while checking the bad blocks."
 msgstr "Hiba a hibás blokkok keresése közben."
 
@@ -796,39 +796,44 @@ msgstr "A floppy formázása megszakítva."
 msgid "Format Progress"
 msgstr "Formázás állása"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:578
-#: gsearchtool/gsearchtool.c:832 gsearchtool/gsearchtool.c:916
-#: gsearchtool/gsearchtool.c:2209 gsearchtool/gsearchtool.c:2234
+#: gsearchtool/gnome-search-tool.desktop.in.h:1
+msgid "Find files, folders, and documents on your computer"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
+#: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
+#: gsearchtool/gsearchtool.c:2288 gsearchtool/gsearchtool.c:2313
 msgid "Search for Files"
 msgstr "Fájlok keresése"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2
-msgid "Search your disk for files"
-msgstr "Fájlok keresése a lemezen"
-
-#: gsearchtool/gsearchtool-alert-dialog.c:99
+#: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Image/label border"
 msgstr "Kép/címke keret"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:100
+#: gsearchtool/gsearchtool-alert-dialog.c:101
 msgid "Width of border around the label and image in the alert dialog"
 msgstr "Keret szélesség a címke/kép körül egy figyelmeztető ablakban"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:109
+#: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "Alert Type"
 msgstr "Figyelmeztetés típusa"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:110
+#: gsearchtool/gsearchtool-alert-dialog.c:111
 msgid "The type of alert"
 msgstr "A figyelmeztetés típusa"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:118
+#: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "Alert Buttons"
 msgstr "Figyelmeztető gombok"
 
-#: gsearchtool/gsearchtool-alert-dialog.c:119
+#: gsearchtool/gsearchtool-alert-dialog.c:120
 msgid "The buttons shown in the alert dialog"
 msgstr "A gombok megjelennek a figyelmeztető ablakokban"
+
+#: gsearchtool/gsearchtool-alert-dialog.c:172
+#, fuzzy
+msgid "Show more _details"
+msgstr "Több _beállítási lehetőség megjelenítése"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -850,133 +855,133 @@ msgstr "_Eredmény mentése..."
 msgid "Could not open help document."
 msgstr "Nem lehet megnyitni a súgódokumentumot."
 
-#: gsearchtool/gsearchtool-callbacks.c:318
+#: gsearchtool/gsearchtool-callbacks.c:319
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "Biztosan meg akar nyitni %d dokumentumot?"
 msgstr[1] "Biztosan meg akar nyitni %d dokumentumot?"
 
-#: gsearchtool/gsearchtool-callbacks.c:323
-#: gsearchtool/gsearchtool-callbacks.c:475
+#: gsearchtool/gsearchtool-callbacks.c:324
+#: gsearchtool/gsearchtool-callbacks.c:477
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "%d különálló ablak fog megnyílni."
 msgstr[1] "%d különálló ablak fog megnyílni."
 
-#: gsearchtool/gsearchtool-callbacks.c:383
-#: gsearchtool/gsearchtool-callbacks.c:416
-#: gsearchtool/gsearchtool-callbacks.c:965
-#: gsearchtool/gsearchtool-callbacks.c:998
+#: gsearchtool/gsearchtool-callbacks.c:384
+#: gsearchtool/gsearchtool-callbacks.c:418
+#: gsearchtool/gsearchtool-callbacks.c:967
+#: gsearchtool/gsearchtool-callbacks.c:1001
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Nem lehet megnyitni a(z) \"%s\" dokumentumot."
 
-#: gsearchtool/gsearchtool-callbacks.c:386
-#: gsearchtool/gsearchtool-callbacks.c:641
-#: gsearchtool/gsearchtool-callbacks.c:968
+#: gsearchtool/gsearchtool-callbacks.c:387
+#: gsearchtool/gsearchtool-callbacks.c:643
+#: gsearchtool/gsearchtool-callbacks.c:970
 msgid "The document does not exist."
 msgstr "A dokumentum nem létezik."
 
-#: gsearchtool/gsearchtool-callbacks.c:419
-#: gsearchtool/gsearchtool-callbacks.c:1001
+#: gsearchtool/gsearchtool-callbacks.c:421
+#: gsearchtool/gsearchtool-callbacks.c:1004
 msgid "There is no installed viewer capable of displaying the document."
 msgstr ""
 "Nincs olyan nézőprogram telepítve, amely képes lenne megjeleníteni a "
 "dokumentumot."
 
-#: gsearchtool/gsearchtool-callbacks.c:470
+#: gsearchtool/gsearchtool-callbacks.c:472
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Biztosan meg akar nyitni %d mappát?"
 msgstr[1] "Biztosan meg akar nyitni %d mappát?"
 
-#: gsearchtool/gsearchtool-callbacks.c:528
+#: gsearchtool/gsearchtool-callbacks.c:530
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Nem lehet megnyitni a(z) \"%s\" mappát."
 
-#: gsearchtool/gsearchtool-callbacks.c:535
+#: gsearchtool/gsearchtool-callbacks.c:537
 msgid "The nautilus file manager is not running."
 msgstr "Nem fut a Nautilus fájlkezelő."
 
-#: gsearchtool/gsearchtool-callbacks.c:638
+#: gsearchtool/gsearchtool-callbacks.c:640
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Nem lehet \"%s\"-t áthelyezni a Kukába."
 
-#: gsearchtool/gsearchtool-callbacks.c:678
+#: gsearchtool/gsearchtool-callbacks.c:680
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "Nem lehet \"%s\"-t áthelyezni a Kukába."
 
-#: gsearchtool/gsearchtool-callbacks.c:681
+#: gsearchtool/gsearchtool-callbacks.c:683
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "\"%s\" áthelyezése sikertelen: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:711
+#: gsearchtool/gsearchtool-callbacks.c:713
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Véglegesen törölni akarja \"%s\"-t?"
 
-#: gsearchtool/gsearchtool-callbacks.c:714
+#: gsearchtool/gsearchtool-callbacks.c:716
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Nem lehet elérni a Kukát. Nem lehet \"%s\"-t áthelyezni a Kukába."
 
-#: gsearchtool/gsearchtool-callbacks.c:756
+#: gsearchtool/gsearchtool-callbacks.c:758
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Nem lehet \"%s\"-t törölni."
 
-#: gsearchtool/gsearchtool-callbacks.c:759
+#: gsearchtool/gsearchtool-callbacks.c:761
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "\"%s\" törlése sikertelen: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1189
 msgid "Save Search Results As..."
 msgstr "Keresés eredményének mentése..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1238
+#: gsearchtool/gsearchtool-callbacks.c:1241
 msgid "Could not save document."
 msgstr "Nem lehet menteni a dokumentumot."
 
-#: gsearchtool/gsearchtool-callbacks.c:1240
+#: gsearchtool/gsearchtool-callbacks.c:1243
 msgid "You did not select a document name."
 msgstr "Nem választott ki dokumentumnevet."
 
-#: gsearchtool/gsearchtool-callbacks.c:1266
-#: gsearchtool/gsearchtool-callbacks.c:1361
+#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1364
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Nem lehet a(z) \"%s\" dokumentumot a(z) \"%s\" helyre menteni."
 
-#: gsearchtool/gsearchtool-callbacks.c:1270
+#: gsearchtool/gsearchtool-callbacks.c:1273
 msgid "The document name you selected is a folder."
 msgstr "A kiválasztott dokumentumnév egy mappa."
 
-#: gsearchtool/gsearchtool-callbacks.c:1299
+#: gsearchtool/gsearchtool-callbacks.c:1302
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "A(z) \"%s\" dokumentum már létezik. Lecseréli?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1303
+#: gsearchtool/gsearchtool-callbacks.c:1306
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "He lecserél egy létező fájlt, akkor annak tartalma felülíródik."
 
-#: gsearchtool/gsearchtool-callbacks.c:1314
+#: gsearchtool/gsearchtool-callbacks.c:1317
 msgid "_Replace"
 msgstr "_Csere"
 
-#: gsearchtool/gsearchtool-callbacks.c:1364
+#: gsearchtool/gsearchtool-callbacks.c:1367
 msgid "You may not have write permissions to the document."
 msgstr "Lehet, hogy nincs írási jogosultsága a dokumentumhoz."
 
-#: gsearchtool/gsearchtool-support.c:66
+#: gsearchtool/gsearchtool-support.c:68
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -990,23 +995,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:494
+#: gsearchtool/gsearchtool-support.c:510
 msgid "today at %-I:%M %p"
 msgstr "ma, %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:496
+#: gsearchtool/gsearchtool-support.c:512
 msgid "yesterday at %-I:%M %p"
 msgstr "tegnap, %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:498 gsearchtool/gsearchtool-support.c:500
-msgid "%m/%-d/%y, %-I:%M %p"
+#: gsearchtool/gsearchtool-support.c:514 gsearchtool/gsearchtool-support.c:516
+#, fuzzy
+msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%y/%m/%-d, %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:671
+#: gsearchtool/gsearchtool-support.c:687
 msgid "link (broken)"
 msgstr "kapocs (törött)"
 
-#: gsearchtool/gsearchtool-support.c:676
+#: gsearchtool/gsearchtool-support.c:692
 #, c-format
 msgid "link to %s"
 msgstr "kapocs erre: %s"
@@ -1075,80 +1081,72 @@ msgstr "Szimbolikus linkek követése"
 msgid "Include other filesystems"
 msgstr "Más fájlrendszerek bevonása a keresésbe"
 
-#: gsearchtool/gsearchtool.c:525 gsearchtool/gsearchtool.c:553
+#: gsearchtool/gsearchtool.c:547 gsearchtool/gsearchtool.c:575
 msgid "No files found"
 msgstr "Nincs találat"
 
-#: gsearchtool/gsearchtool.c:546
+#: gsearchtool/gsearchtool.c:568
 msgid "(stopped)"
 msgstr "(leállítva)"
 
-#: gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:574
 msgid "No Files Found"
 msgstr "Nincs találat"
 
-#: gsearchtool/gsearchtool.c:557
+#: gsearchtool/gsearchtool.c:579
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d fájlt találtam"
 msgstr[1] "%d fájlt találtam"
 
-#: gsearchtool/gsearchtool.c:561
+#: gsearchtool/gsearchtool.c:583
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d fájlt találtam"
 msgstr[1] "%d fájlt találtam"
 
-#: gsearchtool/gsearchtool.c:667
+#: gsearchtool/gsearchtool.c:689
 msgid "Entry changed called for a non entry option!"
 msgstr "A beviteli mező változás hívódott meg egy nem beviteli mezőhöz!"
 
-#: gsearchtool/gsearchtool.c:916
+#: gsearchtool/gsearchtool.c:942
 msgid "Searching..."
 msgstr "Keresés..."
 
-#: gsearchtool/gsearchtool.c:937
+#: gsearchtool/gsearchtool.c:963
 msgid "Set the text of 'Name contains'"
 msgstr "A 'Név tartalmazza' mező beállítása"
 
-#: gsearchtool/gsearchtool.c:938
+#: gsearchtool/gsearchtool.c:964
 msgid "Set the text of 'Look in folder'"
 msgstr "A 'Keresés ebben a mappában' mező beállítása"
 
-#: gsearchtool/gsearchtool.c:939
+#: gsearchtool/gsearchtool.c:965
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Fájlok rendezése a következők egyike szerint: név, mappa, méret, típus vagy "
 "dátum"
 
-#: gsearchtool/gsearchtool.c:940
+#: gsearchtool/gsearchtool.c:966
 msgid "Set sort order to descending, the default is ascending"
 msgstr "A rendezési sorrend csökkenőre állítása, az alapértelmezett a növekvő"
 
-#: gsearchtool/gsearchtool.c:941
+#: gsearchtool/gsearchtool.c:967
 msgid "Automatically start a search"
 msgstr "Keresés automatikus indítása"
 
-#: gsearchtool/gsearchtool.c:946
+#: gsearchtool/gsearchtool.c:972
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "A(z) '%s' feltétel kiválasztása"
 
-#: gsearchtool/gsearchtool.c:1052
+#: gsearchtool/gsearchtool.c:1078
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Érvénytelen beállítás lett átadva a sortby parancssori argumentumnak."
 
-#: gsearchtool/gsearchtool.c:1317
-msgid ""
-"While searching the following errors were reported.\n"
-"\n"
-msgstr ""
-"Keresés közben a következő hibák merültek fel.\n"
-"\n"
-
-#: gsearchtool/gsearchtool.c:1321
+#: gsearchtool/gsearchtool.c:1350
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1156,117 +1154,129 @@ msgstr ""
 "\n"
 "... Túl sok hiba van, nem lehet ennyit megjeleníteni ..."
 
-#: gsearchtool/gsearchtool.c:1328
-msgid "Error while searching for files."
-msgstr "Hiba a fájlok keresése közben."
+#: gsearchtool/gsearchtool.c:1359
+msgid ""
+"The search results may be invalid.  There were errors while performing this "
+"search."
+msgstr ""
 
-#: gsearchtool/gsearchtool.c:1369
+#: gsearchtool/gsearchtool.c:1380
+msgid ""
+"The search results may be invalid.  Do you want to disable the quick search "
+"feature?"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1388
+msgid "Disable _Quick Search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:1432
 msgid "Error parsing the search command."
 msgstr "Hiba történt a keresési parancs értelmezése közben."
 
-#: gsearchtool/gsearchtool.c:1392
+#: gsearchtool/gsearchtool.c:1461
 msgid "Error running the search command."
 msgstr "Hiba történt a keresési parancs futtatása közben."
 
-#: gsearchtool/gsearchtool.c:1492
+#: gsearchtool/gsearchtool.c:1572
 #, c-format
 msgid "'%s' entry"
 msgstr "'%s' bejegyzés"
 
-#: gsearchtool/gsearchtool.c:1493
+#: gsearchtool/gsearchtool.c:1573
 msgid "Enter a value for search rule"
 msgstr "Adja meg a keresési szabály értékét"
 
-#: gsearchtool/gsearchtool.c:1540
+#: gsearchtool/gsearchtool.c:1620
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Kattintson ide a(z) '%s' szabály eltávolításához"
 
-#: gsearchtool/gsearchtool.c:1596
+#: gsearchtool/gsearchtool.c:1675
 msgid "A_vailable options:"
 msgstr "_Lehetséges beállítások:"
 
-#: gsearchtool/gsearchtool.c:1609
+#: gsearchtool/gsearchtool.c:1688
 msgid "Search Rules Menu"
 msgstr "Keresi szabályok menü"
 
-#: gsearchtool/gsearchtool.c:1610
+#: gsearchtool/gsearchtool.c:1689
 msgid "Select a search rule from the menu"
 msgstr "Válasszon egy keresési szabályt a menüből"
 
-#: gsearchtool/gsearchtool.c:1641
+#: gsearchtool/gsearchtool.c:1720
 msgid "S_earch results:"
 msgstr "_Keresés eredménye:"
 
-#: gsearchtool/gsearchtool.c:1721
+#: gsearchtool/gsearchtool.c:1800
 msgid "Name"
 msgstr "Név"
 
-#: gsearchtool/gsearchtool.c:1741
+#: gsearchtool/gsearchtool.c:1820
 msgid "Folder"
 msgstr "Mappa"
 
-#: gsearchtool/gsearchtool.c:1752
+#: gsearchtool/gsearchtool.c:1831
 msgid "Size"
 msgstr "Méret"
 
-#: gsearchtool/gsearchtool.c:1762
+#: gsearchtool/gsearchtool.c:1841
 msgid "Type"
 msgstr "Típus"
 
-#: gsearchtool/gsearchtool.c:1772
+#: gsearchtool/gsearchtool.c:1851
 msgid "Date Modified"
 msgstr "Módosítás dátuma"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1909
 msgid "_Name contains:"
 msgstr "_Név tartalmazza:"
 
-#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1924 gsearchtool/gsearchtool.c:1925
 msgid "Enter the file name you want to search"
 msgstr "Adja meg a keresendő fájl nevét"
 
-#: gsearchtool/gsearchtool.c:1846
+#: gsearchtool/gsearchtool.c:1925
 msgid "Name Contains Entry"
 msgstr "A \"Név tartalmazza\" mező"
 
-#: gsearchtool/gsearchtool.c:1857
+#: gsearchtool/gsearchtool.c:1936
 msgid "_Look in folder:"
 msgstr "_Keresés ebben a mappában:"
 
-#: gsearchtool/gsearchtool.c:1863
+#: gsearchtool/gsearchtool.c:1942
 msgid "Browse"
 msgstr "Tallózás"
 
-#: gsearchtool/gsearchtool.c:1874 gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1953 gsearchtool/gsearchtool.c:1954
 msgid "Enter the folder name where you want to start the search"
 msgstr "Adja meg a keresés kiindulópontjaként szolgáló mappa nevét"
 
-#: gsearchtool/gsearchtool.c:1875
+#: gsearchtool/gsearchtool.c:1954
 msgid "Look in Folder Entry"
 msgstr "A \"Keresés ebben a mappában\" mező"
 
-#: gsearchtool/gsearchtool.c:1893
+#: gsearchtool/gsearchtool.c:1972
 msgid "Show more _options"
 msgstr "Több _beállítási lehetőség megjelenítése"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1982
 msgid "Show more options"
 msgstr "Több beállítási lehetőség megjelenítése"
 
-#: gsearchtool/gsearchtool.c:1903
+#: gsearchtool/gsearchtool.c:1982
 msgid "Expands or collapses a list of search options."
 msgstr "A keresési opciók megjelenítése/eltüntetése."
 
-#: gsearchtool/gsearchtool.c:1950
+#: gsearchtool/gsearchtool.c:2029
 msgid "Click to Start the search"
 msgstr "Kattintson ide a keresés elkezdéséhez"
 
-#: gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:2030
 msgid "Click to Stop the search"
 msgstr "Kattintson ide a keresés leállításához"
 
-#: gsearchtool/gsearchtool.c:2230
+#: gsearchtool/gsearchtool.c:2309
 msgid "Cannot initialize bonobo."
 msgstr "A bonobo inicializálása sikertelen."
 
@@ -1329,8 +1339,9 @@ msgstr "Hiba a művelet-adatbázis értelmezése közben"
 msgid "Can't write to actions database!"
 msgstr "Nem lehet írni a művelet-adatbázisba!"
 
-#: logview/actions.c:489
-msgid "Error while executing specified action"
+#: logview/actions.c:487
+#, fuzzy, c-format
+msgid "Error while executing specified action: %s"
 msgstr "Hiba történt a megadott művelet végrehajtása közben"
 
 #: logview/actions.c:510
@@ -1406,8 +1417,8 @@ msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
-"Végrehajtandó művelet, amikor az összes reguláris kifejezés egyezik. Ennek egy "
-"futtatható rendszerparancsnak kell lennie: system (művelet)."
+"Végrehajtandó művelet, amikor az összes reguláris kifejezés egyezik. Ennek "
+"egy futtatható rendszerparancsnak kell lennie: system (művelet)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1716,54 +1727,52 @@ msgstr ""
 msgid "Error: [%s]\n"
 msgstr "Hiba: [%s]\n"
 
-#: logview/monitor.c:108
+#: logview/monitor.c:111
 msgid "Monitor Options"
 msgstr "Megfigyelés beállításai"
 
-#: logview/monitor.c:111
+#: logview/monitor.c:114
 msgid "Ac_tions..."
 msgstr "_Műveletek..."
 
-#: logview/monitor.c:137
+#: logview/monitor.c:140
 msgid "_Select logs to monitor:"
 msgstr "_Figyelendő naplók kiválasztása:"
 
-#: logview/monitor.c:142
+#: logview/monitor.c:145
 msgid "Currently _monitored logs:"
 msgstr "_Jelenleg figyelt naplók:"
 
-#: logview/monitor.c:190
+#: logview/monitor.c:193
 msgid "Add logs to monitor"
 msgstr "Figyelendő napló hozzáadása"
 
-#: logview/monitor.c:199
+#: logview/monitor.c:202
 msgid "Remove logs from monitor"
 msgstr "Napló eltávolítása a megfigyeltek közül"
 
 #. Check boxes
-#: logview/monitor.c:246
+#: logview/monitor.c:249
 msgid "_Hide application"
 msgstr "_Alkalmazás elrejtése"
 
-#: logview/monitor.c:254
+#: logview/monitor.c:257
 msgid "_Execute actions"
 msgstr "_Műveletek futtatása"
 
-#: logview/monitor.c:290
+#: logview/monitor.c:293
 msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Túl sok naplót figyel egyszerre. Zárjon be egyet, és próbálja újra"
 
-#: logview/monitor.c:298 logview/monitor.c:335
-#, c-format
+#: logview/monitor.c:301 logview/monitor.c:338
 msgid "tmp_list is NULL\n"
 msgstr "a tmp_list NULL\n"
 
-#: logview/monitor.c:457
+#: logview/monitor.c:475
 msgid "Monitoring Logs..."
 msgstr "Naplók megfigyelése..."
 
-#: logview/monitor.c:643
-#, c-format
+#: logview/monitor.c:667
 msgid "TOUCHED!!\n"
 msgstr "HOZZÁÉRVE!!\n"
 
@@ -1797,3 +1806,16 @@ msgstr "Naplósor részletei"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Search your disk for files"
+#~ msgstr "Fájlok keresése a lemezen"
+
+#~ msgid ""
+#~ "While searching the following errors were reported.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Keresés közben a következő hibák merültek fel.\n"
+#~ "\n"
+
+#~ msgid "Error while searching for files."
+#~ msgstr "Hiba a fájlok keresése közben."

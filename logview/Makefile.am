@@ -5,9 +5,11 @@ SUBDIRS = help
 Utilitiesdir = $(datadir)/applications
 additionaldir  = $(datadir)/gnome-system-log
 
-INCLUDES = -DG_LOG_DOMAIN=\"gnome-system-log\"	$(GNOME_UTILS_CFLAGS) 		\
-	-DGNOMELOCALEDIR=\""$(gnomeutilslocaledir)"\"			\
-	-DDATADIR=\""$(datadir)"\" \
+INCLUDES = \
+	$(GNOME_UTILS_CFLAGS)					\
+	-DG_LOG_DOMAIN=\"gnome-system-log\"			\
+	-DGNOMELOCALEDIR=\""$(gnomeutilslocaledir)"\"		\
+	-DDATADIR=\""$(datadir)"\"				\
 	-DLOGVIEWINSTALLPREFIX=\""$(prefix)/\""
 
 bin_PROGRAMS = gnome-system-log
@@ -39,10 +41,9 @@ Utilities_in_files = gnome-system-log.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-schemadir   = $(GCONF_SCHEMA_FILE_DIR)
+schemasdir   = $(GCONF_SCHEMA_FILE_DIR)
 schemas_in_file = logview.schemas.in
-schema_DATA = $(schemas_in_file:.schemas.in=.schemas)
-schema_source_data = $(foreach file, $(schema_DATA), $(srcdir)/$(file))
+schemas_DATA = $(schemas_in_file:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
 additional_DATA  = gnome-system-log-descript.db \
@@ -53,7 +54,7 @@ EXTRA_DIST = \
 	$(Utilities_in_files)	\
 	$(Utilities_DATA)	\
 	$(additional_DATA)	\
-	$(schema_DATA) 		\
+	$(schemas_in_file) 		\
 	gnome-system-log-pam		\
 	gnome-system-log-security.in	\
 	$(man_MANS)
@@ -61,7 +62,9 @@ EXTRA_DIST = \
 if GCONF_SCHEMAS_INSTALL
 install-gconf-schemas:
 	if test -z "$(DESTDIR)" ; then \
-		GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(schema_source_data) ; \
+		for p in $(schemas_DATA) ; do \
+			GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/logview/$$p ; \
+		done \
 	fi
 else
 install-gconf-schemas:
