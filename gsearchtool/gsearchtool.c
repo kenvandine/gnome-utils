@@ -1347,19 +1347,17 @@ handle_search_command_stderr_io (GIOChannel 	*ioc,
 					error_msgs = g_string_append (error_msgs, 
 				     		_("\n... Too many errors to display ..."));
 				}
-		
-				dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
-					GTK_DIALOG_DESTROY_WITH_PARENT,
-					GTK_MESSAGE_ERROR,
-					GTK_BUTTONS_OK,
-					error_msgs->str);
-
+				
+				dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
+				                                     GTK_DIALOG_DESTROY_WITH_PARENT,
+								     GTK_BUTTONS_OK,
+				                                     _("Error while searching for files"),
+				                                     error_msgs->str);
+				
 				g_signal_connect (G_OBJECT (dialog),
 					"response",
 					G_CALLBACK (gtk_widget_destroy), NULL);
-		
-				gtk_window_set_title (GTK_WINDOW (dialog), _("Search Errors"));	
-				gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+				
 				gtk_widget_show (dialog);
 	
 			}
@@ -1388,14 +1386,13 @@ spawn_search_command (gchar *command)
 		GtkWidget *dialog;
 
 		stop_animation ();
-		
-		dialog = gtk_message_dialog_new(GTK_WINDOW (interface.main_window), 
-						GTK_DIALOG_DESTROY_WITH_PARENT, 
-						GTK_MESSAGE_ERROR, 
-						GTK_BUTTONS_OK,
-						error->message);
-						
-		gtk_window_set_title (GTK_WINDOW (dialog), _("Search for Files Error"));
+
+		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
+		                                     GTK_DIALOG_DESTROY_WITH_PARENT,
+						     GTK_BUTTONS_OK,
+					             _("Error parsing the search command"),
+					             (error != NULL) ? error->message : "");
+
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 		g_error_free (error);
@@ -1409,14 +1406,13 @@ spawn_search_command (gchar *command)
 		GtkWidget *dialog;
 		
 		stop_animation ();
-		
-		dialog = gtk_message_dialog_new(GTK_WINDOW (interface.main_window), 
-						GTK_DIALOG_DESTROY_WITH_PARENT, 
-						GTK_MESSAGE_ERROR, 
-						GTK_BUTTONS_OK,
-						error->message);
+						
+		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
+		                                     GTK_DIALOG_DESTROY_WITH_PARENT,
+						     GTK_BUTTONS_OK,
+					             _("Error running the search command"),
+					             (error != NULL) ? error->message : "");
 
-		gtk_window_set_title (GTK_WINDOW (dialog), _("Search for Files Error"));
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
 		g_error_free (error);

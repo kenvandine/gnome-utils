@@ -1,5 +1,13 @@
 2003-05-30  Dennis Cranston <dennis_cranston at yahoo com>
 
+	* gsearchtool.c, gsearchtool-callback.c:  HIGify the alert 
+	dialogs.  Replaced function calls to gtk_message_dialog_new () 
+	with gsearchtool_hig_dialog_new ().
+	
+	* gsearchtool-support.[ch]: Added gsearchtool_hig_dialog_new ().
+		
+2003-05-30  Dennis Cranston <dennis_cranston at yahoo com>
+
 	* gsearchtool.c (create_main_window):  Update a few atk 
 	name descriptions.
 	
