@@ -793,6 +793,7 @@ drag_data_animation_cb (GtkWidget          *widget,
 	gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_NAME, desktop_item_name);
 	gnome_desktop_item_set_boolean (ditem, GNOME_DESKTOP_ITEM_TERMINAL, FALSE);					
 	gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_ICON, GNOME_SEARCH_TOOL_ICON);
+	gnome_desktop_item_set_boolean (ditem, "StartupNotify", TRUE);
 	
 	g_string_free (command, TRUE);
 	g_free (desktop_item_name);
