@@ -84,7 +84,6 @@ cb_ascii_select_spin_changed (GtkEditable *edit, gpointer user_data)
     updating = FALSE;
 }
 
-
 static void
 ascii_select_init (AsciiSelect *obj)
 {
@@ -128,6 +127,9 @@ ascii_select_init (AsciiSelect *obj)
       GTK_SIGNAL_FUNC (cb_ascii_select_spin_changed), entry);
     gtk_signal_connect (GTK_OBJECT (entry), "changed",
       GTK_SIGNAL_FUNC (cb_ascii_select_entry_changed), spin);
+    gtk_signal_connect_object (GTK_OBJECT (obj->window), "clicked",
+			       GTK_SIGNAL_FUNC (gtk_spin_button_update),
+			       GTK_OBJECT (spin));
     gtk_signal_connect (GTK_OBJECT (obj->window), "clicked",
       GTK_SIGNAL_FUNC (cb_ascii_select_clicked), entry);
 
