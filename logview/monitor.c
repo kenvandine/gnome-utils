@@ -71,21 +71,25 @@ void
 mon_update_display (LogviewWindow *window)
 {
    char buffer[1024];
-   gchar **buffer_lines;
+   gchar **buffer_lines, *marked_line;
    int nlines, nlines_to_show;
    GtkTreeIter iter, parent, *parent_pointer = &(parent);
    GtkListStore *list;
    GtkTreePath *path;
    GtkTreeSelection *selection;
+   gboolean bold;
    Log *log = window->curlog;
 
    g_return_if_fail (log);
       
    /* Read either the whole file to get the last page or only the new lines */
-   if (log->mon_offset == 0)
+   if (log->mon_offset == 0) {
 	   buffer_lines = ReadLastPage (log);
-   else
+	   bold = FALSE;
+   } else {
 	   buffer_lines = ReadNewLines (log);
+	   bold = TRUE;
+   }
 
    if (buffer_lines[0] != NULL) {
 	   LogLine *line;
@@ -110,9 +114,13 @@ mon_update_display (LogviewWindow *window)
 			   if (line->date > 0) {
 				   mon_format_line (buffer, sizeof (buffer), line);
 				   gtk_list_store_insert_before (list, &iter, parent_pointer);
-				   gtk_list_store_set (list, &iter, 0, buffer, -1);
+				   if (bold)
+					   marked_line = g_strdup_printf ("<b>%s</b>", buffer);
+				   else
+					   marked_line = g_strdup (buffer);
+				   gtk_list_store_set (list, &iter, 0, marked_line, -1);
 				   parent = iter;
-				   gtk_tree_selection_select_iter (selection, &iter);
+				   g_free (marked_line);
 			   }
 		   }
 	   }

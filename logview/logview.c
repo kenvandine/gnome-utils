@@ -607,7 +607,7 @@ GtkWidget *logview_create_monitor_widget (LogviewWindow *window)
 	g_object_unref (clist);
 	clist_cellrenderer = gtk_cell_renderer_text_new ();
 	clist_column = gtk_tree_view_column_new_with_attributes
-		(NULL, clist_cellrenderer, "text", 0, NULL);
+		(NULL, clist_cellrenderer, "markup", 0, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (clist_view), clist_column);
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (clist_view), FALSE);
 	swin = gtk_scrolled_window_new (NULL, NULL);
