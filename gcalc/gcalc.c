@@ -58,7 +58,7 @@ about_cb (GtkWidget *widget, gpointer data)
 	g_free (file);
 	
 	about = gnome_about_new(_("GNOME Calculator"), VERSION,
-				_("(C) 1998 the Free Software Foundation"),
+				_("(C) 1998 Free Software Foundation"),
 				_("Simple double precision calculator similar "
 				  "to xcalc"),
 				(const char **)authors,
