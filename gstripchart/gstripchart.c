@@ -1179,9 +1179,9 @@ numeric_with_graph(void)
 }
 
 static int
-readjust_top_for_width(int width)
+readjust_top_bot_for_width(int width)
 {
-  float hi, t, top;
+  float hi, lo, t, top, bot;
   int p, n, i, v, readjust = 0;
 
   n = width < chart_glob.num_val ? width : chart_glob.num_val;
@@ -1207,6 +1207,23 @@ readjust_top_for_width(int width)
 	  chart_glob.parray[p]->top = top;
 	  if (include_slider)
 	    slider_glob.parray[p]->top = top;
+	  readjust = 1;
+	}
+
+      /* If the lowest visible value of this parameter differs
+	 significantly from the current bot value, adjust bot values
+	 and return 1 to initiate a redraw. */
+      lo = chart_glob.parray[p]->lo;
+      bot = lo>t ? t : lo;
+      if ((fabs(chart_glob.parray[p]->bot - bot) / bot) > 0.01)
+	{
+	  chart_glob.parray[p]->bot = bot;
+	  if (include_slider)
+	    slider_glob.parray[p]->bot = bot;
+#if 0
+	  printf("bot[%d] %s\t= %g\t=> %g\n",
+	    p, chart_glob.parray[p]->ident, t, chart_glob.parray[p]->bot);
+#endif
 	  readjust = 1;
 	}
     }
@@ -1264,7 +1281,7 @@ config_handler(GtkWidget *widget, GdkEventConfigure *not_used, gpointer unused)
     pixmap, widget->style->bg_gc[GTK_WIDGET_STATE(widget)], TRUE, 0,0, w,h);
 
   /* Adjust top values appropriately for the new chart window width. */
-  readjust_top_for_width(w);
+  readjust_top_bot_for_width(w);
 
   return FALSE;
 }
@@ -1345,17 +1362,18 @@ chart_expose_handler(GtkWidget *widget, GdkEventExpose *event)
     if (chart_glob.parray[p]->active && !chart_glob.parray[p]->is_led)
       {
 	float top = chart_glob.parray[p]->top;
+	float bot = chart_glob.parray[p]->bot;
 	scale_t scale = chart_glob.parray[p]->scale;
 	int n = w < chart_glob.num_val ? w : chart_glob.num_val;
 	int i, j = chart_glob.new_val;
 	int x0, x1 = w - 1;
-	int y0, y1 = val2y(chart_glob.parray[p]->val[j], top, h, scale);
+	int y0, y1 = val2y(chart_glob.parray[p]->val[j]-bot, top-bot, h,scale);
 	for (i=0; i<n; i++)
 	  {
 	    if (--j < 0) j = chart_glob.max_val - 1;
 	    x0 = x1; y0 = y1;
 	    x1 = x0 - 1;
-	    y1 = val2y(chart_glob.parray[p]->val[j], top, h, scale);
+	    y1 = val2y(chart_glob.parray[p]->val[j]-bot, top-bot, h, scale);
 	    gdk_draw_line(pixmap, chart_glob.parray[p]->gdk_gc, x0,y0, x1,y1);
 	  }
       }
@@ -1384,7 +1402,7 @@ chart_timer_handler(GtkWidget *widget)
      Otherwise plot each value in the RHS of the pixmap. */
   update_chart++;
   update_values(&chart_glob, include_slider? &slider_glob: NULL);
-  if (readjust_top_for_width(w))
+  if (readjust_top_bot_for_width(w))
     {
       GdkEventExpose expose;
       expose.area.x = expose.area.y = 0;
@@ -1407,12 +1425,14 @@ chart_timer_handler(GtkWidget *widget)
 	if (chart_glob.parray[p]->active && !chart_glob.parray[p]->is_led)
 	  {
 	    float top = chart_glob.parray[p]->top;
+	    float bot = chart_glob.parray[p]->bot;
 	    scale_t scale = chart_glob.parray[p]->scale;
 	    int i = chart_glob.new_val;
 	    int m = chart_glob.max_val;
-	    int y1 = val2y(chart_glob.parray[p]->val[i], top, h, scale);
-	    int y0 = val2y(chart_glob.parray[p]->val[(i+m-1) % m],
-	      top, h, scale);
+	    int y1 = val2y(chart_glob.parray[p]->val[i] - bot,
+	      top-bot, h, scale);
+	    int y0 = val2y(chart_glob.parray[p]->val[(i+m-1) % m] - bot,
+	      top-bot, h, scale);
 	    gdk_draw_line(pixmap, chart_glob.parray[p]->gdk_gc,
 	      w-2,y0, w-1,y1);
 	  }
@@ -1437,14 +1457,14 @@ slider_redraw(GtkWidget *widget)
     if (slider_glob.parray[p]->active && !chart_glob.parray[p]->is_led)
       {
 	GdkPoint tri[3];
-	int y = val2y(
-	  slider_glob.parray[p]->val[slider_glob.new_val],
-	  slider_glob.parray[p]->top, h, slider_glob.parray[p]->scale);
+	Param *param = slider_glob.parray[p];
+        int y = val2y(
+	  param->val[slider_glob.new_val] - param->bot,
+	  param->top - param->bot, h, param->scale);
 	tri[0].x = 0; tri[0].y = y;
 	tri[1].x = w; tri[1].y = y-w/2;
 	tri[2].x = w; tri[2].y = y+w/2;
-	gdk_draw_polygon(
-	  widget->window, slider_glob.parray[p]->gdk_gc, TRUE, tri, 3);
+	gdk_draw_polygon(widget->window, param->gdk_gc, TRUE, tri, 3);
       }
   return FALSE;
 }
