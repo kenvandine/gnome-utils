@@ -185,6 +185,12 @@ is_path_in_mount_folder (const gchar *path)
 	return (g_strstr_len (path, strlen ("/mnt/"), "/mnt/") != NULL);
 }
 
+gboolean 
+is_path_in_tmp_folder (const gchar *path)
+{
+	return (g_strstr_len (path, strlen ("/tmp/"), "/tmp/") != NULL);
+}
+
 gboolean
 file_extension_is (const char *filename, 
 		   const char *ext)
