@@ -26,7 +26,6 @@ just mimic the xml file format layout...
 Create bonobo component to allow tasks to be put into calander (e.g.
 evolution calender).
 
-
 New, experiemntal GUI:  (I'm not sure this is a good diea, 
 but it may be an interesting way of interacting with the system:)
 create a window showing a set of predefined activities:
@@ -34,17 +33,11 @@ create a window showing a set of predefined activities:
 etc.  (user can add new activities).  clicking on an activity
 creates a new task with that activity as the memo.
 
-Alternate experimental GUI: show the current task-memo in the 
-main window.  Changing the current memo has the effect of creating
-a new task with that memo. (And thus, all new time intervals are
-assigned to that task).   I'm worried that this mode of operation 
-will confuse the user, but ...  
-
 Both gui's above try to address the problem that it is currently
 ungainly/inconvenient to alter the current task, which currently can
 only be done trhough the journal window ...
 
-Feature request: is it possible to make gtt change the task depending 
+Feature request: is it possible to make gtt change the project depending 
 on which window has the focus ? Like if i I am in evolution I'd like 
 to mark that time as email, if I am in emacs to "hacking" etc.
 
@@ -65,9 +58,6 @@ over the net (2) gtt already has an html viewer.
 Bugs -- High Priority
 ---------------------
 implement 'print' journal for html window ...
-
-xxxgtk_text_get_text() and its sister are just plain wrong, and lead to garbage.
-This occures in 'notes' part of dialogs ...
 
 support for 'minimum billing blocks' is everywhere, exept in the actual invoice
 report. Add it there.
