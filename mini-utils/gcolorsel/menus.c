@@ -158,7 +158,12 @@ close_cb (GtkWidget *widget)
 
 static void 
 exit_cb (GtkWidget *widget)
-{
+{  
+  /* Save layout before ... */
+  
+  gnome_mdi_save_state (mdi, "gcolorsel/mdi");
+  
+
   gtk_main_quit ();
 }
 

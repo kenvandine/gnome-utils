@@ -149,8 +149,9 @@ view_color_grid_data_changed (ViewColorGeneric *vcg, gpointer data)
 	
 	/* CHANGE_NAME, don't care */
 	
-	  if (col->change & CHANGE_POS) 
+	  if (col->change & CHANGE_POS) {
 	    color_grid_change_pos (cg, col);
+	  }
 	}
       }
     
@@ -160,34 +161,85 @@ view_color_grid_data_changed (ViewColorGeneric *vcg, gpointer data)
   color_grid_thaw (cg);
 }
 
+/*************** Remove Selected **************************************/
+
+typedef struct remove_t {
+  MDIColorGeneric *mcg;
+  GList *col;
+  GList *last;
+} remove_t;
+
+static remove_t *
+remove_search (GList *list, MDIColorGeneric *mcg)
+{
+  while (list) {
+    if (((remove_t *)list->data)->mcg == mcg) return list->data;
+    list = g_list_next (list);
+  }
+
+  return NULL;
+}
+
+static gint
+compare_func (gconstpointer ptr1, gconstpointer ptr2)
+{
+  MDIColor *col1 = (MDIColor *)ptr1, *col2 = (MDIColor *)ptr2;
+
+  if (col1->pos < col2->pos) return -1;
+  if (col1->pos > col2->pos) return 1;
+
+  return 0;
+}
+
 static void
 view_color_grid_remove_selected (ViewColorGeneric *vcg)
 {
   ColorGrid *cg = COLOR_GRID (vcg->widget);
   GList *list = cg->selected;
   MDIColor *col;
-  GList *freezed = NULL;
+  remove_t *remove;
+  GList *remove_list = NULL;
 
   while (list) {  
     col = ((ColorGridCol *)list->data)->data;    
-    list = g_list_next (list);
-
     col = mdi_color_generic_get_owner (col);
 
-    freezed = g_list_prepend (freezed, col->owner);
-    
-    mdi_color_generic_freeze (col->owner);
-    mdi_color_generic_remove (col->owner, col);
+    remove = remove_search (remove_list, col->owner);
+    if (remove) {
+      if (((MDIColor *)remove->last->data)->pos > col->pos)
+	remove->col = g_list_insert_sorted (remove->col, col,
+					    compare_func);
+      else {
+	g_list_append (remove->last, col);
+	remove->last = remove->last->next;
+      }
+    } else {
+      remove = g_new0 (remove_t, 1);
+      remove->mcg = col->owner;
+      remove->col = g_list_append (NULL, col);
+      remove->last = remove->col;
+
+      remove_list = g_list_prepend (remove_list, remove);
+    }
+
+    list = g_list_next (list);
   }   
 
-  list = freezed;
+  list = remove_list;
+
   while (list) {
-    g_assert (IS_MDI_COLOR_GENERIC (freezed->data));
-    mdi_color_generic_thaw (freezed->data);
+    remove = list->data;
+
+    mdi_color_generic_freeze (remove->mcg);
+    mdi_color_generic_remove_list (remove->mcg, remove->col);
+    mdi_color_generic_thaw (remove->mcg);
+
+    g_free (remove);
+
     list = g_list_next (list);
-  }    
-  
-  g_list_free (freezed);
+  }
+
+  g_list_free (remove_list);
 }
 
 static void 

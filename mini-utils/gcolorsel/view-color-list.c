@@ -673,7 +673,7 @@ view_color_list_remove_selected (ViewColorGeneric *vcg)
   MDIColor *col;
   GList *freezed = NULL;
 
-  while (list) {  
+  while (list) {
     col = gtk_clist_get_row_data (clist, GPOINTER_TO_INT (list->data));   
     list = g_list_next (list);
     

@@ -1,4 +1,4 @@
-(Updated on 2000-06-17)
+(UPDATE ON 2000-04-21)
 
 + Properties :
 
@@ -83,15 +83,17 @@
     by a view-color-edit ... so, the only colors you get in the combo's view
     will be the selected colors ...
 
-+ Speed
++ Speed :
 
-[DONE]   + Perhaps render pixmap in a timeout/pending, or when the GtkCList want to 
-[DONE]     display them.
-[UPDATE] + Works well, now, do the same thing for ViewColorGrid ...
+[UPDATE] What is optimizated : 
 
-  + I have to sort gtkclist after each data_changed; try to use 
-    autosort stuff. (I can't use it now because sort use the row data, 
-    and I can't set the row data before adding it :-( ).
+		mdi-color-generic.c		
+		mdi-color-virtual.c
+		
+		view-color-grid.c             
+		view-color-list.c		
+
+  TODO : view-color-edit.c
 
 + Bugs fix / tests
 + Help

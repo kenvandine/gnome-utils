@@ -28,6 +28,7 @@ mdi_color_generic_get_control       (MDIColorGeneric *vcg, GtkVBox *box,
 static void mdi_color_generic_apply (MDIColorGeneric *mcg, gpointer data);
 static void mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data);
 static void mdi_color_generic_sync  (MDIColorGeneric *mcg, gpointer data);
+static const gchar * get_config_string (GnomeMDIChild *child);
 
 enum {
   DOCUMENT_CHANGED,
@@ -90,6 +91,8 @@ mdi_color_generic_class_init (MDIColorGenericClass *class)
   class->apply            = mdi_color_generic_apply;
   class->close            = mdi_color_generic_close;
   class->sync             = mdi_color_generic_sync;
+
+  mdi_child_class->get_config_string = (GnomeMDIChildConfigFunc)get_config_string;
 }
 
 static void
@@ -120,6 +123,14 @@ mdi_color_generic_destroy (GtkObject *obj)
   
   if(GTK_OBJECT_CLASS(parent_class)->destroy)
     (* GTK_OBJECT_CLASS(parent_class)->destroy)(obj);
+}
+
+static const gchar * 
+get_config_string (GnomeMDIChild *child) 
+{
+  printf ("GetConfigString ...\n");
+
+  return g_strdup_printf ("%lx", (glong)child);
 }
 
 static void
@@ -419,20 +430,19 @@ mdi_color_generic_append (MDIColorGeneric *mcg, MDIColor *col)
   mcg->last++;
 
   if (! mcg->col) { /* Empty */
-    mcg->col = mcg->last_col = g_list_append (NULL, col);
+    col->list = mcg->col = mcg->last_col = g_list_append (NULL, col);
     col->pos = 0;
   } else {
     pos = mdi_color_generic_get_append_pos (mcg, col);
     if (! pos) /* append last */ {
       g_list_append (mcg->last_col, col);
-      mcg->last_col = mcg->last_col->next;
+      col->list = mcg->last_col = mcg->last_col->next;
       col->pos = mcg->last;
     } else {
-      if (pos == mcg->col) /* append first */ {
-	mcg->col = g_list_prepend (pos, col);
-      } else {
-	g_list_prepend (pos, col);
-      }
+      if (pos == mcg->col) /* append first */ 
+	col->list = mcg->col = g_list_prepend (pos, col);
+      else 
+	col->list = g_list_prepend (pos, col);
 
       col->pos = ((MDIColor *)(pos->data))->pos;
 	
@@ -475,53 +485,77 @@ mdi_color_generic_clear (MDIColorGeneric *mcg)
   }
 }
 
+static void
+remove_col (MDIColorGeneric *mcg, MDIColor *col)
+{
+  if (! col->list->next) { /* Remove last */
+    if (! col->list->prev) { /* Remove last & list->length = 1 */
+      g_list_free (mcg->col);
+      mcg->last_col = mcg->col = NULL;
+    } else { /* Remove last & list->length > 1 */
+      mcg->last_col = col->list->prev;
+      g_list_remove (col->list, col);
+    }
+  } else { /* list->length > 1 */
+    if (! col->list->prev) {/* Remove first & list->length > 1*/
+      mcg->col = g_list_remove (mcg->col, col);
+    } else /* Not first, not last */ {
+      g_list_remove (col->list, col);    
+    }
+  }
+}
+
 void 
 mdi_color_generic_remove (MDIColorGeneric *mcg, MDIColor *col)
 {
-  GList *list;
-  GList *next, *prev;  
+  GList *next;  
   MDIColor *col_tmp;
 
+  next = col->list->next;
+  remove_col (mcg, col);
+
   mdi_color_generic_post_change (mcg, col, CHANGE_REMOVE);
-
-  if (mcg->last_col->data == col) { /* remove last */
-    if (mcg->col == mcg->last_col) {/* 1 color in list */
-      mcg->last_col = mcg->col = NULL;
-      g_list_free (mcg->col);
-    } else {
-      prev = mcg->last_col->prev;
-      g_list_remove (mcg->last_col, col);
-      mcg->last_col = prev;
-    }
-
-  } else {
-
-    if (mcg->col->data == col) { /* remove first */
-      next = mcg->col->next;
-      mcg->col = g_list_remove (mcg->col, col);
-    } else { /* Not first, not last */
-
-      list = g_list_find (mcg->col, col);
-      next = list->next;
-
-      g_list_remove (list, col);   
-    }
-
-    /* We need to update position of other colors ! */
+  
+  /* We need to update position of other colors ! */
+  
+  while (next) {
+    col_tmp = next->data;
+    col_tmp->pos--;
+    mdi_color_generic_post_change (mcg, col_tmp, CHANGE_POS);
     
-    while (next) {
-      col_tmp = next->data;
-      
-      col_tmp->pos--;;
-      mdi_color_generic_post_change (mcg, col_tmp, CHANGE_POS);
-      
-      next = g_list_next (next);
-    }
+    next = g_list_next (next);
   }
 
   gtk_object_unref (GTK_OBJECT (col));
     
   mcg->last--;
+}
+
+/* list_to_del **have to* be sorted by position */
+void
+mdi_color_generic_remove_list (MDIColorGeneric *mcg, GList *list_to_del)
+{
+  GList *list = ((MDIColor *) list_to_del->data)->list;
+  MDIColor *col;
+  int offset = 0;
+
+  while (list) {
+    col = list->data;
+    list = g_list_next (list);
+
+    if ((list_to_del)&&(col == list_to_del->data)) {
+      remove_col (mcg, col);
+      mdi_color_generic_post_change (mcg, col, CHANGE_REMOVE);
+      gtk_object_unref (GTK_OBJECT (col));
+
+      offset++;
+
+      list_to_del = g_list_next (list_to_del);
+    } else {
+      col->pos -= offset;
+      mdi_color_generic_post_change (mcg, col, CHANGE_POS);
+    }
+  }  
 }
 
 void 
@@ -578,10 +612,13 @@ mdi_color_generic_change_pos (MDIColorGeneric *mcg,
     } else 
       return;
 
-  mcg->col = g_list_remove (mcg->col, col);
+//  mcg->col = g_list_remove (mcg->col, col);
+  remove_col (mcg, col);
+  
   col->pos = new_pos;
-  mdi_color_generic_post_change (mcg, col, CHANGE_POS);
   mcg->col = g_list_insert (mcg->col, col, new_pos);
+
+  mdi_color_generic_post_change (mcg, col, CHANGE_POS);
 }
 
 MDIColor *

@@ -72,6 +72,8 @@ mdi_color_generic_append_new_set_data   (MDIColorGeneric *mcg,
 
 void mdi_color_generic_remove           (MDIColorGeneric *mcg, 
 					 MDIColor *col);
+void mdi_color_generic_remove_list      (MDIColorGeneric *mcg, 
+					 GList *list_to_del);
 void mdi_color_generic_change_rgb       (MDIColorGeneric *mcg, 
 					 MDIColor *col,
 					 int r, int g, int b);

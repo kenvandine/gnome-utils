@@ -27,6 +27,18 @@ gint mdi_remove_child (GnomeMDI *mdi, MDIColorGeneric *mcg)
   return TRUE;
 }
 
+GnomeMDIChild *child_create (const gchar *config)
+{
+  MDIColorFile *file;
+  printf ("Child create : %s\n", config);
+
+  file = mdi_color_file_new (config);
+  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file));
+  mdi_color_file_load (file);    
+
+  return GNOME_MDI_CHILD (file);
+}
+
 int main (int argc, char *argv[])
 {
   MDIColorFile *file;
@@ -44,27 +56,28 @@ int main (int argc, char *argv[])
   gtk_signal_connect (GTK_OBJECT (mdi), "remove_child", 
 		      GTK_SIGNAL_FUNC (mdi_remove_child), NULL);
 
+  
   file = mdi_color_file_new ("/usr/X11R6/lib/X11/rgb.txt");
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file));
   mdi_color_file_load (file);
-
+  
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
-
   
   mdi_color_generic_next_view_type (MDI_COLOR_GENERIC (file), 
 				    TYPE_VIEW_COLOR_GRID);
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
-    
-  virtual = mdi_color_virtual_new ();
-  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (virtual));
-  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
-  mdi_color_generic_next_view_type (MDI_COLOR_GENERIC (virtual), 
-				    TYPE_VIEW_COLOR_GRID);
-  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
-  mdi_color_generic_connect (MDI_COLOR_GENERIC (file),
-			     MDI_COLOR_GENERIC (virtual));
+  /*
+    virtual = mdi_color_virtual_new ();
+    gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (virtual));
+    gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
+    mdi_color_generic_next_view_type (MDI_COLOR_GENERIC (virtual), 
+    TYPE_VIEW_COLOR_GRID);
+    gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
+    mdi_color_generic_connect (MDI_COLOR_GENERIC (file),
+    MDI_COLOR_GENERIC (virtual)); */
 
-  			    
+//  gnome_mdi_restore_state (mdi, "gcolorsel/toto", child_create);
+    
   gtk_widget_set_usize (GTK_WIDGET (gnome_mdi_get_active_window (mdi)),
 			320, 380);  
 

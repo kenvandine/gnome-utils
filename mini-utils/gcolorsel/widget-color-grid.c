@@ -203,7 +203,7 @@ color_grid_idle (gpointer data)
       cg->idle = 0;
       return FALSE;
     }
-    
+
     col = cg->idle_todo->data;
     color_grid_item_draw (cg, col);
     
@@ -356,7 +356,7 @@ color_grid_select (ColorGridCol *col, gboolean selected)
   if (col->selected != selected) {
     col->selected = selected;
     color_grig_for_idle (col->cg, col);
-   
+
     if (selected) 
       col->cg->selected = g_list_prepend (col->cg->selected, col);
     else
@@ -456,7 +456,6 @@ color_grid_select_from_to (ColorGrid *cg, ColorGridCol *from, ColorGridCol *to)
 {
   GList *list = cg->col;
   
-
   while (list) {
     if ((list->data == from) || (list->data == to)) break;
     list = g_list_next (list);
@@ -514,7 +513,7 @@ color_grid_item_event (GnomeCanvasItem *item, GdkEvent *event, gpointer data)
 	  color_grig_for_idle (cg, 
 		 gtk_object_get_data (GTK_OBJECT (cg->drop), "col"));
 
-	if (item != drop) {
+	if ((item != drop)&&(drop)) {
 	  color_grig_for_idle (cg, 
 			gtk_object_get_data (GTK_OBJECT (drop), "col"));
 	  cg->drop = drop;
@@ -756,10 +755,24 @@ color_grid_change_pos (ColorGrid *cg, gpointer data)
   GList *list = color_grid_find_item_from_data (cg, data);
   ColorGridCol *col = list->data;
 
-  if (list->prev)
+  if ((list->prev) && (list->next)) {
+    ColorGridCol *prev = list->prev->data;
+    ColorGridCol *next = list->next->data;
+
+    if ((cg->compare_func (prev, col)<0)&&(cg->compare_func (col, next)<0)) {
+      color_grid_reorganize (cg);
+//      printf ("Pas besoin ...\n");
+      return;
+    }
+  }
+
+  if (list->prev) {
+  //  printf ("Pas le premier\n");
     g_list_remove (list, col);
-  else
+  } else {
+  //  printf ("Le premier\n");
     cg->col = g_list_remove (list, col);
+  }
 
   cg->col = g_list_insert_sorted (cg->col, col, cg->compare_func);
 
