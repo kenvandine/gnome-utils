@@ -803,6 +803,8 @@ open_file_with_nautilus (GtkWidget * window,
 	                       NULL);
 			       
 	contents = g_strdup_printf ("[Desktop Entry]\n"
+				    "Name=Nautilus\n"
+				    "Icon=file-manager\n"
 				    "Exec=%s\n"
 				    "Terminal=false\n"
 				    "StartupNotify=true\n"
