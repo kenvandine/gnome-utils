@@ -798,7 +798,7 @@ drag_data_get (GtkWidget          *widget,
 	g_free (string);
 }
 GtkWidget*
-archive_button_new_with_stock_image (const gchar* text, const gchar* stock_id)
+archive_button_new_with_image (const gchar* text, const gchar* image_path)
 {
         GtkWidget *button;
         GtkStockItem item;
@@ -813,13 +813,12 @@ archive_button_new_with_stock_image (const gchar* text, const gchar* stock_id)
                 gtk_container_remove (GTK_CONTAINER (button),
                                       GTK_BIN (button)->child);
 
-        if (gtk_stock_lookup (stock_id, &item))
-        {
+	if (image) {
                 label = gtk_label_new_with_mnemonic (text);
 
                 gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
 
-                image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
+                image = gtk_image_new_from_file (image_path);
                 hbox = gtk_hbox_new (FALSE, 2);
 
                 align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
@@ -949,15 +948,10 @@ init_gui (void)
 	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
 	/* tarball icon */
-	compress_button = gtk_button_new ();
+	compress_button = archive_button_new_with_image (_("_Create Archive"), 
+							 compress_icon);
 	gtk_widget_show (compress_button);
-	w = NULL;
-	if (compress_icon != NULL)
-		w = gtk_image_new_from_file (compress_icon);
-	if (w == NULL)
-		w = gtk_label_new (_("Archive"));
-	gtk_widget_show (w);
-	gtk_container_add (GTK_CONTAINER (compress_button), w);
+
 	gtk_box_pack_start (GTK_BOX (hbox), compress_button, FALSE, FALSE, 0);
 	g_signal_connect (G_OBJECT (compress_button), "clicked",
 			  G_CALLBACK (archive_cb), NULL);
