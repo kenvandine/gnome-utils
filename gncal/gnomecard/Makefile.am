@@ -50,7 +50,6 @@ gnomecard_SOURCES =	\
 CORBA_SRCLIST = gnome-pim-common.c\
 	gnome-pim-skels.c	\
 	gnome-pim-stubs.c	\
-	gnome-pim-impl.c	\
 	gnome-pim.h
 
 CLEANFILES += $(CORBA_SRCLIST)
