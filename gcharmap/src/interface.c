@@ -213,6 +213,7 @@ main_controls_new (void)
 
   Status = gnome_appbar_new (FALSE, TRUE, GNOME_PREFERENCES_USER);
   gnome_app_set_statusbar (GNOME_APP (mainf), Status);
+  gnome_app_install_menu_hints(GNOME_APP (mainf), menubar);
 
   PopupMenu = gtk_menu_new ();
   gnome_app_fill_menu (GTK_MENU_SHELL (PopupMenu), PopupMenu_menu, NULL,

@@ -1525,11 +1525,7 @@ about_callback(void)
 
 GnomeUIInfo help_menu[] =
 {
-  {
-    GNOME_APP_UI_ITEM, N_("_About"), N_("Info about the striphart program"),
-    about_callback, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL
-  },
+  GNOMEUIINFO_MENU_ABOUT_ITEM(about_callback, NULL),
   GNOMEUIINFO_SEPARATOR,
   GNOMEUIINFO_HELP("gstripchart"),
   GNOMEUIINFO_END
@@ -1537,8 +1533,8 @@ GnomeUIInfo help_menu[] =
 
 GnomeUIInfo mainmenu[] =
 {
-  GNOMEUIINFO_SUBTREE(N_("_File"), file_menu),
-  GNOMEUIINFO_SUBTREE(N_("_Help"), help_menu),
+  GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+  GNOMEUIINFO_MENU_HELP_TREE(help_menu),
   GNOMEUIINFO_END
 };
 

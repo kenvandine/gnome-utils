@@ -35,8 +35,6 @@ GtkWidget *follow_mountpoints_check;
 int advanced_state = 0;
 
 
-
-
 static GnomeUIInfo file_menu [] = {
 
   GNOMEUIINFO_ITEM_STOCK (N_("New search"), NULL, new_cb, GNOME_STOCK_MENU_NEW),
@@ -46,13 +44,12 @@ static GnomeUIInfo file_menu [] = {
   
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_ITEM_STOCK (N_("Exit"), NULL, exit_cb, GNOME_STOCK_MENU_EXIT),
+  GNOMEUIINFO_MENU_EXIT_ITEM (exit_cb, NULL),
   GNOMEUIINFO_END
 };
 
 static GnomeUIInfo edit_menu [] = {
-
-  GNOMEUIINFO_ITEM_STOCK (N_("Preferences..."), NULL, preferences_cb, GNOME_STOCK_MENU_NEW),
+  GNOMEUIINFO_MENU_PREFERENCES_ITEM(preferences_cb, NULL),
   GNOMEUIINFO_END
 };
 
@@ -74,8 +71,7 @@ static GnomeUIInfo search_menu [] = {
 
 
 static GnomeUIInfo help_menu [] = {
-  GNOMEUIINFO_ITEM_STOCK (N_("About Gnome Find..."), NULL, about_cb, 
-			  GNOME_STOCK_MENU_ABOUT),
+  GNOMEUIINFO_MENU_ABOUT_ITEM(about_cb, NULL),
   GNOMEUIINFO_SEPARATOR,
   GNOMEUIINFO_HELP("gnome-find"),
   GNOMEUIINFO_END
@@ -83,10 +79,10 @@ static GnomeUIInfo help_menu [] = {
 
 	
 static GnomeUIInfo main_menu [] = {
-  GNOMEUIINFO_SUBTREE (N_("File"), &file_menu),
-  GNOMEUIINFO_SUBTREE (N_("Edit"), &edit_menu),
-  GNOMEUIINFO_SUBTREE (N_("Search"), &search_menu),
-  GNOMEUIINFO_SUBTREE (N_("Help"), &help_menu),
+  GNOMEUIINFO_MENU_FILE_TREE (file_menu),
+  GNOMEUIINFO_SUBTREE (N_("Search"), search_menu),
+  GNOMEUIINFO_MENU_SETTINGS_TREE (edit_menu),
+  GNOMEUIINFO_MENU_HELP_TREE (help_menu),
   GNOMEUIINFO_END
 };
 

@@ -42,9 +42,7 @@ static GnomeUIInfo file_menu [] = {
   GNOMEUIINFO_END
 };
 static GnomeUIInfo settings_menu [] = {
-  GNOMEUIINFO_ITEM_STOCK (N_("Properties"),
-			  N_("This sets the overall application settings."),
-			  properties_cb, GNOME_STOCK_MENU_PREF),
+  GNOMEUIINFO_MENU_PREFERENCES_ITEM(properties_cb, NULL),
   GNOMEUIINFO_END
 };
 static GnomeUIInfo help_menu [] = {

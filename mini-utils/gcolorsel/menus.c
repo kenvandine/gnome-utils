@@ -909,8 +909,6 @@ menu_view_do_popup (GdkEventButton *event, ViewColorGeneric *view)
 /************************* ToolBar *************************************/
 
 GnomeUIInfo toolbar [] = {
-  GNOMEUIINFO_ITEM_STOCK (N_("Exit"), N_("Exit the program"),
-			  exit_cb, GNOME_STOCK_PIXMAP_EXIT),
   GNOMEUIINFO_ITEM_STOCK (N_("Open"), N_("Open a palette"),
 			  open_cb, GNOME_STOCK_PIXMAP_OPEN),
   GNOMEUIINFO_ITEM_STOCK (N_("Close"), N_("Close the current view"),
@@ -921,6 +919,8 @@ GnomeUIInfo toolbar [] = {
   GNOMEUIINFO_SEPARATOR,
   GNOMEUIINFO_ITEM_STOCK (N_("About"), N_("About this application"),
 			  about_cb, GNOME_STOCK_PIXMAP_ABOUT),
+  GNOMEUIINFO_ITEM_STOCK (N_("Exit"), N_("Exit the program"),
+			  exit_cb, GNOME_STOCK_PIXMAP_EXIT),
   GNOMEUIINFO_END
 };
 
