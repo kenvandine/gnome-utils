@@ -14,3 +14,11 @@ idetool_LDADD = \
 	$(GTKXMHTML_LIBS)	\
 	$(GNOMEUI_LIBS) 	\
 	$(INTLLIBS)
+
+pixmapdir = $(datadir)/pixmaps
+
+BITMAPS = ide-disk-drive.xpm
+
+pixmap_DATA = $(BITMAPS)
+
+EXTRA_DIST  = $(BITMAPS)
