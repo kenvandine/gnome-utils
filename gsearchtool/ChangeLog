@@ -1,5 +1,12 @@
 2004-12-20  Dennis Cranston <dennis_cranston@yahoo.com>
 
+	* gsearchtool.c: (build_search_command):  If for 
+	some reason gtk-file-chooser-button does not 
+	return a path fallback to the user's home directory.  
+	Should prevent crash reported in Bug #161857.
+	 
+2004-12-20  Dennis Cranston <dennis_cranston@yahoo.com>
+
 	* gsearchtool.c, gsearchtool-callbacks.c:  Blank  
 	the window title of the message dialogs.
 

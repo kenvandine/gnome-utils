@@ -358,9 +358,17 @@ build_search_command (GSearchWindow * gsearch,
 	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
 	
 	look_in_folder_utf8 = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (gsearch->look_in_folder_button));
-	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
-	g_free (look_in_folder_utf8);
-	
+
+	if (look_in_folder_utf8 != NULL) {
+		look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
+		g_free (look_in_folder_utf8);
+	}
+	else {
+		/* If for some reason a path was not returned fallback to the user's home directory. */
+		look_in_folder_locale = g_strdup (g_get_home_dir ());
+		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (gsearch->look_in_folder_button), look_in_folder_locale);
+	}
+
 	if (!g_str_has_suffix (look_in_folder_locale, G_DIR_SEPARATOR_S)) {
 		gchar *tmp;
 		
