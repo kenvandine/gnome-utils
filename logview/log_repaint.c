@@ -505,6 +505,7 @@ UpdateStatusArea ()
 {
   struct tm *tdm;
   char status_text[255];
+  char *utf8;
   char *buffer;
   /* Translators: Date only format, %x should well do really */
   const char *time_fmt = _("%x"); /* an evil way to avoid warning */
@@ -528,15 +529,20 @@ UpdateStatusArea ()
 
   if (strftime (status_text, sizeof (status_text), time_fmt, tdm) <= 0) {
 	  /* as a backup print in US style */
-	  g_snprintf (status_text, sizeof (status_text), "%02d/%02d/%02d", 
-		      tdm->tm_mday, tdm->tm_mon, tdm->tm_year % 100);
+	  utf8 = g_strdup_printf ("%02d/%02d/%02d", 
+				  tdm->tm_mday, tdm->tm_mon,
+				  tdm->tm_year % 100);
+  } else {
+	  utf8 = g_locale_to_utf8 (status_text, -1, NULL, NULL, NULL);
   }
   gtk_label_get ( date_label, (char **)&buffer);
 /* FIXME: is this if statement needed?  would it make sense 
    to set the text every time?  doesn't gtk test for it in 
    a more efficient manner? */
-   if (strcmp (status_text, buffer) != 0)
-    gtk_label_set_text (date_label, status_text);
+   if (strcmp (utf8, buffer) != 0)
+	   gtk_label_set_text (date_label, utf8);
+
+   g_free (utf8);
 }
 
 /* ----------------------------------------------------------------------
@@ -603,7 +609,8 @@ log_redrawcursor (int ol, int nl, Page * np)
 void
 DrawLogLine (LogLine *line, int y)
 {
-  char tmp[1024];
+  char tmp[4096];
+  char *utf8;
   int num_chars, max_num_chars;
   int col_pos = 0;
   int char_width;
@@ -630,18 +637,22 @@ DrawLogLine (LogLine *line, int y)
 	  /* Translators: should be only the time, date could be bogus */
 	  if (strftime (tmp, sizeof (tmp), _("%X"), &date) <= 0) {
 		  /* as a backup print in 24 hours style */
-		  g_snprintf (tmp, sizeof (tmp), "%02d:%02d:%02d", line->hour, line->min, line->sec);
+		  utf8 = g_strdup_printf ("%02d:%02d:%02d", line->hour, line->min, line->sec);
+	  } else {
+		  utf8 = g_locale_to_utf8 (tmp, -1, NULL, NULL, NULL);
 	  }
 
   } else {
-	  strcpy (tmp, " ");
+	  utf8 = g_strdup (" ");
   }
   pango_layout_set_font_description (log_layout, cfg->fixed);
-  pango_layout_set_text (log_layout, tmp, -1);
+  pango_layout_set_text (log_layout, utf8, -1);
   gdk_draw_layout (canvas, gc, LOG_COL1, y-10, log_layout);
 
   /* Print four spaces */
-  col_pos = LOG_COL1 + strlen(tmp)*char_width;
+  col_pos = LOG_COL1 + g_utf8_strlen(utf8, 1023)*char_width;
+  g_free (utf8);
+
   strcpy (tmp, "    ");
   pango_layout_set_text (log_layout, tmp, -1);
   gdk_draw_layout (canvas, gc, col_pos, y-10, log_layout);
@@ -650,9 +661,10 @@ DrawLogLine (LogLine *line, int y)
   strcpy (tmp, " ");
   if(user_prefs->hostname_column_width > 0)
   {
-  	g_snprintf (tmp, sizeof (tmp), "%s", line->hostname);
-  	if (strlen (tmp) > user_prefs->hostname_column_width)
-    		tmp[user_prefs->hostname_column_width+1] = '\0';
+	  utf8 = g_locale_to_utf8 (line->hostname, -1, NULL, NULL, NULL);
+	  /* FIXME: check we really do have enough room in tmp, we should */
+	  g_utf8_strncpy (tmp, utf8, user_prefs->hostname_column_width);
+	  g_free (utf8);
   }
   pango_layout_set_text (log_layout, tmp, -1);
   pango_layout_set_font_description (log_layout, cfg->fixed);
@@ -669,9 +681,10 @@ DrawLogLine (LogLine *line, int y)
   strcpy (tmp, " ");
   if(user_prefs->process_column_width > 0)
   {
-  	g_snprintf (tmp, sizeof (tmp), "%s", line->process);
-  	if (strlen (tmp) > user_prefs->process_column_width)
-    		tmp[user_prefs->process_column_width+1] = '\0';
+	  utf8 = g_locale_to_utf8 (line->process, -1, NULL, NULL, NULL);
+	  /* FIXME: check we really do have enough room in tmp, we should */
+	  g_utf8_strncpy (tmp, utf8, user_prefs->process_column_width);
+	  g_free (utf8);
   }
   pango_layout_set_text (log_layout, tmp, -1);
   pango_layout_set_font_description (log_layout, cfg->fixed);
@@ -687,12 +700,13 @@ DrawLogLine (LogLine *line, int y)
 
   /* For now max string length is ignored */
   num_chars = MAX (strlen (line->message), 1023);
-  tmp[1023] = '\0';
-  strncpy (tmp, line->message, 1023);
   max_num_chars = (canvas_width - 10 - col_pos) / char_width;
   if (max_num_chars < num_chars)
     max_num_chars = num_chars;
-  tmp[max_num_chars] = '\0';
+  utf8 = g_locale_to_utf8 (line->message, -1, NULL, NULL, NULL);
+  /* FIXME: check we really do have enough room in tmp, we should */
+  g_utf8_strncpy (tmp, utf8, max_num_chars);
+  g_free (utf8);
   pango_layout_set_text (log_layout, tmp, -1);
   pango_layout_set_font_description (log_layout, cfg->fixed);
   gdk_draw_layout (canvas, gc, col_pos, y-10, log_layout);

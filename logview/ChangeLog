@@ -1,3 +1,11 @@
+Thu May 16 15:09:19 2002  George Lebl <jirka@5z.com>
+
+	* log_repaint.c, zoom.c: partially fix #81252 by converting output
+	  of strftime to utf8.  Also convert the string to utf8, this still
+	  needs a bit of work, so I'm not closing the bug yet
+
+	* logview.c: fix crash when closing window
+
 2002-05-14  Glynn Foster  <glynn.foster@sun.com>
 
 	* gnome-system-log-actions.db: Comment out example

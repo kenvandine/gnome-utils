@@ -171,6 +171,7 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    PangoFontMetrics *metrics;
    PangoFont *font;
    PangoRectangle logical_rect;
+   char *utf8;
 
    canvas = zoom_canvas->window;
    win_width = zoom_canvas->allocation.width;
@@ -277,23 +278,29 @@ repaint_zoom (GtkWidget * widget, GdkEventExpose * event)
    /* Translators: do not include year, it would be bogus */
    if (strftime (buffer, sizeof (buffer), _("%B %e %X"), &date) <= 0) {
 	   /* as a backup print in US style */
-	   g_snprintf (buffer, sizeof (buffer),
-		       "%s %d %02d:%02d:%02d",
-		       _(month[(int)line->month]), 
-		       (int) line->date,
-		       (int) line->hour,
-		       (int) line->min,
-		       (int) line->sec);
+	   utf8 = g_strdup_printf ("%s %d %02d:%02d:%02d",
+				   _(month[(int)line->month]), 
+				   (int) line->date,
+				   (int) line->hour,
+				   (int) line->min,
+				   (int) line->sec);
+   } else {
+	   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
    }
    pango_layout_set_font_description (zoom_layout, cfg->fixed);
-   pango_layout_set_text (zoom_layout, buffer, -1);
+   pango_layout_set_text (zoom_layout, utf8, -1);
+   g_free (utf8);
    gdk_draw_layout (canvas, gc, x, y, zoom_layout);
    y += h;
    g_snprintf (buffer, sizeof (buffer), "%s ", line->process);
-   pango_layout_set_text (zoom_layout, buffer, -1);
+   utf8 = g_locale_to_utf8 (buffer, -1, NULL, NULL, NULL);
+   pango_layout_set_text (zoom_layout, utf8, -1);
+   g_free (utf8);
    gdk_draw_layout (canvas, gc, x, y+2, zoom_layout);
    y += h;
-   draw_parbox (canvas, cfg->fixed, gc, x, y+4, 380, line->message, 4);
+   utf8 = g_locale_to_utf8 (line->message, -1, NULL, NULL, NULL);
+   draw_parbox (canvas, cfg->fixed, gc, x, y+4, 380, utf8, 4);
+   g_free (utf8);
    y += 4*h;
    if (match_line_in_db (line, regexp_db))
      {

@@ -361,8 +361,6 @@ CreateMainWin ()
    gtk_widget_size_allocate ( GTK_WIDGET (app), &req_size );
    gtk_signal_connect (GTK_OBJECT (app), "destroy",
 		       GTK_SIGNAL_FUNC (destroy), NULL);
-   gtk_signal_connect (GTK_OBJECT (app), "delete_event",
-		       GTK_SIGNAL_FUNC (destroy), NULL);
 
    /* Create menus */
    gnome_app_create_menus (GNOME_APP (app), main_menu);
@@ -845,8 +843,10 @@ CloseApp (void)
 
    numlogs = 0;
 
-   if (G_IS_OBJECT (log_layout))
+   if (G_IS_OBJECT (log_layout)) {
       g_object_unref (G_OBJECT (log_layout));
+      log_layout = NULL;
+   }
 
    gtk_main_quit ();   
 }
