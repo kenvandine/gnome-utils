@@ -4,6 +4,8 @@
 	item so the close button is at the right end of the find bar.
 	(logview_findbar_populate): Add labels to the previous/next buttons.
 	(logview_tree_model_search_iter_foreach): Fix issues with mixed case.
+	(logview_tree_model_search_iter_foreach): Free allocated strings
+	and gtk_tree_path.
 
 	* logview.c (logview_search): Hook up the new find bar.
 

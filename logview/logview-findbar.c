@@ -35,12 +35,16 @@ logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 	GtkTreePath *search_path = gtk_tree_model_get_path (model, iter);
 
 	if (st->forward) {
-		if (gtk_tree_path_compare (st->current_path, search_path) > 0)
+		if (gtk_tree_path_compare (st->current_path, search_path) > 0) {
+			gtk_tree_path_free (search_path);
 			return FALSE;
+		}
 	} else {
-		if (gtk_tree_path_compare (st->current_path, search_path) == 0)
+		if (gtk_tree_path_compare (st->current_path, search_path) == 0) {
 			/* If we search backward and we have reached the current position, stop */
+			gtk_tree_path_free (search_path);
 			return TRUE;
+		}
 	}
 	
 	gtk_tree_model_get (model, iter, 1, &(fields[0]), 2, &(fields[1]), 3, &(fields[2]), -1);
@@ -98,6 +102,7 @@ logview_tree_model_find_match (GtkTreeModel *tree_model, const char *pattern,
 			       GtkTreePath *current, gboolean forward, gboolean keep_current)
 {
 	GtkTreeIter iter_root;
+	GtkTreePath *path;
 	SearchIter *st;
 	
 	st = g_new0 (SearchIter, 1);
@@ -113,7 +118,10 @@ logview_tree_model_find_match (GtkTreeModel *tree_model, const char *pattern,
 
 	gtk_tree_model_foreach (GTK_TREE_MODEL (tree_model),
 				logview_tree_model_search_iter_foreach, st);
-	return st->found_path;
+
+	path = st->found_path;
+	g_free (st);
+	return path;
  }
 
 static gboolean
@@ -135,6 +143,7 @@ logview_findbar_find (LogviewWindow *window, char *pattern, gboolean forward, gb
 						path);
 		gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view),
 					      path, NULL, FALSE, 0, 0);
+		gtk_tree_path_free (path);
 		return TRUE;
 	}
 	return FALSE;
