@@ -20,7 +20,9 @@ BITMAPS = penguin1.png
 pixmap_DATA = $(BITMAPS)
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
-Utilities_DATA = gpenguin.desktop
+Utilities_in_files = gpenguin.desktop.in
+Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
-EXTRA_DIST = penguin1.png gpenguin.desktop $(top_srcdir)/sgmldocs.make
+EXTRA_DIST = penguin1.png gpenguin.desktop.in $(top_srcdir)/sgmldocs.make
 

@@ -22,7 +22,9 @@ man_MANS = gfontsel.1
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-fontsel.png
 
-EXTRA_DIST = gfontsel.desktop gnome-fontsel.png gfontsel.1 \
+EXTRA_DIST = gfontsel.desktop.in gnome-fontsel.png gfontsel.1 \
 	$(top_srcdir)/sgmldocs.make
 
-Utilities_DATA = gfontsel.desktop
+Utilities_in_files = gfontsel.desktop.in
+Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@

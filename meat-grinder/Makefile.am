@@ -19,6 +19,8 @@ meat_grinder_LDADD = \
 man_MANS = meat-grinder.1
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
-Utilities_DATA = meat-grinder.desktop
+Utilities_in_files = meat-grinder.desktop.in
+Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
-EXTRA_DIST = meat-grinder.desktop meat-grinder.1
+EXTRA_DIST = meat-grinder.desktop.in meat-grinder.1

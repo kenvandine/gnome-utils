@@ -21,6 +21,8 @@ gless_LDADD = \
 man_MANS = gless.1
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
-Utilities_DATA = gless.desktop
+Utilities_in_files = gless.desktop.in
+Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
-EXTRA_DIST = gless.1 gless.desktop $(top_srcdir)/sgmldocs.make
+EXTRA_DIST = gless.1 gless.desktop.in $(top_srcdir)/sgmldocs.make

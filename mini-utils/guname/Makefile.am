@@ -42,7 +42,9 @@ guname_LDADD = \
 man_MANS = guname.1
 
 Systemdir = $(datadir)/gnome/apps/System
-System_DATA = guname.desktop
+System_in_files = guname.desktop.in
+System_DATA = $(System_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
 if GUNAME_CAPPLET
 install-data-local:
@@ -50,10 +52,10 @@ install-data-local:
 endif
 
 EXTRA_DIST = 		\
-	guname.desktop	\
+	guname.desktop.in	\
 	guname.1	\
 	moreinfo.c	\
 	moreinfo.h	\
-	guname-capplet.desktop \
+	guname-capplet.desktop.in \
 	$(top_srcdir)/sgmldocs.make
 

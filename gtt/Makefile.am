@@ -70,10 +70,12 @@ gtt_LDADD = \
 EXTRA_DIST = 		\
 	.cvsignore	\
 	design.txt	\
-	gtt.desktop 	\
+	gtt.desktop.in 	\
 	$(top_srcdir)/sgmldocs.make
 
 Productivitydir = $(datadir)/gnome/apps/Applications
-Productivity_DATA = gtt.desktop
+Productivity_in_files = gtt.desktop.in
+Productivity_DATA = $(Productivity_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
 

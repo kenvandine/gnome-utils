@@ -16,7 +16,7 @@ gstripchart_LDADD = \
 
 EXTRA_DIST = \
 	gnome-stripchart.png gstripchart.conf \
-	gstripchart.desktop gstripchart_applet.desktop \
+	gstripchart.desktop.in gstripchart_applet.desktop.in \
 	gstripchart_applet.gnorba $(top_srcdir)/sgmldocs.make
 
 pixmapdir = $(datadir)/pixmaps
@@ -26,7 +26,9 @@ confdir = $(datadir)/gstripchart
 conf_DATA = gstripchart.conf
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
-Utilities_DATA = gstripchart.desktop
+Utilities_in_files = gstripchart.desktop.in
+Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
 if BUILD_GSTRIPCHART_APPLET
 
@@ -34,7 +36,8 @@ GSTRIPCHART_APPLET_CFLAGS = -DHAVE_GNOME_APPLET
 GSTRIPCHART_APPLET_LIBS = $(GNOME_APPLETS_LIBS)
 
 sysdir = $(datadir)/applets/Monitors
-sys_DATA = gstripchart_applet.desktop
+sys_in_files = gstripchart_applet.desktop.in
+sys_DATA = $(sys_in_files:.desktop.in=.desktop)
 
 gnorbadir  = $(sysconfdir)/CORBA/servers
 gnorba_DATA = gstripchart_applet.gnorba

@@ -66,8 +66,10 @@ gcolorsel_LDADD = \
 
 man_MANS = gcolorsel.1
 
-EXTRA_DIST = gcolorsel.desktop $(top_srcdir)/sgmldocs.make gcolorsel.1
+EXTRA_DIST = gcolorsel.desktop.in $(top_srcdir)/sgmldocs.make gcolorsel.1
 
-Utilities_DATA = gcolorsel.desktop
+Utilities_in_files = gcolorsel.desktop.in
+Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
 CLEANFILES=*~

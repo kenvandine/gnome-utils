@@ -20,9 +20,11 @@ gw_LDADD = \
 man_MANS = gw.1
 
 Systemdir = $(datadir)/gnome/apps/System
-System_DATA = gw.desktop
+System_in_files = gw.desktop.in
+System_DATA = $(System_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = gnome-who.png
 
-EXTRA_DIST = gw.desktop gnome-who.png gw.1 $(top_srcdir)/sgmldocs.make
+EXTRA_DIST = gw.desktop.in gnome-who.png gw.1 $(top_srcdir)/sgmldocs.make

@@ -30,7 +30,7 @@ man_MANS = stripchart.1 stripchart-applet.1
 
 EXTRA_DIST = \
  gnome-stripchart.png stripchart.conf stripchart.params \
- stripchart.desktop stripchart-applet.desktop $(top_srcdir)/sgmldocs.make \
+ stripchart.desktop.in stripchart-applet.desktop.in $(top_srcdir)/sgmldocs.make \
  stripchart-applet.gnorba stripchart.1 stripchart-applet.1
 
 pixmapdir = $(datadir)/pixmaps
@@ -40,10 +40,13 @@ confdir = $(datadir)/stripchart
 conf_DATA = stripchart.conf stripchart.params
 
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
-Utilities_DATA = stripchart.desktop
+Utilities_in_files = stripchart.desktop.in
+Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 
 Appletdir = $(datadir)/applets/Monitors
-Applet_DATA = stripchart-applet.desktop
+Applet_in_files = stripchart-applet.desktop.in
+Applet_DATA = $(Applet_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
 gnorbadir  = $(sysconfdir)/CORBA/servers
 gnorba_DATA = stripchart-applet.gnorba

@@ -37,14 +37,16 @@ logview_LDADD = \
 
 man_MANS = logview.1
 
-Utilities_DATA = logview.desktop
+Utilities_in_files = logview.desktop.in
+Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
 additional_DATA  = logview-descript.db \
                    logview-regexp.db \
 		   logview-actions.db
 
 EXTRA_DIST = \
-	logview.desktop		\
+	logview.desktop.in		\
 	logview-descript.db	\
 	logview-regexp.db	\
 	logview-actions.db	\

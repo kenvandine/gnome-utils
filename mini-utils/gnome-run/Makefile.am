@@ -16,6 +16,8 @@ gnome_run_LDADD = \
 	$(INTLLIBS)
 
 Rootdir = $(datadir)/gnome/apps
-Root_DATA = gnome-run.desktop
+Root_in_files = gnome-run.desktop.in
+Root_DATA = $(Root_in_files:.desktop.in=.desktop)
+@XML_I18N_MERGE_DESKTOP_RULE@
 
-EXTRA_DIST = gnome-run.desktop $(top_srcdir)/sgmldocs.make
+EXTRA_DIST = gnome-run.desktop.in $(top_srcdir)/sgmldocs.make
