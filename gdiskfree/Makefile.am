@@ -10,6 +10,7 @@ gdiskfree_SOURCES =				\
 	mountlist.h				\
 	fsusage.c				\
 	fsusage.h				\
+	pathmax.h				\
 	xgetcwd.c				\
 	save-cwd.c				\
 	save-cwd.h
