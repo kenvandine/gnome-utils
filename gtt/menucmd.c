@@ -44,7 +44,7 @@ about_box(GtkWidget *w, gpointer data)
 {
         GtkWidget *about;
         gchar *authors[] = {
-                "Eckehard Berns\n<eb@berns.prima.de>",
+                "Eckehard Berns\n<eb@berns.i-s-o.net>",
                 NULL
         };
         about = gnome_about_new(APP_NAME,
