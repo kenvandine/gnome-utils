@@ -1579,7 +1579,6 @@ create_additional_constraint_section (void)
 	{
 		add_atk_namedesc (GTK_WIDGET (interface.constraint_menu), _("Search Rules Menu"), 
 				  _("Select a search rule from the menu"));
-		add_atk_relation (interface.constraint_menu, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY);
 	}
 
 	interface.add_button = gtk_button_new_from_stock (GTK_STOCK_ADD);
