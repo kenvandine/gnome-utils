@@ -341,23 +341,18 @@ click_file_cb 	     (GtkWidget 	*widget,
 	gchar *utf8_name = NULL;
 	gchar *utf8_path = NULL;
 	gboolean no_files_found = FALSE;
-	GtkListStore *store;
 	GtkTreeIter iter;
-	GtkTreeSelection *selection;
 	
 	if (event->type==GDK_2BUTTON_PRESS) {
 		
-
-		store = interface.model;
-		selection = interface.selection;
-		
-		if (!gtk_tree_selection_get_selected (selection, NULL, &iter))
+		if (!gtk_tree_selection_get_selected (interface.selection, NULL, &iter))
     			return FALSE;
 		
-		gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
-							       COLUMN_PATH, &utf8_path,
-							       COLUMN_NO_FILES_FOUND, &no_files_found,
-								-1);
+		gtk_tree_model_get(GTK_TREE_MODEL(interface.model), &iter,
+				   COLUMN_NAME, &utf8_name,
+				   COLUMN_PATH, &utf8_path,
+				   COLUMN_NO_FILES_FOUND, &no_files_found,
+				   -1);
 
 		if (!no_files_found) {
 			file = g_build_filename (utf8_path, utf8_name, NULL);
@@ -382,21 +377,20 @@ click_file_cb 	     (GtkWidget 	*widget,
 	else if ((event->type == GDK_BUTTON_PRESS) && (event->button == 3)) {	
 		GtkWidget *popup;
 		
-		store = interface.model;
-		selection = interface.selection;
-		
-		if (!gtk_tree_selection_get_selected (selection, NULL, &iter))
+		if (!gtk_tree_selection_get_selected (interface.selection, NULL, &iter))
     			return FALSE;
 		
-		gtk_tree_model_get (GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
-							        COLUMN_PATH, &utf8_path,
-							        COLUMN_NO_FILES_FOUND, &no_files_found,
-								-1);
+		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
+				    COLUMN_NAME, &utf8_name,
+				    COLUMN_PATH, &utf8_path,
+				    COLUMN_NO_FILES_FOUND, &no_files_found,
+				   -1);
+				   
 		if (!no_files_found) {
 			popup = gnome_popup_menu_new (popup_menu);
 		    
-			gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL, (GdkEventButton *)event,
-				 	           data, NULL);
+			gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL, 
+						   (GdkEventButton *)event, data, NULL);
 		}
 	}
 	return FALSE;
@@ -566,18 +560,40 @@ save_session_cb (GnomeClient 	    *client,
 }
 
 gboolean
-escape_key_press_cb (GtkWidget    	*widget, 
-		     GdkEventKey	*event, 
-		     gpointer 	data)
+key_press_cb (GtkWidget    	*widget, 
+	      GdkEventKey	*event, 
+	      gpointer 		data)
 {
 	g_return_if_fail (GTK_IS_WIDGET(widget));
 
-	if (event->keyval == GDK_Escape)
-	{
-		if (search_command.running == RUNNING)
-		{
+	if (event->keyval == GDK_Escape) {
+		if (search_command.running == RUNNING) {
 			click_stop_cb (widget, NULL);
-			return FALSE;	
+		}
+	}
+	else if (event->keyval == GDK_F10) {
+		if (event->state & GDK_SHIFT_MASK) {
+			GtkWidget *popup;
+			gchar *utf8_name = NULL;
+			gchar *utf8_path = NULL;
+			gboolean no_files_found = FALSE;
+			GtkTreeIter iter;
+		
+			if (!gtk_tree_selection_get_selected (interface.selection, NULL, &iter))
+    				return FALSE;
+		
+			gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
+					    COLUMN_NAME, &utf8_name,
+					    COLUMN_PATH, &utf8_path,
+				    	COLUMN_NO_FILES_FOUND, &no_files_found,
+				    	-1);
+				    
+			if (!no_files_found) {
+				popup = gnome_popup_menu_new (popup_menu);
+		    
+				gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL,
+							   (GdkEventButton *)event, data, NULL);
+			}
 		}
 	}
 	return FALSE;

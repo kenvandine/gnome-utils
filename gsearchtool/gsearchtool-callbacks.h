@@ -105,7 +105,7 @@ save_session_cb 		(GnomeClient 	    *client,
 				 gint 		    fast, 
 				 gpointer 	    client_data);
 gboolean  
-escape_key_press_cb 		(GtkWidget 	*widget, 
+key_press_cb 			(GtkWidget 	*widget, 
 				 GdkEventKey 	*event,
 				 gpointer 	data);	
 gboolean    

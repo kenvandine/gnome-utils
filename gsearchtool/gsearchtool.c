@@ -1403,7 +1403,7 @@ main (int 	argc,
 	gtk_window_set_policy (GTK_WINDOW(interface.main_window), TRUE, TRUE, TRUE);
 
 	g_signal_connect (G_OBJECT(interface.main_window), "delete_event", G_CALLBACK(quit_cb), NULL);
-	g_signal_connect (G_OBJECT(interface.main_window), "key_press_event", G_CALLBACK(escape_key_press_cb), NULL);
+	g_signal_connect (G_OBJECT(interface.main_window), "key_press_event", G_CALLBACK(key_press_cb), NULL);
 
 	client = gnome_master_client ();
 			 
