@@ -1,0 +1,141 @@
+<body> <title> GNOME Stripchart Documentation </title>
+
+<a name="introduction">
+<h2> GNOME Stripchart Documentation </h2>
+
+The GNOME stripchart program charts various user-specified parameters as a
+function of time.  Its main use is to chart system performance parameters
+such as CPU load, CPU utilization, network traffic levels, and the like.
+Other more ingenious uses are left as an exercise for the interested
+user.
+
+<p> The gstripchart program periodically reads data from a file, extracts a
+value, and displays these values in one of several formats.  The
+default format is a graphical display similar to that of a stripchart
+recorder.  Hence the name, "gstripchart".
+
+<p> On systems such as Linux, in which the system parameters are available
+in human-readable form in the /proc directory, the gstripchart program makes
+a dandy performance monitoring tool, similar to but more versatile
+than xload.  
+
+<p> Instead of being limited to a few standard performance parameters, the
+gstripchart program can plot any time-variant parameter than can be read
+from a file or pipe.  This ability to read data from a pipe provides a
+very versatile and easy to use method of setting up custom displays.
+
+<p> The gstripchart program determines the parameters to display by
+reading a configuration file.  The gstripchart program will first look
+for a configuration file specified on the command line, then look for
+a file named gstripchart.conf in the current directory, then look for
+a file named .gstripchart.conf in the users home directory, then look
+for a file named /etc/gstripchart.conf.  If no configuration file is
+found, the program is terminated.
+
+<a name="options">
+<h3> Options </h3>
+
+There are a few command line switches that can be used to alter the
+behavior of the program.
+<pre>
+  -f, --config-file=FILE     configuration file
+  -i, --chart-interval=SECS  chart update interval
+  -j, --slider-interval=SECS slider update interval
+  -M, --omit-menu            omit menu
+  -S, --omit-slider          omit slider
+  -t, --display-type=TYPE    type of display
+		none:	no display is produced (for debugging);
+		text:	a textual numeric display is produced;
+		graph:	a textual graphic display is produced;
+		gtk:	use the default gtk-based graphic display.
+      --class=CLASS          FIXME
+      --display=DISPLAY      X display to use
+      --gxid_host=HOST       FIXME
+      --gxid_port=PORT       FIXME
+      --name=NAME            FIXME
+      --no-xshm              Don't use X shared memory extension
+      --xim-preedit=STYLE    FIXME
+      --xim-status=STYLE     FIXME
+  -?, --help                 Give this help list
+      --usage                Give a short usage message
+  -V, --version              Print program version
+</pre>
+
+<a name="configuration">
+<h3> Configuration </h3>
+
+<p> The configuration file has a paragraph of configuration information
+for each parameter to be ploted.  Each of these paragraphs are
+comprised of a series of RFC-822 style "keyword: value" pairs,
+beginning with an "identifier:" line.  A comment can be included by
+putting a sharp sign (#) in the first column of a line.  
+
+<p> The following keywords are available.  Some are optional; some are
+only used by certain display types; many have reasonable default
+values, as described below.
+
+<dl>
+<dt> identifier:
+<dd>	Introduces a parameter definition, and assigns a name to the
+	parameter.  This line *must* be the first line of a parameter
+	description.
+
+<dt> id_char:
+<dd>	Provides a single-character abbreviation for a parameter.
+	Currently unused, this is intended for the non-existant
+	character-graphics display mode.
+
+<dt> color:
+<dd>	Determines the color to be used in displaying a parameter.
+	The color names and their RGB values are taken from X11/rgb.txt.
+
+<dt> filename:
+<dd>	The file from which a parameter value is read.
+	When a filename beginning with a "|" is supplied, input lines
+	will be read from a pipe.
+
+<dt> pattern:
+<dd>	The pattern which identifies the line from which a parameter
+	value is to be extracted.  If no pattern is provided, the
+	first line of the file is used.
+
+<dt> fields:
+<dd>	The number of fields to be split out of the first line which
+	matches the pattern.  Splitting is done on whitespace.
+
+<dt> equation:
+<dd>	An equation used to obtain the value to be ploted for this
+	parameter.
+
+<dt> maximum:
+<dd>	The largest value that can be displayed.  Any value in excess
+	of the maximum will be plotted at the top of the display.
+	If omitted, a default value of 1.0 is used.
+
+<dt> maximum:
+<dd>	The smallest value that can be displayed.  Any value less than
+	the minimum will be plotted at the bottom of the display.
+	If omitted, a default value of 0.0 is used.
+</dl>
+
+<p> On each iteration, a value to be displayed is obtained for each
+parameter in the configuration file.  The file named in the "filename"
+line is opened -- either as a pipe if the filename begins with a pipe
+character (|), or as a regular file otherwise -- and a line is read.
+
+<p> If a pattern was specified, lines are read until one is found that
+contains the pattern string anywhere in the line.  This line is split
+into the number of whitespace seperated fields specified in the
+"fields" line.  Each of these fields is interpreted as a floating
+point number.
+
+<p> A value is obtained by evaluating the "equation" line using these
+field values.  The first (or only) value is denoted by $1, the next by
+$2, and so forth.  The difference between the field values between the
+last and the current iteration is denoted by ~1, ~2, and so forth.
+The elapsed time in seconds between the last and current iteration is
+~t.  The requested update interval is $i (and the delta is ~i, but
+will always be zero).  All the usual infix arithmatic operators are
+available.
+
+</body>
