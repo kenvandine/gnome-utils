@@ -30,6 +30,7 @@ force-clean: Makefile clean
 clean:
 	@echo "--- Cleaning"
 	dh_testdir
+	dh_clean
 	rm -f build-debstamp install-debstamp
 	$(MAKE) -f debian/rules reverse-patches
 	[ ! -f Makefile ] || $(MAKE) distclean
