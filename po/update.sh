@@ -6,3 +6,5 @@ xgettext --default-domain=gnome-utils --directory=.. \
 && test ! -f gnome-utils.po \
    || ( rm -f ./gnome-utils.pot \
     && mv gnome-utils.po ./gnome-utils.pot )
+
+msgmerge no.po gnome-utils.pot >no-new.po
