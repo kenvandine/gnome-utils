@@ -30,6 +30,9 @@
 #define EXP 3
 #define SEC 4
 
+#define PHONE 1
+#define EMAIL 2
+
 GtkWidget *gnomecard_window;
 GtkWidget *crd_canvas;
 GnomeCanvasItem *test;
@@ -49,6 +52,7 @@ pix *crd_pix, *ident_pix, *geo_pix, *org_pix, *exp_pix, *sec_pix;
 pix *phone_pix, *email_pix, *addr_pix, *expl_pix, *org_pix;
 
 char *gnomecard_fname;
+gint gnomecard_def_data;
 gboolean gnomecard_changed;
 gboolean found;                 /* yeah... pretty messy. (fixme) */
 
@@ -355,10 +359,13 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 		
 		text[0] = _("Telephone Numbers");
 		text[1] = "";
-		phone = gtk_ctree_insert(crd_tree, parent, NULL, text,
-					 TREE_SPACING, phone_pix->pixmap,
-					 phone_pix->mask, phone_pix->pixmap,
-					 phone_pix->mask, FALSE, FALSE);
+		if (! crd->phone->next)
+			phone = parent;
+		else
+			phone = gtk_ctree_insert(crd_tree, parent, NULL, text,
+															 TREE_SPACING, phone_pix->pixmap,
+															 phone_pix->mask, phone_pix->pixmap,
+															 phone_pix->mask, FALSE, FALSE);
 		
 		for (l = crd->phone; l; l = l->next) {
 			text[0] = ((CardPhone *)l->data)->data;
@@ -387,17 +394,22 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 		
 		text[0] = _("E-mail Addresses");
 		text[1] = "";
-		email = gtk_ctree_insert(crd_tree, parent, NULL, text,
-					 TREE_SPACING, email_pix->pixmap,
-					 email_pix->mask, email_pix->pixmap,
-					 email_pix->mask, FALSE, FALSE);
+		
+		if (! crd->email->next)
+			email = parent;
+		else
+			email = gtk_ctree_insert(crd_tree, parent, NULL, text,
+															 TREE_SPACING, email_pix->pixmap,
+															 email_pix->mask, email_pix->pixmap,
+															 email_pix->mask, FALSE, FALSE);
 		
 		for (l = crd->email; l; l = l->next) {
 			text[0] = email_type_name[((CardEMail *)l->data)->type];
 			text[1] = ((CardEMail *)l->data)->data;
 			gtk_ctree_insert(crd_tree, email, NULL, text,
-					 TREE_SPACING, NULL, NULL, NULL, NULL,
-					 FALSE, FALSE);
+											 TREE_SPACING, email_pix->pixmap,
+											 email_pix->mask, email_pix->pixmap,
+											 email_pix->mask, FALSE, FALSE);
 		}
 	}
 	
@@ -481,23 +493,50 @@ void gnomecard_add_card_sections_to_tree(Card *crd)
 	}
 }
 
+void gnomecard_set_node_info(Card *crd)
+{
+	char *text, *tmp;
+	gint len;
+	
+	if ((text = crd->fname.str) == NULL)
+	  text = _("No Formatted Name for this card.");
+	
+	gtk_ctree_set_node_info(crd_tree, crd->user_data, text,
+				TREE_SPACING, crd_pix->pixmap,
+				crd_pix->mask, crd_pix->pixmap,
+				crd_pix->mask, FALSE, FALSE);
+
+	text = malloc(1);
+	*text = 0;
+	len = 1;
+	if (crd->phone && (gnomecard_def_data & PHONE)) {
+	  tmp = ((CardPhone *) (crd->phone->data))->data;
+		len += strlen(tmp) + 1;
+		text = realloc(text, len);
+		snprintf(text, len, "%s %s", text, tmp);
+	}
+	if (crd->email && (gnomecard_def_data & EMAIL)) {
+		tmp = ((CardEMail *) (crd->email->data))->data;
+		len += strlen(tmp) + 1;
+		text = realloc(text, len);
+		snprintf(text, len, "%s %s", text, tmp);
+	}
+
+	gtk_ctree_set_text(crd_tree, crd->user_data, 1, text);
+	
+	g_free(text);
+}
+
 void gnomecard_add_card_to_tree(Card *crd)
 {
 	char *text[2];
 	
-	if ((text[0] = crd->fname.str) == NULL)
-	  text[0] = _("No Formatted Name for this card.");
-	
-	if (crd->email)
-	  text[1] = ((CardEMail *) (crd->email->data))->data;
-	else
-	  text[1] = "";
+	text[0] = text[1] = "";
 	
 	crd->user_data = gtk_ctree_insert(crd_tree, NULL, NULL, text,
-					TREE_SPACING, crd_pix->pixmap,
-					crd_pix->mask, crd_pix->pixmap,
-					crd_pix->mask, FALSE, FALSE);
+																		0, NULL, NULL, NULL, NULL, FALSE, FALSE);
 	
+	gnomecard_set_node_info(crd);
 	gnomecard_add_card_sections_to_tree(crd);
 }
 
@@ -618,15 +657,8 @@ void gnomecard_scroll_tree(GList *node)
 void gnomecard_update_tree(Card *crd)
 {
 	GtkCTreeNode *node, *tmp;
-	char *text;
 	
-	if ((text = crd->fname.str) == NULL)
-	  text = _("No Formatted Name for this card.");
-	
-	gtk_ctree_set_node_info(crd_tree, crd->user_data, text,
-				TREE_SPACING, crd_pix->pixmap,
-				crd_pix->mask, crd_pix->pixmap,
-				crd_pix->mask, FALSE, FALSE);
+	gnomecard_set_node_info(crd);
 	gtk_ctree_collapse_recursive(crd_tree, crd->user_data);
 	
 	/* FIXME: the gtkctree API is broken. This is a workaround.
@@ -1583,7 +1615,7 @@ void gnomecard_add_dellabel(GtkWidget *widget, gpointer data)
 	GnomeCardDelLabel *p;
 	CardDelLabel *addr;
 	char *text;
-	int i, flag;
+	int i;
 	
 	p = (GnomeCardDelLabel *) data;
 	
@@ -1688,9 +1720,70 @@ void gnomecard_open(GtkWidget *widget, gpointer data)
 	gtk_widget_show(fsel);
 }
 
+void gnomecard_setup_apply(GtkWidget *widget, int page)
+{
+	GnomeCardSetup *setup;
+	GList *i;
+	int old_def_data;
+
+	if (page != -1)
+	  return;             /* ignore partial applies */
+	
+	setup = (GnomeCardSetup *) gtk_object_get_user_data(GTK_OBJECT(widget));
+	
+	old_def_data = gnomecard_def_data;
+	gnomecard_def_data = 0;
+	
+	if (GTK_TOGGLE_BUTTON(setup->def_phone)->active)
+		gnomecard_def_data |= PHONE;
+	
+	if (GTK_TOGGLE_BUTTON(setup->def_email)->active)
+		gnomecard_def_data |= EMAIL;
+	
+	if (gnomecard_def_data != old_def_data)
+		for (i = crds; i; i = i->next)
+			gnomecard_set_node_info((Card *) i->data);
+}
+			
 void gnomecard_setup(GtkWidget *widget, gpointer data)
 {
-	g_warning ("Setup card.");
+	GnomePropertyBox *box;
+	GnomeCardSetup *setup;
+	GtkWidget *vbox, *vbox2, *hbox, *frame;
+	GtkWidget *label, *check;
+	
+	setup = g_malloc(sizeof(GnomeCardSetup));
+	box = GNOME_PROPERTY_BOX(gnome_property_box_new());
+	gtk_object_set_user_data(GTK_OBJECT(box), (gpointer) setup);
+	gtk_window_set_wmclass(GTK_WINDOW(box), "gnomecard",
+			       "GnomeCard");
+	gtk_signal_connect(GTK_OBJECT(box), "apply",
+			   (GtkSignalFunc)gnomecard_setup_apply, NULL);
+
+	vbox = my_gtk_vbox_new();
+	label = gtk_label_new(_("Layout"));
+	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
+	
+	frame = gtk_frame_new(_("Default data"));
+	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
+	
+	vbox2 = my_gtk_vbox_new();
+	gtk_container_add(GTK_CONTAINER(frame), vbox2);
+	/* falta conectar con el apply... checa my_connect. */
+	check = setup->def_phone = gtk_check_button_new_with_label("Phone");
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_def_data & PHONE);
+ 	gtk_signal_connect_object(GTK_OBJECT(check), "clicked",
+				  GTK_SIGNAL_FUNC(gnome_property_box_changed),
+				  GTK_OBJECT(box));
+	gtk_box_pack_start(GTK_BOX(vbox2), check, FALSE, FALSE, 0);
+	check = setup->def_email = gtk_check_button_new_with_label("E-mail");
+ 	gtk_signal_connect_object(GTK_OBJECT(check), "clicked",
+				  GTK_SIGNAL_FUNC(gnome_property_box_changed),
+				  GTK_OBJECT(box));
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), gnomecard_def_data & EMAIL);
+	gtk_box_pack_start(GTK_BOX(vbox2), check, FALSE, FALSE, 0);
+	
+	gtk_widget_show_all(GTK_WIDGET(box));
 }
 
 void gnomecard_quit(GtkWidget *widget, gpointer data)
@@ -2028,6 +2121,7 @@ int main (int argc, char *argv[])
 	menu_del  = cardmenu[8].widget;
 
 	add_menu = addmenu;
+	gnomecard_def_data = PHONE;
 	
 	gnomecard_fname = g_strdup("untitled.gcrd");
 	gnomecard_set_changed(FALSE);

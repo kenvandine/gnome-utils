@@ -38,6 +38,11 @@ typedef struct
 
 typedef struct
 {
+	GtkWidget *def_phone, *def_email;
+} GnomeCardSetup;
+
+typedef struct
+{
 	GtkWidget *data, *type;
 	
 	GList *l;
