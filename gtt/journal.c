@@ -28,6 +28,7 @@
 #include "journal.h"
 #include "phtml.h"
 #include "proj.h"
+#include "props-invl.h"
 #include "props-task.h"
 
 
@@ -39,12 +40,9 @@ typedef struct wiggy_s {
 	GtkHTMLStream *handle;
 	GtkWidget *top;
 	GtkWidget *interval_popup;
-	GtkWidget *interval_edit;
-	GtkWidget *start_widget;
-	GtkWidget *stop_widget;
-	GtkWidget *fuzz_widget;
+	EditIntervalDialog *edit_ivl;
+	GttInterval * interval;
 	GttTask *task;
-	GttInterval *interval;
 } Wiggy;
 
 /* ============================================================== */
@@ -119,7 +117,6 @@ on_print_clicked_cb (GtkWidget *w, gpointer data)
 	printf ("duude print!!\n");
 	glxml = glade_xml_new ("glade/not-implemented.glade", "Not Implemented");
 
-	// wig->interval_edit = glade_xml_get_widget (glxml, "Interval Edit");
 }
 
 static void 
@@ -136,54 +133,9 @@ on_close_clicked_cb (GtkWidget *w, gpointer data)
 	Wiggy *wig = (Wiggy *) data;
 
 	/* close the main journal window ... everything */
-	if (wig->interval_edit) gtk_widget_destroy (wig->interval_edit);
-	gtk_widget_destroy (wig->interval_popup);
+	edit_interval_dialog_destroy (wig->edit_ivl);
 	gtk_widget_destroy (wig->top);
 	g_free (wig);
-}
-
-/* ============================================================== */
-/* interval dialog edits */
-
-static void
-interval_edit_apply_cb(GtkWidget * w, gpointer data) 
-{
-	Wiggy *wig = (Wiggy *) data;
-	GtkWidget *menu, *menu_item;
-	time_t start, stop;
-	int fuzz;
-
-	start = gnome_date_edit_get_date(GNOME_DATE_EDIT(wig->start_widget));
-	stop = gnome_date_edit_get_date(GNOME_DATE_EDIT(wig->stop_widget));
-
-	gtt_interval_set_start (wig->interval, start);
-	gtt_interval_set_stop (wig->interval, stop);
-
-// gtt_project_compute_secs
-/* hack alert XXX fixme need to recalulate caches */
-	menu = gtk_option_menu_get_menu (GTK_OPTION_MENU(wig->fuzz_widget));
-	menu_item = gtk_menu_get_active(GTK_MENU(menu));
-	fuzz = GPOINTER_TO_INT(gtk_object_get_data(GTK_OBJECT(menu_item),
-                                             "fuzz_factor"));
-
-	gtt_interval_set_fuzz (wig->interval, fuzz);
-}
-
-static void
-interval_edit_ok_cb(GtkWidget * w, gpointer data) 
-{
-	Wiggy *wig = (Wiggy *) data;
-	interval_edit_apply_cb(w, data);
-	gtk_widget_destroy (wig->interval_edit);
-	wig->interval_edit = NULL;
-}
-
-static void
-interval_edit_cancel_cb(GtkWidget * w, gpointer data) 
-{
-	Wiggy *wig = (Wiggy *) data;
-	gtk_widget_destroy (wig->interval_edit);
-	wig->interval_edit = NULL;
 }
 
 /* ============================================================== */
@@ -193,105 +145,10 @@ static void
 interval_edit_clicked_cb(GtkWidget * dw, gpointer data) 
 {
 	Wiggy *wig = (Wiggy *) data;
-	GladeXML  *glxml;
-	GtkWidget *w, *menu, *menu_item;
-	time_t start, stop;
-	int fuzz;
 
-	glxml = glade_xml_new ("glade/interval_edit.glade", "Interval Edit");
-
-	wig->interval_edit = glade_xml_get_widget (glxml, "Interval Edit");
-
-	glade_xml_signal_connect_data (glxml, "on_ok_button_clicked",
-	        GTK_SIGNAL_FUNC (interval_edit_ok_cb), wig);
-	  
-	glade_xml_signal_connect_data (glxml, "on_apply_button_clicked",
-	        GTK_SIGNAL_FUNC (interval_edit_apply_cb), wig);
-
-	glade_xml_signal_connect_data (glxml, "on_cancel_button_clicked",
-	        GTK_SIGNAL_FUNC (interval_edit_cancel_cb), wig);
-	  
-	w = glade_xml_get_widget (glxml, "start_date");
-	wig->start_widget = w;
-	start = gtt_interval_get_start (wig->interval);
-	gnome_date_edit_set_time (GNOME_DATE_EDIT(w), start);
-
-	w = glade_xml_get_widget (glxml, "stop_date");
-	wig->stop_widget = w;
-	stop = gtt_interval_get_stop (wig->interval);
-	gnome_date_edit_set_time (GNOME_DATE_EDIT(w), stop);
-
-	w = glade_xml_get_widget (glxml, "fuzz_menu");
-	wig->fuzz_widget = w;
-	fuzz = gtt_interval_get_fuzz (wig->interval);
-
-	/* ----------------------------------------------- */
-	/* install option data by hand ... ugh 
-	 * wish glade did this for us .. */
-	menu = gtk_option_menu_get_menu (GTK_OPTION_MENU(w));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 0);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(0));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 1);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(300));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 2);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(600));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 3);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(900));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 4);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(1200));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 5);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(1800));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 6);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(3600));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 7);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(7200));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 8);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(3*3600));
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 9);
-	menu_item =  gtk_menu_get_active(GTK_MENU(menu));
-	gtk_object_set_data(GTK_OBJECT(menu_item), 
-		"fuzz_factor", GINT_TO_POINTER(12*3600));
-
-	/* OK, now set the initial value */
-	gtk_option_menu_set_history(GTK_OPTION_MENU(w), 0);
-	if (90 < fuzz) gtk_option_menu_set_history(GTK_OPTION_MENU(w), 1);
-	if (450 < fuzz) gtk_option_menu_set_history(GTK_OPTION_MENU(w), 2);
-	if (750 < fuzz) gtk_option_menu_set_history(GTK_OPTION_MENU(w), 3);
-	if (1050 < fuzz) gtk_option_menu_set_history(GTK_OPTION_MENU(w), 4);
-	if (1500 < fuzz) gtk_option_menu_set_history(GTK_OPTION_MENU(w), 5);
-	if (2700 < fuzz) gtk_option_menu_set_history(GTK_OPTION_MENU(w), 6);
-	if (5400 < fuzz) gtk_option_menu_set_history(GTK_OPTION_MENU(w), 7);
-	if (9000 < fuzz) gtk_option_menu_set_history(GTK_OPTION_MENU(w), 8);
-	if (6*3600 < fuzz) gtk_option_menu_set_history(GTK_OPTION_MENU(w), 9);
-
+	if (NULL == wig->edit_ivl) wig->edit_ivl = edit_interval_dialog_new();
+	edit_interval_set_interval (wig->edit_ivl, wig->interval);
+	edit_interval_dialog_show (wig->edit_ivl);
 }
 
 static void
@@ -404,7 +261,7 @@ edit_journal(GtkWidget *widget, gpointer data)
 	/* signals for the browser, and the journal window */
 
 	wig = g_new0 (Wiggy, 1);
-	wig->interval_edit = NULL;
+	wig->edit_ivl = NULL;
 
 	wig->top = jnl_top;
 	wig->htmlw = GTK_HTML(jnl_browser);
@@ -416,16 +273,7 @@ edit_journal(GtkWidget *widget, gpointer data)
 	glade_xml_signal_connect_data (glxml, "on_close_clicked",
 	        GTK_SIGNAL_FUNC (on_close_clicked_cb), wig);
 	  
-	glade_xml_signal_connect_data (glxml, "on_menu_close_activate",
-	        GTK_SIGNAL_FUNC (on_close_clicked_cb), wig);
-	  
 	glade_xml_signal_connect_data (glxml, "on_save_clicked",
-	        GTK_SIGNAL_FUNC (on_save_clicked_cb), wig);
-	  
-	glade_xml_signal_connect_data (glxml, "on_menu_save_activate",
-	        GTK_SIGNAL_FUNC (on_save_clicked_cb), wig);
-	  
-	glade_xml_signal_connect_data (glxml, "on_menu_saveas_activate",
 	        GTK_SIGNAL_FUNC (on_save_clicked_cb), wig);
 	  
 	glade_xml_signal_connect_data (glxml, "on_print_clicked",
@@ -461,10 +309,6 @@ edit_journal(GtkWidget *widget, gpointer data)
 	glade_xml_signal_connect_data (glxml, "on_merge_down_activate",
 	        GTK_SIGNAL_FUNC (interval_merge_down_clicked_cb), wig);
 	  
-
-	/* ---------------------------------------------------- */
-	/* this is the dialog for editing intervals */
-
 	/* ---------------------------------------------------- */
 	/* finally ... display the actual journal */
 

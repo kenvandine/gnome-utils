@@ -101,10 +101,9 @@ prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 
 /* ============================================================== */
 
-static PropDlg *dlg = NULL;
 
 static void 
-do_set_project(GttProject *proj)
+do_set_project(GttProject *proj, PropDlg *dlg)
 {
 	char buff[132];
 
@@ -163,14 +162,13 @@ do_set_project(GttProject *proj)
 
 /* ============================================================== */
 
-static void 
+static PropDlg *
 prop_dialog_new (void)
 {
+        PropDlg *dlg;
 	GladeXML *gtxml;
 	GtkWidget *e;
         static GnomeHelpMenuEntry help_entry = { NULL, "index.html#PROP" };
-
-	if (dlg) return;
 
 	dlg = g_malloc(sizeof(PropDlg));
 
@@ -254,26 +252,29 @@ prop_dialog_new (void)
 	gnome_dialog_set_parent(GNOME_DIALOG(dlg->dlg), GTK_WINDOW(window));
 
 */
+	return dlg;
 }
 
 
 /* ============================================================== */
 
+static PropDlg *dlog = NULL;
+
 void 
 prop_dialog_show(GttProject *proj)
 {
-	if (!dlg) prop_dialog_new();
+	if (!dlog) dlog = prop_dialog_new();
  
-	do_set_project(proj);
-	gtk_widget_show(GTK_WIDGET(dlg->dlg));
+	do_set_project(proj, dlog);
+	gtk_widget_show(GTK_WIDGET(dlog->dlg));
 }
 
 void 
 prop_dialog_set_project(GttProject *proj)
 {
-	if (!dlg) return;
+	if (!dlog) return;
  
-	do_set_project(proj);
+	do_set_project(proj, dlog);
 }
 
 /* ==================== END OF FILE ============================= */
