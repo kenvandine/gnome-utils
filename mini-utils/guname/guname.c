@@ -418,6 +418,21 @@ free_imlib_image (GtkObject *object, gpointer data)
 
 #endif
 
+static void
+close_cb (GtkWidget * widget, gpointer user_data)
+{
+        gtk_widget_destroy (widget);
+        gtk_main_quit ();
+}
+
+static void
+help_cb (GtkWidget * widget, gpointer user_data)
+{
+    GnomeHelpMenuEntry ref = {"guname", "index.html"};
+                        gnome_help_display (NULL, &ref);
+}
+
+
 static void popup_main_dialog()
 {
   GtkWidget * d;
@@ -425,9 +440,9 @@ static void popup_main_dialog()
   GtkWidget * list_box;
 
   d = gnome_dialog_new( _("System Information"), 
-                        GNOME_STOCK_BUTTON_OK, NULL );
-
-  gnome_dialog_set_close(GNOME_DIALOG(d), TRUE);
+                        GNOME_STOCK_BUTTON_OK,
+                        GNOME_STOCK_BUTTON_HELP, 
+                        NULL );
  
   logo_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL/2);
   do_logo_box(logo_box);
@@ -440,9 +455,14 @@ static void popup_main_dialog()
   gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(d)->vbox), list_box,
                      TRUE, TRUE, GNOME_PAD_SMALL/2);
 
-  gtk_signal_connect(GTK_OBJECT(d), "close",
-                     GTK_SIGNAL_FUNC(gtk_main_quit),
-                     NULL);
+  gtk_signal_connect (GTK_OBJECT(d), "close", 
+                       GTK_SIGNAL_FUNC(close_cb), &d); 
+
+  gnome_dialog_button_connect (GNOME_DIALOG (d), 0,
+                               GTK_SIGNAL_FUNC (close_cb), &d);
+  gnome_dialog_button_connect (GNOME_DIALOG (d), 1,
+                                     GTK_SIGNAL_FUNC (help_cb), &d);
+  gnome_dialog_set_default (GNOME_DIALOG (d), 0);
 
   gtk_widget_show_all(d);
 }

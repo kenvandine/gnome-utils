@@ -1,5 +1,7 @@
 # Process this file with automake to produce Makefile.in
 
+SUBDIRS = doc
+
 if GUNAME_CAPPLET
 GUNAME_CAPPLET_LIBS=-lcapplet -lgnorba
 CFLAGS+=-DGUNAME_CAPPLET
