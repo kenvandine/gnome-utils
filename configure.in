@@ -38,7 +38,7 @@ dnl *****************************************
 dnl libgnome, libgnomeui needed for all utils
 dnl *****************************************
 
-PKG_CHECK_MODULES(GNOME_UTILS, gtk+-2.0 >= $GTK_REQUIRED, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+PKG_CHECK_MODULES(GNOME_UTILS, gtk+-2.0 >= $GTK_REQUIRED libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
 AC_SUBST(GNOME_UTILS_CFLAGS)
 AC_SUBST(GNOME_UTILS_LIBS)
 
