@@ -1,11 +1,21 @@
+dnl 
+dnl configure.in for gnome-utils, process with autoconf >= 2.13
+dnl
+
 AC_INIT(gtt)
 
 AM_CONFIG_HEADER(config.h)
+AC_CONONICAL_SYSTEM
+
 AM_INIT_AUTOMAKE(gnome-utils, 1.0.51)
 
+dnl 
+dnl only useful for maintainers
+dnl
 AM_MAINTAINER_MODE
 
 AM_ACLOCAL_INCLUDE(macros)
+AC_CONFIG_SUBDIRS(gfloppy)
 
 GNOME_INIT(applets)
 
@@ -53,6 +63,20 @@ AC_FUNC_STRFTIME
 AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname)
 
 GNOME_CHECK_GUILE
+dnl *******************************
+dnl LibGlade
+dnl *******************************
+AC_MSG_CHECKING(for Glade libraries >= 0.11)
+if gnome-config --libs libglade > /dev/null 2>&1; then
+    vers=`gnome-config --modversion libglade | awk 'BEGIN { FS = "."; } { print $1 * 1000 + $2;}'`
+    if test "$vers" -ge 11; then
+        AC_MSG_RESULT(found)
+    else
+	AC_MSG_ERROR(You need at least libglade 0.11 for this version of gnome-utils)
+    fi
+else
+    AC_MSG_ERROR(Did not find libGlade installed)
+fi
 
 ALL_LINGUAS="ca cs da de el en_GB es et fi fr ga hu it ja ko lt nl no pl pt pt_BR ro ru sv uk wa zh_TW.Big5 zh_CN.GB2312"
 AM_GNOME_GETTEXT
