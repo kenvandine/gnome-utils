@@ -1778,7 +1778,7 @@ create_additional_constraint_section (void)
 
 	interface.add_button = gtk_button_new_from_stock (GTK_STOCK_ADD);
 	GTK_WIDGET_UNSET_FLAGS (interface.add_button, GTK_CAN_DEFAULT);
-	interface.constraint_size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
+	interface.constraint_size_group = gtk_size_group_new (GTK_SIZE_GROUP_BOTH);
 	gtk_size_group_add_widget (interface.constraint_size_group, interface.add_button);
 	
 	g_signal_connect (G_OBJECT(interface.add_button),"clicked",
