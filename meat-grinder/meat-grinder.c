@@ -897,9 +897,9 @@ main (int argc, char *argv [])
 		exit (1);
 	}
 
-	tar_prog = gnome_is_program_in_path ("gtar");
+	tar_prog = g_find_program_in_path ("gtar");
 	if (tar_prog == NULL)
-		tar_prog = gnome_is_program_in_path ("tar");
+		tar_prog = g_find_program_in_path ("tar");
 	if (tar_prog == NULL) {
 		ERRDLG (_("Cannot find the archive (tar) program!\n"
 			  "This is the program used for creating archives."));
