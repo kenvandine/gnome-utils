@@ -1,16 +1,18 @@
 bin_PROGRAMS = gdialog
 
 gdialog_SOURCES =	\
-	checklist.c \
-	dialog.c \
-	guage.c \
-	inputbox.c \
-	menubox.c \
-	mouse.c \
-	msgbox.c \
-	rc.c \
-	textbox.c \
-	util.c \
+	colors.h	\
+	dialog.h	\
+	checklist.c 	\
+	dialog.c 	\
+	guage.c 	\
+	inputbox.c 	\
+	menubox.c 	\
+	mouse.c 	\
+	msgbox.c 	\
+	rc.c 		\
+	textbox.c 	\
+	util.c 		\
 	yesno.c
 
 INCLUDES=-I. $(GNOME_INCLUDEDIR) $(CURSES_INCLUDEDIR) 

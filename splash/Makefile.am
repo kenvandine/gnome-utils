@@ -8,7 +8,8 @@ INCLUDES = -I$(includedir) 				\
 bin_PROGRAMS = splash splac
 
 splash_SOURCES = \
-	main.c
+	main.c	\
+	splash.h
 
 splac_SOURCES = \
 	splac.c
