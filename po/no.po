@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2000-06-05 08:01+0200\n"
-"PO-Revision-Date: 2000-06-05 08:02+02:00\n"
+"POT-Creation-Date: 2000-06-08 15:54+0200\n"
+"PO-Revision-Date: 2000-06-08 15:57+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -465,12 +465,12 @@ msgstr "Nytt"
 msgid "Clear the search window"
 msgstr "Tøm søkevinduet"
 
-#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:565
+#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:610
 #: mini-utils/gw/gw.c:508
 msgid "Add"
 msgstr "Legg til"
 
-#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:491
+#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:536
 #: logview/actions.c:127
 msgid "Remove"
 msgstr "Fjern"
@@ -581,35 +581,58 @@ msgstr "Søket kjører allerede på en annen side"
 msgid "Search Results"
 msgstr "Søkeresultater"
 
-#: gsearchtool/gsearchtool.c:329
+#: gsearchtool/gsearchtool.c:329 gsearchtool/gsearchtool.c:360
 msgid "Start directory does not exist"
 msgstr "Startkatalogen eksisterer ikke"
 
-#: gsearchtool/gsearchtool.c:483
+#: gsearchtool/gsearchtool.c:369
+msgid "Search command line"
+msgstr "Kommandolinje for søk"
+
+#: gsearchtool/gsearchtool.c:375
+msgid ""
+"This is the command line that can be used to execute this search from the "
+"console:\n"
+"(Note: to print one file per line rather then null separated,\n"
+"append \"| tr '\\000' '\\n'\" to the line below)"
+msgstr ""
+"Dette er kommandolinjen som kan brukes til å kjøre dette søket fra konsollet:\n"
+"(Merk: for å skrive ut en fil per linje i stedet for null-separert,\n"
+"legg til \"| tr '\\000' '\\n\" på linjen under)"
+
+#: gsearchtool/gsearchtool.c:462
+msgid "Entry changed called for a non entry option!"
+msgstr "Oppføring endret ble kalt for et alternativ som ikke gjaldt oppføringen!"
+
+#: gsearchtool/gsearchtool.c:528
 msgid "Enable"
 msgstr "Slå på"
 
-#: gsearchtool/gsearchtool.c:543
+#: gsearchtool/gsearchtool.c:588
 msgid "Start in directory:"
 msgstr "Start i katalog:"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:590
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: gsearchtool/gsearchtool.c:576 gsearchtool/gsearchtool.c:659
+#: gsearchtool/gsearchtool.c:621
+msgid "Show Command"
+msgstr "Vis kommando"
+
+#: gsearchtool/gsearchtool.c:626 gsearchtool/gsearchtool.c:709
 msgid "Start"
 msgstr "Start"
 
-#: gsearchtool/gsearchtool.c:577 gsearchtool/gsearchtool.c:660
+#: gsearchtool/gsearchtool.c:627 gsearchtool/gsearchtool.c:710
 msgid "Stop"
 msgstr "Stopp"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:660
 msgid "Nothing to locate"
 msgstr "Ingenting å søke etter"
 
-#: gsearchtool/gsearchtool.c:638
+#: gsearchtool/gsearchtool.c:688
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -620,31 +643,31 @@ msgstr ""
 "og hvis du skriver inn en streng med jokertegn, må den være lik\n"
 "hele stien"
 
-#: gsearchtool/gsearchtool.c:647
+#: gsearchtool/gsearchtool.c:697
 msgid "Locate file: "
 msgstr "Finn fil: "
 
-#: gsearchtool/gsearchtool.c:681
+#: gsearchtool/gsearchtool.c:731
 msgid "Full find (find)"
 msgstr "Utvidet søk (find)"
 
-#: gsearchtool/gsearchtool.c:683
+#: gsearchtool/gsearchtool.c:733
 msgid "Quick find (locate)"
 msgstr "Hurtigsøk (locate)"
 
-#: gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:754
 msgid "The Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
-#: gsearchtool/gsearchtool.c:705
+#: gsearchtool/gsearchtool.c:755
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998,2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:707
+#: gsearchtool/gsearchtool.c:757
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Grensesnitt mot UNIXs find/grep/locate kommandoer"
 
-#: gsearchtool/gsearchtool.c:765
+#: gsearchtool/gsearchtool.c:815
 msgid "Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
