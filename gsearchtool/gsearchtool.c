@@ -599,6 +599,7 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 	GnomeVFSFileInfo *vfs_file_info = gnome_vfs_file_info_new ();
 	gchar *utf8_file = g_locale_to_utf8 (file, -1, NULL, NULL, NULL);
 	gchar *readable_size, *readable_date, *date;
+	gchar *utf8_base_name, *utf8_dir_name;
 	
 	if (pixbuf != NULL) {
 		GdkPixbuf *scaled = gdk_pixbuf_scale_simple (pixbuf,
@@ -612,12 +613,16 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
 	readable_date = get_readable_date (vfs_file_info->mtime);
 	date = get_basic_date (vfs_file_info->mtime);
+	utf8_base_name = g_locale_to_utf8 (get_file_base_name(file), -1, NULL, 
+					   NULL, NULL);
+	utf8_dir_name = g_locale_to_utf8 (get_file_dir_name(file), -1, NULL, 
+					  NULL, NULL);
 
 	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
 	gtk_list_store_set (GTK_LIST_STORE(store), iter,
 			    COLUMN_ICON, pixbuf, 
-			    COLUMN_NAME, get_file_base_name(utf8_file),
-			    COLUMN_PATH, get_file_dir_name(utf8_file),
+			    COLUMN_NAME, utf8_base_name,
+			    COLUMN_PATH, utf8_dir_name,
 			    COLUMN_READABLE_SIZE, readable_size,
 			    COLUMN_SIZE, (gdouble) vfs_file_info->size,
 			    COLUMN_TYPE, description,
@@ -628,6 +633,8 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 	gnome_vfs_file_info_clear (vfs_file_info);
 	g_object_unref (G_OBJECT (pixbuf));
 	g_free (utf8_file);
+	g_free (utf8_base_name);
+	g_free (utf8_dir_name);
 	g_free (icon_path); 
 	g_free (readable_size);
 	g_free (readable_date);
@@ -1794,6 +1801,27 @@ window_click(GtkWidget *w, GdkEventButton *be)
 	return TRUE;
 }
 
+static gint
+save_session (GnomeClient *client, gint phase,
+ 	      GnomeRestartStyle save_style, gint shutdown,
+ 	      GnomeInteractStyle interact_style, gint fast,
+ 	      gpointer client_data)
+{
+ 	gchar *argv[] = { NULL };
+ 
+ 	argv[0] = (gchar *) client_data;
+ 	gnome_client_set_clone_command (client, 1, argv);
+ 	gnome_client_set_restart_command (client, 1, argv);
+ 
+ 	return TRUE;
+}
+ 
+static gint
+die (GnomeClient *client, gpointer client_data)
+{
+	gtk_main_quit ();
+}
+
 static GnomeUIInfo file_menu[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("S_how Command"), "", run_cmd_dialog,GTK_STOCK_NEW),
 	GNOMEUIINFO_ITEM_STOCK(N_("Save Results _As..."), "",show_file_selector,GTK_STOCK_SAVE_AS),
@@ -1818,6 +1846,7 @@ int
 main(int argc, char *argv[])
 {
 	GnomeProgram *gsearchtool;
+	GnomeClient *client;
 	GdkGeometry hints;
 	GtkWidget *search;
 
@@ -1843,7 +1872,15 @@ main(int argc, char *argv[])
 
 	g_signal_connect(G_OBJECT(app), "button_press_event",
 			 G_CALLBACK(window_click), NULL);
+		
+	/*set up session management*/		 
+	client = gnome_master_client ();		 
+			 
+	g_signal_connect (client, "save_yourself",
+			  G_CALLBACK (save_session), (gpointer)argv[0]);
 
+	g_signal_connect (client, "die", G_CALLBACK (die), NULL);		 
+			 
 	/*set up the menu*/
         gnome_app_create_menus(GNOME_APP(app), gsearch_menu);
 
