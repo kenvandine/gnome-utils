@@ -166,6 +166,7 @@ on_prefs_click(GtkWidget *w, int button, Chart_app *app)
       gnome_dialog_close(GNOME_DIALOG(app->prefs->dialog));
       break;
     }
+  gtk_widget_queue_draw(app->strip);
 }
 
 static void
