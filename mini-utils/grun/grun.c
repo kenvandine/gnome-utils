@@ -40,7 +40,6 @@ static void string_callback(gchar * s, gpointer data)
   if (s) {
     run_command(s);
   }
-  gtk_main_quit(); /* When the close signal works this line comes out */
 }
 
 int main (int argc, char ** argv)
@@ -55,17 +54,10 @@ int main (int argc, char ** argv)
   gnome_init (APPNAME, 0, argc, argv, 0, 0);
 
   dialog = gnome_request_string_dialog(_("Enter a command to execute:"),
-				       string_callback, NULL);
+                                       string_callback, NULL);
 
-#if 0 /* Damn gnome-dialog is still broken */
   gtk_signal_connect(GTK_OBJECT(dialog), "close", 
 		     GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
-#else /* Temporary hack */
-  gnome_dialog_button_connect(GNOME_DIALOG(dialog), 1,
-			      GTK_SIGNAL_FUNC(gtk_main_quit),
-			      NULL); 
-  /* Still doesn't work if you press Escape */
-#endif
 
   gtk_main();
 
