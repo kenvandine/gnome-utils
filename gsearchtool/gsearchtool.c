@@ -1244,6 +1244,11 @@ create_search_results_section (void)
 			  G_CALLBACK (drag_file_cb), 
 			  NULL);
 			  
+	g_signal_connect (G_OBJECT (interface.tree),
+			  "drag_begin",
+			  G_CALLBACK (drag_begin_file_cb),
+			  NULL);	  
+			  
 	g_signal_connect (G_OBJECT(interface.tree), 
 			  "event_after",
 		          G_CALLBACK(file_event_after_cb), 

@@ -79,6 +79,13 @@ void
 open_folder_cb 			(GtkWidget 	*widget, 
 				 gpointer 	data);
 void  
+drag_begin_file_cb  		(GtkWidget          *widget,
+	      			 GdkDragContext     *context,
+	       			 GtkSelectionData   *selection_data,
+	       			 guint               info,
+	       			 guint               time,
+	       			 gpointer            data);
+void  
 drag_file_cb  			(GtkWidget          *widget,
 	      			 GdkDragContext     *context,
 	       			 GtkSelectionData   *selection_data,

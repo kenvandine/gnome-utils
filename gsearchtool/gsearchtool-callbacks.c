@@ -603,6 +603,22 @@ file_event_after_cb  (GtkWidget 	*widget,
 }
 
 void  
+drag_begin_file_cb  (GtkWidget          *widget,
+		     GdkDragContext     *context,
+		     GtkSelectionData   *selection_data,
+		     guint               info,
+		     guint               time,
+		     gpointer            data)
+{	
+	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) > 1) {
+		gtk_drag_set_icon_stock (context, GTK_STOCK_DND_MULTIPLE, 0, 0);
+	}
+	else {
+		gtk_drag_set_icon_stock (context, GTK_STOCK_DND, 0, 0);
+	}
+}
+
+void  
 drag_file_cb  (GtkWidget          *widget,
 	       GdkDragContext     *context,
 	       GtkSelectionData   *selection_data,
