@@ -158,6 +158,10 @@ strip_overlay_indicators(Strip *strip)
   gint indicator_x = 0, indicator_y = 0, indicator_step = 10;
 
   for (list = CHART(strip)->param; list; list = g_slist_next(list))
+    if (((ChartDatum *)list->data)->plot_style == chart_plot_indicator)
+      indicator_x += indicator_step;
+
+  for (list = CHART(strip)->param; list; list = g_slist_next(list))
     {
       ChartDatum *datum = (ChartDatum *)list->data;
       ChartPlotStyle plot = datum->plot_style;
@@ -165,6 +169,7 @@ strip_overlay_indicators(Strip *strip)
       if (plot == chart_plot_indicator)
 	{
 	  gint c = datum->history[datum->newest] + 0.5;
+	  indicator_x -= indicator_step;
 	  if (c > 0)
 	    {
 	      if (c > datum->colors)
@@ -177,7 +182,6 @@ strip_overlay_indicators(Strip *strip)
 		indicator_x + 1, indicator_y + 1,
 		indicator_step - 1, indicator_step - 1);
 	    }
-	  indicator_x += indicator_step;
 	}
     }
 }
