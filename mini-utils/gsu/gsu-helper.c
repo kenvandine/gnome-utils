@@ -275,13 +275,13 @@ helper_error (int status, int errnum, const char *message, ...)
 static char *
 helper_read_password (void)
 {
-  char password [BUFSIZ], *text;
-  unsigned int len;
+  char password [4100], *text;
+  size_t len;
 
   if (read (passwd_fd, &len, sizeof (len)) != sizeof (len))
     helper_io_error ("read (passwd_fd)");
 
-  if (len+1 > BUFSIZ)
+  if ((len <= 0) || (len > 4095))
     helper_abort ();
 
   if (read (passwd_fd, password, len) != len)
