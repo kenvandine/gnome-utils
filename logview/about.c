@@ -49,7 +49,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 	  NULL
   };
   /* Translator credits */
-  gchar *translator_credits = _("");
+  gchar *translator_credits = _("translator_credits");
 
   if (about_window != NULL) {
 	  gtk_widget_show_now (about_window);
@@ -74,7 +74,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 				  _(comments),
 				  author,
 				  (const char **)documenters,
-				  (const char *)translator_credits,
+				  strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 				  logo);
   if (app != NULL)
 	  gtk_window_set_transient_for (GTK_WINDOW (about_window),

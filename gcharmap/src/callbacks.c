@@ -41,7 +41,7 @@ cb_about_click (GtkWidget *widget, gpointer user_data)
 	    NULL
     };
     /* Translator credits */
-    gchar *translator_credits = _("");
+    gchar *translator_credits = _("translator_credits");
     GtkWidget *dialog;
     GdkPixbuf *logo = NULL;
     gchar *logo_fn;
@@ -61,7 +61,7 @@ cb_about_click (GtkWidget *widget, gpointer user_data)
       "Warning: might contain bad English."),
       authors,
       (const char **)documenters,
-      (const char *)translator_credits,
+      strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
       logo
     );
     gtk_widget_show (dialog);

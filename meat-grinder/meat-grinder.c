@@ -377,7 +377,7 @@ about_cb (GtkWidget *widget, gpointer data)
 		NULL
 	};
 	/* Translator credits */
-	gchar *translator_credits = _("");
+	gchar *translator_credits = _("translator_credits");
 
 	if (about != NULL) {
 		gtk_widget_show_now (about);
@@ -389,7 +389,7 @@ about_cb (GtkWidget *widget, gpointer data)
 				 _("Drag files in to make archives"),
 				 (const gchar **)authors,
 				 (const gchar **)documenters,
-				 (const gchar *)translator_credits,
+				 strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 				 NULL);
 	g_signal_connect (GTK_OBJECT (about), "destroy",
 			    GTK_SIGNAL_FUNC (gtk_widget_destroyed),
