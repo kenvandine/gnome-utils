@@ -1,3 +1,20 @@
+2003-12-09  Dennis Cranston <dennis_cranston at yahoo com>
+
+	* gsearchtool-alert-dialog.[ch]:  New files to implement 
+	an HIG compliant alert dialog.
+	
+	* Makefile.am:  Added gsearchtool-alert-dialog.[ch].
+	
+	* gsearchtool.c, gsearchtool-callbacks.c:  Modified to 
+	use the alert dialog.  
+	
+	* gsearchtool-support.[ch]:  Removed gsearchtool_hig_dialog_new().
+	Added gsearchtool_button_new_with_stock_icon().
+	
+	* gsearchtool-callbacks.c:  Modified open_file_cb() and
+	file_event_after_cb() to match the behavior of the
+	spacial nautilus.
+	
 2003-12-08  Dennis Cranston <dennis_cranston at yahoo com>
 
 	* gsearchtool-support.c:  HIGify the primary message

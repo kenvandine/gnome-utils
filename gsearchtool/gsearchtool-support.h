@@ -104,11 +104,8 @@ gsearchtool_unique_filename 	(const gchar *dir,
 				 const gchar *suffix);
 			      
 GtkWidget *
-gsearchtool_hig_dialog_new      (GtkWindow      *parent,
-                                 GtkDialogFlags flags,
-                                 GtkButtonsType buttons,
-                                 const gchar    *header,
-                                 const gchar    *message);
+gsearchtool_button_new_with_stock_icon (const gchar *label,
+                                        const gchar *stock_id);
 				 			      
 #ifdef __cplusplus
 }

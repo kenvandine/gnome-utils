@@ -16,6 +16,8 @@ schemadir = $(sysconfdir)/gconf/schemas
 schema_DATA = gnome-search-tool.schemas
 
 gnome_search_tool_SOURCES =	\
+	gsearchtool-alert-dialog.c \
+	gsearchtool-alert-dialog.h \
 	gsearchtool-support.c   \
 	gsearchtool-support.h   \
 	gsearchtool-callbacks.c \

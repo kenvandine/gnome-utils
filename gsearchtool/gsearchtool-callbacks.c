@@ -44,6 +44,7 @@
 #include "gsearchtool.h"
 #include "gsearchtool-support.h"
 #include "gsearchtool-callbacks.h"
+#include "gsearchtool-alert-dialog.h"
 
 static GnomeUIInfo popup_menu[] = {
 	GNOMEUIINFO_ITEM_STOCK (N_("_Open"), 
@@ -103,11 +104,13 @@ help_cb (GtkWidget 	*widget,
 	if (error) {
 		GtkWidget *dialog;
 
-		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-		                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-						     GTK_BUTTONS_OK,
-		                                     _("Could not open help document"),
-						     error->message);
+		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+						   GTK_MESSAGE_ERROR,
+						   GTK_BUTTONS_OK,
+						   _("Could not open help document."),
+						   error->message,
+						   NULL);	
 
                 g_signal_connect (G_OBJECT (dialog),
                                   "response",
@@ -308,24 +311,36 @@ open_file_cb (GtkWidget 	*widget,
 	if (g_list_length (list) > SILENT_WINDOW_OPEN_LIMIT) {
 	
 		GtkWidget *dialog;
-		gchar     *title;
-		gchar     *message;
+		GtkWidget *button;
+		gchar     *primary;
+		gchar     *secondary;
 		gint      response;
 
-		title = g_strdup_printf (_("Open %d documents?"), g_list_length (list));
-		message = g_strdup_printf (_("This will open %d separate documents. Are you sure you want to do this?"),
+		primary = g_strdup_printf (_("Are you sure you want to open %d documents?"), 
 		                           g_list_length (list));
+		
+		secondary = g_strdup_printf (_("This will open %d separate windows."), 
+		                             g_list_length (list));
+		
+		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+						   GTK_MESSAGE_QUESTION,
+						   GTK_BUTTONS_CANCEL,
+						   primary,
+						   secondary,
+						   NULL);
 
-		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-			                             0 /* flags */,
-						     GTK_BUTTONS_OK_CANCEL,
-						     title,
-						     message);
+		button = gtk_button_new_from_stock ("gtk-open");
+		GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+		gtk_widget_show (button);
+
+		gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_OK);
+		gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 		
 		response = gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
-		g_free (title);        
-		g_free (message);
+		g_free (primary);        
+		g_free (secondary);
 		
 		if (response == GTK_RESPONSE_CANCEL) {
 			g_list_free (list);
@@ -355,35 +370,41 @@ open_file_cb (GtkWidget 	*widget,
 				
 			file = g_build_filename (utf8_path, utf8_name, NULL);
 			locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
-			
-			if (is_component_action_type (locale_file) 
-		    	    && is_nautilus_running ()) {
-				open_file_with_nautilus (locale_file);
-			}
-			else {
-				if (open_file_with_application (locale_file) == FALSE) {
-				
-					if (launch_file (locale_file) == FALSE) {
-						GtkWidget *dialog;
-						gchar     *title;
-						gchar     *text;
 
-						title = g_strdup_printf (_("Could not open document \"%s\""),
-									 g_path_get_basename (file));
-						text = g_strdup (_("There is no installed viewer capable of displaying the document."));	
-							
-						dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-						                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-										     GTK_BUTTONS_OK,
-										     title,
-										     text);
+			if (open_file_with_application (locale_file) == FALSE) {
+				
+				if (launch_file (locale_file) == FALSE) {
+					
+					if (is_component_action_type (locale_file) 
+			    	    	    && is_nautilus_running ()) {
+						open_file_with_nautilus (locale_file);
+					}
+					else {
+						GtkWidget *dialog;
+						gchar     *primary;
+						gchar     *secondary;
+
+						primary = g_strdup_printf (_("Could not open document \"%s\"."),
+									   g_path_get_basename (file));
+						
+						secondary = g_strdup (_("There is no installed viewer capable "
+						                        "of displaying the document."));	
+						
+						dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                                                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+						                                   GTK_MESSAGE_ERROR,
+						                                   GTK_BUTTONS_OK,
+						                                   primary,
+						                                   secondary,
+						                                   NULL);	
+
                 				g_signal_connect (G_OBJECT (dialog),
                         				"response",
                         				G_CALLBACK (gtk_widget_destroy), NULL);
 
 	                			gtk_widget_show (dialog);
-						g_free (title);
-						g_free (text);
+						g_free (primary);
+						g_free (secondary);
 					}
 				}
 			} 
@@ -412,23 +433,36 @@ open_folder_cb (GtkWidget 	*widget,
 	
 	if (g_list_length (list) > SILENT_WINDOW_OPEN_LIMIT) {
 		GtkWidget *dialog;
-		gchar     *title;
-		gchar     *message;
+		GtkWidget *button;
+		gchar     *primary;
+		gchar     *secondary;
 		gint      response;
 
-		title = g_strdup_printf (_("Open %d folders?"), g_list_length (list));
-		message = g_strdup_printf (_("This will open %d separate folders. Are you sure you want to do this?"),
+		primary = g_strdup_printf (_("Are you sure you want to open %d folders?"), 
 		                           g_list_length (list));
+		
+		secondary = g_strdup_printf (_("This will open %d separate windows."),
+		                             g_list_length (list));
+								  
+		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+						   GTK_MESSAGE_QUESTION,
+						   GTK_BUTTONS_CANCEL,
+						   primary,
+						   secondary,
+						   NULL);						  
+		
+		button = gtk_button_new_from_stock ("gtk-open");
+		GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+		gtk_widget_show (button);
 
-		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-			                             0 /* flags */,
-						     GTK_BUTTONS_OK_CANCEL,
-						     title,
-								  message);		
+		gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_OK);
+		gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+								  		
 		response = gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);
-		g_free (title); 
-		g_free (message);
+		g_free (primary); 
+		g_free (secondary);
 				
 		if (response == GTK_RESPONSE_CANCEL) {
 			g_list_free (list);
@@ -456,15 +490,17 @@ open_folder_cb (GtkWidget 	*widget,
 		}
 		else {
 			GtkWidget *dialog;
-			gchar *title;
+			gchar *primary;
 			
-			title = g_strdup_printf (_("Could not open folder \"%s\""), folder_utf8);
-						       
-			dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-		                                             GTK_DIALOG_DESTROY_WITH_PARENT,
-				  		             GTK_BUTTONS_OK,
-							     title,
-							     _("The nautilus file manager is not running."));
+			primary = g_strdup_printf (_("Could not open folder \"%s\"."), folder_utf8);
+			
+			dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                                           GTK_DIALOG_DESTROY_WITH_PARENT,
+					                   GTK_MESSAGE_ERROR,
+						           GTK_BUTTONS_OK,
+						           primary,
+						           _("The nautilus file manager is not running."),
+						           NULL);
 			
 			g_signal_connect (G_OBJECT (dialog),
                         		  "response",
@@ -473,6 +509,7 @@ open_folder_cb (GtkWidget 	*widget,
 	                gtk_widget_show (dialog);			
 			g_free (folder_locale);
 			g_free (folder_utf8);
+			g_free (primary);
 			g_list_free (list);
 			return;
 		}
@@ -528,6 +565,7 @@ move_to_trash_cb (GtkWidget 	*widget,
 	for (index = 0; index < total; index++) {
 	
 		gboolean no_files_found = FALSE;
+		GtkWidget *button;
 		GtkTreeIter iter;
 		GList *list;
 		gchar *utf8_basename;
@@ -557,8 +595,34 @@ move_to_trash_cb (GtkWidget 	*widget,
 		utf8_filename = g_build_filename (utf8_basepath, utf8_basename, NULL);
 		locale_filename = g_locale_from_utf8 (utf8_filename, -1, NULL, NULL, NULL);
 		trash_path = get_trash_path (locale_filename);
+		
+		if (!g_file_test (locale_filename, G_FILE_TEST_EXISTS)) {
+		
+			GtkWidget      *dialog;
+			gchar          *primary;
+			gchar          *secondary;
+			
+			primary = g_strdup_printf (_("Could not move \"%s\" to trash."), 
+			                           g_path_get_basename (utf8_filename));
+					
+			secondary = g_strdup  (_("The document does not exist."));
 
-		if (trash_path != NULL) {
+			dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+			                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+							   GTK_MESSAGE_ERROR,
+							   GTK_BUTTONS_OK,
+							   primary,
+							   secondary,
+							   NULL);
+			
+			gtk_dialog_run (GTK_DIALOG (dialog));
+		
+			gtk_tree_selection_unselect_iter (GTK_TREE_SELECTION (interface.selection), &iter);
+			gtk_widget_destroy (GTK_WIDGET(dialog));
+			g_free (primary);
+			g_free (secondary);
+		}
+		else if (trash_path != NULL) {
 		
 			GnomeVFSResult result;
 			gchar *destination;
@@ -575,26 +639,31 @@ move_to_trash_cb (GtkWidget 	*widget,
 			}
 			else {
 				GtkWidget *dialog;
-				gchar     *title;
-				gchar     *text;
+				gchar     *primary;
+				gchar     *secondary;
 
-				title = g_strdup_printf (_("Could not move \"%s\" to the trash."), g_path_get_basename (utf8_filename));
-				text = g_strdup_printf (_("Moving \"%s\" failed: %s."), 
-				                        utf8_filename, gnome_vfs_result_to_string (result));		
-							
-				dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-				                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-								     GTK_BUTTONS_OK,
-								     title,
-								     text);
+				primary = g_strdup_printf (_("Could not move \"%s\" to the trash."), 
+				                         g_path_get_basename (utf8_filename));
+				
+				secondary = g_strdup_printf (_("Moving \"%s\" failed: %s."), 
+				                             utf8_filename, 
+							     gnome_vfs_result_to_string (result));		
 
+				dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+				                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+								   GTK_MESSAGE_ERROR,
+								   GTK_BUTTONS_OK,
+								   primary,
+								   secondary,
+								   NULL);
+						   
                			g_signal_connect (G_OBJECT (dialog),
                        		                  "response",
                        		                  G_CALLBACK (gtk_widget_destroy), NULL);
 
                 		gtk_widget_show (dialog);
-				g_free (title);
-				g_free (text);
+				g_free (primary);
+				g_free (secondary);
 			}
 			g_free (basename);
 			g_free (destination);
@@ -602,27 +671,37 @@ move_to_trash_cb (GtkWidget 	*widget,
 		else {	
 			GnomeVFSResult result;
 			GtkWidget      *dialog;
-			gchar          *text;
-			gchar          *title;
+			gchar          *primary;
+			gchar          *secondary;
 			gint           response;
 						
-			title = g_strdup_printf (_("Do you want to delete \"%s\" permanently?"),
+			primary = g_strdup_printf (_("Do you want to delete \"%s\" permanently?"),
 			                           g_path_get_basename (utf8_filename));
 			
-			text = g_strdup_printf (_("Trash is unavailable.  Could not move \"%s\" to the trash."), utf8_filename);
+			secondary = g_strdup_printf (_("Trash is unavailable.  Could not move \"%s\" to the trash."),
+			                             utf8_filename);
 
-			dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-			                                     0 /* flags */,
-							     GTK_BUTTONS_YES_NO, /* YES/NO is actually CANCEL/DELETE */
-							     title,
-							     text);
+			dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+			                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+							   GTK_MESSAGE_QUESTION,
+							   GTK_BUTTONS_CANCEL,
+							   primary,
+							   secondary,
+							   NULL);
+			
+			button = gtk_button_new_from_stock ("gtk-delete");
+			GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+			gtk_widget_show (button);			   	
 	
+			gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_OK);
+			gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+			
 			response = gtk_dialog_run (GTK_DIALOG (dialog));
 		
 			gtk_tree_selection_unselect_iter (GTK_TREE_SELECTION (interface.selection), &iter);
 			gtk_widget_destroy (GTK_WIDGET(dialog));
-			g_free (title);
-			g_free (text);
+			g_free (primary);
+			g_free (secondary);
 						
 			if (response == GTK_RESPONSE_OK) {
 			
@@ -638,26 +717,31 @@ move_to_trash_cb (GtkWidget 	*widget,
 				}
 				else {
 					GtkWidget *dialog;
-					gchar     *title;
-					gchar     *text;
+					gchar     *primary;
+					gchar     *secondary;
 
-					title = g_strdup_printf (_("Could not delete \"%s\"."), g_path_get_basename (utf8_filename));
-					text = g_strdup_printf (_("Deleting \"%s\" failed: %s."), utf8_filename,
-					                        gnome_vfs_result_to_string (result));	
-							
-					dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-					                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-									     GTK_BUTTONS_OK,
-									     title,
-									     text);
+					primary = g_strdup_printf (_("Could not delete \"%s\"."), 
+					                           g_path_get_basename (utf8_filename));
+					
+					secondary = g_strdup_printf (_("Deleting \"%s\" failed: %s."), 
+					                             utf8_filename,
+					                             gnome_vfs_result_to_string (result));
+
+					dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+					                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+									   GTK_MESSAGE_ERROR,
+									   GTK_BUTTONS_OK,
+									   primary,
+									   secondary,
+									   NULL);
 
                 			g_signal_connect (G_OBJECT (dialog),
                         		                  "response",
                         		                  G_CALLBACK (gtk_widget_destroy), NULL);
 
 	                		gtk_widget_show (dialog);
-					g_free (title);
-					g_free (text);
+					g_free (primary);
+					g_free (secondary);
 				}						 
 			}
 		}
@@ -836,35 +920,41 @@ file_event_after_cb  (GtkWidget 	*widget,
 			
 			file = g_build_filename (utf8_path, utf8_name, NULL);
 			locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
-			
-			if (is_component_action_type (locale_file) 
-			    && is_nautilus_running ()) {
-				open_file_with_nautilus (locale_file);
-			}
-			else {
-				if (open_file_with_application (locale_file) == FALSE) {
+		
+			if (open_file_with_application (locale_file) == FALSE) {
 				
-					if (launch_file (locale_file) == FALSE) {
+				if (launch_file (locale_file) == FALSE) {
+				
+					if (is_component_action_type (locale_file) 
+					    && is_nautilus_running ()) {
+						open_file_with_nautilus (locale_file);
+					}
+					else {
 						GtkWidget *dialog;
-						gchar     *title;
-						gchar     *text;
+						gchar     *primary;
+						gchar     *secondary;
 
-						title = g_strdup_printf (_("Could not open document \"%s\"."), g_path_get_basename (file));
-						text = g_strdup (_("There is no installed viewer capable of displaying the document."));	
-							
-						dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-						                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-										     GTK_BUTTONS_OK,
-										     title,
-										     text);
+						primary = g_strdup_printf (_("Could not open document \"%s\"."), 
+						                           g_path_get_basename (file));
+									   
+						secondary = g_strdup (_("There is no installed viewer capable "
+						                        "of displaying the document."));
+					
+						dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+						                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+										   GTK_MESSAGE_ERROR,
+										   GTK_BUTTONS_OK,
+										   primary,
+										   secondary,
+										   NULL);
 
                 				g_signal_connect (G_OBJECT (dialog),
                         				"response",
                         				G_CALLBACK (gtk_widget_destroy), NULL);
 
 	                			gtk_widget_show (dialog);
-						g_free (title);
-						g_free (text);
+						g_free (primary);
+						g_free (secondary);
 					}
 				}
 			} 
@@ -1081,29 +1171,60 @@ save_results_cb (GtkWidget       *chooser,
 		utf8 = g_filename_to_utf8 (interface.save_results_file, -1, NULL, NULL, NULL);
 	}
 	
-	if (utf8 == NULL || g_file_test (interface.save_results_file, G_FILE_TEST_IS_DIR)) {
+	if (utf8 == NULL) {
 		GtkWidget *dialog;
-		gchar *title_msg;
-		gchar *error_msg;
+		gchar *primary;
+		gchar *secondary;
 		
-		title_msg = g_strdup_printf (_("Could not save document \"\" to \"%s\"."), 
-		                             (utf8 != NULL) ? utf8 : "");
+		primary = g_strdup (_("Could not save document."));
 				     
-		error_msg = g_strdup_printf (_("You did not select a document name or the name selected was a folder.  The document is not saved."));
+		secondary = g_strdup (_("You did not select a document name."));
 
-		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-		                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-						     GTK_BUTTONS_OK,
-						     title_msg,
-						     error_msg);
+		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+						   GTK_MESSAGE_ERROR,
+						   GTK_BUTTONS_OK,
+						   primary,
+						   secondary,
+						   NULL);
 
 		g_signal_connect (G_OBJECT (dialog),
 				"response",
 				G_CALLBACK (gtk_widget_destroy), NULL);
 					
 		gtk_widget_show (dialog);
-		g_free (title_msg);
-		g_free (error_msg);
+		g_free (primary);
+		g_free (secondary);
+		
+		return;	
+	}
+	
+	if (g_file_test (interface.save_results_file, G_FILE_TEST_IS_DIR)) {
+		GtkWidget *dialog;
+		gchar *primary;
+		gchar *secondary;
+		
+		primary = g_strdup_printf (_("Could not save \"%s\" document to \"%s\"."), 
+		                           g_path_get_basename (utf8), 
+					   g_path_get_dirname (utf8));
+		
+		secondary = g_strdup (_("You cannot select a document name of an existing folder."));
+
+		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+						   GTK_MESSAGE_ERROR,
+						   GTK_BUTTONS_OK,
+						   primary,
+						   secondary,
+						   NULL);
+
+		g_signal_connect (G_OBJECT (dialog),
+				"response",
+				G_CALLBACK (gtk_widget_destroy), NULL);
+					
+		gtk_widget_show (dialog);
+		g_free (primary);
+		g_free (secondary);
 		
 		return;	
 	}
@@ -1111,21 +1232,38 @@ save_results_cb (GtkWidget       *chooser,
 	if (g_file_test (interface.save_results_file, G_FILE_TEST_EXISTS)) {
 		
 		GtkWidget *dialog;
-		gchar     *text;
+		GtkWidget *button;
+		gchar     *primary;
+		gchar     *secondary;
 		gint      response;
-				 
-		text = g_strdup_printf (_("The contents of the file \"%s\" will be lost."), utf8);
-			
-		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-		                                     0 /* flags */,
-						     GTK_BUTTONS_OK_CANCEL,
-						     _("Overwrite an existing file?"),
-						     text);
-			
+		
+		primary = g_strdup_printf (_("The document \"%s\" already exists.  "
+		                             "Would you like to replace it?"), 
+					   g_path_get_basename (utf8));
+		
+		secondary = g_strdup (_("If you replace an existing file, "
+		                        "its contents will be overwritten."));
+		
+		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+						   GTK_MESSAGE_QUESTION,
+						   GTK_BUTTONS_CANCEL,
+						   primary,
+						   secondary,
+						   NULL);	
+		
+		button = gsearchtool_button_new_with_stock_icon (_("_Replace"), GTK_STOCK_OK);
+		GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+		gtk_widget_show (button);
+
+		gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button, GTK_RESPONSE_OK);
+		gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+		
 		response = gtk_dialog_run (GTK_DIALOG (dialog));
 		
 		gtk_widget_destroy (GTK_WIDGET(dialog));
-		g_free (text);
+		g_free (primary);
+		g_free (secondary);
 			
 		if (response != GTK_RESPONSE_OK) return;
 	}
@@ -1158,28 +1296,29 @@ save_results_cb (GtkWidget       *chooser,
 	} 
 	else {
 		GtkWidget *dialog;
-		gchar *title_msg;
-		gchar *error_msg;
+		gchar *primary;
+		gchar *secondary;
 		
-		title_msg = g_strdup_printf (_("Could not save document \"%s\" to \"%s\"."), 
+		primary = g_strdup_printf (_("Could not save \"%s\" document to \"%s\"."), 
 		                             g_path_get_basename (utf8), g_path_get_dirname (utf8));
 					     
-		error_msg = g_strdup_printf ("%s",
-		_("You may not have write permissions to the document.  The document is not saved."));
-						    						
-		dialog = gsearchtool_hig_dialog_new (GTK_WINDOW (interface.main_window),
-		                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-						     GTK_BUTTONS_OK,
-						     title_msg,
-						     error_msg);
+		secondary = g_strdup (_("You may not have write permissions to the document."));
+		
+		dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+		                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+						   GTK_MESSAGE_ERROR,
+						   GTK_BUTTONS_OK,
+						   primary,
+						   secondary,
+						   NULL);
 
 		g_signal_connect (G_OBJECT (dialog),
 				"response",
 				G_CALLBACK (gtk_widget_destroy), NULL);
 					
 		gtk_widget_show (dialog);
-		g_free (title_msg);
-		g_free (error_msg);
+		g_free (primary);
+		g_free (secondary);
 	}
 	g_free (utf8);
 }
