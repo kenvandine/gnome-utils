@@ -421,7 +421,7 @@ project_list_load(char *fname)
                 return project_list_load_old(fname);
         }
 	if ((cur_proj) && (cur_proj->title) && (!first_proj_title)) {
-		first_proj_title = g_strdup(cur_proj->title);
+		first_proj_title = cur_proj->title;
 	}
         project_list_destroy();
         _n = config_show_tb_new;
@@ -485,7 +485,6 @@ project_list_load(char *fname)
 		if ((proj->title) && (first_proj_title)) {
 			if (0 == strcmp(proj->title, first_proj_title)) {
 				cur_proj_set(proj);
-				g_free(first_proj_title);
 				first_proj_title = NULL;
 			}
 		}
@@ -496,7 +495,6 @@ project_list_load(char *fname)
                 sprintf(s, GTT"Project%d/SecsDay=0", i);
                 proj->day_secs = gnome_config_get_int(s);
         }
-	g_free(first_proj_title);
 	first_proj_title = NULL;
         update_status_bar();
         if ((_n != config_show_tb_new) ||

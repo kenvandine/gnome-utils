@@ -35,6 +35,7 @@ struct _MyToolbar {
         GtkWidget *cut, *copy, *paste; /* to make them sensible
                                           as needed */
         GtkWidget *prop_w;
+	GtkWidget *timer_w;
 	GnomeStock *timer;
 };
 
@@ -57,13 +58,13 @@ add_stock_button(GtkToolbar *tbar, char *text, char *tt_text,
 
 static GnomeStock *
 add_toggle_button(GtkToolbar *tbar, char *text, char *tt_text,
-                 char *icon, GtkSignalFunc sigfunc)
+                 char *icon, GtkSignalFunc sigfunc, GtkWidget **wptr)
 {
 	GtkWidget *w;
 
 	w = gnome_stock_pixmap_widget((GtkWidget *)window, icon);
-	gtk_toolbar_append_item(tbar, text, tt_text, NULL, w,
-				sigfunc, NULL);
+	(*wptr) = gtk_toolbar_append_item(tbar, text, tt_text, NULL, w,
+				          sigfunc, NULL);
 	return GNOME_STOCK(w);
 }
 
@@ -97,8 +98,11 @@ toolbar_set_states(void)
         if (mytbar->timer)
 		gnome_stock_set_icon(mytbar->timer,
 				     (main_timer != 0) ?
-				     GNOME_STOCK_PIXMAP_TIMER :
-				     GNOME_STOCK_PIXMAP_TIMER_STOP);
+				     GNOME_STOCK_PIXMAP_TIMER_STOP :
+				     GNOME_STOCK_PIXMAP_TIMER);
+	if (mytbar->timer_w)
+		gtk_widget_set_sensitive(GTK_WIDGET(mytbar->timer_w),
+					 (cur_proj != NULL));
 
 	if ((config_show_tb_icons) && (config_show_tb_texts)) {
 		tb_style = GTK_TOOLBAR_BOTH;
@@ -179,7 +183,8 @@ build_toolbar(void)
 		mytbar->timer = add_toggle_button(mytbar->tbar, _("Timer"),
 						  _("Start/Stop Timer"),
 						  GNOME_STOCK_PIXMAP_TIMER,
-						  (GtkSignalFunc)menu_toggle_timer);
+						  (GtkSignalFunc)menu_toggle_timer,
+						  &(mytbar->timer_w));
         if (((config_show_tb_timer) || (config_show_tb_prop)) &&
             ((config_show_tb_pref) || (config_show_tb_help) ||
              (config_show_tb_exit)))

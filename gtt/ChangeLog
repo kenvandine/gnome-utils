@@ -1,3 +1,15 @@
+1999-03-18  Eckehard Berns  <eb@berns.i-s-o.net>
+
+	* proj.c: applied patch from robbe@orcus.priv.at that fixes the
+	segfault when using --select-prpject at the command line.
+
+1999-03-16  Eckehard Berns  <eb@berns.i-s-o.net>
+
+	* toolbar.c (toolbar_set_states): if the timer is running the toolbar
+	should show the icon that indicates to stop the timer and vice versa.
+	* toolbar.c (_MyToolbar): added timer_w to point to the timer toolbar
+	button. The button should only be sensitive when a project is selected.
+
 1999-03-11  Eckehard Berns  <eb@berns.i-s-o.net>
 
 	* removed some compiler warnings.
