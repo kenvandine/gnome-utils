@@ -40,8 +40,8 @@ gnorbadir  = $(sysconfdir)/CORBA/servers
 gnorba_DATA = gstripchart_applet.gnorba
 
 install-exec-local:
-	mkdir -p $(bindir)
-	cd $(bindir) && rm -f gstripchart_applet && \
+	mkdir -p $(DESTDIR)$(bindir)
+	cd $(DESTDIR)$(bindir) && rm -f gstripchart_applet && \
 	$(LN_S) gstripchart gstripchart_applet
 
 endif
