@@ -47,7 +47,6 @@
  */
 
 void MonitorMenu (GtkWidget * widget, gpointer user_data);
-void ShowErrMessage (char *);
 void close_monitor_options (GtkWidget * widget, gpointer client_data);
 void go_monitor_log (GtkWidget * widget, gpointer client_data);
 void mon_remove_log (GtkWidget *widget, GtkWidget *foo);

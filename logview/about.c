@@ -29,6 +29,8 @@
 
 
 extern ConfigData *cfg;
+extern GtkWidget *app;
+
 static GtkWidget *about_window = NULL;
 static GdkGC *gc = NULL;
 static GdkPixmap *logviewpix = NULL, *logpix = NULL;
@@ -48,11 +50,23 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
 "of the GNU General Public Licence. The log icon is a courtesy of "
 "Tuomas Kuosmanen (a.k.a tigert).");
 
+  if (about_window != NULL) {
+	  gtk_widget_show_now (about_window);
+	  gdk_window_raise (about_window->window);
+	  return;
+  }
+
   /* go get logview.xpm in $(prefix)/share/pixmaps/logview */
   about_window = gnome_about_new (_("Logview"), LOGVIEW_VERSION,
            			  N_("Copyright (C) 1998"),
 				  author, _(comments),
 				  "logview/logview.xpm");
+  if (app != NULL)
+	  gnome_dialog_set_parent (GNOME_DIALOG (about_window),
+				   GTK_WINDOW (app));
+  gtk_signal_connect (GTK_WIDGET (about_window), "destroy",
+		      GTK_SIGNAL_FUNC (gtk_widget_destroyed),
+		      &about_window);
   gtk_widget_show (about_window);
   return;
 

@@ -58,7 +58,6 @@
  */
 
 void CalendarMenu (GtkWidget * widget, gpointer user_data);
-void ShowErrMessage (char *);
 void close_calendar (GtkWidget * widget, gpointer client_data);
 void set_scrollbar_size (int num_lines);
 void calendar_month_changed (GtkWidget *widget, gpointer data);

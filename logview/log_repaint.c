@@ -105,7 +105,6 @@ int rapaint_zoom (GtkWidget * widget, GdkEventExpose * event);
 void log_repaint (GtkWidget * cv, GdkEventExpose * event);
 void log_redrawcursor (int ol, int nl, Page * np);
 void log_redrawdetail ();
-void ShowErrMessage (char *msg);
 void DrawMonthHeader (LogLine * line, int y);
 void DrawLogLine (LogLine *line, int y);
 void DrawLogCursor (int y);

@@ -209,7 +209,9 @@ Log;
 
 void StubCall (GtkWidget *, gpointer);
 void InitBlackStyle( GtkStyle *cs );
-void ShowErrMessage (char *msg);
+void ShowErrMessage (const char *msg);
+void QueueErrMessages (gboolean do_queue);
+void ShowQueuedErrMessages (void);
 GtkWidget *AddMenu (MenuItem * items);
 GtkWidget *ButtonWithPixmap (char **xpmdata, int w, int h);
 ConfigData *CreateConfig();

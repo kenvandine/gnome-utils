@@ -56,7 +56,6 @@ void CloseApp (void);
 void CloseLog (Log *);
 void FileSelectCancel (GtkWidget * w, GtkFileSelection * fs);
 void FileSelectOk (GtkWidget * w, GtkFileSelection * fs);
-void ShowErrMessage (char *);
 void MainWinScrolled (GtkAdjustment *adjustment, GtkRange *);
 void CanvasResized (GtkWidget *widget, GtkAllocation *allocation);
 void ScrollWin (GtkRange *range, gpointer event);
@@ -66,7 +65,7 @@ void set_scrollbar_size (int);
 void change_log (int dir);
 void open_databases (void);
 void destroy (void);
-int InitApp (void);
+void InitApp (void);
 int InitPages (void);
 int RepaintLogInfo (GtkWidget * widget, GdkEventExpose * event);
 int read_regexp_db (char *filename, GList **db);
@@ -158,7 +157,7 @@ GnomeUIInfo main_menu[] = {
  */
 
 
-GtkWidget *app;
+GtkWidget *app = NULL;
 GtkWidget *main_win_scrollbar;
 GtkLabel *filename_label, *date_label;
 
@@ -173,8 +172,6 @@ extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 extern int loginfovisible, calendarvisible;
 extern int cursor_visible;
-
-static gint init_timer = -1;
 
 /* ----------------------------------------------------------------------
    NAME:          destroy
@@ -198,6 +195,8 @@ main (int argc, char *argv[])
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
+  QueueErrMessages (TRUE);
+
   /*  Initialize gnome & gtk */
   gnome_init ("logview", VERSION, argc, argv);
 
@@ -209,13 +208,14 @@ main (int argc, char *argv[])
   /*  Show about window */
   /* AboutShowWindow (NULL, NULL); */
 
-  /*  Add a timer that will start initialization after */
-  /*  after the title window appears. */
-  init_timer = gtk_timeout_add (1000, (GtkFunction) InitApp, NULL);
+  InitApp ();
+
+  QueueErrMessages (FALSE);
+  ShowQueuedErrMessages ();
    
   /*  Loop application */
   gtk_main ();
-  
+
   return 0;
 }
 
@@ -224,7 +224,7 @@ main (int argc, char *argv[])
    DESCRIPTION: Main initialization routine.
    ---------------------------------------------------------------------- */
 
-int
+void
 InitApp ()
 {
   /*  Initialize variables */
@@ -242,10 +242,6 @@ InitApp ()
 
   /*  Display main window */
   CreateMainWin ();
-
-  /*  Remove timer by returning FALSE */
-  return FALSE;
-
 }
 
 /* ----------------------------------------------------------------------
@@ -612,7 +608,7 @@ FileSelectCancel (GtkWidget * w, GtkFileSelection * fs)
 void
 FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 {
-   char f[255];
+   char *f;
    Log *tl;
 
    /* Check that we haven't opened all logfiles allowed    */
@@ -622,12 +618,11 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
        return;
      }
 
-   strncpy(f, gtk_file_selection_get_filename (GTK_FILE_SELECTION (fs)), 254);
-   f[254] = '\0';
+   f = g_strdup (gtk_file_selection_get_filename (GTK_FILE_SELECTION (fs)));
    gtk_widget_destroy (GTK_WIDGET (fs));
 
    open_log_visible = FALSE;
-   if (f != NULL)
+   if (f != NULL) {
       if ((tl = OpenLogFile (f)) != NULL)
       {
 	 curlog = tl;
@@ -648,6 +643,8 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 	 if (numlogs >= 2)
 	   gtk_widget_set_sensitive (file_menu[3].widget, TRUE);
       }
+   }
+   g_free (f);
 
 }
 
@@ -672,6 +669,7 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
 
 
    filesel = gtk_file_selection_new (_("Open new logfile"));
+   gtk_window_set_transient_for (GTK_WINDOW (filesel), GTK_WINDOW (app));
    gnome_window_icon_set_from_default (GTK_WINDOW (filesel));
 
    /* Make window modal */
@@ -687,10 +685,7 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
 			      "clicked", (GtkSignalFunc) FileSelectCancel,
 			      GTK_OBJECT (filesel));
 
-   if (!GTK_WIDGET_VISIBLE (filesel))
-      gtk_widget_show (filesel);
-   else
-      gtk_widget_destroy (filesel);
+   gtk_widget_show (filesel);
 
    open_log_visible = TRUE;
 }
