@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.x\n"
-"POT-Creation-Date: 2000-05-06 19:10+0200\n"
+"POT-Creation-Date: 2000-05-13 00:10+0200\n"
 "PO-Revision-Date: 1999-09-07 03:10+0200\n"
 "Last-Translator: Andreas Hyden <a.hyden@cyberpoint.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -532,7 +532,7 @@ msgstr "_Hjälp"
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:193
+#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:196
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Värde"
@@ -541,7 +541,7 @@ msgstr "Värde"
 msgid "Identifier"
 msgstr "Identifierare"
 
-#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:192
+#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:195
 msgid "Color"
 msgstr "Färg"
 
@@ -594,7 +594,7 @@ msgid "Help"
 msgstr "Hjälp"
 
 #: gstripchart/gstripchart.c:1789 gstripchart/gstripchart.c:2073
-#: mini-utils/gcolorsel/menus.c:829 mini-utils/gshutdown/gshutdown.c:319
+#: mini-utils/gcolorsel/menus.c:912 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "Om"
 
@@ -602,7 +602,7 @@ msgstr "Om"
 msgid "Params"
 msgstr "Parametrar"
 
-#: gstripchart/gstripchart.c:1801 mini-utils/gcolorsel/menus.c:819
+#: gstripchart/gstripchart.c:1801 mini-utils/gcolorsel/menus.c:902
 msgid "Exit"
 msgstr "Avsluta"
 
@@ -1116,10 +1116,10 @@ msgid ""
 "redistribute it under the conditions of the GNU General Public Licence. The "
 "log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 msgstr ""
-"Detta program är en del av GNOME-projektet för Linux. Logview kommer "
-"med ABSOLUT INGEN GARANTI. Detta är fri mjukvara, och du är välkommen att "
-"omdistribuera det under vilkoren i GNU General Public Licence. "
-"Loggikonen är gjord av Tuomas Kuosmanen (också känd som tigert)."
+"Detta program är en del av GNOME-projektet för Linux. Logview kommer med "
+"ABSOLUT INGEN GARANTI. Detta är fri mjukvara, och du är välkommen att "
+"omdistribuera det under vilkoren i GNU General Public Licence. Loggikonen är "
+"gjord av Tuomas Kuosmanen (också känd som tigert)."
 
 #. go get logview.xpm in $(prefix)/share/pixmaps/logview
 #: logview/about.c:48
@@ -1531,94 +1531,141 @@ msgid "Description:"
 msgstr "Beskrivning:"
 
 #. First view is considered as the default view ...
-#: mini-utils/gcolorsel/gcolorsel.c:22
+#: mini-utils/gcolorsel/gcolorsel.c:24
 msgid "List"
 msgstr "Lista"
 
-#: mini-utils/gcolorsel/gcolorsel.c:26
+#: mini-utils/gcolorsel/gcolorsel.c:28
 msgid "Grid"
 msgstr "Rutnät"
 
-#: mini-utils/gcolorsel/gcolorsel.c:30 mini-utils/gcolorsel/menus.c:485
+#: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:566
 msgid "Edit"
 msgstr "Redigera"
 
-#: mini-utils/gcolorsel/gcolorsel.c:38
+#: mini-utils/gcolorsel/gcolorsel.c:40
 msgid "File"
 msgstr "Arkiv"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40
+#: mini-utils/gcolorsel/gcolorsel.c:42
 msgid "Search RGB"
 msgstr "Sök RGB"
 
-#: mini-utils/gcolorsel/gcolorsel.c:42
+#: mini-utils/gcolorsel/gcolorsel.c:44
 msgid "Monitor"
 msgstr "Övervaka"
 
-#: mini-utils/gcolorsel/gcolorsel.c:44
+#: mini-utils/gcolorsel/gcolorsel.c:46
 msgid "Concat"
 msgstr "Sätt samman"
 
-#: mini-utils/gcolorsel/gcolorsel.c:88
+#: mini-utils/gcolorsel/gcolorsel.c:94
 #, c-format
 msgid "'%s' document has been modified; do you wish to save it ?"
 msgstr "Dokumentet \"%s\" har ändrats; vill du spara det ?"
 
+#: mini-utils/gcolorsel/gcolorsel.c:204
+msgid "GColorsel was unable to paste colors from the clipboard."
+msgstr "GColorsel kunde inte klistra in färger från urklipp."
+
+#: mini-utils/gcolorsel/gcolorsel.c:218
+msgid "Please select a file document before."
+msgstr "Vänligen välj ett fildokument först."
+
+#: mini-utils/gcolorsel/gcolorsel.c:390
+msgid ""
+"I can't execute this action. Check that :\n"
+"\n"
+"1. You have associated an action with this event.\n"
+"2. The associated document still exits.\n"
+"3. The type of the associated document.\n"
+"\n"
+"Go to preferences, in the edit menu."
+msgstr ""
+"Jag kan inte köra denna aktionen. Kolla att :\n"
+"\n"
+"1. Du har associerat en aktion med denna händelsen.\n"
+"2. Det associerade dokumentet fortfarande finns.\n"
+"3. Typen av det associerade dokumentet.\n"
+"\n"
+"Gå till inställningar, i redigera-menyn."
+
 #. Init GnomeMDI
-#: mini-utils/gcolorsel/gcolorsel.c:148
+#: mini-utils/gcolorsel/gcolorsel.c:508
 msgid "GColorsel"
 msgstr "GColorsel"
 
-#: mini-utils/gcolorsel/menus.c:48
+#: mini-utils/gcolorsel/menus.c:52
 msgid "New Document"
 msgstr "Nytt dokument"
 
-#: mini-utils/gcolorsel/menus.c:49
+#: mini-utils/gcolorsel/menus.c:53
 msgid "Create a new document"
 msgstr "Skapa ett nytt dokument"
 
-#: mini-utils/gcolorsel/menus.c:51
+#: mini-utils/gcolorsel/menus.c:55
 msgid "New View"
 msgstr "Ny vy"
 
-#: mini-utils/gcolorsel/menus.c:52
+#: mini-utils/gcolorsel/menus.c:56
 msgid "Create a new view for a document"
 msgstr "Skapa en ny vy för ett dokument"
 
-#: mini-utils/gcolorsel/menus.c:58
+#: mini-utils/gcolorsel/menus.c:62
 msgid "Close document"
 msgstr "Stäng dokumentet"
 
-#: mini-utils/gcolorsel/menus.c:59
+#: mini-utils/gcolorsel/menus.c:63
 msgid "Close the current document"
 msgstr "Stäng det aktuella dokumentet"
 
-#: mini-utils/gcolorsel/menus.c:61
+#: mini-utils/gcolorsel/menus.c:65
 msgid "Close view"
 msgstr "Stäng vy"
 
-#: mini-utils/gcolorsel/menus.c:62 mini-utils/gcolorsel/menus.c:823
+#: mini-utils/gcolorsel/menus.c:66 mini-utils/gcolorsel/menus.c:906
 msgid "Close the current view"
 msgstr "Stäng den aktuella vyen"
 
-#: mini-utils/gcolorsel/menus.c:79 mini-utils/gcolorsel/menus.c:823
+#: mini-utils/gcolorsel/menus.c:83 mini-utils/gcolorsel/menus.c:906
 #: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:594
 msgid "Close"
 msgstr "Stäng"
 
-#: mini-utils/gcolorsel/menus.c:90
+#: mini-utils/gcolorsel/menus.c:99
 msgid "Insert color"
 msgstr "Infoga färg"
 
-#: mini-utils/gcolorsel/menus.c:92
+#: mini-utils/gcolorsel/menus.c:101
 msgid "Remove selected colors"
 msgstr "Ta bort markerade färger"
 
-#: mini-utils/gcolorsel/menus.c:94
+#: mini-utils/gcolorsel/menus.c:103
 msgid "Edit selected colors ..."
 msgstr "Redigera markerad färger ..."
 
-#: mini-utils/gcolorsel/menus.c:170
+#: mini-utils/gcolorsel/menus.c:172
+msgid ""
+"GColorsel was unable to save the file :\n"
+"\n"
+"%s\n"
+"\n"
+"Make sure that the path you provided exits,\n"
+"and that you have the approprate write permissions.\n"
+"\n"
+"Do you want to retry ?"
+msgstr ""
+"GColorsel kunde inte spara filen :\n"
+"\n"
+"%s\n"
+"\n"
+"Se till att sökvägen du angav finns,\n"
+"och att du har skriv-rättigheter.\n"
+"\n"
+"Vill du försöka igen ?"
+
+#: mini-utils/gcolorsel/menus.c:191
+#, c-format
 msgid ""
 "GColorsel was unable to load the file:\n"
 "\n"
@@ -1634,27 +1681,27 @@ msgstr ""
 "Se till att sökvägen du angav finns,\n"
 "och att du har rättigheter att öppna filen."
 
-#: mini-utils/gcolorsel/menus.c:189
+#: mini-utils/gcolorsel/menus.c:210
 msgid "Open Palette"
 msgstr "Öppna palett"
 
-#: mini-utils/gcolorsel/menus.c:214
+#: mini-utils/gcolorsel/menus.c:235
 msgid "Loading file, please wait ..."
 msgstr "Laddar fil, var vänlig vänta ..."
 
-#: mini-utils/gcolorsel/menus.c:245
+#: mini-utils/gcolorsel/menus.c:266
 msgid "Save Palette as"
 msgstr "Spara palett som"
 
-#: mini-utils/gcolorsel/menus.c:292
+#: mini-utils/gcolorsel/menus.c:313
 msgid "File not saved ..."
 msgstr "Fil ej sparad ..."
 
-#: mini-utils/gcolorsel/menus.c:302
+#: mini-utils/gcolorsel/menus.c:323
 msgid "File saved ..."
 msgstr "Fil sparad ..."
 
-#: mini-utils/gcolorsel/menus.c:380
+#: mini-utils/gcolorsel/menus.c:401
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -1667,9 +1714,10 @@ msgstr ""
 "\n"
 "Detta dokumentet kommer också att stängas, fortsätta ?\n"
 "\n"
-"Vänligen notera att det virtuella dokumentet %d använder data från detta dokumentet."
+"Vänligen notera att det virtuella dokumentet %d använder data från detta "
+"dokumentet."
 
-#: mini-utils/gcolorsel/menus.c:382
+#: mini-utils/gcolorsel/menus.c:403
 #, c-format
 msgid ""
 "I'm going to close the last view of '%s'.\n"
@@ -1680,7 +1728,7 @@ msgstr ""
 "\n"
 "Detta dokumentet kommer också att stängas, fortsätta ?"
 
-#: mini-utils/gcolorsel/menus.c:416
+#: mini-utils/gcolorsel/menus.c:437
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -1697,7 +1745,7 @@ msgstr ""
 "\n"
 "Vill du fortsätta ?"
 
-#: mini-utils/gcolorsel/menus.c:418
+#: mini-utils/gcolorsel/menus.c:439
 #, c-format
 msgid ""
 "I'm going to close '%s'.\n"
@@ -1712,39 +1760,47 @@ msgstr ""
 "\n"
 "Vill du fortsätta ?"
 
-#: mini-utils/gcolorsel/menus.c:463
+#: mini-utils/gcolorsel/menus.c:487
 msgid "Gnome Color Browser"
 msgstr "Gnome färgväljare"
 
-#: mini-utils/gcolorsel/menus.c:466
+#: mini-utils/gcolorsel/menus.c:490
 msgid "Small utility to browse available X11 colors."
 msgstr "Litet program för att bläddra tillgängliga X11-färger."
 
-#: mini-utils/gcolorsel/menus.c:518
+#: mini-utils/gcolorsel/menus.c:599
 msgid "New Color"
 msgstr "Ny färg"
 
-#: mini-utils/gcolorsel/menus.c:819
+#: mini-utils/gcolorsel/menus.c:854
+msgid "View properties"
+msgstr "Egenskaper för vy"
+
+#: mini-utils/gcolorsel/menus.c:869
+msgid "Document properties"
+msgstr "Egenskaper för dokument"
+
+#: mini-utils/gcolorsel/menus.c:902
 msgid "Exit the program"
 msgstr "Avsluta programmet"
 
-#: mini-utils/gcolorsel/menus.c:821
+#: mini-utils/gcolorsel/menus.c:904
 msgid "Open"
 msgstr "Öppna"
 
-#: mini-utils/gcolorsel/menus.c:821
+#: mini-utils/gcolorsel/menus.c:904
 msgid "Open a palette"
 msgstr "Öppna en palett"
 
-#: mini-utils/gcolorsel/menus.c:826
+#: mini-utils/gcolorsel/menus.c:909
 msgid "Grab"
 msgstr "Fånga"
 
-#: mini-utils/gcolorsel/menus.c:826
+#: mini-utils/gcolorsel/menus.c:909
 msgid "Grab a color on the screen"
 msgstr "Fånga en färg från skärmen"
 
-#: mini-utils/gcolorsel/menus.c:829
+#: mini-utils/gcolorsel/menus.c:912
 msgid "About this application"
 msgstr "Om det här programmet"
 
@@ -1769,7 +1825,7 @@ msgid "Float"
 msgstr "Flyttal"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:194 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:504 mini-utils/gw/gw.c:574
 msgid "Name"
 msgstr "Namn"
@@ -2642,9 +2698,6 @@ msgstr "Du verkar inte ha några IDE-diskar"
 
 #~ msgid "Document created ..."
 #~ msgstr "Dokument skapat ..."
-
-#~ msgid "GColorsel was unable to save the file :"
-#~ msgstr "GColorsel kunde inte spara filen :"
 
 #~ msgid "Do you want to retry ?"
 #~ msgstr "Vill du försöka igen ?"
