@@ -1250,9 +1250,7 @@ tan_helper (double value)
 static const CalculatorButton buttons[8][5] = {
 	{
 		{N_("1/x"),  (GtkSignalFunc)simple_func, c_inv,  NULL,   FALSE, {0}, N_("Inverse"), NULL },
-		/* FIXME: XXXX when we can break strings again change
-		 * this to x<sup>2</sup> and turn on markup (search for XXXX) */
-		{N_("x^2"),  (GtkSignalFunc)simple_func, c_pow2, sqrt,   FALSE, {0}, N_("Square"), NULL },
+		{N_("x<sup>2</sup>"),  (GtkSignalFunc)simple_func, c_pow2, sqrt,   FALSE, {0}, N_("Square"), NULL },
 		{N_("SQRT"), (GtkSignalFunc)simple_func, sqrt,   c_pow2, FALSE, {'r','R',0}, N_("Square root"), NULL },
 		{N_("CE/C"), (GtkSignalFunc)clear_calc,  NULL,   NULL,   FALSE, {GDK_Clear,GDK_Delete,0}, N_("Clear"), NULL },
 		{N_("AC"),   (GtkSignalFunc)reset_calc,  NULL,   NULL,   FALSE, {'a','A', GDK_Escape, 0}, N_("Reset"), NULL }
@@ -1268,9 +1266,7 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("EE"),   (GtkSignalFunc)add_digit,   "e+",   NULL,   FALSE, {0}, N_("Add digit"), NULL },
 		{N_("log"),  (GtkSignalFunc)simple_func, log10,  c_pow10,FALSE, {0}, N_("Base 10 Logarithm"), NULL },
 		{N_("ln"),   (GtkSignalFunc)simple_func, log,    c_powe, FALSE, {'l','L',0}, N_("Natural Logarithm"), NULL },
-		/* FIXME: XXXX when we can break strings again change
-		 * this to x<sup>y</sup> and turn on markup (search for XXXX) */
-		{N_("x^y"),  (GtkSignalFunc)math_func,   pow,    NULL,   FALSE, {'^',0}, N_("Power"), NULL }
+		{N_("x<sup>y</sup>"),  (GtkSignalFunc)math_func,   pow,    NULL,   FALSE, {'^',0}, N_("Power"), NULL }
 	},{
 		{N_("PI"),   (GtkSignalFunc)set_pi,      NULL,   NULL,   FALSE, {'p','P',0}, N_("PI"), NULL },
 		{N_("x!"),   (GtkSignalFunc)simple_func, c_fact, NULL,   FALSE, {'!',0}, N_("Factorial"), NULL },
@@ -1316,9 +1312,7 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 
 	l = gtk_label_new (_(but->name));
 	gtk_widget_show (l);
-	/* FIXME: see comment (search for XXXX) among labels and
-	 * turn this on when we can break strings again */
-	gtk_label_set_use_markup (GTK_LABEL (l), FALSE);
+	gtk_label_set_use_markup (GTK_LABEL (l), TRUE);
 
 	if (strcmp (but->name, "INV") == 0) {
 		w = gtk_toggle_button_new ();
