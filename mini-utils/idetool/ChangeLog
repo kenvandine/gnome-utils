@@ -1,3 +1,9 @@
+2000-07-23  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* idetool.c: Removed a test for event->type != GDK_2BUTTON_PRESS
+	that makes idetool crash if you move using the arrow keys.
+	Please shout if this test is really needed for something else.
+	
 2000-07-22  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* idetool.c: Change strings from "Default" "16-bit" to

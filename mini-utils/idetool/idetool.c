@@ -150,10 +150,6 @@ static void modify_drive(GtkWidget *w, gint row, gint col, GdkEventButton *event
 	int id=GPOINTER_TO_INT(junk);
 	char *p=NULL;
 	
-	
-	if(event->type != GDK_2BUTTON_PRESS)
-		return;
-
 	if((id&1)==0)		/* Less rows on a legacy drive */
 		row+=5;	
 	
