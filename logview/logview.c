@@ -50,7 +50,7 @@ void CloseLogMenu (GtkWidget * widget, gpointer user_data);
 void change_log_menu (GtkWidget * widget, gpointer user_data);
 void CalendarMenu (GtkWidget * widget, gpointer user_data);
 void MonitorMenu (GtkWidget* widget, gpointer user_data); 
-void create_zoom_view (GtkWidget * widget, gpointer user_data);
+void create_zoom_view (GtkWidget *widget, gpointer data);
 void UserPrefsDialog(GtkWidget * widget, gpointer user_data);
 void AboutShowWindow (GtkWidget* widget, gpointer user_data);
 void CloseApp (void);
@@ -76,6 +76,10 @@ Log *OpenLogFile (char *);
 GtkWidget *new_pixmap_from_data (char  **, GdkWindow *, GdkColor *);
 GtkWidget *create_menu (char *item[], int n);
 void SaveUserPrefs(UserPrefsStruct *prefs);
+void close_zoom_view (GtkWidget *widget, gpointer client_data);
+
+static void toggle_calendar (void);
+static void toggle_zoom (void);
 
 /*
  *    ,-------.
@@ -84,57 +88,34 @@ void SaveUserPrefs(UserPrefsStruct *prefs);
  */
 
 
-GnomeUIInfo file_menu[] = {
-        {GNOME_APP_UI_ITEM, N_("Open log..."), 
-	 N_("Open log"), LoadLogMenu, NULL, NULL,
-         GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Export log..."), 
-	 N_("Export log"), StubCall, NULL, NULL,
-         GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_SAVE_AS, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Close log"), 
-	 N_("Close log"), CloseLogMenu, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Switch log"), 
-	 N_("Switch log"), change_log_menu, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Monitor..."), 
-	 N_("Monitor log"), MonitorMenu, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Exit"), 
-	 N_("Exit program"), ExitProg, NULL, NULL,
-         GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'E', GDK_CONTROL_MASK, NULL},
+GnomeUIInfo log_menu[] = {
+	GNOMEUIINFO_MENU_OPEN_ITEM(LoadLogMenu, NULL),
+	GNOMEUIINFO_MENU_SAVE_AS_ITEM(StubCall, NULL),
+	GNOMEUIINFO_SEPARATOR,
+        { GNOME_APP_UI_ITEM, N_("S_witch Log"), 
+	  N_("Switch log"), change_log_menu, NULL, NULL,
+          GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+        { GNOME_APP_UI_ITEM, N_("_Monitor..."), 
+	  N_("Monitor Log"), MonitorMenu, NULL, NULL,
+          GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+	GNOMEUIINFO_SEPARATOR,
+        { GNOME_APP_UI_ITEM, N_("_Properties"), 
+	  N_("Show Log Properties"), LogInfo, NULL, NULL,
+          GNOME_APP_PIXMAP_NONE, NULL, 'I', GDK_CONTROL_MASK, NULL},
+	GNOMEUIINFO_SEPARATOR,
+	GNOMEUIINFO_MENU_CLOSE_ITEM(CloseLogMenu, NULL),
+	GNOMEUIINFO_MENU_QUIT_ITEM(ExitProg, NULL),
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
 };
 
 GnomeUIInfo view_menu[] = {
-        {GNOME_APP_UI_ITEM, N_("Calendar"), 
-	 N_("Show calendar log"), CalendarMenu, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 'C', GDK_CONTROL_MASK, NULL},
-        {GNOME_APP_UI_ITEM, N_("Log stats"), 
-	 N_("Show log stats"), LogInfo, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 'I', GDK_CONTROL_MASK, NULL},
-        {GNOME_APP_UI_ITEM, N_("Zoom"), 
-	 N_("Show line info"), create_zoom_view, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 'Z', GDK_CONTROL_MASK, NULL},
-       /* {GNOME_APP_UI_ITEM, N_("Preferences..."), 
-	 N_("Show user preferences"), UserPrefsDialog, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 'P', GDK_CONTROL_MASK, NULL},*/
-	/* As of now  user preference dialog does nothing except 
-        the hostname width adjustment in displaying */
+        { GNOME_APP_UI_TOGGLEITEM, N_("_Calendar"), N_("Show Calendar Log"), toggle_calendar, 
+	  NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, 'L', GDK_CONTROL_MASK, NULL },
+        { GNOME_APP_UI_TOGGLEITEM, N_("_Entry Detail"), N_("Show Entry Detail"), toggle_zoom, 
+	  NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, 'D', GDK_CONTROL_MASK, NULL },
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
 };
 
-#if 0
-GnomeUIInfo filter_menu[] = {
-        {GNOME_APP_UI_ITEM, N_("Select...               "), 
-	 N_("Select log events"), StubCall, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-        {GNOME_APP_UI_ITEM, N_("Filter..                "), 
-	 N_("Filter log events"), StubCall, NULL, NULL,
-         GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-        {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
-};
-#endif
 
 GnomeUIInfo help_menu[] = {
 	GNOMEUIINFO_HELP("gnome-system-log"),
@@ -146,10 +127,10 @@ GnomeUIInfo help_menu[] = {
 };
 
 GnomeUIInfo main_menu[] = {
-	GNOMEUIINFO_MENU_FILE_TREE(file_menu),
+        { GNOME_APP_UI_SUBTREE_STOCK, N_("_Log"), NULL,
+          log_menu, NULL, NULL, (GnomeUIPixmapType) 0,
+          NULL, 0, (GdkModifierType) 0, NULL },
 	GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
-/*        {GNOME_APP_UI_SUBTREE, N_("F_ilter"), NULL,  filter_menu, NULL, NULL, */
-/*         GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}, */
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
         {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL}
 };
@@ -188,11 +169,14 @@ struct poptOption options[] = { {
 	NULL,
 } };
 
+extern GtkWidget *CalendarDialog;
+extern GtkWidget *zoom_dialog;
 extern GdkGC *gc;
 extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 extern int loginfovisible, calendarvisible;
 extern int cursor_visible;
+extern int zoom_visible;
 extern PangoLayout *log_layout;
 
 /* ----------------------------------------------------------------------
@@ -387,9 +371,9 @@ CreateMainWin ()
    gnome_app_set_contents (GNOME_APP (app), vbox);
 
    /* Deactivate unfinished items */
-   gtk_widget_set_state (file_menu[1].widget, GTK_STATE_INSENSITIVE);
+   gtk_widget_set_state (log_menu[1].widget, GTK_STATE_INSENSITIVE);
    if (numlogs < 2)
-     gtk_widget_set_state (file_menu[3].widget, GTK_STATE_INSENSITIVE);
+     gtk_widget_set_state (log_menu[3].widget, GTK_STATE_INSENSITIVE);
 
    /* Create main canvas and scroll bars */
    table = gtk_table_new (2, 2, FALSE);
@@ -688,9 +672,9 @@ CloseLogMenu (GtkWidget * widget, gpointer user_data)
       if (loginfovisible)
 	 RepaintLogInfo (NULL, NULL);
       set_scrollbar_size (1);
-      gtk_widget_set_sensitive (file_menu[2].widget, FALSE); 
-      gtk_widget_set_sensitive (file_menu[4].widget, FALSE); 
-      for ( i = 0; i < 4; i++) 
+      gtk_widget_set_sensitive (log_menu[7].widget, FALSE); 
+      gtk_widget_set_sensitive (log_menu[4].widget, FALSE); 
+      for ( i = 0; i < 3; i++) 
          gtk_widget_set_sensitive (view_menu[i].widget, FALSE); 
       return;
    }
@@ -708,7 +692,7 @@ CloseLogMenu (GtkWidget * widget, gpointer user_data)
 
    /* Change menu entry if there is only one log */
    if (numlogs < 2)
-     gtk_widget_set_state (file_menu[3].widget, GTK_STATE_INSENSITIVE);
+     gtk_widget_set_state (log_menu[3].widget, GTK_STATE_INSENSITIVE);
 
    set_scrollbar_size (curlog->lstats.numlines);
 }
@@ -768,10 +752,10 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 	 {
 	   int i;
 	   if (numlogs >= 2)
-	     gtk_widget_set_sensitive (file_menu[3].widget, TRUE);
-	   gtk_widget_set_sensitive (file_menu[2].widget, TRUE);
-	   gtk_widget_set_sensitive (file_menu[4].widget, TRUE);
-	   for ( i = 0; i < 4; i++) 
+	     gtk_widget_set_sensitive (log_menu[3].widget, TRUE);
+	   gtk_widget_set_sensitive (log_menu[7].widget, TRUE);
+	   gtk_widget_set_sensitive (log_menu[4].widget, TRUE);
+	   for ( i = 0; i < 3; i++) 
 	     gtk_widget_set_sensitive (view_menu[i].widget, TRUE);
 	 } 
       }
@@ -1019,4 +1003,25 @@ void SaveUserPrefs(UserPrefsStruct *prefs)
     gconf_client_set_int (client, "/apps/logview/message_column_width",
     			  prefs->message_column_width, NULL);
 
+}
+
+static void 
+toggle_calendar (void)
+{
+    if (calendarvisible) {
+	calendarvisible = FALSE;
+	gtk_widget_hide (CalendarDialog);
+    }
+    else
+	CalendarMenu (app, NULL);
+}
+
+static void
+toggle_zoom (void)
+{
+    if (zoom_visible) {
+	close_zoom_view (zoom_dialog, NULL);
+    }
+    else
+	create_zoom_view (NULL, NULL);
 }

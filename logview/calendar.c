@@ -84,7 +84,7 @@ extern Log *curlog, *loglist[];
 extern int numlogs, curlognum;
 extern char *month[12];
 extern GtkWidget *main_win_scrollbar;
-
+extern GnomeUIInfo view_menu[];
 GtkWidget *CalendarDialog = NULL;
 GtkWidget *CalendarWidget;
 int calendarvisible;
@@ -348,8 +348,10 @@ calendar_day_selected_double_click (GtkWidget *widget, gpointer data)
 void
 close_calendar (GtkWidget * widget, gpointer client_data)
 {
-   if (calendarvisible)
+   if (calendarvisible) {
       gtk_widget_hide (CalendarDialog);
+      gtk_check_menu_item_set_active  (GTK_CHECK_MENU_ITEM (view_menu[0].widget), FALSE);
+   }
    calendarvisible = FALSE;
 }
 

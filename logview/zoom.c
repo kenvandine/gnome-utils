@@ -47,9 +47,10 @@ extern GdkGC *gc;
 extern Log *curlog;
 extern char *month[12];
 extern GList *regexp_db, *descript_db;
+extern GnomeUIInfo view_menu[];
 
-void close_zoom_view (GtkWidget * widget, GtkWindow ** window);
-void create_zoom_view (GtkWidget * widget, gpointer user_data);
+void close_zoom_view (GtkWidget *widget, gpointer data);
+void create_zoom_view (GtkWidget *widget, gpointer data);
 int match_line_in_db (LogLine *line, GList *db);
 void draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,  \
 	     int x, int y, int width, char *text, int max_num_lines);
@@ -60,7 +61,7 @@ void draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,  \
    ---------------------------------------------------------------------- */
 
 void
-create_zoom_view (GtkWidget * widget, gpointer user_data)
+create_zoom_view (GtkWidget *widget, gpointer data)
 {
    GtkWidget *frame;
    GtkWidget *vbox;
@@ -72,21 +73,24 @@ create_zoom_view (GtkWidget * widget, gpointer user_data)
    if (curlog == NULL || zoom_visible)
       return;
 
-   zoom_dialog  = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+   zoom_dialog  = gtk_dialog_new_with_buttons (_("Zoom view"), 
+					       GTK_WINDOW_TOPLEVEL,
+					       GTK_DIALOG_DESTROY_WITH_PARENT,
+					       GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, 
+					       NULL);
    gtk_signal_connect (GTK_OBJECT (zoom_dialog), "destroy",
 		       (GtkSignalFunc) close_zoom_view,
 		       &zoom_dialog);
    gtk_signal_connect (GTK_OBJECT (zoom_dialog), "delete_event",
 		       (GtkSignalFunc) close_zoom_view,
 		       &zoom_dialog);
-   gtk_window_set_title (GTK_WINDOW (zoom_dialog), _("Zoom view"));
    gtk_container_set_border_width (GTK_CONTAINER (zoom_dialog), 0);
    gtk_widget_set_style (zoom_dialog, cfg->main_style);
-   gtk_widget_realize (zoom_dialog);
 
    vbox = gtk_vbox_new (FALSE, 2);
    gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
-   gtk_container_add (GTK_CONTAINER (zoom_dialog), vbox);
+   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (zoom_dialog)->vbox), vbox,
+                          TRUE, TRUE, 0);
    gtk_widget_show (vbox);
 
    /* Create frame for main view */
@@ -393,10 +397,11 @@ draw_parbox (GdkDrawable *win, PangoFontDescription *font, GdkGC *gc,
    ---------------------------------------------------------------------- */
 
 void
-close_zoom_view (GtkWidget * widget, GtkWindow ** window)
+close_zoom_view (GtkWidget *widget, gpointer data)
 {
    if (zoom_visible) {
-      gtk_widget_hide (zoom_dialog);
+      gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (view_menu[1].widget), FALSE);
+      gtk_widget_hide (GTK_WIDGET (zoom_dialog));
       if (G_IS_OBJECT (zoom_layout))
          g_object_unref (G_OBJECT (zoom_layout));
    }

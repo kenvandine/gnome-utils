@@ -113,8 +113,8 @@ void Draw3DBox (GdkDrawable *win, GdkGC *gc, int x, int y, int w, int h, GdkColo
 void CloseApp (void);
 void UpdateStatusArea (void);
 void change_log (int direction);
-void create_zoom_view (GtkWidget * widget, gpointer user_data);
-void close_zoom_view (GtkWidget * widget, GtkWindow ** window);
+void create_zoom_view (GtkWidget *widget, gpointer data);
+void close_zoom_view (GtkWidget *widget, gpointer data);
 gboolean handle_log_mouse_button (GtkWidget * win, GdkEventButton * event_key);
 Page *GetPageAtCursor (int y);
 
