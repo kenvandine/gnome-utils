@@ -795,13 +795,13 @@ get_desktop_item_name (void)
 	                                           -1, NULL, NULL, NULL);
 	g_string_append (gs, g_strdup_printf ("named=%s", file_is_named_locale));
 	g_free (file_is_named_locale);
-	g_free (look_in_folder_utf8);
 
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
 	                                            -1, NULL, NULL, NULL);
 	g_string_append (gs, g_strdup_printf ("&path=%s", look_in_folder_locale));
-	g_free (look_in_folder_locale); 
+	g_free (look_in_folder_locale);
+	g_free (look_in_folder_utf8); 
 
 	if (GTK_WIDGET_VISIBLE(interface.additional_constraints)) {
 		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
