@@ -1,4 +1,4 @@
-Utilitiesdir = $(datadir)/gnome/apps/Utilities
+Utilitiesdir = $(datadir)/applications
 
 SUBDIRS = help
 
