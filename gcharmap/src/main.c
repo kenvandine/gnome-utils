@@ -32,7 +32,7 @@ main (int argc, char *argv[])
     bindtextdomain (PACKAGE, GNOMELOCALEDIR);
     textdomain (PACKAGE);
 
-    gnome_init (PACKAGE, VERSION, argc, argv);
+    gnome_init ("gcharmap", VERSION, argc, argv);
 
     gtk_widget_show (GTK_WIDGET (main_app_new ()->window));
     gtk_main ();
