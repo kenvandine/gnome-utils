@@ -22,16 +22,17 @@ static void view_color_grid_data_changed    (ViewColorGeneric *vcg,
 static void view_color_grid_remove_selected (ViewColorGeneric *vcg);
 static gpointer view_color_grid_get_control (ViewColorGeneric *vcg,
 					     GtkVBox *box,
-					     void (*changed_cb)(gpointer data), gpointer change_data);
-static void     view_color_grid_apply       (ViewColorGeneric *vcg,
-					     gpointer data);
-static void     view_color_grid_close       (ViewColorGeneric *vcg,
-					     gpointer data);
-static void     view_color_grid_sync        (ViewColorGeneric *vcg,
-					     gpointer data);
+					     void (*changed_cb)(gpointer data),
+					     gpointer change_data);
+static void view_color_grid_apply (ViewColorGeneric *vcg, gpointer data);
+static void view_color_grid_close (ViewColorGeneric *vcg, gpointer data);
+static void view_color_grid_sync  (ViewColorGeneric *vcg, gpointer data);
+static void view_color_grid_save  (ViewColorGeneric *vcg);
+static void view_color_grid_load  (ViewColorGeneric *vcg);
 
-static void     view_color_grid_save        (ViewColorGeneric *vcg);
-static void     view_color_grid_load        (ViewColorGeneric *vcg);
+static gint view_color_grid_button_press (GtkWidget *widget,
+					  GdkEventButton *event, 
+					  gpointer data);
 
 GtkType 
 view_color_grid_get_type (void)
@@ -114,8 +115,23 @@ view_color_grid_new (MDIColorGeneric *mcg)
 
   gtk_signal_connect (GTK_OBJECT (cg), "move_item", 
 		      GTK_SIGNAL_FUNC (view_color_grid_move_item), object);
+
+  gtk_signal_connect_after (GTK_OBJECT (cg), "button_press_event",
+		      GTK_SIGNAL_FUNC (view_color_grid_button_press), object);
   
   return object;
+}
+
+static gint
+view_color_grid_button_press (GtkWidget *widget, 
+			      GdkEventButton *event, gpointer data)
+{
+  if (event->button == 3) {
+    menu_view_do_popup (event);
+    return FALSE;
+  }
+
+  return TRUE;
 }
 
 static void

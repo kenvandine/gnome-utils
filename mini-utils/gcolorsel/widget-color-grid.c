@@ -5,6 +5,7 @@
 #include "widget-color-grid.h"
 #include "utils.h"
 #include "menus.h"
+#include "idle.h"
 
 enum {
   MOVE_ITEM,
@@ -179,7 +180,7 @@ color_grid_destroy (GtkObject *object)
   ColorGrid *cg = COLOR_GRID (object);
 
   if (cg->idle)
-    gtk_idle_remove (cg->idle);
+    idle_remove (cg->idle);
 
   if (cg->idle_todo)
     g_list_free (cg->idle_todo);
@@ -219,7 +220,7 @@ color_grig_for_idle (ColorGrid *cg, ColorGridCol *col)
   cg->idle_todo = g_list_prepend (cg->idle_todo, col);
 
   if (!cg->idle) 
-    cg->idle = gtk_idle_add (color_grid_idle, cg);
+    cg->idle = idle_add (color_grid_idle, cg);
 }
 
 static void
@@ -761,18 +762,14 @@ color_grid_change_pos (ColorGrid *cg, gpointer data)
 
     if ((cg->compare_func (prev, col)<0)&&(cg->compare_func (col, next)<0)) {
       color_grid_reorganize (cg);
-//      printf ("Pas besoin ...\n");
       return;
     }
   }
 
-  if (list->prev) {
-  //  printf ("Pas le premier\n");
+  if (list->prev) 
     g_list_remove (list, col);
-  } else {
-  //  printf ("Le premier\n");
-    cg->col = g_list_remove (list, col);
-  }
+  else 
+    cg->col = g_list_remove (list, col); 
 
   cg->col = g_list_insert_sorted (cg->col, col, cg->compare_func);
 

@@ -71,7 +71,7 @@ struct _ColorGrid {
 struct _ColorGridClass {
   GnomeCanvasClass parent_class;  
 
-  void (*move_item) (ColorGrid *cg, int old_pos, int new_pos, gpointer data);
+  void (*move_item)  (ColorGrid *cg, int old_pos, int new_pos, gpointer data);
 };
 
 GtkType color_grid_get_type (void);

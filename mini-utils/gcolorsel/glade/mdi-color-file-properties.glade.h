@@ -8,4 +8,8 @@
 gchar *s = N_("window1");
 gchar *s = N_("Special properties");
 gchar *s = N_("File name :");
-gchar *s = N_("Comments :");
+gchar *s = N_("End\n"
+              "Comments :");
+gchar *s = N_("Begin\n"
+              "Comments :");
+gchar *s = N_("Header :");

@@ -1,7 +1,87 @@
+2000-04-26 Eric Brayeur <eb2@ibelgique.com>
+
+	* gcolorsel.c, menu.c : polished save dialogs.
+
+	* session.c (session_load_data) : show a warning if file not found.
+	
+2000-04-25 Eric Brayeur <eb2@ibelgique.com>
+
+	* menus.c (close_view_cb) : show "do you want to close the document ?"
+	  if user close the last view of a document ...
+	  (close_doc_cb) : show warning.
+
+	* mdi-color-generic.c (mdi_color_generic_destroy) : move disconnect
+	  parent / other_views from gcolorsel to here.
+
+	* gcolorsel.c (mdi_remove_child) : ask user to save file if modified.
+	
+2000-04-24 Eric Brayeur <eb2@ibelgique.com>
+
+	* mdi-color-file.c (mdi_color_file_load) : update progress when 
+	  loading.
+
+	* mdi-color-generic.c : destroy view object when view is destroyed.
+
+	* session.c, menus.c : set all GnomeAPP sensitivity to FALSE when 
+	  loading a file.
+
+	* idle.[ch] : new files, gtk-idle + block/unblock.
+
+	* gcolorsel.c (main) : destroy mdi after gtk_main (), so, all GdkPixmap
+	  are unreferenced; I think that X need that.
+
+	* view-color-list (view_color_list_destroy) : don't unref gc and font
+	  if == to NULL.
+
+	* glade/dialog-new-view.glade* : new dialog ...
+
+	* dialog-new-view.c : new file ...
+
+	* dialogs.h : new file, header for dialog-*.c
+
+	* gcolorsel.[ch] (views) : new tab, where we keep some informations
+	  about every view : name, pointer to _get_type () and to _new () 
+
+	* mdi-color-generic.c (create_view) : use views tab, to get rid of
+	  hardcoded view creation.
+	
+	* dialog-new-view.c : use the views tab to get a name for every  
+	  views. Finished this dialog.
+
+	* menus.c (close_cb) : small bug fix.
+
 Tue Apr 25 11:30:18 EDT 2000 Gregory McLean <gregm@comstar.net>
 
 	* menus.c : Added the new documentation to the help menu.
 
+2000-04-23 Eric Brayeur <eb2@ibelgique.com>
+
+	* view-color-list.c: save and restore column value width.
+
+	* view-color-grid.c (view_color_grid_button_press) : display popup.
+
+	* mdi-color-generic.c : now show '*' after document name if
+	  document have been modified.
+
+	* mdi-color-file.c (mdi_color_file_load) : fclose the file.
+	  (mdi_color_file_save) : new function.
+	  (mdi_color_file_load) : ignore GIMP Palette header; modify sscanf
+	  to read even '(' for name ...
+
+	* utils.c (display_todo) : new function.
+
+	* menus.c : use display_todo when we do nothing ...
+
+	* glade/mdi-color-file.glade : begin/end comments and header.
+
+	* mdi-color-file.c : gcolorsel can now read/edit/write header !
+
+	* gcolorsel.c : create a status bar for each window.
+
+	* menus.c : implement new/save/save as; with dialog if fail, ...
+
+	* mdi-color-file.c : display progress in statusbar.
+	
 2000-04-23 Eric Brayeur <eb2@ibelgique.com>
 
 	* menus.[ch] (toolbar) : new GNOMEUIINFO structure, for toolbar.
@@ -23,10 +103,6 @@ Tue Apr 25 11:30:18 EDT 2000 Gregory McLean <gregm@comstar.net>
 	
 	* session.[ch] (session_create) : move gcolosel session creation
 	  here.
-
-2000-04-22  Fatih Demir	<kabalak@gmx.net>
-
-	* gcolorsel.desktop : Added [tr] .
 
 2000-04-21 Eric Brayeur <eb2@ibelgique.com>
 

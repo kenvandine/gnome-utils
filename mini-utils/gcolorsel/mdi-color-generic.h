@@ -22,7 +22,12 @@ typedef struct _MDIColorGenericClass  MDIColorGenericClass;
 struct _MDIColorGeneric {
   GnomeMDIChild mdi_child;
 
+  char *name; /* Same that GnomeMDIChild->name */
+
   int key;
+
+  int modified;
+  int monitor_modified;
 
   int flags; /* What the user can do. For example, it make no sense to
                 move or append a color in a MDIColorVirtual.
@@ -118,6 +123,9 @@ GtkType mdi_color_generic_get_control_type (MDIColorGeneric *mcg);
 void mdi_color_generic_sync_control     (MDIColorGeneric *mcg);
 
 void mdi_color_generic_append_view_type   (MDIColorGeneric *mcg, GtkType type);
+
+void mdi_color_generic_set_modified (MDIColorGeneric *mcg, gboolean modified);
+void mdi_color_generic_set_name     (MDIColorGeneric *mcg, char *name);
 					
 END_GNOME_DECLS
 

@@ -91,8 +91,6 @@ mdi_color_virtual_new ()
 
   mcv = gtk_type_new (mdi_color_virtual_get_type ()); 
 
-  GNOME_MDI_CHILD(mcv)->name = g_strdup ("Search");
-
   return mcv;
 }
 

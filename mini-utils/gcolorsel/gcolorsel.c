@@ -10,25 +10,93 @@
 #include "view-color-edit.h"
 #include "widget-control-virtual.h"
 #include "session.h"
+#include "utils.h"
 
 #include <gnome.h>
 #include <glade/glade.h>
 
 GnomeMDI *mdi;
 
-gint mdi_remove_child (GnomeMDI *mdi, MDIColorGeneric *mcg);
+/* First view is considered as the default view ... */
+views_t views_tab[] = { {N_("List"), GTK_POLICY_NEVER, GTK_POLICY_ALWAYS, 
+			 (views_new)view_color_list_new, 
+			 view_color_list_get_type       },
+			{N_("Grid"), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC,
+			 (views_new)view_color_grid_new, 
+			 view_color_grid_get_type       },
+			{N_("Edit"), GTK_POLICY_NEVER, GTK_POLICY_NEVER,
+			 (views_new)view_color_edit_new, 
+			 view_color_edit_get_type       },
+			
+			{ NULL, 0, 0, NULL, 0 } };
 
-gint mdi_remove_child (GnomeMDI *mdi, MDIColorGeneric *mcg)
+views_t *
+get_views_from_type (GtkType type)
 {
-//  mdi_color_generic_clear (mcg);
+  int i = 0;
 
-  while (mcg->parents) 
-    mdi_color_generic_disconnect (mcg->parents->data, mcg);
+  while (views_tab[i].name) {
+    if (views_tab[i].type () == type) return &views_tab[i];
+    i++;
+  }
 
-  while (mcg->other_views) 
-    mdi_color_generic_disconnect (mcg, mcg->other_views->data);
+  return NULL;
+}
+
+static void
+call_get_type (void)
+{
+  int i = 0;
+
+  while (views_tab[i].name) {
+    views_tab[i].type ();
+    i++;
+  }
+}
+
+static gint 
+mdi_remove_child (GnomeMDI *mdi, MDIColorGeneric *mcg)
+{
+  GtkWidget *dia;
+  int ret;
+  char *str;
+
+  if ((IS_MDI_COLOR_FILE (mcg)) && (mcg->modified)) {
+
+    str = g_strdup_printf (_("'%s' document has been modified; do you wish to save it ?"), mcg->name);
+    
+    dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_QUESTION, 
+				 GNOME_STOCK_BUTTON_YES, 
+				 GNOME_STOCK_BUTTON_NO,
+				 GNOME_STOCK_BUTTON_CANCEL, NULL);    
+    g_free (str);
+      
+    ret = gnome_dialog_run_and_close (GNOME_DIALOG (dia));
+    if (ret == 2) return FALSE;
+
+    if (!ret)     
+      while (1) {
+	ret = save_file (MDI_COLOR_FILE (mcg));
+	if (ret == -1) return FALSE;
+	if (ret != 1) break;
+      }
+  }
 
   return TRUE;
+}
+
+static void
+app_created (GnomeMDI *mdi, GnomeApp *app)
+{
+  GtkWidget *statusbar;
+
+  gtk_widget_set_usize (GTK_WIDGET (app), 320, 400);
+
+  statusbar = gnome_appbar_new (TRUE, TRUE, GNOME_PREFERENCES_USER);
+  gnome_app_set_statusbar (GNOME_APP (app), statusbar);
+  gnome_app_install_menu_hints (app, gnome_mdi_get_menubar_info (app));
+
+  gtk_widget_set_usize (GTK_WIDGET (gnome_appbar_get_progress (GNOME_APPBAR (statusbar))), 60, -1);
 }
 
 int main (int argc, char *argv[])
@@ -43,9 +111,7 @@ int main (int argc, char *argv[])
   /* For gtk_type_from_name in session.c */
   mdi_color_virtual_get_type ();
   mdi_color_file_get_type    ();
-  view_color_list_get_type   ();
-  view_color_grid_get_type   ();
-  view_color_edit_get_type   ();
+  call_get_type ();
 	
   /* Init GnomeMDI */
   mdi = GNOME_MDI (gnome_mdi_new ("gcolorsel", _("GColorsel")));
@@ -54,6 +120,8 @@ int main (int argc, char *argv[])
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
   gtk_signal_connect (GTK_OBJECT (mdi), "remove_child", 
 		      GTK_SIGNAL_FUNC (mdi_remove_child), NULL);
+  gtk_signal_connect (GTK_OBJECT (mdi), "app_created",
+		      GTK_SIGNAL_FUNC (app_created), NULL);
 
   /* Init menu/toolbar */
   gnome_mdi_set_menubar_template (mdi, main_menu);
@@ -63,12 +131,9 @@ int main (int argc, char *argv[])
   if (! session_load (mdi)) 
     session_create (mdi);
 
-  gtk_widget_set_usize (GTK_WIDGET (gnome_mdi_get_active_window (mdi)),
-			320, 400);
-
   /* Load all file */
   session_load_data (mdi);
-    
+
   gtk_main ();
 
   return 0;

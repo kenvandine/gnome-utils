@@ -1,6 +1,6 @@
 #include "utils.h"
 
-#include "gtk/gtk.h"
+#include "gnome.h"
 
 /* From gdk-pixbuf, gdk-pixbuf-drawable.c */       
 void pixel_to_rgb (GdkColormap *cmap, guint32 pixel, 
@@ -77,7 +77,12 @@ void
 entry_set_text (GtkEntry *entry, char *str, gpointer data) 
 {
   gtk_signal_handler_block_by_data (GTK_OBJECT (entry), data);
-  gtk_entry_set_text (GTK_ENTRY (entry), str);
+
+  if (str)
+    gtk_entry_set_text (GTK_ENTRY (entry), str);
+  else
+    gtk_entry_set_text (GTK_ENTRY (entry), "");
+
   gtk_signal_handler_unblock_by_data (GTK_OBJECT (entry), data);
 }
 
@@ -131,4 +136,123 @@ int
 get_config_key (void)
 {
   return key_pos++;
+}
+
+void 
+display_todo (void)
+{
+  GtkWidget *dia;
+  dia = gnome_message_box_new ("Sorry, this feature is not implemented !",
+			       GNOME_MESSAGE_BOX_GENERIC,
+			       GNOME_STOCK_BUTTON_OK, NULL);
+  gnome_dialog_run_and_close (GNOME_DIALOG (dia));
+}
+
+int 
+my_strcmp (char *str1, char *str2)
+{
+  if (str1 == str2) return 0; 
+
+  if ((str1 == NULL) || (str2 == NULL)) return 1;
+
+  return strcmp (str1, str2);
+}
+
+void
+file_selection_ok_cb (GtkWidget *widget, gboolean *cancel)
+{
+  *cancel = FALSE;
+
+  gtk_main_quit ();
+}
+
+gint
+file_selection_delete_event_cb (GtkWidget *widget)
+{
+  gtk_main_quit ();
+  
+  return TRUE;
+}
+
+void
+gtk_flush ()
+{
+  while (gtk_events_pending ()) gtk_main_iteration ();
+}
+
+void
+msg_flash (GnomeMDI *mdi, char *msg)
+{
+  GList *list = mdi->windows;
+
+  while (list) {
+    gnome_app_flash (GNOME_APP (list->data), msg);
+    list = g_list_next (list);
+  }
+}
+
+void 
+msg_put (GnomeMDI *mdi, char *msg)
+{
+  GList *list = mdi->windows;
+
+  while (list) {
+    gnome_appbar_set_status (GNOME_APPBAR (GNOME_APP (list->data)->statusbar), 
+			     msg);
+    list = g_list_next (list);
+  }
+}
+
+void 
+msg_push (GnomeMDI *mdi, char *msg)
+{
+  GList *list = mdi->windows;
+
+  while (list) {
+    gnome_appbar_push (GNOME_APPBAR (GNOME_APP (list->data)->statusbar), msg);
+    list = g_list_next (list);
+  }
+}
+
+void 
+msg_pop (GnomeMDI *mdi)
+{
+  GList *list = mdi->windows;
+
+  while (list) {
+    gnome_appbar_pop (GNOME_APPBAR (GNOME_APP (list->data)->statusbar));
+    gnome_appbar_refresh (GNOME_APPBAR (GNOME_APP (list->data)->statusbar));
+    list = g_list_next (list);
+  }
+}
+
+void 
+progress_set (GnomeMDI *mdi, float val)
+{
+  GList *list = mdi->windows;
+  GtkProgress *progress;
+  GnomeAppBar *appbar;
+
+  while (list) {
+    appbar = GNOME_APPBAR (GNOME_APP (list->data)->statusbar);
+
+    gnome_appbar_set_progress (appbar, val);
+//    progress = gnome_appbar_get_progress (GNOME_APPBAR (app->statusbar));
+
+//    gtk_progress_set_percentage (progress, val);
+    gtk_widget_draw (GTK_WIDGET (gnome_appbar_get_progress (appbar)), NULL);
+
+    list = g_list_next (list);
+  }
+}
+
+void 
+mdi_set_sensitive (GnomeMDI *mdi, gboolean val)
+{
+  GList *list = mdi->windows;
+
+  while (list) {
+    gtk_widget_set_sensitive (GTK_WIDGET (GNOME_APP (list->data)), val);
+    list = g_list_next (list);
+  }
 }

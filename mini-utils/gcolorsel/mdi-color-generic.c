@@ -1,10 +1,8 @@
 #include "mdi-color-generic.h"
 #include "view-color-generic.h"
-#include "view-color-list.h"
-#include "view-color-grid.h"
-#include "view-color-edit.h"
 #include "menus.h"
 #include "utils.h"
+#include "gcolorsel.h"
 
 #include <gnome.h>
 #include <glade/glade.h>
@@ -76,7 +74,6 @@ mdi_color_generic_class_init (MDIColorGenericClass *class)
   object_class          = GTK_OBJECT_CLASS (class);
   mdi_child_class       = GNOME_MDI_CHILD_CLASS (class);
   parent_class          = gtk_type_class (gnome_mdi_child_get_type());
-  object_class->destroy = mdi_color_generic_destroy;
 
   mcg_signals [DOCUMENT_CHANGED] = 
     gtk_signal_new ("document_changed",
@@ -88,7 +85,6 @@ mdi_color_generic_class_init (MDIColorGenericClass *class)
 
   gtk_object_class_add_signals (object_class, mcg_signals, LAST_SIGNAL);
 
-
   mdi_child_class->create_view = (GnomeMDIChildViewCreator)mdi_color_generic_create_view;
 
   class->document_changed = mdi_color_generic_document_changed;
@@ -99,13 +95,19 @@ mdi_color_generic_class_init (MDIColorGenericClass *class)
   class->load             = mdi_color_generic_load;
   class->save             = mdi_color_generic_save;
 
+  object_class->destroy   = mdi_color_generic_destroy;
+
   mdi_child_class->get_config_string = (GnomeMDIChildConfigFunc)get_config_string;
 }
 
 static void
 mdi_color_generic_init (MDIColorGeneric *mcg)
 {
-  mcg->key          = get_config_key ();
+  mcg->key  = get_config_key ();
+  mcg->name = NULL;
+
+  mcg->modified         = FALSE;
+  mcg->monitor_modified = FALSE;
 
   mcg->freeze_count = 0;
   mcg->last         = -1;
@@ -128,7 +130,21 @@ mdi_color_generic_init (MDIColorGeneric *mcg)
 static void 
 mdi_color_generic_destroy (GtkObject *obj)
 {
-  //MDIColor *child = MDI_COLOR_GENERIC(obj);
+  MDIColorGeneric *mcg = MDI_COLOR_GENERIC (obj);
+
+  while (mcg->parents) 
+    mdi_color_generic_disconnect (mcg->parents->data, mcg);
+    
+  while (mcg->other_views) 
+    mdi_color_generic_disconnect (mcg, mcg->other_views->data); 
+
+  mcg->freeze_count++;
+  mdi_color_generic_clear (mcg);
+
+  if (mcg->changes) g_list_free (mcg->changes);
+  if (mcg->other_views) g_list_free (mcg->other_views);
+  if (mcg->parents) g_list_free (mcg->parents);
+  if (mcg->views_type) g_list_free (mcg->views_type);
   
   if(GTK_OBJECT_CLASS(parent_class)->destroy)
     (* GTK_OBJECT_CLASS(parent_class)->destroy)(obj);
@@ -137,8 +153,6 @@ mdi_color_generic_destroy (GtkObject *obj)
 static const gchar * 
 get_config_string (GnomeMDIChild *child) 
 {
-  printf ("GetConfigString ...\n");
-
   return g_strdup_printf ("%d", MDI_COLOR_GENERIC (child)->key);
 }
 
@@ -177,6 +191,7 @@ mdi_color_generic_create_view (MDIColorGeneric *child)
   ControlGeneric *control = NULL;
   ViewColorGeneric *view = NULL;
   int type;
+  views_t *views;
 
   vbox = gtk_vbox_new (FALSE, 0);
 
@@ -194,30 +209,25 @@ mdi_color_generic_create_view (MDIColorGeneric *child)
     type = GPOINTER_TO_INT (child->views_type->data);
     child->views_type = g_list_remove (child->views_type, 
 				       child->views_type->data);
+
+    views = get_views_from_type (type);
   } else
-    type = view_color_list_get_type ();
+    views = &views_tab[0];
 
-  /* Create scrolled window, if needed and view*/
+  /* Create scrolled window */
 
-  if (type == TYPE_VIEW_COLOR_LIST) { /* List */
+  if ((views->scroll_h_policy != GTK_POLICY_NEVER) ||
+      (views->scroll_v_policy != GTK_POLICY_NEVER)) {
+    
     sw = gtk_scrolled_window_new (NULL, NULL);  
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
-				    GTK_POLICY_AUTOMATIC,
-				    GTK_POLICY_ALWAYS);
+				    views->scroll_h_policy,
+				    views->scroll_v_policy);
+  }
 
-    view = VIEW_COLOR_GENERIC (view_color_list_new (child)); 
-  } else 
-    if (type == TYPE_VIEW_COLOR_GRID) { /* Grid */
-      sw = gtk_scrolled_window_new (NULL, NULL);  
-      gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
-				      GTK_POLICY_NEVER,
-				      GTK_POLICY_AUTOMATIC);
-      view = VIEW_COLOR_GENERIC (view_color_grid_new (child)); 
-    } else
-      if (type == TYPE_VIEW_COLOR_EDIT) {
-	view = VIEW_COLOR_GENERIC (view_color_edit_new (child));
-      } else
-	g_assert_not_reached ();
+  /* Create view */
+
+  view = VIEW_COLOR_GENERIC (views->new (child));
 
   /* Pack view */
 
@@ -239,11 +249,14 @@ mdi_color_generic_create_view (MDIColorGeneric *child)
 
   /* Sync control */
 
-  
   if (control) 
     control_generic_sync (CONTROL_GENERIC (control));
 
   gtk_widget_show_all (vbox);
+
+  gtk_signal_connect_object (GTK_OBJECT (vbox), "destroy",
+			     GTK_SIGNAL_FUNC (gtk_object_destroy), 
+			     GTK_OBJECT (view));
 
   return vbox;
 }
@@ -328,6 +341,8 @@ mdi_color_generic_post_change (MDIColorGeneric *mcg, MDIColor *col,
                     Ca ne sert à rien d'ajouter ET de modifier une couleur 
                     Ca ne sert à rien de modifier ET de supprimer une couleur 
   */
+
+  mdi_color_generic_set_modified (mcg, TRUE);  
 
   if (type == CHANGE_CLEAR) {
     g_list_free (mcg->changes);
@@ -444,7 +459,7 @@ mdi_color_generic_append (MDIColorGeneric *mcg, MDIColor *col)
   GList *pos;
 
   mcg->last++;
-
+  
   if (! mcg->col) { /* Empty */
     col->list = mcg->col = mcg->last_col = g_list_append (NULL, col);
     col->pos = 0;
@@ -736,6 +751,37 @@ mdi_color_generic_append_view_type (MDIColorGeneric *mcg, GtkType type)
   mcg->views_type = g_list_append (mcg->views_type, GINT_TO_POINTER (type));
 }
 
+void
+mdi_color_generic_set_modified (MDIColorGeneric *mcg, gboolean modified)
+{  
+  if ((mcg->monitor_modified)&&(mcg->modified != modified)) {    
+    char *tmp = g_strdup (mcg->name); /* Because of g_free in set_name ! */
+    mcg->modified = modified;
+    mdi_color_generic_set_name (mcg, tmp);      
+    g_free (tmp);
+  } else
+    mcg->modified = modified;
+}
+
+void 
+mdi_color_generic_set_name (MDIColorGeneric *mcg, char *name)
+{
+  if (mcg->name) 
+    g_free (mcg->name);
+
+  if (name)
+    mcg->name = g_strdup (name);
+  else
+    mcg->name = g_strdup ("");
+
+  if ((mcg->monitor_modified) && (mcg->modified)) {
+    char *tmp = g_strconcat (mcg->name, "*", NULL);
+    gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), tmp); 
+    g_free (tmp);
+  } else 
+    gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), mcg->name);
+}
+
 /******************************* PROPERTIES ********************************/
 
 typedef struct prop_t {
@@ -825,7 +871,7 @@ mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data)
 static void
 mdi_color_generic_save (MDIColorGeneric *mcg)
 {
-  gnome_config_set_string ("Name", GNOME_MDI_CHILD (mcg)->name);
+  gnome_config_set_string ("Name", mcg->name);
 }
 
 static void
@@ -833,7 +879,7 @@ mdi_color_generic_load (MDIColorGeneric *mcg)
 {
   char *str = gnome_config_get_string ("Name");
 
-  gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), str);
+  mdi_color_generic_set_name (mcg, str);
 
   g_free (str);
 }

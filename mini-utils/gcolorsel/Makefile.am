@@ -15,10 +15,12 @@ INCLUDES = 						\
 
 bin_PROGRAMS = gcolorsel
 
-gcolorsel_SOURCES = 	gcolorsel.c			\
+gcolorsel_SOURCES = 	dialog-new-view.c		\
+			dialogs.h			\
+			gcolorsel.c			\
 			gcolorsel.h			\
-			utils.c				\
-			utils.h				\
+			idle.c				\
+			idle.h				\
 			menus.c				\
 			menus.h				\
 			mdi-color-generic.c		\
@@ -31,6 +33,8 @@ gcolorsel_SOURCES = 	gcolorsel.c			\
 			mdi-color-virtual.h		\
 			session.c			\
 			session.h			\
+			utils.c				\
+			utils.h				\
 			view-color-edit.c		\
 			view-color-edit.h		\
 			view-color-generic.c		\

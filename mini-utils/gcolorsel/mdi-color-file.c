@@ -1,5 +1,6 @@
 #include "mdi-color-file.h"
 #include "mdi-color-generic.h"
+#include "utils.h"
 
 #include <gnome.h>
 #include <glade/glade.h>
@@ -67,6 +68,11 @@ static void
 mdi_color_file_init (MDIColorFile *mcf)
 {
   mcf->filename = NULL;
+  mcf->header   = NULL;
+  mcf->comments_begin = NULL;
+  mcf->comments_end   = NULL;
+ 
+  MDI_COLOR_GENERIC (mcf)->monitor_modified = TRUE;
 
   MDI_COLOR_GENERIC (mcf)->flags = CHANGE_APPEND | CHANGE_REMOVE | 
     CHANGE_NAME | CHANGE_POS | CHANGE_RGB | CHANGE_CLEAR;
@@ -78,9 +84,6 @@ mdi_color_file_new (void)
   MDIColorFile *mcf; 
 
   mcf = gtk_type_new (mdi_color_file_get_type ()); 
-
-/*  mcf->filename = g_strdup (filename);
-    GNOME_MDI_CHILD(mcf)->name = g_strdup (g_basename (filename));*/
 
   return mcf;
 }
@@ -95,16 +98,29 @@ mdi_color_file_set_filename (MDIColorFile *mcf, const char *filename)
 }
 
 gboolean
-mdi_color_file_load (MDIColorFile *mcf)
+mdi_color_file_load (MDIColorFile *mcf, GnomeMDI *mdi)
 {
   FILE *fp;
   int r, g, b;
   char tmp[256], name[256];
+  gboolean ok = TRUE;
+  int nb = 0;
+  long size, pos = 0, last_pos = 0;
 
   mdi_color_generic_freeze (MDI_COLOR_GENERIC (mcf));
 
   fp = fopen (mcf->filename, "r");
-  if (!fp) return FALSE;
+  if (!fp) 
+    return FALSE; 
+
+  fseek (fp, 0, SEEK_END);
+  size = ftell (fp);
+  fseek (fp, 0, SEEK_SET);
+
+  if (mcf->header) {
+    g_free (mcf->header);
+    mcf->header = NULL;
+  }
 
   while (1) {
     fgets(tmp, 255, fp);    
@@ -114,16 +130,91 @@ mdi_color_file_load (MDIColorFile *mcf)
     if ((tmp[0] == '!') || (tmp[0] == '#')) continue;
 
     name[0] = 0;
-    if (sscanf(tmp, "%d %d %d\t\t%[a-zA-Z0-9 -]\n", &r, &g, &b, name) < 3) 
-      return FALSE;
+    if (sscanf(tmp, "%d %d %d\t\t%255[^\n]\n", &r, &g, &b, name) < 3) {
+      if (nb) {
+	ok = FALSE;
+	break;
+      } else {
+	if (mcf->header) {
+	  ok = FALSE;
+	  break;
+	} else { /* For GIMP Palette ... */
+	  mcf->header = g_strdup (tmp);
+	  continue;
+	}
+      }
+    }
 
+    pos = ftell (fp);
+
+    if (pos > last_pos) {    
+      progress_set (mdi, ((float)pos / (float)size));
+      
+      last_pos += size / 150;
+    }
+      
     mdi_color_generic_append_new (MDI_COLOR_GENERIC (mcf), 
 				  r, g, b, name);
+    nb++;
   }
 
-  mdi_color_generic_thaw (MDI_COLOR_GENERIC (mcf));
+  progress_set (mdi, 0);
 
-  return TRUE;
+  fclose (fp);
+
+  if (!nb) ok = FALSE;
+
+  mdi_color_generic_thaw (MDI_COLOR_GENERIC (mcf));
+  mdi_color_generic_set_modified (MDI_COLOR_GENERIC (mcf), FALSE);
+  
+  return ok;
+}
+
+gboolean
+mdi_color_file_save (MDIColorFile *mcf)
+{
+  FILE *fp;
+  GList *list;
+  MDIColor *col;
+  char *buf;
+  gboolean ok = TRUE;
+
+  fp = fopen (mcf->filename, "w");
+  if (!fp) return FALSE;
+
+  if (mcf->header) {
+    if (fputs (mcf->header, fp) < 0) 
+      ok = FALSE;
+    else       
+      if (fputc ('\n', fp) < 0) 
+	ok = FALSE;
+  }
+
+  if (ok) {
+    list = MDI_COLOR_GENERIC (mcf)->col;
+    while (list) {
+      col = list->data;
+      
+      buf = g_strdup_printf ("%3d %3d %3d\t\t%s\n", 
+			     col->r, col->g, col->b, col->name);
+      if (fputs (buf, fp) < 0) {
+	ok = FALSE;
+	g_free (buf);
+	break;
+      }
+      
+      g_free (buf);
+      
+      list = g_list_next (list);
+    }
+
+    if (ok) 
+      mdi_color_generic_set_modified (MDI_COLOR_GENERIC (mcf), FALSE);
+  }
+
+  fclose (fp);
+
+  return ok;
 }
 
 /************************* PROPERTIES ************************************/
@@ -137,8 +228,16 @@ typedef struct prop_t {
   gpointer change_data;
 
   GtkWidget *entry_file;
-  GtkWidget *text_comments;
+  GtkWidget *combo_header;
+  GtkWidget *text_comments_begin;
+  GtkWidget *text_comments_end;
 } prop_t;
+
+static void
+entry_changed (GtkWidget *widget, prop_t *prop)
+{
+  prop->changed_cb (prop->change_data);
+}
 
 static gpointer
 mdi_color_generic_get_control (MDIColorGeneric *mcg, GtkVBox *box,
@@ -169,8 +268,22 @@ mdi_color_generic_get_control (MDIColorGeneric *mcg, GtkVBox *box,
   gtk_box_pack_start_defaults (GTK_BOX (box), frame);
 
   prop->entry_file = glade_xml_get_widget (prop->gui, "entry-file");
-  prop->text_comments = glade_xml_get_widget (prop->gui, "text-comments");
 
+  prop->combo_header = glade_xml_get_widget (prop->gui, "combo-header");
+  gtk_signal_connect (GTK_OBJECT (GTK_COMBO (prop->combo_header)->entry),
+		      "changed",
+		      GTK_SIGNAL_FUNC (entry_changed), prop);
+
+  prop->text_comments_begin = 
+    glade_xml_get_widget (prop->gui, "text-comments-begin");
+  prop->text_comments_end = 
+    glade_xml_get_widget (prop->gui, "text-comments-end");
+
+  gtk_signal_connect (GTK_OBJECT (prop->text_comments_begin), "changed",
+		      GTK_SIGNAL_FUNC (entry_changed), prop);
+  gtk_signal_connect (GTK_OBJECT (prop->text_comments_end), "changed",
+		      GTK_SIGNAL_FUNC (entry_changed), prop);
+  
   return prop;
 }
 
@@ -178,11 +291,14 @@ static void
 mdi_color_generic_sync (MDIColorGeneric *mcg, gpointer data)
 {
   prop_t *prop = data;
+  MDIColorFile *mcf = MDI_COLOR_FILE (mcg);
 
   printf ("MDI File :: sync\n");
 
-  gtk_entry_set_text (GTK_ENTRY (prop->entry_file), 
-		      MDI_COLOR_FILE (mcg)->filename);
+  gtk_entry_set_text (GTK_ENTRY (prop->entry_file), mcf->filename);
+  
+  entry_set_text (GTK_ENTRY (GTK_COMBO (prop->combo_header)->entry),
+		  mcf->header, prop);
 
   parent_class->sync (mcg, prop->parent_data);
 }
@@ -191,8 +307,29 @@ static void
 mdi_color_generic_apply (MDIColorGeneric *mcg, gpointer data)
 {
   prop_t *prop = data;  
+  MDIColorFile *mcf = MDI_COLOR_FILE (mcg);
+  char *text, *tmp;
 
   printf ("MDI File :: apply\n");
+
+  text = gtk_entry_get_text (GTK_ENTRY (GTK_COMBO (prop->combo_header)->entry));
+
+  if (my_strcmp (text, mcf->header)) {
+    tmp = g_strdup (text);
+    text = g_strstrip (tmp);
+    if (! strcmp (text, "")) {
+      if (mcf->header) {
+	mdi_color_generic_set_modified (mcg, TRUE);
+	g_free (mcf->header);
+	mcf->header = NULL;
+      }
+    } else {
+      mdi_color_generic_set_modified (mcg, TRUE);
+      mcf->header = g_strdup (text);
+    }
+      
+    g_free (tmp);
+  }
 
   parent_class->apply (mcg, prop->parent_data);
 }

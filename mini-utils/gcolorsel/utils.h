@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <gtk/gtk.h>
+#include <gnome.h>
 
 void pixel_to_rgb (GdkColormap *cmap, guint32 pixel, 
 		   gint *red, gint *green, gint *blue);
@@ -21,6 +21,24 @@ void preview_fill (GtkWidget *preview, int r, int g, int b);
 void set_config_key_pos (int pos);
 int  get_config_key_pos (void);
 int  get_config_key (void);
+
+void display_todo (void);
+
+int my_strcmp (char *str1, char *str2);
+
+void file_selection_ok_cb (GtkWidget *widget, gboolean *cancel);
+gint file_selection_delete_event_cb (GtkWidget *widget);
+
+void gtk_flush (void);
+
+void msg_put   (GnomeMDI *mdi, char *msg);
+void msg_push  (GnomeMDI *mdi, char *msg);
+void msg_pop   (GnomeMDI *mdi);
+void msg_flash (GnomeMDI *mdi, char *msg);
+
+void mdi_set_sensitive (GnomeMDI *mdi, gboolean val);
+
+void progress_set (GnomeMDI *mdi, float val);
 
 #endif
 

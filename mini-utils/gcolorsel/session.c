@@ -158,8 +158,6 @@ GnomeMDIChild *child_create (const gchar *config)
   GtkType type;
   GnomeMDIChild *child;
 
-  printf ("Child create : %s\n", config);
-  
   prefix = g_strdup_printf ("/gcolorsel/%s/", config);
   gnome_config_push_prefix (prefix);
   g_free (prefix);
@@ -306,15 +304,44 @@ void
 session_load_data (GnomeMDI *mdi)
 {
   GList *list = mdi->children;
+  GString *str = NULL;
+
+  msg_push (mdi, _("Loading files, please wait ..."));
+  mdi_set_sensitive (mdi, FALSE);
+  gtk_flush ();
 
   while (list) {
-    if (IS_MDI_COLOR_FILE (list->data)) 
-      mdi_color_file_load (MDI_COLOR_FILE (list->data));
+    if (IS_MDI_COLOR_FILE (list->data)) {
+      if (! mdi_color_file_load (MDI_COLOR_FILE (list->data), mdi)) {
+	if (! str) 
+	  str = g_string_new (MDI_COLOR_FILE (list->data)->filename);
+	else {
+	  g_string_append (str, "\n");
+	  g_string_append (str, MDI_COLOR_FILE (list->data)->filename);
+	}
+      }
+    }
 
     list = g_list_next (list);
   }
-}
 
+  mdi_set_sensitive (mdi, TRUE);
+  msg_pop (mdi);
+
+  if (str) {
+    GtkWidget *dia;
+
+    g_string_prepend (str,_("One or more files can not be restored :\n\n"));
+
+    dia = gnome_message_box_new (str->str, GNOME_MESSAGE_BOX_WARNING,
+				 GNOME_STOCK_BUTTON_OK, NULL);
+
+    g_string_free (str, TRUE);
+
+    gnome_dialog_run_and_close (GNOME_DIALOG (dia));
+  }
+}
+       
 /******************************* Create ***********************************/
 
 void
@@ -325,7 +352,7 @@ session_create (GnomeMDI *mdi)
   MDIColorVirtual *virtual;
 
   /* Configure MDI */
-  mdi->tab_pos = GTK_POS_BOTTOM;
+  mdi->tab_pos = GTK_POS_TOP;
   gnome_mdi_set_mode (mdi, GNOME_MDI_NOTEBOOK);
 
   /* Create a file document */
@@ -333,7 +360,7 @@ session_create (GnomeMDI *mdi)
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file));
   
   mdi_color_file_set_filename (file, "/usr/X11R6/lib/X11/rgb.txt");
-  gnome_mdi_child_set_name (GNOME_MDI_CHILD (file), "System");
+  mdi_color_generic_set_name (MDI_COLOR_GENERIC (file), "System");
   
   /* Add a ColorList view for the file document */
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
@@ -350,6 +377,7 @@ session_create (GnomeMDI *mdi)
 
   /* Configure search */
   mdi_color_virtual_set (virtual, 255, 255, 255, 100);
+  mdi_color_generic_set_name (MDI_COLOR_GENERIC (virtual), "Search");
   
   /* Add a ColorList view for the search document  */  
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
