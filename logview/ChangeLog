@@ -1,5 +1,11 @@
 2003-05-19  Glynn Foster  <glynn.foster@sun.com>
 
+	* Defining timezonevar before including time.h is necessary 
+	for using timezone variable on Cygwin. Patch from Masahiro Sakai.
+	Fixes #111267.
+
+2003-05-19  Glynn Foster  <glynn.foster@sun.com>
+
 	* logview.schemas.in: Fix #102234.
 
 2003-05-19  Glynn Foster  <glynn.foster@sun.com>

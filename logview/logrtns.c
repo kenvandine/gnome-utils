@@ -20,6 +20,9 @@
     ---------------------------------------------------------------------- */
 
 #include <config.h>
+#ifdef __CYGWIN__
+#define timezonevar
+#endif
 #include <gnome.h>
 #include <locale.h>
 #include <errno.h>
